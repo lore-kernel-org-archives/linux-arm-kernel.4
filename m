@@ -2,82 +2,159 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7AA606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28B4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KURE1yhV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ko6Lt8So
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uY+A9lMp;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=lT6JB8/G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cFPvlgUy0TvBWcDjM5/jmutsQzuYr3kEfyGp2bpsx6Y=; b=KURE1yhVSsBh/u
-	xZlbWI+ouqBUKpU/BAXVI96x7PsU5EEmfiEPYzCF7Lw/gxan27akM4gXsl9RwbXvtdWXUd0RLy4Vf
-	6bua/CUc7cyV0iwYj1TTeHD4nrpdbL8OoKP7AyzHGHV+3mgnxtAacLVRxCmExHH1lt+HG1nl4+MiK
-	sbiC3c5EdD6yBvjbbmweYzvOoftps3CcDk4hQuEio1HKK95xsdekW12E8U53/1PQnLdtzLSYKxH3/
-	0vsg15KeyEzeG6Bw9R//9BsHIhHhaUYDUaKolR5pdBEsJkiTmnuyuVMnGMRsQdtafDgnMh+GGqL4G
-	5qPQhrifYNFOg7lCFTSQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=LcNyZeCWspoxJ4/jUwD8ysW+46j8TBaZwCoT6do/XRo=; b=uY+A9lMpq84HiVRKyK7NTBvvZ+
+	AMbwQ9eFkbf8O9REzUe/q6TtaHIdGPMhbsjDdP/4fLgiEHQTwaslf4VXW4m7uNRKj6Z00PQJo9Dnk
+	2UQWofmLkV+0XkHK+M0kALa78JtT5LXJRo7HOexyEK5n+FSMG1dx/hfdPOJ/P27hR+LH8BbgLLcNf
+	ee1Pj2ClLMX90fDz6Vg/BXPdzyvFJpmxGc5hSoAWpbRHNSwdoMyZJEnacpeNOZH0X2djGFU0/ltU7
+	AfaCKqb+TcA+B4pjI9s8NjzPGV4AdKajZKCWZgZF8dB1TEIdRW8e1Ra27DS7dis49z7f+vL5p32wj
+	q5X6PBvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUO1M-0000000Ezvy-2WxN;
-	Fri, 20 Nov 2026 12:47:16 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUO5S-0000000F0Nj-0jut;
+	Fri, 20 Nov 2026 12:51:30 +0000
+Received: from mail-francecentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20a::7] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUO1K-0000000EzvR-3hnx
+	id 1xUO5N-0000000F0Le-1Rux
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 12:47:14 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6CDDD45B95
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 12:47:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28B521F02EF1
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 12:47:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795178834;
-	bh=cFPvlgUy0TvBWcDjM5/jmutsQzuYr3kEfyGp2bpsx6Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Ko6Lt8So1k4Kpkskymig/ldqmyFw5l3nc8bEgsgAwDisD8pK7KcdCYf7/EXHNgfv4
-	 fJVwZqOsbobHKaDFoXCZuJfAnfU1gMwPnG6kEMJ5dwz1ZuLVENW3NtIi5/hDuIn4Q4
-	 zYBnQLtlNcxDmvgiq74w6u4omDx2udPHobszbEVHGOLRvQ8db3dx1Z+gPvKR4A2LwW
-	 VAb6p34LZZKKmNzrqfMW3UWqKMrWz6T1uL4Iqs/Yaq1XRyGTQU/YCCjnur+6I/XBgk
-	 hUN7HtiMswmZo0lY9e8T40uEnSB1BeSDpSkXpedWXlDniB0DJox5YVBOwtBhmD+wn9
-	 5Cq8E4/Y+QCdw==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-3ae0a5c1715so19306161fa.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 04:47:14 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGdvuxLLwHCJ9uHrRjZFIu43dNBVeauVmcbi1mjz0UDnlWXX79H7tPG21WMUj06ZB2IbsMR3V07zPfT+cyYqz1U@lists.infradead.org
-X-Gm-Message-State: APuU4Z/T7Q+LLiCdvw74pD30zo52Vdd1l7BHixEeuCaADl4we+ZNnjHP
-	YTjWrmRNMqdlQsxFQGKsP7QteCHMliBXC3bfW7nbdXnTcyneMsngLnjeNFUD6d6zpl2a5wt21VN
-	7MLfZFE5urRWl2sxnKbCtn6SwWWMj+98=
-X-Received: by 2002:a2e:a9a7:0:b0:3ae:25c8:dce3 with SMTP id
- 38308e7fff4ca-3ae7afa4af0mr11615641fa.0.1795178832340; Fri, 20 Nov 2026
- 04:47:12 -0800 (PST)
+	Fri, 20 Nov 2026 12:51:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PiXRJk2bEuXyda7qFdxZCZxhK9lCZnBlWhKlMNozZOWdsuFHBXPzvMYsXDc/kDwYuWF14ZWO6bIKXDjBQNwAbW4uwmMr+0wCOIbR7M36TpqanE2/jB3U3EAxvp0tka13XxKavqynh/nI9qep7VVoAgq/58PIVLa8PZjwfhTMP8gVB8ynm/bRRE+VZbSxp6SlhN8OH7v/MTK+MVyyoyO2aiEN7wJL16vUgq2PVVCCrZ0Oy+sjOvmF7SoIginXs8l8sIrXD+90xUTtqgzCJVm0mFKA3AnXvkQMSaDgSQ5oosGJRfze/F/ZM40xxW4fbil1VUXcdDm7X57K3oN1AjZ7vA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LcNyZeCWspoxJ4/jUwD8ysW+46j8TBaZwCoT6do/XRo=;
+ b=eg8DiHUTzi9W8xRDkz3MyrpY7kaPqCWTq0leZmeI/v6OBf8V7UTjQ17YKQRl+eec67d36n+rBtCsIx96ooxjw6FJVLrDhwyEyjuXP6t2rHfP5SBnj5mAZY0f56nV0PnUW2lVSLmY0Fo0ve15lJl+wGyy+FX6q3sTaPhiwEIJcsWDNb5LgEJcNpwq+2IrghMkhgLZS9+osJ0XeiN+7h14NOLZu8OBg7foJDBc6A2Qq2yCDmTRHkB6pIwLRaC39PKw/5HY42qM3KXvYq17hjcqu4i5xBiIowNDeHoRy3mafvrhmKLaZZk0+Bt/YkD38CViAr/vkjK7TrAod0uyHkob0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LcNyZeCWspoxJ4/jUwD8ysW+46j8TBaZwCoT6do/XRo=;
+ b=lT6JB8/Gyavj7qxlIzq1+U3J62qaa+6A56Wv1DBx10xa2D3YkAYoHAiSfuBEjaPs2++uYVxknDwKeZ84yiedjb2NGsjhm1bhJ2Fpum9g5TAOF8wiQ9DIFMhVIC5LCLDUPF/Q0b0GiCgewZSsSE9AAF6OmdtZE1W8HTnc072d7GkswE/87Vi8754BEDFlho0IhkYuErpswrC8IkPxxhIMgzpGfSYLSqWmUH04xppM+fs3Noy0OXNmJdoZwXyt5Ks2w7VlFqtw8etzNdaT90d/8E30LE0FOnDihQaRa5u/mwVcmRPXuFS1Eqqg3ZP3K0cnsjeBhOvVH4r30hWGqU4f/Q==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19) by DU4PR04MB12061.eurprd04.prod.outlook.com
+ (2603:10a6:10:646::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
+ 2026 12:51:08 +0000
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa]) by GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa%3]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
+ 12:51:08 +0000
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Abel Vesa <abelvesa@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+	linux-clk@vger.kernel.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v13 3/5] dt-bindings: clock: nxp,imx95-blk-ctl: Add LDB bridge child node
+Date: Fri, 20 Nov 2026 12:50:38 +0000
+Message-ID: <20261120-dcif-upstreaming-v13-3-966ac248773f@oss.nxp.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261120-dcif-upstreaming-v13-0-966ac248773f@oss.nxp.com>
+References: <20261120-dcif-upstreaming-v13-0-966ac248773f@oss.nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AM0PR10CA0036.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:150::16) To GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261116152403.2672-1-ilpo.jarvinen@linux.intel.com> <20261116152403.2672-2-ilpo.jarvinen@linux.intel.com>
-In-Reply-To: <20261116152403.2672-2-ilpo.jarvinen@linux.intel.com>
-From: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
-Date: Fri, 20 Nov 2026 13:46:57 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0gaGkw=WF5SNh3HqAQj1BBuKrQX4c=gQmr7u5u1ZazZ3Q@mail.gmail.com>
-X-Gm-Features: Aa3M54oz3LF47L5PDAhm_echVts1Tg_ShC1H7XciRhRSEPVLCqbGWtF1x-1ZQPo
-Message-ID: <CAJZ5v0gaGkw=WF5SNh3HqAQj1BBuKrQX4c=gQmr7u5u1ZazZ3Q@mail.gmail.com>
-Subject: Re: [PATCH 01/13] PCI: Add pci_bus_size_and_assign_resources()
-To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Russell King <linux@armlinux.org.uk>, Greg Ungerer <gerg@linux-m68k.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Yoshinori Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, Helge Deller <deller@gmx.de>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Dominik Brodowski <linux@dominikbrodowski.net>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-m68k@lists.linux-m68k.org, 
-	linux-mips@vger.kernel.org, linux-sh@vger.kernel.org, 
-	linux-parisc@vger.kernel.org, linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB12318:EE_|DU4PR04MB12061:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb40cbbe-4164-446a-032c-08df4704f245
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|1800799024|23010399003|22082099003|18002099003|261009223027099003|3023799007|921020|56012099006|11063799006|10067099003|261102123227099003|261028144727099003|261026140227099003|261026121527099003|261021123027099003|261021121427099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: ZjbHHMARX8x823Wv73vB00Zk03EaI2pj3Y2jSyBSz9GwmYCOpfOMVzCniIKpkSfp8yPX3tPP8TVCDi+LPNo8Ne3PoArmxIjy7F1+PB2heMZ1vaZ7IRmXAUGTmzmYuaZekqAuocKje60efiq27PfpLV6o2RxRm1eK15I0uaYMIzl/svg1u5LiYVlCk+f/24CHddJunFjUMEUWFlZn/B065VM1uTfFyISteKR5kTH4uMnA/1KKkzQOLwYtbIgtI7XvdaU13QPs22z9NGayMjlY64JukPtYDlacOVqG4oafZ1NQTbdjFDJx29Ej3YucLX32cYV1wQLQWh267Z67ppKzB8Yz44GmQTJQqqhCiNxkNsgrmJYJ8hHg9oWDa5PU5vfEHD9PP6zQCZyD80qZVlh7gGb4XBIVzMBMn2LohCfCJWbEc1S7x9ewRHVmkEY/y9JJZZ7pLjdXVijzbRePwIYhFnuZ0riccm+rYekPoUkhqqIst6GLc5nq4D+aHPivWSsGNVKlmS56BgpA6jvDyc5+DYDsGMUnFTDZW0/mPq8FCcDtGenEq15zyPOAGhKgGi917U5WrGW83KKmNSiKJGtcefoLuGRfPXU5k/RXNltK9DXiwYOD5P44b8fF42Tjy4G9wMNYzwWjFlIWNhaT1e1T8YEsoofGxn80viV9kkx4Z0oYmypBhKm+l72fa0UhWs/1PRC9dztLNg2oQbKHmzwxpA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12318.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(1800799024)(23010399003)(22082099003)(18002099003)(261009223027099003)(3023799007)(921020)(56012099006)(11063799006)(10067099003)(261102123227099003)(261028144727099003)(261026140227099003)(261026121527099003)(261021123027099003)(261021121427099003)(261022105027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ckRmZThUKzNwbVJyNDE1dVJyRUhzejZhcWRhSlo3VWdINDFGcmpNMmJpazNY?=
+ =?utf-8?B?c0xaMzdDci9GbXNNRVlLUmlFRXFVSExNWkM3VzJnK3BhdlJKYktSdDlKamZz?=
+ =?utf-8?B?dWdWS2hGS0RLYnJCMnc1S01wNEVkYzRCZlNiS21ab3RGY3FqT1dsZHZ2UXk3?=
+ =?utf-8?B?MXZ1WDgrcDBXRUlvSFhXT0IzelZWbGEySXRLeUNQRUVERzRVKzh2Zk5hTUpF?=
+ =?utf-8?B?aWFzOVd3cjVQMExLUXlyU1FacEN3T1p4MytGZnFCZzEyZkViVkVTSU9aK0I2?=
+ =?utf-8?B?WDNPNjJwZWVTaXRyVEtTZTdkbWtGOGYrRnJEeFJkVjZ4cGROYml5U1N0VUFZ?=
+ =?utf-8?B?MjRWdXBoamJZODU2RDREdUpIaXp2UlZ6WVJmdUc4bllBUmtEVk1DMzIxQ293?=
+ =?utf-8?B?dHNxM2lXY3hMZXRiOVZIZ0tmM1hELzhhMjFrQy9sU3hBZ0F1ekNsbmdSMHBR?=
+ =?utf-8?B?ckwvTm9QcDdMUGZKQUs1REtTVEM0TGJ0K2FhSmJwbEZHYTBOWDlaUzA3WGlI?=
+ =?utf-8?B?d3pDVFlXUENoQnBOWXprSm9wM09ZUzIrTXdyMlp4dElSWTFYTDIraW5sK3lx?=
+ =?utf-8?B?MFBYWit1VW1EMXlkbkg3OXU0UjN3MEozQXYxdUVScWEvSnZFUk5uaW96MUVY?=
+ =?utf-8?B?RndaNmoxWkIzeHU5RGVjci9YWjNwZ1N1bXFvYTU5d3FwVi85b3JEN3FyQnhS?=
+ =?utf-8?B?TStsL3owUE04WG5ibjQ4dFB4ekIzaENrVUVUS2p2c01JTE5ybnh1bitxbitM?=
+ =?utf-8?B?NFZTZ0RpVm56VTFEengrV2hzOVFHb1IxWVdvR0x1NjBJRUVSWHE2QVZCNGF4?=
+ =?utf-8?B?MEEzWGxJZEozMWxESlI1d2RBcFhEdFB6YTArdWo5NVIzMkh3bkFpazk0WllE?=
+ =?utf-8?B?OExxWTk1UFNKQytnV3g3U3dyL2pwVWdJMHprNXY4amlBa002cC9XcTh1d3Zj?=
+ =?utf-8?B?WThtY09LSzMyMjdLVkdubFFWbExHTlBOQXRtd2xVNVA3Wjl0NzBqVzJVYzU3?=
+ =?utf-8?B?cDVpMkljZk1xUk9vdytFb2V4L2M1SmpOWEhhR3gzRnllU3NualkxUWtSSUcx?=
+ =?utf-8?B?MjJWSlVHNUxnREMyZ0pxMEpydEhJcmkwNkU1R3BkamFsSkRVbHpoYmVGQi9j?=
+ =?utf-8?B?Nk9TWkFWM3A2SVJmZlJZbXpDTnJaRUhjR2hHQUxQZERUVXZJV3ZiVjRUWDZl?=
+ =?utf-8?B?RG8xR0puMWZvajdBTGRUQVUrNXQxeWllUm1xaUFoYWlHK1RiQ1ErcnZCTHpC?=
+ =?utf-8?B?K1FTVUVtbVo0WlFQaVhENXdPRWJUYlZVLzBXUlIwVENPV3krYlFneUR2S3VV?=
+ =?utf-8?B?SnZPQXl4WGtYbXJsRHdUaktnWWphQ2MrMi9aQnpMOGcxS2NlVytlQkU1b1BS?=
+ =?utf-8?B?cVo1cE9rUnFxOEkrNHZUM25tZE1uR0tJNVhPVmcyNDBpSzVnUWN6SDdtOFdr?=
+ =?utf-8?B?SmxUbk82MWVCckhvSklvU2FFUC83WXk0ZElPN2NPREtQNS9IQ3BhT2FFYTFS?=
+ =?utf-8?B?SjMvU2hQdDF0Wlh4aHMzTVNxdGs5TXpkZWYwbGtGdVhOMEh1Tmc5SzYzM004?=
+ =?utf-8?B?UWNLYzR2MTFBdks3VVBLK0Y0bTdEVFhhWXZRWEJCclJYekVWMjBubE8xT3dM?=
+ =?utf-8?B?WTV1bEVZczRQWE9laDlPRzljWWdrVWVaQ1JGRERtRkcybnBhNWp6OEEveGJx?=
+ =?utf-8?B?bldQTVd3WDB3OHpwaWRhNGEvQW5pbE1oRms1bWRjd3dnbW0rdnBEcEhZTGlw?=
+ =?utf-8?B?Tm1OTFlOU1dRZ1pIWncwN0xBRUdaL2N4VFAraVNrVGhZSExoZjB2VWpKZG1X?=
+ =?utf-8?B?bXFxa1BXSmR1bE9EdHJFN3ZweGVPRmdWQldHNU1wUmFqWEpMM2pkMW16K2VW?=
+ =?utf-8?B?Z25IekZnbGo3L3lvc2x0d3pVa2ljeU43WCtUeEg5V2VRZ243S0FpQkNiZjZP?=
+ =?utf-8?B?YW9FVytMWnRLYkl0dHlFdVZ3bXNEK3dMY0NiejRGN1BJZ2xWSzJEWUdPOGZo?=
+ =?utf-8?B?bHNsKzRNbk1NOSsrSSt0VGs2YWVuZkNnY04zbWl5SmgyTTdVK2g1NDE0RHdD?=
+ =?utf-8?B?VVhaZHkyMmdVMEp6L2hmSlJkUmN2NWtvYkgzaDU0cUhsd2tJZjFkcUhuUE5h?=
+ =?utf-8?B?VjQ2d1puRklFbmx2cW1HbVhQL0dTV1ZPZUtxeWZ5UUtVTXJqNjdnRDRabmcv?=
+ =?utf-8?B?dmlnRnRLR2cvamlyUm42OUlNNUVwYTFJR3NiVFluN3ljMVpzWjIvcjNYUmRk?=
+ =?utf-8?B?aDRqRlErcHc1MkhvL3g0blp5TDZCWjRTLzE3RDVwRTVFbGNSazFvSXM0K3l3?=
+ =?utf-8?B?S1YzWVN3NGRDOVZoRFl5YmxRVUphNXNCaVFaMmtqNG84a2xldGs2QT09?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb40cbbe-4164-446a-032c-08df4704f245
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12318.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 12:51:08.1212
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uHzd4X2yeHOKXX6XwOKURWEa46WQac6BE6S2jV5bzEA9e1lLEb0n+nvL5lFOoDE8GbemJZZgbZ4yg/zPWV82Zg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB12061
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_045125_425245_765162FE 
+X-CRM114-Status: UNSURE (   9.26  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,200 +165,75 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 4:24=E2=80=AFPM Ilpo J=C3=A4rvinen
-<ilpo.jarvinen@linux.intel.com> wrote:
->
-> Bridge window sizing and resource assignment must not run concurrently
-> with another sizing and assignment pass or with device removal.
-> Preventing that requires holding locks across both phases. Many callers
-> outside of PCI core call pci_bus_size_bridges() immediately followed by
-> pci_bus_assign_resources() and cannot hold the PCI core internal locks
-> across the two calls.
->
-> Add pci_bus_size_and_assign_resources() into PCI core which combines
-> these two operations and convert the callers that call them back to
-> back.
->
-> Signed-off-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+Since the BLK CTL registers, like the LVDS CSR, can be used to control the
+LVDS Display Bridge controllers, add a 'bridge' child node to handle
+these use cases.
 
-LGTM
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+---
+ .../bindings/clock/nxp,imx95-blk-ctl.yaml          | 24 +++++++++++++++++++++-
+ 1 file changed, 23 insertions(+), 1 deletion(-)
 
-Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
+index fbbf1b3f17904..c2aeb434a8102 100644
+--- a/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
++++ b/Documentation/devicetree/bindings/clock/nxp,imx95-blk-ctl.yaml
+@@ -51,6 +51,10 @@ patternProperties:
+     $ref: /schemas/media/fsl,imx95-csi-formatter.yaml#
+     unevaluatedProperties: false
+ 
++  '^bridge@[0-9a-f]+$':
++    type: object
++    $ref: /schemas/display/bridge/fsl,ldb.yaml#
++
+ required:
+   - compatible
+   - reg
+@@ -63,7 +67,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: nxp,imx95-camera-csr
++            enum:
++              - nxp,imx94-lvds-csr
++              - nxp,imx95-camera-csr
+     then:
+       required:
+         - '#address-cells'
+@@ -72,8 +78,24 @@ allOf:
+       properties:
+         '#address-cells': false
+         '#size-cells': false
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: nxp,imx95-camera-csr
++    then:
+       patternProperties:
+         '^formatter@[0-9a-f]+$': false
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: nxp,imx94-lvds-csr
++    then:
++      patternProperties:
++        '^bridge@[0-9a-f]+$': false
+ 
+ additionalProperties: false
+ 
 
-> ---
->  arch/arm/kernel/bios32.c           | 5 ++---
->  arch/m68k/coldfire/pci.c           | 3 +--
->  arch/mips/pci/pci-legacy.c         | 5 ++---
->  arch/sh/drivers/pci/pci.c          | 3 +--
->  drivers/parisc/lba_pci.c           | 7 ++-----
->  drivers/pci/hotplug/acpiphp_glue.c | 3 +--
->  drivers/pci/setup-bus.c            | 7 +++++++
->  drivers/pcmcia/cardbus.c           | 3 +--
->  include/linux/pci.h                | 1 +
->  9 files changed, 18 insertions(+), 19 deletions(-)
->
-> diff --git a/arch/arm/kernel/bios32.c b/arch/arm/kernel/bios32.c
-> index ac0e890510da..555bfb091d30 100644
-> --- a/arch/arm/kernel/bios32.c
-> +++ b/arch/arm/kernel/bios32.c
-> @@ -510,15 +510,14 @@ void pci_common_init_dev(struct device *parent, str=
-uct hw_pci *hw)
->                 /*
->                  * We insert PCI resources into the iomem_resource and
->                  * ioport_resource trees in either pci_bus_claim_resource=
-s()
-> -                * or pci_bus_assign_resources().
-> +                * or pci_bus_size_and_assign_resources().
->                  */
->                 if (pci_has_flag(PCI_PROBE_ONLY)) {
->                         pci_bus_claim_resources(bus);
->                 } else {
->                         struct pci_bus *child;
->
-> -                       pci_bus_size_bridges(bus);
-> -                       pci_bus_assign_resources(bus);
-> +                       pci_bus_size_and_assign_resources(bus);
->
->                         list_for_each_entry(child, &bus->children, node)
->                                 pcie_bus_configure_settings(child);
-> diff --git a/arch/m68k/coldfire/pci.c b/arch/m68k/coldfire/pci.c
-> index 5afb207ccc51..dd21c77c43a6 100644
-> --- a/arch/m68k/coldfire/pci.c
-> +++ b/arch/m68k/coldfire/pci.c
-> @@ -250,8 +250,7 @@ static int __init mcf_pci_init(void)
->         rootbus->resource[0] =3D &mcf_pci_io;
->         rootbus->resource[1] =3D &mcf_pci_mem;
->
-> -       pci_bus_size_bridges(rootbus);
-> -       pci_bus_assign_resources(rootbus);
-> +       pci_bus_size_and_assign_resources(rootbus);
->         pci_bus_add_devices(rootbus);
->         return 0;
->  }
-> diff --git a/arch/mips/pci/pci-legacy.c b/arch/mips/pci/pci-legacy.c
-> index dae6dafdd6e0..ec0e42d9a895 100644
-> --- a/arch/mips/pci/pci-legacy.c
-> +++ b/arch/mips/pci/pci-legacy.c
-> @@ -129,15 +129,14 @@ static void pcibios_scanbus(struct pci_controller *=
-hose)
->         /*
->          * We insert PCI resources into the iomem_resource and
->          * ioport_resource trees in either pci_bus_claim_resources()
-> -        * or pci_bus_assign_resources().
-> +        * or pci_bus_size_and_assign_resources().
->          */
->         if (pci_has_flag(PCI_PROBE_ONLY)) {
->                 pci_bus_claim_resources(bus);
->         } else {
->                 struct pci_bus *child;
->
-> -               pci_bus_size_bridges(bus);
-> -               pci_bus_assign_resources(bus);
-> +               pci_bus_size_and_assign_resources(bus);
->                 list_for_each_entry(child, &bus->children, node)
->                         pcie_bus_configure_settings(child);
->         }
-> diff --git a/arch/sh/drivers/pci/pci.c b/arch/sh/drivers/pci/pci.c
-> index 878a27a1acfb..c91ca8f4cb1c 100644
-> --- a/arch/sh/drivers/pci/pci.c
-> +++ b/arch/sh/drivers/pci/pci.c
-> @@ -81,8 +81,7 @@ static void pcibios_scanbus(struct pci_channel *hose)
->                 need_domain_info =3D 1;
->         }
->
-> -       pci_bus_size_bridges(hose->bus);
-> -       pci_bus_assign_resources(hose->bus);
-> +       pci_bus_size_and_assign_resources(hose->bus);
->         pci_bus_add_devices(hose->bus);
->  }
->
-> diff --git a/drivers/parisc/lba_pci.c b/drivers/parisc/lba_pci.c
-> index 5197a3c93c70..39ab93ba458b 100644
-> --- a/drivers/parisc/lba_pci.c
-> +++ b/drivers/parisc/lba_pci.c
-> @@ -1639,11 +1639,8 @@ lba_driver_probe(struct parisc_device *dev)
->         if (is_pdc_pat()) {
->                 /* assign resources to un-initialized devices */
->
-> -               DBG_PAT("LBA pci_bus_size_bridges()\n");
-> -               pci_bus_size_bridges(lba_bus);
-> -
-> -               DBG_PAT("LBA pci_bus_assign_resources()\n");
-> -               pci_bus_assign_resources(lba_bus);
-> +               DBG_PAT("LBA pci_bus_size_and_assign_resources()\n");
-> +               pci_bus_size_and_assign_resources(lba_bus);
->
->  #ifdef DEBUG_LBA_PAT
->                 DBG_PAT("\nLBA PIOP resource tree\n");
-> diff --git a/drivers/pci/hotplug/acpiphp_glue.c b/drivers/pci/hotplug/acp=
-iphp_glue.c
-> index 78e3effbb32d..632344f34cae 100644
-> --- a/drivers/pci/hotplug/acpiphp_glue.c
-> +++ b/drivers/pci/hotplug/acpiphp_glue.c
-> @@ -465,8 +465,7 @@ static void acpiphp_native_scan_bridge(struct pci_dev=
- *bridge)
->                 max =3D pci_scan_bridge(bus, dev, max, 1);
->                 if (dev->subordinate) {
->                         pcibios_resource_survey_bus(dev->subordinate);
-> -                       pci_bus_size_bridges(dev->subordinate);
-> -                       pci_bus_assign_resources(dev->subordinate);
-> +                       pci_bus_size_and_assign_resources(dev->subordinat=
-e);
->                 }
->         }
->  }
-> diff --git a/drivers/pci/setup-bus.c b/drivers/pci/setup-bus.c
-> index ed16ef7c26fa..29ec9ba59d92 100644
-> --- a/drivers/pci/setup-bus.c
-> +++ b/drivers/pci/setup-bus.c
-> @@ -2492,3 +2492,10 @@ void pci_assign_unassigned_bus_resources(struct pc=
-i_bus *bus)
->         __pci_bus_assign_resources(bus, &add_list, NULL);
->  }
->  EXPORT_SYMBOL_GPL(pci_assign_unassigned_bus_resources);
-> +
-> +void pci_bus_size_and_assign_resources(struct pci_bus *bus)
-> +{
-> +       pci_bus_size_bridges(bus);
-> +       __pci_bus_assign_resources(bus, NULL, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(pci_bus_size_and_assign_resources);
-> diff --git a/drivers/pcmcia/cardbus.c b/drivers/pcmcia/cardbus.c
-> index 5e5cf2c3e2c8..19df3f9228a7 100644
-> --- a/drivers/pcmcia/cardbus.c
-> +++ b/drivers/pcmcia/cardbus.c
-> @@ -81,8 +81,7 @@ int __ref cb_alloc(struct pcmcia_socket *s)
->         /*
->          * Size all resources below the CardBus controller.
->          */
-> -       pci_bus_size_bridges(bus);
-> -       pci_bus_assign_resources(bus);
-> +       pci_bus_size_and_assign_resources(bus);
->         cardbus_config_irq_and_cls(bus, s->pci_irq);
->
->         /* socket specific tune function */
-> diff --git a/include/linux/pci.h b/include/linux/pci.h
-> index aa3765a20a96..d89aeb7c9ff7 100644
-> --- a/include/linux/pci.h
-> +++ b/include/linux/pci.h
-> @@ -1569,6 +1569,7 @@ resource_size_t pcibios_retrieve_fw_addr(struct pci=
-_dev *dev, int idx);
->  void pci_bus_assign_resources(const struct pci_bus *bus);
->  void pci_bus_claim_resources(struct pci_bus *bus);
->  void pci_bus_size_bridges(struct pci_bus *bus);
-> +void pci_bus_size_and_assign_resources(struct pci_bus *bus);
->  int pci_claim_resource(struct pci_dev *, int);
->  int pci_claim_bridge_resource(struct pci_dev *bridge, int i);
->  void pci_assign_unassigned_resources(void);
-> --
-> 2.47.3
->
+-- 
+2.53.0
 
