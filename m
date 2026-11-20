@@ -2,101 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D6D606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C828606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:46:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y6NNKwnj;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jdahMkH7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4vhM86DV;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=oXhPUQe3;
+	dkim=fail reason="signature verification failed" header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=5R+RdIYB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vUlQyjO+S1Bvb+8g1Ae/7d4LlLIZcUiABix0J0NIufc=; b=y6NNKwnjUSMfT/
-	0xdO3r8hIOEAua1juGeQIHL67Ntyj7Gz1L/OiEusKafS0G9QvwriJrLEDXJu/ScvDoCwQyX7y8yHQ
-	7rYxDzSKx0zm0HpZWGXLdmzkOkXWpb726NBxAUzGqpDwWaALPXWedk7CnE/oBHbKrllZgKSGcRr8N
-	Xb949fA98tmuXSys4ntx33CRECrpRWfHwhLJ/durOjNBD4gisBBg+6u+aWMfZVokD5JSxmjH5qCK4
-	LE8aZ8bGz4pig+o+dPYlr5+8zpkaUFycDKP3pkxE9kylxigKf9RBd/9yi0BKuOQqU9WHUpSEV15P1
-	oah6Wju9E7NaVFiriLAw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Gh3ixmiPQNPp1esXRHwOBpKQe5cykMvnhUE8gAYZowo=; b=4vhM86DVJzU5AGd71bVntGBAVO
+	VWZoGwCSr/swj2IUsqqpu/GLpyFZsUfw3KxND/CxJgjuuOeeUCOtT4OMWFpWUwWI/6IvjiLh4qj3L
+	9cFUEpZSGRmWY4lAkuDgxNH/S+gLOguCkUr/qbyfzUoQ1ci8ZDS02Sm8UTUtyYiVDyP3tBifJm4Jt
+	BrbJTi1LD81Le3rYvQKXJA8y3JuWkhGRpSB81nQbCJc7dZ9ZGwHc0Rim/e2E1Nhde92XNxtVswV/o
+	tXzRV1+X6YaVMXrWv19EMs5h4CK6WOUDF4+xqvMo+YHVaruzQCqhPauWpWXUTeFnBXVprghpFOjSz
+	zkgVJ2AQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPoy-0000000FI2x-0NhO;
-	Fri, 20 Nov 2026 14:42:36 +0000
-Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
+	id 1xUPsM-0000000FInD-0EVC;
+	Fri, 20 Nov 2026 14:46:06 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPoo-0000000FHvi-3qDp
+	id 1xUPsE-0000000FIm5-2ckM
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:42:28 +0000
-Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-3b08cf16decso648158a91.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:42:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795185746; x=1795790546; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=vUlQyjO+S1Bvb+8g1Ae/7d4LlLIZcUiABix0J0NIufc=;
-        b=jdahMkH7OnMh784rqFRXYHI2jFnJasJvd06spv+LA7P2qrzu0zIDxJhqWOIChsEJBN
-         f4Woyj/lCTqN3FO+L2ZWsquvIHIYFiEEWXkEOsKRuU1ghgS+03mrGxf/LmeOhFa1rQrI
-         u+W+zquvnjG8EpNYxSibMLP0l/g3SEzbqw8+w5GReXK4EQM+3orxqhrNqsHvV6ECSr5o
-         dwMY7CfyQ1BaEHwb6fpgdGnKj21Cz8BTRsgtLKRgUdTLjqqdOBf76IIzoJkRu5WbXWyz
-         iM6v2r2W2NxbNMzF/+NA6v4Ax82ANnIGVn1EcUaNm/4R1YcgxetJFGnT79fvP0rJAn4l
-         q4fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795185746; x=1795790546;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=vUlQyjO+S1Bvb+8g1Ae/7d4LlLIZcUiABix0J0NIufc=;
-        b=yCmUiDrZZkD7ChiCiqG5G1BPWzJiRSXtaFCR+x1lKORzPwFkHExYCMKgtb9rTi0n+Z
-         eUjHLyEDGAy6qJHsNZGphgxW5ftOH2kPKMZ0hSK8Eo8+6vEurGPX6MPGlbjosHYER+9R
-         063G0KAdqQIfZFbb/pGQ0qOAfhB7xU6xyMzl2LnXrVZDX7KZRRagP6yFTpuisK3XVnsw
-         iHeIMqjsfYRw2vilxzialxKcgLUuGYiZP3qUqoV2wbcWqIFnuJx7hSUBZ3kniOq6gqlR
-         EexpfMsexOpOVcxBJ6MMBXIpYTjODkn27BZ71Q4lmn1Mb7dapb3AgWx1sflptKnTYv2C
-         FvxA==
-X-Forwarded-Encrypted: i=1; AL+hErEcvVttNaM0ZzRqv0NQWzFGLKmkiPqNWH66AdBWOzWuMO6+zy8643HtTEMoTfe7Ubj4jzmTF6n7KxLnlkhlOfJQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+HwA3E67R8hLk2X5nhMhcCNRiJHbIiACkeNahto7I7x1hjRVKY
-	DpeRQ8VX76lkkd99P7ceAjFcPnfjkJH3SiJaekOT7C0V0QRQqL2JwI25
-X-Gm-Gg: AZFdTZe+liOGxCXenT/fUntSjN7R9586yViXzmLDxAdmLN12P5ER6nK4OnO9ycChPyr
-	T1x3XUrjpUAK4E7872vTUQuUI3DNqmh0wFaeOdfCvfrgwEeRZnlva1+s/l46/oLN81nGI/mNIrF
-	c7LF9s1706ylu7Zf/g0de2/5at35I14TVo8owea/QiEjpsOXUROYJCj/pNzPZOOD88ukNqx1jkc
-	6OFiDyqweHMvz8tN171PWeA80jhVRvrOG2ft7u/xrZ+SgCFoBCT2mnQkNo3KCWNM5cmHE0rCf88
-	Fcs1Tt4EGVEzhOfVj/zxg3r3EHRBpUe+pRCDMbm4Zqt+2M0ByXXlCW7ZpQLIjpzHoLpjKNrqmJE
-	K1cg1p8PWZ9Bipc7OLUUu8wtP60hKlJ/7/OklrCxlgXNi9HNhOXG1cCod8XYoHOiXUUe1hJ5D+r
-	E4VQlS7Tw7oZyXkAJdDDGSKetV6WEU7U25zhQKt8rX6dK71uM7B8Ejqq6WZpFwUPcY5RCQSmdRL
-	leMkW+5PlIzPlYI5ivgaxxAC8zIXdHAxdMOXrEzbX8uKhFbgGn/igTvn/Zh0bEYqUbUan3TLSsV
-	N1+lsQ4u6LC6C6ls76mMV+Uwfoyl0kb/pKNWGQ==
-X-Received: by 2002:a17:90b:1802:b0:3b0:c11a:9026 with SMTP id 98e67ed59e1d1-3b41c95fa0cmr3172758a91.55.1795185745681;
-        Fri, 20 Nov 2026 06:42:25 -0800 (PST)
-Received: from [10.98.15.223] ([2a09:bac1:6500::19b:170])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee848c1sm15346435ad.10.2026.11.20.06.42.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 06:42:25 -0800 (PST)
-From: Chuanhong Guo <gch981213@gmail.com>
-Date: Fri, 20 Nov 2026 22:41:46 +0800
-Subject: [PATCH v2 3/3] clk: mediatek: mt7629: add RTC clock selection
+	Fri, 20 Nov 2026 14:46:04 +0000
+Date: Fri, 20 Nov 2026 15:45:53 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1795185956;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Gh3ixmiPQNPp1esXRHwOBpKQe5cykMvnhUE8gAYZowo=;
+	b=oXhPUQe3T1dGGsfU9rAuF1GCe3ZQLlP8XaoGaqH6q2Fsz6vEWKNm9ywdmtFOvU7oGeWobI
+	/0YtLcxHFr2OpC+lkmczrDAj7E7vO0PCkbAxFOex2Z4uq2HX+JKplB1OwNJLsYrDzJEJ8R
+	yRjMdrX61hVzPYfiWefECbuYGTgMJ9Fh5OgSiJrrdSCQEiPcu2alXwRuEpxNAMnQ/XYIwP
+	GjpKgUNfdL/Vu5MNmNgwF6pmgtsxGZ2d1NLATZN0vT5UIa7R5iNRM1XGLIhprpSvrph6GE
+	b6biG0d8YYUvrB2sOfoH2aQMvu+8esPcB42ofDalkvHpL74LJhUYcZh5wDY8+Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1795185956;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Gh3ixmiPQNPp1esXRHwOBpKQe5cykMvnhUE8gAYZowo=;
+	b=5R+RdIYBQrowxG/4Mka5zLrqD8PW25TYeKNtp07wo/hd2ep7H2V3CCVKJEe67RBVbz/p2A
+	SHJkpcnfqa3Ub+DA==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rt-devel@lists.linux.dev, linux-perf-users@vger.kernel.org,
+	loongarch@lists.linux.dev
+Subject: [PATCH v5] ARM, ARM64, LONGARCH, XTENSA: Delay HW BP notification to
+ task_work()
+Message-ID: <20261120144553.TjgAd_G6@linutronix.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-b4-mt7629-rtc-v2-3-cd877cd496ae@gmail.com>
-References: <20261120-b4-mt7629-rtc-v2-0-cd877cd496ae@gmail.com>
-In-Reply-To: <20261120-b4-mt7629-rtc-v2-0-cd877cd496ae@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Chuanhong Guo <gch981213@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_064226_977735_7441CBF8 
-X-CRM114-Status: GOOD (  13.30  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_064601_433613_E9E8250C 
+X-CRM114-Status: GOOD (  21.68  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,77 +75,334 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, Ian Rogers <irogers@google.com>, Peter Zijlstra <peterz@infradead.org>, Catalin Marinas <catalin.marinas@arm.com>, Adrian Hunter <adrian.hunter@intel.com>, Max Filippov <jcmvbkbc@gmail.com>, WANG Xuerui <kernel@xen0n.name>, Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, Russell King <linux@armlinux.org.uk>, Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ingo Molnar <mingo@redhat.com>, Waiman Long <longman@redhat.com>, Clark Williams <clrkwllms@kernel.org>, "Luis Claudio R. Goncalves" <lgoncalv@redhat.com>, James Clark <james.clark@linaro.org>, Steven Rostedt <rostedt@goodmis.org>, Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, Chris Zankel <chris@zankel.net>, Oleg Nesterov <oleg@redhat.com>, Jiri Olsa <jolsa@kernel.org>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-CLK_MODE bits 3:2 select the RTC clock source. Selector 0 uses the
-40 MHz crystal divided by 1024, while selector 3 divides it by 1221
-to provide approximately 32.76 kHz. The integrated Wi-Fi needs this
-/1221 source.
+Waiman, Luis, Ada reported that HW breakpoints on ARM64 trigger
+"sleeping while atomic" warnings on PREEMPT_RT. The hardware event is
+delivered with disabled interrupts and perf intrastrucure expects
+disabled interrupts while the overflow callback is invoked.
 
-Add the /1221 fixed-factor clock and the RTC mux so device trees can
-select this source through assigned-clock-parents. Keep CLK_TOP_RTC
-for the existing /1024 source.
+The callback then sends a SIGTRAP signal for which it acquires
+sighand_struct::siglock, a spinlock_t which becomes a sleeping lock and
+must not be acquired in atomic context.
 
-Selector 1 is reserved. Selector 2 is documented as an approximately
-25 kHz PMU bandgap clock, but its source and control are not sufficiently
-described to model it here. Leave these entries unmodelled while
-preserving the hardware selector values.
+Delay the event callback until the return to userland.
+Add perf_hwbp_notify(), a generic perf callback which delayes the
+actual callback invocation to task_work_add() callback. This callback
+invokes the architecture defined callback perf_arch_hwbp_send_sig().
+This requires struct callback_head and the functions require
+ARCH_NEED_PERF_HW_NOTIFY to be defined.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+This was reported against ARM64. ARM, LongARCH and Xtensa follow the
+same pattern are also converted. Xtensa is the only not supporting
+PREEMPT_RT but now we have all architectures using the same pattern.
+
+Fixes: d8fccd9ca5f90 ("arm64: Allow to enable PREEMPT_RT.")
+Reported-by: Luis Claudio R. Goncalves <lgoncalv@redhat.com>
+Reported-by: Waiman Long <longman@redhat.com>
+Closes: https://lore.kernel.org/all/aho0eqjMESuHxECr@redhat.com/
+Reviewed-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+Tested-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 ---
- drivers/clk/mediatek/clk-mt7629.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+v4=E2=80=A6v5: https://lore.kernel.org/all/20261012090431.TF3iVDsk@linutron=
+ix.de/
+ - Collect tags
 
-diff --git a/drivers/clk/mediatek/clk-mt7629.c b/drivers/clk/mediatek/clk-mt7629.c
-index 517c43b19f18..4843bc55dc7c 100644
---- a/drivers/clk/mediatek/clk-mt7629.c
-+++ b/drivers/clk/mediatek/clk-mt7629.c
-@@ -17,7 +17,7 @@
- 
- #include <dt-bindings/clock/mt7629-clk.h>
- 
--#define CLK_TOP_NR_CLK		108
-+#define CLK_TOP_NR_CLK		110
- #define CLK_INFRA_NR_CLK		6
- #define CLK_PERI_NR_CLK		22
- #define CLK_APMIXED_NR_CLK		7
-@@ -290,6 +290,10 @@ static const char * const infra_mux1_parents[] = {
- 	"armpll"
- };
- 
-+static const char * const rtc_parents[] = {
-+	"rtc", "clk_null", "clk_null", "rtc_32k"
-+};
+v3=E2=80=A6v4: https://lore.kernel.org/all/20261001143516.Ew8C97WS@linutron=
+ix.de/
+ - Add fixes tag
+ - Rename the functions as suggested by Ada to use the pattern that perf
+   uses in other places:
+   - perf_arch_hwbp_notify() -> perf_hwbp_notify() (generic)
+   - arch_hwbp_send_sig() -> perf_arch_hwbp_send_sig() (arch specific)
+   - perf_arch_hwbp_send_sig() -> perf_hwbp_send_sig() (generic)
+ - Rename ARCH_NEED_PERF_HW_NOTIF -> ARCH_NEED_PERF_HW_NOTIFY
+
+v2=E2=80=A6v3: https://lore.kernel.org/all/20260814085118.OPEA_Ssn@linutron=
+ix.de/
+ - Add Xtensa for completion
+ - sashiko complains and wants TWA_SIGNAL instead TWA_RESUME. His
+   argument is that a syscall will trap via get_user() and loop forever
+   instead making progress. This is wrong IMHO. ARM64 will single step
+   over the watchpoint and continue execution. The only downside is that
+   userland will get notified after the syscall completed. So my theory.
+   Using TWA_SIGNAL is worse: Assume we have a watchpoint on UADDR and
+   are in a futex() syscall. The get_user() invocation will trigger the
+   exception, the debug handler will step over and queue a signal. The
+   futex code will notice this and return ERESTARTNOINTR. A signal will
+   be sent, the syscall restarts, traps onto UADDR again, the loop
+   continues. But this should be case now, too=E2=80=A6
+   Now that I look into arch_build_bp_info() and do actual testing I must
+   say arm64 does not support mixed breakpoints. This means there is no
+   breakpoint in kernel on a userland address. \o/
+
+v1=E2=80=A6v2: https://lore.kernel.org/all/20260713144939.FuCj9yvZ@linutron=
+ix.de/
+ - sashiko complained that a memory breakpoint might trigger several
+   times before a signal is sent if the syscall touches the memory (via
+   get_user()) more than once before returning back. This would lead to
+   list corruption in task_work_add(). To handle this, there is now a
+   variable which is set via xchg before task_work_add() and cleared
+   after the signal has been sent.
+
+ arch/arm/include/asm/hw_breakpoint.h       |  1 +
+ arch/arm/kernel/ptrace.c                   |  7 ++----
+ arch/arm64/include/asm/hw_breakpoint.h     |  1 +
+ arch/arm64/kernel/ptrace.c                 |  6 ++---
+ arch/loongarch/include/asm/hw_breakpoint.h |  1 +
+ arch/loongarch/kernel/ptrace.c             |  6 ++---
+ arch/xtensa/include/asm/hw_breakpoint.h    |  1 +
+ arch/xtensa/kernel/ptrace.c                |  7 ++----
+ include/linux/hw_breakpoint.h              |  3 +++
+ include/linux/perf_event.h                 |  4 ++++
+ kernel/events/core.c                       | 26 ++++++++++++++++++++++
+ 11 files changed, 45 insertions(+), 18 deletions(-)
+
+diff --git a/arch/arm/include/asm/hw_breakpoint.h b/arch/arm/include/asm/hw=
+_breakpoint.h
+index e7f9961c53b2d..fa7fb2b2a392a 100644
+--- a/arch/arm/include/asm/hw_breakpoint.h
++++ b/arch/arm/include/asm/hw_breakpoint.h
+@@ -7,6 +7,7 @@
+ struct task_struct;
+=20
+ #ifdef CONFIG_HAVE_HW_BREAKPOINT
++#define ARCH_NEED_PERF_HW_NOTIFY
+=20
+ struct arch_hw_breakpoint_ctrl {
+ 		u32 __reserved	: 9,
+diff --git a/arch/arm/kernel/ptrace.c b/arch/arm/kernel/ptrace.c
+index ed7a2a87a6707..db4b28c6e15a4 100644
+--- a/arch/arm/kernel/ptrace.c
++++ b/arch/arm/kernel/ptrace.c
+@@ -347,9 +347,7 @@ static long ptrace_hbp_idx_to_num(int idx)
+ /*
+  * Handle hitting a HW-breakpoint.
+  */
+-static void ptrace_hbptriggered(struct perf_event *bp,
+-				     struct perf_sample_data *data,
+-				     struct pt_regs *regs)
++void perf_arch_hwbp_send_sig(struct perf_event *bp)
+ {
+ 	struct arch_hw_breakpoint *bkpt =3D counter_arch_bp(bp);
+ 	long num;
+@@ -424,8 +422,7 @@ static struct perf_event *ptrace_hbp_create(struct task=
+_struct *tsk, int type)
+ 	attr.bp_type	=3D type;
+ 	attr.disabled	=3D 1;
+=20
+-	return register_user_hw_breakpoint(&attr, ptrace_hbptriggered, NULL,
+-					   tsk);
++	return register_user_hw_breakpoint(&attr, perf_hwbp_notify, NULL, tsk);
+ }
+=20
+ static int ptrace_gethbpregs(struct task_struct *tsk, long num,
+diff --git a/arch/arm64/include/asm/hw_breakpoint.h b/arch/arm64/include/as=
+m/hw_breakpoint.h
+index bd81cf17744af..0bc75f42b0da6 100644
+--- a/arch/arm64/include/asm/hw_breakpoint.h
++++ b/arch/arm64/include/asm/hw_breakpoint.h
+@@ -124,6 +124,7 @@ extern void hw_breakpoint_pmu_read(struct perf_event *b=
+p);
+ extern int hw_breakpoint_slots(int type);
+=20
+ #ifdef CONFIG_HAVE_HW_BREAKPOINT
++#define ARCH_NEED_PERF_HW_NOTIFY
+ extern void hw_breakpoint_thread_switch(struct task_struct *next);
+ extern void ptrace_hw_copy_thread(struct task_struct *task);
+ #else
+diff --git a/arch/arm64/kernel/ptrace.c b/arch/arm64/kernel/ptrace.c
+index 6a0b3a9b6125e..7c3df2007c108 100644
+--- a/arch/arm64/kernel/ptrace.c
++++ b/arch/arm64/kernel/ptrace.c
+@@ -168,9 +168,7 @@ void ptrace_disable(struct task_struct *child)
+ /*
+  * Handle hitting a HW-breakpoint.
+  */
+-static void ptrace_hbptriggered(struct perf_event *bp,
+-				struct perf_sample_data *data,
+-				struct pt_regs *regs)
++void perf_arch_hwbp_send_sig(struct perf_event *bp)
+ {
+ 	struct arch_hw_breakpoint *bkpt =3D counter_arch_bp(bp);
+ 	const char *desc =3D "Hardware breakpoint trap (ptrace)";
+@@ -312,7 +310,7 @@ static struct perf_event *ptrace_hbp_create(unsigned in=
+t note_type,
+ 	attr.bp_type	=3D type;
+ 	attr.disabled	=3D 1;
+=20
+-	bp =3D register_user_hw_breakpoint(&attr, ptrace_hbptriggered, NULL, tsk);
++	bp =3D register_user_hw_breakpoint(&attr, perf_hwbp_notify, NULL, tsk);
+ 	if (IS_ERR(bp))
+ 		return bp;
+=20
+diff --git a/arch/loongarch/include/asm/hw_breakpoint.h b/arch/loongarch/in=
+clude/asm/hw_breakpoint.h
+index f4478936787d6..3921c461dc2d9 100644
+--- a/arch/loongarch/include/asm/hw_breakpoint.h
++++ b/arch/loongarch/include/asm/hw_breakpoint.h
+@@ -120,6 +120,7 @@ bool breakpoint_handler(struct pt_regs *regs);
+ bool watchpoint_handler(struct pt_regs *regs);
+=20
+ #ifdef CONFIG_HAVE_HW_BREAKPOINT
++#define ARCH_NEED_PERF_HW_NOTIFY
+ extern void ptrace_hw_copy_thread(struct task_struct *task);
+ extern void hw_breakpoint_thread_switch(struct task_struct *prev, struct t=
+ask_struct *next);
+ #else
+diff --git a/arch/loongarch/kernel/ptrace.c b/arch/loongarch/kernel/ptrace.c
+index be38430f7e280..27e7e64591592 100644
+--- a/arch/loongarch/kernel/ptrace.c
++++ b/arch/loongarch/kernel/ptrace.c
+@@ -384,9 +384,7 @@ static int lbt_set(struct task_struct *target,
+ /*
+  * Handle hitting a HW-breakpoint.
+  */
+-static void ptrace_hbptriggered(struct perf_event *bp,
+-				struct perf_sample_data *data,
+-				struct pt_regs *regs)
++void perf_arch_hwbp_send_sig(struct perf_event *bp)
+ {
+ 	int i;
+ 	struct arch_hw_breakpoint *bkpt =3D counter_arch_bp(bp);
+@@ -479,7 +477,7 @@ static struct perf_event *ptrace_hbp_create(unsigned in=
+t note_type,
+ 	attr.bp_type	=3D type;
+ 	attr.disabled	=3D 1;
+=20
+-	bp =3D register_user_hw_breakpoint(&attr, ptrace_hbptriggered, NULL, tsk);
++	bp =3D register_user_hw_breakpoint(&attr, perf_hwbp_notify, NULL, tsk);
+ 	if (IS_ERR(bp))
+ 		return bp;
+=20
+diff --git a/arch/xtensa/include/asm/hw_breakpoint.h b/arch/xtensa/include/=
+asm/hw_breakpoint.h
+index 9ec86f440a48e..44ea340c88742 100644
+--- a/arch/xtensa/include/asm/hw_breakpoint.h
++++ b/arch/xtensa/include/asm/hw_breakpoint.h
+@@ -12,6 +12,7 @@
+ #define __ASM_XTENSA_HW_BREAKPOINT_H
+=20
+ #ifdef CONFIG_HAVE_HW_BREAKPOINT
++#define ARCH_NEED_PERF_HW_NOTIFY
+=20
+ #include <linux/kdebug.h>
+ #include <linux/types.h>
+diff --git a/arch/xtensa/kernel/ptrace.c b/arch/xtensa/kernel/ptrace.c
+index 364e4fdabb00d..c9f583d650de2 100644
+--- a/arch/xtensa/kernel/ptrace.c
++++ b/arch/xtensa/kernel/ptrace.c
+@@ -361,9 +361,7 @@ static int ptrace_pokeusr(struct task_struct *child, lo=
+ng regno, long val)
+ }
+=20
+ #ifdef CONFIG_HAVE_HW_BREAKPOINT
+-static void ptrace_hbptriggered(struct perf_event *bp,
+-				struct perf_sample_data *data,
+-				struct pt_regs *regs)
++void perf_arch_hwbp_send_sig(struct perf_event *bp)
+ {
+ 	int i;
+ 	struct arch_hw_breakpoint *bkpt =3D counter_arch_bp(bp);
+@@ -395,8 +393,7 @@ static struct perf_event *ptrace_hbp_create(struct task=
+_struct *tsk, int type)
+ 	attr.bp_type	=3D type;
+ 	attr.disabled	=3D 1;
+=20
+-	return register_user_hw_breakpoint(&attr, ptrace_hbptriggered, NULL,
+-					   tsk);
++	return register_user_hw_breakpoint(&attr, perf_hwbp_notify, NULL, tsk);
+ }
+=20
+ /*
+diff --git a/include/linux/hw_breakpoint.h b/include/linux/hw_breakpoint.h
+index db199d653dd1a..91e8d80220c54 100644
+--- a/include/linux/hw_breakpoint.h
++++ b/include/linux/hw_breakpoint.h
+@@ -85,6 +85,9 @@ extern int register_perf_hw_breakpoint(struct perf_event =
+*bp);
+ extern void unregister_hw_breakpoint(struct perf_event *bp);
+ extern void unregister_wide_hw_breakpoint(struct perf_event * __percpu *cp=
+u_events);
+ extern bool hw_breakpoint_is_used(void);
++extern void perf_arch_hwbp_send_sig(struct perf_event *bp);
++extern void perf_hwbp_notify(struct perf_event *bp, struct perf_sample_dat=
+a *data,
++			     struct pt_regs *regs);
+=20
+ extern int dbg_reserve_bp_slot(struct perf_event *bp);
+ extern int dbg_release_bp_slot(struct perf_event *bp);
+diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
+index e1e11500df097..f4f88e3ce586a 100644
+--- a/include/linux/perf_event.h
++++ b/include/linux/perf_event.h
+@@ -215,6 +215,10 @@ struct hw_perf_event {
+=20
+ 	/* Last sync'ed generation of filters */
+ 	unsigned long			addr_filters_gen;
++#ifdef ARCH_NEED_PERF_HW_NOTIFY
++	struct callback_head		arch_hw_notif;
++	int				arch_hw_notif_busy;
++#endif
+=20
+ /*
+  * hw_perf_event::state flags; used to track the PERF_EF_* state.
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index e870f12c3ad81..ee6a5ec48e7c4 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -13485,6 +13485,28 @@ static void account_event(struct perf_event *event)
+ 	account_pmu_sb_event(event);
+ }
+=20
++#ifdef ARCH_NEED_PERF_HW_NOTIFY
++static void perf_hwbp_send_sig(struct callback_head *head)
++{
++	struct perf_event *bp;
 +
- static const struct mtk_gate_regs apmixed_cg_regs = {
- 	.set_ofs = 0x8,
- 	.clr_ofs = 0x8,
-@@ -372,6 +376,7 @@ static const struct mtk_fixed_factor top_divs[] = {
- 	FACTOR(CLK_TOP_ETH_500M, "eth_500m", "eth1pll", 1, 1),
- 	FACTOR(CLK_TOP_TXCLK_SRC_PRE, "txclk_src_pre", "sgmiipll_d2", 1, 1),
- 	FACTOR(CLK_TOP_RTC, "rtc", "clkxtal", 1, 1024),
-+	FACTOR(CLK_TOP_RTC_32K, "rtc_32k", "clkxtal", 1, 1221),
- 	FACTOR(CLK_TOP_PWM_QTR_26M, "pwm_qtr_26m", "clkxtal", 1, 1),
- 	FACTOR(CLK_TOP_CPUM_TCK_IN, "cpum_tck_in", "cpum_tck", 1, 1),
- 	FACTOR(CLK_TOP_TO_USB3_DA_TOP, "to_usb3_da_top", "clkxtal", 1, 1),
-@@ -463,6 +468,8 @@ static struct mtk_composite infra_muxes[] = {
- };
- 
- static struct mtk_composite top_muxes[] = {
-+	/* CLK_MODE */
-+	MUX(CLK_TOP_RTC_SEL, "rtc_sel", rtc_parents, 0x000, 2, 2),
- 	/* CLK_CFG_0 */
- 	MUX_GATE(CLK_TOP_AXI_SEL, "axi_sel", axi_parents,
- 		 0x040, 0, 3, 7),
-
--- 
-2.56.1
++	bp =3D container_of(head, struct perf_event, hw.arch_hw_notif);
++	perf_arch_hwbp_send_sig(bp);
++	xchg_relaxed(&bp->hw.arch_hw_notif_busy, 0);
++	put_event(bp);
++}
++
++void perf_hwbp_notify(struct perf_event *bp, struct perf_sample_data *data,
++		      struct pt_regs *regs)
++{
++	if (WARN_ON_ONCE(!atomic_long_inc_not_zero(&bp->refcount)))
++		return;
++	if (xchg_relaxed(&bp->hw.arch_hw_notif_busy, 1) ||
++	    WARN_ON_ONCE(task_work_add(current, &bp->hw.arch_hw_notif, TWA_RESUME=
+)))
++		put_event(bp);
++}
++#endif
++
+ /*
+  * Allocate and initialize an event structure
+  */
+@@ -13590,6 +13612,10 @@ perf_event_alloc(struct perf_event_attr *attr, int=
+ cpu,
+ 	}
+=20
+ 	if (overflow_handler) {
++#ifdef ARCH_NEED_PERF_HW_NOTIFY
++		if (overflow_handler =3D=3D perf_hwbp_notify)
++			init_task_work(&event->hw.arch_hw_notif, perf_hwbp_send_sig);
++#endif
+ 		event->overflow_handler	=3D overflow_handler;
+ 		event->overflow_handler_context =3D context;
+ 	} else if (is_write_backward(event)){
+--=20
+2.55.0
 
 
