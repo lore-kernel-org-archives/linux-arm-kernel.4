@@ -2,107 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B21606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 16:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2595D606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 16:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IcbmwMkL;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Thv/2SPh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IQekrHNt;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=MSGy7Ozo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uBZHDjcp8OHvO+9HMmytd8ayAJCp+xM1stb3TXPJ8UI=; b=IcbmwMkLRcpJGkNaOu41K2QeUC
-	NS5Qae4hFqy4cIzgcVEHX+m/im3je1uZsBmTPF8Shi4B/VB3d5oOfEpa6PkL80uvzEXpvzJQmJHbJ
-	lJXViUeRk5oNF1oXZJQt3ILu9bN67KrBN3azIT5E0qyaBXXnuO+PqLP+6AkzPjC/FZ8anZKky0SJx
-	eGC6LiP1s7oxkIOWldQ8yhTC67SLeIB9MbirfHEsDSrgQaHjNpMMc7K67vJTVPMO9W24uaIy1G5ue
-	06qapm3FahHve+q+44vvVuM/hUSW3rNSPG9t63g/BpepDSYzXXY59LBuBbPRM9jkY4xctqfwMMrw8
-	afuHE3qQ==;
+	bh=5WBI7zMXuMnXBAp0+kspmc9rCdvfQl+JVyaQXvmBGfo=; b=IQekrHNtSVacJa9Tf03gYYzaix
+	eYLXM1cgG0LkIsEOV1NGI6Ls6CKvfuc8dXqmA7dbBYwATLBIDEo/tKnthNPZ0BB8MKdu1R4+sM/vT
+	FAKslVxrvU4PjmXK3EhM17T4ED1Z3Tsw8GeOu1pyjNtqbN+G1yM2CaLAfns2PwuYlj0TRVKHLkrMB
+	C4yhFlAX+ku5R6DPucZyvGR4xPU2kKtEq3gLS7yN09GIx0+mNJX+DMp09x1dzf7u4H4AzMBjYPurM
+	F6HNycQwknAxZ1ujl1S2BNlQqgdJowDT9eLBBooK2JoIHj6PWhzX2tBYZLIBkiBVptOhawfe48Cpg
+	QJrnzHXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUR30-0000000FV4x-1oHJ;
-	Fri, 20 Nov 2026 16:01:10 +0000
-Received: from mail-oa1-x2f.google.com ([2001:4860:4864:20::2f])
+	id 1xUR5l-0000000FVbG-040P;
+	Fri, 20 Nov 2026 16:04:02 +0000
+Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUR2s-0000000FV1H-1Smc
+	id 1xUR5h-0000000FVaj-2Qvg
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 16:01:09 +0000
-Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-4932b13c4ccso656857fac.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 08:01:01 -0800 (PST)
+	Fri, 20 Nov 2026 16:03:59 +0000
+Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-3ae1b34e0d2so1338750a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 08:03:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795190461; x=1795795261; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=uBZHDjcp8OHvO+9HMmytd8ayAJCp+xM1stb3TXPJ8UI=;
-        b=Thv/2SPhWfUGFC3BMAZ+Uji4BLKQ2Jt9ZoR0UwNk+kitNswKznlIeODCmIvVnNN1Ti
-         iEeHAQn540RodPp+DMtmiB00g5JUlagm8Nd/BsGepXn7O3eI1OEMASg4hCc0QTm192uS
-         gjs9xJeWWtxdtUOYNZOPNEeEzWzPCr6hukrEw0VDhU3rEK0gs3OXCGkciwMjnCGhhn2v
-         oL3P9VSv14YY0SZWcG3MifWY6sZP0NND/O9Cm9GLDk7bhtkNxugXcSYfk8iXkxxZlpJw
-         8+IlVB4kTyICLIjYzmXMyF4a1fdhWoyh54sn77IhXRS0VDjpxWGHfpmhgI6n99R3VXc5
-         Lqhw==
+        d=linaro.org; s=google; t=1795190636; x=1795795436; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=5WBI7zMXuMnXBAp0+kspmc9rCdvfQl+JVyaQXvmBGfo=;
+        b=MSGy7OzoKMnMiEqbJcgeW8ZEH8IS7yMMMsAFknQbXSPa4ouRMuz6047pAwFHhvjMte
+         NCZKHrbO0AQiPqXt/eImwndQZqADoF8Ix6F0lkn2/Zbbbre4JeDJrrGoS0vmCIi4yGmf
+         Q0dg7ekdscV4HeDhb218L0bv8WBs4WHsRO4jU6bLC3zlDuR2n5BwH6nUvf4eYzGV9abz
+         KMaibhLUuLrI8AmIqsM+FjEaZEW+ZI7RLVqmR9I3UHH3U6DMoJi14E10F0Q5+8qNAth9
+         ZbUs18HMfjcv062UVJgAoXXUxRHdEIMXN4MsOXtKTNIFsQMd/5ojlNpqNOMGcoA1OnQj
+         U9eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795190461; x=1795795261;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=uBZHDjcp8OHvO+9HMmytd8ayAJCp+xM1stb3TXPJ8UI=;
-        b=ijcgtUg/qsEWxXYzM1uf8TPK3ojsZmAvOG2yYVbqJSLoRt3qGgVVk+Lcuay3f71ezj
-         JrRsoo0n8TfoX5/y7GRXJ9pd5yUayNG8/9/3h2T5qeRsF6cb6dKW9pWk5HaYJ0yyCrSX
-         xsOEjqy+/3oPBdeOsJr4gnEy1klJd0zmJiTtfU+bjtBGEqCifW5CeLMdBWHa1i/Xn6Tj
-         u4cnMBKLYalCxY4fCIElCgtIuVCuHsJfvf4hs34VCoFGEu4yHIiuThTP8ksVzKvR2pjG
-         rMFZuASFVYBClZFEQ3IBmyQeqccrlKzAAZT3PviIBQb/2+ATb4cERCYVU2yZkCm3Dw7W
-         CXTw==
-X-Forwarded-Encrypted: i=1; AL+hErF1j/APMeizYijyXThVGw7Ii8z43i4VFfJUnldxijC/RK/dTb5tV+m2XlQXS3LallV4jrYeMzQbdXVuiTnmJl7O@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Ax8vNUpA9fSp5mtb6SYe1MzbqQiaaf+iSeB1cqTniSXehqFft
-	elL2lU7A7MK1t6NfLained0ygICrcAxbn3kqwoJ3mMnpYAm6VRbSh/kn
-X-Gm-Gg: AZFdTZfQeLpxmbwTk97MwI9KbhCa/FugVAELPTRsX4J9SVTOjzmJJGugoI8fAEk+scs
-	cL0Tfhk2ulOpTyMiP5Cef7DFoPISUu1XwML15AOwmFffDVjDbmILsBJo0AHHXafMy3OeZlhK7B4
-	9zasg8YQdFgAr+RC/yzCeAtQs/HlKbCEmKgzyfoxvwsAQPK/zC5tZjWw1zw6wP8wElkHdtq3mrU
-	fhuXNKEQ+BFhQf7Nms4vedFhkPb7GqXV1JRnXJGEwPNggE/pzan/ktxUOvHf5r6RJQ0WW/GJzCw
-	GuUBy7ZiwCC0ahDCTqjIpfozwTOwgD/6PDNG/rfmQJEVA8t606U1juXKh92Dw+dXzQPBE65/7iC
-	u0BKSHLAvgF4NZPU7SGGbTUHwhfUBDD3Hufw1ZwiKcKVvBQc5ErGH+JERr41X+CBjxG7HAy9VlC
-	Orhkb+Uus4qgOQQtb8BU3IqJ+YXTi4G/WgZm5PsTOkDCGOGPwaxW4jnbawm/Z5BaOF1jH4J2I/B
-	2/RmXaR9X/lsaALDnl0JfhQ9fNjB9b8ztsRxSpnfhzIibfpeTq8UxxyWhABl/hvIqo31TSHoM18
-	loKVVGUA9vbflY6YdrHdzhNF4J6g2MAFMh5OEdHED84g8DdhgCDhzV/kSB4gdwznc7UVAbpdypi
-	OFd9E2+1Zc2fn6EfnKCrg/zltXfBa+VKk6EOjDGbcfW1Fc3zUsi5UNqtnjzn8adoxJZVHAhzdlg
-	uhQAh3sPhHsj8PXoXwjyAuty3G7GmazaCo7+bqOxWNTbjpey4TfOQ=
-X-Received: by 2002:a05:6870:b93:b0:4a9:5bde:8484 with SMTP id 586e51a60fabf-4bc85402f1dmr3040217fac.51.1795190460802;
-        Fri, 20 Nov 2026 08:01:00 -0800 (PST)
-Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bd044fc4besm2161534fac.7.2026.11.20.08.00.59
+        d=1e100.net; s=20260707; t=1795190636; x=1795795436;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=5WBI7zMXuMnXBAp0+kspmc9rCdvfQl+JVyaQXvmBGfo=;
+        b=zMtsxZcz3YCXn2uhYLmmo9EeXl+Lv3ffl61Xg+XLgBDXKkF/v3cTJJVFO1zTderMZo
+         dny+B5AA5opE8Uf7FPMHART+gSDITRcLEJojyMNyGS80UgzeUntxQbd4oxYPK5uKYNW3
+         qxRs1eL5UsAFEFIxDEcyVamR2Y8SejjbHY+iOYdym/Lq6o1Qy6eQZrts+eVk50CScgOK
+         4pxyJyGZq3M3IkDNefIOZAdpLONz0zRtECjtRF4eW+uZACOxEKh/DXdqtZ3KCoLqyKgT
+         iQJVHsUBDjg67L7djbuwCiB+reNgtZFoKiTc3y30rP0GNxofp1OUGo5C9JzFdZ9DDVou
+         wnvQ==
+X-Forwarded-Encrypted: i=1; AL+hErGYpy9h7ODK3o1nPVzJfegdhC2pyo+0bTySt7BEDW7rQw5KsfZTFabQVL2OuRoj+6iTDlmQhTX+r83T0SE9TcTx@lists.infradead.org
+X-Gm-Message-State: APuU4Z8UzomHlZ+0msJXF1Jy47iwFVAzbueFM9G7CCo6J1O4gn8+f+vC
+	V1AdPnpsHGAainoviXXPAvvRf6xnw3LiOt1hJJB7/uZVEmDw2PQy5C0W3FWDH1XCINI=
+X-Gm-Gg: AZFdTZcu/M/la9FKpDE0nsuBTKJm3FrZspm6axqNI4e8mahLYNGveWgh85nV+9V47X8
+	mjzsuMrpRDXoHaFPmSNzD2tWre/E3V5TndZojI1W0sqKvbr2UQFtdVMDbzXJbWhsgvlEfEhVCDe
+	NTWqqeuVKMnGnEodXe15Fk+au+gJZUkADCvCyRs9iv/vQTQ+Vt1ldfoIzjl0Bl6OSpoghB9+DOW
+	gBqkN1svBQyjPe7yMucIGTQM11gIJWRUgg6cLgUgNIf4wBuzGSfnnfKPNVTA33VwIAoQaci5q2o
+	bypFgTtABGie1WdF6du8xnFw6Jk/kBnFqUxSrTS3rC3XIsA4wd3PZasGOtaxMDtBL+VYT3ysSgn
+	YGZa7LewYIY1hTGOPYy7IaiQ9j8iVmxF8KoEN+SPiq3WdJu5mjo7kcmDvJXN9qUDPefvxK3A8SX
+	MguoHiQpFziY2hqaAOILKKuI3m5zQO+XYOi06Ye6jO0BGaBkDomBsHdgrkBpFsbiusfzykdPi6F
+	dnIYrW12ir4nM5L4lO98QQcspWHeSMmhm6gdnASMPPirOjlJaEC9rMjoZhPDmZXd61CB6NIy3qM
+	n6VCbSy2Tkn+v2a5QpzKa7bHCjDw00Tl
+X-Received: by 2002:a17:90b:2cce:b0:3ac:928a:68ce with SMTP id 98e67ed59e1d1-3b41c95e0ecmr2249223a91.33.1795190636291;
+        Fri, 20 Nov 2026 08:03:56 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:7124:798f:1b98:bea5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41adcfe23sm4809307a91.15.2026.11.20.08.03.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 08:01:00 -0800 (PST)
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Fri, 20 Nov 2026 09:00:53 -0700
-Subject: [PATCH v2] mtd: rawnand: atmel: keep the HSMC clock on until the
- NFC IRQ is freed
+        Fri, 20 Nov 2026 08:03:55 -0800 (PST)
+Date: Fri, 20 Nov 2026 10:03:53 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: shengjiu.wang@oss.nxp.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shengjiu.wang@nxp.com, daniel.baluta@nxp.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	andersson@kernel.org, Frank.Li@nxp.com, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, p.zabel@pengutronix.de,
+	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/5] Enable DSP device for i.MX8ULP
+Message-ID: <awBvaca7Az__X5Te@p14s>
+References: <20261111031808.570680-1-shengjiu.wang@oss.nxp.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-submit-atmel-nand-irq-teardown-v1-v2-1-7460e7c8c163@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/42OQQ6CMBBFr0K6doRSgujKexgXpR1hDC3aVtQQ7
- m6LcW8ymz9/8ubNzKMj9OyQzczhRJ5GG0O5yZjqpe0QSMfMyqKsOS924B+toQAyGBzASquB3B0
- CSqfHp4WJw2VflKLYKd7olkXOzeGFXuuP0/mbI+SKKiRwumilR2idtKpPKxN0nsi5xVdIfU8+j
- O69Sk48cX4+zR8+cTiIiteVUI1AFMfOSBq2ajTsvCzLByGyZ7cEAQAA
-X-Change-ID: 20261107-submit-atmel-nand-irq-teardown-v1-f902307c18db
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Boris Brezillon <bbrezillon@kernel.org>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org, 
- James Hilliard <james.hilliard1@gmail.com>
-X-Mailer: b4 0.17-dev
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261111031808.570680-1-shengjiu.wang@oss.nxp.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_080104_290390_FF7DD9B2 
-X-CRM114-Status: GOOD (  18.67  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261120_080357_634288_132430AB 
+X-CRM114-Status: GOOD (  22.24  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,205 +107,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When the Atmel NAND driver is unbound on a system using the legacy DT
-binding, another device on the shared interrupt line can still cause the
-NFC handler to read registers after the HSMC clock has been disabled.
-The remove callback turns off the clock, but devres releases the IRQ
-only after the callback returns.
+On Wed, Nov 11, 2026 at 11:18:03AM +0800, shengjiu.wang@oss.nxp.com wrote:
+> From: Shengjiu Wang <shengjiu.wang@nxp.com>
+> 
+> The debug reset control is one of the HIFI4 DSP’s reset mechanisms used
+> by the debug interface; add documentation for the optional debug reset
+> controls and update the driver to use both the soft reset and debug reset
+> controller APIs (the soft reset is already documented).
+> 
+> Add a HiFi4 DSP node and enable the DSP on i.MX8ULP.
+> 
+> Changes in v3
+> - Split the previous patch 1/4 into two patches
+> - Update the commit message to explain why the reset properties are
+>   required for i.MX8ULP
+> - Update the commit message of patch 3/5 to clarify the switch from
+>   direct register access to the reset controller API
+> 
+> Changes in v2:
+> - Update commit messages for all patches
+> - Require the reset properties for the i.MX8ULP HiFi4 DSP in patch 1/4,
+>   as suggested by Sashiko
+> - Use sim_lpav as the clock provider for the ipg, ocram, and core clocks in
+>   patch 3/4, as suggested by Sashiko
+> - Rename the reserved-memory node from dsp_reserved to memory in patch 4/4,
+>   as suggested by Sashiko
+> 
+> Shengjiu Wang (5):
+>   dt-bindings: dsp: fsl,dsp: document debug reset control
+>   dt-bindings: dsp: fsl,dsp: require resets for i.MX8ULP
+>   remoteproc: imx_dsp_rproc: use reset controller for i.MX8ULP
+>   arm64: dts: imx8ulp: add HiFi4 DSP node
+>   arm64: dts: imx8ulp-evk: Enable HiFi4 DSP
+>
 
-Register a clock cleanup action before requesting the IRQ. Devres then
-drains the handler before disabling and releasing the clock, both on
-removal and when probe fails after requesting the IRQ.
+I have applied the first 3 patches of this set.  The remaining two will have to
+be picked-up by Frank or Sascha.
 
-Fixes: f88fc122cc34 ("mtd: nand: Cleanup/rework the atmel_nand driver")
-Cc: stable@vger.kernel.org
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
----
-Changes in v2:
-- Use a devres action for clock cleanup so devres releases the IRQ first.
-- Link to v1: https://patch.msgid.link/20261108-submit-atmel-nand-irq-teardown-v1-v1-1-341643c83ee3@gmail.com
----
- drivers/mtd/nand/raw/atmel/nand-controller.c | 56 ++++++++++++++--------------
- 1 file changed, 28 insertions(+), 28 deletions(-)
-
-diff --git a/drivers/mtd/nand/raw/atmel/nand-controller.c b/drivers/mtd/nand/raw/atmel/nand-controller.c
-index b86d080bcb2c..ce5e13276d2e 100644
---- a/drivers/mtd/nand/raw/atmel/nand-controller.c
-+++ b/drivers/mtd/nand/raw/atmel/nand-controller.c
-@@ -263,9 +263,6 @@ struct atmel_hsmc_nand_controller {
- 	struct completion complete;
- 	u32 cfg;
- 	int irq;
--
--	/* Only used when instantiating from legacy DT bindings. */
--	struct clk *clk;
- };
+Thanks,
+Mathieu
  
- static inline struct atmel_hsmc_nand_controller *
-@@ -2151,6 +2148,14 @@ atmel_smc_nand_controller_init(struct atmel_smc_nand_controller *nc)
- 	return 0;
- }
- 
-+static void atmel_hsmc_nand_clk_cleanup(void *data)
-+{
-+	struct clk *clk = data;
-+
-+	clk_disable_unprepare(clk);
-+	clk_put(clk);
-+}
-+
- static int
- atmel_hsmc_nand_controller_legacy_init(struct atmel_hsmc_nand_controller *nc)
- {
-@@ -2164,6 +2169,7 @@ atmel_hsmc_nand_controller_legacy_init(struct atmel_hsmc_nand_controller *nc)
- 	struct device_node *nand_np, *nfc_np;
- 	void __iomem *iomem;
- 	struct resource res;
-+	struct clk *clk;
- 	int ret;
- 
- 	nand_np = dev->of_node;
-@@ -2173,41 +2179,46 @@ atmel_hsmc_nand_controller_legacy_init(struct atmel_hsmc_nand_controller *nc)
- 		return -ENODEV;
- 	}
- 
--	nc->clk = of_clk_get(nfc_np, 0);
--	if (IS_ERR(nc->clk)) {
--		ret = PTR_ERR(nc->clk);
-+	clk = of_clk_get(nfc_np, 0);
-+	if (IS_ERR(clk)) {
-+		ret = PTR_ERR(clk);
- 		dev_err(dev, "Failed to retrieve HSMC clock (err = %d)\n",
- 			ret);
- 		goto out;
- 	}
- 
--	ret = clk_prepare_enable(nc->clk);
-+	ret = clk_prepare_enable(clk);
- 	if (ret) {
- 		dev_err(dev, "Failed to enable the HSMC clock (err = %d)\n",
- 			ret);
--		goto out_put_clk;
-+		clk_put(clk);
-+		goto out;
- 	}
- 
-+	ret = devm_add_action_or_reset(dev, atmel_hsmc_nand_clk_cleanup, clk);
-+	if (ret)
-+		goto out;
-+
- 	nc->irq = of_irq_get(nand_np, 0);
- 	if (nc->irq <= 0) {
- 		ret = nc->irq ?: -ENXIO;
- 		if (ret != -EPROBE_DEFER)
- 			dev_err(dev, "Failed to get IRQ number (err = %d)\n",
- 				ret);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	ret = of_address_to_resource(nfc_np, 0, &res);
- 	if (ret) {
- 		dev_err(dev, "Invalid or missing NFC IO resource (err = %d)\n",
- 			ret);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	iomem = devm_ioremap_resource(dev, &res);
- 	if (IS_ERR(iomem)) {
- 		ret = PTR_ERR(iomem);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	regmap_conf.name = "nfc-io";
-@@ -2217,20 +2228,20 @@ atmel_hsmc_nand_controller_legacy_init(struct atmel_hsmc_nand_controller *nc)
- 		ret = PTR_ERR(nc->io);
- 		dev_err(dev, "Could not create NFC IO regmap (err = %d)\n",
- 			ret);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	ret = of_address_to_resource(nfc_np, 1, &res);
- 	if (ret) {
- 		dev_err(dev, "Invalid or missing HSMC resource (err = %d)\n",
- 			ret);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	iomem = devm_ioremap_resource(dev, &res);
- 	if (IS_ERR(iomem)) {
- 		ret = PTR_ERR(iomem);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	regmap_conf.name = "smc";
-@@ -2240,30 +2251,24 @@ atmel_hsmc_nand_controller_legacy_init(struct atmel_hsmc_nand_controller *nc)
- 		ret = PTR_ERR(nc->base.smc);
- 		dev_err(dev, "Could not create NFC IO regmap (err = %d)\n",
- 			ret);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	ret = of_address_to_resource(nfc_np, 2, &res);
- 	if (ret) {
- 		dev_err(dev, "Invalid or missing SRAM resource (err = %d)\n",
- 			ret);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	nc->sram.virt = devm_ioremap_resource(dev, &res);
- 	if (IS_ERR(nc->sram.virt)) {
- 		ret = PTR_ERR(nc->sram.virt);
--		goto out_disable_clk;
-+		goto out;
- 	}
- 
- 	nc->sram.dma = res.start;
- 
--	goto out;
--
--out_disable_clk:
--	clk_disable_unprepare(nc->clk);
--out_put_clk:
--	clk_put(nc->clk);
- out:
- 	of_node_put(nfc_np);
- 
-@@ -2345,11 +2350,6 @@ atmel_hsmc_nand_controller_remove(struct atmel_nand_controller *nc)
- 			      (unsigned long)hsmc_nc->sram.virt,
- 			      ATMEL_NFC_SRAM_SIZE);
- 
--	if (hsmc_nc->clk) {
--		clk_disable_unprepare(hsmc_nc->clk);
--		clk_put(hsmc_nc->clk);
--	}
--
- 	atmel_nand_controller_cleanup(nc);
- 
- 	return 0;
-
----
-base-commit: ec1e844b9486302a488abc03ea918db60709766e
-base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-change-id: 20261107-submit-atmel-nand-irq-teardown-v1-f902307c18db
-
-Best regards,
---  
-James Hilliard <james.hilliard1@gmail.com>
-
+>  .../devicetree/bindings/dsp/fsl,dsp.yaml      |  4 +
+>  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 34 +++++++++
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi    | 23 ++++++
+>  drivers/remoteproc/imx_dsp_rproc.c            | 76 +++++--------------
+>  4 files changed, 82 insertions(+), 55 deletions(-)
+> 
+> -- 
+> 2.34.1
+> 
 
