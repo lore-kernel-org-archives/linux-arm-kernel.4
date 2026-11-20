@@ -2,70 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22778606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E537F606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q8I25qhw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IKjykBdQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yayb7vuk;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=SkLpz2Xo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=fxf+nipH1Cr8jDUljHcHSs5CO02bX7aKJ8t0CkTEBBU=; b=Q8I25qhwfsTRJs3d1zN905/Mwj
-	zU4ks2vJmoX4YrhykE53/jyzXmSME2Yx1inahmcPuA97HctGlgPE/N4PmUT1TYDmHEXyE8efI2G6E
-	NzKY+iL22JWEv+KZm1Bzd+uLsoM0SyY5atqjuG1AwlbEvrnVl3eHWNGIjtdcQrpQrff4JKRWNnqBY
-	qaiKJJPLtK1/omvIjD/AXzZQ+rh8pG5HxwEx5vMbyKqjJBmYDTPu+fNmYr8SKB8vF/hHOsoRGJPAr
-	NtaGlwzZEdtywpdCgVA/86jxQov+09Vzklj+7UvagIMkoOXn24GCX+n67QvEXMnJawsjLt21pdRQg
-	NlKdY4FA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=aYJ744NugWVIMiKS0QCbcveofl6d6KXX/uG4XmRzDN4=; b=yayb7vuk2Y3y95
+	0IqsR9qnoM49C8sy6ULC9TJHDdxsVKoUmZa+0BqWy2AR8B1z2+e1HIypD8g3kQThPeNhK5C0pDksT
+	B05b6FxE/oWmxmVY0j0UGpnfmAxmeh7kwF47Fmha+woqy6yIZMjvdAdYa+wz55FMXCP1yzg6zP1+Y
+	AoZUi74thM2AsigZxJnbGIvcsjd629jldyHgIT/8W1YDgafW0ReCqWY+cTEezQWzoq92W0IwLWVAV
+	gwy39ROnJNE7IeWUyQqLbeJ3LhB7JQtNv8oF6SgKjRFMVnM2H2VEs8FgEYUoNguRzZxx2ItUPl0QU
+	MSAlE5XInzIoY0b8h6AA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSNs-0000000Fgov-2SGI;
-	Fri, 20 Nov 2026 17:26:48 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xUSP2-0000000Fh5Q-2ST0;
+	Fri, 20 Nov 2026 17:28:00 +0000
+Received: from mail-oi1-x22f.google.com ([2607:f8b0:4864:20::22f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSNq-0000000Fgnh-0NO9
+	id 1xUSOx-0000000Fh3n-2JTx
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 17:26:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8874D62E51;
-	Fri, 20 Nov 2026 17:26:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E69E1F000C6;
-	Fri, 20 Nov 2026 17:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795195604;
-	bh=fxf+nipH1Cr8jDUljHcHSs5CO02bX7aKJ8t0CkTEBBU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IKjykBdQKK6UW+SjhXzoKfCs3ox84evesRjlgzUkRt6YulvgkWsuJ7oWEVj3R4cv6
-	 Fftdt/yPrrRSZUjOA9mkOAUBImSavMj2Dy6TuqPKpPUrulY4kci8BvV1clqgYYORo0
-	 bQnnB7toxNM/1VekBdnBdO5GsKR4cy9Mc3ZM7i/IMuPOy5hr3JmsfymyfkU5WkCn2N
-	 lB8b9+78K9kTag+XccBAZpKZq8NCcrmvZ0STC89Q4c0FGcFr9AF5/f+QkN07cB0XbA
-	 Emr1tzs/OkXsPtIdltSMHc+eDGheLG67tntbcdN2m9XB32B3myFkLcjXLcO4WKUAZh
-	 G1zd1xci164Ng==
-Date: Fri, 20 Nov 2026 17:26:39 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Navid Ghahremani <ghahramani.navid@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
-	stefandoesinger@gmail.com, krzk@kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 19/24] dt-bindings: spi: Add ZTE ZX family SPI flash
- controller binding
-Message-ID: <20261120-unrivaled-prong-1e95735fe087@spud>
-References: <20261014072109.1759502-1-ghahramani.navid@gmail.com>
- <20261014072109.1759502-20-ghahramani.navid@gmail.com>
- <179518848943.6016.16140133614242447239.b4-review@b4>
+	Fri, 20 Nov 2026 17:28:00 +0000
+Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-51f2e9e6987so1680135b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 09:27:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795195666; x=1795800466; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=aYJ744NugWVIMiKS0QCbcveofl6d6KXX/uG4XmRzDN4=;
+        b=SkLpz2XoDXLmliom678Eis4e6nZ9UzmhHP3bTvLAXg1giXxoBxn/0d6yg0IjwJ7fKx
+         iMDmlw46RzovNAyvHWq/oq3TjWQGE+E3IpXWwCwP4vm9JryfGqHrj6tSQiYmALgiHmUJ
+         T1irTgUl1GwQ93LJCwXbCH7DIE2OWlskD1YkP2LcrjguWXWBklxuQhLBPBnXe4Kqw7GM
+         Hwk7nTd61fg3EKCPjTAaaTQVfw4UgJnKm6aOjDbR411kDHBIGNkTC8agUB+Fes4j8xGz
+         tOwqb0mWNj0Q4YqNel28UPwSmjqCHr0S4Cd6gW9dG5NheVRIWnDuCEVjwrMNejqi76Ch
+         O6RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795195666; x=1795800466;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=aYJ744NugWVIMiKS0QCbcveofl6d6KXX/uG4XmRzDN4=;
+        b=Ru7A7+W0uEjHb8nT/8nTa5qDzBb53/iDMgzG8VR/W9skV0STNhIwDAG3EcHeLMr5Y2
+         3UCoEDyZJgR+EiVrEw121/ewY0qTijD3f901jWkLIbSr9+AYfL1PxQQYfVbzYQAoBAjV
+         PL4//EDdGKzvIzROvJDGV7YwoVmADaXhuVQ/IZiAxwATOuBwLviVJi8mEIU52SIHEQsc
+         SsrpSSt2cQ1PnWK/B4oGPCifd0F0TctJe99g3QchHmR3VJ4L3qA/NkY6F2DrPJL+Pt1I
+         uP/XYZFh4yYcIy/h4IofgnUhDgOgBLYWsf87jGeUvpiL5o0nu0lDDjn5fWALf6JqihYf
+         T/oA==
+X-Forwarded-Encrypted: i=1; AL+hErFHXxaYnQUMkn/DDRSh6nBR10mkgf69hWayf1Uz8UhXJXGGCbzk2+2WI/FkXa8L/jaYPfbOBtiSavQrKAVCqmYI@lists.infradead.org
+X-Gm-Message-State: APuU4Z+5NxjRfnDH72goynRzXRBsBPWoB/8MtCjgW8Lhjzzvz879Yb4i
+	oa3BaVLX+gXBwtm/XdAjwH3Y8mSf0Km5gWyjPUbCmWbuaAUN5qCm618k
+X-Gm-Gg: AYBFou0L5VyEzgcgl0E+7naJ+zhaMmioOjf6+LwA0mIOstgEtibek9snFnDoGoyRv5M
+	kw74+le6DT+cDHIgW5hJ8BbJGcVpjC0/B6sHI7TdATGpwqJ1nMDrpwWNUt7hWh6Whi/Ksd1RQjK
+	rurOiUCQ+OAOBesPUJ0Oh8BwnrboS6qVH7esU7ILr1herKGWWgtB4bAE5MMYx3JdyDPHSJpP874
+	QJDcbRL3r8DKniUSSntOpmKJCKvW33fq1nDuTrUBefNEyw5VCOeK5qOxcPpxs06PUKVi546/BG2
+	PptCGaML56LTEfVa5lLa3x4XJ5UF2UgzP0GuFBTKWunUHIHwNbTwetewZelh0omv5VirHJGEBER
+	yxDTNYzoBg5BECXCBunAqkhdClTw2el2z982qNbZhPKKtPALxpL6JDdypbUNCENfW3Po3XVCw/c
+	w1T7Ogd6gnAoyHjdT8Hu3ftJzkpzv3FI/CwqvV8kojy2RMjfxWJhDAXwMQOgjgbHgL367Ll08Jz
+	UwO61qgsB8gcmuopUqKCPLPj/Ke/QZq3nDIYdCSbzmr27osqSXnX+mejbXZ7mCwT90aT+6Njoet
+	jLamPAYChaTu8aa6nSalkJQ=
+X-Received: by 2002:a05:6808:4f08:b0:4b8:46e3:e223 with SMTP id 5614622812f47-57a0a113076mr2651142b6e.15.1795195666573;
+        Fri, 20 Nov 2026 09:27:46 -0800 (PST)
+Received: from localhost ([2a03:2880:10ff:4e::])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a3485e3ecsm2473520b6e.9.2026.11.20.09.27.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 09:27:46 -0800 (PST)
+From: Vlad Poenaru <vlad.wing@gmail.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@arm.com>,
+	James Clark <james.clark@linaro.org>,
+	Leo Yan <leo.yan@arm.com>
+Cc: Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Ingo Molnar <mingo@kernel.org>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Yeoreum Yun <yeoreum.yun@arm.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Suyash Mahar <smahar@meta.com>,
+	Amir Ayupov <aaupov@fb.com>,
+	linux-perf-users@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 04/25] coresight: perf: End AUX output when an event is throttled
+Date: Fri, 20 Nov 2026 09:27:39 -0800
+Message-ID: <20261120172739.1843303-1-vlad.wing@gmail.com>
+X-Mailer: git-send-email 2.53.1
+In-Reply-To: <b851c070-19d2-42b8-b19d-be4b02ad9715@linaro.org>
+References: <b851c070-19d2-42b8-b19d-be4b02ad9715@linaro.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rjrmWXXpDlSqC1UG"
-Content-Disposition: inline
-In-Reply-To: <179518848943.6016.16140133614242447239.b4-review@b4>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_092758_553245_731A7E68 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,53 +118,23 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---rjrmWXXpDlSqC1UG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16/10/2026 14:46, James Clark wrote:
+> Reviewed-by: James Clark <james.clark@linaro.org>
 
-On Fri, Nov 20, 2026 at 03:28:09PM +0000, Mark Brown wrote:
-> > Add Device Tree binding for the ZTE ZX family SPI flash controller,
-> > supporting both ZX29 and ZX279128S SoCs.
->=20
->=20
-> Please submit patches using subject lines reflecting the style for the
-> subsystem, this makes it easier for people to identify relevant patches.
-> Look at what existing commits in the area you're changing are doing and
-> make sure your subject lines visually resemble what they're doing.
-> There's no need to resubmit to fix this alone.
->=20
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - zte,zx29-qspi
->=20
-> This looks like a wildcard binding which we don't normally allow.
+Hi Suzuki, Mike, James, Leo,
 
-I figure by wildcard you mean that the compatible is covering the whole
-family, rather than the x being a wildcard character. If so, I agree
-that it should not be allowed. I don't really know why it is here, no
-other patch in the series that I looked at seems to do anything of the
-sort, it's all device-specific ones for the xz279128s.
+Could this go in alone as a v7.4 fix, with Cc: stable@vger.kernel.org?
+It does not depend on the rest of the series and applies cleanly to
+v7.4-rc3.
 
-
---rjrmWXXpDlSqC1UG
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCawCCzwAKCRB4tDGHoIJi
-0laKAQDRGnEKIBosOkTgcH+zt5RiPxDTs6KvjxZOxByJ94lB1wD/RN9YSoRwzHfG
-KwRcBXW7isi8mBE1p07Uf0zJ4hunvwc=
-=RCwU
------END PGP SIGNATURE-----
-
---rjrmWXXpDlSqC1UG--
+Thanks,
+Vlad
 
