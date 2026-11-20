@@ -2,102 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32369606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89B5606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X4hJxdWf;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DTEbP0Jm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dsgoHBZX;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ny2sWYgn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HT3eyIKbaAFdJAsBCyUUl9qOeHC7n7o5AOxtBcK4VMc=; b=X4hJxdWf9OP+dQ
-	2IIdyF7FBA+bhQXa1tLbkK3/M/e075OShrpUYq+bg06vpnWk0LeAo5Jt4GP1IQOO7rJJmf0Djq5Z0
-	h3LTSkFAUBijUw7mguWTCf7flT4gp5N4xxERn7MWO/0pDS5dfF+pfu5TjmbdNrqTNLdIHAaUYs3No
-	jkAcbg70ZzFCDPFUwoJljvLSqQVnE6n6YVEGn70gyT12FFBUUggBYD1xeE7rVS2MzGER1hd+lNEhy
-	aOjU8TovSDL+t2e3Q8IuFhJnmt5SyPBRJZf/YTV3L1Nx9GSs3pX1gyZIcJXX43O4KSDfJ9sURTtMO
-	cHWilDxNIzvR02iB3Pwg==;
+	List-Owner; bh=qbd+z81NWcBJ3UbzNi7GzHSjiR7on5yG5EEeouAnung=; b=dsgoHBZXGWI4OZ
+	PPb6rCHeSxt1/KnoHXbej1ezN2sPaYnC4Hr5JiPpqloZFV4pxk+HURvDe/AKJf4S0OVvBy+vYANHz
+	uqSKzXanw9cMhFVgh3N63Wih52PxrfzQTba1BVZ0ZymF6NOCDj8qXJ2vvnZofOEu7J64oEKKzlubx
+	DdQEMdS2Dwv3zQknSAbpTEkuDMjl2uz9NJxnIAYKlOrT+AVLBQLllrRrYTI2A1NhW0pMMbsAAiyR6
+	yqYqM1BckQNDoS0KdMRFN17UBolOJr3XX/0F9pay5Zn/yVuRkhsCwrcdU5oJybhxCSmU6KGOZ2LGl
+	MiZkzXAWt1PbgHwF63WQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPoi-0000000FHsN-3V6Q;
-	Fri, 20 Nov 2026 14:42:20 +0000
-Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+	id 1xUPoy-0000000FI32-11ZH;
+	Fri, 20 Nov 2026 14:42:36 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPof-0000000FHpG-1Q6J
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:42:19 +0000
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-3b155f50c24so907184a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:42:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795185736; x=1795790536; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=HT3eyIKbaAFdJAsBCyUUl9qOeHC7n7o5AOxtBcK4VMc=;
-        b=DTEbP0JmcOdFjq91IbKNm7z0HISjY8KnB7preyMT/6UzCU2QnoUT3PDsyaRuB9Q634
-         EZoOpnf6oz5kcRfvo5h3gbpsRgR8/H0RJ90fYRrFVBz01hVF9ov1TG1Qege1Ms5kzkYT
-         DIcwqR4aKyqy+owNXCqzGZNu3JGzL/3nRDAFgLReMu7/vWl/59Eaj+q/qcB8zyOUcGv6
-         L6zLpmnj5NhXR5KWF+QBDFqFEGjE+LwwSJ23t9vsXUC1tsHP+Qri24S2o80m4nR4JV+4
-         TNkR9nS/LA0yJFvlZxpGumrnhhewVTqMNw48JFsdf/sq2Jpp40kfrcKHwc5LW14Th5Ky
-         X68Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795185736; x=1795790536;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HT3eyIKbaAFdJAsBCyUUl9qOeHC7n7o5AOxtBcK4VMc=;
-        b=KdMcPV0lz/WU4TOQ2iY2yZF/Rgd8FfVcAJDLMZqKPVge957SZjdJ0tdSfD/63Ajq6x
-         SuBnOtNi4a7gLO6BO2MjEQ6XK2UKsAIF9ey55XsGuYJyJCdVZV2sahKAa5xygg7isHxE
-         1bbdPdWP96FiYPsJUDBZOfMmL7N7CbnAkGOMT55hMMymc1CAICDYHU+aHoNYB6q+mWI+
-         ZoZCMeHLI82ZhEwLNgX6TVgs0ES0I0VAd+TFoWGs6PIDz8u5Hqe3G+lwF03pG/Ayo36B
-         I9bbdbqUOHALEdjDQ+gfW+B34Wvj1jerOZP7Aep+KqWO3P2nlpp+L0CrWdDv75idMftI
-         5y1g==
-X-Forwarded-Encrypted: i=1; AL+hErFyNeiCVToq7Oq8dvRW4zAHa0Ydud7Js4C8K6eqV+wQyTCD64qY++n0DYA2/CBPHDotCe1K2utffBSh/Zm3Ng3A@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Irzed9lcEb90ARGw5QOagAR2n4IGodO4wD8uR3Q1kJBj+tWNo
-	+kD4Z79/d+Nks+eX4QZjpkzj3ZkJ0V3IWozkfrzuxJ/WtJsTOelXWw5a
-X-Gm-Gg: AZFdTZemJ77GItviZ2fEceA4qspsIj+6H0bFhBh3U8J6fkWrUPKIeB1X7339CUtUq0W
-	Pryeri6JG5n8TxD/OIQEv2ZTOP/4FHgZa1ShqEtckjvFXEtWcxSdZqf1gcsiPk3Y5D29ayYukDo
-	qarkPwFL2ppbgtLYnysRX0mDscVWa2w82LSSX3WaAjTqzqe2KYhzrCftgwTnABA3qX2fgbLFCoP
-	+C27J8QkbKfxNT2kUS7vZUgVAXDj4zmCLuOfd+vTa5msBiuW442E98NRiOB03sPWfKC62UZsFRB
-	niUzxml4Yo1UZ3oAVG8G1dI5YhI75PAkIYDxW5OGATsvFV7fL/0mOmBSuaptpgqojH+DN3rO7sB
-	dFbqCOiF/bfnDjGTxcJDHbaDjvblNzd/nCzuX9+Utjwu9/hROQth2sEyu3ZMsDdb8he3Ggwdp6C
-	CB2/xMfZas6cMXc0PNsvk7+F32kRCz7Pv2QWwctUSDWQZBm15vkOYbCkjlMQTXlQnuJKrfd0A2o
-	BrWWaZmRJvDWmhkQ7+eCGOz/9wBzASG33/hebKx5Wx7sNRxKamDqSm5Sor2f9UDIPAD0+XUVPdH
-	LgbGRcrNsPglO7z+sw9HkA/k8+5Bl5TB4Un7aVwesOBpe4VhLl120LeQWb4=
-X-Received: by 2002:a17:90b:4ad2:b0:3a4:7730:33dd with SMTP id 98e67ed59e1d1-3b41c99525fmr3214938a91.58.1795185736231;
-        Fri, 20 Nov 2026 06:42:16 -0800 (PST)
-Received: from [10.98.15.223] ([2a09:bac1:6500::19b:170])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03ee848c1sm15346435ad.10.2026.11.20.06.42.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 06:42:15 -0800 (PST)
-From: Chuanhong Guo <gch981213@gmail.com>
-Date: Fri, 20 Nov 2026 22:41:45 +0800
-Subject: [PATCH v2 2/3] dt-bindings: clock: mediatek: mt7629: add RTC clock
- IDs
+	id 1xUPor-0000000FHvm-134w;
+	Fri, 20 Nov 2026 14:42:31 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 150D91A1735;
+	Fri, 20 Nov 2026 14:42:26 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DDB99601B9;
+	Fri, 20 Nov 2026 14:42:25 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F0D8C11BC0232;
+	Fri, 20 Nov 2026 15:42:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795185740; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=qbd+z81NWcBJ3UbzNi7GzHSjiR7on5yG5EEeouAnung=;
+	b=ny2sWYgnB0zcWHeFXhqxhDIAWQ/uV1VQzEEqCRq0frSEgIqGk0A/Gnr16gKIM/7MkE8G3Y
+	Dj81WUujkTgIygPti1bkzTol8TEO6lCcIikzANbIIz9JsdQguQvKy+ZskThQzoVvwiFImN
+	ANv6xsoO9kd+7yRJvQmXW5XinY6o210rhfzz1pDFd1wbNowGtBfLLgcifRK1mXcQ57HSSE
+	W+CrBat6FC4flKNMgU5QC43LywpdbagUOGBJVu+eQhirnHhKXtfyTU6I4iJWgHXVY94oMC
+	E6BVwAjHuXZOYLo00D9sQDoL4Queg25DHL5gvFaP98HIwXURNSC9YxMG30bvxA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Nicolas Ferre <nicolas.ferre@microchip.com>,
+  Alexandre Belloni <alexandre.belloni@bootlin.com>,  Claudiu Beznea
+ <claudiu.beznea@tuxon.dev>,  Boris Brezillon <bbrezillon@kernel.org>,
+  linux-mtd@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  stable@vger.kernel.org
+Subject: Re: [PATCH] mtd: rawnand: atmel: release the NFC IRQ before
+ controller cleanup
+In-Reply-To: <20261108-submit-atmel-nand-irq-teardown-v1-v1-1-341643c83ee3@gmail.com>
+	(James Hilliard's message of "Sun, 08 Nov 2026 14:07:31 -0700")
+References: <20261108-submit-atmel-nand-irq-teardown-v1-v1-1-341643c83ee3@gmail.com>
+User-Agent: mu4e 1.12.12; emacs 30.2
+Date: Fri, 20 Nov 2026 15:42:16 +0100
+Message-ID: <87tslba7jr.fsf@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-b4-mt7629-rtc-v2-2-cd877cd496ae@gmail.com>
-References: <20261120-b4-mt7629-rtc-v2-0-cd877cd496ae@gmail.com>
-In-Reply-To: <20261120-b4-mt7629-rtc-v2-0-cd877cd496ae@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Chuanhong Guo <gch981213@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_064217_569731_F834EA85 
-X-CRM114-Status: GOOD (  10.53  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_064229_467063_AF20AD6E 
+X-CRM114-Status: GOOD (  16.31  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,37 +79,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Expose the 40 MHz / 1221 RTC source and the RTC clock mux. Keep the
-existing CLK_TOP_RTC ID for the 40 MHz / 1024 source.
+On 08/11/2026 at 14:07:31 -07, James Hilliard <james.hilliard1@gmail.com> w=
+rote:
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- include/dt-bindings/clock/mt7629-clk.h | 2 ++
- 1 file changed, 2 insertions(+)
+> The NFC interrupt is shared and devm-managed. Controller removal disables
+> the clock used by the legacy binding before devres releases the handler.
+> An interrupt from another device on the shared line can therefore make
+> atmel_nfc_interrupt() read the NFC status with its clock disabled.
+>
+> Release and drain the handler before freeing the controller resources.
+> Track successful IRQ registration because probe also uses this cleanup
+> path when requesting the IRQ itself fails.
+>
+> Fixes: f88fc122cc34 ("mtd: nand: Cleanup/rework the atmel_nand driver")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> ---
+>  drivers/mtd/nand/raw/atmel/nand-controller.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/mtd/nand/raw/atmel/nand-controller.c b/drivers/mtd/n=
+and/raw/atmel/nand-controller.c
+> index 0bdbcbb50d94..9a724de67624 100644
+> --- a/drivers/mtd/nand/raw/atmel/nand-controller.c
+> +++ b/drivers/mtd/nand/raw/atmel/nand-controller.c
+> @@ -263,6 +263,7 @@ struct atmel_hsmc_nand_controller {
+>  	struct completion complete;
+>  	u32 cfg;
+>  	int irq;
+> +	bool irq_requested;
+>=20=20
+>  	/* Only used when instantiating from legacy DT bindings. */
+>  	struct clk *clk;
+> @@ -2334,6 +2335,9 @@ atmel_hsmc_nand_controller_remove(struct atmel_nand=
+_controller *nc)
+>  	regmap_write(hsmc_nc->base.smc, ATMEL_HSMC_NFC_CTRL,
+>  		     ATMEL_HSMC_NFC_CTRL_DIS);
+>=20=20
+> +	if (hsmc_nc->irq_requested)
+> +		devm_free_irq(nc->dev, hsmc_nc->irq, hsmc_nc);
+> +
 
-diff --git a/include/dt-bindings/clock/mt7629-clk.h b/include/dt-bindings/clock/mt7629-clk.h
-index cff9a02e8302..ca325c21b9bb 100644
---- a/include/dt-bindings/clock/mt7629-clk.h
-+++ b/include/dt-bindings/clock/mt7629-clk.h
-@@ -115,6 +115,8 @@
- #define CLK_TOP_CRYPTO_SEL		105
- #define CLK_TOP_SGMII_REF_1_SEL		106
- #define CLK_TOP_10M_SEL			107
-+#define CLK_TOP_RTC_32K			108
-+#define CLK_TOP_RTC_SEL			109
- 
- /* INFRACFG */
- #define CLK_INFRA_MUX1_SEL		0
+That's a terrible approach, completely defeating the main purpose of
+devres.
 
--- 
-2.56.1
+Your problem is a devres ordering. The fix should be by teaching devres
+the right order instead of open coding the fix. So you need a
+***_clk_cleanup() helper which does:
 
+	clk_disable_unprepare(nc->clk);
+	clk_put(nc->clk);
+
+and you want to register it before the IRQ request so it is triggered
+after:
+
+        devm_add_action_or_reset(dev, ***_clk_cleanup, ...);
+
+Thanks,
+Miqu=C3=A8l
 
