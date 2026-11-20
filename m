@@ -2,127 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406D7606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86169606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S08WrXtT;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=ZVJmLWRQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iapNcxNq;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=aXgMR6ie
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bEpii6cdlCphRzX12KymX/PlYQnXf7sDL0nHny5wUWA=; b=S08WrXtTRb7TWT
-	CQKYOcEz2cyIsEfPs6FvZZDxADaZ/C1LuwPUaycjsphzpL6cg9/WjfdDSwLOeY2ZLXTeAVcqMNTo0
-	zkbovyEzb+Xvpb2SSvdjynk44zXKxL6OcPZ+KRpHVj9k2wELMPv5msUyRMpLcQicU140uoJ1ru61Z
-	jK0/o/6QCtDyaGbJfCq7GRme0RAm63F/HMkIPi/TDnVddly7sTUCYyaPIpHR/9BH+u74XCxAlxGCp
-	VxpraqiA5HDGXEHMKkngsWArywDQRPaEtzVsxM9Oi6gjHw9cDTMOHJ7tnau7QRQEylNSUceYa1f7S
-	nEkSKbyqYkQTVzsrmtpQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=H2Y/M+dNCf7NZhZYEFajE482Mp/N89Yl/EG9+klpX5E=; b=iapNcxNqveGtohCYl+VowUsGvB
+	XQ2j/ESpEXdngjzp03ij4IbyNKarQ0z3RfAerLKVnEOEBSWl2ZVU4r+BVzscT0uqmG+mfS9aykXOF
+	cWNdmQvKJ0PqxSFQaa0kc34y0FrHUTlCfgLZ4ndzUJ4RRmNQ0W+rGwFMdvu3LoQfQQP6nRcTF7RkP
+	aJ5bk6w7/MqJwkvvv6169kwxDCpVEX2hwwQ1Rr5SAhXEKqqe23M93qvI4PAlZAMBd2QJCWH2pH91Y
+	fcGwFVIAD95VxSWqnfThK9EdbNmDN+HqV0E3h7VTr/IOUv1NEm+SWTJl5qsLfGLcTQPiBuxnLTXQF
+	NwkVke8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMm6-0000000EmzU-1mlM;
-	Fri, 20 Nov 2026 11:27:26 +0000
-Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xUMnv-0000000EnQm-1Fy6;
+	Fri, 20 Nov 2026 11:29:19 +0000
+Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMm4-0000000Emyc-0BdL
+	id 1xUMno-0000000EnO4-3cOe
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:27:25 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NZiECy2ICJF0QkSzI+D2yiRrvlQfd9rrc2JruR6yRneC0S/KGZX/CInakGfVrFr0wvT9eKsgvS/ksHueK9+j3wK615cvAvAr/20faRLviIpaF4vi4EeqwwxN10EXcmgniK/9uamLqNYwf1lt+tsAMtmsJLu6jyZMeOEeHaiXbppuuF2Rv5pFumUhQCwo3i/+B20sbWqX2RG/3Tnizl1XYI9WX8YgQ3LbtmL0m059TMG/nuYRXqcfmTGzkluu3daera6EonNp6pzM8q+Nll2uAZjFydvkvjRspuLb4OGHFTM/JDMkFMcGCSn6PhuHjeyxZNRcOdyW1mT5RqEp/GUFHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bEpii6cdlCphRzX12KymX/PlYQnXf7sDL0nHny5wUWA=;
- b=avIksY9kkhWLlD98/WKuW/UV5TggWNXcbkVbvDRxg8kXTx6icN1x9AFkMgBOGC61Y3ZXVPUws7cn023ijCe2Ty1W/jBQdzTgCvMQqKsJOPXLY9mFTnChInhMOW1TIIxzh0Z/hAL0WS4IkNUFG/v/qDG2LJfdvQEIqaLt6WSos2/e/VgtoBWRcQTmJK1IqsxJUHJI5Y83WcWvr7GU4jICVwbWjnlvd5vx9K0/WJLU6K0U3i+WulERCprLD4FDyqCCZDchRKU/UwlkSeLVz/LJScWJwW+OaFVEmoDxhJ5dfn2zrsgpsbFCsODlwqqjVnqS6U1TUXOXPxgOgEi/hXqRDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=amarulasolutions.com
- smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
- header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bEpii6cdlCphRzX12KymX/PlYQnXf7sDL0nHny5wUWA=;
- b=ZVJmLWRQDmscT0pMAz6RAlTgyeqv6njM+C7ld4eRgRj7ODk/PN5F1ZReP4sCzcZQ8c7DOc9XurSI1DT/uQu/orWQZfm+y9nnZkdaWmxlujG957ZUmKByF4+hf7cwjTfPPCArEWx66kczrud52mddDYRZm3btzTjp01p6isUoaEaKxCRU60w4MsHXueB0+SLLzVpoFsW8wpM67XHowGMBtdz6le64A2xNWEx53936raIO+Cx0sM9WJsEOgTmBbbPfVp/M37a/c6pnx9WPYgfY/5a7uO1ZlqqoCaFUS7MVB7Z93EicqJ8C6aNrNjyKaZGkiVCo2ydgSEjYomE3dtFhdg==
-Received: from DUZPR01CA0201.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b6::12) by PA4PR10MB5706.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:264::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.7; Fri, 20 Nov
- 2026 11:27:16 +0000
-Received: from MAD0EPF000008BD.eurprd04.prod.outlook.com
- (2603:10a6:10:4b6:cafe::aa) by DUZPR01CA0201.outlook.office365.com
- (2603:10a6:10:4b6::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Fri,
- 20 Nov 2026 11:27:16 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- MAD0EPF000008BD.mail.protection.outlook.com (10.167.241.164) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Fri, 20 Nov 2026 11:27:16 +0000
-Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
- 2026 12:28:18 +0100
-Received: from [10.252.3.211] (10.252.3.211) by STKDAG1NODE1.st.com
- (10.75.128.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
- 2026 12:27:14 +0100
-Message-ID: <5dd92812-f44c-47aa-a8e5-94b0c1fd018a@foss.st.com>
-Date: Fri, 20 Nov 2026 12:27:13 +0100
+	Fri, 20 Nov 2026 11:29:16 +0000
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5c1a947b4adso613231e87.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:29:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795174151; x=1795778951; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=H2Y/M+dNCf7NZhZYEFajE482Mp/N89Yl/EG9+klpX5E=;
+        b=aXgMR6ieLubKx5W0XCaGKi6dGwXoB8eUkhbX4f8CMu4gQV8EmzkR7Pu26H6HrOze/y
+         +BpcEz9hWq99j8+HKj891bHUOjqpxKLhAC1cRhMLFm5vfdA4P6ZM1q7DGspjf9UXlwf6
+         DHevW5XFFtmscYbmgSqXdVioFojg7uNp7Bk0PYOhNCplNbNryFgX+SA4JaM7us+Ne1wF
+         rwidn7XE14qncnV420nuAmUwStrK13b1yUahqpjdxWkguZJUVChfSo3LcIyVQb7nrJmC
+         L3OD7vNd2Phyu0fNRoLfLLL/el+KKOXCrbjYsuMNdl18l+NV864K3970BpuSFPZZ/g8i
+         zthg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795174151; x=1795778951;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=H2Y/M+dNCf7NZhZYEFajE482Mp/N89Yl/EG9+klpX5E=;
+        b=a2Agd+Y2BvfN1YKnePDR3fiu6rwi090PkVDkmqcqCYpE/DAlq55N1pTdN7MQpYsHoz
+         09iax5XTfSNAP5CLN7oxLfmyr/aQtxACiz0ANW4cZ1n2zSBXSN8kQWC5EbWjPedO1LpY
+         HOkEKbUhIC0BuzPblddri2Grko6OwuWpanVQIvVuLUatBKuJ1oKmlPiMjK6+PQJ/0y+G
+         h+X6ypq9QqgEmpSQDn8KevuyQuBoY0EF73GdEi6t+YV3aSHFH9KTJQnwG/LFxvtiUufk
+         RgDABSmh2lT1Hw57/9gF45H5JDvqkV1z9z92fPD73Tx1ZQndD+VeUR1XfJ8SCIuA8H3+
+         RauQ==
+X-Forwarded-Encrypted: i=1; AL+hErGEd7gePBAsHyKjkyECOtW+khu0HphTAiqhD+hsk39uHXOkCqrhxkk8oc0lUcjGMarcVe/KqunJpkokBmnKZz9w@lists.infradead.org
+X-Gm-Message-State: APuU4Z9CihjBeiw49qVXj1yRZInbiWBMXXknSVc4dkW99wYHB2oWUhOe
+	7pXGBK1G8mc1KTpnRh5/rRYgr3GhePFuTwTAKmPh3F4hJPSj1mx1Mnm+
+X-Gm-Gg: AZFdTZflQvS78PjQeYg6i96JuFE57nEsrh6zYr1ekwz3uf6g3jGhuvKlS9ZCmxrmkT9
+	KHJMoK54osy64+0k5XCoN7wPtgLajR8yBC30Fus2xizqdr7/R4gma8VR3Et5RgWVY+9DXS2CPwl
+	SUjlcTs78UfS1XMeCyICReWetizqsZha8Mx6dBOrN/V1NwFHM2NQ2hwJOzf6LwPmE1zRR1ZB9F+
+	Mb8oP769YT3faCMf+l3VUAeJA3WNzdUE9vg6A+ARWzPTHMpY3EE3FvCgr/UQAcu4UWpQhQil2ug
+	t4bROAjMYoxekgE8Wk9N8fPcEQOZtuGlYkwK63HNRcXJScucUyiTMZ6f2Z0TTmtT7B3NSgr9qgV
+	+gIKCqRkkfyZZ/r9VRRoKYHiApEQ1Oqw/pLnS/a9N06P/txt8KKad1w+akMPen7wQ6r6y7EmylH
+	oJOAaQKeKCuGHgFsswJuYMplj5hLZDnNaCH2lIlsnU07bDIcFYyRtcesaezE+sEaNAti4I+RwS3
+	wdvY93Dj1KR1LU4//9QaINHt0W0xlTrhW2h4g8DIWiS4ui2thgs109zHTwMkT2QuNT1svpMJwnF
+	p1C9p+K7/oHd5Oza7TiNd28wF/phlXHdGCz1Y2QHVx8LO3z8g7xNHqITLNy9zRaV5f2vNBsqww=
+	=
+X-Received: by 2002:a05:6512:ba6:b0:5c1:ac5a:52e6 with SMTP id 2adb3069b0e04-5c1bc865878mr898897e87.24.1795174150406;
+        Fri, 20 Nov 2026 03:29:10 -0800 (PST)
+Received: from gmail.com (78-71-189-157-no2450.tbcn.telia.com. [78.71.189.157])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c1bd0177f7sm491711e87.33.2026.11.20.03.29.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 03:29:08 -0800 (PST)
+Date: Fri, 20 Nov 2026 12:29:07 +0100
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@intel.com>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Peter Rosin <peda@lysator.liu.se>
+Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v13 0/8] I2C Mux per channel bus speed
+Message-ID: <awAvA1rSGwh0RaIW@gmail.com>
+References: <20261015-i2c-mux-v13-0-778a12cfe93b@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/stm: ltdc: create blend mode property
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>, Yannick Fertre
-	<yannick.fertre@foss.st.com>, Philippe Cornu <philippe.cornu@foss.st.com>
-CC: <michael@amarulasolutions.com>, <linux-amarula@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Daniel Stone
-	<daniels@collabora.com>, David Airlie <airlied@gmail.com>, Leandro Ribeiro
-	<leandro.ribeiro@collabora.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Maxime Ripard <mripard@kernel.org>, "Pekka
- Paalanen" <pekka.paalanen@collabora.com>, Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>, <dri-devel@lists.freedesktop.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>
-References: <20261028131823.2649142-1-dario.binacchi@amarulasolutions.com>
-Content-Language: en-US
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20261028131823.2649142-1-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE1.st.com
- (10.75.128.132)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MAD0EPF000008BD:EE_|PA4PR10MB5706:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4a370496-6fd3-42ab-8b6b-08df46f93b37
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|82310400026|36860700016|1800799024|376014|7416014|18002099003|22082099003|6133799003|11063799006|10067099003|261026140227099003|56012099006|261021121427099003|261028144727099003|261102123227099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: Vvrjwgz2dvwTy3bInW07vLwJiEAuZp7kwF4GgpfaD1lsVMEklKZ34ugwdl28fZZm09Dmk/xmJShvxJA7iDZ7VlgxUZsyTM+P55CppF19e9O08KzXgTb6pbSFxa/I0pUGncgZcGV6V9Mp9iXARrU6jApeA1JVDSj81KjCz6X+vPxqg1NZBJVkiRvMrece2jTv6HNuScreuJquH2t3l2F+pGm/MfiXHvtT5R+wr1r55rDCaAIxTb56ikYQMDp8qiFDMHP5pUtY+dzoDRDRzH4z5JHnsswUoKY6eyrSgeAICu+ZgKk1dsykzk/m5nhAnRStqG1GYIGwVJw6AmafaOaLnzSAF7iuehhA6y9SxxNMG1BWcHkB49TZmb/DhIi/ZDVdHYtl1d2L2EfG+YkCNdxqpcAbnW5CZQQmWsY40iafhYBoD3L8ZcrSEsBOc2H3EyG52vR3yCCM8065vsqbodtwO72UWS1lk/IQSfCYiWR2Y9bySR5wE2ouWH74E/VQt4gxjv81/19qSltU3O6u4uwvGgHqGQ3iEkxZJVMXUoyetcbwUtA35RDAb36VXS2JqwT7RLvYzEM++Zau8EX5gwY4WFMtIA6iPHXaBe38z/udqwaM67gpT6tMmmd6wxSfKeh4T7KhePcaeXsE5jbM4k6oGVgtzQOVZu0drZwLSWueJ5QLUebzzaYrzP15zuh76vpG
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(82310400026)(36860700016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(6133799003)(11063799006)(10067099003)(261026140227099003)(56012099006)(261021121427099003)(261028144727099003)(261102123227099003)(261022105027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: IplYWouaCDpX55SCDGxByJIXTfT6rpY5AK9bfKoMVur8cyps6arw1w9yuDzyN0BeKtxQZrg0NmhcCGjsOY67iQBQ5ySroc+NpduGosscJ2V58eV08iNSwmwN7hjbxVm3sMSDW8Lxg0hopXyFvmKm/6/8PdVY5vMHulSZskYIKC0z5QZA1OQEvPfSx2rFYxy9Sf260wLWnAqrtns9x5YwbItqGnicmKVwz6b+97Yu/++U5HRofgHVKX4cw8zvTab6QzRuTHlCmmaYcsRqubHkMYRzgfnRCSepjnxwWjF7PCvrnAeafyimukISuZ3R21Qer3S9cirdGyBSB6pTJ2gDlHKgGkLzdzDBFcD018mIU09FNcDE+GJvcrOr3QTqRbSR2H4rayWgzWbo2nfkrPnmmF3BxMlZ9dF3rUOhxcnC3F1SWa3WUv3z4Gz9LTelKXbk
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 11:27:16.3031
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a370496-6fd3-42ab-8b6b-08df46f93b37
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: MAD0EPF000008BD.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR10MB5706
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20261015-i2c-mux-v13-0-778a12cfe93b@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_032724_333648_11E62D75 
-X-CRM114-Status: UNSURE (   5.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261120_032912_950137_E4917959 
+X-CRM114-Status: GOOD (  22.52  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -134,35 +109,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-On 10/28/26 14:18, Dario Binacchi wrote:
-> After commit 860e748bddcc ("drm: ensure blend mode supported if pixel
-> format with alpha exposed") we get warnings at boot:
->
-> stm32-display 48010000.display-controller: [drm] [PLANE:37:plane-0] pixel format with alpha exposed but blend mode not setup. Please fix.
->
-> The LTDC blends the pixel formats with alpha by straight alpha, the
-> only mode implemented in the driver. Create the blend mode property
-> with DRM_MODE_BLEND_COVERAGE only.
->
-> Fixes: 860e748bddcc ("drm: ensure blend mode supported if pixel format with alpha exposed")
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
->
+On Thu, Oct 15, 2026 at 01:01:47PM +0200, Marcus Folkesson wrote:
+> This was a RFC on how to implement a feature to have different bus
+> speeds on different channels with an I2C multiplexer/switch.
+> As no major complaints on the design came up during the review, I
+> decided to submit the series without the RFC tag.
+>=20
+> The benefit with this feature is that you may group devices after
+> the fastest bus speed they can handle.
+> A real-world example is that you could have e.g. a display running @400kHz
+> and a smart battery running @100kHz using the same I2C controller.
+>=20
+> There are many corner cases where this may cause a problem for some
+> hardware topologies. I've tried to describe those I could think of
+> in the documentation, see Patch #5.
+>=20
+> E.g. one risk is that if the mux driver does not disconnect channels
+> when Idle, this may cause a higher frequency to "leak" through to
+> devices that are supposed to run at lower bus speed.
+> This is not only a "problem" for changing bus speed but could also be
+> an issue for potential address conflicts.
+>=20
+> This patchset has been used and tested heavily the last months
+> on a custom board based on a da850 (DaVinci) platform.
+>=20
+> The implementation is split up into several patches:
+>=20
+> Patch #1 Introduce a callback for the i2c controller to set bus speed
+> Patch #2 Introduce functionality to adjust bus speed depending on mux
+>          channel.
+> Patch #3 Cleanup i2c-davinci driver a bit to prepare it for set_clk_freq
+> Parch #4 Implement set_clk_freq for the i2c-davinci driver
+> Parch #5 Update documentation with this feature
+>=20
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 > ---
->
-Hi Dario, 
 
-Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Gently ping on this series.
 
-Best regards,
-Raphaël
+Thanks,
+Marcus Folkesson
 
