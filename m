@@ -2,66 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE0D60A2611
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 02:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3607606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 02:49:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SAmAvV+D;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SyOZ1Gg9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TWGMDJ4T;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=N47Ecp42
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gttAyrJ+wMHr+Glcgouy7cx0rJKje8ChJMiYhq7/fZ0=; b=SAmAvV+DV7svd1
-	N6x0zTzJAGmcu39kiztdxW5JV1PtUzVXZjg6fR8cp8+9kHsWmelBw5InF1yRXSgqMQ+z2pd4BDddl
-	pscURhkDUldli+bkpcKlThUr+hHtXGt36ZTJTnxd3Pw3Trho9Ff7lUg7zFu231ylro3Ooq7UrPSHc
-	9bQp4x+eGERPY/hoUkbyRPdCk1oDDrHz6pJSI5TVMZaE1vit1Ojm1YDdBwSX1bN6zOA4DyWyaVQD+
-	arz8GQVWalj9ywHOsmPXX+ud8N1SOnwA5p2nHLYabK0qSj1WIZUm2gPfKlkJKjtjdBQOKVx0eOyrW
-	902UWOCHU6Yuvl/hXosQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=CQl2SvQWLVhrrF+rgxKWAOgk0VZ5T5baWvxZ2m1vTk4=; b=TWGMDJ4T8cKZu3v3IV3K4hUQdJ
+	YwqsPfWRH0aUhV4n6gdcNQ++O2uZH2LMX5JcO2G2veBYGLX1Ip2tgTab+Asd43nPJIbMF4TGfYMAe
+	s/ZfFUodZD7n9BiL4wm268rBaqhRmXJktkG0HXYBKFQNjznB8yQEDkOdBjZYGKBzVNCwi/LrQSYu2
+	fgNdn6yce6k5TpMA5Cfj3dIyOdNmTVJkRSw2F82NWKcyg/iM+JLoQ3PcndB7WhrH8P04W8GEZpjiO
+	UNbw4ZqKESftI+cJtteZ3NneRv1Msz0LcevtfWcyuUEWEJT2NWJntkbQw/ZFfW4LOI0vjdBJ3UiLP
+	SNB2E+Cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUEXq-0000000DtvE-0DJV;
-	Fri, 20 Nov 2026 02:40:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUEgf-0000000DuQ9-0w8t;
+	Fri, 20 Nov 2026 02:49:17 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUEXo-0000000Dtv5-0FKS;
-	Fri, 20 Nov 2026 02:40:08 +0000
+	id 1xUEgd-0000000DuPh-20JP;
+	Fri, 20 Nov 2026 02:49:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6944E42490;
-	Fri, 20 Nov 2026 02:40:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4572C1F000C4;
-	Fri, 20 Nov 2026 02:40:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D7588440B3;
+	Fri, 20 Nov 2026 02:49:14 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795142954;
+	b=bAZL82/NGYB57OCKwcvaL90hdPKlNcM1pK3kyavHP5kpWQNtpJrX6kd0sqpUCo6JwAU9
+	 vVkP9QE3e2L2imPx9RMeylFftzm++PH31+OGrgZ+X83iiMLyY8kAOxb0IEvNp8/9YcEd2
+	 S++e1RlYm3Fj9KvcvXf0+lCHzJKTpODdgwLX8Y5+C3B3OX6rwqS3F+nDLWCBGSsULcwAp
+	 TlCXiV+8bM2xQXlGor618sIishzotwI3EKuvZTaFOnofgaE3WAqLVJx1KJyGn7g25S6Lc
+	 RqGfr2gpCpgEc4Sk2NFKWIlqWh9AtEx6HbBNUo1cP0crVZJIndgc6hWP9Sp219aK3Dg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795142954;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=CQl2SvQWLVhrrF+rgxKWAOgk0VZ5T5baWvxZ2m1vTk4=;
+	b=cvPQuophWFeDOUAhetGCCxWFuHp4XqClU+Fm60f19wN6oRpg5/s1UX8RoHtYhff/nBqM
+	 8J+F35+5UCXRVX6CVc2kTKAHmCayy39qcSWW4KCOGvngeI//O4Y/3OZxC1xOPjNovhbqZ
+	 kvq3zP/A8aIxIVi7cdWPFR4QLqUOySE8+fb18R6UBOMePZzajfnu5lliDJzR3632XpTBE
+	 kHAUjuImbDofandbHixyB29Fqoe7m3FqVKEAmo5d7/FV7Pt9rkFL4xlCPwIECKh8L0NsK
+	 CMlLScN7AHG0IwQWvGquxU0QpvCX6x9tzBDgavc103yUDNpFpFQI/t3dBklzsq09DiA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3D4141F000C4;
+	Fri, 20 Nov 2026 02:49:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795142407;
-	bh=gttAyrJ+wMHr+Glcgouy7cx0rJKje8ChJMiYhq7/fZ0=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=SyOZ1Gg9Bi5B0hlXjHgtJKD3pipKypaafZJWRX6z9RPhhaLrNC3K0s5CtSW5SI5GJ
-	 QjXEXKdoQdXsroB1Y4DhGd3w93GCMQ9/rK8yJ3gK5mCktNhS7CusorMDYhqAc6AJaC
-	 2Vy459uH56iFQsVVZp0sbFe6PeLubLRBLBrhC3xpRURbZJ9QZ83V2pHV77UyTpsbkt
-	 53xPetogCbdr5PiCgD9HV+cAu76r1HtptgIxXszPEIqzO/2G3joApUxTcJl+uZ52nh
-	 1Yt2LAcjMPQGWdT/pxQuU3oKRTaR6HhRWlZHsZG8qo3Z9iE6UKh8U1emQC9kr5ZNt3
-	 74RLVDq+gmrfg==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 3A5B53808209;
-	Fri, 20 Nov 2026 02:40:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1795142954;
+	bh=CQl2SvQWLVhrrF+rgxKWAOgk0VZ5T5baWvxZ2m1vTk4=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=N47Ecp42XNCgB1A/TRdRC2XV80YsdBV9YKDQEJPT/xr2ReBkfnYfCP3ftCBoeMmbJ
+	 MsQ1SLtA/7/LYD2DEXeiR7gylxvuyNzqDeCxpd8jqjJhZShNt/6ifBI+k4Rp3AlbY2
+	 Q15jw3k2tPJmMCIX78Cjd0mt/MHdaS7aHCWd2CQ+VmbheMtGrcKt7pLhSj/57HsEjt
+	 VbzIXAm9fImqlaMvfaVbezb/hPnVlnUJwdq2xradnXnEs5ztk6Xn+d8KiMIMjeiHed
+	 vfS9rJcc6S0Tu5XaZIzOPG1Ch2+4Qh97yTfhpbwhScjHcI1FxmlK1n/crMkSLgqUtg
+	 QEayeH7cvLq3Q==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id AE2704263C;
+	Fri, 20 Nov 2026 02:49:13 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Subject: [PATCH v2 0/2] media: verisilicon: Fix VDPU2 decoder error
+ handling
+Date: Fri, 20 Nov 2026 02:49:13 +0000
+Message-Id: <20261120-vdpu2-errreset-v2-0-8f4ef55e6dee@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH bpf 0/2] bpf: Limit writable registers in uprobe context
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179514240603.3989712.15825286425363086604.git-patchwork-notify@kernel.org>
-Date: Fri, 20 Nov 2026 02:40:06 +0000
-References: <20261118084451.12590-1-jolsa@kernel.org>
-In-Reply-To: <20261118084451.12590-1-jolsa@kernel.org>
-To: Jiri Olsa <jolsa@kernel.org>
-Cc: ast@kernel.org, daniel@iogearbox.net, andrii@kernel.org,
- mhiramat@kernel.org, oleg@redhat.com, bpf@vger.kernel.org, x86@kernel.org,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-trace-kernel@vger.kernel.org, martin.lau@linux.dev, eddyz87@gmail.com,
- song@kernel.org, yonghong.song@linux.dev, will@kernel.org,
- palmer@dabbelt.com, peterz@infradead.org, rtm@csail.mit.edu
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/12Nyw6CMBBFf4XM2po+FIsr/8OwKDDAGKFkCo2G8
+ O8Cxo3Lk5x77gwBmTDANZmBMVIg36+gDwmUresbFFStDFrqVCl1FrEaJi2QmTHgKGxq7UVKkxl
+ nYB0NjDW99uA9/3KYigeW41bZjJbC6Pm9P0a1eb949h+PSkhR29qdpClSZ9yt6Rw9j6XvIF+W5
+ QPt8b64vgAAAA==
+X-Change-ID: 20261115-vdpu2-errreset-8688700393a3
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Hans Verkuil <hverkuil@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795142953; l=1549;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=236hsCejcx3sS9x+HFSJjCRXf+BV1f1+zibsBZf0JVg=;
+ b=+ScOgDQeEaI5FZeSrS1ngM1Vh5HeTVe1p8NGZR8cjcXzNPcKHKCVAGU/ex+lwBGdM2kHJUuCi
+ 3ZpiTcU5blgAZD4G9tSKHLAmAsOsrEeaAqfLZAxw7WU3d/sWWcCRDiu
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,43 +116,53 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+The VDPU2 decoder reports failed decodes as done, and its interrupt
+handler can finish a job the decoder is still working on.
 
-This series was applied to bpf/bpf.git (master)
-by Alexei Starovoitov <ast@kernel.org>:
+Tested on Orange Pi 5 (RK3588S), v7.3-based KASAN kernel: 72 H.264
+fluster suite runs, 50 error-stream runs, VP8 61/61; no IOMMU faults or
+timeouts. The decoder was still enabled after 72 buffer-empty
+interrupts; a later interrupt ended each of those jobs.
+With a TEST-only patch (not in this series), the IRQ_NONE path ran
+200 times on real registers; bus error and timeout, simulated 5 times
+each by injected status bits, were logged and ended their jobs at once.
+VP8 stayed 61/61 bit-exact.
+Build-tested on media next. MPEG-2, RK3399 and RK3568 untested.
 
-On Wed, 18 Nov 2026 09:44:48 +0100 you wrote:
-> Hi,
-> a uprobe BPF program can currently write fields in struct pt_regs that
-> are loaded directly by the architecture’s return-to-user path. Some of
-> these fields are restricted by ptrace, but the BPF verifier does not
-> apply the same restrictions.
-> 
-> This series limits uprobe context writes to registers that ptrace can
-> set to arbitrary values. It adds architecture-specific writable-register
-> checks for arm64, riscv, and x86-64; other architectures default to
-> allowing no writes. Reads are unchanged.
-> 
-> [...]
+Developed with Claude (Anthropic), which wrote the code and the commit
+messages. I reviewed every change.
 
-Here is the summary with links:
-  - [bpf,1/2] bpf: Restrict uprobe ctx writes to the registers ptrace can set
-    https://git.kernel.org/bpf/bpf/c/ca44731a7009
-  - [bpf,2/2] selftests/bpf: Test which ctx registers a uprobe prog can write
-    https://git.kernel.org/bpf/bpf/c/c21b0f82ca96
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+Changes in v2:
+- Patch 2: no reset after an error; handle the interrupt like the G2
+  handler instead (Nicolas)
+- Link to v1: https://patch.msgid.link/20261119-vdpu2-errreset-v1-0-f8fa403b6a3a@gmail.com
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+---
+Arun Iyengar (2):
+      media: verisilicon: Don't report VDPU2 decoder errors as success
+      media: verisilicon: Handle VDPU2 decoder interrupts like the G2
+
+ drivers/media/platform/verisilicon/rockchip_vpu_hw.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
+---
+base-commit: aa0f4c41d4870a18e65772a1817af16427200371
+change-id: 20261115-vdpu2-errreset-8688700393a3
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
