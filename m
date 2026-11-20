@@ -2,90 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E60260A261A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A059A606A7F5
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q+goc8OS;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=M2IAcv3I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RXebDdVe;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=LJOwH+8M;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ajjGW93E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=G7/+dGXKwxvm7pBwkPBiroDwyoNH1aExmeBxownU6dw=; b=q+goc8OSzKIgTk6fMlJLeu1g2B
-	/MI/QjsWfoIwsbipGblkiPSBoFdrOxBKlAoKPqvRKrs0HG9gDwYHGtwUXnhDBL17a4OHVBpnOvNC/
-	Z2rf1NwflIP+nuCOTw/kaGHCz9/0mke/b0foXU3FR38YKmif+dXr83O08JcKexhNDmuvGvUTR7J0Z
-	dhfh9RWPXYVyNrI1d3snZwTLE9jvTZLgrayalctuu7+W3v6psJr2fCRPavHJWjEUcPCarEZu/bZsO
-	XolKidw3Y5z20Et07QTS3fdhYWo6nJL84WwxWRGSUYkOBbkNT7bNGLJbdE9eyq6gh4PrUfbRx9Luq
-	wJBhqEaw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=; b=RXebDdVeKWr7E2
+	2eIb8GipjgY+SrMhL3EBYZ/wtpk1jfztOjP7216tnkILMEdIwPzUgJm+ev1fMN0NB15oX/Ov1TmTK
+	V5ySpm+dLqDOgKjU8P8bGopYT2IFd+99VlKfzsOU4yFdPn7o2sfr/LWKyBhCXYC1yg8f9O793ePxG
+	9mVoA6Jxp9YAQF/dsAUGUoXEDWI7iD4tOwpCEkgcZfPoVwvRsfVg3AwomeOEtVkQqH1K/DiRNmZEb
+	k5qUj+ZvWA7IEfB0f6Q3tXzmU7zQZ8qvKz3sfvAmVDMo2j5DY8tJwsbAwIz9IUK9v+qmq+lPLJ1rI
+	qeymgp9AIGbawO+XJtvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKB7-0000000EMGq-3hLj;
-	Fri, 20 Nov 2026 08:41:05 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xUKEW-0000000ENJJ-2suc;
+	Fri, 20 Nov 2026 08:44:37 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKAn-0000000EMCn-2nw1;
-	Fri, 20 Nov 2026 08:41:03 +0000
-Received: from pengutronix.de (ptz.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::77])
-	(Authenticated sender: mkl@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 51464200EDB;
-	Fri, 20 Nov 2026 09:40:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795164043;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=G7/+dGXKwxvm7pBwkPBiroDwyoNH1aExmeBxownU6dw=;
-	b=M2IAcv3IpuDfrtikPy85aXva05WT/WH2l4cmpvqo773VNtLObicj2+no9WFrOOqRFTu9Hu
-	ne/uqyFj0oYO7GH3wgpz7ekNcWa6p5aZR1s27/CxhYrOTITEcNnIFV5PEEY96xPaVTfzEo
-	n/XkHJqw86s6wO3M7MVtaMDaQAOwOlu/W+F5NqXG29WR/2+eWNFlBzUBSrJzYXptMpLOIY
-	H9FVeASwGsGWfOXJtSM89ZSePf+9BRKGvA59So4sCHXR+z/Rf6LfYHfRXofRGEWnh+LcA7
-	/0G2Y52rXpGi7lpMxNDLhgXGzMcPzqJXkUV9uv1oZH0S1XyZODiRLRKaUJTE4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795164043;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=G7/+dGXKwxvm7pBwkPBiroDwyoNH1aExmeBxownU6dw=;
-	b=BbAeXrs/KuMdUGU1d4FDIY08+wqouL0AbfAPie3JfzGkD9lpRY6epTg98KYpbce3N4dzRf
-	+BV3Lk32Mu/JDEZsu2Tqo0C+4d0Tu1EqHyK34ml8Sx04N29Hy6ej/CtB+7ydUDyZI9t1po
-	RfqTG7GgfMLXTbljqTtZqvcSITM0DENXZV79zPYh4ommnXro0CRKFNN8U266XmhPKidYzH
-	y0DhyWm6dD55a/OQvQwDQzw+2+LGZ4nkQAastY6Pm3f7cJOr70EMWAAyfpPSrRTKFO97dt
-	9bfjVVu4ErU8WN2TRDZ21UjjspBh89T2np3BpckTtZnypeqz4oMVArw3oJusHQ==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795164043; a=rsa-sha256;
-	cv=none;
-	b=K6jKO5GhZrnSpLLluIb2ZGgb1vR5o050DKauUlziUFm7+q+HsL84pOstb564awBMmx8q9J
-	4s329jeeTGlifXizLE5MaTcdjOhg2GuqdJ5INm0EJbXzML3JSuDtOf3Kwrc5Bo5lH281eL
-	TW7tfr3ITkxeMBj6KIKOzwOdGDJiY4r7A+PTbANlaM+yYnl8b7zXS3M/I0FFl+kgVDy562
-	iFPXJQVacKOnkIIb8RtHzkzYddM/NFGSqqSjf7d06nuSZ80Hptu5eRM+J7D1bwTS0XQv/e
-	WGcqmxy52bnlX25Rokh2UQesEGD9bOY2yx7GAzZ+lKTK0nz6ZYX9GKBpUfukVQ==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=mkl@pengutronix.de smtp.mailfrom=mkl@pengutronix.de
-Date: Fri, 20 Nov 2026 09:40:43 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: zelong dong <zelong.dong@amlogic.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Vincent Mailhol <mailhol@kernel.org>, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-can@vger.kernel.org
-Subject: Re: [PATCH 0/3] can: amlogic: add support for Amlogic A9 CAN-FD
- controller
-Message-ID: <20261120-axiomatic-foamy-bull-1684b6-mkl@pengutronix.de>
-References: <20261120080820.3340646-1-zelong.dong@amlogic.com>
+	id 1xUKDn-0000000EN6D-03GS
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 20 Nov 2026 08:43:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=; b=LJOwH+8M4madoWbePbJFNuTqKs
+	VGIeeIuarBS73MGhqEockrWzfBFit+8nsg0tdDD4IVPGj0twB/A80Pt+P4Im5Ye9/GsoI2SAlhN9c
+	+hgVURmjbVIXAVOUvsWgit6FdTmOvSRaVvq6s9F9qf7judrSjqv1y2x/PPx9lKs3Rnaopdwzb/zt9
+	+N5WjulPlJG4NWkH9+maC7EFlZ++qeo+oDDkF1nsYm1f21/ZkqPAAcQ4WG9xnyTGxHYw/F13Hb3dK
+	pDc2NomNpY92vORZkTvEKcU1J2DA++9iN64D/kdMp6qfrw32vSwbPgsSXrc5E4JMEthi/OtSlaSJc
+	XtcePHQg==;
+Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUKDg-00000000Yjg-3ecw
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 08:43:50 +0000
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-8c700d6cc0bso1047270b3a.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 00:43:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795164222; x=1795769022; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=;
+        b=ajjGW93EoAPpEdAx0rq5Ymttivvb0vgxxGVZj7usB3yhCg8JPxpd45lJgVqzWOhRyo
+         WbFZv6fi0t0se8n6MIDDxPTV4+uAvhz1cTdkdp1lfRRfEz6hU11mnFgis4OBIoepyZnI
+         8MENCo5R8yPJhhmbWAey+nPqsyYBjhbXcsZKpoPA+nsYz3Gq1T4/MEWVvfHoyKGdQ2ma
+         yZh6QkZK1aVtYTOeV4mWCeSL8q+0QCAEEDdFKRgrAJFU6axmc6EU+4i1X/Lt45/tV+7g
+         vjcL6RhZnrXqzCFnOPhRAH0awMUxYsaDohD5egHZue+USb0XT8/mYerzuYE0X7PsQexw
+         q/KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795164222; x=1795769022;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=;
+        b=iJT8IfYLEMc/9wrPd3EzBjBHy+sHYnJdvQ6iTb4BMtcEWG3H21+91hKLfWDA+njwAh
+         sDRZ+8SDUue+38q9Rcepk/jP++3XoykyW7JF3RcLchvoTu2UjYi+vC/UwmgJDnAjVQ9Q
+         6KwUUrs+3+rwcjTx8jecgImdg9tdmT8ZX0rveSpu85qjk2iCFMLsxTqF+3ueNSFcxGxs
+         NZJ3yXDmr+N6gw+rliCNWujPwSdsnaoNmyxvZxfQP0Nqi7aVhq4eymrUf/8+4YVzlp9t
+         p7NXy37/znV+Cq46xKISMozOdsycsUmVziSOK60fWHOm0AMExuEXse4pVJUSBdeLD6qJ
+         5OOQ==
+X-Forwarded-Encrypted: i=1; AL+hErGKkyECk11gE9lJVrNnG7fNCXUh541e8VZY0jx96mjN9R/jCg8w/wZt08CxxlhzThMjm9+IccL2wgyVrREsW9af@lists.infradead.org
+X-Gm-Message-State: APuU4Z87VUSVFyt9Dx8iz3tJW/Ca3YLGkiW2GBkvQztS5U1XiCoEOcS8
+	ycnvk1LPrsfuoqfMbtUIoFcY3hkuvOFfKsl93z0Bs346D6yrAjRB/YI7JE61QwXeLAM=
+X-Gm-Gg: AYBFou1Nv8z4VDBR/8rQwWAytL5UpbZF3NoWNillWnR+2uJnjVP+gqxFfAB7psmDW6t
+	KBAD+BAWHXn9SYtVgWe19G8N9Kwp1oaTrSWgNsnj+w7c5Ws4CgsJzTbPFoduubhbHYPasSNpLrQ
+	EZ3EBuOIMZQkZhN02lXlMyNuXrTVcol1OLFOb0poPxTV8TBjRjZ+mqb6uR3Ne8Sw0H5adktA58f
+	DRYGCNMLtOWLeNYUEER24w1ZdFALIRbkij88+Ni2gFi4qne0HKh13MWMFu+wpdvK8cJ4/aC2+ir
+	LJUtHEes113Z/i90X2OB3C7HHy1ONUmGTOB2P7f9htbcAx/gAXckhr7enszP+Qbx+MF6O3zQsaN
+	HAAT4VKG0J2diIG5pbiliG+c+PU77j+scQMXd9IuqsoYuEl52cZMoeGdH9V9WcDVUjAa3RI6noS
+	baShSbYwLRekcxpiv3mA7NpYKrQ3Olkl+R0/0pfKbc69BTHLq4HC/9bnXynFxlyv6yM8sCCgjjT
+	MSJLfvZs0ZaCLm0sDFrsgE89375PEN2sFngSrpZiTxsU+LF0dhXzCI0dCNS73TBLQgozMAuo6Y/
+	w8a9cT3HS6yW+AiwQOVBYQPrE+U3muM8MQu8QzvhjrjNbooxYr2QJ8O82xs=
+X-Received: by 2002:a05:6a00:2eaa:b0:8b5:fbd0:cb49 with SMTP id d2e1a72fcca58-8c7dd9d6a22mr2795672b3a.21.1795164221763;
+        Fri, 20 Nov 2026 00:43:41 -0800 (PST)
+Received: from localhost ([2.27.148.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c87343f83dsm1163978b3a.39.2026.11.20.00.43.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 00:43:41 -0800 (PST)
+From: Han Gao <rabenda.cn@gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Han Gao <rabenda.cn@gmail.com>,
+	gaohan@iscas.ac.cn,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Michal Simek <michal.simek@amd.com>,
+	arm-scmi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] firmware: arm_scmi: Drop the ARM architecture dependency
+Date: Fri, 20 Nov 2026 16:43:31 +0800
+Message-ID: <20261120084335.3492524-1-rabenda.cn@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <CAMuHMdUov1u3kXzBX3ZM8rRkBdLq_M8LwQ2VtxSEOH9w68Rr2g@mail.gmail.com>
+References: 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ykqib6zwogi4cpur"
-Content-Disposition: inline
-In-Reply-To: <20261120080820.3340646-1-zelong.dong@amlogic.com>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_004051_888178_D828EE53 
-X-CRM114-Status: GOOD (  11.65  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_084345_230910_6ED8866B 
+X-CRM114-Status: GOOD (  31.43  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,54 +121,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Fri, 20 Nov 2026 09:26:47 +0100 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
---ykqib6zwogi4cpur
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 0/3] can: amlogic: add support for Amlogic A9 CAN-FD
- controller
-MIME-Version: 1.0
+> Hi Han,
+> 
+> On Fri, 6 Nov 2026 at 20:40, Han Gao via B4 Relay
+> <devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
+> > From: Han Gao <gaohan@iscas.ac.cn>
+> >
+> > The SCMI core and the mailbox and shared memory transports only use
+> > generic kernel interfaces. Transports that need architecture support,
+> > such as SMC, already carry their own dependencies.
+> >
+> > Drop the ARM and ARM64 dependency so that other architectures can use
+> > SCMI. Depend on HAS_IOMEM instead, for devm_ioremap().
+> >
+> > Suggested-by: Michal Simek <michal.simek@amd.com>
+> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> 
+> Thanks for your patch, which is now commit fe87ede443a15969 ("firmware:
+> arm: scmi: Drop the ARM architecture dependency") in scmi/for-linux-next.
+> 
+> > ---
+> > This was patch 1 of the Zhihe A210 SoC series [1]. As Michal asked, it
+> > now goes on its own through the SCMI tree.
+> >
+> > Since [1], it depends on HAS_IOMEM: Sashiko found that UML, which has
+> > no HAS_IOMEM, failed to link devm_ioremap().
+> >
+> > Build tested on x86_64 without OF, i386, loongarch64, ppc64le, riscv64
+> > and arm64. On UML, SCMI can no longer be selected.
+> >
+> > [1] https://patch.msgid.link/20261103-a210-scmi-v3-0-ee6b31580808@iscas.ac.cn
+> 
+> > --- a/drivers/firmware/arm_scmi/Kconfig
+> > +++ b/drivers/firmware/arm_scmi/Kconfig
+> > @@ -3,7 +3,7 @@ menu "ARM System Control and Management Interface Protocol"
+> >
+> >  config ARM_SCMI_PROTOCOL
+> >         tristate "ARM System Control and Management Interface (SCMI) Message Protocol"
+> > -       depends on ARM || ARM64 || COMPILE_TEST
+> > +       depends on HAS_IOMEM || COMPILE_TEST
+> 
+> Please extend the dependencies to RISCV (from the link above, I assume
+> you are targeting riscv?) instead.  There is no point in showing this
+> option on architectures that have no users of SCMI; one already has
+> too many relevant symbols to configure.
+> People who want to build test on x86_64 without OF, i386, loongarch64,
+> ppc64le, ... can just enable COMPILE_TEST.
 
-On 20.11.2026 16:08:17, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
->
-> This series adds support for the CAN-FD controller found on the
-> Amlogic A9 SoC family.
->
-> The controller supports classic CAN and CAN-FD. The
-> driver uses the generic RX offload infrastructure with hardware
-> timestamps, reports bus errors through the CAN berr counter, and
-> implements suspend/resume support.
+Following Michal's suggestion[1], I'm dropping ARM/ARM64.
 
-Please base your driver on current net-next/main.
+[1] https://lore.kernel.org/all/3d38c4a5-1a12-4af1-ac2e-413a457ce4c5@amd.com/
 
-regards,
-Marc
+> 
+> >         help
+> >           ARM System Control and Management Interface (SCMI) protocol is a
+> >           set of operating system-independent software interfaces that are
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---ykqib6zwogi4cpur
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSl+MghEFFAdY3pYJLMOmT6rpmt0gUCawAHiAAKCRDMOmT6rpmt
-0hXwAP4zJqk4wGxBgVH4cMhr3pYMTQuYMY2xDeJZLBZfXu1yAAD9GPkpGaY5WQTS
-IB5FYNdxEh/e3sY5WcLMgvSFudZ62gE=
-=yGhO
------END PGP SIGNATURE-----
-
---ykqib6zwogi4cpur--
+Sent using hkml (https://github.com/sjp38/hackermail)
 
