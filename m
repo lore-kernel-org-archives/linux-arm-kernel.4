@@ -2,72 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5FC606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0026606E764
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:55:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2EkXFwRi;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=bZlYZrgt;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=NBfjb13j
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lZftCDfb;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=WS1nm6Tq;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=Tpy6MYc3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FFXq79dT+fk3w3JE9kPi1vOCjtxN7RIp01dx8RKsFuQ=; b=2EkXFwRiuwFaXQ
-	f+kwZoZhqbCD0kOey3nDwLPMYIzi1zb7vnrIjSzakK7SFqGty5BRGhXGdzpTTPHWnFczydNBaqdwf
-	RJgfkE0mqPhgp3Icyr7XUt0frTFrwhUaGUh9K0sgPQjHO8Tqv4CYoMOoGeCvEEzubowCwtnIQurTz
-	OqONYbrrgN3oS7/c0l8R0B8pSQoSJ3+3b/EC17a3tE5kHvR3q+RVDUvylm0Iq5LtVO8CG0jWmCW6p
-	uC0/Rcwfq40AAnBk0duE8AsndlvDbSa+pKmlw6E3YEsML2ZE+HXafMu317lskcZ9Tr1RVc4sSoRJg
-	TvdcEP5PmKfKkDZku0XQ==;
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nizx4rqFFOp6T9PbCimmV3Bgupdz2ZPc15iTGLrgiFc=; b=lZftCDfbs84FStD6t9GjmwEULU
+	se7Ar9aROYq2RSLtFulyRr9LCEgKHg2paWXucva4xs/yJPuvJJS7AYlgLGlOzErSoG9nqBU50wHIx
+	nUTkvy+uWNCQLuBFscRpKqyqeaGhoRpGBGPoGRKITyjlTsWn17EBTmEMcdAelHANWchE8hMcs0vfK
+	jGTa3cbinKrS5x1iFy2RkAgqSN400n4UUS0jotMVK0sZ0Vt5OgIKi7+LB6wEwrSXsbpxHeshowYOC
+	cFc5uhGHkfCiIDihXSshfV0sG+Y4gviJIZ5WQGbv78UL3mzX5FFVacEqxHQq3XQ79aVdKvt7/mOdi
+	hi25a5jQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSnk-0000000Fnhh-317H;
-	Fri, 20 Nov 2026 17:53:32 +0000
+	id 1xUSp4-0000000Fofa-0koR;
+	Fri, 20 Nov 2026 17:54:54 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSmq-0000000FnFV-2Ibo;
-	Fri, 20 Nov 2026 17:52:43 +0000
+	id 1xUSn4-0000000FnKi-0qJc;
+	Fri, 20 Nov 2026 17:53:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=FFXq79dT+fk3w3JE9kPi1vOCjtxN7RIp01dx8RKsFuQ=; b=bZlYZrgtAitfz/FPBXA7HnXmA+
-	dPQ1sKVPc6/D9fJ24RxUbokRGRJ/hxsHJLKowy45hx1U/5mb/plUrln82wYEAEtL+XRg5xhUW4O1p
-	WFW7HpWQrdFXYwGnwuHPsvEKJJW1TuYcqcWt75CxyXvgxfCA/8eOYWdN9VfOYA2ifmFLsnA9z5sQG
-	bt//FbU+cM6gRozDR1N/mmwY6igUerrWRYRW855iOX2YG/uBHPm+ipJtw+qDVVoj+oPAC+ksoAqwP
-	W+jmfRinsuri6JgZcqFEvt+lhErx1nZlEIub5cATIaz4omthUsmNiNM/tHvKMSrmhA3pvOiDxU2Rv
-	O8sHQkJQ==;
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:In-Reply-To:References;
+	bh=nizx4rqFFOp6T9PbCimmV3Bgupdz2ZPc15iTGLrgiFc=; b=WS1nm6TqdPtyot3z+r1i72Rwmx
+	4vnlCeYja5ADZbBKhvggeD3HDK2yGmbyAEGm6PYOLw8hPbSnjeLQaK8ThPlN9jRniVV3g4tplBkjh
+	AxcRRkPvAnsBtmFd4uilWOc00iOq/T91E7TUDTsTWkoguOSGnUnrL6FzoBEHVoEGL73Lv0wYcrwJt
+	0T8zJfOjUlhpHEd07SB/DXjoGSLtwC+xz1MJsPWsO0CoaZN8t2EDmh5Yh0C4y7c7xJVmpSlrRpLwE
+	fbblQF7M6Vw1sTUhPPV+L51SgPISj5tOPrJnnU1SZvd4UGZxEJnqdY6hjGjcazh9oTPJ9bWkKesp/
+	EBF+8GmQ==;
 Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSmn-000000011xu-3rco;
-	Fri, 20 Nov 2026 17:52:35 +0000
+	id 1xUSn1-000000011xu-1M96;
+	Fri, 20 Nov 2026 17:52:48 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RiBBcX2cqbzI63m7xMaNQmWxzcRERuSU28+oLSZT54doRjNk0exeQ7UXr5hkoR1u9E0lBHEp4nxiYn2y5rfXJ/vV+dP9lmF3Soa0RpWq7QCZBP8hZIwLv2z4Xa7tgYIZtB27kTUESgi5OyE0A2n2a6hnJmNDjHYIUV2+EGT6ZmjINP8Lz6vv6kXbkcJp4VlbliB2a4mV7zOTa42Z9mzBW92+ue0A+lVtRProiSVvmXiK+9JCYuI7+hFB/CXt/sJnexuPDJ0M80kCbssLhmZrxe7AzGsiffqjJRCSVPqKzHd0eXrGsUPWQTdLPkbLPS0NL50WuDetdz3F4zTMMFkRzQ==
+ b=VHDvGVTkvs/K5/6gfSVJIVqLyYl2uvjk5DnQIOWeD3xO/EioUkAbbSONu1/EIwJCPMSrEPyTv3Gkc0sZg1z/9IINO+pKjYuqI0zolqFd+5xcHs5wykDBq6wcAvTV+y7bYx0tAZL6j5wiouUeQ+F0yBev0yKgYfT4Y3GiCPaxRZBHqG8oyeE9CuedU9oCYMZkzLHBAVvTHSPDWBG6csNGQX3t+lrTYrSaxyUPZlQth/+LJYTfH5POF77QoSemUKjhtPkJFPara2BuIjmsxDco5JVQu2pZ7/ZYIEKdXsIrID6B65c6Hmnz+KPA83Br3GuSDe641Jb6OKduDuOBn5LFjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FFXq79dT+fk3w3JE9kPi1vOCjtxN7RIp01dx8RKsFuQ=;
- b=UyckazTDE1d1VkIcoycUMQ2yyOa6tDUGCpYlTFgXbf7sYu7L2oczeLPXCgJ/3sv1BA4FMAdFg2I7r3FsKscY2TCAw7+Px9PYa+T/JykyJPWGCSvx9n50OhALm9WevogEEjcVFKN62wgJb02YTkks9fKpgUt+HedZyP5AkvLoh0KSA3YOrp5fgwnbyJxpTiCP02MfZ/gGNCktvTvwuqD7MaC0ORPW+IE02jxnXxccodjW8pbcf1o0+G4An8pzK4WCGcBmU2+Qb0NlBWzVPLs9S2yD9RcTU9AWxnzfGbgO9ITb9biLD0W1BveAQTbTvG2vqWtBXiLgxnqK5zI9JO3TDg==
+ bh=nizx4rqFFOp6T9PbCimmV3Bgupdz2ZPc15iTGLrgiFc=;
+ b=u0RYFyPH0oRlEq/1lpKrQ/NrLA33a9/qJHpmoD36ypGRnbygHfhidVVOr9PHJnW/n0Z+ES1Sze+GotVHprPnWhL6M7w4KrL/PT+3heLe3HHDoj18Er6ag171n4bbm3lB0e80BCi4TvIlaQpgBmPUCCTa+CGRUTOyYeJ/ECakT7BgU4SPVi0c5YSsU2XY2YmIy4w5534j3Xkz/sSj8yfj/ec1I7g2xmmOsoZywO5VilXc4pyWBF3oguMZ1U35VJGnpguTyH0d9qnyiwNic0fRcHxrwtoflyX0TB0O4w8q8Dc06+Mn2u7PvUkf19YRljst1DmtlvTPHldN2293CEUkVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FFXq79dT+fk3w3JE9kPi1vOCjtxN7RIp01dx8RKsFuQ=;
- b=NBfjb13jTAy3t7baUWRT1mrXPdKZp4m6t7u7O6tCslHV4TNLGcSSyB3eQ+J6f4Dac17pZsj/LmJ8UaOv9vaU34AQH7ckBDgpOjsxHIu1ArmV/sJnS4GSsVtgsh3D8TqZ58P5MqQ27zsAI4WZbZ+g63pCNHjTZ6+TsMG1cfQyQvJ+ae5VhHZV864HBk06CKY8zU1S19hbcETPSkajkZK193U6HvJnWP9mHiFONDQ0dR0lEQatBNBikGvQ2AglYgrFcncBMXHLCjewx/4R83Raz+gTfNRD8XYA3/XxOf5NNlSkMxZzwMtCYMFb2ibhKPLounFX8YP0AQhddMcne3klsQ==
+ bh=nizx4rqFFOp6T9PbCimmV3Bgupdz2ZPc15iTGLrgiFc=;
+ b=Tpy6MYc33wB5OV1A5u/HJNNSPYaiGeH0QvVx15QLzll2M1gclsL+/NauqGMBp3OGT3EDRGz7eskdBOSbfNd3d8hkDUV6k21r4gmyw0tDt9DbSAeUuVc3z85glrypfNVwZh5I099crLX9GSf8nFWiC3BC8g9xc3ZkLEcTXH5oFshd4v1rTJU3RCU1bxYsR4kfcjCbMJngR0WKOkO1AvLptfE+gci/TU3cZI5YmzLDwcgUphfxBroaaO+IGgxnHjQTK9+XTMwF5MbpmtHoBwCQ4RZ7Ma378NnGy5JV2inSXvz8VyUnyWHKa7sPIhLpLCOt8ehrATGmjynEuVW3pmJzbw==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CHBPR12MB731189.namprd12.prod.outlook.com
  (2603:10b6:610:33d::12) by IA1PR12MB6329.namprd12.prod.outlook.com
  (2603:10b6:208:3e5::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Fri, 20 Nov
- 2026 17:52:10 +0000
+ 2026 17:52:11 +0000
 Received: from CHBPR12MB731189.namprd12.prod.outlook.com
  ([fe80::b0e5:123d:fe06:e10d]) by CHBPR12MB731189.namprd12.prod.outlook.com
  ([fe80::b0e5:123d:fe06:e10d%6]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
- 17:52:10 +0000
+ 17:52:11 +0000
 From: Jason Gunthorpe <jgg@nvidia.com>
 To: Alexandre Ghiti <alex@ghiti.fr>,
 	Albert Ou <aou@eecs.berkeley.edu>,
@@ -95,70 +96,68 @@ Cc: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
 	patches@lists.linux.dev,
 	=?utf-8?q?Piotr_Kr=C3=B3l?= <piotr.krol@3mdeb.com>,
 	Ross Philipson <ross.philipson@gmail.com>
-Subject: [PATCH v3 08/11] arm64: drtm: Add drtm_entry point to head.S
-Date: Fri, 20 Nov 2026 13:52:01 -0400
-Message-ID: <8-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
-In-Reply-To: <0-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
-References: 
+Subject: [PATCH v3 00/11] arm64: DRTM, boot portion
+Date: Fri, 20 Nov 2026 13:51:53 -0400
+Message-ID: <0-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BLAP220CA0004.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:32c::9) To CHBPR12MB731189.namprd12.prod.outlook.com
+X-ClientProxiedBy: BN9PR03CA0749.namprd03.prod.outlook.com
+ (2603:10b6:408:110::34) To CHBPR12MB731189.namprd12.prod.outlook.com
  (2603:10b6:610:33d::12)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CHBPR12MB731189:EE_|IA1PR12MB6329:EE_
-X-MS-Office365-Filtering-Correlation-Id: 926d9b36-11ff-463a-9844-08df472efe21
+X-MS-Office365-Filtering-Correlation-Id: 36dda0c5-e2de-4ffb-38fd-08df472efe80
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|366016|18002099003|6133799003|22082099003|261009223027099003|3023799007|11063799006|260925021911599003|261022115727099003|260925022911599003|260925021311599003|56012099006|921020|261102123227099003|261028144727099003|261026140227099003|261026121527099003|261022113327099003|261021121427099003|261022105027099003|261022075727099003|10067099003;
-X-Microsoft-Antispam-Message-Info: Fz3jObtsxHj8ZzLWoUSurKBW9Jb3VC0sEiJCKBDlzwTntBIdunsf5s3lizRV/8Mu/4swogL4CCvDiRm6+8Fz8jc5IYfpzfs2mAeGsn1T/b4vZXhvByKyI+Lk7LN+krkBuAcUFZnJT/Wz6DNaBWkKHxUEnEbOn7qPEs0lGW8QoJnlily6M7kXnGOS6vwZlHUxyiwEdzOtjL5HLIwY0oM537i2LxcZmmADF+ZO6XT998210B3iKldAnJF96tVBBSeQKCXGxoIDgAJGCDEzxNfocnM97E0ARSA536c704umEUqXpTYye9m5DhyclyXO0EQMYnLfBZiwOoRMyFvBLtdFO4lT3zs8KNlZGIGYW8oWGNHERqCVyHSs4eehrd+3gcW+I1pbFtZRUSX+yJQmHDZbj5DXq6UifKgbXMLzY8K6sgRz3RSLaUNKQNiv9QcMPZ1rnf2hF65mBEwovzsiDc0A714o28UqDaYX65AjR16fUPIm093nfhn2amFsFY/nyYTi+hUamt2Gq4GKhFVXEPrChNW9HII/AgIjQBOOFbWaniRlzbcO8n8Ik7/o/1IhU5W+4/JyLku3SDqvax7oixUAIIF6DUha59JhEp4tdyiPXouAbXA3LrWQc49c3sqe8IsrKJAXd00iZjLnpE8xnIoidCcAO61r85U5xH/xn+r21mgHBKkEaRbg0h1vcHZnaa6qqnGf4H/AZSmfzm1H2Qhrjg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CHBPR12MB731189.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(366016)(18002099003)(6133799003)(22082099003)(261009223027099003)(3023799007)(11063799006)(260925021911599003)(261022115727099003)(260925022911599003)(260925021311599003)(56012099006)(921020)(261102123227099003)(261028144727099003)(261026140227099003)(261026121527099003)(261022113327099003)(261021121427099003)(261022105027099003)(261022075727099003)(10067099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|366016|18002099003|6133799003|261009223027099003|3023799007|11063799006|5023799004|261022115727099003|56012099006|921020|261102123227099003|261028144727099003|261026140227099003|261026121527099003|261021121427099003|261021123027099003|261022105027099003|261022075727099003|261021135927099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 9j6/CoMP9w1SR2S1IoHC3w4EKqaFpg8rPLHjGTb8HLgQzRwny8t/LOT+tZPmhEW1eumWRuOHGmgBT71xy3DSU77QaBCTjPjJe7Ty4zOxVlmemTZT0uMv/b+M+rPfH8ctwL7W94EcK5VrKyHfXjZuVWp6OLnpMrojLZO5TWX3SXFx1pcicfQaDkrra5uVeGcL7HYI4fICTsU8jjaDCmKpOFwQF/XlT45iOar5mXfdW+vaLoeAEf0iIB2qdQJ6rfGnd8Sysd0X9ofWa5CFHDiDroW50LAGfDYpulCp1RLageH5xctdqy3Gy+2DBVAonATT7rrYHbKYhdIF101rdhynNjjCyaSv7kC5hr7LoSZvw8UQrpqe9OCKQwIhdk/bsBJtf9/z+XKbK50y0di0yV5DVRHBK17x/z79S9MstgCkWwiCp/n/Sd/miAWloLcwDb2mKIRch1/HskHXEYglEuV2T36kac94AU7VGR3hkX1gymYpouqo8QVZ0NCbtMsUuDNRXuD4vVJ7kepNnjWXRoHbSBCNNHOz5dg6BRNVh6aGewUJ/uKmReQl7x3hG3gc0HWPVr6sDwpu2xQwXvX/pnuMjsIFtAb3pQJ3DoBlwNMrZ/V9Zlmzls6brgUK7+aJ0Il7oPMvYe09QnZNwjOkCeZh2zhvgddAR3Rkv6xQcS/j9ICsQd7fpTQMCOypayItuLQ/5JBzWcOC+DOGa/DQ+Yjm4g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CHBPR12MB731189.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(366016)(18002099003)(6133799003)(261009223027099003)(3023799007)(11063799006)(5023799004)(261022115727099003)(56012099006)(921020)(261102123227099003)(261028144727099003)(261026140227099003)(261026121527099003)(261021121427099003)(261021123027099003)(261022105027099003)(261022075727099003)(261021135927099003)(10067099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LrNAkOIFRomYdRq7+j4pasQL8zhIGbxPd8c9VvyC//DQDGPKXda/i81ayeAs?=
- =?us-ascii?Q?Ld4pTWlH/l/p8PvvvlHsB493jjao/7FoTWHOXPcwrXc7SAd5DWfiyTsbJCZO?=
- =?us-ascii?Q?KFYCQ45FK5gAgqan++GtZVNofWunUkzvvDsDbvQuB2plnkv8qYzIr40Z+d9A?=
- =?us-ascii?Q?bgXoJuO4dux6vocQADqOIqs2FpNd5BlKp6ndEey1NfWJM0Sl6MPMJr0I0mIj?=
- =?us-ascii?Q?Uab+Pou7QTj1dLpSJ1N6JsQc9MAxkbGgD45mGJOJze7pwDUt+YRFfWxM1F1v?=
- =?us-ascii?Q?aaOq+Awhb+524hEKrbL6KJHurXdI1cms/ZkT/UmAz/wCDJ8tSz8NtwblduF9?=
- =?us-ascii?Q?WyuaOCbpMQ3eVNK/6yXXnizw5LVjtblaWRIUM+MA93uqL5SUp5GUaLacjBFf?=
- =?us-ascii?Q?17NEg5zmEhpUtzMGPmfBcDVRYxvssLXJzK1QUl7f0jTBX4plJs+a0ZWYYyVO?=
- =?us-ascii?Q?gfhozipY0Ewo1GNnXTBh4gdYC6TONgVwPPziYpIBTnd0V8vJwyz0Ldu6ba7f?=
- =?us-ascii?Q?42I1Hnj7sbg1KouRfh6IOuX4ypogEqO4oXdK6nmYedkmOo726dXP1+8P6U5x?=
- =?us-ascii?Q?W+CKdgZMLV7XgNmr5UJFhtH9VmtKY7k+RZkrWFAieHjKRKO3GyqTJArmmbnD?=
- =?us-ascii?Q?TqdicNFtjJ0uW9iK46KcqB27kRYuQGZeoqTXUFzcIsd6IzdXvmzJ7JswqI6e?=
- =?us-ascii?Q?EFz3qt0GXxVcjfUuW5Q7tob/a35avWbUSz+YV6Qv7/YrIbp/daY1kcY1PRA3?=
- =?us-ascii?Q?w+o+/HBeDc3JTUQwJZ6IqBAJQpLYCo2H+AuCZWj4+kPxN6K2//4lhzYLrZ0B?=
- =?us-ascii?Q?pywLJ4zCEcAVIafZY4mPtzCTW7rV55zYE9yIIWlYmhSbtEQ4aIwYbmWZ5HNl?=
- =?us-ascii?Q?makixyrH6w9JRjbviTTRSXnxEwN9XCmJJgAIkSW2kgOxWt3oben1rCUggY/T?=
- =?us-ascii?Q?jF1M5Rc52Ut69EjdagIPTPYZYMZa0VGs3negdLtVJZNfqCfSjMKdbua+vD99?=
- =?us-ascii?Q?Fn8IA6Oz7cf378NAM/PIpUtChlVRFhVT/AlvmR1bPF+HtXA43WUPifHmmcIl?=
- =?us-ascii?Q?jWNK44k7Dw2lcTRUEiP2g1KcVncXdAv3XlzeRSnPOmh6xvTt1WJb2AZT/9Rc?=
- =?us-ascii?Q?JyRae+JK7kcxYMBa7IPe/7EHXUVqe3/IG/WhYRXTP5rkeQuiPgyPmClSV98l?=
- =?us-ascii?Q?DedKHcQKadB5CNwzRsBjCaY/g3eh9B4Dap0dhEohjtOItrotO/HRUuntekM9?=
- =?us-ascii?Q?ZmBnoOqfCt5Vx/NBpCoSQ4h6r4Bz5ISa3P5r1crSOwhDMZNHJ0MfvjgrC3WV?=
- =?us-ascii?Q?uhBBvHwhoYICCoMVMsi+XJaB5R5wG2TDZPxgxNnatSJW4WBVjH2lozCtVRzk?=
- =?us-ascii?Q?S9yRM5Um5k9kX3TYY81enHb7rg0gmBHpHhMyxZIDUm6yxS9ZwfYzri1SELJU?=
- =?us-ascii?Q?JCzgL+lbLvKeQzRRzl/fP9oQsBwKYVf7s1ZrTvzAH/zPrBPFbwYucqOwq9UL?=
- =?us-ascii?Q?xpvqIHUsXv9N/m8f5dIw7+gybFvgZ4Ks3Hxdq8VdH5J7nRpRWm3pnUQzNI8/?=
- =?us-ascii?Q?fvFF7N35X/IoudsPK850k4SJJnsAmKdaJrG8H/9TBC6yD4YR8nq8YvRlgLxG?=
- =?us-ascii?Q?Ufy52tmwHbf/6WP3D0Y9dRIN01nxmy3SkywVjpQlxJDNZLGJ/I6u8PJZh/EL?=
- =?us-ascii?Q?qydnWmOxN4d2Y32lrYqu/X5CfLdFojrav3SSZg0h/ffxXy8B?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JDP7Sl94P8xjC3cHmRW6kGjxUMjb6glC8EOK04SfA4+K89gufRHVDVBnW57Z?=
+ =?us-ascii?Q?tYTO0olFFWcyOVR/6nNzfAntuzb2/Ggd+xxUQuA8rRkCu9aPpEMxd0X0Tc6Y?=
+ =?us-ascii?Q?eVKIGC2FXI8nR0vZSSx8OKLP4LJOvaIty/MISwQ2KB3E14jOCw8MEsGu2NXB?=
+ =?us-ascii?Q?JMdnte847fPSEodQu1PZyXK+FmyBHv8Xu4BIo+/Vr8gsgsXoOFYa750wN90R?=
+ =?us-ascii?Q?3BXn8kT7s4je1HZ3NlaxruE97DsrQtvaAxel9gGDzsPC/K1ONbAyLqzFNwz8?=
+ =?us-ascii?Q?cEJPYcpSqvNYWOdfBGbOgRbtTMep4gzJpLY59OauJmZ93B9B91Ip6OCx9k5H?=
+ =?us-ascii?Q?xk8aWhcZtESxfUGzbWpfpMRCjKxyJUIsEPD54tp6Q5aG2EFzi2xJrFxg6BCF?=
+ =?us-ascii?Q?PnssUUx9bt1aPIxmzNI5+EyHR5E8eCt2AG8frYc7WCB1/7zDd5wjKfUsaWHi?=
+ =?us-ascii?Q?On2+mglWGFpefPoS2Bk2pBATh03Yf+Mv2hFscEDgX03PhTaZ/WMqgKJL9bdq?=
+ =?us-ascii?Q?FiKvgfiCbN8HZAWNxAUcHBWDFuKrKqzPggM+rBFZ5f6gNCgdy5iYRJlHLC/a?=
+ =?us-ascii?Q?LCxLyRHbZzUBXWsIS/GpxBTWQ3gK3DmdmGRBdfyF4CM0xSrxXebvMgeN6vAh?=
+ =?us-ascii?Q?oBdbSFgXDYGz/URUj2c+w641dBVV92Xs79+Da0OJkEApgkhQ/lbCBdSzmEyE?=
+ =?us-ascii?Q?YuML6djnXXW1+e2We/kdF6kevl/bnQhDSWr6iIYDhiSgcFgGNOCIGxKZLqlM?=
+ =?us-ascii?Q?oPSObXfVTDbiAzv7lKrA6iPX5WdBCROeJkOQWsimAfHVef4DVSDRob3aw2U1?=
+ =?us-ascii?Q?4/KPBd6SU0pWQn741nkUoihdQDkDoSLS8d9gAmf63QK6IULwrOjFFVMfbR0/?=
+ =?us-ascii?Q?7SArhw4M8im03cEWZh2BonGu0HRRCsClHGp6gZXHfnR0NLGSIY5ozvc204pI?=
+ =?us-ascii?Q?KSw46ndPeHB8WK+y8jvDj1nnNMge7gsjv4KxHLY6Aqs+UQlGkLuo87HoMcRc?=
+ =?us-ascii?Q?tiqSseV2eGOaQk8lasKroqh5hzWQsvzTS0NKRV/uNfJjgGeBeeXnE3ldArgO?=
+ =?us-ascii?Q?LkvfyfhJihPluk+Ws82/R6xhzzpnIPLAEuNl2zZIMb/Sy3RjS+9sDUhcSsOi?=
+ =?us-ascii?Q?N+OWTZNhttgZ9XkxGshTG3wb2l6SDWxcFW2DKsxYYMD15ESfONtIPVdQyjef?=
+ =?us-ascii?Q?WmLLKNFs6C9ePH+ajH3FDsTHasHAhD1lkVwGXbggw9em/DFL4KPIHE7KfQe2?=
+ =?us-ascii?Q?T8ewUHq7PKb4hFfV72+MtqOzlmtvTnW5ocENsmTIp7znVn3kAkp7wWrHcuQI?=
+ =?us-ascii?Q?NBiIswGH/b161svV8gYR1ghlejVjbryQmDyG8spk56m/8zEE00GGDyIDpzuP?=
+ =?us-ascii?Q?Pch0Asicbw5/zjUNzmSmHBJtS6IgWVB6vrTf3eXjMV3VCGI1u/D4VNkGIuCc?=
+ =?us-ascii?Q?wmQerO8Y3SpDljjvGV2vbilfiA9s1AQbkgwJGqyqqbyqVz7YdI1X9A3nynBW?=
+ =?us-ascii?Q?7tPXIBP6JVN0esE5ueVrSPZkMmHwdq9sK7F4Ay6WvLigNoa0hrrnhYh/2k6o?=
+ =?us-ascii?Q?TekDWX2tpbIe8nqltoma+TvC+PUb6lgnPIDxCQHM59+YAZE9LVWl2HRh7Wyd?=
+ =?us-ascii?Q?ZWpSJhcHXaR7Vj8TeHPok8incGFpSkDlBUIH5t8ld3dQWHu3e11Ma1F2NZhk?=
+ =?us-ascii?Q?ZM0iou/KkbhvqZ9E+u6+u9l6XwFu7IVrjSS8oTxSmqYbIXiQ?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 926d9b36-11ff-463a-9844-08df472efe21
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36dda0c5-e2de-4ffb-38fd-08df472efe80
 X-MS-Exchange-CrossTenant-AuthSource: CHBPR12MB731189.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 17:52:07.0581
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 17:52:07.5326
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fE7bgKuLA2V+AKMk1QiPRBsBHIQBWB3/pjTdyC30w/an1C+D4Nst5fyEFnJuQK9v
+X-MS-Exchange-CrossTenant-UserPrincipalName: hrXvFoxvUEwVtTTyr17dJPAF0lWQU7yUn1Fb356C+YoGsmAGpM+Cq21PXmaXAYzm
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6329
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_175233_872993_9BFF9197 
-X-CRM114-Status: GOOD (  20.37  )
+X-CRM114-CacheID: sfid-20261120_175247_246841_F59DEDBE 
+X-CRM114-Status: GOOD (  27.94  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -172,286 +171,225 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DRTM launch defined by DEN0113 cannot use primary_entry because the
-spec defines a different launch protocol. drtm_entry is a small trampoline
-that validates the DRTM provided data matches the location expected from
-the link layout, acquires the DTB through an EFI stub writable handoff
-struct and then jumps to primary_entry.
+This is the first series for an implementation of ARM's DEN 0113
+v1.4b Dynamic Root of Trust for Measurement (DRTM) launch protocol.
+It is built on some generic changes to the EFI stubs that provide for
+a simple, direct DRTM launch directly into vmlinux.
 
-Add  drivers/firmware/drtm/arm64.c, as later patches and series will need more
-kernel side functions.
+DRTM is a boot security technique that jumps into some platform trusted
+environment prior to launching the OS. The trusted environment will
+sanitize the CPU, block DMA, measure (SHA hash) the OS to a TPM, and then
+jump into the OS. The security goal is to prevent tampering across the
+launch: if the measurement says X, it should be impossible to tamper with
+the boot such that the CPU is actually running Y. DRTM is a reaction to
+the historically bad boot security in the UEFI world. It aims to make bugs
+in UEFI/etc unimportant for OS security.
 
-Passing the fdt address like this will require security hardening in
-future series.
+When I spoke to Catalin about this, he was interested in making the flow
+cross arch. After looking at what AMD and Intel do, and how different the
+kernel EFI flow is on x86, I have opted to do that from the perspective of
+building some generic DRTM infrastructure for the arches using EFI_ZBOOT
+and FDT. I've sketched out applying the same general ideas to x86 and it
+works there too, but x86 is so different that not much is directly
+re-used. I would argue the security/hardening work listed below is a more
+important place to get commonality.
 
-Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
----
- arch/arm64/include/asm/drtm.h             | 20 ++++++
- arch/arm64/kernel/head.S                  | 83 +++++++++++++++++++++++
- arch/arm64/kernel/vmlinux.lds.S           |  6 ++
- drivers/firmware/Makefile                 |  1 +
- drivers/firmware/drtm/Makefile            |  2 +
- drivers/firmware/drtm/arm64.c             | 10 +++
- drivers/firmware/efi/libstub/efistub.h    | 14 ++++
- drivers/firmware/efi/libstub/image_info.S |  2 +
- 8 files changed, 138 insertions(+)
+Several people have asked me about Trenchboot, which is the x86
+out-of-tree DRTM implementation. In my view, ARM and Trenchboot have
+converged on the same basic design. Both offer high-level functions to the
+OS that don't leak out any platform-specific details. Trenchboot offers
+these through an EFI mechanism from Grub, while ARM offers it through a
+standardized FW based SMC API. Effectively Trenchboot is a reaction to x86
+having primitives that are far too low level and far too complicated to
+implement inside the EFI stub.
+
+ARM does not suffer the same issues as x86. The EFI stub implementation
+for ARM DRTM is only 400 lines in patch 10. This is because the standard
+already offers a sufficient abstraction to the OS. There is no technical
+reason to bounce back to Grub to hide complexity that doesn't even exist.
+
+Further, due to how ARM has abstracted DRTM, we cannot hide the ARM
+details from the post-launch Linux. The kernel must understand it is
+inside an ARM-specific DLME, it must do the ARM specific ations, and it
+must process the ARM-specific post-launch data structures that the FW
+writes. All of the work in this series, and its followups would still be
+needed if Grub was involved. There is also a sneaky ABI here, the choices
+the stub makes during launch have to be matched by the vmlinux
+accomodating them. Keeping this all in one source tree and one link with
+no ABI is the right answer.
+
+My hope is that this series will encourage other platforms, like RISCV, to
+follow ARM's approach and not x86's. I outlined a suggestion on how to
+progress x86 DRTM upstream along these lines here:
+  https://lore.kernel.org/all/20261016165135.GA494690@nvidia.com/
+
+Broadly, ARM's abstraction does several key things for Linux:
+ 1) No TPM is required until after some ACPI is parsed. ARM has many
+    different kinds of TPMs, so TPM without ACPI is hard.
+
+ 2) The launch uses a contiguous chunk of memory that can be
+    perfectly overlaid on vmlinux, with space for the headers,
+    measured section, unmeasured data, bss and trusted post-launch
+    information. It is trivial to insert Linux into this scheme.
+
+ 3) The launch protocol is trivial. The launch directly measures a
+    portion of vmlinux. About 50% of the stub code is just inspecting
+    features and doing FW call compatibility work, not tricky DRTM
+    things. Zero SOC-specific code.
+
+ 4) The post-launch world isn't special. We don't need unique kernel
+    patches to undo things that DRTM did. The normal drivers work in
+    the normal way just fine.
+
+This series is enough to perform the launch and get a working kernel
+inside a Dynamic Launch Measured Environment (DLME). There are several
+following security-focused topics/series that aim to further prevent
+attackers in the unmeasured world from compromising the measured
+kernel. Much of this list comes from internal security research at NVIDIA
+on securing Linux post-DRTM.
+
+ - The kernel command line needs to be measured, without any "early tpm"
+   for Linux.
+
+ - ARM's DRTM protocol for verifying the address map needs to be implemented
+
+ - ARM's protocol for checking the "TCB" ACPI needs to be implemented
+
+ - Non-TCB ACPI needs to be deferred until the TPM is discovered and
+   then the tables are measured into the TPM
+
+ - Initrd/Initramfs measurement by Linux before using it
+
+ - Exposing the DRTM launches TCG audit log to userspace
+
+ - TPM locality handling
+
+ - Kexec, via Ard's EFI entry approach:
+    https://lore.kernel.org/all/20261016144121.GA439341@nvidia.com/
+
+ - FDT security
+
+ - KASLR RNG security
+
+These topics all largely require different maintainers and different
+cross-arch solutions. Post-launch kernel defense against an adversarial
+boot is a complicated topic with several different threat models people
+are interested in. It has alot of overlap with the Confidential Computing
+need to deal with an adversarial host.
+
+This series is arranged to try to build re-usable things that any
+arch can use to implement DRTM:
+ - New general linker sections/etc to move mutable data out of the
+   measured range
+ - Cross-arch symbols __drtm_measured_start/end that allow a user
+   tool to compute the measurement hash from the vmlinux itself.
+   Because of the mutable values this isn't just all of vmlinux.
+ - CONFIG_EFI_DRTM and general EFI stub arch hooks to plug into for
+   EFI ZBOOT and FDT arches
+ - Shared drtm= kernel command-line processing
+
+For x86, it does set some user-visible expectations like how to compute a
+hash for vmlinux and the drtm= parameter. IMHO, these are key areas to get
+cross-arch alignment on so the user tooling, like a systemd UKI, can use
+DRTM easily.
+
+I have a slop'd up qemu that implements the SMC protocol which is very
+useful for testing:
+  https://github.com/jgunthorpe/qemu/commits/arm64_drtm
+
+NVIDIA has several real HW platforms this works with, I've been able to
+see that one of them works now, and someone else tested it on a different
+simulator. I'll get more HW testing as the review progresses.
+
+This is on github: https://github.com/jgunthorpe/linux/commits/arm64_drtm
+
+I've fed it to a local Sashiko and am satisfied the remaining remarks are
+not applicable, and fixed several of the previously existing bugs it
+found.
+
+v3:
+ - Rebase on v7.4-rc3 + Arnd's series:
+     https://lore.kernel.org/all/20261118182105.1633603-21-ardb+git@google.com
+ - Use the SMCC 1.0 calling convention when discovering if v1.1 is
+   supported
+ - Tidy comments
+ - Move kernel drtm code to drivers/firmware/drtm/arm64.c
+v2: https://patch.msgid.link/r/0-v2-989a18390eb1+486-arm64_drtm_jgg@nvidia.com
+ - Swap ftd_size_allocated to be inited by efi_load_dtb
+ - Move the __free
+ - Use a 64 bit for efi_image_info_offset because 0-day found a randconfig
+   that triggered the linker assertions for 32 bit. Clarify some of the
+   var names around this flow so they are less similar
+ - Fixup some issue with linker script compatability on binutils, I was
+   using lld
+ - Drop the le64, everything is u64
+ - Adjust whitespace
+ - Fix efibss placement in zboot.lds, binutils pointed out it is made
+   allocated and should not be in bss
+ - Significantly revise the header file with the DEN0113 definitions
+ - Support v1.0 implementations and issue a revision 1 TPM parameters
+   unless revision 2 is really required
+ - Review the upstream sashiko notes and reject all of them talking about
+   not having enough hardening, the patch plan for security progression
+   is explained in the cover leter
+v1: https://patch.msgid.link/r/0-v1-27d06b313981+8b-arm64_drtm_jgg@nvidia.com
+
+Jason Gunthorpe (11):
+  efi/libstub: Add generic arch callbacks for DRTM
+  efi/libstub: Use free_addr/size as the arg to handle_kernel_image
+  efi/libstub: Have efi_kaslr_relocate_kernel() handle extra_size
+  efi: Add a __efi_data_handoff section annotation
+  efi/libstub: Put the stub's writable data in unique sections for DRTM
+  arm64: drtm: Add macro definitions for DEN0113
+  arm64: drtm: Update the linker script for EFI_STUB_DRTM
+  arm64: drtm: Add drtm_entry point to head.S
+  arm64: drtm: Call UNPROTECT_MEMORY
+  efi/arm64: Add a way to detect if SMCC 1.1 can be used
+  efi/arm64: Implement ARM64 DRTM in the stub
+
+ .../admin-guide/kernel-parameters.txt         |  12 +
+ arch/arm64/Kconfig                            |  16 +
+ arch/arm64/include/asm/drtm.h                 | 325 +++++++++++++++
+ arch/arm64/kernel/head.S                      |  83 ++++
+ arch/arm64/kernel/vmlinux.lds.S               |  65 ++-
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/drtm/Makefile                |   2 +
+ drivers/firmware/drtm/arm64.c                 |  49 +++
+ drivers/firmware/efi/Kconfig                  |  30 ++
+ drivers/firmware/efi/efi-init.c               |   2 +-
+ drivers/firmware/efi/libstub/Makefile         |  11 +
+ drivers/firmware/efi/libstub/arm32-stub.c     |   8 +-
+ drivers/firmware/efi/libstub/arm64-drtm.c     | 383 ++++++++++++++++++
+ drivers/firmware/efi/libstub/arm64-smcc.c     | 212 ++++++++++
+ drivers/firmware/efi/libstub/arm64-stub.c     |   6 +-
+ drivers/firmware/efi/libstub/arm64-stub.h     |   3 +
+ drivers/firmware/efi/libstub/efi-stub-entry.c |  12 +-
+ .../firmware/efi/libstub/efi-stub-helper.c    |  34 ++
+ drivers/firmware/efi/libstub/efistub.h        |  81 +++-
+ drivers/firmware/efi/libstub/fdt.c            |   8 +-
+ drivers/firmware/efi/libstub/image_info.S     |   7 +
+ drivers/firmware/efi/libstub/kaslr.c          | 131 ++++--
+ drivers/firmware/efi/libstub/loongarch-stub.c |  10 +-
+ drivers/firmware/efi/libstub/riscv-stub.c     |   6 +-
+ drivers/firmware/efi/libstub/zboot.c          |  15 +-
+ drivers/firmware/efi/libstub/zboot.lds        |   2 +-
+ include/linux/efi.h                           |  12 +
+ 27 files changed, 1457 insertions(+), 69 deletions(-)
+ create mode 100644 arch/arm64/include/asm/drtm.h
  create mode 100644 drivers/firmware/drtm/Makefile
  create mode 100644 drivers/firmware/drtm/arm64.c
+ create mode 100644 drivers/firmware/efi/libstub/arm64-drtm.c
+ create mode 100644 drivers/firmware/efi/libstub/arm64-smcc.c
+ create mode 100644 drivers/firmware/efi/libstub/arm64-stub.h
 
-diff --git a/arch/arm64/include/asm/drtm.h b/arch/arm64/include/asm/drtm.h
-index 34201bc092bcc6..e74328808466c0 100644
---- a/arch/arm64/include/asm/drtm.h
-+++ b/arch/arm64/include/asm/drtm.h
-@@ -176,6 +176,10 @@
- #define ARM_DRTM_ALREADY_CLOSED			-11
- #define ARM_DRTM_TPM_ERROR			-12
- 
-+/* Offsets in struct arm64_drtm_handoff */
-+#define ARM64_DRTM_HANDOFF_FDT_ADDR_OFFSET	0
-+#define ARM64_DRTM_HANDOFF_ENABLED_OFFSET	8
-+
- #ifndef __ASSEMBLY__
- 
- #include <linux/bitfield.h>
-@@ -301,5 +305,21 @@ static inline s64 arm_drtm_enable_secure_interrupts(void)
- 	return res.a0;
- }
- 
-+/*
-+ * Since we cannot pass a parameter through the launch to drtm_entry any
-+ * additional data is written by the stub here.
-+ */
-+struct arm64_drtm_handoff {
-+	__le64 fdt_addr;
-+	u8 drtm_enabled;
-+};
-+
-+static_assert(offsetof(struct arm64_drtm_handoff, fdt_addr) ==
-+	      ARM64_DRTM_HANDOFF_FDT_ADDR_OFFSET);
-+static_assert(offsetof(struct arm64_drtm_handoff, drtm_enabled) ==
-+	      ARM64_DRTM_HANDOFF_ENABLED_OFFSET);
-+
-+extern struct arm64_drtm_handoff drtm_handoff;
-+
- #endif /* !__ASSEMBLY__ */
- #endif /* __ASM_DRTM_H */
-diff --git a/arch/arm64/kernel/head.S b/arch/arm64/kernel/head.S
-index d6ba3c0af81190..dbc8a7cc0938f4 100644
---- a/arch/arm64/kernel/head.S
-+++ b/arch/arm64/kernel/head.S
-@@ -21,6 +21,7 @@
- #include <asm/asm-offsets.h>
- #include <asm/cache.h>
- #include <asm/cputype.h>
-+#include <asm/drtm.h>
- #include <asm/el2_setup.h>
- #include <asm/elf.h>
- #include <asm/image.h>
-@@ -35,6 +36,7 @@
- #include <asm/stacktrace/frame.h>
- #include <asm/thread_info.h>
- #include <asm/virt.h>
-+#include <uapi/linux/psci.h>
- 
- #include "efi-header.S"
- 
-@@ -131,6 +133,87 @@ SYM_CODE_START(primary_entry)
- SYM_CODE_END(primary_entry)
- 
- 	__INIT
-+#ifdef CONFIG_ARM64_DRTM
-+/*
-+ * Entry point used by a DRTM launch. Verify that information provided by the
-+ * EFI stub matches expectations. We rely on an untrusted-write/trusted-verify
-+ * approach so this doesn't have to deal with writing to cache-off memory. Per
-+ * DEN0113 R45380, the launch supplies:
-+ *
-+ *   x0 = physical base of the DLME region
-+ *   x1 = offset of thee DLME Data, which is several tables written by
-+ *        the launch to pass trusted information to the post launch kernel
-+ *
-+ * These values must match the link layout in vmlinux.lds.S or the launch is
-+ * invalid. The EFI stub will get them from the efi_image_info and pass them
-+ * into arm_drtm_parameters.
-+ *
-+ * DEN0113 R45450-R45470 specify the remaining entry state as the PSCI CPU_ON
-+ * initial state: AArch64 at the highest Non-secure EL, little-endian, with the
-+ * MMU and D-cache disabled and Non-secure asynchronous/debug exceptions
-+ * masked.
-+ *
-+ * Per DEN0113 R45220 the launch cleans and invalidates the whole "DLME region"
-+ * which is everything from _text till past __drtm_dlme_start before
-+ * it measures the image. Thus the handoff data written into the region by the
-+ * EFI stub is safely readable here with the MMU off.
-+ */
-+SYM_CODE_START(drtm_entry)
-+	/* Verify that x0 is the runtime physical address of _text */
-+	adr_l	x2, _text
-+	cmp	x0, x2
-+	b.ne	.Ldrtm_bad_entry
-+
-+	/* x0 + x1 must be the runtime physical start of the DLME data */
-+	add	x3, x0, x1
-+	adr_l	x4, __drtm_dlme_start
-+	cmp	x3, x4
-+	b.ne	.Ldrtm_bad_entry
-+
-+	/* Stub must set drtm_enabled */
-+	adr_l	x4, drtm_handoff
-+	ldrb	w2, [x4, #ARM64_DRTM_HANDOFF_ENABLED_OFFSET]
-+	cbz	x2, .Ldrtm_bad_entry
-+
-+	/* primary_entry(handoff->fdt_addr, 0, 0, 0) */
-+	ldr	x0, [x4, #ARM64_DRTM_HANDOFF_FDT_ADDR_OFFSET]
-+	mov	x1, xzr
-+	mov	x2, xzr
-+	mov	x3, xzr
-+	b	primary_entry
-+
-+	/*
-+	 * Can't continue, launch is corrupted, spec says the DLME can call
-+	 * SET_ERROR which should forward the error to the next boot for
-+	 * display.
-+	 */
-+.Ldrtm_bad_entry:
-+	ldr	w0, =ARM_DRTM_SMC_SET_ERROR
-+	mov	x1, #ARM_DRTM_MAKE_ERROR(ARM_DRTM_ERROR_PHASE_DLME,
-+					 ARM_DRTM_ERROR_ID_VENDOR, 0)
-+	mov	x2, xzr
-+	mov	x3, xzr
-+	mov	x4, xzr
-+	mov	x5, xzr
-+	mov	x6, xzr
-+	mov	x7, xzr
-+	smc	#0
-+	/* Cold-reset the machine as required after reporting a DLME error */
-+	ldr	w0, =PSCI_0_2_FN_SYSTEM_RESET
-+	mov	x1, xzr
-+	mov	x2, xzr
-+	mov	x3, xzr
-+	mov	x4, xzr
-+	mov	x5, xzr
-+	mov	x6, xzr
-+	mov	x7, xzr
-+	smc	#0
-+	/* FW is really broken, just hang. */
-+1:	wfe
-+	b	1b
-+SYM_CODE_END(drtm_entry)
-+#endif
-+
- SYM_CODE_START_LOCAL(record_mmu_state)
- 	mrs	x19, CurrentEL
- 	cmp	x19, #CurrentEL_EL2
-diff --git a/arch/arm64/kernel/vmlinux.lds.S b/arch/arm64/kernel/vmlinux.lds.S
-index f4e9fd90cd1b12..a68881189f2313 100644
---- a/arch/arm64/kernel/vmlinux.lds.S
-+++ b/arch/arm64/kernel/vmlinux.lds.S
-@@ -380,6 +380,8 @@ SECTIONS
- 	 *   DLME Region Address = _text's PA ie the start of Image
- 	 *   DLME Region Size = DLME Data Offset + "Minimum Size of DLME data"
- 	 *   DLME Image Start Offset = __drtm_measured_start - _text
-+	 *   DLME Entry Point Offset = drtm_entry - __drtm_measured_start
-+	 *                             (in .init.text)
- 	 *   DLME Image Size = __drtm_measured_end - __drtm_measured_start
- 	 *   DLME Data Offset = __drtm_dlme_start - _text
- 	 *   Normal World DCE region address = PA of __drtm_dlme_start +
-@@ -466,6 +468,10 @@ ASSERT(__hyp_idmap_text_end - __hyp_idmap_text_start <= PAGE_SIZE,
- 	"HYP init code too big")
- ASSERT(__idmap_text_end - (__idmap_text_start & ~(SZ_4K - 1)) <= SZ_4K,
- 	"ID map text too big or misaligned")
-+#ifdef CONFIG_ARM64_DRTM
-+ASSERT(drtm_entry >= __drtm_measured_start && drtm_entry < __drtm_measured_end,
-+	"DRTM entry is outside the measured image")
-+#endif
- #ifdef CONFIG_HIBERNATION
- ASSERT(__hibernate_exit_text_end - __hibernate_exit_text_start <= SZ_4K,
-        "Hibernate exit text is bigger than 4 KiB")
-diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
-index 50b3383131522d..7f74fd1bf75bda 100644
---- a/drivers/firmware/Makefile
-+++ b/drivers/firmware/Makefile
-@@ -30,6 +30,7 @@ obj-y				+= arm_rmm/
- obj-y				+= arm_scmi/
- obj-y				+= broadcom/
- obj-y				+= cirrus/
-+obj-y				+= drtm/
- obj-y				+= meson/
- obj-y				+= microchip/
- obj-$(CONFIG_COREBOOT_FIRMWARE)	+= coreboot/
-diff --git a/drivers/firmware/drtm/Makefile b/drivers/firmware/drtm/Makefile
-new file mode 100644
-index 00000000000000..658798bfd17801
---- /dev/null
-+++ b/drivers/firmware/drtm/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_ARM64_DRTM) += arm64.o
-diff --git a/drivers/firmware/drtm/arm64.c b/drivers/firmware/drtm/arm64.c
-new file mode 100644
-index 00000000000000..bf736ceb7f0368
---- /dev/null
-+++ b/drivers/firmware/drtm/arm64.c
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES
-+ *
-+ * Support functions for ARM DEN 0113 "DRTM Architecture for Arm"
-+ */
-+#include <linux/efi.h>
-+
-+#include <asm/drtm.h>
-+
-+struct arm64_drtm_handoff drtm_handoff __efi_data_handoff;
-diff --git a/drivers/firmware/efi/libstub/efistub.h b/drivers/firmware/efi/libstub/efistub.h
-index 154d2aefe6505f..386d65a3943af7 100644
---- a/drivers/firmware/efi/libstub/efistub.h
-+++ b/drivers/firmware/efi/libstub/efistub.h
-@@ -1182,6 +1182,8 @@ struct efi_image_info {
- #ifdef CONFIG_ARM64_DRTM
- 	s32	__drtm_measured_start_offset;
- 	s32	__drtm_measured_end_offset;
-+	s32	drtm_entry_offset;
-+	s32	drtm_handoff_offset;
- #endif
- };
- 
-@@ -1241,6 +1243,18 @@ efistub_drtm_measured_size(const struct efi_image_info *image_info)
- 	return image_info->__drtm_measured_end_offset -
- 	       image_info->__drtm_measured_start_offset;
- }
-+
-+static inline unsigned long
-+efistub_drtm_entry_offset(const struct efi_image_info *image_info)
-+{
-+	return image_info->drtm_entry_offset - image_info->_text_offset;
-+}
-+
-+static inline void *
-+efistub_drtm_handoff(const struct efi_image_info *image_info)
-+{
-+	return offset_to_ptr(&image_info->drtm_handoff_offset);
-+}
- #endif
- 
- efi_status_t efi_boot_kernel(void *handle, efi_loaded_image_t *image,
-diff --git a/drivers/firmware/efi/libstub/image_info.S b/drivers/firmware/efi/libstub/image_info.S
-index 065bbfdf8fabad..adf82ad083b354 100644
---- a/drivers/firmware/efi/libstub/image_info.S
-+++ b/drivers/firmware/efi/libstub/image_info.S
-@@ -21,4 +21,6 @@ __efistub_efistub_image_info:
- #ifdef CONFIG_EFI_STUB_DRTM
- 	.long	__drtm_measured_start - 0b
- 	.long	__drtm_measured_end - 0b
-+	.long	drtm_entry - 0b
-+	.long	drtm_handoff - .
- #endif
+
+base-commit: 1e7814d34a25521a2ee48b3be8c1bc54f04821f8
 -- 
 2.43.0
 
