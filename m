@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AE5606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77309606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t0PQZl7D;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Ii0O5BgW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0bGRZkAB;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=YlIdxQlq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=z7GZse95e9OsWMMR9FTF/D6iQnoJXWz8o3LKfdTm+tU=; b=t0PQZl7DlyY4Z5IksMC5qZ2AW0
-	hy3wesWtNfnwBTmkAU0fdsq5p3BRWOx7ejgRrrL70xNc043J/OYTqFG5cZvIKe0JkjpjD+2KIAhiP
-	yw5ZMQDVblQ0HGv3NCP+ndOiGTqhhUif1iWGPYUfNaeaW9m/BesKipqrHvlSNgUjzUHuoYtYeiZLd
-	moyIq1FuA399w2e8RTBqxJj2/CbEirJkCxWnaYAUasJ8F+XbrtHQJA0fWMBjn3rwArbjBx/27u3Ql
-	dZeoFPf7Q8TqlyLR99nXdpMjDoCMWMdEybF0gftYi+aeExrkFe3vlpCCo4RkkEZ6A+GOlRZ0sH+5d
-	cBjwZuVQ==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=LbjUUguIEJt9zZGRW+We6Fw4cBRjC8OMZrbWiRaIZT4=; b=0bGRZkABvRQ1f9
+	FMBcMSECQex9FIEdxbTi+FWi+65FM+ITTBHiS3IrRnCWi3D8ZEDC/gD+5m3kdfqXrrMlXp5kUacyK
+	vxsmz8rPt0Dy9H1esoaMQuBO+P2dQfHhuMauTAiwo/i7XwbsDYmk7yImSNypDmH9pweSglSMGF+Kq
+	dhp1uJyihUKwmhK7DX/awnKvyN6ns7qK0eDEyZpEkpyplJ2iDkgAGui3zVS1Iw7/ilT7kE8ADYmNK
+	ul2imAKU95er4BUSgpr9QGX/km9s6Pp7hZp2i3NEAYnpj4/HNMa2SbGhWowXFxzNYfaSX1YazfGBP
+	R7ALmo0hDH3iREdK5ReA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMyU-0000000Epg4-15av;
-	Fri, 20 Nov 2026 11:40:14 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xUMya-0000000EpiX-1fmD;
+	Fri, 20 Nov 2026 11:40:20 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMyR-0000000Epei-0BLg
+	id 1xUMyU-0000000Epfm-14EZ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:40:13 +0000
+	Fri, 20 Nov 2026 11:40:15 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id DDCBA1A1742;
-	Fri, 20 Nov 2026 11:40:07 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C5EAFC6221A;
+	Fri, 20 Nov 2026 11:40:16 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AA9536017D;
-	Fri, 20 Nov 2026 11:40:07 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 28D7A11BC0D5A;
-	Fri, 20 Nov 2026 12:40:02 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1F9A36017D;
+	Fri, 20 Nov 2026 11:40:11 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98A1A11BC12B8;
+	Fri, 20 Nov 2026 12:40:07 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795174806; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=z7GZse95e9OsWMMR9FTF/D6iQnoJXWz8o3LKfdTm+tU=;
-	b=Ii0O5BgW3ORmBERcxum5rHlZoh99KBF/YCCtFeyC90YTIam82qxFnQMYqdBzYHsjRRtQ0b
-	ceKkW1iqU/N/rtgs8+hkqhRNogEPa8nZ4YXmxaE1cQA5V6Zn06KjZIWb9J+BW93OnTkMa+
-	5uYCb0QSVQRdi1W64qNZpNMhKfCxzhm4jIsP4sXU7O8sV8G23JV1k9cNU2YzX/d+vOXJBV
-	J4Prvo7WtqZK3yGLYwOc4qyVGOnCLk9jbd5Y76Dpd/RpnwdWCQ8EpZOD5E7FjZ0kTD/v60
-	rhGh+O0VRW0FZy5+tXA0u9a++pIsff0m1tztoXhAHY2AdSU89Csrh+2+OytrkA==
+	t=1795174809; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=LbjUUguIEJt9zZGRW+We6Fw4cBRjC8OMZrbWiRaIZT4=;
+	b=YlIdxQlqf+MAo9S0zwssZObKQhRdQU3dAGdEwYwq06WupTswxna4/DNGr8h0KwiZ7SVMUF
+	GqWMCnPhVUaVPMPqJkmoeuzfnPZzqCmEoi6QNgEnVgPXx/C3d2x/pHzQXDJY/QcEgjcNDc
+	YaLcKqxku8nLq9bKSEGXUgCYg3eIMd11xGOgbh09oRTuPL8bM/TrmyWV+jDPi8Bq+65DzX
+	2+LPSN2dO0iBdl88BeXLJ2dW951qBfzsl9LTLfEjXxM41vsAq1sMf+xt2rVY5G/j42+aOq
+	yg8DYTGqrKP4rn3rPmjO1SrVN7JurMk4R4DRxCmc1zCSNFmseFprtPIpL6TNNw==
 From: Paul Cercueil <paul.cercueil@bootlin.com>
 To: Jassi Brar <jassisinghbrar@gmail.com>
 Cc: Rob Herring <robh@kernel.org>,
@@ -55,18 +55,22 @@ Cc: Rob Herring <robh@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
+	George Cherian <gcherian@marvell.com>,
+	Sujeet Baranwal <sbaranwal@marvell.com>,
 	Paul Cercueil <paul.cercueil@bootlin.com>
-Subject: [PATCH v2 0/2] mailbox: Add Marvell MHU driver
-Date: Fri, 20 Nov 2026 12:39:50 +0100
-Message-ID: <20261120113952.168265-1-paul.cercueil@bootlin.com>
+Subject: [PATCH v2 1/2] dt-bindings: mailbox: add Marvell MHU
+Date: Fri, 20 Nov 2026 12:39:51 +0100
+Message-ID: <20261120113952.168265-2-paul.cercueil@bootlin.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261120113952.168265-1-paul.cercueil@bootlin.com>
+References: <20261120113952.168265-1-paul.cercueil@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_034011_248643_C768A472 
-X-CRM114-Status: GOOD (  14.61  )
+X-CRM114-CacheID: sfid-20261120_034014_465975_3E7197FE 
+X-CRM114-Status: GOOD (  16.50  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,65 +82,119 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jassi,
+From: George Cherian <gcherian@marvell.com>
 
-This is the v2 of my patchset that adds support for the mailbox found in
-the OcteonTX and OcteonTX2 based SoCs, which is used for SCMI
-communication.
+Marvell Message Handling Unit is a mailbox controller present in
+Marvell OcteonTx and OcteonTX2 SoC family.
 
-I dropped v1's last patch (that affected the SCMI driver) since SCMI
-maintainers and Sashiko reported that I could replace it with a simple
-DT property.
-
-Changelog:
+Signed-off-by: George Cherian <gcherian@marvell.com>
+Co-developed-by: Sujeet Baranwal <sbaranwal@marvell.com>
+Signed-off-by: Sujeet Baranwal <sbaranwal@marvell.com>
+Signed-off-by: Paul Cercueil <paul.cercueil@bootlin.com>
+---
 
 v2:
-
-* [1/2]:
  - Fix binding path in MAINTAINERS file
  - Move MAINTAINERS entry so that it's in alphabetical order
  - Fix formatting of DT example
-
-* [2/2]:
- - Add Kconfig dependency on PCI
- - Order includes properly
- - Remove duplicated macros
- - Pass a pointer to the "mhu" variable to mrvl_mhu_setup_irq(), instead
-   of getting it from drvdata. Then we don't even need to set drvdata.
- - Use devm functions unconditionally. This fixes an issue where
-   pci_free_irq_vectors() was called while IRQs were still in place.
-   It also allows to drop mrvl_mhu_remove().
- - Use pcim_iomap_region() instead of pcim_request_region() +
-   pcim_iomap().
- - Enable IRQ in .startup(), disable it in .shutdown().
- - ACK the IRQ after calling mbox_chan_received_data()
- - Fix register used for polling TX done
- - Clean up macros
-
-Cheers,
--Paul
-
-George Cherian (2):
-  dt-bindings: mailbox: add Marvell MHU
-  mailbox: marvell-mhu: add Marvell MHU driver
-
- .../bindings/mailbox/marvell,mhu.yaml         |  61 +++++
- MAINTAINERS                                   |   7 +
- drivers/mailbox/Kconfig                       |  11 +
- drivers/mailbox/Makefile                      |   2 +
- drivers/mailbox/marvell_mhu.c                 | 239 ++++++++++++++++++
- 5 files changed, 320 insertions(+)
+---
+ .../bindings/mailbox/marvell,mhu.yaml         | 61 +++++++++++++++++++
+ MAINTAINERS                                   |  6 ++
+ 2 files changed, 67 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
- create mode 100644 drivers/mailbox/marvell_mhu.c
 
+diff --git a/Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml b/Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
+new file mode 100644
+index 000000000000..5cf20d5642ac
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/marvell,mhu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell Message Handling Unit
++
++maintainers:
++  - Sujeet Baranwal <sbaranwal@marvell.com>
++  - George Cherian <gcherian@marvell.com>
++
++description:
++  The Control-Processors Cluster (CPC) provides Arm-platform specification
++  entities for managing the system. One of the CPC processors is the System
++  Control Processor (SCP). The SCP is responsible, among others, for booting
++  the chip, clock and power initialization, controlling power consumption
++  through DVFS, monitoring temperature sensors and controlling AVS. The SCP,
++  as each XCP, contains mailboxes for software-to-software communications.
++  Mailbox writes cause an interrupt to the local XCP core or to the AP.
++  This driver exposes AP-SCP Message Handling Unit to the system, providing
++  the mailbox communication mechanism to the system, with the intention
++  of plugging into the SCMI framework. It is designed to work with Marvell
++  OcteonTX and OcteonTX2-based platforms.
++  The mailbox has no other usage than SCMI communication. In case of
++  configurations running without SCMI support it should be disabled.
++
++properties:
++  compatible:
++    enum:
++      - marvell,octeontx-mhu
++      - marvell,octeontx2-mhu
++      - marvell,cn10-mhu
++
++  reg:
++    maxItems: 1
++
++  "#mbox-cells":
++    description: Index of the channel
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - "#mbox-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    ecam {
++        #address-cells = <3>;
++        #size-cells = <2>;
++
++        mailbox@1c,0 {
++            compatible = "marvell,octeontx2-mhu";
++            reg = <0xe000 0x0 0x0 0 0>;
++            #mbox-cells = <1>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 65e8a4b5c90b..8f6f98acc8fc 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15825,6 +15825,12 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ F:	arch/arm64/boot/dts/marvell/armada-8040-mcbin.dts
+ 
++MARVELL MHU MAILBOX DRIVER
++M:	Sujeet Baranwal <sbaranwal@marvell.com>
++M:	George Cherian <gcherian@marvell.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
++
+ MARVELL MV643XX ETHERNET DRIVER
+ M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+ L:	netdev@vger.kernel.org
 -- 
 2.47.3
 
