@@ -2,66 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7840F606A686
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 21:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B51606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 21:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZUs5cH0G;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dtZ3zevh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VW/0iAq+;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hiHbLGgf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qi0w9VhkXQZVVPDCLtmjIgVXJN9NQ3z5wsW3lIvY60U=; b=ZUs5cH0GDLNrH5CBp7E20LtMkN
-	VSIY9Doll7tTZwE3CalQDIcAAJeDHxy4x8CuHCpq7Z1E7Vajjxr0/EWFbZKP7YdW8MrkG8xZ5from
-	Rh0qUIzlOwS03bEm/beQd49K20DtT4kpy/a639Xzo7ohe10jnGzbluaBMO9YqFZ0dWittsJCd2Q8a
-	o1+V11pTLdjvCucyBzQFuhGinl1FDTgi2tJSkoRJNIpdq/eE0kEPvsI6EXdUr/uySzHwbHZTvudJT
-	p+enrE/v5jnKEKIHqYPbTC7a5MUBEwbJpZPD8utpcCJ/1x8YQV4nStb2Nvzi7aqnJMpeb1IZN+ieS
-	YE9oNlJA==;
+	bh=wjd64Or23nw/KUsVntyuyIfn77R+aFtaF7PwFr5d/Ws=; b=VW/0iAq+PAz9prVWjAvavxbzI1
+	Oe1+u4pcqJfA5S+UlLvaH5xvXKNCZfbiggh5RglIH+5DdnhfXsXsSCXqYYPwLttJdOeV9qfQ7XKkv
+	YQW+60w11WZG4iV6ckGpUYsomaxxabBjAOEWTHjKQ49nCAKldvI6Fbto5/J50tFWjh4x29/trQopv
+	01PV+OEdubRTS99VLaP5P1jiSgBWp39BR8W8sKK7iWtHHpx7i+gA5RMYS6TjcD2RMSYzjcgJgpyRm
+	w5SDlyTUIBo9Gfs/mM/U5v1+VyLqO8sLTfwZFpxdQLbd3D2Ao9Vp432wwcsNV1BJFczy+zsjw+etY
+	28OEcuRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUVzK-0000000GI9M-1v91;
-	Fri, 20 Nov 2026 21:17:42 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xUVzy-0000000GIFi-3C4M;
+	Fri, 20 Nov 2026 21:18:22 +0000
+Received: from mgamail.intel.com ([192.198.163.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUVzJ-0000000GI9G-1zWX
+	id 1xUVzt-0000000GIEc-1oTL
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 21:17:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A7582608FA;
-	Fri, 20 Nov 2026 21:17:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D1BB1F000D8;
-	Fri, 20 Nov 2026 21:17:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795209460;
-	bh=qi0w9VhkXQZVVPDCLtmjIgVXJN9NQ3z5wsW3lIvY60U=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=dtZ3zevhvMtOgFHZpTa1ovPdFsHRLac9E57n5kg4KZi483tSR7RRuRLqDw+/gXf7C
-	 zwA6Yhn/6+xTByOUSOwY7VbcjGIO/NSsOGta7P9GqH2r60Jty7/qkNuoe4WNe3Q/9J
-	 4Hih7GcJDu2wKdAqzBvZYhXGwXl/Q1JDp8/u1QFKSDE1bCcH8TlAHyayqpNm9KM5gf
-	 kKe/0rsdxQIgcnHjvbyaiHfi9K1r5MmAcmA0OgVhgUNA+hzgZi8Q7QXoMzMRkkEtBU
-	 LkWXjpGTPusYsW5zn/oQydBOjlXLikT6oC4/f9zhgav2m++zXnwCGN6kZRioCzBA1W
-	 1REa/tq1Ygh9Q==
-Subject: Re: [PATCH net-next v4] net: stmmac: program the FSM timeout timer
-From: netdev-bot+sashiko@kernel.org
-To: zxyan0222@gmail.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- rmk+kernel@armlinux.org.uk
-Date: Fri, 20 Nov 2026 21:17:39 +0000
-Message-ID: <179520945915.3135.14304625182301747705@kernel.org>
-In-Reply-To: <20261118025528.2703790-1-zxyan0222@gmail.com>
-References: <20261118025528.2703790-1-zxyan0222@gmail.com>
-X-sashiko-severity: High
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Fri, 20 Nov 2026 21:18:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795209497; x=1826745497;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VayXO2obERxLTh/FIisCjx2Bi3BpVJ+zEUoxkoWvpiw=;
+  b=hiHbLGgfAwCaRmh097WBjq/Av4qWMW7l8E7mN/mnxu4JnpXwGlAY3IWN
+   1UDSXVsRi4t4tJgX0oBAFGOVX15nmkewy7d3iG7zHpNi88R0pVXA9Mylh
+   q3ZhsFZUpk4jds0POfnGbNWITBKSiOXtQ/fTZEF5rpa5Cl89RSpc/xVsb
+   zNz77CmRcpo0WvoeKgJBVcoirroco7CRhiIKSmaktb9XEe3PMgb2Aq8NQ
+   fQ5+AZUuETPA9xJorBe+dzbUkvx21OAZJBcoO9bcAvw3Ba4y1sYtQ10SF
+   VAfAMPv8GU6i6bPeffqGUF2XluboQs2E5iO/8aNCLQA0zvzEU+52uaRBZ
+   g==;
+X-CSE-ConnectionGUID: FDs7Tb38SACLVDuGt6pScA==
+X-CSE-MsgGUID: jG99rVC2R2GpdHW+CTAypw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4084728"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="4084728"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 13:18:16 -0800
+X-CSE-ConnectionGUID: BMjj23xJQqSojMr33lja1A==
+X-CSE-MsgGUID: 4yEJNJXHQJ+q7NJzFHpFnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="11364362"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 20 Nov 2026 13:18:10 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xUVzi-00000001Iah-0bcq;
+	Fri, 20 Nov 2026 21:18:06 +0000
+Date: Sat, 21 Nov 2026 05:17:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Olivier Moysan <olivier.moysan@foss.st.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Philipp Stanner <phasta@kernel.org>,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, linux-sound@vger.kernel.org,
+	Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v2 02/11] iio: adc: stm32-mdf: add core registration
+Message-ID: <202611210514.27XNsKFF-lkp@intel.com>
+References: <20261118-upstream_mdf_v2-v2-2-7939d3c3720a@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261118-upstream_mdf_v2-v2-2-7939d3c3720a@foss.st.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_131817_551689_5C95B4DD 
+X-CRM114-Status: GOOD (  12.46  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,265 +109,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 6 potential
-issue(s) to consider.
+Hi Olivier,
 
-Critical: 0 · High: 1 · Medium: 2 · Low: 3
+kernel test robot noticed the following build warnings:
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+[auto build test WARNING on d922ed738439e1d5b4701df7f4cdd49a09925624]
 
-- [High] On every in-tree XGMAC platform, the XGMAC half of the fix never
-  runs.
-- [Medium] csr_clk_mhz is only computed when priv->plat->stmmac_clk is
-  non-NULL.
-- [Medium] The patch turns on an FSM timeout check that resets the
-  interface, with a hardcoded NTMRMD = 0x6 (about 1 s) for every…
-- [Low] The commit is written as a bug fix: the protection is
-  'ineffective' and a stuck FSM 'was not reported through the safety…
-- [Low] The patch adds ten STMMAC_NTMRMD_* register-encoding macros (1US
-  .. 64SEC) to include/linux/stmmac.h, the platform-data header shared…
-- [Low] The same clock (stmmac_clk) is converted into a 'CSR clocks per
-  1us tic' register value in two places that use different conventions.
+url:    https://github.com/intel-lab-lkp/linux/commits/Olivier-Moysan/dt-bindings-iio-adc-add-stm32mp2-mdf-filter/20261118-161746
+base:   d922ed738439e1d5b4701df7f4cdd49a09925624
+patch link:    https://lore.kernel.org/r/20261118-upstream_mdf_v2-v2-2-7939d3c3720a%40foss.st.com
+patch subject: [PATCH v2 02/11] iio: adc: stm32-mdf: add core registration
+config: csky-allmodconfig (https://download.01.org/0day-ci/archive/20261121/202611210514.27XNsKFF-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 16.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261121/202611210514.27XNsKFF-lkp@intel.com/reproduce)
 
---
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611210514.27XNsKFF-lkp@intel.com/
 
-net: stmmac: program the FSM timeout timer
+All warnings (new ones prefixed by >>):
 
-This patch programs MAC_FSM_ACT_Timer on dwmac5 and dwxgmac3 cores after
-TMOUTEN is enabled. TMR is set from the CSR clock rate in MHz, and NTMRMD
-is set to a fixed 1s timeout. A csr_clk_mhz argument is added to the
-safety_feat_config callback, and NTMRMD encoding macros are added to
-include/linux/stmmac.h.
+>> drivers/iio/adc/stm32-mdf-core.c:447:12: warning: 'stm32_mdf_core_runtime_resume' defined but not used [-Wunused-function]
+     447 | static int stm32_mdf_core_runtime_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/stm32-mdf-core.c:442:12: warning: 'stm32_mdf_core_runtime_suspend' defined but not used [-Wunused-function]
+     442 | static int stm32_mdf_core_runtime_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/stm32-mdf-core.c:407:12: warning: 'stm32_mdf_core_resume' defined but not used [-Wunused-function]
+     407 | static int stm32_mdf_core_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/stm32-mdf-core.c:388:12: warning: 'stm32_mdf_core_suspend' defined but not used [-Wunused-function]
+     388 | static int stm32_mdf_core_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~~
 
-> The issue was hit in testing on dwmac4 and dwxgmac, where a stuck FSM was
-> not reported through the safety interrupt despite TMOUTEN being set.
->
-> Signed-off-by: Zxyan Zhu <zxyan0222@gmail.com>
 
-[Severity: Low]
-This describes a user-visible functional failure, but there is no Fixes:
-tag. Should this carry Fixes: tags for the commits that added TMOUTEN to
-dwmac5_safety_feat_config() and dwxgmac3_safety_feat_config() without
-programming the timer, so stable has a reference for backporting?
+vim +/stm32_mdf_core_runtime_resume +447 drivers/iio/adc/stm32-mdf-core.c
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
-> index f1bb981cab7cd..5cf5139f442ad 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac5.c
-
-[ ... ]
-
-> @@ -245,6 +247,19 @@ int dwmac5_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
->  		value |= TMOUTEN; /* FSM Timeout Feature */
->  	writel(value, ioaddr + MAC_FSM_CONTROL);
->  
-> +	/* Program the FSM active timer so the timeout checker actually fires.
-> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
-> +	 * Use a 1s timeout.
-> +	 */
-> +	if (safety_feat_cfg->tmouten && csr_clk_mhz) {
-> +		value = readl(ioaddr + MAC_FSM_ACT_TIMER);
-> +		value &= ~(MAC_FSM_ACT_TIMER_NTMRMD | MAC_FSM_ACT_TIMER_TMR);
-> +		value |= FIELD_PREP(MAC_FSM_ACT_TIMER_NTMRMD,
-> +				    STMMAC_NTMRMD_1SEC) |
-
-[Severity: Medium]
-Is a fixed 1s timeout long enough at every link speed? A link partner can
-send PAUSE frames with a quanta of 0xffff. At 10Mb/s that holds off the
-transmitter for:
-
-    65535 * 512 / 10e6 ~= 3.36s
-
-That is longer than the ~1.048s selected here. At 100Mb/s it is around
-335ms.
-
-If the TX FSM timeout is measured against NTMRMD during a flow-control
-stall, could a legitimate PAUSE stall at 10Mb/s raise a timeout error?
-
-FSM timeout errors arrive through MCSIS, and
-dwmac5_safety_feat_irq_status() always treats them as uncorrectable:
-
-    err = (mtl & MCSIS) || (dma & MCSIS);
-    corr = false;
-
-That would go through stmmac_safety_feat_interrupt()->stmmac_global_err()
-and reset the interface. Before this patch the timer was disabled, so this
-path could not trigger. dwxgmac3_safety_feat_config() uses the same fixed
-value.
-
-Only NTMRMD and TMR are written here. The other fields of
-MAC_FSM_ACT_Timer stay at their read-back values. Can the databook confirm
-whether pause-stalled TX FSMs are covered by NTMRMD rather than by a
-separate large-mode timeout?
-
-> +			 FIELD_PREP(MAC_FSM_ACT_TIMER_TMR, csr_clk_mhz);
-
-[Severity: Low]
-The comment says TMR is csr_clk in MHz. However, dwmac4_core_init()
-programs the existing 1us tic counter from the same clock with a minus
-one:
-
-    writel((clk_rate / 1000000) - 1,
-           ioaddr + GMAC4_MAC_ONEUS_TIC_COUNTER);
-
-Does TMR use the same minus-one encoding? If it does, each tic would be
-one CSR clock too long. If it doesn't, could the comment say why it
-differs from GMAC4_MAC_ONEUS_TIC_COUNTER? The same question applies to
-the XGMAC_MAC_FSM_ACT_TIMER_TMR write in dwxgmac3_safety_feat_config().
-
-> +		writel(value, ioaddr + MAC_FSM_ACT_TIMER);
-> +	}
-> +
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> index 7ad08651675e8..3caab23527a19 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-
-[ ... ]
-
-> @@ -873,6 +875,20 @@ dwxgmac3_safety_feat_config(void __iomem *ioaddr, unsigned int asp,
->  	value |= XGMAC_TMOUTEN; /* FSM Timeout Feature */
->  	writel(value, ioaddr + XGMAC_MAC_FSM_CONTROL);
->  
-> +	/* Program the FSM active timer so the timeout checker actually fires.
-> +	 * TMR is the number of CSR clocks per 1us tic, i.e. csr_clk in MHz.
-> +	 * Use a 1s timeout.
-> +	 */
-> +	if (safety_cfg && safety_cfg->tmouten && csr_clk_mhz) {
-
-[Severity: High]
-XGMAC_TMOUTEN is set just above without looking at safety_cfg, but the
-timer is only programmed when safety_cfg is non-NULL. Does any XGMAC
-platform set plat->safety_feat_cfg?
-
-The generic snps,dwxgmac path in stmmac_probe_config_dt(),
-dwmac-socfpga.c and dwmac-tegra.c all appear to leave it NULL. Only
-dwmac-intel.c, dwmac-mediatek.c and stmmac_pci.c allocate it, and all
-three are GMAC4 cores.
-
-In that case stmmac_safety_feat_configuration() passes NULL and this
-check short-circuits. NTMRMD stays at 0 with TMOUTEN set, which is the
-dwxgmac state the commit message says it fixes.
-
-dwmac5_safety_feat_config() handles a NULL cfg by substituting
-all_safety_feats:
-
-    if (!safety_feat_cfg)
-        safety_feat_cfg = &all_safety_feats;
-
-Should the XGMAC check match how TMOUTEN is enabled? For example,
-(!safety_cfg || safety_cfg->tmouten) && csr_clk_mhz, or just csr_clk_mhz,
-since TMOUTEN is set unconditionally.
-
-> +		value = readl(ioaddr + XGMAC_MAC_FSM_ACT_TIMER);
-> +		value &= ~(XGMAC_MAC_FSM_ACT_TIMER_NTMRMD |
-> +			   XGMAC_MAC_FSM_ACT_TIMER_TMR);
-> +		value |= FIELD_PREP(XGMAC_MAC_FSM_ACT_TIMER_NTMRMD,
-> +				    STMMAC_NTMRMD_1SEC) |
-> +			 FIELD_PREP(XGMAC_MAC_FSM_ACT_TIMER_TMR, csr_clk_mhz);
-> +		writel(value, ioaddr + XGMAC_MAC_FSM_ACT_TIMER);
-> +	}
-> +
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 4da7289626387..5e5c54b58bee0 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -3691,10 +3691,16 @@ static void stmmac_mtl_configuration(struct stmmac_priv *priv)
->  
->  static void stmmac_safety_feat_configuration(struct stmmac_priv *priv)
->  {
-> +	unsigned int csr_clk_mhz = 0;
-> +
->  	if (priv->dma_cap.asp) {
->  		netdev_info(priv->dev, "Enabling Safety Features\n");
-> +		if (priv->plat->stmmac_clk)
-> +			csr_clk_mhz = clk_get_rate(priv->plat->stmmac_clk) /
-> +				      1000000;
-
-[Severity: Medium]
-When priv->plat->stmmac_clk is NULL, csr_clk_mhz stays 0.
-dwmac5_safety_feat_config() then still sets TMOUTEN but silently skips
-the MAC_FSM_ACT_Timer write. Doesn't that leave the timer disabled on the
-in-tree platforms that explicitly request tmouten?
-
-stmmac_pci_probe() sets plat->safety_feat_cfg->tmouten = 1 for the snps
-gmac5 device but never sets plat->stmmac_clk. snps_gmac5_default_data
-only sets clk_csr = STMMAC_CSR_250_300M.
-
-mediatek_dwmac_common_data() also sets tmouten = 1, but
-stmmac_probe_config_dt() only looks up the "stmmaceth" clock:
-
-    plat->stmmac_clk = devm_clk_get(&pdev->dev,
-                                    STMMAC_RESOURCE_NAME);
-    if (IS_ERR(plat->stmmac_clk)) {
-        dev_warn(&pdev->dev, "Cannot get CSR clock\n");
-        plat->stmmac_clk = NULL;
-
-The mt2712e/mt8188/mt8195 DTs don't provide a clock with that name.
-
-On both platforms TMOUTEN ends up set with NTMRMD == 0, and nothing is
-logged. Could this fall back to plat->clk_csr, or at least report that
-the timer could not be programmed?
-
->  		stmmac_safety_feat_config(priv, priv->ioaddr, priv->dma_cap.asp,
-> -					  priv->plat->safety_feat_cfg);
-> +					  priv->plat->safety_feat_cfg,
-> +					  csr_clk_mhz);
-
-[ ... ]
-
-> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-> index 00be2df63d220..659f5db528d3a 100644
-> --- a/include/linux/stmmac.h
-> +++ b/include/linux/stmmac.h
-> @@ -170,6 +170,18 @@ struct stmmac_safety_feature_cfg {
->  	u32 tmouten;
->  };
->  
-> +/* MAC_FSM_ACT_Timer.NTMRMD timeout durations */
-> +#define STMMAC_NTMRMD_1US		0x1
-> +#define STMMAC_NTMRMD_1MS		0x2
-> +#define STMMAC_NTMRMD_16MS		0x3
-> +#define STMMAC_NTMRMD_64MS		0x4
-> +#define STMMAC_NTMRMD_256MS		0x5
-> +#define STMMAC_NTMRMD_1SEC		0x6
-> +#define STMMAC_NTMRMD_4SEC		0x7
-> +#define STMMAC_NTMRMD_16SEC		0x8
-> +#define STMMAC_NTMRMD_32SEC		0x9
-> +#define STMMAC_NTMRMD_64SEC		0xa
-
-[Severity: Low]
-This isn't a bug, but only STMMAC_NTMRMD_1SEC is used, and only from
-dwmac5.c and dwxgmac2_core.c. Since v4 dropped the ntmrmd field,
-platforms can't select any of the other values.
-
-Would it be better to define just the one value next to the
-MAC_FSM_ACT_TIMER field definitions in dwmac5.h and dwxgmac2.h, rather
-than adding the full table to the shared platform header?
-
-> +
->  /* Addresses that may be customized by a platform */
->  struct dwmac4_addrs {
->  	u32 dma_chan;
+   387	
+ > 388	static int stm32_mdf_core_suspend(struct device *dev)
+   389	{
+   390		struct stm32_mdf *mdf = dev_get_drvdata(dev);
+   391		struct stm32_mdf_priv *priv = to_stm32_mdf_priv(mdf);
+   392		int ret;
+   393	
+   394		ret = pm_runtime_force_suspend(dev);
+   395		if (ret)
+   396			return ret;
+   397	
+   398		regcache_cache_only(priv->regmap, true);
+   399		regcache_mark_dirty(priv->regmap);
+   400	
+   401		/* Balance regmap_mmio_attach_clk() clk_prepare() */
+   402		clk_unprepare(priv->kclk);
+   403	
+   404		return pinctrl_pm_select_sleep_state(dev);
+   405	}
+   406	
+ > 407	static int stm32_mdf_core_resume(struct device *dev)
+   408	{
+   409		struct stm32_mdf *mdf = dev_get_drvdata(dev);
+   410		struct stm32_mdf_priv *priv = to_stm32_mdf_priv(mdf);
+   411		int ret;
+   412	
+   413		ret = pinctrl_pm_select_default_state(dev);
+   414		if (ret) {
+   415			dev_err(dev, "Failed to set pins default state: %d\n", ret);
+   416			return ret;
+   417		}
+   418	
+   419		ret = clk_prepare(priv->kclk);
+   420		if (ret) {
+   421			dev_err(dev, "Failed to prepare kernel clock: %d\n", ret);
+   422			goto err_clk;
+   423		}
+   424	
+   425		regcache_cache_only(priv->regmap, false);
+   426		ret = regcache_sync(priv->regmap);
+   427		if (ret) {
+   428			dev_err(dev, "Failed to sync cache: %d\n", ret);
+   429			goto err_cache;
+   430		}
+   431	
+   432		return pm_runtime_force_resume(dev);
+   433	
+   434	err_cache:
+   435		clk_unprepare(priv->kclk);
+   436	err_clk:
+   437		pinctrl_pm_select_sleep_state(dev);
+   438	
+   439		return ret;
+   440	}
+   441	
+ > 442	static int stm32_mdf_core_runtime_suspend(struct device *dev)
+   443	{
+   444		return 0;
+   445	}
+   446	
+ > 447	static int stm32_mdf_core_runtime_resume(struct device *dev)
+   448	{
+   449		return 0;
+   450	}
+   451	
 
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261118025528.2703790-1-zxyan0222%40gmail.com
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
