@@ -2,114 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A059A606A7F5
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B500606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RXebDdVe;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=LJOwH+8M;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ajjGW93E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=umI7ORJc;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=j3BfZ7QN;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=bIx8Bjdo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=; b=RXebDdVeKWr7E2
-	2eIb8GipjgY+SrMhL3EBYZ/wtpk1jfztOjP7216tnkILMEdIwPzUgJm+ev1fMN0NB15oX/Ov1TmTK
-	V5ySpm+dLqDOgKjU8P8bGopYT2IFd+99VlKfzsOU4yFdPn7o2sfr/LWKyBhCXYC1yg8f9O793ePxG
-	9mVoA6Jxp9YAQF/dsAUGUoXEDWI7iD4tOwpCEkgcZfPoVwvRsfVg3AwomeOEtVkQqH1K/DiRNmZEb
-	k5qUj+ZvWA7IEfB0f6Q3tXzmU7zQZ8qvKz3sfvAmVDMo2j5DY8tJwsbAwIz9IUK9v+qmq+lPLJ1rI
-	qeymgp9AIGbawO+XJtvg==;
+	List-Owner; bh=UxmBx3Rz1ImbRcmIwlXmykyvtl7+nbEutG+sEKlD5uk=; b=umI7ORJcEfGZUu
+	Bcn52jh6U4SVmld+MH7XrXIHahX3K8oRGBuAzRBxODCMH+BDSTCkKQiL3JfPZmXJ9JzXMfJFVhRKu
+	Fcx5zr+v9LiphfwkG4nZPWfZDbp7Ej9FRuylvb0GmSUsfMOOVn9mA87mG4oSWDyvc2z/QJTQ4yAQb
+	hr7vcFLGDxkqK4aQSj/I0n6ZnfrZ0872/Vm2RYb8JwDUOvQX3IMoFEUWl8ZpdLhByYxh5xpn5rath
+	kajzJmSb9LYmwe7++01loNAd2Go7sgtMAPXopzPhksGrweXXNYEmFJipgaocuSTqbCE9UIZNEgBpy
+	xao6mVXmuWkYKtZ8WWSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKEW-0000000ENJJ-2suc;
-	Fri, 20 Nov 2026 08:44:37 +0000
+	id 1xUKHo-0000000ENzK-18bo;
+	Fri, 20 Nov 2026 08:48:00 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKDn-0000000EN6D-03GS
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 20 Nov 2026 08:43:52 +0000
+	id 1xUKEF-0000000ENG8-36Rc;
+	Fri, 20 Nov 2026 08:44:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=; b=LJOwH+8M4madoWbePbJFNuTqKs
-	VGIeeIuarBS73MGhqEockrWzfBFit+8nsg0tdDD4IVPGj0twB/A80Pt+P4Im5Ye9/GsoI2SAlhN9c
-	+hgVURmjbVIXAVOUvsWgit6FdTmOvSRaVvq6s9F9qf7judrSjqv1y2x/PPx9lKs3Rnaopdwzb/zt9
-	+N5WjulPlJG4NWkH9+maC7EFlZ++qeo+oDDkF1nsYm1f21/ZkqPAAcQ4WG9xnyTGxHYw/F13Hb3dK
-	pDc2NomNpY92vORZkTvEKcU1J2DA++9iN64D/kdMp6qfrw32vSwbPgsSXrc5E4JMEthi/OtSlaSJc
-	XtcePHQg==;
-Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=UxmBx3Rz1ImbRcmIwlXmykyvtl7+nbEutG+sEKlD5uk=; b=j3BfZ7QNQ/tbsAc38CDSWIuD2D
+	xQ8uwpX6bkzgKkH/FiugXA54oINgjtS2fSf3u6Gh6w6QyV1XHAt1WotGCk+y5nZ5mIK0pEx8WRsCK
+	qH14k/amXlpKogXES7p7z+aoIcx7Uc/ugHI22Jq+TycKRJAsiuNRs5S/XI/XYbuQDpFaAnzr7KmNl
+	bbPb9ngKrdmWRP8Cz/vQEG9uGcrzXep9PotY7NkvVb+Jpvx48ydtyqb9MJ3tATGK4zPem1V18CKKc
+	gGt++AKmOyLzn/bc2PLhAFed7+412OJO42CWlWvyvkv8Ig5Z5TUmiz2vp5VN+iM/eJKTo7WUHxgrX
+	Q1Zy78gg==;
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKDg-00000000Yjg-3ecw
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 08:43:50 +0000
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-8c700d6cc0bso1047270b3a.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 00:43:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795164222; x=1795769022; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=;
-        b=ajjGW93EoAPpEdAx0rq5Ymttivvb0vgxxGVZj7usB3yhCg8JPxpd45lJgVqzWOhRyo
-         WbFZv6fi0t0se8n6MIDDxPTV4+uAvhz1cTdkdp1lfRRfEz6hU11mnFgis4OBIoepyZnI
-         8MENCo5R8yPJhhmbWAey+nPqsyYBjhbXcsZKpoPA+nsYz3Gq1T4/MEWVvfHoyKGdQ2ma
-         yZh6QkZK1aVtYTOeV4mWCeSL8q+0QCAEEDdFKRgrAJFU6axmc6EU+4i1X/Lt45/tV+7g
-         vjcL6RhZnrXqzCFnOPhRAH0awMUxYsaDohD5egHZue+USb0XT8/mYerzuYE0X7PsQexw
-         q/KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795164222; x=1795769022;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=an9c/AwHDCpMgy31fhAcNA3Rgkyae//mKDjGvqRP4jw=;
-        b=iJT8IfYLEMc/9wrPd3EzBjBHy+sHYnJdvQ6iTb4BMtcEWG3H21+91hKLfWDA+njwAh
-         sDRZ+8SDUue+38q9Rcepk/jP++3XoykyW7JF3RcLchvoTu2UjYi+vC/UwmgJDnAjVQ9Q
-         6KwUUrs+3+rwcjTx8jecgImdg9tdmT8ZX0rveSpu85qjk2iCFMLsxTqF+3ueNSFcxGxs
-         NZJ3yXDmr+N6gw+rliCNWujPwSdsnaoNmyxvZxfQP0Nqi7aVhq4eymrUf/8+4YVzlp9t
-         p7NXy37/znV+Cq46xKISMozOdsycsUmVziSOK60fWHOm0AMExuEXse4pVJUSBdeLD6qJ
-         5OOQ==
-X-Forwarded-Encrypted: i=1; AL+hErGKkyECk11gE9lJVrNnG7fNCXUh541e8VZY0jx96mjN9R/jCg8w/wZt08CxxlhzThMjm9+IccL2wgyVrREsW9af@lists.infradead.org
-X-Gm-Message-State: APuU4Z87VUSVFyt9Dx8iz3tJW/Ca3YLGkiW2GBkvQztS5U1XiCoEOcS8
-	ycnvk1LPrsfuoqfMbtUIoFcY3hkuvOFfKsl93z0Bs346D6yrAjRB/YI7JE61QwXeLAM=
-X-Gm-Gg: AYBFou1Nv8z4VDBR/8rQwWAytL5UpbZF3NoWNillWnR+2uJnjVP+gqxFfAB7psmDW6t
-	KBAD+BAWHXn9SYtVgWe19G8N9Kwp1oaTrSWgNsnj+w7c5Ws4CgsJzTbPFoduubhbHYPasSNpLrQ
-	EZ3EBuOIMZQkZhN02lXlMyNuXrTVcol1OLFOb0poPxTV8TBjRjZ+mqb6uR3Ne8Sw0H5adktA58f
-	DRYGCNMLtOWLeNYUEER24w1ZdFALIRbkij88+Ni2gFi4qne0HKh13MWMFu+wpdvK8cJ4/aC2+ir
-	LJUtHEes113Z/i90X2OB3C7HHy1ONUmGTOB2P7f9htbcAx/gAXckhr7enszP+Qbx+MF6O3zQsaN
-	HAAT4VKG0J2diIG5pbiliG+c+PU77j+scQMXd9IuqsoYuEl52cZMoeGdH9V9WcDVUjAa3RI6noS
-	baShSbYwLRekcxpiv3mA7NpYKrQ3Olkl+R0/0pfKbc69BTHLq4HC/9bnXynFxlyv6yM8sCCgjjT
-	MSJLfvZs0ZaCLm0sDFrsgE89375PEN2sFngSrpZiTxsU+LF0dhXzCI0dCNS73TBLQgozMAuo6Y/
-	w8a9cT3HS6yW+AiwQOVBYQPrE+U3muM8MQu8QzvhjrjNbooxYr2QJ8O82xs=
-X-Received: by 2002:a05:6a00:2eaa:b0:8b5:fbd0:cb49 with SMTP id d2e1a72fcca58-8c7dd9d6a22mr2795672b3a.21.1795164221763;
-        Fri, 20 Nov 2026 00:43:41 -0800 (PST)
-Received: from localhost ([2.27.148.107])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c87343f83dsm1163978b3a.39.2026.11.20.00.43.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 00:43:41 -0800 (PST)
-From: Han Gao <rabenda.cn@gmail.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Han Gao <rabenda.cn@gmail.com>,
-	gaohan@iscas.ac.cn,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Michal Simek <michal.simek@amd.com>,
-	arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] firmware: arm_scmi: Drop the ARM architecture dependency
-Date: Fri, 20 Nov 2026 16:43:31 +0800
-Message-ID: <20261120084335.3492524-1-rabenda.cn@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <CAMuHMdUov1u3kXzBX3ZM8rRkBdLq_M8LwQ2VtxSEOH9w68Rr2g@mail.gmail.com>
-References: 
+	id 1xUKEC-00000000You-2fJj;
+	Fri, 20 Nov 2026 08:44:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description;
+	bh=UxmBx3Rz1ImbRcmIwlXmykyvtl7+nbEutG+sEKlD5uk=; t=1795164256; x=1796373856; 
+	b=bIx8Bjdow2LJn/g4OYI0z4fmIM/90CaWCHwi4OrUp3DcOjRAwWKLWNAKEoOkdSTm4Rl2wtEhHUG
+	4gZQUJKiPCig2wcY64qQ89cVmv/UBLuaruXQ7lGOLO5xWJMuMZIk/Zy9k8sL5AAw/Gey+NcfFzwAU
+	ghAFkZA0iFQjrDAVjHsKuEKw0eUrLUz2e4c1JqOLnuk4BfkSDMMgtRRHOtbSSHO7kZFSAGNhGr24V
+	f3ubyXxBTijDkFXJFBKMPpo0aigQpr+PwWuYfKYxwZI3+Xmj+696NQKhtwd3pP7D70+sr5h/Ac5aT
+	Yb4q9geFaILNIOFkpGcMszBP4cDHyfm/skhQ==;
+Date: Fri, 20 Nov 2026 09:43:20 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Geert Uytterhoeven <geert@linux-m68k.org>, ettore.chimenti@linaro.org
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Russell King <linux@armlinux.org.uk>, Paul Walmsley
+ <paul@pwsan.com>, Stephen Boyd <sboyd@kernel.org>, Brian Masney
+ <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, Sandy
+ Huang <hjc@rock-chips.com>, Heiko =?UTF-8?B?U3TDvGJuZXI=?=
+ <heiko@sntech.de>, Andy Yan <andyshrk@163.com>, Ulf Hansson
+ <ulfh@kernel.org>, linux-clk@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 5/6] [RFT] ARM: OMAP2+: Convert to
+ dev_clk_get_from_provider()
+Message-ID: <20261120094320.442d064b@kemnade.info>
+In-Reply-To: <CAMuHMdVbgGV_6yjOip4xT3YhBgaOveHzSRbw9e_cHen9NRZqmw@mail.gmail.com>
+References: <cover.1795094688.git.geert+renesas@glider.be>
+	<683b5b189409e5ee04100044fb615b01cb877f3d.1795094688.git.geert+renesas@glider.be>
+	<20261119225017.15a7b5cc@kemnade.info>
+	<CAMuHMdVbgGV_6yjOip4xT3YhBgaOveHzSRbw9e_cHen9NRZqmw@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_084345_230910_6ED8866B 
-X-CRM114-Status: GOOD (  31.43  )
+X-CRM114-CacheID: sfid-20261120_084416_567324_2D1CB702 
+X-CRM114-Status: GOOD (  22.21  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,82 +92,119 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 20 Nov 2026 09:26:47 +0100 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On Fri, 20 Nov 2026 08:49:05 +0100
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-> Hi Han,
-> 
-> On Fri, 6 Nov 2026 at 20:40, Han Gao via B4 Relay
-> <devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
-> > From: Han Gao <gaohan@iscas.ac.cn>
+> Hi Andreas,
+>=20
+> On Thu, 19 Nov 2026 at 22:50, Andreas Kemnade <andreas@kemnade.info> wrot=
+e:
+> > On Thu, 19 Nov 2026 14:40:38 +0100
+> > Geert Uytterhoeven <geert+renesas@glider.be> wrote:
+> > =20
+> > > OMAP2+ clock handling uses of_clk_get_from_provider() to obtain clocks
+> > > used for power management, so the latter show up as "deviceless" in t=
+he
+> > > consumer column of the clk_summary file in debugfs.
+> > >
+> > > Fix this by using dev_clk_get_from_provider() instead, letting us pass
+> > > the consumer device, too.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > > Compile-tested only.
+> > >
+> > > The first change is probably OK.  The second change may fail if anyth=
+ing
+> > > in the oh->od->pdev->dev chain is not available yet at this point. =20
 > >
-> > The SCMI core and the mailbox and shared memory transports only use
-> > generic kernel interfaces. Transports that need architecture support,
-> > such as SMC, already carry their own dependencies.
-> >
-> > Drop the ARM and ARM64 dependency so that other architectures can use
-> > SCMI. Depend on HAS_IOMEM instead, for devm_ioremap().
-> >
-> > Suggested-by: Michal Simek <michal.simek@amd.com>
-> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
-> 
-> Thanks for your patch, which is now commit fe87ede443a15969 ("firmware:
-> arm: scmi: Drop the ARM architecture dependency") in scmi/for-linux-next.
-> 
-> > ---
-> > This was patch 1 of the Zhihe A210 SoC series [1]. As Michal asked, it
-> > now goes on its own through the SCMI tree.
-> >
-> > Since [1], it depends on HAS_IOMEM: Sashiko found that UML, which has
-> > no HAS_IOMEM, failed to link devm_ioremap().
-> >
-> > Build tested on x86_64 without OF, i386, loongarch64, ppc64le, riscv64
-> > and arm64. On UML, SCMI can no longer be selected.
-> >
-> > [1] https://patch.msgid.link/20261103-a210-scmi-v3-0-ee6b31580808@iscas.ac.cn
-> 
-> > --- a/drivers/firmware/arm_scmi/Kconfig
-> > +++ b/drivers/firmware/arm_scmi/Kconfig
-> > @@ -3,7 +3,7 @@ menu "ARM System Control and Management Interface Protocol"
-> >
-> >  config ARM_SCMI_PROTOCOL
-> >         tristate "ARM System Control and Management Interface (SCMI) Message Protocol"
-> > -       depends on ARM || ARM64 || COMPILE_TEST
-> > +       depends on HAS_IOMEM || COMPILE_TEST
-> 
-> Please extend the dependencies to RISCV (from the link above, I assume
-> you are targeting riscv?) instead.  There is no point in showing this
-> option on architectures that have no users of SCMI; one already has
-> too many relevant symbols to configure.
-> People who want to build test on x86_64 without OF, i386, loongarch64,
-> ppc64le, ... can just enable COMPILE_TEST.
+> > Test on OMAP3: =20
+>=20
+> Thanks for testing!
+>=20
+> > --- clk-old     2026-11-19 22:44:59.810807920 +0100
+> > +++ clk-new     2026-11-19 22:26:52.862531880 +0100
+> > @@ -1,17 +1,17 @@
+> >                                   enable  prepare  protect             =
+                   duty  hardware                            connection
+> >     clock                          count    count    count        rate =
+  accuracy phase  cycle    enable   consumer                         id
+> >  ----------------------------------------------------------------------=
+-----------------------------------------------------------------------
+> > - oscillator                          0       0        0        2600000=
+0    0          0     50000      Y   deviceless                      of_clk=
+_get_from_provider
+> > + oscillator                          0       0        0        2600000=
+0    0          0     50000      Y   deviceless                      dev_cl=
+k_get_from_provider
+> >                                                                        =
+                                     deviceless                      no_con=
+nection_id
+> > - secure_32k_fck                      0       1        0        32768  =
+     0          0     50000      Y   deviceless                      of_clk=
+_get_from_provider
+> > + secure_32k_fck                      0       1        0        32768  =
+     0          0     50000      Y   deviceless                      dev_cl=
+k_get_from_provider
+> >                                                                        =
+                                     deviceless                      no_con=
+nection_id
+> > -    wdt1_fck                         0       0        0        32768  =
+     0          0     50000      Y      deviceless                      of_=
+clk_get_from_provider
+> > +    wdt1_fck                         0       0        0        32768  =
+     0          0     50000      Y      deviceless                      dev=
+_clk_get_from_provider
+> >                                                                        =
+                                        deviceless                      no_=
+connection_id
+> >      gpt12_fck                        0       1        0        32768  =
+     0          0     50000      Y      48304000.timer                  fck
+> >                                                                        =
+                                        48304000.target-module          fck
+> > -                                                                      =
+                                        deviceless                      of_=
+clk_get_from_provider
+> > +                                                                      =
+                                        deviceless                      dev=
+_clk_get_from_provider
+> >                                                                        =
+                                        deviceless                      no_=
+connection_id
+> > - dummy_ck                            0       0        0        0      =
+     0          0     50000      Y   deviceless                      of_clk=
+_get_from_provider
+> > + dummy_ck                            0       0        0        0      =
+     0          0     50000      Y   deviceless                      dev_cl=
+k_get_from_provider
+> >                                                                        =
+                                     deviceless                      no_con=
+nection_id
+> >   mcbsp_clks                          0       5        0        0      =
+     0          0     50000      Y   deviceless                      mcbsp_=
+clks
+> >                                                                        =
+                                     deviceless                      mcbsp_=
+clks =20
+>=20
+> Hmm, so the passed device is always NULL, and thus there is no point
+> in making the change.
+> Do you know if these come from the first or second change in my patch
+> (I guess the second)?
+>=20
+=46rom the first change, The second piece is nowadys only used by the dm81*
+devices.
 
-Following Michal's suggestion[1], I'm dropping ARM/ARM64.
+I would prefer to have this tested on dm81* too.
 
-[1] https://lore.kernel.org/all/3d38c4a5-1a12-4af1-ac2e-413a457ce4c5@amd.com/
-
-> 
-> >         help
-> >           ARM System Control and Management Interface (SCMI) protocol is a
-> >           set of operating system-independent software interfaces that are
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
-Sent using hkml (https://github.com/sjp38/hackermail)
+Regards,
+Andreas
 
