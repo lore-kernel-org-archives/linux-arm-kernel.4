@@ -2,43 +2,43 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4A9606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38DDA606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:43:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Li8Owu7B;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=apl6EJVO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4nTaUs0j;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=KD3JSBXF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=T2FuN5OiCxA4hG6OB6nRzse4ZJ0m2aVwtWaqqCKPDQ0=; b=Li8Owu7BslmyUufCkalqOm6lHg
-	sP5xPoCz/MqJ4Q+K29K+G77bJKH+J/UGUFMLPT9aVNcm5cL8EUTgk15pUSypPMzrZj48DZGSwTxHY
-	SwNDbDGRN0K1IdSQXRS+ef40prkPGM15MtSoVYyPjXNdKtzD1kX1SzseakGRUpqItbXusGhxd1qBy
-	gBXsQZmb/ZB4tqdspcBZXDGoZy5AXGuwX/V6fImHWhOQ7cJ1fjj57H66F+X4bYx218UFjq5dHTJhW
-	3IpdVB4OuMS0xotrh8HJ+OiAXcXbj/QtlneKp/TxsFuoc/emnzHAyzuxo+8V1QeChwKSqjsb+ywog
-	Dee0tdHg==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=X5MBfvXPnNQILE1xpGSrMoTj3Kqq7Z3luvrzwX3INYY=; b=4nTaUs0jE48n7A
+	+DJlQpP8/IvWsj294FtYXpseq2s0ARKN6+3xlXXbmoq1yPPxGsyENmoz56Vbpllzrq2oBdpfpWwJQ
+	3XVsyz0VkaAdx/MOglwpfPjkuIrVcDkQGa5Ejsaqbuyrx7AvQ88u2RYwSTGxkLovv4b7t49hLvzPW
+	7X3kDqfwtJRJCtQj1QJ4P9OM+Slxo/XsTYhUA88tCVD53KMOaV45TWNdBNuofZgggpxPEsYdNl27O
+	CSmgGmwAL3hDoFCPDGjaYMjUj1fHK+4aYyEb3chmQIWytyrB6TpzMtNdGn6BBGXgdIvyJqvV+abMR
+	nOYzQNZpTwc0FrCUN/8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUL8o-0000000EUdi-45nP;
-	Fri, 20 Nov 2026 09:42:47 +0000
+	id 1xUL8w-0000000EUft-12gY;
+	Fri, 20 Nov 2026 09:42:54 +0000
 Received: from mx.nabladev.com ([178.251.229.89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUL8l-0000000EUba-3rOi
+	id 1xUL8n-0000000EUcn-12BG
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 09:42:45 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D9BCE10BBEA;
-	Fri, 20 Nov 2026 10:42:26 +0100 (CET)
+	Fri, 20 Nov 2026 09:42:46 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6F2AA10CD17;
+	Fri, 20 Nov 2026 10:42:38 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1795167754; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=T2FuN5OiCxA4hG6OB6nRzse4ZJ0m2aVwtWaqqCKPDQ0=;
-	b=apl6EJVOflbfbhm2phWLnsDQmBXCnffH2gxv/fBL3tZsuwCtDV41AizZqWqgVqjKqACl/v
-	kU3AI5aztTTd+F2XuL6LMt46Zv6cIGj5P5aQ4W7JdEvbBvJTqLZTGU3GRFbl+BXiSMUW4C
-	2I0wuycTG4HySForzAqimVjvHIxtOSkZqFukEemH69Y5y3xV8zR7erfJNconmCsoDc1837
-	Qugeanmn7C5XPhFyMm1vnGIvtXYHMRHCuzl+re4y7czTt8Xh+o7s2/3bSeoXAqtWmYvDMw
-	mVCV53dNTyKI27Lg0WqaLKeLie3FHPWOyp+0ZOzRxxm8zQ/UrzcGekoS0Mhujg==
+	s=dkim; t=1795167759; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=X5MBfvXPnNQILE1xpGSrMoTj3Kqq7Z3luvrzwX3INYY=;
+	b=KD3JSBXFoHMU3+wDPnawlm6WWIM2kGd77ACZYs1+yPNDWRIeV0+a9uGjlRP3yhIbzM0oDi
+	V1xYr62UHnJVroGrahi0zrEchqi5uoyq+nlqbF5L2orLGzU5r7XQEnBYLcjYu8IKe9hNQB
+	znTgBUkf4W9IHJa/zHxwEemVbUWOgMUF0Ob8FrNKVSakvvbItIJ9ssDGOBtFHMVafobAf9
+	4XevIQhpBRM0sTHJW9zyyKnsXLRxY+3RyosNUBftV+Fy5KN2S800xBovJZa9LEbpe0TYBd
+	Nuf/AvcXbUb/JzUEFUd29jgy4qWcg6Lg02r+3izX33iNbXApcTMXPnMECQXWew==
 From: Lukasz Majewski <lukma@nabladev.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -55,20 +55,20 @@ Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@nabladev.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v4 1/3] dt-bindings: arm: fsl: Add an entry for Cloos CBASE board
-Date: Fri, 20 Nov 2026 10:42:09 +0100
-Message-ID: <20261120094211.1742416-1-lukma@nabladev.com>
+	Lukasz Majewski <lukma@nabladev.com>
+Subject: [PATCH v4 2/3] dt-bindings: hwmon: Add National/TI LM77 temperature sensor
+Date: Fri, 20 Nov 2026 10:42:10 +0100
+Message-ID: <20261120094211.1742416-2-lukma@nabladev.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261120094211.1742416-1-lukma@nabladev.com>
+References: <20261120094211.1742416-1-lukma@nabladev.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_014244_184697_F232E84A 
-X-CRM114-Status: UNSURE (   8.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261120_014245_466805_E092A0E7 
+X-CRM114-Status: GOOD (  15.23  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,35 +88,99 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add an entry for the i.MX8MM Cloos CBASE board.
+Add binding description for National/TI LM77 temperature sensor.
+When compared to LM75 - it has two output pins one for interrupt
+and another one to signal the critical temperature alarm.
+
+It also has only two I2C address pins (A0 and A1) - possible I2C
+addresses are: 0x4[89ab].
 
 Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-Changes for v2:
-- Place cbase in the correct order
-
 Changes for v3:
-- Add Acked-by
+- New patch, as this IC description is added to Documentation/hwmon
+  as a separate entry and not to trivial devices
 
 Changes for v4:
-- None
+- Add Reviewed-by tag
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/hwmon/national,lm77.yaml         | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/national,lm77.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index c8290a83205b..0fd10f1a1a58 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1101,6 +1101,7 @@ properties:
-           one compatible is needed.
-         items:
-           - enum:
-+              - cloos,imx8mm-cbase         # i.MX8MM Cloos CBASE Board
-               - cloos,imx8mm-phg           # i.MX8MM Cloos PHG Board
-               - tq,imx8mm-tqma8mqml-mba8mx # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM on MBa8Mx
-           - const: tq,imx8mm-tqma8mqml     # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM
+diff --git a/Documentation/devicetree/bindings/hwmon/national,lm77.yaml b/Documentation/devicetree/bindings/hwmon/national,lm77.yaml
+new file mode 100644
+index 000000000000..fbb6e711342c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/national,lm77.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/national,lm77.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: National Semiconductor / TI LM77 Temperature Sensor
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++
++description: |
++  The LM77 is a 9-bit plus sign digital temperature sensor and thermal window
++  comparator with a 2-wire (I2C) interface.
++
++  Unlike the LM75, which has a single alert output, the LM77 features two
++  separate open-drain outputs: an Interrupt (INT) output and a Critical
++  Temperature Alarm (T_CRIT_A) output.
++
++properties:
++  compatible:
++    const: national,lm77
++
++  reg:
++    maxItems: 1
++    description: |
++      I2C address of the device. Depending on the A0 and A1 pins, this
++      can be 0x48, 0x49, 0x4a, or 0x4b.
++
++  vs-supply:
++    description: +VS power supply regulator.
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++    description: |
++      The LM77 has two open-drain interrupt outputs.
++      - The first interrupt should be the INT pin (window comparator).
++      - The second (optional) interrupt is the T_CRIT_A pin (critical
++        over-temp limit).
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@49 {
++            compatible = "national,lm77";
++            reg = <0x49>;
++            vs-supply = <&vcc_3v3_reg>;
++            interrupt-parent = <&gpio1>;
++
++            /* INT routed to GPIO1_12, T_CRIT_A routed to GPIO1_13 */
++            interrupts = <12 IRQ_TYPE_LEVEL_LOW>,
++                         <13 IRQ_TYPE_LEVEL_LOW>;
++        };
++    };
 -- 
 2.39.5
 
