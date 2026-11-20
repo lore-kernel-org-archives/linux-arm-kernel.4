@@ -2,103 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86169606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711A1606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iapNcxNq;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=aXgMR6ie
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rVnGxeyJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PinF9+nw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=H2Y/M+dNCf7NZhZYEFajE482Mp/N89Yl/EG9+klpX5E=; b=iapNcxNqveGtohCYl+VowUsGvB
-	XQ2j/ESpEXdngjzp03ij4IbyNKarQ0z3RfAerLKVnEOEBSWl2ZVU4r+BVzscT0uqmG+mfS9aykXOF
-	cWNdmQvKJ0PqxSFQaa0kc34y0FrHUTlCfgLZ4ndzUJ4RRmNQ0W+rGwFMdvu3LoQfQQP6nRcTF7RkP
-	aJ5bk6w7/MqJwkvvv6169kwxDCpVEX2hwwQ1Rr5SAhXEKqqe23M93qvI4PAlZAMBd2QJCWH2pH91Y
-	fcGwFVIAD95VxSWqnfThK9EdbNmDN+HqV0E3h7VTr/IOUv1NEm+SWTJl5qsLfGLcTQPiBuxnLTXQF
-	NwkVke8A==;
+	bh=jhE8weqNYy0n4xKaMJDFdD/R5NpshsvyD+takwcLwVc=; b=rVnGxeyJrOyntmhqzxKxftqZAG
+	gGLek1Iux9fdQIdrn0Upjz1VJQeeu7dUpAgzgOO7TCW52v3ffotrqwo/t9T3NlfXZkC2KEGCNzIEV
+	8NovfdkIewUn6eND4nRhqcr8hkdoD+HrTBNSYLO3612OR8jLu1QRUmZW1JN7IMsSWujRj2mc8Es0i
+	Rm9sRjhOIaWXd1ha9P9JH5mv8M0m5PEXCvOUZ56yGiEzrTSW+0bkNsvpvo+ctzWJoCNF3HZx1GWAO
+	Aym8wuaa5FJZ8vubMHNiW7cwmoAMptPn3u/1/HjmwzVRVpB1xRiLLMEEEpQzZWU57KtulsovUoHTV
+	aordpN+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMnv-0000000EnQm-1Fy6;
-	Fri, 20 Nov 2026 11:29:19 +0000
-Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
+	id 1xUMom-0000000EneP-3JNz;
+	Fri, 20 Nov 2026 11:30:12 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMno-0000000EnO4-3cOe
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:29:16 +0000
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5c1a947b4adso613231e87.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:29:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795174151; x=1795778951; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=H2Y/M+dNCf7NZhZYEFajE482Mp/N89Yl/EG9+klpX5E=;
-        b=aXgMR6ieLubKx5W0XCaGKi6dGwXoB8eUkhbX4f8CMu4gQV8EmzkR7Pu26H6HrOze/y
-         +BpcEz9hWq99j8+HKj891bHUOjqpxKLhAC1cRhMLFm5vfdA4P6ZM1q7DGspjf9UXlwf6
-         DHevW5XFFtmscYbmgSqXdVioFojg7uNp7Bk0PYOhNCplNbNryFgX+SA4JaM7us+Ne1wF
-         rwidn7XE14qncnV420nuAmUwStrK13b1yUahqpjdxWkguZJUVChfSo3LcIyVQb7nrJmC
-         L3OD7vNd2Phyu0fNRoLfLLL/el+KKOXCrbjYsuMNdl18l+NV864K3970BpuSFPZZ/g8i
-         zthg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795174151; x=1795778951;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=H2Y/M+dNCf7NZhZYEFajE482Mp/N89Yl/EG9+klpX5E=;
-        b=a2Agd+Y2BvfN1YKnePDR3fiu6rwi090PkVDkmqcqCYpE/DAlq55N1pTdN7MQpYsHoz
-         09iax5XTfSNAP5CLN7oxLfmyr/aQtxACiz0ANW4cZ1n2zSBXSN8kQWC5EbWjPedO1LpY
-         HOkEKbUhIC0BuzPblddri2Grko6OwuWpanVQIvVuLUatBKuJ1oKmlPiMjK6+PQJ/0y+G
-         h+X6ypq9QqgEmpSQDn8KevuyQuBoY0EF73GdEi6t+YV3aSHFH9KTJQnwG/LFxvtiUufk
-         RgDABSmh2lT1Hw57/9gF45H5JDvqkV1z9z92fPD73Tx1ZQndD+VeUR1XfJ8SCIuA8H3+
-         RauQ==
-X-Forwarded-Encrypted: i=1; AL+hErGEd7gePBAsHyKjkyECOtW+khu0HphTAiqhD+hsk39uHXOkCqrhxkk8oc0lUcjGMarcVe/KqunJpkokBmnKZz9w@lists.infradead.org
-X-Gm-Message-State: APuU4Z9CihjBeiw49qVXj1yRZInbiWBMXXknSVc4dkW99wYHB2oWUhOe
-	7pXGBK1G8mc1KTpnRh5/rRYgr3GhePFuTwTAKmPh3F4hJPSj1mx1Mnm+
-X-Gm-Gg: AZFdTZflQvS78PjQeYg6i96JuFE57nEsrh6zYr1ekwz3uf6g3jGhuvKlS9ZCmxrmkT9
-	KHJMoK54osy64+0k5XCoN7wPtgLajR8yBC30Fus2xizqdr7/R4gma8VR3Et5RgWVY+9DXS2CPwl
-	SUjlcTs78UfS1XMeCyICReWetizqsZha8Mx6dBOrN/V1NwFHM2NQ2hwJOzf6LwPmE1zRR1ZB9F+
-	Mb8oP769YT3faCMf+l3VUAeJA3WNzdUE9vg6A+ARWzPTHMpY3EE3FvCgr/UQAcu4UWpQhQil2ug
-	t4bROAjMYoxekgE8Wk9N8fPcEQOZtuGlYkwK63HNRcXJScucUyiTMZ6f2Z0TTmtT7B3NSgr9qgV
-	+gIKCqRkkfyZZ/r9VRRoKYHiApEQ1Oqw/pLnS/a9N06P/txt8KKad1w+akMPen7wQ6r6y7EmylH
-	oJOAaQKeKCuGHgFsswJuYMplj5hLZDnNaCH2lIlsnU07bDIcFYyRtcesaezE+sEaNAti4I+RwS3
-	wdvY93Dj1KR1LU4//9QaINHt0W0xlTrhW2h4g8DIWiS4ui2thgs109zHTwMkT2QuNT1svpMJwnF
-	p1C9p+K7/oHd5Oza7TiNd28wF/phlXHdGCz1Y2QHVx8LO3z8g7xNHqITLNy9zRaV5f2vNBsqww=
-	=
-X-Received: by 2002:a05:6512:ba6:b0:5c1:ac5a:52e6 with SMTP id 2adb3069b0e04-5c1bc865878mr898897e87.24.1795174150406;
-        Fri, 20 Nov 2026 03:29:10 -0800 (PST)
-Received: from gmail.com (78-71-189-157-no2450.tbcn.telia.com. [78.71.189.157])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c1bd0177f7sm491711e87.33.2026.11.20.03.29.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 03:29:08 -0800 (PST)
-Date: Fri, 20 Nov 2026 12:29:07 +0100
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Peter Rosin <peda@lysator.liu.se>
-Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v13 0/8] I2C Mux per channel bus speed
-Message-ID: <awAvA1rSGwh0RaIW@gmail.com>
-References: <20261015-i2c-mux-v13-0-778a12cfe93b@gmail.com>
+	id 1xUMol-0000000Endp-1dkI;
+	Fri, 20 Nov 2026 11:30:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id EEC5C415D7;
+	Fri, 20 Nov 2026 11:30:10 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795174210;
+	b=gggMt24qNJTyNG8ghgKICfXgRUow9ONYFql+B06KCpU2dr8MmYk762Rhw0lKZrks25iz
+	 Kgw8WwjKp9xU5WCWI5F4O1SdXBDtvaurp5pU24uo95iIzAPWnaxCsdbiWwjwDhliafPRU
+	 SonjnsrtzNKahX50jrhay8J9J5dj3w8uAkqPNvJyswrh4T9st2h2m1vGydwUJRhDBMY6k
+	 6uENvomp0oNVWVt92GLxk04uCWySH00DMgODPgCokgXEkNa1M8xXCbIX6kIpY0pY6xSOz
+	 1LLVwK7y649tUzOCSES5jQ3IEktxMetBcZrx/UUwar1YwoNw5eslMzWEA/FLMPura6Q==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795174210;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=jhE8weqNYy0n4xKaMJDFdD/R5NpshsvyD+takwcLwVc=;
+	b=rbuX5km/adNDKS4oYcKYggEfv5uzNkrHJLghy2IVMXorvigyTsk3SOlaiPUM6QqGfG7H
+	 sSLGfQx8h5KsOfciG6cd1keaJo69OzGsoqipBavb6KS8ox1UYZOW+l5NFRLCz01+WS6Hl
+	 OqLCnvOU1ZhRFr9hFEogco54GMXnqv9yUqJhBnlyqDhY3JtCU9CZidU/tAeNp/ciHXEyJ
+	 bpiFmwd3lAQePhBHlAVSYFzOzhD7cDsSbUnbKaksYehjay/8WYa0wCA+f7x1a8XbDB2Ag
+	 wdnxdaeVK7WYXlM8sAOmt7zAwaO0AnqT/xBXq1QTfsJatsSsKY+jGzyhReF8qo8kgCA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 178ED1F000C4;
+	Fri, 20 Nov 2026 11:30:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795174210;
+	bh=jhE8weqNYy0n4xKaMJDFdD/R5NpshsvyD+takwcLwVc=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=PinF9+nwwP0NYITXY8jERw7YQQDvsAiZLrQdpIbyKTiq4KvFv9gEMrIhMCynKtuWP
+	 tL8SD1oTujY4W9xp/XBrtP8ZG97ZPad36P+xaX1enK3TYj8pZO4eFm08v6PCIpeRWw
+	 ECmjHUgF7xOo8D4Tqz4Dw9ARlCnEVvuA6CxNec8fvxHLU9wgdxwr2vYFJTGYt/GvMf
+	 oKvWXJm/YTi51uTPrA35Nmm1LFUHQcEu0oIYMiW5wczY5Tz7YDsj44NXAFM1cYqpE3
+	 P1xpk+v8fCXewY1yemOUtFGuvSOyZTZ69Wz3Ah/y9kMKweNYHdv5a3UBw7W501nghZ
+	 ohzpLhZvtjGyg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9A60B49849;
+	Fri, 20 Nov 2026 11:30:06 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Subject: [PATCH v3 0/3] media: rockchip: Add the IEP2 deinterlacer of
+ RK3568/RK3588
+Date: Fri, 20 Nov 2026 11:30:05 +0000
+Message-Id: <20261120-iep2-v3-0-e94eb9f629d2@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20261015-i2c-mux-v13-0-778a12cfe93b@gmail.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_032912_950137_E4917959 
-X-CRM114-Status: GOOD (  22.52  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02Nyw6CMBQFf4V0bQ0tFCgr/8O4KO0VrpFHWmw0h
+ H+3BU1YTnJmzkIcWARH6mQhFjw6HIcA2SkhulNDCxRNYMJTXjDGUoowcdpIJXUBZanznITpZOG
+ O7y1zve3sXs0D9BzduOjQzaP9bD+exd0/me9Jz2hKVQXGgFCcAbu0vcLnWY89iUnPj5L4STxIm
+ alKWWkjlRBHaV3XLxaagl/fAAAA
+X-Change-ID: 20261110-iep2-b9a9c6e77c44
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Alex Bee <knaerzche@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795174206; l=2896;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=R65zek14E7+PZ6+dhDe8b4DlafUNDeybXwhd5n/LjPY=;
+ b=UNdXYNTz4DvcNhR0iYG1qIoq1f3xowbXK1kf1ZdCsz7eo2VwPi/Nyadw0seBLq/WduPSx6hY+
+ zz3NAIc4mVMAqK58wcT8UDvehFwKl/yVQrmjvvwl5dSqB4GMzSVAgJB
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,53 +117,77 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 15, 2026 at 01:01:47PM +0200, Marcus Folkesson wrote:
-> This was a RFC on how to implement a feature to have different bus
-> speeds on different channels with an I2C multiplexer/switch.
-> As no major complaints on the design came up during the review, I
-> decided to submit the series without the RFC tag.
->=20
-> The benefit with this feature is that you may group devices after
-> the fastest bus speed they can handle.
-> A real-world example is that you could have e.g. a display running @400kHz
-> and a smart battery running @100kHz using the same I2C controller.
->=20
-> There are many corner cases where this may cause a problem for some
-> hardware topologies. I've tried to describe those I could think of
-> in the documentation, see Patch #5.
->=20
-> E.g. one risk is that if the mux driver does not disconnect channels
-> when Idle, this may cause a higher frequency to "leak" through to
-> devices that are supposed to run at lower bus speed.
-> This is not only a "problem" for changing bus speed but could also be
-> an issue for potential address conflicts.
->=20
-> This patchset has been used and tested heavily the last months
-> on a custom board based on a da850 (DaVinci) platform.
->=20
-> The implementation is split up into several patches:
->=20
-> Patch #1 Introduce a callback for the i2c controller to set bus speed
-> Patch #2 Introduce functionality to adjust bus speed depending on mux
->          channel.
-> Patch #3 Cleanup i2c-davinci driver a bit to prepare it for set_clk_freq
-> Parch #4 Implement set_clk_freq for the i2c-davinci driver
-> Parch #5 Update documentation with this feature
->=20
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
+Add a V4L2 mem2mem driver for the IEP2 deinterlacer of the RK3568 and
+RK3588, with its binding and the RK3588 DT node. The V4L2 side follows
+Alex Bee's IEP driver.
 
-Gently ping on this series.
+Tested on an Orange Pi 5 (RK3588S) with a 7.3-based kernel (KASAN,
+lockdep); build-tested on media next. v4l2-compliance 59/59, all four
+modes at 1080i without IOMMU faults, s2idle and deep suspend while
+streaming, unbind while streaming, forced watchdog and IOMMU fault
+resets. Not tested: RK3568. DMABUF imports of exactly the image size
+are refused, because of the 4 KiB OUTPUT padding (see 2/3).
 
-Thanks,
-Marcus Folkesson
+One case is still open: a reset during a transfer, seen only with
+forced watchdog resets, can leave the IOMMU busy. Jobs then fail
+without DMA and the driver suspends at once so that PD_VDPU powers
+off, which restores it. While another device of the domain, e.g. a
+video decoder, keeps it on, the jobs keep failing.
+
+Developed with Claude (Anthropic), which wrote the code and the commit
+messages. I reviewed every change.
+
+---
+Changes in v3:
+- Drop the vendor kernel notes from the commit messages and cover (Krzysztof)
+- 1/3: drop the linux-media list from the MAINTAINERS entry (Krzysztof)
+- 1/3: add Krzysztof's Reviewed-by
+- 2/3: start the job and its watchdog under irq_lock (Sashiko)
+- 2/3: soft-reset the core with the AXI side, CRU reset if the IOMMU
+  stays lost, shared IRQ off during a reset; no DMA until the IOMMU is
+  restored
+- 2/3: return OUTPUT buffers before CAPTURE buffers
+- 2/3: mask and clear all interrupts on completion and before a job
+- 2/3: suspend at once when the IOMMU is lost
+- 2/3: take the mutex in system suspend
+- Link to v2: https://patch.msgid.link/20261115-iep2-v2-0-3d8798cd9a55@gmail.com
+
+---
+Arun Iyengar (3):
+      media: dt-bindings: Add Rockchip IEP2 deinterlacer
+      media: rockchip: Add IEP2 deinterlacer driver
+      arm64: dts: rockchip: Add IEP2 deinterlacer to RK3588
+
+ Documentation/admin-guide/media/rockchip-iep2.rst  |   32 +
+ Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+ .../bindings/media/rockchip,rk3568-iep2.yaml       |   95 ++
+ MAINTAINERS                                        |    8 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   22 +
+ drivers/media/platform/rockchip/Kconfig            |    1 +
+ drivers/media/platform/rockchip/Makefile           |    1 +
+ drivers/media/platform/rockchip/iep2/Kconfig       |   16 +
+ drivers/media/platform/rockchip/iep2/Makefile      |    3 +
+ drivers/media/platform/rockchip/iep2/iep2-regs.h   |  191 +++
+ drivers/media/platform/rockchip/iep2/iep2.c        | 1320 ++++++++++++++++++++
+ drivers/media/platform/rockchip/iep2/iep2.h        |  108 ++
+ 12 files changed, 1798 insertions(+)
+---
+base-commit: ad6549a46748d00818483b535e5cd2a704685c98
+change-id: 20261110-iep2-b9a9c6e77c44
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
+
 
