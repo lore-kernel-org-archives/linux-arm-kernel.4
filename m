@@ -2,35 +2,35 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B841606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607CE606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:37:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s6/LxAdC;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=WuKZonIL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QNIJgY6m;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=P+OUwZLi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+u2FXK4znTAqjZJ6FO3Ims1b2AnL3vTXsMI+XlF8czs=; b=s6/LxAdCuranAU
-	F5jpl2CqC0AZcLVBphaySi8oZy5fneryb2L+8CrqCWC39h4KXws4Qq7QoI2W1I//K92I40I3q0WHp
-	YNoKDyLRGHjnAZG4343XXj/pMB0/GHAt/qfeAUpR1dyDYJ9fzOgNZzSg12cdhdvlFzIn+prmhWGWu
-	yvcSW+1MG/uJkyPguEchlO2J9Ljr7QIaXhA6s8xnbSAkT2zk73//9jyH2ZE/cavoTySINxfmiols2
-	v5AIupWcNymnTtRVGBR1a10nwV/3TFvVh2U1kg9dkyLdthUft1a8oncbVmC4OThogtIJFopsS28xP
-	sQB8LFGIdXcNcLg9o/ig==;
+	List-Owner; bh=rQIbTDPqM1kGhmjmlo8VdalXlbJAiuRtdZwXJ1lLpOc=; b=QNIJgY6mtNfzfu
+	JIIBvb2HtfLsfd9gic54fbk+IAYcJIoMcn3B9w2r5GUdCzcAyTf+b2hKIxfNAfLC38TBEp+AnP3mC
+	b34NfdzDPVV3ygFSmas7lBJuUPQIB4Z4BJiq8pdDQiXW7ELrsyX4S2mH0kKnw3n1FRryXd7VA1ItM
+	g0zRJTSljdNeciJ18bfoBhLP6kL51iXtakPrsyj1Lry76U4Nh0WrVU5HO3jsKrxqWmsikle8xFW9u
+	sUEgt5oPyqeqH3d0f7AuGQ46wdp+iVHkxQjzLXTYmN9DsPsG461TTsJkblzYC/2RNmm9HvXTT6O8r
+	5uRdzr/JQlgBI77TfHeQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUL3R-0000000ETUz-10nb;
-	Fri, 20 Nov 2026 09:37:13 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xUL3X-0000000ETWc-1W7K;
+	Fri, 20 Nov 2026 09:37:19 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUL3O-0000000ETSt-2K6o
+	id 1xUL3O-0000000ETSu-2LO8
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 20 Nov 2026 09:37:12 +0000
 Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
 	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id CE934205B3E;
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id EA610205B41;
 	Fri, 20 Nov 2026 10:37:05 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	s=20260414; t=1795167425;
@@ -38,48 +38,48 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+u2FXK4znTAqjZJ6FO3Ims1b2AnL3vTXsMI+XlF8czs=;
-	b=WuKZonIL+YDeptxHrhGYNbKjjZqwqrio1cZL/F8ZzrOQPmrMiuPSwNc9o3/WlXOf35ZAYd
-	dESumHV5L5qMTPen2CyWbCnw8zjRR+3plBd/QJqjScn3pE8B6tI6ZSKZRiCHqdLX/KRQ8w
-	hgTpQDrz7F2R+uiSAra5nozciLlk2fNMAp6vGow8aQZ/aCp4b5Fchxc3+kHlX+8S/Au7nz
-	kVdUf1T296rSnfFzaPMg/OpqnEEAun2OopM5MTODaf/bj5DiHqCEbIxFPwPJiq+BAoXlP0
-	OUvrX0Og9Vei8k35FElzE2AK39wjrIlBeg/ikFfyrOBNcQ3sAAHS1oZwjBqzoQ==
+	bh=rQIbTDPqM1kGhmjmlo8VdalXlbJAiuRtdZwXJ1lLpOc=;
+	b=P+OUwZLiqMnCGXLmYWvt1iZfw82Rk21aiy1iOLrfOT5yQzkLITUknmyO3+nqIb+czQx//o
+	oRmBU4K8KrdrFfkRAzexYS7CY+IV1LAZjNqKvWPQkYhWuCAqEE2VUfZpL5YNl9UjiZmHka
+	2A0F6dvxmWSJsjcGamzkbuyw69GZ+MF/MwXZXPxZrupb57Cr1oCv6qrkuvUM3Mdx2vLfmE
+	2YsMKIpTvbYmroaTgVuaPb8gDB6O2haUU20BUkd08+nTT17N1sE81XLMMe/bU0FGOMotpw
+	qGaTHXeZBHMSQpK5m4YAys7IJF/zQpvN5zMqzt55NiAxJvCGPWegMKIRJTO+yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	s=20260414; t=1795167425;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+u2FXK4znTAqjZJ6FO3Ims1b2AnL3vTXsMI+XlF8czs=;
-	b=ctzx0h7Po2n3uMHOrnG+CsJuZYGk2zzQmVUbSSWT6hF7pZO0GDsDYY8hIxUmo6wsHbQsoy
-	+jmDiaoHzfjbh0zlbMgT8/jfPJJgO7C0dDEEzEYyLNrGrNau876U1iXxFnGXtZPB9c7bXc
-	4H6GzuJMTOiMbLdyUk0HsnYhwrzRqOneocEc0Zihq1XBKSOGVN2fMwq+1Q8C0eMIxWJ1V2
-	rcWfjkIGvyF5xAX9Uhe3j+NzxooyrwMhNRh9xmXNj/OomvNosmTEA2VyVNskF3Wh4oOiu+
-	XnF1wvU4+vZfGDf2TeER7hJ69owR08Ycp0YUJu5ZcKp4EEwXRlyDChbTDuOyEw==
+	bh=rQIbTDPqM1kGhmjmlo8VdalXlbJAiuRtdZwXJ1lLpOc=;
+	b=fl05Vht4e6739plESL9sVFP94kS5cjxBBI0lRv3FLwzKk+KqvtWfDJdfrQMSpH0jYseF1C
+	2wzAVPA0ThM+X0ThlC6jlbRU5S8byJKQQqBLN9mEyWku5DtTI0a+Njy9n5K2B0IMztxV1+
+	19yy+WSmjgirvoMXRjY7Oe3sCILr35BTaNN6rfmne9S8xBF8vfcwK9dxIUxTh19rjc6zw1
+	NZWlSIVQbSS+lALFBE+KaXH5dPsiqK+PAQfQ25MHVC4mqBmTf2D0WB7Zykk1MsIBM/iKO9
+	x4YwN7oZNbWjeChODEygEIZypeFF3sYPx9C+0YjI4SUkTpE6EHNm8Mj62EF8og==
 ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795167425; a=rsa-sha256;
 	cv=none;
-	b=Slc+e+svzZDkRlhI4NqDF+JHHOvHFuqqXOFaM4AgbXDsXQUv+Qb3GzOo5iQr4cRCArJRKl
-	/HT2Z3oN4WbI595j30QL0s21TKa6veYPNHBkilfJAlLs74zjCaFFktEUb14BAKmFhmtsja
-	KxPEAKBpWhQhXB52fzXyFNGlGKc5uzhBxC7QUBiS8m73IP8Syj2XOJ3qvFCQhnda4ui7Ek
-	rA3H+galYpteoM8Uf3uXi9DNFehYb3fPle6p6V3iQ532ZXSd4rf7J7oAmDYcjAcbCeXeKk
-	FDlTsEXMxUBhouA9oBfDFQk9NwvJeOp3AidQhh/+A9EV0smt+lA1i426kQLeDQ==
+	b=EWMWytVgopVKw+1nKLwQ33OpYY5zcjexx08gPySa8ODEVsati7+UD1ik9todrKqZoaZjOD
+	/oROixqM6S6RaOhkgBvvLshySbTxaKKZtFmWUroor5L1rALMm/9mOGoAV/7nFjIP9NAfnK
+	aAx/6FJIIjtI3oQIaqEMMyw+TyqH1wKDLAo3T8uWhVeZzNMzbr9WCOB389SNYGB/57JAFn
+	sNymnpZg0MN3ISVm/HZ1Q/y7WvcokVJ8VaBn2WRaQR+qxjtEwUQsozDUV9WcD9H2kLpVpm
+	ihnZUUNd5wAkRj/cjMvS1ILIxgome5ptn9ZIBImm8h41B1qxkT2jTdMV8CFqWA==
 ARC-Authentication-Results: i=1;
 	ORIGINATING;
 	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.2])
 	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <f.diener@pengutronix.de>)
-	id 1xUL3J-000dRE-0n;
+	id 1xUL3J-000dRE-18;
 	Fri, 20 Nov 2026 10:37:05 +0100
 From: Freimut Diener <f.diener@pengutronix.de>
-Date: Fri, 20 Nov 2026 10:37:05 +0100
-Subject: [PATCH 2/5] arm64: dts: freescale: imx93-11x11-frdm-common:
- Describe PCAL6524 supply
+Date: Fri, 20 Nov 2026 10:37:06 +0100
+Subject: [PATCH 3/5] arm64: dts: freescale: imx93-11x11-frdm: use 8-bit
+ eMMC bus
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-imx93-frdm-fixes-v1-2-78dde22a56fe@pengutronix.de>
+Message-Id: <20261120-imx93-frdm-fixes-v1-3-78dde22a56fe@pengutronix.de>
 References: <20261120-imx93-frdm-fixes-v1-0-78dde22a56fe@pengutronix.de>
 In-Reply-To: <20261120-imx93-frdm-fixes-v1-0-78dde22a56fe@pengutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,8 +92,8 @@ Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
  kernel@pengutronix.de, Freimut Diener <f.diener@pengutronix.de>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_013710_748837_621361FE 
-X-CRM114-Status: GOOD (  13.20  )
+X-CRM114-CacheID: sfid-20261120_013710_766700_03848A64 
+X-CRM114-Status: GOOD (  10.64  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,62 +113,34 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The PCAL6524 GPIO expander is powered by the PMIC's BUCK4 regulator.
-The PMIC in turn uses the expander as its interrupt controller.
+The FRDM-i.MX93 eMMC connected to USDHC3 uses an 8-bit data bus.
+Correct the bus width to allow HS400 operation.
 
-Referencing BUCK4 directly through the expander's vcc-supply
-property creates a circular dependency: the expander requires the
-PMIC regulator to probe, while the PMIC requires the expander for
-its interrupt.
+Verified on an FRDM-i.MX93 board. With the corrected bus width,
+the eMMC operates in HS400 Enhanced Strobe mode at 200 MHz.
 
-Describe the expander's 3.3 V supply using an always-on fixed
-regulator as a proxy for BUCK4. This allows the GPIO expander to
-acquire its supply without introducing the dependency cycle and avoid a
-respective warning:
+This also avoids a respective warning:
 
-     pca953x 1-0022: supply vcc not found, using dummy regulator
-
-The proxy does not represent a separate physical regulator.
+     sdhci-esdhc-imx 428b0000.mmc: drop HS400 support since no 8-bit bus
 
 Signed-off-by: Freimut Diener <f.diener@pengutronix.de>
 ---
- .../boot/dts/freescale/imx93-11x11-frdm-common.dtsi      | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
-index 33ed26aafde88..617f2229b559b 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
-@@ -49,6 +49,19 @@ button-k3 {
- 		};
- 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
+index fbe3543e1ee8c..af674f3f48364 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
+@@ -75,7 +75,7 @@ &sai1 {
+ };
  
-+	/*
-+	 * PCAL6524 is powered by PMIC BUCK4, but the PMIC uses PCAL6524
-+	 * as its interrupt controller. Model the supply with a fixed
-+	 * regulator to avoid a circular device dependency.
-+	 */
-+	reg_pcal6524_vcc: regulator-pcal6524-vcc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_3V3_PCAL6524";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		off-on-delay-us = <12000>;
-@@ -207,8 +220,7 @@ pcal6524: gpio@22 {
- 		gpio-controller;
- 		pinctrl-0 = <&pinctrl_pcal6524>;
- 		pinctrl-names = "default";
--		/* does not boot with supplier set, because it is the bucks interrupt parent */
--		/* vcc-supply = <&buck4>; */
-+		vcc-supply = <&reg_pcal6524_vcc>;
- 	};
- 
- 	pmic@25 {
+ &usdhc3 {
+-	bus-width = <4>;
++	bus-width = <8>;
+ 	keep-power-in-suspend;
+ 	mmc-pwrseq = <&usdhc3_pwrseq>;
+ 	non-removable;
 
 -- 
 2.56.0
