@@ -2,60 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D154F606A6FA
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 20:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A20606A6FA
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 20:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Jv3zTjLu;
-	dkim=pass (2048-bit key, unprotected) header.d=cknow-tech.com header.i=@cknow-tech.com header.a=rsa-sha256 header.s=key1 header.b=gKHowIYZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jqhAxErS;
+	dkim=pass (2048-bit key, unprotected) header.d=cknow-tech.com header.i=@cknow-tech.com header.a=rsa-sha256 header.s=key1 header.b=n0gTJq9f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:
+	Subject:Cc:To:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
 	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=peNVHXoBFHgWsZZFgBktm0IIgj0OlxkuPlY62feLM9s=; b=Jv3zTjLu57Zjvq
-	UHbfyzT4vM1LXjujslk4fmJTxoVadtegtDVy2IE1vw7ChFjetviJ8UQevB8JdlqLD4tyCPbUusHvo
-	E9GqLXhESEl+QquDJZ9ZbKnOmP34kJxh21+L996d+W7dfDEOt2HTYBgEWIX/0z2vsdCcjgi1fET3U
-	HxUoilVW6Auq4AlFWCzMS0a6YaublutyX7EIsW4Es/TpowBxfzUav+VYtzjpiJfB9Evbqpy8hgkDB
-	yuFwXACJa+0Qfc+gNixvxydZypkHwqBiWmLrtcxLHFO1etqFEEZ0Qs4KxOM+LCzsMlI5ZfPVckc/N
-	0Gcyx1WpXdVQZ7zdNJtA==;
+	List-Owner; bh=2kPsIjv/RvpekBzoe/Xg8vqw6hjpXdYepUw3c9M02WQ=; b=jqhAxErStqSZcq
+	5uu2DHfETl8cbB52W8tcBhakThXr1OKlqbxvGUxTjtIVXiZbNEyND+OHGhrDBA6mWI4Nn2Llk4LVe
+	1YadSXC7WC3pLOXiMRUBPV4gyf10dKhR6jP5FOaY3J5JzE2j+kZ53Z3167PJCwiAgP5h7fhM+n0T/
+	sTAejfMG3txtSO7ibSrGWM9MwiSDk3UPmbA5rxf4MTcm35zOe4byL2/sA14FRUUxiIlUV6kFvIloU
+	iYGW7GlZz3w0xQsDn6pksKLOZCS1a9UicG2ml5wW8jqg8KA2/xP3CUiBiHbk2JQNy8TQhq0ZMNtb7
+	WbPpDCRBFypDaOT/rnCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUV2f-0000000GDWk-2OuU;
-	Fri, 20 Nov 2026 20:17:05 +0000
-Received: from out-71.mta0.migadu.com ([2001:41d0:1004:224b::47] helo=mta0.migadu.com)
+	id 1xUV57-0000000GDkk-1OoU;
+	Fri, 20 Nov 2026 20:19:37 +0000
+Received: from out-193.mta1.migadu.com ([95.215.58.193] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUV2c-0000000GDUc-37vB
+	id 1xUV51-0000000GDji-071v
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 20:17:04 +0000
+	Fri, 20 Nov 2026 20:19:32 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=oCLNHmGkPtVaSdKOgJfSe9v1erehhFj7NdQ3Eg5hEtA=;
+DKIM-Signature: a=rsa-sha256; bh=zkzIxeEYCYyeYf0+e7mpu+EI1QXzBX9Ee3zgM17C3no=;
  c=simple/simple; d=cknow-tech.com;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795205810; v=1; x=1795810610;
- b=gKHowIYZCh6xFbfA3OQTaIxtY2Pm/e4nbwUKMbvrYX0yi9YQf3Oe5dbYk96M2L0oQkrQnRY2
- PiqomfO0JyG0qeJf9ciquCMsSVsgwFPZ8l867UyV0aJeVfiwqp1NFs8VtS3qPBf255OjnHzVPaE
- MpKmK7Q1/U18XDdOC4hkjghkkkBWhm0hRHHpgIoG9dn8G/cbxxLQNoxOOMNeUVEIgkIYHQQSE0C
- Iuh9bjrBYIu1ArwgheRJplKSlevturS39+Ccnlg+2OWB+spRk1FOcESvaGpk1p8xhdyZyy9hmyZ
- 6iZy+fhsNzRkp5bYDX4sn7S5REXF12IehtteaUw/jk+jQ==
+ t=1795205968; v=1; x=1795810768;
+ b=n0gTJq9f1yUnKtLkNxNxxzNeWh3ieqx3IDhS1X9ZA05l9QsNKqAMhHbQtcMZhC2T0yiWjPH0
+ fmxCXhKC5W50jL9eCjBRTDBQP+LMHYoQdeOcGpfs6aO9TcjUtfow7gjpoIuHd5+vtvM2fsVdcpJ
+ NJjiCtasvUaY1sZSQpzvlc+DKdyh9EoFIKEkVImLgSmgiJfGHNWKwF64MJRSXWdd9x2PEyzeWW0
+ 3PTJpf5ecg/Y6RmrctwuSEFTOpjwAzi00fLta0JcLlwPJjtG3ZT36U2M/0p8VR4nDPI2RabcuWs
+ gzj9srGSU9bdXnrbloG3VshVN/1ZW+L1jaFnidlfSbmsw==
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 8603c6dc317910df;
-	Fri, 20 Nov 2026 20:16:50 +0000
-X-Mizu-Trace-ID: 8603c6dc317910df
+Received: by smtp.migadu.com with ESMTPS id 36e14be50d0ddf71;
+	Fri, 20 Nov 2026 20:19:28 +0000
+X-Mizu-Trace-ID: 36e14be50d0ddf71
 X-Migadu-Flow: FLOW_OUT
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Nov 2026 21:16:42 +0100
-Message-Id: <DN0BCGELZCSC.G0MWCPQU85UO@cknow-tech.com>
-Cc: "Nicolas Dufresne" <nicolas.dufresne@collabora.com>, "Hans Verkuil"
- <hverkuil+cisco@kernel.org>, "Jonas Karlman" <jonas@kwiboo.se>, "Diederik
- de Haas" <diederik@cknow-tech.com>, "Dang Huynh"
- <dang.huynh@mainlining.org>, "Piotr Oniszczuk" <piotr.oniszczuk@gmail.com>
-Subject: Re: [PATCH v5 0/5] media: rockchip: rkvdec: add support for the
- VDPU346 variant
-From: "Diederik de Haas" <diederik@cknow-tech.com>
+Date: Fri, 20 Nov 2026 21:19:24 +0100
+Message-Id: <DN0BEIZ5BE77.AML9IJ2SIR9G@cknow-tech.com>
 To: "Daniel Golle" <daniel@makrotopia.org>, "Detlev Casanova"
  <detlev.casanova@collabora.com>, "Ezequiel Garcia"
  <ezequiel@vanguardiasur.com.ar>, "Mauro Carvalho Chehab"
@@ -67,14 +60,21 @@ To: "Daniel Golle" <daniel@makrotopia.org>, "Detlev Casanova"
  Zyngier" <maz@kernel.org>, <linux-media@vger.kernel.org>,
  <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
  <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Cc: "Nicolas Dufresne" <nicolas.dufresne@collabora.com>, "Hans Verkuil"
+ <hverkuil+cisco@kernel.org>, "Jonas Karlman" <jonas@kwiboo.se>, "Diederik
+ de Haas" <diederik@cknow-tech.com>, "Dang Huynh"
+ <dang.huynh@mainlining.org>, "Piotr Oniszczuk" <piotr.oniszczuk@gmail.com>
+Subject: Re: [PATCH v5 1/5] media: dt-bindings: rockchip: Add RK3568 Video
+ Decoder bindings
+From: "Diederik de Haas" <diederik@cknow-tech.com>
 X-Mailer: aerc 0.22.0-31-g5c1c510d2b65
 References: <cover.1795191822.git.daniel@makrotopia.org>
-In-Reply-To: <cover.1795191822.git.daniel@makrotopia.org>
+ <70b950c4b4fefbe07fe081f780ff359ed697d37f.1795191822.git.daniel@makrotopia.org>
+In-Reply-To: <70b950c4b4fefbe07fe081f780ff359ed697d37f.1795191822.git.daniel@makrotopia.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_121703_281699_F78244BC 
-X-CRM114-Status: UNSURE (   8.13  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_121931_228899_0C428B3B 
+X-CRM114-Status: GOOD (  13.73  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,27 +85,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri Nov 20, 2026 at 6:36 PM CET, Daniel Golle wrote:
-> This series adds the VDPU346 decoder of the RK3566 and RK3568 to the
-> rkvdec driver, for H.264 and HEVC. It continues Christian Hewitt's v3
-> ...
-> Known limits, none of them introduced here:
+On Fri Nov 20, 2026 at 6:40 PM CET, Daniel Golle wrote:
+> From: Christian Hewitt <christianshewitt@gmail.com>
 >
-> - FFmpeg's v4l2-request hwaccel does not set the HEVC EXT_SPS_ST_RPS
->   and EXT_SPS_LT_RPS controls, so HEVC through FFmpeg decodes wrongly
->   on this decoder as on the VDPU381 ("Long and short term RPS not
->   set"). The handling of these controls is also the subject of [6].
+> The video decoder in RK356X (vdpu346) is described in the same way as
+> the one in RK3588 (vdpu381). A new compatible is added as the decoder
+> capabilities are a subset of the vdpu381 capabilities.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Tested-by: Diederik de Haas <diederik@cknow-tech.com> # PineTab2, Quartz6=
+4-A, NanoPi R5S
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> v5: no changes
+> v4: add Tested-by from Diederik de Haas
 
-FWIW and IIUC, Detlev has a patch for that here:
-https://gitlab.collabora.com/detlev/ffmpeg/-/commits/v4l2-request-ext-sps-r=
-ps-n8.1
+I don't think a Tested-by tag is appropriate for a DT binding patch?
+
+>
+> ---
+>  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b=
+/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> index 4f38a0ef29d84..ea5386e84f17e 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> @@ -18,6 +18,7 @@ properties:
+>      oneOf:
+>        - const: rockchip,rk3288-vdec
+>        - const: rockchip,rk3399-vdec
+> +      - const: rockchip,rk3568-vdec
+>        - const: rockchip,rk3576-vdec
+>        - const: rockchip,rk3588-vdec
+>        - items:
+> @@ -110,6 +111,7 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - rockchip,rk3568-vdec
+>                - rockchip,rk3576-vdec
+>                - rockchip,rk3588-vdec
+>      then:
 
 
 
