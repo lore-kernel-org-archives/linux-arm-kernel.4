@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A527606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44BA606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gcDAcjzZ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aj62RK6g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U8sd5Pat;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J3nRUyJ3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=b53VQhGDB3fDyxFM+t+5Xty44SLQn1Any6AH//jkRcI=; b=gcDAcjzZJj82armdirXd1fUJOs
-	9ErAngIGAfaMqM5Od0QcXEOc9lUXAtGslUDlhbXwh/HlmJ7O13ae5nEKErfxxdI6z6+bECNyKCxJI
-	gV+csxedFZGFaghd6xuF0PRq2hJxPATzoAVq59EB+ZRVIWjr9+9J5ssXxfpgR6k2PXWFRkvHwt0o7
-	Bcy/g+BgHCuavlpwPOXJG9lvJcr1NnFPU//7cuLfqoj1OfPkQt1O2DPHRYLO/F5W41EiUzN5oLoSm
-	yBMAtHrq1iCiZUt/TAHq3psOBozKed2o7Usb2JUj1kt8KuPjSs0qSc65XI8oCIXjWmG47uomh1GAt
-	jf7dbRBw==;
+	bh=r3BTEoTWdxpLsSrAwe3pSyp3V8A+NO3HPrbJJYpXFMw=; b=U8sd5PatqnLhCjj2w9fXflLCNE
+	+ChegdbjjlXs8IG/qkMXlYUObWarjg0/sKTCQQHDcWMyOnxpg038ccgkS883jks8tYULHEGVrxbXm
+	oIk3q2JMYvN68pBNKpXeG0bygIt1yIgbrLHDIqKCJd+lLoaZbKeUT04GD7axKi21i5rfweUDePvUj
+	rb2QaHhbsSa78lokqAJ6sn8voKReyS/2Ylh0p2+SOOAX/roHZmzjp6p4F/NxWILxE9YkWF6u05MBN
+	kQeLSf8pE/L9xuWNh1R8NAKH43Z++fXNPYZZddRuVEfzAdrD9nZUIkPF5JWwFadNQRSmsa2pnB/Zt
+	d61A/OQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUN4E-0000000ErIi-35tB;
+	id 1xUN4E-0000000ErJ8-400M;
 	Fri, 20 Nov 2026 11:46:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUN43-0000000ErFJ-2G5H
+	id 1xUN47-0000000ErGG-3KAY
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:45:59 +0000
+	Fri, 20 Nov 2026 11:46:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D36F162985;
-	Fri, 20 Nov 2026 11:45:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8A5D1F000CA;
-	Fri, 20 Nov 2026 11:45:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3F860629A9;
+	Fri, 20 Nov 2026 11:46:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A47F41F00A00;
+	Fri, 20 Nov 2026 11:46:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795175158;
-	bh=b53VQhGDB3fDyxFM+t+5Xty44SLQn1Any6AH//jkRcI=;
+	s=k20260515; t=1795175163;
+	bh=r3BTEoTWdxpLsSrAwe3pSyp3V8A+NO3HPrbJJYpXFMw=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=aj62RK6gzP2wZfFruZbamBHtiWRCditBicdkfNhpbm+A2wedP1Njr13YYqWSrSA5p
-	 Hr02HrwrYg5k+jD15UNYAdyrmdXx99C0jd99Eq5hRYbgZECjKxVfaRUGN+tXdCapsd
-	 J8Ostcqp9K+dXfK4N3vdx1lXf4B9nE6gQHzmnO/YuwL3Ot5RiP8tE5SxF3h7m6aYbL
-	 vuo63bDksU+WTsKzoNDEs9D6ReAlV3d/eb+GWokJdi1ZftbT9bh4h0TlU18C4dXsGp
-	 B94sTNV972RPH9IdC7uoiYwk2QDbHG32HflidfQFWXex5wmL3ht8Ocuaf6ckB+RFwm
-	 YGH3JcGwsIppg==
-Subject: Re: [PATCH net-next v4 03/10] dt-bindings: net: qcom,ethqos: add
- qcom,shikra-ethqos compatible
+	b=J3nRUyJ34H/ZRu8a+NI9fDD/6j/tpohkyinDxyNdTniY/BL/y6w1AzXiqu6nUeBck
+	 4KQzbhE3eWYfjOPen1pZ60/M94RHNijndWO+ciDdukCWDvJoUTBoWVaeo3oQEwMSRK
+	 r/s0Mm7fE9hHIMY+8dHT7SvLHoQnRfiU51+lOttrJJ3WpQp6R/WRtTl5LhDdBR/TL9
+	 Vh3hSv1/ZnHyskTyZEsqHQtcVKuGehh4mKQXf4ZlS6z8rDOqKbf13ALaWG+1ARIgvF
+	 5k5m0hblFfpNEHoVk4IPhhFDWqNnu5PTfZmn9GlQW1z3oikEYoBQObSkaQLNfcj9ru
+	 WXnhJPhIlbsLQ==
+Subject: Re: [PATCH net-next v4 09/10] net: stmmac: qcom-ethqos: add Shikra
+ EMAC support
 From: netdev-bot+sashiko@kernel.org
 To: mohd.anwar@oss.qualcomm.com
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
@@ -59,11 +59,11 @@ Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org
-Date: Fri, 20 Nov 2026 11:45:56 +0000
-Message-ID: <179517515650.3136.1478544566840893554@kernel.org>
-In-Reply-To: <20261117-shikra_ethernet-v4-3-c41902e5f2fa@oss.qualcomm.com>
-References: <20261117-shikra_ethernet-v4-3-c41902e5f2fa@oss.qualcomm.com>
-X-sashiko-severity: Low
+Date: Fri, 20 Nov 2026 11:46:01 +0000
+Message-ID: <179517516121.3136.6880108744896327095@kernel.org>
+In-Reply-To: <20261117-shikra_ethernet-v4-9-c41902e5f2fa@oss.qualcomm.com>
+References: <20261117-shikra_ethernet-v4-9-c41902e5f2fa@oss.qualcomm.com>
+X-sashiko-severity: Medium
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -85,161 +85,187 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found more severe
-issue(s) in other patches of this series. This mail is only an FYI, in case
-you want to address the nit picks below when you respin.
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
 
-Low priority / nit picks for your consideration:
+Critical: 0 · High: 0 · Medium: 2 (1) · Low: 0
 
-- [Low] The commit message says the if/else block constrains Shikra
-  "while leaving existing compatibles unchanged", but the schema now…
-- [Low] The Shikra `then:` block (lines 116-130 of qcom,ethqos.yaml)
-  requires exactly six clocks ending in `axi-noc`, `pcie-tile-axi-noc`…
-- [Low] For Shikra, the `then:` branch of qcom,ethqos.yaml fixes clock
-  index 3 to `const: rgmii` (line 125).
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
+
+- [Medium] On Shikra, the DLL-bypass path is only used for phy-mode
+  "rgmii-id", but nothing stops a DT from using another RGMII mode, and…
+- [Medium] Putting "stmmaceth" in shikra_noc_clk_names (dwmac-qcom-
+  ethqos.c:335-340) puts the stmmac-core-owned clock under OPP rate and…
+
+Pre-existing issues:
+- [Medium] This problem wasn't introduced by this patch, but by the
+  earlier commit in this series "net: stmmac: qcom-ethqos: add DLL-…
 
 --
 
-dt-bindings: net: qcom,ethqos: add qcom,shikra-ethqos compatible
+net: stmmac: qcom-ethqos: add Shikra EMAC support
 
-This adds a qcom,shikra-ethqos compatible to the qcom,ethqos and
-snps,dwmac bindings. Shikra's EMAC needs two extra NOC clocks (axi-noc,
-pcie-tile-axi-noc) and an OPP table to vote VDD_CX. An if/else block
-limits Shikra to six clocks and requires operating-points-v2 and
-power-domains.
+This adds the qcom,shikra-ethqos compatible and a new shikra_data
+descriptor. The descriptor enables three NOC clocks whose rates are set
+through an OPP table, sets a 36-bit DMA address width, and sets
+phy_managed_delays so rgmii-id uses the DLL-bypass sequence.
 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> index ef520f8105773..6bd4bded650a4 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-
-[ ... ]
-
-> @@ -81,6 +83,14 @@ properties:
->        - const: cpu-mac
->        - const: mac-mem
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> index 15385750b3e6e..a7fdba73da2ba 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+> @@ -332,6 +332,24 @@ static const struct ethqos_emac_driver_data emac_v4_0_0_scmi_data = {
+>  	.setup = ethqos_scmi_setup,
+>  };
 >  
-> +  operating-points-v2:
-> +    description: |
-> +      For Shikra, the OPP table specifies the rates for the NOC access
-> +      clocks in "stmmaceth", "axi-noc", "pcie-tile-axi-noc" order.
-> +
-> +  opp-table:
-> +    type: object
-> +
+> +static const char * const shikra_noc_clk_names[] = {
+> +	"stmmaceth",
 
-[Severity: Low]
-The commit message says the if/else block constrains Shikra "while
-leaving existing compatibles unchanged". Is that true for these two
-properties?
+[Severity: Medium]
+Putting "stmmaceth" in this list places a clock that the stmmac core owns
+under OPP rate and VDD_CX control. Is the enable ordering on resume safe?
 
-operating-points-v2 and opp-table are added to the top-level properties
-without any compatible gating. The else branch further down only narrows
-clocks and clock-names.
+ethqos_clks_config(false) drops the vote with dev_pm_opp_set_rate(dev, 0).
+In drivers/opp/core.c, _set_opp() with a NULL opp goes to
+_disable_opp_table(). That removes the bandwidth, level and required-opps
+votes, but it never lowers the clock rates. So stmmaceth stays at its OPP
+maximum rate after the CX vote is gone.
 
-At the baseline, neither snps,dwmac.yaml nor any other binding under
-bindings/net/ defined these properties, and this file ends with
-unevaluatedProperties: false. An OPP table on a qcs404, qcs615, sa8775p,
-qcs8300, sc8280xp or sm8150 ethqos node used to fail dtbs_check. With
-this patch it passes.
+On resume, stmmac_bus_clks_config() enables that same clock before the
+glue callback puts the vote back:
 
-The property description says it applies to Shikra. Later in the series,
-the driver reads the OPP table only when num_noc_clks is set, which is
-only the case for shikra_data.
-
-Could the else branch add operating-points-v2: false and opp-table:
-false? Or should the commit message be adjusted?
-
-[ ... ]
-
-> @@ -95,6 +105,42 @@ required:
->    - clock-names
->    - reg-names
->  
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,shikra-ethqos
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: stmmaceth
-> +            - const: pclk
-> +            - const: ptp_ref
-> +            - const: rgmii
-
-[Severity: Low]
-Does fixing the fourth clock to rgmii mean SGMII/serdes boards can't be
-described on Shikra?
-
-The top-level schema still allows phys and phy-names = serdes for
-Shikra, but phyaux is rejected here.
-
-The Shikra GCC exposes PHY AUX and SGMIIPHY RX/TX clocks for both EMACs:
-
-drivers/clk/qcom/gcc-shikra.c:gcc_shikra_clocks[] {
+drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c:stmmac_bus_clks_config() {
     ...
-	[GCC_EMAC0_PHY_AUX_CLK] = &gcc_emac0_phy_aux_clk.clkr,
+		ret = clk_prepare_enable(plat_dat->stmmac_clk);
+    ...
+		ret = clk_prepare_enable(plat_dat->pclk);
+    ...
+		if (plat_dat->clks_config) {
+			ret = plat_dat->clks_config(plat_dat->bsp_priv, enabled);
     ...
 }
 
-The SGMII-capable ethqos SoCs (sa8775p and qcs8300, with link_clk_name =
-"phyaux" in emac_v4_0_0_data) use these clocks for the serdes path.
+ethqos_clks_config()->qcom_ethqos_set_opp() only runs after that. At
+probe, stmmac_probe_config_dt() also enables stmmaceth before
+ethqos_hlos_setup() votes.
 
-On a Shikra board wired for SGMII through the serdes, a phyaux link
-clock would fail dtbs_check. ethqos_hlos_setup() would also fetch
-"rgmii", because shikra_data sets no link_clk_name:
+The commit message says this is safe because "VDD_CX only needs to be
+voted while DMA traffic is ongoing". However, the OPP required-opps
+describe the CX corner a given clock frequency needs, whether or not
+traffic is running.
 
-	ethqos->link_clk = devm_clk_get(dev, ethqos->data->link_clk_name ?: "rgmii");
+Could stmmaceth be ungated at its OPP fmax while CX is at a lower corner?
 
-If SGMII is intentionally unsupported on Shikra, could the commit
-message say so? If not, should this be an enum of rgmii and phyaux, as
-it is for the other compatibles? Bindings are expected to describe the
-hardware even where the driver lacks support.
+For axi-noc and pcie-tile-axi-noc, the glue driver applies the vote
+before enabling the clocks. Would it be better to do one of these
+instead?
 
-> +            - const: axi-noc
-> +            - const: pcie-tile-axi-noc
+  - keep stmmaceth out of the OPP-managed set
+  - lower its rate before dropping the vote
+  - make sure the vote is in place before the core enables stmmac_clk
 
-[Severity: Low]
-Does every Shikra EMAC instance really need pcie-tile-axi-noc?
+> +	"axi-noc",
+> +	"pcie-tile-axi-noc",
+> +	NULL,
+> +};
+> +
+> +static const struct ethqos_emac_driver_data shikra_data = {
+> +	.dma_addr_width = 36,
+> +	.has_emac_ge_3 = true,
+> +	.noc_clk_names = shikra_noc_clk_names,
+> +	.num_noc_clks = ARRAY_SIZE(shikra_noc_clk_names) - 1,
+> +	.rgmii_config_loopback_en = false,
+> +	.phy_managed_delays = true,
 
-This then block requires all six clocks on every qcom,shikra-ethqos node
-and does not distinguish the two EMAC instances.
+[Severity: Medium]
+This descriptor has phy_managed_delays but no rgmii_por table. What
+happens if a Shikra DT uses phy-mode "rgmii", "rgmii-rxid" or
+"rgmii-txid"?
 
-In gcc-shikra.c, gcc_pcie_tile_axi_sys_noc_clk has gcc_emac0_axi_clk_src
-as its only parent, with CLK_SET_RATE_PARENT:
+ethqos_fix_mac_speed_rgmii() only takes the bypass for RGMII_ID:
 
-	.name = "gcc_pcie_tile_axi_sys_noc_clk",
-	.parent_hws = (const struct clk_hw*[]) {
-		&gcc_emac0_axi_clk_src.clkr.hw,
-	},
-	.num_parents = 1,
-	.flags = CLK_SET_RATE_PARENT,
+	if (ethqos->data->phy_managed_delays &&
+	    ethqos->phy_mode == PHY_INTERFACE_MODE_RGMII_ID) {
+		ethqos_configure_rgmii_id(ethqos, speed);
+		return;
+	}
 
-EMAC1's own clocks, gcc_emac1_axi_clk and gcc_emac1_axi_sys_noc_clk, come
-from a separate RCG, gcc_emac1_axi_clk_src.
+Nothing limits Shikra to that mode:
 
-To pass the schema, an EMAC1 node therefore has to reference a clock in
-EMAC0's tree. Later in the series, qcom_ethqos_set_opp() calls
-dev_pm_opp_set_opp() for EMAC1, and dev_pm_opp_config_clks_simple()
-calls clk_set_rate() on that clock. The rate would propagate to EMAC0's
-AXI RCG, and EMAC1 would keep that RCG enabled.
+  - qcom_ethqos_probe() accepts all four RGMII variants for every
+    compatible.
+  - ethqos_hlos_setup() installs ethqos_fix_mac_speed_rgmii() for all
+    four.
+  - The qcom,shikra-ethqos block in qcom,ethqos.yaml does not constrain
+    phy-mode.
 
-If EMAC1 has no PCIe-tile NOC path in hardware, should it be allowed
-five clocks? If it does have one, could the commit message mention it?
-This series adds no Shikra ethernet node to shikra.dtsi, so the intended
-EMAC1 wiring can't be checked.
+In those modes the generic DLL/IO-macro sequence runs. Its reset loop
+does nothing, because num_rgmii_por is 0:
 
-> +      required:
-> +        - operating-points-v2
-> +        - power-domains
+	/* Reset to POR values and enable clk */
+	for (i = 0; i < ethqos->data->num_rgmii_por; i++)
+		rgmii_writel(ethqos, ethqos->data->rgmii_por[i].value,
+			     ethqos->data->rgmii_por[i].offset);
+
+Every other HLOS RGMII descriptor has a 6-entry POR table. The
+read-modify-write steps that follow depend on that reset:
+
+  - ethqos_rgmii_macro_init() sets SDCC_DDR_CONFIG_EXT_PRG_RCLK_DLY and
+    SDCC_DDR_CONFIG_EXT_PRG_RCLK_DLY_EN at 10/100M, and
+    SDCC_DDR_CONFIG_PRG_DLY_EN at 1G. Neither path clears the other's
+    bits.
+  - ethqos_dll_configure() sets DLL_EN/CDR_EN/CDR_EXT_EN at 1G, and the
+    10/100 path does not clear them.
+
+After a speed renegotiation, can both RX delay mechanisms end up enabled,
+so the result depends on link-speed history?
+
+The 1G prg_rclk_dly value of 115 also assumes a TCXO_CYCLES_CNT that
+comes from the v3/v4 POR value 0x80040800. Shikra never writes that
+value.
+
+The commit message says "No POR table is needed for this intended bypass
+operation", but neither the binding nor the driver enforces rgmii-id.
+Would one of these be appropriate?
+
+  - constrain phy-mode to rgmii-id for qcom,shikra-ethqos in the binding
+  - reject the non-ID RGMII modes in the driver for descriptors without
+    a POR table
+  - add a Shikra POR table
+
+The later patch in this series, "net: stmmac: qcom-ethqos: add QCS615
+EMAC support", uses the same pattern for qcs615_data.
+
+[Severity: Medium]
+This is a pre-existing issue and was not introduced by this patch. It
+comes from the earlier commit in this series, "net: stmmac: qcom-ethqos:
+add DLL-bypass for PHY-managed RGMII delays".
+
+ethqos_set_clk_tx_rate() picks the link clock rate from phy_mode alone:
+
+	if (ethqos->phy_mode != PHY_INTERFACE_MODE_RGMII_ID ||
+	    speed == SPEED_1000)
+		rate *= 2;
+
+ethqos_fix_mac_speed_rgmii() also requires data->phy_managed_delays
+before it takes the bypass. Take a descriptor without phy_managed_delays
+(emac_v2_1_0, v2_3_0, v3_0_0, v4_0_0) and phy-mode "rgmii-id". At
+100M/10M, doesn't the MAC-delay sequence then run with a 25/2.5 MHz link
+clock instead of the 50/5 MHz it expects?
+
+That would not match "No change intended on existing platforms" in the
+earlier commit. No in-tree qcom DT uses rgmii-id with these compatibles
+today. Shikra sets phy_managed_delays, so this patch is consistent with
+the clock-rate logic. Checking ethqos->data->phy_managed_delays in
+ethqos_set_clk_tx_rate() would probably belong in the earlier commit.
+
+> +	.dwmac4_addrs = &ethqos_dwmac4_addrs,
+> +	.setup = ethqos_hlos_setup,
+> +};
 
 [ ... ]
 
