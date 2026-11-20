@@ -2,117 +2,158 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C360960A261B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E34C60A261B
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M4FMjQ6w;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=AQHA1030
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xqa7+ltN;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=GTksC/Y0;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=HKy4G3um
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=vw1Za3j6nrNQlO8tUKSo+13HAPp3lg1xUs/OwXV+egE=; b=M4FMjQ6w4bjQrxHMnLhzGDOk0t
-	cDYOaVJjwzJCTpm3mA8ti4XYuNotJ8Sy/QWk8VkYJiFt3XOThWoLg3GfBps8mYBC7FCDpEj5kH+mb
-	jb61XAgMtRPC0EgXQjtsp8i637jyNT9eWyAWCsrc4bkbPy37urI1OUese01m5FzUnS0giNECk0CAe
-	V8LVKZldYXTlAG7MjKI+TBTzIMvHVzf4bL3z7+s+8RpJhKG6d85iGMOVglTFwh/r+uNagB0mL4nHg
-	Wbu0lMzOI13REw9jYwHQTElx1UnnOZbeHRjC7KwHQIMJZHkGrR8Nx40kkhGV1bdBfWzdIG/OH44sx
-	RcoiE/Zw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=yN6UN+J+fpt8i2gGYSvl+iVIt/4RMXnGf/7L8R1bT+0=; b=xqa7+ltNp8J9KL
+	kTyEj7UH5hwLqLw7kG58kfd99wrJrohxvF28jbI1657ZjxK5C+fuEL2qPv/6DE4sgCmk1sS/F0Ubd
+	Cg+UKakLNrn43rB4EZRERcihKpS18hlhF2JjO1TSe2hM1uoIZYWxjN+75ZFZwymAzN9qlL8qYC6DK
+	f1NIuAiFmla9nemGRehWIB77izUCbRKKcBt8fk6jbnPFTtUeCm2hidC6IH7zCGvDiXZkxE2QdeHqy
+	TACu1x1tU9Iuw3Xvd4xB1z28qacxHtQEkwLLKBPUhdsaF5iAI9Jqpe4Re0ynJPy0VyEC5lNCcASmh
+	uB72NIYOYwkbFC448ucw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMT3-0000000EiDn-0DFa;
-	Fri, 20 Nov 2026 11:07:45 +0000
-Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
+	id 1xUMT4-0000000EiEt-00He;
+	Fri, 20 Nov 2026 11:07:47 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMSp-0000000Ei3T-43TY
+	id 1xUMSw-0000000Ei9k-1MCY
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:07:34 +0000
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-6b88d143160so893095a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:07:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795172848; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Q7PvlGUCnxWtdGcXbxfnQdLGlKgKRiZbKQr0dimTWtQxcQsO593PvR5KPm096yQ3kr
-         H2cycK31jREcr2nGT4GSrqniHOi+LLE5CpaySRZyk6IJvrEWBca1OQU/lkdcWvwQXhA5
-         oG8H3bOWcxDbYER69rNdniq7uGUjh2XwT7hcCijxbrNis1ipaPmrfBwL0JwMn95iHwYA
-         Hy7lHAtObAGgTEW6nYlGe6G/O5SQrq/D53VP0ICxyiIKw4cOG1ZLbTdDzBoJkEDa+e8q
-         4sUx5DCFzd9LxT+P3CxdjxEAHJ3K6sLQsXk+GD7MjCZXH9RcnsFcGgscxPNFtfWKm42F
-         9Sxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=vw1Za3j6nrNQlO8tUKSo+13HAPp3lg1xUs/OwXV+egE=;
-        fh=kmj6lMuln0OG1UIzyAN/HCqOfObdwMThsTBblG0rJvY=;
-        b=e25zIIqAUzz05NXKNzNKRAZObZZkp+/DBrHAeIFruZFx1mSe7HSJWWGH20lP3h6GJs
-         F4F/MhkZvjWrVXo86KvpjAFG//lFEh0jID5OsAlvuT3BHt8VaGKGika+G/dj077VRSbE
-         QvME7FnGACqr3eCZRjByVRJTgnWp2G9Gv7KOgCYKPrB3qWDXfiT28YEO01TMQEhMGBT3
-         O6y4aQ3r0w16japhfWFkffKUJkIXfwisNtVmvcDdQxNNcggulPK9s9haa4QTSoYXhYFa
-         ZVC2uf1Onl9LOk7qC22H8+EG6b+rT8gDSrP7rSFf5tgUQpYic7SqXTcj4OBRKU74zvE5
-         g0NQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Fri, 20 Nov 2026 11:07:39 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AKAk7sS3987241
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 11:07:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	yN6UN+J+fpt8i2gGYSvl+iVIt/4RMXnGf/7L8R1bT+0=; b=GTksC/Y0bKEnnPw9
+	KWJMW/0LYKMseO9DPrOptuVo0CoIc1uzdDo/pGQvMUvP1Rvp9itBe4lxfI3YMrct
+	hNlUsrpyWDkLVM2AharxTeVzkRw2n9VB/DT4wadGuvHh9b+NKRCRxql7pH7v2UhZ
+	mZqqLkNFSwVCnkJYQ6l8xhsR0o3nVGXsD3cWmPJPdqWEiU2pL/iofmYDa+RErjze
+	zIL/ZkJld/6+cX3JmMILKva6+SUTpEUn37O/cx2tHijkn57y5K4Vh1GkIqNzw/gV
+	9xhyY7hbI1jHiKlk+CMPcKlAgvmcpMCyomuwfUhrzj4E/euJmn6bzVJ0PBKLPI4y
+	D6Il1A==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j2gu81438-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 11:07:37 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-3854627c1c8so1078706eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:07:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795172848; x=1795777648; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=vw1Za3j6nrNQlO8tUKSo+13HAPp3lg1xUs/OwXV+egE=;
-        b=AQHA1030GRm3zsizlXw7XdwafwP2niBn5hu40t2bCobQKoSa6cTPRnmQ5Bw7kFsU77
-         biqP1em1vsBnbhJuIDUegzZ5t4+shVtApntBMN+pNM9eAxr27WL8pWLWHLNean0h9vMG
-         mu7rASRl2h9KNrQLjdg+KWCRLM3yWDGccbHfHiZiMaK9rgpDb/G8xcsenfcSeuO/td8p
-         nIhE63T/unSiCew7xs006aAzlb7jJzG1AZYICp65rL1kgKnQtHrGDIiRc0ch30dze2hF
-         oMGkg/VMrj8us8X3uHnTJb0umEZljoiKnGoY08v4DrVXxTArcxnKXBiU1anXXIsud8u9
-         zvjw==
+        d=oss.qualcomm.com; s=google; t=1795172857; x=1795777657; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=yN6UN+J+fpt8i2gGYSvl+iVIt/4RMXnGf/7L8R1bT+0=;
+        b=HKy4G3umr7rnZyj2BkWHYptblZ64C8gYzO5Jn67fR3Q+7ZMuwHs6O9XiFAz1X94BpH
+         IqbbYt0pcgPa3wBcZqNBYYmupSrMsffgMdweNkBR1takwDN0z9eZyarHl1CMvWseuXtC
+         ry4TceLRepxbth5S2r+Vhg3u0hPc9iCK99BCXMIVxNnx1Q1ZqmKUE95CndN28p7JcKko
+         SZQiAtOsb3iII55cNPqGAWjrznb450gJkhXs2ECZBySXpoSJJvM4v0YXNi42toVYEbIP
+         2uXNu7v8JdpzeycWTgdndI8yS1yoCtSpZjA26EkQaodxJC6lNcLgawts2I5PjqkpiYOX
+         UYVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795172848; x=1795777648;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=vw1Za3j6nrNQlO8tUKSo+13HAPp3lg1xUs/OwXV+egE=;
-        b=yMfjOcJcq82SkuLC1RbWfBPHXebG3Mz8LANSAsQEWAC87DnPClWcM7HQoJQlGLOl0c
-         pWEt0jicPG+mpWnzC6UZpe8VtIAxsgxJdC5DWMJd/WBYFzEgylnPycqZR3FirW+0p48R
-         4vArjATaNhyFJtYknxJ6CgTR1SFzM2N+M7YOPi6mYoqIcixOabNmWZfCLnOIYwX+VoEX
-         Vff/VeX7f7m/MdOIwX5VMkyTJdDWKEPpLdtRTu73L5e78+y+E78Nj6We45+Moo0U2jj7
-         Q8ZMhnLuwNsRMzuZGCBBWde4De8YS6lSMGk4mlSi3UfeLZsc2PqTKs0SkQlMcWguu6wI
-         KRLw==
-X-Forwarded-Encrypted: i=1; AL+hErFaZ+QamlkWZiK1uz1jvTORMha5zoQAxWSeOx0d/n6+zftmTmnvRjsyl7P426IWGhaSkBYamN16tKprG/UrSaw2@lists.infradead.org
-X-Gm-Message-State: APuU4Z+r4TRUEykxMKBs5BFjpp3sdxi+TJV3WFpy/nAn4HRRkkbTd37l
-	nPcZzNauDf/tklOg6nHQBKs/V7G3cXfyyLy9l316sZwqnGjhrT6eW4B+804JopCmqg5smuCDj3E
-	+Hk8IohsNLF1ZQsgt8IipR1MRVezgyKZtqc84SaPjJQ==
-X-Gm-Gg: AZFdTZffscnlc2zW5cqDlQwirCdnGBzfDWUT1Fu/a2KidDTq8ylTzBoLRu+oEFtlQMd
-	wtZyHxbxZVKdi4IwwYDJ6B7qi+zlAnBckLfZPem6ofb0HTrdIlJx1i+tmduOT+9kaNsHKj64AXS
-	WbGS6NunaIJK1hxqwsukn0JSgTNfwIq1/m45IwxULd+xvRQh+mq8+4W3D+61TpDlvDqtJtvgSn6
-	JLGTRzr4ensC3UPoEnltxTH9PG8dh/sjvDGjsf5CjY0lVHHn7gjbUO5D1i0HI4c221+F/cATEyp
-	K+0EUJj9nRA7547RgHCHxk6so2Q5HqMJgEOloPq9NrR9+I+2zJd1fjEi2LkOAGc9l6vyydklzBu
-	kAhMtkVreACA/kGewaxsqyB9vQ83e9VV2nKEZRWTcEkPKRaCzbb+I3/jxxlX/bqCGDsWGniM=
-X-Received: by 2002:a05:6402:3225:b0:6b5:79f4:8d52 with SMTP id
- 4fb4d7f45d1cf-6ba37e6f806mr1953110a12.20.1795172848247; Fri, 20 Nov 2026
- 03:07:28 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795172857; x=1795777657;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=yN6UN+J+fpt8i2gGYSvl+iVIt/4RMXnGf/7L8R1bT+0=;
+        b=EVFeNKLuNP6yj/zdHuu7E4Im5k0Pomz4WR9HS6ct0o1S2nk0of1hjqwjsPyOrGzoLf
+         jDO+sETtayBrCMgB+6qKxoLvvVacKtWTuEqpVWNi8flbTroTxkBT2hHbxs0XSLM4Ruji
+         1YTu/y2YGv451wGdwueyZprjflwP8q7/47DWgLt+Zrimk19ppUpeukO/pSt+RsuFvBd3
+         MO0c7mIRGd3vOFvL5VUGbszT3+OwZankRmFMAd+8XYIXY+1PP5DHptn7KiV3eve08bTy
+         yfxIj7ysjRaExo7QPIKuPEL2OTgroe5m18jY7gLMYs/oKhn5F1Dg7GQUlRemjgzMW7+s
+         DJCQ==
+X-Gm-Message-State: APuU4Z8GeGi1NvrH6NmlJldMWdnqPisndUjqXNhdJU/YBju7WWSkr4zE
+	Em+hAt1u41FHbC5sLf8eUeAKcw0sdP77oCGeh5O2ukyJI5lg42+en2YKdd5jmFdwlFIScVN8X2V
+	jFSo8hIq4JT3Ze5jgfbBz++9I6kFasNNL/7NLgALDOr7BuFg3FFgz2I7sdISW6c7W9IZ/bj2C/h
+	t4hg==
+X-Gm-Gg: AZFdTZfJPoWHIZHkkt1WiHekiQO207Y65jcXyrya2+f3JY6L/cl1Vw1VaogU6yAcheZ
+	15HMBbsA+/k4bzhEfWNm/kjjXbfMz0DF13CKpm7/F5I7ZxhJKSx8gA2OfPuA5+3rraluMPSBCJu
+	WgYbDr10bhARe0dSBFjf4MiRG40/BSUf6nHG2BC/UzeNpGDLVctwHeGRkWP5JRdL7D0DS2e78bb
+	Cvb/fRTfLQI57u6hB0yfFtG6YgHbdlEJ0ti3oQnRjztQGTVWM7NlfDLJQWHHOt+36KatY0YxEnx
+	Wca+Pu8e9SGR2sscl1n+t9xC6zcjz0EKPNsPr5esonGGWZk1F9Ju3Sl3p4AqtHG2k8HGWi5ZsWF
+	4RPO6EDSM2SV3gx0wb9b+IH0CD8UIzMHiN9f71Zdti0Amw82z3Z2M9sdWdYye/oQrhqBKamCb+t
+	ZFIngI
+X-Received: by 2002:a05:7301:18aa:b0:384:eec:aba0 with SMTP id 5a478bee46e88-3857073eebamr2356052eec.36.1795172856943;
+        Fri, 20 Nov 2026 03:07:36 -0800 (PST)
+X-Received: by 2002:a05:7301:18aa:b0:384:eec:aba0 with SMTP id 5a478bee46e88-3857073eebamr2356002eec.36.1795172856199;
+        Fri, 20 Nov 2026 03:07:36 -0800 (PST)
+Received: from hu-bibekkum-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385666e99fdsm9252594eec.5.2026.11.20.03.07.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 03:07:35 -0800 (PST)
+From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+Date: Fri, 20 Nov 2026 16:35:50 +0530
+Subject: [PATCH v4 09/20] arm64: dts: qcom: sm8350: Add GEM_NOC
+ interconnect for adreno SMMU
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CGME20261113104847epcas5p1d970255218f1ca78b19690bfd097f303@epcas5p1.samsung.com>
- <20261113110612.3265841-1-raghav.s@samsung.com> <20261113110612.3265841-7-raghav.s@samsung.com>
- <CADrjBPoR7_LDZmxC_bOFigvqDaagVihmybfX5AdvSPr9-FVb8w@mail.gmail.com> <002901dd77d9$6ddef600$499ce200$@samsung.com>
-In-Reply-To: <002901dd77d9$6ddef600$499ce200$@samsung.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 20 Nov 2026 11:07:16 +0000
-X-Gm-Features: Aa3M54pTNJ_y_R-HLRUhtwnIbiMHdLsAfFF3Abu5bW9vYYJErrbwlv-VYU97Njc
-Message-ID: <CADrjBPrO43A6XaVK7_J3-y9=bOsjhNbyf8KA6fmyvLJ0O61gOw@mail.gmail.com>
-Subject: Re: [PATCH v3 06/14 RESEND] clk: samsung: clk-pll: Add support for pll_4313
-To: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Raghav Sharma <raghav.s@samsung.com>, krzk@kernel.org, s.nawrocki@samsung.com, 
-	cw00.choi@samsung.com, sboyd@kernel.org, bmasney+clk@redhat.com, 
-	jbrunet+clk@baylibre.com, robh@kernel.org, conor+dt@kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, is.gandhi@samsung.com, ts.amit@samsung.com, 
-	pokala.reddy@samsung.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261120-smmu_interconnect_addition-v4-9-cab8ee8be0b3@oss.qualcomm.com>
+References: <20261120-smmu_interconnect_addition-v4-0-cab8ee8be0b3@oss.qualcomm.com>
+In-Reply-To: <20261120-smmu_interconnect_addition-v4-0-cab8ee8be0b3@oss.qualcomm.com>
+To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        "Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795172803; l=1040;
+ i=bibek.patro@oss.qualcomm.com; s=20260617; h=from:subject:message-id;
+ bh=ifRBUNcG4S75b7wOEESAYY95LUktSUoyNzDBhGxm1EA=;
+ b=KzrRMDQ38ir/SxKkvx+iCgru1CcWgzgR7RMiwJB8A/IB8fNZyYJbRgu2266qsmg84BVFLa9od
+ DKvONyqaL8uDPLBnrRXftBGgOY2FyIAJWqfqhcL2OUH4V1i97q6YVJG
+X-Developer-Key: i=bibek.patro@oss.qualcomm.com; a=ed25519;
+ pk=DkrbE5dhskZJmBAKR5LygWRsAydEOSN+T0/YxNYxDLM=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDA0NCBTYWx0ZWRfXzQRa+5AWrNtB
+ rUg6T6z+toZdxwdmmX5GoBgrPkY3ZnZDSEjU8No9QJ4H03lw9x/KiRxi39sEb6nzbnvWIhEQLzl
+ jRlIk1V8snMCdD3n2iiGz7sImMTQmux4xNwLnIZjubY0hlZrgGeTtlLj1K51T5ugnCh6CVD19xZ
+ yICZ+1Az0ATsW5XZov3UaxuGyZe58eqVXlJ60qyE4ycAOeHvGVW0uwidzjzi7n4iXvbJvSGQneA
+ 9tBEZU3V/CpzfpXHTZyaZWtQK1s7oSGfowej8op+yn9Sp1gvW2trCs3u5Sq+1vB4LiASJuZGsvC
+ nV3vqfMn3FVbb8BmzxjUZfS0h5Fwl0ENnZg46qU48/sB5anagQTh6BpK2quzyS9lwJKjjaLlC8v
+ 4xL+PXCptrBJqmVT5oVNo3VFpoamvGZ8VcnKbnezm1U3J57wm7j/y1EgwFNTNkdzsm+QzipEv94
+ 6fX69PgvQ7qgb6gZK/w==
+X-Authority-Analysis: v=2.4 cv=bLeDs/+Z c=1 sm=1 tr=0 ts=6b0029f9 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=tc1TWAvYerzeY2VvnAsA:9 a=QEXdDO2ut3YA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22
+X-Proofpoint-ORIG-GUID: OaCklSISMKxbFeCjE3NitdArOitgxl6p
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDA0NCBTYWx0ZWRfX4Sgv43W8Duqs
+ gz6XhdMlCatp+yfoAjCdohIdj21/+Rxo/d34kghYtBlLgb1WTU3h0hX1+78kOg3W8S7bKkqZER2
+ QobU6TNocHMz/sYQAe7U09aqWzpRGDU=
+X-Proofpoint-GUID: OaCklSISMKxbFeCjE3NitdArOitgxl6p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-20_04,2026-11-19_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0 spamscore=0
+ malwarescore=0 adultscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611200044
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_030732_225308_53CE90B3 
-X-CRM114-Status: GOOD (  27.17  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_030738_377965_4D4C3B73 
+X-CRM114-Status: GOOD (  12.07  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,84 +164,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alim,
+On SM8350 the Adreno SMMU GPU TCU is a separate hardware block with a
+dedicated alm_gpu_tcu master port on GEM_NOC. Without an explicit
+interconnect bandwidth vote, the GEM_NOC path to DDR can be left
+unvoted during sleep/wakeup transitions, causing intermittent SMMU
+register access failures.
 
-On Thu, 19 Nov 2026 at 03:52, Alim Akhtar <alim.akhtar@samsung.com> wrote:
->
-> Thanks Peter for review
->
-> > -----Original Message-----
-> > From: Peter Griffin <peter.griffin@linaro.org>
-> > Sent: Friday, November 13, 2026 5:58 PM
-> > To: Raghav Sharma <raghav.s@samsung.com>
-> > Cc: krzk@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com;
-> > alim.akhtar@samsung.com; sboyd@kernel.org; bmasney+clk@redhat.com;
-> > jbrunet+clk@baylibre.com; robh@kernel.org; conor+dt@kernel.org; linux-
-> > samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; is.gandhi@samsung.com; ts.amit@samsung.com;
-> > pokala.reddy@samsung.com
-> > Subject: Re: [PATCH v3 06/14 RESEND] clk: samsung: clk-pll: Add support for
-> > pll_4313
-> >
-> > Hi Raghav,
-> >
-> > On Fri, 13 Nov 2026 at 10:53, Raghav Sharma <raghav.s@samsung.com>
-> > wrote:
-> > >
-> > > From: Alim Akhtar <alim.akhtar@samsung.com>
-> > >
-> > > PLLs 4313 are found in the Exynos8855 SoC and it is similar to
-> > > pll_531x except for CON8 offset, so re-using code for
-> > > pll_4313
-> > >
-> > > Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-> > > Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
-> > > ---
-> > >  drivers/clk/samsung/clk-pll.c | 11 ++++++++++-
-> > > drivers/clk/samsung/clk-pll.h |  1 +
-> > >  2 files changed, 11 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/clk/samsung/clk-pll.c
-> > > b/drivers/clk/samsung/clk-pll.c index 3d837bd74355..7b0756127306
-> > > 100644
-> > > --- a/drivers/clk/samsung/clk-pll.c
-> > > +++ b/drivers/clk/samsung/clk-pll.c
-> > > @@ -1306,7 +1306,15 @@ static unsigned long
-> > samsung_pll531x_recalc_rate(struct clk_hw *hw,
-> > >         u64 mdiv, fout = parent_rate;
-> > >
-> > >         pll_con0 = readl_relaxed(pll->con_reg);
-> > > -       pll_con8 = readl_relaxed(pll->con_reg + 20);
-> > > +       if (pll->type == pll_4313) {
-> > > +               /* Offset for PLL_CON8 which hold FDIV different for PLL_4313
-> > > +                * which is PLL_LOCKTIME_OFFSET - 0x4
-> > > +                */
-> > > +               pll_con8 = readl_relaxed(pll->lock_reg - 4);
-> > > +       } else {
-> > > +               pll_con8 = readl_relaxed(pll->con_reg + 20);
-> > > +       }
-> > > +
-> >
-> > This starts to feel a bit hacky (pll_con8 register being referenced as an offset
-> > from lock_reg). Is the register really called pll_con8 on 8855? Or is it called
-> > something else, but happens to contain fdiv?
-> >
-> Yes, it is named as PLL_CON8_* on 8855, and contain fdiv bit.
+Add the required interconnect to ensure reliable register access.
 
-If the register is actually called PLL_CON8_ in the TRM then the
-current patch makes sense "as is". It just seemed odd at first reading
-that con8 wasn't an offset from con_reg on this SoC.
+Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks,
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 7b9966e8fd4d..4edcb06dbae8 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -2566,6 +2566,8 @@ adreno_smmu: iommu@3da0000 {
+ 
+ 			power-domains = <&gpucc GPU_CX_GDSC>;
+ 			dma-coherent;
++			interconnects = <&gem_noc MASTER_GPU_TCU QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+ 		};
+ 
+ 		lpass_ag_noc: interconnect@3c40000 {
 
-Peter
+-- 
+2.34.1
+
 
