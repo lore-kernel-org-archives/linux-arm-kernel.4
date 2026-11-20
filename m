@@ -2,97 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9299606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22C360A2614
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:28:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GMhiRyI2;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Sq8HoMfT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u6qf5xsD;
+	dkim=pass (2048-bit key) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=sC1GMEwa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=j5Ce4d8nCM+piZH9frIPw21eODt2zq4vwjw4r8+6bNI=; b=GMhiRyI2JBhc15giEhJavtSBq3
-	sXeJzCU462Qz86Jhh9y3aAqPKgTIkTXUZW6bXnNPf06v7MptLD12s2jye88PMFeu+ovnvTjya2ti2
-	1J8+RrFHeGY8ROPaFq3nKV7Oibwgv1a7sBAC7YtB2oQe4KcVU0oHsMLw07q0InLrt8EEY+h3j126N
-	spdhaz7b9BxDVDvWlBUwYNxnCPyLB+MoOE1ZBlmVionzhuLL6rnGKBxTq7Bj3Y3Q4ryJrDaKrdBNs
-	V2ZGv38GbVQBVTEBTceTMlQlSZZ1xTB8EGoGHcSlQwWL7wCbJsf+kiEPM3eVaY0XUY95EckexL82D
-	NEQxtz2g==;
+	bh=VNOkihmfuxQHasaFJdR1bkBsLJOvAyscg1Qc15Sryxw=; b=u6qf5xsDaPGp4KXXSQhUWRBVeG
+	FmphtqQVqNQcDNpjG6EwVQZMv0v7NP7vRePOkvgGLV9j5omSLKMUxXmDBM8QO4ta0KHCrikFt+PvM
+	TXN7+T6du4FX1Ja65vgLT57ncTQQ34I43lc2b7tlz1cZrCLRd1yaE5fDx/x788tPvlidKI/L2bt3k
+	tI0lBhDIf7mMyXQeYka3XqzfqRgtXFx2Rn4+gra3xxftbU/e7KBjoINwqTuAVGLn2qZhrbjr5Bef3
+	ZyKG+SLRzCfNLwcMxzW8ekh3GkFJWD0vjNe60hSqZs6d653Cnz7WK3C4Uygr0GvTZ5vxDUqJmYpvM
+	5kqBDpYw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULpS-0000000EatL-1Fc6;
-	Fri, 20 Nov 2026 10:26:50 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xULr0-0000000Eb7w-2kxY;
+	Fri, 20 Nov 2026 10:28:26 +0000
+Received: from mail.kernelriot.com ([74.208.142.49])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULpP-0000000Eat0-2k56
+	id 1xULqy-0000000Eb6x-3dbd
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 10:26:48 +0000
-Received: from localhost (unknown [IPv6:2a0a:edc0:0:701:a74f:3cb8:3e85:d062])
-	(Authenticated sender: fdi@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id C42CC202348;
-	Fri, 20 Nov 2026 11:26:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795170405;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=j5Ce4d8nCM+piZH9frIPw21eODt2zq4vwjw4r8+6bNI=;
-	b=Sq8HoMfT3XG0l9P0SmFcK67og1lgWqB7xLO4i0HzF0IY52ob9ogJUIiy1qkldCkwa4dyKH
-	VcCPaHOkK2F1BKwNBh4+qLBVi8zmUGdgjKpgAhBYWFn0UfzUABfA+j68Ur71So4XVdTany
-	8yZX//j7LOT9oP1MSFEV7o9Li1zU099henMckecZ1/jldwbS2dkp/rc3Iv7+rRu+hvCvVH
-	M7HXArO0aOqeSzT0QJ8KVE7vx/Y2hoc29IZq96YisrohSVcikR8FPoqEuVaKv0VT/e4iiM
-	zF3ia5Ch8ws2ACOESEQSDR2zABWJnoJTEm0a7KNegid8B5z1BqqyqC9V+2HZXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795170405;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=j5Ce4d8nCM+piZH9frIPw21eODt2zq4vwjw4r8+6bNI=;
-	b=K7PVPwC4xprzdbghWsTfZ1WVXXRuduZaUC37obVf/2++llZk6rbmRD2K0usWXErezQuFBU
-	B85b3L+E6xGvXVJi5IT0cp7Gkb/HOLqXKdiCd7x3iFKBlzm7XNfcRo6uQ091gE6Nn7BNk7
-	eugQp1YXVsy4KTnvoJLCAtyei2nKdwwLvdTB5PDNSG9TRl7fT0OcxsUj/yFQS3V+JHl8yz
-	7z179y/47AFc2OXmesm3DBk28QlS638Q01RkyQIRSoL4jJaEMqbUFSdhI8kHuMWEihvaa7
-	WPJbxRlvc06M41uXp15I/Z61tsIFv5F2jRiliwnEeieNMPaAb0bP6wMqQ2GZpg==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795170405; a=rsa-sha256;
-	cv=none;
-	b=PgJ/LQn5mrtT/eudvsFQ1hZF3AHyTkNwSc/5HTY17o79eY6QEcTZkDp17d6M28UF8J+xQ4
-	n8fR2FqpSB9TRMgP15nqLUqQlKsyR7hlo0cjdMZjAnPCQe+pZtGtyMqbTR1wWRGCXs1/aw
-	ptLAcCKxR90yPakgY0uTVq7XPuO1P8lwMHbnbkUHd8fWDVID547a4p3bwvsZfkx2qifIRo
-	7LAF98iXd4vu8YM9jLXx98sgXiQT9M6i2dTJyLcqoBmgP3pSAz2vHngZG0mCGiuW2SxOhQ
-	8VPOsr/0piTmL5/UjAfAQqhsVQHa6sswfKOTiRVDrTs9ySUBxOO8vKJhazxPzQ==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=fdi@pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
-From: Freimut Diener <f.diener@pengutronix.de>
-To: "Joseph Guo (OSS)" <qijian.guo@oss.nxp.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "kernel@pengutronix.de"
- <kernel@pengutronix.de>, Marco Felsch <m.felsch@pengutronix.de>, Justin
- Jiang <justin.jiang@nxp.com>
-Subject: RE: [PATCH 1/5] arm64: dts: freescale: imx93-11x11-frdm: Enable I2C
- level shifter
-In-Reply-To: <MRWPR04MB12117B415189A3EC52A69934E94782@MRWPR04MB12117.eurprd04.prod.outlook.com>
-References: <20261120-imx93-frdm-fixes-v1-0-78dde22a56fe@pengutronix.de>
- <20261120-imx93-frdm-fixes-v1-1-78dde22a56fe@pengutronix.de>
- <MRWPR04MB12117B415189A3EC52A69934E94782@MRWPR04MB12117.eurprd04.prod.outlook.com>
-Date: Fri, 20 Nov 2026 11:26:45 +0100
-Message-ID: <87cxrzbxy2.fsf@theta.mail-host-address-is-not-set>
+	Fri, 20 Nov 2026 10:28:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
+	s=kr2026; t=1795170503;
+	bh=l1EI+mpAa57uBbUK8AVL1RHaWOFwGCZ4WQgzuhAVFKc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:From;
+	b=sC1GMEwa3ijSEUBodg3jnnlp9bXBIUW0AjR1r0vWnyaDOuo2vHwMVFsbjs/2QVQrL
+	 USeIT4vB6jVfJIotQ3C4NOPKiuEohoPQt3JiRZct6nm2ajirSW9MpGfpGCxzMK8DF7
+	 rNjTnrmk6mf4g4Rrefn03WGDNZnfwGoVCLVmGov4vKt+dh2a/cxc9rth2XXlHWiegP
+	 GG/R2vPWtF2WDQQIrS/iJ1wj3doDjbFehySkICMsVNpHCZYE7HOvjLrRUIGQBA8ygT
+	 OJyuhRWKJW1mFe7aeCB6+a5G/SpuFlVECwBiQvQYDQzAcoFewO+en7Zt6V/fMtdYwu
+	 99P48oGnQEZBA==
+Received: by mail.kernelriot.com (Postfix, from userid 995)
+	id 785768D801; Fri, 20 Nov 2026 10:28:23 +0000 (UTC)
+From: Magnus Leatti <magnusleatti@kernelriot.com>
+To: Yao Zi <me@ziyao.cc>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Nespolino <g.nespolino@gmail.com>,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v2 0/2] net: stmmac: dwmac-motorcomm: shutdown hook and Wake-on-LAN from S5
+Date: Fri, 20 Nov 2026 07:27:52 -0300
+Message-ID: <20261120102754.778283-1-magnusleatti@kernelriot.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_022647_842679_D706D450 
-X-CRM114-Status: UNSURE (   7.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261120_022824_952809_27D7E195 
+X-CRM114-Status: GOOD (  12.52  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,37 +78,95 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"Joseph Guo (OSS)" <qijian.guo@oss.nxp.com> writes:
+YT6801 accepts "ethtool -s eth0 wol g" today, but ignores magic packets.
+This series makes S5 Wake-on-LAN work. My patches here touches only the
+glue.
 
->> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
->> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
->> @@ -49,6 +49,12 @@ pcal6408: gpio@20 {
->>         };
->>  };
->>
->> +&lpi2c2 {
->> +       pmic@25 {
->> +               nxp,i2c-lt-enable;
->> +       };
->> +};
-> [...]
-> Can you please move this into imx93-11x11-frdm-common.dtsi?
+v1 called stmmac_suspend() from .shutdown and Yao rejected that [1].
+This is the design proposed by Yao, remove the device at shutdown, reset
+the chip and let it arm itself.
 
-I don't have access to the i.MX93 Wireless FRDM board.
-Are its schematics publicly available?
+Patch 1 just wires .shutdown to the existing remove.
 
-Have you verified that the I2C level shifter is also present on
-the Wireless variant?
+Patch 2 arms WoL: after remove, it resets the chip, restores the cleared
+packet-wake bit, enables PME and drops to D3hot.
 
-I'll move the property into the common .dtsi in v2.
+Changes from v1:
 
-Best,
-Freimut
+ - Wake uses the eFuse address, not whatever the driver programmed.
+   r8169 works the same way.
+ - Magic Packets only.
+ - D3hot now. No more polling so D3hot is clean.
+
+Tested on a Celeron N3350 mini pc, NIC soldered, net-next at
+6964ff21c5d8 with storm fix [2].
+
+  net-next  wol g                   no wake, 3 of 3
+  patched   wol g                   no wake on the address in use,
+                                    wake on the eFuse address, 5 of 5
+  patched   wol g, 15 min off       same, 1 of 1
+  patched   wol ug                  same, 1 of 1
+  patched   wol u, unicast frames   no wake, 1 of 1
+  patched   wol d                   no wake, 1 of 1
+  patched   wol g, interface down   no wake, 1 of 1
+  patched   wol g, wakeup disabled  no wake, 1 of 1
+  patched   wol g, reboot           reboots, link back, 3 of 3
+  patched   wol g, kexec            new kernel, link back, 1 of 1
+  patched   wol g, hibernate        same, resumes, link back, 2 of 2
+  patched   wol g, cable out, in    no wake, 2 of 2
+
+19 patched shutdowns, all clean.
+
+Hibernate on this box ends in a normal power-off (S4 is off in the
+BIOS), so it goes through .shutdown and arms the same way.
+
+The last row is a true power loss: So if power drops, it just won't
+wake. Meaning: It needs to be shut down cleanly through the driver
+again. FWIW the vendor driver does the same: wakes after a normal
+power-off, sleeps through everything after a power loss. So its a
+hardware thing and not something a driver can fix.
+
+Giuseppe, your Tested-by was for the v1 design so I couldn't carry it
+over :(. I'm sorry, could you test again?
+
+Sashiko's nagging on patch 1 of v1 [3] came from calling
+stmmac_suspend() in .shutdown. v2 doesn't, so it's gone.
+
+BTW stmmac has an old bug here: if a resume fails, NAPI stays off, and
+then closing the interface just hangs in napi_disable().
+
+Changes in v2:
+ - .shutdown no longer calls stmmac_suspend(). It removes the device.
+ - A reset arms the chip, no more OOB WoL or MAC address writes.
+ - D3hot at power-off, v1 stayed in D0.
+ - Magic packet only, on the eFuse address.
+ - The wake condition is read under RTNL.
+ - Added Suggested-by Yao on both patches.
+
+v1: https://lore.kernel.org/netdev/20261116091757.1656602-1-magnusleatti@kernelriot.com/
+
+[1] https://lore.kernel.org/netdev/avsTEglKKD_wl_Fi@pie/
+[2] https://lore.kernel.org/netdev/20261113103236.2184751-1-maxime.chevallier@bootlin.com/
+[3] https://lore.kernel.org/netdev/179499351041.3136.14889707783816630750@kernel.org/
+
+Magnus Leatti (2):
+  net: stmmac: dwmac-motorcomm: remove the device at shutdown
+  net: stmmac: dwmac-motorcomm: support Wake-on-LAN from S5
+
+ .../ethernet/stmicro/stmmac/dwmac-motorcomm.c | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+
+base-commit: 2208ab00f4f213ade91ab775e7f8c4dacdcc856e
+-- 
+2.56.1
+
 
