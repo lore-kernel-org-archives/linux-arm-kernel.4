@@ -2,78 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F38606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61D4B606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:49:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e4dBrfd0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TTQIJQdF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ObG2kJNn;
+	dkim=pass (2048-bit key, unprotected) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.a=rsa-sha256 header.s=h01 header.b=H1WVx17U
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YU5P8Wuc2M6bZTL3XK84wjuebJ0zvL/QXfNPgZyOqi0=; b=e4dBrfd00Naw3b
-	/ikMnEBld3M0Q6jbkqrRb4zHQIoUZHpLqf4QPo91Z16pYkeIkJJqmEe26V7eJrvTdu4kRnPFo7/Yc
-	ouLfWhUPYxJMVUu8QX7EN7Tdcc4p1iy1baj4j/pnLhLpell4+bJ8SRYrIKuVtLFwMW8ot+/EwUlaf
-	J33aqGy8Tkqwi9qxQz8VyPslamOdaPhfL60rqdHGUPoQajiGjl5PoopHu1X8P7CCWj0fI6jskkAta
-	eY/kn83VGpscdEakUuVjo8LyHqYKxNeBR/4K0mdA25B2rAoODE8YI+Z3yDgSwByWhrM9fF5I9Z4zk
-	2aJBnUi/bBzFjV7ADH0w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Ahj0CzU1hVbnWhl0n2zcJwrXID4d5ZIGphREm93F3NE=; b=ObG2kJNnE6w4ScBqtwYXw9YRro
+	k2P4y/ICfHa3HhqMyLWtHWLSoyp4yE8I8PAD5Fw2OSJGQscYBU8F47/c0+cLNnAXY7yyBcCLwWBBx
+	Klu0o0xGOsAX5taxr0PK0PnJqjJGJ3ZB4swAYJsxYosMZlYD2r3zApTJia3U6qqeMrvrazRtJQpuG
+	kQ7XG26wbxzZaT6kI8YEs4ik/FRIfVBQu/rGcIFGlyWejk7Ek0fAg1fGtf+E6rGoMcrlqnQ8C9qhp
+	3tjtR/HznC6DqAI1SBwYiZ8mGPflyf5GKzQnab7LawsPNow/c/zMsZRfQ0ZyOTT7xI6srayXQwb0E
+	1YKRaLfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULDl-0000000EVjT-2a62;
-	Fri, 20 Nov 2026 09:47:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xULFM-0000000EVxq-3Ugk;
+	Fri, 20 Nov 2026 09:49:32 +0000
+Received: from abb.hmeau.com ([180.181.231.80])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULDj-0000000EVjE-3tdg
+	id 1xULFJ-0000000EVwj-1S9g
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 09:47:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5B83F4679B
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 09:47:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4141A1F000C4
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 09:47:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795168071;
-	bh=YU5P8Wuc2M6bZTL3XK84wjuebJ0zvL/QXfNPgZyOqi0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=TTQIJQdFmsgcCJvZ5orSt7w0DatjFVZQwcM9IEaWaC+WjWprBbCupEHBw2ZEdEY5b
-	 BIBCQ8gTLt9anGc3R+WoUEP/8X0wqmmRyUA0Is+/tDt6D0Coe+GssnIRmwyUztMzR9
-	 n9c4oX6NDEhgWoC9wYM7VnNjMV3ikjcOOi9DiBzT4NUIQQANyKjVCwoQ9tX93LQ4Td
-	 Wyq5vz3a4GnOFKlXnvezyfJNzLPLOgMgy6KV/q8eVLSgE7z+o4JrHPe3rMwYrkadWP
-	 lboTcbWu9QSv9dLAlRzQXsDKcewPjqfaR/lq9p/AjBDOYgb+cEVXKzHr7WrFntR/Gm
-	 Qp/UOxFXEysyQ==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5c17ef1e18cso412932e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 01:47:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEzq/pvL9vP69PqVWwZ5addFOyB96bkpCmB1YNHjTvsmXZtf5uPk5TK8em8RfNVraqPAKEK2kMQEoFYsu8lJ2VN@lists.infradead.org
-X-Gm-Message-State: APuU4Z//UeXxCQu2kjUelgwhY620KCQyWnc0elMsgntW/OYfLRVy+hrM
-	wSpzWHl/11ImBl51BkfJghSJB1K+YrwYm9cg4xCJ1jI2m+vGQjodBjORFj/Z9UTjPD5BW+Je5r3
-	HU6oRQdf/coMos3rlSS1qEk3TJzSHCbU=
-X-Received: by 2002:a05:6512:6d0:b0:5c0:463:7b4d with SMTP id
- 2adb3069b0e04-5c1bc85f15fmr656116e87.46.1795168069914; Fri, 20 Nov 2026
- 01:47:49 -0800 (PST)
+	Fri, 20 Nov 2026 09:49:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=Ahj0CzU1hVbnWhl0n2zcJwrXID4d5ZIGphREm93F3NE=; 
+	b=H1WVx17UduHJXhsqMth2XijYI7d19aD7TZi6FtWGof7pRRJ3VSEfG3vC9nTPyfz8/AuXGq7C4Kl
+	YMEOhKp910Qe5OBCsN/Ku3B71lxP5JMCvFn+EvmakYHvfNrjnLvUypvTDTlZ4v193LYUU4LjfWbz+
+	ILC1Pkfj6dDYc3l4bTMzZLqF0S1iG9kJ7xPW3Hi1Sq9U76HjQjefdcoq4FDMxb7UNzy7jevOWoR5S
+	2oSPWvRmw5167Vo5PypkR+tsm5QYvjgszgw0kkBkSJCzCdg8B6n3zvIhnEvY0LSdl33+3y70Ehg4i
+	fLC+YLtepD1gFX6QdtA7rtWdEzF6hHn5dO7A==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
+	id 1xULF1-0000000HYWQ-27Cr;
+	Fri, 20 Nov 2026 17:49:12 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 20 Nov 2026 17:49:11 +0800
+Date: Fri, 20 Nov 2026 17:49:11 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Tomas Paukrt <tomaspaukrt@email.cz>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
+	linux-crypto@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] crypto: mxs-dcp - Fix softirq locking and completion
+Message-ID: <awAXl6j7tb5NNTjQ@gondor.apana.org.au>
+References: <1qB.ZqMy.4DIhrOb2ZPx.1gyQAk@seznam.cz>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261015142552.4128028-1-ryan.roberts@arm.com> <20261015142552.4128028-2-ryan.roberts@arm.com>
-In-Reply-To: <20261015142552.4128028-2-ryan.roberts@arm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 20 Nov 2026 10:47:37 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkrWojU3FeTPGOCFHHsbmTGYG0Tz3b2nrn7mMfsDssCQw@mail.gmail.com>
-X-Gm-Features: Aa3M54rOrfZtY95RmYFxRv97HUcFxeSdg2w3O8Cm90EYC1dabPW2gsgZ-nnS-cY
-Message-ID: <CAD++jLkrWojU3FeTPGOCFHHsbmTGYG0Tz3b2nrn7mMfsDssCQw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 01/15] misc/arm-cla: Add driver skeleton and documentation
-To: Ryan Roberts <ryan.roberts@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1qB.ZqMy.4DIhrOb2ZPx.1gyQAk@seznam.cz>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_014929_430586_3CAACD41 
+X-CRM114-Status: GOOD (  17.18  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,55 +75,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 15, 2026 at 4:26=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
- wrote:
+On Mon, Nov 09, 2026 at 11:38:38AM +0100, Tomas Paukrt wrote:
+> The request queues are protected by plain spin_lock(), but requests are
+> enqueued from softirq context (e.g. by ESP on packet receive) as well as
+> from process context, while the channel threads dequeue them in process
+> context with bottom halves enabled. A softirq that runs on the same CPU
+> while the lock is held either deadlocks on SMP, or corrupts the queue on
+> UP where the spinlock does not provide any protection.
+> 
+> In addition, the channel threads call the completion callbacks with
+> bottom halves enabled, although the crypto API requires them to be
+> called with bottom halves disabled. With IPsec, esp_input_done() then
+> runs xfrm_input() and gro_cells_receive() in plain process context,
+> which races with the NET_RX softirq on the per-CPU GRO cell queue and on
+> the xfrm state, and defers the NAPI poll until the next interrupt.
+> 
+> This was observed with strongSwan on i.MX6ULL: the throughput drops
+> quickly and eventually no packets are decrypted at all.
+> 
+> Fix this by taking the queue locks with spin_lock_bh() and by calling
+> the completion callbacks with bottom halves disabled.
+> 
+> Fixes: 15b59e7c3733 ("crypto: mxs - Add Freescale MXS DCP driver")
+> Signed-off-by: Tomas Paukrt <tomaspaukrt@email.cz>
+> ---
+>  drivers/crypto/mxs-dcp.c | 30 ++++++++++++++++++++----------
+>  1 file changed, 20 insertions(+), 10 deletions(-)
 
-> +Inter-Accelerator Communication
-> +-------------------------------
-> +
-> +On some platforms, multiple accelerators, each attached to a separate CL=
-A within
-> +a cluster, are also directly connected to each other via a shared bus to
-> +accelerate cooperation between accelerators. The accelerators sharing a =
-bus
-> +cannot be isolated from each other. When collaborative operations are la=
-unched
-> +on each of the participating accelerators, they synchronize over the bus=
-,
-> +stalling until all are ready.
-
-What the patch series needs to do is tell us how this topology is discovere=
-d.
-I.e. will it be discoverable from the hardware itself, or will this topolog=
-y be
-described in device tree or ACPI for example?
-
-The kernel must certainly know this topology to be able to synchronize
-work across several cores? What happens if an asynchronous acceleration
-task is running on some cores and no actual CPU load is on any of them
-and the kernel want to put them to idle or shut them down? Same problem
-on the cluster level?
-
-Further since this appears to be hardware topology userspace must obtain
-this information from the kernel, not the other way around: we cannot
-have a situation where userspace "just knows" stuff about the hardware,
-keeping the kernel in the dark.
-
-I think this is a wider question about the discovery of these CLA:s:
-there must be a coherent story about how userspace finds it and maps
-it topology and that information must come from the kernel, so the
-kernel and userspace have the same map of the world.
-
-Right now IIUC the driver probes from discovery in the hardware from
-CPU-specific registers so does this discovery also include the topology?
-
-Yours,
-Linus Walleij
+Patch applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
