@@ -2,75 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAFF606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E31606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PcmHts7O;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=kbKf4zdn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gDqQsZLf;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Di93BNen
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Pr/L5UIhdSBgIIxRY4ACmBWKTwcC0Vu48k0+5gmsT6M=; b=PcmHts7OHQ3/tD
-	ZRKms4hrOKkq5VHL+TTVGqs2pT/wXOFwkTAGL/i2RSfNWDEMW2cPbvMos1v89OeR1jQIcLFtUZjT/
-	hgPaYQalrXjoek688qaQb67ho0n7gEcDd3IAJnYp1nnEQlDWs/6zlAMtOvY/aKctweCAih5H/6Uzq
-	arBYVqH1krgM9tBK4GvQr1V9gShcWBmE4cOFHJk1vGMbkcRSQA53G9NytTHeEkO9hiSQFU/gkXEF+
-	Y5p8opu6MDg6nPKU0Bot0Uzdcf2sNxMZqaGmoSSL3L2B+YpA48QBaKNLrHuLEkdZ6yj7sS+WCLgMD
-	mCfV/6zAIyzyuVj9WMMA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=G0zRAkGF+KSljQO9yS6uVarLN8Ga3GC3k9CquE6CytE=; b=gDqQsZLfhFNqOXkytQbvDmXvIK
+	LJJkrCH5uodZeWyzMVFyueaJ5oAUbO50S1Io2abjawR+qdnOvGoN6Fm9uPAqROspHDko2HC3LtBnc
+	rSo2PW+sn5Kvrqqv6hW5qcnz+efhupmm0LK7IjJXOtMawG3pzMeQej0Zmkm1qjvDtwEvmAb0/ysZ5
+	m5zc7gksxz298Fg4j70szdyWEQ30sUhbaUELEQNv5yAmxMM+GOjfUVOfouXBFXM4u2w6AcKwaxJxc
+	Tx6RzmUSOgrFSHjIAXhYu4py0RRolofer+lJ1BJVBrdRji3q9lNqLoJj8P7wADsrPefd2CtlpSmXH
+	/6NFRIUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUICS-0000000EA1a-3Tg1;
-	Fri, 20 Nov 2026 06:34:20 +0000
-Received: from cmccmta8.chinamobile.com ([111.22.67.151])
+	id 1xUIDj-0000000EAEj-0JBA;
+	Fri, 20 Nov 2026 06:35:39 +0000
+Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUICP-0000000EA0P-0C0d
+	id 1xUIDa-0000000EADc-4Bec
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 06:34:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=kbKf4zdnWgA0yU/eStLMFCJJlBuQlwxbM+DAkzoM7eK0jGWCblsAY/V2Aun3U1TxASu+t2Lz9Rmoc
-	 j+ZywrVn530sZV8MV7anHRrVBT7kqCmk74hFV7qaezea/K1PnSGxJ2zFyVvwPfLt8DadI5ivLSQFyA
-	 qIym8v969OyyttP4=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app06-12006 (RichMail) with SMTP id 2ee66affe9dd8b2-f1be4;
-	Fri, 20 Nov 2026 14:34:05 +0800 (CST)
-X-RM-TRANSID: 2ee66affe9dd8b2-f1be4
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.97])
-	by rmsmtp-syy-appsvr01-12001 (RichMail) with SMTP id 2ee16affe9dad6e-18c1f;
-	Fri, 20 Nov 2026 14:34:04 +0800 (CST)
-X-RM-TRANSID: 2ee16affe9dad6e-18c1f
-From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-To: antonio.borneo@foss.st.com
-Cc: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>,
-	linusw@kernel.org,
-	krzk@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	linux-gpio@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
-Date: Fri, 20 Nov 2026 14:34:02 +0800
-Message-ID: <20261120063402.788-1-laixiangwu@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.50.1.windows.1
-In-Reply-To: <2a6ea91480a6c002a7354ce1223c1d904891371f.camel@foss.st.com>
-References: <2a6ea91480a6c002a7354ce1223c1d904891371f.camel@foss.st.com>
+	Fri, 20 Nov 2026 06:35:37 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3CA231596;
+	Thu, 19 Nov 2026 22:35:24 -0800 (PST)
+Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7A5F23F673;
+	Thu, 19 Nov 2026 22:35:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795156527; bh=9NBvwpZWWadQFsksHSrJpVxb+kXxaiMwW0jNcvt09fU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Di93BNenvzv0wKdOUq8XuyZIWeSMqudpmup+ZeGHxESB3mFad4ROccBlHY+KY1RMq
+	 YmpSudlqMEGiUgBwc4t4ChCNRiUewCRr+yAnqnYnQ9lahA7yJhyNWy/UyUcdIbcCt2
+	 VKbK6kzV42daCTPUI60IKJmjJeTXTuFCc4qYwvKo=
+Date: Fri, 20 Nov 2026 06:35:12 +0000
+From: Wei-Lin Chang <weilin.chang@arm.com>
+To: Colton Lewis <coltonlewis@google.com>, Marc Zyngier <maz@kernel.org>, 
+	Oliver Upton <oupton@kernel.org>
+Cc: Joey Gouly <joey.gouly@arm.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
+	Fuad Tabba <fuad.tabba@linux.dev>, Steffen Eiden <seiden@linux.ibm.com>, kvmarm@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: nv: Fix guest stage-2 mapping leak on
+ sub-block unmap
+Message-ID: <iyfa5sagkdapb4plle575uhbxbmjdcxvbe35nnlxkqzfqnztqd@mmweqvqmil6x>
+References: <20261119185105.626343-1-coltonlewis@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119185105.626343-1-coltonlewis@google.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_223417_661868_78102780 
-X-CRM114-Status: GOOD (  15.42  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261119_223531_206451_9F558204 
+X-CRM114-Status: GOOD (  36.53  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,45 +72,210 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Antonio,
+On Thu, Nov 19, 2026 at 06:51:05PM +0000, Colton Lewis wrote:
+> When a shadow stage-2 block mapping (for example, 2M at PMD level) is
+> partially invalidated by a smaller guest unmap such as a 4K TLBI
+> IPAS2E1IS, kvm_pgtable_stage2_unmap() shatters and clears the entire
 
-Thanks for the historical context.  For the record, this is about:
+"shatters" sounds like it breaks the block into page mappings, so maybe
+just "clears the entire block.."?
 
-  [PATCH v3] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
-  https://lore.kernel.org/r/20261116031043.502-1-laixiangwu@cmss.chinamobile.com
+> block descriptor in mmu->pgt. However, kvm_remove_guest_s2_mappings()
 
-On Thu, Nov 19, 2026 at 07:27:19PM +0100, Antonio Borneo wrote:
-> The driver's "resets" property is not currently used by any upstream DT.
-> Using it is also problematic, as asserting the reset affects all GPIOs in
-> the bank, including those already configured by the bootloader or secure
-> world. The current driver uses this only to deassert the reset during
-> probe.
+nit: I think "the shadow page table" is clearer than "mmu->pgt"
 
-Thanks for the background -- I had a look and could not find any in-tree
-user of the property either: the only rstc use sites in the driver are
-the of_reset_control_get_exclusive() in the probe bank loop and the
-deassert at probe time.
+> only removes a struct kvm_guest_s2_mapping node when its entire
+> [nested_start, nested.last] span lies within the unmap range. As a
+> result, every sub-block invalidation followed by a re-fault leaks a
 
-> This patch has the "Fixes:" tag. Whatever the evolution of this thread,
-> I think this patch should be taken for backport in stable then,
-> eventually, followed by the "resets" removal.
+Doesn't the block tracking node get leaked regardless of whether a
+re-fault happens?
 
-That order makes sense to me as well: fix the leak first and let it
-reach stable, with the "resets" property removal as a follow-up cleanup.
-The patch is ready as-is (v3 above); no further changes are planned from
-my side, so it can be picked up whenever convenient.
+> stale block-sized tracking node in mmu->guest_s2_mappings and
+> kvm->arch.mmu.guest_s2_mappings until the shadow MMU is destroyed,
+> allowing an L1 guest to grow host kernel memory and degrade subsequent
+> TLBI IPAS2E1IS walks to O(N) under write_lock(&kvm->mmu_lock).
+> 
+> Conversely, unconditionally removing any overlapping tracking node on a
+> sub-block unmap would be unsafe when a shadow block mapping has been
+> split into a child table (such as on a page-granule fault under dirty
+> logging or a racing shared walk returning -EAGAIN), because sibling
+> sub-page PTEs outside the unmapped range remain live in mmu->pgt and
 
-Thanks to both of you for the review.
+What are sub-page PTEs? :P
 
-Best regards,
-Xiangwu Lai
+> still rely on the block-sized tracking node for host MMU notifier
+> unmaps.
+> 
+> Since stage2_unmap_walker() unlinks empty child page tables in
+> KVM_PGTABLE_WALK_TABLE_POST as soon as their last valid entry is
+> cleared, check mmu->pgt via kvm_pgtable_get_leaf() on partial-overlap
+> candidates: when no valid entry or split sub-table remains at or below
+ 
+You use "or" here.                ^^
 
+> the recorded mapping granule (!kvm_pte_valid(pte) &&
 
+but this is an AND?                                 ^^
+so I don't quite understand.
+
+> kvm_granule_size(level) >= map_size), remove and free the tracking node;
+> otherwise retain it to cover surviving split sub-entries.
+
+"sub-entries" doesn't really make sense to me..
+Maybe "... to cover other entries within the range"?
+
+For this third paragraph can you improve it by stating how the problem
+is fixed upfront? The first two paragraphs describe the problem, then
+you started to talk about stage2_unmap_walker all of a sudden (which I'm
+not sure how much it helps), and the fix itself is not emphasised. The
+combination makes it pretty difficult to get what the patch is doing.
+
+> 
+> In addition, suppress exact-match duplicate insertions in
+> kvm_record_guest_s2_mapping() when concurrent faults or -EAGAIN retries
+> record an identical (nested, canonical) range on the same shadow MMU.
+
+I believe this is better split into its own patch, it's doing another
+thing.
+
+> 
+> Fixes: 5491980c1a41 ("KVM: arm64: nv: Track guest stage-2 mapping removal")
+> Fixes: c2778d14cd2f ("KVM: arm64: nv: Track guest stage-2 mapping creation")
+
+Since there isn't a real bug in the original implementation do we need
+these tags?
+
+> Signed-off-by: Colton Lewis <coltonlewis@google.com>
+> ---
+>  arch/arm64/kvm/nested.c | 68 ++++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 61 insertions(+), 7 deletions(-)
+> 
+> diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+> index 4d83281a7a28b..2b1c85de5b719 100644
+> --- a/arch/arm64/kvm/nested.c
+> +++ b/arch/arm64/kvm/nested.c
+> @@ -896,6 +896,30 @@ static unsigned long s2_mapping_to_nested_start(struct kvm_guest_s2_mapping *map
+>  	return mapping->nested.start & ~S2_MMU_IDX_MASK;
+>  }
+>  
+> +static bool guest_s2_mapping_exists(struct kvm_s2_mmu *mmu,
+> +				    struct kvm_guest_s2_mapping *mapping)
+> +{
+> +	struct interval_tree_node *node;
+> +
+> +	for (node = interval_tree_iter_first(&mmu->guest_s2_mappings,
+> +					     mapping->nested.start,
+> +					     mapping->nested.last);
+> +	     node;
+> +	     node = interval_tree_iter_next(node, mapping->nested.start,
+> +					    mapping->nested.last)) {
+> +		struct kvm_guest_s2_mapping *curr;
+> +
+> +		curr = container_of(node, struct kvm_guest_s2_mapping, nested);
+> +		if (curr->nested.start == mapping->nested.start &&
+> +		    curr->nested.last == mapping->nested.last &&
+> +		    curr->canonical.start == mapping->canonical.start &&
+> +		    curr->canonical.last == mapping->canonical.last)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  void kvm_record_guest_s2_mapping(struct kvm_s2_mmu *mmu, gpa_t canonical_ipa,
+>  				 gpa_t nested_ipa, size_t map_size,
+>  				 struct kvm_guest_s2_mapping *mapping)
+> @@ -915,9 +939,32 @@ void kvm_record_guest_s2_mapping(struct kvm_s2_mmu *mmu, gpa_t canonical_ipa,
+>  
+>  	tag_s2_mapping_mmu(mapping, mmu);
+>  
+> -	guard(spinlock)(&kvm->arch.guest_s2_tracking_lock);
+> -	interval_tree_insert(&mapping->nested, &mmu->guest_s2_mappings);
+> -	interval_tree_insert(&mapping->canonical, &kvm->arch.mmu.guest_s2_mappings);
+> +	scoped_guard(spinlock, &kvm->arch.guest_s2_tracking_lock) {
+> +		if (!guest_s2_mapping_exists(mmu, mapping)) {
+> +			interval_tree_insert(&mapping->nested,
+> +					     &mmu->guest_s2_mappings);
+> +			interval_tree_insert(&mapping->canonical,
+> +					     &kvm->arch.mmu.guest_s2_mappings);
+> +			mapping = NULL;
+> +		}
+> +	}
+> +
+> +	kfree(mapping);
+
+In my understanding kfree() can be called while holding locks, so we
+don't need the extra level of indentation.
+
+> +}
+> +
+> +static bool guest_s2_mapping_unmapped(struct kvm_s2_mmu *mmu,
+> +				      gpa_t nested_start, size_t map_size)
+> +{
+> +	kvm_pte_t pte;
+> +	s8 level;
+> +
+> +	if (!mmu->pgt)
+> +		return true;
+> +
+> +	if (kvm_pgtable_get_leaf(mmu->pgt, nested_start, &pte, &level, 0))
+> +		return false;
+> +
+> +	return !kvm_pte_valid(pte) && kvm_granule_size(level) >= map_size;
+>  }
+>  
+>  void kvm_remove_guest_s2_mappings(struct kvm_s2_mmu *mmu, gpa_t nipa,
+> @@ -937,17 +984,24 @@ void kvm_remove_guest_s2_mappings(struct kvm_s2_mmu *mmu, gpa_t nipa,
+>  	node = interval_tree_iter_first(&mmu->guest_s2_mappings, nipa, nipa_end);
+>  	while (node) {
+>  		unsigned long nested_start;
+> +		size_t map_size;
+>  
+>  		next = interval_tree_iter_next(node, nipa, nipa_end);
+>  		mapping = container_of(node, struct kvm_guest_s2_mapping,
+>  				       nested);
+>  		/*
+> -		 * Tracking must be conservative on removal, only remove
+> -		 * mappings that are within the unmap range.
+> +		 * A sub-block unmap tears down an unsplit shadow block entry
+> +		 * in mmu->pgt, whereas a split block may still have valid
+
+Does "split block" make sense? Either it is a block mapping or a page
+mapping.
+
+> +		 * sub-page entries outside [nipa, nipa_end]. Remove the
+
+Same "sub-page entries" wording issue here.
+
+Thanks,
+Wei-Lin Chang
+
+> +		 * tracking entry when it lies within the unmap range or no
+> +		 * mappings remain across its span in mmu->pgt.
+>  		 */
+>  		nested_start = s2_mapping_to_nested_start(mapping);
+> -		if (nipa <= nested_start && nipa_end >= mapping->nested.last) {
+> -			interval_tree_remove(&mapping->nested, &mmu->guest_s2_mappings);
+> +		map_size = mapping->nested.last - nested_start + 1;
+> +		if ((nipa <= nested_start && nipa_end >= mapping->nested.last) ||
+> +		    guest_s2_mapping_unmapped(mmu, nested_start, map_size)) {
+> +			interval_tree_remove(&mapping->nested,
+> +					     &mmu->guest_s2_mappings);
+>  			interval_tree_remove(&mapping->canonical,
+>  					     &kvm->arch.mmu.guest_s2_mappings);
+>  			kfree(mapping);
+> 
+> base-commit: 4405c18c95d2d0f99f6c581ef0ee8591a1aa6ccd
+> -- 
+> 2.56.1.809.ga0b61035b5-goog
+> 
 
