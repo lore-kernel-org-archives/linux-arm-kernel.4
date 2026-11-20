@@ -2,100 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2605A606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 05:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8C2606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 05:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HUlaLkXv;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=l3wTozIw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DngHkST9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ElvNMLPb9nWTefCnh+Wvm1TWF1EkTveOzrAIj5NeSzA=; b=HUlaLkXv8OTD00
-	D3qu6biznPHGVQXr18tyEmdQK8YhlzwxGkg6OzXH4MlD81TAUZHn8bob6lO+F1pjJ+hJHFOWvsCAX
-	J7WQNxlZdqdDJZlUIgcBVyhzKSAG4isptg2ce4CjkKIN6nj8uhr28uNE0WXyY0h4OzIA8km+637G3
-	W28Nw/k27ijki9jswCZOXRSAY6i9no0nxaXk7pDYi/LXBAvdaqRGEnRyz7Y/5URjmsNEbqQNg2m6z
-	ZExX9fzVQAftXUldkCX05NIvgmXo0teC5TF5aKEdJQacI+AJ7tXfcBGrXy6gechihpG/qdXsRPmOw
-	0RBCZbJQ8c8eJpHHdLTA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fAjvXaj7tYkT3DZdvrd+6EuGIWycDnvsk4IKDM7473A=; b=DngHkST9iLADO28wk2cGOBxrtD
+	quDqC+CSrLok9vO4LANhhAV6xdGOlf25GharMqo3ya6v/XtRF+GqF7G/RQu/0VXKweCpZ00dRp2Xd
+	Tmhngvc9n71w6owEppbcv9vVLqPKx4piajOiK7GqUJt3Q7oaZEe4MAi5gDbIO5XXBs76FO6Wg9eGX
+	MZlC11iZE00Twy43lYxUZGByMUUPfLplnaZQT1hRvrqbSBewilg5fM90lyTq2UA6anCvdjk/8Z7ur
+	J4zSbqpHm0m2easljtvCLwNMl6VEj0HYrCHiVmI2VQC1J7mhc+CEJAv6lORMMDCx+P8oZlUKgw1H+
+	+RoRGAEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUHLf-0000000E6JV-3YNZ;
-	Fri, 20 Nov 2026 05:39:47 +0000
-Received: from mgamail.intel.com ([192.198.163.8])
+	id 1xUHXR-0000000E6fi-40Om;
+	Fri, 20 Nov 2026 05:51:57 +0000
+Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUHLd-0000000E6J9-0iNo
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 05:39:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795153186; x=1826689186;
-  h=message-id:date:mime-version:cc:subject:to:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=JOXloh/WTQ18M0f0+orJ8jQWk9eyZPfHxhSzgmLwgig=;
-  b=l3wTozIwOlQzZcAXQL7AANbVSETjXCnF+BlPDw7BG/vVoi+UTII+0z2C
-   9s2swZ8PNkbi2D28lgJuT7myndMdAFiS/LjdTafX3c2fSFAH/cyWb/KWi
-   KHTL6mO/VhZY9ASGCCVaHniMXUV8Df3zFhM8HJmKN7KaKe55OZDuay46U
-   FMWIs/l2sGChWtMbWIQ4MEow5FTsi0aXVDZ6FHF2wArUeG3VSrWs8WtTk
-   iix+4eG00KcUsNpv7x2NS9QOD9AOcym5m8HCljZzep9p3HDxBVX4of6up
-   SZvpIhGWcA+26+4oLLSMwyaKPGvQuq6RKfcrNXJO8iiiwz0winuOQHc0J
-   Q==;
-X-CSE-ConnectionGUID: Ue6g8lHWSOiKr+C2V1qM8g==
-X-CSE-MsgGUID: YdrqT7e4SVO5Nil8QHrrow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3926494"
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="3926494"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 21:39:45 -0800
-X-CSE-ConnectionGUID: NCD7hbrERneuQrgdNmaJMQ==
-X-CSE-MsgGUID: qCE/ag8EST2VFpCAsOOiuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="12327914"
-Received: from unknown (HELO [10.238.1.144]) ([10.238.1.144])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2026 21:39:36 -0800
-Message-ID: <2d8af908-4dd5-43a9-b618-d1ee4189f6ba@linux.intel.com>
-Date: Fri, 20 Nov 2026 13:39:34 +0800
+	id 1xUHXO-0000000E6f4-1Haa;
+	Fri, 20 Nov 2026 05:51:56 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Khc7wzseyDOiW2KiNILmcrFk6zwMoPHActL3l78z4PBZbaEWYDA5DEIjE8iiKrnoklP4wowmjoIdtfD/GOUgGXt7QiX8QK51/keKeWN9T4TfdroXcVpis7VWvtEQfaW5a4w4bMrB6ngLrqinp+7DKaFk2UOuxA1M4KRf9nhrkjIQBtWwODu5ehn9SBk1jE5SI7mCl25sGHW5CbNxqyq0j2l+B/T0hqrLaDCZg/tnhHB3FEH/5dbyvkZrFF+oriC1N2aftTj+T5KV2nrd3ysqRL0dIRiQZrW37vwY0QTSrTFMG0PA63cT5Uy5Qf0zNpaewvI+eiezmOkXXpYTVNKYvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fAjvXaj7tYkT3DZdvrd+6EuGIWycDnvsk4IKDM7473A=;
+ b=gIHYFeJImT5ZQMjN6DnYn3rAkI7WMAnc7+dKG5omYGPyTEqZfdo13J0Wq89bRHJvUhF3FGr+M0kY7Kte74qMi7tw5JMSzak4qwQN9fsHj6+Km6M8CsQ44/CA7zRYRMGgPpQBDY+BUApaHAcpqcIS+mMfI8wAAoj42TpkPc02XYY7VKLF8b4XysXA/GUYq5m/yTnHSWiXaVWF18IxXOqWo1hToOqDmVh3oEw0raUecaHPgKuuCdLCsCgkvpjB4ot74mG/9SCUXJmyy4WjwFeMbLkLSl8BsOczVL0ttDeTHuq0yrkQ9k854pOKVR/n70cPzAsClc2Q1hdRqROQWfDyHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PUVP216CA0009.KORP216.PROD.OUTLOOK.COM (2603:1096:301:16f::11)
+ by KUYPR06MB8843.apcprd06.prod.outlook.com (2603:1096:d10:9b::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.2; Fri, 20 Nov
+ 2026 05:51:43 +0000
+Received: from OSA0EPF000000CD.apcprd02.prod.outlook.com
+ (2603:1096:301:16f:cafe::9a) by PUVP216CA0009.outlook.office365.com
+ (2603:1096:301:16f::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Fri,
+ 20 Nov 2026 05:51:42 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CD.mail.protection.outlook.com (10.167.240.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Fri, 20 Nov 2026 05:51:42 +0000
+Received: from gary-System-Product-Name (unknown [172.16.66.27])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id B5E77427EFCF;
+	Fri, 20 Nov 2026 13:51:40 +0800 (CST)
+Date: Fri, 20 Nov 2026 13:51:39 +0800
+From: Gary Yang <Gary.Yang@cixtech.com>
+To: Luo Liu <Luo.Liu@cixtech.com>
+Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"mani@kernel.org" <mani@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Fugang Duan <fugang.duan@cixtech.com>,
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Wuyi Shen <wuyi.shen@cixtech.com>,
+	Eastlake Yang <Eastlake.Yang@cixtech.com>
+Subject: Re: [PATCH v5 3/3] arm64: dts: cix: Add Sky1 DP PHY node
+Message-ID: <av_f6zeEHFUR5yCX@gary-System-Product-Name>
+References: <20261116073800.2396894-1-Luo.Liu@cixtech.com>
+ <20261116073800.2396894-4-Luo.Liu@cixtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: baolu.lu@linux.intel.com, Alex Williamson <alex@shazbot.org>,
- Alexey Kardashevskiy <aik@amd.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
- Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
- Nicolin Chen <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
- Samuel Ortiz <sameo@rivosinc.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Steven Price <steven.price@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
- Xu Yilun <yilun.xu@linux.intel.com>, Ashish Kalra <ashish.kalra@amd.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, iommu@lists.linux.dev,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 10/13] iommufd/viommu: Allow PCI TSM backends to
- provide vIOMMU operations
-To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
- linux-coco@lists.linux.dev
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-11-aneesh.kumar@kernel.org>
-Content-Language: en-US
-From: Baolu Lu <baolu.lu@linux.intel.com>
-In-Reply-To: <20261116081935.85372-11-aneesh.kumar@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261116073800.2396894-4-Luo.Liu@cixtech.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CD:EE_|KUYPR06MB8843:EE_
+X-MS-Office365-Filtering-Correlation-Id: 909f2d60-033b-4d58-010e-08df46ca5aaa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|36860700016|376014|7416014|23010399003|1800799024|22082099003|18002099003|4143699003|10067099003|56012099006|261102123227099003|261021121427099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: 28Lcx1TwKZDA/Co74XZTUVIK1AuuKkUYcCZXDzcj8AcwZbpbb05zWdkpjIp0iDeIpcrAFzYQcpv40ikegH6Jdy3NqRLGqsPL5LeWeGDazS6X29REmAlvfEjNdty1PXyUDChSopNekwFhzsiFUzrfIYS9r1l7mPop6qHYlyrYKtvF//rBff7KDvArFGLqdZatsId7ni0UgV0Yl4BIPxjl+GWSOAxz8jzjnmmxYZ2Ee6YGSKcPrJ3o+D94ENDyD2W5hcCnleLIAZ3Z0vrmH3h6WMSMeiHqeKiZzg2GQgylJNK0+Uw32NWOIVpFyC9PIMyDvshg70P1LbA5A/GgWIH/LO+gMiRN8q98aE8wMpcvTPwDV+gkoSatqbilCh/4QaAq9+QecuSZMTbopdYqkm/PuAN5wRxnQw1wWaCighUABHrILnjO5BOFpVb3w1beFKlUoSwb5tAKMgMsXRBvrC/Ox08GuWrofuj70WZTiSA923asDsBZ75Yz2GdthcS2IsppLpE3biYTt0yflG+Z+PvX1+WOWKyk+PUqXpeprWa6y80gX3aW62lCi++BiKACPWfsR7KJ/9/D32YloTFpyZCqi9Y0fn3BIKhyIkmgootmnJ0OPkzhZsyGFlN522PF1lJUAphSovbCbUBziZZvg5y6SQhIUlVSIbqftkNXwurfDbgMiaxwCTqMSVsW90StqQkf
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(7416014)(23010399003)(1800799024)(22082099003)(18002099003)(4143699003)(10067099003)(56012099006)(261102123227099003)(261021121427099003)(261009223027099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: ZIF0gDqliKv+NwTtpIkQWNY1ltRcN5NyN7vOG81VxdWEep8Poz8rchuP290hiVXmOXIOVTvoBZ2A8v31qSmjRUQdNWr63YyfyB0oF1y2f4UfZk8DZlZpfkK+qNnT544hkwNUMJjP5iN0+OKCaHEdPzrYVaQhAJvb7RAedtbHg06uvp1y0Nkre2sp7pD9XYTopOdUjWTbgwwBlUXuwZY51rAhBpaCQNDJTgX3U3OkK/oA6ZsEps7jvCcZIzJWBozwBAQT5tzJFkrhZb9ZgYp6H2/rxPTv4t//2WeWCb1CKdQGsk0b81uOUct4jtzxVOW5J5/TJJ2da8UhnQAI7x795MDlUfCxwkn5LUzoCtMANakN+b0ci5DbqAC9fOsJaVTeH0IKFsSBN0MZE1CrEx0xbgQyepsSNdsqaISVlut7Podqv5dlOh14F8jlYRZUAlgo
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 05:51:42.5725
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 909f2d60-033b-4d58-010e-08df46ca5aaa
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000CD.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUYPR06MB8843
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_213945_248043_E885D4F2 
-X-CRM114-Status: GOOD (  16.32  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261119_215154_351295_109D9D6D 
+X-CRM114-Status: GOOD (  12.94  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,60 +123,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/2026 4:19 PM, Aneesh Kumar K.V (Arm) wrote:
-> In confidential-computing configurations, a vIOMMU may be implemented by
-> a TSM driver rather than by the physical IOMMU driver. Such an
-> implementation also needs the TSM identity when creating and validating
-> vdevices.
+On 2026-11-16 15:38, Luo Liu wrote:
+
+> Describe the Sky1 DP PHY in the SoC DTSI, including the DPC2 APB
+> clock shared with the DisplayPort controller, so DisplayPort can
+> consume it once the controller is enabled. Enable the PHY on the
+> Radxa Orion O6 board.
 > 
-> Allow VIOMMU_ALLOC to first query the TSM associated with the target PCI
-> device for vIOMMU operations. Fall back to the physical IOMMU driver
-> when the TSM does not provide operations for the requested vIOMMU type.
-> 
-> Resolve the PCI TSM association under pci_tsm_rwsem, take a TSM device
-> reference, and pin the module providing the operations. Store the TSM
-> device in the vIOMMU. Release the device reference and module pin on
-> allocation failure, fallback to the physical IOMMU driver, or vIOMMU
-> destruction. Drop the device reference before releasing the module pin,
-> since the final put may call into the backend module.
-> 
-> The device reference preserves the TSM allocation. Backends providing
-> vIOMMU operations must not unregister their TSM while the module is pinned,
-> since the reference does not prevent backend resource teardown.
-> 
-> Cc: Jason Gunthorpe<jgg@ziepe.ca>
-> Cc: Kevin Tian<kevin.tian@intel.com>
-> Cc: Joerg Roedel<joro@8bytes.org>
-> Cc: Will Deacon<will@kernel.org>
-> Cc: Robin Murphy<robin.murphy@arm.com>
-> Cc: Bjorn Helgaas<bhelgaas@google.com>
-> Cc: Alexey Kardashevskiy<aik@amd.com>
-> Cc: Lukas Wunner<lukas@wunner.de>
-> Cc: Xu Yilun<yilun.xu@linux.intel.com>
-> Cc:iommu@lists.linux.dev
-> Cc:linux-pci@vger.kernel.org
-> Signed-off-by: Aneesh Kumar K.V (Arm)<aneesh.kumar@kernel.org>
+> Signed-off-by: Luo Liu <Luo.Liu@cixtech.com>
 > ---
->   drivers/iommu/iommufd/viommu.c | 35 +++++++++++++++++++++++++++-----
->   drivers/pci/tsm/core.c         | 22 ++++++++++++++++++++
->   drivers/virt/coco/tsm-core.c   | 37 ++++++++++++++++++++++++++++++++++
->   include/linux/iommufd.h        |  2 ++
->   include/linux/pci-tsm.h        | 24 ++++++++++++++++++++++
->   include/linux/tsm.h            | 25 +++++++++++++++++++++++
->   6 files changed, 140 insertions(+), 5 deletions(-)
+> Changes in v5:
+> - No changes.
 
-This change spans both PCI/TSM and IOMMUFD. Could it be split into
-separate patches for each subsystem—for example, one adding the TSM
-lookup interface and another updating IOMMUFD to use it?
+Applied, thanks!
 
-Thanks,
-baolu
+Best Regards
+Gary
+
+> 
+>  arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  4 ++++
+>  arch/arm64/boot/dts/cix/sky1.dtsi         | 10 ++++++++++
+>  2 files changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> index e39c87774c12..b659c10f1f4d 100644
+> --- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> +++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
+> @@ -36,6 +36,10 @@ linux,cma {
+>  
+>  };
+>  
+> +&dp_phy {
+> +	status = "okay";
+> +};
+> +
+>  &fch_gpio0 {
+>  	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
+> index 0a820f45feb9..cbc14ac5b2b7 100644
+> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
+> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
+> @@ -762,6 +762,16 @@ ppi_partition1: interrupt-partition-1 {
+>  			};
+>  		};
+>  
+> +		dp_phy: phy@1414c000 {
+> +			compatible = "cix,sky1-dp-phy";
+> +			reg = <0x0 0x1414c000 0x0 0x4000>;
+> +			clocks = <&scmi_clk CLK_TREE_DPC2_APBCLK>;
+> +			clock-names = "apb";
+> +			resets = <&s5_syscon SKY1_DP_PHY_RST_N>;
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		s5_syscon: syscon@16000000 {
+>  			compatible = "cix,sky1-s5-system-control", "syscon";
+>  			reg = <0x0 0x16000000 0x0 0x1000>;
+> -- 
+> 2.25.1
+> 
 
