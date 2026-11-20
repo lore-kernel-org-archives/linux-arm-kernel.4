@@ -2,73 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3BA60A2600
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E41606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p7K+3wjK;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=I3DhXqu/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BDwDZzGY;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zWaRmvyI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=MSJoFCEsfj7of6lz5+U6PauFIuUQ6OXlAKpM6oWbFGY=; b=p7K+3wjKJLGcRh
-	MrlRCRyPUoKrU0R1gGE9Up/FEQ9l4ugBfIF0V9br4AjzxckLsPwEcMN9jdGRXMnDhbjlNvbQ93Gv5
-	HvkO0pa73O9D3lYImG8KpTkEQFXvA0xMCy7dhyIcAHrQN/LTfOg028LFSBNqGmJ9q5g305n+J1HZk
-	XeVpViJJqahxKpfVXX0y0n8obzRQWBOGQzjqKoK9AoezQjavQzDYumQcsP3svBJJHi6Js1UAMLLxN
-	eehk92IEKDXD0pTOslubKjAb7TGX4ShOwVkiHtU919WV6zp7C+wCDLHTk5soqCaT6mRyHizY0cjiv
-	ZcdnccZ/h6KjI2niYB8A==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Wv20V3Cm7/chgyBZeECK3U54HfislA0FQ3c62tQ5/jc=; b=BDwDZzGY/ulwe1qV7iieNuKnrq
+	H8mGPopGQQEzdAo34Pac1R5VJoAxc0QLCtzCpUE6zgzR74j6rWORDpNBfEzHQj6dXTdnoKY7Rdq3b
+	TmMP7gU6za6KSBHiTgGbBMeH1sR0CW30bvsGWnWydLCGY5A61ckyaoK8ZtX4uKEdPWVyAvV6mhCwm
+	dGC0U70ocsm3zzK89/aawLm0x6XD+GRgCkgo80TngkEHS6Li8uAbJmvvWSjbMTW98AhgMzskRIR8+
+	0EDBWZTMkjLmBZjYA8ePxtlN6XxzRGBCpODftt0rNkVkfWMIGN6lcX+h8Vj8zixr+0QgKDD0EFKVc
+	T2CdiM+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUL97-0000000EUkf-1RWm;
-	Fri, 20 Nov 2026 09:43:05 +0000
-Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
+	id 1xULAI-0000000EV1L-1o26;
+	Fri, 20 Nov 2026 09:44:18 +0000
+Received: from mail-dy1-x1333.google.com ([2607:f8b0:4864:20::1333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUL8t-0000000EUeZ-1Qew
+	id 1xULAF-0000000EV0u-20Ve
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 09:42:57 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D4D2610CD95;
-	Fri, 20 Nov 2026 10:42:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1795167765; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=MSJoFCEsfj7of6lz5+U6PauFIuUQ6OXlAKpM6oWbFGY=;
-	b=I3DhXqu/r4PKZoEawwDxGcQULIxMav8K2+i3DLmhyySC+35EdrxP+thTeF63iqtiYL4g3o
-	y62UADGQ/CspOHLFejRTXiiVjv3pgY/P/VnCDq14Ew7RI3/fZOh9UsGHwcY1jfEMJFQFO9
-	0gyCSERKke+k96OglzTHAjzyki7+dqT9MZLAJuoYfa/jnih2lSKSjPx/uWzbJ1OBLIaMUP
-	pf4Prpt0+fURFbTROVi+5riI8zQD7y3V0HAgbtNdXfSDDqe7sKj49Hw74bkUOqFzev+evC
-	qnBbsxHfufpMr1cp7Amn3BnAxNR2SqG54hkHgsHEqaiEhbq9djw0y8q3bm1xCA==
-From: Lukasz Majewski <lukma@nabladev.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	Fri, 20 Nov 2026 09:44:17 +0000
+Received: by mail-dy1-x1333.google.com with SMTP id 5a478bee46e88-380b40319bdso868127eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 01:44:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795167854; x=1795772654; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Wv20V3Cm7/chgyBZeECK3U54HfislA0FQ3c62tQ5/jc=;
+        b=zWaRmvyICEEAG4dlIm5/o4PAqdB2xCyGRebaH+CGb2pp2jfJpTE/ELcYgtF7SS6tYH
+         6caQhWQeFyUbqYCnJ8RPWk5B55rOpYZT2nNqQRZpe8lw+lVzwaTThDVwPGwxSKtowLp4
+         VAqDBiKOvP6x0ec5oiUpNXcqqYKcc9Bc2+ADRXdgaZ6pmnCEm/EIPMfnDq7FyomKTSbm
+         NmGOS4nePWf8ljHabu+lFkMygHi0jhwGQxMnrwMgGaDijFA1RRg2db6mjo1wvUgKXUHu
+         xINziamY6gZrizsh036FScbplW2IX5Jb4++J6r7gnMZsokFKBqlC3E0dMAmBxGoyF0No
+         0bmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795167854; x=1795772654;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Wv20V3Cm7/chgyBZeECK3U54HfislA0FQ3c62tQ5/jc=;
+        b=pZYlERZEynMdMvU/pXciUB3irDwC5GP2gEo4APsORBZ0Akhvj80ukHTzPFkV+mRtfW
+         im6HCfnVclLIZEXMIa0NvM10l3hE1psSt5gqJ15otjzPBTOiC2k/6vL8jjOxX7Utetz6
+         y3MV6O+3cxbK3nfsiSQmLX4ruGSJx53enQzRIY3qi9XABxNgkY7xW1aVwn8CbEiPBy2J
+         DDTlFTxbRD6WuVGc6AYLty1x1asSeqp7JGhYzOkJQxGJFIpfLoJ/u3iDQLA/5iyqaJ51
+         YZ000sR+xTKdobsYvax+NPw3Q9GsyxdvufG8OI2r6cJZBzrLSYzgrwaqZ7vyffyUMpY7
+         KdcA==
+X-Forwarded-Encrypted: i=1; AL+hErFv2vZiqEulK60mvBXOJGF3yh93DFE1b/vpmkVRo/dQXY2Fb8bpyifw7NMFYVEB+8FAetY6BO7DlV5EhVkoQ+tT@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+ULTZ6orYCuj5lMOMWmWw5xkE3fIKDkO9z7Y9eFzYTzu39cZj
+	qFR2KdeaTzhUv2GnQl/yplqxKHCvXIubvBv/Hx/8cQhZSS+Wm8U6TWqx
+X-Gm-Gg: AZFdTZd55rEOKhPdlQVucK3MkQrR9bI7WxYHWWTe0i76VEwYp5ImK5DcaTxqFyKxgSX
+	K3jjjCTg89yjUHWYNAHbm8tLRt4SJEqda5QBTzMdlhFnkZyiGMCaEdgKvf4z/btC1Bc1L+64hgJ
+	IVmIGci8YCGLGRjJ9YiCsCuzZ0cZ2nA582HlgZpMPPGxPZw/aat3jPndZNXnzrr3/js6LGjA8XB
+	7gol5vahAk8pE7FOt7hHzqu09qB/zM4eTuuHpRqGeDfpDBT4XUNbHedAXYaKqknKNiKDRCG9Xb4
+	F//8O4oR58S2yutFARR/wROoJYtFcaowCLakH5+LwU8kZnvbuKcIuylczmyv/GJi76xL7+CYjk5
+	NIUUmRZy79J5Qz0npJsPM7kNbsKz9U9n010VPGvszvarabGYUkWb8qR8DjZwhLJe0EzqgxWD91U
+	+JEajpLS/j2HiDvX7gGy3fd9bhoyu5hOnKKmarm87vWTJZ4bdyr539py3BIHUTr1AIYi5/+b0pc
+	grhBYpN4erIJJt9WD23EuaPji+qG+IXhkXKO7koQ+qKYbLYpKb31WyvbZzqwvOQqsYiQjH2AlCo
+	26ZQJEaJQn3ZaSPP2egpe0Ho83MHtmFmIm13F12qhefTDCgALPI4XDtpwaQPkEFeoaccqEtMrzC
+	FZYz27kKbtREGiMGE2Tt1GorXSDf6Pz4RfyYRHgi8ZbGR
+X-Received: by 2002:a05:7300:f496:b0:385:551d:854a with SMTP id 5a478bee46e88-38570845477mr1900177eec.28.1795167854304;
+        Fri, 20 Nov 2026 01:44:14 -0800 (PST)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385f68bc0adsm3982974eec.13.2026.11.20.01.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 01:44:13 -0800 (PST)
+From: phucduc.bui@gmail.com
+To: Mark Brown <broonie@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Andrei Simion <andrei.simion@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Lukasz Majewski <lukma@nabladev.com>
-Subject: [PATCH v4 3/3] arm64: dts: imx8mm: Add Cloos CBASE support
-Date: Fri, 20 Nov 2026 10:42:11 +0100
-Message-ID: <20261120094211.1742416-3-lukma@nabladev.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261120094211.1742416-1-lukma@nabladev.com>
-References: <20261120094211.1742416-1-lukma@nabladev.com>
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH 0/3] ASoC: atmel: mchp-spdiftx: Improve probe and PM handling
+Date: Fri, 20 Nov 2026 16:43:51 +0700
+Message-ID: <20261120094354.6814-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_014251_664055_FE78B9FC 
-X-CRM114-Status: GOOD (  15.37  )
+X-CRM114-CacheID: sfid-20261120_014415_522914_EA021D8E 
+X-CRM114-Status: UNSURE (   6.75  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,631 +108,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for CBASE board, which incorporates the TQMa8MQML module.
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
----
-Changes for v2:
-- Fix the DTS according to the sashiko bot review (gemini/gemini-4-argon)
-Changes for v3:
-- None
-Changes for v4:
-- Use hex values for switch reg property
-- Change subject and commit message according to community feedback
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../arm64/boot/dts/freescale/imx8mm-cbase.dts | 581 ++++++++++++++++++
- 2 files changed, 582 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+Hi all,
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a80cccf34eb5..c14e5ae2e4a0 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -121,6 +121,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8dxl-hummingboard-telematics.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8dxp-tqma8xdp-mba8xx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8dxp-tqma8xdps-mb-smarc-2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-cbase.dtb
- 
- imx8mm-data-modul-edm-sbc-overlay-cm4-dtbs := \
- 	imx8mm-data-modul-edm-sbc.dtb \
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
-new file mode 100644
-index 000000000000..fdfa2ef9a065
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
-@@ -0,0 +1,581 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Fabio Estevam <festevam@denx.de>
-+ * Copyright 2026 Lukasz Majewski <lukma@nabladev.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-tqma8mqml.dtsi"
-+
-+/ {
-+	model = "Cloos i.MX8MM CBASE board";
-+	compatible = "cloos,imx8mm-cbase", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
-+
-+	aliases {
-+		mmc0 = &usdhc3;
-+		mmc1 = &usdhc2;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	clk_xtal40: clk-xtal40 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <40000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_led>;
-+
-+		led-0 {
-+			label = "status1";
-+			gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			label = "status2";
-+			gpios = <&gpio2 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			label = "status3";
-+			gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-3 {
-+			label = "status4";
-+			gpios = <&gpio2 4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-4 {
-+			label = "error";
-+			gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-5 {
-+			label = "run";
-+			gpios = <&gpio2 0 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	reg_usb_otg_vbus: regulator-usb-otg-vbus {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_otg_vbus_ctrl>;
-+		regulator-name = "usb_otg_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio2 2 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-vmmc {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100>;
-+		off-on-delay-us = <12000>;
-+	};
-+
-+	sfp_bot: sfp-bot {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp_bot>;
-+		tx-fault-gpios = <&sfp_gpio 4 GPIO_ACTIVE_HIGH>;
-+		tx-disable-gpios = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sfp_gpio 6 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sfp_gpio 7 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <1000>;
-+	};
-+
-+	sfp_top: sfp-top {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp_top>;
-+		tx-fault-gpios = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
-+		tx-disable-gpios = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sfp_gpio 2 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sfp_gpio 3 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <1000>;
-+	};
-+};
-+
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+
-+	ddrc_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25000000 {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+
-+		opp-100000000 {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+
-+		opp-750000000 {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
-+};
-+
-+&ecspi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>,
-+		   <&gpio1 1 GPIO_ACTIVE_LOW>,
-+		   <&gpio1 12 GPIO_ACTIVE_LOW>,
-+		   <&gpio1 13 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	can@0 {
-+		compatible = "microchip,mcp2518fd";
-+		reg = <0>;
-+		clocks = <&clk_xtal40>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+		spi-max-frequency = <4000000>;
-+	};
-+
-+	can@1 {
-+		compatible = "microchip,mcp2518fd";
-+		reg = <1>;
-+		clocks = <&clk_xtal40>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-+		spi-max-frequency = <4000000>;
-+	};
-+};
-+
-+&ecspi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec1>;
-+	fsl,magic-packet;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	fixed-link {
-+		full-duplex;
-+		pause;
-+		speed = <1000>;
-+	};
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		managed_switch: switch@0  {
-+			compatible = "marvell,mv88e6190";
-+			#interrupt-cells = <2>;
-+			interrupt-controller;
-+			interrupt-parent = <&gpio1>;
-+			interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+			pinctrl-0 = <&pinctrl_switch_interrupt>;
-+			pinctrl-names = "default";
-+			reg = <0>;
-+			status = "okay";
-+
-+			mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				switch0phy1: ethernet-phy@1 {
-+					reg = <0x1>;
-+				};
-+
-+				switch0phy2: ethernet-phy@2 {
-+					reg = <0x2>;
-+				};
-+
-+				switch0phy3: ethernet-phy@3 {
-+					reg = <0x3>;
-+				};
-+
-+				switch0phy4: ethernet-phy@4 {
-+					reg = <0x4>;
-+				};
-+
-+				switch0phy5: ethernet-phy@5 {
-+					reg = <0x5>;
-+				};
-+
-+				switch0phy6: ethernet-phy@6 {
-+					reg = <0x6>;
-+				};
-+
-+				switch0phy7: ethernet-phy@7 {
-+					reg = <0x7>;
-+				};
-+
-+				switch0phy8: ethernet-phy@8 {
-+					reg = <0x8>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0x0>;
-+					ethernet = <&fec1>;
-+					phy-mode = "rgmii-id";
-+
-+					fixed-link {
-+						full-duplex;
-+						pause;
-+						speed = <1000>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <0x1>;
-+					label = "lan1";
-+					phy-handle = <&switch0phy1>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@2 {
-+					reg = <0x2>;
-+					label = "lan2";
-+					phy-handle = <&switch0phy2>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@3 {
-+					reg = <0x3>;
-+					label = "lan3";
-+					phy-handle = <&switch0phy3>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@4 {
-+					reg = <0x4>;
-+					label = "lan4";
-+					phy-handle = <&switch0phy4>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@5 {
-+					reg = <0x5>;
-+					label = "lan5";
-+					phy-handle = <&switch0phy5>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@6 {
-+					reg = <0x6>;
-+					label = "lan6";
-+					phy-handle = <&switch0phy6>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@7 {
-+					reg = <0x7>;
-+					label = "lan7";
-+					phy-handle = <&switch0phy7>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@8 {
-+					reg = <0x8>;
-+					label = "lan8";
-+					phy-handle = <&switch0phy8>;
-+					phy-mode = "internal";
-+				};
-+
-+				port@9 {
-+					reg = <0x9>;
-+					label = "lan-sfp1";
-+					phy-mode = "sgmii";
-+					sfp = <&sfp_top>;
-+					managed = "in-band-status";
-+				};
-+
-+				port@a {
-+					reg = <0xa>;
-+					label = "lan-sfp2";
-+					phy-mode = "sgmii";
-+					sfp = <&sfp_bot>;
-+					managed = "in-band-status";
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&flexspi {
-+	status = "disabled";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	onewire@18 {
-+		compatible = "maxim,ds2484";
-+		reg = <0x18>;
-+	};
-+
-+	temperature-sensor@49 {
-+		compatible = "national,lm77";
-+		reg = <0x49>;
-+	};
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9543";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c_sfp_top: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+		i2c_sfp_bot: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+	};
-+
-+	sfp_gpio: gpio@38 {
-+		compatible = "nxp,pca9554";
-+		reg = <0x38>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "SFP_TXFI_T", "SFP_TXDIS_T",
-+				  "SFP_MODPRES_T", "SFP_LOS_T",
-+				  "SFP_TXFI_L", "SFP_TXDIS_L",
-+				  "SFP_MODPRES_L", "SFP_LOS_L";
-+	};
-+};
-+
-+&reg_usdhc2_vqmmc {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	vbus-supply = <&reg_usb_otg_vbus>;
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbphynop1 {
-+	power-domains = <&pgc_otg1>;
-+};
-+
-+&usbphynop2 {
-+	power-domains = <&pgc_otg2>;
-+};
-+
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MM_CLK_USDHC2>;
-+	assigned-clock-rates = <400000000>;
-+	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_400M>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	bus-width = <4>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	no-mmc;
-+	no-sdio;
-+	sd-uhs-sdr104;
-+	sd-uhs-ddr50;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x82
-+			MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x82
-+			MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x82
-+			MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x19
-+			MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1		0x19
-+			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x19
-+			MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x19
-+			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13		0x19
-+			MX8MM_IOMUXC_SAI1_MCLK_GPIO4_IO20		0x19
-+		>;
-+	};
-+
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0x00000006>,
-+			   <MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0x00000006>,
-+			   <MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0x00000006>,
-+			   <MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13		0x00000006>;
-+	};
-+
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC		0x40000002
-+			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x40000002
-+			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x14
-+			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x14
-+			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x14
-+			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x14
-+			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x90
-+			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x90
-+			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x90
-+			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x90
-+			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x14
-+			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x90
-+			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x90
-+			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x14
-+			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22		0x10
-+		>;
-+	};
-+
-+	pinctrl_gpio_led: gpioledgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_CLK_GPIO2_IO0			0x19
-+			MX8MM_IOMUXC_SD1_CMD_GPIO2_IO1			0x19
-+			MX8MM_IOMUXC_SD1_DATA1_GPIO2_IO3		0x19
-+			MX8MM_IOMUXC_SD1_DATA2_GPIO2_IO4		0x19
-+			MX8MM_IOMUXC_SD1_DATA3_GPIO2_IO5		0x19
-+			MX8MM_IOMUXC_SD1_DATA4_GPIO2_IO6		0x19
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_otg_vbus_ctrl: otgvbusctrlgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2		0x119
-+		>;
-+	};
-+
-+	pinctrl_switch_interrupt: switchinterruptgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x19
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX		0x140
-+			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX		0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX		0x140
-+			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2grpgpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x1c4
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
-+		>;
-+	};
-+};
-+
-+/* SPI-NOR memory is not mounted on the used SoM */
-+/delete-node/ &flash0;
+This series improves probe error handling and simplifies runtime PM 
+management in the mchp-spdiftx driver. It also moves IRQ registration 
+after runtime PM setup.
+
+Compile-tested only.
+
+Best regards,
+Phuc
+
+bui duc phuc (3):
+  ASoC: atmel: mchp-spdiftx: Improve probe error handling
+  ASoC: atmel: mchp-spdiftx: Use devm helpers for runtime PM
+  ASoC: atmel: mchp-spdiftx: Move IRQ request after runtime PM setup
+
+ sound/soc/atmel/mchp-spdiftx.c | 77 ++++++++++++++++------------------
+ 1 file changed, 37 insertions(+), 40 deletions(-)
+
 -- 
-2.39.5
+2.43.0
 
 
