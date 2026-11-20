@@ -2,103 +2,129 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6CB2606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC3E606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:33:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bnwkkHh5;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JjrBR//B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dEFPRWkg;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=HY/9h7rK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=cimqzB4bCIhynChpt7iVluTD5pnTnQawyp+LKN/vPns=; b=bnwkkHh5Xaw7lbLuYYuFdWWl9L
-	tY9RnVl23o0Cln8Y/vWdtY7FAqif+ZO2v8VxVJoZ4UXyVEBygDZ2jJ1oTz5qDvPqAlW1Vnjc7YbYP
-	0bq9vFM3Z0YHlvWEIssCooVj07HaTQ4zU8ygVqgwM1+XJuCRJIPLYKCkfXOzKTYWhegj05pI8fDH6
-	93GG9BAo2CVDQ4coTpl3lzWiSGZFfQAQRClnZznZJwrTHPHHwG57Gx3PZzMfCwlnrDdIve04nqu89
-	Md+BF+eB1j7jhVmYR7F2sIbPcysnf7RxS9CCFXxICvGhnnY7jGXyvbtHofneI0jANZu7WvnkaP/Rp
-	16QaJ8jQ==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=92f6NRETdzojaigU8EyzxjI/4N0lXsB5qD5xAdIQvbI=; b=dEFPRWkgD0xdO5
+	lxitHxG9/yHPNmLGnPdKqo1Os+IBBZxeV+6wyY4ttNj5d5Gv5+ynFEH4UOA2DSdUSzj5hhKWGVPLb
+	LJ12S71RgVFoLEu0XTAYE5bWZJnO9vh7D1PKE7T2FCe1t6qtyOlbLwKU/uI1PpL22XOmXRD49AGJK
+	uI5QLLkPAekfxCmqF4cBkxivs0iWqU3XKB8pS6Eq6u1IoH43MAIDAVoAsoJuR2hCPTVbrJqDQVCVw
+	VfikNseGkeRiWf8/ye+ryU3JANSEE2n1ythxsX8b9Qxv2QDGh4Rskmp2HlmAM94eHgoXIXPcffBlB
+	O+lT52AQQbYTcDhoJmug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPfW-0000000FGNB-06Ux;
-	Fri, 20 Nov 2026 14:32:50 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1xUPfz-0000000FGV7-0gdf;
+	Fri, 20 Nov 2026 14:33:19 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPfT-0000000FGLp-1dLh
+	id 1xUPfu-0000000FGTs-2aRy
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:32:48 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4bb6c7b6dbdso9547495e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:32:46 -0800 (PST)
+	Fri, 20 Nov 2026 14:33:18 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-498f5fa5103so572368f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 06:33:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795185165; x=1795789965; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=cimqzB4bCIhynChpt7iVluTD5pnTnQawyp+LKN/vPns=;
-        b=JjrBR//BC4pl6V7EQM/0CcPnGSWQshDzy3L2wFIDBd7pCQ7K51bMuqdgrXuTiYLqbS
-         TSPm5N4hwCLby2TqxXEzrq03a+0wBG64ekoke5FI0fBrv4WGwEXmTdpldUjuwf4uAUlJ
-         szmtXDejTjcUrJ05w5H4kiUCtliE6FctzXku7fHwk2jCORzRThzOO/CbYwyZFMScSsh8
-         TOHbYIK1c1cIc3/eUMCsAGZPZDSQloNNoWNQhIPOdrm9sGPiaxmgOBA5x1Ell3daeVsQ
-         FOlZdd1miLKryLFrEMwubTPsfoDGs83wuMneftwcR6OpBk8YXZnocPM0/WNQEMlnJePg
-         enng==
+        d=baylibre.com; s=google; t=1795185193; x=1795789993; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=92f6NRETdzojaigU8EyzxjI/4N0lXsB5qD5xAdIQvbI=;
+        b=HY/9h7rK46ju0o7WyXYMvZIJ9r8COLdr8rnr4kZlIVtrqxgxJATHklgjWTRq1k3czA
+         t0wzD6IqhTSnLf0Wz6/XF4CGA6EYF/0P1ak8/qbYjnz+gjVLeSvYFY6j5nmU9omTPqcB
+         MdHX00NIIvj6xH8Y5kGTGqmddpFqxOhYEu/85KgmBhGH+V/hTo+PU8q6N86uwWrZMrIx
+         ULZNLgEMUacgS9RpTESuTMe677uwPzOcVUkzwk7si5o/Fd/n6KxXjZbPDzn2aom90RqK
+         BsTbxY2uUpbLkQR1JDLfEPB4U1Fr+o5QmZBfF2J0XG6AcWroIWB4oStVcW52y0dKYsQW
+         uoBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795185165; x=1795789965;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20260707; t=1795185193; x=1795789993;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=cimqzB4bCIhynChpt7iVluTD5pnTnQawyp+LKN/vPns=;
-        b=AsVa+AD4RrDuPgIezd2bx3DvPM5npIr080X5dF9uqX+DmTILFbESEzn+pkto7/Ct6+
-         gVu3ufbQSHBLbc23++6UDs9Ri8N5Gy78wBXmkg5N3P9ub2F69zxx1fqLR5tc3WFpxcDe
-         TwtxnxL903Cn4rewBfH4mwl+3t1ycwdC3wM+nsB4Q5Aw2uAAept/Wol36sF4qCr4ZcF5
-         2HdBL3wThHK6w5X9nxgSMP7Tim7tKPIulox1JAwrLrCESoja6IoNRGcYUzG6x38T5+PG
-         3oDkSqf5O8yJV15GB42agZkzgCzSk9VTtEvIgnDV36k2Js7DvMtRqbCM1wteC3FOOF3M
-         AmXw==
-X-Forwarded-Encrypted: i=1; AL+hErF8yU/eHY9l2kLu/eDG3ZjmC6c+wsFdQmFlegNmxyM4IN/z0ZG9bcYc+n4A9+CY7is0x4/oAPv38IAXt9C3Y3yQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/q978yMemjWE1bSeCmpaMrbkvFPS2Pfm5gtWEoxxwVX8/20UOJ
-	vEvvCL3cGVdULvtPnOYQzt0J5bbnOEKO40l9A3Rrw6nU1kFgjoMR30QB
-X-Gm-Gg: AYBFou2O9k782LttObmO8NtvjkibFVpkJq2R+8dCpGCI8S+CbXy9IFE1GVhsL544lDN
-	XZdfdgnxqQif/ClmMNqTWL0EDaP9OmMWGfyRnWuHotpiCfdCaLLa45I5O7LwLeEf8bB+f+Tv5jG
-	6nRsJhWnRxZGGBnO8jOqXbSGsFeb3HCoSx63207NFfULWRzMQ5oaNQivJGOnqC2JG6icDAYr8LC
-	A4D+Ewnjr1kgIa6J7luS+96agc+NS2d/cidEHUwDaGkSK0zJKyxVYVApGUttq8LNe62QZvkWskt
-	05dXszQ4HkNLGZWnXfk1rQI9nGDCCx3GihHtVufwM0LaRf9mo+PMrkCPqDCvrKAy1tzoEG+Zaqd
-	3THt9SENyFCSY+cLFMh8hEEMc5wQ4t4Cm2kH4rau+qKU9xsn02tSyvegzCeIeLcDG9XX9/KM/CX
-	GQEScAHT4jZac5OUlLdrLX/WKmTPeEdAViKGlJVdUtf7nZydz6dpWBxauRyZFGLsQ1MucIj9KGY
-	9mTA1euLNi8hLhaohtzSRg61H/g3A7BJOpsoP0k7z4OcsVb2GI7v6tLlRgTLz5vjA1/hn1qGFCU
-	HPZnpk/iwih82EAR5ZmGtDU3E+b7Jd1YzlqIfDBuMz36ixBGz3mmNmPhWf3WJi5T4cSTJa8hAs6
-	ziz0ENIAAtSLj/Y6i9jdjXSsjdG3c9rTKVE8iO/qlMCOWW8A=
-X-Received: by 2002:a05:600c:8b5c:b0:4bb:741d:ea0 with SMTP id 5b1f17b1804b1-4bb8880f621mr78246415e9.17.1795185165293;
-        Fri, 20 Nov 2026 06:32:45 -0800 (PST)
-Received: from GLaDOS.station ([193.207.36.37])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6c61e53asm6378286f8f.59.2026.11.20.06.32.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 06:32:44 -0800 (PST)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v1 1/1] arm64: dts: freescale: imx8mp-var: Add Cortex-M7 support
-Date: Fri, 20 Nov 2026 15:32:41 +0100
-Message-ID: <20261120143241.17297-1-stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
+        bh=92f6NRETdzojaigU8EyzxjI/4N0lXsB5qD5xAdIQvbI=;
+        b=Hp9om5qE++PWoz2a6DtpvSlLUIqp/veaUW1m9tULAxjVk5168afocVSmgXISnb9dlJ
+         KJJJ5zPaeF9NNGpZCiUicXAs1VLjNGKu1fWyTVIXu2vCnD8K7SVuxhjtaioKfNlX9gFv
+         PzL7W18WliXMPu6FblZ5AET8PG0tix1qW/yG4mXB7SBjBl33shB9R0Sc0jJMkTmWULZT
+         5MT5JfJj5H0fAF3kRmDOnCyg53fdCbAKKnftkkAryM7SoYfGVEZD9Cld8M11+BelXHip
+         fnTxSet0NMOTBgVALpz+tnf2YmT48d9Y9XEBRDLMFI860Fdf5maCw1MheKyaC+G1uUxr
+         GbzQ==
+X-Forwarded-Encrypted: i=1; AL+hErH2arxNvUbi+m4t+1mXCxjQ+K9JbDjhP54ewfiFDLLPmn28JZLW1JUXff9HZsvX7Vj/eqPh/MIFQ9AlGlfhiuaO@lists.infradead.org
+X-Gm-Message-State: APuU4Z/nCf/0eURM4jRhKfmVA4mfuS5BKh0hHYiAaxY+gE5phts9gYzw
+	1WwNvrHhCVpC7YTg86bbvWmDbVQbYd0CQV5l1ivVFMFZ4adA/3JQmNzTkQYrwNAE+pE=
+X-Gm-Gg: AZFdTZc2pqr3vXFpz7kCGds50o0Sea6L8zNe72vwlD8auVEkJJsmHyR1MehjmLMYMMq
+	2hv5dwAhXHdXfMZuZ+lfEXfgHvufSFBwSLcBLm0S2cOCI68SpiO9TGvU4vJ4bR6iWl8IOQHTjFs
+	vzyvpbpOiD5x4aJ1XpUamoW+5K3wxuyO81uW/Zcx5ql8tRtydG64nc5/ECrHhbWlTOxbJwNHhKY
+	w8788OSqArPLz0+jLwqA6z/ch8GWgb0QAAe/Empv5eTofl1MDnVE81X2O9iyhIkCrCTvBV9txUU
+	/QtQx8kEfJ6Wr5/1c06JZcAo98P9lxAvp0gEnpZd7MvE1eIEvbVhFowFYSWhDYFPFLpR1V3ItFc
+	s8kE1HofOFe+9jbMxK4g6kJfYNFeP2fyWSOAvX785rBj+7g9SnF5EjN/ASOwSMiMa0x/Nq9ubwl
+	J29HmNH9hDqnaVL8heiTXMPg9dxXeyPmFDlOwgXTJ7DrVJWh6Q0frbAhQLk29AnSSk+tqp3M1Ys
+	RapUCLXybgJSr1JXErKjcSrC21KxWUvdPi1dywR4gF8TFrmj+u8xPXmDJo8RDTnPqI0Vu3JK46Q
+	U9MJ4IXLPsawo9jqivo1YQELo7a6OEMoItEAgaYcKALiQlE9HsSRYJq5tA==
+X-Received: by 2002:a05:6000:400b:b0:4a8:dbbd:69ab with SMTP id ffacd0b85a97d-4abb4f58c75mr6786554f8f.27.1795185192603;
+        Fri, 20 Nov 2026 06:33:12 -0800 (PST)
+Received: from [192.168.1.62] (140.30.66.37.rev.sfr.net. [37.66.30.140])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110d56sm5978154f8f.40.2026.11.20.06.33.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Nov 2026 06:33:12 -0800 (PST)
+Message-ID: <d94ad9ca-afdd-4301-a69c-0bbad5b334fa@baylibre.com>
+Date: Fri, 20 Nov 2026 15:33:11 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping
+ support
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Ulf Hansson <ulfh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Paul Elder <paul.elder+renesas@ideasonboard.com>,
+ Sudeep Holla <sudeep.holla@kernel.org>,
+ Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <cover.1795029012.git.geert+renesas@glider.be>
+ <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
+ <20261119234759.GB2324725@killaraus.ideasonboard.com>
+ <19c3745a-6308-46ff-bb37-3acc88fe22e2@baylibre.com>
+ <awAqqg6F2Z1t55x2@ninjato>
+Content-Language: en-US, fr
+From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
+Autocrypt: addr=clegoffic@baylibre.com; keydata=
+ xjMEafx9bxYJKwYBBAHaRw8BAQdAtc85GIwDXLz0rh9thWXC80Lji0otVDVncXT4qaS4j1fN
+ K0Nsw6ltZW50IExlIEdvZmZpYyA8Y2xlZ29mZmljQGJheWxpYnJlLmNvbT7ClgQTFgoAPhYh
+ BJjMiHuM4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsDBQkJZgGABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEH6EW4KtCh6Tt+sA/jVC35rY1npFlOy7YnncTdrID8Qf855JA78IzXgvzpGp
+ AP9FkuuT80m66PP3DvgYX9kVnG17mSDKO0+v2W18v6ZgCM44BGn8fW8SCisGAQQBl1UBBQEB
+ B0DMwF4u//aQyzsFlO8rPJ/cqsAuPH80IeIA3HOEo5mlVgMBCAfCfgQYFgoAJhYhBJjMiHuM
+ 4ZUwFqUPr36EW4KtCh6TBQJp/H1vAhsMBQkJZgGAAAoJEH6EW4KtCh6TdSgBAMDS0MiWCivt
+ LjzZc9bs+P/xdXywUjDKq3lpQGJ6vZ0GAP9vI6DnN7vwVK6jt6/+0aBGkog5Ura9+WwRFEdM
+ vLfPDQ==
+In-Reply-To: <awAqqg6F2Z1t55x2@ninjato>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_063247_519172_48F45DAA 
-X-CRM114-Status: GOOD (  17.58  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261120_063314_686041_ED7C61D6 
+X-CRM114-Status: GOOD (  21.39  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,264 +135,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Stefano Radaelli <stefano.r@variscite.com>
+Hi Wolfram,
 
-Add Cortex-M7 configurations for DART-MX8M-PLUS on Sonata,
-VAR-SOM-MX8M-PLUS on Symphony and VAR-SMARC-MX8M-PLUS on Echo.
+Thank you for the rewording, it is clear
 
-Share the reserved memory and remoteproc configuration through a common
-include, and add board overlays and combined -m7 DTBs for remoteproc and
-RPMsg support.
+On 11/20/26 12:10 PM, Wolfram Sang wrote:
+> In the past, we wanted to support all kinds of firmware. Sadly, each new
+> firmware introduced different IDs here and there. So, we came up with
+> some stable IDs ourselves and mapped them to the IDs per firmware. This
+> is a n:1-mapping of firmware IDs to our stable IDs.
 
-Mark the UART, I2C, SPI and CAN controllers used by the Cortex-M7 firmware
-with "reserved" status. Disable PCIe on Symphony and USB-C on Echo,
-since their reset and role controllers depend on the I2C buses reserved
-for the M7.
+Sure, that is part of firmware development.
+I know several SDK versions exist, and supporting several of them is work for a vendor tree.
+As Geert's cover says, "While upstream Linux must only support sufficiently mature firmware versions, vendor trees (e.g. renesas-lts) may still want to support development firmware versions".
+Each SDK version can then have its own DT there.
 
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
- arch/arm64/boot/dts/freescale/Makefile        | 13 ++++
- .../dts/freescale/imx8mp-var-common-m7.dtsi   | 68 +++++++++++++++++++
- .../freescale/imx8mp-var-dart-sonata-m7.dtso  | 31 +++++++++
- .../freescale/imx8mp-var-smarc-echo-m7.dtso   | 36 ++++++++++
- .../freescale/imx8mp-var-som-symphony-m7.dtso | 36 ++++++++++
- 5 files changed, 184 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata-m7.dtso
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-smarc-echo-m7.dtso
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony-m7.dtso
+> The support for <n> firmware versions got serious opposition from
+> upstream. We concluded that supporting only the latest firmware will
+> make most controversial discussion points vanish. So, we now have a
+> 1:1-mapping of (the latest) firmware IDs to our stable IDs.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index ae28e6b02a5c..3745688a5b4a 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -723,9 +723,22 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tx8p-ml81-moduline-display-106-av101hdt-a10.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-ultra-mach-sbc.dtb
-+
-+imx8mp-var-dart-sonata-m7-dtbs := imx8mp-var-dart-sonata.dtb imx8mp-var-dart-sonata-m7.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata-m7.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-sonata-m7.dtbo
-+
-+imx8mp-var-smarc-echo-m7-dtbs := imx8mp-var-smarc-echo.dtb imx8mp-var-smarc-echo-m7.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-smarc-echo.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-smarc-echo-m7.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-smarc-echo-m7.dtbo
-+
-+imx8mp-var-som-symphony-m7-dtbs := imx8mp-var-som-symphony.dtb imx8mp-var-som-symphony-m7.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony-m7.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-som-symphony-m7.dtbo
-+
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw71xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw72xx-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw73xx-2x.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi
-new file mode 100644
-index 000000000000..9d554a175fbf
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-common-m7.dtsi
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Common Cortex-M7 configuration for Variscite i.MX8M Plus modules
-+ *
-+ * Link: https://www.variscite.com/
-+ *
-+ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+#include <dt-bindings/clock/imx8mp-clock.h>
-+
-+&{/} {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		vdev0vring0: vdev0vring0@40000000 {
-+			reg = <0 0x40000000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev0vring1: vdev0vring1@40008000 {
-+			reg = <0 0x40008000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		rsc_table: rsc-table@400ff000 {
-+			reg = <0 0x400ff000 0 0x1000>;
-+			no-map;
-+		};
-+
-+		vdev0buffer: vdev0buffer@40400000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x40400000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		/*
-+		 * Keep this region aligned with the Cortex-M7 DDR region in the
-+		 * boot firmware's RDC configuration.
-+		 *
-+		 * RDC DDR addresses are encoded as:
-+		 * (physical address - 0x40000000) >> 1.
-+		 */
-+		m7_reserved: m7@7b000000 {
-+			reg = <0 0x7b000000 0 0x1000000>;
-+			no-map;
-+		};
-+	};
-+
-+	cm7: imx8mp-cm7 {
-+		compatible = "fsl,imx8mp-cm7";
-+		clocks = <&clk IMX8MP_CLK_M7_CORE>;
-+		mbox-names = "tx", "rx", "rxdb";
-+		mboxes = <&mu 0 1
-+			  &mu 1 1
-+			  &mu 3 1>;
-+		memory-region = <&vdev0buffer>, <&vdev0vring0>, <&vdev0vring1>,
-+				<&m7_reserved>, <&rsc_table>;
-+		memory-region-names = "vdev0buffer", "vdev0vring0", "vdev0vring1",
-+				      "m7-reserved-ddr", "rsc-table";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata-m7.dtso b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata-m7.dtso
-new file mode 100644
-index 000000000000..c5cc032fb4be
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata-m7.dtso
-@@ -0,0 +1,31 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Cortex-M7 support for Variscite DART-MX8M-PLUS on Sonata-Board
-+ *
-+ * Link: https://variscite.com/carrier-boards/sonata-board/
-+ *
-+ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx8mp-var-common-m7.dtsi"
-+
-+/* Reserve the peripherals used by the Cortex-M7 firmware. */
-+&ecspi1 {
-+	status = "reserved";
-+};
-+
-+&flexcan1 {
-+	status = "reserved";
-+};
-+
-+&i2c3 {
-+	status = "reserved";
-+};
-+
-+&uart3 {
-+	status = "reserved";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-smarc-echo-m7.dtso b/arch/arm64/boot/dts/freescale/imx8mp-var-smarc-echo-m7.dtso
-new file mode 100644
-index 000000000000..2b91511084f4
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-smarc-echo-m7.dtso
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Cortex-M7 support for Variscite VAR-SMARC-MX8M-PLUS on Echo-Board
-+ *
-+ * Link: https://variscite.com/carrier-boards/echo-board/
-+ *
-+ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx8mp-var-common-m7.dtsi"
-+
-+/* Reserve the peripherals used by the Cortex-M7 firmware. */
-+&ecspi2 {
-+	status = "reserved";
-+};
-+
-+&flexcan1 {
-+	status = "reserved";
-+};
-+
-+&i2c2 {
-+	status = "reserved";
-+};
-+
-+&uart4 {
-+	status = "reserved";
-+};
-+
-+/* The USB-C role controller is on I2C2. */
-+&usb_dwc3_0 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony-m7.dtso b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony-m7.dtso
-new file mode 100644
-index 000000000000..710ddff2fb11
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony-m7.dtso
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Cortex-M7 support for Variscite VAR-SOM-MX8M-PLUS on Symphony-Board
-+ *
-+ * Link: https://variscite.com/carrier-boards/symphony-board/
-+ *
-+ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "imx8mp-var-common-m7.dtsi"
-+
-+/* Reserve the peripherals used by the Cortex-M7 firmware. */
-+&ecspi2 {
-+	status = "reserved";
-+};
-+
-+&flexcan2 {
-+	status = "reserved";
-+};
-+
-+&i2c4 {
-+	status = "reserved";
-+};
-+
-+/* The PCIe reset GPIO is provided by the expander on I2C4. */
-+&pcie {
-+	status = "disabled";
-+};
-+
-+&uart4 {
-+	status = "reserved";
-+};
--- 
-2.47.3
+Agreed, supporting several numbering upstream for the same chip only brings confusion.
+But then, why can't that one mapping be one DT?
 
+> I guess this is what Geert means with IDs becoming "stable". <n>
+> firmware versions might return <n> IDs, but supporting only one firmware
+> we get the same "stable" ID from it.
+> 
+> Sadly, of course, with the next firmware update, we still might get a
+> different ID all the time. So, not stable in that regard and we still
+> need the mapping :(
+
+When the firmware can be updated, I think an id change should be fixed there first.
+That is what I would do in the open-source SCMI server firmware I am writing for this chip.
+
+> Yes, this means the driver is then tied to a specific firmware version
+> because it only has this mapping. Not nice for a user. But we didn't see
+> another way moving things forward for now.
+I think the DT is that other way.
+With the SCMI ids in DT, only the DT is tied to a firmware version, not the drivers.
+If a release that changes ids is already out, it needs a new DT, or a quirk for that one release when the DT cannot be updated.
+
+The hardware stays described
+The CPG and MDLC belong to the SCMI server, so the DT should mark them status = "reserved", and the consumers use the SCMI clock, power domain and reset providers.
+
+The Devicetree Specification v0.4 define "reserved" for this case (section 2.3.4, Table 2.4):
+"Typically this is used for devices that are controlled by another software component, such as platform firmware."
+
+Zephyr also uses SCMI on this chip, and it already keeps the SCMI ids in its X5H DT
+Juno and STM32MP15 handle their firmware differences the same way, with separate -scmi DT variants that simply include the board DT and an SCMI .dtsi.
+If the number of variants grows, tools such as Lopper, which I mentioned before, can help manage them.
+
+Best regards,
+Clément
 
