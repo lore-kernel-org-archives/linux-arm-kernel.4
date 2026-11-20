@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F13D606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B39606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 18:33:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qZ3IxJYm;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=y93vgs+P
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wE2ANPEm;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=t8mybqTc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=GI03jlm6wghRp7o/prx2Jk3c/vuwKISJcgA3BS1S1P8=; b=qZ3IxJYm7mFoMs7mSeBZlbe47K
-	gTSeYPagRCgl3FLye5yOCKFwNnNjiQdpncWpvq2HZyEktcrz8LS1KyyGjU5Afk7TiIR4TEaNSDRl8
-	bqKyj0tTU3Nfyt8olv+ZQAxKLVAkE0o1HP+M8TwcYntArYl4zPJtMMeI7axXntL7aaFFEic1W+OvX
-	tRHKVjP1ft4Bnczfo5Rp1XzcNxdhJ27iWB5C8iGGsQoMxvABnzQHCMUuaHsZJnx2xax1K0B8Rzolr
-	pClxWfBPteYiYi4JFdDkKLGVzMcOxWMZmGj9ULLhIXT8Q5cQE+fl6puZwdX/vfI/vjWt9Xe17ecYf
-	0FmyVgbA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=KuqFw3GDTo/1W2MSio8rD5Tgg5f6ICzWtWhjFl6bOWM=; b=wE2ANPEm+0BwmU
+	v5eXFuD61lgBn8ri/IkuRRXEpYOX+1IB6BhbJOcy7SY5MohjdCksYEyYwtvEGYSV/qnN+NC5BFlPB
+	Au6b2EqYB2UKK2cMsQPAmpASaJ9whU7VeFXQSTG1RwZDW8yelEc4AYAmOk2pL1Z1s/tlktGln00JU
+	0SEHZSBnLS85F2FDRZ2FFtmu/dBnvXudxqEDh3Wibhr5NA7/nZOF5k6Xv0wDyStK+gm3X+eto9N2y
+	k9zlfBVG1N0AzDV97+kwfDZ91HdN4OBQD6w6QyPKJ1wRh93vGO8wKz9qrMwuto4RmY5AHYtcbueoT
+	Z+5czmqXnFlwAgsgR/qA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTQ7-0000000Fwm1-1AYa;
-	Fri, 20 Nov 2026 18:33:11 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1xUTQO-0000000Fwq9-1xZB;
+	Fri, 20 Nov 2026 18:33:28 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUTQ2-0000000Fwkq-3g94
+	id 1xUTQ4-0000000Fwkz-0hcF
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 18:33:07 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so14625415e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 10:33:06 -0800 (PST)
+	Fri, 20 Nov 2026 18:33:11 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-48dee593f18so1085719f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 10:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795199585; x=1795804385; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=GI03jlm6wghRp7o/prx2Jk3c/vuwKISJcgA3BS1S1P8=;
-        b=y93vgs+P6lwLVaMwEnT+BKjqKLf/la2lClN8a9GP9BJOx120NXUdzoLsOtGIHrye/E
-         yVWV5ttj+ToRkVntmhRjl4HyDjBFLGa+FmptD7ut+g9bu97vpvs3KIEthmZeOa5k+FsX
-         lNHJwqL4Vq4eA9lGMWdTJDB/Ob2whPMKW/aX5JwxSfsJeZrFWSGL8ytjxXUS0Xn4KDlS
-         CEkPB/+70g8cnA+Qw4j5CPPKPzTP8CAqR0WZj0/rdgq6qibryih6A37gnOVD6Z2VvM1D
-         TO6J6KPaYPXDs46mirIwUkvFzbM9J33Bx5094Qy1U4sSHIoK44vBZ+13mKhjlBduCupH
-         mp0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795199585; x=1795804385;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1795199586; x=1795804386; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=GI03jlm6wghRp7o/prx2Jk3c/vuwKISJcgA3BS1S1P8=;
-        b=OdPBil3VyqKB36HvE1Wg1dVJwT4HLRfnvsmk17wjYXujBkd48wBv0QcE4nBB4llruU
-         R+5vOqFHH+WE7zHGxx3okwgLxAteJ/gL1F4BLf8w09eQoF8RxjzeKmGNSJE+MRbsUVcE
-         m0O+78T6HxVTJl++tG1SVaDm2eD8IX3UJVVIV6ePgZxm7xsHisNuwuxrZhJXc+UqRE7G
-         Mkzi6vaAaZRANKBwMloa2wr9BSxURgYt7VGWIsc5bQK0ZZcyQ87tysSb2J4nSIOwHajD
-         cpmDJE4URA5ubtaeNAZ8+SaVi537H+kXDqkQUuKCCY0zpB8pAKnhAsNL9rfwwqo7R7GS
-         yStw==
-X-Forwarded-Encrypted: i=1; AL+hErEY6I7aiGu93g2qU5csItK66E1XQeShRgeTauloSgf3LKdj9ftsp2akC43XO78IEZsnvT7a5V/tLvVwwklvR/bZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/JXRlwFAcWUJ0MVTc+oHKi54PNRVybNcJtzCqdzeEdlv/Gzp4Y
-	XK4hXXilldAJmmNAqeDizvCcYogCjS1gkgIsh6qUpE7TTaVHu8iIEH4i
-X-Gm-Gg: AYBFou0c15oo5++nB10b1Jri2dGPlF3KnUGU1+ie/lmXePESPPx82TBXE/l7fRZMguh
-	euoAMeyMU6etgWeq9GsS8C7yVbJ7f2MbVLi4qOZXyt8f+jB3cWSAcDZBymOELzUJgHuB2gR31PZ
-	ADIRNnJ2nH/pWv0W7UMnfJrfj5aCQmVqjsmyTGnOu0nfMTBTXf4GUNsYdiYvXkPRYKZG8hELhq/
-	86T9lmTgRsOy6H3gUK/yDqQdt66FUNce5LM/uZvulUle7ncqbbpWbDKiPvMyT9+qYMD6lNoZtkP
-	6ERv2Zk5p20cvRrfA0MBhb+ecTNS6QKpbjmAgn4eF8OHknGiJ/AP7kP2Q2IrXptDTP6P2rQKKpP
-	Upx5zquNDzieGyUduDLg9/pBT/T/l8xtb7gbVKj3lKa04T4bIMuFYW/dTZ1WQA71GyT17h4eP+a
-	shOrSL3Xr5x/ABbeYFqabpSb3TmNBkWdY7GtfaXnfyIdhRatjowmIeGB4iHsBE5VY6uDBmjqMGb
-	Ke4ZAjZDVPfHJbeLaYlxlUPhRoKqMXxQfCnvijGj9Q+8RJTXyN5VDOeINNBac9pylzm5hnJwg3z
-	1R86ZHV4fJrIGcb4ST2+K1i/WmLRbhD3hRi7FXb4GVxUCHwZBS4QRVwbebXuMmDKsSlYLZTUf+5
-	6hbKwjaoajm+Wa7r3cRyNwJwDxBYpoJTV9bwP+RUOMtYeXVY=
-X-Received: by 2002:a7b:c4d2:0:b0:4a1:d291:d863 with SMTP id 5b1f17b1804b1-4bb861394f1mr97174585e9.4.1795199584794;
-        Fri, 20 Nov 2026 10:33:04 -0800 (PST)
+        bh=KuqFw3GDTo/1W2MSio8rD5Tgg5f6ICzWtWhjFl6bOWM=;
+        b=t8mybqTcRsJ+kNXT1onJGeRDmXH9VS90Pkh+rJWwOtQ9vdHRnm8QchGJKRao+sHIQK
+         YBBE4HETvCZWoZtZuhC33Z3e3f7PBQVWGiEGPFzOLIXipK/8L0IA56l2cWjC+2p9w/8u
+         lFvGleiqCOS+5VGnUDN6+3OryzEo6wuYU/EoUs+FTfl7KMzbA+hKTL5j30h9yu05dtHg
+         akykHJNI2ue/Xq/OSDIFUWrcK29DdOHnH2Wlc8d2zvgPi8+R3sWJ2mU1u1eB5mB3JIzd
+         M+slh8TRnHXZjAvKwyyK+O+KFYXeps3YrfJijijkw1epyBFvJ6lwoZhpAVC+qXrf6fLk
+         U6+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795199586; x=1795804386;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=KuqFw3GDTo/1W2MSio8rD5Tgg5f6ICzWtWhjFl6bOWM=;
+        b=IjSQvQxCc+IxDmP17QFKcVh1NZBTdWdJSmWwtHCBTgaVxxoorQtN1+eTVY0euxWcBl
+         HX71jmJTi1yfqg1/J3gb5NfNkswMfe66oJeqgcjDfA0DgBDDzBhScubeZ/O1R9sqkctz
+         sJoSexVlaLgz6M/JRM+EXuzIDpME5G0jCHB6Ln/UfEk7DOc1iYVheDm4S4BNJ5fZqHXm
+         WoyFWD4PZHmsfZBZCcbYVqH9OLd1euBNXO3O1hfxcLpLVztsK8m6t04DrgzmEVITSNnG
+         KZpDh6GbpM4TLx9xetrnOWld9oxvTa3juXlxLTAb7Ja0j1M9uRTidnTG0I/xvyfV4QaL
+         743w==
+X-Forwarded-Encrypted: i=1; AL+hErEVo2MEPZzn9YwX6kbpQTgrYScY+bDbkhThRCSAlDVtXi4CfKUM+2r3rnnJXR8dkUrSr+6LMx0v3Y6kRAACRO6P@lists.infradead.org
+X-Gm-Message-State: APuU4Z/SJd8tiu1h2u862rS7u/wd1W4Dlf85OFIZMkvalq0Amd9zNQ0W
+	bxkHrQONr7ErBsG5S4FttKIJheimbcygNyKmPmTEdspoVZeNVx/3GJwo
+X-Gm-Gg: AZFdTZdD03A0uy3LYhDKJD0fYb+ig3MozOTkfFeU1ebR16xf0hxzzSmFVUDaJRSXHaX
+	TOHZFMc2ABXMsnwV09ILyj9H2N3RuYS7G5PmlD0kLe8IlqmuZS+l8V+uZT/bf3ag/tWR9sBVw0B
+	ciYr0SiXDyFb/hjEM88N5b+UuHYAXIAfGSXdlTLcLxH421T1v+8CZJU4x8dfcjAR863chDlqOMM
+	yK1Hvzgw2+SC0D+MrqnJ527xiLHvOvvauErwFrf79m7QGunbMvyPumqNuX9Md37eNQgKjpvwuW7
+	E6j2Qj/QdaQTWzRyAHF/3xQdXAUfxI6M8u1+PaIPzfRfgzHDDlRQPJx2xAGzNUq1BkYVms2ml5/
+	Flnw1TPBxwLaztCC0tInARs2ke4hfDtYQ/DimUPKwuAa7X5q8SkdSLvsh4LbySOXNFekRpvY0If
+	Fs2DIYOMBkMC06Er0ly9VWiUsUkdHXL/DFM1kn2GCkkxj/vDsAwcJnrbWfZ1wY3ZmJNhIgj3Et2
+	B/zWrg4IdbrDq911B5318RVH3RvlbefmHRGUUV0peQfdFRjMzglkWdpORzHTrtP5HtpnhY4PyzR
+	pJoccbKb0t38WW2kOGnG5u/Xr9VOfVDuyPXA3yKd4CWddnMbK+XYsJbd0obi/PY6J8wYynZtK5q
+	YC8Xf2L9Cj117SHQEbHYzsr55viX7HbhJyqhDfYpzmxpzUUxynuAyz95E/uMD8kc/10fW
+X-Received: by 2002:a05:6000:4541:b0:48f:88ad:7b54 with SMTP id ffacd0b85a97d-4abb2169969mr6420016f8f.19.1795199586192;
+        Fri, 20 Nov 2026 10:33:06 -0800 (PST)
 Received: from GLaDOS.station ([193.207.36.37])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bb98b4dsm7467718f8f.53.2026.11.20.10.33.02
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bb98b4dsm7467718f8f.53.2026.11.20.10.33.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 10:33:03 -0800 (PST)
+        Fri, 20 Nov 2026 10:33:05 -0800 (PST)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: Frank Li <Frank.Li@nxp.com>,
@@ -90,17 +90,19 @@ Cc: pierluigi.p@variscite.com,
 	Conor Dooley <conor+dt@kernel.org>,
 	Shawn Guo <shawnguo@kernel.org>,
 	Mathieu Othacehe <othacehe@gnu.org>
-Subject: [PATCH v4 0/3] arm64: dts: freescale: imx93-var: Add Cortex-M33 configurations
-Date: Fri, 20 Nov 2026 19:32:27 +0100
-Message-ID: <cover.1795197853.git.stefano.r@variscite.com>
+Subject: [PATCH v4 1/3] arm64: dts: freescale: imx93-var-som: Fix resource table address
+Date: Fri, 20 Nov 2026 19:32:28 +0100
+Message-ID: <48a008ec1a785f96f25c3b6eafa2869ddbdee0ff.1795197853.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1795197853.git.stefano.r@variscite.com>
+References: <cover.1795197853.git.stefano.r@variscite.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_103306_952473_3A8ADF5F 
-X-CRM114-Status: GOOD (  14.39  )
-X-Spam-Score: -0.8 (/)
+X-CRM114-CacheID: sfid-20261120_103309_768595_1B49FD62 
+X-CRM114-Status: GOOD (  13.36  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,72 +113,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds Cortex-M33 overlays and combined DTBs for DART-MX93 on
-Sonata and VAR-SOM-MX93 on Symphony.
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-The first patch corrects the Symphony resource table address. The second
-moves the M33 reserved memory and remoteproc configuration into a common
-include shared by both modules. The third adds the M33 overlays and
-combined DTBs, and moves the common include from the module DTSI files to
-the overlays. M33 memory is then reserved and remoteproc and MU1 are
-enabled only in the M33 variants. The overlays also reserve the firmware's
-peripherals and disable dependent devices.
+The VAR-SOM-MX93 RPMsg firmware copies its resource table to M33 address
+0x2001e000, which maps to 0x2021e000 in the Cortex-A55 address space.
+The reserved-memory node instead points one page later, at 0x2021f000,
+so remoteproc can look for the loaded table at the wrong address.
 
+Use 0x2021e000 with the existing 4 KiB size to match the firmware.
+This also matches the resource table address used by DART-MX93.
+
+Fixes: 4ce623d9f1bf ("arm64: dts: imx93-var-som: Add Variscite VAR-SOM-MX93")
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
+---
 Changes in v4:
-- Add a separate fix for the Symphony resource table address, changing
-  it from 0x2021f000 to 0x2021e000 to match the firmware.
-- Move all M33 reserved memory from both carrier DTS files into the
-  common include, using generic memory@ node names.
-- Move memory-region-names into the common configuration extraction
-  patch and include the common file from both module DTSI files.
-- Let the overlays provide the M33 memory reservations as well as the
-  remoteproc configuration by removing both module-level includes.
+- New patch: fix the Symphony resource table address before extracting
+  the common configuration.
 
-Changes in v3:
-- Split the common configuration extraction and the M33 overlays into two
-  patches
-- Use "reserved" for peripherals assigned to the M33 firmware; keep
-  "disabled" for dependent devices.
+ arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes in v2:
-- Enable cm33 and MU1 only through the M33 overlay on DART-MX93.
-
-Patch 2 uses the following binding and driver commits, already in
-linux-next:
-
-- ebb21cc5d1c0 ("dt-bindings: remoteproc: imx_rproc: Document
-  memory-region-names to avoid implicit ABI")
-- 8396089f91fa ("remoteproc: imx_rpoc: Use memory-region-names to avoid
-  implicit ABI")
-
-Stefano Radaelli (3):
-  arm64: dts: freescale: imx93-var-som: Fix resource table address
-  arm64: dts: freescale: imx93-var: Extract common Cortex-M33
-    configuration
-  arm64: dts: freescale: imx93-var: Add Cortex-M33 configurations
-
- arch/arm64/boot/dts/freescale/Makefile        |  9 +++
- .../dts/freescale/imx93-var-common-m33.dtsi   | 65 +++++++++++++++++++
- .../freescale/imx93-var-dart-sonata-m33.dtso  | 55 ++++++++++++++++
- .../dts/freescale/imx93-var-dart-sonata.dts   | 33 +---------
- .../boot/dts/freescale/imx93-var-dart.dtsi    | 14 ----
- .../freescale/imx93-var-som-symphony-m33.dtso | 50 ++++++++++++++
- .../dts/freescale/imx93-var-som-symphony.dts  | 31 ---------
- 7 files changed, 180 insertions(+), 77 deletions(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-common-m33.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-dart-sonata-m33.dtso
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-var-som-symphony-m33.dtso
-
-
-base-commit: 33adc96ac217d6e95b7c44ac383c19ca4ae2ff52
+diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+index 1f0954620195..78b19d8918b7 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+@@ -107,8 +107,8 @@ vdev1vring1: vdev1vring1@87ef8000 {
+ 			no-map;
+ 		};
+ 
+-		rsc_table: rsc-table@2021f000 {
+-			reg = <0 0x2021f000 0 0x1000>;
++		rsc_table: rsc-table@2021e000 {
++			reg = <0 0x2021e000 0 0x1000>;
+ 			no-map;
+ 		};
+ 
 -- 
 2.47.3
 
