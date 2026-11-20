@@ -2,123 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7785E606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222E2606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KyCLY5UZ;
-	dkim=pass (2048-bit key, unprotected) header.d=jschaer.ch header.i=@jschaer.ch header.a=rsa-sha256 header.s=fm3 header.b=R7mugJqw;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=aivISwZU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zhOJltZ+;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=cH2WNGTs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Eb8Btk76s77msHfVg+/TsIgZczD+oc/KLRtiVpgTo1M=; b=KyCLY5UZ44n6v7o2+8U17LwHVs
-	z70UkNR69Xs4hmc2jg2o2t4SEQoZ6AZM15NM+8zXMt2o2GFLhtQJmBMPqlxFCQWBEV6j3gYwXRdSb
-	OPolyYAx5fXsXjum+TX+QtZ4V3pdykL4d/5cp3ZA/nJe1hrXKG/tugiv1xi6MlMiayWQGgVqTGfw2
-	g8fOYxG/zeC67k1rjzckZ25xdIQs7EvahdGiKm5cfcmqI7mWXk+m7GcmfkBrnaWHmvTOOaiTwxpB4
-	iIxtX25Y0yaOVQ4WrGXj7d9UHVZcYMy16OaRtX7Q+AxUCkxGaH5A8R1hwmRVFrosArfNjGH9jqZEA
-	1gr4Pf0g==;
+	bh=bS72ymqc8FtQfMOJri9fTYNXdwukagCD9tTAdFGy1QQ=; b=zhOJltZ+Bh3SSmdsSD9SSS4MoY
+	z+r9eqd0Waa/BUPI4PcQ4IHvw/8AM3ZBrYeomFheSP79pHzWqtl2Xx9KAlltfdR6RrtnFkmeU1DGg
+	9J5tBAcq9yVm+KcrE2v+/NOT+hXqKwtIHHcsE+q/67VqLOVpIbChuJ5TedA3CYNnESlIuv/eYkRWg
+	Mo3pki2OCx7b3xpAOyGKjPoZvcjXok3dOx0yGSqXD6zTuTyYyZBJ7ZjaisxhGjY85hZG0xLdwBxuE
+	rYDqYutSfl/aru1foCMZbobU/6ijmLPhoo9foyMb9SvqQzVQCPw8CmGi9NaawNCKxgTbG+Oaffd8x
+	TDIPfsVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKbc-0000000EQaX-35dO;
-	Fri, 20 Nov 2026 09:08:28 +0000
-Received: from fout-b4-smtp.messagingengine.com ([202.12.124.147])
+	id 1xUKlA-0000000EREl-1Ag9;
+	Fri, 20 Nov 2026 09:18:20 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKbW-0000000EQZ8-3beB
+	id 1xUKl6-0000000ERDa-37kO
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 09:08:24 +0000
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailfout.stl.internal (Postfix) with ESMTP id 68FF11D00387
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 04:08:19 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Fri, 20 Nov 2026 04:08:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jschaer.ch; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:message-id:mime-version:reply-to
-	:subject:subject:to:to; s=fm3; t=1795165698; x=1795252098; bh=Eb
-	8Btk76s77msHfVg+/TsIgZczD+oc/KLRtiVpgTo1M=; b=R7mugJqwUYfPgsmGbc
-	SszqyzftyFV9n3wx7kM0YsvVz7T9k9/VqO460/q7F9yY6H2HIbHcgGx4RF0AWDFr
-	Z+JUVGPY2ApuVBEqocNWQxwqn74MRtt2zvzJhtSFK/uQo4doHYIIZR1TguupzC/h
-	4RC1fluJHyjGux0CLtZZrD3U7J4qyJY6B2oRZPy42vTykPYSNQQrnnxTXN+Eukmx
-	Ciw4nfFg2NmdL3t/nG29FyR/DZtzkSjMnMs4CS3uJ/PD+5t5J4/D3O9khu/oT+gz
-	nxqfspeYw4LtLFU2xibTRLxdiP6vxf1BxJzZ0YsX2xzqWnFlPZGe/nNvCVXvp4S/
-	jdgg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm3; t=1795165698; x=1795252098; bh=Eb8Btk76s77msHfVg+/TsIgZczD+
-	oc/KLRtiVpgTo1M=; b=aivISwZUn2zhIH8UpkCWHs8XgMSuBSmznlNynCgur5pv
-	0UOgLS5NQ9Q2zPMZnOoMAaUyvU8kePoar/+cnOI22wZpwb6iiXCSGqn9UCbuuAl+
-	jyDf67QuaGUM3iu33dUOnOmOkOcUAWA3CLb3nSl8Y23mobfsXOaBlCeO+D/xbQcs
-	UZyye2wUcQPKL3fosgk6GJVFovJFTSrDDIjFvpgSSZeIDfhMa5GetuOUMEABbZAl
-	+Lu7X+7ySM4yHKtLAcDi+Nby6RW2WZJSUGfYvDxgRXASi3DG40wI0WjYH17LN40H
-	ZrbVC//ZnJGx2q6YkUCpBZSSnnH+60AFhdvo64AZlg==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=jschaer.ch a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795165698; d=jschaer.ch;
-	mf=PGphbkBqc2NoYWVyLmNoPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm3:rsa-sha256:Wf9SEt8uCHyRy+DQdY6Je6fw8m9E6GrCHKwVpkT/hlCIQWc
-	0WmgYscT+4nEmQtOiC4yacl+GacopU9fDVTuTsiS00oNiHkB3EtUJlei21YrMMS6
-	X0KSaiZ2rqnSjprwR+yrD5yFokG7lgpG2S18lfwLheLErF+8/CoH06mUgoI32p1t
-	4mcWmGd5slSUVjQGlEKgIHPXbmgLyEb7qASteEjV/zV82AivUaijPGIbn0qMkiTn
-	/BC+fnIGTqlLGxDSGzgJmpjt3yN7yiYDRzYrec9c8/YfH0V2nAcVCJpQ6Y9NnpFR
-	Jr7QWa6mSwtIWI/CCtZg91SLOF3oYljEiwFw8GQ==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=10;
-	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
-	from,message-id,mime-version,subject,to;
-Message-Instance: m=1; h=sha256:Dina7eqkP6ZONZ96ujKUKkvbXZTPeYWQAoG52r4zcww=:FR2VA/pOmFjNjYQfGp/Vu41XJ6bW+af+V+qlyrlnlKU=;
-X-ME-Sender: <xms:AQ4AawcOQEq8hAqLVsgyS7VWNn3BKC2j7qU-MJJqrE7PuvNmNdk81w>
-    <xme:AQ4Aa-wpIKKjDJOZywtIyWjFem4lBE5WDfydhZbMOx7kCz7s0eMefHex8Dch-86DO
-    GYySGDeJ3WQf2Y9pEQIVYA6x4syeljbtocwpaKcjCvOft-I3y_PWnm6>
-X-ME-Received: <xmr:AQ4Aa18akq4b1w6Tjm5A3iM2Jlbkmib7tGKbnMWOtd3spWcSf299fJh4ueEnJiz2MX4h9FVTsKG9zpkhF-5tXC9wYrV1DuAKyDdL>
-X-ME-Proxy-Cause: dmFkZTEXrV/HxlQ+uFM1Vvb9hd4Fep4Iz7Tfl+ZCU5TmlMm/EV93OgCR0ATk9L7A99QwOy
-    t0RPc+JM/E3+efD0A1zZzQDEgEVeRKlQV8JnS2tyog0XUVE0hlAgUZYJ0csH1Mp+7ZkW4K
-    YejMfg+em/LD9OHm2YlDpgGQMPeAxj6esbPowGt/wARofr9MAN6kX3ZdRdMdXA4OLgzo9S
-    gBxovOQaLhRYEXg9ALRDWtgNnJI4XWZsdxKa5K8QkafhqhaJa1NJnyQosnz1eMf0kpb+IP
-    rDxVGtdTSUAZc12x9SCfDx/PGeh+rJkaiD1O8kvgxPQZ/wPzP5VRHE6SA5U5SAdqePz1Fp
-    OHnEgevTHtK8SVk2DFGUxlX2347kVenhVkjgc4VOwR4AsC6mBWHhNjNdDolCdNyVBE1HQN
-    skPvz8997Ik8YwVeX7IZp6mUU+cf+vYXbhUJnBp846VeGOW6iMJgf0Rm/oulqnswzB3Han
-    tdX7KU10kLPMmvEC2g6f7d+cwNj27S89aunyRH+L+5hZ0xo1csJJGg2AGNEi/cPMe43rHL
-    PU98yQ/X+TX0czpFs5PLjr763GSDIkcqXaNDgwaXN4rjGivmiR7hyege0vsrb9uVtiO2Lz
-    3OD2yr9uNmI9muURCdWUup4wAK4R+OuIy1X29RbnEWjAjnY4srGWkwiimsUQ
-X-ME-Proxy: <xmx:AQ4Aa8yV73luS7OIuxK7I1OVLM_U15nGTYOXB9Fm81bPYVd6YS1Y9A>
-    <xmx:AQ4Aa9rnxYcTUUjvR7wmpBn3npwxhxNYt1TY4beFxI1ToHG6MzlqpQ>
-    <xmx:AQ4Aa1oLjD8C9dVGbPHoxPfnnnmfCeshThBevmg6TlbHMc087sOsNQ>
-    <xmx:AQ4Aa1AajPdgf05GcTe156-mf2zn_vIUzjQArfilllsIVXZhU2kHjQ>
-    <xmx:Ag4Aa5rn1blT7JH11eLChFUcT6tHWyqdf7QCcjbOJwk7jEm8cyegg0dO>
-Feedback-ID: ie67446dc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 20 Nov 2026 04:08:16 -0500 (EST)
-From: =?UTF-8?q?Jan=20Sch=C3=A4r?= <jan@jschaer.ch>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Jan=20Sch=C3=A4r?= <jan@jschaer.ch>
-Subject: [PATCH] arm64: dts: rockchip: Enable HDMI RX for Orange Pi 5 Ultra
-Date: Fri, 20 Nov 2026 10:07:12 +0100
-Message-ID: <20261120090712.68178-1-jan@jschaer.ch>
-X-Mailer: git-send-email 2.53.0
+	Fri, 20 Nov 2026 09:18:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IWRmewx6L35bpHQzeCrAeFqJHvE8t2LuHf2010mWsbSky/vUFIwOczSIjJ6Jiw66+qurEJ2GH6ZnrWw82PQEmSnWxVd7mWQ5M8YMKjttECbXiv0PaZUXJxsQuzcjJGlNiOuX90glxBuUJ1ys7V59A0PdXDfXtdm49Fc7+01Oz67+TYYE57sAh3PB9QQdupeuFaC/nUhYaXBR5HLK6UIZGKtogNX9ZOSfe1NpeWGXYQr5F7tXyByzku2aMiZLNdiyiBGT28YY3RkvcsAkskBop1+s1q2uDsvlWQmKCX7Zcttolrw6wceYauAraYX9lpYleRdDgDtyoW3zxcGhddZXEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bS72ymqc8FtQfMOJri9fTYNXdwukagCD9tTAdFGy1QQ=;
+ b=sd0ROAHYj/p11wqpTfjJb9trRQ3bFe/GVt333xWETLu6DFI+t1yi6OEtaNtEsxWB65hF1nxkk/aNtLC0joOXUgecjbnOBYpKmIUMG/leRMjr8+iKayXxWTfihZ4DV+cg7SSXoXllU0lces+lqGmpLLGPTPObFBB5yc60AGPGSX8WGqylRqJHgXyEi5pbwCOirgljkfrcIGgv4tWbgAd3oGXCcTWFMIoztTYw4TPP5rnKjU/xSjP6Q4pyqHjs7d8z9BymRlltpzfu/K5ZML5JZn2J8/ZDJHQrrLMOgYfnQ4pwlszqQzBBjI7iIGWwN92PZhL4o4VnMMTC67UmKp363Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bS72ymqc8FtQfMOJri9fTYNXdwukagCD9tTAdFGy1QQ=;
+ b=cH2WNGTsg9l03c5U7Av75IITGSbff76RrKw94MeVGZGQQkUZik2JsvSWEP4eyQOuTMmK1EpMqi0Bv8wILWYKJ2avncgjmV2PWuRnYdjF6oh9drjhIUqN22QYNJ1M2/wL83y2GqaCHPINtiwrRbcbeUzJuyYMUwElNJ6oAhsnPU6Od2wM0FmYSLflnR1fSeCN+iwUFDNY7K5rYOrV/acpljHj98EC9i0PATMX93RTZyZJqg4l7vQkZzNHWH6BTfDoNhjrrHPzCMpBT0q1ytr2NAJrbjiTs75Wgp065+zSuQ3QZ0Qb9N566ZAGB6nPKPN+BW3nLC/xd16A6RQnC2Rg4A==
+Received: from AS8P250CA0011.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:330::16)
+ by ZR6PR10MB130213.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:910:e8::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.1; Fri, 20 Nov
+ 2026 09:18:08 +0000
+Received: from AM7PEPF00000053.EURPRD83.prod.outlook.com
+ (2603:10a6:20b:330:cafe::44) by AS8P250CA0011.outlook.office365.com
+ (2603:10a6:20b:330::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Fri,
+ 20 Nov 2026 09:18:08 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ AM7PEPF00000053.mail.protection.outlook.com (10.167.242.39) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.0 via Frontend Transport; Fri, 20 Nov 2026 09:18:08 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 20 Nov
+ 2026 10:18:52 +0100
+Received: from localhost (10.48.87.222) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 20 Nov
+ 2026 10:18:05 +0100
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 0/4] dmaengine: stm32-dma3: fix IRQ flag race and
+ linked-list handling
+Date: Fri, 20 Nov 2026 10:18:00 +0100
+Message-ID: <20261120-dma3-fixes-v1-0-f29c1f437399@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEgQAGsC/x2LQQqAIBAAvyJ7TnAVhPpKdFjarfaQhUIE4t+Tj
+ sPMVCiSVQpMpkKWR4teqQMOBtaD0i5WuTN45yMijpZPCnbTV4rluAYRZGJy0Ic7yy96Py+tfY9
+ 2bCdcAAAA
+X-Change-ID: 20261119-dma3-fixes-d6c3ee1dada0
+To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <dmaengine@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>, Jerome Audu
+	<jerome.audu@st.com>, <stable@vger.kernel.org>
+X-Mailer: b4 0.16.0
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PEPF00000053:EE_|ZR6PR10MB130213:EE_
+X-MS-Office365-Filtering-Correlation-Id: e27e9919-d761-4b6e-319c-08df46e730fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|376014|1800799024|23010399003|36860700016|6133799003|261009223027099003|18002099003|261022105027099003|261022075727099003|261026121527099003|261026140227099003|261021121427099003|261021123027099003|261028144727099003|56012099006|10067099003|261102123227099003|11063799006;
+X-Microsoft-Antispam-Message-Info: rppEBUwEXnN3xbSez8kDpP5XNVQnOF+vQMXBuA0XNFsTTId+WO8Nl7fbsCOxCdethm7VJvA/CfBQ6fF9FYl4x4LxcdyNF+je0WnqTHJUGei1ebe9vccuEpdnWwiZtdiBVMo04m6EpIapAL0HeQ/NVGF7pgO3WA8jBt7JfAYpwXaTmxwbSiOdeiqo1xeN5/MS0rlEu4RL2eo3uQPqlZxetMactM6FZMPJYj4eyBNgTgGXkstzDCS0t/B8HDqdgTNzavhnLOQoPDelZSb6vgMRbH+BiCILyY+sWQBWEFG8FN0yFPu2s9Tfz4qh0TeuaM6xy1w7R5Qzy2LGhEAsHTSQ7ty42EXeQs4jrTxAXoTWuYQTA26vHXi82N515dQ2tJ6ccU6/VHRy0LBjkOmmMSMA1V+zN5Xa3YZBNP7GmkZIthpWzSpbCh4oBrloOgII36pQojYGC+ss8Uy4Gv8XDZ4xQMb2IS4fMIKgPaJX02oHM/0ImIHxiP/Zk35qh2i62XEJ4TMPJRJGBtJoFHPIQrGDJfQwY0pJueBytBIuUAEUul7xRG1B1DeaMgdJypAY6Y8TrIXeF3UKmBbaTY6rTkl26zYnkKq3QNZ34GDubLsliPWsn25YA4ENXGi9zuNJ37XLxb/TssFZRooDpvvCK04lfkS/stazvJCk7FcOmqzQLp4/aJebcPicXtbeavEL0ssX9nGjRpBSJWB8m1Bnt3Gpjw==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(23010399003)(36860700016)(6133799003)(261009223027099003)(18002099003)(261022105027099003)(261022075727099003)(261026121527099003)(261026140227099003)(261021121427099003)(261021123027099003)(261028144727099003)(56012099006)(10067099003)(261102123227099003)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 2UibzlHPTBbPFr3VmfbmkEUA8120+nR1nAGqYu0Gxq8TgnDEFM3qY5r/UYHTfxQ4BKwBryuelCZfs85g2P1I80BmgONmTOvZOALPfHwTQkznmspCExwMG8DXQ8SVTO/WK5ALSlznqLXaDuAGs4e5azBHCZV/Uq9exv1gOdGtq60Hq9bgxnJ/yiSaW7xW2uB2wtsQyEQw6Gi/hG0SmXFFBrGCsPvxEGA1KSfFoqBzMlEnxaNTH3KUx1nMMgS+G/Xivc343IMa0DoNwH5v3I8wGsKqPeEkUEM+8HBHVqET99oCaHCaY8eSv4jJPGVxN2OBxC7qwoou9zUTUWLNmieZbJIfTWNEkkIWeEvZ8zflLZanDRVTArS9sks0a5xjcVZ68JSoUbDqBlFbM7Wq8OGYVTxpN8+YexNG/PJkb1UVUE0kNZtOFMyMXt+M4R16pitu
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 09:18:08.2242
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e27e9919-d761-4b6e-319c-08df46e730fc
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: AM7PEPF00000053.EURPRD83.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR6PR10MB130213
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_010823_106289_B14EEC19 
-X-CRM114-Status: GOOD (  10.40  )
+X-CRM114-CacheID: sfid-20261120_011817_866687_23F6302A 
+X-CRM114-Status: UNSURE (   7.28  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -130,64 +132,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Orange Pi 5 Ultra has an HDMI input, enable it. It was missing
-because the snps_hdmirx driver was introduced after the Orange Pi 5
-Ultra DTS.
+This series fixes issues in the STM32 DMA3 driver around transfer
+completion and linked-list (LL) handling, plus a related cleanup.
 
-The pin definitions here match the schematic and the DTS in the Orange
-Pi vendor kernel. In the schematic, the hot-plug detect pin is named
-HDMI_RX_DET_L.
+- Patch 1: clear channel flags before handling completion, so the
+  Transfer Complete flag of a new transfer started from the completion
+  path is no longer cleared, which could lead to a timeout.
+- Patch 2: write the LL base address (CxLBAR) when starting a transfer
+  rather than at allocation, as other transfers prepared in between could
+  change it.
+- Patch 3: reject linked lists spanning several 64 KiB windows, since
+  CLBAR provides the common upper address bits. Lists may now fail to be
+  prepared when crossing a 64KiB boundary, which is preferable to
+  the hardware fetching descriptors from the wrong addresses.
+- Patch 4: cleanup, derive the descriptor size from the structure and
+  correct the maximum descriptor count to (CLLR_LA / size) + 1.
 
-Signed-off-by: Jan Schär <jan@jschaer.ch>
+Patches 1 to 3 fix issues present since the driver was introduced and
+are marked for stable.
+
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 ---
- .../dts/rockchip/rk3588-orangepi-5-ultra.dts    | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Amelie Delaunay (3):
+      dmaengine: stm32-dma3: set LL base address when transfer starts
+      dmaengine: stm32-dma3: validate LLI pool allocations and fix cleanup
+      dmaengine: stm32-dma3: replace hardcoded LLI size with aligned descriptor size
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-index 2b693dfb434c..ddcb1d2f9b49 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-ultra.dts
-@@ -48,6 +48,17 @@ &hdmi1_sound {
- 	status = "okay";
- };
- 
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	hpd-gpios = <&gpio3 RK_PD3 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&hdmim2_rx_cec &hdmim2_rx_hpdin &hdmim2_rx_scl &hdmim2_rx_sda &hdmirx_det>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &hdptxphy1 {
- 	status = "okay";
- };
-@@ -71,6 +82,12 @@ hdmi1_tx_on_h: hdmi1-tx-on-h {
- 		};
- 	};
- 
-+	hdmirx {
-+		hdmirx_det: hdmirx-det {
-+			rockchip,pins = <3 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	usb {
- 		usb_otg_pwren: usb-otg-pwren {
- 			rockchip,pins = <4 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+Jerome Audu (1):
+      dmaengine: stm32-dma3: clear flags before signaling transfer completion
 
-base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
--- 
-2.53.0
+ drivers/dma/stm32/stm32-dma3.c | 78 ++++++++++++++++++++++++++----------------
+ 1 file changed, 49 insertions(+), 29 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261119-dma3-fixes-d6c3ee1dada0
+
+Best regards,
+--  
+Amelie Delaunay <amelie.delaunay@foss.st.com>
 
 
