@@ -2,141 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7213606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E7B0606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WH0JTICe;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=WvMh7i21
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1b50LhzA;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TsTPgFpf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=hRyyrcw8NG36P6l7uuBMaXuQFS8N37UEqIhWnsys+LQ=; b=WH0JTICebVkbKp
-	x7S2hRg2EOtRPN89FtCuvucUU+b/ypl3vrf3Orh6/puwhoKCYnOgK/9toU79Lz25P0eZLjtvqJPDd
-	+gQkC3KFqhBGXNxGh4ddgoFe5JQLSliAzBXrapKvGqT0TdpBtx48ummm2EOEOpUvmghyd3LfzrG25
-	Bn7YeOB4WkiMH7dotdTlxZrwUpZZw5QCeGGsj6nKclFyUqy+1PSXBXnZRxtGxVe/ZLImykNMdbFcP
-	10X9LgSf/9l2i1mugjZgVTGesWb2ARoRSRAl5bXzEChbA+q7H4TbJ6BtArr932ihzaGQt2jMjv6VR
-	gh29XwZa5APD0MRbG9cQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=r0MrQSsfFF+8NFuoWmPZr5CuzJzWwIyM3EAzHjJs0u0=; b=1b50LhzA2J0LZdgrS4W87US5mc
+	FrGGqIty5LyexUfEEy3gTcDmb224ISGo+7UEJ5jpj3ufiND+qACkw5yHkzD4NdrCrgeLgwvqmUYgx
+	nDubRnnYBHnb1moynUrINljQ4d+vJTCLH4NuBZIu2bVhUzvx4X+N351siEqMTkpmVtS5VDhFmgtyv
+	jPOGOhTsQ8O/nXIp+TwXbfHavoYM78hWbvEWjaJLjXabZzuextcSLd8B+9TZv2OM74a9tydUXL9Tv
+	DwtugsV7t2YxwbVuGqi4CS9hH/woHrLSd/JnIMsXqwMTpyFfh4QpbW7wIhXT4yWSY/tM9HxZ4pNax
+	W/cNVE7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKV6-0000000EPsY-3YQL;
-	Fri, 20 Nov 2026 09:01:47 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xUKW4-0000000EQ5r-0GGB;
+	Fri, 20 Nov 2026 09:02:45 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKUp-0000000EPoS-2UiY
+	id 1xUKW2-0000000EQ5U-1IzK
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 09:01:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NGgmIekGJQvxqY4/oAdE63geH+mEhSS/uyQ59OLP9wGRGkMbm2WdObYOw54l5Z2i10GibytivV1qqbiCGHMopGQ9XtbyWeU8mvr4j5EoFt4s+rlEyFgspJYhd/w5Se7HYwOmHHRizwe/o9sdwquhiIgpMckcLxWW2LezwERGI3oz1PqByjNN3CZkw2SWqPna7J3zvIxqq42PbBCsMqbUrP7OnpcuspdBOJGlJJHgMWEHMoVpkoD35CbEPgGwEPjan8Qpj8U3DQzE1hMzqNEJjJPTHaA1sGVqiJnCYwM35zUlgfa7p0YSnotOeZ4JNcb2UOXr9YDPRcOLDWe1uCHv3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hRyyrcw8NG36P6l7uuBMaXuQFS8N37UEqIhWnsys+LQ=;
- b=JZw721jz0HygIHZgFDfIVCi3wVTFHC3li6WX+wx9z0/Dzam1Cl9ffgsXXmCldzO3AozMFioPUMUBY8wznqTImrH6JPzsBGudZ2iiJO/boQdL8TuK6cENDpk6tdUVJMOCN1taMCudEBRYipL/+0KqgO5Y+fG+uAqD9g8EEAoNYyR+8n1xYl9Oao5Df/qOl7WlwHMsQPbo/pBPZb/ANZMydpA/lenWH/trvHlrB1Xz6+hjdzgCVbCSU3qdata3URQoObxhqz/o7kID9S48y3pyAAwH2dElRzVq07g81USjXTeeuk3LuLfMPtP9e1M391rJ78tLrYI8RbOZ3MNydIWhzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hRyyrcw8NG36P6l7uuBMaXuQFS8N37UEqIhWnsys+LQ=;
- b=WvMh7i21FDilna4oM4EkDxexAB4hwbNbuLvigWLRhtB1Y0OBLaFXPmeuYlBQ1Mm5GjWfRNuUryNM9e6HxWkfBxwHmZ5VHNMC8ToFItfJEAPrZJWWHwZ6NOFbgiA0N+7e1xY5D6+rIqZD2Qh7pPJyRErNLA3lUsInV3wKVb+BqU2FaOk+QH4Y0IbKPXPKTnQxE2TPfr0K89HGzKbXFao9aPsBgDpehuXu0durfmr32yUx9FNMwBXTzIPqOD9uaozhJ7X9F3DBY+6d/ZMLWXKYcAaVbDcHVetOm+hODrxxWk2MIJTULlCsNVtfUUzR+4sptkpnbgA+3PyIWYWYpMmBJw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB9351.eurprd04.prod.outlook.com (2603:10a6:102:2b6::17)
- by AM9PR04MB8083.eurprd04.prod.outlook.com (2603:10a6:20b:3b5::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Fri, 20 Nov
- 2026 09:01:22 +0000
-Received: from PAXPR04MB9351.eurprd04.prod.outlook.com
- ([fe80::1058:a430:52c1:5aa]) by PAXPR04MB9351.eurprd04.prod.outlook.com
- ([fe80::1058:a430:52c1:5aa%5]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
- 09:01:22 +0000
-From: shengjiu.wang@oss.nxp.com
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	shawnguo@kernel.org,
-	daniel.baluta@nxp.com,
-	chancel.liu@nxp.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH 2/2] arm64: dts: imx8mn-evk: Add pll8k and pll11k clocks for SPDIF1
-Date: Fri, 20 Nov 2026 17:03:24 +0800
-Message-Id: <20261120090324.1220501-3-shengjiu.wang@oss.nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261120090324.1220501-1-shengjiu.wang@oss.nxp.com>
-References: <20261120090324.1220501-1-shengjiu.wang@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: JH0PR03CA0012.apcprd03.prod.outlook.com
- (2603:1096:990:6::19) To PAXPR04MB9351.eurprd04.prod.outlook.com
- (2603:10a6:102:2b6::17)
+	Fri, 20 Nov 2026 09:02:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id ABD9846A38;
+	Fri, 20 Nov 2026 09:02:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA29F1F000C6;
+	Fri, 20 Nov 2026 09:02:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795165361;
+	bh=r0MrQSsfFF+8NFuoWmPZr5CuzJzWwIyM3EAzHjJs0u0=;
+	h=From:Date:Subject:To:Cc;
+	b=TsTPgFpfhMWHP34oPirrzHQNRxHR35WOs4Gp1pb4TIVWmEQ6oI6qvxe58n39bxj9Z
+	 +AHfW5nHT0fbeSiBzdCPpWAru8YoQWyArWlH5Qwbj7PNcT0blB3xI6ml1KWOsj0v99
+	 LLknuYxzp8u9S+RQiDLqD+9CTtwGr3HDe88totRLN7TOmTlvZFJ2reBORmmuO+Nje0
+	 PnaZhuJ7PkzvvLefzV1nm1p5oci727F+s9V/gCxjzzoDS2kgywzguntN9zaEmzDrsF
+	 g2/F/D50BC36w5hBvqQc1FAOXp7a+U7m46e/M+QscK8IQu1Z0t3bGeR/gMhimqRAhq
+	 59oKwvpVRCYXg==
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 20 Nov 2026 10:02:38 +0100
+Subject: [PATCH] clk: ux500: Power the AB8500 ULP PLL from VintCore12
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9351:EE_|AM9PR04MB8083:EE_
-X-MS-Office365-Filtering-Correlation-Id: e280d3bc-fdbe-4ed8-5b47-08df46e4d93f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016|19092799006|23010399003|22082099003|18002099003|261009223027099003|921020|261022075727099003|261021121427099003|56012099006|10067099003|261102123227099003|11063799006;
-X-Microsoft-Antispam-Message-Info: Up8kuwAwzG7qv0Dym2kAbiLOpBwYERpNOVh3AheWTjYDqmrTigZWc7p11jUlg8D6nALFJImXuBg7TAFl6AaK0OoLDVy/KaojnEyqjlNWFduQqJ+dsLT74HMqqhZ6EYaSsiyvduT2yRg9m+Xm789czWpo5cPkcwTOhqvoIVWjXjVdc1HmDJnqc0EFbnBfNz3G8Eeg3yt4SQV+I8PrOk3toKqU39avY2d3P/fo9lgbXbzOZA4FhRhTwHEZDsA7SUKGc8hGFH4wZjQwRZkrV6vKDxv+LMNzang2UiZD95fE021JSZGNj/9nIxU2bNbJvgZ2ETdPS5EJgKw+4XTUAtSyf8ViQG4jZAogi1ou7kPYpDqNVD2WjPPbs90+UeYr1cQYRFdh13luC+L0GCwjIgzzsitEGqqKIS56I5phbrOEnyoEhQhV/T4F6lDNqlklS+cxbCpsUZ2VIw6v60kzPm/K2WtaMBP1kDgpAsgSDbPsblspAsDPbvbv4e4SEnWdVBQzol2OESFeiAiEoW4hZyA8YiF9CPCffVqAZylO+sCYJigdIiUpDJHCJwfm0cpi8CAwLAN7rpfNQ7V/y/pEvaNWya53MxK52cdr79fE/IZOVi4eg5UaxdU+9Nfpe+GOAxHuD8dlJLq36TfdRwsi3CvEwdgVjZJ/n24GuEdwE/DXQ8F/1byeZCl5vZAehbnElv7TWs9XLHyZEgHsF1bgvBekAA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9351.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(19092799006)(23010399003)(22082099003)(18002099003)(261009223027099003)(921020)(261022075727099003)(261021121427099003)(56012099006)(10067099003)(261102123227099003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yVIA1lKdqSBNfLMzAa2n+C/z8O5KaaWWfThyMlwXkRCoVgWBrQL48YGmZQRS?=
- =?us-ascii?Q?hlP8FIzKTv0N8t/K+SkpVlU+mVqzPs0442uK4PiF1Uwqdd5Ml6WseHYiDllK?=
- =?us-ascii?Q?hvofsUVwRdMXvRERfLmDSM6DdA7m45aWp3j+aJFQvv7XzxQNoU1v67q3v3sw?=
- =?us-ascii?Q?cFCqJss7ZFQpKnyIyDaTCElEJhrTYQEfkWKNvwTJn/+zZyh3QbHoUkNfqqU1?=
- =?us-ascii?Q?x1UF13A5xdxyZ6jXmJNCVdtWa+oyA64mpIO5h4Dw10LXm2udMmV75wjuvDlG?=
- =?us-ascii?Q?LH5F35quMvz6G9y7y7q1Y0gwhHG3xbulfogKV7KvheN94zIBP0ON7EcWHlL+?=
- =?us-ascii?Q?1syxasSofAph+l3f5e0YRmHQVM7tAUr2eKlEkKHQ4Yvr+gfOKm3PX4o/Sz8g?=
- =?us-ascii?Q?xy0kuQN6NKUqnKAVj0ZuT3WI7XQoprDdgBvRd8G2eFfPLYoZ3oAH3YGYw3cE?=
- =?us-ascii?Q?XEte+oi0GAVoAQvwnaSBoyA3XX718kykVUtvICwdJ+F4vdsTUtlJ++GwJKKe?=
- =?us-ascii?Q?3DhrYphPMvk2+HiTgMKLZWznO3DHNZ9H4R8xkxAeaSDHhJvRCshyM4B4os/q?=
- =?us-ascii?Q?tvaPYL3RA2Sy71TdBCsKcE0DlAooFnW0OzSbvuteB/wSB9k0HMcy/W/f9+Zo?=
- =?us-ascii?Q?cGe9AeylHdOfXvMs+kfWNH2AfShRCfbOZXQnAo5JV7MEtPMrW7+IXOHbP2DF?=
- =?us-ascii?Q?Yjsv+E8qmRNjdsM5PmY7e4scuedkC1tDWb7/gRJIDL1GIDcSNXHuV3EJoUon?=
- =?us-ascii?Q?1FtMxyZUaE6vrShY2rzTMf0RBtlc+KFh0wB+mhGFbcQe9nz+xCJDCUreAt3y?=
- =?us-ascii?Q?vDcgu10Kr2lK61PuDVAigvqkY2agn7wQcNG4dTzARoC9kZOJ6SWSwkex14Hk?=
- =?us-ascii?Q?1Vv3TVCTQiLfau0xNI33LnSaewoSQb+UwHgy1fQFNKA4ULdaSf6EAabakPqL?=
- =?us-ascii?Q?K6kNWV9hEqG6JQlJnVWQcFc/BgGAUkRX8C9obEh9FmV/V/Aign057x2oAlSe?=
- =?us-ascii?Q?/whWJQon86PPtOTkI+R1Zc+T+1R3+tJFY4grV/Tu6A/bjKPm87lo0jXNWQ+f?=
- =?us-ascii?Q?XJD/YTAALPMR5cYZwv6xQXMNh/WUI7oWArTjiQLZekBsJdemBMS4qXYawF0E?=
- =?us-ascii?Q?9u8YYiuin56PEMndTN9Rd+OmKJ7eEFHJqLU0DeiYFDzMaW+DWqCtmiGSjZLA?=
- =?us-ascii?Q?Tai6uBmsp9/fUQGH3pNUdMihIksK6JefIEi47JiR5BCTnV5jKbBBk8TIEq9x?=
- =?us-ascii?Q?rT/b2ougR//hZiLlAy5Lc6siFKFQSDxtRUhUHeYaiskqGO9DMEO5opKkCB7W?=
- =?us-ascii?Q?ahhRpkR6Sgcs2cjwolY/WLYU89T86gWB8HuKRIDvsIjTMLef7QxiDftJVmte?=
- =?us-ascii?Q?Elf+8lFUxkwA8p8CsrnOlhbaEFRFwzA+JL1Y5JdX08Njr8pskQPncSV6Zrmo?=
- =?us-ascii?Q?GeaW7AXsplSsJhmjBDB4uloePeXCEqBG9+6UgDtW3RASaMA5GJypczYES/ig?=
- =?us-ascii?Q?oVsIW/JGhf06IXXmDiCjk8Uhhevebjdxtqj1VaVpRXMcLlbQq/xl9kxD9QK9?=
- =?us-ascii?Q?OPVuV/9i1LeQDcUYHMB+eb2OlAg/P9VSML1ByhBhSVqhIQ03voLnMUZ+LOms?=
- =?us-ascii?Q?lSSfI/xUzAFoaFOzQWLi8QdPuXm0l2wUhTn2k61X2O3QTGyYYoFmJfs78sgt?=
- =?us-ascii?Q?fXAEnImE0L938ZdXQsQkSooCcjL0smhE5XhdKG2yuwTBKNCyX8Q9H6Y8llIG?=
- =?us-ascii?Q?TA9WdwB68QfEaYxpuUpLL69BZRhuyPCtrncByayCOpiY5JQfNwd3?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e280d3bc-fdbe-4ed8-5b47-08df46e4d93f
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9351.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 09:01:22.3926
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CeQhTC1TngiIvQWGsndxh0sNIiSZ9BGYbE34NcB9dMTLHq1zGqqxu9gWaC0s3EHenFFGd5FQYmJJKpVAd2mFCGef+M3L1JxUAS4ydP6aoswYqk4gZbxAQjEdFEz66xCv
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8083
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_010127_642532_1FB51F0F 
-X-CRM114-Status: UNSURE (   9.36  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.0 (/)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261120-ux500-clk-power-upll-v1-1-431041f317ba@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MSwqEMBAFwKs0b21DEoyLXGWYRdCO00zQkOAHx
+ LsL1gHqQpOq0hDoQpVdm64LAtmOMP7iMgvrhEBwxg3WOsPb6Y3hMf+5rIdU3krOPEzJiu99H2N
+ CRyhVkp5v+/ne9wOMT+8dZgAAAA==
+X-Change-ID: 20261120-ux500-clk-power-upll-6df1e5454aaf
+To: Ulf Hansson <ulfh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, 
+ Mike Turquette <mturquette@linaro.org>
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>
+X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,45 +73,255 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
+The AB8500 ULP PLL draws power from VintCore12.
 
-The SPDIF1 node in the SoC DTSI only defines the base clocks. Add the
-missing pll8k and pll11k clock entries sourced from AUDIO_PLL1_OUT and
-AUDIO_PLL2_OUT to support both 48 kHz and 44.1 kHz based sample rate
-families.
+Enable the supply before requesting ULPCLK and release it only after
+clearing the request. This keeps the rail on for every ULPCLK consumer
+without forcing it on when the PLL is idle.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+The AB8505 does not have this requirement, the change only affects
+the AB8500.
+
+Fixes: 312f0f0b9a4e ("clk: ux500: abx500: Define clock tree for ab850x")
+Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+The corresponding bindings change hits the MFD subsystem, see:
+https://lore.kernel.org/mfd/20261120-ux500-mfd-ulp-pll-supply-binding-v1-1-2740b61bd839@kernel.org/
+---
+ drivers/clk/ux500/abx500-clk.c  | 20 +++++++++------
+ drivers/clk/ux500/clk-sysctrl.c | 54 ++++++++++++++++++++++++++++++++++-------
+ drivers/clk/ux500/clk.h         |  4 ++-
+ 3 files changed, 60 insertions(+), 18 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-index 036afa0f6990..a24ac05ff02f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-@@ -405,6 +405,14 @@ &spdif1 {
- 	assigned-clocks = <&clk IMX8MN_CLK_SPDIF1>;
- 	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
- 	assigned-clock-rates = <24576000>;
-+	clocks = <&clk IMX8MN_CLK_AUDIO_AHB>, <&clk IMX8MN_CLK_24M>,
-+		<&clk IMX8MN_CLK_SPDIF1>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_CLK_AUDIO_AHB>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>,
-+		<&clk IMX8MN_AUDIO_PLL1_OUT>, <&clk IMX8MN_AUDIO_PLL2_OUT>;
-+	clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3",
-+		"rxtx4", "rxtx5", "rxtx6", "rxtx7", "spba", "pll8k", "pll11k";
- 	status = "okay";
- };
+diff --git a/drivers/clk/ux500/abx500-clk.c b/drivers/clk/ux500/abx500-clk.c
+index b2ddbf08fca4..1cf94d0ebcda 100644
+--- a/drivers/clk/ux500/abx500-clk.c
++++ b/drivers/clk/ux500/abx500-clk.c
+@@ -11,6 +11,7 @@
+ #include <linux/device.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
++#include <linux/regulator/consumer.h>
+ #include <linux/mfd/abx500/ab8500.h>
+ #include <linux/mfd/abx500/ab8500-sysctrl.h>
+ #include <linux/clkdev.h>
+@@ -24,7 +25,7 @@ static struct clk *ab8500_clks[AB8500_NUM_CLKS];
+ static struct clk_onecell_data ab8500_clk_data;
  
--- 
-2.34.1
+ /* Clock definitions for ab8500 */
+-static int ab8500_reg_clks(struct device *dev)
++static int ab8500_reg_clks(struct device *dev, struct regulator *vintcore)
+ {
+ 	int ret;
+ 	struct clk *clk;
+@@ -64,7 +65,7 @@ static int ab8500_reg_clks(struct device *dev)
+ 	clk = clk_reg_sysctrl_gate_fixed_rate(dev, "ulpclk", NULL,
+ 		AB8500_SYSULPCLKCTRL1, AB8500_SYSULPCLKCTRL1_ULPCLKREQ,
+ 		AB8500_SYSULPCLKCTRL1_ULPCLKREQ,
+-		38400000, 9000, 0);
++		38400000, 9000, 0, vintcore);
+ 	ab8500_clks[AB8500_SYSCLK_ULP] = clk;
+ 
+ 	/* ab8500_intclk */
+@@ -90,16 +91,19 @@ static int ab8500_reg_clks(struct device *dev)
+ static int abx500_clk_probe(struct platform_device *pdev)
+ {
+ 	struct ab8500 *parent = dev_get_drvdata(pdev->dev.parent);
+-	int ret;
+-
+-	if (is_ab8500(parent) || is_ab8505(parent)) {
+-		ret = ab8500_reg_clks(&pdev->dev);
+-	} else {
++	struct regulator *vintcore = NULL;
++
++	if (is_ab8500(parent)) {
++		vintcore = devm_regulator_get(&pdev->dev, "vintcore");
++		if (IS_ERR(vintcore))
++			return dev_err_probe(&pdev->dev, PTR_ERR(vintcore),
++					     "failed to get ULP PLL supply\n");
++	} else if (!is_ab8505(parent)) {
+ 		dev_err(&pdev->dev, "non supported plf id\n");
+ 		return -ENODEV;
+ 	}
+ 
+-	return ret;
++	return ab8500_reg_clks(&pdev->dev, vintcore);
+ }
+ 
+ static const struct of_device_id abx500_clk_match[] = {
+diff --git a/drivers/clk/ux500/clk-sysctrl.c b/drivers/clk/ux500/clk-sysctrl.c
+index 2127a949e56c..aaa7278e5d38 100644
+--- a/drivers/clk/ux500/clk-sysctrl.c
++++ b/drivers/clk/ux500/clk-sysctrl.c
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/clk-provider.h>
+ #include <linux/mfd/abx500/ab8500-sysctrl.h>
++#include <linux/regulator/consumer.h>
+ #include <linux/device.h>
+ #include <linux/slab.h>
+ #include <linux/delay.h>
+@@ -22,6 +23,9 @@
+ struct clk_sysctrl {
+ 	struct clk_hw hw;
+ 	struct device *dev;
++	struct regulator *supply;
++	/* A failed unprepare can leave our regulator enable reference held. */
++	bool supply_ref_held;
+ 	u8 parent_index;
+ 	u16 reg_sel[SYSCTRL_MAX_NUM_PARENTS];
+ 	u8 reg_mask[SYSCTRL_MAX_NUM_PARENTS];
+@@ -32,27 +36,56 @@ struct clk_sysctrl {
+ 
+ /* Sysctrl clock operations. */
+ 
++static void clk_sysctrl_disable_supply(struct clk_sysctrl *clk)
++{
++	if (!clk->supply_ref_held)
++		return;
++
++	if (regulator_disable(clk->supply))
++		dev_err(clk->dev, "failed to disable supply for %s\n",
++			clk_hw_get_name(&clk->hw));
++	else
++		clk->supply_ref_held = false;
++}
++
+ static int clk_sysctrl_prepare(struct clk_hw *hw)
+ {
+-	int ret;
+ 	struct clk_sysctrl *clk = to_clk_sysctrl(hw);
++	bool take_supply_ref = clk->supply && !clk->supply_ref_held;
++	int ret;
++
++	if (take_supply_ref) {
++		ret = regulator_enable(clk->supply);
++		if (ret)
++			return ret;
++		clk->supply_ref_held = true;
++	}
+ 
+ 	ret = ab8500_sysctrl_write(clk->reg_sel[0], clk->reg_mask[0],
+ 				clk->reg_bits[0]);
++	if (ret) {
++		if (take_supply_ref)
++			clk_sysctrl_disable_supply(clk);
++		return ret;
++	}
+ 
+-	if (!ret && clk->enable_delay_us)
++	if (clk->enable_delay_us)
+ 		usleep_range(clk->enable_delay_us, clk->enable_delay_us +
+ 			     (clk->enable_delay_us >> 2));
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ static void clk_sysctrl_unprepare(struct clk_hw *hw)
+ {
+ 	struct clk_sysctrl *clk = to_clk_sysctrl(hw);
+-	if (ab8500_sysctrl_clear(clk->reg_sel[0], clk->reg_mask[0]))
++
++	if (ab8500_sysctrl_clear(clk->reg_sel[0], clk->reg_mask[0])) {
+ 		dev_err(clk->dev, "clk_sysctrl: %s fail to clear %s.\n",
+ 			__func__, clk_hw_get_name(hw));
++		return;
++	}
++	clk_sysctrl_disable_supply(clk);
+ }
+ 
+ static unsigned long clk_sysctrl_recalc_rate(struct clk_hw *hw,
+@@ -125,7 +158,8 @@ static struct clk *clk_reg_sysctrl(struct device *dev,
+ 				unsigned long rate,
+ 				unsigned long enable_delay_us,
+ 				unsigned long flags,
+-				const struct clk_ops *clk_sysctrl_ops)
++				const struct clk_ops *clk_sysctrl_ops,
++				struct regulator *supply)
+ {
+ 	struct clk_init_data clk_sysctrl_init = {};
+ 	struct clk_sysctrl *clk;
+@@ -160,6 +194,7 @@ static struct clk *clk_reg_sysctrl(struct device *dev,
+ 	clk->rate = rate;
+ 	clk->enable_delay_us = enable_delay_us;
+ 	clk->dev = dev;
++	clk->supply = supply;
+ 
+ 	clk_sysctrl_init.name = name;
+ 	clk_sysctrl_init.ops = clk_sysctrl_ops;
+@@ -189,7 +224,7 @@ struct clk *clk_reg_sysctrl_gate(struct device *dev,
+ 
+ 	return clk_reg_sysctrl(dev, name, parent_names, num_parents,
+ 			&reg_sel, &reg_mask, &reg_bits, 0, enable_delay_us,
+-			flags, &clk_sysctrl_gate_ops);
++			flags, &clk_sysctrl_gate_ops, NULL);
+ }
+ 
+ struct clk *clk_reg_sysctrl_gate_fixed_rate(struct device *dev,
+@@ -200,7 +235,8 @@ struct clk *clk_reg_sysctrl_gate_fixed_rate(struct device *dev,
+ 					u8 reg_bits,
+ 					unsigned long rate,
+ 					unsigned long enable_delay_us,
+-					unsigned long flags)
++					unsigned long flags,
++					struct regulator *supply)
+ {
+ 	const char **parent_names = (parent_name ? &parent_name : NULL);
+ 	u8 num_parents = (parent_name ? 1 : 0);
+@@ -208,7 +244,7 @@ struct clk *clk_reg_sysctrl_gate_fixed_rate(struct device *dev,
+ 	return clk_reg_sysctrl(dev, name, parent_names, num_parents,
+ 			&reg_sel, &reg_mask, &reg_bits,
+ 			rate, enable_delay_us, flags,
+-			&clk_sysctrl_gate_fixed_rate_ops);
++			&clk_sysctrl_gate_fixed_rate_ops, supply);
+ }
+ 
+ struct clk *clk_reg_sysctrl_set_parent(struct device *dev,
+@@ -222,5 +258,5 @@ struct clk *clk_reg_sysctrl_set_parent(struct device *dev,
+ {
+ 	return clk_reg_sysctrl(dev, name, parent_names, num_parents,
+ 			reg_sel, reg_mask, reg_bits, 0, 0, flags,
+-			&clk_sysctrl_set_parent_ops);
++			&clk_sysctrl_set_parent_ops, NULL);
+ }
+diff --git a/drivers/clk/ux500/clk.h b/drivers/clk/ux500/clk.h
+index 91003cf8003c..08ba094322b0 100644
+--- a/drivers/clk/ux500/clk.h
++++ b/drivers/clk/ux500/clk.h
+@@ -14,6 +14,7 @@
+ 
+ struct clk;
+ struct clk_hw;
++struct regulator;
+ 
+ struct clk *clk_reg_prcc_pclk(const char *name,
+ 			      const char *parent_name,
+@@ -82,7 +83,8 @@ struct clk *clk_reg_sysctrl_gate_fixed_rate(struct device *dev,
+ 					    u8 reg_bits,
+ 					    unsigned long rate,
+ 					    unsigned long enable_delay_us,
+-					    unsigned long flags);
++					    unsigned long flags,
++					    struct regulator *supply);
+ 
+ struct clk *clk_reg_sysctrl_set_parent(struct device *dev,
+ 				       const char *name,
+
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261120-ux500-clk-power-upll-6df1e5454aaf
+
+Best regards,
+--  
+Linus Walleij <linusw@kernel.org>
 
 
