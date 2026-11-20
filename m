@@ -2,66 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33B0E606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 16:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFF060A2602
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 16:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WzhKw86l;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KrYGeKSS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=06fwZzS2;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=cndOLz/W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Date:Message-Id:
-	References:In-Reply-To:From:Subject:Reply-To:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=O3z/YjNRpS5G8mbWaqpg0u1Kze4tP3LKxONUNxMarIE=; b=WzhKw86lvK9wIJB/B9Nvf7ROId
-	mC4PspM22bHL/h8z367N2zxOFbj89o46J7mW1Wc7FeOJ0HSc1I6ycOdIPzhyf7yeY4PMl9Fu5JrNw
-	9r5465j9kFbA5evhn+jKQ6WflxzU4C6NflD+6o5fq/osNQCHdedYgu9dTt5438l2k6g5gexJuWKG7
-	kRlLr+UXN5OIX3CW1jhXU/pvhjcnIIcER2xIDMmT1/2zHS7nqkBsr4GFKf6xMkYcPXEThqyiAGRQ7
-	+cCri6N0hzuvPloeLmDaBx9QauHlSBbptWcXG2zwmn6AYyPAMQbY86O6hsz0DJgwGjHaKx1t0uuct
-	g4a44Wlw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=HoeW7YwGvvuI/NADDycrfel2s95vBScbfUbzR4K0kTw=; b=06fwZzS2YpACt1
+	xF3iRoSiQx6gA85LRKjS3BI8ykams32p1Zr9au+Txk73Sfl+8qiDC10yYqMoACEmb15ZSj/HgH/zk
+	vMjgUuNtRV38udbRrHwuGKFJzHCMaSYp2b5GJfjd47lPe2pAPUqJfGl4wMh8la5FL/jcZ0oU27S0N
+	SMVkby9fzC/MLZPjS7uki2B5sLstzbgZf32ZKpv2a9bF6JS6DI+9223BkQUqnpADPO4zxR25RKEyN
+	DJnieMgXd79HAKSI+h0lIjjw7N1pGlHKtvw2bv2SSI0/83dPrVc4zN0rQlaxF+V/ukHvw2LW3gkuA
+	8Uoclf+BbNc9sk56XJvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xURov-0000000Fatc-3sWZ;
-	Fri, 20 Nov 2026 16:50:42 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xURoo-0000000Farc-1uK1
+	id 1xURtg-0000000FbML-1dBL;
+	Fri, 20 Nov 2026 16:55:36 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xURtS-0000000FbJh-0bY8
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 16:50:38 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9BD8A62343;
-	Fri, 20 Nov 2026 16:50:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25D121F000D0;
-	Fri, 20 Nov 2026 16:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795193433;
-	bh=O3z/YjNRpS5G8mbWaqpg0u1Kze4tP3LKxONUNxMarIE=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc;
-	b=KrYGeKSSQantiK69vhzz1FHjutGUcYszeC1SCkSTXxvDJs0FNp3pninW7zhb27SZI
-	 rbHHOTn+CIiSP4anzXQYLRrIXHNM7PrxlcgQ5Amxihdnhub6dIInRmU9Ta5U8oiUFI
-	 Fs2C6mmHjZfKyroa4kEwYByG4fqc+z5chhLA5YvOEtDsTOmSHJlOhhPlxYxhRhehnf
-	 mdcr6ZUbHrgzhWlBDSbizXxnZn6pnYB0QBSf0tsVspjUAswZvdB75RGidn32XOliAE
-	 mhSi4pK27uHt1iHBW9hCisfcxp7qQc/b70wAUWUMWo4ozrZP7My7gRcqjZEYKrpJ+J
-	 8lZniAVc8xFZw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F420B3809A88;
-	Fri, 20 Nov 2026 16:50:32 +0000 (UTC)
-Subject: Re: [GIT PULL] arm64 fixes for 7.4-rc4
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <awAkCf3K4x8CtoKf@arm.com>
-References: <awAkCf3K4x8CtoKf@arm.com>
-X-PR-Tracked-List-Id: <linux-arm-kernel.lists.infradead.org>
-X-PR-Tracked-Message-Id: <awAkCf3K4x8CtoKf@arm.com>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux tags/arm64-fixes
-X-PR-Tracked-Commit-Id: a041bdbe1f3a8efa8a527a89c84d3771232b4942
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: d0f871bfb831705d9f55479f5b2b40f636ea7b16
-Message-Id: <179519343151.239574.13635395153686926411.pr-tracker-bot@kernel.org>
-Date: Fri, 20 Nov 2026 16:50:31 +0000
-To: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>, Eric Biggers <ebiggers@kernel.org>, Nathan Chancellor <nathan@kernel.org>
+	Fri, 20 Nov 2026 16:55:23 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A4B271575;
+	Fri, 20 Nov 2026 08:55:15 -0800 (PST)
+Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E126C3F882;
+	Fri, 20 Nov 2026 08:55:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795193718; bh=V/yBk9sLgKSP1wHaS8QVLRxQxyNAzJkrH+caPcA+9eY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cndOLz/WaXAMes9S6rn2jY028kub89buY56y4U0qnV+l5egb7076ovfU+6pk5PzbD
+	 Psre7u02JqvWLAU5cTyCLCZOlR+qf7UVMs/GifBZwy/4p5NWiHlIHaOpmKFFkZMufJ
+	 /vG2mYs4wJUvlWLYWBX05y4PL19Gh5npSDYiK1Mw=
+Date: Fri, 20 Nov 2026 17:55:11 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Rajan Yadav via B4 Relay <devnull+rajanyadav0307.gmail.com@kernel.org>
+Cc: rajanyadav0307@gmail.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
+ Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, Paul
+ Kocialkowski <paulk@sys-base.io>
+Subject: Re: [PATCH 3/4] arm64: dts: allwinner: a100: Add I2C3 pins on
+ PH12/PH13
+Message-ID: <20261120175511.70ec8a36@ryzen.lan>
+In-Reply-To: <20261120-k5c-dt-v1-v1-3-d9681df67bc0@gmail.com>
+References: <20261120-k5c-dt-v1-v1-0-d9681df67bc0@gmail.com>
+	<20261120-k5c-dt-v1-v1-3-d9681df67bc0@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_085522_365991_5C34C698 
+X-CRM114-Status: GOOD (  17.87  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,24 +76,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-The pull request you sent on Fri, 20 Nov 2026 10:42:17 +0000:
+On Fri, 20 Nov 2026 01:22:15 -0600
+Rajan Yadav via B4 Relay <devnull+rajanyadav0307.gmail.com@kernel.org>
+wrote:
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux tags/arm64-fixes
+> From: Rajan Yadav <rajanyadav0307@gmail.com>
+> 
+> The I2C3 controller can use PH12 (SCK) and PH13 (SDA). The KickPi K5C
+> connects its HYM8563 RTC there.
+> 
+> Add a pin group for them, marked /omit-if-no-ref/ like mmc1_pins, so
+> it is only kept in the boards that use it.
+> 
+> Claude Code (Anthropic) drafted this change and its message; I
+> reviewed it and tested it on a KickPi K5C.
+> 
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/d0f871bfb831705d9f55479f5b2b40f636ea7b16
+Checked against the manual, and the pinctrl driver (to map the function
+number to the pin mux):
 
-Thank you!
+> Signed-off-by: Rajan Yadav <rajanyadav0307@gmail.com>
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> index fce91dc2c28..3b53d64f25e 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> @@ -215,6 +215,12 @@ pio: pinctrl@300b000 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <3>;
+>  
+> +			/omit-if-no-ref/
+> +			i2c3_ph_pins: i2c3-ph-pins {
+> +				pins = "PH12", "PH13";
+> +				function = "i2c3";
+> +			};
+> +
+>  			mmc0_pins: mmc0-pins {
+>  				pins = "PF0", "PF1", "PF2", "PF3",
+>  				       "PF4", "PF5";
+> 
+
 
