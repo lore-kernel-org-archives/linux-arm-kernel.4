@@ -2,72 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD854606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 15:15:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE855606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 15:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iw7BSBuM;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=qP3K5iFW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gfGGoRZc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V2SdLCLl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=c4Z9yGuax/8NR1BznxmdHxIivPIjV06ghC9n97sXVMc=; b=iw7BSBuMDQ9V65jcL11C4luWuq
-	A/rUyels4zGZMIxdBIP1a6J3MdWywKs5BlRxBJoIztvLt8PjCMzk6XFI/W2xoewoDjXIXSd/vaNRF
-	PR2D9uxtd/ALxL8xK1ib8LHtW4geP0GXMLyV2WiZrXMhsSo7VS7Oj1APkeiuCOvGE8l8kqwX+UU2n
-	ZZICzqRriZiWzxuPNiBcyluK9LsDc7kG8ZO1xJrYT43+D37I8moRABmXlFpLV3yxBTkec/Ih+D/hS
-	l9oXR8bMruurL8JV9ix+G5/4a2ttN8f2ScOuRnvm1MnmKLHc05t3OvizBE2l75t5jhHYxylfolJHY
-	jW8LDalw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ihZfSgxIvjEMkXvmyda1NP7Q3LgCpF1cCr/6VrpGnao=; b=gfGGoRZci9swt7
+	N6LPcU/62DbzWGk6Umh44un72Rcf1G8hC4CSQnDDNuP8Eq5igIBihsE4itgbyHHjiokvwP8TLlGdQ
+	VDEZvNtKAm4V/rpeEwv0ufkV1NxG9mpT7Y7YWl/hhDwUoyG9FPO/A81czpUD8edQciOnZmschUwam
+	FD7OSEVVj08BLBAr4jDY3F2etL2H5CvF+pJXCnOjq+B/d+3x+juLmmCyNzj586Z1M+AEb5cUVEzp8
+	hjiqBxoKHot/98UpQ9LhpxmiT6riFIyPCiciNYvqwRNjUUxT/SESRVmcvURyQiFfKr3wG/jT9SJbC
+	zfzhrTBeORD83I1Oofiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQKF-0000000FNd6-112M;
-	Fri, 20 Nov 2026 15:14:55 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xUQLA-0000000FNq0-1wS7;
+	Fri, 20 Nov 2026 15:15:52 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQK9-0000000FNbw-1Zqu
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 15:14:53 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 95F0E1A1739;
-	Fri, 20 Nov 2026 15:14:47 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 64637601B9;
-	Fri, 20 Nov 2026 15:14:47 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7CCA511BC0335;
-	Fri, 20 Nov 2026 16:14:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795187682; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=c4Z9yGuax/8NR1BznxmdHxIivPIjV06ghC9n97sXVMc=;
-	b=qP3K5iFWwUKZwIQKOP9+wMMMEfmEjshq5oP054+bmu2JyLKtD0QR5NC9lf76y0NiPFLWU0
-	TsiGBvknc+ag9cbrXCdGHc8nz8bJR05lx2uwRZ/kO9z2xqN0bm6a1QmYB4NlMr4mYD/uSW
-	KNDEUD8rdlrSbKndfYWTzHmqqyVAMAVHwHqGe9gphJOclw39r9N0owsORjQIlNZ1f5oVei
-	Y3LsPlEHRvrsdUvcoBnzzQI/RhNLKqfSGdt0Ps4UTbBfjSb1+XB3QsP+MklkVt9oBH5cuA
-	NaKMNA0k7flFUWpx3vKHLltVcYo4Xqr94UFfw0L94GMe6MRtZ+YjmnytNfBlrQ==
-Message-ID: <fa5f43740321588aad8a5125eafd947c27a2f613.camel@bootlin.com>
-Subject: Re: [PATCH v4 0/2] ACPI: platform: ACPI 6.5 fixed clock support
-From: Paul Cercueil <paul.cercueil@bootlin.com>
-To: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
-Cc: Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>, 
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Thomas Petazzoni
-	 <thomas.petazzoni@bootlin.com>
-Date: Fri, 20 Nov 2026 16:14:37 +0100
-In-Reply-To: <CAJZ5v0i4ybwsOKfj_LS_m7EL-AYAhPQJmLNWBm8gdZ5uvfcJug@mail.gmail.com>
-References: <20261120125722.209609-1-paul.cercueil@bootlin.com>
-	 <CAJZ5v0i4ybwsOKfj_LS_m7EL-AYAhPQJmLNWBm8gdZ5uvfcJug@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	id 1xUQL9-0000000FNpe-0PO5;
+	Fri, 20 Nov 2026 15:15:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8D5DC457FA;
+	Fri, 20 Nov 2026 15:15:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B771F000CA;
+	Fri, 20 Nov 2026 15:15:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795187750;
+	bh=ihZfSgxIvjEMkXvmyda1NP7Q3LgCpF1cCr/6VrpGnao=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=V2SdLCLl+PH46TsluxaAncAdCSR9/8rtkneR5aa2+XVpBg2n7i5eN61n5cLrPCib7
+	 Y1zs7LkeLUtQHrxcc20V7hPvUP9By06ovOk3iQTAmN7J3oH6MYzGl0HY05tTzkI+B9
+	 u/9dKgxi4O6o0Yh380pbhyF1vPo1Zrf5PGADjiauViB+YF/jzuMERHVtnTX/bql5Gi
+	 +1nUjCdWbZN56Z9I6mR55wZQkOhJnTdRQAJiICTpxYaLwdTX7LO1u+nmJjGRI2+jMd
+	 Ze3CRwcUqYqb0MS134tJx0N4UrdoQh6Eya2Ye/HI88d1y8sofiW9rEoG95Q2alL72z
+	 BzPxn460AJnUw==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Myeonghun Pak <mhun512@gmail.com>
+Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Ijae Kim <ae878000@gmail.com>, Cyril Chao <Cyril.Chao@mediatek.com>, 
+ Darren Ye <darren.ye@mediatek.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>, 
+ Trevor Wu <trevor.wu@mediatek.com>
+In-Reply-To: <20261112011708-afe-v2-0-mhun512@gmail.com>
+References: <20261112011708-afe-v2-0-mhun512@gmail.com>
+Subject: Re: [PATCH v2 0/5] ASoC: mediatek: fix AFE IRQ registration and
+ removal ordering
+Message-Id: <179517904754.6016.16269615530838300307.b4-ty@b4>
+Date: Fri, 20 Nov 2026 12:50:47 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_071449_602558_37EF60D6 
-X-CRM114-Status: GOOD (  21.51  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2005; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=dSDkHmfmCeNxORnUsZPpEUBtYzLsL2QTxwlCUj1j5No=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLIZUhRfLDdqKWWb3LEh1FVrp2l39H3BnQd6bWoPShsfn
+ Lls+9Z1HaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE8gQBi5OAZhIsScjwx+bYs4LHKEzxes+
+ S92Pay44tVhO67TrulBDmRstCW8VnjL8r+p8UPu9RtY4RXbrMr6NlamTQhtecNl6Z6y6wp0qGfa
+ HAQA=
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,75 +81,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Rafael,
+On Thu, 12 Nov 2026 01:17:44 -0500, Myeonghun Pak wrote:
+> ASoC: mediatek: fix AFE IRQ registration and removal ordering
+> 
+> This series fixes IRQ lifetime ordering in the MT8186, MT8188, MT8189,
+> MT8195 and MT8196 AFE drivers.
+> 
+> Request each IRQ after regmap initialization so it is freed before
+> the regmap. Where remove() shuts down the AFE, free the IRQ first.
+> Also balance MT8186's IRQ wake setting.
+> 
+> [...]
 
-Le vendredi 20 novembre 2026 =C3=A0 15:31 +0100, Rafael J. Wysocki (Intel) =
-a =C3=A9crit=C2=A0:
-> On Fri, Nov 20, 2026 at 1:57=E2=80=AFPM Paul Cercueil <paul.cercueil@boot=
-lin.com>
-> wrote:
-> >=20
-> > Hi Rafael, Russell,
-> >=20
-> > Here's the v4 of my patchset that adds partial support for ACPI 6.5
-> > clock resources.
-> >=20
-> > Sashiko complained about the clock names being too long still, as
-> > ACPI device names can be up to 17 characters and the limit of clock
-> > names is 16 characters; so I now name them "acpi-clkX".
-> >=20
-> > Note that I expect warnings from Sashiko that I got on my v3 and didn't
-> > correct, because they are bogus.
-> >=20
-> > On the clkdev patch:
-> > "When clk_find(dev_id, NULL) is called, does incrementing match here
-> > give a (dev_id, con_id) entry a higher score than an exact
-> > (dev_id, NULL) entry?"
-> >=20
-> > My answer is that you call clk_find(dev_id, NULL) when you know you onl=
-y
-> > have one clock provided, so you don't need to care about matching
-> > priorities.
->=20
-> Sashiko has a new comment on the first patch though:
->=20
-> https://sashiko.dev/#/patchset/20261120125722.209609-1-paul.cercueil%40bo=
-otlin.com
+Applied to
 
-Yes, Sashiko came back to the charge with better arguments this time.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
 
-Sadly it seems to be correct, if I change the behaviour of clk_get(NULL) I =
-will
-break some drivers that rely on it not finding named clocks.
+Thanks!
 
-I can pass NULL as the con_id to clk_hw_register_clkdev() and then I can dr=
-op
-the first patch. Then, I guess register any other clock for the same device=
- with
-the "acpi-clkX" con_id.
+[1/5] ASoC: mediatek: mt8186: Keep the AFE IRQ within its resource lifetime
+      https://git.kernel.org/broonie/sound/c/420be55fe0e2
+[2/5] ASoC: mediatek: mt8189: Keep the AFE IRQ within its resource lifetime
+      https://git.kernel.org/broonie/sound/c/4f4067c2d110
+[3/5] ASoC: mediatek: mt8196: Keep the AFE IRQ within its resource lifetime
+      https://git.kernel.org/broonie/sound/c/eb9a5be4c2c1
+[4/5] ASoC: mediatek: mt8195: Keep the AFE IRQ within its resource lifetime
+      https://git.kernel.org/broonie/sound/c/eac2ac34a18d
+[5/5] ASoC: mediatek: mt8188: Keep the AFE IRQ within its resource lifetime
+      https://git.kernel.org/broonie/sound/c/94d0e251e7d7
 
-> > On the ACPI patch:
-> > "Should the con_id argument to devm_clk_hw_register_clkdev() be NULL
-> > instead of name? [...] Setting con_id to "<dev_name>-<idx>" instead of
-> > NULL prevents wildcard connection matching in clk_find(), so any
-> > consumer driver calling clk_get(dev, con_id) with a non-NULL con_id
-> > fails with -ENOENT."
->=20
-> This time Sashiko complains about something else in this patch AFAICS
-> (link above).
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-It looks like I need identifying names for devm_clk_hw_register_fixed_rate(=
-),
-and those don't need to be 16-chars long (that's only for clkdev) - so I'll
-restore my "<ACPI_ID>-clkX" naming scheme there.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Cheers,
--Paul
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
