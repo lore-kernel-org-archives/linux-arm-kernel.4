@@ -2,106 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A296260A260C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 03:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490B760A2634
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 03:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U7O6qlms;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=FZPNUGlA;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=O6nxLVkB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H89EUbxt;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=BR2jJcMe;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=e6iXJbi2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oRHoL0IowPBtdkXq6acf6pO5kP7NbE/jHqMLo/D6VFA=; b=U7O6qlmsXgULoo
-	WS0ooDKOTMqLnIsrmnzphzMp+xLVwHdAbchuBVvPUr39xtXkViQezn9s7sGt4vE16TLuiRnx9Tbl+
-	a/MIuHyPD2fcuBjucE8WuYWTfmUo+t9BmP8+oz6zowWI1Sdhw4cQjcLmeLJXtjta1/PQx1m6qVIcp
-	zSy/n5le2QKwpwBhM1bHrhXngiH7rxDf2BRe2lU0tsFymKlvOLZ/bFSb27ZrLNJ88c9o6/FIozs+d
-	ZKIn02JAawINamVmBiV3sVRGKsu+7WSRdWDmn8qyPcG+jwMYNGaKgNdW5HdNaxz3BDwyhmbN+Qjjy
-	1+Tcsfjid8GDCQHjaWLQ==;
+	List-Owner; bh=mYsyOYRlk85VuqsM/X2/oyTJ9s1VpnnPZMk/MWVafTU=; b=H89EUbxtTEr8Db
+	tUGA+Sx9Kf7P3I78S4avfSwVOgAPR7EuSJGKlNkV1rvYyjp3A1PHa8eDGwwr32xrh7sRDApTtwCVS
+	0VV4iyCt6JC25qJtnlQ6r+CpLOajD4Q4xxM3bHdKkFNHidpLa3FWNqCwLUyBS/adXhnOMrxITJInT
+	EiBzkzYvlO/4WeqERNcMgW2vBI8+gnDiEVMXQcM+wcyRXWEHNjz3qhl6v88Wh3pnxoBkpj5yRlXMl
+	efvpWz+hGHaHTA8T0taga0J7CoBluGnl2CkWRoGDmK78IU4h3c84/qdbvi69JT0T4OJT7PoOI5XaL
+	6mteprSWmbTIVuCpePKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUFIB-0000000DxVp-28Fw;
-	Fri, 20 Nov 2026 03:28:03 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xUFII-0000000DxYe-2urS;
+	Fri, 20 Nov 2026 03:28:10 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUFI6-0000000DxUb-0RAl
+	id 1xUFIB-0000000DxVY-1L80
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 03:27:59 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AK0GL1o3980126
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:27:57 GMT
+	Fri, 20 Nov 2026 03:28:04 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AK0GDFG3825932
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:28:02 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oRHoL0IowPBtdkXq6acf6pO5kP7NbE/jHqMLo/D6VFA=; b=FZPNUGlA4M3xtVsu
-	6U5V2pQpduxzWBcmrd/SF/dFjPPAh+Q7dg5p651ZF/D5VxsC2SL2P8m9O9UiFOR7
-	FjfOsSX4hYSOTUe7U39W3+UL2uvaIIW7ea+gNxSsN6Zn+uud+45vnr7ovskRXu9C
-	30efWNdcdbEUZgKSVe52cWEH1fmEOalT1+bKGeBeGP7InY8jLObagfcIHx37v/vx
-	qC8bHa9U9DWXZu7GDPMdiG4ca0htAntjULKznDjGGrYXnid5bp3bGUbIxtmbD2pH
-	JjAaGABR7fcpXpvZ2BABA+q4cuAgtBy6cb9WqMamQOW8UTEuN71nDM/kznh3TJ2C
-	S8pndg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j27b5smss-1
+	mYsyOYRlk85VuqsM/X2/oyTJ9s1VpnnPZMk/MWVafTU=; b=BR2jJcMeoKtS3aka
+	ij3ea1B10XMetdbyHBH++65RxfR0BaogGxx2/8NNMMnJkgWXWoRDhGYdBEKMWjGZ
+	rlku5fWZPSeoG7Q73aoHwBMDAzhys+TN+33dDZunb/rL8fZ5WCBiE20uIxCTqLHL
+	j1yJ8ItGwaX1OQsC+265eMH21wdAsFubTZqp9zRnPJdlgBm8ck1KIhuXSvqW4n4k
+	DJe4GaV2pGqPcGlFJMHQMiLs7RULLCDZ0ecaTG+ZSljzTFs37BjAPpxeTvrNIwVg
+	/JMw8JWYBphsOMK+m9c1OxI5MFOl3Q6aU7LMwhcIqd8c0NLMFzepDSzz7hg3sr/q
+	RTxOoA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j1yx6c1es-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:27:57 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-cc73895c7d5so498030a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 19:27:56 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 03:28:02 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3b0a13ae043so640322a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 19 Nov 2026 19:28:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795145276; x=1795750076; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1795145282; x=1795750082; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=oRHoL0IowPBtdkXq6acf6pO5kP7NbE/jHqMLo/D6VFA=;
-        b=O6nxLVkB2WNHDp3D5GfuYOP3GpygDBEQuQdtfsYLQlh05Zqt+EOQryISfVYg2C+mNN
-         26scuWYGa0BPWpI6ArP5IvYTi4zT7ASPdUGQ04kYMoImcWW4a3R7eNZJ025WLFK+inep
-         M7vYSLJAUWGmiy3OfIL8X/CP3q7W+1pQsqUXXFZ4dU64j6983A4XmvKaR7Bpj+zGqJfv
-         +1aBE5raHIZCC+TcsoncXUZ47KuokcT/GTP/3GfaT+nquq8Tplk70UWysiY3GxiUCmnU
-         Np8iHCHCB5rquVcWZlL1sWBiLUkNE192CNhx9dLKQ9lvWjohGvweygRDusHM3MpWz7jv
-         G61w==
+        bh=mYsyOYRlk85VuqsM/X2/oyTJ9s1VpnnPZMk/MWVafTU=;
+        b=e6iXJbi2H+Kz/dy2T8T2Yjab5DImGUiYqB+qPFJ2itG/D4IoqDNlDVVY9dG0gIocMb
+         OQUXgyo5sDQzrDJYI1Ptb6P1FyhjAfwD+EMnDuIITQBwfTewJzzJGkJ9YKUOAyyiVOVa
+         +OZVzXRvyPpSy7MVGRbs0UN19VtgkXC8SaRtmykZ6lSlVYWsGaBG/j1tH5oQkI4/IV5J
+         q26croVzerBRPCXXYHRKuKxveYa+6EaaZ5hmso9sdVFfDEwlKdp4moo575hXdh0udTkJ
+         iu9LzVmcufodQtJlQvywQPmm1Pta8KQCbrVVyeEu41j6wrvtj590BeqWvaTZGpxFzOGD
+         53yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795145276; x=1795750076;
+        d=1e100.net; s=20260707; t=1795145282; x=1795750082;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=oRHoL0IowPBtdkXq6acf6pO5kP7NbE/jHqMLo/D6VFA=;
-        b=qQca1Nal4gnyfzlhiN71Ime1p60YXcsu+h+dN24kY1NQcz/1TfLnpL4vjdYX5Aj6qY
-         TgpcV1KRXeH61GDIaYIbIByELRAV78K6RA76C+fFYtx9GXcXzGun+6hFJXHO3HJMNIcK
-         kNSdG74LOExkyRfaU2C1F6e3lFIU9b14yRHDITBZ9dSxgr8JIG6ZJKTQNSH5U0waz9XD
-         cjG3e3Y7wpRVCEgOqFrD6c4QzBeRQ0WAJxvcAkb/G9Tz7IBJbu6bIcyHWv4kDxZwUB3Y
-         rSNvz7BMGGhBkidgXPzUU8WDVJinymTzEGIOxobfIzSuKM3BL6bmLA2IjtBZuRrW86Xm
-         DZgg==
-X-Forwarded-Encrypted: i=1; AL+hErHQ0M+JQ+ocQID5z/WNyDHdYJ7xH+9cOxiaMSpjJHEnDGhF5vy/OkGA+AQqIS/pu/Xsgf3cHnzKQRzMx+j19Rp2@lists.infradead.org
-X-Gm-Message-State: APuU4Z/+zzE6VI6th8T7ZfmubN6b1p8Yn40Q5Sa5hvkCAeb96yfm1pL1
-	5eaMGN2c5nQInlzGdMCoXbYyXEvtfxUT81KziOfn1b2Qw7dVb1xvFfdr1R5thLZs0PD9HW1jMOa
-	nousLAiwtHHOYGSsScr5mab2jso8k4qQlz1Vis+xLf0/fn/IgbjT15AR2nvezu8V0SWeAw4x6rr
-	m+QLivV6/oi5LY
-X-Gm-Gg: AZFdTZdffHdhDzvxFnLGkv2Qd9IuK5G3p8KAAiAjsfxrn6dd3jxIy1yPncWEPBvlzya
-	scvJi9CO+ibxBvBPTW9ESeyAXOB8sFus9LM3mAO7blKHV2qDZ/tNQ7H5cyOIusZfKt361cP0Fa3
-	7UOB2+N35T2ABsCWsOhVpAwPbIVAO6m0bEwl0pr/3vHCEC8UFiMiJXP2Z5w18N89cFHKvg+Zo+U
-	hEWZf+ax0ML3oKE0nPBs/1+7d0rnx0RSDBF1dF0NOf3r/uHr8D+P393WaxnveFX1LOv7i6LdAdI
-	a2clZMDI0wNwWFcadh1XSSIrrRfRNpW7h7xCr9Riql+6keYNeElLZYmu+41CuERyeSW11OVU73+
-	2gBLe+odabmziNj6voSD4nZ3RgnfNB/LES20//4JUVU1GYeR1sAGyN5mu2ofLJ+jPx/ymIVYBlK
-	OO//BxTCjxzEwlxlqT7mGQlKEZaGMGtXuqet8=
-X-Received: by 2002:a17:90a:d607:b0:3ac:4291:f569 with SMTP id 98e67ed59e1d1-3b41c7c776bmr1618879a91.8.1795145275915;
-        Thu, 19 Nov 2026 19:27:55 -0800 (PST)
-X-Received: by 2002:a17:90a:d607:b0:3ac:4291:f569 with SMTP id 98e67ed59e1d1-3b41c7c776bmr1618844a91.8.1795145275396;
-        Thu, 19 Nov 2026 19:27:55 -0800 (PST)
+        bh=mYsyOYRlk85VuqsM/X2/oyTJ9s1VpnnPZMk/MWVafTU=;
+        b=Wvd/AgOywH8VnQwh1r/ajEgCUu+WIHOPBP6OJhLEgQRJCIsf+VQzoNmM9QhI5WRl2J
+         DoxNojfQ+kuVUC9Lwi1GgLWscpMJrOi45l8spaAPXqB4eGrDbxtbdeq83qTZoOHN4unR
+         +j1PtdvDHDjdHw6uIuw3jn8xHGrWcqNrffSHD57LR8KipOaaQzrURCcCehjzLfR5erEK
+         kDCzr2/pnBnpuhN/C8LCKeTSegusNP8NrE/fHks5DeTEcJdyLVLgeZRrlQaGhviRJJGz
+         TEZSuaNrE5s23CLcZ+gslhlJCt39bfQICNZJ07jMm1m0MECPHT6zxv3UZ7Rl+Y7IfHgi
+         rlMQ==
+X-Forwarded-Encrypted: i=1; AL+hErHp5USkfeBuKfqaix7k0RRj60XxwfV4JT2h78dAleWAnj0OM0D3tjPxEpf6kkqWR5nrv3PMysKn7Cy2fExCu3X/@lists.infradead.org
+X-Gm-Message-State: APuU4Z90EMXHb1zXYy7ii0jMTjoaWAc1N4ezo+nuo1b+moboAAktSQOv
+	6Mo0eY6GDHHqzFuONUpyGmQsqz869kBCkVlFNxRHXd3mo69/spc/MVu7L/2khaIAFaVFD6tIFve
+	HoY10O3049Br3XoMf8wDYxu0j+ruDy3e9gHiLXHI/ScGNV6D0k9Lc3EkCu7T9Da7w9ZEDWUq5Bm
+	eTWyG/Egvz0z1R
+X-Gm-Gg: AZFdTZe6d4v41O7NIH6+yRoPBMQLKaUN2XCllKHcICw4Dgr8T8wx6b9XUyBdqX0HaZn
+	RXfyq+jcmRkYnKJ5J3PNPe7Uv4OHwOFNPBq/Ac0WEVu4Ncc87qPEHVHBBXTMS/GKaT//8uIx9Pp
+	crLUvQJzlnK48hdTcoizUuxYFLr+WeBcqu3aGTM0p7whdmzZGCpz3QZSW7s88RIo2bdphNeL/5B
+	kQUjZ+1PpT1DpcXa3GfHA56sUBbnm+VtG627wJ74Pg6dtGngMiOHgCAKohFpqJOkhpmtLXIjcdJ
+	9wVE/CM77j+BjThitoNfCzOxtIPgAlKghmSKAixgEU+OjUrddTq3PQ2jhSothzX3vSSyqHayoDY
+	BB8m2Z5lpJ7r/p/HCCZ+Bm6k/2hmWHK4m5YIP3m3QHbwl1NhZpnkVhhHyOulRWaLmdr2MiNyaoP
+	cOb0oCfTaF4Y/1BhN5WXkZAZqHJGOqheQOFo4=
+X-Received: by 2002:a17:90b:384d:b0:3ad:50a2:9abf with SMTP id 98e67ed59e1d1-3b41c92f8eamr1492791a91.38.1795145281898;
+        Thu, 19 Nov 2026 19:28:01 -0800 (PST)
+X-Received: by 2002:a17:90b:384d:b0:3ad:50a2:9abf with SMTP id 98e67ed59e1d1-3b41c92f8eamr1492752a91.38.1795145281299;
+        Thu, 19 Nov 2026 19:28:01 -0800 (PST)
 Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b40578d771sm5278297a91.1.2026.11.19.19.27.50
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b40578d771sm5278297a91.1.2026.11.19.19.27.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2026 19:27:54 -0800 (PST)
+        Thu, 19 Nov 2026 19:28:00 -0800 (PST)
 From: Jie Gan <jie.gan@oss.qualcomm.com>
-Date: Fri, 20 Nov 2026 11:27:20 +0800
-Subject: [PATCH v24 1/8] coresight: core: refactor ctcu_get_active_port and
- make it generic
+Date: Fri, 20 Nov 2026 11:27:21 +0800
+Subject: [PATCH v24 2/8] coresight: tmc: add create/clean functions for
+ etr_buf_list
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-enable-byte-cntr-for-ctcu-v24-1-2d792c6b4819@oss.qualcomm.com>
+Message-Id: <20261120-enable-byte-cntr-for-ctcu-v24-2-2d792c6b4819@oss.qualcomm.com>
 References: <20261120-enable-byte-cntr-for-ctcu-v24-0-2d792c6b4819@oss.qualcomm.com>
 In-Reply-To: <20261120-enable-byte-cntr-for-ctcu-v24-0-2d792c6b4819@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>,
@@ -121,43 +121,44 @@ Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
 X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795145262; l=3915;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795145262; l=11094;
  i=jie.gan@oss.qualcomm.com; s=20250909; h=from:subject:message-id;
- bh=+oZshRSJK34bHEGxdoF7ktkVcnA/k42MY2hxHJFiV/4=;
- b=yMoIrzWOQ50jvHYhBXJ2PfgxB+abUyuYXPJcO3UjEf0TltUydpQjypdtp1E6Rp+a5UAjxmw+3
- ZHCiX/UF8aSCBAxQWF8OWjTpAz1dllCRyrF3zMyXbon5HQ9f5R2d/je
+ bh=1oOP0oUmGx5hwy+hFuL+gChkzsrwW6SCsSbaZDeRArA=;
+ b=5uHorWfaCPTfRkKAK9Wl2wqzxo5HyNElPIKxwrxUqorvR3hMZX4sZOuEjekLCoWGwF8LE/mCA
+ PFXpIWvSmJtA5UzP3/QGXqCoNuVyBiXEIF+mBgUpjEVGXvwttkgHVbu
 X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
  pk=3LxxUZRPCNkvPDlWOvXfJNqNO4SfGdy3eghMb8puHuk=
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDAxMyBTYWx0ZWRfX0mX0jaKUMnoG
- 88wpDtisvvmAFRLyM5KxUpUqCDRJT9AczZMtX2BkiLhQWxW70jp1ZNKQZAaPe7Za5hTbwwgl0Et
- RjYkJcO12LMpqpn3Y1IGzfAeoPGsX+4=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDAxMyBTYWx0ZWRfX0CqY4B1aedGZ
- Wy1cYB/Gektpn/XeqiCejlf7xuL7QFoqBgDNYXXBxrrJ/KeHJ8KizNVb5lWpxyEQbiL4n+SIYVc
- V6w0XS4rXvzGKHAlKYmLOlgeJPKJ3LugonBBUNkSQuwd9GiXgx7kzN6p5mdGJm+OhWfzL5TV/ye
- LTX7V3jOd2+bDrAHaaQK8apPqJVspHdkgu1gCB48UBO7RhG9NrsmLyjXF0TOqO+k/nnmI94bSvq
- f5BTRm4Uhd59wgeCQPxgpKbWop7tOXPcqFCkrAhEveXPzQuqBOWCcfUqz38JqjHwu6r0Wwuib99
- yaNn60sK5hBrADuyjF7YMnLFy7ehbsQEIqr0wCdCWZIHUITOixV+KOW3WsX1d2PHn7TPxTGSJa6
- 6czXT6Np6sPptc8vY5dXjk5tZYXWSUgXrrQJz48VUW3SEEoMU/ngqQAHhEWVWjbJ0vmPBNNxCmw
- 0/Ip/tj4/P7MGN0Ek+A==
-X-Proofpoint-GUID: ek5aL8v3dLKwJI7yIbyIYdAS9Gy-coNY
-X-Proofpoint-ORIG-GUID: ek5aL8v3dLKwJI7yIbyIYdAS9Gy-coNY
-X-Authority-Analysis: v=2.4 cv=LPTz05W9 c=1 sm=1 tr=0 ts=6affbe3d cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-GUID: 0bnc7cNnwgUkJ3Hraw17du6RfonozX_H
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDAxMyBTYWx0ZWRfX1Qcgtr2ihda1
+ 7x90+Lhj2q5tA2OjC4wbhGsPoxDFmUwhPlPwQOs2pPhCQuVPDJhqYwMTP/aaFPscEosMLrkmYKi
+ NqvZqKHXFe1p/3iI/68C8dl4UhRZsIw=
+X-Proofpoint-ORIG-GUID: 0bnc7cNnwgUkJ3Hraw17du6RfonozX_H
+X-Authority-Analysis: v=2.4 cv=FPmOVOos c=1 sm=1 tr=0 ts=6affbe42 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=7CQSdrXTAAAA:8 a=EUspDBNiAAAA:8 a=lyq7_Muqgj1vGRpOYO0A:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=7CQSdrXTAAAA:8 a=EUspDBNiAAAA:8 a=lVu_a0_mddZ4RBTubjwA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDAxMyBTYWx0ZWRfXyZEalXpep/YL
+ eDjp7S620Q/mxKu9EG191wC9fHx0uFyoPi7nMxrOk1sqdvD15B9K++8+KR+iodEcr/WHkCf3JJa
+ WYL/4ZRtDsRTLJ/1R9jYE5cKN/kPQnnE0jEFrRSjRvKRCGqkvgJxOEjQ1rxUTMaZCOP/dZPGozD
+ MxeYV0jYj29dNH7LSppFYRuGglYIuIBq34qrWgfRu1LHjz91ZUlSZSkztb8jX+5Yosupg+OZoqc
+ 5qqH1N3YbK05toocRtdYHsKkpBULKmy57qGDM3UXOiwV3qZGbU3zDlJqlGQdaJojDMaio9097at
+ O8AnGT6k5uCXYT43GA4fXYyftqEG4lkOj/0mY17GJKPLwUU/IEB7zYc3E+ZwbLv9WD39+hkAAij
+ NRj7iG96C6zzmC1lobU+Z2HA/Rg2yDLnLojb0i7Cn5GD59wcLZiELlry169tpjE87g68cCmwWhK
+ EjRmtKnpEm0CaxUudAA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-20_01,2026-11-19_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 bulkscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611200013
+ phishscore=0 adultscore=0 malwarescore=0 spamscore=0 suspectscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611200013
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_192758_309352_DB1E510F 
-X-CRM114-Status: GOOD (  22.67  )
+X-CRM114-CacheID: sfid-20261119_192803_379787_286ACFBD 
+X-CRM114-Status: GOOD (  35.23  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -177,111 +178,307 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Remove ctcu_get_active_port from CTCU module and add it to the core
-framework.
+Introduce functions for creating and inserting or removing the
+etr_buf_node to/from the etr_buf_list.
 
-The port number is crucial for the CTCU device to identify which ETR
-it serves. With the port number we can correctly get required parameters
-of the CTCU device in TMC module.
+The byte-cntr functionality requires two etr_buf to receive trace data.
+The active etr_buf collects the trace data from source device, while the
+byte-cntr reading function accesses the deactivated etr_buf after it
+has been filled and synced, transferring data to the userspace.
 
 Reviewed-by: Mike Leach <mike.leach@arm.com>
 Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/coresight-core.c      | 27 +++++++++++++++++++++++
- drivers/hwtracing/coresight/coresight-ctcu-core.c | 21 ++----------------
- drivers/hwtracing/coresight/coresight-priv.h      |  2 ++
- 3 files changed, 31 insertions(+), 19 deletions(-)
+ drivers/hwtracing/coresight/coresight-tmc-core.c |   1 +
+ drivers/hwtracing/coresight/coresight-tmc-etr.c  | 197 ++++++++++++++++++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h      |  20 +++
+ 3 files changed, 216 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
-index d2f9c1fb77d9..32e8b3e51519 100644
---- a/drivers/hwtracing/coresight/coresight-core.c
-+++ b/drivers/hwtracing/coresight/coresight-core.c
-@@ -773,6 +773,33 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
- }
- EXPORT_SYMBOL_GPL(coresight_get_sink);
- 
-+/**
-+ * coresight_get_in_port: Find the input port number at @remote where the @csdev
-+ * device is connected to.
-+ *
-+ * @csdev: csdev of the device.
-+ * @remote: csdev of the remote device which is connected to @csdev.
-+ *
-+ * Return: port number upon success or -EINVAL for fail.
-+ */
-+int coresight_get_in_port(struct coresight_device *csdev,
-+			  struct coresight_device *remote)
-+{
-+	struct coresight_platform_data *pdata = remote->pdata;
-+	int i;
-+
-+	for (i = 0; i < pdata->nr_inconns; ++i) {
-+		if (!pdata->in_conns[i])
-+			continue;
-+
-+		if (pdata->in_conns[i]->src_dev == csdev)
-+			return pdata->in_conns[i]->dest_port;
-+	}
-+
-+	return -EINVAL;
-+}
-+EXPORT_SYMBOL_GPL(coresight_get_in_port);
-+
- u32 coresight_get_sink_id(struct coresight_device *csdev)
- {
- 	if (!csdev->ea)
-diff --git a/drivers/hwtracing/coresight/coresight-ctcu-core.c b/drivers/hwtracing/coresight/coresight-ctcu-core.c
-index 9043cad42f01..739105acb0a1 100644
---- a/drivers/hwtracing/coresight/coresight-ctcu-core.c
-+++ b/drivers/hwtracing/coresight/coresight-ctcu-core.c
-@@ -116,23 +116,6 @@ static int __ctcu_set_etr_traceid(struct coresight_device *csdev, u8 traceid, in
- 	return 0;
- }
- 
--/*
-- * Searching the sink device from helper's view in case there are multiple helper devices
-- * connected to the sink device.
-- */
--static int ctcu_get_active_port(struct coresight_device *sink, struct coresight_device *helper)
--{
--	struct coresight_platform_data *pdata = helper->pdata;
--	int i;
--
--	for (i = 0; i < pdata->nr_inconns; ++i) {
--		if (pdata->in_conns[i]->src_dev == sink)
--			return pdata->in_conns[i]->dest_port;
--	}
--
--	return -EINVAL;
--}
--
- static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight_path *path,
- 				bool enable)
- {
-@@ -145,8 +128,8 @@ static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight
- 		return -EINVAL;
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
+index bc5a133ada3e..bc7dd676da47 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-core.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
+@@ -835,6 +835,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
+ 		idr_init(&drvdata->idr);
+ 		mutex_init(&drvdata->idr_mutex);
+ 		dev_list = "tmc_etr";
++		INIT_LIST_HEAD(&drvdata->etr_buf_list);
+ 		break;
+ 	case TMC_CONFIG_TYPE_ETF:
+ 		desc.groups = coresight_etf_groups;
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+index 361a433e6f0c..03eead4176d2 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+@@ -1268,7 +1268,9 @@ static struct etr_buf *tmc_etr_get_sysfs_buffer(struct coresight_device *csdev)
+ 		raw_spin_lock_irqsave(&drvdata->spinlock, flags);
  	}
  
--	port_num = ctcu_get_active_port(sink, csdev);
--	if (port_num < 0)
-+	port_num = coresight_get_in_port(sink, csdev);
-+	if (port_num < 0 || port_num >= ETR_MAX_NUM)
+-	if (drvdata->reading || coresight_get_mode(csdev) == CS_MODE_PERF) {
++	/* The sysfs_buf is owned by the etr_buf_list, don't replace it */
++	if (drvdata->reading || coresight_get_mode(csdev) == CS_MODE_PERF ||
++	    !list_empty(&drvdata->etr_buf_list)) {
+ 		ret = -EBUSY;
+ 		goto out;
+ 	}
+@@ -1918,6 +1920,196 @@ const struct coresight_ops tmc_etr_cs_ops = {
+ 	.panic_ops	= &tmc_etr_sync_ops,
+ };
+ 
++/* Free the buffers owned by the nodes of a list, and the array of the nodes */
++static void tmc_etr_free_buf_nodes(struct list_head *head,
++				   struct etr_buf_node *nodes)
++{
++	struct etr_buf_node *nd, *next;
++
++	list_for_each_entry_safe(nd, next, head, link) {
++		list_del(&nd->link);
++		/* The buffer is NULL if the node doesn't own one, which is ignored */
++		tmc_etr_free_sysfs_buf(nd->sysfs_buf);
++	}
++	kfree(nodes);
++}
++
++/**
++ * tmc_clean_etr_buf_list - clean the etr_buf_list.
++ * @drvdata:	driver data of the TMC device.
++ *
++ * Remove all nodes from @drvdata->etr_buf_list and free their buffers.
++ * If a node holds the live sysfs_buf and the sink is enabled in sysfs mode, the
++ * node is removed but the buffer is not freed; ownership stays with
++ * drvdata->sysfs_buf.
++ *
++ * Locking: must not be called with @drvdata->spinlock held. The spinlock is
++ * taken internally to serialise the @drvdata->sysfs_buf accesses and the
++ * removal of the nodes against the ETR sink enable/disable paths and the
++ * generic sysfs read. There must be only one owner of the list at a time.
++ * Must be called from process context: buffers are freed with the lock
++ * released.
++ */
++void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata)
++{
++	struct etr_buf_node *nd, *next, *nodes;
++	LIST_HEAD(free_list);
++	unsigned long flags;
++
++	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
++	list_for_each_entry_safe(nd, next, &drvdata->etr_buf_list, link) {
++		if (nd->sysfs_buf == drvdata->sysfs_buf) {
++			if (coresight_get_mode(drvdata->csdev) == CS_MODE_SYSFS)
++				/*
++				 * The sink is still enabled in sysfs mode. Keep
++				 * the live buffer owned by drvdata->sysfs_buf
++				 * and only drop the list's reference to it.
++				 */
++				nd->sysfs_buf = NULL;
++			else
++				/* Free the buffer below through nd->sysfs_buf */
++				drvdata->sysfs_buf = NULL;
++		}
++		list_move_tail(&nd->link, &free_list);
++	}
++	nodes = drvdata->etr_buf_nodes;
++	drvdata->etr_buf_nodes = NULL;
++	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
++
++	/* Free the buffers and the nodes out of the lock */
++	tmc_etr_free_buf_nodes(&free_list, nodes);
++}
++EXPORT_SYMBOL_GPL(tmc_clean_etr_buf_list);
++
++/*
++ * Check whether the live sysfs_buf can be wrapped into the etr_buf_list.
++ * Must be called with @drvdata->spinlock held.
++ */
++static int tmc_etr_check_live_buf(struct tmc_drvdata *drvdata)
++{
++	/*
++	 * The sysfs_buf is in use by a sysfs read session, or the list is owned
++	 * by another session.
++	 */
++	if (drvdata->reading || !list_empty(&drvdata->etr_buf_list))
++		return -EBUSY;
++
++	/*
++	 * The sink enable path reuses or frees the sysfs_buf of a sink which
++	 * isn't enabled, so only wrap it while the sink is enabled in sysfs mode.
++	 * The mode of the buffer may have been changed since the sink was enabled.
++	 */
++	if (coresight_get_mode(drvdata->csdev) != CS_MODE_SYSFS ||
++	    !drvdata->sysfs_buf || drvdata->sysfs_buf->mode == ETR_MODE_RESRV)
++		return -EINVAL;
++
++	return 0;
++}
++
++/**
++ * tmc_create_etr_buf_list - create a list to manage the etr_buf_node.
++ * @drvdata:	driver data of the TMC device.
++ * @num_nodes:	number of nodes want to create with the list.
++ *
++ * The nodes are allocated at once and the buffers are allocated first, and
++ * added to the list in one critical section once the state of the sink is
++ * checked again, so @drvdata is not touched on failure. The live sysfs_buf of
++ * the sink is wrapped into the first node to preserve the captured trace data,
++ * and the buffers are allocated with the size of it.
++ *
++ * Locking: must not be called with @drvdata->spinlock held. The spinlock is
++ * taken internally to serialise the @drvdata->sysfs_buf accesses and every
++ * update of @drvdata->etr_buf_list against the ETR sink enable/disable paths
++ * and the generic sysfs read. There must be only one owner of the list at a
++ * time. Must be called from process context: buffers and nodes are allocated
++ * with the lock released.
++ *
++ * Return: 0 upon success, else the error number: -EBUSY if a generic sysfs
++ * read is in progress or the list exists, -EINVAL if the sink is not enabled
++ * in sysfs mode, its buffer was replaced or a buffer is of the reserved buffer
++ * mode, or the error of the allocation.
++ */
++int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes)
++{
++	struct etr_buf_node *nodes;
++	struct etr_buf *sysfs_buf;
++	LIST_HEAD(new_list);
++	unsigned long flags;
++	size_t size;
++	int i, ret;
++
++	/* We don't need a list if there is only one node */
++	if (num_nodes < 2)
++		return -EINVAL;
++
++	/*
++	 * All the etr_buf of the reserved mode are mapped to the same reserved
++	 * region, so they can't be used as separate buffers of the list.
++	 */
++	if (drvdata->etr_mode == ETR_MODE_RESRV)
++		return -EINVAL;
++
++	/* Keep the buffers of the list in the size of the live one */
++	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
++	ret = tmc_etr_check_live_buf(drvdata);
++	if (!ret)
++		size = drvdata->sysfs_buf->size;
++	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
++	if (ret)
++		return ret;
++
++	/* We know the number of the nodes, allocate them at once */
++	nodes = kzalloc_objs(*nodes, num_nodes, GFP_KERNEL);
++	if (!nodes)
++		return -ENOMEM;
++
++	for (i = 0; i < num_nodes; i++) {
++		nodes[i].free = true;
++		list_add_tail(&nodes[i].link, &new_list);
++	}
++
++	/* The first node is for the live sysfs_buf */
++	for (i = 1; i < num_nodes; i++) {
++		/* Allocate the buffer with the lock released */
++		sysfs_buf = tmc_alloc_etr_buf(drvdata, size, 0, cpu_to_node(0), NULL);
++		if (IS_ERR(sysfs_buf)) {
++			ret = PTR_ERR(sysfs_buf);
++			goto err_free;
++		}
++
++		nodes[i].sysfs_buf = sysfs_buf;
++		/* The buffer mode may have been changed to the reserved mode */
++		if (sysfs_buf->mode == ETR_MODE_RESRV) {
++			ret = -EINVAL;
++			goto err_free;
++		}
++	}
++
++	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
++	/* The sink may have been disabled or its buffer replaced meanwhile */
++	ret = tmc_etr_check_live_buf(drvdata);
++	if (!ret && drvdata->sysfs_buf->size != size)
++		ret = -EINVAL;
++	if (ret)
++		goto err_unlock;
++
++	nodes[0].sysfs_buf = drvdata->sysfs_buf;
++	nodes[0].free = false;
++	list_splice_tail_init(&new_list, &drvdata->etr_buf_list);
++	drvdata->etr_buf_nodes = nodes;
++	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
++
++	return 0;
++
++err_unlock:
++	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
++err_free:
++	tmc_etr_free_buf_nodes(&new_list, nodes);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(tmc_create_etr_buf_list);
++
+ int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
+ {
+ 	int ret = 0;
+@@ -1928,7 +2120,8 @@ int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
  		return -EINVAL;
  
- 	dev_dbg(&csdev->dev, "traceid is %d\n", traceid);
-diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
-index dddac946659f..854c0a3cb080 100644
---- a/drivers/hwtracing/coresight/coresight-priv.h
-+++ b/drivers/hwtracing/coresight/coresight-priv.h
-@@ -155,6 +155,8 @@ void coresight_remove_links(struct coresight_device *orig,
- u32 coresight_get_sink_id(struct coresight_device *csdev);
- int coresight_path_assign_trace_id(struct coresight_path *path,
- 				   enum cs_mode mode);
-+int coresight_get_in_port(struct coresight_device *csdev,
-+			  struct coresight_device *remote);
+ 	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+-	if (drvdata->reading) {
++	/* The sysfs_buf is owned by the etr_buf_list */
++	if (drvdata->reading || !list_empty(&drvdata->etr_buf_list)) {
+ 		ret = -EBUSY;
+ 		goto out;
+ 	}
+diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+index 319a354ede9f..ff2dbd85415e 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc.h
++++ b/drivers/hwtracing/coresight/coresight-tmc.h
+@@ -208,6 +208,20 @@ struct tmc_resrv_buf {
+ 	s64		len;
+ };
  
- #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
- int etm_readl_cp14(u32 off, unsigned int *val);
++/**
++ * struct etr_buf_node - node of the etr_buf_list
++ * @sysfs_buf:	Allocated sysfs_buf.
++ * @free:	Indicates whether the buffer is free to choose.
++ * @pos:	Offset to the start of the buffer.
++ * @link:	list_head of the node.
++ */
++struct etr_buf_node {
++	struct etr_buf		*sysfs_buf;
++	bool			free;
++	loff_t			pos;
++	struct list_head	link;
++};
++
+ /**
+  * struct tmc_drvdata - specifics associated to an TMC component
+  * @atclk:	optional clock for the core parts of the TMC.
+@@ -245,6 +259,8 @@ struct tmc_resrv_buf {
+  *		(after crash) by default.
+  * @crash_mdata: Reserved memory for storing tmc crash metadata.
+  *		 Used by ETR/ETF.
++ * @etr_buf_list: List that is used to manage allocated etr_buf.
++ * @etr_buf_nodes: Array of the nodes of @etr_buf_list, allocated at once.
+  */
+ struct tmc_drvdata {
+ 	struct clk		*atclk;
+@@ -275,6 +291,8 @@ struct tmc_drvdata {
+ 	struct etr_buf		*perf_buf;
+ 	struct tmc_resrv_buf	resrv_buf;
+ 	struct tmc_resrv_buf	crash_mdata;
++	struct list_head        etr_buf_list;
++	struct etr_buf_node	*etr_buf_nodes;
+ };
+ 
+ struct etr_buf_operations {
+@@ -447,5 +465,7 @@ struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
+ 				   enum cs_mode mode,
+ 				   struct coresight_path *path);
+ extern const struct attribute_group coresight_etr_group;
++void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
++int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
+ 
+ #endif
 
 -- 
 2.34.1
