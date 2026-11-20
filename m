@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53605606A335
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9413606A330
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YtlGGqIK;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=CIwpj3XN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ka6qKvv7;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=K8TjtE2k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZyG1HJB9CouJ88jrHvgbdE74CmzL9EWfbpLK4lLbZB8=; b=YtlGGqIKHMft8H
-	6qxNOo5Dz1WjuxabiDfedTp9E4cwEqcbfoAxv7IWlicRWPu7AaZcXf5kkUY/44Ykbl9BBMSSyCwUK
-	cc4GFqh9+vCjabKT5jQNEGGeuJ3hdUPFNzI0d/BzcAm4XIJYpmqB5eEjb1m8syHz7nxLPV9Au96nL
-	2WcBcNVxjQJMJtSzsa46volAhcNd17nc+6BWf0tyzeaDpt5Ied1Z+EIGG4JzKT1fOd4ZNh42Ebm+8
-	n1MuAtpRnuBghGS0HZlVYl6olS2SyYxZ8I7UNNTztrvUD+55K/IKNcmWr9jm3/Cnb477P47NzOQ+i
-	OzcFZ7kB4XDc3eb7lqXQ==;
+	List-Owner; bh=gU+N4i8XXaaCHLQytPV366YHYYBxjCiyyNiSynfO6vU=; b=Ka6qKvv7J0tMr4
+	uJNI52OQI86l+nb5/XauJ1deCq+v7UxbBm40VbwCgGNA6Fd1K5DT7jZdEsb9P4xTV4fpjl/9czV99
+	byxp13oOjDXIGdP1ZO2r3ZicxhIAo0o9O6kXuHmOoJYj9UjPa5axVhYmcBYRCx4+CFwPkh6v5gNtC
+	bMFPmfGAz45M2kUMKjcrsBqmd1N8ZaqZTZXWtdXVKtM8hP0U9KWeeQxz8go56l5aBNh3sL1Wm86zs
+	WX6WKDh0FV/XM3/87DqnVJyaSIIhBe9WseFVr29Ewd1YOoVvxk1o7upnalhhG0qRVOzzLD6JdgpqC
+	Q7s1/LB+VMf5kdIvQjBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOBj-0000000F1un-1SDX;
+	id 1xUOBj-0000000F1ud-0yEw;
 	Fri, 20 Nov 2026 12:57:59 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUOBd-0000000F1sX-0Qnt
+	id 1xUOBb-0000000F1rk-2xOL
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 12:57:54 +0000
+	Fri, 20 Nov 2026 12:57:53 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 9C2934E4168A;
-	Fri, 20 Nov 2026 12:57:51 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 7BA8BC62216;
+	Fri, 20 Nov 2026 12:57:55 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7388A601B9;
-	Fri, 20 Nov 2026 12:57:51 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 54E9211BC01AF;
-	Fri, 20 Nov 2026 13:57:49 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BBC2C601B9;
+	Fri, 20 Nov 2026 12:57:49 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC5FB11BC00D4;
+	Fri, 20 Nov 2026 13:57:46 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795179470; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1795179468; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ZyG1HJB9CouJ88jrHvgbdE74CmzL9EWfbpLK4lLbZB8=;
-	b=CIwpj3XNGPVEq7IVMCfxfiYb0wfXVtbYAk7LTFhg1uGiNPczfzmjyDddimswPr9U/wH4ss
-	Fs5+f/3LdbyXLDkfXHRw6gmUoLa4neaHD2mwVcKgxIYERAvILbd6o8PI+wWc84Ghjax9Y0
-	Le2FGDnbNK+riJ1rvzW7nhgBpRCfz1JYV1Bb0FdVqlgI9rLy9FT2XNrvxUM31iQ66aPYyl
-	ZimLXdN708HBxTTuuyY+KIlHXDekR7R2xUX2wVdxfMto0C5rmh8Y8aEBAjZMoREU7XHadz
-	f6eNDNc+MPs0ablm2dQmMffOI8MkCdQweByyM+IZC0/BX++R9fdEWRb7d0BOgQ==
+	bh=gU+N4i8XXaaCHLQytPV366YHYYBxjCiyyNiSynfO6vU=;
+	b=K8TjtE2k7nphcv59TzpTsej47eYhvzxLt4JBJkmH56cJ5plr/uYnvKLLKO1G2T2wxlS7fw
+	P/vaPItZXqHYzReUHDkHiJj5H+AjCNcoxEFAQJyw08NIf0byLcGL2tKCNuIxlQWpRlRALQ
+	5MWvPxFEYTyPA+xdTX+0LvmglEZw246V4C8dQWumHZIabIevjjWPkExYRXhbCtId2nmF9A
+	Dj0+Dqu/m2ALl5K2FEsBDzw4ROhTOACi4AJmMx4tVipg87CsZZ+Ll9nF+xxbRM6rzjpvGz
+	v8ZVOCpdyFk3iP4MM+6xLEaJfS3iWipYBUBgq/6VPJU1irpj+QmwBYhU46s4Iw==
 From: Paul Cercueil <paul.cercueil@bootlin.com>
 To: "Rafael J . Wysocki" <rafael@kernel.org>,
 	Len Brown <lenb@kernel.org>,
@@ -54,9 +54,9 @@ Cc: linux-acpi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Paul Cercueil <paul.cercueil@bootlin.com>
-Subject: [PATCH v4 2/2] ACPI: platform: Add basic support for ACPI 6.5 fixed clock resources
-Date: Fri, 20 Nov 2026 13:57:22 +0100
-Message-ID: <20261120125722.209609-3-paul.cercueil@bootlin.com>
+Subject: [PATCH v4 1/2] clkdev: Improve clock discovery with clk_find()
+Date: Fri, 20 Nov 2026 13:57:21 +0100
+Message-ID: <20261120125722.209609-2-paul.cercueil@bootlin.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261120125722.209609-1-paul.cercueil@bootlin.com>
 References: <20261120125722.209609-1-paul.cercueil@bootlin.com>
@@ -65,8 +65,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_045753_434031_3BCCF981 
-X-CRM114-Status: GOOD (  22.81  )
+X-CRM114-CacheID: sfid-20261120_045751_896549_785953B1 
+X-CRM114-Status: GOOD (  12.83  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,139 +86,49 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ACPI 6.5 introduced a clock input resource descriptor, which allows to
-specify in the ACPI tables what clocks are connected to a given device.
+With a setup where a clock provider registers a clock with a device name
+"mydev" and a clock name "myclk", calling clk_find("mydev", NULL) would
+not actually return any match.
 
-This patch adds support for the most basic clock resource, which is the
-one that represents a fixed clock. The new code will then create a
-clk_hw for each fixed clock resource, which is then made available to
-the device drivers, that can obtain it through a regular call to
-clk_get(NULL).
+Update the code so that we can support this while maintaining the
+existing behaviour:
+
+- clk_find("dev", "con") matches in order of priority ("dev", "con"),
+  ("dev", *) and (*, "con");
+- clk_find(NULL, "con") matches (*, "con");
+- clk_find("dev", NULL) matches the first case of ("dev", *).
+  Note that in that case we don't handle wildcards for the device name
+  or it would end up matching everything.
 
 Signed-off-by: Paul Cercueil <paul.cercueil@bootlin.com>
 ---
 
-v4: Change clock names to "acpi-clkX", because ACPI devices names can be
-    up to 17 characters long, and our clock name must be 16 characters
-    max.
+v4: No change
 
-v3: No change
+v3: New patch. Imported from
+    https://lore.kernel.org/linux-arm-kernel/20261103084915.8405-1-paul.cercueil@bootlin.com/T/
 
-v2:
-- Use the calculated clock name in devm_clk_hw_register_fixed_rate()
-  instead of the device name
-- Make sure clkres->scale is <= 2. The field is 2 bits but the value
-  clkres->scale == 3 is not defined in the spec.
-- Compute the fraction numerator using 64-bit math, to make sure it
-  won't overflow on 32-bit systems.
-- Initialize clocks only when the device_type matches
-  ACPI_BUS_TYPE_DEVICE.
-- Use a shorter name for clocks as the hard limit is 16 characters
-  including the terminator.
+    Originally sent separately to go through different trees, but the
+    context was lost which didn't help reviewing.
 ---
- drivers/acpi/acpi_platform.c | 64 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+ drivers/clk/clkdev.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/acpi/acpi_platform.c b/drivers/acpi/acpi_platform.c
-index 80ea7121744d..4e8824cc042d 100644
---- a/drivers/acpi/acpi_platform.c
-+++ b/drivers/acpi/acpi_platform.c
-@@ -10,17 +10,27 @@
- 
- #include <linux/acpi.h>
- #include <linux/bits.h>
-+#include <linux/clk-provider.h>
-+#include <linux/clkdev.h>
- #include <linux/device.h>
- #include <linux/err.h>
- #include <linux/ioport.h>
-+#include <linux/kconfig.h>
- #include <linux/kernel.h>
-+#include <linux/list.h>
- #include <linux/module.h>
- #include <linux/dma-mapping.h>
- #include <linux/pci.h>
- #include <linux/platform_device.h>
-+#include <linux/units.h>
- 
- #include "internal.h"
- 
-+struct acpi_clk_data {
-+	struct device *dev;
-+	unsigned int idx;
-+};
-+
- /* Exclude devices that have no _CRS resources provided */
- #define ACPI_ALLOW_WO_RESOURCES		BIT(0)
- 
-@@ -130,6 +140,57 @@ static unsigned int acpi_platform_resource_count(struct acpi_resource *ares, voi
- 	return AE_CTRL_TERMINATE;
- }
- 
-+static int acpi_add_fixed_clock(struct acpi_resource *res, void *d)
-+{
-+	static const unsigned long clk_scale[] = { 1, HZ_PER_KHZ, HZ_PER_MHZ };
-+	struct acpi_resource_clock_input *clkres;
-+	struct acpi_clk_data *data = d;
-+	struct device *dev = data->dev;
-+	struct clk_hw *clk;
-+	unsigned long rate;
-+	char name[64];
-+	int err;
-+
-+	if (res->type == ACPI_RESOURCE_TYPE_CLOCK_INPUT) {
-+		clkres = &res->data.clock_input;
-+
-+		if (clkres->mode) {
-+			dev_warn(dev, "Only fixed rate clocks supported for now.\n");
-+			return 1; /* keep going */
-+		}
-+
-+		if (clkres->frequency_divisor == 0 || clkres->scale > 2)
-+			return -EINVAL;
-+
-+		rate = DIV_ROUND_UP_ULL((u64)clkres->frequency_numerator * clk_scale[clkres->scale],
-+					clkres->frequency_divisor);
-+
-+		snprintf(name, sizeof(name), "acpi-clk%u", data->idx++);
-+
-+		clk = devm_clk_hw_register_fixed_rate(dev, name, NULL, 0, rate);
-+		if (IS_ERR(clk))
-+			return PTR_ERR(clk);
-+
-+		err = devm_clk_hw_register_clkdev(dev, clk, name, dev_name(dev));
-+		if (err)
-+			return err;
-+	}
-+
-+	return 1;
-+}
-+
-+static void acpi_platform_init_clocks(struct acpi_device *adev)
-+{
-+	struct device *dev = &adev->dev;
-+	struct acpi_clk_data data = { .dev = dev };
-+	LIST_HEAD(list);
-+	int ret;
-+
-+	ret = acpi_dev_get_resources(adev, &list, acpi_add_fixed_clock, &data);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to add clock resources: %d\n", ret);
-+}
-+
- /**
-  * acpi_create_platform_device - Create platform device for ACPI device node
-  * @adev: ACPI device node to create a platform device for.
-@@ -196,6 +257,9 @@ struct platform_device *acpi_create_platform_device(struct acpi_device *adev,
- 			}
- 			acpi_dev_free_resource_list(&resource_list);
+diff --git a/drivers/clk/clkdev.c b/drivers/clk/clkdev.c
+index 919fc680ae4d..ee6c0afd6ec0 100644
+--- a/drivers/clk/clkdev.c
++++ b/drivers/clk/clkdev.c
+@@ -53,7 +53,9 @@ static struct clk_lookup *clk_find(const char *dev_id, const char *con_id)
+ 			match += 2;
  		}
-+
-+		if (IS_ENABLED(CONFIG_COMMON_CLK))
-+			acpi_platform_init_clocks(adev);
- 	}
- 
- 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 		if (p->con_id) {
+-			if (!con_id || strcmp(p->con_id, con_id))
++			if (!con_id && !p->dev_id)
++				continue;
++			if (con_id && strcmp(p->con_id, con_id))
+ 				continue;
+ 			match += 1;
+ 		}
 -- 
 2.47.3
 
