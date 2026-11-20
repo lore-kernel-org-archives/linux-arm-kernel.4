@@ -2,148 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42F460A2605
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A01606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=am4IRz7L;
-	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=H+KipDz4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1JJdsk0G;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GKo+RNWT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vZtc0wjdiqQxlJGkIiZFhr+/5iPZbOkIXndqBMxjsLM=; b=am4IRz7LSpQ8VFDDEUcFnH9lzf
-	K7rZ9K8zga094Sc69THCUVQAmrOJJBPhqYKToQ6MzbGwRPviZia2LoQWLuGMPr3vaWA3lIcOBzJ56
-	1XogKu+nQnVNoZf/Llqoia4nOD/4V/FPHKr0kV1/4riWXOlVG2qTN7iRqEggQZZl6pOQxpK9g9BiS
-	kJQDWes/WALXYphzRCeijKN3RFSXexsbDzdNOMbtV296P08vwTR5TTMEA8C7V0wEMMBHCXW7w60J9
-	cA4Qr3hHnA7i/mFRnnba8THLiX29tFPNCs5muMB5yeWNi8G2CIqt75L4Z+uyou1Gp1+6F3Zwu40rP
-	uGT0ZFBw==;
+	bh=aV8jtS66Tt+1KtEPhn6QzwtWLg4RKOLbiueDjLgm9B8=; b=1JJdsk0GCMvbnmrjmezHOkoINH
+	us0BBxqy22HtVglZWRh+rmhUaILIvCg3JBjPERPg8px/u9EsZZDDb1mWl0QEJRI6WqwvPMgfk+JKM
+	ff6CVIIwfjjXuOcEvCySXmWtKpeZVXmmepREw0Dq42hAM1mQOfaMP61v8nbnz+gI4KmvqJXGCC2+I
+	lKc0WRm60ogU/MU2nsC7w0Tl4Vf1FzMCKt6A1PIaeuNWDBhdn4zD89j417d/veH1xNLV0VTevd57e
+	rW1w2MupSIGzGs97oxj72TZvEL/OvcodVujUkB8SavQ1i87qNFmvIhJx+TAxjOd92ZbAIeQ0XfkZY
+	FJaLLubQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUJuv-0000000EKMs-2v6v;
-	Fri, 20 Nov 2026 08:24:21 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xUJxN-0000000EKlc-0vkF;
+	Fri, 20 Nov 2026 08:26:53 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUJur-0000000EKLL-2vTn;
-	Fri, 20 Nov 2026 08:24:18 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=woMJM0s5Y9zMGW5LAghiXZI5n4Ou0GqTnBVhByrVls0jAr8+5k/FTefz/pOjw0wM+I0iX9paTGUr/9KeI8OJYgWPmMmlnFK876dmncLaZp0H9b9N3kh8qwIVpJg/snnGWn6QQWj+ROMaS/Kap9l4fy4DRRcWkQatYjAM0waivUh5P7bDOT8XUsGTA1qOzsw4Fcx/395SHSRmj4mbYt1ugQDTDA6hdqHEUsJBr0oJZE6n+e20yrkm+Qn98EmmCdTsJuCeqfN5a/9ZF2sNYKP4kR93wW8SK/XSPRbpUrq9alqc3OGRbqb13TzeSXCUYHZ0ztL/xfiQI7RSJim2mZerKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vZtc0wjdiqQxlJGkIiZFhr+/5iPZbOkIXndqBMxjsLM=;
- b=XIc0oMVelTc3i/fbyXmg0z6Qn3uXfh2LTNrY9Fm+h7h+D5QVN9iksZUDEFO9sOmOIy3ttpRE7g8b26mKqCSERnA1sQofdlzH1HFwClUfGYBbyw9spYDAm/frCk7/l48gfOkRaEG0lDYg8BWUw7gUaMl7NO0SXPHbk7v4rI+SQ0k/WIBvYkWRiTUmCi3bnwEfCX2LTyloRAoI86BK1YMO39qpho5tbuNxZPHMOpcIARau8mBD0gyUWqVox6neFMrpPqPuQktb8AiCvr7yWTPhbU9FpRkrrA4j55Dgm+54utkeuHxhcjhbmrOZPyXJL1TmLHFmluV0jqRA59A2xd3EzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vZtc0wjdiqQxlJGkIiZFhr+/5iPZbOkIXndqBMxjsLM=;
- b=H+KipDz41wqfW0diCBHT7bGtZC4EUDnY8vdcoPL8LZbc0+ErgMslt5U2r68z92SnCcAl8tLX39LsldkjPar8uBY2E544vL00UZ32xbaDEgoKPVsYahfgaAaQfrOKYL4Ek3SZQtPHpROWVZB+F1WjLg1TelYRBxVZOkrRdfuL6IzGE9Oh0RAbr1m72FcIcunESAvxDia31UD3f6jLw0CZ/bog7cM+QoCkKNEx2Fe1Jg/WkAzgt5hIAlykecqzUsZa0G8/DXmaFN50OiENsMo73vbGQhcbReCCRbGXv2y6IPNs3QAMywTZHkTzX11yiv8j8BaNQ5xpCEID/4FaNAMGaQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by KL1PR03MB7489.apcprd03.prod.outlook.com (2603:1096:820:e6::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Fri, 20 Nov
- 2026 08:24:03 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506%3]) with mapi id 15.21.0639.011; Fri, 20 Nov 2026
- 08:24:02 +0000
-Message-ID: <f70ae730-57d8-4b94-b1c1-d1e247f0c192@amlogic.com>
-Date: Fri, 20 Nov 2026 16:24:01 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC RFT v2 2/3] clk: divider: add CLK_DIVIDER_INVALID_ZERO
- flag
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20261029-meson_refactor_n-v2-0-ff4ac74e527b@amlogic.com>
- <20261029-meson_refactor_n-v2-2-ff4ac74e527b@amlogic.com>
- <179390104085.2573818.16461908615505096359.b4-review@b4>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <179390104085.2573818.16461908615505096359.b4-review@b4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: JH0PR02CA0021.apcprd02.prod.outlook.com
- (2603:1096:990:76::17) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+	id 1xUJxI-0000000EKlI-1cpX;
+	Fri, 20 Nov 2026 08:26:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 70484613F6;
+	Fri, 20 Nov 2026 08:26:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 091C61F000C6;
+	Fri, 20 Nov 2026 08:26:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795163207;
+	bh=aV8jtS66Tt+1KtEPhn6QzwtWLg4RKOLbiueDjLgm9B8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=GKo+RNWTBbECnl7ztHjJyXNwuCG7vyB8iV2U3YYG7U+do5cDoPmPsdnGuttViBrDE
+	 8vvLJNEObbOgOFUoLma2I/pHKteMokeQRLjYMjIKoBl/cMq7wS2xzv9hc1BKEp65Pi
+	 UePeSHjxMFqGcBjrq7TFkwPhjjalKwChgjJ1euFTM4nDv31QHdcYa9l0Z5BeL/uyFw
+	 0v531AMxmI3PmIJjalsKkNJYninErCi3AbFEVAYDaW5wgZ64sW1jCMv4x2Y7ZNK2qM
+	 We+efUDFUQPi5D/Hx2uAAIO1OVqe9Sa9ZrcBOUAoP9wR/FC4qUdUvr+kB+S1Ur0Mm0
+	 1cZlQJ89zFA5g==
+Date: Fri, 20 Nov 2026 10:26:41 +0200
+From: "westeri@kernel.org" <westeri@kernel.org>
+To: Chunfeng Yun =?utf-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>
+Cc: "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>,
+	"konrad.dybcio@oss.qualcomm.com" <konrad.dybcio@oss.qualcomm.com>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"YehezkelShB@gmail.com" <YehezkelShB@gmail.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"sven@kernel.org" <sven@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"andreas.noever@gmail.com" <andreas.noever@gmail.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>
+Subject: Re: [PATCH v2 4/7] thunderbolt: add platform NHI driver
+Message-ID: <20261120082641.GB833643@thinkpad>
+References: <20261110114925.722014-1-chunfeng.yun@mediatek.com>
+ <20261110114925.722014-5-chunfeng.yun@mediatek.com>
+ <20261110143758.GC259790@black.igk.intel.com>
+ <2807832e631dca98846d201b571f623210820268.camel@mediatek.com>
+ <20261117125241.GA259790@black.igk.intel.com>
+ <39fed6e12d60f439e0f07f3012d675f1c85d2b84.camel@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|KL1PR03MB7489:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1993907a-1d17-4a2a-7d14-08df46dfa27d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|366016|1800799024|6133799003|18002099003|22082099003|3023799007|11063799006|56012099006|4143699003|261026121527099003|261022075727099003|261102123227099003|261021121427099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: CQO7d4eGBtkfMCxFLibwDB1joXyJsOfEICJwyB0ibQw1R+QSN7E1VgiTxBxSRnfaDOJMQqU5jd5vetdtr8xcMddI8volghxwA3uUWDpZTgWSX5mNsbBE99daI39iVAsgLXBIzMSfVUmgdiSqEC6YhGzHh9SCUcVzv5486s/UkykOgsVYKioB/1rPvwoNNCCeZQbIq1dLUzmV7yI3efirGmw2DjrUMo2o3rcbnl/K6BGJLnVh9k3MSUTbPHgYWWLkYMzc2bcy8xT04yKxiPc7ORRrzfHIwGHd70tO8xSynZlIo03y7dt4BgIvNR+OwtVk9VkG5+gHBXAlCqIAE0nO/4lL+RvaFC1jj4Bh2Me0uYyZbZWlZkmgH8eh9rwH2ZunUCZf+9zSaWdrRqA0Fw4mb01uCmlUSZrHW7HOg0O1zDQBVoyJuQfvOl8+tSuEgyuGpX8V8rkOeLMh6yVEpnRI0VeNgvzrHCK6YCnqXYoD2PJyAbuTIyN/ctw6zWx63NGqnnMzIST3XwcybZSDNtUPLKD68hTtFr0hGUyZ254+28wo0S6rUfBrM+isT1sc7cg/+C1kBhw5tqteeJ0UNwsk4Fa8q7w4srL/A0GJTNDCa67dfkhgI4OcdB7+qyyN+NeSSMZgEPO+WS60qYWXHpN/kyNP0iqBy3dj2S9T7rXlgr0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(6133799003)(18002099003)(22082099003)(3023799007)(11063799006)(56012099006)(4143699003)(261026121527099003)(261022075727099003)(261102123227099003)(261021121427099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a0dwakY2K21vMFFhQlV3dk1HRi9lNnVnTDJCRHp3SWROT0hKYys2ZzdBY2Yy?=
- =?utf-8?B?Wkd0WUFoSTlBZHY5b0ZROC9SNzdhWTl3M1dqNDVBc2Fvc010NStNWU0vSVUr?=
- =?utf-8?B?NStxQU42UFFtZWpadjFTeFJlVVNnSXFUME5MZTRxSS9qV2hWUmZQR1U4L3p1?=
- =?utf-8?B?aDd3WllpVnhhakc2VWt0R0FiUGdUS1lhS1MrUnJCVkpUaFhpTWdIcjUwVENv?=
- =?utf-8?B?MzhnaHFBazk4RUdrdjM0WjI4czc3TXprU3JxY2xwQ2FUaHFmWGpMQ2NSTUdL?=
- =?utf-8?B?NkNUL3BHUmE4KzBxYisyOWJiZzlIWG9GZWg5Y0lPZmpiOGJZR3dOOXhtazdT?=
- =?utf-8?B?QkNsZjQrN25VQmNMS2YyeWgxTUdVUkwzMS9ZQzRhSlZHbklxZzJQR09KWjhW?=
- =?utf-8?B?UmJNTzNpZC9yQ3l1MEN4RXJVVVVnZ2NSYnZWaitWeXBLRkNtTWh2NjNrUDY1?=
- =?utf-8?B?dlZnOFJ3MVpMK3dJN3lJMUQwcG9UekdodllPVUdpc1ErQWdweXJXWU96N0JQ?=
- =?utf-8?B?OVJSOWtqWjZicGMrMFJZc0xMb3VCbnlod2ZGK3RjSzV1Y2FpcVM5aHJMZ3hm?=
- =?utf-8?B?cDZRMWthTFZ1YTVic0VNNGNoRW1HbDFDY2NPcDh3YWl0S2J1UytlTjlIbUJT?=
- =?utf-8?B?UkgxbVN0R2lCcVFMaXlpTDBlcEw4Tm43Q09kNnlyT2svL1g4V2lZNnNCYXhR?=
- =?utf-8?B?ME9jWmFLMkVtNTNOWStnV3NGdUF5ZzZRRS9XVUFDeUMyUEU2Rk1iYVFUQ0dw?=
- =?utf-8?B?YVdBZ3RQdXFIb0dEdWtpWU1jKzdtd1JKRU5LWktvRDZJVEcwMlRvS1o4T2lF?=
- =?utf-8?B?Zm8zOWtqZEZacklFUlYwREhKVHozNkVoTUhDYXlJcHdNdzZTVDZvc3M0blRO?=
- =?utf-8?B?eFNQVEY0eDkxMUI4cXlzZGVqL0dLd3B4bU1EM3VEQmx2R0xRTWFmOGYwaGhy?=
- =?utf-8?B?a1NKaW5zcjNMeUh0a2ZmcVFUL1RqcVZneSszV1hFSjlzaG1QWldzZlFESnox?=
- =?utf-8?B?WGFCQkh6WUM5RUZvUzY0WkRIMDhjOEJFUjB2UENjOEUrQlRNVU8xaS9tK3RQ?=
- =?utf-8?B?OXJ0aDJEUzEvQnJ3MzV6aHF1OGw5S3Y2Q0FLQndoT3VUWkJqeWFGZVhKL2xn?=
- =?utf-8?B?c2xJYVJhNzJsN21tcGh0ZUZDc2RqVjNWeUJQbjc4RW1Bbzl6V1ZhdUhvYU02?=
- =?utf-8?B?ZHpSTjd6L0VjL0luSW9WcUUxSzRXVWxaTnBxcHdHZnhZYjQvOFpjSXRSOTMz?=
- =?utf-8?B?TDI2MWdiWFJhREpSM0ZYc3pBVy82SDVINEpyM1NOY3V5OHpwL0g3RDg3Q3Uw?=
- =?utf-8?B?Smp0dHl4bEpTT0szdVRFSEFBNkpKb0RQREJNV20vUFFpemZsa0xEWVdmOVVD?=
- =?utf-8?B?WTUxN2ExczNuVTlYZmUrOTh5ZnJ4OHI3Z01rcHN2TnRLN0d6b1BiRWEvZ1Jz?=
- =?utf-8?B?Q0tXZDF0YWpaTWtVelhyYU5uYm82OEt4aTk3MU9JSGc3T0Y4WkJhY0IvM2xK?=
- =?utf-8?B?N2NYR2NuZksyM1hCWU5iNTJoREUrYXZFVkpkZkR1dEMyYjQyZmdBN2dKeGtl?=
- =?utf-8?B?UEY4K2ZxNkZWWFBINTVuK01BNHV0d1U4ajdUYUJ1cHFPL0oxMTJTU0k0M2JU?=
- =?utf-8?B?V1JyYnVMVUFEME1IQnY3WXBMUURBZ29kK2c4L1M4MmpPckJiV3N1ZWVVSllJ?=
- =?utf-8?B?ZjJuaWlJNjVaRmFoZjg4cGtlc01saDNrYkNzeWxCVGY4ZjVXc2J6UGQ1ZTJ4?=
- =?utf-8?B?RHNnMDhYb2kzY0VKN3g4VC81SnpQOFRpRXVMNDZ0ZktVSEZqWkwzQm96YjBy?=
- =?utf-8?B?dlhNckROTFBQRnQxUCt6alVxL291WjVJU3lMVVFpa0x1bjhVWXlRY3Bmblpz?=
- =?utf-8?B?NE45K0pMQ3p0UG9MZkFZS1Axd1pZNlR3MDBnOUFBUFR3Ukw3U1YrRzZ4Qzhr?=
- =?utf-8?B?UHJNT2JLbjdCVWdCTWhiMzJlRDBVZldSd2lKZ2FCNHVXaFczcnNMZk8vc3c3?=
- =?utf-8?B?UDRpMWo2aFVya2lkMkZGQ3Fnajh5cGxMc1gzSjZJZ203dEkvalNuOXlwWmJC?=
- =?utf-8?B?MXgrNUN4TkhoSVJuZ01CUS96SW1rZjlQcDB3ZVhaODVaeDJReHNyOURjRFk3?=
- =?utf-8?B?RUFyL3VydmRyTzJ2Z0Nkd0FDZjdDamlYTE10WnhQc0kzOXoyWmpZZ2FJd1c3?=
- =?utf-8?B?M2RmRUsvcElOL2pHL2tJY1JqUjZxZnUvMU83ZVhlYWg2eTcxK0lwU0Yzazl2?=
- =?utf-8?B?dkxOYS9OVEpPczVkejZoY0hrWCs5cEgybUxSbThpbGdtaWhnK3BJc2FyWXhx?=
- =?utf-8?B?eEd3aGJYVldPSjhEVHpWeUNEQUpnVjFkL21hVTM4QmMyejdIbHBzdz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1993907a-1d17-4a2a-7d14-08df46dfa27d
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 08:24:02.8829
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3ij2ao4P89qW5hQaBKuAdNM/O4uhQGVN+Xl1Seka3ej0ICfc1xpn7e5iUUmGJee8toJwwGB8xuYpHxyLWsPuYw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7489
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_002417_749761_EEAEF87E 
-X-CRM114-Status: GOOD (  23.11  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <39fed6e12d60f439e0f07f3012d675f1c85d2b84.camel@mediatek.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,95 +82,38 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi,
 
-On 11/6/2026 1:50 AM, Jerome Brunet wrote:
->> When a divider register reads zero, divider_recalc_rate() currently
->> emits a warning (unless CLK_DIVIDER_ALLOW_ZERO is set) and returns
->> the parent rate.
->>
->> This behaviour assumes a zero divisor acts as a pass-through, which
->> does not apply to all hardware. Some dividers, for example PLL
->> pre-dividers on Amlogic SoCs, come out of reset with a zero value
->> that does not produce a usable clock. Returning the parent rate
->> hides this fault behind an incorrect, plausible value.
->>
->> CLK_DIVIDER_ALLOW_ZERO only suppresses the warning while still
->> reporting the parent rate, so it cannot represent this hardware
->> behaviour.
->>
->> Add CLK_DIVIDER_INVALID_ZERO for dividers where a zero divisor value
->> is invalid. When this flag is set, recalc_rate() returns 0, making
->> the faulty state visible to the clock framework rather than hiding it
->> as a pass-through.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   drivers/clk/clk-divider.c    | 3 +++
->>   include/linux/clk-provider.h | 6 ++++++
->>   2 files changed, 9 insertions(+)
->>
->> diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
->> index f68216c65d3d..6c1523d22477 100644
->> --- a/drivers/clk/clk-divider.c
->> +++ b/drivers/clk/clk-divider.c
->> @@ -143,6 +143,9 @@ unsigned long divider_recalc_rate(struct clk_hw *hw, unsigned long parent_rate,
->>
->>        div = _get_div(table, val, flags, width);
->>        if (!div) {
->> +             if (flags & CLK_DIVIDER_INVALID_ZERO)
->> +                     return 0;
-> While I think CLK_DIVIDER_INVALID_ZERO really makes sense for a writeable divider
-> only, to gracefully handle a reset value at zero that we would later correct,
-> we should still handle all paths correctly. This include a RO divider and its
-> determine rate path. I'll try to send something for this soon.
+On Fri, Nov 20, 2026 at 08:16:27AM +0000, Chunfeng Yun (云春峰) wrote:
+> > > +	device_set_wakeup_capable(nhi->dev, true);
+> > > +	device_enable_async_suspend(nhi->dev);
+> > > 
+> > > these two line can be put at the end of probe.
+> > 
+> > I meant device_enable_async_suspend() it's not stricly required and
+> > we
+> > don't do it elsewhere so I would leave it out now and then add it
+> > everywhere later.
+> 
+> I look at the PCI core code, seems it already enables async suspend for
+> every PCI device during device enumeration by default.
+> 
+>  see: pci_pm_init() (drivers/pci/pci.c)
+> 
+> Unlike the PCI bus, the platform bus does not automatically enable it
+> for platform devices, but for usb devices, usually enable it because
+> the standardized tree topology with well-defined dependencies.
+> 
+> Due to we explicitly create dev-link with xHCI/PCIe controller devices,
+> it is safe to enable it, then keep the same way as thunderbolt/pci.c
+> does.
 
-
-You are right, and I agree: a change in the core divider code has to be
-correct for every user, not only for the cases this series happens to use it
-for. I understand the RO divider / determine_rate path is the part that 
-still
-needs handling.
-
-I will drop the 2/3 patch in v3 since you will submit it separately.
-
->> +
->>                WARN(!(flags & CLK_DIVIDER_ALLOW_ZERO),
->>                        "%s: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set\n",
->>                        clk_hw_get_name(hw));
->> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
->> index dc8e161f9c2c..fe2dbbba49e3 100644
->> --- a/include/linux/clk-provider.h
->> +++ b/include/linux/clk-provider.h
->> @@ -744,6 +744,11 @@ struct clk_div_table {
->>    *   big endian.
->>    * CLK_DIVIDER_EVEN_INTEGERS - clock divisor is 2, 4, 6, 8, 10, etc.
->>    *   Formula is 2 * (value read from hardware + 1).
->> + * CLK_DIVIDER_INVALID_ZERO - a zero value read from the register is not a
->> + *   divide by one / bypass but an invalid setting which does not produce
->> + *   a usable clock.  recalc_rate() returns 0 so that the broken state is
->> + *   reported to the framework instead of the parent rate, without
->> + *   triggering the CLK_DIVIDER_ALLOW_ZERO warning.
->
->   CLK_DIVIDER_INVALID_ZERO - a zero divisor is an invalid setting with no
->          usable output. recalc_rate() returns 0 instead of the parent rate.
->          Takes precedence over CLK_DIVIDER_ALLOW_ZERO.
-
-
-Ok, it is short and clear.
-
-> --
-> Jerome
-
---
-
-Jian
-
+Okay works for me then.
 
