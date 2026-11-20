@@ -2,75 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE855606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 15:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE87606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 15:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gfGGoRZc;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V2SdLCLl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TkCLe4ID;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=A5kz3H0m
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ihZfSgxIvjEMkXvmyda1NP7Q3LgCpF1cCr/6VrpGnao=; b=gfGGoRZci9swt7
-	N6LPcU/62DbzWGk6Umh44un72Rcf1G8hC4CSQnDDNuP8Eq5igIBihsE4itgbyHHjiokvwP8TLlGdQ
-	VDEZvNtKAm4V/rpeEwv0ufkV1NxG9mpT7Y7YWl/hhDwUoyG9FPO/A81czpUD8edQciOnZmschUwam
-	FD7OSEVVj08BLBAr4jDY3F2etL2H5CvF+pJXCnOjq+B/d+3x+juLmmCyNzj586Z1M+AEb5cUVEzp8
-	hjiqBxoKHot/98UpQ9LhpxmiT6riFIyPCiciNYvqwRNjUUxT/SESRVmcvURyQiFfKr3wG/jT9SJbC
-	zfzhrTBeORD83I1Oofiw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=qAgfBb2bvJuIizWOsW8GgX2po5iAc1jJk7JX8yj2LjY=; b=TkCLe4ID0N0WUHIrgw+7s0q0ex
+	RnltWxlitWOzWwurx8jB+E9Z6N1ixnLsptd0TS72ht89mpKQYDY/Sxf/6c2210kyGwNMUURFKydaY
+	pUy3jZ41Q8jbN7nXJqEjHsCONvI9XZt5rVEJtD1kDd/hOt7a3A1malewEcfUiHkBqBa1qmeI2sRTY
+	UluaWLhFc257FH3YLCMSzGTHCzvak9y3q6FlN4dZXadFLSUgqVTVcQgQOmcws111FCVcWIGc0V/EK
+	qyz+7rqaHJhF/FCKv2GYD67RvpdK8iuArF+Iqshe5vapq623rASDlJm95NfKbG/IocgOz+UH7xaD0
+	4wqgbN7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQLA-0000000FNq0-1wS7;
-	Fri, 20 Nov 2026 15:15:52 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUQNy-0000000FOBE-2Ukp;
+	Fri, 20 Nov 2026 15:18:46 +0000
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUQL9-0000000FNpe-0PO5;
-	Fri, 20 Nov 2026 15:15:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8D5DC457FA;
-	Fri, 20 Nov 2026 15:15:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61B771F000CA;
-	Fri, 20 Nov 2026 15:15:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795187750;
-	bh=ihZfSgxIvjEMkXvmyda1NP7Q3LgCpF1cCr/6VrpGnao=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=V2SdLCLl+PH46TsluxaAncAdCSR9/8rtkneR5aa2+XVpBg2n7i5eN61n5cLrPCib7
-	 Y1zs7LkeLUtQHrxcc20V7hPvUP9By06ovOk3iQTAmN7J3oH6MYzGl0HY05tTzkI+B9
-	 u/9dKgxi4O6o0Yh380pbhyF1vPo1Zrf5PGADjiauViB+YF/jzuMERHVtnTX/bql5Gi
-	 +1nUjCdWbZN56Z9I6mR55wZQkOhJnTdRQAJiICTpxYaLwdTX7LO1u+nmJjGRI2+jMd
-	 Ze3CRwcUqYqb0MS134tJx0N4UrdoQh6Eya2Ye/HI88d1y8sofiW9rEoG95Q2alL72z
-	 BzPxn460AJnUw==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Myeonghun Pak <mhun512@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Ijae Kim <ae878000@gmail.com>, Cyril Chao <Cyril.Chao@mediatek.com>, 
- Darren Ye <darren.ye@mediatek.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>, 
- Trevor Wu <trevor.wu@mediatek.com>
-In-Reply-To: <20261112011708-afe-v2-0-mhun512@gmail.com>
-References: <20261112011708-afe-v2-0-mhun512@gmail.com>
-Subject: Re: [PATCH v2 0/5] ASoC: mediatek: fix AFE IRQ registration and
- removal ordering
-Message-Id: <179517904754.6016.16269615530838300307.b4-ty@b4>
-Date: Fri, 20 Nov 2026 12:50:47 +0000
+	id 1xUQNu-0000000FOAT-20Oj
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 15:18:44 +0000
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-8b6b22be970so443870b3a.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 07:18:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795187921; x=1795792721; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=qAgfBb2bvJuIizWOsW8GgX2po5iAc1jJk7JX8yj2LjY=;
+        b=A5kz3H0myRiC4A2JCSnvUwThp4kPB7B1DD+L1Cbt7BqgxRiXtxqI8WKmh8Nc/N7p40
+         3okhB+hxmu41zMXHzezLmJWUJyV60SWwtTkmjEihsiMjecuY54EqzpQKhz5AxqliMFQK
+         2nH6bMpVVvQQhON51AT5Z5V7XpIZfPYD7g9NgcTVJClR9hmm5XdHmjCWr6GS2QPLU8dN
+         6YkEnu+Rp6VOO541pXj463YdMuCOrX2JPnzuQVRnoAmsT1SywUfAGUeuHofrTr+fs5kc
+         y51rgnrGGN8+uzuUUTDyAR066ETxNg/huYM3Z9HHFqhl1FwvlVTGB0p5l1W8pRb1h1z3
+         93PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795187921; x=1795792721;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=qAgfBb2bvJuIizWOsW8GgX2po5iAc1jJk7JX8yj2LjY=;
+        b=K4dKYEr+AXCI5l1BhD0yuU/Qx2xZ/5IC7YTiE5QVpmud9+6/8hYvybTMeoy4AGnlw1
+         1Z+A04EtvrVYYYGVC7LII2AwOzDM64XlKAzvt0oR4jyzty7IOEa3sdW2O0WeTCpHfIDy
+         5M1RE4AHifp4GNmTGPBRAK59aEAQCSwpaiTONGkie1DwzAjZ2hk8x3nlYU/qWhMTuHH6
+         gNpWo56SeAzk5ZcAeOhaR01Bt9zpUNw58imycIsZY6J7k1BZjddSO4xSEIkNGl9X7r2H
+         DNJxpmoQ4e6Rp4M7oKsKavWZTPkeQjUm3F5Ze1QrgEtqidmQrXS3wXSjxb+1QXs8B5n8
+         KWCw==
+X-Forwarded-Encrypted: i=1; AL+hErF+XH6ClqtiFAN6AaYcBUDlM4ZJCnP/lm5ZI5plAmTAenPqMehK+lLdgVmO1cXpyMS9ogQQ/eMBjy4JXPb8vTk9@lists.infradead.org
+X-Gm-Message-State: APuU4Z80a23uMtwDhUz5DErXwFG4agRino+zbnyk8E5CxbULV/OKNGK8
+	oR14LEVokGHynGi8lZS/khdmSCl33dCtSiA56YZqq6zv2sMXoGzBtT94JILjtY5mnV8=
+X-Gm-Gg: AYBFou0rlM8xHuoW1BWND6fViDwqdl2vIfZLSIu13F/tzhhZ3WaCLWvQvykW/Z8pWSR
+	6aoeVNhe5YjNHw7wTt3jOuwp1roVHfGhwPo1lYaU97vEn1D6g/XFNZbMsZxOGoSh8V6Wm9tF48F
+	GH/9wCtNMnPHtAE6dxMNU4bnx/bllr3qlmgeZ4zJiPhPOTwEsKRJTl9Em7uNGKL8xLLIxW7/Ypn
+	BtD2VaiG254JuJ2gbsB++X9PbZX2PnxcWsvK34vQNSRmquuhavcnjEZ2sCtrdRcbUoums5tYrgv
+	SUA6+D4oJSHqDUgs11okf6ortHvABBCL+wsf+bh+hZ8XMdLK9UgHsaY1pF7FoQRkT0zbk31UrX4
+	ZRRxCaiEKz/biQ/bGNolJoaUHlUs4HLsKIB0wif93U9H+VFCZgkk1a+3hh6NyYYkttzqqmO7iyq
+	PQJbOJ/8R6qPyt1hhN6d+qQbKRRVxHBhjpVeViQMC8phKdEk37U+pli1m3Iie52HYCgkg2FpGRV
+	3bM7tz19M/LIFtMrj78CVYLOAWgWAHOU+hL6Gq/69QEDBuga5oZO/870n8HGuj78YTyZdtAkuCe
+	YyIi0GNUTBQWdgwSPo0908XiC7gpzSNp
+X-Received: by 2002:a05:6a20:6a1b:b0:3f8:2d33:217a with SMTP id adf61e73a8af0-4014e35c5bbmr3604027637.59.1795187921441;
+        Fri, 20 Nov 2026 07:18:41 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:7124:798f:1b98:bea5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6c9c7dcbsm1534544a12.0.2026.11.20.07.18.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 07:18:40 -0800 (PST)
+Date: Fri, 20 Nov 2026 09:18:38 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] remoteproc: elf_loader: Make
+ rproc_elf_load_segments() more generic
+Message-ID: <awBkzr_uxBxgeLvs@p14s>
+References: <cover.1794483181.git.u.kleine-koenig@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2005; i=broonie@kernel.org;
- h=from:subject:message-id; bh=dSDkHmfmCeNxORnUsZPpEUBtYzLsL2QTxwlCUj1j5No=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLIZUhRfLDdqKWWb3LEh1FVrp2l39H3BnQd6bWoPShsfn
- Lls+9Z1HaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE8gQBi5OAZhIsScjwx+bYs4LHKEzxes+
- S92Pay44tVhO67TrulBDmRstCW8VnjL8r+p8UPu9RtY4RXbrMr6NlamTQhtecNl6Z6y6wp0qGfa
- HAQA=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1794483181.git.u.kleine-koenig@baylibre.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_071842_609630_13D60C83 
+X-CRM114-Status: GOOD (  16.24  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,60 +108,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 12 Nov 2026 01:17:44 -0500, Myeonghun Pak wrote:
-> ASoC: mediatek: fix AFE IRQ registration and removal ordering
+On Thu, Nov 12, 2026 at 12:39:49PM +0100, Uwe Kleine-König wrote:
+> Hello,
 > 
-> This series fixes IRQ lifetime ordering in the MT8186, MT8188, MT8189,
-> MT8195 and MT8196 AFE drivers.
+> Changes since v3 (available at
+> https://lore.kernel.org/linux-remoteproc/cover.1793879714.git.u.kleine-koenig@baylibre.com):
 > 
-> Request each IRQ after regmap initialization so it is freed before
-> the regmap. Where remove() shuts down the AFE, free the IRQ first.
-> Also balance MT8186's IRQ wake setting.
+>  - Improve kdoc comment for new callback describing what it is supposed
+>    to do as requested by Mathieu.
 > 
-> [...]
+> I'm currently working on another remoteproc driver that cannot use
+> rproc_elf_load_segments() as is because the remoteproc's va isn't mapped
+> into the local CPU's memory address space in a useable way. With the new
+> callback the amount of code that must be repeated is reduced, similar to
+> how the imx_dsp driver's load routine is reduced.
+> 
+> Best regards
+> Uwe
+> 
+> Uwe Kleine-König (2):
+>   remoteproc: elf_loader: Create new callback for copying segments to
+>     remote cpu
+>   remoteproc: imx_dsp_rproc: Implement .memcpy_tova()
+> 
+>  drivers/remoteproc/imx_dsp_rproc.c         | 120 ++++++---------------
+>  drivers/remoteproc/remoteproc_elf_loader.c |  64 ++++++-----
+>  include/linux/remoteproc.h                 |   7 ++
+>  3 files changed, 74 insertions(+), 117 deletions(-)
+>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
-
-Thanks!
-
-[1/5] ASoC: mediatek: mt8186: Keep the AFE IRQ within its resource lifetime
-      https://git.kernel.org/broonie/sound/c/420be55fe0e2
-[2/5] ASoC: mediatek: mt8189: Keep the AFE IRQ within its resource lifetime
-      https://git.kernel.org/broonie/sound/c/4f4067c2d110
-[3/5] ASoC: mediatek: mt8196: Keep the AFE IRQ within its resource lifetime
-      https://git.kernel.org/broonie/sound/c/eb9a5be4c2c1
-[4/5] ASoC: mediatek: mt8195: Keep the AFE IRQ within its resource lifetime
-      https://git.kernel.org/broonie/sound/c/eac2ac34a18d
-[5/5] ASoC: mediatek: mt8188: Keep the AFE IRQ within its resource lifetime
-      https://git.kernel.org/broonie/sound/c/94d0e251e7d7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Applied.
 
 Thanks,
-Mark
-
+Mathieu
+ 
+> 
+> base-commit: 8b7179210b22f8e48a82c5ceacb9d56a9c4cfec4
+> -- 
+> 2.56.0.rc1
+> 
 
