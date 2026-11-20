@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D441F606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F372C606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G4ih7JGt;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=eZ4sA4nu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4w5xgw/b;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JLDo5i1O
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kVq+Bf68vj40+v5fjKq8DdfR4Rbv8nFPIdhJ9XaAqDM=; b=G4ih7JGtbM3nKP
-	653902uRFkl/GX2QsqyyUktrdCe1hpv+sf754Ig4QMvyPP8pTtWxY5MCuGwZK+XhxKifdEM9VBahc
-	9S6G1Xop94bnw+bVBH/cVsiza6CJ0+TpV+fwIOSn2G04rxgXbsbYo+RtAM0jq3tijE/74uvt1PIRU
-	6i7iBdrHzSwCXb2rIEo8CD9DmiDIx1SDJCeCLzTth6FWemRgAty4sMt/bPOHWfhuwdT58eZefTmLC
-	Wpp+GeOOsDRoXt542t36n52OAW7BCQmvZrcDTv1TX3gDvPrgBOuxYufQGtlGmXIji4UBSD6CHyIxr
-	sB7QQWmMqLElepcklI3w==;
+	List-Owner; bh=iJsINDvFyzxeeW6ZSnxvMwnBMhyxjkOH+VNJICnyh2s=; b=4w5xgw/bXtDjHA
+	Z/MzonfqGDECLynMqlB7S8a2lFrx4okSqiAYhzuITHu3aTsGm/lTd6qQNjjGJdtooLoAQ/o8qHegt
+	DKv4MToCheFhTbKuS2qAS8ZP/h0DIm+ocr5/gKzjeMXiG3OuDkelgigR1grdi6awenGZWEsnAA2OO
+	POGEn1rVH+p6qj1gR6hH2QMfD6VdOEqUcoLdu0+E4KHfvSo5Y3M1MhHNFJD3BVkDr3DjRcvMFbTEU
+	cbl9j21zkTmndbHal/aAHg7LnBK0GtPnJAA21ItZTTjsykTWYnWiSFernsYvR737uvD8S2H3hCXZZ
+	OINAjIQwEMac5H5E4jzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM9K-0000000Ee41-36SE;
+	id 1xUM9K-0000000Ee4C-3lsW;
 	Fri, 20 Nov 2026 10:47:22 +0000
-Received: from mail-dl1-x1229.google.com ([2607:f8b0:4864:20::1229])
+Received: from mail-dl1-x1230.google.com ([2607:f8b0:4864:20::1230])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM94-0000000EdvY-1yjI
+	id 1xUM99-0000000EdxT-0z3F
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 10:47:08 +0000
-Received: by mail-dl1-x1229.google.com with SMTP id a92af1059eb24-15ea896ddc8so1280873c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 02:47:06 -0800 (PST)
+	Fri, 20 Nov 2026 10:47:18 +0000
+Received: by mail-dl1-x1230.google.com with SMTP id a92af1059eb24-1b3beeaf6f9so899007c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 02:47:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795171625; x=1795776425; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795171630; x=1795776430; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=kVq+Bf68vj40+v5fjKq8DdfR4Rbv8nFPIdhJ9XaAqDM=;
-        b=eZ4sA4nubY7PdaP0C/0WGg4kBxR+/qgyPnMAG6n88+ZnFbPS1+bPh8FAQU1K0eqJKb
-         4u6sJPoVZhbgSS5v5DSyq1mK8olDDW41CcRuJiVl6Dy01Vqr5XhjZEVE9xjLsWOM1Btj
-         rBa8YvZi0hn2JbV1Z1W7mGkqcG/XHiWoXK3Bdh8Er5DrXS7ExFXZTv34kwJ0wU+NNEsE
-         yGT91mPDyJLuSEVSR6Au271ug0j6wn+73d5IFiWwzkKRmSSOmmPLeM8wnGEvOqAqc2MM
-         YOz8GsEmETJ37Dy+Nk12tNN3UZCZui8OMGd68YrYi9E+wn3G1NT/CS2vuI/yd90BlDyg
-         iqhQ==
+        bh=iJsINDvFyzxeeW6ZSnxvMwnBMhyxjkOH+VNJICnyh2s=;
+        b=JLDo5i1O9wW54VCt58frr/ipU89d/pQQvDAwIvmDhf62m//Q97S1pOKz3bTElpTrf9
+         J0VmF0HeL1NniTibK2IKjP0UdFeQN4+SGAhhpaEKOk4x/gsbuMtDhoT7V9wTZKkPA/8v
+         vOOFEq3oxF0WBPajLEINuCPW5RthF3Wre/eejeVwpESzoN6KpJRocpoucaeqsQBcSXTd
+         5ZLGUvt5JiGjD03ODPlqSAALGj5e/iH5Thw4+e3Wy29tbmwyTkMT/Ayn16X1gPsUbiZv
+         WBBcUhufH5QSmIodFaUOgjvnIGzLDZ1Wo6fCNUzWbdYjzzbBmb4O0KjdPdMfn89uSk2K
+         0APA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795171625; x=1795776425;
+        d=1e100.net; s=20260707; t=1795171630; x=1795776430;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=kVq+Bf68vj40+v5fjKq8DdfR4Rbv8nFPIdhJ9XaAqDM=;
-        b=XH2AP/4drdLeEeG/3EvQGELOEJixo8IdMWcBj7JzAOzHAlVwFh/AAD/K8gCb5CPy2t
-         fesxa14CFsoPqof8oRkVWzj+qahFp3Z59kjwiFmFaj3v4Y4JHhQbfF8U9yRI6HIMrWrV
-         nStG1GCjV74b+H52PuQBNwVTVEzkbxV2haJ4garcshf9VmN3gtbisn9pQVVyqBEkbtcj
-         qawXLmEoS84R/3y3/kuvbU817Fu4OJwK8DSgX7EFwEIyPIVh13mKdo3DCLhk13jSfsnw
-         oxODl1qw1JUxRiTZDpFFW8mbSUqc0cCfuAetuwsforDixH845yHRlPN/R5LSAzCTm+h6
-         7Vww==
-X-Forwarded-Encrypted: i=1; AL+hErGufwAguvv3D2G25gk5VrMXND4nORInDCu2X4UC/tWpMIH4H/ut7P+uAsqFntBYxghw0ZL/YeFN4fT7yh+RM3J+@lists.infradead.org
-X-Gm-Message-State: APuU4Z85Crsp+l2gqZNWwwV7KI6kyvDkx9nyvMeeqZ6iF6gVS0g1mYqe
-	DiOkbtjjDbjqbcqGlqbTdI4lttI0n3NW/r2IvId2v6+GzLgpenQrJkws
-X-Gm-Gg: AZFdTZfmMGZHaoHgPNlP1Gf81gDWRUS1wZAy7duKn83IdQcRKa2tARFQm6zfOXTWlhx
-	IM3CGkiewc3zElTJcckgkVXH3hGi/Jo0t/wiAk+680TfxyUs3FXc0kiN50rD4oJZPLMK9oFSSP0
-	2mD/LjgThjmtGOQ4JTR8UoaOJAYALCKnpxm7l6Ax8/PE4j1Mgp91JShXxv9XyRGjixgtyreSDO1
-	BymG+jBo+BvQO15bGR0gfoWn6+KLyNXrLclTP+OzXGCkLTFG/3Nnz0zPTqDOfyK/QEqoSNaNlJK
-	vHq3nL1/9gOoSIn+rCg9J+WnARezSU8Z+1+NPkd9NAa/2yBnvRFqd9IxcASqTPTpMiuntFHBCmj
-	mvJjQDLMvFs8CQuIGuTRXsXd1RoFYAv7WiMQKZ3kEsIvojzLiUAf2QNd5+YcLYsye1q94Mh/ucP
-	flrqTDC3BMoj/VcX6UHjiH2WYNLyrVtwDlsg9o2k2+LRxqCeT5naSF1ubncVS0bUJWJCQVpX7ae
-	+Ok/CpmMxqmJUYBs4kf3j8+xYUwcYKWTz2YSTWdE3aMENDAdWD3BDIINMugyK8HF9x6oBt6HEXe
-	w5hdeMJXXmQLg4/cMBR+v+kvN3XQAs6CovVWWP4iqtcfkQOYjKCwMi6fhL9bxVhbqBjRxPaXSuf
-	EArR8bVdc5/nbiR2cLJVkI8yy3iTc6JRYiT6ZJjIn8DW5
-X-Received: by 2002:a05:7300:ff48:b0:385:3595:5e87 with SMTP id 5a478bee46e88-3856fd5b5damr2179350eec.16.1795171625369;
-        Fri, 20 Nov 2026 02:47:05 -0800 (PST)
+        bh=iJsINDvFyzxeeW6ZSnxvMwnBMhyxjkOH+VNJICnyh2s=;
+        b=A3VuDbOl3n5BbOvpAPJaD9LEDBRHNkp7Uxplj9nIxg6HPCC42Markkn0W6Vs2clCEO
+         /apUwhJj2v3PHmMsY9I4YGY1ULlxPQBmi+hrhd87jiGsNHXtOcGawlz8RwKbPlSDj6eD
+         4ffg7p30LBwu86Q+eFTrTr3ZU+PThWHRoUNPpTb61O1Xh2ovMrtTtqjXh6+Q076VLnwW
+         SCSEkzaUaoHqNehFNfMUFPlfA2bPcm22NIlI+3qBcs7TLqurNPMNXway7pHbkHQpx4Uq
+         hhitqYy6inOX8jXfLNGnSsoadNisfsOaIjWRxXSt3l84s1rZcGsonGaPO7tMszNwSUG1
+         6BbA==
+X-Forwarded-Encrypted: i=1; AL+hErFXfv1binuEvoskfXM+Z4PwYZIyoMG4XnLJT07tDXcTc0YXgsNKuhbysdWD054DpH+wbBmZNKd+Gh3QiJ9aWjuu@lists.infradead.org
+X-Gm-Message-State: APuU4Z9PEFIecOLr4YBxiud70AyZHlOqSZA2EI1nFNB2ya5NLRYyeMx5
+	RY2hAnXKehTW66X6EiYOdWeMOV/RgTXpyzKBaics4uRIjwjv7PYdsW3p
+X-Gm-Gg: AYBFou3XkBttbD+0fFGp40CgIZW6Nhu3JmndC43rMFBxRrNfNlBeI0nHuI3PNp40TOq
+	YfaSnAIJ2LStPGjSEO/+6cDD130lewHtDQ0m1FUdAcjNw4mKGDyO6BODbKHB1M5YRgfGKniaUQd
+	8PFXUsjJBeC44vbB4C9QsEJyrQGpMlk0yz3LqH3/4pW9/ai2cfB9+idlMED3B70Tg61vCjBRKwV
+	Zc6FYu1DuLx0/PFFx0O2RO0B1Hg+J4x9UCnEzzFYMnr0T9NaQlatsB6BA66xEaxn2BYtDmXU++/
+	PLeqM1bopfx8yzFR24A64jTOMviBb8t3TOa7+ooskg5LIGafKNCgrjg5xBsToNmmdihji0R78ax
+	UNI/ZsrMhpu20Qn0fIyI2prVYQV17MgdoVaWBNon79bWjLSJRhtz5qzt7j0NnDo5TxnMoOK8Y/s
+	HPw37e9FwfAQzVIIfiYvvA30HH2ITS5kWuX4QhWkjsd0yY2VNmmg9t926Z1hes28+0o1bfmDSDL
+	gnv7DfBMMYTRD9XuhrVIOYtnKxmaaZFnXIltORcrBMKrcGdKfTCX8/oxZQdH/dUrtQnl3LRhOi3
+	YcediNo/gi+tTe27276s75+LO3K0eGCfzagKoGuBCW7VNvVfvMDvyQGPaCqT0qMic+Oa1R768Fj
+	5onLt+PRrJQCRkrSKPAHu39DGaVCT5Xd+WSaFUcNGv2+7tQ==
+X-Received: by 2002:a05:7022:7f12:b0:1b2:4f97:27d7 with SMTP id a92af1059eb24-1b55692891bmr2432306c88.36.1795171630011;
+        Fri, 20 Nov 2026 02:47:10 -0800 (PST)
 Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38566cd4efesm7326292eec.12.2026.11.20.02.47.02
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38566cd4efesm7326292eec.12.2026.11.20.02.47.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 02:47:05 -0800 (PST)
+        Fri, 20 Nov 2026 02:47:09 -0800 (PST)
 From: phucduc.bui@gmail.com
 To: Mark Brown <broonie@kernel.org>,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
@@ -87,9 +87,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH v2 1/2] ASoC: atmel: mchp-pdmc: Mark IMR as volatile
-Date: Fri, 20 Nov 2026 17:46:29 +0700
-Message-ID: <20261120104630.10240-2-phucduc.bui@gmail.com>
+Subject: [PATCH v2 2/2] ASoC: atmel: mchp-spdiftx: Mark interrupt registers as volatile
+Date: Fri, 20 Nov 2026 17:46:30 +0700
+Message-ID: <20261120104630.10240-3-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261120104630.10240-1-phucduc.bui@gmail.com>
 References: <20261120104630.10240-1-phucduc.bui@gmail.com>
@@ -97,8 +97,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_024706_952545_AD03F88E 
-X-CRM114-Status: GOOD (  10.42  )
+X-CRM114-CacheID: sfid-20261120_024711_298189_47E86D37 
+X-CRM114-Status: GOOD (  11.15  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,34 +121,51 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 From: bui duc phuc <phucduc.bui@gmail.com>
 
 The interrupt handler reads ISR and IMR to determine which interrupts
-are pending. While ISR is marked as volatile, IMR is not, causing
-regmap to return its cached value instead of reading the hardware.
+are pending. Neither register is marked as volatile, causing regmap
+to return cached values instead of reading the hardware.
 
-Add IMR to the volatile registers.
+Add a volatile_reg callback marking IMR and ISR as volatile.
 
-Fixes: c5682e2ba132 ("ASoC: mchp-pdmc: fix poc noise at capture startup")
-Fixes: e8c8e9de4ee3 ("ASoC: mchp-pdmc: use runtime pm for clock power saving")
+Fixes: 4bf54ca60f99 ("ASoC: mchp-spdiftx: add runtime pm support")
 Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
 
 Change in v2:
  - Update the Fixes tag based on Sashiko's review.
 
- sound/soc/atmel/mchp-pdmc.c | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/atmel/mchp-spdiftx.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/sound/soc/atmel/mchp-pdmc.c b/sound/soc/atmel/mchp-pdmc.c
-index 8b55d864f3d5..4b380dc8b6cf 100644
---- a/sound/soc/atmel/mchp-pdmc.c
-+++ b/sound/soc/atmel/mchp-pdmc.c
-@@ -842,6 +842,7 @@ static bool mchp_pdmc_volatile_reg(struct device *dev, unsigned int reg)
- {
- 	switch (reg) {
- 	case MCHP_PDMC_ISR:
-+	case MCHP_PDMC_IMR:
- 	case MCHP_PDMC_RHR:
- 		return true;
- 	default:
+diff --git a/sound/soc/atmel/mchp-spdiftx.c b/sound/soc/atmel/mchp-spdiftx.c
+index 658ff667439c..0406a11caf7d 100644
+--- a/sound/soc/atmel/mchp-spdiftx.c
++++ b/sound/soc/atmel/mchp-spdiftx.c
+@@ -165,6 +165,17 @@ static bool mchp_spdiftx_precious_reg(struct device *dev, unsigned int reg)
+ 	}
+ }
+ 
++static bool mchp_spdiftx_volatile_reg(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case SPDIFTX_IMR:
++	case SPDIFTX_ISR:
++		return true;
++	default:
++		return false;
++	}
++}
++
+ static const struct regmap_config mchp_spdiftx_regmap_config = {
+ 	.reg_bits = 32,
+ 	.reg_stride = 4,
+@@ -173,6 +184,7 @@ static const struct regmap_config mchp_spdiftx_regmap_config = {
+ 	.readable_reg = mchp_spdiftx_readable_reg,
+ 	.writeable_reg = mchp_spdiftx_writeable_reg,
+ 	.precious_reg = mchp_spdiftx_precious_reg,
++	.volatile_reg = mchp_spdiftx_volatile_reg,
+ 	.cache_type = REGCACHE_FLAT,
+ };
+ 
 -- 
 2.43.0
 
