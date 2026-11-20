@@ -2,149 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91DF606A815
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B5B606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 17:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2Jb3hXSx;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=RFO0C3vQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xPKUA2ys;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=R09Lu/dz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FAPTTXKUz+0O/TqZ4vjLdHytqGfRBpIZI/ZDDRs8aC8=; b=2Jb3hXSxUhQJmx
-	BDuAlFQ++YqhsThvp1RSVdbxM0Zu4TL7h5O8l1JWozrg5tjiP6KFMWnSLALikO20efG6NkVRXmolB
-	SjUoM1rknyODdW+oeT9HJ6Fvga3myimL+BJproNRi0kFQ78Odt4KUoXQVUcVECVNaBKp8CFz3mIrq
-	84Sf6/BiIbPBecb9l93+XWb/CMi4pxxGm0PJBzBOgTiPap8lBxSbk52St1SS1sSwxn6de9WfMMmaV
-	WRzXyjL0RdKy1B8tpGYIxgX6QCNLh5pEvFehul70tC4rbVq6Y63oWUEM5knABxDP7nZ3OJ6lxG6df
-	b+RY65ticVclc8H0NL9w==;
+	List-Owner; bh=bYNDc5z2QkdyV1anAJ9Pub/lfkPevQWizYys7b38fWU=; b=xPKUA2ysOIisV5
+	EDczm96BK8YQDwYgE25CToySBqQH4h+wXmep1Qzwb5vlYuv3dS1upFWy8hOqYCtF5A3qTQc7jMC4j
+	X0GxSr+sdMTJhmf1YH6BEaS4cOQcE9kgWLIebzpbMLak/3DOY3lJrzlJiEVYfEUNJRX/z/Q8aSclQ
+	yR0uTzmcKCoy4l80dd1dWTnpVjMi98ndMbjbhlUv3YqnoDFWvcqwyjdBfk8rMZMcFItUm6JKyaLJC
+	Jmr6gbuGcDkle+qyLTYCNwO4vREXeMXZzE1KS9fqENkB13XrdpbZbbGWMZXKZ06exLLueiNIzTXm4
+	6wXZqP3AM6Lqw796GkJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSqe-0000000FpSW-3I6G;
-	Fri, 20 Nov 2026 17:56:37 +0000
-Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
+	id 1xUSqk-0000000FpTq-0ewt;
+	Fri, 20 Nov 2026 17:56:41 +0000
+Received: from mail-vk1-f180.google.com ([209.85.221.180])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUSn1-0000000Fn7A-3cNe;
-	Fri, 20 Nov 2026 17:53:30 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wQySA+qlyT4MjN1TNgQtqyxOhPXWtqU7WI7onhj/2aPKsBVcBMQB3LYfddmwd/vLP9yTeneXOgE2/0ybGTQmHVZQJuSutl/KB0q6E/5bOdQZvEyVk01B+3BxrIhUUexU6n8pzK2TTmRXzTvyznTHsKM6B31bdSwwAps/+zPIo1tb48oCKBDuY3WebUGP33TF3562bVvY/ILplCuasSd3VDutlyJYwk9wKRPdeCKygSMhzh5Je6mWcUpI2ELfPnDvpHZU11dRnQ2/2V6Wfio1qbudkOSBqvAzFBcPiQ6FCdIQTwuGyjMKiG07nHtgMeIydDCB8FiZNlmUMTE/s1RC7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FAPTTXKUz+0O/TqZ4vjLdHytqGfRBpIZI/ZDDRs8aC8=;
- b=cxvn1gzBZc8KpofFRCnYZlTz83Q/7SG4isV4WBbHbGItmvnB4dBUnP1hViG7v2kHWfl1Dqx/voZ391b/+Mvn8vAlysu6RTCh6iCMPLFNzUXM8+RJNx1qPTPtw+dl/4Bz/8kCujWFSC1xSPC/LtKVppSkeiVa3sLW4ddKO+T5+k2aiAYcmPTSIDI8ZGjiZ1vYaZOV8oo9HPY3L1MtKBLcDDkkuOEwjTNJVJ3zeN1hKlKsdQpz4qTdfToO7TxMahVxqx4RKx9c7howD39UwNp9YcATxUj5CrblARyyPLmrk1BEcz818BYQNRy/QpmK/bH5TAjrZRFoam+F6qqVWWNgyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FAPTTXKUz+0O/TqZ4vjLdHytqGfRBpIZI/ZDDRs8aC8=;
- b=RFO0C3vQd+DdKT68I4ky3cQqYuFZoIBCzIfVBmKKETHugc2R7brrbwNvvM047VsVeoP4D3zb7Rp3B63j8hxvQaBBttBOdIR7WaI+PqSXasS0tWh+IqDI6IZ+vCuZGEHg8tt/VqTwH9u49/1lhAIUNpM3LkligFsgyiowFMxDVIO+F1y456deUjPR5JpxN0NiHjbSkS2i3pw8v7X3iFLuVryWLlK9j0qPrzkommdT5ZMSQ2oZ9fTAxo+NYiDd0Sjxg3FHEAwEcyGbR1KXiKJfHFI1FdG7W4k2GYfwTSvcpEzzYOYvxLVEqkPShxleqb7Pns357LgLqMALzx4F1gt2lQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CHBPR12MB731189.namprd12.prod.outlook.com
- (2603:10b6:610:33d::12) by IA1PR12MB6329.namprd12.prod.outlook.com
- (2603:10b6:208:3e5::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Fri, 20 Nov
- 2026 17:52:13 +0000
-Received: from CHBPR12MB731189.namprd12.prod.outlook.com
- ([fe80::b0e5:123d:fe06:e10d]) by CHBPR12MB731189.namprd12.prod.outlook.com
- ([fe80::b0e5:123d:fe06:e10d%6]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
- 17:52:13 +0000
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Alexandre Ghiti <alex@ghiti.fr>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-	Justin Stitt <justinstitt@google.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org,
-	linux-efi@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	llvm@lists.linux.dev,
-	Mark Rutland <mark.rutland@arm.com>,
-	Bill Wendling <morbo@google.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Will Deacon <will@kernel.org>
-Cc: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
-	linux-integrity@vger.kernel.org,
-	patches@lists.linux.dev,
-	=?utf-8?q?Piotr_Kr=C3=B3l?= <piotr.krol@3mdeb.com>,
-	Ross Philipson <ross.philipson@gmail.com>
-Subject: [PATCH v3 03/11] efi/libstub: Have efi_kaslr_relocate_kernel() handle extra_size
-Date: Fri, 20 Nov 2026 13:51:56 -0400
-Message-ID: <3-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
-In-Reply-To: <0-v3-22d1a1eb7d2e+17de-arm64_drtm_jgg@nvidia.com>
-References: 
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BLAP220CA0029.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:32c::34) To CHBPR12MB731189.namprd12.prod.outlook.com
- (2603:10b6:610:33d::12)
+	id 1xUSns-0000000FnjD-0Ylf
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 17:53:50 +0000
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5eadef147ffso889788e0c.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 09:53:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795197218; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Beq/UbZfw7wPieCUVBm/cm2Cvo1ocQJ3nwdOBO7+QoeulCgvC2s80in9y4XjbYv26W
+         KhD830gd+X2dkrNdVMzVGQ7ope4nJn4CdQNCdLPuD8HMcbraeQ6CBOZxuGSO36r6QDPn
+         Tbo/qLTvQbtZiri6tY/Up9KXsQ2z38etd2PWBvrbXtdI3UT1UMDuKYKTdD94ycefvqTJ
+         5SR8cCljlZ5/xkxeCbA/2YiBrPLHM4EKwTn1zGZBQalXR8kSRba74dHyICic5EdAGWaR
+         2WXacS4QrWKVjPrGgUX8KxuFiJa7CfVNBLHIfnFj7s9dAN4BT7tV84ZSiHzSFuYJ4aTF
+         OT3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=bYNDc5z2QkdyV1anAJ9Pub/lfkPevQWizYys7b38fWU=;
+        fh=JodhGweBGzetpHZvQ+rOgYSJ12oYTCmxPqobBhZDlCM=;
+        b=rHxu7piuhpqXbr0AwTPHWOdaHa9f+qIusN0szXceSYgWXCHnUHm+oDxqm0arZDODxN
+         +TzDdvJmhOx2p3ni+MASckTeZgMtH882oYctCDdV7sjpbjj62JhAM+ZAlQDiKNaYhU9P
+         AoV7rJC8CTPKBh4SqfnoizHTLxeOvrqBATi0i4KkDBy1PTn2hc0C8zGmfBya12TvqvkY
+         lDTStQ35Rnu2eM2P+pMVFrWbIICzgP9siVKKjUSgS64hvJN1+uK7HeNGQX1rZRsfMfpc
+         zo9hCJAC/1Yu2PElWMlf3HODzgeThE+hKR3jPcvyPkvs0DkYWD6mI1+cYPyGUxqQ2xHw
+         ye+w==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795197218; x=1795802018; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=bYNDc5z2QkdyV1anAJ9Pub/lfkPevQWizYys7b38fWU=;
+        b=R09Lu/dz/p5JBTOi1ufw+Nz3sAp9YRnp5Lo2yO85RW75nvJIzKIngT7O/kaY5DLU5Z
+         1KUDCttc9VDZwGVO3+y12TnzfD+sE8mCQDDI6uw6QABnTFZanqytcc8x3ZH5P88gU2Hq
+         lHj3flXQK9y2oNk8aPFwQ+Gukl7j7+utTXA2MDWoXN/PR1c1giesgMwcVohqE0hcUS8u
+         KBjLfgFGlm6tZA0tK02BzV2FL8pvKdqdKO+dsw0UNUdDwYdXb5bMMA0ryuPuH9k5LeGW
+         RgCz3WxsZFUJbsn+EEqorzkqlR2wn6S3rT4TXpKItLuSomW0G8ybPZX52XLq6rgvaele
+         vquA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795197218; x=1795802018;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bYNDc5z2QkdyV1anAJ9Pub/lfkPevQWizYys7b38fWU=;
+        b=1HLTrde2/05D4rKJJOJLF7o5ly34BHRv3cflgWENVTeP59VRVDVj9xRdaucqOoDQ7a
+         5hAvsQQuFU2pGtxYpHciT2Oz6HPtMPYLpQEtVoePIT+5HGvP7eRUfXAQ2E4VORTYMOJh
+         7svbigh30xHXQ37usjkSZZsMsEpPzbXn3RAgX4zXJ93DXA96wp/sKQ/JZkfIVaMRKGoZ
+         Kc+G6u+ki20Oi+geTQZgsh1SMQ113xGWDl/n2Rbcn+54XbHmEhB9NX/GPrZOw4/jKR+f
+         opJ5KJaQIoMMmm+QZzz6moZwlmQiCU+f8Mdw8iM4dxVlFe8yOBfGqw6+VknW2iCDRgJ5
+         4lkA==
+X-Forwarded-Encrypted: i=1; AL+hErEtMm1DhHnWo37JidHIbnUnydp5Pi/iaM7y2a5bWPlgHo/XyVXwTjEs3TYXgwAyQX8hn25EgUWNy4jpmvftOWeK@lists.infradead.org
+X-Gm-Message-State: APuU4Z8VxKs3oKcZSy4fsvhEVA1Kxpq83JbYj2TbQnbu5v0lPGEu5KTg
+	Jpckle64dz8mAwH2aYpwIZMGf50G+URgb/Fzw/lSFAQ8WaFX/aFOLYO2tlSOabdHyenaoHHLbcF
+	HZThF6pU+vNjrVk15LV6hOsL313tj74E=
+X-Gm-Gg: AZFdTZe5DlAUzSFlQ2dBwB016Md3bHUFGmjjv41Y8837yJv0+EHav0eejSGCKw2BEOT
+	q9TmqBYo/Mm7oV4zCfnkhwCT62CTg/tFaCUKAivfDX95UnJiT5AsS1e/67bc38glqHcv1xw0TUm
+	QoIeIzas+9ERj+W6vzz3GsO91VxdpruJLnTC0aLAY2n9dn7s5zpHgQ1UBkcvZXzadNPdt7skLOR
+	lRGOjlnI2NXWeYGnj+Lor6iPVprtQh8Npar10f5nF4LukYdOwRIUo5gVtZm2QFdBXhfjoe40qoQ
+	eywQvN3cCIGtgRixnuKFq0ru+JdfV017+kAI7TYpA3sSSZvbigVthzsg6pj5mEh2uTYUESDqFFs
+	gnxLv8hax+kW9ck4bvj7LEPlRDUZSVa+u1hjwZj6Eqj7NP3G3IW30zQIaOJvOw1aSEVZA+TkQZC
+	/BCWNdFBjCW34L4BDBSYNacO5V0kUXyiOm9ywkFUOd1tYuyqvWEh6otc/Q+3KLIsOXZIs+TxwmW
+	T/uCLegC0NXI6w1dzgSZcAmaXGyVg==
+X-Received: by 2002:a05:6102:a4d:b0:7cb:fd69:4155 with SMTP id
+ ada2fe7eead31-7d72b3582d9mr2198831137.5.1795197218598; Fri, 20 Nov 2026
+ 09:53:38 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CHBPR12MB731189:EE_|IA1PR12MB6329:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7811cfb9-70cd-410b-1917-08df472efeb3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|366016|18002099003|6133799003|22082099003|261009223027099003|11063799006|5023799004|261022115727099003|56012099006|921020|261026135527099003|261102123227099003|261028144727099003|261026140227099003|261021133027099003|261026121527099003|261022113327099003|261021121427099003|261021123027099003|261022105027099003|261022075727099003|261026130827099003|261021130227099003|261021135927099003|10067099003;
-X-Microsoft-Antispam-Message-Info: ZyBiNzP+m2npuiwnjZBBLXqcQnVE9m9RJZcZ+QMX874kklaEXmti7eyKW9jfT6Hcq2oIExjRd+vkPYZoBiEBgQvQ1ABMak93xPln6R95mt4KN/CfVsqvFrWvGyjcOaM+JkaH5E4Q9OfiDsZQ6KhgG5sk0yRFoHlt1Re11jbo7awi3vSc5DueH8MiLrNYnCH1XVaXZ7Y9ol2mMfxASI2jkdh6UIu3UkvPkMyTiIkJjPxBgApIIWyOcXbX3ctHHKxHVe6W4GvncGFX7L3e+tfzLlcFLWWHFqpWyiGirFlSZfVD1KnjoxTL3D91OFK+gEqiFSnrHf/jsXuGAW50Zs/fcvJ3tCaYMsgSOUGIcFUG1JVao68WhuCK2/1N1ivVZ2rSNB5th0cRbjbKHZ0m8ruktnTrR8MrHvNXbbJRmf7munIybDC4UYcmTJ2py/ZJmdwvJTBdHVncXJyjsfi6wJcWzNNh1/vzfao5grcEB8Ea3A+3Z3qFQiJv4G+wl4VshDRK0i+kXh0xuguuk20dPF9Vlx4SsCGjnRov6OZk7eiIq+npf0+s99fkfpN7SBa2BLExhVuBuvJfQJk7G9ds1S5k+ioiZkkUU6ba5xqiqnai84X2X9hun37YkF4mGGjC9bAxKJfVY0ImyKC0TlQqCSV9/8ui/NWSZP2DSsRPB1OB03W40k4Hee3qGTdaiLLCWNqVxkYaDbekmwuLn7fSmxEqYA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CHBPR12MB731189.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(366016)(18002099003)(6133799003)(22082099003)(261009223027099003)(11063799006)(5023799004)(261022115727099003)(56012099006)(921020)(261026135527099003)(261102123227099003)(261028144727099003)(261026140227099003)(261021133027099003)(261026121527099003)(261022113327099003)(261021121427099003)(261021123027099003)(261022105027099003)(261022075727099003)(261026130827099003)(261021130227099003)(261021135927099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PNUKdKw+K3972jG4HUAGCjQMMgS1LUYyBbEwJFpfA8+Yb3s4UyUhj3mqEyhZ?=
- =?us-ascii?Q?0mV8IDMheYOeywc9h97f05P/r2aOINn4s/1WoKtL391PHnZahFnJuTvlVZCr?=
- =?us-ascii?Q?3fvY5vvOnhmmnZmDfaphvZyZlRN5Tfxt14fxJDt20GayLzHBgfMtkCqkyTkd?=
- =?us-ascii?Q?/skry78eiRGHuZVVqHqaX4k4d0kheDybNYHziDTNUsNVe9+iqMBDBCGi0fFa?=
- =?us-ascii?Q?0rrv3MLMQBK1HbhcqbvARskh6niKWEHMGBQBUhNV8GfFI8OuytrJ0ofsXmJP?=
- =?us-ascii?Q?Sih2UMuugForVM3Y+r/xx+uEEabvAiSvB4arkGEJg3psSUN3Q0wjqwIsRUFl?=
- =?us-ascii?Q?MiQKiH4+9Sg66PFsRCfsU4JH0jrKqUSkb7b8+iUpHvmAQ/m1yyZgmzmCgpqQ?=
- =?us-ascii?Q?Fv6szj6cTguZW1oZGmN4RO1DTS9uV8pympXV7HFrS0ICFNh72FPQezaToXNG?=
- =?us-ascii?Q?PwFj4CHgZDF1mO3zXTOMyCX5cFFfhKwoTdsunPFAU8U8ZW+GHDaYOpysEgU7?=
- =?us-ascii?Q?RPIXYJveAH9mLDQfDS8kYTgDttpicdnsFZNqo9Qzo/CR3Z8+lykZLbSierfM?=
- =?us-ascii?Q?+TmPy3+Lg+z4GNAhA2jdU+QJ7DZfGI1NDSU+2Gjd7RCjqcZXH1nwNBo5q1gE?=
- =?us-ascii?Q?onGl4eEmOUGEITWiXLEea1jpIxSgIaGQpX9ckD9/HiEgH27ic7QEnIFR+QXU?=
- =?us-ascii?Q?ICoC6MzYCpAI/W3Mwnn2g7kz3pzBxNrq7VYMDIdDUP/jn8jAqxSgc4Y9/Nh+?=
- =?us-ascii?Q?RFCWwiS0IJ/mZw1vjRuwESRLOtTLPk89Ox+xvtFcUDA8+T+4x63bNnZL3vK1?=
- =?us-ascii?Q?GN/BdGN+OiMksuNZNojMDF/ydbR7OcxZnR2Af3zuTD+KPV39yYE8+gaC9e2/?=
- =?us-ascii?Q?tPuN5t7x0+4NEnW+4MDaV03WC13KYlHLyfjWqQt1BiuCdmKytQnXhG4SWbjO?=
- =?us-ascii?Q?LpX26kY0c98oHFzANwcNwo7J8njv9I9sr4mYFFJZIR9LuFYnbw5Ul9KSK1g+?=
- =?us-ascii?Q?ADJJ6nu0eIvRilto+O0E3/eGi6Uzu78mBG8rdxFdeUozV+xI7Zj1iEuq5cP5?=
- =?us-ascii?Q?grys34M2uLh8CW+cDjhf9qjfe+bIYdt7XTbt0cc6rNimJG+xtISRpfJmuMit?=
- =?us-ascii?Q?AKDp4jdqrfZh285keqrWKV/HPstffvUT+3LUnKeQFUis4NM715Bt61TPm1wf?=
- =?us-ascii?Q?4/mi6hjHfJgnOfAIbE7VzZeOglEBOPnFrtEvowOfjeBnpUViQOoNJrUFHmGr?=
- =?us-ascii?Q?B21QwwvvDWroKQwpyMo32TnPZ55t6DhhK8DYHr/YFMVZfSsvhHRMkOPxFv3v?=
- =?us-ascii?Q?g0F3hoYxgq1Vn5ocGwTzbcPxQub1ot2jbqpMKne5OR62xnmgrpyjVx9meSFv?=
- =?us-ascii?Q?cZMmxK3VIVWfE+wjarE7pWCvJ4iIuq6M6fmcVvLV6T9aZHhj1tWEMvv44N6Y?=
- =?us-ascii?Q?X+TpZ7v5r0ISQXN5RbipS3GBKzUIxirDVagHexs51psQMmfYqNJVkIoEHcU7?=
- =?us-ascii?Q?e90tEMWBkkKWCKa5h59djMSL64/2thY+QvwtzkMXOmzr80ap+P9W9Bw32aEr?=
- =?us-ascii?Q?knZzkeLKYtIBmi3OlLlULBvj2nIrYftYJTFmFoxc3ERVX8/xKZK9CI1wzq+C?=
- =?us-ascii?Q?46ljg9JQ1Frjtaz56s/G0yxSwu97wtAmbyPZeZ1p8SlHUYVGgDfBQGQSnHQR?=
- =?us-ascii?Q?RiNuf03O8zUvUY3UThUyW3IRVg2xBQdym7oJzXq3SagR25T5?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7811cfb9-70cd-410b-1917-08df472efeb3
-X-MS-Exchange-CrossTenant-AuthSource: CHBPR12MB731189.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 17:52:08.1098
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JWICvMnbVG4t9kufQ6j/o0SYZ13cEEIJ+6xlnV5M9cOmXdkYSg2heA7ZB4/fr3tJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6329
+References: <20261117-submit-stmmac-rx-checksum-capability-v1-v2-1-059f9499c386@gmail.com>
+ <179511723446.3136.5381192433185500992@kernel.org>
+In-Reply-To: <179511723446.3136.5381192433185500992@kernel.org>
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Fri, 20 Nov 2026 10:53:27 -0700
+X-Gm-Features: Aa3M54r9Ol27mWG1eqxOv22iaYVvbksTWo4-8sJ4NYAR7dV76pguE_MCDRLUKI0
+Message-ID: <CADvTj4qRtmZPS6N_0tM5WuFNbm8BRpE3NjxiODNMTaNBytuUag@mail.gmail.com>
+Subject: Re: [PATCH net v2] net: stmmac: preserve RX checksum capability when
+ offload is disabled
+To: netdev-bot+sashiko@kernel.org
+Cc: netdev@vger.kernel.org, maxime.chevallier@bootlin.com, 
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org, 
+	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, peppe.cavallaro@st.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_095248_106186_D1DECAED 
-X-CRM114-Status: GOOD (  16.21  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_095342_392047_00D46A1C 
+X-CRM114-Status: GOOD (  49.32  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,168 +124,204 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-extra_size is additional memory required that must be immediately after
-the image.
+On Thu, Nov 19, 2026 at 12:40=E2=80=AFPM <netdev-bot+sashiko@kernel.org> wr=
+ote:
+>
+> Thank you for your contribution! Sashiko AI review found 2 potential
+> issue(s) to consider.
+>
+> Critical: 0 =C2=B7 High: 0 =C2=B7 Medium: 1 =C2=B7 Low: 1 (1)
+>
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwor=
+k
+> know by including "pw-bot: cr" as a separate line at the end of your repl=
+y
+> (one such reply per series is enough).
+>
+> - [Medium] After this patch, stmmac_hw_setup()
+>   (drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:3725-3729) checks=E2=
+=80=A6
+> - [Low] The struct stmmac_ops comment for rx_ipc
+>   (drivers/net/ethernet/stmicro/stmmac/hwif.h:322) still says "Enable=E2=
+=80=A6
+>
+> Pre-existing issues:
+> - [Low] This problem wasn't introduced by this patch, but
+>   sun8i_dwmac_rx_ipc_enable()=E2=80=A6
+>
+> --
+>
+> net: stmmac: preserve RX checksum capability when offload is disabled
+>
+> This patch changes stmmac_hw_setup() so that a zero return from
+> stmmac_rx_ipc() clears plat->rx_coe only when RX checksum offload was
+> requested, meaning hw->rx_csum is non-zero. Before this, the RX COE
+> capability was lost when the interface was reopened after RX checksum
+> offload had been turned off with ethtool.
+>
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/driver=
+s/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > index 25894771e9e9f..e162976be2e6d 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > @@ -3723,7 +3723,7 @@ static int stmmac_hw_setup(struct net_device *dev=
+)
+> >       stmmac_safety_feat_configuration(priv);
+> >
+> >       ret =3D stmmac_rx_ipc(priv, priv->hw);
+> > -     if (!ret) {
+> > +     if (priv->hw->rx_csum && !ret) {
+>
+> [Severity: Medium]
+> Can plat->rx_coe now stay unverified when RX checksum offload is off at
+> every stmmac_hw_setup() since probe?
 
-There are three possibilities here, each a little different:
-- relocating for kaslr, just request extra_size like the zboot flow does
-  when allocating the random placement from EFI
-- in place, attempt to allocate from EFI precisely after Image to
-  confirm nothing weird is there, failing that
-- like any other error with the in place EFI location allocate
-  non-randomly with extra_size included
+Yes. On GMAC, GMAC4 and XGMAC, zero is the expected readback when
+offload is disabled. Clearing plat->rx_coe on that basis is what makes
+a working feature disappear after the interface is reopened.
 
-Adjust things to use a kernel_allocsize which is >= the memsize computed
-from the image_info.
+What v2 misses is the later live enable. stmmac_set_features() sets
+hw->rx_csum from plat->rx_coe and ignores the readback. If the enable
+bit stays clear, the RX path can mark an unchecked packet as
+CHECKSUM_UNNECESSARY. I haven't seen the bit fail to latch on hardware,
+but the driver should check it when enabling offload and leave software
+checksum reporting off if the enable fails. The rx_ipc comment should
+also say that these callbacks return whether the checker is enabled,
+not whether the hardware supports it.
 
-Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
----
- drivers/firmware/efi/libstub/kaslr.c | 77 ++++++++++++++++++++++------
- 1 file changed, 61 insertions(+), 16 deletions(-)
+>
+> For example, if "ethtool -K ethX rx off" runs before the first
+> "ip link set up", the readback is never checked. plat->rx_coe then keeps
+> whatever value the HW feature register or platform data reported.
+>
+> If RX checksum is later enabled while the interface is up,
+> stmmac_fix_features() keeps NETIF_F_RXCSUM because rx_coe is not
+> STMMAC_RX_COE_NONE. stmmac_set_features() then ignores the rx_ipc result:
+>
+> drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:stmmac_set_features() {
+>         if (features & NETIF_F_RXCSUM)
+>                 priv->hw->rx_csum =3D priv->plat->rx_coe;
+>         else
+>                 priv->hw->rx_csum =3D 0;
+>         /* No check needed because rx_coe has been set before and it will=
+ be
+>          * fixed in case of issue.
+>          */
+>         stmmac_rx_ipc(priv, priv->hw);
+>         ...
+> }
+>
+> That comment assumes the stmmac_hw_setup() check has already run, and
+> after this patch that is not guaranteed. Before this patch, any open
+> with a zero readback cleared rx_coe. So once the interface had been
+> opened, offload could not be enabled at runtime without a check.
+>
+> Some hardware may advertise RX COE while its IPC bit does not latch. On
+> such hardware, hw->rx_csum would be non-zero while the MAC is not
+> validating checksums. stmmac_rx() and stmmac_construct_skb_zc() would
+> then mark IP frames CHECKSUM_UNNECESSARY based on hw->rx_csum:
+>
+> drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:stmmac_construct_skb_zc=
+() {
+>         ...
+>         if (unlikely(!coe) || !stmmac_has_ip_ethertype(skb))
+>                 skb_checksum_none_assert(skb);
+>         else
+>                 skb->ip_summed =3D CHECKSUM_UNNECESSARY;
+>         ...
+> }
+>
+> The zero-copy path does not look at descriptor status at all. Split
+> header is also enabled from rx_csum > 0.
+>
+> This would last until the next stmmac_hw_setup() with a non-zero
+> rx_csum, for example after down/up, resume or an MTU change.
+>
+> I could not find a specific part where the IPC bit fails to latch, so
+> this depends on the hardware case that the stmmac_hw_setup() check
+> exists for.
+>
+> Would it make sense to check the stmmac_rx_ipc() return in
+> stmmac_set_features() when offload is enabled? Another option is to
+> verify the capability once, whatever state was requested.
+>
+> [Severity: Low]
+> This isn't a bug, but should the rx_ipc comment in struct stmmac_ops be
+> updated to match the contract this check now depends on?
+>
+> drivers/net/ethernet/stmicro/stmmac/hwif.h:
+>         /* Enable and verify that the IPC module is supported */
+>         int (*rx_ipc)(struct mac_device_info *hw);
+>
+> The commit message says the callbacks program the state requested in
+> hw->rx_csum and return whether IPC is enabled afterwards.
+> dwmac1000_rx_ipc_enable(), dwmac4_rx_ipc_enable() and dwxgmac2_rx_ipc()
+> behave that way. The hwif.h comment still reads as if a zero return
+> means the IPC module is unsupported.
+>
+> sun8i_dwmac_rx_ipc_enable() already uses the other reading ("caution
+> this function must return non 0 to work") and ignores hw->rx_csum.
+>
+> >               netdev_warn(priv->dev, "RX IPC Checksum Offload disabled\=
+n");
+> >               priv->plat->rx_coe =3D STMMAC_RX_COE_NONE;
+> >               priv->hw->rx_csum =3D 0;
+>
+> [Severity: Low]
+> This is a pre-existing issue, not one introduced by this patch, but the
+> commit message says:
+>
+>   Keep calling rx_ipc when offload is disabled so that the hardware
+>   is still programmed with the requested state.
+>
+> Does that hold for the sun8i EMAC used on H616? The commit message
+> limits this claim to the GMAC, GMAC4 and XGMAC callbacks.
+> sun8i_dwmac_rx_ipc_enable() ignores hw->rx_csum and never clears
+> EMAC_RX_DO_CRC:
 
-diff --git a/drivers/firmware/efi/libstub/kaslr.c b/drivers/firmware/efi/libstub/kaslr.c
-index 2f1f3e19583def..f50c36a2fd635e 100644
---- a/drivers/firmware/efi/libstub/kaslr.c
-+++ b/drivers/firmware/efi/libstub/kaslr.c
-@@ -80,7 +80,44 @@ static bool check_image_region(u64 base, u64 size)
- 	return false;
- }
- 
-+/*
-+ * The PE loader owns only kernel_memsize of the image.  Try to own the
-+ * requested tail separately at the exact adjacent address instead of
-+ * relocating the complete region.
-+ */
-+static efi_status_t allocate_image_tail(unsigned long image_addr,
-+					unsigned long kernel_memsize,
-+					unsigned long extra_size,
-+					unsigned long *free_addr,
-+					unsigned long *free_size)
-+{
-+	efi_physical_addr_t tail_addr;
-+	efi_status_t status;
-+
-+	/*
-+	 * Since we intend to use efi_free() for reserve_addr it should be
-+	 * aligned to the higher alignment since efi_free() includes rounding.
-+	 * For ARM64 the kernel image is already aligned up to EFI_ALLOC_ALIGN
-+	 * by the linker.
-+	 */
-+	tail_addr = image_addr + kernel_memsize;
-+	if (!IS_ALIGNED(tail_addr, EFI_ALLOC_ALIGN))
-+		return EFI_OUT_OF_RESOURCES;
-+
-+	extra_size = round_up(extra_size, EFI_ALLOC_ALIGN);
-+	status = efi_bs_call(allocate_pages, EFI_ALLOCATE_ADDRESS,
-+			     EFI_LOADER_CODE, extra_size / EFI_PAGE_SIZE,
-+			     &tail_addr);
-+	if (status != EFI_SUCCESS)
-+		return status;
-+
-+	*free_addr = tail_addr;
-+	*free_size = extra_size;
-+	return EFI_SUCCESS;
-+}
-+
- static void efi_kaslr_copy_kernel(unsigned long image_addr,
-+				  unsigned long kernel_allocsize,
- 				  unsigned long *free_addr,
- 				  unsigned long *free_size,
- 				  const struct efi_image_info **image_info)
-@@ -88,14 +125,13 @@ static void efi_kaslr_copy_kernel(unsigned long image_addr,
- 	unsigned long kernel_base	= efistub_kernel_base(*image_info);
- 	unsigned long kernel_size	= efistub_kernel_size(*image_info);
- 	unsigned long kernel_codesize	= efistub_kernel_codesize(*image_info);
--	unsigned long kernel_memsize	= efistub_kernel_memsize(*image_info);
- 
- 	memcpy((void *)image_addr, (void *)kernel_base, kernel_size);
- 	*free_addr = image_addr;
--	*free_size = kernel_memsize;
-+	*free_size = kernel_allocsize;
- 
- 	efi_icache_sync(image_addr, image_addr + kernel_codesize);
--	efi_remap_image(image_addr, kernel_memsize, kernel_codesize);
-+	efi_remap_image(image_addr, kernel_allocsize, kernel_codesize);
- 
- 	*(unsigned long *)image_info += image_addr - kernel_base;
- }
-@@ -119,7 +155,9 @@ efi_status_t efi_kaslr_relocate_kernel(unsigned long *free_addr,
- 				       u32 phys_seed)
- {
- 	unsigned long kernel_base	= efistub_kernel_base(*image_info);
--	unsigned long kernel_memsize	= efistub_kernel_memsize(*image_info);
-+	unsigned long extra_size	= efi_drtm_get_extra_size();
-+	unsigned long kernel_allocsize	= efistub_kernel_memsize(*image_info) +
-+					  extra_size;
- 	u64 min_kimg_align		= efi_get_kimg_min_align();
- 	unsigned long image_addr;
- 	efi_status_t status;
-@@ -129,30 +167,36 @@ efi_status_t efi_kaslr_relocate_kernel(unsigned long *free_addr,
- 		 * If KASLR is enabled, and we have some randomness available,
- 		 * locate the kernel at a randomized offset in physical memory.
- 		 */
--		status = efi_random_alloc(kernel_memsize, min_kimg_align,
-+		status = efi_random_alloc(kernel_allocsize, min_kimg_align,
- 					  &image_addr, phys_seed,
- 					  EFI_LOADER_CODE, 0, EFI_ALLOC_LIMIT);
- 		if (status == EFI_SUCCESS) {
--			efi_kaslr_copy_kernel(image_addr, free_addr, free_size,
--					      image_info);
-+			efi_kaslr_copy_kernel(image_addr, kernel_allocsize,
-+					      free_addr, free_size, image_info);
- 			return EFI_SUCCESS;
- 		}
- 		efi_warn("efi_random_alloc() failed: 0x%lx\n", status);
- 	}
- 
- 	/* Try to use the image in place */
--	if (!check_image_region(kernel_base, kernel_memsize)) {
-+	if (!check_image_region(kernel_base, kernel_allocsize)) {
- 		efi_err("FIRMWARE BUG: Image BSS overlaps adjacent EFI memory region\n");
- 	} else if (IS_ALIGNED(kernel_base, min_kimg_align) &&
--		   (kernel_base + kernel_memsize) < EFI_ALLOC_LIMIT) {
--		/*
--		 * Just execute from wherever we were loaded by the UEFI PE/COFF
--		 * loader if the placement is suitable.
--		 */
--		return EFI_SUCCESS;
-+		   (kernel_base + kernel_allocsize) < EFI_ALLOC_LIMIT) {
-+		if (!extra_size) {
-+			/*
-+			 * Just execute from wherever we were loaded by the UEFI
-+			 * PE/COFF loader if the placement is suitable.
-+			 */
-+			return EFI_SUCCESS;
-+		}
-+		status = allocate_image_tail(kernel_base, kernel_allocsize,
-+					     extra_size, free_addr, free_size);
-+		if (status == EFI_SUCCESS)
-+			return EFI_SUCCESS;
- 	}
- 
--	status = efi_allocate_pages_aligned(kernel_memsize, &image_addr,
-+	status = efi_allocate_pages_aligned(kernel_allocsize, &image_addr,
- 					    ULONG_MAX, min_kimg_align,
- 					    EFI_LOADER_CODE);
- 	if (status != EFI_SUCCESS) {
-@@ -160,6 +204,7 @@ efi_status_t efi_kaslr_relocate_kernel(unsigned long *free_addr,
- 		return status;
- 	}
- 
--	efi_kaslr_copy_kernel(image_addr, free_addr, free_size, image_info);
-+	efi_kaslr_copy_kernel(image_addr, kernel_allocsize, free_addr,
-+			      free_size, image_info);
- 	return EFI_SUCCESS;
- }
--- 
-2.43.0
+That's correct. The sun8i callback always returns 1, so it doesn't
+trigger the capability loss fixed here. The separate sun8i patch [0]
+keeps the hardware checker enabled in both modes and lets packets
+whose only error is a bad IP or transport checksum reach the stack as
+CHECKSUM_NONE. On that MAC, ethtool rx off controls whether the driver
+reports a checksum as verified, not whether the MAC checks it.
 
+[0] https://lore.kernel.org/r/20261120-submit-sun8i-rx-features-v1-v1-1-505=
+8fecba6b3@gmail.com/
+
+pw-bot: cr
+
+>
+> drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c:sun8i_dwmac_rx_ipc_enab=
+le() {
+>         ...
+>         v =3D readl(ioaddr + EMAC_RX_CTL0);
+>         v |=3D EMAC_RX_DO_CRC;
+>         writel(v, ioaddr + EMAC_RX_CTL0);
+>
+>         return 1;
+> }
+>
+> So on sun8i, "ethtool -K ethX rx off" leaves the EMAC checksum engine
+> on.
+>
+> stmmac_rx() still treats these frames as CHECKSUM_NONE because coe is
+> 0, so I could not find any frames being marked with the wrong checksum
+> state. The problem is that the register state does not match the
+> requested state.
+>
+> --
+> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
+set/20261117-submit-stmmac-rx-checksum-capability-v1-v2-1-059f9499c386%40gm=
+ail.com
 
