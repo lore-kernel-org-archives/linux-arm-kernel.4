@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892FA60A2615
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA1760A2610
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:46:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y44vV1x2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IKUYBBqk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K26Svc0+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WDbv4siK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=O0xQaZTBn5x9UU+rls3WdA5nUV1n54cLSo+TPMIvcKk=; b=y44vV1x2xCfb+lCnpIab81IITJ
-	mKXZ/8Dr9m8exBI88roLg0vsMZYUqNDtXkW98+bvakWT3lQtLTu9ly8jdZPyRnG9uAuig/jAbU8E1
-	nOSh+AfUiJ8hY48Gu7ZmrJkZvc0d/DOl320DMWKLLbuvroXb1S3PTgj18xQ7Dhg0q3XJ6Q6D5bxCU
-	GTB50GJ8b4nNnSqffixwDbLqOvX7SobGa5C85h7SB2CK5W8RjWLiR3rdhi7ROHXAsqQszf984wOgN
-	rioEJfSD6ug2O2a+h9GjZd7Td2DwDqzrNUCESbR86+oIGAl9pv8+iIvMn6hYXqpr03Tt4wFTbFI6Y
-	CjsIWJBw==;
+	bh=4cMBRj+b901aGtJUyANY3Td7kRUuNaUX44ZRB5XZFG0=; b=K26Svc0+TrgYmrUt3gvhJoIqbV
+	rP84c6nbtwuZbaxYwCiY5s3kEGO4oJyXtvvkXJDYo5bjyb0XYb7g+8dxMhgmJlwu9bdzKbbrZZ6Vm
+	gqkcrdd445XntHdsNoTNR+lVS/6RZHcKrO+lsIdGTkzLBcqZcA+rkOxH/Je5r7QGjNGoZRI4CE/1a
+	lqdD9Dye+3fx4B+N501HvgLvpN2o8D3HB7Nm2R4VOSx2BYTh/XZgVB/a7WeS8MoCKNS8c7usQ6XXD
+	F44oa/xFdNLnVMtt1+GsLDYrchFfiKQlwJBLK621h3DlR+BxH/0ejqafJrmZv0FmbtxdE54Gt06hn
+	RoBo8e9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM84-0000000Eda3-3WLF;
+	id 1xUM84-0000000EdaD-3zuT;
 	Fri, 20 Nov 2026 10:46:04 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM7m-0000000EdUu-3a4u
+	id 1xUM7u-0000000EdYH-32Q3
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 10:45:46 +0000
+	Fri, 20 Nov 2026 10:45:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E02D861165;
-	Fri, 20 Nov 2026 10:45:45 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3095D60D56;
+	Fri, 20 Nov 2026 10:45:54 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795171545;
-	b=rPMtcY18mSyXe0HpIsitZdoYEcgoh8eXV41ZB5XJFc2HPiVGZYmcc1/NBt3APgHLNTT+
-	 pam1S/O6gXqJb6ljZDcYmg5y+pRjM1DdakGN9m4ZP4VNd2PHMiAg7OU9ACgBPSbBwtdVE
-	 C2GPRf8XhQgCd9/U/MRy++wxQw4+oSc07ret75dXZVqi0t7ouzBKmkttCyBFk2AV//9bs
-	 P3ktIGDB1CAk1COAtbwqY5F8S0yYGXVtaoS9km0EKtDDoV5iESbdxsAiG9XWKreYI6mMy
-	 1xbmKnhgc09UJG9ksicEo1KN7z7BtE2ACKjD0jwO17MVaRkFemzY14u2JJvcI1a+Xww==
+	t=1795171553;
+	b=tfpiM/k0fu05qSAftCunN6pzkoYzJdNZioeRdhUlZwmcfOg1UVjbwoCJNwJY9T9gdGUh
+	 W5b+NDHbeyBe9QHbcsYaETCC7a6fK028wbRiljRJwI2lIEkum6gEgeS5/jcdXXlJonQjg
+	 GanzGOx1OPYtqEVj5Y9kzeGheBiChH34A6eUZqm/7KpG6ra72sKBoYSfY11+JPMjarFMq
+	 iUCpbdQZHO6CdysgA7S6XTUp4tf4TuA4P7ywQp1Yno9u3B3ZK1sb2rvRvq9sfaAR5mdwu
+	 efBvJjoGkRWIGSDySAi5bvrLL73JE7ov+8mTwPfWgj3KXQl53CEAuh9x3VzgyejyC1A==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795171545;
+	c=relaxed/relaxed; t=1795171553;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=O0xQaZTBn5x9UU+rls3WdA5nUV1n54cLSo+TPMIvcKk=;
-	b=tKVVu6ZCRihYIaHpZjTQoCg/6G27muz6GrHDyeL6g9kjP1gbqQuHuWjU4uzsUbBgi0/v
-	 clQuY0UtxXSlICdGmYUxn6xF+yF5W3AW21H7h+wfiJZ9D+3r2EtNcihCJlQqECriK8nGg
-	 afjxfxQ5QM3fl9GLaTkqqFCTSPyPEcdm/jmSCti2HdIo8PH1005EuszhjYxKzrZWQoQ3o
-	 FNCrbhLjxyM5mx7YLpHWDIQnQGGhFFFl4DZ++ZlSVm40rJpk5QdT8zEBbqiA2qOkQBBra
-	 6znPzte6xCjNiHm0QC+ZZ1kGkEede1NOqz+7FMht0JQzU3vSLhDNLy/BJj9ywBp9bHw==
+	bh=4cMBRj+b901aGtJUyANY3Td7kRUuNaUX44ZRB5XZFG0=;
+	b=Sp43DaJxgh3qiBmYWNAkjmrSUCifQ6Cv4S/KZXPfoUr7twjOE7oHNBhfPQwRdoKD+gb/
+	 pMNT1Psw/i8Gmm2hYZdaSWQJfwe6AatGvAheLfvLp/CMhxFYATJuZxLQJHXxP9y323EJS
+	 gLBPkIP+9rF58UNVsIU9J5Is3qyqFzkGMX7LAMde1AKSJi3dWw6jAHNeHyJHHeGgIkuzI
+	 pmPhyeo+tjkX4rbmJbKjMIPvvc05kP0J5ybbuqiGlnGa9E5q7F3NGWm70Wy0UyP/4STPr
+	 GLUung5SxaNGKSP4omij1Y4UXWpZYJH07XffELL57npzar3yFyp+STxzZybvy1Mw/Xg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6C3871F000EE;
-	Fri, 20 Nov 2026 10:45:33 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5D1E21F000EF;
+	Fri, 20 Nov 2026 10:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795171545;
-	bh=O0xQaZTBn5x9UU+rls3WdA5nUV1n54cLSo+TPMIvcKk=;
+	s=k20260515; t=1795171553;
+	bh=4cMBRj+b901aGtJUyANY3Td7kRUuNaUX44ZRB5XZFG0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IKUYBBqkWM4I2Lf88NFBF+eLoS9fWtvSD27t3gyvKtTtAIAKXeq+eYgECep8rHlMl
-	 7dVPuxEVlLCXIIeqBMzlFxZo1m+X8LZGCDSm7T8LTOuhj308lz9RlNYFol1eb9HMo6
-	 40nfSBaMhgJbJ+laXkCc9Pgfmbx/Bm9d7Bob8jgJArpML8U25msqfxYkVshCIRbdYK
-	 HNrCOdedGdpUpB+CbeDPnELnW2iNQ1uLX8w5KbBsPBNOCUH+YAq9YMgGT8KBCZaxYW
-	 yP8ARp9jokfSYDtjUGOV/31/nmnQINTIuWm6zB3TjqbFrxpJfCAjw0ZEbJud2pItGT
-	 nq6AMOBL0pWEA==
+	b=WDbv4siK9lct6BeRQftTXZ43dIPMqgdqFV2tKcPIceG+/T5DkFlTQKF843RhUizsQ
+	 4E4NE8Xjg1ERMz7ZxP9U1uSqV7g+RdAHBKrxc97uGd3tbGld9a//KFesiYNMv0wSv7
+	 typ/o6jTfsENf5R2c6mStlXAZg1yDDDxOP7pZPkH6uS9pTDqw91Wiotc2fLVIIFWY3
+	 TWreJy9BgadNjbDnhu8h1ip1bPkuVxwDRhP9PmiD+9CA/mGJHdt9v8B8IZMbVNTWPg
+	 AAgykz987e0FCKSGrq8SaQbaaH+85qmw9XRtMssp0I1s/OdOVjaGz2IYU03IXBCyhk
+	 w2ANIZ8j6pBeA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id ED04449814;
-	Fri, 20 Nov 2026 10:45:32 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 12CE649818;
+	Fri, 20 Nov 2026 10:45:33 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 20 Nov 2026 10:45:35 +0000
-Subject: [PATCH net-next v4 4/5] net: stmmac: Add MDIO init and exit
- platform hooks
+Date: Fri, 20 Nov 2026 10:45:36 +0000
+Subject: [PATCH net-next v4 5/5] net: stmmac: dwmac-sun8i: Register the
+ MDIO mux in the MDIO setup
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261120-sun8i-emac-mux-uaf-v4-4-57eba8915f25@gmail.com>
+Message-Id: <20261120-sun8i-emac-mux-uaf-v4-5-57eba8915f25@gmail.com>
 References: <20261120-sun8i-emac-mux-uaf-v4-0-57eba8915f25@gmail.com>
 In-Reply-To: <20261120-sun8i-emac-mux-uaf-v4-0-57eba8915f25@gmail.com>
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
@@ -97,11 +97,11 @@ Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
  linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795171532; l=2066;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795171532; l=3350;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=3XSU4X4aemzp7oTaCLwDDP9zhzsIxn55nP09waG9ngE=;
- b=LAtqp2wEi3+1K9NUmpn6EgBjdbn9DkZFOCCTWv250cgGR3fC6cRaOLC/yMKVP6uIAW+4BPgFo
- 8qkvxVjpZ4lCBbp8exE+nbsmnWOLKQdmVq7q1qFk+fn2eJ0Rz9DoxEC
+ bh=JfM+9MPeN1RmnCdgarPUkycnEJJWmRjCl52LkmzQh0s=;
+ b=aTjlE4zwV3WTHytPRv86NIs+k/GjHC4xnrCKN6relL0LScb4VxAra3i8RkcT/XDCZkwYWaorK
+ amiU4eEBE3FAcssbf+FD4c8tvmq1iKPfqAo3+xouKrDK4C5aTKdfw0u
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -129,64 +129,109 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-A glue driver that adds devices on top of the stmmac MDIO bus, such as
-an MDIO mux, can only do so after stmmac_dvr_probe() has registered the
-netdev.
+Both PHYs sit behind the mux, but the mux is registered only after
+stmmac_pltfr_probe() has registered the netdev, so an early open does
+not find the PHY. On remove, the mux goes away before
+unregister_netdev(), and unbinding with the link up oopses in
+phy_stop().
 
-Add mdio_init(), called once the bus is registered, and mdio_exit(),
-called before it is unregistered.
+Register and unregister the mux through the new mdio_init() and
+mdio_exit() hooks.
 
-Suggested-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c | 11 +++++++++++
- include/linux/stmmac.h                            |  2 ++
- 2 files changed, 13 insertions(+)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 41 ++++++-----------------
+ 1 file changed, 10 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-index 7396b68899c6..fb1f7b1a5323 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c
-@@ -682,8 +682,16 @@ int stmmac_mdio_register(struct net_device *ndev)
- bus_register_done:
- 	priv->mii = new_bus;
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+index 4acfda235394..0ec25ae0b77e 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+@@ -17,7 +17,6 @@
+ #include <linux/of_platform.h>
+ #include <linux/phy.h>
+ #include <linux/platform_device.h>
+-#include <linux/pm_runtime.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/regmap.h>
+ #include <linux/stmmac.h>
+@@ -941,6 +940,13 @@ static int sun8i_dwmac_register_mdio_mux(struct stmmac_priv *priv)
+ 	return ret;
+ }
  
-+	if (priv->plat->mdio_init) {
-+		err = priv->plat->mdio_init(priv);
-+		if (err)
-+			goto mdio_init_fail;
-+	}
++static void sun8i_dwmac_unregister_mdio_mux(struct stmmac_priv *priv)
++{
++	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
 +
++	mdio_mux_uninit(gmac->mux_handle);
++}
++
+ static int sun8i_dwmac_set_syscon(struct device *dev,
+ 				  struct plat_stmmacenet_data *plat)
+ {
+@@ -1133,8 +1139,6 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 	struct stmmac_resources stmmac_res;
+ 	struct sunxi_priv_data *gmac;
+ 	struct device *dev = &pdev->dev;
+-	struct stmmac_priv *priv;
+-	struct net_device *ndev;
+ 	struct regmap *regmap;
+ 	int ret;
+ 
+@@ -1217,6 +1221,9 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 		ret = get_ephy_nodes(dev, gmac);
+ 		if (ret)
+ 			return ret;
++
++		plat_dat->mdio_init = sun8i_dwmac_register_mdio_mux;
++		plat_dat->mdio_exit = sun8i_dwmac_unregister_mdio_mux;
+ 	}
+ 
+ 	ret = sun8i_dwmac_set_syscon(&pdev->dev, plat_dat);
+@@ -1227,33 +1234,8 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto dwmac_syscon;
+ 
+-	ndev = dev_get_drvdata(&pdev->dev);
+-	priv = netdev_priv(ndev);
+-
+-	/* the MAC is runtime suspended after stmmac_dvr_probe(), so we
+-	 * need to ensure the MAC resume back before other operations such
+-	 * as reset.
+-	 */
+-	pm_runtime_get_sync(&pdev->dev);
+-
+-	/* The mux must be registered after parent MDIO
+-	 * so after stmmac_dvr_probe()
+-	 */
+-	if (gmac->variant->soc_has_internal_phy) {
+-		ret = sun8i_dwmac_register_mdio_mux(priv);
+-		if (ret) {
+-			dev_err(&pdev->dev, "Failed to register mux\n");
+-			goto dwmac_remove;
+-		}
+-	}
+-
+-	pm_runtime_put(&pdev->dev);
+-
  	return 0;
  
-+mdio_init_fail:
-+	priv->mii = NULL;
- no_phy_found:
- 	mdiobus_unregister(new_bus);
- bus_register_fail:
-@@ -703,6 +711,9 @@ int stmmac_mdio_unregister(struct net_device *ndev)
- 	if (!priv->mii)
- 		return 0;
+-dwmac_remove:
+-	pm_runtime_put_noidle(&pdev->dev);
+-	stmmac_pltfr_remove(pdev);
+ dwmac_syscon:
+ 	sun8i_dwmac_unset_syscon(gmac);
+ dwmac_ephy:
+@@ -1269,9 +1251,6 @@ static void sun8i_dwmac_remove(struct platform_device *pdev)
+ 	struct stmmac_priv *priv = netdev_priv(ndev);
+ 	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
  
-+	if (priv->plat->mdio_exit)
-+		priv->plat->mdio_exit(priv);
-+
- 	mdiobus_unregister(priv->mii);
- 	priv->mii->priv = NULL;
- 	mdiobus_free(priv->mii);
-diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-index 00be2df63d22..e94f9cab973d 100644
---- a/include/linux/stmmac.h
-+++ b/include/linux/stmmac.h
-@@ -296,6 +296,8 @@ struct plat_stmmacenet_data {
- 	int (*crosststamp)(ktime_t *device, struct system_counterval_t *system,
- 			   void *ctx);
- 	void (*dump_debug_regs)(void *priv);
-+	int (*mdio_init)(struct stmmac_priv *priv);
-+	void (*mdio_exit)(struct stmmac_priv *priv);
- 	int (*pcs_init)(struct stmmac_priv *priv);
- 	void (*pcs_exit)(struct stmmac_priv *priv);
- 	struct phylink_pcs *(*select_pcs)(struct stmmac_priv *priv,
+-	if (gmac->variant->soc_has_internal_phy)
+-		mdio_mux_uninit(gmac->mux_handle);
+-
+ 	stmmac_pltfr_remove(pdev);
+ 	reset_control_put(gmac->rst_ephy);
+ 	clk_put(gmac->ephy_clk);
 
 -- 
 2.55.0
