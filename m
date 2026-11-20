@@ -2,63 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9262760A2606
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F55606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 12:33:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1k59OiHf;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=a+l/+NdJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UaQgHV4Z;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tdeecgNj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=AcAKXow4k7nAsz4NvTf98ZQKCNLbRCZ9q0bbUe/mxCg=; b=1k59OiHfYsJJQElFtjY/WSGgyd
-	MQ00AAirShjSd/xb7hVBq5Nu57hkuuE/zOzOZs9M8P1wGw3jD3QOUC2CFnHn786qFNQher1a7axPo
-	zb3HoF+GR+pICKRdKOWBnVjA8mkyvkhXqCT0ux5z2UA0NTA7b0SEKndhhYIBF8287gvP+LKJQ2fUY
-	alzs6IVODHVHlr8fJz/K8YGsK6jj15iklalP8axca8H5Qxw0Xgf2fzYX5F5IVGV54B/D/ucdWZIif
-	brcZhbubp3a1s+dFwmMKiL0n6vzf8rI41YzgB0T3zHOjbo6vYHKPIMv0CPEIxZ1HdYNxM8LfLIm0Q
-	GyT0VL3w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AJXcbffl1Kij/wVcnvrgEoCXcFbDtnBB4PE3lMLxAVw=; b=UaQgHV4Zi5Kafx
+	XXFpac1GRW/lf8pjMYmrLsaBByiS+SUvLse2mHBc07oP+Z1Og9IU6GZD2mtR3ieK5tZieeR48pR6L
+	kzPXP4b63pdgGPbIz2m3Bf5NrIIw3BghxUoYyTOtJRHRL/0KZPgCvSa77NoK63hWGD+0tjjgiqFZ5
+	8YbrZj+LY8FkIxXcbNxwnLyadT2V8HtUj2x6PXC94Akpj4tQmvMYVW0gBSsG5gPoP//IT5UXTHJVw
+	L3ThDFKa18lYHjH3rfVQZ9eKlq9hNYk46wBymjH//tXmMLm5hrEpC/QhKFDJOw4L7ZQIANZuQP8B4
+	Sl3oI3A9A56iT1xm+Rzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUNi4-0000000Ex9R-4255;
-	Fri, 20 Nov 2026 12:27:20 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUNnW-0000000Ey3j-1IlH;
+	Fri, 20 Nov 2026 12:32:58 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUNi3-0000000Ex8o-2YeU;
-	Fri, 20 Nov 2026 12:27:19 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 18F424417F;
-	Fri, 20 Nov 2026 12:27:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 174611F000C4;
-	Fri, 20 Nov 2026 12:27:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
-	s=korg; t=1795177638;
-	bh=AcAKXow4k7nAsz4NvTf98ZQKCNLbRCZ9q0bbUe/mxCg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=a+l/+NdJlosvbvrFz8skxFt+7lH/BYqPvJI/SIcdwvR35/YhtHI7xEaNR9/SQwDck
-	 OoIenHKHOWWbZUzANxx/C2LIM3aPEhDag+j8O3HOCKVuRuQ5ofCbLJQGgQsjZzwR+r
-	 ooAKISbCoLcv8rQ3xxP8xWsrEuXt8CeRSaJKKObE=
-Date: Fri, 20 Nov 2026 13:27:16 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Fangwen Deng <fangwen.deng@mediatek.com>
-Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	jarried.lin@mediatek.com, vince-wl.liu@mediatek.com,
-	justin.yeh@mediatek.com
-Subject: Re: [PATCH] usb: mtu3: cancel EP0 requests to prevent use-after-free
-Message-ID: <2026112053-curtain-astound-bf4e@gregkh>
-References: <20261106080140.342107-1-fangwen.deng@mediatek.com>
+	id 1xUNnR-0000000Ey2j-3OpZ
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 12:32:56 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so484309f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 04:32:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795177972; x=1795782772; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=AJXcbffl1Kij/wVcnvrgEoCXcFbDtnBB4PE3lMLxAVw=;
+        b=tdeecgNjNTgMuJkrYsporl6rhqbggD50HuVs3CcYIQLuarviux/vE/Sgt5UErYbLtS
+         GYijxtd4BqYj99QHAyzjX7znoROD7bpZEaY+p9qGymY1OvvlziS0piGolfLJhsE3TIXz
+         xLdSpxnX6J1AZyLFuMGxCX5GVpW58om204aOUyvnOmKcEKXj0r9VTDE3vTjpZbb90a3w
+         Uof4BF4Kp/FIlXtssJ8lIJ2bzZEG3DIDq8R7CkIMf8n7AedaH57osKpx/U3J74ptgU7/
+         HpI9x0G16lwe7fM3af5I3h3ilw7up/+r0k8+jVTmgIABXx9xGBmX1old43NJFHZePSod
+         dBYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795177972; x=1795782772;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=AJXcbffl1Kij/wVcnvrgEoCXcFbDtnBB4PE3lMLxAVw=;
+        b=o5DqcuXEqdBSyf6AA6joB0MxvhkB9zOO5i0C8r51MIh0E4XDcdbemAQqkFUyV2awct
+         AsawybHALQwm97Gg8jXGhPQnEeCbIS+BhT9ayT7n9RdkGHIrGfoAY57YQcrmsyEopya0
+         QLwe4aRuNKt3Q6SCOi3rYF5KZnWLNUgl2pw4fsTFn+3K/q5+OP1hOkkkIhWZ5ZDFmpw+
+         3NG7PhBc171W6atjpjvZZbOTOLcsVYxD7ykDkdNa620gm8J1O1HwWcQxp0I3DemylNc/
+         2mTUyOZsAoXUb5MBDXmV0+YKOFYxNdoDmJKsJvm8nXAJa1cXrW7keqltLSUI9VQ4G2tz
+         ZNyA==
+X-Forwarded-Encrypted: i=1; AL+hErFAxgsM770MwaklVez73RspZurURdclHy24/dkC6NfS4skzCNaWvLshOFcoq7PeYbMqAHZPKjHkGXdJua36T3O8@lists.infradead.org
+X-Gm-Message-State: APuU4Z8ZYaV0hBn/EVuwMg+2GWSO5+0T3t8TLKxy6VVnfjVwhwc4qax0
+	MB1NxZnf/V+7ZipmdIj7rBpHi6v2riHjzHPDg/m6AR0IzoysU11w1R0xshhqqNPW
+X-Gm-Gg: AZFdTZd5CIcebn3lSxkgNLkr+o2Or2TWqc1vUtPEoW4+eNl5reQKylDrRp4Us50OA9t
+	AE3uPTvIyC+KiRsCSyYYiBld9i+s5mieE2l9mkt9IQHlLf+APjmVqay4Y3rEiWDQGI5l6xqZlQv
+	GyYSLL3lFwzc6jD+U71YjidSYZpXi+cBJStKX1XDnmQgkdRr5uzMB3JBPETRIksHv7kfUqDITIt
+	QIB0yYuzQz731T1iecExSvrqt+44Xp5CxaCJYDzu0JSOGoJqsL9MqxXcmb2xosfmM/k3kdH0Zse
+	s35GuGy2xbtMj7xiWm6BsaYLd37AagAuNV5Yn5P03veS9n4Ap+1lRyLKcVLt/gCuVNZ1xbF6vzk
+	1rDOjHKv8TiM78MHqTohmEsHs2oJnwGY81ty9bjuY2WhXaihyihfaIO34eH1XHG9R5wA1Lma9wS
+	9eMQTaU7ILOMzmQFTETLtvA7QIsupUUPCWLskPHBhTTCl9pl1feaWr6jHQarmlaoXwpQKz1YBlO
+	bSVe47hupDjnEoT5v27eQnixZrDOTEqEy8EHeRQ66c6ws7/uPiWm62p0/Nd6rSOZ3ekE2wxKuMm
+	QPFKSBQ6tKT1uQPMeRc7oaFZEyuvKT9cRydUwrnpz9HwhygFvs1NbX+Gi906SwCEmLMM+6JE8AF
+	a
+X-Received: by 2002:a05:6000:258a:b0:48e:720a:ccaf with SMTP id ffacd0b85a97d-4abaab633d2mr6296799f8f.5.1795177971631;
+        Fri, 20 Nov 2026 04:32:51 -0800 (PST)
+Received: from debian.tailb81abf.ts.net ([213.152.28.84])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf61ddsm4968496f8f.12.2026.11.20.04.32.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 04:32:51 -0800 (PST)
+From: MidG971 <midgy971@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Midgy BALON <midgy971@gmail.com>
+Subject: [PATCH v2] arm64: dts: rockchip: rk3568-rock-3b: describe the Ethernet PHY LEDs
+Date: Fri, 20 Nov 2026 13:32:50 +0100
+Message-Id: <20261120123250.1417061-1-midgy971@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20261120113555.1402132-1-midgy971@gmail.com>
+References: <20261120113555.1402132-1-midgy971@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261106080140.342107-1-fangwen.deng@mediatek.com>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_043253_865627_46E99991 
+X-CRM114-Status: GOOD (  10.05  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,84 +105,89 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 04:00:58PM +0800, Fangwen Deng wrote:
-> mtu3_ep0_dequeue() always returns -EINVAL and leaves the request on
-> mep->req_list without unlinking or completing it, so an EP0 request
-> can never be cancelled.
-> 
-> FunctionFS assigns its temporary read buffer to ep0req and waits in
-> __ffs_ep0_queue_wait(). When that wait is interrupted by a signal it
-> calls usb_ep_dequeue(), does not check the return value, and its
-> caller ffs_ep0_read() frees the buffer on every exit path. With
-> -EINVAL returned the request stays queued and MTU3 still owns it.
-> When the host then sends the OUT data stage, ep0_rx_state() writes
-> the received bytes through the stale req->buf, giving the host a
-> content-controlled write into freed kernel memory. That corrupts
-> whichever object reuses the slab and can panic the kernel.
-> 
-> Implement mtu3_ep0_dequeue() following mtu3_gadget_dequeue() but
-> without QMU flush/start since EP0 uses PIO: validate the request
-> under mtu->lock, unlink it once and give it back with -ECONNRESET,
-> so ownership of the buffer returns to FunctionFS before it is freed.
-> 
-> Cancelling the request that backed the data stage also leaves the
-> transfer unable to finish, so retire the aborted transaction with a
-> protocol stall. That returns ep0_state to SETUP and stops a later
-> ep0_queue() from reading this transaction's leftover FIFO data into
-> the next request's buffer. The stall is skipped when the controller
-> is already powered down or no data stage is in flight.
-> 
-> The same stub is why functionfs_unbind() cannot cancel a pending EP0
-> request, which deadlocks against the FunctionFS thread holding
-> ffs->mutex.
-> 
-> Fixes: df2069acb005 ("usb: Add MediaTek USB3 DRD driver")
-> Signed-off-by: Fangwen Deng <fangwen.deng@mediatek.com>
-> ---
->  drivers/usb/mtu3/mtu3_gadget_ep0.c | 55 ++++++++++++++++++++++++++++--
->  1 file changed, 53 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/usb/mtu3/mtu3_gadget_ep0.c b/drivers/usb/mtu3/mtu3_gadget_ep0.c
-> index e4fd1bb14a55..73a1af8b6c65 100644
-> --- a/drivers/usb/mtu3/mtu3_gadget_ep0.c
-> +++ b/drivers/usb/mtu3/mtu3_gadget_ep0.c
-> @@ -857,8 +857,59 @@ static int mtu3_ep0_queue(struct usb_ep *ep,
->  
->  static int mtu3_ep0_dequeue(struct usb_ep *ep, struct usb_request *req)
->  {
-> -	/* we just won't support this */
-> -	return -EINVAL;
-> +	struct mtu3_ep *mep;
-> +	struct mtu3_request *mreq = NULL;
-> +	struct mtu3_request *r = NULL;
-> +	struct mtu3 *mtu;
-> +	unsigned long flags;
-> +	int ret = 0;
-> +
-> +	if (!ep || !req)
-> +		return -EINVAL;
-> +
-> +	mep = to_mtu3_ep(ep);
-> +	mtu = mep->mtu;
-> +
-> +	spin_lock_irqsave(&mtu->lock, flags);
-> +
-> +	mreq = to_mtu3_request(req);
-> +
-> +	dev_dbg(mtu->dev, "%s : req=%p\n", __func__, req);
+From: Midgy BALON <midgy971@gmail.com>
 
-Don't add "trace" calls like this.  And __func__ is NEVER needed for a
-dev_dbg() call.
+The ROCK 3B RJ45 jack carries two LEDs wired to the RTL8211F PHY LED
+pins.  Describe them in the PHY nodes' "leds" subnode (binding:
+Documentation/devicetree/bindings/net/ethernet-phy.yaml) so that
+PHYLIB_LEDS instantiates one LED classdev per pin; the RTL8211F
+driver drives them in hardware via led_hw_control_set (e.g. the
+netdev trigger with link / rx+tx modes: amber = link, green =
+activity).
 
-thanks,
+Tooling disclosure (per Documentation/process/generated-content.rst):
+the DT hunks in this patch were drafted with AI assistance (Mistral
+Vibe), then reviewed by the author and verified on a ROCK 3B board:
+the two PHY LEDs appear as stmmac-*:amber:lan / stmmac-*:green:lan
+LED classdevs and drive the RJ45 jack LEDs via the netdev trigger
+(amber = link, green = rx/tx activity, HW-offloaded to the PHY).
 
-greg k-h
+
+Changes in v2:
+- Fix leds subnode indentation (align with the enclosing PHY node)
+  and add the blank line after reset-gpios, per the Sashiko AI review
+  and Documentation/devicetree/bindings/dts-coding-style.rst.
+
+Signed-off-by: Midgy BALON <midgy971@gmail.com>
+---
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+index 9eef59ef7d07..9303242d20cf 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+@@ -605,6 +607,23 @@ rgmii_phy0: ethernet-phy@1 {
+ 		reset-assert-us = <20000>;
+ 		reset-deassert-us = <50000>;
+ 		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++
++		leds {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@0 {
++				reg = <0>;
++				color = <LED_COLOR_ID_AMBER>;
++				function = LED_FUNCTION_LAN;
++			};
++
++			led@1 {
++				reg = <1>;
++				color = <LED_COLOR_ID_GREEN>;
++				function = LED_FUNCTION_LAN;
++			};
++		};
+ 	};
+ };
+ 
+@@ -615,6 +634,23 @@ rgmii_phy1: ethernet-phy@1 {
+ 		reset-assert-us = <20000>;
+ 		reset-deassert-us = <50000>;
+ 		reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_LOW>;
++
++		leds {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@0 {
++				reg = <0>;
++				color = <LED_COLOR_ID_AMBER>;
++				function = LED_FUNCTION_LAN;
++			};
++
++			led@1 {
++				reg = <1>;
++				color = <LED_COLOR_ID_GREEN>;
++				function = LED_FUNCTION_LAN;
++			};
++		};
+ 	};
+ };
+ 
 
