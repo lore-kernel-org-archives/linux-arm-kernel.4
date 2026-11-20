@@ -2,73 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62081606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E4060A5BC3
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 09:54:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CS+T0yt2;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=eCxEdtwB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o4u7BRWr;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RMtq6NI2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/XR8mwGEvCfQ40OFBdbL3peozsc+De8DLZuvdd7EMf8=; b=CS+T0yt2gY9Mvh
-	kU08GTVOtAx6WQ/0oFxTeWVFAAHOinsRj45K4e4ZYwawxNcd1RZ0bQsG3jKSk1ZInZ9EZFTHcxNxL
-	9hRPSwAjLSv1CM0PZbKELeZukq+Wijjo1GfeN/R9Jt+Zj7fZAd1Ev+WwOxbIsaov5wnTGzWDZRNFe
-	9Z49MvfTyaKSd1rrKDSOmIolgvyqB5U+CMbjN7jPriKGHliW+Iw92CJbGmay789il8N8sNWj4XqJA
-	F9vXXtP6Fws2Sm1Cf549UPS4bZS6EisiDI08yO3GMvGOye8AibODLM71gv5S5Esjg7LwzTwcEdXxH
-	wSf1+oXFYMk1BFTwjg8A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=toC7g/mQwam01PNWnVEE4EXGk05THrMqM14HugAXhgw=; b=o4u7BRWr/YP2EyrNFCfAkPXt4u
+	iLdlTo5/t+uKxJtIDCXhAxVea8Ry/yPpmogKlITkMkXgZ4bO+p4wVu3BNGcCF1ddgMSm7p503SBUc
+	ULk4GMK5JjWl/UBmMsvZOMOKbz2yiUX6pfnn9k37Se/S+RAH6OLqP+JUncl+RkehPrHePesDswYjA
+	mCzSF9Z6fGzMe4rP7419NzBjepUIy30CmJwWxKYBo9gPHnrv8Ryar5Yr/sgFHUYgdLlQ7Yno03I5g
+	FDGAKjgN67Kdwu4Ts7maTmbfjibLoi4hBRQVHckcVq8o3Uypg0+6D9xKIucJPgpEj0phVx82xm8Uh
+	KN4xRyjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULJO-0000000EWr3-0TAE;
-	Fri, 20 Nov 2026 09:53:42 +0000
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	id 1xULK4-0000000EX1A-3HPD;
+	Fri, 20 Nov 2026 09:54:24 +0000
+Received: from mgamail.intel.com ([198.175.65.20])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xULJL-0000000EWqK-11Zw;
-	Fri, 20 Nov 2026 09:53:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=/XR8mwGEvCfQ40OFBdbL3peozsc+De8DLZuvdd7EMf8=; t=1795168419; x=1796378019; 
-	b=eCxEdtwBHqYcQanEqe0NutHhkIB8YR2ZHlto+1l79wuGHsMqACl0Yx6+Ri3ZgSad0048c7Y3nN8
-	SR2+ModPybzsaHkz8j2R7FpW9fxQbo1l4BFNSxwusrHgBmg1DhVXwV2nK8/vZg950tjSqw3joOach
-	dyCIpnfvEfeoiIY6MC/p6gfimVXOt8B5w1x5x5MEATGQZnj5hk0+cLeFfCpM7QiQFxELbzdcdM7u+
-	6xTBpZqtlBH5RW4MhgWsJlaxoR9ZBykTY4V3NcQDJihmnj6bX7QG5JqcTPImQ6prOBqZHtSoWxqMK
-	ehOC8h65pTsUkWSefcNLhZt+RzNFozZs1a6w==;
-Date: Fri, 20 Nov 2026 10:53:14 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: ettore.chimenti@linaro.org, Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin
- Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony
- Lindgren <tony@atomide.com>, Russell King <linux@armlinux.org.uk>, Paul
- Walmsley <paul@pwsan.com>, Stephen Boyd <sboyd@kernel.org>, Brian Masney
- <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, Sandy
- Huang <hjc@rock-chips.com>, Heiko =?UTF-8?B?U3TDvGJuZXI=?=
- <heiko@sntech.de>, Andy Yan <andyshrk@163.com>, Ulf Hansson
- <ulfh@kernel.org>, linux-clk@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 5/6] [RFT] ARM: OMAP2+: Convert to
- dev_clk_get_from_provider()
-Message-ID: <20261120105314.57a13a83@kemnade.info>
-In-Reply-To: <CAMuHMdWiCODz6RC9Q9-xMM5_k3grHztiLuR+-ikOZYoBawVvZg@mail.gmail.com>
-References: <cover.1795094688.git.geert+renesas@glider.be>
-	<683b5b189409e5ee04100044fb615b01cb877f3d.1795094688.git.geert+renesas@glider.be>
-	<20261119225017.15a7b5cc@kemnade.info>
-	<CAMuHMdVbgGV_6yjOip4xT3YhBgaOveHzSRbw9e_cHen9NRZqmw@mail.gmail.com>
-	<20261120094320.442d064b@kemnade.info>
-	<CAMuHMdWiCODz6RC9Q9-xMM5_k3grHztiLuR+-ikOZYoBawVvZg@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	id 1xULK1-0000000EWzF-05Jb
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 20 Nov 2026 09:54:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795168462; x=1826704462;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2IgmBcIuK8iKdSO/EWf2izgDQSehVeqYibGtFqL+DMg=;
+  b=RMtq6NI2lzkzKRdmTuiUTeYtUziEHNT0G195yzFyPLo8l7wWKYZ2KWMq
+   QrAem8lgy0rv8Jpjba+jbkkcCBoKaMnrOOhUmjU/v1StJ6NboZmhoafd+
+   wrwkiDZ7cfD/E3pHTh4hx22ZtNWEGt/Z/Ii9o/cvwjBrBZ/aLcRsSTNGn
+   QJW/nB5+HWM4wrNc4hyOTEjvYTZSQi/tXZ/fP/E6nbv1cr7FRehHLFW0E
+   qk7WpptWLVq1F4fiwMIuZjRxhd3AhFIraSj/LoRMma129WtsFz/XUanAM
+   tM/MCcA/0CzStJyH/Sw6AQLxkNdBZU9poKhlLy/GGQSRSwTB/gwHtAbUv
+   A==;
+X-CSE-ConnectionGUID: yzZ5YUlRRlOk5YcwO4qLsw==
+X-CSE-MsgGUID: +w+sSss0QpuDGBO/leoFxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4085321"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
+   d="scan'208";a="4085321"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 01:54:20 -0800
+X-CSE-ConnectionGUID: fZlQO3tfSKq+pWuRGHALcA==
+X-CSE-MsgGUID: yBxFOHSZQdaGaldQSiVmTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
+   d="scan'208";a="10802136"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 20 Nov 2026 01:54:14 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xULJq-00000001HWp-2jPC;
+	Fri, 20 Nov 2026 09:54:10 +0000
+Date: Fri, 20 Nov 2026 17:53:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tomohiro Misono <misono.tomohiro@fujitsu.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>, Marc Zyngier <maz@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
+	Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Vladimir Murzin <vladimir.murzin@arm.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Kohei Enju <enju.kohei@fujitsu.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-perf-users@vger.kernel.org,
+	kvmarm@lists.linux.dev
+Subject: Re: [PATCH v3 4/5] irqchip/gicv3: Add workaround for FUJITSU-MONAKA
+ Erratum E#030003
+Message-ID: <202611201734.HqRvXW7Q-lkp@intel.com>
+References: <20261119-monaka-fix-for-upstream-v3-4-057df4d2ca3c@fujitsu.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119-monaka-fix-for-upstream-v3-4-057df4d2ca3c@fujitsu.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_015339_330883_EA7F929C 
-X-CRM114-Status: GOOD (  24.51  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261120_015421_153344_C968DFD2 
+X-CRM114-Status: GOOD (  11.02  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,80 +103,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 20 Nov 2026 09:49:39 +0100
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+Hi Tomohiro,
 
-> Hi Andreas,
-> 
-> On Fri, 20 Nov 2026 at 09:44, Andreas Kemnade <andreas@kemnade.info> wrote:
-> > On Fri, 20 Nov 2026 08:49:05 +0100
-> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:  
-> > > On Thu, 19 Nov 2026 at 22:50, Andreas Kemnade <andreas@kemnade.info> wrote:  
-> > > > On Thu, 19 Nov 2026 14:40:38 +0100
-> > > > Geert Uytterhoeven <geert+renesas@glider.be> wrote:
-> > > >  
-> > > > > OMAP2+ clock handling uses of_clk_get_from_provider() to obtain clocks
-> > > > > used for power management, so the latter show up as "deviceless" in the
-> > > > > consumer column of the clk_summary file in debugfs.
-> > > > >
-> > > > > Fix this by using dev_clk_get_from_provider() instead, letting us pass
-> > > > > the consumer device, too.
-> > > > >
-> > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > > ---
-> > > > > Compile-tested only.
-> > > > >
-> > > > > The first change is probably OK.  The second change may fail if anything
-> > > > > in the oh->od->pdev->dev chain is not available yet at this point.  
-> > > >
-> > > > Test on OMAP3:  
-> > >
-> > > Thanks for testing!
-> > >  
-> > > > --- clk-old     2026-11-19 22:44:59.810807920 +0100
-> > > > +++ clk-new     2026-11-19 22:26:52.862531880 +0100
-> > > > @@ -1,17 +1,17 @@
-> > > >                                   enable  prepare  protect                                duty  hardware                            connection
-> > > >     clock                          count    count    count        rate   accuracy phase  cycle    enable   consumer                         id
-> > > >  ---------------------------------------------------------------------------------------------------------------------------------------------
-> > > > - oscillator                          0       0        0        26000000    0          0     50000      Y   deviceless                      of_clk_get_from_provider
-> > > > + oscillator                          0       0        0        26000000    0          0     50000      Y   deviceless                      dev_clk_get_from_provider
-> > > >                                                                                                             deviceless                      no_connection_id  
-> 
->                                 deviceless
-> mcbsp_clks
-> > >
-> > > Hmm, so the passed device is always NULL, and thus there is no point
-> > > in making the change.
-> > > Do you know if these come from the first or second change in my patch
-> > > (I guess the second)?
-> > >  
-> > From the first change, The second piece is nowadys only used by the dm81*
-> > devices.  
-> 
-> Interesting.  So that means all/some of the existing use of
-> &od->pdev->dev in _add_clkdev() is futile, as it may be NULL?
-> 
-I was wrong, it comes from neither. So lets start ftrace via cmdline...
-ftrace=function ftrace_filter=dev_clk_get_from_provider
+kernel test robot noticed the following build warnings:
 
-Piping the result through uniq -c 
-      8           <idle>-0       [000] d....     0.000000: dev_clk_get_from_provider <-ti_dt_clocks_register
-     66           <idle>-0       [000] d....     0.000000: dev_clk_get_from_provider <-ti_clk_add_aliases
-      1           <idle>-0       [000] d....     0.004913: dev_clk_get_from_provider <-of_clk_set_defaults
-      1           <idle>-0       [000] d....     0.004974: dev_clk_get_from_provider <-of_clk_set_defaults
+[auto build test WARNING on aebb7274476403040d582c61478df8f4a7bf9cd3]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Tomohiro-Misono/arm64-cputype-Add-FUJITSU-MONAKA-definition/20261119-180433
+base:   aebb7274476403040d582c61478df8f4a7bf9cd3
+patch link:    https://lore.kernel.org/r/20261119-monaka-fix-for-upstream-v3-4-057df4d2ca3c%40fujitsu.com
+patch subject: [PATCH v3 4/5] irqchip/gicv3: Add workaround for FUJITSU-MONAKA Erratum E#030003
+config: arm-randconfig-1003-20261120 (https://download.01.org/0day-ci/archive/20261120/202611201734.HqRvXW7Q-lkp@intel.com/config)
+compiler: clang version 24.0.0git (https://github.com/llvm/llvm-project 3b14d7c370558b46e5f0c6494a05c492e59bf32c)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261120/202611201734.HqRvXW7Q-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611201734.HqRvXW7Q-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/irqchip/irq-gic-v3.c:83:32: warning: unused variable 'gic_fujitsu_030003_erratum' [-Wunused-variable]
+      83 | static DEFINE_STATIC_KEY_FALSE(gic_fujitsu_030003_erratum);
+         |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
 
-Regards,
-Andreas
+vim +/gic_fujitsu_030003_erratum +83 drivers/irqchip/irq-gic-v3.c
 
+    82	
+  > 83	static DEFINE_STATIC_KEY_FALSE(gic_fujitsu_030003_erratum);
+    84	
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
