@@ -2,92 +2,155 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42E9606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCEF606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 08:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xd/MNc6B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q8iDjp0I;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=aMCcsE8t;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=e3wMzIMI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=O29ozXrRa1nWnNxSLjjwsMRtxZK+i1ptmKe8i27enGA=; b=xd/MNc6B/t1KGSo4fWcFYnhlri
-	4+U33Ez3E8akhMfFUoEayuX4ZR6moKX5+Vt5rDyCEOkRAKMwFCAEe2LB1Huay199WjnLTnTsWbdR6
-	YNKamw8PkGbnjOqOmrnA9LAp2N1nacB37G8Z62licR/iDjvSiy3RcUkkr4iEWxTIz0L2kQH+CGVyt
-	3Ue7B52fonCpbFNRF/YNKM2PK3vsWPC3/Cb9juPHPQ6sxyA14Sd0tQVVu9mZ4mrGHTK4mG8Yq1UGY
-	PShRdl4wFmiVJh0l7SJG2mmJFBHZ33ws6E9kV4ozTbHw5PBvsSCj1C64NHtdBbSS2wDDcjrswPDyt
-	dFSWfD+Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zuSAV0ASIkI+OH27bfS7LAMz0ZPMgX2c/e9d/b6BkGI=; b=Q8iDjp0IaYNtya
+	GPZ5xS4Yg/ld2Xlqf06GMLkh5wn55sjiKJmBRf7vtIhAzZygBR7TyhpN0AI1a0thaSiYAdE1DU2XD
+	2PyGfp3DJDIffpnrF8FhFdmt2bo3hre+v8lif3IYFtL6Xs4ZAZ0Q8tTEghAyc6MWXF3hNi3NwL1lU
+	Z3JrExOLrigRWSDQtSDi8IVThSzLnenfi0aZp2pi9zgowPUT964mstYdqu7DxLSwgmHtV2ehPMCVf
+	Lcf6xtacc4DROAjgGGaN48fLJ19Csdn5zkREEvIs31fLN4xeQ11m/9qsgcMCHCx7TeLNC+HnRudR6
+	CQVcRUvQdTJhj/VDLnNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKLg-0000000EOhp-213h;
-	Fri, 20 Nov 2026 08:52:00 +0000
-Received: from mail-vs1-f43.google.com ([209.85.217.43])
+	id 1xUKP7-0000000EP1t-0g4z;
+	Fri, 20 Nov 2026 08:55:33 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUKLc-0000000EOgr-0B99
+	id 1xUKOr-0000000EP0K-1Ius
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 08:51:58 +0000
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-7d2db6408cfso427028137.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 00:51:55 -0800 (PST)
+	Fri, 20 Nov 2026 08:55:29 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AK7f48Y1742148
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 08:55:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zuSAV0ASIkI+OH27bfS7LAMz0ZPMgX2c/e9d/b6BkGI=; b=aMCcsE8tdnNgQ7jJ
+	oz6XOXh9ftErExtdKSrIyufISfvsF726z5JjuYh6aajkVn33WsfJw013/4rciw6m
+	Fr8Uby2k9cLG1dLfTLJlZdjNMy4ylwz/AGtrdiEaq0QM4oOtjvV8LMCA80ZJU63/
+	uJxkss2qsMyohpReEef8S6V5SSyyg5PjKZMB8FpV2u8ZD2/OsqoC30NO/pKgrc96
+	vy1bq6Bwz4GQUnG2dm2BTD/QamFf8iiZi2pKIHlUmNJN3fPoUivV27q8zI9to74g
+	6MlsgZuoYWJ0nDhDwhgz1rsey+SKy1v+hIASqiUp+o6XGEKmKfsRgsmIf33MUejj
+	B39t8g==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j2f4yh144-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 08:55:15 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-93f2c0e6653so130769285a.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 00:55:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795164915; x=1795769715; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=zuSAV0ASIkI+OH27bfS7LAMz0ZPMgX2c/e9d/b6BkGI=;
+        b=e3wMzIMIRWTbecZhYFRqXgvH1gz4lSZSLK/NtisDIVHcxHn6l370ZGLd8IUAA+rYIr
+         7cKcsHm9amljqmy5yzYowfmqEQ3Mp5Blgt0C8yKvKfTEByAyWQFKqf+/fuWvTq058gQl
+         3ZBQ7Kg/kJSjHjQyvVQrLgWOQcX9RIkeMWoC2SawQlaoExZmL9PS4ci4NzTx5LOL+TRb
+         sWpiQR9xT762MLRvfkNq7UvkfRh+/e5DR+zHgXSzZP32YvRS9zDGFk60l1odlbNNk7Lk
+         rPZ0N/mgX//5CR2vJ1pmYOkQwpCcgXkwTSU1MA/L/eiTlmmZagmEfB6r9+nlyA0uQwpd
+         pe8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795164715; x=1795769515;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=O29ozXrRa1nWnNxSLjjwsMRtxZK+i1ptmKe8i27enGA=;
-        b=JEIaqaC9ywpQG7hs0oqa12CefrXBJfh6Jh4GtUeZSfcUBkZ4nXXtXE9mBHln3fFEYz
-         3UEw/5T7L1E4bmZhDYKq1wjhLIAr3iSO+X1a2Ga7QPg7uFfKxmEKor1a4a18qY2VwKVO
-         myJTfsjb9b9Go1DXOyjmitXT6B47XlHZo9aEqhKmqpclT6033t6K1aa1IZdRmOX8VlVE
-         Lj0hKyS6QWBaQ9CkyBz4Z/PUPi2Ft74634aQHCa+B+4JfclRq46oK/JI9fTyv5LUvv2J
-         XnCSw5RD661KzqwEDDZoK8kpAYFXaWmZvRiKRsQLlj92S+xyiF/8Vktq4dlS44d7kwPT
-         RfNQ==
-X-Forwarded-Encrypted: i=1; AL+hErFi/66MGL9K5sycVrl6C1rTpbOZFZogQjBiuX9NgMXLLtfpZAiXudTGhe9aIVsrIurHF6HRU0H5znlLOByuCzIH@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Mv/PRwF14lcE2daU/L/A5c7eeS2ijaIo65E3wa7aVG5j1XU+N
-	+aHfR9PMzjSrJWHWQ++lZYlCECPibV4dH1Bi5W8B5T/6R9u6NSmLHc6tzfeY3d+q
-X-Gm-Gg: AZFdTZeSOPXLMfWlbsOKuGciDVIgCc+J8c3kqcQcc/TVJq3wAEWtDopNxE33EaGXDsS
-	1U6i0O0c8u7F5/KMicm+nds0d1/ywD33I67liiwhU4yX+JVKOnn8AfHeA8R3hwAu+iiCH0odejE
-	wR3t/34CDLizCS56MtoEO6wes4aNQtFao2l/qEj24KDTImk6jX/u84phVmQmlnQqdbKCDedMk4R
-	ZcVpD7P0CSh/rnkWRnw8yDIMbKSfVh+bSN4toOhUfoYdMbnJWtAmBrdjuhkI+oktNG2U32i975h
-	5APOV+ADM5hp8lG50bYyuKoY8McMGwie9QmUq2iWNcgioEySITpQrF+xKPrM4lU2gnfUk0WFfTI
-	RfmoVhShe2g9LCwAwhaSSxFzdVffi/ATkFPW0wvZIrEhszYIs/y/t8EyVnRIbfigVN22V5gRXED
-	XW/L6eCQGvBQMVMKKbtovz3i+2/JFeMXTACPAlvOGkPr/G5AHffTEX92rFYeSl01FIe18wJ0Rfe
-	Vb//3WuK6rEMa7bMy9jOfvvs9D+ZTu3Lnym4/OvW2sAt9/qhrawa17saWWwlFyEshFDrtrkX2Sq
-	zrKn+0RG5vmo0bUdxX5xixU3AjPKvV0pOhDoKS0U8ULrEJMuJynmJP+KCwnftby0KVc=
-X-Received: by 2002:a05:6102:374d:b0:7cc:971a:61ee with SMTP id ada2fe7eead31-7d7393ff678mr1062777137.10.1795164714696;
-        Fri, 20 Nov 2026 00:51:54 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99e6e0686b1sm2395731241.10.2026.11.20.00.51.54
-        for <linux-arm-kernel@lists.infradead.org>
+        d=1e100.net; s=20260707; t=1795164915; x=1795769715;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :from:references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=zuSAV0ASIkI+OH27bfS7LAMz0ZPMgX2c/e9d/b6BkGI=;
+        b=KHbJkGpbEVxbe34mqOkfwweNbWlTEwSV/Rjq+GyKVGccTOQ2kX08hC5nfaV75tPtof
+         5EEUr0SaIkr9qOXsgwqr5q1XkFmCKw9pMRmF/qoNX+ohFqkgQ+4c5ozUlm0TS+erHSaA
+         CmXPh/haNFlVCV3UlVBvr8QjnCJm+8WVPqtC4nXiGQ9bn6IAk/GIv7LWd0m7ftOQdapJ
+         7vs5b3unl5LJhQW5YJYAkg0oavq2bQmwpMuqUPzMwansI01HFW+66z0wx2ZAFXt/cJTT
+         vZ1BdfmuV1/yss705wiMIQwTrRTIttKuoJemh8ucR+XJQ7fCqvSIKpgaszFx+/BJ3iHk
+         +MQw==
+X-Forwarded-Encrypted: i=1; AL+hErFSqrh1HwUPJwAax4+nl2JwbLdpciiojxuOVkyvIJPPfTbWobZZb7owWpXYZE1uTWkOGh0/dWbooUuQn/BPEhNK@lists.infradead.org
+X-Gm-Message-State: APuU4Z9hu04xgY44V1OGhLPBNlKdh4FD9SWA3/KhSwYJYOlC50MqO6cB
+	br/u/vsdUdVc1+REf7FAsNf/XYPMmlxkLS9FYFRn5fBjzuRhocQOQ4OFrJF7VTJkJQbyrpMUhV6
+	kA7qAWEclZyQBH2Unn23vHWmxOAj+Vok8LYbMN7w1QrzHE+8x9imG4/4zAgFnVKpgMGfQEFcGIa
+	mT+IOOtlY0Cw==
+X-Gm-Gg: AYBFou26ljXIKNSc1n1z6vXovQrMjxoG/J1lxZE9VuKEWFbeZEPw3OvVjZizJxW3xVw
+	Z8eHWiRN+kyErmr7mQkyPeAn3U+YrMssy2EXdS6PIX6KETJsLVHnvZ43mi0jRLq9/zHwGlrhAQH
+	XCyA4080RjwemMyuG4TQPONpucAzTlDO7AYh9f7S7HdoDM77xx9EjIrZGevEQCkA9KwR5BAC7XD
+	Md0abgmV2NcXyx24HSNGlYGC871516uXTbtVjbTgxA0ttbJdFD7LZV8LJv3IoiiMaYdScyCYCnz
+	CmAe0+Hzjh4jR9fPmCcnWsTaTrv/57Nmcy8DcoTednlskHDViBqQuMzWWLLQrbVsyX37yNyWHlT
+	XJ/+7hnSRWH74vLcZnXk0CNodIIdN/M++yqRNFeMOKR4bEdqlNqvYc/8ui4yWiddHTqhG71Wgd2
+	c=
+X-Received: by 2002:a05:620a:c51:b0:949:7641:3872 with SMTP id af79cd13be357-949ba9b8b16mr388720985a.14.1795164915478;
+        Fri, 20 Nov 2026 00:55:15 -0800 (PST)
+X-Received: by 2002:a05:620a:c51:b0:949:7641:3872 with SMTP id af79cd13be357-949ba9b8b16mr388719085a.14.1795164915073;
+        Fri, 20 Nov 2026 00:55:15 -0800 (PST)
+Received: from [172.20.97.102] ([195.50.164.66])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6c61e53asm4620628f8f.59.2026.11.20.00.55.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Nov 2026 00:51:54 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-99e1babd683so309638241.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 00:51:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFlv+dl1vip0MADpzUGRcZzZnqrR1rNmd552rlLPyLnRifpKpS4FRWFFnCVkO9rxHL/EB6wwKksbBeCVtCn1ip7@lists.infradead.org
-X-Received: by 2002:a05:6102:1a1a:b0:7d2:b348:6355 with SMTP id
- ada2fe7eead31-7d7395e01bbmr694434137.23.1795164714287; Fri, 20 Nov 2026
- 00:51:54 -0800 (PST)
+        Fri, 20 Nov 2026 00:55:14 -0800 (PST)
+Message-ID: <b5138676-fbd0-4922-9200-2ae600613c0b@oss.qualcomm.com>
+Date: Fri, 20 Nov 2026 09:55:12 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CAMuHMdUov1u3kXzBX3ZM8rRkBdLq_M8LwQ2VtxSEOH9w68Rr2g@mail.gmail.com>
- <20261120084335.3492524-1-rabenda.cn@gmail.com>
-In-Reply-To: <20261120084335.3492524-1-rabenda.cn@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 20 Nov 2026 09:51:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUrCkbjJW3Ld1nFbfj_Dfa4YwhUoK5g7rAn89yz=bYy4g@mail.gmail.com>
-X-Gm-Features: Aa3M54r6LC9IQldUg86oiQcyOqnhN_8FdF1As7xILWU1aB_YhbizNGLY-xXfwEM
-Message-ID: <CAMuHMdUrCkbjJW3Ld1nFbfj_Dfa4YwhUoK5g7rAn89yz=bYy4g@mail.gmail.com>
-Subject: Re: [PATCH] firmware: arm_scmi: Drop the ARM architecture dependency
-To: Han Gao <rabenda.cn@gmail.com>
-Cc: gaohan@iscas.ac.cn, Sudeep Holla <sudeep.holla@kernel.org>, 
-	Cristian Marussi <cristian.marussi@arm.com>, Michal Simek <michal.simek@amd.com>, 
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: st: stm32mp2xxx: Remove undocumented,
+ unapproved eeprom0wl alias
+To: Marek Vasut <marex@nabladev.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
+        linux-kernel@vger.kernel.org
+References: <20261117133747.244933-2-krzysztof.kozlowski@oss.qualcomm.com>
+ <ac1a1214-98dd-48da-b8e1-bc8ef9f09316@nabladev.com>
+ <93acb3fb-98ae-4dba-a3de-fcf1772239eb@oss.qualcomm.com>
+ <e9bfca58-666c-45d8-bd5d-9405b068bd08@nabladev.com>
+ <8d0810f5-e90e-4a70-be9d-89215d02b74c@oss.qualcomm.com>
+ <77bbefd5-3e05-45e4-9e0a-02063ebf3e06@nabladev.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <77bbefd5-3e05-45e4-9e0a-02063ebf3e06@nabladev.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Zs54uN7G c=1 sm=1 tr=0 ts=6b000af3 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=Jk2/TV77q6/E6wQq2oQJxQ==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=bQMwIwtNPVeBncCEftwA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDAzNSBTYWx0ZWRfX9Ta074SgQTML
+ WiwaRpI6mjLCsFOwum9VzPNHcpUutcPXdXrsPjXhj+lOHp+eLxQtgAD4X7GzuzDsW8voKyyz+Qo
+ /dvO4C2czGN5M8ETrzQ82zwjIIt1yoqRuyDvih1s8J68tPsiWP9dQQV/PWiiY237mT3UnwKlvVm
+ 1j3ZZcla8f0bSmPOKhOAUp/88qKT5llAViHjEe/eSxeF8oodAXixNobzDMLBd2RJLU+++dEXNpy
+ QtKN7mKHya+Ujl8EKbpsz7nYQ80vTu5PnjpwYYKn66oUzlOVonF8lV54zlLBWOUcAku+VYDUIBH
+ kTGJVSEFdYSqAXUxc1BTwVFeT9BrCVC6izjUZblF+AHx+JyS8hAQom/zdXiETvRjgdyq0cscAxL
+ s349OiQ+WJ4EPEpL+XtPmKeDUSt3bAHHj8dRDr2jbfHmn8TVNKh/HpXYWOXlNEX1fpZZzvf2e2g
+ l58o4Lm/XN9HJ9SCsWQ==
+X-Proofpoint-GUID: xB67tq4eemCXxdJ2kGxn5i2VeAv_zbW0
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDAzNSBTYWx0ZWRfX4ERG1VmkDXYd
+ M4C1e+yQa3nQxazLiEjeTbQPAktEa/U86ZTKXiQDeAP5OV77IVnrV3lqqKyENlpDGJSCiUlN+ll
+ KvKzQMkG9fsJTxz5CT8KGGE3WS+i3Q0=
+X-Proofpoint-ORIG-GUID: xB67tq4eemCXxdJ2kGxn5i2VeAv_zbW0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-20_03,2026-11-19_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611200035
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_005157_437100_9963B572 
-X-CRM114-Status: GOOD (  32.16  )
-X-Spam-Score: -0.7 (/)
+X-CRM114-CacheID: sfid-20261120_005517_738381_7CE41B12 
+X-CRM114-Status: GOOD (  15.42  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,95 +161,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Han,
+On 20/11/2026 08:41, Marek Vasut wrote:
+>>>> As explained, U-Boot CANNOT depend on undocumented ABI. U-Boot is not a
+>>>> user as understood in Linux kernel policy "we do not break users".
+>>>> Especially that U-Boot does not even consume that DTS! We do not break
+>>>> U-Boot as long as it is about documented ABI.
+>>>>
+>>>> Here U-Boot won't be really affected, because updating DTB in the
+>>>> kernel, does not update the one in bootloader. It does not go that way.
+>>>> It could go opposite, so from bootloader -> kernel, but not the other
+>>>> way around.
+>>> U-Boot does consume Linux DTs via its CONFIG_OF_UPSTREAM .
+>>
+>> Cannot, otherwise it would have document that ABI. That is the
+>> requirement of using OF_UPSTREAM - you also use upstream ABI. You cannot
+>> use upstream DTS with downstream ABI.
+> What option do I have here that does not break existing use case ? (I 
+> can patch the U-Boot board code which depends on this, that is a non-issue)
 
-On Fri, 20 Nov 2026 at 09:43, Han Gao <rabenda.cn@gmail.com> wrote:
-> On Fri, 20 Nov 2026 09:26:47 +0100 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Fri, 6 Nov 2026 at 20:40, Han Gao via B4 Relay
-> > <devnull+gaohan.iscas.ac.cn@kernel.org> wrote:
-> > > From: Han Gao <gaohan@iscas.ac.cn>
-> > >
-> > > The SCMI core and the mailbox and shared memory transports only use
-> > > generic kernel interfaces. Transports that need architecture support,
-> > > such as SMC, already carry their own dependencies.
-> > >
-> > > Drop the ARM and ARM64 dependency so that other architectures can use
-> > > SCMI. Depend on HAS_IOMEM instead, for devm_ioremap().
-> > >
-> > > Suggested-by: Michal Simek <michal.simek@amd.com>
-> > > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
-> >
-> > Thanks for your patch, which is now commit fe87ede443a15969 ("firmware:
-> > arm: scmi: Drop the ARM architecture dependency") in scmi/for-linux-next.
-> >
-> > > ---
-> > > This was patch 1 of the Zhihe A210 SoC series [1]. As Michal asked, it
-> > > now goes on its own through the SCMI tree.
-> > >
-> > > Since [1], it depends on HAS_IOMEM: Sashiko found that UML, which has
-> > > no HAS_IOMEM, failed to link devm_ioremap().
-> > >
-> > > Build tested on x86_64 without OF, i386, loongarch64, ppc64le, riscv64
-> > > and arm64. On UML, SCMI can no longer be selected.
-> > >
-> > > [1] https://patch.msgid.link/20261103-a210-scmi-v3-0-ee6b31580808@iscas.ac.cn
-> >
-> > > --- a/drivers/firmware/arm_scmi/Kconfig
-> > > +++ b/drivers/firmware/arm_scmi/Kconfig
-> > > @@ -3,7 +3,7 @@ menu "ARM System Control and Management Interface Protocol"
-> > >
-> > >  config ARM_SCMI_PROTOCOL
-> > >         tristate "ARM System Control and Management Interface (SCMI) Message Protocol"
-> > > -       depends on ARM || ARM64 || COMPILE_TEST
-> > > +       depends on HAS_IOMEM || COMPILE_TEST
-> >
-> > Please extend the dependencies to RISCV (from the link above, I assume
-> > you are targeting riscv?) instead.  There is no point in showing this
-> > option on architectures that have no users of SCMI; one already has
-> > too many relevant symbols to configure.
-> > People who want to build test on x86_64 without OF, i386, loongarch64,
-> > ppc64le, ... can just enable COMPILE_TEST.
->
-> Following Michal's suggestion[1], I'm dropping ARM/ARM64.
->
-> [1] https://lore.kernel.org/all/3d38c4a5-1a12-4af1-ac2e-413a457ce4c5@amd.com/
+Yes, please fix U-Boot.
 
-Yes, I read that.
+> 
+> Is there a schema which lists approved aliases now ?
 
-For reference, other firmware interfaces are also not exposed to the
-whole world:
+Every device schema which requires custom aliases lists them. Another
+point is that custom aliases are not allowed.
 
-$ git grep -w ARCH_SUPPORTS_ACPI
-arch/arm64/Kconfig:     select ARCH_SUPPORTS_ACPI
-arch/loongarch/Kconfig: select ARCH_SUPPORTS_ACPI
-arch/riscv/Kconfig:     select ARCH_SUPPORTS_ACPI if 64BIT
-arch/x86/Kconfig:       select ARCH_SUPPORTS_ACPI
-drivers/acpi/Kconfig:config ARCH_SUPPORTS_ACPI
-drivers/acpi/Kconfig:   depends on ARCH_SUPPORTS_ACPI
-$ git grep -w "config EFI"
-arch/arm/Kconfig:config EFI
-arch/arm64/Kconfig:config EFI
-arch/loongarch/Kconfig:config EFI
-arch/riscv/Kconfig:config EFI
-arch/x86/Kconfig:config EFI
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
