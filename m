@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37306606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A16606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 14:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mycELBOv;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=BpKVSuP/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PvYGD5sO;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.a=rsa-sha256 header.s=korg header.b=txk2FobC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,50 +14,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lusnGRfk+umHymzkE0cY3hSploaM39BQgbgUI4luLX0=; b=mycELBOvG+AURyQfBY/9g0wAUr
-	2rFv6OIuJWoYbiH+sxkM0S0XMVLkUV1XW/ChpRRFzEZ4q6NGNbWnpxAW9nWj2hla/SBtzSjGiB2Yz
-	ahw6dp9AS0Ah+5xw4LJfa5+A6Cv9hBemQwuD1FaL67jPf0a1D8ZED77C9vaehSjJbT1Vlb/DcZNIk
-	PT4FD2OmWX9Dg9YYMRJqqF43X/uneDPKW7l7K0fIZxCOBySnpMHu3SwmjNE48hh4ULw1E4x0jca43
-	/RMCtR8AbluHsaMwfQjFDeioUYqmAZVJbbvx82ZGZidOaU+9tSzdvCe/6YgKtslsYKfjO5lyRV2+t
-	NRGVSoxA==;
+	bh=4KYuo7FdU68DsPajG3eePVYny09UrQMaX1Lx+TuzLaY=; b=PvYGD5sO2+5ZZX0whp4XVJLdum
+	f/K/DZcQ8nGynXdkF95mvwMb8DDg1imYXJIL2qALV4NLOWwOm/sQ7sxrIbML9EaCLuPMZSkCQytVa
+	y19oDL4d+c7K6soKGyWjlI1GvBSeg/VnQHsrc7bBUfcoxYg0QbzXzrjqbZYrRMitH5XPRuN8AXMn2
+	sEOlT4dr2XLffR5ZV2Eb7q+l3ie+RVOj58kzXf0PbNIKY9SuIGrg/5so1RjP3BFZqfOMz7WfTYULw
+	1ECK2nLk/phQfQ3NDJvb5erRDKCUjsLZ5tSNz7oBfE8FmpHq3DBSairSBed7Ap/NIjyLTL7oiCtcQ
+	uxJpZj1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPW8-0000000FF2w-2duw;
-	Fri, 20 Nov 2026 14:23:08 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUPWd-0000000FF79-3C5v;
+	Fri, 20 Nov 2026 14:23:39 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUPW7-0000000FF2i-08lv
+	id 1xUPWb-0000000FF6o-3Jde
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 14:23:07 +0000
+	Fri, 20 Nov 2026 14:23:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1B3E04403D;
-	Fri, 20 Nov 2026 14:23:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AFB91F000C0;
-	Fri, 20 Nov 2026 14:23:05 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1BDA161E61;
+	Fri, 20 Nov 2026 14:23:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A37D1F000D8;
+	Fri, 20 Nov 2026 14:23:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
-	s=korg; t=1795184586;
-	bh=lusnGRfk+umHymzkE0cY3hSploaM39BQgbgUI4luLX0=;
+	s=korg; t=1795184616;
+	bh=4KYuo7FdU68DsPajG3eePVYny09UrQMaX1Lx+TuzLaY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=BpKVSuP/TcUHJ2kfTbFOMqN3DShNbmQJKTfMJhvilCLmvJAExqzmDsavDi2HwQlTV
-	 zRZE8ZVK5I08Kt+GpeVAxmBeHd7beXgLwKshV2blTIcNZUzdFH+/QkknvCGutpVjfd
-	 wAZP3R/I5TnuWnq7qtqm8wtdHap/xOzOXlLU4f+4=
-Date: Fri, 20 Nov 2026 15:23:03 +0100
+	b=txk2FobCLE0AC67/e5/J/x9/WWzKuRMeZa4PN2EvMYHVv7Fwoag55XJKa/gLEXXi6
+	 UxCpDQ/lhXxJlUApt2jZMm7lIxok4FC7GS8Yk4ReGdsEFECDOYbJk5JzI3PEj/lom6
+	 OEnFcZKYctT7T66Q73nYfLaCA5C1P0m7TvMZaa6E=
+Date: Fri, 20 Nov 2026 15:23:34 +0100
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Hongyan Xu <getshell@seu.edu.cn>
-Cc: Vladimir Zapolskiy <vz@mleia.com>,
+To: Fang Xieyan <fangxy@xiaopeng.com>
+Cc: linux-usb@vger.kernel.org, Vladimir Zapolskiy <vz@mleia.com>,
 	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Aldo Ariel Panzardo <qwe.aldo@gmail.com>
-Subject: Re: [PATCH v2] usb: gadget: lpc32xx_udc: drain pullup work before
- teardown
-Message-ID: <2026112007-lumber-pounce-3ec2@gregkh>
-References: <179474326988.103840.10326852247134349070@seu.edu.cn>
+	Johan Hovold <johan@kernel.org>, Roland Stigge <stigge@antcom.de>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org, Guanglei Zhu <zhugl3@xiaopeng.com>
+Subject: Re: [PATCH] usb: gadget: lpc32xx_udc: handle interrupts with an
+ empty queue
+Message-ID: <2026112017-curfew-neuter-44d7@gregkh>
+References: <20261109121035.34561-1-fangxy@xiaopeng.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <179474326988.103840.10326852247134349070@seu.edu.cn>
+In-Reply-To: <20261109121035.34561-1-fangxy@xiaopeng.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,53 +76,75 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 15, 2026 at 07:47:49PM +0800, Hongyan Xu wrote:
-> The pullup worker accesses the transceiver I2C client and UDC
-> state. IRQs can leave it pending when remove or a late probe
-> failure releases those resources. Cancelling the final pullup
-> work would also discard the requested disconnect.
+On Mon, Nov 09, 2026 at 08:10:35PM +0800, Fang Xieyan wrote:
+> A request can be dequeued after a DMA transfer has completed and filled
+> both endpoint buffers, while the delayed endpoint or DMA interrupt is
+> still pending.  lpc32xx_ep_dequeue() removes the request from ep->queue
+> and gives it back via done() without clearing the pending endpoint or
+> DMA interrupt status.
 > 
-> After the gadget core has stopped its callbacks, explicitly free
-> and synchronize the registered UDC IRQs. Request pullup-off and
-> flush its worker while the transceiver client is still retained.
-> The worker needs no UDC IRQ to finish its I2C transaction.
+> When the interrupt handler then runs with an empty queue,
+> list_entry(ep->queue.next, ...) derives an invalid request pointer from
+> the list head; list_entry() does not return NULL.  Passing that pointer
+> to done() in udc_handle_eps(), or dereferencing req->dd_desc_ptr in
+> udc_handle_dma_ep(), results in invalid memory accesses and can crash
+> the kernel.
 > 
-> Track successful IRQ registrations during probe so late failure
-> also stops all acquired producers and drains pullup work before
-> destroying DMA resources and dropping the I2C client.
-> 
-> Found by the author's in-house static analysis tool.
+> Check whether the request queue is empty before touching the request in
+> both handlers.  In udc_handle_eps(), do this before sending the deferred
+> ZLP and disable the endpoint interrupt when there is nothing to
+> complete.  In udc_handle_dma_ep(), still disable the DMA channel and
+> clear the pending EOT/NDDRT (and SYSERR) interrupt status so the
+> interrupt does not keep firing, without dereferencing the missing
+> request.
 > 
 > Fixes: 24a28e428351 ("USB: gadget driver for LPC32xx")
 > Cc: stable@vger.kernel.org
-> Suggested-by: Aldo Ariel Panzardo <qwe.aldo@gmail.com>
-> Link: https://lore.kernel.org/all/20260928134158.117-1-getshell@seu.edu.cn/
-> Signed-off-by: Hongyan Xu <getshell@seu.edu.cn>
-> Signed-off-by: Zehao Gao <gaozehao@iie.ac.cn>
+> Reviewed-by: Guanglei Zhu <zhugl3@xiaopeng.com>
+> Signed-off-by: Fang Xieyan <fangxy@xiaopeng.com>
 > ---
-> 
-> Discovery: found by the author's in-house static analysis tool.
-> 
->  drivers/usb/gadget/udc/lpc32xx_udc.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  drivers/usb/gadget/udc/lpc32xx_udc.c | 25 ++++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/usb/gadget/udc/lpc32xx_udc.c b/drivers/usb/gadget/udc/lpc32xx_udc.c
-> index 94355d3..d627a2a 100644
+> index 044c31869cfb..67b0d6f73e43 100644
 > --- a/drivers/usb/gadget/udc/lpc32xx_udc.c
 > +++ b/drivers/usb/gadget/udc/lpc32xx_udc.c
-> @@ -2978,10 +2978,17 @@ static struct lpc32xx_usbd_cfg lpc32xx_usbddata = {
+> @@ -1945,6 +1945,13 @@ static void udc_handle_eps(struct lpc32xx_udc *udc, struct lpc32xx_ep *ep)
+>  	/* Get endpoint status */
+>  	epstatus = udc_clearep_getsts(udc, ep->hwep_num);
 >  
->  static u64 lpc32xx_usbd_dmamask = ~(u32) 0x7F;
+> +	/* If there isn't a request waiting, something went wrong */
+> +	if (list_empty(&ep->queue)) {
+> +		ep->req_pending = 0;
+> +		uda_disable_hwepint(udc, ep->hwep_num);
+> +		return;
+> +	}
+> +
+>  	/*
+>  	 * This should never happen, but protect against writing to the
+>  	 * buffer when full.
+> @@ -1958,7 +1965,6 @@ static void udc_handle_eps(struct lpc32xx_udc *udc, struct lpc32xx_ep *ep)
+>  	} else
+>  		return;
 >  
-> +static void lpc32xx_udc_free_irqs(struct lpc32xx_udc *udc, unsigned int count)
-> +{
-> +	while (count--)
-> +		devm_free_irq(udc->dev, udc->udp_irq[count], udc);
-> +}
+> -	/* If there isn't a request waiting, something went wrong */
+>  	req = list_entry(ep->queue.next, struct lpc32xx_request, queue);
+>  
+>  	done(ep, req, 0);
+> @@ -1985,6 +1991,23 @@ static void udc_handle_dma_ep(struct lpc32xx_udc *udc, struct lpc32xx_ep *ep)
+>  	ep->totalints++;
+>  #endif
+>  
+> +	if (list_empty(&ep->queue)) {
+> +		u32 mask = 1U << ep->hwep_num;
+> +
+> +		ep->req_pending = 0;
+> +		ep_err(ep, "DMA interrupt on no req!\n");
 
-This is "funny", please unwind things in a better way.  Also, have you
-ever hit this in an actual device?  If not, don't make changes like
-this.
+Why spam the kernel log for something like this?
+
+And how was this tested?
 
 thanks,
 
