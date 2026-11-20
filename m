@@ -2,181 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F7A2606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 16:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BE8606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 16:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nqNm4JYG;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ZlbugbdA;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=P3hxNdp8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hxw3mWIb;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=Xgf78nHB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=t4Dld1icNXmUDCSLkNCdijjtSGyDKFWKh8cFgLUwyhw=; b=nqNm4JYGoRLv3J
-	WehuIACOFpsb0SZEeNim1WpD3pxTMMVph1KRn9xMrjrv7bZPPtUMrfPo5IbVjXtvtZTzJEYViDnH3
-	cVhic+HIwqW5BfHEgviElAz6QXlqvR2e/czjBlC8cA1HkfH0gxJQWM5oddL4sykhbWRmkt4358f2O
-	wNMSsujqdCuI0+UFyd0PI27b1a0m13N90P8FCEB9SDOvtPF510a8wMhC92EC37VJg6tnSx3+LRBe5
-	yvuNPrxWsS0NJA/bHPvBh1DOK6vs0lNb6PoI0ZweX9hOqhN9Fk6FVcMh62iy0oYJppJlAGvVUCJ57
-	7sP+6feeMcw78thwLo7g==;
+	List-Owner; bh=McN17chfwr/LQozF6dFVi78SiwnCLQfwPyBkDcQsbSc=; b=Hxw3mWIbx/JecY
+	AJwf9RCxXJtFnQsnAII+CqpeONMtr/4reteQpInTR+FFEvc6b9Sm5ZHXBfqM8HnlQxXWED9DuNyFz
+	ZdLmmqO3naZ6n+5lJdrRcFWjM+faQ616vszGXCUxoLhHwej/e6oZIPzfPGiy9lKD5VJfSAZ/WOn4/
+	m/WQpUvax4mklojpgiijTSmKZP9sIcyq4/UpgNqMEe9PyxbXeALN5qRv1h6YZY1Pm10MO2nkps7LB
+	Z9+B1g8t8We6h5xk5cHmk8mUhviVO42JrNzlqbTPsxkgwYJO0saz6ZQa6EVTekW6Bm0cUnP/isUEF
+	mtkCWojkna+oQHQFz66A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xURKA-0000000FXWM-1RQX;
-	Fri, 20 Nov 2026 16:18:54 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xURNI-0000000FXoS-1aVv;
+	Fri, 20 Nov 2026 16:22:08 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xURK6-0000000FXVp-2Dvm
+	id 1xURND-0000000FXlu-1nAy
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 16:18:52 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AKEfgsv049068
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 16:18:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t4Dld1icNXmUDCSLkNCdijjtSGyDKFWKh8cFgLUwyhw=; b=ZlbugbdADM5bEepW
-	juQrJ1QpPboC/UD0P9/ahdjjJvL8khpdCZF1N1R8Sn3WWEHC4D7IwOGOFyd88zwm
-	cEF0r8rAssLKZBh1Y7qLrrIS21I3kWA/0nq3rzw4jjAcnwNMO9Rzjry+Y2xjlTQu
-	V6IDN6D6rMjNuYlIz3uyPmifo6egm7y681+/pg1c1PVxBeIhbyA1WJW1McOJ9b4c
-	Xbcn3nC8VN9FrsBfbdV5K2346HqyP/QLZ9LTSxUqglhCsrlI9obQvmBUiyrgSxBP
-	4tC14qkzd/sBXXFXXCDL8uiiIU67Q255lcjfWPUkLRDJHjzN5lUgyarhCSX3hvGy
-	dce/hA==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j2mm4ha1g-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 16:18:48 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3b191f8a9b3so1638105a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 08:18:47 -0800 (PST)
+	Fri, 20 Nov 2026 16:22:06 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so665374f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 08:22:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795191527; x=1795796327; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=t4Dld1icNXmUDCSLkNCdijjtSGyDKFWKh8cFgLUwyhw=;
-        b=P3hxNdp86eD7ciqkuG78hn5U6hQZrrWOl316nprXfrjG906acYiAuGfpTYENx4O5+M
-         22SUPNrKVRARzhrHk0hqrke/AIYYlOh/OpdXop9y4jz7D51Pj3IO1wvzfbo5mOGItdGt
-         6C/Dh5meTnas0M+TKg3Dg9QyInrgpc0pHfXU3/dgvSMDWJsQ1b2MmlhbaxUu5x/k3M57
-         aVnWKyeWu54F5ZQZH1xl4oJ5h//AL0Pt3pJzy1/mFD5lrG4T8RCnvK/3qM6Z9Lm3+3pY
-         lzsxB6xgbX0IPhjirR9Fkkj+lIeVT0ps4F9IvIfel5HD85SIqtWQYMl/FDuR9tGY+Uvn
-         NXeA==
+        d=baylibre.com; s=google; t=1795191721; x=1795796521; darn=lists.infradead.org;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=McN17chfwr/LQozF6dFVi78SiwnCLQfwPyBkDcQsbSc=;
+        b=Xgf78nHBDXFZd3H/Z0Xz4uITjzk2iMbQtd3vVZ5Q46VH56DQUeWn0NmJsd4KAlgQRP
+         mtX08BC8bVHsHvWf/3DOdFGbNhlqftO9ivC7nImZpIs7ZD6hr6/KfrdWA1+4KcDfT9Eo
+         PQPdDiW+vRMm1CtvM3MMLUqKEwTJEj0YLN/f5JhgixHxye0ZJBVI2diChXwmWvnKjWwT
+         mRAiqJCWCGW35Bp8xoYprFh0FrurUllxyiHJ+ZOvnZ/Q6oIt+A5Q9Tjh4pGuOM1FRerZ
+         YmW9svmQl2Rqqjlm2cnZlJbMt7DnoDJctHXUNbN7eE2BRqKAKVpaEF7jiNCYjJfQgnOK
+         8cRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795191527; x=1795796327;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=t4Dld1icNXmUDCSLkNCdijjtSGyDKFWKh8cFgLUwyhw=;
-        b=NS/Eynqjo80sf0wWgNnCkBLiTVcjDZXPtRk7ZH9l4ttFg/n24qCAH/kgG9A4769Xj3
-         JT19KW+/qKsvqnPfPEqkOwsjyiqmGJUu3P+MUyavYCrMwQz6AexRX7XIr/TpfBrG6oQK
-         tkKPVWlF2iJWNW9C7QeyR44LM8Y4jlu7Bbc2+5eNdffd01eBGf0upAeIvV/YF78EFNNo
-         kn+Ik1XzYpgORF59VNDl/i7YMlrXfMWzB9d/qAkTDE1g5T4SPXlUzgr/FrC5tDidzfsp
-         IhuQfMLr5juXJRmxzqUv6jW5hBT2vGzGqTaCV8HDew/PZXxB3sN1OL7dSBTJ6kUzwtsg
-         Uwpg==
-X-Forwarded-Encrypted: i=1; AL+hErHVlLRVe0OlTntqPGC5mUBwS02nJwcTY41X+1YXnnvyGuOzcYflwwgsZbbXaE2dLVrWT4yImrMwrd61TdDa7Amy@lists.infradead.org
-X-Gm-Message-State: APuU4Z+4ca4h8veJQtFz2HgzbF8QW8j9wRSODS/oylwP22aCxMlofgIj
-	MGBGRoXgDRON0MsNmtlNLoOtlhfNpY8n7NQwJfjKcH/ST4jJL1BtrV99R+HlVSHRidp3j71xfOl
-	Eqm08k6liU/aDAMwp86lSNg/w4AOrz3pTEcfdyi/oK8VYDgwu47EUz1LRbOkuuWWiRh1pRRj7hI
-	tm7g==
-X-Gm-Gg: AZFdTZfnHh07JELZZziwzag7AHlo+vTtiyIYeCLIuH4rnjTHxiRsIiAFeyHlas8mAtX
-	brQMztVdHvL95Y/cmL6aar7KpQxAj1f4Y83rhEYeTvvzqgRGXj//LopPOLpGySf2tPfvsrJ5ot6
-	/PP29xE1ExDV4EDbvXwm3Z40QWCA+YqdaUdsrx1FLtxuQcSwZ24JJd6ceAmhSadHN5SWknyfQG0
-	QyuDcFG/jJY/Vp+uhvqDVa1gOkXO4/c4llLDY1D32+SnrnNgPKf5zXymcnGQl2iwetO7nd4wcnl
-	XU/dVW4d0oT8tPtWI8RS72Uv38NKrFWHgESDkZPNfD91HYFi+uHy+wIfGtejsCu3vszpls8YGNN
-	UyQsA/sh7K/JBYPMTQN9ztWDPJ5Hs+6zu/5KQ8yxULYVj60EVvWEVHnUiy7SBtsL0uoEOcP/IjA
-	WDmFUTPrAd
-X-Received: by 2002:a17:90b:384d:b0:3ae:a4fe:7ad4 with SMTP id 98e67ed59e1d1-3b41c8528b4mr3720501a91.2.1795191526810;
-        Fri, 20 Nov 2026 08:18:46 -0800 (PST)
-X-Received: by 2002:a17:90b:384d:b0:3ae:a4fe:7ad4 with SMTP id 98e67ed59e1d1-3b41c8528b4mr3720458a91.2.1795191526149;
-        Fri, 20 Nov 2026 08:18:46 -0800 (PST)
-Received: from [192.168.29.31] ([49.43.232.35])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ff2561asm1701473a91.1.2026.11.20.08.18.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Nov 2026 08:18:45 -0800 (PST)
-Message-ID: <72fcd590-cdb7-4223-942d-329ecbd950e0@oss.qualcomm.com>
-Date: Fri, 20 Nov 2026 21:48:28 +0530
+        d=1e100.net; s=20260707; t=1795191721; x=1795796521;
+        h=message-id:date:references:in-reply-to:cc:to:from:subject
+         :content-transfer-encoding:content-type:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=McN17chfwr/LQozF6dFVi78SiwnCLQfwPyBkDcQsbSc=;
+        b=uXQGHuHUPS8vXSys7SLYiol242wIh7XzSqjoRl30OSu5lnUt7KmcxX/jbLP7vEmEaR
+         4ud6st3qGrOSWcUffhuh+XnJ+KSXou6QnplV+Vd4ZKRnu5W8c66C+h9+hWZ3qK6WbGL6
+         Wx4ZyzUHziuHasSUBFn6+nrac1dr0ZV1B5COJ+Mjz7iNqxgi33iZkktML3YkNF0BFsi+
+         ot2///8lcLk9RIIT15Phayl5yR4ed/WUA45o38yQTlHo8EPwF16XQLdDhW3M8+ENgpiR
+         qWt36kqmCxHMXG7YpqKqC6Om7fCeeOf/AwZekVkLStWTSjGZZywPT/a3Ib2w076WNDeh
+         762g==
+X-Forwarded-Encrypted: i=1; AL+hErE99aTsfvg5NJCk8eRGYRbJwUSYolg2qSRTsu8iKdVIiWSpN+qK/lhWSKmyoOnAMrQphnZJa8gmpBUwuVT8hR6B@lists.infradead.org
+X-Gm-Message-State: APuU4Z8P5+I/+qrJP6DYdQEhoAiripKM6H/LUlAwgxsyQ6sm0xM3T0p3
+	B9ML5Isj6WMB0t1OnOC1eX1YC/t70djzvrc5DCVhS3Vtzqv05KgpQZTLx/whIR4crt4=
+X-Gm-Gg: AYBFou3QU7doM+TPKTpdYolN+Fl4qrIpP0siN6aPE2I9sY6V1yWA3DJDD4JpzF1XbU/
+	04FxLi438kixfvrM6LTVkxyQpYr8DNWhEUVJywGYuyo8cP3HfGbU7EP2UP6l0pJPviLnspRIrzH
+	WWwGsMR4q8QRQevByvMsyf9FYeACc1yaqFjI4ZAGI2F6r2MGa4QK9m+mRCqBLOWAKnjQMfLQiNp
+	Ps3OlNH3wz7K/18rhRR0xVOw4TAAkChJLRNIuSLvHDGnEhhWOWQuCaqZul/ZUN36gi4QiiuNuLC
+	7FNCTVaDhvQPH1wKq9rLtWKNGyyZb1elN+RXUKt0Bl1CzcO6liVHXiOxYKihi9CrkBcFi6Zmnql
+	hLGrfDvupcfCxAMc0yyzE4aknhCR+56DI8n6vhiOr+gYCnQ2ZeP03byIRg2PWnucp2KbVN4W4IR
+	Z8KrhoQdIYnHF8ze9vypRjJmIfuJ7eqayDfA0NdiuPd9oBfqhT4EG4XJKFcXhUQufACMtM3czbD
+	3d9sGklXFMfP4wM56g3MDFjj2CVmc7FbweaBfyXEzjK+cSLmCKTi8LsMJv3F+zAE3pguNUIAKVY
+	cV3s0hhwWKZHWwGrnCeah6bL/Dksf3x3ONFSh6N1HIMx1WUp
+X-Received: by 2002:a05:600c:3e1a:b0:4bb:6814:7391 with SMTP id 5b1f17b1804b1-4bb8881921cmr77585875e9.25.1795191721065;
+        Fri, 20 Nov 2026 08:22:01 -0800 (PST)
+Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853ca452sm129338075e9.15.2026.11.20.08.22.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2026 08:22:00 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v27 00/10] Implement PSCI reboot mode driver for PSCI
- resets
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Ulf Hansson <ulf.hansson@oss.qualcomm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        John Stultz
- <john.stultz@linaro.org>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        Christian Loehle <christian.loehle@arm.com>,
-        Lee Jones <lee@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
-        Pavan Kondeti
- <pavan.kondeti@oss.qualcomm.com>,
-        Abel Vesa <abelvesa@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
-        Sudeep Holla
- <sudeep.holla@kernel.org>, Andy Yan <andyshrk@163.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Srinivas Kandagatla <srini@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        Song Xue <quic_songxue@quicinc.com>
-References: <20261029-arm-psci-system_reset2-vendor-reboots-v27-0-fa4b3ff1359b@oss.qualcomm.com>
- <CAPx+jO-WLCnVecquKbVaCcErbhuFt6OHFUmzbgNHjixx0r-wMw@mail.gmail.com>
- <avo8wrWBjsk0RU6s@venus>
-Content-Language: en-US
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <avo8wrWBjsk0RU6s@venus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: lsmhEI17wK3m8hx7BolDnwnoXk8u2lLn
-X-Authority-Analysis: v=2.4 cv=RZYFmFtv c=1 sm=1 tr=0 ts=6b0072e8 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=rVPHjc/N4E3dzGhKvu3xTA==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8
- a=wsFT6AapSP24iMOhd5AA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=FO4_E8m0qiDe52t0p3_H:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIwMDA2NCBTYWx0ZWRfX5TLSby4RP6vE
- cLpRQjN2wqn/SYNjxLw1lHqWHs7k0KdIpr8Md39P2Dqq64rRD9TrVYgE6Tyag4fCV7rtYOk4dCH
- hpX1GOJVEbJ56AABcUjuAmU0GhBqUdo=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIwMDA2NCBTYWx0ZWRfX7QC4oSfmEhFE
- whHhZu3rCP5gh+6UIKSGBui32A0rk+Wyzreu/wFtE6KtDW3tPC6+AKHNsbnTdg8tXVozMjsziAn
- 9ltoDbuyIxf+Rs56Mbws5BysyTolWBG5NPxRF7HgwnsfCIyOk+8bqWJxXS1Z+hG05TTRGdTqDDo
- NDqXhxHdFWgHt6uQNXVITY6IHbZkxqL+kyeYR3sPbrtoIVVsX7fMIcaAMapYpQT6xiio7KpAsgy
- JCUCQj7LNZKdJK9qN8H20IdPgE28yxwKjc0Rw5jMudkHWzgMEcHEdjsnNGu6OQmUjHJcXMk5/hl
- XW8Vl73NNSzLJX4jsqYxI1r/omE8IGpAd7WEMiJ91feSbQ19v05ht7ERUsmpBOeIWwsPjWwmsX1
- t37Rcn0gehz4oU7UTIUI+sdzNR6itHlZvrj6zllox78aW5uwNCXQWO3r0pNItqzMZbg4R8/8hM/
- UMDbBns6ui4pZSF7HSg==
-X-Proofpoint-GUID: lsmhEI17wK3m8hx7BolDnwnoXk8u2lLn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-20_05,2026-11-19_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 spamscore=0 suspectscore=0 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611200064
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v12 00/10] clk: nuvoton: ma35d1: Fix mux parenting and
+ peripheral clock rates
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Steam Lin <STLin2@winbond.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, stable@vger.kernel.org, 
+ Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <20261118-perso-ma35d1-upstream-clk-v12-0-bee2c8dad4e1@bootlin.com>
+References: <20261118-perso-ma35d1-upstream-clk-v12-0-bee2c8dad4e1@bootlin.com>
+Date: Fri, 20 Nov 2026 17:21:57 +0100
+Message-Id: <179519171774.3795820.6006858658982158181.b4-review@b4>
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1505; i=jbrunet@baylibre.com;
+ h=from:subject:message-id; bh=da1CAgmUNSJ5Vw/XW6Lz4OSgqJ+yn+Z+QoMk5bui0gM=;
+ b=owGbwMvMwCW2VtK+WnvWU3HG02pJDNkMxctdWw95f775+kf6Kd3uhXaOSe5//1wwaWVeY9QYX
+ yM9mbu/o5SFQYyLQVZMkaWGu1r8naTWl1nTdW7DzGFlAhnCwMUpABOxMGf4nyRy6+VEnRlFq7fI
+ GagKJv1//7Hkw7/YmsPPe/Y99eOVz2NkuJ8445EhV1vDy2cFLl7ntuvVZT55xxi3U6SLM/uNTEA
+ fBwA=
+X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
+ fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_081850_700241_B79EED05 
-X-CRM114-Status: GOOD (  22.36  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261120_082203_487271_B184082C 
+X-CRM114-Status: GOOD (  19.11  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -187,77 +125,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-On 11/16/2026 4:44 AM, Sebastian Reichel wrote:
-> Hi,
+> I am in possession of an MA35D1 NuMaker board. The SPI controller has
+> been contributed, but at this stage it does not work with the current
+> clock driver.
 > 
-> On Mon, Nov 09, 2026 at 04:47:29PM +0100, Ulf Hansson wrote:
->> On Thu, Oct 29, 2026 at 10:01 AM Shivendra Pratap
->> <shivendra.pratap@oss.qualcomm.com> wrote:
->>>
->>> Userspace should be able to initiate device reboots using the various
->>> PSCI SYSTEM_RESET and SYSTEM_RESET2 types defined by PSCI spec. This
->>> patch series introduces psci-reboot-mode driver that will induce
->>> command-based resets to psci driver for executing the device reset.
->>>
->>> The PSCI system reset calls takes two arguments: reset_type and cookie.
->>> It defines predefined reset types, such as warm and cold reset, and
->>> vendor-specific reset types which are SoC vendor specific. To support
->>> these requirements, the reboot-mode framework is enhanced in two key
->>> ways:
->>> 1. Support upto three 32 bit magic values as arguments. This enables to
->>> support for a 32 bit reset_type and a 64 bit cookie).
->>> 2. Predefined modes: Add support for predefined reboot modes in the
->>> framework.
->>>
->>> With these enhancements, the patch series enables:
->>>   - Arch Warm reset and system reset cold as predefined reboot modes.
->>>   - Vendor-specific resets, configurable via the SoC-specific device tree.
->>>
->>> Together, these changes allow userspace to trigger all above PSCI resets
->>> from userspace.
->>>
->>> Note on introducing psci aux devices:
->>> Based on feedback from Bart, Lee and Ufee, PSCI child functionality now
->>> uses aux devices instead of an MFD driver, with psci-cpuidle-domain and
->>> psci-reboot-mode probed through a common PSCI aux device enumerator.
->>> Reference discussions on this:
->>> https://lore.kernel.org/all/CAPx+jO9Hi2R_UnCEhsXLwf74c3RTb+RodaJ6SOVXbQX_eHt++A@mail.gmail.com/
->>>
->>> ---
->>> The patch is tested on rb3Gen2, lemans-ride, lemans-evk, monaco-ride,
->>> qcs615-ride.
->>>
->>> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
->>>
->>> Changes in v27:
->>> - Removed unnecessary headers from psci-reboot-mode - By Bart
->>> - Rebased onto current linux-next.
->>> - Link to v26: https://patch.msgid.link/20260928-arm-psci-system_reset2-vendor-reboots-v26-0-b24e2348e8e1@oss.qualcomm.com
->>
->> Overall this looks reasonable to me, but I will take a closer look in
->> the next few days.
->>
->> When it comes to the merging strategy, it seems like the best way
->> would be to funnel this via my pmdomain tree. But I need an ack from
->> the relevant maintainers to make sure there are no issues with that.
+> The clock controller registers its muxes with .fw_name parent data,
+> which requires every internal clock name to be declared in the DT. As
+> the DT does not declare them, all parent lookups fail: muxes end up
+> registered as root clocks and most peripherals read a zero rate.
 > 
-> Works for me.
+> This conversion exposed a first issue with the WDT/WWDT parents which
+> were actually missing in the clock driver. I am not using these clocks
+> myself but it is worth fixing.
 > 
+> The second round of reviews raised another problem with the
+> crystals. HXT and LXT are external crystal oscillators wired on the
+> board, while HIRC and LIRC are on-chip RC oscillators. HXT was described
+> whereas LXT was not. The series now also takes the two crystal inputs
+> from the DT: they get documented in the bindings, described in the
+> boards and looked up by the driver (with a fallback for backward
+> compatibility).
+> 
+> Finally, I was still unsatisfied by the clock tree because there were
+> too many root clocks. Many "gates" were wrongly set aside from the
+> downstream clocks they would gate, and SYSPLL was simply not parented at
+> all (?).
+> 
+> The clock tree now looks much more accurate.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Hi Lorenzo,
+Looks good overall. just 2 tiny nitpick and we are good.
 
-Can you please review?
+-- 
+Jerome
 
-thanks,
-Shivendra
 
