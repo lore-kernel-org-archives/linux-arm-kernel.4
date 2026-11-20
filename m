@@ -2,101 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3921A606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BDFA60A381B
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 10:45:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L+bI39kV;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ogLaLKEw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tjg8cpO3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JDK8l/2I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1KZ5fR1JPEf3qgwo/H2AXMnVO/Jhwx/3Aw86T6B7Guc=; b=L+bI39kVndTdTP
-	GVhQmEjqpK0kUXZyiHNoHJwmGWUCDxOlngKuMUczpG0vKraU2C3lyR4YdIxDykrkq590yG/OyD1wV
-	dahIGOtW4SBCZSYkEN0EWAZRwsLMd9dwodn1g95uHWpJCYvcjHpPJa6Pf/ZACET99ClbgTRMYhvKU
-	me0hEbvUhXklvUHbv2r9ohaFa2zsWtEWeu4DONJf9r50tWxuxNO49MHKEeVe66Gs8fqDNlu1GLxbA
-	u4kuNGSPVWFflGQrEhv+rh5tKF/U0rVjDDkOfxiOap5SplQBDEFr+lk3cGZmcSWHaI6N7Gifao7m+
-	O6LWdEDPu0gXiZFwgpIA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ULv9Bdwa1mzjUCCyb50Jfy/iR+5Oeq3ji6ZCzv6E3po=; b=tjg8cpO3R8DfRRNvMTOyyjWaFm
+	dg7XRjlyKd2nIiw31/xj4PAPJ0I/SVAruatW3ecUEwQM3jGl8PEgqRIAh9xZM0qZeRWAS60Eieuf+
+	SkN63xD+3MK9O446okCwejwKXsGGj4sQ116cnD9z8gdE4r2+Rs5bPDX7NAEc/b7Zc9qW/g5OHH3hX
+	icj4Hxcrv4gIi7uK171mm0XVdKYBLylq0v2l8ETtkHcB9WQWfKR+ZrlF/JDYHV2kALnxELaEarcqM
+	fTu+vLj6EcBDn9bfd/KqVinSZsk3HKROGJEAEJvvcgpiORhBbnWyyHon4e6RYilJSZQwrBARjNkPD
+	zbhzF61A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM6z-0000000EdMO-3BVC;
-	Fri, 20 Nov 2026 10:44:57 +0000
-Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
+	id 1xUM7l-0000000EdTz-0IOV;
+	Fri, 20 Nov 2026 10:45:45 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUM6w-0000000EdLW-3SLW
+	id 1xUM7j-0000000EdTc-2TQ5
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 10:44:56 +0000
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-2f052ae3c86so125305ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 02:44:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795171494; x=1795776294; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=1KZ5fR1JPEf3qgwo/H2AXMnVO/Jhwx/3Aw86T6B7Guc=;
-        b=ogLaLKEw4Ig73fKL6fP7eoIvmr7m0GjqgsBosC/B2Dp+24yeBGxDAX2mGMkJJHOM3s
-         9l89TuJjE7Gucs8YXvbDfAhthjfebcCaSjTwggBRoAs4edQa4uPXvG46lbr+X8/vjnX0
-         CegNKngmEp/QV5H/AvpNfK4rERnks9FIMSE/7lHS7wXXbA1rql3hLOLdPGe4bSznbf4O
-         KnLDjvWCm194XiSG2vccd38De0dVGpCDMKcTI8jWypHvnDxQoUGJRAMAK0gb7t4e1s5w
-         BYWAtEpIVxvC8VDEzqMMCfh5MjPUZaftpiVNAp+w9LhDHrKy5STDxwvm/zwpg4srNtmD
-         4CbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795171494; x=1795776294;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=1KZ5fR1JPEf3qgwo/H2AXMnVO/Jhwx/3Aw86T6B7Guc=;
-        b=uDfCNjS+XeKBR1ji9VNmpwq8SS24sAift/gpicR31Gn0v28cdlMNMODhLs0Svfq8gl
-         q0wLte1Cy9cNF829DbXU3Tu9RcvVOnaa4S7uK5jce8jtAqeCzGbtJHF43ju/qFkEr2H+
-         BkMljTtE0mFDGxoyY6+dPySeHtLkEQevJnaCgDDD//NLAIIEb9JS0guednvSVk0gG3+1
-         NVGzO9VBXBBF057T2MYtO/YT3S2GUxQa0p/gddlqHr0krU7nw71ErIFJHQhyTd4LrAnd
-         7lYVHuuQZVGhxjsGdiNeAhjjSaDILTlE6vbArv4h7t71+S8dtit9SMWecIvOLcB1ms3H
-         R5Ew==
-X-Forwarded-Encrypted: i=1; AL+hErGV7aC67V6GmbMv5D3/N63uzwWShWnY+BL6azO//jW08EKevAtmHhj5vD5fb9NJriwk8DDU/5IGZqTVGpFL+SLJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/5Hoclq8QYm0bEyihFJ3/txWR7hJMd0mKbr0Vnz/5KG4vlpuga
-	yLIelU9y5dPqAGcsID5GRpfE/wlcSbC1Uqn1OdraySuJuyAQKv/Seq6J
-X-Gm-Gg: AZFdTZfgd+1h7XA8wQHXH8Jh0t62LUKnFjTcH/UUglgGGz6XUrLCMdT/8yory4lwQ6k
-	eyPusn7YzuNbNCAiMZNeSgnkT8reunmDpEiKkJ5GBdV1C0QIK0j7yzyTH0LThHtUXaFBDzQbs91
-	7EXzNUHK8Mua7XwfHFuHHD2d9EI6rhtuHUxLFFRhprBpJmtQfEC7HoyM7Q/rTSU7BUZHzskFq/K
-	BVbuFd2eucLuEs/kl1i03056ARbxvDgR0HKVZBwAg9nVceJTohdQThNvfs4Hxyi5uCrbTPxZXBf
-	m3+w4N3k3qqhVUZVD5c6SnTCE+H6qScHoCONwdhDlk6MvHe85V7pn6LOCBcRJVESJJTEP7WrQ/C
-	WOmPfVdKf3y/phEDfkg+i+TnfXvtxWp8AoLUMFhTuqHHnpn2gcrs4jJZQf2wcTCLlUyJ0SKpOi+
-	vOucCIgBnPF4H62s6CSrWQhYB2G61y01hgbqW0VpqOokwj0H032AcKM/nSpHyOnBm1D7AZJgB/J
-	21R/+byzhBjrwstS5rZKE3mrqELLreDtOmSwbjh/YVb6lmWK3yT/rlVYAHdwy1yDLVT8ftfFMy7
-	/NggBf0bHVfuSZrksy/NVWf/981EsJFHp6EHkesV+ybCUKnl
-X-Received: by 2002:a17:902:e847:b0:2ed:3db6:2eb0 with SMTP id d9443c01a7336-2f03f1d63c6mr29795165ad.48.1795171493751;
-        Fri, 20 Nov 2026 02:44:53 -0800 (PST)
-Received: from [10.25.164.32] ([128.77.72.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f1413f3sm12068815ad.68.2026.11.20.02.44.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 02:44:53 -0800 (PST)
-Message-ID: <14142c89-9e0d-498c-b0e1-08ab6ca56e72@gmail.com>
-Date: Fri, 20 Nov 2026 18:44:47 +0800
+	Fri, 20 Nov 2026 10:45:43 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5916644669;
+	Fri, 20 Nov 2026 10:45:43 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795171542;
+	b=dKbHhZ5Y7PcP22YOo3dHPjyO6pFHhV9KNC1wTNidLmVyimy0BB99vPtJuh5tYRbPblYV
+	 o5tHyneF6qVAZ5ZbOYLNJEM42pYBxz7TuKuAkcdqMvZ//gdv4E57qOcM5VOvndyIWoTJT
+	 UGGx5aSY6SwdT5OfNj1SfGESpH7ZrCRcxCdoBdJBm3GNp6Yo+ZI4Vco2yZ6ED6W7ROHBu
+	 ji/ClNlpdC0qb7c0iOi+cSnEFHlqN8KOg16oAEkY4EckTqtLzzGFzuQHIGOusupjgM1sD
+	 UtvcDE59EgFUVbqgVr/G4TvCBEg/CQWlRTHC0x3vH3ZmkUcyE0Gw7/unJbIk919M5ig==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795171542;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=ULv9Bdwa1mzjUCCyb50Jfy/iR+5Oeq3ji6ZCzv6E3po=;
+	b=DryIxU6djca4XCGrI7Xy+YsKoXkD6Y/0bfLTQiX/cy5neAcIxswALWKpGEcTxdWmZlws
+	 5m633KuH2Od/FFbaYcHFFodaVbcZhSz+uYRfpzVyuzOXFfl7yP0jdO46ooUgD0hzWBs5q
+	 PPywdPpIHUi0zZtWXPsud5mTWojmv5XMDZI0AbkTCKytT/uK6KJIH8NnElsgdD0Zpecpk
+	 y3Aay5ijvcAYanqnqH4KqeMs4UYHJEgJR7ApqjuhFfIJBJ6u0LPgdxm9XGtIeyxcKLG8W
+	 O0Hfrj7Sdyv+aAFovvhrZLxrdsKTdEUcfv9ytI/MIrFh+p669FtQhcC/6PjuLj6NKPQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 1EBE01F000D0;
+	Fri, 20 Nov 2026 10:45:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795171542;
+	bh=ULv9Bdwa1mzjUCCyb50Jfy/iR+5Oeq3ji6ZCzv6E3po=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=JDK8l/2I1yOVrldLOFPwF0zm0NFHXwviqT9VVbtv8xT6pUCOQM3tf0EHTUbILC5Ay
+	 TPHuEtZwC5+v+P9piVpeuTQ14XjL93jWCcbZYfeMZ5/FZCHwGORiMO6aCt2RC0OK+v
+	 GG3YTXzg9flY4fw6+K1UAzD1tnUwUKUyWI4zMQCy7llGH7llcPw9/IoN1DDJA8DyMA
+	 ZpOnJ8fl6Wi8KthVL/16Q10o8aI3VDD1TORIpe3zL17ZUkX6tJTtcEvBEUkLcoBeaG
+	 rliJYC07ER58S8Fy5STyiOJhj5d1LfiL1XWscZX4tJXsHMfbXZ+175/emeaPsV+XvO
+	 miixZzsxcOMRg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9FA94497D5;
+	Fri, 20 Nov 2026 10:45:32 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Fri, 20 Nov 2026 10:45:32 +0000
+Subject: [PATCH net-next v4 1/5] net: stmmac: dwmac-sun8i: Put the EPHY
+ clock and reset after the MAC
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] arm64: dts: imx95-15x15-evk: Add DMIC codec to
- replace dummy codec for micfil
-To: shengjiu.wang@oss.nxp.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, Frank.Li@nxp.com, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, shawnguo@kernel.org,
- daniel.baluta@nxp.com, chancel.liu@nxp.com, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20261120031853.1175454-1-shengjiu.wang@oss.nxp.com>
- <20261120031853.1175454-6-shengjiu.wang@oss.nxp.com>
-Content-Language: en-US
-From: Chancel Liu <chancel.liu@gmail.com>
-In-Reply-To: <20261120031853.1175454-6-shengjiu.wang@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261120-sun8i-emac-mux-uaf-v4-1-57eba8915f25@gmail.com>
+References: <20261120-sun8i-emac-mux-uaf-v4-0-57eba8915f25@gmail.com>
+In-Reply-To: <20261120-sun8i-emac-mux-uaf-v4-0-57eba8915f25@gmail.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795171532; l=2122;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=zeDU/ie5mpEDPgDE4ZGiqAqgOX9E3SDKKC5wYWtaBU0=;
+ b=t/igZe+xTX/0i5PLRfuaa1Gv+fjIDiunNi9b8S5A+ogJpuhxE/sI+198+B+rfmqwhYg382Lpz
+ opxtf4+8pQwC1U4RUjk6F22wyRVooUvNNchEEitqd61roewZ0fdpDIE
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_024455_016904_D5FF1D36 
-X-CRM114-Status: UNSURE (   8.26  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,28 +117,82 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/2026 11:18 AM, shengjiu.wang@oss.nxp.com wrote:
-> From: Shengjiu Wang <shengjiu.wang@nxp.com>
-> 
-> The "fsl,imx-audio-card" machine driver uses a dummy codec by default
-> which does not allow configuring the channel number according to the
-> board design. Replace it with a proper "dmic-codec" node configured
-> for 2 channels to match the DMIC hardware layout on the i.MX95 15x15
-> EVK board.
-> 
-> Fixes: e3e8b199aff8 ("arm64: dts: imx95: Add imx95-15x15-evk support")
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-Reviewed-by: Chancel Liu <chancel.liu@gmail.com>
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Regards,
-Chancel Liu
+sun8i_dwmac_exit() unpowers the internal PHY through ephy_clk and
+rst_ephy, but the probe error path and sun8i_dwmac_remove() put both
+before stmmac_pltfr_remove() calls it. If mdio_mux_init() fails after
+the scan of the internal bus has powered the PHY, this is a
+use-after-free.
+
+Put them after stmmac_pltfr_remove(). The explicit unpower in remove()
+is then redundant.
+
+Suggested-by: Chen-Yu Tsai <wens@kernel.org>
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+index 2ece7ba9dd73..9fb398f7cf9e 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+@@ -1236,7 +1236,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 		ret = sun8i_dwmac_register_mdio_mux(priv);
+ 		if (ret) {
+ 			dev_err(&pdev->dev, "Failed to register mux\n");
+-			goto dwmac_mux;
++			goto dwmac_remove;
+ 		}
+ 	}
+ 
+@@ -1244,12 +1244,11 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 
+ 	return 0;
+ 
+-dwmac_mux:
+-	reset_control_put(gmac->rst_ephy);
+-	clk_put(gmac->ephy_clk);
+ dwmac_remove:
+ 	pm_runtime_put_noidle(&pdev->dev);
+ 	stmmac_pltfr_remove(pdev);
++	reset_control_put(gmac->rst_ephy);
++	clk_put(gmac->ephy_clk);
+ dwmac_syscon:
+ 	sun8i_dwmac_unset_syscon(gmac);
+ 
+@@ -1262,14 +1261,12 @@ static void sun8i_dwmac_remove(struct platform_device *pdev)
+ 	struct stmmac_priv *priv = netdev_priv(ndev);
+ 	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
+ 
+-	if (gmac->variant->soc_has_internal_phy) {
++	if (gmac->variant->soc_has_internal_phy)
+ 		mdio_mux_uninit(gmac->mux_handle);
+-		sun8i_dwmac_unpower_internal_phy(gmac);
+-		reset_control_put(gmac->rst_ephy);
+-		clk_put(gmac->ephy_clk);
+-	}
+ 
+ 	stmmac_pltfr_remove(pdev);
++	reset_control_put(gmac->rst_ephy);
++	clk_put(gmac->ephy_clk);
+ 	sun8i_dwmac_unset_syscon(gmac);
+ }
+ 
+
+-- 
+2.55.0
+
+
 
