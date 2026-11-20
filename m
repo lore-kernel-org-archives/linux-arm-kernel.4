@@ -2,106 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9C9606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074C0606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 11:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HskeXj3E;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jwMQkOIk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Rzc1I/Hl;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MkPJ+L1W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=3hjpsQQN2Wrc7/hxg/+pcCIIGQ1HkqwD7EgDr+mzxCE=; b=HskeXj3ElabJt7qnSed6E1IRuM
-	vlolWBNJ5u9LYZ6PO30NBxZf1PnG5O9SVIF640tC3zKHmeahNdeVi4bS04SRYh4Rl/3pi0NX0EISa
-	94lLTESaDiSnqIp4qD22YR63xiE8MmBz2fvfSHrgNOM77emvgA/fAQn5R8/uq/rMsdj7YmlOK2gya
-	eI7Xgkr1iZlpgVuyaXzHU7F1pTURZuXIUHmZB2z2kV29/f0RHIWhWBf85/ludwokeDY9whw/kbnWU
-	Dz1LKtO9bXdYM5seK8FByP5xupZbwG7KK7j2vzYalMNfCYkXTCiq/4zzLuqHzXQ+wCvEfS6faX8A/
-	thCem2Fw==;
+	bh=cXx0a8LeeD7MJwMvVRKUDaLbCvneP22P9q9pHTmM+cc=; b=Rzc1I/HlV+CxWP60TZYgc0hS97
+	nDcbvZBwWmHQD5OFnDG6Dd1TcFT2QMORVGUK/bfK4jfWkACzZKUl42Kd5QZFF/7hK+QCWpQJP2bDv
+	Qz+Fy4jwNKKBUa1DITlO+w5E3xBhcYRaS2IA31RL/VHmfbxxcnEdKpAygLMQJgeqPN/izZotzAJWG
+	T/+c6jQLpCD/mSXouR9D7LnfVV4ZrZTCfkVsSIVQStaSdUSPw8MEc8/QCYsmVYK/zgdu8ecgzBm7K
+	NeNMehZMtgPki6d0TBxwEAK8/NY7SCYcjJq7FyEMgS+KJJuOXwbFMXBoeoqErzr6SBWOAnIynSC9k
+	pcdKL1aA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMzJ-0000000Eq1C-2MUw;
-	Fri, 20 Nov 2026 11:41:05 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUN42-0000000ErF6-1yav;
+	Fri, 20 Nov 2026 11:45:58 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUMzD-0000000EpxS-2PTN
+	id 1xUN41-0000000ErEq-0nGi
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 11:41:00 +0000
+	Fri, 20 Nov 2026 11:45:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 241F743C82;
-	Fri, 20 Nov 2026 11:40:59 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795174858;
-	b=WorYiQJ87REYkL14Fl3qt17KynX1nER1KZ8ji2T5PD+O7++DNPDsV63AAy/9j+LO++Vj
-	 bju82Nbr6ijW4MPJO8BINLRT1/EJ52h3hcW7i/USqyAo/nvySRRAlzXJ+VLa6grfy/0qa
-	 ImUoPbKKQfpF+8p1SEHBOb0wTfZRI3LKG46pZEpJ2tiYDRVzlCa/VQmJQJDVDDN9tBWeh
-	 y713VdxUkDIZW63LSRDf5go5m5qUSJBDxUswj9ZJ8tC0bjw3I4x+xSqm48091Ta++Ycuv
-	 OOIwiVfBFIPP1o57mTZqY8Z+WvP1RNZUPxSIKjTNLvRAHFk4L032yxEIHA8ArCeAjdA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795174858;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=3hjpsQQN2Wrc7/hxg/+pcCIIGQ1HkqwD7EgDr+mzxCE=;
-	b=2KN7P8F9thsHlQJAs4STZ8S6rMrJZGv7W3KV2a8efwMKFZNiXTtfVa1VsRV4fR2exVXj
-	 j+rmzG7N40BfSSK4RNaHZWEIecPCquvx0hjAerEkDQ5XVvCe5XwnxiAc44pJ5RpwARskm
-	 uXwZzO9DO1ZvN8dFDZD95Lp2I1tYS2r4bLszHBMEy6yW0yI97XAfyrYpAVg8JzphS7knn
-	 B4pCS6U9kr0EdewQvXB5uEyzKFmdH4rQfjEKe1fCFV5QP0mytseUUl6xJklQIps350jWM
-	 07cwpnFXAis1KiklQtlbj95aWr2LPVU0zzvJcrWgBDhrTP/R5uUl22lAxwsl6YeV8mQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D48201F000C4;
-	Fri, 20 Nov 2026 11:40:46 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 9AAD562964;
+	Fri, 20 Nov 2026 11:45:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0B5A1F000C0;
+	Fri, 20 Nov 2026 11:45:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795174858;
-	bh=3hjpsQQN2Wrc7/hxg/+pcCIIGQ1HkqwD7EgDr+mzxCE=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=jwMQkOIkmAasuMd363UDUY4F9X7nqos5YKBlH/TYgAfQJmO3MLGh1HdindqM6RR85
-	 Pw3BYUy2YXptE51rS45cbBPVJNcXS0+6QoYADe/s+E4xho6t/tezcTvj1Z9/avIx2x
-	 VFZp78ciGF2tt3+cXmuIZQhewjgzY5Klj/0SkHctwk4DUtTNBnbNni1/DrbevzH6W7
-	 yFoIivAiQheDi++mSWaWUwjOsIliygfUojnK4YR9XVs8LIDrfgJdg4XIamiTOMa89M
-	 lUgAWbdgt3ecTmXhrJG/JBtpJZvOCt5XhNAJk2aJMydaWOJdEfDYQkXDRjShQ7LEpm
-	 8h+9ZEmaV6lLQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6AD4349868;
-	Fri, 20 Nov 2026 11:40:46 +0000 (UTC)
-From: Ivan Pfarher via B4 Relay <devnull+ipfarher.gmail.com@kernel.org>
-Subject: [PATCH 0/4] arm64: dts: allwinner: h5: orangepi-zero-plus2: Fix
- Bluetooth and USB gadget
-Date: Fri, 20 Nov 2026 12:40:44 +0100
-Message-Id: <20261120-orangepi-zero-plus2-fixes-v1-0-ecd792189f27@gmail.com>
+	s=k20260515; t=1795175156;
+	bh=cXx0a8LeeD7MJwMvVRKUDaLbCvneP22P9q9pHTmM+cc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=MkPJ+L1WgTP5flX1Nr9XFJoUwfmWlpy89lNoJbZ5mpEXF2XlNG+vQcMKEJEzS7lUu
+	 ZiYY4eZDfGWBBScPEop3t3gZb4219h0+lGg0rQJy6tux/+rD7SlCH+y70d3PZ326ex
+	 YpvSZY2sEO/IiFYzysdRgCeqDn+FTNe/+SyOWd/eLZWbrlkwI+axdGu08zBhcMt8nl
+	 E5+K7QnqlmVajSR2+3S5atXOJIZ/+6KGix2fb08PYp/1tJ8xvKvdMrqFgVxatnoZGN
+	 25f+jsJmtoeUCMG8TykV2LieBQAIbWWurLXH3HLbnkAx0K2Arqn0DmT3Ih03/chHQy
+	 TwUK/cisfvlug==
+Subject: Re: [PATCH net-next v4 02/10] net: phy: dp83867: add regulator supply
+ management
+From: netdev-bot+sashiko@kernel.org
+To: mohd.anwar@oss.qualcomm.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, afd@ti.com, andrew@lunn.ch, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, richardcochran@gmail.com, andersson@kernel.org,
+ konradybcio@kernel.org, alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
+ joabreu@synopsys.com, maxime.chevallier@bootlin.com,
+ mcoquelin.stm32@gmail.com, lorenzo.bianconi@oss.qualcomm.com,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Date: Fri, 20 Nov 2026 11:45:54 +0000
+Message-ID: <179517515449.3136.10802254198110142730@kernel.org>
+In-Reply-To: <20261117-shikra_ethernet-v4-2-c41902e5f2fa@oss.qualcomm.com>
+References: <20261117-shikra_ethernet-v4-2-c41902e5f2fa@oss.qualcomm.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALwxAGsC/x2LSQqAMAwAvyI5G2gDCvoV8eASNSC2JCii+Herx
- 5lhbjBWYYM6u0H5EJOwJfB5BsPSbTOjjImBHJXek8Ogn42CF2vAuO5GOMnJhhWN7KrB98VUQPq
- j8h/S3rTP8wIiTPS3awAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, Ivan Pfarher <ipfarher@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795174845; l=2806;
- i=ipfarher@gmail.com; s=20261120; h=from:subject:message-id;
- bh=8NDP5ZNmJidSCuINYDzvhJHNJXi8K2RXS0VdGYiDgfo=;
- b=fwAfu0dfR2ngc4aIhPPXVyWR5bhlGxXAzqv3mF4h8OXYi1vICRCu30qqI8QT4BDRKtmUWBF/7
- EUWKft9RMhEDuGYa0/VJ1BF2zar9tVd2HX8K/l551LcaHvOq+8GH1eu
-X-Developer-Key: i=ipfarher@gmail.com; a=ed25519;
- pk=3DMYyz/xl+KRAx2TNGJpheG+5QUm7lqHhKXFqVu2TmY=
-X-Endpoint-Received: by B4 Relay for ipfarher@gmail.com/20261120 with
- auth_id=1582
-X-Original-From: Ivan Pfarher <ipfarher@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,71 +77,182 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: ipfarher@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On the Orange Pi Zero Plus2 (H5), neither the Bluetooth part of the
-AP6212 module nor the micro USB port in peripheral mode work with the
-current device tree. This series fixes both and adds MMC aliases:
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-1. The AP6212 needs the RTC 32.768 kHz clock (osc32k-out) as LPO. It
-   is not referenced, so it gets disabled as unused, and the BT ROM
-   then answers nothing but HCI_Reset.
-2. Describe the Bluetooth controller on UART1 (BT_REG_ON on PA10), so
-   hci_bcm can power it, load its firmware and use it at 1.5 Mbaud.
-3. EHCI0/OHCI0 share USB PHY 0 with the MUSB controller. When they
-   register, the USB core switches the PHY to host mode, so the
-   peripheral-only micro USB port never enumerates as a gadget. Drop
-   them, as the port cannot supply VBUS anyway.
-4. Add MMC aliases so the microSD card and the eMMC keep fixed numbers.
+Critical: 0 · High: 0 · Medium: 1 · Low: 2
 
-About patch 3: the root cause is that phy-sun4i-usb accepts the
-host-mode request from the HCD even though the PHY's dr_mode is fixed
-to "peripheral". Changing the PHY driver would also cover other
-boards, but that is a separate discussion; this series only fixes the
-board DT. The H3 version of the board (sun8i-h3-orangepi-zero-plus2.dts)
-has the same USB and AP6212 setup and very likely the same problems,
-but it is not changed here because I could not test it.
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Testing: all four changes were tested on an Orange Pi Zero Plus2 (H5)
-running Linux 6.6.160 (Yocto scarthgap, meta-sunxi) with the same DT
-changes: Bluetooth comes up with firmware loaded and scans, the g_cdc
-gadget enumerates on a PC, and the board boots with the microSD card
-as mmcblk0 and the eMMC as mmcblk1. Against current mainline the
-series is build-tested only: dtc gives no new warnings and dt-validate
-reports nothing for the resulting DTB.
+- [Medium] The supplies are only enabled from the phy_driver probe
+  (dp83867_probe() -> dp83867_power_on(), drivers/net/phy/dp83867.c:769…
+- [Low] The commit message says "When any supply is newly enabled the
+  driver sleeps for 200 ms".
+- [Low] dp83867_power_on() turns on the DP83867 rails after phylib has
+  already released the PHY's reset GPIO.
 
-The issues were found and the patches drafted with the help of an AI
-coding assistant (Claude by Anthropic), which also ran the diagnostics
-on the board (raw HCI commands over the UART, GPIO and clock
-experiments, USB PHY state). I reviewed and tested the changes.
+--
 
-Signed-off-by: Ivan Pfarher <ipfarher@gmail.com>
+net: phy: dp83867: add regulator supply management
 
-Signed-off-by: Ivan Pfarher <ipfarher@gmail.com>
----
-Ivan Pfarher (4):
-      arm64: dts: allwinner: h5: orangepi-zero-plus2: Add LPO clock for AP6212
-      arm64: dts: allwinner: h5: orangepi-zero-plus2: Add AP6212 Bluetooth
-      arm64: dts: allwinner: h5: orangepi-zero-plus2: Fix USB peripheral mode
-      arm64: dts: allwinner: h5: orangepi-zero-plus2: Add MMC aliases
+This adds dp83867_power_on(), called at the start of dp83867_probe(). It
+enables up to four optional supplies (vdda-2p5, vdd-1p0, vdda-1p8, vddio)
+with devm_regulator_get_enable_optional(). If any supply is described, the
+driver then sleeps 200 ms for the post power-up stabilisation time given
+in datasheet section 6.6.
 
- .../allwinner/sun50i-h5-orangepi-zero-plus2.dts    | 25 +++++++++++++++-------
- 1 file changed, 17 insertions(+), 8 deletions(-)
----
-base-commit: 65e4fd942f72a9dba0e4e257290c4fa1aa756854
-change-id: 20261120-orangepi-zero-plus2-fixes-92de09c1b5f5
+> diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
+> index b4b4931c6f8ce..ed8b3089e8e0b 100644
+> --- a/drivers/net/phy/dp83867.c
+> +++ b/drivers/net/phy/dp83867.c
 
-Best regards,
+[ ... ]
+
+> @@ -730,11 +731,45 @@ static int dp83867_resume(struct phy_device *phydev)
+>  	return 0;
+>  }
+>  
+> +static int dp83867_power_on(struct phy_device *phydev)
+> +{
+> +	static const char * const supply_names[] = {
+> +		"vdda-2p5", "vdd-1p0", "vdda-1p8", "vddio",
+> +	};
+> +	struct device *dev = &phydev->mdio.dev;
+> +	bool supplies_enabled = false;
+> +	int i, ret;
+> +
+> +	if (!IS_ENABLED(CONFIG_REGULATOR))
+> +		return 0;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(supply_names); i++) {
+> +		ret = devm_regulator_get_enable_optional(dev, supply_names[i]);
+
+[Severity: Low]
+How does this interact with boards that describe both reset-gpios and
+these switched rails? By the time dp83867_probe() runs, phylib has already
+released the PHY reset line twice:
+
+phy_device_register()
+    phy_device_reset(phydev, 0);
+
+phy_probe()
+    phy_device_reset(phydev, 0);
+    ...
+    err = phydev->drv->probe(phydev);
+        dp83867_probe()
+            dp83867_power_on()
+                devm_regulator_get_enable_optional()
+
+So the reset pulse and its reset-deassert-us wait happen while the PHY is
+unpowered. The rails then come up with RESET_N already high, and the PHY
+depends on its internal power-on reset. That may well be tolerated, but
+the reset pulse described for the board has no effect.
+
+There is also the gap between phy_device_register() and the supply enable
+in probe, which can be long if the regulator provider defers. During that
+time the deasserted reset GPIO drives a high level into a chip whose VDDIO
+domain may still be off. Could that back-power the chip through its pin
+protection diodes?
+
+Would it make sense to call phy_device_reset(phydev, 1) before enabling
+the supplies and phy_device_reset(phydev, 0) after the stabilisation
+delay?
+
+> +		if (ret == -ENODEV)
+> +			continue;
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "failed to enable %s supply\n",
+> +					     supply_names[i]);
+> +		supplies_enabled = true;
+> +	}
+> +
+> +	/* Datasheet section 6.6 suggests a 200ms post power-up stabilization */
+> +	if (supplies_enabled)
+> +		fsleep(200000);
+
+[Severity: Low]
+The commit message says:
+
+    When any supply is newly enabled the driver sleeps for 200 ms before
+    returning.
+
+Is that accurate? supplies_enabled is set for every described supply where
+devm_regulator_get_enable_optional() returns 0. The regulator core returns
+0 whether or not the rail was already on, for example with
+regulator-always-on, regulator-boot-on, a rail shared with another
+consumer, or a rail left on by the bootloader.
+
+So the 200 ms sleep runs on every probe of any board that describes at
+least one supply. It also runs again on each re-probe after a later
+-EPROBE_DEFER from dp83867_of_init(), such as the nvmem cell lookup in
+dp83867_of_init_io_impedance().
+
+Should the code check regulator_is_enabled() before enabling? Or should
+the commit message say the delay applies whenever any supply is
+described?
+
+> +
+> +	return 0;
+> +}
+> +
+>  static int dp83867_probe(struct phy_device *phydev)
+>  {
+>  	struct dp83867_private *dp83867;
+>  	int ret;
+>  
+> +	ret = dp83867_power_on(phydev);
+> +	if (ret)
+> +		return ret;
+
+[Severity: Medium]
+Is this reached when the rails start out off? dp83867_probe() only runs
+after the MDIO core has created a phy_device and matched it by PHY ID.
+
+If the PHY node has no ethernet-phy-idXXXX.XXXX compatible, that ID is
+read from the PHY over MDIO before any driver code runs:
+
+of_mdiobus_register()
+  __of_mdiobus_parse_phys()
+    of_mdiobus_register_phy()
+      fwnode_mdiobus_register_phy()
+        if (is_c45 || fwnode_get_phy_id(child, &phy_id))
+            phy = get_phy_device(bus, addr, is_c45);
+          get_phy_c22_id()
+            if ((*phy_id & 0x1fffffff) == 0x1fffffff)
+                return -ENODEV;
+
+The GPIO-controlled rails can be off at scan time, either because the
+hardware defaults them off or because a non-boot-on fixed regulator has
+already driven its enable GPIO low. In that case the ID reads back as all
+ones and __of_mdiobus_parse_phys() only logs:
+
+    "MDIO device at address %d is missing.\n"
+
+No phy_device is created. dp83867_probe() and dp83867_power_on() never
+run, so the supplies are never enabled and the PHY is never detected.
+
+The companion binding patch "dt-bindings: net: ti,dp83867: add supply
+properties" allows the four supply properties on a node that only
+requires reg, and its example has no compatible. With the ID compatible,
+fwnode_mdiobus_register_phy() calls phy_device_create() and skips the
+MDIO read.
+
+Should the binding require, or at least document, the
+ethernet-phy-id2000.a231 compatible when supplies are described?
+
 -- 
-Ivan Pfarher <ipfarher@gmail.com>
-
-
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261117-shikra_ethernet-v4-0-c41902e5f2fa%40oss.qualcomm.com
 
