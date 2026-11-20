@@ -2,106 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D092606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAFF606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 06:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EHGcV5Xj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MFwaT6MO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PcmHts7O;
+	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=kbKf4zdn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=UPPB6eKs+nKRNCgR3sJ7bUEYoqJvPS4BWSVR+3TcBU0=; b=EHGcV5XjE+ZjrEeCOP1LM8ENl1
-	3/BUTTXjFh0Fg7NwBx4fsKJIK6ALeY57P3mvL9spdSUyf4ShSMTLlYWBZ0Tl1RSR49YQebmMMpGri
-	mbt/7OcEzHH8rSIV5Pm3WSfg+Q6BjxeqYVRleHIGyh3KmNJGAiwJ0qz98qeHT+FHiT1OYU4e8RMAC
-	p5WjDbvQg8J/oi/vs0epITM2MEVHOLFrrGTI91tdhVIk01LuBf6cOWsRn7PkeWttS7v5oyAxlSIJ/
-	eQ7peV6/4+2TlFbCkQtG8J/mBnT0V+wkP9RU59PKNI2m4NG9d2RE32vnG+nXXFjrsJ3dwKlmPc9h8
-	vkXWLPKQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Pr/L5UIhdSBgIIxRY4ACmBWKTwcC0Vu48k0+5gmsT6M=; b=PcmHts7OHQ3/tD
+	ZRKms4hrOKkq5VHL+TTVGqs2pT/wXOFwkTAGL/i2RSfNWDEMW2cPbvMos1v89OeR1jQIcLFtUZjT/
+	hgPaYQalrXjoek688qaQb67ho0n7gEcDd3IAJnYp1nnEQlDWs/6zlAMtOvY/aKctweCAih5H/6Uzq
+	arBYVqH1krgM9tBK4GvQr1V9gShcWBmE4cOFHJk1vGMbkcRSQA53G9NytTHeEkO9hiSQFU/gkXEF+
+	Y5p8opu6MDg6nPKU0Bot0Uzdcf2sNxMZqaGmoSSL3L2B+YpA48QBaKNLrHuLEkdZ6yj7sS+WCLgMD
+	mCfV/6zAIyzyuVj9WMMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUI8R-0000000E9aM-18Tt;
-	Fri, 20 Nov 2026 06:30:11 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUI8P-0000000E9Zy-25oj
+	id 1xUICS-0000000EA1a-3Tg1;
+	Fri, 20 Nov 2026 06:34:20 +0000
+Received: from cmccmta8.chinamobile.com ([111.22.67.151])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUICP-0000000EA0P-0C0d
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 20 Nov 2026 06:30:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 43D2045909;
-	Fri, 20 Nov 2026 06:30:09 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795156209;
-	b=CqOtxOAZ6EIYX2S3eNyL2GomDKqL2hGfW75S3RQVBxgv2CjZGekUeSr2Nvk5awzsKedc
-	 6Cg8GJL1UdrZceCuGlZI2hkm5slrOFFhqUHZQnXMvIjt4S5bG//Ss9HUonY/obPhLE/Jt
-	 yqoYquZII8XsDAuXv5d/pdp+PzdyQOGdbEKw+EOv6xtcAMxZ6Qy0Bic8JHSmTuKIZuyiZ
-	 oHtVVwbaZnT3Tb2MBRmtcSzb7M3Yyh4L/VSO2yXNhUscDJCCqqeEvUy4pMLHztgS0PsNt
-	 xTszhNKj85El/c3Zc0GnOaWdZsYw4AV/Xbz8e961X0BsdYstQArt9gKxZNP2DJNPyug==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795156209;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=UPPB6eKs+nKRNCgR3sJ7bUEYoqJvPS4BWSVR+3TcBU0=;
-	b=1MKKn/fGYRDW+sYshWehIpa5NNFLYaUsAcz5W5OgaqOXRL0shdbaMMiLTmg9cf/W2tj/
-	 ulsq0YHs3YYSF+KzpjkJvosXd/Z1LFr32pF77bE53nCZ2GYKMtgXdb6I6g+BcpZw38wX6
-	 LEBRG9Zr+oeq5WSZw99B7pKQAKJ767uXsq0H1ZvimWLE2Wk17k/EpqSVQLKQgHUcNkOSi
-	 q8STbjANzGgzmULwN+o4/NgerRcZJfU0DkcujxzGo7xoVfh26bWeoVu9iuMNZI03vB8RG
-	 8k+c3Nn97zKkqPXw1GKWakkxxhyRddTo8U3qCW62kr3W9I+Y9c4Xk6tqQiRaoMHYAcQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 64E1D1F000C4;
-	Fri, 20 Nov 2026 06:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795156209;
-	bh=UPPB6eKs+nKRNCgR3sJ7bUEYoqJvPS4BWSVR+3TcBU0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=MFwaT6MO9zFkFsn40n8X7dkl8ArNiyj93aYUuhjTnOrp3gasfJK4nf7aUDTgjxnUY
-	 XyCnvq0EJ2o+qGHx4I7iOpYvmaHIToKmBtHi0K21tusMITe1Ayv9kyr3nkXL3YiKXk
-	 Pk5T9puHifVgRLQ615VjC7w/XJoPqsMxE2Eeyrmyx8fvRyCetPKkeOoBwl5QC77wEi
-	 X3Mp52CLSYWERBl/KI/6SRgpsSWHADDhnBcF6cbYIKAIUMoO1zDvKHyBzBnzsEpgkH
-	 6R5S+6zy6BeBHC76nREpoE+LzGYEFG8remQUtai2cnxBITiRGmMjZj9h+kmRVEJj8x
-	 IBvWXYUenHd6Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E53DB49712;
-	Fri, 20 Nov 2026 06:30:07 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 20 Nov 2026 06:30:09 +0000
-Subject: [PATCH v3 2/2] arm64: dts: allwinner: orangepi-zero2/zero3: Read
- the SPI NOR over two lines
+	Fri, 20 Nov 2026 06:34:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cmss.chinamobile.com; s=default; l=0;
+	h=from:subject:message-id:to:cc:mime-version;
+	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+	b=kbKf4zdnWgA0yU/eStLMFCJJlBuQlwxbM+DAkzoM7eK0jGWCblsAY/V2Aun3U1TxASu+t2Lz9Rmoc
+	 j+ZywrVn530sZV8MV7anHRrVBT7kqCmk74hFV7qaezea/K1PnSGxJ2zFyVvwPfLt8DadI5ivLSQFyA
+	 qIym8v969OyyttP4=
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM-FLAG: 00000000
+Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
+	by rmmx-syy-dmz-app06-12006 (RichMail) with SMTP id 2ee66affe9dd8b2-f1be4;
+	Fri, 20 Nov 2026 14:34:05 +0800 (CST)
+X-RM-TRANSID: 2ee66affe9dd8b2-f1be4
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM-FLAG: 00000000
+Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.97])
+	by rmsmtp-syy-appsvr01-12001 (RichMail) with SMTP id 2ee16affe9dad6e-18c1f;
+	Fri, 20 Nov 2026 14:34:04 +0800 (CST)
+X-RM-TRANSID: 2ee16affe9dad6e-18c1f
+From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
+To: antonio.borneo@foss.st.com
+Cc: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>,
+	linusw@kernel.org,
+	krzk@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	linux-gpio@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
+Date: Fri, 20 Nov 2026 14:34:02 +0800
+Message-ID: <20261120063402.788-1-laixiangwu@cmss.chinamobile.com>
+X-Mailer: git-send-email 2.50.1.windows.1
+In-Reply-To: <2a6ea91480a6c002a7354ce1223c1d904891371f.camel@foss.st.com>
+References: <2a6ea91480a6c002a7354ce1223c1d904891371f.camel@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261120-zero2-spi-nor-dual-read-v3-2-1cbb0caaed91@gmail.com>
-References: <20261120-zero2-spi-nor-dual-read-v3-0-1cbb0caaed91@gmail.com>
-In-Reply-To: <20261120-zero2-spi-nor-dual-read-v3-0-1cbb0caaed91@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795156207; l=912;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=OFC2RTSAEIuxlffHGnd62HFfopM0iDcm7zOUqP8Ye3s=;
- b=3TPkb/mogKB7+d2lLRxELbLqFT8QmXwfBqvA+b0x7Tq0Xvg1CXRsH6XCTUCfv/kctAr8msjod
- arVGTFtCRyhDJ8AgI00m7plFRPIFm4EMDFJLA4vttS1S5lNPVENED0H
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261119_223417_661868_78102780 
+X-CRM114-Status: GOOD (  15.42  )
+X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,43 +80,46 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+Hi Antonio,
 
-WP# and HOLD# are tied to VCC on the Zero2 (schematic v1.3), so read over
-two lines. Andre Przywara pointed out that the Zero3 is the same.
+Thanks for the historical context.  For the record, this is about:
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Tested-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+  [PATCH v3] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
+  https://lore.kernel.org/r/20261116031043.502-1-laixiangwu@cmss.chinamobile.com
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-index cd1f67ad7c2b..de05cbbd2cae 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi
-@@ -110,6 +110,7 @@ spi_flash: flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <40000000>;
-+		spi-rx-bus-width = <2>;
- 	};
- };
- 
+On Thu, Nov 19, 2026 at 07:27:19PM +0100, Antonio Borneo wrote:
+> The driver's "resets" property is not currently used by any upstream DT.
+> Using it is also problematic, as asserting the reset affects all GPIOs in
+> the bank, including those already configured by the bootloader or secure
+> world. The current driver uses this only to deassert the reset during
+> probe.
 
--- 
-2.55.0
+Thanks for the background -- I had a look and could not find any in-tree
+user of the property either: the only rstc use sites in the driver are
+the of_reset_control_get_exclusive() in the probe bank loop and the
+deassert at probe time.
+
+> This patch has the "Fixes:" tag. Whatever the evolution of this thread,
+> I think this patch should be taken for backport in stable then,
+> eventually, followed by the "resets" removal.
+
+That order makes sense to me as well: fix the leak first and let it
+reach stable, with the "resets" property removal as a follow-up cleanup.
+The patch is ready as-is (v3 above); no further changes are planned from
+my side, so it can be picked up whenever convenient.
+
+Thanks to both of you for the review.
+
+Best regards,
+Xiangwu Lai
 
 
 
