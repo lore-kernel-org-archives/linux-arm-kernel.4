@@ -2,117 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8C2606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 05:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF7F0606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 05:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DngHkST9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PIMt+JOy;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iw0Bqh9w
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fAjvXaj7tYkT3DZdvrd+6EuGIWycDnvsk4IKDM7473A=; b=DngHkST9iLADO28wk2cGOBxrtD
-	quDqC+CSrLok9vO4LANhhAV6xdGOlf25GharMqo3ya6v/XtRF+GqF7G/RQu/0VXKweCpZ00dRp2Xd
-	Tmhngvc9n71w6owEppbcv9vVLqPKx4piajOiK7GqUJt3Q7oaZEe4MAi5gDbIO5XXBs76FO6Wg9eGX
-	MZlC11iZE00Twy43lYxUZGByMUUPfLplnaZQT1hRvrqbSBewilg5fM90lyTq2UA6anCvdjk/8Z7ur
-	J4zSbqpHm0m2easljtvCLwNMl6VEj0HYrCHiVmI2VQC1J7mhc+CEJAv6lORMMDCx+P8oZlUKgw1H+
-	+RoRGAEg==;
+	bh=8acJLKDDuAq49IKqU6CJftqIRFxZoq6oCQgLOqzp0Bg=; b=PIMt+JOySMoWbCQr4HIIXDsNkJ
+	+NOyk+bKqrcC0p9jJCXgeAnR1hnUgKZARSyBCfF0D/5124hxWNot4Ndrx0gzt+1sT4ZJCkeb3Vce0
+	+rCCpIYStwZiW8xd1MVsVviWjfUJEtcWOKIOq1OxcH26t2a6mn/ek3Vc6dvaS+BWghgWrX34/8hRL
+	Tqdtar0cSII8g7CUBZvt+v6ajaa0tTq4nPTTz2ozZMBUCLYz3BsdDp2CMfNbqxBxiv1VNL8AnAeeR
+	9eVKETz+1di7VevQ842Jakyui2DkzV4hP6Tv2DZogdarH1oajjZ/kb+ZAjvRi3Jo/sgZm+QlpC6vi
+	FuyFyNzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUHXR-0000000E6fi-40Om;
-	Fri, 20 Nov 2026 05:51:57 +0000
-Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1xUHYv-0000000E6qW-0XHb;
+	Fri, 20 Nov 2026 05:53:29 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUHXO-0000000E6f4-1Haa;
-	Fri, 20 Nov 2026 05:51:56 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Khc7wzseyDOiW2KiNILmcrFk6zwMoPHActL3l78z4PBZbaEWYDA5DEIjE8iiKrnoklP4wowmjoIdtfD/GOUgGXt7QiX8QK51/keKeWN9T4TfdroXcVpis7VWvtEQfaW5a4w4bMrB6ngLrqinp+7DKaFk2UOuxA1M4KRf9nhrkjIQBtWwODu5ehn9SBk1jE5SI7mCl25sGHW5CbNxqyq0j2l+B/T0hqrLaDCZg/tnhHB3FEH/5dbyvkZrFF+oriC1N2aftTj+T5KV2nrd3ysqRL0dIRiQZrW37vwY0QTSrTFMG0PA63cT5Uy5Qf0zNpaewvI+eiezmOkXXpYTVNKYvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fAjvXaj7tYkT3DZdvrd+6EuGIWycDnvsk4IKDM7473A=;
- b=gIHYFeJImT5ZQMjN6DnYn3rAkI7WMAnc7+dKG5omYGPyTEqZfdo13J0Wq89bRHJvUhF3FGr+M0kY7Kte74qMi7tw5JMSzak4qwQN9fsHj6+Km6M8CsQ44/CA7zRYRMGgPpQBDY+BUApaHAcpqcIS+mMfI8wAAoj42TpkPc02XYY7VKLF8b4XysXA/GUYq5m/yTnHSWiXaVWF18IxXOqWo1hToOqDmVh3oEw0raUecaHPgKuuCdLCsCgkvpjB4ot74mG/9SCUXJmyy4WjwFeMbLkLSl8BsOczVL0ttDeTHuq0yrkQ9k854pOKVR/n70cPzAsClc2Q1hdRqROQWfDyHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PUVP216CA0009.KORP216.PROD.OUTLOOK.COM (2603:1096:301:16f::11)
- by KUYPR06MB8843.apcprd06.prod.outlook.com (2603:1096:d10:9b::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.2; Fri, 20 Nov
- 2026 05:51:43 +0000
-Received: from OSA0EPF000000CD.apcprd02.prod.outlook.com
- (2603:1096:301:16f:cafe::9a) by PUVP216CA0009.outlook.office365.com
- (2603:1096:301:16f::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.12 via Frontend Transport; Fri,
- 20 Nov 2026 05:51:42 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000CD.mail.protection.outlook.com (10.167.240.59) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Fri, 20 Nov 2026 05:51:42 +0000
-Received: from gary-System-Product-Name (unknown [172.16.66.27])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id B5E77427EFCF;
-	Fri, 20 Nov 2026 13:51:40 +0800 (CST)
-Date: Fri, 20 Nov 2026 13:51:39 +0800
-From: Gary Yang <Gary.Yang@cixtech.com>
-To: Luo Liu <Luo.Liu@cixtech.com>
-Cc: "vkoul@kernel.org" <vkoul@kernel.org>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"mani@kernel.org" <mani@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Fugang Duan <fugang.duan@cixtech.com>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Wuyi Shen <wuyi.shen@cixtech.com>,
-	Eastlake Yang <Eastlake.Yang@cixtech.com>
-Subject: Re: [PATCH v5 3/3] arm64: dts: cix: Add Sky1 DP PHY node
-Message-ID: <av_f6zeEHFUR5yCX@gary-System-Product-Name>
-References: <20261116073800.2396894-1-Luo.Liu@cixtech.com>
- <20261116073800.2396894-4-Luo.Liu@cixtech.com>
+	id 1xUHYt-0000000E6qE-43Bq;
+	Fri, 20 Nov 2026 05:53:28 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1A44A60D4C;
+	Fri, 20 Nov 2026 05:53:27 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795154006;
+	b=GGMHMyavf4fMZPselc4WIMbgQHp6NAY6UGC+wEo3CpN+ZrePegbuQE5fYfHpausDum5E
+	 EmUaZ76NWwaj7N28SWnIB0dAvky8OnJLOmvEUrN4mcdi8Rwp2MayqQLD+A1ugo7lZc0fR
+	 YG3MTCBk6zbPJm20BlOwHtHrMoFOVckR5RWozvdeRIW1zegKa9d0eVhtGC6Fm6qezVUrQ
+	 DTHgAi9wI9OyJ0DNMjWgZJEFpANH8guEXIg80OHhi3cY/Vn9y9k3dM8uQgLWA5PioDI1h
+	 OGqpx0rHtXeuQLsr2HLNZVR46UPW/tQrwqIrZ2dbtyPuahB3yJyW0UdvcMEP7z4i/cQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795154006;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=8acJLKDDuAq49IKqU6CJftqIRFxZoq6oCQgLOqzp0Bg=;
+	b=vlXBCw5qXAsAmYP7N59br6of32YNVRu0tdAmtXyqr6Yo+CLAGYg9lTEdGfe0AGtPaoUj
+	 1EMsLYubS411468xlfi24vbFyEdfzI2TFA2QDllp85WXLI30vbAFnV5oUi/lbl3zzgWcd
+	 UFUPKL2wRci0P1R3x5XbN46b+I5rN5g89Y1EUZYoIZB/MbSIRRa0WAcAqL2zC3eBklb7Z
+	 eHW/jHSJ9dSaI6eJ6KIppzLGFnm48U6VFVmy63Zc9JtLB8p1EQceQgHiQS5GUez8Eg/g6
+	 top6ra0ex7lVIEhNmI7fWuzrSXyrIUIN0QNu6ywKkR1t2/4OPJcQ6yNup5NqZM/u/Og==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5852F1F000C4;
+	Fri, 20 Nov 2026 05:53:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795154006;
+	bh=8acJLKDDuAq49IKqU6CJftqIRFxZoq6oCQgLOqzp0Bg=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=iw0Bqh9wb8tTOidAb/HlGTBIGtJX44CNzW5JojcVGgFeKn7k5Q+6rY0J89QcWrlYV
+	 1w0b5p9MRswDBhqP4wGFUTwU5LOTtz0QMPpIHo/ou5k4hOKLnfYGNOpgOVj7PtxGJB
+	 QAjo5dZv+yjwJekN6U1Ea0RygS+SfxU6kPNik+7Xh//McOmWnJQZZgCSKwf15Jar7r
+	 HyZiD7p/2lNBK0bOmRGZpPN/qEyWrhytwzCIDdnFpbpPkt0f/7UH4ep6QT7naNoJ3Q
+	 fXaKfcr2W0bw3FRX/RcmyTt3RO6qHv7XOp2MBXuoJjBTdsDsp90eMYez0eWarWCeOr
+	 z6MFRRce4qMKg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id D93A0496E5;
+	Fri, 20 Nov 2026 05:53:25 +0000 (UTC)
+From: Rong Chen via B4 Relay <devnull+rong.chen.amlogic.com@kernel.org>
+Date: Fri, 20 Nov 2026 13:53:23 +0800
+Subject: [PATCH] mmc: meson-gx: Add reset for Response Mode Error Mask
+ (RMEM)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261116073800.2396894-4-Luo.Liu@cixtech.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000CD:EE_|KUYPR06MB8843:EE_
-X-MS-Office365-Filtering-Correlation-Id: 909f2d60-033b-4d58-010e-08df46ca5aaa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|36860700016|376014|7416014|23010399003|1800799024|22082099003|18002099003|4143699003|10067099003|56012099006|261102123227099003|261021121427099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: 28Lcx1TwKZDA/Co74XZTUVIK1AuuKkUYcCZXDzcj8AcwZbpbb05zWdkpjIp0iDeIpcrAFzYQcpv40ikegH6Jdy3NqRLGqsPL5LeWeGDazS6X29REmAlvfEjNdty1PXyUDChSopNekwFhzsiFUzrfIYS9r1l7mPop6qHYlyrYKtvF//rBff7KDvArFGLqdZatsId7ni0UgV0Yl4BIPxjl+GWSOAxz8jzjnmmxYZ2Ee6YGSKcPrJ3o+D94ENDyD2W5hcCnleLIAZ3Z0vrmH3h6WMSMeiHqeKiZzg2GQgylJNK0+Uw32NWOIVpFyC9PIMyDvshg70P1LbA5A/GgWIH/LO+gMiRN8q98aE8wMpcvTPwDV+gkoSatqbilCh/4QaAq9+QecuSZMTbopdYqkm/PuAN5wRxnQw1wWaCighUABHrILnjO5BOFpVb3w1beFKlUoSwb5tAKMgMsXRBvrC/Ox08GuWrofuj70WZTiSA923asDsBZ75Yz2GdthcS2IsppLpE3biYTt0yflG+Z+PvX1+WOWKyk+PUqXpeprWa6y80gX3aW62lCi++BiKACPWfsR7KJ/9/D32YloTFpyZCqi9Y0fn3BIKhyIkmgootmnJ0OPkzhZsyGFlN522PF1lJUAphSovbCbUBziZZvg5y6SQhIUlVSIbqftkNXwurfDbgMiaxwCTqMSVsW90StqQkf
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(7416014)(23010399003)(1800799024)(22082099003)(18002099003)(4143699003)(10067099003)(56012099006)(261102123227099003)(261021121427099003)(261009223027099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: ZIF0gDqliKv+NwTtpIkQWNY1ltRcN5NyN7vOG81VxdWEep8Poz8rchuP290hiVXmOXIOVTvoBZ2A8v31qSmjRUQdNWr63YyfyB0oF1y2f4UfZk8DZlZpfkK+qNnT544hkwNUMJjP5iN0+OKCaHEdPzrYVaQhAJvb7RAedtbHg06uvp1y0Nkre2sp7pD9XYTopOdUjWTbgwwBlUXuwZY51rAhBpaCQNDJTgX3U3OkK/oA6ZsEps7jvCcZIzJWBozwBAQT5tzJFkrhZb9ZgYp6H2/rxPTv4t//2WeWCb1CKdQGsk0b81uOUct4jtzxVOW5J5/TJJ2da8UhnQAI7x795MDlUfCxwkn5LUzoCtMANakN+b0ci5DbqAC9fOsJaVTeH0IKFsSBN0MZE1CrEx0xbgQyepsSNdsqaISVlut7Podqv5dlOh14F8jlYRZUAlgo
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 05:51:42.5725
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 909f2d60-033b-4d58-010e-08df46ca5aaa
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000CD.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUYPR06MB8843
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261119_215154_351295_109D9D6D 
-X-CRM114-Status: GOOD (  12.94  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261120-a4_mmc-v1-1-5a84cbcdcace@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAFLg/2oC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQyMD3UST+NzcZN2UFJMkyyRjs+QkAwMloOKCotS0zAqwQdGxtbUAKoW
+ 1klgAAAA=
+X-Change-ID: 20261120-a4_mmc-dd4b9b36cb00
+To: Ulf Hansson <ulfh@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Rong Chen <rong.chen@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795154005; l=1328;
+ i=rong.chen@amlogic.com; s=20261116; h=from:subject:message-id;
+ bh=ldcBzSWY8qmDPf31J18ds1oMT+JS17QVuWgrGqm9XrQ=;
+ b=vUz2tYdPH+vzuS5s+wTBf+hkZRqWYYUyOdbqg+YHDpmn5FeQ9cDaWszezykoMJ1UlbazSXAHf
+ h8TBoKOe9beBd9UcK2PbvOvH2MvbmouhGCLdFdEwtpaXhSYmstq5V9C
+X-Developer-Key: i=rong.chen@amlogic.com; a=ed25519;
+ pk=vFtPE1jHKfpAuk10u/dq9u25ZzVsUM3t2Sew8vz0YWc=
+X-Endpoint-Received: by B4 Relay for rong.chen@amlogic.com/20261116 with
+ auth_id=1539
+X-Original-From: Rong Chen <rong.chen@amlogic.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,73 +112,61 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: rong.chen@amlogic.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-16 15:38, Luo Liu wrote:
+From: Rong Chen <rong.chen@amlogic.com>
 
-> Describe the Sky1 DP PHY in the SoC DTSI, including the DPC2 APB
-> clock shared with the DisplayPort controller, so DisplayPort can
-> consume it once the controller is enabled. Enable the PHY on the
-> Radxa Orion O6 board.
-> 
-> Signed-off-by: Luo Liu <Luo.Liu@cixtech.com>
-> ---
-> Changes in v5:
-> - No changes.
+For T7 and older SoC families, the RMEM has no effect. Starting from
+the SoC family A4, RMEM acts as an interrupt mask for the device status
+field received in R1/R1b responses.
 
-Applied, thanks!
+By setting RMEM to zero, the device status is ignored, thereby
+preventing controller hangs caused by spurious IRQs under specific
+device states.
 
-Best Regards
-Gary
+Signed-off-by: Rong Chen <rong.chen@amlogic.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> 
->  arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  4 ++++
->  arch/arm64/boot/dts/cix/sky1.dtsi         | 10 ++++++++++
->  2 files changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> index e39c87774c12..b659c10f1f4d 100644
-> --- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> +++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> @@ -36,6 +36,10 @@ linux,cma {
->  
->  };
->  
-> +&dp_phy {
-> +	status = "okay";
-> +};
-> +
->  &fch_gpio0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-> index 0a820f45feb9..cbc14ac5b2b7 100644
-> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
-> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-> @@ -762,6 +762,16 @@ ppi_partition1: interrupt-partition-1 {
->  			};
->  		};
->  
-> +		dp_phy: phy@1414c000 {
-> +			compatible = "cix,sky1-dp-phy";
-> +			reg = <0x0 0x1414c000 0x0 0x4000>;
-> +			clocks = <&scmi_clk CLK_TREE_DPC2_APBCLK>;
-> +			clock-names = "apb";
-> +			resets = <&s5_syscon SKY1_DP_PHY_RST_N>;
-> +			#phy-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		s5_syscon: syscon@16000000 {
->  			compatible = "cix,sky1-s5-system-control", "syscon";
->  			reg = <0x0 0x16000000 0x0 0x1000>;
-> -- 
-> 2.25.1
-> 
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 49df33bbd8e5..9d9b00b199b6 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -113,6 +113,7 @@
+ #define SD_EMMC_CMD_RSP1 0x60
+ #define SD_EMMC_CMD_RSP2 0x64
+ #define SD_EMMC_CMD_RSP3 0x68
++#define SD_EMMC_CMD_RMEM 0x150
+ 
+ #define SD_EMMC_RXD 0x94
+ #define SD_EMMC_TXD 0x94
+@@ -1086,6 +1087,9 @@ static void meson_mmc_cfg_init(struct meson_host *host)
+ 	cfg |= CFG_ERR_ABORT;
+ 
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
++
++	/* ignore status in response */
++	writel(0x0, host->regs + SD_EMMC_CMD_RMEM);
+ }
+ 
+ static int meson_mmc_card_busy(struct mmc_host *mmc)
+
+---
+base-commit: d2616724e01132376c78872b8324f38659af9f28
+change-id: 20261120-a4_mmc-dd4b9b36cb00
+
+Best regards,
+-- 
+Rong Chen <rong.chen@amlogic.com>
+
+
 
