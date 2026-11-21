@@ -2,148 +2,168 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98BE0606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 17:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C2B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 17:28:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qv54OrHK;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Zv+8ZyQw;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=bXSVtXkw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z6T5L5i4;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=P1oeZPA0;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Bff3mSI7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7DZBRLWlHkGi1KtcDmZ8eA1GEo6FxePP36SW0/HcqeM=; b=qv54OrHKny0pQ4Y/0ayt8C5Au+
-	WNZkqE50bT0NtpT2DJbhGMDL+E8G0Nk+JIIFTvLxzSSo0OrtaBkVwyXBZLACS+8/nwWMhEsMHmplU
-	uf4yag02hDJFMFtD1jrG7vQetsehgHUyRfbKr3oR+vKx+g5dYzOw2zycK6qHelyhRCi7naD7ZzAk2
-	tqEjja7JCyeTjRhVXf5340csFd4JZVpxUb1x1DphVXk8m98GyNkaXVxhmlJWIa6dvztVYnW/ZFg4m
-	2xBkLHA0P4r4qXSCmyTFB5N0M+jM4cCD7Lo52JAPY32c6/z8ZrKwQpr46H4SdYZWu7GQugXlCtwPr
-	lJzm8FZQ==;
+	bh=Atpvx34I5zy3w193SbuJM2Y7axw8mjZO4wtWdl2Uqks=; b=z6T5L5i4KhaZM3TNQOaEkGhQL0
+	9wTua4UPTIRwySXlWcLvEsRZ0+iaI43ECJLMGr//L3FgLDy4IZZ2t2uJtvBRFrjlwBXxCWiLF8JOq
+	iBSsW6LrcHYxTK1/pKGNlQ9Go4I6/uzAGVtfS5+DXEjIAVQwvaW+GzYyvojS0V5dRJ9JtEWzK4ptG
+	+e38NcrI2/V5svofA9+vxQQcEmZ//9hOyibj3+MdNOD+ZMPfvBGed0XcNFB8CnLdpDOZ3mN6I0Wrq
+	W3RpBMRzOAy6mOEtK/1eY2xJ+SdIuLM+/fiUd+QCMYUN8Kd5AlJQM6BDKwi+Tp6WfMnSFbAysFOJE
+	TQWXCzWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUon0-0000000HZcm-20Gk;
-	Sat, 21 Nov 2026 17:22:14 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xUotC-0000000HaCS-13gw;
+	Sat, 21 Nov 2026 17:28:38 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUomy-0000000HZc7-1RHi
+	id 1xUot9-0000000HaBh-0yn3
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 17:22:13 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ALFbkX8004269
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 17:22:12 GMT
+	Sat, 21 Nov 2026 17:28:36 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ALFaBZG1592514
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 17:28:34 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=7DZBRLWlHkGi1KtcDmZ8eA1G
-	Eo6FxePP36SW0/HcqeM=; b=Zv+8ZyQwXnyBNHKk9ZkZ+jvL2VUqrl2r9QqAEyQ1
-	EtyCrOluPVy+iEAE88b6aE2HgL7qcAtisNlkQz0mWPjGrFI4bb2rb9ZGfMUfWPFK
-	3lRvX9GvxtoDUrl2CLom0RkOX98k9MwLUDobUC1aqtiv1bs0367TQf9wZh6M5CJq
-	0fA2n/GHyQWtstPayvi7QIfHRe26F0fnapuExyZqea72JVALg1KUVC7SVpbmmdAU
-	G5W+PNvbzwDY6gCLLHMbCBX4fMMsTqMqcgOUQhbee/b+QfJcgdMV2lg/D1EGyiYp
-	Of2QxtIrIeGm4I1G80VBj7vZdRLJXHc5LNJaay3rZlMItQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j34ka1fjb-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Atpvx34I5zy3w193SbuJM2
+	Y7axw8mjZO4wtWdl2Uqks=; b=P1oeZPA0xKGWSh3+uHGn4Fy9q4Wn5Vl6U/BKvx
+	WiMjtEhZf2Jfllpsv2pepuNGRkejYJc9OxyprRFsDnWKtxZdVAmRUP9nZg4RckCg
+	0XvEvfAt2BjOZ2F2TpwsN3cW9betl2pMQGtyS2MI4vl/5anEwp64wUzvVbjvCZD+
+	bjFJWWnNmW3a/O1eXS3XEj4vSIswk3dCcTXZI9ptzONtnQ5eugd4NjwweIZEndtz
+	DmZtpmkul6SUOAg28rYJHhYk5PliKndZ/syF6YooWH3vzLAyxINPPiNaNA5uN/aO
+	KUlMT0ljMmvaROUSndP7B9DxRY6JcT8jXdg/CcQKblXIjcBw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j32a6hrur-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 17:22:11 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-9210bbc04abso39990756d6.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 09:22:11 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 17:28:33 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-9493e89d4f9so293585585a.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 09:28:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795281731; x=1795886531; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=7DZBRLWlHkGi1KtcDmZ8eA1GEo6FxePP36SW0/HcqeM=;
-        b=bXSVtXkwQMpvkgxwMSUppHISGgM+LAsA1km/prt/Wl6QZVgjeqG+GbmUmYUJKisSQ5
-         Zc+UoAaIa2W0+jB74BG0dBaYnSztdDAOXMhXoWRNwR318RZmoQUMkOKYFUzzB6huu/Dg
-         s9zfq1iND4fxPWiFHbAr/5v7uxTn2wuzrUxM/8SvOZdgXiLvnQptVoBgWKSakO2oGbiO
-         PM0jYFW8TsgKmGS+b2HKPhZrzPgDsTM6SDmctDjZhSsdwYVH33icLggH2npISX8GRUgk
-         Rn6OLAtVSTdu4Dm5PjD48BmQMX8fa4BvRiQkEmQNr9rzP0AEKDIVST1wNtsL5tf2nbBB
-         3VzQ==
+        d=oss.qualcomm.com; s=google; t=1795282113; x=1795886913; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=Atpvx34I5zy3w193SbuJM2Y7axw8mjZO4wtWdl2Uqks=;
+        b=Bff3mSI75/3VllaB60BYT5/Q9Mc8u9ob0Bk1bGsW9R8jlHov4I4clahIcvytQ9hDhn
+         tUwXBI+yLcj4mGzGkwWvw8+Yh/WcxKJhHeIBZZQNvTuua5hCwuGPbzfqpsdwEdsZ+kXM
+         gDnXAyM9lz7EW1TPmhFUpSgRYZxZTb/T1HvhmO/LtzkCiG8efFgHFpDLwL/ELK/HGdX5
+         dwGgF9CREqSJdLFesuHKdVC9rVU/zKSBzCTB1Zrc3g/Em0VLZQZFXJr3HcbzybxsAt4S
+         hdemasYY9aFRXa45fr9u0g9L+vsOwe/qoJ5A+ccVLc9k99/DSRDLnWurtbqG1w3JztGa
+         oLQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795281731; x=1795886531;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=7DZBRLWlHkGi1KtcDmZ8eA1GEo6FxePP36SW0/HcqeM=;
-        b=dmzNLzYj5GjrHrHQwqWk/UG6xXjMYD7VZNIsf8c28RMZMw08t7ZgoWJW08xctQ4NSp
-         Gb9AA6bO8XBL9GYy7MCujavKu6C+jC+ikFYBylnp7VpYKK//ToEyhgHYZSsMNkaUHDWo
-         E0ySX7K+HNTWSL1sq5tF+msjH3nYtWnhnYiElQv25UJEhEHC3uvIPH3mGEbTBdjmzg7C
-         qEpCvko94CJ7DvihmIdUpqGZUChPA+TgB8v0xVARz5hSDc1MuEIC6lbJFw2JBRPrcJ+b
-         TpVJLveX/h+nUU3hEzxZLA8eCAshkC1CEWH++o7OFl06s+24/qchEx9Ca1opz3Wb/Tg9
-         nTag==
-X-Forwarded-Encrypted: i=1; AL+hErFWRQdKOG/uKcsFPOPmEM4VGVUln56tI+hb9XYcWLqRHx8XyniypvHKy7E+jCa8Fe2R3gbhHoVnIjfVah1g7v4D@lists.infradead.org
-X-Gm-Message-State: APuU4Z/nGc3GWKI+nV4ct6k/b1jAn3AcipNA39CaTGZBLLUkWtOK/Nmc
-	eqwyZw6aar/RvrBhmdScE33WnOKxbbDVZBDYPu0xyCmAgQNaiIjxpA4/Y1bnw0U8GpgVvT3SSWq
-	8pmWaEZIqa+7nMJjk/9nYP8xhO0un6uAxRQde+K1cKjUfmtdn/3Hzv09NMSn9Ol/Vcrz/a7379/
-	vztg==
-X-Gm-Gg: AZFdTZcy9Ig8FzdXjNkb18XpUi+6KBZOWxV4Ol3UsP2bEgatTnql1UyfFYBNj4NAh+w
-	oMm/kAe0KvhILvlwMalROqccTT88Og33zruLWh9y0W7CdGsIQR7BbPQTVOC68AjJKaSx5wjlMqF
-	5EkYlzk6zjV7fIwxy+aYyudQeu/bgG/dhBm3cx42d3x5+2KBOpIxQ1cUhPnNMnqG0kLEQGooyq5
-	ibMyOcnmE0cWZsjpuRUP1u23LsINJX7wFJoZupq6rSub2sObHHj7IdInML5q2rE31f177MPkSUW
-	C5fF2DSwlUFy5rdfJIz0bK6x7ajm3QYnj5KuY/QP24eW3eIqv3cfL8RZKjGF/8PrraYG+wtOxoP
-	eqme446VvfzX4bgAEBly0YDiHwEleC5h6DlXDDUyqUnUFNF553SDBmv6RzaEX58VOtA==
-X-Received: by 2002:a05:620a:c42:b0:949:5c62:e77e with SMTP id af79cd13be357-949ba9c6de4mr1120069885a.14.1795281730575;
-        Sat, 21 Nov 2026 09:22:10 -0800 (PST)
-X-Received: by 2002:a05:620a:c42:b0:949:5c62:e77e with SMTP id af79cd13be357-949ba9c6de4mr1120063385a.14.1795281729968;
-        Sat, 21 Nov 2026 09:22:09 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795282113; x=1795886913;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Atpvx34I5zy3w193SbuJM2Y7axw8mjZO4wtWdl2Uqks=;
+        b=S48WUe1y5M/fP+gx44Y6apUNERxn669Rtcbpr1WZzb5SsPktiLHdkghf8nUVeO01hC
+         bJYdi76YlPxxP5c1zUxY7wL7TK4xJAojKreecJJesJ+3bd+/mWvLJzQA0O7RYCCx1KZ9
+         ojJOkkq8oEmgsCONVh9/9+DxhxuNfnVNDkRVCryawWecOm+moPhb4Mt74ELFkm3sDG2p
+         zECSUhfARRvXAcgw/q9VjDj3MWEo+O0VaWp7S2TH9p0EZz/eA3aLgjK3FP3tV2zQ47JR
+         ydi08x414SkDAdwdP51z26e1o6xtMZzbnmI7DUw+jX93pxoZ+tJvo2nAnfhD58NiSV/f
+         9WwQ==
+X-Forwarded-Encrypted: i=1; AL+hErEkC8ffwrPqn3CuQSG0lhY4LF0pkdFGV8kuhNy1TOE3vi5FJOWay6oje/8C8AEcAZrzfufi6IXcVB1bZi9sduaL@lists.infradead.org
+X-Gm-Message-State: APuU4Z954dCO84fCtOw90YYsuzKJqtjg92UunbRyzs/xD+uzLEi8nTCs
+	rZzwMs+g1ajP62+Pf+3C6aqerQ29BqL9VOlupNSi4aHfScdCX4sWydAKxPugxOuZsQzsDcdP+5v
+	3/MLxexsBbznqdXsCAHKHNmJpjtmYlsSKducGXPIBUDTcMxtRvFG1oxLjub3JAX7oiGQKWomyRC
+	ZN4g==
+X-Gm-Gg: AZFdTZf5OQ2NwWMQhnuPZtFIu9QnpvVRvaIhQ9yjZEub3JikTdKeo0M9+5RA+q35Yge
+	YV2PYp0CwSJIugkNAc4hl0RISaJTy2hGFGIFL3aHqISwmZXmrh3M55TIiVFfxo+ueROotCZaFbf
+	XKJ9bFR6fQe/K3AL6pKMJz3IZJzMSTWVTWFilPoNPqLcTIY/eb0HqDqfifmPEfLSCxHa2l/AZFO
+	xYRzKZHIqqat2reZlUp4y7x0S1rSL7GMoeaCYscrCFz/akQSYaVpECzrhN45evtihEDs1COu/w6
+	xM+c1P8PfwG4NZc+M/UOFItpHDXRHAmH74D0lKrAISj7ickbd8Fqh7Sk5M+aiZnRmtac9dawixf
+	UwtvAhxME/RNxBL81KJoukt+0oMYk4KWI+VkIhHwviKk9y4cSwUWFDystT62Whbs=
+X-Received: by 2002:a05:620a:458a:b0:949:5872:be1b with SMTP id af79cd13be357-949ba9fcc8fmr1063864085a.39.1795282113040;
+        Sat, 21 Nov 2026 09:28:33 -0800 (PST)
+X-Received: by 2002:a05:620a:458a:b0:949:5872:be1b with SMTP id af79cd13be357-949ba9fcc8fmr1063859885a.39.1795282112503;
+        Sat, 21 Nov 2026 09:28:32 -0800 (PST)
 Received: from localhost ([188.152.73.83])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906e4ce6sm62652025e9.4.2026.11.21.09.22.08
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb9067846esm70964255e9.4.2026.11.21.09.28.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2026 09:22:08 -0800 (PST)
-Date: Sat, 21 Nov 2026 18:22:08 +0100
+        Sat, 21 Nov 2026 09:28:31 -0800 (PST)
 From: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-To: netdev-bot+sashiko@kernel.org
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
-        edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        ast@kernel.org, daniel@iogearbox.net, hawk@kernel.org,
-        john.fastabend@gmail.com, sdf@fomichev.me, olteanv@gmail.com,
-        0x1207@gmail.com, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
-Subject: Re: [PATCH net] net: stmmac: fix num tx queues in
- stmmac_xdp_get_tx_queue()
-Message-ID: <awHTP0Guug63sEdg@lore-qca>
-References: <20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c@oss.qualcomm.com>
- <179515767503.3136.16869341951535795256@kernel.org>
+Subject: [PATCH net-next v12 0/4] net: stmmac: introduce XDP rx multi-buff
+ support
+Date: Sat, 21 Nov 2026 18:28:11 +0100
+Message-Id: <20261121-stmmac-rx-mb-v12-0-3ae2f3bce174@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CU6NLkee2yyowqkr"
-Content-Disposition: inline
-In-Reply-To: <179515767503.3136.16869341951535795256@kernel.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIxMDA2OSBTYWx0ZWRfX+OHzWEZe6xRM
- kUlEpfx0hhhy/MeWjyK9nrwpXwADy49aVaV1+i7Jwf4uYePLqn8bl2f3FO9BflLqzxLGGvttRVK
- dsDLcQyc7yOO4uLel060iXE4rzKsa7ReLFnSbKjjoWGlzWqy5vtkQU+V7VC+SHcduHcbZDRejhO
- 7Fl5bTSSzaKWPuwo7Muddcme7XfaX2gDqduY9oxJ9qVB0O7ecRJudX1Cyhk3h7MH5u7h0uL1Btn
- fNUoIRq7fmFGCqVt8jSWdFNRy9+tB7MV7TgOnnVD2BTQYqe6rd6rbtb3tPb+G0PSW9yzp423nmQ
- kyJ3WM4o+7DTm6BVTGvtnYMuOCma25aRzUUFfEJ7gVeNQBroWSNYWC8HqIyTwFP1A6Yfob0O2RX
- 02YuRqWscabHI8mHaeVSK2bloxrSuQrcthcae4eOUfNae35OHP4rl5I1nEGb+lSK6s1TOFcvOIH
- 1FFmbbtme+2C6HPDTuA==
-X-Authority-Analysis: v=2.4 cv=RJEmjIi+ c=1 sm=1 tr=0 ts=6b01d343 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=mlS0om9xteqVCAF/aDpb2g==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=9R54UkLUAAAA:8
- a=EUspDBNiAAAA:8 a=gltBSb88Ej8EbuF-gDgA:9 a=QEXdDO2ut3YA:10
- a=JK20aHAAM9sfSQbfRP8A:9 a=pJ04lnu7RYOZP9TFuWaZ:22 a=YTcpBFlVQWkNscrzJ_Dz:22
-X-Proofpoint-GUID: yGbgtYw2CP9ZkWOurQRHmmOXB6HJGi3B
-X-Proofpoint-ORIG-GUID: yGbgtYw2CP9ZkWOurQRHmmOXB6HJGi3B
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIxMDA2OSBTYWx0ZWRfX70AhV/Dy5Bxb
- aOBPurPElsHDEGihsFDPVyU7DcLCMu5P6/66bfmrG9yLDDqTIWjqi+CkRH1TtEa8eqwmr+7XtBz
- bjvxfMFU2xeBEmKSYs9IJJGPCIs65Mg=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XSS27DIBAG4KtEXpdoZnh31XtUXWAMjaXabm3XS
+ hXl7iVetIiEDRKM+IB/uDRLmPuwNM+HSzOHrV/6aUwTpKdD409ufA+s79JCQ0AKLBq2rMPgPJv
+ PbGgZKqGsI40iuCZt+ZxD7M+799qMYWVjOK/NW6qc+mWd5p/9oA33+mNyQ4YMWiFRdwKEiy/Ts
+ hy/vt2Hn4bhmIbd2ygzCAuDkqGCIRUwRg6qYvA/AwFEYXAGTEJ0qNFFG3zFELmhCkMkI0QnvLN
+ aBN5VDJkbtjBkMjw3SQnOITcVQ2UGUmGoZBCRBJkClx4rhs6NMg99y6OjTkMESb72FpMbZW/Nz
+ YjSeGhJGmErhv038C5Tm3rrwVpviSsl2oqBkCF3gSCkm3S8A9Eq6VVb6y5iruhSST+V2eik5yJ
+ EEvKBcr1efwFY0nK/ZgMAAA==
+X-Change-ID: 20260918-stmmac-rx-mb-16469a2714ea
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Jesper Dangaard Brouer <hawk@kernel.org>,
+        John Fastabend <john.fastabend@gmail.com>,
+        Stanislav Fomichev <sdf@fomichev.me>,
+        Jose Abreu <Jose.Abreu@synopsys.com>,
+        Ong Boon Leong <boon.leong.ong@intel.com>,
+        Simon Horman <horms@kernel.org>, Andrii Nakryiko <andrii@kernel.org>,
+        Eduard Zingerman <eddyz87@gmail.com>,
+        Kumar Kartikeya Dwivedi <memxor@gmail.com>,
+        Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
+        Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
+        Emil Tsalapatis <emil@etsalapatis.com>,
+        Ihor Solodrai <ihor.solodrai@linux.dev>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bpf@vger.kernel.org,
+        Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+        Nicolai Buchwitz <nb@tipi-net.de>
+X-Mailer: b4 0.14.3
+X-Proofpoint-GUID: Metn2KqYAtpWWdsUucyqB68Ud3Na9bXN
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIxMDA2OSBTYWx0ZWRfX8lkQlOdw9Os2
+ 6P2anWP8KOEJdthIWggs6rZ1vBkKG7UYjoezh9w+934cwaRxOL8RuG3sGf36cCoRmWK92ZmM9ur
+ UaVt23ilwQFsgvSKPGeg3YFBqhuBMpA=
+X-Proofpoint-ORIG-GUID: Metn2KqYAtpWWdsUucyqB68Ud3Na9bXN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIxMDA2OSBTYWx0ZWRfX+aYYCh1KZw84
+ zlWqt7Y+YueLtxndTFc53QihV0MObpaRsHgffaGPE9DwlqD4877JdPnMY+AeY9epgYDf940VbuQ
+ RcQJHue1Nh/xjRtPvXMpSmYbQMed5Bg/v1MiP7uwVG5EH/znNLU4UU+0+Foy/jRaxCD6ld3cqy4
+ /+yioAGYxduSFGutozJlG6ncTqGOmIEfHOhlfvHjY3322xcA4j8jZc0jxpXf3edf0oNhiZoSF8H
+ OE4xDR5iwfgmvLAvEZS6MVwfH5tjy+pYrQI6T1DZ+nOFkCBlzzExjAS+2Vg7jCMWjy7wGgGZuYB
+ AKGadTdCzrSpOlicBczZUslD9vN1271u7YTMCwvsbWT2GJrenK81t2ly5J4Y+UNQtoE4rtWMxeq
+ OBtuqvYHmT+8BxFxt18rNZoSHlsOsr0rROOheVx2vdfrJogKdS9q7+cGNiM9bqW5RnosAWm9AGD
+ +fX4DvldXzumNFK5CGw==
+X-Authority-Analysis: v=2.4 cv=UbHE26SN c=1 sm=1 tr=0 ts=6b01d4c1 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=mlS0om9xteqVCAF/aDpb2g==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=UDig4O-PjbkV-u4TaL0A:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-21_04,2026-11-19_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 impostorscore=0 spamscore=0 suspectscore=0
- phishscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611210069
+ suspectscore=0 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611210069
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_092212_394890_6D7466E9 
-X-CRM114-Status: GOOD (  51.81  )
+X-CRM114-CacheID: sfid-20261121_092835_397074_23D9232F 
+X-CRM114-Status: GOOD (  17.97  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -155,250 +175,107 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---CU6NLkee2yyowqkr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Rework stmmac_rx() to build the xdp_buff from all the descriptors that make
+up a frame, so the XDP program runs on the whole (possibly fragmented)
+packet instead of the first buffer only. Fix possible rx_q state leaks
+when closing/opening the interface.
 
-> Thank you for your contribution! Sashiko AI review found 5 potential
-> issue(s) to consider.
->=20
-> Critical: 0 =C2=B7 High: 0 =C2=B7 Medium: 1 =C2=B7 Low: 4
->=20
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwork
-> know by including "pw-bot: cr" as a separate line at the end of your reply
-> (one such reply per series is enough).
->=20
-> - [Medium] The commit message says a TX queue passed to
->   netdev_get_tx_queue() must be below dev->real_num_tx_queues while=E2=80=
-=A6
-> - [Low] The commit message's reason for the change is technically wrong.
-> - [Low] stmmac_xdp_get_tx_queue() now bounds the queue index by
->   priv->xmit_qdisc.num_tx_queues and assumes it equals=E2=80=A6
-> - [Low] stmmac_xdp_get_tx_queue() (stmmac_main.c:5411) reads
->   priv->xmit_qdisc.num_tx_queues with a plain load from NAPI softirq and=
-=E2=80=A6
-> - [Low] For XDP_TX, the TX queue is computed twice per RX NAPI poll: -
->   stmmac_xdp_xmit_back() (stmmac_main.c:5436) calls=E2=80=A6
+---
+Changes in v12:
+- Rebase on top of net-next main branch.
+- Link to v11: https://lore.kernel.org/r/20261117-stmmac-rx-mb-v11-0-9fa5c34ef245@oss.qualcomm.com
 
-I will take care of them in v2.
+Changes in v11:
+- Fix kernel-doc for __xdp_build_skb_from_buff().
+- Add sanity checks for xdp_buff_shrink_tail().
+- Link to v10: https://lore.kernel.org/r/20261112-stmmac-rx-mb-v10-0-d3d04b65c6bc@oss.qualcomm.com
 
-Regards,
-Lorenzo
+Changes in v10:
+- Introduce __xdp_return_buff(), xdp_buff_shrink_tail() and
+  __xdp_build_skb_from_buff() helpers.
+- Link to v9: https://lore.kernel.org/r/20261106-stmmac-rx-mb-v9-1-c099c923664b@oss.qualcomm.com
 
->=20
-> --
->=20
-> net: stmmac: fix num tx queues in stmmac_xdp_get_tx_queue()
->=20
-> This commit makes stmmac_xdp_get_tx_queue() wrap the CPU index by
-> priv->xmit_qdisc.num_tx_queues instead of plat->tx_queues_to_use. The goal
-> is to keep XDP TX inside the real TX queue set when mqprio offload has
-> reduced real_num_tx_queues.
->=20
-> > The TX queue returned by stmmac_xdp_get_tx_queue() is passed to
-> > netdev_get_tx_queue(), so it must be lower than dev->real_num_tx_queues.
->=20
-> [Severity: Low]
-> Is this reasoning accurate? netdev_get_tx_queue() only requires the index
-> to be below num_tx_queues, not real_num_tx_queues:
->=20
-> include/linux/netdevice.h:netdev_get_tx_queue() {
-> 	DEBUG_NET_WARN_ON_ONCE(index >=3D dev->num_tx_queues);
-> 	return &dev->_tx[index];
-> }
->=20
-> The old index always had a DMA ring behind it as well, because
-> tc_setup_dwmac510_mqprio() caps the mqprio queue range at
-> tx_queues_to_use:
->=20
-> 	if (qopt->offset[i] + qopt->count[i] >
-> 	    priv->plat->tx_queues_to_use) {
->=20
-> As far as I can tell, what users see with the old code is XDP frames
-> bypassing the mqprio/FPE TC-to-queue mapping. In channel mode they can la=
-nd
-> on unmapped queues, which tc_mqprio_config_queue_prio() sets to prio 0
-> under strict priority.
->=20
-> Could the commit message describe that impact instead, so stable
-> backporters can judge it?
->=20
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/driver=
-s/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > index 25894771e9e9f..cf87afd273439 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > @@ -5408,13 +5408,14 @@ static int stmmac_xdp_xmit_xdpf(struct stmmac_p=
-riv *priv, int queue,
-> >  static int stmmac_xdp_get_tx_queue(struct stmmac_priv *priv,
-> >  				   int cpu)
-> >  {
-> > +	unsigned int num_tx_queues =3D priv->xmit_qdisc.num_tx_queues;
->=20
-> [Severity: Low]
-> Can this value get out of sync with dev->real_num_tx_queues while the tc
-> mqprio configuration is being changed?
->=20
-> In tc_setup_dwmac510_mqprio(), real_num_tx_queues is lowered (with
-> synchronize_net()) before the shadow copy is updated:
->=20
-> 	err =3D netif_set_real_num_tx_queues(ndev, num_tx_queues);
-> 	...
-> 		tc_mqprio_config_queue_prio(priv, qopt);
->=20
-> 	priv->xmit_qdisc.num_tx_queues =3D num_tx_queues;
->=20
-> No grace period follows the store. XDP_TX in NAPI and stmmac_xdp_xmit()
-> can therefore still pick a queue that was just removed from the real set,
-> and call netdev_get_tx_queue()/__netif_tx_lock() on it.
->=20
-> stmmac_reset_tc_mqprio() does the updates in the opposite order, and it
-> ignores the return value of the grow:
->=20
-> 	priv->xmit_qdisc.num_tx_queues =3D priv->plat->tx_queues_to_use;
-> 	priv->xmit_qdisc.enabled =3D false;
->=20
-> 	netdev_reset_tc(ndev);
-> 	netif_set_real_num_tx_queues(ndev, priv->plat->tx_queues_to_use);
->=20
-> If netif_set_real_num_tx_queues() fails here, the shadow stays above
-> real_num_tx_queues until the next stmmac_hw_setup(). That is the mismatch
-> this patch is trying to avoid.
->=20
-> Would it be simpler to read READ_ONCE(priv->dev->real_num_tx_queues)
-> directly, since that follows the core's publish-then-synchronize_net()
-> ordering?
->=20
-> [Severity: Low]
-> This is a plain load from NAPI softirq and ndo_xdp_xmit context.
-> tc_setup_dwmac510_mqprio() and stmmac_reset_tc_mqprio() write the field
-> with plain stores under RTNL while the device is up. Will KCSAN report
-> this as a data race?
->=20
-> This path already uses READ_ONCE() for other values that can be tuned at
-> runtime, for example in stmmac_xdp_xmit_xdpf():
->=20
-> 	tx_coal =3D READ_ONCE(priv->tx_coal_frames[queue]);
->=20
-> Without an annotation, the compiler may re-load the field inside the loop
-> below. Suppose a re-load during stmmac_reset_tc_mqprio() returns a larger
-> value than the one used in the loop test. Then index goes negative, and
-> the mixed int/unsigned comparison treats it as a very large value.
->=20
-> I have no evidence that any compiler actually does this here. Would it
-> still be worth adding READ_ONCE() here and WRITE_ONCE() at both writers?
->=20
-> Before this patch the divisor was plat->tx_queues_to_use. That value only
-> changes in stmmac_reinit_queues(), while the device is released and NAPI
-> is deleted.
->=20
-> >  	int index =3D cpu;
-> > =20
-> >  	if (unlikely(index < 0))
-> >  		index =3D 0;
-> > =20
-> > -	while (index >=3D priv->plat->tx_queues_to_use)
-> > -		index -=3D priv->plat->tx_queues_to_use;
-> > +	while (index >=3D num_tx_queues)
-> > +		index -=3D num_tx_queues;
-> > =20
-> >  	return index;
-> >  }
->=20
-> [Severity: Low]
-> The divisor can now change at runtime. Can the two calls to this helper
-> in one RX NAPI poll then return different queues for XDP_TX?
->=20
-> stmmac_xdp_xmit_back() picks the queue for each frame, posts descriptors
-> and flushes the tail pointer. It does not arm the coalescing timer:
->=20
-> 	queue =3D stmmac_xdp_get_tx_queue(priv, cpu);
-> 	nq =3D netdev_get_tx_queue(priv->dev, queue);
-> 	...
-> 		stmmac_flush_tx_descriptors(priv, queue);
->=20
-> stmmac_finalize_xdp_rx() then computes the queue again at the end of
-> stmmac_rx()/stmmac_rx_zc(), and arms the timer on that result:
->=20
-> 	queue =3D stmmac_xdp_get_tx_queue(priv, cpu);
->=20
-> 	if (xdp_status & STMMAC_XDP_TX)
-> 		stmmac_tx_timer_arm(priv, queue);
->=20
-> If tc_setup_dwmac510_mqprio() changes xmit_qdisc.num_tx_queues between the
-> two calls, the frames sit on ring A while the timer is armed on ring B.
->=20
-> stmmac_xdp_xmit_xdpf() only sets IC periodically:
->=20
-> 	if (tx_coal && (tx_q->tx_count_frames % tx_coal) < num_frames) {
->=20
-> So up to tx_coal - 1 descriptors on ring A may get neither a completion
-> interrupt nor a timer to schedule stmmac_tx_clean().
->=20
-> After a shrink, ring A can be outside the new real set and may not be used
-> again. In that case the page_pool pages and DMA buffers stay held until
-> ifdown, or until the queue is used again.
->=20
-> stmmac_xdp_xmit() arms the timer on the same queue it flushes, so only
-> the split XDP_TX path appears to be affected.
->=20
-> [Severity: Medium]
-> The commit message says the TX queue must be lower than
-> real_num_tx_queues. Does the AF_XDP zero-copy TX path still violate that?
->=20
-> stmmac_tx_clean() calls stmmac_xdp_xmit_zc() for any queue whose
-> tx_q->xsk_pool is set, and stmmac_xdp_xmit_zc() uses the queue id
-> directly:
->=20
-> 	struct netdev_queue *nq =3D netdev_get_tx_queue(priv->dev, queue);
-> 	struct stmmac_tx_queue *tx_q =3D &priv->dma_conf.tx_queue[queue];
->=20
-> The queue id is only checked against plat->tx_queues_to_use, in both
-> stmmac_xdp_enable_pool() and stmmac_xsk_wakeup():
->=20
-> 	if (queue >=3D priv->plat->rx_queues_to_use ||
-> 	    queue >=3D priv->plat->tx_queues_to_use)
-> 		return -EINVAL;
->=20
-> The core's xsk_reg_pool_at_qid() accepts any queue_id below
-> max(real_num_rx_queues, real_num_tx_queues). stmmac_hw_setup() keeps
-> real_num_rx_queues at rx_queues_to_use.
->=20
-> For example, take tx =3D rx =3D 4 and mqprio with 2 TCs on queues 0 and 1.
-> real_num_tx_queues is then 2. An AF_XDP zero-copy socket bound to queue 3
-> still transmits on TX queue 3, outside the mqprio TC set.
->=20
-> tc_setup_dwmac510_mqprio() does not check af_xdp_zc_qps either, so
-> shrinking the queue set after the bind gives the same result.
->=20
-> Should stmmac_xdp_enable_pool(), stmmac_xsk_wakeup() and the mqprio setup
-> also check against xmit_qdisc.num_tx_queues?
->=20
-> --=20
-> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
-set/20261117-stmmac-fix-xdp_get_tx_queue-v1-1-4cd74ee7a76c%40oss.qualcomm.c=
-om
+Changes in v9:
+- Rebase on top of net-next main branch.
+- Link to v8: https://lore.kernel.org/r/20261018-stmmac-rx-mb-v8-0-5f58c0b25849@oss.qualcomm.com
 
---CU6NLkee2yyowqkr
-Content-Type: application/pgp-signature; name=signature.asc
+Changes in v8:
+- Add patch 'net: stmmac: fix VLAN tag stripping on non-linear RX
+  frames' to fix sw rx vlan parsing.
+- Rebase on top of net-next main branch.
+- Link to v7: https://lore.kernel.org/r/20261014-stmmac-rx-mb-v7-0-5d2d70f052cd@oss.qualcomm.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v7:
+- Take into account the case where buf2_len is not 0 for the single
+  descriptor case if the interface is running in xdp mode.
+- Report rx_not_ls bit if the packet is splitted over multiple
+  descriptors for dwmac100 and dwmac1000 cores.
+- Link to v6: https://lore.kernel.org/r/20261012-stmmac-rx-mb-v6-0-2225050915c1@oss.qualcomm.com
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCawHTQAAKCRA6cBh0uS2t
-rBNaAQCPlYqlb94GFsQf69dhz86QUg4S4DutkXf0pQWz191uzwEAt7ZM2NzgGmyh
-tgeB7XSXca41MPJFRsaDOIr/0+yuagA=
-=e3PY
------END PGP SIGNATURE-----
+Changes in v6:
+- Drop patch 'net: stmmac: allow non-linear xdp_buff in XDP mode' since
+  it requires some XDP fixes.
+- Introduce patch 'net: stmmac: drop split frames on AF_XDP zero-copy
+  RX' to always drop XDP multi-buff frames for AF_XDP mode since it not
+  yet supported there.
+- Introduce patch 'net: stmmac: drop multi-buffer frames in XDP mode' to
+  fix pending bugs due to missing XDP multi-buffer support before patch
+  'net: stmmac: rework stmmac_rx to support XDP rx multi-buff'
+- Link to v5: https://lore.kernel.org/r/20261009-stmmac-rx-mb-v5-0-c38fa4eaa138@oss.qualcomm.com
 
---CU6NLkee2yyowqkr--
+Changes in v5:
+- Fix possible read after bound issue in patch 1/3.
+- Do not allow parsing non-linear XDP buffers if the program loaded does
+  not support frags.
+- Add patch 3/3 to remove MTU constraint for XDP prog.
+- Link to v4: https://lore.kernel.org/r/20261006-stmmac-rx-mb-v4-0-efa4ca974e3d@oss.qualcomm.com
+
+Changes in v4:
+- Reset in_progress flag when the packet is fully consumed.
+- Advetise NETDEV_XDP_ACT_RX_SG capability.
+- Link to v3: https://lore.kernel.org/r/20261004-stmmac-rx-mb-v3-0-50fa171af9ec@oss.qualcomm.com
+
+Changes in v3:
+- Return secondary page in case of error.
+- Introduce stmmac_xdp_shrink_tail() to remove the ethernet FCS.
+- Add patch 'net: stmmac: take ownership of saved RX state at poll
+  entry' from James.
+- Link to v2: https://lore.kernel.org/r/20260921-stmmac-rx-mb-v2-1-6e826e1ff306@oss.qualcomm.com
+
+Changes in v2:
+- Rely on xdp_buff_add_frag() to create xdp fragments
+- Fix bugs in rx_q state recording
+- Fix the corner case where we receive more than MAX_SKB_FRAGS fragments
+- Cosmetics
+- Link to v1: https://lore.kernel.org/r/20260918-stmmac-rx-mb-v1-1-0b4517d404af@oss.qualcomm.com
+
+---
+Lorenzo Bianconi (4):
+      net: xdp: add __xdp_build_skb_from_buff() helper
+      net: xdp: add xdp_buff_shrink_tail() helper
+      net: xdp: add __xdp_return_buff() helper
+      net: stmmac: rework stmmac_rx to support XDP rx multi-buff
+
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h      |   3 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 229 ++++++++++------------
+ include/net/xdp.h                                 |  39 +++-
+ net/core/filter.c                                 |  80 +-------
+ net/core/xdp.c                                    | 113 ++++++++++-
+ 5 files changed, 253 insertions(+), 211 deletions(-)
+---
+base-commit: d23de0bd0bfd62405e6c80028008838ec140af25
+change-id: 20260918-stmmac-rx-mb-16469a2714ea
+
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+
 
