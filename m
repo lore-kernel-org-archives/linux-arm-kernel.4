@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D574606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDF5606A333
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 12:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nvGF9Q32;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QywYXH0v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0dlS0IDH;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n57CG9HX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=W+f+hveyFt7h2GEzHdDvcPy2Fuv7F8dJuqe5vP7BOeg=; b=nvGF9Q32lfOpvuHWVTFgdtMetk
-	OSAWcdKp9XLt30noYE7U8FZtmqWBq0S2XnL1umSYXNwXK3LKlp7/hjB1OfblPYDorxSE3cJ41BVRV
-	AYbPM/yz4WO/tnKyz5PbJb6R1yw5n1CQ+qaZrXQPxl2ZewVFiaXklYYlqsR4qJbp6PbiQxcYVdqVx
-	Jvddhf/HGRK/shAt7uxrBMVgzw2TJAwZJrJNSOLuJeQnQ+ltzR0JXv36XE74Tj0a/iT4pnnHJV+hL
-	SL9knwuoFp8xbUesOSBLmRWNiFRknUOi91FgrwMFWdWj/3uXJpOtFBl/Ma2mcnnDCffTo5P4VrEuk
-	Q7Q2lH4g==;
+	bh=uCpt8/zVdvHt4AowHCDxvq8Mt65b26PtXEEykxPq0B0=; b=0dlS0IDHlM3iUnLPoU1wvNyY8Y
+	RePDr+rpaWlWGugLv8zXiUCxzOpjNcvuHKqd93IQgjtZAtteIfyjK0NC3PGez552sLP49Z8ePAwKo
+	5EUV+roqtfvaQG959Bw/92WXc3LiX2iY/9mkNLX2ygQzA6Uqq3HRSnYSrS+ivPhnSbKRwwL+ZmhxU
+	UwVizIKV3y+48QbLBX1GylWWIyx7gebkK3xCmGnaHkZ+k9wEEAf8Coq3NnugcRwetKCj4BMTelwPt
+	XJNirkHEO2n+QNSJOFu4D0xKuaMs6bX3einVhS+0IQFBiwAyJlY3+ML+HY2bPJud1emK0HJ8TSp9M
+	W92GIN6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkRR-0000000HCay-1jlh;
-	Sat, 21 Nov 2026 12:43:41 +0000
+	id 1xUkRQ-0000000HCYh-1UUa;
+	Sat, 21 Nov 2026 12:43:40 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkR4-0000000HCMl-00uf
+	id 1xUkR3-0000000HCMi-23bt
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 21 Nov 2026 12:43:27 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BFEBA40BFA;
+	by sea.source.kernel.org (Postfix) with ESMTP id 4253B45D5E;
 	Sat, 21 Nov 2026 12:43:17 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795264997;
-	b=C4JX1pmcVUIwBW1+QYT3Mq1b2rgHzCCI4a4DNmrL+0rSXV0wByU1DJ5oSAXjjUj2NDQ3
-	 9oGleFfaypbhBNjgdtOj5MahM5cMdbv8JPtcD7nGFFq8PRryxOFGYVwgkPQGqmrXD79x3
-	 iBFxPgb4K5n9GOSdWzb1ypN9OdNI/PSzrBtEbuRDbyD/L5euXby7kFjpjZBXghMrevjuY
-	 1CAkr9+4fDMCQKAP2pFWuMmSdcUGeIL1Q4UimaqRmQdpCvKKC1t2jxpV/Zd30MCcxw/OX
-	 sIlF4Xvq2c/ZeaV4w3xjbPQZ8nwVyhBzIofDgTRx/BedfKCF+bD0D7Y7jRo8uh231yQ==
+	b=Ucn+oyVwP8jsrc6U+ZVbPm0to1CyXYot7Bupcw+3Bw9HxXZeKatjlHhf5pSdtorEroF5
+	 NADNnDXiscSUk1ho9iwQBMcOy+c9mdQFr08NRA3Xj2zBpaLKjZMiix5dXvMOh/7yghN2G
+	 uOMgnvthIGC54bGlmD5TvBnC79/MwAxkat2rDXUMwrSLNdsunfmQfWGp0VnZ08LulnYub
+	 TpnWGkqEN82aN0HxLXyM/UQOflKm4jGXfpntThqHIBSkO1eJuI0r14JO8GfMZ4iktdK3F
+	 v0PUSMFSUwdsCovfWoy43hrlaTBCCjCPHhbNm2PSGxXKSNd9Qj38KsEME/mfjIkn+Tg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795264997;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=W+f+hveyFt7h2GEzHdDvcPy2Fuv7F8dJuqe5vP7BOeg=;
-	b=vw4F33rMF5+hguLI6mlfkgbrJfvdk0EC01a8Z7JYWcBqB/jB7fMVD7Vg81SdeHmohyEw
-	 JTOaotnjHwO3Go9fqRsu1MEH5lFKPTqH55nT48/OlXKeWyiPfvycaGlhD4er3ipVZxYy4
-	 VEXx3rrdyhQaclqXfz8vEUy4S5HoKFHr5DFlAQoUIrQCQSwCSS0Qe46rX0T5JoiibCOU2
-	 X0kba2g3jf4+8xBzPnrbaoIxABz2zjrMt7sIRnW72NJSUYiTTtoYLJ+sDOs6S7UH0Fswr
-	 KNLtDJ6vu7ntNDePvB7DvkuUB+1XbXgTVH06T8S0+kMF6Ziwxc998UxZs/JARKOpDdQ==
+	bh=uCpt8/zVdvHt4AowHCDxvq8Mt65b26PtXEEykxPq0B0=;
+	b=Ry6G3J5zaRv63hXukxsu4CSA7mzme4Wt8as2CpEYtdp0QnhuHvAZTXOhpZAJkEWo7Ju5
+	 Q+g1vF9IabB25glXBwMdoWrIoyO9zNIWdplGUguOTG8U5K4WxzgEvL/RP50+0bhUGv0WI
+	 VLZgcj3b9tO5H+RgmVTZlI4p717s8Z1tOpm2uXHa4aiKrVYOpscAZ/Yg7jV6xS/E+Ou/z
+	 tQ/bXXPXxalQLbOc7V0JV9gKGOhyFDDtNxY+FO+RmQ8oArsUgc0Hd2MgYDExM3whyx3jv
+	 kviYu6zM4yuo2VHdEVUmshTBxN6aNXysnip130y9i/9r2nQBf67wUshnahO9kCDlKHQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 45C9A1F000D8;
-	Sat, 21 Nov 2026 12:43:15 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 9DC941F000D1;
+	Sat, 21 Nov 2026 12:43:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795264997;
-	bh=W+f+hveyFt7h2GEzHdDvcPy2Fuv7F8dJuqe5vP7BOeg=;
+	bh=uCpt8/zVdvHt4AowHCDxvq8Mt65b26PtXEEykxPq0B0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=QywYXH0vrtQ0WYrljuiDOY86TysjDPQbrgneVccor6aD2zTVESSzM7RN3WHvKZH6I
-	 B33zbTMOa+yq4bd7Uscze2AnGPS7Hh4ct9q0yU3x5dGL6iSj6qIaUT8/U89iBlEM/y
-	 ZxRDNMAoh7fb+a/szdSu+LKEc8BHIEm+oYe4vyC5bsbT6yJjkCYccuRN7IyK8inf9b
-	 hXTcr8LXBY97Dx57O/gq4g//zZglwNxFY3bMGeP4q8Gxyyax5nTTvasbWZTJNC6mnd
-	 Kex12+Gd0SJ+Fqst+PdGhP3K8FblQ9550wJRZfeqYUK8x2hCgABOf/6+5H+wqKJ/oo
-	 cjLllR7jSo3wQ==
+	b=n57CG9HXZIx5cldSRScYvPIMSxhR4DZcO71NWldOcn8wuDFaDaJCs9CSHvbEEBFh4
+	 DQ+dK2ttlm87+AtRnPZ5DklQ6c1HnzZO3HjRJRN6wvL/YP7yUK9l4x8pZpHdSAmIwo
+	 iAagNP/kMk4YCsIjW0sjbpfAHh+tUD0WCNahcQ3u2jA8kO3JS3ijYsKvRvbXE/2enp
+	 OU11JVYYJGMeXmi6+cYblUwBMkuNqEcyGDTfYmoJSMc9Vz3iD6dbnqeRw42Hm3NKLi
+	 zHiycIalJUM01N06CyAbb20DoeH6qht9jwbwEDEXprxPQoq/p7Iuqkz7yxyETjMSuz
+	 ZD5VZnETF1Quw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B41C14BC52;
+	by lkml.kernel.org (Postfix) with ESMTP id 7FCC14BC4A;
 	Sat, 21 Nov 2026 12:43:13 +0000 (UTC)
 From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 21:43:18 +0900
-Subject: [PATCH RFC v2 08/13] Input: add polled SiRF AT550 resistive
- touchscreen driver
+Date: Sat, 21 Nov 2026 21:43:16 +0900
+Subject: [PATCH RFC v2 06/13] clocksource/drivers/timer-at550: add SiRF
+ AT550 counter and match timer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-at550-rfc-v1-v2-8-b0309d0789b2@gmail.com>
+Message-Id: <20261121-at550-rfc-v1-v2-6-b0309d0789b2@gmail.com>
 References: <20261121-at550-rfc-v1-v2-0-b0309d0789b2@gmail.com>
 In-Reply-To: <20261121-at550-rfc-v1-v2-0-b0309d0789b2@gmail.com>
 To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
@@ -97,11 +97,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
  linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795264991; l=6386;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795264991; l=5987;
  i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
- bh=bivtc3/plagvrQfVaPp1BcvAjec0DAYE+T6XoIbkumg=;
- b=O25c64lOHEXcHQWeBbg/TxF78uySpBOdifo+5DW1dkaYB41YmMi2sTRCCi6TF45MFrhq252fE
- mBRIOWxnSNcAdFP3qnXWX810wqcN1nu3VVOfzBKxw0CorKPB0c695rp
+ bh=P/HKi7bKVtLhG2Ws05hJqUv8hqku5p4NiMa01/UmFzQ=;
+ b=LTAi1VEJT1QKYnAqyYiyXakLoZr7xiIu2c1gB8USXxSb3OJ7jUSFTVWdfLwxdnz+w0OjT8Ibr
+ L2zoF+30yP2AeKdh7Lq+Me0SmoWpV9cm2RDWFkv/+0B+medz1+lgOeS
 X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
  pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
 X-Endpoint-Received: by B4 Relay for
@@ -129,193 +129,203 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 
-Add a polled input driver for the SiRF AT550 resistive touchscreen
-controller reporting raw ABS_X, ABS_Y, and BTN_TOUCH events.
+Add a clocksource, sched_clock, and one-shot clockevent driver for the
+SiRF AT550 system timer using the low 32-bit counter and match channel
+0.
 
-Preserve firmware settling configuration, explicitly stop acquisition on
-close before clearing pending interrupts, reject streaming or AUX mode
-at probe, and rely on standard touchscreen properties with affine
-calibration handled in userspace.
+Enable the timer clock before reading the watchdog and divider
+registers, preserve the firmware-configured divider, refuse to
+initialize if a watchdog is running, write MATCH0 before clearing
+status, implement set_state_oneshot_stopped, and unwind resources on
+error.
 
 Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
 ---
- MAINTAINERS                          |   1 +
- drivers/input/touchscreen/Kconfig    |  10 +++
- drivers/input/touchscreen/Makefile   |   2 +
- drivers/input/touchscreen/at550-ts.c | 124 +++++++++++++++++++++++++++++++++++
- 4 files changed, 137 insertions(+)
+ MAINTAINERS                       |   1 +
+ drivers/clocksource/Kconfig       |   6 ++
+ drivers/clocksource/Makefile      |   2 +
+ drivers/clocksource/timer-at550.c | 136 ++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 145 insertions(+)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e8e239c7e..df3d38c6b 100644
+index 3c5a814f2..d6ea4d946 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -25855,6 +25855,7 @@ F:	Documentation/devicetree/bindings/input/touchscreen/sirf,at550-ts.yaml
+@@ -25853,6 +25853,7 @@ S:	Odd Fixes
+ F:	Documentation/devicetree/bindings/arm/sirf,at550.yaml
  F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
  F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
- F:	drivers/clocksource/timer-at550.c
-+F:	drivers/input/touchscreen/at550-ts.c
++F:	drivers/clocksource/timer-at550.c
  F:	drivers/irqchip/irq-at550.c
  
  SIS 190 ETHERNET DRIVER
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index 9b9ae8ac3..e68af1dd6 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -1414,4 +1414,14 @@ config TOUCHSCREEN_HIMAX_HX83112B
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called himax_hx83112b.
+diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+index da8348329..ed73947bd 100644
+--- a/drivers/clocksource/Kconfig
++++ b/drivers/clocksource/Kconfig
+@@ -835,4 +835,10 @@ choice
  
-+config TOUCHSCREEN_AT550
-+	tristate "SiRF AT550 resistive touchscreen"
-+	depends on OF && HAS_IOMEM
-+	help
-+	  Say Y to enable polled coordinate acquisition on the AT550.
-+	  Coordinates and pen state are exposed through the input subsystem.
-+	  Firmware must initialize the touchscreen peripheral clock.
-+	  Board-specific affine calibration belongs in userspace.
-+	  To build as a module, choose M; it will be called at550-ts.
+ endchoice
+ 
++config CLKSRC_AT550
++	bool
++	depends on ARM
++	select TIMER_OF
++	select CLKSRC_MMIO
 +
- endif
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index bfd9de833..6b8d09601 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -119,3 +119,5 @@ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
- obj-$(CONFIG_TOUCHSCREEN_IQS7211)	+= iqs7211.o
- obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
- obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX83112B)	+= himax_hx83112b.o
+ endmenu
+diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
+index 464ec6690..0f3d4fb1c 100644
+--- a/drivers/clocksource/Makefile
++++ b/drivers/clocksource/Makefile
+@@ -97,3 +97,5 @@ obj-$(CONFIG_RALINK_TIMER)		+= timer-ralink.o
+ obj-$(CONFIG_NXP_STM_TIMER)		+= timer-nxp-stm.o
+ obj-$(CONFIG_RTK_SYSTIMER)		+= timer-realtek.o
+ obj-$(CONFIG_RZN1_TIMER)		+= timer-rzn1.o
 +
-+obj-$(CONFIG_TOUCHSCREEN_AT550) += at550-ts.o
-diff --git a/drivers/input/touchscreen/at550-ts.c b/drivers/input/touchscreen/at550-ts.c
++obj-$(CONFIG_CLKSRC_AT550) += timer-at550.o
+diff --git a/drivers/clocksource/timer-at550.c b/drivers/clocksource/timer-at550.c
 new file mode 100644
-index 000000000..89c2d2701
+index 000000000..a56446478
 --- /dev/null
-+++ b/drivers/input/touchscreen/at550-ts.c
-@@ -0,0 +1,124 @@
++++ b/drivers/clocksource/timer-at550.c
+@@ -0,0 +1,136 @@
 +// SPDX-License-Identifier: GPL-2.0-only
-+/* SiRF AT550 coordinate acquisition. Layout cross-checked with AT551 draft. */
-+#include <linux/bits.h>
-+#include <linux/input.h>
-+#include <linux/input/touchscreen.h>
++/* SiRF AT550 free-running counter and match channel 0. */
++#include <linux/clk.h>
++#include <linux/clockchips.h>
++#include <linux/clocksource.h>
++#include <linux/interrupt.h>
 +#include <linux/io.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
++#include <linux/of_address.h>
++#include <linux/of_irq.h>
++#include <linux/sched_clock.h>
 +
-+#define AT550_CTRL1 0x00
-+#define AT550_CTRL2 0x04
-+#define AT550_INTR 0x08
-+#define AT550_COORD 0x0c
-+#define AT550_STREAM 0x44
-+#define AT550_DOWN BIT(31)
-+#define AT550_VALID (BIT(29) | BIT(30))
++#define AT550_MATCH0	0x08
++#define AT550_STATUS	0x20
++#define AT550_ENABLE	0x24
++#define AT550_WATCHDOG	0x28
++#define AT550_DIVIDER	0x2c
 +
-+struct at550_ts {
-+	void __iomem *base;
-+	struct touchscreen_properties prop;
-+	u32 ctrl1;
-+	u32 ctrl2;
-+};
++static void __iomem *at550_timer;
++static struct clock_event_device at550_event;
 +
-+static void at550_ts_poll(struct input_dev *input)
++static u64 notrace at550_sched_read(void)
 +{
-+	struct at550_ts *ts = input_get_drvdata(input);
-+	u32 data = readl(ts->base + AT550_COORD);
++	return readl_relaxed(at550_timer);
++}
 +
-+	if (!(data & AT550_DOWN)) {
-+		input_report_key(input, BTN_TOUCH, 0);
-+		input_sync(input);
-+		return;
++static int at550_shutdown(struct clock_event_device *event)
++{
++	writel(0, at550_timer + AT550_ENABLE);
++	return 0;
++}
++
++static int at550_next_event(unsigned long delta,
++			    struct clock_event_device *event)
++{
++	u32 target;
++
++	writel(0, at550_timer + AT550_ENABLE);
++	target = readl(at550_timer) + delta;
++	writel(target, at550_timer + AT550_MATCH0);
++	writel(1, at550_timer + AT550_STATUS);
++	writel(1, at550_timer + AT550_ENABLE);
++	if ((s32)(target - readl(at550_timer)) <= 0) {
++		writel(0, at550_timer + AT550_ENABLE);
++		return -ETIME;
 +	}
-+	if ((data & AT550_VALID) != AT550_VALID)
-+		return;
-+	touchscreen_report_pos(input, &ts->prop, data & GENMASK(11, 0),
-+			       (data >> 12) & GENMASK(11, 0), false);
-+	input_report_key(input, BTN_TOUCH, 1);
-+	input_sync(input);
-+}
-+
-+static int at550_ts_open(struct input_dev *input)
-+{
-+	struct at550_ts *ts = input_get_drvdata(input);
-+
-+	/* Polling keeps the interrupt sources disabled. Preserve CE settling. */
-+	writel(ts->ctrl2 | GENMASK(15, 14), ts->base + AT550_CTRL2);
-+	writel((ts->ctrl1 & GENMASK(7, 4)) | BIT(11) | BIT(10),
-+	       ts->base + AT550_CTRL1);
-+	writel(3, ts->base + AT550_INTR);
-+
 +	return 0;
 +}
 +
-+static void at550_ts_close(struct input_dev *input)
++static irqreturn_t at550_timer_interrupt(int irq, void *data)
 +{
-+	struct at550_ts *ts = input_get_drvdata(input);
++	struct clock_event_device *event = data;
 +
-+	writel(ts->ctrl1 & GENMASK(7, 4), ts->base + AT550_CTRL1);
-+	writel(ts->ctrl2 & ~GENMASK(15, 14), ts->base + AT550_CTRL2);
-+	writel(3, ts->base + AT550_INTR);
++	if (!(readl(at550_timer + AT550_STATUS) & 1))
++		return IRQ_NONE;
++	writel(0, at550_timer + AT550_ENABLE);
++	writel(1, at550_timer + AT550_STATUS);
++	event->event_handler(event);
++	return IRQ_HANDLED;
 +}
 +
-+static int at550_ts_probe(struct platform_device *pdev)
++static int __init at550_timer_init(struct device_node *node)
 +{
-+	struct device *dev = &pdev->dev;
-+	struct at550_ts *ts;
-+	struct input_dev *input;
-+	int error;
++	struct clk *clk;
++	unsigned long rate;
++	unsigned int irq;
++	int ret;
 +
-+	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
-+	if (!ts)
++	if (at550_timer)
++		return -EINVAL;
++	at550_timer = of_iomap(node, 0);
++	if (!at550_timer)
 +		return -ENOMEM;
-+	ts->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(ts->base))
-+		return PTR_ERR(ts->base);
-+	ts->ctrl1 = readl(ts->base + AT550_CTRL1);
-+	ts->ctrl2 = readl(ts->base + AT550_CTRL2);
-+	if ((ts->ctrl1 & ~0xffffU) || (ts->ctrl2 & ~0xc2ffU) ||
-+	    readl(ts->base + AT550_STREAM))
-+		return dev_err_probe(dev, -ENODEV, "unexpected TSC state\n");
-+	input = devm_input_allocate_device(dev);
-+	if (!input)
-+		return -ENOMEM;
-+	input->name = "SiRF AT550 touchscreen";
-+	input->id.bustype = BUS_HOST;
-+	input->open = at550_ts_open;
-+	input->close = at550_ts_close;
-+	input_set_drvdata(input, ts);
-+	input_set_capability(input, EV_KEY, BTN_TOUCH);
-+	input_set_abs_params(input, ABS_X, 0, 4095, 2, 0);
-+	input_set_abs_params(input, ABS_Y, 0, 4095, 2, 0);
-+	touchscreen_parse_properties(input, false, &ts->prop);
-+	error = input_setup_polling(input, at550_ts_poll);
-+	if (error)
-+		return error;
-+	input_set_poll_interval(input, 10);
-+
-+	error = input_register_device(input);
-+	if (error)
-+		return error;
-+
++	clk = of_clk_get(node, 0);
++	if (IS_ERR(clk)) {
++		ret = PTR_ERR(clk);
++		goto unmap;
++	}
++	ret = clk_prepare_enable(clk);
++	if (ret)
++		goto put_clock;
++	rate = clk_get_rate(clk);
++	if (!rate) {
++		ret = -EINVAL;
++		goto disable_clock;
++	}
++	/* Do not disturb a running firmware watchdog or unknown divider bits. */
++	if (readl(at550_timer + AT550_WATCHDOG) ||
++	    readl(at550_timer + AT550_DIVIDER) > 0xffff) {
++		ret = -EBUSY;
++		goto disable_clock;
++	}
++	irq = irq_of_parse_and_map(node, 0);
++	if (!irq) {
++		ret = -EINVAL;
++		goto disable_clock;
++	}
++	writel(0, at550_timer + AT550_ENABLE);
++	writel(0x3f, at550_timer + AT550_STATUS);
++	at550_event.name = "at550-match0";
++	at550_event.features = CLOCK_EVT_FEAT_ONESHOT;
++	at550_event.rating = 200;
++	at550_event.set_next_event = at550_next_event;
++	at550_event.set_state_shutdown = at550_shutdown;
++	at550_event.set_state_oneshot = at550_shutdown;
++	at550_event.set_state_oneshot_stopped = at550_shutdown;
++	at550_event.tick_resume = at550_shutdown;
++	at550_event.cpumask = cpumask_of(0);
++	at550_event.irq = irq;
++	ret = request_irq(irq, at550_timer_interrupt, IRQF_TIMER,
++			 "at550-match0", &at550_event);
++	if (ret)
++		goto dispose_irq;
++	ret = clocksource_mmio_init(at550_timer, "at550-counter", rate, 200,
++				   32, clocksource_mmio_readl_up);
++	if (ret)
++		goto free_irq;
++	/* Firmware has configured the divider; the supplied clock is its output. */
++	sched_clock_register(at550_sched_read, 32, rate);
++	clockevents_config_and_register(&at550_event, rate,
++					max(32UL, rate / 10000), 0x7fffffff);
 +	return 0;
++
++free_irq:
++	free_irq(irq, &at550_event);
++dispose_irq:
++	irq_dispose_mapping(irq);
++disable_clock:
++	clk_disable_unprepare(clk);
++put_clock:
++	clk_put(clk);
++unmap:
++	iounmap(at550_timer);
++	at550_timer = NULL;
++	return ret;
 +}
-+
-+static const struct of_device_id at550_ts_of_match[] = {
-+	{ .compatible = "sirf,at550-ts" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, at550_ts_of_match);
-+
-+static struct platform_driver at550_ts_driver = {
-+	.probe = at550_ts_probe,
-+	.driver = {
-+		.name = "at550-ts",
-+		.of_match_table = at550_ts_of_match,
-+	},
-+};
-+module_platform_driver(at550_ts_driver);
-+
-+MODULE_DESCRIPTION("SiRF AT550 resistive touchscreen");
-+MODULE_LICENSE("GPL");
++TIMER_OF_DECLARE(at550, "sirf,at550-timer", at550_timer_init);
 
 -- 
 2.56.0
