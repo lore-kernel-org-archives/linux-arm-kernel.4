@@ -2,10 +2,10 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A2F606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 16:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478C4606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 16:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QCsCbxV3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aGP13KhB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -13,27 +13,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=UI2aZyFzZngfrv4Dr8RgmmKhq0zhgfU27bY+AzLqST0=; b=QCsCbxV30sC+ki+KVk5FI5uSjM
-	RkrrQJyQTbWslU/fyMuTwuXLUQ2BTLsH3wIudpEmzdZD+Kixw3/64aOihd5iT3m3opL8xwbm4xWxg
-	rqolVzhj6JZgZAQe9zG9u/pgZMzhoYVaZ+3EBiYm4d0Ts7I+iptgs52KPmiAw422bq0Dwr36CR6+V
-	dGyWE9jkdOccWuP/5o++zZ8689vTLY9YkdrXwYgWZ+lwQuilIKcTZ4mMck7omqLTeZlKMOQsgiSEt
-	vVz1KAVTMO8ICzaZ4/O64YTDCOpqAhv11R8MZKztnhr0YdJpzM3DI81fX0VYZcNwWBuKmkH7WyK2/
-	y5WXT08w==;
+	bh=HAG1VHCc7EdTYtXkL17OgGHbbp2BxJ6Nq+U4rrnAL6c=; b=aGP13KhB6kue342kTLvRaCb0ek
+	WD4sT9VUReAJxnfVPEDNipmJdPwUC3dG73s1WMjKX77pZJbkBxx/NTuaLeKtXA2VP7izzR3tscTEa
+	aotMd/acHARGC1om6Y1s4+MSYXEaT6CvuNCFgrKm/776lYOTajqLqCv9W8uw/GbSgSVe6HBZOq9+g
+	JfEq941KgZjMEcR+Qysobm2rr4JMuX+pmYomgOwHWC5xb6/2XushBmpzW/1bkalM9XAKWbNiCyENE
+	SqzkY155MWT6sAUwy70RO2cnHs2kN0a17UMCs4NLiSHTPKSO8T8nN7pR7Bys2Bg28TgsSPmA2lHkb
+	51NG3GIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUoOJ-0000000HWjc-2rrM;
-	Sat, 21 Nov 2026 16:56:43 +0000
+	id 1xUoOZ-0000000HWsB-0mvN;
+	Sat, 21 Nov 2026 16:56:59 +0000
 Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUoOH-0000000HWii-2o0U;
-	Sat, 21 Nov 2026 16:56:42 +0000
+	id 1xUoOW-0000000HWpr-1MXR;
+	Sat, 21 Nov 2026 16:56:57 +0000
 Received: from local
 	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
 	 (Exim 4.100.1)
 	(envelope-from <daniel@makrotopia.org>)
-	id 1xUoOA-000000006IH-1Lpr;
-	Sat, 21 Nov 2026 16:56:34 +0000
-Date: Sat, 21 Nov 2026 16:56:24 +0000
+	id 1xUoOP-000000006IX-00aO;
+	Sat, 21 Nov 2026 16:56:49 +0000
+Date: Sat, 21 Nov 2026 16:56:39 +0000
 From: Daniel Golle <daniel@makrotopia.org>
 To: Detlev Casanova <detlev.casanova@collabora.com>,
 	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
@@ -55,8 +55,8 @@ Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
 	Diederik de Haas <diederik@cknow-tech.com>,
 	Dang Huynh <dang.huynh@mainlining.org>,
 	Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Subject: [PATCH v6 2/5] media: rkvdec: Add support for the VDPU346 variant
-Message-ID: <3fcd2c252b16894df0d9b281c5f3068123ee0e49.1795279680.git.daniel@makrotopia.org>
+Subject: [PATCH v6 3/5] media: rkvdec: vdpu381: Program the read caches
+Message-ID: <59a054d9826483c9facd9ee61916fe34573fbe3f.1795279680.git.daniel@makrotopia.org>
 References: <cover.1795279680.git.daniel@makrotopia.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
@@ -64,8 +64,8 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <cover.1795279680.git.daniel@makrotopia.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_085641_715015_427563E1 
-X-CRM114-Status: GOOD (  12.19  )
+X-CRM114-CacheID: sfid-20261121_085656_368868_F182C49B 
+X-CRM114-Status: GOOD (  18.30  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,167 +84,137 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+The VDPU381 and VDPU346 have three read caches, configured through the
+"cache" register block. The driver leaves them in their reset state,
+and on the RK3568 some streams then decode with wrong output.
 
-VDPU346 is similar to VDPU381 but with a single core and limited
-to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
-AVS2 capabilities. VDPU346 is used with RK3566 and RK3568.
+Configure and clear the caches before each H.264 and HEVC run, the way
+the vendor kernel driver does. The "cache" block, which the binding
+requires, is now mapped at probe for every variant with named register
+blocks; the VDPU383 does not use it.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Tested-by: Dang Huynh <dang.huynh@mainlining.org> # Pinetab2
-Tested-by: Diederik de Haas <diederik@cknow-tech.com> # PineTab2, Quartz64-A, NanoPi R5S
-[daniel: EXT SPS RPS dims 64 and 32 as of commit f0b9d7e5be06]
+On the RK3568 this fixes the HEVC conformance vectors RAP_B_Bossen_2,
+WPP_D_ericsson_MAIN_2, WPP_D_ericsson_MAIN10_2 and
+WPP_E_ericsson_MAIN_2 and the H.264 vectors CAPM3_Sony_D, MR8_BT_B,
+MR9_BT_B and NRF_MW_E.
+
 Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
 v6: no changes
-v5: fold in "media: rkvdec: vdpu346: Limit HEVC EXT SPS RPS dimensions",
-    registering the EXT SPS RPS controls with 64 and 32 elements
-v4: add Tested-by from Diederik de Haas
-v3: use .max_width and .max_height from the TRM (Diederik de Haas),
-    add Tested-by from Dang Huynh
-v2: adapt to the variant and capability changes in Detlev Casanova's
-    v7 series, add Reviewed-by from Nicolas Dufresne
+v5: shorten the commit message, state that the cache block is mapped
+    for the VDPU383 as well; no code changes
+v4: new patch
 
 ---
- .../media/platform/rockchip/rkvdec/rkvdec.c   | 103 ++++++++++++++++++
- 1 file changed, 103 insertions(+)
+ .../rockchip/rkvdec/rkvdec-vdpu381-h264.c      |  2 ++
+ .../rockchip/rkvdec/rkvdec-vdpu381-hevc.c      |  2 ++
+ .../rockchip/rkvdec/rkvdec-vdpu381-regs.h      |  9 +++++++++
+ .../media/platform/rockchip/rkvdec/rkvdec.c    | 18 ++++++++++++++++++
+ .../media/platform/rockchip/rkvdec/rkvdec.h    |  2 ++
+ 5 files changed, 33 insertions(+)
 
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
+index b961fddc8583a..40db8ba3856a7 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
+@@ -445,6 +445,8 @@ static int rkvdec_h264_run(struct rkvdec_ctx *ctx)
+ 
+ 	rkvdec_schedule_watchdog(rkvdec, h264_ctx->regs.common.reg032_timeout_threshold);
+ 
++	rkvdec_vdpu381_config_cache(rkvdec);
++
+ 	/* Start decoding! */
+ 	writel(VDPU381_DEC_E_BIT, rkvdec->regs + VDPU381_REG_DEC_E);
+ 
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
+index e1936e87f45be..8afb13866d0bb 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
+@@ -617,6 +617,8 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+ 
+ 	rkvdec_schedule_watchdog(rkvdec, hevc_ctx->regs.common.reg032_timeout_threshold);
+ 
++	rkvdec_vdpu381_config_cache(rkvdec);
++
+ 	/* Start decoding! */
+ 	writel(VDPU381_DEC_E_BIT, rkvdec->regs + VDPU381_REG_DEC_E);
+ 
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-regs.h b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-regs.h
+index 6da36031df2dc..b23b47217d43b 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-regs.h
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-regs.h
+@@ -41,6 +41,15 @@
+ #define VDPU381_STA_INT_TIMEOUT		BIT(5)
+ #define VDPU381_STA_INT_SOFTRESET_RDY	BIT(9)
+ 
++/* base: "cache" register block */
++#define VDPU381_CACHE_COUNT		3
++#define VDPU381_REG_CACHE_CLR(i)	(0x010 + (i) * 0x40)
++#define VDPU381_CACHE_CLR		BIT(0)
++#define VDPU381_REG_CACHE_SIZE(i)	(0x01c + (i) * 0x40)
++#define VDPU381_CACHE_PERMIT_CACHEABLE_ACCESS	BIT(0)
++#define VDPU381_CACHE_PERMIT_READ_ALLOCATE	BIT(1)
++#define VDPU381_CACHE_LINE_SIZE_64_BYTES	BIT(4)
++
+ /* base: OFFSET_COMMON_REGS */
+ struct rkvdec_vdpu381_regs_common {
+ 	struct {
 diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-index 5250dd59df2ec..ba61e373b4342 100644
+index ba61e373b4342..5673c5205bfcd 100644
 --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
 +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-@@ -236,6 +236,62 @@ static const struct rkvdec_ctrls rkvdec_hevc_ctrls = {
- 	.num_ctrls = ARRAY_SIZE(rkvdec_hevc_ctrl_descs),
- };
+@@ -1249,6 +1249,20 @@ void rkvdec_schedule_watchdog(struct rkvdec_dev *rkvdec, u32 timeout_threshold)
+ 	schedule_delayed_work(&rkvdec->watchdog_work, msecs_to_jiffies(watchdog_time));
+ }
  
-+static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] = {
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_SPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_PPS,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_MODE,
-+		.cfg.min = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+		.cfg.max = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+		.cfg.def = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_START_CODE,
-+		.cfg.min = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+		.cfg.def = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+		.cfg.max = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-+		.cfg.min = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-+		.cfg.max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-+		.cfg.menu_skip_mask =
-+			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-+		.cfg.def = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-+		.cfg.min = V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-+		.cfg.max = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+		.cfg.dims = { 64 },
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+		.cfg.dims = { 32 },
-+	},
-+};
++void rkvdec_vdpu381_config_cache(struct rkvdec_dev *rkvdec)
++{
++	u32 cfg = VDPU381_CACHE_PERMIT_CACHEABLE_ACCESS |
++		  VDPU381_CACHE_PERMIT_READ_ALLOCATE |
++		  VDPU381_CACHE_LINE_SIZE_64_BYTES;
++	unsigned int i;
 +
-+static const struct rkvdec_ctrls vdpu346_hevc_ctrls = {
-+	.ctrls = vdpu346_hevc_ctrl_descs,
-+	.num_ctrls = ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
-+};
++	for (i = 0; i < VDPU381_CACHE_COUNT; i++)
++		writel(cfg, rkvdec->cache + VDPU381_REG_CACHE_SIZE(i));
 +
- static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] = {
- 	{
- 		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-@@ -510,6 +566,41 @@ static const struct rkvdec_coded_fmt_desc rk3288_coded_fmts[] = {
++	for (i = 0; i < VDPU381_CACHE_COUNT; i++)
++		writel(VDPU381_CACHE_CLR, rkvdec->cache + VDPU381_REG_CACHE_CLR(i));
++}
++
+ static void rkvdec_device_run(void *priv)
+ {
+ 	struct rkvdec_ctx *ctx = priv;
+@@ -1910,6 +1924,10 @@ static int rkvdec_probe(struct platform_device *pdev)
+ 		rkvdec->link = devm_platform_ioremap_resource_byname(pdev, "link");
+ 		if (IS_ERR(rkvdec->link))
+ 			return PTR_ERR(rkvdec->link);
++
++		rkvdec->cache = devm_platform_ioremap_resource_byname(pdev, "cache");
++		if (IS_ERR(rkvdec->cache))
++			return PTR_ERR(rkvdec->cache);
  	}
- };
  
-+static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] = {
-+	{
-+		.fourcc = V4L2_PIX_FMT_HEVC_SLICE,
-+		.frmsize = {
-+			.min_width = 64,
-+			.max_width = 4096,
-+			.step_width = 64,
-+			.min_height = 64,
-+			.max_height = 2304,
-+			.step_height = 16,
-+		},
-+		.ctrls = &vdpu346_hevc_ctrls,
-+		.ops = &rkvdec_vdpu381_hevc_fmt_ops,
-+		.num_decoded_fmts = ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
-+		.decoded_fmts = rkvdec_hevc_decoded_fmts,
-+		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-+	},
-+	{
-+		.fourcc = V4L2_PIX_FMT_H264_SLICE,
-+		.frmsize = {
-+			.min_width = 64,
-+			.max_width =  4096,
-+			.step_width = 64,
-+			.min_height = 64,
-+			.max_height =  2304,
-+			.step_height = 16,
-+		},
-+		.ctrls = &rkvdec_h264_ctrls,
-+		.ops = &rkvdec_vdpu381_h264_fmt_ops,
-+		.num_decoded_fmts = ARRAY_SIZE(rkvdec_h264_decoded_fmts),
-+		.decoded_fmts = rkvdec_h264_decoded_fmts,
-+		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-+	},
-+};
-+
- static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_HEVC_SLICE,
-@@ -1704,6 +1795,14 @@ static const struct rkvdec_variant_ops vdpu381_variant_ops = {
- 	.flatten_matrices = transpose_and_flatten_matrices,
- };
+ 	ret = dma_set_coherent_mask(&pdev->dev, DMA_BIT_MASK(32));
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.h b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+index a24be6638b6b7..54e6f50c0ff9f 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec.h
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+@@ -136,6 +136,7 @@ struct rkvdec_dev {
+ 	struct clk *axi_clk;
+ 	void __iomem *regs;
+ 	void __iomem *link;
++	void __iomem *cache;
+ 	struct mutex vdev_lock; /* serializes ioctls */
+ 	struct delayed_work watchdog_work;
+ 	struct gen_pool *sram_pool;
+@@ -180,6 +181,7 @@ void rkvdec_run_preamble(struct rkvdec_ctx *ctx, struct rkvdec_run *run);
+ void rkvdec_run_postamble(struct rkvdec_ctx *ctx, struct rkvdec_run *run);
+ void rkvdec_memcpy_toio(void __iomem *dst, void *src, size_t len);
+ void rkvdec_schedule_watchdog(struct rkvdec_dev *rkvdec, u32 timeout_threshold);
++void rkvdec_vdpu381_config_cache(struct rkvdec_dev *rkvdec);
  
-+static const struct rkvdec_variant vdpu346_variant = {
-+	.coded_fmts = vdpu346_coded_fmts,
-+	.num_coded_fmts = ARRAY_SIZE(vdpu346_coded_fmts),
-+	.rcb_sizes = vdpu381_rcb_sizes,
-+	.num_rcb_sizes = ARRAY_SIZE(vdpu381_rcb_sizes),
-+	.ops = &vdpu381_variant_ops,
-+};
-+
- static const struct rkvdec_variant vdpu381_variant = {
- 	.coded_fmts = vdpu381_coded_fmts,
- 	.num_coded_fmts = ARRAY_SIZE(vdpu381_coded_fmts),
-@@ -1752,6 +1851,10 @@ static const struct of_device_id of_rkvdec_match[] = {
- 		.compatible = "rockchip,rk3399-vdec",
- 		.data = &rk3399_rkvdec_variant,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-vdec",
-+		.data = &vdpu346_variant,
-+	},
- 	{
- 		.compatible = "rockchip,rk3588-vdec",
- 		.data = &vdpu381_variant,
+ void rkvdec_quirks_disable_qos(struct rkvdec_ctx *ctx);
+ 
 -- 
 2.56.1
 
