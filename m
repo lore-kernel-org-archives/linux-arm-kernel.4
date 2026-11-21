@@ -2,96 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7397B606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469DA606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5ExXS9X/;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=nbd.name header.i=@nbd.name header.a=rsa-sha256 header.s=20160729 header.b=i1Z7SAYu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZEKHlz+P;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ommer.net header.i=@ommer.net header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=rIpl9TiF;
+	dkim=fail reason="signature verification failed" header.d=ommer.net header.i=@ommer.net header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=8pNMaZuV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=G8kM3IXtzBlumi5aSFxeLf8NDbduYmaDZ2j3BGuqdWM=; b=5ExXS9X/rktIxd
-	Tlzq/X2pEFQUukQsfrJBgMz/0cpsAKKHIalc8nvStGU98/nxudNhsx808bTv8fa2Iw49A39oBT4Nv
-	Fs+62HwB7ofgwGkBmUcUJrUTEFz3qAMlWuCTPZYbOU5X67Lv8WlKe5Q79rx9phi3Z8OrFom/SKknH
-	bXEdD+utbWW0iSJ1eqUMwO8o1z5LwxuqSMM2wsxLHu2ks3mNrQsNWaDqIUu4TQ+d0b36lEPthcy62
-	JMbqC9vBgPRM0YEVdUekqF6ex8gtxW9rIvD+Yv6YqVwPofLFtc+AC2xsI4ozxXnAm+9XOjKAQ2b5y
-	r0RlBkI49lFJEEjbuCrw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=NlKzHVz3Dy8D40dZPHNRY0wUOPTt50j8t0RAlCaU4dI=; b=ZEKHlz+Pun2LMSfy1IdT9VA2Bf
+	b4ArzheZD8JagrMQIMxU5eo5Fc61KL/XtKd5iZJjQDTH27rgsQ/WR/Cf0eMTW5Bu2XNaGtrog/Ict
+	oHZ221Rp9j214MzkXgJVY91SoPl3De7Yc/Nx6BuUc011dxZOgA5B/GQx50uzM4z/XSfyf/+/0HsYV
+	pchZq4zDSQS0hMX0orZPLQCTpXw1O+2TqWNlmzUKginKKXdNqEb3xrn+FdNAgpul/9aHkCxPirlYR
+	3j0+GzzKNrST/kbIJeKWvXDSnnCs7C+m1Ev0EP2V8JENDFvxO42ewVfxQKkhaGPAmRuwn71B8aFJ6
+	vcI54vHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgEo-0000000Gv8B-2K4r;
-	Sat, 21 Nov 2026 08:14:22 +0000
-Received: from nbd.name ([46.4.11.11])
+	id 1xUgOj-0000000GvSm-2dlg;
+	Sat, 21 Nov 2026 08:24:37 +0000
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgEl-0000000Gv7n-2hd7;
-	Sat, 21 Nov 2026 08:14:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-	s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=G8kM3IXtzBlumi5aSFxeLf8NDbduYmaDZ2j3BGuqdWM=; b=i1Z7SAYuObv8aNbiUEG9UYOdnJ
-	9sj2/Rl4wxb9fKIKkCnvpB0Y9iHiB/o+iHeemDW/SGxSZvU7O9GkGeOgpOVrufLE8CwMTAeWtL/MQ
-	J1uRRpfTi4FN2eFvlsFhWjMphCEnMk2d6Y/Q5XYiO8MCA/P6jJz0FkzjJXbzScc6Mjho=;
-Received: from p54a4360c.dip0.t-ipconnect.de ([84.164.54.12] helo=nf.local)
-	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96)
-	(envelope-from <nbd@nbd.name>)
-	id 1xUgEb-006LOx-0N;
-	Sat, 21 Nov 2026 09:14:09 +0100
-Message-ID: <a89222e1-8795-4c89-907d-38ebeb49e2a9@nbd.name>
-Date: Sat, 21 Nov 2026 09:14:08 +0100
+	id 1xUgOg-0000000GvRn-1Yt2
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 21 Nov 2026 08:24:35 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795249462; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=lnmvB0B7fgfkpoLwn9qfXt30ZhFgxdVccwW7jlmLgpQe27YG5YaI8nwSbtsmLrIqLa
+    LC5MYP5Z3tJxAZywSWklVG6b/G+CVPcbcF4zI3T9laJxOU/AcFjcK07gNNodBgPEoTl5
+    6S4gnilBE83Ols9RpZmQ4TQ6IvUs5JBSPqgFnZiLDWNkLIQAjLUCjkSaiaaw2DplCT2r
+    EDUpuP/gUF6dVzc9Cb+OPIw7RojnjOtZMlhkevZyhtd2NY6hYv4k6eBoe+BgsDlB7t+0
+    imkSw1HL/+e6gBXYmjdPbipZLrRH9oJTruQ+GhzSPit2+wCkJXMhf3a5m3nKb94tws4X
+    ufYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795249462;
+    s=strato-dkim-0002; d=strato.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=NlKzHVz3Dy8D40dZPHNRY0wUOPTt50j8t0RAlCaU4dI=;
+    b=pYZm6J14kuRzqZQkfQCYuStkt65WLbUcNRHRE1cAvQtK1S/w3dxAhQ4owZKq9UF2j8
+    TecYBSrjHBe8FT6o8OY9OP/jPw9xZa/KSK2Gh1MgIZBLAUulFixIwN6icZ+G7DtFEnFb
+    TwYDkMXnfBPUHE98KSdoQtgTIBeetaT0ifjZRkBg6hPNK8kfRXiK3a7In4ZyxYNU0dks
+    cZDtp5fUeXy7VtgIubJ4033fp0iqKNC/GmYveNjV3qSuRrVfiyLy/PXrdSJnw/DKkexX
+    2XJYQVBm5eDt+NKQMOUa83KFQaPjnq/LoxYhRkuuZ/wbqw+Yp1c8LyQ5/h4UZVhl/L5R
+    WdcQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795249462;
+    s=strato-dkim-0002; d=ommer.net;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=NlKzHVz3Dy8D40dZPHNRY0wUOPTt50j8t0RAlCaU4dI=;
+    b=rIpl9TiFblImfUPWqsGpMBxyRT6J2hiyEf4OkhyXBoF2ts5w14Ui1P5W1ZcEOELAq/
+    k+K0qYw2QOxccJmkQBX/3fSAq2wP0CwYEksFrgEfbtcA8x7oOPF5u1dQkytoKM95zPn3
+    eejkxRMwae5tZYFNuEUqaZ33iDk2im8Vf9NJr08et4cvtLavKsbwEXBGQ6iqfqf3jjsZ
+    RRA92hkzIzbwiMB23XyMFAz2o1ZU/51+ViHhW8y6fk8AhE9UQkHHOCO3ReVai3rkOdKK
+    VgEwkDjtE60Ntvi8Bri2rFCjaDGJyVY1N1xxcM4uzASvccbjdGmT0Mw8CJyxJCfKaUNP
+    H6Jg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795249462;
+    s=strato-dkim-0003; d=ommer.net;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=NlKzHVz3Dy8D40dZPHNRY0wUOPTt50j8t0RAlCaU4dI=;
+    b=8pNMaZuV7u4xeNvSYV/+WozftHLDhsUVyYKSzLMGavdDFa3S2KDKk/dj6cBDw8zJ2o
+    RToxYz770szmfmTdj7AA==
+X-RZG-AUTH: ":JGkKZ0mIdPJLfj3rk5MOrv6kH/tvwFubxUqMvsWOyVXJkOABZnPqvKUstHY8FQgi4y8Fiu3j5HL2zuVyTQ9NDYXzNSFFaQ=="
+Received: from localhost.localdomain
+    by smtp.strato.de (RZmta 55.6.3 AUTH)
+    with ESMTPSA id n2f42d2AL8OLV5B
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sat, 21 Nov 2026 09:24:21 +0100 (CET)
+From: Henri Ommer <henri@ommer.net>
+To: krzk+dt@kernel.org,
+	peter.griffin@linaro.org,
+	alim.akhtar@samsung.com,
+	robh@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Henri Ommer <henri@ommer.net>
+Subject: [PATCH 1/2] dt-bindings: arm: samsung: samsung-boards: Add bindings for a20e/SM-A202F
+Date: Sat, 21 Nov 2026 09:24:03 +0100
+Message-ID: <20261121082404.24864-2-henri@ommer.net>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261121082404.24864-1-henri@ommer.net>
+References: <20261121082404.24864-1-henri@ommer.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] wifi: mt76: connac: correct rate power limit logic
-To: Shiji Yang <yangshiji66@outlook.com>, linux-wireless@vger.kernel.org
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Ryder Lee
- <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>,
- Sean Wang <sean.wang@mediatek.com>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- stable@vger.kernel.org
-References: <OSCPR01MB15019FDE88A442FBC74081EAABC782@OSCPR01MB15019.jpnprd01.prod.outlook.com>
- <OSCPR01MB150191A858729F9D98B404F6ABC782@OSCPR01MB15019.jpnprd01.prod.outlook.com>
-Content-Language: en-US
-From: Felix Fietkau <nbd@nbd.name>
-Autocrypt: addr=nbd@nbd.name; keydata=
- xsDiBEah5CcRBADIY7pu4LIv3jBlyQ/2u87iIZGe6f0f8pyB4UjzfJNXhJb8JylYYRzIOSxh
- ExKsdLCnJqsG1PY1mqTtoG8sONpwsHr2oJ4itjcGHfn5NJSUGTbtbbxLro13tHkGFCoCr4Z5
- Pv+XRgiANSpYlIigiMbOkide6wbggQK32tC20QxUIwCg4k6dtV/4kwEeiOUfErq00TVqIiEE
- AKcUi4taOuh/PQWx/Ujjl/P1LfJXqLKRPa8PwD4j2yjoc9l+7LptSxJThL9KSu6gtXQjcoR2
- vCK0OeYJhgO4kYMI78h1TSaxmtImEAnjFPYJYVsxrhay92jisYc7z5R/76AaELfF6RCjjGeP
- wdalulG+erWju710Bif7E1yjYVWeA/9Wd1lsOmx6uwwYgNqoFtcAunDaMKi9xVQW18FsUusM
- TdRvTZLBpoUAy+MajAL+R73TwLq3LnKpIcCwftyQXK5pEDKq57OhxJVv1Q8XkA9Dn1SBOjNB
- l25vJDFAT9ntp9THeDD2fv15yk4EKpWhu4H00/YX8KkhFsrtUs69+vZQwc0cRmVsaXggRmll
- dGthdSA8bmJkQG5iZC5uYW1lPsJgBBMRAgAgBQJGoeQnAhsjBgsJCAcDAgQVAggDBBYCAwEC
- HgECF4AACgkQ130UHQKnbvXsvgCgjsAIIOsY7xZ8VcSm7NABpi91yTMAniMMmH7FRenEAYMa
- VrwYTIThkTlQzsFNBEah5FQQCACMIep/hTzgPZ9HbCTKm9xN4bZX0JjrqjFem1Nxf3MBM5vN
- CYGBn8F4sGIzPmLhl4xFeq3k5irVg/YvxSDbQN6NJv8o+tP6zsMeWX2JjtV0P4aDIN1pK2/w
- VxcicArw0VYdv2ZCarccFBgH2a6GjswqlCqVM3gNIMI8ikzenKcso8YErGGiKYeMEZLwHaxE
- Y7mTPuOTrWL8uWWRL5mVjhZEVvDez6em/OYvzBwbkhImrryF29e3Po2cfY2n7EKjjr3/141K
- DHBBdgXlPNfDwROnA5ugjjEBjwkwBQqPpDA7AYPvpHh5vLbZnVGu5CwG7NAsrb2isRmjYoqk
- wu++3117AAMFB/9S0Sj7qFFQcD4laADVsabTpNNpaV4wAgVTRHKV/kC9luItzwDnUcsZUPdQ
- f3MueRJ3jIHU0UmRBG3uQftqbZJj3ikhnfvyLmkCNe+/hXhPu9sGvXyi2D4vszICvc1KL4RD
- aLSrOsROx22eZ26KqcW4ny7+va2FnvjsZgI8h4sDmaLzKczVRIiLITiMpLFEU/VoSv0m1F4B
- FtRgoiyjFzigWG0MsTdAN6FJzGh4mWWGIlE7o5JraNhnTd+yTUIPtw3ym6l8P+gbvfoZida0
- TspgwBWLnXQvP5EDvlZnNaKa/3oBes6z0QdaSOwZCRA3QSLHBwtgUsrT6RxRSweLrcabwkkE
- GBECAAkFAkah5FQCGwwACgkQ130UHQKnbvW2GgCeMncXpbbWNT2AtoAYICrKyX5R3iMAoMhw
- cL98efvrjdstUfTCP2pfetyN
-In-Reply-To: <OSCPR01MB150191A858729F9D98B404F6ABC782@OSCPR01MB15019.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_001419_759730_CF2E13EF 
-X-CRM114-Status: UNSURE (   7.55  )
+X-CRM114-CacheID: sfid-20261121_002434_668033_AFAC656A 
+X-CRM114-Status: UNSURE (   8.39  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Spam-Score: -1.4 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,24 +114,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 20.11.26 05:40, Shiji Yang wrote:
-> When mac80211 sets the power to 0, it does not make sense to change
-> the tx power to the maximum value. The original purpose should be to
-> limit the tx power to not exceed the hardware limit.
-> 
-> Fixes: 8225816d2974 ("mt76: mt7921: limit txpower according to userlevel power")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
-I think in some cases (e.g. on mt792x), hw->conf.power_level is always 
-0, so this might cause regressions there.
+Adds devicetree bindings for the Samsung Galaxy A20e (SM-A202F)
 
-- Felix
+Signed-off-by: Henri Ommer <henri@ommer.net>
+---
+ .../devicetree/bindings/arm/samsung/samsung-boards.yaml          | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+index 6f3e02a63..49e9cfaca 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+@@ -227,6 +227,7 @@ properties:
+       - description: Exynos7885 based boards
+         items:
+           - enum:
++              - samsung,a20e                    # Samsung Galaxy A20e (2019)
+               - samsung,gta3xllte               # Samsung Galaxy Tab A 10.1 (2019, 4G)
+               - samsung,jackpotlte              # Samsung Galaxy A8 (2018)
+           - const: samsung,exynos7885
+-- 
+2.56.0
+
 
