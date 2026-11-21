@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A82A3606A332
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8113606A338
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:43:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mokE7CRf;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=khB94L+/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PH72USdi;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=oo+UnUFY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vtM2MEBmduOcZZltNQ7NOe1dSUbwO9go+8cdTtGYRPE=; b=mokE7CRfqvpnWF
-	tUc80iipQwZz5DeDQW/LOlg8CLViurM83l70lkE4r2O+OPYLxJWQVISIoJoCKqpOqn4okBI9Y81a/
-	hpyzmXSlYZHfTWK7zEZ6jXu2ngp57pF1bbdvghE29KuaLTZAFQos1MXCy0FsCfBI7XPiTYckYSDeR
-	eWAha4TulBUwCwxo7dqxbvyqqHu38jRcInK+XpT7ZtNdwY4IRudMfON1kwS71lNcAFGr6CBbqL1FE
-	8hySwJdK+r3aGpRQGZ71+sOn/7h+A/EUe5rCd4nXZcABUgPH4b3GZ4gG5QC38jntHg0jFf+3kKmkH
-	pJx+Au+opS0JJB5/45IQ==;
+	List-Owner; bh=UP2PfH8d8VCNmy/9UBHp2fW+iJh9ONjNf0LSHyozQHU=; b=PH72USdimz261s
+	aNVd5fDk9V+WSFpe0bsIx4IqBp4uyUJpoIwpIP2VUAU5707yoar+Bbhefv+4bkBYmQL18uX4br17T
+	ToEfCYYVCfk0VHsV54Vy5dQ+iCVBrUdlAGS+9JqFOHykEmwjrJOt7dbK92DIvxvYlQB5opjHoGVfg
+	zHEbQNDQHHIoamvGsTHmMP1Hv76oEc46O+SEyFZVN3I18Hy/OzGQyTBPjGqsgNfCrlQ18646pE4By
+	n6ptX03RGZdjCa/zaXkv2lPZWPb0pc4ya5Uqo0g5gEqm2zPKpwICi8L4noL7Srv/HTsaKuL4d9j6B
+	CFSbnpaQ9mkkEFQw1iXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuk8-00000000VGE-0Pk3;
+	id 1xUuk8-00000000VGV-3DXj;
 	Sat, 21 Nov 2026 23:43:40 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUujx-00000000VCn-3Hwk
+	id 1xUuk0-00000000VDI-3ELn
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 23:43:30 +0000
+	Sat, 21 Nov 2026 23:43:33 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D59F616F2;
-	Sat, 21 Nov 2026 15:43:25 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 05DE71575;
+	Sat, 21 Nov 2026 15:43:29 -0800 (PST)
 Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E1AF93F632;
-	Sat, 21 Nov 2026 15:43:25 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 13DE03F632;
+	Sat, 21 Nov 2026 15:43:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795304608; bh=hg/2DnWI8gLzOZWWZXz8Xss4EyuZZ/xSdaUsIAEYlfM=;
+	t=1795304611; bh=/n2EWMdhO6kRAQYILC79T8bC3i1LKVlfeGgq74DQarY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=khB94L+/wrwZF+A06ZEvugtQ+fZpCE6NF/neZq7rZW2XV4NVCIsGL8HqAUmktn3HV
-	 u82wcho8LUZ+Ymasrx8aH4qJEweFK2N0NRjo64vZfB82IM3ercnvYJnZ0EIVwEHXZx
-	 MwZXyasKnAyXBT/O3D7m7LO4Od5QqisVxO5aa8Is=
+	b=oo+UnUFY/GW7vo313JKvwf3sD/EJo5YhDQvHJDjfv2SCO7B6vhg3WsxEt7g22Unr9
+	 DsfQRzRI9TJlOvluIrI+IWWSjxG9vNtPXaGpgTHgYymr57/N9aZkrl0HJ5taSa2S0f
+	 MlZMOwGkKWqmpI3CPObLWHgO5Nk2h5C/Q37KJBQs=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -65,9 +65,9 @@ Cc: sudeep.holla@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
 	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v16 01/31] firmware: arm_scmi: Harden iterators state parsing
-Date: Sat, 21 Nov 2026 23:39:35 +0000
-Message-ID: <20261121234005.1525419-2-cristian.marussi@arm.com>
+Subject: [PATCH v16 02/31] [RFC] firmware: arm_scmi: Additional iterators consistency checks
+Date: Sat, 21 Nov 2026 23:39:36 +0000
+Message-ID: <20261121234005.1525419-3-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261121234005.1525419-1-cristian.marussi@arm.com>
 References: <20261121234005.1525419-1-cristian.marussi@arm.com>
@@ -75,9 +75,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_154329_861329_C9F91ED1 
-X-CRM114-Status: UNSURE (   9.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261121_154332_891594_3034B184 
+X-CRM114-Status: GOOD (  15.04  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,60 +96,92 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add checks in the core multi-part iterators support to detect generally
-malformed and inconsistent multi-part replies.
+Add a few more consistency checks around the number of returned and
+remaining items during the life of an iteration: this is useful to spot
+prematurely terminated iterations that would produce shorter than expected
+results.
 
-Fixes: 36b6ea0fc6bc ("firmware: arm_scmi: Add iterators for multi-part commands")
+Handling these anomalies in the platform multi-part replies within the
+core SCMI iterators machinery avoids the need to address such issues
+multiple times at the protocol layer.
+
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
- drivers/firmware/arm_scmi/driver.c    | 10 ++++++++++
- drivers/firmware/arm_scmi/protocols.h |  7 +++++++
- 2 files changed, 17 insertions(+)
+RFC because this is another fix that is potentially disrupting for any
+non compliant SCMI platform deployed in the wild.
+---
+ drivers/firmware/arm_scmi/driver.c | 38 ++++++++++++++++++++++++++----
+ 1 file changed, 33 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-index 05092301db29..55d9cc487916 100644
+index 55d9cc487916..a9b0f704c39b 100644
 --- a/drivers/firmware/arm_scmi/driver.c
 +++ b/drivers/firmware/arm_scmi/driver.c
-@@ -1873,11 +1873,21 @@ static int __scmi_iterator_run(void *iter, unsigned int *start, unsigned int *en
+@@ -1852,7 +1852,7 @@ static int __scmi_iterator_run(void *iter, unsigned int *start, unsigned int *en
+ 	const struct scmi_protocol_handle *ph;
+ 	struct scmi_iterator_state *st;
+ 	struct scmi_iterator *i;
+-	unsigned int n;
++	unsigned int n, i_start, i_max, i_returned;
+ 
+ 	if (!iter)
+ 		return -EINVAL;
+@@ -1862,10 +1862,15 @@ static int __scmi_iterator_run(void *iter, unsigned int *start, unsigned int *en
+ 	ph = i->ph;
+ 	st = &i->state;
+ 
++	/* Initialize iteration counters used to check consistency */
++	i_max = 0;
++	i_returned = 0;
++	i_start = start ? *start : 0;
++
+ 	/* Reinitialize state for next run */
+ 	st->num_returned = 0;
+ 	st->num_remaining = 0;
+-	st->desc_index = start ? *start : 0;
++	st->desc_index = i_start;
+ 
+ 	do {
+ 		iops->prepare_message(i->msg, st->desc_index, i->priv);
+@@ -1883,12 +1888,35 @@ static int __scmi_iterator_run(void *iter, unsigned int *start, unsigned int *en
  		if (ret)
  			return ret;
  
-+		if (i->t->rx.len < SCMI_MULTIPART_REPLY_MIN_SZ) {
-+			dev_err(ph->dev, "Invalid multi-part reply.\n");
-+			return -EINVAL;
-+		}
+-		if (!st->num_returned && st->num_remaining) {
+-			dev_err(ph->dev, "Inconsistent multi-part reply.\n");
++		/*
++		 * Initialize max items expectation for this run based on
++		 * values returned on first message exchange: during the
++		 * following iterations consistency will be validated against
++		 * these parameters, so as to spot FW anomalies like sudden
++		 * termination or unplausible conditions.
++		 */
++		if (!i_max)
++			i_max = i_start + st->num_returned + st->num_remaining;
 +
- 		st->rx_len = i->t->rx.len;
- 		ret = iops->update_state(st, i->resp, i->priv);
- 		if (ret)
- 			return ret;
++		if ((!st->num_returned && st->num_remaining) ||
++		    (i_max != i_start + i_returned + st->num_returned + st->num_remaining)) {
++			dev_err(ph->dev,
++				"Inconsistent multi-part reply. max:%u  i_max:%u  i_start:%u  i_returned:%u  returned:%u  remaining:%u  desc_index:%u\n",
++				st->max_resources, i_max, i_start, i_returned,
++				st->num_returned, st->num_remaining,
++				st->desc_index);
+ 			return -EINVAL;
+ 		}
  
-+		if (!st->num_returned && st->num_remaining) {
-+			dev_err(ph->dev, "Inconsistent multi-part reply.\n");
-+			return -EINVAL;
-+		}
+-		if (st->num_returned > st->max_resources - st->desc_index) {
++		dev_dbg(ph->dev,
++			"Multi-part - max:%u  i_max:%u  i_start:%u  i_returned:%u  returned:%u  remaining:%u  desc_index:%u\n",
++			st->max_resources, i_max, i_start, i_returned,
++			st->num_returned, st->num_remaining, st->desc_index);
 +
- 		if (st->num_returned > st->max_resources - st->desc_index) {
++		/* Account for last batch received */
++		i_returned += st->num_returned;
++
++		if (st->num_returned + st->desc_index > st->max_resources) {
  			dev_err(ph->dev,
  				"No. of resources can't exceed %d\n",
-diff --git a/drivers/firmware/arm_scmi/protocols.h b/drivers/firmware/arm_scmi/protocols.h
-index 8583159059e6..c15ec188291a 100644
---- a/drivers/firmware/arm_scmi/protocols.h
-+++ b/drivers/firmware/arm_scmi/protocols.h
-@@ -33,6 +33,13 @@
- 
- #define MSG_SUPPORTS_FASTCHANNEL(x)	((x) & BIT(0))
- 
-+/*
-+ * Common minimum size required by all the existing standard and vendor
-+ * protocols to hold number of returned and remaining items in a multi-part
-+ * reply.
-+ */
-+#define SCMI_MULTIPART_REPLY_MIN_SZ	(sizeof(u32))
-+
- enum scmi_common_cmd {
- 	PROTOCOL_VERSION = 0x0,
- 	PROTOCOL_ATTRIBUTES = 0x1,
+ 				st->max_resources);
 -- 
 2.54.0
 
