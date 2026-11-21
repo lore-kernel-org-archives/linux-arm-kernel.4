@@ -2,66 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B605F606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 16:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928AF606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 16:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FpnKsEMP;
-	dkim=pass (2048-bit key) header.d=web.de header.i=jan.claussen10@web.de header.a=rsa-sha256 header.s=s29768273 header.b=vXcXDdOD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pGrdV2Hm;
+	dkim=pass (2048-bit key) header.d=web.de header.i=jan.claussen10@web.de header.a=rsa-sha256 header.s=s29768273 header.b=LjOhADgw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Zsmosk/7xptQZiuCZvG/XXkwmDg6kwdhqizkWSN9V10=; b=FpnKsEMPZ76skT
-	H1F/fDmUY+edKj7m3/8Ajk7uhAr5tFI6FlJYzF1GUQvAsmbdHy2W2rEtQE8grr/+OtabmRumUuunq
-	pUyvvxQW3RN5W8X1wjE7nTi3yfSiJe20IJ16CIiCVQ7kKULQ59Mf3pWFTcVplkqrc2IaNyu9wlMKi
-	AcAvkXbIf4GGeQYLcV6IwEtKNqcWhMaoYNXRZ/OHMYu6K4yly9mo7WBZrIZ3MIIQOzwJGa+8JvVZZ
-	VeyojD18ypF7C/sk1cdTsJDGG5h4lvLc9620iUzgJqzNWu0HZAsenGphqR/eoipk3kaFPXvpnzh+m
-	78zfTmYuUNYPuVmk48rA==;
+	List-Owner; bh=mgAJBK1ZuR8vOHJXCA8obDRVKDSfVhdhk1mCKd2tRis=; b=pGrdV2HmwGwfaE
+	ibtVt2fiHWet3yMpyJhM22dvMhlVQZpbfW0EBJBZSXh7MYpSTSAgc/QxeueA6MrvljQlHVYbuA18o
+	A/3Y2qlmThK+DdWEWRunMwy1/45K/ki2aKgvcvrIZ2Gjbogp+nXUNrqeMyDBtn8uI6YbDuwnyGAQg
+	Znb5P6ZhfiByWJ5GU9ZCdllS0sfzw3oD6CJjrG0LFBaldDr+Ye7+yFB02F58IYpgMijuvkZptmbjA
+	fqXmrCFUz73Q8BnmAinygpYgj9xoXFuYKjqkrKouOKU3V6CjRLt83l9nLKNRiEH0c0LxM0kHPppN1
+	lqB8ZKV6tTu0m/mdjfIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUneH-0000000HSjc-3xFf;
-	Sat, 21 Nov 2026 16:09:09 +0000
-Received: from mout.web.de ([212.227.15.14])
+	id 1xUneP-0000000HSoq-1nA6;
+	Sat, 21 Nov 2026 16:09:17 +0000
+Received: from mout.web.de ([212.227.15.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUneE-0000000HSha-1Eqi
+	id 1xUneK-0000000HSkH-0zoX
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 16:09:08 +0000
-DKIM2-Signature: i=1; m=1; t=1795277344;
+	Sat, 21 Nov 2026 16:09:14 +0000
+DKIM2-Signature: i=1; m=1; t=1795277350;
  mf=PGphbi5jbGF1c3NlbjEwQHdlYi5kZT4=;
  rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
  d=web.de;
- s=s29768273:rsa-sha256:Y//tc11ZLSdcS/yyZtSjweLTBK1K
-   Tq1qWhN0d4D0TIhacZmCZxuRAyqOpAbcfsCivIi+n41OPLgzcpJ8rtdZmccTjbxeFRO5XtwOuw2
-   6LO3bmbDW3JCTGQ4EDAsWcvB04Qgu93z4fYQpfH/3r9eGPZHFyv8pJKZnRhS60RZqjonE4nkrKx
-   Ep9DrRPWLBKhsT9ExM7OPAh4weg39RaCecrrfrHblvMo+ohSOS3EqPjIEVZzfHy5PZuCJFWGxid
-   UG8jcW8gYQP5wXC8bG7GKWUcn+m7EoSRB2QsQtOyaGRZq7htT6MeuapJrZttz4h0aXdvIfrHt9E
-   ScKLk/nPEXxVvQ==;
+ s=s29768273:rsa-sha256:S44ncZUF1LCZWlwOeLxutSM9cRGV
+   WezuwqiQYFa/HiTG82Sea3sy7F9PbksCOb1XXAroYAAg57tafSTILjqPZpxwUFG4f6n/3Aq+29/
+   G3Tqe/ZL0pCfkAc31MlelI1EsLK1NxhdLMesGm2mnYhbEXz4b7p+AqQz7gspsvEv74IklTR8mqd
+   rDDxtduYxNer0s69nhlaGfSy876FqXbCL7/HqAeikfIA0tQMD/z2RFvPWATUUTsR8kbm6Z2kZ/m
+   QvhXjN6aZfNarAEflSRWpfLlslkPLw+kJjAoya7f7zZT2DkB5TmuurxVSb54I6PF9OmJxSGLAoT
+   oF26yrfjwCl2SA==;
 Message-Instance: m=1;
  h=sha256:
-   5NIaQc7CGtIQ5BkyNRggEbll7my6hfOtFay0nVEb/nw=:
-   eQTQOpDy20avckqeSwISdmX48gNkRyRt1JlXQY4G2XQ=,
+   aU/RdSLm0f/zdS8hF4j61aKTuInKaVe4UgWlH0IZrxw=:
+   XoavLg46jNkYPucFYNCW5ACV6w7PtI1YzZ/JZUqAXrQ=,
   sha512:
-   cd2ZhMFo+8xsg5rf9LfoF6XV2fbGb9kYfDJ+ISIyXDzK74NBCFAD30+5rB7YRBWQl/Ddn2HCayuU3ookdw1gKw==:
-   FBAJ5o00moWgt9VuzBUZBTf1HhHMGElbphV1F/+kpl8ZVRU8FWfKI7muS0EZBcrqj8cLgWgo5YLIwNIDEbYUIw==;
+   9AAE5ngVMsi1M2eVY3K4eZjOE2XqhUCRbSkEaGn4JzLJ7GbXXiAX6qxMluJnXv0t74Qc9OD0ZekmwJAH9dgF5g==:
+   BLlbWhYHFX0g2P+ATQR7LZ8eI023cxpmoI+lCxo8SdbqFj7mqlbhECRDx53HxtBEtICFTVoAHwLlieRjTSat5A==;
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1795277344; x=1795882144; i=jan.claussen10@web.de;
-	bh=Zsmosk/7xptQZiuCZvG/XXkwmDg6kwdhqizkWSN9V10=;
+	s=s29768273; t=1795277333; x=1795882133; i=jan.claussen10@web.de;
+	bh=mgAJBK1ZuR8vOHJXCA8obDRVKDSfVhdhk1mCKd2tRis=;
 	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
 	 References:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=vXcXDdODtQYS4FUKejX0cgvrVt65hNMYh2oMQoCaB4EgYWCOhbHsY9uRKvZmhqsd
-	 jC2LuCXnxijjXyYvULSLAttJ93Cv2/RaVaUWyQ6GGLbOgpD/D5z4onDV5wAH/bVNk
-	 jO+Jg16Zn2ez24LCtCcjgxvfOJnMD2AP+umpEtmA5JAv2mrL9mWpHlJa/gHhs6+To
-	 Lba7KKC0bkO3e4UJde5wRyR9GQSwzomTQvQmZ515B3WBSMQTTQsiAMix4RIhkvael
-	 hJ0oM9DCbpk3J3PpCu2BAgJ5QqjJfqj4S/jSwefKaWfohu2/HR8zeqvnvMEkn4eBw
-	 DhMJuzxTekbFMLt6+w==
+	b=LjOhADgw0t+gJ9vJYx5jWssnKA2KzyTy75DADA8au+uwjheZPO20XqjTSBIDB5sT
+	 2odT7UzNWrEBw2raZ1Oo12/h6K7+4LUnyH1jh2WJPa2MQv1izjhHF3lIXFeXGdTZq
+	 YVPClenYK6R9SlN7I8gQfxUHJYB0eNE7gi1ZcjOS0V/S2kMQ5ZiVcnDcqE8nbNc9n
+	 xBmZiTq7Yl1ue053Go1CBCRvw0EIjyEDlUyPg55EQTYS/clx4pi74Mu+sLeAj8l0r
+	 NIH223H5iLMOPOYsPi5pycgafIwpV4Vu4OGVm2Yy8MPjCMUD0sjSDtZ0Y+6QARyte
+	 fgp/ibwjDdU8QOT/Gw==
 X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MIyeU-1xp5QI21YQ-00Kz5H; Sat, 21
- Nov 2026 17:09:04 +0100
+Received: from client.hidden.invalid by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MVaYi-1xwGh63B5Q-00OepU; Sat, 21
+ Nov 2026 17:08:52 +0100
 From: =?UTF-8?q?Jan=20Clau=C3=9Fen?= <jan.claussen10@web.de>
 To: Sandy Huang <hjc@rock-chips.com>,
 	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
@@ -76,9 +76,9 @@ Cc: =?UTF-8?q?Jan=20Clau=C3=9Fen?= <jan.claussen10@web.de>,
 	linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v6 7/8] drm/rockchip: dw_hdmi_qp: Set the VOP2 color space from the connector
-Date: Sat, 21 Nov 2026 17:06:59 +0100
-Message-ID: <20261121160725.6344-8-jan.claussen10@web.de>
+Subject: [PATCH v6 6/8] drm/rockchip: vop2: Select the CSC matrix from the DRM colorimetry
+Date: Sat, 21 Nov 2026 17:06:58 +0100
+Message-ID: <20261121160725.6344-7-jan.claussen10@web.de>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261121160725.6344-1-jan.claussen10@web.de>
 References: <20261121160725.6344-1-jan.claussen10@web.de>
@@ -86,17 +86,16 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:zDoO2QbrvbdbuRccXH83K0a7z/+S4pNRUxgObQhpNdxdNgqcsj5
- tnq92gvQ2qnXEhoVZkpnvjjcEZM58ZxlXtUmLsx/ZxUr0lL5wDVO7QHXib6afF3OsMFWKFU
- /loe3uyzP/D5KrWYDKKvvj3rhQzjLRxnktE1N5by/bXTBlUILZvDgj3oySdHr7eJEEvqLO7
- SaZHrYhyLDVke2P0eE2pQ==
-UI-OutboundReport: notjunk:1;M01:P0:prPxuFbIgJ4=;MfrziTT25gPiDLxiDgxR3bZgjyd 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 5m6xcJy1C/4ZeQ3r9kvg==
+X-Provags-ID: V03:K1:YNbY5K7elgKzxnH+ZYH/YcrBmOjA8mMhiY1HwIM6y4n4+xbw3Gh
+ orZrfBSoFssKPWWWwdWd1U2b6VzG0R0F5wWG26XxUe3RQP3vl1k1z67M739J+drD0kl4Dzk
+ r7PTOAUqpK5P7q/DSjDj/7C6I5npSWyDgQLyvedOK7RUJZehNwFGnvEnDNuonAqSm1e5vVS
+ sTMuKKc37ZVoK5cyQn93w==
+UI-OutboundReport: notjunk:1;M01:P0:AKhoKPTrluE=;EJZNX1ecVe49NwHkOFJEBbW4kT3 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 ug==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_080906_638902_032C0600 
-X-CRM114-Status: UNSURE (   9.02  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261121_080912_594047_54D06A92 
+X-CRM114-Status: GOOD (  12.81  )
 X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,35 +115,192 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VOP2 converts RGB to YCbCr using the matrix selected by the CRTC
-state's colorspace, but the HDMI encoder never sets it, so VOP2
-always converts with BT.709. Once the colorspace property can
-signal BT.2020 colorimetry to the sink, a YCbCr output would be
-encoded with BT.709 and decoded with BT.2020.
+The color_space field in struct rockchip_crtc_state holds V4L2 colorspace
+values, a leftover from the vendor kernel. The DP and DSI2 encoders only
+ever set V4L2_COLORSPACE_DEFAULT, so VOP2 always ends up with BT.709.
+An HDMI encoder that wants to honour the connector colorspace property
+would have to translate DRM colorimetry into V4L2 values, only for VOP2
+to map them back to a CSC matrix.
 
-Pass the connector colorspace on to VOP2, and do so before the
-early return so that a colorspace change alone is applied.
+Store the connector's enum drm_colorspace in the CRTC state instead and
+pick the CSC matrix from DRM_MODE_COLORIMETRY_* directly. Since
+DRM_MODE_COLORIMETRY_DEFAULT is 0, the zero-initialised state keeps the
+current BT.709 behaviour and the encoder assignments can go.
+
+No functional change.
 
 Signed-off-by: Jan Clau=C3=9Fen <jan.claussen10@web.de>
 =2D--
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 2 ++
- 1 file changed, 2 insertions(+)
+ .../gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c  |  3 --
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c     |  2 -
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 41 +++++++++----------
+ 4 files changed, 20 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/=
-drm/rockchip/dw_hdmi_qp-rockchip.c
-index f2a1ea8dfefa..24a28b5f4576 100644
-=2D-- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -205,6 +205,8 @@ dw_hdmi_qp_rockchip_encoder_atomic_check(struct drm_en=
-coder *encoder,
- 	if (ingest_fmt < 0)
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c b/drivers/gp=
+u/drm/rockchip/dw-mipi-dsi2-rockchip.c
+index 6db88665060d..87bab11d6f8a 100644
+=2D-- a/drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c
+@@ -23,8 +23,6 @@
+ #include <drm/drm_mipi_dsi.h>
+ #include <drm/drm_of.h>
 =20
-+	s->colorspace =3D conn_state->colorspace;
-+
- 	if (hdmi->tmds_char_rate =3D=3D conn_state->hdmi.tmds_char_rate &&
- 	    s->output_bpc =3D=3D conn_state->hdmi.output_bpc &&
- 	    s->bus_format =3D=3D ingest_fmt)
+-#include <uapi/linux/videodev2.h>
+-
+ #include "rockchip_drm_drv.h"
+=20
+ #define PSEC_PER_SEC			1000000000000LL
+@@ -268,7 +266,6 @@ dw_mipi_dsi2_encoder_atomic_check(struct drm_encoder *=
+encoder,
+=20
+ 	s->output_type =3D DRM_MODE_CONNECTOR_DSI;
+ 	s->bus_flags =3D info->bus_flags;
+-	s->color_space =3D V4L2_COLORSPACE_DEFAULT;
+=20
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/r=
+ockchip/dw_dp-rockchip.c
+index b23efb153c9e..412796435af6 100644
+=2D-- a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+@@ -10,7 +10,6 @@
+ #include <linux/media-bus-format.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+-#include <linux/videodev2.h>
+=20
+ #include <drm/bridge/dw_dp.h>
+ #include <drm/drm_atomic_helper.h>
+@@ -62,7 +61,6 @@ static int dw_dp_encoder_atomic_check(struct drm_encoder=
+ *encoder,
+ 	s->output_type =3D DRM_MODE_CONNECTOR_DisplayPort;
+ 	s->bus_format =3D bus_format;
+ 	s->bus_flags =3D di->bus_flags;
+-	s->color_space =3D V4L2_COLORSPACE_DEFAULT;
+=20
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm=
+/rockchip/rockchip_drm_drv.h
+index 4705dc6b8bd7..9c0d744ed95b 100644
+=2D-- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+@@ -56,7 +56,7 @@ struct rockchip_crtc_state {
+ 	bool yuv_overlay;
+ 	u32 bus_format;
+ 	u32 bus_flags;
+-	int color_space;
++	enum drm_colorspace colorspace;
+ };
+ #define to_rockchip_crtc_state(s) \
+ 		container_of(s, struct rockchip_crtc_state, base)
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/dr=
+m/rockchip/rockchip_drm_vop2.c
+index bfb384142568..91453621546a 100644
+=2D-- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -33,8 +33,6 @@
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_vblank.h>
+=20
+-#include <uapi/linux/videodev2.h>
+-
+ #include "rockchip_drm_gem.h"
+ #include "rockchip_drm_vop2.h"
+ #include "rockchip_rgb.h"
+@@ -647,20 +645,19 @@ static void vop2_setup_scale(struct vop2 *vop2, cons=
+t struct vop2_win *win,
+ 	}
+ }
+=20
+-static int vop2_convert_csc_mode(int csc_mode)
++static enum vop_csc_format
++vop2_convert_csc_mode(enum drm_colorspace colorspace)
+ {
+-	switch (csc_mode) {
+-	case V4L2_COLORSPACE_SMPTE170M:
+-	case V4L2_COLORSPACE_470_SYSTEM_M:
+-	case V4L2_COLORSPACE_470_SYSTEM_BG:
++	switch (colorspace) {
++	case DRM_MODE_COLORIMETRY_SMPTE_170M_YCC:
++	case DRM_MODE_COLORIMETRY_XVYCC_601:
++	case DRM_MODE_COLORIMETRY_SYCC_601:
++	case DRM_MODE_COLORIMETRY_OPYCC_601:
++	case DRM_MODE_COLORIMETRY_BT601_YCC:
+ 		return CSC_BT601L;
+-	case V4L2_COLORSPACE_REC709:
+-	case V4L2_COLORSPACE_SMPTE240M:
+-	case V4L2_COLORSPACE_DEFAULT:
+-		return CSC_BT709L;
+-	case V4L2_COLORSPACE_JPEG:
+-		return CSC_BT601F;
+-	case V4L2_COLORSPACE_BT2020:
++	case DRM_MODE_COLORIMETRY_BT2020_RGB:
++	case DRM_MODE_COLORIMETRY_BT2020_YCC:
++	case DRM_MODE_COLORIMETRY_BT2020_CYCC:
+ 		return CSC_BT2020L;
+ 	default:
+ 		return CSC_BT709L;
+@@ -707,8 +704,8 @@ static void vop2_setup_csc_mode(struct vop2_video_port=
+ *vp,
+ 	struct rockchip_crtc_state *vcstate =3D to_rockchip_crtc_state(vp->crtc.=
+state);
+ 	int is_input_yuv =3D pstate->fb->format->is_yuv;
+ 	int is_output_yuv =3D is_yuv_output(vcstate->bus_format);
+-	int input_csc =3D V4L2_COLORSPACE_DEFAULT;
+-	int output_csc =3D vcstate->color_space;
++	enum drm_colorspace input_csc =3D DRM_MODE_COLORIMETRY_DEFAULT;
++	enum drm_colorspace output_csc =3D vcstate->colorspace;
+ 	bool r2y_en, y2r_en;
+ 	int csc_mode;
+=20
+@@ -797,10 +794,10 @@ vop2_rgb2yuv_get_matrix(enum vop_csc_format csc)
+ }
+=20
+ /* Convert an RGB (16bpc) to YUV444 (16bpc). */
+-static void vop2_rgb16_to_yuv16(int v4l2_cs, u16 r, u16 g, u16 b,
+-				u16 *y, u16 *cb, u16 *cr)
++static void vop2_rgb16_to_yuv16(enum drm_colorspace colorspace,
++				u16 r, u16 g, u16 b, u16 *y, u16 *cb, u16 *cr)
+ {
+-	enum vop_csc_format csc =3D vop2_convert_csc_mode(v4l2_cs);
++	enum vop_csc_format csc =3D vop2_convert_csc_mode(colorspace);
+ 	const struct rgb2yuv_matrix *m =3D vop2_rgb2yuv_get_matrix(csc);
+ 	s64 rs =3D r, gs =3D g, bs =3D b;
+ 	s64 ys, cbs, crs;
+@@ -1652,7 +1649,7 @@ static void vop2_bgcolor_setup(struct drm_crtc *crtc=
+, bool force,
+ 	u32 val;
+=20
+ 	if (!force && old_crtc_state->background_color =3D=3D bgcolor &&
+-	    old_vcstate->color_space =3D=3D new_vcstate->color_space)
++	    old_vcstate->colorspace =3D=3D new_vcstate->colorspace)
+ 		return;
+=20
+ 	/*
+@@ -1660,7 +1657,7 @@ static void vop2_bgcolor_setup(struct drm_crtc *crtc=
+, bool force,
+ 	 * format when operating in YUV overlay mode, and RGB otherwise.
+ 	 */
+ 	if (new_vcstate->yuv_overlay) {
+-		vop2_rgb16_to_yuv16(new_vcstate->color_space,
++		vop2_rgb16_to_yuv16(new_vcstate->colorspace,
+ 				    DRM_ARGB64_GETR(bgcolor),
+ 				    DRM_ARGB64_GETG(bgcolor),
+ 				    DRM_ARGB64_GETB(bgcolor),
+@@ -2140,7 +2137,7 @@ static int vop2_crtc_state_dump(struct drm_crtc *crt=
+c, struct seq_file *s)
+ 	seq_printf(s, "\tbus_format[%x]: %s\n", vcstate->bus_format,
+ 		   drm_get_bus_format_name(vcstate->bus_format));
+ 	seq_printf(s, "\toutput_mode[%x]", vcstate->output_mode);
+-	seq_printf(s, " color_space[%d]\n", vcstate->color_space);
++	seq_printf(s, " colorspace[%d]\n", vcstate->colorspace);
+ 	seq_printf(s, "\tbackground color (10bpc): r=3D0x%x g=3D0x%x b=3D0x%x\n"=
+,
+ 		   DRM_ARGB64_GETR_BPCS(cstate->background_color, 10),
+ 		   DRM_ARGB64_GETG_BPCS(cstate->background_color, 10),
 =2D-=20
 2.56.0
 
