@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51041606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3FB606A33E
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 21:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S0M8ASnj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SUfekZDj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KoH2B86n;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Gx/YuX+3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ViW+J37vlQnKvGYExQxk1bMlBbVAMGgbVTcmrc54d/s=; b=S0M8ASnj5uXRlbXSVobhZmnbfc
-	CQThc80vF+EEA2TpRsCNmX3mOxsQPDocRpdUgyf9DjtjX1BCXqwAN6i4GyPeTDxepgIRLpUn769Es
-	Cx2w4LwpQnT1KwMUl8vZivbRzwAGoAfwho9qtVy3tIFX4QoJSmjbBcCPBjxy5whYCRtGI0/6y62fk
-	l+6nJP9wX77EZToswogfb0DDU7l5FuC/2zt92wgw1AE86DaTRXinPuP2diM7qpPyJbu8A3uEXDGyt
-	drIBEJFdtc9np0B9UBfzYNk8isFPtQB3oEM2Mp09aaCxJI2ZPICgGw3sbqjhfcVirSnny1nUaHlcF
-	r24BRVVg==;
+	bh=IWGxRSF6TsGu8YkPR66UCDbiThQFkRdGV1nPrINMwrA=; b=KoH2B86nwnLOUD7PML1gfP2N/z
+	Ne1X30eKzoO2v2VnI3repAAolo7zAQHT1wTMsd0arteegnYQrL149idEsiAcs27jUi9zrN0CJ/EgQ
+	YEp71PdNxtSN/1SDTaq+MQ521rY1lKeGmjd7GYWGmjvBCUNO2hleKBbIwaaG2fu9J/uwbIenvYl96
+	Znkmw/HsYhqIBVU92cbFE39ddPjrN3wwJWU8rKDw/CmN1/MTbtEkPBhTOsYd6AopOLGe9n7jDCOk0
+	BVNCzP+Nbp3rA5ZuJjpGSerNohjUufKv/lel7sIH4deV6mNQy80c6j/OLYlDiGgvxWbn4rA56cnJ6
+	xAFTTOPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUskl-00000000MgB-38xh;
-	Sat, 21 Nov 2026 21:36:11 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xUskm-00000000MhK-1Rou;
+	Sat, 21 Nov 2026 21:36:12 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUskf-00000000MdY-3PHH
+	id 1xUskj-00000000Mdz-2Rg0
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 21 Nov 2026 21:36:09 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3E47B61DC9;
-	Sat, 21 Nov 2026 21:36:05 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 9CF0B45590;
+	Sat, 21 Nov 2026 21:36:03 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795296964;
-	b=A3PlgsyBP/nJ9/CtvA4V47WqpWp1kbBq9kZTAxUnMgft4+xH4WZtQKZWQUKdLb/5LBnS
-	 rgIp1dvgKu2G9Y9xhnCVtHyUru/hry+Jp6YI+Qj5Qut2fIf46rd8f6WOnQPEugwh9+EWY
-	 CUzPiPpHN2JqMbIyNr5qABJwm5tpglYDTGOT73+qK9Jx9qtSeJR3pvzpC1e0Z0BUutoon
-	 55cOih6ov8eejaEXqo8OPYek4JF2yOrPeKEgNpXvFDvu5ERTkfLQcQcVZapNpsfhh0yPc
-	 hvbki0tYhOLm9l3EnyoWsEcXIZIr9i6oD+icn9HFKIBAS8T6gnN2kixyQf6OEauuchg==
+	t=1795296963;
+	b=ZzQAjrahsUmh8xWrweHq6uI2FFXHmRsOMRVitxGG9Xj5QPqubasn6sCWjWcfPEf3aRO0
+	 LyU/122y+A2VDwAddAp7AE7x5jln1Tlh9DwNskp/Q85q4P8cEoJF6ajiak/r1TWOWQwBj
+	 xHFlVwIe3pAVb3B+ZENpLQ+4gYEvsVcBY/C2amsHS33oWZjDdxn302686+b0xnWjv+WYK
+	 DgHwR5StpgQP9O5dGSbimPGQ+CsNEiZWuPtaipSTDaFwKgpSue3Hov+bl0szJwrJkh8Mi
+	 8dRgVVm8+b8QoAUNSO4iUcIDoFAMplAmzOWv3YQ+Ou12eizZPU71raZKK4cAO6043rA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795296964;
+	c=relaxed/relaxed; t=1795296963;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=ViW+J37vlQnKvGYExQxk1bMlBbVAMGgbVTcmrc54d/s=;
-	b=WLAkBHEWk6S620TiXjb1mHjidZwaUzQ8wtbOnsNww/JioUiwUw2yUO+6Odv6iZWk9qho
-	 uvlYm4+htKFGRq/fidddG9DQOk6hhsiul5yPw032mUc9WS9+w20vb2UIle4Rc6cgSTjb/
-	 oJZ+lBl5Ix178F8iV3Ix7b0bgeZ/YJ83sJvfHMAGTGZAtLMuWQgzk+4EyZ5KNrJFZqvlR
-	 a601g2TAEo0xezIzj8GcJyMK6jslm+Vw3nuKnEDxLjPVQEF6eTZnLHzC8octCJlwew/an
-	 aIcG0MKeZcl3Hx4qHo/cpShFCNTISuIN3O3cPj3JIaXw9re0FWeKrRbCJ4KyWqgqZVA==
+	bh=IWGxRSF6TsGu8YkPR66UCDbiThQFkRdGV1nPrINMwrA=;
+	b=biVcCekQ/jMubTl8+ok0+9A0NexCVr7cXVrMIlC/M8Mz15V1PAYnWYl1SxL/41UHks4Y
+	 FqXm1knST6vW/+Vp5bXFYtQLX9/CAMTlP3eQMINTvgglPw1DIXdz3Ggj1v2C2oIFxgsyb
+	 wOdV7to6QvPTZ3S0C/3DV15cGL5+q+tRPsgQh/GK7htxIJiOZ3RU11p9vq0j8KnOvJQZc
+	 QxD6/dB6lQamFiRt08MBVaMZnahYx1pP84za9Z1BNXfc6ELCj19h4FW134G4iduyqcgHt
+	 s+coKdmdEsuD2BdIDfYXccMvb3dCQAguIXEf7Xv65YaNLdiOdcwr2GYhTKTFoQE1eSA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 54B8F1F000C6;
-	Sat, 21 Nov 2026 21:36:01 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 199AE1F000ED;
+	Sat, 21 Nov 2026 21:36:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795296964;
-	bh=ViW+J37vlQnKvGYExQxk1bMlBbVAMGgbVTcmrc54d/s=;
+	s=k20260515; t=1795296963;
+	bh=IWGxRSF6TsGu8YkPR66UCDbiThQFkRdGV1nPrINMwrA=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=SUfekZDjVoFkdDAykqK9ryg1fRmQA+NARHZEGmXuC66dSKOa3G1ffqCAngNwa7hRc
-	 Ho+S8F113heJXP0sZzt2qffZNSYj58USBe8KnwAdkWxYVTU6CuWlfRy5rEmemjjbiB
-	 CxbIDe4wvqPNk9YJoZmZorxhyRMIAwFouIhiPzc1k5CooEYZbdx5K95AJUya0a/8or
-	 W6JjvNKs2hC/cgM068ujv0+fmTjd0suZS5aZ0TwEcIxJOc4R3yWaXPS7Htjhh+C0U/
-	 5E1qdHlogug0Sn+pWSPEtpnRB+76HoSsaBv83Os5ZB1xa6JxQ9h1vv3XzrDnyXTjdK
-	 tpM8kCrVZbjaA==
+	b=Gx/YuX+3BdrWJ+9LWb/i/CegdA72WtSfElBTC3f0RXUHRzD/+mLinxxG5bGVL/Xs2
+	 i1IqZMHXnu/3YENEiOSicp5Mz7o8RXt7rAwz5zTeJtg6WfvPComj81wvkd5mI2+W6f
+	 xdIjYvTfeFxJMcvuBBcdoVcSeGl+etVx0nINLkIEygWPDVF5BJpL8O9TXgkpQqliA5
+	 UMgSZ8WrqjVCsnPIXeMQSxEd2OKmCeSzOiwIsjtNh+O/F4mzI5zuoH/QU71Vw1proI
+	 ljwooU9C2DDLLwRRrgpUrSdJDBcbMDZql/g8vQw9A/p2h9Xp7zGJvyZvrx9JuYsFXO
+	 jHPrEtx1C4wTA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E5B894BDFD;
-	Sat, 21 Nov 2026 21:35:59 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 5FE1F4BE0D;
+	Sat, 21 Nov 2026 21:36:00 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Sun, 22 Nov 2026 00:35:50 +0300
-Subject: [PATCH v9 05/10] ARM: debug: Add Cortina Systems CS75xx UART0
- support
+Date: Sun, 22 Nov 2026 00:35:54 +0300
+Subject: [PATCH v9 09/10] ARM: multi_v7_defconfig: Enable Cortina Systems
+ CS75xx support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261122-b4-cs75xx-v9-5-1fc1b90bd097@gmail.com>
+Message-Id: <20261122-b4-cs75xx-v9-9-1fc1b90bd097@gmail.com>
 References: <20261122-b4-cs75xx-v9-0-1fc1b90bd097@gmail.com>
 In-Reply-To: <20261122-b4-cs75xx-v9-0-1fc1b90bd097@gmail.com>
 To: Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linusw@kernel.org>, 
@@ -97,11 +97,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Jason Li <jason.li@cortina-access.com>, 
  Fil Dunsky <filipp.dunsky@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795296958; l=4419;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795296958; l=1073;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=XANVvquwZ46csK0xa+Qk9KFcex+6JNnk+DkCsDkUuAQ=;
- b=8K4WSBVu/HWUYaUqDSkGJLMeYtCLNp84PLPH56fSRK/CWzMoakwL6pz0dmyaj3pDLIOHIkb41
- PZcK3i1uvK9ATEEGzMQ6ny12BMHXRPZvJ0E+CKJG1DvlGSSkDQXwShH
+ bh=6lUn6eCTFyPOKvxFHES2Y+JrDHysCcc0CgLi4Om4C1M=;
+ b=/AdLPokHgNTKSs8qJDHsydIJEi1vTVxTcUO3jWZQVyFk4cp2u1lZIqXm3owJkC839C/yJ7uoE
+ EGUtEDrr9GlB8UuOQ9UESILEfvc6ZIFn3tOGZmPrh15Zuwy4OtLqiC0
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -129,122 +129,36 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Add low-level debug output through UART0 of the Cortina Systems CS75xx
-SoCs. The UART is mapped at a fixed virtual address by the generic
-debug_ll_io_init(), so no platform map_io is needed.
+Enable the Cortina Systems CS75xx platform and its UART driver with
+console support, as used on the Securifi Almond+ router.
 
 Reviewed-by: Linus Walleij <linusw@kernel.org>
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- arch/arm/Kconfig.debug          | 16 ++++++++++++++--
- arch/arm/include/debug/cs75xx.S | 37 +++++++++++++++++++++++++++++++++++++
- 2 files changed, 51 insertions(+), 2 deletions(-)
+ arch/arm/configs/multi_v7_defconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/Kconfig.debug b/arch/arm/Kconfig.debug
-index abcf14f10..c43fe288b 100644
---- a/arch/arm/Kconfig.debug
-+++ b/arch/arm/Kconfig.debug
-@@ -308,6 +308,15 @@ choice
- 		  Say Y here if you want the debug print routines to direct
- 		  their output to the second serial port on these devices.
- 
-+	config DEBUG_CS75XX_UART0
-+		bool "Kernel low-level debugging messages via CS75xx UART0"
-+		depends on ARCH_CORTINA_ACCESS
-+		help
-+		  Say Y here if you want the debug print routines to direct
-+		  their output to UART0 of Cortina Systems CS75xx SoCs. This
-+		  is the console port on the Securifi Almond+. The UART is
-+		  expected to be set up by the bootloader.
-+
- 	config DEBUG_DAVINCI_DA8XX_UART1
- 		bool "Kernel low-level debugging on DaVinci DA8XX using UART1"
- 		depends on ARCH_DAVINCI_DA8XX
-@@ -1531,6 +1540,7 @@ config DEBUG_LL_INCLUDE
- 	default "debug/vt8500.S" if DEBUG_VT8500_UART0
- 	default "debug/zynq.S" if DEBUG_ZYNQ_UART0 || DEBUG_ZYNQ_UART1
- 	default "debug/bcm63xx.S" if DEBUG_BCM63XX_UART || DEBUG_BCMBCA
-+	default "debug/cs75xx.S" if DEBUG_CS75XX_UART0
- 	default "debug/digicolor.S" if DEBUG_DIGICOLOR_UA0
- 	default "debug/brcmstb.S" if DEBUG_BRCMSTB_UART
- 	default "mach/debug-macro.S"
-@@ -1632,6 +1642,7 @@ config DEBUG_UART_PHYS
- 	default 0xe8008000 if DEBUG_R7S72100_SCIF2 || DEBUG_R7S9210_SCIF2
- 	default 0xe8009000 if DEBUG_R7S9210_SCIF4
- 	default 0xf0000000 if DEBUG_DIGICOLOR_UA0
-+	default 0xf0070110 if DEBUG_CS75XX_UART0
- 	default 0xf1012000 if DEBUG_MVEBU_UART0_ALTERNATE
- 	default 0xf1012100 if DEBUG_MVEBU_UART1_ALTERNATE
- 	default 0xf7fc9000 if DEBUG_BERLIN_UART
-@@ -1670,7 +1681,7 @@ config DEBUG_UART_PHYS
- 		DEBUG_RMOBILE_SCIFA4 || \
- 		DEBUG_S3C64XX_UART || \
- 		DEBUG_BCM63XX_UART || DEBUG_BCMBCA || DEBUG_ASM9260_UART || \
--		DEBUG_DIGICOLOR_UA0 || \
-+		DEBUG_CS75XX_UART0 || DEBUG_DIGICOLOR_UA0 || \
- 		DEBUG_AT91_UART || DEBUG_STM32_UART || \
- 		DEBUG_STIH41X_ASC2 || DEBUG_STIH41X_SBC_ASC1 || \
- 		DEBUG_STIH418_SBC_ASC0
-@@ -1708,6 +1719,7 @@ config DEBUG_UART_VIRT
- 	default 0xf7000800 if DEBUG_S3C64XX_UART && DEBUG_S3C_UART2
- 	default 0xf7000c00 if DEBUG_S3C64XX_UART && DEBUG_S3C_UART3
- 	default 0xf7020000 if DEBUG_AT91_SAMA5D2_UART1
-+	default 0xf7070110 if DEBUG_CS75XX_UART0
- 	default 0xf7fc9000 if DEBUG_BERLIN_UART
- 	default 0xf8007000 if DEBUG_HIP04_UART
- 	default 0xf8009000 if DEBUG_VEXPRESS_UART0_CA9
-@@ -1772,7 +1784,7 @@ config DEBUG_UART_VIRT
- 		DEBUG_QCOM_UARTDM || \
- 		DEBUG_S3C64XX_UART || \
- 		DEBUG_BCM63XX_UART || DEBUG_BCMBCA || DEBUG_ASM9260_UART || \
--		DEBUG_DIGICOLOR_UA0 || \
-+		DEBUG_CS75XX_UART0 || DEBUG_DIGICOLOR_UA0 || \
- 		DEBUG_AT91_UART || DEBUG_STM32_UART || \
- 		DEBUG_STIH41X_ASC2 || DEBUG_STIH41X_SBC_ASC1 || \
- 		DEBUG_STIH418_SBC_ASC0
-diff --git a/arch/arm/include/debug/cs75xx.S b/arch/arm/include/debug/cs75xx.S
-new file mode 100644
-index 000000000..967821add
---- /dev/null
-+++ b/arch/arm/include/debug/cs75xx.S
-@@ -0,0 +1,37 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Debugging macro include header for the Cortina Systems CS75xx UART
-+ */
-+
-+#define CS75XX_UART_TXDAT		0x10
-+#define CS75XX_UART_INFO		0x18
-+#define CS75XX_UART_INFO_TX_FULL	(1 << 2)
-+#define CS75XX_UART_INFO_TX_EMPTY	(1 << 3)
-+
-+		.macro	addruart, rp, rv, tmp
-+		ldr	\rp, =CONFIG_DEBUG_UART_PHYS
-+		ldr	\rv, =CONFIG_DEBUG_UART_VIRT
-+		.endm
-+
-+		.macro	senduart, rd, rx
-+		ARM_BE8(rev \rd, \rd)
-+		str	\rd, [\rx, #CS75XX_UART_TXDAT]
-+		ARM_BE8(rev \rd, \rd)
-+		.endm
-+
-+		.macro	waituartcts, rd, rx
-+		.endm
-+
-+		.macro	waituarttxrdy, rd, rx
-+1001:		ldr	\rd, [\rx, #CS75XX_UART_INFO]
-+		ARM_BE8(rev \rd, \rd)
-+		tst	\rd, #CS75XX_UART_INFO_TX_FULL
-+		bne	1001b
-+		.endm
-+
-+		.macro	busyuart, rd, rx
-+1002:		ldr	\rd, [\rx, #CS75XX_UART_INFO]
-+		ARM_BE8(rev \rd, \rd)
-+		tst	\rd, #CS75XX_UART_INFO_TX_EMPTY
-+		beq	1002b
-+		.endm
+diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+index 069d5a49f..23f144359 100644
+--- a/arch/arm/configs/multi_v7_defconfig
++++ b/arch/arm/configs/multi_v7_defconfig
+@@ -45,6 +45,7 @@ CONFIG_MACH_BERLIN_BG2CD=y
+ CONFIG_MACH_BERLIN_BG2Q=y
+ CONFIG_ARCH_DIGICOLOR=y
+ CONFIG_ARCH_EXYNOS=y
++CONFIG_ARCH_CORTINA_ACCESS=y
+ CONFIG_ARCH_HIGHBANK=y
+ CONFIG_ARCH_HISI=y
+ CONFIG_ARCH_HI3xxx=y
+@@ -396,6 +397,8 @@ CONFIG_SERIAL_FSL_LPUART=y
+ CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
+ CONFIG_SERIAL_CONEXANT_DIGICOLOR=y
+ CONFIG_SERIAL_CONEXANT_DIGICOLOR_CONSOLE=y
++CONFIG_SERIAL_CORTINA=y
++CONFIG_SERIAL_CORTINA_CONSOLE=y
+ CONFIG_SERIAL_ST_ASC=y
+ CONFIG_SERIAL_ST_ASC_CONSOLE=y
+ CONFIG_SERIAL_STM32=y
 
 -- 
 2.53.0
