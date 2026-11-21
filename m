@@ -2,90 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED323606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 12:37:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC617606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 12:42:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=apRZDdiG;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=F9LEHQbx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rH4R3+Up;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GAz7spVA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ecaFsi2e5LNEjbPjQmXTKmGsw/5A00VPELVlO9Khp+U=; b=apRZDdiGIN94wrqitujX+lWb5i
-	dEwH8Vdtn4WpfKqr0/zKb/ss7x9S8Xtd2mnbQ1C49Q55OnG/bv+B3gm7s9HA5VIMt2sqdnqwhETfv
-	CWQJs2za8xjkFJpFF8Sh89iYbDrwx2jJXazoV87QYQLMxgVYrWsFV5JI9A6UQeNCeLh4fVcqXRrRX
-	u0/i7aVaBnudKTAS4MSwswIDWwPjzzqc5rjj1DPBwsalZcMPNAukVFedtFCOJ1cc3d8EAffcYRKd5
-	7AgEZEJ/SZ+RtZmLIFZURZH6qsgI04fT0rE36d8vBySMnd5l9HwQFGtJQ/PAv23OX5R3g5Dl9tMXw
-	AVJ3+JkA==;
+	bh=B2/Og1vypeSBCVc9jeVdKyeKApwX92hxBK+MvswlFtY=; b=rH4R3+UpQ04pQwqmYJFNzu8y7b
+	lLRMMBvvpeXMtEg8BAhkpkuDRDiv5hv+wBtxFxw156qqTBied2n3AArUlkiNrN+zl4KJk/t/bMr7i
+	G7YnH1YlRQu16oEjT+z1Rk4XAtqsjn0oZ67G+kHrKfd5GrVgK3R7uwibRlVq+uCzC9s9y5O8nSAsd
+	0AYzFZkeCjfcOXJKdMm58wpOkdv+mzcDiNKh2Mmke5DG/CDgIW7kjE6obrnYF2svn9RLSSiSuBtJO
+	txKzCmDCEoZWAxyLVkSb+e90uLIIERcSC8gIXY3kygY+cR99STw+Im621jXmU7Q1O0D4ZVZea+h9K
+	r5x094oA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkL0-0000000HBRx-03CR;
-	Sat, 21 Nov 2026 12:37:02 +0000
-Received: from mgamail.intel.com ([198.175.65.14])
+	id 1xUkQG-0000000HBxU-3L39;
+	Sat, 21 Nov 2026 12:42:28 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkKw-0000000HBRZ-0liD
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 12:36:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795264618; x=1826800618;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vzevyCRwbcuYgq6/jbeCiti9NxgogyfaH27PDNXIwbI=;
-  b=F9LEHQbxO4bESnSmEEB8MgYloxj+GgyaWATRdf1GGfxlB6qHrSXnJ/Ht
-   YPa7JoX2DoKbf3bo8q9+Z7u1d0xtQbm5B1WDf3tps2pFVhruAaDw/ilFb
-   3AhU0KLik54BByvtWyQ7+nuIr2k+hMqPinbcVnbG2xZYVP3SZUmWhGrCz
-   1cdTUN+pAsIFcezth1TLmr7uGDDGa/CtGdQhwCu+KSnovLGLYUNMlNXQK
-   slH1phRkBOfUGdIrpZb5Y+eISE7ZsS/2dSjiXr0FVk7Ci8G+NUj39F4on
-   GSOjOVqV/gZXxyCNe58Hde8lc0ouKpM7GD5F+GLdnzHjiAnpMFIRGkkEI
-   Q==;
-X-CSE-ConnectionGUID: qdpY6gPhQQyfgFF240Ch+A==
-X-CSE-MsgGUID: OQxD8mxVS/2EW3O6CG3oFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4022312"
-X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; 
-   d="scan'208";a="4022312"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2026 04:36:57 -0800
-X-CSE-ConnectionGUID: 2aGCBJTUTxejGB3+KsWypg==
-X-CSE-MsgGUID: cnRiy/mqRGaPtXl2VNqKaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; 
-   d="scan'208";a="10811808"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 21 Nov 2026 04:36:54 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xUkKp-00000001K21-2IsS;
-	Sat, 21 Nov 2026 12:36:51 +0000
-Date: Sat, 21 Nov 2026 20:36:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Paul Cercueil <paul.cercueil@bootlin.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Sunil Kovvuri Goutham <sgoutham@marvell.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	George Cherian <gcherian@marvell.com>,
-	Sujeet Baranwal <sbaranwal@marvell.com>,
-	Paul Cercueil <paul.cercueil@bootlin.com>
-Subject: Re: [PATCH v2 2/2] mailbox: marvell-mhu: add Marvell MHU driver
-Message-ID: <202611212016.DdozCIS5-lkp@intel.com>
-References: <20261120113952.168265-3-paul.cercueil@bootlin.com>
+	id 1xUkQF-0000000HBxF-3WXy;
+	Sat, 21 Nov 2026 12:42:27 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 248E6601F6;
+	Sat, 21 Nov 2026 12:42:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8975C1F000C4;
+	Sat, 21 Nov 2026 12:42:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795264946;
+	bh=B2/Og1vypeSBCVc9jeVdKyeKApwX92hxBK+MvswlFtY=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=GAz7spVAlJE81+xSf+XW0qKODat2Co0f9qRxovKvZE2j5Say39TAbVdRJcO+KPKC8
+	 uWH8S3lX5gJS+2/khXlXvTKUNorI/LjccslStLDHvoORqKfB/pIz3FTdPyh+TDY/Am
+	 f1nJQaIRa+2E5de5GAS0FCy6B/ROxMmEJfP4RhdnlBTu4NgpWzAmGWr3GkFdQN1PNG
+	 blx+YMkDaJGdp2riXtM1Dw07F2aED5aKmldUjm0xkHg51UVZ95p/UdhmCEJHQ4fOJ3
+	 eUHxn+VrpXTtopf8GjJSU8VoTWbVsvefzmCHeNOg1FfAOdyv0O/WQUHo57hLDzzka5
+	 dy8jWQhjAtMiQ==
+Subject: Re: [PATCH net-next v12 1/6] net: wwan: t9xx: Add PCIe core
+From: netdev-bot+sashiko@kernel.org
+To: jackbb_wu@compal.com
+Cc: loic.poulain@oss.qualcomm.com, ryazanov.s.a@gmail.com,
+ johannes@sipsolutions.net, andrew+netdev@lunn.ch, davem@davemloft.net,
+ kuba@kernel.org, pabeni@redhat.com, wen-zhi.huang@mediatek.com,
+ shi-wei.yeh@mediatek.com, Minano.tseng@mediatek.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, horms@kernel.org, corbet@lwn.net,
+ skhan@linuxfoundation.org, robert_yu@compal.com, Jeff_Chang@compal.com,
+ edumazet@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-doc@vger.kernel.org
+Date: Sat, 21 Nov 2026 12:42:25 +0000
+Message-ID: <179526494505.3135.4658538684680862441@kernel.org>
+In-Reply-To: <20261117-t9xx_driver_v1-v12-1-e181b616b820@compal.com>
+References: <20261117-t9xx_driver_v1-v12-1-e181b616b820@compal.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261120113952.168265-3-paul.cercueil@bootlin.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_043658_270340_CAAF486B 
-X-CRM114-Status: GOOD (  13.72  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,74 +76,184 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Paul,
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
 
-kernel test robot noticed the following build errors:
+Critical: 0 · High: 0 · Medium: 1 · Low: 1
 
-[auto build test ERROR on jassibrar-mailbox/for-next]
-[also build test ERROR on robh/for-next krzk-dt/for-next linus/master v7.4-rc3 next-20261119]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Paul-Cercueil/dt-bindings-mailbox-add-Marvell-MHU/20261120-123951
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jassibrar/mailbox.git for-next
-patch link:    https://lore.kernel.org/r/20261120113952.168265-3-paul.cercueil%40bootlin.com
-patch subject: [PATCH v2 2/2] mailbox: marvell-mhu: add Marvell MHU driver
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20261121/202611212016.DdozCIS5-lkp@intel.com/config)
-compiler: powerpc64-linux-gcc (GCC) 16.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261121/202611212016.DdozCIS5-lkp@intel.com/reproduce)
+- [Medium] mtk_pci_remove() resets the modem itself after
+  pci_save_state(), and mtk_pci_shutdown() reuses it on a kexec reboot.
+- [Low] mtk_pci_probe() enables the device with pcim_enable_device(),
+  which sets pdev->is_managed.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611212016.DdozCIS5-lkp@intel.com/
+--
 
-All errors (new ones prefixed by >>):
+net: wwan: t9xx: Add PCIe core
 
-   drivers/mailbox/marvell_mhu.c: In function 'mrvl_mhu_send_data':
->> drivers/mailbox/marvell_mhu.c:96:9: error: implicit declaration of function 'iowrite64'; did you mean 'iowrite32'? [-Wimplicit-function-declaration]
-      96 |         iowrite64(doorbell, mhu->base + AP0_TO_SCP_MBOX);
-         |         ^~~~~~~~~
-         |         iowrite32
-   drivers/mailbox/marvell_mhu.c: In function 'mrvl_mhu_last_tx_done':
->> drivers/mailbox/marvell_mhu.c:106:18: error: implicit declaration of function 'ioread64'; did you mean 'ioread32'? [-Wimplicit-function-declaration]
-     106 |         status = ioread64(mhu->base + AP0_TO_SCP_MBOX_LINT);
-         |                  ^~~~~~~~
-         |                  ioread32
+This commit adds the PCIe core for the MediaTek T9xx 5G WWAN modem driver.
+It covers probe/remove, MSI-X setup, the MHCCIF event channels and the
+register accessors. On removal, and on shutdown during a kexec reboot, the
+modem is reset through ACPI MRST._RST, falling back to the MHCCIF
+DEV_EVT_H2D_DEVICE_RESET doorbell.
 
+> diff --git a/drivers/net/wwan/t9xx/pcie/mtk_pci.c b/drivers/net/wwan/t9xx/pcie/mtk_pci.c
+> new file mode 100644
+> index 0000000000000..cf59038f09067
+> --- /dev/null
+> +++ b/drivers/net/wwan/t9xx/pcie/mtk_pci.c
+> @@ -0,0 +1,1034 @@
 
-vim +96 drivers/mailbox/marvell_mhu.c
+[ ... ]
 
-    89	
-    90	static int mrvl_mhu_send_data(struct mbox_chan *chan, void *data)
-    91	{
-    92		const u64 doorbell = 0xff;  /* Arbitrary value, SCP requires a value */
-    93		struct mrvl_mhu *mhu = chan->con_priv;
-    94	
-    95		/* signal SCP */
-  > 96		iowrite64(doorbell, mhu->base + AP0_TO_SCP_MBOX);
-    97	
-    98		return 0;
-    99	}
-   100	
-   101	static bool mrvl_mhu_last_tx_done(struct mbox_chan *chan)
-   102	{
-   103		struct mrvl_mhu *mhu = chan->con_priv;
-   104		u64 status;
-   105	
- > 106		status = ioread64(mhu->base + AP0_TO_SCP_MBOX_LINT);
-   107	
-   108		return status != 0;
-   109	}
-   110	
+> +static int mtk_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+> +{
+
+[ ... ]
+
+> +	ret = pcim_enable_device(pdev);
+> +	if (ret) {
+> +		dev_err(mdev->dev, "Failed to enable pci device.\n");
+> +		goto log_err;
+> +	}
+
+[ ... ]
+
+> +free_irq:
+> +	mtk_pci_free_irq(mdev);
+> +free_mhccif:
+> +	mtk_mhccif_exit(mdev);
+> +	pci_free_irq_vectors(pdev);
+
+[Severity: Low]
+Is it safe to call pci_free_irq_vectors() here and in mtk_pci_remove() when
+the device was enabled with pcim_enable_device()?
+
+pcim_enable_device() sets pdev->is_managed. Because of that,
+pci_alloc_irq_vectors() in mtk_pci_request_irq() goes through
+pci_setup_msi_context()->pcim_setup_msi_release(), which registers
+pcim_msi_release() as a devres action.
+
+The kernel-doc of pci_free_irq_vectors() in drivers/pci/msi/api.c says:
+
+ * WARNING: Do not call this function if the device has been enabled
+ * with pcim_enable_device(). In that case, IRQ vectors are automatically
+ * managed via pcim_msi_release() and calling pci_free_irq_vectors() can
+ * lead to double-free issues.
+
+After a failed probe, or once mtk_pci_remove() returns, devres calls
+pci_free_irq_vectors() a second time. Today that does nothing, because
+pci_disable_msix() returns early when !dev->msix_enabled. The TODO in
+drivers/pci/msi/msi.c says this implicit managed behaviour is going to
+change, though, so the driver would then be relying on an idempotence that
+may go away.
+
+This is still the same at the end of the series.
+
+> +	priv->irq_cnt = 0;
+> +disable_atr:
+> +	mtk_pci_atr_disable(priv);
+
+[ ... ]
+
+> +static void mtk_pci_remove(struct pci_dev *pdev)
+> +{
+
+[ ... ]
+
+> +	mtk_pci_free_irq(mdev);
+> +	mtk_mhccif_exit(mdev);
+> +	pci_free_irq_vectors(pdev);
+> +	priv->irq_cnt = 0;
+> +	pci_clear_master(pdev);
+> +	/* A dead link reads all-ones: keep the copy saved while it was up. */
+> +	if (mtk_pci_link_check(mdev))
+> +		pci_save_state(pdev);
+> +
+> +	/* Reset last: the endpoint comes back at power-on defaults, so no MMIO
+> +	 * and no MSI-X teardown may follow it.
+> +	 */
+> +	ret = mtk_pci_pldr(mdev);
+
+[Severity: Medium]
+Could pciehp treat this reset as a surprise removal of the modem?
+
+MRST._RST in mtk_pci_pldr() is a platform reset that drops and retrains the
+link. The MHCCIF DEV_EVT_H2D_DEVICE_RESET fallback below may drop the link
+too, depending on the firmware.
+
+Neither path is wrapped in pci_hp_ignore_link_change() and
+pci_hp_unignore_link_change() on pdev->bus->self. Their kernel-doc covers
+this case:
+
+ * Mark the beginning of a code section causing spurious link changes on the
+ * Secondary Bus of @pdev, e.g. as a side effect of a Secondary Bus Reset,
+ * D3cold transition, firmware update or FPGA reconfiguration.
+ ...
+ * Must be paired with pci_hp_unignore_link_change().  May be called both
+ * from the PCI core and from Endpoint drivers.
+
+pciehp_ist() ignores the link events only when that bracket is set:
+
+drivers/pci/hotplug/pciehp_hpc.c:pciehp_ist() {
+    ...
+	if ((events & (PCI_EXP_SLTSTA_PDC | PCI_EXP_SLTSTA_DLLSC)) &&
+	    (pci_dpc_recovered(pdev) || pci_hp_spurious_link_change(pdev)) &&
+	    ctrl->state == ON_STATE) {
+    ...
+}
+
+Without the bracket, on a hotplug-capable upstream port,
+pciehp_handle_presence_or_link_change() would disable the slot, mark the
+device disconnected and re-enumerate it.
+
+Once the device is marked disconnected, pci_device_is_present() returns
+false. The 50 x 20 ms poll on mtk_pci_link_check() then runs to the end and
+the "device not back" warning fires. pci_restore_state() is then sent to a
+device the core has already given up on.
+
+The core's own pciehp_reset_slot() brackets its link-dropping bus reset with
+these helpers. Would it make sense to do the same around both reset paths
+here? mtk_pci_shutdown() runs this same code during a kexec reboot.
+
+This is still the same at the end of the series.
+
+> +	if (!ret) {
+> +		/* MRST._RST may return before the link has retrained, and a
+> +		 * config write the device does not take is simply lost.
+> +		 */
+> +		for (i = 0; i < MTK_PLDR_READY_POLLS && !mtk_pci_link_check(mdev); i++)
+> +			msleep(MTK_PLDR_READY_POLL_MS);
+> +		if (!mtk_pci_link_check(mdev))
+> +			dev_warn(dev, "device not back %d ms after reset, its config space may not be restored\n",
+> +				 MTK_PLDR_READY_POLLS * MTK_PLDR_READY_POLL_MS);
+> +	} else if (!mtk_pci_link_check(mdev)) {
+> +		dev_warn(dev, "PLDR failed (%d) and link is down, modem not reset\n", ret);
+> +	} else {
+> +		dev_warn(dev, "PLDR failed (%d), trying MHCCIF reset\n", ret);
+> +		if (mtk_pci_send_ext_evt(mdev, DEV_EVT_H2D_DEVICE_RESET)) {
+
+[ ... ]
+
+> +	/* The reset returned the endpoint to its power-on defaults: put back
+> +	 * the saved config space for the next driver that binds.
+> +	 */
+> +	pci_restore_state(pdev);
+> +}
+
+[ ... ]
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261117-t9xx_driver_v1-v12-0-e181b616b820%40compal.com
 
