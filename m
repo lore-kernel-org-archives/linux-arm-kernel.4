@@ -2,79 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B20606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7397B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z7HWxWgN;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=vacehtI1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5ExXS9X/;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=nbd.name header.i=@nbd.name header.a=rsa-sha256 header.s=20160729 header.b=i1Z7SAYu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
-	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
-	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ydGqG2X9vPHlg2dNKkqZZA+txMkiHMzrAcf5VIowiK8=; b=Z7HWxWgNY3GdXC
-	3i4a+fpFCFQzhcaMEa41Nn+h4kr3jFg7Wh8Yu6/sM287mK1wmEioS/mYaWuvCCIm5WWPHLdW5oxx/
-	zPB7nIvuNjyv1HUqaLd9bNpT3miduVD/zCWc8/3YQRtrTaIcN3c9dr8dB/49oXaIHfDVUgS8ej5YJ
-	bkI1bZG7XqqOU9XZwZFqLn0ncs0N+lcejWdvNoUDn0JaZGcslIl3AI3NOXAZujtzO8XeAedM2rFkx
-	3lBZ7wQyHeU48YMq3ufRyPS7d7Y7X85uyg5H5YvVD+Tsw3s/i/PLghcuVrISpiQRIA4NYnm0PwiTA
-	s+8LeBkwELDePWfTWIQg==;
+	List-Owner; bh=G8kM3IXtzBlumi5aSFxeLf8NDbduYmaDZ2j3BGuqdWM=; b=5ExXS9X/rktIxd
+	Tlzq/X2pEFQUukQsfrJBgMz/0cpsAKKHIalc8nvStGU98/nxudNhsx808bTv8fa2Iw49A39oBT4Nv
+	Fs+62HwB7ofgwGkBmUcUJrUTEFz3qAMlWuCTPZYbOU5X67Lv8WlKe5Q79rx9phi3Z8OrFom/SKknH
+	bXEdD+utbWW0iSJ1eqUMwO8o1z5LwxuqSMM2wsxLHu2ks3mNrQsNWaDqIUu4TQ+d0b36lEPthcy62
+	JMbqC9vBgPRM0YEVdUekqF6ex8gtxW9rIvD+Yv6YqVwPofLFtc+AC2xsI4ozxXnAm+9XOjKAQ2b5y
+	r0RlBkI49lFJEEjbuCrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUg85-0000000GutI-3pyL;
-	Sat, 21 Nov 2026 08:07:26 +0000
-Received: from out203-205-221-240.mail.qq.com ([203.205.221.240])
+	id 1xUgEo-0000000Gv8B-2K4r;
+	Sat, 21 Nov 2026 08:14:22 +0000
+Received: from nbd.name ([46.4.11.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUg83-0000000Gure-093s;
-	Sat, 21 Nov 2026 08:07:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1795248438; bh=ydGqG2X9vPHlg2dNKkqZZA+txMkiHMzrAcf5VIowiK8=;
-	h=From:To:Cc:Subject:Date:References:In-Reply-To;
-	b=vacehtI1nuzuFJtDKjVsaj3sffn9TdWY1yTNu2pktLYHnvVMrToqkae9TNUwL3FBw
-	 UuFHrGrIV1E0DWSOJ3IAIS2BBQ8zK4L1rs94oCmxtwad3Pz8g2nJJ67wMLlggiaWpJ
-	 m3ZETnOkfqgNBj2a0X+Ajdq7z+Dv42XVh4CX50XU=
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
-X-QQ-XMAILINFO: Ng02GeT6VExI3uUWFD3xnavVNU+V6Hm34+BPzOlcKVIXJ8PwdC12xW5pVAVxDm
-	 P5ASM+U//uKLiyt2kZs4uKnzfS2C5x6/kj/TbAiXKQo5WfUJCyAxzOxsR2U/4q63xnyaDtXH6mvX7
-	 mz/xQuO3v3L0oN5gtCTshBBG+EHaSN6Eb19boRq2w9lMxXcHVXqP6N96WqLJhQnvJwKArYz+zPhNm
-	 yYzbeFY7usepMHk5mhUxlhvYa6xgQg+siZKB3C1P545doU6P64+Z840PpDjDrmitzxF7DTpSSVMMF
-	 cb5ItOgFkrvOxP6oIcIzK/FOCxiaCutyYdaIL2ldhawQuWanl0wc5a5pfGvKzQjdxTye89UhqXxtJ
-	 U+SpvAhsmA01LcQIr4qKDUWd24QiQa0dAhH9GbfjzKKkiQpVtnVD/rggGP/22JN8adh4nbjiPaPgy
-	 VT0dvuV6B6+d5WoM+s9WzM5AZUlhD17xOYpgmdr170Qs76N85kbf7WawIdq/fzODMcc130ioc0un0
-	 Ku/w7BVA6voTfXTcxZf3vlOmtGL6TodhGvze/fJCgq300fHQcBcf2EzlqYz5ZvWjkvZ2/XINV0d+n
-	 G1T5KekFl2kSt44zoLJgKOlM5oJa1myTDkqLYcyVaZHagMgpXq2I5beKfrrlIiVMCftwgxlh9aEHC
-	 rmbh0pTaF6ZHLr1L13QtUZd8hRRreqrjvCFpdr0gdAPx8+PCAmeoRwRBPSdR3H0ntdPS+CNYuDiIe
-	 DZbcF6FdicEYDCvgqmi6v/O2FGzivn8QazlBEJgM9DZPyDq+Ud2/WI8bJoE5ez2tXljZBCIPezinW
-	 6KyM/DTKlpxtUav8uLdgeZ5kc+/YgAi3pNSqRhhhHnJviImavB0a/J4T+nhWwaZMGRMVdvfy47c9N
-	 r24FSuLSFUdr+JUWuqlJW6mHAsxyl9MqxXeYVSeWRZ3/I01TNuid8+FspMqmzTYmfoDl6J+WhSFoo
-	 +afmmkF4kiWHcNfwEk4CwoUMupd/hzQevXPIkdzu+cuQdZz+I+VzvvQPGO3wLvU0asT0lB+0wW01d
-	 EN31KfoYyOkNqRC9Uy9GrZgU6bkXAZ5nZ9B6iCSU4EZENm0z7laLm20Cmiz29AMlQ7EdwUmRws7GO
-	 vJvDssJ3w5A+381UmZnmv9K1
-From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
-To: "=?utf-8?B?bmV0ZGV2LWJvdCtzYXNoaWtv?=" <netdev-bot+sashiko@kernel.org>
-Cc: "=?utf-8?B?bWts?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?bWFpbGhvbA==?=" <mailhol@kernel.org>, "=?utf-8?B?aGVpa28=?=" <heiko@sntech.de>, "=?utf-8?B?c29ja2V0Y2Fu?=" <socketcan@hartkopp.net>, "=?utf-8?B?ZGF2ZW0=?=" <davem@davemloft.net>, "=?utf-8?B?ZWR1bWF6ZXQ=?=" <edumazet@kernel.org>, "=?utf-8?B?a3ViYQ==?=" <kuba@kernel.org>, "=?utf-8?B?cGFiZW5p?=" <pabeni@redhat.com>, "=?utf-8?B?aG9ybXM=?=" <horms@kernel.org>, "=?utf-8?B?Y29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?c2toYW4=?=" <skhan@linuxfoundation.org>, "=?utf-8?B?cmR1bmxhcA==?=" <rdunlap@infradead.org>, "=?utf-8?B?d2c=?=" <wg@grandegger.com>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, 
-	"=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
-Subject: Re: [PATCH net v10 10/10] can: rockchip_canfd: serialize timecounter timestamp conversion
+	id 1xUgEl-0000000Gv7n-2hd7;
+	Sat, 21 Nov 2026 08:14:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+	s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=G8kM3IXtzBlumi5aSFxeLf8NDbduYmaDZ2j3BGuqdWM=; b=i1Z7SAYuObv8aNbiUEG9UYOdnJ
+	9sj2/Rl4wxb9fKIKkCnvpB0Y9iHiB/o+iHeemDW/SGxSZvU7O9GkGeOgpOVrufLE8CwMTAeWtL/MQ
+	J1uRRpfTi4FN2eFvlsFhWjMphCEnMk2d6Y/Q5XYiO8MCA/P6jJz0FkzjJXbzScc6Mjho=;
+Received: from p54a4360c.dip0.t-ipconnect.de ([84.164.54.12] helo=nf.local)
+	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <nbd@nbd.name>)
+	id 1xUgEb-006LOx-0N;
+	Sat, 21 Nov 2026 09:14:09 +0100
+Message-ID: <a89222e1-8795-4c89-907d-38ebeb49e2a9@nbd.name>
+Date: Sat, 21 Nov 2026 09:14:08 +0100
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Sat, 21 Nov 2026 16:07:15 +0800
-X-Priority: 3
-Message-ID: <tencent_7CC03EE28E1F4753374DA10C4FC2E1086C06@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <20261119-rockchip-canfd-restart-close-v10-10-df23913aa33a@qq.com>
-	<179521934595.3131.13988876249908602124@kernel.org>
-In-Reply-To: <179521934595.3131.13988876249908602124@kernel.org>
-X-QQ-mid: xmsezb41-0t1795248435tv16k8jeu
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] wifi: mt76: connac: correct rate power limit logic
+To: Shiji Yang <yangshiji66@outlook.com>, linux-wireless@vger.kernel.org
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Ryder Lee
+ <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>,
+ Sean Wang <sean.wang@mediatek.com>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ stable@vger.kernel.org
+References: <OSCPR01MB15019FDE88A442FBC74081EAABC782@OSCPR01MB15019.jpnprd01.prod.outlook.com>
+ <OSCPR01MB150191A858729F9D98B404F6ABC782@OSCPR01MB15019.jpnprd01.prod.outlook.com>
+Content-Language: en-US
+From: Felix Fietkau <nbd@nbd.name>
+Autocrypt: addr=nbd@nbd.name; keydata=
+ xsDiBEah5CcRBADIY7pu4LIv3jBlyQ/2u87iIZGe6f0f8pyB4UjzfJNXhJb8JylYYRzIOSxh
+ ExKsdLCnJqsG1PY1mqTtoG8sONpwsHr2oJ4itjcGHfn5NJSUGTbtbbxLro13tHkGFCoCr4Z5
+ Pv+XRgiANSpYlIigiMbOkide6wbggQK32tC20QxUIwCg4k6dtV/4kwEeiOUfErq00TVqIiEE
+ AKcUi4taOuh/PQWx/Ujjl/P1LfJXqLKRPa8PwD4j2yjoc9l+7LptSxJThL9KSu6gtXQjcoR2
+ vCK0OeYJhgO4kYMI78h1TSaxmtImEAnjFPYJYVsxrhay92jisYc7z5R/76AaELfF6RCjjGeP
+ wdalulG+erWju710Bif7E1yjYVWeA/9Wd1lsOmx6uwwYgNqoFtcAunDaMKi9xVQW18FsUusM
+ TdRvTZLBpoUAy+MajAL+R73TwLq3LnKpIcCwftyQXK5pEDKq57OhxJVv1Q8XkA9Dn1SBOjNB
+ l25vJDFAT9ntp9THeDD2fv15yk4EKpWhu4H00/YX8KkhFsrtUs69+vZQwc0cRmVsaXggRmll
+ dGthdSA8bmJkQG5iZC5uYW1lPsJgBBMRAgAgBQJGoeQnAhsjBgsJCAcDAgQVAggDBBYCAwEC
+ HgECF4AACgkQ130UHQKnbvXsvgCgjsAIIOsY7xZ8VcSm7NABpi91yTMAniMMmH7FRenEAYMa
+ VrwYTIThkTlQzsFNBEah5FQQCACMIep/hTzgPZ9HbCTKm9xN4bZX0JjrqjFem1Nxf3MBM5vN
+ CYGBn8F4sGIzPmLhl4xFeq3k5irVg/YvxSDbQN6NJv8o+tP6zsMeWX2JjtV0P4aDIN1pK2/w
+ VxcicArw0VYdv2ZCarccFBgH2a6GjswqlCqVM3gNIMI8ikzenKcso8YErGGiKYeMEZLwHaxE
+ Y7mTPuOTrWL8uWWRL5mVjhZEVvDez6em/OYvzBwbkhImrryF29e3Po2cfY2n7EKjjr3/141K
+ DHBBdgXlPNfDwROnA5ugjjEBjwkwBQqPpDA7AYPvpHh5vLbZnVGu5CwG7NAsrb2isRmjYoqk
+ wu++3117AAMFB/9S0Sj7qFFQcD4laADVsabTpNNpaV4wAgVTRHKV/kC9luItzwDnUcsZUPdQ
+ f3MueRJ3jIHU0UmRBG3uQftqbZJj3ikhnfvyLmkCNe+/hXhPu9sGvXyi2D4vszICvc1KL4RD
+ aLSrOsROx22eZ26KqcW4ny7+va2FnvjsZgI8h4sDmaLzKczVRIiLITiMpLFEU/VoSv0m1F4B
+ FtRgoiyjFzigWG0MsTdAN6FJzGh4mWWGIlE7o5JraNhnTd+yTUIPtw3ym6l8P+gbvfoZida0
+ TspgwBWLnXQvP5EDvlZnNaKa/3oBes6z0QdaSOwZCRA3QSLHBwtgUsrT6RxRSweLrcabwkkE
+ GBECAAkFAkah5FQCGwwACgkQ130UHQKnbvW2GgCeMncXpbbWNT2AtoAYICrKyX5R3iMAoMhw
+ cL98efvrjdstUfTCP2pfetyN
+In-Reply-To: <OSCPR01MB150191A858729F9D98B404F6ABC782@OSCPR01MB15019.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_000723_493861_F6362F91 
-X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-CacheID: sfid-20261121_001419_759730_CF2E13EF 
+X-CRM114-Status: UNSURE (   7.55  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.8 (-)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,26 +102,24 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-CkhpLAoKPiBbU2V2ZXJpdHk6IExvd10KPiBTaG91bGQgdGhlIHN0YWJsZSB0YWcgbWVudGlv
-biB0aGF0IHRoaXMgZGVwZW5kcyBvbiB0aGUgZWFybGllciBwYXRjaCBpbgo+IHRoZSBzZXJp
-ZXMsICJjYW46IHJvY2tjaGlwX2NhbmZkOiBwcmV2ZW50IHRpbWVzdGFtcCB3b3JrIGZyb20g
-cmVhcm1pbmcKPiBhZnRlciBidXMtb2ZmIj8KClRoZSBkZXBlbmRlbmN5IGlzIHJlYWwuIEEg
-YmFja3BvcnQgbmVlZHMgMDkvMTAgYmVmb3JlIDEwLzEwOiAwOS8xMAppbnRyb2R1Y2VzIHRp
-bWVzdGFtcF9sb2NrIGFuZCB0YWtlcyBpdCBhcm91bmQgdGltZWNvdW50ZXJfcmVhZCgpIGFu
-ZAp0aW1lY291bnRlcl9pbml0KCkuIEFkZGluZyBqdXN0IHRoZSBsb2NrIGZpZWxkIHRvIG1h
-a2UgMTAvMTAgYnVpbGQKd291bGQgc3RpbGwgbGVhdmUgdGltZWNvdW50ZXJfY3ljMnRpbWUo
-KSByYWNpbmcgd2l0aCB0aGUgd29ya2VyLgoKUGF0Y2ggMDkvMTAgaXMgYWxyZWFkeSBtYXJr
-ZWQgZm9yIHN0YWJsZS4gVGhlIHN0YWJsZSBydWxlcyBkbyBub3QKcmVxdWlyZSBsaXN0aW5n
-IGEgcHJlcmVxdWlzaXRlIGFnYWluIHdoZW4gaXQgaXMgaW4gdGhlIHNhbWUgc2VyaWVzCmFu
-ZCBpcyBpdHNlbGYgbWFya2VkIGZvciBzdGFibGUuCgpCZXN0IHJlZ2FyZHMsCkN1bmhhbyBM
-dQo=
+On 20.11.26 05:40, Shiji Yang wrote:
+> When mac80211 sets the power to 0, it does not make sense to change
+> the tx power to the maximum value. The original purpose should be to
+> limit the tx power to not exceed the hardware limit.
+> 
+> Fixes: 8225816d2974 ("mt76: mt7921: limit txpower according to userlevel power")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
+I think in some cases (e.g. on mt792x), hw->conf.power_level is always 
+0, so this might cause regressions there.
 
+- Felix
 
