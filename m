@@ -2,68 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999BE606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 01:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F3F606A685
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 01:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZSjdemL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J/4E/bd8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O0/ga1HF;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=COia/9Fa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FHj/Zy9VIbTu9QHe6UylXawidw+Q/iF3Pt00xxs1BPo=; b=LZSjdemLrNQvEY
-	p0JdhrWnNJ8RIjKt+/LSai5ZC/3ipYbcCk/81ndp5Erj7+RVU82+j++Q0cumh2DdLPbJ7PYVWwJ8H
-	deHqGkEm5UuqWR+nP1naAE/JCt1Iyo0Z9wzWf/cTTdIlYnxY9JTP05ysvG+jWHt5f91bG+/2ZpfaY
-	dsCowEM2z/BQahY1p3/1M6348UVFE7dKgceVAfKd70ASbWRSFR0BsxA6ts++Z9ONM8lmvt6QkWG/u
-	DdQGax7u4ItW3sAAzSJasL+0ygdvs7mN+W6DxW2scVB15p+R9HWDxkDCxMgxiB22fsMybr5EoaVlf
-	WSL9IhU5TWInC+qi0UXg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=QzIhuJSftvZpgQFLV10hnC6j7UD3FLUoU0pfIWKv3/w=; b=O0/ga1HFH2DUKCZVtmtnIewb9W
+	vrQIbcDJ17ZsbMhptfXuF3VrSoMf3ilwnGpV8/OntRqjWLBevSPMIunAf4El3+Uet3jcqedXdDvDv
+	A67SQoGuieiPdlhgwnA0B5QQahdjyBN8IlWSfkhvlvv8E89072pjmZbA6IjrQBzdp7HpX9InymcOk
+	RQKiAjHqdC61ATCUsRtnjZSF73UihNIDSjJyZLccehsAuO2rHbaruJKGCJ3QtcGJ8dOYnUrrMEBEa
+	oVR2m9T+9witgcKbk2tHqUfOKKj+UwM29y5OGBkWLCCYYp/JekVifQaGNhagW6BdfI8MZ/x/GzbXx
+	krUhPeYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUaFP-0000000GfN2-0Z9N;
-	Sat, 21 Nov 2026 01:50:35 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUaGZ-0000000Gfad-1EG4;
+	Sat, 21 Nov 2026 01:51:47 +0000
+Received: from mgamail.intel.com ([198.175.65.20])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUaF5-0000000GfGo-05jd
+	id 1xUaGW-0000000Gfa7-2Rnk
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 01:50:15 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7100D456CC;
-	Sat, 21 Nov 2026 01:50:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 068401F000D0;
-	Sat, 21 Nov 2026 01:50:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795225814;
-	bh=FHj/Zy9VIbTu9QHe6UylXawidw+Q/iF3Pt00xxs1BPo=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=J/4E/bd8Au4OIjhaT6SE0R/7Ov89wx4DvLWNvHIYvgph3V3/jfWJVOe2Xw9palJ2S
-	 tKnxYSkwyndOLgx2y19EY2gLpej9kvv9r5c8DwxI3O4o9fzApVg4+jvbcUw3BHk9rn
-	 8yi3x9A7egQCCmBsQAwHqEBvlHmQNWTQhks/4bhmc5gO3Pn/dHHmBJn+mB/erefGJq
-	 ea3kbuIGOzttHUGv775pD2rQLEnnJiWhjGA/nUZ+KnSlYbIzi6ezPKPzyrWVU2HFeT
-	 YRAn0/Fzi2v0QHY2cGxh0gs7IOrTECTVtsI8Dg4NL3i2hf8z32m0XrHDYXEKPxLpYU
-	 wYzW1y6u5qang==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F1504380AA5E;
-	Sat, 21 Nov 2026 01:50:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	Sat, 21 Nov 2026 01:51:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795225905; x=1826761905;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IwahHoB4S9ZhcNncbWPcEfTPsCZcT9vB1MtXpBP03/g=;
+  b=COia/9FayfUhZoHlHdDA7chh9woWIpsKfUytj5ByoamJt+IU9+pJTYIw
+   EdzwQC75k58UmKbSre01rx9RpPO4VmLI/yMjComA6x1LwJO0pt97GOKxH
+   RvQgA7Jy0P/BssQ1WXIgEoszMVD6Gv6899U78cgTe1Yh2IugbQtHmkCYZ
+   bdOuET67gvPyGWMLNaGQogoqrQARoLWJqiKwVNyzW/NEdBejvz4HJ8aCv
+   AXNurzIhD3U1OA0C6tuGZioLeF/Ou5tMjMKrN/FK1XTPbH6agv4dbBmUz
+   hntBeKh9PueulgYE91p1BevW0DeY1+JbrEFQ5Yx802CXi89Y+3nC0yeFB
+   A==;
+X-CSE-ConnectionGUID: 9rO0tiN9TWiQ6Xp1+ueyrw==
+X-CSE-MsgGUID: cyxAM4WiTHWtcFvXxLjcpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4154303"
+X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; 
+   d="scan'208";a="4154303"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2026 17:51:44 -0800
+X-CSE-ConnectionGUID: AAmMxKbUSX+u0wxTw78PUQ==
+X-CSE-MsgGUID: NUWuXceNRh+Tm3I+RLBZpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; 
+   d="scan'208";a="10914179"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 20 Nov 2026 17:51:38 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xUaGM-00000001JC7-0LGj;
+	Sat, 21 Nov 2026 01:51:34 +0000
+Date: Sat, 21 Nov 2026 09:51:21 +0800
+From: kernel test robot <lkp@intel.com>
+To: Olivier Moysan <olivier.moysan@foss.st.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Philipp Stanner <phasta@kernel.org>,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, linux-sound@vger.kernel.org,
+	Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v2 08/11] iio: adc: stm32-mdf: add dma buffered
+ acquisition support
+Message-ID: <202611210936.q9qVaCjc-lkp@intel.com>
+References: <20261118-upstream_mdf_v2-v2-8-7939d3c3720a@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] net: stmmac: Disable checksum insertion for XDP frame
- TX
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179522581252.882976.1234416180646847261.git-patchwork-notify@kernel.org>
-Date: Sat, 21 Nov 2026 01:50:12 +0000
-References: <20261116134848.4793-1-jszhang@kernel.org>
-In-Reply-To: <20261116134848.4793-1-jszhang@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, john.fastabend@gmail.com,
- sdf@fomichev.me, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, bpf@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261118-upstream_mdf_v2-v2-8-7939d3c3720a@foss.st.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_175144_694954_96649C95 
+X-CRM114-Status: GOOD (  12.12  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,34 +117,70 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+Hi Olivier,
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+kernel test robot noticed the following build warnings:
 
-On Mon, 16 Nov 2026 21:48:48 +0800 you wrote:
-> stmmac enables TX checksum insertion for XDP frames whenever the queue
-> supports it. XDP frames carry no TX checksum offload request, so this
-> can overwrite a checksum already present in the packet.
-> 
-> dwmac can only do HW checksum for normal particular packets
-> layouts, such as TCP, UDP etc. The stmmac_has_ip_ethertype() has
-> well demostrated this limitation. Different with normal tx where the
-> common stack supplies the skb->ip_summed metadata, XDP path doesn't
-> have the necessary metadata. So to make the XDP always work properly
-> when transmiting arbitrary Eth frames, dwmac HW csum needs to be
-> disabled by default.
-> 
-> [...]
+[auto build test WARNING on d922ed738439e1d5b4701df7f4cdd49a09925624]
 
-Here is the summary with links:
-  - [v2] net: stmmac: Disable checksum insertion for XDP frame TX
-    https://git.kernel.org/netdev/net-next/c/7e7ef57374f4
+url:    https://github.com/intel-lab-lkp/linux/commits/Olivier-Moysan/dt-bindings-iio-adc-add-stm32mp2-mdf-filter/20261118-161746
+base:   d922ed738439e1d5b4701df7f4cdd49a09925624
+patch link:    https://lore.kernel.org/r/20261118-upstream_mdf_v2-v2-8-7939d3c3720a%40foss.st.com
+patch subject: [PATCH v2 08/11] iio: adc: stm32-mdf: add dma buffered acquisition support
+config: csky-allmodconfig (https://download.01.org/0day-ci/archive/20261121/202611210936.q9qVaCjc-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 16.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261121/202611210936.q9qVaCjc-lkp@intel.com/reproduce)
 
-You are awesome, thank you!
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611210936.q9qVaCjc-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/stm32-mdf-adc.c:1781:12: warning: 'stm32_mdf_adc_resume' defined but not used [-Wunused-function]
+    1781 | static int stm32_mdf_adc_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/adc/stm32-mdf-adc.c:1766:12: warning: 'stm32_mdf_adc_suspend' defined but not used [-Wunused-function]
+    1766 | static int stm32_mdf_adc_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/stm32_mdf_adc_resume +1781 drivers/iio/adc/stm32-mdf-adc.c
+
+  1765	
+> 1766	static int stm32_mdf_adc_suspend(struct device *dev)
+  1767	{
+  1768		struct iio_dev *indio_dev = dev_get_drvdata(dev);
+  1769		struct stm32_mdf_adc *adc = iio_priv(indio_dev);
+  1770		int ret = 0;
+  1771	
+  1772		if (iio_buffer_enabled(indio_dev))
+  1773			ret = stm32_mdf_adc_predisable(indio_dev);
+  1774	
+  1775		regcache_cache_only(adc->regmap, true);
+  1776		regcache_mark_dirty(adc->regmap);
+  1777	
+  1778		return ret;
+  1779	}
+  1780	
+> 1781	static int stm32_mdf_adc_resume(struct device *dev)
+  1782	{
+  1783		struct iio_dev *indio_dev = dev_get_drvdata(dev);
+  1784		struct stm32_mdf_adc *adc = iio_priv(indio_dev);
+  1785		int ret;
+  1786	
+  1787		regcache_cache_only(adc->regmap, false);
+  1788		ret = regcache_sync(adc->regmap);
+  1789	
+  1790		if (!ret && iio_buffer_enabled(indio_dev))
+  1791			ret = stm32_mdf_adc_postenable(indio_dev);
+  1792	
+  1793		return ret;
+  1794	}
+  1795	
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
