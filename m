@@ -2,113 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599F0606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 07:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E41606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 07:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r3llEPTy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SL5K22rg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Icxxe+WN;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=TcRsveG2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=qXfZdfLbYngiwneMT5/oAhiJpL1DMcXjDGugDTBA9xM=; b=r3llEPTyB1tZ0/gzMwLMwIPMU5
-	6uQ1lKxjw6FrQ/s4iVABM82hO9Cvi5q2+aD1BF+rQrAcp6jJNR+WevqLys9dp3SdhcDjgcm2WdUW7
-	AbEQNzlqXRN7f4eg3lqvZXlQnpXq2rxX0B0BewLBHwXeVn9ecg1QTViUcYBUSN7Iy6fEey0wkU+dJ
-	Q2ylf6b2VRA+ssGHoyFLZEHYl0hzBcaAtHm9bU2MxiIPKGUFgPvGgdORLHqudmsK7TZ9BKUbguiZc
-	J97VitQwp9XgT9lbXJvfkDEu0Igs6lYQ9RF62HgoI/yd12u9dev2U1cwEBK13mCzr4PsUIj8AyBEN
-	7SRwaMLg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
+	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=7mxM6MIDH0aR1FQkJ1yLZRiYvWzEi04wwfe+JsQjwbQ=; b=Icxxe+WNKWTqbz
+	ui9ytLeeXZLAIeGt+QWsJ+4Fwkz5eYQibcujnv+CeyIu/mH4HWCvN7tDAhrIpFt5l7UI5xE2niEmk
+	k4qBOVlrdRp3AB8jDW5V/fgSV3rCTpGga0J8j1zfwLqAUhJViQC0/AZQOFwLA8A+3ibQ8KCQuLbAC
+	Ff0QxB801GoB51Modb6IETDK538fU9kUk58FV5oCaK94oAM5XVUQk6JHvAHGxfk4zuwhyib4+5NEM
+	gkv1kf7b0HpIiQcSEGKJAg8IWRq+bqkohwj3irHgapDOUeA/fsvThoD5yrHX5vFkS5GhbhMriPVii
+	eAezdflSx7euPuwAOOwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUfwt-0000000GttU-1Mbm;
-	Sat, 21 Nov 2026 07:55:51 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUfx3-0000000Gtwq-2FF6;
+	Sat, 21 Nov 2026 07:56:01 +0000
+Received: from out203-205-221-153.mail.qq.com ([203.205.221.153])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUfwr-0000000GttI-38Fw;
-	Sat, 21 Nov 2026 07:55:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0AE87437BA;
-	Sat, 21 Nov 2026 07:55:49 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795247748;
-	b=FP2fgZaqFMxmhTlhTendliqSaVeV86qaA0irYnUEbU6dT+2343uL8ylFerpWIU+K70UM
-	 Yw0POsZlNuORAApGrFFL6r3v6qPCyMSdiQr2UYw0XWMCCuOPWXVGa2ZMRibLM9sTfbDZH
-	 MaTYKWGNEWYHLGKYCW0TbbZeAPJHbHi107C11GpIeQy9UWcEFCDvmVhhKss7HPKcwbeG+
-	 1ezIv8GM9xDsP0WRJiQc5YotYfyqrS7fwioR+KmP3lJ4cwO+pdgR68LQ9vKRAAmpV70Cm
-	 eSXiFHXDUa2MXLmQu/9x6kKYgdymJUsNryElOXvYQrP2zZ92gbd63zVQXn9qOBgZ4qw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795247748;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=qXfZdfLbYngiwneMT5/oAhiJpL1DMcXjDGugDTBA9xM=;
-	b=a+so0Eu6rxehvHn7QI3FnWjDGo8wRzhulO512rqM1g26abCqWVgofNozcyi1MfbMapmf
-	 7MO9K/rHSsHQqY91t1unZx62YrWfha2mtI+n6/vNNi3ie8BndujsdNmGD+LqCQbigXB0h
-	 pwIrh+UbItcCdd1t7F1ZIYK4nVvMTOXSyxipbGk7fq4bgQ5E5JS+njx1TTT55iwEE3glj
-	 m+dZNESoAJ6QKANPw2F29mV1ATkc6oyMTg+fg3Re1J/+zZzsSPBxZBCvDNJtcsWDn5nQl
-	 qnQt5lIxU2EC12IcxLJls80XegSIacl7Z4MdmCYftmAPpbNz5gQfXsMvyvFpvZ3MIgQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 65DD21F000C0;
-	Sat, 21 Nov 2026 07:55:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795247748;
-	bh=qXfZdfLbYngiwneMT5/oAhiJpL1DMcXjDGugDTBA9xM=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=SL5K22rgxZLW1OwxV3ayv6ff/hpTPZLsxCIYRV2kOyzS43RPBDKApAXhsOvCgdeKr
-	 q61xEGRfR71dmdJQTklRxbIj6VzNJXzQPmi1kHDf07J0jfMq0R3MKRX1GGwH52oSeW
-	 tPIn0Hj4m8W4lrwZj4LmbspQJMFPb6yfMdaXP8ijiSQtxnp77Ycq6DF9zoL1Qio3lb
-	 rgvJHZovUTJtcLpHkBpvRgGyO132DZJ+isnt7hLzikZ3zCokApY1/x65fMJX5GzoxM
-	 VXpMuuYnkZ2oL+6vFMfzxn+dfGKl48znegPt23GwiRN4+ARWLDznADl3EABgBEBjIu
-	 iBDfltPHN8wEw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B8FBC4BB50;
-	Sat, 21 Nov 2026 07:55:47 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 07:55:48 +0000
-Subject: [PATCH] drm/rockchip: vop2: Give each RK3588 video port its own
- cluster
+	id 1xUfx0-0000000Gtus-1NNN;
+	Sat, 21 Nov 2026 07:55:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1795247755; bh=7mxM6MIDH0aR1FQkJ1yLZRiYvWzEi04wwfe+JsQjwbQ=;
+	h=From:To:Cc:Subject:Date:References:In-Reply-To;
+	b=TcRsveG2AbrsnaqpYfnks4PIZv+TQlPwTYUg8Io8uS1zdyW7GHsbvJ3vNRh573J0Y
+	 x4KS5rMEXdgQoEuF39Mi+cdaC6LEcfCsxuc0dyk0JV9vQ2d9CMASUVKQAA7qLMJdg7
+	 KSI1KrmrRhjFOtZO/8hx6oMFrle64+XZNCAEL0Vs=
+X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-XMAILINFO: OSyReP17gB4cKQmSsJziajQRELaeaISQ14wOwDxwAF59+KLu8xv/uYqLReyat3
+	 4Q3UxgGiGdJ3F6udmLTZez07vwbyQsy7fyZIckjcqljemmB51nOiP3Q6DGazjoGovuiy6yfVg1Nqz
+	 nmH7EXEtISq8zxAn1vLcsz0TkwgSF18cYPfb56EH+ksnTdx/OBgXktG6E8V+330TXEwcXCX0mYZlr
+	 VWdmgci9U4mJNKRJAW5Das2ay1Gh+yKV/iYfoMUbFBrlNwD4upv1O+hoF5BHrqnafPNnBFy/vQO2J
+	 AwlNRDGHa5mtBpDxwbGGDkt3MO1njO+F1xv5m/Th9IKz9MS8RHiC0K/KzBYd2c3fFIFWSnnA+UMSh
+	 siG/g+9TK0l2HthiuXyP6jgINzxrSxgXDI86EH4pV+dB4iyiFS1bg3pySa8V0s9O1blCOOYBM19mR
+	 Im8UY855tvXBowbO9mXFr8SJD8n3uznWfGnbscZeFmA7WOzrO4EYTtuZsg4fUp+DqH9xjcMgscmv0
+	 X1eueaKNCYxw1zOMeT0qvsL5VNyvaP/w+5DlYDmbGNR1eePXNwO0MMhYaRKyah9wCG5b46dccr2EI
+	 daSQo+laKcjS3lrLDJWyAJieIZX7OPK4Gq0bHqlx1CoiLv1OHLqLLOoSclCJ2U5PZaRn+0dsN/fgH
+	 2s+NXvv7Eqwkb4cRuwFtTwDt0iAam6TTt+Qf+MQI6b3sWPxT41E6DH7WpoUDMTEFdP2Ny+RrhQ5tb
+	 qsD5X7XqGFHo+qNmpJ9gqqTz3gM5lSdJWnZgKVW/2KpKi9Ba5loX9yjyt1MBecuIweVATvLIskWD2
+	 LHON63qGPDtdLqDrnTHXhtK3sIIHlnmaUSxb1282+hgBbhkCTQrdSUxQxpT2rCk0VPDHo25SMyhnt
+	 LOBe+shDZGeMdGb12rvlowB3jUws+YMM2k3qrtjWy3K2Jj4ciZJabYLeSYT0s/LRSI4hIQQEMDOKt
+	 N3UcJd2wBxZDpMBjVzhlDGbs7LvWt7Ri0Ao6Dfj0PQRtww9dE3E181bGqnXczvHWwx/1QuHdPgT2W
+	 PIUm7gMeBNLM5Lqg+Z/x1CproSdkDVOoMZKdUw1CYA5UvmVNB/GOuzA5IcMGYv27vhAEpmnwXYBtE
+	 CgotIPiIoHlyfpyYI58Sn+Nl
+From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
+To: "=?utf-8?B?bmV0ZGV2LWJvdCtzYXNoaWtv?=" <netdev-bot+sashiko@kernel.org>
+Cc: "=?utf-8?B?bWts?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?bWFpbGhvbA==?=" <mailhol@kernel.org>, "=?utf-8?B?aGVpa28=?=" <heiko@sntech.de>, "=?utf-8?B?c29ja2V0Y2Fu?=" <socketcan@hartkopp.net>, "=?utf-8?B?ZGF2ZW0=?=" <davem@davemloft.net>, "=?utf-8?B?ZWR1bWF6ZXQ=?=" <edumazet@kernel.org>, "=?utf-8?B?a3ViYQ==?=" <kuba@kernel.org>, "=?utf-8?B?cGFiZW5p?=" <pabeni@redhat.com>, "=?utf-8?B?aG9ybXM=?=" <horms@kernel.org>, "=?utf-8?B?Y29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?c2toYW4=?=" <skhan@linuxfoundation.org>, "=?utf-8?B?cmR1bmxhcA==?=" <rdunlap@infradead.org>, "=?utf-8?B?d2c=?=" <wg@grandegger.com>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, 
+	"=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
+Subject: Re: [PATCH net v10 05/10] can: rockchip_canfd: cancel bus-off restart before closing the device
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-vop2-axi-primary-v1-1-8d5c74905207@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ5EQBBA0atIracS1QuDq4hFa4WSoFM9hIi7a
- 2P5Fv+fEFiFA5TJCcqbBFnmCPok4AY794zSRoNJTUZkCLfFG7S7oFeZrB5YfKlzjU3bImeImVf
- uZP8vq/p1WJuR3e/5wHXdfoi3WXQAAAA=
-X-Change-ID: 20261121-vop2-axi-primary-971fcba0d98e
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andyshrk@163.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
- Damon Ding <damon.ding@rock-chips.com>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795247747; l=2484;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=UR8Iq6V+Z+wSboGx6S1Fg+4yyPj7jK+nIZtEYEItTcg=;
- b=BzumBlQkZjOG0TMxnd3EtaRuRxZfKAHpRClLRwaJBDZUqFH4KPBUDGCnKKSnEDXOiwOrH/jJL
- 6sQahfkkNrbBNjoPQ8VYFezMHCfJgh8R52jxwiRw3NBZ8PTHffQuEGm
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Sat, 21 Nov 2026 15:55:52 +0800
+X-Priority: 3
+Message-ID: <tencent_A569B865F0120446D40306100DFD749AAA09@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+References: <20261119-rockchip-canfd-restart-close-v10-5-df23913aa33a@qq.com>
+	<179521933978.3131.189047644390163242@kernel.org>
+In-Reply-To: <179521933978.3131.189047644390163242@kernel.org>
+X-QQ-mid: xmsezb41-0t1795247752td0sekuhj
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261120_235558_793048_AFEF3405 
+X-CRM114-Status: GOOD (  11.95  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,81 +83,27 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
-
-Damon Ding asked for POST_BUF_EMPTY to be fixed in the layer setup, and
-Chaoyi Chen pointed out that a video port's layers must stay on one AXI
-port. On RK3588 Cluster0/1 fetch through AXI0 and Cluster2/3 through
-AXI1. Each video port takes the first free primary window, so VP0 and
-VP2 get Cluster0 and Cluster1, both on AXI0. A 4K120 and a 4K60 XR24
-primary need about 6 GB/s there, one port delivers about 4.5 GB/s, and
-VP0 underflows in every frame. aclk_vop at 750 or 850 MHz is the same.
-
-On RK3588 give VP N Cluster N as primary plane. Boards without VP1 now
-get Cluster2 instead of Cluster1 as VP2's primary. RK3568 and RK3576 are
-unchanged.
-
-Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-Tested on Orange Pi 5, HDMI 4K120 + DP 4K60, v7.3 plus local HDMI FRL and
-750 MHz aclk_vop (not in mainline): 7207 bad frames in 60 s before, 0 after.
-Applies with Chaoyi Chen's 8K series [1]: VP0 keeps Cluster0 and Cluster1.
-
-[1] https://lore.kernel.org/all/20261116084555.1061-4-kernel@airkyi.com/
-
-Developed with Claude (Anthropic), which wrote the code and the commit
-message. I reviewed every change.
----
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 76d151b8bc52..303d9b987a7c 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -2583,6 +2583,12 @@ static bool vop2_is_mirror_win(struct vop2_win *win)
- 	}
- }
- 
-+/* RK3588 primary per video port; Cluster0/1 on AXI0, Cluster2/3 on AXI1. */
-+static const u8 rk3588_vp_primary[] = {
-+	ROCKCHIP_VOP2_CLUSTER0, ROCKCHIP_VOP2_CLUSTER1,
-+	ROCKCHIP_VOP2_CLUSTER2, ROCKCHIP_VOP2_CLUSTER3,
-+};
-+
- static int vop2_create_crtcs(struct vop2 *vop2)
- {
- 	const struct vop2_data *vop2_data = vop2->data;
-@@ -2655,6 +2661,10 @@ static int vop2_create_crtcs(struct vop2 *vop2)
- 			if (!(win->data->possible_vp_mask & BIT(vp->id)))
- 				continue;
- 
-+			if (vop2->version == VOP_VERSION_RK3588 &&
-+			    win->data->phys_id != rk3588_vp_primary[vp->id])
-+				continue;
-+
- 			if (vop2_is_mirror_win(win))
- 				continue;
- 
-
----
-base-commit: c408466a4dfaee4b12587e926c5b85e68c8b3c40
-change-id: 20261121-vop2-axi-primary-971fcba0d98e
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
+SGksCgo+IFtTZXZlcml0eTogTG93XQo+IElzIHRoaXMgZXhwbGFuYXRpb24gY29tcGxldGU/
+IExhdGUtcXVldWVkIHJlc3RhcnQgd29yayBkb2VzIG5vdCBoYXZlIHRvCj4gd2FpdCBmb3Ig
+dGhlIGZpbmFsIGNhbmNlbC4gV2l0aCBhIHNob3J0IHJlc3RhcnRfbXMgaXQgY2FuIHJ1biBh
+bnl3aGVyZQo+IGJldHdlZW4gdGhlIGVhcmx5IGNhbmNlbCBhbmQgY2xvc2VfY2FuZGV2KCku
+Cj4gCj4gWy4uLl0KPgo+IENvdWxkIHRoZSBjb21taXQgbWVzc2FnZSBzYXkgdGhhdCBsYXRl
+IHdvcmsgd2hpY2ggcnVucyBiZWZvcmUgdGhlIGZpbmFsCj4gY2FuY2VsIGlzIHN0b3BwZWQg
+YnkgdGhlIG5ldGlmX3J1bm5pbmcoKSBjaGVjayBpbiBjYW5fcmVzdGFydCgpPyBDb3VsZAo+
+IHRoZSBuZXRpZl9ydW5uaW5nKCkgcGF0Y2ggYWxzbyBiZSBsaXN0ZWQgYXMgYSBzdGFibGUg
+cHJlcmVxdWlzaXRlPwoKWWVzLCB0aGF0IGRpc3RpbmN0aW9uIG1hdHRlcnMuIEl0IG5lZWRz
+IDAzLzEwIGFzIHdlbGwuIEJvdGgKcHJlcmVxdWlzaXRlcyBhcmUgYWxyZWFkeSBtYXJrZWQg
+Zm9yIHN0YWJsZSBpbiB0aGlzIHNlcmllcywgc28gdGhlCnN0YWJsZSBydWxlcyBkbyBub3Qg
+cmVxdWlyZSBhbm90aGVyIHByZXJlcXVpc2l0ZSB0YWcgaGVyZS4KCkJlc3QgcmVnYXJkcywK
+Q3VuaGFvIEx1Cg==
 
 
