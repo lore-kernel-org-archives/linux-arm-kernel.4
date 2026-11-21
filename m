@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D29EE606A33C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0282606A336
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:44:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eeu/imyK;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=BdrPFbed
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FmUc1Yco;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EGaeFloH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=t7R2yoCiAeLQBhB6gJTWyBDgFqLo/L9FrePQ72IrN3c=; b=eeu/imyKFiIG7f
-	n274feBKIFtU1E429czd/tEzXIZxcstMG3z8mt2C7l/4Lo/qNgIapR2OypXpIA+wQLIo5nUrh5B83
-	AOnC6l5ZkGltsX9ZtL8GBpHjsdz+xM4YRN9PpWU7KkIKvcA3a2kKu3QwbtA5Ug5bxSmSTzOfnP6OT
-	FeDOBoSlYg0FJcNaa3rWQ7xH3GC9Vd+qD+2R1ZyyneJYWc5heXyue+EWs2eDXyUE536KNDqc+99wt
-	BS0bK5RkiRzsHY+FNkvj8axT4YYjc99nHrBbNdjBR/N8ebCmBFOuw5h7BFwsjXgL3/qMEJ0uj+NK7
-	EGRcMbX/2tOp3ahK4FAQ==;
+	List-Owner; bh=tjLoocJtgZp3d7VE01qKIf/b0AUZVceK9RAY/Ki1zEE=; b=FmUc1Ycob4fFzI
+	I6cGqzyijimwLjkJhmzsR/o2UtbeY8NSE05oB0cTJB8UdmCqUmU5NctI7xNsccVJoqh/rzgkjd7eY
+	kQfGtEZP4j1uuTRhQAcvRPD9Hs461p9S1f7sNBIRk2vVwDT1xXWhOx4udJFDC7mkjVLKx+nNXMAYE
+	cV3/PjIoUZNLjuZsuggTAeVb8vCJ4QSHiu8AMV366xxIiEPGNkI/mQfybuCnPMmW0nKJQRzMlF8+n
+	aK/zZojTVyP4xYmr4CS+VbqQjMeBlm1VKYRR7xAG+DbXPeYmSWk2qZ41Xst4rWREadyBeGLqaUloj
+	uDybnBVG1Dfjolnw9pTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUukU-00000000VVb-0OUN;
-	Sat, 21 Nov 2026 23:44:02 +0000
+	id 1xUukT-00000000VUY-3KKo;
+	Sat, 21 Nov 2026 23:44:01 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUukJ-00000000VOM-3jVt
+	id 1xUukG-00000000VM6-09d3
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 23:43:53 +0000
+	Sat, 21 Nov 2026 23:43:49 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2336A1575;
-	Sat, 21 Nov 2026 15:43:48 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 925CC1575;
+	Sat, 21 Nov 2026 15:43:44 -0800 (PST)
 Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C6A3C3F632;
-	Sat, 21 Nov 2026 15:43:47 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ACF113F632;
+	Sat, 21 Nov 2026 15:43:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795304631; bh=hfA0ap4Xo70CAlarCd2qZoILhqj61SvsIL72n1hY+fo=;
+	t=1795304627; bh=8kDoZMhfijALz2xCyOhL8rkJdGvulmKZNLN3A2dJI+o=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BdrPFbedUT68TTWy7vCZmFOcSK2bF9LKpVBKpZahm2E0YYtNnTOGE8A6K0JeJ0Z8v
-	 UH4SlT2eWxFNisnOlSYFkBUjcbTUBCLJ4QrrvmJi/eTehXeWt34AMnKoZ9t+jzoW5c
-	 L/UBQJmZ8DLdI4k4jCxn8LBM+iIHp3SCp7ycUDHc=
+	b=EGaeFloH5WM4EIObZA92srKUHie75qJyU5B9JDhqNOA6kc0dMfHatphuWgQ7wzUnP
+	 4mFg7ysGWgpTTbk0wfGytcSIDzVeV0XoTM00A8mnnlgRnNrV/ET+lxQWmQhzHct/Zr
+	 VAbWnIMq76SC8iZDExC9r57Qk6ZIStoZsc15+es0=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -64,14 +64,10 @@ Cc: sudeep.holla@kernel.org,
 	puranjay@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v16 08/31] dt-bindings: firmware: arm,scmi: Add support for telemetry protocol
-Date: Sat, 21 Nov 2026 23:39:42 +0000
-Message-ID: <20261121234005.1525419-9-cristian.marussi@arm.com>
+	Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v16 07/31] firmware: arm_scmi: Refactor __scmi_event_handler_get_ops helper
+Date: Sat, 21 Nov 2026 23:39:41 +0000
+Message-ID: <20261121234005.1525419-8-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261121234005.1525419-1-cristian.marussi@arm.com>
 References: <20261121234005.1525419-1-cristian.marussi@arm.com>
@@ -79,9 +75,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_154351_993352_DF0F92F6 
-X-CRM114-Status: UNSURE (   7.02  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261121_154348_169722_07FAC6B0 
+X-CRM114-Status: GOOD (  16.98  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,42 +96,155 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add new SCMI v4.0 Telemetry protocol bindings definitions.
+Refactor the __scmi_event_handler_get_ops notification helper to simplify
+its logic and make use of guards for locking.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Event handler allocation is split out of registration in a dedicated helper
+so as to allow for future reuse.
+
+Mostly no functional change, in the sense that while the functionality
+remained the same, a richer set of errors is returned where before was
+always a -EINVAL.
+
+Reviewed-by: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
-v3 --> v4
- - changed protocol number to lowercase 1b
- - fixed misplaced block for protocol 0x1b
-
-Cc: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
+v14 --> v15
+ - reworked error path in scmi_allocate_pending_event_handler
+ - improve commit message
 ---
- Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/firmware/arm_scmi/notify.c | 74 +++++++++++++++++++-----------
+ 1 file changed, 47 insertions(+), 27 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 6fc44105f1c3..b63543390fd9 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -324,6 +324,14 @@ properties:
-     required:
-       - reg
+diff --git a/drivers/firmware/arm_scmi/notify.c b/drivers/firmware/arm_scmi/notify.c
+index a30589c9b377..fa2339209a69 100644
+--- a/drivers/firmware/arm_scmi/notify.c
++++ b/drivers/firmware/arm_scmi/notify.c
+@@ -891,7 +891,6 @@ void scmi_deregister_protocol_events(const struct scmi_handle *handle,
  
-+  protocol@1b:
-+    $ref: '#/$defs/protocol-node'
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        const: 0x1b
-+
- unevaluatedProperties: false
+ /**
+  * scmi_allocate_event_handler()  - Allocate Event handler
+- * @ni: A reference to the notification instance to use
+  * @evt_key: 32bit key uniquely bind to the event identified by the tuple
+  *	     (proto_id, evt_id, src_id)
+  *
+@@ -901,21 +900,33 @@ void scmi_deregister_protocol_events(const struct scmi_handle *handle,
+  * associated to this handler descriptor (hndl->r_evt == NULL), so the handler
+  * is initialized as pending.
+  *
+- * Context: Assumes to be called with @pending_mtx already acquired.
+  * Return: the freshly allocated structure on Success
+  */
+-static struct scmi_event_handler *
+-scmi_allocate_event_handler(struct scmi_notify_instance *ni, u32 evt_key)
++static struct scmi_event_handler *scmi_allocate_event_handler(u32 evt_key)
+ {
+ 	struct scmi_event_handler *hndl;
  
- $defs:
+ 	hndl = kzalloc_obj(*hndl);
+ 	if (!hndl)
+ 		return NULL;
++
+ 	hndl->key = evt_key;
+ 	BLOCKING_INIT_NOTIFIER_HEAD(&hndl->chain);
+ 	refcount_set(&hndl->users, 1);
+-	/* New handlers are created pending */
++
++	return hndl;
++}
++
++static struct scmi_event_handler *
++scmi_allocate_pending_event_handler(struct scmi_notify_instance *ni, u32 evt_key)
++{
++	struct scmi_event_handler *hndl;
++
++	lockdep_assert_held(&ni->pending_mtx);
++	hndl =  scmi_allocate_event_handler(evt_key);
++	if (!hndl)
++		return NULL;
++
+ 	hash_add(ni->pending_events_handlers, &hndl->hash, hndl->key);
+ 
+ 	return hndl;
+@@ -1085,7 +1096,8 @@ __scmi_event_handler_get_ops(struct scmi_notify_instance *ni,
+ 			     u32 evt_key, bool create)
+ {
+ 	struct scmi_registered_event *r_evt;
+-	struct scmi_event_handler *hndl = NULL;
++	struct scmi_event_handler *hndl;
++	int ret;
+ 
+ 	r_evt = SCMI_GET_REVT(ni, KEY_XTRACT_PROTO_ID(evt_key),
+ 			      KEY_XTRACT_EVT_ID(evt_key));
+@@ -1093,39 +1105,47 @@ __scmi_event_handler_get_ops(struct scmi_notify_instance *ni,
+ 	if (r_evt && r_evt->not_supported_by_platform)
+ 		return ERR_PTR(-EOPNOTSUPP);
+ 
+-	mutex_lock(&ni->pending_mtx);
++	guard(mutex)(&ni->pending_mtx);
+ 	/* Search registered events at first ... if possible at all */
+ 	if (r_evt) {
+-		mutex_lock(&r_evt->proto->registered_mtx);
++		guard(mutex)(&r_evt->proto->registered_mtx);
+ 		hndl = KEY_FIND(r_evt->proto->registered_events_handlers,
+ 				hndl, evt_key);
+-		if (hndl)
++		if (hndl) {
+ 			refcount_inc(&hndl->users);
+-		mutex_unlock(&r_evt->proto->registered_mtx);
++			return hndl;
++		}
+ 	}
+ 
+ 	/* ...then amongst pending. */
+-	if (!hndl) {
+-		hndl = KEY_FIND(ni->pending_events_handlers, hndl, evt_key);
+-		if (hndl)
+-			refcount_inc(&hndl->users);
++	hndl = KEY_FIND(ni->pending_events_handlers, hndl, evt_key);
++	if (hndl) {
++		refcount_inc(&hndl->users);
++		return hndl;
+ 	}
+ 
+-	/* Create if still not found and required */
+-	if (!hndl && create) {
+-		hndl = scmi_allocate_event_handler(ni, evt_key);
+-		if (hndl && scmi_register_event_handler(ni, hndl)) {
+-			dev_dbg(ni->handle->dev,
+-				"purging UNKNOWN handler - key:%X\n",
+-				hndl->key);
+-			/* this hndl can be only a pending one */
+-			scmi_put_handler_unlocked(ni, hndl);
+-			hndl = ERR_PTR(-EINVAL);
+-		}
++	if (!create)
++		return ERR_PTR(-ENODEV);
++
++	/*
++	 * Create if still not found and required, new handlers are
++	 * created pending and transitioned to registered when bound to
++	 * an event.
++	 */
++	hndl = scmi_allocate_pending_event_handler(ni, evt_key);
++	if (!hndl)
++		return ERR_PTR(-ENOMEM);
++
++	ret = scmi_register_event_handler(ni, hndl);
++	if (ret) {
++		dev_dbg(ni->handle->dev,
++			"purging UNKNOWN handler - key:%X\n", hndl->key);
++		/* this hndl can be only a pending one */
++		scmi_put_handler_unlocked(ni, hndl);
++		return ERR_PTR(ret);
+ 	}
+-	mutex_unlock(&ni->pending_mtx);
+ 
+-	return hndl ?: ERR_PTR(-ENODEV);
++	return hndl;
+ }
+ 
+ static struct scmi_event_handler *
 -- 
 2.54.0
 
