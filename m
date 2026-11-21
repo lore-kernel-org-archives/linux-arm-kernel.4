@@ -2,79 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E27606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 13:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63828606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 13:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QPuoA4oX;
-	dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.a=rsa-sha256 header.s=mail header.b=RUvIYAeT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VdYAx/8Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NxnZsxWy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=xqK7f3+IigicNuFshjKnlC9DMmy7rusRWxVM3uANEYU=; b=QPuoA4oXOhJ3EUasW3AJYLvi8d
-	1yf+oCj1uaVeXXtXTs/3NdbSl0wrst72kz4CtDynxt/u+wNrP0in5oTRspnP1tzhqyh8xk28I5R17
-	pSLPJTKfC426mNX3PAWG0Bhx001hOqtz7ISgUlZnnkEPZ8I/DzDGZQA8kcl4rgDAQhKZil3DVYx/4
-	qOKC3vTz/+RYK16dmTcJPlRNa72VETXf1FlIXD/r6kjmIY9h3XiyXhtZ7AuAAKG86BZLrCDqBu7Jb
-	Fyid639jE2sMtBcYpjN4xnhQgyWyfISQCb75N6At0kgT2RSMduMME0wTgVaCMWQpmFLLujnTAPWh7
-	K2QoWMrw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ZHsrEeuUJTn/nBpU7qFv5kbV3qV3zIRMXLLBhUS7gPY=; b=VdYAx/8ZVyWtvd
+	Min8yiO00gSa1LnGj9G3vuQ6H4VcaZ0rwH5BexB4SVJMvK9ErrhNsJpsIDOmBo9wOBgw5NiXCYR2l
+	t1smiKsUR9D9TACdJ3vX5cK5hC9FQD2TEYdTqLoQMJFg7y8GNAgZdeJdRI6V8aWrdi8wfBNHTgiKe
+	WLu8VoBU29nHxcnklcUlgYobbpUiAUxG+hgGFy3N5VJz4HX//hOiOil3x2ZVfxgemcC3b2MKJUqLQ
+	2hJBywq9vOwj6FGoqDUm68ttfjyedaZBJjVQFeS71wfHDfF6TnN90JYOw0DGZKXrWes7Z3vuMYPq0
+	0+YkemYUsZXrbj+ZdKUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkog-0000000HFHU-0DEp;
-	Sat, 21 Nov 2026 13:07:42 +0000
-Received: from chaosmail.tech ([77.81.229.115])
+	id 1xUkp1-0000000HFRn-0uz7;
+	Sat, 21 Nov 2026 13:08:03 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkoV-0000000HFC3-2Iy3
+	id 1xUkoo-0000000HFMh-3Dzx
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 13:07:33 +0000
-Received: by chaosmail.tech (Postfix) id 1D5F21C8555;
-	Sat, 21 Nov 2026 13:07:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
-	s=mail; t=1795266444;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=xqK7f3+IigicNuFshjKnlC9DMmy7rusRWxVM3uANEYU=;
-	b=RUvIYAeT25KYkCrztMpR4VSMmDKPBGTFYDTMuQMIMcWFd1zbLi2PseEFIWEX6j89IXk3c4
-	5H5rHm064XKP0qI6FjE5tBvvfmgrbHy0wEz+4VsSfZjaRT33QBPpnDa25Q6ed6RtIXajgt
-	vYbmDbWln3RkomneTgqUqcx4BuuVBKY=
-From: Sasha Finkelstein <k@chaosmail.tech>
-Subject: [PATCH v9 0/3] usb: typec: tipd: Add sn201202x (ACE3) support
-Date: Sat, 21 Nov 2026 14:07:19 +0100
-Message-Id: <20261121-tipd-ace3-v9-0-9a2f1327a330@chaosmail.tech>
+	Sat, 21 Nov 2026 13:07:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id C1202618D5;
+	Sat, 21 Nov 2026 13:07:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 515F61F0156A;
+	Sat, 21 Nov 2026 13:07:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795266469;
+	bh=ZHsrEeuUJTn/nBpU7qFv5kbV3qV3zIRMXLLBhUS7gPY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=NxnZsxWy8MiENcuEYisCwonh579LZxq7h4ogSoKjretcmEYkzhxWVmMX3lVZqMKbd
+	 NMQ+HP2xibx5W36fDYnQ748ppmYdRTcWP7S6vC/IJuvpJvGdeVbWAnq9OZDm2zY08A
+	 d5R+QwuI4Vb/vSjucKIJ4ads/HrD8ZBFO+1xTPVkodAiCoCpMTFOVTmyubKkwvytum
+	 iVeMe49jL49El2IEntWxT0P/l9cBdpsKy+2/pksTqMNccYfmOMe8YJMB+OxXb9cDKd
+	 /dPBezknKBCh0RYTL+kGeAab9hta0zayh3/eBIq1CzFVlVZG4ChEcf+6sqyxmN/AtB
+	 gTqJv3hPI2FQA==
+Message-ID: <e3d2cca6-056f-4ce1-8701-a2592b18b729@kernel.org>
+Date: Sat, 21 Nov 2026 14:07:40 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 4/4] arm: multi_v7_defconfig: update the Qualcomm
+ Crypto Engine entry
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>,
+ Stanimir Varbanov <svarbanov@mm-sol.com>,
+ Eneas U de Queiroz <cotequeiroz@gmail.com>,
+ Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
+ Eric Biggers <ebiggers@kernel.org>,
+ Demi Marie Obenour <demiobenour@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>
+Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, brgl@kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20261120-qce-fix-self-tests-v12-0-b5a2a44bc5ae@oss.qualcomm.com>
+ <20261120-qce-fix-self-tests-v12-4-b5a2a44bc5ae@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGPBBMBCgA5AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJp2mE8AAoJEBuTQ307QWKbeaIP
+ /ihHTkTW4KsN/DQ945JJbyu5tI0J80Wue7QyyLPglyKfhgb5cLLNPpOC8cCIJsc7+W3i2P38
+ s2c1cOH6CYGE7E9ur3Vfme8NW2S2I/Z8VC7bZnzyS23wT17LrsdS/qCpx4o8U+pt/xdXDKph
+ EGRYrIEmMpUWvyYzyYKGIe25FtaayIIKpq8eZYyFcp2f/sG5IkOW5uZzHPMPdcm87jU7fyuQ
+ rAU2vx9r+ulUfQ/q9Z2roC/ode3l7t2pN7BCBCsUDp6JCrUyZrtT1e7EbA0ZRP3aOBNk2P2E
+ DQOgJGjGdO5Yx2Y9LFtltu6JbsBJHi1syGRX3AtQYOMc4Y1WGoeZJmMlvKj2ZqqXNkcWi2DS
+ IQEWB0uW6CqFsBBIMGDa+6OzdaVO/uAVXWDWml02Men3CILdI1MbVjoh8ECqYUY7OQ+JJvNN
+ vnliuq5WM3Ghd3jg/LZZrxXjdIginRHFQCjIJYLKpLZWm1/iDFedcfzqRNYmTtqscdCNHW41
+ oT3Z7BmO9xwdjuwBS6nmS6JJwkbf5Ot2QR4pB/DRU7ZwjT1qHe+9r9gF32wXVQatHNGK/VVu
+ sfwOnkdxCWkp/qb2gdQRmZh+SedStWshigH6sNfuHBloF/q+hjMRc8b2m326OZdrbSHwY1Sz
+ vti8Hn7n8NjdHO9LKB7BIdjkA9DA5WsqOuVCzsFNBFVDXDQBEADNkrQYSREUL4D3Gws46JEo
+ Z9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLueMNsWLJBv
+ BaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6eiOMheesVS
+ 5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wAGldWsRxb
+ f3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA6z6lBZn0
+ WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9YegxWKvX
+ XHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt91pFzBSO
+ IpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gUBLHFTg2h
+ YnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/JoFzZ4B0
+ p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu4vXVFBYI
+ GmpyNPYzRm0QPwARAQABwsF2BBgBCgAgAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmna
+ YUkACgkQG5NDfTtBYptX+BAApg32CkxwNucNEi8WfWA8oKkW0y8YDuY6ORMo9FWNGiT/OTy0
+ vyJrLocrpn86zwfjVp+eCrssPYh8eqJfnWqmYv6ACQtHPYzPZQ3mSo8H97Z01oUxITzCxpXm
+ ZkLgPIqtDPcC2E3dPM/fVxcyowM8XsaMA9wcsaUYrta8toOq2b9tKcjleKMfMrm0gQ9u7wUc
+ QbLkwj6TCLOwucb07GXzLTNF9PZmaDUpKAZjMjmrW+le+SFvQbhamx0rxLWPR0NWntXpbCn+
+ +ACch03p/JyTBVktxFsFyCt7pTPE1kEaeuXBTe/a2D9iQvRxRW19LvuO2e59/u1wYUiH/orz
+ wbIC2S4dBsPAPihL3ztOU1yE86GPyQtSE0kU+/7snnLt4QGi6PChf3t5gnNjAzjUUovO8rgI
+ c+5yN5heq5loYHgK6OQ9OlHzsPHO9e9MOQcKlFycs1pyijFGzDwdNUm/SchK8iWT2QApTx4A
+ K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
+ n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
+ qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
+In-Reply-To: <20261120-qce-fix-self-tests-v12-4-b5a2a44bc5ae@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/23PzU7DMAwH8FeZciYotvPR7MR7IA5p6rAgWKe2V
- KBp7046JJaJHC3797d9FjNPmWex353FxGue83gshX/YiXgIx1eWeSi1QIVWOTRyyadBhsgklVd
- 9Mk5xMl6U+dPEKX9ds55ffuv5s3/juGwB28Qhz8s4fV+XrbDNtXJXkEo6Kp2BLFAXnsol4/wR8
- vvjwvEgtvAVa+5qjoUDaeON6wdLpsnpxjsFNS+PyY4IE3IMOsUm1zW3Ndfb8b4zpgejPOgmNxX
- Hu+2mcEKteaB+iJSa3Nb8brstnD34RD54Ctjk7sY9qJq7wm203DOCp9Tm3R8HUFTzbvvdqaRRI
- zhD//jlcvkBOqDD/nICAAA=
-X-Change-ID: 20260725-tipd-ace3-090bf570ef59
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sasha Finkelstein <k@chaosmail.tech>, 
- Alyssa Milburn <amilburn@zall.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795266444; l=2831;
- i=k@chaosmail.tech; s=20241124; h=from:subject:message-id;
- bh=LTZ69I9arCbO6avvu9EgzDAj2AgFYbnOZK4kFi9TXMQ=;
- b=kJjAbtLQ5nvVl7yZEO+1ZXKCcQN5URUBWfZNmLaHXedwDE1+wnG3GZR4zQA+d75sv4PGj0uco
- qW7HPA9oPe/Dwjf+DOPD92kolM6gkqLi5RvNZAyBIurXXKX+As/XcHW
-X-Developer-Key: i=k@chaosmail.tech; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_050732_079601_7ED05292 
-X-CRM114-Status: GOOD (  11.90  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,87 +126,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for sn201202x (a.k.a ACE3), an Apple-specific tps6598x
-variant that wraps the tps6598x core register set with a SPMI based
-regmap-like protocol, first appearing in Apple M3 devices. This series
-first makes the core parts bus-agnostic, and then adds the new SPMI
-interface as a custom regmap implementation.
+On 20/11/2026 20:34, Bartosz Golaszewski wrote:
+>  CONFIG_KEYSTONE_NAVIGATOR_QMSS=y
+> @@ -1306,7 +1307,6 @@ CONFIG_CRYPTO_DEV_ATMEL_AES=m
+>  CONFIG_CRYPTO_DEV_ATMEL_TDES=m
+>  CONFIG_CRYPTO_DEV_ATMEL_SHA=m
+>  CONFIG_CRYPTO_DEV_MARVELL_CESA=m
+> -CONFIG_CRYPTO_DEV_QCE=m
 
-To simplify the merge strategy, the device tree entries will be sent
-in a future patch series.
+I don't understand what is the base here. base-commit from cover letter
+is unknown for my tree.
 
-Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
----
-Changes in v9:
-- Add the new no_mode_control = true
-- Improve some error handling
-- Link to v8: https://patch.msgid.link/20261103-tipd-ace3-v8-0-770f42421753@chaosmail.tech
-
-Changes in v8:
-- Rebase on latest
-- Link to v7: https://patch.msgid.link/20260910-tipd-ace3-v7-0-6c6ebe2193f2@chaosmail.tech
-
-Changes in v7:
-- Rebase on usb-testing
-- Link to v6: https://patch.msgid.link/20260826-tipd-ace3-v6-0-e919f39a93a2@chaosmail.tech
-
-Changes in v6:
-- Fix rebase issues
-- Link to v5: https://patch.msgid.link/20260821-tipd-ace3-v5-0-3244ed3bdc3f@chaosmail.tech
-
-Changes in v5:
-- Rebase on usb-next
-- Link to v4: https://patch.msgid.link/20260806-tipd-ace3-v4-0-79855b150914@chaosmail.tech
-
-Changes in v4:
-- Unexport variant data
-- One more debugfs-safety fix
-- Link to v3: https://patch.msgid.link/20260801-tipd-ace3-v3-0-8332f2eca4fc@chaosmail.tech
-
-Changes in v3:
-- Restore accidentally deleted static
-- Fix building with tracepoints
-- Sleep the device on failed probe
-- Link to v2: https://patch.msgid.link/20260727-tipd-ace3-v2-0-1345957bd635@chaosmail.tech
-
-Changes in v2:
-- Use a -core module instead of building everything twice
-- Fix completion handling
-- Make regmaps debugfs-safe
-- Link to v1: https://patch.msgid.link/20260725-tipd-ace3-v1-0-73202d36138a@chaosmail.tech
-
----
-Alyssa Milburn (1):
-      usb: typec: tipd: Factor out i2c specifics
-
-Sasha Finkelstein (2):
-      dt-bindings: usb: tps6598x: Add sn201202x/ACE3
-      usb: typec: tipd: Add sn201202x support
-
- .../devicetree/bindings/usb/apple,sn201202x.yaml   |  78 ++++++
- MAINTAINERS                                        |   2 +
- drivers/usb/typec/Makefile                         |   1 +
- drivers/usb/typec/tipd/Kconfig                     |  21 +-
- drivers/usb/typec/tipd/Makefile                    |  14 +-
- drivers/usb/typec/tipd/core.c                      | 248 ++++-------------
- drivers/usb/typec/tipd/i2c.c                       | 107 ++++++++
- drivers/usb/typec/tipd/spmi.c                      | 303 +++++++++++++++++++++
- drivers/usb/typec/tipd/tps6598x.h                  | 132 +++++++++
- 9 files changed, 710 insertions(+), 196 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20260725-tipd-ace3-090bf570ef59
+There is no such code for half a year.
 
 Best regards,
---  
-Sasha Finkelstein <k@chaosmail.tech>
-
+Krzysztof
 
