@@ -2,107 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47F9606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1FB606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:40:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WdSPWbEs;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EJYOqHrP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u+9kiXMF;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WyG8I5DC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LU7a14VIbTILT8wVwPXA9PdIUuL+hLFC4Wmi3m4+Cn0=; b=WdSPWbEsC44HPL1nxikx1isTLY
-	907KsCXis/5wTHfeLk+zvwRfQELs/oecs1wGXX+YnAsG+3hZljOrwQmqGzXecTpwA/o27eBW1hN0v
-	AL2xJMXDYGG7CvRP1pIgTSRoaaMEPnjmPCCVZulr3buWK4EWW7qJAHbW2FkPqcK+xNSsLEdN3ZQce
-	daNhbG2B1RPs1+DK+aFtUjTriIV5ds1QRpfh1YBXs4Q1IIc4BYKpO7lax9PPcbDNyKZm4ZDIm64aq
-	n1F7pDx9A6jvP4vPcIkl7k7/m1tqsxpqqe9VcZud39hooehv4DoZXqTPd6ysbcRuvmTr5I2E9FhIX
-	Unfx/p9g==;
+	bh=t3BVFC/95yek/PxTfrbxBSCvXUZXc+IwV23Y70sOBqs=; b=u+9kiXMFIHDE746Z+aTv0e3uJE
+	k+M3Zn7OY59xb8DAsnqnlH5bwIgc3UiPWICVTKr33aRiX+6MDDrQLT93Mzl7H9Lrt6CuQWwB/4XCo
+	sqhr9qCHPUQkJhy/i9KkfCc6hYoYwITHQiHiOKB14eWFKmpANaRNxyx4jsc6oBjX8XuUq9GN47gjF
+	Ok54BNKG1cU3KBTxIT5XBLspabIIVGRKKKJaVluB4+9wLOZ/+jRT7dJWgHPh7KtCiahQHKt0u/3YS
+	nYvqUVPiE2ALP9mcOZlEje1a7EyCXS3pilAURN+bzj5ab0zxia7rSl+jN27BKh4Z2PKy583gjfimq
+	whV5Xlnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgYj-0000000GwCe-0sLN;
-	Sat, 21 Nov 2026 08:34:57 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xUgdZ-0000000Gwpt-47yP;
+	Sat, 21 Nov 2026 08:39:58 +0000
+Received: from mail-dy1-x132c.google.com ([2607:f8b0:4864:20::132c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgYT-0000000Gw7s-3wh2
+	id 1xUgdX-0000000GwpI-1LQc
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 08:34:42 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2236361425;
-	Sat, 21 Nov 2026 08:34:41 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795250081;
-	b=RiT/8ODm6IRFfsv9eza2fAI2akjqKbaIeWUtmmZ+d9nbklyuiQ2M4J47Q13AGVpgZiq1
-	 Emmjn1GAxHe04ga+CkfFMl8vkYliFNuP/styueI98IP3g0HljC8MC0hjP0SBTvDduq6tp
-	 DqEE42WvNTjBqQRtWx0PPzYaEMt3PBLv6nAplJK1tROK/RbdLpt3nrkvsBOckA40x5SHH
-	 bW1JsRY+DXt405Uw7ZamCl2zsmb6Bu8c02ZjPZWz+CzDrRxmetoU8HYHYkeE84b0/8FUI
-	 MyeU0hpKOckh5X02TuOR6LoqsFYJJidhqDK1OoiAENgpgAg0rHaK1Zjq1txJ4wGbr+g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795250081;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=LU7a14VIbTILT8wVwPXA9PdIUuL+hLFC4Wmi3m4+Cn0=;
-	b=Adje+NWchs4vxObEOgcR+lcPZuCWE7Uj9VHWyt4w+UiO0wuVUaGCVBgjHmA7GQH8gXu2
-	 AT28SpMqKvfJGON4xe3l4akONUtsl+zNZXH1anS0iUJ7aE8UJRu5O1ycrG4JYfceQDeaP
-	 nNGJG7aMSXAUZca+1/a3toYA1vw0XbzuGgDEH1uAi9FBJgj6fls40/ZhfCBU6Fl2M3Lt1
-	 6Ji8EdeVW+071DlMLlRvwEgT1za6r0O0HBDdg0I3eeBclPImtv+0fRKn/fwcwrCEbyKD+
-	 PxtADGne1xiGiiRxF/7ddaKlx2k4VKnnf/qGM9s8Ryfbq0KbbtXsM7AbfUz/bbvaGBg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 2ED0B1F000C4;
-	Sat, 21 Nov 2026 08:34:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795250080;
-	bh=LU7a14VIbTILT8wVwPXA9PdIUuL+hLFC4Wmi3m4+Cn0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=EJYOqHrPpKz4LyGaOM1d3Wxr7cYN8FQAj43CFuS33QVMGDihDIW0IO0/pWTDxV4yd
-	 tOoc42WBXAbcO8cd5yW+nBFgskUPoYLtUHYlZYRgryG3xRi234LWGwvfg9SW2boYmo
-	 yQ4lvuOAqO2lEw0XADKF+9WLHG8WZmizexrftJHsAZXOnwXVU1AE31VjxG3jMQRWie
-	 FLYmd6A4tYUoYfj6xO6gp5/XAMGRTEWWswfFAbQeVMXShcn//Exq3Is29B3a7jUvBO
-	 bUNIMq0EDzK0nXwwhXcVavoBqsKFey5lyz2RjT6VfVHwwxLsTUxUz5rezOtLsAD2YD
-	 itUq6E1TX3o5w==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id ADEB44BB9F;
-	Sat, 21 Nov 2026 08:34:39 +0000 (UTC)
-From: Michael Reeves via B4 Relay <devnull+michael.reeves077.gmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 08:34:18 +0000
-Subject: [PATCH 4/4] arm64: dts: apple: t8122: Add SMC and its mailbox
+	Sat, 21 Nov 2026 08:39:56 +0000
+Received: by mail-dy1-x132c.google.com with SMTP id 5a478bee46e88-380c28f9e35so2609805eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 00:39:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795250394; x=1795855194; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=t3BVFC/95yek/PxTfrbxBSCvXUZXc+IwV23Y70sOBqs=;
+        b=WyG8I5DCtFMyqqt4+rvFinsEdtNFDM59dhHqKZigfSvz5W+Ywb4Sh+bIKkNAKhNozY
+         zUgzAl4bTlYXvhZCVLE5xGmLzKred8DeoVt40EQDdpeKE7ltZAVIu3rnKHOpN2gf2F2V
+         qf0ivEBWAdfBcaei2XagdD9OkG6MFldOjCeEKAY/ZnGQeIprquJ++nX94izxZ7iSi3Yp
+         Jbfya0w3BIrjUdRJKt/1AdWraAhFs5YPgBXZpj5bqubflR3PXw54Ygh9KTD5oQ7qjist
+         MR1/a1aSS95PT33Tv/J1K2TaWLM27yJLVlblhwo1ZfaHInT1h3weSOAxsb9K9K4ejbKw
+         HO6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795250394; x=1795855194;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=t3BVFC/95yek/PxTfrbxBSCvXUZXc+IwV23Y70sOBqs=;
+        b=kJukfTcA//dt2ZhO0njCdGhiESR18p/u2dNYIPCx8UmioXlaSx9MCD9FFNXi9HLJES
+         TWfPkSee44SpTpctSldBXI0Mmm0G5AsosME4e5LUgY8jEsDol7L5/9vYtlR/KVK+f/uw
+         kLun29m/RduN3MM7n2UZv8oBuTjJp6FpvX2jkIJDHsEBHGo5W9mm5cdb9tCFhtSPs1n6
+         PPFGbg79Cx3ZIE7VOd8QaGbcWuCF5JE9RCNmJgc7xGUnG2VHnBL5mFoOGt+SGTbyBlxG
+         aNqBhrzwN5KZxmIsCBP7CQhNqNC2lTfIZuJ5h/J2sCpEmp6a0Ja2nsEu4fraeumlHM9X
+         xsJQ==
+X-Forwarded-Encrypted: i=1; AL+hErGvzlUkV+ADiI09DJ6KlCwpanSjUyrA4IsmMRqtFEmzSlsHHb9uLhfD2iwEDqosVnlWSF8USpgnEGnY4CIT3Oy+@lists.infradead.org
+X-Gm-Message-State: APuU4Z+bcj66wdZ6TgC8P9bO63/X+jSqmLv0UW+ehrg9skEvnFCG4faD
+	IH+JyVjUUAKDoH6m7jkXdYVIp0tHlEMV8fqzZatLVwziTqTqhShdEBF8
+X-Gm-Gg: AZFdTZc7yW22+sufYeRLcAvhaWN1q9QKnzkMXsidZHBnRvghDm4jewWK+KGLzubV6hZ
+	jW5IZ+WWP9AOnGlfnhewdwnedqZXpH0osf2WxE3UKY1ilHb9aRlVeVg4uTByQae/uI5chKf8Oj3
+	A2xbCML4DkGmR8tM+q/fMVUw3ParTZplFtQ8kAmHZoohT0UxLAH/F0Dt+gBtrfj6TDItsRNmqeQ
+	oVAhZkznYZNjcRMy9Y4aN+5Ekgwqc9p9L06lyIhCTIkrg0igMuzxorJDbYldC7ks8LU+Wg4MVU7
+	oF2NzstPbBRqs3wCbH2+qQrohM2S/R8WT3wPYXRxkGUKe/tf4iy6HkDALQG9s0jBr/yBXueD1mF
+	Skek53B9skLg0nwf/C9ZLV94MUp3WnJmGbRRgro/HS/lc4oQ36DNNJxDffemAje+DjrufcCx7zx
+	DqwFwfoQBIt/nJjXDA+auF0mVvTKhlR74Ch6RCLr1yoHrZTRNPbL0rgMuSiP+r31y+4HLWDAt/L
+	N3F73reoC2LeaRljEyG2tzleKM7Dln97lJj7/gakWXW++JQnFa/V5wQZ5Qx8DPDXPYBzskRWKya
+	yULfszL9DO50dRrhboM0
+X-Received: by 2002:a05:7300:d589:b0:386:9ff1:7f7d with SMTP id 5a478bee46e88-3869ff18213mr549553eec.4.1795250394091;
+        Sat, 21 Nov 2026 00:39:54 -0800 (PST)
+Received: from a1-free ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3856456e6c6sm14113093eec.2.2026.11.21.00.39.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Nov 2026 00:39:53 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-arm-kernel@lists.infradead.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	TAKANO Mitsuhiro <takano32@gmail.com>
+Subject: [PATCH v2 0/2] arm64: errata: Fix two Kconfig column entries
+Date: Sat, 21 Nov 2026 08:39:48 +0000
+Message-ID: <20261121083950.1957044-1-takano32@gmail.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-t8122-smc-dt-v1-4-898f3f5d6228@gmail.com>
-References: <20261121-t8122-smc-dt-v1-0-898f3f5d6228@gmail.com>
-In-Reply-To: <20261121-t8122-smc-dt-v1-0-898f3f5d6228@gmail.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Neal Gompa <neal@gompa.dev>, Stephen Boyd <sboyd@kernel.org>, 
- Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sasha Finkelstein <k@chaosmail.tech>, 
- Lee Jones <lee@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- mfd@lists.linux.dev, Michael Reeves <michael.reeves077@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795250077; l=2295;
- i=michael.reeves077@gmail.com; s=20261107; h=from:subject:message-id;
- bh=tpqBT90IBSHnW53MpijwPnOkQrD4pV6ieL92p27Jfk8=;
- b=5YdoFcdoEGZzUWkidC4DWFjfIUFCfEhG23e0BOT0uEjv56GNE+fiE/672LMAcMunjlGLJDlkk
- pEuX7BYpeZrCflBtA5dXomDOoX2COWI+Djr+5F0HQF5FSFdDpOvVMnr
-X-Developer-Key: i=michael.reeves077@gmail.com; a=ed25519;
- pk=ykwkLcuByJYb/cdLc2UuoYP03pIzwrscEZg30+4tJL8=
-X-Endpoint-Received: by B4 Relay for michael.reeves077@gmail.com/20261107
- with auth_id=1442
-X-Original-From: Michael Reeves <michael.reeves077@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_003955_359649_8E350F34 
+X-CRM114-Status: GOOD (  13.20  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,89 +103,57 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: michael.reeves077@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Michael Reeves <michael.reeves077@gmail.com>
+Documentation/arch/arm64/silicon-errata.rst names two Kconfig symbols that
+no Kconfig file defines.  I checked every Kconfig name in the table: these
+are the only two.
 
-Add the System Management Controller node, its ASC mailbox, and GPIO,
-hwmon, reboot, and RTC child nodes for the Apple M3 (T8122) SoC.
+The GIC-700 #2941627 entry names ARM64_ERRATUM_2941627; that workaround is
+a GIC driver quirk, matched at runtime against the GIC's IIDR and enabled
+through a static branch, so there is no symbol to name.  The Falkor E1041
+entry names QCOM_FALKOR_ERRATUM_1041; the symbol defined in the tree is
+QCOM_FALKOR_ERRATUM_E1041.
 
-Co-developed-by: Sasha Finkelstein <k@chaosmail.tech>
-Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
-Co-developed-by: Janne Grunau <j@jannau.net>
-Signed-off-by: Janne Grunau <j@jannau.net>
-Signed-off-by: Michael Reeves <michael.reeves077@gmail.com>
----
- arch/arm64/boot/dts/apple/t8122.dtsi | 45 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+The two rows come from different commits, so they are kept separate and
+each carries its own Fixes: tag.  Both are documentation-only changes: the
+table keeps its column widths and no build was run.  I did not add a Cc:
+stable tag, as nothing outside Documentation changes.
 
-diff --git a/arch/arm64/boot/dts/apple/t8122.dtsi b/arch/arm64/boot/dts/apple/t8122.dtsi
-index 3766da3c7b18..c585634250fc 100644
---- a/arch/arm64/boot/dts/apple/t8122.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8122.dtsi
-@@ -468,6 +468,51 @@ rtc_offset: rtc-offset@f900 {
- 			};
- 		};
- 
-+		smc: smc@2ec400000 {
-+			compatible = "apple,t8122-smc", "apple,t8103-smc";
-+			reg = <0x2 0xec400000 0x0 0x4000>,
-+			      <0x2 0xede00000 0x0 0x100000>;
-+			reg-names = "smc", "sram";
-+			mboxes = <&smc_mbox>;
-+
-+			smc_gpio: gpio {
-+				compatible = "apple,smc-gpio";
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+
-+			smc_hwmon: hwmon {
-+				compatible = "apple,smc-hwmon";
-+			};
-+
-+			smc_reboot: reboot {
-+				compatible = "apple,smc-reboot";
-+				nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-+					      <&boot_error_count>, <&panic_count>;
-+				nvmem-cell-names = "shutdown_flag", "boot_stage",
-+						   "boot_error_count", "panic_count";
-+			};
-+
-+			rtc {
-+				compatible = "apple,smc-rtc";
-+				nvmem-cells = <&rtc_offset>;
-+				nvmem-cell-names = "rtc_offset";
-+			};
-+		};
-+
-+		smc_mbox: mbox@2ec408000 {
-+			compatible = "apple,t8122-asc-mailbox", "apple,asc-mailbox-v4";
-+			reg = <0x2 0xec408000 0x0 0x4000>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 502 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 503 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 504 IRQ_TYPE_LEVEL_HIGH>,
-+				     <AIC_IRQ 505 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "send-empty", "send-not-empty",
-+					  "recv-empty", "recv-not-empty";
-+			#mbox-cells = <0>;
-+		};
-+
- 		pinctrl_smc: pinctrl@2ec820000 {
- 			compatible = "apple,t8122-pinctrl", "apple,t8103-pinctrl";
- 			reg = <0x2 0xec820000 0x0 0x4000>;
+v2: the change is the same as in v1; only the index and hunk line numbers
+moved with the rebase.  One changelog sentence is replaced in each patch:
+in 1/2 v1 called the table row the tree's only record of the erratum, but
+irq-gic-v3.c records it in gic_quirks[]; in 2/2 the sentence about the
+symbol is reworded to name arch/arm64/Kconfig.  Both changelogs now say
+that no build was run.
 
+v1 was posted on 6 November 2026:
+https://lore.kernel.org/all/20261106234541.1474324-1-takano32@gmail.com/
+A duplicate submission went out the same night with different subjects on
+1/2 and 2/2 (20261106235616.1533003); please ignore it.
+
+The changes and the changelog text were produced with an AI coding
+assistant (Hermes Agent, model deepseek-v4.1-flash) working from the tree
+and the git history.  I reviewed the diff and the reasoning, and I am
+responsible for the submission.
+
+TAKANO Mitsuhiro (2):
+  arm64: errata: Set GIC-700 #2941627 Kconfig entry to N/A
+  arm64: errata: Fix Falkor E1041 Kconfig name
+
+ Documentation/arch/arm64/silicon-errata.rst | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+
+base-commit: d0f871bfb831705d9f55479f5b2b40f636ea7b16
 -- 
-2.56.0
-
+2.53.0
 
 
