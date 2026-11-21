@@ -2,117 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8896F606A693
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 02:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF66606A68C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 02:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4D8Dj099;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YvT57TFR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rG4vk63n;
+	dkim=pass (2048-bit key, unprotected) header.d=timsurber.de header.i=@timsurber.de header.a=rsa-sha256 header.s=MBO0001 header.b=HJh39rsn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HGjW/MMwdvPFqEPVsERwdloYMbx3HCaULFAZmemW7gQ=; b=4D8Dj099achVDJ
-	2goL7dHcQ8towd/jquC5yg2k/POK2bunaPePeXqOwDgOQED1Bu7+TC2JCb1D1H9FIW34LSQ5frZ9j
-	mrG8xXD6KA6vRabESM8CPgTa+i8dFYtvtGRWV4isD/FZRymmj9K1dJezV+hI08LocNBcHJHJkybyX
-	qC91hTfg/l4kk0VvbA6dDEpPynI80ztIWk4L5Za3nPq3dI7uvq9AmxpMuOv+nl7iOOXaOzTS6VK2k
-	agSPpbBTM3xtCS6XpkuxutGmJU3xcoyCzc+xfaXzdlbzIrNXj0F0TNq7mbKShgh6rBb4CoxbZYL4y
-	m6GIoB9FUgEOLyoYvO5Q==;
+	List-Owner; bh=pcu4Z0YBmWCircjybAGycW1Dhcl9eVo6UivDa5/Fmxg=; b=rG4vk63nLjfM/2
+	pgVtANv9DJSarDOgo2Jh2WG+zopls/gYpeOVS1MF8LfByp8hOPXY2idY+5qy2VtU795zLPrpyXKQd
+	AUYeOW0bibrJuNJIPvMLjnnySfGHGxTkFbAxdghI/Orh9Wl5DkNqFbD0eeLxhlfZ+X9ln9drbXsdi
+	AeKQ6Q0R+50koTcJsWHpTtS+zIR1PHmSbBU708GGIttnKLXlFh/Wd403x2qZujUY54l+Gkil9uuYX
+	jRyVga24xTBpS/42KwYujXBQaOZcxsERjfUZj7e5rJZDuW8vFrshg0nDvNMqg4AeitT2As/krVOBB
+	gXyh7itN8A2AwAHPKVrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUaW8-0000000Ggl2-11RJ;
-	Sat, 21 Nov 2026 02:07:52 +0000
-Received: from mail-yx1-xb12d.google.com ([2607:f8b0:4864:20::b12d])
+	id 1xUatv-0000000GhjB-0ncx;
+	Sat, 21 Nov 2026 02:32:27 +0000
+Received: from mout-p-103.mailbox.org ([2001:67c:2050:0:465::103])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUaW5-0000000Ggke-3FpH
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 02:07:51 +0000
-Received: by mail-yx1-xb12d.google.com with SMTP id 956f58d0204a3-67db8985419so2113375d50.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 18:07:49 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795226868; cv=none;
-        d=google.com; s=arc-20260327;
-        b=I8LhuRK8+qhlYDyDNnN1vQ8pJPjz218wPQ3KX1UZkBvMKO1y+6pATGLXW0nsf7LT3z
-         jttTRBHTklkTXRy5Wd/AWhANBsUPY1C3ahRaG/r5f99hJ+nZ0SLKGoSPS3ti6c1lJ+3k
-         22g6XomthmJloqhceaN+RvPVXEXxzjLLb/f0IkxUAQbZTsW/u3+EhHOj/+Q45R02p/ve
-         L8wzkKW0da0oYOPDY0p3j8kQ9JqujE15lmAQRTU8zO6tXxtr0GUEgtPVyEyF/RFLuz05
-         nNLr2Rz+aA1NO9thv9B5KL7aXdu4tC83xH+ATpo7Gm2Xj54D2Sr4nx/qBv/PjFGTAWBD
-         r5oA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=HGjW/MMwdvPFqEPVsERwdloYMbx3HCaULFAZmemW7gQ=;
-        fh=ZX2WfpKSUzo83Geg+Xn3YA97SoXM48RGmx/x8WS/4lc=;
-        b=DIXbOuuIYbOCnIvk9z/dbYtBSyumabbwgNfLD05P3Dz2zTwVIB7OUeeOGcZoSCChZl
-         Cbs3TY+CuC+Peh7JVUEY6iUhhHBYQvTikCHbKw5pqO1WxuqIhyuI+9cCivNFQMfv4FiF
-         hZVvm1adzlAy/Di5arh7JDxqN+g2d4bMFGgEP7L1BWO5vOMu5vO9ydRwiBVn2i0Zhkf6
-         10wyEfcYF/MDdJy8flkvAQNsWQC6DqK7kmGbCWPrm6P1k8fKLUCCcY1hxgtcN/1Ql73+
-         eNj28W4WZ8FqtLOxhUjcjHni1mhB9xSbiz9t6VlcnX7iJWCoy6npmGDmSIvXyor/jAw5
-         ozuA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795226868; x=1795831668; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=HGjW/MMwdvPFqEPVsERwdloYMbx3HCaULFAZmemW7gQ=;
-        b=YvT57TFRgKKg37phJgSKVygUPe3heeWYKT84TSyArvfupK/JaDfK/ksXPw7IBcuBYQ
-         Fu82kOQt11sv1z+pV5P+Mn3B1z+5hRZJcGQZBwfEhIHaWc/KeHxzUvwd1MLYZZhz2dof
-         vAJPt4Y/xCthPiKqyCTQD9GVM0bKDxE40ocxuCGaw3euGvgeyZmCXFSAxuQM/bjUBvol
-         ZylZz+JnzqTOtbI3ngWyXGCuZM8eHydPty5Q+Me3o2xsioQN46QbwH8/xcpK9P+JWSYf
-         29xlTBoiQkE4LA+rQAoKYX0i5f10UiJ7s0Xneze3Cz32wy1G348raTloje+Ufre95Wx7
-         jkTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795226868; x=1795831668;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HGjW/MMwdvPFqEPVsERwdloYMbx3HCaULFAZmemW7gQ=;
-        b=OsItm6arChy/rmBMSQih4jZfnYIuszibmtvJ4KBBjUvA6QpI7qz4O53wRYOdCZM4Zc
-         49A84Uiww7lvFRBN3FPLL5KrXhDC7BXMUCU3Hi7dPZrUHHWtWKLfL2ivrzeLQfy2y3/6
-         PhaXkOca+P8m0nAM/3MXDuxCloF8onb+46cz87o6VWKmYr7s9wCAH3JnMl/r/pEuX8Rf
-         hUu0ZOFS5r+vLjbzKCTof5HGJxObXEaWJWLYtwT/s2Hy6oAFertEIjIsbOevplUevKSD
-         H+Qd9P6be2DE0M/GpE3eOq3j3nK1xUglS0cA0HEwDsSNRy6nzK81+W0PCsVmNciCY7wm
-         Cb7w==
-X-Forwarded-Encrypted: i=1; AL+hErFzwZtGRs2dfd7oxblZIksRwD1exdnF+/rQVvFuDWr/sv+NsFxEGZUIiPqDVR0Fd13Zz/SVEEa+GkEmVbk7nvqA@lists.infradead.org
-X-Gm-Message-State: APuU4Z+DNonB3EYiFhXxyUOHrHA+6JJ7Iq84wkW+zKPTOjWbNynkHS24
-	n6qwZdLOFnABN8bJElU8Cvf0sPUd30LH/FUuBFy6w7NjwLQEMxsKI5YPTOJEyx7GMBEkEwSOqdZ
-	xHCut2jFBzL5+eCViLonhQjO/FfFXHMU=
-X-Gm-Gg: AZFdTZeMcYgXR5wnvdOKigNh+ayh6A0HtnK/fOe8SNOCZW2Dbi0fro9EYuTOjQsM7sE
-	mRpMR2uFPibuykXuKRCU0ncindcyVE/YcXoyvg+W1kxsBHzPKa9AB1wCW/MpFLKpMGnj7B6GS+p
-	aSYwlZqUIGmtBHZGAF6ragHgvRViEO70SkA5AUFMk+MmI/KaFDvTcXSMG95d3R1KFtQNwryA1TD
-	+SNRi/909hYpYqi2sHnljHoRpjGu5SxwgXqnrbeKCtVrYeiBJfz/Nzsx28mPMDiCTc7foir5s09
-	yzlCzuKf7TjOZoO4olGZahZyEu7Kn3g4kz2na9uEVqjeURIQAwzHDAQQMWQKD3DFEfY5XeT5+En
-	CrNpWe/+YhudlQP0JeCKayX/r11LV7n3Dj+PKLim8qVB6TsKHZhQWWJXuYRs=
-X-Received: by 2002:a05:690e:438c:b0:67c:2396:3243 with SMTP id
- 956f58d0204a3-67df441041dmr1738856d50.29.1795226868649; Fri, 20 Nov 2026
- 18:07:48 -0800 (PST)
+	id 1xUato-0000000Ghhs-3Ve4;
+	Sat, 21 Nov 2026 02:32:26 +0000
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4jWbnp3qhfzKn5m;
+	Sat, 21 Nov 2026 03:32:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
+	s=MBO0001; t=1795228334;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pcu4Z0YBmWCircjybAGycW1Dhcl9eVo6UivDa5/Fmxg=;
+	b=HJh39rsn0pCQK2z2PO2POp6xK2+FKPT1CeP+YAoEidmXMinZJzJVxtECgbIGE3fDueqTfe
+	Pmv48qfCNA3vGZJdDWbTVnPOqJPpvC0QHdf9QE/rNbayws92eKrn5730LcefjLK/qKJRdy
+	PWFDqeTimrEw2LXHTAziBd4WL+z2DYX0mzaYj7QeJnGXBTbmNVWsj0er2O/yIYbh2vcCSp
+	y14nWIAeBDChiMSlt5sLZBT5rU2NFsflD1enUul6zuEfygyJJFNde2GLPE59YEREOEyybb
+	+z2/uFRqC0n2czfiepexptiFo8b+xMi9KvL+qeA2QyUPzFciJXbHFwA3H42ABQ==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=none;
+	spf=pass (outgoing_mbo_mout: domain of me@timsurber.de designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=me@timsurber.de
+From: Tim Surber <me@timsurber.de>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andyshrk@163.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Daniel Stone <daniel@fooishbar.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	Igor Paunovic <royalnet026@gmail.com>,
+	kernel@collabora.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 07/15] drm/rockchip: vop2: Reset AXI and DCLK to improve robustness
+Date: Sat, 21 Nov 2026 03:31:18 +0100
+Message-ID: <20261121023139.3515640-1-me@timsurber.de>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261105-dw-hdmi-qp-yuv-v6-7-1bb63ef5766e@collabora.com>
+References: <20261105-dw-hdmi-qp-yuv-v6-0-1bb63ef5766e@collabora.com> <20261105-dw-hdmi-qp-yuv-v6-7-1bb63ef5766e@collabora.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261113034213.158390-1-prasanth.padarthi10@gmail.com>
- <20261120174440.123487-1-prasanth.padarthi10@gmail.com> <20261120174440.123487-3-prasanth.padarthi10@gmail.com>
- <f70eee05-1d17-4060-b1ee-f4845b74e3e6@9elements.com>
-In-Reply-To: <f70eee05-1d17-4060-b1ee-f4845b74e3e6@9elements.com>
-From: Prasanth <prasanth.padarthi10@gmail.com>
-Date: Sat, 21 Nov 2026 07:37:36 +0530
-X-Gm-Features: AclHuK-XA1SyrZq1BHyksXey6RIqRcHtTohcQIWXmSS43XQq55hSKSbeB5ss5Rs
-Message-ID: <CAMFFDGh9y6JCTJ+Fv+exsDUW=qvkW8Tsi7VfEFTowpT10bJRYg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] nvmem: aspeed: Add read-only AST2600 OTP support
-To: Tan Siewert <tan.siewert@9elements.com>
-Cc: srini@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	joel@jms.id.au, andrew@codeconstruct.com.au, ryan_chen@aspeedtech.com, 
-	billy_tsai@aspeedtech.com, neal_liu@aspeedtech.com, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4jWbnp3qhfzKn5m
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_180749_821767_39E08C0B 
-X-CRM114-Status: UNSURE (   7.03  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_183221_351464_B49D9632 
+X-CRM114-Status: GOOD (  12.80  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,30 +88,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Tan,
+Hi Cristian,
 
-Thanks for reviewing v2.
+On Thu, 05 Nov 2026 03:00:41 +0200, Cristian Ciocaltea wrote:
+> @@ -953,6 +974,8 @@ static int vop2_enable(struct vop2 *vop2)
+>
+>  static void vop2_disable(struct vop2 *vop2)
+>  {
+> +	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
+> +
+>  	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
 
-I misunderstood the distinction between inline replies and threading a
-new revision. I=E2=80=99ll send v3 as a new thread and link the previous
-revision in the cover letter.
+with this patch my RK3588 board (FriendlyElec
+CM3588) hangs hard sometimes when the last CRTC is switched off. Without the series
+or with the AXI reset in vop2_disable() removed it does not happen.
 
-I=E2=80=99ll rewrite the commit message to explain the hardware behaviour a=
-nd
-design rationale, and move the test results below ---. I=E2=80=99ll also
-include a GitHub link to the design notes as supplementary context.
+Here is a minimal reproducer, run as root, with a display on HDMI and fbcon on it:
 
-I=E2=80=99ll address the cleanup structure, naming, register definitions,
-shared unlock/relock helpers, error handling, redundant
-initialization, readback and copying comments.
+  python3 - <<'EOF' &
+  import fcntl, os, struct
+  fd = os.open("/dev/dri/by-path/platform-display-subsystem-card", os.O_RDWR)
+  try:
+      fcntl.ioctl(fd, 0x641F)        # DRM_IOCTL_DROP_MASTER: leave KMS to fbcon
+  except OSError:
+      pass
+  while True:
+      b = bytearray(struct.pack("6IQ", 2160, 3840, 32, 0, 0, 0, 0))
+      fcntl.ioctl(fd, 0xC02064B2, b)                         # DRM_IOCTL_MODE_CREATE_DUMB
+      handle = struct.unpack("6IQ", b)[4]
+      fcntl.ioctl(fd, 0xC00464B4, struct.pack("I", handle))  # DRM_IOCTL_MODE_DESTROY_DUMB
+  EOF
+  while :; do
+  	echo 4 > /sys/class/graphics/fb0/blank; sleep 0.3
+  	echo 0 > /sys/class/graphics/fb0/blank; sleep 0.7
+  done
+
+This hangs the board within a few blank cycles. In
+practice I hit it when a KMS application exits: it frees its buffers
+while fbcon takes the display back with a full modeset.
+
+This issue can be fixed for me by moving vop2_reset_assert_deassert(vop2, vop2->axi_rst) from vop2_disable to vop2_enable.
+
+--8<--
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -913,6 +913,9 @@ static int vop2_enable(struct vop2 *vop2)
+ 	if (ret)
+ 		goto err_put_pm;
+
++	/* Reset while idle; doing it in vop2_disable() can hang the SoC */
++	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
++
+ 	ret = rockchip_drm_dma_attach_device(vop2->drm, vop2->dev);
+ 	if (ret) {
+ 		drm_err(vop2->drm, "failed to attach dma mapping: %d\n", ret);
+@@ -973,8 +976,6 @@ static int vop2_enable(struct vop2 *vop2)
+
+ static void vop2_disable(struct vop2 *vop2)
+ {
+-	vop2_reset_assert_deassert(vop2, vop2->axi_rst);
+-
+ 	rockchip_drm_dma_detach_device(vop2->drm, vop2->dev);
+
+ 	regcache_drop_region(vop2->map, 0, vop2_regmap_config.max_register);
+-->8--
+
+Does that work for the cases the reset was added for (the RGB <-> YUV420
+switch glitches and the DSI panel on the EVB1)? I can't test those here.
+
 
 Thanks,
-Prasanth
+Tim
 
