@@ -2,90 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C1B606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EFE606A325
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ro/jypyy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UfuBxsb1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DSxxKS+3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hpxxNDGC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+uIxrdqE5r+AeSD4q57ptStowr04BgOsL+c0IfgWRB8=; b=Ro/jypyyq3H5a1EsQtttm8yoW8
-	m30FqJ5kAJQlVPSuYPG6ZrnMU3bwjjxHOmAhkaB2juHsa4BCtw7lxJQI4D+8Yflxa3+S6xi1Rtvo8
-	8KEOIETPFlu7ZL3RACFkGd/vC9BqUtOF0MG66htdnhInrw5gwKrv8bYWeOnezFDulESwnRuZSloel
-	CfEdduPXwfHDEj3ZGFEEM9wW11BHkO7IB+VzrEIKwwFduLcMyEc1UfAi9eagE7TLq1OSydWLD/JlA
-	mVzEkbAmU1ifXoYhIbyVXhp31u4+7aI73YaZ8UFMq5MTLKLYvwnnDeSWqMcP4GFWiJfAvpPn0SkM/
-	2/gqXctw==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
+	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=rL0MUx276mgMEoRjX+bVIlwuG86tWqK7KWE3DnOCyNk=; b=DSxxKS+3d/XMgc
+	rhtRo6YZROkBwqyBAVFfBbCLarFLftQXZq2GkZS6LvLhb8BdyicmcVYg/zkHZKxTYkFn3YpPapc/N
+	IM8BEJ2Upr9v1CmMce1cTnM4CHNKNe2BRJ2CMnnQISGG2GEDHXXr3g1ApXWFlYlS4J5jHus/xU8Wv
+	EFSkQOrE3iVTGET7MPH7QcMgqH6PCnp3txZByjhMDGbDo2vI7Ww9s9ml6OEd8fDIAYPaeOdfG7RA+
+	qUs3Jc5NEUU1Y7+yeXPjhYsmQHNE11wPiGh7ghfokXEGnB9kYy/AbYHlDuOJo1NPgGOwH/+NNVoC5
+	I9uqqBP9CO+wMm4jlr5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgYj-0000000GwD6-1gYp;
+	id 1xUgYj-0000000GwCp-1FqJ;
 	Sat, 21 Nov 2026 08:34:57 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgYU-0000000Gw83-0rPN
+	id 1xUgYT-0000000Gw7u-3wO4
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 21 Nov 2026 08:34:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A1482613A9;
+	by tor.source.kernel.org (Postfix) with ESMTP id 4427161472;
 	Sat, 21 Nov 2026 08:34:41 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795250081;
-	b=eeinYktOgK44eNJtba06DHTwD0xECF3UDSG52pOBI5eCemom0mA/af8nnCKM5LRAy+am
-	 NwIVRWZ5Gh30iiRXEVmuhQxH8Q+Y4LEZKs9+DYcS+8nmfTKCX9jnZwbg4BfaF7+CWiErm
-	 7HUxCea//Tqj9jZLr0ljWt2cH+9NQbQojGEjcXJzqYxNHUWD5b4PTk469wLI5n2Lrj1IA
-	 eR0Ro4ASnNpXewYy5GKf0TUeugwwnhcf6sr7C0/g+QgGvBLRX9Sx/puvAl/XkS9FEvBqi
-	 kPRIKP91VMS41c6qSt5RacU7h7AyjtrrLtp8y/VNeO7GnZlVlrKrDhj/mKcrmXonMRg==
+	b=qGrMZ26wf5Z47XgYEPR2/vUqJ4iKygmaxTvkbmfcCDhDALQRz8XCI8ISSN8C5inDk/w/
+	 9TFmtS2Jfv2TQSKwea2FB3MgqkAcBO0jGxRCGBD3IQvmcOYybcIfBLizSDmS5WHsnCpcD
+	 5QRuCT2Bnnk9BgpWp3hBON5eNGg7kwugMZy4rTwMebr2MUoWaBPLL5HQUZk3ZvE/Z4/Ij
+	 VPB0poSWWvgCM1CFrna8k94hCmJrjzbstxY2lzNiPjcqYSsY2Vybu0YlolesMN92GLavh
+	 5dQOIBNZT5TgX08J+BJEDVEP1fK3Cfcx5HcnzJJiobWXMW/5oYpMnlrnCqJDuZ5Adxw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795250081;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
+	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To;
-	bh=+uIxrdqE5r+AeSD4q57ptStowr04BgOsL+c0IfgWRB8=;
-	b=ySbJu6i5faxIrre05eOfykgBWTs4X9TmuQGucth4vRY0SDFKtxM/542GnjBtgkLNxLio
-	 Ki57+z1CHVEvGswLnrM0jbVl5By1QWSnuRl55Z0n09ANC4oRtWudtudFV0BAAO7iDAyr7
-	 duiK87IyhGjhCZTrdv1EeA5va+xT9qvrbn/p1pmiTriMtpYBzL1kKWGZxwI2BJDH0vLvy
-	 4uffv6nsJj10I+ztOlDJy0UeLstC9BkgAvXa0qkgkkUIYZzSwrQ1SlLPoMF6xwBG6iHBe
-	 kfDu3Ed3vxjxjYfd2aGvVx3sn84hZmnkn43rPqGzjUkJhThMcWUl6RIYUTxM2cY9eYA==
+	bh=rL0MUx276mgMEoRjX+bVIlwuG86tWqK7KWE3DnOCyNk=;
+	b=jAq5EFH2UQFjcEvcnQ7b7FLo2R10COn2fgV7M7vWkD01Y93b1O0HWNHyZuUCFaUlr+Kr
+	 vQiqgJJLtsfJ1SpszEwSiEiBpV+pBb63/e3Ggp0vWTr+nsfBZ18Tk3tHPw6zzngQkqhyS
+	 1PT4KCbpVjSWn68AP5ZwWCqW5v/9VplppdKJHMDSiD0djVD6mtN6vu4F6uyqdWk7PC00W
+	 KstWc5mKLClckPsGuaKLvsQgzp22HUamDJDUed53wBMA9jiF08QqNDHXgsQ2tcbVdwyGy
+	 b/LTu4QTm4vF53ALRqES74Qo9wmvKFvnOrB5Yy5o22+fE8YT3XogSmwSZ7TLdBoGNWw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id DD8D51F000C6;
-	Sat, 21 Nov 2026 08:34:39 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 12B201F000C0;
+	Sat, 21 Nov 2026 08:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795250081;
-	bh=+uIxrdqE5r+AeSD4q57ptStowr04BgOsL+c0IfgWRB8=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=UfuBxsb1VVFfjGRPG52L5n9rOidFB2T4OzEte3sa5Uqdajt2LfqPSLnACaK4cV2Ow
-	 nNU4FVBovCQdDNn+qm71mVtFJVnqt9cungX89R0iGhOMk9mRWUQ6BQsfGbjB3PFzKU
-	 XhWh3B1GYODSrxDM0p0ISZWg/brQ64IfK0sU/w9gZ4VKCVCVos5C/JiEocg9R0KVd2
-	 KPvOOuPfHIAXYRkaLsu3QO7VflFaslf5ydIFUWl0htioospMoaMIeDLhJ+qZQLixiL
-	 oD40f6IR5F3SfiNIlCXl23OZAoOyRkdkrEpB3N0h6w7CeZJvVMCpI9sWBVgKeTirQ9
-	 R1qFQHnKx4P4w==
+	bh=rL0MUx276mgMEoRjX+bVIlwuG86tWqK7KWE3DnOCyNk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=hpxxNDGCHMLFMLXd+NM4KMYZihw6v9cfchd5Xo7Y7FvmEWRhCWugMX6h+1YYWUai9
+	 mD9Dm6O4Jj7qPCugRRGWXl0q4oiIUOMc50GWpAlb30mA68iJPQ25xQS545gJDYMSYU
+	 iFcSqY70AECzCglI2Oa6UbvfdwVNBTHHkTL9EnQf7MYZc+Jm+G7qtVyLb1FavLuaWb
+	 R/RnzQRbMBmdtCtr7stBfYWa4BjWEVrjsnC1e6TZzi3tjCKV5CLy0AgK8Se6ARUEmN
+	 CI0N6wuQ+LXcJvCWnZYYID9SOo51DiPSbJtm45AfQiHRs3xnKWULBl6XLjltAZbsx9
+	 E8FgjLGdDU8mw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3E7344BB93;
+	by lkml.kernel.org (Postfix) with ESMTP id 9435D4BB9B;
 	Sat, 21 Nov 2026 08:34:39 +0000 (UTC)
 From: Michael Reeves via B4 Relay <devnull+michael.reeves077.gmail.com@kernel.org>
-Subject: [PATCH 0/4] arm64: dts: apple: t8122: Add SMC and NUB SPMI device
- tree nodes
-Date: Sat, 21 Nov 2026 08:34:14 +0000
-Message-Id: <20261121-t8122-smc-dt-v1-0-898f3f5d6228@gmail.com>
+Date: Sat, 21 Nov 2026 08:34:17 +0000
+Subject: [PATCH 3/4] arm64: dts: apple: t8122: Add NUB SPMI controller and
+ PMIC
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQqDMAyA4VeRnA2YoMXtVYaH2sYtg7nR1DEQ3
- 91Oj9/h/1cwSSoG12qFJF81fc8FVFcQHn6+C2osBm7YETFh7okZ7RUwZhypbaK7UO9dByX5JJn
- 0d+xuw2lbxqeE/H/Atu1f/uXLcAAAAA==
-X-Change-ID: 20261121-t8122-smc-dt-b140d6918a65
+Message-Id: <20261121-t8122-smc-dt-v1-3-898f3f5d6228@gmail.com>
+References: <20261121-t8122-smc-dt-v1-0-898f3f5d6228@gmail.com>
+In-Reply-To: <20261121-t8122-smc-dt-v1-0-898f3f5d6228@gmail.com>
 To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
  Neal Gompa <neal@gompa.dev>, Stephen Boyd <sboyd@kernel.org>, 
  Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -96,11 +93,11 @@ Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  mfd@lists.linux.dev, Michael Reeves <michael.reeves077@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795250077; l=1103;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795250077; l=2163;
  i=michael.reeves077@gmail.com; s=20261107; h=from:subject:message-id;
- bh=+VGF3OgM8McNO1QrReHnnifTPEONvOY5aVFINlqg0P4=;
- b=69QOjr6tPfcAJvARlYWO+HNGBJ4V7g5KBF7WR4kbSxBU+WYYhLiE4W9uYoqIXgUgRiOS4i/cP
- Cehpxr6632hAPeZrX20exaiB+Uk2tfLDKDlfjfZUfaEmQzbBiuS5+BQ
+ bh=WIEK8D0DKokW1yUBnum23jVc4HEfCGnQdTPUuT8Oy9E=;
+ b=W625NLC3d6xr9LAGJdlO6jThPUcK6j4G4VQEz5SeOSMndkaQlE96OwEsqIE8BG68Zx/nhPdvn
+ GXGsKNpWsC+BWxcruLi4GZYC3bSEnM2BrNetv/6oOSDZmNjCM1kGY8H
 X-Developer-Key: i=michael.reeves077@gmail.com; a=ed25519;
  pk=ykwkLcuByJYb/cdLc2UuoYP03pIzwrscEZg30+4tJL8=
 X-Endpoint-Received: by B4 Relay for michael.reeves077@gmail.com/20261107
@@ -125,42 +122,89 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi folks,
+From: Janne Grunau <j@jannau.net>
 
-This series adds the System Management Controller and its NUB SPMI
-bindings and device tree nodes for the Apple M3 (T8122) SoC.
+Add the NUB SPMI controller node and its attached Stowe PMIC with the
+fixed NVMEM layout for the Apple M3 (T8122) SoC. These NVMEM cells
+provide boot stage, shutdown, panic, and RTC offset storage used by SMC.
 
-The SMC node includes its ASC mailbox, GPIO, hwmon, reboot, and RTC
-child nodes.
-
-It is based off apple-soc/dt-7.5.
-
-Thanks,
-Michael
-
+Signed-off-by: Janne Grunau <j@jannau.net>
 Signed-off-by: Michael Reeves <michael.reeves077@gmail.com>
 ---
-Janne Grunau (2):
-      dt-bindings: mfd: apple,smc: Add t8122-smc compatible
-      arm64: dts: apple: t8122: Add NUB SPMI controller and PMIC
+ arch/arm64/boot/dts/apple/t8122.dtsi | 57 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-Michael Reeves (1):
-      arm64: dts: apple: t8122: Add SMC and its mailbox
+diff --git a/arch/arm64/boot/dts/apple/t8122.dtsi b/arch/arm64/boot/dts/apple/t8122.dtsi
+index 959ddf36efa1..3766da3c7b18 100644
+--- a/arch/arm64/boot/dts/apple/t8122.dtsi
++++ b/arch/arm64/boot/dts/apple/t8122.dtsi
+@@ -411,6 +411,63 @@ wdt: watchdog@2e42b0000 {
+ 			interrupts = <AIC_IRQ 432 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
++		nub_spmi: spmi@2e4714000 {
++			compatible = "apple,t8122-spmi", "apple,t8103-spmi";
++			reg = <0x2 0xe4714000 0x0 0x100>;
++			#address-cells = <2>;
++			#size-cells = <0>;
++
++			pmic1: pmic@e {
++				compatible = "apple,stowe-pmic", "apple,spmi-nvmem";
++				reg = <0xe SPMI_USID>;
++
++				nvmem-layout {
++					compatible = "fixed-layout";
++					#address-cells = <1>;
++					#size-cells = <1>;
++
++					fault_shadow: fault-shadow@867b {
++						reg = <0x867b 0x10>;
++					};
++
++					socd: socd@8b00 {
++						reg = <0x8b00 0x400>;
++					};
++
++					boot_stage: boot-stage@f701 {
++						reg = <0xf701 0x1>;
++					};
++
++					boot_error_count: boot-error-count@f702,0 {
++						reg = <0xf702 0x1>;
++						bits = <0 4>;
++					};
++
++					panic_count: panic-count@f702,4 {
++						reg = <0xf702 0x1>;
++						bits = <4 4>;
++					};
++
++					boot_error_stage: boot-error-stage@f703 {
++						reg = <0xf703 0x1>;
++					};
++
++					shutdown_flag: shutdown-flag@f70f,3 {
++						reg = <0xf70f 0x1>;
++						bits = <3 1>;
++					};
++
++					pm_setting: pm-setting@f801 {
++						reg = <0xf801 0x1>;
++					};
++
++					rtc_offset: rtc-offset@f900 {
++						reg = <0xf900 0x6>;
++					};
++				};
++			};
++		};
++
+ 		pinctrl_smc: pinctrl@2ec820000 {
+ 			compatible = "apple,t8122-pinctrl", "apple,t8103-pinctrl";
+ 			reg = <0x2 0xec820000 0x0 0x4000>;
 
-Sasha Finkelstein (1):
-      dt-bindings: spmi: apple,spmi: Add t8122-spmi compatible
-
- .../devicetree/bindings/mfd/apple,smc.yaml         |   4 +-
- .../devicetree/bindings/spmi/apple,spmi.yaml       |   1 +
- arch/arm64/boot/dts/apple/t8122.dtsi               | 102 +++++++++++++++++++++
- 3 files changed, 106 insertions(+), 1 deletion(-)
----
-base-commit: 477f3d0f46b0d885f162a64d13ca51e2f7afa542
-change-id: 20261121-t8122-smc-dt-b140d6918a65
-
-Best regards,
---  
-Michael Reeves <michael.reeves077@gmail.com>
+-- 
+2.56.0
 
 
 
