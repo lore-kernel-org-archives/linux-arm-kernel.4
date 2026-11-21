@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C9A606A32A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B009E606A320
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PXFMDS1B;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jeh7UyuB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VJtf2F05;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RbU+pBtt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wAQ4qsK1Mx7pxpG0s5BlrPk5n0YkbGCnSR/VcQSO+vE=; b=PXFMDS1BdCFqJr
-	oz+MaXdBhDUdMAnhUolBUnPcn07O5+XO1oqcMK0UVN/L7SjbcfS2Rwtw6GIlnHVAyvMbq8aGrKvRY
-	YNLvoAlYyeEJZMo6nj6L1NGqKicww+h+53eG0ZRli3ZNgVerWboJqOSz8nrBipWZo1tZd8X0cGzGv
-	JZ4jJNKoKZJU8VmTpj28oHI2uYa91BKgoPwH02LkiyO/sbd/rN8NY+QUHE/WlPyvbvn4u0QfewklB
-	YxYfwY/+JlB+ZV4R637tZuba7qm0Sz8p8jlnUrPWJ0ySqQWdHBJ6Cst0DFW8CPIUHHogVP5IXc0lo
-	6834qwMrT1o2+yHQUG9g==;
+	List-Owner; bh=qnUmBWM7OQjc7vI6DcTZCPpSFxVlwkP7wP8mWeAtaQA=; b=VJtf2F05A3qaMv
+	BvufGh4eMLeNrUUaxzlpMdKWKW626eOOCjbHrjD4scT/3gB0S+lKSQ1yg5gn4Cwbx+tSBtFO4Yrec
+	7d4nmVaTuQlIQwTC74P0wCJIJBg5h0Imb18j3oQPNmeNONN3O8jf4BTWJ+iML4/Gfzt3StKMhdx8C
+	S4ZTz1JbSjglhukW7h6/ZiQden8etrTO6JaMutGaV5atw5GcaC9oiSxbzupXtldVL2+0oHE+/SINt
+	+Mw1/nOZKcdvgWoAJ6nNqOvvcS/bNJOgvng6vFitfehKfE5z5+7crumwd4czV/dpE8MhKj10KwUS6
+	I8SRQgXLii7iMuiiMB7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgdh-0000000Gws7-1T0h;
+	id 1xUgdi-0000000Gwsl-1rHE;
 	Sat, 21 Nov 2026 08:40:06 +0000
-Received: from mail-dy1-x1329.google.com ([2607:f8b0:4864:20::1329])
+Received: from mail-dy1-x1332.google.com ([2607:f8b0:4864:20::1332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUgdZ-0000000GwpZ-0MAj
+	id 1xUgda-0000000Gwpx-3sxP
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 08:39:58 +0000
-Received: by mail-dy1-x1329.google.com with SMTP id 5a478bee46e88-382f4710a17so2825973eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 00:39:56 -0800 (PST)
+	Sat, 21 Nov 2026 08:40:00 +0000
+Received: by mail-dy1-x1332.google.com with SMTP id 5a478bee46e88-3869b68caecso887886eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 00:39:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795250396; x=1795855196; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795250398; x=1795855198; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=wAQ4qsK1Mx7pxpG0s5BlrPk5n0YkbGCnSR/VcQSO+vE=;
-        b=jeh7UyuBjMvyFoQdMOibjW03rNs4GyvfanBRHEzL29+Nad3GgWVS8tlIWDk82T2F2U
-         WRAVmmHTIR1aSD0bT0t91wudmRwbtfEs1n1EqzfLXEFUqjEs3TOHDTL6LCTawrSQ1Zbw
-         VPnH2aMZAzRuQPotMYpqba+qkd5wAHLU+L+OMxq8h/VB3FeTKh0xTl9zZRrowAad5a2Z
-         yfwCOMbaDONgOnFLWF5792bybEecB8eaoisxX2tcebuHvpC1BU7EbeKLKCOZPUYmeD1e
-         O1SS111aoFnZ+lPWOKQY4qMOsBYec8EfQYFl1piZpyDyZPByCYdNuVE+6MXxK6hQFYvW
-         TL4g==
+        bh=qnUmBWM7OQjc7vI6DcTZCPpSFxVlwkP7wP8mWeAtaQA=;
+        b=RbU+pBttjJwkrLLyq13TEkHRN2cUFUm2JI1dKrdowDcDpbHrMlpXVYJMFbiUpt+hWD
+         5aTZrECDWa5xHX6UsxvNMu4YaXlMk/hTmqf1sEouREpLf+4tZLrXFngNOdC7TUPOpYQC
+         UOZCgC4yjxUcdvAa9/8ibIqt7bUA3P/51Tuge89ymImO7WvJtcsZ51bgI/DnNXNny2E1
+         E2d2d4iUQOPmOE6kLhf9BzPqnvYR9kjIrAon0u+mo3Zor6c8JD0TQrErK7O/nWdhmJdh
+         I9UpN1XyopMEYHJfcHuZAAQnTXxG1YkqKBXAMIqTfGEyBVHCjHZPa5jSHmdi16z+GjcW
+         XQmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795250396; x=1795855196;
+        d=1e100.net; s=20260707; t=1795250398; x=1795855198;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=wAQ4qsK1Mx7pxpG0s5BlrPk5n0YkbGCnSR/VcQSO+vE=;
-        b=2j7qF2pXZZMPCGQwGtnlCLe/C2qCtp1gZWDM7V5DGXHECHncgc0adpObhVPft+2tgW
-         tsNPR9vZ6/0rFiXJbAu4s2NeTM/Ajy0mjPkRRSk5EtyxHCVlOqMFoHH0UZexv4phv/7f
-         dDihV4fVLUjA2DiZAmSKmIPve0ewxmD0pSyEmwz0PlFwcvqpEh0ecgU16FgrPOEgbVXg
-         +o+ZBfGyCQ3I7rn42noOL2VaHwViXGVMox6U8CRwb1ZCu5An3acvvfn36Zua2etnpJXR
-         K2xxA1bwYvg5jPsmKWo1s1zx4eurWotQAEw+fKThnF9k9OdglBx075NzyXGOJPtgFTWM
-         BmsA==
-X-Forwarded-Encrypted: i=1; AL+hErE9thZdJ845JExU5b3W4EzDp+kYYns/FH3hzxOibke08j9GsxBWfsspH63mPTBXSfUASMNaZr9Aw+GD4SMb38/Q@lists.infradead.org
-X-Gm-Message-State: APuU4Z9aMyEy4QuSc7KBPhV+KYimT2wlB60lcpaXt61262VAbHIuxI0T
-	/n4lP6m+wvvXAWtodG2RT+sPly+Ho8Ijujfz+u8Sfk6EiArRuYFs2Tkd
-X-Gm-Gg: AZFdTZePFNpVGz58LIOKLZ4k7sFxG3ie/ru23U/mjbTrj2sCARrS51ya3TohJabSx4k
-	McquTELT7BuFgWVSNXNA9TMpmeDxpA3wFM5TFINbpsW38lx4j7mAKjm20eDHa8x39zBw29L0pVC
-	nWC7+CNk7JnS9Ris8FuyZEFg1QYtmNfSAtFBtX3RAJ64jGYsxFoEwb8Anac3KMq03Eg4+6raFId
-	npGgCa0+GjfTdJzE2X8AEwVuie3MxPQJ3AxnMhEk69OcwDgviGy8CeejXduT/P9N6gAcRNfJy75
-	I5p86zIucpbpqQgYg3g3d/85mma9oueBpLks83PfYEvItUS7HFoAwejvtssjhY0s7oAuo2ifxHp
-	xSK9/Mfq1uBI5s/WuV1fgvwulOPLaienj03pF4eS0tHMCGYB29zgyJwybrdEtASz1gS1p2c5Osb
-	La2DkIIDLTFKP6GxGlE/mrkixbQZXXGaixNoAzsmd/TXe7w826/pZXcWmfDwqu5tH/2+x59k7sO
-	JvgY/rsUXOmE1xDeau45JID+vbLTyU2jOZDHJX7m/bpaDR4BIjGMbIhC7Ex+5K5E0gStkOJ5qrn
-	6chNK4Vey3pfAZ4NG+4Y
-X-Received: by 2002:a05:7300:6da7:b0:376:77e6:a66 with SMTP id 5a478bee46e88-385704509cdmr7474745eec.16.1795250396001;
-        Sat, 21 Nov 2026 00:39:56 -0800 (PST)
+        bh=qnUmBWM7OQjc7vI6DcTZCPpSFxVlwkP7wP8mWeAtaQA=;
+        b=2MY2YTMh05K4FMEvTcPvu97U03kf3bngn47ULKsf3haoQJtqMLMXj5s9E9WXitao+2
+         /EjGY0IFdhcsQUTPmsrVCxpB+sVsFy0YgYZSnVBzsB+Mg6ciB5u644NpduRrPKADTHq9
+         XJBJcl1uCdsu9om5IiHfYqRnEYzTFDllPHL3WKNPVFgqD/qHLO7ILQlvfWweKgHNqElp
+         VGM5kgsvzvG4ayu0dmz0d06wYvn3sZdSW1bkSaAZgOMeCoOWivLlRT+74FfcGmBhLP3F
+         0adrlrt+ryfs09dCo3749tTcrcp5lCSbLd+f0PGxRyTOQ3zQ7RvRI8Nj2lmFksCI2OH7
+         3aWw==
+X-Forwarded-Encrypted: i=1; AL+hErF5y4uvXeEwrnbJDeQycSixq9+oO3xh8H9Bkauc/P+QgA+kba6MitOHpEbuxk3y/EaDyg3gugoz+bHL8DoY0OZl@lists.infradead.org
+X-Gm-Message-State: APuU4Z8jNDAcTT68QBd3KoLzhiScyoqIEfkZJAAlPukToP4ds4z/Vj0P
+	uoTylphse56Qzgt9n5rNx1dLxg12MWLL4kuKMJO7sjfrg+XZsrkdCK0R
+X-Gm-Gg: AZFdTZcY+WLh6Li+L2nmjGFCAuSFTtQvcTmK2267Dojtj20m2OQa/JtgatTUvGgIAWz
+	/gsDqwkfP14+rNmDtmuCpBAh8GoLdoLZIAAWJ4Dd+gRdgTWWZZvzmCL67A4eRCmqDN2Oxy1CLzp
+	6HG63X5RelP8tarKSJTJ8V4PPzb5voXH95agystDAx/okVbapxpZBXCPe5xwM0uzW82o1OiSj/6
+	MBdXRNEI1OUne5Z3YWc47bYPz1FpOwxAvzn2aFT2+cDUIh/RND0NTL2x0vjBfEigDrGjt8tfCMP
+	n085731kXXOnoQ9cFXojR5O2SS2q1ZEr0ysp0Pi95fNOyg6bKNkH7PFE35E4N+aUc0JnNqYRdIj
+	IAMCec+E2gij6kLDKH8dBnz3TSHXONv3M5SDUQohm5RoqyMkDzqCurt3v3FhEJAg852Kj/9I5b1
+	/94pG7FqzY0Z/eQE4/5WlGGbyqLtt93Xtj7cWQBZR5ZsDIjUar1VDsMsdeJuL/lcRdl29+99qGH
+	FRvSz5NWmP2Flg9byoizPrr/OBqnafydII0jigP0uo/+nnI0EExFppenwLc+ZjqoBPAnGP8RiE5
+	oCxBH4bJRSrSJbD/WZAwPeE2shzUPBXjzWOIId/HYQ==
+X-Received: by 2002:a05:7300:6da7:b0:384:5885:2f81 with SMTP id 5a478bee46e88-3856c0c7c05mr7915169eec.5.1795250397903;
+        Sat, 21 Nov 2026 00:39:57 -0800 (PST)
 Received: from a1-free ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3856456e6c6sm14113093eec.2.2026.11.21.00.39.54
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3856456e6c6sm14113093eec.2.2026.11.21.00.39.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2026 00:39:55 -0800 (PST)
+        Sat, 21 Nov 2026 00:39:57 -0800 (PST)
 From: TAKANO Mitsuhiro <takano32@gmail.com>
 To: Catalin Marinas <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>
@@ -83,9 +83,9 @@ Cc: Mark Rutland <mark.rutland@arm.com>,
 	linux-doc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	TAKANO Mitsuhiro <takano32@gmail.com>
-Subject: [PATCH v2 1/2] arm64: errata: Set GIC-700 #2941627 Kconfig entry to N/A
-Date: Sat, 21 Nov 2026 08:39:49 +0000
-Message-ID: <20261121083950.1957044-2-takano32@gmail.com>
+Subject: [PATCH v2 2/2] arm64: errata: Fix Falkor E1041 Kconfig name
+Date: Sat, 21 Nov 2026 08:39:50 +0000
+Message-ID: <20261121083950.1957044-3-takano32@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261121083950.1957044-1-takano32@gmail.com>
 References: <20261121083950.1957044-1-takano32@gmail.com>
@@ -93,8 +93,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_003957_145295_E00EE6BD 
-X-CRM114-Status: GOOD (  15.90  )
+X-CRM114-CacheID: sfid-20261121_003958_980754_74404DA2 
+X-CRM114-Status: GOOD (  14.44  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,27 +114,24 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The GIC-700 #2941627 entry in the arm64 silicon-errata table names
-ARM64_ERRATUM_2941627 in its Kconfig column, but no Kconfig file defines
-that symbol and no code refers to it.
+The Falkor E1041 entry in the arm64 silicon-errata table names
+QCOM_FALKOR_ERRATUM_1041, but the symbol is QCOM_FALKOR_ERRATUM_E1041: it
+is defined in arch/arm64/Kconfig and used in
+arch/arm64/include/asm/assembler.h.  Correct the name in the table.
 
-The workaround has no Kconfig option: drivers/irqchip/irq-gic-v3.c
-passes the GICD_IIDR value to gic_enable_quirks(), which compares it
-against gic_quirks[]; the matching quirk,
-gic_enable_quirk_arm64_2941627(), enables a static branch.  The table
-already records GIC-driver workarounds that have no Kconfig symbol as
-"N/A", for example the NVIDIA T241-FABRIC-4 row, whose workaround is
-likewise in the GIC driver.
+The E1003 and E1009 rows name QCOM_FALKOR_ERRATUM_1003 and
+QCOM_FALKOR_ERRATUM_1009; the E in the erratum ID is not part of either
+symbol name, so an E-less name in the E1041 row looked consistent.
+QCOM_FALKOR_ERRATUM_E1041 is the only Falkor symbol that carries the E.
 
-Set the Kconfig column to "N/A" for this row.  Leave the row in place:
-only the Kconfig column is wrong, and the table should keep recording the
-erratum.
+The symbol in arch/arm64/Kconfig is spelled correctly; only the table
+entry is wrong.
 
 No functional change; this only touches Documentation, so no build was
 run.  The change and this changelog were written with the help of an LLM
 assistant (Hermes Agent); I reviewed both and am responsible for them.
 
-Fixes: 6fe5c68ee6a1 ("irqchip/gic-v3: Workaround for GIC-700 erratum 2941627")
+Fixes: 932b50c7c1c6 ("arm64: Add software workaround for Falkor erratum 1041")
 Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
 ---
 v2: the change is the same as in v1; only the index and hunk line
@@ -151,17 +148,17 @@ on 1/2 and 2/2 (20261106235616.1533003); please ignore it.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/arch/arm64/silicon-errata.rst b/Documentation/arch/arm64/silicon-errata.rst
-index bffaa46c664b..4bb5707a880a 100644
+index 4bb5707a880a..cc7bf2b6a09b 100644
 --- a/Documentation/arch/arm64/silicon-errata.rst
 +++ b/Documentation/arch/arm64/silicon-errata.rst
-@@ -297,7 +297,7 @@ stable kernels.
- | ARM            | MMU S3          | #3995052,       | N/A                         |
- |                |                 | #3673557        |                             |
+@@ -378,7 +378,7 @@ stable kernels.
  +----------------+-----------------+-----------------+-----------------------------+
--| ARM            | GIC-700         | #2941627        | ARM64_ERRATUM_2941627       |
-+| ARM            | GIC-700         | #2941627        | N/A                         |
+ | Qualcomm Tech. | QDF2400 ITS     | E0065           | QCOM_QDF2400_ERRATUM_0065   |
  +----------------+-----------------+-----------------+-----------------------------+
- | ARM            | SI L1           | #4311569        | ARM64_ERRATUM_4311569       |
+-| Qualcomm Tech. | Falkor v{1,2}   | E1041           | QCOM_FALKOR_ERRATUM_1041    |
++| Qualcomm Tech. | Falkor v{1,2}   | E1041           | QCOM_FALKOR_ERRATUM_E1041   |
+ +----------------+-----------------+-----------------+-----------------------------+
+ | Qualcomm Tech. | Kryo4xx Gold    | N/A             | ARM64_ERRATUM_1463225       |
  +----------------+-----------------+-----------------+-----------------------------+
 -- 
 2.53.0
