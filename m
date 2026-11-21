@@ -2,51 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862C4606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 10:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C38606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 10:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=agLEDlG9;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=oy7tTvfm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TnCHiSgA;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Vc0/zWM3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Yj6YhJZae49Tw0DKv2iw0HLLaEXFAkG+q7uMo0BJK1M=; b=agLEDlG9I+o2Bj
-	S4H6nV3gk1jbVHd3W469AXnV0xInjiRFWMyL8xvtWQfQ4MrjQsLlBfKLUzNfv2E0rCeMaITsgTnQO
-	5L7C4LuixC6s4/V3czTiIgauIpA/1DqPPFpgvVD8PDIogk+bNfFHwvNToZ/DFoKERorXvxcXmqMYY
-	etq/lurrgmeJXD+UbQ+eU2aeX0TvJR454dISfotZxDzxW7dQzlA9e4wnC26BY4xF+k0RxyaB/ZG17
-	E318i9thqC4KpNCoa1BDNWJJ3Xi7Xz1iFT61xvG6taTYyg1ZXF3nCyHr31kZItcTs3Hso8dOho9qB
-	48tJCG+5X6trbqgE2TNg==;
+	List-Owner; bh=H844ouKcu89wqaDaGvID9peNPao245E6sX0x5p75VlY=; b=TnCHiSgArgL2Lf
+	8h9PISw6W9BmTjSwrTQk09FQKM0M5a7SzxI1iXfZ5oBaEar4FJJrC8oBa5+csburHrUl59RdWHtVM
+	DmU9hH0+kYhfvfBW6yZAUeUDQIYzAMCwJ4rA2KIDlK49algYXqtBZhjZupPHM6d5Gkthm+5JGYTcr
+	04cwlnQaQCIDeFjw2zYuBxSK8omVrwPptDlbQDunRhB92enj2YpTB01nNkakEMlHELbU2Y669mhZD
+	CqdLiCj4j2nVesWudk6basksUEhQS+PFFgXErHwPud54ebvpeIMJ7U7WlFFbofSKuJ808fL4H0mxa
+	WfDYX28eEEZ+sKgtr9HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUiY2-0000000H370-2qbG;
-	Sat, 21 Nov 2026 10:42:22 +0000
+	id 1xUido-0000000H3Jx-1Bp2;
+	Sat, 21 Nov 2026 10:48:20 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUiXy-0000000H36a-2aAN
+	id 1xUidm-0000000H3Jb-2SnM
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 10:42:20 +0000
+	Sat, 21 Nov 2026 10:48:19 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E7C8F1575;
-	Sat, 21 Nov 2026 02:42:11 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6934D1575;
+	Sat, 21 Nov 2026 02:48:14 -0800 (PST)
 Received: from [10.57.93.173] (unknown [10.57.93.173])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E33D03F673;
-	Sat, 21 Nov 2026 02:42:12 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D267B3F673;
+	Sat, 21 Nov 2026 02:48:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795257734; bh=iL8eR8LtS02jD0fPEipVhs7PZCrNJt53A3HgRmlu1nE=;
+	t=1795258097; bh=LWvhA+JKvTLjW7JOpSb4mg9kc3djq13jibSTget6C78=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oy7tTvfmqCGu0HNi4kMZuliqPxj9S4Sg/F1R9gMt1ti70b/jdNnoI2j+XJJraGBRs
-	 6zWwas8zsHWk+kpMPDns3rt2CAp0k3ryRfHT4apcesHp/t4pHYKqG0O1U155bD3god
-	 n7+8Vxqr/TFa/r6QaMYXTbopuoDxgIv7+mptE56w=
-Message-ID: <5f9eae39-b82c-4fb3-9bea-c49a6b7baf25@arm.com>
-Date: Sat, 21 Nov 2026 10:42:11 +0000
+	b=Vc0/zWM38R8FTcWCHAViA0/Baa+4ZHh1v2TjkzkH/2li+snCxtoze+VH7hEqmS9pg
+	 2Tzy4n83cHpQ5wkiBwlTHgAmWIDljCj/w/oxzt8Vd1l/dcVzFW+CiflosE6m9xE0iw
+	 z95D0p1LJjTbpKknzcc96wZ3fm4g5DY4VFRMfuXg=
+Message-ID: <100de3fa-ce00-4dd5-9a50-9182968b5a8b@arm.com>
+Date: Sat, 21 Nov 2026 10:48:13 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: pi: Add an ISB after mapping the FDT in the
- initial ID map
+Subject: Re: [PATCH 2/3] arm64: mm: Add an ISB after remapping the KPTI
+ page-table slot
 To: Fuad Tabba <fuad.tabba@linux.dev>,
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>, Ard Biesheuvel <ardb@kernel.org>,
@@ -55,15 +55,15 @@ Cc: Mark Rutland <mark.rutland@arm.com>, Ard Biesheuvel <ardb@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Fuad Tabba <tabba@google.com>, stable@vger.kernel.org
 References: <20261120121638.194154-1-fuad.tabba@linux.dev>
- <20261120121638.194154-2-fuad.tabba@linux.dev>
+ <20261120121638.194154-3-fuad.tabba@linux.dev>
 From: Ryan Roberts <ryan.roberts@arm.com>
 Content-Language: en-GB
-In-Reply-To: <20261120121638.194154-2-fuad.tabba@linux.dev>
+In-Reply-To: <20261120121638.194154-3-fuad.tabba@linux.dev>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_024218_700942_1E6F3600 
-X-CRM114-Status: GOOD (  16.14  )
+X-CRM114-CacheID: sfid-20261121_024818_699596_3232594B 
+X-CRM114-Status: GOOD (  12.84  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,41 +84,35 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 20/11/2026 12:16, Fuad Tabba wrote:
-> map_fdt() maps the FDT into the live initial ID map with only a DSB
-> before the caller reads it, so the read can fault on a translation made
-> speculatively before the mapping was written. This early in boot,
-> VBAR_EL1 doesn't yet point at the kernel's vectors, and the kernel fails
-> to boot.
+> kpti_map_pgtbl remaps a temporary slot with break-before-make, and
+> kpti_mk_tbl_ng then reads the page tables through it. The make ends in
+> a DSB alone, so the reads can fault on a translation of the slot made
+> speculatively before the new entry was written. With the temporary page
+> tables in TTBR1 the kernel's vectors are unmapped, and the boot hangs.
 > 
 > Add an ISB after the DSB.
-> 
-> Fixes: 84b04d3e6bdbc ("arm64: kernel: Create initial ID map from C code")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
-
-I did a quick audit of all the other DSBs without ISBs in the pi code and I
-think the rest are all correct because they are not synchronising stores to
-_live_ tables so there can't have been any speculation with the old invalid value.
 
 Reviewed-by: Ryan Roberts <ryan.roberts@arm.com>
 
-
-
+> 
+> Fixes: 47546a1912fc4 ("arm64: mm: install KPTI nG mappings with MMU enabled")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 > ---
->  arch/arm64/kernel/pi/map_kernel.c | 1 +
+>  arch/arm64/mm/proc.S | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/kernel/pi/map_kernel.c b/arch/arm64/kernel/pi/map_kernel.c
-> index fb44cbdd2f292..f9338257adb7d 100644
-> --- a/arch/arm64/kernel/pi/map_kernel.c
-> +++ b/arch/arm64/kernel/pi/map_kernel.c
-> @@ -211,6 +211,7 @@ static void *__init map_fdt(phys_addr_t fdt)
->  		  fdt, PAGE_KERNEL, IDMAP_ROOT_LEVEL,
->  		  (pte_t *)init_idmap_pg_dir, false, 0);
->  	dsb(ishst);
-> +	isb();
+> diff --git a/arch/arm64/mm/proc.S b/arch/arm64/mm/proc.S
+> index 12aacc74f7647..7ca36d59bf77f 100644
+> --- a/arch/arm64/mm/proc.S
+> +++ b/arch/arm64/mm/proc.S
+> @@ -262,6 +262,7 @@ SYM_FUNC_ALIAS(__pi_idmap_cpu_replace_ttbr1, idmap_cpu_replace_ttbr1)
+>  	orr	pte, pte, pte_flags
+>  	str	pte, [temp_pte, #8 * (\level + 2)]
+>  	dsb	nshst
+> +	isb
+>  	.endm
 >  
->  	return (void *)fdt;
->  }
+>  /*
 
 
