@@ -2,65 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC72606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 22:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA00606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 22:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lmCGwrOB;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=b+fJSMXm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mH7oyZzs;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=g98bzIVj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
 	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=M7DMWBB94yLZqEaPSWigGMEGI/4GG3JhAn9LfYKnXPE=; b=lmCGwrOBobRy3/
-	/0C1H+jxOFugOvy9Po58CyyR/UuQCOpVQCmGaPxt2jzj/dmstYtt/72hra7G5rngMrMEygiF/zrJ4
-	+C61XzzlPBSDV4m9nrDI33ScptqLYcr2QOKhKrQgtl3PLJ+j1+5+fwQ1GsZcWPLNfcktx+le7H2eE
-	rpxzEt9ZON0RYCq7NrhVmQcYYAiEDsE9xCxYo5Fmy3oF1pCHkT255Iw3NBtlPMYib5phSSZ7cGkBP
-	fXXztKybVlN+5q4cQlOEIOsZmbLOmVpiRt2+WgS8ewVkZJbcyLhyFLFe7WiLbNYPZw+1zQ7RNmzI7
-	wRf/sSNqFJFt56Yt+2aw==;
+	List-Owner; bh=r2q3LlcXOhJE/UcBDtYyeeDxFGZavtW/dVlyD11nD44=; b=mH7oyZzsyxI+QX
+	ZLMXYFyMMF4OsYJzKYUMb0OepTFJ1rU1JR9wPe62wQHKjAT1LWxeaUiHWzIXomfbjpTcJw8G+TOIN
+	pVWS27jF+JJieSDE6zIHE1XqHIqIbUTgIw5nwxyleE4Fz1sxau+4wp6pAW6wRGFHpNMNgKwkekDxq
+	mhKAtLw2ag/Zg8PE4xLuxt3m+HqWlRxux4ZBrMQYPYx+6+f/jse607FrPNuLIkMIJAnW/tjbWzRP5
+	aG+aFju/5YY4DdkOrQTMLxAuipfQAM0Wwh6FjoLOsZZBQP1Qtv9cdTAsJxApnelVkqLTRxpLSJbo4
+	NOLJZV9F25947T5WsqtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUtvX-00000000RT0-1tmE;
-	Sat, 21 Nov 2026 22:51:23 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xUu0e-00000000Rc4-06kj;
+	Sat, 21 Nov 2026 22:56:40 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUtvV-00000000RSt-3fgg
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 22:51:22 +0000
+	id 1xUu0c-00000000Rbu-38bN;
+	Sat, 21 Nov 2026 22:56:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DDC9E60E02;
-	Sat, 21 Nov 2026 22:51:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18B1E1F000CA;
-	Sat, 21 Nov 2026 22:51:18 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 34D1C4174E;
+	Sat, 21 Nov 2026 22:56:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D81A1F000C4;
+	Sat, 21 Nov 2026 22:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795301480;
-	bh=M7DMWBB94yLZqEaPSWigGMEGI/4GG3JhAn9LfYKnXPE=;
+	s=k20260515; t=1795301798;
+	bh=r2q3LlcXOhJE/UcBDtYyeeDxFGZavtW/dVlyD11nD44=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=b+fJSMXmBh79PHQmv8iixzQ57TVwBz1eAqyUajITE23tX6XJO9bYLoFobVPEu8Bnb
-	 dvJBNK89U/PpIHOPCoyYDT1qx+0qdmKaiQB4zqoXMiN/6Hq9CXcJsqPEXLLZyBqIm3
-	 TScpqY23WT04z3kejVElUuzqV1pxh5JIbhhbr6X00CSjeNPSvUgfHlNRTFAARt1j+9
-	 5AvmrtAHKamEFYySoyLnGgqeh5BuqQIRNjYDMSHgFrUUC51hwYMcfgwQrY+xS2o9pU
-	 s5UjYkerquQjbAbkm19TtwugK+kvMtNLPIcQtSVB3kfSv49DVcO7b3wBVWqJhHJPnd
-	 4zzX1xABklZ5w==
-Date: Sat, 21 Nov 2026 22:51:14 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: Lee Jones <lee@kernel.org>, "David Lechner" <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
- Torgue <alexandre.torgue@foss.st.com>, <linux-iio@vger.kernel.org>,
- <linux-stm32@st-md-mailman.stormreply.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <stable@vger.kernel.org>
-Subject: Re: [PATCH 05/10] iio: adc: stm32-adc: Detach chained IRQ handler
- before removing domain
-Message-ID: <20261121225114.41f87da3@jic23-hlaptop>
-In-Reply-To: <a449f513-5d7f-4478-a389-9c47dd0ecddd@foss.st.com>
-References: <20261119153151.1397003-1-lee@kernel.org>
-	<20261119153151.1397003-6-lee@kernel.org>
-	<a449f513-5d7f-4478-a389-9c47dd0ecddd@foss.st.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	b=g98bzIVjF7dsTPk0LCNmEnMGd7I8UNkcV0BYpfbjNjVtvp5uKbQPCCyMfjrk1S8ZM
+	 ijCNO/E4TofRPcHmCXc2H+nMObTE9l9tITZsgQbD/cRFGegBmzyKCje9n6zzH9F6ch
+	 gZYQl4qqIpjkNoJpq9lJgB1NhCi+Dp+qV97dy+mzmE4KAoJm9VPnHHUoU9vrQvDevZ
+	 hQgl4E+4XPUQvEki+kFVCbBPo9yo03KmX9ltn2BOJikuytMwxYXyg2MqCv2Zg0wF27
+	 sZVfYh9R2TxAYvIldqCao8WbiuZzSYg701NEensNoe2Ovj0Nx5e+IWzTmM5jEaHIUN
+	 nteLzy9C8yOnA==
+Date: Sat, 21 Nov 2026 14:56:36 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
+Cc: 1579567540@qq.com, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko
+ Stuebner <heiko@sntech.de>, David Wu <david.wu@rock-chips.com>, Alexandre
+ Torgue <alexandre.torgue@foss.st.com>, Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>, Jose Abreu <joabreu@synopsys.com>, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v4 0/2] net: stmmac: Add RK3572 support
+Message-ID: <20261121145636.5c41bda1@kernel.org>
+In-Reply-To: <20261117-add-board-ok3572-c-net-v4-0-4e9da569395a@qq.com>
+References: <20261117-add-board-ok3572-c-net-v4-0-4e9da569395a@qq.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -75,77 +75,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 20 Nov 2026 18:23:19 +0100
-Fabrice Gasnier <fabrice.gasnier@foss.st.com> wrote:
-
-> On 11/19/26 16:30, Lee Jones wrote:
-> > stm32_adc_irq_remove() disposes of the child IRQ mappings and removes
-> > priv->domain before clearing the parent chained IRQ handlers.  Because
-> > the parent hardware interrupt lines remain unmasked while child devices
-> > use dummy_irq_chip, an interrupt arriving during teardown invokes
-> > stm32_adc_irq_handler() after irq_domain_remove() has freed
-> > priv->domain, and irq_set_chained_handler() also leaves handler_data
-> > dangling.
-> > 
-> > Detach the chained handlers and clear handler_data with
-> > irq_set_chained_handler_and_data() before tearing down the mappings and
-> > removing the domain.
-> > 
-> > Fixes: 1add69880240 ("iio: adc: Add support for STM32 ADC core")
-> > Closes: https://sashiko.dev/#/bug/linux-27c38690-bc20-43aa-a3fc-1ddd6f1bb74e
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Lee Jones <lee@kernel.org>
-> > ---  
+On Tue, 17 Nov 2026 17:04:34 +0800 Cunhao Lu via B4 Relay wrote:
+> This is one of the subsystem submissions for RK3572 support.
 > 
-> Hi Lee,
+> This series adds the RK3572 GMAC bindings and support for both Ethernet
+> controllers in the Rockchip stmmac glue driver. It provides RGMII and
+> RMII mode and clock control, with MAC RGMII delays disabled.
 > 
-> Acked-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-This one seems a little more likely to be hit in practice, but
-it doesn't apply to the fixes tree due to some other recent changes and
-I'm lazy.
-
-Hence applied to the testing branch of iio.git to line it up for next
-merge cycle. We are getting late enough I should be keeping fixes to critical
-stuff only and I'm going to assume this one isn't.
-
-Jonathan
-
-> Best Regards,
-> Thanks,
-> Fabrice
+> The RK3572 SoC has eight CPU cores: two Cortex-A73 cores and six
+> Cortex-A53 cores. It also integrates an Arm Mali-G310V2 MC1 GPU.
+> The OK3572-C board provides two Gigabit Ethernet ports, three USB3 Type-A
+> ports, a Type-C dual-role port, eMMC, microSD, and UART.
 > 
-> >  drivers/iio/adc/stm32-adc-core.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/stm32-adc-core.c b/drivers/iio/adc/stm32-adc-core.c
-> > index 4b532db3db62..13b75475046c 100644
-> > --- a/drivers/iio/adc/stm32-adc-core.c
-> > +++ b/drivers/iio/adc/stm32-adc-core.c
-> > @@ -467,12 +467,12 @@ static void stm32_adc_irq_remove(struct platform_device *pdev,
-> >  	int hwirq;
-> >  	unsigned int i;
-> >  
-> > +	for (i = 0; i < priv->nb_irqs; i++)
-> > +		irq_set_chained_handler_and_data(priv->irq[i], NULL, NULL);
-> > +
-> >  	for (hwirq = 0; hwirq < priv->nb_adc_max; hwirq++)
-> >  		irq_dispose_mapping(irq_find_mapping(priv->domain, hwirq));
-> >  	irq_domain_remove(priv->domain);
-> > -
-> > -	for (i = 0; i < priv->nb_irqs; i++)
-> > -		irq_set_chained_handler(priv->irq[i], NULL);
-> >  }
-> >  
-> >  static int stm32_adc_core_switches_supply_en(struct stm32_adc_priv *priv,  
-> 
-> 
+> Testing was performed with Debian 13 minimal and Linux 7.3 on the
+> OK3572-C with the FET3572-C module.
 
+Series does not apply, please rebase on latest net-next/main
+and repost
+-- 
+pw-bot: cr
 
