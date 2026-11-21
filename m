@@ -2,98 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39144606A680
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 16:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206E5606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 16:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R5deZ0ot;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=N6MBKZud
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nl8b8iZF;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xKYPFGlc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=W7RwPOrM34RBS0W4DzG8D6rusWopzOWgRex6lMhtHNY=; b=R5deZ0otGFLPkjiOhSUJCKtm1Z
-	Lw97V3OaBhw29JzQQz1UzLDh5wfzIJg5KuJwtXVGM0zAj+TRt0t0mltL0c9e/dW8PKmz1sgYL4gGC
-	ReIVwpe92uLJjlzcEgbIs2ieF5BvDKUR1luUd4q6ejxqcrmIcCobb1WqqSqJetTD8D8HZMvhgT4B/
-	HeDhqIyPT6lV/HjE1pC35M0TPXjguIC2XPZ9HCNW+gA9NcsMrtasLM/exTyKYyKrd8jbcNj0g5djN
-	XLU9PPq+RiLp0ZlN8oJLdEl//19lCiBR8wzM1DXT2khgK1uwRWxhPEVp+lrph1TRoVo97RUl23/rw
-	Gtl0HBQg==;
+	bh=dfLpaiZKgialdhZmLohg/bMfGz6NinnnazUQ52qYpko=; b=nl8b8iZFi737TQDvr37nf4uUsH
+	xGwZyLh6dOV7bPb7zetRBpuB0tnfpSEYeQ8WdyZaRs81ntaDILBHQ6EB70Uew9jROCarn1DOJJnJI
+	ph5tnEuLpMEZP8UbDesV1gRgAnSQPNVJtGSoJgV+6lzkBYKZR5hpOxUAW5aPGJGrj2YB44SqNqn5D
+	0jG6/tIzSOehvNVVzImtGM3mQCHdPZb/58uuKXhlgKGmdcCRx82n5y8PhkW60KIV3OowNMqM6Nmdj
+	UHdnvoXKgsIRPyJ3c3+urBJxBbfRUDZuXxS8P7BblVGx0+2Xbuc5VVCWX3vraDyfqoixOykqhx0mh
+	zgu61BsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUo6r-0000000HVFA-3HZJ;
-	Sat, 21 Nov 2026 16:38:41 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xUo71-0000000HVIE-0Unh;
+	Sat, 21 Nov 2026 16:38:51 +0000
+Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUo6o-0000000HVE5-2NVZ
+	id 1xUo6w-0000000HVG5-3QMX
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 16:38:40 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so22435645e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 08:38:36 -0800 (PST)
+	Sat, 21 Nov 2026 16:38:48 +0000
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-48e3b22e971so1019164f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 08:38:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795279115; x=1795883915; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795279124; x=1795883924; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=W7RwPOrM34RBS0W4DzG8D6rusWopzOWgRex6lMhtHNY=;
-        b=N6MBKZudKfUM6trcjjbKCZJgS0PH3CG5Rfo2D3XOnxpcsTWcnAUVQxFE7wk22VlS2s
-         h61aCoEIGJnLLyeqgCvJuPXPqJ2H9ujTpZ51ACgwgKgkOYzjW/Om3vQRQNPWpjq+O2ek
-         fmuy58bPo8gU8fj7fh47cmvs1TMpRDDJJBXm8G1HXbH/2gKfsQwsrF7J8LaNJgOgmUdo
-         Yu7tfvqLQcsN2FG/16xoYbCGjWQdU/CuMNlB5yL8eJDZH6/9PcCLnoFTOT8PalaqOjzK
-         IptlFfk68jaADgPK+Fc7sFiCNThaW7iv++iRTWw0ttsgoE1YMUzVMXzZT4RuaJyCzo/K
-         Q3qw==
+        bh=dfLpaiZKgialdhZmLohg/bMfGz6NinnnazUQ52qYpko=;
+        b=xKYPFGlcACg6algsdL+ZHD1h7/BProNxFru/mrA5+6Q0Ro9qJoXfWds/s5PzXViOsQ
+         SIRykTkIckJRDuUWDlS//GcYRJQlS9NUfbKn3P7uHiG1lkZ75e0GQm4pTkfdLkKdgcDO
+         UaEvgvDYc0lkHAQ3Xs2Stw6Gjju5HTPQQ5k7XDnwzOe7X8SjLA5MSOtgbN0UeNq3T2gl
+         A61hAOO4ah3/8sCNeTwWx4UnwXScN6Qph8J05QW7uYQxfy9VeNe4SCvrvsCab7PNUesf
+         7+I3m2RWpwpeVvtWO5NxltuWRHaavq3293eGjbU1YuUduqIDbOPbAHfbE8uv0t3PbYM/
+         p+vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795279115; x=1795883915;
+        d=1e100.net; s=20260707; t=1795279124; x=1795883924;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=W7RwPOrM34RBS0W4DzG8D6rusWopzOWgRex6lMhtHNY=;
-        b=SiVQnXRU2ZQR5KCsoOYejNClHIUfgNF1rfXn8tDwZGqmSs1vUO/zAyEpRhdgMezA94
-         Zu6V011454Zdo4Ne05luDtQqLvX10+jwRem8YbV2oEBmgPycUNDJqj7vDUVPnbXzHiA9
-         6Plctvx+lrSoz3bGd+8ae1wv0O7c06/hswGwUwqco8ul7YKSNXZadb0+88yyyiok1iLZ
-         hK6b4y1vZBTEaocaazs8b2RP6dqRycEy9YrvX5W1iGA6vqzygYK6iJS6VKFNTnWsFbt6
-         C2nan5Q0dVKdO2GW5LPhf1jQ4Bcqd5jSE+Vl/s7BSY9rbpSOjLm9HBb3bObG2A4AkG4I
-         C9gw==
-X-Forwarded-Encrypted: i=1; AL+hErFu9Nwr9s5yLWl4cQ1F5+bEzmkxDPLQvAAP5WPT6FdC3Al47ArjAaRois3EyrMUX7oJAv1bmPBNVy5NhEUTevjc@lists.infradead.org
-X-Gm-Message-State: APuU4Z/XNobp6Ou4HevmgZ51q6CzPhJ33Pq0L4bN1yV9c8xsXnk51kKQ
-	OXwCVT5e06HA4aFajxlaihGYhTaXGcj2jyh6SzdM/94ae4OCY8QblW9S
-X-Gm-Gg: AZFdTZdXqNco/ONuOTd8+sdOrPVtoK371ddCoOXseZZZ2loaTe+75uHb2CFz6YFvRjp
-	Iz/2WbHr2g9ojMfR4l0WgKfNlNkdmRzAH+0+/JZ4g9bxgVRRn0J8GEu8DC5gj9SEhIr+zfxKr9S
-	mhVQOAwI5sQZm+iVZIuTKfmauRH+5UeAx6cZ+uznDJ8JlhjLv9zntKfHdYUzdoBF95fl31rCaq7
-	OWJLmSWCU4ziIXhx86coqwblN4fYcLw3/x51s9PNB7z3sX4/DnPCd3jRRfppqPf9aFkTiSc1/oS
-	HMTmuZXUDWfIwMb3KgWoWIrfwTwQS4eZHuEKKPyV9DrKtBZMfGlG7aLZxSIt7NWiFAuPOojYRKa
-	6RguHbwV/plO32oJWfkUJvZFlmXMZNFFmXgn9r+rSzB5n9fMAHOSXlgzugtDW5pvEaAUnBr5Gv3
-	EpEaieIv8QqaAwfLYyXfp6FArSYfe85uRmA8EcoKTeKGn6PjmoOndgJmIHBNNI/acpqFFY9U71R
-	huix3qMYZu5Dql2WFWBHuXSgX7wFvHNbgOn7mrudIA8j411apJ5bo29X4ut11/UXgB4Dwbtt/cs
-	1F7EBLVHr4+dE+WIyfTB7S3lcamKxStWsBtIjWRx/7YDkKOJJawbi2B7C0FPyptZbiAhASqP
-X-Received: by 2002:a05:600c:4585:b0:4a1:c6f5:2450 with SMTP id 5b1f17b1804b1-4bb8881b8e4mr148088995e9.17.1795279115254;
-        Sat, 21 Nov 2026 08:38:35 -0800 (PST)
-Received: from localhost-live.home.vlan10 (053da81f.dynamic.tele-ag.de. [5.61.168.31])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853b2437sm313834635e9.13.2026.11.21.08.38.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2026 08:38:34 -0800 (PST)
-From: Joshua Covington <joshuacov@gmail.com>
-To: Thomas Gleixner <tglx@kernel.org>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Radu Rendec <radu@rendec.net>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Pengpeng Hou <pengpeng@iscas.ac.cn>,
+        bh=dfLpaiZKgialdhZmLohg/bMfGz6NinnnazUQ52qYpko=;
+        b=UTlTXti82R1FqG16VnTzwHVFkZjNEk2QEuRaP+G+J2HJrumpcu1G2hGyNPQJOMqaNt
+         PaMd6OKvBqa3ulTcjuNPbyie+ATbkzOrfSFz6K0QMIWnKHHrqa+XruGSjjATWFBk/K9C
+         jbTxklccQtIndm2+Qkudgt1NppXo8IRXXcOt9DeRHFNkbm27AMnchJpZpSL/g/ZugCkN
+         6o8x6hnxz/RWlxlMN0+Mux11cHlVgPsvJrF7hGg72UyoK5ldx4zZKfPGY0KvfL4g3OIb
+         vEF5K/lBLX9Sm5/hVU+oaUnkK6iQVJl+KJSURkpzPTlnFW60v1eXSTBLAhzKEKthGxi0
+         m7sA==
+X-Forwarded-Encrypted: i=1; AL+hErEX+btNU0rVqbgpk/yK1jGU1s2EJ2zQtY7ka1zaMCtc+PXbMUncx6cZWBKK4C3OUWoSXt1q958PNrlHkS6XFYrC@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Iw62FKfGXDNVgWq+bTR+MktBgiunD61GGkethHTYfFAFedWJt
+	kxVmlc3RrtB/fRItmnkaFrbOO/yeJJgO618N1qF4HSyQRBRldRsHF/3pI9IqM3q99BM=
+X-Gm-Gg: AZFdTZf2FXLFliQnhPS36pU8f8I3fKGU9JKqHI9xytbU3CBntfkWMoX+3MeZq+Lm9Xl
+	ZA1r6u+AqjpkkMDqO6s6jt2DJhCuMuKorofjTgtB49qqnrUG36QdBbxaeTmnGFiKWcQ1Ebcx+En
+	VNkuA89o/1Hx5Vl5o8cjYE2EM3IFT/LZ0hhc1lQJENX1gBeMvyBja+Zf8u3uQCi6Av/ZhcRO/n/
+	hR59lMDfujLNhchEs88I6EpRMFxThFK5YAcC9kXdO733nd683LPK3dwhGI/G+pTKq1Jnh40S7sd
+	aF9QB3Pfz9RDX/oRvuDupsHrcS+9dBMLyK7ttsfW60r/fJA3zPDOfugj0bhp6eodvRKNjVL7v9A
+	hIvc4RN5EWUDiw0wVL9mkSycnTMeK+Hbhop0RlTZ/cYo6MUgqNWKA4fEBCl6pj/GICoyOLOaOiS
+	+k5T5MJGA4GAC9uWX0eDXQncCuKITiQc9ZYBtNw/OzFLx2MwCS0EPgCvZJEc6ky9cfood+iPxli
+	efO0om0XiGkvcapkdNim0XwzVSg4fS/pL8LHpFimSpwnZh74+ZhBycKb93hS7131T0Y51b1FS12
+	mswXtoVRHa0sUkbRhl9PbKTbJAgVqxPIG0u7keTz3XrfcE6rZN6fkR25UTwGevau/6pD2lKbcEf
+	Kjy6wnvhngqmtSX2LW5nwfDk7QZVyKXnCwAM77aCOAgoLBRjY7LNxgQZ3c0jtxRmn3ZFar9vH6s
+	QX4Vc0lJLMU2VxDN7WE2Ec7ImcJtIPOOnF
+X-Received: by 2002:a05:6000:2c13:b0:491:fd47:5df3 with SMTP id ffacd0b85a97d-4abab02d216mr13249942f8f.7.1795279124204;
+        Sat, 21 Nov 2026 08:38:44 -0800 (PST)
+Received: from localhost.localdomain (dynamic-2a02-3100-aeb0-6801-ad74-bca0-dc5f-7242.310.pool.telefonica.de. [2a02:3100:aeb0:6801:ad74:bca0:dc5f:7242])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2e6dsm12468455f8f.6.2026.11.21.08.38.43
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Sat, 21 Nov 2026 08:38:43 -0800 (PST)
+From: Karl Mehltretter <kmehltretter@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: Karl Mehltretter <kmehltretter@gmail.com>,
+	David Hildenbrand <david@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Xu Xin <xu.xin@linux.dev>,
+	Chengming Zhou <chengming.zhou@linux.dev>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Joshua Covington <joshuacov@gmail.com>
-Subject: [PATCH] irqchip/irq-bcm2712-mip: Drop MSI_CHIP_FLAG_SET_ACK
-Date: Sat, 21 Nov 2026 16:38:09 +0000
-Message-ID: <20261121163809.86620-1-joshuacov@gmail.com>
-X-Mailer: git-send-email 2.56.1
+	linux-mm@kvack.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: mm: Ignore PTE_AP2 in pte_same() for LPAE
+Date: Sat, 21 Nov 2026 17:38:34 +0100
+Message-Id: <20261121163834.15441-1-kmehltretter@gmail.com>
+X-Mailer: git-send-email 2.39.5 (Apple Git-154)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_083838_615764_46A097AC 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20261121_083846_899196_D4C55A5C 
+X-CRM114-Status: GOOD (  15.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,63 +105,78 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Commit f35508b93a2f ("irqchip/irq-bcm2712-mip: Set EOI/ACK flags in
-msi_parent_ops") made the PCI MSI device chips ack through
-irq_chip_ack_parent(). Neither the MIP middle chip nor the GIC below it
-implements irq_ack, so any ack is a NULL pointer call.
+For valid ptes, cpu_v7_set_pte_ext() derives the hardware read-only bit
+PTE_AP2 from L_PTE_DIRTY and L_PTE_RDONLY. pte_wrprotect() and
+pte_mkclean() only change those software bits and leave PTE_AP2 as it
+is. Starting from a dirty, writable pte, the software value therefore
+has PTE_AP2 clear while the installed entry has it set.
 
-The MIP vectors are handled by handle_fasteoi_irq(), which never acks,
-so this only shows when mask_ack_irq() runs, e.g. when a chained
-handler is removed. The RP1 driver does that on every teardown since
-commit 82aa033fef52 ("misc: rp1: clear chained IRQ handlers on
-teardown"), and the kernel panics:
+KSM hits this since commit c33c794828f2 ("mm: ptep_get() conversion"),
+which made write_protect_page() return the software value instead of
+reading the installed entry back. replace_page() then finds the stored
+entry different and gives up. After a failed zero-page merge, KSM can
+fall back to a regular merge in the same pass, so zero-filled pages
+end up as ordinary KSM pages instead of mapping the zero page.
 
-  pc : 0x0
-  lr : irq_chip_ack_parent+0x1c/0x28
-  Call trace:
-   __irq_do_set_handler+0x248/0x24c
-   irq_set_chained_handler_and_data+0x6c/0x94
-   rp1_unregister_interrupts+0x3c/0xa8
+Mask PTE_AP2 like PTE_EXT_NG for present ptes. L_PTE_DIRTY and
+L_PTE_RDONLY are still compared, so changes to the dirty and
+write-permission state remain visible.
 
-The MIP hierarchy has no use for an ack, like the drivers fixed by
-commit fb0ea6e4878a ("irqchip: Drop MSI_CHIP_FLAG_SET_ACK from
-unsuspecting MSI drivers").
-
-Fixes: f35508b93a2f ("irqchip/irq-bcm2712-mip: Set EOI/ACK flags in msi_parent_ops")
-Signed-off-by: Joshua Covington <joshuacov@gmail.com>
+Fixes: ded947798469 ("ARM: 8109/1: mm: Modify pte_write and pmd_write logic for LPAE")
+Signed-off-by: Karl Mehltretter <kmehltretter@gmail.com>
 ---
-The panic was reported on BCM2712 with 6.18.61 and later when the
-rp1_pci probe fails (https://github.com/openwrt/openwrt/pull/26530#issuecomment-6975561491).
-Tested on a Raspberry Pi CM5 with 6.18.64 and the Raspberry Pi
-downstream patches: with this patch, unbinding and binding rp1_pci
-again completes without a panic. Applies unchanged to v7.4-rc3 and
-builds there without warnings (W=1, GCC 13 and clang 18).
+Assisted by an LLM.
 
- drivers/irqchip/irq-bcm2712-mip.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Tested on v7.4-rc3, multi_v7_defconfig with ARM_LPAE and KSM, as a
+32-bit guest in QEMU (TCG, cortex-a15) and under KVM on a Raspberry Pi
+400 (Cortex-A72). 1024 zero-filled pages merged with use_zero_pages=1,
+and test_unmerge_zero_pages from
+tools/testing/selftests/mm/ksm_functional_tests:
 
-diff --git a/drivers/irqchip/irq-bcm2712-mip.c b/drivers/irqchip/irq-bcm2712-mip.c
-index 06a6ab627..12d9e3846 100644
---- a/drivers/irqchip/irq-bcm2712-mip.c
-+++ b/drivers/irqchip/irq-bcm2712-mip.c
-@@ -163,7 +163,7 @@ static const struct irq_domain_ops mip_middle_domain_ops = {
- static const struct msi_parent_ops mip_msi_parent_ops = {
- 	.supported_flags	= MIP_MSI_FLAGS_SUPPORTED,
- 	.required_flags		= MIP_MSI_FLAGS_REQUIRED,
--	.chip_flags		= MSI_CHIP_FLAG_SET_EOI | MSI_CHIP_FLAG_SET_ACK,
-+	.chip_flags		= MSI_CHIP_FLAG_SET_EOI,
- 	.bus_select_token       = DOMAIN_BUS_GENERIC_MSI,
- 	.bus_select_mask	= MATCH_PCI_MSI,
- 	.prefix			= "MIP-MSI-",
+                     ksm_zero_pages   test_unmerge_zero_pages
+  v7.4-rc3                        0   fails
+  with this patch              1024   passes
+
+Unpatched v6.12 shows the same failure. If this is better handled in
+KSM, reading the entry back after set_pte_at() in write_protect_page(),
+as before c33c794828f2, also fixes it.
+
+ arch/arm/include/asm/pgtable-3level.h | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/include/asm/pgtable-3level.h b/arch/arm/include/asm/pgtable-3level.h
+index 7b71a3d414b..4a187d7be1d 100644
+--- a/arch/arm/include/asm/pgtable-3level.h
++++ b/arch/arm/include/asm/pgtable-3level.h
+@@ -161,11 +161,15 @@ static inline pmd_t *pud_pgtable(pud_t pud)
+  *
+  * To correct this behaviour, we mask off PTE_EXT_NG for any pte that is
+  * present before running the comparison.
++ *
++ * Likewise, cpu_v7_set_pte_ext() sets PTE_AP2 in a valid stored entry when
++ * the pte is clean or read-only. PTE_AP2 is derived from L_PTE_DIRTY and
++ * L_PTE_RDONLY, which are still compared, so mask it off as well.
+  */
+ #define __HAVE_ARCH_PTE_SAME
+-#define pte_same(pte_a,pte_b)	((pte_present(pte_a) ? pte_val(pte_a) & ~PTE_EXT_NG	\
++#define pte_same(pte_a, pte_b)	((pte_present(pte_a) ? pte_val(pte_a) & ~(PTE_EXT_NG | PTE_AP2) \
+ 					: pte_val(pte_a))				\
+-				== (pte_present(pte_b) ? pte_val(pte_b) & ~PTE_EXT_NG	\
++				== (pte_present(pte_b) ? pte_val(pte_b) & ~(PTE_EXT_NG | PTE_AP2) \
+ 					: pte_val(pte_b)))
+ 
+ #define set_pte_ext(ptep,pte,ext) cpu_set_pte_ext(ptep,__pte(pte_val(pte)|(ext)))
+
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
 -- 
-2.43.0
+2.39.5 (Apple Git-154)
 
 
