@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A101606A69D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 03:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF51606A6B5
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 03:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GfHW+aUX;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yCUfQ8zb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dGAxTJrv;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=amG73RkK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=asqkoYbz82hEaVuDlqAKtg9A95Bx0CAB6i8FMp3RVm4=; b=GfHW+aUX3Du7KcljcP64tnqH/0
-	7Uhv5MjJ2Mk6Fr7lbu1ZhIK+SNcr7SrHRnyxfeXhUMu0egwgZqtiGCDEbqXsuoWqH2DYFMwwj1cuW
-	OOWVNQP+MkfbZRTlqND8FSnlkR9dNdpKz/Dcc3QiM/1oHR0x8WPE6/9B135bpnYYJ/VQNkYignWZq
-	r56DpglAmzTw0lQAzrk8qqXWJPyOOIuRA4cQ78CY1ynofmp0qv1uNY6Z48MyLDDVjdFUOzNUFDlSl
-	Uu4G1SSJGJEEOP8cMZ//hz6E/BZ6chtD1e5yT85G8rEtfhneb8aG3sKMmK5X9zBo1XN1hvD4uNicn
-	dbPtfHnw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Ah3lmmwTO4kTFu9w/FRtwILA0EF2N9TZsivGOFrxvGE=; b=dGAxTJrvtvUZQy
+	ObrUYdOwJbq65LPq4Bt3Dl2kSb4puQmI8kfqMN+v3GVX8QjIZ1LLF8NXvYKElnrHMUivqnoGqoGgl
+	6OjG1okthCjwrWGVBm16IhZoE6CD2Bo8AAo44POCEy5j6Q9GHeti7sg4RV+l/AWPb7EvsaCTLj4Rh
+	p1m9wDFEVQ1c6+qYaCZSSF534Lgxxv1hcRzjXVnuCgQO6afoWmmJwYdChHV3exCIDJkqdk6nQDuGp
+	X2MtAyz8/vXi2+RQ+O3aCsTAxon1fKMfh1CDj96NCzxCzm+ybArSlzw+51uAbSSGC/5zhCcR/BRaO
+	6WOIUzTdzLpHyYy5me4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUbyv-0000000GjLB-2ncg;
-	Sat, 21 Nov 2026 03:41:41 +0000
-Received: from mail-dy1-x132b.google.com ([2607:f8b0:4864:20::132b])
+	id 1xUbz7-0000000GjNh-3NIh;
+	Sat, 21 Nov 2026 03:41:55 +0000
+Received: from mail-dl1-x122f.google.com ([2607:f8b0:4864:20::122f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUbyn-0000000GjJZ-17M1
+	id 1xUbyt-0000000GjKZ-2LSQ
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 03:41:40 +0000
-Received: by mail-dy1-x132b.google.com with SMTP id 5a478bee46e88-38431138772so1982732eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 19:41:31 -0800 (PST)
+	Sat, 21 Nov 2026 03:41:41 +0000
+Received: by mail-dl1-x122f.google.com with SMTP id a92af1059eb24-15dd124bbe7so3483084c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 19:41:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795232491; x=1795837291; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=asqkoYbz82hEaVuDlqAKtg9A95Bx0CAB6i8FMp3RVm4=;
-        b=yCUfQ8zbwDq9KxcSMfR8InZY5tz8xm4ESoH8upG5fwP8plKEWMLi1+VKuJKOglVBZ3
-         1JsOp6Zv9dZOQ2zgtksI4pc1CtVwji3Pz0ShgK33bvI3m5GU7miJTMyIQNFSBMwXQ83T
-         1ZAHmvMy7JQ9MX80r9Akvi4NK8h8IzkFTy+C8Iy0yX5j+bJg8wtrgQten/FRc+NmxP+W
-         yGr7DSeuq1wDsTflABlmQjRmVk+HsoZfLofEQZ7fCz5TyDB/wPz3mTMTue4MrE3GVOtt
-         Vo4ViTeLXmYLPK7kSYZV1BIjAFCgeozgsKaMmkUOP5Fo+UuohGWMpPMgpKSI+4C/alsx
-         v6jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795232491; x=1795837291;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1795232499; x=1795837299; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=asqkoYbz82hEaVuDlqAKtg9A95Bx0CAB6i8FMp3RVm4=;
-        b=O9osQe+f8AtAJQFCb5OqC+1/YUaPG62yFbvyFi3y3PP9gfyPJHeZcy8gxkkS9tprRC
-         gsLvbhE6+rNepprumLr7gxMete8lrGVta124qh9FyuU+RFy6DnxABNkoPSGIRx4K6k/5
-         fi0j5BvXwcSDElH71+iktvGs5puv1jiIOx4JsA0S9y03RnZLPw5C9n4Yq5iU9HBRBGCT
-         qYJQgTc6214LjPAT+19NBTTDNaGxzGMkIcKWlvGqDAQ/HrfjC9jNImzPz8jn+C+eo1Oq
-         QGRivfX1MoDk6yXu7jOvLMvO3mh3rC85Gyfyuhi0+jT0r/KZy0uCHccF6BRfjizPcJ+1
-         qyrw==
-X-Forwarded-Encrypted: i=1; AL+hErEnNsIqwRdNWrqpUbw5E6frLbSjUINpWSw4eUOLXBagM+cbug/iDcFiVUacnWXNqHq9jniI24EGGrNSN7Mh00aE@lists.infradead.org
-X-Gm-Message-State: APuU4Z+azX30g9vDGgDIa9xPRy981hzljDHWnx4sdoISJt6NTIWHJZ4z
-	vI3tNhGGOGyZ1I0C1ni9s9PnTavGetr4JG01/5NcHK627vPH5CVO1CjB
-X-Gm-Gg: AZFdTZec74fQO+sa/VzdnMcU9k++4lAozTMKZV555EGEgdpPSV2sPMl55Iq/UKUEiGj
-	VPz1n9pqRt8FSk8QW+nZXfCJuRW645sHP5tzWs1b4nIgij65erTtZuoq/bVBosE4k6f1fZSFhVS
-	Vv4opqne4rQnMMdTRXcrgLUesu5fytSOOUwCZpZJmc4IQpeXs8IqyevfBysbHL4emXM+moLvj6V
-	JZNwDrH0LRJT+W4qdgf4TodOLeVBfQR+LZYrUvHryNxTszipVL4EJa1QJ6qjP8T3hQg0KRWiOL6
-	qahKBhtVSBUSbwdUfxlS+4IAOdPZ6G+nzqZfvDey2ETOVl+IMH8vqXwDYPMNgA5YmySqx8rhIk8
-	XYwSzjHpmhf8ueUgGiiEI7JiGqdqsLiRed8DAPS5WoFxhowTUMy7SEF5iYTBuHzW3o6/4tiVrsP
-	pw4aByPVo04lJ5XAHpnyQ34u9v1c5Y8aE9c5xvGNUZsGQ1MJd9/r2OcGQcFOdgi0xMApeXsVhZk
-	2fMgC5ZXRqJ33QE8Vg2Ef2jqVzAtyHUU4gzk/HlCZwu9Wy1kDuXJTivvS9mPxXzkU4gJaA6gjRV
-	BA4/NmMqGkKsSRM8Iuh/eeRzb/jSN1jjkINq5YYkD70YOw==
-X-Received: by 2002:a05:7300:ce8f:b0:375:7be3:1bbd with SMTP id 5a478bee46e88-38570b336f4mr4071171eec.23.1795232491106;
-        Fri, 20 Nov 2026 19:41:31 -0800 (PST)
+        bh=Ah3lmmwTO4kTFu9w/FRtwILA0EF2N9TZsivGOFrxvGE=;
+        b=amG73RkKoJPIFHveVWnRbywm81IFABDhkt7uY4Huy3IVEfBwmP0avBY2PDaPdgKae0
+         QQjB4tklCrzzVR9gb4NoXHosb8ToMzbqz/CEeZ0SSOCzFGkZzNSIKIdCWxumw17eFu/R
+         hi8UQ89J19xJadrV0HcJRrzUDOKsZtmiteC1npzmNYG0d+uHgjHXZ/RtnKb4mc4+d69E
+         5sgmsBDINV4FDEfPssy7C+QtZT9OJJNiDo/r5TtnHzoOv2PU3B91aD+53pPkwRzFEUc7
+         x42umwmTMSBnS1NGrRvoGwftHAVES03MyCPUqCRGutHIExQR4y0Al4DFcIzOT0ubVwWc
+         sPYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795232499; x=1795837299;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Ah3lmmwTO4kTFu9w/FRtwILA0EF2N9TZsivGOFrxvGE=;
+        b=HfoXKGqIqGSjVJFDORIloT/cTP7mTlOFMxTPdZ/qHBjg37fXloiLDCYUY6jUatul7L
+         3tiR/c9qddEbilGbRVJMxoTLCi9toH1lFWBFzpirVUZMRFLlPHP9FKTz1zNmSZb7iuwe
+         0OLCZH5IoPRHT6pdiTTfYM2qc6ky1zZp/9FTTKdAtJXT4o4u0R/BvxFy2YWgk1v+tzef
+         BB98rI+Y1O91Bd8iPAi+ZRmHLe8Wuq9Xtbtx3oahjBp2ZE9NFTUrlRWQXZhVV3Hjg/Kg
+         l8fD7TKjtSQ3ngOKPSYYho+qHD7xmxU2YgCLHSu/ZZTJi/TBSRL657+Tqx7+cYUBuRQV
+         wuyg==
+X-Forwarded-Encrypted: i=1; AL+hErF6yG447vo/3AxV+tSF/I+nbmvpVRrDOch9abEiWJMmkACTEpg1TtuBHsVl2Wlvc+SeSTCKNGzLqDQIC4fa2g8u@lists.infradead.org
+X-Gm-Message-State: APuU4Z/8XcHmTp5TJeqqfAhQxImIynLA1WbJfaEXgP0CP2Krnm8X+DSt
+	ulw5amjecj5Gz5lBTrmUA27zWF5pPdW6iiDnP6vKZqfvhh5v1yJUHN5O
+X-Gm-Gg: AZFdTZeiAeFGRW9pzU04WTdyky4EfcyYVzT+9ysK/FbZwCKabr706itO8TUwZhjB+CD
+	Kp+8UtcE5vHdBz6E3sGqmO5atEqPlqjksRkuPAX8g8TY2Fs85rAnKqWPjxNSbRa/zLgRyRiv17h
+	MLzxm/OW/F2Iw//XBwmO2nnLHYUpxWdst1st5da+fbsNgLAlLJevqSBIi2aOuO4e2BDEx5p88Cv
+	+hc9WU1v1Yjx0oyqerazWf4BFdvzmMCZL8B76HykqLqVkS7dAzdTWklMns8Zr3qLxBWMxVrizk5
+	NlEU2Jq6Fn+jsdF3D2eknxVxMnf/Pt1pQH0xIh6LSY95Nj8FB/1LVm5aKr5C18//TgGKs5nibBn
+	T8T9lcFuoR3xDPcSk8w108DnXGcEV7T5haHcC7IhXzSeoHl+ddB7Vui3m5dhtCOvqYHgPs512F8
+	xI1iKRoybKqAvwwpAFLJsDz6bftdOePYDuMfVvMV3Z/dkr/pRmzIbQj4nSEHLtAQ8frwco0sYvI
+	zsITgqErI5rbDu+ciGFkVHPJhoblEM42HJS2PU8uwq7CWCHqlZyypB0nKV9mRGHfWAe8RM7Gw33
+	4IkIk6bUujbDpRXVF+eqsLWeahj2MiCI/PP8f9/dR5mkZw==
+X-Received: by 2002:a05:7300:2209:b0:386:8d2:929b with SMTP id 5a478bee46e88-38608d2945emr5305042eec.23.1795232498643;
+        Fri, 20 Nov 2026 19:41:38 -0800 (PST)
 Received: from debian.prasanth ([103.177.82.216])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385646633d0sm20891464eec.3.2026.11.20.19.41.25
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385646633d0sm20891464eec.3.2026.11.20.19.41.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 19:41:30 -0800 (PST)
+        Fri, 20 Nov 2026 19:41:38 -0800 (PST)
 From: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
 To: srini@kernel.org
 Cc: robh@kernel.org,
@@ -88,18 +88,19 @@ Cc: robh@kernel.org,
 	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org,
 	Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-Subject: [PATCH v3 0/2] nvmem: aspeed: Add read-only AST2600 OTP support
-Date: Sat, 21 Nov 2026 09:10:51 +0530
-Message-ID: <20261121034053.39878-1-prasanth.padarthi10@gmail.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm: aspeed: sbc: Describe OTP NVMEM provider
+Date: Sat, 21 Nov 2026 09:10:52 +0530
+Message-ID: <20261121034053.39878-2-prasanth.padarthi10@gmail.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261121034053.39878-1-prasanth.padarthi10@gmail.com>
+References: <20261121034053.39878-1-prasanth.padarthi10@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_194133_324123_7ABB3961 
-X-CRM114-Status: UNSURE (   9.37  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261120_194139_924234_536EEA4B 
+X-CRM114-Status: GOOD (  11.66  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,75 +111,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+The AST2600 secure boot controller also provides access to its OTP data
+region. Reference the NVMEM provider schema and use unevaluatedProperties
+so common NVMEM properties are accepted while unknown properties remain
+rejected. Cell offsets address OTP data rather than controller registers.
 
-Add an NVMEM binding and read-only access to permitted AST2600 OTP words
-for userspace BMC bring-up diagnostics.
+Signed-off-by: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
 
-AST2600 accesses OTP through shared command and result registers, so reads
-must be serialized. Earlier firmware may leave the macro in programming
-mode, requiring read-mode initialization. The protected prefix can grow
-during operation, requiring live protection checks. A timeout leaves
-command completion uncertain, so further commands are blocked because no
-safe retry sequence is documented.
+---
+Validation: dt-doc-validate and the selected dt_binding_check target passed.
+The binding target used dtschema 2026.4 with a local diagnostic lookup fix
+for trailing # in schema IDs. No validation rules were disabled. Two
+unrelated TI type diagnostics remain; no SBC diagnostics were emitted.
+The valid example passed, and an unknown-property negative control failed
+as expected.
 
-Supplementary design notes:
-https://github.com/prasanthp20/asrock-b650d4u-bmc-support/blob/main/docs/security/ast2600-otp-nvmem-design.md
+ .../devicetree/bindings/arm/aspeed/aspeed,sbc.yaml     | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-Changes since v2:
-- Explain hardware constraints; put test results below the commit separator.
-- Use generic ASPEED naming and named mode-register addresses.
-- Share unlock/relock helpers without mixing scoped locking and goto.
-- Return EIO for unlock failure; simplify pair copying and registration.
-- Drop redundant MAINTAINERS matching, zero assignments and probe readback.
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
+index b8c5cac..d8e19c2 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
+@@ -13,7 +13,12 @@ maintainers:
+ 
+ description: |
+   The ASPEED SoCs have a register bank for interacting with the secure boot
+-  controller.
++  controller. The controller also provides access to the OTP data region
++  through NVMEM. NVMEM cell offsets are byte offsets within the OTP data
++  region, not offsets within the controller register bank.
++
++allOf:
++  - $ref: /schemas/nvmem/nvmem.yaml#
+ 
+ properties:
+   compatible:
+@@ -27,11 +32,12 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+     sbc: secure-boot-controller@1e6f2000 {
+             compatible = "aspeed,ast2600-sbc";
+             reg = <0x1e6f2000 0x1000>;
++            read-only;
+     };
+-- 
+2.47.3
 
-Changes since v1 (introduced in v2):
-- Add the separate SBC/NVMEM binding patch; rename the source and module.
-- Replace double polling with one bounded poll after an initial 1-us delay.
-- Initialize read mode and read CONF0 once at probe; use a fixed keepout.
-- Check the live SEC54 range on each hardware read in confirmed 128-byte units.
-- Simplify word copying with unaligned-safe LE stores; accept empty reads.
-- Adopt scoped mutex locking and managed initialization; simplify Kconfig.
-
-Tested on B650D4U (AST2600 A3) with upstream-based Linux 7.4-rc1:
-repeated reads, cross-pair/final-pair comparisons, 40 concurrent reads and
-a 12-byte ASPEED-derived reference comparison passed. The RAM boot used
-the working OpenBMC DTB and initramfs. The ARM kernel build used W=1.
-
-The selected dt_binding_check target passed using dtschema 2026.4 with a
-local diagnostic-crash fix; no checks were disabled. Two unrelated TI
-type diagnostics remain, with no SBC errors. Host-model range, copying
-and timeout checks also passed.
-
-AI assistance was used for driver revisions, validation tooling and patch
-text, based on the downstream driver, review comments and Neal's guidance.
-Hardware tests were run by the submitter.
-
-Previous revision (v2 cover letter):
-https://lore.kernel.org/all/20261120174440.123487-1-prasanth.padarthi10@gmail.com/
-
-Patch and review history:
-v1 1/1 - original OTP driver and review:
-https://patchwork.ozlabs.org/project/linux-aspeed/patch/20261113034213.158390-2-prasanth.padarthi10@gmail.com/
-v2 1/2 - SBC/NVMEM binding:
-https://patchwork.ozlabs.org/project/linux-aspeed/patch/20261120174440.123487-2-prasanth.padarthi10@gmail.com/
-v2 2/2 - revised OTP driver and review:
-https://patchwork.ozlabs.org/project/linux-aspeed/patch/20261120174440.123487-3-prasanth.padarthi10@gmail.com/
-
-ASPEED hardware clarification - Neal Liu:
-https://lore.kernel.org/linux-aspeed/KL1PR0601MB3986A356BD06F98D0FF9AD5E80792@KL1PR0601MB3986.apcprd06.prod.outlook.com/
-
-Prasanth Kumar Padarthi (2):
-  dt-bindings: arm: aspeed: sbc: Describe OTP NVMEM provider
-  nvmem: aspeed: Add read-only AST2600 OTP support
-
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 
