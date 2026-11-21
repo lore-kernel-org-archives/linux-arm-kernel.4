@@ -2,62 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EA4606A6A3
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 20 Nov 2026 23:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DA5606A683
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 00:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rZKwsYIl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h6gJZopk;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n5GJRzs9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:Cc:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LJpIE8ztP+KbGnnCOb1LC8LShPiTmCttfBKwQc2Yr7s=; b=rZKwsYIl2k8hcvJuINUyJnyIhX
-	oVwUpc9ldNviIHjM8tXA5vb0jBbb1mYaOb1KAPUrHvL2hvhkDoP0kgc8nboZgh0NTmuHdDttMZtu0
-	JEdJMNZFZBghAzXT91DYXG3bdkpy+sI6gi0KKCXUFEfbIoF0ljcxzCzT9Fn4nN4ARurp71TFim+6W
-	Jkpv3TgC1BHF4QjXjlbYebedrB3hGvepTFbl+sSIdajYxue9tWBkigHHxO2cWlQIxjLc+7ZWxYUr2
-	hgdW4o4VGq2BV58FS0qaeU+OTJxuGLPHoPtNG1svr8SFHs1DXqkqz749/MChGicqBB030rh4uxIFr
-	gMfxhz5A==;
+	bh=5oT62WpkqvQG1bllCQZAHu6BEqx9AIMOrpuD6eCPtoI=; b=h6gJZopk/7qL6HKKPQvthDIeUJ
+	QtdKt9uATdsnGQigrA7dEAaCP0+M3BiEsMRz7GkI8dGH83u5JPH3lioz9LR8akIH87yMby1POP38G
+	cXk2JBS0VhxettbC5gvBMSxiZK5AVp/kQkzBqmvBd4WJ+V646pWWvRNi+BvhYZ3D9Rojn3Mp3ori1
+	Ts+38fXJ9nEbVu9i7r7DkECTKn7B3OFZxoms++tTpAcBLv0lVxkS9K3Ry6H7nakFK8NV3T/FcLxGq
+	c7Xkka2AN7VVAjPnVyIAvZdBjHdBjK8QrKfT++w1lgxdooJlecIve9mNX6fj6gDlkOHdFJi1DI1Jy
+	IV1P0BAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUYHS-0000000GRyG-2Biz;
-	Fri, 20 Nov 2026 23:44:34 +0000
-Received: from pidgin.makrotopia.org ([2a07:2ec0:3002::65])
+	id 1xUYYi-0000000GSbo-04N0;
+	Sat, 21 Nov 2026 00:02:24 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUYHF-0000000GRqK-00wS;
-	Fri, 20 Nov 2026 23:44:22 +0000
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256:X25519MLKEM768)
-	 (Exim 4.100.1)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1xUYH8-000000002gK-0Biv;
-	Fri, 20 Nov 2026 23:44:14 +0000
-Date: Fri, 20 Nov 2026 23:44:05 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Alex Bee <knaerzche@gmail.com>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] media: rkvdec: hevc: check the RPS scratch allocation
-Message-ID: <4644e528c71a780a238edb23e41f54f1359e1c3d.1795217229.git.daniel@makrotopia.org>
-References: <cover.1795217229.git.daniel@makrotopia.org>
+	id 1xUYYg-0000000GSbZ-2Aq4;
+	Sat, 21 Nov 2026 00:02:22 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 99E784051A;
+	Sat, 21 Nov 2026 00:02:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43AD71F000CF;
+	Sat, 21 Nov 2026 00:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795219341;
+	bh=5oT62WpkqvQG1bllCQZAHu6BEqx9AIMOrpuD6eCPtoI=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=n5GJRzs9Z485qqcpHhRULwoD0w+4HXDdouFYqJZvFqbNqEtIj/LoieLf/eEa3yf3H
+	 IgFe1HRN4ugJ4jQ2Fxoluy9faWOfAEL432IbD7XmvVvrCJTalonTnP16yaHnPltW+Z
+	 TKQsRpxOvB/MgkzcbF8OfQommkTl0Mqfl2x3WxXgzjinZLPBhVwBjWhdGdJLFh6a8B
+	 qMvHyV0kRA1rW4xKu38/XMpAxjQn4F0yxEWOdmm1euPxzUdY6f0crUEYRU28hhhe9k
+	 PiG7uM5vQ3ornX44PSWB7MZ2+uwiPsmSa0wvqoq3AWYrNDUkWmCcDDbq9cQF90rnAr
+	 qPFCd3H+10CaA==
+Subject: Re: [PATCH net v10 05/10] can: rockchip_canfd: cancel bus-off restart
+ before closing the device
+From: netdev-bot+sashiko@kernel.org
+To: 1579567540@qq.com
+Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol@kernel.org,
+ heiko@sntech.de, socketcan@hartkopp.net, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
+ corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org,
+ wg@grandegger.com, linux-can@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ stable@vger.kernel.org
+Date: Sat, 21 Nov 2026 00:02:19 +0000
+Message-ID: <179521933978.3131.189047644390163242@kernel.org>
+In-Reply-To: <20261119-rockchip-canfd-restart-close-v10-5-df23913aa33a@qq.com>
+References: <20261119-rockchip-canfd-restart-close-v10-5-df23913aa33a@qq.com>
+X-sashiko-severity: Low
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1795217229.git.daniel@makrotopia.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_154421_047773_795A8484 
-X-CRM114-Status: GOOD (  15.84  )
-X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,157 +74,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The buffer for the calculated short-term sets is used without checking
-that its allocation succeeded. Return -ENOMEM and fail the decode job
-in both back ends.
+Thank you for your contribution! Sashiko AI review found more severe
+issue(s) in other patches of this series. This mail is only an FYI, in case
+you want to address the nit picks below when you respin.
 
-Fixes: c9a59dc2acc7 ("media: rkvdec: Add HEVC support for the VDPU381 variant")
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-Changes since v1:
-- Rewrite the commit message
-- No code change
+Low priority / nit picks for your consideration:
 
- .../rockchip/rkvdec/rkvdec-hevc-common.c      | 26 ++++++++++++++-----
- .../rockchip/rkvdec/rkvdec-hevc-common.h      |  4 +--
- .../rockchip/rkvdec/rkvdec-vdpu381-hevc.c     |  7 ++++-
- .../rockchip/rkvdec/rkvdec-vdpu383-hevc.c     |  7 ++++-
- 4 files changed, 33 insertions(+), 11 deletions(-)
+- [Low] The commit message says late restart work (queued by a bus-off
+  IRQ after the early close_candev_cancel_restart_sync() in…
 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-index e3449ab0d415b..80df05bacaeba 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.c
-@@ -329,24 +329,27 @@ static void st_ref_pic_set_calculate(struct rkvdec_hevc_run *run, int idx,
- 	st_rps->num_delta_pocs = st_rps->num_positive_pics + st_rps->num_negative_pics;
- }
- 
--static void rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
--					  struct rkvdec_hevc_st_rps_cache *cache)
-+static int rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
-+					 struct rkvdec_hevc_st_rps_cache *cache)
- {
- 	u8 num_sets = run->sps->num_short_term_ref_pic_sets;
- 	size_t size;
- 	int idx;
- 
- 	if (!run->ext_sps_st_rps)
--		return;
-+		return 0;
- 
- 	size = num_sets * sizeof(*cache->sets);
- 	if (cache->num_sets == num_sets && !memcmp(cache->sets, run->ext_sps_st_rps, size))
--		return;
-+		return 0;
- 
- 	struct calculated_rps_st_set *calculated_rps_st_sets =
- 		kzalloc(sizeof(struct calculated_rps_st_set) *
- 			run->sps->num_short_term_ref_pic_sets, GFP_KERNEL);
- 
-+	if (!calculated_rps_st_sets)
-+		return -ENOMEM;
-+
- 	for (idx = 0; idx < run->sps->num_short_term_ref_pic_sets; idx++) {
- 		const struct v4l2_ctrl_hevc_ext_sps_st_rps *rps_data = &run->ext_sps_st_rps[idx];
- 
-@@ -362,13 +365,22 @@ static void rkvdec_hevc_prepare_hw_st_rps(struct rkvdec_hevc_run *run, struct rk
- 
- 	memcpy(cache->sets, run->ext_sps_st_rps, size);
- 	cache->num_sets = num_sets;
-+
-+	return 0;
- }
- 
--void rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
--				 struct rkvdec_hevc_st_rps_cache *st_cache)
-+int rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
-+				struct rkvdec_hevc_st_rps_cache *st_cache)
- {
--	rkvdec_hevc_prepare_hw_st_rps(run, rps, st_cache);
-+	int ret;
-+
-+	ret = rkvdec_hevc_prepare_hw_st_rps(run, rps, st_cache);
-+	if (ret)
-+		return ret;
-+
- 	rkvdec_hevc_assemble_hw_lt_rps(run, rps);
-+
-+	return 0;
- }
- 
- struct vb2_buffer *
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h
-index f6a3dec6ff4ad..32f192743c8c8 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-common.h
-@@ -71,8 +71,8 @@ void compute_tiles_uniform(struct rkvdec_hevc_run *run, u16 log2_min_cb_size,
- void compute_tiles_non_uniform(struct rkvdec_hevc_run *run, u16 log2_min_cb_size,
- 			       u16 width, u16 height, s32 pic_in_cts_width,
- 			       s32 pic_in_cts_height, u16 *column_width, u16 *row_height);
--void rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
--				 struct rkvdec_hevc_st_rps_cache *st_cache);
-+int rkvdec_hevc_assemble_hw_rps(struct rkvdec_hevc_run *run, struct rkvdec_rps *rps,
-+				struct rkvdec_hevc_st_rps_cache *st_cache);
- void rkvdec_hevc_assemble_hw_scaling_list(struct rkvdec_ctx *ctx,
- 					  struct rkvdec_hevc_run *run,
- 					  struct scaling_factor *scaling_factor,
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-index 8388421a68a48..2a239114759a2 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-hevc.c
-@@ -593,6 +593,7 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
- 	struct rkvdec_hevc_run run;
- 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
- 	struct rkvdec_hevc_priv_tbl *tbl = hevc_ctx->priv_tbl.cpu;
-+	int ret;
- 
- 	rkvdec_hevc_run_preamble(ctx, &run);
- 
-@@ -606,7 +607,11 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
- 	rkvdec_hevc_assemble_hw_scaling_list(ctx, &run, &tbl->scaling_list,
- 					     &hevc_ctx->scaling_matrix_cache);
- 	assemble_hw_pps(ctx, &run);
--	rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
-+	ret = rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
-+	if (ret) {
-+		rkvdec_run_postamble(ctx, &run.base);
-+		return ret;
-+	}
- 
- 	config_registers(ctx, &run);
- 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-index 47f236295f1e5..52554c75f47f4 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu383-hevc.c
-@@ -542,6 +542,7 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
- 	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
- 	struct rkvdec_hevc_priv_tbl *tbl = hevc_ctx->priv_tbl.cpu;
- 	u32 timeout_threshold;
-+	int ret;
- 
- 	rkvdec_hevc_run_preamble(ctx, &run);
- 
-@@ -560,7 +561,11 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
- 	rkvdec_hevc_assemble_hw_scaling_list(ctx, &run, &tbl->scaling_list,
- 					     &hevc_ctx->scaling_matrix_cache);
- 	assemble_hw_pps(ctx, &run);
--	rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
-+	ret = rkvdec_hevc_assemble_hw_rps(&run, &tbl->rps, &hevc_ctx->st_cache);
-+	if (ret) {
-+		rkvdec_run_postamble(ctx, &run.base);
-+		return ret;
-+	}
- 
- 	config_registers(ctx, &run);
- 
+--
+
+can: rockchip_canfd: cancel bus-off restart before closing the device
+
+This patch adds a call to close_candev_cancel_restart_sync() at the start
+of rkcanfd_stop(), so that a running bus-off restart is cancelled while
+the IRQ, RX offload and controller are still available. Echo cleanup and
+the final restart cancellation stay in close_candev().
+
+> A bus-off IRQ can pass the scheduling check before close, then queue
+> restart work after the early cancellation. The final cancellation after
+> free_irq() drains that late work so it cannot survive close.
+
+[Severity: Low]
+Is this explanation complete? Late-queued restart work does not have to
+wait for the final cancel. With a short restart_ms it can run anywhere
+between the early cancel and close_candev().
+
+That window covers rkcanfd_chip_interrupts_disable(), free_irq(),
+can_rx_offload_disable() and rkcanfd_chip_stop_sync(). The final
+cancel_delayed_work_sync() in close_candev() can't undo a restart that
+has already run there.
+
+In that window, only this check in can_restart() stops the restart:
+
+drivers/net/can/dev/dev.c:can_restart() {
+    ...
+	if (!netif_running(dev))
+		return -ENETDOWN;
+    ...
+}
+
+Without that check, the work would reach rkcanfd_set_mode():
+
+	case CAN_MODE_START:
+		rkcanfd_chip_start(priv);
+		rkcanfd_chip_interrupts_enable(priv);
+		netif_wake_queue(ndev);
+
+That check, and the "scheduling check" in can_bus_off():
+
+	restart = priv->restart_ms && netif_running(dev);
+
+both come from the earlier patch in this series, "can: dev: check
+netif_running() before bus-off recovery".
+
+Neither the commit message nor the Cc: stable tag names that dependency.
+The patch only needs "can: dev: add close_candev_cancel_restart_sync()"
+to build. So a backport that takes this patch and the helper, but not
+the netif_running() patch, would build cleanly and still have the
+restart-after-teardown race.
+
+Could the commit message say that late work which runs before the final
+cancel is stopped by the netif_running() check in can_restart()? Could
+the netif_running() patch also be listed as a stable prerequisite?
+
+> diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
+> index 1cae86973da5a..59a79fe057e66 100644
+> --- a/drivers/net/can/rockchip/rockchip_canfd-core.c
+> +++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
+> @@ -758,6 +758,7 @@ static int rkcanfd_stop(struct net_device *ndev)
+>  {
+>  	struct rkcanfd_priv *priv = netdev_priv(ndev);
+>  
+> +	close_candev_cancel_restart_sync(ndev);
+>  	netif_stop_queue(ndev);
+>  
+>  	rkcanfd_chip_interrupts_disable(priv);
+
 -- 
-2.56.1
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261119-rockchip-canfd-restart-close-v10-0-df23913aa33a%40qq.com
 
