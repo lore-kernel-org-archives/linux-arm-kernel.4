@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1E3606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14397606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UwTnFwJm;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=qrMNmfP1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p+AwTUrn;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=UqSRWyKN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5aHo1OGeOfOj5EfMcl+mo+WPC3cWBElxO5fk9EmyHrE=; b=UwTnFwJmkWGfhE
-	i76y+mRKkqvWq3RTRpV7fEBHKcKYo8uFU+D7irW84V/RnA9GAOHwlRVOQgLe5dllDU++f7q2hTv8k
-	l9fLktEv4kbssUELMSI2pl059La6aod23F8d4QYFN9U8+qSpn6+sYYI3J/+LoijaPaf0mQ/H2L7O8
-	5iuCWJB2sUE8Yuhh2fZLV0Uni1b2IQ8Jb0VxqMNOLxPz5OpOHAfEzY4poQtVGT8dRzq71Ep+4kfp7
-	GApgqyFrRjWtPKKQc4T8PMfm87a5hKDIKyOg5lDZLfadoPSlj69SdydkDk4GZGCL/kEe2Ies3D7oW
-	goTh2oFEapuJXb62iTGQ==;
+	List-Owner; bh=7jwAg6WvATTTODw5BkfNj5ph2KGnhaujgXrXzXLvI1c=; b=p+AwTUrnwl1HJ1
+	LZR83mod/npcYGmXYnAQ46MvMatleVikslyCBjOezuhwjzN3tcO2rFVdY+uimI/42J9Ri/y5SrMds
+	cqQdFQK+JfYhwXMo8VtixQ5SmgbjxMv+R9ocFq8M6vpCR96Y3wNdMF4PypUTSMaTsBwxhJ9ekeT6J
+	FKTE03ZuY6dVLvNW/gnD1MRlYYB/YzAacc3+n8gLdjqn9Zk4fu4QvK1B8rQYvWeH8GdYoHJZ58Vsp
+	y5yoYuMjSLjx7oFPw/x6XjdoLqCz6aiypriIK2Sm4Hs94jA+FCZXefXsa/TvtbqHns2x1L/k2lwl9
+	MqTJ1LhzbOIK9yuxk5hA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUukT-00000000VTm-1IXq;
-	Sat, 21 Nov 2026 23:44:01 +0000
+	id 1xUukW-00000000VZb-2Cap;
+	Sat, 21 Nov 2026 23:44:04 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuk6-00000000VFa-3ESR
+	id 1xUukQ-00000000VRp-1qro
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 23:43:40 +0000
+	Sat, 21 Nov 2026 23:44:00 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 42C011575;
-	Sat, 21 Nov 2026 15:43:35 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7A5E31575;
+	Sat, 21 Nov 2026 15:43:54 -0800 (PST)
 Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A70D3F632;
-	Sat, 21 Nov 2026 15:43:35 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 76BF03F632;
+	Sat, 21 Nov 2026 15:43:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795304618; bh=wPGFAz4GR+cJOiQT8ezN/i8t+DmkptVFngiVrZEgm7E=;
+	t=1795304637; bh=MnQJsiSKdVcB2DHJQDYdHnoxWc1fDJi8H7e1i3dp38s=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qrMNmfP1CmXYD/fHdZSTwdes8/kNOYkiMIm1Fy/6yn7xZES/cNbiCbDOmHmrrrfUT
-	 yGOeJtTHQ9T068zNAlex+L5JeHce2HI3FCKlzC9Q1bXmbAUTLrt3RLtUsrx2l9GEdo
-	 MiP+h34ItqDj47URczXU31fEy2skGgeD8jHQeOXw=
+	b=UqSRWyKNEXxum3h7qBwT7yegGewoAv+CA+3a5bzqAeVR1zb4XRZ1OqjvQr7bVUjpU
+	 yp71jCO1yhEMqEcLVcrNVO1CndDv+emlpRLlp0iyfyqG/hChkFmCPBzCSebkyFcICR
+	 JRVMHHhONL0ZtiRe+OOqGGg2AWbCsSFLkDOjcsAI=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -65,9 +65,9 @@ Cc: sudeep.holla@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
 	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v16 04/31] firmware: arm_scmi: Introduce a dedicated SCMI Errors header
-Date: Sat, 21 Nov 2026 23:39:38 +0000
-Message-ID: <20261121234005.1525419-5-cristian.marussi@arm.com>
+Subject: [PATCH v16 10/31] firmware: arm_scmi: Add Telemetry basic attributes enumeration
+Date: Sat, 21 Nov 2026 23:39:44 +0000
+Message-ID: <20261121234005.1525419-11-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261121234005.1525419-1-cristian.marussi@arm.com>
 References: <20261121234005.1525419-1-cristian.marussi@arm.com>
@@ -75,8 +75,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_154338_888825_98750544 
-X-CRM114-Status: GOOD (  15.33  )
+X-CRM114-CacheID: sfid-20261121_154358_863705_6813E410 
+X-CRM114-Status: GOOD (  25.62  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,133 +96,356 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a new dedicated header and move all of the errors definitions and
-mapping helpers into it and out of common.h so that SCMI errors definitions
-alone can be easily included in protocol files without all of the unrelated
-additional stuff contained in common.h
+Add SCMIv4.0 Telemetry basic support for minimal initialization and
+protocol attributes enumeration: expose telemetry instance descriptor
+via a simple information retrieval protocol operation.
 
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
- drivers/firmware/arm_scmi/common.h | 39 +---------------------
- drivers/firmware/arm_scmi/errors.h | 52 ++++++++++++++++++++++++++++++
- 2 files changed, 53 insertions(+), 38 deletions(-)
- create mode 100644 drivers/firmware/arm_scmi/errors.h
+v15 --> v16
+ - ignore groups
+v14 --> v15
+ - add include uuid.h into scmi_protocol.h
+ - dropped needless __must_check
+v13 --> v14
+ - split original basic Telemetry patch, reducing this patch to the
+   basics of protocol attributes enumeration only
+ - fix group unroll loop on groups_init failure
+ - remove goto from de_desc_parse
+ - renamed some fields to more strictly adhere to spec nomenclature
+v12 --> v13
+ - headers includes re-order
+ - rework cleanup path for instance allocations
+ - relocate tde->mtx guards higher up and add lockdep assertions
+ - add more _RAW macros
+ - rename DE_CONFIGURE defines
+ - use *alloc_objs
+ - remove TO_CPU64 and useless READ_ONCEs
+v11 --> v12
+ - dropped counted-by in smhtis
+ - reworked barriers around res_get
+ - added smp_store_release on TDE registration
+v10 -->v11
+ - relocated a few parsing macros from another patch
+ - cleanup exit path on resource enumeration
+ - remove 'naked' ti->rinfo accesses
+ - walk xa_des to free DEs on removal
+v8 --> v9
+ - Fixes for some Sashiko issues on v8
+   - use counted_by_lle where appropriate
+   - consider header in boudanry check in DE_DESCRIPTION iterators
+   - bail out if SHMTI areas are NOT 32bit aligned
+   - warn if SHMTI areas are NOT 64bit aligned
+ - convert SCMI_TDE_VAR_SZ macro to an inline function
+ - make some enum definition explicit
+v7 --> v8
+ - Fixes for some Sashiko issues on v7
+   - add proper msg boundary parsing checks on DE_DESCRIPTION multipart
+   - add proper cleanup/rollback on groups_init err_path
+   - update num_des_tstamp ONLY after a DE is successfully initialized
+   - proper cleanup tde during tde_put (preserving info/mutex bits)
+   - add membarriers in enumerate resources
+   - add a check and a warn on SHMTI phys_addr alignment
+   - reword a few dev_errs
+   - use tde_free_put on resoucers_free
+v6 --> v7
+ - use uuid_t for proper Telemetry UUID DE_IMPL_VERSION endianity
+v5 --> v6
+ - define uuid_line dwords as BE
+ - fixed Sashiko reviews where applicable:
+   https://sashiko.dev/#/message/20260703123601.381275-8-cristian.marussi%40arm.com
+   - fix missing le32 and bound check in variable payload parsing
+   - fix TDE duplicatin logic
+   - fix intervals cleanup - fixes also KMEMLEAK report
+   - implement proper freeinfg for group resources
+   - proper SHMTI iterations
+   - removed useless/stale static in scmi_telemetry_tde_get()
+v4 --> v5
+ - fix de->grp_id initialization for DEs not belonging to a group
+ - removed UAPI structures dependency
+ - expose discovered SHMTIs areas in scmi_protocol.h
+ - fixes sparse warnings
+v3 -->v4
+ - bail-out on FW_BUG errors
+ - count timestamp capable DE to track enables
+v2 --> v3
+ - split from monolithic Telemetry patch
+ - fix checkpatch macros complaints
+ - fix ACCESS_PRIVATE usage
+ - add a few comments on allocation/enumeration lifetime
+ - use interval.num_intervals
+ - removed needless cleanup handler usage
+ - simply return from scmi_telemetry_de_lookup()
+ - fixed composing_des name length to 08X
+---
+ drivers/firmware/arm_scmi/Makefile    |   2 +-
+ drivers/firmware/arm_scmi/driver.c    |   2 +
+ drivers/firmware/arm_scmi/protocols.h |   1 +
+ drivers/firmware/arm_scmi/telemetry.c | 149 ++++++++++++++++++++++++++
+ include/linux/scmi_protocol.h         |  33 +++++-
+ 5 files changed, 185 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/firmware/arm_scmi/telemetry.c
 
-diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
-index af5b025ee072..cdd6f887fae7 100644
---- a/drivers/firmware/arm_scmi/common.h
-+++ b/drivers/firmware/arm_scmi/common.h
-@@ -26,6 +26,7 @@
+diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
+index 780cd62b2f78..fe55b7aa0707 100644
+--- a/drivers/firmware/arm_scmi/Makefile
++++ b/drivers/firmware/arm_scmi/Makefile
+@@ -8,7 +8,7 @@ scmi-driver-$(CONFIG_ARM_SCMI_RAW_MODE_SUPPORT) += raw_mode.o
+ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_SHMEM) = shmem.o
+ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
+ scmi-protocols-y := base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
+-scmi-protocols-y += pinctrl.o
++scmi-protocols-y += pinctrl.o telemetry.o
+ scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
  
- #include <linux/unaligned.h>
+ obj-$(CONFIG_ARM_SCMI_PROTOCOL) += transports/
+diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+index 12c215d04d43..1e2bf1eef2a4 100644
+--- a/drivers/firmware/arm_scmi/driver.c
++++ b/drivers/firmware/arm_scmi/driver.c
+@@ -3683,6 +3683,7 @@ static int __init scmi_driver_init(void)
+ 	scmi_system_register();
+ 	scmi_powercap_register();
+ 	scmi_pinctrl_register();
++	scmi_telemetry_register();
  
-+#include "errors.h"
- #include "protocols.h"
- #include "notify.h"
+ 	return platform_driver_register(&scmi_driver);
+ }
+@@ -3701,6 +3702,7 @@ static void __exit scmi_driver_exit(void)
+ 	scmi_system_unregister();
+ 	scmi_powercap_unregister();
+ 	scmi_pinctrl_unregister();
++	scmi_telemetry_unregister();
  
-@@ -37,44 +38,6 @@
+ 	platform_driver_unregister(&scmi_driver);
  
- #define SCMI_TRANSPORT_DEVNAME_PREFIX	"__scmi_transport_device"
+diff --git a/drivers/firmware/arm_scmi/protocols.h b/drivers/firmware/arm_scmi/protocols.h
+index 50b89c56e309..1aa3ee1fb2b0 100644
+--- a/drivers/firmware/arm_scmi/protocols.h
++++ b/drivers/firmware/arm_scmi/protocols.h
+@@ -409,5 +409,6 @@ DECLARE_SCMI_REGISTER_UNREGISTER(sensors);
+ DECLARE_SCMI_REGISTER_UNREGISTER(voltage);
+ DECLARE_SCMI_REGISTER_UNREGISTER(system);
+ DECLARE_SCMI_REGISTER_UNREGISTER(powercap);
++DECLARE_SCMI_REGISTER_UNREGISTER(telemetry);
  
--enum scmi_error_codes {
--	SCMI_SUCCESS = 0,	/* Success */
--	SCMI_ERR_SUPPORT = -1,	/* Not supported */
--	SCMI_ERR_PARAMS = -2,	/* Invalid Parameters */
--	SCMI_ERR_ACCESS = -3,	/* Invalid access/permission denied */
--	SCMI_ERR_ENTRY = -4,	/* Not found */
--	SCMI_ERR_RANGE = -5,	/* Value out of range */
--	SCMI_ERR_BUSY = -6,	/* Device busy */
--	SCMI_ERR_COMMS = -7,	/* Communication Error */
--	SCMI_ERR_GENERIC = -8,	/* Generic Error */
--	SCMI_ERR_HARDWARE = -9,	/* Hardware Error */
--	SCMI_ERR_PROTOCOL = -10,/* Protocol Error */
--};
--
--static const int scmi_linux_errmap[] = {
--	/* better than switch case as long as return value is continuous */
--	0,			/* SCMI_SUCCESS */
--	-EOPNOTSUPP,		/* SCMI_ERR_SUPPORT */
--	-EINVAL,		/* SCMI_ERR_PARAM */
--	-EACCES,		/* SCMI_ERR_ACCESS */
--	-ENOENT,		/* SCMI_ERR_ENTRY */
--	-ERANGE,		/* SCMI_ERR_RANGE */
--	-EBUSY,			/* SCMI_ERR_BUSY */
--	-ECOMM,			/* SCMI_ERR_COMMS */
--	-EIO,			/* SCMI_ERR_GENERIC */
--	-EREMOTEIO,		/* SCMI_ERR_HARDWARE */
--	-EPROTO,		/* SCMI_ERR_PROTOCOL */
--};
--
--static inline int scmi_to_linux_errno(int errno)
--{
--	int err_idx = -errno;
--
--	if (err_idx >= SCMI_SUCCESS && err_idx < ARRAY_SIZE(scmi_linux_errmap))
--		return scmi_linux_errmap[err_idx];
--	return -EIO;
--}
--
- #define MSG_ID_MASK		GENMASK(7, 0)
- #define MSG_XTRACT_ID(hdr)	FIELD_GET(MSG_ID_MASK, (hdr))
- #define MSG_TYPE_MASK		GENMASK(9, 8)
-diff --git a/drivers/firmware/arm_scmi/errors.h b/drivers/firmware/arm_scmi/errors.h
+ #endif /* _SCMI_PROTOCOLS_H */
+diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
 new file mode 100644
-index 000000000000..e1b265d5c148
+index 000000000000..402d9587046c
 --- /dev/null
-+++ b/drivers/firmware/arm_scmi/errors.h
-@@ -0,0 +1,52 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
++++ b/drivers/firmware/arm_scmi/telemetry.c
+@@ -0,0 +1,149 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * System Control and Management Interface (SCMI) Message Protocol
-+ * header containing SCMI errors definitions and Linux mapping.
++ * System Control and Management Interface (SCMI) Telemetry Protocol
 + *
-+ * Copyright (C) 2018-2026 ARM Ltd.
++ * Copyright (C) 2026 ARM Ltd.
 + */
-+#ifndef _SCMI_ERRORS_H
-+#define _SCMI_ERRORS_H
 +
-+#include <linux/errno.h>
-+#include <linux/array_size.h>
++#include <linux/atomic.h>
++#include <linux/bitfield.h>
++#include <linux/compiler_types.h>
++#include <linux/device.h>
++#include <linux/err.h>
++#include <linux/io.h>
++#include <linux/limits.h>
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/sprintf.h>
++#include <linux/string.h>
++#include <linux/uuid.h>
 +
-+enum scmi_error_codes {
-+	SCMI_SUCCESS = 0,	/* Success */
-+	SCMI_ERR_SUPPORT = -1,	/* Not supported */
-+	SCMI_ERR_PARAMS = -2,	/* Invalid Parameters */
-+	SCMI_ERR_ACCESS = -3,	/* Invalid access/permission denied */
-+	SCMI_ERR_ENTRY = -4,	/* Not found */
-+	SCMI_ERR_RANGE = -5,	/* Value out of range */
-+	SCMI_ERR_BUSY = -6,	/* Device busy */
-+	SCMI_ERR_COMMS = -7,	/* Communication Error */
-+	SCMI_ERR_GENERIC = -8,	/* Generic Error */
-+	SCMI_ERR_HARDWARE = -9,	/* Hardware Error */
-+	SCMI_ERR_PROTOCOL = -10,/* Protocol Error */
++#include "protocols.h"
++#include "notify.h"
++
++/* Updated only after ALL the mandatory features for that version are merged */
++#define SCMI_PROTOCOL_SUPPORTED_VERSION		0x10000
++
++#define SCMI_TLM_DE_IMPL_NUM_DWORDS	4
++
++/* An enum listing the protocol specific commands definitions */
++enum scmi_telemetry_protocol_cmd {
++	TELEMETRY_LIST_SHMTI = 0x3,
++	TELEMETRY_DE_DESCRIPTION = 0x4,
++	TELEMETRY_LIST_UPDATE_INTERVALS = 0x5,
++	TELEMETRY_DE_CONFIGURE = 0x6,
++	TELEMETRY_DE_ENABLED_LIST = 0x7,
++	TELEMETRY_CONFIG_SET = 0x8,
++	TELEMETRY_READING_COMPLETE = TELEMETRY_CONFIG_SET,
++	TELEMETRY_CONFIG_GET = 0x9,
++	TELEMETRY_RESET = 0xA,
 +};
 +
-+static const int scmi_linux_errmap[] = {
-+	/* better than switch case as long as return value is continuous */
-+	0,			/* SCMI_SUCCESS */
-+	-EOPNOTSUPP,		/* SCMI_ERR_SUPPORT */
-+	-EINVAL,		/* SCMI_ERR_PARAM */
-+	-EACCES,		/* SCMI_ERR_ACCESS */
-+	-ENOENT,		/* SCMI_ERR_ENTRY */
-+	-ERANGE,		/* SCMI_ERR_RANGE */
-+	-EBUSY,			/* SCMI_ERR_BUSY */
-+	-ECOMM,			/* SCMI_ERR_COMMS */
-+	-EIO,			/* SCMI_ERR_GENERIC */
-+	-EREMOTEIO,		/* SCMI_ERR_HARDWARE */
-+	-EPROTO,		/* SCMI_ERR_PROTOCOL */
++struct scmi_msg_resp_telemetry_protocol_attributes {
++	__le32 de_num;
++	__le32 groups_num;
++	__le32 de_implem_rev_dword[SCMI_TLM_DE_IMPL_NUM_DWORDS];
++	__le32 attributes_1;
++#define SUPPORTS_SINGLE_READ(x)		(le32_get_bits((x), BIT(31)))
++#define SUPPORTS_CONTINUOS_UPDATE(x)	(le32_get_bits((x), BIT(30)))
++#define SUPPORTS_PER_GROUP_CONFIG(x)	(le32_get_bits((x), BIT(18)))
++#define SUPPORTS_RESET(x)		(le32_get_bits((x), BIT(17)))
++#define SUPPORTS_FC(x)			(le32_get_bits((x), BIT(16)))
++	__le32 default_blk_ts_rate;
 +};
 +
-+static inline int scmi_to_linux_errno(int errno)
++struct telemetry_info {
++	bool streaming_mode;
++	unsigned int num_shmti;
++	unsigned int num_des_tstamp;
++	unsigned int default_blk_ts_rate;
++	const struct scmi_protocol_handle *ph;
++	struct scmi_telemetry_info info;
++};
++
++static int
++scmi_telemetry_protocol_attributes_get(struct telemetry_info *ti)
 +{
-+	int err_idx = -errno;
++	struct scmi_msg_resp_telemetry_protocol_attributes *resp;
++	const struct scmi_protocol_handle *ph = ti->ph;
++	struct scmi_xfer *t;
++	int ret;
 +
-+	if (err_idx >= SCMI_SUCCESS && err_idx < ARRAY_SIZE(scmi_linux_errmap))
-+		return scmi_linux_errmap[err_idx];
-+	return -EIO;
++	ret = ph->xops->xfer_get_init(ph, PROTOCOL_ATTRIBUTES, 0,
++				      sizeof(*resp), &t);
++	if (ret)
++		return ret;
++
++	resp = t->rx.buf;
++	ret = ph->xops->do_xfer(ph, t);
++	if (!ret) {
++		__le32 attr = resp->attributes_1;
++		__be32 de_impl_version[SCMI_TLM_DE_IMPL_NUM_DWORDS];
++
++		ti->info.base.num_des = le32_to_cpu(resp->de_num);
++		ti->info.base.num_groups = 0;
++		for (int i = 0; i < SCMI_TLM_DE_IMPL_NUM_DWORDS; i++)
++			de_impl_version[i] =
++				cpu_to_be32(le32_to_cpu(resp->de_implem_rev_dword[i]));
++		import_uuid(&ti->info.base.primary_revision, (const __u8 *)&de_impl_version);
++		ti->info.single_read_support = SUPPORTS_SINGLE_READ(attr);
++		ti->info.continuous_update_support = SUPPORTS_CONTINUOS_UPDATE(attr);
++		ti->info.per_group_config_support = SUPPORTS_PER_GROUP_CONFIG(attr);
++		ti->info.reset_support = SUPPORTS_RESET(attr);
++		ti->info.fc_support = SUPPORTS_FC(attr);
++		ti->num_shmti = le32_get_bits(attr, GENMASK(15, 0));
++		ti->default_blk_ts_rate = le32_to_cpu(resp->default_blk_ts_rate);
++	}
++
++	ph->xops->xfer_put(ph, t);
++
++	return ret;
 +}
 +
-+#endif /* _SCMI_ERRORS_H */
++static const struct scmi_telemetry_info *
++scmi_telemetry_info_get(const struct scmi_protocol_handle *ph)
++{
++	struct telemetry_info *ti = ph->get_priv(ph);
++
++	return &ti->info;
++}
++
++static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
++	.info_get = scmi_telemetry_info_get,
++};
++
++static int scmi_telemetry_protocol_init(const struct scmi_protocol_handle *ph)
++{
++	struct device *dev = ph->dev;
++	struct telemetry_info *ti;
++	int ret;
++
++	dev_dbg(dev, "Telemetry Version %d.%d\n",
++		PROTOCOL_REV_MAJOR(ph->version), PROTOCOL_REV_MINOR(ph->version));
++
++	ti = devm_kzalloc(dev, sizeof(*ti), GFP_KERNEL);
++	if (!ti)
++		return -ENOMEM;
++
++	ti->ph = ph;
++
++	ret = scmi_telemetry_protocol_attributes_get(ti);
++	if (ret) {
++		dev_err(dev, FW_BUG "Cannot retrieve protocol attributes. Abort.\n");
++		return ret;
++	}
++
++	ti->info.base.version = ph->version;
++
++	return ph->set_priv(ph, ti);
++}
++
++static const struct scmi_protocol scmi_telemetry = {
++	.id = SCMI_PROTOCOL_TELEMETRY,
++	.owner = THIS_MODULE,
++	.instance_init = &scmi_telemetry_protocol_init,
++	.ops = &tlm_proto_ops,
++	.supported_version = SCMI_PROTOCOL_SUPPORTED_VERSION,
++};
++
++DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER(telemetry, scmi_telemetry)
+diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
+index 3f7cc35eb861..f076ce5601cf 100644
+--- a/include/linux/scmi_protocol.h
++++ b/include/linux/scmi_protocol.h
+@@ -2,17 +2,19 @@
+ /*
+  * SCMI Message Protocol driver header
+  *
+- * Copyright (C) 2018-2021 ARM Ltd.
++ * Copyright (C) 2018-2026 ARM Ltd.
+  */
+ 
+ #ifndef _LINUX_SCMI_PROTOCOL_H
+ #define _LINUX_SCMI_PROTOCOL_H
+ 
+ #include <linux/bitfield.h>
++#include <linux/bitops.h>
+ #include <linux/device-id/scmi.h>
+ #include <linux/device.h>
+ #include <linux/notifier.h>
+ #include <linux/types.h>
++#include <linux/uuid.h>
+ 
+ #define SCMI_MAX_STR_SIZE		64
+ #define SCMI_SHORT_NAME_MAX_SIZE	16
+@@ -828,6 +830,35 @@ struct scmi_pinctrl_proto_ops {
+ 	int (*pin_free)(const struct scmi_protocol_handle *ph, u32 pin);
+ };
+ 
++struct scmi_telemetry_base_info {
++	unsigned int version;
++	uuid_t primary_revision;
++	unsigned int num_des;
++	unsigned int num_groups;
++	unsigned int num_intervals;
++	unsigned int num_shmtis;
++};
++
++struct scmi_telemetry_info {
++	bool single_read_support;
++	bool continuous_update_support;
++	bool per_group_config_support;
++	bool reset_support;
++	bool fc_support;
++	struct scmi_telemetry_base_info base;
++};
++
++/**
++ * struct scmi_telemetry_proto_ops - represents the various operations provided
++ *	by SCMI Telemetry Protocol
++ *
++ * @info_get: get the general Telemetry information.
++ */
++struct scmi_telemetry_proto_ops {
++	const struct scmi_telemetry_info *(*info_get)
++		(const struct scmi_protocol_handle *ph);
++};
++
+ /**
+  * struct scmi_notify_ops  - represents notifications' operations provided by
+  * SCMI core
 -- 
 2.54.0
 
