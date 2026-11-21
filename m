@@ -2,113 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2502606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 17:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9C8606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 18:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X4or68eA;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Imk7jC9S
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hIKQf2Bc;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=NQy5ayoe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=md8GbRzRNRYozgNCXp9C52wGnVSgk6I5/bfSCAjMp6I=; b=X4or68eAQPKPeqLC9Rij5eNcBM
-	bhe+GQZ3GAxfcSmV+qFYxiRktVO+clX44Bltsxr/HVlrYOgxv/rHijFSwtKaglbCE/RwBqIOqh0p+
-	/AzQPBMr3oBmh2uwnk5Qp0dO759t+W00VQzS1eqgtsX+nZAz8KkkPdQEGn6jWatfGatuhCNLuO1MC
-	3R8SrFvS+HWAjed9CjsRrWibaRcpEaLACZkotig552pa8TSDiatIRr1q25abohL3gz+lx/dZKk+99
-	xEFLG/szH6Mwp2dK20VHm0nCvmv+Pqs1jfBZFAr0gJMVS/jeai6WVZfDfJODxlGK3T6QT2qcdM/m5
-	wVxe+k5g==;
+	bh=ZjOww6Av4TYuUIUrHXUPGTFtUR3yqkQIr555NuUOYP4=; b=hIKQf2BciD7QiyTNeFRJyu08NH
+	QuDD/mC3gf2af3qzjEqvN4m6mHzqsOP3oVr/2eQqFr+LRxynZMEzj+rxctFga4s4v+tgUI5iH+7D2
+	eY5fSK8iAM1GAGO6e5AYD/olLdpa1trWTwkcdwcSj4E89HYVdik1Uf2IoPEbKCB0eF0tGfN5z/A/q
+	adGxngohMAfl9fCSou/dCou1D0E/uajfU6RD8e8gBL48ZfKOdaiHRp8mrs3Ii03zuaVJMEzkmfBDV
+	P8f2go/rSG7GGE+Dmtwnkoip1HLJpQPbbgzZ2k7/LodswGCKbzO2se1h/0pr6dRFLzgHcUL9OOOSg
+	820biACQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUpJq-000000001g5-2Np7;
-	Sat, 21 Nov 2026 17:56:10 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xUpQR-0000000026C-1ljj;
+	Sat, 21 Nov 2026 18:02:59 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUpJp-000000001fv-3h4B;
-	Sat, 21 Nov 2026 17:56:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 838F343C2F;
-	Sat, 21 Nov 2026 17:56:08 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795283768;
-	b=O6+fmCkAjdi1VhJNVPqpmo6Gg+r2jd2IaGMY9w6TJSfVZjLKuPzn6EK6/dI7pyBtDC2u
-	 m/W7icIjETwSpIcn5FqXpkFP9wzQKv9Z9Vn5EBVhPQmk9l51Ji34ayOdN9iNhIFInuZt9
-	 e0uupMcmS+TaUFZQrkmzkYJhNE9kAq4muAU6HH4vugnImYIJklJs9GzxPfZ/O2AI3WXsO
-	 ul9RkAOx7z2UsHjVGzgn36Itv8gj8s3xDDF8WwhJhg6AsOMwAh2bpPPo+lGPQV6iel5Zs
-	 NtRdBcqjBuxQwiRL5JjP+2DnCIJgfJMhLgH+nmLFxvVksjLbTHkQwVlFyT+TlvVXkaw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795283768;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=md8GbRzRNRYozgNCXp9C52wGnVSgk6I5/bfSCAjMp6I=;
-	b=lBfGKucgIAsxAZCzTS4ndulxyxE73cV9r2P+ApMAVrtLMW/dJisy8jPrQCD2ftcp2zps
-	 /0liGNffMmTFXbBSJUrEzhXJyoo+S3hOTpq1nb6RNJcumC1rl9+ohG+FLgZ79MDWoujNK
-	 epD6A5eLJF/RarNH2K9eEct3533uQ6Bki5uQUbmClORj01n+dJcLY1uSWfOsC4NHCcPbL
-	 jDyo7wEOaqF6frAUEmjdVFHvQ2BSCBcxcwAHx0UfQD1JmaRmmNM2kXGHdTiXIdJPa6AXs
-	 28EJ3eVoKavVuu4GR9xPAQVHzgbfMO2S5U81S0XNjk+vTR3fPZcpwGnmnkqM9IP7q2g==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E37DD1F000C0;
-	Sat, 21 Nov 2026 17:56:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795283768;
-	bh=md8GbRzRNRYozgNCXp9C52wGnVSgk6I5/bfSCAjMp6I=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=Imk7jC9SbEpGJAwppV5RF8Dt92jjD8SJkGQTV+kMeKAuXi+W4aLPugMl3WLw/t4yP
-	 S4zNkXSYisDdPFjWxWO1z97GULzaLAg+mJyzZeX83GP+28skCB8SjbJ5JsWWI2uVsP
-	 azMXROl5Y78ph4mZqpZ8QdY4V6a7/08RPZAteaahh/mvw/ptjGq94IzOopXNm5HFbv
-	 9NIsYC8sTOYopPw0+dolB/xCa1T0HMcHKuojJk2WYIlT7W620UKcD+Wufd8vMDvZoR
-	 xE6Uq+uGF1fvXNSdg+wOqH3uSkKxFPfeOSvEvT3GCUeHsh3vJc2U1SS08WjRmJFM35
-	 g4SyRmf+wgfvQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 448ED4BD31;
-	Sat, 21 Nov 2026 17:56:07 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 19:55:54 +0200
-Subject: [PATCH v2] dt-bindings: gpu: arm,mali-utgard: add mt6572
+	id 1xUpQO-0000000025r-3f0w
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 21 Nov 2026 18:02:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ZjOww6Av4TYuUIUrHXUPGTFtUR3yqkQIr555NuUOYP4=; b=NQy5ayoerTWJL/iw2Dp7R0pY/8
+	9OYzjOKz3wZJGygM/bkvVNRK6RArDIz2w9i8ryW+/3jGc+ENmmttk+4SA12zROqWAiPKx+ezFx6Xe
+	A10j5IRJj8/yXoTScm0agc9zOEk+yptuWcZ8jaCz0lFFE8tHTvpiuizaw3acnuc1d5XY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xUpQ6-000TX2-Q4; Sat, 21 Nov 2026 19:02:38 +0100
+Date: Sat, 21 Nov 2026 19:02:38 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: aiyengar1990@gmail.com
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	LABBE Corentin <clabbe.montjoie@gmail.com>, netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	Russell King <rmk+kernel@armlinux.org.uk>,
+	Nicolai Buchwitz <nb@tipi-net.de>, stable@vger.kernel.org
+Subject: Re: [PATCH net] net: stmmac: dwmac-sun8i: Limit the MTU to one
+ descriptor buffer
+Message-ID: <7dee2bac-9892-42df-b2d3-62d648af3452@lunn.ch>
+References: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-6572-dt-mali-v2-1-1c3925ec7ad1@protonmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNyw6CMBBFf4XM2jFtCS9X/Idh0ZZBxgAlbSUaw
- r8LuHZ5knPPXSGQZwpwS1bwtHBgN+2gLgnYXk8PQm53BiVULkopMM8KhW3EUQ+MpalSI7NKC0u
- wT2ZPHb/P3L35cXiZJ9l4NA6j5xCd/5x/izy8P+lFosTOVKLMVWE6ldazd9FNo+bhat0IzbZtX
- z4eTkK/AAAA
-X-Change-ID: 20260810-6572-dt-mali-8b93b159a0ce
-To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Heiko Stuebner <heiko@sntech.de>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795283760; l=1233;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=yarHUuGiHB5XDU5bIl2bWj8HreokggBNwjoTqcPSgT4=;
- b=aJF+XCEDjuAMvu1RDuLpBiDhOE3GNfJOGS8hGr/Vthvh9jCrPLfytowdDMsZZYu2JMsUjnYUt
- jcgdVQwbtEkDUvOJi/KLujbbBe5DSGFPRFwrlMSUrdInKFA/Sh+RBPX
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_100256_909551_E605649F 
+X-CRM114-Status: GOOD (  12.43  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,51 +80,32 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Roman Vivchar <rva333@protonmail.com>
+On Sat, Nov 21, 2026 at 04:43:41AM +0000, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> Russell King pointed out in [1] that max_mtu ignores the 11-bit buffer
+> size of normal descriptors. dwmac-sun8i always uses them in chain mode,
+> so a frame must fit one buffer, but max_mtu is SKB_MAX_HEAD() (3712 on
+> arm64). Sashiko asked in [2] for this to go in as a fix.
+> 
+> On an H616 the RX DMA fills 2044 bytes of a buffer and
+> ndesc_get_rx_status() drops a frame that spans two. On TX the MAC cuts
+> a frame after 2048 bytes (TX_FRM_LEN_CTL is clear). At MTU 2033 no UDP
+> datagram gets through in either direction.
+> 
+> Limit the MTU so that a frame with two VLAN tags and the FCS fits 2044
+> bytes (MTU 2018). MTU 2019-2026, which worked without VLAN tags, is now
+> refused.
 
-Add a compatible string for the mt6572 Mali-400 MP1 GPU.
+Is this problem specific to the dwmac-sun8i?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
-Changes in v2:
-- Pick Krzysztof's ack, resend
-- Link to v1: https://patch.msgid.link/20260810-6572-dt-mali-v1-1-fb908627bf23@protonmail.com
----
- Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-index c8d0d9192d92..6bdbab82126c 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-@@ -27,6 +27,7 @@ properties:
-               - allwinner,sun8i-h3-mali
-               - allwinner,sun8i-r40-mali
-               - allwinner,sun50i-a64-mali
-+              - mediatek,mt6572-mali
-               - rockchip,rk3036-mali
-               - rockchip,rk3066-mali
-               - rockchip,rk3128-mali
-
----
-base-commit: 8cd9520d35a6c38db6567e97dd93b1f11f185dc6
-change-id: 20260810-6572-dt-mali-8b93b159a0ce
-
-Best regards,
---  
-Roman Vivchar <rva333@protonmail.com>
-
-
+   Andrew
 
