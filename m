@@ -2,90 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68BC5606A33C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE54606A682
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 11:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=plTAzlY+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NgztXGew
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=asycUZ17;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hG4tA7U1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=b1A7CQxVGCFXC/DgIuwJEaO3717R9dNjpDHXvR+r1SA=; b=plTAzlY+2RtlsUjfUY9nq3lUoF
-	3tzIucR6JTm2FPpSHRsFHRDV6i7gfRtWxoWdTiwmpOBmZ3kl8WY0J6V9TXEaI4NaV8eEinLvQ6bKd
-	/RSBhAnDlfPeDow0rTXD3eF9kknQ95KJleuEpGT2JiMU1anY+X67nR4eLS0iLfg8d9D72YzjPQPXj
-	K3DfUkwJri7mi+EjjqtRnG7ZRMjLlQizrpERrfl2pzpF3RW6xMSLvBnkCQ0NlqJu5hu4Gs1p+ZWU+
-	LBATOAUpXBrv8qVf56X9EH9VFKVbabN/N6G/KxiAORRCBSdHo7XidyWuvQ00fnHPCM0kMenLfZx37
-	T8ra0X8w==;
+	bh=z4JW42X5iD/lJnTftpanyIMbBetfqY4zpOSQ2Qgitb0=; b=asycUZ17j/XocN3HVFxxWjjAtg
+	khYV2d3YH1JJSb7IuRHD+KpnTJfsgwzjvSgkPRYVa7pVnMKpQ4YFWUN/NuurSIzbDmGc0MHJVRIPV
+	Ve+fqBVXuuVBwx33SPHTC8CBxd5OwvoZ5ICpQxFSMroWZL7lPPs9Usm97COHnibt5ZuKsvfQ2VPKj
+	XtsV4es07go+HXwuHBOPsHulEYx/J+azf8DUuL1PqP6sRQ6Q24wHMqFOqfscwZD7Y3N5t40JcvCzF
+	AGSmpnRuHcbuyZYo9teiglwP+azIS52u6Dm5SBDK7Y0oYi02gqX87/C/n9l+B1dQOFtthn0PDNnx5
+	CG1vzaxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUjWK-0000000H7AZ-2BVs;
+	id 1xUjWK-0000000H7Am-2d08;
 	Sat, 21 Nov 2026 11:44:40 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUjWJ-0000000H7AM-1MEo
+	id 1xUjWJ-0000000H7AL-1MGu
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 21 Nov 2026 11:44:39 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1515242E20;
-	Sat, 21 Nov 2026 11:44:39 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id D336242270;
+	Sat, 21 Nov 2026 11:44:38 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795261479;
-	b=aJAdokKFQlAu2wJaU7vg6X7Nc+1tWg/7odlT/zOOnRsItROcMG7z74M23pMRP3MCRQwE
-	 QdS21/K9n4U/96uFZlWsvXKYKHSxG3GrFkA2s4w9fHc3GCcRhdwtpuSA65YOgezs9TW34
-	 ZUdAmXo8VLobAGxRk0czx7aivUNRyeqjAud6onWcRsM8l7MfgZ8b8xI1FF6454haUoNQI
-	 qgtf8UGeNp5dw6MynJUJ4W+6N4ArxrhRQRV99/kFsDA5hbq2KVUQW8bCLEf3dtyLHC3bB
-	 rwYnwj/9VmG5l7GXKR3zCEO5pZE7THmFD24/1VdfzhOltS1d83JIj3Dqy1L+y3njBeg==
+	t=1795261478;
+	b=uALm5KJzgwKrsxj86Ewd/BB/PPu43Ym+ybdgqF9u2lpeekfM6hqfMFRukwqrS9O1/EGc
+	 JfYX50Vgy8NL0yxucpkoIwdsQA9HtIrk4JLVOLnbn7Z5BHTXCGmkb7f9JpeCbKcyxCMe3
+	 SeG6GfIkOHaoxYQXuvCigNY6cvEO2cpL7p9MdwGWZ+pVPgekXG8BJ+l1ojYEzyE48q0Dw
+	 QELrY/9Ud+8r0lgtufjQwkisLm65v/7oQbRq+H6gqlsyg95YJU+IfQ+lMGbQAppBeLqm2
+	 tGluVppbVCEiVKCaRIG+eaZKQTt1ZZGId7ew+6+XDPvg43Z/lmA3Ag9QBY/hH8xFe/w==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795261479;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=b1A7CQxVGCFXC/DgIuwJEaO3717R9dNjpDHXvR+r1SA=;
-	b=A+X2O5V4OmrJyEPIN2X7A21XQDHr0xPnh+g7KPh9dPx0tCR0/vzY8Cd6VtTqCrfw7sAC
-	 c464F3I+aFwFGT4+H3SUcsT1KEpFnaT+r3I8U6vbEBKwrB7YDNkIzyxHixltpr06zRci5
-	 srJ9cTvv5DFBTN0zXpDSxjIdzpjQSM+D2nhOqBl0DrC9Oqzvk81ky4q3LoBZbw2Z9a9RV
-	 NxiwysluAV9uNN0mHfgJgrWS6bH2N5ei2BxDDFcVCozhU4WK1+Iy2vZjDaSTX13U3Rgck
-	 uN+9u0BaBroCaFcl2G3XHUbkz+rct82sszbEgOeYsCnt75+tcHx0/1rwf7tO4gOZesg==
+	c=relaxed/relaxed; t=1795261478;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=z4JW42X5iD/lJnTftpanyIMbBetfqY4zpOSQ2Qgitb0=;
+	b=vwVbYFNSRwo+upsboOGlJG04bJI6++GkrKGurmGvP0irCYcEvp49gCQkQKHvTiXDlqgC
+	 OuwHNlIxlWcubL4zZgRoDYQLTaxZtn2ks2Ayfppap9v6xBrf9TfB+qVhZ8o26WKNWMuEc
+	 xXDeUaUYLPCJ/Rc12EhqndXDXyWxNptzwfBsYuL3/BqZRCt99clfZLgKspNUkemQJ3y5H
+	 14FqNUe6/vBRdv7w4+PoPyeNDyFJ7V1sE13aE6HeWVhFg42e5O6+FNjdQ4bIHuZ8E76fa
+	 T+UJu0ypW9s7YDWNJ2iPHRGDWx2Kmqgt4CKRz/5TEyysFCo3CPTzlLuI3HOJfZUW2BQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 23E6E1F000C6;
+	by smtp.kernel.org (Postfix) with ESMTPS id 23DC01F000C0;
 	Sat, 21 Nov 2026 11:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795261478;
-	bh=b1A7CQxVGCFXC/DgIuwJEaO3717R9dNjpDHXvR+r1SA=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=NgztXGewUOHcHS2gXBsa/In+u0drlrQALG/NAbCydGu6MEQWDfTnjvjWwgjxbfKsd
-	 c87BATqaKxUurwtDTfoymAFdeZovzg68qjIH5gkJCUJjcHVNXKBlDMCB5N/QMUItMN
-	 7mClcO+8v+RdGNSTlpE7RQLisjdJ5zAlDcXRK0SHHDeHmq3Afin4SHh25qMuXtEN/S
-	 ydgLmOmA6las+v4Y6sAG1iSe67dXBCOwq5Gr7oXeCECOgbr36fw13Vxtr5L6PwYsfu
-	 0EOlwQJf5V51EgkeGrsiT3rAZUchMatND2MA6az+r/2ryNbyyjwNTlnH7wEoL8GFtN
-	 qI3EvSi69fX0w==
+	bh=z4JW42X5iD/lJnTftpanyIMbBetfqY4zpOSQ2Qgitb0=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=hG4tA7U1XjdRNvjqIJ/tmZM3DlC4dWUbfdq++1JCKQBQMzpbzjrFPd9SzT3td3gDv
+	 Hjzc9ySt2v1WSXqaSoFmmPxfQn9K9WJVYkcqGTPe0vQ/AhKyBwWzzM4QM/f9SKavSo
+	 Szphjdd8pRwupXo9pHkElWoLBO+XTn2JQ74d6K5kVkB+B8wxE0VcwA37BlqrKn/R+v
+	 C2S7+K+4FEJ6dd8OFW7VQ1TpInHpqIR8UBNPx0cLeMbdppmhDcLccmVX4aNf/l8+wm
+	 Sa2nJohzWcO6aTeYnUWNgECYR9Sf85+k807BSuRKc3va+K1LwbavaWfLAraIUQjQNS
+	 Ij8qxiE5sATbA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6CFFA4BC14;
+	by lkml.kernel.org (Postfix) with ESMTP id 8EAAC4BC0F;
 	Sat, 21 Nov 2026 11:44:37 +0000 (UTC)
 From: Michael Reeves via B4 Relay <devnull+michael.reeves077.gmail.com@kernel.org>
-Subject: [PATCH 0/4] arm64: dts: apple: Add CPU frequency scaling and OPPs
- for M3 family
-Date: Sat, 21 Nov 2026 11:42:45 +0000
-Message-Id: <20261121-m3-cpufreq-opp-v1-0-42a0c07c48a4@gmail.com>
+Date: Sat, 21 Nov 2026 11:42:46 +0000
+Subject: [PATCH 1/4] dt-bindings: cpufreq: apple,cluster-cpufreq: Add M3
+ family compatibles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ5AMBBA4avIrE1iKvF3FbGgBiNBtYhE3F2x/
- BbvXeDYCjsoggssH+JkmT0oDEAP9dwzSusNKlIJkSKcYtRm7yyvuBiDnLR5XGcpadWAj4zlTs5
- vWFa/3d6MrLf3Avf9AEyN2ORyAAAA
-X-Change-ID: 20261121-m3-cpufreq-opp-e6d93a871c2b
+Message-Id: <20261121-m3-cpufreq-opp-v1-1-42a0c07c48a4@gmail.com>
+References: <20261121-m3-cpufreq-opp-v1-0-42a0c07c48a4@gmail.com>
+In-Reply-To: <20261121-m3-cpufreq-opp-v1-0-42a0c07c48a4@gmail.com>
 To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
  Neal Gompa <neal@gompa.dev>, "Rafael J. Wysocki" <rafael@kernel.org>, 
  Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -93,19 +90,19 @@ To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
  Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>
 Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Michael Reeves <michael.reeves077@gmail.com>, 
- Yureka Lilian <yureka@cyberchaos.dev>
+ linux-kernel@vger.kernel.org, Michael Reeves <michael.reeves077@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795261476; l=1447;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795261476; l=1356;
  i=michael.reeves077@gmail.com; s=20261107; h=from:subject:message-id;
- bh=Z4dkI5W8ztcVVMZtoORCNmVF+rOWhXkyUMdCS0a0i44=;
- b=t80PuFuDSmNmGuacvmqav0HLdW2brvX/rTQ/9inPNlLwQ+4JX35v137vUTAnctOTUad6XDxos
- +BOIFd5rjeIBFeAKeG33k90EUkLBj13Cbnf5EYbobgOsD0LHfGTZRdC
+ bh=+HvmgCEavFBOajIqGH23VOYZLXgPd/UuvSVcHqeHPKw=;
+ b=HljbQapLWB7r5SkMx2ZT1MQOvMAUVgBZEuBpZJ8vSJSusfQ4dKa1q873lhCb4troGRZzZnRTk
+ +qOmoZ1FalRDcEDSgBZ14cbXYFifDp3Mhs4BtnjYhnJV/O9eTN5Xyau
 X-Developer-Key: i=michael.reeves077@gmail.com; a=ed25519;
  pk=ykwkLcuByJYb/cdLc2UuoYP03pIzwrscEZg30+4tJL8=
 X-Endpoint-Received: by B4 Relay for michael.reeves077@gmail.com/20261107
  with auth_id=1442
 X-Original-From: Michael Reeves <michael.reeves077@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,49 +122,43 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi folks,
+From: Michael Reeves <michael.reeves077@gmail.com>
 
-This series adds CPU frequency scaling support, operating performance
-point tables, and asymmetric CPU capacity values for the following 
-Apple M3 family SoCs:
+Add compatible strings for the Apple M3 family cluster cpufreq
+controllers:
 
-- T8122 (M3)
-- T6030 (M3 Pro)
-- T6031 / T6034 (M3 Max)
+- apple,t8122-cluster-cpufreq (M3)
+- apple,t6030-cluster-cpufreq (M3 Pro)
+- apple,t6031-cluster-cpufreq (M3 Max / M3 Ultra)
 
-On T6032 (M3 Ultra), the cores on the first die inherit this support
-from M3 Max, however those on the second are not supported yet.
-
-This series is based on apple-soc/dt-7.5.
-
-Thanks,
-Michael
+All three are compatible with the M2 (T8112) cluster cpufreq controller
+and fall back to "apple,t8112-cluster-cpufreq".
 
 Signed-off-by: Michael Reeves <michael.reeves077@gmail.com>
 ---
-Janne Grunau (2):
-      arm64: dts: apple: t8122: Add CPU frequency scaling and OPPs
-      arm64: dts: apple: t6030: Add CPU frequency scaling and OPPs
+ .../devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml          | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Michael Reeves (1):
-      dt-bindings: cpufreq: apple,cluster-cpufreq: Add M3 family compatibles
+diff --git a/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+index b51913a81791..516216cb6ad6 100644
+--- a/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
++++ b/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+@@ -36,7 +36,11 @@ properties:
+           - const: apple,s5l8960x-cluster-cpufreq
+       - const: apple,s5l8960x-cluster-cpufreq
+       - items:
+-          - const: apple,t6020-cluster-cpufreq
++          - enum:
++              - apple,t6020-cluster-cpufreq
++              - apple,t6030-cluster-cpufreq
++              - apple,t6031-cluster-cpufreq
++              - apple,t8122-cluster-cpufreq
+           - const: apple,t8112-cluster-cpufreq
+ 
+   reg:
 
-Yureka Lilian (1):
-      arm64: dts: apple: t6031: Add CPU frequency scaling and OPPs
-
- .../bindings/cpufreq/apple,cluster-cpufreq.yaml    |   6 +-
- arch/arm64/boot/dts/apple/t6030.dtsi               | 228 +++++++++++++++++++++
- arch/arm64/boot/dts/apple/t6031-base.dtsi          | 213 +++++++++++++++++++
- arch/arm64/boot/dts/apple/t6031-dieX.dtsi          |  21 ++
- arch/arm64/boot/dts/apple/t8122.dtsi               | 210 +++++++++++++++++++
- 5 files changed, 677 insertions(+), 1 deletion(-)
----
-base-commit: 477f3d0f46b0d885f162a64d13ca51e2f7afa542
-change-id: 20261121-m3-cpufreq-opp-e6d93a871c2b
-
-Best regards,
---  
-Michael Reeves <michael.reeves077@gmail.com>
+-- 
+2.56.0
 
 
 
