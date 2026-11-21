@@ -2,113 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA717606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 21:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCD2606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 21:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aQ52SRjX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KAIF3k7k
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J172+JJb;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=byGxwCUu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ZogHg7F2r1KKspZv8agum3WlkUtYxRkISXz130hGnsM=; b=aQ52SRjXQTtOzxv5/owjht+mmK
-	OhtLfvZPOyOEZq9InNwiC3EuEtRKCWshn5+p7aGczeFv5987eupUm0fjUB3/jaZBoQK68T6Wdyct0
-	C0+GKGIYXt7X6CNSUXes0pl3oVNdP5cKI1agrtd0Zrv7LMXI6yjZ2syoYjE65+2HfZ/xY+lCWIOIi
-	RzHw6zwIshrbKwURVI0NqK0Ij4GtfKQ9A57rN5MjnXizjXx+83lYvNi4BMG+MYVmiguFvkRmhjgUC
-	QO0L54FNY6KeUCGi+8onWUrKhRvyQolV7HZ/SBUf3WHr5YKN8QX81/DNNBHK9zfvt0zdmrYwY8Ojg
-	6I2tkBxA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=7eXrGkj05XJIeWdMg8bWi/sqvFudK/TAUg1y65LM1tg=; b=J172+JJbqDxqiO
+	eN+/RmyOlIWq7xsjKdMhpLRQqVM9YYijtcjPJvRZK9E0MDhs5yXzJ2ryRrR3zWn81VMpq0LkPsmbE
+	m9Ar4AyS344kLPBWusDGc0H/OsFY+mev0P+sqvhA3iUx4R2LvOqP/6IgR+jN2Li2VWEW+df2oGSkG
+	u4I8zTQh3lW4Cvb//eUhQa0FRPPWvasiwd95dAPFvYDubvjeprIW0Zh5MI1vZaeKzQdfQbIf53ew4
+	gRY5RvzeC4G1M71sy0rgHCPkYqnq3KTMqjsHUW2BltDw3zsTLusXF8OVhimhDtZnTGzOmj5KYXTYH
+	0okzQhX8XnxPoGDgABJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUsEL-00000000Ihn-1oiz;
-	Sat, 21 Nov 2026 21:02:41 +0000
+	id 1xUsRT-00000000K9L-12KG;
+	Sat, 21 Nov 2026 21:16:15 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUsDz-00000000IUV-08GP
+	id 1xUsRQ-00000000K95-2Loy
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 21:02:19 +0000
+	Sat, 21 Nov 2026 21:16:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C0CF545A44;
-	Sat, 21 Nov 2026 21:02:18 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795294938;
-	b=H7MUdZJq71+OlTgZeo5/siqKCn4GzqHzSGAE9whSyvirQghB16NgsapYBWtTrM70mcQC
-	 NlBw9hhXUdhYuwh7nQ5j/lcVM9dSjy+CQOLoKNsjBXWqWIy3MNyu/p270+ma0vk4++gJC
-	 CyeSjza7o2XVIUtyRc9d7FZ8kqmSi47W6rO9ECD8N5oOWtdIjX7rYgVyIZdFZE8xnrCAS
-	 ClJ7TchykKQFkUsceOcUEujGXHo/XEFpOBn8EOJiXwUcNcjXs+Q9FqDBYU3YBFN7qr9Gr
-	 FnFYRSsJ74goL0c6hEIIIyX9bLTDjEpOUX1RlYcRuTI7mLdy/isQZBHeqn9Jql+DxSg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795294938;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=ZogHg7F2r1KKspZv8agum3WlkUtYxRkISXz130hGnsM=;
-	b=JrQmQ2RUpU/0nCOjIyHLY/qlKySG080ZPhVcul2AHfxlZcp+BSZIM7K6UNwdyW0EHDIF
-	 draAJvX8GrUQEKDom+WeLn12oEv2MALR0LgcdsWmfZ7eytXphPaKqzuPVFc59ZWcR579C
-	 XvV8yr4WyY22UfToItMi7EQD6+n0cONhRxbvpVASUP5o9ouK2xIqzz/b7ON1MNI3C/7AX
-	 aLRtbdaZ9gBJ5iRVRi8xUAapsQg3DD/PsCMNuH2yIIFhQ122qyg+GyEuWBwQcdpBPxKn/
-	 J73edajbOrQ61HBTpdLrddFptG+0nWRcDS6UPgDnmKQm+m3gWOVvMNO/WOOyo6g9pWw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 0CC8A1F000D3;
-	Sat, 21 Nov 2026 21:02:13 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1628644755
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 21:16:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBEF21F000F2
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 21:16:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795294938;
-	bh=ZogHg7F2r1KKspZv8agum3WlkUtYxRkISXz130hGnsM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=KAIF3k7knTsx/UDWqyAsCwr5/hMAyEQU5zgXJZ4kzUirPcEUuX3sbdCa42UNb2dU6
-	 +L+lUSsW+10omo8JAwRMSJaweaHGAUUtkMJTSc9lLQgjywIyVSmKwRtAq4tRo+8NNO
-	 nLG4vBy7gLUmUTcTDKtcgbSog1bgEqiWGXCsjkfgUkx96TucxcuoqFWg/HdNvFpQl1
-	 Peu7gfi6pQ4V0IBfvAWUc4Ri1Ve5CYGGe13c6kLgZIbbuw6288gUhZZ+lEmEhUypkO
-	 kA5OvHtiLsfDDYFZZSIgGdsjlEsOEJGyAU5q+31GsHWIfir529wOCTYxvtvJIRmTIJ
-	 0UgMYtbnKFQIw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C88844BDBA;
-	Sat, 21 Nov 2026 21:02:11 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Sun, 22 Nov 2026 00:01:51 +0300
-Subject: [PATCH v8 06/10] dt-bindings: serial: Add Cortina Systems CS7542
- UART
+	s=k20260515; t=1795295770;
+	bh=7eXrGkj05XJIeWdMg8bWi/sqvFudK/TAUg1y65LM1tg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=byGxwCUuh5O87gOGC39H5SQNQxs1CDkdy0T3fQo/SjrYp6oHt/UkzZaFQEhu9iHuQ
+	 enNmWGbZFz+D7B4BNdeAx7DhShQxOMhmHptAOssaOPHVKpv2tYPbeknGi/q7FkvRN1
+	 ADE/exyhF4Az4ygBI5TL0tMWcOgWpzGjygQmNDvk4ZwtPnRECU/BBTV/lNmD7NAAeh
+	 /ABWstb7KW9HwTHm5lW1fhSxw2pOM9g1YNQr+T/Vle649Zzyb/TD+2eBTlNUzvnQvx
+	 2kJdQh9uy8q4yzsEFDpe15cYvwmGcqSjXyepL7e4lLIKQrRK+Jk1dhJ1oGt9huphvW
+	 Uhhcx8LbwBlvA==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5c1465bbbdaso1779925e87.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 13:16:10 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGwz0/v3NTmWe/BM5qPF7JHmegth7AO7YegKAn8oVylubCt/PAyBRrKN5sbL5pJa9FtbxbxE772IQY/jBCvils8@lists.infradead.org
+X-Gm-Message-State: APuU4Z/DMKUyP1+Os0OJCNfGEdfBMIGpLMx2REljYcQi8SBiaKjqA2kI
+	7fX0FD1LLvehK060GVJ9+xbxMrKnR14eh3WuTi2e+N8iXKdA+Esa1eLdJtudf+bzSTAZY+P7GQx
+	Oty6ko8/Qlqj5cbQ8L0nRmXX2FgoEz9A=
+X-Received: by 2002:a05:6512:3087:b0:5c1:4974:c159 with SMTP id
+ 2adb3069b0e04-5c1bc8cc90cmr2071934e87.55.1795295769485; Sat, 21 Nov 2026
+ 13:16:09 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261122-b4-cs75xx-v8-6-5f971b0dc69c@gmail.com>
-References: <20261122-b4-cs75xx-v8-0-5f971b0dc69c@gmail.com>
-In-Reply-To: <20261122-b4-cs75xx-v8-0-5f971b0dc69c@gmail.com>
-To: Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linusw@kernel.org>, 
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Drew Fustini <fustini@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- Jason Li <jason.li@cortina-access.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Fil Dunsky <filipp.dunsky@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795294929; l=2007;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=4OEni5PfKeJ3reVZQoQVj435vRxLkT5dV42lrfoFdbA=;
- b=A5bVd1PoCpW5njZSQnlc7ul9KKp4EEyhLN0eAaQlaTxLhgdS4r4JQw9bjgaiLXxlczmDzYQxp
- HBGYlLkYxmAD48JQ3gvYlglHPHeDtTnyhtn7tg+dWnjsGXAg3owAqfZ
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
+References: <20261015142552.4128028-1-ryan.roberts@arm.com> <20261015142552.4128028-5-ryan.roberts@arm.com>
+In-Reply-To: <20261015142552.4128028-5-ryan.roberts@arm.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Sat, 21 Nov 2026 22:15:56 +0100
+X-Gmail-Original-Message-ID: <CAD++jLnVu-nLi34mZT_wuJAHqgupgBT5A1jBUfScn81wuY3UCg@mail.gmail.com>
+X-Gm-Features: Aa3M54ro2NNB4LQvH-Q4GEm3pg_4771RV__twhnRQdUNcV3HdQO1On99ooANozQ
+Message-ID: <CAD++jLnVu-nLi34mZT_wuJAHqgupgBT5A1jBUfScn81wuY3UCg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 04/15] misc/arm-cla: Probe firmware-described devices
+To: Ryan Roberts <ryan.roberts@arm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,89 +83,141 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Hi Ryan & Jean-Philippe,
 
-Add the binding for the UART found in the Cortina Systems CS75xx
-(Goldengate G2) SoCs such as the CS7542.
+thanks for your patch!
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
----
- .../bindings/serial/cortina,cs7542-uart.yaml       | 52 ++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+I see this framework is (ab)using platform_device, and Greg has many
+times pointed out that he doesn't like that, and I don't like it either,
+so I'm gonna complain about that.
 
-diff --git a/Documentation/devicetree/bindings/serial/cortina,cs7542-uart.yaml b/Documentation/devicetree/bindings/serial/cortina,cs7542-uart.yaml
-new file mode 100644
-index 000000000..2879a7188
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/cortina,cs7542-uart.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/cortina,cs7542-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina UART
-+
-+maintainers:
-+  - Fil Dunsky <filipp.dunsky@gmail.com>
-+
-+description:
-+  The UART found in the Cortina Systems CS7542 (Goldengate G2) SoC. It has
-+  transmit and receive FIFOs and a 24-bit baud rate divider running from the
-+  peripheral (APB) clock. Other SoCs with the same block, the rest of the
-+  CS75xx family and the Cortina Access parts, are to be added with their own
-+  compatible string and "cortina,cs7542-uart" as the fallback.
-+
-+allOf:
-+  - $ref: serial.yaml#
-+
-+properties:
-+  compatible:
-+    const: cortina,cs7542-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    serial@f0070110 {
-+        compatible = "cortina,cs7542-uart";
-+        reg = <0xf0070110 0x30>;
-+        interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&apb_clk>;
-+    };
+On Thu, Oct 15, 2026 at 4:26=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
+ wrote:
 
--- 
-2.53.0
+> +static int cla_of_to_cpu(struct device_node *of_node)
+> +{
+> +       int cpu;
+> +       int ret;
+> +       u32 cpu_phandle;
+> +       struct device_node *cpu_node;
+> +
+> +       if (!of_node)
+> +               return -ENODEV;
+> +
+> +       ret =3D of_property_read_u32(of_node, "cpu", &cpu_phandle);
+> +       if (WARN_ON(ret))
+> +               return -EINVAL;
+> +
+> +       cpu_node =3D of_find_node_by_phandle(cpu_phandle);
+> +       if (WARN_ON(!cpu_node))
+> +               return -EINVAL;
+> +
+> +       cpu =3D of_cpu_node_to_id(cpu_node);
+> +       of_node_put(cpu_node);
+> +
+> +       return cpu;
+> +}
+> +
+> +static struct cla_dev *cla_dev_alloc(struct device *parent, int cpu,
+> +                                    void __iomem *regs, phys_addr_t base=
+)
+> +{
+> +       struct cla_dev *dev;
+> +
+> +       dev =3D devm_kzalloc(parent, sizeof(*dev), GFP_KERNEL);
+> +       if (!dev)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       dev->pfn =3D __phys_to_pfn(base);
+> +       dev->regs =3D cla_get_regs(regs, cla_kernel_pl);
+> +       dev->cpu =3D cpu;
+> +       dev->dev =3D parent;
 
+Why is struct cla_dev just a hollow thing without it's own
+struct device? This is free-riding on the parent device, which
+seems odd to me.
 
+Should you rather have:
+
+struct cla_device {
+      unsigned int cpu;
+       void __iomem *regs;
+       struct device dev;
+
+^ Not a pointer
+
+       unsigned long pfn;
+       unsigned long pg_offset;
+       struct cla_domain *domain;
+};
+
+Instead of first creating platform devices, then spawn this
+hollow struct cla_dev from the platform device, what about
+just creating struct cla_device directly from the beginning
+if the platform_device has no real use?
+
+> +static int cla_probe(struct platform_device *pdev)
+
+Why send in a platform device here at all, just create the
+cla_device and pass this in here instead. It does exist
+right?
+
+> +{
+> +       int cpu;
+> +       void __iomem *reg;
+> +       size_t reg_size;
+> +       struct cla_dev *dev;
+> +       struct resource *res;
+> +
+> +       /*
+> +        * TODO: the firmware maps this as well to access PL3, and the gu=
+est
+> +        * will map PL1 and PL0. Avoid TLB attr mismatches by only mappin=
+g what
+> +        * we need.
+> +        */
+> +       reg =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+
+And register resource to &cla->dev; etc.
+
+> +static int __init cla_module_init(void)
+> +{
+> +       bool driver_registered =3D false;
+> +       int ret;
+> +
+> +       /*
+> +        * For now, we reject any CLAs discovered via FW tables, whose CP=
+U is
+> +        * offline during init. This keeps things simple by allowing us t=
+o probe
+> +        * all HW at init time. Keep the online CPU set stable so that th=
+e
+> +        * cpu_online() check in cla_probe() is consistent with the onlin=
+e cpus
+> +        * when we call cpuhp_setup_state().
+> +        */
+> +       scoped_guard(cpus_read_lock) {
+> +               /*
+> +                * CPUs may be hotplugged, but all CLAs are described by
+> +                * firmware so the probe can be synchronous. This only se=
+ts up
+> +                * the resources, and CPUHP callbacks do the actual peeki=
+ng and
+> +                * poking. This returns an error when no CLA has an onlin=
+e CPU.
+> +                */
+> +               ret =3D platform_driver_probe(&cla_driver, cla_probe);
+
+Create your own cla_driver for cla_device instead.
+
+Yours,
+Linus Walleij
 
