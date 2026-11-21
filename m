@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7321F606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE01606A334
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=un2iCExj;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Qa8m6wdW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eX677wFP;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=KzBHSe/X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ybksNdKGZwcUybmuPou+wEJRhGtFCZ9Lfc93sClRt68=; b=un2iCExjqt8MkD
-	P1HN2y4eFmdIv3yl3YJZnilSM3OltwLoHCDZiMM6jvwrGUeK8usdQoxeLyUprMp6gTLTn1CBUTVA5
-	C4YjwecQKHOhzQ3Lwfxy6R860KV1aMa/BpHVVIqQyq7qKGZbdueDxLhzUTOrjGVllNDj/Mol6Po3H
-	pcVqgfwCmAYsz6LZQMt1AqG/xYVCGK2bwiiHDc7EOsyMXT2STwBV8HRZZJaPzA7KQ9Whf04xPMIX/
-	5lMvHg1MFS4fWlFsHWr6DK1gcrDfr7psF9YLSpotBvmonEnIdk/rnkOrxc3LXzMCNM9acgjddz7WI
-	B+djCIhC7onnUBEfNnew==;
+	List-Owner; bh=bqq8tdBHE7PY5lGg3anCtrKLQXzps/O+HDy/opBt6hY=; b=eX677wFPXQn92c
+	R+DTuLhySejADwjbIIShdOgj9i91PfI4LcPbFEpWH/0QoskXQo2MyiIBjLTFloXveG+kXPdhuHheF
+	vKZ69wlBwMFk6mmYzMlRPQNsQRWiO2BkAjnA72AOerD24ecezoYRV/2K99cTJksOnOqfwdHMJUCGj
+	dt1BcchJehWI0lG347FnGhrsQ5eTdHwrwu7V/84ojwiuZJSJG+6c+MCG8PqWDQkXQxyL0e88BB1dj
+	VAMpe7MlrBkbCIXiV3ynIRUrDw/WHO3h3hZJPykrrMmsn7AGsbcpF6r/Cl3y7apnUdhFtYbHEfVxJ
+	fns7GsjpXH5t0SVgJJvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUulZ-00000000WOK-41Ca;
-	Sat, 21 Nov 2026 23:45:09 +0000
+	id 1xUulb-00000000WS4-3pbK;
+	Sat, 21 Nov 2026 23:45:11 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUulH-00000000W4s-02Wj
+	id 1xUulK-00000000WB7-3ClE
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 23:44:59 +0000
+	Sat, 21 Nov 2026 23:45:02 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A016B16F2;
-	Sat, 21 Nov 2026 15:44:47 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EF36D1758;
+	Sat, 21 Nov 2026 15:44:50 -0800 (PST)
 Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B5C133F632;
-	Sat, 21 Nov 2026 15:44:47 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D1D5C3F632;
+	Sat, 21 Nov 2026 15:44:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795304690; bh=XLIQNLKLqBN+XK89CZJOMck4z1OnlpSdMf9XcQtFphE=;
+	t=1795304693; bh=SV9pZMl6M/fxVelvGmHOdqTt7nzTXsoHruNVd0Kxcmo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Qa8m6wdWbe8jp5e4Nbx42ZUCMtYHu2+k3QJRySv4AuwU5HbKanMM9u5UGnJvFeNEZ
-	 2sFGFObLoJM13G+6cOGjZa/S5Bid8LwwjednVKyvohBvzpHKP0xTVJbbU8d1i1o3Aq
-	 XPfb7GAju2cjrwL606WjBQWYVZqYjLyZQJp25aPg=
+	b=KzBHSe/XhNtnIfHPS6w345as4YhfsREt0GbOD1D/xXpv7o2ebdmLAvqr1/qblIO8a
+	 5xWbJ57q+vg2M7vjEwXvUtCB++8CFMHC6H5BoyY0D6VQo3fi/vwCov3emWw1ACreRS
+	 wnsP1Jwin3KDz0jzko7dwDOnWaeaPQkTLGMR8HPI=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -64,10 +64,12 @@ Cc: sudeep.holla@kernel.org,
 	puranjay@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
-	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v16 27/31] firmware: arm_scmi: Enable autoloading for System Telemetry driver
-Date: Sat, 21 Nov 2026 23:40:01 +0000
-Message-ID: <20261121234005.1525419-28-cristian.marussi@arm.com>
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: [PATCH v16 28/31] docs: ioctl-number: Add SCMI Ioctls
+Date: Sat, 21 Nov 2026 23:40:02 +0000
+Message-ID: <20261121234005.1525419-29-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261121234005.1525419-1-cristian.marussi@arm.com>
 References: <20261121234005.1525419-1-cristian.marussi@arm.com>
@@ -75,8 +77,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_154451_103570_2548C142 
-X-CRM114-Status: UNSURE (   8.23  )
+X-CRM114-CacheID: sfid-20261121_154454_877150_89A29291 
+X-CRM114-Status: UNSURE (   6.61  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -97,27 +99,28 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the SCMI System Telemetry driver and related protocols to the list of
-standard protocols whosw devices are created automatically, so enabling
-module autoloading.
+Add SCMI Subsystem IOCTLs numbers
 
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Shuah Khan <skhan@linuxfoundation.org>
+Cc: linux-doc@vger.kernel.org
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
- drivers/firmware/arm_scmi/bus.c | 1 +
+ Documentation/userspace-api/ioctl/ioctl-number.rst | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/firmware/arm_scmi/bus.c b/drivers/firmware/arm_scmi/bus.c
-index 25197197db8e..32002fd9d843 100644
---- a/drivers/firmware/arm_scmi/bus.c
-+++ b/drivers/firmware/arm_scmi/bus.c
-@@ -546,6 +546,7 @@ static const struct scmi_device_id scmi_std_id_table[] = {
- 	{ SCMI_PROTOCOL_POWERCAP, "powercap" },
- 	{ SCMI_PROTOCOL_PINCTRL, "pinctrl" },
- 	{ SCMI_PROTOCOL_PINCTRL, "pinctrl-imx" },
-+	{ SCMI_PROTOCOL_TELEMETRY, "telemetry" },
- 	{ },
- };
- 
+diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
+index dbe462040999..53e970fc750e 100644
+--- a/Documentation/userspace-api/ioctl/ioctl-number.rst
++++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
+@@ -403,6 +403,7 @@ Code  Seq#    Include File                                             Comments
+ 0xEC  00-01  linux/platform_data/cros_ec_chardev.h                     ChromeOS EC driver
+ 0xEE  00-09  uapi/linux/pfrut.h                                        Platform Firmware Runtime Update and Telemetry
+ 0xEF  00-0F  uapi/linux/ntfs.h                                         NTFS
++0xF1  00-FF  uapi/linux/scmi.h					       ARM SCMI Subsystem
+ 0xF3  00-3F  drivers/usb/misc/sisusbvga/sisusb.h                       sisfb (in development)
+                                                                        <mailto:thomas@winischhofer.net>
+ 0xF6  all                                                              LTTng Linux Trace Toolkit Next Generation
 -- 
 2.54.0
 
