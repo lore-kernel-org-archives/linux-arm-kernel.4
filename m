@@ -2,78 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202D5606A6BB
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D00E606A6B9
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 00:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ycbyi0m6;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=e0UJuwBe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PzIHQWMt;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=diAsVFVB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=a+6eCIHLWHFY3nDB/Vr0c1/yRrGzwmD3XbYPRK1ugF0=; b=Ycbyi0m6sP4MKe
-	d9uLU+IVnLduEm1JvOHMyR9kaPAEU/sxF7N9uk266CUMJY55lYjbaubVpAYeKzSLGuxxLB8HY/hYl
-	91L+HFlplJXjm3r1PBL9Vf3b94V9kwdU4zDXs0O4phLbVJY+IBNkatTafxU2+MAvljEp6LOnzADGP
-	fQIGq3M02xfwLXgShUUEN3LLlbL/hhwf7U0+7st/IsVeN+ksMkXH/D4txeb17VzRwbSj8Sjznjxp1
-	rOS6nABdwnUxiUAAQkepgD1NxzhlpN/5q9QlWUmhkgiPlSHH8K2uTcL1FiLFzV0Yhb+BYr/RdLFVo
-	eEr1+oxIviw6Qv2wGk5A==;
+	List-Owner; bh=2HdtJ+XqX5lO5ERYLerHM0E2jrL7YBGV9T/0hIoeKbQ=; b=PzIHQWMt4d9U18
+	EikQFHlFGXHD6Kce0zCHlklPAMuxssSQmTimD53qGBn5TQuPtij8pYwNTolcNlRZOVibJd/1NVcIR
+	MLby4rF0dYEaV3bRchIHxdkhm2xMbkanKixROwd8CCpMw8Zf61SW0e2Hg51XsjKGBLjYWRl8RishD
+	XCvxu7E1K5kTRxjx6zaiWa5qwGjwcj6MF2J1rPreodYPN/5prjxOOkAPsYRm4aBLhH9CpodtuMEGy
+	nFD39H7tR9gpzCYy8W1KWisZQD+UCk1MDNwUrq7ycXLzBUyxhvSbF5eaY+gJ3b3cZ/zybFvBRAHvQ
+	hmKj8UoQAlYaCMmWFzlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUYx5-0000000GVRB-3LHT;
-	Sat, 21 Nov 2026 00:27:37 +0000
-Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
+	id 1xUYx9-0000000GVTq-2R0S;
+	Sat, 21 Nov 2026 00:27:40 +0000
+Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUYwB-0000000GV3y-0Kno
+	id 1xUYwC-0000000GV62-3f6T
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 00:26:40 +0000
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-8b271e573adso704411b3a.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 16:26:39 -0800 (PST)
+	Sat, 21 Nov 2026 00:26:42 +0000
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-3b44bdcea8aso182450a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 16:26:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795220798; x=1795825598; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795220800; x=1795825600; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=a+6eCIHLWHFY3nDB/Vr0c1/yRrGzwmD3XbYPRK1ugF0=;
-        b=e0UJuwBe1BfN6VnSIeo0HYj/Rmu3+SU4hyTOkkv5VdNQ0vlac5qinuqGOQeeHbFJhm
-         pl+BkdeDxyZ5ApK4btMMi9lZHbs1nfqkKq9AEjqc9KpvXSVu5Js3Wpxl/Rw45jbPFzhC
-         RomwtmKGNtWyVlqjDhKvedhuvGO0Ok62JJlGmlgwCdOsXA+q+QGUz8xfRxM58Mkd3wha
-         OuMFRnz7tSeu4ZbCB7ecJWSYFVBZOfckAzLfVOASDRcPUfCHl9/UaHQCC8yxrW9reIgQ
-         rJZccr6YSVbKr2BVEOBDn2fN+5lvKPdCVlDh+YBQd7+nZgAtaXLP8zoUFQhlTCexXcHV
-         +OOw==
+        bh=2HdtJ+XqX5lO5ERYLerHM0E2jrL7YBGV9T/0hIoeKbQ=;
+        b=diAsVFVBSiP6SWJ62T9erRBWm8lmrsfStdtNpE0FUu8KcYGoodfaMew7BDoOeeeCW7
+         LcOeAwotMst5ObHFLMyplpbDGDrbxJiyKu+O+RqTuN2GyVCMreZ6LfZU4NYv8xN4b54m
+         dCg+H1o1gwLFL7KlR5JZ44h2zIkk+tLdIDl22XDAvIIOqf0dxq3ypktiY8HhzGk53z8m
+         GYACvt6foODJ3Ulm7wB/ZIuArX76WQ5/Cg958pUwTfVQ6ofbw+xXKI7IubBgTd1U/5Zy
+         yral7LzcfCZAoGQvdD1tLkM9Et60nsDU7RJEj8jk3QFpkBzC2Jafnu/qCZ/jk0gTxJni
+         XugA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795220798; x=1795825598;
+        d=1e100.net; s=20260707; t=1795220800; x=1795825600;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=a+6eCIHLWHFY3nDB/Vr0c1/yRrGzwmD3XbYPRK1ugF0=;
-        b=vu+dDQ2xDsuW2lNfWwjjDZ1FtIbAzLutsCBFcWY8FKVsCk2QHfthtrfZ57aiH+0oSB
-         kk0EvGrfTRQA5DEoGCsb5UYjv7PtGUbPVrUUtSgl/3e+dPW4H9AHg1YDl+j4BthQJGti
-         jjzDZMT1kp5Q4ylOeADzXXtc505vHCYbYLhcANqh2XXEoTR7s9PK3OmPQhZHZJeXHlOh
-         ySqT4Jdt8snZI1EUQkiJERAHqv5lhZti+bF42FVy8ZLXbnPROshlogONyTTEPbdioehp
-         LqPfy6090Y8xq931ucqoAlstpUhOxzU5L3TmvQWA1NZrgXxSf0BvtgnNzXGYKAO3NQjM
-         2aWQ==
-X-Forwarded-Encrypted: i=1; AL+hErGvnX/VLA0DSabvIPfMs8NvbKSJO+UReCdYCVSOi3DVj4fN7uY2l271g87CSK98ZRuTZWZc+Pc3dENuaKvWC26c@lists.infradead.org
-X-Gm-Message-State: APuU4Z8CPb2Nhw9z5Xmhm9bY+n6bHjYEr7PujFep6CauEPW5RHJdLssK
-	KxcIKxYLZUTeZS2a64eaAF7ejMpLrY6DZuf54QWwNCzcQ29vBH1MwKlr
-X-Gm-Gg: AYBFou01PnZxxMXbv+isBXlwT2epNeeQuhR2r7LoGrEcDppeWeLYVwjVJXrxmM1QWeC
-	GBqg/wleD5s2jAZmcNFz2DNEPAQO3Zg5UY4EWwykr+o+hF4Y459AwiGJ7WNyJA6XvqLmw2FtVid
-	Q7PfGSnOT4/D4XCZRRfX/6tB7zRv6SQWnXdJ9YnsJDi5iWCOJS/xHQKnJk0nD7P195ItlgM3B+t
-	oX7wGTTaDB4haAMvC6/PEGMq59EjLlURtjuSyKDbuf17eLjZFONRNPznkPVJEeqli3S7XVfS/fu
-	SHaiHEAh38cKDOLVW5C9c83afRjE7eTzubihLOZvGWziEwjHCE1MVtKtFph5QT8dTYI5bxnWMov
-	phP94+1BmDcuBYaUE8q5FD0AwZahzlIXSetfvxGr1XkZSW5D2YsDdqWS5k8UCMT1oJKTBM1ghZd
-	P0GI4RP1HMxW7bjDFj0j/OPCbKhdf6RHqikV0MuhHIxMKf7fmpkZ1wVBLFW93NxUCZ7MhYqOQmR
-	e3RQI7PKWreEEQj0f/+I/aEkJe1G1iHfVZvEHvOyevN6I5u7WENrWXNEMwWEwt6/HPfmcuCGnL6
-	GzloEYnxOH1euh60WDPdRHqBHw/iN8EycmgwEeeIripSmFXUogFCEsMMXhtPiUBKMI04C3cjZx0
-	talCjrEI4qDtE81wImUQBakbhbTuRdMCFTCi9OW8uvc3DddXDBnKsF0TA/SIvmUn7TvQcH+HZSU
-	cj4Q==
-X-Received: by 2002:a05:6a20:748f:b0:3e2:1218:3ea8 with SMTP id adf61e73a8af0-4014b564283mr5703588637.14.1795220798428;
-        Fri, 20 Nov 2026 16:26:38 -0800 (PST)
+        bh=2HdtJ+XqX5lO5ERYLerHM0E2jrL7YBGV9T/0hIoeKbQ=;
+        b=XV8qglp3Ta3BJ+qUxzxtig+bW9aflUjmXMf7X2Rgpa6QVuhH37ONd+9asaemK1bLw4
+         H3mKtsny32h1DZo9m/1XUlfH83tR49FeI6kYAt+M/MwyKE8Wv6ZuCGIOgLg1fMLA5fr5
+         S8WIKNIP+Rcnyexp/SsRFz8XcoWusAWKIVAIPB9a2/kO+E6BMM1TeFpXvaRoZA5LhGVE
+         CXJ4gDIkuou4H+IzIaVdyIcDcd/LPMTCXNyX5ql2Mh394XtYr5JBdGOIhZ7uAlylHMPp
+         8wI0LxNXCqHcwdLQTIRgPUFPPq4mZ2xEoBRMgIA3MAEn02ofvt/2DZV1tuaNGvIG9bOO
+         C+Dg==
+X-Forwarded-Encrypted: i=1; AL+hErHfOPJ443FeL8X/W/qitzizTxO0PtkZDh6hLDNO5l5IPu5/kEfr5THEDKbWHz/uWj0dWly+tEHE8Q5AS5L/EhrQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+pscz7rFgdzcFOiEdIhVmj2HkYSEiA9AQIvIBxmGiHUbn7dTYO
+	j110E3wvP5XENQS++TE6AezER4uvl5u86XgTUQs+pyqmz2ZygVQrPAMS
+X-Gm-Gg: AZFdTZcNaCU1d9G3f4gbzm+2FV75r+Eu9r/dYqRU7OiROlpZcWP5clpk6evAUoKcIv4
+	2qaxhTUWEHb9OPcOHhiUGFywv/sMVISJstEF6/2R9mRbEFRSsknFQ97KBIW8hWL2UPU01g0VS7o
+	+HlliMnLg5hw5qJsfDzD/E3zmufk2fQBAFf2WtkA+5AgaituHxQhg6OAo2RSsr+124MCyHcisy3
+	fnTXy1aAAHnu0iUR+eljbs3fhfRU4CdSD8EsFLr9/P/cHzOt2IzibzuaIoyLjZ/XiTnUr1SRcL2
+	2oJmWOT3DZ65VTeRy+zflzE0B+WM2JX4MUJ8suMIkRBiba5z8OHwLX5vsREKavMpOs0UoOgvN0z
+	DxVf7DXU/UL9jmg2SPpr1BFUyNpdOtT5jJo1aqX8uKVyt/9bp/DmdZVroab2hKQtEgMs5uBtWnP
+	SesS6BLneMjupIWyB2VvfGI4deRQs7CsF+sjEcE1E1zFbB61CYk8x+1qsgdG6gFaNbfxNINq1Co
+	3/ZsHmgCkc3nwD9ttcMnjwyR6dxVEqIUpmDpdg8wG1Gzs9F2EfHpfMfpSxcCO7F54C8EB6tenqo
+	WdLtQ9VmBJxGiKoHyo32httVwnwNYGClQksnZGqW/asaygGHcRHOY+fBX8se3bekzQ+CyJYu9ns
+	jSBbUoc2n4wHHG0973j/lU2X/KePUhAEZBMRATPZsPyhZWcFMARD3hVLWROGv0SsvAQFsTZgrgO
+	0vtd3BRYE7FmJe1oY+HwXw66c=
+X-Received: by 2002:a17:90b:388b:b0:3b3:b8dc:5e0b with SMTP id 98e67ed59e1d1-3b40a5a4cffmr4844165a91.14.1795220799842;
+        Fri, 20 Nov 2026 16:26:39 -0800 (PST)
 Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6cfc8829sm1925230a12.8.2026.11.20.16.26.37
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6cfc8829sm1925230a12.8.2026.11.20.16.26.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 16:26:37 -0800 (PST)
+        Fri, 20 Nov 2026 16:26:39 -0800 (PST)
 From: Rosen Penev <rosenp@gmail.com>
 To: Florian Fainelli <florian.fainelli@broadcom.com>,
 	Hauke Mehrtens <hauke@hauke-m.de>,
@@ -85,9 +85,9 @@ Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v3 08/22] ARM: dts: BCM5301X: phicomm-k3: specify switch
-Date: Fri, 20 Nov 2026 16:25:48 -0800
-Message-ID: <20261121002603.25254-9-rosenp@gmail.com>
+Subject: [PATCH v3 09/22] ARM: dts: BCM5301X: R6300 v2: add nvram node
+Date: Fri, 20 Nov 2026 16:25:49 -0800
+Message-ID: <20261121002603.25254-10-rosenp@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261121002603.25254-1-rosenp@gmail.com>
 References: <20261121002603.25254-1-rosenp@gmail.com>
@@ -95,8 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_162639_180833_1D23CB5D 
-X-CRM114-Status: GOOD (  10.62  )
+X-CRM114-CacheID: sfid-20261120_162641_557342_E388DB55 
+X-CRM114-Status: GOOD (  12.04  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,66 +116,49 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-bcm-ns.dtsi specifies a default layout that is not correct for the
-K3, which has three LAN ports and a WAN port on switch ports 0-3. Port 4
-is unused, so disable it. Also allows setting the WAN MAC address
-properly.
+Add it and assign its et0macaddr cell to gmac2, so the MAC address
+doesn't have to be set from userspace.
 
-The port mapping is taken from OpenWrt.
+The nvram partition follows the 512 KiB boot partition and is 1.5 MiB,
+as on the R6250.
+
+gmac2 connects to switch port 8, the switch's IMP port, which the next
+patch makes the only CPU port.
 
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- .../boot/dts/broadcom/bcm47094-phicomm-k3.dts | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ .../boot/dts/broadcom/bcm4708-netgear-r6300-v2.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-phicomm-k3.dts b/arch/arm/boot/dts/broadcom/bcm47094-phicomm-k3.dts
-index 5b9250976f13..018faf90fd4d 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-phicomm-k3.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-phicomm-k3.dts
-@@ -52,6 +52,43 @@ &gmac2 {
- 	nvmem-cell-names = "mac-address";
- };
+diff --git a/arch/arm/boot/dts/broadcom/bcm4708-netgear-r6300-v2.dts b/arch/arm/boot/dts/broadcom/bcm4708-netgear-r6300-v2.dts
+index 55f0d9e90d5f..1b99fe442dda 100644
+--- a/arch/arm/boot/dts/broadcom/bcm4708-netgear-r6300-v2.dts
++++ b/arch/arm/boot/dts/broadcom/bcm4708-netgear-r6300-v2.dts
+@@ -25,6 +25,15 @@ memory@0 {
+ 		      <0x88000000 0x08000000>;
+ 	};
  
-+&srab {
-+	status = "okay";
++	nvram@1c080000 {
++		compatible = "brcm,nvram";
++		reg = <0x1c080000 0x180000>;
 +
-+	ports {
-+		port@0 {
-+			label = "lan1";
-+		};
-+
-+		port@1 {
-+			label = "lan2";
-+		};
-+
-+		port@2 {
-+			label = "lan3";
-+		};
-+
-+		port@3 {
-+			label = "wan";
-+
-+			nvmem-cells = <&et0macaddr 1>;
-+			nvmem-cell-names = "mac-address";
-+		};
-+
-+		port@4 {
-+			status = "disabled";
-+		};
-+
-+		port@5 {
-+			status = "disabled";
-+		};
-+
-+		port@7 {
-+			status = "disabled";
++		et0macaddr: et0macaddr {
++			#nvmem-cell-cells = <1>;
 +		};
 +	};
-+};
 +
- &nandcs {
- 	partitions {
- 		compatible = "fixed-partitions";
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -90,3 +99,8 @@ &usb3_phy {
+ &usb3 {
+ 	vcc-gpio = <&chipcommon 0 GPIO_ACTIVE_HIGH>;
+ };
++
++&gmac2 {
++	nvmem-cells = <&et0macaddr 0>;
++	nvmem-cell-names = "mac-address";
++};
 -- 
 2.56.1
 
