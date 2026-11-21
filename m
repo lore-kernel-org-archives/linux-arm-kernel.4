@@ -2,112 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FADF606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 10:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAD9606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 10:16:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K5Pmt/K4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DmwSKRJT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WfDndVDP;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Qo9aZBsm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+ZUVu/y+eVMVk/ARZiUIfyqxxekPSPlM64HaTX+THgs=; b=K5Pmt/K4Yqejxf8+EeKYr9Sgnz
-	jHJUQCa8a9K9hYN3R3uflThZS0u3Dq3B+o5wDDfg388yH7z8RbHpsk4FH99WofTIi0dYginsdlN+0
-	FKzqItF+1LK5KtAajRatmdcOPsAmwbQ0arMudm3bh0b9B7z88pODecdDZqstfgJlVCLNqCnzQHQs6
-	26VfGp6cjMRt/AhFdHEjfOebMGz9HVt63zeI3oYJFxHFkXzHc/wgbEFruJ8vnee32hZzTL6QxqBJs
-	B9R3cSn64/Sg94qE9Ss6uTiSEopCa/T5enIXfdQRLQQ+OxNqi5+9zMbLW0G+71itCbXsnw0j4hASK
-	uTGojL4A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=utOy19qvSktyOdDedVjRTgtyqui/ZqVwdpgBayGUwi8=; b=WfDndVDPvOuT8G
+	Pexj5EOVqbZAzt0u8HI63s8Ch4Ng3C68dhxlREqWv8xFxd3ov8WfAeGjKEACjgFXynQr+IyQi7V9/
+	VT3ZCE9+1e2s1l1dMzRCJsO6ekYCvBmiY/TTPQsAgbBSEearVcB+CnyNtRnwIqNFumEDQbU7mh2pR
+	KpyVfF08yquImhmtOM6alIEyO7YC+j0u1wdTDy0M6IIeP9s8VRJ4qSfi2kcdMQkvwLCEhhbeuBhgr
+	QUCNftxfdDqblocXH5MzqC+V4FoZ90T16Ru+SD9rYXI9ZqIb5swJcarf8HrkjBZVSfmhjbCc6rrPf
+	d0XqBDSi+x3BvZYmsh6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUi3e-0000000H0p6-2nSt;
-	Sat, 21 Nov 2026 10:10:58 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUi8t-0000000H1Ru-48j9;
+	Sat, 21 Nov 2026 10:16:24 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUi3d-0000000H0oQ-0shA;
-	Sat, 21 Nov 2026 10:10:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F0E6845DA2;
-	Sat, 21 Nov 2026 10:10:56 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795255856;
-	b=aqkzX9Stw3I9lvmKKbRY/ZWHA6pqNnwf7ovYamsCd5zgSwsbh31mG5aQ/fsx5ih/ViVi
-	 D2YdO/zUTXIsJqcGooHy7mRoeFDXUN9XpqCpA8kvkGibc06MwFxLkUGryiOfnEtWTlGlr
-	 DBVv8ke2dcyquJUq+wKmGA7B7+6ujZTpzj8gTUUNxyckX7/v1FWBUuA9ZKzh4a1xO36pD
-	 ztZo2bUZQfpJV5UplGOz8ndrqu1vHTfOWvCjz97nXOWGsWwi23plm7vTG8AhoMQ+yuxY6
-	 pQGaQh6bvcxzpXSmxaUZHwGFCqPAmjflScX1pZHD6hAugCsW9XkpESoFpYDPoJ2jDXQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795255856;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=+ZUVu/y+eVMVk/ARZiUIfyqxxekPSPlM64HaTX+THgs=;
-	b=1C6vwvIUpqsfZAnbOiNAnGkD9DajGtjdVBan2hF5rqSe4BME+sTjfM5H3H1BeK82+Rnz
-	 lCkoOA/6cGQTzhSwlOoxw9O6h0QYSvoPF0FJ0sCG4XeClrsS5MZRDCuG52qFdHTjGC4Ay
-	 87kjJ5XTExNiKCQRO6tFzKWbcjbLeetfxpQTBMAYURUVnKbTbubM40eGoKnzGCC24QZHm
-	 6sEWNysNxb1OqPnHDQ41lLQXG376lfGGxGxGk76eVbKrySA4CI2RyR5ck6gVmE+FXB54c
-	 pxGqerEt7byytUzAnIPzbX36cD+F1/C8m5VzSjsnlVYivHTxupEVp1VE5RfIfS2LB0g==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 357881F000C4;
-	Sat, 21 Nov 2026 10:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795255856;
-	bh=+ZUVu/y+eVMVk/ARZiUIfyqxxekPSPlM64HaTX+THgs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=DmwSKRJT9qYunfc/6J6pIoy1x3Pl96/BYGsZ7AFY33yb1LgR8Y/h7DBPhPPg8I+KC
-	 pmb+dQhx2yFyOp3ti6dNvFB0z3KlZ18ZcN3vLAfzdZo2w0fnBS9c3PGgHCzWUd4toV
-	 51f9yFGxqK9vlbVZ4n9JjUKnMUFsW5d9jR5jICTEpbo5NZWBUNSXkGC38CqSoNrS6o
-	 vuAg6qujnwETAafVUHZ+LeztH9/NwN8+QLKrTHU5mXxdkEi7mlz7s+LQM45AegByEg
-	 4X4sroyhiQXwNMN/sXIgapYRgRfX6qiUKSI3TahJZBygg0SaqPYK/gFMwLTpgiI719
-	 YIXsUJPTHiCGg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id AC6574BBC4;
-	Sat, 21 Nov 2026 10:10:54 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 10:10:54 +0000
-Subject: [PATCH v2 1/3] media: uapi: mpeg2: add MPEG-1 flags
+	id 1xUi8p-0000000H1RV-4Aoy
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 21 Nov 2026 10:16:21 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-4a7b8abe209so1297163f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 02:16:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795256178; x=1795860978; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=utOy19qvSktyOdDedVjRTgtyqui/ZqVwdpgBayGUwi8=;
+        b=Qo9aZBsmy6sQwWMVBxyNbcFk6UKMOmVglO5A/CSFm0ik48WGUEDz6cVA8XK+71RTRT
+         e7Cs8Mhwi9IFbWE0JCOYyFDfjJnl5TtN0p6Q/cdru5yz0UyeZ7l11HZqvG1O9HGXopdB
+         fV3huRnwW4oz98k4oePvumG/UXN8cGmgwpJdZKBjfhj/Bxjrs8j9jo7YzaRJHEty0V0s
+         ScrffM7sSAIKSuPIvGAaHEFqGcB+eDsEVwpV8wElkMZMT6+//PaERbUrck81E61frqeh
+         YXa4/jQZa4u/cjpn+iGwl0ns2dZpVYq5XinVh0eQ6jO0wzecz5ZPhMnv7s2bYStECBlr
+         BsfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795256178; x=1795860978;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=utOy19qvSktyOdDedVjRTgtyqui/ZqVwdpgBayGUwi8=;
+        b=yGaUdsNQK94QT5Km+uW2Hs/MN40T1W6WqXZdAh+N41csTPp78UZFwQGBgYXTiLC/+G
+         c8fPT7TjsS28gFsD7zHuFkdktJQ4pFOKBzkd70yFxQLiSDv0s6QE8R6FOoATUuCOc+qw
+         OQBgpRSum0+hcF/vxCXg9f3T7UqgQcLPW7TfpoaTjIvFY7KeQF5tYVhh6peSl9klejYB
+         Oc1thVoMP6kuPwVMDl2dGjeLjQfKmqFKHjGvv/8ZPVgQdckVB2btT+RuRqVNXIj49yEm
+         QRSdL3zJO04IXdFsRKhIMQ8LGcSp91I7IQgeSqmu8OP3n/a4Mry66jSAgoTZBARneNnt
+         WaFw==
+X-Forwarded-Encrypted: i=1; AL+hErGqW04R3NBrCH46IBuT/Uk/sm7gAY2z2mumcGtCQPqcM9LmIcBjxUNFLDG1upzm4X2G/wsiKiwHyM/Nd1WDCdoS@lists.infradead.org
+X-Gm-Message-State: APuU4Z9uf6ZKcjDSuTWadm8f68VjAvpagJWaOJ0Ri9YWzexzXemZCBIs
+	BqhZJMAecGrMBlIFljIZZg6oPEUQDXCN6QrTVButlEm42htLvRdeBU41bXTDmw==
+X-Gm-Gg: AZFdTZenmtfQ5eKy4gU4xHLkV/5inYnxHM/T5Ac2vZOHYaO7bCcQ+bfKy/bsiUtRtW4
+	3QU953DCxshWyiQFSBn1IWwq4QmRDP1NvMJXsbEhZS8698iyj+kmecn29YIvC4PWsq7ezMpayi/
+	yAmG0pgL/yTaWwq0Cwmd0olHatSMh7sof2X1NyyIPUyBuN8tOkLjo5AZYZSexHrtTvAMZTxatsl
+	vykRz17yweqXb+skLs9vduhrQEYGlMeaWHWLnR6bWdXM4ptZC/xtJmD/mKZNfwWBk2vOJNu2UvW
+	KE4r1UPOQ3GbSU2NR/+grFSBOlfRnb3jWU/XwPJNKbAJHzZhW1S1wKfSZbYRb2KKdwZRcjSUoE0
+	TZyznDyUfC2vX5lGSzu9KK3mXDl1IrExnYeuOImFjecb9YffEKCZDcjGo8VcPsg7+CXf7pDmENt
+	Ll3BNNaxmzoVM3qIqA8LgsVH2iXB9M8x1a/33nOJINav9pqBo1fM1Eb59viU0FQSlVTwVQD+Wdc
+	3fe8aXuZKi97AGp1dCT4tJV7cPjheIw0iQmV9ouzUoT+VhOP3qsStm3zMmU5k7MNxXMH3a7wQl+
+	tC3kMvmjqFxoNhMU84IXMEuyIkUKDZYo3MUIO0Qi
+X-Received: by 2002:a05:6000:22c8:b0:4a6:bc53:2466 with SMTP id ffacd0b85a97d-4abb0d52547mr12121646f8f.16.1795256177780;
+        Sat, 21 Nov 2026 02:16:17 -0800 (PST)
+Received: from dev.Default ([2a0c:5a86:4d09:3a00:3c0f:a5ff:fe86:2946])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dd55sm10396015f8f.30.2026.11.21.02.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Nov 2026 02:16:16 -0800 (PST)
+From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+To: =?UTF-8?q?Stefan=20D=C3=B6singer?= <stefandoesinger@gmail.com>
+Cc: Navid Ghahremani <ghahramani.navid@gmail.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: zx279128s pinmux questions
+Date: Sat, 21 Nov 2026 11:16:15 +0100
+Message-Id: <20261121101615.3726892-1-isasmendi.agus@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20261121092601.1543468-1-isasmendi.agus@gmail.com>
+References: <fWpK6nqqTOKOq96a3X8SYQ@gmail.com> <20261121092601.1543468-1-isasmendi.agus@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-b4-cedrus-mpeg1-v2-1-95e4decf03fa@gmail.com>
-References: <20261121-b4-cedrus-mpeg1-v2-0-95e4decf03fa@gmail.com>
-In-Reply-To: <20261121-b4-cedrus-mpeg1-v2-0-95e4decf03fa@gmail.com>
-To: Hans Verkuil <hverkuil@kernel.org>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: Jonas Karlman <jonas@kwiboo.se>, linux-media@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-staging@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, 
- =?utf-8?q?Christian_Stefan_K=C3=B6v=C3=A9r-Draxl?= <ckoever@outlook.de>, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795255854; l=5165;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=yksBdmk3Npzg1iAQRYT2QfTDslkSWSpomxA3ajPshVg=;
- b=zD3hF4yDQP2+FziY10T7J5ajIdxFnwDrZGEPewwBy9KBqn4EnsqL+XI7bKPKjDvN1Cpmx2NmD
- 7U5MVYsy/1tBKXuGUofujHtyHmVJBX/GhkxJywxr8SP+DDnEobfHqOe
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_021620_515909_C2D771E3 
+X-CRM114-Status: GOOD (  10.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,131 +98,75 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+Hi Stefan,
 
-Stateless MPEG-2 decoders can decode MPEG-1, but the uAPI cannot say a
-stream is MPEG-1, and decoding it as MPEG-2 is wrong: MPEG-1 has its own
-inverse quantisation mismatch control, full pel motion vectors and
-D-pictures.
+A follow-up to my earlier mail, with the details behind it.  No mux
+field on the ZX279128S controls more than one pin: each pin has its
+own field, so nothing is linked together and a pinmux = <pin function>
+binding works for us too.  The fields are just not in pin order, so the
+driver needs a table of where each pin's field is.  This is what we
+have so far.
 
-Add V4L2_MPEG2_SEQ_FLAG_MPEG1, V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD and
-_BACKWARD, and allow V4L2_MPEG2_PIC_CODING_TYPE_D for MPEG-1. Drivers
-that cannot decode MPEG-1 or D-pictures reject them, also in
-VIDIOC_TRY_EXT_CTRLS. Kernels without this change accept the flag and
-decode the stream as MPEG-2.
+Pin numbers are GPIO numbers; the functions come from the manual's pad
+table, listed by mux value (0/1/2/3).  For 1-bit fields, 0 = function
+and 1 = GPIO.  The last column says where each position comes from:
+"hw" = flipped on my board and seen on the GPIO input, "code" = written
+by the stock U-Boot or kernel for that pin, "inf" = inferred from the
+manual and the board tables, not tested.
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- .../media/v4l/ext-ctrls-codec-stateless.rst        | 34 ++++++++++++++++++++--
- drivers/media/v4l2-core/v4l2-ctrls-core.c          |  1 +
- include/uapi/linux/v4l2-controls.h                 |  3 ++
- 3 files changed, 36 insertions(+), 2 deletions(-)
+Mux, 0x94200000:
 
-diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
-index d7a3b8ef03a7..f51017b5d6f0 100644
---- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
-+++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec-stateless.rst
-@@ -1317,6 +1317,22 @@ FWHT Flags
-       - 0x01
-       - Indication that all the frames for the sequence are progressive instead
- 	of interlaced.
-+    * - ``V4L2_MPEG2_SEQ_FLAG_MPEG1``
-+      - 0x02
-+      - The sequence is an ISO/IEC 11172-2 (MPEG-1) sequence: the inverse
-+	quantisation uses the MPEG-1 mismatch control, motion vectors may be
-+	full pel and pictures may be D-pictures. Drivers that cannot decode
-+	MPEG-1 reject this flag, also in ``VIDIOC_TRY_EXT_CTRLS``. MPEG-1 has
-+	no sequence or picture extensions: applications set the fields that
-+	come from them to chroma_format 1, V4L2_MPEG2_SEQ_FLAG_PROGRESSIVE,
-+	frame pictures with V4L2_MPEG2_PIC_FLAG_FRAME_PRED_DCT and
-+	V4L2_MPEG2_PIC_FLAG_PROGRESSIVE, intra_dc_precision 0, the flags
-+	V4L2_MPEG2_PIC_FLAG_Q_SCALE_TYPE, V4L2_MPEG2_PIC_FLAG_INTRA_VLC,
-+	V4L2_MPEG2_PIC_FLAG_ALT_SCAN, V4L2_MPEG2_PIC_FLAG_CONCEALMENT_MV,
-+	V4L2_MPEG2_PIC_FLAG_TOP_FIELD_FIRST and
-+	V4L2_MPEG2_PIC_FLAG_REPEAT_FIRST cleared, both components of
-+	``f_code[0]`` set to forward_f_code and of ``f_code[1]`` to
-+	backward_f_code.
- 
- .. raw:: latex
- 
-@@ -1366,8 +1382,12 @@ FWHT Flags
-     * - __u8
-       - ``picture_coding_type``
-       - Picture coding type for the frame covered by the current slice
--	(V4L2_MPEG2_PIC_CODING_TYPE_I, V4L2_MPEG2_PIC_CODING_TYPE_P or
--	V4L2_MPEG2_PIC_CODING_TYPE_B).
-+	(V4L2_MPEG2_PIC_CODING_TYPE_I, V4L2_MPEG2_PIC_CODING_TYPE_P,
-+	V4L2_MPEG2_PIC_CODING_TYPE_B, or V4L2_MPEG2_PIC_CODING_TYPE_D in MPEG-1
-+	sequences). Decoding D-pictures is optional: drivers that cannot
-+	decode them reject V4L2_MPEG2_PIC_CODING_TYPE_D, also in
-+	``VIDIOC_TRY_EXT_CTRLS``, which applications can use to find out
-+	whether D-pictures are supported.
-     * - __u8
-       - ``picture_structure``
-       - Picture structure (1: interlaced top field, 2: interlaced bottom field,
-@@ -1415,6 +1435,16 @@ FWHT Flags
-     * - ``V4L2_MPEG2_PIC_FLAG_PROGRESSIVE``
-       - 0x00000080
-       - Indicates whether the current frame is progressive.
-+    * - ``V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD``
-+      - 0x00000100
-+      - full_pel_forward_vector of an MPEG-1 picture header: the forward
-+	motion vectors are in full pel units. Only valid with
-+	V4L2_MPEG2_SEQ_FLAG_MPEG1.
-+    * - ``V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD``
-+      - 0x00000200
-+      - full_pel_backward_vector of an MPEG-1 picture header: the backward
-+	motion vectors are in full pel units. Only valid with
-+	V4L2_MPEG2_SEQ_FLAG_MPEG1.
- 
- .. raw:: latex
- 
-diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-index 6e751a043a21..a12359626121 100644
---- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-+++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-@@ -1049,6 +1049,7 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
- 		case V4L2_MPEG2_PIC_CODING_TYPE_I:
- 		case V4L2_MPEG2_PIC_CODING_TYPE_P:
- 		case V4L2_MPEG2_PIC_CODING_TYPE_B:
-+		case V4L2_MPEG2_PIC_CODING_TYPE_D:
- 			break;
- 		default:
- 			return -EINVAL;
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index d17e41d51d2e..e7e6030ac00c 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -2007,6 +2007,7 @@ struct v4l2_ctrl_vp8_frame {
- /* Stateless MPEG-2 controls */
- 
- #define V4L2_MPEG2_SEQ_FLAG_PROGRESSIVE	0x01
-+#define V4L2_MPEG2_SEQ_FLAG_MPEG1	0x02
- 
- #define V4L2_CID_STATELESS_MPEG2_SEQUENCE (V4L2_CID_CODEC_STATELESS_BASE+220)
- /**
-@@ -2055,6 +2056,8 @@ struct v4l2_ctrl_mpeg2_sequence {
- #define V4L2_MPEG2_PIC_FLAG_ALT_SCAN			0x0020
- #define V4L2_MPEG2_PIC_FLAG_REPEAT_FIRST		0x0040
- #define V4L2_MPEG2_PIC_FLAG_PROGRESSIVE			0x0080
-+#define V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD		0x0100
-+#define V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD		0x0200
- 
- #define V4L2_CID_STATELESS_MPEG2_PICTURE (V4L2_CID_CODEC_STATELESS_BASE+221)
- /**
+  reg   bits       pins       functions                         src
+  0x00  2k+1:2k    GPIO0-10   e.g. GPIO2 = JTAG_TDO/SIM_VCCEN/   hw: 1-3,8,9
+                   (k=0..10)  UART1_TXD/GPIO2                    code: 5
+                                                                 inf: rest
+  0x00  22, 23     GPIO36,37  UART0 RXD, TXD                     hw
+  0x00  24..27     GPIO38-41  I2C0 SCL/SDA, I2C1 SCL/SDA         hw
+  0x04  1:0        GPIO11     SSP0_FS0                           inf
+  0x04  3:2        GPIO12     SSP0_FS1                           hw
+  0x04  5:4        GPIO14     SSP0_FS3                           hw
+  0x04  7:6        GPIO15     SSP0_RXD                           code
+  0x04  9:8        GPIO16     SSP0_TXD                           hw
+  0x04  11:10..    GPIO17-21  SSP0_SCLK, PCM CLK/FS/TXD/RXD      inf
+        19:18
+  0x04  21:20      GPIO13     SSP0_FS2                           hw
+  0x04  23:22      GPIO42     RGMII TXCLK                        inf
+  0x08  2k+1:2k    GPIO22-35  NAND ADQ0-7 and control pads;      code
+        (k=0..13)             1 on the control pads = SPI-NAND
+  0x0c  0          GPIO53     PCIE0_nCLKREQ                      hw
+  0x0c  1          GPIO54     PCIE1_RSTB                         code
+  0x0c  2          GPIO55     PCIE1_nCLKREQ                      hw
+  0x0c  3..6       GPIO56-59  GEPHY LED0-3                       hw
+  0x0c  7..11      GPIO43-47  RGMII TXCTL, TXD0-3                inf
+  0x0c  12, 13     GPIO50,51  TX/RX_PWRDOWN                      hw
+  0x0c  14         GPIO52     PCIE0_RSTB                         code
+  0x0c  15, 16     GPIO48,49  TX_SD, RX_LOS                      hw
+  0x0c  18         GPIO60     SDMMC_DATA0                        hw
+  0x0c  19, 20     GPIO61,62  MDC0, MDIO0                        code
+  0x0c  21         GPIO63     STRAP_NAND_PAGE_SIZE0              hw
 
--- 
-2.55.0
+Unknown: 0x00 bits 31:28, 0x04 bits 27:24, 0x08 bits 31:28, 0x0c
+bit 17.
 
+0x30..0x38, one bit per pin: bit n of 0x30 is GPIO n (hw for 1, 2, 3,
+8, 9, 12-14, 28, 29); in 0x34 the order is mostly GPIO 32+n but shifts
+by one from bit 18.  Clearing a bit makes the pin read 0.
 
+0x50..0xa4, 6-bit pad config, five fields per word.  Three are tested
+(0x54 field 0 = GPIO6, 0x60 fields 0 and 2 = GPIO18 and GPIO21).  The
+rest seem to follow the manual's pad order (JTAG at 0x50, UART0 at
+0x74, I2C at 0x78, PCIe at 0x94/0x98, ...), which puts the pull-ups on
+UART0_RXD, the I2C pads, the PCIe nCLKREQ pins and JTAG.  Bits 1:0 are
+the pull (01 up, 10 down); bits 5:2 are unknown.
+
+Agustin
 
