@@ -2,88 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA94606A6BE
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 01:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CFA606A6B1
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 01:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4y+pJpUO;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=lp3+RLWc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m4xEdIw0;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wpTbj3Xu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DQGkpSAcUEldrefS3FgTooTEIoCcU3OOOCqakdoP+Go=; b=4y+pJpUOeb1i/p
-	H7MI/wPoARdVcjPGkeedOy5SY0hwVhz6tr/gptG4CR4pqvUKaEcA10RLNpf+W4xrke654XduRLJuN
-	bIyZ4FG+cz5/ErjxINvC2qpfbZYEPhBAVMhlgewDFswBfw3sY5G3cgx2Nv9EW52YysqShDrJJaEll
-	3RjroR5naGNv2OsUHQQpb15uqfMFUvEMbaJbnsQwrxykVls5R5pjb1z6js4KKYdRHhL7RKLCdOcXd
-	z5pQ6i2+XCXvbuu09lX9wCUjdYgFl7JMZKRou9jaCkET3eBu9cD1jbEN3y0X13HFYViZfEcate6Rf
-	mB5+HqYxA6kqlWs1S53Q==;
+	List-Owner; bh=qRrftGPwx46kokq6Qlnqorb+rnqytcdDxCR8IL9gaTA=; b=m4xEdIw0k0NVo5
+	hxC0l3925D7JlIxdfSVD7wYSip1s/oUCOo43FYsAMrsO+rUwRxkBt5a5Fw8mBFCzbgz/KxlmpCGq+
+	TOm0v9jtVaFRJTNdPtuf2hiskzYy8Bq/qzRukCC89/nr8Z4VokZKPTIydAwHpkusmcdBUCYimvV/O
+	wVkq0kYHq7rkPEy8PKUCqn0C01qv4qAUxObaQEApEiKBWvPE15FrXEpcIHBviTmLbrn7jHFC0F+L5
+	p4+2334nMCWFEm6U8EUng2ipnDBJ7cy5PzQdkeTnJQcg+LnKGA5tJgoCZ8Ciu23Dqrnpcse3UsCoW
+	NZR6At+R/0FuAUVq5qxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUZdX-0000000GZc4-2uxu;
-	Sat, 21 Nov 2026 01:11:27 +0000
-Received: from mail-ot1-x333.google.com ([2607:f8b0:4864:20::333])
+	id 1xUZdZ-0000000GZel-24sc;
+	Sat, 21 Nov 2026 01:11:29 +0000
+Received: from mail-ot1-x32c.google.com ([2607:f8b0:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUZd8-0000000GZEY-1XPx
+	id 1xUZd9-0000000GZFX-2zYE
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 01:11:04 +0000
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-833e671ee9fso1454925a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 17:11:02 -0800 (PST)
+	Sat, 21 Nov 2026 01:11:05 +0000
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-8253bc5a613so1015397a34.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 17:11:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795223461; x=1795828261; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795223462; x=1795828262; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=DQGkpSAcUEldrefS3FgTooTEIoCcU3OOOCqakdoP+Go=;
-        b=lp3+RLWcPc1zGnYt0wRsTPWtoF05LIQDDb/TtgF8Oryxkokvk6Xq/IortivVsOGNWI
-         3QeCTIhZvpnsXVQBsjk9dH1fjIRXMCHyHBb2iLt5P1QiIDNgxK7Thyum01bnxqqpN0gS
-         BbJqAXT0YedwmtDfDvomLK47VL1BzLZLIl02ofvndTnD7C8vEKV7ynrMHUsKeMegSl9Y
-         jDddoWGAiV01jnOmPHp3MQf0mFK5o4e5RNXfoAwVjJdCwi4Z7pZsWC4alejHrONcmWCa
-         aYoL1Ee6w1CCfwZ88OvTNXcN3lCobn1N+N2ODu0icT/ts/dmlzTO93Jd49Gsg3Ii5IoT
-         ag+g==
+        bh=qRrftGPwx46kokq6Qlnqorb+rnqytcdDxCR8IL9gaTA=;
+        b=wpTbj3Xu2D3YdSrydQLinb7Hr/EMNRUt1uz2DEOSqsbKLXvhE2ggOVBF5cqjytHnz0
+         F5+yVJgea8M2YXAPP0KL7H+8KeExQIZXu1f2szzJIWJ/6EeRu65FWywfUZNC45zumja0
+         wQYL8qF2WA1KkPR4qwn/p+8z8Ne67k61JM5Sw2UersgWoesHyeUze0Ux+h5TUN7E7BGg
+         7J6ozB6iQLnrPMkxJnhryBYbAGOqo5Kh5HyqHATXcNq0sR7sr7ytqc/DM6/k1yJO2G93
+         oiw1ZK/ol1zqUnipFTRz4W2uZbeBrrVimt7Ft7CGJrX2XY4OByrQ2P7JJwKuHSJqs7lB
+         Js5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795223461; x=1795828261;
+        d=1e100.net; s=20260707; t=1795223462; x=1795828262;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=DQGkpSAcUEldrefS3FgTooTEIoCcU3OOOCqakdoP+Go=;
-        b=V6XAE9tb3TfQvc9kzzDF8owekDphMInKuOx5JJs5Ivt/AhXsNkQiVJDz7DxvcqJbC+
-         psx/LSAVgUZYI+hJMHGckqDmt6qbeXxymi7ZftEWWe5EaM7fyJG10DWtvYrjEW4tPr3Y
-         Vg8HU1AH3+hSeaEnBlQ08MFvYnDXIfZN926XNEPKz9qIkrN5qIWrYPuNg9IkRQudy6cC
-         06DPNg5nHkyHMfvTBpuTwJV/yevi3CzFdrj0FuIFK4lxVb6YVwSwMKySL/rDVKiZlU8x
-         zO6mTLZ5cEdBCFH2r/OnlzeRugExGxsLoyIQvZUgE7ZbIF/SpUJpJoKjUqkiaf3kNrvv
-         rCtQ==
-X-Forwarded-Encrypted: i=1; AL+hErFNTmAsaxU1j4mszQBBf7cPwC2N5fYTwqNkn5H71UFYZSWZWSqTHEmiBT6VzwcqM/I7/VysXEN2UUOb4ZsPUIME@lists.infradead.org
-X-Gm-Message-State: APuU4Z9DdWC1LOg1FKvuRdH51gBpOt20i+ISfKe9hqWoFMszpYFHli6q
-	7wjOOUh9jD7lJOpnkZ9mXKitWAXaQt6G3VsoFzXUnTgpFQoXeP5bYuzK
-X-Gm-Gg: AYBFou3cScYy5zj4jOzjY3kLoUcILXS2lDHJ/byW+Bhot4Pw2MdxhhwKCBG/Rr36HT9
-	4U0C06Keutwv+Gpecao/tkVN0ZHI0/9O3W+67oxXxLtBFIQrfe8QAJjPJvaOMaoub1Faw9n4YtG
-	3fAcL+IdBJsErDtrp0fcqHfrqrCYr7QXGH0CVX4xhPIdWdyerodjas4/7kznXjvCDFR+4TjRGSG
-	Ninlc9fGTg1boGgDhhio1yx03vdyFKopzTPO5iFLJKUrb+G18sOcpzUoElg4yaRU6h6g9yFJZET
-	PilRB2Z9KhRRsUcSup/bpIgBxfdNdwvXfCudfKpytouIse1xEef5HSt9SG405wA9pZcZpFOmzm3
-	e59U6ai6CKHBiSlcc4ORjLz4WL9Jq5KpgsFrfP1hxejFSQbUp9GeA/Z8AyTSOmFhMdLE4Tqtpl3
-	kPw4ecHHqaORjspz328qn4wriGJKRhgmdknUBEBwR+YUaRn77Rd0IWX/ofqfS2gGuHIxzJrPRrV
-	nW6+CICbp4VsTSvoJ3J5PhZORO2Z3rMQvNqthHsGmCBrF5D3HwWepsf4c3IwJPr16iPeTnE520T
-	MCccjBhsPpiuWu64iJDNpiqfCDfgd1E+h1YRZGyZWF8vuAyFBToochaHqA/ATMmg1KGXeaR3xiL
-	7mrITjJP85bKKoAXC9ffm9VTembUCB2AERUZFbX8borgclPiuBC4wEOFMXsQl458axm59KYOW0h
-	Y7kdIN+sGTYgpMlHtpA2euIWK6TE2arfaMoV/lqNIVf6VDSDSwNYUY
-X-Received: by 2002:a05:6808:30aa:b0:4d6:90f3:74a4 with SMTP id 5614622812f47-57a0c0a40e2mr5697337b6e.47.1795223461220;
-        Fri, 20 Nov 2026 17:11:01 -0800 (PST)
+        bh=qRrftGPwx46kokq6Qlnqorb+rnqytcdDxCR8IL9gaTA=;
+        b=TESVlperiiz/kIiYwKoQivyqWmxZlluTXf0YZjb7TtrhvGyvW82ER0Oic19GhYl5RF
+         93P2/fpNAhAm0MSXgn2EJCeXVpWg+eCc/FnIXzPFB0BpaD3q9T4oPbj0CysmgvmSkGnI
+         YXMeA9jaSWRg8E7FgwmvHV49hVmIllci0NSncCmIoxSsi4Wln8BEmlwt3ZFfu+C18nyV
+         c6VLYrHadxiOvVf+CUKmfO176AwVj4dfqMsaqtjcgDaDuQhsNiwTEi/w2mTNFK41aCl3
+         T3L23PfGgPRPImkZKswSgmiFMVCsnS/9K/wp/oQx6yKL944P+mBecjJ5ha5SivfzXTD9
+         Jy/g==
+X-Forwarded-Encrypted: i=1; AL+hErF7P1xAnVVsvkX/XyTYSft/N02j+AL/+pVvaJyoRRX3bMg9FFNq7E1CpYzfA9Tzk8IjmK+KWG6l5sDZo2L1v+l1@lists.infradead.org
+X-Gm-Message-State: APuU4Z9OzWOvrpswgcmyZV6tvj1+yAUG//4JGi48H1Mirt3GqUvcBAwN
+	uUpvkXTrTpkfe6iajBRiGmSpcU4UG0GqRhHbekeufSoNdO9+i8iNC4Sx
+X-Gm-Gg: AYBFou2QZ+7OYBkek7mjuFhMAsk5Hzzll52M5PUFHYca2gF4HDro2UWty07Cu1t92gj
+	a/ZbarHpBS4Tt2IGW2KEnYL4ow1VSu5KEj32yHlc0oyS3VHd4eoQToyxjhMr2eYRxvhZxH/X9tO
+	4kS9K9kpOIxHpkUhBukz5OsoPZX1gQTWx+kuU39azAh1zDGr/Fzn0dP65pvyfEqldbN+2WDP3/9
+	yyzUF+IcVQgP3LW8bKhRmtFcFr88oQtOCslpQwzCp5jCz1nz8U8fl93M8oiyKflAcXRWZIbh6qy
+	xQl5hrR4e44scO6YvdvMytqAXR4CnYDaomBtaWpVUX2Ec2LHmMHAPWz9CdtY0UPHzkqAYT5TyNz
+	/W8XSjHgzzM+h3lsYNacG2VgVSzIbLFtNWTuzz8fSGZXsBK/04HyRV1bx9xPN7UB6Irb84dW6fO
+	Gw5+pkySM7pjJKXr06rRQ1SbvPxWQh9m2I6afV29AZy7k2+MvviaAG/UG6YjNK7tdf08vobu6Zz
+	Fku03FsqO4fIaa9Q193HsW3GbGCBG2wjm2NxSSNKEv5ZA8EVNfHhkOPEHAXU3dpkLypRtlQpdq1
+	nGU2S0cgUGt2Zw5BCHSmt8cHwL81gHybDdB48x8gfK1HOz/6rF8rRaR5wzMCoMX94kYt1p5SSQj
+	442S/M72h2VfbCpbVbN8bBe4UGMtHmZLSQb+6ONPzCblnYSmsVLyjcQg2fAHIYF3R2BzRpGyivA
+	n2JeCyxsz65omcZClzDjxjBN4DElqvWL/EV1SD0CzYzuq7lGS4QiaB
+X-Received: by 2002:a05:6808:e8c:b0:4f3:e98f:fa27 with SMTP id 5614622812f47-57a09c1107cmr6207418b6e.16.1795223462573;
+        Fri, 20 Nov 2026 17:11:02 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a3485e3ecsm3291532b6e.9.2026.11.20.17.10.59
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a3485e3ecsm3291532b6e.9.2026.11.20.17.11.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 17:11:00 -0800 (PST)
+        Fri, 20 Nov 2026 17:11:02 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Fri, 20 Nov 2026 18:10:27 -0700
-Subject: [PATCH v11 04/26] mtd: rawnand: sunxi: use the logical step's OOB
- length in PIO
+Date: Fri, 20 Nov 2026 18:10:28 -0700
+Subject: [PATCH v11 05/26] mtd: rawnand: sunxi: reject ECC layouts that
+ overwrite the bad-block marker
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-submit-sunxi-nand-vendor-oob-layout-v1-v11-4-9721b1905ef4@gmail.com>
+Message-Id: <20261120-submit-sunxi-nand-vendor-oob-layout-v1-v11-5-9721b1905ef4@gmail.com>
 References: <20261120-submit-sunxi-nand-vendor-oob-layout-v1-v11-0-9721b1905ef4@gmail.com>
 In-Reply-To: <20261120-submit-sunxi-nand-vendor-oob-layout-v1-v11-0-9721b1905ef4@gmail.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>, 
@@ -105,8 +105,8 @@ Cc: Chen-Yu Tsai <wens@kernel.org>,
  devicetree@vger.kernel.org
 X-Mailer: b4 0.17-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_171103_005751_AC10FA54 
-X-CRM114-Status: GOOD (  22.33  )
+X-CRM114-CacheID: sfid-20261120_171103_788611_1C6DA1D2 
+X-CRM114-Status: GOOD (  17.40  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,211 +126,70 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On H6/H616, when a PIO read detects a pattern and OOB was requested,
-filling the OOB with that pattern can overwrite the next step's bytes.
-On the last step the fill can run past the end of the OOB buffer. A
-PIO write can likewise fetch more protected bytes than the step owns.
+On 8-bit NAND with 512-byte pages the factory bad-block marker is at
+OOB byte 5. With a 512-byte BCH16 step and 32 spare bytes, A10 and A23
+can fit all the parity, but only bytes 0 through 3 are user data. Byte
+5 is generated parity: programming a good block can change its marker,
+and a mark-bad write cannot set it independently.
 
-Each PIO transfer uses hardware slot zero. Looking up the protected
-length by slot therefore always gives the first step's length, which
-can be 32 bytes even when a later step has only 16 bytes or none.
+Reject on-host ECC if the marker is outside the two bytes reserved for
+it by the layout. Leave the on-flash marker at its NAND-defined offset.
 
-Pass the logical step's user-data length to both helpers. PIO still
-addresses hardware slot zero. DMA passes the length for the current
-step and still addresses the same user-data registers.
+This also rejects some configurations that used to probe. On A10 and
+A23, requesting a 1 KiB hardware ECC step on a 512-byte page could
+trigger a fallback to software Hamming. That fallback kept the
+controller's OOB layout: its first three parity bytes occupied offsets
+4 through 6, including the marker at byte 5. Selecting software ECC or
+no ECC explicitly does not install the controller's layout.
 
-Fixes: 54dcd6aa69db ("mtd: rawnand: sunxi: introduce maximize variable user data length")
+Fixes: 1fef62c1423b ("mtd: nand: add sunxi NAND flash controller support")
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/mtd/nand/raw/sunxi_nand.c | 96 +++++++++++----------------------------
- 1 file changed, 26 insertions(+), 70 deletions(-)
+ drivers/mtd/nand/raw/sunxi_nand.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/mtd/nand/raw/sunxi_nand.c b/drivers/mtd/nand/raw/sunxi_nand.c
-index 8c5aed1fdfb3..ffbe851b87c7 100644
+index ffbe851b87c7..086618dee999 100644
 --- a/drivers/mtd/nand/raw/sunxi_nand.c
 +++ b/drivers/mtd/nand/raw/sunxi_nand.c
-@@ -927,43 +927,19 @@ static u8 sunxi_nfc_user_data_sz(struct sunxi_nand_chip *sunxi_nand, int step)
+@@ -221,6 +221,7 @@
+  * On H6/H616, this size became configurable, from 0 bytes to 32, via the
+  * USER_DATA_LEN registers.
+  */
++#define SUNXI_NFC_BBM_SIZE 2
+ #define USER_DATA_SZ 4
+ #define SUNXI_NFC_MAX_USER_DATA_SZ 32
  
- /* PIO uses register zero; DMA concatenates user data within each transfer. */
- static void sunxi_nfc_hw_ecc_get_prot_oob_bytes(struct nand_chip *nand, u8 *oob,
--						int step, bool bbm, int page,
-+						unsigned int reg_index, bool bbm, int page,
- 						unsigned int user_data_sz)
- {
--	struct sunxi_nand_chip *sunxi_nand = to_sunxi_nand(nand);
- 	struct sunxi_nfc *nfc = to_sunxi_nfc(nand->controller);
- 	u32 user_data;
-+	unsigned int i;
+@@ -1939,14 +1940,9 @@ static int sunxi_nand_ooblayout_free(struct mtd_info *mtd, int section,
  
--	if (!nfc->caps->reg_user_data_len) {
--		/*
--		 * For A10, the user data for step n is in the nth
--		 * REG_USER_DATA
--		 */
--		user_data = readl(nfc->regs + NFC_REG_USER_DATA(nfc, step));
--		sunxi_nfc_user_data_to_buf(user_data, oob);
--	} else {
--		/*
--		 * For H6 NAND controller, the user data for all steps is
--		 * contained in 32 user data registers, but not at a specific
--		 * offset for each step, they are just concatenated.
--		 */
--		unsigned int user_data_off = 0;
--		unsigned int reg_off;
--		u8 *ptr = oob;
--		unsigned int i;
--
--		for (i = 0; i < step; i++)
--			user_data_off += sunxi_nfc_user_data_sz(sunxi_nand, i);
--
--		user_data_off /= 4;
--		for (i = 0; i < user_data_sz / 4; i++, ptr += 4) {
--			reg_off = NFC_REG_USER_DATA(nfc, user_data_off + i);
--			user_data = readl(nfc->regs + reg_off);
--			sunxi_nfc_user_data_to_buf(user_data, ptr);
--		}
-+	for (i = 0; i < user_data_sz / 4; i++) {
-+		user_data = readl(nfc->regs + NFC_REG_USER_DATA(nfc, reg_index + i));
-+		sunxi_nfc_user_data_to_buf(user_data, oob + i * 4);
+ 	user_data_sz = sunxi_nfc_user_data_sz(sunxi_nand, section);
+ 
+-	/*
+-	 * The first 2 bytes are used for BB markers, hence we
+-	 * only have user_data_sz - 2 bytes available in the first user data
+-	 * section.
+-	 */
+ 	if (section == 0) {
+-		oobregion->offset = 2;
+-		oobregion->length = user_data_sz > 2 ? user_data_sz - 2 : 0;
++		oobregion->offset = SUNXI_NFC_BBM_SIZE;
++		oobregion->length = user_data_sz - SUNXI_NFC_BBM_SIZE;
+ 
+ 		return 0;
  	}
+@@ -2099,6 +2095,12 @@ static int sunxi_nand_hw_ecc_ctrl_init(struct nand_chip *nand,
+ 	if (mtd->oobsize < sunxi_get_oob_offset(sunxi_nand, ecc, nsectors))
+ 		return -EINVAL;
  
--	/* De-randomize the Bad Block Marker. */
-+	/* Undo hardware de-randomization of the plain on-flash BBM. */
- 	if (bbm && (nand->options & NAND_NEED_SCRAMBLING))
- 		sunxi_nfc_randomize_bbm(nand, page, oob);
- }
-@@ -1017,48 +993,25 @@ static void sunxi_nfc_set_user_data_len(struct sunxi_nfc *nfc,
- }
- 
- static void sunxi_nfc_hw_ecc_set_prot_oob_bytes(struct nand_chip *nand,
--						const u8 *oob, int step,
--						bool bbm, int page)
-+						const u8 *oob, unsigned int reg_index,
-+						bool bbm, int page,
-+						unsigned int user_data_sz)
- {
- 	struct sunxi_nfc *nfc = to_sunxi_nfc(nand->controller);
--	struct sunxi_nand_chip *sunxi_nand = to_sunxi_nand(nand);
--	unsigned int user_data_sz = sunxi_nfc_user_data_sz(sunxi_nand, step);
- 	u8 user_data[SUNXI_NFC_MAX_USER_DATA_SZ] = {};
-+	unsigned int i;
- 
--	/* Randomize the Bad Block Marker. */
-+	/* Compensate hardware randomization so the BBM stays plain on flash. */
- 	if (bbm && (nand->options & NAND_NEED_SCRAMBLING)) {
- 		memcpy(user_data, oob, user_data_sz);
- 		sunxi_nfc_randomize_bbm(nand, page, user_data);
- 		oob = user_data;
- 	}
- 
--	if (!nfc->caps->reg_user_data_len) {
--		/*
--		 * For A10, the user data for step n is in the nth
--		 * REG_USER_DATA
--		 */
--		writel(sunxi_nfc_buf_to_user_data(oob),
--		       nfc->regs + NFC_REG_USER_DATA(nfc, step));
--	} else {
--		/*
--		 * For H6 NAND controller, the user data for all steps is
--		 * contained in 32 user data registers, but not at a specific
--		 * offset for each step, they are just concatenated.
--		 */
--		unsigned int user_data_off = 0;
--		const u8 *ptr = oob;
--		unsigned int i;
--
--		for (i = 0; i < step; i++)
--			user_data_off += sunxi_nfc_user_data_sz(sunxi_nand, i);
--
--		user_data_off /= 4;
--		for (i = 0; i < user_data_sz / 4; i++, ptr += 4) {
--			writel(sunxi_nfc_buf_to_user_data(ptr),
--			       nfc->regs + NFC_REG_USER_DATA(nfc, user_data_off + i));
--		}
-+	for (i = 0; i < user_data_sz / 4; i++) {
-+		writel(sunxi_nfc_buf_to_user_data(oob + i * 4),
-+		       nfc->regs + NFC_REG_USER_DATA(nfc, reg_index + i));
- 	}
--
- }
- 
- static void sunxi_nfc_hw_ecc_update_stats(struct nand_chip *nand,
-@@ -1086,11 +1039,9 @@ struct sunxi_nfc_ecc_read {
- 
- static int sunxi_nfc_hw_ecc_correct(struct nand_chip *nand, u8 *data, u8 *oob,
- 				    int step, u32 status, u32 pattern_found,
--				    bool *erased)
-+				    unsigned int user_data_sz, bool *erased)
- {
- 	struct sunxi_nfc *nfc = to_sunxi_nfc(nand->controller);
--	struct sunxi_nand_chip *sunxi_nand = to_sunxi_nand(nand);
--	unsigned int user_data_sz = sunxi_nfc_user_data_sz(sunxi_nand, step);
- 	struct nand_ecc_ctrl *ecc = &nand->ecc;
- 	u32 tmp;
- 
-@@ -1213,10 +1164,10 @@ static int sunxi_nfc_oob_read_batch(struct nand_chip *nand,
- 	struct mtd_info *mtd = nand_to_mtd(nand);
- 	struct nand_ecc_ctrl *ecc = &nand->ecc;
- 	bool randomized = nand->options & NAND_NEED_SCRAMBLING;
--	unsigned int user_data_sz;
-+	unsigned int reg_index = 0, user_data_sz;
- 	int i, ret;
- 
--	for (i = 0; i < nsteps; i++) {
-+	for (i = 0; i < nsteps; i++, reg_index += user_data_sz / 4) {
- 		int step = first_step + i;
- 		int oob_off = sunxi_get_oob_offset(sunxi_nand, ecc, step);
- 		u8 *data = read->buf + step * ecc->size;
-@@ -1228,7 +1179,8 @@ static int sunxi_nfc_oob_read_batch(struct nand_chip *nand,
- 		bitflips = sunxi_nfc_hw_ecc_correct(nand,
- 						    !read->dma || randomized ? data : NULL,
- 						    read->oob_required ? oob : NULL,
--						    i, status, pattern_found, &erased);
-+						    i, status, pattern_found,
-+						    user_data_sz, &erased);
- 		if (bitflips < 0) {
- 			/* Preserve PIO data before the raw erased-page check. */
- 			if (!read->dma && !randomized)
-@@ -1257,7 +1209,7 @@ static int sunxi_nfc_oob_read_batch(struct nand_chip *nand,
- 							      true, read->page);
- 			}
- 
--			sunxi_nfc_hw_ecc_get_prot_oob_bytes(nand, oob, i, !step,
-+			sunxi_nfc_hw_ecc_get_prot_oob_bytes(nand, oob, reg_index, !step,
- 							    read->page, user_data_sz);
- 		}
- 
-@@ -1437,7 +1389,8 @@ static int sunxi_nfc_hw_ecc_write_chunk(struct nand_chip *nand,
- 	sunxi_nfc_randomizer_config(nand, page, false);
- 	sunxi_nfc_randomizer_enable(nand);
- 	sunxi_nfc_set_user_data_len(nfc, user_data_sz, nfc_step);
--	sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, nfc_step, bbm, page);
-+	sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, nfc_step, bbm, page,
-+					    user_data_sz);
- 
- 	writel(NFC_DATA_TRANS | NFC_DATA_SWAP_METHOD |
- 	       NFC_ACCESS_DIR | NFC_ECC_OP,
-@@ -1637,6 +1590,7 @@ static int sunxi_nfc_hw_ecc_write_page_dma(struct nand_chip *nand,
- 	struct sunxi_nand_chip *sunxi_nand = to_sunxi_nand(nand);
- 	struct nand_ecc_ctrl *ecc = &nand->ecc;
- 	struct scatterlist sg;
-+	unsigned int reg_index = 0;
- 	u32 wait;
- 	int ret, i;
- 
-@@ -1657,8 +1611,10 @@ static int sunxi_nfc_hw_ecc_write_page_dma(struct nand_chip *nand,
- 		int oob_off = sunxi_get_oob_offset(sunxi_nand, ecc, i);
- 		const u8 *oob = nand->oob_poi + oob_off;
- 
--		sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, i, !i, page);
-+		sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, reg_index, !i, page,
-+						    user_data_sz);
- 		sunxi_nfc_set_user_data_len(nfc, user_data_sz, i);
-+		reg_index += user_data_sz / 4;
- 	}
- 
- 	nand_prog_page_begin_op(nand, page, 0, NULL, 0);
++	if (nand->badblockpos >= SUNXI_NFC_BBM_SIZE) {
++		dev_err(nfc->dev, "cannot store bad-block marker at OOB byte %u\n",
++			nand->badblockpos);
++		return -EOPNOTSUPP;
++	}
++
+ 	ecc->read_oob = sunxi_nfc_hw_ecc_read_oob;
+ 	ecc->write_oob = sunxi_nfc_hw_ecc_write_oob;
+ 	mtd_set_ooblayout(mtd, &sunxi_nand_ooblayout_ops);
 
 -- 
 2.53.0
