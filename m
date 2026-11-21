@@ -2,82 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910F3606A338
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74B1606A33A
 	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VHQN1oli;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=cHJc+Qwj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A/3xF+EG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iqtuu1Nn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QGW1IxiDX5VdKnuif5DjoMpJwzIpz+5fMstOX4KKTaE=; b=VHQN1olinHXzE+
-	+C9b2yaKE3LHe4LR7WH+E+uJtFxFOSGazvnnNqT2Lvyq382kjFrJVdvJALJ7N5ITX6H/MfQOQkx07
-	cPMQ+YVWa6rT0zmsTJmy0lfaRtPgQRkg8zJGA0JJfQ/NLmdgxQnBGZwZu8Cxhzvhm/Bus8Pck3JCd
-	uym/t+JaWDZvGPMSFNGWVSJCCOIO216C4AmSRhPm92fBhfdK8cF2rN07Oms56Ox89uea0JeD9NiUQ
-	6BPYao2Ka3ak4H41OGc+VxSkbQ7gw0+nZVlgwd5gBQKjrvuaxgJ+jUPm5+u71OtQpc6TBLNIwyk1c
-	ywaVnsfS38hKtpKVhraQ==;
+	List-Owner; bh=2AGBcOOzRTC6ShorOU+9bsy9QDvjQLHzXkUKhS0WtwU=; b=A/3xF+EGrDsaE2
+	6kWmP2SzJFqGWmUgZUA5UqXznb3wjQky4rSpQxK7/xSkP0yU4V37IYhm+g97WnS5Ft0bM5iY9c7GU
+	Y+HmBj4UtIQIUVWDolrBFqttDzH0VvHcLYTlb+q50qE+isveVKTOttEppuL1BsTlFDHvTktgWvTQF
+	W25EDn7W0VyVA/ecj9R5yBtgaH1xO10DV1dFo2xZH2AWK2dl2tlraDgiuY9k4/XWO7MxD1t9xrrt4
+	Z3uSQdo/Sv3Nq5lJB1yXGhbEZTvf3y4Z3B5dTeGQi2GEmF+PzIyAYKso30ZdgeqFh0+w/5njQxky8
+	MvZtJ4euSyUw96XnYuyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUulY-00000000WLT-1bTa;
-	Sat, 21 Nov 2026 23:45:08 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUul2-00000000W1I-1Mo6
+	id 1xUula-00000000WOn-25oT;
+	Sat, 21 Nov 2026 23:45:10 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUulQ-00000000WDr-1DLB
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 23:44:46 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0DABA1758;
-	Sat, 21 Nov 2026 15:44:32 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1FDB33F632;
-	Sat, 21 Nov 2026 15:44:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795304674; bh=VHK/Zaew+zy2/DLFlWWTABBhoHjNkucYnAaXxyLYZ54=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cHJc+QwjfIHxmc/OjB8WljmHU8lwTapMQ2yy7rGQf81wnFSDHzH4VVXkheXw1FofA
-	 Lf+wwvk3LVM4iAdKmLxsF0x637WzARJhKlFmt5HbbCuMDqBm81QO8ONJRMi89ndCiQ
-	 OfVaKuJCFNJ8cPEqGxS13IR/ifQrvYPUpe60QzYI=
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: sudeep.holla@kernel.org,
-	james.quinlan@broadcom.com,
-	f.fainelli@gmail.com,
-	vincent.guittot@linaro.org,
-	etienne.carriere@st.com,
-	peng.fan@oss.nxp.com,
-	michal.simek@amd.com,
-	d-gole@ti.com,
-	jonathan.cameron@oss.qualcomm.com,
-	elif.topuz@arm.com,
-	lukasz.luba@arm.com,
-	philip.radford@arm.com,
-	david@kernel.org,
-	souvik.chakravarty@arm.com,
-	leitao@kernel.org,
-	kas@kernel.org,
-	puranjay@kernel.org,
-	usama.arif@linux.dev,
-	kernel-team@meta.com,
-	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v16 22/31] firmware: arm_scmi: Add Telemetry debugfs SHMTI dump support
-Date: Sat, 21 Nov 2026 23:39:56 +0000
-Message-ID: <20261121234005.1525419-23-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261121234005.1525419-1-cristian.marussi@arm.com>
-References: <20261121234005.1525419-1-cristian.marussi@arm.com>
+	Sat, 21 Nov 2026 23:45:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6D4F261ECD
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:44:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 269921F000D3
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:44:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795304699;
+	bh=2AGBcOOzRTC6ShorOU+9bsy9QDvjQLHzXkUKhS0WtwU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=iqtuu1NnbUiqzwMauYGYsPPooUnz9J2f60EhLdDnPjEflAyC2Yum4V54XR555sZu0
+	 fqO95LJiKHzt/+Y9O5fyZekFNyVMFITbrJu2z5OusT+5LePqvOorS4MrzMODtIJRCL
+	 SWwmBUrlmuKzlC0kfFwwR3mjF45xR7L+VJ2oKJQULvJ7i/kfjJyL3MYNEBFfaT9q2r
+	 5rTWtPkR2Y54LGRr5CZKfs12A86UmYwYkkxmrsMpPfjcBFcTfsAJY4e16oWibEHM97
+	 g8Z+5wWYbhCQYblhWCj+kEaTo989BTBU+MgMecSXLZMTLL/mimMTAbMrGSD3BdeaP9
+	 h7lbp6pnZrUFQ==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5c126f80426so2127763e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 15:44:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErFZanO0QMqgQNDTbOtNlGDP4blYXhpyWvOxRv1JkaqBjXS2eO+ZTiDpukvguLx7bGa73E7Kq+LkrMmlUro9jV1u@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Se3joJgztDIQT1XRtguV2cuSiNJpQ1UVwQHdUN+2Lez+bRABc
+	FZjNPG/nFc+4JplIHg+9aizTx6dYQTeCGRVTnwQzdsaKpl8Wd7yNUde9JVzwhxU44Uc0D6Y2fnz
+	dz8oEnerUZ865jLeYpLWL9PRIT2N85Pg=
+X-Received: by 2002:a05:6512:10c7:b0:5c1:5bc7:83c with SMTP id
+ 2adb3069b0e04-5c1bc89c62amr1919255e87.53.1795304697899; Sat, 21 Nov 2026
+ 15:44:57 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_154436_483926_AF85AF4B 
-X-CRM114-Status: GOOD (  18.06  )
-X-Spam-Score: -4.4 (----)
+References: <20261015142552.4128028-1-ryan.roberts@arm.com> <20261015142552.4128028-4-ryan.roberts@arm.com>
+In-Reply-To: <20261015142552.4128028-4-ryan.roberts@arm.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Sun, 22 Nov 2026 00:44:44 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkpUfxjH-6x6CNfZ-vmNBpZjKA_QJi14C3MvLjvH5GDCg@mail.gmail.com>
+X-Gm-Features: Aa3M54qEBsIHfq6xlw1QgwR1kLjUf8oKtfnIKMoqH8Z1sFQILc0FmuvWNVJA2Qg
+Message-ID: <CAD++jLkpUfxjH-6x6CNfZ-vmNBpZjKA_QJi14C3MvLjvH5GDCg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 03/15] dt-bindings: misc: Add Arm Core Local Accelerator
+To: Ryan Roberts <ryan.roberts@arm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,193 +84,143 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Expose one debugfs entry for each discovered SHMTI that can be used to
-dump the related SHMTI in binary form from TBGN up to TEND markers.
+Hi Ryan,
 
-No processing is done kernel side, beside using proper accessors for
-device memory.
+thanks for your patch!
 
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
-v15 --> v16
- - initialize/destroy debugFS around SHMTIs init
-v14 --> v15
- - cleanup local debugfs subtree with debugfs_remove_recursive on remove
-v12 --> v13
- - get inode lock on time update
-v11 --> v12
- - fix debugfs shmti dump file to use the SID as name
-v8 --> v9
- - use kvzalloc/kfree
- - use file_update_time to update debugfs file ts
-v5 --> v6
- - added mutex to protect binary dump buffer during reads (Sashiko)
- - using debugfs_create_file_size() (Sashiko)
----
- drivers/firmware/arm_scmi/telemetry.c | 103 ++++++++++++++++++++++++++
- 1 file changed, 103 insertions(+)
+The following review comments are based on my limited understanding
+of device tree, the actual maintainers should have the final word
+and need to look at it too.
 
-diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
-index b74371bc41d5..cd0bd0015c82 100644
---- a/drivers/firmware/arm_scmi/telemetry.c
-+++ b/drivers/firmware/arm_scmi/telemetry.c
-@@ -9,9 +9,11 @@
- #include <linux/bitfield.h>
- #include <linux/compiler_types.h>
- #include <linux/completion.h>
-+#include <linux/debugfs.h>
- #include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/err.h>
-+#include <linux/fs.h>
- #include <linux/hash.h>
- #include <linux/hashtable.h>
- #include <linux/jhash.h>
-@@ -450,6 +452,14 @@ struct telemetry_shmti {
- #define TDCF_OFFS(_b, _p)				\
- 	((unsigned long)((__force void *)(_p) - (__force void *)(_b)))
- 
-+struct scmi_telemetry_dbg_shmti {
-+	struct telemetry_shmti *shmti;
-+	size_t buf_sz;
-+	void *buf;
-+	/* Protect this descriptor from concurrent readers using it */
-+	struct mutex mtx;
-+};
-+
- #define SHMTI_EPLG(s)						\
- 	({							\
- 		struct telemetry_shmti *_s = (s);		\
-@@ -562,6 +572,7 @@ struct telemetry_info {
- 	unsigned int default_blk_ts_rate;
- 	const struct scmi_protocol_handle *ph;
- 	struct telemetry_shmti *shmti;
-+	struct dentry *shmti_top;
- 	struct telemetry_de *tdes;
- 	struct xarray xa_des;
- 	struct telemetry_uuid *primary_uuid;
-@@ -1356,6 +1367,10 @@ static void scmi_telemetry_tdes_cleanup(void *arg)
- 		scmi_telemetry_de_unlink(&tde->de);
- 		scmi_telemetry_free_tde_put(ti, tde);
- 	}
-+
-+	/* Safe removal of SHMTI debugfs tree before freeing underlying data */
-+	if (IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_PROTOCOLS))
-+		debugfs_remove_recursive(ti->shmti_top);
- }
- 
- static int scmi_telemetry_de_descriptors_get(struct telemetry_info *ti)
-@@ -1533,6 +1548,91 @@ scmi_telemetry_enumerate_common_intervals(struct telemetry_info *ti)
- 					ti->info.intervals);
- }
- 
-+static int scmi_telemetry_dbg_shmti_open(struct inode *inode, struct file *filp)
-+{
-+	struct scmi_telemetry_dbg_shmti *sblob;
-+	struct telemetry_shmti *shmti;
-+
-+	if (!inode->i_private)
-+		return -ENODEV;
-+
-+	shmti = inode->i_private;
-+	sblob = kzalloc_obj(*sblob);
-+	if (!sblob)
-+		return -ENOMEM;
-+
-+	sblob->shmti = shmti;
-+	sblob->buf = kvzalloc(shmti->info.len, GFP_KERNEL);
-+	if (!sblob->buf) {
-+		kfree(sblob);
-+		return -ENOMEM;
-+	}
-+
-+	mutex_init(&sblob->mtx);
-+
-+	filp->private_data = sblob;
-+
-+	return 0;
-+}
-+
-+static ssize_t scmi_telemetry_dbg_shmti_read(struct file *filp, char __user *buf,
-+					     size_t count, loff_t *ppos)
-+{
-+	struct scmi_telemetry_dbg_shmti *sblob = filp->private_data;
-+
-+	/* Dump on first read and again after each rewind to start pos */
-+	guard(mutex)(&sblob->mtx);
-+	if (!sblob->buf_sz || *ppos == 0) {
-+		struct inode *ino = file_inode(filp);
-+
-+		memcpy_fromio(sblob->buf, sblob->shmti->base,
-+			      sblob->shmti->info.len);
-+		sblob->buf_sz = sblob->shmti->info.len;
-+		/* update inode timestamps */
-+		inode_lock(ino);
-+		file_update_time(filp);
-+		inode_unlock(ino);
-+	}
-+
-+	return simple_read_from_buffer(buf, count, ppos, sblob->buf, sblob->buf_sz);
-+}
-+
-+static int scmi_telemetry_dbg_shmti_release(struct inode *inode, struct file *filp)
-+{
-+	struct scmi_telemetry_dbg_shmti *sblob = filp->private_data;
-+
-+	kvfree(sblob->buf);
-+	kfree(sblob);
-+
-+	return 0;
-+}
-+
-+static const struct file_operations scmi_telemetry_dbg_shmti_fops = {
-+	.open = scmi_telemetry_dbg_shmti_open,
-+	.release = scmi_telemetry_dbg_shmti_release,
-+	.read = scmi_telemetry_dbg_shmti_read,
-+	.llseek = generic_file_llseek,
-+	.owner = THIS_MODULE,
-+};
-+
-+static void scmi_telemetry_debugfs_initialize(struct telemetry_info *ti)
-+{
-+	const struct scmi_protocol_handle *ph = ti->ph;
-+	struct dentry *top;
-+
-+	top = ph->hops->debugfs_proto_dentry_get(ph);
-+	ti->shmti_top = debugfs_create_dir("shmtis", top);
-+
-+	for (unsigned int i = 0; i < ti->num_shmti; i++) {
-+		char id[16];
-+
-+		snprintf(id, 16, "%u", ti->shmti[i].info.sid);
-+		debugfs_create_file_size(id, 0444, ti->shmti_top, &ti->shmti[i],
-+					 &scmi_telemetry_dbg_shmti_fops,
-+					 ti->shmti[i].info.len);
-+	}
-+}
-+
- static int iter_shmti_update_state(struct scmi_iterator_state *st,
- 				   const void *response, void *priv)
- {
-@@ -1748,6 +1848,9 @@ static int scmi_telemetry_enumerate_shmti(struct telemetry_info *ti)
- 	/* Expose the fully initialized SHMTI infos */
- 	smp_store_release(&ti->info.base.num_shmtis, ti->num_shmti);
- 
-+	if (IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_PROTOCOLS))
-+		scmi_telemetry_debugfs_initialize(ti);
-+
- 	return devm_add_action_or_reset(ph->dev, scmi_telemetry_tdes_cleanup, ti);
- }
- 
--- 
-2.54.0
+On Thu, Oct 15, 2026 at 4:26=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
+ wrote:
 
+> Arm Core Local Accelerator (CLA) provides a CPU-local interface to
+> accelerators that access memory through the local CPU's MMU. CLAs whose
+> accelerators cannot be isolated from each other form an isolation
+> domain.
+>
+> Add a binding for arm,cla describing the register range, CPU
+> association, DMA coherency and isolation domain. Document the
+> privilege-level register frames, including reduced ranges exposed to
+> virtual machines, and provide an example of two CLAs sharing a domain.
+>
+> Signed-off-by: Ryan Roberts <ryan.roberts@arm.com>
+
+>  .../devicetree/bindings/misc/arm,cla.yaml     | 77 +++++++++++++++++++
+
+No matter where the driver goes, this binding should (IMO)
+be in
+
+Documentation/devicetree/bindings/arm/arm,core-local-accelerator.yaml
+
+> +properties:
+> +  compatible:
+> +    const: arm,cla
+
+I would spell it out arm,core-local-accelerator but others may like
+the terse acronym. I just think it's too short to be unique and
+find Documentation | grep core is good to match for one.
+
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      A single contiguous register range starting at the PL0 frame, alig=
+ned to
+> +      256 KiB. Each privilege-level frame occupies 64 KiB, with PL0, PL1=
+, PL2
+> +      and PL3 at offsets 0, 0x10000, 0x20000 and 0x30000 respectively.
+
+So these registers only exist on each node (mention that here), is this add=
+ress
+in the *physical memory* address of *that* CPU or of the entire system
+or what is it?
+
+I'm just confused so looking for this to be explained here.
+
+My guesswork is that each CPU has a slice of the physical memory
+in this reg, and that slice is then only visible from that one CPU.
+If it's like that, spell it out.
+
+> +  cpu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the CPU for which this CLA is local. Only that CPU can =
+access
+> +      the CLA's registers.
+
+If this thing/address is local to the CPU, shouldn't this just be subnode
+inside of the CPU device tree node itself? I'm not sure so I'm asking.
+
+> +  dma-coherent: true
+
+Yeah, I guess ... on THAT CPU then?
+
+I think this property is "as seen from the CPU", and assumes all CPUs
+and IIUC the other CPUs cannot even see it so that doesn't sound very
+coherent.
+
+I'm just confused by this property being present here, but it's
+true, in a way, I guess? Do you have to specify it?
+
+> +  arm,domain:
+
+Domain is a bit generic don't you think? We have power domains
+and clock domains already.
+
+At least use arm,cla-domain?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Identifier of the CLA isolation domain. CLAs whose attached accele=
+rators
+> +      cannot be isolated from each other, for example because they share=
+ an
+> +      inter-accelerator communication bus, must have the same domain ID.
+> +      Different isolation domains must have different IDs. IDs need not =
+be
+> +      consecutive. A CLA that can be isolated from all other CLAs has it=
+s own
+> +      domain ID.
+
+This doesn't explain what it means to isolate a domain, what
+isolation even means in this context.
+
+I know about isolating network interfaces for example: it means
+to physically decouple it.
+
+So express what "isolation" means here.
+
+> +examples:
+> +  - |
+> +    /* Two CPU-local CLAs in the same isolation domain. */
+> +    cla@10000000 {
+> +        compatible =3D "arm,cla";
+> +        reg =3D <0x10000000 0x40000>;
+> +        cpu =3D <&cpu0>;
+> +        dma-coherent;
+> +        arm,domain =3D <0>;
+> +    };
+> +
+> +    cla@10040000 {
+> +        compatible =3D "arm,cla";
+> +        reg =3D <0x10040000 0x40000>;
+> +        cpu =3D <&cpu1>;
+> +        dma-coherent;
+> +        arm,domain =3D <0>;
+> +    };
+
+This example makes it look like these CLAs are all uniquely
+mapped into the (shared) physical address space. Is it so?
+
+Yours,
+Linus Walleij
 
