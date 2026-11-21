@@ -2,111 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C118606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 12:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE133606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 13:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o7aHI0WG;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JAQ44gTl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D6x6oz/M;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=evWxxf05
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Quxwx4D/9ZX9paKFYNgMPeoMu4HkYbSDyCF+yKWZHwU=; b=o7aHI0WGLgWd1b82+jyHR+cr5h
-	wnvV1kqOHFv9j6BtR3uBxOzLTLUNauF8QiEwfCEvrwv1hYqwBUSWbZBR2OXh5T8uUBDbAdyErnyke
-	NH+Z/v4R+weLdg6yTRHLGutRAT01d+LtCufUS6LceYCjaUGu7JDlTSNYcrJcLthMNWwSOPgNmSfHX
-	gp1dWsAZ9xJOr21KaC5GAL6a0VSySyk1A+X5RHfZwZeS0oeZOSNynHlwLCahtwHFHx0HLG2+xAd7A
-	HdAqk61jmSjJ7mACObIQ60TYvd46a+lMmCKcSDNTNswLCjdvtLtv3qiPyJQfcgIb6jSEEnA/5wJCY
-	HSaAm2iQ==;
+	bh=kosSlO4n4eaj/l8QctRPYZS0nYWx+0xDQzEvrB+dFGg=; b=D6x6oz/MPIip6gFSfM1r1Q/y+a
+	8sphk5J0OarO7gfS6TAh2tECF2SyRMSucYULFt1QdCtI0sUtC8Xzo8XXJRrX29m92uKhGXJQHhcsk
+	GgrwsCAnPqH1kwWgHcPHeMxLmUeGPPrWwNBZWynfTRSxpQRMsiwYMv8fHOM5ajHiDwEYz/xrBJa/P
+	SAY/ohJJrjgy/VEUpNLs2vIFaAOj1B/bcaWQSSdAZqhjq2Rv4KAbz484FRnj+pXEwqbLbQj87dFGf
+	63eZ3kDJDDwhwK4SFJxetqw5eqkBr7K0AutLRgixgr5GTGr9Ntsb3YNhmNP6rhGgRQME8WYstR8bg
+	h8m2WzQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkRR-0000000HCbc-2tLj;
-	Sat, 21 Nov 2026 12:43:41 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUkkA-0000000HEcQ-1GZk;
+	Sat, 21 Nov 2026 13:03:02 +0000
+Received: from out-42.mta1.migadu.com ([95.215.58.42] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUkRE-0000000HCPD-2Qsn
+	id 1xUkk6-0000000HEbw-3z3i
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 12:43:34 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4FFE445DC8;
-	Sat, 21 Nov 2026 12:43:18 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795264998;
-	b=OQzNz2nZuUQKdf2tdvCyfHtj/8UOM/+x8qaR14jF8kXUOXr/E/0n0RZP2rdXB+KBKwYg
-	 ya0Avm8JiEGP1aGQjDLwRiHE6HHhh5AJAGPh0BECbGLo9hQo0YNnNcuUYKqib5+fNMxub
-	 uwEyX7OVilkoWuvLF/HaLslOn1ZJuBHnlyhACJWweo602hNx4vmMmAMtfevGGgLs+jURF
-	 8D9k9scYvKJJiPHImmHJUsYh+rnQNNLvpIFdupO3Tzspp4RbNYbXWBFo6FgjxnXlT8ZX7
-	 +TdQLexzo4u3Y0hDk9LYoFo16wA2fWDYnpwsur6eAJRXgKJb7VEnkkKVZNs6+sUaW4A==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795264998;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Quxwx4D/9ZX9paKFYNgMPeoMu4HkYbSDyCF+yKWZHwU=;
-	b=vWQX+ZDOKSjuvMavWQ7Byc3tpijjhwcA/Cb3kgd7dkrmAbvbCEgmJ1Q4YOQMoHtulOQ2
-	 t5Rc4/cNBRGIEKJqx1Tg+OJD2HcdqqteNQ/MaV0sxUY8CK/01cDhxjQ5z5owIKRqF1NzL
-	 ahhm2C0+Xs73MDSj3NSKEh7FmgfL+TYrF16u3g9PRDUcJMx9SbrBHziI0Lx+jGRTCFZ0B
-	 0PdK/NzK9BnCKFmjHr7kpUhDcDhbh9jnXn2kir3wKST7YmjGaGAN4sjkNMrR+Omlc+XKy
-	 enUKeW8w4hQ6FQjHnC1zKh6XGY385T3Wzahjx0eW0STHytX2hLgSVIOMoIUYeE30nuQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 82EAC1F000EB;
-	Sat, 21 Nov 2026 12:43:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795264998;
-	bh=Quxwx4D/9ZX9paKFYNgMPeoMu4HkYbSDyCF+yKWZHwU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=JAQ44gTl9bp8R1zRr90izKdOjR1by8/9dUva0Pfu0xN2jbuZayhyiPg8FJlFmsF1P
-	 G8/9X5SVMO8io3UkNDXaCe79D5S5TTcL9o4JF0jSQLyQLabblYDjCOJyuxHG8HCyY2
-	 t2q7huco+TBgOncXpoOJEvdwS/74ODJtyUABK0dHGCVt1ha4DBBED3clvdRZChtZ7Z
-	 Ace9s6H4oOMtIdqJKiLaVic4X2lK2OvMtOC2WUxEOYDk0AsOaaj6uQpdbPQLI622z/
-	 8KYlHVgq7OIMRXDbcL1V5L92zP4p65+waw6XAGjLxxdPZcDGSklANH6cgCa1Urasu0
-	 S9CyrnOVRACbA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 105734BC5E;
-	Sat, 21 Nov 2026 12:43:14 +0000 (UTC)
-From: Yuugo Yoneda via B4 Relay <devnull+yogo.0917.sabu.gmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 21:43:21 +0900
-Subject: [PATCH RFC v2 11/13] ARM: at550: add SiRF AT550 platform support
+	Sat, 21 Nov 2026 13:03:00 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=AXPl9MSQKEVnxwBZxVz70iQ3WAgcrk7wcvSe7Ve0uwo=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795266175; v=1; x=1795870975;
+ b=evWxxf05XzVJt8Tiou/ooJaFuuGuIEy6pjt2YmbAgNiOxUhEf41eaNZKkg47SGXEuGOXmAyt
+ 3WwiAi8ByTAobCpv3Fp+93sxm2LZVZgMx5+WnZdbPDilExVU6ew6/6LAC8t6n1rEElzVU8kRIXn
+ y9U/4883p+Brc6sMaiwDe+Bk=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 2fb3a475fbc6b1aa;
+	Sat, 21 Nov 2026 13:02:54 +0000
+X-Mizu-Trace-ID: 2fb3a475fbc6b1aa
+X-Migadu-Flow: FLOW_OUT
+Date: Sat, 21 Nov 2026 21:02:42 +0800
+From: Peng Fan <peng.fan@linux.dev>
+To: Jason Gunthorpe <jgg@ziepe.ca>, Frank Li <Frank.Li@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>, Robin Murphy <robin.murphy@arm.com>
+Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
+	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v6 0/9] dmaengine: add DMA channel bus and fsl-edma
+ per-channel IOMMU support
+Message-ID: <awGWcq_nKWShC81B@fedora>
+References: <20261112-edma-iommu-v3-v6-0-b038edb8ce6f@nxp.com>
+ <20261116193021.GB2452510@ziepe.ca>
+ <avwQl18smAW4R6ec@fedora>
+ <20261117130005.GC2606445@ziepe.ca>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-at550-rfc-v1-v2-11-b0309d0789b2@gmail.com>
-References: <20261121-at550-rfc-v1-v2-0-b0309d0789b2@gmail.com>
-In-Reply-To: <20261121-at550-rfc-v1-v2-0-b0309d0789b2@gmail.com>
-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
- Radu Rendec <radu@rendec.net>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Ulf Hansson <ulfh@kernel.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, Russell King <linux@armlinux.org.uk>, 
- Arnd Bergmann <arnd@arndb.de>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Linus Walleij <linusw@kernel.org>, Drew Fustini <fustini@kernel.org>, 
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-doc@vger.kernel.org, soc@lists.linux.dev
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795264991; l=7327;
- i=yogo.0917.sabu@gmail.com; s=ypl514-20261117; h=from:subject:message-id;
- bh=TMVN798mJJ3rMR1jYweJbb0iwGiP7A9/jXlQP0XI6K4=;
- b=k9T5AXKOfnRl0xWMoYosBZkHR19mlayrpQGvVtbjZtWrnnK6S/79+MapEQ+WMCK3vIqDrjqGO
- 85uJGsh21NdDEkRajfMmOrCwnaWVTWtOistwMZwcv8HgsRP1AMZzfLF
-X-Developer-Key: i=yogo.0917.sabu@gmail.com; a=ed25519;
- pk=TIQ8Tk4xQrxyn8rmk3GI2f5qg/kO6g2KZm7YOOyBHeg=
-X-Endpoint-Received: by B4 Relay for
- yogo.0917.sabu@gmail.com/ypl514-20261117 with auth_id=1550
-X-Original-From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117130005.GC2606445@ziepe.ca>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_050259_151101_0689D468 
+X-CRM114-Status: GOOD (  16.33  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,200 +89,73 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: yogo.0917.sabu@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
+Hi Jason, and all
 
-Add minimal Devicetree machine support for the SiRF AT550 SoC, selecting
-CPU_ARM1136R1 (matching MIDR 0x4117b365) alongside ARM_ERRATA_411920,
-AT550_IRQ, and CLKSRC_AT550.
+On Tue, Nov 17, 2026 at 09:00:05AM -0400, Jason Gunthorpe wrote:
+>> 
 
-Document the RAM-boot firmware handoff contract and initial platform
-limits in Documentation/arch/arm/at550.rst.
+[...]
 
-Signed-off-by: Yuugo Yoneda <yogo.0917.sabu@gmail.com>
----
- Documentation/arch/arm/at550.rst | 56 ++++++++++++++++++++++++++++++++++++++++
- Documentation/arch/arm/index.rst |  1 +
- MAINTAINERS                      |  2 ++
- arch/arm/Kconfig                 |  1 +
- arch/arm/Makefile                |  1 +
- arch/arm/mach-at550/Kconfig      | 13 ++++++++++
- arch/arm/mach-at550/Makefile     |  2 ++
- arch/arm/mach-at550/at550.c      | 11 ++++++++
- 8 files changed, 87 insertions(+)
+>> I may not describe it clear in cover-letter.
+>> 
+>> I understand the concern. Let me explain why I believe it is justified here
+>> rather than a hack.
+>> 
+>> On i.MX eDMA each channel has its own interrupt, its own register region,
+>> and on i.MX8QM even its own power domain. Each channel may also have its
+>> own Stream ID, or share one when SIDs are scarce. These are genuine
+>> per-channel hardware resources, not software fiction.
+>> 
+>> In dmaengine each channel is already modeled as a channel device (see
+>> dmaengine_chan_dev()), and this series puts those devices on a real bus
+>> (dmaengine_chan_bus_type) as a prerequisite. The DT child node simply
+>> describes that existing device, so its reg/interrupts/power-domains/iommus
+>> are attached per channel instead of as index-matched flat lists on the
+>> controller.
+>
+>If they are real devices then why can't they come out as platform
+>devices?
+>
+>I think you are overstating how independent they are. Many single
+>devices have per "channel" resources like MMIO and IRQs. That's
+>totally normal. It doesn't make the sub resources independent devices.
+>
+>AFAICT what you have here is some HW designer used SID where they
+>should have used SSID and you are trying to hack DT to make that
+>usable because Linux does not support a SID as SSID model today.
+>
+>Again, since this is the 3rd - 4th case like this, it seems like a
+>popular hardware choice and we should try to do better to make Linux
+>support if we can.
 
-diff --git a/Documentation/arch/arm/at550.rst b/Documentation/arch/arm/at550.rst
-new file mode 100644
-index 000000000..3d1d8a77c
---- /dev/null
-+++ b/Documentation/arch/arm/at550.rst
-@@ -0,0 +1,56 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+SiRF AT550 and Yupiteru YPL514si
-+================================
-+
-+The initial AT550 port supports the ARM1136 CPU, the 64-source interrupt
-+controller, the low 32 bits of the system counter and match channel zero,
-+polled resistive touch input, and SDHCI programmed I/O. The YPL514si board
-+can use a firmware-configured 480 by 272 RGB565 simple framebuffer.
-+
-+Firmware handoff
-+----------------
-+
-+Use the standard ARM boot protocol and a flattened device tree. Firmware must
-+initialize SDRAM, peripheral clocks, and pin multiplexing before entering the
-+kernel. No firmware-specific virtual mappings or page-table inspection are
-+used by the Linux drivers.
-+
-+The bootloader must update the following parts of the board device tree:
-+
-+* Supply the actual Linux-owned region in the memory node. The zero size in
-+  the source DTS is a placeholder, not a description of all installed memory.
-+  RAM still owned by another operating system must not be advertised to Linux.
-+* Set the fixed counter clock frequency to the rate after the programmed
-+  hardware divider. The driver deliberately does not reset the counter or
-+  change the divider. A zero rate is rejected.
-+* Disable the timer watchdog before handing the timer block to Linux.
-+* Enable the simple framebuffer only when its physical address, dimensions,
-+  stride, and format have been verified. Reserve its memory with a no-map
-+  reserved-memory node so simplefb does not alias the ARM linear mapping.
-+* Enable the touch and SD nodes only for peripherals actually handed to Linux.
-+  The touchscreen driver rejects an active streaming/AUX configuration.
-+
-+A Windows CE RAM loader is one possible bootloader. Its allocation checks,
-+volatile driver registration, MMU transition, and DT fixups are outside the
-+kernel port. The Linux Image and all its runtime memory must fit inside the
-+region returned to the kernel; a static firmware RAM mapping is insufficient
-+proof that memory is available.
-+
-+Initial limits
-+--------------
-+
-+The port depends on firmware clock and pin setup; cold reset initialization
-+and clock-tree programming are not implemented. Board suspend is disabled in
-+the defconfig because firmware state restoration has not been established.
-+
-+DMA address translation has not been validated, so the SDHCI driver uses PIO.
-+The YPL514si DT disables MMC and SDIO discovery and limits SD to 25 MHz and
-+3.3 V. Filesystem write support, card removal, and suspend/resume require
-+separate hardware validation. No flash or bootloader update is required to
-+use the RAM boot path.
-+
-+The touchscreen exports raw coordinates. Initial five-point affine calibration
-+is performed in userspace, rather than placing a board-specific transform in
-+the input driver. GPS/baseband, USB, UART, and native LCD modesetting are not
-+part of the initial support.
-diff --git a/Documentation/arch/arm/index.rst b/Documentation/arch/arm/index.rst
-index b15621093..9cf1fb834 100644
---- a/Documentation/arch/arm/index.rst
-+++ b/Documentation/arch/arm/index.rst
-@@ -62,6 +62,7 @@ SoC-specific documents
-    stm32/stm32mp157-overview
-    stm32/stm32-dma-mdma-chaining
- 
-+   at550
-    sunxi
- 
-    samsung/index
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9d02a79a2..1f9c8c08b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25850,11 +25850,13 @@ F:	include/trace/events/siox.h
- SIRF AT550 PLATFORM
- M:	Yuugo Yoneda <yogo.0917.sabu@gmail.com>
- S:	Odd Fixes
-+F:	Documentation/arch/arm/at550.rst
- F:	Documentation/devicetree/bindings/arm/sirf,at550.yaml
- F:	Documentation/devicetree/bindings/input/touchscreen/sirf,at550-ts.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/sirf,at550-intc.yaml
- F:	Documentation/devicetree/bindings/mmc/sirf,at550-sdhci.yaml
- F:	Documentation/devicetree/bindings/timer/sirf,at550-timer.yaml
-+F:	arch/arm/mach-at550/
- F:	drivers/clocksource/timer-at550.c
- F:	drivers/input/touchscreen/at550-ts.c
- F:	drivers/irqchip/irq-at550.c
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 0cc289a71..7fcf2a28f 100644
---- a/arch/arm/Kconfig
-+++ b/arch/arm/Kconfig
-@@ -367,6 +367,7 @@ source "arch/arm/mach-artpec/Kconfig"
- 
- source "arch/arm/mach-aspeed/Kconfig"
- 
-+source "arch/arm/mach-at550/Kconfig"
- source "arch/arm/mach-at91/Kconfig"
- 
- source "arch/arm/mach-axxia/Kconfig"
-diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-index 573813ef5..508cbad8b 100644
---- a/arch/arm/Makefile
-+++ b/arch/arm/Makefile
-@@ -176,6 +176,7 @@ machine-$(CONFIG_ARCH_ACTIONS)		+= actions
- machine-$(CONFIG_ARCH_ALPINE)		+= alpine
- machine-$(CONFIG_ARCH_ARTPEC)		+= artpec
- machine-$(CONFIG_ARCH_ASPEED)           += aspeed
-+machine-$(CONFIG_ARCH_AT550)		+= at550
- machine-$(CONFIG_ARCH_AT91)		+= at91
- machine-$(CONFIG_ARCH_AXXIA)		+= axxia
- machine-$(CONFIG_ARCH_BCM)		+= bcm
-diff --git a/arch/arm/mach-at550/Kconfig b/arch/arm/mach-at550/Kconfig
-new file mode 100644
-index 000000000..b3a0c1874
---- /dev/null
-+++ b/arch/arm/mach-at550/Kconfig
-@@ -0,0 +1,13 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config ARCH_AT550
-+	bool "SiRF AT550 platforms"
-+	depends on ARCH_MULTI_V6
-+	select ARM_ERRATA_411920
-+	select AT550_IRQ
-+	select CLKSRC_AT550
-+	select CPU_ARM1136R1
-+	help
-+	  Support SiRF AT550 systems, including the Yupiteru YPL514si.
-+	  The initial support uses firmware-configured peripheral clocks,
-+	  pin multiplexing and SDRAM. A bootloader-supplied device tree must
-+	  describe the usable RAM region and the divided counter clock rate.
-diff --git a/arch/arm/mach-at550/Makefile b/arch/arm/mach-at550/Makefile
-new file mode 100644
-index 000000000..98a51d234
---- /dev/null
-+++ b/arch/arm/mach-at550/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-y += at550.o
-diff --git a/arch/arm/mach-at550/at550.c b/arch/arm/mach-at550/at550.c
-new file mode 100644
-index 000000000..affcc9eb3
---- /dev/null
-+++ b/arch/arm/mach-at550/at550.c
-@@ -0,0 +1,11 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#include <asm/mach/arch.h>
-+
-+static const char *const at550_dt_compat[] __initconst = {
-+	"sirf,at550",
-+	NULL,
-+};
-+
-+DT_MACHINE_START(AT550_DT, "SiRF AT550")
-+	.dt_compat = at550_dt_compat,
-+MACHINE_END
+Let's put i.MX eDMA aside, I have one general question regarding
+dma channel DMA.
 
--- 
-2.56.0
+The below two drivers[1] has chan_dma_dev set as true which means they use
+dma channel device to do dma memory allocation. And for tegra186, it
+use dma channel device for iommu, the buggy part is that it forces
+chan dev's bus to platform bus.
 
+Do you think it is reasonable to have chan device(not platform device) do dma
+allocation? I ask because if we allow chan device to do dma allocation, we need
+to provide a dma channel bus for iommu_buses to fix tegre186(TBH, I 
+am not familar with this platform, it even has iommu-map for the dma node).
 
+[1] drivers/dma/tegra186-gpc-dma.c
+    drivers/dma/ti/k3-udma.c
+    https://elixir.bootlin.com/linux/v7.4-rc1/A/ident/chan_dma_dev
+
+Thanks
+Peng
+
+>
+>Jason
 
