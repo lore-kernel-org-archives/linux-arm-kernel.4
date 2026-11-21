@@ -2,66 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C86606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 09:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E618606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 09:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oSTRY9oy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Y63YgXAb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xeXy0BhD;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cI13BgWJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=SBI9zebGnI54N6IhLdlHK17/Eo7wuFwwHTz+BmtuMS4=; b=oSTRY9oyAIOnlAvVIqYtm+XuPP
-	eHmUmfykrIMkwCqafoTkGaxea0Yb65Ca+dhpS8MZpjeGucAf0PkqLqRi3HpkZxD+K2ILiliBz2Tgk
-	pnN5JDrwPu5p+dr2HKHsCYx8JTrrP7qhlSy72kpLmgpz+JM61kYAl0uXKi4bfbPiEP7gh6bokrhVV
-	hhirqKuf77YPhZur2yJHL++Vzix6ba6hBrEBIwDq4g+1qWSAZc+oN1lwBLiY3J/uMRMsaSJhUHNUh
-	LGwZNtpNWK3Id8IQ/VrceyxyMtIOqSKUwm4sE3mKMdA2PF0g6I0kHakAK/yJddpZ/Mx2PryPrEWLh
-	Mzm5mnwg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ZDzwv9ZSu6zRp0zmjvhYUCIPS4Yi3I4TG09rcUw6Tm4=; b=xeXy0BhDvgja8w
+	87SdG0og/BVsWa5E6wP+lC+y54Ik6mDKJUbsM2hkH95jr1M+m4r2XAHctdybiigqNGpxhpgq/rE2r
+	ptJyI5KueZaWQtLCvjcXUApQbKXhdMSNuQLpmEFh34NzxbJMwZUbzjHs/N4E0ykTLg/Vab9mbDirF
+	/XIt0xudhJ5uIJsWKc5MrrdMZFs/ykRH2X/pFZ618iHXoRhBr9LYP+59stj7K9nX9Ne5cmQaHzduK
+	kaH6JVz1vQjAR4t+vgV/tjTe83bRatNAEd7OJrVrma3ydP73i48LTFtNdjgxnCSnbwyIRk2REOW0b
+	goIFXwZOpjsTjjVotKbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUhHo-0000000GzNU-3zya;
-	Sat, 21 Nov 2026 09:21:32 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xUhMG-0000000Gzfz-2DtZ;
+	Sat, 21 Nov 2026 09:26:08 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUhHn-0000000GzNK-1z5I;
-	Sat, 21 Nov 2026 09:21:31 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9479060D9E;
-	Sat, 21 Nov 2026 09:21:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D7E71F000C0;
-	Sat, 21 Nov 2026 09:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795252890;
-	bh=SBI9zebGnI54N6IhLdlHK17/Eo7wuFwwHTz+BmtuMS4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Y63YgXAbz645jzqsSUoiwcfVBcI7QfiRBC29S8C+GCCXkyZXgyMcf0ZGgt/Be5eNb
-	 7BLEu4siimaHFT/fzzFH1MsJhJfG0JR/Mc0I6xa0TzYWZPuTBb0YIMCA/64MpQQSiL
-	 vii64LUaQQosyw/yO9ZzFgxS8Vsj2zO9u+h0EQ8WfOxhwE8/Gm+8bZ7mZ+5gcz8fXU
-	 dxa2oeelJn2/J7ReAiuaFHQuoojwxNkmLoJfd6ov6sdgcm1n/b+ujfghdmXtMlinds
-	 fLDIeShKMHMy7ncZMldMvFqhf+aqo6wAz2HqzBp6ax/poUN07jQejFh5Q2hhWVbhYV
-	 WBRvpaThuWa6Q==
-Date: Sat, 21 Nov 2026 10:21:26 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hongliang Yang <hongliang.yang@cixtech.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Gary Yang <Gary.Yang@cixtech.com>, Fugang Duan <fugang.duan@cixtech.com>, 
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v8 1/2] dt-bindings: phy: Add CIX Sky1 USB3 PHY
-Message-ID: <20261121-friendly-slim-jackal-fecccb@quoll>
-References: <20261117022858.2210212-1-hongliang.yang@cixtech.com>
- <20261117022858.2210212-2-hongliang.yang@cixtech.com>
+	id 1xUhMD-0000000GzfO-2wCn
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 21 Nov 2026 09:26:07 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-4a3e706b5dfso1138480f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 01:26:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795253163; x=1795857963; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ZDzwv9ZSu6zRp0zmjvhYUCIPS4Yi3I4TG09rcUw6Tm4=;
+        b=cI13BgWJiEOT2J7fhM9ecXA2WXa8Imis6hxX4LR7txzze8Rk073Z9otss9n4Aummq0
+         DtSAJJvEgo+y8MjqZ/2SnyC3x4W3NFI1NM4A+lHZuTFV0d7YQQ/CtUttqC5dpNVVL6Pf
+         VpXxMYVaSG/nfd3kr6ubMDuGj2fac7oeOXIdiJixQZJxqo6ltLg8Fa4wlXaaqBuqfeza
+         davsxa7qJUYRDBA+d5fRI2QzKl0uUHvMGnSWzlcmIv2hFVUhZd7Ia76e4nEl9M3LH/vu
+         Iw9t15Ph4uyRKb64TUzwK+GRSUh7b9lLyJhXqsExZb+EZ7JJro9ynsJWTiYpo+Y9me9/
+         sF4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795253163; x=1795857963;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ZDzwv9ZSu6zRp0zmjvhYUCIPS4Yi3I4TG09rcUw6Tm4=;
+        b=EiXxm+/whEjbrfY43m+cy+sV1Qrg1GFaICrofp9qNHZG9EHlhIRbc8iAS9Uv2pl0/1
+         cM+Eyep7tccMbTnQix88b780T9DtkJG+RD5qtZ8BJFyKyoAvoCCqolah87rVr/+eTZqO
+         OhkBXVINGZaMSVHXMgv4zYrjphbjU5K2yjSPT9T/3Cy7o+oARM0sPJKSs5rax5sAy3qV
+         VgF7uRUHNMakLEdH8UCEGVn3/0KuuFywFHT2PhCrX4wQFKPYSsj2g2x6FC84pmPethPM
+         CqdPXJFWlykg8rwi9xkBtmlVrvj8yZa52FrGvny5qu+Q1JMGZ6GtupPuLP5/gNOs7kls
+         SBbw==
+X-Forwarded-Encrypted: i=1; AL+hErEphaf6M44AhBlemWrtMyCG/Y1UxlGn8kIIN+KV7FyHzviy7YgZgLMMBjzz4xkJlqVAzI1+aEeDrgJfsC8dE/3d@lists.infradead.org
+X-Gm-Message-State: APuU4Z9JINuW8X6weQDRg3XnfVN0pJpzmXRyK0kcf3G0umjOJT0cZrqh
+	v1aGdEhLRR5wOVgmcJ7hDatIGapOEdVEIvtyv2eMnWPvJpXTL7cacFfVKKAvQQ==
+X-Gm-Gg: AZFdTZcUiDZ8kfHAnURqONy25D9dDd35unVgxCTPXKSH8MPUaJ8gYSU7CVW8zenTUoW
+	YXJWV78cV4sjgxe/LPejYA2zakqZqn0L55OsaOBp0XCj9zKb8Nf9VVfUr98LZ0QSNAUMbXfXVHy
+	myaZjyuLARenxaDq2D3yIcq7YKCCTX87s4MDzeb/BYIbMeXEh6ima6YL9LX2CcZ/xPR8K2a3ZTm
+	E/axvvMzKHbbkabnH1duJsxTQVNapDvfCfYclO1rNVlIiYGpRMrlH6D4ZEznqOC5v0ueI1It3Ll
+	mu9zCva4YFwx0nEQKWxjkE2fydk5D0XrpGVrRH5QFUoY/Ws5jD89luxLw/SOUnE9HJ0d6iXCwpQ
+	6uBPQsm/IArk+t2XQOtKxk6OHlk/41nFnfDxkGUFlMDgvOK15FfHAPn05AcMQxVXPxlEDHWn2k8
+	RMupZmJgw5n3IhftGsuLyng0fvfVf/CV/3FLQ9W+3iOTDoqPwJHajlA+Y2nv2nHpAspbRdw5tev
+	xVASxhOEyKuWTSxRBljs5kucoMixls/hstsSzM9CQ/fNpG6gnV1W4BA01UnoINFDnOCTyZJSz6u
+	aDwzVvX1dLYdD4gLbNZeLjpRGqhkkc+a8MGwirmjmElcADAHQSLxJcXDpeHd
+X-Received: by 2002:a05:6000:2585:b0:4a6:d298:8329 with SMTP id ffacd0b85a97d-4abb6b1b034mr12634377f8f.43.1795253163383;
+        Sat, 21 Nov 2026 01:26:03 -0800 (PST)
+Received: from dev.Default ([2a0c:5a86:4d09:3a00:3c0f:a5ff:fe86:2946])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ad644140b5sm6707420f8f.17.2026.11.21.01.26.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Nov 2026 01:26:02 -0800 (PST)
+From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+To: =?UTF-8?q?Stefan=20D=C3=B6singer?= <stefandoesinger@gmail.com>
+Cc: Navid Ghahremani <ghahramani.navid@gmail.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: zx279128s pinmux questions
+Date: Sat, 21 Nov 2026 10:26:01 +0100
+Message-Id: <20261121092601.1543468-1-isasmendi.agus@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <fWpK6nqqTOKOq96a3X8SYQ@gmail.com>
+References: <fWpK6nqqTOKOq96a3X8SYQ@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261117022858.2210212-2-hongliang.yang@cixtech.com>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_012605_783823_E84128BE 
+X-CRM114-Status: GOOD (  11.17  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,26 +99,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 10:28:57AM +0800, Hongliang Yang wrote:
-> Add device tree binding for the CIX Sky1 USB3 PHY, the SuperSpeedPlus
-> PHY of the two USB3 Type-A ports of the SoC.
-> 
-> The two lanes are not separate devices: they live in one register
-> block, share the same clocks and resets, and are brought up by the
+Hi Stefan,
 
-Neither two clocks from clock controller are separate devices... that's
-really not the point. I don't get what exactly is here common between
-these two lanes, but you have several per-lane registers suggesting they
-might be independent.
+On the ZX279128S the pins are individually controllable.
 
-Best regards,
-Krzysztof
+The chip's manual has a table of the pads (GPIO 0-63, in order) with up
+to four functions each; e.g. JTAG_TDO can be JTAG_TDO, SIM_VCCEN,
+UART1_TXD or GPIO2.  It doesn't give the register bits, so I mapped
+those from the stock U-Boot (it writes a per-board table into the
+block) and by flipping bits on my H3600 and watching the GPIO inputs:
 
+- 0x94200000 + 0x00..0x0c hold the mux, one field per pin, 2 bits
+  where the pad has several functions and 1 bit (function or GPIO)
+  where it has one.  E.g. bits 2k+1:2k of +0x00 are GPIO k for
+  k = 0..10, and +0x08 holds the NAND/SPI-NAND pads.
+- +0x30..+0x38 have one bit per pin; clearing it makes the pin read 0,
+  so probably an input enable.
+- +0x50..+0xa4 have a 6-bit config field per pin, five per word.
+  Bits 1:0 are the pull (01 up, 10 down); I haven't decoded the rest.
+
+The layout is irregular, though (GPIO 11-21 sit in +0x04, GPIO 36-41 at
+the top of +0x00, and the 1-bit pads in +0x0c are out of order), so a
+driver needs a table per pin with the mux and config positions, much
+like the old pinctrl-zx296718.  With that table, a pinmux = <pin
+function> binding like yours should work for us too.
+
+I have the per-pin table (manual functions plus the register positions
+found so far, some still unverified) if it's useful to you or Navid.
+
+Agustin
 
