@@ -2,46 +2,46 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E4EC606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD750606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XPVhaXPr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dhDIwKyJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qRKunYSO;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VpBjouCj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wFFvFbbLMs38KGcTgUre1HFll8uBafUzffFq5U1w/eY=; b=XPVhaXPrXsWN1l
-	z7zOpbcMHutfFJCTOkXtD7U3gqTYG1IWX6CHX5/iTErYDxWo2J8aQ5nYdKFXMY+n1ihAhTRA8cz+l
-	f6aKjHZBLNmNXVKol3OxattYDHmo83jIX0QVbBQDgTNIBNJZ4QnlDm6gxPgjCn+pRcBaDN6OeMiFp
-	rtFQhZNtoKWgkYbjkPs8sq/lAmnThJES8OK3+PXxx+O2fjsEyp67Ce07W5Xr6gVHPnOBnRcLm6BYN
-	e/ErFPfQVCZGL8Mn6u8Z02QishveT5gOYaIpVMtpKvJzFvZ2bi/lkJ9Ne2bqK68agNt+i8JIoLNAf
-	9g9mSE1JnWgSPlPb18rQ==;
+	List-Owner; bh=uNHo+Sfo4SO6w4MKR8YizO7/Dz3BQ3/Jvkiq3N5ai4Y=; b=qRKunYSO8sdblY
+	4m33YirURdQRjNACA6T2SYVyZimoSRoSEDzM4/u+alf0UKsxHpb/Evz+ySa6ovMOB6YtDzakPufZR
+	Xp2aZGr8w8iMlApdf67LW4KGQNrUnDiJ6vT14fSAvmRwGve98QgiGJOjiNlMVb9/MJvM9gZA84Hsx
+	/gCcw4QuGZWi7af30EUUVXk7ovFmU6Hb20/4/Dq7VPuFwoz2eZJz01ZzA1wiP9vRRo0Yz2IH7RDSp
+	kB9Y8dSSYF3JP2hVwA37aDybmownWZDPEJsGIA4WMIxMk5Izl2vTWs1LlapuUKOPvqB6Lv5+ZVSL4
+	YkbsIRUGU/U8saWjvHIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuV7-00000000UM8-03cm;
+	id 1xUuV7-00000000UMR-0ooN;
 	Sat, 21 Nov 2026 23:28:09 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuTs-00000000Tjv-0ugk;
-	Sat, 21 Nov 2026 23:26:52 +0000
+	id 1xUuTy-00000000TmM-2MDK;
+	Sat, 21 Nov 2026 23:26:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5896E61D32;
-	Sat, 21 Nov 2026 23:26:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3511A1F000C6;
-	Sat, 21 Nov 2026 23:26:50 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5257B45971;
+	Sat, 21 Nov 2026 23:26:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638161F000E6;
+	Sat, 21 Nov 2026 23:26:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795303611;
-	bh=wFFvFbbLMs38KGcTgUre1HFll8uBafUzffFq5U1w/eY=;
+	s=k20260515; t=1795303618;
+	bh=uNHo+Sfo4SO6w4MKR8YizO7/Dz3BQ3/Jvkiq3N5ai4Y=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=dhDIwKyJ9ApPr2UQORDdzdrke1gTAhL/V3SachheG8l/zkbhvJUuXxPmdYSQ3IpR1
-	 d79ybBtxpUzBem1B7/51IiXf8SX4VgWZ4wjWaStNmerIRN9DHkuWqV2IyuABcN4Ba1
-	 N0Lf+7g6yy6rjKoZ4Unv7RkqHAOpwaOH0LuatMVeyMslFBkIdCVFzmGJQ1pW7cptSu
-	 0Vq18q+KGFG3fb+RYC2jIWNaEJjGWHDKQKGZVR3SLbpTZ52XPsbPRM10ne/ebJeEj8
-	 aSMJClSWie6y7K5Czwoc1lPax48v/FogkYLkB3rAMnSsUVpS1O1NCNWOWccjEfIoyO
-	 nCzLkUITCtC7Q==
+	b=VpBjouCjqQQeI8P4RhYDWkheQLduY2KtRgjsuneT/skyQuzN+Cm9NkbngYx/vyJiM
+	 Dbef+S20RA8XkAFHAsU9ksaA8j/sCG5zW85U1NFq0MWh8X97oL1TsaCv1iFTt+RQVo
+	 lsPCPanYr0ZSGw8muAC/4zCt20iLBmOl1TGD/vJC+p05bYANijE+GKcgmCUxPXetrS
+	 xsjcjlkhy44JYXELUhjjES+3aWYs0MdolvWpAwqxSTl9oXmqBngsHCqd8iBT2cb9BC
+	 dq7nXqV95PUR8YrBkhhv5rxUTCg7Yk94OLRfVMYqyE/V9qbq0LTj383Rl1/CDZYzL6
+	 QhjMB35gwuJDA==
 From: Jakub Kicinski <kuba@kernel.org>
 To: ansuelsmth@gmail.com
 Cc: Jakub Kicinski <kuba@kernel.org>,
@@ -74,12 +74,12 @@ Cc: Jakub Kicinski <kuba@kernel.org>,
 	linux-mediatek@lists.infradead.org,
 	llvm@lists.linux.dev,
 	zhengping.zhang@airoha.com
-Subject: Re: [PATCH net-next v22 08/15] net: phylink: support PCS provider release
-Date: Sat, 21 Nov 2026 15:26:49 -0800
-Message-ID: <20261121232649.1365412-1-kuba@kernel.org>
+Subject: Re: [PATCH net-next v22 15/15] net: airoha: add phylink support
+Date: Sat, 21 Nov 2026 15:26:56 -0800
+Message-ID: <20261121232656.1365664-1-kuba@kernel.org>
 X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261117123956.11981-9-ansuelsmth@gmail.com>
-References: <20261117123956.11981-9-ansuelsmth@gmail.com>
+In-Reply-To: <20261117123956.11981-16-ansuelsmth@gmail.com>
+References: <20261117123956.11981-16-ansuelsmth@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -104,306 +104,251 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 This is an AI-generated review of your patch. The human sending this
 email has considered the AI review valid, or at least plausible.
 ---
-net: phylink: support PCS provider release
+net: airoha: add phylink support
 
-This adds a blocking notifier chain to the fwnode PCS layer.
-fwnode_pcs_del_provider() uses it to emit FWNODE_PCS_PROVIDER_DEL. Each
-phylink instance with pcs_interfaces subscribes, drops the matching PCS from
-pl->pcs_list on that event, recalculates its capabilities, and accesses
-pcs_list under state_mutex.
+This adds phylink support for each GDM port. GDM1 is limited to the
+internal interface mode, and GDM2/3/4 use a PCS referenced through the
+pcs-handle property. The ethtool link_ksettings ops now go through
+phylink, and GDM4 TX/RX fragment sizes are set on link up.
 
-> diff --git a/drivers/net/pcs/pcs.c b/drivers/net/pcs/pcs.c
-> index b1d48f6eee7f1..f234a46354176 100644
-> --- a/drivers/net/pcs/pcs.c
-> +++ b/drivers/net/pcs/pcs.c
+> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
+> index 044ad0302ef35..e41dfad58b258 100644
+> --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
 
 [ ... ]
 
-> @@ -74,6 +87,11 @@ void fwnode_pcs_del_provider(struct fwnode_pcs_provider *pp)
+> @@ -3752,6 +3790,155 @@ bool airoha_is_valid_gdm_dev(struct airoha_eth *eth,
+>  	return false;
+>  }
 >  
->  	mutex_unlock(&fwnode_pcs_mutex);
->  
-> +	/* Signal phylink to release any PCS from this provider */
-> +	blocking_notifier_call_chain(&fwnode_pcs_notify_list,
-> +				     FWNODE_PCS_PROVIDER_DEL,
-> +				     pp);
+> +/* Nothing to do in MAC, everything is handled in PCS */
+> +static void airoha_mac_config(struct phylink_config *config, unsigned int mode,
+> +			      const struct phylink_link_state *state)
+> +{
+> +}
 > +
+> +static void airoha_mac_link_up(struct phylink_config *config, struct phy_device *phy,
+> +			       unsigned int mode, phy_interface_t interface,
+> +			       int speed, int duplex, bool tx_pause, bool rx_pause)
+> +{
+> +	struct airoha_gdm_dev *dev = container_of(config, struct airoha_gdm_dev,
+> +						  phylink_config);
+> +	struct airoha_gdm_port *port = dev->port;
+> +	struct airoha_eth *eth = dev->eth;
+> +	u32 frag_size_tx, frag_size_rx;
+> +
+> +	/* TX/RX frag is configured only for GDM4 */
+> +	if (port->id != AIROHA_GDM4_IDX)
+> +		return;
 
 [Severity: Medium]
-Can this notifier call into PCS hardware that the provider has already
-powered down?
+Should tx_pause and rx_pause be applied somewhere in airoha_mac_link_up()?
 
-pcs_provider_notify()->phylink_del_pcs() calls phylink_pcs_disable(), which
-calls pcs->ops->pcs_disable(). If the link is up it also calls
-phylink_link_down(), and later in the series that calls
-pcs->ops->pcs_link_down() too.
+airoha_setup_phylink() advertises MAC_ASYM_PAUSE | MAC_SYM_PAUSE on every
+GDM port. However, airoha_mac_link_up() returns right away for GDM1-3 and
+only writes fragment sizes for GDM4.
 
-With devm_fwnode_pcs_add_provider(), devm_fwnode_pcs_del() runs during devres
-release. That happens after the driver's .remove(), and in reverse order of
-registration.
+Nothing in drivers/net/ethernet/airoha uses tx_pause, rx_pause or
+GDM_INGRESS_FC_EN_MASK.
 
-A provider might gate clocks, drop runtime PM or assert reset in .remove().
-It might also get devm clocks or resets after it registers the provider.
-Either way, these PCS register accesses would hit unpowered hardware.
+The only flow control setup on this path is in airoha_pcs_config():
 
-For example, pcs-rzn1-miic calls pm_runtime_put() in .remove(). If it were
-converted to a devm fwnode provider, the del would run after that.
+drivers/net/pcs/airoha/pcs-airoha-common.c:airoha_pcs_config() {
+    ...
+	/* Configure Flow Control on XFI */
+	regmap_update_bits(maps->pcs_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
+			   AIROHA_PCS_XFI_TX_FC_EN | AIROHA_PCS_XFI_RX_FC_EN,
+			   permit_pause_to_mac ?
+				AIROHA_PCS_XFI_TX_FC_EN | AIROHA_PCS_XFI_RX_FC_EN :
+				0);
+    ...
+}
 
-The airoha PCS in this series registers its devm provider last and has no
-.remove(), so it is not affected.
+permit_pause_to_mac reflects whether pause autoneg is enabled. It is not
+the result negotiated with the link partner.
 
-Neither pcs-provider.h nor pcs.rst says the hardware must stay accessible
-until fwnode_pcs_del_provider() returns. Should that be documented, or
-should the notifier avoid touching the departing PCS hardware?
+With the default MLO_PAUSE_AN, XFI TX/RX flow control ends up enabled even
+when the partner does not support pause. With pause forced on and autoneg
+off, it ends up disabled while phylink reports pause as on.
 
->  	fwnode_handle_put(pp->fwnode);
->  	kfree(pp);
->  }
+Can the hardware flow control state differ from what phylink resolved and
+reports?
+
+Also, only get/set_link_ksettings were moved to phylink in
+airoha_ethtool_ops. These are not wired up:
+
+  get/set_pauseparam (phylink_ethtool_get/set_pauseparam())
+  nway_reset (phylink_ethtool_nway_reset())
+  ndo_eth_ioctl (phylink_mii_ioctl())
+
+Is that intended, given the commit message says "now that we fully support
+phylink"?
 
 [ ... ]
 
-> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-> index 921c227a5b3c0..094a15f3dbcd0 100644
-> --- a/drivers/net/phy/phylink.c
-> +++ b/drivers/net/phy/phylink.c
-
-[ ... ]
-
-> @@ -2425,6 +2451,133 @@ void phylink_update_mac_pause_capabilities(struct phylink *pl, unsigned long mac
->  }
->  EXPORT_SYMBOL_GPL(phylink_update_mac_pause_capabilities);
->  
-> +static void phylink_del_pcs(struct phylink *pl, struct phylink_pcs *pcs)
+> +static int airoha_setup_phylink(struct net_device *netdev)
 > +{
-> +	ASSERT_RTNL();
+> +	struct airoha_gdm_dev *dev = netdev_priv(netdev);
+> +	struct device_node *np = netdev->dev.of_node;
+> +	struct airoha_gdm_port *port = dev->port;
+> +	struct phylink_config *config;
+> +	phy_interface_t phy_mode;
+> +	struct phylink *phylink;
+> +	int err;
 > +
-> +	lockdep_assert_held(&pl->state_mutex);
+> +	err = of_get_phy_mode(np, &phy_mode);
+> +	if (err) {
+> +		dev_err(&netdev->dev, "incorrect phy-mode\n");
+> +		return err;
+> +	}
+
+[Severity: Medium]
+Does this stop DTs that follow the current airoha,en7581-eth.yaml binding
+from probing?
+
+The binding's ^ethernet@[1-4]$ and ^ethernet@[0-5]$ patternProperties
+only require reg and compatible. The binding example has no phy-mode,
+fixed-link or pcs-handle. That example is ethernet@1, plus ethernet@4
+with eth-port children @0 and @1.
+
+With this patch, a missing phy-mode on any enabled GDM or eth-port node
+propagates up:
+
+airoha_probe()
+  airoha_alloc_gdm_port()
+    airoha_alloc_gdm_device()
+      return airoha_setup_phylink(netdev);
+        of_get_phy_mode() fails
+
+airoha_probe() then runs the error_napi_stop teardown, so every port is
+lost, GDM1 included. Before this patch the driver never called
+of_get_phy_mode(), and such DTs probed fine.
+
+A similar problem shows up in airoha_dev_open():
+
+	err = phylink_of_phy_connect(dev->phylink, netdev->dev.of_node, 0);
+	if (err) {
+		netdev_err(netdev, "could not attach PHY: %d\n", err);
+		return err;
+	}
+
+Suppose a node has phy-mode but no phy-handle, fixed-link, SFP or in-band
+managed mode. Phylink is then in MLO_AN_PHY, and
+phylink_fwnode_phy_connect() returns -ENODEV. Won't ndo_open now fail
+where it used to succeed?
+
+The commit message implies that GDM2/3/4 need pcs-handle. The code means
+GDM1 needs phy-mode = "internal" plus fixed-link, because only
+PHY_INTERFACE_MODE_INTERNAL is in supported_interfaces. The ethernet
+binding describes neither. The series updates the PCS binding but not
+this one.
+
+Should airoha,en7581-eth.yaml be updated too? Alternatively, should the
+driver fall back (for example to internal on GDM1) when phy-mode is
+absent?
+
+The in-tree en7581.dtsi gdm1 node already has phy-mode = "internal" and
+fixed-link, so in-tree boards still work.
+
 > +
-> +	rcu_assign_pointer(pcs->phylink, NULL);
-> +	synchronize_rcu();
-> +	list_del(&pcs->list);
+> +	config = &dev->phylink_config;
+> +	config->dev = &netdev->dev;
+> +	config->type = PHYLINK_NETDEV;
+
+[ ... ]
+
+> +	} else {
+> +		config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
+> +					   MAC_10 | MAC_100 | MAC_1000 |
+> +					   MAC_2500FD | MAC_5000FD | MAC_10000FD;
+
+[Severity: Medium]
+MAC_10, MAC_100 and MAC_1000 include MAC_10HD, MAC_100HD and MAC_1000HD.
+That means phylink will advertise and accept half duplex. Is half duplex
+actually supported on these ports?
+
+Nothing seems to configure duplex:
+
+  airoha_mac_link_up() ignores its duplex argument
+  airoha_pcs_link_up() never reads duplex
+  the Airoha PCS get_state helpers hard code DUPLEX_FULL
+  airoha_pcs_ops has no .pcs_validate to strip half duplex modes
+
+So a PHY that links half duplex with a half-duplex-only partner would
+leave the GDM/PCS running full duplex.
+
+Separately, USXGMII is in supported_interfaces and MAC_10 is advertised.
+In the out-of-band branch of airoha_pcs_link_up(), the USXGMII/10GBASE-R
+speed switch has no SPEED_10 case:
+
+drivers/net/pcs/airoha/pcs-airoha-common.c:airoha_pcs_link_up() {
+    ...
+		if (interface == PHY_INTERFACE_MODE_USXGMII ||
+		    interface == PHY_INTERFACE_MODE_10GBASER) {
+			...
+			case SPEED_100:
+				rate_adapt = AIROHA_PCS_HSGMII_RATE_ADPT_FORCE_RATE_ADAPT_MODE_100;
+				mode = AIROHA_PCS_USXGMII_MODE_100;
+				break;
+			default:
+				/* Not supported */
+				return;
+			}
+    ...
+	if (data->link_up)
+		data->link_up(priv, port->index);
+
+	/* BPI BMI enable */
+	regmap_clear_bits(maps->pcs_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
+			  AIROHA_PCS_XFI_RXMPI_STOP |
+			  AIROHA_PCS_XFI_RXMBI_STOP |
+			  AIROHA_PCS_XFI_TXMPI_STOP |
+			  AIROHA_PCS_XFI_TXMBI_STOP);
+}
+
+When a USXGMII PHY resolves to 10M, this returns before data->link_up().
+It also returns before the MPI/MBI STOP bits set by pre_config/link_down
+are cleared.
+
+Would phylink then report carrier up while the XFI datapath stays stopped
+and the USXGMII mode register keeps its old speed?
+
+> +
+> +		config->num_possible_pcs = fwnode_phylink_pcs_count(dev_fwnode(config->dev));
+> +		config->fill_available_pcs = airoha_fill_available_pcs;
 
 [Severity: Low]
-Is a full grace period needed for every PCS while RTNL is held?
+The commit message says:
 
-pcs_provider_notify() calls phylink_del_pcs() in a loop. It holds
-rtnl_lock(), pl->phydev_mutex, phydev->lock and pl->state_mutex the whole
-time, inside the notifier rwsem read section.
+    These needs to be defined in the GDM port node using the pcs-handle
+    property.
 
-So each phylink subscribed to the departing provider holds RTNL for one
-normal grace period per removed PCS. The instances run one after another.
+Is that accurate? fwnode_phylink_pcs_count() returns 0 when there is no
+pcs-handle, and phylink_fill_available_pcs() then returns early:
 
-phylink_detach_pcss() in this same patch clears all the pointers first and
-then calls synchronize_rcu() once. Could pcs_provider_notify() do the same,
-or use synchronize_net()?
+	if (!config->num_possible_pcs)
+		return 0;
 
-> +
-> +	/*
-> +	 * Check if we are removing the PCS currently
+phylink_create() then succeeds with SGMII, 1000BASE-X, 2500BASE-X,
+10GBASE-R and USXGMII in supported_interfaces but no PCS at all. There is
+no error or warning.
 
-[ ... ]
+Can the port then report carrier up from the PHY while the SerDes is
+never configured? Should a missing pcs-handle on GDM2/3/4 be rejected
+here?
 
-> +	if (pl->pcs == pcs) {
-> +		if (pl->old_link_state) {
-> +			phylink_link_down(pl);
-> +			pl->old_link_state = false;
-> +		}
-> +		if (pl->cfg_link_an_mode == MLO_AN_INBAND)
-> +			timer_delete_sync(&pl->link_poll);
-> +
-> +		if (pl->pcs_state != PCS_STATE_DOWN)
-> +			phylink_pcs_disable(pl->pcs);
-> +
-> +		if (!pl->phylink_disable_state)
-> +			pl->force_major_config = true;
-> +
-> +		WRITE_ONCE(pl->pcs, NULL);
-> +	}
-> +}
+Also, config->dev is &netdev->dev. When sub-ports exist, its of_node is
+the airoha,eth-port child. So pcs-handle is read from the child node, not
+from "the GDM port node".
 
-[Severity: Medium]
-Can the link stay down for good if the active PCS is removed while
-PHYLINK_DISABLE_LINK is set?
+The commit message also leaves out the new GDM4 code in
+airoha_mac_link_up():
 
-On SFP loss of signal, phylink_sfp_link_down() sets PHYLINK_DISABLE_LINK
-and pcs_state stays PCS_STATE_STARTED.
+  it writes speed-dependent TX/RX fragment sizes into
+  REG_FE_GDM4_TMBI_FRAG and REG_FE_GDM4_RMBI_FRAG
+  it picks the SGMII1 or SGMII0 fields based on dev->nbq == 1
+  it serializes the writes with the new port->link_lock mutex
 
-Suppose the active PCS's provider goes away during LOS.
-phylink_pcs_disable() powers the PCS down and pl->pcs becomes NULL.
-force_major_config is not set, because phylink_disable_state is non-zero.
-
-When LOS clears:
-
-phylink_sfp_link_up()
-  phylink_enable_and_run_resolve(pl, PHYLINK_DISABLE_LINK)
-    phylink_resolve()
-        if ((mac_config && link_state.interface != pl->link_config.interface) ||
-            pl->force_major_config) {
-
-Neither condition holds, so phylink_major_config() is skipped and no PCS is
-picked from pl->pcs_list again.
-
-In in-band mode, phylink_mac_pcs_get_state() then sees pl->pcs == NULL and
-reports link = 0.
-
-That stays true even if another PCS in pcs_list supports the interface. It
-also stays true after the provider is re-added, because the late attach
-path only forces a major config when major_config_failed is set.
-
-In MLO_AN_PHY mode, phylink_link_up() would call mac_link_up() and
-netif_carrier_on() while the PCS is disabled.
-
-The STOPPED, MAC_WOL and REPLAY bits each recover through
-phylink_mac_initial_config() or force_major_config, but DISABLE_LINK does
-not. Should force_major_config be set here whatever phylink_disable_state
-is?
-
-> +
-> +static int pcs_provider_notify(struct notifier_block *self,
-> +			       unsigned long val, void *data)
-> +{
-> +	struct phylink *pl = container_of(self, struct phylink, fwnode_pcs_nb);
-> +	struct fwnode_pcs_provider *pp = data;
-> +	struct phylink_pcs *pcs, *tmp;
-> +	struct phy_device *phydev;
-> +	bool resolve = false;
-> +
-> +	rtnl_lock();
-> +	mutex_lock(&pl->phydev_mutex);
-> +	phydev = pl->phydev;
-> +	if (phydev)
-> +		mutex_lock(&phydev->lock);
-> +	mutex_lock(&pl->state_mutex);
-
-[Severity: Medium]
-Does this give fwnode_pcs_del_provider() a hidden "must not hold RTNL"
-requirement?
-
-fwnode_pcs_del_provider() used to take only fwnode_pcs_mutex. It now calls
-blocking_notifier_call_chain(), which holds the chain rwsem for read. While
-that is held, this callback takes rtnl_lock(), pl->phydev_mutex,
-phydev->lock and pl->state_mutex.
-
-A provider removed from a path that already holds RTNL, or any of those
-locks, would deadlock here.
-
-The rwsem-read -> rtnl ordering could also cause an ABBA deadlock with
-register_fwnode_pcs_notifier() and unregister_fwnode_pcs_notifier(), which
-take the same rwsem with down_write. That would happen if a MAC with
-non-empty pcs_interfaces called phylink_create() or phylink_destroy() under
-RTNL while another provider is being removed.
-
-No current in-tree path does this. The airoha PCS deletes through devres at
-unbind without RTNL, and airoha_eth creates and destroys phylink outside
-RTNL.
-
-But pcs-provider.h and pcs.rst do not mention this rule, and nothing
-asserts it. Would a lockdep_assert_not_held() or a note in the API
-documentation help?
-
-> +
-> +	/* phylink instance is being destroyed, ignore any event */
-> +	if (pl->pcs_state == PCS_STATE_DETACHING)
-> +		goto exit;
-> +
-> +	/*
-> +	 * Loop all the PCS for phylink instance and check if
-> +	 * this notification is relevant for some of them.
-> +	 */
-> +	list_for_each_entry_safe(pcs, tmp, &pl->pcs_list, list) {
-> +		if (!fwnode_pcs_matches_provider(pp, pl->fwnode, pcs))
-> +			continue;
-> +
-> +		phylink_del_pcs(pl, pcs);
-> +		resolve = true;
-> +	}
-
-[Severity: Medium]
-What happens when a PCS in pl->pcs_list did not come from the pcs-handle
-property of pl->fwnode?
-
-fwnode_pcs_matches_provider() works out ownership again at teardown. It
-re-parses "pcs-handle" from the fwnode it is given and calls
-provider->fwnode_xlate() again.
-
-phylink does not record where each PCS came from when fill_available_pcs()
-hands it over. The fill_available_pcs() contract in
-include/linux/phylink.h does not require the PCS to come from the fwnode
-passed to phylink_create().
-
-The earlier patch "net: phylink: save phylink instance fwnode on
-phylink_create" notes that pl->fwnode can differ from the fwnode of
-config->dev. The pcs.rst example in "net: Document PCS subsystem" calls
-fwnode_phylink_pcs_parse(dev_fwnode(config->dev), ...) from
-fill_available_pcs.
-
-For such a MAC, every check here returns false and phylink_del_pcs() is
-never called. The PCS stays on pl->pcs_list, pcs->phylink stays set, and
-the PCS may still be pl->pcs.
-
-fwnode_pcs_del_provider() then returns, and the provider frees its
-phylink_pcs (for example, a devm-allocated priv). After that,
-phylink_resolve(), phylink_major_config() and phylink_mac_pcs_get_state()
-would call pcs->ops through freed memory, and phylink_detach_pcss() would
-write to it.
-
-airoha_eth passes the same node to both, so it is not affected today. Would
-it be more robust to record the provider, or the source fwnode, for each
-PCS when it is added?
-
-[ ... ]
-
-> @@ -2515,10 +2668,18 @@ struct phylink *phylink_create(struct phylink_config *config,
->  	__set_bit(PHYLINK_DISABLE_STOPPED, &pl->phylink_disable_state);
->  	timer_setup(&pl->link_poll, phylink_fixed_poll, 0);
->  
-> +	/* First register notifier for hotplug PCS events */
-> +	if (!phy_interface_empty(config->pcs_interfaces)) {
-> +		pl->fwnode_pcs_nb.notifier_call = pcs_provider_notify;
-> +		register_fwnode_pcs_notifier(&pl->fwnode_pcs_nb);
-> +	}
-
-[Severity: Medium]
-Can pcs_provider_notify() run against a partly initialized phylink here?
-
-The notifier goes live, and pl->pcs_list is filled, before
-phylink_parse_mode(), phylink_parse_fixedlink() and phylink_register_sfp()
-run.
-
-If a provider for one of the filled PCS is unbound at the same moment (for
-example via sysfs), pcs_provider_notify() takes state_mutex and runs
-phylink_update_capabilities(). That reads and writes pl->cfg_link_an_mode,
-pl->sfp_bus, pl->link_config, pl->supported and pl->advertising.
-
-Meanwhile phylink_create() writes the same fields without state_mutex.
-phylink_parse_mode() sets pl->cfg_link_an_mode. phylink_parse_fixedlink()
-sets link_config.speed and duplex, and does this before it takes
-state_mutex:
-
-	__set_bit(ETHTOOL_LINK_MODE_Pause_BIT,
-		  pl->link_config.lp_advertising);
-
-pl->req_link_an_mode and pl->sfp_bus are also written without the lock.
-
-On a fixed-link port, once cfg_link_an_mode == MLO_AN_FIXED, the notifier
-goes through phylink_parse_fixedlink_capabilities(). That function does a
-read-modify-write linkmode_or() on config->lp_advertising, which could
-overwrite the Pause bit phylink_parse_fixedlink() just set.
-
-The later locked recalculation only ORs in match, so the link partner pause
-ability from DT would be lost for good.
-
-This also seems to conflict with the commit message:
-
-  Protect every access of phylink pcs_list with state_mutex to handle async
-  PCS provider release and capabilities recalculation.
-
-Could the registration move to the end of phylink_create(), or could the
-notifier ignore events until initialization is complete?
-
->  
->  	/* Fill the PCS list with available PCS from phylink config */
->  	ret = phylink_fill_available_pcs(pl, config);
-
-[ ... ]
+Could the commit message describe this as well?
 
