@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3F7606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 10:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC8E606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 10:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zNi6BOwP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F8AKbIsO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uMfCYtq0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QWo2Meb3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,71 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=B4YHsAoHyJKwkFBTxKLpr1lA7OsEShL43buMSm7NE7g=; b=zNi6BOwPrBygAWDVu0d/p6x2OR
-	87JwBKYWS5+1eEE0OKWE5MmRozqGA7p3GSYXlRkAESbkHP0eviBqpPx6tqlbmjq9J7bnFojDVOAGx
-	9kFqHQkuyx1tHR3lSH/UFc5oKpcL/NeOMhW//5H2hZDaMw2MEqqbahctxVfbSy1CS27lZOffCSoxD
-	RskR6KNpLiV3c0Z9Jtu9EZw8T4pnHb1wvbKHjj4oi0+12xaJyk7RnNXNuGzIiUodEaaUziBHY8rjl
-	9G4WPBHe3Fb7kUE0y3l0o8e8IfxzUFci/GkHEzbP+XiU7lxXVJwrTncK+M3fe6jyADiP8qRM8Z/sY
-	QK8Nvd4Q==;
+	bh=gscuI7w3gU6wnR9QFO0QB6BLM+nklmFZb/eBfq6BMOM=; b=uMfCYtq03evh+smlkCUUosxazD
+	iqLO5rWvkFwd7w5v4GcMigqlb9WAILmXTqqOGmQ6fRpbtvqw3umGlQNt3//Mpg7MCGT7is1AhoN4N
+	xjH5Ke8E2bGbSpaK22VnepyM9vUwBzgQjmi6c0HUr8XLNEAiJt6sfK2JGGElAw9fHnSggLcs9phQb
+	Yuf+UUMey67LvlQQEDEKcJIs9Rp0r0nLFDYxFC8uLx3ks6oav9fhV9a2QkNs3pIEoZTiL3ZQvasxk
+	ArYFVfRqLK53U4lCmg3doEwOrHbwumSJ91Xvncejn/JAQiKtDS/yR+TZ6OPc7MLYQmWGBOKD0zNkE
+	m4t7UGqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUi3e-0000000H0oi-1Q9W;
+	id 1xUi3e-0000000H0om-1mtP;
 	Sat, 21 Nov 2026 10:10:58 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUi3c-0000000H0o1-3W0m;
+	id 1xUi3c-0000000H0o0-3VzS;
 	Sat, 21 Nov 2026 10:10:56 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5735845CB1;
+	by sea.source.kernel.org (Postfix) with ESMTP id 3ADEE40102;
 	Sat, 21 Nov 2026 10:10:56 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795255856;
-	b=FR7hq2yN4iJ6BzJZO150WFrBXvwutgsv+v4IN9s0IC+RUVwKyJ1jenKAyF8gub2qU+FN
-	 HCT1zpfUyQNHOrh3AGfdaZBNti6FYsmwAut2rTfDw5GsUPlmm2g0/FcoruF/aX6Wu2zr4
-	 XM2e72FlJM5tvZnXj+zHzAimz6GmhMQACiyz9LyUxGQ3JTQSCdiBy//T9yvOo3u9BeOb0
-	 WHd4CyKPFnvLyij/muYEvv2mhM91rq8FVGMYlxMqFp6TvFWHMQgBcVINY9/KC0jJZaI13
-	 ArIrQwH4iZfByQga8ztozwJS2gACKZ/v/4Aqxw3FA86rAoKpZSQrsBN/3o0q343JEiQ==
+	b=QVDeOv0O6p8Dy1rAi66j1/hMof3UnzIjjU7dbX7mfhoFnwXu6oyrhEEp3RhtbbKNwZpF
+	 hmH2N+McLsUUTcrooCIhu5zCtSUstIsB/SEUfQCichy4lXNZxtjqJpjG8woq4N7bzMVYJ
+	 Ps7pqlqBG71E4d6S0mb+YraZx93Y64n1fI80HaYJiP67zL3p2keEWsisbDY1fvIQOBfe8
+	 8ULpiQJQWtRXo+5r4w4a3j3kyeJsuIMqpPzuXD/CSGP6it98voY3THEzoKLqYTMMb4K6D
+	 L0KV4FynTq0uqbCY/DRSaM3LqnO0BwTuVGhHxX1/J/QJgfCn3hptlIEXL5Gz35G0ysQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795255856;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=B4YHsAoHyJKwkFBTxKLpr1lA7OsEShL43buMSm7NE7g=;
-	b=JKEWiidVx9F1aUFaGF0V+l0DYbCRKEZ1ZOEjQrXu2zHD7yYx8hSiLuDJEtQrrMcdpmSC
-	 UFrPeKfFv0bks1oEprAHq8cNPRHh5fnZxJSnxJwUyjr2LvbOzEq4u6rI35XcMxUvjI022
-	 AClYrDTlZk0AyqgwLO4uLQZfK74aSIN5JZLG0QjS+7Xeq2R04x6voQR5Or2NnSU3cIUnX
-	 UdICEmw5MWUfsOoLRaiSUfL6OfksR89mGLD1+kyGu+Ck7wx5+n2220Lu5/GBRUNCwTmlx
-	 3bqo88iOA4TUKr0cVVpl6Uuj1/2ABTgMestfW0K0tC8GXvqMqjlJdA5OzeOWLoG1d9Q==
+	bh=gscuI7w3gU6wnR9QFO0QB6BLM+nklmFZb/eBfq6BMOM=;
+	b=RnQ9nctcTFM8AqB/dhvX6Zhzv4ALhFjM2rD9HgDG5f2C2tB9jRAbMjADu/vIHwd/yYvd
+	 iXrab8nInEtxlYoIBvxnINX/xwfHB1QD58mLuxvs17235ZVIDji5psk3J4ls35JFHrVJm
+	 8cH4KVpwoov//aKbkGmjqOd8MZPWcW9BnoQxD47U90Ua39dyelri0RpKTNvQ9NxLwsFFc
+	 mOZwmmbfQD55Dzo/qyb6KmIHkKiT2Vh1JrJldxWgfR2FQQ8uKBTl9b+5E39+7WL2OyIn4
+	 FXGE2XD0krLX7nB7E5Z6vvRdOHdMmadBJ5nD4eQ7ojVqsRIty4GkOY/JcR3pKQwyw6Q==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 555201F000CF;
+	by smtp.kernel.org (Postfix) with ESMTPS id 3EBC21F000CA;
 	Sat, 21 Nov 2026 10:10:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795255856;
-	bh=B4YHsAoHyJKwkFBTxKLpr1lA7OsEShL43buMSm7NE7g=;
+	bh=gscuI7w3gU6wnR9QFO0QB6BLM+nklmFZb/eBfq6BMOM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=F8AKbIsOYYhRu2GUIgxy695fHCbk1rNXbdQpuZHglQYtzSdKoLYIUb7zIb64Q5Hi0
-	 EwAL+LyfcDSzMxQ9gEELjY3ZaJAr+gS1r/GpSGipiecUdgrORJ9qAhDWFcm6Wlhbm9
-	 ZDG6EZvTOIaeLtEbsmNNVX5HvMaodhaxIk/VAq16e4alRMJr7zeAbYvoMtTNBTZQvY
-	 K/cdMBPcSA8rLPm5rD5E4D/LaJVPs1tfoWsOEs7FNa5XZ5IDwIyoCh/NJiLbDQJinn
-	 +1lO/I2QBPs9c9AKDVlRNjCFxMOJ1QfFb5/l17Mf+BHdsRFl2QrKySLSqfgFVECjG3
-	 bjXW5+cnxn5tA==
+	b=QWo2Meb394otORCWBsKCEuIWlu5u5nfty2XBL9ZDJ4pWgZ/cSV5Q+rZ+IzQ7nHN1P
+	 y/quNN3jLm/pJs1NGKuK/9aiDq2zDmaYlydlJ72L9Pq58D711wYOjvCxtaO8PTRXin
+	 fnSLTDNj0cS8Cm+X0ruLRK2aZ6+33PCx2ty1JkLbL751YoJMlgZm8Y4npnljEyPL4n
+	 qH2xJC3Zj+OyTOxJOZm98LladECIyys4JBnkK79xj877c3CmDj+ynZw80s580hvr1N
+	 bHz05f72Y6BUJPwkejxo/4MhXmyHDtWmE+2yzrXWjZ4oUeuiqEc/IQKnJLgZs9UzKe
+	 nYOtnN7f0o2ig==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id DBBDF4BBD4;
+	by lkml.kernel.org (Postfix) with ESMTP id C4B694BBD0;
 	Sat, 21 Nov 2026 10:10:54 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sat, 21 Nov 2026 10:10:56 +0000
-Subject: [PATCH v2 3/3] media: cedrus: mpeg2: decode MPEG-1
+Date: Sat, 21 Nov 2026 10:10:55 +0000
+Subject: [PATCH v2 2/3] media: verisilicon: reject MPEG-1 controls
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261121-b4-cedrus-mpeg1-v2-3-95e4decf03fa@gmail.com>
+Message-Id: <20261121-b4-cedrus-mpeg1-v2-2-95e4decf03fa@gmail.com>
 References: <20261121-b4-cedrus-mpeg1-v2-0-95e4decf03fa@gmail.com>
 In-Reply-To: <20261121-b4-cedrus-mpeg1-v2-0-95e4decf03fa@gmail.com>
 To: Hans Verkuil <hverkuil@kernel.org>, 
@@ -97,11 +97,11 @@ Cc: Jonas Karlman <jonas@kwiboo.se>, linux-media@vger.kernel.org,
  =?utf-8?q?Christian_Stefan_K=C3=B6v=C3=A9r-Draxl?= <ckoever@outlook.de>, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795255854; l=3799;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795255854; l=1859;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=ENgCu+1MFMZtAJZUuEt0T+q6P9F/T+1zchxBMroIOiw=;
- b=i5C3tVNnGqk1IrEyGSmXdZ2XEwdhU7cGA82UV4f11t7RXP0HNEAvQEtdnKwP2DzacRy5m35Pa
- xZgEqCOj6eQAg8Am49A4qiLCCykWgl3+ChPpmm6D961m0tS721fJQu5
+ bh=FQStrbwGL4QdSNvEd7D9LYJAA2FvyeyUQoe74GUu02I=;
+ b=ebfDy9i8ixnAvMHvwqGQgQzsroi7ROGjPvbLkfaHAC8Y0OJuixh3Xqnqs0S+QnBtvVKPCd36h
+ M8qLiINqHZ/AwFnvbY067aC+w9u1xTsiLqiR9EiSpB609O7zJcwOzfs
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -129,94 +129,50 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The engine has an MPEG-1 mode, selected with the MPEG-1 decoder type in
-the trigger register, and takes the full pel flags and the picture
-coding type (D-pictures included) in the picture header register.
-
-Select the MPEG-1 mode when V4L2_MPEG2_SEQ_FLAG_MPEG1 is set (every
-variant with the MPEG-2 decoder; tested on H616 only). A job fails if
-an MPEG-1 sequence has field pictures, or an MPEG-2 one has D-pictures
-or full pel flags.
+The driver decodes everything in MPEG-2 mode. Reject
+V4L2_MPEG2_SEQ_FLAG_MPEG1, the full pel flags and D-pictures, which it
+would otherwise decode as MPEG-2. Compile tested only.
 
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/staging/media/sunxi/cedrus/cedrus.h       |  3 +++
- drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c | 27 +++++++++++++++++++----
- 2 files changed, 26 insertions(+), 4 deletions(-)
+ drivers/media/platform/verisilicon/hantro_drv.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.h b/drivers/staging/media/sunxi/cedrus/cedrus.h
-index c4b1217c14b6..9c35078ef02f 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus.h
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus.h
-@@ -144,6 +144,9 @@ struct cedrus_ctx {
- 			void		*entry_points_buf;
- 			dma_addr_t	entry_points_buf_addr;
- 		} h265;
-+		struct {
-+			bool		mpeg1;
-+		} mpeg2;
- 		struct {
- 			unsigned int	last_frame_p_type;
- 			unsigned int	last_filter_type;
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c b/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-index 10e98f08aafc..557e3d029318 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus_mpeg2.c
-@@ -48,6 +48,17 @@ static void cedrus_mpeg2_irq_disable(struct cedrus_ctx *ctx)
- 	cedrus_write(dev, VE_DEC_MPEG_CTRL, reg);
- }
- 
-+static bool cedrus_mpeg2_pic_valid(const struct v4l2_ctrl_mpeg2_sequence *seq,
-+				   const struct v4l2_ctrl_mpeg2_picture *pic)
-+{
-+	if (seq->flags & V4L2_MPEG2_SEQ_FLAG_MPEG1)
-+		return pic->picture_structure == V4L2_MPEG2_PIC_FRAME;
+diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+index 26e5d5547466..c910a69e8e3c 100644
+--- a/drivers/media/platform/verisilicon/hantro_drv.c
++++ b/drivers/media/platform/verisilicon/hantro_drv.c
+@@ -264,6 +264,16 @@ static int hantro_try_ctrl(struct v4l2_ctrl *ctrl)
+ 		if (sps->bit_depth_luma_minus8 != 0 && sps->bit_depth_luma_minus8 != 2)
+ 			/* Only 8-bit and 10-bit are supported */
+ 			return -EINVAL;
++	} else if (ctrl->id == V4L2_CID_STATELESS_MPEG2_SEQUENCE) {
++		if (ctrl->p_new.p_mpeg2_sequence->flags & V4L2_MPEG2_SEQ_FLAG_MPEG1)
++			return -EINVAL;
++	} else if (ctrl->id == V4L2_CID_STATELESS_MPEG2_PICTURE) {
++		const struct v4l2_ctrl_mpeg2_picture *pic = ctrl->p_new.p_mpeg2_picture;
 +
-+	return pic->picture_coding_type != V4L2_MPEG2_PIC_CODING_TYPE_D &&
-+	       !(pic->flags & (V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD |
-+			       V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD));
-+}
-+
- static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx, struct cedrus_run *run)
- {
- 	const struct v4l2_ctrl_mpeg2_sequence *seq;
-@@ -63,6 +74,11 @@ static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx, struct cedrus_run *run)
- 	seq = run->mpeg2.sequence;
- 	pic = run->mpeg2.picture;
++		if (pic->picture_coding_type == V4L2_MPEG2_PIC_CODING_TYPE_D ||
++		    pic->flags & (V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD |
++				  V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD))
++			return -EINVAL;
+ 	} else if (ctrl->id == V4L2_CID_STATELESS_VP9_FRAME) {
+ 		const struct v4l2_ctrl_vp9_frame *dec_params = ctrl->p_new.p_vp9_frame;
  
-+	if (!cedrus_mpeg2_pic_valid(seq, pic))
-+		return -EINVAL;
-+
-+	ctx->codec.mpeg2.mpeg1 = seq->flags & V4L2_MPEG2_SEQ_FLAG_MPEG1;
-+
- 	quantisation = run->mpeg2.quantisation;
- 
- 	/* Activate MPEG engine. */
-@@ -101,8 +117,10 @@ static int cedrus_mpeg2_setup(struct cedrus_ctx *ctx, struct cedrus_run *run)
- 	reg |= VE_DEC_MPEG_MP12HDR_Q_SCALE_TYPE(pic->flags & V4L2_MPEG2_PIC_FLAG_Q_SCALE_TYPE);
- 	reg |= VE_DEC_MPEG_MP12HDR_INTRA_VLC_FORMAT(pic->flags & V4L2_MPEG2_PIC_FLAG_INTRA_VLC);
- 	reg |= VE_DEC_MPEG_MP12HDR_ALTERNATE_SCAN(pic->flags & V4L2_MPEG2_PIC_FLAG_ALT_SCAN);
--	reg |= VE_DEC_MPEG_MP12HDR_FULL_PEL_FORWARD_VECTOR(0);
--	reg |= VE_DEC_MPEG_MP12HDR_FULL_PEL_BACKWARD_VECTOR(0);
-+	reg |= VE_DEC_MPEG_MP12HDR_FULL_PEL_FORWARD_VECTOR(pic->flags &
-+				V4L2_MPEG2_PIC_FLAG_FULL_PEL_FORWARD);
-+	reg |= VE_DEC_MPEG_MP12HDR_FULL_PEL_BACKWARD_VECTOR(pic->flags &
-+				V4L2_MPEG2_PIC_FLAG_FULL_PEL_BACKWARD);
- 
- 	cedrus_write(dev, VE_DEC_MPEG_MP12HDR, reg);
- 
-@@ -183,8 +201,9 @@ static void cedrus_mpeg2_trigger(struct cedrus_ctx *ctx)
- 	u32 reg;
- 
- 	/* Trigger MPEG engine. */
--	reg = VE_DEC_MPEG_TRIGGER_HW_MPEG_VLD | VE_DEC_MPEG_TRIGGER_MPEG2 |
--	      VE_DEC_MPEG_TRIGGER_MB_BOUNDARY;
-+	reg = VE_DEC_MPEG_TRIGGER_HW_MPEG_VLD | VE_DEC_MPEG_TRIGGER_MB_BOUNDARY;
-+	reg |= ctx->codec.mpeg2.mpeg1 ? VE_DEC_MPEG_TRIGGER_MPEG1 :
-+					    VE_DEC_MPEG_TRIGGER_MPEG2;
- 
- 	cedrus_write(dev, VE_DEC_MPEG_TRIGGER, reg);
- }
+@@ -435,11 +445,13 @@ static const struct hantro_ctrl controls[] = {
+ 		.codec = HANTRO_MPEG2_DECODER,
+ 		.cfg = {
+ 			.id = V4L2_CID_STATELESS_MPEG2_SEQUENCE,
++			.ops = &hantro_ctrl_ops,
+ 		},
+ 	}, {
+ 		.codec = HANTRO_MPEG2_DECODER,
+ 		.cfg = {
+ 			.id = V4L2_CID_STATELESS_MPEG2_PICTURE,
++			.ops = &hantro_ctrl_ops,
+ 		},
+ 	}, {
+ 		.codec = HANTRO_MPEG2_DECODER,
 
 -- 
 2.55.0
