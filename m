@@ -2,85 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E578606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 07:33:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 568C7606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 07:47:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jNu5KpiZ;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=cdVaEk5e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FpjEh91g;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=EMYJABtc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Date:Subject:Cc:To:From:Message-ID:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=J+dcPkcXZ3s3MrRG1MQfLHmivGBQKC1Xk8mvOi8nCLY=; b=jNu5KpiZ7kU1aa
-	tVVv/HoZixiBkY0cBq/ZwOAF3u+J537enYL11BO4Z0cpabG5Q1BQHMKHH4sczCcRGAAnAyFK61Ic4
-	0s9z/A3PraMFTeCWOE6EUUPYFECbUY4OI6pWvFOP+oWksyiQWReyo8htvqozc5tq4g5jZ4bqV0rxj
-	4qGeKLHZlKODFoz6p83fS9t6WQOD7VFVgivZB2aOLcccj3l52TIdNBtbI6Vfk8xBbWt0WNWZ/ftDA
-	kyHFmFbrrPjx74j2Lh0B8DpPm5THcibINC0q2vaHLX1Jeyd2Y3xpxq2s/I1t+t23Zgo5iZrgPOguw
-	Dk0eJdsIWaHePEO5e1ug==;
+	List-Owner; bh=302YmlBFcT29dtVYS2/IlQouy87kyb7NzSlXmbT4De8=; b=FpjEh91g1ewsAq
+	VuRtowY9KWeXEddjrvRlYyIDIyTb+sBjQ5TkpOtZiHP4yYG9F8KLuhBv9+wmcakoE4TFId4LFJ+GS
+	IejqnPUsY4B0tWEwx5PQ2nWkVDs0X/1Q42QUdYsIaFks3dRIyQCt6v9x9PTLKl8CjZ4BTmPshyjYd
+	0O2Y8vQ2h0QXdo0+aHCX/DZrQIENetZxALWeSg9lI3VWnR28ZzDbkQ8xcA0cRnNnRuPe42ygIUuIz
+	pXjT7xVxJAZeiwVl+u7GlN4ZomNbhntcOEdqchKrIX//KNJn2dHUN64ebnfSoVlSfa6vQCUI6pF18
+	EMsozrNya5vTiXkcJXGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUfar-0000000Gqac-1w58;
-	Sat, 21 Nov 2026 07:33:05 +0000
-Received: from out203-205-221-149.mail.qq.com ([203.205.221.149])
+	id 1xUfoN-0000000GtFq-20dp;
+	Sat, 21 Nov 2026 07:47:03 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUfal-0000000GqYM-0sQt;
-	Sat, 21 Nov 2026 07:33:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1795246373; bh=J+dcPkcXZ3s3MrRG1MQfLHmivGBQKC1Xk8mvOi8nCLY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=cdVaEk5eAIPmIOk5+F6iMsEjzv/6emr9/7h2mxKPmyKZLAUvRxaK4ZINgaScYjX8E
-	 5qUruKO6tpmBZ7BiX5sgmPmY+nvwdXQFxI/bgQlLEoRTS5Fgrq/bhFwCU6eLTzD69j
-	 ZWwlvXhWWmreQC3PGSWE87ou6cNTxlG5wW/cmTEg=
-Received: from jerry-PC.lan ([2408:8249:5f:7101:71a:8713:56b4:5043])
-	by newxmesmtplogicsvrszc43-0.qq.com (NewEsmtp) with SMTP
-	id 830284BE; Sat, 21 Nov 2026 15:32:48 +0800
-X-QQ-mid: xmsmtpt1795246370tpq3bznqd
-Message-ID: <tencent_E24973E955D1A26CF5A4F983929F8F8B0006@qq.com>
-X-QQ-XMAILINFO: OATpkVjS499uL2TWbxEEsFmnEnc19DykXbomcd2rucq3Q6VPPxwPpOeHB46Rxg
-	 npusd0Ly+Fokip3MjyxvihICinj3t8vmi16KbS+EOadnd+Pendf3RXwhFo7NgyNQ2bNs1H/C+KMw
-	 mVGG7wUFNhi/kv01GV2CUaCFeFj1FH9zUoPrE8TomhHlG/jx1Z7bMJbkV6dsxYoI8fZE9H5FQ/un
-	 W4il3/9nuVDr1++Js9FwfFTxFofpJiKcb0eMNNZ/O+Hc00Lh6xc51JRm/IpJN67BMeD+wTvjpPVR
-	 OKmcs6pGNAzBqRsosgX/UOFCJM83v6nNtmPx67Jbvh8vjOtLKJYmXECPmCGS5eiC0RrT+ryhBkiR
-	 BV/clgdO53uRIr5ppUPA1RGgLgLaT7x0qU47/6pk247M+3sLAFF19/wr4IozDoahbm6csbcg1WWJ
-	 F3GhZHviwUT/DNBTv4mbW+qLUj/4jaobcMu+78J0RogRxxMBt4AlzgofwAeLUcqS7UpAfu+7c11p
-	 mYLKVOLzDO7Lpkw/6m8cekqwfDZs4qvP/hnT+Gm21YdCv//eAbBgjgPsxX/b4TVLxDz7Ik0m/5An
-	 4y/V3J2cu02gSUBq411+z7aFIwEjSxL9NwXtH1H6nPMMCo2SVen7wH1FwLRgo6GNqXYbtgwwP3qp
-	 UWcfdBh4Uc0o/seo/OhrLgk7sWFsyQfjkKsGYt9cCeXDlYrTQ15nlqkzjDVSXHr3AoPnJyLabg/Z
-	 2O595qusTXNq3sG8wtDaHeyN9vCFCVqS/KPWRV85Vr6HN4Nj3u4qkDySk85w192Pr5md2E/iTgEJ
-	 piEiue83T/I9qW7B4XvsBKgXO2FZZ4FvrQRlrzcOksliwCzxNjIlDFSccFIAlo7RYKVkxYaj15J1
-	 D/nRnNybZnL86uEs8ILw1GE21Jw9a43FGVcChcVt++IJp3vrSHR1RbgXotjixOHpBRiKj+ebx+H3
-	 Edgg9Y0RiR4/FUi31QFHviFszp8+Q+rjuruPKhct5Pky53qHrFBkohkO+8VmGqePK7Q0Pt5mUSOY
-	 m5d+V3na/Yspj1jjf751kzbRrXkTIEliA/YC6cDXQyJHFSIDKUHi8ZcEfTSWtqv0pDGAoFoA0RFe
-	 KB7byoRic0F++fgksk+yFnEZC/tQ==
-X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
-From: ZhuXiangyu <1194781887@qq.com>
-To: Mark Brown <broonie@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Chris Morgan <macromorgan@hotmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-spi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ZhuXiangyu <1194781887@qq.com>
-Subject: [PATCH 2/2] dt-bindings: spi: rockchip-sfc: add RK3506 support
-Date: Sat, 21 Nov 2026 15:32:46 +0800
-X-OQ-MSGID: <20261121073246.1233736-2-1194781887@qq.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261121073246.1233736-1-1194781887@qq.com>
-References: <20261121073246.1233736-1-1194781887@qq.com>
+	id 1xUfoK-0000000GtFT-0uYt
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 21 Nov 2026 07:47:02 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id B0747C62229;
+	Sat, 21 Nov 2026 07:47:02 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7CCE6603CF;
+	Sat, 21 Nov 2026 07:46:56 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8399111BC0212;
+	Sat, 21 Nov 2026 08:46:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795247214; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=302YmlBFcT29dtVYS2/IlQouy87kyb7NzSlXmbT4De8=;
+	b=EMYJABtcdwh7iR3ROahPEAfI2aRH8ZKlnmBfiOaPOG1AhXQh2wPY+9Sat+HSryWbKRFuss
+	lTfyMt5KRK+JRvn6VqnXj9j+JN3uetiwf1kfJBCmBdvIp6pMzpjBGTQn277rWd3371l/i/
+	sRmPQynRg9P3vFlyAsYjkAhVet6wJXlSLfiBAAx8NzYsDyb94O7+3vCwZXQTRo9XltWwiT
+	LShhvjid8ven666kDthXKVfjvDPkD2qPy1lCKwxD1uqDFyqENpu7lBJXR8QaglASPCYAVe
+	R+vzBSU6/lVk9gNZqi9uJwfYim2GJbqxv/U+auoLzif0Ue4iZE1mTBDUav/G3w==
+Message-ID: <2625b2b6-53f5-4c4b-b45f-fae0d7e781c7@bootlin.com>
+Date: Sat, 21 Nov 2026 08:46:37 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next] net: stmmac: xgmac: Report the VLAN tag type
+ from the descriptor
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>,
+ Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+ Nicolai Buchwitz <nb@tipi-net.de>,
+ Ovidiu Panait <ovidiu.panait.rb@renesas.com>,
+ Joseph Steel <recv.jo@gmail.com>,
+ Muhammad Nazim Amirul Nazle Asmade
+ <muhammad.nazim.amirul.nazle.asmade@altera.com>,
+ thomas.petazzoni@bootlin.com, =?UTF-8?Q?Alexis_Lothor=C3=A9?=
+ <alexis.lothore@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20261118162136.2782405-1-maxime.chevallier@bootlin.com>
+ <20261120164601.07f932cd@kernel.org>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20261120164601.07f932cd@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_233259_674505_E67F475E 
-X-CRM114-Status: GOOD (  12.15  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_234700_430155_5DE71686 
+X-CRM114-Status: GOOD (  10.47  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,75 +89,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document the RK3506 FSPI compatible with the generic SFC fallback, and
-the rockchip,grf and rockchip,max-dll properties used for the
-power-good handshake and DLL training.
 
-Signed-off-by: ZhuXiangyu <1194781887@qq.com>
----
- .../devicetree/bindings/spi/rockchip-sfc.yaml | 30 ++++++++++++++++---
- 1 file changed, 26 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
-index ac1503de..428740c8 100644
---- a/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
-+++ b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
-@@ -13,13 +13,27 @@ maintainers:
- allOf:
-   - $ref: spi-controller.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3506-fspi
-+    then:
-+      required:
-+        - rockchip,grf
-+
- properties:
-   compatible:
--    const: rockchip,sfc
-+    oneOf:
-+      - const: rockchip,sfc
-+      - items:
-+          - const: rockchip,rk3506-fspi
-+          - const: rockchip,sfc
-     description:
--      The rockchip sfc controller is a standalone IP with version register,
--      and the driver can handle all the feature difference inside the IP
--      depending on the version register.
-+      The Rockchip SFC controller is a standalone IP with a version
-+      register. The driver handles most feature differences based on the
-+      version register, while SoC-specific data such as the power-good
-+      GRF offset is selected by the SoC-specific compatible.
- 
-   reg:
-     maxItems: 1
-@@ -44,6 +58,14 @@ properties:
-     description: Disable DMA and utilize FIFO mode only
-     type: boolean
- 
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the PMU GRF used for the power-good check.
-+
-+  rockchip,max-dll:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Maximum DLL cells used for delay-line training.
-+
- patternProperties:
-   "^flash@[0-3]$":
-     type: object
--- 
-2.47.3
+On 11/21/26 01:46, Jakub Kicinski wrote:
+> On Wed, 18 Nov 2026 17:21:34 +0100 Maxime Chevallier wrote:
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_vlan.c
+>> @@ -209,8 +209,12 @@ static void vlan_rx_hw(struct mac_device_info *hw,
+>>  {
+>>  	if (hw->desc->get_rx_vlan_valid(rx_desc)) {
+>>  		u16 vid = hw->desc->get_rx_vlan_tci(rx_desc);
+>> +		u16 proto = ETH_P_8021Q;
+>>  
+>> -		__vlan_hwaccel_put_tag(skb, htons(ETH_P_8021Q), vid);
+>> +		if (hw->desc->get_rx_vlan_proto)
+>> +			proto = hw->desc->get_rx_vlan_proto(rx_desc);
+>> +
+>> +		__vlan_hwaccel_put_tag(skb, htons(proto), vid);
+> 
+> Heh, this function now does 3 indirect calls to get the info about 
+> the stripped vlan. Isn't this slower than disabling the offload and
+> stripping in SW at this point? Maybe the low-end CPUs are very
+> different :) Or there's something else I'm missing?
+
+We'll do like the rest of the driver and hide these indirections with
+a nasty macro :)
+
+(jk, but TBH I can't test that one at more than 1Gbps, it's very likely
+there's ton of room for optimisation...)
+
+Maxime
 
 
