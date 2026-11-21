@@ -2,66 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597CC606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 20:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E1C606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 20:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=skAEV8ET;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=T2ICUGWl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IiwnnhjD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HB0BCE7P
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TBjlLLaSMdptS1qSf1sy2MeZrQefDkAIXeGwS3xNDrU=; b=skAEV8ETC4hV5P
-	WRygVZsOdVcMmKPgaHXoKmAVXj2df8X4XGnKNTcuMDWKzGW1/X1/VGDR02B1AU03UZVwbXtsyZfdf
-	a8IDMNszZfvycDNwNsO4+9t5SGbw7XfZIgCOiGH6tHRK2VavtONqQdg2MiPl/uxlz5fog0uAhph6M
-	DUivydeKDiFeZ0hSLdARNFP6IZjEm8WTkuTPVgr6MPQwqPPVKTyw14JcRtMZbhQbAzo8SEUb+CsdJ
-	RydM0X9gmrCEhmpTXPNUtJ459ufG5Zx+vB/DVs2hfCqZkl5LSSj93pjk80F631RnIVMgLI7Hi8+p3
-	fSFl0OJaLdVT+AhexbKw==;
+	List-Owner; bh=1+9xKelv6Vo2SNmmJS1JrMhxkgUkTeNOsnaq1Dfc3yQ=; b=IiwnnhjDqDJKHG
+	tnfksZK03XVEDhI0dCr+Fl56gXPJhRJ3O5cMnewD6O9eKl01beLUZ+Cm2/6CBYArnfu3b/ykEUtdI
+	k9RpOnYdvEXPQVzf4XgkZmjzENwsaeaqIwGyFIdqrhaIHQtBnQuIwPjY11eJeHLfW+YkhH6uOZvdq
+	AfISDc11IEapes9w4LEAi+u7uCwAOv5/xt3C+HRExyOdb0D66DLtRHDh7F11njqviFvN66dm1buZE
+	lLWiuPOhUGdV9lQmqDdbr+bZjaRshVdEia13GAZpAs6TSWt8KYr6vUSs9O1Mz1LzC0fjrQJwPetv/
+	ATfEir9ltYl/0aYCdSRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUrsa-00000000FRA-3SnP;
-	Sat, 21 Nov 2026 20:40:12 +0000
+	id 1xUrt1-00000000FWF-43Eu;
+	Sat, 21 Nov 2026 20:40:40 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUrsZ-00000000FQq-13S7
+	id 1xUrt0-00000000FVy-2QjG
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 20:40:11 +0000
+	Sat, 21 Nov 2026 20:40:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8888045041
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 20:40:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 693E81F000CA
-	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 20:40:10 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5947F4471F
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 20:40:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DC581F000C6
+	for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 20:40:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795293610;
-	bh=TBjlLLaSMdptS1qSf1sy2MeZrQefDkAIXeGwS3xNDrU=;
+	s=k20260515; t=1795293638;
+	bh=1+9xKelv6Vo2SNmmJS1JrMhxkgUkTeNOsnaq1Dfc3yQ=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=T2ICUGWlgRPchPUIQ+snZtdHmoEPJlYmXRuIWM2+7qMxZIlvBCJrzjTXVxZgCIuOS
-	 ygV5zB9T/a/BXUUN5D1Ua9irV1wgk8khz2Ed5wJG1l+tw/TKbLFs2TclDlVOHf4keG
-	 zhfeOIhuGmJyMd/6QgHDnCggwAPS8flD2uxh8EaQiq+++vVweWsOAru9rbf1EoRT0a
-	 YuCQw2jJ+hyvE4IWqe2nF6iVwkTRcIcJMdFwTaulrrTGzVzas9YmEswKX5Olu1Ps+C
-	 +nY64hZEYEW9UutqbeW1HSUfdJ1aE/GKm42Nie2xhlgdYGB7LcsoWyOYvc7GGe8Gca
-	 /3zyilDJuASkg==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5bfa65c8617so1249349e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 12:40:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHLr3pVINfWqc4a0qRjBtVl/Htv0rMx34Y3Q5OTRk4xJikraXgkrBfuzRPXjItVvYQ0vbwSKgcwRy522jmUaRsv@lists.infradead.org
-X-Gm-Message-State: APuU4Z9zseYgLImVySzbJSkg6e//tDo8x7U1WbaVJlQ2mY5yDiKPTqVf
-	0Qqx6tFHadSS6Pl+Ue2MvU28FW6N+932CYC0yEB0DB6dUHZnKnJfeMWeU86upEDzFUGJ3oAevoo
-	SIV0afVf+XPwFPQo1shHkyYw2lRJ2JPQ=
-X-Received: by 2002:a05:6512:33ca:b0:5c1:57b6:5ffd with SMTP id
- 2adb3069b0e04-5c1bc552d9emr2306559e87.0.1795293609072; Sat, 21 Nov 2026
- 12:40:09 -0800 (PST)
+	b=HB0BCE7PL7DXjymH0OIW3hYSO36wEfw0nxPwTtX1C7fwWeDCXTXpJ4mjHgm3qP9Mf
+	 h7OACroCL9nkJWX4mg/VFrB4pH/GDWsPgHbCl/KeqLT5uXXCOPG7a7nXoNWCw0WJyr
+	 WHj0SUmTvySYGKMNwKCLYAcI1HYZpGPn/EkpyXMOzXYt05PQHHaN+UIRlAQT4On8c4
+	 QIobyw+ttdEiXz/eYrbAN22UcLERf366GMEJ8MMcWAL2wLX0sB4TaYUG6/8a2dAi28
+	 Uog623UuE+HmERallEkMDZy+uoz1jYWJw5C/T1vMPYsD5Bg8W11uLhgwn1U9aV+cyi
+	 XhXBdR+LxACKw==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5bcdae234ecso2560549e87.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 12:40:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErG6sshzb+AMF8ymcjneIRM3VqabSujfH2natZe1bv3ABokwPopUtFqTepxlX7rB3R6Fwtdml8x0F7U48DaFegI7@lists.infradead.org
+X-Gm-Message-State: APuU4Z//OJhIErUh6nIqoruPLmjQxUjsHMB55uSEgG1fj/iVfu9EwnJR
+	q++4VnERmYhoCYC9bb+uqtTFq0Alj+AVN4vDCkoX3QUB1jSc/mEwLgLD/jFhdy6+57kO39QEJ3n
+	pf34XQm/a+aqdATxUqSJP1qMZ15Pzob4=
+X-Received: by 2002:a05:6512:3d0c:b0:5c1:4dba:f748 with SMTP id
+ 2adb3069b0e04-5c1bc7bcccemr2269512e87.10.1795293637058; Sat, 21 Nov 2026
+ 12:40:37 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261112064957.1796975-1-dmitry.torokhov@gmail.com> <20261112064957.1796975-2-dmitry.torokhov@gmail.com>
-In-Reply-To: <20261112064957.1796975-2-dmitry.torokhov@gmail.com>
+References: <20261112064957.1796975-1-dmitry.torokhov@gmail.com> <20261112064957.1796975-3-dmitry.torokhov@gmail.com>
+In-Reply-To: <20261112064957.1796975-3-dmitry.torokhov@gmail.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Sat, 21 Nov 2026 21:39:57 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=ww5ujTR8rL8htZ6APrbKqD0K+N6J6-LeMZsPSOhUtew@mail.gmail.com>
-X-Gm-Features: Aa3M54rUPZzCG9ojMkF6fiFvoquOOcY_PUVJLfl5nrRmYMblL1z9xSrx8VOuWKs
-Message-ID: <CAD++jL=ww5ujTR8rL8htZ6APrbKqD0K+N6J6-LeMZsPSOhUtew@mail.gmail.com>
-Subject: Re: [PATCH 1/5] Input: ads7846 - drop platform data support
+Date: Sat, 21 Nov 2026 21:40:25 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkheoxgDVW3ZRZMnSe2LMdEDa7Qiny0FUjPxLzSwixAhw@mail.gmail.com>
+X-Gm-Features: Aa3M54rpJtp0p4xkcjqFPMBHZAX15U25ZAI_rqHYM6Rkzu0O33avkFiWANRi8Bo
+Message-ID: <CAD++jLkheoxgDVW3ZRZMnSe2LMdEDa7Qiny0FUjPxLzSwixAhw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] Input: ads7846 - simplify sample filtering
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Daniel Mack <daniel@zonque.org>, 
 	Haojian Zhuang <haojian.zhuang@gmail.com>, Robert Jarzmik <robert.jarzmik@free.fr>, 
@@ -93,17 +93,18 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Thu, Nov 12, 2026 at 7:50=E2=80=AFAM Dmitry Torokhov
 <dmitry.torokhov@gmail.com> wrote:
 
-> Now that all in-tree board files (including board-nokia770, spitz, and
-> db1000) have been converted to Device Tree or software nodes, legacy
-> platform data support is no longer needed.
+> The filter and filter_data members of struct ads7846, along with the
+> generic signature of ads7846_debounce_filter(), are leftovers from
+> custom filter callbacks that were removed in commit 937f5d5ec642
+> ("Input: ads7846 - remove custom filter handling functions from pdata").
 >
-> Remove struct ads7846_platform_data and associated callbacks, parse
-> device properties directly without allocating a temporary structure,
-> and delete the unused header file.
+> Drop the filter and filter_data function pointers, remove the unused
+> ads7846_no_filter() stub, simplify ads7846_debounce_filter() to take
+> struct ads7846 and the sample value directly, and call it without
+> pointer indirection.
 >
 > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-Good riddance!
 Reviewed-by: Linus Walleij <linusw@kernel.org>
 
 Yours,
