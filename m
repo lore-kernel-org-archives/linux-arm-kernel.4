@@ -2,87 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD750606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02B4606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qRKunYSO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VpBjouCj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cibsJ54V;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=FzyB8Xwe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uNHo+Sfo4SO6w4MKR8YizO7/Dz3BQ3/Jvkiq3N5ai4Y=; b=qRKunYSO8sdblY
-	4m33YirURdQRjNACA6T2SYVyZimoSRoSEDzM4/u+alf0UKsxHpb/Evz+ySa6ovMOB6YtDzakPufZR
-	Xp2aZGr8w8iMlApdf67LW4KGQNrUnDiJ6vT14fSAvmRwGve98QgiGJOjiNlMVb9/MJvM9gZA84Hsx
-	/gCcw4QuGZWi7af30EUUVXk7ovFmU6Hb20/4/Dq7VPuFwoz2eZJz01ZzA1wiP9vRRo0Yz2IH7RDSp
-	kB9Y8dSSYF3JP2hVwA37aDybmownWZDPEJsGIA4WMIxMk5Izl2vTWs1LlapuUKOPvqB6Lv5+ZVSL4
-	YkbsIRUGU/U8saWjvHIg==;
+	List-Owner; bh=6G+qoyuS+XfWQYbP6gY4xhAOdcI4aLBFdUBf8L1UOt8=; b=cibsJ54VNAjG2S
+	+ypn8QfT0Txzfsh+LLh4eDNc7fxM2cgYcxB75ciXDuKtHQfv+gkorv4NwpH0AaxHv2+okphrmxq9u
+	AbsbX1b0qRT0OgbFdJnTeI22NhuaJ2SnnSKHUgWYp3mGdkW2uU3EGZ+WD7aeQUZy08A1uyOcxpfqP
+	WR6vGLDpbY52gDEjJkXfV+h26+e2LgePvzot5OH7cJd/XTnHcQ1DP65gUn+HT54vvv8aQffFLCw/A
+	INgf+eNIhsZRy6wYcewFO5+EWpSUDpPgWBrwYTRQ4hNbWL7wtIy4brOgtf9gv3Xw5zkFxs6z/OH/e
+	xi7FpiQgdWaMIbWFliFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuV7-00000000UMR-0ooN;
-	Sat, 21 Nov 2026 23:28:09 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuTy-00000000TmM-2MDK;
-	Sat, 21 Nov 2026 23:26:58 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5257B45971;
-	Sat, 21 Nov 2026 23:26:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638161F000E6;
-	Sat, 21 Nov 2026 23:26:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795303618;
-	bh=uNHo+Sfo4SO6w4MKR8YizO7/Dz3BQ3/Jvkiq3N5ai4Y=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=VpBjouCjqQQeI8P4RhYDWkheQLduY2KtRgjsuneT/skyQuzN+Cm9NkbngYx/vyJiM
-	 Dbef+S20RA8XkAFHAsU9ksaA8j/sCG5zW85U1NFq0MWh8X97oL1TsaCv1iFTt+RQVo
-	 lsPCPanYr0ZSGw8muAC/4zCt20iLBmOl1TGD/vJC+p05bYANijE+GKcgmCUxPXetrS
-	 xsjcjlkhy44JYXELUhjjES+3aWYs0MdolvWpAwqxSTl9oXmqBngsHCqd8iBT2cb9BC
-	 dq7nXqV95PUR8YrBkhhv5rxUTCg7Yk94OLRfVMYqyE/V9qbq0LTj383Rl1/CDZYzL6
-	 QhjMB35gwuJDA==
-From: Jakub Kicinski <kuba@kernel.org>
-To: ansuelsmth@gmail.com
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	horms@kernel.org,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org,
-	rdunlap@infradead.org,
-	lorenzo@kernel.org,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	maxime.chevallier@bootlin.com,
-	p.zabel@pengutronix.de,
-	nathan@kernel.org,
-	ndesaulniers@google.com,
-	morbo@google.com,
-	justinstitt@google.com,
-	rmk+kernel@armlinux.org.uk,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	llvm@lists.linux.dev,
-	zhengping.zhang@airoha.com
-Subject: Re: [PATCH net-next v22 15/15] net: airoha: add phylink support
-Date: Sat, 21 Nov 2026 15:26:56 -0800
-Message-ID: <20261121232656.1365664-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261117123956.11981-16-ansuelsmth@gmail.com>
-References: <20261117123956.11981-16-ansuelsmth@gmail.com>
+	id 1xUugX-00000000UxR-1koe;
+	Sat, 21 Nov 2026 23:39:57 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xUugS-00000000Uww-0U6j
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 21 Nov 2026 23:39:56 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BDDE71575;
+	Sat, 21 Nov 2026 15:39:45 -0800 (PST)
+Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 123EE3F632;
+	Sat, 21 Nov 2026 15:39:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795304388; bh=uIGjGTNYItK1fO2IWuO0oXrmBCGSoTMgNCNIlJE47d0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=FzyB8Xwe09oftNAYS2TqWMzCF6d8+cKG5wNCbM2p+cvgq62XAySRC43E5kSp0T2/z
+	 cuUYkLRLSY42Wof1QN7x72KFLitCD2aDUSUt5xarAS9ktgI2YEOp/tb7oWXk1Zgx0b
+	 jbw+eieLEUGiR173VOekc1YOWrP8kQZjMcDrSnww=
+Date: Sun, 22 Nov 2026 00:39:32 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Enzo Adriano <enzo.adriano.code@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ wens@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, Maxime
+ Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>, Jerome
+ Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>, Vinicius
+ Pedrosa <vinicius.eduardo.pedrosa@gmail.com>, Alexander Sverdlin
+ <alex@sverdlin.org>, Jun Yan <jerrysteve1101@gmail.com>, Lukas Schmid
+ <lukas.schmid@netcube.li>
+Subject: Re: [PATCH v4 3/3] arm64: dts: allwinner: add Radxa Cubie A7S board
+Message-ID: <20261122003932.568c099c@ryzen.lan>
+In-Reply-To: <448e7551a6f560d8b8ede245ccfbc74101c76ef4.1795034153.git.enzo.adriano.code@gmail.com>
+References: <cover.1795034153.git.enzo.adriano.code@gmail.com>
+ <448e7551a6f560d8b8ede245ccfbc74101c76ef4.1795034153.git.enzo.adriano.code@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_153952_342314_426971D2 
+X-CRM114-Status: GOOD (  42.92  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,262 +77,497 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
----
-net: airoha: add phylink support
+On Thu, 19 Nov 2026 13:09:26 -0500
+Enzo Adriano <enzo.adriano.code@gmail.com> wrote:
 
-This adds phylink support for each GDM port. GDM1 is limited to the
-internal interface mode, and GDM2/3/4 use a PCS referenced through the
-pcs-handle property. The ethtool link_ksettings ops now go through
-phylink, and GDM4 TX/RX fragment sizes are set on link up.
+Hi Enzo,
 
-> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-> index 044ad0302ef35..e41dfad58b258 100644
-> --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-
-[ ... ]
-
-> @@ -3752,6 +3790,155 @@ bool airoha_is_valid_gdm_dev(struct airoha_eth *eth,
->  	return false;
->  }
->  
-> +/* Nothing to do in MAC, everything is handled in PCS */
-> +static void airoha_mac_config(struct phylink_config *config, unsigned int mode,
-> +			      const struct phylink_link_state *state)
-> +{
-> +}
+> Enable the Cubie A7S serial console, PMIC and microSD slot to provide
+> an initial usable board configuration. Supply the 26 MHz crystal and
+> 32768 Hz RTC input, enable UART0 and the AXP318W on R-I2C0, and describe
+> the PMIC input/output and CPU supply connections from the Radxa Cubie
+> A7S schematic v1.10. Preserve firmware settings on rails whose working
+> voltage is not established. BLDO2 has no programmed voltage constraint:
+> its software 3.3 V selector does not establish its physical output with
+> the schematic's nominal 2.4 V input.
+> 
+> Describe the card's SWOUT2 supply and PF6 active-high detect with an
+> internal pull-down. Enable MMC0 at up to 50 MHz using 3.3 V signaling
+> only. Its high-voltage path uses VCCIO; CLDO5 also feeds PC and the PF
+> 1.8 V input and must not be raised for SD signaling. Firmware must
+> select the 3.3 V PF path; dynamic voltage switching is not provided.
+> Keep other storage off.
+> 
+> Connect the documented bank supplies. PL's self-supply phandle is
+> omitted to avoid the PMIC/I2C/pinctrl bootstrap cycle, as on the
+> upstream Cubie A5E; ALDO1 is retained always-on. The separate pinctrl
+> voltage-mode fix is required for these bank-supply connections.
+> 
+> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+> ---
+> 
+> The November 18 v4 RAM boot on Cubie A7S with vendor firmware exercised
+> UART0, PMIC probe and MMC0 read-only transfers. PMIC/NMI interrupt
+> delivery, card writes, physical hotplug, 1.8 V signaling and physical
+> BLDO2 voltage were not tested.
+> 
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../dts/allwinner/sun60i-a733-cubie-a7s.dts   | 287 ++++++++++++++++++
+>  2 files changed, 288 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index da39f02252d4..9d1e740ff19e 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -69,3 +69,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-a527-cubie-a5e.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun55i-h728-x96qpro+.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-avaota-a1.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-orangepi-4a.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7s.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts
+> new file mode 100644
+> index 000000000000..9af9a68950d8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7s.dts
+> @@ -0,0 +1,287 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+> +/dts-v1/;
 > +
-> +static void airoha_mac_link_up(struct phylink_config *config, struct phy_device *phy,
-> +			       unsigned int mode, phy_interface_t interface,
-> +			       int speed, int duplex, bool tx_pause, bool rx_pause)
-> +{
-> +	struct airoha_gdm_dev *dev = container_of(config, struct airoha_gdm_dev,
-> +						  phylink_config);
-> +	struct airoha_gdm_port *port = dev->port;
-> +	struct airoha_eth *eth = dev->eth;
-> +	u32 frag_size_tx, frag_size_rx;
+> +#include "sun60i-a733.dtsi"
 > +
-> +	/* TX/RX frag is configured only for GDM4 */
-> +	if (port->id != AIROHA_GDM4_IDX)
-> +		return;
-
-[Severity: Medium]
-Should tx_pause and rx_pause be applied somewhere in airoha_mac_link_up()?
-
-airoha_setup_phylink() advertises MAC_ASYM_PAUSE | MAC_SYM_PAUSE on every
-GDM port. However, airoha_mac_link_up() returns right away for GDM1-3 and
-only writes fragment sizes for GDM4.
-
-Nothing in drivers/net/ethernet/airoha uses tx_pause, rx_pause or
-GDM_INGRESS_FC_EN_MASK.
-
-The only flow control setup on this path is in airoha_pcs_config():
-
-drivers/net/pcs/airoha/pcs-airoha-common.c:airoha_pcs_config() {
-    ...
-	/* Configure Flow Control on XFI */
-	regmap_update_bits(maps->pcs_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-			   AIROHA_PCS_XFI_TX_FC_EN | AIROHA_PCS_XFI_RX_FC_EN,
-			   permit_pause_to_mac ?
-				AIROHA_PCS_XFI_TX_FC_EN | AIROHA_PCS_XFI_RX_FC_EN :
-				0);
-    ...
-}
-
-permit_pause_to_mac reflects whether pause autoneg is enabled. It is not
-the result negotiated with the link partner.
-
-With the default MLO_PAUSE_AN, XFI TX/RX flow control ends up enabled even
-when the partner does not support pause. With pause forced on and autoneg
-off, it ends up disabled while phylink reports pause as on.
-
-Can the hardware flow control state differ from what phylink resolved and
-reports?
-
-Also, only get/set_link_ksettings were moved to phylink in
-airoha_ethtool_ops. These are not wired up:
-
-  get/set_pauseparam (phylink_ethtool_get/set_pauseparam())
-  nway_reset (phylink_ethtool_nway_reset())
-  ndo_eth_ioctl (phylink_mii_ioctl())
-
-Is that intended, given the commit message says "now that we fully support
-phylink"?
-
-[ ... ]
-
-> +static int airoha_setup_phylink(struct net_device *netdev)
-> +{
-> +	struct airoha_gdm_dev *dev = netdev_priv(netdev);
-> +	struct device_node *np = netdev->dev.of_node;
-> +	struct airoha_gdm_port *port = dev->port;
-> +	struct phylink_config *config;
-> +	phy_interface_t phy_mode;
-> +	struct phylink *phylink;
-> +	int err;
+> +#include <dt-bindings/gpio/gpio.h>
 > +
-> +	err = of_get_phy_mode(np, &phy_mode);
-> +	if (err) {
-> +		dev_err(&netdev->dev, "incorrect phy-mode\n");
-> +		return err;
-> +	}
-
-[Severity: Medium]
-Does this stop DTs that follow the current airoha,en7581-eth.yaml binding
-from probing?
-
-The binding's ^ethernet@[1-4]$ and ^ethernet@[0-5]$ patternProperties
-only require reg and compatible. The binding example has no phy-mode,
-fixed-link or pcs-handle. That example is ethernet@1, plus ethernet@4
-with eth-port children @0 and @1.
-
-With this patch, a missing phy-mode on any enabled GDM or eth-port node
-propagates up:
-
-airoha_probe()
-  airoha_alloc_gdm_port()
-    airoha_alloc_gdm_device()
-      return airoha_setup_phylink(netdev);
-        of_get_phy_mode() fails
-
-airoha_probe() then runs the error_napi_stop teardown, so every port is
-lost, GDM1 included. Before this patch the driver never called
-of_get_phy_mode(), and such DTs probed fine.
-
-A similar problem shows up in airoha_dev_open():
-
-	err = phylink_of_phy_connect(dev->phylink, netdev->dev.of_node, 0);
-	if (err) {
-		netdev_err(netdev, "could not attach PHY: %d\n", err);
-		return err;
-	}
-
-Suppose a node has phy-mode but no phy-handle, fixed-link, SFP or in-band
-managed mode. Phylink is then in MLO_AN_PHY, and
-phylink_fwnode_phy_connect() returns -ENODEV. Won't ndo_open now fail
-where it used to succeed?
-
-The commit message implies that GDM2/3/4 need pcs-handle. The code means
-GDM1 needs phy-mode = "internal" plus fixed-link, because only
-PHY_INTERFACE_MODE_INTERNAL is in supported_interfaces. The ethernet
-binding describes neither. The series updates the PCS binding but not
-this one.
-
-Should airoha,en7581-eth.yaml be updated too? Alternatively, should the
-driver fall back (for example to internal on GDM1) when phy-mode is
-absent?
-
-The in-tree en7581.dtsi gdm1 node already has phy-mode = "internal" and
-fixed-link, so in-tree boards still work.
-
+> +/ {
+> +	model = "Radxa Cubie A7S";
+> +	compatible = "radxa,cubie-a7s", "allwinner,sun60i-a733";
 > +
-> +	config = &dev->phylink_config;
-> +	config->dev = &netdev->dev;
-> +	config->type = PHYLINK_NETDEV;
+> +	aliases {
+> +		mmc0 = &mmc0;
 
-[ ... ]
+We don't do mmc aliases. Long discussion, I understand it seems useful,
+but relying on Linux device numbering is not a good idea. So please
+drop this line. U-Boot will give it back to you if you use the U-Boot
+devicetree ($fdtcontroladdr).
 
-> +	} else {
-> +		config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-> +					   MAC_10 | MAC_100 | MAC_1000 |
-> +					   MAC_2500FD | MAC_5000FD | MAC_10000FD;
 
-[Severity: Medium]
-MAC_10, MAC_100 and MAC_1000 include MAC_10HD, MAC_100HD and MAC_1000HD.
-That means phylink will advertise and accept half duplex. Is half duplex
-actually supported on these ports?
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	osc32k: osc32k-clk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +	};
+> +
 
-Nothing seems to configure duplex:
+> +	reg_ldo_input: regulator-ldo-input {
 
-  airoha_mac_link_up() ignores its duplex argument
-  airoha_pcs_link_up() never reads duplex
-  the Airoha PCS get_state helpers hard code DUPLEX_FULL
-  airoha_pcs_ops has no .pcs_validate to strip half duplex modes
+I think the node name alone is slightly misleading: it's indeed
+supplying some LDO input rails on the PMIC, but the chip itself is a
+DC/DC step down converter. Please add a comment here like this:
+	/* discrete ETA3521 DC/DC step-down regulator */
+And maybe use "regulator-2v4" as the node name (to match the binding
+requirement), the regulator name can then carry the usage meaning.
 
-So a PHY that links half duplex with a half-duplex-only partner would
-leave the GDM/PCS running full duplex.
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ldo-input";
+> +		/* ETA3521: 0.6 V * (1 + RP298 / RP299), 30k / 10k. */
+> +		regulator-min-microvolt = <2400000>;
+> +		regulator-max-microvolt = <2400000>;
+> +		regulator-always-on;
+> +		vin-supply = <&reg_ps>;
+> +	};
+> +
+> +	reg_ps: regulator-system-power {
 
-Separately, USXGMII is in supported_interfaces and MAC_10 is advertised.
-In the out-of-band branch of airoha_pcs_link_up(), the USXGMII/10GBASE-R
-speed switch has no SPEED_10 case:
+Please add a comment here, saying: 
+	/* board wide 5V supply from the USB-C connector */
+And then change the node name to "regulator-5v".
+Also please move this whole node first, as this is the root of the
+whole power tree.
 
-drivers/net/pcs/airoha/pcs-airoha-common.c:airoha_pcs_link_up() {
-    ...
-		if (interface == PHY_INTERFACE_MODE_USXGMII ||
-		    interface == PHY_INTERFACE_MODE_10GBASER) {
-			...
-			case SPEED_100:
-				rate_adapt = AIROHA_PCS_HSGMII_RATE_ADPT_FORCE_RATE_ADAPT_MODE_100;
-				mode = AIROHA_PCS_USXGMII_MODE_100;
-				break;
-			default:
-				/* Not supported */
-				return;
-			}
-    ...
-	if (data->link_up)
-		data->link_up(priv, port->index);
 
-	/* BPI BMI enable */
-	regmap_clear_bits(maps->pcs_mac, AIROHA_PCS_XFI_MAC_XFI_GIB_CFG,
-			  AIROHA_PCS_XFI_RXMPI_STOP |
-			  AIROHA_PCS_XFI_RXMBI_STOP |
-			  AIROHA_PCS_XFI_TXMPI_STOP |
-			  AIROHA_PCS_XFI_TXMBI_STOP);
-}
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ps";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
 
-When a USXGMII PHY resolves to 10M, this returns before data->link_up().
-It also returns before the MPI/MBI STOP bits set by pre_config/link_down
-are cleared.
+There are two LEDs on the last page of the schematic, controlled by
+PJ26 and PM2. Please add them here. Check other (Allwinner) DTs for how
+to do that.
 
-Would phylink then report carrier up while the XFI datapath stays stopped
-and the USXGMII mode register keeps its old speed?
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu4 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu5 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu6 {
+> +	cpu-supply = <&reg_dcdc3>;
+> +};
+> +
+> +&cpu7 {
+> +	cpu-supply = <&reg_dcdc3>;
+> +};
+> +
+
+The schematic shows an EEPROM on I2C0. There is a binding for that chip
+already, check rk3576-rock-4d.dts.
+Please add that chip.
+
+> +&mmc0 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+
+I think we want the other two standard capabilities as well:
+	cap-mmc-highspeed;
+	cap-sdio-irq;
+
+> +	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+> +	disable-wp;
+> +	max-frequency = <50000000>;
+
+Where does this limit come from? As it stands right now, at 3.3V you
+won't get faster anyway, so it's moot. Please remove if you agree.
+
+> +	no-1-8-v;
+> +	vmmc-supply = <&reg_swout2>;
+> +	/* The 3.3 V path uses VCC-IO; no Port F voltage switching yet. */
+> +	vqmmc-supply = <&reg_swout2>;
+
+Just leave that out (for now), the default is to revert to vmmc-supply,
+if vqmmc is not given anyway.
 
 > +
-> +		config->num_possible_pcs = fwnode_phylink_pcs_count(dev_fwnode(config->dev));
-> +		config->fill_available_pcs = airoha_fill_available_pcs;
+> +	status = "okay";
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <26000000>;
+> +};
+> +
+> +&pio {
+> +	vcc-pb-supply = <&reg_swout2>;
 
-[Severity: Low]
-The commit message says:
+Please add a comment that this comes via VCC-IO, see the A527/T527
+boards.
 
-    These needs to be defined in the GDM port node using the pcs-handle
-    property.
+> +	vcc-pc-supply = <&reg_cldo5>;
+> +	vcc-pd-supply = <&reg_swout1>;
+> +	vcc-pe-supply = <&reg_bldo1>;
+> +	vcc-pf-supply = <&reg_cldo5>;
 
-Is that accurate? fwnode_phylink_pcs_count() returns 0 when there is no
-pcs-handle, and phylink_fill_available_pcs() then returns early:
+Same here, comment about this being VCC-IO, at least for now.
 
-	if (!config->num_possible_pcs)
-		return 0;
+> +	vcc-pg-supply = <&reg_aldo1>;
+> +	vcc-ph-supply = <&reg_swout2>;
+> +	vcc-pj-supply = <&reg_swout1>;
+> +	vcc-pk-supply = <&reg_bldo1>;
+> +};
+> +
+> +&r_i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&r_i2c0_pl_pins>;
+> +
+> +	status = "okay";
+> +
+> +	axp318w: pmic@36 {
+> +		compatible = "x-powers,axp318w";
+> +		reg = <0x36>;
+> +		interrupt-parent = <&nmi_intc>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <1>;
+> +
+> +		aldo156in-supply = <&reg_ps>;
+> +		aldo234in-supply = <&reg_aldo1>;
+> +		bldoin-supply = <&reg_ldo_input>;
+> +		cldoin-supply = <&reg_ldo_input>;
+> +		dldoin-supply = <&reg_ps>;
+> +		eldoin-supply = <&reg_dcdc9>;
+> +		ips-supply = <&reg_ps>;
+> +		vin19-supply = <&reg_ps>;
+> +		vin23-supply = <&reg_ps>;
+> +		vin45-supply = <&reg_ps>;
+> +		vin678-supply = <&reg_ps>;
+> +
+> +		regulators {
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-name = "vcc-3v3";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
 
-phylink_create() then succeeds with SGMII, 1000BASE-X, 2500BASE-X,
-10GBASE-R and USXGMII in supported_interfaces but no PCS at all. There is
-no error or warning.
+Please add a comment or use a speaking regulator name to justify that
+this regulator must be always on. "regulator-always-on" should be the
+exception, not the rule. This applies to all the nodes below, I will
+comment with some hints below again.
 
-Can the port then report carrier up from the PHY while the SerDes is
-never configured? Should a missing pcs-handle on GDM2/3/4 be rejected
-here?
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-name = "vdd-sys";
+> +				regulator-always-on;
 
-Also, config->dev is &netdev->dev. When sub-ports exist, its of_node is
-the airoha,eth-port child. So pcs-handle is read from the child node, not
-from "the GDM port node".
+We should have a voltage or a range for every regulator. Here it should
+be 0.8V.
 
-The commit message also leaves out the new GDM4 code in
-airoha_mac_link_up():
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-name = "vdd-cpub";
 
-  it writes speed-dependent TX/RX fragment sizes into
-  REG_FE_GDM4_TMBI_FRAG and REG_FE_GDM4_RMBI_FRAG
-  it picks the SGMII1 or SGMII0 fields based on dev->nbq == 1
-  it serializes the writes with the new port->link_lock mutex
+Do we have some OPPs for the cores? The range should reflect the
+min/max used voltages in there. 
 
-Could the commit message describe this as well?
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc4: dcdc4 {
+> +				regulator-name = "vdd-gpu";
+> +				regulator-always-on;
+
+Why is this always on? If I see this correctly, that's just supplying
+the GPU, which will have its own supply property.
+Voltages should be in the same range as for the CPUs.
+
+> +			};
+> +
+> +			reg_dcdc5: dcdc5 {
+> +				regulator-name = "vdd-cpul";
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc6: dcdc6 {
+> +				regulator-name = "vcc-draml";
+> +				regulator-always-on;
+
+0.6/0.5V I guess.
+
+> +			};
+> +
+> +			reg_dcdc7: dcdc7 {
+> +				regulator-name = "vcc-dram";
+> +				regulator-always-on;
+
+Probably 1.1V.
+
+> +			};
+> +
+> +			reg_dcdc8: dcdc8 {
+> +				regulator-name = "vcc-ufs-io";
+> +				regulator-always-on;
+> +			};
+
+But there is no UFS on this board, right? All the UFS signals seem to
+be not-connected, so this power supply will be going nowhere. And DCDC8
+seems to be used exclusively for UFS, so I would just leave this whole
+node out. 
+
+> +
+> +			reg_dcdc9: dcdc9 {
+> +				regulator-name = "eldo-input";
+> +				regulator-always-on;
+
+Again, why the always-on? This is referenced by eldoin-supply, so the
+kernel should keep this on.
+As for the voltage, the schematic doesn't seem to give a clue, so maybe
+you can look this up on a running BSP kernel.
+
+> +			};
+> +
+> +			reg_swout1: swout1 {
+> +				regulator-name = "vcc33-lcd";
+> +				regulator-always-on;
+> +			};
+
+Why always-on? Should be referenced by the pinctrl device.
+
+> +
+> +			reg_swout2: swout2 {
+> +				regulator-name = "vcc-io-card";
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_aldo1: aldo1 {
+> +				regulator-name = "vcc-pl";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_bldo1: bldo1 {
+> +				regulator-name = "vcc-pe-pk-mcsi";
+
+Does this intentionally miss the voltage setting?
+The datasheets suggests that VCC-MCSI must be 1.8V. 
+
+> +			};
+> +
+> +			reg_bldo2: bldo2 {
+> +				regulator-name = "vcc-lvds0";
+> +				regulator-always-on;
+
+Should not be needed.
+And again, the voltage is missing. Per the datasheet, VCC_LVDS0 must be
+1.8V, and the VCC18-LCD label connected to BLDO2 supports this.
+
+> +			};
+> +
+> +			reg_bldo4: bldo4 {
+> +				regulator-name = "vcc18-codec";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
+
+Do we need this at all? I don't see this (VCC18-CODEC) connected
+anywhere?
+
+> +
+> +			reg_cldo1: cldo1 {
+> +				regulator-name = "vcc33-18-usb";
+
+That's not the right name. The connection between VCC33-18-USB and CLDO1
+is "NC" in the schematic, so this is a red herring.
+However this also connects to VDD18-LPDDR, which would justify the
+always-on.
+
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_cldo2: cldo2 {
+> +				regulator-name = "vcc18-hdmi";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
+> +
+> +			reg_cldo3: cldo3 {
+> +				regulator-name = "vcc-pll-dram";
+
+This is a correct example, btw: it's always on, but the regulator name
+makes it almost obvious why.
+
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_cldo5: cldo5 {
+> +				regulator-name = "vcc18-pf-pc";
+
+VCC18-PF is confusing, please remove that from the name.
+
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+
+Should not be needed.
+Voltage is missing, should be 1.8V, I think.
+Please try to double check on a system running with the BSP kernel.
+
+> +			};
+> +
+> +			reg_dldo1: dldo1 {
+> +				regulator-name = "vcc-efuse";
+> +				regulator-always-on;
+
+Voltage is missing, should be 1.8V, I think.
+Please try to double check on a system running with the BSP kernel.
+
+> +			};
+> +
+> +			reg_dldo6: dldo6 {
+> +				regulator-name = "vcc-ufs";
+> +				regulator-always-on;
+
+Apparently UFS is not supported on that board, so please remove that
+node.
+
+> +			};
+> +
+> +			reg_eldo1: eldo1 {
+> +				regulator-name = "vcc09-vdd2l";
+> +				regulator-always-on;
+
+Voltage should be 0.9V.
+
+> +			};
+> +
+> +			reg_eldo6: eldo6 {
+> +				regulator-name = "vdd-cpus";
+> +				regulator-always-on;
+
+Schematics suggest 0.8V.
+
+Cheers,
+Andre
+
+> +			};
+> +
+> +			reg_rtc_ldo: rtc-ldo {
+> +				regulator-name = "vcc-rtc";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&r_pio {
+> +	/* PL powers the PMIC bus itself; firmware must keep ALDO1 enabled. */
+> +	vcc-pm-supply = <&reg_aldo1>;
+> +};
+> +
+> +&rtc {
+> +	clocks = <&r_ccu CLK_BUS_R_RTC>, <&osc>, <&r_ccu CLK_R_AHB>,
+> +		 <&osc32k>;
+> +	clock-names = "bus", "hosc", "ahb", "ext-osc32k";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_pb_pins>;
+> +
+> +	status = "okay";
+> +};
+> 
+
 
