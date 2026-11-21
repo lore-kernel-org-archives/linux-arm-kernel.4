@@ -2,89 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4164C606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 07:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44DA606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 08:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YpIZVJ1Y;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=Ispycg+a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I7g63o+h;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=Gt9Axi+r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Date:Subject:Cc:To:From:Message-ID:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Xmt8jo7oKKzTvhYcY6f1b8Zs3I9/GqGJBF3qAGH80D4=; b=YpIZVJ1YK6GhSCatRotwoJXXwm
-	9VberuRSkdq4174v2jhalNWIUrT6pJnJf4ugNnfHJka+aHca7gRTpN3dJjOT5XBOJJXKaS3XBxCmO
-	MZ3lbgzygIw8oGYNg1t8z481ta6BE3dt8CkT207nwIKrYYgjQh3xJ0L6uo2AdqCTNrxE5EjkTgb3Z
-	f1rJETaGfMIDQH0pW3N+gZkHEi6DmxfyVX9fCEOo9bP6jPQ8SMcQOJO1VllKxvR3tarBxFZAHf8LB
-	aextQsqmnQXHeZ1/pfMFeo0D5iFQgnLI2T539I6e3PGK+KUr/wqzGHYb+OhAGMd4KO7EhaARTLXSi
-	urjMHXrg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
+	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=0t9m1SZTG2FpFolnCv9G3KM3EADliIxvTwQEig71Ptg=; b=I7g63o+hoLVAu5
+	41f83CJ9XqJONnhVpxqT3lmOgagN9j1y6sMxNiMXlLtI2RTC8l5tuqydfqHRPrpl2GzxRelw1MQ9t
+	xBhEZhxT9r9StZAfvXdJ+ecFNnASVIuMq1DewZG/aMkxeNaKchdIdMi2OuEYp1J85sXjR7RDymjgs
+	XFOk3ldckdqzqWncBlszF9nvZt5oBUOU+vrcOYZsZVjfWnMT785GGaV5cUtWMI83TwJ0jsYruTojT
+	viWOSmj1uBHVxihAkxZycE2WYlHvicEoy3gOM0DvsTOVY63N4IldKcO9xZbW0Buo2k4BknWTjpMUH
+	lV05i3u6Oy47f08A5d2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUfzl-0000000GuF9-0wNr;
-	Sat, 21 Nov 2026 07:58:49 +0000
-Received: from out203-205-221-205.mail.qq.com ([203.205.221.205])
+	id 1xUg6c-0000000GuZS-112e;
+	Sat, 21 Nov 2026 08:05:54 +0000
+Received: from out162-62-58-211.mail.qq.com ([162.62.58.211])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUfzh-0000000GuE2-1xKe;
-	Sat, 21 Nov 2026 07:58:47 +0000
+	id 1xUg6Z-0000000GuZ0-2al6;
+	Sat, 21 Nov 2026 08:05:53 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1795247921; bh=Xmt8jo7oKKzTvhYcY6f1b8Zs3I9/GqGJBF3qAGH80D4=;
-	h=From:To:Cc:Subject:Date;
-	b=Ispycg+a3sAa1WU5PXGrZMh41is5LNCwzCByGkiY+g934KrMoGXybO5ibYIyrQ/dh
-	 Q0o4F/c9CiyI4TSnKEd/AkTk8QCld7LgW/yGhuvAp78eYPz3X8bL4SL5ONFKJHCdj9
-	 954UKaKLVuD07iljE3JER49pDrXVSMpM5fT6IaUM=
-Received: from jerry-PC.lan ([2408:8249:5f:7101:71a:8713:56b4:5043])
-	by newxmesmtplogicsvrszb51-1.qq.com (NewEsmtp) with SMTP
-	id EA517A94; Sat, 21 Nov 2026 15:58:37 +0800
-X-QQ-mid: xmsmtpt1795247917t4zunjgeo
-Message-ID: <tencent_6F7C9E04169BCBAE4E162DAA3DCD5395B209@qq.com>
-X-QQ-XMAILINFO: OKquegeHeYmF6WbOtyTZ71BnVYmwKY+O+h3/k7lMB2BxYQi7WXNhMgPMUkX+yU
-	 ZCE4V++4VafBpe1iwLqDPTPTg1Wv6ymcQF1C6JbjYVrVE8JnEkhfekICSFy5FjjcDxecxUgc6CQU
-	 4AoGiyLmhRlrgW+Q0M869OZ8zDBOubihez9mMiPgn+y440PqxBuPCl/5uXnG4Hzg5TALEjAr3xYE
-	 PgoJLCCZByOC08JaiWJ1e5TFGndH7es9ddWW1cGgbd0yxd0CenwdSsEiY8n45vUsCBfqJ2b7xghU
-	 Y7P/6zc4qVy/qmgtv4jKX4dcXBiypHOFkXQDrEIwexVNXYk62xANcB4XVOPz1SaBMdCmDogogcsP
-	 D2IrT5iB9ewcttnvuRdFQzasuoPRN1B3SgKESL3K7GvZTap3TgZeycssYAxRbU+Od9VuDMxsEbMi
-	 kxXmavRFNNaeVPDJzDwkRXfPMXAjOksopKsPylcTNIA7op2oeMm6abMGwjV2hXhAzoxzmAxh2ZA6
-	 a73em9asBUV2l+i5ocTEix35BYQWd/TPqmgwR3qw+UvEQmcRk8pHipBHXhC1DhD3TNtnrOFcGC5m
-	 WzoDvZ3S3Bf3Lxkd+mtk2WZOr/8/vXGzl2U9IVkN5qDbgfJJbmR80EZIfvviPaXxE+8Vt9rBpsKG
-	 EWfX4Dfit8weSJ9dc9hWyqpjHf105dDuO29bw91qV/F6EeCS6ZHEkPIPvZZf3LJaEw7UYOgmWql9
-	 FIXQoim0jTA920ASZHS81/IiukCfZvZ06PHsar8SC6Jtg1Dds1zQFstpTSjDSO+jS36ILMkUEdrb
-	 t9GA25xozqMtINC3Tt56zrmthO315pz4btUyNtua6sJGMySbRmjBSmgKq+3o/DTUDScDWv820Tl4
-	 DzFzeaVO0iFHFgf6RF8zoftqpqW4qFuX5/Lfne8CqaE3OXDmQEOJ4i9PVd1Zkj/oGtfjvuL/smOt
-	 3gRwAkgpema9W0UkzyuPWqfnRLnsCtCbpnpnoRU5f4zlyr0432CkI2GGJhGPskcTrok8gW/z/Ltc
-	 LY0RT/tLEi1gA9r4q45pwdvXuIJvpo8x/TANfndVJh8JQY5InapQpm4SPhJ8VmQOm67IkE1GUnJx
-	 lM/yhLQvHO4Ky67e3hZMYxzOr/MBAlMfoBE7X7DrhUJ2n+JLp+q9tAWMLuZPVPiqGYdgD1
-X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
-From: ZhuXiangyu <1194781887@qq.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>
-Cc: Andy Yan <andyshrk@163.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-phy@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ZhuXiangyu <1194781887@qq.com>
-Subject: [PATCH] drm/phy: rockchip: fix RK3506 DSI low-power command handling
-Date: Sat, 21 Nov 2026 15:58:35 +0800
-X-OQ-MSGID: <20261121075835.1283525-1-1194781887@qq.com>
-X-Mailer: git-send-email 2.47.3
+	t=1795248347; bh=0t9m1SZTG2FpFolnCv9G3KM3EADliIxvTwQEig71Ptg=;
+	h=From:To:Cc:Subject:Date:References:In-Reply-To;
+	b=Gt9Axi+rANPdO3YUam1aS+r2dCxhI/mUzHzFSwSjGE+fXzS9wT6HoFu7+GkU5x1sE
+	 GsvRlEMotovvw1IS0wgvwefo7U1pBSVtb/p7CylsU4UzxsVHGjh3OOUF0kuawkxThq
+	 v64wyUojE6Wd4v1Rkfs1+bXe/6Y+Qcm0VSg7m8Ok=
+X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-XMAILINFO: Mgl8sI7MzKnCxRjADp1CBaJIf8uGuKA+gHCh/HcSNno2hXUhckYCVshVUTa/BF
+	 tddc+4QSoxjK9eO+HwbONqS7Nvg21Ig3Krw7LZe3Pzta3KXRKgIFRM4pTAnqXzHszLielcDN/1vZK
+	 2vYxBahIYNYQR9X22cd17O+aQR8+RxD7D7CxHAx4tp6tI5dtytvKcSbcsVRTcgo/KaY1hGVopsPYK
+	 zBWUXu8/7ZW0H/iHJU70D/dadOenRak+/lw3CEZBD2W7Ui9hJe9XHE2/Xd2PbZ3kz6dd4WMXOq2N8
+	 pDk2xWezUAnnuj/gsQAIJz8xF9Xm8J2xzeeJYbGE59Eek9BE2PexK04qUpd+TOWFMXSY2qYOKtL1I
+	 grLQ31CM7IxPQ8mBJdjmQiKNYmYmcTtBZSa0nwGOb+AwhwnbULkz5FmW/odozfE8yC+e9yUSnbc9y
+	 OBcAVMjFXM4sqUMf1KmOwbb5fab3/8igWo41hJ0WSCeoe8fwHq82VmPRiPPeuGjFeWCoXFCnOpXER
+	 efYpiElnwrHqKA+uPS3zpq8pvDq7s2hlT4Gau1XhZJuvml+jo2tp1Gjeo/XNBLUjoat4PXta8e5Po
+	 W9HsuYpAZgpizxEFAKtOFqWOIkZxghqehmcIB2djceYDQlJ6L2vikP7t7Lg8yKLgr2f+jImtJ3ND1
+	 pYodGqrhaTw2RNDN4A7oZ4ePnnfzNcW/RV4iW5w5l2TKznCh2j51AqDpong31hJTfrRzsSUcqOqCR
+	 hyBa3wiyp5oZG+laqPfTcD5DaH+CfPnC/tzfLLCjCIRjnajuvWGBL2sbnUU6MimJ3OKh5PX1BD54L
+	 1qpdfndQXS44QlOTneh9ISr8/We2hmbAQLBOK4ZByBSnaef+k3Lb9x2x9s4a8RBT2I4kcsvTWHpQ3
+	 uwvJk0/8CiFWbBjahIg8kjsKRA3tq+dsTmJmrdj9AgP8VW416U2GglDdhvZ4elVi5HAqDzIRlmWS3
+	 wa9kaLkls8Fk3PXdd8Z+FQiVy4hwkoszUVb9tNvjtd6dRGczcBAa6G7sIFhiIOzOTgqclB/PLEcHB
+	 EZ7XjuBJQCKkF2XLB4//T7mnQ5MDMSdBxObCAAsURT4revnThPf3kn+/n4Q==
+From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
+To: "=?utf-8?B?bmV0ZGV2LWJvdCtzYXNoaWtv?=" <netdev-bot+sashiko@kernel.org>
+Cc: "=?utf-8?B?bWts?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?bWFpbGhvbA==?=" <mailhol@kernel.org>, "=?utf-8?B?aGVpa28=?=" <heiko@sntech.de>, "=?utf-8?B?c29ja2V0Y2Fu?=" <socketcan@hartkopp.net>, "=?utf-8?B?ZGF2ZW0=?=" <davem@davemloft.net>, "=?utf-8?B?ZWR1bWF6ZXQ=?=" <edumazet@kernel.org>, "=?utf-8?B?a3ViYQ==?=" <kuba@kernel.org>, "=?utf-8?B?cGFiZW5p?=" <pabeni@redhat.com>, "=?utf-8?B?aG9ybXM=?=" <horms@kernel.org>, "=?utf-8?B?Y29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?c2toYW4=?=" <skhan@linuxfoundation.org>, "=?utf-8?B?cmR1bmxhcA==?=" <rdunlap@infradead.org>, "=?utf-8?B?d2c=?=" <wg@grandegger.com>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, 
+	"=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
+Subject: Re: [PATCH net v10 07/10] can: rockchip_canfd: serialize TX with bus-off and restart
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Sat, 21 Nov 2026 16:05:44 +0800
+X-Priority: 3
+Message-ID: <tencent_890958230A01CC88727EE94DD33400322D08@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+References: <20261119-rockchip-canfd-restart-close-v10-7-df23913aa33a@qq.com>
+	<179521934168.3131.3588718854244956629@kernel.org>
+In-Reply-To: <179521934168.3131.3588718854244956629@kernel.org>
+X-QQ-mid: xmsezb41-0t1795248344t0cz5qgcx
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_235845_934929_75B8C517 
-X-CRM114-Status: GOOD (  12.65  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261121_000552_227615_96416C15 
+X-CRM114-Status: GOOD (  16.40  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,111 +83,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Two bugs keep the RK3506 MIPI-DSI link from initialising a panel: the
-DPHY programs the wrong high-speed timing entry, and the PHY data lanes
-are never enabled in the GRF.
-
-1. phy-rockchip-inno-dsidphy picks the wrong HS timing entry
-
-   The 1.5 GHz inno DSI PHY timing table stores its rates in Mbps while
-   the other tables and the lookup use Hz. The mode enable code compares
-   inno->pll.rate in Hz (e.g. 372000000) against timings[].rate in Mbps
-   (e.g. 400), so the comparison never matches. The loop runs to the end
-   and the last, fastest entry is used, which programs a TLPX/LPX
-   counter that is far too large. The panel then cannot decode the
-   low-power DCS commands and stays in sleep mode, so the display stays
-   black even though the LP packets are visible on the data lane.
-
-   Convert the 1.5 GHz timing table rates to Hz so that the lookup
-   selects the correct entry.
-
-2. The RK3506 DSI GRF lane enable bits are never written
-
-   rk3506_chip_data only clears the turnaround / force-stop fields, so
-   the PHY data lanes stay disabled unless the boot loader happens to
-   enable them. Program RK3506_DSI_PHY_ENABLE_LANE0/1 as well.
-
-Tested on the RK3506B JerryTech board: the panel now receives the init
-sequence over LP and the framebuffer console is visible.
-
-Signed-off-by: ZhuXiangyu <1194781887@qq.com>
----
- .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  6 +++-
- .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 28 +++++++++----------
- 2 files changed, 19 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-index 30d6f83c..116cc140 100644
---- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-@@ -199,6 +199,8 @@
- 
- #define RK3506_SYS_GRF_SOC_CON6		0x0018
- #define RK3506_DSI_FORCETXSTOPMODE	(0xf << 4)
-+#define RK3506_DSI_PHY_ENABLE_LANE1	BIT(9)
-+#define RK3506_DSI_PHY_ENABLE_LANE0	BIT(8)
- #define RK3506_DSI_TURNDISABLE		BIT(2)
- #define RK3506_DSI_FORCERXMODE		BIT(0)
- 
-@@ -1727,7 +1729,9 @@ static const struct rockchip_dw_dsi_chip_data rk3506_chip_data[] = {
- 		.lanecfg1_grf_reg = RK3506_SYS_GRF_SOC_CON6,
- 		.lanecfg1 = (FIELD_PREP_WM16_CONST(RK3506_DSI_TURNDISABLE, 0) |
- 			     FIELD_PREP_WM16_CONST(RK3506_DSI_FORCERXMODE, 0) |
--			     FIELD_PREP_WM16_CONST(RK3506_DSI_FORCETXSTOPMODE, 0)),
-+			     FIELD_PREP_WM16_CONST(RK3506_DSI_FORCETXSTOPMODE, 0) |
-+			     FIELD_PREP_WM16_CONST(RK3506_DSI_PHY_ENABLE_LANE0, 1) |
-+			     FIELD_PREP_WM16_CONST(RK3506_DSI_PHY_ENABLE_LANE1, 1)),
- 		.max_data_lanes = 2,
- 		.max_bit_rate_per_lane = 1500000000UL,
- 		.dphy_get_timing = dw_mipi_dsi_phy_px30_get_timing,
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c b/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c
-index 6ad04b0c..fcf7aa17 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c
-@@ -282,20 +282,20 @@ struct inno_mipi_dphy_timing inno_mipi_dphy_timing_table_max_1ghz[] = {
- 
- static const
- struct inno_mipi_dphy_timing inno_mipi_dphy_timing_table_max_1_5ghz[] = {
--	{ 110, 0x02, 0x7f, 0x16, 0x02, 0x02},
--	{ 150, 0x02, 0x7f, 0x16, 0x03, 0x02},
--	{ 200, 0x02, 0x7f, 0x17, 0x04, 0x02},
--	{ 250, 0x02, 0x7f, 0x17, 0x05, 0x04},
--	{ 300, 0x02, 0x7f, 0x18, 0x06, 0x04},
--	{ 400, 0x03, 0x7e, 0x19, 0x07, 0x04},
--	{ 500, 0x03, 0x7c, 0x1b, 0x07, 0x08},
--	{ 600, 0x03, 0x70, 0x1d, 0x08, 0x10},
--	{ 700, 0x05, 0x40, 0x1e, 0x08, 0x30},
--	{ 800, 0x05, 0x02, 0x1f, 0x09, 0x30},
--	{1000, 0x05, 0x08, 0x20, 0x09, 0x30},
--	{1200, 0x06, 0x03, 0x32, 0x14, 0x0f},
--	{1400, 0x09, 0x03, 0x32, 0x14, 0x0f},
--	{1500, 0x0d, 0x42, 0x36, 0x0e, 0x0f},
-+	{ 110000000, 0x02, 0x7f, 0x16, 0x02, 0x02},
-+	{ 150000000, 0x02, 0x7f, 0x16, 0x03, 0x02},
-+	{ 200000000, 0x02, 0x7f, 0x17, 0x04, 0x02},
-+	{ 250000000, 0x02, 0x7f, 0x17, 0x05, 0x04},
-+	{ 300000000, 0x02, 0x7f, 0x18, 0x06, 0x04},
-+	{ 400000000, 0x03, 0x7e, 0x19, 0x07, 0x04},
-+	{ 500000000, 0x03, 0x7c, 0x1b, 0x07, 0x08},
-+	{ 600000000, 0x03, 0x70, 0x1d, 0x08, 0x10},
-+	{ 700000000, 0x05, 0x40, 0x1e, 0x08, 0x30},
-+	{ 800000000, 0x05, 0x02, 0x1f, 0x09, 0x30},
-+	{1000000000, 0x05, 0x08, 0x20, 0x09, 0x30},
-+	{1200000000, 0x06, 0x03, 0x32, 0x14, 0x0f},
-+	{1400000000, 0x09, 0x03, 0x32, 0x14, 0x0f},
-+	{1500000000, 0x0d, 0x42, 0x36, 0x0e, 0x0f},
- };
- 
- static const
--- 
-2.47.3
+SGksCgo+IFtTZXZlcml0eTogTG93XQo+IFRoaXMgaXNuJ3QgYSBidWcgaW50cm9kdWNlZCBi
+eSB0aGlzIHBhdGNoLCBidXQgY2FuIHByaXYtPnRjIGJlIHVwZGF0ZWQKPiBoZXJlIHdoaWxl
+IHRoZSBJUlEgaGFuZGxlciBpcyByZWFkaW5nIGl0Pwo+Cj4gWy4uLl0KPgo+IHRpbWVjb3Vu
+dGVyX3JlYWQoKSB3cml0ZXMgY3ljbGVfbGFzdCwgZnJhYyBhbmQgbnNlYyBhcyBzZXBhcmF0
+ZSBzdG9yZXMuCj4gU3VwcG9zZSB0aGUgd29ya2VyIHJ1bnMgb24gb25lIENQVSB3aGlsZSB0
+aGUgQ0FOIElSUSBjb252ZXJ0cyBhIHRpbWVzdGFtcAo+IG9uIGFub3RoZXIuIENhbiB0aGUg
+Y29udmVyc2lvbiB0aGVuIGNvbWJpbmUgYSBuZXcgY3ljbGVfbGFzdCB3aXRoIGFuIG9sZAo+
+IG5zZWMgYW5kIHByb2R1Y2UgYSB3cm9uZyBoYXJkd2FyZSB0aW1lc3RhbXA/CgpZZXMsIGF0
+IDA3LzEwIGl0IGNhbi4gVGhpcyBwYXRjaCBkcmFpbnMgdGltZXN0YW1wIHdvcmsgYW5kIElS
+USBoYW5kbGVycwpiZWZvcmUgcmVzdGFydCByZWluaXRpYWxpemVzIHRoZSB0aW1lY291bnRl
+ci4gSXQgZG9lcyBub3Qgc2VyaWFsaXplIHRoZQp3b3JrZXIgd2l0aCB0aW1lc3RhbXAgY29u
+dmVyc2lvbiBkdXJpbmcgbm9ybWFsIG9wZXJhdGlvbi4gUGF0Y2ggMDkvMTAKcHV0cyB0aW1l
+Y291bnRlcl9yZWFkKCkgYW5kIHRpbWVjb3VudGVyX2luaXQoKSB1bmRlciB0aW1lc3RhbXBf
+bG9jazsKMTAvMTAgdGFrZXMgdGhlIHNhbWUgbG9jayBhcm91bmQgdGltZWNvdW50ZXJfY3lj
+MnRpbWUoKSBpbiB0aGUgSVJRIHBhdGguCgo+IFNlcGFyYXRlbHksIHRoZSBidXMtb2ZmIHBh
+dGggaW4gcmtjYW5mZF9jaGlwX3N0b3AoKSBvbmx5IGRvZXMgYSBub24tc3luYwo+IGNhbmNl
+bDoKPiAKPiBya2NhbmZkX3RpbWVzdGFtcF9zdG9wKHByaXYpOwo+IF9fcmtjYW5mZF9jaGlw
+X3N0b3AocHJpdiwgc3RhdGUpOwo+Cj4gSGVyZSBya2NhbmZkX3RpbWVzdGFtcF9zdG9wKCkg
+aXMgY2FuY2VsX2RlbGF5ZWRfd29yaygpLiBJZiB0aGUgd29ya2VyIGlzCj4gYWxyZWFkeSBy
+dW5uaW5nLCBpdCBjYW4gcmUtYXJtIGl0c2VsZiBhbmQga2VlcCByZWFkaW5nIHRoZSBjb3Vu
+dGVyIHdoaWxlCj4gdGhlIGNvbnRyb2xsZXIgaXMgaW4gcmVzZXQuCgpUaGF0IHJhY2UgYWxz
+byBwcmVkYXRlcyAwNy8xMC4gSXQgaXMgZml4ZWQgaW4gMDkvMTA6IHRoZSBidXMtb2ZmIHBh
+dGgKY2xlYXJzIHRpbWVzdGFtcF9hY3RpdmUgdW5kZXIgdGhlIHNhbWUgbG9jayB0aGUgd29y
+a2VyIGhvbGRzIHdoaWxlCnJlYWRpbmcgdGhlIGNvdW50ZXIuIEFuIGluLWZsaWdodCByZWFk
+IHRoZXJlZm9yZSBmaW5pc2hlcyBiZWZvcmUgcmVzZXQsCmFuZCBkaXNhYmxlX2RlbGF5ZWRf
+d29yaygpIHByZXZlbnRzIHRoZSB3b3JrZXIgZnJvbSByZWFybWluZyBpdHNlbGYuCgoKPiBC
+b3RoIGFwcGVhciB0byBiZSBmaXhlZCBsYXRlciBpbiB0aGlzIHNlcmllczoKPiAKPiAgICJj
+YW46IHJvY2tjaGlwX2NhbmZkOiBzZXJpYWxpemUgdGltZWNvdW50ZXIgdGltZXN0YW1wIGNv
+bnZlcnNpb24iIGhvbGRzCj4gICB0aW1lc3RhbXBfbG9jayBhcm91bmQgdGltZWNvdW50ZXJf
+Y3ljMnRpbWUoKSwgdGltZWNvdW50ZXJfcmVhZCgpIGFuZAo+ICAgdGltZWNvdW50ZXJfaW5p
+dCgpLgo+IAo+ICAgImNhbjogcm9ja2NoaXBfY2FuZmQ6IHByZXZlbnQgdGltZXN0YW1wIHdv
+cmsgZnJvbSByZWFybWluZyBhZnRlcgo+ICAgYnVzLW9mZiIgdXNlcyBkaXNhYmxlX2RlbGF5
+ZWRfd29yaygpIGFuZCBhIHRpbWVzdGFtcF9hY3RpdmUgZmxhZy4KCkJlc3QgcmVnYXJkcywK
+Q3VuaGFvIEx1
 
 
