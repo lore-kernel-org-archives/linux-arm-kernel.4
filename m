@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF51606A6B5
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 03:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42FD606A6A3
+	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 03:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dGAxTJrv;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=amG73RkK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BfoMoWOq;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=E3fFQuKl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ah3lmmwTO4kTFu9w/FRtwILA0EF2N9TZsivGOFrxvGE=; b=dGAxTJrvtvUZQy
-	ObrUYdOwJbq65LPq4Bt3Dl2kSb4puQmI8kfqMN+v3GVX8QjIZ1LLF8NXvYKElnrHMUivqnoGqoGgl
-	6OjG1okthCjwrWGVBm16IhZoE6CD2Bo8AAo44POCEy5j6Q9GHeti7sg4RV+l/AWPb7EvsaCTLj4Rh
-	p1m9wDFEVQ1c6+qYaCZSSF534Lgxxv1hcRzjXVnuCgQO6afoWmmJwYdChHV3exCIDJkqdk6nQDuGp
-	X2MtAyz8/vXi2+RQ+O3aCsTAxon1fKMfh1CDj96NCzxCzm+ybArSlzw+51uAbSSGC/5zhCcR/BRaO
-	6WOIUzTdzLpHyYy5me4A==;
+	List-Owner; bh=kJZsEvQkjwtM0z9/dpxgzPf7D4sJ4j0CFIrJuHV97Tg=; b=BfoMoWOqSmK+Q7
+	bIE8ozw4Dh5xFa0+HQmmhCr8OHrDMIcRyOVkuuW+5NCyNFAolK/4Mlp40CaVvJAmMy1JamVwHOuYd
+	Wbd/QRPK7uRKue6ixBCLjEcYltLonM/11p+6mZdDmzfoLt9TXMcYH7mMWF8o2VaXO5yvFlqSUbLML
+	2rUys0PV7+pJ48GPwixV76AWQ6TxylCHvD5IiGbKss1X3Q8NskZiDd204iJHR12MnHMmNojYthNMz
+	FkoRTYRWg+qbpcFI+kmNyMXn3bKuiFqVP/F1E/mRhg/vImtuPsgH/W3MdJNB4FEBKlldnbEiqqsxt
+	w3f84QeS/weAl8F+5DMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUbz7-0000000GjNh-3NIh;
-	Sat, 21 Nov 2026 03:41:55 +0000
-Received: from mail-dl1-x122f.google.com ([2607:f8b0:4864:20::122f])
+	id 1xUbzH-0000000GjPZ-2Lco;
+	Sat, 21 Nov 2026 03:42:04 +0000
+Received: from mail-dy1-x132c.google.com ([2607:f8b0:4864:20::132c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUbyt-0000000GjKZ-2LSQ
+	id 1xUbz1-0000000GjM0-3HQi
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 21 Nov 2026 03:41:41 +0000
-Received: by mail-dl1-x122f.google.com with SMTP id a92af1059eb24-15dd124bbe7so3483084c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 19:41:39 -0800 (PST)
+	Sat, 21 Nov 2026 03:41:51 +0000
+Received: by mail-dy1-x132c.google.com with SMTP id 5a478bee46e88-3866a784546so1465884eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 20 Nov 2026 19:41:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795232499; x=1795837299; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795232507; x=1795837307; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Ah3lmmwTO4kTFu9w/FRtwILA0EF2N9TZsivGOFrxvGE=;
-        b=amG73RkKoJPIFHveVWnRbywm81IFABDhkt7uY4Huy3IVEfBwmP0avBY2PDaPdgKae0
-         QQjB4tklCrzzVR9gb4NoXHosb8ToMzbqz/CEeZ0SSOCzFGkZzNSIKIdCWxumw17eFu/R
-         hi8UQ89J19xJadrV0HcJRrzUDOKsZtmiteC1npzmNYG0d+uHgjHXZ/RtnKb4mc4+d69E
-         5sgmsBDINV4FDEfPssy7C+QtZT9OJJNiDo/r5TtnHzoOv2PU3B91aD+53pPkwRzFEUc7
-         x42umwmTMSBnS1NGrRvoGwftHAVES03MyCPUqCRGutHIExQR4y0Al4DFcIzOT0ubVwWc
-         sPYw==
+        bh=kJZsEvQkjwtM0z9/dpxgzPf7D4sJ4j0CFIrJuHV97Tg=;
+        b=E3fFQuKlvX6I0wT/EHmX6WnngJvgIQJ3OXNju/r1pRsUY6rCtY8BaZs/QCq1Hvb86x
+         OjkYwlf8qqSLXALhRglea5CRDscPUoAuzxU8N+OPFqMVkSQfCVqgxR17lu91Yl0M4wvD
+         urpISt5qcKVu4BtMwR8gg5xLg0OZvamC+U6K2ggkyi5fqc0RQ9PKOy2B5Iy40qseaIKg
+         foORF+6ZAi17zHDrBanT/gUbCSbE3yor6rSIBt5oFpxL9ETaQKoqrCNVrx5SPBKFNBYx
+         24BWd7mcyKnkgA+lqhMS6S6e8Qr2xtAWoe/+RDp49aaIRDU5uLbqnd96dMFE5xOBdk4k
+         XSVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795232499; x=1795837299;
+        d=1e100.net; s=20260707; t=1795232507; x=1795837307;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Ah3lmmwTO4kTFu9w/FRtwILA0EF2N9TZsivGOFrxvGE=;
-        b=HfoXKGqIqGSjVJFDORIloT/cTP7mTlOFMxTPdZ/qHBjg37fXloiLDCYUY6jUatul7L
-         3tiR/c9qddEbilGbRVJMxoTLCi9toH1lFWBFzpirVUZMRFLlPHP9FKTz1zNmSZb7iuwe
-         0OLCZH5IoPRHT6pdiTTfYM2qc6ky1zZp/9FTTKdAtJXT4o4u0R/BvxFy2YWgk1v+tzef
-         BB98rI+Y1O91Bd8iPAi+ZRmHLe8Wuq9Xtbtx3oahjBp2ZE9NFTUrlRWQXZhVV3Hjg/Kg
-         l8fD7TKjtSQ3ngOKPSYYho+qHD7xmxU2YgCLHSu/ZZTJi/TBSRL657+Tqx7+cYUBuRQV
-         wuyg==
-X-Forwarded-Encrypted: i=1; AL+hErF6yG447vo/3AxV+tSF/I+nbmvpVRrDOch9abEiWJMmkACTEpg1TtuBHsVl2Wlvc+SeSTCKNGzLqDQIC4fa2g8u@lists.infradead.org
-X-Gm-Message-State: APuU4Z/8XcHmTp5TJeqqfAhQxImIynLA1WbJfaEXgP0CP2Krnm8X+DSt
-	ulw5amjecj5Gz5lBTrmUA27zWF5pPdW6iiDnP6vKZqfvhh5v1yJUHN5O
-X-Gm-Gg: AZFdTZeiAeFGRW9pzU04WTdyky4EfcyYVzT+9ysK/FbZwCKabr706itO8TUwZhjB+CD
-	Kp+8UtcE5vHdBz6E3sGqmO5atEqPlqjksRkuPAX8g8TY2Fs85rAnKqWPjxNSbRa/zLgRyRiv17h
-	MLzxm/OW/F2Iw//XBwmO2nnLHYUpxWdst1st5da+fbsNgLAlLJevqSBIi2aOuO4e2BDEx5p88Cv
-	+hc9WU1v1Yjx0oyqerazWf4BFdvzmMCZL8B76HykqLqVkS7dAzdTWklMns8Zr3qLxBWMxVrizk5
-	NlEU2Jq6Fn+jsdF3D2eknxVxMnf/Pt1pQH0xIh6LSY95Nj8FB/1LVm5aKr5C18//TgGKs5nibBn
-	T8T9lcFuoR3xDPcSk8w108DnXGcEV7T5haHcC7IhXzSeoHl+ddB7Vui3m5dhtCOvqYHgPs512F8
-	xI1iKRoybKqAvwwpAFLJsDz6bftdOePYDuMfVvMV3Z/dkr/pRmzIbQj4nSEHLtAQ8frwco0sYvI
-	zsITgqErI5rbDu+ciGFkVHPJhoblEM42HJS2PU8uwq7CWCHqlZyypB0nKV9mRGHfWAe8RM7Gw33
-	4IkIk6bUujbDpRXVF+eqsLWeahj2MiCI/PP8f9/dR5mkZw==
-X-Received: by 2002:a05:7300:2209:b0:386:8d2:929b with SMTP id 5a478bee46e88-38608d2945emr5305042eec.23.1795232498643;
-        Fri, 20 Nov 2026 19:41:38 -0800 (PST)
+        bh=kJZsEvQkjwtM0z9/dpxgzPf7D4sJ4j0CFIrJuHV97Tg=;
+        b=yPfAkMOrOvFB8KzX9+1D1yppHWtcLfRqedN0LzLhDUwssOnbIFmnT9ZADQyufmEDb7
+         QA9Y+3ndNkiXoMozXIrUmfdvbXICEAq7X4KuTljJBj14MvFCXv1ez4daX6Pxb8cPVk9T
+         h9PalhyFgCAj8imbAcfevUAMQCP52/+KuzX39y6A5qMUjWaFXSMCm5+2QBFiXdRoWzLd
+         m0w4TOG21CZHxDR4v3idKycFIQiLMtgbWDFfH1ezEj7xnWuBISdlPSWiGdSuysQCFbwK
+         ZD5S0LU2rAjcy3e3DwpwGzbG7r1Rsh/jfC3mTdYIH/AjuUo2PNnrAhpM/uYIT7RihVre
+         KeqQ==
+X-Forwarded-Encrypted: i=1; AL+hErHZYiiRdsswGxaCeKPZECpN9qsUOkbBBosRQvHTumOefD9k5H4UawMViSe3L1WtHzcRseGtkgcHdUbOqDT7y7jH@lists.infradead.org
+X-Gm-Message-State: APuU4Z8OzWLTYGvdVk8YS/5P6meD6b9U3lyttzC8sRPi3nrB2TPfXAJ2
+	qOQYdSjCrj/zI8vEKNBCNGlCUiJmQUysoVWOiNKIrvdFuReSbILv2PMi
+X-Gm-Gg: AZFdTZcHAld7h36pSkfzyY5m0JxxKpghGTHYw8OtXFo1+FQeU5H7f4BBPOGiB9YS0E9
+	0fyORnS6sM460vVbbNCipBzjtFCFI3+M2pBClKrTfzMb2fiCgAep2FyjAS05F1uq0P/9rE273W+
+	BI/qNRltge0LnHj7pLgd3bkR5999uYz69vSEoKuTrpgHdpamVIoBRJ1UMBOdOno7eThX/O3kQIS
+	uM9wMiE57fdGeoYFaIwwUHbGAQGHlv5S3lRrh/efBXypt5F0ZaCbieT+l7uL7/71/s1G9/65BGv
+	C8Ujlc6CkAhD6wYYMxX+Ta5LAnny5pL/RINWwSTB1sj4fcV/YsnhoYn5nMnd2huC8JFzSVjoCjL
+	lWSMYWH4ufCXrhZL6JvdCJu1Gs74S3zWPBlDRjdVb2xAGPmyOrL5FJcMwVLot9hrGG+rx53pa89
+	9UymB5Z0M3Wzy20dendcakbOvSDe3qbfvpNZzFJtTFkHDRyrf+bEu/xEFMJGmKeaV8fLJgNaPIB
+	9RexJSOBPkEayGH63eeiJlwIBiiqB+BNPVsFqikbuHKtkSbi8iHZ7Fy3GVv+DbI+6PxD2q/L4v5
+	VcwIS9YXCdZZT03wMPPA/lVxbH6VAdXQAphgbqMcuuybEkI=
+X-Received: by 2002:a05:693c:88c9:20b0:385:d556:1c41 with SMTP id 5a478bee46e88-385d5561e1bmr4081752eec.16.1795232506657;
+        Fri, 20 Nov 2026 19:41:46 -0800 (PST)
 Received: from debian.prasanth ([103.177.82.216])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385646633d0sm20891464eec.3.2026.11.20.19.41.33
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385646633d0sm20891464eec.3.2026.11.20.19.41.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2026 19:41:38 -0800 (PST)
+        Fri, 20 Nov 2026 19:41:46 -0800 (PST)
 From: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
 To: srini@kernel.org
 Cc: robh@kernel.org,
@@ -88,9 +88,9 @@ Cc: robh@kernel.org,
 	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org,
 	Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-Subject: [PATCH v3 1/2] dt-bindings: arm: aspeed: sbc: Describe OTP NVMEM provider
-Date: Sat, 21 Nov 2026 09:10:52 +0530
-Message-ID: <20261121034053.39878-2-prasanth.padarthi10@gmail.com>
+Subject: [PATCH v3 2/2] nvmem: aspeed: Add read-only AST2600 OTP support
+Date: Sat, 21 Nov 2026 09:10:53 +0530
+Message-ID: <20261121034053.39878-3-prasanth.padarthi10@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261121034053.39878-1-prasanth.padarthi10@gmail.com>
 References: <20261121034053.39878-1-prasanth.padarthi10@gmail.com>
@@ -98,9 +98,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261120_194139_924234_536EEA4B 
-X-CRM114-Status: GOOD (  11.66  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261120_194148_335502_408734B7 
+X-CRM114-Status: GOOD (  30.31  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,64 +111,399 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The AST2600 secure boot controller also provides access to its OTP data
-region. Reference the NVMEM provider schema and use unevaluatedProperties
-so common NVMEM properties are accepted while unknown properties remain
-rejected. Cell offsets address OTP data rather than controller registers.
+AST2600's secure boot controller provides an 8-KiB OTP data region through
+paired-word commands rather than memory-mapped storage. Expose permitted
+words through NVMEM for privileged userspace bring-up diagnostics, which
+compare raw OTP offsets with reference reads; no named cells are required
+by this consumer.
 
+Earlier firmware may leave the OTP macro in programming mode, so Linux
+must establish read mode before using it. Programming protection does not
+prevent reads, but the configured secure prefix and SEC54 restrict the
+readable region. SEC54 can increase until ARM reset, so a probe-time
+snapshot alone cannot describe every later read restriction.
+
+SEC00 relocking does not cancel a running command. Since there is no
+documented safe retry after a timeout, stop issuing commands rather than
+risk overlapping an outstanding operation. Normal reads take less than
+1 us; the 100-ms bound is deliberately generous, not a specified maximum.
+
+The read sequence is adapted from ASPEED's downstream driver.
+
+Link: https://github.com/AspeedTech-BMC/linux/blob/769f62b7baa84d6998723b0ea60280e380183553/drivers/soc/aspeed/ast2600-otp.c
+Link: https://lore.kernel.org/linux-aspeed/KL1PR0601MB3986A356BD06F98D0FF9AD5E80792@KL1PR0601MB3986.apcprd06.prod.outlook.com/
+
+Co-developed-by: Neal Liu <neal_liu@aspeedtech.com>
+Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
 Signed-off-by: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
-
 ---
-Validation: dt-doc-validate and the selected dt_binding_check target passed.
-The binding target used dtschema 2026.4 with a local diagnostic lookup fix
-for trailing # in schema IDs. No validation rules were disabled. Two
-unrelated TI type diagnostics remain; no SBC diagnostics were emitted.
-The valid example passed, and an unknown-property negative control failed
-as expected.
+Tested on ASRock Rack B650D4U (AST2600 A3), Linux 7.4-rc1:
+- ARM zImage build with W=1 completed.
+- Repeated 12-byte reads and cross-pair/final-pair comparisons passed.
+- Four concurrent readers completed 40 matching reads.
+- Bytes 8172..8183 matched the saved ASPEED-derived reference fingerprint.
+The kernel was RAM-booted with the working OpenBMC DTB and initramfs.
 
- .../devicetree/bindings/arm/aspeed/aspeed,sbc.yaml     | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+Host-model checks passed 4096 protection combinations, 200 copying cases
+and 24 timeout cases, including unlock-failure cleanup. Strict source
+checkpatch passed. The existing ASPEED MAINTAINERS matcher covers the file.
 
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
-index b8c5cac..d8e19c2 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
-@@ -13,7 +13,12 @@ maintainers:
+ drivers/nvmem/Kconfig            |  13 ++
+ drivers/nvmem/Makefile           |   1 +
+ drivers/nvmem/nvmem-aspeed-otp.c | 299 +++++++++++++++++++++++++++++++
+ 3 files changed, 313 insertions(+)
+ create mode 100644 drivers/nvmem/nvmem-aspeed-otp.c
+
+diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+index d2f5bb2..65f6a88 100644
+--- a/drivers/nvmem/Kconfig
++++ b/drivers/nvmem/Kconfig
+@@ -164,6 +164,19 @@ config NVMEM_APPLE_SPMI
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called apple-nvmem-spmi.
  
- description: |
-   The ASPEED SoCs have a register bank for interacting with the secure boot
--  controller.
-+  controller. The controller also provides access to the OTP data region
-+  through NVMEM. NVMEM cell offsets are byte offsets within the OTP data
-+  region, not offsets within the controller register bank.
++config NVMEM_ASPEED_OTP
++	tristate "ASPEED OTP support"
++	depends on ARCH_ASPEED || COMPILE_TEST
++	depends on HAS_IOMEM
++	help
++	  Say Y here to enable read-only access to the OTP data region
++	  on ASPEED AST2600 BMCs through the NVMEM interface.
 +
-+allOf:
-+  - $ref: /schemas/nvmem/nvmem.yaml#
- 
- properties:
-   compatible:
-@@ -27,11 +32,12 @@ required:
-   - compatible
-   - reg
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-     sbc: secure-boot-controller@1e6f2000 {
-             compatible = "aspeed,ast2600-sbc";
-             reg = <0x1e6f2000 0x1000>;
-+            read-only;
-     };
++	  This driver can also be built as a module. If so, the module
++	  will be called nvmem-aspeed-otp.
++
++	  If unsure, say N.
++
+ config NVMEM_BCM_OCOTP
+ 	tristate "Broadcom On-Chip OTP Controller support"
+ 	depends on ARCH_BCM_IPROC || COMPILE_TEST
+diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+index 5e70bad..ca62940 100644
+--- a/drivers/nvmem/Makefile
++++ b/drivers/nvmem/Makefile
+@@ -23,6 +23,7 @@ obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
+ nvmem-apple-efuses-y 			:= apple-efuses.o
+ obj-$(CONFIG_NVMEM_APPLE_SPMI)		+= apple_nvmem_spmi.o
+ apple_nvmem_spmi-y			:= apple-spmi-nvmem.o
++obj-$(CONFIG_NVMEM_ASPEED_OTP)	+= nvmem-aspeed-otp.o
+ obj-$(CONFIG_NVMEM_BCM_OCOTP)		+= nvmem-bcm-ocotp.o
+ nvmem-bcm-ocotp-y			:= bcm-ocotp.o
+ obj-$(CONFIG_NVMEM_BRCM_NVRAM)		+= nvmem_brcm_nvram.o
+diff --git a/drivers/nvmem/nvmem-aspeed-otp.c b/drivers/nvmem/nvmem-aspeed-otp.c
+new file mode 100644
+index 0000000..e4b3a8e
+--- /dev/null
++++ b/drivers/nvmem/nvmem-aspeed-otp.c
+@@ -0,0 +1,299 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) ASPEED Technology Inc.
++ *
++ * ASPEED AST2600 OTP Controller driver
++ */
++
++#include <linux/bitfield.h>
++#include <linux/cleanup.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/nvmem-provider.h>
++#include <linux/platform_device.h>
++#include <linux/unaligned.h>
++
++#define AST2600_OTP_PROTECT_KEY		0x00
++#define  AST2600_OTP_UNLOCK_KEY		0x349fe38a
++#define AST2600_OTP_CMD			0x04
++#define  AST2600_OTP_CMD_READ		0x23b1e361
++#define  AST2600_OTP_CMD_WRITE_MODE	0x23b1e362
++#define AST2600_OTP_ADDR			0x10
++#define AST2600_OTP_STATUS		0x14
++#define  AST2600_OTP_STATUS_DONE		GENMASK(2, 1)
++#define AST2600_OTP_COMPARE_1		0x20
++#define AST2600_OTP_COMPARE_2		0x24
++#define AST2600_OTP_EXTRA_READ_PROTECT	0x54
++#define  AST2600_OTP_EXTRA_READ_RANGE	GENMASK(5, 0)
++
++/* OTP macro addresses selected through AST2600_OTP_ADDR, not MMIO offsets. */
++#define AST2600_OTP_CONF0_ADDR		0x800
++#define  AST2600_OTP_CONF0_SEC_SIZE	GENMASK(21, 16)
++#define AST2600_OTP_MR			0x1000
++#define AST2600_OTP_MRA			0x3000
++#define AST2600_OTP_MRB			0x5000
++
++/* Normal reads take less than 1 us; allow a generous bounded wait. */
++#define AST2600_OTP_TIMEOUT_US		100000
++#define AST2600_OTP_DATA_WORDS		0x800
++#define AST2600_OTP_SIZE			(AST2600_OTP_DATA_WORDS * sizeof(u32))
++#define AST2600_OTP_SEC_SIZE_UNIT		(32 * sizeof(u32))
++
++struct aspeed_otp {
++	struct device *dev;
++	void __iomem *base;
++	/* Serialize the complete unlock, read and relock sequence. */
++	struct mutex lock;
++	struct nvmem_keepout secure_keepout;
++	bool failed;
++};
++
++static int aspeed_otp_unlock(struct aspeed_otp *priv)
++{
++	writel(AST2600_OTP_UNLOCK_KEY, priv->base + AST2600_OTP_PROTECT_KEY);
++	if (readl(priv->base + AST2600_OTP_PROTECT_KEY) != 1)
++		return -EIO;
++
++	return 0;
++}
++
++static void aspeed_otp_lock(struct aspeed_otp *priv)
++{
++	writel(0, priv->base + AST2600_OTP_PROTECT_KEY);
++}
++
++static int aspeed_otp_wait_complete(struct aspeed_otp *priv)
++{
++	u32 status;
++	int ret;
++
++	/* Wait at least 1 us before the first sample of both idle flags. */
++	ret = read_poll_timeout(readl, status,
++				(status & AST2600_OTP_STATUS_DONE) ==
++				AST2600_OTP_STATUS_DONE,
++				1, AST2600_OTP_TIMEOUT_US, true,
++				priv->base + AST2600_OTP_STATUS);
++	if (ret) {
++		/* Relocking SEC00 does not abort an outstanding command. */
++		priv->failed = true;
++		dev_err(priv->dev,
++			"OTP completion timed out (status=%#x); further reads blocked\n",
++			status);
++	}
++
++	return ret;
++}
++
++static int aspeed_otp_init_read_mode(struct aspeed_otp *priv)
++{
++	static const u32 mode_addresses[] = {
++		AST2600_OTP_MRA, AST2600_OTP_MRB, AST2600_OTP_MR,
++	};
++	int i, ret;
++
++	ret = aspeed_otp_wait_complete(priv);
++	if (ret)
++		return ret;
++
++	/* Earlier firmware may leave the macro in program mode; restore read mode. */
++	for (i = 0; i < ARRAY_SIZE(mode_addresses); i++) {
++		writel(mode_addresses[i], priv->base + AST2600_OTP_ADDR);
++		writel(0, priv->base + AST2600_OTP_COMPARE_1);
++		writel(AST2600_OTP_CMD_WRITE_MODE, priv->base + AST2600_OTP_CMD);
++		ret = aspeed_otp_wait_complete(priv);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int aspeed_otp_read_pair(struct aspeed_otp *priv,
++				unsigned int aligned_word, u32 data[2])
++{
++	int ret;
++
++	/* The hardware reads two words starting at an even word index. */
++	writel(aligned_word, priv->base + AST2600_OTP_ADDR);
++	writel(AST2600_OTP_CMD_READ, priv->base + AST2600_OTP_CMD);
++
++	ret = aspeed_otp_wait_complete(priv);
++	if (ret)
++		return ret;
++
++	data[0] = readl(priv->base + AST2600_OTP_COMPARE_1);
++	data[1] = readl(priv->base + AST2600_OTP_COMPARE_2);
++
++	return 0;
++}
++
++static int aspeed_otp_init_unlocked(struct aspeed_otp *priv)
++{
++	u32 data[2];
++	int ret;
++
++	ret = aspeed_otp_init_read_mode(priv);
++	if (ret)
++		return ret;
++
++	ret = aspeed_otp_read_pair(priv, AST2600_OTP_CONF0_ADDR, data);
++	if (ret)
++		return ret;
++
++	priv->secure_keepout.end =
++		FIELD_GET(AST2600_OTP_CONF0_SEC_SIZE, data[0]) *
++		AST2600_OTP_SEC_SIZE_UNIT;
++
++	return 0;
++}
++
++static int aspeed_otp_init(struct aspeed_otp *priv)
++{
++	int ret;
++
++	/* The provider is not registered yet; there are no concurrent readers. */
++	ret = aspeed_otp_unlock(priv);
++	if (!ret)
++		ret = aspeed_otp_init_unlocked(priv);
++	aspeed_otp_lock(priv);
++
++	return ret;
++}
++
++static int aspeed_otp_read_data(struct aspeed_otp *priv, unsigned int offset,
++				void *val, size_t bytes)
++{
++	unsigned int word_index = offset / sizeof(u32);
++	u8 *buf = val;
++	u32 data[2];
++	int i, ret;
++
++	ret = aspeed_otp_wait_complete(priv);
++	if (ret)
++		return ret;
++
++	while (bytes) {
++		ret = aspeed_otp_read_pair(priv, word_index & ~1U, data);
++		if (ret)
++			return ret;
++
++		for (i = word_index & 1; i < ARRAY_SIZE(data) && bytes; i++) {
++			put_unaligned_le32(data[i], buf);
++			buf += sizeof(u32);
++			bytes -= sizeof(u32);
++			word_index++;
++		}
++	}
++
++	return 0;
++}
++
++static int aspeed_otp_read(void *context, unsigned int offset,
++			   void *val, size_t bytes)
++{
++	struct aspeed_otp *priv = context;
++	unsigned int secure_size;
++	u32 extra_read;
++	int ret;
++
++	if (!bytes)
++		return 0;
++
++	if (offset % sizeof(u32) || bytes % sizeof(u32))
++		return -EINVAL;
++
++	if (offset >= AST2600_OTP_SIZE ||
++	    bytes > AST2600_OTP_SIZE - offset)
++		return -EINVAL;
++
++	guard(mutex)(&priv->lock);
++
++	if (priv->failed)
++		return -EIO;
++
++	/* SEC54[5:0] can only grow until the ARM cores reset. */
++	extra_read = readl(priv->base + AST2600_OTP_EXTRA_READ_PROTECT);
++	secure_size = FIELD_GET(AST2600_OTP_EXTRA_READ_RANGE, extra_read) *
++		      AST2600_OTP_SEC_SIZE_UNIT;
++	secure_size = max(priv->secure_keepout.end, secure_size);
++	if (offset < secure_size)
++		return -EACCES;
++
++	ret = aspeed_otp_unlock(priv);
++	if (!ret)
++		ret = aspeed_otp_read_data(priv, offset, val, bytes);
++	aspeed_otp_lock(priv);
++	/* Complete the lock write before handing the mutex to another reader. */
++	readl(priv->base + AST2600_OTP_PROTECT_KEY);
++
++	return ret;
++}
++
++static int aspeed_otp_probe(struct platform_device *pdev)
++{
++	struct nvmem_config config = {
++		.name = "aspeed-otp",
++		.id = NVMEM_DEVID_AUTO,
++		.owner = THIS_MODULE,
++		.type = NVMEM_TYPE_OTP,
++		.read_only = true,
++		.root_only = true,
++		.word_size = sizeof(u32),
++		.stride = sizeof(u32),
++		.size = AST2600_OTP_SIZE,
++		.reg_read = aspeed_otp_read,
++	};
++	struct aspeed_otp *priv;
++	struct device *dev = &pdev->dev;
++	int ret;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->dev = dev;
++	priv->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(priv->base))
++		return PTR_ERR(priv->base);
++
++	ret = devm_mutex_init(dev, &priv->lock);
++	if (ret)
++		return ret;
++
++	ret = aspeed_otp_init(priv);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "Failed to initialize OTP read mode and secure prefix\n");
++
++	config.dev = dev;
++	config.priv = priv;
++	if (priv->secure_keepout.end) {
++		config.keepout = &priv->secure_keepout;
++		config.nkeepout = 1;
++	}
++
++	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
++}
++
++static const struct of_device_id aspeed_otp_of_match[] = {
++	{ .compatible = "aspeed,ast2600-sbc" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, aspeed_otp_of_match);
++
++static struct platform_driver aspeed_otp_driver = {
++	.probe = aspeed_otp_probe,
++	.driver = {
++		.name = "aspeed-otp",
++		.of_match_table = aspeed_otp_of_match,
++	},
++};
++module_platform_driver(aspeed_otp_driver);
++
++MODULE_AUTHOR("Neal Liu <neal_liu@aspeedtech.com>");
++MODULE_AUTHOR("Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>");
++MODULE_DESCRIPTION("ASPEED AST2600 read-only OTP NVMEM driver");
++MODULE_LICENSE("GPL");
 -- 
 2.47.3
 
