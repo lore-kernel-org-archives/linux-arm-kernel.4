@@ -2,112 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CD8606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92514606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IeEvF2Zo;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=I3+oPSaz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BxrKUMHS;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=buvaw/yO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=BhkuuSJ1mFlPM3aPIeXwkot+O32f94nPrMa9UyizXDk=; b=IeEvF2Zox69BecMX1+oJBBARQO
-	+HRgCss47fAloK+rOxh+B9b9t0G3dvQivuUsm6AcJZWL7a/su3iq/U6qN/16iaANp1o8GOWFDAIqw
-	7mIGkx5k7KSUDSaiYlOKnFhnj/5MqBrGYKPuxXCQEzNDIX5gaJtGHT0Nn4pqwJ70BD0odnVf2s+iu
-	bStCSE+eio3WT8cP7ft+agKP4f0h2utPwRjLHRJ1Ek2cJrOSV2e1XvXvRrs4Vrm84CRi/4rQFrQPJ
-	AdX1pdfTD8n98os8jbRJL5Sq7Q9R+3qqkhBcnJkyFNo1QEsF/V+Ms2lAIaoJj58Tne3pXRr3r/6Jn
-	Rq6jg5qw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=41aq7Q/odxYWtRll/Ido8PrmDSMYdlxmstPU7VScg2I=; b=BxrKUMHSc/Aa6a
+	2526v99MK3RA0QZWmyNAyhg/fO4e/FheKskQacO069C5Pcq7beFdRtzIlpo9tyzSXKC5beBmz8Its
+	z15dK4fIt9731rlNnhqMXMg6xOdWSL0JfLCaSs3rEJbnwrwfyl5uAHegj4FMu5MQSbilrwYgCTVtK
+	t55B0YCTpxZHU5yY+kV5QXptCtf65RoChCzxcF+zPTMFwK2C180pcLTB/DApXK+UZ3jsS5G93A//C
+	2lkWP3isWnK5L7vdZMVCu+QHx7zm83oEfsT9LsMOBDAGuv7jzwrlFmGwn4BzBvt0VDKZOBl5qfeXp
+	1xNsw6yq07T8pJI30NoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV23i-00000000pFP-1KO1;
-	Sun, 22 Nov 2026 07:32:22 +0000
-Received: from mail-oa1-x29.google.com ([2001:4860:4864:20::29])
+	id 1xV2Fs-00000000pYh-252k;
+	Sun, 22 Nov 2026 07:44:56 +0000
+Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV23e-00000000pF1-3ZqT
+	id 1xV2Fp-00000000pXU-0rnB
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 07:32:20 +0000
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-4ad89c49e0dso699560fac.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:32:18 -0800 (PST)
+	Sun, 22 Nov 2026 07:44:55 +0000
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5c07c7306e1so2114837e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:44:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795332737; x=1795937537; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=BhkuuSJ1mFlPM3aPIeXwkot+O32f94nPrMa9UyizXDk=;
-        b=I3+oPSaz9zFg2+liCUdyrh+XF66cpdq1VeBHtqZRi1Ow33VgkYfDZ/zqhsqJPs8vLD
-         mch7x6asdPnUCmDlOhaH18kHKPq1MfCxurMmqfLe0hnOD/6+pSJ7SxaR+bpPLBlqowGo
-         SHDfn530G7zlUE/A2WsB3pDARGxJQqenmKGoT14otOZFdLd1E9C18t/YxHnS9BQVo+ta
-         3AfQNpCoWjtpSF12csdhlG/ne9W40qSaIIgJm68OlrF3CKfnfmpHclCGL3nmfskSr5S0
-         BTct5mOaS4iP03Mbn46LYmRT8U02v+PuAFkRFjqFe6V/ME+euWP4MFmC8FQcWihjieBx
-         Opzw==
+        d=gmail.com; s=20260707; t=1795333490; x=1795938290; darn=lists.infradead.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:content-type:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=41aq7Q/odxYWtRll/Ido8PrmDSMYdlxmstPU7VScg2I=;
+        b=buvaw/yOtWxEUXr7VIAvOWWgyFooNi5+O+D4ZN9WJS47CJXxssyOH03Gk6LznKI3y5
+         RMAlGPnD4jIrE6AsJZMtOT/78YyrJPHuGQQFXgL5U5EZPSmV83p3Jp5e2m+SWV18fmwd
+         wze8gD8lg0rkOFR07AI2r/UjHDMln5xfk3WBfBbNs48G6N7DzWDLPYYc/XUorVI/qlnp
+         78yljdJiZZQHFn4SBoRHeQE2uKvRjYFM2TYFakScaawAZfeNxCk0lcEePaNulLNLJv/g
+         5cqQfjwZKNE9O0AB12S8DCfUgKyV0Ajj+dQJogibkbr2WpfcFPNrAudVyiILZM7NGSB0
+         e8Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795332737; x=1795937537;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=BhkuuSJ1mFlPM3aPIeXwkot+O32f94nPrMa9UyizXDk=;
-        b=qXOLEYc1G1DUZXoTnJ97IVjN6yOsus8yKbn5FaSj6eM8sW0x2aeOIiztDAmgyWK3x1
-         Mx7a4OTbCmyLypdOjvT301A0pZ4n7ZDhChHlcVt1Md4tE/LpjBsXvU77lI6W3+HgqY/Z
-         GdGzwia9/5kGZnpq2aoQuWojclhXgs9fTEfm24S1SfSVSumCWw5xhRjCF7pzi6Ikwmoh
-         SNDw7xivJx8a0B7yfJ3EX+wbs8lvZaIyR68IN4/rK6truKGAO/ttwShoAK5KpXcidPJE
-         /UxUM8JLwjO8CHGT1wb72rWvoIXoKcU1laDMu6t/deF/Js/18Y+cGSFY6suUotFMliuH
-         ymhw==
-X-Forwarded-Encrypted: i=1; AL+hErFpgx4XDidu6eGX+ArEbfiykkwQAan6P9uauS56CV0xyNz1QO8wwkew44TyH6AASpvbc6yXshg/nNz7erPPQtLw@lists.infradead.org
-X-Gm-Message-State: APuU4Z8jPSXQR6wQpdkcl/n904B/nzrT6zTbB0FYdDk9vqeR+tCCPctx
-	+GmJF9qKzXo/6lOXyEXtsraIFqXi0LCNhLWU2CeYCh6RJ0xZrJfFe1Wn
-X-Gm-Gg: AZFdTZf3AbaL8M73Uc7ljIqbpicKX8OfMURLAF94FwXmy0irsQPeKILpKgZgUEEp1F6
-	ho0oxQKi6x7T36GBEvQasTOkm6k7wstMp2y7gTNG6XRjmudgmFX4bLQVoIOOVFlFmZ3m6aXtpNT
-	2M7uFSENs6dq5uazmuQ4XGG1QnxXeTtClaOoiFkvuG3NtFCco9QEQHvgOaeENrIVz0y7vLZs3TA
-	ONTDQSgRhWbytGW0eGgiH7LJS/vHFEPvxJYFL03Uzuu6Zb67Zoy7EwgmhC5YRAYVcxigmV2Xql4
-	kMgsQXMY63Fpud4dXZ44GoM5n1OsR/Bt2xjcszCp+YpOoEFTxJbqhHOVZVdyw/3avNrPRx8NuKg
-	/mSFGriJxs0p07Wxq4Mb3akX7Jo7aiBVcFCJop85u/9Dp3bguWjLw++RvHhWdx3pnGtCuuTWhEW
-	K3RmeB061yYVsUEqREABL9Lux5L3U6pO0VXcn4F6ZjgrK3isUBzLxZ2ITQHFv11CvF3+kGHXFtb
-	nhAc7S9f4OH1PrA+mwYrPkNwNpBwoFqqCdBicG8nl5NWxCRBrjw+KBB+foqZEU1MpZsrYj75CcX
-	m7gR8ndNRfeOAsNfCqb03rWWXTs0zuVDSQWZteaV7OPVqdw+xiWq7Encxsw7n/kAWUiPLwJbhjK
-	KkhG16HoKTSB9kCr0ElF60KeW63k3LWSThIK3ENRhZ+4C84MszGV3gCeutmcLuN6u/ex9/QKX3S
-	VimcWIAbftLiD0wfw1OgtVWmxtcGwmdYYCMzjP09eKWz4GfU/5VHE38Szdl5mmt0K9yc/filDM
-X-Received: by 2002:a05:6870:7012:b0:4bb:17cd:b97f with SMTP id 586e51a60fabf-4bc82e85cf5mr7584367fac.25.1795332735917;
-        Sat, 21 Nov 2026 23:32:15 -0800 (PST)
-Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bd3008160dsm7292724fac.16.2026.11.21.23.32.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2026 23:32:15 -0800 (PST)
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Sun, 22 Nov 2026 00:32:07 -0700
-Subject: [PATCH net v2] net: stmmac: dwmac-sun8i: deliver RX checksum
- errors to the stack
+        d=1e100.net; s=20260707; t=1795333490; x=1795938290;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:content-type:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=41aq7Q/odxYWtRll/Ido8PrmDSMYdlxmstPU7VScg2I=;
+        b=XiQhdUHYGSSaMSLUlsA6iB7IPQ995cdkNgwI0IzyVBQRBafedTY2SCIUBjiuKg2ChT
+         r/597DwjUwvW34wehpdP0RZLW7x/1JuNA1Ghv94XXtf8eyWz7S/j4ZzSUXoM60QlKFym
+         3QjfpGyTEO7NknKptFF7LW1e2rOtUqoJx71ejn/H8KoESgLM5xK3aW6ddgX4rK+d69vt
+         R1hSeLF8fSu3ewT4Ceks1BMNiTU75I8IyDPBdbEqo5/BtJHpabn+ysntfjnj45YqH/XN
+         1o610Ueno3N3cZhg1zceIEuq3m1U+fGSudYJMJlTYnk4pzTR93qy4d8EYMom+Fb6gYcJ
+         xEQA==
+X-Forwarded-Encrypted: i=1; AL+hErGSIRUIVzAGKJE083+dVtoEYseVe1M3Yr4tJA18LrkbaHBLN/qOTHAoLc4cTE57pKqUVJ8YEwZbAXqjnNt0N8Lj@lists.infradead.org
+X-Gm-Message-State: APuU4Z/6+VjZT7Ul0BzAX2Rl1e60JED3X55n3jxKme+5cIKTdrIoqQvd
+	G/c4fI14NNgBv7hvnJGd1pQXMTaX6okkCXvhzasyhhVZUDi6Q9SXU2+J
+X-Gm-Gg: AZFdTZc+zlBIRUesAZHLCu+34tUvREe+UgpGTpiwneOyIDZ7hfgih2pkzC24KBfkD0t
+	l0vJ/LliIZA/xRg1NWCnMRCEiZR7VXnK7D/w1aT1eqmcPVd6CX2L5M7bzc9skfarGatOSQ7K52C
+	VFKf2m5PbQI5zo1s2bLZTPdGfqk3aegBnRj+NWH6rD9faOdownp7xlHR3C4MphVyA6/a+2a4IZP
+	KfqeGsrqysFnCibhP1gr8dRPfOQshCqlIB5N5JXHJpNHwrfGzDMRUm4M9y2LDNN7dyeB8L6jD32
+	1xSJLV3aD8JEILZeM+i9qU/60maSOCorI1JsOR5Wh6NjgHP9Kk5ykyvu2Y5LMWYctmQJLEcAIOH
+	t6/VIindMc8r+OM1QYHVY2tZUFqPu1PYAlTyoFVtd5B3HG8lUno/tGu6qqZof1xsU/3trW+m37M
+	lsjePlliLoUThX2uBLxw6xOXbNzFXXBSbJiwvNoM/p029p/oxzElnlMXzdPWqQGLyeWsQ8eE46D
+	3XWhHw/OivGEmBREW63KVEM57DYPldHhL6Aj5dEhN1kr1T1HayIf0V85wgrMSxV+JDC/NT2XXyo
+	UGumO/kBUMr2wrFMU+CzzHkfY2x7Q+vO9OoOKr6SMdBWNcNwHlXNQKguHfzL
+X-Received: by 2002:a05:6512:ba0:b0:5c1:c107:7477 with SMTP id 2adb3069b0e04-5c1c107755cmr1942269e87.43.1795333490191;
+        Sat, 21 Nov 2026 23:44:50 -0800 (PST)
+Received: from smtpclient.apple ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c1bd07bfdcsm2022134e87.82.2026.11.21.23.44.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 21 Nov 2026 23:44:49 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261122-submit-sun8i-rx-features-v1-v2-1-24a2564f6edf@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32OwQqDMBBEf0X23JQkosae+h/FQ0xX3VKTkkSxi
- P/eqPfCwDLL8GZWCOgJA9yyFTzOFMjZZOQlAzNo2yOjZ/IguSyFEDULUztSTMcqYn5hHeo4eQx
- sFqwWVYUql6qoFSTCx2NHy0F/gMUIzflMjBeauHP32EAhOv89NsziCJ91kv+tS+Ks4IXq0LS6b
- PN7P2p6X40bodm27Qc1ZnaA3QAAAA==
-X-Change-ID: 20261119-submit-sun8i-rx-features-v1-9177e8328598
-To: netdev@vger.kernel.org, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- LABBE Corentin <clabbe.montjoie@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- James Hilliard <james.hilliard1@gmail.com>
-X-Mailer: b4 0.17-dev
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
+Subject: Re: [PATCH v5 0/5] media: rockchip: rkvdec: add support for the
+ VDPU346 variant
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <cover.1795191822.git.daniel@makrotopia.org>
+Date: Sun, 22 Nov 2026 11:44:32 +0400
+Cc: Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Michael Riesch <michael.riesch@collabora.com>,
+ David Heidelberg <david@ixit.cz>,
+ Marc Zyngier <maz@kernel.org>,
+ linux-media@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Diederik de Haas <diederik@cknow-tech.com>,
+ Dang Huynh <dang.huynh@mainlining.org>,
+ Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <E8475BAC-F137-493E-B7AC-9C81FB158610@gmail.com>
+References: <cover.1795191822.git.daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>
+X-Mailer: Apple Mail (2.3901.200.71.1.16)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_233218_923741_90252BBC 
-X-CRM114-Status: GOOD (  23.48  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261121_234453_327121_C5AEE5F8 
+X-CRM114-Status: GOOD (  46.16  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,272 +123,207 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The sun8i MAC drops packets with a bad IP or transport checksum before
-packet sockets or the protocol stack can see them, even with RX checksum
-offload disabled. Its error-forwarding bit controls Ethernet and IP
-errors together.
+> On 20 Nov 2026, at 9:36=E2=80=AFpm, Daniel Golle =
+<daniel@makrotopia.org> wrote:
+>=20
+> This series adds the VDPU346 decoder of the RK3566 and RK3568 to the
+> rkvdec driver, for H.264 and HEVC. It continues Christian Hewitt's v3
+> [1]; in the v2 cover letter he offered to pass the series on. The
+> previous posting [2] carried no version in its subject and counts as
+> v4.
 
-This was observed while testing an Allwinner H616 with an AC200 PHY:
-the MAC dropped packets with a bad UDP checksum even with RX checksum
-offload disabled.
+The original offer was directed at Detlev based on conversations with
+other Collabora folks who were hinting that he would be able to (and
+it would even be desirable to) fold VDPU346 patches into his work on
+VDPU381/383 which was in-flight at the time. However he didn=E2=80=99t =
+take
+the bait and it didn=E2=80=99t happen. The comment is also pre-Claude =
+when my
+coding abilities were more rudimentary. The main reason for the long
+delay in following up has been the length of time it took for Detlev=E2=80=
+=99s
+and related DRM series that permit wider testing to land; a vacation
+over the summer, and then Claude distracting me with a deep dive into
+the Amlogic and Rockchip media stacks that=E2=80=99s resulted in 300+ =
+patches
+that need a proper plan for upstreaming else I=E2=80=99m going to annoy =
+the
+already-overworked media/drm maintainers.
 
-Enable error forwarding and decode the sun8i RX status in both receive
-paths. Give checksum failures and unchecked packets to the stack with
-CHECKSUM_NONE. Continue to discard Ethernet errors, incomplete frames
-and lengths that cannot fit in the receive buffer. Address filter and
-VLAN indications are not checksum errors.
+I don=E2=80=99t object to someone upstreaming my patches. I do object to =
+the
+lack of outreach to check on my plans and patch status before blindly
+(and wrongly) assuming there were none. You will find later versions
+of my patches with fixes for changes in surrounding code (as I work
+on something broadly equivalent to drm-tip not Linux 6.18) and from
+further testing in my not-very-abandoned development tree:
 
-Keep the hardware checker running whenever the receiver is enabled.
-Turning RX checksum reporting back on can then use the result already
-recorded in queued descriptors without flushing the ring.
+https://github.com/chewitt/linux/commits/rockchip-7.4.y
 
-Fixes: 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i")
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
----
-Changes in v2:
-- Submit the checksum-delivery fix alone for net, following Maxime's
-  review. The RXALL feature will be submitted separately for net-next.
-- Link to v1: https://patch.msgid.link/20261120-submit-sun8i-rx-features-v1-v1-0-5058fecba6b3@gmail.com
----
- drivers/net/ethernet/stmicro/stmmac/common.h      |  2 +
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 98 ++++++++++++++++++++---
- drivers/net/ethernet/stmicro/stmmac/hwif.h        |  2 -
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c |  7 +-
- 4 files changed, 94 insertions(+), 15 deletions(-)
+=C2=AF\_(=E3=83=84)_/=C2=AF=20
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
-index a972bee66504..706feb7bcbed 100644
---- a/drivers/net/ethernet/stmicro/stmmac/common.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/common.h
-@@ -615,6 +615,8 @@ struct mii_regs {
- struct mac_device_info {
- 	const struct stmmac_ops *mac;
- 	const struct stmmac_desc_ops *desc;
-+	/* Defaults to the descriptor format's decoder unless the MAC overrides it. */
-+	int (*rx_status)(struct stmmac_extra_stats *x, struct dma_desc *p);
- 	const struct stmmac_dma_ops *dma;
- 	const struct stmmac_mode_ops *mode;
- 	const struct stmmac_hwtimestamp *ptp;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-index 2ece7ba9dd73..0ad2203f76c3 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2017 Corentin Labbe <clabbe.montjoie@gmail.com>
-  */
- 
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
-@@ -197,6 +198,7 @@ static const struct emac_variant emac_variant_h616_emac1 = {
- 
- /* Used in RX_CTL1*/
- #define EMAC_RX_MD              BIT(1)
-+#define EMAC_RX_ERR_FRM		BIT(3)
- #define EMAC_RX_TH_MASK		GENMASK(5, 4)
- #define EMAC_RX_TH_32		0
- #define EMAC_RX_TH_64		(0x1 << 4)
-@@ -644,6 +646,9 @@ static void sun8i_dwmac_core_init(struct mac_device_info *hw,
- 
- 	v = (8 << EMAC_BURSTLEN_SHIFT); /* burst len */
- 	writel(v, ioaddr + EMAC_BASIC_CTL1);
-+
-+	/* Forward checksum failures to software before starting RX. */
-+	writel(EMAC_RX_ERR_FRM, ioaddr + EMAC_RX_CTL1);
- }
- 
- static void sun8i_dwmac_set_mac(void __iomem *ioaddr, bool enable)
-@@ -654,7 +659,7 @@ static void sun8i_dwmac_set_mac(void __iomem *ioaddr, bool enable)
- 	r = readl(ioaddr + EMAC_RX_CTL0);
- 	if (enable) {
- 		t |= EMAC_TX_TRANSMITTER_EN;
--		r |= EMAC_RX_RECEIVER_EN;
-+		r |= EMAC_RX_RECEIVER_EN | EMAC_RX_DO_CRC;
- 	} else {
- 		t &= ~EMAC_TX_TRANSMITTER_EN;
- 		r &= ~EMAC_RX_RECEIVER_EN;
-@@ -698,16 +703,9 @@ static void sun8i_dwmac_get_umac_addr(struct mac_device_info *hw,
- 			    EMAC_MACADDR_LO(reg_n));
- }
- 
--/* caution this function must return non 0 to work */
--static int sun8i_dwmac_rx_ipc_enable(struct mac_device_info *hw)
-+static int sun8i_dwmac_rx_ipc(struct mac_device_info *hw)
- {
--	void __iomem *ioaddr = hw->pcsr;
--	u32 v;
--
--	v = readl(ioaddr + EMAC_RX_CTL0);
--	v |= EMAC_RX_DO_CRC;
--	writel(v, ioaddr + EMAC_RX_CTL0);
--
-+	/* The receiver always records the checksum result, even with RXCSUM off. */
- 	return 1;
- }
- 
-@@ -1053,7 +1051,7 @@ static const struct stmmac_ops sun8i_dwmac_ops = {
- 	.core_init = sun8i_dwmac_core_init,
- 	.set_mac = sun8i_dwmac_set_mac,
- 	.dump_regs = sun8i_dwmac_dump_mac_regs,
--	.rx_ipc = sun8i_dwmac_rx_ipc_enable,
-+	.rx_ipc = sun8i_dwmac_rx_ipc,
- 	.set_filter = sun8i_dwmac_set_filter,
- 	.flow_ctrl = sun8i_dwmac_flow_ctrl,
- 	.set_umac_addr = sun8i_dwmac_set_umac_addr,
-@@ -1061,6 +1059,83 @@ static const struct stmmac_ops sun8i_dwmac_ops = {
- 	.set_mac_loopback = sun8i_dwmac_set_mac_loopback,
- };
- 
-+static void sun8i_dwmac_rx_error_stats(struct stmmac_extra_stats *x, u32 status)
-+{
-+	if (status & RDES0_DESCRIPTOR_ERROR)
-+		x->rx_desc++;
-+	if (status & RDES0_OVERFLOW_ERROR)
-+		x->overflow_error++;
-+	if (status & RDES0_RECEIVE_WATCHDOG)
-+		x->rx_watchdog++;
-+	if (status & RDES0_SA_FILTER_FAIL)
-+		x->sa_filter_fail++;
-+	if ((status & RDES0_FRAME_TYPE) && (status & RDES0_IPC_CSUM_ERROR))
-+		x->ipc_csum_error++;
-+	if (status & RDES0_COLLISION)
-+		x->rx_collision++;
-+	if (status & RDES0_CRC_ERROR)
-+		x->rx_crc_errors++;
-+	if (status & RDES0_MII_ERROR)
-+		x->rx_mii++;
-+	if (status & RDES0_LENGTH_ERROR)
-+		x->rx_length++;
-+}
-+
-+static int sun8i_dwmac_rx_status(struct stmmac_extra_stats *x, struct dma_desc *p)
-+{
-+	const u32 csum_mask = RDES0_IPC_CSUM_ERROR | RDES0_PAYLOAD_CSUM_ERR;
-+	const u32 dma_errors = RDES0_DESCRIPTOR_ERROR | RDES0_OVERFLOW_ERROR;
-+	const u32 wire_errors = RDES0_CRC_ERROR | RDES0_MII_ERROR |
-+				RDES0_RECEIVE_WATCHDOG | RDES0_COLLISION |
-+				RDES0_LENGTH_ERROR;
-+	u32 status = le32_to_cpu(READ_ONCE(p->des0));
-+	u32 len = FIELD_GET(RDES0_FRAME_LEN_MASK, status);
-+	bool runt = len < ETH_ZLEN + ETH_FCS_LEN;
-+
-+	if (unlikely(status & RDES0_OWN))
-+		return dma_own;
-+	if (unlikely(!(status & RDES0_LAST_DESCRIPTOR)))
-+		return discard_frame | rx_not_ls;
-+	if (unlikely(!(status & RDES0_FIRST_DESCRIPTOR))) {
-+		x->rx_length++;
-+		return discard_frame;
-+	}
-+
-+#ifdef STMMAC_VLAN_TAG_USED
-+	if (status & RDES0_VLAN_TAG)
-+		x->vlan_tag++;
-+#endif
-+	if (unlikely(status & RDES0_DRIBBLING))
-+		x->dribbling_bit++;
-+	if (unlikely(status & (RDES0_ERROR_SUMMARY | wire_errors | dma_errors))) {
-+		sun8i_dwmac_rx_error_stats(x, status);
-+		if (status & dma_errors)
-+			return discard_frame;
-+		/* An unexplained error summary is not a checksum verdict. */
-+		if (!(status & wire_errors) &&
-+		    (!(status & RDES0_FRAME_TYPE) || !(status & csum_mask)))
-+			return discard_frame;
-+	}
-+
-+	/* One buffer per chain descriptor; the reported length includes FCS. */
-+	if (unlikely(len < ETH_HLEN + ETH_FCS_LEN ||
-+		     len > FIELD_GET(RDES1_BUFFER1_SIZE_MASK, le32_to_cpu(p->des1)))) {
-+		x->rx_desc++;
-+		return discard_frame;
-+	}
-+	if (unlikely(runt || (status & wire_errors))) {
-+		if (runt && !(status & RDES0_LENGTH_ERROR))
-+			x->rx_length++;
-+		return discard_frame;
-+	}
-+
-+	/* Only a checked IP frame is eligible for CHECKSUM_UNNECESSARY. */
-+	if (!(status & RDES0_FRAME_TYPE) || (status & (csum_mask | RDES0_DRIBBLING)))
-+		return csum_none;
-+
-+	return good_frame;
-+}
-+
- static int sun8i_dwmac_setup(void *ppriv, struct mac_device_info *mac)
- {
- 	struct stmmac_priv *priv = ppriv;
-@@ -1068,6 +1143,7 @@ static int sun8i_dwmac_setup(void *ppriv, struct mac_device_info *mac)
- 	mac->pcsr = priv->ioaddr;
- 	mac->mac = &sun8i_dwmac_ops;
- 	mac->dma = &sun8i_dwmac_dma_ops;
-+	mac->rx_status = sun8i_dwmac_rx_status;
- 
- 	priv->dev->priv_flags |= IFF_UNICAST_FLT;
- 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/hwif.h b/drivers/net/ethernet/stmicro/stmmac/hwif.h
-index 8ae95e91a36a..047d809b8b88 100644
---- a/drivers/net/ethernet/stmicro/stmmac/hwif.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/hwif.h
-@@ -125,8 +125,6 @@ struct stmmac_desc_ops {
- 	stmmac_do_void_callback(__priv, desc, set_rx_owner, __args)
- #define stmmac_get_rx_frame_len(__priv, __args...) \
- 	stmmac_do_callback(__priv, desc, get_rx_frame_len, __args)
--#define stmmac_rx_status(__priv, __args...) \
--	stmmac_do_callback(__priv, desc, rx_status, __args)
- #define stmmac_rx_extended_status(__priv, __args...) \
- 	stmmac_do_callback(__priv, desc, rx_extended_status, __args)
- #define stmmac_enable_tx_timestamp(__priv, __args...) \
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index a685ce4638f6..20e9aa7b14f5 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -5723,7 +5723,7 @@ static int stmmac_rx_zc(struct stmmac_priv *priv, int limit, u32 queue)
- 		p = stmmac_get_rx_desc(priv, rx_q, entry);
- 
- 		/* read the status of the incoming frame */
--		status = stmmac_rx_status(priv, &priv->xstats, p);
-+		status = priv->hw->rx_status(&priv->xstats, p);
- 		/* check if managed by the DMA otherwise go ahead */
- 		if (unlikely(status & dma_own))
- 			break;
-@@ -5926,7 +5926,7 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 		p = stmmac_get_rx_desc(priv, rx_q, entry);
- 
- 		/* read the status of the incoming frame */
--		status = stmmac_rx_status(priv, &priv->xstats, p);
-+		status = priv->hw->rx_status(&priv->xstats, p);
- 		/* check if managed by the DMA otherwise go ahead */
- 		if (unlikely(status & dma_own))
- 			break;
-@@ -7732,6 +7732,9 @@ static int stmmac_hw_init(struct stmmac_priv *priv)
- 			return ret;
- 	}
- 
-+	if (!priv->hw->rx_status)
-+		priv->hw->rx_status = priv->hw->desc->rx_status;
-+
- 	/* Set alternate descriptor size (which tells the hardware that
- 	 * descriptors are 8 32-bit words) when using extended descriptors
- 	 * with ring mode. Only applicable for pre-v4.0 cores. Platform glue
+> Patches 1, 2 and 4 are Christian's, with two fixups folded in that v4
+> carried as separate patches. Patches 3 and 5 are new since v3 and come
+> out of a comparison of the driver with the vendor kernel driver
+> (rockchip-linux/kernel develop-6.6, drivers/video/rockchip/mpp) and
+> the Rockchip MPP library, followed by conformance runs on hardware.
+>=20
+> Fluster on a NanoPi R5C (RK3568B2), GStreamer 1.28.7 v4l2sl decoders:
+>=20
+>  JCT-VC-HEVC_V1   142/147
+>  JVT-AVC_V1       129/135
+>  JVT-FR-EXT        65/69
+>=20
+> HEVC failures: PICSIZE_A/B/C/D_Bossen_1 are coded at up to 8440 luma
+> samples in one dimension, beyond the 4096x2304 limit of the decoder.
+> TSUNEQBD_A_MAIN10_Technicolor_2 has unequal luma and chroma bit depth,
+> which the driver rejects for every variant.
+>=20
+> H.264 failures: CVFC1_Sony_C, FM1_BT_B, FM1_FT_E, SP1_BT_A, sp2_bt_b
+> and FM2_SVA_C fail in JVT-AVC_V1; the Hantro G1 of the same board
+> fails the same six with the same GStreamer. In JVT-FR-EXT
+> Hi422FREXT17_SONY_A, Hi422FREXT19_SONY_A, HPCAMOLQ_BRCM_B and
+> HPCVMOLQ_BRCM_B fail; the two BRCM vectors fail on the Hantro G1 as
+> well, the two Hi422 intra profile vectors are not understood yet.
+>=20
+> SAODBLK_A/B_MainConcept_4 and FREH10-1/2 are counted as passes: they
+> decode correctly and exceed the default 60 s fluster timeout only
+> because the checksum is computed from an uncached mapping of the
+> capture buffers.
+>=20
+> Patch 3 is what makes the score deterministic. With the read caches
+> left in their reset state, RAP_B_Bossen_2, WPP_D_ericsson_MAIN_2,
+> WPP_D_ericsson_MAIN10_2, WPP_E_ericsson_MAIN_2 (HEVC) and
+> CAPM3_Sony_D, MR8_BT_B, MR9_BT_B, NRF_MW_E (H.264) produce wrong
+> output in three runs out of three; with the patch they pass in three
+> out of three. This is likely the source of the artefacts reported
+> against v3. The function is shared with the VDPU381, where the cache
+> block is mapped by the binding already. The series has been run on
+> the RK3588 as well as on the RK3568.
+>=20
+> Decode rates with the series: HEVC Main 2160p 92 fps, Main10 2160p
+> 77 fps, Main 1080p 380 fps, H.264 High 1080p 197 fps.
+>=20
+> Patch 5 is kept apart from the node it modifies because the existing
+> Tested-by tags were given at the v3 clock rates, and so that it can be
+> dropped on its own.
+>=20
+> On the row and column buffer sizes raised in the v3 review [3]: the
+> MPP library uses one vdpu34x HAL with one set of size formulas for the
+> RK356x and the RK3588, so the variant keeps vdpu381_rcb_sizes.
+>=20
+> Known limits, none of them introduced here:
+>=20
+> - FFmpeg's v4l2-request hwaccel does not set the HEVC EXT_SPS_ST_RPS
+>  and EXT_SPS_LT_RPS controls, so HEVC through FFmpeg decodes wrongly
+>  on this decoder as on the VDPU381 ("Long and short term RPS not
+>  set"). The handling of these controls is also the subject of [6].
+> - A decode error on such a stream ends in the IOMMU page faults and
+>  the oops reported against v3 [4]. The cause is in the error path
+>  shared by all variants: the interrupt handler restores the IOMMU
+>  while the watchdog is still armed, and the watchdog starts the next
+>  job while the IOMMU is detached. "media: rkvdec: Handle interrupts
+>  without a current context" [5] covers the oops; the remainder will
+>  be addressed separately.
+> - The Sashiko review of v4 points out that rkvdec_probe() takes the
+>  SRAM pool without a device link to its provider. This predates the
+>  series, affects all variants with an sram property and will be sent
+>  as a separate fix.
 
----
-base-commit: af6737b9066832a2017c281159950ba92385ce00
-base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git main
-change-id: 20261119-submit-sun8i-rx-features-v1-9177e8328598
+FFmpeg: https://github.com/chewitt/FFmpeg/commits/armsoc-9.0.2/
 
-Best regards,
---  
-James Hilliard <james.hilliard1@gmail.com>
+This contains Jonas' current v4l2_request series plus Detlevs patch
+and relevant work on deinterlacing and fixes for issues found from
+testing on Allwinner/Amlogic/RPi/Rockchip implementations. We even
+started work on UAPI for VC1. Unfortunately we are in a holding pattern
+waiting patiently for Jonas to resume his series and fold fixes in
+(rather than shanghai the series).
+
+> Patches 3 and 5 were written with the help of an LLM coding assistant,
+> which also performed the comparison with the vendor sources. It was
+> asked to review the v3 series against the vendor driver and to
+> complete it, and for v5 to go through the v4 feedback, fold the fixups
+> and revise the commit messages. The conformance and A/B runs above
+> were done on the board with builds of v4 on Linux 6.18; v5 differs
+> from v4 in the order of two writes to the device tree source and in
+> one node name, the driver code is unchanged.
+
+IMHO there is way too much word-salad and blogging the journey in this
+cover-letter. Concise text and brevity is a virtue. You should also be
+working against a current kernel.
+
+> Changes since v4:
+> - Fold "media: rkvdec: vdpu346: Limit HEVC EXT SPS RPS dimensions"
+>  into "media: rkvdec: Add support for the VDPU346 variant", so that
+>  no commit registers 65 element controls
+> - Fold "arm64: dts: rockchip: rk356x: Order vdec regs by address" into
+>  "arm64: dts: rockchip: Add the vdpu346 Video Decoders on RK356X"
+> - Name the SRAM pool node codec-sram as on the RK3588
+> - Read caches: shorten the commit message and state that the cache
+>  block is mapped for the VDPU383 as well
+> - 400 MHz: state that the rate applies to all streams
+> - Cc the reviewers and testers of v3
+>=20
+> Changes since v3:
+> - Add "media: rkvdec: vdpu381: Program the read caches"
+> - Add "arm64: dts: rockchip: rk356x: Clock the vdec at 400 MHz"
+> - Register the HEVC EXT SPS RPS controls with 64 and 32 elements
+> - List the vdec register blocks as link, function, cache
+> - Add fluster scores and failure analysis
+> - Add Tested-by from Diederik de Haas
+>=20
+> v4: =
+https://lore.kernel.org/r/cover.1794654074.git.daniel@makrotopia.org
+> v3: =
+https://lore.kernel.org/r/20260110053727.2295260-1-christianshewitt@gmail.=
+com
+> v2: =
+https://lore.kernel.org/r/20251226113140.573759-1-christianshewitt@gmail.c=
+om
+>=20
+> [1] =
+https://lore.kernel.org/r/20260110053727.2295260-1-christianshewitt@gmail.=
+com
+> [2] =
+https://lore.kernel.org/r/cover.1794654074.git.daniel@makrotopia.org
+> [3] =
+https://lore.kernel.org/r/DFL5TY0QQNMN.1RS04UM9D1V8S@cknow-tech.com
+> [4] =
+https://lore.kernel.org/r/DFRU6ODDM71P.3NQGLRK8IVDUY@cknow-tech.com
+> [5] =
+https://lore.kernel.org/r/20261026124808.642373-1-a.kazinsky@ideco.ru
+> [6] =
+https://lore.kernel.org/r/cover.1794645268.git.daniel@makrotopia.org
+>=20
+> Christian Hewitt (3):
+>  media: dt-bindings: rockchip: Add RK3568 Video Decoder bindings
+>  media: rkvdec: Add support for the VDPU346 variant
+>  arm64: dts: rockchip: Add the vdpu346 Video Decoders on RK356X
+>=20
+> Daniel Golle (2):
+>  media: rkvdec: vdpu381: Program the read caches
+>  arm64: dts: rockchip: rk356x: Clock the vdec at 400 MHz
+>=20
+> .../bindings/media/rockchip,vdec.yaml         |   2 +
+> arch/arm64/boot/dts/rockchip/rk356x-base.dtsi |  49 +++++++
+> .../rockchip/rkvdec/rkvdec-vdpu381-h264.c     |   2 +
+> .../rockchip/rkvdec/rkvdec-vdpu381-hevc.c     |   2 +
+> .../rockchip/rkvdec/rkvdec-vdpu381-regs.h     |   9 ++
+> .../media/platform/rockchip/rkvdec/rkvdec.c   | 121 ++++++++++++++++++
+> .../media/platform/rockchip/rkvdec/rkvdec.h   |   2 +
+> 7 files changed, 187 insertions(+)
+>=20
+>=20
+> base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+> --=20
+> 2.56.1
 
 
