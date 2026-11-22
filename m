@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BDB606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 08:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669D2606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 08:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sUDpRF5n;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PODfl5h5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3lwEO+Ij;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qC/3I45v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,84 +14,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=zDSvzl1Gx/Aqp+Qnd4iIo4LN86WJizYkgXEiZnnjt7k=; b=sUDpRF5nJVE1j8tFSTxq6ICoau
-	m0bZ1lZgAeQ0uPSICCn6TuyX2UBac7isThJB6ir0wKJN7EzN5jRXqQ2VrGc+zDRmiqRAuxoS6dnBA
-	PRLGpXUH1x8+HXL/dhj6mw3tmjIZpdXn6vBE+QgJe/C/vFTybpYCLgOYfwYYyT9EqJq+BBqqRPEcz
-	+dKnnA36FwhaFTOFQVqGyuypcT5zIKmsTLz09YdRj+5HwE7+XEZLi6qYA9kg9TJAYl6lUKOy6bFBV
-	7lF0ct8lRAqFMcCjcngLLFE9ZZ5UbVVcm5jtIJHkKfWPj5mdCwH8JUCtILydQDIhbs3wbj0aB2iv0
-	TrgQ6vZA==;
+	bh=TzTZoWcHEL/gSOs3Vo0+LX5MsR82QU/4aKtI268Jly4=; b=3lwEO+IjlfIpw9BdcRsUOz+s/d
+	9JcQT1JHoHM/+XeBosHHFNS9CcxNmx6rTnIxlRqaVYJSwp423uuOZ7jL/7dz+CjJRxqWv2fwifLIA
+	legZWLxFH3VCRWFxmfu0ERzvs4Ng1UI/3rawQUSTbrA7rTGmvGYg0v1us+SKkXUIIRh6aswVEPnbK
+	O+O7rXNXoKob7n3fZrABwCLVYyXvgNRkCDAc3iKSxXIi0eaF9+muqWI1IqeNi35I+kqbEZRVAKUuU
+	eox6Z00CkV9tUHc6w58d3rxT4NDx4zc7Wqz/bLVNpqqPBq37qkNCYThnQZyczFjiWPcnkslfSgStQ
+	Un19gk2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2xM-00000000s0y-0WBd;
-	Sun, 22 Nov 2026 08:29:52 +0000
-Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
+	id 1xV36D-00000000sKd-0dpi;
+	Sun, 22 Nov 2026 08:39:01 +0000
+Received: from mail-pf1-x431.google.com ([2607:f8b0:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2xI-00000000rzl-3MJ9
+	id 1xV36B-00000000sKK-242O
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 08:29:50 +0000
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-3b413997581so1997748a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 00:29:48 -0800 (PST)
+	Sun, 22 Nov 2026 08:39:00 +0000
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-8c700d6cc0bso1767933b3a.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 00:38:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795336188; x=1795940988; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795336738; x=1795941538; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=zDSvzl1Gx/Aqp+Qnd4iIo4LN86WJizYkgXEiZnnjt7k=;
-        b=PODfl5h5U90cu9Fn/DGCBcKi/jzDCQ/DU3nloupthZ2rLQJT11rf0RSn+8ZIP3JWy1
-         eGAvhwEDc5P0H41+aiWAUeAuq7oez4fuilbhM2lkTFKZGmITBCs5VqhJ0SvUASqXjwxY
-         eAu5RLwzSBko3Cga77ad9u0Nv/bPFSfJulZYc+a0ILVjQKgiI1KqssentbOHlk7GDcVl
-         fhCkWdWSoFKf47bPM/jvf5kg5ljz5uslEUJyzgPnU82IxWops28znA9nAA7HALGKRemF
-         SXxbKgcMQ47mkITStSub82AP/cHHyyyqh/TvIJtBzAKLmQKnK3sMT/4xhrnkw4Wi9cas
-         oFYw==
+        bh=TzTZoWcHEL/gSOs3Vo0+LX5MsR82QU/4aKtI268Jly4=;
+        b=qC/3I45v48+xryvGjxE0Hdjwwcm4015CHTUMgGmXvG8RsYpW8/BkgKQ22J+jJDvGZe
+         SizBUpmTsJq0XvceQCuMbW6YiR3IhkzeprOiGQTPex5Z8QIgdRQ88X6vq7Ac6BQZhxNY
+         BJ67uHO+OhA/+vgAiz+cGxKGJo/ylopqc68NMuo+VXpmNEsKU1OA4Koy+WEYNDbimi7j
+         86kvYvyl0bGhAMZrpjhBX1AAHbL9+C7FoGOh0GX9Yb0YIN12t3PC11yBl5dAsLJMef09
+         dBCS0tiVAD8DlUc3TpicsbR3ZOLyZLROYvuaXLob+3Nxzy7wKxlcdQ9IHnqvcHvHpgK8
+         eKYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795336188; x=1795940988;
+        d=1e100.net; s=20260707; t=1795336738; x=1795941538;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=zDSvzl1Gx/Aqp+Qnd4iIo4LN86WJizYkgXEiZnnjt7k=;
-        b=sdHE31anXnINGm7I+B69DiUO3Q7V7ApiFTgkhWW4ZYI4IJW9LxTiSMxR4Hu3+kywoi
-         vbKB/IBmjLz30ZIUObK6NYrpVLfEdKrwTHIUy/8hU7d1o3It/QVqbjY9PNtjrenJU77y
-         Ze436Y6Wol/yPoIyIEYHwkEHlSojThoUc+LwvbmSnLCOJFGLE8W1fPtM8FW4hnq4bsnz
-         WWiB7GiFTTAD2/BOJ3Q0HFtFsxtxbZ/zfDH3IUrduOfMusuJ6HkCC0/R+oxWzqXWC96R
-         Ogt/ZDH0Wyy8vpdam3H6nVWVHzHPLTKpPE2OsvPf+QAhVcptIspF9V+uKc/7OK/WHoqz
-         ewhQ==
-X-Forwarded-Encrypted: i=1; AL+hErEAKcwb0oDLik4rXibWMajw3HjemNDLWdD4bQR6LWm6drYA/TJMzJNdqSJkRwLs70xLMmGOJ8a+eRkNN44v5All@lists.infradead.org
-X-Gm-Message-State: APuU4Z+u8tYYejD49q6fLk12cRRRtBWsx2fLLkfbUBIuh3qQg74pT/B/
-	/pb1VYnpSAcIzGFSD1G5287wK/STzdeI1VXKTmJer7jo4j+NXSgHdmTX
-X-Gm-Gg: AZFdTZc5ckwzXrNg8qmrqV4DLEFvUPCS9kq1aSVmj+NlCJYl6eIIyE1MLVQKj++zgNu
-	iFtkzSTV9e3vnBUofy1nOSP0MTWg3uMoK8jXlg7Y5eKv/KOL4zD8Ij6NOLPqnUpQTbv+KCW+4Bt
-	lE7Iiv/fqRtxmzqurF9IMQE34SVfUUX/M1JKGfEi2Dbqa2KVtWeMwX6ORjzaf5ZPv2Y6X23jdtK
-	TE9SKxpxjKMyOIHgV5x/usefuWa63i0beDWE/TGSFKUKvv7wBeGTB4DOOBlVDm0cERi/Sk2mKa8
-	qROhwGd9/Ct+XCUTYmb1eBzScpYIcn8yYmhUUH5Uiatg11gPU4jV3WbkAz6jGWc9fncnhISxxps
-	QB5eyBYDKa/bOGYdimPIk/feWKE5adN0bXTBNRW7xbV23aNkqLyVk0/GvrTaNasK75QESiqaS+k
-	C2N7Qcwiw0hndUTLHTlhdRQBtnLhcwzHngtywDb/TBWsu3Z5XLduWeRmqyNpByPWTDxd1koJAVP
-	YSdnP2+Y2FircmcRUWvnH++7fSkFGo+Okvxc0KzmWKXJdjbcS/3IsmATX+bqf8Rdf7/Fa6N/3wT
-	wWEUX6JLeRjRphRR+aRJl25PSwgC7x4EihOdI+7CBtQppTFHh0Q=
-X-Received: by 2002:a17:90b:5407:b0:3b3:c998:6d6e with SMTP id 98e67ed59e1d1-3b41c961528mr6953366a91.37.1795336187924;
-        Sun, 22 Nov 2026 00:29:47 -0800 (PST)
+        bh=TzTZoWcHEL/gSOs3Vo0+LX5MsR82QU/4aKtI268Jly4=;
+        b=YqoBbJu+vCmCyFwVQfOsjx2Lpi7FxAWpupmRb88mXVTUlms65ndANKgdrAJN/W7Vwt
+         9cEuHX1meULXnLtcpvmfbhI81zNpsVpepbr/U9o85cLnWvpJRJjtLND2r7ufCqtY6moE
+         PabEXvI9/t4g9+4z8urGDoE44h2tKdsUSHUihnMQKZ7/nPwCnZNKOI96TAE8oHIWvUl4
+         /3oFUmfnTVoDEnfmt5Q8zzAAMH8pElhowRX6Xb5eIZzoOg5/YT/6k8yxX6aFrY/phViR
+         u+/jPlQFuol2FUo8ARuufgdOKXkk2Npi+B8NzmJxyohDlJvlXcUniw+3HUMRogYu1Ixd
+         PmAA==
+X-Gm-Message-State: APuU4Z9PrF+E8tqXwkPuqD2UzUS2AiUxrBWRtyl5FiydTMy3lPbbSPPM
+	C0FWynbrh1l41O5j1Pug8VxqcXpIFN7yQ+EOHhnSy0eAlszTIo1i1IdLz9FGHfNFeNQ=
+X-Gm-Gg: AZFdTZfOLUowEDloZde/IQ9uLzGiKEzujYzluix9ycPUE9AiQ9eIsAnuvj3nraWdHIX
+	a/0l7qhllIdky5WVFcyy4MWGaVOkygF86kJAqa4jtlNcd6y6pgvXBlMDaXbFmshe54UKa0pEVNW
+	32znL+tV5G+e5jCyVQ8EHYoVq9GhObbOIYYD5UGibD5upFUHtMeRHQK/rtB0HfXSM7Qvztjihvd
+	JlwCKvqA9bd6Z78B3YTEur9Z/K3cVumzA+9SPgg/rMkkjWvdSbVwFdF0+zr2N/67aNmimj9tgxB
+	emGR09+N0eRcw5Q6Zp0YCFWtFgLQka9kXxLNR2VEnmNffPX0xX5/zjPfzn39XqUzRUa4Nw5UnEE
+	fKGMQPmWLA2qcFUabU6lSoFtSkY8ncoTfYqV7KsL48CEm9yeejkcsxJ8MOExDpd120OqzYw83tT
+	Bfjz9xuPv5mCrjyGsFPv1tZpv4P0uZh3/Gwyuyuu8phG1nURm4XSewyOZObgWlLldQQuQGkni42
+	tu7RHAO9agDxaa/qKgTjUPaa4SBuZuECJOCFGjfT283oD1C9D/fYT6wJ1M6HGd+1TIYaqnz6RD5
+	fbEqv9UxMuKYiqhV4W5tKyL30AhYSk2/UVq8V2o02KeI4YNhF3A=
+X-Received: by 2002:a05:6a21:6f89:b0:3f1:fdd4:5742 with SMTP id adf61e73a8af0-4014ca44afbmr5515841637.9.1795336738339;
+        Sun, 22 Nov 2026 00:38:58 -0800 (PST)
 Received: from fedora.tailc1fb0a.ts.net ([134.82.71.171])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0b52dsm12957455a91.5.2026.11.22.00.29.46
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c873f11da2sm3549381b3a.55.2026.11.22.00.38.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 00:29:47 -0800 (PST)
+        Sun, 22 Nov 2026 00:38:57 -0800 (PST)
 From: Artem Novak <artem122novak@gmail.com>
-To: wim@linux-watchdog.org
-Cc: linux@roeck-us.net,
-	florian.fainelli@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-watchdog@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
+To: linux@armlinux.org.uk
+Cc: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Artem Novak <artem122novak@gmail.com>
-Subject: [PATCH] watchdog: bcm2835: add newline to dev_info message
-Date: Sun, 22 Nov 2026 02:29:43 -0600
-Message-ID: <20261122082943.173681-1-artem122novak@gmail.com>
+Subject: [PATCH] ARM: clarify StrongARM TLB invalidation limitation
+Date: Sun, 22 Nov 2026 02:38:54 -0600
+Message-ID: <20261122083854.176071-1-artem122novak@gmail.com>
 X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_002948_864024_583E5945 
-X-CRM114-Status: GOOD (  10.38  )
+X-CRM114-CacheID: sfid-20261122_003859_556256_9456F885 
+X-CRM114-Status: UNSURE (   9.48  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,24 +106,33 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The existing comment says "w/o I TLB entry", which can be
+misread as saying that these processors lack an instruction
+TLB.
+
+The implementation invalidates the entire I-TLB while
+invalidating individual D-TLB entries. Clarify that the
+limitation concerns single-entry I-TLB invalidation.
+
 Signed-off-by: Artem Novak <artem122novak@gmail.com>
 ---
- drivers/watchdog/bcm2835_wdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/mm/tlb-v4wb.S | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/watchdog/bcm2835_wdt.c b/drivers/watchdog/bcm2835_wdt.c
-index 755954cbadee..df08236d2689 100644
---- a/drivers/watchdog/bcm2835_wdt.c
-+++ b/drivers/watchdog/bcm2835_wdt.c
-@@ -213,7 +213,7 @@ static int bcm2835_wdt_probe(struct platform_device *pdev)
- 					      SYS_OFF_PRIO_DEFAULT,
- 					      bcm2835_power_off, wdt);
- 
--	dev_info(dev, "Broadcom BCM2835 watchdog timer");
-+	dev_info(dev, "Broadcom BCM2835 watchdog timer\n");
- 	return 0;
- }
- 
+diff --git a/arch/arm/mm/tlb-v4wb.S b/arch/arm/mm/tlb-v4wb.S
+index 04e46c359e75..f72961267b08 100644
+--- a/arch/arm/mm/tlb-v4wb.S
++++ b/arch/arm/mm/tlb-v4wb.S
+@@ -5,7 +5,8 @@
+  *  Copyright (C) 1997-2002 Russell King
+  *
+  *  ARM architecture version 4 TLB handling functions.
+- *  These assume a split I/D TLBs w/o I TLB entry, with a write buffer.
++ *  These assume split I/D TLBs without single-entry I-TLB
++ *  invalidation, with a write buffer.
+  *
+  *  Processors: SA110 SA1100 SA1110
+  */
 -- 
 2.56.1
 
