@@ -2,75 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED47606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 20:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C5D606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 20:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xTtKEXjm;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.a=rsa-sha256 header.s=google header.b=PCHiDQid
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3z6Motal;
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.a=rsa-sha256 header.s=google header.b=Tn8tbS5D
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EZ2863pKGWwBwjrMKzumFwAyyrjNnDcDdwgqcYg/Bpc=; b=xTtKEXjmmUVfXK
-	ubVGF8gzeetyK39LLTJeShmnmMzQGDMDgA38QO0oIMX9rurak2Ppa+mdXziIHB3l8uwytkEeF81/q
-	8EkiOGRbR7zv+gXXrcrgiP0xG1IGrEe24IPJzqv0EOPxLvOV4be85hetLN2qx5V4wjIF7k4RKU35J
-	FOwiVJb4RWhXSa0tkd/gih+ztkZqBzVlVX/Sn/dUk7vdVRkGSHXiqJm7JBNkxH0FsxV3+RHGMSGHu
-	z4CC1BmQPsxF/YBRMKDxh36LFRyh2EpeKFmVtNI1ci5qmWAtBgY/vovBOu4Gykna5cGUBoEn7A5om
-	hftRvB4ilqLGWCRz/oow==;
+	List-Owner; bh=9qk8/ka9rPvexMaFJhcemSvfcHnBVEPtA/l1jjpp0TY=; b=3z6Motal98Q8x8
+	sTyW0fKZVHjgWaiN2yV2Okb5R629K9kxBNqK1E+i1ifUQAcmD0clTEZZtETVSoxLJxvgvkn3OfAdL
+	2fL5Tr4eUjQiNB1NtiAOna3wPdwghThZF63HuPmxW6P3kzJDkUwawdLXSovqU5urTgm1U8JEljfqY
+	7Z5RpgchyjVbDo/u5Hk3o6aiKQ42feFW5m3fVpfD9lDyRWc3HiZI0h7H6jwOnOeNtTV02JuQYY93K
+	60OGGTR9GZea2FyVni50CYF/ag+cgs3OgqOxR2ZZXfnYO8NZUZkEZCnPGthVeQBS1cRyuPng8tpRH
+	H7wSBDyMVA7hYG2CHUjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVEXP-00000001jrV-1Bay;
-	Sun, 22 Nov 2026 20:51:51 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1xVEXm-00000001k0j-2M7Y;
+	Sun, 22 Nov 2026 20:52:14 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVEXK-00000001jpK-2wPH
+	id 1xVEXO-00000001jq9-1eH2
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 20:51:47 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4bb702a7548so19279655e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 12:51:46 -0800 (PST)
+	Sun, 22 Nov 2026 20:51:52 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-49d05d51553so17972185e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 12:51:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1795380705; x=1795985505; darn=lists.infradead.org;
+        d=amarulasolutions.com; s=google; t=1795380709; x=1795985509; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=EZ2863pKGWwBwjrMKzumFwAyyrjNnDcDdwgqcYg/Bpc=;
-        b=PCHiDQid5EVbO+6OkKQ+RH37Za+ZcFEdSwTeP+M0tdDub+al9FVPoNYICKQgvIu/et
-         L+QAlo8p0eKwAkehcNI+B6lqOIoKSpVvH3BVhGmhl/ov12tNA/aMe9IoNRChHJRJJB+k
-         FTMAB7ClEnRtkmY0gjtExTrbMxP9rW9oxVDns=
+        bh=9qk8/ka9rPvexMaFJhcemSvfcHnBVEPtA/l1jjpp0TY=;
+        b=Tn8tbS5Dqz0xRI2aMSJ/p4ECPY69eT1cCEY/XVMJUkv7oxr6bCahCSK9UyOwA9zt+l
+         Z2z4DgP3Pn2h9FqxRm3hJu5ROsa3tNKUw8zzLEezs7N4iL8AaTPdOIUIWxms1JrRXlta
+         RBE2gpRa48XWTiGINdhu6F3QTxxP4+plXouYM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795380705; x=1795985505;
+        d=1e100.net; s=20260707; t=1795380709; x=1795985509;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=EZ2863pKGWwBwjrMKzumFwAyyrjNnDcDdwgqcYg/Bpc=;
-        b=KTKrQa/AJVi3QA+zXhUIZmnA18FGBKSJbaEJeucLtkgJBbOFTaHpiRC6kmjhwDGgLK
-         NrtiDxQCjq+hX1dmxBUjr0MGPbc7kdE437AGA6tXkw9QHexJ4TwM/NE+tX003jV0M1L5
-         CVykqsEyfZ6jVypAH0nK1npTqhmCJ4EMZE/llYnTr7dQltssJa3bURcK5ICprlUTG3Un
-         s4z0ZL+frrxzoW0ZMmMv01ESKK3npd5ZQgGaDICh76vX/GKuXt/7vmGvkniALA8qbvcq
-         cixHFgSXmgkLhlfpXiv6cI7E6B34fhgRKeUcT61Awsd91oKn3zZzrL/JXLzMkMdzcV+g
-         dthQ==
-X-Forwarded-Encrypted: i=1; AL+hErE67j7nHzSWiOxaePLL2fsmC5Qz0NubJubRteN34n0eB8hrfrglCqEB27/GR1VJawmisieL91yCrie5lUUtf7rQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+G8hTs3VFFcJRUUDa2HcNSMzv/NZKc0Un2FDfefxPF9z3u/3pO
-	r5iqpr5BU1HI0g563vxXRJQhGeWbVCDz0mxJtuuAYSfWaDHbizoLR0jzZ6idBaKZxYE=
-X-Gm-Gg: AZFdTZcomD4iD8sx2/t9aNPhRKKgoT3k2liEfOQl2XMQHKea6GbXOrXE36wilarlA7l
-	uhh8prxioZTWeAeRwQKNEIfuDCnWyg1ppqFeNPi/3Qvh8YMt48Vf9wPnIF8MJXG1l7oL7AVEJyL
-	5nZUI3mSQw5reQuupYJpErP6q0AdMqquPRktLJ7GX6w6T+UoFZwIN2Dp5htD418Bnjf6R2QezNn
-	R7BIV1UQiJAQhKwDr2upM+UJI2618xbIvYSbxEP9+zyj9ix3NoF/cMrNGt2lgLA9hw4fF6nQ3Lw
-	WgumXn3lHOJP0tBQdvWaEvzFsSQRndtvQHqPSDDf1CzklYEybde1Y3kcBY/UN23UeP713DrU656
-	TA2WEh2C0isich2BHCeplhwJfo/PJJkM5sJfpqePyL3EZ5bLZAAX1u8OmaHvlep8ZYmhccTLVeI
-	TUoRfjEOF+KO1Nv/C+F6Oxs6/dpzrSTHZ1UlKTrnH4JKOe6f/A3wlyZw2GA+n1DSXrXeFmwL50s
-	Icj9iWw2YvaJKKiu6CzLdvKR892eveTIUCfAWRSGAeocYXW6qa6PI/Y6rHQm97H2tMfF00Y5yl9
-	d18hHal5Sdduf7lxjjQDeUNunSDOSLcwlxSmTHarG4BbhdCkwCVYrfXrY3XOfyD3tAkZqBRPZ+L
-	5/QK+is8dz2Rs8PJ5gI1OM346B02mEBTqlDIbYyiwkhhS4JRIAbYVtI2dTOaOwtwsFuhoEMqLyA
-	IAnysoERMynU28nzTqxbqt8ZiBxg==
-X-Received: by 2002:a05:600c:800e:b0:4bb:7757:fe58 with SMTP id 5b1f17b1804b1-4bb8881b9d7mr201262775e9.19.1795380704844;
-        Sun, 22 Nov 2026 12:51:44 -0800 (PST)
+        bh=9qk8/ka9rPvexMaFJhcemSvfcHnBVEPtA/l1jjpp0TY=;
+        b=yR5NyjsvDPQxyCI+D51hozynxpXHJLanwWDV21EmezIP1bcpr6jQO6y4FfjgXEv6D/
+         j0qYNbz62yI9UtZtOKTJoDe7KMeToFrmfnOtkFFtliMIuHbaTQvgq8Kt3HfcZpRmdixw
+         86jhObKGsUkk/1mpp5g0WQbnjk3VMUhT8G8zhk2WS/Y23c/7JfWClvqgJqKI5YIWvzNR
+         OX91F/Qcxtumi1zF7klH1Guq4IkfWAvicaaHi3XytQhkFmKTLtccTGoyFxnkb1TcsO9f
+         fimyYBxsJtnaxT64DGRpAEpu8GojmefLy/RWUoYrJOEtrjl0d4rV3VZtUmeEL1Jg7BCC
+         3AVA==
+X-Forwarded-Encrypted: i=1; AL+hErG6t0YUdQcG67T9FiGfC61ya7UNCnNyQxIdia24TzifPMffIXHdHmXopKekp6s+jjGJ89hp8hD7g9xU4IDi/SYG@lists.infradead.org
+X-Gm-Message-State: APuU4Z/yTp1eR6McXt4NZ6dLYUPCSqjWdLiwposM0B0rJiuhWtQcF0Jk
+	WaXZx/YBPTuFdqsEg/7sxYCC9JsJYI1+xBwQjSUWJMGAswh5/Mg0uEShuQXQV6xdLd0=
+X-Gm-Gg: AZFdTZfgMylqGytEVe84bY5nXcObdUDULPv4bYtXCXyPwmTRW/UaUwDmqdrKWfF8CH1
+	cWP+M+3MSyFNndjcuY9SRkPVJE1oM3TAHdASq+rxzGd7K8+V/NirS/dSBJ//HUEevPFWHZdln/C
+	/ts7YyRSjT5dRN6iq2EHdX0L4Y0ztIUqiHVA6jn1aRAiGNwIcurFMrNJTL+ghvPYu8kj1VNRaD9
+	eIXRkJUr5BqKh3V8Fe0bNVIw2e1rdI1CXUkkmFiKje/Zxvj+JazTLd2KHH7uARANCG5uLA99qrR
+	Y/Wb0pu+42hUEUSXg6spGsjc4JM+Fksf8s01b1tr9/xikDKt3hFtntULknfx/DKgC/73XXV9vO3
+	lKV3Px50/BYzfhAGFzpukhOmAz5V/eAmbvkp21pn+cYxO3E1ZWjBHB2u/74NvUCv2G92GsRJsQZ
+	9XJRy+KB7xOPkky+4OgTdUg3omGjwTZDe0Y8NlwsRZ4PHzzrOeifb0phs4DCnvA0IwmziefY02X
+	3+cgGuZVb3ErhUowR/aRQ6fFDO2bhC1WaMxZc1Egsz1ktB+XwZFQORydov8VfJOyQtVuy0FFMic
+	updWFQC7eVEpWhfN5gdbpJ/yndHQeHgGRNg/d7q+YDkxL1wYP/y3tzX93qgaw14hqK9+IyEZEhG
+	2RgcDclM5w3Kk5bJHqvgDsgkUsxKFSgS1sQbK9w+m1a3twWYD9dDUTFdNtUQRZfLMLuc0FYjnOY
+	idKBBoTd9cPd9N4Oi8O3oDQpAkOw==
+X-Received: by 2002:a05:600c:45d4:b0:4a2:84c:52f3 with SMTP id 5b1f17b1804b1-4bb8880988cmr211812645e9.6.1795380708837;
+        Sun, 22 Nov 2026 12:51:48 -0800 (PST)
 Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-79-14-29-58.business.telecomitalia.it. [79.14.29.58])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884b7515sm397355305e9.13.2026.11.22.12.51.43
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884b7515sm397355305e9.13.2026.11.22.12.51.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 12:51:44 -0800 (PST)
+        Sun, 22 Nov 2026 12:51:48 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: Ulf Hansson <ulfh@kernel.org>
 Cc: Lucas Stach <l.stach@pengutronix.de>,
@@ -80,17 +80,18 @@ Cc: Lucas Stach <l.stach@pengutronix.de>,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
 	Fabio Estevam <festevam@gmail.com>,
 	Frank Li <Frank.Li@nxp.com>,
-	Jacky Bai <ping.bai@nxp.com>,
+	Kees Cook <kees+treewide@kernel.org>,
+	Ming Qian <ming.qian@oss.nxp.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
+	Xu Yang <xu.yang_2@nxp.com>,
 	bui duc phuc <phucduc.bui@gmail.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-pm@vger.kernel.org
-Subject: [PATCH v4 2/4] pmdomain: imx: gpcv2: Keep the domains left on by the bootloader
-Date: Sun, 22 Nov 2026 21:51:11 +0100
-Message-ID: <20261122205136.138173-3-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v4 4/4] pmdomain: imx8m-blk-ctrl: Hold boot-on domain clocks until sync_state
+Date: Sun, 22 Nov 2026 21:51:13 +0100
+Message-ID: <20261122205136.138173-5-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261122205136.138173-1-dario.binacchi@amarulasolutions.com>
 References: <20261122205136.138173-1-dario.binacchi@amarulasolutions.com>
@@ -98,8 +99,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_125146_766873_9035BADB 
-X-CRM114-Status: GOOD (  21.55  )
+X-CRM114-CacheID: sfid-20261122_125151_046059_EE523CEC 
+X-CRM114-Status: GOOD (  19.33  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,169 +120,96 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The PGC domains are all registered as off, so a domain left on by the
-bootloader, e.g. DISPMIX to show a splash screen, is powered up again
-by its first consumer. On the i.MX8MN this turns the display off and
-hangs the system.
+The clocks of a domain left on by the bootloader have no user until
+its consumers probe, so they are gated when the unused clocks are
+disabled. On the i.MX8MN, with the LCDIF driver built as a module,
+this stops the pixel clock of the U-Boot splash screen long before
+the DRM driver probes.
 
-The GPC does not report the power state of a domain, but the ADB400
-bridge acknowledges the power-up handshake only while the domain is
-powered. Use it to register as on the domains left on by the
-bootloader.
+Keep the clocks of these domains enabled until sync_state, i.e. until
+all the consumers of the blk-ctrl have probed.
 
-Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
 ---
 
-(no changes since v3)
-
-Changes in v3:
-- Drop the runtime PM reference synchronously in the probe error path
+(no changes since v2)
 
 Changes in v2:
-- Release the resources of the domains left on when the driver is
-  removed
+- Rebase on the changes of the previous patch
 
- drivers/pmdomain/imx/gpcv2.c | 77 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 75 insertions(+), 2 deletions(-)
+ drivers/pmdomain/imx/imx8m-blk-ctrl.c | 32 +++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-diff --git a/drivers/pmdomain/imx/gpcv2.c b/drivers/pmdomain/imx/gpcv2.c
-index 6a54ee734514..f8f2d38c1b2a 100644
---- a/drivers/pmdomain/imx/gpcv2.c
-+++ b/drivers/pmdomain/imx/gpcv2.c
-@@ -292,6 +292,7 @@ struct imx_pgc_domain {
- 
- 	const int voltage;
- 	const bool keep_clocks;
-+	bool boot_on;	/* Left on by the bootloader */
- 	struct device *dev;
- 
- 	unsigned int pgc_sw_pup_reg;
-@@ -488,6 +489,8 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
- 
- 	pm_runtime_put_sync_suspend(domain->dev);
- 
-+	domain->boot_on = false;
-+
- 	return 0;
- 
- out_clk_disable:
-@@ -1315,9 +1318,27 @@ static const struct imx_pgc_domain_data imx8mn_pgc_domain_data = {
- 	.pgc_regs = &imx7_pgc_regs,
+diff --git a/drivers/pmdomain/imx/imx8m-blk-ctrl.c b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+index 04383d7e40cb..680a76b49ac4 100644
+--- a/drivers/pmdomain/imx/imx8m-blk-ctrl.c
++++ b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+@@ -84,6 +84,7 @@ struct imx8m_blk_ctrl_domain {
+ 	struct imx8m_blk_ctrl *bc;
+ 	int num_paths;
+ 	bool boot_on;	/* Left on by the bootloader */
++	bool boot_clks_held;	/* Until sync_state */
  };
  
-+/*
-+ * The GPC does not report the power state of a domain, but the ADB400
-+ * acknowledges the power-up handshake only while the domain is powered.
-+ */
-+static bool imx_pgc_domain_is_on(struct imx_pgc_domain *domain)
-+{
-+	u32 val;
-+
-+	if (!domain->bits.hskack)
-+		return false;
-+
-+	if (regmap_read(domain->regmap, domain->regs->hsk, &val))
-+		return false;
-+
-+	return (val & domain->bits.hskack) == domain->bits.hskack;
-+}
-+
- static int imx_pgc_domain_probe(struct platform_device *pdev)
- {
- 	struct imx_pgc_domain *domain = pdev->dev.platform_data;
-+	bool init_off;
- 	int ret;
+ struct imx8m_blk_ctrl_data {
+@@ -246,13 +247,31 @@ static int imx8m_blk_ctrl_get_boot_on(struct imx8m_blk_ctrl_domain *domain)
+ 	if (icc_bulk_set_bw(domain->num_paths, domain->paths))
+ 		dev_err(bc->dev, "failed to set icc bw\n");
  
- 	domain->dev = &pdev->dev;
-@@ -1348,12 +1369,44 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
- 		regmap_update_bits(domain->regmap, domain->regs->map,
- 				   domain->bits.map, domain->bits.map);
- 
--	ret = pm_genpd_init(&domain->genpd, NULL, true);
-+	init_off = !imx_pgc_domain_is_on(domain);
-+	ret = pm_genpd_init(&domain->genpd, NULL, init_off);
- 	if (ret) {
- 		dev_err_probe(domain->dev, ret, "Failed to init power domain\n");
- 		goto out_domain_unmap;
- 	}
- 
-+	/* Balance the first imx_pgc_power_down() */
-+	if (!init_off) {
-+		ret = pm_runtime_resume_and_get(domain->dev);
-+		if (ret < 0) {
-+			dev_err_probe(domain->dev, ret,
-+				      "Failed to resume domain\n");
-+			goto out_genpd_remove;
-+		}
++	/* Nobody else holds the clocks until the consumers probe */
++	if (clk_bulk_prepare_enable(domain->data->num_clks, domain->clks))
++		dev_warn(bc->dev, "failed to enable clocks of \"%s\"\n",
++			 domain->data->name);
++	else
++		domain->boot_clks_held = true;
 +
-+		if (!IS_ERR(domain->regulator)) {
-+			ret = regulator_enable(domain->regulator);
-+			if (ret) {
-+				dev_err_probe(domain->dev, ret,
-+					      "Failed to enable domain's regulator\n");
-+				goto out_put_pm;
-+			}
-+		}
-+
-+		if (domain->keep_clocks) {
-+			ret = clk_bulk_prepare_enable(domain->num_clks,
-+						      domain->clks);
-+			if (ret) {
-+				dev_err_probe(domain->dev, ret,
-+					      "Failed to enable domain's clocks\n");
-+				goto out_regulator_disable;
-+			}
-+		}
-+
-+		domain->boot_on = true;
-+	}
-+
- 	if (IS_ENABLED(CONFIG_LOCKDEP) &&
- 	    of_property_present(domain->dev->of_node, "power-domains"))
- 		lockdep_set_subclass(&domain->genpd.mlock, 1);
-@@ -1362,11 +1415,20 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
- 					   &domain->genpd);
- 	if (ret) {
- 		dev_err_probe(domain->dev, ret, "Failed to add genpd provider\n");
--		goto out_genpd_remove;
-+		goto out_clk_disable;
- 	}
+ 	domain->boot_on = true;
  
  	return 0;
+ }
  
-+out_clk_disable:
-+	if (!init_off && domain->keep_clocks)
-+		clk_bulk_disable_unprepare(domain->num_clks, domain->clks);
-+out_regulator_disable:
-+	if (!init_off && !IS_ERR(domain->regulator))
-+		regulator_disable(domain->regulator);
-+out_put_pm:
-+	if (!init_off)
-+		pm_runtime_put_sync(domain->dev);
- out_genpd_remove:
- 	pm_genpd_remove(&domain->genpd);
- out_domain_unmap:
-@@ -1385,6 +1447,17 @@ static void imx_pgc_domain_remove(struct platform_device *pdev)
- 	of_genpd_del_provider(domain->dev->of_node);
- 	pm_genpd_remove(&domain->genpd);
++static void imx8m_blk_ctrl_put_boot_clks(struct imx8m_blk_ctrl_domain *domain)
++{
++	if (!domain->boot_clks_held)
++		return;
++
++	clk_bulk_disable_unprepare(domain->data->num_clks, domain->clks);
++	domain->boot_clks_held = false;
++}
++
+ static void imx8m_blk_ctrl_put_boot_on(struct imx8m_blk_ctrl_domain *domain)
+ {
++	imx8m_blk_ctrl_put_boot_clks(domain);
++
+ 	if (!domain->boot_on)
+ 		return;
  
-+	if (domain->boot_on) {
-+		if (domain->keep_clocks)
-+			clk_bulk_disable_unprepare(domain->num_clks,
-+						   domain->clks);
+@@ -1059,11 +1078,24 @@ static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
+ };
+ MODULE_DEVICE_TABLE(of, imx8m_blk_ctrl_of_match);
+ 
++static void imx8m_blk_ctrl_sync_state(struct device *dev)
++{
++	struct imx8m_blk_ctrl *bc = dev_get_drvdata(dev);
++	int i;
 +
-+		if (!IS_ERR(domain->regulator))
-+			regulator_disable(domain->regulator);
++	/* This replaces the genpd provider sync_state */
++	of_genpd_sync_state(dev->of_node);
 +
-+		pm_runtime_put_sync(domain->dev);
-+	}
++	for (i = 0; i < bc->onecell_data.num_domains; i++)
++		imx8m_blk_ctrl_put_boot_clks(&bc->domains[i]);
++}
 +
- 	if (domain->bits.map)
- 		regmap_update_bits(domain->regmap, domain->regs->map,
- 				   domain->bits.map, 0);
+ static struct platform_driver imx8m_blk_ctrl_driver = {
+ 	.probe = imx8m_blk_ctrl_probe,
+ 	.remove = imx8m_blk_ctrl_remove,
+ 	.driver = {
+ 		.name = "imx8m-blk-ctrl",
++		.sync_state = imx8m_blk_ctrl_sync_state,
+ 		.pm = &imx8m_blk_ctrl_pm_ops,
+ 		.of_match_table = imx8m_blk_ctrl_of_match,
+ 		.suppress_bind_attrs = true,
 -- 
 2.43.0
 
