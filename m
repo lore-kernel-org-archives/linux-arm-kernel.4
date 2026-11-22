@@ -2,78 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8718C606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E144606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bSmn6Nzq;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Sf7csIt5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qAjIETT3;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=De2EkzP+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=48NwR66oWATlkGwRxtUnW7lJfKhnRbRUVaG3NPw5B6w=; b=bSmn6NzqkJh5AQ
-	55z9fagDYauxcaHmHejr6hPBW9IMo+iWEAfQRQgl2uwcUzawYDjqYF7A8zYiSNfku9klwd50Evyxt
-	fF14JESSxZo6TNwYXRI70m0lr35Ff85Sx+IezV/92xcOK8AX3r7l5NjFH1v0WTBVvh9befeWd54Jz
-	HqVO42QFJ/dHa/zmiqQLAotsT6Oitai+uUvs7xn690QgQpjTfL5hPio7w6Pqx6xrahIdzp+RgzPN4
-	8gadqSS4QlIWPfvmY95vt+0cDxGZiELcagtnzM+HWD89hdj6kPozcVY4dVnoAgGMc5Wf/AfeETIel
-	hK+QkVy2yFB3k3NfZqgA==;
+	List-Owner; bh=UnoQBYDYgrvm0uzeAP1oNmC1dNptSUJaGHHy2JIxghI=; b=qAjIETT3winAS0
+	Pvv72pU6M+77lUNyG4eVu1IWXbeuuQmoKVEv7qfcnRIB3tN7TYN6E/Vzjq1ZlmChHKlBDUgTl8IiT
+	jH+RUaA75RHudZGyWQQRhQxBDUGUXxoxMKyMRWWUQfqo6hf36HIOsdVgwg6nlx5lF0M2ZzYVAO2pm
+	aiPzbJukG5M4G/OZfaCtLOJrv3HajFofh2pGxeg7elH80Awdd1bOMw/Ac+9j+bPFPGQP+9U9S1SZr
+	ef9lDnjMtlKJh56XKYlO8Yn+4B2DWgE8P9eFVg6DOXqhj0vJgt+MKe8dCi6v8OMqWLgXCDK6PPjzR
+	Ohmx1yAcjOvUXSHfTqOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2RC-00000000qP7-1qUA;
-	Sun, 22 Nov 2026 07:56:38 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xV2Ss-00000000qZr-366c;
+	Sun, 22 Nov 2026 07:58:22 +0000
+Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2R8-00000000qO8-3Iul
+	id 1xV2Sq-00000000qZ8-18dg
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 07:56:37 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 1A1091A177F;
-	Sun, 22 Nov 2026 07:56:30 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DF43860512;
-	Sun, 22 Nov 2026 07:56:29 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7C6AF11BC000E;
-	Sun, 22 Nov 2026 08:56:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795334188; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=48NwR66oWATlkGwRxtUnW7lJfKhnRbRUVaG3NPw5B6w=;
-	b=Sf7csIt5NvVdKgckM/WCiS9vkzuDRHN6MTgDU0WksDvsD6pWWjJLuVPpfCas6Wty+LMrEs
-	nzpga915s9GzQ/xNFlDjE0sGWaMi56FVYOAOK2PPY9VY7NzMxqk79CZj5AN31wfRdFR0UI
-	t/CklDLUPi1tLU6P+qCPVWcAVWb39x3JR3tMQ0z8W4VO1KR7x+gTM5tkDZ51XxlPWXMupO
-	nRI8KgIukTpYnyTe7fKvCoa12PX+uoMfZYUWMdwxE0sBVupbv6rNBAc3a9gC3SfFY/DErY
-	D8rsd4i8NHuNEJZvlfpN2xgJGPgg13pYr8rKMQbW56zcBlLB3GWi9a7upkTniQ==
-Message-ID: <e72505dc-f20f-4473-98f2-52161e08c89d@bootlin.com>
-Date: Sun, 22 Nov 2026 08:56:13 +0100
+	Sun, 22 Nov 2026 07:58:21 +0000
+Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-3b3fb193c03so986712a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:58:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795334299; x=1795939099; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=UnoQBYDYgrvm0uzeAP1oNmC1dNptSUJaGHHy2JIxghI=;
+        b=De2EkzP+ULiMsmvtck9m/uunFgmquolPSZ5qPNRao9Ln77rHF2Q4MExYjsFr8LtcQe
+         R74HktTayOskOKmnMMtTc3qIE3+0337PtZ55mNxrWIt3srxzUvcc+KXmy444K0AEW4Oq
+         JEKCHZQ/DJoaF88tDgwWjZELJFDP/7HWrjLtqsu6rpZaS9iGE/Isg62zJgW+YCqPGUxM
+         CE83g6O3SyWPv4Eiob7fWtLkFBWdmUiwAFWUlrrujWpIZnyndWEHSfApME6fKPjJ5Ns8
+         B52QqbDrmcTB0N/xVb7r9lFMlfQH2gLf3vrqSOrnJT9FbY9u0bidenB6fScEucrAoczL
+         eRfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795334299; x=1795939099;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=UnoQBYDYgrvm0uzeAP1oNmC1dNptSUJaGHHy2JIxghI=;
+        b=K94tqT/cNoyL9Zp4/gWywsqc4DPi7ZgQnuLxLShodWT81WuILFEuLBlXzIBNX8ihnl
+         dGiOP6Fb9eUnU1QYbnsURwGv2e+utorLvCXDk0QJTM0h7yHjm4BvgnltdOuoLAPcYPZc
+         kTaIDCxUBxNc+XPcHZbaz7yYmIfyLphM+b2vqQ5JD5hA7A3uTbTr1eXXVIdF0SdxclG6
+         zUuqRP4ekywYkAxB0XByYhd7ouT614nLEyKUvBBDRR9Kt4EP0UUlP77dyulJ4iQELIb2
+         +niuTSRa3w3h1+fjofSVoOiodbZDT4CuITheRilsWeukLyDF9X9He4obtqO7QInVogZ5
+         Cl0w==
+X-Forwarded-Encrypted: i=1; AL+hErEprr7jVYD2o4/tjmQwPlaHv2ngVl6ZXD0KStdq+R6wE7jxSZTviuN9Lcq6ONZjffUrFRJVT8ThH+bbjZJRiTAZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z//oeK8/2NhOCLIsmz3hOrKHo5Q2X56vSb/yD2aWoWKdGz/vytY
+	bw3OzulghNaTd4+NCV7Z1wzx1MeAdQ4oPtT80OB+sHg9KOEFw5FhmU2v
+X-Gm-Gg: AZFdTZf3APfn9m0WeGxXBEJZV2P7uT0s14gqgEczRoWtFfTXkK/wFX5OQ9DLSTjAnmV
+	7ERXiDE/ohANDL85eHXgrZPjYf/QQmWyvIiP1SvXmVFm4j7NnqZYbh8vYfcvumZktUdZuCLy2Rd
+	m+pHH0cpHQEQULJSaayhQLb1XkoLPioIe/w9TKzq11J1Pb3gpQpfG8Yj5EWpzj7A8Q7oznkT4ca
+	5CV+AO2Iyuh4atCQze3IZWssKSUoAIVmnhvDU5FNcM9ZslciQLCB+drtuo99KCuWaKkjOWthqHL
+	WaZ329QaLgvXMaxJrL1KpBFyzv2fcWhkNPUqIwNlwXiBvnDcv/O/Im0XHErFdKuvjVYNxpX6eRi
+	H3jDQjHZ6I3NntDhQnJsNDJueh+74cTkd7QQV8yLSjUSgrZcsgI5P44kNRZnszGJWeamJ8NZcao
+	jzAmEA0X3JL+QfKlB0EseVDUzX2nnOsITiVhODFbrkAPB4r5mfJhVYe5l23EFWMZMeBW1tkQQRy
+	eihGX++tEZbsKYD8A7b6EFtk+q/UKRADNx74B6Eca4x9/6XXFYS13UMZwv53Xx7d1vrwLbSNcT5
+	GabhjwUP2f4dJF7MLjd8HR5br2YF77A7Cg0+Pkt0BLr/he026A==
+X-Received: by 2002:a17:90b:1fc4:b0:3b0:9e2c:9b60 with SMTP id 98e67ed59e1d1-3b41c98a145mr7001710a91.21.1795334298573;
+        Sat, 21 Nov 2026 23:58:18 -0800 (PST)
+Received: from fedora.tailc1fb0a.ts.net ([172.219.65.15])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0a34asm11570028a91.3.2026.11.21.23.58.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Nov 2026 23:58:18 -0800 (PST)
+From: Artem Novak <artem122novak@gmail.com>
+To: wahrenst@gmx.net
+Cc: bcm-kernel-feedback-list@broadcom.com,
+	florian.fainelli@broadcom.com,
+	hemanth.selam@gmail.com,
+	john.garry@linux.dev,
+	kraxel@redhat.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mmc@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	rjui@broadcom.com,
+	sbranden@broadcom.com,
+	ulfh@kernel.org,
+	Artem Novak <artem122novak@gmail.com>
+Subject: [PATCH v2] mmc: bcm2835: restore scatterlist after DMA setup failure
+Date: Sun, 22 Nov 2026 01:58:14 -0600
+Message-ID: <20261122075814.162099-1-artem122novak@gmail.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <fcfc5d38-2755-445c-8444-bd4c5b9c524f@gmx.net>
+References: <fcfc5d38-2755-445c-8444-bd4c5b9c524f@gmx.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net] net: stmmac: dwmac-sun8i: Limit the MTU to one
- descriptor buffer
-To: aiyengar1990@gmail.com, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- LABBE Corentin <clabbe.montjoie@gmail.com>
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Russell King <rmk+kernel@armlinux.org.uk>, Nicolai Buchwitz
- <nb@tipi-net.de>, stable@vger.kernel.org
-References: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_235634_997358_E4CC847F 
-X-CRM114-Status: GOOD (  21.87  )
+X-CRM114-CacheID: sfid-20261121_235820_452588_8E500C9A 
+X-CRM114-Status: GOOD (  15.01  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,83 +109,80 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+The DMA preparation path shortens the final scatterlist entry
+to reserve space for FIFO drain words.
 
-On 11/21/26 05:43, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> Russell King pointed out in [1] that max_mtu ignores the 11-bit buffer
-> size of normal descriptors. dwmac-sun8i always uses them in chain mode,
-> so a frame must fit one buffer, but max_mtu is SKB_MAX_HEAD() (3712 on
-> arm64). Sashiko asked in [2] for this to go in as a fix.
-> 
-> On an H616 the RX DMA fills 2044 bytes of a buffer and
-> ndesc_get_rx_status() drops a frame that spans two. On TX the MAC cuts
-> a frame after 2048 bytes (TX_FRM_LEN_CTL is clear). At MTU 2033 no UDP
-> datagram gets through in either direction.
-> 
-> Limit the MTU so that a frame with two VLAN tags and the FCS fits 2044
-> bytes (MTU 2018). MTU 2019-2026, which worked without VLAN tags, is now
-> refused.
-The problem is real indeed, but not specific to this glue. Rather, the max_mtu
-computation should be fixed for normal descriptors altogether. Can you work
-on such a fix ? I'd be happy to test, I have a few devices with normal descs
-lying around.
+If DMA mapping or descriptor preparation fails, the request
+falls back to PIO, but the shortened scatterlist entry is left
+unchanged. As a result, the PIO transfer may omit part of the
+data, potentially causing corrupted or incomplete I/O.
 
-Thanks,
+Restore the entry's original length and clear drain_words
+before returning to the fallback path.
 
-Maxime
+This issue was found while investigating a kernel panic on
+my Raspberry Pi server.
 
-> Link: https://lore.kernel.org/r/E1vLJcL-0000000ExBL-0GFe@rmk-PC.armlinux.org.uk [1]
-> Link: https://lore.kernel.org/r/20261112-sun8i-emac-jumbo-v2-2-aca0cf23cf17@gmail.com [2]
-> Fixes: 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i")
-> Cc: Russell King <rmk+kernel@armlinux.org.uk>
-> Cc: Nicolai Buchwitz <nb@tipi-net.de>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
-> Tested on an Orange Pi Zero2 (H616) on net/main with and without this
-> patch (RX fill measured on v7.3.5). Claude (AI) helped write this patch;
-> I reviewed and tested it.
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> index 2ece7ba9dd73..1f4fa722529f 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> @@ -6,6 +6,7 @@
->   */
->  
->  #include <linux/clk.h>
-> +#include <linux/if_vlan.h>
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
->  #include <linux/mdio-mux.h>
-> @@ -1208,6 +1209,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
->  	plat_dat->mac_setup = sun8i_dwmac_setup;
->  	plat_dat->tx_fifo_size = 4096;
->  	plat_dat->rx_fifo_size = 16384;
-> +	plat_dat->maxmtu = 2044 - ETH_HLEN - 2 * VLAN_HLEN - ETH_FCS_LEN;
->  
->  	ret = sun8i_dwmac_set_syscon(&pdev->dev, plat_dat);
->  	if (ret)
-> 
-> ---
-> base-commit: d5b89d55a322b632e2b465b392a4c1d9d338db9c
-> change-id: 20261121-sun8i-emac-mtu-limit-66a936064965
-> 
-> Best regards,
-> --  
-> Arun Iyengar <aiyengar1990@gmail.com>
+Fixes: 660fc733bd74 ("mmc: bcm2835: Add new driver for the sdhost controller.")
+Signed-off-by: Artem Novak <artem122novak@gmail.com>
+---
+ drivers/mmc/host/bcm2835.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/mmc/host/bcm2835.c b/drivers/mmc/host/bcm2835.c
+index efd1903c3ccd..49a975e984df 100644
+--- a/drivers/mmc/host/bcm2835.c
++++ b/drivers/mmc/host/bcm2835.c
+@@ -449,6 +449,8 @@ static
+ void bcm2835_prepare_dma(struct bcm2835_host *host, struct mmc_data *data)
+ {
+ 	int sg_len, dir_data, dir_slave;
++	struct scatterlist *trimmed_sg = NULL;
++	unsigned int original_len = 0;
+ 	struct dma_async_tx_descriptor *desc = NULL;
+ 	struct dma_chan *dma_chan;
+ 
+@@ -480,6 +482,8 @@ void bcm2835_prepare_dma(struct bcm2835_host *host, struct mmc_data *data)
+ 		for_each_sg(data->sg, sg, data->sg_len, i) {
+ 			if (sg_is_last(sg)) {
+ 				WARN_ON(sg->length < len);
++				trimmed_sg = sg;
++				original_len = sg->length;
+ 				sg->length -= len;
+ 				host->drain_page = sg_page(sg);
+ 				host->drain_offset = sg->offset + sg->length;
+@@ -495,14 +499,21 @@ void bcm2835_prepare_dma(struct bcm2835_host *host, struct mmc_data *data)
+ 				     &host->dma_cfg_tx);
+ 
+ 	sg_len = dma_map_sg(host->dma_dev, data->sg, data->sg_len, dir_data);
+-	if (!sg_len)
++	if (!sg_len) {
++		if (trimmed_sg)
++			trimmed_sg->length = original_len;
++		host->drain_words = 0;
+ 		return;
++	}
+ 
+ 	desc = dmaengine_prep_slave_sg(dma_chan, data->sg, sg_len, dir_slave,
+ 				       DMA_PREP_INTERRUPT | DMA_CTRL_ACK);
+ 
+ 	if (!desc) {
+ 		dma_unmap_sg(host->dma_dev, data->sg, data->sg_len, dir_data);
++		if (trimmed_sg)
++			trimmed_sg->length = original_len;
++		host->drain_words = 0;
+ 		return;
+ 	}
+ 
+-- 
+2.56.1
 
 
