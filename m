@@ -2,100 +2,134 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1DB8606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 19:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D88A606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 19:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fx7X20cn;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=kvd2dt1o
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v/vuRcon;
+	dkim=pass (2048-bit key, unprotected) header.d=yacoub.de header.i=@yacoub.de header.a=rsa-sha256 header.s=selector1 header.b=OaLUkh2L
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:Subject:From:To:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DxJ/XoENpsoa0BG0OwfPHHeMkEO45OcTsZupEqdYCwM=; b=Fx7X20cnTcIk617qRu2eT9Owap
-	QTuvKRaySOJBr85tAKfruO4XVXoI+bl53XHxqFE2i3/2vPdalH901s9PJN1OGcMwB6ZlAgOQoJJ2n
-	Kf6Fo0z4ujrcJq6IyFAG/uSZUX+o7TUzGV0yp8NpJC/frkIZV3v0U1geE6faPxpAxEZxEw39ijuKM
-	QYdPGslr6UDle0n30IoaKpgXM32ibAc3UxT+Q+Xe+co5KuU2gZfnNeufAggM2wwR1Qq+fGIR+1d4b
-	sroMKDenbu5bn5JuF9eZjHGEf1MRgD6f4s+a1+4eQZJM4nqLzCMhm1k2Y3+oWDjj2qNmWGn4wGNhf
-	+FPiNEFg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gr8rnH7+84Z/ktW+fpDVmnd0hCnKvsVzoR7c2W3u1VQ=; b=v/vuRconqx01S+
+	FaLhVjaHCHHtAy6hiJw6W0NG05lkPJaT/k4bFn9jYGpSS2wt1KswI4LjwJKs3H8A1Btv4AlJeMsOw
+	o39Gfek0QK4x3fduNcpleTKSZ4pmAvZFLGL/fhkH7CziJe8GLB/vG2puncUi9lnHc+SOjlIN66ene
+	72CnslxtVysAteWH4CFacW5JaQRSP0nBuQNJHwoioG+4MA1cmKyJl4dfUHysEoKwXQTKqDcuYEn3p
+	/CcVs1o4yZkTzbV945/3sR/xBbEGi4/0e23O413BIhv7+6axWc6Esrh3BxOLwq+f5OPwnJ7VfAuPB
+	NynIN80AhSWRWKZr77YA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVDcm-00000001g2E-2WAj;
-	Sun, 22 Nov 2026 19:53:20 +0000
-Received: from mout.web.de ([217.72.192.78])
+	id 1xVDfg-00000001gKb-0cRS;
+	Sun, 22 Nov 2026 19:56:20 +0000
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVDcd-00000001g1Y-2vhO
+	id 1xVDfd-00000001gK8-2jsd
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 19:53:18 +0000
-DKIM2-Signature: i=1; m=1; t=1795377188;
- mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
- rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=web.de;
- s=s29768273:rsa-sha256:McviSmFTfiRStRe172zuGVWTtnIw
-   OATGjw3HMUJC46lZFN/yttmz6iQxSTf2jc/FBO4wOjrUTbeDl7PxlHiFn3i6t20zRkYjH0sUqub
-   AeVk8MbxpUgM6LmzATSMsIy8xrZ5TAxeNkJDb+ETGiEZK3NJXAd3E+FOJbKssXcwH/Gt5sjoAXQ
-   5JE0vO5b59d155AnZo439HYVRjOPNmhsvPPr3OZXC8dqRSBItIs55UB/kSVs4LIBP7dZw8zJonA
-   3bDnVXlqNJK6J/joEqiW/LIaqBcTsdXhPZPi3XcUYUc8bXQ3Y189bk/9XVJvLhmKaITJMJHE3WJ
-   My3Oo/vOW1RSNw==;
-Message-Instance: m=1;
- h=sha256:
-   D5rVt4ryQI01eaKGx4kHzJgI+HggMqtO760LFwVMQCA=:
-   +h0OQCegU2Uki9JfrK9GeQlM+mKOlw8oWpls3LIaLVM=,
-  sha512:
-   SM4bG8frD1m0dE0Anwbz0l1nmrQNS6QlrGi3yalY8kGwisZpEEZRj0BgeyGFMgHieJWDJcDYLQSTc1Pa0u5LZg==:
-   92CXVhttNj9bHRgYx789yN+d/DTFuGpnP2qIxb3jN7iY0GjVbe9meaKXNDbrYPQQYGlcGp8nckKOC8eKUh6CPQ==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1795377135; x=1795981935; i=markus.elfring@web.de;
-	bh=DxJ/XoENpsoa0BG0OwfPHHeMkEO45OcTsZupEqdYCwM=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:From:Subject:
-	 Cc:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=kvd2dt1o8YFP/2gAYgDEL4YlKDF+RHjm+CV5QRn6lw1uQQQ8UdFCVmpBDUNrpnze
-	 Bv6ch1J5PvBFnsq80MW95fAlLofrlSMzBnQEKOnhj/ogpcuRcihNgOM+s8x2trd7z
-	 AkPNZtUDBFSRgXL0D+WZpMzsCLiyoWIAr2bgikyfyhRC67aYmIjt8N8fpAdl9G7KG
-	 TtDVZE5pSV3m08i59FU/b5qlFOK8kfg/lEvh305rZmMpxtxx6h411usDvFeToQb8K
-	 bnlzgpVrSW8sVW7aj2Mf6KrhA11tqi0/7MqmlGwCJZ26e///0bYmYjsZfv+a7O+SK
-	 NeVUbVpHmTjlP6eeqQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MJnrX-1xogGU14cD-00KsoG; Sun, 22
- Nov 2026 20:52:15 +0100
-Message-ID: <f691bbaa-ddb5-45bf-8f85-fcf354a6af03@web.de>
-Date: Sun, 22 Nov 2026 20:52:11 +0100
+	Sun, 22 Nov 2026 19:56:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pQGuhUCt4f4aBJWei6u1LFFuzEQc0zOhiks16vklOEewuypFUo/WKxOgMP2ndXRSa84A6NsZnfgxUhnllANbQ01Yhg8kJCa+y5ZYXofBHgPKGIFqdj3Vf4+Gl+vCQBndSCtAvqtHgFkAXdvcIiun+RgCiVPJzIKHmSw3nQ5tcvUsCEfcZe6y9sZMdGhKPcv0DhSgdKD8ETiw6ylqfkCKHXm6tBDm1uCAwv5ygblI7kzExQnWmEmVS4Wwa1zYBwGz6IbPy8sIiyIjROfpg9+n8kpQMA8ul5o0tJh0UH+LFwGQRGrBbeLsXP40LhCMp2E5AT7y4y9m4HmnQLbF9ofL1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gr8rnH7+84Z/ktW+fpDVmnd0hCnKvsVzoR7c2W3u1VQ=;
+ b=vtZWTFN/fewnhjPEsVwcQluuPo2FUKQtIFdm7j90ZoduW1Lj+yixdVrRd6urrqqq5pTc7ZIAszIMWB0QXidHladQaECdDEF0D9RlGkbKTNM1gWAhEbhbjFHSUYdjS5IffbGs3dxDRdrffXDCxSH40RdPqKx2WWLdPqclgzcED1B7oFo5Il7n/Lw2+Pifw4bHj32O2y166ByVnFHwCpSnzwSxOwm4VL5Sz/Tdc9IJMgjM+hD0KgbZCz09cjF4hzoBVwAqxnKB0XqQfSs3JHBG1M0tNKczK5yMuO+E/6tcYjnrntYh1Ug8oL24/UkrwPGYY9ViX8R1Lnpa7wFHIGCf6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=yacoub.de; dmarc=pass action=none header.from=yacoub.de;
+ dkim=pass header.d=yacoub.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yacoub.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gr8rnH7+84Z/ktW+fpDVmnd0hCnKvsVzoR7c2W3u1VQ=;
+ b=OaLUkh2LZ/dJE/crmEQxfVZwmkcS+PZY0cX2CMx8KMRON7BO1l5ayCqvVy7DicvWR6lDuK6nD6ORelvcZr1YRXHEH+Qupq5MrB0FuBxlJC+ltJpi6ClVxO3WyOo9UWqm1pyUFEXUtHi1Vui+HJXevvpkYDYKFtxb0Yp0lnDWIRsaklYHzgxHXM4HbbwNmqqxb+V+86wzBUbXNwrqLRCifSZgi/XodW+nz4yTkG7IYal/42nbtSspRYk2pTzocBJfqlvTHq0WepQj/p04K1wW+ul7/26mVy24/tL2kzRzeAKP9ze0Qfo8Q+zW/9dBgWNI8/ABL7qlkh41RQ9e4hXkgA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=yacoub.de;
+Received: from MRWPR04MB12069.eurprd04.prod.outlook.com (2603:10a6:501:99::13)
+ by GVXPR04MB9925.eurprd04.prod.outlook.com (2603:10a6:150:112::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Sun, 22 Nov
+ 2026 19:56:07 +0000
+Received: from MRWPR04MB12069.eurprd04.prod.outlook.com
+ ([fe80::37b9:4b72:7864:5809]) by MRWPR04MB12069.eurprd04.prod.outlook.com
+ ([fe80::37b9:4b72:7864:5809%3]) with mapi id 15.21.0639.012; Sun, 22 Nov 2026
+ 19:56:07 +0000
+From: Ramin Moussavi <ramin.moussavi@yacoub.de>
+To: Russell King <linux@armlinux.org.uk>,
+	Puranjay Mohan <puranjay@kernel.org>
+Cc: Alexei Starovoitov <ast@kernel.org>,
+	Daniel Borkmann <daniel@iogearbox.net>,
+	Andrii Nakryiko <andrii@kernel.org>,
+	Nicolas Schichan <nschichan@freebox.fr>,
+	bpf@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH bpf-next v3] bpf, arm32: build constants inline instead of using a literal pool
+Date: Sun, 22 Nov 2026 20:56:00 +0100
+Message-ID: <20261122195600.2573516-1-ramin.moussavi@yacoub.de>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261120140147.166934-1-ramin.moussavi@yacoub.de>
+References: <20261120140147.166934-1-ramin.moussavi@yacoub.de>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR3P281CA0061.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4b::9) To MRWPR04MB12069.eurprd04.prod.outlook.com
+ (2603:10a6:501:99::13)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Michal Simek
- <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] PCI: xilinx-nwl: Use devm_clk_get_enabled() in
- nwl_pcie_probe()
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
- Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:so1GHCFBbuTUuC6TUJEMAci0TR+yKBhHP6oWeOsI2tWY0AG5PaU
- lPMJcaa7TxQvkzdVk/darvg+U6RS/y6ExjWVmVzLsr+VUiMm36xD0AeAvZmUIv5BwlAVTr3
- 7m8lwEBUx+V8E6EazR7npXTjFEMCYXbhtDPWeT5sDvpciL1mg79qAFLaLazuOUm3KtCuMdb
- 4eyaHQdAZpCdqD9SbhvTQ==
-UI-OutboundReport: notjunk:1;M01:P0:POx5QCjNJB0=;8HGCU+pn6/uS4d9e+2ECQT5uil7 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 Xf/X7CKrR2zwf6ULhdQc0zlsIgqMmilU=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MRWPR04MB12069:EE_|GVXPR04MB9925:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83efa1c0-ff28-45f4-abbe-08df48d2a586
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|23010399003|10067099003|11063799006|5023799004|56012099006|261021123027099003|261021121427099003|261026121527099003|261022105027099003|261022113327099003|261009223027099003|261026140227099003|261022115727099003|261022075727099003|261028144727099003|261102123227099003|22082099003|6133799003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: FJUDIb+1CtvKsHTXucJpKP82KfRGTGDDIbx5R648j//BDba73hIpyi4k22R1ksPpQJMjZ9CtKxKu8n4qdzkD1CkchLzdVM4789IRAXmMrsiyRCcsTUMg+RG5GiCIv5WUkpDyZSe2ZHDU+dilMW5Q4zfg6cgwy4lQ1FKN5ltJ7nyBfwyN2NnhUix3V+TmxRh29I2idF5MSl6HfH3YevSP/vUHRv6p3AZKK2f8O8R2Go2kKfLPGnAwSlNhdXxoBiKPhHwgo1wyjhWSH4DTbIBBl52taKJQLok1sQRThUHdztmkhDamPs5rqI+LtX6dvbfZsPgLj7shNyteFRCrSzAzHZxLYC/G7dMUlEI8M8Mwz5LJ/koYzm0ke6bzm2knQfM6/Yw2N2PeJs+zimaPJDi6vSCMgb43YSEIGZcj9JHVJOtG0N0NqIlGZVuvImxq1sELZ/9EDl6RbD1u/iwcdMYyHcOGdsp2u6ZucRxzdyybWBYxsA2qattix8xK2eUb6w7Fehfz0XmZukClX6CAXq+158kNeV6ocrH9N4tR/mTDbhu7Ch2siRj6WU6EHWD6YL1CYsCoNIMWtZl5aa7FeO1DE73e6a4eVAGb0FU95ZnFs/Y=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRWPR04MB12069.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(10067099003)(11063799006)(5023799004)(56012099006)(261021123027099003)(261021121427099003)(261026121527099003)(261022105027099003)(261022113327099003)(261009223027099003)(261026140227099003)(261022115727099003)(261022075727099003)(261028144727099003)(261102123227099003)(22082099003)(6133799003)(18002099003)(3023799007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bk1Vhqwgg/48bleeAY6F0M+UeKHHMT7CpQEc+055YlRUvJHwGisbmWNiWVN1?=
+ =?us-ascii?Q?pDpx9lHVMxe1EDe2QqN5pf7mfEdEXup2BDJ3drXrUKaQ2X2tBw700eSQQSVv?=
+ =?us-ascii?Q?PeN7aNxT6LxK8ahjfgSOD7xEXvJMSgcIARDBQehSiee4xV6nDSJlWvc1NZGh?=
+ =?us-ascii?Q?QowiXB8OGjE3Ms/xU/wQ/Gst4x4S7A29hbXWqzXba31m4BPeG+hFxJFQxql1?=
+ =?us-ascii?Q?DgUNaZlCAOvnnn5757hULUlEjere5RlOcMFgfKCqascLhc9/j/hJqoHUPQ+e?=
+ =?us-ascii?Q?UwD61ZTfl0BQ3OtUCp6WtoQTvyVjiOebXQu7zh+7QGcI6+PRE/1BZmP+BUY2?=
+ =?us-ascii?Q?x/ldCnpsc6C7p+6p/K0SLTB9qqHnblhMByKN4vZoCTg6RZ4beextNWQA0Ceo?=
+ =?us-ascii?Q?0rp7t+vrDBrf5cusVIuTTILewRYqJS8F+hOgyTvAIQpX6O7MGqaBKx/vROWl?=
+ =?us-ascii?Q?UPG3tE4PiBNjareLB3+LFgQaR/hDXTDG3ndVYhXi5sCagcDY0LDgdR1Q64Y+?=
+ =?us-ascii?Q?OChsjUOgznif62O3eoOSc3Zc1pRbJPZ2jzac/DdP+frVjYP7BHG554uwf0PN?=
+ =?us-ascii?Q?xuXQlQHuXWEo7qrHAsFQXN4KhpFQ5K4QZ28a1cwf1Y/Bi1Pz0UVrEn6bartT?=
+ =?us-ascii?Q?RxSiwf/2Ve/NaVH4HHRpk82Sk/mVwDeWV9356x06mGtsiKUbO0/sP6osPJxd?=
+ =?us-ascii?Q?C+JHXDgXo0kCu87A9BgLEdsDFOTxj/sG5CwyoQXeHPp9r/GVyavsQ4Hg0Xav?=
+ =?us-ascii?Q?Xyk2k0S5Q/2yV9DqUi+ikqK41mFP4V15i2wPSkmrZE00CWaM8hYkVBQz4maS?=
+ =?us-ascii?Q?Hx4G5iOEW2RN0zvF9ETkPaFIz34oIbpDXZI3XAN1ffzZd1yidMvrICS1bSlS?=
+ =?us-ascii?Q?FIdhY3Kq+/BWZbqSI9wlHWRmYfcM3FkZKA1N0visr8QULLQWPlZtgIaBmeGs?=
+ =?us-ascii?Q?0n/aLPY7B0qbbjJzo/Ur2l7bIGuFkGC7AABqUL450NjGIYJ+B7z8NjAGA3nk?=
+ =?us-ascii?Q?5wXChn2VicwkVAVkxrTAl0qDeQRpb0q7kZ3wJoeWH6udcf2rhUTkvXABVe5/?=
+ =?us-ascii?Q?spl8QH77NZA5PnOlLn2AP+PZRYa/hwisgLq458OJTDP1mQPREad95dCav3OR?=
+ =?us-ascii?Q?yLv/vQP0PNYm/j2GZNSEWkRu08HNCFYpqleLLJ09HASf2vLc/SlN09vwJtw5?=
+ =?us-ascii?Q?HxHwEhMPViMH4ZHTdB8uNowyvUS7LphSnThl2L+Kme/AYYNqGlzh4o3yWe7L?=
+ =?us-ascii?Q?X2+4J7bU+M1taZpq6ZeviRuDIfuspj0T02BlpBCqnYV5LB2NnLX+Ghf6sbvM?=
+ =?us-ascii?Q?w9GnVEajAXY5YvURNZ0cISOSNoZm9CK648mFC6B2Wtq9+Mr5pluaSlzn5ZsG?=
+ =?us-ascii?Q?DabOXQDMHdr35jFt5LJzSqjg4h4KSPshXZ5W55gMJQszl25epoJ/XCo24dUb?=
+ =?us-ascii?Q?MYRBcoEAheMycTGQGZDe2LtA7MIX+UpqfitxvwXXdj6Ncm2Wizp8AhoUe5jA?=
+ =?us-ascii?Q?USB9DqW7UPP7jt672V3JiNBVTNh/ciNfudou1dKpABlhsC67VleD4NxNT2GR?=
+ =?us-ascii?Q?pyX0eAlQzHuAcakSnXOCGLP8AusfsVi4A2LOAtBXfZnDGIMCeNUVHS+r/gZl?=
+ =?us-ascii?Q?dMHVqMaaitH154cUzDUhQtBf3vGPJATCYVN7TbWmgn26jYnbVRAq0sF+sDp+?=
+ =?us-ascii?Q?o9r4wG+weXqGgD6gBwIVkhUpMY7tvigsi2Dm6pFIKHdz5Mqxe+2HTBgjEjxB?=
+ =?us-ascii?Q?4cWL4oQBgjX/Yeu9Uu5gZFFWo/t913w=3D?=
+X-OriginatorOrg: yacoub.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83efa1c0-ff28-45f4-abbe-08df48d2a586
+X-MS-Exchange-CrossTenant-AuthSource: MRWPR04MB12069.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2026 19:56:06.9287
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2e96c4fa-c0f0-4eed-b0b5-8f85f5e8376c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iBXZzZy+jPeF5U60pclTzR8kf/G41mi2bFQHH9DS0Ul9gP6naCkVjBCVHMxa1RtDY7TTX9TPAHlfVvOcsAHfO5it1dHvRM81PpPY4WsQU7s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9925
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_115312_238081_E86A0DF8 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261122_115617_923777_48EC82A9 
+X-CRM114-Status: GOOD (  26.97  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,82 +141,347 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Sun, 22 Nov 2026 20:35:35 +0100
+Below __LINUX_ARM_ARCH__ 7, where MOVW/MOVT cannot be assumed,
+emit_mov_i_no8m() put every constant that is not an imm8m into a literal
+pool behind the epilogue and loaded it with LDR rX, [pc, #off].  That
+offset field is 12 bits and the pool sits at the end of the image, so
+from roughly 4 KB of JITed code on, the load no longer reaches it.
 
-* Reuse existing functionality from devm_clk_get_enabled() instead of
-  keeping duplicate source code.
+Commit 0b59d8806a31 ("ARM: net: delegate filter to kernel interpreter
+when imm_offset() return value can't fit into 12bits.") handles that by
+setting FLAG_IMM_OVERFLOW and dropping the whole program to the
+interpreter, and already noted that multiple pools "would better be done
+as a feature instead of fix".  That check does not catch every case: imm
+is a u16 in imm_offset(), so
 
-* Omit a clk_disable_unprepare() call on an error handling path
-  and in the implementation of the function =E2=80=9Cnwl_pcie_remove=E2=80=
-=9D.
+	imm = offset - (8 + ctx->idx * 4);
+	if (imm & ~0xfff)
 
-* Delete the label =E2=80=9Cerr_clk=E2=80=9D.
+sees the truncated value.  Take a classic filter that starts with
+'div #3', whose divisor helper is reached through such a load, and that
+is long enough to push the pool out of reach: at a displacement of
+0x10008, imm becomes 0x8 and the check passes.  The emitted
+LDR ip, [pc, #8] then loads an instruction instead of the address of
+jit_udiv32, and BLX ip jumps to whatever that instruction happens to be.
 
-This issue was detected by using the Coccinelle software.
+Build the constant in the register instead: a single MVN when the
+inverted value is an imm8m, otherwise one MOV/ORR per non-zero byte of
+val, or MVN/BIC per non-zero byte of ~val once the top half is all
+ones.  A byte at a byte-aligned position is always an imm8m, so the
+sequence always exists.  Inverting pays for small negative values: -264
+is 0xfffffef8, which costs an instruction per 0xff byte, while ~val is
+0x107 and takes MVN #0x7 plus BIC #0x100.
 
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/pci/controller/pcie-xilinx-nwl.c | 13 ++-----------
- 1 file changed, 2 insertions(+), 11 deletions(-)
+Without a pool, constant loads no longer put a ceiling on program size,
+and FLAG_IMM_OVERFLOW with ctx->flags, which held nothing else,
+ctx->imms, ctx->imm_count and ctx->epilogue_bytes go away with it.
 
-diff --git a/drivers/pci/controller/pcie-xilinx-nwl.c b/drivers/pci/contro=
-ller/pcie-xilinx-nwl.c
-index 0dee19fa24ca..fd134317e9c4 100644
-=2D-- a/drivers/pci/controller/pcie-xilinx-nwl.c
-+++ b/drivers/pci/controller/pcie-xilinx-nwl.c
-@@ -844,20 +844,14 @@ static int nwl_pcie_probe(struct platform_device *pd=
-ev)
- 		return err;
- 	}
-=20
--	pcie->clk =3D devm_clk_get(dev, NULL);
-+	pcie->clk =3D devm_clk_get_enabled(dev, NULL);
- 	if (IS_ERR(pcie->clk))
- 		return PTR_ERR(pcie->clk);
-=20
--	err =3D clk_prepare_enable(pcie->clk);
--	if (err) {
--		dev_err(dev, "can't enable PCIe ref clock\n");
--		return err;
+It costs up to four instructions per hard constant instead of one.  The
+pool was not much cheaper: imm_offset() counts duplicates on the sizing
+pass, so every use already took 4 bytes of LDR plus 4 bytes of slot.
+
+The 4 KB ceiling is low enough to be hit by the kernel itself.  An ARMv5
+kernel fails to boot when CONFIG_BPF_JIT_ALWAYS_ON=y and
+CONFIG_NET_PTP_CLASSIFY=y are set together: the first leaves no
+interpreter to fall back to, the second makes sock_init() build the PTP
+classifier, which needs 5124 bytes of ARM code.  bpf_prog_create() then
+returns -ENOTSUPP and ptp_classifier_init() turns that into a BUG_ON.
+Neither option is unusual - NET_PTP_CLASSIFY is selected by
+PTP_1588_CLOCK, which defaults to ETHERNET, which defaults to y:
+
+  kernel BUG at net/core/ptp_classifier.c:223!
+  PC is at ptp_classifier_init+0x3c/0x70
+   ptp_classifier_init from sock_init+0xac/0xf0
+
+seccomp reaches the JIT the same way, so filters of that size are likely
+rejected there as well; that was not measured.
+
+This is not confined to ARMv5 and ARMv6 hardware.  __LINUX_ARM_ARCH__
+is 6 whenever CPU_32v6 is set, even alongside CPU_32v7, because the v6
+line wins in arch/arm/Makefile; imx_v6_v7_defconfig and omap2plus_defconfig
+enable both.  With the JIT on, an i.MX6 runs this path.
+
+Tested on versatile_defconfig (ARM926EJ-S) under qemu with both options
+set: the kernel boots again, and SO_ATTACH_FILTER accepts cBPF filters
+up to the 4096-instruction maximum.
+
+Fixes: 0b59d8806a31 ("ARM: net: delegate filter to kernel interpreter when imm_offset() return value can't fit into 12bits.")
+Suggested-by: Alexei Starovoitov <ast@kernel.org>
+Signed-off-by: Ramin Moussavi <ramin.moussavi@yacoub.de>
+---
+v3:
+- emit_mov_i_no8m(): take the MVN/BIC path for val >= 0xffff0000, so a
+  small negative value costs two instructions instead of four, and drop
+  the unreachable 'if (first)' fallback (Alexei)
+- describe the u16 truncation in imm_offset() that lets the 12-bit check
+  pass on a displacement it cannot encode, and add the Fixes tag for it
+  (Alexei)
+- correct the commit message: __LINUX_ARM_ARCH__ is 6 on a kernel built
+  for both v6 and v7, so this path is not limited to ARMv5 hardware, and
+  drop the arm64 comparison, which does not hold for small negative
+  values (Alexei)
+- Alexei's hunk was untested as posted: the emitted sequences are now
+  decoded and simulated for all 2^32 values, and the filters below are
+  attached and then run, not just attached
+
+Tested under qemu with cBPF filters of 16, 64, 256, 1024, 2048, 4000 and
+4096 instructions, each starting with a 'div #3' whose helper address is
+one of these constants.  With CONFIG_BPF_JIT_ALWAYS_ON=y there is no
+interpreter to fall back to, so an accepted filter means the JIT
+translated it.  4096 is the classic cBPF maximum; eBPF programs loaded
+through bpf() can be far larger and were not part of the test.
+
+  versatilepb / ARM926EJ-S   ARMv5    versatile_defconfig    7/7
+  raspi1ap / ARM1176         ARMv6K   bcm2835_defconfig      7/7
+  virt / Cortex-A15          ARMv7    multi_v7+ARCH_MULTI_V6 7/7
+
+That a v6+v7 kernel never emits MOVW/MOVT, even on the v7 part, is worth
+fixing on its own; I will send that separately, since it is an
+optimisation rather than part of this fix.
+
+This patch was written and reviewed with LLM assistance.  The simulation
+mentioned above came out of that review; it was written three times
+independently, and the three agreed on every value.
+
+v2: https://lore.kernel.org/all/20261120140147.166934-1-ramin.moussavi@yacoub.de/
+- rebased onto bpf-next, which had taken 0af298e62e5c in the ctx.imms
+  allocation this patch removes
+- drop ctx->flags, which holds nothing once FLAG_IMM_OVERFLOW is gone
+- comment style in emit_mov_i_no8m()
+v1: https://lore.kernel.org/all/20261111121621.665533-1-ramin.moussavi@yacoub.de/
+
+Applies cleanly to both bpf and bpf-next; arch/arm/net/bpf_jit_32.{c,h}
+are identical in the two trees.
+ arch/arm/net/bpf_jit_32.c | 119 ++++++++++----------------------------
+ arch/arm/net/bpf_jit_32.h |   3 +
+ 2 files changed, 33 insertions(+), 89 deletions(-)
+
+diff --git a/arch/arm/net/bpf_jit_32.c b/arch/arm/net/bpf_jit_32.c
+index aa240e3de6e70..16ae9c435c619 100644
+--- a/arch/arm/net/bpf_jit_32.c
++++ b/arch/arm/net/bpf_jit_32.c
+@@ -130,8 +130,6 @@ enum {
+ #define TMP_REG_2	(MAX_BPF_JIT_REG + 1)	/* TEMP Register 2 */
+ #define TCALL_CNT	(MAX_BPF_JIT_REG + 2)	/* Tail Call Count */
+ 
+-#define FLAG_IMM_OVERFLOW	(1 << 0)
+-
+ /*
+  * Map eBPF registers to ARM 32bit registers or stack scratch space.
+  *
+@@ -193,10 +191,6 @@ static const s8 bpf2a32[][2] = {
+  * offsets		:	array of eBPF instruction offsets in
+  *				JITed code.
+  * target		:	final JITed code.
+- * epilogue_bytes	:	no of bytes used in epilogue.
+- * imm_count		:	no of immediate counts used for global
+- *				variables.
+- * imms			:	array of global variable addresses.
+  */
+ 
+ struct jit_ctx {
+@@ -205,15 +199,9 @@ struct jit_ctx {
+ 	unsigned int prologue_bytes;
+ 	unsigned int epilogue_offset;
+ 	unsigned int cpu_architecture;
+-	u32 flags;
+ 	u32 *offsets;
+ 	u32 *target;
+ 	u32 stack_size;
+-#if __LINUX_ARM_ARCH__ < 7
+-	u16 epilogue_bytes;
+-	u16 imm_count;
+-	u32 *imms;
+-#endif
+ };
+ 
+ /*
+@@ -404,53 +392,6 @@ static void jit_fill_hole(void *area, unsigned int size)
+ #define _STACK_SIZE	(ctx->prog->aux->stack_depth + SCRATCH_SIZE)
+ #define STACK_SIZE	ALIGN(_STACK_SIZE, STACK_ALIGNMENT)
+ 
+-#if __LINUX_ARM_ARCH__ < 7
+-
+-static u16 imm_offset(u32 k, struct jit_ctx *ctx)
+-{
+-	unsigned int i = 0, offset;
+-	u16 imm;
+-
+-	/* on the "fake" run we just count them (duplicates included) */
+-	if (ctx->target == NULL) {
+-		ctx->imm_count++;
+-		return 0;
 -	}
 -
- 	err =3D nwl_pcie_phy_enable(pcie);
- 	if (err) {
- 		dev_err(dev, "could not enable PHYs\n");
--		goto err_clk;
-+		return err;
+-	while ((i < ctx->imm_count) && ctx->imms[i]) {
+-		if (ctx->imms[i] == k)
+-			break;
+-		i++;
+-	}
+-
+-	if (ctx->imms[i] == 0)
+-		ctx->imms[i] = k;
+-
+-	/* constants go just after the epilogue */
+-	offset =  ctx->offsets[ctx->prog->len - 1] * 4;
+-	offset += ctx->prologue_bytes;
+-	offset += ctx->epilogue_bytes;
+-	offset += i * 4;
+-
+-	ctx->target[offset / 4] = k;
+-
+-	/* PC in ARM mode == address of the instruction + 8 */
+-	imm = offset - (8 + ctx->idx * 4);
+-
+-	if (imm & ~0xfff) {
+-		/*
+-		 * literal pool is too far, signal it into flags. we
+-		 * can only detect it on the second pass unfortunately.
+-		 */
+-		ctx->flags |= FLAG_IMM_OVERFLOW;
+-		return 0;
+-	}
+-
+-	return imm;
+-}
+-
+-#endif /* __LINUX_ARM_ARCH__ */
+-
+ static inline int bpf2a32_offset(int bpf_to, int bpf_from,
+ 				 const struct jit_ctx *ctx) {
+ 	int to, from;
+@@ -469,7 +410,34 @@ static inline int bpf2a32_offset(int bpf_to, int bpf_from,
+ static inline void emit_mov_i_no8m(const u8 rd, u32 val, struct jit_ctx *ctx)
+ {
+ #if __LINUX_ARM_ARCH__ < 7
+-	emit(ARM_LDR_I(rd, ARM_PC, imm_offset(val, ctx)), ctx);
++	/*
++	 * A single MVN if the inverted value is an imm8m.  Else MOV + ORR set
++	 * the bytes of val, or MVN + BIC clear the bytes of ~val -- a byte is
++	 * always an imm8m.  Inverting pays once the top half is all ones, as
++	 * it is for a small negative value: those two bytes cost an insn each
++	 * the other way round.
++	 */
++	u32 op = ARM_MOV_I(rd, 0), next = ARM_ORR_I(rd, rd, 0);
++	int imm12 = imm8m(~val);
++	unsigned int shift;
++
++	if (imm12 >= 0) {
++		emit(ARM_MVN_I(rd, imm12), ctx);
++		return;
++	}
++	if (val >= 0xffff0000) {
++		op = ARM_MVN_I(rd, 0);
++		next = ARM_BIC_I(rd, rd, 0);
++		val = ~val;
++	}
++	for (shift = 0; shift < 32; shift += 8) {
++		u32 part = val & (0xffU << shift);
++
++		if (!part)
++			continue;
++		emit(op | imm8m(part), ctx);
++		op = next;
++	}
+ #else
+ 	emit(ARM_MOVW(rd, val & 0xffff), ctx);
+ 	if (val > 0xffff)
+@@ -2091,14 +2059,6 @@ static int build_insn(const struct bpf_insn *insn, struct jit_ctx *ctx)
+ 		pr_err_once("unknown opcode %02x\n", code);
+ 		return -EINVAL;
  	}
-=20
- 	err =3D nwl_pcie_bridge_init(pcie);
-@@ -889,8 +883,6 @@ static int nwl_pcie_probe(struct platform_device *pdev=
-)
-=20
- err_phy:
- 	nwl_pcie_phy_disable(pcie);
--err_clk:
--	clk_disable_unprepare(pcie->clk);
- 	return err;
+-
+-	if (ctx->flags & FLAG_IMM_OVERFLOW)
+-		/*
+-		 * this instruction generated an overflow when
+-		 * trying to access the literal pool, so
+-		 * delegate this filter to the kernel interpreter.
+-		 */
+-		return -1;
+ 	return 0;
  }
-=20
-@@ -899,7 +891,6 @@ static void nwl_pcie_remove(struct platform_device *pd=
-ev)
- 	struct nwl_pcie *pcie =3D platform_get_drvdata(pdev);
-=20
- 	nwl_pcie_phy_disable(pcie);
--	clk_disable_unprepare(pcie->clk);
+ 
+@@ -2192,21 +2152,7 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_verifier_env *env, struct bpf_pr
+ 
+ 	ctx.epilogue_offset = ctx.idx;
+ 
+-#if __LINUX_ARM_ARCH__ < 7
+-	tmp_idx = ctx.idx;
+-	build_epilogue(&ctx);
+-	ctx.epilogue_bytes = (ctx.idx - tmp_idx) * 4;
+-
+-	ctx.idx += ctx.imm_count;
+-	if (ctx.imm_count) {
+-		ctx.imms = kzalloc_objs(u32, ctx.imm_count);
+-		if (ctx.imms == NULL)
+-			goto out_off;
+-	}
+-#else
+-	/* there's nothing about the epilogue on ARMv7 */
+ 	build_epilogue(&ctx);
+-#endif
+ 	/* Now we can get the actual image size of the JITed arm code.
+ 	 * Currently, we are not considering the THUMB-2 instructions
+ 	 * for jit, although it can decrease the size of the image.
+@@ -2224,7 +2170,7 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_verifier_env *env, struct bpf_pr
+ 	 * we must fall back to the interpretation
+ 	 */
+ 	if (header == NULL)
+-		goto out_imms;
++		goto out_off;
+ 
+ 	/* 2.) Actual pass to generate final JIT code */
+ 	ctx.target = (u32 *) image_ptr;
+@@ -2254,11 +2200,6 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_verifier_env *env, struct bpf_pr
+ 	prog->jited = 1;
+ 	prog->jited_len = image_size;
+ 
+-out_imms:
+-#if __LINUX_ARM_ARCH__ < 7
+-	if (ctx.imm_count)
+-		kfree(ctx.imms);
+-#endif
+ out_off:
+ 	kfree(ctx.offsets);
+ 
+@@ -2267,6 +2208,6 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_verifier_env *env, struct bpf_pr
+ out_free:
+ 	image_ptr = NULL;
+ 	bpf_jit_binary_free(header);
+-	goto out_imms;
++	goto out_off;
  }
-=20
- static struct platform_driver nwl_pcie_driver =3D {
-=2D-=20
-2.56.1
+ 
+diff --git a/arch/arm/net/bpf_jit_32.h b/arch/arm/net/bpf_jit_32.h
+index 438f0e1f91a00..76d83b486deda 100644
+--- a/arch/arm/net/bpf_jit_32.h
++++ b/arch/arm/net/bpf_jit_32.h
+@@ -104,6 +104,7 @@
+ #define ARM_INST_MOV_I		0x03a00000
+ #define ARM_INST_MOVW		0x03000000
+ #define ARM_INST_MOVT		0x03400000
++#define ARM_INST_MVN_I		0x03e00000
+ 
+ #define ARM_INST_MUL		0x00000090
+ 
+@@ -231,6 +232,8 @@
+ #define ARM_MOVT(rd, imm)	\
+ 	(ARM_INST_MOVT | ((imm) >> 12) << 16 | (rd) << 12 | ((imm) & 0x0fff))
+ 
++#define ARM_MVN_I(rd, imm)	_AL3_I(ARM_INST_MVN, rd, 0, imm)
++
+ #define ARM_MUL(rd, rm, rn)	(ARM_INST_MUL | (rd) << 16 | (rm) << 8 | (rn))
+ 
+ #define ARM_POP(regs)		(ARM_INST_POP | (regs))
+-- 
+2.53.0
 
 
