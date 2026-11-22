@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3DFE606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 18:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B84606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 18:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HutoXTzC;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=k0dJ+WCu;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZeigknWP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dhGiZqha;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=QZejWEOo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,78 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=a/BzRua6E4eXmgBBVosYCcmxsDMlITpi7UmbKmFzU4U=; b=HutoXTzCDm1aNtlG6Z7Q2zlELQ
-	prdMrJP7CgD0yb3nyc/4Rk8RhvzPUXKAS8bX/g8/pxRlMKju1+KoTU2jDHrOgHeofep+QL6dXWP9y
-	PiJvQsvA83+dalXhRq3oGOigvlJ+Oqam40I6DRin2iSZ9nnZOi8zMHXJiB0Zq1Iyx0fanXjgv0E7K
-	rFSIbBa/+lxR6AUW1p2TqQiCzYXtK7nWPYdS+OADsUTZOxOv/24lt/9P0FFtNy+W2ocnODD4mw9B/
-	uDUm/BMSEkVx5InV9E9Xle/XUgcsz/z5n9JtUFAigl6a1VjpDjDfOG915hwXIV1GC0fCamcbzvKvQ
-	93HvONWQ==;
+	bh=reL9mYJK/1m1y+g0uNeijZFVaLlYnX3xPlUy2DZTb6U=; b=dhGiZqhaochFoq0+sEscZ8xUhQ
+	BHh4RNfFYc3BlmlUDz5uhwkM9ZkXHBMaD/Y8XEp+g+wbY8NkSlno7xIMsC8Ombw9OmuFyMr9+dRQd
+	iO8dM5VMbITBa9jcGd6TwrDsgopjJtQDiWH0HemyW4etpMRGjNYCjuB/k6qSP6aRmGVVayVvYzXOr
+	iI4Ro3j4BpR/R64Pzj6ri8eVQuy9Ci3gB0AWZUfmxReVuPr3YgC60QTpLu49K5dgR/hSPWS30s8cH
+	++o4tMmN7qhLwq4DBu94GpkEofY8adzobm24oUXPkXmkGcvq8AuaDvo3MqCdVc/0XhIDKIajei/dK
+	E88SRiPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYw-00000001YXI-3JOc;
-	Sun, 22 Nov 2026 18:45:18 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYi-00000001YOO-2GlF
-	for linux-arm-kernel@bombadil.infradead.org;
-	Sun, 22 Nov 2026 18:45:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
-	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=a/BzRua6E4eXmgBBVosYCcmxsDMlITpi7UmbKmFzU4U=; b=k0dJ+WCuzZA0V9mpmZ0P1xWpnF
-	1HUD//k+8HK0e54YKCnrF4aFLFjPLwdpXSR8T2/tF90Kjzw0VmULGO7Emn3f97AepKqHMbNkHCS5D
-	vM+UfaGa0XmCtetc+Tss0DlkoSKVR2R37Y28dPjmioF60obyZKs5a3flpfS7pRAt6Z9A8trEC1lF3
-	B2Xq2+SaoVtkDKy5kp7ow1LD+2Y8FM1AXm04PRTSp15N5l8Pg1go3SB36p9Daxf0btYcgycgCLCRt
-	L8zCRC4n8xvyaY35r7LnVChQiAkTEO6N0CPQLu5Flb2+UyqY7Uk8X9jM3JBmJDow2tLIl+WQqwMSJ
-	xx/obuAg==;
+	id 1xVCYw-00000001YXn-3xeR;
+	Sun, 22 Nov 2026 18:45:21 +0000
 Received: from mail-pj1-x1047.google.com ([2607:f8b0:4864:20::1047])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYf-00000002R9l-4AJM
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVCYh-00000001YNe-1EBN
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 18:45:03 +0000
-Received: by mail-pj1-x1047.google.com with SMTP id 98e67ed59e1d1-3b42ebf632cso1649418a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 10:44:59 -0800 (PST)
+	Sun, 22 Nov 2026 18:45:04 +0000
+Received: by mail-pj1-x1047.google.com with SMTP id 98e67ed59e1d1-3b3b4208826so1756637a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 10:45:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795373098; x=1795977898; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795373102; x=1795977902; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=a/BzRua6E4eXmgBBVosYCcmxsDMlITpi7UmbKmFzU4U=;
-        b=ZeigknWPa5TCkhNDE7jNtkjgm/WZRwdUrzmFjC6ZOCSAvEVAs8ylOXDutoS4aVlG8H
-         Mt3cveJDDT4NJsLYjCwUTbs8cZDlTJdzMdP6mrsuxLOh6pqfHOZbw5K9cRfq2wDyYX4k
-         Q2zAa3+mlXz+u1Xg0EicjengBt7iIrduR3xYfoo/GxYSPd7vM4FxB+poXpyuNFhYAuKD
-         5D89PGWkHszd9Mvo4wnRDEiCrWHp5Ym8mkwSBNhbs+XLgU1a2OP7NxjrFukowCHJj+xp
-         W4hpLgaZW6ex2pI/MuTg09g2ilCYJElAGa5i+IsEDcvfDy0QaVwqXjm0QkJTUgAWIGk1
-         P2Mw==
+        bh=reL9mYJK/1m1y+g0uNeijZFVaLlYnX3xPlUy2DZTb6U=;
+        b=QZejWEOoDcsdX3Cc1lhdYVVw4LuSqb9TKswTi9T3V9+sV8qWH/6IhHXk63RDtmQCuZ
+         pNW178wXNivIffuFnF1IMPUKX2wGGV8tn7r7+NGrYtx8jy+n1EEt/1jGTBnqR53HbiS1
+         mlJ/GnTHOM1VqQLzUH+bdKjArOHWWaRulLAILseM85H8Q1+5RS+f4RciE/VQNkwt73XR
+         irF402I3H+NLVKSW95wrojtzseJh3qLFiQRtQ2RfQeU9PB6hw3mhgvBAvye/68MMWup+
+         7gzrwnJILlT3gXTcBceki7McP/UgQjjtWKqPYpOsJ+/rX7FHLj+D4BptZEBTidQ/6Kuf
+         XN8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795373098; x=1795977898;
+        d=1e100.net; s=20260707; t=1795373102; x=1795977902;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=a/BzRua6E4eXmgBBVosYCcmxsDMlITpi7UmbKmFzU4U=;
-        b=xe7Am3n4TB21nDU4gm691E7V3zQklL2QrfRDHrnmwWqfd3po/0ArLDBnYhlNpE+HAR
-         69zwwnQsdZ/96r571hi1azqW9wd9ZWt8UDZqq2EDUyecRdeOVG9TlbGiRv9J2Ot9aAUP
-         3LLlswm9bpUCRZb44W7BrZv6/6c1i0v5mxr0tOx3kUP/6UzCTYC7Q29ZBGD1bndmZzuh
-         3G0DkgKnRicXiFsXoF/9n0VGpFjOdhEW9ylaRRpl53YzR9gXtW7h5G451kiwbIbBrQ9D
-         82hKH7Sk712Ik00lq2nV4LsexWKmjFCkxO4qN4GgaWgg/osaWQBOBo1LH2PWS7mbFl/h
-         3nrw==
-X-Forwarded-Encrypted: i=1; AL+hErFLg7qgK1CH1Uqa+bqDvcdAW/y1ZVidVjycFC3JBRlAX+IijIy2HbuGkE2GFDmY4g0MsJR9UwKryqE9BYHxDY8/@lists.infradead.org
-X-Gm-Message-State: APuU4Z87/Cs8YU++g+u6e3FYflxjhDRLiOMVYFRknxo2D4OLzt/WTcEt
-	mah1ckr4Xk/uh3IGHubGhnEvmEAWFXc67kh0vFM8+XqVfC5Rp+HTjADyzM8aOJjMQff5FmMd2cH
-	a/f2KGWiCNRegjg0EhQh9hw==
-X-Received: from pjbgm11.prod.google.com ([2002:a17:90b:100b:b0:3b4:3d61:7517])
+        bh=reL9mYJK/1m1y+g0uNeijZFVaLlYnX3xPlUy2DZTb6U=;
+        b=li9tjswwrbIJWR3JewNl8WXvznvM3yCKvpJLBqUEJ1gk+B2h3Y0O8bSf7+2WOvnbHy
+         qj6hNSI0fySkAEjJSyME3KOsiXUas289v8BXUYWIxS9omg1JSUOYuhGWnCTIrKN9OuNL
+         hvIbYC6J5RxvvBcMA/HknJx/2BLD7ArdMzTMkoOpZt/pIwTjpf51uDnRuw/fePW0UgxZ
+         oLyW8cHk0ssSgevoQ6nTf8jBFeUO5IyDpEpNVL0JeR4fSvdYKyQYRBJpg/CtuHtFKyAr
+         knLh3HS2qORyLqby//bdxtHfIXjGZDQXIYIQ3nlJnOHMdjXJhx0YW2vOLafj3j9T29as
+         l4vg==
+X-Forwarded-Encrypted: i=1; AL+hErFrjBUyqaUUFsFSs32/zgKMrW333iqPbbn5Hn5xjnkXip7JYIx8hRyQtWEqa47YXgdqXz/dVuf+3tkKzFQYzO5d@lists.infradead.org
+X-Gm-Message-State: APuU4Z8RVHvhL+qjhrngmmqRXE+4OurujHBYBqhnPI40numrOoW3f3xp
+	3MNnNjJYMaFKVb3FmXDyh740eiORbkWoxi3lpB5Q+bKGXRAw68WHXgZPPYq8kXNRyl2II1jTf7p
+	wDGySGfsLo9bZ5WVtQV5Oig==
+X-Received: from pjbqa11.prod.google.com ([2002:a17:90b:4fcb:b0:3b3:d1d1:2aef])
  (user=jthoughton job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:90b:4b:b0:3ac:d39d:ee4f with SMTP id 98e67ed59e1d1-3b41caecd51mr6521075a91.44.1795373098233;
- Sun, 22 Nov 2026 10:44:58 -0800 (PST)
-Date: Sun, 22 Nov 2026 18:44:36 +0000
+ 2002:a17:90b:4483:b0:3a4:b509:88bd with SMTP id 98e67ed59e1d1-3b41c7bc7ccmr5465023a91.2.1795373101199;
+ Sun, 22 Nov 2026 10:45:01 -0800 (PST)
+Date: Sun, 22 Nov 2026 18:44:37 +0000
 In-Reply-To: <20261122184453.2668189-1-jthoughton@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261122184453.2668189-1-jthoughton@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261122184453.2668189-3-jthoughton@google.com>
-Subject: [PATCH v3 02/19] hugetlb_vmemmap: Always flush TLB if needed upon PTE remapping
+Message-ID: <20261122184453.2668189-4-jthoughton@google.com>
+Subject: [PATCH v3 03/19] hugetlb_vmemmap: Leave pages partially HVOed upon
+ restore failure
 From: James Houghton <jthoughton@google.com>
 To: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
 	Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
@@ -100,9 +85,9 @@ Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Nikos Nikoleris <nikos.nikoleris@a
 	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_184502_029285_1B689A27 
-X-CRM114-Status: GOOD (  11.87  )
-X-Spam-Score: -7.6 (-------)
+X-CRM114-CacheID: sfid-20261122_104503_347139_45005051 
+X-CRM114-Status: GOOD (  17.97  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,37 +107,111 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-vmemmap_remap_range() can potentially leave the vmemmap in a partially
-optimized state. In this case, a TLB flush should be done if the walk
-caller asked for it, even if the optimization was not fully applied.
+Right now it is assumed that the restore routine in vmemmap_remap_free()
+will not fail; that is, if we fail to fully optimize a folio, it is
+assumed that restoring the folio to its pre-HVO state is guaranteed to
+succeed.
 
-A follow-up patch will more completely deal with partially-optimized
-folios.
+Although vmemmap restoration may never fail in practice, properly handle
+such failure cases now. This will leave folios in a partially HVOed
+state. In a follow-up patch, failure certainly becomes possible.
+
+In the event we end up with partially-HVOed folios, make sure to:
+  1. Leave the HVO page flag in place.
+  2. Free any unused vmemmap pages.
+
+Always pass the vmemmap_tail page to the restore routine to avoid
+leaking the non-optimized vmemmap pages for a partially HVOed page.
 
 Signed-off-by: James Houghton <jthoughton@google.com>
 ---
- mm/hugetlb_vmemmap.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ mm/hugetlb_vmemmap.c | 34 ++++++++++++++++++++++++++++------
+ 1 file changed, 28 insertions(+), 6 deletions(-)
 
 diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-index 09b9fd83c198..7be08c68c2f1 100644
+index 7be08c68c2f1..2e9cf8d39c89 100644
 --- a/mm/hugetlb_vmemmap.c
 +++ b/mm/hugetlb_vmemmap.c
-@@ -163,13 +163,11 @@ static int vmemmap_remap_range(unsigned long start, unsigned long end,
+@@ -274,12 +274,22 @@ static int vmemmap_restore_pte(pte_t *pte, unsigned long addr,
+ {
+ 	const struct page *page = (const struct page *)addr;
+ 	const struct folio *folio = page_folio(page);
+-	struct page *src = pte_page(ptep_get(pte)), *dst;
++	struct page *src = pte_page(ptep_get(pte)), *dst, *tail;
  
- 	ret = walk_kernel_page_table_range_lockless(start, end, &vmemmap_remap_ops,
- 						    NULL, walk);
--	if (ret)
--		return ret;
+ 	if (unlikely(!vmemmap_optimizable_pfn(page_to_pfn(page), folio_order(folio))))
+ 		return 0;
  
- 	if (walk->remap_pte && !(walk->flags & VMEMMAP_DEFER_TLB_FLUSH))
- 		flush_tlb_kernel_range(start, end);
+-	VM_WARN_ON_ONCE(folio_vmemmap_shared_tail_page(folio) != src);
++	tail = folio_vmemmap_shared_tail_page(folio);
++	if (WARN_ON_ONCE(!tail))
++		return -EINVAL;
++
++	/*
++	 * The folio may be only partially optimized, so restore only PTEs
++	 * currently pointing at the shared tail page.
++	 */
++	if (src != tail)
++		return 0;
++
+ 	dst = vmemmap_dup_page_from_list(src, walk->vmemmap_pages);
+ 	set_pte_at(&init_mm, addr, pte, mk_pte(dst, PAGE_KERNEL));
  
--	return 0;
+@@ -325,6 +335,7 @@ static int vmemmap_pteify_folio(const struct folio *folio, unsigned long flags)
+ 	return vmemmap_remap_range(start, end, &walk);
+ }
+ 
++#define VMEMMAP_REMAP_INCOMPLETE 1
+ /**
+  * vmemmap_optimize_folio - optimize the vmemmap backing of a folio
+  * @folio:	folio whose vmemmap pages should be optimized.
+@@ -340,7 +351,8 @@ static int vmemmap_pteify_folio(const struct folio *folio, unsigned long flags)
+  * Note: The caller must hold vmemmap_remap_rwsem. If TLB flushing is deferred,
+  * the lock must remain held until the final TLB flush.
+  *
+- * Return: %0 on success, negative error code otherwise.
++ * Return: %0 on success, VMEMMAP_REMAP_INCOMPLETE if the folio is incompletely
++ *         optimized, negative error code otherwise.
+  */
+ static int vmemmap_optimize_folio(const struct folio *folio,
+ 		struct list_head *vmemmap_pages, unsigned long flags)
+@@ -372,7 +384,8 @@ static int vmemmap_optimize_folio(const struct folio *folio,
+ 		return ret;
+ 
+ 	end = start + walk.nr_walked * PAGE_SIZE;
+-	vmemmap_restore_range(start, end, vmemmap_pages, 0);
++	if (vmemmap_restore_range(start, end, vmemmap_pages, 0))
++		return VMEMMAP_REMAP_INCOMPLETE;
+ 
+ 	return ret;
+ }
+@@ -402,7 +415,12 @@ static int vmemmap_restore_folio(const struct folio *folio, unsigned long flags)
+ 		return ret;
+ 
+ 	guard(rwsem_read)(&vmemmap_remap_rwsem);
+-	return vmemmap_restore_range(start, end, &vmemmap_pages, flags);
++	ret = vmemmap_restore_range(start, end, &vmemmap_pages, flags);
++
++	/* Not all pages may have been consumed */
++	free_vmemmap_page_list(&vmemmap_pages);
++
 +	return ret;
  }
  
- /*
+ static bool vmemmap_optimize_enabled = IS_ENABLED(CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_DEFAULT_ON);
+@@ -526,7 +544,11 @@ static int __hugetlb_vmemmap_optimize_folio(const struct hstate *h,
+ 	 */
+ 	folio_set_hugetlb_vmemmap_optimized(folio);
+ 	ret = vmemmap_optimize_folio(folio, vmemmap_pages, flags);
+-	if (ret)
++	/*
++	 * If ret == VMEMMAP_REMAP_INCOMPLETE, the folio might be partially
++	 * HVOed. Leave the HVO page folio flag in place.
++	 */
++	if (ret < 0)
+ 		folio_clear_hugetlb_vmemmap_optimized(folio);
+ 
+ 	return ret;
 -- 
 2.56.1.809.ga0b61035b5-goog
 
