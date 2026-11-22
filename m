@@ -2,110 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E33606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 01:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399AD606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 02:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TvrywiiW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jZOpHG8V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GMlmofVF;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=iM8UOG+5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=4qUOVGLfHGTdLP72SoQt9x1onQjawb60zHgKVe5je7s=; b=TvrywiiWATM5Ic5x8ZfGMoWA9H
-	VN4HixZixNbDbwpQ3tMVCAqKKb/5gn0nasvlzWr8UhdryLLfc5+mShGAv9LrH/baCO9ABogDerTC8
-	8JzFXJjW8mIKYUFOeHeOCWNLlUxmocQTMCg7OXJVquxUagDYYuws1v4CyslFroKgmQE2pkAXtDL3l
-	xkolnLMylZBTOBYQHYh3ujog7EsQIDqpneOAQk9xYQEeiNt+W2d0UBmwxVvM8g/1wW4lVg8bqiUvz
-	23LNhFWJQy3vT0/bQx8pWyUb0Cv9ZmgB3tAB/qMCmdrEw9Z30olWRF6ht9/nutudoTQe+TnEP78Po
-	WsLONkYw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
+	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=QSOldkyDHE3yvTcYOBM7bHlgZUHM49mDL6VtgEY/wP4=; b=GMlmofVFALiqwA
+	ENVwRmYH6cG4LY3kqD5jhlUgPlZEaco0bRYkuV+ULhUxM0wTqZpROatkFCbi/WYElDbGlkiN/Z3Un
+	8eSAB7sRhA5GRN8nwAfcUvZJ0ZwZ1u22HtO4pKnqlDpX3Ca3NBMKQUzNNs1/dc6Fpb3NtLxoFFtmI
+	5QpoVHXy8bCmt/Ftm2z7dglKsopF4t2kH5lQzOIbRzFvPBHrzEYEBVXshsU4fx7O9TFjTf4VxPTQx
+	ZlQ6k8FE98kULLaCt91vGRE3rZG3S/3fhpwzbr40bgJE22f3XVwgQVGpamKszh0YHbtL3p14neZ7C
+	Xuzu3beFthcuoUf5bVyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUwNR-00000000ebp-35WQ;
-	Sun, 22 Nov 2026 01:28:21 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xUx0u-00000000fsj-2rpu;
+	Sun, 22 Nov 2026 02:09:08 +0000
+Received: from mail-10699.protonmail.ch ([79.135.106.99])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUwNQ-00000000ebP-1FiK;
-	Sun, 22 Nov 2026 01:28:20 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 671BA60232;
-	Sun, 22 Nov 2026 01:28:19 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795310899;
-	b=c5LPd7RS4VfTz3/iB09DOWTpru1dbVqLQr3FAbcPnt61TkJnr+pbSF5HUeSnA+eiVtcz
-	 7i49k4dmmlylJt4fNNOaFDMsiZ+3Oy/N8lSGiaM18SmArb21Vzk5o/ywbrSKDXzfHBh7+
-	 CE5DHmIyKlMug0Mh1Bag2G76FKBvnkz5fgiA/0j1grFVk9DUsiLtP9pqSI9VgaKzWe1Wt
-	 7urxhPmaL8jNCFEt3lRV7RCRrKZsXXNWFBDRQtj8UUTUYSWS1naWJEuTzR20T6sG/YVk4
-	 qr/lu1g7gh6Og9oAOp5HwOB/g4QTu4eb7V9ug4UZh7X6INGM7Cf7e+zSrU0I2jdMBJQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795310899;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=4qUOVGLfHGTdLP72SoQt9x1onQjawb60zHgKVe5je7s=;
-	b=aBS2N0Hxx9Ygn4hmNTFLhZswB7Y+lJ3kcqQtdK3npQ4I2oYiKHn5R0G+BSC66yjX8y6o
-	 VWEqsU1/4N3tpFUc47EDTW4eWlnbZRvAWMvh+0VsRqxcRGFj0Y+DHpBSBtqvXA+4SU27o
-	 wXANVX9DOs8qfXvAi8lf1AXmbSmVyM3avSmW1Ogb8IDdNIdEV7Th33Sxi4XXWrr3X0DzU
-	 pt7mlx8B/44ot5N1fICHRXQ5thU7BAaSIjlpi4IzC12fDd/I/dnL4pEgaOXng4GMuOraq
-	 0icJKA/C+CvH26Sds0nAOuI2pXqJRImXrydjWY2M1rCRmANfvm+dedCbjy603FGLJoQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A4BFF1F000C0;
-	Sun, 22 Nov 2026 01:28:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795310899;
-	bh=4qUOVGLfHGTdLP72SoQt9x1onQjawb60zHgKVe5je7s=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=jZOpHG8Vtd6qKper50Sr5tlnB8/+ft/UDVgVlzsnbPiJdZHEJRlVyvtZ43licZfKr
-	 4v0zcDJmB9NiT+DNNJTvhA+dlqUiX5b0mTksLV9BZmqS2vJfRUOcXTPIM94myKr8WD
-	 IQw0g5lqaWwfSx2IL0kPZT/qODRticAUrjljHfeH7qrNIhFE9AVGruGKHx9F29tf3P
-	 chdVgj4hedCPpB8dtmvg3cBxAMkRLuawxoN2ZNYBaTpWhKoCx6SWz8GIsU6x/+MG5y
-	 n/OwZrM2TpSmuI/OMLjQuKuumhClWy9fBi0ve1J5WCz/lE/JxvawIbCyJR4AIIwVMv
-	 xXiGEGpzKRuSQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 08E504BEA2;
-	Sun, 22 Nov 2026 01:28:18 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Sun, 22 Nov 2026 03:28:04 +0200
-Subject: [PATCH v2] drm/panfrost: Gate the RK3399 GPU clock in runtime
- suspend
+	id 1xUx0p-00000000fs0-0Oq3
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 22 Nov 2026 02:09:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1795313337; x=1795572537;
+	bh=QSOldkyDHE3yvTcYOBM7bHlgZUHM49mDL6VtgEY/wP4=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=iM8UOG+5q86LGv69yARR1d2gnI8ozdIm0sBATLpKTk5PtHE6eIDPGugKw8AvDltsC
+	 BdrxmxTMSvOq4x3T20ZNWLk/6OZU4efCiTZD8T1IUkhYC5Ok+6+izz/v45K/NmJxvv
+	 i/0RPFHyV7v+40ZUXld4J4elUYcj/KD9N7zoSCJn9RKUZzCKH+P67XpveWtsZZu7pB
+	 6QUCsjCLfVZZcoZP5F1R+B9FlzQjfnNMX2B8af2OReUW5vWnpS/RJ98oGhhs3dCbTn
+	 GqR1o+jNnq89v37hD7zq1BCqfdzIXWqz0aKh+fQBUWlZKSd5OrXmmRtMLtJ6pyQbf4
+	 +oOYXn18Rqp9Q==
+Date: Sun, 22 Nov 2026 02:08:51 +0000
+To: Alexey Charkov <alchark@flipper.net>
+From: Ryan Leung <untilscour@protonmail.com>
+Cc: Rob Herring <robh@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Michael Walle <michael@walle.cc>, Miquel Raynal <miquel.raynal@bootlin.com>, Finley Xiao <finley.xiao@rock-chips.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] nvmem: Derive Rockchip MAC addresses from the OTP CPU ID
+Message-ID: <RWg2ZbGh-TJtEJMDWD9DGxBKsszG10BM07351ALdCUa9UL-IImPGxSYztcNF3kiRFVCA0x5cECwign-2lb56nPMGZQ5LVZhckY4-KTb5qpk=@protonmail.com>
+In-Reply-To: <AQpdyd6hRl9cLAxBK-fEdzq0dcZsWpHP63dbDpOxcNQWCdaNIc4D3Mfi9Ll86jBVsbEVhr5-9EZzFHbkF6efBDcRUT7nXx9TH5Aeffy5DyU=@protonmail.com>
+References: <20260902-rk3576-otp-cpuid-mac-v2-0-e4b7fe2ab13f@flipper.net> <CAKTNdwH9QAgreJ-6+t1j_P1di4VyoMBSsFkf_g=mCi_-M8g9Pw@mail.gmail.com> <20260917221857.GA4056431-robh@kernel.org> <CAKTNdwH6E5=9gZHB6tdianC2+1aDv4wnLmvL59kDW-dR3a12bg@mail.gmail.com> <AQpdyd6hRl9cLAxBK-fEdzq0dcZsWpHP63dbDpOxcNQWCdaNIc4D3Mfi9Ll86jBVsbEVhr5-9EZzFHbkF6efBDcRUT7nXx9TH5Aeffy5DyU=@protonmail.com>
+Feedback-ID: 184418679:user:proton
+X-Pm-Message-ID: 7c823cd84927e819292d16fce6b08949de0d11f8
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261122-panfrost-rk3399-pm-rt-v2-1-40f1791aa1a8@iav.lv>
-X-B4-Tracking: v=1; b=H4sIACNFAmsC/4WNQQ6CMBBFr0Jm7ZiWomRceQ/DoilTmahApqTRE
- O5u5QIu30v++yskVuEEl2oF5SxJprFAfaggDH68M0pfGGpTn61xBmc/Rp3SgvpwjgjnF+qCgb2
- LwbZkeoKynZWjvPfurSs8SFom/ew32f7sv2K2aJGpaVxrT+Spv4rPx2eGbtu2L9QCNTu3AAAA
-To: Boris Brezillon <boris.brezillon@collabora.com>, 
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>, 
- =?utf-8?q?Adri=C3=A1n_Larumbe?= <adrian.larumbe@collabora.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Heiko Stuebner <heiko@sntech.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Daniel Stone <daniel@fooishbar.org>, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2536; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=umYgCRkWKn6+vJ3cIJXDRixn24OfpDYOCpQZFsANalM=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNlMroat6+Z90PcJ+3l1pcTdh/Frzuuo7PfaaDvV7GCc4
- HPTqiS5jlIWBjEuBlkxRZYJhzRuZSy5+tffw/wBzBxWJpAhDFycAjCRbE1Ghlu3NLbpc05mkjZo
- 8VFX/Jte8Un5/KfVS4J7Yy7dTi+O9mVkOHpv5s8/M3b1dwpsXvhv9y+2DypH1WYYBy5jytL6N4H
- xNRcA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_180904_694698_92D07E10 
+X-CRM114-Status: GOOD (  43.77  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,73 +67,151 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+Hi Alexey,
 
-The RK3399 Mali-T860 matches arm,mali-t860 and gets default_data, so
-panfrost enables aclk_gpu at probe and keeps it enabled until unbind;
-runtime suspend powers the GPU off but leaves the clock on.
+On Wednesday, November 18th, 2026 at 10:51 PM, Ryan Leung <untilscour@proto=
+nmail.com> wrote:
 
-On ROCK Pi 4A restore from hibernation hangs in genpd_restore_noirq()
-of the GPU when the hibernated kernel had panfrost bound and the
-kernel that loads the image does not. There clk_disable_unused()
-gates aclk_gpu, while the restored image still holds an enable count
-on it, so powering the GPU domain back on does not ungate the clock.
-With the clock gated in runtime suspend, as on the Allwinner H616 and
-the Renesas RZ/G3L and RZ/G3E, restore completes.
+> On Friday, September 18th, 2026 at 3:08 PM, Alexey Charkov <alchark@flipp=
+er.net> wrote:
+>=20
+> > Hi Rob,
+> >
+> > On Fri, Sep 18, 2026 at 2:19=E2=80=AFAM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Thu, Sep 10, 2026 at 06:48:33PM +0400, Alexey Charkov wrote:
+> > > > On Wed, Sep 2, 2026 at 5:08=E2=80=AFPM Alexey Charkov <alchark@flip=
+per.net> wrote:
+> > > > >
+> > > > > Rockchip SoCs are shipped with a unique CPU ID in their internal =
+OTP
+> > > > > memory, and Rockchip bootloaders use it to give boards which have=
+ no
+> > > > > dedicated storage for a MAC address a stable one anyway: they has=
+h the CPU
+> > > > > ID and patch the resulting addresses into the device tree they ha=
+nd over.
+> > > > >
+> > > > > Kernels started without that fixup, e.g. straight from the SPL in=
+ Falcon
+> > > > > mode or by any other loader which does not implement Rockchip's d=
+erivation,
+> > > > > fall back to random MAC addresses which change on every boot.
+> > > > >
+> > > > > Formalize the derivation in the DT binding and add a Linux kernel=
+ driver
+> > > > > implementing it, so that a Linux image can use the same stable ad=
+dresses
+> > > > > regardless of the boot flow.
+> > > > >
+> > > > > Only RK3576 is wired up here, that being the SoC I can test on. O=
+ther
+> > > > > Rockchip SoCs keep the same CPU ID at a different OTP offset - 0x=
+7 rather
+> > > > > than 0xa on RK3588, for instance - which makes supporting them a =
+two-line
+> > > > > addition to the driver's match table plus the layout node.
+> > > > >
+> > > > > Patch 1 is a prerequisite fix. The OTP hardware has its own inter=
+nal state
+> > > > > machine which only works correctly with serial access, but the cu=
+rrent
+> > > > > driver serializes nothing, which results in timeouts and/or corru=
+pted
+> > > > > reads (e.g. returning splicing a TSADC trim value into the buffer=
+ of a
+> > > > > caller asking for the CPU ID, or mixing up trim values of differe=
+nt TSADC
+> > > > > callers). Hence the Fixes: tag and Cc: stable.
+> > > > >
+> > > > > Cross-checked on an RK3576 board: the addresses fixed up into the=
+ FDT by
+> > > > > U-Boot match the ones derived by the new driver, and the driver c=
+orrectly
+> > > > > assigns them to the network interfaces when the kernel is booted =
+without
+> > > > > U-Boot proper at all (via Falcon mode).
+> > > > >
+> > > > > Sashiko also rightly pointed out a use-after-free in the nvmem co=
+re when
+> > > > > a layout driver is unloaded leaving its sysfs nodes and the postp=
+rocessor
+> > > > > function pointer dangling. This is fixed separately in [1].
+> > > > >
+> > > > > [1] https://lore.kernel.org/all/20260902-nvmem-layout-unreg-v1-1-=
+2d16bebeb518@flipper.net/
+> > > > >
+> > > > > Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> > > > > ---
+> > > > > Changes in v2:
+> > > > > - Switched from a scope-based guard to explicit lock/unlock calls=
+ in the
+> > > > >   OTP driver to avoid mixing styles in a function using goto erro=
+r
+> > > > >   handling (Sashiko)
+> > > > > - Link to v1: https://patch.msgid.link/20260901-rk3576-otp-cpuid-=
+mac-v1-0-ea9135270fc2@flipper.net
+> > > > >
+> > > > > ---
+> > > > > Alexey Charkov (4):
+> > > > >       nvmem: rockchip-otp: Serialize reads
+> > > >
+> > > > Incidentally, patch 1 of this series also fixes CPU thermal throttl=
+ing
+> > > > on my RK3576 device: apparently, the mis-read OTP-programmed therma=
+l
+> > > > trim values broke the thermal governor logic, which now works
+> > > > correctly with properly serialized OTP reads. So it would be great =
+to
+> > > > have these merged.
+> > >
+> > > It would be great to have the sashiko comments analyzed and replied t=
+o
+> > > as well if you would like this to be reviewed.
+> >
+> > Of course. One code-related comment Sashiko raised has been addressed
+> > in a separate patch [1] which is still pending review. The
+> > binding-related comments will need to be revisited, as I'd like to
+> > first explore the idea Ryan proposed in the adjacent thread [2], as it
+> > will change the approach somewhat if it works out.
+> >
+> > Best regards,
+> > Alexey
+> >
+> > [1] https://lore.kernel.org/all/20260902-nvmem-layout-unreg-v1-1-2d16be=
+beb518@flipper.net/
+> > [2] https://lore.kernel.org/all/20260916123355.4507-1-untilscour@proton=
+mail.com/
+>=20
+> Hi Alexey,
+>=20
+> Have you had a chance to explore this? I have got a working proof of
+> concept [1] for the format I suggested, tested on RK3576 (NanoPi M5) and
+> RK3528 (NanoPi R28S).
+>=20
+> Best regards,
+> Ryan
+>=20
+> [1] https://github.com/untilscour/openwrt/commit/a622c1cf292f7a4bb7093521=
+e25436be324fc1a4
 
-Match rockchip,rk3399-mali to default_pm_rt_data.
-
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Tested on ROCK Pi 4A, drm-misc-next c408466a4dfa with the rkvdec fix [1]
-applied: hibernation restores 9 of 9 with this patch (3 with an HDMI
-mode held, 3 right after glmark2-es2-drm, 3 idle), and the GPU renders
-after restore. With the GPU node left with arm,mali-t860 only, restore
-hangs 2 of 2, in genpd_restore_noirq() of the GPU.
-[1] fixes the same kind of hang in rkvdec, which otherwise hits first;
-this patch applies and builds without it.
-
-[1] https://lore.kernel.org/r/20261030-rkvdec-runtime-pm-clocks-v2-1-8ff510a231de@iav.lv
-
-Changes in v2:
-- Name the SoCs that already use default_pm_rt_data
-- Say why restore hangs
-- Rebase onto drm-misc-next
-- Link to v1: https://lore.kernel.org/r/20261030-panfrost-rk3399-pm-rt-v1-1-e94437159a9d@iav.lv
----
- drivers/gpu/drm/panfrost/panfrost_drv.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-index eeda113037fe..91acfa13ef42 100644
---- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-@@ -983,6 +983,7 @@ static const struct of_device_id dt_match[] = {
- 	  .data = &amlogic_data, },
- 	{ .compatible = "renesas,r9a08g046-mali", .data = &default_pm_rt_data },
- 	{ .compatible = "renesas,r9a09g047-mali", .data = &default_pm_rt_data },
-+	{ .compatible = "rockchip,rk3399-mali", .data = &default_pm_rt_data },
- 	{ .compatible = "arm,mali-t604", .data = &default_data, },
- 	{ .compatible = "arm,mali-t624", .data = &default_data, },
- 	{ .compatible = "arm,mali-t628", .data = &default_data, },
-
----
-base-commit: c408466a4dfaee4b12587e926c5b85e68c8b3c40
-change-id: 20261030-panfrost-rk3399-pm-rt-cea3fc1790d9
+I've updated [1] the proof of concept slightly. Perhaps you are busy
+with other patches? As it's been more than 2 months, if you don't mind,
+I'd like to send it in as v3 of this series, with you as co-author.
 
 Best regards,
--- 
-Igor Velkov <iav@iav.lv>
+Ryan
 
-
+[1] https://github.com/untilscour/openwrt/commit/6686af2f6475f6cc9d1c1fb37c=
+d8855845f754db
 
