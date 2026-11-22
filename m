@@ -2,101 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E576606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781E8606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z2L6k+xm;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Hmj8n4hq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mPTwupzW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=S6FbkVu5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=w+PnSLxKsJCEKZh3Ds403ivdl+AA4FlpjzNhhNO09oY=; b=Z2L6k+xm3ya54k
-	+o45WIKTct4wj0MENMFXipm0CQWq3FODBLjN/GpDQZFBBiIa4EpjEHUbL1Tsr9Ui5Xvd/yLTcSLNR
-	5YsvqRiPSBH04niTxTH/Uo3UKtk/iXebbg/yrqIP6l19OjBUvNe6cLOStkszCusFsHxxm9WC1uynb
-	jrclIzUI7haRmBe43GpLUwCpul/zS2+s1LvMXtQ8gSw8PxT4dlZdGXWZBHjnTYEfLt3te7qWqI48p
-	Z4PGWXGl+3WSBTuZ69UZ3iDUDWzswH9oWQS+pjQpKz8GtrdK1YveDtKg9OYhC9b+YW0EEfLlgCVwK
-	RW2tpIlf7ll0N3KFZPDQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=jRxJug/Y1WR98+oKDtwiqnL5a0+fWq49VTbpoM67nmI=; b=mPTwupzWNCTe3OSSgRkCirMpu7
+	57N4PvoK8wwkq59e21RznYAnp8qPgvyrWOj+BXN7huROSHolNlUVGvuNrQbgoCY/LLozutG/yyBZA
+	k4RMr+qx6DZAUe4lmZQn/BSzvkZxP7PX8P61rX5ZiFVh+ITIRs76UymwpMYR54Al6KppALeiCF/Dk
+	G7R24Tir/LAB2inGbfbGFZ9u7NDZbimoBec03dl0yZDRmUk7aNk+ZeJzm2sKshPYcO3CRZwRPOMdB
+	gf73xCroM08HJWCISMoparhtc1u0iNRMB/40b0UHChzpfBbJ77INAdtENasvZkx76nnItAHj00EU9
+	bvOAkKWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV1Ws-00000000o8S-2dxk;
-	Sun, 22 Nov 2026 06:58:26 +0000
-Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	id 1xV1yb-00000000ozx-35wy;
+	Sun, 22 Nov 2026 07:27:05 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV1Wd-00000000o2l-2zuh
+	id 1xV1ya-00000000ozq-2MxL
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 06:58:13 +0000
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-2f045b921caso11735045ad.3
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 22:58:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795330691; x=1795935491; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=w+PnSLxKsJCEKZh3Ds403ivdl+AA4FlpjzNhhNO09oY=;
-        b=Hmj8n4hqILpCjp309Z2/5Pe56HiqOvO1tp5ioePUjBKcWiK8aDS+6Y1pkWS2ZxFBbX
-         uUc39IlGgM82aElzsEIfkT+Aah3bkJeTf7jrSPPmcCgBJ/H8EUXwftexBi0TBgd+azjJ
-         gh/u4AtT73xNkAP+yc6LW+V2rbFsywpsGxZgaksp9nDWIK1UYI7tJvIX/cAQA2QcGTrK
-         7Cjr/Hjsv9qjHM8SkHlmvblw8JT5rXiWR8mpr4A9Vb4CV+dazp8mI3Y6huEsE5xCh1Qu
-         mVP49h1snKAQYt9m6cZPXDw9hoyjXF5/cdnLYUg73G4QEpUjJZRHk06FeLeOUO8efbPT
-         synQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795330691; x=1795935491;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=w+PnSLxKsJCEKZh3Ds403ivdl+AA4FlpjzNhhNO09oY=;
-        b=aIn/VKzV21cHmsTV7eMJM6X8mUZ+QPOcJHLooui1tFKn9BgRhkCQY6dbczLFiaqfrV
-         N3/BuqaubS8I5QoDwX5A3zGS5MnmI3FlQlAmQqfUVVVx8WVZ3cs4jve4GbRTEE3Qjdev
-         tZ3zqh++Ppsi27IXaHW9j1JZ7Py751BzBmm1UfACaVW9ibzSh2BTpuQ8eafQA2U13SNt
-         M/CZKTQTvDqZHEDjQsGVJY0I3IwSYkZI8PlruEdcOCS5ZfXMG7HU3IUJE8Yfv1YeULXu
-         zNtqUR2RiYYLcLweg4o4ZVosS19tpS5qg7OYQBsuvsOpavGkBdnsI47hkro5oxKXk0YX
-         yNqg==
-X-Forwarded-Encrypted: i=1; AL+hErGVonN8psSpe4RxBPIFDBHySlJZhrrs+8KUWO+UNuVBOn1Ks6DFKxxlrz06ZcA/K57+JRLGzEtkB+7uI9ihYEsn@lists.infradead.org
-X-Gm-Message-State: APuU4Z+o5JxeMRUIO1APm9Y+4LoRUSsyjEMja5F5ZDBcygr3YatJLtSu
-	silr5GdXgJnsBI8M8DEWY+dQfctlM6ZTdQUXicKEn58GKKLM+GvAYWXA
-X-Gm-Gg: AZFdTZfTO4861D/2VmgdCPK2t0LNnvURpO3zTxZ2LKb+67S3sWVWkoCJkRGcdLdmNw5
-	vhjVA0yn6uOrdvdKOxrqWpVw4ZBz6e39+xaJxTC6NeuOo0PjA1giqYj1JOPMNUvH2KgYNUwGzTg
-	gDovpr7EBR3K4HZn6JqM292RqlOU87U3CgXB0bSyA3WAUrc2hNq1WUMHUswS3Wozngss3am4X8L
-	Ys6zi8Dm9ij6qpNr4RoV2+kEjRRD7vqOoYH7hu+WKs6MrpNlq3W0asb3Ptbn6zpacCf2mTPJjOB
-	2Bd4RLWbH6elBFDlRC/YvYs/wOLEGvbfQdunpFJMtewwXM+ylgEQGX6e9mUKIjWez7wmAe1QgP5
-	DdhLhGESk5nkcNKbtMMhpWoC79v5qKMHN5QKvH0dTI0fdwBeFovroL2yFma2Vpku9U+1Qudn3a/
-	XXFLd+XRc4WnxpZQpw4Q/J9ysvrLwUxjFBnQwXwC44/3WL1iamXF1n3DTq7kHSvlkKCtR1+rMaD
-	pu6FSpNKRvYLTr3lyjwV3yhGyG4YDskjQgZ7U4rGbOUmoTy4pM0LtB7ERT2BBxSGB7phaNynI1Q
-	mOJgyo0w0uc6RKaRHQiOkC1TliUeiqOUvO28grxlqUJf1Q7iI3qr
-X-Received: by 2002:a17:903:240c:b0:2f0:3382:cf52 with SMTP id d9443c01a7336-2f03f156ddemr67246795ad.15.1795330690792;
-        Sat, 21 Nov 2026 22:58:10 -0800 (PST)
-Received: from d.home.yangfl.dn42 ([2a09:bac5:6213:28::4:379])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f120016sm34287345ad.58.2026.11.21.22.58.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2026 22:58:10 -0800 (PST)
-From: David Yang <mmyangfl@gmail.com>
-To: linux-watchdog@vger.kernel.org
-Cc: David Yang <mmyangfl@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wei Xu <xuwei5@hisilicon.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] MAINTAINERS: Add HiSilicon STB drivers entry
-Date: Sun, 22 Nov 2026 14:55:23 +0800
-Message-ID: <20261122065549.3265519-5-mmyangfl@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261122065549.3265519-1-mmyangfl@gmail.com>
-References: <20261122065549.3265519-1-mmyangfl@gmail.com>
+	Sun, 22 Nov 2026 07:27:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B659144F3F
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 07:27:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD9A1F000D3
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 07:27:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795332423;
+	bh=jRxJug/Y1WR98+oKDtwiqnL5a0+fWq49VTbpoM67nmI=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=S6FbkVu5BgQO29DX6U30yzL0DFo/On2Mx4EHxvghcK/CX5rbIRKYkICiatN+NYuKm
+	 NZHuONpPqleoDfcTeyUZEu7v3JUQw5fMoUd/1JWG/29OQI33kNPcVAf0ZEuo/3FaWS
+	 uLw5/+E7X9IPfvCbRU67QuRrBQYVAebwdQhiTLfHruF15OuwzMkug19e8PEPwLu1b4
+	 aQJwaBSHIUxIkZES4bu5qpmPORDOt2nQ1fdzhshXbunBDFvLKvJXdiUZujew5b/86d
+	 GqoO5nUYLNgVPqJ0bNEyxAIHtepTBEY7eR+YaaPdPxtIxqjr7LFVl6c9BpQhBs1K41
+	 Q1guFWQHz73PA==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3acef9307c7so18124841fa.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:27:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErF+fYr3d7vzXWAL8RaE3jRaKLpuNdGYIxM8porHIRu5aAAcZMr9nPCrdtlcs2ckDdbVhdmjSkLMpnYgSp3ANwDd@lists.infradead.org
+X-Gm-Message-State: APuU4Z9AlVGli7/ebrj6UhVXwSmC3wilT5FB5SgCSw3dy/jrIui5n5Bs
+	9jSUa+nOzarUeMg/+skyBm/rRsnf/G/nrxWV52c29gSzABbjm8oXz3+Bm63LuP2y33AhoWL2oRr
+	ySoBOBS0hGbY1YNBP36mwak24juyYgms=
+X-Received: by 2002:a2e:a98d:0:b0:3ae:7eee:15d2 with SMTP id
+ 38308e7fff4ca-3ae7fa63ad1mr24050091fa.18.1795332422005; Sat, 21 Nov 2026
+ 23:27:02 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_225811_754855_45C17C42 
-X-CRM114-Status: GOOD (  10.62  )
-X-Spam-Score: -2.1 (--)
+References: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com>
+In-Reply-To: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com>
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sun, 22 Nov 2026 15:26:49 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65w3cVgxb_G38UgKEa4ErKLN4qiF05N3nmdJbmPeRRNBg@mail.gmail.com>
+X-Gm-Features: Aa3M54rfrvVdNKa1udG-e9AkPOB_QrPlPhXGt3xZXT_wwKFSdTyEz2lu2p5fCqA
+Message-ID: <CAGb2v65w3cVgxb_G38UgKEa4ErKLN4qiF05N3nmdJbmPeRRNBg@mail.gmail.com>
+Subject: Re: [PATCH net] net: stmmac: dwmac-sun8i: Limit the MTU to one
+ descriptor buffer
+To: aiyengar1990@gmail.com
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	LABBE Corentin <clabbe.montjoie@gmail.com>, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Russell King <rmk+kernel@armlinux.org.uk>, Nicolai Buchwitz <nb@tipi-net.de>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,43 +85,87 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a MAINTAINERS entry for the HiSilicon STB platform drivers, covering
-the histb-wdt watchdog driver and the existing histb-rng hardware RNG
-driver.
+On Sat, Nov 21, 2026 at 12:43=E2=80=AFPM Arun Iyengar via B4 Relay
+<devnull+aiyengar1990.gmail.com@kernel.org> wrote:
+>
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+>
+> Russell King pointed out in [1] that max_mtu ignores the 11-bit buffer
+> size of normal descriptors. dwmac-sun8i always uses them in chain mode,
+> so a frame must fit one buffer, but max_mtu is SKB_MAX_HEAD() (3712 on
+> arm64). Sashiko asked in [2] for this to go in as a fix.
+>
+> On an H616 the RX DMA fills 2044 bytes of a buffer and
+> ndesc_get_rx_status() drops a frame that spans two. On TX the MAC cuts
+> a frame after 2048 bytes (TX_FRM_LEN_CTL is clear). At MTU 2033 no UDP
+> datagram gets through in either direction.
+>
+> Limit the MTU so that a frame with two VLAN tags and the FCS fits 2044
+> bytes (MTU 2018). MTU 2019-2026, which worked without VLAN tags, is now
+> refused.
 
-Signed-off-by: David Yang <mmyangfl@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+So what's the overall plan? Limit it first to make things work, get the
+fix backported, and then fix jumbo frame (>2K) handling so it works
+for any MTU value?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2ac5128b756e..f248a04b925c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12187,6 +12187,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
- F:	drivers/mfd/hi6421-spmi-pmic.c
- 
-+HISILICON STB DRIVERS
-+M:	David Yang <mmyangfl@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/watchdog/hisilicon,histb-wdt.yaml
-+F:	drivers/char/hw_random/histb-rng.c
-+F:	drivers/watchdog/histb_wdt.c
-+
- HISILICON TRUE RANDOM NUMBER GENERATOR V2 SUPPORT
- M:	Weili Qian <qianweili@huawei.com>
- S:	Maintained
--- 
-2.53.0
-
+> Link: https://lore.kernel.org/r/E1vLJcL-0000000ExBL-0GFe@rmk-PC.armlinux.=
+org.uk [1]
+> Link: https://lore.kernel.org/r/20261112-sun8i-emac-jumbo-v2-2-aca0cf23cf=
+17@gmail.com [2]
+> Fixes: 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i")
+> Cc: Russell King <rmk+kernel@armlinux.org.uk>
+> Cc: Nicolai Buchwitz <nb@tipi-net.de>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+> Tested on an Orange Pi Zero2 (H616) on net/main with and without this
+> patch (RX fill measured on v7.3.5). Claude (AI) helped write this patch;
+> I reviewed and tested it.
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/=
+net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> index 2ece7ba9dd73..1f4fa722529f 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> @@ -6,6 +6,7 @@
+>   */
+>
+>  #include <linux/clk.h>
+> +#include <linux/if_vlan.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/mdio-mux.h>
+> @@ -1208,6 +1209,7 @@ static int sun8i_dwmac_probe(struct platform_device=
+ *pdev)
+>         plat_dat->mac_setup =3D sun8i_dwmac_setup;
+>         plat_dat->tx_fifo_size =3D 4096;
+>         plat_dat->rx_fifo_size =3D 16384;
+> +       plat_dat->maxmtu =3D 2044 - ETH_HLEN - 2 * VLAN_HLEN - ETH_FCS_LE=
+N;
+>
+>         ret =3D sun8i_dwmac_set_syscon(&pdev->dev, plat_dat);
+>         if (ret)
+>
+> ---
+> base-commit: d5b89d55a322b632e2b465b392a4c1d9d338db9c
+> change-id: 20261121-sun8i-emac-mtu-limit-66a936064965
+>
+> Best regards,
+> --
+> Arun Iyengar <aiyengar1990@gmail.com>
+>
+>
 
