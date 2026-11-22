@@ -2,86 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B58606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BCA606A32C
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QC95OTtr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SXiOCo/d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j8nHGs2m;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WtuE8c3w
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=03lpGLn/bddD577LSC4qtqKsNtreiXE/VEdiR+KAR38=; b=QC95OTtrNVTA6cNn5S2X3SJtK3
-	zRjnnmnuL6lrzaO4OFkzfg6fIWWAHjHEVw/u5ywqVs0LevYSlYJRs1xkkV+Ohi66mA3wREgBEIkOr
-	NdRjQ7WQqsrpKRkfV/NpL1jG3eicaqEODzWp0LZd+k6cAmYjfHHUf3HiVjo2IYUCWhvWUEtXffKjb
-	38+HMh3ZBpO8gcyfQaR1EOdLmbh14Tdf5RiVUj6mXIoYok9tbbvnmk4OvkUwnQwsUVdX1a4kpH+Zn
-	dy7xBStrB3kkQwpALW36xIQCFz0z8tE0rxPPEwdVa2XPlessrXuYmXPffotLRIeSgKD4ur7nqOXKg
-	LCdE3kMg==;
+	bh=7CAOiXVjp8Ns3vEuVyhMOAdoin//sr7CcGMy6EJkmTE=; b=j8nHGs2m2jGEkWf/1U6NE368lP
+	LsVTygYgz0qJSacrkZKysykYBR+MO0HiJ7D+byWATOW8fIVYVyFn7t9rIRCZJXTYdm364IkvB87WU
+	R0Dic6qvEkVlfZOyV/59xFnfBAThIvJwwEG6pObgfvdRRPd/0OdGo0sh6VTh7p06uL44TEOEmIvLY
+	bvXlQP2hu/OF03PZgR4/ekO4jkV+WibMeVosM5vQ2XSJdz5s8ZfrJr5VKAS1VPkVRoIWqgA0URga1
+	2H5LGvuJ8/xFztNBsyUgqOfAlvZG620iNWrVuh3v6QqAWCloPAQ16FI2/IQdV7q75UxiuPOQ5Wdtp
+	QXHxuKqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3dv-00000000tZI-1HHo;
+	id 1xV3dv-00000000tZ9-0Qu7;
 	Sun, 22 Nov 2026 09:13:51 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3dt-00000000tYr-2Lcj
+	id 1xV3dt-00000000tYo-0Uvd
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 22 Nov 2026 09:13:49 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1124943E3A;
-	Sun, 22 Nov 2026 09:13:49 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 465AA60D44;
+	Sun, 22 Nov 2026 09:13:48 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795338828;
-	b=JUx5MZUTrkdGqMiR91i9Qqek1GbCdzNIUm6aiYULjvUS2trcw/Mdkt0YGGJmcoOL+ZIO
-	 uGR/fRqoBeXxQ32YPsUJVFyZpMAIUBLN0izl+u13bQZyQnbFdLdKH/dBFyEtxP9zwy4zT
-	 EjaTnRZgxNzRfP08t4BtU0JZeLc/VicpkcFAPEAi++TI7sWprZlGloMuvnYox+fnn1jOV
-	 WvDoYm1pzNBIuSqqsAfIliy82f0OyB0Y0nc7KbrJyVtdKyUhuavui0VTVqsw/kQ/H7BOF
-	 UNKL92Ufr11FM9xkxHay/14DgVcQkIPGZMWF9hKkkonKiLqAOgr05Bam63th1COC1Mg==
+	b=eKfCKDdTQ5qoW4ga/gnHguuobS6Ng9HY4VBEqoYXAr4OuSFWYFE4iCA3gTj8i/S/eSr4
+	 mdfQSp1jdwMutwaZNNR3LRvhyL4X+HacmSGwRwRlMGqm4VWA3M6Hk31bMUJ9FTqlQupml
+	 /Y1ejR4+nhAWHmcoMqY2RgDS4KbqJlw7bzBgs7Mq2FERisOVrybACQQrN7b/6mSqjMjeR
+	 Wq02MBUl4JbKuaiZoWF6I7dgt0WBuR9US6j8tVKgLjxRNed8yhGo0MvEhB99yCBkQE45C
+	 cbDTLh7BELqpi750rezH2lmavKe1OzbBvzCImr8xULllnzVWUZ1NZlryuFRCCwqOwKA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795338828;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=03lpGLn/bddD577LSC4qtqKsNtreiXE/VEdiR+KAR38=;
-	b=e3eCDFHTqOZEfI+Ah7SZ/4PJ9rP+BydaVI5HO5RuZ0p0ZxyY5uW3uL+AhqvXr0EWdcXe
-	 Dkla9VKW9vg+UnGtw7vsVjfjLr6MbU+97Qaep+ZhFeppxTxHEtfWLfjZVrGK6mlh8tpl7
-	 zbLN0KK079X5bYSVdCL/8nA8xcauATOfBLruXbGBsLZT01n+HGgyKscfMOq+UcjFfWEjn
-	 KtQb2BWlLrSeu0gowvU3jbKG7BA1A1OmAfb1xBc9bwm33H58MWn4cvScD3r85bR18XZEF
-	 ROAnMUSCXgQ2isL5FqZfaIPVqfEGgOihwIAm90SLQOoGpKpWZeztF0BoAws8lp+kkxg==
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=7CAOiXVjp8Ns3vEuVyhMOAdoin//sr7CcGMy6EJkmTE=;
+	b=OV5daG3Mn5CL5ESbzucHRFgRNxPuQTp76i2Ue87+yM+Pqr2E683yx7UrFb0cEE7ZD6HR
+	 gCTqVYlJQwgQFuFTf4V+Eaftq4vd0XDjMxeCnZyRIQ/uRSrFrRNEATrOk5lrL0XFaHayY
+	 ns07t3dmZFoNLoIjZjkEEZ5rUkQcf7bYrzh69y42+pPauwopzrK3tcZZjAWIvmGgdY0co
+	 MjkP9jOj8qq+41LxVD5lXdDs7TGBhH0eJbwTCkc59YMJ2NG9kGknHBTSvZa7aU1wUwWma
+	 A8q5XPcwhibna1/bUtztPS6INPtxiNNzPx/B/Ql5z0sVUMxXAaBFDW7I8BD2uWjJU+g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BFA891F000CF;
+	by smtp.kernel.org (Postfix) with ESMTPS id 85DE41F000C6;
 	Sun, 22 Nov 2026 09:13:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795338828;
-	bh=03lpGLn/bddD577LSC4qtqKsNtreiXE/VEdiR+KAR38=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=SXiOCo/dV6Mpv/ALd/f5WJLrpYUV5rSMonz7x9bSN5rrzUezVn22LW7S6MXLzb0FI
-	 lYRJFE/za5KXtdj1rgoPVsfI6JPZDVpuAv2vyhXeNy+Inx/GxCcNkc/cEQ41dL6UsV
-	 bL/onpK9xL+jW5W891QcllFHdHT5Gnp/EZzufrZEHDCiNVV5nHjEUrYx+I+jEaR/uj
-	 74RQlobRcgJnt7AJK/1kwjSh/NO+o9Xl0vr+CLFUlYKlbZJSIPNJxJrQRVDGm9FXx/
-	 HmjDlOW+0OElzqQHWGo5XtuWXwpwxFU5UOkXhTJE/YDw9W4bq4YshQhMctknPHMvl6
-	 UPZQMWDSXFO1A==
+	s=k20260515; t=1795338827;
+	bh=7CAOiXVjp8Ns3vEuVyhMOAdoin//sr7CcGMy6EJkmTE=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=WtuE8c3wBMqv5uZ77G72xiXZZbtWlRnRtRu57cS+ZFYmhIV/gnjEKYuh194CPALhg
+	 a765y/U9f9iTA76HH3flkpPyG/vLviHsaPHhqSJk/EUJGqA9e44/Mn7Sz4wC+b5hWA
+	 PQg3YFAFgjVppdvAburt1W/aRMib9ck9Amj9Iw1KudsNgZP4ZvpdsX5AInp4Vf1CZ6
+	 SZZxBwvvzyLzxZh1MWyzzYnTyWlDgD5+9+UeILAbZvadG0wMvQppsgK6aXd8ebIFuS
+	 aczcTKZrxJybjhwUcuPVMTID55QRISwugSl3rCxIzZaSKsc0K36h3W9gq3TrSTiw6/
+	 JyFVG1quYBiIQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4DF194BFCD;
+	by lkml.kernel.org (Postfix) with ESMTP id 17D434BFBD;
 	Sun, 22 Nov 2026 09:13:47 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Sun, 22 Nov 2026 09:13:48 +0000
-Subject: [PATCH net v2 2/2] net: stmmac: dwmac-sun8i: Limit the MTU to 2018
+Subject: [PATCH net v2 0/2] net: stmmac: Limit the MTU of normal
+ descriptors to one buffer
+Date: Sun, 22 Nov 2026 09:13:46 +0000
+Message-Id: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261122-sun8i-emac-mtu-limit-v2-2-c4081e5b83cf@gmail.com>
-References: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
-In-Reply-To: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NwQ6CMBBEf8Xs2TV0wQY8+R+GQy0rrKHFtIVoC
+ P8u4N3jTN68mSFyEI5wOcwQeJIog18DHQ9gO+NbRmnWDJSRVooUxtGXguyMRZdG7MVJQq1Nlet
+ MF5U+wzp9BX7Ie9fewHOC+lfG8f5kmzbhhnUS0xA++/mkdvj/z6RQIVFRUVlQk6vy2joj/ckOD
+ uplWb5MwuRAzwAAAA==
+X-Change-ID: 20261121-sun8i-emac-mtu-limit-66a936064965
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
  Andrew Lunn <andrew+netdev@lunn.ch>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
@@ -97,17 +102,16 @@ Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  Nicolai Buchwitz <nb@tipi-net.de>, Arun Iyengar <aiyengar1990@gmail.com>, 
  stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795338826; l=1070;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795338826; l=1350;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=hoWHCAAprzrO2D+coALtPpyIBw9Qkx95wvyejnjliCM=;
- b=so3ZK26Uz/bNPFobSNeO22ZQm5P4aH7euK1OUEWe1ZVZE0wm4pIfqRAkW6IWpaCz3BSNnqcoH
- 8J38CexopsuDI097y8ytNlosmfgYlB7QO7/ZFWQ1GLxpzn+Ltn+ToJd
+ bh=kUraPmsF3SOADB98zBKEXqM+wCmjpNaCBs9zDZNC9kc=;
+ b=qYu87ckoyu+x7liUiYyq0MXj1k2T7Vca4KtNr/pGvuSjubWuT7K+bG8H2WVr7bcPTUrzmXjrs
+ KpaYmvmMxdNDs8x9mNsZ8yqhoeyIclhzmbCokYm9yZ5AKE12rFJBY2l
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,34 +131,40 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+Normal descriptors take frames of at most one 2047-byte buffer, but
+max_mtu allows 3712 on arm64. Patch 1 limits it in the core, patch 2
+limits dwmac-sun8i further to the 2044 bytes its RX DMA fills.
 
-The H616 RX DMA fills only 2044 bytes of a buffer, so frames of 2045 to
-2047 bytes, allowed by the previous patch, are dropped. Limit the MTU
-so that a frame with two VLAN tags and the FCS fits 2044 bytes.
+Tested on an Orange Pi Zero2 (H616) on net/main. Without the patches,
+MTU 2029 to 2100 is accepted and ping gets no reply. With patch 1 the
+maximum is 2021, with both 2018. UDP and ping are lossless up to the
+maximum, and larger MTUs are refused. Ring mode and other cores are
+untested.
 
-Fixes: 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i")
-Cc: stable@vger.kernel.org
+Claude (AI) helped write these patches; I reviewed and tested them.
+
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
+Changes in v2:
+- Limit normal descriptors in the core (patch 1, Andrew Lunn, Maxime
+  Chevallier), keep the lower sun8i limit as patch 2
+- Link to v1: https://patch.msgid.link/20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com
+
+---
+Arun Iyengar (2):
+      net: stmmac: Limit the MTU of normal descriptors to one buffer
+      net: stmmac: dwmac-sun8i: Limit the MTU to 2018
+
  drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 3 +++
+ 2 files changed, 4 insertions(+)
+---
+base-commit: 890f23ba87a7ca1aba97c8320770a686e3b689fb
+change-id: 20261121-sun8i-emac-mtu-limit-66a936064965
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-index 2ece7ba9dd73..ec401cae8187 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-@@ -1208,6 +1208,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
- 	plat_dat->mac_setup = sun8i_dwmac_setup;
- 	plat_dat->tx_fifo_size = 4096;
- 	plat_dat->rx_fifo_size = 16384;
-+	plat_dat->maxmtu = 2044 - ETH_HLEN - 2 * VLAN_HLEN - ETH_FCS_LEN;
- 
- 	ret = sun8i_dwmac_set_syscon(&pdev->dev, plat_dat);
- 	if (ret)
-
--- 
-2.55.0
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
