@@ -2,91 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BCA606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A46C606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j8nHGs2m;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WtuE8c3w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BCJsUyB4;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Jr7GG1GM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7CAOiXVjp8Ns3vEuVyhMOAdoin//sr7CcGMy6EJkmTE=; b=j8nHGs2m2jGEkWf/1U6NE368lP
-	LsVTygYgz0qJSacrkZKysykYBR+MO0HiJ7D+byWATOW8fIVYVyFn7t9rIRCZJXTYdm364IkvB87WU
-	R0Dic6qvEkVlfZOyV/59xFnfBAThIvJwwEG6pObgfvdRRPd/0OdGo0sh6VTh7p06uL44TEOEmIvLY
-	bvXlQP2hu/OF03PZgR4/ekO4jkV+WibMeVosM5vQ2XSJdz5s8ZfrJr5VKAS1VPkVRoIWqgA0URga1
-	2H5LGvuJ8/xFztNBsyUgqOfAlvZG620iNWrVuh3v6QqAWCloPAQ16FI2/IQdV7q75UxiuPOQ5Wdtp
-	QXHxuKqA==;
+	bh=kQry4Cjw3RPbx5td1ZWs5hKjkfOnlF6f++DPnxPHX6o=; b=BCJsUyB4/w2h3igFpR3NgkoyHc
+	MM7tHd+LoFN8CLzlwzO4mE3eKsf5qXhO5YZQOovb+A1lAs2s5XtUn/ot5tpW7W/egeJoNiyl40wJ6
+	91W9IL8TZP2SyRbYJJq12LtaLMwSVLgYyqT6QJzAYT8iaeCUsbVWleAv+Tz1owWVhmoM4xvgLEmX2
+	s7aw5kBc+XaYN7I8huMDpuvZ2K9NCyI1R595L+wQl57uDmYLuKL3ZQXDlBRAgUkPej55y4QxhtjWe
+	BVkYtHfWbohhcAT8TP+JdD3KVjiy8Wqodkx+DtVeqt82olkFYU8ug2uCO3Od1V/O98hUhd+k1l4Yd
+	XTHfxaDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3dv-00000000tZ9-0Qu7;
+	id 1xV3dv-00000000tZE-0qdb;
 	Sun, 22 Nov 2026 09:13:51 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3dt-00000000tYo-0Uvd
+	id 1xV3dt-00000000tYp-1CIZ
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 22 Nov 2026 09:13:49 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 465AA60D44;
+	by tor.source.kernel.org (Postfix) with ESMTP id B8C4460F60;
 	Sun, 22 Nov 2026 09:13:48 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795338828;
-	b=eKfCKDdTQ5qoW4ga/gnHguuobS6Ng9HY4VBEqoYXAr4OuSFWYFE4iCA3gTj8i/S/eSr4
-	 mdfQSp1jdwMutwaZNNR3LRvhyL4X+HacmSGwRwRlMGqm4VWA3M6Hk31bMUJ9FTqlQupml
-	 /Y1ejR4+nhAWHmcoMqY2RgDS4KbqJlw7bzBgs7Mq2FERisOVrybACQQrN7b/6mSqjMjeR
-	 Wq02MBUl4JbKuaiZoWF6I7dgt0WBuR9US6j8tVKgLjxRNed8yhGo0MvEhB99yCBkQE45C
-	 cbDTLh7BELqpi750rezH2lmavKe1OzbBvzCImr8xULllnzVWUZ1NZlryuFRCCwqOwKA==
+	b=CkESDhiyd9wn0L/Zq2tE0Boh/3/D82+U9r4euSCCbDNGCJ0k+ImcbfgcnIWh893AljcU
+	 JVmcZexQsZOBa6J/JjCBiYZRg6H0IhS6PXaxs8Sx70vGnA45+1HzpAvi2WZPt0F8VF/br
+	 lY7oJri6w14c8kK5bwhlWK73onYiudrZoOL13xWcUB7Farj2+2/f9ipUEVHs5t121aOJB
+	 9DoXWXrbPFbZl21p0nTrtRv9/RQy6N4xjgwjW/6A/+Po6R7GwZWZKqDSdBFASJPZi0GUV
+	 S0+3d4O6fk5FzdtiRyh6X324Wrq9q2ezaj1vTfbaLWRmx1znEOlFcIGct96cGPaIMJQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795338828;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=7CAOiXVjp8Ns3vEuVyhMOAdoin//sr7CcGMy6EJkmTE=;
-	b=OV5daG3Mn5CL5ESbzucHRFgRNxPuQTp76i2Ue87+yM+Pqr2E683yx7UrFb0cEE7ZD6HR
-	 gCTqVYlJQwgQFuFTf4V+Eaftq4vd0XDjMxeCnZyRIQ/uRSrFrRNEATrOk5lrL0XFaHayY
-	 ns07t3dmZFoNLoIjZjkEEZ5rUkQcf7bYrzh69y42+pPauwopzrK3tcZZjAWIvmGgdY0co
-	 MjkP9jOj8qq+41LxVD5lXdDs7TGBhH0eJbwTCkc59YMJ2NG9kGknHBTSvZa7aU1wUwWma
-	 A8q5XPcwhibna1/bUtztPS6INPtxiNNzPx/B/Ql5z0sVUMxXAaBFDW7I8BD2uWjJU+g==
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=kQry4Cjw3RPbx5td1ZWs5hKjkfOnlF6f++DPnxPHX6o=;
+	b=jlljnLjYolqF9TCoaEevqYNU5bKiNg6XgbOSk08nP+UBYTGOVuS5RNaYNoY9cLZCq8Wj
+	 t4msnwnEu/i5r6sSA+tYZ0+dM8iYBD0yLzzXqh3Yac1bDEZUcSLT87qg4Hz3TUiVTcsOZ
+	 N3rhEtAznLLcCKOvU+2I7bv06w/7vYQcf8NXHCstuRqc4Km75WQeOnmc9eanWBXXNEdsN
+	 jpc4VkI+vKRm51/XVTgLfUifoeBCsxLz3zH/ihN2IPnbwvEb9oY78b/ApgdZ5q19MJaSq
+	 BE/e3MG34tH6xu9mmGBubLTcIgeZhOkxQUY+4kBPTACK6Kx6Uwyjblcdal45zSuDnmQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 85DE41F000C6;
+	by smtp.kernel.org (Postfix) with ESMTPS id A5C621F000CA;
 	Sun, 22 Nov 2026 09:13:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795338827;
-	bh=7CAOiXVjp8Ns3vEuVyhMOAdoin//sr7CcGMy6EJkmTE=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=WtuE8c3wBMqv5uZ77G72xiXZZbtWlRnRtRu57cS+ZFYmhIV/gnjEKYuh194CPALhg
-	 a765y/U9f9iTA76HH3flkpPyG/vLviHsaPHhqSJk/EUJGqA9e44/Mn7Sz4wC+b5hWA
-	 PQg3YFAFgjVppdvAburt1W/aRMib9ck9Amj9Iw1KudsNgZP4ZvpdsX5AInp4Vf1CZ6
-	 SZZxBwvvzyLzxZh1MWyzzYnTyWlDgD5+9+UeILAbZvadG0wMvQppsgK6aXd8ebIFuS
-	 aczcTKZrxJybjhwUcuPVMTID55QRISwugSl3rCxIzZaSKsc0K36h3W9gq3TrSTiw6/
-	 JyFVG1quYBiIQ==
+	s=k20260515; t=1795338828;
+	bh=kQry4Cjw3RPbx5td1ZWs5hKjkfOnlF6f++DPnxPHX6o=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Jr7GG1GM3wN8lGV/5Ne/P+ipH2xCagiq4gW/RFVvvgriQGQjvtcJCJuobyiqWmO7m
+	 GsX+6Gf2hKIds+h6SHSrDOkEga44QT5ZuHf7LMWJO1egwE3RB6JLG5PML+huhsZRR1
+	 rb6n2YC1JFTI3U24bqBu5AVWqz7ofuGmZSvIaNS6uLbTzpFbKPjcblcB7wMlF2D0gz
+	 tQ7FGi/+lorNgo6XwJ3xAL1DjHXz5P0tod5MxyzNBqgHVVONsn9lr5XPVtawvM4CsQ
+	 bZtAHSNoVlK+k7cKW7F3BfFvO4OFvaG8KqE/nZU7yL7yDz0R7VNW2FU+05wqZZ/B30
+	 /o9Ms/uptGnRw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 17D434BFBD;
+	by lkml.kernel.org (Postfix) with ESMTP id 344354BFCA;
 	Sun, 22 Nov 2026 09:13:47 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH net v2 0/2] net: stmmac: Limit the MTU of normal
+Date: Sun, 22 Nov 2026 09:13:47 +0000
+Subject: [PATCH net v2 1/2] net: stmmac: Limit the MTU of normal
  descriptors to one buffer
-Date: Sun, 22 Nov 2026 09:13:46 +0000
-Message-Id: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NwQ6CMBBEf8Xs2TV0wQY8+R+GQy0rrKHFtIVoC
- P8u4N3jTN68mSFyEI5wOcwQeJIog18DHQ9gO+NbRmnWDJSRVooUxtGXguyMRZdG7MVJQq1Nlet
- MF5U+wzp9BX7Ie9fewHOC+lfG8f5kmzbhhnUS0xA++/mkdvj/z6RQIVFRUVlQk6vy2joj/ckOD
- uplWb5MwuRAzwAAAA==
-X-Change-ID: 20261121-sun8i-emac-mtu-limit-66a936064965
+Message-Id: <20261122-sun8i-emac-mtu-limit-v2-1-c4081e5b83cf@gmail.com>
+References: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
+In-Reply-To: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
  Andrew Lunn <andrew+netdev@lunn.ch>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
@@ -102,16 +98,17 @@ Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  Nicolai Buchwitz <nb@tipi-net.de>, Arun Iyengar <aiyengar1990@gmail.com>, 
  stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795338826; l=1350;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795338826; l=1453;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=kUraPmsF3SOADB98zBKEXqM+wCmjpNaCBs9zDZNC9kc=;
- b=qYu87ckoyu+x7liUiYyq0MXj1k2T7Vca4KtNr/pGvuSjubWuT7K+bG8H2WVr7bcPTUrzmXjrs
- KpaYmvmMxdNDs8x9mNsZ8yqhoeyIclhzmbCokYm9yZ5AKE12rFJBY2l
+ bh=ydeE7IevavZwGHNIu116JiJ5XTZiQzYRPI/kkGQMzGs=;
+ b=OLm0NCIxVOoxm3a4kij2GdUDVN9qdNUwsdi1iIXrDZaiZGALtLXXIx9TtK0tjAzcFaWaxY1k8
+ mGSIgLgx6xqC513OzVh3vXdfOC+UQQ/ED6uVIfpTgaEe/CLkDlGWvW+
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -131,40 +128,41 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Normal descriptors take frames of at most one 2047-byte buffer, but
-max_mtu allows 3712 on arm64. Patch 1 limits it in the core, patch 2
-limits dwmac-sun8i further to the 2044 bytes its RX DMA fills.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Tested on an Orange Pi Zero2 (H616) on net/main. Without the patches,
-MTU 2029 to 2100 is accepted and ping gets no reply. With patch 1 the
-maximum is 2021, with both 2018. UDP and ping are lossless up to the
-maximum, and larger MTUs are refused. Ring mode and other cores are
-untested.
+Russell King noted in [1] that max_mtu for normal descriptors,
+SKB_MAX_HEAD() (3712 on arm64), does not match the hardware. Their
+buffer sizes are 11 bits, and stmmac neither splits TX frames nor joins
+RX descriptors for them, so a frame must fit one 2047-byte buffer.
 
-Claude (AI) helped write these patches; I reviewed and tested them.
+Limit max_mtu so that a frame with two VLAN tags and the FCS fits.
 
+Link: https://lore.kernel.org/r/E1vLJcL-0000000ExBL-0GFe@rmk-PC.armlinux.org.uk [1]
+Fixes: 48febf7e6476 ("stmmac: allow mtu bigger than 1500 in case of normal desc (V4)")
+Cc: Russell King <rmk+kernel@armlinux.org.uk>
+Cc: stable@vger.kernel.org
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-Changes in v2:
-- Limit normal descriptors in the core (patch 1, Andrew Lunn, Maxime
-  Chevallier), keep the lower sun8i limit as patch 2
-- Link to v1: https://patch.msgid.link/20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com
-
----
-Arun Iyengar (2):
-      net: stmmac: Limit the MTU of normal descriptors to one buffer
-      net: stmmac: dwmac-sun8i: Limit the MTU to 2018
-
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 1 +
  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 3 +++
- 2 files changed, 4 insertions(+)
----
-base-commit: 890f23ba87a7ca1aba97c8320770a686e3b689fb
-change-id: 20261121-sun8i-emac-mtu-limit-66a936064965
+ 1 file changed, 3 insertions(+)
 
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index a685ce4638f6..2a27e1e7f9b9 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -8247,6 +8247,9 @@ static int __stmmac_dvr_probe(struct device *device,
+ 		ndev->max_mtu = XGMAC_JUMBO_LEN;
+ 	else if (priv->plat->enh_desc || priv->synopsys_id >= DWMAC_CORE_4_00)
+ 		ndev->max_mtu = JUMBO_LEN;
++	else if (priv->hw->desc == &ndesc_ops)
++		ndev->max_mtu = BUF_SIZE_2KiB - 1 - ETH_HLEN - 2 * VLAN_HLEN -
++				ETH_FCS_LEN;
+ 	else
+ 		ndev->max_mtu = SKB_MAX_HEAD(NET_SKB_PAD + NET_IP_ALIGN);
+ 
+
+-- 
+2.55.0
 
 
 
