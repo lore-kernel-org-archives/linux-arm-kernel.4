@@ -2,71 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DCC606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 08:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31940606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WlYueGAa;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=r65Rlnhf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KB3miF8A;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m5CXg0Kj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gKa/gdamMUlaWDKNkrOUJ1SInjLPj8wlXGgQUUSMb74=; b=WlYueGAaRXy1dl
-	r2oenEFmkXBKe3umXLi0I0+/OxHbnIw058ocZmq+4nZyFy8oxEK1FI3y5WdJkWPVuJxv8ulI8FuQ0
-	MXGovLWFofGsq9/oKMj8xfEERZLV7Y7FUJD3UgxTPFJblbCUBCUFENi8AAof9qS1suBhKuLP/wuFM
-	i2Hcnq7ufDSzBawwZkToXiCyd+eSmp7te8l4XvTwHxnEU7CNxJGIOIh5LJ2+LxGcHUrl1DzKJpN6H
-	iQX/4Gd4o8ffcR3kzNpCs5GAwjHZrHLVwTjilZLVaF+PLzeYM0C9USURGk4uQGV6yCCQ3qpTHOhkp
-	6yy6bsrEHDHoW0YojaDw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=l5t4RAXcO7LRry3XVVZFdulyCmiEkHchMr2XOmtZokg=; b=KB3miF8AXsd83W7P8ZaBzyC3bW
+	BLabYEOmLLYtdHehHdGMfdAlzXUMWh6knO3Mc0TmMXSKzGSkHT4aDV4wHwn2wMva0IXLcB+d8qn8s
+	cCTSitaa4xijxsQLHsXohskMQun1L9H+pNiXFrjtj2l2Z7UPYbutFwqzrMsmPjoGtd3RSyEAJGOor
+	pMdnNMBb9/QQGmHWuiirjd2o7FYUSs0G7wW6018xUCCq+r/XftcXMPv53Y2ljG1ygmVYQFJFOfwyL
+	/PfS2yn7x2uL8AuIbZIy/CXqNFLnMnGl8aJkv2JWLWfBn/2VrxhtLq9C00HTYMwPj/rjf+WdnqByy
+	BzRHnW/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3PK-00000000sek-2oh0;
-	Sun, 22 Nov 2026 08:58:46 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3PH-00000000seO-108A
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 08:58:45 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 627501575;
-	Sun, 22 Nov 2026 00:58:38 -0800 (PST)
-Received: from [10.57.93.187] (unknown [10.57.93.187])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1F0E63F882;
-	Sun, 22 Nov 2026 00:58:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795337921; bh=bCKwLVxRq7BP98z/sJOreaPLixuU4Iox1OmuawUOOQI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r65RlnhftwPn2uAKmfrTFqTgXtr7b9iN2qr1OKnyriE/PPtviiFEhdREmC8i4dQEo
-	 UYLAxo66d4ZWduKiTokPXsHpW+LSygjPY8BvyL2aTCvnHz5sdH5TLfn2HNOeAt+7E8
-	 rMdmMC8J3RQWw7PAzC0ZTevjIBGcgP6l8MilWQyU=
-Message-ID: <a6cda8a2-992f-41f9-a814-ee78363c3a69@arm.com>
-Date: Sun, 22 Nov 2026 08:58:37 +0000
+	id 1xV3Rc-00000000so2-3p8g;
+	Sun, 22 Nov 2026 09:01:08 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xV3Rb-00000000snq-37jO;
+	Sun, 22 Nov 2026 09:01:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7AD99609F0;
+	Sun, 22 Nov 2026 09:01:06 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795338066;
+	b=f4/ruAbGfADX/2/ch2hesigpkvGwPBA5sL71A+zbpcMrxfMv465GAz7CsH06RjhrbQ5v
+	 YSymi+Hm/5SG3OFLYYgii3A4FqXLW8qddAUEhTX8r66yYM7Uuo9CGG0cDqA9XJFQPh7U7
+	 HVLallE13I0qK+qXaQ6+zuTZbNYfB8Tludo5Mo1cvDt6/lmo+FmnsSCDKspWsRDIofXfC
+	 /oNurMi2DBnDHfNMnwP6atkzQW7CtvDe5o7DVNDwhAQUMf0FCLN+GInRqNJRlG/RCFmS1
+	 TDz6igraQ/yiTAnZ9SvtRigS72sRz1NwSAmRdfLi4JftgbHyCTZalRrg5m0qRieP8XQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795338066;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=l5t4RAXcO7LRry3XVVZFdulyCmiEkHchMr2XOmtZokg=;
+	b=abkcTeTspwc9hrQOXGJ/HHF7SCkPFlikPfpgQoZJIX4FOunewdH9BE6IdI2XI3cgvXao
+	 Tu8i0Cu6be2cEdj0MQWFEBnERSYi7BMc7t5ZrFwlwW59jBrKcFY7k35SM3MYBKiBmKwgd
+	 5cuaB1tPW4IhnvZDmrIFIEnCFM66wjbUHdCXBXYReuJL8LWlXC4yz/A65nuY2z/VYksZA
+	 ienAE6t7YIEJZbgiYHTURxCtBgb3UvcPO/P4cj7e59HYUucCK1ZYRbirvY8PoqOWPyyCn
+	 tBxnHBxTHjdLWJIX+A2M21Uz6dpqN3lZ7wDIBiozlBQYwzdaI03i1vSUOHjl4sC2fSQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 814231F000C6;
+	Sun, 22 Nov 2026 09:01:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795338066;
+	bh=l5t4RAXcO7LRry3XVVZFdulyCmiEkHchMr2XOmtZokg=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=m5CXg0KjkUY4ZZuvU5xGbLfwwaENopkaRvIWQDeg2E20+h4osHlAjWs+wCpyLyOrb
+	 ueK+SmpZAY2UtbzOTbGJgH3p8PchV1Qa+tJZ2YOmb9ntmT9dEJBHaEuEDj1MGmbeR1
+	 eGycy5PV5PUE+IkdntACOAR0uqpL4uq++1PdmvT6L+GYr48+DwIoluZhqXg6PEADLd
+	 mOwoO7AKuDiLhf0NVNEOVd7qmXSgHtout6hTPLa0tHNCsFa4GHEfxfb08+HPznPynk
+	 HOzdcJ+GBSdIC1e1OsRss44lquRmIkw1i2fGJtE4lUJHDV6naX6PAW3WMbiftnmwOi
+	 5aqQI9S3S5KFw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id D8C9E4BFBF;
+	Sun, 22 Nov 2026 09:01:04 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Sun, 22 Nov 2026 09:01:05 +0000
+Subject: [PATCH v2] mfd: syscon: Give each syscon its own lockdep class
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: Mitigate Spectre v1 in the BPF interpreter
-To: Alexei Starovoitov <alexei.starovoitov@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Daniel Borkmann <daniel@iogearbox.net>,
- John Fastabend <john.fastabend@gmail.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- bpf@vger.kernel.org, stable@vger.kernel.org
-References: <20261117172341.3152407-1-ryan.roberts@arm.com>
- <DMYSI3BOQWOC.2P2FZB0H872DR@gmail.com> <awAay4FFj1_wQtaL@arm.com>
- <DN07ZMOAD4GP.37PG3XUPBG4CM@gmail.com>
-From: Ryan Roberts <ryan.roberts@arm.com>
-Content-Language: en-GB
-In-Reply-To: <DN07ZMOAD4GP.37PG3XUPBG4CM@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261122-syscon-lockdep-v2-1-868056a6a808@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/12Q22rDMAyGXyX4eh6R7Rwpo+9RemEpSus1ibs4C
+ Ssl774cOga7/ED6/096isC94yDK6Cl6nlxwvltAvUWCrra7sHTVwkLFKgWARIZHIN/JxtOt4ru
+ sQOsak5wUsliW7j3X7nsLPJ13DiN+Mg1rymui569xaRr2MdFyCHZrKqPDq6j4LaLmJkdbywkky
+ IqMNQTIOtHHS2td806+/Vhj0QaWC7RuKCMgzFSaY5rqnAxATVrVOtNcpAljjrbgAhUasSpeXRh
+ 8/9heMMFmtEuo+P+1m4TlKssKG8cG8z8JcZ7n+QcGrh23TwEAAA==
+X-Change-ID: 20261115-syscon-lockdep-d133fb58c2be
+To: Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: mfd@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Mark Brown <broonie@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795338064; l=4034;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=891oUdhj4DaGdagCnYKDL4s/TeHvsuAZqehCwJn+lk0=;
+ b=20u1VWFtJ9IxfpiChtYKMa2hCcY2YOfQVM7WdqvVfAw9aTT+ndMiIRLUGz4AHmbeV6uIYswCC
+ c1oDlzufNhRAD0TlZyZGQBCap4B/Oq09srlpCeGsCy0zJ8yTPu/uQPh
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_005843_436859_0882C58F 
-X-CRM114-Status: GOOD (  13.93  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,51 +111,139 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 20/11/2026 17:38, Alexei Starovoitov wrote:
-> On Fri Nov 20, 2026 at 10:02 AM UTC, Catalin Marinas wrote:
->> On Thu, Nov 19, 2026 at 01:18:03AM +0000, Alexei Starovoitov wrote:
->>> On Tue, Nov 17, 2026 at 09:23 AM Ryan Roberts <ryan.roberts@arm.com> wrote:
->>>> The arm64 JIT implements BPF_NOSPEC with a speculation barrier, but the
->>>> interpreter calls barrier_nospec(), which falls back to a no-op on
->>>> arm64. Programs executed by the interpreter therefore lack the
->>>> Spectre-v1 barriers assumed by the verifier. Contrary to the code
->>>> comment, kernel-wide SSBD does not provide this protection, since it
->>>> mitigates Spectre v4 rather than Spectre v1.
->>>
->>> Nack.
->>> In bpf-next arm64 has no interpreter when the JIT is built.
->>
->> And what about current mainline/stable or when one disables BPF_JIT
->> explicitly? Should we force BPF_JIT=y as well when ALWAYS_ON=y?
-> 
-> Anyone who didn't have BPF_JIT_ALWAYS_ON=y were exposed to speculation
-> attacks forever. The security hole was wide open. We've been saying it
-> forever. At the next merge window we will say
-> "you cannot make wrong choice anymore".
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-I view this patch as a fix to arm64, not as a fix to BPF. I haven't changed any
-BPF code - I've only removed an out of date comment in BPF code, which assumed
-the code path was for Spectre v4 only. But that's not true since Commit
-dff883d9e93a ("bpf, arm64, powerpc: Change nospec to include v1 barrier").
+All syscon regmaps share one lockdep class, as regmap_init_mmio() uses a
+static key per call site. Lockdep then mixes up unrelated syscons: on
+RK3588 the clock-gated VO1 GRF calls clk_enable() under its regmap lock,
+while the CRU's GRF gates take the SYS GRF regmap lock under enable_lock.
+This is reported as a circular dependency and disables lockdep.
 
-arm64 was previously nop'ing barrier_nospec() despite seemingly needing it in
-the same situation as x86. I think this is orthogonal to whether or not the BPF
-interpreter permits speculation attacks in other places?
+Lock each syscon regmap with its own spinlock and lockdep class.
 
-Looking at bpf-next, it is still possible to deselect BPF_JIT when building. If
-this is such a security issue, shouldn't we disallow that on arm64, or at the
-every least make it an EXPERT option?
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+Tested on an Orange Pi 5 (RK3588S) with a 7.3 based kernel that has
+out-of-tree DisplayPort patches, lockdep and KASAN on. Without the patch
+lockdep reports the cycle during boot. With it /proc/lockdep shows one
+syscon lock -> enable_lock and enable_lock -> another syscon lock, there
+is no report and lockdep stays on. Build-tested on for-mfd-next.
 
-Thanks,
-Ryan
+Applies on top of "mfd: syscon: Put the clock after regmap_exit()":
+https://lore.kernel.org/r/20261119-syscon-clk-uaf-v1-1-dc4a4c1be353@gmail.com
+
+Developed with Claude (Anthropic), which wrote the code and the commit
+message. I reviewed every change.
+---
+Changes in v2:
+- __acquires/__releases: name the argument, not a local (Sashiko).
+- Link to v1: https://patch.msgid.link/20261120-syscon-lockdep-v1-1-aed779a004b8@gmail.com
+---
+ drivers/mfd/syscon.c | 36 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
+index 3ff4e024542b..480ac178968a 100644
+--- a/drivers/mfd/syscon.c
++++ b/drivers/mfd/syscon.c
+@@ -13,6 +13,7 @@
+ #include <linux/err.h>
+ #include <linux/hwspinlock.h>
+ #include <linux/list.h>
++#include <linux/lockdep.h>
+ #include <linux/mutex.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+@@ -20,6 +21,7 @@
+ #include <linux/reset.h>
+ #include <linux/mfd/syscon.h>
+ #include <linux/slab.h>
++#include <linux/spinlock.h>
+ 
+ static DEFINE_MUTEX(syscon_list_lock);
+ static LIST_HEAD(syscon_list);
+@@ -29,8 +31,29 @@ struct syscon {
+ 	struct regmap *regmap;
+ 	struct reset_control *reset;
+ 	struct list_head list;
++	spinlock_t lock;
++	unsigned long lock_flags;
++	struct lock_class_key lock_key;
+ };
+ 
++static void syscon_lock(void *arg)
++__acquires(&((struct syscon *)arg)->lock)
++{
++	struct syscon *syscon = arg;
++	unsigned long flags;
++
++	spin_lock_irqsave(&syscon->lock, flags);
++	syscon->lock_flags = flags;
++}
++
++static void syscon_unlock(void *arg)
++__releases(&((struct syscon *)arg)->lock)
++{
++	struct syscon *syscon = arg;
++
++	spin_unlock_irqrestore(&syscon->lock, syscon->lock_flags);
++}
++
+ static const struct regmap_config syscon_regmap_config = {
+ 	.reg_bits = 32,
+ 	.val_bits = 32,
+@@ -114,12 +137,21 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_res)
+ 	if (!syscon_config.max_register)
+ 		syscon_config.max_register_is_0 = true;
+ 
++	lockdep_register_key(&syscon->lock_key);
++	spin_lock_init(&syscon->lock);
++	lockdep_set_class(&syscon->lock, &syscon->lock_key);
++	if (!syscon_config.use_hwlock) {
++		syscon_config.lock = syscon_lock;
++		syscon_config.unlock = syscon_unlock;
++		syscon_config.lock_arg = syscon;
++	}
++
+ 	regmap = regmap_init_mmio(NULL, base, &syscon_config);
+ 	kfree(syscon_config.name);
+ 	if (IS_ERR(regmap)) {
+ 		pr_err("regmap init failed\n");
+ 		ret = PTR_ERR(regmap);
+-		goto err_regmap;
++		goto err_key;
+ 	}
+ 
+ 	if (check_res) {
+@@ -159,6 +191,8 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_res)
+ 	regmap_exit(regmap);
+ 	if (!IS_ERR(clk))
+ 		clk_put(clk);
++err_key:
++	lockdep_unregister_key(&syscon->lock_key);
+ err_regmap:
+ 	iounmap(base);
+ 	return ERR_PTR(ret);
+
+---
+base-commit: 1cb7268b6638c411fc32f373e965eb8ba9e9b2b4
+change-id: 20261115-syscon-lockdep-d133fb58c2be
+prerequisite-message-id: <20261119-syscon-clk-uaf-v1-1-dc4a4c1be353@gmail.com>
+prerequisite-patch-id: 7cf33abeabb3eeaf1ba8ac6c461726fca87702cd
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
 
 
