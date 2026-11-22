@@ -2,112 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D058360A2613
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1C2606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=10wtNKRM;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=v4do4ea4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nuyr0/dW;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=us0TarKX;
+	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=U2zs7dA2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=o+5QUw2PCrKwYeqKNjiahZ51YG2l39veBudVRc5XYKw=; b=10wtNKRML/HlKY
-	rUSKzXuj+IRCBdN7JVHVFEX8F20nR4cdKInz0OLkvvX9K2OuRTaU4xw2VNQZ9LHtiGAoDtKcthrND
-	bUKvfK7zhc2rtxrePjqoA2HwYdtdHkIstxgwdVABOmahi04Z87TDxi66ZTw8qXqyw56ACLEtUzJhT
-	cTZTv6a4+hgQNaSxIMQTPq1VU9PMA3ch/7U/P8TV4FoE1FpIqk8AJdc2dT2TtW5lQ0WUUyG3JMn45
-	ztqOcgTLsVi7dcAHjxDuQmjDqw+kSJ+gswx6XZBlryydnVsCq5r8xwHuJFkGyfQtwktFggF5e+S36
-	kcvXJhVP0YZzw2vvXWOw==;
+	List-Owner; bh=l3joljTh86SrgqgzDwpfUEKaM0c8d0FKMsL+NNKPMFQ=; b=Nuyr0/dWSH2YWU
+	Sk13HD6cOCz+Wt7fll9X51SWe5oIeU1wnKDNWOvHRRUjiWW/gkhQq2YGrPRU0xWdw5HMlGJOCKZ8m
+	7tj93SHmII1uafBrdNrFUIdKuShJvrM8KfHlzxd/M0HxLgma+ltm8An22lthdDBoDB/ya0JLNKWEg
+	afk5GKEwrDjN+Jtp8qloKvLQBMa4rIXE4JTD16k0OajaGjaDF9RyPxZ0dTTTbM/IBzE/1wkETnbRk
+	ny7H2OceSTCZO3wdprCsTPpalfG+W5mllO9TTyB4cmd7urnQicu3PfurDgKsXrXnPiqwk5YP6JuWO
+	dNpV292cRirbsCxFHPAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV0dh-00000000lCa-1bx5;
-	Sun, 22 Nov 2026 06:01:25 +0000
-Received: from mail-qk1-x730.google.com ([2607:f8b0:4864:20::730])
+	id 1xV0dy-00000000lRM-0e3j;
+	Sun, 22 Nov 2026 06:01:42 +0000
+Received: from smtp.forwardemail.net ([149.28.215.223])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV0de-00000000lBs-14tu
+	id 1xV0dp-00000000lGP-0age
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 06:01:23 +0000
-Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-94965745d92so249603185a.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 22:01:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795327280; cv=none;
-        d=google.com; s=arc-20260327;
-        b=FQmjKlEIGURz+MFmXhD8FhMxLriDsOvKSFz2wdiGnsfDXYU22HOzJMApPZZLTCrRQa
-         b13tbdujEiosgnuCpDOJhCOiciUXdrJRI/iBp7V5MlDwgnJBVo5NtTisYsUWA0RKtBqr
-         EiLuMD7d2tLQqPGw7tYrFFWmtKZ1G+hH0hgEApA24KS1U96SMdHAg2c+s4ONnhaB9g9b
-         9nALBfRBjVBuf43kGp4/dKTOtEJ/zAlBa5HIi+9ENVypS32vPnQSSRaL31Q+basL5gO2
-         BWjLSwrzWwm9wYWJ70ftL0PSoiwZw2o1vey8v9t03Z2R7t9u7JFPRR2Vdp90zIKoTLO0
-         IUAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=o+5QUw2PCrKwYeqKNjiahZ51YG2l39veBudVRc5XYKw=;
-        fh=cyDL6tYOG4nUUYjZzxIwINnW4jvl5E5ijqP3Yk0envw=;
-        b=jeJLnif8suwEb8jGeDRsUNeuGkw/PbiYgbqjgdyjIVtFYMPZPUDvxJX1cfKs6qE6oj
-         0aDWRrVZJIotguP0Mig3ekEwfdmuQ2R3utQyobylYjyhRLCBHYt9GOusnft/nvTTkG8c
-         1NsECNMqwJ67tOtq/f1Ec6/dgVzGvu8wwbRtu/nfwIYvXotO2F4JfgVZzD9EQSP0kk4W
-         hZ9SoyTFUoDZZihbB7lx+iA1lkV/1n9jYHFbAumXu2XrnbmRHck2CRymQUfvfmQbQqiu
-         7dvMIuMUuokvHX3OxpndKTQ3gCmAJ2GlNbmWvsjUsz38r4HeP5emQKwSuVVaypQaoTPK
-         InNw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795327280; x=1795932080; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=o+5QUw2PCrKwYeqKNjiahZ51YG2l39veBudVRc5XYKw=;
-        b=v4do4ea4f71Zf5vGpEhh7syUfsVyS4hOTc4Gv95bp4qIJYgxJWfcSDmVGbbLbdfjzp
-         1RjT5lr5QhWRsmYCRws7oRusbeDBd+cjVrXYvJ0LcFzCGVFW/To9kZ31M/V4tR/A1fbQ
-         NeRPx7OHDhPw+7GnSEJTubNHvEOUDPdlsLI7UUftWRQdbV1iwGNLJbJWxe/8/xZhnvL+
-         JuVsGEQYqZR6rsYagI1qyg55/aMvMs+BphbBo3vJMqLiqPIJWq73T76Wx8iioUlTcYms
-         Z0kn2ZD6mnXGC5CG3DDsLTKV4cTaeNoAPQj0gZ7oeKcl52z5tjbod/xWvSYBNJdHMoB+
-         tgKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795327280; x=1795932080;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=o+5QUw2PCrKwYeqKNjiahZ51YG2l39veBudVRc5XYKw=;
-        b=lBD9jVu5Jq4pE/EXzIYgPVIuz9H3be+qU2jQjJf7LwcPVizhZzU5jYehuR+RaG7VBu
-         NAxBFUOgz1T8AGLGa5pCjFfjxo7uIHOfAhiIKrgoWJFQOESHca2SSgfcc5A9VD7HIHsv
-         Xf2E3z2xuUOjZ8KCwenELTtpgmkYIWxuCFqxbnPoYf53/nlNK1BiO1JUifYXKMc8I8FE
-         sOcR4qPMN60AAfiNS1lZtJ/dQCp0tzq9ICA2UFadCPRZSxhQcPU2EhIE27x7JgCuADBX
-         /rCFm/9sHW4g3/8fZWsQo73TJpO1W+BKL87R5mA6ITvPXynNkrSDWEQTVj8rfrd0KJXX
-         OLbg==
-X-Forwarded-Encrypted: i=1; AL+hErFZdoBd1wzkAaOS9ebcFuQ22Q2TVzV5a8T1PaaWMoSRZiheFFr9ZyHKQVgRyrrQz3L0xFzxlGRq5o5IopdZdrVM@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hwG4F2zSDNkuTYYULJN8jJqDfm74NuvipPfM/+HhKIMvzsLU2
-	aGNMBFBQtiERqjBE4xmyDEnmW4Iyp/pUdwoylwQ3xoMC8cXHg+YFaAo9NY6f3fiZy+f2f3PW3dI
-	REVOtD7MwldmNGwj0ujbpYNmQvxImyr1Dag==
-X-Gm-Gg: AZFdTZft6QU+aEkPipanobYekDAYSIQNapNAzW/vLgb0uxQjubkJrt7HV7Si3EVem8+
-	fZx0Z2VdUrhxOiFwQ0z/s2K9ModpSXbD5hb5R7eHjtE899k5/b4UdPusddvj1lzHomkG3CWS5A6
-	n6+NIyWW7BC6/DbzQj5zGeiN2crBj84494SObAm4uxjFjwIgruQmfuPDt0PVsN6ZdVHToP1dd6G
-	CIgVWN0ihrRfKfLExVLVPEL5Gg9WtYfPJQkPshcT5SFX+ez7+wFO7FRaW2WXKmnjWGceItZrTmH
-	4gKU5RHXX9TWWiAxeQyySQJ39QzwABmMJctmYhmNun6O4p1mXugwxlkgQhueKuFNhfhUHzn8GDi
-	U4mQ9349tUP2iORN04iEJ/x933jyBGWrD2r0JdhKrzAq2Hvzm1s55lPtKSD8VX3w+54i/
-X-Received: by 2002:a05:620a:6011:b0:949:733e:ddd8 with SMTP id
- af79cd13be357-949ba9ef1c1mr1209539385a.54.1795327280273; Sat, 21 Nov 2026
- 22:01:20 -0800 (PST)
+	Sun, 22 Nov 2026 06:01:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
+ Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
+ q=dns/txt; s=fe-e1b5cab7be; t=1795327292;
+ bh=l3joljTh86SrgqgzDwpfUEKaM0c8d0FKMsL+NNKPMFQ=;
+ b=us0TarKXhMT6JoKUplSDsQIF/hlO2WtCwTXczXHNd15qhLMfB9SGhlrWSnVJHacdPej4EkZ1l
+ onCBNwiijiKbYujap8CqKEiHiFKOYI2/on8+cfcFWhtAeBstoU+4iMruGujcDVoE2d+nVmmXSlR
+ mX2fFSkSq6TfzHhah2yabX1fMKu+pOz/4SX3Lhqw7lJrKnIOKSWrK+8j14NdYUmrysofYoVX3T4
+ QADeQx9kdYE2F9KefGUgs/oXiH416zDyMD2+YDdayfRT79QRFDk/6mdV0GNwFvDGS2t/OngxBRB
+ s1sUlHTPKhXb2zCP38zuOdU2Ixor76wVTqj5gxRt5xgA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
+ h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
+ Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
+ q=dns/txt; s=default; t=1795327292;
+ bh=l3joljTh86SrgqgzDwpfUEKaM0c8d0FKMsL+NNKPMFQ=;
+ b=U2zs7dA2J/042n9Or3OeomtUDkRvgMD/e408V8Pcv8mVAEB+7rmAV7m3Ro4SfXrDN35Hj6Xfo
+ 5eQSgmLhnLUUARpynkAn3M5MFbcBC3Oq7OkfsXDskdZ0wFaKp2sAMRJKOuo3I8RcgurrvHahqbW
+ XCzS+fXTZouVHgooLWzVRlE=
+CFBL-Feedback-ID: 6b028531cff95ecda8c09342:2df51f67f4fae979f4232f86c9c7a8f0
+CFBL-Address: abuse@forwardemail.net; report=arf
+X-Forward-Email-ID: 6b028531cff95ecda8c09342
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.19.37
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: [PATCH v2 1/8] dt-bindings: soc: rockchip: grf: Add RK3506 compatibles
+Date: Sun, 22 Nov 2026 06:01:04 +0000
+Message-ID: <20261122060114.773624-2-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261122060114.773624-1-jonas@kwiboo.se>
+References: <20261122060114.773624-1-jonas@kwiboo.se>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <5e6ebf68.3773.1a201cf3894.Coremail.220110626hanxuechao@alu.hit.edu.cn>
-In-Reply-To: <5e6ebf68.3773.1a201cf3894.Coremail.220110626hanxuechao@alu.hit.edu.cn>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Sun, 22 Nov 2026 10:01:09 +0400
-X-Gm-Features: Aa3M54pZ7IdaxPC9CbQNRh_pul0VaAYHm51kF77R__jgCL4fpz9IgdTgLw29bAE
-Message-ID: <CABjd4Yxr9NuLwhsUvvryy-Y5fXhSHUdU239vEW1=M60zVaWhMA@mail.gmail.com>
-Subject: Re: [RFC] arm64: dts: rockchip: rk3576-lckfb-tspi-3m: sdmmc0_det_l question
-To: 220110626hanxuechao@alu.hit.edu.cn
-Cc: linux-rockchip@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>, 
-	Liu Changjie <liucj1228@outlook.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_220122_311914_3076B531 
-X-CRM114-Status: GOOD (  17.20  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261121_220133_198561_B28608B1 
+X-CRM114-Status: UNSURE (   7.74  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,65 +91,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 22, 2026 at 9:51=E2=80=AFAM <220110626hanxuechao@alu.hit.edu.cn=
-> wrote:
->
-> Hi Heiko, Liu Changjie,
->
-> I have a question about the SD card detect configuration of the LCKFB
-> Taishan Pi 3M.
->
-> The &sdmmc node uses the board-specific sdmmc0_det_l group:
->
->     sdmmc {
->         sdmmc0_det_l: sdmmc0-det-l {
->             rockchip,pins =3D <0 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
->         };
->     };
->
-> which muxes GPIO0_A7 as a GPIO, matching
->
->     cd-gpios =3D <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
->
-> The SoC dtsi already provides sdmmc0_det for the same pin, using the
-> SDMMC0_DETn function instead:
->
->     sdmmc0_det: sdmmc0-det {
->         rockchip,pins =3D <0 RK_PA7 1 &pcfg_pull_up>;
->     };
->
-> and other RK3576 boards use it together with cd-gpios, for example
-> rk3576-evb1-v10.dts and rk3576-evb2-v10.dts. Both groups configure the
-> same pin with the same pull-up; only the pin function differs.
->
-> I tested the node below on a Taishan Pi 3M with mainline v7.4-rc2,
-> i.e. with sdmmc0_det instead of sdmmc0_det_l and cd-gpios unchanged,
-> and card insertion and removal are still detected correctly:
->
->     &sdmmc {
->         bus-width =3D <4>;
->         cap-sd-highspeed;
->         cd-gpios =3D <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
+Add the GRF and IOC compatible strings for the Rockchip RK3506 SoC.
 
-Here you've just used your pin in the GPIO function without
-configuring its mux into GPIO. This happens to work in Linux due to
-how its GPIO and pinctrl subsystems are wired, but it's not a correct
-description of the hardware and is likely to break under other OSes.
-E.g. U-Boot doesn't implicitly re-mux the pins used as GPIOs and would
-be likely to break.
+Table 1-1 RK3506 Address Mapping in TRM for RK3506 contains following
+related entries:
 
-On a more general point, the reason to use GPIO for card detection on
-Rockchip boards is to allow the controller to sleep with its clocks
-down when no card is inserted. It cannot detect card insertion via its
-"native" CD pin mode in such a case, but GPIO can.
+  Module		Address		Size
+  GRF			0xFF288000	16KB
+  GPIO2/3/4_IOC		0xFF4D8000	32KB
+  GPIO1_IOC		0xFF660000	64KB
+  GRF_CORE		0xFF840000	16KB
+  GRF_PMU/RMIO		0xFF910000	16KB
+  GPIO0_IOC		0xFF950000	64KB
 
-Best regards,
-Alexey
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+---
+Changes in v2:
+- No change
+---
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index e94c83d7c138..3c1c3dc1b84d 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -15,6 +15,9 @@ properties:
+       - items:
+           - enum:
+               - rockchip,rk3288-sgrf
++              - rockchip,rk3506-ioc0
++              - rockchip,rk3506-ioc1
++              - rockchip,rk3506-ioc234
+               - rockchip,rk3528-ioc-grf
+               - rockchip,rk3528-pipe-phy-grf
+               - rockchip,rk3528-vo-grf
+@@ -93,6 +96,9 @@ properties:
+               - rockchip,rk3368-pmugrf
+               - rockchip,rk3399-grf
+               - rockchip,rk3399-pmugrf
++              - rockchip,rk3506-core-grf
++              - rockchip,rk3506-grf
++              - rockchip,rk3506-pmu-grf
+               - rockchip,rk3562-pmu-grf
+               - rockchip,rk3568-grf
+               - rockchip,rk3568-pmugrf
+-- 
+2.56.1
+
 
