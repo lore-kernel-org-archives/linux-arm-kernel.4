@@ -2,109 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E98606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 14:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0E3606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 14:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BRHpFRez;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MWRdvn6N
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fCmPGFpF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U4+o3+72
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+K7JzpGarS7XrVs3pF+iY9oQFFhgwWQ55zT/V6cOCBI=; b=BRHpFRez4Sj6vj
-	fyseYGe2wbfcQYG/VV080krgIyKhosG06VAXjZYPrtTsas4y/538ViUnr+8R61qlh5+Q2yOfAu0dv
-	6GkelakomEr0Hznk+WhLEFSm8L7py+urD7o9VkcJjJ1MaMweGgHrRnITx4I8tTaoqLfs2Kg+PJKZI
-	U9BcCj1CdQ9uWlqvvP5Y6R3r9WVIHbZx6tufkw7ycIEcyFEKPquE41T/QXLQrjR3/6QexsIvbfFZc
-	S0NtFn3n40rGmsQA8iFohZpXtphD/h8Jd6QsuU9U+ObX/TW/7l5owZta8ejWf51s9yQjcEcTSt/2T
-	CBt7xW/SUS9snnA2xTuQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=/E3RY52GDj4TNMPPJaH93QZ9upC2WYUMh4er3d/oEMM=; b=fCmPGFpFb9D4I6WPeXkhFTk0D+
+	B6a1/aRl6Kw8RODLkr0vG70PjmLJGCtAfP1HCzSVugIJbs1pZ5d61EIAeUME5F/vOQ9kfm9P60M+2
+	d74vO5QT0GxyynoItTeY9zSPkpI70r0tFBigwBZYTVug/4hHwpAP18tWgvUwd6w3YcJHIf33/TZ2q
+	ITRHmk6vg7+sLq/JWNuyxJ/b6KU43BT1dzazFzYABGOnVtvJpgLJDxtTjmXZ22mxeQeShrbxjMSAE
+	AAnbJKRicb7Nn7ax40RSREkAVIdKrpULyPvrnEY92d4PkPTrtPzA6f2IZe7PUvnw7IVgPEmTt6Xy8
+	rkHkSDpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV8K1-00000001Bdc-3YV5;
-	Sun, 22 Nov 2026 14:13:37 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xV8c9-00000001CUQ-2RMc;
+	Sun, 22 Nov 2026 14:32:21 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV8K0-00000001BdV-2HPw
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 14:13:36 +0000
+	id 1xV8c7-00000001CUA-3ewe;
+	Sun, 22 Nov 2026 14:32:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F0F09441CA;
-	Sun, 22 Nov 2026 14:13:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3CB51F000C6;
-	Sun, 22 Nov 2026 14:13:32 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E555A60D45;
+	Sun, 22 Nov 2026 14:32:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 819BF1F000D0;
+	Sun, 22 Nov 2026 14:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795356815;
-	bh=+K7JzpGarS7XrVs3pF+iY9oQFFhgwWQ55zT/V6cOCBI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=MWRdvn6NUr03DWerCYm39FLMtynw06Hlj798o8n0Qkw1PRZL1mlyxY4HrSMjPtNrV
-	 LsLmrTiTU8iM7UH6lo06NOfYAHtd4Nf0Fvd5d1vv4YjNuQznxKjTQ8eIuSxTNb6Utg
-	 zFABsUMpJ9wbK1sX4q6AWTYZP4EUvZWAnlg/TduRYAO0HyYV01Y0uZ0gJSVgDrQ4nq
-	 fO5xtWeveRBWfgXOzS5/GHDmIXwXWdRr1S2+lHz7tq/CZ70FCnqzrXkzh/XvIy44UH
-	 VCe6C7GTYbZnsJQFUIInR+XYCuAMRABsVCRIXqGNSaximR+3j5XeCrnD9XQ4sm7ixN
-	 wOVDtRBH3Xn/w==
-Message-ID: <614d1630-3009-4698-b1d6-e70650ec3223@kernel.org>
-Date: Sun, 22 Nov 2026 15:13:30 +0100
+	s=k20260515; t=1795357938;
+	bh=/E3RY52GDj4TNMPPJaH93QZ9upC2WYUMh4er3d/oEMM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=U4+o3+72Cc1R3NCJHpERN9bGqHo1CVD9lM+q+e1EpcDasyHI34kSLRw/icFD+kAaM
+	 uOV/32mUe71E4q4P8VWkus81cwG6zCLxU5V80/qXmrsyqw2hPdOxemaIMIcuokuCf/
+	 gwiB6LT8h0/MHJOFuI+ugzttKy3u0lKZ0kFHcdSt8Q2B1CuEDNvA/qORcMmhR/6d97
+	 S8ASgDsuajn8KlxWpu87s9oOlPbOFa1k2tkupaUUU8UG54wulUCPVM7G5RTGCpFqy1
+	 B0epHNwm7uPAtVXSb1+IpheegK1fK04xgCBDRbCBF0Vn2neJvsp8fVRm2+rHMHzOPe
+	 7qzIcTfPlsytQ==
+Date: Sun, 22 Nov 2026 15:32:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kyrie Wu <kyrie.wu@mediatek.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Bin Liu <bin.liu@mediatek.com>, 
+	kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>, Hans Verkuil <hverkuil@kernel.org>, 
+	irui wang <irui.wang@mediatek.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v19 10/13] media: dt-bindings: mediatek,jpeg: Add
+ mediatek, mt8196-jpgdec compatible
+Message-ID: <20261122-pristine-vagabond-coati-f6cfd3@quoll>
+References: <20261116013402.1273016-1-kyrie.wu@mediatek.com>
+ <20261116013402.1273016-11-kyrie.wu@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] tty: serial: samsung_tty: fix -Wformat-overflow warnings
- for clk_name
-To: Bramuel Barack <bramwelbarack89@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Peter Griffin <peter.griffin@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, linux-serial@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261121192158.44872-1-bramwelbarack89@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261121192158.44872-1-bramwelbarack89@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261116013402.1273016-11-kyrie.wu@mediatek.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,26 +74,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 21/11/2026 20:21, Bramuel Barack wrote:
-> MAX_CLK_NAME_LENGTH is currently 15, which only leaves room for a
-> single-digit index after the 13-character "clk_uart_baud" prefix and
-> terminating NUL byte. Because the clock indices (cnt, clk_num, clk_sel)
-> are u8 values (0-255), building with W=1 triggers -Werror=format-overflow
+On Mon, Nov 16, 2026 at 09:33:35AM +0800, Kyrie Wu wrote:
+> Add the MT8196 JPEG decoder and decoder-core compatible strings.
+> Describe the child mediatek,smmu-config phandle to the dedicated JPEG
+> SMMU configuration syscon and require it for MT8196 decoder cores, so
+> the compatible and its hardware requirements are introduced together.
+> 
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> ---
 
-They are not 0-255.
+This was reviewed and your cover letter is vague about tag removal.
 
-https://lore.kernel.org/all/20240605040719.160778-1-k.son@samsung.com/
+Adding new properties at v19 is more than unexpected. Honestly, this
+should not happen.
 
-> warnings at the sprintf() call sites.
+I drop the patchset from DT patchwork.
 
 Best regards,
 Krzysztof
+
 
