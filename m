@@ -2,78 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390FC606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 21:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2107E606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 21:35:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cOIg37uS;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WG54opzt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=plbDsM8L;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=r+ozfGLC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BTV0zF8Ij6zUMNBE+Oz8/N1ZVrqV9XG9B7wmhsB51vI=; b=cOIg37uSfOIph1
-	rnB3Fk0G9YBd7Z8v6JCN1ljWnJLYc0FJKODjX2leB8jej/iTyW5jc7N8tOWP4z6lV0fp0ZeFazCEg
-	sB25h/LigDieeCYwIC30oPze0KIIrYN7xihTs5pFNyBHJHHrYxjz1SNk8MzXSFo4NQenBIMydQ0L6
-	wdyFRz1anTbiDp+LheMLtp10tOy8x6QfVz7KzUDxSVQLCKZua9RePINb2KgImZQrVkrwAt4g1olw4
-	q6lQhLldyUeM5BU7AsjUD44lfU3niKPuHvdn4w1ukeBo5mxx9knfTpdl6abAiEZEBBZAmiH2ymCch
-	n4tMi4a8WKSkFC4VvvCw==;
+	List-Owner; bh=XPYrCbu4T8TJmTKZRllmVp6cNeS8O7+5fQphOJsL0qY=; b=plbDsM8LAkhKk7
+	1bokWYGe/V7WJOpOg7ImSOd1rsnyivWF810WsVjGr1wDvW5+IShDol6CbLgb7sVrQioAZC0iv/X8e
+	UWaFQ/y+d7ZRaHKrRqVqlvKSks2RGgY9WuvdUrPaKUCMWDywxDgqwaR5+/16TmZaxAMaZ9LmAllfr
+	M3Hsmd0jn7giSu9A+9qUc6QFl2ijI6+wWR02tpIwtjvRvpBLA+3PLly3Wc5QnLjdE8B6/avBJ/QvB
+	2/TTa54HzL1Z/KvjnzDqkgqYGiGyfwj0cp6FLqe4Q7LL5Rwy8sd4swyDCoLKojZQOicEeczTG3JMN
+	2YnaDcjvPR5QSAykEAiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVF7b-00000001nFF-2n6s;
-	Sun, 22 Nov 2026 21:29:18 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVFD3-00000001npx-0rvc;
+	Sun, 22 Nov 2026 21:34:54 +0000
+Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVF7W-00000001nEv-2rla
+	id 1xVFCy-00000001npA-4521
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 21:29:13 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BBB2D60ED1
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 21:29:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 180AD1F000EC
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 21:29:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795382949;
-	bh=BTV0zF8Ij6zUMNBE+Oz8/N1ZVrqV9XG9B7wmhsB51vI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=WG54opztWi+ll7+PUc6eBXqw494LZjxIVJ0DKsOEfPBVjJTxRSg1R7ywaqbRHIXza
-	 VazTaVz5alcKWtxPjpyt9HYyPuJTofmTz+8e/maD+l2IpS8DqfZjP0zUXVTezJDte0
-	 SjZsXl9DSYkB8/hove8ERjgLKOc+ZHNEs6IDjDzHL7NxRuWchw69iLDkGo0NLU2xdo
-	 8Hzau6EhHX6AhVk1259DZeOfEqoymIG0dhHjJsBRCeEcaYjJk3ioWBZwitbEi/yBjj
-	 IA20Phq6/J8wU/WfLd6OgMcWvRFunqG5FUMxAlFCKFdiywCWLU+exJ7jprSB+jKsuv
-	 X2O/DctYxrKAA==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3adf87fc0c6so22366091fa.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 13:29:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHdpT78MZ6fzKFBD513maQvHI0+ibXF4FGDqXrjRsWnK0vUxKcQMR5fHBm2CT05cgaHmq3qrI5FF8Dpl5dc8Wp6@lists.infradead.org
-X-Gm-Message-State: APuU4Z+AMW9MloQ5g68j82AFwkjk9o8JukAHZVf64u9R/JFNKsrkXCAH
-	JPmvAimxl4TLBL6ZYxUBdjmotWiBnLB7m0ZHqN0g1r8ql1dj2urgzAC0ySjQvIgOaRm2Kdc/2hH
-	glsGM6OUH94/kpHIuBUpyDkxBL5Kz9ww=
-X-Received: by 2002:a05:6512:4207:b0:5bf:ce41:b440 with SMTP id
- 2adb3069b0e04-5c1bc7d6de5mr2517796e87.31.1795382947589; Sun, 22 Nov 2026
- 13:29:07 -0800 (PST)
+	Sun, 22 Nov 2026 21:34:50 +0000
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-2f05bc71e01so8658805ad.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 13:34:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795383288; cv=none;
+        d=google.com; s=arc-20260327;
+        b=C8Yp8vUdeuOAbEdUUwOSgoiPWYWjQb4NFy5CKkNOyCIUqVEiSCIC93vBJ3EXmN6vyJ
+         HGxYuj3B/MtWmTJ637URGTJxsF+yIT8ydqlecbS6D8RXubrtMb2AirkSXtSKS31wfqGb
+         3SmwNnaQPZ1SvrkPzx+MOVReYf1Rz9av3PTgeH6R33NRvle9/5OL0dIB2DQ2buG407pv
+         arTenc2RjUBElugO0ItoY/F5o/WpLWBZpYO9EXY/6P2pD5wExsw/5r2mQqOADj5ekMtR
+         52saPivHcZMDaqP2xCnR+EPcLn3PT13SMAA6oNKUz5jAeSIyFmhw9xe1va8o1Xo3TgXg
+         Pl8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=XPYrCbu4T8TJmTKZRllmVp6cNeS8O7+5fQphOJsL0qY=;
+        fh=X52sg8M57fjxHQzXwrOw4QZQHKUsRFmWpj4h2IXbEDQ=;
+        b=pWJ30cR5jQAX659VdSSrjt/UvcnsVt2oVKthNkDS+ERE1wEIVS9swuFIR4cXmU1/uN
+         9RZf2gyUkZuzhI1N/Jz7pmFoBy6MPFrmcZZEotCKl2eXAb7nwKo7WdhJ0Ws34Mp8gMht
+         MIiDPS79IBrKtafJCzV7I0wTlPypgkuZEa83tQzfN6YYphdmzjBidsMgpTzyU88xIMmx
+         6TeFGE2iyXU7mQmIuUPQfPDTwcuXLk4HqQjYUgG12Vnr//lIafxjDhLkgb9mDxVZyzjG
+         p1pjNjDXuUM0XeRXfcireEmshh8jFgeke6wyP2tUajIr5cUpf9wbpatDrxiadSzMf0AA
+         6Rfg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795383288; x=1795988088; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=XPYrCbu4T8TJmTKZRllmVp6cNeS8O7+5fQphOJsL0qY=;
+        b=r+ozfGLCLa1i69sDVzY1SqPxo+7cL0Y6JE5A42ia40mLY1q//V5pWPnJTczKN4pKuj
+         J1OLf/puj3iKHmboG53ELNjkZqXAbGAbFTjF5caI9ZAQE1n0G4jITKUx4PFwEHr1edXf
+         ucKDgs4IqpL7YQL9o3LvJsa8VG8i/NQ0hxGXIf12mV8hUnaoouch+UGKGQo4ZJ2el3XT
+         /0yQS9/xqfN1WxYOUa2Kl2kNkVtChOa2pkn+GHsJeDGyMitYuXtsNfAcjLo66Z97xwJs
+         ni+B+8qkXOw4AJzlR4gn6dcWCMYjv64alSnOxqhLkkjM2wvOKKDu36ZNkYRMqVrOk5zx
+         y5jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795383288; x=1795988088;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XPYrCbu4T8TJmTKZRllmVp6cNeS8O7+5fQphOJsL0qY=;
+        b=xx+zrgsMKoOTDC0j63qzoGtohRcz/hneyrayr+KBRkYDvpH/Q9HLFvGj7yjpquEfCK
+         B5ujgh85c2+5usIzj++GZsJsM6eS16fNXObUSjV+xi2fDLfqWOJMxJ6gtpXhNFoenM7D
+         0ZtWEzUd2R5E1j2E5rqrtX/VcfQNyaZKuzWU9Ssqh+9atKxZXrzI31VxVNUSy6qDZiXX
+         lhBIL0VRPXXHjXS0Nq20XVLEFasdyV2j5vcqjU5NKZyuze1FqtqqyqjRodfrQuREDNAp
+         nbMTyAMS+1Nn3PrnkSkNPc9WRmxZ81iXnqaN/hF4zN8UA9WQ0k1AgBgrvdWlZhmqb10I
+         dG1A==
+X-Forwarded-Encrypted: i=1; AL+hErFcHVVZa78tEZyFuK5TOkBJN4ZRDiROlvTBJb8f7Lkc9HFqWqCi1UYd4kvcw9UdLf3L7jb6RblQYcVmxw5/ZRW7@lists.infradead.org
+X-Gm-Message-State: APuU4Z/v2VAWJOULbRL+IO+RzdGSfO3JGHZJdPCn5d0ZzLUs8bfnFZbG
+	Fia15f63pNmAyv+L+t6Ayi8BMyz8P/7m/wdocEeOlcf6YTGYQ6dl8kGQPjBHDJygUAIITSeAFkk
+	kx63r/EtxLkQEjiGLGZD+WOj7k+c3XKntIVf8BoXF6w==
+X-Gm-Gg: AZFdTZcrVE91bng98LMPlFZCk2nIoQrmBZH8tWhXTCGgO3037IbQP2CPE+Srocqvz24
+	mLmtLY3khTuPhjjSe8D3fp2O6ECX8c76Nbm1ghLt6gxc/ujirznEwZql7KDTN51G/cXjzKGTmyF
+	8N5JNqIVZRBOByfeKFEbirzE/OzbnltzG2cBLjUPDS2uE9EBtUiEsLYJNxRr36HdRMrwQbxHvn3
+	Imx2Gi0RuwIzhFWzI9254V+3gFWylmpL19wkmQIykI+Feb0nS7LjtraGAabM4XNT9QVHCvJcOY5
+	n+0WTxJUVAp04jzelnN3BIIDld1ds1895y5lnPYvlVuaWs0KVQoux+yjQAaZvdhqr49/6v22g4y
+	k/c8MnjzBhblKEFPz8rA/BmLoV3judwb9DVOjR1kalvOH/DJZoG3Z2QyIpF8F0vys8bRuqw==
+X-Received: by 2002:a17:903:298c:b0:2ef:d952:4a65 with SMTP id
+ d9443c01a7336-2f03f1babeamr91216115ad.43.1795383287859; Sun, 22 Nov 2026
+ 13:34:47 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261015142552.4128028-1-ryan.roberts@arm.com> <20261015142552.4128028-9-ryan.roberts@arm.com>
-In-Reply-To: <20261015142552.4128028-9-ryan.roberts@arm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Sun, 22 Nov 2026 22:28:54 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnY3dagTQDzBa5e=g3fJ1rDOvyRHPKVtpadV4c0nXYV4Q@mail.gmail.com>
-X-Gm-Features: Aa3M54r6B7e9BLC1UO5yqTkRPrBtuKJXzOWhi_mL44xox65BnkoSkli_lYPdSwU
-Message-ID: <CAD++jLnY3dagTQDzBa5e=g3fJ1rDOvyRHPKVtpadV4c0nXYV4Q@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 08/15] misc/arm-cla: Manage domain contexts
-To: Ryan Roberts <ryan.roberts@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
+References: <MA0PR01MB921746F36D90C7080287ACC9FD782@MA0PR01MB9217.INDPRD01.PROD.OUTLOOK.COM>
+ <9d8cdde77beedce76aaaa1c5a7a788dc@tipi-net.de> <CAH5Ym4h8-1mc+DX0Si7XROeGn9M72bQC+ooM05Y7ZmgTo+ON4w@mail.gmail.com>
+ <CAH5Ym4jkX_tD58Gtd-mzruB+hqHK7s_9knNWh+gMqUjwuYyVPA@mail.gmail.com> <3303844cdf7c00c5369453eb91027c1b@tipi-net.de>
+In-Reply-To: <3303844cdf7c00c5369453eb91027c1b@tipi-net.de>
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Sun, 22 Nov 2026 13:34:35 -0800
+X-Gm-Features: Aa3M54ojoA-gtiCq3dXKw6zioYXOKf9vTAqllY425ytZiRU_L22WV3K8LaUJ9aM
+Message-ID: <CAH5Ym4ijMNSAWZ8k3GmwOoLDBVTy32B1uhS_fE-dGhsPkgozeQ@mail.gmail.com>
+Subject: Re: [PATCH net] net: stmmac: retry a failed RX refill from a timer
+To: Nicolai Buchwitz <nb@tipi-net.de>
+Cc: Anandu Padinhare <Anandu.Padinhare@electrifex.com>, maxime.chevallier@bootlin.com, 
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org, 
+	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, Alexei Starovoitov <ast@kernel.org>, 
+	Daniel Borkmann <daniel@iogearbox.net>, Jesper Dangaard Brouer <hawk@kernel.org>, 
+	John Fastabend <john.fastabend@gmail.com>, Stanislav Fomichev <sdf@fomichev.me>, 
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, David Wu <david.wu@rock-chips.com>, 
+	stable@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_133449_012312_7F1EA4BE 
+X-CRM114-Status: GOOD (  16.99  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,423 +127,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Ryan,
-
-thanks for your patch!
-
-On Thu, Oct 15, 2026 at 4:27=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
- wrote:
-
-> A CLA domain cannot be used by multiple address spaces concurrently
-
-Which address space? The physical one? The virtual address
-space of the CPU for a certain CLA? The virtual address space
-of the CLA on a certain CPU, as found from it's TTBR0/1?
-I suspect the last one, but it needs clarifying.
-
-And so the domain is definied in hardware but there is
-a footgun waiting to be fired by not defining the virtual
-address space exactly the same on all CLA:s in the domain?
-
-Please elaborate.
-
-> because its devices share a memory translation context and may
-> communicate without isolation.
-
-Again I stumble here. "without isolation". So this kind of resoning
-implies I know of some isolation that I cannot have. But I don't
-know that, I have no idea what kind of isolation I would want here.
-
-This needs to be explained differently.
-
-> Represent each user of a domain with a
-> context keyed by the mm_struct and device file description, and track
-> contexts in a per-domain hash table.
-
-This I understand.
-
-> Add a domain scheduler that queues contexts for assignment
-
-Are these contexts the software abstraction of hardware
-constraints (such as the virtual memory space)
-around a certain domain, and since they are scheduled,
-these constraints are then applied over a certain time window?
-
-> and gives
-> each one a fixed time slice. Before switching, revoke the outgoing
-> context's mappings from all VMAs for the device file. Then save its
-> accelerator state and remove its MTC, before installing the incoming
-> context's MTC and restoring the incoming accelerator state.
-
-I think I start to understand a little...
-
-> Run hardware operations through CPU-bound kthread workers, since each
-> CLA can only be accessed from its local CPU. Coordinate the per-device
-> workers with a domain worker so that every CLA in the domain is switched
-> as a single assignment unit.
+On Sun, Nov 22, 2026 at 1:09=E2=80=AFPM Nicolai Buchwitz <nb@tipi-net.de> w=
+rote:
 >
-> Treat a failure on any device as a failure of the whole domain. Stop
-> further assignments and wake all waiters when a domain becomes unusable.
+> Hi Sam
 >
-> Co-developed-by: Jean-Philippe Brucker <jpb@kernel.org>
-> Signed-off-by: Jean-Philippe Brucker <jpb@kernel.org>
-> Signed-off-by: Ryan Roberts <ryan.roberts@arm.com>
+> On 22.11.2026 22:02, Sam Edwards wrote:
+>
+> > [...]
+>
+> >> Do you mean "first as well" or "first instead"? Because "instead" can
+> >> cause avoidable packet loss:
+> >> 1) Initially, network is idle and ring is full of empty DMA buffers
+> >> 2) A burst of exactly one ring's worth of packets arrives
+> >> 3) The RX irq fires and stmmac_rx() attempts its refill-first (none
+> >> needed) then depletes the ring to the maximally-dirty state; the
+> >> refill timer is armed
+> >
+> > Thinking about it more: the "unreachable packet" problem happens at
+> > this point too, even with the "first as well" behavior.
+> >
+> > Maybe the best way to resolve it is to adopt stmmac_rx_zc()'s behavior
+> > of refilling during the loop?
+> >
+>
+> Only if the ring is no bigger than the NAPI budget, right?
 
-OK this is some kind of scheduler let's look, but right before we
-start you should probably define the principles of this scheduler?
-FIFO? round-robin? Something else?
+Right, but as pointed out in b6cb4541853c7 ("net: stmmac: avoid rx
+queue overrun" -- the commit that introduced the "leave one behind"
+behavior) the ring can be as small as 64 and that commit's author was
+seeing budgets larger than that.
 
->  extern struct xarray cla_domains;
+Perhaps NAPI should only be told to stop polling if we either:
+a) Reach the clean tail of the ring (so we *know* there are no further
+packets for us)
+b) Run out of memory and have to arm the retry timer
 
-Nice use of xarray
+Thoughts?
 
+Sam
 
-> +static inline void cla_ctx_get(struct cla_ctx *ctx)
-> +{
-> +       kref_get(&ctx->refcnt);
-> +}
-> +
-> +static inline void cla_ctx_put(struct cla_ctx *ctx)
-> +{
-> +       kref_put(&ctx->refcnt, cla_ctx_free);
-> +}
-
-Rename these something like _addref/_dropref or just inline
-the kref calls. These names upsets the kernel conventions
-for _get()/_put() of resources, see below.
-
-> +/**
-> + * cla_ctx_create - Create a context or increase its user count
-
-Something that creates or increase a context should be named
-cla_ctx_get() to avoid ambiguousness.
-
-> +/**
-> + * cla_ctx_destroy - Drop a context user
-
-No it drops the reference and drops the context (destroy it) if the
-usecount =3D=3D 0.
-
-Name it cla_ctx_put() to follow kernel patterns.
-
-> +       /* Release initial reference from cla_ctx_create(). */
-> +       cla_ctx_put(ctx);
-
-So this needs a different name.
-
-> +++ b/drivers/misc/arm-cla/cla-sched.c
-
-I wanna spend some time here since this is RFC and we are looking
-more at design than code details.
-
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Arm CLA driver - domain scheduling
-
-In this header explain the principles for the scheduling, as well as in the
-commit message.
-
-> +#include <linux/cpuhplock.h>
-> +#include <linux/rhashtable.h>
-> +
-> +#include "arm-cla.h"
-> +
-> +static struct cla_ctx invalid_ctx;
-> +
-> +static const struct rhashtable_params ctxs_rht_params =3D {
-> +       .head_offset =3D offsetof(struct cla_ctx, node),
-> +       .key_offset =3D offsetof(struct cla_ctx, key),
-> +       .key_len =3D sizeof(((struct cla_ctx *)0)->key),
-> +       .automatic_shrinking =3D true,
-> +};
-
-Neat!
-
-> +static int __cla_domain_switch_ctx(struct cla_domain *domain,
-> +                                  struct cla_ctx *prev_ctx,
-> +                                  struct cla_ctx *next_ctx)
-
-Is this one of those "__ means __inner_function()"?
-
-Name it for exactly what it does instead.
-
-> +static int cla_domain_switch_ctx(struct cla_domain *domain,
-> +                                struct cla_ctx *prev_ctx,
-> +                                struct cla_ctx *next_ctx,
-> +                                struct cla_ctx **assigned_ctx)
-
-Looks OK.
-
-> +/*
-> + * Run on the cla's local CPU, either in its worker or a CPU hotplug cal=
-lback.
-> + * Work submitters hold cpus_read_lock() until completion, excluding hot=
-plug
-> + * callbacks and keeping the worker bound. Hotplug callbacks hold domain=
-->lock
-> + * to protect the assigned context. Other devices may switch concurrentl=
-y.
-> + * On failure, mark the device broken; the caller handles domain failure=
-.
-> + */
-> +int cla_dev_switch_ctx(struct cla_dev *dev, struct cla_ctx *prev_ctx,
-> +                      struct cla_ctx *next_ctx)
-
-Good explanation and name, easy to understand.
-
-> +void cla_dev_switch_ctx_work(struct kthread_work *work)
-
-Here too
-
-> +static inline struct cla_ctx *cla_domain_get_next_ctx(struct cla_domain =
-*domain)
-> +{
-> +       return list_first_entry_or_null(&domain->queued_ctxs, struct cla_=
-ctx,
-> +                                       queue_node);
-> +}
-
-This looks like a FIFO thing?
-
-> +static inline struct cla_ctx *cla_domain_get_prev_ctx(struct cla_domain =
-*domain,
-> +                                                     struct cla_ctx *nex=
-t_ctx)
-> +{
-> +       if (domain->assigned_ctx && (next_ctx || cla_ctx_is_dying(domain-=
->assigned_ctx)))
-> +               return domain->assigned_ctx;
-> +       return NULL;
-> +}
-> +
-> +static void cla_vma_zap_domain(struct vm_area_struct *vma, struct cla_do=
-main *domain)
-
-"zap" is a very ambiguous word. This function needs to have
-a name that express exactly what it does.
-
-It looks like it should rather be infixed _initialize_?
-
-cla_domain_initialize_vma()?
-cla_domain_reinitialize_vma()?
-
-> +{
-> +       unsigned long vma_start =3D vma->vm_pgoff;
-> +       unsigned long vma_end =3D vma_start + vma_pages(vma);
-> +       unsigned long domain_start =3D domain->pg_offset;
-> +       unsigned long domain_end =3D domain_start + domain->nr_devs;
-> +       unsigned long start =3D max(vma_start, domain_start);
-> +       unsigned long end =3D min(vma_end, domain_end);
-> +       unsigned long addr;
-> +       unsigned long size;
-> +
-> +       if (start >=3D end)
-> +               return;
-> +
-> +       addr =3D vma->vm_start + ((start - vma_start) << PAGE_SHIFT);
-> +       size =3D (end - start) << PAGE_SHIFT;
-> +       zap_special_vma_range(vma, addr, size);
-
-That goes for that function too by the way. Two wrongs does not
-make one right.
-
-It might be that everyone in memory management disagree with
-me and think this is crystal clear, then I can have other opinions.
-
-> +static void cla_domain_zap(struct cla_domain *domain, struct cla_ctx *ct=
-x)
-
-And this one.
-
-cla_domain_init()?
-cla_domain_reinit()?
-
-> +static void cla_domain_reassign(struct kthread_work *work)
-
-What about a comment above this function explaining
-what is being reassigned to what?
-
-> +       /*
-> +        * Exclude cpuhp until assigned_ctx reflects the hardware again. =
-cpuhp
-> +        * callbacks use it to save/restore the local device and must not=
- see
-> +        * invalid_ctx. Take before domain->lock, also used by cpuhp call=
-backs.
-> +        */
-> +       cpus_read_lock();
-> +       mutex_lock(&domain->lock);
-> +       if (domain->broken)
-> +               goto out_unlock;
-> +
-> +       /* Figure out prev_ctx and next_ctx. NULL indicates don't [un]ass=
-ign. */
-> +       next_ctx =3D cla_domain_get_next_ctx(domain);
-> +       prev_ctx =3D cla_domain_get_prev_ctx(domain, next_ctx);
-> +
-> +       if (!prev_ctx && !next_ctx)
-> +               goto out_unlock;
-> +
-> +       /* prev_ctx already holds its assignment reference. */
-> +       if (next_ctx)
-> +               cla_ctx_get(next_ctx);
-> +
-> +       /*
-> +        * We need to grab mmap_lock, but can't do so while holding the d=
-omain
-> +        * lock (since cla_vma_fault() grabs the domain lock while holdin=
-g
-> +        * mmap_lock). The queue may change and contexts may be killed by
-> +        * cla_ctx_destroy() while the lock is dropped.
-> +        *
-> +        * No user is allowed to access CLA while we are reassigning. Dis=
-able
-> +        * assigned_ctx before zapping so cla_vma_fault() won't re-map th=
-e
-> +        * domain during reassignment. The sentinel also defers broken-do=
-main
-> +        * cleanup until we know which context hardware may still access.
-> +        */
-> +       WRITE_ONCE(domain->assigned_ctx, &invalid_ctx);
-> +       mutex_unlock(&domain->lock);
-> +
-> +       /* Prevent prev_ctx from accessing any device in the domain. */
-> +       cla_domain_zap(domain, prev_ctx);
-> +
-> +       /* cpus_read_lock() ensures workers remain cpu-bound and alive. *=
-/
-> +       ret =3D cla_domain_switch_ctx(domain, prev_ctx, next_ctx, &assign=
-ed_ctx);
-> +
-> +       mutex_lock(&domain->lock);
-> +       WRITE_ONCE(domain->assigned_ctx, assigned_ctx);
-> +
-> +       /* Also handle failure reported by another thread during the swit=
-ch. */
-> +       if (ret || domain->broken) {
-> +               cla_domain_set_broken(domain);
-> +               goto out_unlock;
-> +       }
-> +
-> +       /*
-> +        * Remove next_ctx from the queue and wake up all waiters so that=
- the
-> +        * fault handler can map the domain into the newly assigned proce=
-ss.
-> +        * assigned_ctx must have been updated prior to waking the waiter=
-s.
-> +        *
-> +        * If next_ctx was killed while we were assigning it, schedule an=
-other
-> +        * reassignment to deassign it.
-> +        */
-> +       if (next_ctx) {
-> +               if (cla_ctx_is_dying(next_ctx)) {
-> +                       cla_domain_schedule_reassignment(domain);
-> +                       goto out_unlock;
-> +               }
-> +               list_del_init(&next_ctx->queue_node);
-> +               wake_up_all(&next_ctx->waitq);
-> +       }
-> +
-> +       /* If there are more queued ctxs, schedule the next reassignment.=
- */
-> +       if (!list_empty(&domain->queued_ctxs))
-> +               cla_domain_schedule_reassignment(domain);
-> +
-> +out_unlock:
-> +       mutex_unlock(&domain->lock);
-> +       cpus_read_unlock();
-> +
-> +       /* Deliberately put references outside of the locks. */
-> +       if (next_ctx && next_ctx !=3D assigned_ctx)
-> +               cla_ctx_put(next_ctx);
-> +       if (prev_ctx && prev_ctx !=3D assigned_ctx)
-> +               cla_ctx_put(prev_ctx);
-> +}
-
-This function contains a bunch of comments that are hard for me
-to understand without context (ha!) but it's probably all right,
-I bet they are helpful once you get the hang of it.
-
-> +int cla_domain_sched_init(struct cla_domain *domain)
-
-OK.
-
-> +/**
-> + * cla_domain_sched_exit - Tear down scheduling for a CLA domain
-> + * @domain: CLA domain
-> + *
-> + * Drain final deassignment, destroy the domain worker, and destroy the =
-context
-> + * table. All context users must have exited before calling this.
-> + */
-> +void cla_domain_sched_exit(struct cla_domain *domain)
-
-OK.
-
-> +void cla_domain_set_broken(struct cla_domain *domain)
-
-OK.
-
-> +struct cla_ctx *cla_domain_lookup_ctx(struct cla_domain *domain,
-> +                                     struct cla_ctx_key *key)
-(...)
-> +int cla_domain_insert_ctx(struct cla_domain *domain, struct cla_ctx *ctx=
-)
-(...)
-> +void cla_domain_remove_ctx(struct cla_domain *domain, struct cla_ctx *ct=
-x)
-
-Clever use of rhashtable, good names.
-
-> +/**
-> + * cla_domain_schedule_reassignment - Schedule domain reassignment
-> + * @domain: CLA domain
-> + *
-> + * The caller must hold the domain lock. If a live context is currently
-> + * assigned, schedule with a delay (CLA_SLICE_MS), otherwise reassign
-> + * immediately. Do nothing if the domain is broken or a switch is in pro=
-gress;
-> + * the running switch handles new requests before returning. If reassign=
-ment is
-> + * already scheduled, the delay is modified.
-> + */
-> +void cla_domain_schedule_reassignment(struct cla_domain *domain)
-
-Schedule reassign of the domain to ... what?
-
-This use of verbs is really confusing me, I understand for example
-"assign timeslice to process" then I know a timeslice is assigned to
-a process. There is something implicit here making this really
-hard to understand.
-
-> +void cla_domains_sched_exit(void)
-
-OK.
-
-But where is the cla_schedule() function in this scheduler
-akin to Linux' schedule() call? It feels like this is implicit
-in some call order semantic, and the function
-cla_domain_get_next_ctx() implements an implicit
-FIFO scheduling principle.
-
-Alternatively the scheduling isn't actually driven here
-but from somehwere else, like userspace. Then that
-needs to be explained. Then this file doesn't actually
-implement any scheduling, it's a scheduling context
-library nothing more.
-
-This kind of stuff needs to be explained so I can review the
-patch properly.
-
-Yours,
-Linus Walleij
+>
+> Otherwise tne poll can't empty it unless a refill failed, and refill
+> first
+> covers that.
+>
+> Refill in the loop sounds good, but this would be IMHO a net-next
+> follow-up.
+>
+> > [...]
+>
+> Regards
+> Nicolai
 
