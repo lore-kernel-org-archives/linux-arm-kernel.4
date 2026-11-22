@@ -2,117 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92514606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B4E606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BxrKUMHS;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=buvaw/yO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LrQr7uGl;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=LRgF71vY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=41aq7Q/odxYWtRll/Ido8PrmDSMYdlxmstPU7VScg2I=; b=BxrKUMHSc/Aa6a
-	2526v99MK3RA0QZWmyNAyhg/fO4e/FheKskQacO069C5Pcq7beFdRtzIlpo9tyzSXKC5beBmz8Its
-	z15dK4fIt9731rlNnhqMXMg6xOdWSL0JfLCaSs3rEJbnwrwfyl5uAHegj4FMu5MQSbilrwYgCTVtK
-	t55B0YCTpxZHU5yY+kV5QXptCtf65RoChCzxcF+zPTMFwK2C180pcLTB/DApXK+UZ3jsS5G93A//C
-	2lkWP3isWnK5L7vdZMVCu+QHx7zm83oEfsT9LsMOBDAGuv7jzwrlFmGwn4BzBvt0VDKZOBl5qfeXp
-	1xNsw6yq07T8pJI30NoA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=5rIXOAbRqzpNweQh5zZVLwYn2XFN8mtukNpU08cq/RI=; b=LrQr7uGlsuU7mtwTWEoD/TwOqG
+	iZmwxHeiKSU2fl0IBxncPprsncTO01rqN0GNkytkZIeLuV0Sy009DzWFyzR9Q+DLiEDsx6BMZcEg4
+	zaz7Y/2uty9vLaFX37bJ4pfiZ4ZOknfbxVZu9F6+6fIvdJog1MGj0NOK/u7p/kkI0zYCX4wy8qD7C
+	JqpM+hzfikkVYIkuTzu634vsj8wV1ECMWFDVOkZufPEFXTrfoxWitNqfwbRsOwARIFChJVNWDIgGx
+	XEoTNPfYonbRrgrCbCF1N32v1ztKryMm9ClgWfW8a6yelnZQsHzRZ6GT4X74oGIuaMP00wZfS61h3
+	5UPp9RIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2Fs-00000000pYh-252k;
-	Sun, 22 Nov 2026 07:44:56 +0000
-Received: from mail-lf1-x12e.google.com ([2a00:1450:4864:20::12e])
+	id 1xV2HO-00000000prj-0UZr;
+	Sun, 22 Nov 2026 07:46:30 +0000
+Received: from mail-oi1-x22b.google.com ([2607:f8b0:4864:20::22b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2Fp-00000000pXU-0rnB
+	id 1xV2HL-00000000pr9-2zvK
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 07:44:55 +0000
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5c07c7306e1so2114837e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:44:52 -0800 (PST)
+	Sun, 22 Nov 2026 07:46:29 +0000
+Received: by mail-oi1-x22b.google.com with SMTP id 5614622812f47-53c156ba662so1297441b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:46:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795333490; x=1795938290; darn=lists.infradead.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:content-type:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=41aq7Q/odxYWtRll/Ido8PrmDSMYdlxmstPU7VScg2I=;
-        b=buvaw/yOtWxEUXr7VIAvOWWgyFooNi5+O+D4ZN9WJS47CJXxssyOH03Gk6LznKI3y5
-         RMAlGPnD4jIrE6AsJZMtOT/78YyrJPHuGQQFXgL5U5EZPSmV83p3Jp5e2m+SWV18fmwd
-         wze8gD8lg0rkOFR07AI2r/UjHDMln5xfk3WBfBbNs48G6N7DzWDLPYYc/XUorVI/qlnp
-         78yljdJiZZQHFn4SBoRHeQE2uKvRjYFM2TYFakScaawAZfeNxCk0lcEePaNulLNLJv/g
-         5cqQfjwZKNE9O0AB12S8DCfUgKyV0Ajj+dQJogibkbr2WpfcFPNrAudVyiILZM7NGSB0
-         e8Ag==
+        d=gmail.com; s=20260707; t=1795333586; x=1795938386; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=5rIXOAbRqzpNweQh5zZVLwYn2XFN8mtukNpU08cq/RI=;
+        b=LRgF71vYUSA8RO/tpAud1lhhLp2PHHuGon0C2aTfmzY7RCBhsk58TTYAly/OpdCodq
+         wJ7sQkoGnhyji8F3zpdGaxtMtHPdNLxDkk2ATWzTok+Aj/cNJKjlDKQdIJvt5cnPv/yu
+         hRBzTrCHszvKBc5eUVwzG8dtD5ipUQInWbsqwBG5Wf048oIf1UE0kXodJc9M0t67KkYc
+         T2YNXR9yxyj1VVU5R+swVjsg8Zj+J0YEVNvihs1e5mvGcRe2aOXWc1qIMlP6r/VKdOHq
+         qj9d4oRrShhq+QIAYOtFKiqF5iR5Sd9iNEry84TgPisT3s95Ynqyh0wnIuy/E1ZU9K3T
+         mOKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795333490; x=1795938290;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:content-type:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=41aq7Q/odxYWtRll/Ido8PrmDSMYdlxmstPU7VScg2I=;
-        b=XiQhdUHYGSSaMSLUlsA6iB7IPQ995cdkNgwI0IzyVBQRBafedTY2SCIUBjiuKg2ChT
-         r/597DwjUwvW34wehpdP0RZLW7x/1JuNA1Ghv94XXtf8eyWz7S/j4ZzSUXoM60QlKFym
-         3QjfpGyTEO7NknKptFF7LW1e2rOtUqoJx71ejn/H8KoESgLM5xK3aW6ddgX4rK+d69vt
-         R1hSeLF8fSu3ewT4Ceks1BMNiTU75I8IyDPBdbEqo5/BtJHpabn+ysntfjnj45YqH/XN
-         1o610Ueno3N3cZhg1zceIEuq3m1U+fGSudYJMJlTYnk4pzTR93qy4d8EYMom+Fb6gYcJ
-         xEQA==
-X-Forwarded-Encrypted: i=1; AL+hErGSIRUIVzAGKJE083+dVtoEYseVe1M3Yr4tJA18LrkbaHBLN/qOTHAoLc4cTE57pKqUVJ8YEwZbAXqjnNt0N8Lj@lists.infradead.org
-X-Gm-Message-State: APuU4Z/6+VjZT7Ul0BzAX2Rl1e60JED3X55n3jxKme+5cIKTdrIoqQvd
-	G/c4fI14NNgBv7hvnJGd1pQXMTaX6okkCXvhzasyhhVZUDi6Q9SXU2+J
-X-Gm-Gg: AZFdTZc+zlBIRUesAZHLCu+34tUvREe+UgpGTpiwneOyIDZ7hfgih2pkzC24KBfkD0t
-	l0vJ/LliIZA/xRg1NWCnMRCEiZR7VXnK7D/w1aT1eqmcPVd6CX2L5M7bzc9skfarGatOSQ7K52C
-	VFKf2m5PbQI5zo1s2bLZTPdGfqk3aegBnRj+NWH6rD9faOdownp7xlHR3C4MphVyA6/a+2a4IZP
-	KfqeGsrqysFnCibhP1gr8dRPfOQshCqlIB5N5JXHJpNHwrfGzDMRUm4M9y2LDNN7dyeB8L6jD32
-	1xSJLV3aD8JEILZeM+i9qU/60maSOCorI1JsOR5Wh6NjgHP9Kk5ykyvu2Y5LMWYctmQJLEcAIOH
-	t6/VIindMc8r+OM1QYHVY2tZUFqPu1PYAlTyoFVtd5B3HG8lUno/tGu6qqZof1xsU/3trW+m37M
-	lsjePlliLoUThX2uBLxw6xOXbNzFXXBSbJiwvNoM/p029p/oxzElnlMXzdPWqQGLyeWsQ8eE46D
-	3XWhHw/OivGEmBREW63KVEM57DYPldHhL6Aj5dEhN1kr1T1HayIf0V85wgrMSxV+JDC/NT2XXyo
-	UGumO/kBUMr2wrFMU+CzzHkfY2x7Q+vO9OoOKr6SMdBWNcNwHlXNQKguHfzL
-X-Received: by 2002:a05:6512:ba0:b0:5c1:c107:7477 with SMTP id 2adb3069b0e04-5c1c107755cmr1942269e87.43.1795333490191;
-        Sat, 21 Nov 2026 23:44:50 -0800 (PST)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c1bd07bfdcsm2022134e87.82.2026.11.21.23.44.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 21 Nov 2026 23:44:49 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+        d=1e100.net; s=20260707; t=1795333586; x=1795938386;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=5rIXOAbRqzpNweQh5zZVLwYn2XFN8mtukNpU08cq/RI=;
+        b=dZRP/M/GtFvmKl/C8cVouTK7/9dTadxALvbV5Mz/B3e5LoZPNgNDeUH1LdCDH1/u11
+         umPYte4fd5YXHJTKL1JBQSFevkUiQV5/WanIK9z+K+RzZ1+gde8oe9jBx/NTr08Lqo6o
+         AkjcqZlOha7jb9pd2IvTfen8A396CDTzTEhmkJR3U7ygVVxpkLLKJ7UCZpO4u8qURWqt
+         172n1dtI4p8i9KuDCiETgkg27/Z3YR8Qrky6bqz4984wcKOwnGMckylbHJW6Fkgt/V5h
+         o6bS3Bq/dYI5vqLRKyW5/UNZGI4P6Hu+e0TbQxFSvWLo7Sx4fLrToyiSMjCARehJ7w0b
+         Uk/g==
+X-Forwarded-Encrypted: i=1; AL+hErGNAW9IiuCTMrY0zAGxLFQrqFumZC3uYJQ9V7nD24raMgfhMq/ZASY1Rtm6Md3ExnGCdeFdmvGifnz7n0N44/5E@lists.infradead.org
+X-Gm-Message-State: APuU4Z9rpJADSRZ9sXU+uPJpQz8mpDWL+xULP7AkTXs1h2qfED6lN29j
+	vUUQvN3VKY9imfPxOHUarfmxJhyeNVllHoOW+c/dZCrOyC3+44McSoYN
+X-Gm-Gg: AZFdTZfO6ouHZ3lBTXPVtqILDHx1yyPHhHLfN3OR7JQP5Uk8CNJcFPoOqRJXf1yp5a+
+	W1vD7NARKPZJrnbpXT22sDyi/XT1BkIA+nlVQtWf/IUw1eYIw2eMwwVskxwSsseV/3dYkKFOdAh
+	g0O81SVo2ncuBeebQ6hHseKJUolRdsXz2PAyF3uS+ULFnRxs+Dz74rcP+6YeXyvcukjdx8w6Jwv
+	nsSmg7eEcfIb8oTkLYqkF8CEREMc+s0aT+OkSLeNxmOKgX76PZTaCqXuu5ATRmxSSpRXsAHJNaj
+	NYX0EGDSADUQak0ygJmlZy+G5PbWsWnIMZxX9qX4EoKp6WQTC7U9NtPqyjzsJ6axj5ejbk6yR11
+	osW4QoXT4HIhOMeolZxstT8NOQ7cdyeN00gpXAhSylyG4APfV/+dXR1Lzp1DQ/TYlC1OyUTD1Rj
+	nBepw0vThIFceqBwBzkO5Jo1/SJVOi/oI3oWZH+ZGRzqVWMkwHdHgOVQZtd+iymkVO2+mvMG5/x
+	gZsZNeKCkIyZZgUMAmhWy++ldQ74dohMfigFF2mFZjTJbcE79+BLL4KVRtYxj60Dr2Tcn1kb3VM
+	vgmap8YGGFovjuWEVMolJnAJKSLbCJlmnhdHgnha+OZhFI4A/lMk3SQzINNlWUBpEyeMh3Op5pL
+	/dEsgH6GoS7gzYtcNsh5yte2SuWKvl7RH4FoNTDWU1L16C6U98h02PTD5phMaZGzLzy+WtALAa5
+	8zAi/C6SpxFS46QYpHyUJZ1tDZLP4EF68cDzUA/7PI7MiKhTAYUSUI
+X-Received: by 2002:a05:6808:6404:b0:4b9:a829:f015 with SMTP id 5614622812f47-57a0b645f11mr8031031b6e.33.1795333586557;
+        Sat, 21 Nov 2026 23:46:26 -0800 (PST)
+Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a34252987sm6121800b6e.4.2026.11.21.23.46.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Nov 2026 23:46:26 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+Subject: [PATCH net-next 0/2] net: stmmac: support ethtool rx-all on sun8i
+Date: Sun, 22 Nov 2026 00:45:45 -0700
+Message-Id: <20261122-submit-sun8i-rxall-v1-v1-0-607789772c56@gmail.com>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
-Subject: Re: [PATCH v5 0/5] media: rockchip: rkvdec: add support for the
- VDPU346 variant
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <cover.1795191822.git.daniel@makrotopia.org>
-Date: Sun, 22 Nov 2026 11:44:32 +0400
-Cc: Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Michael Riesch <michael.riesch@collabora.com>,
- David Heidelberg <david@ixit.cz>,
- Marc Zyngier <maz@kernel.org>,
- linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil+cisco@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>,
- Diederik de Haas <diederik@cknow-tech.com>,
- Dang Huynh <dang.huynh@mainlining.org>,
- Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <E8475BAC-F137-493E-B7AC-9C81FB158610@gmail.com>
-References: <cover.1795191822.git.daniel@makrotopia.org>
-To: Daniel Golle <daniel@makrotopia.org>
-X-Mailer: Apple Mail (2.3901.200.71.1.16)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/12Oy27CMBBFfyWaNZY8E+NHfqVi4TiT1ggMtZ0oE
+ uLfawoLxGp0NfdxblA4Ry4wdDfIvMYSL6kJ3HUQfnz6ZhGnpoEkaUQiUZbxHGs7yUaRN386iRU
+ Faa1DmMlLktCy18xz3P57vyBxFYm3Cofnp1UcOdRH7cub+Xdp0/UVGH1hES7nNjR0POpJByunf
+ q+UC2SUwRGtUTP2sq1K563TaoJ35KF7AqP7BBYz+7o0iAe2Q2PY9mT3zg4rweF+/wOeUeDzEgE
+ AAA==
+X-Change-ID: 20261122-submit-sun8i-rxall-v1-2666ccf2a020
+To: netdev@vger.kernel.org, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: Jakub Kicinski <kuba@kernel.org>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ James Hilliard <james.hilliard1@gmail.com>
+X-Mailer: b4 0.17-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_234453_327121_C5AEE5F8 
-X-CRM114-Status: GOOD (  46.16  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261121_234627_788005_DACE6724 
+X-CRM114-Status: UNSURE (   9.13  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,207 +118,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> On 20 Nov 2026, at 9:36=E2=80=AFpm, Daniel Golle =
-<daniel@makrotopia.org> wrote:
->=20
-> This series adds the VDPU346 decoder of the RK3566 and RK3568 to the
-> rkvdec driver, for H.264 and HEVC. It continues Christian Hewitt's v3
-> [1]; in the v2 cover letter he offered to pass the series on. The
-> previous posting [2] carried no version in its subject and counts as
-> v4.
+On H616 the PHY can count a bad-FCS frame even when it does not appear
+in a packet capture. Enabling rx-all lets a capture see the complete
+errored frames the MAC can forward. On this hardware, a 64-byte frame
+with a bad FCS reaches DMA, but a 63-byte one does not, even with runt
+forwarding enabled. Both lengths include the FCS.
 
-The original offer was directed at Detlev based on conversations with
-other Collabora folks who were hinting that he would be able to (and
-it would even be desirable to) fold VDPU346 patches into his work on
-VDPU381/383 which was in-flight at the time. However he didn=E2=80=99t =
-take
-the bait and it didn=E2=80=99t happen. The comment is also pre-Claude =
-when my
-coding abilities were more rudimentary. The main reason for the long
-delay in following up has been the length of time it took for Detlev=E2=80=
-=99s
-and related DRM series that permit wider testing to land; a vacation
-over the summer, and then Claude distracting me with a deep dive into
-the Amlogic and Rockchip media stacks that=E2=80=99s resulted in 300+ =
-patches
-that need a proper plan for upstreaming else I=E2=80=99m going to annoy =
-the
-already-overworked media/drm maintainers.
+Add the common stmmac receive and feature-handling paths first, then
+enable them for sun8i. This feature was previously posted alongside the
+checksum fix and is now separate following Maxime's review [0].
 
-I don=E2=80=99t object to someone upstreaming my patches. I do object to =
-the
-lack of outreach to check on my plans and patch status before blindly
-(and wrongly) assuming there were none. You will find later versions
-of my patches with fixes for changes in surrounding code (as I work
-on something broadly equivalent to drm-tip not Linux 6.18) and from
-further testing in my not-very-abandoned development tree:
+[0] https://lore.kernel.org/r/a91278be-9c14-4769-81f1-38497c38c47b@bootlin.com/
 
-https://github.com/chewitt/linux/commits/rockchip-7.4.y
+Assisted-by: Codex:gpt-6.2-astra
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 
-=C2=AF\_(=E3=83=84)_/=C2=AF=20
+---
+James Hilliard (2):
+      net: stmmac: add common RXALL handling
+      net: stmmac: dwmac-sun8i: support ethtool rx-all
 
-> Patches 1, 2 and 4 are Christian's, with two fixups folded in that v4
-> carried as separate patches. Patches 3 and 5 are new since v3 and come
-> out of a comparison of the driver with the vendor kernel driver
-> (rockchip-linux/kernel develop-6.6, drivers/video/rockchip/mpp) and
-> the Rockchip MPP library, followed by conformance runs on hardware.
->=20
-> Fluster on a NanoPi R5C (RK3568B2), GStreamer 1.28.7 v4l2sl decoders:
->=20
->  JCT-VC-HEVC_V1   142/147
->  JVT-AVC_V1       129/135
->  JVT-FR-EXT        65/69
->=20
-> HEVC failures: PICSIZE_A/B/C/D_Bossen_1 are coded at up to 8440 luma
-> samples in one dimension, beyond the 4096x2304 limit of the decoder.
-> TSUNEQBD_A_MAIN10_Technicolor_2 has unequal luma and chroma bit depth,
-> which the driver rejects for every variant.
->=20
-> H.264 failures: CVFC1_Sony_C, FM1_BT_B, FM1_FT_E, SP1_BT_A, sp2_bt_b
-> and FM2_SVA_C fail in JVT-AVC_V1; the Hantro G1 of the same board
-> fails the same six with the same GStreamer. In JVT-FR-EXT
-> Hi422FREXT17_SONY_A, Hi422FREXT19_SONY_A, HPCAMOLQ_BRCM_B and
-> HPCVMOLQ_BRCM_B fail; the two BRCM vectors fail on the Hantro G1 as
-> well, the two Hi422 intra profile vectors are not understood yet.
->=20
-> SAODBLK_A/B_MainConcept_4 and FREH10-1/2 are counted as passes: they
-> decode correctly and exceed the default 60 s fluster timeout only
-> because the checksum is computed from an uncached mapping of the
-> capture buffers.
->=20
-> Patch 3 is what makes the score deterministic. With the read caches
-> left in their reset state, RAP_B_Bossen_2, WPP_D_ericsson_MAIN_2,
-> WPP_D_ericsson_MAIN10_2, WPP_E_ericsson_MAIN_2 (HEVC) and
-> CAPM3_Sony_D, MR8_BT_B, MR9_BT_B, NRF_MW_E (H.264) produce wrong
-> output in three runs out of three; with the patch they pass in three
-> out of three. This is likely the source of the artefacts reported
-> against v3. The function is shared with the VDPU381, where the cache
-> block is mapped by the binding already. The series has been run on
-> the RK3588 as well as on the RK3568.
->=20
-> Decode rates with the series: HEVC Main 2160p 92 fps, Main10 2160p
-> 77 fps, Main 1080p 380 fps, H.264 High 1080p 197 fps.
->=20
-> Patch 5 is kept apart from the node it modifies because the existing
-> Tested-by tags were given at the v3 clock rates, and so that it can be
-> dropped on its own.
->=20
-> On the row and column buffer sizes raised in the v3 review [3]: the
-> MPP library uses one vdpu34x HAL with one set of size formulas for the
-> RK356x and the RK3588, so the variant keeps vdpu381_rcb_sizes.
->=20
-> Known limits, none of them introduced here:
->=20
-> - FFmpeg's v4l2-request hwaccel does not set the HEVC EXT_SPS_ST_RPS
->  and EXT_SPS_LT_RPS controls, so HEVC through FFmpeg decodes wrongly
->  on this decoder as on the VDPU381 ("Long and short term RPS not
->  set"). The handling of these controls is also the subject of [6].
-> - A decode error on such a stream ends in the IOMMU page faults and
->  the oops reported against v3 [4]. The cause is in the error path
->  shared by all variants: the interrupt handler restores the IOMMU
->  while the watchdog is still armed, and the watchdog starts the next
->  job while the IOMMU is detached. "media: rkvdec: Handle interrupts
->  without a current context" [5] covers the oops; the remainder will
->  be addressed separately.
-> - The Sashiko review of v4 points out that rkvdec_probe() takes the
->  SRAM pool without a device link to its provider. This predates the
->  series, affects all variants with an sram property and will be sent
->  as a separate fix.
+ drivers/net/ethernet/stmicro/stmmac/common.h      |  2 +
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 73 +++++++++++++----------
+ drivers/net/ethernet/stmicro/stmmac/hwif.h        |  1 +
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 52 +++++++++++-----
+ 4 files changed, 80 insertions(+), 48 deletions(-)
+---
+base-commit: eb6d6c80d35449c27471b1874f13066c09a8964d
+base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git main
+change-id: 20261122-submit-sun8i-rxall-v1-2666ccf2a020
+prerequisite-change-id: 20261119-submit-sun8i-rx-features-v1-9177e8328598:v2
+prerequisite-patch-id: cfcd83b1605af3856aff1188ef7bdbdbfc19cce0
 
-FFmpeg: https://github.com/chewitt/FFmpeg/commits/armsoc-9.0.2/
-
-This contains Jonas' current v4l2_request series plus Detlevs patch
-and relevant work on deinterlacing and fixes for issues found from
-testing on Allwinner/Amlogic/RPi/Rockchip implementations. We even
-started work on UAPI for VC1. Unfortunately we are in a holding pattern
-waiting patiently for Jonas to resume his series and fold fixes in
-(rather than shanghai the series).
-
-> Patches 3 and 5 were written with the help of an LLM coding assistant,
-> which also performed the comparison with the vendor sources. It was
-> asked to review the v3 series against the vendor driver and to
-> complete it, and for v5 to go through the v4 feedback, fold the fixups
-> and revise the commit messages. The conformance and A/B runs above
-> were done on the board with builds of v4 on Linux 6.18; v5 differs
-> from v4 in the order of two writes to the device tree source and in
-> one node name, the driver code is unchanged.
-
-IMHO there is way too much word-salad and blogging the journey in this
-cover-letter. Concise text and brevity is a virtue. You should also be
-working against a current kernel.
-
-> Changes since v4:
-> - Fold "media: rkvdec: vdpu346: Limit HEVC EXT SPS RPS dimensions"
->  into "media: rkvdec: Add support for the VDPU346 variant", so that
->  no commit registers 65 element controls
-> - Fold "arm64: dts: rockchip: rk356x: Order vdec regs by address" into
->  "arm64: dts: rockchip: Add the vdpu346 Video Decoders on RK356X"
-> - Name the SRAM pool node codec-sram as on the RK3588
-> - Read caches: shorten the commit message and state that the cache
->  block is mapped for the VDPU383 as well
-> - 400 MHz: state that the rate applies to all streams
-> - Cc the reviewers and testers of v3
->=20
-> Changes since v3:
-> - Add "media: rkvdec: vdpu381: Program the read caches"
-> - Add "arm64: dts: rockchip: rk356x: Clock the vdec at 400 MHz"
-> - Register the HEVC EXT SPS RPS controls with 64 and 32 elements
-> - List the vdec register blocks as link, function, cache
-> - Add fluster scores and failure analysis
-> - Add Tested-by from Diederik de Haas
->=20
-> v4: =
-https://lore.kernel.org/r/cover.1794654074.git.daniel@makrotopia.org
-> v3: =
-https://lore.kernel.org/r/20260110053727.2295260-1-christianshewitt@gmail.=
-com
-> v2: =
-https://lore.kernel.org/r/20251226113140.573759-1-christianshewitt@gmail.c=
-om
->=20
-> [1] =
-https://lore.kernel.org/r/20260110053727.2295260-1-christianshewitt@gmail.=
-com
-> [2] =
-https://lore.kernel.org/r/cover.1794654074.git.daniel@makrotopia.org
-> [3] =
-https://lore.kernel.org/r/DFL5TY0QQNMN.1RS04UM9D1V8S@cknow-tech.com
-> [4] =
-https://lore.kernel.org/r/DFRU6ODDM71P.3NQGLRK8IVDUY@cknow-tech.com
-> [5] =
-https://lore.kernel.org/r/20261026124808.642373-1-a.kazinsky@ideco.ru
-> [6] =
-https://lore.kernel.org/r/cover.1794645268.git.daniel@makrotopia.org
->=20
-> Christian Hewitt (3):
->  media: dt-bindings: rockchip: Add RK3568 Video Decoder bindings
->  media: rkvdec: Add support for the VDPU346 variant
->  arm64: dts: rockchip: Add the vdpu346 Video Decoders on RK356X
->=20
-> Daniel Golle (2):
->  media: rkvdec: vdpu381: Program the read caches
->  arm64: dts: rockchip: rk356x: Clock the vdec at 400 MHz
->=20
-> .../bindings/media/rockchip,vdec.yaml         |   2 +
-> arch/arm64/boot/dts/rockchip/rk356x-base.dtsi |  49 +++++++
-> .../rockchip/rkvdec/rkvdec-vdpu381-h264.c     |   2 +
-> .../rockchip/rkvdec/rkvdec-vdpu381-hevc.c     |   2 +
-> .../rockchip/rkvdec/rkvdec-vdpu381-regs.h     |   9 ++
-> .../media/platform/rockchip/rkvdec/rkvdec.c   | 121 ++++++++++++++++++
-> .../media/platform/rockchip/rkvdec/rkvdec.h   |   2 +
-> 7 files changed, 187 insertions(+)
->=20
->=20
-> base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
-> --=20
-> 2.56.1
+Best regards,
+--  
+James Hilliard <james.hilliard1@gmail.com>
 
 
