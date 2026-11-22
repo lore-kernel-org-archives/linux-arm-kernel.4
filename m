@@ -2,118 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421A3606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 19:51:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1DB8606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 19:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gfZvA//L;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xEi2+QNB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fx7X20cn;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=kvd2dt1o
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:Subject:From:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=dEbNC3pIasfz+1kUIBaS1REGH5134TVv5RUDhMq/bQs=; b=gfZvA//LcDDNs8XMh1CKxxXA0R
-	O+Am0+0aXaOpiPd65tXW/8IjKxDvJtws8vj5NaOiQdWOS1OMhbValxfQTGsnc5lisLSs+wR0fjUui
-	T9hNFiQ9zUz6pebClXDzPnj7TWCcyflOpznGafORYcQ7D5G9swG7S9tpOxfjTxVjeflgxr+ZxgUpA
-	F0LJ6QyG2D6VuPkfI9YNjKm7mss83FttYF2ZwPt9AVje2+vq7UPtsEoN2eFLLy/Rss2N4/g+2dkgU
-	xhfFIy5CZybUH89RrhVQzZiWToAcKPE+/f00YM2YefV+IzHdEAq7zjsoYR1GY6b3d+IO/7zBS+VI7
-	2JY2ABvQ==;
+	bh=DxJ/XoENpsoa0BG0OwfPHHeMkEO45OcTsZupEqdYCwM=; b=Fx7X20cnTcIk617qRu2eT9Owap
+	QTuvKRaySOJBr85tAKfruO4XVXoI+bl53XHxqFE2i3/2vPdalH901s9PJN1OGcMwB6ZlAgOQoJJ2n
+	Kf6Fo0z4ujrcJq6IyFAG/uSZUX+o7TUzGV0yp8NpJC/frkIZV3v0U1geE6faPxpAxEZxEw39ijuKM
+	QYdPGslr6UDle0n30IoaKpgXM32ibAc3UxT+Q+Xe+co5KuU2gZfnNeufAggM2wwR1Qq+fGIR+1d4b
+	sroMKDenbu5bn5JuF9eZjHGEf1MRgD6f4s+a1+4eQZJM4nqLzCMhm1k2Y3+oWDjj2qNmWGn4wGNhf
+	+FPiNEFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVDaq-00000001fot-1ahb;
-	Sun, 22 Nov 2026 19:51:20 +0000
-Received: from mail-yx1-xb12f.google.com ([2607:f8b0:4864:20::b12f])
+	id 1xVDcm-00000001g2E-2WAj;
+	Sun, 22 Nov 2026 19:53:20 +0000
+Received: from mout.web.de ([217.72.192.78])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVDam-00000001foE-2cks
+	id 1xVDcd-00000001g1Y-2vhO
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 19:51:18 +0000
-Received: by mail-yx1-xb12f.google.com with SMTP id 956f58d0204a3-67da3d03263so2599889d50.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 11:51:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795377075; cv=none;
-        d=google.com; s=arc-20260327;
-        b=qKca395sY7NyS59SZZpJL6w7LQ1+fDptDLR/bF//VjUOjMiz8M177LSks65lna6j1Z
-         2LWd+oFgvxjO1GHh8aM1PFBosOr9z/cng3EaHk6F81Fhgc4XJni2N+f27ho35hA8fTWD
-         jnsDVrrH4c6yvOSn930d9/Wyh9fUq4IkHQpTTrF3+ro31FiHEr1a3iGyiKTnugx8TRXL
-         lahD7EzmLC4Vg1Fv5682JTdrnp71PJnqeo8esRsxCRFXI1n/+RAQbt8M+WmDcZxdPyuE
-         hS9Q4KRTP6b7gHc7THsrUPkHwOCOm8V1FOmiDAmqOHIb7twKoSXu1l3S63W4wnTR4wsH
-         6Dqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=dEbNC3pIasfz+1kUIBaS1REGH5134TVv5RUDhMq/bQs=;
-        fh=qpf35JQB2vDZrKIXfBcuDRg7+qHMGei7Rc/7xkQ1+TY=;
-        b=spN//Y0a/zaHSC2OJkyluEQZ8aTZ4S6bXQ+gAxUq/VXsljmS4ONdI+dUP5aWz+7LTb
-         tQNSVNmRv8vGqhFj/0GB2zEsIhatpZJ17A5j4i37pc1g7c/f+rp9rQ02ADThnDx3QGjN
-         WJfTAipBEnLBBHtUlrj/3/WsCavhJ3yNld7kIWiFUoid6U8ioE7wF3bB+TxxbT/HB4EU
-         usNrr0JYAN+7G3EKtiOJW70WA/EXscz4qq0p7ZQwy/Qpz2xY62G/+Ix46Ttz7xofMn0p
-         CYDW7X8rnYO0h2S/fdroyS52S93LAGYt81iEjE4FGEf9r9lSU4Df2ebqjaQWkWuigcPM
-         +NdA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795377075; x=1795981875; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=dEbNC3pIasfz+1kUIBaS1REGH5134TVv5RUDhMq/bQs=;
-        b=xEi2+QNBNdLa9oSpOFJb5hczlF/q8cNMEb8zXDTMTW8voIO6WORPt2QOGe+yFBdkzO
-         GPFlziVcTvOjrqvwC09bm4C+Qb21mNp0mtdVh0qXZxp4QAdFd4nogXduNlh0xu/hkySm
-         WW5Dz9NupC575A5a8ZJGG7yC1mZ2ZXMOurvDglxZsCJqjKCvYQgoJrz0Tpwz5N+7yUh/
-         BrT2xmBPiUQ1a+gcNUaalyzRFO6xFhAp+992iogu9vAqQwg4tc2smdpdGdqo8qzXOFzz
-         4icPqUzDnvFpN9UTdqVTqgygIFdaqLzWFucpXoAXAcEeI6VmlMl1/7uPIb7Fu8QHHpM9
-         +8rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795377075; x=1795981875;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=dEbNC3pIasfz+1kUIBaS1REGH5134TVv5RUDhMq/bQs=;
-        b=wEwLRT5S7jPZbMnc3k6GnElKkJCF6MI2YCgcVi5FCTRsPEDoyIIxL/vod4JQiE5wGX
-         4nWuBtPOTmApVyybkdc/fPdoDw5/iGCQbsSCVCBGEv8U25M1R5gdq0SRyZsJ+Ctmg0wj
-         OzOPU4YmjYPlaNSN8W4KqLw/zEsHwPwBrIazpaHDIOjAvB0UBSzyjnfZ19fPOpJMGJG8
-         Y89fTdYrGtmQar/DZ2jkrsLSIW31K+SR4QMfqTOgVG/nmGb1jZpx4YzF2AqTfAS4Omau
-         K95EMHlfS9tCw4kVjIm0BgvvdjiZn3Z1tW3uSxRZ2MAOqFQKWNjiadqGIYLyK047qpUD
-         1X9Q==
-X-Forwarded-Encrypted: i=1; AL+hErHTo2Ab27uRreId5dcMFgfyoMDTR3iQ6+knHTHoVv/n6LtxQUKYFDqUmxEeZ3mSf1/mAZBclSGnnA3+hBgsugJb@lists.infradead.org
-X-Gm-Message-State: APuU4Z/k1q/v1dH/BGIkkknel5NYjypfFQ0xlroEhWqOi3DTA9Z5XBmO
-	M0mADcfMH7lmqSCpj82lAVsp6UExZrgi/NUyK2TbCvmqoX31dLhTPtPzRqxiH0Rb1lZWDFcrpSb
-	ub2KG3UvhcjqpPQ6uoDJUMNTj8tm5Cy4=
-X-Gm-Gg: AZFdTZeKnSfPctin9n5muuZUnRU7wZ7GJkeKNYizdqljMCk4DxLGhIkNwXvbfrUb5Dl
-	1MkrcxvQQ/VTq7dL7nFtoYl+pRD4nwskNtOA6IMYBCM7kd6tqK7yZzA71dmHNhRo/8c+DVXwgG+
-	ZPbXTHxEoQYHKmdYw6lonT1R0cpW7gK+pD/MlCtSR0Na7+QPHW2n63Cafe7LBGGpYfu5oL/dqkF
-	n8z6mVcZhPD6wDHOJDL1R9+BqnltWiwblmDidGKCdxW+UPfDlafIXLuPCdu+bup9E0/LYbe9U8n
-	jdYDy59sHxNCZX8Qn0k6zYrMquvU30ak2dCoQQw2pCSzYHNP9D4EPlZQHg5jR9v02HmAuP+Ljmk
-	kQYWwrJsP4beg5knk5a0McNaeZIwPHGTZlm1vossIC2PMqI1sogUlBFROxSUN8Q3o99IG/jD5FW
-	ONEwWjXyVj8mLDMvt5zAhW48gP3/ovKCHDjLLMLWpiNmX5g4YJgU9FB6/14EJvYnEA1uX1aXe8g
-	TdJCVKySA==
-X-Received: by 2002:a05:690e:43ce:b0:679:be6b:42d5 with SMTP id
- 956f58d0204a3-67df4456982mr1539736d50.98.1795377075124; Sun, 22 Nov 2026
- 11:51:15 -0800 (PST)
+	Sun, 22 Nov 2026 19:53:18 +0000
+DKIM2-Signature: i=1; m=1; t=1795377188;
+ mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=web.de;
+ s=s29768273:rsa-sha256:McviSmFTfiRStRe172zuGVWTtnIw
+   OATGjw3HMUJC46lZFN/yttmz6iQxSTf2jc/FBO4wOjrUTbeDl7PxlHiFn3i6t20zRkYjH0sUqub
+   AeVk8MbxpUgM6LmzATSMsIy8xrZ5TAxeNkJDb+ETGiEZK3NJXAd3E+FOJbKssXcwH/Gt5sjoAXQ
+   5JE0vO5b59d155AnZo439HYVRjOPNmhsvPPr3OZXC8dqRSBItIs55UB/kSVs4LIBP7dZw8zJonA
+   3bDnVXlqNJK6J/joEqiW/LIaqBcTsdXhPZPi3XcUYUc8bXQ3Y189bk/9XVJvLhmKaITJMJHE3WJ
+   My3Oo/vOW1RSNw==;
+Message-Instance: m=1;
+ h=sha256:
+   D5rVt4ryQI01eaKGx4kHzJgI+HggMqtO760LFwVMQCA=:
+   +h0OQCegU2Uki9JfrK9GeQlM+mKOlw8oWpls3LIaLVM=,
+  sha512:
+   SM4bG8frD1m0dE0Anwbz0l1nmrQNS6QlrGi3yalY8kGwisZpEEZRj0BgeyGFMgHieJWDJcDYLQSTc1Pa0u5LZg==:
+   92CXVhttNj9bHRgYx789yN+d/DTFuGpnP2qIxb3jN7iY0GjVbe9meaKXNDbrYPQQYGlcGp8nckKOC8eKUh6CPQ==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1795377135; x=1795981935; i=markus.elfring@web.de;
+	bh=DxJ/XoENpsoa0BG0OwfPHHeMkEO45OcTsZupEqdYCwM=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:From:Subject:
+	 Cc:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=kvd2dt1o8YFP/2gAYgDEL4YlKDF+RHjm+CV5QRn6lw1uQQQ8UdFCVmpBDUNrpnze
+	 Bv6ch1J5PvBFnsq80MW95fAlLofrlSMzBnQEKOnhj/ogpcuRcihNgOM+s8x2trd7z
+	 AkPNZtUDBFSRgXL0D+WZpMzsCLiyoWIAr2bgikyfyhRC67aYmIjt8N8fpAdl9G7KG
+	 TtDVZE5pSV3m08i59FU/b5qlFOK8kfg/lEvh305rZmMpxtxx6h411usDvFeToQb8K
+	 bnlzgpVrSW8sVW7aj2Mf6KrhA11tqi0/7MqmlGwCJZ26e///0bYmYjsZfv+a7O+SK
+	 NeVUbVpHmTjlP6eeqQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MJnrX-1xogGU14cD-00KsoG; Sun, 22
+ Nov 2026 20:52:15 +0100
+Message-ID: <f691bbaa-ddb5-45bf-8f85-fcf354a6af03@web.de>
+Date: Sun, 22 Nov 2026 20:52:11 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261117222224.1465328-1-arnd@kernel.org> <20261117222224.1465328-3-arnd@kernel.org>
-In-Reply-To: <20261117222224.1465328-3-arnd@kernel.org>
-From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-Date: Sun, 22 Nov 2026 11:51:04 -0800
-X-Gm-Features: Aa3M54qSKnHMfRte544j7n37UHVtncPq8-RbJK8w975X-Kp2Zw1xOI3CE7bOY5A
-Message-ID: <CAE5sdEim3Xz2SPwsb-xP+gp-+w5TOhDv4JtDf0ZbVZ2XSfK+jA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dynamically enable st64bv0 for SVA
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Fuad Tabba <fuad.tabba@linux.dev>, Marc Zyngier <maz@kernel.org>, 
-	Oliver Upton <oupton@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Steffen Eiden <seiden@linux.ibm.com>, 
-	Yicong Yang <yangyicong@hisilicon.com>, Zhou Wang <wangzhou1@hisilicon.com>, 
-	Navneet Singh <navneetsingh@microsoft.com>, apais@microsoft.com, 
-	hargar@linux.microsoft.com, Rachel Menge <rachelmenge@linux.microsoft.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+To: linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Michal Simek
+ <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] PCI: xilinx-nwl: Use devm_clk_get_enabled() in
+ nwl_pcie_probe()
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+ Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:so1GHCFBbuTUuC6TUJEMAci0TR+yKBhHP6oWeOsI2tWY0AG5PaU
+ lPMJcaa7TxQvkzdVk/darvg+U6RS/y6ExjWVmVzLsr+VUiMm36xD0AeAvZmUIv5BwlAVTr3
+ 7m8lwEBUx+V8E6EazR7npXTjFEMCYXbhtDPWeT5sDvpciL1mg79qAFLaLazuOUm3KtCuMdb
+ 4eyaHQdAZpCdqD9SbhvTQ==
+UI-OutboundReport: notjunk:1;M01:P0:POx5QCjNJB0=;8HGCU+pn6/uS4d9e+2ECQT5uil7 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 Xf/X7CKrR2zwf6ULhdQc0zlsIgqMmilU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_115116_897003_662F614E 
-X-CRM114-Status: GOOD (  37.66  )
+X-CRM114-CacheID: sfid-20261122_115312_238081_E86A0DF8 
+X-CRM114-Status: UNSURE (   9.89  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,316 +107,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 17 Nov 2026 at 14:22, Arnd Bergmann <arnd@kernel.org> wrote:
->
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> I/O devices that understand the st64bv0 instruction for doing shared
-> virtual access from userspace need to set the pasid value in the
-> accdata_el1 register, but in general we want this to be disabled unless
-> a driver actually hands an MMIO area to userspace that accepts these
-> commands and installs a pasid using iommu_sva_bind_device().
->
-> Rather than trying to find all threads that use an mm_struct by the
-> time the pasid created, iommu_sva_bind_device() only stores the pasid in
-> 'struct iommu_mm_data' and sets up the iommu domain in the device. The
-> first attempt to use SVA from userspace traps into do_el0_other(),
-> which checks that this is indeed valid and then sets the configured
-> pasid before enabling SCTLR_EL1_EnAS0.
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Sun, 22 Nov 2026 20:35:35 +0100
 
-I've tested it on Cobalt h/w (ID_AA64ISAR1_EL1.LS64 = 0b0011, SMMUv3
-with PRI) on top of Fuad's FEAT_LS64_ACCDATA series and our Data
-Accelerator VF driver.\
+* Reuse existing functionality from devm_clk_get_enabled() instead of
+  keeping duplicate source code.
 
-While testing multi-process isolation on hardware, we hit the SCTLR_EL1_EnAS0
-context-switch bug below, which Sashiko's review [1] also highlighted along
-with several of the other corners listed here (note that Sashiko's cpucaps and
-guest vcpu_sysreg warnings are false positives from applying against docs-next
-without Fuad's series):
+* Omit a clk_disable_unprepare() call on an error handling path
+  and in the implementation of the function =E2=80=9Cnwl_pcie_remove=E2=80=
+=9D.
 
->
-> On machines running KVM guests, KVM already handles saving and restoring
-> ACCDATA now. If the same process uses SVA itself, the context is restored
-> upon guest access. This only really makes sense if the host device using
-> SVA is attached to the same SMMU using a single stage translation, and
-> another device is assigned to the guest VMID for stage2 so it can use
-> the stage1 translation inside of the guest using ACCDATA as PASID.
->
-> This is pretty much a lifted from the x86 try_fixup_enqcmd_gp()
-> function.
->
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  arch/arm64/include/asm/cpufeature.h  |  5 +++
->  arch/arm64/include/asm/exception.h   |  1 +
->  arch/arm64/include/asm/mmu_context.h | 17 +++++++++
->  arch/arm64/kernel/entry-common.c     | 11 ++++++
->  arch/arm64/kernel/traps.c            | 52 ++++++++++++++++++++++++++++
->  arch/arm64/tools/sysreg              |  5 +++
->  6 files changed, 91 insertions(+)
->
-> diff --git a/arch/arm64/include/asm/cpufeature.h b/arch/arm64/include/asm/cpufeature.h
-> index 7d7b8eb7f72f..e5367344e817 100644
-> --- a/arch/arm64/include/asm/cpufeature.h
-> +++ b/arch/arm64/include/asm/cpufeature.h
-> @@ -914,6 +914,11 @@ static inline bool system_supports_bbml3(void)
->         return alternative_has_cap_unlikely(ARM64_HAS_BBML3);
->  }
->
-> +static inline bool system_supports_ls64_accdata(void)
-> +{
-> +       return cpus_have_final_cap(ARM64_HAS_LS64_ACCDATA);
-> +}
-> +
->  int do_emulate_mrs(struct pt_regs *regs, u32 sys_reg, u32 rt);
->  bool try_emulate_mrs(struct pt_regs *regs, u32 isn);
->
-> diff --git a/arch/arm64/include/asm/exception.h b/arch/arm64/include/asm/exception.h
-> index a2da3cb21c24..7c61b50718d6 100644
-> --- a/arch/arm64/include/asm/exception.h
-> +++ b/arch/arm64/include/asm/exception.h
-> @@ -81,6 +81,7 @@ void do_el0_sys(unsigned long esr, struct pt_regs *regs);
->  void do_sp_pc_abort(unsigned long addr, unsigned long esr, struct pt_regs *regs);
->  void bad_el0_sync(struct pt_regs *regs, int reason, unsigned long esr);
->  void do_el0_cp15(unsigned long esr, struct pt_regs *regs);
-> +void do_el0_other(struct pt_regs *regs, unsigned long esr);
->  int do_compat_alignment_fixup(unsigned long addr, struct pt_regs *regs);
->  void do_el0_svc(struct pt_regs *regs);
->  void do_el0_svc_compat(struct pt_regs *regs);
-> diff --git a/arch/arm64/include/asm/mmu_context.h b/arch/arm64/include/asm/mmu_context.h
-> index 803b68758152..40c47ee003d5 100644
-> --- a/arch/arm64/include/asm/mmu_context.h
-> +++ b/arch/arm64/include/asm/mmu_context.h
-> @@ -16,6 +16,7 @@
->  #include <linux/mm_types.h>
->  #include <linux/pgtable.h>
->  #include <linux/pkeys.h>
-> +#include <linux/iommu.h>
->
->  #include <asm/cacheflush.h>
->  #include <asm/cpufeature.h>
-> @@ -247,6 +248,20 @@ static inline void __switch_mm(struct mm_struct *next)
->         check_and_switch_context(next);
->  }
->
-> +/* switch to PASID if new task has enabled st64bv0 */
-> +static inline void switch_iommu_mm(struct mm_struct *mm, struct task_struct *tsk)
-> +{
-> +       u32 pasid;
-> +
-> +       if (!IS_ENABLED(CONFIG_IOMMU_SVA) ||
-> +           !(tsk->thread.sctlr_user & SCTLR_EL1_EnAS0))
-> +               return;
-> +
-> +       pasid = mm_get_enqcmd_pasid(mm);
-> +       if (pasid != IOMMU_PASID_INVALID)
-> +               write_sysreg(pasid, accdata_el1);
-> +}
-> +
->  static inline void
->  switch_mm(struct mm_struct *prev, struct mm_struct *next,
->           struct task_struct *tsk)
-> @@ -254,6 +269,8 @@ switch_mm(struct mm_struct *prev, struct mm_struct *next,
->         if (prev != next)
->                 __switch_mm(next);
->
-> +       switch_iommu_mm(next, tsk);
-> +
->         /*
->          * Update the saved TTBR0_EL1 of the scheduled-in task as the previous
->          * value may have not been initialised yet (activate_mm caller) or the
-> diff --git a/arch/arm64/kernel/entry-common.c b/arch/arm64/kernel/entry-common.c
-> index beb56891fc4f..03ecc73c44a4 100644
-> --- a/arch/arm64/kernel/entry-common.c
-> +++ b/arch/arm64/kernel/entry-common.c
-> @@ -807,6 +807,14 @@ static void noinstr el0_fpac(struct pt_regs *regs, unsigned long esr)
->         arm64_exit_to_user_mode(regs);
->  }
->
-> +static void noinstr el0_other(struct pt_regs *regs, unsigned long esr)
-> +{
-> +       arm64_enter_from_user_mode(regs);
-> +       local_daif_restore(DAIF_PROCCTX);
-> +       do_el0_other(regs, esr);
-> +       arm64_exit_to_user_mode(regs);
-> +}
-> +
->  asmlinkage void noinstr el0t_64_sync_handler(struct pt_regs *regs)
->  {
->         unsigned long esr = read_sysreg(esr_el1);
-> @@ -870,6 +878,9 @@ asmlinkage void noinstr el0t_64_sync_handler(struct pt_regs *regs)
->         case ESR_ELx_EC_FPAC:
->                 el0_fpac(regs, esr);
->                 break;
-> +       case ESR_ELx_EC_OTHER:
-> +               el0_other(regs, esr);
-> +               break;
->         default:
->                 el0_inv(regs, esr);
->         }
-> diff --git a/arch/arm64/kernel/traps.c b/arch/arm64/kernel/traps.c
-> index d6391ab20db3..a02dbee8c06d 100644
-> --- a/arch/arm64/kernel/traps.c
-> +++ b/arch/arm64/kernel/traps.c
-> @@ -13,6 +13,7 @@
->  #include <linux/kprobes.h>
->  #include <linux/spinlock.h>
->  #include <linux/uaccess.h>
-> +#include <linux/iommu.h>
->  #include <linux/hardirq.h>
->  #include <linux/kdebug.h>
->  #include <linux/module.h>
-> @@ -543,6 +544,56 @@ void do_el1_mops(struct pt_regs *regs, unsigned long esr)
->         kernel_fastforward_single_step(regs);
->  }
->
-> +/*
-> + * PASID/ACCDATA is shared by the entire mm, while sctlr_el1
-> + * is maintained per thread. Keep things simple and enable
-> + * ACCDATA dynamically on first access if the feature is
-> + * available and a valid pasid is set.
-> + *
-> + * After exiting back to userspace, the st64bv0 instruction
-> + * should no longer trap.
-> + */
-> +static bool try_enable_st64bv0(struct pt_regs *regs, unsigned long esr)
-> +{
-> +       u32 pasid;
-> +       u64 sctlr;
-> +
-> +       if (!system_supports_ls64_accdata())
-> +               return false;
-> +
-> +       pasid = mm_get_enqcmd_pasid(current->mm);
-> +       if (pasid == IOMMU_PASID_INVALID)
-> +               return false;
-> +
-> +       preempt_disable();
-> +       write_sysreg(pasid, accdata_el1);
-> +       sctlr = current->thread.sctlr_user;
-> +       sctlr |= SCTLR_EL1_EnAS0;
-> +       current->thread.sctlr_user = sctlr;
-> +       update_sctlr_el1(sctlr);
-> +       preempt_enable();
-> +
-> +       return true;
-> +}
-> +
+* Delete the label =E2=80=9Cerr_clk=E2=80=9D.
 
-1. SCTLR_EL1_EnAS0 is missing from SCTLR_USER_MASK (and fork/exec reset):
+This issue was detected by using the Coccinelle software.
 
-update_sctlr_el1() clears only (SCTLR_USER_MASK & ~SCTLR_ELx_ENIA). Because
-SCTLR_EL1_EnAS0 is not in SCTLR_USER_MASK, once a task enables st64bv0 on a
-CPU, __switch_to() -> update_sctlr_el1() never clears SCTLR_EL1.EnAS0 when
-switching to another task, and switch_iommu_mm() returns early because the
-next task does not have SCTLR_EL1_EnAS0 set in thread.sctlr_user. On Cobalt
-200, an unprivileged process with no SVA binding scheduled onto that CPU
-executed st64bv0 without trapping while the previous task's PASID was still in
-ACCDATA_EL1.
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/pci/controller/pcie-xilinx-nwl.c | 13 ++-----------
+ 1 file changed, 2 insertions(+), 11 deletions(-)
 
-Similarly:
-- arch_dup_task_struct() copies thread.sctlr_user, so a fork() child inherits
-  SCTLR_EL1_EnAS0 with a fresh mm whose PASID is IOMMU_PASID_INVALID (leaving
-  the parent's PASID in ACCDATA_EL1 when switch_iommu_mm() skips the write).
-- flush_thread() does not clear SCTLR_EL1_EnAS0 across execve().
-- try_enable_st64bv0() can return false if SCTLR_EL1_EnAS0 is already set in
-  current->thread.sctlr_user (matching current->pasid_activated on x86).
-
-Folding in the diff below fixed all three cases (context switch to an unbound
-task on the same CPU, fork(), and execve() all trap with SIGILL again on
-Cobalt 200):
-
-
-diff --git a/arch/arm64/include/asm/processor.h
-b/arch/arm64/include/asm/processor.h
-index 2f368889aa3a..c7243bd4849a 100644
---- a/arch/arm64/include/asm/processor.h
-+++ b/arch/arm64/include/asm/processor.h
-@@ -264,7 +264,7 @@ static inline void task_set_sve_vl_onexec(struct
-task_struct *task,
-
- #define SCTLR_USER_MASK
-         \
-  (SCTLR_ELx_ENIA | SCTLR_ELx_ENIB | SCTLR_ELx_ENDA | SCTLR_ELx_ENDB |   \
-- SCTLR_EL1_TCF0_MASK | SCTLR_EL1_TCSO0_MASK)
-+ SCTLR_EL1_TCF0_MASK | SCTLR_EL1_TCSO0_MASK | SCTLR_EL1_EnAS0)
-
- static inline void arch_thread_struct_whitelist(unsigned long *offset,
-  unsigned long *size)
-diff --git a/arch/arm64/kernel/process.c b/arch/arm64/kernel/process.c
-index b52d4f0cf5b4..6a1cfeb28bf2 100644
---- a/arch/arm64/kernel/process.c
-+++ b/arch/arm64/kernel/process.c
-@@ -350,6 +350,13 @@ void flush_thread(void)
-  flush_tagged_addr_state();
-  flush_poe();
-  flush_gcs();
-+
-+ if (current->thread.sctlr_user & SCTLR_EL1_EnAS0) {
-+ preempt_disable();
-+ current->thread.sctlr_user &= ~SCTLR_EL1_EnAS0;
-+ update_sctlr_el1(current->thread.sctlr_user);
-+ preempt_enable();
-+ }
+diff --git a/drivers/pci/controller/pcie-xilinx-nwl.c b/drivers/pci/contro=
+ller/pcie-xilinx-nwl.c
+index 0dee19fa24ca..fd134317e9c4 100644
+=2D-- a/drivers/pci/controller/pcie-xilinx-nwl.c
++++ b/drivers/pci/controller/pcie-xilinx-nwl.c
+@@ -844,20 +844,14 @@ static int nwl_pcie_probe(struct platform_device *pd=
+ev)
+ 		return err;
+ 	}
+=20
+-	pcie->clk =3D devm_clk_get(dev, NULL);
++	pcie->clk =3D devm_clk_get_enabled(dev, NULL);
+ 	if (IS_ERR(pcie->clk))
+ 		return PTR_ERR(pcie->clk);
+=20
+-	err =3D clk_prepare_enable(pcie->clk);
+-	if (err) {
+-		dev_err(dev, "can't enable PCIe ref clock\n");
+-		return err;
+-	}
+-
+ 	err =3D nwl_pcie_phy_enable(pcie);
+ 	if (err) {
+ 		dev_err(dev, "could not enable PHYs\n");
+-		goto err_clk;
++		return err;
+ 	}
+=20
+ 	err =3D nwl_pcie_bridge_init(pcie);
+@@ -889,8 +883,6 @@ static int nwl_pcie_probe(struct platform_device *pdev=
+)
+=20
+ err_phy:
+ 	nwl_pcie_phy_disable(pcie);
+-err_clk:
+-	clk_disable_unprepare(pcie->clk);
+ 	return err;
  }
-
- void exit_thread(struct task_struct *tsk)
-@@ -395,6 +402,7 @@ int arch_dup_task_struct(struct task_struct *dst,
-struct task_struct *src)
-
-  /* clear any pending asynchronous tag fault raised by the parent */
-  clear_tsk_thread_flag(dst, TIF_MTE_ASYNC_FAULT);
-+ dst->thread.sctlr_user &= ~SCTLR_EL1_EnAS0;
-
-  return 0;
+=20
+@@ -899,7 +891,6 @@ static void nwl_pcie_remove(struct platform_device *pd=
+ev)
+ 	struct nwl_pcie *pcie =3D platform_get_drvdata(pdev);
+=20
+ 	nwl_pcie_phy_disable(pcie);
+-	clk_disable_unprepare(pcie->clk);
  }
-diff --git a/arch/arm64/kernel/traps.c b/arch/arm64/kernel/traps.c
-index a02dbee8c06d..be84e84c5fa1 100644
---- a/arch/arm64/kernel/traps.c
-+++ b/arch/arm64/kernel/traps.c
-@@ -558,7 +558,8 @@ static bool try_enable_st64bv0(struct pt_regs
-*regs, unsigned long esr)
-  u32 pasid;
-  u64 sctlr;
+=20
+ static struct platform_driver nwl_pcie_driver =3D {
+=2D-=20
+2.56.1
 
-- if (!system_supports_ls64_accdata())
-+ if (!system_supports_ls64_accdata() ||
-+    (current->thread.sctlr_user & SCTLR_EL1_EnAS0))
-  return false;
-
-  pasid = mm_get_enqcmd_pasid(current->mm);
-
-2. Other corners (first three also highlighted by Sashiko [1]):
-
-- EL2 -> EL1 boot setup (arch/arm64/include/asm/el2_setup.h): our bare-metal
-  host ran at EL2 with VHE, so HCRX_EL2 did not affect host EL2/EL0. For
-  kernels booting at EL2 and dropping to EL1 (e.g. CONFIG_KVM=n, nVHE/pKVM, or
-  guest VMs booting at EL2), __init_el2_hcrx and __init_el2_fgt do not yet set
-  HCRX_EL2_EnAS0 or HFGRTR_EL2_nACCDATA_EL1 / HFGWTR_EL2_nACCDATA_EL1, so EL1
-  ACCDATA_EL1 accesses and EL0 st64bv0 will trap to EL2.
-- KVM host ACCDATA_EL1 save/restore: regarding the commit message note about a
-  host process using both SVA and KVM, even with Fuad's series applied,
-  ctxt_has_accdata() in arch/arm64/kvm/hyp/include/hyp/sysreg-sr.h returns
-  false when !ctxt_is_guest(ctxt), so KVM loads the guest's ACCDATA_EL1
-  without saving or restoring the host's ACCDATA_EL1 across vCPU run.
-- Assembler target: arch/arm64/Makefile caps -Wa,-march at armv8.5-a, which
-  breaks Clang IAS (LLVM=1) on write_sysreg(..., accdata_el1); using
-  write_sysreg_s(pasid, SYS_ACCDATA_EL1) avoids that (and the duplicate manual
-  #define SYS_ACCDATA_EL1 in arch/arm64/include/asm/sysreg.h can be dropped now
-  that tools/sysreg generates it).
-- CPU suspend: cpu_do_suspend / cpu_do_resume in arch/arm64/mm/proc.S
-  saves/restores sctlr_el1 across CPU powerdown idle states without
-  saving/restoring accdata_el1.
-
-[1] https://sashiko.dev/#/patchset/20261117222224.1465328-1-arnd%40kernel.org
-
-...
 
