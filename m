@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33C8606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B40606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e9PeGGh2;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dyDUqwj1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kuuYlPXD;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PwMldBDW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Date:
@@ -14,101 +14,92 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=R5GY9TTuofYTaa/ZejIza37Mpjz95YygMJZxjVzg2k8=; b=e9PeGGh2wksYPbuwVDEjQ1e5CS
-	BpotY7xiHEy9gR8xSdN699kcTuCyZPr5p91ECGc38aN083gBMBzBENPC1ArR598lY3yOiLhhiKO7C
-	4Y9fR0S52OYSCqL6qQRSF+/ZWOEipXIdiKhkPFy1PP2zKOgSI8kdu13o9XGyWVKyIvYnMLqszmU9z
-	9iLFLlC9VLNEX4LqsYAGL2HtNDm95kXk6NLzmWw3oMZvCyrRyYlidwIKiKN2TtD5TvbJXcHDXsdO0
-	iskoiEne8EX9KfuWiDpTWPzPL6mDGXDLJ9QYAHyCt+NWCo6fMXA0w9oXPNJDXo5BFI2+omTFKDc+G
-	MCH/ZAtg==;
+	bh=0O70Q7pwLusshInas4sUrkw+Osg9GoLbcJc1oYS+7u0=; b=kuuYlPXDjfBjdGlpHMf5YQk8nw
+	Xv8Ux7TIIOMfgYGz0brGuXMtJWsq/eq1WEJP5iTPu4NqZikEq0WBF3MEEV0xkqokBFuOfbJzvH82/
+	8dMSoItA1JCSAr6GqEyPPLbgw5S3ciTYzPm7Z9LtLOuZzzURT9wEObAQz3p0/guL8MPQCxc9pz9UR
+	enm8lNJsnetxYz3PZLryoeZ0WDQB7CKMkIrN0zyjRyYUJAQYGgbzr5yRLWLKWKBlnNyN7+qOIF+pa
+	mh6XoIYj1weGac2E0ln48qMG4Re18pQCAt/eX/NubpVdkYkenztfbjOTFy59UB8fvsMbxM3sCwWLj
+	cwrbSvQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3vJ-00000000uxQ-0NnE;
-	Sun, 22 Nov 2026 09:31:49 +0000
-Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
+	id 1xV40j-00000000vMC-2rcr;
+	Sun, 22 Nov 2026 09:37:25 +0000
+Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3vF-00000000uwc-4Aa2
+	id 1xV40h-00000000vLq-0XDb
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 09:31:47 +0000
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-3b40b3772f0so252801a91.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 01:31:45 -0800 (PST)
+	Sun, 22 Nov 2026 09:37:24 +0000
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-3b083afebe4so305525a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 01:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795339905; x=1795944705; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795340242; x=1795945042; darn=lists.infradead.org;
         h=message-id:date:content-transfer-encoding:content-type:mime-version
          :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=R5GY9TTuofYTaa/ZejIza37Mpjz95YygMJZxjVzg2k8=;
-        b=dyDUqwj122vJ4cWm4eHhUXVgHJEHEjNG20gpbmYxc4Y/iFwqG43vuPsvkcRyQlg6F/
-         xlmbsrDZarNwa2rBQrsrFyqW5Md8nH7/Lc238cD10qy2bs1QYn4R5xJSjnwiq5Zn7hOZ
-         tIiBMOXx4MwV7kK7cKboj5DHYn621vk6xh58L7nANsfe2EMFwZ1yvDdoCem0qf3QZv24
-         2LhD82RvAbfRxVc7ank3h3HEqLjvzFf4Cs0UKAfkUGa+4FUJSeeLyoeeW5K1fFkpuxi3
-         zFCHj81d6n8UWOqk0PUfzuSYsPzTR4MRWE4BFL74690mTC5RBQGcZNQ20wRYtRI1MgaI
-         ct0w==
+        bh=0O70Q7pwLusshInas4sUrkw+Osg9GoLbcJc1oYS+7u0=;
+        b=PwMldBDW4h/g9BViEG6aYtHS+wod+kXW226BOLMO4vQu6PUrDD96Qeg3GseLQatUaO
+         YpItLbGkmx636kCIvDAhS0jN9IsDbkx2LiUfBH2qa2Xb2E30PcXCfxsl1brCEzc6aNTQ
+         GiFL2BoRA5JrD3jSoa5IzsQiZTfa8ey3yQKU+imWlW1qxtPjws8FNRtm4GAqj0tSCtUc
+         CmNFcB1C3arANr+Pc7YzHqLDPTicPT94lYQoc26NlLq5h7tIg1ZD4c3Ln+o0yseH/W0Q
+         +nH1DzFt1ciR2GxzATXECLgKX3gC9QTsvWGtFE5GyV/ObarQI/88KfinAYjuSQ4iUEzP
+         2CCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795339905; x=1795944705;
+        d=1e100.net; s=20260707; t=1795340242; x=1795945042;
         h=message-id:date:content-transfer-encoding:content-type:mime-version
          :references:in-reply-to:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=R5GY9TTuofYTaa/ZejIza37Mpjz95YygMJZxjVzg2k8=;
-        b=dibmmkeikBu249nf4v3E10z6HRQTXIk0xMjTouez/zXtV/A0/6UzLU+wIkx9Vw5zvW
-         lCYiDn3YsIlKSJTYaveqExSzkq9Anu/iup5tCts6ae46xQmUQTNdLkE+/wdBcQqh7D5M
-         RsYVmz91ON5GiCFzwXIsQl5tnjH70rlykauhTf+1ywZEZpOsuk8m+gV3sZfvu2hsz52Y
-         XWMEsdl1nTyIqjQTCwXUvW5OPe5PE1cNCiThXmPEYuRJdmI2UThrnIsQX+ZONmNAaDnx
-         Du+LvJRK/6b3h+Bow9hCvumlF+PwYMnk0jS8g6vxkl2yvMnbTwFmk3HeHcqT2jRJMSXp
-         7epg==
-X-Forwarded-Encrypted: i=1; AL+hErFnQNMl75fnxKV4kFI9RxITL+QI/DC/Nqw7HZpJHxa7y5L5xe1ZifgQVjdtmX3SQbFvaKA/mHQbXmZMaNFtpuEK@lists.infradead.org
-X-Gm-Message-State: APuU4Z9nwWlHsHjLAnGcsvtVv2I97Ltye6O+eaAZfBJIW7RhUzcoOkUy
-	7yjkHXjHHA0vxMzpU/pyFiaN4VWpy8qsfHwa9Zi67nHwYpR76pwPR6mJ
-X-Gm-Gg: AZFdTZdwkc8k4dm7MuG4jxUR6hMDoic0An4+gYwZqds85iLwCHDMdVt9z8R9F3AuC2p
-	2oC/6Aij5DE7nLQq+COT6Wen4CNhXdnAm3HULvgCEXP1VgXpr+v5nx3YJnmE5ToQXylZQolxAXn
-	jmks13RbOcs6cOd7Yc3gKp7gU3UVi/gzJaescJD3YsrKH9We36ylWCyrOZOKppaAxUt9gsEpa4b
-	wgGI/82lZeAYKvWucv4PIDk/UeZzg/rFszfKzWmOydHox01u4aHNLStl4ATfLCRVlNUOPFE8nDN
-	rDsu3CHL2YaXVHglgZ+r7zqwzf21PPQ1CH6qKpDbZFstDGTTXE65DSIdAZkxzRsjh4uELZc8/Zh
-	f4+Td770bOSJxGsfY8af4udCKSfaLvc5pF6TyI2ZJ/3SHUfq8XSUb9VWL8NryLUeQ9K6EzLpCOk
-	nL95zNflcrCf8Rs/sqTmwEVsOVFBH+cHo+SlZemoFo45//WQ4jU4ZHBFEEx+gipYF/2XZD9fg3f
-	cBfy67oJtzAbPPlXdoD9Xrtiy7ehChZvl7E7F3W2gr2A7V5btrgTJqZJaCcM6PKjP361+hUeGRd
-	Gvp3cayiWv2CDOtvGEK9sz/NMsIXrnBOPORuLTIa7l7f9ljjXpLs0xqeDH1zwOv6AG9eY1uMy2R
-	tiTsBLobzMS4zKDiETTn2ygOqm60=
-X-Received: by 2002:a17:90a:e705:b0:3ac:9c37:9422 with SMTP id 98e67ed59e1d1-3b41c7e4cf5mr11892464a91.2.1795339905049;
-        Sun, 22 Nov 2026 01:31:45 -0800 (PST)
+        bh=0O70Q7pwLusshInas4sUrkw+Osg9GoLbcJc1oYS+7u0=;
+        b=TEF0NxObH7cadaCmreBwyiP0aLBIkK7VkwXQ+NR2q769GdwxY/O6HsAiW4+VPKYxWw
+         s28SY3rSTzaYCVTYBd0DNoFKhHtj+JX+lFYVgStjh56BnPUAl8iwlnpwnnjiLPKWZ0zc
+         kmQvWRBuE9p+An2E7Z3u5fl6Nb7vKeaQIFhjbhvgE8H0SgR1/s1jtzmOHcBgnSnx8I05
+         g/2CD7/QV5IqoSi+y0oqCBDIpSWyBD51adugCRPP7EfkOWrlR7x6F5YhOxozrJl1aNP0
+         F5at/Ywy9CB3iaEXQg4FG44ho8cR4Z8Y9h/kOxkAwtUJuB8Ed0Ctj2TXfBBZAcpMdVEp
+         Rgsw==
+X-Forwarded-Encrypted: i=1; AL+hErFt3R8FuIUDd5AcsMJdn7U8xQQAAxObUV0QqIcwS4fCFpUMsxXPmxb6Wcy+OrOrWYc+18/2NRRPAFbq1dqSe7N0@lists.infradead.org
+X-Gm-Message-State: APuU4Z/J5FUG3OwjiqbIl8NCaxaY5WgV3wzhb7KFuzwNAMmhGMP+XBmi
+	mnP7nNOIauAzBJG2/0kJmAFQ8CPExB/ip6Q9WojG2cHTz27T9YFzDcoJ
+X-Gm-Gg: AZFdTZfW3k8A0PCI1WDMQkhklRbVN25fzoCft+5SNFNKdR3FkyG34Ug77YbizX+zDvj
+	QuF4xkEQlfkHs9+UjRXCkdlytegETN++1QbyIqbfgN2aa/mBqKAhtNeslGgEr0WI121KjLBnlzX
+	hpQPbkL0mb7MA1CKWHYQaG9k8Lejyg2WGQMXgQtTRWU4BDrkZNDJX5xvmTUZNt41m6YTALbR8Qf
+	oaI594jlsJvLsi4bbXLwVodEIw8qCy0uZodN+SP4j71DzjP7E5r/N2EqwegTe/G7yEoWRJC0rv8
+	lUPssYrQ41DSDQzWOREbtBtoxP+5n09Vun5j6C1b2iesoe7GJZm92Lw9TwI9MZS+NUG7AXwV1gX
+	mbNgrRQ3jX2akdCpt31nlK1g9VGhGp9PUvyx2uE0vsV/L3P2vSRNiLUVEvGdGjnXYx6jSUNp0bw
+	t/ZWc0ylGAtaPXTeJCnL3VlofTs9Mzlcg6VVryMdYqvE7mL84hABwlpAWqS3FOlNaoo+a7kO9BG
+	NV1c/yLEizaMJuKbfrK5KEGYu3cDq7RskltoZIMTKI5hNOh/MBTiXFhRqODvJVj/Q+3yZqQ2iNF
+	mtPfA6QaGoFFcxs8f62Kz4Cp0g8hAra/UsWRhTn7N8eFQyT1iDimd7Nk/30zzGWuKpAZGRsJ9cy
+	bEPNVAbQGR3aKQN46u8ZQH/JFvoM=
+X-Received: by 2002:a17:90b:2ecb:b0:3b0:9a3e:bf8b with SMTP id 98e67ed59e1d1-3b41c98a1f8mr12481111a91.6.1795340242152;
+        Sun, 22 Nov 2026 01:37:22 -0800 (PST)
 Received: from claudebox.iyengar.cloud ([50.39.139.68])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405ffa98esm14795295a91.17.2026.11.22.01.31.44
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6cfe9bb9sm3367272a12.12.2026.11.22.01.37.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 01:31:44 -0800 (PST)
+        Sun, 22 Nov 2026 01:37:20 -0800 (PST)
 From: Arun Iyengar <aiyengar1990@gmail.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Andy Yan <andyshrk@163.com>,
- Heiko =?utf-8?q?St=C3=BCbner?= <heiko@sntech.de>,
- Sandy Huang <hjc@rock-chips.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Damon Ding <damon.ding@rock-chips.com>, Alexey Charkov <alchark@flipper.net>,
- Igor Paunovic <royalnet026@gmail.com>, Rob Herring <robh@kernel.org>,
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Ilpo =?utf-8?q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Dmitry Baryshkov <lumag@kernel.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v12 06/23] drm/bridge: synopsys: dw-dp: Fix AUX transfer
- timeout race condition
-In-Reply-To: <20261114-synopsys-dw-dp-improvements-v12-6-d42d3dc5bdd4@collabora.com>
-References: <20261114-synopsys-dw-dp-improvements-v12-6-d42d3dc5bdd4@collabora.com>
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v6 0/8] serial: 8250_dw: describe the Allwinner H616 and
+ A523 UART configurations
+In-Reply-To: <20261102-submit-h616-uart-fifo-v1-v6-0-25afcb346b0c@gmail.com>
+References: <20261102-submit-h616-uart-fifo-v1-v6-0-25afcb346b0c@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Date: Sun, 22 Nov 2026 09:31:43 -0000
-Message-ID: <179533990370.107225.5765165679182115805@gmail.com>
+Date: Sun, 22 Nov 2026 09:37:19 -0000
+Message-ID: <179534023971.231108.3039673113639895699@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_013146_034886_9E5A80F7 
-X-CRM114-Status: UNSURE (   8.89  )
+X-CRM114-CacheID: sfid-20261122_013723_173329_71CAB5F9 
+X-CRM114-Status: UNSURE (   4.85  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -121,40 +112,20 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 14, 2026 at 06:00:39AM +0100, Sebastian Reichel wrote:
-> @@ -1491,6 +1493,12 @@ static ssize_t dw_dp_aux_transfer(struct drm_dp_aux *aux,
->  	status = wait_for_completion_timeout(&dp->complete, timeout);
->  	if (!status) {
->  		dev_err(dp->dev, "timeout waiting for AUX reply\n");
+Tested patches 1-7 on an Orange Pi Zero2 (H616), backported to v7.3.3
+with the two prerequisites; 8/8 not applied (no A523 here). The UART0
+console at 115200 passed about 700 KB out and 350 KB in with matching
+md5 sums and no frame, parity or overrun errors. UART0 and UART5 come
+up as 16550A with a 256-byte FIFO, and rx_trig_bytes 1, 64, 128 and 254
+set and read back.
 
-This still drops a reply the sink did send when the IRQ thread runs
-more than 10 ms late. On RK3588 (7.3, KASAN on, v11 of this series:
-same 06/23), with a SCHED_FIFO hog at the IRQ thread's priority on its
-CPU (busy 40 ms of every 200 ms), 1410 DPCD reads gave 183 timeouts.
-Checking for the reply once more before giving up gave 0 timeouts,
-with 127 late replies taken:
-
---- a/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-dp.c
-@@ -1493,2 +1493,6 @@ static ssize_t dw_dp_aux_transfer(struct drm_dp_aux *aux,
- 	status = wait_for_completion_timeout(&dp->complete, timeout);
-+	if (!status) {
-+		synchronize_irq(dp->irq);
-+		status = try_wait_for_completion(&dp->complete);
-+	}
- 	if (!status) {
-
-Feel free to fold it in.
-
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-
-Claude (Anthropic) wrote this change; I reviewed and tested it.
+Tested-by: Arun Iyengar <aiyengar1990@gmail.com>
 
