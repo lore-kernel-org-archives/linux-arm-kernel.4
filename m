@@ -2,65 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0D1606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sat, 21 Nov 2026 23:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A19606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 00:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m1XcAM5j;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=a3eWUBT1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KwBzRocf;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VEtJ0Z3R
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yugA/hpxPa9PPMqm+bYi6Gf+4noP3z0dciXI3mzgobQ=; b=m1XcAM5jHjKZ1p
-	OFjb0iIgEczKd4pA76SEyFbsPMAnT02TdgmezhdHPB03PL/18qYBPJpzmKjXRPuYDHm5JSbEipuJk
-	P9WVFzvbd+HnnCXcCTMIcCapwKXi8lEPdrMfw/W+NjhgS1xMNseZRKZm+cQmJWIsgUjq4MiwtLHTX
-	rT+BM/nIhkcktFI/8CW6ukuWDu8+W0PswlZvkFCQKNp5nieHT9CLMh5dNindco3reqocJNBMZfu+t
-	qltu4PhDEW480+I1GOwo0kmlSBQxNXJYfGjrxrNlTFtIlz+vS963ZEctGp0K/xDuwYyJ+1uOQvglJ
-	ScSV9wkf1g7+A4mc63xg==;
+	List-Owner; bh=rYwFnnQpoq8LFGaav+MzPqD+Y6qhmYWK6HkRe9C2QeM=; b=KwBzRocfzNge2J
+	75uPKzAaNLouTAAa1OWWe9QmbLPtuAmq/bOWC52yfB2dqK+5E4KaUmSte12gX1Zig1uyssJACQEze
+	f6iHaNN9rtqusJzBFZVkn8OMurRwvuiidSYLrJOIaoukFgWNlk5jFmcZIoHctXaE1vs1GcUisCvRc
+	ar30LrmrhkHcw/vjSDbYLdXaPDzJzhkoFLU+dAVddImtHOZUhTSyiG67xGxHACZkVigEX27/fGoBM
+	WCJCgn5Xv4xIZkXFGp3QXX0bs79xWyRJRhLh5yOC0Be026Ar3FQyOK5iLtI+PFcfiyZersWQDE0Pn
+	aqGIEEyEhuar3ksVqiyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuwJ-00000000YXm-3Gst;
-	Sat, 21 Nov 2026 23:56:15 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xUv3E-00000000Yo5-2e4U;
+	Sun, 22 Nov 2026 00:03:24 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUuwG-00000000YXG-00Y6;
-	Sat, 21 Nov 2026 23:56:13 +0000
+	id 1xUv38-00000000Yne-45KG
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 22 Nov 2026 00:03:23 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 428B360F05;
-	Sat, 21 Nov 2026 23:56:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1CE81F000C0;
-	Sat, 21 Nov 2026 23:56:07 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 0BA876120F
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 00:03:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2BE51F000D4
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 00:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795305370;
-	bh=yugA/hpxPa9PPMqm+bYi6Gf+4noP3z0dciXI3mzgobQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=a3eWUBT1S4Rk/Vz1dKqOCH51xkD63zScM/huWV7vrW5dzG5FiIEcwXUnml4RWrSCn
-	 wVgC5iSF+e9cy+TvFSFSKp1MX3KUm1mKgVG5+4kAdN3Q1gWrZ3tjk5nTNxjt4V/SS1
-	 wZiwegcKtFB4e75D0SlwtEecTNbE0R4iPQmOU1DTbW10VTH+PmQdlAIDmwyKW7/3qg
-	 3jDPfMMPkzCrwaVCPayKREHZfZSkB6YGnPMXCRKeRoZ2ilNZh8/bPiUoSD4Jluk5nN
-	 ZSuee2XktArpyljXsXXihBY9yrGjZRmCVcoOleN3BDdlhDMxCJHdVq5mHMVgfAYTgX
-	 B5mGYInSpLArQ==
-Date: Sat, 21 Nov 2026 23:56:03 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Cc: rva333@protonmail.com, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, "=?UTF-8?B?TsOtY29sYXM=?= F. R.
- A. Prado" <nfraprado@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] iio: adc: mt6359-auxadc: various fixes
-Message-ID: <20261121235603.41ce1ec4@jic23-hlaptop>
-In-Reply-To: <20261117-6768-6358-fixes-v2-0-1ffc3c2f3c80@protonmail.com>
-References: <20261117-6768-6358-fixes-v2-0-1ffc3c2f3c80@protonmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1795305797;
+	bh=rYwFnnQpoq8LFGaav+MzPqD+Y6qhmYWK6HkRe9C2QeM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=VEtJ0Z3RFtXNNE2efuwBF9CxDfb5B95yqKPcNQxO+t6NQf2t7QVUT+e83OzRKAMas
+	 Et0FX6zr/HpTXZ5u0nCFgtAJcbM3xmt+CdbOTavu7JuGUwlLBBCzSXWSBMUHF60mot
+	 W1ZNteOFWWRkKFzRoukBOv18VzqXbm1bdBQSQZ+YkPx6etZg5GiT4lxSLMQVjMSGJm
+	 N93oZS9RYlL4Rhdrjy/c6vsZybDkDHQd4i/Kc7D6X/edXWGCsEA7YjMzk/e3TGl26A
+	 yJFtqNMD3FGLZ8qKwWBx8sP5O3wXEbjRHI9lzpGMrneITPKqXsS1KiLBXvZ7Uf1BQ/
+	 74VNAmNGVNzbg==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3ae25dcbd81so16923041fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 16:03:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGhCcTcE0M/vdJW4UizBZr8xFMnJlbDRj/y2//z+v+Icg5fDevYhcC+wG0UKKO9YBrKhc36HmGWWvqtBDgBuuG9@lists.infradead.org
+X-Gm-Message-State: APuU4Z91mQMwFRetSKDtkdeR2lNJ0lyWPVxHRgXsNmCDzDnrmBHWYL2m
+	TCDClP4t8EKvtDQJWA+xxNydHalyLh8p7n5RAEigwEygfI/Pb1KwGw0dcZatDB9Uya7QuWhQ8M1
+	ExvyrbBdh6XIp9jr0IHsvdcVsImdDjfs=
+X-Received: by 2002:a05:6512:238a:b0:5c1:4bd9:d696 with SMTP id
+ 2adb3069b0e04-5c1bc6803dfmr2119235e87.8.1795305796393; Sat, 21 Nov 2026
+ 16:03:16 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20261015142552.4128028-1-ryan.roberts@arm.com>
+In-Reply-To: <20261015142552.4128028-1-ryan.roberts@arm.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Sun, 22 Nov 2026 01:03:03 +0100
+X-Gmail-Original-Message-ID: <CAD++jLmd=+v0c+zZwLVafR0aFRnt95weQ=_oaOaYdHUbXktvdA@mail.gmail.com>
+X-Gm-Features: Aa3M54r3uff-3u27-GWxVyER9ELrI4OraGs3jCVFrFZTcTH5Wtzi-qad91fCkZY
+Message-ID: <CAD++jLmd=+v0c+zZwLVafR0aFRnt95weQ=_oaOaYdHUbXktvdA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 00/15] Arm Core Local Accelerator Driver
+To: Ryan Roberts <ryan.roberts@arm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,58 +84,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 17 Nov 2026 19:56:31 +0200
-Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org> wrote:
+Hi Ryan,
 
-> This patch series fixes various bugs in the mt6359 auxadc driver. For
-> some reason, the driver had channel types for temperature or resistance,
-> while the ADC can report only voltage. There were also issues with
-> battery channel ready bit masking and scale calculation.
-> 
-> Changes were verified on the mt6358 (mt6768 platform). Compile-tested
-> only for others.
-> 
-> Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+On Thu, Oct 15, 2026 at 4:26=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
+ wrote:
 
-Hi Roman,
+> * Driver interaction with architectural support: I've opted to treat the =
+CLA as
+>   a device rather than a CPU extension, so it's implemented as a (mostly)
+>   self-contained driver.
 
-The series looks fine to me, but as we have fairly active folk
-who care about this driver (or at least did recently) I'm going
-to wait a while for reviews to come in.
+What the current proposal does is to create nodes in the base of the device
+tree, which makes the device tree parser instantiate those into
+platform_device:s,
+then each cla_device piggy-backs that platform device.
 
-Thanks,
+I don't think this is a good idea, I wouldn't use platform_device for this
+since you can just look up the nodes and instantiate the cla_device:s
+with a proper struct device inside all of them.
 
-Jonathan
+I think it's a better idea to put these inside the CPU nodes themselves,
+they are there after all, intuitive right? Init code can loop over the
+CPUs and instantiate a cla_device for each CPU directly without
+having to detour over an opaque platform_device.
 
-> ---
-> Changes in v2:
-> - Clarify bit number in the patch 2 commit message (Jonathan)
-> - Link to v1: https://patch.msgid.link/20261103-6768-6358-fixes-v1-0-2a868a33152b@protonmail.com
-> 
-> ---
-> Roman Vivchar (3):
->       iio: adc: mt6359-auxadc: correct channel types to IIO_VOLTAGE
->       iio: adc: mt6359-auxadc: mask conversion ready bit in mt6358_read_imp
->       iio: adc: mt6359-auxadc: fix scale calculation
-> 
->  drivers/iio/adc/mt6359-auxadc.c | 88 ++++++++++++++++++++---------------------
->  1 file changed, 42 insertions(+), 46 deletions(-)
-> ---
-> base-commit: 7649ba73f9e7e1e04d0b46213e39c79ae09dd55c
-> change-id: 20261103-6768-6358-fixes-fcdc79afae11
-> 
-> Best regards,
-> --  
-> rva3 <rva333@protonmail.com>
-> 
-> 
+Devices inside CPU nodes will not (I think??) be populated
+automatically, so you can add code to loop over the CPU nodes
+at device_initcall level or any time during the boot process deemed
+helpful. This also saves you from adding devices for CPU cores
+that are flagged with status =3D "disabled"; which could happen.
 
+Yours,
+Linus Walleij
 
