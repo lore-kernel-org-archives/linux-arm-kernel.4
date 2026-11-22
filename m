@@ -2,170 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41D4606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9A4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y6MISXY9;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=fo11p71u;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=NnFwZfhF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=30m8Mw12;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JH9WDHCl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dyOk/+hQC3dS2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=; b=Y6MISXY9gBiV23
-	+29qRBRNeFwBZjaYrcvh61FIRvV3o1JuI634jjucbQNzM/ctHR1DSWRXoog+gXgTdcn0pJQ9x8T1a
-	ojU/PumOaelpKJDeMraVEesjpIrSx5TcRMBQagrOTBTU9tomJVv5UPkGSFHOnjzvEJSaMBoXacyAY
-	nipe94uQJBihCZJFO2w83YFCMwa/rbAgJqX0K3l3os47w0/DcQ1tCaRpBntjy8ewpjeX59lptGxje
-	Hok/5GJcHBq7ySTqDnclErFNL1MGf07I3ueInxazR2wGU0WIAcMMJSSzntwVg+NqHp7apJfKV0JMG
-	RkaQiUf4aCWcTW2Ufprg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xoSM2whVTu4UTAuG8+zo8K3wAspqxaXD2+SDMb67siY=; b=30m8Mw12j5CwTwpuJOTcOveT1C
+	wyKyNlPT9dKG8eUM0A4bzakUgJPhXMkn+vZ0szlG6VfaL3unMFL+HSA2kJUQs3k2gDqoJnLoKN0Ga
+	dyksYeqTCz1VdavdcjUYYRBnRHOWPxf5JnBNbeuPWyL/DI/cc0qSjCBedldCyPDKB7EGAK9PkT6Hh
+	J+P6nVQ2aU6P0CzXUbCp8l1JQ5nqJ+vRhu5j3dDPkwRXoIwFeQjV7Rpocpo3OvlSWJIGV/7QTRIqf
+	ehEegAfmDMB2fuPkHKm1Cp7/gJjvkt2AwpZfWYEygKKqzaQehmSZtF8ix71ko+4roDtMur+JiXHyx
+	mIp0CcjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVA8D-00000001KLw-0rKO;
-	Sun, 22 Nov 2026 16:09:33 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xVAAM-00000001KaF-2Es2;
+	Sun, 22 Nov 2026 16:11:47 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVA87-00000001KIg-07hd
+	id 1xVAAE-00000001Ka2-36tS
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 16:09:29 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AMFQW2V3496180
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:09:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=dyOk/+hQC3d
-	S2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=; b=fo11p71ugXj+px95KD0I3tYDbTh
-	yS9cS8ycCi2GiMgJ1j8GedN7CBzMcbpWS4qXCxe2NuSKyGHBARcGIzocsdXToWVK
-	y1bcpA4Oc+uIVfCp5gmY4cRwXXK5FO1izXGR5WE+KUAnxFEdgYpa4D2VzoemGPUx
-	9QP3WefnhdCgec0yiiuJ82z0On3b11VWyTGY2JB89i0LnBcr1Wc/IjF+CXBN3Pq1
-	jlNK9H+2KMoKbuQVcYjXnaIFiIDh21fggm42Y5o87jwDTYfvqiSgdNMMEwexXVwM
-	htEp6POXtjAeln8wZE5NSqMceJ+3UgJjSlAUFW1XroSL2K/pTQ4etxW7wqw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j32mgbtfy-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:09:25 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-93f5844cb60so487127885a.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 08:09:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795363765; x=1795968565; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=dyOk/+hQC3dS2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=;
-        b=NnFwZfhF/yV77IjGapa+F1CnaFQWWQG1IEvOmiw9+O/bD06wgGexJcu/Vqwa4xOpXZ
-         Lwpqg5Reh4JRVymG13rqsqQKjKTTPD7GqWgNg4o334A5wpX0IR2DDkCPyn9OldFG/Kve
-         Ox4azBi9XcTNhA2lOu3cK0Z773gijBHC0cjqgGunaxSR5NczHYWdKe/mXVMgjZWTRgcX
-         1DEBQAJf6UN4WqW5CD/kD6c5jymApSAvM3GvIaWBKrOhXNRc64NZpaKxAzWy+8nT5L0S
-         oisss+Q/6WaX3rNOwSVNE743nSzRv14/sz7XKL9x3l+lXcqyC2MwcKXJGjCjBBT9dXBJ
-         Da9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795363765; x=1795968565;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=dyOk/+hQC3dS2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=;
-        b=bAoAWhnP5mj9+bgxWOurQTxWVdgscYTn2Jv8b3AaCwDaF5i/KNLQl1D94dMsrwWOo1
-         DR3e605emnp5jVOeIvBkMWp6F7hPQ+qUbyKHUtbCdRTjqJeiBZaAwbohSfbD+3iIi3eU
-         H3kux1sQgV8sLNBFeYq8Umyvs63/mizbdFx67fWmX02lMKIt2Z1Gzw7vs48NdliYJC64
-         If8wRrkfyJYd2zob1n3mk14Lh8zGKNQbT1B5yrZDibDQF4cyCVg8rHHZmtY5xvGn/sag
-         +EHLn+3YGa/w6lO5nuKbKiMr+zZIkm/ToI5WH9kOX6F3mkZcf2qTP05Vq6rghq1YN7in
-         JOow==
-X-Forwarded-Encrypted: i=1; AL+hErHQ9JmOtxfcCIAf83f8xVbgolDivm5hnTq7+oNo/QP6GbwxCZdyY9jnHy61WT/Gg75kdpRKxWOh+l2M3qa3POGP@lists.infradead.org
-X-Gm-Message-State: APuU4Z/PmlIK/FBt0D693zAfXERlTvTs/HyoxwEOUVAeD0eigqDKZjNn
-	m224HaWT90CVA/+o2iqurkIMi17ZpxMcvYehKiAKawRDVtc6krvZ0mwO+hju1s9zCEirgYVhGX1
-	p/SMUjcqkqpQZRIiUEwfYf17YMnirH7NHQ+IoziUlZEV7HbgOK7pcEYY2RVleklsC9950BBLigj
-	iJjLbYefLofA==
-X-Gm-Gg: AZFdTZeW6py7xcVy8mZWDoBRtfWvGTUDsadRTFaJdp1PSMW9aQej9dNLznxmoAfndx9
-	RFUB2y7NairNxh+wdSPzo8pq5qmneVaaGZYAX08TDbNtNZ19UTUt2Tcczt3t6rTD8u/6gONuY7c
-	dmNc3LJGD1K971RvYlFyPw44N22Hv1N7pS/x8OX3QW3DUhkme8idfAF62Ep8OZQsQXNnm0bDEdn
-	ggjswnw6izibgzKzYd0OZszZO1OyTf/nTpOl4e0bQ88KPrscEF8eNIhbtRWENqsKsdf4e1S0ueS
-	05dHSW69fb0PvttksVYihf0ap2fpsZFAlocECEPNNvirb9hvyjHvjUJ6KXfb6Hg8q5tu+SJZIok
-	Gv/yjhd7Do3oj5c1mmqC1OMDPWW+4ozIes7WvXQ4wUrOWc9BAKU3TM1YoX4r6fA==
-X-Received: by 2002:a05:620a:2682:b0:949:671a:cc77 with SMTP id af79cd13be357-949b34035a5mr1661822385a.1.1795363765161;
-        Sun, 22 Nov 2026 08:09:25 -0800 (PST)
-X-Received: by 2002:a05:620a:2682:b0:949:671a:cc77 with SMTP id af79cd13be357-949b34035a5mr1661816685a.1.1795363764668;
-        Sun, 22 Nov 2026 08:09:24 -0800 (PST)
-Received: from quoll ([178.197.218.7])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884911e3sm320526755e9.6.2026.11.22.08.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 08:09:23 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
-        =?UTF-8?q?Jens=20Emil=20Schulz=20=C3=98stergaard?= <jensemil.schulzostergaard@microchip.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>, Marek Vasut <marex@denx.de>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH net-next 2/2] dt-bindings: net: dsa: Flag unexpected ethernet ports
-Date: Sun, 22 Nov 2026 17:09:09 +0100
-Message-ID: <20261122160907.200727-4-krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261122160907.200727-3-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20261122160907.200727-3-krzysztof.kozlowski@oss.qualcomm.com>
+	Sun, 22 Nov 2026 16:11:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2E2A64474F
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:11:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0F871F000EB
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795363898;
+	bh=xoSM2whVTu4UTAuG8+zo8K3wAspqxaXD2+SDMb67siY=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=JH9WDHClVRA/IxU5zEexpMb2XH49dPAuMlX9lJY8uHpfCegHOFlL3giX2EREfjerm
+	 4l2AQhnyw6BeR/WD4QD7jdFRQnqL5+KyEKSf+FnJQL/XvaFzhZD09mgPYgKDMSQzw/
+	 blnCNoKW774w1/sJtwnZMnqTnrjkRZNWQwj/dCHtUea5qlrdlnhZiCzD27NufowaN/
+	 lW9RKrb/dqoPYdAxfvlLvmh8NSDzJO1xmSrL+15S5HsnmxNQrSznl6UPxXbQDv9Pay
+	 i4jFawyolqPKAr4tiQmAKFXH/c7BRrKBp5YXonJFv2HStk+GWz2vJoeTez9gs11Ikk
+	 LWmGcD5CEPaoA==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3adfed9a887so22423961fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 08:11:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHsiQACMlXJlahC6YxDZ2Pe8WHGFdCwlf8WEDVbDB/XainyKeAl30az9Fes4a1nGFVTouk3ruLGDS2ivBZ3Klk1@lists.infradead.org
+X-Gm-Message-State: APuU4Z8ZXQDWEvWZnmAnbARsEthkrvHBfYHssavh83yaKUhVuYl9tBJc
+	p4cBsHILf8LXaU5/1X9EtMNbUyePKF+OUR7HxrcrkKzhpdN/lKFd89xAVP40sWkBAYG4RjCWfg7
+	MtyXAN4SsZ3u2FBwk804aCXiaX8T873I=
+X-Received: by 2002:a2e:8a94:0:b0:3a7:81c4:190b with SMTP id
+ 38308e7fff4ca-3ae7fa718bcmr22757351fa.25.1795363896396; Sun, 22 Nov 2026
+ 08:11:36 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6422; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=reMATxFxVxRB+raQ83jYfeaAK2V6mtUNc6Wp2ta7pEM=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBrAxOkOJWDsz07omJXLZhaMWPp6woHPL8+pCClu
- +kZC4bdMluJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCawMTpAAKCRDBN2bmhouD
- 1xQIEACaFedbtKzfFmbnBJcFU8CEz4FyuAcxxPgxdFqxRqpIg1xHeRGybC4E37WJVdFmDXL+IiM
- FZdr8VzQM8M2DA6tywEWp/eKIa0cZKVKpdARltyyNDRG/YtWqJgjc5BMnYxsVAqb7Vo6kjQr5Vm
- 9nVSouM8M+29Ue122ZMOG4/rUOQog384qunka/dtrk8IysLT+e6UvBvHLsiPuA95hYzqS9KOVzL
- 3VHZybyVb6e2m2Y/r7XzFzlhR5H0EDq7gJ5NJy8MOG15tAcJ+TU3plPFRbtBjkSOB7i8Ubysvhr
- xUQCrae3P5pSL4fWowBqQNdGvP3fPkhgA+w5tyOvHSAdCed5brmxQdvHogqCW4+KCWT+PWfpMQH
- R7E1iMnrzjWZp2X9SbexuwXUPfw2orGQ5jZJslTL6ODd8dCeVJ/YuYRvCAVsGKviS5w5MsmZY3z
- r5KeZ3KftGG2iI7ViBELF45gUtCNed55Qf+zyf4tmwZzBmPz7BisgagXHW2QHhCdw/R6L3sid4m
- HnJPr8+IH6gyV7s8rtUJVLJImgJ495iS9vziAi328myZSRS3NjFllSR3IYkdwjgnXOHgWtYTbau
- 4GUlpviCm+QmtNUAHyKzm7LGUNZsQzrtIigRBlx2oqktTVRCSLB7mGcLj6/GlI8SrWpa+q7CJCW LmkHerMGT7PwnEg==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIyMDA2NCBTYWx0ZWRfX3DMLGPZmXUGP
- /28/VE6k6wNFkf7SEov2MBly3Zqv6dq1wao69sIrKNjKjg77lJpG6NDjaBT/0314mZrdl1Wz0f4
- NfeZXlx5Q7qbD6vDNV9vkG3fIYIA73XlHvOIK9kru3SuYSf6/wXiv0QL/prTzPdcBUQg7Y6yuJL
- r3G3aIxi2WhOeAqjRncRYbLa8DSlDnpwKm+NOxVakpwCnhxjjKpTEMsxbpZNSIk5UbgkqiQ99tp
- PhKmYxrbgYuU8vtlXx10Tf9vXxFEdyFPpNv2ZJEUiwO+0Kf06hvTZ9rWurYWs1XX3OTEO3H1FCF
- KoRypUQyGkaGT/ba4gS+uvWmA2JEdNDakzyjnSTA9H/Z1NPu7k2+98oFSuyoE4bHh38X9DuV/pu
- TCTSLdsjjBkVoE3AUEaTK/tRGTGsLDVX+6bhaidtPPziAUhDrGAANzLSyk0p8XlpBlUt1hfWjRK
- R/FrDqCte+AWU/ELEfA==
-X-Authority-Analysis: v=2.4 cv=OM+yTiaB c=1 sm=1 tr=0 ts=6b0313b5 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=uyPgTw0bjBTS2cVxpiNm5w==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
- a=DPh3dRPQxyF78rqZMbEA:9 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIyMDA2NCBTYWx0ZWRfX69AfuwKa9cBZ
- z0ItqAhR/mr+Yxumlqaqpo10OWaKsRaFkGcJ9NKPtYUxe4MRqfEJVLYTgvKQ+l9NPdiGT+iwf2I
- gmURtIP4aj8EsMVWjQCkCgM4m6tKz4Q=
-X-Proofpoint-GUID: 6GB0SilQD4PJqWlU3UaE0_l-ltrWvFlj
-X-Proofpoint-ORIG-GUID: 6GB0SilQD4PJqWlU3UaE0_l-ltrWvFlj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-22_03,2026-11-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 adultscore=0 impostorscore=0 bulkscore=0
- priorityscore=1501 spamscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611220064
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_080927_230066_DCEDDCAA 
-X-CRM114-Status: GOOD (  13.56  )
-X-Spam-Score: -2.8 (--)
+References: <20261122144926.284857-1-maxime.chevallier@bootlin.com> <20261122144926.284857-3-maxime.chevallier@bootlin.com>
+In-Reply-To: <20261122144926.284857-3-maxime.chevallier@bootlin.com>
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Mon, 23 Nov 2026 00:11:23 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66SzmeGNrBmTe-6NNoro-9u-ocuQS6DxE9fo4_-kfA81Q@mail.gmail.com>
+X-Gm-Features: Aa3M54oHe6Y4v1aZei8vOvG0Mo7qT8EwWXl6UKG3x5zoZCEZ2BwDWFr9sA35sjE
+Message-ID: <CAGb2v66SzmeGNrBmTe-6NNoro-9u-ocuQS6DxE9fo4_-kfA81Q@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/3] net: stmmac: dwmac-sun8i: emit pause frames
+ when the RX FIFO fills
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, davem@davemloft.net, 
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	Willem de Bruijn <willemb@google.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>, 
+	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>, Nicolai Buchwitz <nb@tipi-net.de>, 
+	thomas.petazzoni@bootlin.com, =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>, 
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -175,179 +85,98 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Bindings which reference dsa.yaml ports and restrict their own
-ports to specific subset (e.g. with pattern "^(ethernet-)?port@[0-6]$")
-actually silently allow ports with any unit address, because they use
-"additionalProperties: true".  These additional ports are incorrect and
-should be flagged by the schema.  Solve this by dropping the unit
-address from the pattern completely and adding proper constrain on the
-'reg' property.
+On Sun, Nov 22, 2026 at 10:49=E2=80=AFPM Maxime Chevallier
+<maxime.chevallier@bootlin.com> wrote:
+>
+> The TX flow control mechanism needs multiple things setup to actually
+> work:
+>
+>  - The TX_FLOW_CTL_EN bit needs to be set in the TC_FLOW_CTL register,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- .../devicetree/bindings/net/dsa/lantiq,gswip.yaml        | 4 +++-
- .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml     | 9 +++++----
- .../devicetree/bindings/net/dsa/microchip,ksz.yaml       | 4 +++-
- .../devicetree/bindings/net/dsa/microchip,lan937x.yaml   | 7 ++++++-
- .../bindings/net/dsa/microchip,lan96455s-switch.yaml     | 6 +++++-
- Documentation/devicetree/bindings/net/dsa/qca8k.yaml     | 4 +++-
- 6 files changed, 25 insertions(+), 9 deletions(-)
+typo, as Nicolai mentioned
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-index 89f78a1bc113..83cdd6c80d09 100644
---- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
-@@ -108,13 +108,15 @@ patternProperties:
-   "^(ethernet-)?ports$":
-     type: object
-     patternProperties:
--      "^(ethernet-)?port@[0-6]$":
-+      "^(ethernet-)?port@":
-         $ref: dsa-port.yaml#
-         allOf:
-           - $ref: /schemas/phy/phy-common-props.yaml#
-         unevaluatedProperties: false
- 
-         properties:
-+          reg:
-+            maximum: 6
-           maxlinear,slew-rate-txc:
-             $ref: /schemas/types.yaml#/definitions/uint32
-             enum: [0, 1]
-diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-index 90b3582b7619..80cda7ec5cb6 100644
---- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-@@ -179,12 +179,13 @@ patternProperties:
-     additionalProperties: true
- 
-     patternProperties:
--      "^(ethernet-)?port@[0-6]$":
-+      "^(ethernet-)?port@":
-         type: object
-         additionalProperties: true
- 
-         properties:
-           reg:
-+            maximum: 6
-             description:
-               Port address described must be 5 or 6 for CPU port and from 0 to 5
-               for user ports.
-@@ -208,7 +209,7 @@ $defs:
-     patternProperties:
-       "^(ethernet-)?ports$":
-         patternProperties:
--          "^(ethernet-)?port@[0-6]$":
-+          "^(ethernet-)?port@":
-             if:
-               required: [ ethernet ]
-             then:
-@@ -220,7 +221,7 @@ $defs:
-     patternProperties:
-       "^(ethernet-)?ports$":
-         patternProperties:
--          "^(ethernet-)?port@[0-6]$":
-+          "^(ethernet-)?port@":
-             if:
-               required: [ ethernet ]
-             then:
-@@ -246,7 +247,7 @@ $defs:
-     patternProperties:
-       "^(ethernet-)?ports$":
-         patternProperties:
--          "^(ethernet-)?port@[0-6]$":
-+          "^(ethernet-)?port@":
-             if:
-               required: [ ethernet ]
-             then:
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 4ed13870ed3a..9cc14aa7b4b1 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -129,10 +129,12 @@ allOf:
-       patternProperties:
-         "^(ethernet-)?ports$":
-           patternProperties:
--            "^(ethernet-)?port@[0-2]$":
-+            "^(ethernet-)?port@":
-               $ref: dsa-port.yaml#
-               unevaluatedProperties: false
-               properties:
-+                reg:
-+                  maximum: 2
-                 microchip,rmii-clk-internal:
-                   $ref: /schemas/types.yaml#/definitions/flag
-                   description:
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-index 9973d64f15a7..36a7c81df747 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-@@ -39,7 +39,12 @@ patternProperties:
-   "^(ethernet-)?ports$":
-     additionalProperties: true
-     patternProperties:
--      "^(ethernet-)?port@[0-7]$":
-+      "^(ethernet-)?port@":
-+        type: object
-+        properties:
-+          reg:
-+            maximum: 7
-+
-         allOf:
-           - if:
-               properties:
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml
-index 517bc4c00de3..17e3c00f5a32 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml
-@@ -105,11 +105,15 @@ properties:
-     type: object
-     additionalProperties: true
-     patternProperties:
--      "^(ethernet-)?port@[0-8]$":
-+      "^(ethernet-)?port@":
-         type: object
-         description: Ethernet switch ports
-         additionalProperties: true
- 
-+        properties:
-+          reg:
-+            maximum: 8
-+
-         allOf:
-           - if:
-               properties:
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-index 167398ab253a..3840b336bdb9 100644
---- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-@@ -75,13 +75,15 @@ patternProperties:
-     type: object
-     additionalProperties: true
-     patternProperties:
--      "^(ethernet-)?port@[0-6]$":
-+      "^(ethernet-)?port@":
-         type: object
-         description: Ethernet switch ports
- 
-         $ref: dsa-port.yaml#
- 
-         properties:
-+          reg:
-+            maximum: 6
-           qca,sgmii-rxclk-falling-edge:
-             $ref: /schemas/types.yaml#/definitions/flag
-             description:
--- 
-2.53.0
+>    this is already done
+>
+>  - The RX fifo thresholds needs to be set, to indicate when the MAC needs
+>    to start sending pause frames based on the RX fifo occupancy, and
+>    when it should stop.
+>
+> Let's configure the threshold the following way:
+>
+>  - Send pause frames when there's less than 2K left in the RX fifo
+>  - Stop sending them when there's more than 4K left in the RX fifo.
+>
+> This was tested in Allwinner H2+ using the ethtool -t "flow control"
+> selftest. On that SoC, the RX fifo is 16K.
 
+The latest chips (A133, A523) only have 8K for the RX FIFO. I think
+that still works.
+
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+
+> ---
+>  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c   | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/=
+net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> index c63f4d87de50..75c743dfe348 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (C) 2017 Corentin Labbe <clabbe.montjoie@gmail.com>
+>   */
+>
+> +#include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+> @@ -202,6 +203,11 @@ static const struct emac_variant emac_variant_h616_e=
+mac1 =3D {
+>  #define EMAC_RX_TH_64          (0x1 << 4)
+>  #define EMAC_RX_TH_96          (0x2 << 4)
+>  #define EMAC_RX_TH_128         (0x3 << 4)
+> +#define EMAC_RX_FLOW_CTL_TH_ACT        GENMASK(21, 20)
+> +#define EMAC_RX_FLOW_CTL_TH_DEACT      GENMASK(23, 22)
+> +#define EMAC_RX_FLOW_CTL_TH_2K 0x1
+> +#define EMAC_RX_FLOW_CTL_TH_4K 0x3
+> +#define EMAC_RX_FIFO_FLOW_CTL  BIT(24)
+>  #define EMAC_RX_DMA_EN  BIT(30)
+>  #define EMAC_RX_DMA_START       BIT(31)
+>
+> @@ -766,6 +772,17 @@ static void sun8i_dwmac_flow_ctrl(struct mac_device_=
+info *hw,
+>                 v &=3D ~EMAC_RX_FLOW_CTL_EN;
+>         writel(v, ioaddr + EMAC_RX_CTL0);
+>
+> +       v =3D readl(ioaddr + EMAC_RX_CTL1);
+> +       v &=3D ~(EMAC_RX_FIFO_FLOW_CTL | EMAC_RX_FLOW_CTL_TH_ACT |
+> +              EMAC_RX_FLOW_CTL_TH_DEACT);
+> +       if (fc & FLOW_TX)
+> +               v |=3D EMAC_RX_FIFO_FLOW_CTL |
+> +                    FIELD_PREP(EMAC_RX_FLOW_CTL_TH_ACT,
+> +                               EMAC_RX_FLOW_CTL_TH_2K) |
+> +                    FIELD_PREP(EMAC_RX_FLOW_CTL_TH_DEACT,
+> +                               EMAC_RX_FLOW_CTL_TH_4K);
+> +       writel(v, ioaddr + EMAC_RX_CTL1);
+> +
+>         v =3D readl(ioaddr + EMAC_TX_FLOW_CTL);
+>         if (fc & FLOW_TX)
+>                 v |=3D EMAC_TX_FLOW_CTL_EN;
+> --
+> 2.56.1
+>
+>
 
