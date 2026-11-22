@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B72B606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC37606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:01:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=answ2OsY;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=VLpJdbpa;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=I4dfRnpy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E/Z0clUM;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=RpfjvuG3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,79 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NQMhY0Ufq+yefDIapbuCygCDSizrd5aAXBdJ11e7584=; b=answ2OsYyfTz9B0et8el8ebLXu
-	lwstIzm/ogRAMvH0ZAPQubHLEGVTyIKXEGTrlY2PWTNyxA/TBeyZdpZqmqYWcZrYotA2lJbRw1bZa
-	+Fyd32QtElmRxlgAXO7gq7NzMmPmFGqdS3PmZ5MLW4/0ITIpKJso3v1hiLkzeEORWM0BHGIwWinI9
-	o9mbJkrDZzdIHwUavn3BrEXqsc3McSGkdGGCD62xhCYwORzu1WBtzVmqXxbC/nTFtjKLpQ9omWtGJ
-	5+PEqsQMVJMdi+OdymV/tS09L31BTE4dxglmnMX37cN4T2XHFNxLZG28K8TENX/6BCUba4ZrFboQb
-	RePy0KZg==;
+	bh=KyZ9uJ626I12Njxv0j4mlzZ8UPtaacK9Ww2cyWkY9Po=; b=E/Z0clUMA6jZE6CCamiToRT7Aw
+	J9+XWKYYnVhMaSrxLTpHl7ZJBGzpumGMrLFYRwERvkpEGvzYcLdRD4JUkQ+Vg53OyE19s3GG/qIeI
+	isnwt+9/OO3eHk5KOI8CwuarH6h9GNXIe91pUA8t5byXt8M0M/EDQromjGDF0AklGaaLTcfcBW9vB
+	uaauaFYeDvfkmi0Wgxg1VswnNUvfQIrqrUCU58KHX7FQjLrYy/y6lNVPisJ6jRSbZG9axFu5rpZbp
+	OGFAhuEKwVgN2e0pcjQf0MNhoxUrF4FdU8f7bpz+P2Gk9ybAkcd5YUnv7aC0Y2RA8PLkwhKWMeJMo
+	EWjutVYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVHTC-00000001vDZ-1Iib;
-	Sun, 22 Nov 2026 23:59:42 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVHTs-00000001w21-0yGn;
+	Mon, 23 Nov 2026 00:00:24 +0000
+Received: from mail-dy1-x1348.google.com ([2607:f8b0:4864:20::1348])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVHSp-00000001uj7-3YJE
-	for linux-arm-kernel@bombadil.infradead.org;
-	Sun, 22 Nov 2026 23:59:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
-	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=NQMhY0Ufq+yefDIapbuCygCDSizrd5aAXBdJ11e7584=; b=VLpJdbpaqrjCX0ym488rQvpUTK
-	c6jl7Z2ggXbG7xBGs3G/De3mt9LvsFCmlJG4TC/NHPESy4QVFRC6nqJXSSg/uPnaXy/y02VfTxAh1
-	s6T5+DEWq9AjIFdp2eWSgVB4bcNn9QGSdwA0ObUyOPLNIhEov67ENxHZMOIsCsAy8pHzVZnYNlmzx
-	TH8d33kqmzztdE38AKIF6Ogzv3EiI5OA+JFr3noW4hMiUkl90bSPPq4DsS5PIazwo6CNk2WII+A8P
-	Iv5zrAqAunbjIT3Qkqn/aIWEZRhry9EOKZp059m10CU91j05Sm4YxN6NDUjmFpNya6npv0GN8kP8S
-	YiqTMo1w==;
-Received: from mail-dy1-x1346.google.com ([2607:f8b0:4864:20::1346])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVHSm-00000002agV-47Zb
+	id 1xVHSt-00000001unC-3YI6
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 23:59:18 +0000
-Received: by mail-dy1-x1346.google.com with SMTP id 5a478bee46e88-33c35f5ca6cso3830890eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 15:59:16 -0800 (PST)
+	Sun, 22 Nov 2026 23:59:27 +0000
+Received: by mail-dy1-x1348.google.com with SMTP id 5a478bee46e88-386177b0516so7729229eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 15:59:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795391955; x=1795996755; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795391961; x=1795996761; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=NQMhY0Ufq+yefDIapbuCygCDSizrd5aAXBdJ11e7584=;
-        b=I4dfRnpy1d+t8fjCjh+8zOGGy2D4ldj/KU6gxb70VQFKBIB6vwFJI47ZQRS/shlk0j
-         dXVax+q9WtroO/A9nQHmgsygWADjCz7NOl9ZpLV3f0gEYO9dJCpHENyqSslkvj5Tqbu/
-         6vx+UG2+TF+CUSfovTu9Gj1xXYtt11TOMfRhNKguwVFnvwg3ypUPLl0zH1j+ldJ9SHBY
-         B7teVI5O9A2upmdvOH0UzYV12png5C3MfuFjVj++aF2Y1MdJzjzq2CLj7yylhX8tH02i
-         9ALSg/VfUS6wcd0vum/zJLwlUTn+86V1pM9NhZj4CpXxlUYqG3T+123JXPDAhanJv3FZ
-         ZBUg==
+        bh=KyZ9uJ626I12Njxv0j4mlzZ8UPtaacK9Ww2cyWkY9Po=;
+        b=RpfjvuG3C59K1LAj03wm/hIIQ7HWcTJQcPK6GJq/52KpuivF318fp+zkDf3n+04Ush
+         XwAT26I4H/JV0IPkLn1O9misMKlHBtOBxu9VZnd37wsEqqKtP4yT5oNvAuDW3yelsjUl
+         lcV/qSwrZ9qH8FWFm2UPYXptl27LAcp9iM9WAgZJcHdcDaFDj95F4AEVkpQBz9ZLwzQN
+         J5zAzGL6OWV4zYo1eDBUjmf2U6zhAUr96OvoIUNAwXa0vsozFlhUJqb4D9G1p+2u0+W6
+         I9CgMi+yjqrFYQglZEt5TCNr0soFxfhXTTePNA4FwN9zqlF61VwhcGgLSkkVv6SZ7QdU
+         1aqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795391955; x=1795996755;
+        d=1e100.net; s=20260707; t=1795391961; x=1795996761;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=NQMhY0Ufq+yefDIapbuCygCDSizrd5aAXBdJ11e7584=;
-        b=NfU8uLOSSFlWfdaAlfdEQssWesSV4CkiXp6/BTpbApFJSWTfIF32BBoXYhRtMUHtra
-         PKiDxLkamqFABSa/4rrrAXpZSlsNRZVTyeriq4Vl3U0AOQm92VQB9oD9Cu33PvtNLpjm
-         YyQLlT4baACuWo+6h1PDImVeE087CrwmpCuc6hf6TVpJcUPrdKnOWcAlJE5/18dNdnZz
-         1XKDr4+Vall+TBYbwGwsEJdupgcq3KIOxnju/ME9iQNn5HO3wC2TUqfecfAMaSO5i1cL
-         XQ1ATgs3NGIKkZzagyS/AIun21auNVXhxRQAaHQ/liwcVPIOsjev8T/QXnRZHDEPdWOW
-         P2aA==
-X-Forwarded-Encrypted: i=1; AL+hErEhtyML4c1iboG2QuSNQ4k1C+fbVeTraMRTa5HXWN8ZnlpwcOaAQTNs/Z8egFoINHB6UuhWunNJjtK3FyDnsaiK@lists.infradead.org
-X-Gm-Message-State: APuU4Z/2pKdVKru5brpJ4yUI1usJLezmxEyQhqBriQfdup06VoRNV/oK
-	5mXlBbx7sTGsKfTnxmlraRP/ouw6h8K0unmSSm9apCXUwJTwRXDPzX2u7MgxQKEDz27RzdLkymO
-	KAIaa2mfSCQ==
-X-Received: from dyaz21-n1.prod.google.com ([2002:a05:693c:6395:10b0:386:a65f:c08e])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7301:6e9a:b0:383:71a:2b14
- with SMTP id 5a478bee46e88-3856f14bb69mr9511315eec.10.1795391954063; Sun, 22
- Nov 2026 15:59:14 -0800 (PST)
-Date: Sun, 22 Nov 2026 15:57:54 -0800
+        bh=KyZ9uJ626I12Njxv0j4mlzZ8UPtaacK9Ww2cyWkY9Po=;
+        b=k165eIpLoEOU7CrEbi6S3hF59SJumTJn2E2fKC3T3nHOnlzQqy+SGgSpBAp/27AgmG
+         X/OlRkEdESjQyJOXS/9VRtUWLKi+BzZhA7SbpXGo+sxobrtNLC5YawMEzJyKxymWXg93
+         mdGnBkCr//ODdZCi9mt5lOSIVqF+mvJ3UMwp6PC3rpJka7HLeCAGbMRvtKZXG/p2C7mr
+         VnNFhq7rUDHUyocJQo/T5E6HhTFSeFFvVC7/wJ87dbbAauam98timbFNp8t4Gsz/tmGj
+         88kx72Yzhzov6+f70zyxDunj1Ayul9HN1n0bRLL7EG60mmMy9cB40EFIgStWNdN6/am+
+         6NKQ==
+X-Forwarded-Encrypted: i=1; AL+hErFuOpsb2mqrdi2Xw1DQEFgvAltujMOjm2nsVmnD9VGko2lDcb3VZigll2uOoxzRwluK7rz7B6KmX9LbptjXhWCH@lists.infradead.org
+X-Gm-Message-State: APuU4Z92EIn2T8ekt3jhmn2uuKikLkb8o2xb8BVKsCAD7V9SD/yM0eHQ
+	mv/HAqlHQl0xJM2xtHKEkSLYimyDeofXI+XgnVgKf/ajp6eIdQMgiuO7y379uLpqnkNc60BVF2Y
+	M1rhuUd8ZNw==
+X-Received: from dycqw15-n1.prod.google.com ([2002:a05:7300:c00f:10b0:36f:5688:8a11])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7301:700a:b0:384:988d:6ec2
+ with SMTP id 5a478bee46e88-3856f6524acmr11225588eec.33.1795391960856; Sun, 22
+ Nov 2026 15:59:20 -0800 (PST)
+Date: Sun, 22 Nov 2026 15:57:56 -0800
 In-Reply-To: <20261122235757.3456048-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261122235757.3456048-1-irogers@google.com>
 X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
-Message-ID: <20261122235757.3456048-9-irogers@google.com>
-Subject: [RFC PATCH v1 08/11] riscv: unwind_user: Support Minimal DWARF CFI
- and FP user unwinding
+Message-ID: <20261122235757.3456048-11-irogers@google.com>
+Subject: [RFC PATCH v1 10/11] selftests/perf_events: Add Minimal DWARF CFI
+ deferred user unwind test
 From: Ian Rogers <irogers@google.com>
 To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
 	linux-arch@vger.kernel.org
@@ -107,9 +91,9 @@ Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
 	dylanbhatch@google.com, Ian Rogers <irogers@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_235916_955145_22A46C2F 
-X-CRM114-Status: GOOD (  20.53  )
-X-Spam-Score: -7.6 (-------)
+X-CRM114-CacheID: sfid-20261122_155924_005803_CF6ED714 
+X-CRM114-Status: GOOD (  18.15  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,297 +112,502 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Wire up CONFIG_HAVE_UNWIND_USER_CFI and CONFIG_HAVE_UNWIND_USER_FP on
-MMU-enabled RISC-V kernels by adding arch/riscv/include/asm/unwind_user.h
-and unwind_user_sigreturn():
-
- - Define DWARF CFI register mappings for RV64 and RV32/compat user
-   tasks (sp=2, fp/s0=8, ra=1).
- - Provide unwind_user_link_register() reading regs->ra for leaf-frame
-   unwinding and ARCH_INIT_USER_FP_FRAME matching the RISC-V psABI
-   frame layout (CFA = s0, RA at s0 - ws, saved s0 at s0 - 2*ws).
- - Implement unwind_user_sigreturn() (and compat_unwind_user_sigreturn())
-   to recover pc, ra, sp, and s0 from rt_sigframe.uc.uc_mcontext.sc_regs
-   across __vdso_rt_sigreturn (whose vDSO FDE omits register rules so
-   libgcc takes its instruction-matching sigcontext fallback), supporting
-   interrupted leaf functions, -fomit-frame-pointer frames, and
-   SA_ONSTACK alternate signal stacks.
+Add a multi-architecture kselftest (unwind_user_cfi) under
+tools/testing/selftests/perf_events/ exercising deferred user-space
+callchain unwinding (PERF_RECORD_CALLCHAIN_DEFERRED) compiled with
+-O2 -fomit-frame-pointer -fasynchronous-unwind-tables across:
+ 1. Standard SP-based frames with the architectural frame-pointer
+    register (%rbp / x29 / s0) explicitly clobbered
+ 2. Dynamic alloca() VLA FP-based frames (DW_CFA_def_cfa_register)
+ 3. 64-byte stack-realigned frames (DRAP on x86-64)
+ 4. Shrink-wrapped early-return functions (remember_state/restore_state)
+ 5. Anonymous RX JIT-style frame-pointer stubs lacking .eh_frame_hdr,
+    exercising per-frame CFI -> FP -> CFI -> FP -> CFI fallback and
+    negative VMA caching in find_user_eh_frame_hdr()
 
 Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- arch/riscv/Kconfig                   |  2 +
- arch/riscv/include/asm/signal32.h    |  8 +++
- arch/riscv/include/asm/unwind_user.h | 81 ++++++++++++++++++++++++++++
- arch/riscv/kernel/compat_signal.c    | 44 +++++++++++++++
- arch/riscv/kernel/signal.c           | 62 +++++++++++++++++++++
- 5 files changed, 197 insertions(+)
- create mode 100644 arch/riscv/include/asm/unwind_user.h
+ .../testing/selftests/perf_events/.gitignore  |   1 +
+ tools/testing/selftests/perf_events/Makefile  |   4 +-
+ .../selftests/perf_events/unwind_user_cfi.c   | 447 ++++++++++++++++++
+ 3 files changed, 451 insertions(+), 1 deletion(-)
+ create mode 100644 tools/testing/selftests/perf_events/unwind_user_cfi.c
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index e7891a2a89da..84b61c755db3 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -202,6 +202,8 @@ config RISCV
- 	select HAVE_SAMPLE_FTRACE_DIRECT_MULTI
- 	select HAVE_STACKPROTECTOR
- 	select HAVE_SYSCALL_TRACEPOINTS
-+	select HAVE_UNWIND_USER_CFI if MMU
-+	select HAVE_UNWIND_USER_FP if MMU
- 	select HOTPLUG_PARALLEL if HOTPLUG_CPU
- 	select IRQ_DOMAIN
- 	select IRQ_FORCED_THREADING
-diff --git a/arch/riscv/include/asm/signal32.h b/arch/riscv/include/asm/signal32.h
-index 96dc56932e76..2c3e8eae56e5 100644
---- a/arch/riscv/include/asm/signal32.h
-+++ b/arch/riscv/include/asm/signal32.h
-@@ -3,9 +3,12 @@
- #ifndef __ASM_SIGNAL32_H
- #define __ASM_SIGNAL32_H
+diff --git a/tools/testing/selftests/perf_events/.gitignore b/tools/testing/selftests/perf_events/.gitignore
+index 4931b3b6bbd3..4567b6563646 100644
+--- a/tools/testing/selftests/perf_events/.gitignore
++++ b/tools/testing/selftests/perf_events/.gitignore
+@@ -3,3 +3,4 @@ sigtrap_threads
+ remove_on_exec
+ watermark_signal
+ mmap
++unwind_user_cfi
+diff --git a/tools/testing/selftests/perf_events/Makefile b/tools/testing/selftests/perf_events/Makefile
+index 2e5d85770dfe..6a3a774544e8 100644
+--- a/tools/testing/selftests/perf_events/Makefile
++++ b/tools/testing/selftests/perf_events/Makefile
+@@ -2,5 +2,7 @@
+ CFLAGS += -Wl,-no-as-needed -Wall $(KHDR_INCLUDES)
+ LDFLAGS += -lpthread
  
-+struct unwind_user_state;
+-TEST_GEN_PROGS := sigtrap_threads remove_on_exec watermark_signal mmap
++TEST_GEN_PROGS := sigtrap_threads remove_on_exec watermark_signal mmap unwind_user_cfi
+ include ../lib.mk
 +
- #if IS_ENABLED(CONFIG_COMPAT)
- int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
- 			  struct pt_regs *regs);
-+bool compat_unwind_user_sigreturn(struct unwind_user_state *state);
- #else
- static inline
- int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
-@@ -13,6 +16,11 @@ int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
- {
- 	return -1;
- }
-+static inline
-+bool compat_unwind_user_sigreturn(struct unwind_user_state *state)
-+{
-+	return false;
-+}
- #endif
- 
- #endif
-diff --git a/arch/riscv/include/asm/unwind_user.h b/arch/riscv/include/asm/unwind_user.h
++$(OUTPUT)/unwind_user_cfi: CFLAGS += $(TOOLS_INCLUDES) -O2 -fomit-frame-pointer -fasynchronous-unwind-tables
+diff --git a/tools/testing/selftests/perf_events/unwind_user_cfi.c b/tools/testing/selftests/perf_events/unwind_user_cfi.c
 new file mode 100644
-index 000000000000..a2c2068df4ad
+index 000000000000..3f9fb8500824
 --- /dev/null
-+++ b/arch/riscv/include/asm/unwind_user.h
-@@ -0,0 +1,81 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+#ifndef _ASM_RISCV_UNWIND_USER_H
-+#define _ASM_RISCV_UNWIND_USER_H
-+
-+#ifdef CONFIG_UNWIND_USER
-+
-+#include <linux/compat.h>
-+#include <linux/unwind_dwarf_cfi.h>
-+#include <linux/unwind_user_types.h>
-+#include <asm/ptrace.h>
-+
-+/**
-+ * unwind_user_word_size() - Return the user-space word size in bytes on RISC-V
-+ * @regs: User-mode register state.
++++ b/tools/testing/selftests/perf_events/unwind_user_cfi.c
+@@ -0,0 +1,447 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * unwind_user_cfi.c - Multi-arch selftest for Minimal DWARF CFI user unwinding.
 + *
-+ * Return: 4 for RV32 compat user tasks, or sizeof(unsigned long) otherwise.
++ * Verifies that deferred user-space stack unwinding (PERF_RECORD_CALLCHAIN_DEFERRED)
++ * accurately walks user callchains compiled with -fomit-frame-pointer across:
++ *   1. Standard SP-based frames with the frame-pointer register (%rbp / x29 / s0)
++ *      explicitly clobbered to defeat FP unwinding
++ *   2. Dynamic alloca()/VLA FP-based frames (DW_CFA_def_cfa_register)
++ *   3. 64-byte aligned stack-realigned frames (DRAP on x86-64)
++ *   4. Multi-return shrink-wrapped epilogue functions (remember/restore_state)
++ *   5. Anonymous RX JIT-style frame-pointer stubs lacking .eh_frame_hdr,
++ *      verifying per-frame CFI -> FP -> CFI -> FP -> CFI hybrid fallback and
++ *      negative VMA caching in find_user_eh_frame_hdr()
 + */
-+static inline int unwind_user_word_size(struct pt_regs *regs)
-+{
-+	if (IS_ENABLED(CONFIG_COMPAT) && is_compat_task())
-+		return 4;
-+	return sizeof(unsigned long);
-+}
 +
-+/**
-+ * unwind_user_link_register() - Fetch the user link register (ra/x1) from @regs
-+ * @regs: User-mode register state.
-+ * @ra: Output link register value.
-+ *
-+ * Return: Always true on RISC-V.
-+ */
-+static inline bool unwind_user_link_register(struct pt_regs *regs,
-+					     unsigned long *ra)
-+{
-+	*ra = regs->ra;
-+	return true;
-+}
-+#define unwind_user_link_register unwind_user_link_register
++#define _GNU_SOURCE
++#include <alloca.h>
++#include <errno.h>
++#include <inttypes.h>
++#include <linux/perf_event.h>
++#include <stdbool.h>
++#include <stdint.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <sys/ioctl.h>
++#include <sys/mman.h>
++#include <sys/syscall.h>
++#include <time.h>
++#include <unistd.h>
 +
-+/**
-+ * unwind_user_cfi_arch() - Populate RISC-V DWARF register numbers
-+ * @ws: User word size in bytes (4 for RV32, 8 for RV64).
-+ * @arch: Output DWARF CFI architecture descriptor.
-+ *
-+ * Return: true if @ws is 4 or 8, false otherwise.
-+ */
-+static inline bool unwind_user_cfi_arch(unsigned int ws,
-+					struct dwarf_cfi_arch *arch)
-+{
-+	if (ws == 8 || ws == 4) {
-+		*arch = (struct dwarf_cfi_arch){
-+			.ws	= (u8)ws,
-+			.sp_reg	= 2,	/* sp (x2) */
-+			.fp_reg	= 8,	/* s0/fp (x8) */
-+			.ra_reg	= 1,	/* ra (x1) */
-+		};
-+		return true;
-+	}
-+	return false;
-+}
++#include "../kselftest.h"
++#undef __always_inline
++#undef __attribute_const__
++#undef __must_check
++#undef __printf
++#include "../../../../include/linux/compiler_attributes.h"
 +
-+bool unwind_user_sigreturn(struct unwind_user_state *state);
-+#define unwind_user_sigreturn unwind_user_sigreturn
++#ifndef PERF_RECORD_CALLCHAIN_DEFERRED
++#define PERF_RECORD_CALLCHAIN_DEFERRED 22
++#endif
 +
-+#endif /* CONFIG_UNWIND_USER */
-+
-+#ifdef CONFIG_HAVE_UNWIND_USER_FP
++struct perf_record_deferred {
++	struct perf_event_header header;
++	uint64_t cookie;
++	uint64_t nr;
++	uint64_t ips[];
++};
 +
 +/*
-+ * Standard RISC-V psABI frame record stores {saved_s0, saved_ra} at
-+ * [s0 - 2 * ws, s0), with s0 pointing to the caller's stack pointer (CFA).
-+ */
-+#define ARCH_INIT_USER_FP_FRAME(ws)			\
-+	.cfa_off	=  0,				\
-+	.ra_off		= -1 * (ws),			\
-+	.fp_off		= -2 * (ws),			\
-+	.use_fp		= true,
-+
-+#endif /* CONFIG_HAVE_UNWIND_USER_FP */
-+
-+#endif /* _ASM_RISCV_UNWIND_USER_H */
-diff --git a/arch/riscv/kernel/compat_signal.c b/arch/riscv/kernel/compat_signal.c
-index cf3eb33a11e4..d549c3f46ae8 100644
---- a/arch/riscv/kernel/compat_signal.c
-+++ b/arch/riscv/kernel/compat_signal.c
-@@ -5,6 +5,7 @@
- #include <linux/uaccess.h>
- #include <linux/syscalls.h>
- #include <linux/linkage.h>
-+#include <linux/unwind_user.h>
- 
- #include <asm/csr.h>
- #include <asm/signal32.h>
-@@ -243,3 +244,46 @@ int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
- 
- 	return 0;
- }
-+
-+#ifdef CONFIG_UNWIND_USER
-+/**
-+ * compat_unwind_user_sigreturn() - Unwind an RV32 compat vDSO rt_sigreturn frame
-+ * @state: Current user unwind state.
++ * Tiny architecture-specific machine-code stubs for:
++ *   int jit_stub(int (*fn)(int), int arg);
 + *
-+ * Return: true if @state was at __compat_vdso_rt_sigreturn and advanced to the
-+ * interrupted 32-bit user context, false otherwise.
++ * Mapped into an anonymous PROT_READ | PROT_EXEC VMA without an ELF header or
++ * PT_GNU_EH_FRAME segment. Each stub establishes a standard architectural
++ * frame-pointer record before calling fn(arg), forcing unwind_user_next() to
++ * fall back from UNWIND_USER_TYPE_CFI to UNWIND_USER_TYPE_FP on the JIT frames
++ * and resume UNWIND_USER_TYPE_CFI on the surrounding -fomit-frame-pointer C
++ * frames.
 + */
-+bool compat_unwind_user_sigreturn(struct unwind_user_state *state)
-+{
-+	struct mm_struct *mm = current->mm;
-+	struct compat_rt_sigframe __user *frame;
-+	struct compat_user_regs_struct cregs;
-+	unsigned long sigret;
-+
-+	if (!mm || !mm->context.vdso || (state->sp & 3UL))
-+		return false;
-+
-+	sigret = (unsigned long)COMPAT_VDSO_SYMBOL(mm->context.vdso,
-+						   rt_sigreturn);
-+	if (state->ip != sigret &&
-+	    !(state->topmost && state->ip == sigret + 4))
-+		return false;
-+
-+	frame = (struct compat_rt_sigframe __user *)state->sp;
-+	if (copy_from_user(&cregs, &frame->uc.uc_mcontext.sc_regs,
-+			   offsetofend(struct compat_user_regs_struct, s0)))
-+		return false;
-+
-+	if ((cregs.sp & 3U) || !cregs.pc)
-+		return false;
-+
-+	state->ip = cregs.pc;
-+	state->ra = cregs.ra;
-+	state->sp = cregs.sp;
-+	state->fp = cregs.s0;
-+	state->ra_valid = true;
-+	state->signal = true;
-+	state->topmost = false;
-+	return true;
-+}
-+#endif
-diff --git a/arch/riscv/kernel/signal.c b/arch/riscv/kernel/signal.c
-index 59784dc117e4..6472c645914d 100644
---- a/arch/riscv/kernel/signal.c
-+++ b/arch/riscv/kernel/signal.c
-@@ -13,6 +13,7 @@
- #include <linux/resume_user_mode.h>
- #include <linux/linkage.h>
- #include <linux/entry-common.h>
-+#include <linux/unwind_user.h>
- 
- #include <asm/ucontext.h>
- #include <asm/vdso.h>
-@@ -587,3 +588,64 @@ bool sigaltstack_size_valid(size_t ss_size)
- 	return ss_size > get_rt_frame_size(false);
- }
- #endif /* CONFIG_DYNAMIC_SIGFRAME */
-+
-+#ifdef CONFIG_UNWIND_USER
-+/**
-+ * unwind_user_sigreturn() - Unwind a RISC-V rt_sigreturn user signal frame
-+ * @state: Current user unwind state.
-+ *
-+ * __vdso_rt_sigreturn carries an empty .cfi_signal_frame FDE without register
-+ * rules so user-space unwinders such as libgcc take their instruction-matching
-+ * sigcontext fallback. Recover pc, ra, sp, and s0 directly from
-+ * &rt_sigframe.uc.uc_mcontext.sc_regs so interrupted leaf functions,
-+ * -fomit-frame-pointer code, and alternate signal stacks unwind cleanly.
-+ *
-+ * Return: true if @state was at the rt_sigreturn trampoline and advanced to
-+ * the interrupted user context, false otherwise.
-+ */
-+bool unwind_user_sigreturn(struct unwind_user_state *state)
-+{
-+	struct mm_struct *mm = current->mm;
-+	struct rt_sigframe __user *frame;
-+	struct user_regs_struct sc_regs;
-+	unsigned long sigret;
-+
-+	if (!mm)
-+		return false;
-+
-+	if (IS_ENABLED(CONFIG_COMPAT) && state->ws == 4)
-+		return compat_unwind_user_sigreturn(state);
-+
-+	if (state->ws != sizeof(unsigned long) ||
-+	    (state->sp & (sizeof(unsigned long) - 1)))
-+		return false;
-+
-+	frame = (struct rt_sigframe __user *)state->sp;
-+#ifdef CONFIG_MMU
-+	if (!mm->context.vdso)
-+		return false;
-+	sigret = (unsigned long)VDSO_SYMBOL(mm->context.vdso, rt_sigreturn);
++#if defined(__x86_64__)
++#define HAVE_JIT_FP_STUB 1
++static const uint8_t jit_stub_code[] = {
++	0xf3, 0x0f, 0x1e, 0xfa,		/* endbr64 */
++	0x55,				/* push   %rbp */
++	0x48, 0x89, 0xe5,		/* mov    %rsp, %rbp */
++	0x48, 0x89, 0xf8,		/* mov    %rdi, %rax */
++	0x89, 0xf7,			/* mov    %esi, %edi */
++	0xff, 0xd0,			/* call   *%rax */
++	0x5d,				/* pop    %rbp */
++	0xc3,				/* ret */
++};
++#elif defined(__i386__)
++#define HAVE_JIT_FP_STUB 1
++static const uint8_t jit_stub_code[] = {
++	0xf3, 0x0f, 0x1e, 0xfb,		/* endbr32 */
++	0x55,				/* push   %ebp */
++	0x89, 0xe5,			/* mov    %esp, %ebp */
++	0x83, 0xec, 0x04,		/* sub    $4, %esp */
++	0xff, 0x75, 0x0c,		/* pushl  12(%ebp) */
++	0xff, 0x55, 0x08,		/* call   *8(%ebp) */
++	0x83, 0xc4, 0x08,		/* add    $8, %esp */
++	0x5d,				/* pop    %ebp */
++	0xc3,				/* ret */
++};
++#elif defined(__aarch64__)
++#define HAVE_JIT_FP_STUB 1
++static const uint32_t jit_stub_code[] = {
++	0xd503245fU,			/* bti    c */
++	0xa9bf7bfdU,			/* stp    x29, x30, [sp, #-16]! */
++	0x910003fdU,			/* mov    x29, sp */
++	0xaa0003e9U,			/* mov    x9, x0 */
++	0x2a0103e0U,			/* mov    w0, w1 */
++	0xd63f0120U,			/* blr    x9 */
++	0xa8c17bfdU,			/* ldp    x29, x30, [sp], #16 */
++	0xd65f03c0U,			/* ret */
++};
++#elif defined(__riscv) && __riscv_xlen == 64
++#define HAVE_JIT_FP_STUB 1
++static const uint32_t jit_stub_code[] = {
++	0xff010113U,			/* addi   sp, sp, -16 */
++	0x00813023U,			/* sd     s0, 0(sp) */
++	0x00113423U,			/* sd     ra, 8(sp) */
++	0x01010413U,			/* addi   s0, sp, 16 */
++	0x00050313U,			/* mv     t1, a0 */
++	0x00058513U,			/* mv     a0, a1 */
++	0x000300e7U,			/* jalr   ra, 0(t1) */
++	0x00813083U,			/* ld     ra, 8(sp) */
++	0x00013403U,			/* ld     s0, 0(sp) */
++	0x01010113U,			/* addi   sp, sp, 16 */
++	0x00008067U,			/* ret */
++};
 +#else
-+	sigret = (unsigned long)&frame->sigreturn_code;
++#define HAVE_JIT_FP_STUB 0
 +#endif
-+	if (state->ip != sigret &&
-+	    !(state->topmost && state->ip == sigret + 4))
-+		return false;
 +
-+	if (copy_from_user(&sc_regs, &frame->uc.uc_mcontext.sc_regs,
-+			   offsetofend(struct user_regs_struct, s0)))
-+		return false;
++static int (*g_jit_fn)(int (*fn)(int), int arg);
 +
-+	if ((sc_regs.sp & (sizeof(unsigned long) - 1)) || !sc_regs.pc)
-+		return false;
++static uintptr_t expect_ip_leaf;
++static uintptr_t expect_ip_shrink;
++static uintptr_t expect_ip_jit;
++static uintptr_t expect_ip_bridge;
++static uintptr_t expect_ip_drap;
++static uintptr_t expect_ip_vla;
++static uintptr_t expect_ip_clobber;
++static uintptr_t expect_ip_main;
 +
-+	state->ip = sc_regs.pc;
-+	state->ra = sc_regs.ra;
-+	state->sp = sc_regs.sp;
-+	state->fp = sc_regs.s0;
-+	state->ra_valid = true;
-+	state->signal = true;
-+	state->topmost = false;
-+	return true;
++static __always_inline uintptr_t caller_return_ip(void)
++{
++	return (uintptr_t)__builtin_extract_return_addr(__builtin_return_address(0));
 +}
++
++static long sys_perf_event_open(struct perf_event_attr *attr, pid_t pid,
++				int cpu, int group_fd, unsigned long flags)
++{
++	return syscall(__NR_perf_event_open, attr, pid, cpu, group_fd, flags);
++}
++
++noinline __noclone
++static void cfi_do_nanosleep(const struct timespec *ts)
++{
++	expect_ip_leaf = caller_return_ip();
++	asm volatile("" ::: "memory");
++	nanosleep(ts, /*rem=*/NULL);
++	asm volatile("" ::: "memory");
++}
++
++noinline __noclone
++static void cfi_leaf_sleep(void)
++{
++	struct timespec ts = { .tv_sec = 0, .tv_nsec = 1000 * 1000 };
++
++	expect_ip_shrink = caller_return_ip();
++	asm volatile("" ::: "memory");
++	cfi_do_nanosleep(&ts);
++	asm volatile("" ::: "memory");
++}
++
++/* 4. Shrink-wrapped early-return epilogue before main call */
++noinline __noclone
++static int cfi_shrink_wrap(int mode)
++{
++	expect_ip_jit = caller_return_ip();
++	if (mode < 0)
++		return -1;
++
++	{
++		char pad[32];
++
++		memset(pad, mode, sizeof(pad));
++		asm volatile("" : "+m"(pad) :: "memory");
++		cfi_leaf_sleep();
++		return pad[0];
++	}
++}
++
++/*
++ * 5. Hybrid CFI -> FP -> CFI -> FP -> CFI bridge:
++ *    cfi_pre_jit -> jit_stub #1 -> cfi_jit_bridge -> cfi_mid_jit ->
++ *    jit_stub #2 -> cfi_shrink_wrap
++ *
++ * Invoking the anonymous RX JIT stub twice with -fomit-frame-pointer C frames
++ * in between exercises both per-frame CFI<->FP transitions and negative VMA
++ * cache insertion + hit in find_user_eh_frame_hdr().
++ */
++noinline __noclone
++static int cfi_mid_jit(int x)
++{
++	char pad[32];
++	int res;
++
++	expect_ip_bridge = caller_return_ip();
++	memset(pad, x + 5, sizeof(pad));
++	asm volatile("" : "+m"(pad) :: "memory");
++	res = g_jit_fn ? g_jit_fn(cfi_shrink_wrap, x) : cfi_shrink_wrap(x);
++	asm volatile("" : "+m"(pad) :: "memory");
++	return res + pad[0];
++}
++
++noinline __noclone
++static int cfi_jit_bridge(int x)
++{
++	char pad[32];
++	int res;
++
++	memset(pad, x + 7, sizeof(pad));
++	asm volatile("" : "+m"(pad) :: "memory");
++	res = cfi_mid_jit(x);
++	asm volatile("" : "+m"(pad) :: "memory");
++	return res + pad[0];
++}
++
++noinline __noclone
++static int cfi_pre_jit(int x)
++{
++	char pad[32];
++	int res;
++
++	expect_ip_drap = caller_return_ip();
++	memset(pad, x + 9, sizeof(pad));
++	asm volatile("" : "+m"(pad) :: "memory");
++	res = g_jit_fn ? g_jit_fn(cfi_jit_bridge, x) : cfi_jit_bridge(x);
++	asm volatile("" : "+m"(pad) :: "memory");
++	return res + pad[0];
++}
++
++/* 3. 64-byte aligned local buffer forcing stack realignment (DRAP on x86-64) */
++noinline __noclone
++static int cfi_drap_realigned(int x)
++{
++	uint8_t __aligned(64) aligned_buf[128];
++
++	expect_ip_vla = caller_return_ip();
++	memset(aligned_buf, x + 3, sizeof(aligned_buf));
++	asm volatile("" : "+m"(aligned_buf) :: "memory");
++	return cfi_pre_jit(x) + aligned_buf[0];
++}
++
++/* 2. Dynamic VLA / alloca() forcing FP-based CFA (DW_CFA_def_cfa_register) */
++noinline __noclone
++static int cfi_vla_fp_frame(int n)
++{
++	size_t sz;
++	char *dyn;
++
++	expect_ip_clobber = caller_return_ip();
++	asm volatile("" : "+r"(n));
++	sz = (size_t)((n & 0x3f) + 32);
++	dyn = alloca(sz);
++
++	memset(dyn, n, sz);
++	asm volatile("" : "+m"(*(char (*)[32])dyn) :: "memory");
++	return cfi_drap_realigned(n + dyn[0]);
++}
++
++/* 1. SP-based frame with FP (%rbp / x29 / s0) clobbered to defeat FP unwinding */
++noinline __noclone
++static int cfi_clobber_fp(int x)
++{
++#if defined(__x86_64__)
++	register long bad_fp asm("rbp") = 0x13579bdfL + x;
++#elif defined(__aarch64__)
++	register long bad_fp asm("x29") = 0x13579bdfL + x;
++#elif defined(__riscv)
++	register long bad_fp asm("s0") = 0x13579bdfL + x;
++#else
++	long bad_fp = 0x13579bdfL + x;
 +#endif
++	char pad[48];
++
++	expect_ip_main = caller_return_ip();
++	asm volatile("" : "+r"(x));
++	memset(pad, x, sizeof(pad));
++	asm volatile("" : "+r"(bad_fp), "+m"(pad) :: "memory");
++	return cfi_vla_fp_frame(x + 1) ^ (int)bad_fp ^ pad[1];
++}
++
++int main(void)
++{
++	struct perf_event_attr attr;
++	struct perf_event_mmap_page *mpage;
++	size_t page_sz = (size_t)sysconf(_SC_PAGESIZE);
++	size_t mmap_len = (1 + 16) * page_sz;
++	void *jit_page = MAP_FAILED;
++	uint8_t *ring;
++	uint64_t head, tail;
++	bool got_deferred = false;
++	bool saw_leaf = false, saw_shrink = false, saw_jit = false;
++	bool saw_bridge = false, saw_drap = false, saw_vla = false;
++	bool saw_clobber = false, saw_main = false;
++	bool saw_full_chain = false;
++	int fd, arg = 1;
++
++	ksft_print_header();
++	ksft_set_plan(1);
++
++#if !defined(__x86_64__) && !defined(__i386__) && !defined(__aarch64__) && \
++	!defined(__arm__) && !defined(__riscv)
++	ksft_test_result_skip("Architecture lacks Minimal DWARF CFI user unwind support\n");
++	ksft_finished();
++#endif
++
++#if HAVE_JIT_FP_STUB
++	jit_page = mmap(/*addr=*/NULL, page_sz, PROT_READ | PROT_WRITE,
++			MAP_PRIVATE | MAP_ANONYMOUS, /*fd=*/-1, /*offset=*/0);
++	if (jit_page != MAP_FAILED) {
++		memcpy(jit_page, jit_stub_code, sizeof(jit_stub_code));
++		if (mprotect(jit_page, page_sz, PROT_READ | PROT_EXEC) == 0) {
++			__builtin___clear_cache((char *)jit_page,
++						(char *)jit_page + sizeof(jit_stub_code));
++			g_jit_fn = (int (*)(int (*)(int), int))jit_page;
++		} else {
++			ksft_print_msg("W^X JIT mprotect unavailable (%s); skipping JIT stub\n",
++				       strerror(errno));
++			munmap(jit_page, page_sz);
++			jit_page = MAP_FAILED;
++		}
++	}
++#endif
++
++	memset(&attr, 0, sizeof(attr));
++	attr.type = PERF_TYPE_SOFTWARE;
++	attr.size = sizeof(attr);
++	attr.config = PERF_COUNT_SW_CONTEXT_SWITCHES;
++	attr.sample_period = 1;
++	attr.sample_type = PERF_SAMPLE_IP | PERF_SAMPLE_CALLCHAIN;
++	attr.disabled = 1;
++	attr.defer_callchain = 1;
++	attr.defer_output = 1;
++
++	fd = (int)sys_perf_event_open(&attr, /*pid=*/0, /*cpu=*/-1,
++				      /*group_fd=*/-1, /*flags=*/0);
++	if (fd < 0) {
++		if (jit_page != MAP_FAILED)
++			munmap(jit_page, page_sz);
++		if (errno == EACCES || errno == EPERM || errno == EINVAL) {
++			ksft_test_result_skip("perf_event_open(defer_callchain) unavailable: %s\n",
++					      strerror(errno));
++			ksft_finished();
++		}
++		ksft_exit_fail_msg("perf_event_open failed: %s\n", strerror(errno));
++	}
++
++	mpage = mmap(/*addr=*/NULL, mmap_len, PROT_READ | PROT_WRITE,
++		     MAP_SHARED, fd, /*offset=*/0);
++	if (mpage == MAP_FAILED) {
++		if (jit_page != MAP_FAILED)
++			munmap(jit_page, page_sz);
++		close(fd);
++		ksft_exit_fail_msg("mmap failed: %s\n", strerror(errno));
++	}
++
++	ioctl(fd, PERF_EVENT_IOC_RESET, 0);
++	ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
++
++	asm volatile("" : "+r"(arg));
++	cfi_clobber_fp(arg);
++
++	ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
++
++	ring = (uint8_t *)mpage + page_sz;
++	head = __atomic_load_n(&mpage->data_head, __ATOMIC_ACQUIRE);
++	tail = mpage->data_tail;
++
++	while (tail < head) {
++		size_t mask = 16 * page_sz - 1;
++		struct perf_event_header *hdr =
++			(struct perf_event_header *)(ring + (tail & mask));
++
++		if (hdr->type == PERF_RECORD_CALLCHAIN_DEFERRED) {
++			struct perf_record_deferred *rec = (void *)hdr;
++			bool c_leaf = false, c_shrink = false, c_bridge = false;
++			bool c_drap = false, c_vla = false, c_clobber = false;
++			bool c_main = false, c_jit_ok = false;
++			unsigned int c_jit_hits = 0;
++
++			got_deferred = true;
++			for (uint64_t i = 0; i < rec->nr; i++) {
++				uintptr_t ip = (uintptr_t)rec->ips[i];
++
++				if (ip == expect_ip_leaf)
++					c_leaf = true;
++				else if (ip == expect_ip_shrink)
++					c_shrink = true;
++				else if (ip == expect_ip_jit)
++					c_jit_hits++;
++				else if (ip == expect_ip_bridge)
++					c_bridge = true;
++				else if (ip == expect_ip_drap)
++					c_drap = true;
++				else if (ip == expect_ip_vla)
++					c_vla = true;
++				else if (ip == expect_ip_clobber)
++					c_clobber = true;
++				else if (ip == expect_ip_main)
++					c_main = true;
++			}
++
++#if HAVE_JIT_FP_STUB
++			if (g_jit_fn) {
++				uintptr_t jb = (uintptr_t)jit_page;
++
++				c_jit_ok = expect_ip_jit >= jb &&
++					   expect_ip_jit < jb + sizeof(jit_stub_code) &&
++					   c_jit_hits >= 2;
++			} else {
++				c_jit_ok = c_jit_hits >= 1;
++			}
++#else
++			c_jit_ok = c_jit_hits >= 1;
++#endif
++			saw_leaf |= c_leaf;
++			saw_shrink |= c_shrink;
++			saw_jit |= c_jit_ok;
++			saw_bridge |= c_bridge;
++			saw_drap |= c_drap;
++			saw_vla |= c_vla;
++			saw_clobber |= c_clobber;
++			saw_main |= c_main;
++
++			if (c_leaf && c_shrink && c_jit_ok && c_bridge &&
++			    c_drap && c_vla && c_clobber && c_main)
++				saw_full_chain = true;
++		}
++		tail += hdr->size;
++	}
++
++	munmap(mpage, mmap_len);
++	if (jit_page != MAP_FAILED)
++		munmap(jit_page, page_sz);
++	close(fd);
++
++	if (!got_deferred) {
++		ksft_test_result_skip("No PERF_RECORD_CALLCHAIN_DEFERRED records\n");
++		ksft_finished();
++	}
++
++	ksft_print_msg("def=%d ok=%d leaf=%d shr=%d jit=%d br=%d drap=%d vla=%d fp=%d entry=%d\n",
++		       got_deferred, saw_full_chain, saw_leaf, saw_shrink,
++		       saw_jit, saw_bridge, saw_drap, saw_vla, saw_clobber,
++		       saw_main);
++
++	ksft_test_result(saw_full_chain,
++			 "unwind_user Minimal DWARF CFI across SP, VLA, DRAP, shrink-wrap, and hybrid JIT FP frames\n");
++	ksft_finished();
++}
 -- 
 2.56.1.750.gf70dc682cf-goog
 
