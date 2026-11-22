@@ -2,63 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F26606A68B
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 22:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52C0606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 22:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eeGBlFPU;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=PEMGhAAE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dy3SYgfv;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=LbPpzx2j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=zhzorV+YhbTY7mbA8l/NasCEWm6joOpMt0hDwmNwiIU=; b=eeGBlFPU20SM8P
-	eUSXZkqfQ2pyyC7bvfLTR3x8S6vtLMpH+pjd/toYXM7kTOkFOrTaEICwmR9fLku3M1qj3n/ET8Ub/
-	saFCKxjAkal0p1i8WpeDSDvLtkcc/2doPmcIH78tkN2YJz5EjSE0wDOuF8zjFGBIWTTfTPKaDJ1uG
-	qohkAGNGr6IU03ekARIqEUFCAevWhaCKP3GJfz72oD0qw3q7yKqrPL2IZ+HiN5f6QgQFkkx5gwft0
-	YlyryZy2EYVDiWAHibA1m5ELybsv8nrXSrwMjrk8TUhxSLM/T93GnNqnLiMSaVkKUGIUVKkxfEmD9
-	KtPubWEAP/FSZBmlhoNQ==;
+	List-Owner; bh=IcX3holNlfbuwWe3ymUNcnF4pepySHThrxLBq9wtl3s=; b=Dy3SYgfvhfCtwa
+	SLrxACM1LVdIYkUncnSp4vo3e6crxsziHRzOo5gT9TBG7yw5HlU3csUaxj4+dse9HTQuHTrATaWRz
+	NAQrTpN4AoZjJ0RRhx1hAonNOasz00jA9Kq1xdX6dLff1sa5HRfFRgw+OGR+UXgQ6366gaNm0w47f
+	gKcV6wfRcItTtqf4SN5V7PYJSQb+3ni4w+xqAcvuumyvyQX8IoZfg5FAf5FL5hd7p8EA0QGm5xeKS
+	v6hw2V03UUgB+VylZiUOi9fkK2Yg31BPmaKPWWIQ9pj+xYfvh+E3WL/fIhXNVIZN3jkiDeXyMVJuE
+	bI/IBBea5/4oYns+IR5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVGOU-00000001rMB-1sYZ;
-	Sun, 22 Nov 2026 22:50:46 +0000
+	id 1xVGPS-00000001rkJ-2lDD;
+	Sun, 22 Nov 2026 22:51:46 +0000
 Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVGOS-00000001rK8-01eS;
-	Sun, 22 Nov 2026 22:50:45 +0000
+	id 1xVGOT-00000001rKj-2pJX;
+	Sun, 22 Nov 2026 22:50:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=zhzorV+YhbTY7mbA8l/NasCEWm6joOpMt0hDwmNwiIU=; b=PEMGhAAEnrqiDG7aDCHdsaHreN
-	yWnV1ubdWaW6VBvulUkRs8Q3qdFBNFR0grlKGhDhLM+0rD1EUHiHsgmzh2rRqo1aXXnTIfg4MdAxE
-	0y1XROFkU28RdYgfk2UkJHFOMzYtvxPGqfdt5UqvmIF/PxfAywLxLdMATSDVSsCdikqqDiUXZO8ZK
-	JnTgupENfhZOIn2kjx0h1WzvQYH2RXp3vhmWbEX32gH5E6gaUoYLJ39ukysuw8nrbP36Nv3KsgR0g
-	+sx7IINryri5V2B4168RZ5v1dapJ86yCxa9cLzLJOLoNPvJJiEOSpVElHevhJISj+tQZmpYnHDXfP
-	Vevm9Hlw==;
+	bh=IcX3holNlfbuwWe3ymUNcnF4pepySHThrxLBq9wtl3s=; b=LbPpzx2jqb5JH5okmQ1Jw7ZMvA
+	A5AWcc+1nHOMXWVRf5lA2aD9uBLp8CQff5xrM41vLOk9zF4Za3X3qoBoW4oB2AePlzyQKZ0IU9Vos
+	jK6fP6uk5l5YBLoc5Z3QPAucSN2XkmEQgmo8wlL6lGGKe/SL4s9Ed3Z1VBCiGRQNAziJcTXwcY3W2
+	jaO3VkuCEH672vnFfJfviNNtAefevIQfA5HEBCdFTI0XtcifhFjQPYUVB8lmzaYJeqjMJ0c2HOqo5
+	YSz5W/dqNhy1TLoJd7lunMlTQUDW2W1JJopvQVE5v+EK4nbQ4zvmTb1Yf84XuDFlTz/mgt6MBbqiV
+	tsHU5ucA==;
 From: Heiko Stuebner <heiko@sntech.de>
-To: Conor Dooley <conor+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Pufan Jin <cyan2254650260@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
+	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: add USB-C PD and DP altmode to LubanCat 4
-Date: Sun, 22 Nov 2026 23:50:22 +0100
-Message-ID: <179538782473.3150822.5472875370609070388.b4-ty@b4>
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: Correct double space in rk3576-anbernic-rg
+Date: Sun, 22 Nov 2026 23:50:25 +0100
+Message-ID: <179538782468.3150822.17090825292677759861.b4-ty@b4>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261110193028.512456-1-cyan2254650260@gmail.com>
-References: <20261110193028.512456-1-cyan2254650260@gmail.com>
+In-Reply-To: <20261113185311.183045-2-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20261113185311.183045-2-krzysztof.kozlowski@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_145044_043804_37EBAC32 
-X-CRM114-Status: GOOD (  10.59  )
+X-CRM114-CacheID: sfid-20261122_145045_893226_4661E4AD 
+X-CRM114-Status: UNSURE (   6.94  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,24 +79,13 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Wed, 11 Nov 2026 03:30:26 +0800, Pufan Jin wrote:
-> This series enables the front-panel USB Type-C port on the EmbedFire
-> LubanCat 4 single-board computer, covering USB Power Delivery, dual-role
-> data/power, and DisplayPort alternate mode.
-> 
-> The port is backed by a Fairchild FUSB302 controller on I2C1 (0x22),
-> a fixed 5V VBUS regulator enabled by GPIO1_C1 (limited to 2A by an
-> LPW5209 switch), the RK3588 combo PHY usbdp_phy0, and two DC switches
-> on GPIO4_B3/B4 for the SBU1/SBU2 lines.
-> 
-> [...]
+On Fri, 13 Nov 2026 19:53:12 +0100, Krzysztof Kozlowski wrote:
+> Correct minor style issue around white-space: double space before '='.
 
 Applied, thanks!
 
-[1/2] arm64: dts: rockchip: add USB-C PD support to LubanCat 4
-      commit: 42c1e1db2ac799921819851237f22055c0af15ff
-[2/2] arm64: dts: rockchip: add USB-C DP altmode support to LubanCat 4
-      commit: dbc094626a087d379ea6ab2bf6c730965a87fb80
+[1/1] arm64: dts: rockchip: Correct double space in rk3576-anbernic-rg
+      commit: 009e1d975af303a3b76b3d13846788fe986fd847
 
 Best regards,
 -- 
