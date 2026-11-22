@@ -2,103 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B891606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 11:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978AC606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 12:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3eXTsliy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nyVhlKcq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=14tv2qJR;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QIe4EQBq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xWLCRl31use0Fw2SVtV1S3RdawAt/eTZFqjV9KHlaWs=; b=3eXTsliyju2NvZ
-	ByEWIHmruYriWbrGejvSfotHjaPQ7wpNdALZX1wUgwpArWQpbizi069bPvVtarNWeBecsS9ICBfPw
-	jZUaDSr6lHdU3TSkpnG86vQRXbtxvO2kZQOwEhdV0FKgaGa+CU/jn4jM3a/+qCylUdgFJi8ns0QYO
-	idozelzbgqM0FOT5Xwiaa2tPVmUpwUPevBIvRLynPyWBzURh3Ed6uPcILDMZ7sxqFVK13auCdXlYV
-	AwBR359+YDUk7wm3NEomCmohlKvr2H8CLsDmDWxOJkYKTYa9tI8Ej306NS5xEJgIu6apAgPmJYKLT
-	yrELhSw4ep0y7mwB4KEQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=5Xi6B0mVc/yhceAu8SvxpAhfmPgktJkCsfdRhwdERps=; b=14tv2qJRFFUt5stXWSpSWeeRAm
+	ZCHVut8pvqRUWoE4UNN0R0HpXcqzM4njkQozNdMEW45puygwmWdEVTzQHgFuS9VM0xiDP9LSuwpks
+	8QOG/54a3WAIXdqYTyM+zwkGGJ4+uZn1bRh8Ap/i8tkzEb213o0jXkwQ3yI30jAoS0MZrPAWG9M5D
+	7QSTXxcy9YHwfL9LVWgJ1je9aE+lV07YEQnMI9npTg+x7GEbsSLY4WhPRHNNx6c1FG1rC90msL9YU
+	TwI9FVCssSNMUBPdOeQ/2tkO2KEbQvtc6+6Wcxbn31EczSWnhSoZqHaV+h7qUHJwq1xVPEWhrrjbn
+	IJ1SHI6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV6AY-0000000139T-1SSO;
-	Sun, 22 Nov 2026 11:55:42 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xV6bS-000000014nA-1pqF;
+	Sun, 22 Nov 2026 12:23:30 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV6AU-0000000138i-3LI2
+	id 1xV6bO-000000014mf-40FN
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 11:55:38 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8E56343923;
-	Sun, 22 Nov 2026 11:55:38 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795348538;
-	b=eeSMl/6xo/MVuiGWHidHeJlDFLtg4AWkQvqHhXOj4Pvf4WeDiOcHhLRJiB4r8lXNkRy1
-	 FQObkAY7FU0hLg3Xh1gsI0Q33tU9rh6bYYKaL42KKYr+qe2yD64Q/OMGqfiYqC5VF3mSi
-	 BZsUvwSrmpKiDMzUA4gfNtrG6vpRA0RCyvYvylhr34kjIY+9pY2nTuvQWqBfN+TjdTVaH
-	 SSgVH2iXuyqb4i9s/1OXEFpxcuthaJ2NRPa/sEPil3ivkafY9PUxtPC2or1RQQQbtUeNZ
-	 KBsHNOHnPhH/+Lo2c+2iYXWhWXOOdNOh/CLewWyo16vvSuX6rIdtksCtTRKpZUUt3cw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795348538;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=xWLCRl31use0Fw2SVtV1S3RdawAt/eTZFqjV9KHlaWs=;
-	b=uPznE3LwzFWF4JNwkiN8RI+EXGvU9WsNJvufZ5EP6+may3nFmCEVSX44aeYbm3BMRwfr
-	 LloiZzTjZMawXWqPogaUhrekwGLwydpq7P0GiM8EQQyYU8SzSy6IbQWb3SPzhcDEUOyMK
-	 OE1XUpk38ZcOUZ9itA3IRNtvuZxvFAUTToGLhli2VM8CaVdt/VX/gqYRKED8BNfd0/UPa
-	 xjQeNHVDO0gihzvBuhbm6jozkZglDHa2SZdGfzh4eFSGNwsI1HKfz5Vays1LoyL7kIPqK
-	 ttPnRJR1E4iPQjdR+GTXxpjj2u3TLQ5oWdZp21zkvL56NbRQZGoXFIwCQZVx3stIRZA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6F8A91F000E0;
-	Sun, 22 Nov 2026 11:55:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795348538;
-	bh=xWLCRl31use0Fw2SVtV1S3RdawAt/eTZFqjV9KHlaWs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=nyVhlKcqa23VbZ3Q2TF00cL6oulYecYVBjjdmH3zJoPXo3+c53A2+CqTC0dtCbPSa
-	 5UPQGpZ/Zxu5azwYGqriREmv6zS+BTA0UpbVU3CSkioj+VfFj2fVg/SNtl7JmqpERh
-	 EFCQyz3YgeYRoLLMRpwfbuCmBtYrzQHeulmTQZPwzmb3F9JiWwuG6hF/Wmj+SLSgpW
-	 I8qAOMhrwt1X5e58se2vZbsK6F5+AgZXFmvxrYAJtbwqAFdRDbmGasOB60XuTEUOE/
-	 i6xbZ2Lhv8ne0VBxXaddzE8zH+wuZB1nW9NoP96Yy7bHJgW5wNyu/vUbF558PqpEgi
-	 gTWGoFz/v0Vcg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id EC1214C023;
-	Sun, 22 Nov 2026 11:55:27 +0000 (UTC)
-From: Suyuan Wang via B4 Relay <devnull+shyckless.gmail.com@kernel.org>
-Date: Sun, 22 Nov 2026 11:55:28 +0000
-Subject: [PATCH 3/3] cpufreq: s5pv210: Fix resource leaks on probe error
- paths
+	Sun, 22 Nov 2026 12:23:28 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so21092575e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 04:23:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795350205; x=1795955005; darn=lists.infradead.org;
+        h=content-type:mime-version:references:in-reply-to:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5Xi6B0mVc/yhceAu8SvxpAhfmPgktJkCsfdRhwdERps=;
+        b=QIe4EQBqYIq6U4rhzUEXuiFA4mQUH+R8+K6s1kjJb7eYy6k/1lueMeJCcTmhBefsb2
+         H275pKA4xrPnkqRL1JNCsIWsjEICRcixWqN2AKlfVx26+LOm6uchETpNDFwyWi1xcNJW
+         q93dJHm/kwl8GgdYf5IzjvJ5LdKM/8q4J8xa+YPEPSQtWa0+dENgHOTvQcke58zYOg9l
+         DfUzPZpKskJfl8E+TsnfLldEPapjWPkyKS1amvC/y3ORmnnGN6Gj9mD9tJ/H726PObrp
+         003Vd1Gm0hNFuaFCyCMpSXeYModHR3HzDuT+RaTYq8GD15SaRU83Ni95A0nN56vcI88a
+         n6CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795350205; x=1795955005;
+        h=content-type:mime-version:references:in-reply-to:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=5Xi6B0mVc/yhceAu8SvxpAhfmPgktJkCsfdRhwdERps=;
+        b=KyG2BejAdyOLpjss50yz+Z/aX5DxS/1cbrt7nqHo2xlhPGaqCmOx8omRsH8fRqOwAr
+         thUR626W9z0oZACRJlB3dvQLBCEv4ainhAKHhI1BWPFCkk4glKGl3fONbJmVXdzJnxnh
+         mFVMuNQxQiufRqKxl8QwFfDhtsdw88qBO+XNb1aGkYgQr0Ydc5sYFO8fNGQueVq8zcRK
+         cVwhbqC5grTz3khvSEk/iIzepJsDzuvhEXrNugAXPBWlSyV6M4gRVeZeC+g0mFOAhCGY
+         e11v9TmZvgFdXyorM+pGkDLl2Z09qIjfJyduyRFbmkftYsrQ6vLNlpmqjwh8NAOqq6zO
+         Wr2g==
+X-Forwarded-Encrypted: i=1; AL+hErEwbrQAR30fVubzerq3AvcCucnbdKaPg+PQa3wK4bGQpGQeMMMkbDzLG4V0He/koOmjLmx5Ku89gS7ziemzLRwG@lists.infradead.org
+X-Gm-Message-State: APuU4Z+xZiwoCRion+Xy6pbGc3Z883cxxNRrcBz4/b0bmvokg/Im3KMt
+	kJ6vwhtTRxwL6W/P2xphYE8C/vawZgyTcfolHwagyfVZfQg2QjIK6TAjsiqyqkKNqec=
+X-Gm-Gg: AZFdTZeRYGPy9fu8Pl8S6KLSjgez/vMWT8I9JwiVvMv2f6vFXA3s564ISwwgrrmSpWz
+	6MEoDFwL71YRUAp9BmW2thomGKfG/ss9uDN7/OuB8Rut8I31/3vyj87XF4NzqfS+sDedIF5d0Zj
+	ivyuZ7BUDEMePxvEWIQLh2xCCjs7JE4PPCgDjCsnGdwxkzg1wmtPMKJTqh7I+2m0raAZEFIBd6a
+	OiFwvgH4NQPeVz4soKnTNXrkW96Qgv/X2kPHkpP1HAyk4pLwiekQCqRal8BXN74T8TPUDemGTuw
+	hz1A84hwE+MUWmRtWgaNhIHFQ/Q8BPir+bWcQlUXGMqIAyeBTRVOLO5UofdDp6CJOwGN7CUNHyl
+	8mxqXFtL3pJfYIIR0lw4jilgL1Xg5K2J6RpYeSpkBb8aZIT09Q+iZPEMXyHmS7IO9hpxJXoZxb8
+	bMudBfZEZIsPR96LU1FObdnQ1/YyZL8ygmQYZIoD3j5LIadbgeKa/0fWfKJ30+Vr19EO9/8H0JV
+	b+w9pnqikQaWviVWef2u9gBdbFUeeTTyzECqQ1yjvauo+NUg468RwtSk3DiTC5u9OSOJ+XyxTj+
+	2rxcQRLtWKLSf+8UZp2PIH/0TTexpAHbqJInuA+MtQ==
+X-Received: by 2002:a05:600c:4f15:b0:4bb:6861:657d with SMTP id 5b1f17b1804b1-4bb88923954mr205631345e9.21.1795350204702;
+        Sun, 22 Nov 2026 04:23:24 -0800 (PST)
+Received: from strix.localnet ([197.250.160.206])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b8b7888sm16377044f8f.42.2026.11.22.04.23.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Nov 2026 04:23:23 -0800 (PST)
+From: Stefan =?UTF-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
+To: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+Cc: Navid Ghahremani <ghahramani.navid@gmail.com>,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: zx279128s pinmux questions
+Date: Sun, 22 Nov 2026 15:23:02 +0300
+Message-ID: <XmZwLfbQR5S2t1KqnN7nKw@gmail.com>
+In-Reply-To: <20261121101615.3726892-1-isasmendi.agus@gmail.com>
+References: <fWpK6nqqTOKOq96a3X8SYQ@gmail.com>
+ <20261121092601.1543468-1-isasmendi.agus@gmail.com>
+ <20261121101615.3726892-1-isasmendi.agus@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261122-cpufreq-leaks-v1-3-96fc17ff7339@gmail.com>
-References: <20261122-cpufreq-leaks-v1-0-96fc17ff7339@gmail.com>
-In-Reply-To: <20261122-cpufreq-leaks-v1-0-96fc17ff7339@gmail.com>
-To: rafael@kernel.org, viresh.kumar@linaro.org, krzk@kernel.org, 
- peter.griffin@linaro.org
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-pm@vger.kernel.org, alim.akhtar@samsung.com, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795348526; l=2583;
- i=shyckless@gmail.com; s=default; h=from:subject:message-id;
- bh=u26GdNff9h8VDqjlemiKXHAuftopncbeRgVHJ/CpuKU=;
- b=CrzgHHiglo92NWgPpcnitjmDoIyGezX87Do2D12VT7kp6fyLOS0r3fq5gaaTll/JBZKRugRX3
- f5B2+44sqakD6BU6xI6LbdUulZpWYly5wOr4asrOv6uJ/lgLavdA7fG
-X-Developer-Key: i=shyckless@gmail.com; a=ed25519;
- pk=pMtccVGiWES3bV+7YBFuBclkvq2n2HBHQ5azaBrK2lY=
-X-Endpoint-Received: by B4 Relay for shyckless@gmail.com/default with
- auth_id=1498
-X-Original-From: Suyuan Wang <shyckless@gmail.com>
+Content-Type: multipart/signed; boundary="nextPart25FuNFzhTPahm4mInGNM1g";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_042327_025212_5CD9BF03 
+X-CRM114-Status: GOOD (  22.03  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,90 +101,114 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: shyckless@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Suyuan Wang <stevewong@hust.edu.cn>
+--nextPart25FuNFzhTPahm4mInGNM1g
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Stefan =?UTF-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
+To: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+Subject: Re: zx279128s pinmux questions
+Date: Sun, 22 Nov 2026 15:23:02 +0300
+Message-ID: <XmZwLfbQR5S2t1KqnN7nKw@gmail.com>
+In-Reply-To: <20261121101615.3726892-1-isasmendi.agus@gmail.com>
+MIME-Version: 1.0
 
-s5pv210_cpufreq_probe() returns the result of cpufreq_register_driver()
-directly:
+Hi,
 
-	register_reboot_notifier(&s5pv210_cpufreq_reboot_notifier);
+Am Samstag, 21. November 2026, 13:16:15 Ostafrikanische Zeit schrieb Agustin 
+Santiago Isasmendi:
+> Hi Stefan,
+> 
+> A follow-up to my earlier mail, with the details behind it.  No mux
+> field on the ZX279128S controls more than one pin: each pin has its
+> own field, so nothing is linked together and a pinmux = <pin function>
+> binding works for us too.  The fields are just not in pin order, so the
+> driver needs a table of where each pin's field is.  This is what we
+> have so far.
 
-	return cpufreq_register_driver(&s5pv210_driver);
+Thanks, this looks very similar to zx297520v3. I'll write the driver in the 
+next days and send an RFC when I have something working for my board. Then we 
+can see what changes to the infrastructure are necessary for yours.
 
-If the registration fails, for example because s5pv210_cpu_init()
-fails, the resources taken by the probe itself are leaked: the two
-regulators and the clock and DMC register mappings. The reboot notifier
-also stays registered. (s5pv210_cpu_init() releases its own clocks on
-its error paths, and the cpufreq core tears down its own state.)
+I expect the general outline to look like this:
 
-Also, when a DMC node has a bad alias, the code jumps to err_clk_base
-and skips unmapping DMC registers that were already mapped for an
-earlier node.
+1) Board specific .yamls
 
-Unregister the reboot notifier and go through the existing unwind code
-when cpufreq_register_driver() fails, and jump to err_dmc on the alias
-error. The err_clk_base label has no users after this, so drop it.
+2) A zte,zx specific, but SoC independent header that contains a generic macro 
+similar to dt-bindings/pinctrl/stm32-pinfunc.h
 
-Found with a static analysis tool and checked by hand.
+3) board-specific macros that define the possible configurations for each pin
 
-Fixes: 6d4ed0f46af6 ("cpufreq: s5pv210: Make the driver multiplatform aware")
-Fixes: e0e5b2b4f427 ("cpufreq: s5pv210: Defer probe if getting regulators fail")
-Co-developed-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
-Signed-off-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
-Signed-off-by: Suyuan Wang <stevewong@hust.edu.cn>
----
- drivers/cpufreq/s5pv210-cpufreq.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+4) Board specific driver tables that define the register locations of each pin
 
-diff --git a/drivers/cpufreq/s5pv210-cpufreq.c b/drivers/cpufreq/s5pv210-cpufreq.c
-index e64e84e1ee79..29b1c5d71a8b 100644
---- a/drivers/cpufreq/s5pv210-cpufreq.c
-+++ b/drivers/cpufreq/s5pv210-cpufreq.c
-@@ -634,7 +634,7 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
- 		if (id < 0 || id >= ARRAY_SIZE(dmc_base)) {
- 			dev_err(dev, "failed to get alias of dmc node '%pOFn'\n", dmc);
- 			result = id;
--			goto err_clk_base;
-+			goto err_dmc;
- 		}
- 
- 		dmc_base[id] = of_iomap(dmc, 0);
-@@ -655,7 +655,14 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
- 
- 	register_reboot_notifier(&s5pv210_cpufreq_reboot_notifier);
- 
--	return cpufreq_register_driver(&s5pv210_driver);
-+	result = cpufreq_register_driver(&s5pv210_driver);
-+	if (result)
-+		goto err_reboot_notifier;
-+
-+	return 0;
-+
-+err_reboot_notifier:
-+	unregister_reboot_notifier(&s5pv210_cpufreq_reboot_notifier);
- 
- err_dmc:
- 	for (id = 0; id < ARRAY_SIZE(dmc_base); ++id)
-@@ -664,7 +671,6 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
- 			dmc_base[id] = NULL;
- 		}
- 
--err_clk_base:
- 	iounmap(clk_base);
- 
- err_clock:
+5) A generic driver that binds it all together
 
--- 
-2.34.1
+Am Samstag, 21. November 2026, 12:26:01 Ostafrikanische Zeit schrieben Sie:
+> - 0x94200000 + 0x00..0x0c hold the mux, one field per pin, 2 bits
+>   where the pad has several functions and 1 bit (function or GPIO)
+>   where it has one.  E.g. bits 2k+1:2k of +0x00 are GPIO k for
+>   k = 0..10, and +0x08 holds the NAND/SPI-NAND pads.
+> - +0x30..+0x38 have one bit per pin; clearing it makes the pin read 0,
+>   so probably an input enable.
+> - +0x50..+0xa4 have a 6-bit config field per pin, five per word.
+>   Bits 1:0 are the pull (01 up, 10 down); I haven't decoded the rest.
+
+My hardware is similar, although it has 3 muxes:
+
+1) "AON" (presumably means "always on")
+2) "TOP"
+3) "PDCFG"
+
+Whatever is selected in AON is connected to the pin, period. If TOP is 
+enabled, it additionally connects something else - either a hardwired function 
+or whatever is selected in PDCFG.
+
+The result is that two devices can be connected to the same pin at the same 
+time. To prevent them from stepping on each other's toes, it is necessary to 
+set AON to select GPIO and configure the GPIO to input. This also allows 
+snooping on other devices via GPIO - I used this to measure the frequencies of 
+clk0, clk1 and clk2 and confirm how the clock tree works.
+
+The reverse is possible too, on paper. E.g. both Pins 33 and 122 can select 
+UART2_TXD. But in my testing neither pin is connected if I try to do that, so 
+the muxes likely have some checks built into hardware.
+
+There is of course also electrical configuration. It either has 2 bits (bias 
+enable, bias direction) or 8 (bias, input enable, Schmitt trigger, drive 
+strength, slew rate)
+
+--nextPart25FuNFzhTPahm4mInGNM1g
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEQxb0tqoFWyeVMl1sPRO8yFRPGiIFAmsC3qYbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTIsMiwyAAoJED0TvMhUTxoifDoP/j9nsSPZx+gE+bi4pWD1
+dEzuT31eCsVb0XdZHg5afYz/j+Gd27kqYgwZOsxEgbm0KUSsJ3S77xmNUMwYEBce
+MMf5EvQaw/1tvnyBOMX60U29VraO2MfL4By4iM/6arwlK2jkfonhGxk0jQSbZoCT
+CXCsETFf4U8QPhDYnwYf5E2OUq/jFrsRnTNQV+vVTv8zdut3tyA/jS26ZBWgxntQ
+9R1EVVImz0zQeTPtIGseLwR6gdAjNHOJM2ZA2Kcw1AMmNsKbmdn+RtMzt/9tL08K
+8Xu6ILSSuaTiPr4qznDxTod4+l/wU9zA3/N4o4aPQzT1naleq/0+v8h31HFFCMZZ
+AwnIaKt4nAM/rBd9Q6mkTEUnYAL9J2FBoWzuK4LJcj3VLUoa/GiIpL2/6h/XDBzb
+YZv+vTMlJylXCl0IKigQEpyYScRvVOGqTmCBnqjvGVnioSiqQWw6RA+fj9AMj8lK
+NgbqscYU26Rd/f46ZiNoMgQ89F24moEo2s869Cu3dZiLmqHngJrP7YiPISyzFS3y
+C7AufrwLn0n0j9vue6bHJb6YSzfAutnnG2aB9hJiqjipBcTNjQg6rAqJfNViFGHn
+AjCCaDzC9LNeUTUKEmVTW1beUK5SnLlyN/hOK4p1GQ4zISbtx1Dek/+v1IyyFwVm
+CBTdJ09Qy7paNcdQVoKHa0YF
+=G2ZB
+-----END PGP SIGNATURE-----
+
+--nextPart25FuNFzhTPahm4mInGNM1g--
+
 
 
 
