@@ -2,80 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690E2606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E88606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xzB8fGj1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LzfauxW3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IcpwK++u;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=X1DPxKVU;
+	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=OztXrZ6K
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=/izPWKlba6hwEZVlAponaP1r95LRqIjVUfRXZ0aBzfg=; b=xzB8fGj1ye0t1jn7403Iume1f/
-	O7yNx6cLOYk6JgStPR9RjGSPY5+iIS4qUm/OAgLysYfZqjmKUh9dn9o3bAFHsbfrliezBNFek6NBe
-	bdRK666JA2z0+seBNw4V5FL4THaptnalxJysbAgEQJIIyiRCdTOirxCPKkCsCjLqqNVq61hQtd5TK
-	k0JJnnvTQy8hTh1JfuXVPg/WHq3WPC5rht2MjhPEOOY8hfLzG0uXCREmgP0O0wsmlfZ9CrxHFu921
-	cCye9OlpWy/91yWVY0bvO5nL5SYdvtxw3SI6abXAj8KATStHBub0cr13J/t8bbwpWK8oxZhJlMbO2
-	ZZhyfaAQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=0nnzDdRCsGSeP+fBdqjwR5i2BMDAgYKhOGLFfKlLzIo=; b=IcpwK++u+iz6zW
+	Oqit8msxBhiW4lPlWu6nZnUbVHxrFJmh1+sluPO5cpvKo6EyayD5SEHURjyJKgzNO0EmCtcidELr3
+	C8/YeSIP1nqcyauL54qK7iCB5QonRMvgqwPzYsHdP+sb6vCsa+TsvDt6dKMHdnZxxVndKmfYC4ZWT
+	LKRNbTP+IVTNUTFbNqMrjfCms/lgY1uJzqJCoaLi5Fj5vEGXtZWnr1URg6EjGohqtn7EuDs10z326
+	ap/P3HtfE1mUwG+TYMJ4N5SWdELFN7nmrmlQRuKolAQ45OzV59Hpt9OZo3u7OciEd/vZn2BjZp8Ex
+	qwJZ+DvpF+Wf5DQquC7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVA0E-00000001JgN-1L2B;
-	Sun, 22 Nov 2026 16:01:18 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVA0U-00000001JjA-2SFD;
+	Sun, 22 Nov 2026 16:01:34 +0000
+Received: from smtp.forwardemail.net ([149.28.215.223])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVA0B-00000001JgF-2KPP
+	id 1xVA0R-00000001Ji4-278m
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 16:01:16 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B871445113
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:01:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 999841F000F0
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795363274;
-	bh=/izPWKlba6hwEZVlAponaP1r95LRqIjVUfRXZ0aBzfg=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=LzfauxW3rEExAgmdG4kLoxGoYz/MCia8CKAMKl83GyTQO0VtPeGsltO2V+0WDIzWj
-	 5iECqnhnsj/kKrsaZZtZk0JF7iqOz3ahCt6gKFZoeCjvUuH4G+mPSe+xwT74u1jd3i
-	 QF9gztIjuvKpikuFo71r975dBEJ0kr1hGDuDYjo/O/TRz+k3VHSfQI/wli9qg4Ng+3
-	 dBPEhXy5EWxAy6sz9xdKD6tt4S48iLgaF+amu2RYe3stbbjXIWbs98fXr1HI5mxKlg
-	 KICpVYQ9w6f7Vj+VrtZPVQwSY+uwspIRjAXPj8v0O4PDsMoo3TwFFPD+0XpeTJTuHV
-	 dYP13IXmp+OrA==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3ae25d9e2fdso24521021fa.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 08:01:14 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEHdrPUCmOBCT7hha7JLjLfOVK2dOM+jAM0PB/XuD0R0To1vbMjU6i+g2SKjIAj+MSZV3uEaDx30qpRmiaxZ4X0@lists.infradead.org
-X-Gm-Message-State: APuU4Z9o0Cf3hVhp3x+pRvf8odqn2bz8MtzYBnAha4OolfeByABR1Teb
-	zN4mDUUjUOyojGvMfEx2+pkdXODEylUYnnOLEMNXgN+/iyeeI4IOf0oFlPOLw84eKQOTbbLNjRu
-	Kxhu/MWV21L48r4AXYB5LyzdPq8s1jM4=
-X-Received: by 2002:a05:651c:1474:b0:3ab:f9b:974 with SMTP id
- 38308e7fff4ca-3ae7fac2697mr24800931fa.29.1795363272768; Sun, 22 Nov 2026
- 08:01:12 -0800 (PST)
+	Sun, 22 Nov 2026 16:01:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From:
+ Content-Language: References: Cc: To: Subject: MIME-Version: Date:
+ Message-ID: CFBL-Address: CFBL-Feedback-ID; q=dns/txt; s=fe-e1b5cab7be;
+ t=1795363289; bh=0nnzDdRCsGSeP+fBdqjwR5i2BMDAgYKhOGLFfKlLzIo=;
+ b=X1DPxKVUYnpe0DXC5ZhIMoX4Hq5JdwOAy2tRI+a5/jRolQADBgfqAUbk9mS77+S+LiyQvUsYf
+ xaGwISAmq740tpskvF1QJ8aI2bgc/KZ/Hvo6a1FrV8i9Ge/mcXjg82A6pb4MSxYOrqrhg8yyM3l
+ MOGENnVJUK4+bo+StG8WpLlkdkwym2DTLOUNni7Q8kJ+QGvPla2ppLW88RAlyKh8NnLgHyKtieR
+ Oy1nr6f3JcR08UO93MJ0XIhdh0V+sXoBaedsoAN/yA/QH6PG49Ie+QBoDFCuOstlNAv1PIGO+C2
+ KTRbboOJF6oBmh/BAc0mo9rmPi5NVMiL96HiL6G6ZZ0A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From:
+ Content-Language: References: Cc: To: Subject: MIME-Version: Date:
+ Message-ID: CFBL-Address: CFBL-Feedback-ID; q=dns/txt; s=default;
+ t=1795363289; bh=0nnzDdRCsGSeP+fBdqjwR5i2BMDAgYKhOGLFfKlLzIo=;
+ b=OztXrZ6KEcEzqTFvaMjQahny9+U3H4o/YMTHNthHSkEEdlPotoG5E4eaiWNemQ+UF7+HGOpEE
+ j6ym3AMrD0BIaUHQrmSWuMx3lFLx03zhiAl3Mx8GDfu1AaTVmhvmAcIBMfs4MSdzf6ZFzAF20xu
+ Z0ypfVrJECtlLAGrL+RmTkE=
+CFBL-Feedback-ID: 6b0311c84993f8611a547daf:b2541adc3895f43479a7fd6879cc7454
+CFBL-Address: abuse@forwardemail.net; report=arf
+X-Forward-Email-ID: 6b0311c84993f8611a547daf
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 2.19.37
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <5cf52e28-110a-4fc2-acfb-eb264e8c31e2@kwiboo.se>
+Date: Sun, 22 Nov 2026 17:01:08 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261122144926.284857-1-maxime.chevallier@bootlin.com> <20261122144926.284857-2-maxime.chevallier@bootlin.com>
-In-Reply-To: <20261122144926.284857-2-maxime.chevallier@bootlin.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Mon, 23 Nov 2026 00:00:59 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65EZ3VP9HDyJps==0RcZ8fWTJuai2d-5ga0V4aEsrM8uw@mail.gmail.com>
-X-Gm-Features: Aa3M54qOwDNW1Yljk-lFISp4AdkVQZj8kdy4KwB-RgmQjeLm8Au5CMg40XaXguE
-Message-ID: <CAGb2v65EZ3VP9HDyJps==0RcZ8fWTJuai2d-5ga0V4aEsrM8uw@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/3] net: stmmac: dwmac-sun8i: allow controlling
- TX and RX flow control separately
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
-	Willem de Bruijn <willemb@google.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>, 
-	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>, Nicolai Buchwitz <nb@tipi-net.de>, 
-	thomas.petazzoni@bootlin.com, =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/8] ARM: dts: rockchip: Add support for RK3506
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20261122060114.773624-1-jonas@kwiboo.se>
+ <20261122060114.773624-3-jonas@kwiboo.se>
+ <86007bdd-6c10-46ba-aac6-197939934c73@lunn.ch>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <86007bdd-6c10-46ba-aac6-197939934c73@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_080131_653964_064E5167 
+X-CRM114-Status: GOOD (  10.99  )
+X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,24 +91,60 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 22, 2026 at 10:49=E2=80=AFPM Maxime Chevallier
-<maxime.chevallier@bootlin.com> wrote:
->
-> Currently, the sun8i flow control setup only looks at FLOW_AUTO (which
-> is FLOW_RX | FLOW_TX), and enables RX/TX based on that.
->
-> Allow enabling RX/TX flow control directions separately.
->
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Hi Andrew,
 
-Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
+On 11/22/2026 4:46 PM, Andrew Lunn wrote:
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3506.dtsi b/arch/arm/boot/dts/rockchip/rk3506.dtsi
+> 
+>> +		gmac0: ethernet@ff4c8000 {
+>> +			compatible = "rockchip,rk3506-gmac", "snps,dwmac-4.20a";
+>> +			reg = <0xff4c8000 0x2000>;
+>> +			clocks = <&cru CLK_MAC0>, <&cru CLK_MAC0_PTP>,
+>> +				 <&cru PCLK_MAC0>, <&cru ACLK_MAC0>;
+>> +			clock-names = "stmmaceth", "ptp_ref",
+>> +				      "pclk_mac", "aclk_mac";
+>> +			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "macirq", "eth_wake_irq";
+>> +			phy-mode = "rmii";
+> 
+> Sorry, missed this on the first pass of the patchset.
+> 
+> phy-mode is generally a board/PCB property, not a SoC property. It
+> would only be a SoC property when the SoC cannot do anything other
+> than RMII. But given this is snps,dwmac, i expect it can do other phy
+> modes.
+
+This SoC only support RMII mode, so I put the phy-mode at SoC level.
+
+Datasheet for this SoC lists following:
+
+  RMII 10/100 Ethernet Controller
+  - Support two Ethernet Controllers
+  - Supports 10/100-Mbps data transfer rates with the RMII interfaces
+  - Supports both full-duplex and half-duplex operation
+
+The Technical Reference Manual also only mention RMII:
+
+  38.2 Block Diagram
+  ...
+  The MAC only supports the PHY interfaces of reduced MII (RMII).
+  ...
+  MAC Supports 10/100-Mbps data transfer rates with the RMII interfaces.
+
+Regards,
+Jonas
+
+> 
+> 	Andrew
+
 
