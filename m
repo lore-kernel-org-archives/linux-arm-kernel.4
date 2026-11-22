@@ -2,113 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5BC606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 15:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ADBA606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 15:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yZlrG/71;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=H9W2abXT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lMxLZBMG;
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.a=rsa-sha256 header.s=google header.b=Y8ATpE9W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ot0zJlzFbVCe62Kvau5YPtTDd6GdHkdbEpE1vxuLRFc=; b=yZlrG/71T5Jua3
-	neDjn6dJn1eSZI7AUvPjmhR5Gca7E+xiodFG7uXnTFLJViOyVDahpawfWG/7Mfup1o8zcdTWlKIBQ
-	V2UjDz04kAZ8ymfnK2ORu522m6eJ5ZW3O6WhbjL95RVRMh1ZY9wtBkp5xSlJ8xcAaNN95A18y/ak4
-	OKBvUFEqA6g2gfp77wbTQop1ANGpGYPDwSsO7YJV6i0QxdKE5jUCPjeUgT1gB9m398Q0YwE9gJ6MA
-	fVj0P6V9R204aY4j9bL1lvFh2NjBvMpyF/mxyj7I4p9Egohw8drb0AQJ1rOJ/ftrZNl/ExjuhHKUT
-	AUI0SKonvYDSJNxAmzQw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AcE23n4pwXrPvICR/OBmKOqECG6PQtTg4meGhVNm1yI=; b=lMxLZBMGUzwZi8Q9JniDIPU9Iz
+	YSdNFuX9VuxnIIK2Sw5eiiS7VrkZr9Ssz034dm4zon5eqjNtbp7o8XCyT+My2PbMSUybR5YTjeM2N
+	RGxfzlP56rW/KvxeJZfwBJNxVE87fVtPLNtdZ4IZ0J3kBIYglCgkYDlL8DnXJl4B9iiKgNxPKVpv8
+	ZYLXvK/GeCNPrhlaqr99D4uRMIBIy0drqQYNbamgMfqPz8uUB41Ej73a0lbPu9ktoHdEofyPaaOlZ
+	OE1qr42qXMBcDSb7e/zXWb40keaU1dEn7kZNBoM3mVvpr18Mi1EZuZhGWnIXFhrTbPYpq0lEQRsJY
+	54qTfX9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV9Te-00000001GKq-2Qcs;
-	Sun, 22 Nov 2026 15:27:40 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1xV9Wk-00000001Ger-2CG1;
+	Sun, 22 Nov 2026 15:30:50 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV9Ta-00000001GJw-3MPW
+	id 1xV9Wg-00000001GeG-2Df6
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 15:27:36 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4bb85e07aadso29168515e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 07:27:34 -0800 (PST)
+	Sun, 22 Nov 2026 15:30:48 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a210470b49so22488395e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 07:30:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795361253; x=1795966053; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=ot0zJlzFbVCe62Kvau5YPtTDd6GdHkdbEpE1vxuLRFc=;
-        b=H9W2abXTDpS00uSM8dADMkp3KlJYl+7wieTXK3nu11VTV1GjAXVfz5Uh4Tu6zIqMhK
-         24mJmB++kO/kKgZVb27BGN6RAPHuTOZ8XeQwaWsdHJHYiy5YpldOgR8hgFdAw3Ykkx3b
-         tT0F4VZgQ4PTuE6pPAMomNbbaROa4foOFe+WiDXOX4CXaEt06m76qb9zx33ka/0K2kPT
-         KNvBhykexULBz74cDsbesSsrYCpRlvuxuWJzbEyIJZ1cAWss7EG4aufhPxVsvsyKHrt+
-         0IP+uAAQoVfXYc6SX+MV5j8R5Hv9H61dup96rWIjH66aJjoxQI9yzSUsf//OKaTSuA8z
-         5y5Q==
+        d=amarulasolutions.com; s=google; t=1795361444; x=1795966244; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=AcE23n4pwXrPvICR/OBmKOqECG6PQtTg4meGhVNm1yI=;
+        b=Y8ATpE9WPpk0PtYJEkvwJ4hpeQGc5H6qKgaTwO+tuZri3JvfR4ti8CLGYTX0BRouHT
+         6f6YCdvLbozit4MKP5r6oqVcYN+4Q0iS3UrU4XW8RChgPmjaFMaK5W1kUVnBh6CQgJBz
+         hVkuaPVZfVBeEakcWZ67eSxCMMiYN17Fr/1Nw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795361253; x=1795966053;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ot0zJlzFbVCe62Kvau5YPtTDd6GdHkdbEpE1vxuLRFc=;
-        b=XZdIwcJhtd5KDYJPp5zyYsvYMHzvvsz8hOTBLNOQVLPU1dd6NxrIjpxz/HXI91JXLv
-         +THcrra64g4e2IO8UqPF/hdhsMHJAtqB4kqzZx1UIyDwD7bBGmUC0rwxeBz1iy3M2GLd
-         QE6wAoC8TFWOkh5KcDOtH/kwDI4AFtJqWJLewtOUali7RAeEgfnUtl6RNgZb8Z9e0aK0
-         xXjWareiG7Y/mTjv3vz5mbxe0oJU+Gc22vs+LlsJkfOKtjB9/KxJLa3NeQ4TVa19RZW/
-         sXSFt6WkO1MBLozpRlqIaAAGw+6TghQ2+kYYXsZNxPnUmjCkQLaiLFbszm6L43To0MSC
-         J2Ug==
-X-Forwarded-Encrypted: i=1; AL+hErFiKTxRMO2hBqMt/+SMWY2ifoNsXohrCpeTfS+wPjBxbDNJd9+iyy6bd+VKAyeaSeYynHB1MTcEvpJtnnG/Gjjq@lists.infradead.org
-X-Gm-Message-State: APuU4Z8TAs6hXLr3S7K1XpN8PgCp0uLky0NUgZmp9dhB1kOHdWAbw3J/
-	YBVGAlWMJNcxHqagIUNiu48V6XCe/cPv/elY0liZ/5nGPzOcCHSkTFXw+Xt4eoPobZc=
-X-Gm-Gg: AZFdTZeIih0Y6LLs6GfwgUOoT61wJ6Sjdf5ESZjdnObj23eVSg3beo3sHifTKEobEvN
-	E27siJSA5YApQ6uJXK04o0+CEdEqi96g2e+9qfqEOXpcTN0M5Q6v9PexGTbvckrAfhPnsakYsA5
-	eHLfngobyKXYWkryiDGeTx8FmKpA9X5O/pqK+CcsSH3tU3lSGCEn279vorDeI9V2Q36+0rLhy9m
-	9iI6mqjcaUmgzku2FjIqSWc+/vnFpP/4xAvzH13paOQj0vfM1rwC58eqldmz5RjhA5t3JALfwzd
-	ANclA7tssK2wYQ0h+jlPK0DANoX/AC3nitUPGQ9PfrzJN+qqeKTwf4LmqBMYuWC67pDwofZHQI1
-	W/nPoqGODJlEikbSBoz1XG2qx1OzqDBwZ4qNiYd7j84wJoyqkZIzLR/R22Z0tYKFZemEOq7ZomM
-	/Q3qkkwq6So2+YCLPrqewCSE+SJ++6fgOjq2BWRcBdUp+3oxqsqD216rgttzruZD+2t8qFBXdkD
-	2oXtXyZ+HvvNnt+Bfve1jfVsOdTyi7MDxaMnO1a8FPramkBH2YXhjNlt+7D46of6teONoDpmzOR
-	T+wcPd7j7BG1gnU4nEonTjSW3D0G2ruq4DHguiXOV9o9dmh7mw==
-X-Received: by 2002:a05:600c:3555:b0:4a1:f377:5c68 with SMTP id 5b1f17b1804b1-4bb8881da76mr187712165e9.34.1795361253164;
-        Sun, 22 Nov 2026 07:27:33 -0800 (PST)
-Received: from localhost (82-67-6-57.subs.proxad.net. [82.67.6.57])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853c9170sm324114005e9.14.2026.11.22.07.27.32
+        d=1e100.net; s=20260707; t=1795361444; x=1795966244;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=AcE23n4pwXrPvICR/OBmKOqECG6PQtTg4meGhVNm1yI=;
+        b=xX90InfXEGLMv86044VbhKs3ujuKefIfyxln+DdvvMfJDZ3ZFvlkFOL1ChbGu422mP
+         50pdHhxpR55EeWVlaGyWw6DE/+grhmSjAwoZ2i3TzFIcCciA7PufbmXpi8XnzffCNI0p
+         vh5AfZrwupcs5sbLi2tkcAHqvg3wyuWv4HJUZkiTaVh+AkiZFlOlkWCy9D2hXRwDXltB
+         Vq3nZ4qtekdKCNqEw3hX0sTE++XCUD22NcTOmCyIU/jQ/DlYJ9E3gbQM4/VERDBAxnEt
+         bCFEHcWwzfw7Tbhz2v7obR5wMlORrLbVaQKIJcBBNRknftmlRDhsTv2K3exNvkooibDP
+         a40w==
+X-Forwarded-Encrypted: i=1; AL+hErFTlABU7OUl3BFUZezZlYD/XiNyHEjjEEKofd+ER0fUZ8iMmmeADzX4CvoaZYbcANDT/VGAoJCRijscTc1ZUza8@lists.infradead.org
+X-Gm-Message-State: APuU4Z8fuQM+kFqYSGKFJfc3QJUO6oHwGZ0OlNGy9W9EaZl7GJMT58vy
+	hlJTc06yrusiNENhz2xn71ybQJ9okMrh70kyDE3BBvVF/qxaIGcBQJHwNHYWLMCaNw0=
+X-Gm-Gg: AZFdTZcKGjSHdA13v5RWvtl4waPT0WBMq5izlv98Eg3z1VymV5phx6QbwF22xYHuxzO
+	X8pgZTaKIDnHfESkKQVcPq9L2ogTMYbt0jTT3dGJRV2til2x9saG5ph89nyM8aYftrHI3yzxn5F
+	LBHIEdgJgfYBkQZLc6QpvRtUbpxuK5EgOz2nQLvaC9nMWmcMVP8YV8vz3WV5KKw/jKC2r9JwPKn
+	xi/rCRBKmtB4raOepualcz/sK1hdBtnX9Bn7RuZOdmh1vpAQznEubczqXNKq78j+9iq8h8M9dFT
+	zMpPrukxrICqLNknhmYh6mc5szSQzoBiFkFCiugjmkFT8SccW4VYd+zXJEMWX4HCNwZIvgyxguD
+	5JAizu9+bm3MByWO2/LEde31rbKdgb8SqshxSrT2jMsyRnQUYB4mzoaMbC7+T69I8JlQlhvYwDp
+	2OJ3EarJRRQIQzy8+IJIlbp6UU4Gj2RF35PSaOBGRGMVpcVSKGKBmU+kH0iDqPAvh4mAn1e3jyH
+	ywh1m4J8TlLJDThKaS2rVGtFsNzmifzU10XhvfT2dPb4vIACEbI3Nex3D0pPGUhzDMgLN0AlOGD
+	ZuoJl9X82LgM3SIPGCtrmNLGWoausRiv4IZfxxxq6zyVlohvQRvqhG8mj9lSwTp71fQXQTK07p1
+	NMAHX3vswcQcU3CxsBf2Sk1HIvUnm09CRsnYSoLuD+w2fbt31b0zt3JoHPVX5i/5gDFMWsalTdp
+	hENZmC1T41kOK2SQL96NgtwIeZRwpupo7DROivni0EXz5vkf0=
+X-Received: by 2002:a05:600c:468c:b0:4bb:6d61:af7c with SMTP id 5b1f17b1804b1-4bb88944bf5mr182002275e9.35.1795361444382;
+        Sun, 22 Nov 2026 07:30:44 -0800 (PST)
+Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-79-14-29-58.business.telecomitalia.it. [79.14.29.58])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884a15absm237833815e9.9.2026.11.22.07.30.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 07:27:32 -0800 (PST)
+        Sun, 22 Nov 2026 07:30:43 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: michael@amarulasolutions.com,
+	linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Marek Vasut <marex@denx.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Robert Foss <rfoss@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Simona Vetter <simona@ffwll.ch>,
+	Stefan Agner <stefan@agner.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	dri-devel@lists.freedesktop.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/8] drm: State readout for the i.MX8MN display pipeline
+Date: Sun, 22 Nov 2026 16:30:00 +0100
+Message-ID: <20261122153032.2782768-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v8 0/5] Add support for S4 audio
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-clk@vger.kernel.org, jian.xu@amlogic.com, shuai.li@amlogic.com, 
- zhe.wang@amlogic.com
-In-Reply-To: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
-References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
-Date: Sun, 22 Nov 2026 16:27:28 +0100
-Message-Id: <179536124894.2728475.16240917993133855473.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=753; i=jbrunet@baylibre.com;
- h=from:subject:message-id; bh=SakUBu+Tj3UYj69tUpTC/fsgrcNkMteoX+Lt2iuPgXc=;
- b=owGbwMvMwCW2VtK+WnvWU3HG02pJDNnMnE/+NymUzd4hva7CSmxX3dxLJ27tYynZy6qYorFaU
- uexikFzRykLgxgXg6yYIksNd7X4O0mtL7Om69yGmcPKBDKEgYtTACbCdIThv9fc1off4xQusP20
- lhVaw60es6lqQ/uRSbU8X05aMdusWMXwP980O55/ScYJq4WsZ3SZNh+93vxsmyBL/v8zj3qqwxS
- YuAE=
-X-Developer-Key: i=jbrunet@baylibre.com; a=openpgp;
- fpr=F29F26CF27BAE1A9719AE6BDC3C92AAF3E60AED9
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_072734_860455_79BE04A0 
-X-CRM114-Status: GOOD (  10.69  )
+X-CRM114-CacheID: sfid-20261122_073046_596191_639B84EB 
+X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,33 +123,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> This series completes the end-to-end audio support
-> for S4 SoC from hardware bindings to driver implementation
-> and system integration.
-> 
-> 1 Device Tree Bindings Updates 
-> Added audio power domain and S4 audio clock support for S4 SoC.
-> Added S4 audio tocodec binding support.
-> 
-> 2 Driver Implementation
-> Implemented S4 tocodec driver for G12A architecture.
-> Added S4 audio clock support in AXG audio clock 
-> 
-> 3 Device Tree Integration
-> Add Amlogic S4 audio subsystem support in arm64 DTS.
+This series implements the hardware state readout [1] for the display
+pipeline of the i.MX8MN (LCDIF, Samsung DSIM, Synaptics R63353 panel),
+so that the splash screen shown by the bootloader stays on, without a
+modeset, until a client draws.
 
-A clock immutable branch is going to be necessary to handle the dependencies
-in this series. Please re-submit with clock changes only and a proper cover letter
-so I can merge apply this and provide the IB. Thanks
+The first two patches add the hooks a bridge and a panel need to
+acquire their resources (runtime PM, regulators) when they are found
+enabled. They are a proposal, since the drivers converted so far
+didn't need them.
+
+The series is based on [1] and needs [2] to keep the power domains of
+the display on.
+
+Tested on i.MX8MN (BSH SMM S2 PRO).
+
+[1] https://lore.kernel.org/r/20261106-drm-state-readout-v8-0-cbe78624e1bc@kernel.org
+[2] https://lore.kernel.org/r/20261122095927.2631909-1-dario.binacchi@amarulasolutions.com
+
+
+Dario Binacchi (8):
+  drm/bridge: Add atomic_sro_install_state hook
+  drm/panel: Add sro_install hook
+  drm/mxsfb: Use the bridge connector
+  drm/mxsfb: Switch to drm_mode_config_create_initial_state()
+  drm/mxsfb: Stop the controller in hw_reset
+  drm/mxsfb: Implement hw state readout
+  drm/bridge: samsung-dsim: Implement hw state readout
+  drm/panel: synaptics-r63353: Support hw state readout
+
+ drivers/gpu/drm/bridge/samsung-dsim.c         | 125 +++++-
+ drivers/gpu/drm/drm_bridge.c                  |  41 ++
+ drivers/gpu/drm/drm_panel.c                   |  16 +
+ drivers/gpu/drm/mxsfb/Kconfig                 |   2 +
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  31 +-
+ drivers/gpu/drm/mxsfb/mxsfb_kms.c             | 394 +++++++++++++++++-
+ drivers/gpu/drm/mxsfb/mxsfb_regs.h            |   3 +
+ .../gpu/drm/panel/panel-synaptics-r63353.c    |  33 +-
+ include/drm/drm_bridge.h                      |  20 +
+ include/drm/drm_panel.h                       |  10 +
+ 10 files changed, 642 insertions(+), 33 deletions(-)
+
+---
+base-commit: fe97bd8df0365f5aa27ea88b621e3f475bdd544d
+branch: drm-sro-rfc
 
 -- 
-Jerome
+2.43.0
 
 
