@@ -2,73 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161A8606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 12:29:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38E7F606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 12:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u4C/z8qd;
-	dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.a=rsa-sha256 header.s=mail header.b=C1WJKCmw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H0cLt+QM;
+	dkim=pass (2048-bit key, unprotected) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=GEs7fxe7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Bd/a2IQI4yRof3/z645MICoywcD9F/oPI3EddqEknBM=; b=u4C/z8qdeJHgcX
-	yWdS/8Njnqn3R6Xk4HX4Ru3ulZR1ybEnNpk+UAJ8+lK/460R8EC8mCWh4655/11ReSKC7uoEu93rH
-	wN919ZcUj+AXb99WJsw6loydXJy7UOvk09uarUiGjfNjdtkKoTz0iCuewkoSkywO49M92v7SuME9O
-	lE5L75fI+hSZ2K1lseEu91OZglneqpDE+EvW7TrjgVwR/tEEBpq8Ehyme3KgIdQk1vOXp2E7Gm7MG
-	ulwZojeAWFx+N037v5N+uyksMmZ0KkKURp1Wcnjc4nPWIqw7Y3nhBS64J1IzG+iu68gnhIwlh1q6s
-	pzMG3Dkg7zSxb3wcnMZg==;
+	List-Owner; bh=pimJ7WtGXn8iWughbWdCqANZvoIzX3xugoC2CsGLUrM=; b=H0cLt+QMloTvg8
+	4TIja32TuUwUfL8Dbm431UBgbA5ETLZfsA05nv5W3gs8GzcebCc8X957OkZvPJLIZMItpAE2VUAPB
+	+ThZIqKhrRvwnMoBwfLh+X0mcaJ9e/1QgmFS0pwiYQXsVraZUgMkWe/BCMbXAE8H/H/Ed98YOtnqQ
+	5zBPmf9RAnmX+iCUs1f/AY01og8adlQs+vhj1DXO3D83RUGnaIpKG+QQnK45TiiszxZ690l5WJhxh
+	B7tc4HtEPZbZ0hdCgwVudKUolC7LS0B61n3j478nwspSTckb7KheURE64qZcLup9volepvtZ2EAi0
+	Vmo3VcTtXEGBzgJkqSDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV6hN-000000015V0-0YZe;
-	Sun, 22 Nov 2026 12:29:37 +0000
-Received: from chaosmail.tech ([77.81.229.115])
+	id 1xV6qh-000000016ao-3v8P;
+	Sun, 22 Nov 2026 12:39:15 +0000
+Received: from mout.gmx.net ([212.227.17.22])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV6go-000000015G6-2EyE;
-	Sun, 22 Nov 2026 12:29:05 +0000
-Received: by chaosmail.tech (Postfix) id C6F701C8A15;
-	Sun, 22 Nov 2026 12:28:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
-	s=mail; t=1795350540;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Bd/a2IQI4yRof3/z645MICoywcD9F/oPI3EddqEknBM=;
-	b=C1WJKCmwyel6GhwYPgnKOqZch3Qod47ueKZu95403NTxEMigBj0kxY+0+WDNM1hAGtoSjQ
-	22Q6euEiWfhhevwWdvQwtEl+EV5PJZVmJFs26bf9+twUVDZdb0uTLM2dvjHRW5zi22F9ID
-	a5mGwjFUEvtUWq1XNWnGxjEs4YfEcYs=
-From: Sasha Finkelstein <k@chaosmail.tech>
-Date: Sun, 22 Nov 2026 13:28:00 +0100
-Subject: [PATCH v2 4/5] phy: apple: atc: Add T8122 DisplayPort support
+	id 1xV6qe-000000016ZN-0rC6
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 22 Nov 2026 12:39:13 +0000
+DKIM2-Signature: i=1; m=1; t=1795351146;
+ mf=PHdhaHJlbnN0QGdteC5uZXQ+;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=gmx.net;
+ s=s31663417:rsa-sha256:LUgvtrgV+2QJwa9Fo6SeVy5ME+vU
+   58J1Nu+knU1Iml8CSpLRWdzo5r1n0B0z1M9vZnsSkpamlnXrX03e5LWg3oWXsVIJbUqTwu2O6Ej
+   5ZionHXuEUcRsIVdXO+HerAYvYeCIZYKJl3F2rsEO/H04tnC5iBiLWhys5N8wkQXIdq7qhKJ6R0
+   9AUz+ZdRrpEUW6geQK/VB7U7WdUlyD3DRQFVuDlm9TOznLlc+lpMtBls0TfrJ24T5vvbSFBqbeT
+   GsMhJ2/4lOxHVvxVorUGyR9A2JBTTgNwz2tv8hNGG5xjitJfdfa/Su6KF/lw/+97nMKRfsCC5LG
+   sHxltPtVOdh34w==;
+Message-Instance: m=1;
+ h=sha256:
+   iQN6qWc4XpR/eD5QVvfx18FKsUUvv5M5F2Ole8+uADY=:
+   pimJ7WtGXn8iWughbWdCqANZvoIzX3xugoC2CsGLUrM=,
+  sha512:
+   3lIXV/GYsgWKMletybdb+3REEtqRuEp3V1JX3811+Q4jI2r9xUX23XVx7n+rA8zmoQOzSLyKGp4VV7u/fYUzmw==:
+   JC+qttD3peBBjnDkLHnJ4Y7e54rHtlSFiTy274z9/wbkPqMIXn6etmtphVLKrlcJRXojN9JkUp2VxxB0ZuTdbw==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1795351143; x=1795955943; i=wahrenst@gmx.net;
+	bh=pimJ7WtGXn8iWughbWdCqANZvoIzX3xugoC2CsGLUrM=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=GEs7fxe7jfJ6+V+yGQKBccCcGFYGy+Edi1oayZMHyZPy43mldKpWkgmahFUliYZu
+	 Rf5pt/nruseGjI02anrAVk6P3BxPUXubLgFrCYLpqig26GdMoAkIMpTS/ASaAGFVH
+	 +gykldEU/UnBVf3eYZ4+1Zol08hugId4i2q4yHuxzEkQ1aEaq8XTWVc8tZOnalYf8
+	 Qj9g+DrrU1fEpyKim+OND6H35u4lLawN4ZPhsXrUfvY4F2VCBWsH7YIu5ITheBwgf
+	 GT02JdNRtEJDqS48VYRmbgeU1r5ksPywcooKPs5X38Oc0s+5V0leSUpXcWU/jtTuU
+	 48zUBBTFE/nZPx3Yrw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M3UV8-1xUYc91cMU-00HOuo; Sun, 22
+ Nov 2026 13:39:03 +0100
+Message-ID: <8ea10aa4-71fd-4894-b80f-e94a41f7e4f3@gmx.net>
+Date: Sun, 22 Nov 2026 13:39:01 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] mmc: bcm2835: restore scatterlist after DMA setup
+ failure
+To: Artem Novak <artem122novak@gmail.com>
+Cc: bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com,
+ hemanth.selam@gmail.com, john.garry@linux.dev, kraxel@redhat.com,
+ linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, rjui@broadcom.com,
+ sbranden@broadcom.com, ulfh@kernel.org
+References: <fcfc5d38-2755-445c-8444-bd4c5b9c524f@gmx.net>
+ <20261122075814.162099-1-artem122novak@gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20261122075814.162099-1-artem122novak@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261122-t8122-phy-v2-4-8d5c8fdf31ba@chaosmail.tech>
-References: <20261122-t8122-phy-v2-0-8d5c8fdf31ba@chaosmail.tech>
-In-Reply-To: <20261122-t8122-phy-v2-0-8d5c8fdf31ba@chaosmail.tech>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
- Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sasha Finkelstein <k@chaosmail.tech>, 
- Ramzi Abdiche <abdicheramzi@gmail.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795350536; l=32760;
- i=k@chaosmail.tech; s=20241124; h=from:subject:message-id;
- bh=wiT8QwR4/blxFeEHm7OGz9mdA4NyKNBH6NrnWOBOF0A=;
- b=GweSYNXevZ5Q/Gc5Kn4CSo7aQmeYIdpFSZRREe7r0CLnGFvFbM3Adl09aM+CJMtOVbbQvqKG5
- AxI99/ngb4ZCE6R7XEpwDBRbiUiY304a5SDx3/jDZHpT/Phg8t5qWGp
-X-Developer-Key: i=k@chaosmail.tech; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
+X-Provags-ID: V03:K1:IMSofjOf9Ev+R0ycMhjyJYvry4IZX3KxItWF+DHejgWaWnN3a7D
+ bA352OgB6OyyevNS/DZpInRY78oCoKelcwgea7WOwQAyRwy6SA3YskoJWTLa9SOq9VF4ETs
+ /sPF1QgmLNTqqSB/zleNhmiN0QY1lh2eMeKHrQHbwK46jmYwl2uws8hnjPkEhqhhAButwGR
+ 6tOIKiAtEtp13QKo/PrSQ==
+UI-OutboundReport: notjunk:1;M01:P0:+pOcrzR6cLA=;l/91TL/JuXNUekl45+WieVxeIHs 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_042902_919640_EB197B66 
-X-CRM114-Status: GOOD (  14.66  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261122_043912_544056_A0F604DF 
+X-CRM114-Status: GOOD (  10.53  )
+X-Spam-Score: 0.4 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,841 +112,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ramzi Abdiche <abdicheramzi@gmail.com>
-
-Add DisplayPort AUX and lane setup for T8122-family PHYs.
-Select clock and lane settings by link rate and stop active
-lanes before orientation changes.
-
-Signed-off-by: Ramzi Abdiche <abdicheramzi@gmail.com>
-Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
----
- drivers/phy/apple/atc.c | 642 ++++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 617 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/phy/apple/atc.c b/drivers/phy/apple/atc.c
-index 398b2be5dd11..647093bb70f1 100644
---- a/drivers/phy/apple/atc.c
-+++ b/drivers/phy/apple/atc.c
-@@ -431,6 +431,129 @@ enum atcphy_lane_mode {
- #define LN_LDOCLK_EN_BIG_OV BIT(14)
- #define LN_LDOCLK_EN_BIG BIT(15)
- 
-+/* T8122 DisplayPort registers; power bit names inferred from the sequences */
-+#define ACIOPHY_CFG1 0x000c
-+#define ACIOPHY_SLEEP_CTRL_T8122 0x010c
-+#define ACIOPHY_TX_SLEEP_BIG(lane) BIT(lane)
-+#define ACIOPHY_TX_SLEEP_BIG_OV(lane) BIT(2 + (lane))
-+#define ACIOPHY_TX_SLEEP_SMALL(lane) BIT(4 + (lane))
-+#define ACIOPHY_TX_SLEEP_SMALL_OV(lane) BIT(6 + (lane))
-+#define ACIOPHY_TX_CLAMP(lane) BIT(8 + (lane))
-+#define ACIOPHY_TX_CLAMP_OV(lane) BIT(10 + (lane))
-+#define ACIOPHY_RXTX_SLEEP_BIG(lane) BIT(lane)
-+#define ACIOPHY_RXTX_SLEEP_BIG_OV(lane) BIT(2 + (lane))
-+#define ACIOPHY_RXTX_SLEEP_SMALL(lane) BIT(4 + (lane))
-+#define ACIOPHY_RXTX_SLEEP_SMALL_OV(lane) BIT(6 + (lane))
-+#define ACIOPHY_RX_SLEEP_BIG(lane) BIT(6 + (lane))
-+#define ACIOPHY_RX_SLEEP_BIG_OV(lane) BIT(8 + (lane))
-+#define ACIOPHY_RX_SLEEP_SMALL(lane) BIT(10 + (lane))
-+#define ACIOPHY_RX_SLEEP_SMALL_OV(lane) BIT(12 + (lane))
-+#define ACIOPHY_RX_CLAMP(lane) BIT(14 + (lane))
-+#define ACIOPHY_RX_CLAMP_OV(lane) BIT(16 + (lane))
-+
-+#define AUSPLL_BGR_T8122 0x2218
-+#define AUSPLL_FREQ_CFG_T8122 0x2234
-+#define AUSPLL_CLKOUT_MASTER_PCLK_DRVR_EN_T8122 BIT(3)
-+#define ACIOPHY_DP_PCLK_STAT_T8122 0x7034
-+
-+#define LN_AUSPMA_TX_TOP_EQ1 0x0050
-+#define LN_AUSPMA_TX_TOP_EQ17 0x00d0
-+#define LN_AUSPMA_TX_TOP_EQ18 0x00d4
-+#define LN_AUSPMA_RX_TOP_EQ1 0x0210
-+#define LN_AUSPMA_RX_TOP_EQ17 0x0244
-+#define LN_AUSPMA_RX_TOP_EQ18 0x0248
-+#define LN_EQ_SWING GENMASK(3, 0)
-+#define LN_EQ_SWING_LSB GENMASK(15, 14)
-+#define LN_EQ_SWING_OV BIT(28)
-+#define LN_EQ_AUTO_CTRL_DP BIT(20)
-+/* Deemphasis and override bits; individual fields unknown */
-+#define LN_EQ_DEEMPH_FIELDS GENMASK(18, 0)
-+
-+#define LN_AUSPMA_TX_SHM_MAIN2 0x0004
-+#define LN_MAIN2_BYTECLK_SYNC_SEL BIT(24)
-+#define LN_MAIN2_BYTECLK_SYNC_SEL_OV BIT(25)
-+#define LN_MAIN2_BYTECLK_SYNC_EN BIT(28)
-+#define LN_MAIN2_BYTECLK_SYNC_EN_OV BIT(29)
-+#define LN_AUSPMA_TX_SHM_MAIN4 0x000c
-+#define LN_MAIN4_DIV2_4_EN GENMASK(25, 24)
-+#define LN_MAIN4_DIV2_4_EN_OV BIT(26)
-+#define LN_AUSPMA_TX_SHM_MAIN5 0x0010
-+#define LN_MAIN5_CLK_EN BIT(9)
-+#define LN_MAIN5_CLK_EN_OV BIT(10)
-+#define LN_AUSPMA_TX_SHM_CLKMON1 0x001c
-+#define LN_CLKMON1_HIZ BIT(22)
-+#define LN_CLKMON1_HIZ_OV BIT(23)
-+#define LN_AUSPMA_TX_SHM_LDOCLK1 0x0044
-+#define LN_LDOCLK1_VREG_ADJ GENMASK(10, 6)
-+#define LN_LDOCLK1_VREF_EN BIT(12)
-+#define LN_LDOCLK1_VREF_FILTER_BOOST (GENMASK(18, 17) | GENMASK(15, 14))
-+#define LN_LDOCLK1_BYPASS_SMALL BIT(20)
-+#define LN_LDOCLK1_BYPASS_BIG BIT(22)
-+#define LN_LDOCLK1_EN_SMALL BIT(24)
-+#define LN_LDOCLK1_EN_BIG BIT(26)
-+
-+#define LN_AUSPMA_RX_TOP_TXMODE 0x0160
-+#define LN_AUSPMA_RX_TOP_AFE1 0x01d4
-+#define LN_AFE1_DIV20_RESET_N_OV BIT(0)
-+#define LN_AFE1_DIV20_RESET_N BIT(1)
-+#define LN_AUSPMA_RX_TOP_DCO1 0x01dc
-+#define LN_DCO1_LPBKIN_RECOVERED_DATA GENMASK(16, 15)
-+
-+#define LN_AUSPMA_RX_SHM_CTLE2 0x0030
-+#define LN_CTLE2_TX_CLK_EN BIT(10)
-+#define LN_CTLE2_TX_CLK_EN_OV BIT(11)
-+#define LN_AUSPMA_RX_SHM_DFE101 0x0064
-+#define LN_DFE101_DFEH1FB_EN BIT(2)
-+#define LN_DFE101_DFEH1FB_EN_OV BIT(3)
-+#define LN_DFE101_DTVREG_ADJUST_FIELDS GENMASK(15, 10)
-+#define LN_AUSPMA_RX_SHM_DFE111 0x0068
-+#define LN_DFE111_DTVREG_BIG_EN BIT(5)
-+#define LN_DFE111_DTVREG_BIG_EN_OV BIT(6)
-+#define LN_DFE111_DTVREG_SMALL_EN BIT(7)
-+#define LN_DFE111_DTVREG_SMALL_EN_OV BIT(8)
-+#define LN_AUSPMA_RX_SHM_DFE121 0x006c
-+#define LN_DFE121_TX_BYTECLK_SYNC_CLR BIT(9)
-+#define LN_DFE121_TX_BYTECLK_SYNC_CLR_OV BIT(10)
-+#define LN_DFE121_TX_BYTECLK_SYNC_EN BIT(11)
-+#define LN_DFE121_TX_HRCLK_SEL BIT(13)
-+#define LN_DFE121_TX_HRCLK_SEL_OV BIT(14)
-+#define LN_DFE121_TX_PBIAS_EN BIT(15)
-+#define LN_DFE121_TX_PBIAS_EN_OV BIT(16)
-+#define LN_AUSPMA_RX_SHM_SAVOS161 0x00a4
-+#define LN_SAVOS161_RXTERM_EN BIT(0)
-+#define LN_SAVOS161_RXTERM_EN_OV BIT(1)
-+#define LN_AUSPMA_RX_SHM_TERM191 0x00a8
-+#define LN_TERM191_TX_TEST_EN BIT(15)
-+#define LN_TERM191_TX_TEST_EN_OV BIT(16)
-+#define LN_TERM191_TX_EN BIT(17)
-+#define LN_TERM191_TX_EN_OV BIT(18)
-+#define LN_TERM191_TX_DIV2_EN GENMASK(20, 19)
-+#define LN_TERM191_TX_DIV2_EN_OV BIT(21)
-+#define LN_TERM191_TX_DIV2_RST BIT(22)
-+#define LN_TERM191_TX_DIV2_RST_OV BIT(23)
-+#define LN_AUSPMA_RX_SHM_VREF221 0x00d4
-+/* Adjust, filter and enable overrides; individual fields unknown */
-+#define LN_VREF221_INIT_FIELDS (GENMASK(20, 16) | GENMASK(12, 7))
-+#define LN_VREF221_BIAS_FIELDS GENMASK(15, 13)
-+#define LN_VREF221_EN BIT(16)
-+#define LN_VREF221_FILTER_ADJUST GENMASK(19, 18)
-+#define LN_AUSPMA_RX_SHM_VREF231 0x00d8
-+#define LN_VREF231_BOOST_CTRL GENMASK(1, 0)
-+#define LN_VREF231_BOOST_CTRL_OV BIT(2)
-+#define LN_AUSPMA_RX_SHM_VREG1 0x00dc
-+#define LN_VREG1_DTVREG_POWER_MODE GENMASK(4, 3)
-+
-+/* T8122 AUX registers (core window) */
-+#define AUX_TOP_CTRL 0x16000
-+#define AUX_TOP_PWRDN BIT(0)
-+#define AUX_SHM_PWR 0x16400
-+#define AUX_SLEEP_SML_OV BIT(0)
-+#define AUX_SLEEP_SML BIT(1)
-+#define AUX_SLEEP_BIG_OV BIT(2)
-+#define AUX_SLEEP_BIG BIT(3)
-+#define AUX_CLAMP_OV BIT(8)
-+#define AUX_CLAMP BIT(9)
-+
- /* LPDPTX registers */
- #define LPDPTX_AUX_CFG_BLK_AUX_CTRL 0x0000
- #define LPDPTX_BLK_AUX_CTRL_PWRDN BIT(4)
-@@ -524,6 +647,9 @@ enum atcphy_dp_link_rate {
- 	ATCPHY_DP_LINK_RATE_HBR3,
- };
- 
-+#define ATCPHY_DP_LINK_RATE_IDLE		(-1)
-+#define ATCPHY_DP_LINK_RATE_PENDING	(-2)
-+
- /**
-  * enum atcphy_pipehandler_state - States of the PIPE mux interface ("pipehandler")
-  * @ATCPHY_PIPEHANDLER_STATE_DUMMY: "Dummy PHY" (disables USB3, USB2 only)
-@@ -592,6 +718,13 @@ struct atcphy_mode_configuration {
- 
- struct apple_atcphy;
- 
-+struct atcphy_dp_ops {
-+	void (*enable_aux)(struct apple_atcphy *atcphy);
-+	void (*disable_aux)(struct apple_atcphy *atcphy);
-+	int (*set_rate)(struct apple_atcphy *atcphy, enum atcphy_dp_link_rate lr);
-+	int (*stop)(struct apple_atcphy *atcphy);
-+};
-+
- struct atcphy_hw {
- 	void (*configure_post_tunable)(struct apple_atcphy *atcphy, enum atcphy_mode mode);
- 	void (*configure_pipehandler_usb3_host)(struct apple_atcphy *atcphy);
-@@ -600,6 +733,7 @@ struct atcphy_hw {
- 	int (*wait_rcal1_done)(struct apple_atcphy *atcphy, enum atcphy_mode mode);
- 	void (*configure_lane_pmafsm)(struct apple_atcphy *atcphy,
- 				      const struct atcphy_mode_configuration *mode_cfg);
-+	const struct atcphy_dp_ops *dp;
- 	int aciophy_lane_mode;
- 	int aciophy_crossbar;
- 	bool need_dp_tunables;
-@@ -618,7 +752,8 @@ struct atcphy_hw {
-  * @hw: Hardware version specific data
-  * @mode: Current PHY operating mode
-  * @swap_lanes: True if lanes must be swapped due to cable orientation
-- * @dp_link_rate: DisplayPort link rate
-+ * @dp_link_rate: DisplayPort link rate index, ATCPHY_DP_LINK_RATE_IDLE, or
-+ *               ATCPHY_DP_LINK_RATE_PENDING when cleanup is still needed
-  * @pipehandler_up: True if the PIPE mux ("pipehandler") is set to USB3 or USB4 mode
-  * @regs: Memory-mapped registers
-  * @regs.core: Core registers
-@@ -880,6 +1015,28 @@ static const struct atcphy_dp_link_rate_configuration dp_lr_config[] = {
- 	},
- };
- 
-+static const struct {
-+	u8 vclk_op_divn;
-+	bool vclk_pre_divn;
-+} dp_lr_config_t8122[] = {
-+	[ATCPHY_DP_LINK_RATE_RBR] = {
-+		.vclk_op_divn = 1,
-+		.vclk_pre_divn = false,
-+	},
-+	[ATCPHY_DP_LINK_RATE_HBR] = {
-+		.vclk_op_divn = 1,
-+		.vclk_pre_divn = false,
-+	},
-+	[ATCPHY_DP_LINK_RATE_HBR2] = {
-+		.vclk_op_divn = 1,
-+		.vclk_pre_divn = true,
-+	},
-+	[ATCPHY_DP_LINK_RATE_HBR3] = {
-+		.vclk_op_divn = 1,
-+		.vclk_pre_divn = true,
-+	},
-+};
-+
- static inline void mask32(void __iomem *reg, u32 mask, u32 set)
- {
- 	u32 value = readl(reg);
-@@ -914,6 +1071,12 @@ static inline void core_clear32(struct apple_atcphy *atcphy, u32 reg, u32 clear)
- 	core_mask32(atcphy, reg, clear, 0);
- }
- 
-+static void __iomem *atcphy_lane_reg(struct apple_atcphy *atcphy,
-+				  unsigned int lane, u32 lane0_reg)
-+{
-+	return atcphy->regs.core + lane0_reg + lane * (LN1_AUSPMA_RX_TOP - LN0_AUSPMA_RX_TOP);
-+}
-+
- static const struct atcphy_mode_configuration *atcphy_get_mode_config(struct apple_atcphy *atcphy,
- 								      enum atcphy_mode mode)
- {
-@@ -1376,7 +1539,391 @@ static void atcphy_configure_lanes(struct apple_atcphy *atcphy, enum atcphy_mode
- 
- }
- 
--static void atcphy_enable_dp_aux(struct apple_atcphy *atcphy)
-+static int atcphy_dp_poll(struct apple_atcphy *atcphy, u32 reg, u32 mask, u32 expected)
-+{
-+	u32 value;
-+	int ret;
-+
-+	lockdep_assert_held(&atcphy->lock);
-+	ret = readl_poll_timeout_atomic(atcphy->regs.core + reg, value,
-+					(value & mask) == expected, 1, 1000);
-+	if (ret)
-+		dev_err(atcphy->dev, "DP timeout reg=%#x mask=%#x want=%#x got=%#x\n",
-+			reg, mask, expected, value);
-+	return ret;
-+}
-+
-+static int atcphy_auspll_set_command(struct apple_atcphy *atcphy, u32 command, bool request)
-+{
-+	core_mask32(atcphy, AUSPLL_APB_CMD_OVERRIDE,
-+		    AUSPLL_APB_CMD_OVERRIDE_REQ | AUSPLL_APB_CMD_OVERRIDE_CMD |
-+		    AUSPLL_APB_CMD_OVERRIDE_UNK28,
-+		    FIELD_PREP(AUSPLL_APB_CMD_OVERRIDE_CMD, command) |
-+		    AUSPLL_APB_CMD_OVERRIDE_UNK28 | (request ? AUSPLL_APB_CMD_OVERRIDE_REQ : 0));
-+	return atcphy_dp_poll(atcphy, AUSPLL_APB_CMD_OVERRIDE, AUSPLL_APB_CMD_OVERRIDE_ACK,
-+			     request ? AUSPLL_APB_CMD_OVERRIDE_ACK : 0);
-+}
-+
-+static int atcphy_dp_start_pll_t8122(struct apple_atcphy *atcphy,
-+				  enum atcphy_dp_link_rate lr)
-+{
-+	const struct atcphy_dp_link_rate_configuration *cfg = &dp_lr_config[lr];
-+	int ret;
-+
-+	core_clear32(atcphy, AUSPLL_FREQ_CFG_T8122, AUSPLL_FREQ_REFCLK);
-+	core_mask32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0,
-+		    DPTX_PCLK1_SELECT | DPTX_PCLK2_SELECT | DPRX_PCLK_SELECT,
-+		    FIELD_PREP(DPTX_PCLK1_SELECT, 1) | FIELD_PREP(DPTX_PCLK2_SELECT, 1) |
-+		    FIELD_PREP(DPRX_PCLK_SELECT, 1));
-+	core_mask32(atcphy, AUSPLL_FREQ_DESC_A, U32_MAX,
-+		    FIELD_PREP(AUSPLL_FD_FREQ_COUNT_TARGET, cfg->freqinit_count_target) |
-+		    FIELD_PREP(AUSPLL_FD_KI_MAN, 8) | FIELD_PREP(AUSPLL_FD_KI_EXP, 3) |
-+		    FIELD_PREP(AUSPLL_FD_KP_MAN, 8) | FIELD_PREP(AUSPLL_FD_KP_EXP, 7));
-+	core_mask32(atcphy, AUSPLL_FREQ_DESC_B, U32_MAX,
-+		    FIELD_PREP(AUSPLL_FD_FBDIVN_FRAC_DEN, cfg->fbdivn_frac_den) |
-+		    FIELD_PREP(AUSPLL_FD_FBDIVN_FRAC_NUM, cfg->fbdivn_frac_num));
-+	core_mask32(atcphy, AUSPLL_FREQ_DESC_C, U32_MAX,
-+		    FIELD_PREP(AUSPLL_FD_PCLK_DIV_SEL, cfg->pclk_div_sel) |
-+		    FIELD_PREP(AUSPLL_FD_LFSDM_DIV, 1) |
-+		    FIELD_PREP(AUSPLL_FD_LFCLK_CTRL, cfg->lfclk_ctrl) |
-+		    FIELD_PREP(AUSPLL_FD_VCLK_OP_DIVN, dp_lr_config_t8122[lr].vclk_op_divn) |
-+		    (dp_lr_config_t8122[lr].vclk_pre_divn ? AUSPLL_FD_VCLK_PRE_DIVN : 0));
-+	core_mask32(atcphy, AUSPLL_CLKOUT_DIV, AUSPLL_CLKOUT_PLLA_REFBUFCLK_DI,
-+		    FIELD_PREP(AUSPLL_CLKOUT_PLLA_REFBUFCLK_DI, 7));
-+	core_set32(atcphy, AUSPLL_BGR_T8122, AUSPLL_BGR_CTRL_AVAIL);
-+	core_set32(atcphy, AUSPLL_CLKOUT_MASTER, AUSPLL_CLKOUT_MASTER_PCLK_DRVR_EN_T8122);
-+	ret = atcphy_auspll_set_command(atcphy, 0, true);
-+	if (ret)
-+		return ret;
-+	ret = atcphy_dp_poll(atcphy, ACIOPHY_DP_PCLK_STAT_T8122, ACIOPHY_AUSPLL_LOCK,
-+			     ACIOPHY_AUSPLL_LOCK);
-+	if (ret)
-+		return ret;
-+	return atcphy_auspll_set_command(atcphy, 0x2800, false);
-+}
-+
-+static void atcphy_dp_power_on_tx_t8122(struct apple_atcphy *atcphy, unsigned int lane)
-+{
-+	core_set32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_SLEEP_SMALL(lane));
-+	core_set32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_SLEEP_SMALL_OV(lane));
-+	udelay(1);
-+	core_set32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_SLEEP_BIG(lane));
-+	core_set32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_SLEEP_BIG_OV(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_CLAMP(lane));
-+	core_set32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_CLAMP_OV(lane));
-+	udelay(1);
-+}
-+
-+static void atcphy_dp_power_on_rxtx_t8122(struct apple_atcphy *atcphy, unsigned int lane)
-+{
-+	core_set32(atcphy, ACIOPHY_CFG1, ACIOPHY_RXTX_SLEEP_SMALL(lane));
-+	core_set32(atcphy, ACIOPHY_CFG1, ACIOPHY_RXTX_SLEEP_SMALL_OV(lane));
-+	udelay(1);
-+	core_set32(atcphy, ACIOPHY_CFG1, ACIOPHY_RXTX_SLEEP_BIG(lane));
-+	core_set32(atcphy, ACIOPHY_CFG1, ACIOPHY_RXTX_SLEEP_BIG_OV(lane));
-+	udelay(1);
-+	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_SLEEP_SMALL(lane));
-+	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_SLEEP_SMALL_OV(lane));
-+	udelay(1);
-+	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_SLEEP_BIG(lane));
-+	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_SLEEP_BIG_OV(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_CLAMP(lane));
-+	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_CLAMP_OV(lane));
-+	udelay(1);
-+}
-+
-+static void atcphy_dp_configure_tx_t8122(struct apple_atcphy *atcphy, unsigned int lane,
-+					 const struct atcphy_dp_link_rate_configuration *cfg)
-+{
-+	void __iomem *shm = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_TX_SHM);
-+	void __iomem *top = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_TX_TOP);
-+
-+	atcphy_dp_power_on_tx_t8122(atcphy, lane);
-+	/* Fixed LDO initialization value, not a calibration tunable. */
-+	mask32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, U32_MAX, 0x0aafb800);
-+	udelay(1);
-+	set32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_EN_SMALL);
-+	udelay(1);
-+	set32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_EN_BIG);
-+	udelay(1);
-+	mask32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_VREG_ADJ,
-+	       FIELD_PREP(LN_LDOCLK1_VREG_ADJ, 12));
-+	udelay(1);
-+	clear32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_VREF_FILTER_BOOST);
-+	udelay(1);
-+	set32(top + LN_AUSPMA_TX_TOP_EQ17, LN_EQ_AUTO_CTRL_DP);
-+	clear32(top + LN_AUSPMA_TX_TOP_EQ1, LN_EQ_SWING | LN_EQ_SWING_LSB);
-+	set32(top + LN_AUSPMA_TX_TOP_EQ18, LN_EQ_SWING_OV);
-+	mask32(top + LN_AUSPMA_TX_TOP_EQ17, LN_EQ_DEEMPH_FIELDS, 1);
-+	if (cfg->txa_ldoclk_bypass) {
-+		set32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_BYPASS_SMALL);
-+		udelay(1);
-+		set32(shm + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_BYPASS_BIG);
-+		udelay(1);
-+	}
-+	mask32(shm + LN_AUSPMA_TX_SHM_MAIN2,
-+	       LN_MAIN2_BYTECLK_SYNC_SEL | LN_MAIN2_BYTECLK_SYNC_SEL_OV,
-+	       LN_MAIN2_BYTECLK_SYNC_SEL_OV);
-+	set32(shm + LN_AUSPMA_TX_SHM_MAIN2, LN_MAIN2_BYTECLK_SYNC_EN | LN_MAIN2_BYTECLK_SYNC_EN_OV);
-+	mask32(shm + LN_AUSPMA_TX_SHM_MAIN4, LN_MAIN4_DIV2_4_EN | LN_MAIN4_DIV2_4_EN_OV,
-+	       FIELD_PREP(LN_MAIN4_DIV2_4_EN, cfg->txa_div2_en) | LN_MAIN4_DIV2_4_EN_OV);
-+	set32(shm + LN_AUSPMA_TX_SHM_MAIN5, LN_MAIN5_CLK_EN | LN_MAIN5_CLK_EN_OV);
-+	mask32(shm + LN_AUSPMA_TX_SHM_CLKMON1, LN_CLKMON1_HIZ | LN_CLKMON1_HIZ_OV,
-+	       LN_CLKMON1_HIZ_OV);
-+}
-+
-+static void atcphy_dp_configure_rxtx_t8122(struct apple_atcphy *atcphy, unsigned int lane,
-+					   const struct atcphy_dp_link_rate_configuration *cfg)
-+{
-+	void __iomem *shm = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_SHM);
-+	void __iomem *top = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_TOP);
-+
-+	set32(top + LN_AUSPMA_RX_TOP_TXMODE, LN_RX_TXMODE);
-+	set32(top + LN_AUSPMA_RX_TOP_DCO1, LN_DCO1_LPBKIN_RECOVERED_DATA);
-+	mask32(shm + LN_AUSPMA_RX_SHM_SAVOS161, LN_SAVOS161_RXTERM_EN | LN_SAVOS161_RXTERM_EN_OV,
-+	       LN_SAVOS161_RXTERM_EN_OV);
-+	mask32(shm + LN_AUSPMA_RX_SHM_TERM191, LN_TERM191_TX_TEST_EN | LN_TERM191_TX_TEST_EN_OV,
-+	       LN_TERM191_TX_TEST_EN_OV);
-+	mask32(shm + LN_AUSPMA_RX_SHM_DFE121, LN_DFE121_TX_PBIAS_EN | LN_DFE121_TX_PBIAS_EN_OV,
-+	       LN_DFE121_TX_PBIAS_EN_OV);
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF221, LN_VREF221_INIT_FIELDS, 0x121180);
-+	mask32(shm + LN_AUSPMA_RX_SHM_DFE101, LN_DFE101_DTVREG_ADJUST_FIELDS, 0xb800);
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF231,
-+	       LN_VREF231_BOOST_CTRL | LN_VREF231_BOOST_CTRL_OV,
-+	       LN_VREF231_BOOST_CTRL_OV);
-+	clear32(shm + LN_AUSPMA_RX_SHM_VREG1, LN_VREG1_DTVREG_POWER_MODE);
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF221, LN_VREF221_BIAS_FIELDS, 0xc000);
-+	udelay(1);
-+	atcphy_dp_power_on_rxtx_t8122(atcphy, lane);
-+	set32(shm + LN_AUSPMA_RX_SHM_DFE121, LN_DFE121_TX_BYTECLK_SYNC_EN);
-+	mask32(top + LN_AUSPMA_RX_TOP_AFE1, LN_AFE1_DIV20_RESET_N | LN_AFE1_DIV20_RESET_N_OV,
-+	       LN_AFE1_DIV20_RESET_N_OV);
-+	udelay(1);
-+	set32(top + LN_AUSPMA_RX_TOP_AFE1, LN_AFE1_DIV20_RESET_N);
-+	mask32(shm + LN_AUSPMA_RX_SHM_DFE121,
-+	       LN_DFE121_TX_BYTECLK_SYNC_CLR | LN_DFE121_TX_BYTECLK_SYNC_CLR_OV,
-+	       LN_DFE121_TX_BYTECLK_SYNC_CLR_OV);
-+	udelay(1);
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF221, LN_VREF221_EN | LN_VREF221_FILTER_ADJUST,
-+	       LN_VREF221_EN | FIELD_PREP(LN_VREF221_FILTER_ADJUST, 1));
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF231, LN_VREF231_BOOST_CTRL,
-+	       FIELD_PREP(LN_VREF231_BOOST_CTRL, 1));
-+	udelay(1);
-+	clear32(shm + LN_AUSPMA_RX_SHM_VREF221, LN_VREF221_FILTER_ADJUST);
-+	udelay(1);
-+	set32(shm + LN_AUSPMA_RX_SHM_DFE111,
-+	      LN_DFE111_DTVREG_SMALL_EN | LN_DFE111_DTVREG_SMALL_EN_OV);
-+	udelay(1);
-+	set32(shm + LN_AUSPMA_RX_SHM_DFE111, LN_DFE111_DTVREG_BIG_EN | LN_DFE111_DTVREG_BIG_EN_OV);
-+	udelay(1);
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF231, LN_VREF231_BOOST_CTRL,
-+	       FIELD_PREP(LN_VREF231_BOOST_CTRL, 3));
-+	udelay(1);
-+	mask32(shm + LN_AUSPMA_RX_SHM_VREF231, LN_VREF231_BOOST_CTRL,
-+	       FIELD_PREP(LN_VREF231_BOOST_CTRL, 2));
-+	udelay(1);
-+	clear32(shm + LN_AUSPMA_RX_SHM_VREF231, LN_VREF231_BOOST_CTRL);
-+	udelay(1);
-+	set32(shm + LN_AUSPMA_RX_SHM_TERM191, LN_TERM191_TX_EN | LN_TERM191_TX_EN_OV);
-+	udelay(1);
-+	mask32(shm + LN_AUSPMA_RX_SHM_DFE121, LN_DFE121_TX_HRCLK_SEL | LN_DFE121_TX_HRCLK_SEL_OV,
-+	       LN_DFE121_TX_HRCLK_SEL_OV);
-+	clear32(top + LN_AUSPMA_RX_TOP_EQ1, LN_EQ_SWING | LN_EQ_SWING_LSB);
-+	set32(top + LN_AUSPMA_RX_TOP_EQ18, LN_EQ_SWING_OV);
-+	mask32(top + LN_AUSPMA_RX_TOP_EQ17, LN_EQ_DEEMPH_FIELDS, 0x1f81);
-+	mask32(shm + LN_AUSPMA_RX_SHM_TERM191, LN_TERM191_TX_DIV2_EN | LN_TERM191_TX_DIV2_EN_OV,
-+	       FIELD_PREP(LN_TERM191_TX_DIV2_EN, cfg->txa_div2_en) | LN_TERM191_TX_DIV2_EN_OV);
-+	mask32(shm + LN_AUSPMA_RX_SHM_TERM191, LN_TERM191_TX_DIV2_RST | LN_TERM191_TX_DIV2_RST_OV,
-+	       LN_TERM191_TX_DIV2_RST_OV);
-+	udelay(1);
-+	set32(shm + LN_AUSPMA_RX_SHM_CTLE2, LN_CTLE2_TX_CLK_EN | LN_CTLE2_TX_CLK_EN_OV);
-+	udelay(1);
-+}
-+
-+static void atcphy_dp_stop_lane_t8122(struct apple_atcphy *atcphy, unsigned int lane)
-+{
-+	void __iomem *tx = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_TX_SHM);
-+	void __iomem *rx = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_SHM);
-+	void __iomem *top = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_TOP);
-+
-+	set32(tx + LN_AUSPMA_TX_SHM_CLKMON1, LN_CLKMON1_HIZ | LN_CLKMON1_HIZ_OV);
-+	mask32(tx + LN_AUSPMA_TX_SHM_MAIN5, LN_MAIN5_CLK_EN | LN_MAIN5_CLK_EN_OV,
-+	       LN_MAIN5_CLK_EN_OV);
-+	mask32(tx + LN_AUSPMA_TX_SHM_MAIN2, LN_MAIN2_BYTECLK_SYNC_EN | LN_MAIN2_BYTECLK_SYNC_EN_OV,
-+	       LN_MAIN2_BYTECLK_SYNC_EN_OV);
-+	udelay(1);
-+	clear32(tx + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_BYPASS_SMALL);
-+	udelay(1);
-+	clear32(tx + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_BYPASS_BIG);
-+	udelay(1);
-+	clear32(tx + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_EN_BIG);
-+	udelay(1);
-+	clear32(tx + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_EN_SMALL);
-+	udelay(1);
-+	clear32(tx + LN_AUSPMA_TX_SHM_LDOCLK1, LN_LDOCLK1_VREF_EN);
-+	core_set32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_CLAMP(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_SLEEP_BIG(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_SLEEP_CTRL_T8122, ACIOPHY_TX_SLEEP_SMALL(lane));
-+	udelay(1);
-+
-+	mask32(rx + LN_AUSPMA_RX_SHM_CTLE2, LN_CTLE2_TX_CLK_EN | LN_CTLE2_TX_CLK_EN_OV,
-+	       LN_CTLE2_TX_CLK_EN_OV);
-+	udelay(1);
-+	set32(rx + LN_AUSPMA_RX_SHM_TERM191, LN_TERM191_TX_DIV2_RST | LN_TERM191_TX_DIV2_RST_OV);
-+	udelay(1);
-+	mask32(rx + LN_AUSPMA_RX_SHM_TERM191, LN_TERM191_TX_EN | LN_TERM191_TX_EN_OV,
-+	       LN_TERM191_TX_EN_OV);
-+	mask32(rx + LN_AUSPMA_RX_SHM_DFE111, LN_DFE111_DTVREG_BIG_EN | LN_DFE111_DTVREG_BIG_EN_OV,
-+	       LN_DFE111_DTVREG_BIG_EN_OV);
-+	udelay(1);
-+	mask32(rx + LN_AUSPMA_RX_SHM_DFE111,
-+	       LN_DFE111_DTVREG_SMALL_EN | LN_DFE111_DTVREG_SMALL_EN_OV,
-+	       LN_DFE111_DTVREG_SMALL_EN_OV);
-+	udelay(1);
-+	clear32(rx + LN_AUSPMA_RX_SHM_VREF221, LN_VREF221_EN);
-+	udelay(1);
-+	set32(rx + LN_AUSPMA_RX_SHM_DFE121,
-+	      LN_DFE121_TX_BYTECLK_SYNC_CLR | LN_DFE121_TX_BYTECLK_SYNC_CLR_OV);
-+	mask32(top + LN_AUSPMA_RX_TOP_AFE1, LN_AFE1_DIV20_RESET_N | LN_AFE1_DIV20_RESET_N_OV,
-+	       LN_AFE1_DIV20_RESET_N_OV);
-+	clear32(rx + LN_AUSPMA_RX_SHM_DFE121, LN_DFE121_TX_BYTECLK_SYNC_EN);
-+	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_CLAMP(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_SLEEP_BIG(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_CFG0, ACIOPHY_RX_SLEEP_SMALL(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_CFG1, ACIOPHY_RXTX_SLEEP_BIG(lane));
-+	udelay(1);
-+	core_clear32(atcphy, ACIOPHY_CFG1, ACIOPHY_RXTX_SLEEP_SMALL(lane));
-+	udelay(1);
-+}
-+
-+static int atcphy_dp_start_link_t8122(struct apple_atcphy *atcphy, u8 pmas,
-+				   enum atcphy_dp_link_rate lr)
-+{
-+	const struct atcphy_dp_link_rate_configuration *cfg = &dp_lr_config[lr];
-+	int ret;
-+
-+	lockdep_assert_held(&atcphy->lock);
-+	if (!pmas || pmas > 3)
-+		return -EINVAL;
-+	ret = atcphy_dp_start_pll_t8122(atcphy, lr);
-+	if (ret)
-+		return ret;
-+	/* Set both feedback overrides before releasing the shared lane reset. */
-+	for (unsigned int lane = 0; lane < 2; lane++) {
-+		void __iomem *shm = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_SHM);
-+
-+		if (pmas & BIT(lane))
-+			mask32(shm + LN_AUSPMA_RX_SHM_DFE101,
-+			       LN_DFE101_DFEH1FB_EN | LN_DFE101_DFEH1FB_EN_OV,
-+			       LN_DFE101_DFEH1FB_EN_OV);
-+	}
-+	core_set32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0,
-+		   DPTXPHY_PMA_LANE_RESET_N | DPTXPHY_PMA_LANE_RESET_N_OV);
-+	udelay(1);
-+	for (unsigned int lane = 0; lane < 2; lane++) {
-+		if (!(pmas & BIT(lane)))
-+			continue;
-+		atcphy_dp_configure_tx_t8122(atcphy, lane, cfg);
-+		atcphy_dp_configure_rxtx_t8122(atcphy, lane, cfg);
-+	}
-+	core_clear32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0, DP_PMA_BYTECLK_RESET);
-+	return 0;
-+}
-+
-+static int atcphy_dp_stop_link_t8122(struct apple_atcphy *atcphy)
-+{
-+	const struct atcphy_mode_configuration *cfg;
-+	int ret;
-+
-+	lockdep_assert_held(&atcphy->lock);
-+	if (atcphy->dp_link_rate == ATCPHY_DP_LINK_RATE_IDLE)
-+		return 0;
-+	cfg = atcphy_get_mode_config(atcphy, atcphy->mode);
-+	atcphy->dp_link_rate = ATCPHY_DP_LINK_RATE_PENDING;
-+	core_set32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0, DP_PMA_BYTECLK_RESET);
-+	for (unsigned int lane = 0; lane < 2; lane++) {
-+		if (cfg->dp_lane[lane])
-+			atcphy_dp_stop_lane_t8122(atcphy, lane);
-+	}
-+	core_mask32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0,
-+		    DPTXPHY_PMA_LANE_RESET_N | DPTXPHY_PMA_LANE_RESET_N_OV,
-+		    DPTXPHY_PMA_LANE_RESET_N_OV);
-+	ret = atcphy_auspll_set_command(atcphy, 0, true);
-+	if (ret)
-+		return ret;
-+	ret = atcphy_auspll_set_command(atcphy, 3, false);
-+	if (ret)
-+		return ret;
-+	ret = atcphy_dp_poll(atcphy, ACIOPHY_DP_PCLK_STAT_T8122, ACIOPHY_AUSPLL_LOCK, 0);
-+	if (ret)
-+		return ret;
-+	core_clear32(atcphy, AUSPLL_CLKOUT_MASTER, AUSPLL_CLKOUT_MASTER_PCLK_DRVR_EN_T8122);
-+	atcphy->dp_link_rate = ATCPHY_DP_LINK_RATE_IDLE;
-+	return 0;
-+}
-+
-+static int atcphy_dp_set_rate_t8122(struct apple_atcphy *atcphy, enum atcphy_dp_link_rate lr)
-+{
-+	const struct atcphy_mode_configuration *cfg;
-+	u8 pmas;
-+	int ret;
-+
-+	guard(mutex)(&atcphy->lock);
-+	if (!atcphy_modes[atcphy->mode].enable_dp_aux)
-+		return -ENOLINK;
-+	cfg = atcphy_get_mode_config(atcphy, atcphy->mode);
-+	pmas = cfg->dp_lane[0] | (cfg->dp_lane[1] << 1);
-+	if (!pmas)
-+		return -EINVAL;
-+	if (atcphy->dp_link_rate == lr)
-+		return 0;
-+	ret = atcphy_dp_stop_link_t8122(atcphy);
-+	if (ret)
-+		return ret;
-+	atcphy->dp_link_rate = ATCPHY_DP_LINK_RATE_PENDING;
-+	ret = atcphy_dp_start_link_t8122(atcphy, pmas, lr);
-+	if (ret) {
-+		atcphy_dp_stop_link_t8122(atcphy);
-+		return ret;
-+	}
-+	atcphy->dp_link_rate = lr;
-+	return 0;
-+}
-+
-+static void atcphy_enable_dp_aux_t8122(struct apple_atcphy *atcphy)
-+{
-+	core_set32(atcphy, AUX_SHM_PWR, AUX_SLEEP_SML_OV | AUX_SLEEP_SML);
-+	udelay(1);
-+	core_set32(atcphy, AUX_SHM_PWR, AUX_SLEEP_BIG_OV | AUX_SLEEP_BIG);
-+	udelay(1);
-+	core_mask32(atcphy, AUX_SHM_PWR, AUX_CLAMP_OV | AUX_CLAMP,
-+		    AUX_CLAMP_OV);
-+	udelay(1);
-+	core_clear32(atcphy, AUX_TOP_CTRL, AUX_TOP_PWRDN);
-+	udelay(1);
-+	atcphy->dp_link_rate = ATCPHY_DP_LINK_RATE_IDLE;
-+}
-+
-+static void atcphy_disable_dp_aux_t8122(struct apple_atcphy *atcphy)
-+{
-+	core_set32(atcphy, AUX_TOP_CTRL, AUX_TOP_PWRDN);
-+	udelay(1);
-+	core_set32(atcphy, AUX_SHM_PWR, AUX_CLAMP);
-+	udelay(1);
-+	core_clear32(atcphy, AUX_SHM_PWR, AUX_SLEEP_BIG);
-+	udelay(1);
-+	core_clear32(atcphy, AUX_SHM_PWR, AUX_SLEEP_SML);
-+	udelay(1);
-+}
-+
-+static void atcphy_enable_dp_aux_t8103(struct apple_atcphy *atcphy)
- {
- 	core_set32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0, DPTXPHY_PMA_LANE_RESET_N);
- 	core_set32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0, DPTXPHY_PMA_LANE_RESET_N_OV);
-@@ -1425,10 +1972,10 @@ static void atcphy_enable_dp_aux(struct apple_atcphy *atcphy)
- 	mask32(atcphy->regs.lpdptx + LPDPTX_AUX_CFG_BLK_AUX_MARGIN, LPDPTX_AUX_MARGIN_RCAL_TXSWING,
- 	       FIELD_PREP(LPDPTX_AUX_MARGIN_RCAL_TXSWING, 12));
- 
--	atcphy->dp_link_rate = -1;
-+	atcphy->dp_link_rate = ATCPHY_DP_LINK_RATE_IDLE;
- }
- 
--static void atcphy_disable_dp_aux(struct apple_atcphy *atcphy)
-+static void atcphy_disable_dp_aux_t8103(struct apple_atcphy *atcphy)
- {
- 	set32(atcphy->regs.lpdptx + LPDPTX_AUX_CONTROL, LPDPTX_AUX_PWN_DOWN);
- 	set32(atcphy->regs.lpdptx + LPDPTX_AUX_CFG_BLK_AUX_CTRL, LPDPTX_BLK_AUX_CTRL_PWRDN);
-@@ -1444,6 +1991,20 @@ static void atcphy_disable_dp_aux(struct apple_atcphy *atcphy)
- 	core_clear32(atcphy, ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0, DPTX_PCLK2_ENABLE);
- }
- 
-+static void atcphy_dp_enable_aux(struct apple_atcphy *atcphy)
-+{
-+	if (atcphy->hw->dp)
-+		atcphy->hw->dp->enable_aux(atcphy);
-+	else
-+		dev_warn_once(atcphy->dev, "DisplayPort AUX initialization is not implemented\n");
-+}
-+
-+static void atcphy_dp_disable_aux(struct apple_atcphy *atcphy)
-+{
-+	if (atcphy->hw->dp)
-+		atcphy->hw->dp->disable_aux(atcphy);
-+}
-+
- static int atcphy_dp_configure_lane(struct apple_atcphy *atcphy, enum atcphy_lane lane,
- 				    const struct atcphy_dp_link_rate_configuration *cfg)
- {
-@@ -1452,20 +2013,11 @@ static int atcphy_dp_configure_lane(struct apple_atcphy *atcphy, enum atcphy_lan
- 
- 	lockdep_assert_held(&atcphy->lock);
- 
--	switch (lane) {
--	case APPLE_ATCPHY_LANE_0:
--		tx_shm = atcphy->regs.core + LN0_AUSPMA_TX_SHM;
--		rx_shm = atcphy->regs.core + LN0_AUSPMA_RX_SHM;
--		rx_top = atcphy->regs.core + LN0_AUSPMA_RX_TOP;
--		break;
--	case APPLE_ATCPHY_LANE_1:
--		tx_shm = atcphy->regs.core + LN1_AUSPMA_TX_SHM;
--		rx_shm = atcphy->regs.core + LN1_AUSPMA_RX_SHM;
--		rx_top = atcphy->regs.core + LN1_AUSPMA_RX_TOP;
--		break;
--	default:
-+	if ((unsigned int)lane > APPLE_ATCPHY_LANE_1)
- 		return -EINVAL;
--	}
-+	tx_shm = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_TX_SHM);
-+	rx_shm = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_SHM);
-+	rx_top = atcphy_lane_reg(atcphy, lane, LN0_AUSPMA_RX_TOP);
- 
- 	set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_LDOCLK, LN_LDOCLK_EN_SML);
- 	set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_LDOCLK, LN_LDOCLK_EN_SML_OV);
-@@ -1804,7 +2356,7 @@ static int atcphy_power_off(struct apple_atcphy *atcphy)
- 	u32 reg;
- 	int ret;
- 
--	atcphy_disable_dp_aux(atcphy);
-+	atcphy_dp_disable_aux(atcphy);
- 
- 	/* Enable all reset lines */
- 	core_clear32(atcphy, ATCPHY_POWER_CTRL, ATCPHY_POWER_PHY_RESET_N);
-@@ -1931,10 +2483,8 @@ static void atcphy_configure_post_tunable_t8103(struct apple_atcphy *atcphy, enu
- 	udelay(10);
- }
- 
--static void atcphy_configure_post_tunable_t8122(struct apple_atcphy *atcphy, enum atcphy_mode mode)
-+static void atcphy_power_on_common_t8122(struct apple_atcphy *atcphy)
- {
--	if (atcphy_modes[mode].pipehandler_state != ATCPHY_PIPEHANDLER_STATE_USB3)
--		return;
- 	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_CFG0_COMMON_SMALL);
- 	udelay(10);
- 	core_set32(atcphy, ACIOPHY_CFG0, ACIOPHY_CFG0_COMMON_SMALL_OV);
-@@ -1986,6 +2536,11 @@ static int atcphy_configure(struct apple_atcphy *atcphy, enum atcphy_mode mode)
- 	int ret = 0;
- 
- 	lockdep_assert_held(&atcphy->lock);
-+	if (atcphy->hw->dp && atcphy->hw->dp->stop) {
-+		ret = atcphy->hw->dp->stop(atcphy);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	if (mode == APPLE_ATCPHY_MODE_OFF) {
- 		ret = atcphy_power_off(atcphy);
-@@ -2002,7 +2557,7 @@ static int atcphy_configure(struct apple_atcphy *atcphy, enum atcphy_mode mode)
- 
- 	/* Setup AUX channel if DP altmode is requested */
- 	if (atcphy_modes[mode].enable_dp_aux)
--		atcphy_enable_dp_aux(atcphy);
-+		atcphy_dp_enable_aux(atcphy);
- 
- 	/* Enable clocks and configure lanes */
- 	if (atcphy->hw->enable_cio3pll_clk)
-@@ -2148,6 +2703,10 @@ static int atcphy_dpphy_configure(struct phy *phy, union phy_configure_opts *opt
- 		return -EINVAL;
- 
- 	if (opts->set_rate) {
-+		if (!atcphy->hw->dp) {
-+			dev_warn(atcphy->dev, "DisplayPort lane setup is not implemented\n");
-+			return -EOPNOTSUPP;
-+		}
- 		switch (opts->link_rate) {
- 		case 1620:
- 			link_rate = ATCPHY_DP_LINK_RATE_RBR;
-@@ -2162,12 +2721,18 @@ static int atcphy_dpphy_configure(struct phy *phy, union phy_configure_opts *opt
- 			link_rate = ATCPHY_DP_LINK_RATE_HBR3;
- 			break;
- 		case 0:
-+			if (atcphy->hw->dp->stop) {
-+				guard(mutex)(&atcphy->lock);
-+				return atcphy->hw->dp->stop(atcphy);
-+			}
- 			return 0;
- 		default:
- 			dev_err(atcphy->dev, "Unsupported link rate: %d\n", opts->link_rate);
- 			return -EINVAL;
- 		}
- 
-+		if (atcphy->hw->dp->set_rate)
-+			return atcphy->hw->dp->set_rate(atcphy, link_rate);
- 		return atcphy_dp_configure(atcphy, link_rate);
- 	}
- 
-@@ -2290,20 +2855,32 @@ static int atcphy_probe_rcdev(struct apple_atcphy *atcphy)
- static int atcphy_sw_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
- {
- 	struct apple_atcphy *atcphy = typec_switch_get_drvdata(sw);
-+	bool swap_lanes;
-+	int ret;
- 
- 	guard(mutex)(&atcphy->lock);
- 
- 	switch (orientation) {
- 	case TYPEC_ORIENTATION_NONE:
--		break;
-+		return 0;
- 	case TYPEC_ORIENTATION_NORMAL:
--		atcphy->swap_lanes = false;
-+		swap_lanes = false;
- 		break;
- 	case TYPEC_ORIENTATION_REVERSE:
--		atcphy->swap_lanes = true;
-+		swap_lanes = true;
- 		break;
-+	default:
-+		return -EINVAL;
- 	}
- 
-+	/* Cleanup needs the old lane configuration until shutdown succeeds. */
-+	if (swap_lanes != atcphy->swap_lanes && atcphy->hw->dp && atcphy->hw->dp->stop) {
-+		ret = atcphy->hw->dp->stop(atcphy);
-+		if (ret)
-+			return ret;
-+	}
-+	atcphy->swap_lanes = swap_lanes;
-+
- 	return 0;
- }
- 
-@@ -2545,12 +3122,26 @@ static int atcphy_probe(struct platform_device *pdev)
- 		return ret;
- 
- 	atcphy->mode = APPLE_ATCPHY_MODE_OFF;
-+	atcphy->dp_link_rate = ATCPHY_DP_LINK_RATE_IDLE;
- 	atcphy->pipehandler_up = false;
- 
- 	return atcphy_probe_finalize(atcphy);
- }
- 
-+static const struct atcphy_dp_ops atcphy_dp_ops_t8103 = {
-+	.enable_aux = atcphy_enable_dp_aux_t8103,
-+	.disable_aux = atcphy_disable_dp_aux_t8103,
-+};
-+
-+static const struct atcphy_dp_ops atcphy_dp_ops_t8122 = {
-+	.enable_aux = atcphy_enable_dp_aux_t8122,
-+	.disable_aux = atcphy_disable_dp_aux_t8122,
-+	.set_rate = atcphy_dp_set_rate_t8122,
-+	.stop = atcphy_dp_stop_link_t8122,
-+};
-+
- static const struct atcphy_hw atcphy_hw_t8103 = {
-+	.dp = &atcphy_dp_ops_t8103,
- 	.need_dp_tunables = true,
- 	.aciophy_lane_mode = ACIOPHY_LANE_MODE_T8103,
- 	.aciophy_crossbar = ACIOPHY_CROSSBAR_T8103,
-@@ -2561,6 +3152,7 @@ static const struct atcphy_hw atcphy_hw_t8103 = {
- };
- 
- static const struct atcphy_hw atcphy_hw_t8122 = {
-+	.dp = &atcphy_dp_ops_t8122,
- 	.need_dp_tunables = false,
- 	.aciophy_lane_mode = ACIOPHY_LANE_MODE_T8122,
- 	.aciophy_crossbar = ACIOPHY_CROSSBAR_T8122,
-
--- 
-2.56.1
-
+Am 22.11.26 um 08:58 schrieb Artem Novak:
+> The DMA preparation path shortens the final scatterlist entry
+> to reserve space for FIFO drain words.
+>
+> If DMA mapping or descriptor preparation fails, the request
+> falls back to PIO, but the shortened scatterlist entry is left
+> unchanged. As a result, the PIO transfer may omit part of the
+> data, potentially causing corrupted or incomplete I/O.
+>
+> Restore the entry's original length and clear drain_words
+> before returning to the fallback path.
+>
+> This issue was found while investigating a kernel panic on
+> my Raspberry Pi server.
+>
+> Fixes: 660fc733bd74 ("mmc: bcm2835: Add new driver for the sdhost controller.")
+> Signed-off-by: Artem Novak <artem122novak@gmail.com>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
