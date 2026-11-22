@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C20606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919A6606A331
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 14:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cJZzZd6J;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=N66DNJa8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K68r5zOT;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Pf3fP81J
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=UT6ps64F668nova2kLKPiXUITTrjy6DxQnfrymQobSo=; b=cJZzZd6JMNyVL0jBCXrTAJqHcG
-	KmCDgRKxWBTn+vgkcCCvL/BuKjI+Gpilyw6dacpDXxQ6O3uuwiMuvXZCFGFZ+gA/jlFerMQj84zvn
-	8LhSrABZSsFJz8L9mx+kInC0i59dCzqeJ6gfhJcA5h97SgwvHWnWw9HRtUouQ0hr3Y8nbojxFxHri
-	mt3c0TnoXDBS6r8budVWdjToCe8DF7XdzqHf0BgQX8rCdjdh7roDrX7fmB0gjsN19Ew2vX8UNOkT3
-	a+Za7v+cfVgClV2ctp0//nOJ//4K0/KqCSFvBHxlQn7Jh6hFA4zB099yXjWs+aa0C4N6baSmcGvm3
-	rQtmYqBw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=utK4M7GE/JevjSpCvIwudXzUWEsfoW3c/fssQAD0hxo=; b=K68r5zOTx/ruoB
+	tqdTZJh0OWH3HAYeV7LD6Ae2aCGWk+ldRknsVPuRwmImaPeDIhrenTTDYI5vsJUjgb8SSL50lH2O0
+	V7T9xQWlJecQHfsczlNGoUXMSGDAOxq9fL6rC79GO9ixyQzziuMl2cNeKidlbLwRC6W9RUCSOsVxy
+	Rp6z6CYVwaQj2Pn8Wkc3EjqtePpdigbHIHw/I7Unz4VD4kBJF2YNK9FbSI3OP63nFZyt8+7V5YSel
+	QLMM+hNNDwOptLRNdozmCGzOe1dHFSp+fK18H9xEGztjDxbHVA4uMrV/G1zWuPelME9MWAAEM1G56
+	zoyWIU+FBwAHlaeE1lcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV8t3-00000001DnX-17nn;
-	Sun, 22 Nov 2026 14:49:50 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xV8t8-00000001Dp9-3lG6;
+	Sun, 22 Nov 2026 14:49:54 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV8sz-00000001Dm0-1aDy
+	id 1xV8t0-00000001DmK-3SlL
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 14:49:47 +0000
+	Sun, 22 Nov 2026 14:49:48 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id A423D4E416C9;
-	Sun, 22 Nov 2026 14:49:40 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 68700C6223F;
+	Sun, 22 Nov 2026 14:49:50 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6B10D60512;
-	Sun, 22 Nov 2026 14:49:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2790711E60230;
-	Sun, 22 Nov 2026 15:49:28 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CC9A460512;
+	Sun, 22 Nov 2026 14:49:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 58F5711E623B4;
+	Sun, 22 Nov 2026 15:49:39 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795358978; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=UT6ps64F668nova2kLKPiXUITTrjy6DxQnfrymQobSo=;
-	b=N66DNJa8YjNzKnWHnzM692QDi5itNkxnx6Ayb++iXjPUDAcogJMw+rMrENYvBOWTlFBbom
-	mTGXMFnyfNjZzPZSpCZ9BRLDj/vwGTBAsEjw3+M+m0C8MgwD1KQSxrMhgsQsQvBAyCYblY
-	P5/96JdenISrIOSaThFIZmtkt08J1BlT9/Drbqd8rA6YHNh5Jp8rfh4JrL2cn0kPUJzov5
-	5dIqnVzbbHCwzdGIjAsvUuyzm4v7LomRT5Vw7XoROt3MEDB43GesDqX0O5ybkXMHyKY3tw
-	+95lW2RqUXKwLe+eEfIrFCN0/EMgknyHpCFl1qbfn80sxNR0ethuhWhqjal7tA==
+	t=1795358982; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=utK4M7GE/JevjSpCvIwudXzUWEsfoW3c/fssQAD0hxo=;
+	b=Pf3fP81JIlkMcHt1EYgMaHvhSnQSV9lrWuFWvJMp7dZTp0VfwGfllF4N9Hj79xMB6L2zN1
+	SMNsmjRvsaWV503SF2L2pGr+0HHSMdm9nFztbXy0R+glKThJ3cpRr9LeNxaF07M/Rxiagm
+	xABKvek67OsW7AwDZZyrvbQ4HhvTSvd8DtshhFpaPk6KZafsikDiZSyk5MPPtY5akAL3dx
+	w7lBD278dFg11+ppOGQKTWF4hTk/Xwh2yH6jQJsAG8gTJvW5PmBdrt9y8s3YyxrHLMEYPf
+	fISLAOhRSL8tUxkUfMeVEPPxtVr6jI+zIWv8uzlBmHFmaRjSWNBTlSLsx/l1/A==
 From: Maxime Chevallier <maxime.chevallier@bootlin.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Jakub Kicinski <kuba@kernel.org>,
@@ -68,17 +68,19 @@ Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev
-Subject: [PATCH net-next 0/3] net: stmmac: dwmac-sun8i: enable Flow Control
-Date: Sun, 22 Nov 2026 15:49:22 +0100
-Message-ID: <20261122144926.284857-1-maxime.chevallier@bootlin.com>
+Subject: [PATCH net-next 1/3] net: stmmac: dwmac-sun8i: allow controlling TX and RX flow control separately
+Date: Sun, 22 Nov 2026 15:49:23 +0100
+Message-ID: <20261122144926.284857-2-maxime.chevallier@bootlin.com>
 X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261122144926.284857-1-maxime.chevallier@bootlin.com>
+References: <20261122144926.284857-1-maxime.chevallier@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_064945_554621_DA85C715 
-X-CRM114-Status: GOOD (  10.11  )
+X-CRM114-CacheID: sfid-20261122_064947_005478_46D88560 
+X-CRM114-Status: GOOD (  10.37  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,56 +92,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-While running the "ethtool -t" selftests on H2+ (orangepi zero), the
-Flow Control selftests consistently fails.
+Currently, the sun8i flow control setup only looks at FLOW_AUTO (which
+is FLOW_RX | FLOW_TX), and enables RX/TX based on that.
 
-I originally blamed that on the fact that the board was connected to a
-peer that didn't support Pause and that we didn't negotiate Pause at all.
+Allow enabling RX/TX flow control directions separately.
 
-The ethtool selftest are sensitive to what the Peer advertises even
-though this is a full loopback test, but it is what it is :(
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Since then, the orangepi zero I'm testing dwmac-sun8i on has been wired to
-a proper peer, and the selftest still fails. This selftest sends tons of
-frames in loopback and checks that Pause frames are generated, and
-failing it means no pause frames were sent by the MAC.
-
-Turns out, multiple things were missing in the dwmac-sun8i
-implementation to get Flow Control to work.
-
-Patch 1 allows independently setting RX/TX FC
-
-Patch 2 is the one making FC actually work, by configuring the fifo
-thresholds
-
-Patch 3 sets the quanta values in the frames.
-
-This seems to have never worked, so since it's not fixing a regression
-I'm targetting net-next here.
-
-This was tested only on H2+.
-
-Thanks,
-
-Maxime
-
-Maxime Chevallier (3):
-  net: stmmac: dwmac-sun8i: allow controlling TX and RX flow control
-    separately
-  net: stmmac: dwmac-sun8i: emit pause frames when the RX FIFO fills
-  net: stmmac: dwmac-sun8i: configure the pause time for TX flow control
-
- .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 30 +++++++++++++++----
- 1 file changed, 25 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+index 2ece7ba9dd73..c63f4d87de50 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+@@ -760,14 +760,14 @@ static void sun8i_dwmac_flow_ctrl(struct mac_device_info *hw,
+ 	u32 v;
+ 
+ 	v = readl(ioaddr + EMAC_RX_CTL0);
+-	if (fc == FLOW_AUTO)
++	if (fc & FLOW_RX)
+ 		v |= EMAC_RX_FLOW_CTL_EN;
+ 	else
+ 		v &= ~EMAC_RX_FLOW_CTL_EN;
+ 	writel(v, ioaddr + EMAC_RX_CTL0);
+ 
+ 	v = readl(ioaddr + EMAC_TX_FLOW_CTL);
+-	if (fc == FLOW_AUTO)
++	if (fc & FLOW_TX)
+ 		v |= EMAC_TX_FLOW_CTL_EN;
+ 	else
+ 		v &= ~EMAC_TX_FLOW_CTL_EN;
 -- 
 2.56.1
 
