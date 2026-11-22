@@ -2,84 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A202A606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A1FC606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hX1CqpTk;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=pEh7LIp9;
-	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=QMGfry2g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s8ly3hd6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZPZTcZ28iypWR3zLEK6BsXPi/eB2P8Ay98qQME7HgBo=; b=hX1CqpTkYA1eI1
-	EYCWWF+Khl9tCewEg2w2PZ93gU70yhxvifCCWRd6vSmagSFQYWtUad3rIrJ0kZl2wZ0TClWp/5po0
-	nBhb3rENB75K1yuFh9pAjW8OCDFlx6O73qClNnioGy2lGGTvtgAvH2r+GvkBQ2gLrscgUyiguyzke
-	IpgqAoKqOYiaqhW7lF23hP17Sz0AzcR0OXvuH0Sm4XAdhizTf6CAi4r8ES0cgHJwNVh6utQlfD5yc
-	SJrIH8PGS3wAe755ubJ5NOx0dEbaxgqhpRyLPUBqmXlWEOOPxjelNl5rWrCXPrgpxV5apBGBTPHIX
-	yHCck8d84LSKPKejA/GQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rcnHT8Ouj9aPKLbMZKYqkaRR8q6iYAvPvYte5WZ6Dpg=; b=s8ly3hd6tcRuWMWfTcoQUilRfu
+	cbcEKobwUt6wh+IPGpuKdPRG2U42+kD7AdHifTxIv52fghdzfaAnk3QCj2lc5ilMq70pm0O7AsRGM
+	ddsWJm76pTmBj4gzQLRg5A6gy4n0V+cm7QzISIOsUC+W3mW8/5XUSXbwtDvdePZYM7D4D+CsjkAOV
+	Gq5Zj7D8kSr/CgDp3K/agVmXHfAMny6NiL0Ac5H9X31hkgrBvVrWw59vXL/t/Iu+QFpU0KToorm5D
+	PbeJtzRHCFGmXAfSBBlE/1nP/xT3X/mGg0tLZGMl0Noct80k0jQhp/E9Sbg9VVqypoh20eknpmqao
+	Aq59msBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV0eg-00000000m1H-1AyU;
-	Sun, 22 Nov 2026 06:02:26 +0000
-Received: from smtp.forwardemail.net ([121.127.44.73])
+	id 1xV1Bo-00000000nQx-0mHq;
+	Sun, 22 Nov 2026 06:36:40 +0000
+Received: from smtp81.cstnet.cn ([159.226.251.81] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV0dw-00000000lPV-2Ya4
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 06:01:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
- q=dns/txt; s=fe-e1b5cab7be; t=1795327299;
- bh=ZPZTcZ28iypWR3zLEK6BsXPi/eB2P8Ay98qQME7HgBo=;
- b=pEh7LIp9FZjl0PsZowan121u4RA+0A7edpOA7YcGPFC1j5Zl7VDDGjMxMm8krNrQX+qET8GU4
- EaiC0q4vR5mTiTJhM1jhVT/CYpD9kKIAryGLs0fAMzsI+aoyFdAUbkjF2QTrk++7GwF+rc46PZr
- /OWPPiIMzx/9eC2T0n/89GbKaRvvGqGpy8Z1JIF9x5a3s7H81XmCWl2/bsku8w8X5Z+Ktt4JPM9
- jG224r4Eti25bDlAWuLAWFao1C80e9a327g8xMaB8mTusmX1GoKKMiZ20zEvkjn2qCGVdvr4hp0
- mBZaRd5bRPvYYQ0swxUglBCWChMq5CAEsVj0q9+EcXKA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
- q=dns/txt; s=default; t=1795327299;
- bh=ZPZTcZ28iypWR3zLEK6BsXPi/eB2P8Ay98qQME7HgBo=;
- b=QMGfry2gkdVsmXutcnaQZnEPxd5/2LqXgGG+pZsxc0yLzUT7V/NaNlEO2euo+qEku/kyr2uOb
- 2QARmrDsxuCfTZn2EKtXyTc5IllLIpiqSX0XPq70AIsyfi/kNqH9DtH3xyJPCmgWTjOlvHOFdI+
- ojb+/dww/tUA5CQz8z/aQpI=
-CFBL-Feedback-ID: 6b028540cff95ecda8c093f5:d39f546e2953e6c3bd51a1fc1a8b7a3e
-CFBL-Address: abuse@forwardemail.net; report=arf
-X-Forward-Email-ID: 6b028540cff95ecda8c093f5
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 2.19.37
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v2 8/8] ARM: dts: rockchip: Add Luckfox Lyra Zero W board
-Date: Sun, 22 Nov 2026 06:01:11 +0000
-Message-ID: <20261122060114.773624-9-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261122060114.773624-1-jonas@kwiboo.se>
-References: <20261122060114.773624-1-jonas@kwiboo.se>
+	id 1xV1Bj-00000000nQU-2c6v;
+	Sun, 22 Nov 2026 06:36:38 +0000
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.102.23])
+	by APP-03 (Coremail) with SMTP id rQCowADX4JFJjQJrB7yNAQ--.19133S2;
+	Sun, 22 Nov 2026 14:35:55 +0800 (CST)
+Message-ID: <06e509d9cbfa06179cf5327ff533ae7212e23985.camel@iscas.ac.cn>
+Subject: Re: [PATCH v7 06/19] dt-bindings: display: verisilicon: Add
+ starfive,jh7110-dc8200
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Robert Foss	 <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>,  Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli	
+ <luca.ceresoli@bootlin.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Emil Renner Berthing <kernel@esmil.dk>,  Hal Feng
+ <hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>, Paul
+ Walmsley <pjw@kernel.org>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Dominique
+ Belhachemi	 <db@domibel.de>, Andy Yan <andyshrk@163.com>, David Airlie
+ <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>, Yakir Yang
+ <kuankuan.y@gmail.com>, Dmitry Baryshkov	
+ <dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>, 
+ William Qiu <william.qiu@starfivetech.com>, Xingyu Wu
+ <xingyu.wu@starfivetech.com>, Sandy Huang	 <hjc@rock-chips.com>, Manivannan
+ Sadhasivam <mani@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, Marek
+ Szyprowski <m.szyprowski@samsung.com>, Maud Spierings
+ <maud_spierings@murena.io>, Graham Markall	 <hello@big-grey.co.uk>, Chaoyi
+ Chen <chaoyi.chen@rock-chips.com>, Joshua Peisach <jpeisach@ubuntu.com>,
+ Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Date: Sun, 22 Nov 2026 14:35:53 +0800
+In-Reply-To: <20261106-jh7110-clean-send-v7-6-68f7ea9913db@samsung.com>
+References: <20261106-jh7110-clean-send-v7-0-68f7ea9913db@samsung.com>
+		<CGME20261106135900eucas1p17159021cc747335b62cad6b3326605be@eucas1p1.samsung.com>
+	 <20261106-jh7110-clean-send-v7-6-68f7ea9913db@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: rQCowADX4JFJjQJrB7yNAQ--.19133S2
+X-Coremail-Antispam: 1UD129KBjvdXoWruFW7try5Zw1rGr17GrWDXFb_yoWkWwb_ua
+	yxC3WUAFs8JryFga1jkrn7KF1Fqa12yw4rC3Z8tF1rG348CrZ0gF93Jw1Yyw1UZr4I9r15
+	Crs3WryqgFsxCjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbVxYjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Wr0E3s1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
+	C2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
+	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
+	xwCY1x0262kKe7AKxVWrXVW3AwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
+	W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
+	1VAFwI0_Wrv_Gr1UMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
+	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
+	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
+	73UjIFyTuYvjxU-eHqUUUUU
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_220140_706984_73A639C1 
-X-CRM114-Status: GOOD (  13.47  )
-X-Spam-Score: -2.0 (--)
+X-CRM114-CacheID: sfid-20261121_223636_052926_7246E586 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,75 +105,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Luckfox Lyra Zero W is a compact wireless development board powered by
-the Rockchip RK3506B SoC. It includes 512 MB of DDR3 memory, 256 MB of
-SPI NAND flash, 2.4 GHz Wi-Fi 6, Bluetooth 5.2, and BLE connectivity.
-MIPI DSI, USB OTG, USB Host, and RM_IO interfaces are available for
-peripheral expansion.
+=E5=9C=A8 2026-11-06=E4=BA=94=E7=9A=84 14:58 +0100=EF=BC=8CMichal Wilczynsk=
+i=E5=86=99=E9=81=93=EF=BC=9A
+> The JH7110 embeds a DC8200. The binding requires an SoC specific
+> compatible ahead of the generic one, so add the JH7110 to the enum.
+>=20
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 
-Link: https://wiki.luckfox.com/Luckfox-Lyra/Luckfox-Lyra-Zero-W
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
-Changes in v2:
-- No change
+Applied this patch to drm-misc-next.
 
-As mentioned in cover letter, unclear if this should use
-rockchip,rk3506b instead of rockchip,rk3506.
----
- arch/arm/boot/dts/rockchip/Makefile           |  3 ++-
- .../rockchip/rk3506b-luckfox-lyra-zero-w.dts  | 23 +++++++++++++++++++
- 2 files changed, 25 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-zero-w.dts
+Thanks,
+Icenowy
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index 9a699bb8fc5a..faebeb20f467 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -48,4 +48,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rk3288-vyasa.dtb \
- 	rk3506-luckfox-lyra-plus.dtb \
- 	rk3506-luckfox-lyra.dtb \
--	rk3506b-luckfox-lyra-ultra.dtb
-+	rk3506b-luckfox-lyra-ultra.dtb \
-+	rk3506b-luckfox-lyra-zero-w.dtb
-diff --git a/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-zero-w.dts b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-zero-w.dts
-new file mode 100644
-index 000000000000..f2fa513e8bff
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-zero-w.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+#include "rk3506b-luckfox-lyra.dtsi"
-+
-+/ {
-+	model = "Luckfox Lyra Zero W";
-+	compatible = "luckfox,lyra-zero-w", "rockchip,rk3506";
-+};
-+
-+&fspi {
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		bootph-pre-ram;
-+		bootph-some-ram;
-+		spi-max-frequency = <80000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <1>;
-+	};
-+};
--- 
-2.56.1
+> ---
+>  Documentation/devicetree/bindings/display/verisilicon,dc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/verisilicon,dc.yam=
+l b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> index 919a9001220120054cb62d1d01b7293367266f95..05a202633cd273fec358c095c=
+64584d959d96d90 100644
+> --- a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> @@ -16,6 +16,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - starfive,jh7110-dc8200
+>            - thead,th1520-dc8200
+>        - const: verisilicon,dc # DC IPs have discoverable ID/revision reg=
+isters
+> =20
 
 
