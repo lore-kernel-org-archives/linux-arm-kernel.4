@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68B84606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 18:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DBB606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 18:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dhGiZqha;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=QZejWEOo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=goVspE4N;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=eMI4vMkf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,64 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=reL9mYJK/1m1y+g0uNeijZFVaLlYnX3xPlUy2DZTb6U=; b=dhGiZqhaochFoq0+sEscZ8xUhQ
-	BHh4RNfFYc3BlmlUDz5uhwkM9ZkXHBMaD/Y8XEp+g+wbY8NkSlno7xIMsC8Ombw9OmuFyMr9+dRQd
-	iO8dM5VMbITBa9jcGd6TwrDsgopjJtQDiWH0HemyW4etpMRGjNYCjuB/k6qSP6aRmGVVayVvYzXOr
-	iI4Ro3j4BpR/R64Pzj6ri8eVQuy9Ci3gB0AWZUfmxReVuPr3YgC60QTpLu49K5dgR/hSPWS30s8cH
-	++o4tMmN7qhLwq4DBu94GpkEofY8adzobm24oUXPkXmkGcvq8AuaDvo3MqCdVc/0XhIDKIajei/dK
-	E88SRiPw==;
+	bh=mkVu1BZEh13paTDpck3U+A16xbW48tKn8diy4BeXyyI=; b=goVspE4NGuAaNG9GuVgdhl2H0t
+	T2Dem3pCZxzQlFOy4ZZNKORH7g2o6vqBi4GVhyOgVa8OuaUOx6f/nCytxdWLqdhcAaIFFB+2wtdHm
+	9y5H6tkU7ZlSdd4F9dOsgQAAZes+ywvp/mHLDpRvf+9gKBkFrJYfkTRBbr0FCq3BzT1e7vHKHbKzq
+	oGV6nniCKkbvYAkd2w9MfzU/9/W6hwQs97+scngaFijLCYQIFaW4zz10XEZtz25lvJ+KBNhWWG86z
+	V38ELBHDFHBnTMw0MJvEcd9gmaCTCSBYVkWVs5rzP8BDUQDHPSI7n5fy3ZV0qGvGf2Tk+9USGCyC0
+	sA21hxBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYw-00000001YXn-3xeR;
+	id 1xVCYz-00000001YZY-3bUV;
 	Sun, 22 Nov 2026 18:45:21 +0000
-Received: from mail-pj1-x1047.google.com ([2607:f8b0:4864:20::1047])
+Received: from mail-pl1-x648.google.com ([2607:f8b0:4864:20::648])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYh-00000001YNe-1EBN
+	id 1xVCYk-00000001YPT-2JIQ
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 18:45:04 +0000
-Received: by mail-pj1-x1047.google.com with SMTP id 98e67ed59e1d1-3b3b4208826so1756637a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 10:45:02 -0800 (PST)
+	Sun, 22 Nov 2026 18:45:08 +0000
+Received: by mail-pl1-x648.google.com with SMTP id d9443c01a7336-2f04004edf1so18194275ad.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 10:45:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795373102; x=1795977902; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795373105; x=1795977905; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=reL9mYJK/1m1y+g0uNeijZFVaLlYnX3xPlUy2DZTb6U=;
-        b=QZejWEOoDcsdX3Cc1lhdYVVw4LuSqb9TKswTi9T3V9+sV8qWH/6IhHXk63RDtmQCuZ
-         pNW178wXNivIffuFnF1IMPUKX2wGGV8tn7r7+NGrYtx8jy+n1EEt/1jGTBnqR53HbiS1
-         mlJ/GnTHOM1VqQLzUH+bdKjArOHWWaRulLAILseM85H8Q1+5RS+f4RciE/VQNkwt73XR
-         irF402I3H+NLVKSW95wrojtzseJh3qLFiQRtQ2RfQeU9PB6hw3mhgvBAvye/68MMWup+
-         7gzrwnJILlT3gXTcBceki7McP/UgQjjtWKqPYpOsJ+/rX7FHLj+D4BptZEBTidQ/6Kuf
-         XN8Q==
+        bh=mkVu1BZEh13paTDpck3U+A16xbW48tKn8diy4BeXyyI=;
+        b=eMI4vMkfoZ/IvluB8laQ+pGAtex5ETrGIg4fHg8/N4s1RGHaT2uwzhTndOBSkPuNwJ
+         jz1nj3E51qoc5+IfO67zpq8bNPS5g7SXyIu7b7XreiiLpsa6aP5OqXbi9TZ9ysWNfETr
+         jSA+N8JHTwfYhDUSk+qeqqmIUXQGQ7GYu/OmQFKKQFVTWRHAc87E3AxNZ2g3y/dzXx36
+         9kC8w9BNNVQ14J80egsIHbBSrkvTcjz4UtPldFLL0bEBRT8OA4UnHiueVtknOE74Is27
+         jJdS/uBVAzdg/bjY9YGN63Cz3t1Sa5Np6JrKFKCuHN3WMpKVXhLskn7AhK/1gKGv8npi
+         ZZaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795373102; x=1795977902;
+        d=1e100.net; s=20260707; t=1795373105; x=1795977905;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=reL9mYJK/1m1y+g0uNeijZFVaLlYnX3xPlUy2DZTb6U=;
-        b=li9tjswwrbIJWR3JewNl8WXvznvM3yCKvpJLBqUEJ1gk+B2h3Y0O8bSf7+2WOvnbHy
-         qj6hNSI0fySkAEjJSyME3KOsiXUas289v8BXUYWIxS9omg1JSUOYuhGWnCTIrKN9OuNL
-         hvIbYC6J5RxvvBcMA/HknJx/2BLD7ArdMzTMkoOpZt/pIwTjpf51uDnRuw/fePW0UgxZ
-         oLyW8cHk0ssSgevoQ6nTf8jBFeUO5IyDpEpNVL0JeR4fSvdYKyQYRBJpg/CtuHtFKyAr
-         knLh3HS2qORyLqby//bdxtHfIXjGZDQXIYIQ3nlJnOHMdjXJhx0YW2vOLafj3j9T29as
-         l4vg==
-X-Forwarded-Encrypted: i=1; AL+hErFrjBUyqaUUFsFSs32/zgKMrW333iqPbbn5Hn5xjnkXip7JYIx8hRyQtWEqa47YXgdqXz/dVuf+3tkKzFQYzO5d@lists.infradead.org
-X-Gm-Message-State: APuU4Z8RVHvhL+qjhrngmmqRXE+4OurujHBYBqhnPI40numrOoW3f3xp
-	3MNnNjJYMaFKVb3FmXDyh740eiORbkWoxi3lpB5Q+bKGXRAw68WHXgZPPYq8kXNRyl2II1jTf7p
-	wDGySGfsLo9bZ5WVtQV5Oig==
-X-Received: from pjbqa11.prod.google.com ([2002:a17:90b:4fcb:b0:3b3:d1d1:2aef])
+        bh=mkVu1BZEh13paTDpck3U+A16xbW48tKn8diy4BeXyyI=;
+        b=iba42Rlt3mlZIBfvYED6oclhPlMF43e4RbHA1H1HpRk5LsROXi1kdaaUhoVNztPwz2
+         GuBO7/sWvY++gBMDHE85XFPCKjmj4teoXn5MeMixCLhkEntKJhOLONOuwk5f0UhiYr/0
+         pFIaJmZX0+e9Mm3IE0/p4BlY8pM1r4I2fer10DmBjZovfbj35t17qA4SG5P/Bpet8pRn
+         2vZAUqTkR6uXMy7+0TV5a1pKVuDBfSbMnKGax4bjJPMKGa/Hj79JiB8VGrKFFCoWiGFS
+         XWu4EflQjYLlMsd0D319dp8dgeXuDVhRVRjax4IRaeK+Lrv76Bz4FZ1uRboBS4vdQTXo
+         BbxA==
+X-Forwarded-Encrypted: i=1; AL+hErF8IxmS0vsssOGEDA1p5BJNJq2PyQDdZmKTeR4/qWwUxojqCJnATkS9L21bbiweqqHu3UH2AT6Vw8J+EV3CSpW2@lists.infradead.org
+X-Gm-Message-State: APuU4Z85HSiYt5pWmdAJZwMIkrlDu2UfGN+4M73wGXe+uP6r0taN4X1A
+	QGaF87QxDy+uGWKAWs60RtivAjLQVt+YOhn+VUY3KvVB4RMoyRF/ldo53woq6JwwT3rZL61IoFX
+	otT6AE7LCIRqj8XEA4fW3Tg==
+X-Received: from plbz4.prod.google.com ([2002:a17:902:ee04:b0:2ef:d472:e87e])
  (user=jthoughton job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:90b:4483:b0:3a4:b509:88bd with SMTP id 98e67ed59e1d1-3b41c7bc7ccmr5465023a91.2.1795373101199;
- Sun, 22 Nov 2026 10:45:01 -0800 (PST)
-Date: Sun, 22 Nov 2026 18:44:37 +0000
+ 2002:a17:902:e80b:b0:2ed:ef1:f78 with SMTP id d9443c01a7336-2f03f11824amr92864975ad.21.1795373104623;
+ Sun, 22 Nov 2026 10:45:04 -0800 (PST)
+Date: Sun, 22 Nov 2026 18:44:39 +0000
 In-Reply-To: <20261122184453.2668189-1-jthoughton@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261122184453.2668189-1-jthoughton@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261122184453.2668189-4-jthoughton@google.com>
-Subject: [PATCH v3 03/19] hugetlb_vmemmap: Leave pages partially HVOed upon
- restore failure
+Message-ID: <20261122184453.2668189-6-jthoughton@google.com>
+Subject: [PATCH v3 05/19] hugetlb_vmemmap: Allow architectures to dynamically
+ disallow HVO
 From: James Houghton <jthoughton@google.com>
 To: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
 	Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
@@ -85,8 +85,8 @@ Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Nikos Nikoleris <nikos.nikoleris@a
 	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_104503_347139_45005051 
-X-CRM114-Status: GOOD (  17.97  )
+X-CRM114-CacheID: sfid-20261122_104506_611831_4E98D0F9 
+X-CRM114-Status: GOOD (  14.65  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,111 +107,70 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Right now it is assumed that the restore routine in vmemmap_remap_free()
-will not fail; that is, if we fail to fully optimize a folio, it is
-assumed that restoring the folio to its pre-HVO state is guaranteed to
-succeed.
+For arm64, only some platforms support HVO. Add an arch hook,
+arch_support_vmemmap_remap(), to prevent HVO from taking effect if the
+architecture lacks support. The hook is not HugeTLB-specific, so it can
+also be used by other users of in-place vmemmap remapping (e.g. FS-DAX).
 
-Although vmemmap restoration may never fail in practice, properly handle
-such failure cases now. This will leave folios in a partially HVOed
-state. In a follow-up patch, failure certainly becomes possible.
+Check it in hugetlb_vmemmap_optimizable_size(), so that hstates are not
+reported or treated as optimizable (e.g. by report_hugepages() and the
+HugeTLB allocation and freeing paths) when the architecture does not
+support HVO.
 
-In the event we end up with partially-HVOed folios, make sure to:
-  1. Leave the HVO page flag in place.
-  2. Free any unused vmemmap pages.
-
-Always pass the vmemmap_tail page to the restore routine to avoid
-leaking the non-optimized vmemmap pages for a partially HVOed page.
+It may be the case that arch_support_vmemmap_remap() returns false at
+first but eventually returns true. This is the case on arm64, where
+support depends on a system-wide CPU capability that is not yet known
+when bootmem hugepages are allocated. Such architectures cannot pre-HVO
+bootmem hugepages, so they must disable the section-based vmemmap
+optimization in their vmemmap population path with
+section_vmemmap_optimization_disable(). Their bootmem hugepages are then
+optimized when they are gathered instead.
 
 Signed-off-by: James Houghton <jthoughton@google.com>
 ---
- mm/hugetlb_vmemmap.c | 34 ++++++++++++++++++++++++++++------
- 1 file changed, 28 insertions(+), 6 deletions(-)
+ include/linux/pgtable.h | 15 +++++++++++++++
+ mm/hugetlb_vmemmap.h    |  2 ++
+ 2 files changed, 17 insertions(+)
 
-diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-index 7be08c68c2f1..2e9cf8d39c89 100644
---- a/mm/hugetlb_vmemmap.c
-+++ b/mm/hugetlb_vmemmap.c
-@@ -274,12 +274,22 @@ static int vmemmap_restore_pte(pte_t *pte, unsigned long addr,
- {
- 	const struct page *page = (const struct page *)addr;
- 	const struct folio *folio = page_folio(page);
--	struct page *src = pte_page(ptep_get(pte)), *dst;
-+	struct page *src = pte_page(ptep_get(pte)), *dst, *tail;
+diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
+index ab33df268955..8cf44120e2ed 100644
+--- a/include/linux/pgtable.h
++++ b/include/linux/pgtable.h
+@@ -480,6 +480,21 @@ static inline int try_update_vmemmap_pte(unsigned long addr, pte_t *ptep,
+ }
+ #endif
  
- 	if (unlikely(!vmemmap_optimizable_pfn(page_to_pfn(page), folio_order(folio))))
++#ifndef arch_support_vmemmap_remap
++/*
++ * arch_support_vmemmap_remap - Whether in-use vmemmap mappings may be remapped.
++ *
++ * Vmemmap optimizations, such as the HugeTLB vmemmap optimization (HVO),
++ * remap vmemmap page table entries while they are in use. Architectures that
++ * can only do this on some systems may override this hook. It may return false
++ * early during boot and true later, once system-wide features are known.
++ */
++static inline bool arch_support_vmemmap_remap(void)
++{
++	return IS_ENABLED(CONFIG_VMEMMAP_OPTIMIZATION);
++}
++#endif
++
+ #ifndef __HAVE_ARCH_PTEP_SET_ACCESS_FLAGS
+ extern int ptep_set_access_flags(struct vm_area_struct *vma,
+ 				 unsigned long address, pte_t *ptep,
+diff --git a/mm/hugetlb_vmemmap.h b/mm/hugetlb_vmemmap.h
+index 8b28063d78cc..440477288d19 100644
+--- a/mm/hugetlb_vmemmap.h
++++ b/mm/hugetlb_vmemmap.h
+@@ -48,6 +48,8 @@ static inline unsigned int hugetlb_vmemmap_optimizable_size(const struct hstate
+ 
+ 	if (!is_power_of_2(sizeof(struct page)))
  		return 0;
- 
--	VM_WARN_ON_ONCE(folio_vmemmap_shared_tail_page(folio) != src);
-+	tail = folio_vmemmap_shared_tail_page(folio);
-+	if (WARN_ON_ONCE(!tail))
-+		return -EINVAL;
-+
-+	/*
-+	 * The folio may be only partially optimized, so restore only PTEs
-+	 * currently pointing at the shared tail page.
-+	 */
-+	if (src != tail)
++	if (!arch_support_vmemmap_remap())
 +		return 0;
-+
- 	dst = vmemmap_dup_page_from_list(src, walk->vmemmap_pages);
- 	set_pte_at(&init_mm, addr, pte, mk_pte(dst, PAGE_KERNEL));
- 
-@@ -325,6 +335,7 @@ static int vmemmap_pteify_folio(const struct folio *folio, unsigned long flags)
- 	return vmemmap_remap_range(start, end, &walk);
+ 	return size > 0 ? size : 0;
  }
- 
-+#define VMEMMAP_REMAP_INCOMPLETE 1
- /**
-  * vmemmap_optimize_folio - optimize the vmemmap backing of a folio
-  * @folio:	folio whose vmemmap pages should be optimized.
-@@ -340,7 +351,8 @@ static int vmemmap_pteify_folio(const struct folio *folio, unsigned long flags)
-  * Note: The caller must hold vmemmap_remap_rwsem. If TLB flushing is deferred,
-  * the lock must remain held until the final TLB flush.
-  *
-- * Return: %0 on success, negative error code otherwise.
-+ * Return: %0 on success, VMEMMAP_REMAP_INCOMPLETE if the folio is incompletely
-+ *         optimized, negative error code otherwise.
-  */
- static int vmemmap_optimize_folio(const struct folio *folio,
- 		struct list_head *vmemmap_pages, unsigned long flags)
-@@ -372,7 +384,8 @@ static int vmemmap_optimize_folio(const struct folio *folio,
- 		return ret;
- 
- 	end = start + walk.nr_walked * PAGE_SIZE;
--	vmemmap_restore_range(start, end, vmemmap_pages, 0);
-+	if (vmemmap_restore_range(start, end, vmemmap_pages, 0))
-+		return VMEMMAP_REMAP_INCOMPLETE;
- 
- 	return ret;
- }
-@@ -402,7 +415,12 @@ static int vmemmap_restore_folio(const struct folio *folio, unsigned long flags)
- 		return ret;
- 
- 	guard(rwsem_read)(&vmemmap_remap_rwsem);
--	return vmemmap_restore_range(start, end, &vmemmap_pages, flags);
-+	ret = vmemmap_restore_range(start, end, &vmemmap_pages, flags);
-+
-+	/* Not all pages may have been consumed */
-+	free_vmemmap_page_list(&vmemmap_pages);
-+
-+	return ret;
- }
- 
- static bool vmemmap_optimize_enabled = IS_ENABLED(CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_DEFAULT_ON);
-@@ -526,7 +544,11 @@ static int __hugetlb_vmemmap_optimize_folio(const struct hstate *h,
- 	 */
- 	folio_set_hugetlb_vmemmap_optimized(folio);
- 	ret = vmemmap_optimize_folio(folio, vmemmap_pages, flags);
--	if (ret)
-+	/*
-+	 * If ret == VMEMMAP_REMAP_INCOMPLETE, the folio might be partially
-+	 * HVOed. Leave the HVO page folio flag in place.
-+	 */
-+	if (ret < 0)
- 		folio_clear_hugetlb_vmemmap_optimized(folio);
- 
- 	return ret;
+ #else
 -- 
 2.56.1.809.ga0b61035b5-goog
 
