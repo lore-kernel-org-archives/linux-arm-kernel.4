@@ -2,78 +2,131 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6AAE606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 17:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F55606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 17:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yoH1Ao8u;
-	dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.a=rsa-sha256 header.s=default header.b=oT1CQ8nR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MPioGAeL;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IU0cyVf3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:
-	To:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xMAMvMSuemtr/dlGWGZZg9TqU0c+ENYkoUNgtIidgTI=; b=yoH1Ao8u21ofKZ
-	fYlDztvZyFjqaSe+JZcmMcm9e3/JxyWKf2LbnsePZcE7MLASfv9xJ4XMYAdZw0obt23/97++Cq4A/
-	qrexBLWWDZ3x08ykn/CqcccxDdibmZIOho54YrEaEnJDV4UdR35DsDGdNwROzdW98GxzxIOfrjevP
-	Q0PwuM9ovL4/AWeHqpfNmvrt34Gh8srmBWHcRXIDC+Boymh4OK1U5Xsj5b+U9+wuguEW88aQPQMBP
-	Fptr7trOmC8xpOFPnCf3y/dTdtTsyB19SMRHq09X2VQAocfz+L75nG1wxnv6plonHllc9IHFx8CRW
-	wmX8x6KN7xq0j07PBkiw==;
+	List-Owner; bh=bsJvZUqn+Bb7/gG6ywuV/4DLp7NmQEDZvD3R+5g2Jts=; b=MPioGAeLjCPv2a
+	W5r2jaPLL+2mnMXiiNMcsCgS/Ch2bK3Q2ohnr53vNmfy+1+pfKc0Tq0ONJEtSxBPw+nfEn6QbzRN5
+	aJkh0IzFSzRD7GIlpM17BQ0m3KqG6shncfDOznAEyGfdDyxO+xFpby6myOyOS19R6TwV1dX7PwAxD
+	lnQvDBYObShcmNQ4DYiCv/zlCHulzLEQF1ctQ6irrMTnHBVIzFm2Fo6w+olOOTecqN6ZM46UkxP9o
+	7XYWX6PDwfNieoN6NYxCdHzJ9a53CCiba1yMwdE3SD66uKKOS/RhSpR5LHNzajm2X/aqGYOlkcEhA
+	nf3AxRlW+/5H3K4BiTUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVBFR-00000001QSV-1kpV;
-	Sun, 22 Nov 2026 17:21:05 +0000
-Received: from vinatta.cz ([2a03:3b40:fe:428::1])
+	id 1xVBGp-00000001QZM-2wV0;
+	Sun, 22 Nov 2026 17:22:31 +0000
+Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVBFK-00000001QQA-16m4
+	id 1xVBGn-00000001QYD-1blZ
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 17:21:04 +0000
-DKIM-Signature: a=rsa-sha256; bh=xMAMvMSuemtr/dlGWGZZg9TqU0c+ENYkoUNgtIidgTI=;
- c=relaxed/relaxed; d=vinatta.cz;
- h=Subject:Subject:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@vinatta.cz; s=default; t=1795368011; v=1; x=1795800011;
- b=oT1CQ8nR7khqT7IAnsfEfPfFZmLRzxBzw3BRr3KDj8njwtc36UDqCvlwkgiVV7DK7xi+VUnI
- f11f733vgEG08UJmp4PhxoEBn4cDoPwYiyUToX1f9TZnUYXCQBKWEpDFnQaSJOyqwjXFUiqza4K
- GfeQ3BZGY1zjP1R+sq+NafYPLr8dhZSWpC+OB9AvQF0qL7iagoHFBDKcd+c7UQ4aFu4zRPRlzA4
- Ax/IjgAhfQ2ycv8NgOnSt6OOxT/mLQlXFj3q4C/xwWzpaWUEC9yaxWGZ+xZAiwyrT62SBELTDcL
- gOyv9MG7QQW9wftp73prIAygBuFFx5HVU6eaOrERfWqeg==
-Received: by vinatta.cz (envelope-sender <karel@vinatta.cz>) with ESMTPS id
- 3a5e5229; Sun, 22 Nov 2026 18:20:11 +0100
+	Sun, 22 Nov 2026 17:22:31 +0000
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-cdb2893531bso1386909a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 09:22:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795368147; x=1795972947; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=bsJvZUqn+Bb7/gG6ywuV/4DLp7NmQEDZvD3R+5g2Jts=;
+        b=IU0cyVf3T+UTdTzNbZcbQ8a1kWgqmhig62QgtpHbmU505eoTj6dkPMKXKEjqjNW/RT
+         EOM/kSprluulV2Io9v4AHYgTsEM90yKl6udUtEAAr68YnKpOzR23z1pEhdEakhYHmpuj
+         N6r4P8bBAAIX960gGRzhnMjI+tmTUt91u3g7vwU5BnrDWMFl4EHsZOWi4BhT6oRMDrLX
+         R1JJ6VFzgxlGExyOtzGwg+niRXPFuLAw8OoaPmXu6M38SZODEukk1sK1WPwlZxQDvzOE
+         8AI1g6Ha+rRJYKLy2RMkEOQdaPFF+TmRwIeAcfb1mDOgDsYmJbpD+/rdJN1d2AIiatAZ
+         Rwsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795368147; x=1795972947;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bsJvZUqn+Bb7/gG6ywuV/4DLp7NmQEDZvD3R+5g2Jts=;
+        b=ig4qqAr6u52F4UZg0PhY3NwI1YSXcXRggL1p0QrI36A7iJbRGTtvziwWJdvnqsDzZa
+         OH4mSFtvPrJ+G9RyCoQw4ZuHOtLdh9/x3eq5eFC5dv+BBrWc6jjjsgl6IOGLaHYMCEIl
+         rEPtqHdErPVbBsC1EYNDIOpeMK6lJ5CL2sf3KdKuga+WPmecSk3YsOEH+jR5TLTXUHBH
+         yJbmd5xnt/IfRJdhXFU/vj1yDKNPvlaCLtvT5rrj96cMUT46tDFL4/9g0mgIy+e1S31z
+         vpairABvlqG0ezy0eHqYHmNWJpeAOxykmMOEUd8n9dXW6oqtqaROAJhkqr2eYU3wB4DA
+         KI2g==
+X-Forwarded-Encrypted: i=1; AL+hErEmEeLTZ8PCN7JNCfJ6Rpvhn+94kdF8WtLaYJ2zKwwfkBu/FJOPjRYKzskXezDBnJR6YcMGqIDsPDVZ8i8YTNbH@lists.infradead.org
+X-Gm-Message-State: APuU4Z9W4cH9hQS3bHkTiQyf7EhY2EfiiO0zoNE7VO2CK5fbGlPXeMOw
+	j7PAazeZ6lrMylQZP3/jRVHG8EucEIal0FgfgzcJhCICCyVq8RmJg1dw
+X-Gm-Gg: AZFdTZeaweE3NcDA6mBVOCNN0b9uHLtT0V3ErzCwZaFFyp+6rRlrr80qSfyqSkpV4F7
+	x41iATfOyfsTFgmnx2mauyjYmlonIR7Eig0mLj5ns70i0EgwEnHTw6H5CgRRK+xZ+NQR1nryxMK
+	2JD2QRFuU0SFbDcIpmk12LvJMYqAqRoMMhXiKuPel5kJ1NBWShhmthH0SCFuL3i/zj+/2QRUZ3Q
+	9woonWGdZT966NKAArqsJ9Dl++nssW7bSZfishUx9L1NOz+tt0zCZ4FtdsBsVnNy5GGPZByLO13
+	FgiWmzqFjUCKXu7ToMRSifn54l0TGFXfcq3JCYxdcXJlzA/l/JzR5vvN9O4dGUxhWUw73TzeoeF
+	Rq1OgrX25M5dyCon7Ix3swZY3JPTl2trYOVPZzNztmtNVNfGUqeh0w2tDkm60MfXdLdmEV+Izei
+	eyTBMGn2SS84MNu8oLr/b87lzPnd1hj5WdmlAoMdwa1v9iT5NMqgGASU10NwuFOb546+ieHxcvV
+	TBg+HWcQ9pACe5bCUfr/hkkFBBw05syfLjy/v1GvNkvqp8b+oogW8wlW8HHTFBxazZastyW9t6i
+	udjAKWQ612ZFbZmxf7t5Lj2R3Rg8MSuo/N4EwJAico8cuJO2ZFpGici/RVbVeb18JCBmT3i2KiY
+	xAaY=
+X-Received: by 2002:a17:90b:3d4d:b0:3b0:9162:948e with SMTP id 98e67ed59e1d1-3b41c905a3dmr8081661a91.27.1795368147033;
+        Sun, 22 Nov 2026 09:22:27 -0800 (PST)
+Received: from localhost ([2.27.148.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0b2c4sm13471136a91.4.2026.11.22.09.22.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Nov 2026 09:22:26 -0800 (PST)
+From: Han Gao <rabenda.cn@gmail.com>
+To: =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: Han Gao <rabenda.cn@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Radu Rendec <radu@rendec.net>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Anup Patel <anup@brainfault.org>,
+	Han Gao <gaohan@iscas.ac.cn>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-csky@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rtc@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 06/19] clk: sunxi-ng: add support for the Allwinner V861 CCU
+Date: Mon, 23 Nov 2026 01:22:15 +0800
+Message-ID: <20261122172221.3552455-1-rabenda.cn@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <c8OwiyQSR8ivEFULfFWNow@gmail.com>
+References: 
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Sun, 22 Nov 2026 18:20:10 +0100
-Message-Id: <DN1WUDUNU9U2.351W1X92P0BJF@matfyz.cz>
-Cc: "Brian Norris" <briannorris@chromium.org>, "Johannes Berg"
- <johannes@sipsolutions.net>, "Johannes Berg" <johannes.berg@intel.com>,
- "Francesco Dolcini" <francesco@dolcini.it>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, =?utf-8?q?Duje_Mihanovi=C4=87?=
- <duje@dujemihanovic.xyz>, "Gregory Clement" <gregory.clement@bootlin.com>,
- "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>, "Ulf Hansson"
- <ulf.hansson@linaro.org>, "Frank Li" <Frank.Li@nxp.com>,
- <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-mmc@vger.kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
- <phone-devel@vger.kernel.org>, "Jeff Chen" <jeff.chen_1@nxp.com>, "Peng
- Fan" <peng.fan@nxp.com>, "David Heidelberg" <david@ixit.cz>
-Subject: Re: [DONOTAPPLY RFC PATCH v2 0/4] WiFi support for
- samsung,coreprimevelte
-To: "Andrew Lunn" <andrew@lunn.ch>
-From: "Karel Balej" <balejk@matfyz.cz>
-References: <20251026182602.26464-1-balejk@matfyz.cz>
- <DEJL1ATTQMVE.120JV9YW59I27@matfyz.cz>
- <aSnWYS2g5slVFaSk@gaggiata.pivistrello.it>
- <DI5L100Q1RKO.1A68EJIPWYSRC@matfyz.cz> <afI8y70U7wFT_07h@google.com>
- <DLQ9LXDE2P29.248MPYCJMT0DL@matfyz.cz>
- <787950f1-ff2f-4b49-b164-61da3c9971c6@ixit.cz>
- <20374af8-2f50-4637-b92a-4fa5c5192c20@lunn.ch>
-In-Reply-To: <20374af8-2f50-4637-b92a-4fa5c5192c20@lunn.ch>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_092058_754272_9E8F5D18 
-X-CRM114-Status: GOOD (  12.01  )
-X-Spam-Score: -0.9 (/)
+X-CRM114-CacheID: sfid-20261122_092229_424809_A11D68AE 
+X-CRM114-Status: GOOD (  17.01  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,35 +137,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Andrew Lunn, 2026-11-20T20:55:49+01:00:
-> Why even bother, if it has no users?
+On Sun, 15 Nov 2026 08:31:11 +0100 Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
 
-I and a few others working on the phone/SoC use it and I'm sure that
-others who have the hardware lying around would appreciate being able to
-use it with a mainline kernel too.
+> Dne petek, 13. november 2026 ob 23:33:32 Srednjeevropski standardni čas je Han Gao via B4 Relay napisal(a):
+> > From: Han Gao <gaohan@iscas.ac.cn>
+> > 
+> > Add the main CCU driver for the V861, based on the A523 one. The CPU
+> > PLL, the CPU subsystem clocks and the E907 clocks are left to the
+> > firmware.
+> > 
+> > Unlike on the A523, the second divider of the 27 MHz output is a power
+> > of two. pll-audio-4x does not pass rate changes up, as its parent also
+> > feeds the UART clock mux.
+> > 
+> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+> 
+> Do you have any user manual for it? Or at least BSP code? It's hard to
+> review patches without any of those references.
 
-> We have to look at it from the perspective of Maintenance. If it gets
-> merged, you have to expect a hoard of LLM script kids descending on it
-> and submitting patch after patch fixing theoretical problems. Is
-> reviewing and merging such patches a good use of time for a driver
-> with no mainstream users?
+https://github.com/RevySR/linux/commit/bb06380bc2e5a02049cd01e0b10cb3c3c694b750
 
-I don't see why this change should trigger any such patch avalanche =E2=80=
-=93
-the driver is already in-tree, all I want to do right now is to enable
-it for an additional chip ID.
+BSP code
 
-> Does openwrt support it?
+> 
+> Best regards,
+> Jernej
+> 
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
 
-Not that I was able to find.
-
-Thank you for having a look,
-Karel
+Sent using hkml (https://github.com/sjp38/hackermail)
 
