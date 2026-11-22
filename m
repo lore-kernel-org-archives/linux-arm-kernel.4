@@ -2,130 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F55606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 17:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC36606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 17:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MPioGAeL;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IU0cyVf3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QzcWrejc;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=c0ZPCe7n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bsJvZUqn+Bb7/gG6ywuV/4DLp7NmQEDZvD3R+5g2Jts=; b=MPioGAeLjCPv2a
-	W5r2jaPLL+2mnMXiiNMcsCgS/Ch2bK3Q2ohnr53vNmfy+1+pfKc0Tq0ONJEtSxBPw+nfEn6QbzRN5
-	aJkh0IzFSzRD7GIlpM17BQ0m3KqG6shncfDOznAEyGfdDyxO+xFpby6myOyOS19R6TwV1dX7PwAxD
-	lnQvDBYObShcmNQ4DYiCv/zlCHulzLEQF1ctQ6irrMTnHBVIzFm2Fo6w+olOOTecqN6ZM46UkxP9o
-	7XYWX6PDwfNieoN6NYxCdHzJ9a53CCiba1yMwdE3SD66uKKOS/RhSpR5LHNzajm2X/aqGYOlkcEhA
-	nf3AxRlW+/5H3K4BiTUg==;
+	List-Owner; bh=LaFUW1FwoGNlZJgmSu4oNHIToLGpfe4LYC35AWNKoIc=; b=QzcWrejct1K3Ei
+	lqqLbLqfE5ur9y+CDultSvwfSYvix6kTLdzbi0u9/MihRY7pqcdNoXr/7k3eTDoldwHdodce5sm/U
+	ANtZBVnhG7MSarX+ms9KRlFEJmIjw8Z8Xbi13klseV61/A8rVG9BlRxoZO6SzVm/nDL0rUGfAlqBa
+	vihFk9ydzCczd/aF5qhUbCYgY8ORXdHFeyXH74EK7SODADpehkuNQtZyHGfPe0unFVR9OX6HkDT2U
+	RThiE3zTUqmBHA9LXggYsHAY/KAhwI02QX0Y//7gdAPPxFSWh9sMRoDOFQ5rXsss0Jk56lVXYzq8+
+	LXrPU4siwyslSHOZoLgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVBGp-00000001QZM-2wV0;
-	Sun, 22 Nov 2026 17:22:31 +0000
-Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
+	id 1xVBTR-00000001RVv-3kRI;
+	Sun, 22 Nov 2026 17:35:33 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVBGn-00000001QYD-1blZ
+	id 1xVBTM-00000001RV6-2PQ9
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 17:22:31 +0000
-Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-cdb2893531bso1386909a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 09:22:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795368147; x=1795972947; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=bsJvZUqn+Bb7/gG6ywuV/4DLp7NmQEDZvD3R+5g2Jts=;
-        b=IU0cyVf3T+UTdTzNbZcbQ8a1kWgqmhig62QgtpHbmU505eoTj6dkPMKXKEjqjNW/RT
-         EOM/kSprluulV2Io9v4AHYgTsEM90yKl6udUtEAAr68YnKpOzR23z1pEhdEakhYHmpuj
-         N6r4P8bBAAIX960gGRzhnMjI+tmTUt91u3g7vwU5BnrDWMFl4EHsZOWi4BhT6oRMDrLX
-         R1JJ6VFzgxlGExyOtzGwg+niRXPFuLAw8OoaPmXu6M38SZODEukk1sK1WPwlZxQDvzOE
-         8AI1g6Ha+rRJYKLy2RMkEOQdaPFF+TmRwIeAcfb1mDOgDsYmJbpD+/rdJN1d2AIiatAZ
-         Rwsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795368147; x=1795972947;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=bsJvZUqn+Bb7/gG6ywuV/4DLp7NmQEDZvD3R+5g2Jts=;
-        b=ig4qqAr6u52F4UZg0PhY3NwI1YSXcXRggL1p0QrI36A7iJbRGTtvziwWJdvnqsDzZa
-         OH4mSFtvPrJ+G9RyCoQw4ZuHOtLdh9/x3eq5eFC5dv+BBrWc6jjjsgl6IOGLaHYMCEIl
-         rEPtqHdErPVbBsC1EYNDIOpeMK6lJ5CL2sf3KdKuga+WPmecSk3YsOEH+jR5TLTXUHBH
-         yJbmd5xnt/IfRJdhXFU/vj1yDKNPvlaCLtvT5rrj96cMUT46tDFL4/9g0mgIy+e1S31z
-         vpairABvlqG0ezy0eHqYHmNWJpeAOxykmMOEUd8n9dXW6oqtqaROAJhkqr2eYU3wB4DA
-         KI2g==
-X-Forwarded-Encrypted: i=1; AL+hErEmEeLTZ8PCN7JNCfJ6Rpvhn+94kdF8WtLaYJ2zKwwfkBu/FJOPjRYKzskXezDBnJR6YcMGqIDsPDVZ8i8YTNbH@lists.infradead.org
-X-Gm-Message-State: APuU4Z9W4cH9hQS3bHkTiQyf7EhY2EfiiO0zoNE7VO2CK5fbGlPXeMOw
-	j7PAazeZ6lrMylQZP3/jRVHG8EucEIal0FgfgzcJhCICCyVq8RmJg1dw
-X-Gm-Gg: AZFdTZeaweE3NcDA6mBVOCNN0b9uHLtT0V3ErzCwZaFFyp+6rRlrr80qSfyqSkpV4F7
-	x41iATfOyfsTFgmnx2mauyjYmlonIR7Eig0mLj5ns70i0EgwEnHTw6H5CgRRK+xZ+NQR1nryxMK
-	2JD2QRFuU0SFbDcIpmk12LvJMYqAqRoMMhXiKuPel5kJ1NBWShhmthH0SCFuL3i/zj+/2QRUZ3Q
-	9woonWGdZT966NKAArqsJ9Dl++nssW7bSZfishUx9L1NOz+tt0zCZ4FtdsBsVnNy5GGPZByLO13
-	FgiWmzqFjUCKXu7ToMRSifn54l0TGFXfcq3JCYxdcXJlzA/l/JzR5vvN9O4dGUxhWUw73TzeoeF
-	Rq1OgrX25M5dyCon7Ix3swZY3JPTl2trYOVPZzNztmtNVNfGUqeh0w2tDkm60MfXdLdmEV+Izei
-	eyTBMGn2SS84MNu8oLr/b87lzPnd1hj5WdmlAoMdwa1v9iT5NMqgGASU10NwuFOb546+ieHxcvV
-	TBg+HWcQ9pACe5bCUfr/hkkFBBw05syfLjy/v1GvNkvqp8b+oogW8wlW8HHTFBxazZastyW9t6i
-	udjAKWQ612ZFbZmxf7t5Lj2R3Rg8MSuo/N4EwJAico8cuJO2ZFpGici/RVbVeb18JCBmT3i2KiY
-	xAaY=
-X-Received: by 2002:a17:90b:3d4d:b0:3b0:9162:948e with SMTP id 98e67ed59e1d1-3b41c905a3dmr8081661a91.27.1795368147033;
-        Sun, 22 Nov 2026 09:22:27 -0800 (PST)
-Received: from localhost ([2.27.148.107])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0b2c4sm13471136a91.4.2026.11.22.09.22.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 09:22:26 -0800 (PST)
-From: Han Gao <rabenda.cn@gmail.com>
-To: =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Han Gao <rabenda.cn@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Radu Rendec <radu@rendec.net>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Anup Patel <anup@brainfault.org>,
-	Han Gao <gaohan@iscas.ac.cn>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>,
-	Conor Dooley <conor@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-csky@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rtc@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 06/19] clk: sunxi-ng: add support for the Allwinner V861 CCU
-Date: Mon, 23 Nov 2026 01:22:15 +0800
-Message-ID: <20261122172221.3552455-1-rabenda.cn@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <c8OwiyQSR8ivEFULfFWNow@gmail.com>
-References: 
+	Sun, 22 Nov 2026 17:35:32 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C7210C6223F;
+	Sun, 22 Nov 2026 17:35:32 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1D03C60512;
+	Sun, 22 Nov 2026 17:35:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2A4911E61B2A;
+	Sun, 22 Nov 2026 18:35:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795368924; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=LaFUW1FwoGNlZJgmSu4oNHIToLGpfe4LYC35AWNKoIc=;
+	b=c0ZPCe7nPcWduyfPg/JBixjwZW7G1+N+4DOYFmZDsSnGep8AQm9XDUKhtSbWOR88w/KS/L
+	WLGoDoQBsCYt2vypVckzcj/z+0Ton4ugvrL2NhVXfhN407c8GK1imgVVApTNuiYuL1nQgS
+	WwPOyYX+/ac2tr1FdPy7q4Jq8ipihAOW8l8vDav1aGOzkFhuFot2ZKIyfY3s9cP3nwVBDe
+	qyRjNg6wn+Z6feFPVaRhNgl+qSPo1+c9lA/kLv6icus/QhmXRkDEmwBmmISWzA3dwWkdyj
+	XUo90C442YG1j1LORXueQxeSfTxDnANLuoj4vFVuWghNNKyClde54Hzwz+TmVA==
+Message-ID: <7de5e572-dba5-4429-90fa-3cddb2e5cad8@bootlin.com>
+Date: Sun, 22 Nov 2026 18:35:11 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 5/5] net: stmmac: dwmac-sun8i: Register the
+ MDIO mux in the MDIO setup
+To: aiyengar1990@gmail.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
+ linux-kernel@vger.kernel.org
+References: <20261120-sun8i-emac-mux-uaf-v4-0-57eba8915f25@gmail.com>
+ <20261120-sun8i-emac-mux-uaf-v4-5-57eba8915f25@gmail.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20261120-sun8i-emac-mux-uaf-v4-5-57eba8915f25@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_092229_424809_A11D68AE 
-X-CRM114-Status: GOOD (  17.01  )
+X-CRM114-CacheID: sfid-20261122_093528_922846_4A9048C2 
+X-CRM114-Status: GOOD (  21.87  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -137,47 +85,132 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 15 Nov 2026 08:31:11 +0100 Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
+Hi,
 
-> Dne petek, 13. november 2026 ob 23:33:32 Srednjeevropski standardni čas je Han Gao via B4 Relay napisal(a):
-> > From: Han Gao <gaohan@iscas.ac.cn>
-> > 
-> > Add the main CCU driver for the V861, based on the A523 one. The CPU
-> > PLL, the CPU subsystem clocks and the E907 clocks are left to the
-> > firmware.
-> > 
-> > Unlike on the A523, the second divider of the 27 MHz output is a power
-> > of two. pll-audio-4x does not pass rate changes up, as its parent also
-> > feeds the UART clock mux.
-> > 
-> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+On 11/20/26 11:45, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> Do you have any user manual for it? Or at least BSP code? It's hard to
-> review patches without any of those references.
+> Both PHYs sit behind the mux, but the mux is registered only after
+> stmmac_pltfr_probe() has registered the netdev, so an early open does
+> not find the PHY. On remove, the mux goes away before
+> unregister_netdev(), and unbinding with the link up oopses in
+> phy_stop().
+> 
+> Register and unregister the mux through the new mdio_init() and
+> mdio_exit() hooks.
+> 
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 
-https://github.com/RevySR/linux/commit/bb06380bc2e5a02049cd01e0b10cb3c3c694b750
+Looks good, I tested that on Allwinner H2+, the mux probes fine. This
+has run on the stmmac netdevCI anyways and no breakage reported on
+other plaftorms.
 
-BSP code
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Tested-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
+Maxime
+
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 41 ++++++-----------------
+>  1 file changed, 10 insertions(+), 31 deletions(-)
 > 
-> Best regards,
-> Jernej
-> 
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> index 4acfda235394..0ec25ae0b77e 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> @@ -17,7 +17,6 @@
+>  #include <linux/of_platform.h>
+>  #include <linux/phy.h>
+>  #include <linux/platform_device.h>
+> -#include <linux/pm_runtime.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/regmap.h>
+>  #include <linux/stmmac.h>
+> @@ -941,6 +940,13 @@ static int sun8i_dwmac_register_mdio_mux(struct stmmac_priv *priv)
+>  	return ret;
+>  }
+>  
+> +static void sun8i_dwmac_unregister_mdio_mux(struct stmmac_priv *priv)
+> +{
+> +	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
+> +
+> +	mdio_mux_uninit(gmac->mux_handle);
+> +}
+> +
+>  static int sun8i_dwmac_set_syscon(struct device *dev,
+>  				  struct plat_stmmacenet_data *plat)
+>  {
+> @@ -1133,8 +1139,6 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+>  	struct stmmac_resources stmmac_res;
+>  	struct sunxi_priv_data *gmac;
+>  	struct device *dev = &pdev->dev;
+> -	struct stmmac_priv *priv;
+> -	struct net_device *ndev;
+>  	struct regmap *regmap;
+>  	int ret;
+>  
+> @@ -1217,6 +1221,9 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+>  		ret = get_ephy_nodes(dev, gmac);
+>  		if (ret)
+>  			return ret;
+> +
+> +		plat_dat->mdio_init = sun8i_dwmac_register_mdio_mux;
+> +		plat_dat->mdio_exit = sun8i_dwmac_unregister_mdio_mux;
+>  	}
+>  
+>  	ret = sun8i_dwmac_set_syscon(&pdev->dev, plat_dat);
+> @@ -1227,33 +1234,8 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto dwmac_syscon;
+>  
+> -	ndev = dev_get_drvdata(&pdev->dev);
+> -	priv = netdev_priv(ndev);
+> -
+> -	/* the MAC is runtime suspended after stmmac_dvr_probe(), so we
+> -	 * need to ensure the MAC resume back before other operations such
+> -	 * as reset.
+> -	 */
+> -	pm_runtime_get_sync(&pdev->dev);
+> -
+> -	/* The mux must be registered after parent MDIO
+> -	 * so after stmmac_dvr_probe()
+> -	 */
+> -	if (gmac->variant->soc_has_internal_phy) {
+> -		ret = sun8i_dwmac_register_mdio_mux(priv);
+> -		if (ret) {
+> -			dev_err(&pdev->dev, "Failed to register mux\n");
+> -			goto dwmac_remove;
+> -		}
+> -	}
+> -
+> -	pm_runtime_put(&pdev->dev);
+> -
+>  	return 0;
+>  
+> -dwmac_remove:
+> -	pm_runtime_put_noidle(&pdev->dev);
+> -	stmmac_pltfr_remove(pdev);
+>  dwmac_syscon:
+>  	sun8i_dwmac_unset_syscon(gmac);
+>  dwmac_ephy:
+> @@ -1269,9 +1251,6 @@ static void sun8i_dwmac_remove(struct platform_device *pdev)
+>  	struct stmmac_priv *priv = netdev_priv(ndev);
+>  	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
+>  
+> -	if (gmac->variant->soc_has_internal_phy)
+> -		mdio_mux_uninit(gmac->mux_handle);
+> -
+>  	stmmac_pltfr_remove(pdev);
+>  	reset_control_put(gmac->rst_ephy);
+>  	clk_put(gmac->ephy_clk);
 > 
 
-Sent using hkml (https://github.com/sjp38/hackermail)
 
