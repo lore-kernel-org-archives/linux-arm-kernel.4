@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC66606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D776606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 09:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jCwyDK1Y;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=bMJkxwBf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SBxL6zNT;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mpY8f5gV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
@@ -14,105 +14,104 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lYEphzy4ZTo14yzeEAHhxhKUuleMHJNSxpY9AD/9Z4s=; b=jCwyDK1YNDhsRU06UDbZgWJqzP
-	TUFCGev+FBX38VAPRaakhvDTJNmjLf5yMCMd5gAcQ79Z9g75biLttOw9tBrb32KDZ0X9Z/Wg+3Dt0
-	MB9T/K+rRwKY67s2nhbkyVGlOdJWPl8RNrtIkxlHLkVnhj541iMpuFxBpwGeQAsWvvVbK9Ogf7isW
-	aK4QAx4PiUe52iK6bCXvSymLG34vDg4w21Au48bxUc9aLMN9VmWg0ig95VfHzCuJB88zmBo8LRq/b
-	TWzVsa8Hslqj9bcFXBuS0Si4B4T1nqdwecAAIq5AKNQArzZU0ZLQPFoOaJrJvEp7TxIbhtY7JtVyG
-	8s5hs2YQ==;
+	bh=EQRZRUVgWLEXWXY2UUdHCwG6T9sZpfMFCWNR0hoVHQE=; b=SBxL6zNTpy7tJaMpv78B4znvCS
+	dTwQd9BeXdNQzKilQTRkJsnd6FirNSuqCUZggJreOGbdNUZP1vTPcDDVJnPmKu8S6gAAUT8gG2FqF
+	x4tRGOC7FaFvRgexIGiA09u9af7mvmmV/hJYZMYmVTqSO6DMxl0N8j4CVL1GhLBHAFT8M5rKPQvAT
+	q73iID0M/IH/G00qA/Ps6oFLUg7cCjhCUjj+6oQh3O+1bUWPwx+poiPyMLNJP2spvJRzrl4LeT/R7
+	VvwkUa4Pmb/hCXmR+JcYMi+ccG3Wyjn/xU8Gb4hxoJbQ/RJ3SDMiIwjblK5XGUKMwt7vszndmGjc6
+	HgOU+LiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3c1-00000000tJj-014C;
-	Sun, 22 Nov 2026 09:11:53 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1xV3ce-00000000tNx-0e1w;
+	Sun, 22 Nov 2026 09:12:32 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV3by-00000000tJG-0L1G
+	id 1xV3cc-00000000tNV-1vcy
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 09:11:51 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-3adf222704dso2586891fa.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 01:11:49 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795338707; cv=none;
+	Sun, 22 Nov 2026 09:12:31 +0000
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5c00c727a26so177202e87.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 01:12:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795338748; cv=none;
         d=google.com; s=arc-20260327;
-        b=gzUFtBkyHoGpb5LqPC/tMNv1k/kxNSLJ9FG8wFUySsHypCcUP8N4En0Q5zhEBhWlVO
-         WIB9/9BJ3icOVpkdhmqU3b9cxHtLLRoVLwi3fuTnCZJOt3KiGdAbqfW9yV0xBuRVLpou
-         hJp89Izho8tgakfOCvPOoDPb3Fk+dRu0JXaaemHyY+YOmAjbiVFZPgc/mj8YEo8sYJQa
-         unw/jvepRzRSW/ymhwWYPvJeIeluprN9HRYJcfnKvzVVoluz4zlwyuR8gUMNu34RwWv7
-         Ls2abIZ6ZWImnO+Zk/hgrUl9zx0gj5fNAaX9sfxOj7hcO1B4BeDL9Eu+pgjjVQi2P99q
-         jHRg==
+        b=hKkAQeiA5+UDJVeg5zP+ZmAX4AW4vE9nrPeVlqcuSwlszGoXQkP5e6GxIpFZ5QJXDx
+         o0wGuYc1q5Dkmoz5yT6gqjhBny2bfkvOnRSUwDIq3pa9JYZnICIkKcRp2j2hTeZ6yIH4
+         V7/m/RCdUv/5wPY3Kog1NgwdvtlBk2/5rxS+YHxcLNLUnNZbXiG0Gi4Kbl+lcfu3cFeK
+         hFFCrkqbn0JPtTYpYdxfVqN/hKmq7O4xJrth7mzArJAD7RiGD3V8b8qnRw7LL2C3HqN4
+         c7ZBNVGvdgmiSmy0u8nyiRavJE/BhOeVivDNNW0jlEWjxW3gY4ulaIodkFx7DpXZ+lJn
+         o4Qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=lYEphzy4ZTo14yzeEAHhxhKUuleMHJNSxpY9AD/9Z4s=;
-        fh=zp9/qSX6h9z42ZS74SrcGGYIUNUcjGApXab4gobFsIg=;
-        b=H13h0+VOIxxQe5ZDGaTarjUtg8rPfUBFjbzQll2r39CGm1h+RTJKGA9TXBqzryJD27
-         exeA8YUfT7egdtNlM68DyVhMzpzm2pkHa/tsjyadZBvQVOim4TifU6jx2un4QaucuJug
-         XEkSwu1M6yIbl1KAX0qVVMbUYFbQBSQL4NytSmCdaZMztwaivgNezQoi1QpkADlOCyCS
-         NPZoI4+LAv2ii+sJyufAa9iUC8X6so4FsxWPMxxZy4YX+GaQXqqHiFOATpk/DZHeatz8
-         +xasXvHwycJVRUJhwgO3gmplOYPi7YEGu6QIPPGoS2Gi6hjO/jZ5lJQ0V/et1tq7pLkb
-         CQFQ==;
+        bh=EQRZRUVgWLEXWXY2UUdHCwG6T9sZpfMFCWNR0hoVHQE=;
+        fh=chOqVfc9OeAhTz/fEaLO4GyxUBHUq+KyiymyCOPSLT0=;
+        b=XiVG0h16litQKWVMZcXQbxW22AfRW7Ob8Hlyp7yDgQMWbj2Dkq6Y9+U5WPj1ty1RKk
+         NnAJXyiHsFOj9k/QVdujSFta2Po6t+vms37FzHUugCaHyNshrkiJFlfeliV0IkYZQNwE
+         nXcTquYTtZaEYXiqQurXUbjM+Mo9FKk/40zOpXbSGbIqwepTBV+G6SBffVdbVp1lLCvx
+         VFgv+dTTh5fsdcbulRMfGR5dRpmxreYL+PX32RMgxaM5MVThg2M0brRaMk4JLOVb/LE0
+         wBG0vcezyiDfPCA/VHRzS3gTfnpFz7GlxrR+ZcMgvsspazkdeq42DvxowkwDrgoQ8Wmt
+         7F7A==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795338707; x=1795943507; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795338748; x=1795943548; darn=lists.infradead.org;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=lYEphzy4ZTo14yzeEAHhxhKUuleMHJNSxpY9AD/9Z4s=;
-        b=bMJkxwBfO9RlicoDR9DxIxAKHbF0yicyCZAEBHpB1YocQmIUtBe+j/XyRp4fZcvl0q
-         60wkmwhqYAtfyejLGKG5DAbZkRH6vvTGwnoJRCu88WfyMEiXTTxBNtkofRTromNSeDyW
-         j8i+ub/Q/8y0/aJQqpAz6mT2J5Pyv3xrXsndQBfoH6FVhhXO8MWPJFBZmgpGFfDMZDAv
-         5VG/v44iBnX2G3nuJTkuUAHzMbJu/f36n0hTwrhE5mrBDubNRwKOFP55JkrnCJ+T/8fF
-         iV3XHvjAt0lMtQJ2eT6LIKmZTj4KNRhKXpHTFo+Vk8L80qUz9xPw6fSMfGxkE34kekH7
-         /gJA==
+        bh=EQRZRUVgWLEXWXY2UUdHCwG6T9sZpfMFCWNR0hoVHQE=;
+        b=mpY8f5gVK73lD7T2VU06HzEogxUglLBcAu8m/st44Ldj/RkJt9/+icIMV35nZcMrdp
+         XLp0apaa+homwXjTRLHvOam7XvMDutyCXP/LTvBF5tLDfQllQgx9+3oDm/Y1Nar+B/t5
+         fBEI+AmNxf7Pc9otp5EVIN5+B1WcvujAglKtGkG7JVXikvNootPtHFOjIZzB6QFndFhI
+         zwFY/e2pbVlsrcMcLqHNzVanIPdGL1UsW61BzAUid1SywC2aCLnKB3KLyXlLb5E5xmUX
+         8ZVXbPMcYYT79/vCnyA/6lKA6Al/yg292l+IXJ+Yvi6+Jq/jkV1LCGYWen2KyDSMf1pN
+         YWwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795338707; x=1795943507;
+        d=1e100.net; s=20260707; t=1795338748; x=1795943548;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=lYEphzy4ZTo14yzeEAHhxhKUuleMHJNSxpY9AD/9Z4s=;
-        b=xRA4zV5T+HmnTfasC4ddtSXtVZW0gY3yiiGDC8fbSQ3yukrYw+3RWmG1kOf3YLcqKE
-         UXfwfTGy6cA/H5Zz4UVBz7k+RsCraemk9ZJZ6zfjdl1/Q7SzVXoFlUrECoeirUx/i/J7
-         6iVAywDh/f1YBf9UMuHvN0BWyJwZipe2unMMxCSZjzkO66BTjIqLgExi4EMAFh52M9A9
-         iQ5dgA8RFgLzBVelG/0NBDRQQjNseb2I5ZjKxTtPVpXmasWYyGjwIg7i91DOZVSD9cox
-         +FEJF03qiwf6Pdq1BVpx6VyIXrdDxrqypKuRNjex1Fmgwv/CUG8sJglQlW2duK+XwgI4
-         DZ4g==
-X-Forwarded-Encrypted: i=1; AL+hErHFKj084Mm+pt5P+rKHw/XbIcvmzmwhjOg2fAK8JWsiNv4ZishCJJp7UmJ+3DK8gc6sEeZEfWm3CF/0X9gKdY7K@lists.infradead.org
-X-Gm-Message-State: APuU4Z+XuuSIAIKEuviVavjf6ZE6VP7dn7kkNZ0GCGuqq+QMNqYVO//W
-	gLDj8r6GJQistyY8bolUEUiKXLBpT1u5l2orkPGymSYFgNPCtSQTDVfeH8bGWW2fszE83UnGo4j
-	Inua1XVgOva6KzUi7URXTOJzrjvw/LJI=
-X-Gm-Gg: AZFdTZcjRhC9WosIHlJeiBS7/DMuNPUXDOEashp7m3NWHps4Pz1gQuqCFSj+nVEmZde
-	C9BN+U+P8auvarWkwlh6mfcr0teNn9pSz7JI/vWmOjnJMyEl5J6+/kMNwVjKsFvptxw7wc2e+/8
-	h1wXQTwvfHrV7WnJmOwWdzuD4KK1TdmnR++Mit2fe0RiEapXmF42EcEBrjoPaLDO1Cx6K+mBbdD
-	1hwK0GF26GKIJZLmOBRl7E9zSnMtT94P3WOGkFzny8M+L6b+MMhEHB3v984tBmcgcLeafWoaw/K
-	wjodKFbOCAveR9SQflzJjJ/vKJ/Pw/Mpk2gbds1kvdWYwxpaNxPT40kF4qP6M2IzHeWFL6P7TmS
-	+kZEGaHqV/HbIvbbixyRGfqP+gtP2pfK+2CrBwOy57Oq/eMLfnvJvumkh/2cTMpvx9+gzNPFi
-X-Received: by 2002:a05:6512:4382:b0:5c1:57ce:d4b4 with SMTP id
- 2adb3069b0e04-5c1bc75212cmr2114507e87.2.1795338707138; Sun, 22 Nov 2026
- 01:11:47 -0800 (PST)
+        bh=EQRZRUVgWLEXWXY2UUdHCwG6T9sZpfMFCWNR0hoVHQE=;
+        b=Zj/u+o3eDUwgEdVXBWXmkk8mnYS/ShU1nIpyWofYYJGQLApTDK/RTeju8mH/Me94LJ
+         +uCOAeVrwHyFDoyGGlbnwGjTBXkH+7up09dryJpZ1IQqer2W/Y0bmVXdg+aLD4XXCzNs
+         u2gIqijrn9Q3qNYpIfi6YPIBQFZYV5VMgI0NFjWQXZt4S63cRK/oHyaySlDIvcDmXs/4
+         0e7l1OyZiprCWjohTdPugQYgFqm+zX7CXNqjAN1oUUCxANO4Ts2LFdTpqNZOQeacL7Lg
+         0leIxCfzXzPbXfXW9PwlfYGj/xQWen8E8X7bH9g4zaeTbdFauIwz29aKtq7DPucChilT
+         e5wg==
+X-Forwarded-Encrypted: i=1; AL+hErHhxG2pUp7nDSpvemA7Ev/g2LNT7WyUOSNBXvIqaprQS9m6g/fh6xzTgJ3+iNLfiXoZL9yj3FEoKhaFsvPjgVaQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+3JiXLc3RkV27IPFDbkBg9bmds1MpCRJWCR7au78f2WYbbjccn
+	pDuvm0AM5b/rIzEAVNw0gCvZPUKXjPAovXTnjBH6VgkcF/IYJnLqtf4wFgjrLYD9xZYWpCONuRw
+	BiVvN91TOZyUvEec3WidDy+9ciX3gH+M=
+X-Gm-Gg: AZFdTZefggxTulnko5CO2qbby1g4gLRf8LIsf+68/mMHLwfxTgJcOXmQQaVF2trglBV
+	CEiXd5zWcQ7Um6sTOX7HhHa/9R9hWiJy1X0pO4EDi8mTzdr0fZiATBCKmzY3qH0h7vlR6G9Ct6g
+	dfCdVEUathOGCh04Y66fd5vDnGd2Mdgc6nRR039gEFQh962E7nSvgq7pB1HOLuCSCrEgMaTKK8y
+	HNSnoMHLE9PFXT93BSXjBIynuCTHCNAyK+f7WL0rYLXOnJ4kZMEBBgH5z9mqrjD/iKQNYBK7T9W
+	XXjiNQzLn+0CaiOENjEOouL+B+7RBbFhZ4tHqB45o8WnCncVE8TXZaVLAVtMHKos+ZDQWVOMXkc
+	8DaTvKSEnEBKqBDiz0QrCbsfQohbaRAkxj/ZgqSstMpZqS5SqV1ktsAxKgx/ho+9CBSh/nR4=
+X-Received: by 2002:a05:6512:31c3:b0:5bf:e6a1:3115 with SMTP id
+ 2adb3069b0e04-5c1bc76a33fmr3276447e87.2.1795338747873; Sun, 22 Nov 2026
+ 01:12:27 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com> <CAGb2v65w3cVgxb_G38UgKEa4ErKLN4qiF05N3nmdJbmPeRRNBg@mail.gmail.com>
-In-Reply-To: <CAGb2v65w3cVgxb_G38UgKEa4ErKLN4qiF05N3nmdJbmPeRRNBg@mail.gmail.com>
+References: <20261121-sun8i-emac-mtu-limit-v1-1-22492842d318@gmail.com> <e72505dc-f20f-4473-98f2-52161e08c89d@bootlin.com>
+In-Reply-To: <e72505dc-f20f-4473-98f2-52161e08c89d@bootlin.com>
 From: Arun Iyengar <aiyengar1990@gmail.com>
-Date: Sun, 22 Nov 2026 01:11:34 -0800
-X-Gm-Features: Aa3M54rEVKMx6Ef6xvJSXV2IbIddu5RGXUJDnGgXRbNUM1fhz_Gu6V3X74W1H_Y
-Message-ID: <CAEy9hNVJ5NzKQ95gxN6UWxsgy6HFMMFxGYZ_sutmdb0gL3qRbA@mail.gmail.com>
+Date: Sun, 22 Nov 2026 01:12:16 -0800
+X-Gm-Features: Aa3M54oySI-tTJ0Yq8ZA8YifNr7RX6205w52YmRPUl3JnSPbZIf10o3azHoDuPs
+Message-ID: <CAEy9hNVyfNZu9R-2duqwFhYps9t58CwZM777yM7AmU0rcc=dYg@mail.gmail.com>
 Subject: Re: [PATCH net] net: stmmac: dwmac-sun8i: Limit the MTU to one
  descriptor buffer
-To: wens@kernel.org
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	LABBE Corentin <clabbe.montjoie@gmail.com>, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, LABBE Corentin <clabbe.montjoie@gmail.com>, 
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
 	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
 	Russell King <rmk+kernel@armlinux.org.uk>, Nicolai Buchwitz <nb@tipi-net.de>, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_011150_145814_F853CE7C 
-X-CRM114-Status: UNSURE (   8.76  )
+X-CRM114-CacheID: sfid-20261122_011230_516753_5F3B3903 
+X-CRM114-Status: UNSURE (   8.31  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -132,13 +131,11 @@ X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 22, 2026 at 3:26 PM Chen-Yu Tsai <wens@kernel.org> wrote:
-> So what's the overall plan? Limit it first to make things work, get the
-> fix backported, and then fix jumbo frame (>2K) handling so it works
-> for any MTU value?
+On 11/22/26 08:56, Maxime Chevallier wrote:
+> The problem is real indeed, but not specific to this glue. Rather, the max_mtu
+> computation should be fixed for normal descriptors altogether. Can you work
+> on such a fix ?
 
-Yes. v2 for net limits normal descriptors to one buffer in the stmmac
-core, with the lower sun8i limit on top, for stable. The jumbo series
-then goes to net-next on top of it and lifts the limit for sun8i:
-https://lore.kernel.org/r/20261112-sun8i-emac-jumbo-v2-2-aca0cf23cf17@gmail.com
+Yes, v2 does that in stmmac_main.c, with the lower sun8i limit as a
+separate patch on top.
 
