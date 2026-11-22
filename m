@@ -2,84 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BC8606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 11:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B891606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 11:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VM7iO5oQ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jtml9c5E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3eXTsliy;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nyVhlKcq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XsPczLgMwqRcGehK0Y36BZv739K0cQRsYfBty9hj0p0=; b=VM7iO5oQNoRGq/
-	Uy0owO1mxgT90ug3wzCMFTP2TyWN/6Bw6ZOIdAcAxmQCxmxV4K38xX+jinUQHmXNMmWL4/Bj6/50H
-	T87biZBghHeCoAscGKAM0SntuYnYF+qf7tED21j0d3G9tOzLO2s8EkHyV+fbj1kDRsrUBfCA8zfEy
-	ZDxkpCy4Vae4+ZPPwVH4R4W4SPBMZ/vrmlchXkKPUrga0kWNNwvsByem+X1d/ZTiWr041AFOOb4d8
-	EL3MHEFasXcXJHjubwnVA+B8IapQXPltltlBRe7uGIDOWBfcqHxgItdXICFsBUhqry/Fh3i8mEsLD
-	+xw0stTCMrFwnm/YEjWg==;
+	List-Owner; bh=xWLCRl31use0Fw2SVtV1S3RdawAt/eTZFqjV9KHlaWs=; b=3eXTsliyju2NvZ
+	ByEWIHmruYriWbrGejvSfotHjaPQ7wpNdALZX1wUgwpArWQpbizi069bPvVtarNWeBecsS9ICBfPw
+	jZUaDSr6lHdU3TSkpnG86vQRXbtxvO2kZQOwEhdV0FKgaGa+CU/jn4jM3a/+qCylUdgFJi8ns0QYO
+	idozelzbgqM0FOT5Xwiaa2tPVmUpwUPevBIvRLynPyWBzURh3Ed6uPcILDMZ7sxqFVK13auCdXlYV
+	AwBR359+YDUk7wm3NEomCmohlKvr2H8CLsDmDWxOJkYKTYa9tI8Ej306NS5xEJgIu6apAgPmJYKLT
+	yrELhSw4ep0y7mwB4KEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV6AY-00000001392-0U8X;
+	id 1xV6AY-0000000139T-1SSO;
 	Sun, 22 Nov 2026 11:55:42 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV6AP-0000000137k-3A1h
+	id 1xV6AU-0000000138i-3LI2
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 11:55:33 +0000
+	Sun, 22 Nov 2026 11:55:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 83C1444F5E;
-	Sun, 22 Nov 2026 11:55:33 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8E56343923;
+	Sun, 22 Nov 2026 11:55:38 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795348533;
-	b=I6QIRkZUPdPyTq3CvVfbcFXogDSwlZusGqmFDXJoDkDlns9bJjgJ/AT5L6GfTqixV2Kb
-	 ADGwuuY5Sf5GoRislouDijvai1+bK0ETS6K9x4jTYjjBAWPyVPA2gVd+ZmuSFfy0VCT4C
-	 2KLHz0I7uIUWrLrFMSPF3ElbcngkCLX9arXQIi+jDRta5D/pbkrD2ePv0mVM9BGjdjIE/
-	 SQGZe3OEwE8+fPxmWA4xRt6AIjhZLDtrC/r1FQrd4UIMjxFFQqnAZDGtu/+jhYxMON1vE
-	 mZu5aE6Yk5/Gb+7xV8PTXUSb0xNMpfd5igLi/SSjcuICsIOaKR2+Br1zVZmIv5PigVA==
+	t=1795348538;
+	b=eeSMl/6xo/MVuiGWHidHeJlDFLtg4AWkQvqHhXOj4Pvf4WeDiOcHhLRJiB4r8lXNkRy1
+	 FQObkAY7FU0hLg3Xh1gsI0Q33tU9rh6bYYKaL42KKYr+qe2yD64Q/OMGqfiYqC5VF3mSi
+	 BZsUvwSrmpKiDMzUA4gfNtrG6vpRA0RCyvYvylhr34kjIY+9pY2nTuvQWqBfN+TjdTVaH
+	 SSgVH2iXuyqb4i9s/1OXEFpxcuthaJ2NRPa/sEPil3ivkafY9PUxtPC2or1RQQQbtUeNZ
+	 KBsHNOHnPhH/+Lo2c+2iYXWhWXOOdNOh/CLewWyo16vvSuX6rIdtksCtTRKpZUUt3cw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795348533;
+	c=relaxed/relaxed; t=1795348538;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
 	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To;
-	bh=XsPczLgMwqRcGehK0Y36BZv739K0cQRsYfBty9hj0p0=;
-	b=FfU2I3C1xF4MyuBXHaAdfUnM24vydTjlIjrZdwr/zZhfJIQLjE8CHQdF48qE8o047RCb
-	 rhE0EKDD6qLWsh4ykg2iyj9JXSNUe7g1BgCmBcjOFkVXI6FVMoelTTPeAtcJQVuVaSTAE
-	 ON4stS7jJjR9SgL8WUKdeWf2g22ggkm7v+bnWFy+RouwTB6t0vljsFZfiHR+wIHB4UnTV
-	 Mc3VaNBAKrG6gKRU0nRA+wzVtgAvUdNEvu1CPheiTc8auOXau3+tuUU95O3BAx1uyENeY
-	 YhKZf67NZGw+ADxsGEIOoGurlInxEYq1e6qoEwWUg0NE2Us/ciqBaMtrMZ7BCyUxMCg==
+	bh=xWLCRl31use0Fw2SVtV1S3RdawAt/eTZFqjV9KHlaWs=;
+	b=uPznE3LwzFWF4JNwkiN8RI+EXGvU9WsNJvufZ5EP6+may3nFmCEVSX44aeYbm3BMRwfr
+	 LloiZzTjZMawXWqPogaUhrekwGLwydpq7P0GiM8EQQyYU8SzSy6IbQWb3SPzhcDEUOyMK
+	 OE1XUpk38ZcOUZ9itA3IRNtvuZxvFAUTToGLhli2VM8CaVdt/VX/gqYRKED8BNfd0/UPa
+	 xjQeNHVDO0gihzvBuhbm6jozkZglDHa2SZdGfzh4eFSGNwsI1HKfz5Vays1LoyL7kIPqK
+	 ttPnRJR1E4iPQjdR+GTXxpjj2u3TLQ5oWdZp21zkvL56NbRQZGoXFIwCQZVx3stIRZA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 52C161F000D8;
+	by smtp.kernel.org (Postfix) with ESMTPS id 6F8A91F000E0;
 	Sun, 22 Nov 2026 11:55:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795348533;
-	bh=XsPczLgMwqRcGehK0Y36BZv739K0cQRsYfBty9hj0p0=;
+	s=k20260515; t=1795348538;
+	bh=xWLCRl31use0Fw2SVtV1S3RdawAt/eTZFqjV9KHlaWs=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=jtml9c5ECFeQ+BGhVAkIvLpEWS6e8lklEYwrT5PTndBPMMOj1eyGSp6xAhDQzHviU
-	 umoGE/ME6HaHuqpfv200XsRjY9qzmVOuPJYILLBTIMN9nA2CpwlxqEpeJpQCDKgKgv
-	 0DL/TL7Q2xLfxumgQabfmQTbnZh4xr+Cs8fTECGTVVkuaWjqB/q4KU8mNWorhn5GG2
-	 zsorp153Mc1r7IcMHsYPZpxdeh2BEb3oH9PCJt72ksbUuenCnPfJg64oARXOrYIukQ
-	 ZdXQtXo1+Xzx5UTQK/IJMDhU4YoEJla6YSl7NwO8NJsL/gNDumUZob1uay0d05j938
-	 72X1RSVW45o+A==
+	b=nyVhlKcqa23VbZ3Q2TF00cL6oulYecYVBjjdmH3zJoPXo3+c53A2+CqTC0dtCbPSa
+	 5UPQGpZ/Zxu5azwYGqriREmv6zS+BTA0UpbVU3CSkioj+VfFj2fVg/SNtl7JmqpERh
+	 EFCQyz3YgeYRoLLMRpwfbuCmBtYrzQHeulmTQZPwzmb3F9JiWwuG6hF/Wmj+SLSgpW
+	 I8qAOMhrwt1X5e58se2vZbsK6F5+AgZXFmvxrYAJtbwqAFdRDbmGasOB60XuTEUOE/
+	 i6xbZ2Lhv8ne0VBxXaddzE8zH+wuZB1nW9NoP96Yy7bHJgW5wNyu/vUbF558PqpEgi
+	 gTWGoFz/v0Vcg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D00A34C01F;
+	by lkml.kernel.org (Postfix) with ESMTP id EC1214C023;
 	Sun, 22 Nov 2026 11:55:27 +0000 (UTC)
 From: Suyuan Wang via B4 Relay <devnull+shyckless.gmail.com@kernel.org>
-Date: Sun, 22 Nov 2026 11:55:27 +0000
-Subject: [PATCH 2/3] cpufreq: kirkwood: Put clocks on error and in remove
+Date: Sun, 22 Nov 2026 11:55:28 +0000
+Subject: [PATCH 3/3] cpufreq: s5pv210: Fix resource leaks on probe error
+ paths
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261122-cpufreq-leaks-v1-2-96fc17ff7339@gmail.com>
+Message-Id: <20261122-cpufreq-leaks-v1-3-96fc17ff7339@gmail.com>
 References: <20261122-cpufreq-leaks-v1-0-96fc17ff7339@gmail.com>
 In-Reply-To: <20261122-cpufreq-leaks-v1-0-96fc17ff7339@gmail.com>
 To: rafael@kernel.org, viresh.kumar@linaro.org, krzk@kernel.org, 
@@ -88,11 +89,11 @@ Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-pm@vger.kernel.org, alim.akhtar@samsung.com, 
  linux-kernel@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795348526; l=2983;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795348526; l=2583;
  i=shyckless@gmail.com; s=default; h=from:subject:message-id;
- bh=skKpKTVz2FV0rjzQ/HU+MrfER9ugcIz07303IiHkuCA=;
- b=0efWSpMpBy+Kwg3RseZTMMzQXoPPCXFeJhXVmatgvsOBKi5JFwCEgzHwH8uKjbTB/HwfBHtQK
- C3De9J/sEVcA4JgERWuHneJbyfb1bPAC2aE2NUFMg2x9KdOHD6yrodU
+ bh=u26GdNff9h8VDqjlemiKXHAuftopncbeRgVHJ/CpuKU=;
+ b=CrzgHHiglo92NWgPpcnitjmDoIyGezX87Do2D12VT7kp6fyLOS0r3fq5gaaTll/JBZKRugRX3
+ f5B2+44sqakD6BU6xI6LbdUulZpWYly5wOr4asrOv6uJ/lgLavdA7fG
 X-Developer-Key: i=shyckless@gmail.com; a=ed25519;
  pk=pMtccVGiWES3bV+7YBFuBclkvq2n2HBHQ5azaBrK2lY=
 X-Endpoint-Received: by B4 Relay for shyckless@gmail.com/default with
@@ -119,86 +120,75 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Suyuan Wang <stevewong@hust.edu.cn>
 
-kirkwood_cpufreq_probe() gets three clocks with of_clk_get_by_name():
-cpu_clk, ddrclk and powersave. None of them is ever released with
-clk_put(). The error paths only disable and unprepare the clocks, and
-kirkwood_cpufreq_remove() does the same. So the clock references leak
-when probe fails (for example on -EPROBE_DEFER) and on every unbind.
+s5pv210_cpufreq_probe() returns the result of cpufreq_register_driver()
+directly:
 
-Add the missing clk_put() calls to the error paths and to remove. The
-"Unable to prepare" paths now jump to new labels that only put the clock
-that failed to enable.
+	register_reboot_notifier(&s5pv210_cpufreq_reboot_notifier);
+
+	return cpufreq_register_driver(&s5pv210_driver);
+
+If the registration fails, for example because s5pv210_cpu_init()
+fails, the resources taken by the probe itself are leaked: the two
+regulators and the clock and DMC register mappings. The reboot notifier
+also stays registered. (s5pv210_cpu_init() releases its own clocks on
+its error paths, and the cpufreq core tears down its own state.)
+
+Also, when a DMC node has a bad alias, the code jumps to err_clk_base
+and skips unmapping DMC registers that were already mapped for an
+earlier node.
+
+Unregister the reboot notifier and go through the existing unwind code
+when cpufreq_register_driver() fails, and jump to err_dmc on the alias
+error. The err_clk_base label has no users after this, so drop it.
 
 Found with a static analysis tool and checked by hand.
 
-Fixes: 2a4bd9f0db24 ("cpufreq: kirkwood: Add a cpufreq driver for Marvell Kirkwood SoCs")
+Fixes: 6d4ed0f46af6 ("cpufreq: s5pv210: Make the driver multiplatform aware")
+Fixes: e0e5b2b4f427 ("cpufreq: s5pv210: Defer probe if getting regulators fail")
 Co-developed-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
 Signed-off-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
 Signed-off-by: Suyuan Wang <stevewong@hust.edu.cn>
 ---
- drivers/cpufreq/kirkwood-cpufreq.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/cpufreq/s5pv210-cpufreq.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/cpufreq/kirkwood-cpufreq.c b/drivers/cpufreq/kirkwood-cpufreq.c
-index 24b285cbeb8d..e85658081c07 100644
---- a/drivers/cpufreq/kirkwood-cpufreq.c
-+++ b/drivers/cpufreq/kirkwood-cpufreq.c
-@@ -125,7 +125,7 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
- 	err = clk_prepare_enable(priv.cpu_clk);
- 	if (err) {
- 		dev_err(priv.dev, "Unable to prepare cpuclk\n");
--		goto out_node;
-+		goto out_put_cpu;
- 	}
+diff --git a/drivers/cpufreq/s5pv210-cpufreq.c b/drivers/cpufreq/s5pv210-cpufreq.c
+index e64e84e1ee79..29b1c5d71a8b 100644
+--- a/drivers/cpufreq/s5pv210-cpufreq.c
++++ b/drivers/cpufreq/s5pv210-cpufreq.c
+@@ -634,7 +634,7 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
+ 		if (id < 0 || id >= ARRAY_SIZE(dmc_base)) {
+ 			dev_err(dev, "failed to get alias of dmc node '%pOFn'\n", dmc);
+ 			result = id;
+-			goto err_clk_base;
++			goto err_dmc;
+ 		}
  
- 	kirkwood_freq_table[0].frequency = clk_get_rate(priv.cpu_clk) / 1000;
-@@ -140,7 +140,7 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
- 	err = clk_prepare_enable(priv.ddr_clk);
- 	if (err) {
- 		dev_err(priv.dev, "Unable to prepare ddrclk\n");
--		goto out_cpu;
-+		goto out_put_ddr;
- 	}
- 	kirkwood_freq_table[1].frequency = clk_get_rate(priv.ddr_clk) / 1000;
+ 		dmc_base[id] = of_iomap(dmc, 0);
+@@ -655,7 +655,14 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
  
-@@ -153,7 +153,7 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
- 	err = clk_prepare_enable(priv.powersave_clk);
- 	if (err) {
- 		dev_err(priv.dev, "Unable to prepare powersave clk\n");
--		goto out_ddr;
-+		goto out_put_powersave;
- 	}
+ 	register_reboot_notifier(&s5pv210_cpufreq_reboot_notifier);
  
- 	err = cpufreq_register_driver(&kirkwood_cpufreq_driver);
-@@ -167,10 +167,16 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
+-	return cpufreq_register_driver(&s5pv210_driver);
++	result = cpufreq_register_driver(&s5pv210_driver);
++	if (result)
++		goto err_reboot_notifier;
++
++	return 0;
++
++err_reboot_notifier:
++	unregister_reboot_notifier(&s5pv210_cpufreq_reboot_notifier);
  
- out_powersave:
- 	clk_disable_unprepare(priv.powersave_clk);
-+out_put_powersave:
-+	clk_put(priv.powersave_clk);
- out_ddr:
- 	clk_disable_unprepare(priv.ddr_clk);
-+out_put_ddr:
-+	clk_put(priv.ddr_clk);
- out_cpu:
- 	clk_disable_unprepare(priv.cpu_clk);
-+out_put_cpu:
-+	clk_put(priv.cpu_clk);
- out_node:
- 	of_node_put(np);
+ err_dmc:
+ 	for (id = 0; id < ARRAY_SIZE(dmc_base); ++id)
+@@ -664,7 +671,6 @@ static int s5pv210_cpufreq_probe(struct platform_device *pdev)
+ 			dmc_base[id] = NULL;
+ 		}
  
-@@ -182,8 +188,11 @@ static void kirkwood_cpufreq_remove(struct platform_device *pdev)
- 	cpufreq_unregister_driver(&kirkwood_cpufreq_driver);
+-err_clk_base:
+ 	iounmap(clk_base);
  
- 	clk_disable_unprepare(priv.powersave_clk);
-+	clk_put(priv.powersave_clk);
- 	clk_disable_unprepare(priv.ddr_clk);
-+	clk_put(priv.ddr_clk);
- 	clk_disable_unprepare(priv.cpu_clk);
-+	clk_put(priv.cpu_clk);
- }
- 
- static struct platform_driver kirkwood_cpufreq_platform_driver = {
+ err_clock:
 
 -- 
 2.34.1
