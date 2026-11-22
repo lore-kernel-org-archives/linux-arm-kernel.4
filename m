@@ -2,65 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85369606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 03:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F65606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 03:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hDrzrtNQ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OjjS0lXp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hHMzmdv9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NKy+gTpYb5dVg5urGlblN/UMLSLttA2GEJW42xYuEaE=; b=hDrzrtNQdnpFXv
-	1ooUev5xjSdaxT0+DRqhneEtv50jaXrg876yEq572IiDYk0wrwUeekZvu7M+djmSjU6e37nFeNHLi
-	TMIUZKtjvNDcUqWClDFf8Yf/bhnV8lzy0LTpOh0PNb7B8HYjt7fXF3UCgR6+7ZBHbAyXRgpNunQRX
-	xmslEOIg4k6MFyQBMVwT1Ld1me7GyQ0TxwNjXqhnFSpwK/08OacepZnRUF0CuotCs2mX89OB5pFNJ
-	oVZJEs06Hp8UejN7Hd0w6S2Ohw/SmOPbv3FSS1HRPAPq5e6zSzUNee5a40scGH2DLiUp2sZ29lA16
-	izeZH3nDgpDPWcbrUgvQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=wjWNvasiebAydZfgtj6Bb+cSuhx7ngQOzsh9oRyAYYY=; b=hHMzmdv93WqkWScURZL0ANYTuP
+	gAfJlS4WFBnejXeW7s2zV/wpohfPalnLfobCAH8A7gkbkgmgib1USffmSKaHM4MG4UVHQHvNfTxdW
+	hKPHiF/kO9sEV7mLA33nezLRxLkmlyrvGmI/EFfrNKyazOzDWki1Ef7kuCNi+ax4ZY/yH1h1zA8/R
+	02Hwu/mf4Jg8JmfvLw/kFB/SBD0HhdkaC574gDiatTdH6YNu72GiBHXMIlYYJq4261jyBrQWk5LnR
+	i/mE/PZV/bjctwgn6Yh9ytHttuMuO5f65pEWYjb58navxtD6eA0pzMN6AYlt0DyArAkfTyEGEOGL0
+	0nUrYwUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUxup-00000000hag-3vVJ;
-	Sun, 22 Nov 2026 03:06:55 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xUyNI-00000000iRv-2ZZ1;
+	Sun, 22 Nov 2026 03:36:20 +0000
+Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xUxuo-00000000haY-0Xr2
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 03:06:54 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CC4C043FE7;
-	Sun, 22 Nov 2026 03:06:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E6EA1F000C0;
-	Sun, 22 Nov 2026 03:06:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795316813;
-	bh=NKy+gTpYb5dVg5urGlblN/UMLSLttA2GEJW42xYuEaE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=OjjS0lXppcVQbNVDoKmqORgWXRFhw+ZRgFJgtavVDDjrYgo66S+qNzgKH+jdSYq6i
-	 6zeVj8qIP5Bh1KqIEB+PO2+enQ3r2DVTREWs9TV9E98pwR6FW2V7qfU96JnPGyXEnd
-	 X+jX+YeodeVnUFO4WcN+rRDUwoxTxi5rO0Cgdno34OBzUtidkTrg6i1j6hKmq36VXB
-	 6PQkmOVvizdwYLl0v2pG+8Yq9KWYAhpaR3asW9ZaH0zDD2+RPyyBZ6v/iMsqI13DtM
-	 nnnTzNdcyqSLi67Hm5pLtqAW4YtpKLGckKJ9goBgvFihYTy0975keXX79K2g/njnI1
-	 GUzbXb5TT4E5g==
-Date: Sun, 22 Nov 2026 03:06:47 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- chernyakin.victor.j@outlook.com, cwweng@nuvoton.com
-Subject: Re: [PATCH v5 3/3] iio: adc: Add Nuvoton MA35D1 EADC driver
-Message-ID: <20261122030647.70b41b61@jic23-hlaptop>
-In-Reply-To: <20261117082832.1551574-4-cwweng.linux@gmail.com>
-References: <20261117082832.1551574-1-cwweng.linux@gmail.com>
-	<20261117082832.1551574-4-cwweng.linux@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	id 1xUyNF-00000000iRJ-1qQS;
+	Sun, 22 Nov 2026 03:36:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=e+eh3vTSeFr6xsXHJOYXR0dQBu1jfKkqXU0owIK5+vN2DCGoewIlA1BKP4NfMkC2bCEo4YJZ7Ib1J3F2juy2vNlSo+3kHIvCvdpDxrJ1NRwK54W6I5cR4MyzR8d4KxjF8B1kqKyxAoWeyNJBRI9y6FDDjjVLTcMo2A1hqv3J30uJbSYnx59rEV73aQojthD+J9UBPhKh59KG2ql6VM7tCrIAmg/47qfl7CxHqY9lxVVerLjJKPpSo+hW88OlutmKIlflFO5UiSWUGWXGLMGtApE4+h1gFRhYER8IQURrzEyPTX8Cc8gGrfY9R8K3/qwuQY1+Y4OsEAcLLoJyie3wjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wjWNvasiebAydZfgtj6Bb+cSuhx7ngQOzsh9oRyAYYY=;
+ b=WcoyF8sZyC6khOha8S0Vy/gw+RxsM0ltwMK6Jy+F90f6YJ6bLe56ikp9CdtPPgVzRG/FuvkzH61yiPqyMt7POz1k/JKAbLoRvRnmfBYdibNwOo2BmAesf7a9klLqT6NW2XpmDOVrf1Y0vMrj7vxaYXF5vT/arwpzseWnkUBcPJ+7iSmVy7ajEGunQy474dVKnTygQ6yz3RlbHRhtcnIYTkr+0ydrOu2WAeMuNcRAGuTe0ADweJuLxngRAvmsxnQP5mO8UYFDqVNuBZU8yy4+H3Cgs8JcDYYNOatlVNIEsiL715QIekCVsdsX5v7dPwSHEx0p16pTbpQ7TF3jol9kug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0083.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2b3::11)
+ by KL1PR06MB6426.apcprd06.prod.outlook.com (2603:1096:820:f7::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.3; Sun, 22 Nov
+ 2026 03:36:03 +0000
+Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
+ (2603:1096:400:2b3:cafe::9a) by TYCP286CA0083.outlook.office365.com
+ (2603:1096:400:2b3::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.13 via Frontend Transport; Sun,
+ 22 Nov 2026 03:36:03 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB83.mail.protection.outlook.com (10.167.253.4) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Sun, 22 Nov 2026 03:36:02 +0000
+Received: from hongliang-System-Product-Name (unknown [172.20.64.180])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 3654A427EFD4;
+	Sun, 22 Nov 2026 11:36:01 +0800 (CST)
+From: Hongliang Yang <hongliang.yang@cixtech.com>
+To: krzk@kernel.org
+Cc: vkoul@kernel.org,
+	neil.armstrong@linaro.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	Gary.Yang@cixtech.com,
+	fugang.duan@cixtech.com,
+	linux-phy@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	Hongliang Yang <hongliang.yang@cixtech.com>
+Subject: Re: [PATCH v8 1/2] dt-bindings: phy: Add CIX Sky1 USB3 PHY
+Date: Sun, 22 Nov 2026 11:36:00 +0800
+Message-ID: <20261122033600.25806-1-hongliang.yang@cixtech.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20261121-friendly-slim-jackal-fecccb@quoll>
+References: <20261117022858.2210212-1-hongliang.yang@cixtech.com> <20261117022858.2210212-2-hongliang.yang@cixtech.com> <20261121-friendly-slim-jackal-fecccb@quoll>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB83:EE_|KL1PR06MB6426:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 231b45c4-5653-4c67-de80-08df4849bbd4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|36860700016|23010399003|22082099003|18002099003|261009223027099003|4143699003|56012099006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 7T8lDeJsKHsEisAVHyAwqCVi8jVWVbAT3ep6I0anhn4Ko0RR4F7jd7iUMjkQspY7bTcUexvW8pKbNBw3gGSYFLhnA1P49omBCF7ER9Q+Spx64CKJ2+nKxHiYEQsxN5SsqYBQbxk5RSzkwZpUSoBP+ul//HsHdk+DrwRMYag2qBonyvUPTHOYfarkRLxu5nS5zoHwjHxqtjpsFQXcyxR8bYjQiL9ilXhiqyTfAexnJCZsinnpQr4nAyjmWozXoy293XJNYW+rU/OwUuqI3ohcU6bSx9xvxwwgsmnjkCU7ilBz6uDUShcgKtj8aNo2OrZ/VDXiuDw8KXRJO3EAuiKm44v6hbXvAAa8rp2VO6mtL3mGwlHI1y3jZZqUgsWS0px8/istWoBz7c9DrRxSqTW+8As1XKBwlQWZK4mKFkRhbShPrFROlKmcfsYPHc2a2DuhB4LWM47U4+f4BRrNcBBVMZFH1HlrFNX+l/hxrrBUFKhBwz8Ggpns9kf6ryy55Tkcc7vL6mOO4EwrP9cgsb0dW3e6OksEupCcU8maaJ/NqFfJ68IbFG8BMVGLTeXmQWWEZV07fycQBsv8GbYpoVZCdQee40bpsk6Acw7PfyCTzAez/zvYEcvVZhKrPDeCAyWaa17YBZbdAghxJazw4/KtfwMO5jCw48wuH2eCbiC5St2Cg6Li/sFlYgigY+48gkJNuoQpLRlBbgWxFWMyfvJ2cw==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(36860700016)(23010399003)(22082099003)(18002099003)(261009223027099003)(4143699003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(10067099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: cXM3CZQ01/wEYBQMwxO1rb7+Zmo9RoMIJdMlAtK1pCbNJjtDoRKLdfVss65smickz713LASkU8vC4Qmc9+2ZGXPK2Py9zzkPTNvcbeYQx/ma8zQLkB5QvEnk/0AdI8HH8cJ4mTKuodhW5AtW4Xl5l3gTo1jRzYIEZ+zozA1kks/NL88u54Qp32Me5wxyDlHVTVnKqLKiDlqY5yeCO204BSiv1+eyZDAH3UVx/oEVvn6dVBkpMTiboHh2fK5mM82l+BwsBE61okQ5/BxoPNSc2R5xVniDVgVvnt49DJaZi4dUb+OrAEJbnZ/UPISXuCoMVFvu2wOtbYtL+ARViTUxReMiberrW3AalQD4JCQeazFDqD9zQPiT3acjVzWm7L4W1doiTuQ6JFk95nAEGH1dW5zkxaCJuRHgpMfrqw4Wp5EADgpBiJ0+fJVpijsClI1k
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2026 03:36:02.8881
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 231b45c4-5653-4c67-de80-08df4849bbd4
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB83.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6426
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261121_193617_484977_E969B4BF 
+X-CRM114-Status: UNSURE (   7.27  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,288 +124,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 17 Nov 2026 16:28:32 +0800
-Chi-Wen Weng <cwweng.linux@gmail.com> wrote:
+> Neither two clocks from clock controller are separate devices... that's
+> really not the point. I don't get what exactly is here common between
+> these two lanes, but you have several per-lane registers suggesting they
+> might be independent.
 
-> From: Chi-Wen Weng <cwweng@nuvoton.com>
-> 
-> Add an IIO driver for the Enhanced Analog-to-Digital Converter found on
-> Nuvoton MA35D1 SoCs.
-> 
-> Support single-ended and fixed differential inputs, direct conversion,
-> and triggered buffered capture. This initial implementation uses sample
-> module 0 and therefore supports one active voltage channel per buffered
-> scan.
-> 
-> Signed-off-by: Chi-Wen Weng <cwweng@nuvoton.com>
-Various comments inline to add to Andy's.
+The lanes are the two lanes of one PHY. The two controllers above it are
+separate devices, each with its own PIPE interface:
 
-Thanks,
+                        Sky1 SoC
+  +----------------------------------------------------------+
+  | usb3_typea_drd_tcp                                       |
+  |                                                          |
+  |   +--------------------+     +--------------------+      |
+  |   | usb3_typea_drd0    |     | usb3_typea_drd1    |      |
+  |   |                    |     |                    |      |
+  |   |   USB3 Ctrl        |     |   USB3 Ctrl        |      |
+  |   |       | UTMI       |     |       | UTMI       |      |
+  |   |       v            |     |       v            |      |
+  |   |   USB2 PHY         |     |   USB2 PHY         |      |
+  |   +-------+------------+     +-------+------------+      |
+  |           | PIPE                     | PIPE              |
+  |           v                          v                   |
+  |   +------------------------------------------------+     |
+  |   |              USB3 PHY, 2 lanes                 |     |
+  |   |                                                |     |
+  |   |  lane 0      common block          lane 1      |     |
+  |   |  TX 0x4000   bias, calibration     TX 0x4200   |     |
+  |   |  RX 0x8000   PLLs, at 0x0000       RX 0x8200   |     |
+  |   +------------------------------------------------+     |
+  |                                                          |
+  |   one register range, one APB clock, one reference       |
+  |   clock, one reset pair for the whole block              |
+  +----------------------------------------------------------+
 
-Jonathan
+The per-lane registers are the two PMA windows; the bias, the calibration
+and the PLLs they use are in the common block, and there is one reset pair
+and one reference clock for both lanes. The SoC has no per-lane clock,
+reset or power control, so the lanes cannot be brought up or down
+separately, and the driver programs both of them in one sequence.
 
-> diff --git a/drivers/iio/adc/ma35d1_eadc.c b/drivers/iio/adc/ma35d1_eadc.c
-> new file mode 100644
-> index 000000000000..d9a715efcc6b
-> --- /dev/null
-> +++ b/drivers/iio/adc/ma35d1_eadc.c
-...
-
-> +
-> +/*
-> + * Keep the register map uncached because status and conversion data are
-> + * updated by hardware, and some status bits use write-one-to-clear semantics.
-
-That's a reason to set volatile and precious but not general one to say
-don't cache anything.
-
-> + */
-> +static const struct regmap_config ma35d1_adc_regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = MA35D1_EADC_REFADJCTL,
-> +	.rd_table = &ma35d1_adc_readable_table,
-> +	.wr_table = &ma35d1_adc_writable_table,
-> +	.precious_table = &ma35d1_adc_precious_table,
-> +};
-
-
-
-> +
-> +static void ma35d1_adc_trigger_capture(struct iio_poll_func *pf)
-> +{
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	struct {
-> +		u16 channel;
-> +		aligned_s64 timestamp;
-> +	} scan = { };
-> +	int ret;
-> +
-> +	guard(mutex)(&adc->lock);
-> +
-> +	if (adc->suspended || !adc->scan_chan)
-> +		return;
-> +
-> +	ret = ma35d1_adc_read_conversion(adc, adc->scan_chan,
-> +					 &scan.channel);
-
-Check line wraps. That one fits under 80 chars.
-
-> +	if (ret)
-> +		return;
-> +
-> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
-> +}
-
-> +
-> +static int ma35d1_adc_parse_channels(struct iio_dev *indio_dev,
-> +				     struct device *dev)
-> +{
-> +	DECLARE_BITMAP(used_single_inputs, MA35D1_EADC_MAX_EXT_CHANNELS) = { };
-> +	DECLARE_BITMAP(used_diff_pairs, MA35D1_EADC_NUM_DIFF_PAIRS) = { };
-> +	DECLARE_BITMAP(used_regs, MA35D1_EADC_MAX_EXT_CHANNELS) = { };
-> +	struct iio_chan_spec *channels;
-> +	unsigned int scan_index = 0;
-> +	int num_channels;
-> +	int ret;
-> +
-> +	num_channels = device_get_child_node_count(dev);
-> +	if (!num_channels)
-> +		return dev_err_probe(dev, -ENOENT, "no ADC channels configured\n");
-> +
-> +	if (num_channels > MA35D1_EADC_MAX_EXT_CHANNELS)
-> +		return dev_err_probe(dev, -ENOSPC, "too many ADC channels\n");
-> +
-> +	channels = devm_kcalloc(dev, size_add(num_channels, 1),
-> +				sizeof(*channels), GFP_KERNEL);
-
-You can now use devm_kzalloc_objs()
-A patch to apply that across the kernel went in during last week
-and the code is there since rc1.
-
-I don't mind either way as there will inevitably be a second round
-of conversions next cycle.
-
-
-> +	if (!channels)
-> +		return -ENOMEM;
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		bool has_diff, has_single;
-> +		u32 reg;
-> +
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "missing channel reg property\n");
-> +
-> +		if (reg >= MA35D1_EADC_MAX_EXT_CHANNELS)
-> +			return dev_err_probe(dev, -ENOSPC,
-> +					     "invalid ADC channel index %u\n", reg);
-> +
-> +		if (test_and_set_bit(reg, used_regs))
-> +			return dev_err_probe(dev, -EEXIST,
-> +					     "duplicate ADC channel index %u\n", reg);
-> +
-> +		has_single = fwnode_property_present(child, "single-channel");
-> +		has_diff = fwnode_property_present(child, "diff-channels");
-> +		if (has_single && has_diff)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "channel %u has conflicting input properties\n",
-> +					     reg);
-> +
-> +		if (has_diff)
-> +			ret = ma35d1_adc_parse_diff_channel(dev, child,
-> +							    &channels[scan_index],
-> +							    used_diff_pairs, reg,
-> +							    scan_index);
-> +		else
-> +			ret = ma35d1_adc_parse_single_channel(dev, child,
-> +							      &channels[scan_index],
-> +							      used_single_inputs,
-> +							      has_single, reg,
-> +							      scan_index);
-> +		if (ret)
-> +			return ret;
-> +
-> +		scan_index++;
-> +	}
-> +
-> +	channels[scan_index] = IIO_CHAN_SOFT_TIMESTAMP(scan_index);
-> +	indio_dev->channels = channels;
-> +	indio_dev->num_channels = scan_index + 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ma35d1_adc_init_vref(struct ma35d1_adc *adc, struct device *dev)
-> +{
-> +	int ret;
-> +
-> +	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
-> +	if (ret == -ENODEV) {
-> +		adc->vref_mV = MA35D1_EADC_INTERNAL_VREF_mV;
-> +	} else if (ret < 0) {
-> +		return dev_err_probe(dev, ret, "failed to get VREF supply\n");
-> +	} else if (ret > 0) {
-> +		adc->external_vref = true;
-> +		adc->vref_mV = ret / (MICRO / MILLI);
-> +	} else {
-> +		return dev_err_probe(dev, -EINVAL, "invalid VREF voltage\n");
-
-This is just 0. The calc for real values above will end up with 0 in vref_mv if
-there is less than 1 mV so not sure handling this separately brings much value.
-you have to assume vref_mv might be zero anyway.
-
-
-> +	}
-> +
-> +	return 0;
-> +}
-
-> +
-> +static int ma35d1_adc_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	bool buffer_enabled;
-> +	int ret;
-> +
-> +	/* A failed resume leaves the device and its triggering suspended. */
-> +	scoped_guard(mutex, &adc->lock) {
-> +		if (adc->suspended)
-> +			return 0;
-> +	}
-> +
-> +	/*
-> +	 * pollfunc->irq is not initialized until the pollfunc is first
-> +	 * attached to a trigger, so only suspend and resume triggering
-> +	 * while the buffer is enabled.
-
-True enough but isn't it also guarded by if indio_dev->pollfunc
-inside the iio_device_suspend_triggering()?
-
-I think in the case you are avoiding it is a noop anyway.
-
-disable_irq() nests fine so it shouldn't even matter if anyone turned
-it on yet.
-
-
-> +	 */
-> +	buffer_enabled = iio_buffer_enabled(indio_dev);
-> +	if (buffer_enabled) {
-> +		ret = iio_device_suspend_triggering(indio_dev);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = ma35d1_adc_suspend_hw(adc);
-> +	if (ret && buffer_enabled)
-> +		iio_device_resume_triggering(indio_dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ma35d1_adc_resume(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	scoped_guard(mutex, &adc->lock) {
-> +		if (!adc->suspended)
-> +			return 0;
-> +	}
-> +
-> +	ret = ma35d1_adc_resume_hw(adc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!iio_buffer_enabled(indio_dev))
-> +		return 0;
-
-As above, I'm missing why we need to protect the call
-to resume_triggering.  The pollfunc can't change between
-suspend and resume so there is either one there or not
-in both cases and the guards inside that call should take care
-of the rest.  If I'm missing something we should look to
-fix it in those calls!
-
-> +
-> +	return iio_device_resume_triggering(indio_dev);
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(ma35d1_adc_pm_ops,
-> +				ma35d1_adc_suspend, ma35d1_adc_resume);
-> +
-> +static const struct of_device_id ma35d1_adc_of_match[] = {
-> +	{ .compatible = "nuvoton,ma35d1-eadc" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ma35d1_adc_of_match);
-> +
-> +static struct platform_driver ma35d1_adc_driver = {
-> +	.probe = ma35d1_adc_probe,
-> +	.driver = {
-> +		.name = "ma35d1-eadc",
-> +		.of_match_table = ma35d1_adc_of_match,
-> +		.pm = pm_sleep_ptr(&ma35d1_adc_pm_ops),
-> +	},
-> +};
-> +module_platform_driver(ma35d1_adc_driver);
-> +
-> +MODULE_AUTHOR("Chi-Wen Weng <cwweng@nuvoton.com>");
-> +MODULE_DESCRIPTION("Nuvoton MA35D1 EADC driver");
-> +MODULE_LICENSE("GPL");
-
+If the lanes should still be separate providers in devicetree, they can be
+described as two phys of one node with a lane index; there is no per-lane
+resource to give them separate nodes.
 
