@@ -2,100 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A98606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 10:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC909606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 10:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2o5ChDvo;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Z5B7zCs7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pgtIkj87;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=CJGk9hmf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=oCpV49nOga8AoZMY7yHg06vfkscs7oJjLDcTlwIf7nA=; b=2o5ChDvoktH/S8
-	3XC8eWn6Vk+Hr+h26e1/y703/ZVvB1X67pBvCUbn1XQt0cNa6ak6CvVqWNoQNF89GdCnnyx5G5mzZ
-	Ns6Fh/BawGxiLeo59NFZNOH2QgFLIojp9J08tl+P3m8CtQCM8KA2tF42sL7eyCrXsg8YUiIhjXBh1
-	SfsfmP9HRGmgoUjzEldL+l/qy9PvMBPIgPNujVpkKqdc/qQMQ31fp57h0XkqN5O0JNX5JX7l6ZvMW
-	dudanDsiEcp0iphcsya36lcJ8gVPWxY2TOU4NfbQuu2s4EoxPROiVGkQacbXv3uRVW7DFwU/hmNTw
-	frdIQp0JcSZvr+HViVMw==;
+	List-Owner; bh=cSubAhLf2nToqdpyL5hNhVaoMwlhz2nCl7Gn87Xueqo=; b=pgtIkj87x3mvrS
+	/46kkt69GY2ZnsjhXrwg+NKE3qC2mTmxmB5cf3MbW13WVPrpwWyJl1BPjBW/Fpyi65zeQiB8CfCdl
+	70+kPiL+9oActBD1TBBM/lpxVfLtksX6jSMWMSxCOlf+5SrHXVN7Yy8LzyS6tSSUgZrC1mOy1Rbm5
+	rjKCGcp5NCFQVz8S1TVK7+01svn7ShZzMwRgWpiZ7x8TDYfKVqgX+FsGzstclpQilJd0FdHkBIlfN
+	D9QOTPgFTCRBpP8+POSf7wBzl6qFez8bCouV+oLex37adn/wKfhru0cplVGNYhUa5zLfYTnIY1OWR
+	dV2xH2NDo1Jjj1mgQUjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV4eP-00000000xba-29Kk;
-	Sun, 22 Nov 2026 10:18:25 +0000
-Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
+	id 1xV4jS-00000000xzq-1GlK;
+	Sun, 22 Nov 2026 10:23:38 +0000
+Received: from mail-pg1-x534.google.com ([2607:f8b0:4864:20::534])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV4eB-00000000xVw-1Ekg
+	id 1xV4jP-00000000xyO-1XU3
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 10:18:12 +0000
-Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-cddac941ed1so899136a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 02:18:11 -0800 (PST)
+	Sun, 22 Nov 2026 10:23:37 +0000
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-cdac6d19ddaso912829a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 02:23:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795342690; x=1795947490; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795343014; x=1795947814; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=oCpV49nOga8AoZMY7yHg06vfkscs7oJjLDcTlwIf7nA=;
-        b=Z5B7zCs7hKTZTyqxXu1T3V7+Ma7b4rpOgND2+unj+784Bse8gmZueozscT7VM3+Uxb
-         OoH88FfVr0XV5QwCemlqwNx8wmyLHr/Fg4SFAc0KnovZDF1X79uB89HjY1IgWnt/md64
-         jFYJZF8jJ8GEcV/yOZj0iLU1cENKcfzlkcRUsV+AwR8BEFOPelTK/DWYUKuIMLAGOVHU
-         rPfgK0LvHM+XDoTH5MKiui4Z7kxPZWQt1V5OBxku1KrmQXBNDXLtQyIPVfFmDfgbDUHL
-         PbqCXCSTbr1s6q+L9uvnEibXrCdKpFnbMpTrP0l5bImQJnUjKsb3oz6l7yszacSaes7t
-         0/uQ==
+        bh=cSubAhLf2nToqdpyL5hNhVaoMwlhz2nCl7Gn87Xueqo=;
+        b=CJGk9hmf3ZYyb29Yg6hJ7/vhoGRhlKaIRWJm3wdsYbC7RYuwTS7X0nK3rP45pFG1ow
+         5v+EKkbUJw6hlo0dIak95KYwtRsie6TrKj6UDyWUGteyDcHLSm0KTjZEcM+NELduAK4R
+         0OlcDt9ZyxEeuqwb2IWadFA2R6LzJFf3r9rohaRHaOlO2gmDoNjmV2V2QAWUGRv2lJwz
+         56jZLXwCItxERWVA+r7DU45bJTNp70CVRLnFYNO1S0a/kmJFcgaw23QawXrQEC9Ybk1n
+         1mDrVHCIB5xvGgmrYMKnML8SXxbUSCRr50y6cEbacFTU8FbiDxpN/rWzw5G/FVsZ2hsh
+         iKyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795342690; x=1795947490;
+        d=1e100.net; s=20260707; t=1795343014; x=1795947814;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=oCpV49nOga8AoZMY7yHg06vfkscs7oJjLDcTlwIf7nA=;
-        b=xbu/TrI4JMy8uXqDdd912BhD9Noxmne4xjXXDy8Ep6x5dBEehagQdjHETi/v6r2lVN
-         n2XW8uASh5dlfY4/7qG66ZfM9u4FcNOB1+fdt/V8JX/iQwFaqiy4+T/ouNIZNzWJJZ4M
-         SE1zq12KkoHa4Bkcj/AfC7N4iCFJtKsQJP0/SlGSlTRZFaGi5B6ZtlkUls7VsqU1ePpb
-         +oPxNt9SHp4MSHzBoMW6yhg1ujBPMI/wkgADP/vPBioI5P9+SlwUm/P9AyEnyhwlgMdo
-         C1QbtH8E/wjajwI6fuSXOqsVMLjhVl9DCiRtNgxkfUAZeR0flVwe+1HGy8pkmu4tW+nC
-         o+zg==
-X-Forwarded-Encrypted: i=1; AL+hErHz+w2MIKot/NaPB0w8u4pA0l9NrFqIq1YxcYYcRZOP2mwfMyL5GNHUs0kEU0UgkqZ9czIojNIqPUI/5edI96t9@lists.infradead.org
-X-Gm-Message-State: APuU4Z/6EAo6J12d8ANk//a+VkiktYkg7tyNT8s5aW/KwXa44lTnqaeQ
-	90/0Stc6LgwVR+SIbuN9ZW6ZNdhB1v0jVbOJjO8nMR4u1/ywHzhwmF+Y
-X-Gm-Gg: AZFdTZeqrk0e2pdkHb3F5bl1TDIRhmENqM6ZDaxdJ41e9QdC5nDZKRsO2t1nkytLHKt
-	84tXZweLkr/dFEFaJAfF1G4J0L5/dC3M3tDcsv2z/UIOlk8g5Sw4izviJuvksotJ0FfRDaSdDAh
-	uol1DoJMJnXAisR9xhd1aXCckINKGAAJi8sQSLBQHjwjmPmuSCtVqljOXjXRAhdVXFOFNAif1DQ
-	aIouXcOwe41J3dbLbq/VrVcLwxrYC3Mt/McKNT85AbIomQxptjElcuUvu/Gaiqf3G2dgy+oDVmn
-	rUE6fqzUQoMN9G/dk4PJQjNkwe+UpVOMZA1mTVR2iswMyY2tTkvYw85bB+qgTlXHBADWCvES9dH
-	VZh9FfcboYAA5amMC9IWvltii9rDhBGz5CkjUStKxApzjzeb2G3EFPWTBFLuuzK6C3FKBuonzCZ
-	QFjrEO6vhPiVsLKTazqmkE3+El7/mauWIrjbUFpwDhG4fXmTb2XFV9IebqfDEZgymu5IxHFbtCH
-	J5SP28AhfdUi0EWAUYG7mVqnLUIDJJ8rnQWGgDx/WajGqdArxVvrs79YoEQS4tFd8/Mo2BkqbOt
-	VanYisPjEC0pftk3vCofoBl/uzztJ0SCTzKIzSdanBgeigPBSvQ=
-X-Received: by 2002:a17:90b:1fc4:b0:3ac:6e91:3f22 with SMTP id 98e67ed59e1d1-3b41c98a43amr7026493a91.52.1795342690497;
-        Sun, 22 Nov 2026 02:18:10 -0800 (PST)
+        bh=cSubAhLf2nToqdpyL5hNhVaoMwlhz2nCl7Gn87Xueqo=;
+        b=v48Df6vjl6Inxv4DCECOOMiFuB11OaTh5u/dU4Hn60xXzAPzdZYQJm047k8fh2Voab
+         rW3s5j+uKTR+9Fy2mjxWnD2T2gitYyTBcTEIGb+usShWulaUDCkXfwqOYqbWJCQSLSyl
+         onoZjSnmjbJ5THksV+UnXivIJAAZEdipVAAqGDfnRteD3fcnPHSj6vL3LUiJQPFPNAwH
+         diMn/PQ+qO8mZZc7Ip+Yg5cZ8+xME3gH34xtC8n/yAPcQO0fFUewjsDfWIfkAJRgsngm
+         cNH2+/NYXusl2orj4EFyswmnfNCsoEbVnw7do1EKbt03d6dMVpDwl0ISmzWWq5yJ9q8q
+         W4hw==
+X-Forwarded-Encrypted: i=1; AL+hErG36/tWiraCAOo0vV3nPNOs6waBOq2ogG6PpMK2oKP2LsPFzWcUNzUr9EKt1IS2wH6irGMiHRV/bIkdyXinCcka@lists.infradead.org
+X-Gm-Message-State: APuU4Z/dv/cUBs2mJ48xYy680KgKof9NHv0DvlYu4rZvTvLirchtY0xR
+	hYRgH9pa3zq1ZeayEj1BNbrw/kBBFGnAEbrp3Ah86EBGQc82mwsDlc//
+X-Gm-Gg: AZFdTZflgOOa78Od9BzZWtgWDdXJfB7QGjqkpHFjMtM4Q/Ub4b/gAUk5UJ/hX03h5W7
+	3ayiN7mGYzrgywFv32UHklRpneBb5EFVLVe8vkaSEefAjJSa19s8vCuB9MOjWowlC1zlRobkLlj
+	3J6qf2prcc81pODrQkaa+WAzszWYyCYzXwQJa8DB/ztUnyffNL5/1BG8aYQZ39YyRaQtHK9HLjy
+	GS5lQW0ezdIR0WjGZZTe3Vf/RMKXsZbdet6O27XgqTkB+rQJZtDrSBd4yhIbhZN0K1c3S02DyeV
+	xhmHVEdHk2a5MGcCt9jA1UvfoDE8imYtm680aB8wiC+BSWii1KBVbC+Wud3jOZCk3Hdap48DBek
+	GcDyN0pjgM9+7W25JX4E7WVO35bjOyXbVMKmMUGydj4sClpbaP5BwRr8ln0u7wYJ3dboGNqSu7i
+	ihG+RPx6PCa8XYgILongy9OHYxZGZKy3XL+Q48qiJ+8195B148LjdcqIcLfMRGcNOrDHatiAkCP
+	/Bl91ZwFUbrPGZqUftWxFVVki2onz9LEVOk7tfTQCM+O9lFUAPrY4Mxe9Npu5gift555aTxQZ2x
+	ADWRTRRUAN3BFE7oy4j5ae79aFKnH6Nd83xGzB1qg/G+Racw/ug=
+X-Received: by 2002:a17:90b:4a48:b0:3b3:b5b4:e4a9 with SMTP id 98e67ed59e1d1-3b41c7ac07amr7895999a91.3.1795343014416;
+        Sun, 22 Nov 2026 02:23:34 -0800 (PST)
 Received: from fedora.tailc1fb0a.ts.net ([134.82.71.171])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405ffa98esm14953787a91.17.2026.11.22.02.18.07
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41aab4729sm12098095a91.0.2026.11.22.02.23.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 02:18:09 -0800 (PST)
+        Sun, 22 Nov 2026 02:23:34 -0800 (PST)
 From: Artem Novak <artem122novak@gmail.com>
-To: florian.fainelli@broadcom.com
-Cc: bcm-kernel-feedback-list@broadcom.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
+To: linux@roeck-us.net
+Cc: artem122novak@gmail.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	florian.fainelli@broadcom.com,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-rpi-kernel@lists.infradead.org,
-	robh@kernel.org,
-	Artem Novak <artem122novak@gmail.com>
-Subject: [PATCH v2 2/2] ARM: dts: bcm2835: replace deprecated LED fragment on Raspberry Pi Model B
-Date: Sun, 22 Nov 2026 04:17:59 -0600
-Message-ID: <20261122101759.206056-3-artem122novak@gmail.com>
+	linux-watchdog@vger.kernel.org,
+	wim@linux-watchdog.org
+Subject: [PATCH v2] watchdog: bcm2835: add newline to dev_info message
+Date: Sun, 22 Nov 2026 04:23:28 -0600
+Message-ID: <20261122102328.207524-1-artem122novak@gmail.com>
 X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261122101759.206056-1-artem122novak@gmail.com>
-References: <20261122095225.200916-1-artem122novak@gmail.com>
- <20261122101759.206056-1-artem122novak@gmail.com>
+In-Reply-To: <20261122082943.173681-1-artem122novak@gmail.com>
+References: <20261122082943.173681-1-artem122novak@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_021811_386260_7F1D2F60 
-X-CRM114-Status: GOOD (  11.16  )
+X-CRM114-CacheID: sfid-20261122_022335_427388_1A65A754 
+X-CRM114-Status: GOOD (  12.37  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,49 +113,27 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Preserve the leds and led_act labels when replacing the deprecated
-LED fragment with a board-local gpio-leds node.
-
-These labels are exported as device tree symbols and may be referenced
-by overlays.
+Add a newline to the watchdog timer initialization message so that
+the message is properly terminated in the kernel log.
 
 Signed-off-by: Artem Novak <artem122novak@gmail.com>
 ---
- arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ drivers/watchdog/bcm2835_wdt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
-index 72764be75a79..660814ce851b 100644
---- a/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm2835-rpi-b.dts
-@@ -3,7 +3,6 @@
- #include "bcm2835.dtsi"
- #include "bcm2835-rpi.dtsi"
- #include "bcm2835-rpi-common.dtsi"
--#include "bcm283x-rpi-led-deprecated.dtsi"
- #include "bcm283x-rpi-smsc9512.dtsi"
- #include "bcm283x-rpi-usb-host.dtsi"
+diff --git a/drivers/watchdog/bcm2835_wdt.c b/drivers/watchdog/bcm2835_wdt.c
+index 755954cbadee..df08236d2689 100644
+--- a/drivers/watchdog/bcm2835_wdt.c
++++ b/drivers/watchdog/bcm2835_wdt.c
+@@ -213,7 +213,7 @@ static int bcm2835_wdt_probe(struct platform_device *pdev)
+ 					      SYS_OFF_PRIO_DEFAULT,
+ 					      bcm2835_power_off, wdt);
  
-@@ -93,8 +92,17 @@ &hdmi {
- 	status = "okay";
- };
+-	dev_info(dev, "Broadcom BCM2835 watchdog timer");
++	dev_info(dev, "Broadcom BCM2835 watchdog timer\n");
+ 	return 0;
+ }
  
--&led_act {
--	gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-+/ {
-+	leds: leds {
-+		compatible = "gpio-leds";
-+
-+		led_act: led-act {
-+			label = "ACT";
-+			gpios = <&gpio 16 GPIO_ACTIVE_LOW>;
-+			default-state = "keep";
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
- };
- 
- &pwm {
 -- 
 2.56.1
 
