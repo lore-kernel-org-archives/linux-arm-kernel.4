@@ -2,51 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF654606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07DE606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hqezYMGu;
-	dkim=pass (2048-bit key) header.d=tipi-net.de header.i=@tipi-net.de header.a=rsa-sha256 header.s=dkim header.b=TWqFJ7O0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ur4sUq7N;
+	dkim=pass (2048-bit key) header.d=tipi-net.de header.i=@tipi-net.de header.a=rsa-sha256 header.s=dkim header.b=PBDjuNP1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=j/ABN0weoH/winFO8vB9+wkWZtGk1oyDvKSMVSfn8VY=; b=hqezYMGuW3Zvmu
-	5DmNtK2HFP5H+wUV35nP90XXhQ+cRTEVS57fv6AasBdwfaCzTHKvYR0QbScuZ1OyfhnHR3FLAZQvy
-	2/m0oqNz4ToLhZJ/DJwMsjbZsTeXqV6jNxikURbfymjeEkykHqb8aI28cbOpfGFXqVcWWKIk7+Z1z
-	DteL+VJF5yVNtVSn1/zDtFdHdfYYukGb5V8rWBJ8YTb5w6gVS26WaP8Vw8eyvopfh3RuCNA7xqC94
-	5Zvu0WQdK2y627hY2EFLIXrzs+XszJTXF1DxGr8BDYKhbLTFuVDI4GNdadYLTqa8umte+pDdPFJ9a
-	oEwKyn3FBfYn3mHasusw==;
+	List-Owner; bh=oxiR/oDYkJlm/vmgSNXn/0eNQdL2U0MFqxfA2Te5+Uk=; b=ur4sUq7Nx+gE+E
+	4qv+LA8rHoS/OX1ozMwgxEho/VMxt4kyQ5YrWZ62wDLIQXsLMBRmb0AdE9xTQ1EA3uDy5WbFrF52t
+	UiVw2HG4XzkUIHQGSNPnhI8xU1vVIZwjA/bTIQSIkJ+4MRUM/YqDQifTorw3jKlDvicfb2+glJZ8a
+	gykot7lOZ1lsc01nFkGRFqA+uL5ql/vx4fMBp+5dddBRgI+P2C15QJHwS2xFrkiTloNlZvdyz9QX4
+	C2+UBl6ydp2eDcvKnr9EHxErMBC8Vhx4l0wzQ1sNaPuJ1zRu4TuNko7yqRU3tNg3s3x/bjgqCDHZo
+	h371OLcdVve3tXrIkyag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVATg-00000001Mei-2z7e;
-	Sun, 22 Nov 2026 16:31:44 +0000
+	id 1xVAV7-00000001MsN-3mC1;
+	Sun, 22 Nov 2026 16:33:14 +0000
 Received: from mail.tipi-net.de ([2a03:4000:43:185::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVATd-00000001Mdm-3IBW
+	id 1xVAV5-00000001Mre-0sHH
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 16:31:43 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C25FEA03F0;
-	Sun, 22 Nov 2026 17:31:37 +0100 (CET)
+	Sun, 22 Nov 2026 16:33:12 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 055F4A157F;
+	Sun, 22 Nov 2026 17:33:07 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tipi-net.de; s=dkim;
-	t=1795365098; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795365189; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=j/ABN0weoH/winFO8vB9+wkWZtGk1oyDvKSMVSfn8VY=;
-	b=TWqFJ7O0ELEUZetvWU8HRSG7eUK3T++NZpI4PJ0PHfZC7v8QLnMSB1RsKjaqBKIt5HJiUz
-	Za8XmjLHFcNEfs1aW050lOjQXCgLxj531sxOnLZH8GT3vc3+WhiX5cip0q6ZrsZSfR3THf
-	Ez3jTcPDq5rShz5TlWqHnpmrwCcrBvOl1GFUvqG5cBO7HRbBTJEfY/jQbosYToTM21HMBg
-	ZnB0r6lu9RiO0KLihOUK2mskWTl3CyW7cU0uOA7/ZDNKA+L9qEsemtWInuTSkNl7r0Stbn
-	cFNJR0NzUntuNiAMJmSfJlFk24TvBn/gPs5bDHCHa0JlriHfo6YNXyAYpUiBhg==
+	bh=oxiR/oDYkJlm/vmgSNXn/0eNQdL2U0MFqxfA2Te5+Uk=;
+	b=PBDjuNP1jLkd2CMknU31M13Jiu2TwgpX8U+M1mm8vjZWz+pKAMxVeGIkwnktuOyABYzsCk
+	WbCrPvICu6bMf4yP2RDup3IHwovqqh0ocCc68eStaUQtRpKqrLdjyKlAnVwu79O1BPtzNg
+	2NcZoK3sgqTi6Q73QIsM+rP8fGJhW3kfT+utpLGHcnoIzUyz3T2AIbPfwN0932aUGqf+1U
+	mcdYMCKaygzmPVA++2UrphRRtfCU9IUquMeC+5dve4oj1NbmQTPWeaIDejcHJfqjbhfgBF
+	vZEtDU5Bmvp5J+0hWy88ScAnWB0M7ft6d2qGmEn3GyZ3YLdL7LcSFZNMbO49yw==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Date: Sun, 22 Nov 2026 17:31:37 +0100
+Date: Sun, 22 Nov 2026 17:33:07 +0100
 From: Nicolai Buchwitz <nb@tipi-net.de>
-To: wens@kernel.org, Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: aiyengar1990@gmail.com, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Jernej Skrabec
+To: aiyengar1990@gmail.com
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
  <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Maxime
  Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
  <alexandre.torgue@foss.st.com>, LABBE Corentin <clabbe.montjoie@gmail.com>,
@@ -55,19 +56,18 @@ Cc: aiyengar1990@gmail.com, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
  King <rmk+kernel@armlinux.org.uk>, stable@vger.kernel.org
 Subject: Re: [PATCH net v2 2/2] net: stmmac: dwmac-sun8i: Limit the MTU to
  2018
-In-Reply-To: <CAGb2v65_vY86WqvKr1m=g0N1Qr2UhLC1v3OHKPG3x+oURUKp7Q@mail.gmail.com>
+In-Reply-To: <20261122-sun8i-emac-mtu-limit-v2-2-c4081e5b83cf@gmail.com>
 References: <20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf@gmail.com>
  <20261122-sun8i-emac-mtu-limit-v2-2-c4081e5b83cf@gmail.com>
- <CAGb2v65_vY86WqvKr1m=g0N1Qr2UhLC1v3OHKPG3x+oURUKp7Q@mail.gmail.com>
-Message-ID: <5e09c85c2c33885fecbdf81cd0b9209b@tipi-net.de>
+Message-ID: <fd55b3381a6ea99be2befc9bc3e6f34f@tipi-net.de>
 X-Sender: nb@tipi-net.de
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_083141_977416_8A9072DF 
-X-CRM114-Status: UNSURE (   8.01  )
+X-CRM114-CacheID: sfid-20261122_083311_403125_5222DEB7 
+X-CRM114-Status: UNSURE (   5.87  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -80,31 +80,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 22.11.2026 12:39, Chen-Yu Tsai wrote:
-> [...]
-
-> FWIW I think this applies to all DWMAC cores.
-
-> [...]
-
-> So for normal descriptors the buffer size is bound to (2KB - bus 
-> width).
-> Not tested, but I think there is more evidence supporting a 
-> cross-platform
-> limit.
-
-The sun8i EMAC isn't a Synopsys core, so this needs a test on one.
-Maxime, could you try MTU 2019-2021 on your boards?
+On 22.11.2026 10:13, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> The H616 RX DMA fills only 2044 bytes of a buffer, so frames of 2045 to
+> 2047 bytes, allowed by the previous patch, are dropped. Limit the MTU
+> so that a frame with two VLAN tags and the FCS fits 2044 bytes.
+> 
+> Fixes: 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 
 > [...]
 
-Regards,
+Reviewed-by: Nicolai Buchwitz <nb@tipi-net.de>
+
+Thanks,
 Nicolai
 
