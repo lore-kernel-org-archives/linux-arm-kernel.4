@@ -2,87 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B41C606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E316606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 07:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p1bg7UQV;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RDHPeTWJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FIw1xWFV;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BP+oU47m
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=y8XgGvlVCCjPCeMynCuGBvpdTmWq070BiRu3GuXh4v0=; b=p1bg7UQVlo0vMi
-	PVXMVnsqmSvctp1o1AQ41zSF2JwWeIxagzsTDRvCS566OG3yJCETY6V49daKOs2CvykRUETPJ4rgT
-	UXsBMFgn4vbkmMi+vn3eEzr/Sy2gkXZUEaAZTvhiUqHQrBoXEQbAUWbjnMokzGPgprOTm0+83wv5h
-	ZrUyeEjvektH4qQJdBAmFGcXp+SY9z2FxzHP+jvu2qZ/Zm+jt2QM269VbLiRZH2nhFe0gOzgPwXY1
-	aonod6fnRftzc/AN4TmKVB97ybnSVSGyGntnC1eGZ9zzbY2Bd67gFbJgp1NFuEmWk81pn0jzb6RUT
-	cVd5YdeHi9E+N0w1CIvA==;
+	List-Owner; bh=AaSZyM5wetB09LUbusDUB+0HrVaGOCOOtEk3uKZfB+I=; b=FIw1xWFViX8RhH
+	MtF5dGazJqwnc7AxeJ7D1Mn3n38DTmXG68mTThHkF6pBaTj/lM1H4kR5UAbo7z2ohjK57A/qlYko/
+	hXmowIaYeeZsg+CAhxv7RRbHVBOY56HVKlGhM/J2slVoYSOdEMFS6voRx1rVB4M6AW4ERhQvO3b2N
+	T6xOd6RHd/OzQjOn0p3McE+p3y4RaKBlwwO+ffWrO7o+XltLPRN587QWA3q8ZIMsyXa6diRTHIQd0
+	1li2rXUPe8QGZL+/1Bzeo5JEcSZEp34fdAOb3Jd3fwuttD+BrS64W3RKpCuT8O9PxA6b4aeeO9t1x
+	Zwfp/XzE0u6Zg0K3xzFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2HV-00000000ptG-13JG;
+	id 1xV2HV-00000000ptS-1T0H;
 	Sun, 22 Nov 2026 07:46:37 +0000
-Received: from mail-oi1-x229.google.com ([2607:f8b0:4864:20::229])
+Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV2HN-00000000prO-0PM7
+	id 1xV2HO-00000000pri-1jsO
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 07:46:30 +0000
-Received: by mail-oi1-x229.google.com with SMTP id 5614622812f47-4a451915d8aso1740955b6e.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:46:28 -0800 (PST)
+	Sun, 22 Nov 2026 07:46:31 +0000
+Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-8631e07b756so1109859a34.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 21 Nov 2026 23:46:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795333588; x=1795938388; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795333589; x=1795938389; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=y8XgGvlVCCjPCeMynCuGBvpdTmWq070BiRu3GuXh4v0=;
-        b=RDHPeTWJAycuj/waETtLNdSIoD6pH3qGG20VoCUk03T8Ze8jgwg4l2NiO+Iab5NbfV
-         hT9Vtdvsk0C4SECo9yNfMQNW0hogDMT007qyc6qmRXhDjHZZ4mlXaOGTiHM8ojQUUa51
-         290/peL2v+fpBzP/ekOPN5Nm4XjF9sq/dN0lj+iZJvOU7yb6D+NsW6atmlwAjyW5CHvW
-         6veG32HvSIFhLovfWTLc+EwY84S/KGCmsfgf4G/gKZLwdCdahS0h1aXRjNERdZu9TDQU
-         gmq2lzUtoSAWUqYIvXoTI4WQALJf9gNvdHr+oKpRfBrRMKczfz8sqVWwAJE+ecwCvjSP
-         K5FA==
+        bh=AaSZyM5wetB09LUbusDUB+0HrVaGOCOOtEk3uKZfB+I=;
+        b=BP+oU47mqZfNKQeyxhTh4GWG/k35LuuY5vxNziqlsvHFFjaYpNSCW7iDN+zNRisszF
+         DprzanF4QnxPbl4n47SoEAzuRrlTHWS7pPYqxdquMnDDrX6JW4OauhVM5ByslING1qgu
+         5ZISBPjwLJ4OdvQlUW7ar/M9GYsjvulbklpFj8tpj0jWY2LUEfhWlLM4VomBmrYUjVHF
+         JaQ3NuuZ6Y63Jl/hEXw2f0GUucPLUFjo8o39Ll/TB66VkUDGHEX1ajaF+Dx5uj1lFNdo
+         TkezVpTXVFyQby+LZiQMbkSYlxIT2xCKw0npnUQWYbK2DVrv+XQgcx4ItTBlRxS1XkxZ
+         Bxuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795333588; x=1795938388;
+        d=1e100.net; s=20260707; t=1795333589; x=1795938389;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=y8XgGvlVCCjPCeMynCuGBvpdTmWq070BiRu3GuXh4v0=;
-        b=AfRx4dhGyjVaKTSmMCiBSD6lJF1u5qkVf9MYNs97eWB3ax8G9H0/tDCQybIs5NTnFc
-         6Ik4c0g6BKtjRF6ej/5JSCqKqiBJtbk5cShrVmKAoy7O+UnlbOsrcS4/i+tLwvO2IKH1
-         P6rqNeYClhWcURIzXE7xKBKSBupd5IEuwwmzjzqAjF2haEEQc8p7yzg4r1N27U40bRdS
-         AOGjQJTqNaa6ZmDGGkvV0tjAHpyncuyNjQXucfreYvbb/TAoqX73kXihUc1lka8Asq5p
-         qrHpEEmrmGuXd7QjeN5OlI+/EufC5U1HIWIn8PbU6eLwVbZsMrByCNtJnDOGA9sgVTXO
-         +YrQ==
-X-Forwarded-Encrypted: i=1; AL+hErG5vLBlANFxF50KgcO7Qh/mrKdvXgEab9giet3QQE+SgLNOg5/NLWHvcuTNFbLG71HgcmNsYcsCTHei2O9Dg6p0@lists.infradead.org
-X-Gm-Message-State: APuU4Z9+PCEKbb7GDXgkbiDYpZ4hB5lKm1NELGcEaVbttwWL7VMeyRPs
-	UjQ/daFMsRvf0SCxWgkpQ7UmBzSyiAQq0jhJrZFy0fn8lZvHTJ/3WDTY
-X-Gm-Gg: AZFdTZfHCl0+rUD78XRnazuq8SRFY2QW6MDyTbtSGtx/BTQ8ZumgKuEVVuITSHVs2X4
-	oMS1z0/nEo05PuFa6+SY5z5+YfkDSq+dat1FUzhheB3gKDY/UVDVipgYSvzEINSRFaebIzMox5v
-	eGm+9v7IsnejxIQfav45l/EUe2fbZfKQb8X6np7+adtJDmS7GC1TluprRbU3704OOok9h7I9YbI
-	OSQTo6Efjy/y21UeQPwPj1eUsRvaEBJBDR/U8o3fIpEwOYiEl6lxTun3B33t5rs0/NK1/yA8rkZ
-	/TJ9Yk4ODTcdXv9Y7C69naR9k7Hv8hkBIZgjdRD5xMM1e7eIZn+vN+6G9oecrZlGqE6F5pjQS2i
-	LotH0tpepujuN+rKK+DTQTixPAJbKyE6K9eOTP7asMhtl4UWytHfVsaPsyTS0srUd006Gm56Wg3
-	6DJA3EaynL7Q1t/MX+l8yoRySwGzBXb/3kUYoWnGuVETCzI6OGLW/BqnO8lIEPfTbDir4USGJJl
-	a6GHKN8OxGdFH8ntGPemFVkvoCLh2WmlyzjVv1cRr8Bl351WWFMo3WpkL3s3kub0tk83Ws5ZcUP
-	Ysxef0J1LC+/PR5XWOhZz5TKoZej6JJMq/EUcBV4xaO/7IZvII7rgKoQLWx1aZEdm5c79ddqYoZ
-	7jq9kRaH4sa5lt9VHPkxRGClbqZMNOwcQUDr7NEcR8JB14WvGSlEdt6/sSqBc077W/aZUgjStF6
-	6uCm4h38u9QEjSE04AGBcb4lFA4hZfDlxVlT5/OwimI1D5j4EUkb4f
-X-Received: by 2002:a05:6808:309f:b0:573:3cbc:9775 with SMTP id 5614622812f47-57a0900b93amr8494959b6e.27.1795333587934;
-        Sat, 21 Nov 2026 23:46:27 -0800 (PST)
+        bh=AaSZyM5wetB09LUbusDUB+0HrVaGOCOOtEk3uKZfB+I=;
+        b=uErAJhHeuAzT+fOzGGGEWBbizEleGCBkolN1e3Juc2GA0Lw3HbPvsku3m3Z5vK1vv3
+         jPrOUW3HAu4XcmG01QRW2VGDcLbWAUy2hPRcsaP36QSF/ChJ67wu3vx06rMchQW3sOSb
+         Lm7r7f4nRCK8+9yEhlOSkx71GhUhtDvIBzkrZD6sSe7PGbsW+ML+t1/A61sxa3SmjkzD
+         iUII+mvHmaqjinOrGDyXUToE6E4Oi/XfWUjeWUtxTrogNJl2X9wcLnR9232//nRI5yv9
+         hR4mb/W65EQ3csdWlTSMT1MCeq61wWU/dgWKhvhLJA2wT/2J3Yx/1uvzphjjmb4mJ1kS
+         rAyA==
+X-Forwarded-Encrypted: i=1; AL+hErG4qIwYnxVuq/RVrn8FKoy5KaRs9J7GkHUaMnkn3hOM7i9CivKkRIExCuBio5AoGQxhEoxAhLPK2incj2gcqDYb@lists.infradead.org
+X-Gm-Message-State: APuU4Z+YInchQa1M7SyG0DS+y2CLgPNRVYwMDsM/GU/cMgAcydVrJMXC
+	IG5RPbyH8/6I4CdaemWBk8ClfNWjlk8Eb56QfnKUphT/Eyzeafxp7ttp
+X-Gm-Gg: AZFdTZfxsbvlTxYA3oOBEeLoUhzqzuYQL/2l6Ha/QWZYHl0H5syPLjFLaZvZWZC3bRL
+	6splfKEYDC58OWWd+AhDhjkT4oCC0kUvAlnRTX6PAAb41mUHzDEF+RhqB1AOKiL/y8wnnfQpRHA
+	xV+cexDQqzI+huCtqB+X7eU6/7nGyb6vU5wTzWI1RosZG1Z24w2U8ZRHpad6Mectrmuj00/rpFi
+	LgPm9Y5b/E+3DOrkExdgM+sqKlDTOWKU2LXqFZ+mhzMJol1UVMY4svDxYLCCKVmXt4evecviz4L
+	mhSMC8fM6UfgzmdN9dhuIqcqEYv6FV1tIqGgwbuxyMgKskkv1aAL1H9XUuJ1GqVHCkvMXsb9uZd
+	kKpuHc/H0cIEj+0xvRJYWRa6CmEdDe9SHMiB88MKWQNRMw80YfiQgr/MwLaF9xX2cs9N1Sg35hs
+	jdJRNJyOytFVzu9cimJJKG4YwGEM1T9iEQQAtwO7FvOFszpciup3uf8CqLZMrY/uqtF7IDr9Wxb
+	jcYNfr/qfAbN9SA8QxWoGE3341IMyeFR3GW+2Gn9DaXjfCamUnv5Z0vWsCdclUPL1MdclDX/zpW
+	wYx4SzXOOkvyFQO1fivfdO3srx9/B+MUjnhROYhrP+gmAQn5PmObLWUdXCZo58QfyKFzuSBq+dy
+	1GWeqH76S8jmbDUxEcg9rQEIwU5syHcrYKTA4UnDms/khism3XGF8WqDKjdtf9n3xFLQFWIiqx1
+	9MBsX3s8byUzs7xVCMvKNFhURLqMXS8HARuUxQIlz3WuGrDMcHOlbA
+X-Received: by 2002:a05:6808:1387:b0:4f4:b62c:a3d8 with SMTP id 5614622812f47-57a0a937f43mr9425803b6e.33.1795333589314;
+        Sat, 21 Nov 2026 23:46:29 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a34252987sm6121800b6e.4.2026.11.21.23.46.26
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a34252987sm6121800b6e.4.2026.11.21.23.46.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2026 23:46:27 -0800 (PST)
+        Sat, 21 Nov 2026 23:46:28 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Sun, 22 Nov 2026 00:45:46 -0700
-Subject: [PATCH net-next 1/2] net: stmmac: add common RXALL handling
+Date: Sun, 22 Nov 2026 00:45:47 -0700
+Subject: [PATCH net-next 2/2] net: stmmac: dwmac-sun8i: support ethtool
+ rx-all
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261122-submit-sun8i-rxall-v1-v1-1-607789772c56@gmail.com>
+Message-Id: <20261122-submit-sun8i-rxall-v1-v1-2-607789772c56@gmail.com>
 References: <20261122-submit-sun8i-rxall-v1-v1-0-607789772c56@gmail.com>
 In-Reply-To: <20261122-submit-sun8i-rxall-v1-v1-0-607789772c56@gmail.com>
 To: netdev@vger.kernel.org, 
@@ -100,8 +101,8 @@ Cc: Jakub Kicinski <kuba@kernel.org>,
  James Hilliard <james.hilliard1@gmail.com>
 X-Mailer: b4 0.17-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_234629_162625_B69AB591 
-X-CRM114-Status: GOOD (  16.88  )
+X-CRM114-CacheID: sfid-20261121_234630_498495_6B85C0C0 
+X-CRM114-Status: GOOD (  19.87  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,152 +122,177 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow a MAC to distinguish complete frames with wire errors from
-descriptors that must always be discarded. When rx-all is enabled,
-deliver the former without trusting their checksum or counting them
-as good packets. Keep counting the errors in either mode.
+Enable packet captures of complete frames with wire errors on sun8i.
+Report these frames to the core with an unverified checksum so it
+can deliver them when rx-all is enabled. DMA and incomplete-frame
+errors still require dropping the frame.
 
-Apply the same policy to page-pool and zero-copy RX. Advertise rx-all
-only when the MAC supplies the receive-mode callback; leave it off by
-default.
+Program runt forwarding at initialization and when rx-all changes.
+Serialize live updates of RX_CTL1 so changing the receive mode cannot
+overwrite a concurrent DMA start, stop or threshold update.
 
 Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/common.h      |  2 +
- drivers/net/ethernet/stmicro/stmmac/hwif.h        |  1 +
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 52 ++++++++++++++++-------
- 3 files changed, 39 insertions(+), 16 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 73 +++++++++++++----------
+ 1 file changed, 41 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
-index 706feb7bcbed..ab959ee3a5dd 100644
---- a/drivers/net/ethernet/stmicro/stmmac/common.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/common.h
-@@ -360,6 +360,8 @@ enum rx_frame_status {
- 	llc_snap = 0x4,
- 	dma_own = 0x8,
- 	rx_not_ls = 0x10,
-+	/* Complete frame with a wire error, deliverable only with RXALL. */
-+	rx_error_frame = 0x20,
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+index 0ad2203f76c3..8398788d334e 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+@@ -21,16 +21,12 @@
+ #include <linux/pm_runtime.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/regmap.h>
++#include <linux/spinlock.h>
+ #include <linux/stmmac.h>
+ 
+ #include "stmmac.h"
+ #include "stmmac_platform.h"
+ 
+-/* General notes on dwmac-sun8i:
+- * Locking: no locking is necessary in this file because all necessary locking
+- *		is done in the "stmmac files"
+- */
+-
+ /* struct emac_variant - Describe dwmac-sun8i hardware variant
+  * @syscon_field		reg_field for the syscon's gmac register
+  * @soc_has_internal_phy:	Does the MAC embed an internal PHY
+@@ -73,6 +69,7 @@ struct sunxi_priv_data {
+ 	bool internal_phy_powered;
+ 	bool use_internal_phy;
+ 	void *mux_handle;
++	spinlock_t rx_ctl1_lock; /* Protects live RX_CTL1 updates */
  };
  
- /* Tx status */
-diff --git a/drivers/net/ethernet/stmicro/stmmac/hwif.h b/drivers/net/ethernet/stmicro/stmmac/hwif.h
-index 9ea76de030e4..c20babf8cb45 100644
---- a/drivers/net/ethernet/stmicro/stmmac/hwif.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/hwif.h
-@@ -321,6 +321,7 @@ struct stmmac_ops {
- 	void (*set_mac)(void __iomem *ioaddr, bool enable);
- 	/* Enable and verify that the IPC module is supported */
- 	int (*rx_ipc)(struct mac_device_info *hw);
-+	void (*set_rx_all)(struct stmmac_priv *priv, bool enable);
- 	/* Enable RX Queues */
- 	void (*rx_queue_enable)(struct mac_device_info *hw, u8 mode, u32 queue);
- 	/* RX Queues Priority */
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 70157efc2255..32e7906522a0 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -5646,10 +5646,12 @@ static void stmmac_dispatch_skb_zc(struct stmmac_priv *priv, u32 queue,
- 	skb_record_rx_queue(skb, queue);
- 	napi_gro_receive(&ch->rxtx_napi, skb);
+ /* EMAC clock register @ 0x30 in the "system control" address range */
+@@ -198,6 +195,7 @@ static const struct emac_variant emac_variant_h616_emac1 = {
  
--	u64_stats_update_begin(&rxq_stats->napi_syncp);
--	u64_stats_inc(&rxq_stats->napi.rx_packets);
--	u64_stats_add(&rxq_stats->napi.rx_bytes, len);
--	u64_stats_update_end(&rxq_stats->napi_syncp);
-+	if (likely(!(status & rx_error_frame))) {
-+		u64_stats_update_begin(&rxq_stats->napi_syncp);
-+		u64_stats_inc(&rxq_stats->napi.rx_packets);
-+		u64_stats_add(&rxq_stats->napi.rx_bytes, len);
-+		u64_stats_update_end(&rxq_stats->napi_syncp);
-+	}
+ /* Used in RX_CTL1*/
+ #define EMAC_RX_MD              BIT(1)
++#define EMAC_RX_RUNT_FRM	BIT(2)
+ #define EMAC_RX_ERR_FRM		BIT(3)
+ #define EMAC_RX_TH_MASK		GENMASK(5, 4)
+ #define EMAC_RX_TH_32		0
+@@ -442,25 +440,32 @@ static void sun8i_dwmac_dma_stop_tx(struct stmmac_priv *priv,
+ 	writel(v, ioaddr + EMAC_TX_CTL1);
  }
  
- static bool stmmac_rx_refill_zc(struct stmmac_priv *priv, u32 queue, u32 budget)
-@@ -5707,6 +5709,21 @@ static struct stmmac_xdp_buff *xsk_buff_to_stmmac_ctx(struct xdp_buff *xdp)
- 	return (struct stmmac_xdp_buff *)xdp;
- }
+-static void sun8i_dwmac_dma_start_rx(struct stmmac_priv *priv,
+-				     void __iomem *ioaddr, u32 chan)
++static void sun8i_dwmac_update_rx_ctl1(struct stmmac_priv *priv, u32 clear, u32 set)
+ {
++	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
+ 	u32 v;
  
-+static bool stmmac_rx_discard(struct stmmac_priv *priv, int status, u32 *rx_errors)
-+{
-+	if (likely(!(status & (discard_frame | rx_error_frame))))
-+		return false;
-+
-+	if (status & discard_frame) {
-+		if (!priv->hwts_rx_en)
-+			(*rx_errors)++;
-+		return true;
-+	}
-+
-+	(*rx_errors)++;
-+	return !(READ_ONCE(priv->dev->features) & NETIF_F_RXALL);
+-	v = readl(ioaddr + EMAC_RX_CTL1);
+-	v |= EMAC_RX_DMA_START;
+-	v |= EMAC_RX_DMA_EN;
+-	writel(v, ioaddr + EMAC_RX_CTL1);
++	guard(spinlock_irqsave)(&gmac->rx_ctl1_lock);
++	v = readl(priv->ioaddr + EMAC_RX_CTL1);
++	writel((v & ~clear) | set, priv->ioaddr + EMAC_RX_CTL1);
 +}
 +
- static int stmmac_rx_zc(struct stmmac_priv *priv, int limit, u32 queue)
++static void sun8i_dwmac_dma_start_rx(struct stmmac_priv *priv,
++				     void __iomem *ioaddr, u32 chan)
++{
++	sun8i_dwmac_update_rx_ctl1(priv, 0, EMAC_RX_DMA_START | EMAC_RX_DMA_EN);
+ }
+ 
+ static void sun8i_dwmac_dma_stop_rx(struct stmmac_priv *priv,
+ 				    void __iomem *ioaddr, u32 chan)
  {
- 	struct stmmac_rxq_stats *rxq_stats = &priv->xstats.rxq_stats[queue];
-@@ -5797,11 +5814,8 @@ static int stmmac_rx_zc(struct stmmac_priv *priv, int limit, u32 queue)
- 							   status);
- 		}
+-	u32 v;
++	sun8i_dwmac_update_rx_ctl1(priv, EMAC_RX_DMA_EN, 0);
++}
  
--		if (unlikely(!error && (status & discard_frame))) {
--			error = 1;
--			if (!priv->hwts_rx_en)
--				rx_errors++;
--		}
-+		if (!error)
-+			error = stmmac_rx_discard(priv, status, &rx_errors);
+-	v = readl(ioaddr + EMAC_RX_CTL1);
+-	v &= ~EMAC_RX_DMA_EN;
+-	writel(v, ioaddr + EMAC_RX_CTL1);
++static void sun8i_dwmac_set_rx_all(struct stmmac_priv *priv, bool enable)
++{
++	sun8i_dwmac_update_rx_ctl1(priv, EMAC_RX_RUNT_FRM,
++				   enable ? EMAC_RX_RUNT_FRM : 0);
+ }
  
- 		if (unlikely(error)) {
- 			xsk_buff_free(buf->xdp);
-@@ -5995,11 +6009,8 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 							   status);
- 		}
- 
--		if (unlikely(!error && (status & discard_frame))) {
--			error = 1;
--			if (!priv->hwts_rx_en)
--				rx_errors++;
--		}
-+		if (!error)
-+			error = stmmac_rx_discard(priv, status, &rx_errors);
- 
- 		/* We do not support SG in XDP mode */
- 		if (unlikely(!error && (status & rx_not_ls) &&
-@@ -6161,8 +6172,10 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
- 
- 		skb_record_rx_queue(skb, queue);
- 		napi_gro_receive(&ch->rx_napi, skb);
--		rx_packets++;
--		rx_bytes += len;
-+		if (likely(!(status & rx_error_frame))) {
-+			rx_packets++;
-+			rx_bytes += len;
-+		}
- next:
- 		in_progress = false;
- 		skb = NULL;
-@@ -6444,6 +6457,11 @@ static int stmmac_set_features(struct net_device *netdev,
+ static int sun8i_dwmac_dma_interrupt(struct stmmac_priv *priv,
+@@ -539,24 +544,23 @@ static void sun8i_dwmac_dma_operation_mode_rx(struct stmmac_priv *priv,
+ 					      void __iomem *ioaddr, int mode,
+ 					      u32 channel, int fifosz, u8 qmode)
  {
- 	struct stmmac_priv *priv = netdev_priv(netdev);
+-	u32 v;
++	u32 threshold = 0;
  
-+	if (((netdev->features ^ features) & NETIF_F_RXALL) &&
-+	    netif_running(netdev) && netif_device_present(netdev) &&
-+	    priv->hw->mac->set_rx_all)
-+		priv->hw->mac->set_rx_all(priv, features & NETIF_F_RXALL);
+-	v = readl(ioaddr + EMAC_RX_CTL1);
+ 	if (mode == SF_DMA_MODE) {
+-		v |= EMAC_RX_MD;
+-	} else {
+-		v &= ~EMAC_RX_MD;
+-		v &= ~EMAC_RX_TH_MASK;
+-		if (mode < 32)
+-			v |= EMAC_RX_TH_32;
+-		else if (mode < 64)
+-			v |= EMAC_RX_TH_64;
+-		else if (mode < 96)
+-			v |= EMAC_RX_TH_96;
+-		else if (mode < 128)
+-			v |= EMAC_RX_TH_128;
++		sun8i_dwmac_update_rx_ctl1(priv, 0, EMAC_RX_MD);
++		return;
+ 	}
+-	writel(v, ioaddr + EMAC_RX_CTL1);
 +
- 	/* Keep the COE Type in case of csum is supporting */
- 	if (features & NETIF_F_RXCSUM)
- 		priv->hw->rx_csum = priv->plat->rx_coe;
-@@ -8276,6 +8294,8 @@ static int __stmmac_dvr_probe(struct device *device,
++	if (mode < 32)
++		threshold = EMAC_RX_TH_32;
++	else if (mode < 64)
++		threshold = EMAC_RX_TH_64;
++	else if (mode < 96)
++		threshold = EMAC_RX_TH_96;
++	else if (mode < 128)
++		threshold = EMAC_RX_TH_128;
++
++	sun8i_dwmac_update_rx_ctl1(priv, EMAC_RX_MD | EMAC_RX_TH_MASK, threshold);
+ }
+ 
+ static void sun8i_dwmac_dma_operation_mode_tx(struct stmmac_priv *priv,
+@@ -648,7 +652,10 @@ static void sun8i_dwmac_core_init(struct mac_device_info *hw,
+ 	writel(v, ioaddr + EMAC_BASIC_CTL1);
+ 
+ 	/* Forward checksum failures to software before starting RX. */
+-	writel(EMAC_RX_ERR_FRM, ioaddr + EMAC_RX_CTL1);
++	v = EMAC_RX_ERR_FRM;
++	if (dev->features & NETIF_F_RXALL)
++		v |= EMAC_RX_RUNT_FRM;
++	writel(v, ioaddr + EMAC_RX_CTL1);
+ }
+ 
+ static void sun8i_dwmac_set_mac(void __iomem *ioaddr, bool enable)
+@@ -1052,6 +1059,7 @@ static const struct stmmac_ops sun8i_dwmac_ops = {
+ 	.set_mac = sun8i_dwmac_set_mac,
+ 	.dump_regs = sun8i_dwmac_dump_mac_regs,
+ 	.rx_ipc = sun8i_dwmac_rx_ipc,
++	.set_rx_all = sun8i_dwmac_set_rx_all,
+ 	.set_filter = sun8i_dwmac_set_filter,
+ 	.flow_ctrl = sun8i_dwmac_flow_ctrl,
+ 	.set_umac_addr = sun8i_dwmac_set_umac_addr,
+@@ -1126,7 +1134,7 @@ static int sun8i_dwmac_rx_status(struct stmmac_extra_stats *x, struct dma_desc *
+ 	if (unlikely(runt || (status & wire_errors))) {
+ 		if (runt && !(status & RDES0_LENGTH_ERROR))
+ 			x->rx_length++;
+-		return discard_frame;
++		return rx_error_frame | csum_none;
  	}
  
- 	ndev->features |= ndev->hw_features | NETIF_F_HIGHDMA;
-+	if (priv->hw->mac->set_rx_all)
-+		ndev->hw_features |= NETIF_F_RXALL;
- 	ndev->watchdog_timeo = msecs_to_jiffies(watchdog);
- #ifdef STMMAC_VLAN_TAG_USED
- 	/* Both mac100 and gmac support receive VLAN tag detection */
+ 	/* Only a checked IP frame is eligible for CHECKSUM_UNNECESSARY. */
+@@ -1218,6 +1226,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+ 	if (!gmac)
+ 		return -ENOMEM;
+ 
++	spin_lock_init(&gmac->rx_ctl1_lock);
+ 	gmac->variant = of_device_get_match_data(&pdev->dev);
+ 	if (!gmac->variant) {
+ 		dev_err(&pdev->dev, "Missing dwmac-sun8i variant\n");
 
 -- 
 2.53.0
