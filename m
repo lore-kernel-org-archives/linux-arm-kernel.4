@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC37606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372BD606A31D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E/Z0clUM;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=RpfjvuG3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dIOVVXgH;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=aNHWA8as;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZbUtKT9T
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,64 +15,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KyZ9uJ626I12Njxv0j4mlzZ8UPtaacK9Ww2cyWkY9Po=; b=E/Z0clUMA6jZE6CCamiToRT7Aw
-	J9+XWKYYnVhMaSrxLTpHl7ZJBGzpumGMrLFYRwERvkpEGvzYcLdRD4JUkQ+Vg53OyE19s3GG/qIeI
-	isnwt+9/OO3eHk5KOI8CwuarH6h9GNXIe91pUA8t5byXt8M0M/EDQromjGDF0AklGaaLTcfcBW9vB
-	uaauaFYeDvfkmi0Wgxg1VswnNUvfQIrqrUCU58KHX7FQjLrYy/y6lNVPisJ6jRSbZG9axFu5rpZbp
-	OGFAhuEKwVgN2e0pcjQf0MNhoxUrF4FdU8f7bpz+P2Gk9ybAkcd5YUnv7aC0Y2RA8PLkwhKWMeJMo
-	EWjutVYQ==;
+	bh=G6Fn9wgkvOdy7bMugPEvDDi9fcaaXmhQKzjgHTbZozM=; b=dIOVVXgHfouMGjtYyGEA3Ye9M7
+	tere32+wLOixWZqaQKnHWiWXl/pXlNop0ccUtDAydrlaavn0BnK3c7qgX2Ok+RnAyBtdAdUS3uTFu
+	StwHQKhGglSCT6Ly0VFzHbzW/2NwUZEYkZSHxzCtwLnUhAcwKhl8/p/iQvsF2strsxTF853iEdHTM
+	rKJX77EP209KWhg9mfcSm2nutQYuTSNMjiAtOWrdBKr5lURJDWsq+MHIc4cP41SKonswKRUBthwMK
+	vCIpSDFrjZVy/voC8KX3scpc8Aw1Tt8hpM6GN1nAct4YW2z9eC4gDunFAGASRAcauyIGzG27ulfRJ
+	3+iuUDWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVHTs-00000001w21-0yGn;
-	Mon, 23 Nov 2026 00:00:24 +0000
-Received: from mail-dy1-x1348.google.com ([2607:f8b0:4864:20::1348])
+	id 1xVHSz-00000001uxl-2gdb;
+	Sun, 22 Nov 2026 23:59:31 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVHSt-00000001unC-3YI6
+	id 1xVHSo-00000001uiN-1RD5
+	for linux-arm-kernel@bombadil.infradead.org;
+	Sun, 22 Nov 2026 23:59:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
+	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=G6Fn9wgkvOdy7bMugPEvDDi9fcaaXmhQKzjgHTbZozM=; b=aNHWA8asfKcmbE1edl+guptlNA
+	fn+C/+i4HYlwEsUQ69vpIG0hTdSTS3LrlTwd8efsAKhjADSwE/DD+hzbrvaEu5+NtXcr38JGCL+na
+	wg1weR54zMx2SHL+zWCJPy9c4J2kw6NAhdeBMSN3Lwn6S0m4baYPe7DlHE4+NQvmpH+lNPgPDHXQp
+	+Qss6LWkZfQ20TFvM2NXPkFYaXnX7dr00M0En1KPgjwHAJI76zyYJnBd8CdAU3C8f59Hs81X4gTGS
+	fw5MMJq7pIMt1MexD23QYE9aliLmG+kNAlkABp5WOs/654cKrD73GJP6KBCEdMF8UtqABMTss6vj7
+	bpTaTJTg==;
+Received: from mail-dl1-x1245.google.com ([2607:f8b0:4864:20::1245])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVHSk-00000002afY-3KRk
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 23:59:27 +0000
-Received: by mail-dy1-x1348.google.com with SMTP id 5a478bee46e88-386177b0516so7729229eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 15:59:22 -0800 (PST)
+	Sun, 22 Nov 2026 23:59:17 +0000
+Received: by mail-dl1-x1245.google.com with SMTP id a92af1059eb24-1b238436265so1313185c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 15:59:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795391961; x=1795996761; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795391952; x=1795996752; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=KyZ9uJ626I12Njxv0j4mlzZ8UPtaacK9Ww2cyWkY9Po=;
-        b=RpfjvuG3C59K1LAj03wm/hIIQ7HWcTJQcPK6GJq/52KpuivF318fp+zkDf3n+04Ush
-         XwAT26I4H/JV0IPkLn1O9misMKlHBtOBxu9VZnd37wsEqqKtP4yT5oNvAuDW3yelsjUl
-         lcV/qSwrZ9qH8FWFm2UPYXptl27LAcp9iM9WAgZJcHdcDaFDj95F4AEVkpQBz9ZLwzQN
-         J5zAzGL6OWV4zYo1eDBUjmf2U6zhAUr96OvoIUNAwXa0vsozFlhUJqb4D9G1p+2u0+W6
-         I9CgMi+yjqrFYQglZEt5TCNr0soFxfhXTTePNA4FwN9zqlF61VwhcGgLSkkVv6SZ7QdU
-         1aqw==
+        bh=G6Fn9wgkvOdy7bMugPEvDDi9fcaaXmhQKzjgHTbZozM=;
+        b=ZbUtKT9T7Qh/TJ2lJcJ68x0MpxIBr6ZGVlkWo7Hf2MFoY+ygniLAqgbRv0JMoHNrPo
+         hM4mwUh0SsK4SHmMOtNu+TUI4EVKjgVnYVTBQthNinSi/Nk60ePsNdCSk979TgjsjNdn
+         VZUmNnZo+jvpnYNt9kBZS7jRZJumUKrRQ6CO4kW0mZDdYZFh+YAbGz0S8+poK3TJHBRF
+         1iEf3FU7LU6n4V269jrAbZNj1Z3FOi1bnefwLRO63mmi3LWfZ3SdIrP5vIRSQJG7+Tmg
+         7u+2yglHXvyTlY8fhDjbt5W1Ob8+1JfrgHALDpZPT60lOmD3K530DgbPc9knDV1m1KQi
+         YV3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795391961; x=1795996761;
+        d=1e100.net; s=20260707; t=1795391952; x=1795996752;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=KyZ9uJ626I12Njxv0j4mlzZ8UPtaacK9Ww2cyWkY9Po=;
-        b=k165eIpLoEOU7CrEbi6S3hF59SJumTJn2E2fKC3T3nHOnlzQqy+SGgSpBAp/27AgmG
-         X/OlRkEdESjQyJOXS/9VRtUWLKi+BzZhA7SbpXGo+sxobrtNLC5YawMEzJyKxymWXg93
-         mdGnBkCr//ODdZCi9mt5lOSIVqF+mvJ3UMwp6PC3rpJka7HLeCAGbMRvtKZXG/p2C7mr
-         VnNFhq7rUDHUyocJQo/T5E6HhTFSeFFvVC7/wJ87dbbAauam98timbFNp8t4Gsz/tmGj
-         88kx72Yzhzov6+f70zyxDunj1Ayul9HN1n0bRLL7EG60mmMy9cB40EFIgStWNdN6/am+
-         6NKQ==
-X-Forwarded-Encrypted: i=1; AL+hErFuOpsb2mqrdi2Xw1DQEFgvAltujMOjm2nsVmnD9VGko2lDcb3VZigll2uOoxzRwluK7rz7B6KmX9LbptjXhWCH@lists.infradead.org
-X-Gm-Message-State: APuU4Z92EIn2T8ekt3jhmn2uuKikLkb8o2xb8BVKsCAD7V9SD/yM0eHQ
-	mv/HAqlHQl0xJM2xtHKEkSLYimyDeofXI+XgnVgKf/ajp6eIdQMgiuO7y379uLpqnkNc60BVF2Y
-	M1rhuUd8ZNw==
-X-Received: from dycqw15-n1.prod.google.com ([2002:a05:7300:c00f:10b0:36f:5688:8a11])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7301:700a:b0:384:988d:6ec2
- with SMTP id 5a478bee46e88-3856f6524acmr11225588eec.33.1795391960856; Sun, 22
- Nov 2026 15:59:20 -0800 (PST)
-Date: Sun, 22 Nov 2026 15:57:56 -0800
+        bh=G6Fn9wgkvOdy7bMugPEvDDi9fcaaXmhQKzjgHTbZozM=;
+        b=nif3fxfzPpMRNDPE4RIV/vMSslajfwqK/4QhM1N0QwKgodCfbbrc95KzovwweU6OYu
+         1zFR480q0fS5n678nx1aYB9d8Sq1E1Trw5ltWnZZD+rSc5Ouj9sYKaIrGe7eW3zhQzBu
+         lmBTdLfhmJpJaFVOwuZUnsuSuek7y63dHXUKqUCL//SDvR5Wa0DbF38i0g9BuFPJ6HCi
+         e7/zVD4PgDtlDj/Lg+NPpeUDUPuNCa8XjGWJMxW55/9w2dIZtEl+0WnLHRb+dHNbwEIY
+         +ClQvgU9BfuqF+EyuJVlVu2MjgaHVN8JVs9NuIYYyE0szyUDjZ6RZ+GMw+ZZcTvpjb12
+         io1g==
+X-Forwarded-Encrypted: i=1; AL+hErGjAesa6bDRx2aox6791vLWmsQsG2lnyk5hXsmcHa4i8oYKf5X07mXOE1qOGo279BHxhtDXqFjKGbHdPNMh92dP@lists.infradead.org
+X-Gm-Message-State: APuU4Z8MLI+J0oPsjDnR1v6Yyp7Bz7KuBp52rHns0KiZrXw6jS/SZlFB
+	wEv4+dD/WMH3Qqe+rp40ExgsgzG0K8Wvhrth0tHQn3Km2JAECvEXjU86y4EYpD0hClD8QPeXc3S
+	xVS6Mz/DBXw==
+X-Received: from dlah8.prod.google.com ([2002:a05:701b:2608:b0:1a8:14f9:6e3a])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7022:3a89:b0:1b2:558a:d777
+ with SMTP id a92af1059eb24-1b5567b459emr10487944c88.2.1795391951928; Sun, 22
+ Nov 2026 15:59:11 -0800 (PST)
+Date: Sun, 22 Nov 2026 15:57:53 -0800
 In-Reply-To: <20261122235757.3456048-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261122235757.3456048-1-irogers@google.com>
 X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
-Message-ID: <20261122235757.3456048-11-irogers@google.com>
-Subject: [RFC PATCH v1 10/11] selftests/perf_events: Add Minimal DWARF CFI
- deferred user unwind test
+Message-ID: <20261122235757.3456048-8-irogers@google.com>
+Subject: [RFC PATCH v1 07/11] arm64/unwind: Add Minimal DWARF CFI kernel unwinder
 From: Ian Rogers <irogers@google.com>
 To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
 	linux-arch@vger.kernel.org
@@ -91,9 +106,9 @@ Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
 	dylanbhatch@google.com, Ian Rogers <irogers@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_155924_005803_CF6ED714 
-X-CRM114-Status: GOOD (  18.15  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261122_235915_180555_A08BBE7F 
+X-CRM114-Status: GOOD (  21.91  )
+X-Spam-Score: -7.6 (-------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,502 +127,1390 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a multi-architecture kselftest (unwind_user_cfi) under
-tools/testing/selftests/perf_events/ exercising deferred user-space
-callchain unwinding (PERF_RECORD_CALLCHAIN_DEFERRED) compiled with
--O2 -fomit-frame-pointer -fasynchronous-unwind-tables across:
- 1. Standard SP-based frames with the architectural frame-pointer
-    register (%rbp / x29 / s0) explicitly clobbered
- 2. Dynamic alloca() VLA FP-based frames (DW_CFA_def_cfa_register)
- 3. 64-byte stack-realigned frames (DRAP on x86-64)
- 4. Shrink-wrapped early-return functions (remember_state/restore_state)
- 5. Anonymous RX JIT-style frame-pointer stubs lacking .eh_frame_hdr,
-    exercising per-frame CFI -> FP -> CFI -> FP -> CFI fallback and
-    negative VMA caching in find_user_eh_frame_hdr()
+Add CONFIG_UNWINDER_DWARF_CFI as a kernel unwinder choice alongside
+CONFIG_UNWINDER_FRAME_POINTER on arm64:
+
+ - Move select ARCH_WANT_FRAME_POINTERS and select FRAME_POINTER under
+   UNWINDER_FRAME_POINTER and pass -fomit-frame-pointer and
+   -fasynchronous-unwind-tables under UNWINDER_DWARF_CFI, while keeping
+   -fno-omit-frame-pointer for nVHE EL2 hypervisor objects and BPF JIT
+   frames.
+ - Emit --eh-frame-hdr and place .eh_frame_hdr and .eh_frame in
+   vmlinux RO_DATA while preserving __pi___eh_frame_start and
+   __pi___eh_frame_end so CONFIG_UNWIND_PATCH_PAC_INTO_SCS continues to
+   work unchanged.
+ - Retain SHF_ALLOC module .eh_frame sections in module.lds.h and index
+   them with RCU-safe lifetime in arch/arm64/kernel/module.c.
+ - Annotate call_on_irq_stack(), __efi_rt_asm_wrapper(),
+   arch_bpf_timed_may_goto(), return_to_handler(), and
+   __hwasan_tag_mismatch() with .cfi_* directives, key function_graph
+   and kretprobe shadow return stacks on entry SP (CFA) rather than x29,
+   and implement noinstr-safe kunwind_next_cfi() and
+   arm64_unwind_perf_caller_regs() in arch/arm64/kernel/stacktrace.c
+   with link-register leaf support, PAC stripping, cross-stack pivot
+   transitions, ftrace_caller / ftrace_graph / kretprobe recovery, BPF
+   JIT/trampoline frame records, and SP-verified frame_record_meta entry
+   transitions.
 
 Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- .../testing/selftests/perf_events/.gitignore  |   1 +
- tools/testing/selftests/perf_events/Makefile  |   4 +-
- .../selftests/perf_events/unwind_user_cfi.c   | 447 ++++++++++++++++++
- 3 files changed, 451 insertions(+), 1 deletion(-)
- create mode 100644 tools/testing/selftests/perf_events/unwind_user_cfi.c
+ arch/arm64/Kconfig                  |   2 -
+ arch/arm64/Kconfig.debug            |  32 ++
+ arch/arm64/Makefile                 |   5 +
+ arch/arm64/include/asm/ftrace.h     |  10 +-
+ arch/arm64/include/asm/module.h     |  16 +
+ arch/arm64/include/asm/module.lds.h |   2 +-
+ arch/arm64/include/asm/perf_event.h |  15 +
+ arch/arm64/kernel/Makefile          |   2 +
+ arch/arm64/kernel/efi-rt-wrapper.S  |  22 ++
+ arch/arm64/kernel/entry-ftrace.S    |  35 +-
+ arch/arm64/kernel/entry.S           |  22 ++
+ arch/arm64/kernel/ftrace.c          |  12 +-
+ arch/arm64/kernel/module.c          |  17 +-
+ arch/arm64/kernel/probes/kprobes.c  |  14 +-
+ arch/arm64/kernel/stacktrace.c      | 537 ++++++++++++++++++++++++++--
+ arch/arm64/kernel/vmlinux.lds.S     |  21 +-
+ arch/arm64/kvm/hyp/nvhe/Makefile    |   1 +
+ arch/arm64/lib/kasan_sw_tags.S      |  16 +
+ arch/arm64/net/bpf_jit_comp.c       |   9 +-
+ arch/arm64/net/bpf_timed_may_goto.S |  19 +
+ 20 files changed, 768 insertions(+), 41 deletions(-)
 
-diff --git a/tools/testing/selftests/perf_events/.gitignore b/tools/testing/selftests/perf_events/.gitignore
-index 4931b3b6bbd3..4567b6563646 100644
---- a/tools/testing/selftests/perf_events/.gitignore
-+++ b/tools/testing/selftests/perf_events/.gitignore
-@@ -3,3 +3,4 @@ sigtrap_threads
- remove_on_exec
- watermark_signal
- mmap
-+unwind_user_cfi
-diff --git a/tools/testing/selftests/perf_events/Makefile b/tools/testing/selftests/perf_events/Makefile
-index 2e5d85770dfe..6a3a774544e8 100644
---- a/tools/testing/selftests/perf_events/Makefile
-+++ b/tools/testing/selftests/perf_events/Makefile
-@@ -2,5 +2,7 @@
- CFLAGS += -Wl,-no-as-needed -Wall $(KHDR_INCLUDES)
- LDFLAGS += -lpthread
+diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+index 918d7e278f7d..0c0b24d1ec4a 100644
+--- a/arch/arm64/Kconfig
++++ b/arch/arm64/Kconfig
+@@ -91,7 +91,6 @@ config ARM64
+ 	select ARCH_WANT_COMPAT_IPC_PARSE_VERSION if COMPAT
+ 	select ARCH_WANT_DEFAULT_BPF_JIT
+ 	select ARCH_WANT_DEFAULT_TOPDOWN_MMAP_LAYOUT
+-	select ARCH_WANT_FRAME_POINTERS
+ 	select ARCH_WANT_HUGE_PMD_SHARE if ARM64_4K_PAGES || (ARM64_16K_PAGES && !ARM64_VA_BITS_36)
+ 	select ARCH_WANT_LD_ORPHAN_WARN
+ 	select ARCH_WANTS_EXECMEM_LATE
+@@ -118,7 +117,6 @@ config ARM64
+ 	select DMA_BOUNCE_UNALIGNED_KMALLOC
+ 	select DMA_DIRECT_REMAP
+ 	select EDAC_SUPPORT
+-	select FRAME_POINTER
+ 	select FUNCTION_ALIGNMENT_4B
+ 	select FUNCTION_ALIGNMENT_8B if DYNAMIC_FTRACE_WITH_CALL_OPS
+ 	select GENERIC_ALLOCATOR
+diff --git a/arch/arm64/Kconfig.debug b/arch/arm64/Kconfig.debug
+index 265c4461031f..4f5c99a2fa96 100644
+--- a/arch/arm64/Kconfig.debug
++++ b/arch/arm64/Kconfig.debug
+@@ -1,5 +1,37 @@
+ # SPDX-License-Identifier: GPL-2.0-only
  
--TEST_GEN_PROGS := sigtrap_threads remove_on_exec watermark_signal mmap
-+TEST_GEN_PROGS := sigtrap_threads remove_on_exec watermark_signal mmap unwind_user_cfi
- include ../lib.mk
++choice
++	prompt "Choose kernel unwinder"
++	default UNWINDER_FRAME_POINTER
++	help
++	  This determines which method will be used for unwinding kernel stack
++	  traces for panics, oopses, bugs, warnings, perf, /proc/<pid>/stack,
++	  livepatch, lockdep, and more.  If unsure, keep the default frame
++	  pointer unwinder.
 +
-+$(OUTPUT)/unwind_user_cfi: CFLAGS += $(TOOLS_INCLUDES) -O2 -fomit-frame-pointer -fasynchronous-unwind-tables
-diff --git a/tools/testing/selftests/perf_events/unwind_user_cfi.c b/tools/testing/selftests/perf_events/unwind_user_cfi.c
-new file mode 100644
-index 000000000000..3f9fb8500824
---- /dev/null
-+++ b/tools/testing/selftests/perf_events/unwind_user_cfi.c
-@@ -0,0 +1,447 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * unwind_user_cfi.c - Multi-arch selftest for Minimal DWARF CFI user unwinding.
++config UNWINDER_FRAME_POINTER
++	bool "Frame pointer unwinder"
++	select ARCH_WANT_FRAME_POINTERS
++	select FRAME_POINTER
++	help
++	  This option enables the standard frame pointer (x29) unwinder for
++	  unwinding kernel stack traces on arm64.  Kernel code is compiled
++	  with frame records stored on the stack at a small runtime register
++	  and code-size cost.
++
++config UNWINDER_DWARF_CFI
++	bool "Minimal DWARF CFI unwinder"
++	depends on (!FUNCTION_TRACER || DYNAMIC_FTRACE_WITH_ARGS) && (!SHADOW_CALL_STACK || DYNAMIC_SCS)
++	select UNWIND_DWARF_CFI
++	select UNWIND_TABLES
++	help
++	  This option enables the Minimal DWARF Call Frame Information (CFI)
++	  unwinder for kernel stack traces.  It interprets a strictly bounded
++	  subset of compiler-generated .eh_frame / .eh_frame_hdr tables
++	  matching SFrame's stack state model without requiring frame pointers.
++
++endchoice
++
+ config PID_IN_CONTEXTIDR
+ 	bool "Write the current PID to the CONTEXTIDR register"
+ 	help
+diff --git a/arch/arm64/Makefile b/arch/arm64/Makefile
+index ed28f94be428..7ec8e96b2032 100644
+--- a/arch/arm64/Makefile
++++ b/arch/arm64/Makefile
+@@ -23,6 +23,11 @@ ifeq ($(CONFIG_ARM64_ERRATUM_843419),y)
+ LDFLAGS_vmlinux	+= --fix-cortex-a53-843419
+ endif
+ 
++ifeq ($(CONFIG_UNWINDER_DWARF_CFI),y)
++KBUILD_CFLAGS	+= -fomit-frame-pointer
++LDFLAGS_vmlinux	+= --eh-frame-hdr
++endif
++
+ cc_has_k_constraint := $(call try-run,echo				\
+ 	'int main(void) {						\
+ 		asm volatile("and w0, w0, %w0" :: "K" (4294967295));	\
+diff --git a/arch/arm64/include/asm/ftrace.h b/arch/arm64/include/asm/ftrace.h
+index 1621c84f44b3..f7558cbb148b 100644
+--- a/arch/arm64/include/asm/ftrace.h
++++ b/arch/arm64/include/asm/ftrace.h
+@@ -56,6 +56,7 @@ unsigned long arch_ftrace_get_symaddr(unsigned long fentry_ip);
+ #define ftrace_get_symaddr(fentry_ip) arch_ftrace_get_symaddr(fentry_ip)
+ 
+ #ifdef CONFIG_DYNAMIC_FTRACE_WITH_ARGS
++extern void ftrace_caller_end(void);
+ #define HAVE_ARCH_FTRACE_REGS
+ struct dyn_ftrace;
+ struct ftrace_ops;
+@@ -158,10 +159,11 @@ ftrace_partial_regs(const struct ftrace_regs *fregs, struct pt_regs *regs)
+ }
+ 
+ #define arch_ftrace_fill_perf_regs(fregs, _regs) do {		\
+-		(_regs)->pc = arch_ftrace_regs(fregs)->pc;			\
+-		(_regs)->regs[29] = arch_ftrace_regs(fregs)->fp;		\
+-		(_regs)->sp = arch_ftrace_regs(fregs)->sp;			\
+-		(_regs)->pstate = PSR_MODE_EL1h;		\
++		(_regs)->pc = arch_ftrace_regs(fregs)->pc;		\
++		(_regs)->regs[29] = arch_ftrace_regs(fregs)->fp;	\
++		(_regs)->regs[30] = arch_ftrace_regs(fregs)->lr;	\
++		(_regs)->sp = arch_ftrace_regs(fregs)->sp;		\
++		(_regs)->pstate = PSR_MODE_EL1h;			\
+ 	} while (0)
+ 
+ int ftrace_regs_query_register_offset(const char *name);
+diff --git a/arch/arm64/include/asm/module.h b/arch/arm64/include/asm/module.h
+index fb9b88eebeb1..71f423be20c2 100644
+--- a/arch/arm64/include/asm/module.h
++++ b/arch/arm64/include/asm/module.h
+@@ -13,6 +13,8 @@ struct mod_plt_sec {
+ 	int			plt_max_entries;
+ };
+ 
++struct mod_dwarf_cfi_index;
++
+ struct mod_arch_specific {
+ 	struct mod_plt_sec	core;
+ 	struct mod_plt_sec	init;
+@@ -20,8 +22,22 @@ struct mod_arch_specific {
+ 	/* for CONFIG_DYNAMIC_FTRACE */
+ 	struct plt_entry	*ftrace_trampolines;
+ 	struct plt_entry	*init_ftrace_trampolines;
++
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	struct mod_dwarf_cfi_index __rcu *dwarf_cfi_index;
++#endif
+ };
+ 
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++void arm64_unwind_module_init(struct module *mod, void *eh_frame,
++			      size_t eh_frame_size);
++void arm64_unwind_module_cleanup(struct module *mod);
++#else
++static inline void arm64_unwind_module_init(struct module *mod, void *eh_frame,
++					    size_t eh_frame_size) {}
++static inline void arm64_unwind_module_cleanup(struct module *mod) {}
++#endif
++
+ u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
+ 			  void *loc, const Elf64_Rela *rela,
+ 			  Elf64_Sym *sym);
+diff --git a/arch/arm64/include/asm/module.lds.h b/arch/arm64/include/asm/module.lds.h
+index 603f92a8a73e..d754f3743487 100644
+--- a/arch/arm64/include/asm/module.lds.h
++++ b/arch/arm64/include/asm/module.lds.h
+@@ -4,7 +4,7 @@ SECTIONS {
+ 	.text.ftrace_trampoline 0 : { BYTE(0) }
+ 	.init.text.ftrace_trampoline 0 : { BYTE(0) }
+ 
+-#ifdef CONFIG_UNWIND_TABLES
++#if defined(CONFIG_UNWIND_TABLES) && !defined(CONFIG_UNWINDER_DWARF_CFI)
+ 	/*
+ 	 * Currently, we only use unwind info at module load time, so we can
+ 	 * put it into the .init allocation.
+diff --git a/arch/arm64/include/asm/perf_event.h b/arch/arm64/include/asm/perf_event.h
+index ee45b4e77347..4a7dbb7ce41c 100644
+--- a/arch/arm64/include/asm/perf_event.h
++++ b/arch/arm64/include/asm/perf_event.h
+@@ -13,11 +13,26 @@
+ #define perf_arch_bpf_user_pt_regs(regs) &regs->user_regs
+ #endif
+ 
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++void arm64_unwind_perf_caller_regs(struct pt_regs *regs, unsigned long pc,
++				   unsigned long caller_ip, unsigned long sp,
++				   unsigned long fp);
++
++#define perf_arch_fetch_caller_regs(regs, __ip) do {			\
++	unsigned long __here_pc, __here_fp;				\
++	asm volatile("1: adr %0, 1b\n\t"				\
++		     "mov %1, x29"					\
++		     : "=r" (__here_pc), "=r" (__here_fp));		\
++	arm64_unwind_perf_caller_regs((regs), __here_pc, (__ip),	\
++				      current_stack_pointer, __here_fp);\
++} while (0)
++#else
+ #define perf_arch_fetch_caller_regs(regs, __ip) { \
+ 	(regs)->pc = (__ip);    \
+ 	(regs)->regs[29] = (unsigned long) __builtin_frame_address(0); \
+ 	(regs)->sp = current_stack_pointer; \
+ 	(regs)->pstate = PSR_MODE_EL1h;	\
+ }
++#endif
+ 
+ #endif
+diff --git a/arch/arm64/kernel/Makefile b/arch/arm64/kernel/Makefile
+index fc5d1a0c38b3..d727fda788a3 100644
+--- a/arch/arm64/kernel/Makefile
++++ b/arch/arm64/kernel/Makefile
+@@ -8,6 +8,7 @@ CFLAGS_armv8_deprecated.o := -I$(src)
+ CFLAGS_REMOVE_ftrace.o = $(CC_FLAGS_FTRACE)
+ CFLAGS_REMOVE_insn.o = $(CC_FLAGS_FTRACE)
+ CFLAGS_REMOVE_return_address.o = $(CC_FLAGS_FTRACE)
++CFLAGS_REMOVE_stacktrace.o = $(CC_FLAGS_FTRACE)
+ 
+ # Remove stack protector to avoid triggering unneeded stack canary
+ # checks due to randomize_kstack_offset.
+@@ -24,6 +25,7 @@ KASAN_SANITIZE_stacktrace.o := n
+ # inhibit KCOV instrumentation, disable it for the entire compilation unit.
+ KCOV_INSTRUMENT_entry-common.o := n
+ KCOV_INSTRUMENT_idle.o := n
++KCOV_INSTRUMENT_stacktrace.o := n
+ 
+ # Softirq stack switching can run outside interrupt context.
+ KCOV_INSTRUMENT_irq.o := n
+diff --git a/arch/arm64/kernel/efi-rt-wrapper.S b/arch/arm64/kernel/efi-rt-wrapper.S
+index e8ae803662cf..4ddfa5362e4f 100644
+--- a/arch/arm64/kernel/efi-rt-wrapper.S
++++ b/arch/arm64/kernel/efi-rt-wrapper.S
+@@ -7,8 +7,19 @@
+ #include <asm/assembler.h>
+ 
+ SYM_FUNC_START(__efi_rt_asm_wrapper)
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_startproc
++#endif
+ 	stp	x29, x30, [sp, #-112]!
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 112
++	.cfi_offset 29, -112
++	.cfi_offset 30, -104
++#endif
+ 	mov	x29, sp
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_register 29
++#endif
+ 
+ 	/*
+ 	 * Register x18 is designated as the 'platform' register by the AAPCS,
+@@ -48,11 +59,19 @@ SYM_FUNC_START(__efi_rt_asm_wrapper)
+ 
+ 	mov	x16, sp
+ 	mov	sp, x29
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_register 31
++#endif
+ 	str	xzr, [x16, #8]			// clear recorded task SP value
+ 
+ 	ldp	x1, x2, [sp, #16]
+ 	cmp	x2, x18
+ 	ldp	x29, x30, [sp], #112
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 0
++	.cfi_restore 29
++	.cfi_restore 30
++#endif
+ 	b.ne	0f
+ 	ret
+ 0:
+@@ -69,6 +88,9 @@ SYM_FUNC_START(__efi_rt_asm_wrapper)
+ #endif
+ 
+ 	b	efi_handle_corrupted_x18	// tail call
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_endproc
++#endif
+ SYM_FUNC_END(__efi_rt_asm_wrapper)
+ 
+ SYM_CODE_START(__efi_rt_asm_recover)
+diff --git a/arch/arm64/kernel/entry-ftrace.S b/arch/arm64/kernel/entry-ftrace.S
+index 025140caafe7..d112a29fd1a7 100644
+--- a/arch/arm64/kernel/entry-ftrace.S
++++ b/arch/arm64/kernel/entry-ftrace.S
+@@ -167,6 +167,7 @@ SYM_INNER_LABEL(ftrace_caller_direct, SYM_L_LOCAL)
+ 	 */
+ 	br	x17
+ #endif /* CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS */
++SYM_INNER_LABEL(ftrace_caller_end, SYM_L_GLOBAL)
+ SYM_CODE_END(ftrace_caller)
+ 
+ #ifdef CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS
+@@ -327,10 +328,23 @@ SYM_FUNC_END(ftrace_stub_graph)
+  *
+  * Run ftrace_return_to_handler() before going back to parent.
+  * @fp is checked against the value passed by ftrace_graph_caller().
 + *
-+ * Verifies that deferred user-space stack unwinding (PERF_RECORD_CALLCHAIN_DEFERRED)
-+ * accurately walks user callchains compiled with -fomit-frame-pointer across:
-+ *   1. Standard SP-based frames with the frame-pointer register (%rbp / x29 / s0)
-+ *      explicitly clobbered to defeat FP unwinding
-+ *   2. Dynamic alloca()/VLA FP-based frames (DW_CFA_def_cfa_register)
-+ *   3. 64-byte aligned stack-realigned frames (DRAP on x86-64)
-+ *   4. Multi-return shrink-wrapped epilogue functions (remember/restore_state)
-+ *   5. Anonymous RX JIT-style frame-pointer stubs lacking .eh_frame_hdr,
-+ *      verifying per-frame CFI -> FP -> CFI -> FP -> CFI hybrid fallback and
-+ *      negative VMA caching in find_user_eh_frame_hdr()
-+ */
++ * Under CONFIG_UNWINDER_DWARF_CFI, FREGS_PC is seeded with &return_to_handler
++ * before calling ftrace_return_to_handler(), which then overwrites FREGS_PC
++ * with the restored caller PC prior to invoking return callbacks. Tracking the
++ * return address at FREGS_PC allows kunwind_next_cfi() to unwind cleanly from
++ * inside ftrace_return_to_handler(), graph return callbacks, and interrupts.
+  */
+ SYM_CODE_START(return_to_handler)
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_startproc
++	.cfi_def_cfa sp, 0
++#endif
+ 	/* Make room for ftrace_regs */
+ 	sub	sp, sp, #FREGS_SIZE
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset FREGS_SIZE
++#endif
+ 
+ 	/* Save return value regs */
+ 	stp	x0, x1, [sp, #FREGS_X0]
+@@ -338,12 +352,24 @@ SYM_CODE_START(return_to_handler)
+ 	stp	x4, x5, [sp, #FREGS_X4]
+ 	stp	x6, x7, [sp, #FREGS_X6]
+ 
+-	/* Save the callsite's FP */
++	/* Save the callsite's FP and clear unused LR slot in ftrace_regs */
+ 	str	x29, [sp, #FREGS_FP]
++	str	xzr, [sp, #FREGS_LR]
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_offset x29, FREGS_FP - FREGS_SIZE
++	adr	x9, return_to_handler
++	add	x10, sp, #FREGS_SIZE
++	str	x10, [sp, #FREGS_SP]
++	str	x9, [sp, #FREGS_PC]
++	.cfi_offset x30, FREGS_PC - FREGS_SIZE
++#endif
+ 
+ 	mov	x0, sp
+ 	bl	ftrace_return_to_handler	// addr = ftrace_return_to_hander(fregs);
+ 	mov	x30, x0				// restore the original return address
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_same_value x30
++#endif
+ 
+ 	/* Restore return value regs */
+ 	ldp	x0, x1, [sp, #FREGS_X0]
+@@ -351,7 +377,14 @@ SYM_CODE_START(return_to_handler)
+ 	ldp	x4, x5, [sp, #FREGS_X4]
+ 	ldp	x6, x7, [sp, #FREGS_X6]
+ 	add	sp, sp, #FREGS_SIZE
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 0
++	.cfi_restore x29
++#endif
+ 
+ 	ret
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_endproc
++#endif
+ SYM_CODE_END(return_to_handler)
+ #endif /* CONFIG_FUNCTION_GRAPH_TRACER */
+diff --git a/arch/arm64/kernel/entry.S b/arch/arm64/kernel/entry.S
+index 8d17f61d1b5b..15a591996307 100644
+--- a/arch/arm64/kernel/entry.S
++++ b/arch/arm64/kernel/entry.S
+@@ -882,6 +882,9 @@ NOKPROBE(ret_from_fork)
+  * Calls func(regs) using this CPU's irq stack and shadow irq stack.
+  */
+ SYM_FUNC_START(call_on_irq_stack)
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_startproc
++#endif
+ 	save_and_disable_daif x9
+ #ifdef CONFIG_SHADOW_CALL_STACK
+ 	get_current_task x16
+@@ -891,7 +894,15 @@ SYM_FUNC_START(call_on_irq_stack)
+ 
+ 	/* Create a frame record to save our LR and SP (implicit in FP) */
+ 	stp	x29, x30, [sp, #-16]!
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 16
++	.cfi_offset 29, -16
++	.cfi_offset 30, -8
++#endif
+ 	mov	x29, sp
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_register 29
++#endif
+ 
+ 	ldr_this_cpu x16, irq_stack_ptr, x17
+ 
+@@ -906,10 +917,21 @@ SYM_FUNC_START(call_on_irq_stack)
+ 	 * record.
+ 	 */
+ 	mov	sp, x29
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_register 31
++#endif
+ 	ldp	x29, x30, [sp], #16
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 0
++	.cfi_restore 29
++	.cfi_restore 30
++#endif
+ 	scs_load_current
+ 	restore_irq x9
+ 	ret
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_endproc
++#endif
+ SYM_FUNC_END(call_on_irq_stack)
+ NOKPROBE(call_on_irq_stack)
+ 
+diff --git a/arch/arm64/kernel/ftrace.c b/arch/arm64/kernel/ftrace.c
+index e1a3c0b3a051..5f9458a6b477 100644
+--- a/arch/arm64/kernel/ftrace.c
++++ b/arch/arm64/kernel/ftrace.c
+@@ -553,6 +553,14 @@ void ftrace_graph_func(unsigned long ip, unsigned long parent_ip,
+ {
+ 	unsigned long return_hooker = (unsigned long)&return_to_handler;
+ 	unsigned long frame_pointer = arch_ftrace_regs(fregs)->fp;
++	/*
++	 * With -fomit-frame-pointer under CONFIG_UNWINDER_DWARF_CFI, nested
++	 * functions share x29, whereas each frame's entry SP (its DWARF CFA)
++	 * uniquely keys its shadow stack slot for ftrace_graph_ret_addr().
++	 */
++	unsigned long *retp = IS_ENABLED(CONFIG_UNWINDER_DWARF_CFI) ?
++			      (unsigned long *)arch_ftrace_regs(fregs)->sp :
++			      (unsigned long *)frame_pointer;
+ 	unsigned long *parent = &arch_ftrace_regs(fregs)->lr;
+ 	unsigned long old;
+ 
+@@ -561,10 +569,8 @@ void ftrace_graph_func(unsigned long ip, unsigned long parent_ip,
+ 
+ 	old = *parent;
+ 
+-	if (!function_graph_enter_regs(old, ip, frame_pointer,
+-				       (void *)frame_pointer, fregs)) {
++	if (!function_graph_enter_regs(old, ip, frame_pointer, retp, fregs))
+ 		*parent = return_hooker;
+-	}
+ }
+ #else
+ /*
+diff --git a/arch/arm64/kernel/module.c b/arch/arm64/kernel/module.c
+index 24adb581af0e..88d07ecf6e64 100644
+--- a/arch/arm64/kernel/module.c
++++ b/arch/arm64/kernel/module.c
+@@ -499,6 +499,8 @@ int module_finalize(const Elf_Ehdr *hdr,
+ 
+ 	if (scs_is_dynamic()) {
+ 		s = find_section(hdr, sechdrs, ".init.eh_frame");
++		if (!s)
++			s = find_section(hdr, sechdrs, ".eh_frame");
+ 		if (s) {
+ 			/*
+ 			 * Because we can reject modules that are malformed
+@@ -515,5 +517,18 @@ int module_finalize(const Elf_Ehdr *hdr,
+ 		}
+ 	}
+ 
+-	return module_init_ftrace_plt(hdr, sechdrs, me);
++	ret = module_init_ftrace_plt(hdr, sechdrs, me);
++	if (ret)
++		return ret;
 +
-+#define _GNU_SOURCE
-+#include <alloca.h>
-+#include <errno.h>
-+#include <inttypes.h>
++	s = find_section(hdr, sechdrs, ".eh_frame");
++	if (s && (s->sh_flags & SHF_ALLOC))
++		arm64_unwind_module_init(me, (void *)s->sh_addr, s->sh_size);
++
++	return 0;
++}
++
++void module_arch_cleanup(struct module *mod)
++{
++	arm64_unwind_module_cleanup(mod);
+ }
+diff --git a/arch/arm64/kernel/probes/kprobes.c b/arch/arm64/kernel/probes/kprobes.c
+index 4e0efad5caf2..eae1f2326efa 100644
+--- a/arch/arm64/kernel/probes/kprobes.c
++++ b/arch/arm64/kernel/probes/kprobes.c
+@@ -416,10 +416,13 @@ kprobe_ss_brk_handler(struct pt_regs *regs, unsigned long esr)
+ int __kprobes
+ kretprobe_brk_handler(struct pt_regs *regs, unsigned long esr)
+ {
++	void *frame = IS_ENABLED(CONFIG_UNWINDER_DWARF_CFI) ?
++		      (void *)regs->sp : (void *)regs->regs[29];
++
+ 	if (regs->pc != (unsigned long)__kretprobe_trampoline)
+ 		return DBG_HOOK_ERROR;
+ 
+-	regs->pc = kretprobe_trampoline_handler(regs, (void *)regs->regs[29]);
++	regs->pc = kretprobe_trampoline_handler(regs, frame);
+ 	return DBG_HOOK_HANDLED;
+ }
+ 
+@@ -452,7 +455,14 @@ void __kprobes arch_prepare_kretprobe(struct kretprobe_instance *ri,
+ 				      struct pt_regs *regs)
+ {
+ 	ri->ret_addr = (kprobe_opcode_t *)regs->regs[30];
+-	ri->fp = (void *)regs->regs[29];
++	/*
++	 * Under CONFIG_UNWINDER_DWARF_CFI (-fomit-frame-pointer), nested C
++	 * functions do not update x29; key the kretprobe instance on the
++	 * probed function's entry SP (its DWARF CFA), which matches regs->sp
++	 * upon returning to __kretprobe_trampoline.
++	 */
++	ri->fp = IS_ENABLED(CONFIG_UNWINDER_DWARF_CFI) ?
++		 (void *)regs->sp : (void *)regs->regs[29];
+ 
+ 	/* replace return addr (x30) with trampoline */
+ 	regs->regs[30] = (long)&__kretprobe_trampoline;
+diff --git a/arch/arm64/kernel/stacktrace.c b/arch/arm64/kernel/stacktrace.c
+index 3ebcf8c53fb0..9ce0e3f6cabe 100644
+--- a/arch/arm64/kernel/stacktrace.c
++++ b/arch/arm64/kernel/stacktrace.c
+@@ -10,16 +10,221 @@
+ #include <linux/filter.h>
+ #include <linux/ftrace.h>
+ #include <linux/kprobes.h>
++#include <linux/module.h>
 +#include <linux/perf_event.h>
-+#include <stdbool.h>
-+#include <stdint.h>
-+#include <stdio.h>
-+#include <stdlib.h>
-+#include <string.h>
-+#include <sys/ioctl.h>
-+#include <sys/mman.h>
-+#include <sys/syscall.h>
-+#include <time.h>
-+#include <unistd.h>
-+
-+#include "../kselftest.h"
-+#undef __always_inline
-+#undef __attribute_const__
-+#undef __must_check
-+#undef __printf
-+#include "../../../../include/linux/compiler_attributes.h"
-+
-+#ifndef PERF_RECORD_CALLCHAIN_DEFERRED
-+#define PERF_RECORD_CALLCHAIN_DEFERRED 22
-+#endif
-+
-+struct perf_record_deferred {
-+	struct perf_event_header header;
-+	uint64_t cookie;
-+	uint64_t nr;
-+	uint64_t ips[];
++#include <linux/rcupdate.h>
+ #include <linux/sched.h>
+ #include <linux/sched/debug.h>
+ #include <linux/sched/task_stack.h>
+ #include <linux/stacktrace.h>
++#include <linux/unwind_dwarf_cfi.h>
+ 
+ #include <asm/efi.h>
+ #include <asm/irq.h>
++#include <asm/module.h>
++#include <asm/sections.h>
+ #include <asm/stack_pointer.h>
+ #include <asm/stacktrace.h>
+ 
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++static const struct dwarf_cfi_arch arm64_cfi_arch = {
++	.ws	= 8,
++	.sp_reg	= 31,	/* sp */
++	.fp_reg	= 29,	/* x29 */
++	.ra_reg	= 30,	/* x30 (lr) */
 +};
 +
-+/*
-+ * Tiny architecture-specific machine-code stubs for:
-+ *   int jit_stub(int (*fn)(int), int arg);
++#ifdef CONFIG_MODULES
++/**
++ * arm64_unwind_module_init() - Build Minimal DWARF CFI index for a module
++ * @mod: Module being loaded.
++ * @eh_frame: Pointer to the module's SHF_ALLOC .eh_frame section.
++ * @eh_frame_size: Size in bytes of @eh_frame.
 + *
-+ * Mapped into an anonymous PROT_READ | PROT_EXEC VMA without an ELF header or
-+ * PT_GNU_EH_FRAME segment. Each stub establishes a standard architectural
-+ * frame-pointer record before calling fn(arg), forcing unwind_user_next() to
-+ * fall back from UNWIND_USER_TYPE_CFI to UNWIND_USER_TYPE_FP on the JIT frames
-+ * and resume UNWIND_USER_TYPE_CFI on the surrounding -fomit-frame-pointer C
-+ * frames.
++ * Scans and sorts the module's FDEs and publishes the index to
++ * @mod->arch.dwarf_cfi_index for RCU-protected lockless unwinding.
 + */
-+#if defined(__x86_64__)
-+#define HAVE_JIT_FP_STUB 1
-+static const uint8_t jit_stub_code[] = {
-+	0xf3, 0x0f, 0x1e, 0xfa,		/* endbr64 */
-+	0x55,				/* push   %rbp */
-+	0x48, 0x89, 0xe5,		/* mov    %rsp, %rbp */
-+	0x48, 0x89, 0xf8,		/* mov    %rdi, %rax */
-+	0x89, 0xf7,			/* mov    %esi, %edi */
-+	0xff, 0xd0,			/* call   *%rax */
-+	0x5d,				/* pop    %rbp */
-+	0xc3,				/* ret */
-+};
-+#elif defined(__i386__)
-+#define HAVE_JIT_FP_STUB 1
-+static const uint8_t jit_stub_code[] = {
-+	0xf3, 0x0f, 0x1e, 0xfb,		/* endbr32 */
-+	0x55,				/* push   %ebp */
-+	0x89, 0xe5,			/* mov    %esp, %ebp */
-+	0x83, 0xec, 0x04,		/* sub    $4, %esp */
-+	0xff, 0x75, 0x0c,		/* pushl  12(%ebp) */
-+	0xff, 0x55, 0x08,		/* call   *8(%ebp) */
-+	0x83, 0xc4, 0x08,		/* add    $8, %esp */
-+	0x5d,				/* pop    %ebp */
-+	0xc3,				/* ret */
-+};
-+#elif defined(__aarch64__)
-+#define HAVE_JIT_FP_STUB 1
-+static const uint32_t jit_stub_code[] = {
-+	0xd503245fU,			/* bti    c */
-+	0xa9bf7bfdU,			/* stp    x29, x30, [sp, #-16]! */
-+	0x910003fdU,			/* mov    x29, sp */
-+	0xaa0003e9U,			/* mov    x9, x0 */
-+	0x2a0103e0U,			/* mov    w0, w1 */
-+	0xd63f0120U,			/* blr    x9 */
-+	0xa8c17bfdU,			/* ldp    x29, x30, [sp], #16 */
-+	0xd65f03c0U,			/* ret */
-+};
-+#elif defined(__riscv) && __riscv_xlen == 64
-+#define HAVE_JIT_FP_STUB 1
-+static const uint32_t jit_stub_code[] = {
-+	0xff010113U,			/* addi   sp, sp, -16 */
-+	0x00813023U,			/* sd     s0, 0(sp) */
-+	0x00113423U,			/* sd     ra, 8(sp) */
-+	0x01010413U,			/* addi   s0, sp, 16 */
-+	0x00050313U,			/* mv     t1, a0 */
-+	0x00058513U,			/* mv     a0, a1 */
-+	0x000300e7U,			/* jalr   ra, 0(t1) */
-+	0x00813083U,			/* ld     ra, 8(sp) */
-+	0x00013403U,			/* ld     s0, 0(sp) */
-+	0x01010113U,			/* addi   sp, sp, 16 */
-+	0x00008067U,			/* ret */
-+};
++void arm64_unwind_module_init(struct module *mod, void *eh_frame,
++			      size_t eh_frame_size)
++{
++	struct mod_dwarf_cfi_index *idx;
++
++	idx = dwarf_cfi_mod_alloc(eh_frame, eh_frame_size, &arm64_cfi_arch);
++	if (idx)
++		rcu_assign_pointer(mod->arch.dwarf_cfi_index, idx);
++}
++
++/**
++ * arm64_unwind_module_cleanup() - Unpublish and RCU-free module DWARF CFI index
++ * @mod: Module being unloaded or cleaned up after a failed load.
++ */
++void arm64_unwind_module_cleanup(struct module *mod)
++{
++	struct mod_dwarf_cfi_index *idx;
++
++	idx = rcu_replace_pointer(mod->arch.dwarf_cfi_index, /*ptr=*/NULL,
++				  /*c=*/true);
++	dwarf_cfi_mod_free_rcu(idx);
++}
++
++/**
++ * arm64_dwarf_cfi_module_find() - Look up Minimal DWARF CFI in loadable modules
++ * @pc: Kernel instruction pointer to evaluate.
++ * @row: Output evaluated Minimal DWARF CFI row.
++ *
++ * Uses rcu_read_lock_sched_notrace() and rcu_dereference_raw() so lookups are
++ * safe inside noinstr stack walks and NMI contexts.
++ *
++ * Return: 0 on success, -ENOENT if @pc is not in a module FDE, or a negative
++ * errno on invalid FDE bytecode.
++ */
++static __always_inline int
++arm64_dwarf_cfi_module_find(unsigned long pc, struct dwarf_cfi_row *row)
++{
++	struct mod_dwarf_cfi_index *idx;
++	struct module *mod;
++	int ret;
++
++	rcu_read_lock_sched_notrace();
++	mod = __module_address(pc);
++	if (!mod) {
++		rcu_read_unlock_sched_notrace();
++		return -ENOENT;
++	}
++	idx = rcu_dereference_raw(mod->arch.dwarf_cfi_index);
++	ret = dwarf_cfi_mod_eval(idx, pc, &arm64_cfi_arch, row);
++	rcu_read_unlock_sched_notrace();
++	return ret;
++}
 +#else
-+#define HAVE_JIT_FP_STUB 0
++static __always_inline int
++arm64_dwarf_cfi_module_find(unsigned long pc, struct dwarf_cfi_row *row)
++{
++	return -ENOENT;
++}
++#endif /* CONFIG_MODULES */
++
++/**
++ * arm64_dwarf_cfi_find() - Evaluate Minimal DWARF CFI for core or module @pc
++ * @pc: Kernel instruction pointer to look up.
++ * @row: Output evaluated Minimal DWARF CFI row.
++ *
++ * Return: 0 on success, -ENOENT if no FDE covers @pc, or a negative errno on
++ * malformed CFI data.
++ */
++static __always_inline int
++arm64_dwarf_cfi_find(unsigned long pc, struct dwarf_cfi_row *row)
++{
++	size_t hdr_size = __stop_eh_frame_hdr - __start_eh_frame_hdr;
++	int err;
++
++	err = dwarf_cfi_unwind_eh_frame_hdr(__start_eh_frame_hdr, hdr_size,
++					    __start_eh_frame, __stop_eh_frame,
++					    pc, &arm64_cfi_arch, row);
++	if (!err)
++		return 0;
++
++	return arm64_dwarf_cfi_module_find(pc, row);
++}
++
++/**
++ * arm64_unwind_perf_caller_regs() - Populate caller pt_regs for perf events
++ * @regs: Output pt_regs initialized for the caller frame.
++ * @pc: Current instruction pointer inside the function invoking perf_fetch_caller_regs.
++ * @caller_ip: Target caller instruction pointer to record in @regs->pc.
++ * @sp: Current stack pointer corresponding to @pc.
++ * @fp: Current x29 value corresponding to @pc.
++ *
++ * Under -fomit-frame-pointer, __builtin_frame_address(0) does not yield a
++ * valid frame chain; step one frame via Minimal DWARF CFI at @pc so @regs->sp
++ * and @regs->regs[29] match the caller's stack state for subsequent unwinding.
++ */
++void arm64_unwind_perf_caller_regs(struct pt_regs *regs, unsigned long pc,
++				   unsigned long caller_ip, unsigned long sp,
++				   unsigned long fp)
++{
++	struct stack_info stacks[] = {
++		stackinfo_get_task(current),
++		!preemptible() ? stackinfo_get_irq() : stackinfo_get_unknown(),
++		!preemptible() ? stackinfo_get_overflow() : stackinfo_get_unknown(),
++#if defined(CONFIG_ARM_SDE_INTERFACE)
++		in_nmi() ? stackinfo_get_sdei_normal() : stackinfo_get_unknown(),
++		in_nmi() ? stackinfo_get_sdei_critical() : stackinfo_get_unknown(),
 +#endif
++#ifdef CONFIG_EFI
++		current_in_efi() ? stackinfo_get_efi() : stackinfo_get_unknown(),
++#endif
++	};
++	struct unwind_state common = {
++		.stacks = stacks,
++		.nr_stacks = ARRAY_SIZE(stacks),
++	};
++	struct dwarf_cfi_row row;
 +
-+static int (*g_jit_fn)(int (*fn)(int), int arg);
++	unwind_init_common(&common);
 +
-+static uintptr_t expect_ip_leaf;
-+static uintptr_t expect_ip_shrink;
-+static uintptr_t expect_ip_jit;
-+static uintptr_t expect_ip_bridge;
-+static uintptr_t expect_ip_drap;
-+static uintptr_t expect_ip_vla;
-+static uintptr_t expect_ip_clobber;
-+static uintptr_t expect_ip_main;
++	regs->pc = caller_ip;
++	regs->regs[29] = fp;
++	regs->regs[30] = 0;
++	regs->sp = sp;
++	regs->pstate = PSR_MODE_EL1h;
 +
-+static __always_inline uintptr_t caller_return_ip(void)
-+{
-+	return (uintptr_t)__builtin_extract_return_addr(__builtin_return_address(0));
++	if (arm64_dwarf_cfi_find(pc, &row))
++		return;
++
++	switch (row.cfa_base) {
++	case DWARF_CFI_BASE_SP:
++		sp += row.cfa_off;
++		break;
++	case DWARF_CFI_BASE_FP:
++		sp = fp + row.cfa_off;
++		break;
++	case DWARF_CFI_BASE_FP_INDIRECT: {
++		unsigned long cfa_addr = fp + row.cfa_off;
++
++		if ((cfa_addr & 0x7) ||
++		    !unwind_find_stack(&common, cfa_addr, sizeof(long)))
++			return;
++		sp = READ_ONCE(*(unsigned long *)cfa_addr);
++		break;
++	}
++	default:
++		return;
++	}
++
++	if ((sp & 0x7) || !unwind_find_stack(&common, sp, /*size=*/0))
++		return;
++
++	if (row.fp_rule == DWARF_CFI_RULE_OFFSET) {
++		unsigned long fp_addr = sp + row.fp_off;
++
++		if ((fp_addr & 0x7) ||
++		    !unwind_find_stack(&common, fp_addr, sizeof(long)))
++			return;
++		fp = READ_ONCE(*(unsigned long *)fp_addr);
++	} else if (row.fp_rule == DWARF_CFI_RULE_FP_OFFSET) {
++		unsigned long fp_addr = fp + row.fp_off;
++
++		if ((fp_addr & 0x7) ||
++		    !unwind_find_stack(&common, fp_addr, sizeof(long)))
++			return;
++		fp = READ_ONCE(*(unsigned long *)fp_addr);
++	}
++
++	regs->sp = sp;
++	regs->regs[29] = fp;
 +}
++EXPORT_SYMBOL_GPL(arm64_unwind_perf_caller_regs);
++#endif /* CONFIG_UNWINDER_DWARF_CFI */
 +
-+static long sys_perf_event_open(struct perf_event_attr *attr, pid_t pid,
-+				int cpu, int group_fd, unsigned long flags)
-+{
-+	return syscall(__NR_perf_event_open, attr, pid, cpu, group_fd, flags);
-+}
++/**
++ * enum kunwind_source - Origin of the current frame's PC during kernel unwind
++ * @KUNWIND_SOURCE_UNKNOWN: Uninitialized or invalid unwind state.
++ * @KUNWIND_SOURCE_FRAME: Unwound from a callee stack frame or return address.
++ * @KUNWIND_SOURCE_CALLER: Initialized from the immediate caller of the walker.
++ * @KUNWIND_SOURCE_TASK: Initialized from a blocked task's saved thread_struct.
++ * @KUNWIND_SOURCE_REGS_PC: Exact PC from an exception/interrupt &struct pt_regs.
++ */
+ enum kunwind_source {
+ 	KUNWIND_SOURCE_UNKNOWN,
+ 	KUNWIND_SOURCE_FRAME,
+@@ -36,37 +241,49 @@ union unwind_flags {
+ 	};
+ };
+ 
+-/*
+- * Kernel unwind state
+- *
+- * @common:      Common unwind state.
+- * @task:        The task being unwound.
+- * @graph_idx:   Used by ftrace_graph_ret_addr() for optimized stack unwinding.
+- * @kr_cur:      When KRETPROBES is selected, holds the kretprobe instance
+- *               associated with the most recently encountered replacement lr
+- *               value.
++/**
++ * struct kunwind_state - ARM64 kernel stack unwind iteration state
++ * @common: Common stack-bounds, PC, and FP unwind state.
++ * @task: The task being unwound.
++ * @sp: Current frame's stack pointer (equal to the callee's CFA after stepping).
++ * @lr: Saved link register (x30) when @lr_valid is true.
++ * @graph_idx: Shadow-stack cursor for ftrace_graph_ret_addr().
++ * @kr_cur: Cursor into @task->kretprobe_instances for kretprobe_find_ret_addr().
++ * @source: How @common.pc was obtained (&enum kunwind_source).
++ * @flags: Return-address recovery annotations (fgraph / kretprobe) for printing.
++ * @lr_valid: True if @lr holds a live return address for leaf/entry frames.
++ * @unreliable: True if an unannotated fallback (LR guess or non-CFI frame
++ *              record) was used, disqualifying reliable stacktraces.
+  */
+ struct kunwind_state {
+ 	struct unwind_state common;
+ 	struct task_struct *task;
++	unsigned long sp;
++	unsigned long lr;
+ 	int graph_idx;
+ #ifdef CONFIG_KRETPROBES
+ 	struct llist_node *kr_cur;
+ #endif
+ 	enum kunwind_source source;
+ 	union unwind_flags flags;
+-	struct pt_regs *regs;
++	bool lr_valid;
++	bool unreliable;
+ };
+ 
++static __always_inline int kunwind_next(struct kunwind_state *state);
 +
-+noinline __noclone
-+static void cfi_do_nanosleep(const struct timespec *ts)
-+{
-+	expect_ip_leaf = caller_return_ip();
-+	asm volatile("" ::: "memory");
-+	nanosleep(ts, /*rem=*/NULL);
-+	asm volatile("" ::: "memory");
-+}
-+
-+noinline __noclone
-+static void cfi_leaf_sleep(void)
-+{
-+	struct timespec ts = { .tv_sec = 0, .tv_nsec = 1000 * 1000 };
-+
-+	expect_ip_shrink = caller_return_ip();
-+	asm volatile("" ::: "memory");
-+	cfi_do_nanosleep(&ts);
-+	asm volatile("" ::: "memory");
-+}
-+
-+/* 4. Shrink-wrapped early-return epilogue before main call */
-+noinline __noclone
-+static int cfi_shrink_wrap(int mode)
-+{
-+	expect_ip_jit = caller_return_ip();
-+	if (mode < 0)
-+		return -1;
-+
+ static __always_inline void
+ kunwind_init(struct kunwind_state *state,
+ 	     struct task_struct *task)
+ {
+ 	unwind_init_common(&state->common);
+ 	state->task = task;
++	state->sp = 0;
++	state->lr = 0;
++	state->lr_valid = false;
++	state->unreliable = false;
+ 	state->source = KUNWIND_SOURCE_UNKNOWN;
+ 	state->flags.all = 0;
+-	state->regs = NULL;
+ }
+ 
+ /*
+@@ -82,9 +299,11 @@ kunwind_init_from_regs(struct kunwind_state *state,
+ {
+ 	kunwind_init(state, current);
+ 
+-	state->regs = regs;
+ 	state->common.fp = regs->regs[29];
+ 	state->common.pc = regs->pc;
++	state->sp = regs->sp;
++	state->lr = regs->regs[30];
++	state->lr_valid = !!state->lr;
+ 	state->source = KUNWIND_SOURCE_REGS_PC;
+ }
+ 
+@@ -101,9 +320,29 @@ kunwind_init_from_caller(struct kunwind_state *state)
+ {
+ 	kunwind_init(state, current);
+ 
++#ifdef CONFIG_UNWINDER_DWARF_CFI
 +	{
-+		char pad[32];
++		unsigned long pc, fp;
 +
-+		memset(pad, mode, sizeof(pad));
-+		asm volatile("" : "+m"(pad) :: "memory");
-+		cfi_leaf_sleep();
-+		return pad[0];
++		asm volatile("1: adr %0, 1b\n\t"
++			     "mov %1, x29"
++			     : "=r"(pc), "=r"(fp));
++		state->common.pc = pc;
++		state->common.fp = fp;
++		state->sp = current_stack_pointer;
++		state->lr = (unsigned long)__builtin_return_address(0);
++		state->lr_valid = true;
++		state->source = KUNWIND_SOURCE_REGS_PC;
++		if (!kunwind_next(state))
++			state->source = KUNWIND_SOURCE_CALLER;
++		else
++			state->source = KUNWIND_SOURCE_UNKNOWN;
 +	}
-+}
-+
-+/*
-+ * 5. Hybrid CFI -> FP -> CFI -> FP -> CFI bridge:
-+ *    cfi_pre_jit -> jit_stub #1 -> cfi_jit_bridge -> cfi_mid_jit ->
-+ *    jit_stub #2 -> cfi_shrink_wrap
++#else
+ 	state->common.fp = (unsigned long)__builtin_frame_address(1);
+ 	state->common.pc = (unsigned long)__builtin_return_address(0);
+ 	state->source = KUNWIND_SOURCE_CALLER;
++#endif
+ }
+ 
+ /*
+@@ -124,19 +363,35 @@ kunwind_init_from_task(struct kunwind_state *state,
+ 
+ 	state->common.fp = thread_saved_fp(task);
+ 	state->common.pc = thread_saved_pc(task);
++	state->sp = thread_saved_sp(task);
+ 	state->source = KUNWIND_SOURCE_TASK;
+ }
+ 
++/**
++ * kunwind_recover_return_address() - Restore fgraph/kretprobe return addresses
++ * @state: Current ARM64 kernel unwind state.
 + *
-+ * Invoking the anonymous RX JIT stub twice with -fomit-frame-pointer C frames
-+ * in between exercises both per-frame CFI<->FP transitions and negative VMA
-+ * cache insertion + hit in find_user_eh_frame_hdr().
++ * Replaces return_to_handler and __kretprobe_trampoline return addresses with
++ * the original caller PC from @state->task's shadow stacks in either hooking
++ * order. Under CONFIG_UNWINDER_DWARF_CFI (-fomit-frame-pointer), entries are
++ * keyed on the frame's entry SP (@state->sp, equal to the callee's CFA) rather
++ * than x29.
++ *
++ * Return: 0 on success, or -EINVAL if a shadow return address cannot be found.
 + */
-+noinline __noclone
-+static int cfi_mid_jit(int x)
+ static __always_inline int
+ kunwind_recover_return_address(struct kunwind_state *state)
+ {
++	void *frame_key = IS_ENABLED(CONFIG_UNWINDER_DWARF_CFI) ?
++			  (void *)state->sp : (void *)state->common.fp;
++
+ #ifdef CONFIG_FUNCTION_GRAPH_TRACER
+ 	if (state->task->ret_stack &&
+ 	    (state->common.pc == (unsigned long)return_to_handler)) {
+ 		unsigned long orig_pc;
++
+ 		orig_pc = ftrace_graph_ret_addr(state->task, &state->graph_idx,
+-						state->common.pc,
+-						(void *)state->common.fp);
++						state->common.pc, frame_key);
+ 		if (state->common.pc == orig_pc) {
+ 			WARN_ON_ONCE(state->task == current);
+ 			return -EINVAL;
+@@ -149,8 +404,8 @@ kunwind_recover_return_address(struct kunwind_state *state)
+ #ifdef CONFIG_KRETPROBES
+ 	if (is_kretprobe_trampoline(state->common.pc)) {
+ 		unsigned long orig_pc;
+-		orig_pc = kretprobe_find_ret_addr(state->task,
+-						  (void *)state->common.fp,
++
++		orig_pc = kretprobe_find_ret_addr(state->task, frame_key,
+ 						  &state->kr_cur);
+ 		if (!orig_pc)
+ 			return -EINVAL;
+@@ -159,6 +414,22 @@ kunwind_recover_return_address(struct kunwind_state *state)
+ 	}
+ #endif /* CONFIG_KRETPROBES */
+ 
++#ifdef CONFIG_FUNCTION_GRAPH_TRACER
++	if (state->task->ret_stack &&
++	    (state->common.pc == (unsigned long)return_to_handler)) {
++		unsigned long orig_pc;
++
++		orig_pc = ftrace_graph_ret_addr(state->task, &state->graph_idx,
++						state->common.pc, frame_key);
++		if (state->common.pc == orig_pc) {
++			WARN_ON_ONCE(state->task == current);
++			return -EINVAL;
++		}
++		state->common.pc = orig_pc;
++		state->flags.fgraph = 1;
++	}
++#endif /* CONFIG_FUNCTION_GRAPH_TRACER */
++
+ 	return 0;
+ }
+ 
+@@ -178,10 +449,11 @@ int kunwind_next_regs_pc(struct kunwind_state *state)
+ 	unwind_consume_stack(&state->common, info, (unsigned long)regs,
+ 			     sizeof(*regs));
+ 
+-	state->regs = regs;
+ 	state->common.pc = regs->pc;
+ 	state->common.fp = regs->regs[29];
+-	state->regs = NULL;
++	state->sp = regs->sp;
++	state->lr = regs->regs[30];
++	state->lr_valid = !!state->lr;
+ 	state->source = KUNWIND_SOURCE_REGS_PC;
+ 	return 0;
+ }
+@@ -201,11 +473,19 @@ kunwind_next_frame_record_meta(struct kunwind_state *state)
+ 	meta = (struct frame_record_meta *)fp;
+ 	switch (READ_ONCE(meta->type)) {
+ 	case FRAME_META_TYPE_FINAL:
+-		if (meta == &task_pt_regs(tsk)->stackframe)
++		if (meta == &task_pt_regs(tsk)->stackframe) {
++			if (IS_ENABLED(CONFIG_UNWINDER_DWARF_CFI) &&
++			    state->sp != (unsigned long)task_pt_regs(tsk))
++				return -EINVAL;
+ 			return -ENOENT;
++		}
+ 		WARN_ON_ONCE(tsk == current);
+ 		return -EINVAL;
+ 	case FRAME_META_TYPE_PT_REGS:
++		if (IS_ENABLED(CONFIG_UNWINDER_DWARF_CFI) &&
++		    state->sp != (unsigned long)container_of(meta, struct pt_regs,
++							     stackframe))
++			return -EINVAL;
+ 		return kunwind_next_regs_pc(state);
+ 	default:
+ 		WARN_ON_ONCE(tsk == current);
+@@ -251,6 +531,212 @@ kunwind_next_frame_record(struct kunwind_state *state)
+  * records (e.g. a cycle), determined based on the location and fp value of A
+  * and the location (but not the fp value) of B.
+  */
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++/**
++ * kunwind_next_cfi() - Step one ARM64 kernel frame using Minimal DWARF CFI
++ * @state: Current ARM64 kernel unwind state.
++ *
++ * Evaluates the Minimal DWARF CFI table at @state->common.pc (or pc - 4 for
++ * call return addresses), validates stack bounds and monotonic stack
++ * consumption across task/IRQ/overflow/SDEI/EFI stacks, and handles ftrace
++ * trampolines, SP-verified exception frame_record_meta boundaries, and
++ * frame-pointer fallbacks for JITed BPF code.
++ *
++ * Return: 0 on success, -ENOENT at the final user/kthread boundary or an
++ * explicit DW_CFA_undefined root frame, or -EINVAL on invalid unwind state.
++ */
++static __always_inline int kunwind_next_cfi(struct kunwind_state *state)
 +{
-+	char pad[32];
-+	int res;
++	unsigned long lookup_pc, cfa, ra_addr = 0, new_pc, new_fp = state->common.fp;
++	struct stack_info *info, *ra_info = NULL;
++	struct dwarf_cfi_row row;
++	int err;
 +
-+	expect_ip_bridge = caller_return_ip();
-+	memset(pad, x + 5, sizeof(pad));
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	res = g_jit_fn ? g_jit_fn(cfi_shrink_wrap, x) : cfi_shrink_wrap(x);
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	return res + pad[0];
-+}
++	lookup_pc = (state->source == KUNWIND_SOURCE_REGS_PC) ?
++		    state->common.pc : state->common.pc - 4;
 +
-+noinline __noclone
-+static int cfi_jit_bridge(int x)
-+{
-+	char pad[32];
-+	int res;
++	err = arm64_dwarf_cfi_find(lookup_pc, &row);
++	if (err) {
++		unsigned long old_fp = state->common.fp;
 +
-+	memset(pad, x + 7, sizeof(pad));
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	res = cfi_mid_jit(x);
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	return res + pad[0];
-+}
++#ifdef CONFIG_DYNAMIC_FTRACE_WITH_ARGS
++		if (lookup_pc >= (unsigned long)ftrace_caller &&
++		    lookup_pc < (unsigned long)ftrace_caller_end &&
++		    old_fp == state->sp + sizeof(struct __arch_ftrace_regs)) {
++			struct __arch_ftrace_regs *fregs = (void *)state->sp;
++			size_t fsize = sizeof(*fregs) + 32;
 +
-+noinline __noclone
-+static int cfi_pre_jit(int x)
-+{
-+	char pad[32];
-+	int res;
-+
-+	expect_ip_drap = caller_return_ip();
-+	memset(pad, x + 9, sizeof(pad));
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	res = g_jit_fn ? g_jit_fn(cfi_jit_bridge, x) : cfi_jit_bridge(x);
-+	asm volatile("" : "+m"(pad) :: "memory");
-+	return res + pad[0];
-+}
-+
-+/* 3. 64-byte aligned local buffer forcing stack realignment (DRAP on x86-64) */
-+noinline __noclone
-+static int cfi_drap_realigned(int x)
-+{
-+	uint8_t __aligned(64) aligned_buf[128];
-+
-+	expect_ip_vla = caller_return_ip();
-+	memset(aligned_buf, x + 3, sizeof(aligned_buf));
-+	asm volatile("" : "+m"(aligned_buf) :: "memory");
-+	return cfi_pre_jit(x) + aligned_buf[0];
-+}
-+
-+/* 2. Dynamic VLA / alloca() forcing FP-based CFA (DW_CFA_def_cfa_register) */
-+noinline __noclone
-+static int cfi_vla_fp_frame(int n)
-+{
-+	size_t sz;
-+	char *dyn;
-+
-+	expect_ip_clobber = caller_return_ip();
-+	asm volatile("" : "+r"(n));
-+	sz = (size_t)((n & 0x3f) + 32);
-+	dyn = alloca(sz);
-+
-+	memset(dyn, n, sz);
-+	asm volatile("" : "+m"(*(char (*)[32])dyn) :: "memory");
-+	return cfi_drap_realigned(n + dyn[0]);
-+}
-+
-+/* 1. SP-based frame with FP (%rbp / x29 / s0) clobbered to defeat FP unwinding */
-+noinline __noclone
-+static int cfi_clobber_fp(int x)
-+{
-+#if defined(__x86_64__)
-+	register long bad_fp asm("rbp") = 0x13579bdfL + x;
-+#elif defined(__aarch64__)
-+	register long bad_fp asm("x29") = 0x13579bdfL + x;
-+#elif defined(__riscv)
-+	register long bad_fp asm("s0") = 0x13579bdfL + x;
-+#else
-+	long bad_fp = 0x13579bdfL + x;
++			info = unwind_find_stack(&state->common, state->sp, fsize);
++			if (!info || READ_ONCE(fregs->sp) != state->sp + fsize)
++				return -EINVAL;
++			unwind_consume_stack(&state->common, info, state->sp, fsize);
++			state->common.pc = READ_ONCE(fregs->pc);
++			state->common.fp = READ_ONCE(fregs->fp);
++			state->lr = ptrauth_strip_kernel_insn_pac(READ_ONCE(fregs->lr));
++			state->lr_valid = true;
++			state->sp += fsize;
++			state->source = KUNWIND_SOURCE_FRAME;
++			return 0;
++		}
 +#endif
-+	char pad[48];
++		if (!(old_fp & 0x7) &&
++		    unwind_find_stack(&state->common, old_fp,
++				      sizeof(struct frame_record_meta))) {
++			struct frame_record_meta *m = (void *)old_fp;
 +
-+	expect_ip_main = caller_return_ip();
-+	asm volatile("" : "+r"(x));
-+	memset(pad, x, sizeof(pad));
-+	asm volatile("" : "+r"(bad_fp), "+m"(pad) :: "memory");
-+	return cfi_vla_fp_frame(x + 1) ^ (int)bad_fp ^ pad[1];
-+}
++			if (state->sp == (unsigned long)container_of(m,
++					struct pt_regs, stackframe) &&
++			    !READ_ONCE(m->record.fp) &&
++			    !READ_ONCE(m->record.lr))
++				return kunwind_next_frame_record_meta(state);
++		}
 +
-+int main(void)
-+{
-+	struct perf_event_attr attr;
-+	struct perf_event_mmap_page *mpage;
-+	size_t page_sz = (size_t)sysconf(_SC_PAGESIZE);
-+	size_t mmap_len = (1 + 16) * page_sz;
-+	void *jit_page = MAP_FAILED;
-+	uint8_t *ring;
-+	uint64_t head, tail;
-+	bool got_deferred = false;
-+	bool saw_leaf = false, saw_shrink = false, saw_jit = false;
-+	bool saw_bridge = false, saw_drap = false, saw_vla = false;
-+	bool saw_clobber = false, saw_main = false;
-+	bool saw_full_chain = false;
-+	int fd, arg = 1;
++		if (state->lr_valid && !is_bpf_text_address(lookup_pc)) {
++			state->common.pc = state->lr;
++			state->lr_valid = false;
++			state->source = KUNWIND_SOURCE_FRAME;
++			state->unreliable = true;
++			return 0;
++		}
 +
-+	ksft_print_header();
-+	ksft_set_plan(1);
++		info = !(old_fp & 0x7) ?
++		       unwind_find_stack(&state->common, old_fp,
++					 sizeof(struct frame_record)) : NULL;
++		if (!info ||
++		    (stackinfo_on_stack(info, state->sp, /*size=*/0) &&
++		     old_fp < state->sp)) {
++			if (state->lr_valid) {
++				state->common.pc = state->lr;
++				state->lr_valid = false;
++				state->source = KUNWIND_SOURCE_FRAME;
++				state->unreliable = true;
++				return 0;
++			}
++			return -EINVAL;
++		}
 +
-+#if !defined(__x86_64__) && !defined(__i386__) && !defined(__aarch64__) && \
-+	!defined(__arm__) && !defined(__riscv)
-+	ksft_test_result_skip("Architecture lacks Minimal DWARF CFI user unwind support\n");
-+	ksft_finished();
-+#endif
++		err = kunwind_next_frame_record(state);
++		if (!err && state->source == KUNWIND_SOURCE_FRAME) {
++			state->sp = old_fp + sizeof(struct frame_record);
++			state->lr_valid = false;
++			state->unreliable = true;
++		} else if (err && state->lr_valid) {
++			state->common.pc = state->lr;
++			state->lr_valid = false;
++			state->source = KUNWIND_SOURCE_FRAME;
++			state->unreliable = true;
++			return 0;
++		}
++		return err;
++	}
 +
-+#if HAVE_JIT_FP_STUB
-+	jit_page = mmap(/*addr=*/NULL, page_sz, PROT_READ | PROT_WRITE,
-+			MAP_PRIVATE | MAP_ANONYMOUS, /*fd=*/-1, /*offset=*/0);
-+	if (jit_page != MAP_FAILED) {
-+		memcpy(jit_page, jit_stub_code, sizeof(jit_stub_code));
-+		if (mprotect(jit_page, page_sz, PROT_READ | PROT_EXEC) == 0) {
-+			__builtin___clear_cache((char *)jit_page,
-+						(char *)jit_page + sizeof(jit_stub_code));
-+			g_jit_fn = (int (*)(int (*)(int), int))jit_page;
++	if (row.ra_rule == DWARF_CFI_RULE_UNDEFINED)
++		return -ENOENT;
++
++	switch (row.cfa_base) {
++	case DWARF_CFI_BASE_SP:
++		cfa = state->sp + row.cfa_off;
++		break;
++	case DWARF_CFI_BASE_FP:
++		cfa = state->common.fp + row.cfa_off;
++		break;
++	case DWARF_CFI_BASE_FP_INDIRECT:
++		info = unwind_find_stack(&state->common,
++					 state->common.fp + row.cfa_off,
++					 sizeof(long));
++		if (!info)
++			return -EINVAL;
++		cfa = READ_ONCE(*(unsigned long *)(state->common.fp + row.cfa_off));
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	if (cfa & 0x7)
++		return -EINVAL;
++
++	if (row.ra_rule == DWARF_CFI_RULE_SAME) {
++		if (!state->lr_valid) {
++			/*
++			 * Non-struct_ops BPF trampolines push a synthetic
++			 * parent frame record above the inner traced-function
++			 * frame record; consume it at the pre-prologue entry.
++			 */
++			if (state->unreliable &&
++			    row.cfa_base == DWARF_CFI_BASE_SP &&
++			    row.cfa_off == 0 &&
++			    state->common.fp == state->sp) {
++				unsigned long old_fp = state->common.fp;
++
++				err = kunwind_next_frame_record(state);
++				if (!err && state->source == KUNWIND_SOURCE_FRAME)
++					state->sp = old_fp + sizeof(struct frame_record);
++				return err;
++			}
++			return -EINVAL;
++		}
++		if (cfa < state->sp)
++			return -EINVAL;
++		new_pc = state->lr;
++	} else if (row.ra_rule == DWARF_CFI_RULE_OFFSET) {
++		ra_addr = cfa + row.ra_off;
++
++		ra_info = unwind_find_stack(&state->common, ra_addr, sizeof(long));
++		if (!ra_info || !stackinfo_on_stack(ra_info, cfa, /*size=*/0))
++			return -EINVAL;
++		new_pc = READ_ONCE(*(unsigned long *)ra_addr);
++	} else {
++		return -EINVAL;
++	}
++
++	if (row.fp_rule == DWARF_CFI_RULE_OFFSET) {
++		unsigned long fp_addr = cfa + row.fp_off;
++
++		info = unwind_find_stack(&state->common, fp_addr, sizeof(long));
++		if (!info)
++			return -EINVAL;
++		new_fp = READ_ONCE(*(unsigned long *)fp_addr);
++	} else if (row.fp_rule == DWARF_CFI_RULE_FP_OFFSET) {
++		unsigned long fp_addr = state->common.fp + row.fp_off;
++
++		info = unwind_find_stack(&state->common, fp_addr, sizeof(long));
++		if (!info)
++			return -EINVAL;
++		new_fp = READ_ONCE(*(unsigned long *)fp_addr);
++	}
++
++	if (row.ra_rule == DWARF_CFI_RULE_OFFSET) {
++		if (stackinfo_on_stack(ra_info, state->sp, /*size=*/0)) {
++			if (cfa <= state->sp ||
++			    !stackinfo_on_stack(ra_info, state->sp,
++						cfa - state->sp))
++				return -EINVAL;
++			unwind_consume_stack(&state->common, ra_info, state->sp,
++					     cfa - state->sp);
 +		} else {
-+			ksft_print_msg("W^X JIT mprotect unavailable (%s); skipping JIT stub\n",
-+				       strerror(errno));
-+			munmap(jit_page, page_sz);
-+			jit_page = MAP_FAILED;
++			if (row.cfa_base == DWARF_CFI_BASE_SP || cfa <= ra_addr)
++				return -EINVAL;
++			unwind_consume_stack(&state->common, ra_info, ra_addr,
++					     cfa - ra_addr);
 +		}
-+	}
-+#endif
-+
-+	memset(&attr, 0, sizeof(attr));
-+	attr.type = PERF_TYPE_SOFTWARE;
-+	attr.size = sizeof(attr);
-+	attr.config = PERF_COUNT_SW_CONTEXT_SWITCHES;
-+	attr.sample_period = 1;
-+	attr.sample_type = PERF_SAMPLE_IP | PERF_SAMPLE_CALLCHAIN;
-+	attr.disabled = 1;
-+	attr.defer_callchain = 1;
-+	attr.defer_output = 1;
-+
-+	fd = (int)sys_perf_event_open(&attr, /*pid=*/0, /*cpu=*/-1,
-+				      /*group_fd=*/-1, /*flags=*/0);
-+	if (fd < 0) {
-+		if (jit_page != MAP_FAILED)
-+			munmap(jit_page, page_sz);
-+		if (errno == EACCES || errno == EPERM || errno == EINVAL) {
-+			ksft_test_result_skip("perf_event_open(defer_callchain) unavailable: %s\n",
-+					      strerror(errno));
-+			ksft_finished();
-+		}
-+		ksft_exit_fail_msg("perf_event_open failed: %s\n", strerror(errno));
++	} else if (cfa > state->sp) {
++		info = unwind_find_stack(&state->common, state->sp,
++					 cfa - state->sp);
++		if (!info)
++			return -EINVAL;
++		unwind_consume_stack(&state->common, info, state->sp,
++				     cfa - state->sp);
 +	}
 +
-+	mpage = mmap(/*addr=*/NULL, mmap_len, PROT_READ | PROT_WRITE,
-+		     MAP_SHARED, fd, /*offset=*/0);
-+	if (mpage == MAP_FAILED) {
-+		if (jit_page != MAP_FAILED)
-+			munmap(jit_page, page_sz);
-+		close(fd);
-+		ksft_exit_fail_msg("mmap failed: %s\n", strerror(errno));
-+	}
-+
-+	ioctl(fd, PERF_EVENT_IOC_RESET, 0);
-+	ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
-+
-+	asm volatile("" : "+r"(arg));
-+	cfi_clobber_fp(arg);
-+
-+	ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
-+
-+	ring = (uint8_t *)mpage + page_sz;
-+	head = __atomic_load_n(&mpage->data_head, __ATOMIC_ACQUIRE);
-+	tail = mpage->data_tail;
-+
-+	while (tail < head) {
-+		size_t mask = 16 * page_sz - 1;
-+		struct perf_event_header *hdr =
-+			(struct perf_event_header *)(ring + (tail & mask));
-+
-+		if (hdr->type == PERF_RECORD_CALLCHAIN_DEFERRED) {
-+			struct perf_record_deferred *rec = (void *)hdr;
-+			bool c_leaf = false, c_shrink = false, c_bridge = false;
-+			bool c_drap = false, c_vla = false, c_clobber = false;
-+			bool c_main = false, c_jit_ok = false;
-+			unsigned int c_jit_hits = 0;
-+
-+			got_deferred = true;
-+			for (uint64_t i = 0; i < rec->nr; i++) {
-+				uintptr_t ip = (uintptr_t)rec->ips[i];
-+
-+				if (ip == expect_ip_leaf)
-+					c_leaf = true;
-+				else if (ip == expect_ip_shrink)
-+					c_shrink = true;
-+				else if (ip == expect_ip_jit)
-+					c_jit_hits++;
-+				else if (ip == expect_ip_bridge)
-+					c_bridge = true;
-+				else if (ip == expect_ip_drap)
-+					c_drap = true;
-+				else if (ip == expect_ip_vla)
-+					c_vla = true;
-+				else if (ip == expect_ip_clobber)
-+					c_clobber = true;
-+				else if (ip == expect_ip_main)
-+					c_main = true;
-+			}
-+
-+#if HAVE_JIT_FP_STUB
-+			if (g_jit_fn) {
-+				uintptr_t jb = (uintptr_t)jit_page;
-+
-+				c_jit_ok = expect_ip_jit >= jb &&
-+					   expect_ip_jit < jb + sizeof(jit_stub_code) &&
-+					   c_jit_hits >= 2;
-+			} else {
-+				c_jit_ok = c_jit_hits >= 1;
-+			}
-+#else
-+			c_jit_ok = c_jit_hits >= 1;
-+#endif
-+			saw_leaf |= c_leaf;
-+			saw_shrink |= c_shrink;
-+			saw_jit |= c_jit_ok;
-+			saw_bridge |= c_bridge;
-+			saw_drap |= c_drap;
-+			saw_vla |= c_vla;
-+			saw_clobber |= c_clobber;
-+			saw_main |= c_main;
-+
-+			if (c_leaf && c_shrink && c_jit_ok && c_bridge &&
-+			    c_drap && c_vla && c_clobber && c_main)
-+				saw_full_chain = true;
-+		}
-+		tail += hdr->size;
-+	}
-+
-+	munmap(mpage, mmap_len);
-+	if (jit_page != MAP_FAILED)
-+		munmap(jit_page, page_sz);
-+	close(fd);
-+
-+	if (!got_deferred) {
-+		ksft_test_result_skip("No PERF_RECORD_CALLCHAIN_DEFERRED records\n");
-+		ksft_finished();
-+	}
-+
-+	ksft_print_msg("def=%d ok=%d leaf=%d shr=%d jit=%d br=%d drap=%d vla=%d fp=%d entry=%d\n",
-+		       got_deferred, saw_full_chain, saw_leaf, saw_shrink,
-+		       saw_jit, saw_bridge, saw_drap, saw_vla, saw_clobber,
-+		       saw_main);
-+
-+	ksft_test_result(saw_full_chain,
-+			 "unwind_user Minimal DWARF CFI across SP, VLA, DRAP, shrink-wrap, and hybrid JIT FP frames\n");
-+	ksft_finished();
++	state->sp = cfa;
++	state->common.fp = new_fp;
++	state->common.pc = new_pc;
++	state->lr_valid = false;
++	state->source = KUNWIND_SOURCE_FRAME;
++	return 0;
 +}
++#endif /* CONFIG_UNWINDER_DWARF_CFI */
++
+ static __always_inline int
+ kunwind_next(struct kunwind_state *state)
+ {
+@@ -263,7 +749,11 @@ kunwind_next(struct kunwind_state *state)
+ 	case KUNWIND_SOURCE_CALLER:
+ 	case KUNWIND_SOURCE_TASK:
+ 	case KUNWIND_SOURCE_REGS_PC:
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++		err = kunwind_next_cfi(state);
++#else
+ 		err = kunwind_next_frame_record(state);
++#endif
+ 		break;
+ 	default:
+ 		err = -EINVAL;
+@@ -285,6 +775,9 @@ do_kunwind(struct kunwind_state *state, kunwind_consume_fn consume_state,
+ {
+ 	int ret;
+ 
++	if (state->source == KUNWIND_SOURCE_UNKNOWN)
++		return -EINVAL;
++
+ 	ret = kunwind_recover_return_address(state);
+ 	if (ret)
+ 		return ret;
+@@ -401,7 +894,7 @@ arch_reliable_kunwind_consume_entry(const struct kunwind_state *state, void *coo
+ 	 * All that matters is whether the *entire* unwind is reliable, so give
+ 	 * up as soon as we hit an exception boundary.
+ 	 */
+-	if (state->source == KUNWIND_SOURCE_REGS_PC)
++	if (state->source == KUNWIND_SOURCE_REGS_PC || state->unreliable)
+ 		return false;
+ 
+ 	return arch_kunwind_consume_entry(state, cookie);
+@@ -474,8 +967,8 @@ static bool dump_backtrace_entry(const struct kunwind_state *state, void *arg)
+ 	return true;
+ }
+ 
+-void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk,
+-		    const char *loglvl)
++noinline void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk,
++			     const char *loglvl)
+ {
+ 	pr_debug("%s(regs = %p tsk = %p)\n", __func__, regs, tsk);
+ 
+diff --git a/arch/arm64/kernel/vmlinux.lds.S b/arch/arm64/kernel/vmlinux.lds.S
+index c95243a8b24e..3d70eb12fa11 100644
+--- a/arch/arm64/kernel/vmlinux.lds.S
++++ b/arch/arm64/kernel/vmlinux.lds.S
+@@ -144,7 +144,23 @@ jiffies = jiffies_64;
+ #define TRAMP_TEXT
+ #endif
+ 
+-#ifdef CONFIG_UNWIND_TABLES
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++#define UNWIND_RODATA_SECTIONS				\
++	.eh_frame_hdr : ALIGN(4) {			\
++		__start_eh_frame_hdr = .;		\
++		*(.eh_frame_hdr)			\
++		__stop_eh_frame_hdr = .;		\
++	}						\
++	.eh_frame : ALIGN(8) {				\
++		__start_eh_frame = .;			\
++		__pi___eh_frame_start = .;		\
++		*(.eh_frame)				\
++		__pi___eh_frame_end = .;		\
++		__stop_eh_frame = .;			\
++	}
++#define UNWIND_DATA_SECTIONS
++#elif defined(CONFIG_UNWIND_TABLES)
++#define UNWIND_RODATA_SECTIONS
+ #define UNWIND_DATA_SECTIONS				\
+ 	.eh_frame : {					\
+ 		__pi___eh_frame_start = .;		\
+@@ -152,6 +168,7 @@ jiffies = jiffies_64;
+ 		__pi___eh_frame_end = .;		\
+ 	}
+ #else
++#define UNWIND_RODATA_SECTIONS
+ #define UNWIND_DATA_SECTIONS
+ #endif
+ 
+@@ -212,6 +229,8 @@ SECTIONS
+ 	/* everything from this point to __init_begin will be marked RO NX */
+ 	RO_DATA(PAGE_SIZE)
+ 
++	UNWIND_RODATA_SECTIONS
++
+ 	HYPERVISOR_RODATA_SECTIONS
+ 
+ #ifdef CONFIG_NVHE_EL2_TRACING
+diff --git a/arch/arm64/kvm/hyp/nvhe/Makefile b/arch/arm64/kvm/hyp/nvhe/Makefile
+index 56a7e2c05f73..bb9907b8ec7f 100644
+--- a/arch/arm64/kvm/hyp/nvhe/Makefile
++++ b/arch/arm64/kvm/hyp/nvhe/Makefile
+@@ -104,6 +104,7 @@ KBUILD_CFLAGS := $(filter-out $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS), $(KBUILD_CFLAG
+ # when profile optimization is applied. gen-hyprel does not support SHT_REL and
+ # causes a build failure. Remove profile optimization flags.
+ KBUILD_CFLAGS := $(filter-out -fprofile-sample-use=% -fprofile-use=%, $(KBUILD_CFLAGS))
++KBUILD_CFLAGS := $(filter-out -fomit-frame-pointer, $(KBUILD_CFLAGS)) -fno-omit-frame-pointer
+ KBUILD_CFLAGS += -fno-asynchronous-unwind-tables -fno-unwind-tables
+ 
+ ifeq ($(CONFIG_UBSAN_KVM_EL2),y)
+diff --git a/arch/arm64/lib/kasan_sw_tags.S b/arch/arm64/lib/kasan_sw_tags.S
+index 20784ce75def..7959b5f3c6b0 100644
+--- a/arch/arm64/lib/kasan_sw_tags.S
++++ b/arch/arm64/lib/kasan_sw_tags.S
+@@ -38,6 +38,12 @@
+  * incremented by 256 prior to return).
+  */
+ SYM_CODE_START(__hwasan_tag_mismatch)
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_startproc
++	.cfi_def_cfa_offset 256
++	.cfi_offset x29, -24
++	.cfi_offset x30, -16
++#endif
+ 	bti	c
+ 	add	x29, sp, #232
+ 	stp	x2, x3, [sp, #8 * 2]
+@@ -66,9 +72,19 @@ SYM_CODE_START(__hwasan_tag_mismatch)
+ 	ldr	x18, [sp, #8 * 18]
+ #endif
+ 	ldp	x29, x30, [sp, #8 * 29]
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_restore x29
++	.cfi_restore x30
++#endif
+ 
+ 	/* remove the structure from the stack */
+ 	add	sp, sp, #256
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 0
++#endif
+ 	ret
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_endproc
++#endif
+ SYM_CODE_END(__hwasan_tag_mismatch)
+ EXPORT_SYMBOL(__hwasan_tag_mismatch)
+diff --git a/arch/arm64/net/bpf_jit_comp.c b/arch/arm64/net/bpf_jit_comp.c
+index 33632fb20997..ee1436295046 100644
+--- a/arch/arm64/net/bpf_jit_comp.c
++++ b/arch/arm64/net/bpf_jit_comp.c
+@@ -3489,10 +3489,11 @@ bool bpf_jit_supports_ptr_xchg(void)
+ 
+ bool bpf_jit_supports_exceptions(void)
+ {
+-	/* We unwind through both kernel frames starting from within bpf_throw
+-	 * call and BPF frames. Therefore we require FP unwinder to be enabled
+-	 * to walk kernel frames and reach BPF frames in the stack trace.
+-	 * ARM64 kernel is always compiled with CONFIG_FRAME_POINTER=y
++	/*
++	 * We unwind through both kernel frames starting from within bpf_throw
++	 * call and BPF frames. Both UNWINDER_FRAME_POINTER and
++	 * UNWINDER_DWARF_CFI preserve x29 across kernel frames and walk
++	 * JITed BPF frame records.
+ 	 */
+ 	return true;
+ }
+diff --git a/arch/arm64/net/bpf_timed_may_goto.S b/arch/arm64/net/bpf_timed_may_goto.S
+index f8732b13bb1e..6d0aa023c1f4 100644
+--- a/arch/arm64/net/bpf_timed_may_goto.S
++++ b/arch/arm64/net/bpf_timed_may_goto.S
+@@ -4,9 +4,20 @@
+ #include <linux/linkage.h>
+ 
+ SYM_FUNC_START(arch_bpf_timed_may_goto)
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_startproc
++#endif
+ 	/* Allocate stack space and emit frame record */
+ 	stp     x29, x30, [sp, #-96]!
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_offset 96
++	.cfi_offset 29, -96
++	.cfi_offset 30, -88
++#endif
+ 	mov     x29, sp
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa_register 29
++#endif
+ 
+ 	/* Save BPF registers R0 - R5 (x8, x0-x4)*/
+ 	stp	x8, x0, [sp, #16]
+@@ -35,6 +46,14 @@ SYM_FUNC_START(arch_bpf_timed_may_goto)
+ 
+ 	/* Restore FP and LR */
+ 	ldp     x29, x30, [sp], #96
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_def_cfa 31, 0
++	.cfi_restore 29
++	.cfi_restore 30
++#endif
+ 
+ 	ret
++#ifdef CONFIG_UNWINDER_DWARF_CFI
++	.cfi_endproc
++#endif
+ SYM_FUNC_END(arch_bpf_timed_may_goto)
 -- 
 2.56.1.750.gf70dc682cf-goog
 
