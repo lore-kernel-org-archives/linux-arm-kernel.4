@@ -2,76 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A30606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 20:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6688606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 20:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TH/wZCFf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PbbhJGgd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oABktT+9;
+	dkim=pass (2048-bit key) header.d=tipi-net.de header.i=@tipi-net.de header.a=rsa-sha256 header.s=dkim header.b=qFuytspF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+PyjUDnqVinhMQ5ZtkPYrYJGFlZhr6M09Vwf4sqhRwI=; b=TH/wZCFf1Ayd76
-	HgPtaSRHwHRTiqZV+RDud1WxqGjw9OmZLj3CEObuyJQ6PTKMkktZPLDVecr+UYV0oG0FtELtdtC24
-	/tpTNNXlczN1PYKUcrMN/YH6LbMqL3B5lddUGgHsQtWm1Q30GSKT6JMPIK0DjQdq4A4S2XVN6EaK2
-	pG7DxzYzuTNFXWPkA8kOcKCY/pTMjScMNRD6oe0IVGG+qE4uEAN3WgcOyvI5d4N0WK968abGeeOVH
-	2P6s7/Jkvgw+p7HsWRWfTUYs2Cwfy4OtS/TIP3+1Omvf98RRDsEeIWim0rKWWVNqD0GlEiVodMxfE
-	MeQUgSmwZUdUW4q/UYdQ==;
+	List-Owner; bh=QKbQ/ruVPJfxFXMkY7n2nO72I37QhMdT2FVadZTIHTI=; b=oABktT+93h9bs0
+	ZLFpkdvjwGvZ9o30pIK77h4wr/B7tFdYyMjvY7H1v5Zsg6y/ojcLA0pWwJt/zjjdyhO3m9tCpLBdG
+	2JwdF7K3R45mebXzV4d+Oa8+jIfVdZGcrSK8Ds0/E2CFv2zK5DrjQENEarL9KQ0db2zSzjbnlXio/
+	QTLTRJbQl06B0pfHTPurFGErG4scs1qQO775p4apfVDveqcsIfo+bckJyPAbt2RPXXq5hjBMFWNDC
+	ZUAZJ8id5rklqlLsYGBz4t2AWTUf6t4o7xN/W1MqlrYxwpBviFdUlGgfEBfgFD1gL/vmTyZkIp/WK
+	VDRdZYUz8jwLh/nKshbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVEFS-00000001iph-1P4R;
-	Sun, 22 Nov 2026 20:33:18 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVEJb-00000001jI2-3z42;
+	Sun, 22 Nov 2026 20:37:35 +0000
+Received: from mail.tipi-net.de ([2a03:4000:43:185::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVEFP-00000001inE-0sqj
+	id 1xVEJZ-00000001jHf-0pCq
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 20:33:15 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9218260141;
-	Sun, 22 Nov 2026 20:33:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3BC91F0089E;
-	Sun, 22 Nov 2026 20:33:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795379594;
-	bh=+PyjUDnqVinhMQ5ZtkPYrYJGFlZhr6M09Vwf4sqhRwI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=PbbhJGgdVehmaYE7KCLlbmGgWLnc9JDedIJPvOa7dpiNL0FrS3FWtxRfqYmfVkD7e
-	 QWeiaP13O1ZZd7cb6Rg6nHLJtXk5y3mZP1FtdX94JSRxhToO6oGihQlyTMrNNuIQvP
-	 BUheOHVTrGZMOk+VjDZfmMfbjPWHb88vSUeiptNJgqyz7lukE4GsXe3drklXujqPHl
-	 yqeCnYC5VWUfHWEA0+eHexS6lIhfnCW88/LeSt/n5PMhluWSX1+CR1HbNKhRC+ZJ7I
-	 P+NNYi6d4XEEgI64ljaetC2Axd3yqBF7KcQ4m25wITbIGKeg4I1179H7Za2QdPfZLy
-	 OSjWjCjiv4B8g==
-From: Linus Walleij <linusw@kernel.org>
-Date: Sun, 22 Nov 2026 21:32:31 +0100
-Subject: [PATCH v6 6/6] hwmon: Add Broadcom PMB PVTMON monitoring
+	Sun, 22 Nov 2026 20:37:34 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 80F1BA035D;
+	Sun, 22 Nov 2026 21:37:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tipi-net.de; s=dkim;
+	t=1795379848; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=QKbQ/ruVPJfxFXMkY7n2nO72I37QhMdT2FVadZTIHTI=;
+	b=qFuytspFxPUpX6GrAkKPVuaEtZasvNyYeXwbBa2EIqSZUcam1s1+xbV2rb32CWrwoBdtIS
+	O8H9eKezIsDv8/IfzH0orjDIwMbutBycVnW2ZXRbQdoBg1TU6EEEjz48a/vE1OVqJ8RJSx
+	T++URvx/NQYgDHrf7LPJVcyAS11UjHHm1g4IpnlPMAprMfuFB/0yuFWuEdvxAvVctmag0K
+	yDL6/LncNKgq5vUCKxI/HArfzlv11d2S/bNBdZDQrEiSZLVql07ElV2vhX/6j90GxU8BKt
+	xnymK0uc5/MoVhQZuZBd347dWYGayg0AdUpVBDC/yM8kmBB95A2sT1QsS3EAiA==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Date: Sun, 22 Nov 2026 21:37:24 +0100
+From: Nicolai Buchwitz <nb@tipi-net.de>
+To: Sam Edwards <cfsworks@gmail.com>
+Cc: Anandu Padinhare <Anandu.Padinhare@electrifex.com>,
+ maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, Alexei Starovoitov
+ <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, Jesper Dangaard
+ Brouer <hawk@kernel.org>, John Fastabend <john.fastabend@gmail.com>,
+ Stanislav Fomichev <sdf@fomichev.me>, "Russell King (Oracle)"
+ <rmk+kernel@armlinux.org.uk>, David Wu <david.wu@rock-chips.com>,
+ stable@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
+Subject: Re: [PATCH net] net: stmmac: retry a failed RX refill from a timer
+In-Reply-To: <CAH5Ym4h8-1mc+DX0Si7XROeGn9M72bQC+ooM05Y7ZmgTo+ON4w@mail.gmail.com>
+References: <MA0PR01MB921746F36D90C7080287ACC9FD782@MA0PR01MB9217.INDPRD01.PROD.OUTLOOK.COM>
+ <9d8cdde77beedce76aaaa1c5a7a788dc@tipi-net.de>
+ <CAH5Ym4h8-1mc+DX0Si7XROeGn9M72bQC+ooM05Y7ZmgTo+ON4w@mail.gmail.com>
+Message-ID: <9fbb80bfc0e58a531c1eb59127bd8059@tipi-net.de>
+X-Sender: nb@tipi-net.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261122-xg6846b-bcmbca-xrdp-reset-v6-6-bf2104a25095@kernel.org>
-References: <20261122-xg6846b-bcmbca-xrdp-reset-v6-0-bf2104a25095@kernel.org>
-In-Reply-To: <20261122-xg6846b-bcmbca-xrdp-reset-v6-0-bf2104a25095@kernel.org>
-To: Linus Walleij <linusw@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- William Zhang <william.zhang@broadcom.com>, 
- Anand Gore <anand.gore@broadcom.com>, 
- Kursad Oney <kursad.oney@broadcom.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Jonathan Corbet <corbet@lwn.net>, Randy Dunlap <rdunlap@infradead.org>, 
- Ulf Hansson <ulfh@kernel.org>, 
- Benjamin Larsson <benjamin.larsson@genexis.eu>
-Cc: mfd@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, linux-pm@vger.kernel.org
-X-Mailer: b4 0.16.0
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_123733_690716_51386DCA 
+X-CRM114-Status: UNSURE (   6.30  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,400 +81,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Expose the BCM6846 die temperature and seven voltage inputs through
-hwmon using the shared Power Management Bus (PMB) regmap.
+On 22.11.2026 21:20, Sam Edwards wrote:
+> [...]
 
-Register the temperature channel with the thermal framework so
-existing zero-cell device-tree thermal sensor references work.
+>> After a successful retry, doesn't this leave the last received frame 
+>> in
+>> the ring until the next RX irq? Could the poll refill first?
+> 
+> Do you mean "first as well" or "first instead"? Because "instead" can
 
-Poll for valid samples with a bounded timeout, releasing the PMB lock
-between reads. Report temperature in millidegrees Celsius, including
-negative values, and voltages in millivolts.
+> [...]
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Linus Walleij <linusw@kernel.org>
----
- Documentation/hwmon/bcm_pmb_pvtmon.rst |  53 ++++++++
- Documentation/hwmon/index.rst          |   1 +
- MAINTAINERS                            |   2 +
- drivers/hwmon/Kconfig                  |  18 +++
- drivers/hwmon/Makefile                 |   1 +
- drivers/hwmon/bcm_pmb_pvtmon.c         | 231 +++++++++++++++++++++++++++++++++
- 6 files changed, 306 insertions(+)
+> But, "first as well" sounds good to me: before entering the main loop,
+> refill 1 buffer (if possible) just to ensure either the IRQ fires
+> again immediately (if the FIFO is holding onto another packet for us),
+> or the inaccessible ring slot is clean (if the FIFO is empty).
 
-diff --git a/Documentation/hwmon/bcm_pmb_pvtmon.rst b/Documentation/hwmon/bcm_pmb_pvtmon.rst
-new file mode 100644
-index 000000000000..8d2412daeed1
---- /dev/null
-+++ b/Documentation/hwmon/bcm_pmb_pvtmon.rst
-@@ -0,0 +1,53 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+Kernel driver bcm_pmb_pvtmon
-+============================
-+
-+Supported chips:
-+
-+  * Broadcom BCM6846 PVTMON
-+
-+    Access: Power Management Bus (PMB), bus 1, device 6
-+
-+Author: Linus Walleij <linusw@kernel.org>
-+
-+Description
-+-----------
-+
-+The process, voltage and temperature monitor (PVTMON) measures die
-+temperature and seven voltage inputs. The driver uses the shared PMB MFD
-+transport and obtains its clock and reset from the sibling providers.
-+
-+With CONFIG_THERMAL_OF enabled, the temperature channel also supplies
-+device-tree thermal zones. The PVTMON node uses #thermal-sensor-cells = <0>;
-+voltage inputs do not have thermal sensor indices.
-+
-+Sysfs attributes
-+----------------
-+
-+All attributes are read-only. Temperature is reported in millidegrees
-+Celsius and voltages in millivolts, using the BCM6846 vendor conversion
-+formulas and input-divider ratios.
-+
-+================ ================================
-+Attribute        Description
-+================ ================================
-+temp1_input      Die temperature
-+in0_input        First 0.85 V input
-+in1_input        Second 0.85 V input
-+in2_input        VIN input
-+in3_input        1.0 V input
-+in4_input        1.8 V input
-+in5_input        3.3 V input
-+in6_input        Diagnostic test input
-+in0_label        V0.85_1
-+in1_label        V0.85_2
-+in2_label        VIN
-+in3_label        V1.0
-+in4_label        V1.8
-+in5_label        V3.3
-+in6_label        Vtest
-+================ ================================
-+
-+Labels follow the vendor channel names. Vtest is a diagnostic ADC input,
-+not a supply rail. The driver does not change the analog test routing.
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 199ca79621e9..5a579391cf9e 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -54,6 +54,7 @@ Hardware Monitoring Kernel Drivers
-    axiado-pwm-fan
-    axiado-tsadc
-    bcm54140
-+   bcm_pmb_pvtmon
-    bel-pfe
-    bpa-rs600
-    cgbc-hwmon
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 770b0649cc52..d53a49c6b511 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5448,7 +5448,9 @@ BROADCOM BCMBCA PMC3 PMB DRIVER
- M:	Linus Walleij <linusw@kernel.org>
- S:	Maintained
- F:	Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
-+F:	Documentation/hwmon/bcm_pmb_pvtmon.rst
- F:	drivers/clk/bcm/clk-bcmbca-pmb.c
-+F:	drivers/hwmon/bcm_pmb_pvtmon.c
- F:	drivers/mfd/bcmbca_pmc3_pmb.c
- F:	drivers/pmdomain/bcm/bcmbca-pmb.c
- F:	drivers/reset/reset-bcmbca-pmb.c
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 18c682e1a475..5e42c3dc70f1 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -334,6 +334,24 @@ config SENSORS_AXIADO_TSADC
- 	  This driver can also be built as a module. If so, the module
- 	  will be called axiado-tsadc.
- 
-+config SENSORS_BCM_PMB_PVTMON
-+	tristate "Broadcom PMB PVTMON hardware monitoring"
-+	depends on ARCH_BCMBCA || COMPILE_TEST
-+	depends on MFD_BCMBCA_PMB
-+	depends on COMMON_CLK
-+	depends on RESET_CONTROLLER
-+	select CLK_BCMBCA_PMB
-+	select RESET_BCMBCA_PMB
-+	select REGMAP
-+	default MFD_BCMBCA_PMB
-+	help
-+	  Enable temperature and voltage monitoring through the
-+	  Power Management Bus on Broadcom BCM6846. With THERMAL_OF enabled, the
-+	  temperature channel also supplies the thermal zones described in
-+	  the device tree.
-+
-+	  This driver can also be built as a module called bcm_pmb_pvtmon.
-+
- config SENSORS_K8TEMP
- 	tristate "AMD Athlon64/FX or Opteron temperature sensor"
- 	depends on X86 && PCI
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index d4c345ed7261..edf8e8d2f345 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -62,6 +62,7 @@ obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
- obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
- obj-$(CONFIG_SENSORS_AXIADO_PWM_FAN) += axiado-pwm-fan.o
- obj-$(CONFIG_SENSORS_AXIADO_TSADC)	+= axiado-tsadc.o
-+obj-$(CONFIG_SENSORS_BCM_PMB_PVTMON) += bcm_pmb_pvtmon.o
- obj-$(CONFIG_SENSORS_CGBC)	+= cgbc-hwmon.o
- obj-$(CONFIG_SENSORS_CHIPCAP2) += chipcap2.o
- obj-$(CONFIG_SENSORS_CORETEMP)	+= coretemp.o
-diff --git a/drivers/hwmon/bcm_pmb_pvtmon.c b/drivers/hwmon/bcm_pmb_pvtmon.c
-new file mode 100644
-index 000000000000..3c58e0be3251
---- /dev/null
-+++ b/drivers/hwmon/bcm_pmb_pvtmon.c
-@@ -0,0 +1,231 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Broadcom BCM6846 process, voltage and temperature monitor (PVTMON).
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/hwmon.h>
-+#include <linux/mfd/bcmbca-pmb.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+
-+#define PVTMON_BUS		1
-+#define PVTMON_DEVICE		6
-+
-+/* PMB register offsets are in 32-bit words. */
-+#define PVTMON_CONFIG		17
-+#define PVTMON_RESET_N		BIT(0)
-+#define PVTMON_POWER_DOWN		BIT(1)
-+
-+#define PVTMON_ACQ_CONFIG		20
-+#define PVTMON_ACCUM_ENABLE	BIT(0)
-+#define PVTMON_SKIP_LENGTH	GENMASK(11, 8)
-+
-+#define PVTMON_CHANNEL_BASE	24
-+#define PVTMON_NUM_CHANNELS	8
-+#define PVTMON_VALUE		GENMASK(9, 0)
-+#define PVTMON_VALID		BIT(18)
-+#define PVTMON_SAMPLES		GENMASK(26, 24)
-+#define PVTMON_CHANNEL_ENABLE	BIT(31)
-+
-+/* BCM6846 voltage channel labels and input-divider ratios. */
-+static const struct {
-+	const char *label;
-+	unsigned int divisor;
-+} bcm6846_pvtmon_voltages[] = {
-+	{ "V0.85_1", 10 },
-+	{ "V0.85_2", 10 },
-+	{ "VIN", 7 },
-+	{ "V1.0", 7 },
-+	{ "V1.8", 4 },
-+	{ "V3.3", 2 },
-+	{ "Vtest", 10 },
-+};
-+
-+static int bcm_pmb_pvtmon_init(struct regmap *regmap,
-+			       struct reset_control *reset)
-+{
-+	unsigned int reg = BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE, PVTMON_CONFIG);
-+	u32 config, acq, channel;
-+	unsigned int i;
-+	int ret;
-+
-+	ret = regmap_read(regmap, reg, &config);
-+	if (ret)
-+		return ret;
-+
-+	/* Do not reset acquisition already running for the PMC firmware. */
-+	if ((config & (PVTMON_RESET_N | PVTMON_POWER_DOWN)) != PVTMON_RESET_N) {
-+		ret = regmap_update_bits(regmap, reg, PVTMON_POWER_DOWN, 0);
-+		if (ret)
-+			return ret;
-+		ret = reset_control_reset(reset);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = regmap_read(regmap, BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE,
-+						 PVTMON_ACQ_CONFIG), &acq);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < PVTMON_NUM_CHANNELS; i++) {
-+		reg = BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE, PVTMON_CHANNEL_BASE + i);
-+		ret = regmap_read(regmap, reg, &channel);
-+		if (ret)
-+			return ret;
-+
-+		if (channel & PVTMON_CHANNEL_ENABLE)
-+			continue;
-+
-+		/* Average 32 samples. */
-+		ret = regmap_update_bits(regmap, reg, PVTMON_CHANNEL_ENABLE | PVTMON_SAMPLES,
-+					 PVTMON_CHANNEL_ENABLE | FIELD_PREP(PVTMON_SAMPLES, 5));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (!(acq & PVTMON_ACCUM_ENABLE))
-+		return regmap_update_bits(regmap,
-+					  BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE,
-+							 PVTMON_ACQ_CONFIG),
-+					  PVTMON_SKIP_LENGTH | PVTMON_ACCUM_ENABLE,
-+					  PVTMON_ACCUM_ENABLE | FIELD_PREP(PVTMON_SKIP_LENGTH, 8));
-+
-+	return 0;
-+}
-+
-+static int bcm_pmb_pvtmon_read(struct device *dev, enum hwmon_sensor_types type,
-+			       u32 attr, int channel, long *val)
-+{
-+	struct regmap *map = dev_get_drvdata(dev);
-+	unsigned int index;
-+	u32 value;
-+	int ret;
-+
-+	switch (type) {
-+	case hwmon_temp:
-+		if (attr != hwmon_temp_input)
-+			return -EOPNOTSUPP;
-+		index = 0;
-+		break;
-+	case hwmon_in:
-+		if (attr != hwmon_in_input)
-+			return -EOPNOTSUPP;
-+		index = channel + 1;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	/* Release the PMB between samples so other clients can make progress. */
-+	ret = regmap_read_poll_timeout(map,
-+				       BCMBCA_PMB_REG(PVTMON_BUS, PVTMON_DEVICE,
-+						      PVTMON_CHANNEL_BASE + index),
-+				       value, value & PVTMON_VALID, 1000, 100000);
-+	if (ret)
-+		return ret;
-+
-+	value = FIELD_GET(PVTMON_VALUE, value);
-+	if (type == hwmon_temp) {
-+		/* Signed arithmetic allows temperatures below zero Celsius. */
-+		*val = (41335000 - 49055 * (int)value) / 100;
-+	} else {
-+		/* 880 mV ADC reference, accounting for each input divider. */
-+		*val = 880 * value * 10 /
-+			(bcm6846_pvtmon_voltages[channel].divisor * 1024);
-+	}
-+
-+	return 0;
-+}
-+
-+static int bcm_pmb_pvtmon_read_string(struct device *dev,
-+				      enum hwmon_sensor_types type, u32 attr,
-+				      int channel, const char **str)
-+{
-+	if (type != hwmon_in || attr != hwmon_in_label)
-+		return -EOPNOTSUPP;
-+
-+	*str = bcm6846_pvtmon_voltages[channel].label;
-+	return 0;
-+}
-+
-+static const struct hwmon_ops bcm_pmb_pvtmon_ops = {
-+	.visible = 0444,
-+	.read = bcm_pmb_pvtmon_read,
-+	.read_string = bcm_pmb_pvtmon_read_string,
-+};
-+
-+static const struct hwmon_channel_info * const bcm_pmb_pvtmon_info[] = {
-+	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-+	HWMON_CHANNEL_INFO(in,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL,
-+			   HWMON_I_INPUT | HWMON_I_LABEL),
-+	NULL
-+};
-+
-+static const struct hwmon_chip_info bcm_pmb_pvtmon_chip_info = {
-+	.ops = &bcm_pmb_pvtmon_ops,
-+	.info = bcm_pmb_pvtmon_info,
-+};
-+
-+static int bcm_pmb_pvtmon_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct regmap *regmap = dev_get_regmap(dev->parent, NULL);
-+	struct device *hwmon;
-+	struct reset_control *reset;
-+	struct clk *clk;
-+	int ret;
-+
-+	if (!regmap)
-+		return -ENODEV;
-+
-+	reset = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(reset))
-+		return dev_err_probe(dev, PTR_ERR(reset), "failed to get PVTMON reset\n");
-+
-+	clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable PVTMON clock\n");
-+
-+	ret = bcm_pmb_pvtmon_init(regmap, reset);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to initialize PVTMON\n");
-+
-+	hwmon = devm_hwmon_device_register_with_info(dev, "bcm6846_pvtmon", regmap,
-+						     &bcm_pmb_pvtmon_chip_info, NULL);
-+	if (IS_ERR(hwmon))
-+		return dev_err_probe(dev, PTR_ERR(hwmon), "failed to register hwmon device\n");
-+
-+	/* Acquisition remains enabled for the PMC firmware after unbinding. */
-+	return 0;
-+}
-+
-+static const struct of_device_id bcm_pmb_pvtmon_of_match[] = {
-+	{ .compatible = "brcm,bcm6846-pmb-pvtmon" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, bcm_pmb_pvtmon_of_match);
-+
-+static struct platform_driver bcm_pmb_pvtmon_driver = {
-+	.probe = bcm_pmb_pvtmon_probe,
-+	.driver = {
-+		.name = "bcm6846-pmb-pvtmon",
-+		.of_match_table = bcm_pmb_pvtmon_of_match,
-+	},
-+};
-+module_platform_driver(bcm_pmb_pvtmon_driver);
-+
-+MODULE_AUTHOR("Linus Walleij <linusw@kernel.org>");
-+MODULE_DESCRIPTION("Broadcom PMB PVTMON hardware monitoring driver");
-+MODULE_LICENSE("GPL");
+This (first as well).
 
--- 
-2.56.1
-
+BR
+Nicolai
 
