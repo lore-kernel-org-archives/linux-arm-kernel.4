@@ -2,65 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2E2606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 15:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE13606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 15:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qc21ecQA;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=FWAlQpvl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CS00VXqE;
+	dkim=pass (2048-bit key) header.d=tipi-net.de header.i=@tipi-net.de header.a=rsa-sha256 header.s=dkim header.b=gCdfTl7c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=yoDV+prWsX7guq+90WivZjKbCtQ+ft9UJtNUNcoppyw=; b=qc21ecQAHhHreNqReYnDkDQ7+o
-	NVyHZZjjnXW2VvjS+26Viw/5bhvkLDEvg8LzT8mn+9NcHpKJW8wgzIwzy2nutHJCm/y89yuFtAM6Q
-	V3q17lOeTI/e4PAgo4yCYNEb1To8OL7FppLu0YKvyq7h/61tEX3CTlOt7Cu7MF23HGoZL9b0oeYhV
-	AjQB7DMIYRyeq6PGije8aAMOES5kS+z2wShcDkq/s3T0l84pfhN1f22rma4xEdjPVDTbG+qkEiepX
-	DvVRgfhbA2Jbor/fKmH5D8A0xGEchv93U/j0i/7cNF3sRjN30GnIjqPzSWyB/OW3KeQ9FqzGPbIsj
-	lbINPxUg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3HWPvavJivhpcu05VFMyQQiSuD7eHMUcO0u3LphRL4s=; b=CS00VXqEHUvHFU
+	/m/OjUu7JxGvxMNzLXSE4B+we3vxQoycCPxuMmg6CKBNClH02qIXLZokFDcuhLD5wuPg2XTkjkWnL
+	LbOobm01yVJcYHbSBR1HZjgq2+I8R52gLBdtJD+kiig7nsLl14DnFeHPhOcJfeCkaEYA7i9igUZKZ
+	kpEMBp8vw4uzHrrDawteDo3qStiXSknPepLNxWNZ3Ky1HCvPRclwTZYN+PYlVwWGY2CyXbkGZZVUw
+	uSnTEkEuXwR37JT4DB+5Yc6tqKtv46MO5/sZLGuYfKIChuAn6aaRfYKt6W3SwyLg/BLcBDvnKOOKz
+	bT0DVkBTrFhKkYkZ1VhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV9mJ-00000001IL5-0k23;
-	Sun, 22 Nov 2026 15:46:55 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1xV9td-00000001IdK-0EiO;
+	Sun, 22 Nov 2026 15:54:29 +0000
+Received: from mail.tipi-net.de ([2a03:4000:43:185::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV9mH-00000001IKb-1AYC;
-	Sun, 22 Nov 2026 15:46:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=yoDV+prWsX7guq+90WivZjKbCtQ+ft9UJtNUNcoppyw=; b=FWAlQpvl9OScDr7zh1eXy10phf
-	2k/eaxwZpN3S1rognH3ERyRNfvilejPDFDKo/iib74CPp4Cg+G2yEcaADYM383sGV/b1B1dDUsbrX
-	MAEm8LbHu+rIi4ix0YXUiKlHY/ULurJJRs64W1Ws2wAVrabjm0Ci2F5X8633lGtDqNp0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xV9m6-000aVN-A8; Sun, 22 Nov 2026 16:46:42 +0100
-Date: Sun, 22 Nov 2026 16:46:42 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH v2 2/8] ARM: dts: rockchip: Add support for RK3506
-Message-ID: <86007bdd-6c10-46ba-aac6-197939934c73@lunn.ch>
-References: <20261122060114.773624-1-jonas@kwiboo.se>
- <20261122060114.773624-3-jonas@kwiboo.se>
+	id 1xV9ta-00000001IcY-0s4X
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 22 Nov 2026 15:54:28 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9DDF9A08FC;
+	Sun, 22 Nov 2026 16:54:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tipi-net.de; s=dkim;
+	t=1795362856; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=3HWPvavJivhpcu05VFMyQQiSuD7eHMUcO0u3LphRL4s=;
+	b=gCdfTl7cUy1VKDtD63ZLOWuU8hiyzwAud81wX2JQd4abyImdJMsPewatFcbfA+HSSgO9L3
+	Yti57w6IQSeQC2AH4hJI2jCWt+T3xxADIahYvrPV7TJik0ihuGgNW24Iqimk+pQkuTjgLN
+	Tb+vHescEwHYiireR6ZjBI/uahfdS2HcDnJ4ZjvtF6kdufqC//YVjKmwSn0cex1W58EQHS
+	exodIstia7aHcIo6xjDvGMwzIixOPfDH2BGCzfEuTezc5GO7C44TofGqDVQiQrS1kFevAq
+	y5JgeJhQlQQPXAdRJ4M1XudJEdrJdz2oS9r3y85Piw/JvbPCNbjH9cocMX6mtQ==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261122060114.773624-3-jonas@kwiboo.se>
+Date: Sun, 22 Nov 2026 16:54:10 +0100
+From: Nicolai Buchwitz <nb@tipi-net.de>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Willem de Bruijn
+ <willemb@google.com>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>,
+ Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+ thomas.petazzoni@bootlin.com, =?UTF-8?Q?Alexis_Lothor=C3=A9?=
+ <alexis.lothore@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH net-next 1/3] net: stmmac: dwmac-sun8i: allow controlling
+ TX and RX flow control separately
+In-Reply-To: <20261122144926.284857-2-maxime.chevallier@bootlin.com>
+References: <20261122144926.284857-1-maxime.chevallier@bootlin.com>
+ <20261122144926.284857-2-maxime.chevallier@bootlin.com>
+Message-ID: <ff98a99f0f603c56fa552e6987b1b2d5@tipi-net.de>
+X-Sender: nb@tipi-net.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_074653_319068_BDD946C0 
-X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-CacheID: sfid-20261122_075426_711645_88CB97D7 
+X-CRM114-Status: UNSURE (   5.53  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -73,33 +82,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> diff --git a/arch/arm/boot/dts/rockchip/rk3506.dtsi b/arch/arm/boot/dts/rockchip/rk3506.dtsi
+Hi Maxime
 
-> +		gmac0: ethernet@ff4c8000 {
-> +			compatible = "rockchip,rk3506-gmac", "snps,dwmac-4.20a";
-> +			reg = <0xff4c8000 0x2000>;
-> +			clocks = <&cru CLK_MAC0>, <&cru CLK_MAC0_PTP>,
-> +				 <&cru PCLK_MAC0>, <&cru ACLK_MAC0>;
-> +			clock-names = "stmmaceth", "ptp_ref",
-> +				      "pclk_mac", "aclk_mac";
-> +			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "macirq", "eth_wake_irq";
-> +			phy-mode = "rmii";
+On 22.11.2026 15:49, Maxime Chevallier wrote:
+> Currently, the sun8i flow control setup only looks at FLOW_AUTO (which
+> is FLOW_RX | FLOW_TX), and enables RX/TX based on that.
+> 
+> Allow enabling RX/TX flow control directions separately.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-Sorry, missed this on the first pass of the patchset.
+> [...]
 
-phy-mode is generally a board/PCB property, not a SoC property. It
-would only be a SoC property when the SoC cannot do anything other
-than RMII. But given this is snps,dwmac, i expect it can do other phy
-modes.
+Reviewed-by: Nicolai Buchwitz <nbb@tipi-net.de>
 
-	Andrew
+Thanks,
+Nicolai
 
