@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FBA5606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D54C5606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 06:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cLu9E0lq;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=MiQ4aTH4;
-	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=oak+hHfn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vlUfzU4V;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.a=rsa-sha256 header.s=fe-e1b5cab7be header.b=zGgWbH0u;
+	dkim=pass (1024-bit key) header.d=forwardemail.net header.i=@forwardemail.net header.a=rsa-sha256 header.s=default header.b=ogaudifQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=I4XSnmsKc9vd0wX2hVPb8MU2OP+otyYxWmumfz9b1L0=; b=cLu9E0lqQR29RS
-	2Q8cMVBPz/K8rlgieum4ZT4w0MpfrvS6tlWhEfH/Jss/A6XXqmRfElHj+9wScmmpEcebLyiZoDno0
-	SbD+c2KvVL+Kw1Ui2KYbf9HVVys1Z/z+H0qVpeRNklf/QujiUDO06/7C3K9BB147MupcTF7pij+6s
-	QvAkgT8RRg427kkDMtYDRY2cwpYGz2GSqOqRQoJlC8evYDrfuPvzgjEQsUveKe4o0imhlWIZw/C2/
-	gougTKr1VWFLpUb/jxHlSdbVgMeLuHfRagnqOQO9xKVNlYtF3JThEKRGk8EdI/EnkLK7jcm73abdy
-	+7ukD2zMslvwLE70vQag==;
+	List-Owner; bh=VLrcjSjAGocbg+K4HCg/3Ob+O3COBmaA1Mvh6gBuVPc=; b=vlUfzU4VhdjzV1
+	9rnM+ZiaA/yOZAt9u94Fd0jMxG4t82Edq1+6JALLwNlgcOdh7E1Si60fECWu9hUJCCgkx2ov3EimS
+	DwRhcbo8RqdN0Z5koO9S/6lIBeyNvNHOxWSrjPBLv1HyR77IO55SBydzsaPZJvQizcXkyVsSBs7Zc
+	7E/SeDCppkoCxxLVWM2noxIBTu3d6BuKPhwMpcTarredPmzP5rx089FK/4UyuL7CmZsjAEKh8T2QJ
+	QFsqsYNiTyOId+nM3a8UWLRZKoN4GB2myTNlYgg6nTABMFv1A629fAMJ0a23TSI7/gPyMmvjGXzxy
+	Z9FcPilMpzZMul4accwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV0eU-00000000lrz-1BiQ;
-	Sun, 22 Nov 2026 06:02:14 +0000
+	id 1xV0ef-00000000m0S-3Lzs;
+	Sun, 22 Nov 2026 06:02:25 +0000
 Received: from smtp.forwardemail.net ([121.127.44.73])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xV0dr-00000000lKf-2vDR
+	id 1xV0dr-00000000lKP-2A8m
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 22 Nov 2026 06:01:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
  q=dns/txt; s=fe-e1b5cab7be; t=1795327294;
- bh=I4XSnmsKc9vd0wX2hVPb8MU2OP+otyYxWmumfz9b1L0=;
- b=MiQ4aTH4K8yedUF5p/c2XT8YgJbnxG+REh5yvZD31bts0Sh12VNkWEUDrxRASzaa0h8pquZ04
- Fm9+yoZ3nqQLTHzGxgnzHQQ/BhinhISKC7xltMMQMrfDDnOQ2lC4lWBuPNgZDhshilBRqAeTQ7j
- qjy5kZrIYxY3rBVwJQGp2C3d95Q+g2MtpvapXicrWVWRxMXs68eGFuFahJXFA/DWzqHVx8b/UZ+
- V1YyhCvN9SWrojQ02nEj10wVWgSis17/inWoqrMTAaw9tYuTAm++5B4wtaJ2GlUV106VRSNLW10
- Kfltl/ESWj4QQXoY1B2foiB7aokQx3qrog8loUZWWcCw==
+ bh=VLrcjSjAGocbg+K4HCg/3Ob+O3COBmaA1Mvh6gBuVPc=;
+ b=zGgWbH0utqABa10vYXef+4RU9tm/oKycLA0fkVX9Rd65IggUUywDXe3/MGuans7xcLLr7ezCF
+ Iv4rUloxHbIwLAAiH+3M5IkE+zSydEB2KmBgSvMeRNl7l9d62vXGYked4DUDcQgwihqrM4MsNl/
+ r+I0oe4terBds0IuhZB9LU0UXO+dM3C3zJmGKj+N4VT/WV3heg012D3YmZPc6+zFi8KmZ22fNlO
+ iqmvLoFkwti7G2462i+QZw8PN02Y5sVQTOmYU4K6PJ/L7m93sR8Bz6Hc+lBwudS8oLTKEDP5JyN
+ Qb1SkxHQG/a4KMuC0i4pLJHlE2jLi2Jw0WyzAjuG8leg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=forwardemail.net;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From: CFBL-Address: CFBL-Feedback-ID;
  q=dns/txt; s=default; t=1795327294;
- bh=I4XSnmsKc9vd0wX2hVPb8MU2OP+otyYxWmumfz9b1L0=;
- b=oak+hHfndNP0o3UcQA3pMn4LN3bT6sPUc52aBuMmf/qsRd13IGCeBktMW1OH3yoSqMvbWVMNW
- PA7IbvOnKhxvEdi3KhaIZEJ0A5ufGuXdzOJweZP23qdM73TOD3jTSW0f/hH2HnWPvb5WvRtYYpO
- h6Dj5W06hmwKAwheXb3bgDo=
-CFBL-Feedback-ID: 6b02853ecff95ecda8c093dc:65d2438357532dd46d95d8c19b5661cc
+ bh=VLrcjSjAGocbg+K4HCg/3Ob+O3COBmaA1Mvh6gBuVPc=;
+ b=ogaudifQ9OPZDWN+zurtFeeGF1mSFVJda8C4/5SH8PsnOFSqOLtd80jcR/HJ4aPegWlhO9YJm
+ sWR87dD3haVLuGKHzKPHxE3Dadc7DEwoFE9fHZ87u5WUe9a+7Wr/qOUO93hLwNsbWMgmtjA7hFm
+ yy12nIJDdiYkwyGCe9miWz4=
+CFBL-Feedback-ID: 6b02853ccff95ecda8c093bf:91fd36607a1dc62b2cc007ec3630e7b2
 CFBL-Address: abuse@forwardemail.net; report=arf
-X-Forward-Email-ID: 6b02853ecff95ecda8c093dc
+X-Forward-Email-ID: 6b02853ccff95ecda8c093bf
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  121.127.44.73
 X-Forward-Email-Version: 2.19.37
@@ -67,9 +67,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH v2 7/8] dt-bindings: arm: rockchip: Add Luckfox Lyra Zero W
-Date: Sun, 22 Nov 2026 06:01:10 +0000
-Message-ID: <20261122060114.773624-8-jonas@kwiboo.se>
+Subject: [PATCH v2 6/8] ARM: dts: rockchip: Add Luckfox Lyra Ultra board
+Date: Sun, 22 Nov 2026 06:01:09 +0000
+Message-ID: <20261122060114.773624-7-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261122060114.773624-1-jonas@kwiboo.se>
 References: <20261122060114.773624-1-jonas@kwiboo.se>
@@ -77,9 +77,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261121_220135_859625_17D4313A 
-X-CRM114-Status: UNSURE (   9.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261121_220136_016765_A8249895 
+X-CRM114-Status: GOOD (  14.73  )
 X-Spam-Score: -2.0 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,12 +98,12 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Luckfox Lyra Zero W is a compact wireless development board powered by
-the Rockchip RK3506B SoC. It includes 512 MB of DDR3 memory, 256 MB of
-SPI NAND flash, 2.4 GHz Wi-Fi 6, Bluetooth 5.2, and BLE connectivity.
-MIPI DSI, USB OTG, USB Host, and RM_IO interfaces are available for
-peripheral expansion.
+Luckfox Lyra Ultra is powered by the Rockchip RK3506B SoC, which
+integrates three Cortex-A7 cores and one Cortex-M0 core. It includes
+512 MB of DDR3 memory, 8 GB of eMMC storage, MIPI DSI, Ethernet, and
+IO expansion interfaces.
 
+Link: https://wiki.luckfox.com/Luckfox-Lyra/Luckfox-Lyra-Ultra
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
 Changes in v2:
@@ -113,21 +112,167 @@ Changes in v2:
 As mentioned in cover letter, unclear if this should use
 rockchip,rk3506b instead of rockchip,rk3506.
 ---
- Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/rockchip/Makefile           |   3 +-
+ .../rockchip/rk3506b-luckfox-lyra-ultra.dts   |  31 ++++++
+ .../dts/rockchip/rk3506b-luckfox-lyra.dtsi    | 100 ++++++++++++++++++
+ 3 files changed, 133 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts
+ create mode 100644 arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 651da02cfa51..49c61ee985e7 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -866,6 +866,7 @@ properties:
-               - luckfox,lyra
-               - luckfox,lyra-plus
-               - luckfox,lyra-ultra
-+              - luckfox,lyra-zero-w
-           - const: rockchip,rk3506
- 
-       - description: Lunzn FastRhino R66S / R68S
+diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
+index df620116bb2d..9a699bb8fc5a 100644
+--- a/arch/arm/boot/dts/rockchip/Makefile
++++ b/arch/arm/boot/dts/rockchip/Makefile
+@@ -47,4 +47,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+ 	rk3288-veyron-tiger.dtb \
+ 	rk3288-vyasa.dtb \
+ 	rk3506-luckfox-lyra-plus.dtb \
+-	rk3506-luckfox-lyra.dtb
++	rk3506-luckfox-lyra.dtb \
++	rk3506b-luckfox-lyra-ultra.dtb
+diff --git a/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts
+new file mode 100644
+index 000000000000..5a3eb35eb70e
+--- /dev/null
++++ b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra-ultra.dts
+@@ -0,0 +1,31 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++/dts-v1/;
++#include "rk3506b-luckfox-lyra.dtsi"
++
++/ {
++	model = "Luckfox Lyra Ultra";
++	compatible = "luckfox,lyra-ultra", "rockchip,rk3506";
++
++	aliases {
++		ethernet0 = &gmac1;
++	};
++};
++
++&gmac1 {
++	assigned-clocks = <&cru CLK_MAC1>;
++	assigned-clock-rates = <50000000>;
++	phy-handle = <&rmii_phy1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&eth_rmii1_miim>, <&eth_rmii1_tx_bus2>,
++		    <&eth_rmii1_rx_bus2>, <&eth_rmii1_clk>;
++	clock_in_out = "output";
++	status = "okay";
++};
++
++&mdio1 {
++	rmii_phy1: ethernet-phy@1 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <1>;
++	};
++};
+diff --git a/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi
+new file mode 100644
+index 000000000000..c422053c1262
+--- /dev/null
++++ b/arch/arm/boot/dts/rockchip/rk3506b-luckfox-lyra.dtsi
+@@ -0,0 +1,100 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
++#include "rk3506.dtsi"
++
++/ {
++	aliases {
++		mmc0 = &sdmmc;
++		serial0 = &uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0:1500000n8";
++	};
++
++	adc-keys {
++		compatible = "adc-keys";
++		io-channels = <&saradc 1>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
++
++		button-recovery {
++			label = "Recovery";
++			press-threshold-microvolt = <0>;
++			linux,code = <KEY_VENDOR>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-0 {
++			color = <LED_COLOR_ID_RED>;
++			default-state = "on";
++			function = LED_FUNCTION_HEARTBEAT;
++			gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&led1>;
++			linux,default-trigger = "heartbeat";
++		};
++	};
++
++	vcc_1v8: regulator-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_1v8";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++	};
++
++	vcc_3v3: regulator-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_3v3";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
++	vcc5v0_sys: regulator-5v0-sys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++};
++
++&pinctrl {
++	leds {
++		/omit-if-no-ref/
++		led1: led1 {
++			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
++
++&saradc {
++	vref-supply = <&vcc_1v8>;
++	status = "okay";
++};
++
++&sdmmc {
++	cap-mmc-highspeed;
++	cap-sd-highspeed;
++	disable-wp;
++	no-sdio;
++	vmmc-supply = <&vcc_3v3>;
++	status = "okay";
++};
++
++&uart0 {
++	status = "okay";
++};
 -- 
 2.56.1
 
