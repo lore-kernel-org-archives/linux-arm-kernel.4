@@ -2,94 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA9E606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41D4606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 16:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gV0SzY70;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=mtAQdl0/;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=NgafN+l4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y6MISXY9;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=fo11p71u;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=NnFwZfhF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=H/uIhGC5ktRol+7sx9IjBt3hbLidfUuEYOqITaBP6p4=; b=gV0SzY70MPuUBhxXaM4pleyS3W
-	VeDFLUzWW7QDcMnyrdg96vSPx3GB3hWMs8kEJPsZdwHjkNwTChyaqBYBHeKtaj7IJcxrj5z2bFrr2
-	CkNkl0Vgw54krzsm+DDaD7FAytn2KThDRNGCHX5rp+wzecqgQGm70q7z91nWxbYlWo0PtLA4yWhrM
-	ZJuWxoGOiwMPV8Q1bGzbAYCgWKf5opp8uYJCQVrIG+u96pUuI1+tOKMKbF7p2nH2+HP4Fo4ZF4st/
-	Vha+6v5fMG0fQDFwMNZzpALhTzkkHvMiYkcmLW3+HPhz12JPfxPJH2yMQcafOZKDi9NX5HDkDRHGM
-	pAtVqrXA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=dyOk/+hQC3dS2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=; b=Y6MISXY9gBiV23
+	+29qRBRNeFwBZjaYrcvh61FIRvV3o1JuI634jjucbQNzM/ctHR1DSWRXoog+gXgTdcn0pJQ9x8T1a
+	ojU/PumOaelpKJDeMraVEesjpIrSx5TcRMBQagrOTBTU9tomJVv5UPkGSFHOnjzvEJSaMBoXacyAY
+	nipe94uQJBihCZJFO2w83YFCMwa/rbAgJqX0K3l3os47w0/DcQ1tCaRpBntjy8ewpjeX59lptGxje
+	Hok/5GJcHBq7ySTqDnclErFNL1MGf07I3ueInxazR2wGU0WIAcMMJSSzntwVg+NqHp7apJfKV0JMG
+	RkaQiUf4aCWcTW2Ufprg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVA85-00000001KIO-3OuL;
-	Sun, 22 Nov 2026 16:09:25 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xVA8D-00000001KLw-0rKO;
+	Sun, 22 Nov 2026 16:09:33 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVA83-00000001KHW-26rf
+	id 1xVA87-00000001KIg-07hd
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 16:09:24 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AMFQQeq3788052
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:09:23 GMT
+	Sun, 22 Nov 2026 16:09:29 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AMFQW2V3496180
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:09:26 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=H/uIhGC5ktRol+7sx9IjBt3hbLidfUuEYOq
-	ITaBP6p4=; b=mtAQdl0/VUmsTmBfCdsUiZlwtJktWhyrddSFvdoDARKMDsTNwg7
-	1SmyLGMBNciWmtKHIeGNOeeL7ir2VLfswcIzeWnq2AUHdJY+pnkpSY/94BrU5QcB
-	8z/Vy+qoCcJbX3P7yOc8cDdFZ5tgs6oyLFYEOtuooRiluGFbgzkNt5M76iLUw/FG
-	8htUFfqpEWBHq0vSD/9fOQarjyjsezvEOVOk2Pc+CTZB0fGXKWbDOlhrsnUbXXI3
-	cYNDz+ow+YeikSSxDtz/vgB2GJCBMXk8RZyQtVIaoZqC9wTGvLNjYWgh0YknlPbZ
-	T6rUSEfzij8r6geVPJxujPz1eegQUn8YNHQ==
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j33h33r0g-1
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=dyOk/+hQC3d
+	S2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=; b=fo11p71ugXj+px95KD0I3tYDbTh
+	yS9cS8ycCi2GiMgJ1j8GedN7CBzMcbpWS4qXCxe2NuSKyGHBARcGIzocsdXToWVK
+	y1bcpA4Oc+uIVfCp5gmY4cRwXXK5FO1izXGR5WE+KUAnxFEdgYpa4D2VzoemGPUx
+	9QP3WefnhdCgec0yiiuJ82z0On3b11VWyTGY2JB89i0LnBcr1Wc/IjF+CXBN3Pq1
+	jlNK9H+2KMoKbuQVcYjXnaIFiIDh21fggm42Y5o87jwDTYfvqiSgdNMMEwexXVwM
+	htEp6POXtjAeln8wZE5NSqMceJ+3UgJjSlAUFW1XroSL2K/pTQ4etxW7wqw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j32mgbtfy-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:09:22 +0000 (GMT)
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-99063f4065eso733397241.3
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 08:09:22 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 16:09:25 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-93f5844cb60so487127885a.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 08:09:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795363762; x=1795968562; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=H/uIhGC5ktRol+7sx9IjBt3hbLidfUuEYOqITaBP6p4=;
-        b=NgafN+l45WyoJHFPL3hjOW5a9X2aQjhiBRr3/3ajGO1TANLxSp+AExrZ+XaXMYbRfl
-         PAc29tsAytoPIkraaSeH04rkO9JxQA/OLibKfjy5XJHQBPY/uSVQJ3asI5BUPtBSpNFN
-         162XZV31bORhfgQULkU8L4xLWXpFMBfp3Vf/sPhZ1wy94MHyQEhwqG/3Cd9nYfrLct1r
-         RZc0GeRhqsenvl1yj/W5GzCyMA9Tb6Ee3DWHTRDXwNxwgT7UsnBLYoi6DXhOfUxuOciN
-         oEXnICdM7EirCp4DqV+NweN76SDlforpljJqVmpk6+/oeTKofhFVRdIrbyQk7lGrq5cL
-         tHFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795363762; x=1795968562;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=oss.qualcomm.com; s=google; t=1795363765; x=1795968565; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=H/uIhGC5ktRol+7sx9IjBt3hbLidfUuEYOqITaBP6p4=;
-        b=hiOCgUyv8QQxhitNwlYON0BuqVrSmYYza4veweDwVWRPWvomPxvHdvTvhRIG8JtcT6
-         up6VSNofBIRmuYsZyltwgqFAQpebxvFrzJNqFvvlhD2FC00Ptk7fiEZCAQruL6uo0TsV
-         r4P5gIOmcLMbrzNVXlJu3k7VpvqR6v72QFT4o7iEIRhszJxuNmV/4BG8pYgmAIZlVV7F
-         XzrGdSbiRVKvImVHAyo2ekyQxuofmpiraxEmJ0x0ImCshYLqbSIGk549/YRHRb4BJsJ9
-         MGSlW/FJcId66py+AoOqsUseOWxwV4CGEWv4w8AUQBnWCWtv//skZOmfQLiH1JiEgPxd
-         uk7Q==
-X-Forwarded-Encrypted: i=1; AL+hErGoAyhQh3pvzC+lCQngXW42/SlRr5WGTkteGDfW4T01cAordNpduKZi5dlvPey+medzv6NKgivTIBZgm5tukUrC@lists.infradead.org
-X-Gm-Message-State: APuU4Z9gPBZ+Pc1s9zH3csiJl72fCSzJ1qJiM1Z6bF60GA28EvdCZD8Z
-	pbr/0DjeKy60lJ35btdu1ITVlfymjphT+fbAFdKLEDtd/tqJxQq1zpoAtcPjInfPO/hHKnNS3VS
-	fchWrtdJiUnSFkKl01dePn7ljV3BbkYVsAf7pV7p38vghdMbwr65F46Wvkdy0pWEAKKdG2jwhfQ
-	/j+w==
-X-Gm-Gg: AZFdTZf7b/zpNqc9Xfv/h5kNO4jMPArWaYwVjz2z7tYj9YnVNivhbIyE0w5TsHSFNTn
-	L/kqJKy8l9Q/n5LWvHIvUlS58yvTm6qFsMl0HLhEogCZYUqVfXLkIcom3jyd6iH7FcwlXX1aPKF
-	6ZY1ZcTdoea0yV9dYp7OhYEgdxf+jZ7JH0rB6kXZKHmR/TcXJNwq8PZN1HWLvtKAuExncZrO9do
-	MfU46AORRBb4Y/U5siloqKND61JXpr8hTFi0MDKd+QQRvD7BdzuDi12GGgdIIdduauiz9pRzGKm
-	GWy5ae+LqROoS+NIVOyINeyXLnyM00wEArEQlN3BHGvu2r3Qmg3rv1sBOzpDE10ql/MEA05QUQF
-	ATDy/YhRnxxBeowx7rxujol8Qd9aw+1u082zscBvVdkUGpjfstGCI4A90MyaaMw==
-X-Received: by 2002:a05:6122:d96:b0:5c8:46e3:ec57 with SMTP id 71dfb90a1353d-5ee8adf69a3mr4700276e0c.1.1795363761874;
-        Sun, 22 Nov 2026 08:09:21 -0800 (PST)
-X-Received: by 2002:a05:6122:d96:b0:5c8:46e3:ec57 with SMTP id 71dfb90a1353d-5ee8adf69a3mr4700265e0c.1.1795363761433;
-        Sun, 22 Nov 2026 08:09:21 -0800 (PST)
+        bh=dyOk/+hQC3dS2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=;
+        b=NnFwZfhF/yV77IjGapa+F1CnaFQWWQG1IEvOmiw9+O/bD06wgGexJcu/Vqwa4xOpXZ
+         Lwpqg5Reh4JRVymG13rqsqQKjKTTPD7GqWgNg4o334A5wpX0IR2DDkCPyn9OldFG/Kve
+         Ox4azBi9XcTNhA2lOu3cK0Z773gijBHC0cjqgGunaxSR5NczHYWdKe/mXVMgjZWTRgcX
+         1DEBQAJf6UN4WqW5CD/kD6c5jymApSAvM3GvIaWBKrOhXNRc64NZpaKxAzWy+8nT5L0S
+         oisss+Q/6WaX3rNOwSVNE743nSzRv14/sz7XKL9x3l+lXcqyC2MwcKXJGjCjBBT9dXBJ
+         Da9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795363765; x=1795968565;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=dyOk/+hQC3dS2TdzY98Q2QJjFxp/lBW3s2x6G6KYsm8=;
+        b=bAoAWhnP5mj9+bgxWOurQTxWVdgscYTn2Jv8b3AaCwDaF5i/KNLQl1D94dMsrwWOo1
+         DR3e605emnp5jVOeIvBkMWp6F7hPQ+qUbyKHUtbCdRTjqJeiBZaAwbohSfbD+3iIi3eU
+         H3kux1sQgV8sLNBFeYq8Umyvs63/mizbdFx67fWmX02lMKIt2Z1Gzw7vs48NdliYJC64
+         If8wRrkfyJYd2zob1n3mk14Lh8zGKNQbT1B5yrZDibDQF4cyCVg8rHHZmtY5xvGn/sag
+         +EHLn+3YGa/w6lO5nuKbKiMr+zZIkm/ToI5WH9kOX6F3mkZcf2qTP05Vq6rghq1YN7in
+         JOow==
+X-Forwarded-Encrypted: i=1; AL+hErHQ9JmOtxfcCIAf83f8xVbgolDivm5hnTq7+oNo/QP6GbwxCZdyY9jnHy61WT/Gg75kdpRKxWOh+l2M3qa3POGP@lists.infradead.org
+X-Gm-Message-State: APuU4Z/PmlIK/FBt0D693zAfXERlTvTs/HyoxwEOUVAeD0eigqDKZjNn
+	m224HaWT90CVA/+o2iqurkIMi17ZpxMcvYehKiAKawRDVtc6krvZ0mwO+hju1s9zCEirgYVhGX1
+	p/SMUjcqkqpQZRIiUEwfYf17YMnirH7NHQ+IoziUlZEV7HbgOK7pcEYY2RVleklsC9950BBLigj
+	iJjLbYefLofA==
+X-Gm-Gg: AZFdTZeW6py7xcVy8mZWDoBRtfWvGTUDsadRTFaJdp1PSMW9aQej9dNLznxmoAfndx9
+	RFUB2y7NairNxh+wdSPzo8pq5qmneVaaGZYAX08TDbNtNZ19UTUt2Tcczt3t6rTD8u/6gONuY7c
+	dmNc3LJGD1K971RvYlFyPw44N22Hv1N7pS/x8OX3QW3DUhkme8idfAF62Ep8OZQsQXNnm0bDEdn
+	ggjswnw6izibgzKzYd0OZszZO1OyTf/nTpOl4e0bQ88KPrscEF8eNIhbtRWENqsKsdf4e1S0ueS
+	05dHSW69fb0PvttksVYihf0ap2fpsZFAlocECEPNNvirb9hvyjHvjUJ6KXfb6Hg8q5tu+SJZIok
+	Gv/yjhd7Do3oj5c1mmqC1OMDPWW+4ozIes7WvXQ4wUrOWc9BAKU3TM1YoX4r6fA==
+X-Received: by 2002:a05:620a:2682:b0:949:671a:cc77 with SMTP id af79cd13be357-949b34035a5mr1661822385a.1.1795363765161;
+        Sun, 22 Nov 2026 08:09:25 -0800 (PST)
+X-Received: by 2002:a05:620a:2682:b0:949:671a:cc77 with SMTP id af79cd13be357-949b34035a5mr1661816685a.1.1795363764668;
+        Sun, 22 Nov 2026 08:09:24 -0800 (PST)
 Received: from quoll ([178.197.218.7])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884911e3sm320526755e9.6.2026.11.22.08.09.17
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884911e3sm320526755e9.6.2026.11.22.08.09.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 08:09:20 -0800 (PST)
+        Sun, 22 Nov 2026 08:09:23 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
         Vladimir Oltean <olteanv@gmail.com>,
@@ -112,57 +112,59 @@ To: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH net-next 1/2] dt-bindings: net: dsa: nxp,sja1105: Properly apply ports up to 11th port
-Date: Sun, 22 Nov 2026 17:09:08 +0100
-Message-ID: <20261122160907.200727-3-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH net-next 2/2] dt-bindings: net: dsa: Flag unexpected ethernet ports
+Date: Sun, 22 Nov 2026 17:09:09 +0100
+Message-ID: <20261122160907.200727-4-krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261122160907.200727-3-krzysztof.kozlowski@oss.qualcomm.com>
+References: <20261122160907.200727-3-krzysztof.kozlowski@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1186; i=krzysztof.kozlowski@oss.qualcomm.com;
- h=from:subject; bh=k0dJnwwVOMUlPc+I5R+F03eCmWOTtijHmMPA/BB2GhY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBrAxOju/4Z86N0mMZw+6sMiO3a7sqHSvn4onpHC
- tSJ0snI4fGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCawMTowAKCRDBN2bmhouD
- 12p5D/4xaQ/IqdB5b/zXL7JJOMdwpoOJvhCY5xO3BhYDj2VfkgaUsxoy2xYJmK30cmwXITVYD4r
- kvQ2E8lPZVSNbkquqmYyv1bWwufE0xZj+5gPZr1phRuJyyactBViEXTcJDcagSilgixm/PTF+u7
- z5y1S6qnTXywKiLuIQliVhMXJuBnHjNxqLe4mLuljad0siZklmDDulm8ia9LjSm+zmKXfJd36RV
- dutmfs5njSG1lRa/cSDh3xk2Rz9U1SNO045QHN70NfTgRT7qpXKTDYns+QvbrZmkF3qg2llRcw/
- wE/p/M24NbKFYpFCqVEDtz9JgoId3ADhL/pR1JRovVXsb0JQAtpwS4E0cnkKbKC3xCVOTJnzjlP
- qq8lb0t6g9QAkFLlbNjd1gU4o/f0gtTYuAgGO8LmT3oxxldhJwO7WeryuFoHONCFAMf6X+j2ooQ
- IUAYKNRsI3DHDl7un82Eo13QGV7OSjGroEWz04mzkajrj0Jhqt50VnGuVynmaLPlNs7lM2AbZvR
- b7i9+JQSwFl2bDlHFZ8LNYXGgKjm3hkUYhhpEv2uEq8wCfoD1RS1Z2vNl7dIaY8dyhnJLWyH265
- WS5FNaYYHg8yyxtirYCjADcL0ofnaweqCxmiu3Tr1P43bVhROoiAxR76amWY7rPkK5g5roH2N4s j6WjETiSGU4vMzw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6422; i=krzysztof.kozlowski@oss.qualcomm.com;
+ h=from:subject; bh=reMATxFxVxRB+raQ83jYfeaAK2V6mtUNc6Wp2ta7pEM=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBrAxOkOJWDsz07omJXLZhaMWPp6woHPL8+pCClu
+ +kZC4bdMluJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCawMTpAAKCRDBN2bmhouD
+ 1xQIEACaFedbtKzfFmbnBJcFU8CEz4FyuAcxxPgxdFqxRqpIg1xHeRGybC4E37WJVdFmDXL+IiM
+ FZdr8VzQM8M2DA6tywEWp/eKIa0cZKVKpdARltyyNDRG/YtWqJgjc5BMnYxsVAqb7Vo6kjQr5Vm
+ 9nVSouM8M+29Ue122ZMOG4/rUOQog384qunka/dtrk8IysLT+e6UvBvHLsiPuA95hYzqS9KOVzL
+ 3VHZybyVb6e2m2Y/r7XzFzlhR5H0EDq7gJ5NJy8MOG15tAcJ+TU3plPFRbtBjkSOB7i8Ubysvhr
+ xUQCrae3P5pSL4fWowBqQNdGvP3fPkhgA+w5tyOvHSAdCed5brmxQdvHogqCW4+KCWT+PWfpMQH
+ R7E1iMnrzjWZp2X9SbexuwXUPfw2orGQ5jZJslTL6ODd8dCeVJ/YuYRvCAVsGKviS5w5MsmZY3z
+ r5KeZ3KftGG2iI7ViBELF45gUtCNed55Qf+zyf4tmwZzBmPz7BisgagXHW2QHhCdw/R6L3sid4m
+ HnJPr8+IH6gyV7s8rtUJVLJImgJ495iS9vziAi328myZSRS3NjFllSR3IYkdwjgnXOHgWtYTbau
+ 4GUlpviCm+QmtNUAHyKzm7LGUNZsQzrtIigRBlx2oqktTVRCSLB7mGcLj6/GlI8SrWpa+q7CJCW LmkHerMGT7PwnEg==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=EsxHPicA c=1 sm=1 tr=0 ts=6b0313b2 cx=c_pps
- a=KB4UBwrhAZV1kjiGHFQexw==:117 a=uyPgTw0bjBTS2cVxpiNm5w==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIyMDA2NCBTYWx0ZWRfX3DMLGPZmXUGP
+ /28/VE6k6wNFkf7SEov2MBly3Zqv6dq1wao69sIrKNjKjg77lJpG6NDjaBT/0314mZrdl1Wz0f4
+ NfeZXlx5Q7qbD6vDNV9vkG3fIYIA73XlHvOIK9kru3SuYSf6/wXiv0QL/prTzPdcBUQg7Y6yuJL
+ r3G3aIxi2WhOeAqjRncRYbLa8DSlDnpwKm+NOxVakpwCnhxjjKpTEMsxbpZNSIk5UbgkqiQ99tp
+ PhKmYxrbgYuU8vtlXx10Tf9vXxFEdyFPpNv2ZJEUiwO+0Kf06hvTZ9rWurYWs1XX3OTEO3H1FCF
+ KoRypUQyGkaGT/ba4gS+uvWmA2JEdNDakzyjnSTA9H/Z1NPu7k2+98oFSuyoE4bHh38X9DuV/pu
+ TCTSLdsjjBkVoE3AUEaTK/tRGTGsLDVX+6bhaidtPPziAUhDrGAANzLSyk0p8XlpBlUt1hfWjRK
+ R/FrDqCte+AWU/ELEfA==
+X-Authority-Analysis: v=2.4 cv=OM+yTiaB c=1 sm=1 tr=0 ts=6b0313b5 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=uyPgTw0bjBTS2cVxpiNm5w==:17
  a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8
- a=1gOBQcDwdZx5nJ0sStIA:9 a=o1xkdb1NAhiiM49bd1HK:22
-X-Proofpoint-ORIG-GUID: NtmZkDCftg8TSDrrlG1fXDKKCCdYg-fW
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIyMDA2NCBTYWx0ZWRfX0Vp0+u3cEPoo
- 87sB+KcdrAXwjUvuDaq3vUQZf2jZIY+4/XF0NTb2w0Zt8kdpJp6OmTiTIUb6fEWfrmOp8neCC7g
- 8u5qLUz8hKs6EIwCGJgLm7WArQFXCubW5GF6zkFU8Pb6H4OZGmllSwTekjRfjlrTNSb9vK2SZwB
- lE9ju66ih60g4UW0vYWTHaJ54ctyS4Oaq7t2r7zsQvKNdSNScFB4Zh8VLLIKehUmLX9Dv+E7KWU
- 8CFY0DoAZaZssQmIqcU8WaaUHnTHzPk9yygbCkUFXcaUnqXeBpvyV+PA+xru+G5Lu0LwV+DmI8m
- Hu+ZLYhkaV0qYldXLk7CUquQACm2XSVDGB+iEtNgystLwTMoK1Cn8oti+didi5NikERkSREKLkp
- B0V9IMmojHnoGQ0IxusVAJjj+No0f/QtkM7NyHq2gm2uv7oltDawdiGOcvJCVVdev3Bd55pbna4
- eMNbDYHXfyr4huE4aVg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIyMDA2NCBTYWx0ZWRfXzIx554mIum88
- SWRbLq+flUjGruE7n5lyEJCmNZTy3VUXODmgDwOkZ2gKdXLxdX5YTTtu7c0ttoQ/30HLS4Wn3em
- 7hqVvSIlDGlXr3MitYyRaRzSNACmY4g=
-X-Proofpoint-GUID: NtmZkDCftg8TSDrrlG1fXDKKCCdYg-fW
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=DPh3dRPQxyF78rqZMbEA:9 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIyMDA2NCBTYWx0ZWRfX69AfuwKa9cBZ
+ z0ItqAhR/mr+Yxumlqaqpo10OWaKsRaFkGcJ9NKPtYUxe4MRqfEJVLYTgvKQ+l9NPdiGT+iwf2I
+ gmURtIP4aj8EsMVWjQCkCgM4m6tKz4Q=
+X-Proofpoint-GUID: 6GB0SilQD4PJqWlU3UaE0_l-ltrWvFlj
+X-Proofpoint-ORIG-GUID: 6GB0SilQD4PJqWlU3UaE0_l-ltrWvFlj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-22_03,2026-11-22_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 clxscore=1015
- adultscore=0 spamscore=0 impostorscore=0 phishscore=0 bulkscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ clxscore=1015 phishscore=0 adultscore=0 impostorscore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
  definitions=main-2611220064
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_080923_550799_1FD86C13 
-X-CRM114-Status: GOOD (  13.54  )
+X-CRM114-CacheID: sfid-20261122_080927_230066_DCEDDCAA 
+X-CRM114-Status: GOOD (  13.56  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -182,35 +184,169 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-nxp,sja1110 devices have up to 11 ports in DTS (highest port@a), so the
-pattern was missing applying schema to the last one.  Fix this by
-dropping the unit address from the pattern completely and adding proper
-constrain on the 'reg' property, so child nodes beyond port@a will be
-properly flagged as incorrect.
+Bindings which reference dsa.yaml ports and restrict their own
+ports to specific subset (e.g. with pattern "^(ethernet-)?port@[0-6]$")
+actually silently allow ports with any unit address, because they use
+"additionalProperties: true".  These additional ports are incorrect and
+should be flagged by the schema.  Solve this by dropping the unit
+address from the pattern completely and adding proper constrain on the
+'reg' property.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/net/dsa/lantiq,gswip.yaml        | 4 +++-
+ .../devicetree/bindings/net/dsa/mediatek,mt7530.yaml     | 9 +++++----
+ .../devicetree/bindings/net/dsa/microchip,ksz.yaml       | 4 +++-
+ .../devicetree/bindings/net/dsa/microchip,lan937x.yaml   | 7 ++++++-
+ .../bindings/net/dsa/microchip,lan96455s-switch.yaml     | 6 +++++-
+ Documentation/devicetree/bindings/net/dsa/qca8k.yaml     | 4 +++-
+ 6 files changed, 25 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-index 0486489114cd..e9b53820cc36 100644
---- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-@@ -89,7 +89,12 @@ patternProperties:
+diff --git a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+index 89f78a1bc113..83cdd6c80d09 100644
+--- a/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml
+@@ -108,13 +108,15 @@ patternProperties:
+   "^(ethernet-)?ports$":
+     type: object
+     patternProperties:
+-      "^(ethernet-)?port@[0-6]$":
++      "^(ethernet-)?port@":
+         $ref: dsa-port.yaml#
+         allOf:
+           - $ref: /schemas/phy/phy-common-props.yaml#
+         unevaluatedProperties: false
+ 
+         properties:
++          reg:
++            maximum: 6
+           maxlinear,slew-rate-txc:
+             $ref: /schemas/types.yaml#/definitions/uint32
+             enum: [0, 1]
+diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+index 90b3582b7619..80cda7ec5cb6 100644
+--- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+@@ -179,12 +179,13 @@ patternProperties:
+     additionalProperties: true
+ 
+     patternProperties:
+-      "^(ethernet-)?port@[0-6]$":
++      "^(ethernet-)?port@":
+         type: object
+         additionalProperties: true
+ 
+         properties:
+           reg:
++            maximum: 6
+             description:
+               Port address described must be 5 or 6 for CPU port and from 0 to 5
+               for user ports.
+@@ -208,7 +209,7 @@ $defs:
+     patternProperties:
+       "^(ethernet-)?ports$":
+         patternProperties:
+-          "^(ethernet-)?port@[0-6]$":
++          "^(ethernet-)?port@":
+             if:
+               required: [ ethernet ]
+             then:
+@@ -220,7 +221,7 @@ $defs:
+     patternProperties:
+       "^(ethernet-)?ports$":
+         patternProperties:
+-          "^(ethernet-)?port@[0-6]$":
++          "^(ethernet-)?port@":
+             if:
+               required: [ ethernet ]
+             then:
+@@ -246,7 +247,7 @@ $defs:
+     patternProperties:
+       "^(ethernet-)?ports$":
+         patternProperties:
+-          "^(ethernet-)?port@[0-6]$":
++          "^(ethernet-)?port@":
+             if:
+               required: [ ethernet ]
+             then:
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+index 4ed13870ed3a..9cc14aa7b4b1 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+@@ -129,10 +129,12 @@ allOf:
+       patternProperties:
+         "^(ethernet-)?ports$":
+           patternProperties:
+-            "^(ethernet-)?port@[0-2]$":
++            "^(ethernet-)?port@":
+               $ref: dsa-port.yaml#
+               unevaluatedProperties: false
+               properties:
++                reg:
++                  maximum: 2
+                 microchip,rmii-clk-internal:
+                   $ref: /schemas/types.yaml#/definitions/flag
+                   description:
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+index 9973d64f15a7..36a7c81df747 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+@@ -39,7 +39,12 @@ patternProperties:
    "^(ethernet-)?ports$":
      additionalProperties: true
      patternProperties:
--      "^(ethernet-)?port@[0-9]$":
+-      "^(ethernet-)?port@[0-7]$":
 +      "^(ethernet-)?port@":
 +        type: object
 +        properties:
 +          reg:
-+            maximum: 10
++            maximum: 7
 +
          allOf:
            - if:
                properties:
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml
+index 517bc4c00de3..17e3c00f5a32 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan96455s-switch.yaml
+@@ -105,11 +105,15 @@ properties:
+     type: object
+     additionalProperties: true
+     patternProperties:
+-      "^(ethernet-)?port@[0-8]$":
++      "^(ethernet-)?port@":
+         type: object
+         description: Ethernet switch ports
+         additionalProperties: true
+ 
++        properties:
++          reg:
++            maximum: 8
++
+         allOf:
+           - if:
+               properties:
+diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+index 167398ab253a..3840b336bdb9 100644
+--- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+@@ -75,13 +75,15 @@ patternProperties:
+     type: object
+     additionalProperties: true
+     patternProperties:
+-      "^(ethernet-)?port@[0-6]$":
++      "^(ethernet-)?port@":
+         type: object
+         description: Ethernet switch ports
+ 
+         $ref: dsa-port.yaml#
+ 
+         properties:
++          reg:
++            maximum: 6
+           qca,sgmii-rxclk-falling-edge:
+             $ref: /schemas/types.yaml#/definitions/flag
+             description:
 -- 
 2.53.0
 
