@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F1D8606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 18:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53EA0606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun, 22 Nov 2026 18:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qVBIiuV5;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=dIGDXGok;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=mFu6qDpc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Oz4rmRFh;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=UZBmiGp5;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Tzr92w0I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,79 +15,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sy99F9v1h+ZocL+7gIZompqknwKF5VmSur7QJmb24aY=; b=qVBIiuV501rjOkcARqrvCRu5vn
-	xWP/L0gS3Vkj8ra487DCZE6wrfbdhg9npfwvEJp6E5UwfVlOQ/ytLaxQa6HnoeXFbYcnePAsEFzk2
-	OLXf1Sytg2Q64nj5U5ZLJ/faf+20kuL9D9dFhB/zLZxu8Pipi80rkCXetL2JWoXwzD50Omnawq1Vw
-	oZzkbcwSaCXgt3m229ECfCPBRCh4nmNGmMcQPFPjT+vAPDnzL0zrwFOz3rmbEXmHao5+N4RErm8po
-	9R064GPq4xSOg9fVCPf21VwHs2kN3H3SgDE2Hlb60/lA2h+c7WIfiQK7pVacP4Lz44am9P+HB2jBe
-	ATSBCqmg==;
+	bh=CO+pK6yVZkso6hm9r9Bht7g79ypAkq9rsogUtAB1SJQ=; b=Oz4rmRFhtVUqLlbOGU8A23IMsG
+	tUorvFF8r+NreIvmYXKJwPkqzydAV/m6LGNW0Pe1voxhMLuTFFWHY6aa4WYSc2XkFRGihoD9svGua
+	p1CX+hgJ/khffOkNT9gdPci9o6v9yAmXA8ibFCXNdt9S1SnoypdZr6xO3CPcT4DPgXsiZLIPqA1XV
+	sH3U1bTqqtZtVPirOTSCJ5iXEEgSUfIRCv2Fqr/lGx31jL7AOqi1CtNHC/63majkXzPdF34t4MYK5
+	YpCGPbDCxnum8HdoBVDrmi3s4QTL8ani+SkUWs1fgahklXv1yNvIAtvPkil2f1/PMhUd16p1nHZC3
+	9BqKLSBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCZ1-00000001YcX-1Ahl;
-	Sun, 22 Nov 2026 18:45:23 +0000
+	id 1xVCal-00000001ZtJ-21Hy;
+	Sun, 22 Nov 2026 18:47:11 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYr-00000001YTF-0XXa
+	id 1xVCZ3-00000001Yf9-0XXW
 	for linux-arm-kernel@bombadil.infradead.org;
-	Sun, 22 Nov 2026 18:45:13 +0000
+	Sun, 22 Nov 2026 18:45:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
 	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=sy99F9v1h+ZocL+7gIZompqknwKF5VmSur7QJmb24aY=; b=dIGDXGok7FENvk/8vnwMGN4WUR
-	I4dK+9e3D+OA2PsaPb0agvCkTSVV4y+l8CanzoUsLM1S5HslO+SBzgGjC6VVgwILLryLqiemzB0BA
-	EVQZgP8nuFDrsROt46ZJJfAyQ8EquDsWj5ZJNLiwu+arNBue7n3ZFIVr5hlVLFzQSkJowEBZJMVNX
-	hfZ0dgiOYalVLXaToQT+FMaRnpniluFOg0HIx2zWmcars1zEyHaH/nZc/yeHHshw30jezrWk/btOn
-	m17mexBOFTdDY5QL0K5xSPLZYQwq/pQZfr5VLCizSpsY+NuXQdupqFbXbEW1SgH0rBZ/szPo5CyI6
-	4koDDkvQ==;
-Received: from mail-pj1-x1048.google.com ([2607:f8b0:4864:20::1048])
+	bh=CO+pK6yVZkso6hm9r9Bht7g79ypAkq9rsogUtAB1SJQ=; b=UZBmiGp51Qgpgdr+UaJu4TGa0v
+	EgmOuRl0AHU2jqZDbe0rBBRS6FoLMn9ct9TKOViQHnJ72MBbVZ8TXGz7DU8DZlUegcgH6u+debkTo
+	9smUPwYprKmPUzzRuviPex/xJLOmCuSUTZRNhH+A9UAp4a7bkOmcGzfX/03E3OLKsL/0Wr9Sfp5U7
+	uMjbcHTpJooRluUy2PSqdHQUImnmcePaQh18ewSeSbXcMpT1GRMD/yO0Ixc61EGpbcrhUOyfA0AHt
+	5IL8x1rp4L0InDni7vToWS24ZGAoHaSufKOsazjwWPw+MIeMy4az3LLoeHhAi0ykPLPPIliqC2gJd
+	AMDQhOhw==;
+Received: from mail-pl1-x647.google.com ([2607:f8b0:4864:20::647])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVCYo-00000002RD3-0gg4
+	id 1xVCZ0-00000002RHM-2TkA
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 22 Nov 2026 18:45:12 +0000
-Received: by mail-pj1-x1048.google.com with SMTP id 98e67ed59e1d1-3b40e7f4fa2so4198847a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 10:45:09 -0800 (PST)
+	Sun, 22 Nov 2026 18:45:24 +0000
+Received: by mail-pl1-x647.google.com with SMTP id d9443c01a7336-2f053f95aadso18897245ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 10:45:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795373107; x=1795977907; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795373120; x=1795977920; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=sy99F9v1h+ZocL+7gIZompqknwKF5VmSur7QJmb24aY=;
-        b=mFu6qDpcqtxwH7Jz0vsP60HCoevGE9/XswIDFLnisdHXc3fdYIohcDUQSyrRn79tdo
-         ArX7x/rSdSZxXYnd/tYIhZeH0abINtgTLKttzH4CuMo3KCphAeA3BRIN8TrfNj8XvW//
-         0GYXbuRScBsSfL1kP3v1tpiLGxshpKy5ZyDTgEeO7P6KgVjjXTNehhEzQsLrSU0kbIKZ
-         P69g8OmUyiocZH3CgaFIMF3HCNjpayK9sYLDPxdtKEXBxt80cevRbo7Oxz6wYhsSogkK
-         TlpEWuJ2vVWZrg5NXvTOBJvLKMuf+ONreJgcbRbS4RcyHFIOt0UMFsfqDcbR/CJHnN4S
-         NC9Q==
+        bh=CO+pK6yVZkso6hm9r9Bht7g79ypAkq9rsogUtAB1SJQ=;
+        b=Tzr92w0IJD5gwXnx27LB8obDnKEf/wI/+jRD2C0JyGZhpXdJHVVQHfJZcN20rLPKto
+         vK77K/nvUbh+I87SNGZl27J/rtPiq+zEhfh6hcC3IFkn90dPd/D37LKEp68MzsEqJSSm
+         20z2PCFEhZZR2UDL3kS6vRLGyIBp4q6pcXicGGz83XC7NGu0KqyAQjviaUbA8H/qyUv3
+         wdOKVOos/qTLfHJXES92yPi6npYuKOEy2cTDvazjNP48ErfU3HkLyjVJWVdt0LqM4xMZ
+         PkvTwlSd3kqHxVEBKjAZLDVAAvMmlcJyaCXEfAXcDsy5HaC1CvkipKuQ39mSi/c03vIb
+         i1FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795373107; x=1795977907;
+        d=1e100.net; s=20260707; t=1795373120; x=1795977920;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=sy99F9v1h+ZocL+7gIZompqknwKF5VmSur7QJmb24aY=;
-        b=WRvqCQw95+frUgcMvirHwiM94uS/p8vZ7R7+nwIUABeMuKj4P9mLHkW5mBtlu7g8Uy
-         mUEY/FJtV+1+iRqPUMTzH5j/PgA6PTDPoevYKvrTQZ47BHRoStHW4FlKJ7vZWiopKdZd
-         ZqIR5Ni3y1VA36SBD3T/95fVdOhqyOMJm9sqvVEKmHUeXWx9R48Gt5/Fm4dzv4s8BdrU
-         nTVpetmK7Yvp2bGdy+iC2D1jJoaIQ9X7z58y9hPtnC/Ujcy10R5EhRe606KAN4u/VpGj
-         AElkBYpyrhOSuOb9NoToKYyle3bMEXEPzps7lu8xy2WMVgH8eTz/i9D7WfJFGcBt6iIP
-         4Raw==
-X-Forwarded-Encrypted: i=1; AL+hErH5ZLEYY1eEywfXfOWU3wYqZTHkFXv2RfbMufx07rX1klFwAIjvIxZWE1e6sh2w9Qt8H09YGOUHpCeGX/bpM8T+@lists.infradead.org
-X-Gm-Message-State: APuU4Z9ZKqKl+Ww+6GnjvDikwLy/MTwTfCVbLsjtjTLrGMXqAWkl6A6t
-	Exv4r/kIQKPr+nWAPkO6P4oidEHyVfXAOGRO6wlV8F8EFDZ9sfHNGZlkYRMHFQZHmjXM2jmkBDU
-	w7buiwiYF26K0IfMFs7F7fg==
-X-Received: from pgbx7-n1.prod.google.com ([2002:a05:6a02:63c7:10b0:cdc:b85b:3d46])
+        bh=CO+pK6yVZkso6hm9r9Bht7g79ypAkq9rsogUtAB1SJQ=;
+        b=SEbX8MUfIodzkZMolIR74gv+kvejnKeTTPY728qf9oQvkgH3sjJnTdvz0rspk8ElLX
+         1jWql1QjyefCSHZQW6daI7/wT4aTu5NfDac9cjKJ9FIAU9ytkggjd+jwpWINrXO0QeyU
+         IdA8ShqbMvoCHVgjIjupIMd0XRqu9AcQbOWwB7YbwMKCCEH/HVjkW+QGis9Y1oho3MhT
+         AjCGbbCSgnbZQpxdxhvAkxu+EvDS8AidqEqHE4b4PAa98nhJ6u62F7fvI3ASTsZEoqix
+         ao7f9c9wUh10Qdo7QCFriPzX1rD/lea4gr7i9IAM5u9sOUMyFgnBpji2skJm+0a61Vh9
+         YVOg==
+X-Forwarded-Encrypted: i=1; AL+hErHYoZdkRkMOEraGRStspKTMjY1T4hWy/RzG7n3pvS3L3dAYGnEAwZBrendLbrEZKrTWZL3QaFIEa7nUE156AjUe@lists.infradead.org
+X-Gm-Message-State: APuU4Z+W66N4rcmHtZ+E4AoHPwVzDembLoQ80HxnXHsPp4/kgem87RB7
+	Z4jzME3o3rLswNuGpDC1ZjEBavpjZ5TXkz8q8MAPV+LLXe7J82jKc+2F4AdEef2VQrmKe2660Mm
+	cxL2wig0/Jy2TP9ysk5dR+Q==
+X-Received: from plwp12.prod.google.com ([2002:a17:903:248c:b0:2ed:8eec:6a11])
  (user=jthoughton job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:90b:57cc:b0:3a8:185:cf40 with SMTP id 98e67ed59e1d1-3b41c9b2d2emr9616562a91.10.1795373107406;
- Sun, 22 Nov 2026 10:45:07 -0800 (PST)
-Date: Sun, 22 Nov 2026 18:44:42 +0000
+ 2002:a17:902:db06:b0:2ef:efaa:17ae with SMTP id d9443c01a7336-2f03f1bacacmr79207885ad.71.1795373119804;
+ Sun, 22 Nov 2026 10:45:19 -0800 (PST)
+Date: Sun, 22 Nov 2026 18:44:53 +0000
 In-Reply-To: <20261122184453.2668189-1-jthoughton@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261122184453.2668189-1-jthoughton@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261122184453.2668189-9-jthoughton@google.com>
-Subject: [PATCH v3 08/19] hugetlb_vmemmap: Expose whether HVO is enabled to
- architecture code
+Message-ID: <20261122184453.2668189-20-jthoughton@google.com>
+Subject: [PATCH v3 19/19 DO-NOT-MERGE] selftests/mm: Add HVO pmd-split fault
+ injection tests
 From: James Houghton <jthoughton@google.com>
 To: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
 	Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
@@ -101,8 +101,8 @@ Cc: Kefeng Wang <wangkefeng.wang@huawei.com>, Nikos Nikoleris <nikos.nikoleris@a
 	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_184510_639566_BFB609B4 
-X-CRM114-Status: GOOD (  14.94  )
+X-CRM114-CacheID: sfid-20261122_184522_584759_1404B760 
+X-CRM114-Status: GOOD (  13.19  )
 X-Spam-Score: -7.6 (-------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,75 +123,57 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Architectures that select
-CONFIG_ARCH_HUGETLB_VMEMMAP_OPTIMIZATION_SYSCTL_RO may configure the
-system at boot depending on whether HVO is enabled, e.g. arm64 may
-require all CPUs to support hardware access flag updates only if HVO is
-enabled.
-
-Add hugetlb_vmemmap_optimize_enabled() so that they can check. It is
-declared before <asm/hugetlb.h> is included, so that it can also be used
-from inline helpers there.
-
-It only reflects the hugetlb_free_vmemmap= kernel command line parameter
-(and the sysctl, when writable), not whether the architecture supports
-HVO.
+Run the stress test with PMD splitting failure injection enabled (if
+supported). Keep in mind that vmemmap PMDs are only ever split, never
+collapsed back to PMDs, so run this step first, before the main stress
+test.
 
 Signed-off-by: James Houghton <jthoughton@google.com>
 ---
- include/linux/hugetlb.h |  9 +++++++++
- mm/hugetlb_vmemmap.c    | 18 ++++++++++++++++++
- 2 files changed, 27 insertions(+)
+ tools/testing/selftests/mm/hugetlb_vmemmap_stress.sh | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/hugetlb.h b/include/linux/hugetlb.h
-index 0d5414392d87..b2a6441bcd84 100644
---- a/include/linux/hugetlb.h
-+++ b/include/linux/hugetlb.h
-@@ -22,6 +22,15 @@ struct node;
+diff --git a/tools/testing/selftests/mm/hugetlb_vmemmap_stress.sh b/tools/testing/selftests/mm/hugetlb_vmemmap_stress.sh
+index b64fdb3ed761..d570df02a28d 100755
+--- a/tools/testing/selftests/mm/hugetlb_vmemmap_stress.sh
++++ b/tools/testing/selftests/mm/hugetlb_vmemmap_stress.sh
+@@ -4,13 +4,16 @@
+ # Stress test for HugeTLB vmemmap optimization (HVO).
+ #
+ # Phases:
+-#   1. accounting: allocate N hugepages, check that nr_memmap_pages +
++#   1. pmd-inject: churn the pool with fail_hugetlb_vmemmap_pmd enabled.
++#      Runs first because vmemmap PMDs are only split once, so later phases
++#      would leave few PMD splits to fail.
++#   2. accounting: allocate N hugepages, check that nr_memmap_pages +
+ #      nr_memmap_boot_pages drops by exactly N * (vmemmap pages per folio - 1),
+ #      then free them and check it returns to the baseline.
+-#   2. stress: churn the pool (optimize/restore) while concurrently reading
++#   3. stress: churn the pool (optimize/restore) while concurrently reading
+ #      struct pages (/proc/kpageflags, /proc/kpagecount), compacting memory,
+ #      and optionally reading page_owner and offlining/onlining memory.
+-#   3. pte-inject: like 2, with fail_hugetlb_vmemmap_pte enabled; this hits
++#   4. pte-inject: like 2, with fail_hugetlb_vmemmap_pte enabled; this hits
+ #      both the optimize rollback and the restore (partial HVO) paths.
+ #
+ # After each phase the pool is drained back to its original size, memmap
+@@ -284,7 +287,7 @@ cleanup() {
+ 	local blk t
  
- void free_huge_folio(struct folio *folio);
+ 	stop_workers
+-	for t in fail_hugetlb_vmemmap_pte; do
++	for t in fail_hugetlb_vmemmap_pte fail_hugetlb_vmemmap_pmd; do
+ 		[ -d "$(fa_dir $t)" ] && fa_disable $t > /dev/null
+ 	done
+ 	if [ -f "$tmpdir/hotplug" ]; then
+@@ -366,6 +369,7 @@ accounting_phase() {
  
-+#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP
-+bool hugetlb_vmemmap_optimize_enabled(void);
-+#else
-+static inline bool hugetlb_vmemmap_optimize_enabled(void)
-+{
-+	return false;
-+}
-+#endif
-+
- #ifdef CONFIG_HUGETLB_PAGE
+ echo "$marker" > /dev/kmsg
  
- #include <linux/pagemap.h>
-diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-index 142f2975846b..fb6da64bd80d 100644
---- a/mm/hugetlb_vmemmap.c
-+++ b/mm/hugetlb_vmemmap.c
-@@ -452,6 +452,24 @@ static int __init hugetlb_vmemmap_optimize_param(char *buf)
- }
- early_param("hugetlb_free_vmemmap", hugetlb_vmemmap_optimize_param);
- 
-+/**
-+ * hugetlb_vmemmap_optimize_enabled - whether HVO is enabled
-+ *
-+ * This only reflects the hugetlb_free_vmemmap= kernel command line parameter
-+ * and the vm.hugetlb_optimize_vmemmap sysctl, not whether the architecture
-+ * supports HVO (see arch_support_vmemmap_remap()).
-+ *
-+ * The value is final once early parameters have been parsed only if the
-+ * architecture selects CONFIG_ARCH_HUGETLB_VMEMMAP_OPTIMIZATION_SYSCTL_RO;
-+ * otherwise it may change at any time through the sysctl.
-+ *
-+ * Return: true if HVO is enabled.
-+ */
-+bool hugetlb_vmemmap_optimize_enabled(void)
-+{
-+	return READ_ONCE(vmemmap_optimize_enabled);
-+}
-+
- static int __hugetlb_vmemmap_restore_folio(const struct hstate *h,
- 					   struct folio *folio, unsigned long flags)
- {
++stress_phase pmd-inject fail_hugetlb_vmemmap_pmd
+ accounting_phase
+ stress_phase stress ""
+ stress_phase pte-inject fail_hugetlb_vmemmap_pte
 -- 
 2.56.1.809.ga0b61035b5-goog
 
