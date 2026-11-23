@@ -2,122 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73D3606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8450D606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dCd5Mx4U;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=Nzq5JetP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tDqGwmkk;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=eVR3Ru4Y;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=fb+iCiKk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NScpSoVMTvDY0tx4JExOhys7fsIHvxci/UHNQCAHM/s=; b=dCd5Mx4UK0sRgs
-	m/+TEBk3NYcIMkEXl8QpYyRzBo65zenGFEmlPcU96TDSeDyjruN7mYzHSnyt2dw1E/SSXyoI6LX6i
-	oiqjwV+cNVyHTe2vuuPGZfTleUCCGUH534oKja7xIqgHQ1Q+CkJwA3WniFjZfXSvKOWZ3C86G4qfE
-	0/4bP7ljGWUFLUXp0iGZZWM8/RBp3HXIRuxddPeJAorJdsykgGEySy3tZeJTQo7RRSgOl0pgrpn+f
-	BPar6YxjI1oWwlHJokRbQeUf2RTW+prSOvki00NBn57nLd+D0RKW5H42noxjYO9XkhHxSiSInHbWY
-	29e+f97vjIc2PtLJg2wQ==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=12rCIot4Q1y046Vzp8EdeFdJZwXEj1gxqogCrSz0YUU=; b=tDqGwmkkbue91s0+Y7+CCuYcra
+	aNfYMJ8w26iaXMCIZw20rfPMPvu7SodUaGL5g/KG56GQAb1LkHUx+FVeJGkQsPDAAva0bWOsnzkKC
+	nHtgsfKqjKCN7Mh3jIKsh/Z8VJl0fBC2BI1quapNGsiUN9l0pG7YU1AlHrQl9cOQsUjj9//mJlCWb
+	kHGdeKMCzf0MwabLw0mHSkpCXbGLC+5/E+XiogEBmfoITuX11i/ykeBvZqmu869P3Ze5UjjO6zUKc
+	2ykt+f4OLHUT67KcqAN3+z+mx8DK5a0mEX4jH/LDonyIuEc13PwWgTs38y0y3ebkznzEQ3amQYdA5
+	wOmLC4Ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQBD-00000002fnJ-33rd;
-	Mon, 23 Nov 2026 09:17:43 +0000
-Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	id 1xVQUR-00000002jqR-06Fi;
+	Mon, 23 Nov 2026 09:37:35 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQAy-00000002fip-0PqE
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:17:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Bxs2yl8ZAwanElzL3tGTtaIDTA6NNsoBphGpgB1M0azRVMyBfExAZcaQDY0nqo26R/8V1KekvoQW0+DpsUO98XtymaCTnG28fhlPfbfgTeLqveUDAHHqPU0NxVHgugfR0XpvLbfJOSGggP/jmzqxF/qJpCNpDb0zDZT2W0N+6dH2GkMwntaWt+bL/FuVtZ0xB3dW75wgj8zhGQ8BVBNFd0S/74x03uQsQQzBBg+iFf6O1bNFqwAsUUxnbUTmveCPd/4jLd1uA+eka9kNwtAIfIwuJD40CmqtBB/svPMyov3oArzBFJgdeSMAXT8F/Xv36TeyRmT41raNWdQWXswzzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NScpSoVMTvDY0tx4JExOhys7fsIHvxci/UHNQCAHM/s=;
- b=UMwmwm2+tL8NZkzTpa9nIsUVFMehA+KWzUYKqMchVGMwotSq+w/TeZmSPqP8g0j7MtQnZHjAkcQm0qX4d6LxgdHbubOJJMZVLs5ErLzgTcPrRwX4w5fWeZLR5yPMPPn9vjkVdGfJPvr/tdyXAaY8TK1frwpjyaYgcAmSM/vdlRsKbye51roe9gWTwDuG3MW90QTVgjipURb9ML0f13G8ktBh/PirYeQzY1GCCe9z3EYtaE3YdB0MioHS9/+4m6exViEzQKH0Usp4FjzUXbSqIjLQmf5MRitDTDMmPl898wbZZAim1L0ckhxvy6fzxbJuvB93X0sUP2vi9L6PEqCW7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NScpSoVMTvDY0tx4JExOhys7fsIHvxci/UHNQCAHM/s=;
- b=Nzq5JetPQj5AV4aoj4ZxC6eRsdQLJh1aApVGRVjKOtoWfSzeSAuzLhTV2uw5H0Xmpdw2xETbdyo72QpBL3kEhCat44BSQy0KtOOeGNIrBXaGfKqAezo9670nv+/Pman5Eh89yjGW0FuEQOBR+/L79l605E+vmMWAOwtKEZMHIeLaTHNbUVec4qo/8OJu+puiS5nsfP89KZbWsE2gOS/yaP9ZTBfDXB/VRfVpoAetd2EhhrIcNTrdhRdP6yd5ql9w16QnIHQy6Bda2scE1upNzzBRZprXwh7RkHYF5NJT6K98hrW0x153utAHBcO8PYBOmu0+bVUnK1GLSC9nv+KAnA==
-Received: from VI1PR07CA0257.eurprd07.prod.outlook.com (2603:10a6:803:b4::24)
- by DU0PR10MB7566.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:402::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.1; Mon, 23 Nov
- 2026 09:17:22 +0000
-Received: from ZR1PEPF0000E6BB.eurprd07.prod.outlook.com
- (2603:10a6:803:b4:cafe::20) by VI1PR07CA0257.outlook.office365.com
- (2603:10a6:803:b4::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Mon, 23
- Nov 2026 09:17:21 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- ZR1PEPF0000E6BB.mail.protection.outlook.com (10.167.241.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Mon, 23 Nov 2026 09:17:21 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 23 Nov
- 2026 10:18:24 +0100
-Received: from localhost (10.48.87.222) by STKDAG1NODE2.st.com (10.75.128.133)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 23 Nov
- 2026 10:17:20 +0100
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Date: Mon, 23 Nov 2026 10:17:05 +0100
-Subject: [PATCH v2 1/4] dmaengine: stm32-dma3: clear flags before signaling
- transfer completion
+	id 1xVQUL-00000002jnU-4434;
+	Mon, 23 Nov 2026 09:37:33 +0000
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1795426646;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=12rCIot4Q1y046Vzp8EdeFdJZwXEj1gxqogCrSz0YUU=;
+	b=eVR3Ru4YMLUxoE2oBeLnHegybGHZ1wA0UbD4tiFIxf5sSlq+p3wJdzZpk1ObDTCcQrza1z
+	sy98hHXx+8xzinXaJ18cQFrVUiJIc/UcxxCx104dR5eQpHKjKHCYzESkf81Gf3OdfKYFU/
+	eii4VqnD+bVQRxDevExQLyGum7btdJKvvpx3Yr5ardHDzDIHP6aGihnfy+77XqVSz6ZQgt
+	47xh6w/Vwimk/bHTNf5kdhLgywTu1BYGw396QHdIBvHSpQXvrSULdDcD2Khd3VZ6kMCHkn
+	cKpXfzLviy+wczOkqv+t1GeRU7hURAtZmDFbfCzTh8szA5wnR/Jki6meRytmbQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1795426646;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=12rCIot4Q1y046Vzp8EdeFdJZwXEj1gxqogCrSz0YUU=;
+	b=fb+iCiKkolSfl3maExBNRcPmG1YtwmtD8FIgojBmtd/T7xWBvxDvLsmVcOv8h0gdh8FVpL
+	vvdYhx+u/oAeYgDg==
+Subject: [PATCH v3 00/15] exec: Remove AT_VECTOR_SIZE_ARCH from UAPI
+Date: Mon, 23 Nov 2026 10:37:05 +0100
+Message-Id: <20261123-at-vector-size-arch-v3-0-d342dae9e843@linutronix.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261123-dma3-fixes-v2-1-0a5b013f79d2@foss.st.com>
-References: <20261123-dma3-fixes-v2-0-0a5b013f79d2@foss.st.com>
-In-Reply-To: <20261123-dma3-fixes-v2-0-0a5b013f79d2@foss.st.com>
-To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, "Maxime
- Coquelin" <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, =?utf-8?q?Am=C3=A9lie_Delaunay?=
-	<amelie.delaunay@foss.st.com>
-CC: <dmaengine@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Jerome Audu <jerome.audu@st.com>, <stable@vger.kernel.org>
-X-Mailer: b4 0.16.0
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZR1PEPF0000E6BB:EE_|DU0PR10MB7566:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7243c05c-4c37-4118-cc79-08df49429461
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|1800799024|376014|36860700016|22082099003|18002099003|11063799006|56012099006|261022075727099003|261028144727099003|261021121427099003|261026140227099003|10067099003|261022105027099003|261021123027099003|261009223027099003|261102123227099003;
-X-Microsoft-Antispam-Message-Info: 05waSiMzzJYMXsgTqrXWnGDvfkx1kO3VOE97wyBf8G7Sb3xLTo6dZE218p89C4sR6lrrL6S64HdULCQARRLlV664whUT2yDSObRIMlCS4X0YxMCmf483su2j7qTVQ6oqZ3TaXrVsd+894+n+msr7NIw7QCoCCOB9FWl0cdwInrFXV7Xhe39kYj07aemxe786MHN9Zro3w1Umfr9Duz7drjJU7j2A6nNWQIZpzZeB5JZE3Jg3Ou4fJFuvj6gEEUa6+c+NNDvQXOAj5wxM1Xz98DbTB50ywg2nN2fdqI/sO9JILYeHalQN+YGu8VsVbquJLw4f9vD2Z9KV0scE4GLzry4xCC/Z1FSTq43sklD60N4DI7eNEYSMifXKUdCXlCffATQIn2uadEeyNryjd5ka4ZFkwhoeMN7X1DFOgZHHxhJbA595WE/knW9nARekPAKUQAzOCrqgS061tL0sGRsgcTBUCRAdx/QWi72WjPh6Kr+38PcWw2qRp6i1u7oareLEoLS8dTLO0sFKdKMEw4VOMaUzg+jmsC4t0bOeBqWRL8k3gv1bDefAHKZXRgf4urUrSZEwDeBd6vvuz5Ie+toil6XM57gZyLFUic3wKwEms4XyHvitf1XbKmep9v+ijYZP3J8Vx36BX8nIF9rf5bitgHoAbDphJHw34c66CtoL7LDSK0j3StVU7eYYO/NmDb5gOzfRNKqkwn3E094ngvrxQQ==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(1800799024)(376014)(36860700016)(22082099003)(18002099003)(11063799006)(56012099006)(261022075727099003)(261028144727099003)(261021121427099003)(261026140227099003)(10067099003)(261022105027099003)(261021123027099003)(261009223027099003)(261102123227099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: tHdH76lv1nbJdJDm92iVSridsf/KSGbq17vIK1wJVkxI/NY0rPKbPcNUnnQv+QzCWkxuN/EChinnMfslngtZrvVPZcvtM0VO8Eook25g1sohrmi+3dps7Oai6djS6jQZUvkXDGeZ1B2RhToYAzZAOkNIyCp1cQTnIX9sHoSYnKXL9leO9iAnY35T0XFGQzWyupZyXUGSDWk5luXs5HQByUzGCTch6Qt2hBxemEsqeY2NOyhxbJ5hSwgRYHO02sL42nD+2C5H3+iybwsp4PsHvewQHjhm6PNtPa//z9K/Pwqd6MFABqjA1M3H1H4ax+fgDXGSFsIwjkvmtbmvosPefLcAVsT4sorYWhau4UMreh24ljnqqAAfNWsmU0LbN+jZgE++0SuXXLdHBoG9C+ZOgFjT355wsh+Xb70JuZSRXasp5TrxmJNhJX2MVExmdL83
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 09:17:21.5654
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7243c05c-4c37-4118-cc79-08df49429461
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: ZR1PEPF0000E6BB.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7566
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23NQQ6CMBCF4auQrq2ZTiOCK+9hXJQylUlMMS02K
+ OHuFly4kOU/yftmEpECUxSnYhKBEkfufQ69K4TtjL+R5Da3QMASFNTSDDKRHfogI79JmmA7WRI
+ 4pNq5qilFXj4COR5X9XLN3XHMg9f6JKnl+vU04KaXlARplHKgG4PWVOc7++cQes/jviWxmAl/T
+ g1628HsHBqr0RwV6fbPmef5A6qlb4UCAQAA
+X-Change-ID: 20260109-at-vector-size-arch-6e0f2e9ff8b6
+To: Kees Cook <kees@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
+ linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-riscv@lists.infradead.org, loongarch@lists.linux.dev, 
+ linux-s390@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-mips@vger.kernel.org, sparclinux@vger.kernel.org, 
+ linux-sh@vger.kernel.org, linux-alpha@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
+ Paul Walmsley <pjw@kernel.org>, Andy Chiu <andybnac@gmail.com>, 
+ Magnus Lindholm <linmag7@gmail.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795426640; l=3299;
+ i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
+ bh=0K3qhqEWg64tqQPsXMhmXxkKgiRN0V2EEQPpHTYxv4A=;
+ b=Fe8nQiRi3Kfc2ylHmmPvMPRVTTjkYlaqoKTjn4kvNkLesW4z62H7gN1D51+mJJRRBnWysks5K
+ 2YBQSucEVjaDRaSt/FqXQnlQcInw1lzhzM2T6nWBTe45/TAM3F1ehFZ
+X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
+ pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_011731_456410_F2B754D2 
-X-CRM114-Status: GOOD (  10.76  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_013730_158531_E6354909 
+X-CRM114-Status: UNSURE (   8.44  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,85 +93,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Jerome Audu <jerome.audu@st.com>
+There is nothing userspace can do with this value. In the kernel is
+always combined with AT_VECTOR_SIZE_BASE, which is not exposed to
+userspace and also changes from time to time.
 
-The interrupt handler clears channel flags after handling the captured
-status. However, stm32_dma3_chan_complete() can start another transfer.
-If that transfer completes before the flags are cleared, its Transfer
-Complete flag is cleared without handling its completion, potentially
-causing a timeout.
+Move the symbol to kernel-internal headers.
 
-Clear the captured interrupt flags immediately after reading the channel
-status and interrupt enables, before handling the events. This prevents
-the handler from clearing a completion flag raised by a newly started
-transfer.
+Meant to be applied through the asm-generic or execve tree.
+The default recipient list was huge. I trimmed it to only the
+architecture lists.
 
-Fixes: f561ec8b2b33 ("dmaengine: Add STM32 DMA3 support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Jerome Audu <jerome.audu@st.com>
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-
+Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 ---
+Changes in v3:
+- Rebase on v7.3-rc1.
+- Fix some include guards.
+- Link to v2: https://patch.msgid.link/20260903-at-vector-size-arch-v2-0-5bc32a71e3d8@linutronix.de
+
 Changes in v2:
-- Commit message rephrased according to Frank Li's review
+- Rebase on v7.3-rc1.
+- Pick up tags.
+- Link to v1: https://lore.kernel.org/r/20260302-at-vector-size-arch-v1-0-a11f03ba2ca8@linutronix.de
+
 ---
- drivers/dma/stm32/stm32-dma3.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+Thomas Weißschuh (15):
+      MAINTAINERS: exec: Add more auxvec.h variants
+      auxvec.h: Move AT_VECTOR_SIZE definitions to linux/auxvec.h
+      asm-generic: add an in-kernel auxvec.h header
+      ARM: drop custom asm/auxvec.h
+      x86: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      arm64: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      RISC-V: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      LoongArch: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      s390: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      powerpc: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      MIPS: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      sparc: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      sh: Remove AT_VECTOR_SIZE_ARCH from UAPI
+      alpha: remove AT_VECTOR_SIZE_ARCH from UAPI
+      auxvec.h: Drop fallback AT_VECTOR_SIZE_ARCH
 
-diff --git a/drivers/dma/stm32/stm32-dma3.c b/drivers/dma/stm32/stm32-dma3.c
-index 4fe226541efa..a464e0cefd64 100644
---- a/drivers/dma/stm32/stm32-dma3.c
-+++ b/drivers/dma/stm32/stm32-dma3.c
-@@ -1008,7 +1008,7 @@ static irqreturn_t stm32_dma3_chan_irq(int irq, void *devid)
- {
- 	struct stm32_dma3_chan *chan = devid;
- 	struct stm32_dma3_ddata *ddata = to_stm32_dma3_ddata(chan);
--	u32 misr, csr, ccr;
-+	u32 misr, csr, ccr, cfcr;
- 
- 	spin_lock(&chan->vchan.lock);
- 
-@@ -1021,6 +1021,14 @@ static irqreturn_t stm32_dma3_chan_irq(int irq, void *devid)
- 	csr = readl_relaxed(ddata->base + STM32_DMA3_CSR(chan->id));
- 	ccr = readl_relaxed(ddata->base + STM32_DMA3_CCR(chan->id)) & CCR_ALLIE;
- 
-+	/*
-+	 * Half Transfer Interrupt may be disabled but Half Transfer Flag can be set,
-+	 * ensure HTF flag to be cleared, with other flags.
-+	 */
-+	cfcr = csr & (ccr | CCR_HTIE);
-+	if (cfcr)
-+		writel_relaxed(cfcr, ddata->base + STM32_DMA3_CFCR(chan->id));
-+
- 	if (csr & CSR_TCF && ccr & CCR_TCIE) {
- 		if (chan->swdesc->cyclic)
- 			vchan_cyclic_callback(&chan->swdesc->vdesc);
-@@ -1050,15 +1058,6 @@ static irqreturn_t stm32_dma3_chan_irq(int irq, void *devid)
- 		stm32_dma3_chan_reset(chan);
- 	}
- 
--	/*
--	 * Half Transfer Interrupt may be disabled but Half Transfer Flag can be set,
--	 * ensure HTF flag to be cleared, with other flags.
--	 */
--	csr &= (ccr | CCR_HTIE);
--
--	if (csr)
--		writel_relaxed(csr, ddata->base + STM32_DMA3_CFCR(chan->id));
--
- 	spin_unlock(&chan->vchan.lock);
- 
- 	return IRQ_HANDLED;
+ MAINTAINERS                              |  5 +++++
+ arch/alpha/include/asm/auxvec.h          |  7 +++++++
+ arch/alpha/include/uapi/asm/auxvec.h     |  8 +++-----
+ arch/arm/include/asm/auxvec.h            |  1 -
+ arch/arm64/include/asm/auxvec.h          |  7 +++++++
+ arch/arm64/include/uapi/asm/auxvec.h     |  6 ++----
+ arch/loongarch/include/asm/auxvec.h      | 14 ++++++++++++++
+ arch/loongarch/include/uapi/asm/auxvec.h |  8 +++-----
+ arch/mips/include/asm/auxvec.h           | 17 +++++++++++++++++
+ arch/mips/include/uapi/asm/auxvec.h      |  8 +++-----
+ arch/powerpc/include/asm/auxvec.h        |  7 +++++++
+ arch/powerpc/include/uapi/asm/auxvec.h   |  6 ++----
+ arch/riscv/include/asm/auxvec.h          | 13 +++++++++++++
+ arch/riscv/include/uapi/asm/auxvec.h     |  2 --
+ arch/s390/include/asm/auxvec.h           |  7 +++++++
+ arch/s390/include/uapi/asm/auxvec.h      |  6 ++----
+ arch/sh/include/asm/auxvec.h             |  7 +++++++
+ arch/sh/include/uapi/asm/auxvec.h        |  8 +++-----
+ arch/sparc/include/asm/auxvec.h          |  6 ++++++
+ arch/sparc/include/uapi/asm/auxvec.h     |  8 +++-----
+ arch/x86/include/asm/auxvec.h            | 12 ++++++++++++
+ arch/x86/include/uapi/asm/auxvec.h       | 13 +++----------
+ include/asm-generic/Kbuild               |  1 +
+ include/asm-generic/auxvec.h             |  7 +++++++
+ include/linux/auxvec.h                   |  5 +++++
+ include/linux/mm_types.h                 |  6 ------
+ 26 files changed, 139 insertions(+), 56 deletions(-)
+---
+base-commit: a6b4ba7acc23ac0fb680449981982f308ea75036
+change-id: 20260109-at-vector-size-arch-6e0f2e9ff8b6
 
--- 
-2.43.0
+Best regards,
+--  
+Thomas Weißschuh <thomas.weissschuh@linutronix.de>
 
 
