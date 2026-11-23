@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C175C606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C64C8606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2YpBtD2u;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=O0QnIOfk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PM+cBshs;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vcQIYCkg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:To:From:Reply-To:Content-Type:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ya6v0UyKzX4mmCXRtci1TvYwloWMFBhWYhOd/yqiouQ=; b=2YpBtD2u/S8Ewo1G70fhbVgGbx
-	ON643IDjDYaMvO+UCaUCFOwmQFj+GJYrLO1Wh3b+Wav1HHJui0Fp1O/dKgsBfFvncuqlDzKWGmPlU
-	DOLuI2oI6NK7Ombw7dolg5yMmVi/qxcmWDvyfeI23MXRFzjAKjgaS7ON4eR2homx0Rgig3pTugQrg
-	L3LycMVxnztPMzhGeGExNwdMMlPFPgcTo5dJtku1ugj2bfyJQLCx1evruLGlhF5BmU98p5p+u3+23
-	3TnQp0z4MCzDkoyqoVOIVbVsGcvrC+3+YBumRnr2qRbBlyGbVLTXhU4FWuQr3s2FGCN4j3aLlDlGM
-	d3z2PiRA==;
+	bh=dnt2GtHzfP5h866vP0cRtDl18L844ZAZum/+U48ESm4=; b=PM+cBshszT5hNojBwDaAwgBYi8
+	NAf1NknAjuKAaGq2iP3vke5guBBEycl1rweyhcRghcpMgo+W3hw3UFU2g8lyhwCmFHYJ/EYUGjq7d
+	QT1ZPdXvZRozA2hOlsDvdfAryfp/UBreFPLy1QaPfw++GlfoB8sDhH+evVtG4GNDCiC8+qtFTHlev
+	UtJzwgI1V+HJ5aXJoUgyIik0+7HhAZ2Clo6F7omAZON8GllpN5pTnWeeuLooAzbOc09uA43na/36L
+	vVk81MknKuXGu62NGb8EACv0BM0Czl2WYmUBuLxCwAfdHNyte8vx5Q8nAmOx8VW2WLo+2t1SRYtI6
+	Mqp1W/tA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXeO-00000004KIM-0m4E;
-	Mon, 23 Nov 2026 17:16:20 +0000
+	id 1xVXej-00000004KPw-20Z8;
+	Mon, 23 Nov 2026 17:16:41 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXeD-00000004KDL-0dey
+	id 1xVXeJ-00000004KGg-0nkX
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:16:10 +0000
+	Mon, 23 Nov 2026 17:16:19 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 53586176B;
-	Mon, 23 Nov 2026 09:16:05 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4743819F6;
+	Mon, 23 Nov 2026 09:16:11 -0800 (PST)
 Received: from e137867.cambridge.arm.com (unknown [10.2.213.11])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 870AC3F763;
-	Mon, 23 Nov 2026 09:16:05 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7BABE3F86F;
+	Mon, 23 Nov 2026 09:16:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795454168; bh=LFtDzB/okrnQHH291WRp6toxRg+swNwN8gcOpZd7uFQ=;
+	t=1795454174; bh=OKpA5BGzsnvMNkmETrY5EVQga+MEy2xQO6CCLFEttso=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=O0QnIOfkL73MNoc91NYxTAD9VVYpv8ma/GCrN8yHd55fA8kVyYwGHRJBz2Q66uArH
-	 ISKQvISI9h+0x2jCkTCVGx2Tt7lbgJT22BHox58wgqTQ2m7D1nUkyyd8AKgr7TpeRk
-	 7SJGdZVWmDqQhZfU+6XvkfWcGn5hY1txFhlDZk7Q=
+	b=vcQIYCkgDxusqCN8hgHN6yqNXMxn0KtyUYXFr9Ob2sXYdpscTr0HybhfuF9sLu8Ud
+	 xboVdIOA0RmuwR2vaBmLJhWHvAKapg8h2SebzWv5T9hlr3b6kBl5e1huSjIlk5J2cB
+	 PZTKbUaPV9G2rs6z1CqSFFbJ70652hCWDw8+JYOQ=
 From: Ada Couprie Diaz <ada.coupriediaz@arm.com>
 To: linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 1/3] arm64: entry: sdei: always set VBAR_EL1 on SDEI entry
-Date: Mon, 23 Nov 2026 17:15:55 +0000
-Message-ID: <20261123171557.140944-2-ada.coupriediaz@arm.com>
+Subject: [PATCH v3 3/3] arm64: head: set __entry_task along with task setup
+Date: Mon, 23 Nov 2026 17:15:57 +0000
+Message-ID: <20261123171557.140944-4-ada.coupriediaz@arm.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261123171557.140944-1-ada.coupriediaz@arm.com>
 References: <20261123171557.140944-1-ada.coupriediaz@arm.com>
@@ -53,8 +53,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_091609_269818_5974DF48 
-X-CRM114-Status: GOOD (  18.99  )
+X-CRM114-CacheID: sfid-20261123_091615_309757_6D2A882F 
+X-CRM114-Status: GOOD (  16.04  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,82 +74,64 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SDEI can interrupt at any time, so we cannot guarantee that VBAR_EL1
-points to the kernel vectors.
-Unconditionally set VBAR_EL1 to the kernel vectors on SDEI entry so
-the SDEI handler always runs on the correct vectors.
+`__entry_task` is only set after the first `switch_to()`, despite
+a proper task being set up in SP_EL0 as soon as CPUs go through
+`__{primary,secondary}_switched()`.
 
-Commit 9bf6ee7952c7 ("arm64: sdei: Run the event handler on the kernel
-vectors") sets VBAR_EL1 to the kernel vectors when KPTI is on
-and it still points to the trampoline vectors.
+As SDEI can interrupt execution at any time, it can interrupt before
+the first `switch_to()`[0] and use a NULL `__entry_task`
+to set its current task.
 
-This is only covers the KPTI case, as any other VBAR_EL1 value would
-not be changed, while pointing to the wrong exception vectors.
-KVM in VHE mode would be such a case as, in VHE, VBAR_EL1 is an alias for
-VBAR_EL2, which KVM uses for the hypervisor vectors when running guests.
+Set `__entry_task` as soon as we have a proper task set up in
+`init_cpu_task()` in case we get interrupted before switching threads.
 
-Fixes: 79e9aa59dc29 ("arm64: sdei: Add trampoline code for remapping the kernel")
+Remove the second paragraph of the comment on `__entry_task`, as it has
+been incorrect since the introduction of SDEI, and even more so
+with this change.
+
+[0]: This can only happen on secondary CPUs first brought online after
+     initial boot :
+     - all CPUs onlined at boot-time switch at least once
+       before drivers are probed ;
+     - hotplugged CPUs that booted once still have their `__entry_task`
+       in memory, so it would not be NULL.
+
+Fixes: f5df26961853 ("arm64: kernel: Add arch-specific SDEI entry code and CPU masking")
 Cc: stable@vger.kernel.org
-Cc: Kiryl Shutsemau (Meta) <kas@kernel.org>
-Cc: Breno Leitao <leitao@debian.org>
 Signed-off-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
 ---
- arch/arm64/kernel/entry-common.c | 25 ++++++++++++++-----------
- arch/arm64/kernel/sdei.c         |  3 ---
- 2 files changed, 14 insertions(+), 14 deletions(-)
+ arch/arm64/kernel/head.S    | 3 +++
+ arch/arm64/kernel/process.c | 3 ---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/kernel/entry-common.c b/arch/arm64/kernel/entry-common.c
-index beb56891fc4f..cb122163a68d 100644
---- a/arch/arm64/kernel/entry-common.c
-+++ b/arch/arm64/kernel/entry-common.c
-@@ -1079,19 +1079,22 @@ __sdei_handler(struct pt_regs *regs, struct sdei_registered_event *arg)
- 	far = read_sysreg(far_el1);
+diff --git a/arch/arm64/kernel/head.S b/arch/arm64/kernel/head.S
+index d6ba3c0af811..e53a9c6fec83 100644
+--- a/arch/arm64/kernel/head.S
++++ b/arch/arm64/kernel/head.S
+@@ -209,6 +209,9 @@ SYM_CODE_END(preserve_boot_args)
+ 	ldr	w\tmp2, [\tsk, #TSK_TI_CPU]
+ 	ldr	\tmp1, [\tmp1, \tmp2, lsl #3]
+ 	set_this_cpu_offset \tmp1
++
++	adr_l	\tmp2, __entry_task
++	str	\tsk, [\tmp2, \tmp1]
+ 	.endm
  
- 	/*
--	 * With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
--	 * EL0 until the next exception from EL0 maps the kernel. They only
--	 * handle exceptions from EL0: an exception taken here would run their
--	 * empty current-EL half and never come back. Switch to the kernel
--	 * vectors. The IRQ-like resume keeps using the interrupted VBAR, so it
--	 * still goes through the trampoline.
-+	 * As an SDEI event can take over at any point, VBAR_EL1 might not allow
-+	 * us to take an exception safely :
-+	 * - With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
-+	 *   EL0 until the next exception from EL0 maps the kernel. They only
-+	 *   handle exceptions from EL0: an exception taken here would run their
-+	 *   empty current-EL half and never come back ;
-+	 * - With VHE, the kernel runs at EL2 and VBAR_EL1 accesses VBAR_EL2.
-+	 *   KVM might be running a guest and switched VBAR_EL2 to the
-+	 *   hypervisor vectors.
-+	 *
-+	 * Switch to the kernel vectors unconditionally and restore
-+	 * the interrupted VBAR_EL1 before returning.
- 	 */
- 	vbar = read_sysreg(vbar_el1);
--	if (arm64_kernel_unmapped_at_el0() &&
--	    vbar == (unsigned long)raw_cpu_read(this_cpu_vector)) {
--		write_sysreg((unsigned long)vectors, vbar_el1);
--		isb();
--	}
-+	write_sysreg((unsigned long)vectors, vbar_el1);
-+	isb();
+ /*
+diff --git a/arch/arm64/kernel/process.c b/arch/arm64/kernel/process.c
+index 42b15b0c069f..c3d194676efc 100644
+--- a/arch/arm64/kernel/process.c
++++ b/arch/arm64/kernel/process.c
+@@ -584,9 +584,6 @@ static void ssbs_thread_switch(struct task_struct *next)
+ /*
+  * We store our current task in sp_el0, which is clobbered by userspace. Keep a
+  * shadow copy so that we can restore this upon entry from userspace.
+- *
+- * This is *only* for exception entry from EL0, and is not valid until we
+- * __switch_to() a user task.
+  */
+ DEFINE_PER_CPU(struct task_struct *, __entry_task);
  
- 	state = irqentry_nmi_enter(regs);
- 	ret = do_sdei_event(regs, arg, vbar);
-diff --git a/arch/arm64/kernel/sdei.c b/arch/arm64/kernel/sdei.c
-index 1b902da8ba43..1027138ba5b4 100644
---- a/arch/arm64/kernel/sdei.c
-+++ b/arch/arm64/kernel/sdei.c
-@@ -255,9 +255,6 @@ unsigned long __kprobes do_sdei_event(struct pt_regs *regs,
- 	 * exception registers; __sdei_handler() puts them back. Only the last
- 	 * one's syndrome survives; report it if it is not one known to be
- 	 * harmless.
--	 *
--	 * If the event interrupted a KVM world switch, VBAR points at the KVM
--	 * hyp vectors and any such exception is a hyp panic instead.
- 	 */
- 	nested_elr = read_sysreg(elr_el1);
- 	nested_esr = read_sysreg(esr_el1);
 -- 
 2.43.0
 
