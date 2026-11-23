@@ -2,68 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2072C606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 01:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BD6606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 01:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pDPMQoqb;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=XfVFItQf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fPlbMGwE;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FZPciLk0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0Gp1eyUb1TRq0HLGTC1lCi4kXREArXMUBnkCXCJmk+g=; b=pDPMQoqbLlLce9
-	KktjWTHVJnq/AsB8qUFGKLV680Lwaj/pv0N9z3oe3A4rJhss58cP1SzFftUCPWl8lcjhxSWE0/4yk
-	uBRXekjSYgyKrmspJyEnvFRwMDxyl5oa8OFCM5dOIIJcHpSN2zv2sqdotKGSaYki4U/cYmEzvPAzn
-	KsDMHl/xTpaej6309Gt8kUF3FqMdTKkzaCpNQtaIQQqopzQt/ILAyFfM8eo/yACmaiPyJ3r/VJuq3
-	mIQpwhko5vtzQsIU3ZiiPB95xbFp0B9017uzFXI0M9fvMbP1vvVcJOjg9XXMRNi2wKTh1OgcNwDoT
-	/VKwU8bgaljI67ce0kAw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=VImCsGSXzjoMSePXdbr+fMI5jhhaz7O4wSuFYMQmz0c=; b=fPlbMGwE+CMQZfwt6fnvDTmRGb
+	rFBh+du1U5lyVV+f3UHcBtCna6u/CX3QicyY+uGXGbMxUSP1XGhVhkMua5iwvp86vJ2axBpC1p26s
+	vKXA06/2hjQO2UNiMWh5oJgNtcl4ExxbgSnT/OiMEqyWqvk8MH2lzku9etSWcJYcmpOvw0/saUkJ/
+	Xy6q3gMjpQKiwBrSuiOFFhlarWxsuAIL2zsFu/KXgMA1kCiJ6BY116ZfiTiHwW376t67tPNU4qSPl
+	xUoCM/fKxZAyVUVHSu68Uc7x6uKSdIT7MYT8Oo3YHfYvgofdBQRuwVUV8YY7+DzVUSooQ36/eiM2g
+	a4U/9b3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVIcC-000000023in-1oLu;
-	Mon, 23 Nov 2026 01:13:04 +0000
-Received: from mail-m81165.netease.com ([47.88.81.165])
+	id 1xVIgf-0000000244Y-0loJ;
+	Mon, 23 Nov 2026 01:17:41 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVIc8-000000023hq-1hVI;
-	Mon, 23 Nov 2026 01:13:03 +0000
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5594437e6;
-	Mon, 23 Nov 2026 09:12:44 +0800 (GMT+08:00)
-Message-ID: <04e31b87-e766-4fb8-a361-0e92b1ab12ae@rock-chips.com>
-Date: Mon, 23 Nov 2026 09:12:42 +0800
+	id 1xVIgd-0000000243g-3T3R
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 01:17:39 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8272D44FD8;
+	Mon, 23 Nov 2026 01:17:39 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795396659;
+	b=Phwt3RGnVIQYkgBcx6OuJha0tal6kENDycxXYJvni/psvy2B8yYrTeZOq7Iz1ayitneV
+	 wcHRLH4xFISan80KmkJX3nwXbywYpWTJTBJBR8GMS7Qnnz199g3UYC5ZmmjM05iq+gBfW
+	 ky5LL4eldDfgtc0seCfqqCi+DUW1ZA4WRmM5Cu/sFRSeQvVDaVPF5a0DSSPA2BMH8T6Ic
+	 dPsKedNshBILlvLD8zPXrATCF0iANDjREdGAYX8iIGYQF7+Or9+7JbvU8D2QEyPr4RlW9
+	 Ktw1rXHZXosuvYzWlJ9lz2EPfeU5aTlRUcMazLo0j1sACvvU++3IUGIqRAaWjHHFp7g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795396659;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=VImCsGSXzjoMSePXdbr+fMI5jhhaz7O4wSuFYMQmz0c=;
+	b=odhIbIMcsxxEqZoQScSXbcudlTluDt0kO3guKXcl8v2rZo12MNMuF38rDbHI8DGFUvBt
+	 6GiHfDgv8YuPW3Hu85MbwmYYBDPJXKq3z60gsjQePyELKVN6IXtspuP0lkfu+jExyfyH1
+	 ocIUaRXq3k35umy6pvuhuLJ423kTRHr8zHXnaPn7/UG5IDP/CU8d+Z3HVya/yIj9flMM3
+	 00JNMFQOzowRLScIP3xjpTpz4F//MXq6GMI/gfl7dk3qesCesY7zhs7NBHtW8IqoR0lei
+	 QP1V0F+AxZ6JxESU/Lo44Uy36XbMbCXNaEUYjWihAqz6tH7uG2Jf29YPgjz47WNGL8Q==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 90D8F1F000C0;
+	Mon, 23 Nov 2026 01:17:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795396659;
+	bh=VImCsGSXzjoMSePXdbr+fMI5jhhaz7O4wSuFYMQmz0c=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=FZPciLk0UXg4sson+hAN/BkrBtF+pxozh91yK4PiGCH7N8C1+ekxk8qVwKUiexvk5
+	 lpeiVPz5bmgwj8gNhcBhmlIVvc3cC4Jfd9apvRrXrF4h7BBbSULcEWTC8kDyghO4hG
+	 oouySQGfv15fDqR1f9DbTKsqtHFXda61Q5lhRLDg/EBKcJPtYz+TvXS4vk8T/BDLN9
+	 k1ExnO+Lh2OeSBt7BRv9VIFFS4yJoYEyGSRMrQYqd9jV1l3QkJVm2XF86mNL5s9ExA
+	 zeEXo09W0XpMTpMZsL9XITLPAL///XacsexhBiTXYpvNwxNAyDGiXxk2lVeOEUuQqD
+	 C/xM4GqcgM7AQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id E2C254C29D;
+	Mon, 23 Nov 2026 01:17:37 +0000 (UTC)
+From: Suyuan Wang via B4 Relay <devnull+shyckless.gmail.com@kernel.org>
+Subject: [PATCH v2 0/2] dmaengine: Kill channel tasklets in remove again
+Date: Mon, 23 Nov 2026 01:17:36 +0000
+Message-Id: <20261123-dma-chancnt-v2-0-241b1672883e@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/rockchip: dsi: enable RK3506 PHY data lanes in GRF
-To: ZhuXiangyu <1194781887@qq.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Andy Yan <andyshrk@163.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <tencent_C4C715C962613597F98212938F8940633306@qq.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <tencent_C4C715C962613597F98212938F8940633306@qq.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa205f6674d03a7kunme2eb5a24b4b784
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDQkNCVh9OSUMZQkJCGBgfHVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=XfVFItQf3zmtTWT5dWXxy2+IBA8SoihxLBFhsNLWJcR0kd+7H5NxCN2UyNu0YbRlNkuiCF9rw4bezgW1BndNvr62M/1nDpAcngQmjKtky4966raCiSNBJY9/C7Wgv5JxF8h18TGc6sW32EFQM/dv5qqsrGHFw04XfoWBG7cS2Is=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=0Gp1eyUb1TRq0HLGTC1lCi4kXREArXMUBnkCXCJmk+g=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_171301_291914_9AAE4505 
-X-CRM114-Status: GOOD (  16.28  )
-X-Spam-Score: -2.1 (--)
+X-B4-Tracking: v=1; b=H4sIADCUA2sC/yXM0QpAMBTG8VfRubayqUNeRS5mOzjKaBspeXfD5
+ a+v739BIM8UoMku8HRw4NUlqDwDM2k3kmCbDKpQKKUqhV20eBfjokDEuqoNUiktpMfmaeDzq7X
+ d77D3M5n4JuC+H4UEbkFvAAAA
+X-Change-ID: 20261123-dma-chancnt-666878c6e31d
+To: ludovic.desroches@microchip.com, vkoul@kernel.org
+Cc: Frank.Li@kernel.org, dave.jiang@intel.com, linux-kernel@vger.kernel.org, 
+ andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org, 
+ allen.lkml@gmail.com, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795396657; l=1886;
+ i=shyckless@gmail.com; s=default; h=from:subject:message-id;
+ bh=M5gstoa5unIW6ysGcN08lUHOdZ09B3VvbPuhdhXnsik=;
+ b=LQs0pOspOgbUIO95yvZexbf4sS3I8++eHStsRQwYgm2jYqaZHEriAT7k94R/Nd/SEVvR1qzKk
+ Ztf/Alz9L51DCtlvbeNuOaqeczz3adTd1LScgJyiWWTK6z3k5yjeTHp
+X-Developer-Key: i=shyckless@gmail.com; a=ed25519;
+ pk=pMtccVGiWES3bV+7YBFuBclkvq2n2HBHQ5azaBrK2lY=
+X-Endpoint-Received: by B4 Relay for shyckless@gmail.com/default with
+ auth_id=1498
+X-Original-From: Suyuan Wang <shyckless@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,68 +109,54 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: shyckless@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/22/2026 1:10 AM, ZhuXiangyu wrote:
-> rk3506_chip_data currently only clears the turnaround, force-rx, and
-> force-tx-stop fields in RK3506_SYS_GRF_SOC_CON6. As a result, the DSI
-> PHY data lanes remain disabled unless the bootloader happens to enable
-> them.
-> 
-> Set RK3506_DSI_PHY_ENABLE_LANE0 and RK3506_DSI_PHY_ENABLE_LANE1 in
-> lanecfg1 so the data lanes are reliably enabled by the driver.
-> 
-> Tested on an RK3506B board: the panel receives the low-power init
-> sequence and the framebuffer console displays properly.
-> 
-> Fixes: cabeacc7eadc ("drm/rockchip: dsi: Add support for rk3506")
-> Signed-off-by: Xiangyu Zhu <1194781887@qq.com>
-> ---
-> Changes in v2:
-> - Split out from the combined drm/phy patch into a standalone drm
->   subsystem patch per Heiko's review.
-> - Limit recipients to drm and Rockchip maintainers/lists.
-> - Fix Signed-off-by author name formatting.
-> 
->  drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-> index 30d6f83c..116cc140 100644
-> --- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-> @@ -199,6 +199,8 @@
->  
->  #define RK3506_SYS_GRF_SOC_CON6		0x0018
->  #define RK3506_DSI_FORCETXSTOPMODE	(0xf << 4)
-> +#define RK3506_DSI_PHY_ENABLE_LANE1	BIT(9)
-> +#define RK3506_DSI_PHY_ENABLE_LANE0	BIT(8)
->  #define RK3506_DSI_TURNDISABLE		BIT(2)
->  #define RK3506_DSI_FORCERXMODE		BIT(0)
->  
-> @@ -1727,7 +1729,9 @@ static const struct rockchip_dw_dsi_chip_data rk3506_chip_data[] = {
->  		.lanecfg1_grf_reg = RK3506_SYS_GRF_SOC_CON6,
->  		.lanecfg1 = (FIELD_PREP_WM16_CONST(RK3506_DSI_TURNDISABLE, 0) |
->  			     FIELD_PREP_WM16_CONST(RK3506_DSI_FORCERXMODE, 0) |
-> -			     FIELD_PREP_WM16_CONST(RK3506_DSI_FORCETXSTOPMODE, 0)),
-> +			     FIELD_PREP_WM16_CONST(RK3506_DSI_FORCETXSTOPMODE, 0) |
-> +			     FIELD_PREP_WM16_CONST(RK3506_DSI_PHY_ENABLE_LANE0, 1) |
-> +			     FIELD_PREP_WM16_CONST(RK3506_DSI_PHY_ENABLE_LANE1, 1)),
->  		.max_data_lanes = 2,
->  		.max_bit_rate_per_lane = 1500000000UL,
->  		.dphy_get_timing = dw_mipi_dsi_phy_px30_get_timing,
+at_xdmac and idma64 kill their channel tasklets in remove() with a loop
+over dma.chancnt after dma_async_device_unregister(). Since commit
+e81274cd6b52, dma_async_device_unregister() unregisters each channel
+and decrements dma.chancnt for it, so chancnt is 0 when the loops run,
+they do nothing, and a tasklet scheduled by an interrupt can run after
+the devm-allocated driver data is gone.
 
-Reviewed-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+For at_xdmac, just making the loop run again is not enough, as the
+Sashiko review of v1 pointed out: the tasklets and
+at_xdmac_free_chan_resources() would then run after the channel
+devices are freed and the clock is disabled. v2 moves the IRQ, tasklet
+and channel cleanup in front of dma_async_device_unregister() and
+clk_disable_unprepare() instead. idma64 has no clock to disable and its
+virt-dma tasklet uses neither the registers nor the channel device, so
+patch 2 is unchanged.
 
--- 
-Best, 
-Chaoyi
+These loops are also touched by Allen's "dmaengine: migrate channel
+tasklets to WQ_BH" series (v4, 01/33 and 04/33). The two fixes don't
+depend on that series. Whichever goes in second needs a trivial rebase.
+
+Found with a static analysis tool and checked by hand. Compile tested
+on x86_64 with COMPILE_TEST (W=1); I don't have the hardware.
+
+Changes in v2:
+- 1/2: move free_irq(), the tasklet kills and the channel cleanup before
+  dma_async_device_unregister() and clk_disable_unprepare(), instead of
+  saving chancnt; add the Fixes tag for the original driver (Sashiko).
+- 2/2: unchanged.
+
+v1: https://lore.kernel.org/all/20261123-dma-chancnt-v1-0-f0eea0a4bb63@gmail.com/
+---
+Suyuan Wang (2):
+      dmaengine: at_xdmac: Kill the channel tasklets before unregistering
+      dmaengine: idma64: Kill the channel tasklets in remove again
+
+ drivers/dma/at_xdmac.c | 19 ++++++++++++-------
+ drivers/dma/idma64.c   |  4 +++-
+ 2 files changed, 15 insertions(+), 8 deletions(-)
+
 
 
