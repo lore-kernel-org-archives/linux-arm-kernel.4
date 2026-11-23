@@ -2,86 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3315606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2B3606A327
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=chzpZb2M;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=p4+P60lH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RcCCxiCj;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=CyB7N4Z8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=SIbteC45At9e/phHEDZccWeZUiRHWTYBk94KBVq+cmo=; b=chzpZb2MsTzqw6mwjpKRAeXKsk
-	kPPL0vNJeqhhTQFnd1iU8/BdYOTP+mqHwy6vNwIoPDYcEXjkJkBzHXmWQ5XnhwFSlSWe8nXkiB3Ll
-	TKWw0qzILVOyemfNePU2xPh4hevXu5k6I/TM/DmraPfppy+xfmgt4KclJQlSKhvmhRZ6Vi8CTwzBP
-	6LGLzdJXR4bA8kDP67EfeIhjPdhhemhcv46tajQhIwBqagKX4X5RdRn3ZfxRY+Y1qwZEU2hpRtsg/
-	s5HVfP0UNzZnoT/ADbiLHi1W7Q3z1+Oco9S+kUhkLC1YOS6wuAiG0fGEuyvSwW4Ccdfbwc2ll/cmR
-	HQU26dsw==;
+	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=stSeoWTVSoG7vClTM34jNRVTmfdv9ae2mpsLHUuBopA=; b=RcCCxiCjf2tkcm
+	519hjXVlZcKy+J2SUR0lEpD+VzVUOaQkq6GWFDR4+3wX64LQ05NjSwJGe1f5GrYrHFIAM2KKC4qQe
+	I1ikrMEvwQlHu//4G7Us7UMg5SkWy+ZLA6t1rJaPOGSl7UrvRK3DnOaZlWbEeICOW1S6MOtlOpG0g
+	cLFys/I1hZvQS9v9qGdKfKZI/SMkvJT/Fr25gW2NGr3oPqMXxtsWpvGhoGLfqcVvnMRX5BZdVoI15
+	10GoozNBkcEgr364qC+aToiTnT4mkwK4vt+mNctjT61q3hNOApsLcnWrgYZMdqSR5Lhxow9WqFALN
+	fEPJ3c9flZWj8oNSYN2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVY49-00000004P1c-22Ih;
-	Mon, 23 Nov 2026 17:42:57 +0000
-Received: from mail-oi1-x22c.google.com ([2607:f8b0:4864:20::22c])
+	id 1xVY4A-00000004P2b-2JNt;
+	Mon, 23 Nov 2026 17:42:59 +0000
+Received: from mail-oi1-x234.google.com ([2607:f8b0:4864:20::234])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVY3b-00000004OrN-27pP
+	id 1xVY41-00000004Ozh-0W0Y
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:42:25 +0000
-Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-56431524c22so1447682b6e.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 09:42:22 -0800 (PST)
+	Mon, 23 Nov 2026 17:42:53 +0000
+Received: by mail-oi1-x234.google.com with SMTP id 5614622812f47-53c156ba662so1990372b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 09:42:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795455742; x=1796060542; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=SIbteC45At9e/phHEDZccWeZUiRHWTYBk94KBVq+cmo=;
-        b=p4+P60lHZzGrk6KboIcRO4fuHLGj7/aUoDRPRUM91u5rdg51BkRbPEPFsttgYxiWLV
-         Wiqx41Wn5H0LT95ivQMYQwAYCXpbstpHK8EHkPOQVoYxwDM0O0pZT5NfPyL1yU/YEXVc
-         HPn0WMbUwrd2Vp2IZJlwQ2Hxi4QOAzwLNPMgf1TneO1xCHlMsES7zoVropseXCCNA4Et
-         imwNwXutN78M4oTx9Usk659OQC5eoTGb3/hP3wcgRL1MHcOKCptP8iebnrWCJYSS+e6O
-         HaoXkXQsqQmuBQeG57LBN5LFqRMeTiHUyW0ri6Uuay5jiq441kKPgrx15PDcYvqvuPjR
-         bbJA==
+        d=gmail.com; s=20260707; t=1795455768; x=1796060568; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=stSeoWTVSoG7vClTM34jNRVTmfdv9ae2mpsLHUuBopA=;
+        b=CyB7N4Z8PNvZKk0guqzW9W4L6iUXLNr73jz8/GsMK5D6v+Pc06Qlz0dhSrD4bg3i1s
+         KsWeNrU60JIVZV0ZkXkBnqSuR1tSKvtc4sV5S5T/RA/j/P49gGhJt9k9iA4ome4ME9n+
+         sG3yKgB9GlR3IQtJIJqHR76BAEPuLSuZ/ecPtL6i7MH7aLNdKvQHgXaBGzUXUJZ2SDFG
+         rCYL+9aQd5XD5zGMNnMao6Ots7fWl8FpGvwDTgM25B6BW8v1phqERUituhjilXqZrwdV
+         QfTRp4T+oxut7fhEPVy4hJHq8GoOghdrsX11VG74iNxpKwW6iKWlRLH55k0bYDii4cQ/
+         lBgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795455742; x=1796060542;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=SIbteC45At9e/phHEDZccWeZUiRHWTYBk94KBVq+cmo=;
-        b=VauaNtpT+npDvX9pNKhGxZLpAuDcTScaaZV08lcktxOPnAxX9DTLP39UnV1IhCqG4d
-         RekFpa0jMNLFLxbNY90ChfJ45gk0Y3NwM56rBA5CmJ2z9HItWEdYDCudbtoCkASA663e
-         wEQeW0WQhVUoTOj62WUJC5Ml+FtQlOvC2EGm0GnRsf22ZVwQs0gzP3+Fy4SZrMonesfD
-         kRVBYIf6BhiGu51CORgiOgLOgFhSf2Y8urXpLyrLLe0SF886Fll9wfTfCR9ejmwGYjgk
-         NnRbvrx+5QbILt3spT/MqN/5pnjhW5uYmtZ7fr0F/JbLzgQmS1MOKaV3ckqqZIkgpa/5
-         aPIQ==
-X-Forwarded-Encrypted: i=1; AL+hErG+3vQltrzB9MLvevLK/Z2bCUCBsS+PanZxBWDUMV8o27Owc2bYTv9BcF5HUYXHiUUe6nuAHlkvEyv1FprRLc9L@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Q4Piwsm56ezP9fAzt8ivUJnsjz+SX59nkED38SHwSlKs+c/gF
-	wmUOlB0Cd/BRcbXujMxM1M/MdqdFYaXssPdKXTGu9+ApR6CgBltS9i70
-X-Gm-Gg: AZFdTZcJhr0rasyJHn/erz3QD8M55G5O+EqfX0JJjJide6l6BFq08e5tXKdTgFI+ms/
-	tbVDtGlvZ1sVgn7AX2HgVI5TytClIvzbKssP+hEZVKf+Qw0gyF4rherOwr7fQeOmEbdydXtaJEr
-	1wOcJ4uKEMQQVw3FqUxSKtCTkvWe6bQg11QNqelor9ivMBTlgc0XFPW9D4e+twIuoDetBNGd14D
-	QMtjFJ5WBB4Eb2m+0JKhSlk8WViqTlcWAbKPPkmjkkkE0IKE1kF7AgOeCZfTHw3swmgI7yBdwjn
-	TzOjC3NO4U1ja8MGowSIfoizgF3F4lJMD/Ce6WNcwMdhb9zkjX6md1fxA+NjixSgs9uPjapUGc+
-	QE+XLrJjfdnubpac7VmGri9sveX4457wQkgay7clWeBJ5ZRFc0xWzzTCa4uvyzogQ4QgdTTPgAO
-	AiBrAoMawTlBRZDQpiK6vEj7FEXGUmxRDUe4oQmzvSSGrwvhnPEDZ21WsO3IXNLeWUzq3kllX+m
-	h+ipp/SUKrLh6VWLbgDkCihLxRNZ5itr1pAl0QCIFa6PRRvT7AapRr0FwoxxF3eOE66gh8+FwMF
-	dKTjxY4rUkaMg15fyIYojG6uBfiriOzf2pLt430A1MLrc38i9PJcJrcKNeGS0e8OrF+JkxMNo2D
-	4mx01pQ==
-X-Received: by 2002:a05:6808:1908:b0:571:b166:3d76 with SMTP id 5614622812f47-57a0ab2460amr14209938b6e.29.1795455741608;
-        Mon, 23 Nov 2026 09:42:21 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795455768; x=1796060568;
+        h=content-transfer-encoding:mime-version:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=stSeoWTVSoG7vClTM34jNRVTmfdv9ae2mpsLHUuBopA=;
+        b=RtBIIqj4hL2IsnG3WJTXwqId1vbxM/xGbKLW5QiMTXgnmkfxC9Dti+oXhswbAUKhoY
+         hDQcriYpT/YhoxRamHhoo0q/ms95RfheHM1ytKmbo2alMJRgS2Wk07JTcplSLAYAchW8
+         URtMggd5HS8nt7GHqFDTS6JnI/jV90aE3Mg3cN11Nuabdp4IWYnFeUuWE2RvnnWH79Gt
+         hHRC9SuJo7T1WOdMPOozRSFNv6i0Zmj+GqjIA+DnyTACEGlgyqc+bA6hahpqiUMkstaU
+         WIYYulyN53AfbL5xfIQRKQxfIRAgOULQht3ccuK2Qs2YHukwtvNEIKI7JnMDlKfZNjVT
+         /Mpg==
+X-Forwarded-Encrypted: i=1; AL+hErHdM7A65NvsXY+8yWLcXnd1p52mN0Kiw56W9g8U7ayVDwWYkuWH0YKOKcMRrrUtin/skbkTeeSEJ6Iqo3B2GQuf@lists.infradead.org
+X-Gm-Message-State: APuU4Z9wDkFf/EieGbD/02/8+NiC78XKPWJFhzzySaMeY/fJaKIVQBd0
+	xfqjWGrXlberzSi4i7OEOijfu6OhksEfeZ2l1IyHayOHSO2DB1gupk0T
+X-Gm-Gg: AZFdTZcETa3pQzVQ/3P7olQeVWtgG41jYSwRm9cne30HZDk4aIBWkBKi28Flch6H1Mh
+	WnGrBzwfBvn//KtzyjUv0TSVsD61pBnC77rodXV186Wyiabq3wJCJ5IxlTttFBiKzdt0hyeal3e
+	To1ML2ORsmDle8iUDeMmFG+I/I6r5zSoCboxIsPLTLVIlyrTSQSW3bLZgfHayTyJMo8UYsqGiSv
+	Uq+QhTwDcImJ7G9n2Ln3fZ/CBX8slNoUJyn3VAR6z4Bvi249B3lprX9IzKV8SL38n8aFU8JxKXR
+	TFSSKYqXebdz9lidy3eE6s/+0yDHLTXfuKNtfdD8JD+hbC4BenFBH0R4KXvy6+tl3Y3b9DWZs57
+	90cd376elD9W1m4VlX9cpmHt8uRM6oUYtXVI7RGJBwow0OGEvp9fGHnQ0mhswuCQZ0jPQd3D69i
+	zDYFPvbFrlh94DcpS4bPZlulmzA/witCiL1HifjqhXKs+IJo/n0CZljxYYo0tv73eTKgItb6T0J
+	lm3G7NtOLTfsRoIFvPmKu7Ht+Gg0HYzHTu4NLoaofKV7I7a23mAoDRZJeLWUw7Lq1Fu87tyVm6W
+	8uB9pzLJ6OZ2LFNkIldadZ9kzP0BdE/KWr/77RsIDsPsWHNVWQqQBGX2gcBB85ADiakab4nSH55
+	vS7vf
+X-Received: by 2002:a05:6809:747:20b0:572:8a:59db with SMTP id 5614622812f47-57a742be1e3mr7669480b6e.25.1795455767809;
+        Mon, 23 Nov 2026 09:42:47 -0800 (PST)
 Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bc5b07d57csm11240123fac.1.2026.11.23.09.42.19
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a3485e3ecsm8959220b6e.9.2026.11.23.09.42.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 09:42:20 -0800 (PST)
+        Mon, 23 Nov 2026 09:42:47 -0800 (PST)
 From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: andre.przywara@arm.com,
-	robh@kernel.org,
+To: andre.przywara@arm.com
+Cc: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	wens@kernel.org,
 	jernej.skrabec@gmail.com,
-	samuel@sholland.org
-Cc: Maxime Ripard <mripard@kernel.org>,
+	samuel@sholland.org,
+	Maxime Ripard <mripard@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev,
@@ -93,17 +94,19 @@ Cc: Maxime Ripard <mripard@kernel.org>,
 	Alexander Sverdlin <alex@sverdlin.org>,
 	Jun Yan <jerrysteve1101@gmail.com>,
 	Lukas Schmid <lukas.schmid@netcube.li>
-Subject: [PATCH v5 0/3] arm64: dts: allwinner: add A733/Cubie A7S support
-Date: Mon, 23 Nov 2026 12:42:18 -0500
-Message-ID: <20261121-a733-cubie-a7s-dt-v5-0@gmail.com>
+Subject: Re: [PATCH v4 2/3] arm64: dts: allwinner: add A733 SoC description
+Date: Mon, 23 Nov 2026 12:42:45 -0500
+Message-ID: <20261121-a733-dt-v4-2-reply@gmail.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261121112312.75ba7299@ryzen.lan>
+References: <cover.1795034153.git.enzo.adriano.code@gmail.com> <dbfb7c5ea8b0ade2d48ef8e5cfd0b9e5a9946483.1795034153.git.enzo.adriano.code@gmail.com> <20261121112312.75ba7299@ryzen.lan>
+Content-Type: text/plain; charset="us-ascii"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_094223_557336_8C9BD2B4 
-X-CRM114-Status: UNSURE (   8.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261123_094252_329841_69EB5973 
+X-CRM114-Status: GOOD (  13.69  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,85 +118,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add initial Allwinner A733 and Radxa Cubie A7S device trees for the
-console, PMIC, microSD, LEDs and EEPROM. The Cubie A7A compatible is
-for Andre Przywara's forthcoming DTS:
-https://lore.kernel.org/r/20261122004008.0ee8e16d@ryzen.lan
+> So what's the purpose of this cpu-map really if it's all flat?
+> I wonder what the term "cluster" should really mean, here? I mean there
+> are surely different types of cores connected, with separate frequency
+> and power domains. So the cpu-map should not be flat, but describe that.
+> Yes, they all use the same MPIDR affinity level, and the manual talks
+> of "cluster0" only, but I wonder if this is not what this node here is
+> about.
+> Looks like the RK3588 also uses the same affinity level for all cores,
+> but has a differentiated cpu-map.
 
-Base: sunxi/for-next (2ba07dfcd45bb6ec414e68213620490548fd5aec).
-Previous version:
-https://lore.kernel.org/r/cover.1795034153.git.enzo.adriano.code@gmail.com
+The map records the topology in the A733 User Manual v1.00,
+section 5.1.2, figure 5-1. The six A55s and two A76s sit in one
+DynamIQ unit and share L3. The BSP's separate PLLs, CPU frequency
+policies and DCDC5/DCDC3 supplies (A7S schematic sheet 4) describe
+two DVFS groups. Mainline can describe those with the clocks,
+separate opp-shared tables and CPU supplies.
 
-Changes in v5:
-- 1/3: Add the Cubie A7A compatible.
-- 2/3: Keep one DynamIQ cluster, rename osc to hosc and add I2C0 pins.
-- 3/3: Add LEDs and EEPROM, simplify MMC0, describe the 3.3 V PF path,
-  and revise the PMIC rail descriptions, bounds and always-on flags.
+RK3588 and GS101 both use 4+2+2 maps. MediaTek changed MT8195,
+MT8192 and MT8186 to one cluster each. The MT8195 patch says the
+big and little CPUs are "in one cluster: fix the CPU map to reflect
+that." The other two patches make the same point for their SoCs.
 
-The hosc label also affects Vinicius's A7Z and Alastair's U-Boot import:
-https://lore.kernel.org/r/20261111134919.90264-3-vinicius.eduardo.pedrosa@gmail.com
-https://lore.kernel.org/r/20261113023236.569054-26-alastair@d-silva.org
+https://lore.kernel.org/r/20230126103526.417039-2-angelogioacchino.delregno@collabora.com
+https://lore.kernel.org/r/20230126103526.417039-3-angelogioacchino.delregno@collabora.com
+https://lore.kernel.org/r/20230126103526.417039-4-angelogioacchino.delregno@collabora.com
 
-Runtime dependencies in application order:
-[1] AXP318W PMIC v8
-https://lore.kernel.org/r/20260910-axp318-regulator-v8-0-e906a61a7f3d@baylibre.com
-[2] Pinctrl IRQ-bank v3
-https://lore.kernel.org/r/20261025142412.112216-1-pmazzini@gmail.com
-[3] A733 8250_dw v2, patches 1-4
-https://lore.kernel.org/r/cover.1792439398.git.vinicius.eduardo.pedrosa@gmail.com
-[4] Firmware-clock v2 for vendor-firmware warm reboot
-https://lore.kernel.org/r/20261112-a733-fwclk-v2@gmail.com
-[5] Pinctrl voltage-mode v3
-https://lore.kernel.org/r/20261109-a733-pinctrl-v3@gmail.com
+I kept one cluster in v5. Do you still prefer a 6+2 split?
 
-The A7S DTB and schema checks use [1] 3/5, [2] 2/3 and [3] 3/4.
-The runtime build uses context adjustments for [1] 5/5 and [5]
-after the regulator allocation and IRQ-bank changes.
-
-Validation: clean application of the mail patches, arm64 defconfig
-Image, arm/sunxi.yaml binding check and warning-free A7S
-W=2 CHECK_DTBS=y.
-
-On a Cubie A7S, a RAM boot with vendor firmware, this DTB and the runtime
-dependencies above reached a responsive console and probed the PMIC.
-Pre-boot U-Boot selector reads put every bounded rail within its bounds;
-none changed at registration (sysfs at about 1 and 91 seconds, and no
-regulator "Bringing" messages). At about 32 seconds unused-regulator
-cleanup disabled DCDC4, BLDO1, BLDO2 and CLDO2; DCDC9, SWOUT1 and
-CLDO5 stayed enabled through their users, and the console remained
-responsive. MMC0 enumerated the card in High Speed, with a 50 MHz clock
-tree reading, and completed a 4 MiB read; its data was not verified.
-Both LEDs registered: green:power was on with trigger none, blue:status
-was off at sampling with heartbeat selected. AT24 registered the 2 KiB
-EEPROM with its WP GPIO; topology sysfs showed one cluster. A warm
-reboot returned to vendor firmware. Not tested: early and repeatable MMC
-reads, MMC ios, SD writes, hotplug and 1.8 V switching; EEPROM contents,
-writes and write protection; visible LED operation; physical rail voltages
-and CPU/cache topology; PMU counting, EL2 interrupts, ITS/MSI, stimulated
-PMIC/NMI interrupts, suspend, power-off and other boards.
-
----
-Enzo Adriano (3):
-  dt-bindings: arm: sunxi: document Radxa Cubie A7A and A7S
-  arm64: dts: allwinner: add A733 SoC description
-  arm64: dts: allwinner: add Radxa Cubie A7S board
-
- Documentation/devicetree/bindings/arm/sunxi.yaml  |  10 +
- arch/arm64/boot/dts/allwinner/Makefile            |   1 +
- .../boot/dts/allwinner/sun60i-a733-cubie-a7s.dts  | 331 ++++++++++
- arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi    | 663 ++++++++++++++++++++
- 4 files changed, 1005 insertions(+)
-
-base-commit: 2ba07dfcd45bb6ec414e68213620490548fd5aec
--- 
-2.53.0
-
+Enzo
 
