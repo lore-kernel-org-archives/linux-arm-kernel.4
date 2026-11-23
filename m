@@ -2,77 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577A8606A680
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51299606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t9k97Hxw;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=KqbAKYDO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QlpU0BjA;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F5ijIkK3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mjm0GDmjR8K/Ju3MP4eLIfUNOTpU1ZPQQpSc56ZDZBU=; b=t9k97HxwboEPaeqhYYZoxk2ZsM
-	HgeC3/lobj7gRu2okZ8qJDHKFUiB4z550G2FEpWNKbwjMqVGqnMzCfQWmHB32+lnakO0uVwG4UXAd
-	UpxTxeZB8SjJooE7bD4xe3G84BxMvSZJ0jHr/WoTxCKFi1NYKUBL3K4aq5YI4Eb7hsW/LvSquufZX
-	qIwnVLfXkWiKKxVTfYMLLma6yq0/qcjndmiqXLPHmGXd/HavS6GCBDoAgQeVviMCw/jbvk5NL9i60
-	GC81GU+4B4wCM5+5a5wukK0mtp/T2+lOsbvcC/2LJz0h5oz+hqbHBmMzwfNPYUO1JfvioLXMVvu4Z
-	Qyr2rOSA==;
+	bh=8tMXBNHyUHHfUggSCwq/LV8i3JWEVeKo4tKMHJBx7DQ=; b=QlpU0BjAId7Xdedi30GMRRm0n7
+	HEYIUwzsDTTE54h1XL2zChR7M3XQixu0INPwejKy8aitzh+tGRssMrjPXgpXkcIrnbeS+5bTwPDGZ
+	QbN3HT+3Q5v26AAu6aypvid1G0T4wrbBk6wkb0Uo2fRC/gH7M0+UZK3RkbQMojza+sQ3AxmU2xNpO
+	FgHJxsSaQDN2sr0jy25SGQnofaOQzM6mn1SOh8FXN721nTS25gwYhmcTsyRqUB1Jgkl1+Ev8wsrRb
+	8xAJop8BjfirRequzGIvBq0G8REgOvjvhD0MLhkPlqZ9gOp4E4Wd8x4HIPEQTBhJaWxvx7iRwJRNG
+	LJsxoBsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRab-0000000325g-2fkY;
-	Mon, 23 Nov 2026 10:48:01 +0000
-Received: from out-50.mta0.migadu.com ([2001:41d0:1004:224b::32] helo=mta0.migadu.com)
+	id 1xVRaq-000000032DD-3ysT;
+	Mon, 23 Nov 2026 10:48:16 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRaY-00000003242-37DI
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:48:00 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=i4faPMWfnpUZpn5ks85jG3d8Yrrr4l90SRdH3e+stJs=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795430875; v=1; x=1796035675;
- b=KqbAKYDOCpEu4PRDlWHztrLxpUtmCLF4De5W6iNp82LMYoLuDiTWO/nPVKpiM70x5L8WWI6A
- Q0To4DABf/P9GPVq42SSrdL5snwHJEz4Z91GsqVyTjOnagBi2mTefqlOhkjz2sELB83CsiKxgGQ
- t/I5FkUK6h74DoveYflnemyU=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 39bae28fe0f1a696;
-	Mon, 23 Nov 2026 10:47:55 +0000
-X-Mizu-Trace-ID: 39bae28fe0f1a696
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5be58ad9600so9577e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 02:47:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFGF8tIc52r69s2piSRuo2Ksk6IZf8pMx1d69Zu8Nt9SmxlRVZbm9aBpwQRs4VdyflNAZvxQAY2Ieh86yoq3Fg2@lists.infradead.org
-X-Gm-Message-State: APuU4Z+BiPdcpwiyG5Ppo5w2md1fKs0k6H8Vx5HcdEmhvihkSXHbzuyf
-	95ntBXjwccBTvZqmQowtVp+1C6CHg4DsAXShwoCWMnAkIQ1zGA9O5QS7hexm8S/jkZOayORD0KD
-	6iGvUGJbx3hiwAmXtOS54AO+K/3fcuLwuvLxbAxD3
-X-Received: by 2002:a05:6512:b9e:b0:5c1:5209:5a44 with SMTP id
- 2adb3069b0e04-5c1c8239441mr192922e87.4.1795430874687; Mon, 23 Nov 2026
- 02:47:54 -0800 (PST)
+	id 1xVRaq-000000032CI-0SUY;
+	Mon, 23 Nov 2026 10:48:16 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2FEF1602BA;
+	Mon, 23 Nov 2026 10:48:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E53FE1F0093C;
+	Mon, 23 Nov 2026 10:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795430894;
+	bh=8tMXBNHyUHHfUggSCwq/LV8i3JWEVeKo4tKMHJBx7DQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=F5ijIkK3qmhTNAbyoDXS3+JKuB540448nfPqbiEzlHCJrpXwFadSY+79HtYMLG2hq
+	 +4jt3eX5cWzHbPFRwlezbVbAnwpkpoYll421fXLUUIPdQT/D2vrbGJi4BXhZ0sdlMr
+	 nqxq4kTzKP7/B9hUGMz7Tg+gAVrG4WMaA38iSFgla7CnZo/eAmBKWavTEqw+0qboL3
+	 t2JmEMJD7fpWHWo5r5BByuQn8SDuDRhdvkkC4wsXxdR1raN/dUVnZELLTHV4JPPgVf
+	 S/lTehUZ+k+uGhS9CUE9h/rjJp9eo8+8DcwrEcTzTW9rMXiW74PerA5KOMMDjc5KUm
+	 E6W9hJYr1XHaA==
+Date: Mon, 23 Nov 2026 11:48:11 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Igor Velkov <iav@iav.lv>
+Cc: John Stultz <jstultz@google.com>, Thomas Gleixner <tglx@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Miroslav Lichvar <mlichvar@redhat.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/8] dt-bindings: rtc: Add linux,wakeup-states
+Message-ID: <20261123-literate-significant-wildcat-dcfffa@quoll>
+References: <20261116-b4-alarmtimer-rtc-priority-v2-0-b2c69721e489@iav.lv>
+ <20261116-b4-alarmtimer-rtc-priority-v2-6-b2c69721e489@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123075219.369042-1-fuad.tabba@linux.dev> <20261123075219.369042-7-fuad.tabba@linux.dev>
- <20261123104553.20959-F-seiden@linux.ibm.com>
-In-Reply-To: <20261123104553.20959-F-seiden@linux.ibm.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Mon, 23 Nov 2026 10:47:18 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTwSPZVSaHU9ABkLWDo3ic5cnK+qKAvHwFXkL-fo=0Sq1w@mail.gmail.com>
-X-Gm-Features: Aa3M54oL2BJio-i_jjl1UatQuxbFZV0PJ4u8kL-K8TbxzfcAij-VPrnefcylYno
-Message-ID: <CA+EHjTwSPZVSaHU9ABkLWDo3ic5cnK+qKAvHwFXkL-fo=0Sq1w@mail.gmail.com>
-Subject: Re: [PATCH 6/9] arm64: sysreg: Reject an enum value not written at
- its field's width
-To: Steffen Eiden <seiden@linux.ibm.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Sascha Bischoff <Sascha.Bischoff@arm.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_024758_987743_EB598E14 
-X-CRM114-Status: GOOD (  19.86  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261116-b4-alarmtimer-rtc-priority-v2-6-b2c69721e489@iav.lv>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,39 +81,69 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Steffen,
+On Mon, Nov 16, 2026 at 12:25:05AM +0000, Igor Velkov wrote:
+> A board can have more than one RTC with an alarm that wakes the system,
+> for example an I2C RTC next to an RTC in the PMIC or the SoC firmware.
+> Which of them wakes the system depends on the sleep state and on the
+> board's firmware: amlogic,meson-vrtc is a register the firmware reads
+> when the application processors suspend, so it wakes the system from
+> deep sleep only, and whether an I2C RTC wakes the system from deep
+> sleep depends on the firmware handling its interrupt line.
+> 
+> Add linux,wakeup-states to describe this per RTC: the suspend states an
+> alarm of the RTC wakes the system from, named as in /sys/power/mem_sleep,
+> or none for an RTC whose alarm wakes the system from no suspend state.
+> 
+> List it in nxp,pcf8563.yaml and amlogic,meson-vrtc.yaml, which do not
+> allow unlisted properties.
+> 
+> Signed-off-by: Igor Velkov <iav@iav.lv>
+> ---
+>  .../devicetree/bindings/rtc/amlogic,meson-vrtc.yaml     |  2 ++
+>  Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml  |  2 ++
+>  Documentation/devicetree/bindings/rtc/rtc.yaml          | 17 +++++++++++++++++
+>  3 files changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+> index a89865fa676a..51cce4b2a7ff 100644
+> --- a/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/amlogic,meson-vrtc.yaml
+> @@ -30,6 +30,8 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  linux,wakeup-states: true
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+> index 22909a96123e..e464432e4690 100644
+> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8563.yaml
+> @@ -32,6 +32,8 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  linux,wakeup-states: true
+> +
+>    start-year: true
+>    wakeup-source: true
+>  
+> diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> index e46d50b1063e..54f41858dda4 100644
+> --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> @@ -26,6 +26,23 @@ properties:
+>        0: not chargeable
+>        1: chargeable
+>  
+> +  linux,wakeup-states:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
 
-On Mon, 23 Nov 2026 at 10:45, Steffen Eiden <seiden@linux.ibm.com> wrote:
->
-> On Mon, Nov 23, 2026 at 07:52:16AM +0000, Fuad Tabba wrote:
-> > The generator emits each enum value as written and doesn't check it
-> > against the width of its field, so a value wider than the field defines
-> > a constant the field can't hold. The duplicate value check compares the
-> > strings as written, so 0b01 and 0b001 in the same field pass as distinct
-> > values, and the rule's pattern, an unanchored /0b[01]+/, accepts 0b12
-> > too.
-> >
-> > Require each value to be 0b followed by exactly as many binary digits as
-> > its field has bits. The one enum written otherwise is TS, a two-bit
-> > field of TRFCR_EL1 and TRFCR_EL2 whose values have four digits. Write
-> > them with two digits, which leaves the numbers unchanged.
-> >
-> > Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
-> > ---
-> >  arch/arm64/tools/gen-sysreg.awk |  3 +++
-> >  arch/arm64/tools/sysreg         | 14 +++++++-------
-> >  2 files changed, 10 insertions(+), 7 deletions(-)
-> >
->
-> Lets split this patch into two:
->
-> 1. Fix the bitwidth of the Enums
-> 2. Add the new check to the awk script
->
-> Then the fix is split apart from the enforcement.
+This looks exactly like re-implementing system-idle-states.yaml and wakeup-source.
 
-Ack.
+Best regards,
+Krzysztof
 
-Thanks for the reviews!
-/fuad
 
