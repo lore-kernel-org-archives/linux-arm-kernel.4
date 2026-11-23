@@ -2,66 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2639A606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8E4606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zmTm4vO+;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=rutvWedD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EpUAq7U/;
+	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=YcJj10zG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cSVyW0UVgqGJUNJlaP4TsMEvhElwJxyJXx8yTc90AO4=; b=zmTm4vO+BPTQXsg8TE7krx0BCa
-	MvDMQ2mgbsQ+ptq1gxXrjteSOGH/Sdh7jeJUXVWY7j8Sxcy7x9hqOKbb6Z1vwWAH6n0D/TNiIjhZR
-	WJh6+VHAqZdSgbcM6xDVXvyV4W+ku/AVvEuXWWbcYvQIfEV4uuTsO4A8OsdY0pNegDRemszQoMkzr
-	eCqcUEJkBKiFmMUbwRi+JhJoQPF6ihbVHYwiccPfo/+wxJevYThEE+gDn5TXdrgCg1oJZ7npb7f+U
-	HzFRHAgyihIld2TX8xgcr+YK6Q5JdXIw6OtZVZTQ7pMWuv4pZa9YqVCXpDMdF7XTEqEI7o/C4Ta5M
-	J0iIwijQ==;
+	bh=LTJZ6Z0BiW6sHaALZZ7IN+IFHkESfyt83jD2NHGY+AI=; b=EpUAq7U/rHIl27OHe3LNhjPZOl
+	iwVCIsZ5rINMzRvJ0athkrSsLpsbWqJi/zOKJmDkJ6OFYi8vp/EH050QkgsHrxE5cBeR4uRIDKfv1
+	FkMrMJmI1aLk+5PFFnfT7OZ/7R+T1piXz3WajJDYC8DfBscPM9N05zAKcsw60gK4R5L2afMYzHfNS
+	pBiWS9Q5h7mfUE1s0GzWg4WwFricy6xyd1FHoGY9mk/TLJ07W2Wv9MgHE7mQ8l/Q0IUDfVXuORb/5
+	tELLfE+1iuOZoQO1SMftQd0fwoZLR2IWXPFg/cIpR9on7r86aEnyf5Tpn8EyZiMQUnl+pgjpO+aSX
+	nV3FyaWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQSj-00000002jRw-3JOP;
-	Mon, 23 Nov 2026 09:35:51 +0000
-Received: from out30-110.freemail.mail.aliyun.com ([115.124.30.110])
+	id 1xVPig-00000002bRo-3RYB;
+	Mon, 23 Nov 2026 08:48:14 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQSg-00000002jO9-2ywC
+	id 1xVPiQ-00000002bPy-47iG
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:35:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1795426538; h=From:To:Subject:Date:Message-Id:MIME-Version;
-	bh=cSVyW0UVgqGJUNJlaP4TsMEvhElwJxyJXx8yTc90AO4=;
-	b=rutvWedD4LFbQWpIsre+xijoJjy430/1bRJjyQj4mscQ14eVNrg6ub+qTphHHSUxiC5D7HQhiI+DlqMr8KO3OykE4zUIYTdsXDp05gsJ9IiZkgyiB6rBQSyyAk5D/jXBUZG5TT1rHuOBVGAA7p32hYuqMxYeCP+sO4j/dCz9H7w=
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R111e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037026112;MF=yadong.qi@linux.alibaba.com;NM=1;PH=DS;RN=12;SR=0;TI=SMTPD_---0XFGOaDQ_1795426534;
-Received: from L-G4162440-1116.localdomain(mailfrom:yadong.qi@linux.alibaba.com fp:SMTPD_---0XFGOaDQ_1795426534 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Mon, 23 Nov 2026 17:35:37 +0800
-From: Yadong Qi <yadong.qi@linux.alibaba.com>
-To: catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	ying.huang@linux.alibaba.com
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ryan.roberts@arm.com,
-	robh@kernel.org,
-	gregkh@linuxfoundation.org,
-	ptg-linux-kernel@linux.alibaba.com,
-	yadong.qi@linux.alibaba.com,
-	stable@vger.kernel.org
-Subject: [PATCH] arm64: fixmap: fix missing break-before-make in __set_fixmap()
-Date: Mon, 23 Nov 2026 17:35:05 +0800
-Message-Id: <20261123093505.974-1-yadong.qi@linux.alibaba.com>
-X-Mailer: git-send-email 2.34.1
+	Mon, 23 Nov 2026 08:48:08 +0000
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN54fD82633054;
+	Mon, 23 Nov 2026 08:47:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=LTJZ6Z0BiW6sHaALZZ7IN+IFHkESfy
+	t83jD2NHGY+AI=; b=YcJj10zGY6wChhmq9fch180g1AOpYPOFVLuZgSHhyI8985
+	kcNL+rB6lqsjzTWFKsFDWJNaktcjRDypjFMDLfVbttPtU6i7A5yS9OEzBtEyick5
+	Qgm6RZW7dykuwOk/6zpYbPI3zRamoRg+ceRVH7jJ064Gfpdd+fl+idi/E/uYPADs
+	Djvpu/HwDRI13+Na2mxcO6KVoYqOsg66ZwNb7G4JAKUCwzvG8UNVcixM8moZJVXq
+	6UkzuHq06oKDmV79aQTAV0ZDycD+9KqJVSDGGNCgfv5fLLjktQXiINWU2qDsC3q7
+	Trp6AlNjNFnb7xWykdZArxeMzHFtLw3oXXheU0uw==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g11yq9-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 08:47:40 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN54Qr12487418;
+	Mon, 23 Nov 2026 08:47:40 GMT
+Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j3q4h5xa2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 08:47:40 +0000 (GMT)
+Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com [10.20.54.105])
+	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AN8lbjk44827102
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 23 Nov 2026 08:47:38 GMT
+Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id E1C6C2004B;
+	Mon, 23 Nov 2026 08:47:37 +0000 (GMT)
+Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 7D60820049;
+	Mon, 23 Nov 2026 08:47:37 +0000 (GMT)
+Received: from osiris (unknown [9.87.148.25])
+	by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Mon, 23 Nov 2026 08:47:37 +0000 (GMT)
+Date: Mon, 23 Nov 2026 09:47:36 +0100
+From: Steffen Eiden <seiden@linux.ibm.com>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oupton@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Sascha Bischoff <Sascha.Bischoff@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH 1/9] arm64: sysreg: Map MPAM1_EL12 to MPAM1_EL1
+Message-ID: <20261123084736.20959-A-seiden@linux.ibm.com>
+References: <20261123075219.369042-1-fuad.tabba@linux.dev>
+ <20261123075219.369042-2-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123075219.369042-2-fuad.tabba@linux.dev>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-ORIG-GUID: HrrfkGD43JXnqT8diAfJKbosF-Tnrzfj
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDAzNCBTYWx0ZWRfX9KMEe7uYL4Xi
+ zD9Wan/8eG4I0Ka/Sqc/bIAUDbbOmCDXIOht5F7qm9BAp0yVBvgrRAAM5+mxY4saJZkROdj9eRX
+ Y6JOx8A/oQsbBQjZSPkBUhyn4VsUTh0=
+X-Proofpoint-GUID: xo2bGLz2kMWEJJn6hlKAJ2ud1k0Gr6xK
+X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b03fdad cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
+ a=pjIY73NwuUxA7bRLkYsA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDAzNCBTYWx0ZWRfX1CzLx2JdkU3b
+ NbzFxju0KVlmEIXZAT9TpsLI2m1eRfMM7VUqIjUnzZ6m/Zeo5ar7MMc7n/eIlQLy1x3V+lcW9iW
+ C4OP+Gp1rO4KQdQ2+6Na9LuJFp7Jca6CfrmrGj67KsEyFMSBLNGFPpCqfYQyxHOBJ2OqgNErNc/
+ yb76pZ55OdKVFmXZOVw1CdPbudqCCLWSDvq6CdppwTcmkQhuvHdxL14EtwZQjesc6fWJemrRKMR
+ KQ0lGDYQVjTpDnBsB7APgv6YMZLKiHHrUsGdnb3dL9Z2mqk7uLcp4fkD0ElBLpCvXjHUYldjJjV
+ DNi1H53IYhLlzDOWNece0O++Gd3wEM8+vagqjYCnFj3OC2IgARc48sNnwcajfhG4fXZrLFrxUVX
+ iaZRcLyAlAxu9dGhTm5uT3rvoio3kUwrzeC41E2F10q6m6ZJK4z4A/KYga4PkKSknPAnOPgbXQZ
+ qu5NwTJgfvQX85JdyWA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_01,2026-11-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1011 malwarescore=0 suspectscore=0 bulkscore=0
+ priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_013546_965461_19987694 
-X-CRM114-Status: GOOD (  15.19  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261123_004804_638113_A104803C 
+X-CRM114-Status: GOOD (  14.53  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,90 +125,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT,USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-__set_fixmap() installs a new PTE with __set_pte() but never invalidates
-the TLB; only the clear path calls flush_tlb_kernel_range(). The
-dsb(ishst)/isb that __set_pte() emits makes the new PTE visible to the
-table walker but does not invalidate stale TLB entries. Overwriting a
-still-valid slot therefore leaves the old translation cached and
-violates break-before-make: accesses may keep hitting the old output
-address, and changing the attributes of a cached entry can trigger TLB
-conflict aborts or CONSTRAINED UNPREDICTABLE behaviour.
+On Mon, Nov 23, 2026 at 07:52:11AM +0000, Fuad Tabba wrote:
+> MPAM1_EL12 is the EL12 alias of MPAM1_EL1, but its entry in the sysreg
+> file is "Fields MPAM1_ELx", and the file doesn't have an MPAM1_ELx
+> block. Since commit 6ae7fab7d9d33 ("arm64: sysreg: Emit RESx/UNKN values
+> for Mapping/Fields definitions"), the generator's MPAM1_EL12_RES0, _RES1
+> and _UNKN expand to MPAM1_ELx_RES0 and the like, which aren't defined.
+> They aren't used yet, but the first user would fail to build.
+> 
+> Describe the register as a mapping of MPAM1_EL1.
+> 
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 
-Two in-tree callers overwrite a valid FIX_EARLYCON_MEM_BASE slot:
-
- - earlycon: earlycon_map() maps the UART before match->setup() runs.
-   If setup fails, con->write is unset, or the DT reg-io-width is
-   unsupported, the slot stays valid but no console is registered. The
-   console_is_registered() guard only blocks successful registrations,
-   so a later attempt (e.g. a failed DT earlycon followed by earlycon=
-   on the command line) remaps the slot to a different UART.
-
- - samsung_tty: apple_s5l_early_console_setup() overrides the
-   just-installed entry from PROT_DEVICE_nGnRE (FIXMAP_PAGE_IO) to
-   PROT_DEVICE_nGnRnE on the normal successful boot path.
-
-Both are valid-to-valid changes (different output address or memory
-type), which arm64 requires to be break-before-make.
-
-Fix this in __set_fixmap() by invalidating any existing valid mapping
-up front: clear the old PTE and flush the TLB, then install the new PTE
-only when setting. The old translation is gone before the new one is
-created, so the two can never coexist in the TLB. A first-time mapping
-(old entry invalid) skips the invalidation and pays no extra cost, and
-clearing a slot is handled by the same step.
-
-This belongs in the callee, as on x86: __set_fixmap() there calls
-set_pte_vaddr(), which flushes the TLB unconditionally after writing the
-PTE. x86 can flush after the write because it has no break-before-make
-requirement; arm64 must invalidate and flush before installing the new
-valid entry to avoid TLB conflict aborts.
-
-Fixes: 9aac5887595b ("tty/serial: add generic serial earlycon")
-Cc: stable@vger.kernel.org
-Reported-by: Huang Ying <ying.huang@linux.alibaba.com>
-Signed-off-by: Yadong Qi <yadong.qi@linux.alibaba.com>
----
- arch/arm64/mm/fixmap.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/mm/fixmap.c b/arch/arm64/mm/fixmap.c
-index f66a0016dd02..5593d7e0d523 100644
---- a/arch/arm64/mm/fixmap.c
-+++ b/arch/arm64/mm/fixmap.c
-@@ -126,12 +126,19 @@ void __set_fixmap(enum fixed_addresses idx,
+Reviewed-by: Steffen Eiden <seiden@linux.ibm.com>
  
- 	ptep = fixmap_pte(addr);
- 
--	if (pgprot_val(flags)) {
--		__set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
--	} else {
-+	/*
-+	 * Break-before-make: when the slot still holds a valid mapping
-+	 * (e.g. earlycon re-mapping FIX_EARLYCON_MEM_BASE), invalidate the
-+	 * old entry and flush the TLB entries caching it before a new
-+	 * mapping is installed, so old and new translations never coexist.
-+	 */
-+	if (pte_valid(__ptep_get(ptep))) {
- 		__pte_clear(&init_mm, addr, ptep);
--		flush_tlb_kernel_range(addr, addr+PAGE_SIZE);
-+		flush_tlb_kernel_range(addr, addr + PAGE_SIZE);
- 	}
-+
-+	if (pgprot_val(flags))
-+		__set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
- }
- 
- void *__init fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot)
--- 
-2.43.0
-
 
