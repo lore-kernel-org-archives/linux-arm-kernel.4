@@ -2,71 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3202B606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC850606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AQW2kMy4;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=KbCv5PkL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZX5rH680;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=y+GJCSOe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aQvWImmPb1jRtzHePOoIeMXh67VwZlq7k/jh0nzU3SQ=; b=AQW2kMy4H0iRg9sUuufJq63YiT
-	97ykuUf6nKc5TKf/egbInLRGkjOONQVNtbNjxTbIPIi1BWFKqb3a+hxl/oskSc4cAd0rzbuCoWOxe
-	exrr/FQx9rZFeZFDUnPI8fPc79V+gQJWn0PVZ3xbXpIuKpa5rvms/reST+6zYXFh8tPOKV526vDiQ
-	o2HxHvzOyArxT4VwWVhMxUZsAVHUisSu2FS0pN3BlHXGtFC6uKteOmbkmsY+VarqG6ZY0VSsMkphM
-	Yt6U9AxaIPdG1bQ/gXY2Lf7kZDHlZHNGbEU4G63zO3Qnv6Kt39a/XdCN9k+vnfHtcf7CXgRaePzZB
-	SzksXEjw==;
+	bh=nutOLNh5W4dTyqWoDODtl05Z3AwT5FmB7YX35PdwCns=; b=ZX5rH680V6nLt1Z5SeNPDGuTPk
+	MGnRptWheBn3ARBQXVLbuRPG0G0znV2DEvHKBvqAPqSKYkz4l5IFg/v/S+9SKeBZ3zKqs6NQkbXfC
+	ut1GNUAIrKOtGtxih6tUZAZx8EbvwTU5uhHtaO+NRHsaMqf0IJ7qrqtpti4oFNaZPg4OGfgf8LpeW
+	cwgdo9LzplunA6GsNWwtEObIGZeXNJ9ZwhErO5jL7iIPuk6nyQGK7sbD/MiBQMr6oRPce7BKOIMo7
+	6WE1HP2tPn4QaQ5Dt3jiuMwYFEhAS2+Slj7e2f6GFnqqaW3r1V8VyaJNxXJ5gqW287sdFaj1uNGK5
+	bjdOchGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVY5g-00000004PcG-2aW8;
-	Mon, 23 Nov 2026 17:44:32 +0000
-Received: from sender6-op-o11.zoho.com ([165.173.180.11])
+	id 1xVYbV-00000004Swy-2W5n;
+	Mon, 23 Nov 2026 18:17:27 +0000
+Received: from mail-dl1-x1229.google.com ([2607:f8b0:4864:20::1229])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVY4k-00000004PKy-3HVb;
-	Mon, 23 Nov 2026 17:43:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795455795; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=XwRh0w8yBHTIo/Akh/fC0++ZPiNmQWIlaFiZJnwrOexMOw2sYRgM70yOOj33iQ1AGnxYvIuCsv4gWMYs057d8lbDFUgLl8oQRiI44Yll9dVgFxv9Zk8aXD8N8yRHoPs4kH88NhC+rwSq/5aUYKsWA776cfJAxmLuXlrA2H1bgGw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795455795; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=aQvWImmPb1jRtzHePOoIeMXh67VwZlq7k/jh0nzU3SQ=; 
-	b=liWq0l9xX/sWRaNGf2/TMp3zGl7LDQnaXUEpnMFBRAWk7/o+KlDiciM8a9/G0T2/iaQsTA7Qqxk8MiMKBDOo00+PRU+4B1IgJF8uWZCettXOxpWOK9p3lVZSYCnXd7Vi96Ajww6kfPQz/2JDYjKIdvknZJq59AWKjPutNBB4J7g=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=adrian.larumbe@collabora.com;
-	dmarc=pass header.from=<adrian.larumbe@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=KbCv5PkLpno5QYvja57UkDq3SqUFiwOJJHn+yEKQRrfRZ/P6FV9BdwCxjxmnNcHP129PnEqewNn6a03XWeLkKAJL5Y6R7/YewYClRYQoiNXReHjYPKfECi2/Za/Kfz++OsnUuTNng79OlUzhbTOFU2e4z/POoFoKbrkteU9ppmk=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=aQvWImmPb1jRtzHePOoIeMXh67VwZlq7k/jh0nzU3SQ=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1795455792185485.028439789156;
-	Mon, 23 Nov 2026 09:43:12 -0800 (PST)
-Date: Mon, 23 Nov 2026 17:43:07 +0000
-From: =?utf-8?Q?Adri=C3=A1n?= Larumbe <adrian.larumbe@collabora.com>
-To: iav@iav.lv
-Cc: Boris Brezillon <boris.brezillon@collabora.com>, 
-	Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Heiko Stuebner <heiko@sntech.de>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	Daniel Stone <daniel@fooishbar.org>
-Subject: Re: [PATCH v3] drm/panfrost: Enable GPU_PM_RT for RK3399
-Message-ID: <awR7G-dOM4zLempo@sobremesa>
-References: <20261123-panfrost-rk3399-pm-rt-v3-1-04c7c58d1140@iav.lv>
+	id 1xVYbS-00000004SwY-0KWZ
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 18:17:23 +0000
+Received: by mail-dl1-x1229.google.com with SMTP id a92af1059eb24-1aefd1bf74aso1536001c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 10:17:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795457841; x=1796062641; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=nutOLNh5W4dTyqWoDODtl05Z3AwT5FmB7YX35PdwCns=;
+        b=y+GJCSOemGQSQ7sfv3qhDVLvrUttlzLQBTyQ1pkpfl7Tg6yO2hUOv4nyhICYyRXoh3
+         YVJ92mCY9Cv9MAjY26nHcXXUgnZC4Oz/mBLTFnYosQgSRuEKAW82kH2V6IV9zG4iJ7pT
+         Fj9h2+39Gyft/Cd42d6rkqOKsRUbATzdVBQjK8QlEE6TBU6fuaJTCu1iI+5NtseK96Xo
+         u4jR0v08LhZZhjv4LrPgeEvEJjlSTOds4hIhNhA7xTTYZF2hZWuYdiuQkV/R+fNgsp8k
+         YMzRHx67CARRm7/trvLUfeDRynAoOUU1kmpIest+fAMTWz31QztZwHntJfTaDAjUEWOi
+         Q+uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795457841; x=1796062641;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=nutOLNh5W4dTyqWoDODtl05Z3AwT5FmB7YX35PdwCns=;
+        b=KiYaNXYNEQkp0ZFMPdYN30GWqfYWLZiUO0ImZP5WO6mciZawqIPEL7QBw3Cf/z9Ci8
+         TUPMGt0pEt3DCYG+W7hQAtcL1dci5UbiujgEFfvDMJa22xS9njAT7OkVgD+HC81mj8Sx
+         UjpbPVQHDwEZfQ56wFwCGHy/2ju7IAPUu0Xf5xe8LSfr2Hot85BWELZqhWGanGdYYHzZ
+         2wC3df29kQXhc3d2xne2EIUwo760rG2PEHnXmgGxGIof7NMgMZTHANC+ysshEt6QUgSQ
+         K6BjLo3nbPPE7TKuWPj33xjeEVkSH4C2YSGpBBfCCuRuGkM/CzqiOxFC6YvQtvV1kdVn
+         ZvtA==
+X-Forwarded-Encrypted: i=1; AL+hErEnfYm99oiDM4ofl+moED+/v8YPPm8KJmlAAQSB4PAiDP3iVxZ9AKyYMAw3/ZzgS1jgqqDzACGu1VLxP/2TclQi@lists.infradead.org
+X-Gm-Message-State: APuU4Z9HXuvTd/fiC3JtfrxiSi/9/rDGW0zX4J/oFzLE4NbcMxTQ/TAL
+	3emyzr85mxg/ngAQRHPe7f9gCa7aMqO7lSnB/MKiPWAYNs5d/l5+aEJV
+X-Gm-Gg: AZFdTZcqEwG43f/JHvo91hjT3eOOAsZ6GhLN8dNLVX7sEsGS6YmKafS+tSl8Ich2P2H
+	jYFVvxA5u3pdMXj7ckmtj+y5XSPtzblvAEnBaUWNGntAYlBzq7yU6N4pP7YZtdNfgbaX8rnqdbE
+	jh2OaZtigkXNttZSeGpFZ3ZRx3jsUG6hFTuH+Mzr5mXrJEtJ5EyCc/QSBOHTWAp8igaOKXKmAtP
+	geAXiE0DHif/+mZt25BemRwonkng/IkozN10yWwMN9I7JtDUcZ+q1iTto+F2BE9azChxyhQY+bD
+	t/EVV5LVqiHGf6XV7f2vHLPr1MzuG+xevkbrPpBB5Y7G6oZdu18SA/gki2+K1WcAh4ipDrCc8UZ
+	K5jBHL/cKqc+tZyXBtEyIdwVtZ8784r/u3hRmF9gOQtfExAC1TQcI++XR7VvuocY8nPq/bRbant
+	Yvwyg9U7eE0PsmFmRezUub2iAW6Qu9Xv9MupM8e7aRtrcwZD/GMoQfyCxlS2kS9FXYifLC+Ejhf
+	Z3O2XT5BCYxlta3bi/ITJFChXbqtGLT6EA8qzW3xvJCWSn+9x5XGvm2z9jZ23GzTMMfKUX2frjz
+	18MItf/4B2LAE4qOgVqVeQtwYxYArRiWNnZZ5s7DOeFwb2/K0g4mo51KFwS4L2Bx/VPpKFeX
+X-Received: by 2002:a05:7022:1703:b0:1b5:64c0:d2be with SMTP id a92af1059eb24-1b564c0d31fmr7645119c88.19.1795457840287;
+        Mon, 23 Nov 2026 10:17:20 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:4121:d698:201c:9274])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b556840494sm30439137c88.12.2026.11.23.10.17.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 10:17:19 -0800 (PST)
+Date: Mon, 23 Nov 2026 10:17:16 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: david@ixit.cz
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Andi Shyti <andi@etezian.org>, 
+	Javier Martinez Canillas <javier@osg.samsung.com>, Rob Herring <robh@kernel.org>, linux-input@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	phone-devel@vger.kernel.org
+Subject: Re: [PATCH] Input: stmfts - restore touch after system resume with
+ the device open
+Message-ID: <awSDI1T2DjX63HlL@google.com>
+References: <20261123-stmfts-suspend-v1-1-4b2276879e8d@ixit.cz>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261123-panfrost-rk3399-pm-rt-v3-1-04c7c58d1140@iav.lv>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/295.448.99
+In-Reply-To: <20261123-stmfts-suspend-v1-1-4b2276879e8d@ixit.cz>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_094336_991607_61403E6C 
-X-CRM114-Status: GOOD (  23.03  )
+X-CRM114-CacheID: sfid-20261123_101722_120397_3B359EC4 
+X-CRM114-Status: GOOD (  14.56  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,81 +105,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23.11.2026 17:33, Igor Velkov via B4 Relay wrote:
-> From: Igor Velkov <iav@iav.lv>
+On Mon, Nov 23, 2026 at 05:13:41PM +0100, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
 > 
-> The RK3399 Mali-T860 matches arm,mali-t860 and gets default_data, so
-> panfrost enables aclk_gpu at probe and keeps it enabled until unbind;
-> runtime suspend powers the GPU off but leaves the clock on.
+> stmfts_resume() only calls stmfts_power_on(), which re-initialises the
+> controller and deliberately leaves it in SLEEP_IN, assuming nobody uses
+> the touchscreen yet. That assumption does not hold for a system resume:
+> userspace keeps the evdev node open, runtime PM still considers the
+> device active and stmfts_input_open() never runs again, so the
+> controller stays asleep with scanning off. On FTS5 the controller
+> interrupt enable command is part of the runtime resume sequence, so the
+> result is a completely dead touchscreen until the input device is
+> reopened.
 > 
-> On ROCK Pi 4A restore from hibernation hangs in genpd_restore_noirq()
-> of the GPU when the hibernated kernel had panfrost bound and the
-> kernel that loads the image does not. There clk_disable_unused()
-> gates aclk_gpu, while the restored image still holds an enable count
-> on it, so powering the GPU domain back on does not ungate the clock.
-> With the clock gated in runtime suspend, as on the Allwinner H616 and
-> the Renesas RZ/G3L and RZ/G3E, restore completes.
+> Factor the scan enable part of stmfts_input_open() into
+> stmfts_start_scan() and, when the input device is open, replay the
+> runtime resume sequence and re-enable scanning from stmfts_resume().
 > 
-> Match rockchip,rk3399-mali to default_pm_rt_data, which differs from
-> default_data only in GPU_PM_RT.
-> 
-> Reviewed-by: Steven Price <steven.price@arm.com>
-> Signed-off-by: Igor Velkov <iav@iav.lv>
+> Fixes: 78bcac7b2ae1 ("Input: add support for the STMicroelectronics FingerTip touchscreen")
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-Reviewed-by: Adrián Larumbe <adrian.larumbe@collabora.com>
+Applied, thank you.
 
-> ---
-> Tested on ROCK Pi 4A, drm-misc-next c408466a4dfa with the rkvdec fix [1]
-> applied: hibernation restores 9 of 9 with this patch (3 with an HDMI
-> mode held, 3 right after glmark2-es2-drm, 3 idle), and the GPU renders
-> after restore. With the GPU node left with arm,mali-t860 only, restore
-> hangs 2 of 2, in genpd_restore_noirq() of the GPU.
-> [1] fixes the same kind of hang in rkvdec, which otherwise hits first;
-> this patch applies and builds without it.
-> 
-> [1] https://lore.kernel.org/r/20261030-rkvdec-runtime-pm-clocks-v2-1-8ff510a231de@iav.lv
-> 
-> Changes in v3:
-> - Retitle as Steven suggested, say what GPU_PM_RT changes
-> - Add Steven's Reviewed-by, given on v1 (same code)
-> - Link to v2: https://lore.kernel.org/r/20261122-panfrost-rk3399-pm-rt-v2-1-40f1791aa1a8@iav.lv
-> 
-> Changes in v2:
-> - Name the SoCs that already use default_pm_rt_data
-> - Say why restore hangs
-> - Rebase onto drm-misc-next
-> - Link to v1: https://lore.kernel.org/r/20261030-panfrost-rk3399-pm-rt-v1-1-e94437159a9d@iav.lv
-> ---
->  drivers/gpu/drm/panfrost/panfrost_drv.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> index eeda113037fe..91acfa13ef42 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> @@ -983,6 +983,7 @@ static const struct of_device_id dt_match[] = {
->  	  .data = &amlogic_data, },
->  	{ .compatible = "renesas,r9a08g046-mali", .data = &default_pm_rt_data },
->  	{ .compatible = "renesas,r9a09g047-mali", .data = &default_pm_rt_data },
-> +	{ .compatible = "rockchip,rk3399-mali", .data = &default_pm_rt_data },
->  	{ .compatible = "arm,mali-t604", .data = &default_data, },
->  	{ .compatible = "arm,mali-t624", .data = &default_data, },
->  	{ .compatible = "arm,mali-t628", .data = &default_data, },
-> 
-> ---
-> base-commit: c408466a4dfaee4b12587e926c5b85e68c8b3c40
-> change-id: 20261030-panfrost-rk3399-pm-rt-cea3fc1790d9
-> 
-> Best regards,
-> -- 
-> Igor Velkov <iav@iav.lv>
-
-Adrian Larumbe
+-- 
+Dmitry
 
