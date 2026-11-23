@@ -2,81 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FCC7606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:54:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4B0606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LOkCKde9;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=KaLHmeY/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SW3j+EHn;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=YQtEaezo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
-	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KAB2BKt918TC8J1Io05dleoIknVU5q1NI2MsEwZVMss=; b=LOkCKde9r4LO1h
-	GpM9/sS3A0Ue6XFkRfTpX/oqpJ6Qi1YFLpqNqullPPhtSUJ983deHRW1KzyNJZf2TZel/BqKJYzV2
-	B+0oAWuM50oXbvEVhDM6furmWq/n2TC3HfcBbWHt6VwlCsghJKiiJTGqmR/1+8nLIpkZE2Rs93AW2
-	bv/leHfXTfFov6XlDuPtyn0/o6wd0/VVE+ZQmHRdXQflsa1Wpb0R5uXYVmTMOAuX4I8xVsv/WVP0V
-	XAxcJIwM8lU1dgfoecJCWxojXuwDBLd39NTvQiCiOX+5ejaETrA8eUVsvPyFdEGKAlFKWGhZkgmr1
-	pj2GCz5bTXrOaApu+ojA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ghElwUpaaRqU+MvEOjecbTU+NW1sq6C0Yn8L5iL+TuI=; b=SW3j+EHnplyrPCvWMZGfgB49yF
+	Hg8aTdSg96JztS2E/BgnTMbD/h3YiYJFnkBKi79juYa8WIa1w0q7DmFyLDLLesfpp1rAky9R3EEiO
+	JCm13TjedAg6m+PWzGGoCIOKy3Mn9sp9mJCiUMjUMVTbMv1dphuHGUjhosFrSkVp3HU/sX0Az0Ary
+	HkbRGcQQmFAfdMFgBs/YkN/HRqEwkIHRqkhY3lb/mvlOW97gp19rr67w9GBjeVlWsQihKC1HmHiGc
+	3yRxp2fBwRVKVUjRFVF2hkxoXVmzNdQyCqKgGWbXgZmOUTdQ0sF7QcubM/yR7i0XW3r4TcBn07l12
+	LslV4Q6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYEu-00000004RB3-311O;
-	Mon, 23 Nov 2026 17:54:04 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1xVYGN-00000004ROG-0CUd;
+	Mon, 23 Nov 2026 17:55:35 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYEr-00000004R9F-0jpm
+	id 1xVYGK-00000004RMy-2gQP
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:54:03 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261123175357euoutp02d321b0afcc2590ba381801c39dc5c573~qvh4KUwxu0652506525euoutp02L
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 17:53:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261123175357euoutp02d321b0afcc2590ba381801c39dc5c573~qvh4KUwxu0652506525euoutp02L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1795456437;
-	bh=KAB2BKt918TC8J1Io05dleoIknVU5q1NI2MsEwZVMss=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=KaLHmeY/H5/6luOM3bVkacedBNGp4qFGJ/QLKxD9En+nFjUF5oST4IhTspYpfAUoo
-	 +Js8gOjXitDE24uNSHz9PV3JDQ/OWZ/IuT4sobCQh9OVCo221IgqmSuvS3sjQIjjTm
-	 WzSNQ4plLTKCpO1lLKZF+smGvCmLACEWFffNiNnw=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261123175357eucas1p2cc191475e27a19aa757b67113f059dff~qvh3zUySr2536125361eucas1p2Y;
-	Mon, 23 Nov 2026 17:53:57 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20261123175356eusmtip2b9af5e8e9756c7efec6eca2def375a43~qvh2tRfpt1373213732eusmtip2Q;
-	Mon, 23 Nov 2026 17:53:56 +0000 (GMT)
-Message-ID: <d0bf2242-d9ad-4a7e-a1cb-ef32e50f34f9@samsung.com>
-Date: Mon, 23 Nov 2026 18:53:55 +0100
+	Mon, 23 Nov 2026 17:55:33 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zR54OaUc8rJnVZb+p3XpKR/OFuCdZxc7zTegyCju13y9Vqm/JDGsCcy8gPV5s0EE5fFPwdYdmMZ/9sIPDWwSTf8RHKkNc1RB+wQuiNlwdCY6XdJ4FMUMa3e3TAgN0x83tNC9/fKJ4qPHyw3KBlJAV+AgLliHLnI3O5c0GCZ7CaiP+BZp05H7WOocmoNgD+QXE2pFqtZiOOH5VgiexXvhEbA0KgWBBfq7SY8EqJDC4B1tEdH9pISvkd2qSaL98+WeRuWHi4lflQzZvINsKijRwOqP1YGWrJWZP07iiZ+HsJULS5wHYUmwwb9Gt9K6oGg9qOrY2DqZWtidbtm0WzlOKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ghElwUpaaRqU+MvEOjecbTU+NW1sq6C0Yn8L5iL+TuI=;
+ b=hcRXaQMPKvLWSd1d1zkYdeBZuv63+X0QN8dxWz1GJ3v3IIvU907KmCJYvlUMG3U8jEn06o5PWj2gC2I9IH45L+rCM/P8ZV9Ycx/V7IlFlWjnLezCnmGn+S8XwXqwoqGDwaiAdfp73WXpugTzsXl4qJaqky9yaA+suqdy2+8AEHYCwOFgIXFeuFFowphvehOPAuv1fPB0ypUM1LadwVEJofTqoIupweteDxDOW3N59q7jpljLsRBUVsoCwa4LL08OnldohcuGeXaI/yB36CvsUUonxHnAjHzkWKzPhGIZuHFto0KgyI2Oxm0USjj/37oU8+PSEkv9M2NLdGdM1+0psw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ghElwUpaaRqU+MvEOjecbTU+NW1sq6C0Yn8L5iL+TuI=;
+ b=YQtEaezo5Jki2pvqnolweyMzKEhNDcWIpm+1iMMape7NmR9WTeILjRp74j/8P23fDU5lDt96TI4jcDU1Qi7upk3Y6QGdc54mmjiBYdu0zFIO9CEbETQz8Q+D0TqX+0MNgKz75hoxH4EeP75vlyg40h6EjUq70nGF8L6TLSVDJWJoJI1gmUeGImn2baeXEpMpD6vTs064IVOu5VT0DsNrx8c1xEbQv+QIYzzdHGnb65B4ghpxE/D01ZaoeqVY/kq2B4LbEzwq3wo5rMty8QyPrbq/jm4plD8h52cpuWNR+pIKEk7hu5AWkIiVZaptZX81mFgUtj637H3fXHZmvZeX4Q==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by PAXPR04MB9231.eurprd04.prod.outlook.com (2603:10a6:102:2bb::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
+ 2026 17:55:24 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 17:55:24 +0000
+Date: Mon, 23 Nov 2026 11:55:14 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Lukasz Majewski <lukma@nabladev.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] arm64: dts: imx8mm: Add Cloos CBASE support
+Message-ID: <awR-Al7YQMSSqt5J@SMW015318>
+References: <20261120094211.1742416-1-lukma@nabladev.com>
+ <20261120094211.1742416-3-lukma@nabladev.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261120094211.1742416-3-lukma@nabladev.com>
+X-ClientProxiedBy: PH8PR05CA0024.namprd05.prod.outlook.com
+ (2603:10b6:510:2cc::12) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: Re: [PATCH RFC 0/2] clk: samsung: exynos5: fix sub-CMU power domain
- attach
-To: y-asai.0816@docomonet.jp, Krzysztof Kozlowski <krzk@kernel.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi
-	<cw00.choi@samsung.com>, Peter Griffin <peter.griffin@linaro.org>, Alim
-	Akhtar <alim.akhtar@samsung.com>, Stephen Boyd <sboyd@kernel.org>, Brian
-	Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20261123175357eucas1p2cc191475e27a19aa757b67113f059dff
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261123141844eucas1p221c650882789ccab239e57ee458c02a1
-X-EPHeader: CA
-X-CMS-RootMailID: 20261123141844eucas1p221c650882789ccab239e57ee458c02a1
-References: <CGME20261123141844eucas1p221c650882789ccab239e57ee458c02a1@eucas1p2.samsung.com>
-	<20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PAXPR04MB9231:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1dbf66f4-5bfd-4e7b-fc7b-08df498af309
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|23010399003|1800799024|19092799006|10067099003|4143699003|11063799006|56012099006|261021123027099003|261022113327099003|261009223027099003|261022075727099003|261021121427099003|261026121527099003|261102123227099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: WWwvMZ+BovI66jAHgQ8JZM8EXdn3giGsRS4wRB0iEkjynYRu/zhAgXpRIwv3eMLRI8RjW3r0QfvmdT/WrNq0Sgqmf6QBKLlksuQaKY/l8TwJASsNu+QKu9smhEpbGjB/xyzhgZWINOet/i7eMCpCCElKHMVeKLgLh/96NBhhbqNRbw6T/aEhWzO2fBRJansG+GZpXwgdRZiGIyNrE3fPTn2Xbhp0eG0Oi9tmVGwljp0vgaK22fUwIAdhBp0GmqhHDGDnyDDarhUQnpYgdbEgXdUHPgiMiBxjoDZmKtkBnfWZY0tNWdiKXktfY+ZbiouHDtriUl76oUiBSPdXMis0AFm87Xu5po6cnP/Tk0CfltrEcgGxmgnX1X3nowHZpxlxJYWqePvqtefN9n4fP9GP7Tij5piGUarljdKtYIqtIkEn2Tm2nzboUvgRwd48ko1mUo/vn0Fx5BSNbdqjxvyuLSOyaNatrR5u8r+/aUSt0p6aIy9A8BvgQaGKckeudk3k1GdciV6QRI9TyPjQEwSVtV1IztbYvRdZvwBwegiZzL0fn0UjOftNCnxouQfgBOFG3Tzj/fQ1kJghHdn3urq81NF3WVUNbo/6F6rwRs/arCx3Q4NbSJ6rda8TtbWRzvq6t8Rir5drM5lpS3QxZrKsYbqvntEX0Stgnmo2qNB8JsA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(23010399003)(1800799024)(19092799006)(10067099003)(4143699003)(11063799006)(56012099006)(261021123027099003)(261022113327099003)(261009223027099003)(261022075727099003)(261021121427099003)(261026121527099003)(261102123227099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+pTCpYxIClDDRCtS4Inm1JVlxkmpk0smCjiy2rt/K1SuKIpvRBkmqH1MWvvW?=
+ =?us-ascii?Q?8diSBbWpiBQ2yZbOig6mkG6TDPQdzyDpb5MSDClPRamqoVnMTVLY2cvdTFbf?=
+ =?us-ascii?Q?WkYK3jm4Yc/eEWvtW73pu1ySpJ/T4UbIV70HcxSyN/6L/M0m4aWAh5wRSQsH?=
+ =?us-ascii?Q?DAHvTkH9q+R8CJekgd+bAoZWS8fdHypODOsPtzrQ7UehT7cQqTxbOrDcl5fA?=
+ =?us-ascii?Q?b3xMJcf8RMyq3EPf6TDYqPXdjEoR6xPxBAy0Ww5pXsIoxA2r2iIQ3Ffl6WAV?=
+ =?us-ascii?Q?7vOYz/NhuDwxy7sHldL4hnjcZZnvPWuloTgGPtmtEBIqGAnr6ZlaiXUWwv9z?=
+ =?us-ascii?Q?rcWbYYKV9zKRZ84gBPRb/slkZI2fXL9nrGh3zQ2GPJ/6u0wHkZ3mOBn8QTNN?=
+ =?us-ascii?Q?AC6s3Sxg5y1ESh6FKi3UvOCaoY5ZadqR/5yxr04Ztc/eUpWNmLJ13Ycvbxn2?=
+ =?us-ascii?Q?TC5b3TUbq/KjC+yH2UUPn0if180T5fydVQevhwdoUzYgU7g33gZt7VuoYWxA?=
+ =?us-ascii?Q?7WsAqCW0suzek8YYIIwBqZS4Rv+GSQhyYr7vcIa5uvwDxh/XVrHsXl2jzjIw?=
+ =?us-ascii?Q?rAGZ2eDt90WU8K4otLSihuaozW/oSQUqwzxLkmapIYMIHIv69TPkbSqFf0pR?=
+ =?us-ascii?Q?GsT6Q4idoIfMT00mfeOjnAcdEt30Lx+zz43B6S0qyBCy7ACPr36Xw1VLkSKp?=
+ =?us-ascii?Q?P6JoEQr71VAeXJQl2krxzoqanYKzqIOKzDm7DRIpntvgyIGsAMJzMAHwBDrr?=
+ =?us-ascii?Q?T+0XhFxNm+eNTt8qIkXwYHJmojQzMjbj1ElRO81lJ3ACnvl/NTPSzan9ilI8?=
+ =?us-ascii?Q?8FDcn+o//pKRDJtHfWecv/T0wXjp3XRkpXxqEKjgddiWZ736F+6AuQhe/I4e?=
+ =?us-ascii?Q?rao0EVsMC+buYGg/wuuU7WKuzDA3Wp7re6mN1qRCPH2fpLAi/IGaHVFO5MjU?=
+ =?us-ascii?Q?XYKmmVhGQnoUarMmRAAE1oIzu3BcqTpzEKJhe9A5kFFFxSsWZfNkWnPKGPk4?=
+ =?us-ascii?Q?Q2q1C24bi98g3x9CRg4eUmt5mkiKCUHHs6oA8PG5TVBDOhNDhkOJpUxr8Yx9?=
+ =?us-ascii?Q?/Qg5/1Qx3LfD7CJ0079mOiu2RryYZq1bi95J3LUo8ZT11Ha5iMCC5UWIQ0+v?=
+ =?us-ascii?Q?hnNnT9xzaMv6SCAbb7+27dsMIvDPS0BicB4cwSwhYFYc3u0XM7iu92c87xh7?=
+ =?us-ascii?Q?wdMxUQ75APWZnEDBPhSdgcmHaQceozW5M73afiAj8PJzRNfmAm4vj4SJAdAC?=
+ =?us-ascii?Q?DTzR66hpJ0BXRA8cyyOLx0/2k2uiedsbPKDk/eDEWjG8M8ae/G+1ZBcNfV1Y?=
+ =?us-ascii?Q?/hnvHLnpy4gPsEm1b9p3ZgksnMd3QDVy5SO2TS9GIKXoKhCWamsNqdKT52bf?=
+ =?us-ascii?Q?aGGZtxaP2Yq47sblPd6UIEXC3xlB8dFqosm1OsSbkLQ3TnPK7YUDYJFnz/6U?=
+ =?us-ascii?Q?aYmiPn8j4TlEg46XiDKL8TuBkAYs5upruEZRFpYEVfLgN48EhrRuUAcYM26o?=
+ =?us-ascii?Q?wAlI75Ou+GNkjxEdEomQxX43mhARWg/g9NUiH7/7TdEo18nUhH27XceB/i0Z?=
+ =?us-ascii?Q?2JIFknjnd7pw8eJlVPDxP2tpPitJzTX3nYqO0Lb/no/NVPMzDiYHOBNKvxbN?=
+ =?us-ascii?Q?QkIjKRY3go6DT+kkUtsJ0s15gkBH7H+sL7dOO5oo+f/W49Dv4PHSvvgsZecK?=
+ =?us-ascii?Q?x1fA83khKdJTTdYX3hm6teL9U2drVI+wNhklmRyEs4jv8Uc9gVJNvf+FrMpj?=
+ =?us-ascii?Q?hpPZ1Sw26WyFp8ReSW7qy4FZz4qfjJp8DAevJYygJTPbCPpfOPmT?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1dbf66f4-5bfd-4e7b-fc7b-08df498af309
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 17:55:24.3771
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: koVkMJUrLF6sH2CldVUSino9g/rCmIxzYMZTxt+OriPWChStwhkQIxuvzX6XdRZs9wRGPWJ0ZjDq0ddbj5J6gtXB95WkdRqHBSKhJYsGDHYUpkhQcr4rOg48A2YZbpMh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9231
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_095401_650300_09DE9BD5 
-X-CRM114-Status: GOOD (  23.87  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261123_095532_847072_D36CE71A 
+X-CRM114-Status: GOOD (  19.07  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,63 +144,68 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23.11.2026 15:18, Shigeaki Asai via B4 Relay wrote:
-> Since commit c09a3e6c97f0 ("soc: samsung: pm_domains: Convert to regular
-> platform driver"), the exynos-pd platform driver registers the power
-> domains too late for exynos5-subcmu, so the sub-CMUs are not attached to
-> them and their clock setup is not restored. On ODROID-XU4 this drops the
-> GPU performance badly (about 3.5 fps in the Kodi menu, with repeated
-> panfrost "gpu sched timeout").
+On Fri, Nov 20, 2026 at 10:42:11AM +0100, Lukasz Majewski wrote:
+> Add support for CBASE board, which incorporates the TQMa8MQML module.
 >
-> This series fixes it as follows:
-> - Make the exynos5-clock probe wait until the power domains are
->   registered, so the sub-CMUs are attached to them.
-> - Also make audss wait for pll_in. As a side effect of making the
->   sub-CMUs wait, audss would otherwise probe before pll_in exists and
->   generate audio from the 24 MHz pll_ref, which causes audio stuttering.
+> Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
+> ---
+> Changes for v2:
+> - Fix the DTS according to the sashiko bot review (gemini/gemini-4-argon)
+> Changes for v3:
+> - None
+> Changes for v4:
+> - Use hex values for switch reg property
+> - Change subject and commit message according to community feedback
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../arm64/boot/dts/freescale/imx8mm-cbase.dts | 581 ++++++++++++++++++
+>  2 files changed, 582 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
 >
-> However, this relies on deferred probe, which conflicts with the move 
-> towards platform_driver_probe(), and the sub-CMU clock data is
-> __initconst, so the deferred probe has to finish before init memory is
-> freed. So I would like to discuss the preferred way to fix it.
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index a80cccf34eb5..c14e5ae2e4a0 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -121,6 +121,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8dxl-hummingboard-telematics.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8dxp-tqma8xdp-mba8xx.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8dxp-tqma8xdps-mb-smarc-2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-cbase.dtb
 >
-> This may also explain the oopses seen in the RFC series "clk: samsung:
-> Use platform_driver_probe() to avoid __refdata". Krzysztof saw them
-> when converting exynos5-subcmu, and Stephen pointed out that
-> platform_driver_probe() is incompatible with deferred probe. The
-> sub-CMUs have to wait for their power domains, so exynos5-subcmu
-> probably cannot use platform_driver_probe() as long as exynos-pd is a
-> regular platform driver.
-> https://lore.kernel.org/all/20250305-clk-samsung-ref-init-data-v1-0-a4e03a019306@linaro.org/
->
-> Testing:
-> - Tested on ODROID-XU4 with a Linux 7.3 based LibreELEC kernel:
->   every power domain now has an exynos5-subcmu device attached in
->   pm_genpd_summary, the Kodi menu went from about 3.5 fps to 25-30 fps,
->   "gpu sched timeout" went from 17 to 0, and there is no audio
->   stuttering.
-> - On next/clk, only build-tested (exynos_defconfig, W=1) and checked
->   with checkpatch. I have not booted next/clk on the hardware.
-> - These patches are already carried in LibreELEC.
->
-> I investigated the root cause and wrote these patches and the commit
-> messages with the help of Claude (claude-opus-5-5). I reviewed the
-> changes and tested them on the hardware as described above.
+>  imx8mm-data-modul-edm-sbc-overlay-cm4-dtbs := \
+>  	imx8mm-data-modul-edm-sbc.dtb \
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+> new file mode 100644
+> index 000000000000..fdfa2ef9a065
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+> @@ -0,0 +1,581 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2022 Fabio Estevam <festevam@denx.de>
+> + * Copyright 2026 Lukasz Majewski <lukma@nabladev.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+...
+> +
+> +/* SPI-NOR memory is not mounted on the used SoM */
+> +/delete-node/ &flash0;
 
-https://lore.kernel.org/all/20261030075325.517182-1-m.szyprowski@samsung.com/
+Use status = disabled.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=5fbe2d229bd3738ed63c7c9177466ad6bc130f18
+Frank
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+> --
+> 2.39.5
+>
+>
 
