@@ -2,93 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9743606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA8D606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V+PQKsMv;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qoJca/Ag
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rumXZ88O;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=LD8AA2kq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vnRwo/ZsMPpWSsncariS2yc/xAKn3Nxe+Kux6J8DtAg=; b=V+PQKsMv5AJ8iAVSixthLoi//g
-	DI2y4BKBhAEJjHgRdjHjlsKNK7FeRIf/BFQ48dhGzLtj4+6yLKF/+dNhyFJml5qFcqx9VE/QbElVI
-	YDqaWTUgbhqj7b2dWUqkedDYv9Q93tYsWftIxx7zTLqSUVOcmzXEk3HJlP38CJ+8LkIdReZO0CD8t
-	5D9NNUFP/JVdGPoVsOHc5q61a85vidiuUC6mLu7nrpAG5V5sZJE+49iU6dLzFlFZi5O3h9T3IqPDl
-	i4d2Vs8tYzdWKizaGKFKMybg70JjoP+8aH6SL+GabWmAAuLyq/euyKQFjk11TkfUDtMg7DDrdK66f
-	jolRPN/g==;
+	bh=iklVS4Wei67K9fNCcyEVYUc52IalltrV85u/JSTwlaY=; b=rumXZ88OtYgF+vwyqaqA2ibjan
+	SQyVCUm95/OQUuFxkbXd1Op5JjV1hxK2gb2cPfria2Io0zPLkkq8E4xSdpnBNxEvkBAXdU/2KzJrq
+	RuzLN/mL3L4jWsgk38INwJvRzoG/BSHbhqp9JAAM6nIFd9VDGmOQJjz9J7s6NU5T+Rr8JzqD/HXof
+	qLhA69vr8c4gAuOsjH+E2lfUQfqO+Ivmwe9EWWgq7Z+ZADdN4iFXEPr8WTggUuWbrj64AuUmJ9QWZ
+	LwDNHwgqdnENdl1Q8QuU5BuxDeG3TQLYuFxIlJeULvZNP0ZD4xcWDDFGo5ulje16luG01IPYwO/3C
+	LIbxODhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPpJ-00000002c8l-0o4N;
-	Mon, 23 Nov 2026 08:55:05 +0000
-Received: from mail-ej2-x08.google.com ([2a00:1450:4864:34::8])
+	id 1xVPRM-00000002ZYf-0W7m;
+	Mon, 23 Nov 2026 08:30:20 +0000
+Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPol-00000002c0l-2EM8
+	id 1xVPQa-00000002ZQn-0FB5
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 08:54:42 +0000
-Received: by mail-ej2-x08.google.com with SMTP id a640c23a62f3a-c410cdcab7dso90306466b.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 00:54:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795424068; x=1796028868; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=vnRwo/ZsMPpWSsncariS2yc/xAKn3Nxe+Kux6J8DtAg=;
-        b=qoJca/Ag9vZlkgdKbW2sQN40jABKgrczFKmZlJA8c/a5Lbd3TOfN8H6rWMyHxrW/2k
-         49VM/5KaUjO4xIHK++kNx/qiurjEoCqvz0V1nOGYe4kp0YrKM1LzI55n8nfH4O/aqAAO
-         sjjxxRdMfQnkDdOdf2LfnWYsyjmyqUKZPPF+VH3H8KgPV4ASbBtJY2oSnQATCH0tK1g7
-         tS4ZSbA+NPS9uALcDT/vfpJcKQd0G8t4gPKIS6a5rwYe3IPvE9BdPrZv9NEuNzLNzBsE
-         1U5LlCD/lVmIRdnKtTdfI23gspq/5imfcnBtXYnVJhTkoHZaIEyJiICHPwipYrK5sQsD
-         eJbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795424068; x=1796028868;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=vnRwo/ZsMPpWSsncariS2yc/xAKn3Nxe+Kux6J8DtAg=;
-        b=NfGGwqQ/Jv5sTs5PlWBFYIhD34OCEnOH1UmaMLT5dr3gonzXw7tuqr0qToIQK1PBCr
-         Hpm7O9+SEJYMdxLjRBjNLNtxZ1TXrU8qluDoD/jhWmCxKFSar4/NMXCuRdhn+ROj0wpJ
-         En3pe3m3nJLhPRmqZZtRCcxywCJbw+nB+YiOiRhSeu+0IiZG1O+YQSam1GIz5T7qylJ6
-         DcDI/QXXfLYte9CWouphvnRdl1rHzzFKhqmIQ+jDnMkBrC9Cyu8PFWaTo+R8BxZ+jq5O
-         QWEcmTnT11HUtYLt0sGgPCer5aBUXRkRufeuALQfznn4EC0lG4xReniiuFM0rRiqQZY1
-         Ir/g==
-X-Gm-Message-State: APuU4Z/A3DpqjR9JROBWLC4rIPLZXIxHwHeFeVtuyu8vBheWscedirmC
-	76J+KHP6pARRsroXQmn3HIF1CZM8V9YcA/GiZk9oXqC0oXDKlxPaPtJSGNrTjP01
-X-Gm-Gg: AZFdTZfexzi03FJNzlNzJH7H37qosTuETGVmyaH4hoipK8ZtjpUg/1ww5VprPvZQnWp
-	CetL8RPTHPqkYlSojBRvJmiC25I8aNQ2H2nK6wT7fVumy6gTfY+Fw4V0NrguuQeZy1JKJuO58MU
-	+X9AchqC9bo8aP8wLXTwEkFf/W6R8Em85jHuFOhmvO5FEDf6+nfFQbWSI4V1uP3Namiyx9jtf52
-	r2bsyY/z9PKNfFe5diFL4cHNClDo236LYyThND+Kho3YB1sa0fYfYOXMzdyI2qPu6HC2pEl3J0G
-	0kbLQOM0a7lF5gW6hLjmzQ4FWMDlcdbxZms50y/qzBhIIoHjalUlDqfPT3neLHYn+zo0P7cGUkV
-	+MC7pj/fZbdH7aqL/fvAyI4XJD/F/vxXL0L3xj6wyPgd9fNJVlZOC6ceD89eTfoRy5kMKViRkqL
-	Ok95Y/KyBw0/Ri0tNbiXraMZRsucKySy20ECYlg/HfsvzXV0J5N07nU5XecgMr+HSxIEqYxE2Wn
-	XgdV2tbZ9/r18tBdwnuRryRwOsK5lRlyEh8MnFZZA/jA+MAf/0tAdgARMqru48dtT2Z8KlMomP6
-	Ql7htmZM5Pp4/eG8KoxSYpqtV3xyENx8gYqM1/xV9jB9Xb9vrqP8wZjDTn5NJJMyoCLaIkz1yU3
-	jL5Rokvj+EwXn3xu+809cKcTJ8hIW73aHWVYbUiIosDgZK17vxCyigAA=
-X-Received: by 2002:a17:907:da0c:b0:c50:5545:b66f with SMTP id a640c23a62f3a-c513a803353mr781995666b.23.1795424067352;
-        Mon, 23 Nov 2026 00:54:27 -0800 (PST)
-Received: from thi-server.fritz.box (dslb-092-076-092-047.092.076.pools.vodafone-ip.de. [92.76.92.47])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afdf022sm377880166b.67.2026.11.23.00.54.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 00:54:26 -0800 (PST)
-From: Thilo Zirnstein <thi.zirnstein@gmail.com>
-To: michal.simek@amd.com,
-	andi.shyti@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thilo Zirnstein <thi.zirnstein@gmail.com>
-Subject: [PATCH v5 0/2] i2c: i2c-xiic: fix clearing of bnb irq and waiting/ clearing while atomic
-Date: Mon, 23 Nov 2026 09:53:50 +0100
-Message-ID: <20261123085351.3415122-2-thi.zirnstein@gmail.com>
+	Mon, 23 Nov 2026 08:29:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Fk0PRiwHrsrbpEiD9C4+fM3ps7glgzTjfHfMGKCLwEbI4ggEN9V38EyB9Q2io/i5c6NN1odlULTyrnk39SvhA9AasJH9h97JbY9kHcOwwp76iPhG2DRPgg4R7vLs8vHAfX2H5Dxb/70CByoaVuqcW94bqKkF55blc4PGxrzirC4rAlF9RM6BOdYuUHjhDyEQVujPsOP38qCCyeWGtLGm14PR70oxTL0HUa4zLr2byer9gfsrZj4XM4MPGWoWNXhmpNpXrPR/Q8BvExKiR7UttLdocABCW2dOcddlP0cldsCBfOTYUB2rDowQKlJa75NyQAjanhMj31NTdOB7Hz7Q6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iklVS4Wei67K9fNCcyEVYUc52IalltrV85u/JSTwlaY=;
+ b=WAMRppRWclJhursSgaMpRxQpOF9tviB8DdZPS5qlxAXzF1ychP8dE2rocu7Cw/huOdMrY8SQ9iFqiD+Y4j/UCGGL9+SW0V9nzk1xZ0FFldN0mLbH8x8N6G/w3pSGBdiKKS47j7ZR5jJMXOoEXHIaHGO+QCFV+wP1/d2QGHanb+24uU/wSmSncHD5VOPJZqdmE8jtWkeypwRZt/hzEYo8GBjBBmGgnmvnAYhdtFlZzhoxOQYhYTKxuPEeTxJVyvVCT8V70swa3yf+xfHLQo6noS3yjyspFiL22Oi0oNW7NcEXsJe99cbqqogeHycNdEJP9OKUNWJ84OwqYqkiJjDf9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iklVS4Wei67K9fNCcyEVYUc52IalltrV85u/JSTwlaY=;
+ b=LD8AA2kq82cwfeFRI3zLCKGNzED5KuQsxi7uay+1poNWfMRrvCT8fEUV+f+IXFU+xTD1EjIvGO7EEVXLySUN4uYyOGY7t5WgDyOeohO360XreRVzgD7uDzk3R8lzY07Nscikig7et1dRPQiKIe1cx4OUDrGjuhEylS9mxJP2mQY=
+Received: from PH7PR13CA0015.namprd13.prod.outlook.com (2603:10b6:510:174::21)
+ by CY5PR12MB6057.namprd12.prod.outlook.com (2603:10b6:930:2e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Mon, 23 Nov
+ 2026 08:29:25 +0000
+Received: from SJ5PEPF00000209.namprd05.prod.outlook.com
+ (2603:10b6:510:174:cafe::22) by PH7PR13CA0015.outlook.office365.com
+ (2603:10b6:510:174::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Mon, 23
+ Nov 2026 08:29:24 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF00000209.mail.protection.outlook.com (10.167.244.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Mon, 23 Nov 2026 08:29:24 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
+ 2026 02:29:20 -0600
+Received: from localhost (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
+ Transport; Mon, 23 Nov 2026 02:29:20 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@amd.com>, <git@amd.com>
+CC: <stable@vger.kernel.org>, Hans Verkuil <hverkuil@kernel.org>, Hyun Kwon
+	<hyun.kwon@xilinx.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>, "moderated list:ARM/ZYNQ
+ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open list:XILINX VIDEO
+ IP CORES" <linux-media@vger.kernel.org>
+Subject: [PATCH v2] media: xilinx: vip: Make use of the devm_clk_get_enabled()
+Date: Mon, 23 Nov 2026 09:29:16 +0100
+Message-ID: <6fc78f17621e1392fb5a553f826672f3a4a0de5f.1795422554.git.michal.simek@amd.com>
 X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1399; i=michal.simek@amd.com; h=from:subject:message-id; bh=UaP0dwQZzDrjNG9CU6dPW9zD0hjHnrBkEAE2T6jCQlk=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWQz/4ybFHZ6r4dTjtYnow/Ht4vb/dsQp/SSY2myW/DFo 6EBfjs/dZSyMIhxMMiKKbJMZ9JxWPPt2lKx5ZH5MHNYmUCGMHBxCsBE0tUYGXY+1Fp4NMjDYTfz 14jj03r0lu2fnb7jgDRTNuvKB8fvbhZnZOjUP2AXcXb2H60NcfuZb5aE8lj6M/rmp005NX/xNe4 f9lwA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000209:EE_|CY5PR12MB6057:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6569266b-2e26-45a2-9bd6-08df493be1a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014|23010399003|18002099003|261009223027099003|261026121527099003|261021121427099003|261021123027099003|56012099006|10067099003|261102123227099003|261102130727099003|11063799006;
+X-Microsoft-Antispam-Message-Info: cseJUkAlSZr9DcRa/gDEYbC1hn1YbRkai3eTIgAFEJLmOIWiP6xdlIL40aKg0d6qFztYAsL387mO7iEleCviWYD/F5kw4tKxmZuJ48Hb/sfw+xj9M1WoaNU+T1LkK0FVK+FkT4uC4cMrh+YOqh/dJYVvsdcXmHpx0oPuoYxVrJYTm6XVl2a6Ardu2Y81ktdqzz7rd7cSn3VJx40gvuF/dO0La9hOZlYDsR1N9mhgxNdNIiclzPUf4SBehLpMGMVkKJ/+4JZK3t+nz5inicz72nUmOS1RRz4fblFoLM1oIkSpJw42mPTKSG+A/obymZNMLTi1UiKLWrhC4s84Do8K8ukodyF+O/26iVnD2Sv15nq2wwxSC6hHgu0LzIjWyebvJBqUQllkg1jASTgyDdK2c6LywNLmjy/0b4FKt+8KbvPXf2gEL3v+aRw/RMgYutekqJFmJTFaP9oPbOkayptHyRdxKXLIDEd+LwuYEFUldhrqu62CMb6sDUb3HRXMNTNMHHvyyZoryaUenbY6x5Hgh78m9Xptu55ULtJR9mOX7XUMKLgjI+YmtqLwhJ1O8PT7u7/mLAmCag88Ve2T6pUQd6VfBnTUtv90OzQOPuJmuy29/6B+xqq6MFsJbK/UNBCY/ermUC+VCnVs3u3tfTs+MRauZoxJitzqOkpgRozBDIlfjvZPjLWbvz4PIoqMf3857JgXp96lgSVl6WiBak7OvQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(23010399003)(18002099003)(261009223027099003)(261026121527099003)(261021121427099003)(261021123027099003)(56012099006)(10067099003)(261102123227099003)(261102130727099003)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: fU2hhvxC55LNNZC1CtcxFBa/pc8QP2pJZGUTkcI28RnDrO/JORhku/+t9TZOGRtqVM06GsneE6pPYEIeQtbs9tIyAA0kg+gMq15/YqDluI69ArCYXz5OVdYbBv+erp8tZ31SD9jCtFHz+IFFijl0cJKcAI8KSmOp5P7An4bdGLt2g400CFlc2UAIb7q0jlZsI+Nb/eKrZ9mnr7T/SfPMuZirvE5cDNjTL63YKL2YXZUP0Du/Z5llhtgGEH6MPQLVF8mFs4FauUbXJkJAgd47sva7FfJg318rzSAZqcMb7H6UuyC6pia3z5JfCD/hVj36fM/Mj83HSA6h1K9oNzrUEyOWog75bmOEiXvvYqjPyjD7WwyLtU7kyjFuq96YHji9V6VCPZHcc8jsarhEE0PNWUqnShaguZLbnhjox1noCUnPrD5IqQQWrcoS4/j16lO7
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 08:29:24.6780
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6569266b-2e26-45a2-9bd6-08df493be1a9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000209.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_005431_588230_CA370D01 
-X-CRM114-Status: GOOD (  10.09  )
+X-CRM114-CacheID: sfid-20261123_002934_727718_4886BA0F 
+X-CRM114-Status: GOOD (  11.08  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,74 +125,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Dear all,
+There is missing return value check from clk_prepare_enable(). Fix it by
+using devm_clk_get_enabled() macro.
 
-This patch-series fixes the clearing routine for the bus not busy (bnb) irq
-plus the waiting and clearing routines while in atomic context.
-
-The bnb is used to indicate that the current transfer is done.
-A high level view of the software flow for tx:
-
-* init i2c controller
-* prepare all registers ( fill fifo, enable irqs, ... )
-* start i2c txfer
-* clear and enable bnb
-* wait for completion
-* ( serve interrupts )
-* ( bnb interrupt ): complete completion
-
-The datasheet ( pg090-axi-iic, Interrupt-Status-Register ISR)
-states that the bnb bit can only be cleared if
-the bus busy bit in the status register is set.
-So the iic controller must have recognized that their is some activity
-on the bus. ( Start condition )
-
-Currently the bnb bit is cleared without checking or waiting for this
-condition. This can lead to spurious bnb interrupts.
-
-Andi suggested to use an atomic-save function to wait for bnb.
-This was applied for other waiting/ clearing functions, too.
-
-Kind regards,
-
-Thilo Zirnstein
+Fixes: df3305156f98 ("[media] v4l: xilinx: Add Xilinx Video IP core")
+Cc: stable@vger.kernel.org
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
-
-Changes in v5
-- Fix timeout for polling bnb bit, set to 4us
-- Link to RESEND v4: https://lore.kernel.org/all/20261118101147.3350796-1-thi.zirnstein@gmail.com/
-
-RESEND v4
-- Add Reviewed-by Tag
-
-Changes in v4
-- Fix timeout argument of polling in atomic context
-
-Changes in v3
-- Use atomic-save functions for waiting and clearing.
-- Fix intendation
-- Unintentional changes removed
 
 Changes in v2:
-- Unintentional changes removed.
+- Add Fixed tag and CC stable
+
+Removing xvip_cleanup_resources() should be done separately on the top of
+this patch.
+
 ---
+ drivers/media/platform/xilinx/xilinx-vip.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Thilo Zirnstein (2):
-  i2c: i2c-xiic: fix clearing of bnb irq
-  i2c: i2c-xiic: fix waiting/clearing while atomic
+diff --git a/drivers/media/platform/xilinx/xilinx-vip.c b/drivers/media/platform/xilinx/xilinx-vip.c
+index f1574edd2b43..537702ace760 100644
+--- a/drivers/media/platform/xilinx/xilinx-vip.c
++++ b/drivers/media/platform/xilinx/xilinx-vip.c
+@@ -212,18 +212,16 @@ int xvip_init_resources(struct xvip_device *xvip)
+ 	if (IS_ERR(xvip->iomem))
+ 		return PTR_ERR(xvip->iomem);
+ 
+-	xvip->clk = devm_clk_get(xvip->dev, NULL);
++	xvip->clk = devm_clk_get_enabled(xvip->dev, NULL);
+ 	if (IS_ERR(xvip->clk))
+ 		return PTR_ERR(xvip->clk);
+ 
+-	clk_prepare_enable(xvip->clk);
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(xvip_init_resources);
+ 
+ void xvip_cleanup_resources(struct xvip_device *xvip)
+ {
+-	clk_disable_unprepare(xvip->clk);
+ }
+ EXPORT_SYMBOL_GPL(xvip_cleanup_resources);
+ 
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+branch: xnext/vip
 
- drivers/i2c/busses/i2c-xiic.c | 70 ++++++++++++++++++++++++++++-------
- 1 file changed, 57 insertions(+), 13 deletions(-)
-
---
+-- 
 2.43.0
 
 
