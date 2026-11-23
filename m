@@ -2,77 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291E4606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F398606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YVWLb9Mj;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Ta5HkjwI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4fthqINs;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=BlDbpH9G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject
+	:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Js9pC7jeiLo17zQaZ18MlpnQNslFBrPydnPaVDBRGVs=; b=YVWLb9Mj9vhVdq6w9wr+um5STA
-	BfOsl269AhC408kCEs6pa7Q4CiE3TY8BwhnJW2INQHgWK76ygivhUaXN4qdo8eUyCawgpRMcNP7j2
-	AtO3Tv06f+xUpDax2h8LhCgGy21hTmAwGWydv+YHlS0AyDFDpVAoOPqphsS7VBDOBr+Njx6seePJ/
-	jinnPWioZC2U4g+aZhzbJBUMgCfj8q0J5N8YG8bp1qQCzcSpuMNKvO/KTpr3zMYLg/Img3oPzICEP
-	+eq0WzLer4HhVx8uwMWSKnCYt45wFpNBjZv1FEr6K0Cy+ugKFd7QfOl+yFrPB6sX5zJW9CuU1aa0d
-	rFhwjhPQ==;
+	bh=ssgL7DxzXbUZ7tJgWltGij1VtPlNzWyPW+YycDs+SSQ=; b=4fthqINsctR6cvDzhj9Tpr1f2+
+	zevvTv2AJCRYBEuPLw7Hoeu2ECyUCLeBuvbT6INj1uI+PDmVFP27e0FpUubAFRsvq5BP0aC5Qco5I
+	gbDHBNJSu8bxQuSNQjQQrNtu5QcdH36ySnlOfEE6gYPQk4cDLxtcWt67P7w26kQeM95xS9P+S4dKC
+	BSZOQ1iIU+55i3jp1JNDu4+O++gSYey/pWe3KtSf4OPbR4sB1lXx7XkTRHJviZoTzOwX7imS/5w9Q
+	xb9T90wofkw4ZLfxCt789pjbpnTR4vgspFyTMQKKzsr58PxsY/Hcq2U2IewJWTD0Pm8n5vwSeyyt2
+	VAygFfOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSC2-00000003Av7-0kPu;
-	Mon, 23 Nov 2026 11:26:42 +0000
-Received: from out-1.mta0.migadu.com ([2001:41d0:1004:224b::1] helo=mta0.migadu.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSBQ-00000003AYW-0Cko
+	id 1xVSD8-00000003BGq-2mRq;
+	Mon, 23 Nov 2026 11:27:50 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVSD6-00000003BGB-43eZ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:26:12 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=ZxLBiXZ1NUZ1MFmbtMflV0tJeuN9FWz7PunWy9rzBsg=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795433162; v=1; x=1796037962;
- b=Ta5HkjwI+4WdEKmO2dRzIBQoxePpFy191qlXhmQwfFbqeeEWHzK3yNwcuRleg3EAi06RHMVQ
- qv1pD8supKmP0j6vV/wHyTyQRl8AzB6f0wzviKAAuku15mFoeIqbVxEC2snxKpkG3Vi9nxWFXcC
- NQ7i2cjM6mlomlHOPSQhfSfk=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id d7dbd3324f9b12f6;
-	Mon, 23 Nov 2026 11:26:00 +0000
-X-Mizu-Trace-ID: d7dbd3324f9b12f6
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5be58ad9600so9919e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:25:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEIN/VbSES6K6t8f4bc3DuORt9wJZQLkpuhT5PKUb54g0kV7KZv7ouy/ZxX2mdR485aRVgHgTJzHuhjCe6jaHXy@lists.infradead.org
-X-Gm-Message-State: APuU4Z9kIBQfOgC9jAArGa7qHV2eRarKXs5O/7VHeviGIUhSvzpe8fku
-	FEGyFdZ1SLXrMhBhi1mf4I8ktIu5vg+AHVecB9bi22+6emHLvv5Zruw/3No5XDKpFofi/nSOujG
-	5KDRU7PpL/hHmr5U2X8h1/oJUXNoDaYfLgfLdKhJs
-X-Received: by 2002:a05:6512:3502:b0:5c1:488e:a067 with SMTP id
- 2adb3069b0e04-5c200ba538amr163953e87.16.1795433155472; Mon, 23 Nov 2026
- 03:25:55 -0800 (PST)
+	Mon, 23 Nov 2026 11:27:50 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 45116143D;
+	Mon, 23 Nov 2026 03:27:45 -0800 (PST)
+Received: from [10.2.213.11] (unknown [10.2.213.11])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6D7323F882;
+	Mon, 23 Nov 2026 03:27:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795433268; bh=ssgL7DxzXbUZ7tJgWltGij1VtPlNzWyPW+YycDs+SSQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BlDbpH9GOBYSN/1fZzJq1X8wn0398nEuLJMN7Lftbd1i1Z+673bgMeFgBM73EZ+fD
+	 TMCWiWL0SrE0T/ocQVq5iEnYFkaa7E9tkSksb8AWEWegoyBO6JmnO4ZNj+OyTh4ymr
+	 R0cO5BUY8o0g9BEdQeTg7Xi2MY6QF7ixE36FCq/E=
+Message-ID: <9b0461dd-0616-4c7e-9c03-6eca1e452a3d@arm.com>
+Date: Mon, 23 Nov 2026 11:27:43 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123075219.369042-1-fuad.tabba@linux.dev> <20261123075219.369042-10-fuad.tabba@linux.dev>
- <20261123112218.20959-I-seiden@linux.ibm.com>
-In-Reply-To: <20261123112218.20959-I-seiden@linux.ibm.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Mon, 23 Nov 2026 11:25:19 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTx1AYw7SzWpv=k8ahrKnovaftP8rC7_GHx2g+PZ-cjXew@mail.gmail.com>
-X-Gm-Features: Aa3M54q04K4Vkb_xge3irgDfROZAKGCFM3lbfFzE09aj0suM-WV_djSD8CzF7iU
-Message-ID: <CA+EHjTx1AYw7SzWpv=k8ahrKnovaftP8rC7_GHx2g+PZ-cjXew@mail.gmail.com>
-Subject: Re: [PATCH 9/9] arm64: sysreg: Reject a bit position written with a
- leading zero
-To: Steffen Eiden <seiden@linux.ibm.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Sascha Bischoff <Sascha.Bischoff@arm.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: head: set __entry_task along with task setup
+To: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+References: <20261117174814.95936-1-ada.coupriediaz@arm.com>
+ <20261117174814.95936-4-ada.coupriediaz@arm.com>
+ <f232d0ff-3286-4d85-b9e3-cad8c6bc7178@arm.com>
+ <2ce350f9-4dc4-480f-8a53-07ef9586d49b@arm.com>
+ <av8sxUCg4m492Tx6@shutemov.name>
+From: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+Content-Language: en-US, en-GB, fr
+Organization: Arm Ltd.
+In-Reply-To: <av8sxUCg4m492Tx6@shutemov.name>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_032609_106261_604AC3CA 
-X-CRM114-Status: GOOD (  11.42  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_032749_056978_5FFC5FB4 
+X-CRM114-Status: GOOD (  11.45  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,35 +72,32 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Peter Zijlstra <peterz@infradead.org>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, mrigendrachaubey <mrigendra.chaubey@gmail.com>, Dawei Li <dawei.li@linux.dev>, Marc Zyngier <maz@kernel.org>, Breno Leitao <leitao@debian.org>, Will Deacon <will@kernel.org>, Linus Walleij <linusw@kernel.org>, linux-arm-kernel@lists.infradead.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 23 Nov 2026 at 11:22, Steffen Eiden <seiden@linux.ibm.com> wrote:
-[...]
-> > diff --git a/arch/arm64/tools/gen-sysreg.awk b/arch/arm64/tools/gen-sysreg.awk
-> > index 057dc98082b5e..01b463e271cef 100755
-> > --- a/arch/arm64/tools/gen-sysreg.awk
-> > +++ b/arch/arm64/tools/gen-sysreg.awk
-> > @@ -102,7 +102,8 @@ function parse_bitdef(reg, field, bitdef, _bits)
-> >               fatal("invalid bit-range definition '" bitdef "'")
-> >       }
-> >
-> > -
-> > +     if (msb !~ /^(0|[1-9][0-9]*)$/ || lsb !~ /^(0|[1-9][0-9]*)$/)
-> > +             fatal(reg "." field " invalid bit-range '" bitdef "'")
->
-> The test is good but IMO the error message should be more precise to
-> what you are actually checking. sth like:
->
-> fatal(reg "." field " non-decimal bit-range '" bitdef "'")
+Hi Kyril,
 
-Ack.
+On 19/11/2026 17:09, Kiryl Shutsemau (Meta) wrote:
+> On Wed, Nov 18, 2026 at 03:30:06PM +0000, Ada Couprie Diaz wrote:
+>> However, as far as I can tell this is not the case for secondaries :
+>> their first task on boot is set to the idle task, which they go to
+>> without switching until (and unless) something gets scheduled on the core.
+>> This would be the same path taken for CPU hotplug.
+> Secondaries brought up at boot have run their cpuhp thread before SDEI
+> probes: smp_init() comes before the initcalls. A CPU that was online
+> before still has its idle task in __entry_task. So only a CPU onlined
+> for the first time after SDEI probed can see NULL there.
+That makes sense, thanks for clarifying.
+So there is a very small window, only on first booting secondaries,
+where we could see this issue, but it does exist.
 
-Thanks again,
-/fuad
+Kind regards,
+Ada
+
 
