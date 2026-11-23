@@ -2,61 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0520606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7AB606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:06:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DU06tbLx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NhSYPe9l
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wneZNH7O;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WSIYT+gE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:To:
+	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0aJ5NufMkA0oD7AZywus5LCK/c7Fmr+e+ufWOzcP874=; b=DU06tbLxpUstSG
-	wK2cJehwkQzTU5vwXRhvG5UXkG6KSX7cl/EJv4+isdyNqyTHuJ9ItzAM6shPV5uhvQTZ3RkNf5Dbe
-	c7WY0XT1XVsgXW3oItnim4w0essbEz5CNbbEBmDJd4AUnDHSbtFhTJwpDdbmCcYgvR/IhHMpveFlL
-	IVLBzST/cDc+tSy194gDoFn/KOefdpbSj4yRqWrJmep1jLqzWFuYiTz7qh9xWmdISMZb4Tbmj4Fyn
-	yx35J3+99BqhemRqsY9B/zhiTVTU+va/2Jz9e25cJ011EGP+8CZe6FlnojdvATuU/40NFxjLIf7sb
-	V9l+7X1d1JBfDLCO6mHQ==;
+	List-Owner; bh=aKQbuNwFr/Nx8wYobxXg0xTCe3AGkTE27xzzOZwvQns=; b=wneZNH7OlPWG/I
+	EcEAnBWFTt0Spu/NAxXW2LOHhPdQ2wJnN0C9RX/8Ri3MkvcMSOvHyq8j9JoqtV9u3kLXJwTApiDf0
+	MjFBYvpcZE+JqDEzIFl6WSNIDz7AQBnB469vIjqKEJQ+iq5cROXk1L76xogwa9HDI6+DRW9YlzTVo
+	KaRjV14sRI2YduwCG8psKlUjD0lyepExCw0N3lq0znyqa3meggRUCmEal29t9U0FYRLoqnECCPg7K
+	pyE/7QEQleuHDW4+AdazDhinQNqNX9ZoPmrdG97Z3abfLW97/J3uhzS9cu/yWFxn1Tonky9kDnTbi
+	mM3otRI5b4sgtKFb+d5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWYc-0000000481v-3TpP;
-	Mon, 23 Nov 2026 16:06:18 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVWYl-0000000485d-04Fy;
+	Mon, 23 Nov 2026 16:06:27 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWYc-0000000481f-0dYp;
-	Mon, 23 Nov 2026 16:06:18 +0000
+	id 1xVWYg-0000000483t-1Xiq;
+	Mon, 23 Nov 2026 16:06:22 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B2EC5439EE;
+	by sea.source.kernel.org (Postfix) with ESMTP id 599EF4421D;
+	Mon, 23 Nov 2026 16:06:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 321BB1F000CF;
 	Mon, 23 Nov 2026 16:06:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E8AB1F000C6;
-	Mon, 23 Nov 2026 16:06:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795449977;
-	bh=0aJ5NufMkA0oD7AZywus5LCK/c7Fmr+e+ufWOzcP874=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=NhSYPe9lfkgnjIr0bn0lVFAu74Gql+ImttqV88SSuZvfqujeqgyPWhfkEFENt/3r1
-	 ljaq1vYZcEqdY0QaOOL0xJ4faDwMsTQWFhuc/DLEh7F5S53TUi76y7pRy5/2KBJ/Do
-	 R/AaittP7TCCqVaLAbG5/xg6ENb9TGCtEL+H/GAXsuuZOXoKaJz8LwIN0Ih2Sz6fQq
-	 SG7WQ/80to5vqtqJf8jhdVTBv1i7WdongDEm5KiOJKob1tyqgknECSUJa6CRaEcXdy
-	 YQjXCHSPa4xaMWqbotNc8S9Xm+c8go1+kbdWfwbW/aLlsp9GODhkQTb7wDZfjNFCul
-	 ywN2gZCgmj4mw==
+	s=k20260515; t=1795449981;
+	bh=aKQbuNwFr/Nx8wYobxXg0xTCe3AGkTE27xzzOZwvQns=;
+	h=From:To:In-Reply-To:References:Subject:Date;
+	b=WSIYT+gEKpICbw3GpJkX6XyH75SqxoAe5i0bgAzQXRBOCGuLUF7s45+CexEyKh/sk
+	 j0drR9z9Y+kXVhQPZSK8BawDKGyuPmJJTkt35kqKmx0++A2xfcMQAwR4PdS32rTslX
+	 cmiIwmmJ0wgScyLFsF4n5v1UnFc7XvW8KTbGgc3oqCgJnAuhZpmR/ykNM+vG1pKx1H
+	 4vGZ46QYKXcNb64q+29MBHzm971Jd6yImTij6G/ppndpM9hLkdAjnTzo63ilZtSiQE
+	 ybAI3+OzJSZSv3kqnO7h8qBHH7qA235LlZgoZ0030udPsHVZvzpe6dUmh3Zs+V50uz
+	 AzqKuLhtuLE/w==
 From: Vinod Koul <vkoul@kernel.org>
-To: Coia Prant <coiaprant@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261006162807.2843858-1-coiaprant@gmail.com>
-References: <20261006162807.2843858-1-coiaprant@gmail.com>
-Subject: Re: [PATCH v13 0/2] phy: rockchip: naneng-combphy: add SGMII MAC
- selection for RK3568
-Message-Id: <179544997369.275844.18034015183144679963.b4-ty@kernel.org>
-Date: Mon, 23 Nov 2026 21:36:13 +0530
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Christian Marangi <ansuelsmth@gmail.com>
+In-Reply-To: <20261103194410.6632-1-ansuelsmth@gmail.com>
+References: <20261103194410.6632-1-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v15 0/3] airoha: an7581: USB support
+Message-Id: <179544997784.275844.2168533333903460863.b4-ty@kernel.org>
+Date: Mon, 23 Nov 2026 21:36:17 +0530
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -80,24 +78,24 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Wed, 07 Oct 2026 00:28:04 +0800, Coia Prant wrote:
-> Changes since v12:
+On Tue, 03 Nov 2026 20:44:05 +0100, Christian Marangi wrote:
+> This is a major rework of the old v2 series.
 > 
-> - Only write pipe_sgmii_mac_sel when the property is present, leaving the
->   routing unchanged otherwise (Shawn).
-> - Validate the value in the driver and reject anything other than 0 or 1
->   (Shawn).
-> - Drop "default: 1" from the binding; the property is tri-state, so no
->   'default' in the schema is appropriate (Rob).
+> The SoC always support USB 2.0 but for USB 3.0 it needs additional
+> configuration for the Serdes port. Such port can be either configured
+> for USB usage or for PCIe lines or HSGMII and these are configured
+> in the SCU space.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: phy: rockchip: naneng-combphy: add rockchip,sgmii-mac-sel property
-      commit: 0451ac710ad1627f48116204f6fcf3aec72cc87b
-[2/2] phy: rockchip: naneng-combphy: add SGMII MAC selection for RK3568
-      commit: 7827b62741ea75d24b3db1ad01d09b6d15423a62
+[1/3] dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
+      commit: b5e699a21adf36206a826089b8e8011c6051a716
+[2/3] phy: move and rename Airoha PCIe PHY driver to dedicated directory
+      commit: 27f22b201fe3c313e88b2256646b2513ab22e0b2
+[3/3] phy: airoha: Add support for Airoha AN7581 USB PHY
+      commit: 7c6c29cea0ef6b810424381277bbdf1a98c31b8b
 
 Best regards,
 -- 
