@@ -2,129 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E40B606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CD0606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:50:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ld30fuML;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ImKEQIYr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e4awJwwb;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FhxF28VO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=w6GSaQZ1YWPu7r01oRscCvKngFyipxtXhFF9Dl0tkUI=; b=ld30fuML8QhAxqC3oMORMHR3lM
-	DHj7QN5qjHP9QUtv3J4GRo8ZmbrtKD4i3Mir6JE68iU0/zonet0NmMckhzEB3SRidbnE42rO96iWi
-	wIUBZfGJE8/9+L8G5NqWu9r7KI5NCaO56xdTiJwtBiSAB5oV0aHw1ITFa3hUiEa4XOQsx0G0nXNq3
-	V2mGQjBA7tUeB9hvsKGe4fHQ6gNjdg134+liBfSA8HWFou53OF5IYVGKD/X/JqEDxRuEbchgWK3Ju
-	mji8gNvWNniAZqWP2Vc5lNRlWr4QB3vU/1qEUdFt/2S0NwITyO4OstOqdOPUr4E3nlNgbL2LGcROD
-	FxAeCHsA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=SCQzlcbNwCmuhr5iFrK9gJq6siqjEJF99ctxEcILNVU=; b=e4awJwwb5odOJ2
+	eT4nlFEJzzmi8HJLhWvsXlZBUaxuUO6d05d1nkrpwZ8+K05gP9m8U2RZlDeXX4twe5QiHzH7RmYxT
+	5QelcO5PRi5OGkTSl/ziyEsBN34Vn7g0qxoPHq6FlHjbkQZ52bQHr283lUSEzv8H5VFtrzxL5gRwY
+	B3kkKRYnng0a+jNxerYRxveH5x2G1KOfWAlPwA/acZXB/r1JdWv1DeVp3pExCGZfxyhvJmMPlB3We
+	gp3kM5BJs+aoh8ZjoC3Kkz87shwVeplvVGlTp6JQknNCwDNzR78NMMDaBpSP26NFlE/0wzzB5Fg+8
+	pb5yrPN9H1V2jdY71TDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWGD-000000044OW-3wUF;
-	Mon, 23 Nov 2026 15:47:17 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVWIu-000000044pD-3IeT;
+	Mon, 23 Nov 2026 15:50:07 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWGB-000000044Nb-3NYm
+	id 1xVWIo-000000044mG-3vvH
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 15:47:15 +0000
+	Mon, 23 Nov 2026 15:49:59 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4C40E401A2;
-	Mon, 23 Nov 2026 15:47:15 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795448834;
-	b=XnYBIAURtWhMH4hN41KCeocIyp3iW0jlycJmYCmQ9a//s9J0fJ+kUZ2D1bLWdY5sWDVb
-	 0wAEQQM8bcrOYRoSjSdAZVc7nl9oWoc4dte4NfJwTu9c/zYRzMxJxccczXjhBVrQccDLw
-	 QpY1qCAqGPR5mZjRrLkHL730ckwONT7QM5LI4J9zVmigzJpFBPwCDT/syd6c12QH91sVF
-	 7QaK9WSXDR6M67VopRGAi86Q1cWGqdxXV3IY/VsYdxxZFLHHka28SA1MRjwkJTUqZpLKT
-	 0KD1GDXVCef1T0hs8IVrjxH2xuUfzWv1geN33LYiX7mw82aXTso+rxYwAebOw75MUyg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795448834;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=w6GSaQZ1YWPu7r01oRscCvKngFyipxtXhFF9Dl0tkUI=;
-	b=vPDm2zVwrKLh7HCN6F1wrnqOXQjmoihFxpnrsbeNB+vf2dCEhekwP+nWp+w00YtgMaVy
-	 tH/Y6Iq0gp88/EeDti2ETionhuqFg8oTi6zRYCuvN/yCEBNyqr5tsWU9hmH2bDtk2sfaJ
-	 SulJtrhDVEOEKojxaZ1hV9Shjf4Vq+kP8tPcws81D1J9oj9+u7DJ4xZZMnOya97dM6iYs
-	 6UcHaRsewsEaTYuO6+x7EtHfXguMa9o1fI1xRC7zwstGp2E/NcR7gWYs7pfwpE+Q0Cb9T
-	 PrwafwOjkz8h0kZ4sk9L78fbqFmcgzcrB9oGSukIdk50HQY3A7skVaXMtOPNYjM2pYg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 12CE51F000D4;
-	Mon, 23 Nov 2026 15:47:04 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 08319622FA
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:49:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998BF1F00A36
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795448834;
-	bh=w6GSaQZ1YWPu7r01oRscCvKngFyipxtXhFF9Dl0tkUI=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=ImKEQIYrYNyjnhpEsdUJ1WTKWXXvvYLRL9g217ZqLAF3wcODuw6gZx0ne6lPDpXzP
-	 O/QSeLo2UF5uQ+Zt22cOKzHz0hFvbgTp42/4yPGQAedITdhiskQdRORf89ej4e5DXl
-	 kYbw+P1GeuElVH+XD5qBf3dOgka5xjwbZIcWMFo0kzfWv60D2U9CW3RXHqrRlAQQr1
-	 rHTT1JywTsQXAYzADo8plqC8kuFSlbgVcBi929xN1BDycfbOF+dJIEfJndfepAhPnu
-	 FgDun8ecII1o9Kn7fr0hzulbfZl1lVlIAB1NDmYb4iAXODhlfSndNTpQSG4CLw6CR0
-	 WyvAwDBT5J0Qg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6437C4C535;
-	Mon, 23 Nov 2026 15:47:03 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Mon, 23 Nov 2026 16:47:01 +0100
-Subject: [PATCH v9] arm64: dts: qcom: sdm845-google: Add STM FTS
- touchscreen support
+	s=k20260515; t=1795448997;
+	bh=SCQzlcbNwCmuhr5iFrK9gJq6siqjEJF99ctxEcILNVU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=FhxF28VOIx6y+hROoeNp60dLhhrLpae7rXzvw5rF7qUHPlYBCLyMDNMQrcWOhiw+K
+	 JOho/jbZlZPyi/MQG4qrbOTx6O2AC+OlL0ImJHsNE0LlHpxtBfDzhLu35Yc3hfleS2
+	 ihgiKn7z2XWHEBsgVwvIEcniBlcJpVjzCmrj4zEmHNqUfPvlqH3QNhxNUqR4e/eo3H
+	 h6lnzAzDOV+cx6KIn2xsrZSX3gL8aAGSYVRRpmSdUv6WOpi6ANFIcZ0ulo0yf2is4j
+	 URk3Qs2PoDSTaxmIQ3BmGcwDoC8R99MU4xDeAYvMS3AV/kqFPabpp+UfMAigDS9p7q
+	 wXQ2sWK9pU6yg==
+Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-36a315ed211so4397547eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:49:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErFdkygTnaOxOokbfUi6ttila8sXVHhENjGtCT1YZ7X10j/7GB+Fzhw1MJy5i9YXtvSaisoRL3Qjrdmn+UbNXtW6@lists.infradead.org
+X-Gm-Message-State: APuU4Z8+9anvu2MY98lJc7Yj8AMRKYBfRsQS8CEUvn1u47ZwaQeUpAB+
+	j49pR9XDzkwyShxmLuD79yux24Uz7Wi24lmqMbRA9kEoOkzTgutFztiRe7MEk1R7sefwfZTeBRp
+	S57iWHmSddqv7SQ/HOQfJsnB70HEw7A==
+X-Received: by 2002:a05:693c:8943:20b0:386:af00:e9a6 with SMTP id
+ 5a478bee46e88-386af00eb48mr3600530eec.2.1795448996995; Mon, 23 Nov 2026
+ 07:49:56 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-stmfts5-v9-1-3ab247cd32c0@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/13Qy07DMBAF0F+pvCZoPH6MzYr/QCz8pF7QojiKC
- lX+HadIOMny2nOuRnNnNY0lVfZyurMxzaWW66UF+3Ri4ewuH2kosWWGgBqQy6FOn3mqavCSBOf
- ZRxLI2vTXmHK5PZre3ls+lzpdx+9H8czX178OAfy/Y+YDDIhBKuOtC9q8lluZnsMPWxtm3Ciuu
- sKmCHwwIiWrLN8r0ZUE0ZVoSkVH2oQcEQ5KbpXtSjalZU66fVH0aq9UV4ZDV6opCCQoWrSW9F7
- prizorvS6IWSftcuG+OEatFXUFTUlnRLC8BBBHJTZKNzc0Kwb5pClTRiMyl0ty/ILzIIP/RYCA
- AA=
-X-Change-ID: 20260214-stmfts5-b47311fbd732
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Petr Hodina <petr.hodina@protonmail.com>, linux-input@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Abel Vesa <abel.vesa@oss.qualcomm.com>, David Heidelberg <david@ixit.cz>, 
- Abel Vesa <abelvesa@kernel.org>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7114; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=BZ0jNhMewCco0W3GXqptMNj2qzAX+JOz+BtCMJgBCLQ=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBrBF/2l+atC2bSO1qox+encpqS3x3oTwbR9q7P1
- lPMQNUewEOJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCawRf9gAKCRBgAj/E00kg
- ckQkD/wLWCfHtUy1Alv7HMK0uwsEWGQx7am6tJx3Xevd6TXHu3eW0yb3UPBFvEVDMTnrw9I/7uJ
- L0pvQj0EKAPLLRxfF+IOpYfOgYae/siKX3/Ybq76Rna6oxqBnjrroXC87AJG3iDyykB+SWKME1i
- WGfOJ2eBYx6G0rVwP3p17VwH4SGe9KgLZdAN7vpyGxJHJkHTXUqaqWhDD2wYLxLh579ro/0OZsp
- TD/LdMuqnPsRpEC3YyQ5x8fwOipEe5iO8X6eGEgFpqe8O/fb5c0vwV98VjJMe42HoDHeJmEKCaM
- ymOPyKevexWYrQIeiMCnaVJtFEDuCE16SBNvAzvR1EK4qtanVjpJITPPcM2GvemKy++TJNtuv5Y
- 3tu9ezw9RmJPjfBcgs9kWixfwqe7QaMUJjxBdp+9uMkox4JqZ8YyBBumsMNbjs/+bDxpr2KkOZz
- FDArT1MI5ZMB3CIE6ATcYP9uq0eFRuMA02JK1U+tuFtpHVBzTEJ7GtLyerNIkyihM3t7T6WDh40
- SIoguFUqZgc0iqC2/ZQmtIUAmeV8v02DP9EiLOM8SfMcSpxf1NIFZqz0+WRfDHmalyupW33H7OE
- fDVlfEFPWnTyeH5hYzC+LJrnlwTU7uiFj9tL2JGzxekvqCkbNhbxdZn10u45/XHepZ0/wHcuW8E
- F87mQ3iaVyufD/Q==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
+References: <20261011004248.1117649-1-agentzoan@gmail.com> <20261011004248.1117649-4-agentzoan@gmail.com>
+In-Reply-To: <20261011004248.1117649-4-agentzoan@gmail.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 23 Nov 2026 15:49:44 +0000
+X-Gmail-Original-Message-ID: <CAAOTY_8NSXSj64NBQN11kLs1ik0YXWH1FZ5gzJtzWYNEozQ7Lg@mail.gmail.com>
+X-Gm-Features: Aa3M54oYdPL6VD3WqMQ7QRwBmptZ5_Vy6FcQra7b4AqYYR8h27_8PCC_wigfSRA
+Message-ID: <CAAOTY_8NSXSj64NBQN11kLs1ik0YXWH1FZ5gzJtzWYNEozQ7Lg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/mediatek: mtk_crtc: Pick the connector route on
+ every CRTC enable
+To: zoan37 <agentzoan@gmail.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Jason-JH Lin <jason-jh.lin@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
+	Nancy Lin <nancy.lin@mediatek.com>, Nathan Lu <nathan.lu@mediatek.com>, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,200 +83,49 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: david@ixit.cz
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Petr Hodina <petr.hodina@protonmail.com>
+zoan37 <agentzoan@gmail.com> =E6=96=BC 2026=E5=B9=B410=E6=9C=8811=E6=97=A5=
+=E9=80=B1=E6=97=A5 =E4=B8=8A=E5=8D=8812:43=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> mtk_crtc_update_output() only picks the output component of a CRTC
+> with connector routes when connectors_changed is set in the commit that
+> enables the CRTC. But connectors_changed only says that the connectors
+> changed in that commit, not since the CRTC was last enabled. A connector
+> can be attached to (or moved to) the CRTC while it is inactive, and the
+> later commit that only sets ACTIVE then has active_changed but not
+> connectors_changed:
+>
+> - If the CRTC had never been enabled, the route slot is still NULL and
+>   mtk_crtc_ddp_hw_init() dereferences it (mtk_ddp_comp_clk_enable()
+>   and so on).
+> - If the CRTC was driven through another route before, e.g. a CRTC
+>   shared by an HDMI bridge on DSI and a DisplayPort output that is
+>   switched off (DPMS) while the monitor moves from one to the other,
+>   the pipeline is set up for the old output.
+>
+> update_output() only runs from atomic_enable and the lookup is a short
+> loop over the routes, so do it on every enable.
 
-Basic touchscreen connected to second i2c bus.
+With modification, applied to mediatek-drm-fixes [1], thanks.
 
-Signed-off-by: Petr Hodina <petr.hodina@protonmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-Changes in v9:
-- Only Device-tree patch remains, rebased against next-20261120.
-- Link to v8: https://patch.msgid.link/20260925-stmfts5-v8-0-0fcf49e2c85f@ixit.cz
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-fixes
 
-Changes in v8:
-- Split DT binding example changes into own commit (Krzysztof, Dmitry)
-- Refectored the stmfts_power_on fix. (Dmitry)
-- Added ABS_MT_TOOL_TYPE. (Dmitry, Sashiko)
-- Link to v7: https://patch.msgid.link/20260907-stmfts5-v7-0-4a53381cd038@ixit.cz
+Regards,
+Chun-Kuang.
 
-Changes in v7:
-- Added 'Input: stmfts - wait for controller ready after reset',
-  the waiting is done for both FTS4 and FTS5, similarly to the
-  downstream driver. Should improve reliability everywhere.
-- Link to v6: https://patch.msgid.link/20260906-stmfts5-v6-0-50fbf6af8718@ixit.cz
-
-Changes in v6:
-- Enable only the multi-touch scan on FTS5 sense-on (0xff was wrong,
-  only 0x01 is needed. This broke Xiaomi Mi 8 toucschreen).
-- Fixed Y-coordinate comments. (Dmitry)
-- Corrected event[0] parsing. (Dmitry)
-- Dropped checking < 0 on unsigned area. (Dmitry)
-- Dropped unnecessary i2c writes after reset. Verified against
-  downstream driver. (Dmitry, Sashiko)
-- Added pieces for supporting non-OF integration. (Sashiko)
-- Shared input open/close into one impl. (Dmitry).
-- Link to v5: https://patch.msgid.link/20260810-stmfts5-v5-0-0c737d929976@ixit.cz
-
-Changes in v5:
-- 3.3V is analog, 1.8V is digital supply. Fix that.
-- Name the error variables "err" (Dmitry)
-- Use scoped_guard() for ->running, and only set it once the scan
-  mode has actually been enabled. (Dmitry)
-- Use i2c_master_send() instead of open-coding a single-message
-  i2c_transfer(). (Dmitry)
-- Drivers may report coordinates outside the declared min/max, so
-  remove the clamping. (Dmitry)
-- BTN_TOUCH and INPUT_PROP_DIRECT are already set up by
-  input_mt_init_slots(..., INPUT_MT_DIRECT). (Dmitry)
-- Let the input core track contacts: drop the touch_id/stylus_id
-  bitmaps and the hand-rolled BTN_TOUCH reporting, and sync the frame
-  once per interrupt with input_mt_sync_frame() instead of calling
-  input_sync() per contact event. The controller pushes contacts one
-  by one into the event FIFO and only resends the ones that changed,
-  so INPUT_MT_DROP_UNUSED is wrong here and is dropped as well. (Dmitry)
-- Restore the FTS4 interrupts accidentally dropped by introduction of
-  FTS5.
-- mode-switch-gpios isn't required with stmfts5. Some designs, such as
-  Xiaomi Mi 8, has no such GPIO connected and is limited to AP mode.
-- Nit: updated example to use interrupts-extended.
-- Nit: (maximum x/y coordinate reported + 1), corrected example.
-- Link to v4: https://lore.kernel.org/r/20260409-stmfts5-v4-0-64fe62027db5@ixit.cz
-
-Changes in v4:
-- Wrap everything below enabling the supplies into stmfts_configure()
-  to avoid bunch of gotos to power off on error (Dmitry T.)
-- Finished chip specific ops and removed is_fts5. (Dmitry T.)
-- Link to v3: https://lore.kernel.org/r/20260403-stmfts5-v3-0-5da768cfd201@ixit.cz
-
-Changes in v3:
-- s/touchscreen_pins/touchscreen_irq_n. (Konrad)
-- Use interrupts-extended. (Konrad)
-- Fixed rebase conflict against 8665ceb926ec ("Input: stmfts - use guard notation when acquiring mutex")
-- Rename switch-gpios to mode-switch-gpios.
-- Do not define properties in if:then: branches. (Krzysztof)
-- Link to v2: https://lore.kernel.org/r/20260315-stmfts5-v2-0-70bc83ee9591@ixit.cz
-
-Changes in v2:
-- Fix typo in the binding s/switch-gpio/switch-gpios/.
-- Deduplacate allOf. (Rob yamllint)
-- Add missing S-off-by. (Dmitry B.)
-- Dropped irq-gpios as it's not needed. (Konrad)
-- Correct x and y touchscreen area size. (Konrad)
-- Correct reset introduction commit description. (Krzysztof)
-- Partially implemented chip specific ops. (Dmitry T.)
-- Separeted license naming cleanup into separate commit (Dmitry T.)
-- Link to v1: https://lore.kernel.org/r/20260301-stmfts5-v1-0-22c458b9ac68@ixit.cz
-
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-To: Alexandre Torgue <alexandre.torgue@foss.st.com>
-To: Petr Hodina <petr.hodina@protonmail.com>
-To: David Heidelberg <david@ixit.cz>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Henrik Rydberg <rydberg@bitmath.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-To: Abel Vesa <abelvesa@kernel.org>
-Cc: linux-input@vger.kernel.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org
----
- arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts | 19 ++++++++++++++++++-
- arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi  |  2 +-
- 2 files changed, 19 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-index a000c75494f1c..f65263955229c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-@@ -21,17 +21,34 @@ &framebuffer0 {
- 	stride = <(1080 * 4)>;
- };
- 
- &i2c2 {
- 	clock-frequency = <1000000>;
- 
- 	status = "okay";
- 
--	/* ST,FTS @ 49 */
-+	touchscreen@49 {
-+		compatible = "st,stmfts5";
-+		reg = <0x49>;
-+
-+		pinctrl-0 = <&touchscreen_irq_n>, <&touchscreen_reset>;
-+		pinctrl-names = "default";
-+
-+		interrupts-extended = <&tlmm 125 IRQ_TYPE_LEVEL_LOW>;
-+
-+		mode-switch-gpios = <&tlmm 136 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
-+
-+		avdd-supply = <&vreg_l19a_3p3>;
-+		vdd-supply = <&vreg_l14a_1p8>;
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2160>;
-+	};
- };
- 
- &mdss_dsi0 {
- 	vdda-supply = <&vdda_mipi_dsi0_1p2>;
- 
- 	status = "okay";
- 
- 	panel@0 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-index 3c9656b88b696..7d90c0be485ff 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-@@ -525,17 +525,17 @@ firmware-pins {
- 
- 	touchscreen_reset: ts-reset-state {
- 		pins = "gpio99";
- 		function = "gpio";
- 		drive-strength = <8>;
- 		bias-pull-up;
- 	};
- 
--	touchscreen_pins: ts-pins-gpio-state {
-+	touchscreen_irq_n: ts-irq-n-gpio-state {
- 		pins = "gpio125";
- 		function = "gpio";
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
- };
- 
- &uart6 {
-
----
-base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
-change-id: 20260214-stmfts5-b47311fbd732
-
-Best regards,
---  
-David Heidelberg <david@ixit.cz>
-
-
+>
+> Fixes: 01389b324c97 ("drm/mediatek: Add connector dynamic selection capab=
+ility")
+> Assisted-by: LLM
+> Signed-off-by: zoan37 <agentzoan@gmail.com>
+> ---
 
