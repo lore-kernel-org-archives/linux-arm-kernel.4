@@ -2,75 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744AB606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18AF6606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MiqQPEJZ;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=AKIoeyuH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aLx/xn7h;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=O74+mP8Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EhvWa/TiLOlRcTzUI36EfwG0krtjkwcZEbZq1/m6gSk=; b=MiqQPEJZ8BKdK3
-	yYlkRyYrenXPa6cINZgAjlUeM0FFolijt37Zw01qE8l8VmMMpNECHKs8OVrU3jcT3TC4FgGlB1pMy
-	WPi/3i934fAjq4UfHCvn1gArcnupwEYmYqLSRBm7EPBIiXm0FJm/ZK5Vdeu+5qPqPzyMAKsAjCizj
-	Kr+DX6p5u6dAmz7Jm4AebpA7gF0TwNvpV6p7O1RIpvojdQkJG20L3qwLOjvjq7t55Sw7DpAyu6pGl
-	40ZQrRNOVduyy2k6CCWmGQukiMpEgjUG4Hb1pxk7JfzNsJnTY7dIq3I7Yb2phfuBJ5D69U8KP0bey
-	K6+87wgsC3XA9HHRQBQg==;
+	List-Owner; bh=pJ+7nfcFzRim3a/y3yfomDmbdCPIRW2m246LLxOsgHo=; b=aLx/xn7h2L8yJp
+	BYcNtY5saFw1jL1h8UNibQd66UXxjGql73X8wyp5AY7FvZPkMpA8kmfeZQjzav5DrajIxeg9svfRV
+	bBpvNHIsx3u2uXEvNupuMGCHZxvL/zjzcD9R8w6Qvnk9cu+wnL7HYqlgqO6xOmmFvJ4czVwdVApFe
+	wkNJZDlsqVfUk7GfOmoTWiuDQ8ToG6QJrMGICjodnqhPfaBkZSWEmMFkVEYosWYHwN/af71JUN3xs
+	yAi0CrQXm7iapgqBejeS5ppvLLXt19WOnUoAdIUwkc/VPG9sNg3JFX82Gyp1AbunmryKvzTUdAgDP
+	Cn+5ItPgUpeyZpVqBNfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRSn-00000002zjZ-2r3p;
-	Mon, 23 Nov 2026 10:39:57 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRSl-00000002zil-3Mfp
+	id 1xVQck-00000002o5Z-2Wp4;
+	Mon, 23 Nov 2026 09:46:10 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVQcf-00000002o35-1uHp
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:39:57 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1AFE2143D;
-	Mon, 23 Nov 2026 02:39:52 -0800 (PST)
-Received: from [10.0.129.12] (Suzukis-MBP.cambridge.arm.com [10.0.129.12])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F3BB93F632;
-	Mon, 23 Nov 2026 02:39:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795430395; bh=5QddXLfT5OfirN05d9EK5OYnHt7h8p4SJZwGpR59Lt8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AKIoeyuH3zxcEhnJbMJN7EoREGhj2gBBUpXrCrvrzYJq8edihMc8hjHSwCBWxxvUE
-	 jhWOvfaoGmWfyI+L4w70V/MCblzZezBT2Ws11fO4u+Pt2yJBQSApTRqQPlJlVGtnuv
-	 ZTe7NawxTupqecjmE8IaAsA8Q0SnfGw+Tu0suD28=
-Message-ID: <5989618f-be72-4df8-81d7-5e552b897a7f@arm.com>
-Date: Mon, 23 Nov 2026 10:39:50 +0000
+	Mon, 23 Nov 2026 09:46:07 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 16DE4C6914A;
+	Mon, 23 Nov 2026 09:46:08 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 237E35FAEB;
+	Mon, 23 Nov 2026 09:46:01 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5744C11E689B4;
+	Mon, 23 Nov 2026 10:45:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795427159; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=pJ+7nfcFzRim3a/y3yfomDmbdCPIRW2m246LLxOsgHo=;
+	b=O74+mP8ZmvzyzI2bI0oj38gnLSeiRp+5MkiOcAmEgdhePkFb6d3Yc4JNdu3VkbtcSJrkXc
+	VGq3VBFkiZFT4lnCxqkDUglABuOU7SCoAsWM3eaRNn1O/SO0oDfPRV4JOqAv9ne+jyS9X4
+	VzAjG6SiPFpUYNQm/mF+G5vw145dEyVQOScWzhG+jvWY2ek6KYzsEZKxL6oVOe9ALdvUg8
+	3bxDeKI89DF6IYyhjLajTQhqSxKdW1t3ytpoeEZ6HC7rI3BsMy7AMAjpbqcKtD6ylIadEq
+	wH0FFNxFjJx+SXJ/rByDrnSlIXtEVzsP9bJfVx8Q1bcnPoElGyfkFgV++mbcTg==
+From: Paul Cercueil <paul.cercueil@bootlin.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	George Cherian <gcherian@marvell.com>,
+	Sujeet Baranwal <sbaranwal@marvell.com>,
+	Paul Cercueil <paul.cercueil@bootlin.com>
+Subject: [PATCH v3 2/2] mailbox: marvell-mhu: add Marvell MHU driver
+Date: Mon, 23 Nov 2026 10:45:42 +0100
+Message-ID: <20261123094542.44101-3-paul.cercueil@bootlin.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261123094542.44101-1-paul.cercueil@bootlin.com>
+References: <20261123094542.44101-1-paul.cercueil@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 4/6] coresight: qcom: add QDCP STM source
-Content-Language: en-GB
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mike Leach <mike.leach@arm.com>,
- James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20261119-introduce-qcom-qecp-feature-v1-0-b1a730d2c57a@oss.qualcomm.com>
- <20261119-introduce-qcom-qecp-feature-v1-4-b1a730d2c57a@oss.qualcomm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261119-introduce-qcom-qecp-feature-v1-4-b1a730d2c57a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_023955_936251_0735277B 
-X-CRM114-Status: GOOD (  37.63  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261123_014605_669753_AB9126BA 
+X-CRM114-Status: GOOD (  30.06  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,645 +82,347 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 09:01, Jie Gan wrote:
-> Add a Qualcomm-specific CoreSight STM (System Trace Macrocell) source
-> for platforms where the Qualcomm Embedded Co-Processor (QECP) firmware
-> owns the STM control registers.
-> 
-> The driver maps only the AP-visible STM stimulus aperture. Enable and
-> disable operations go through the Qualcomm Debug Control Protocol
-> (QDCP) provider referenced by qcom,qdcp, keeping the generic CoreSight
-> STM driver untouched. Firmware controls the block's clocks and power,
-> so the driver does no clock handling or runtime PM.
-> 
-> The CoreSight source disable operation cannot fail. If firmware does
-> not confirm a stop, the source is still marked disabled and a warning
-> is logged, and the failure is remembered. On removal the trace ID then
-> stays allocated, so no other source can reuse an ID that firmware may
-> still be applying. On removal the STM device is unregistered before the
-> CoreSight device, so its unlink callback never runs on a freed
-> CoreSight device.
-> 
+From: George Cherian <gcherian@marvell.com>
 
-Like I mentioned on the other thread, add csdev_access() for your platform
+Add support for Message Handling Units on Marvell OcteonTx and OcteonTx2
+platforms. The module uses mailbox controller interface to provide
+communication between SCP and AP using SCMI protocol over a single
+shared memory communication channel.
 
-Cheers
-Suzuki
+Signed-off-by: George Cherian <gcherian@marvell.com>
+Co-developed-by: Sujeet Baranwal <sbaranwal@marvell.com>
+Signed-off-by: Sujeet Baranwal <sbaranwal@marvell.com>
+Signed-off-by: Paul Cercueil <paul.cercueil@bootlin.com>
+---
 
+v3:
+ - Request an interrupt vector of exactly 3 interrupts
+ - Pass IRQF_NO_AUTOEN to devm_request_irq()
+ - Invert success condition of mrvl_mhu_last_tx_done()
 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->   drivers/hwtracing/coresight/Kconfig                |  11 +
->   drivers/hwtracing/coresight/Makefile               |   2 +
->   .../hwtracing/coresight/coresight-qcom-qdcp-stm.c  | 550 +++++++++++++++++++++
->   3 files changed, 563 insertions(+)
-> 
-> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
-> index 6a4239ebb582..f6ad698344fe 100644
-> --- a/drivers/hwtracing/coresight/Kconfig
-> +++ b/drivers/hwtracing/coresight/Kconfig
-> @@ -119,6 +119,17 @@ config ETM4X_IMPDEF_FEATURE
->   	  ETM 4.x tracer module that can't reduce commit rate automatically.
->   	  This avoids overflow between the ETM tracer module and the cpu core.
->   
-> +config CORESIGHT_QCOM_QDCP_STM
-> +	tristate "Qualcomm QDCP CoreSight STM source driver"
-> +	depends on QCOM_QDCP
-> +	select CORESIGHT_LINKS_AND_SINKS
-> +	select STM
-> +	help
-> +	  This driver provides a Qualcomm QDCP-backed CoreSight STM source.
-> +	  It maps the AP-visible STM stimulus aperture but asks QECP firmware
-> +	  to enable and disable STM tracing through QDCP instead of touching
-> +	  STM control registers directly.
-> +
->   config CORESIGHT_STM
->   	tristate "CoreSight System Trace Macrocell driver"
->   	depends on (ARM && !(CPU_32v3 || CPU_32v4 || CPU_32v4T)) || ARM64
-> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> index ab16d06783a5..d97e334fe1fc 100644
-> --- a/drivers/hwtracing/coresight/Makefile
-> +++ b/drivers/hwtracing/coresight/Makefile
-> @@ -23,6 +23,7 @@ condflags := \
->   subdir-ccflags-y += $(condflags)
->   
->   CFLAGS_coresight-stm.o := -D__DISABLE_TRACE_MMIO__
-> +CFLAGS_coresight-qcom-qdcp-stm.o := -D__DISABLE_TRACE_MMIO__
->   
->   obj-$(CONFIG_CORESIGHT) += coresight.o
->   coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
-> @@ -43,6 +44,7 @@ coresight-etm3x-y := coresight-etm3x-core.o coresight-etm-cp14.o \
->   obj-$(CONFIG_CORESIGHT_SOURCE_ETM4X) += coresight-etm4x.o
->   coresight-etm4x-y := coresight-etm4x-core.o coresight-etm4x-sysfs.o \
->   			coresight-etm4x-cfg.o
-> +obj-$(CONFIG_CORESIGHT_QCOM_QDCP_STM) += coresight-qcom-qdcp-stm.o
->   obj-$(CONFIG_CORESIGHT_STM) += coresight-stm.o
->   obj-$(CONFIG_CORESIGHT_CPU_DEBUG) += coresight-cpu-debug.o
->   obj-$(CONFIG_CORESIGHT_CATU) += coresight-catu.o
-> diff --git a/drivers/hwtracing/coresight/coresight-qcom-qdcp-stm.c b/drivers/hwtracing/coresight/coresight-qcom-qdcp-stm.c
-> new file mode 100644
-> index 000000000000..39c6a2798a0f
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-qcom-qdcp-stm.c
-> @@ -0,0 +1,550 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + *
-> + * Qualcomm QDCP-backed CoreSight STM source driver.
-> + */
-> +
-> +#include <linux/bitmap.h>
-> +#include <linux/coresight.h>
-> +#include <linux/coresight-stm.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/log2.h>
-> +#include <linux/mm.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/perf_event.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/stm.h>
-> +#include <linux/string.h>
-> +
-> +#include "coresight-priv.h"
-> +#include <linux/soc/qcom/qdcp.h>
-> +#include "coresight-trace-id.h"
-> +
-> +#define QDCP_STM_BYTES_PER_CHANNEL	256
-> +#define QDCP_STM_PKT_TYPE_DATA		0x98
-> +#define QDCP_STM_PKT_TYPE_FLAG		0xe8
-> +
-> +#define qdcp_stm_channel_addr(drvdata, channel) \
-> +	((drvdata)->stimulus_base + \
-> +	 ((channel) * QDCP_STM_BYTES_PER_CHANNEL))
-> +#define qdcp_stm_channel_off(type, options)	((type) & ~(options))
-> +
-> +/**
-> + * struct qcom_qdcp_stm_drvdata - QDCP STM source data.
-> + * @stm: generic STM interface handle.
-> + * @csdev: CoreSight source device.
-> + * @stimulus_base: mapped AP-visible STM stimulus aperture.
-> + * @stimulus_phys: physical base of the STM stimulus aperture.
-> + * @guaranteed: per-channel guaranteed/invariant delivery bitmap.
-> + * @qdcp: QDCP connection state; @qdcp.id is the QECP firmware source
-> + *	identifier, @qdcp.lock serializes sleeping QDCP operations.
-> + * @traceid: CoreSight ATID assigned to this source.
-> + * @fw_stop_failed: the last firmware stop was not confirmed, so firmware may
-> + *	still be tagging trace with @traceid. Updated under @qdcp.lock; read
-> + *	without it only on removal, when nothing else can use the source.
-> + * @numsp: number of stimulus ports.
-> + * @write_bytes: maximum naturally aligned stimulus write size.
-> + * @port_mask: stimulus port enable mask sent to firmware. Like the STMSPER
-> + *	register it mirrors, this is a 32-bit mask applied per 32-port group,
-> + *	so enabling every bit covers all ports regardless of @numsp.
-> + */
-> +struct qcom_qdcp_stm_drvdata {
-> +	struct stm_data		stm;
-> +	struct coresight_device	*csdev;
-> +	void __iomem		*stimulus_base;
-> +	phys_addr_t		stimulus_phys;
-> +	unsigned long		*guaranteed;
-> +	struct qdcp_consumer	qdcp;
-> +	u8			traceid;
-> +	bool			fw_stop_failed;
-> +	u32			numsp;
-> +	u32			write_bytes;
-> +	u32			port_mask;
-> +};
-> +
-> +static bool qdcp_stm_addr_unaligned(const void *addr, u8 write_bytes)
-> +{
-> +	return (unsigned long)addr & (write_bytes - 1);
-> +}
-> +
-> +static void qdcp_stm_send(void __iomem *addr, const void *data,
-> +			  u32 size, u8 write_bytes)
-> +{
-> +	u8 payload[8];
-> +
-> +	if (qdcp_stm_addr_unaligned(data, write_bytes)) {
-> +		memcpy(payload, data, size);
-> +		data = payload;
-> +	}
-> +
-> +	switch (size) {
-> +#ifdef CONFIG_64BIT
-> +	case 8:
-> +		writeq_relaxed(*(u64 *)data, addr);
-> +		break;
-> +#endif
-> +	case 4:
-> +		writel_relaxed(*(u32 *)data, addr);
-> +		break;
-> +	case 2:
-> +		writew_relaxed(*(u16 *)data, addr);
-> +		break;
-> +	case 1:
-> +		writeb_relaxed(*(u8 *)data, addr);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +}
-> +
-> +static ssize_t notrace qdcp_stm_packet(struct stm_data *stm_data,
-> +				       unsigned int master, unsigned int channel,
-> +				       unsigned int packet, unsigned int flags,
-> +				       unsigned int size,
-> +				       const unsigned char *payload)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +	void __iomem *channel_addr;
-> +	unsigned int stm_flags;
-> +
-> +	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-> +	if (!coresight_get_mode(drvdata->csdev))
-> +		return -EACCES;
-> +
-> +	if (channel >= drvdata->numsp)
-> +		return -EINVAL;
-> +
-> +	channel_addr = qdcp_stm_channel_addr(drvdata, channel);
-> +	stm_flags = flags & STP_PACKET_TIMESTAMPED ? STM_FLAG_TIMESTAMPED : 0;
-> +	stm_flags |= test_bit(channel, drvdata->guaranteed) ?
-> +		     STM_FLAG_GUARANTEED : 0;
-> +
-> +	switch (packet) {
-> +	case STP_PACKET_FLAG:
-> +		channel_addr += qdcp_stm_channel_off(QDCP_STM_PKT_TYPE_FLAG,
-> +							 stm_flags);
-> +		qdcp_stm_send(channel_addr, payload, 1, drvdata->write_bytes);
-> +		return 1;
-> +	case STP_PACKET_DATA:
-> +		if (!size)
-> +			return 0;
-> +		if (size > drvdata->write_bytes)
-> +			size = drvdata->write_bytes;
-> +		else
-> +			size = rounddown_pow_of_two(size);
-> +
-> +		stm_flags |= flags & STP_PACKET_MARKED ? STM_FLAG_MARKED : 0;
-> +		channel_addr += qdcp_stm_channel_off(QDCP_STM_PKT_TYPE_DATA,
-> +							 stm_flags);
-> +		qdcp_stm_send(channel_addr, payload, size, drvdata->write_bytes);
-> +		return size;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static phys_addr_t qdcp_stm_mmio_addr(struct stm_data *stm_data,
-> +				      unsigned int master, unsigned int channel,
-> +				      unsigned int nr_chans)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +	phys_addr_t addr;
-> +
-> +	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-> +	addr = drvdata->stimulus_phys +
-> +	       channel * QDCP_STM_BYTES_PER_CHANNEL;
-> +
-> +	if (offset_in_page(addr) ||
-> +	    offset_in_page(nr_chans * QDCP_STM_BYTES_PER_CHANNEL))
-> +		return 0;
-> +
-> +	return addr;
-> +}
-> +
-> +static int qdcp_stm_link(struct stm_data *stm_data, unsigned int master,
-> +			 unsigned int channel)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +
-> +	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-> +	if (!drvdata->csdev)
-> +		return -EINVAL;
-> +
-> +	return coresight_enable_sysfs(drvdata->csdev);
-> +}
-> +
-> +static void qdcp_stm_unlink(struct stm_data *stm_data, unsigned int master,
-> +			    unsigned int channel)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +
-> +	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-> +	if (drvdata->csdev)
-> +		coresight_disable_sysfs(drvdata->csdev);
-> +}
-> +
-> +static long qdcp_stm_set_options(struct stm_data *stm_data,
-> +				 unsigned int master, unsigned int channel,
-> +				 unsigned int nr_chans, unsigned long options)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +
-> +	drvdata = container_of(stm_data, struct qcom_qdcp_stm_drvdata, stm);
-> +	if (!coresight_get_mode(drvdata->csdev))
-> +		return -EINVAL;
-> +
-> +	if (channel >= drvdata->numsp)
-> +		return -EINVAL;
-> +
-> +	switch (options) {
-> +	case STM_OPTION_GUARANTEED:
-> +		set_bit(channel, drvdata->guaranteed);
-> +		break;
-> +	case STM_OPTION_INVARIANT:
-> +		clear_bit(channel, drvdata->guaranteed);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int qdcp_stm_enable(struct coresight_device *csdev,
-> +			   struct perf_event *event, enum cs_mode mode,
-> +			   struct coresight_path *path)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +	int ret;
-> +
-> +	if (mode != CS_MODE_SYSFS)
-> +		return -EINVAL;
-> +
-> +	if (!coresight_take_mode(csdev, mode))
-> +		return -EBUSY;
-> +
-> +	drvdata = dev_get_drvdata(csdev->dev.parent);
-> +
-> +	mutex_lock(&drvdata->qdcp.lock);
-> +	ret = qdcp_stm_source_enable(drvdata->qdcp.provider, drvdata->qdcp.id,
-> +				     drvdata->traceid, drvdata->port_mask,
-> +				     false);
-> +	if (!ret)
-> +		drvdata->fw_stop_failed = false;
-> +	mutex_unlock(&drvdata->qdcp.lock);
-> +	if (ret) {
-> +		coresight_set_mode(csdev, CS_MODE_DISABLED);
-> +		return ret;
-> +	}
-> +
-> +	dev_dbg(&csdev->dev, "QDCP STM tracing enabled\n");
-> +	return 0;
-> +}
-> +
-> +/*
-> + * The CoreSight source disable op returns void and the user has already torn
-> + * the path down, so the source always ends up disabled from Linux's point of
-> + * view. Return the firmware result so the caller can at least report it.
-> + */
-> +static int qdcp_stm_disable_source(struct coresight_device *csdev)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +	struct qdcp_data *qdcp;
-> +	u64 source_id;
-> +	u8 traceid;
-> +	int ret;
-> +
-> +	if (coresight_get_mode(csdev) != CS_MODE_SYSFS)
-> +		return 0;
-> +
-> +	drvdata = dev_get_drvdata(csdev->dev.parent);
-> +	qdcp = drvdata->qdcp.provider;
-> +	source_id = drvdata->qdcp.id;
-> +	traceid = drvdata->traceid;
-> +
-> +	mutex_lock(&drvdata->qdcp.lock);
-> +	ret = qdcp_stm_source_disable(qdcp, source_id, traceid, false);
-> +	drvdata->fw_stop_failed = !!ret;
-> +	mutex_unlock(&drvdata->qdcp.lock);
-> +
-> +	coresight_set_mode(csdev, CS_MODE_DISABLED);
-> +	dev_dbg(&csdev->dev, "QDCP STM tracing disabled\n");
-> +	return ret;
-> +}
-> +
-> +static void qdcp_stm_disable(struct coresight_device *csdev,
-> +			     struct perf_event *event)
-> +{
-> +	int ret = qdcp_stm_disable_source(csdev);
-> +
-> +	if (ret)
-> +		dev_warn(&csdev->dev,
-> +			 "firmware did not confirm QDCP STM disable: %d\n",
-> +			 ret);
-> +}
-> +
-> +static int qdcp_stm_trace_id(struct coresight_device *csdev,
-> +			     enum cs_mode mode, struct coresight_device *sink)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +
-> +	drvdata = dev_get_drvdata(csdev->dev.parent);
-> +	return drvdata->traceid;
-> +}
-> +
-> +static const struct coresight_ops_source qdcp_stm_source_ops = {
-> +	.enable		= qdcp_stm_enable,
-> +	.disable	= qdcp_stm_disable,
-> +};
-> +
-> +static const struct coresight_ops qdcp_stm_cs_ops = {
-> +	.trace_id	= qdcp_stm_trace_id,
-> +	.source_ops	= &qdcp_stm_source_ops,
-> +};
-> +
-> +static ssize_t traceid_show(struct device *dev,
-> +			    struct device_attribute *attr, char *buf)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%#x\n", drvdata->traceid);
-> +}
-> +static DEVICE_ATTR_RO(traceid);
-> +
-> +static struct attribute *qdcp_stm_attrs[] = {
-> +	&dev_attr_traceid.attr,
-> +	NULL,
-> +};
-> +
-> +static const struct attribute_group qdcp_stm_group = {
-> +	.attrs = qdcp_stm_attrs,
-> +};
-> +
-> +static const struct attribute_group *qdcp_stm_groups[] = {
-> +	&qdcp_stm_group,
-> +	NULL,
-> +};
-> +
-> +static int qdcp_stm_get_stimulus_area(struct platform_device *pdev,
-> +				      struct resource **res)
-> +{
-> +	/*
-> +	 * The binding requires reg-names = "stm-stimulus-base"; there is no
-> +	 * documented unnamed-resource form, so don't silently accept one.
-> +	 */
-> +	*res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> +					    "stm-stimulus-base");
-> +	return *res ? 0 : -EINVAL;
-> +}
-> +
-> +static void qdcp_stm_init_stm_data(struct qcom_qdcp_stm_drvdata *drvdata,
-> +				   const char *name)
-> +{
-> +	struct stm_data *stm = &drvdata->stm;
-> +
-> +	stm->name = name;
-> +	stm->sw_start = 1;
-> +	stm->sw_end = 1;
-> +	stm->hw_override = true;
-> +	stm->sw_nchannels = drvdata->numsp;
-> +	stm->sw_mmiosz = QDCP_STM_BYTES_PER_CHANNEL;
-> +	stm->packet = qdcp_stm_packet;
-> +	stm->mmio_addr = qdcp_stm_mmio_addr;
-> +	stm->link = qdcp_stm_link;
-> +	stm->unlink = qdcp_stm_unlink;
-> +	stm->set_options = qdcp_stm_set_options;
-> +}
-> +
-> +static int qdcp_stm_probe(struct platform_device *pdev)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata;
-> +	struct coresight_platform_data *pdata;
-> +	struct coresight_desc desc = { 0 };
-> +	struct device *dev = &pdev->dev;
-> +	struct resource *res;
-> +	const char *name;
-> +	u32 numsp;
-> +	int trace_id;
-> +	int ret;
-> +
-> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, drvdata);
-> +
-> +	drvdata->qdcp.provider = devm_qdcp_get(dev, "qcom,qdcp");
-> +	if (IS_ERR(drvdata->qdcp.provider)) {
-> +		dev_err(dev, "failed to get QDCP provider: %pe\n",
-> +			drvdata->qdcp.provider);
-> +		return PTR_ERR(drvdata->qdcp.provider);
-> +	}
-> +
-> +	ret = fwnode_property_read_u64(dev->fwnode, "qcom,qdcp-source-id",
-> +				       &drvdata->qdcp.id);
-> +	if (ret) {
-> +		dev_err(dev, "missing QDCP STM source id: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = qdcp_stm_get_stimulus_area(pdev, &res);
-> +	if (ret) {
-> +		dev_err(dev, "missing STM stimulus aperture: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	drvdata->stimulus_phys = res->start;
-> +	drvdata->stimulus_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(drvdata->stimulus_base))
-> +		return PTR_ERR(drvdata->stimulus_base);
-> +
-> +	ret = fwnode_property_read_u32(dev->fwnode, "qcom,num-stimulus-ports",
-> +				       &numsp);
-> +	if (ret) {
-> +		numsp = resource_size(res) / QDCP_STM_BYTES_PER_CHANNEL;
-> +		if (!numsp) {
-> +			dev_err(dev, "stimulus aperture of %llu bytes holds no channels\n",
-> +				(u64)resource_size(res));
-> +			return -EINVAL;
-> +		}
-> +	} else if (!numsp ||
-> +		   (u64)numsp * QDCP_STM_BYTES_PER_CHANNEL > resource_size(res)) {
-> +		/*
-> +		 * A DT-provided port count that doesn't fit the mapped
-> +		 * stimulus aperture would let channel addressing in
-> +		 * qdcp_stm_packet()/qdcp_stm_mmio_addr() compute offsets past
-> +		 * the end of what devm_ioremap_resource() actually mapped.
-> +		 */
-> +		dev_err(dev, "qcom,num-stimulus-ports %u exceeds stimulus aperture of %llu bytes\n",
-> +			numsp, (u64)resource_size(res));
-> +		return -EINVAL;
-> +	}
-> +
-> +	drvdata->numsp = numsp;
-> +	drvdata->write_bytes = IS_ENABLED(CONFIG_64BIT) ? 8 : 4;
-> +	/*
-> +	 * STMSPER-style mask: enable all ports in every 32-port group. The
-> +	 * firmware applies it to whichever group is active, so this covers
-> +	 * all ports irrespective of numsp.
-> +	 */
-> +	drvdata->port_mask = U32_MAX;
-> +	drvdata->guaranteed = devm_bitmap_zalloc(dev, numsp, GFP_KERNEL);
-> +	if (!drvdata->guaranteed)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&drvdata->qdcp.lock);
-> +
-> +	name = coresight_alloc_device_name("qdcp_stm", dev);
-> +	if (!name)
-> +		return -ENOMEM;
-> +
-> +	trace_id = coresight_trace_id_get_system_id();
-> +	if (trace_id < 0)
-> +		return trace_id;
-> +	drvdata->traceid = trace_id;
-> +
-> +	pdata = coresight_get_platform_data(dev);
-> +	if (IS_ERR(pdata)) {
-> +		ret = PTR_ERR(pdata);
-> +		goto err_trace_id_put;
-> +	}
-> +	dev->platform_data = pdata;
-> +
-> +	desc.name = name;
-> +	desc.type = CORESIGHT_DEV_TYPE_SOURCE;
-> +	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE;
-> +	desc.ops = &qdcp_stm_cs_ops;
-> +	desc.pdata = pdata;
-> +	desc.dev = dev;
-> +	desc.groups = qdcp_stm_groups;
-> +	/*
-> +	 * The STM control registers are owned by QECP firmware and are not
-> +	 * AP-accessible; only the stimulus aperture is mapped (for data
-> +	 * writes, not CoreSight management access). Leave desc.access unset
-> +	 * so the core never tries to touch programming registers directly.
-> +	 */
-> +	drvdata->csdev = coresight_register(&desc);
-> +	if (IS_ERR(drvdata->csdev)) {
-> +		ret = PTR_ERR(drvdata->csdev);
-> +		goto err_trace_id_put;
-> +	}
-> +
-> +	/*
-> +	 * csdev and traceid must both be valid before the STM char device
-> +	 * is live, since stm_register_device() makes drvdata->stm's
-> +	 * callbacks (packet(), set_options(), ...) reachable immediately via
-> +	 * /dev/<name> ioctls and writes, and those callbacks dereference
-> +	 * drvdata->csdev and drvdata->traceid.
-> +	 */
-> +	qdcp_stm_init_stm_data(drvdata, name);
-> +	ret = stm_register_device(dev, &drvdata->stm, THIS_MODULE);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register STM: %d\n", ret);
-> +		goto err_coresight_unregister;
-> +	}
-> +
-> +	dev_info(&drvdata->csdev->dev, "QDCP STM initialized\n");
-> +	return 0;
-> +
-> +err_coresight_unregister:
-> +	coresight_unregister(drvdata->csdev);
-> +err_trace_id_put:
-> +	coresight_trace_id_put_system_id(drvdata->traceid);
-> +	return ret;
-> +}
-> +
-> +static void qdcp_stm_remove(struct platform_device *pdev)
-> +{
-> +	struct qcom_qdcp_stm_drvdata *drvdata = platform_get_drvdata(pdev);
-> +
-> +	/*
-> +	 * Unregister the STM first: its unlink callback disables the source
-> +	 * through drvdata->csdev, which must still be live.
-> +	 */
-> +	stm_unregister_device(&drvdata->stm);
-> +
-> +	/*
-> +	 * No-op unless the source is still in CS_MODE_SYSFS. Without it,
-> +	 * removing an enabled source would leave firmware STM enabled.
-> +	 */
-> +	qdcp_stm_disable_source(drvdata->csdev);
-> +
-> +	/*
-> +	 * A stop that failed here or earlier (fw_stop_failed) means firmware
-> +	 * may still be tagging trace with this ID. Keep it allocated rather
-> +	 * than let another source reuse it.
-> +	 */
-> +	if (drvdata->fw_stop_failed)
-> +		dev_warn(&pdev->dev,
-> +			 "QDCP STM not confirmed stopped, leaking trace ID %u\n",
-> +			 drvdata->traceid);
-> +	else
-> +		coresight_trace_id_put_system_id(drvdata->traceid);
-> +
-> +	coresight_unregister(drvdata->csdev);
-> +}
-> +
-> +static const struct of_device_id qdcp_stm_match[] = {
-> +	{ .compatible = "qcom,coresight-stm-qdcp" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, qdcp_stm_match);
-> +
-> +static struct platform_driver qdcp_stm_driver = {
-> +	.probe = qdcp_stm_probe,
-> +	.remove = qdcp_stm_remove,
-> +	.driver = {
-> +		.name = "coresight-qcom-qdcp-stm",
-> +		.of_match_table = qdcp_stm_match,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +module_platform_driver(qdcp_stm_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm QDCP CoreSight STM source driver");
-> +MODULE_AUTHOR("Jie Gan <jie.gan@oss.qualcomm.com>");
-> +MODULE_LICENSE("GPL");
-> 
+v2:
+ - Add Kconfig dependency on PCI
+ - Order includes properly
+ - Remove duplicated macros
+ - Pass a pointer to the "mhu" variable to mrvl_mhu_setup_irq(), instead
+   of getting it from drvdata. Then we don't even need to set drvdata.
+ - Use devm functions unconditionally. This fixes an issue where
+   pci_free_irq_vectors() was called while IRQs were still in place.
+   It also allows to drop mrvl_mhu_remove().
+ - Use pcim_iomap_region() instead of pcim_request_region() +
+   pcim_iomap().
+ - Enable IRQ in .startup(), disable it in .shutdown().
+ - ACK the IRQ after calling mbox_chan_received_data()
+ - Fix register used for polling TX done
+ - Clean up macros
+---
+ MAINTAINERS                   |   1 +
+ drivers/mailbox/Kconfig       |  11 ++
+ drivers/mailbox/Makefile      |   2 +
+ drivers/mailbox/marvell_mhu.c | 238 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 252 insertions(+)
+ create mode 100644 drivers/mailbox/marvell_mhu.c
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8f6f98acc8fc..06c49bef8390 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15830,6 +15830,7 @@ M:	Sujeet Baranwal <sbaranwal@marvell.com>
+ M:	George Cherian <gcherian@marvell.com>
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
++F:	drivers/mailbox/marvell_mhu.c
+ 
+ MARVELL MV643XX ETHERNET DRIVER
+ M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+index ab869769e278..62744399cdb8 100644
+--- a/drivers/mailbox/Kconfig
++++ b/drivers/mailbox/Kconfig
+@@ -195,6 +195,17 @@ config MAILBOX_TEST
+ 	  Test client to help with testing new Controller driver
+ 	  implementations.
+ 
++config MARVELL_MHU
++	tristate "Marvell Message Handling Unit"
++	depends on (ARM64 || COMPILE_TEST) && 64BIT
++	depends on PCI && OF
++	help
++	  This driver adds support for Marvell MHU controller.
++	  The MHU mailbox is used by SCMI for OcteonTX and OcteonTX2
++	  to control various aspects of platform operation like cpufreq
++	  or sensors. The controller supports single channel to SCP.
++	  Say Y here to build this module. If unsure say N.
++
+ config POLARFIRE_SOC_MAILBOX
+ 	tristate "PolarFire SoC (MPFS) Mailbox"
+ 	depends on HAS_IOMEM
+diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+index 45dc59bb3e7f..83b26e7bbd27 100644
+--- a/drivers/mailbox/Makefile
++++ b/drivers/mailbox/Makefile
+@@ -49,6 +49,8 @@ obj-$(CONFIG_BCM_PDC_MBOX)	+= bcm-pdc-mailbox.o
+ 
+ obj-$(CONFIG_BCM_FLEXRM_MBOX)	+= bcm-flexrm-mailbox.o
+ 
++obj-$(CONFIG_MARVELL_MHU)	+= marvell_mhu.o
++
+ obj-$(CONFIG_POLARFIRE_SOC_MAILBOX)	+= mailbox-mpfs.o
+ 
+ obj-$(CONFIG_MCHP_SBI_IPC_MBOX)		+= mailbox-mchp-ipc-sbi.o
+diff --git a/drivers/mailbox/marvell_mhu.c b/drivers/mailbox/marvell_mhu.c
+new file mode 100644
+index 000000000000..de7690897cc9
+--- /dev/null
++++ b/drivers/mailbox/marvell_mhu.c
+@@ -0,0 +1,238 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Marvell Message Handling Unit
++ *
++ * Copyright (c) 2023, 2026 Marvell
++ */
++
++#define DRIVER_NAME	"marvell-mhu"
++
++#define pr_fmt(fmt)	DRIVER_NAME ": " fmt
++
++#include <linux/acpi.h>
++#include <linux/device/devres.h>
++#include <linux/interrupt.h>
++#include <linux/mailbox_controller.h>
++#include <linux/pci.h>
++
++#define SCP_INDEX	0x0
++#define DEV_AP0		0x2
++#define SCP_TO_AP_INTERRUPT	2
++#define INT_VECS	3
++
++#define XCP_ADDR(offt, xcp_core, device_id) \
++	((offt) | ((uint64_t)(xcp_core) << 36) | ((uint64_t)(device_id) << 4))
++
++#define DEV_TO_XCP_MBOX_LINT(xcp_core, device_id)  \
++	XCP_ADDR(0x000E1C00, xcp_core, device_id)
++
++/* The transmit interrupt status register */
++#define AP0_TO_SCP_MBOX_LINT    DEV_TO_XCP_MBOX_LINT(SCP_INDEX, DEV_AP0)
++
++/*
++ * Doorbell-Register: XCP(0..1)_DEV(0..7)_XCP_MBOX
++ * Communication data from devices to XCP. When written, sets
++ * XCP(0..1)_DEV(0..7)_XCP_MBOX.
++ * PS: it doesn't matter what is written into this register,
++ * Attempting to writing 'anything' would cause an interrupt
++ * to the target!
++ */
++#define DEV_TO_XCP_MBOX(xcp_core, device_id) \
++	XCP_ADDR(0x000E1000, xcp_core, device_id)
++
++/* AP0-to-SCP doorbell */
++#define AP0_TO_SCP_MBOX         DEV_TO_XCP_MBOX(SCP_INDEX, DEV_AP0)
++
++/*  Register offset: Enable interrupt from SCP to AP */
++#define XCP_TO_DEV_XCP_MBOX_RINT_ENA_W1S(xcp_core, device_id) \
++	XCP_ADDR(0x000D1C40, xcp_core, device_id)
++
++#define SCP_TO_AP0_MBOX_RINT_ENA_W1S XCP_TO_DEV_XCP_MBOX_RINT_ENA_W1S(SCP_INDEX, DEV_AP0)
++
++/* Rx interrupt from SCP to Non-secure AP (linux kernel) */
++#define XCP_TO_DEV_MBOX_RINT(xcp_core, device_id) \
++	XCP_ADDR(0x000D1C00, xcp_core, device_id)
++
++/* The receive interrupt status register */
++#define SCP_TO_AP0_MBOX_RINT  XCP_TO_DEV_MBOX_RINT(SCP_INDEX, DEV_AP0)
++
++struct mrvl_mhu {
++	/* SCP link information */
++	void __iomem *base; /* tx_reg, rx_reg */
++
++	int irq;
++
++	struct mbox_controller ctrl;
++	struct mbox_chan chan;
++};
++
++static irqreturn_t mrvl_mhu_rx_interrupt(int irq, void *p)
++{
++	struct mrvl_mhu *mhu = p;
++	u64 val;
++
++	/* Read interrupt status register */
++	val = readq_relaxed(mhu->base + SCP_TO_AP0_MBOX_RINT);
++	if (val) {
++		/* Poke mbox */
++		mbox_chan_received_data(&mhu->chan, (void *)&val);
++
++		/* Clear the interrupt */
++		writeq_relaxed(1ul, mhu->base + SCP_TO_AP0_MBOX_RINT);
++
++		return IRQ_HANDLED;
++	}
++
++	return IRQ_NONE;
++}
++
++static int mrvl_mhu_send_data(struct mbox_chan *chan, void *data)
++{
++	const u64 doorbell = 0xff;  /* Arbitrary value, SCP requires a value */
++	struct mrvl_mhu *mhu = chan->con_priv;
++
++	/* signal SCP */
++	iowrite64(doorbell, mhu->base + AP0_TO_SCP_MBOX);
++
++	return 0;
++}
++
++static bool mrvl_mhu_last_tx_done(struct mbox_chan *chan)
++{
++	struct mrvl_mhu *mhu = chan->con_priv;
++	u64 status;
++
++	status = ioread64(mhu->base + AP0_TO_SCP_MBOX_LINT);
++
++	return status == 0;
++}
++
++static int mrvl_mhu_startup(struct mbox_chan *chan)
++{
++	struct mrvl_mhu *mhu = chan->con_priv;
++
++	/* Enable interrupts only if there is client for data */
++	writeq_relaxed(1ul, mhu->base + SCP_TO_AP0_MBOX_RINT_ENA_W1S);
++
++	enable_irq(mhu->irq);
++
++	return 0;
++}
++
++static void mrvl_mhu_shutdown(struct mbox_chan *chan)
++{
++	struct mrvl_mhu *mhu = chan->con_priv;
++
++	/* Could be using SCP_TO_AP0_MBOX_RINT_DIS_W1S if we knew where it was */
++	disable_irq(mhu->irq);
++}
++
++/* Define operations related to mbox */
++static const struct mbox_chan_ops mrvl_mhu_chan_ops = {
++	.startup = mrvl_mhu_startup,
++	.shutdown = mrvl_mhu_shutdown,
++	.send_data = mrvl_mhu_send_data,
++	.last_tx_done = mrvl_mhu_last_tx_done,
++};
++
++static void mrvl_mhu_free_irq_vector(void *pdev)
++{
++	pci_free_irq_vectors(pdev);
++}
++
++static int mrvl_mhu_setup_irq(struct mrvl_mhu *mhu, struct pci_dev *pdev)
++{
++	struct device *dev = &pdev->dev;
++	int ret, nvec;
++
++	nvec = pci_alloc_irq_vectors(pdev, INT_VECS, INT_VECS, PCI_IRQ_MSIX);
++	if (nvec < 0)
++		return nvec;
++
++	ret = devm_add_action_or_reset(dev, mrvl_mhu_free_irq_vector, pdev);
++	if (ret)
++		return ret;
++
++	mhu->irq = pci_irq_vector(pdev, SCP_TO_AP_INTERRUPT);
++	if (mhu->irq < 0)
++		return mhu->irq;
++
++	return devm_request_irq(dev, mhu->irq, mrvl_mhu_rx_interrupt,
++				IRQF_NO_AUTOEN, "mvl-mhu", mhu);
++}
++
++static const struct of_device_id mrvl_mhu_dt_ids[] = {
++	{ .compatible = "marvell,octeontx-mhu" },
++	{ .compatible = "marvell,octeontx2-mhu" },
++	{ .compatible = "marvell,cn10-mhu" },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, mrvl_mhu_dt_ids);
++
++#define PCI_DEVICE_ID_CAVIUM_OCTEON_MHU	0xa067
++static const struct pci_device_id mrvl_mhu_ids[] = {
++	{ PCI_VDEVICE(CAVIUM, PCI_DEVICE_ID_CAVIUM_OCTEON_MHU) },
++	{ 0 },
++};
++MODULE_DEVICE_TABLE(pci, mrvl_mhu_ids);
++
++static int mrvl_mhu_probe(struct pci_dev *pdev, const struct pci_device_id *id)
++{
++	struct device *dev = &pdev->dev;
++	struct mrvl_mhu *mhu;
++	int ret;
++
++	/* Only support PCI devices with a corresponding OF node. */
++	if (!dev->of_node)
++		return -ENODEV;
++	if (!of_match_node(mrvl_mhu_dt_ids, dev->of_node))
++		return -EINVAL;
++
++	mhu = devm_kzalloc(dev, sizeof(*mhu), GFP_KERNEL);
++	if (!mhu)
++		return -ENOMEM;
++
++	mhu->chan = (struct mbox_chan) {
++		.con_priv = mhu,
++	};
++
++	mhu->ctrl = (struct mbox_controller){
++		.chans = &mhu->chan,
++		.num_chans = 1,
++		.txdone_poll = true,
++		.txpoll_period = 100,
++		.ops = &mrvl_mhu_chan_ops,
++		.dev = dev,
++	};
++
++	ret = pcim_enable_device(pdev);
++	if (ret)
++		return ret;
++
++	mhu->base = pcim_iomap_region(pdev, 0, DRIVER_NAME);
++	if (IS_ERR(mhu->base))
++		return PTR_ERR(mhu->base);
++
++	/* Configure IRQ from SCP to AP */
++	ret = mrvl_mhu_setup_irq(mhu, pdev);
++	if (ret)
++		return ret;
++
++	return devm_mbox_controller_register(dev, &mhu->ctrl);
++}
++
++static struct pci_driver mrvl_mhu_driver = {
++	.name = DRIVER_NAME,
++	.id_table = mrvl_mhu_ids,
++	.probe = mrvl_mhu_probe,
++	.driver = {
++		.name = DRIVER_NAME,
++		.of_match_table = mrvl_mhu_dt_ids,
++	},
++};
++module_pci_driver(mrvl_mhu_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("Marvell Message Handling Unit");
++MODULE_AUTHOR("Sujeet Baranwal <sbaranwal@marvell.com>");
++MODULE_AUTHOR("George Cherian <gcherian@marvell.com>");
+-- 
+2.47.3
 
 
