@@ -2,65 +2,190 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB47606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AEE606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=draP8Ls2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hG9R1cT4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aom35DPE;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=ZzYNS6eQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2ZXYzpMsSpVMbq5bALXeiDcyDHaH4rSnY+t2qNogl3c=; b=draP8Ls2+Efin+hcv+m9ttQtZv
-	ycZCfgRo+emO1WqbhzIlhH4ibC+lzW4+2bFZzy4NAw4hbaEeZDKOMn6uvvlxrzk0hjwQQKEhaA++w
-	ypYbyvUMK9Pcme8R1j6djphZg/KJqCVj59mW6t487PNdHx/7LNbywpt4AuYzsdwCNc6qW2VUZsW+g
-	dhLSm0BMuRid11dJTRIGzG/txgqG8CqePPJRxGVxvfgZZbjzqPraNVdqz1rp5Q4mu95GeXl1FEXzO
-	B++F6Thc919SMY21X2+KYB6RCyvczlXd9KVcRdvjTHAqFy6gSYqYuXskIrL0lRDFE3i7s7da+5jbI
-	JSWlQv1A==;
+	bh=f0ZTvLz7hEcSa4Fe0a3fM+7ZNyFrcUsVb4Q4UmhpXZU=; b=aom35DPEZL+q9lgbSbg8+HQGak
+	+unslxmKPKp0D4KifikIoS5fH3vfHyZsS9kyOKjv9r1XThLOvk+esTrn0/bp0dwPZuEIFu+g53LM6
+	Wx+7sRRnpDzPsGmjiFpun9Tenok3l1oUZcJhB8K7T6hH5TMuk7dwDwpVBiGevXOSziB+mhib4EpLJ
+	zrItiqWVdbEq42mnGej4a+sYM/if5T3FAWdaw1lQ0dQUyMUgIGyFjXb08rVcEJ/Rv953HFsmOtR8I
+	95vC/HEEmaykodLVKRvQHU4oMyACVfdqKEZHdU/t9mXqu246A2CTr25aGXqbJ3x/YKarxfeeHPAo7
+	RrLiesfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPNL-00000002YxS-1njQ;
-	Mon, 23 Nov 2026 08:26:12 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVPPn-00000002ZD9-0S3X;
+	Mon, 23 Nov 2026 08:28:43 +0000
+Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPNJ-00000002YxF-1etb;
-	Mon, 23 Nov 2026 08:26:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C7D0B40590;
-	Mon, 23 Nov 2026 08:26:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BCE11F000C4;
-	Mon, 23 Nov 2026 08:26:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795422368;
-	bh=2ZXYzpMsSpVMbq5bALXeiDcyDHaH4rSnY+t2qNogl3c=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=hG9R1cT4I778FIhn9+UnCNDcoR0RghBICzDHiYHixQahjyOswRk8B+/IIHceoKVmM
-	 /xEmFoR8oJvHBtjGToResk/kU1fR8t3juUbfgppPOQ6nW5GD8iuYb4yDzoifl6rYJ2
-	 uymziFFSfMMjkLVV1KUl+qCF7J2ZNfoVsfGezQHPjoblSSKWe6M5sodasfGgF9rJPP
-	 /IG0CdLeds+JE05IIzItpNLvLNMBplTnue/NwuCXYhEn4+F4Ene3jV/1VjfPUPkT6M
-	 9dwCHsG9RculA4+82o71pCuTDRcBzlFagnA5U3hYkT5oCYnez0mSU2N+hwNCqQB8wW
-	 sQap6TZqvNlWQ==
-Subject: Re: [PATCH] net: dsa: mt7530: disable the power rails on setup failure
-From: netdev-bot+sashiko@kernel.org
-To: wanghr2026@mail.zgclab.edu.cn
-Cc: chester.a.unal@arinc9.com, daniel@makrotopia.org, andrew@lunn.ch,
- olteanv@gmail.com, davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org,
- pabeni@redhat.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 23 Nov 2026 08:26:07 +0000
-Message-ID: <179542236717.3135.17350424891277003723@kernel.org>
-In-Reply-To: <1795076103951-10-8fa23d94@mail.zgclab.edu.cn>
-References: <1795076103951-10-8fa23d94@mail.zgclab.edu.cn>
-X-sashiko-severity: High
-Content-Type: text/plain; charset="utf-8"
+	id 1xVPPF-00000002Z9h-3oP0
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 08:28:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZbzPwAWWZGt5R646kuHkRuxZEQ+bN1FCq3lyNMCJmd1RXpnbtjMlusJ7jXTC9U7f6Sb1/UcewThAGQAPveNuku/3eizpLal1+J/gPr58e95G2vlIdA2QKWF3soamPE6YD1GuuaEud5m8roUJl18ICTbBEnhQHYEZbhI/zJ1NxswYap57KyXj3exy2/Z/ZcMEwbS1FXCKI6J5u87ionSlIc4fqddJvK/RlDn54b9Kxaycxnm3v8nNRQfhHGCDy9o9P/IzhstRTVPLcqKtcg953b9dMHfWYcGz2C+ozAlaeoCMEJDs3RDwp9LGeME30TcIN5jC7hyoU2NjXVKuSHISdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f0ZTvLz7hEcSa4Fe0a3fM+7ZNyFrcUsVb4Q4UmhpXZU=;
+ b=lDGIK/gw4H2keUWA2cVSuYMkOfEgEVJpeIH7KRVC58f1LMer9SzfQlIDAtSHSoS3mfu42OvOJQB3+VBlUfUAzry1NCUGs/nyzoqQ2fNuQ5LWDslQs/OJRXr3OZQqqFPYs1eqV4xxR5gbisDeho0sse+/ToGfyTENt+t7/MwX9ITNbl1ZEC7RUv5K7XNOiQphHdvpUxFtgmiYLjSLdpHEB47u87n+gGZKJwPFVf08vRbNI8zDtg0gUN5tlla/wCHECbxcQj7LG9D9+tPqy/F56Z5nn8N0fxEEJZ5sCrpaPqkl4SZTna3iZ/ZIkpqQL5GFdtYuLlkbwLdxHcK+k0j5Fg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f0ZTvLz7hEcSa4Fe0a3fM+7ZNyFrcUsVb4Q4UmhpXZU=;
+ b=ZzYNS6eQOgJvchIzrAI6VflB9w/PU3kcXo4o6TJiuatqg8YL6qFz8UQdlwbrG/1CIPkN2uyqDJKVwxEwaoB9UXM7qbgxMJwX/rbIBrrJEhrHv5QPO9cLNDYN9BYwbGTu4p0zRFv+8f7xP6Qsnjo39d3SFFg3kxTR26BU5xWevic=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from LV5PR12MB9779.namprd12.prod.outlook.com (2603:10b6:408:301::14)
+ by SA1PR12MB5638.namprd12.prod.outlook.com (2603:10b6:806:229::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Mon, 23 Nov
+ 2026 08:28:00 +0000
+Received: from LV5PR12MB9779.namprd12.prod.outlook.com
+ ([fe80::8ac8:e862:8ae9:9287]) by LV5PR12MB9779.namprd12.prod.outlook.com
+ ([fe80::8ac8:e862:8ae9:9287%5]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 08:28:00 +0000
+Message-ID: <d44cd54f-8fc6-46cb-badf-27e821622f4a@amd.com>
+Date: Mon, 23 Nov 2026 09:27:50 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: xilinx: vip: Make use of the
+ devm_clk_get_enabled()
+To: Markus Elfring <Markus.Elfring@web.de>, linux-media@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, git@amd.com,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Michal Simek <monstr@monstr.eu>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ LKML <linux-kernel@vger.kernel.org>
+References: <abfe9f93f9f93d256b0d60d081e6111d7169c08f.1794994290.git.michal.simek@amd.com>
+ <e2f4a6b4-0615-4b3a-b64c-408a27fdeade@web.de>
+ <958ae6b7-dc91-4854-a904-7582020f4413@amd.com>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ mpwx1d8=
+In-Reply-To: <958ae6b7-dc91-4854-a904-7582020f4413@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VE1PR03CA0035.eurprd03.prod.outlook.com
+ (2603:10a6:803:118::38) To LV5PR12MB9779.namprd12.prod.outlook.com
+ (2603:10b6:408:301::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV5PR12MB9779:EE_|SA1PR12MB5638:EE_
+X-MS-Office365-Filtering-Correlation-Id: e499038d-f33b-4687-69f2-08df493baf0c
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|23010399003|366016|1800799024|260925021311599003|10067099003|261022105027099003|4143699003|260925021911599003|260925022911599003|56012099006|11063799006|261009223027099003|261026140227099003|261028144727099003|261026121527099003|22082099003|18002099003|13003099007;
+X-Microsoft-Antispam-Message-Info: rbk3gWb6CfEYfSqeHO2kEXmV/ZAcEpHYQCb8gsBm+AM2hMiCVw6cRhB0OIVBpgrBK+XPT5RqUUqVKmOLL/ZWCWJUqzpuY3rZqTxoPdzyDIbcO8tBuz8tqwuQodGYT+fij70Ij3vh/kJ0HZIMbWGrZ+5XvLt/7vE5+H99NjSjL0wBQ77dcmeFRh9gWYh6b81bBfhYv3D2a4gPhnjgEaAra0HTnGPzOQTEuWyBRcvbwF1cYEsD9UNntPVrxsb6xS5e+gvkpKKssX8KO4x1EonNvMm1QJqNw3q/ApHpZnUM2b1rOL05p1iuEB8EZAGi5KznhODxIwdyAhy/MfApZS328oAOPXSxGblXdazjX4HLMwBnkWxEQHH1V9QjygO8z11i6B0JPyQMHB5cSx8pl6qlbRa+sWVzQ4BWrPAMwkonhBNlGOGbB/qpUHcJstcf1a2xQWyVlhzD4MzN4GyUjroyg9oAHps0VA1IeTT31LdNY1/EtWtGLz60hWsYsPnaaSDnPQG6h/0AjacatExkHy71VAvXz5PxziVy6jOTHaDBtyrZmc7B8tGUchdJFG9IBJGs5mQvpy2qhizoL1cm3PQDIStfHCPBQKRL9wFKqp2XCe8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV5PR12MB9779.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(260925021311599003)(10067099003)(261022105027099003)(4143699003)(260925021911599003)(260925022911599003)(56012099006)(11063799006)(261009223027099003)(261026140227099003)(261028144727099003)(261026121527099003)(22082099003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VkFaSWlyRk5sYTdiZmlyVitQT3plLzFhQkxya0pRazQxNnVLdHpUVWdQanlR?=
+ =?utf-8?B?VVZjZVFwdUl5WUxqVUN3NVlJb3lSV0psdnZCUnVRbC8rZEQ5VDArZHVXN2NY?=
+ =?utf-8?B?UFBNa1A0T0hNeEZjU1dBNGlPeXRBK1diUUt2M1FtbFRHMitYeitMQm44RldH?=
+ =?utf-8?B?dmx1OGZMZElhL1IwYTdWOGdsN2ltN2tFdGtBdXQ5UGt0bWZVRVZYSSttbG9Z?=
+ =?utf-8?B?NlpXY0h6a1RRMldqcXV4UnZPeHJRQkVFTlVJeXVIalEyYm9mdWNmelpLaURw?=
+ =?utf-8?B?QitoY1RBREE3NFg4LzF5YWQvU1hZQzdETis1eTkxODFRQjlyQ2lTcElQQWMy?=
+ =?utf-8?B?MVVBOG5RYkJWT0VQcUJhS3ZOYjFlcm94MHk5SWV2SGJlRVVEd3VRaUp0STFm?=
+ =?utf-8?B?aDhvbEp6UnpZRFBNYnAyRExybkxCQ2hNZGRLcTNvY3M0VHBZZWhCWHNPNW96?=
+ =?utf-8?B?NlJpUmw3ZmtLb1Bmem14VlBPMW5UUWlnRFIzTWk4Q3V0OU4xWDl3b2k3VmZO?=
+ =?utf-8?B?VzlUREI1T2ZNeXhHNzRvYUY3TXJzQ3pxOFFYeEpKeTRJcUJiTFNQa20yNnFF?=
+ =?utf-8?B?NGJiTGdZb3p6dExQbUxzeERvekdXSFJIenBOdFk0b2t1WUQvbGQxRzJyVkQ4?=
+ =?utf-8?B?a1dUUGZZRXpFTVhEV0dNaHhQajNBZFdqNUMwMGJpYjlwQzZrNExRQ1l0R2Zq?=
+ =?utf-8?B?Z1VUYTJrT0NNMVZIdSs3akR0R204TjVkZHlHQU81M2VTSmlaZS9ibm5pTHBj?=
+ =?utf-8?B?cytFY21wOW1uYWxQcFRoVnJBK0Y3U3I1Tjh4MDBqajNoQWZXaU94WHRqaXQ4?=
+ =?utf-8?B?SERYS0Q0YlVWcFlOMFFUK2hjOEZWa2kwb0I1SVNiS3prSloxZ2NWR0o0Y29B?=
+ =?utf-8?B?N3NRQkIrRVQ4a3Q3dHF4VTI3Smg0YVhSeFc1SElzZk4vTXJncW5OdEZJMHk1?=
+ =?utf-8?B?S3BiWkJYT0tPaXltUGl4Q3JjNVJiazlqVVloWnFBNWhNbmtBN1A1SDY0SkVZ?=
+ =?utf-8?B?eWlNWWFsaU1mNGQvV09ZZ1huQndTQkVlZjZEYzgxTWdtbk5LcWtxbWI2U3Ev?=
+ =?utf-8?B?YTBsbHNING5mYVlvOVozVFNyU0NhVzNSb1BiVWFNL3dVbnVuSFlLc1ZCTi9M?=
+ =?utf-8?B?ZFNJMHZmV1g4K29yNVc4VC9IYVFyRUF4YThQUEFQNDFwT3cxQXRCWWtyYjJB?=
+ =?utf-8?B?OG4wSnQ5RUpyUCtheFBNVlFuQllsU21nTTAxVXNSUmtmTVdkQnhQU3VXcENI?=
+ =?utf-8?B?UGk4ZVJYQWt0eUhpQ095MmtIa21MelE1SktTSjlTMmdSMURnMENNRDZ2Smhn?=
+ =?utf-8?B?TkQwMFd1YlEvV2xHNXQ5Sy9weUx3L1Qxb0dNRTZNSHYyVVZKcVh6cDhTVlds?=
+ =?utf-8?B?SC9qWm1qY1Baa0tiVEZ0Y0s0dHVXbGIrUW5LWU93d2ZMVm5DUGFQdld0MnRv?=
+ =?utf-8?B?MkVsaDNnZ1dJOVhuOHNYMVBRUUcvbHJaVGo5N0pSanpFR2N1RUVZMi9lQytu?=
+ =?utf-8?B?cHVmVjNrRmJHUE1OalM0SXRJNGl1ejZCMEpQaEk3bmVNWmNwWFRoMHpHbWYv?=
+ =?utf-8?B?elBnNG5TbWZpOGFmMFJRbUlPK2ZQdWoyOHl5Z2MweFRzTVp4WFVGVnBPdi95?=
+ =?utf-8?B?MlV6Y0JDcUZ1Rk13d0NOd0lmWnNxaGdUNjJ1UjA5bWNPQnBqRnhOMXhab3o5?=
+ =?utf-8?B?Sm9aRUJyZi9SZ0k2TitSeERrdG9vd3ZmYzM3QWNmVTIyQXN0VzZJZTBkbndY?=
+ =?utf-8?B?OW5ydERXaklFY0VHRWpCTGxSVmJCeDZLL3U2cTI5MllzSHZoYnczdVFWcklZ?=
+ =?utf-8?B?VVhZbUJLKy9EanhPazNFUVJ2cTVqYTd5dFpzUUZYV0wyaGFhY2xhcVNGV244?=
+ =?utf-8?B?bzFZRkx6cDRCdGxqdGVkdWtndzNwTTgyc0JQQWVEMHhyNE05NlZ6dWtvQ0Zj?=
+ =?utf-8?B?cWpKTXV2K1BTRDhSWUhNdFNQU3JWYUN6NnhLTUhNcmNsZWRIK2pvNFpqMzNu?=
+ =?utf-8?B?azQvNkd2bzRuZ0kyVlhPYkdYelY5dTJQVnNLc0Z2SWptVDFQTi8yOStuM05W?=
+ =?utf-8?B?TGlraVpkZ3d3bytTR2E0N3hWVnBMR0t1NmtFRk1jdW5wOE9lK2JFbEcrNUsx?=
+ =?utf-8?B?dkdqK0xlL0NobXR3NXh2NkV3K1QwclZBb0FHaW1ORUdiUWJwVGFqYWZwRUNh?=
+ =?utf-8?B?cUxuamNpaEluS3hLRmFoYU5Qa1I0VW15QXNwdWQvUVdhaUV4TzZlNmp6SCsz?=
+ =?utf-8?B?ZUp5aElLWk0vVW1LUHVwKzJldk9XNllzTmtKanM4NzdhVFYwSmp4dnhCNTBr?=
+ =?utf-8?Q?Wk7cwjhCbcs8mWdPs2?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e499038d-f33b-4687-69f2-08df493baf0c
+X-MS-Exchange-CrossTenant-AuthSource: LV5PR12MB9779.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 08:27:59.9697
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mH9F5OCQPuOgyA5YF33DnqIA6Kaybha4KtQ4yB1gst4k2m0k4vpzwQ8gyHu9TqdG
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB5638
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_002824_451023_333704FA 
+X-CRM114-Status: GOOD (  12.00  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,209 +196,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 4 potential
-issue(s) to consider.
+On 11/23/26 09:18, Michal Simek wrote:
+> 
+> 
+> On 11/19/26 10:46, Markus Elfring wrote:
+>>> There is missing return value check from clk_prepare_enable(). Fix it by
+>>> using devm_clk_get_enabled() macro.
+>>
+>> How do you think about to add any tags (like “Fixes” and “Cc”) accordingly?
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/ 
+>> Documentation/process/submitting-patches.rst?h=v7.4-rc3#n145
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/ 
+>> Documentation/process/stable-kernel-rules.rst?h=v7.4-rc3#n34
+> I would expect that b4 could pick these two lines automatically when they are 
+> sent. Let me test this. :-) If it is not working I will send v2.
+> 
+> Fixes: df3305156f98 ("[media] v4l: xilinx: Add Xilinx Video IP core")
+> Cc: stable@vger.kernel.org
+ok. It works but Cc: is not picked up (It looks like that AMD still has issue 
+with BADSIG).
 
-Critical: 0 · High: 1 · Medium: 1 · Low: 2
+Let me send you v2 with it.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Cheers,
+Michal
 
-- [High] The fix is incomplete.
-- [Medium] The new error-path disable in mt7530_setup() can be followed
-  by a second disable of the same rails, because mt7530_remove()…
-- [Low] In mt7530_setup(), suppose mt7530_setup_gpio() has registered the
-  GPIO chip with devm_gpiochip_add_data() and the later…
-- [Low] Speculative.
+$ b4 am e2f4a6b4-0615-4b3a-b64c-408a27fdeade@web.de
+Looking up e2f4a6b4-0615-4b3a-b64c-408a27fdeade@web.de
+Analyzing 6 messages in the thread
+Looking for additional code-review trailers on lore.kernel.org
+Analyzing 0 code-review messages
+Checking attestation on all messages, may take a moment...
+---
+   ✓ [PATCH] media: xilinx: vip: Make use of the devm_clk_get_enabled()
+     + Fixes: df3305156f98 ("[media] v4l: xilinx: Add Xilinx Video IP core") (✗ 
+DKIM/amd.com)
+   ---
+   ✓ Signed: openpgp/michal.simek@amd.com
+   ✗ BADSIG: DKIM/amd.com
+---
+Total patches: 1
+---
+  Link: 
+https://patch.msgid.link/abfe9f93f9f93d256b0d60d081e6111d7169c08f.1794994290.git.michal.simek@amd.com
+        git am 
+./20261118_michal_simek_media_xilinx_vip_make_use_of_the_devm_clk_get_enabled.mbx
 
---
-
-net: dsa: mt7530: disable the power rails on setup failure
-
-This commit changes the early returns in mt7530_setup() that come after
-the core and io regulator enables. They now jump to new unwind labels,
-which disable io_pwr and core_pwr when priv->id == ID_MT7530. The goal is
-to stop the switch rails from staying enabled after a failed probe.
-
-> diff --git a/drivers/net/dsa/mt7530.c b/drivers/net/dsa/mt7530.c
-> index d5a199293f78a..769f733f80d2a 100644
-> --- a/drivers/net/dsa/mt7530.c
-> +++ b/drivers/net/dsa/mt7530.c
-
-[ ... ]
-
-> @@ -2579,16 +2581,25 @@ mt7530_setup(struct dsa_switch *ds)
->  	if (of_property_read_bool(priv->dev->of_node, "gpio-controller")) {
->  		ret = mt7530_setup_gpio(priv);
->  		if (ret)
-> -			return ret;
-> +			goto err_disable_pwrs;
->  	}
->  #endif /* CONFIG_GPIOLIB */
->  
->  	/* Flush the FDB table */
->  	ret = mt7530_fdb_cmd(priv, MT7530_FDB_FLUSH, NULL);
->  	if (ret < 0)
-> -		return ret;
-> +		goto err_disable_pwrs;
-
-[Severity: Low]
-Suppose mt7530_setup_gpio() has already registered the gpiochip with
-devm_gpiochip_add_data() and the FDB flush then fails. This goto turns
-off io_pwr and core_pwr while the gpiochip is still registered.
-
-The gpiochip is only removed when devres on priv->dev is released. In a
-single-switch tree that happens at the end of the failed probe. If another
-switch's probe drove the tree setup and the MT7530 stays bound, it does
-not happen at all.
-
-During that window, could mt7530_gpio_get(), mt7530_gpio_set() and
-mt7530_gpio_direction_*() do regmap accesses over MDIO to a switch whose
-supplies are off? Should the gpiochip be removed before the hardware
-loses power?
-
->  
->  	return 0;
-> +
-> +err_disable_pwrs:
-> +	if (priv->id == ID_MT7530)
-> +		regulator_disable(priv->io_pwr);
-> +err_disable_core_pwr:
-> +	if (priv->id == ID_MT7530)
-> +		regulator_disable(priv->core_pwr);
-> +
-> +	return ret;
->  }
-
-[Severity: High]
-Does this fully cover the leak described in the commit message? These
-labels only handle failures inside mt7530_setup(). The rails can still be
-left enabled when something fails after mt7530_setup() has returned 0.
-
-mt753x_setup() calls priv->info->sw_setup(), which is mt7530_setup() for
-ID_MT7530, and then does this:
-
-drivers/net/dsa/mt7530.c:mt753x_setup() {
-    ...
-	ret = mt7530_setup_irq(priv);
-	if (ret)
-		return ret;
-
-	ret = mt7530_setup_mdio(priv);
-	if (ret)
-		return ret;
-    ...
-}
-
-mt7530_setup_irq() can fail with -EPROBE_DEFER from of_irq_get() when the
-interrupt parent hasn't probed yet. Neither of these returns disables
-core_pwr or io_pwr.
-
-Something similar happens in dsa_switch_setup() and dsa_tree_setup().
-Failures after ds->ops->setup() succeeds (tag protocol setup, user MDIO
-bus, ports, conduit, lags) only unwind through ds->ops->teardown, which is
-mt753x_teardown():
-
-static void
-mt753x_teardown(struct dsa_switch *ds)
-{
-	struct mt7530_priv *priv = ds->priv;
-
-	if (priv->bus)
-		cancel_delayed_work_sync(&priv->stats_work);
-}
-
-In all of these cases dsa_register_switch() fails, so mt7530_probe() fails
-and mt7530_remove() never runs. When devres later calls regulator_put(),
-the regulator core would hit WARN_ON(regulator->enable_count). On
--EPROBE_DEFER, every re-probe enables the rails again:
-
-mt7530_probe()
-  dsa_register_switch()
-    dsa_tree_setup()
-      dsa_switch_setup()
-        mt753x_setup()
-          mt7530_setup()       <- rails enabled, returns 0
-          mt7530_setup_irq()   <- -EPROBE_DEFER, rails left enabled
-
-Would it be better to tie the regulator lifetime to the whole
-setup/teardown pair instead of using local labels in mt7530_setup()? One
-option is to disable the rails in mt753x_teardown() and on the
-mt753x_setup() error paths, and change mt7530_remove() to match. Another
-is to use devm-managed enables.
-
-[Severity: Medium]
-Can these new disables lead to unbalanced regulator disables later in
-mt7530_remove()?
-
-mt7530_remove() in drivers/net/dsa/mt7530-mdio.c disables both rails
-whenever priv->id == ID_MT7530. It does not know whether setup succeeded:
-
-drivers/net/dsa/mt7530-mdio.c:mt7530_remove() {
-    ...
-	if (priv->id == ID_MT7530) {
-		ret = regulator_disable(priv->core_pwr);
-		...
-		ret = regulator_disable(priv->io_pwr);
-    ...
-}
-
-The driver supports port 5 as a DSA link (see the
-dsa_is_dsa_port(priv->ds, 5) check in mt7530_setup_port5()). In a
-multi-switch tree, dsa_tree_setup() returns 0 while the tree is
-incomplete:
-
-	complete = dsa_tree_setup_routing_table(dst);
-	if (!complete)
-		return 0;
-
-So mt7530_probe() can succeed, and mt7530_setup() then runs later from
-another switch's dsa_register_switch(). Suppose it fails there after the
-rails are enabled. These labels bring the enable counts back to 0, and the
-error goes to the other switch's probe. The MT7530 stays bound with its
-drvdata set.
-
-On a later unbind, mt7530_remove() would call regulator_disable() again.
-_regulator_disable() would then WARN with "unbalanced disables" and return
--EIO. Before this patch the rails stayed enabled after a setup failure, so
-remove was balanced in this case.
-
-[Severity: Low]
-This one is speculative: should the switch be put back into reset before
-the rails are dropped here? By the time any of these gotos run, the chip
-has already been taken out of reset earlier in mt7530_setup():
-
-	if (priv->mcm) {
-		reset_control_assert(priv->rstc);
-		usleep_range(5000, 5100);
-		reset_control_deassert(priv->rstc);
-	} else {
-		gpiod_set_value_cansleep(priv->reset, 0);
-		usleep_range(5000, 5100);
-		gpiod_set_value_cansleep(priv->reset, 1);
-	}
-
-On the non-MCM path, the host keeps driving the reset GPIO at its run
-level, and the MDIO controller keeps driving MDC/MDIO, into a chip whose
-supplies have just been released. On boards where regulator_disable()
-actually removes the rail, could that back-power the I/O domain?
-
-Asserting reset with gpiod_set_value_cansleep(priv->reset, 0) or
-reset_control_assert(priv->rstc) before the regulator_disable() calls
-would avoid this. mt7530_remove() has the same ordering, but this patch
-adds a new power-off sequence that is reached more often.
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/1795076103951-10-8fa23d94%40mail.zgclab.edu.cn
 
