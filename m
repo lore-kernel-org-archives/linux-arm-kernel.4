@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066A9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 05:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95623606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 05:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z1xeCJ0n;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ejmeyoo3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nqGQJu8X;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lIfq0H3m
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OwqgaMwlssCF6T8XACGcIQ2/Zb/X9SJl/vX6eZW6QY4=; b=Z1xeCJ0ndx63QJ+qtiXQ43EMpo
-	Pyk4EMC0Y/quzBUrE4Sabbm6ePsB95SpKSH9O9nTnCxAefptmuK6wLwiuRbOu27XgpJbfd8JkQy6Z
-	eObBwiqqdcXdK93G9RC2YtfOPDCGyRoH5RZ4vztm6MfP5JD53b2qs/T/8ulaL97TrEsI4SBRXRvcK
-	MFOv9aU9rUj7y/q7mxR+5M1IhcLf0tFBkUHGrnDiEWzeAxe8LNoYK3zwCXfb06Q1OJdvmLVPnyyBv
-	dIYx6z9xUTWjjYZDYHwltHazgBPJscCT7OS+h8QsD4HsmsnE0UDYWMs1kh2XqRBs/kquX3fU5O4lH
-	AYeCcuEw==;
+	bh=w8e+3WRbDOUCO3CM0bxDt3Ty+eAqQazN2XhtHI1VjrY=; b=nqGQJu8XIj80pF1Joeo0wutAx3
+	u3aG4yeND6n2A+XBJ0XCivaMrkncVXSJdg228ctpnhZtBedhxgungVy9oqslJONmR5TtMv469eVjG
+	0GOM9+FU8QqP0vUIG3OWFGx2IQYanhn3HAulwzBpqU/euQ8T+039uSQAt0YhHQuvEoWrtYsUl2o+G
+	TMrmflPOFPYngvByX5nHExo2Lsu2ec63gezgGOiVq2ktJ3oqQNVHGv7MCa2/cECFNUZg/G3rfsdON
+	/AAw7CyUwOSi6siT+Yk2HliPaCx4p0TkeYQbqcabvtGs6MVbfkM1GO6Iy308LIOKw/zhomD/mXlf6
+	5zpC0arw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVMFe-00000002HAS-00T1;
+	id 1xVMFe-00000002HAe-1o5H;
 	Mon, 23 Nov 2026 05:06:02 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVMFH-00000002H7i-3FZs
+	id 1xVMFJ-00000002H81-0FLH
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 05:05:39 +0000
+	Mon, 23 Nov 2026 05:05:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E386961537;
-	Mon, 23 Nov 2026 05:05:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9511F000D3;
-	Mon, 23 Nov 2026 05:05:37 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 77D9F42378;
+	Mon, 23 Nov 2026 05:05:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4456F1F000E0;
+	Mon, 23 Nov 2026 05:05:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795410338;
-	bh=OwqgaMwlssCF6T8XACGcIQ2/Zb/X9SJl/vX6eZW6QY4=;
+	s=k20260515; t=1795410340;
+	bh=w8e+3WRbDOUCO3CM0bxDt3Ty+eAqQazN2XhtHI1VjrY=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=ejmeyoo389uKlQeAdEASYz/LMHuJbkUqd1UV7zOurK46AZnpW5nbTuLvFGgnFC84t
-	 YLDwFhslZ09ud9jDfU3aa0tRIQfbjPch4eRtHXEgfIUqY5ch6chdeqdQM7PbUa56Fa
-	 DM0zQYnrHqrN1An5cg7JMbsYXit74wygWQC7xp7gVQv+/k3bpOfrRTe2kiVnhMl39c
-	 AFg7r97hNxfHbcvLnw9T/pTsPo7o5sRu8hsY0kGRSLGUBMcEwh17sScubrK/oY396P
-	 DkiNfrA+8lQbYUWunD1W4QvE9SblDe7CWMX4QWgMRhpNwSpxwGv+Cr4sWiVQZoDJIX
-	 BERnRwEeedmyA==
-Subject: Re: [PATCH v8 net-next 6/9] net: dsa: netc: check return value of
- ntmp_ipft_delete_entry()
+	b=lIfq0H3mK5sdaXj7zpLKBnPA2do9QNohK1yaRLNQiyO7eS0fXUg9pBdBoDW7P291k
+	 4x/EjDSsoVzpOWWBM6VzOLiK5blWykSpjzCrGJ8DXb1Qh1B/nEPUT/0eGCcEtSKspA
+	 UipdOChW9Y4o97ga1GdoH9hDa1He8EWgsXBG/2hzCBk2UInmFBAlW/F6cwJDPyLNuE
+	 MspTK+f3Iye+CIjptOZlpfGK7fXh/a4uVfF4H94Jz1v9TVdBDZs9QV/1iYOYRD9Xj1
+	 pUt5oLDTGCsBA/a2sSy1zBvzzYDiDxDy55h7sx3KPJKuNeYHyhf9Z/D0hMXfN5TMq1
+	 4WwX+kdsxFHAw==
+Subject: Re: [PATCH v8 net-next 8/9] net: dsa: netc: add PTP two-step
+ timestamping support
 From: netdev-bot+sashiko@kernel.org
 To: wei.fang@oss.nxp.com
 Cc: xiaoning.wang@nxp.com, andrew@lunn.ch, olteanv@gmail.com,
@@ -55,11 +55,11 @@ Cc: xiaoning.wang@nxp.com, andrew@lunn.ch, olteanv@gmail.com,
  wei.fang@nxp.com, imx@lists.linux.dev, netdev@vger.kernel.org,
  linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
  linux-arm-kernel@lists.infradead.org
-Date: Mon, 23 Nov 2026 05:05:37 +0000
-Message-ID: <179541033709.3135.10401749390258091680@kernel.org>
-In-Reply-To: <20261119030534.1892935-7-wei.fang@oss.nxp.com>
-References: <20261119030534.1892935-7-wei.fang@oss.nxp.com>
-X-sashiko-severity: Medium
+Date: Mon, 23 Nov 2026 05:05:38 +0000
+Message-ID: <179541033885.3135.10657211800089692875@kernel.org>
+In-Reply-To: <20261119030534.1892935-9-wei.fang@oss.nxp.com>
+References: <20261119030534.1892935-9-wei.fang@oss.nxp.com>
+X-sashiko-severity: Low
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -82,75 +82,78 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issue(s) to consider.
+Thank you for your contribution! Sashiko AI review found more severe
+issue(s) in other patches of this series. This mail is only an FYI, in case
+you want to address the nit picks below when you respin.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 1
+Low priority / nit picks for your consideration:
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [Medium] netc_port_remove_host_flood()
-  (drivers/net/dsa/netc/netc_main.c:1877-1901) treats every error from…
-- [Low] The patch restructures netc_port_bridge_join()
-  (drivers/net/dsa/netc/netc_main.c:2104-2159) without saying so in the…
+- [Low] netc_port_del_ptp_filter() (drivers/net/dsa/netc/netc_ptp.c)
+  handles every error from ntmp_ipft_delete_entry() as "the entry is…
 
 --
 
-net: dsa: netc: check return value of ntmp_ipft_delete_entry()
+net: dsa: netc: add PTP two-step timestamping support
 
-This commit makes netc_port_remove_host_flood() return errors from
-ntmp_ipft_delete_entry(). The tracked entry state is now cleared only
-after a successful delete. It also changes host flood rule replacement
-from add-then-delete to delete-then-add. In netc_port_bridge_join(), the
-host flood removal moves to the start of the join, and the error path now
-tries to restore the rule.
+This adds two-step TX timestamping and RX timestamping for the NETC
+switch. For RX, IPFT rules trap PTP frames to the CPU port with an
+ingress timestamp. For TX, the driver queues the skb clones and matches
+them by request ID against hardware response frames delivered through a
+new tagger callback.
 
-> diff --git a/drivers/net/dsa/netc/netc_main.c b/drivers/net/dsa/netc/netc_main.c
-> index 7d0893bc0f163..e1ec7aecab0f9 100644
-> --- a/drivers/net/dsa/netc/netc_main.c
-> +++ b/drivers/net/dsa/netc/netc_main.c
+> diff --git a/drivers/net/dsa/netc/netc_ptp.c b/drivers/net/dsa/netc/netc_ptp.c
+> new file mode 100644
+> index 0000000000000..bd4d0b70e7ee5
+> --- /dev/null
+> +++ b/drivers/net/dsa/netc/netc_ptp.c
+> @@ -0,0 +1,502 @@
 
 [ ... ]
 
-> @@ -1880,32 +1874,36 @@ static int netc_port_add_host_flood_rule(struct netc_port *np,
->  	return err;
->  }
->  
-> -static void netc_port_remove_host_flood(struct netc_port *np, u32 entry_id)
-> +static int netc_port_remove_host_flood(struct netc_port *np)
->  {
->  	struct netc_switch *priv = np->switch_priv;
-> -	bool disable_host_flood = false;
-> +	u32 entry_id = np->ipft_hf_eid;
+> +static int netc_port_del_ptp_filter(struct netc_port *np)
+> +{
+> +	struct netc_switch *priv = np->switch_priv;
+> +	int ret = 0;
 > +	int err;
->  
->  	if (entry_id == NTMP_NULL_ENTRY_ID)
-> -		return;
-> +		return 0;
->  
-> -	if (np->ipft_hf_eid == entry_id)
-> -		disable_host_flood = true;
-> +	/* The command BD ring is always enabled here, with the ring
-> +	 * enabled, the hardware completes a command well within 1 ms,
-> +	 * so -ETIMEDOUT cannot happen here. Any error therefore means
-> +	 * that the entry has not been deleted, so keep tracking it.
-> +	 */
-> +	err = ntmp_ipft_delete_entry(&priv->ntmp, entry_id);
-> +	if (err)
-> +		return err;
+> +
+> +	for (int i = 0; i < NETC_PTP_MAX; i++) {
+> +		if (np->ptp_ipft_eid[i] == NTMP_NULL_ENTRY_ID)
+> +			continue;
+> +
+> +		/* No -ETIMEDOUT here: with the command BD ring enabled, the
+> +		 * hardware execution time for a command is much less than
+> +		 * 1ms, so no timeout error will occur. Any remaining error
+> +		 * means the entry is still present in the table.
+> +		 */
+> +		err = ntmp_ipft_delete_entry(&priv->ntmp,
+> +					     np->ptp_ipft_eid[i]);
+> +		if (likely(!err)) {
+> +			np->ptp_ipft_eid[i] = NTMP_NULL_ENTRY_ID;
+> +			continue;
+> +		}
+> +
+> +		ret = err;
+> +		dev_err(priv->dev,
+> +			"Delete PTP entry 0x%x (type %d) on port %d failed\n",
+> +			np->ptp_ipft_eid[i], i, np->dp->index);
+> +	}
 
-[Severity: Medium]
-Is it safe to read every error from ntmp_ipft_delete_entry() as "the
-entry was not deleted"?
+[Severity: Low]
+Is the claim in this comment guaranteed by the NTMP layer? The delete
+goes through this path:
 
-In netc_xmit_ntmp_cmd() in drivers/net/ethernet/freescale/enetc/ntmp.c,
-the command BD is posted and the producer index is written before the
-poll:
+netc_port_hwtstamp_set()
+  netc_port_set_ptp_filter()
+    netc_port_del_ptp_filter()
+      ntmp_ipft_delete_entry()
+        ntmp_delete_entry_by_id()
+          netc_xmit_ntmp_cmd()
 
+netc_xmit_ntmp_cmd() hands the BD to hardware and only then waits:
+
+drivers/net/ethernet/freescale/enetc/ntmp.c:netc_xmit_ntmp_cmd() {
+    ...
+	i = (i + 1) % cbdr->bd_num;
 	cbdr->next_to_use = i;
 	netc_write(cbdr->regs.pir, i);
 
@@ -160,128 +163,35 @@ poll:
 				true, cbdr->regs.cir);
 	if (unlikely(err))
 		return err;
+    ...
+}
 
-	if (unlikely(val & NETC_CBDRCIR_SBE)) {
-		dev_err(cbdr->dev, "Command BD system bus error\n");
-		return -EIO;
-	}
+If the consumer index does not advance within NETC_CBDR_TIMEOUT, this
+returns -ETIMEDOUT. The hardware may still run the DELETE after that.
 
-When this returns -ETIMEDOUT, or -EIO for SBE, the hardware may already
-have done the delete, or may still do it later. The comment above rules
-out the timeout, but nothing in the code enforces that. There are also
-two command rings (NETC_CBDR_NUM is 2), and the poll is a fixed 1 ms.
+In that case np->ptp_ipft_eid[i] is kept. netc_port_current_rx_filter()
+would then report an rx_filter that is no longer installed. The commit
+message says this design avoids exactly that:
 
-If the delete did take effect, np->ipft_hf_eid would keep an entry ID
-that no longer exists. Every later delete of that ID would then fail on
-the response error status check in netc_xmit_ntmp_cmd():
+  "so a delete or rollback that fails partway does not leave software
+  reporting a filter that no longer matches the hardware."
 
-	if (unlikely(status)) {
-		dev_err(cbdr->dev, "Command BD error: 0x%04x\n", status);
-		return -EIO;
+Every later netc_port_set_ptp_filter() also starts by deleting the stale
+entry ID. If the hardware rejects deleting a missing entry (the response
+error status maps to -EIO), could every later hwtstamp_set on that port
+fail until the switch is set up again?
 
-Wouldn't that make the failure permanent?
+This needs the hardware itself to stall, because read_poll_timeout()
+reads once more after the deadline. The host-flood path added earlier in
+the series by "net: dsa: netc: check return value of
+ntmp_ipft_delete_entry()" makes the same assumption. This patch adds a
+second user whose reported state depends on it.
 
-If so, this would have these effects:
-
-- netc_port_bridge_join() now returns this error, so the port could never
-  join a bridge.
-
-- In standalone mode, netc_port_set_host_flood() would log an error and
-  return on every call. The host flood setup would be frozen while
-  np->uc and np->mc still say it is active.
-
-- If the hardware gives the freed ID to another port's rule in a later
-  ntmp_ipft_add_entry(), this port's next delete would remove that other
-  port's rule.
-
-Only a full DSA teardown and setup would clear this, because
-netc_init_all_ports() resets ipft_hf_eid. Before this patch, a failed
-delete never blocked a bridge join.
-
-Could the error handling treat these cases differently: not submitted
-(-ENOMEM, -EBUSY), state unknown (-ETIMEDOUT, SBE), and entry already
-gone?
-
-This logic is still the same at the end of the series. The later commit
-"net: dsa: netc: enable ingress port filtering lookup by default" only
-removes the PIPFCR write.
-
->  
-> -	ntmp_ipft_delete_entry(&priv->ntmp, entry_id);
-> +	np->ipft_hf_eid = NTMP_NULL_ENTRY_ID;
-> +	np->uc = false;
-> +	np->mc = false;
-> +	netc_port_wr(np, NETC_PIPFCR, 0);
+Should -ETIMEDOUT be handled separately here, for example by treating
+the entry state as unknown? Or should the comment say this is an
+assumption about the hardware rather than a guarantee?
 
 [ ... ]
-
-> @@ -2099,6 +2109,8 @@ static int netc_port_bridge_join(struct dsa_switch *ds, int port,
->  	struct netc_port *np = NETC_PORT(ds, port);
->  	struct netc_switch *priv = ds->priv;
->  	u16 vlan_unaware_pvid;
-> +	bool uc = np->uc;
-> +	bool mc = np->mc;
->  	int err;
->  
->  	if (!bridge.num) {
-> @@ -2110,6 +2122,12 @@ static int netc_port_bridge_join(struct dsa_switch *ds, int port,
->  	if (err)
->  		return err;
->  
-> +	err = netc_port_remove_host_flood(np);
-> +	if (err) {
-> +		NL_SET_ERR_MSG_MOD(extack, "Failed to delete host flood rule");
-> +		return err;
-> +	}
-> +
->  	netc_port_set_mlo(np, MLO_NOT_OVERRIDE);
->  
-
-[ ... ]
-
-> @@ -2123,8 +2141,6 @@ static int netc_port_bridge_join(struct dsa_switch *ds, int port,
->  	netc_port_set_pvid(np, vlan_unaware_pvid);
->  
->  out:
-> -	netc_port_remove_host_flood(np, np->ipft_hf_eid);
-> -
->  	if (atomic_inc_return(&priv->br_cnt) == 1)
-
-[ ... ]
-
-> @@ -2134,6 +2150,11 @@ static int netc_port_bridge_join(struct dsa_switch *ds, int port,
->  disable_mlo:
->  	netc_port_set_mlo(np, MLO_DISABLE);
->  
-> +	if (netc_port_add_host_flood_rule(np, uc, mc))
-> +		dev_err(ds->dev,
-> +			"Failed to restore host flood rule on port %d\n",
-> +			port);
-> +
->  	return err;
->  }
-
-[Severity: Low]
-Should the commit message also describe this change to
-netc_port_bridge_join()?
-
-Before this patch, the host flood rule was removed only at the out:
-label, after the join had succeeded. If the join failed, for example
-because netc_port_set_vlan_entry() failed, the standalone host flood
-rule and PIPFCR were left alone.
-
-Now the rule is deleted at the start of the join. The disable_mlo path
-then tries to add it back using the uc and mc values saved on entry. If
-that add fails (-ENOMEM, -EBUSY or -EIO), the port stays standalone with
-no host flood rule, np->uc and np->mc are false, and only a dev_err() is
-printed.
-
-DSA does not call .port_set_host_flood() again after a failed join. So
-the port would stay without host flooding until its RX flags change.
-
-The commit message covers the delete-then-add trade-off only for
-port_set_host_flood(). It does not mention the bridge join reordering,
-the new restore path, or this failure mode on the join error path.
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261119030534.1892935-1-wei.fang%40oss.nxp.com
