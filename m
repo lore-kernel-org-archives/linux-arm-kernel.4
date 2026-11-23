@@ -2,87 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44952606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3896F606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GU/gLbqg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kzQCQe2K
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BxSxlh3+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mMhKPGRZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=p038IxcP1LIpPQwiIMGTCY2lVaAX4hwB1WZdznpqdbk=; b=GU/gLbqgqatZSIqGDpYlHKYZOX
-	CiDAeCgaZuxsalz/tVFn7J3Z5YrrPFLK88CpuT/V0XW2h3XamunQjoQK+YBPhwx5ZZnOeQstAl6gE
-	8WCWEaXZO4QjJAQ9r7Zmq7Tw9dsHe5SvDtbJ4EKMfKZeXGGhYJundiD9OqTxrSKQkNZBMq+WGg7Q9
-	BUUWtmxuyf9TowHTFx2r/PZtPteJW1Uk5JnspvctEhJGAtCyYzTn0BfLzQ7pQfjfaiBjoRXJ8mxKR
-	zXiCXW2jnoknMQYDmM/Oq43mf0fgPW5/pf2BTq/TyUtVlJuQjZXr5wWVgpZxX0YpGitqeTNTja1UC
-	fpeLzZJA==;
+	bh=ZAbdU1E0UWlF0B5Kvmlnc2ciXN2DI05pM1hOa18PycY=; b=BxSxlh3+OOprhHvpwka1qc8BRT
+	OjawUe6Xc53EgzvIqrZzA5CbrMHabAE6L75wpoCtJPKn0894oQ3xw9quvj/ZdgawXdoIDpljLMMe+
+	8ZuhRSOVIjtWkt+uSYlj8w40UyoxYjDATA7XhX5AKiffnhStGyphSnogV0dMMHeqImfEw1QIbIlVN
+	tlP8FdsvQiCHOnt1oR5AyAq+P0HWxQl26aoLgb6CXTc+l3Ld8S8rna0lXSn1MiGnPmHXeqPqOh3Hf
+	+glCoBp2iQEud+a0uDhW0VLnPYd1IbMoCxmGwMWsmdMdawEmUBZSc3pPagDMvLjntzbknrefVLoNS
+	Kt68aNpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUsL-00000003hfC-2lAr;
-	Mon, 23 Nov 2026 14:18:33 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVUsU-00000003hiE-3rEk;
+	Mon, 23 Nov 2026 14:18:42 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUsK-00000003heo-1ktr
+	id 1xVUsQ-00000003hgX-04O2
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 14:18:32 +0000
+	Mon, 23 Nov 2026 14:18:39 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CF305418F3;
-	Mon, 23 Nov 2026 14:18:31 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id F3C85611BA;
+	Mon, 23 Nov 2026 14:18:36 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795443511;
-	b=nohEL4wH59/hQb78zNVpixLTz88KVIUEkCItcxK+NUT+z528sD41/vJwlyO5ER89OodP
-	 iD8LOYsi3e64/GBgyDfshpGR4NCv3YHgLyMVVAG8+01d8oGnRMsrPNjSAk/u4dlVUxFpQ
-	 E20XJWtgEgPQjbkoaUX8WLL/aCLXs5tLE/SN1X3TKsR/ntYC3V57oOM3F5gnHHMw5JR4V
-	 0uLBJbtZYctvjWbXO0TdP4HgZ9Az1UYASVg+/LDGPllAgbXtFua5/5ittRQbt2TCkZVfj
-	 2Uqd3e7KIqukooUW/k6vXgdvXVx+vzw2GAlIsR0BvurtgjX0ZexPtuMOoMVYfZykK3g==
+	t=1795443516;
+	b=GTwSx9P5T7WaZ2l91GMmDPl46gkjY+KHZrLc8vDg67TjXrObo/h51dMbfsojkK8sFIvD
+	 YD60c1GqvAJVURcLrRboIEXuT8K5tiDT8welKf8cC0DXm/g86vLh4MZ1TpSC+w2TLto+i
+	 +2GweywvlLkTBkjPmAskriD1ZazsqCG4X/WEoRRdJOqWiO8xwuFUdLKal4lKUF4Lppj1N
+	 SIIVvOtc6kuiWq1Iy1wBwQfyIRn7hJ9JVptLdkeECE+2WlM4bPSHAJK0yza4rl6xSNhYb
+	 /aN2h4jDVev/ujT8A88NHqDTBYkn7l6AMKixhn6tuSI4ImCCxYuENkCfP6opvxY7jrg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795443511;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=p038IxcP1LIpPQwiIMGTCY2lVaAX4hwB1WZdznpqdbk=;
-	b=hJ1Of2ZS/4LrORbmx9T4ssokg2+GWtkdi4TXvKyxeRSRaYL8UVpOuDSMANcVmVT32GQC
-	 2B1wWEgbLL7BW7w/y7MVi6Vk9FNJc56a53nYdrBrsIR6e24EFMB58WZZ75LPzFWOYgZuO
-	 yCOHAczEU0Kw3UQK1KDBAZdSipO8MH8tQAi3fwvw6wVgRDE5wDV31b/UW2jbyC5ooR4Bb
-	 5Cymm8FcEWRa/IpxJeqRXFrAysp96nJhqhK7IFh+eU4P3dmzxLlJAUkZqTkd1EJRepA/k
-	 CTP53eLlgHldkvMm7CdMaekho/se1o9deSOwF0b53Q1fLn3nsqeyLD9MvOnJ7FhcLxA==
+	c=relaxed/relaxed; t=1795443516;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=ZAbdU1E0UWlF0B5Kvmlnc2ciXN2DI05pM1hOa18PycY=;
+	b=FEqIDQzGnA11AoSoRqxdGJskGg2Y1DCNBbEhTR7ljUB0Jx3p4VInvzLlkmBQh0z5Fen0
+	 PHIp4oK1Ir8wnkTBH5gHbzKZfEzKmGWjlBYPgD7cJkrKZCigLRpzTMuNwm4xWhxS/+cZ1
+	 61usgE4TqkTBbbBThiXxzSIhI8MHaAcPEcqaLgFTso0seiyvfRnQtr71hMRnkznOk8Ue4
+	 6IhtxfTyNKEuph6JtJFNlgRrblTNhuzjSSXqsHB4DBDONAm3kZpR8PuUxnHsY6wcTaI+o
+	 ML4wXCwM0IS9MUhgVMgguWqaq51Kdk3Nzm+EbR7iiAmcQQJ0zeWhpJcprnxAQEBod7Q==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 05DCC1F00A3C;
-	Mon, 23 Nov 2026 14:18:26 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id D7D4B1F00A19;
+	Mon, 23 Nov 2026 14:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795443511;
-	bh=p038IxcP1LIpPQwiIMGTCY2lVaAX4hwB1WZdznpqdbk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=kzQCQe2KC6EFuSGrhtQLNA2bqn8lhkd9AK/8GJhC2lJLL5O0pyeZxcYwSGC05k9f+
-	 y49BmKI03nf0bqQvwbgvw+q0JHDRMLEmQjJu16bWtKnKwbLwDMHPi0uTF49kRVK73X
-	 2pBg0xtkQEMUHdCxB4VXvTB7mbyWCzPL35xgmV0zt3aFMak6FiVT+ct9nUqdKOeFqe
-	 8m6US2biNdlPdiyS5PaIEI9ziPQyuqPVH3M7jYt4gFnCKJ8pQiUN79oStxmDEf7uTq
-	 0Ijp9bJb4aInyDdqLXuWXUDReOMuMV87ZOcLPpEghIPBEUaN44ADe3Ll7mVlv/3Xp7
-	 wpH193M4h/z+Q==
+	s=k20260515; t=1795443516;
+	bh=ZAbdU1E0UWlF0B5Kvmlnc2ciXN2DI05pM1hOa18PycY=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=mMhKPGRZCBdRU3x+yhjyMjxT7JzQSBXuezi0ea8HtQStG++iCCTGhCucp4EOHkfc0
+	 RChQXaQrPGWcng2ArQt4M+zmo53LbOolXwBWebXemXS1xXFFqfhAbiSLd+wjAb0n3/
+	 k2crfwZF9h+DDY7LRDhCBr3vdGJqBfjSQ1hea/dX6eWW5F51ArmYfp51JlzPtIGpmW
+	 FIJU9YFwR5FPb3evCilcN4DVVwzQ7QYkeCDjXOoPgnaeqOEuT/aDVnHpTXpsAeOBDm
+	 PLffiqHVKvo1acf5tHjgC9XlhCseOXT9/mcsRRaYDEH1evoWaEtWLKitaZSC8ks2J/
+	 LzHKVjFILcfTw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 9045A4C4CC;
+	by lkml.kernel.org (Postfix) with ESMTP id 6D56B4C4D0;
 	Mon, 23 Nov 2026 14:18:25 +0000 (UTC)
 From: Shigeaki Asai via B4 Relay <devnull+y-asai.0816.docomonet.jp@kernel.org>
-Date: Mon, 23 Nov 2026 23:18:23 +0900
-Subject: [PATCH RFC 1/2] clk: samsung: exynos-audss: defer probe until
- pll_in is available
+Subject: [PATCH RFC 0/2] clk: samsung: exynos5: fix sub-CMU power domain
+ attach
+Date: Mon, 23 Nov 2026 23:18:22 +0900
+Message-Id: <20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-exynos5-subcmu-defer-v1-1-43aef47d4f2b@docomonet.jp>
-References: <20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
-In-Reply-To: <20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC5LBGsC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQyNj3dSKyrz8YlPd4tKk5NxS3ZTUtNQiXfOUROM0CxMLi2SzFCWg1oK
+ i1LTMCrCx0UpBbs5KsRBBoKas1OQSkIFKtbUA2Mmnmn0AAAA=
+X-Change-ID: 20261123-exynos5-subcmu-defer-7da3f8488c6d
 To: Krzysztof Kozlowski <krzk@kernel.org>, 
  Sylwester Nawrocki <s.nawrocki@samsung.com>, 
  Chanwoo Choi <cw00.choi@samsung.com>, 
@@ -95,17 +98,16 @@ Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Shigeaki Asai <y-asai.0816@docomonet.jp>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795443504; l=1456;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795443504; l=2873;
  i=y-asai.0816@docomonet.jp; s=20261004; h=from:subject:message-id;
- bh=0WAaBWSTBR/BaFm9s6nACS8IfkOWalo+FbjaB+ytfE0=;
- b=ojdX6lEvfEj1MUJHgjI6r7HyjtQLZpgqI5HQW1eBkBLcHCNLBocqjpoWJlXr0HFqQp4hJI2QZ
- O/BlN2Pwov+CIyNi8aS4+xZmIwXyf2TU4dDIhFaVg2uQoiU88ETYC6S
+ bh=4fZjdy8kIZ+rBxv7aI3zGOWNd3D+cxfIlXqC2oK3nDA=;
+ b=HnVIZ4Tampt3/AOjtHc5tpxc+IWZgY08VU6KnqF08rIqiTeEJ6rz4aW+mQCiM0dsnMBxTxwS1
+ e4NEMZ8T+leBElW7vK9J+Yl0JUnTk069tm9KfAOLR7wcvhMhc/Vdgqt
 X-Developer-Key: i=y-asai.0816@docomonet.jp; a=ed25519;
  pk=jkd95ViSn8i/X3oPMHYG1A8mae8IOwOKGE64kzLqC5c=
 X-Endpoint-Received: by B4 Relay for y-asai.0816@docomonet.jp/20261004 with
  auth_id=1110
 X-Original-From: Shigeaki Asai <y-asai.0816@docomonet.jp>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,44 +127,67 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Shigeaki Asai <y-asai.0816@docomonet.jp>
+Since commit c09a3e6c97f0 ("soc: samsung: pm_domains: Convert to regular
+platform driver"), the exynos-pd platform driver registers the power
+domains too late for exynos5-subcmu, so the sub-CMUs are not attached to
+them and their clock setup is not restored. On ODROID-XU4 this drops the
+GPU performance badly (about 3.5 fps in the Kodi menu, with repeated
+panfrost "gpu sched timeout").
 
-The "pll_in" clock is optional, so a failed devm_clk_get() is silently
-ignored and mout_audss is registered with pll_ref as its only parent.
+This series fixes it as follows:
+- Make the exynos5-clock probe wait until the power domains are
+  registered, so the sub-CMUs are attached to them.
+- Also make audss wait for pll_in. As a side effect of making the
+  sub-CMUs wait, audss would otherwise probe before pll_in exists and
+  generate audio from the 24 MHz pll_ref, which causes audio stuttering.
 
-On Exynos5800 (and Exynos5422) "pll_in" is CLK_MAU_EPLL, a gate clock
-of the MAU sub-CMU. If the sub-CMU registration is deferred until the
-power domains are available, this clock is not registered yet when the
-audss clock controller probes. Audio then runs from the 24 MHz pll_ref
-and 48 kHz playback is about twice as fast as it should be
-("failed to reparent mout_audss to mau_epll: -22").
+However, this relies on deferred probe, which conflicts with the move 
+towards platform_driver_probe(), and the sub-CMU clock data is
+__initconst, so the deferred probe has to finish before init memory is
+freed. So I would like to discuss the preferred way to fix it.
 
-Defer the probe when "pll_in" returns -EPROBE_DEFER.
+This may also explain the oopses seen in the RFC series "clk: samsung:
+Use platform_driver_probe() to avoid __refdata". Krzysztof saw them
+when converting exynos5-subcmu, and Stephen pointed out that
+platform_driver_probe() is incompatible with deferred probe. The
+sub-CMUs have to wait for their power domains, so exynos5-subcmu
+probably cannot use platform_driver_probe() as long as exynos-pd is a
+regular platform driver.
+https://lore.kernel.org/all/20250305-clk-samsung-ref-init-data-v1-0-a4e03a019306@linaro.org/
 
-This patch was written with the help of Claude (claude-opus-5-5).
+Testing:
+- Tested on ODROID-XU4 with a Linux 7.3 based LibreELEC kernel:
+  every power domain now has an exynos5-subcmu device attached in
+  pm_genpd_summary, the Kodi menu went from about 3.5 fps to 25-30 fps,
+  "gpu sched timeout" went from 17 to 0, and there is no audio
+  stuttering.
+- On next/clk, only build-tested (exynos_defconfig, W=1) and checked
+  with checkpatch. I have not booted next/clk on the hardware.
+- These patches are already carried in LibreELEC.
+
+I investigated the root cause and wrote these patches and the commit
+messages with the help of Claude (claude-opus-5-5). I reviewed the
+changes and tested them on the hardware as described above.
+
+Thanks,
+Shigeaki
 
 Signed-off-by: Shigeaki Asai <y-asai.0816@docomonet.jp>
 ---
- drivers/clk/samsung/clk-exynos-audss.c | 3 +++
- 1 file changed, 3 insertions(+)
+Shigeaki Asai (2):
+      clk: samsung: exynos-audss: defer probe until pll_in is available
+      clk: samsung: exynos5-subcmu: defer probe until power domains are registered
 
-diff --git a/drivers/clk/samsung/clk-exynos-audss.c b/drivers/clk/samsung/clk-exynos-audss.c
-index e11ac67819ef..7c06350111ed 100644
---- a/drivers/clk/samsung/clk-exynos-audss.c
-+++ b/drivers/clk/samsung/clk-exynos-audss.c
-@@ -153,6 +153,9 @@ static int exynos_audss_clk_probe(struct platform_device *pdev)
- 
- 	pll_ref = devm_clk_get(dev, "pll_ref");
- 	pll_in = devm_clk_get(dev, "pll_in");
-+	if (pll_in == ERR_PTR(-EPROBE_DEFER))
-+		return dev_err_probe(dev, -EPROBE_DEFER,
-+				     "pll_in clock not ready\n");
- 	if (!IS_ERR(pll_ref))
- 		mout_audss_p[0] = __clk_get_name(pll_ref);
- 	if (!IS_ERR(pll_in)) {
+ drivers/clk/samsung/clk-exynos-audss.c   |  3 ++
+ drivers/clk/samsung/clk-exynos5-subcmu.c | 85 ++++++++++++++++++++++----------
+ 2 files changed, 61 insertions(+), 27 deletions(-)
+---
+base-commit: 783214e3268f71296cb6f62669b0daced0ac249d
+change-id: 20261123-exynos5-subcmu-defer-7da3f8488c6d
 
--- 
-2.43.0
+Best regards,
+--  
+Shigeaki Asai <y-asai.0816@docomonet.jp>
 
 
 
