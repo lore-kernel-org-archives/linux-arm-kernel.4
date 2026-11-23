@@ -2,68 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75B3606A31F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C5F606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tFlkNHly;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QqgJ7d2v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CyXLTyVw;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ScMHru2V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3r+hUQa+rAKmwXtdf1nQj3yrmAj5PM06tZTg7mvEGIc=; b=tFlkNHlymMc/oe
-	dMKBzBm4o0JNugpmw34ITOTJC4fOu4h8jWsnLTgwuQe9WLUGxyTpekioqn9EK+WoGeP18BEdYcQi2
-	CD0doq75kKGF1Ak/YTSFmWUD0U4VS1+4yQbUEjq0PhfWdlz5sr5Xd6Hp3J2KhxGo5XzfbwDlYzdFq
-	23OwAEeiAXJ8UPl7xwqcU7tYeIvFB1CsWHbW9qB5gpAfz6RiojpQ6/T4ASUZFbpspQV4QlJsOpEk5
-	X2ddVYYiDjVRxZ420WWu0FHG6y2dR8zGw5SWw96AmuuGHT59aOWk4ecEOFD74MEotplBrwYc+6FtH
-	mhC3boQh6ZjAuW4RisgQ==;
+	List-Owner; bh=l4IBb4xjYzTBoSi6YXuP+odsV5j50E3nqTxEjgiJFXU=; b=CyXLTyVwA4xA84
+	6MSczIcF11ZN3Tx8XBi2yFUFNJgIMZgVeWXz5PtVWvSZpR2rCmsv75TR2JMVImpBI8T3uwpKYRcq2
+	35xmorkMjNAmVYCZikdcHpid2ZUrNIwPGWpVP7qXX4VwUPZ0/TpC+Xu2rpjv70jp2Drn8jPTwWnN1
+	NKpDnnVVdlbhiRd5HPBw9Y5oxtbxLmhJJ/YQ+XOdma+hraANTw59YX/YTtph+kOYI7mejz6Wz8VaF
+	3FBHNIBMSawK0plbi0bVtMJSNPc1dzC1z4Cqx3o8PGK1SXJOb/IwJTx5iPHL8i44lAt+iGFCcWLFe
+	eGbK3A9473rRE46PhxOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWZi-000000048ON-05eJ;
+	id 1xVWZi-000000048Oh-1Cd1;
 	Mon, 23 Nov 2026 16:07:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWYq-0000000488c-3axq;
-	Mon, 23 Nov 2026 16:06:33 +0000
+	id 1xVWZ3-000000048EQ-3FWp
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 16:06:45 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4F72A62350;
-	Mon, 23 Nov 2026 16:06:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A887F1F000EF;
-	Mon, 23 Nov 2026 16:06:27 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3D32B6236B
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:06:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 927361F000EC
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795449991;
-	bh=3r+hUQa+rAKmwXtdf1nQj3yrmAj5PM06tZTg7mvEGIc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=QqgJ7d2vWDd1Bxz2cm7/D6YBpeuDuZd/TLwC9GimcjA4zKcJGl1TFB/vS1+nBe5d4
-	 680Sp0UlADSTr80BWXvTIKtZf4xOcoFDPi9PqKdiUaYDQO+2GFvhhgZo5hsOYTx/2z
-	 XSYwXXUI3jcy1H8H0TQStRsDaNUUn0X5JMJUTivqCkQJkUN2ph5ZZJMl/WQEYCuhXb
-	 Ti1ZGej91s1q7GZaiFnb2qpcdw6+V4OWUoXHiRAaW/y1TTPoHq5yz0XH/m0cPcg6s6
-	 tGVk/E8bc8e0nsa02ndV53bCs5XeNCTmh8E/hDar7mj8Cb9FJx4jHHxurNpDSRqxc6
-	 jtiZfCJmWH6UQ==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Damon Ding <damon.ding@rock-chips.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Dave Jones <s.dave.jones@gmail.com>, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261114083339.600986-1-damon.ding@rock-chips.com>
-References: <20261114083339.600986-1-damon.ding@rock-chips.com>
-Subject: Re: (subset) [PATCH v6 0/4] Add eDP support for RK3568
-Message-Id: <179544998732.275844.17211132534453781481.b4-ty@kernel.org>
-Date: Mon, 23 Nov 2026 21:36:27 +0530
+	s=k20260515; t=1795450004;
+	bh=l4IBb4xjYzTBoSi6YXuP+odsV5j50E3nqTxEjgiJFXU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=ScMHru2VIvuBRXLr3rU7S50QEYGVjq8CNRcZ90X1RmgFFmqUXmI3YULA3G4VvlSEq
+	 6mWi0Mkcg2NuWySrlMfFaQ4/x2Y4L6H8elSGIcBStc29EiUNOuhieiTLqJpRHA7mWU
+	 GR8SMyiofhxm+IP4nVcQwSQZzhs3MV1VXi+S/zSDs4xJP2J2jqOTFed7e+gIF0Ss+C
+	 SHJj9cl6aFc/v7iLXUiIWzzKBMuJU8l0Mp/CyL1OHWbZXjGWWJt9D5TqcYLtSuWfeB
+	 KnvoDyxvXa6KA+WRga2yvZfaxAnV3N2jlDdP+Cpzr6WRV6vy+ctOrPsqL/m7vH5am+
+	 cXJXpWRXCxqUQ==
+Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-15ea896ddc8so5804071c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 08:06:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErF0B3BUg0ixnN31S/1dn5xD++5xEwv2qj/Jxq28qv8PyJ0vmDuiM4DYIITp7k0WfLLbNapNdgvRRcNgia3yPBj4@lists.infradead.org
+X-Gm-Message-State: APuU4Z+qbrFIoxezmWjTdNiICPIR4TvU7Z19+ifjobtzY5xYGReaYEW3
+	V4wmbj/TVgErYu7uXMwad5KqM74ACzXaMtEZJWkVGw3cjKA0YhsHS1WWdjssnnfZ9G2zomJUhPO
+	o0zp7Um7UO7fbaVwmH6Lki/74PVSq6Q==
+X-Received: by 2002:a05:7022:b056:20b0:1b3:ac53:da84 with SMTP id
+ a92af1059eb24-1b5568e371bmr13106997c88.32.1795450004014; Mon, 23 Nov 2026
+ 08:06:44 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+References: <20261117-6768-dsi-fix-v2-1-6654a072884e@protonmail.com>
+In-Reply-To: <20261117-6768-dsi-fix-v2-1-6654a072884e@protonmail.com>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 23 Nov 2026 16:06:30 +0000
+X-Gmail-Original-Message-ID: <CAAOTY__tykvuoNWOD3ZMy1etCEwPPJrvY=y5xOO7h7DL=ErRdA@mail.gmail.com>
+X-Gm-Features: Aa3M54q66gFGZx_hKSNABqOrF2C_XAAy0XYCXxVeneDbJLO5H6L8BwiOx2EzBXg
+Message-ID: <CAAOTY__tykvuoNWOD3ZMy1etCEwPPJrvY=y5xOO7h7DL=ErRdA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/mediatek: mtk_dsi: do not enable HS clock in
+ pre-enable for LPM panels
+To: rva333@protonmail.com
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu <ck.hu@mediatek.com>, 
+	Gary Bisson <bisson.gary@gmail.com>, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,36 +83,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+=E6=96=BC 2026=E5=B9=B411=E6=9C=8817=E6=97=A5=E9=80=B1=E4=BA=8C =E4=B8=8B=
+=E5=8D=886:27=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: Roman Vivchar <rva333@protonmail.com>
+>
+> Commit 76255024cadb ("drm/mediatek: mtk_dsi: enable hs clock during
+> pre-enable") moved HS clock enablement from mtk_output_dsi_enable()
+> to mtk_dsi_poweron(). Later, the commit 3e191eddbdcb ("drm/mediatek:
+> mtk_dsi: Enable HS clock only at pre-enable") moved the call to the
+> mtk_dsi_bridge_atomic_pre_enable().
+>
+> However, mtk_dsi_lane_ready() explicitly sets mtk_dsi_clk_hs_mode(dsi, 0)
+> so that DSI panels with MIPI_DSI_MODE_LPM can transmit initialization
+> commands in Low-Power mode during their prepare() callback. Enabling the
+> HS clock unconditionally in mtk_dsi_bridge_atomic_pre_enable() overrides
+> this before panel prepare() runs, causing command transmission to fail.
+>
+> Only enable the HS clock in mtk_dsi_bridge_atomic_pre_enable(), when
+> MIPI_DSI_MODE_LPM is not set, and restore mtk_dsi_clk_hs_mode(dsi, 1) in
+> mtk_output_dsi_enable(). This is a no-op for non-LPM bridges.
 
-On Sat, 14 Nov 2026 16:33:35 +0800, Damon Ding wrote:
-> Picked from:
-> https://lore.kernel.org/all/20261030064905.2248999-1-damon.ding@rock-chips.com/
-> 
-> The 'rockchip,rk3568-edp' display binding, the RK3568 support for the
-> Analogix DP bridge driver and the RK3568 support for the Rockchip
-> Analogix DP driver have been applied to the drm-misc-next tree.
-> 
-> [...]
+Applied to mediatek-drm-fixes [1], thanks.
 
-Applied, thanks!
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-fixes
 
-[1/4] dt-bindings: phy: Add rockchip,rk3568-edp-phy
-      commit: f634e1dd3528fe4341ddc7fa44ad448821afbd21
-[2/4] phy: rockchip: Add support for Naneng eDP phy
-      commit: ecf8bf37197560c0dd8222ae2dc8791b6271c9f8
-[4/4] MAINTAINERS: Add entry for Rockchip eDP phy
-      commit: 3f63ca7ce197c661bbe53fc808d0cec444b40042
+Regards,
+Chun-Kuang.
 
-Best regards,
--- 
-~Vinod
-
-
+>
+> Fixes: 76255024cadb ("drm/mediatek: mtk_dsi: enable hs clock during pre-e=
+nable")
+> Fixes: 3e191eddbdcb ("drm/mediatek: mtk_dsi: Enable HS clock only at pre-=
+enable")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+> ---
 
