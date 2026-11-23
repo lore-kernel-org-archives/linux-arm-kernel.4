@@ -2,117 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E06606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8836C606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lHcSU/hL;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=RXQ+rBDJ;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=C/XfWuCI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=24OOHk/J;
+	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Fy4TrY6T
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=; b=lHcSU/hL4Tjp6q
-	sP+vcNsR5QUNjO+sqrRkaN3gcRck/vCRBkuenSJrPMkz9ztUpasSpTJf80Izo6jcYy57Fj/6Jo0/u
-	l3bwq4q3N+rMjOzXcrg6nV/TKL0MTafpOBM+iNI32GCdcxMXKp5ZTV+Gny47msOn34ClyXgC26OT+
-	dXuf0AaPzxuIE2dK+ti1G/Sh54GUPRJU+0VY0NkM/R/1oZ+3pxDfvx70IwO3qym//MkL1a3RZ5X9C
-	HX+LKg/Cee14jZPGrEhlIlyc8OSZ11nuz1in4X6N34PbnoctFqVc765McStC2tLTn+2t87DkktnZr
-	0KwqUgRg92ZmjxY55KKg==;
+	List-Owner; bh=dRuT4N91hHE9iRqRCs95W/ga15XeLCIhv2rAxfMU6cg=; b=24OOHk/JI7OK2r
+	ukDuWDPDq6eV7NX7kjCzNNLQ546850eFVWZOi4nTuZ9KV8aAbcvsGg0le107A9GZvOzgl1RQAPcKB
+	vtxsDDQzpXOFBphaQTz8eDDKGQBif2vxW9WZ+IawSqAWH+NmQySqw8h61w0UXRDNdExUF7dzn0gIJ
+	0khKL71IN9yo8rkWnUHRzW32+zlhCzX26vAKdwDlOyc6om3YyBoVfNjM6nE6JjUQw9LEPb+NEuglw
+	94VF/o1z2o5ppcKSoI+UEwSzXSjO9gwy12jyQnka52mutOrbvMld/SqbiwyP/ZsmaHRxwWpWrnTZT
+	MMPrzWuRY6/mH4lF2lGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQJU-00000002hwR-1sAx;
-	Mon, 23 Nov 2026 09:26:17 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVQvU-00000002tS0-1tyH;
+	Mon, 23 Nov 2026 10:05:32 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQHD-00000002haG-3mU0
-	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 23 Nov 2026 09:23:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=; b=RXQ+rBDJ77Dxypy3jhgbU4ITo0
-	QwfaTW0d7L8GEB/Qarqa+LS3Rw4jSKqfYkzbUUQTORBe5ggzM0nerMrtGD2ulk3qS3uLPzV72wSy8
-	Bk4QVpKDKCqbaRsgUgPeeD0WFQ8HABgeeaTurqGVgwqaE5zYY4iOYZGW8+9tU3dHvhCipjKSRAFg0
-	s3RE6j2M05fHdKuKy116qKfDfrH4eTJ4H+5b2UICZRMfXluo5TEpIqoC2rG2mphPWR5Q5fs0soog/
-	VWA+offZNvDcZxa70lAgroBmHv+DoEBs89LfnIj3RnBYCmBm4gTVBah07RDAudg1hlGxBybcvGgNW
-	XTwOi96w==;
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQHB-00000002ux7-0eOQ
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:23:54 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a5b2be99a8so25598175e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:23:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795425831; x=1796030631; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=;
-        b=C/XfWuCIREDzFZyisqhhjiSoXee8b+OE5L1g1a0P7J66TSo7j4ZcBZu0btm2kTSxNB
-         xGUwpruONd/Rnim/AWG/K5NSJsoZGgAW1KkYg6FKEsaTJIMPMVpGQXLgAvXS+zNuWCW2
-         4jJF6c68c1zVpWXsZ25qB6E8MoZgLbMAPazWjSDLefJhzrxraT9hwDDjI3J3kxW4Qh8K
-         vwOoutT+CFFAdWYARaULipSM7k9RSDKQ1DASJ7YNbihlXsiAlKAuT2QuZRTw1dgZPigO
-         CebQiAkIkqPsSGvEtSg7i1oj6Dd9UuFWHgqGnczq8nd9gwK5oZAoVOFRD7l4cgUjJvik
-         hi4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795425831; x=1796030631;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=;
-        b=bDmdfFayQkWYwdFDIKfvfOxHofCOYrX90gEOrktNIyYspNxTWrawAVwpYKIeuoIsFF
-         0eVJW/0M3NBdKi15yIYGsYWuh+X2qUQngnVJ9Kx0OgpSbZ12MZOxz+UUaJ1NUo9CX7nY
-         X0m4h+dXwTEP3Kr2Lv7SIzFJVb9wy4np7woUbL5KuxGMuyo3TqradZ5Vj1ICiF2L6QlI
-         L3FzdCxzRdJqRR59Jdbq7WnkYAZzoafgrps7bbeOIUlq72qSYZ+g7HAb5Cdjxy13wPCc
-         M0/WH9IK7UXYtpoh+p3EDK2MRlj7rJCX8iP7VmvesaS5zEpUeKrEamRaK1FtFbUWWoui
-         7Q9g==
-X-Forwarded-Encrypted: i=1; AL+hErFDLkmMFRthSyAZZpEV19AfmOVJfMxz5F3cDGgVIcJi2WDIA/BYaecLm663JRKVsgZdwtsod1F2Rp1mY2FUHWsA@lists.infradead.org
-X-Gm-Message-State: APuU4Z+vQESOF+sip7/HCh7rGgXeIBkS3u1hIG3qS7Uwm9TcSg7kxITD
-	WptgF1/Vq1tPCQvUVHavOMndjQj0Ut14IGp/FnHVkocjjNeqCXteu3TC
-X-Gm-Gg: AZFdTZdM1fm+wQotNoCjzojbPnc/HMawW+rvG2ONrvY8kSaGvMkGVXX1fTeLuhXRK2M
-	H1KZ+ZIpH6EDwhjIdWYntlEqY0ewjtOnPKxHN4aCeDXjR3bdWZ8qDIBzvbU4ieA+CFKM1JEOl/z
-	NrrHW8sxcZvUM0lHSC20roBTnr3/yYlM4edOlcExxCELgXUuNwVYexLfLSPLHoWZL/gjrIaSP8O
-	1asuWgC1OmV6U1/zwbX67vfX96cW05YBUD5mA1CnnFyFPe4O+wWE77W2XOqjMCta1/ORqhCiwmY
-	fgrXb+bnlN0e/F7dovrJDwi9EhdevOydM1Pe66noUxY68eeNO8uGsjDXqDO+tPVWMIm297g7LGE
-	rPnnoLSPDsfvKFtHTCLsEXJFTW4xu7H6B9OS6xRys9os3UXwI1SEU6Eo3kOBjEsnryeoCrqXJ3P
-	ucnyW4gi4NCPvPk+v63EVocnuPhFNhUC1HHtSUbiZ4+EKsKC0fE08sHt0UwCu9D002euoC5VMHg
-	yYem307krj9GN0Vv2C1yh+NePSqX1GBERwbuHL+P8xrJ+aZsgn09t1liemaX2woI1hdzoSgAw/4
-	wSonufVxv37Jnr5KMFGogbjVGZ+uIm/7JsYpWL6PzrtNiB8TqzrTgy1RX10azSApcMTLMy3R7Cq
-	UUOQqv0WPbrzL7b3+hhrMRcc0RVbKSqlsug==
-X-Received: by 2002:a05:600c:6290:b0:4a3:59c9:a743 with SMTP id 5b1f17b1804b1-4bb8882a21amr217705195e9.27.1795425831349;
-        Mon, 23 Nov 2026 01:23:51 -0800 (PST)
-Received: from DavidArch.internal (catv-78-139-0-46.catv.fixed.one.hu. [78.139.0.46])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4ab6bb989eesm21060655f8f.50.2026.11.23.01.23.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 01:23:51 -0800 (PST)
-From: David Virag <virag.david003@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>
-Cc: linux-kernel@vger.kernel.org,
-	David Virag <virag.david003@gmail.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: exynos: exynos7885-jackpotlte: Enable USB support
-Date: Mon, 23 Nov 2026 10:22:42 +0100
-Message-ID: <20261123092244.1792040-6-virag.david003@gmail.com>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261123092244.1792040-1-virag.david003@gmail.com>
-References: <20261123092244.1792040-1-virag.david003@gmail.com>
+	id 1xVQvR-00000002tOv-18Cj;
+	Mon, 23 Nov 2026 10:05:31 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795428326;
+	bh=a1/XioPUQOk/Y+CGy7Ob4OJm/x2Pd/UgMyEWsylmoiU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Fy4TrY6TmXh/ljo+lsHC4WaWEu3NPgVkyxOLpm54IQha82S/0hNWaowDfWqbOZ9Q9
+	 7c5OKwrgrF9RTFGykd3PuoR0dW/b/oI2aG0DtAEUJF63bU9wpv52bLBXd3/rGicn0O
+	 FQHJVomaKIwGtUsxz83Kjhy4HYSMH+R3eCWU7TnpgKtkjnjYILzWyPnwh+g7+mkM5L
+	 G+/HPAoTC+Rq3S31aumUL7381kXn3vNC7FnA9A4cbjMc1Ie9KfUdRLwedlyG5Ur1KD
+	 xGqgkRIL3FlM+yXwz62bKtI566fz7CR5vWDQ1/VMFNvXud8H7pzlF/u5yTK7b5NPyV
+	 J29BH1iSf8yFQ==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E9C5517E007F;
+	Mon, 23 Nov 2026 11:05:25 +0100 (CET)
+Message-ID: <33cf13e4-6df0-45f8-b621-ffe3f43419c9@collabora.com>
+Date: Mon, 23 Nov 2026 11:05:25 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 27/46] dt-bindings: display: mediatek: Introduce
+ Digital Video Output HW
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ =?UTF-8?B?SnVzdGluIFllaCAo6JGJ6Iux6IyCKQ==?= <Justin.Yeh@mediatek.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
+References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
+ <20260714114414.184512-28-angelogioacchino.delregno@collabora.com>
+ <98cde7319f539cab9f72ec370d309b26569889c9.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <98cde7319f539cab9f72ec370d309b26569889c9.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_092353_396735_A3D5CD0E 
-X-CRM114-Status: GOOD (  15.10  )
-X-Spam-Score: 0.1 (/)
+X-CRM114-CacheID: sfid-20261123_020529_489063_5F9B49E5 
+X-CRM114-Status: GOOD (  19.11  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,65 +93,103 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Samsung Galaxy A8 (2018) has an USB-C port capable of USB 2.0
-speeds, used both as host and device, and is used for charging the
-phone.
+On 11/20/26 03:17, CK Hu (胡俊光) wrote:
+> On Tue, 2026-07-14 at 13:43 +0200, AngeloGioacchino Del Regno wrote:
+>> Add documentation for the Digital Video Output (DVO) IP found in
+>> the newer generation SoCs MT8196, MT8189 and their variants.
+>>
+>> This is effectively a more capable block replacing the DisplayPort
+>> Interface (DPI/DP_INTF) one found in older SoCs.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../display/mediatek/mediatek,mt8196-dvo.yaml | 143 ++++++++++++++++++
+>>   1 file changed, 143 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
+>> new file mode 100644
+>> index 000000000000..b38960327ca1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
+> 
+> This file would include multiple SoC dvo, so it's better to use mediatek,dvo.yaml.
 
-The physical port is directly connected to an S2MU004 IC, but until we
-have support for it, we can still use the USB device funtionality.
+Devicetree bindings maintainers will disagree with this statement ;-)
 
-Signed-off-by: David Virag <virag.david003@gmail.com>
----
-Changes in v2:
-  - None
+> 
+>> @@ -0,0 +1,143 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,mt8196-dvo.yaml*__;Iw!!CTRNKA9wMg0ARbw!n3pk94kKoN-7zfem5SHfJn_ixDmAleFOW2dJwmZ8W5gJz-iEQGAN6yOkpupaMXAvAlr3KfAndB5Fjy57tNXsxA_uvNy3$
+>> +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!n3pk94kKoN-7zfem5SHfJn_ixDmAleFOW2dJwmZ8W5gJz-iEQGAN6yOkpupaMXAvAlr3KfAndB5Fjy57tNXsxNztWOiH$
+>> +
+>> +title: MediaTek Digital Video Output (DVO) Controller
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description:
+>> +  The MediaTek Digital Video Output (DVO) hardware provides 120-bits (4P) data,
+>> +  video timing and info data for the Embedded DisplayPort, hardware-abstracting
+> 
+>  From the compatible listed below, DVO not only for eDP, but also DP, right?
+> 
 
- .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Yeah, on MT8189 it's also for DP.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-index 4b1961ca365b..5550b21e4113 100644
---- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-@@ -59,6 +59,12 @@ power-key {
- 			wakeup-source;
- 		};
- 	};
-+
-+	/* TODO: Remove this once PMIC is implemented  */
-+	reg_dummy: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dummy_reg";
-+	};
- };
- 
- &mmc_0 {
-@@ -112,3 +118,17 @@ key_power: key-power-pins {
- &serial_2 {
- 	status = "okay";
- };
-+
-+&usbdrd {
-+	status = "okay";
-+	vdd10-supply = <&reg_dummy>;
-+	vdd33-supply = <&reg_dummy>;
-+};
-+
-+&usbdrd_dwc3 {
-+	dr_mode = "peripheral"; /* Force to peripheral until we have Type-C working */
-+};
-+
-+&usbdrd_phy {
-+	status = "okay";
-+};
--- 
-2.56.1
+>> +  the previous generation Display Port Interface (DPI/DP_INTF) blocks, other
+>> +  than providing new capabilities.
+> 
+> No new capability? But what you list below is new capability or the same as DPI/DP_INTF?
+> 
 
+The new capabilities include PSR and MSO, other than the 4T1R in output (as DP_INTF
+did support that but only for very specific configurations).
+
+>> +  This hardware block supports 1/2/4 pixels per iteration in both its input and
+>> +  output and provides 8/10-bit RGB, YUV422 and YUV444 data formats in output,
+>> +  other than supporting input/output video window cropping and padding.
+>> +  Digital Video Output also provides Panel Self Refresh (PSR) and Multi-SST
+>> +  Operation (MSO) features for eDP 1.3/1.4.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - mediatek,mt8189-dp-dvo
+>> +      - mediatek,mt8189-edp-dvo
+> 
+> This series is so large, so it's better to drop any thing that is not related to mt8196 and you could add them back later.
+
+Are you sure you want me to drop that?
+
+It's just 10 lines of code and some platform data really, I don't think it's all
+that much to justify dropping it?
+
+Cheers,
+Angelo
+
+> 
+> Regards,
+> CK
+> 
+>> +      - mediatek,mt8196-edp-dvo
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>>
+> 
 
