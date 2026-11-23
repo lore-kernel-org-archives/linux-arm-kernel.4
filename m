@@ -2,119 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA8D606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD3A606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:56:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rumXZ88O;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=LD8AA2kq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I4FatDXc;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=qOcIAU2g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=iklVS4Wei67K9fNCcyEVYUc52IalltrV85u/JSTwlaY=; b=rumXZ88OtYgF+vwyqaqA2ibjan
-	SQyVCUm95/OQUuFxkbXd1Op5JjV1hxK2gb2cPfria2Io0zPLkkq8E4xSdpnBNxEvkBAXdU/2KzJrq
-	RuzLN/mL3L4jWsgk38INwJvRzoG/BSHbhqp9JAAM6nIFd9VDGmOQJjz9J7s6NU5T+Rr8JzqD/HXof
-	qLhA69vr8c4gAuOsjH+E2lfUQfqO+Ivmwe9EWWgq7Z+ZADdN4iFXEPr8WTggUuWbrj64AuUmJ9QWZ
-	LwDNHwgqdnENdl1Q8QuU5BuxDeG3TQLYuFxIlJeULvZNP0ZD4xcWDDFGo5ulje16luG01IPYwO/3C
-	LIbxODhA==;
+	bh=blot85h4FTwfSQn0FLKdi/Aa22snUat5BCH5SdoPrNQ=; b=I4FatDXc1RuMP/eKUg3wGWH+nx
+	dAstS50pS8UvKqST9gslzt3Mu63RjlYwD+gbTceJQkZmMVDJVSMLK+06WGlNVmOUxX+v/F9Dlny3q
+	UyNX+xnYYh31pDEeDhxxRqRVwPBKbYC9uZsw+XuxT7ztbfaLgJhNRceDEygKxmQVaLmnreg5FZA4M
+	CpIgJ5VulQHcrdjOGMiRIaQ67GuKDtjf/xBEvl6OZ9AblJisbIk39Ay51sRbC9eNQ+S4icPoXM5w2
+	0ZBZt7BEmHSeMtTdi8Sisl3oZqnZCuQkXO3SnETUxw/5BEyqB3BNhjRPa8G0PJdMebyCnMwKjMyhL
+	UcPFnFbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPRM-00000002ZYf-0W7m;
-	Mon, 23 Nov 2026 08:30:20 +0000
-Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
+	id 1xVPqc-00000002cMQ-3O34;
+	Mon, 23 Nov 2026 08:56:26 +0000
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPQa-00000002ZQn-0FB5
+	id 1xVPpb-00000002cCP-17Nb
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 08:29:36 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Fk0PRiwHrsrbpEiD9C4+fM3ps7glgzTjfHfMGKCLwEbI4ggEN9V38EyB9Q2io/i5c6NN1odlULTyrnk39SvhA9AasJH9h97JbY9kHcOwwp76iPhG2DRPgg4R7vLs8vHAfX2H5Dxb/70CByoaVuqcW94bqKkF55blc4PGxrzirC4rAlF9RM6BOdYuUHjhDyEQVujPsOP38qCCyeWGtLGm14PR70oxTL0HUa4zLr2byer9gfsrZj4XM4MPGWoWNXhmpNpXrPR/Q8BvExKiR7UttLdocABCW2dOcddlP0cldsCBfOTYUB2rDowQKlJa75NyQAjanhMj31NTdOB7Hz7Q6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iklVS4Wei67K9fNCcyEVYUc52IalltrV85u/JSTwlaY=;
- b=WAMRppRWclJhursSgaMpRxQpOF9tviB8DdZPS5qlxAXzF1ychP8dE2rocu7Cw/huOdMrY8SQ9iFqiD+Y4j/UCGGL9+SW0V9nzk1xZ0FFldN0mLbH8x8N6G/w3pSGBdiKKS47j7ZR5jJMXOoEXHIaHGO+QCFV+wP1/d2QGHanb+24uU/wSmSncHD5VOPJZqdmE8jtWkeypwRZt/hzEYo8GBjBBmGgnmvnAYhdtFlZzhoxOQYhYTKxuPEeTxJVyvVCT8V70swa3yf+xfHLQo6noS3yjyspFiL22Oi0oNW7NcEXsJe99cbqqogeHycNdEJP9OKUNWJ84OwqYqkiJjDf9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iklVS4Wei67K9fNCcyEVYUc52IalltrV85u/JSTwlaY=;
- b=LD8AA2kq82cwfeFRI3zLCKGNzED5KuQsxi7uay+1poNWfMRrvCT8fEUV+f+IXFU+xTD1EjIvGO7EEVXLySUN4uYyOGY7t5WgDyOeohO360XreRVzgD7uDzk3R8lzY07Nscikig7et1dRPQiKIe1cx4OUDrGjuhEylS9mxJP2mQY=
-Received: from PH7PR13CA0015.namprd13.prod.outlook.com (2603:10b6:510:174::21)
- by CY5PR12MB6057.namprd12.prod.outlook.com (2603:10b6:930:2e::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Mon, 23 Nov
- 2026 08:29:25 +0000
-Received: from SJ5PEPF00000209.namprd05.prod.outlook.com
- (2603:10b6:510:174:cafe::22) by PH7PR13CA0015.outlook.office365.com
- (2603:10b6:510:174::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Mon, 23
- Nov 2026 08:29:24 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF00000209.mail.protection.outlook.com (10.167.244.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Mon, 23 Nov 2026 08:29:24 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
- 2026 02:29:20 -0600
-Received: from localhost (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
- Transport; Mon, 23 Nov 2026 02:29:20 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@amd.com>, <git@amd.com>
-CC: <stable@vger.kernel.org>, Hans Verkuil <hverkuil@kernel.org>, Hyun Kwon
-	<hyun.kwon@xilinx.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>, "moderated list:ARM/ZYNQ
- ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, "open list:XILINX VIDEO
- IP CORES" <linux-media@vger.kernel.org>
-Subject: [PATCH v2] media: xilinx: vip: Make use of the devm_clk_get_enabled()
-Date: Mon, 23 Nov 2026 09:29:16 +0100
-Message-ID: <6fc78f17621e1392fb5a553f826672f3a4a0de5f.1795422554.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.43.0
+	Mon, 23 Nov 2026 08:55:39 +0000
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN54iHO2622583;
+	Mon, 23 Nov 2026 08:55:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=blot85h4FTwfSQn0FLKdi/Aa22snUa
+	t5BCH5SdoPrNQ=; b=qOcIAU2gtepLYgLfbJ98jQ8TcFJrzKSHsQIP9UGtJ+Lx+z
+	C1zFgDbKjkcE4oPYcwpEGEUjs8JE4mTi3u3H/s9SD8NLMJ3UcB4TVbeHU3Gt5gn9
+	74YiQXEWRQHGF1rdZfqliKD5fJG/9rwysZPDiTl3yp7/1uR8XcR78MYAEVNxpTDb
+	x73U/W1Mbp4BPuBjfQgL9nkBC/aP7rQpKACsJqOeYjnzRJg8FNSt8qbFmWsBcJz/
+	jtrbuUxeW++85P9noyLYYrdI/9GDHl4YPEyCiw0ib6tRXRoxbzZLjxRrCgiOio4A
+	CcYlFmZi0PCdaGg+4Pbrp14adjTyQhhIeRlb2Vag==
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34fkaaf7-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 08:55:09 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN54Snb1436617;
+	Mon, 23 Nov 2026 08:55:08 GMT
+Received: from smtprelay02.fra02v.mail.ibm.com ([9.218.2.226])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j3raydq66-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 08:55:08 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
+	by smtprelay02.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AN8t6Jd54591754
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 23 Nov 2026 08:55:06 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5B3D92004D;
+	Mon, 23 Nov 2026 08:55:06 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id EC13F2004B;
+	Mon, 23 Nov 2026 08:55:05 +0000 (GMT)
+Received: from osiris (unknown [9.87.148.25])
+	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Mon, 23 Nov 2026 08:55:05 +0000 (GMT)
+Date: Mon, 23 Nov 2026 09:55:04 +0100
+From: Steffen Eiden <seiden@linux.ibm.com>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oupton@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Sascha Bischoff <Sascha.Bischoff@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH 2/9] arm64: sysreg: Remove the dead range check from
+ parse_bitdef()
+Message-ID: <20261123085504.20959-B-seiden@linux.ibm.com>
+References: <20261123075219.369042-1-fuad.tabba@linux.dev>
+ <20261123075219.369042-3-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1399; i=michal.simek@amd.com; h=from:subject:message-id; bh=UaP0dwQZzDrjNG9CU6dPW9zD0hjHnrBkEAE2T6jCQlk=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWQz/4ybFHZ6r4dTjtYnow/Ht4vb/dsQp/SSY2myW/DFo 6EBfjs/dZSyMIhxMMiKKbJMZ9JxWPPt2lKx5ZH5MHNYmUCGMHBxCsBE0tUYGXY+1Fp4NMjDYTfz 14jj03r0lu2fnb7jgDRTNuvKB8fvbhZnZOjUP2AXcXb2H60NcfuZb5aE8lj6M/rmp005NX/xNe4 f9lwA
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000209:EE_|CY5PR12MB6057:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6569266b-2e26-45a2-9bd6-08df493be1a9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014|23010399003|18002099003|261009223027099003|261026121527099003|261021121427099003|261021123027099003|56012099006|10067099003|261102123227099003|261102130727099003|11063799006;
-X-Microsoft-Antispam-Message-Info: cseJUkAlSZr9DcRa/gDEYbC1hn1YbRkai3eTIgAFEJLmOIWiP6xdlIL40aKg0d6qFztYAsL387mO7iEleCviWYD/F5kw4tKxmZuJ48Hb/sfw+xj9M1WoaNU+T1LkK0FVK+FkT4uC4cMrh+YOqh/dJYVvsdcXmHpx0oPuoYxVrJYTm6XVl2a6Ardu2Y81ktdqzz7rd7cSn3VJx40gvuF/dO0La9hOZlYDsR1N9mhgxNdNIiclzPUf4SBehLpMGMVkKJ/+4JZK3t+nz5inicz72nUmOS1RRz4fblFoLM1oIkSpJw42mPTKSG+A/obymZNMLTi1UiKLWrhC4s84Do8K8ukodyF+O/26iVnD2Sv15nq2wwxSC6hHgu0LzIjWyebvJBqUQllkg1jASTgyDdK2c6LywNLmjy/0b4FKt+8KbvPXf2gEL3v+aRw/RMgYutekqJFmJTFaP9oPbOkayptHyRdxKXLIDEd+LwuYEFUldhrqu62CMb6sDUb3HRXMNTNMHHvyyZoryaUenbY6x5Hgh78m9Xptu55ULtJR9mOX7XUMKLgjI+YmtqLwhJ1O8PT7u7/mLAmCag88Ve2T6pUQd6VfBnTUtv90OzQOPuJmuy29/6B+xqq6MFsJbK/UNBCY/ermUC+VCnVs3u3tfTs+MRauZoxJitzqOkpgRozBDIlfjvZPjLWbvz4PIoqMf3857JgXp96lgSVl6WiBak7OvQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(23010399003)(18002099003)(261009223027099003)(261026121527099003)(261021121427099003)(261021123027099003)(56012099006)(10067099003)(261102123227099003)(261102130727099003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: fU2hhvxC55LNNZC1CtcxFBa/pc8QP2pJZGUTkcI28RnDrO/JORhku/+t9TZOGRtqVM06GsneE6pPYEIeQtbs9tIyAA0kg+gMq15/YqDluI69ArCYXz5OVdYbBv+erp8tZ31SD9jCtFHz+IFFijl0cJKcAI8KSmOp5P7An4bdGLt2g400CFlc2UAIb7q0jlZsI+Nb/eKrZ9mnr7T/SfPMuZirvE5cDNjTL63YKL2YXZUP0Du/Z5llhtgGEH6MPQLVF8mFs4FauUbXJkJAgd47sva7FfJg318rzSAZqcMb7H6UuyC6pia3z5JfCD/hVj36fM/Mj83HSA6h1K9oNzrUEyOWog75bmOEiXvvYqjPyjD7WwyLtU7kyjFuq96YHji9V6VCPZHcc8jsarhEE0PNWUqnShaguZLbnhjox1noCUnPrD5IqQQWrcoS4/j16lO7
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 08:29:24.6780
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6569266b-2e26-45a2-9bd6-08df493be1a9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000209.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6057
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123075219.369042-3-fuad.tabba@linux.dev>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDAzNCBTYWx0ZWRfXz4eoKD+96ZGI
+ +Ft+L+CH5JFWXRxaKmq55nTM9hFGoFOI7xvVSbvbGBjMzaSKgICpPaEsyunKOw9ABbWJuWeD3gq
+ rH+BLwtjI90O0MKSPvMiE1WE4+rAmHJ5Y1/4qJeTDP+2dvxsS5nZ6YyrqjXWPL2TcFVjvzcEe6A
+ fGGMJ65OJheNgaFRgzVZFByN8Hr5aPN1T/XSc1uzNP7Bh20wdRawGOMR/HzS78McBL/b5QEb+86
+ nRgR4WY/Lh4Npim5fAaqLYHcgYKYPCz0s5jrDXZxaw8ffD1imvMmyqezuWCfi4rJIsUWX/1AozZ
+ pZb1A30zfVr2zY4jpGqD36zwWWjGkGoFZVTRgh82Qg8IogqTTHaQaFQpyLMqH3a4A1pzp4yrNbP
+ aroKdED0wHkrU8tmXFT3ENB5u3OHUHLrknwImz4gmTAYTb85662RHXFn9saAf5YbaRupEiftiCA
+ RttovEob/ATOkimP6nA==
+X-Proofpoint-ORIG-GUID: Vsde5VhrwxKgUxdtipmkSSyiCyN8Z4HK
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDAzNCBTYWx0ZWRfX6ix2YiqYMjT0
+ BSGKk6+LPwZSWHRVkLDufUwB8pcWn9yH+flQeNM96p12SUQ5N7tTaAvl/PRJx9LLCflBQgPY13t
+ VAhPtkYbNHNI0rRQ1UJ5CgY4mcBvruo=
+X-Authority-Analysis: v=2.4 cv=A9z5rKWG c=1 sm=1 tr=0 ts=6b03ff6d cx=c_pps
+ a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VnNF1IyMAAAA:8
+ a=9VelDpYHchpW-k45WfsA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: 3KYqQyQzyg9QPHMMFgqHI7dC8L1NfRUI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_01,2026-11-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 adultscore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ bulkscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_002934_727718_4886BA0F 
-X-CRM114-Status: GOOD (  11.08  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_005528_586896_63974F9F 
+X-CRM114-Status: GOOD (  12.43  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,61 +126,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-There is missing return value check from clk_prepare_enable(). Fix it by
-using devm_clk_get_enabled() macro.
+On Mon, Nov 23, 2026 at 07:52:12AM +0000, Fuad Tabba wrote:
+> parse_bitdef() ends by testing "low > high", but the script doesn't
+> assign either variable, so the test compares two empty values and never
+> fires. The "msb < lsb" test just above it already rejects an inverted
+> range.
+> 
+> Remove the dead test.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 
-Fixes: df3305156f98 ("[media] v4l: xilinx: Add Xilinx Video IP core")
-Cc: stable@vger.kernel.org
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
-
-Changes in v2:
-- Add Fixed tag and CC stable
-
-Removing xvip_cleanup_resources() should be done separately on the top of
-this patch.
-
----
- drivers/media/platform/xilinx/xilinx-vip.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/drivers/media/platform/xilinx/xilinx-vip.c b/drivers/media/platform/xilinx/xilinx-vip.c
-index f1574edd2b43..537702ace760 100644
---- a/drivers/media/platform/xilinx/xilinx-vip.c
-+++ b/drivers/media/platform/xilinx/xilinx-vip.c
-@@ -212,18 +212,16 @@ int xvip_init_resources(struct xvip_device *xvip)
- 	if (IS_ERR(xvip->iomem))
- 		return PTR_ERR(xvip->iomem);
+Reviewed-by: Steffen Eiden <seiden@linux.ibm.com>
  
--	xvip->clk = devm_clk_get(xvip->dev, NULL);
-+	xvip->clk = devm_clk_get_enabled(xvip->dev, NULL);
- 	if (IS_ERR(xvip->clk))
- 		return PTR_ERR(xvip->clk);
- 
--	clk_prepare_enable(xvip->clk);
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(xvip_init_resources);
- 
- void xvip_cleanup_resources(struct xvip_device *xvip)
- {
--	clk_disable_unprepare(xvip->clk);
- }
- EXPORT_SYMBOL_GPL(xvip_cleanup_resources);
- 
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-branch: xnext/vip
-
--- 
-2.43.0
-
 
