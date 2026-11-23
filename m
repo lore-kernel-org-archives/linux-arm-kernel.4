@@ -2,110 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6849606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29C8606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IjDcgXei;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AfxcXzgb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KDn2h7rI;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=wZgwMW7f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=IE+F6bD6mEvp/w/Bo7pX00NCaf7s/Wh5lrQJSh4d3F0=; b=IjDcgXeibZp9P+6S5YVBx8fzME
-	dtHZsM0GRlEf33ECr91mSQ3c4oA4mysvWJl4HxE3zLWKiNMV4j9EQyG+wa1NmMKZn7WLjZKe6XOv1
-	YNwss6KgIr6z/AG/jJrA/KE4xHeDHcy529lcWA45Pw1cdVvu67yy5Oj7xAOqLjinR8VDcTyXpGcOl
-	Enot36OT1LKs2b1+hTX3dvuC8DXJfVv+f75mT6bmCVYsv/FnFqGQvi7v+3bYDwy62+4xulnoBgIiF
-	JcUVrawgd0reZ0+u50o+9LgAhREJZL9YUn787ybWCfwqq9EKbbxF8HGOYaEtlhhkyyHO9BzG/4Y+R
-	OtNed0Ag==;
+	bh=eb1bmF8F2PVJN1FG3qeHre4JjGzW9zZyj8slSTuCErU=; b=KDn2h7rIBu4lhJ5SgYJ8oyp28t
+	FHl+s4qVaNPlxkWSCn+hjm52mYbCYi/p3Ns9LWX60njSnQ9wQO0hF6uPNVBFZkWmV98+KkCy6XFtf
+	TWiZD7nhVXBSKX5x8DKaWJk+HJbv3V6atMdkZkqLuDCqXgD+cbGLO7ipZiJYndfRCt3cTUV63YoZk
+	d4LyeXPYtDnV5uVwg+Sl4wTEW09O5l3pxQlNEpEb+cxV+BBr1eYAgy5ZD4oZLG5wufqY9shcpsTkh
+	BRjZf4i6oCxWiP+RX32RtBKdMPJqBo5uwfQ/kseqHax3kn7CBnwbJODlQua4hKyFF7gQDC2AF8eQn
+	Qp2dSf+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNyp-00000002PCP-3F6a;
-	Mon, 23 Nov 2026 06:56:47 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVObO-00000002T5p-2j59;
+	Mon, 23 Nov 2026 07:36:41 +0000
+Received: from out-130.mta1.migadu.com ([2001:41d0:203:375::82] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNxV-00000002P5z-1wn0;
-	Mon, 23 Nov 2026 06:55:48 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id ED78541861;
-	Mon, 23 Nov 2026 06:55:23 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795416923;
-	b=g5XUfvCJXcU8N07BcglDCRvV0o1tgi2i3ylZo/S8QVLxMh2f0prQL0iU3S8FnG0BXDsG
-	 HEfDIYnNzlIiaM+T4q41rv1kGiXzArGKw/vtE+egZXCqnLKeN9/d5DbSZWmfiXWQgHs+n
-	 DQhUlDFYJaUaynKg8Knd6Qh9FPCOZKiWJps4welDXJ/YGoJ+NOE7hQAeCVbfnZoQyVdHT
-	 pQ9ORGscpXP9IDos4vfPWL5sRZHxblStg7Zle5slL1LZyLJJFO0Evn7UVEnA8XU+qNASn
-	 9fPnDbLd2l3HGQLqxgkqswq0VrS6JQqHdKar3Ru/wNmfvmcHKxOc/vai/dHY///9Uhw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795416923;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=IE+F6bD6mEvp/w/Bo7pX00NCaf7s/Wh5lrQJSh4d3F0=;
-	b=eeHwvRdMNP8GEK4U6WpU15fy+0dcIx9T+hhan2Jug0vTInYHvEChakPBOO5MK9hDxPqY
-	 +bCUykjatqsyi4mxgF4tULg8ZZZg0C56c8zbKRd46gnw1FL6zN+rrueZ0qHv+nYqFCB6a
-	 e60L99tMB304JK0IKFcJbcr0keVgNhGs0cCk3vpyvd86UviMHrq/SPYd27GtupjdDjRgp
-	 t888d+WjeYGjvFQq/fClsQUUDvTdzsMEZW6GEGZJQckbsMBtOabs6GZvwqe0+HEXU+cW1
-	 UgNa69j2x/9wWpaictLINoxXgVg9DUOvLfR5s66Lv/uH/wQdxpg4agf85BhpYtt7gpw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 93CD21F000CA;
-	Mon, 23 Nov 2026 06:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795416923;
-	bh=IE+F6bD6mEvp/w/Bo7pX00NCaf7s/Wh5lrQJSh4d3F0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=AfxcXzgbpb6e0SGhqPrQjr3XGaxmiAnWZ991b6yN6wc+IWFWwI+1rEwbUsGJ4KNg2
-	 FtSFrjPsPI/fvoEzNTR+6Xmt+Fl0q7/+zYyDAbYomIhJmWHFpIQJ6jRtx0iyXNJT5k
-	 VFGaZrsouV6m7+L/8Swt0WbMke5Mc2w49njDuEsoACEaqceo6moFMtAlhiUa7mf46e
-	 w5zAQ+gFWUWaqmNOSjcWq/ub1rCiVJNOhIkdfuXSbjPcGZ4aKBtEY+GKgcN0CPIfvB
-	 +JUS8b6ppiOxqNsD4cHgzJYaH4ReVLcB8ipB2eqyciPYDcu1q/xHdsozaiujDUe+o0
-	 FiEgCGoYNRqFQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1CBAD4C3A6;
-	Mon, 23 Nov 2026 06:55:16 +0000 (UTC)
-From: Bobek Brzeczyszczykiewicz via B4 Relay <devnull+admin.roadbobek.com@kernel.org>
-Date: Mon, 23 Nov 2026 06:54:08 +0000
-Subject: [PATCH v2 2/3] phy: sun4i-usb: Assert PHY resets in
- sun4i_usb_phy_probe()
+	id 1xVOb6-00000002T43-0dgI
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 07:36:21 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=GbNG4aEZgYnqy60cKkuKbdz31c//1P7sSXGaCQ5qE5k=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795419371; v=1; x=1796024171;
+ b=wZgwMW7fFFnHcDSYylDf0JYR3mD5371OJi8tMEM2taMQOAiOc4aGEIvhxJcyW/QO5a7Sex0F
+ C7DOYr+d/Wq2F69xGlRIr9L1iKmDiEv1d8UOaYWxIrTsrYP1Mh7KQPRLtMXd/F2V7tFiTLVS/fP
+ 3eiGH44jZp+Q39bN0AraTgkg=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id b108d2690a061a7b;
+	Mon, 23 Nov 2026 07:36:10 +0000
+X-Mizu-Trace-ID: b108d2690a061a7b
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so8644e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 23:36:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGS3OLv5VcqVGwNkkiaDL/n2VPAiLFGj097ULhxPC3Tj4aTWu60qe0TR89xRjVhq6yLk/34KyBv/PVspJ46KESA@lists.infradead.org
+X-Gm-Message-State: APuU4Z+7GI3Ji5JjFimi5EL8AGNiBWr6IokDr6CY1AHBE5BfRIr7V1gn
+	5Q7BanU52eM/Qye67a2wsOOIy9JEFZ2lvlIoJh0n2OWKMP+AHv4I5SfljfUUYgHEl9Z5Wgd5IJI
+	BoKBy/MXaFJTx2crnmtZl6JAYDkAgkENhDUeZzOEY
+X-Received: by 2002:a05:6512:1250:b0:5c1:4cd1:131e with SMTP id
+ 2adb3069b0e04-5c21a261fbamr165167e87.11.1795419366920; Sun, 22 Nov 2026
+ 23:36:06 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-usb-sunxi-reset-fix-v2-2-4e51d3a64964@roadbobek.com>
-References: <20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com>
-In-Reply-To: <20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com>
-To: Bin Liu <b-liu@ti.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Hans de Goede <hansg@kernel.org>, 
- Felipe Balbi <balbi@ti.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Maxime Ripard <mripard@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795416949; l=2483;
- i=admin@roadbobek.com; s=20261117; h=from:subject:message-id;
- bh=LiuKo9Ttgw8d9A6ryR0X7JCOtqPXd1JaEy/qalojwDQ=;
- b=4snw45SeWS1PIYm2o3Nk760eHMEsEip6mSYpLIf2vwaZCQS2LzedxtnTIUXgPuRkPzG3OhHWd
- l1/KHUDf6tnCvfWaf0ax6iOs134d4XMOkIXArhpCOWh3YJAMzdJtMD2
-X-Developer-Key: i=admin@roadbobek.com; a=ed25519;
- pk=TcWSTwITMylwCZLYbw80sv2LQx1zButqiT90TFVvhas=
-X-Endpoint-Received: by B4 Relay for admin@roadbobek.com/20261117 with
- auth_id=1548
-X-Original-From: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
-Content-Transfer-Encoding: 7bit
+References: <20261120121638.194154-1-fuad.tabba@linux.dev> <20261120121638.194154-4-fuad.tabba@linux.dev>
+ <6782b5ee-3dfe-4076-a79c-fbeb2c2ac7da@arm.com>
+In-Reply-To: <6782b5ee-3dfe-4076-a79c-fbeb2c2ac7da@arm.com>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Mon, 23 Nov 2026 07:35:30 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTziXrRdR+guikKbj93Az96T+AMx_=0sVeyWG5C4fwaaTg@mail.gmail.com>
+X-Gm-Features: Aa3M54qbIcVsswZvgTdf3Pr5w2t6747s-c6Tnij9t_PWy9hwC6gUmChWfQyq38Y
+Message-ID: <CA+EHjTziXrRdR+guikKbj93Az96T+AMx_=0sVeyWG5C4fwaaTg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: mm: Don't defer the barriers when installing a
+ fixmap entry
+To: Ryan Roberts <ryan.roberts@arm.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Ard Biesheuvel <ardb@kernel.org>, 
+	Yang Shi <yang@os.amperecomputing.com>, Kevin Brodsky <kevin.brodsky@arm.com>, 
+	Anshuman Khandual <anshuman.khandual@arm.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_233620_343410_2F4B5734 
+X-CRM114-Status: GOOD (  18.36  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,84 +83,59 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: admin@roadbobek.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
+Hi Ryan,
 
-When a bootloader initializes USB before booting Linux without first
-tearing down the controller, phy->reset may already be deasserted when
-Linux probes the USB PHY driver.
+On Sat, 21 Nov 2026 11:01:49 +0000, Ryan Roberts <ryan.roberts@arm.com> wrote:
+[...]
+> > kernel then warns about a spurious translation fault. When kgdb stops a
+> > CPU in lazy MMU mode, its breakpoint writes through FIX_TEXT_POKE0 can
+> > fault the same way, and fail.
+> >
+> > Emit the barriers directly in __set_fixmap().
+> >
+> > Fixes: 5fdd05efa1cd3 ("arm64/mm: Batch barriers when updating kernel mappings")
+>
+> My memory might be betraying me, but I think this change went in before BBML3
+> (BBML2_NOABORT)? In which case, the bug is only exposed by the latter series?
 
-Because reset_control_deassert() alone is a no-op on an already
-deasserted reset line, stale USB PHY state can persist across the
-bootloader-to-kernel handoff. Asserting phy->reset inside
-sun4i_usb_phy_init(), however, could disrupt active PHYs on SoCs with
-needs_phy2_siddq (such as the Allwinner H616), where PHY0, PHY1, and
-PHY3 depend on PHY2 remaining out of reset once enabled.
+It did, and the set_swapper_pgd() path is only exposed by the later
+series. The tag is for the kgdb path, which doesn't depend on BBML3.
+When kgdb is entered from a breakpoint in process context,
+in_interrupt() is false, so in lazy MMU mode the barriers for its
+FIX_TEXT_POKE0 mapping are still deferred.
 
-Request exclusive reset controls via devm_reset_control_get_exclusive()
-and assert all PHY resets in sun4i_usb_phy_probe() before registering
-the PHY provider so every PHY starts from a clean reset state before
-any consumer calls sun4i_usb_phy_init().
+[...]
+> > diff --git a/arch/arm64/mm/fixmap.c b/arch/arm64/mm/fixmap.c
+[...]
+> > @@ -127,7 +127,9 @@ void __set_fixmap(enum fixed_addresses idx,
+> >          ptep = fixmap_pte(addr);
+> >
+> >          if (pgprot_val(flags)) {
+> > -                __set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
+> > +                /* The slot must be usable on return, even in lazy MMU mode. */
+> > +                __set_pte_nosync(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
+> > +                emit_pte_barriers();
+>
+> I wonder if it would be clearer to wrap __set_ptes():
+>
+> lazy_mmu_mode_pause()
+> __set_ptes()
+> lazy_mmu_mode_resume()
 
-Tested on an Allwinner A33 Q8 tablet (Laser MID-786).
+That would work. However, there's the stable backport. 6.18 has the
+bug, but lazy_mmu_mode_pause() was added in 7.0, so 6.18.y would need
+its own patch. This patch applies to 6.18 unchanged.
 
-Fixes: ba4bdc9e1dc0 ("PHY: sunxi: Add driver for sunxi usb phy")
-Signed-off-by: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
----
- drivers/phy/allwinner/phy-sun4i-usb.c | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+I'm happy with either, or with a followup patch in the same series.
 
-diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c b/drivers/phy/allwinner/phy-sun4i-usb.c
-index f26eed0db17e..a62558124d2d 100644
---- a/drivers/phy/allwinner/phy-sun4i-usb.c
-+++ b/drivers/phy/allwinner/phy-sun4i-usb.c
-@@ -787,7 +787,7 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
- 			continue;
- 
- 		snprintf(name, sizeof(name), "usb%d_reset", i);
--		phy->reset = devm_reset_control_get(dev, name);
-+		phy->reset = devm_reset_control_get_exclusive(dev, name);
- 		if (IS_ERR(phy->reset)) {
- 			if (PTR_ERR(phy->reset) == -ENOENT)
- 				break;
-@@ -855,6 +855,25 @@ static int sun4i_usb_phy_probe(struct platform_device *pdev)
- 	}
- 	data->num_phys = i;
- 
-+	/*
-+	 * Assert reset on each PHY before they get deasserted in
-+	 * sun4i_usb_phy_init(), in case the bootloader left them active.
-+	 */
-+	for (i = 0; i < data->num_phys; i++) {
-+		struct sun4i_usb_phy *phy = data->phys + i;
-+
-+		if (data->cfg->missing_phys & BIT(i))
-+			continue;
-+
-+		ret = reset_control_assert(phy->reset);
-+		if (ret) {
-+			dev_err(dev, "Err asserting reset on PHY: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+	usleep_range(10, 20); /* hold PHY in reset briefly */
-+
- 	data->id_det_irq = gpiod_to_irq(data->id_det_gpio);
- 	if (data->id_det_irq > 0) {
- 		ret = devm_request_irq(dev, data->id_det_irq,
-
--- 
-2.53.0
-
-
+Cheers,
+/fuad
 
