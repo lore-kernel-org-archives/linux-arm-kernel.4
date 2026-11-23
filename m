@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD7D7606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24605606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tK23+kQh;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jQNq2LB2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VwnYiV+o;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ma9oF9RG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Np29t8Z/FJ1Na9S/42SyLOTEL2I9RlgQeD2Mmwpd9yo=; b=tK23+kQhwPh3jLJJ2jIof9M+jf
-	luw2mxeB00Oy0x1T352X7x9EUDX3tpl5dqNXTSy/IKqpPdN3FJn3/rZhZmIsXiB4g7hhdhJge7PGf
-	qot9HbADw7tCsI4knUmHADUib+8bwarxSPpE10lKbmF9kgBwUoPYieW6v45NnHVLKycTex2KRR6Ze
-	BhBSy7uRmC+8ZrIRCMJh+HrZqq6othQ68SOdQC5yqHVPrTbkpqCvh9M5fNxZylmU/AVxyACusnWmw
-	foxWowV/bI9DtPGlLXVFwriU2/GIcvtNBYt0xXluH/u3YnwzDYGsg0nxZQKt1DU/EYYgsFw+lUIKy
-	CJ6zNI8w==;
+	bh=TffwmXw6UdCEbT8yxrtF0Jha1bBK7TnOkcuTUxO77aI=; b=VwnYiV+o4eTtKq9sKVmrWRg1Wv
+	9GQKKPb1dGeSMMCFRDfmqUuAxCIuOXbD3cWh0UjpCAJyjY0/3Nmg8S/2Mfw2fqlLj3+140v/02f27
+	yYmGqK7Tyt+M3eYH2S70OpN50EDKQ+veAxw2kulLTTRbIsBn8bGibTb2WTwkxRI7AAd84gPGnUzQk
+	3gVvJRUCy6VpdwZ7dVoaAi2OAI4eP2gjbFuJ/jNWL3RsdXTAy+CSJmOw9pPRE8Y/wnC/QE8HU7AaH
+	hhh+0KuEmQNpTclLrxRZMv1iyrzbyCGHQwCowkBvCAQljkyiQDxiM/C/RJvJJE5PBjdO45GnQPBMM
+	6+VPjyaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVb45-00000004tRa-0M6f;
-	Mon, 23 Nov 2026 20:55:05 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVb44-00000004tQs-3Pgu;
+	Mon, 23 Nov 2026 20:55:04 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVb41-00000004tPj-1nXw
+	id 1xVb3x-00000004tOb-2ZiV
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 20:55:01 +0000
+	Mon, 23 Nov 2026 20:54:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1DF3341AE5;
-	Mon, 23 Nov 2026 20:55:01 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 5D60F417E8;
+	Mon, 23 Nov 2026 20:54:57 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795467301;
-	b=OceNzGyrUTENh2zca2ygvqFrK9HrmB6IeY+UDwARGJYN5JjC4fl7ADhnrQF6oYfoZ1ZL
-	 JEWEGQ3fZgRUpLXR+S4YDf/bDHyIcUJvxs2OUoLA1Z6A0HXVQiWgXMa7Wy15WG+ROzumX
-	 eQry8z1UVltoKjMypoQ0EcnXAu20MftMVLciE6MD3VjVPaZ9MdC/sosmPXHVzZjRPRymL
-	 l5dert3HMvGJjYPBAedBmGrCF+CWnxGnMrS0vBI7FjxQFgqMMv2Dm4+dLljOIznWVVW6J
-	 fOom6kIUJxShs7+Rb5hzjs6xaueFCFkgTrDeqPs6SAWcpFx5ZG+HYLCOXrvvmkC6OBA==
+	t=1795467296;
+	b=gVMD+KkfeHWFPyB2zFGYOW281JAcDMTs+a5pb7x/2/VEe4P60p2B96b0rT4wYvxLXYkz
+	 4p2jMAUSIcLrAbmQDm5QboWKAdu6RqbPeLzTPA7MboOcbeheGkGlwZAUVrZjAz5/gIlFl
+	 ynoWOBs/rvrHMemQC/ADvZNcLjqe261BfH4TWr0OWgtiMI/7iOsVa+umWQSSgu3WlT7vu
+	 OeyC4jKTawu1BIRA/lXgLzXUGmi82diicxBg/yzrtoHryhg13cBaLWtSeLecZGl4l17dc
+	 IHdVIzLDKtUK66t819s9xwIjITEtAQq7tJ+3//hk9q5L8M5Wp2bZl9G4W2WGiaXkxXA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795467301;
+	c=relaxed/relaxed; t=1795467296;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Np29t8Z/FJ1Na9S/42SyLOTEL2I9RlgQeD2Mmwpd9yo=;
-	b=HCKx8x3IvnwY5FPy22Rbvw8ArOxzTlzHaPq/qZ0Xr23g4JJnwI7QV61tQDzqghYSac9a
-	 +ZknSbYSkdzkCLgdsTRXalKS7Tvh6LolMNF9HQXFrVeQMP0ynC71mptMVcY6pMU468tbW
-	 uFc5NaxRUGNF4ZhOg3ZmaWx10oXrPhNR2FMKYiaL31kCgItf1QIfdUWEUha+lm1jcjeN4
-	 iO0KJwN3HRx27KV1uMsyTvijBKdNhh0CwZz+mNWLdFFaZkBP+c6VAdbVtewqj0UapWZMZ
-	 17Jz0qFAd48lOCFyMcSmOK/b0GNNLe2/EuiJhO846hCag8kyhXakhjSrU9zKnRP1OQg==
+	bh=TffwmXw6UdCEbT8yxrtF0Jha1bBK7TnOkcuTUxO77aI=;
+	b=bYpQsPGL5RKvCIu/kMpoFP+4APRK7jHMM5R2m2xhnK1kHRv1XXY1d0wH/aCZhN6y/df1
+	 XGJ3FWcTpG4sa7ZeqA31awzHtz0HA6XUWC997w1RvUELL1FF3j6HK63C1p8I1nkmQXhtM
+	 rjbqOMExJfD3YjopSnOoXbmXQsSOKdO0i4bgfSErxZlNRirTvvpJdOrzQlu+p3mYEldBU
+	 6F1IZWLHsS+6HMIP7ICMmrqqAI9Wi2Y2FVDcvjmJRMjpT6gK7+Id0vg6JqjoTcsM7meej
+	 nUxQy0G/ws25xCVsosfaj95M7YEzsBM4dPTxSqDfDLBeWb8bbH899VLDxIEv2XMoc6g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A0CC71F000CF;
+	by smtp.kernel.org (Postfix) with ESMTPS id 850E21F000CA;
 	Mon, 23 Nov 2026 20:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795467300;
-	bh=Np29t8Z/FJ1Na9S/42SyLOTEL2I9RlgQeD2Mmwpd9yo=;
+	s=k20260515; t=1795467296;
+	bh=TffwmXw6UdCEbT8yxrtF0Jha1bBK7TnOkcuTUxO77aI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=jQNq2LB2qietHLIoZ8yUb4p1NusvFABBlI7xGkQCqAgEnUJ2rhUpFYPNCqRWDNI7T
-	 LevYLsv3j+m4uDdXf/mYtSsTQvMwvsVepNz2aGHBg4Z3cEo2Quv93ehLFA+f7ZUkNn
-	 Hc7YaNfFllc+JvpIGBKNXPivHtKS82yBqsYDGwaZFLFMYg/vksL36Y0yPK9cXe1l9r
-	 06ty11wnMnLMmugRlN+Hqbn4tDUu3jtPjr5uvuJ0uk4LtPgpTgjpkJ1UgT27RUYcXD
-	 BKRoWzCw94h2kWygE5BlyxXZ8jdw7Fs2Bon1+SeNYXHsu1Y4+JBQHNatb3IOqct6A+
-	 tojtk9cVuWevg==
+	b=Ma9oF9RGpOCW5ADaBGltDTom634IvqdzkCLP8yujiK+XkjbtyBWqBIkugBgJIZlxx
+	 BIs/SPD9x2ajk7h5B5zxpkHOQ90DyAN0gz6vgVwjCfmDuGxoxZFdFBti07fTWi0GHN
+	 Exh7bKt5f+WHXorHXn98Ebjm1l/6iZEY5VdCm/McPGFO/JBOO73v2RWB85Xa3jXVk0
+	 m30oNma/5wTu2eQCvz4sR7Ia0DpV7ha+xjZks2RodF1e9HL7yZpYjaOvmm4uaJ2jLL
+	 Y9e+BhItFM1ZY/L6Uza2rqG/Tp+CxebbBNWnU4CZIHUq9Jjs+Qr966LXQsdt3gDKk/
+	 ACxjWrMusA72w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 317B74C742;
+	by lkml.kernel.org (Postfix) with ESMTP id 1565B4C73A;
 	Mon, 23 Nov 2026 20:54:46 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 23:54:45 +0300
-Subject: [PATCH v3 2/5] dt-bindings: pinctrl: Add Cortina Systems CS7542
- pin mux
+Date: Mon, 23 Nov 2026 23:54:44 +0300
+Subject: [PATCH v3 1/5] dt-bindings: soc: Add Cortina Systems CS7542 global
+ control block
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-cs7542-syscon-v3-2-f1c07a1703f8@gmail.com>
+Message-Id: <20261123-cs7542-syscon-v3-1-f1c07a1703f8@gmail.com>
 References: <20261123-cs7542-syscon-v3-0-f1c07a1703f8@gmail.com>
 In-Reply-To: <20261123-cs7542-syscon-v3-0-f1c07a1703f8@gmail.com>
 To: Linus Walleij <linusw@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
@@ -92,11 +92,11 @@ Cc: Arnd Bergmann <arnd@arndb.de>, linux-gpio@vger.kernel.org,
  linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795467283; l=3681;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795467283; l=2642;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=/9pSikmWwhBioyTJ6DvsVzAdek0b8eNS3ZOh6AZxfW4=;
- b=HJ9m/iqVIseSQDeTOJHVXld2jtWI3Mbch7VVY1qvwwH+wNWr8E6Zsmd6wr09+iWwXL2Dq87NR
- 499L1XkMw/WAaysm4o7UjTy1dQIxF3WlGivDqUH7a7CTbBjyNpksVK/
+ bh=RyDEGw2diWLaYs2xRDfPM68eRB3ceSppkvhEOGqljrs=;
+ b=cS/aiaZDhnjDOzPgoIwG4VUs5jKN8M3LapI3fooeyJQ8LGwhwCkODATkcPh+J2apKPlDe5X0q
+ tegjShBG09rCJPpJTLfN6/vcXpLoNmqSOQY/g9LFCyTpro7mK7Yj/jP
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -124,85 +124,61 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Describe the GPIO/peripheral selector in the global control block.
-Expose GPIO selection for all five banks and the UART signals used by
-the OpenWrt port, without inventing routes for other peripherals.
-Register offsets and masks are kept out of the device tree ABI.
+Describe the shared global register block and its strap-selected APB,
+CPU and AXI clocks. A pinctrl child will share the syscon regmap. Keep
+clock IDs in the order used by the previous out-of-tree CS75xx clock
+provider.
 
 AI assistance: Codex prepared this change from the existing OpenWrt port
 and GPL vendor sources.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- .../bindings/pinctrl/cortina,cs7542-pinctrl.yaml   | 84 ++++++++++++++++++++++
- .../soc/cortina/cortina,cs7542-syscon.yaml         |  4 ++
- 2 files changed, 88 insertions(+)
+ .../soc/cortina/cortina,cs7542-syscon.yaml         | 45 ++++++++++++++++++++++
+ include/dt-bindings/clock/cortina,cs7542-clock.h   |  9 +++++
+ 2 files changed, 54 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
+diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
 new file mode 100644
-index 000000000..cd5c81a0d
+index 000000000..f4e8b594f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
-@@ -0,0 +1,84 @@
++++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+@@ -0,0 +1,45 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
++$id: http://devicetree.org/schemas/soc/cortina/cortina,cs7542-syscon.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Cortina Systems CS7542 pin multiplexer
++title: Cortina Systems CS7542 global control block
 +
 +maintainers:
 +  - Fil Dunsky <filipp.dunsky@gmail.com>
 +
 +description:
-+  The pin multiplexer is a child of the CS7542 global control syscon.
-+  Five 32-bit registers select GPIO mode when a pin's bit is set, or the
-+  peripheral signal when it is clear. Pin numbers match the five GPIO
-+  banks, from gpio0 to gpio159. Initially only GPIO mode and the UART
-+  signals on gpio72 through gpio77 are supported. Other peripheral
-+  routes and electrical configuration are not described here.
-+
-+allOf:
-+  - $ref: pinctrl.yaml#
++  The global control block contains the boot strap status, GPIO/peripheral
++  mux registers, reset controls and the secondary CPU release register.
++  It provides the APB, CPU and AXI clock rates selected by the boot straps.
++  The clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h.
++  The pin controller uses the same register map through its parent syscon.
 +
 +properties:
 +  compatible:
-+    const: cortina,cs7542-pinctrl
++    items:
++      - const: cortina,cs7542-syscon
++      - const: syscon
++      - const: simple-mfd
 +
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    $ref: pinmux-node.yaml#
-+    additionalProperties: false
++  reg:
++    maxItems: 1
 +
-+    properties:
-+      function:
-+        enum: [gpio, uart]
-+
-+      pins:
-+        items:
-+          pattern: '^gpio([0-9]|[1-9][0-9]|1[0-5][0-9])$'
-+        minItems: 1
-+        maxItems: 160
-+
-+    required:
-+      - function
-+      - pins
-+
-+    allOf:
-+      - if:
-+          properties:
-+            function:
-+              const: uart
-+        then:
-+          properties:
-+            pins:
-+              items:
-+                enum: [gpio72, gpio73, gpio74, gpio75, gpio76, gpio77]
++  "#clock-cells":
++    const: 1
 +
 +required:
 +  - compatible
++  - reg
++  - "#clock-cells"
 +
 +additionalProperties: false
 +
@@ -212,37 +188,22 @@ index 000000000..cd5c81a0d
 +        compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
 +        reg = <0xf0000000 0x100>;
 +        #clock-cells = <1>;
-+
-+        pinctrl {
-+            compatible = "cortina,cs7542-pinctrl";
-+
-+            reset-pins {
-+                function = "gpio";
-+                pins = "gpio37";
-+            };
-+
-+            aux-uarts-pins {
-+                function = "uart";
-+                pins = "gpio72", "gpio73", "gpio74", "gpio75",
-+                       "gpio76", "gpio77";
-+            };
-+        };
 +    };
-diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-index f4e8b594f..fb074de87 100644
---- a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-+++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-@@ -29,6 +29,10 @@ properties:
-   "#clock-cells":
-     const: 1
- 
-+  pinctrl:
-+    type: object
-+    $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
+diff --git a/include/dt-bindings/clock/cortina,cs7542-clock.h b/include/dt-bindings/clock/cortina,cs7542-clock.h
+new file mode 100644
+index 000000000..34d544238
+--- /dev/null
++++ b/include/dt-bindings/clock/cortina,cs7542-clock.h
+@@ -0,0 +1,9 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++#ifndef _DT_BINDINGS_CLOCK_CORTINA_CS7542_H
++#define _DT_BINDINGS_CLOCK_CORTINA_CS7542_H
 +
- required:
-   - compatible
-   - reg
++#define CS7542_CLK_APB	0
++#define CS7542_CLK_CPU	1
++#define CS7542_CLK_AXI	2
++
++#endif
 
 -- 
 2.53.0
