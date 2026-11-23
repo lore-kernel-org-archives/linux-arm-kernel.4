@@ -2,114 +2,150 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B029F606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933B8606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Erp+U8aj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HmW73Ara
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LLKY0MGn;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=dCy04Ggb;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=VQaxQuE5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rAgcqIqOw6zcaQD0GaowJvtaNg3/b1Y5Y23WzFleRQ4=; b=Erp+U8ajlppgncULob5vQWu+4S
-	Km+hcY1zkCfQHv/u5uP161f43K8sPKN4qOiySDF8E7jc0GGEhd0ZnIyJ+SkTb3nh7JvPakThWluja
-	SD+FEwn9zZH/Qbm3EJoq/2o7PxHWu8kfOmthlNe424R9ZvfnNFgdZCkEjsXM4OVvbnNBwbHR0sblM
-	Np+xHbuFC2mMrPmxi6ZKjSiBJXHeSngfQGnbIc1d0+B9x8DBi1ZXcQIH9ZsrQoJIUlaJ9vq2hUKK6
-	u7KeuvmcHQ2aiRK1qDspQpl2C7lSklpTexdKxRGju4CSqiDbn5vXPUnsccvsoCtM6+prGW3ZaQbg+
-	bJV4ms9Q==;
+	bh=/AsDNaCeIM26uy2qCHuktfXaKod4efoeozdBzuVQOi8=; b=LLKY0MGnpqkrt08OHSrX1fdixL
+	FwECFzDO2eo9Z4P0CocFle5uTxfYRKa3U7Bn0DHNVDlF2q8ydbZ5Z7pheiwML3ucHeWH9uYaa+23z
+	j4lUBQw6A1i3r5BPnW9Q/DoYHgHnutFpcOhBFtjqgH+C0bWJa9SVgkm7vMVz3mpYErkZK4lJuY0GJ
+	Eta7Ou6S7nuGK0p2METJpyYHSXOo91MxfdUtvSymhqIgLmdvQVJub1oKbo89H28kHrmTlG6/vT57v
+	rjrfyNyqoILXIo3fxTVmi6E9rMOgte6FjQX7tWhhFJ+wdCGh6gAeF510Nn3/iq1bYf7pSBHKx0xux
+	LA3NYdTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZtN-00000004ho9-0CGr;
-	Mon, 23 Nov 2026 19:39:57 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVZtR-00000004hu8-2ygO;
+	Mon, 23 Nov 2026 19:40:05 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZrv-00000004gdQ-2sw5;
-	Mon, 23 Nov 2026 19:38:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2357961B6B;
-	Mon, 23 Nov 2026 19:38:27 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795462706;
-	b=2rN2uAjze3pp5fF0gYAwHE+8UrApq6fXslvuW+uSA7LNEZGBPZD/d/JIYPbB9srgKyDq
-	 8EvdG1b/EUDP2VLZT+hZxl4k1yVdepbWYL6SpJkaTM6Mcuh0oNSd54qfJJb481ORvwCOr
-	 Qh6yazgqoSr4G1bmCqzEH3ajh0DgtyJiR4nE+tC45bdLNFl4dbwXUlSF5JdPMh0gDciPk
-	 qQRiOdfej71eT0m2vL8wryPtdt9lGGiNQoN9ZXnCe/9O7sXwv4jw3a7mY8bSuMALMXGA+
-	 hQao/be+7xIIa2+wk1OjX2gF+cYNfWWHNMWgA9ob21UNnQqpQ590PdfR0PDqfPNgzpA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795462706;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=rAgcqIqOw6zcaQD0GaowJvtaNg3/b1Y5Y23WzFleRQ4=;
-	b=QyFoRdH+1dhFbxwDFLdV0gS8E80X5nRhUQ1F4PEVzne26eG1nTqZ+JxVZpBAFe98MLqp
-	 C8lnYbpWngwiyx5Sho+/gAJe6Lcg5hBTMJZ0wEVvhn3A/oEbND+DWjoudzk7GOu4juDUY
-	 FTUmHAgxHOYTkiELKYMb+ORKBIxbrHGCoTEUoVbk1ibH6+e0zClPr1Ri4Ayu6Jx7TRVRM
-	 aDnsjaGYt2wiJJqFF4l49Sxfw73Gpek68aoF55fU3rU6Fab2fHoN5TgSAhGLWNI6QafcT
-	 K+Ylw+A0/naW2kJFf0vaklubWWpqiHFmC0egAEtsiZlFHHzaKpN9lIfuUGpOxGz7A5Q==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 205291F000EF;
-	Mon, 23 Nov 2026 19:38:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795462706;
-	bh=rAgcqIqOw6zcaQD0GaowJvtaNg3/b1Y5Y23WzFleRQ4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=HmW73AraiiBadW4DbSF9YJFTGAESKyalCrmoUim1vH6mVoHwhoSBkNSiEkBzLDris
-	 UxJfiBTTx3qqrjCRAqrA8UCO6Kd6xxOfxwc/xuqh+Xm2aPT71qs+jYo1HK9tRLdkCx
-	 FcVMaqjO1KUP30/BOrAfMFQzSmXSJFO2b6P+66vwOnWTzGmxBJ71911QIxaWVyzkQd
-	 8+YmUzegY+bHipPYdmmYK6v5dj3ow/Hnc7vS4SHT9xLRDHIM+5kIuQ60ochzYn/Gzl
-	 Qd2Uae4SiwVHELIhS4gRhKVC4vt8IhpL0/DRyIjvWimU+Zfq46LB7JfRDUSluxYs6F
-	 bUshH96kufdyA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 542904C6A1;
-	Mon, 23 Nov 2026 19:38:01 +0000 (UTC)
-From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
-Date: Mon, 23 Nov 2026 20:37:38 +0100
-Subject: [PATCH v4 06/11] pmdomain: amlogic: meson-ee-pwrc: power up
- memories for boot-enabled domains
+	id 1xVZtA-00000004hfM-2Rbf
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 19:39:53 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ANGH3372340403
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:39:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=/AsDNaCeIM26uy2qCHuktfXa
+	Kod4efoeozdBzuVQOi8=; b=dCy04GgbJinPkzPCZYLQfsGaaerS4ZPo0o+h7QxU
+	Y+cCSOzW9p8JUeiaSEkcfHdy8Vec/bNGlEOzsBhXarz5q0uXV8sjetqj0MUXVLRf
+	CpFPwIVs3D9xjiDK5GX/8C0az5rsW5YjOLQdBrk0De6+GomJ7bqjlgEwTCEstDpq
+	EcDYufpvAd0jwa6rWIJjnwJCcIttAtSDoTB1xaCvtXi67ULdBSZ74Kpyo1FeP6pR
+	3J9uq+XSeZkYIhafRuPMBP01XPN4DQBjKBdHxyrKZVw6nn1zX7zQFSNueJLoTOP0
+	BYB3oZ5uqtUVuKWJw63dPIqMoHFG4GFSC4TC6dNgGzgpBw==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j4exx3b2t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:39:44 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-94960bd17b5so614475785a.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:39:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795462783; x=1796067583; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=/AsDNaCeIM26uy2qCHuktfXaKod4efoeozdBzuVQOi8=;
+        b=VQaxQuE5fzk7APBa2MVRmc2pSLCk0iTQ5fdxarjFWJ4kIjLrTwCml/65JlZaknjycB
+         ZF3w9nxaX0AuGuTydqDYaS0tpm1BsVeDktSbscmjGYs+aN87SmIKYw0xt0x5jJDTE1Y3
+         THGZk7tpk4/eyogGmbNUGQmZV0UIcQyeh/IgDRgztsbx9fOYy89Ox/97JDwZcj018m2C
+         M1HDLY+9n7qZG3eyTMKlQ4iM8HmkYZbvcq0QYF8s6kJPQwqyeInDR6hq2SoykAeVamUL
+         rFLFXHFZfM8pmVe9rofAECH4g+rBKcB3ZN4tbC/czwBZbNWWkFOuq36q8SrVTqMRxs2o
+         ZeaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795462783; x=1796067583;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/AsDNaCeIM26uy2qCHuktfXaKod4efoeozdBzuVQOi8=;
+        b=ATLy/Khfz+aAVaLKe3Aq6wGWZwzvyxRbMc2hZV76CkxgXRzlSJsh22RfxWSkiIewWB
+         Sx60oSgzogB9LSsK17DFbu3CfXlDFk+56c3EmjjdjGXPyYoWzuOGa9sCiqeixwmAsy8s
+         3oGaNqqX9Jg2Oa3DLZvM0pYlZgS5ifK92pQYhQP3ZxfW9Eow78Eb6qjD4UIoiL4+5hcK
+         HPCBxajEe93ZLZiyGleDQVhxbTpiR/Hv9ccwq5FkEEIKoHJdsuPSrLqUiSAHFXxlzDrV
+         Ejdc68jBmYSG4ACl005lEDVSw85aCb9vxAqpR1LLV2QwIs6Ai0fyiPaHENho92wcEAL0
+         qATA==
+X-Forwarded-Encrypted: i=1; AL+hErH4Dqk8Aqvj+jDPbhkf1cS6WQUCkXFRB+8vRph/IAx5i1MYht57TAYr8il/ziUCDiYbxmMxG5Mo3RgaGysP05n0@lists.infradead.org
+X-Gm-Message-State: APuU4Z9uuR8VBantoR415FV9enadSQXmMBec2Mc+swH7JK1vJZJPgaDG
+	y5+HVovSGMrD4mFNkQk+HcI557KzvhZmDp8w0T805Jgahuqwhkf05+sSFLiCfcVOmvCupMinbXB
+	FKWDecHwfZf6JgeaSwP0PYQzcwPLcpsFF4ZH3JyNZfuTKE8KbOXmEsCUdOrxmYqiO5o5DyJIzaZ
+	q8QQ==
+X-Gm-Gg: AZFdTZcGBZ/I4GGm8pBt0iu45yfzPemI0S8c9w7dkv/ojFw3LH/EWVcg8BY40Ghpbdj
+	7brtuVrS+KjKDyzzHCP8vKEVPn7d33m0IdSuxX5v0i4IJ0UNro8ElHHW60RTYx5kuHIw5Dptpl+
+	fvJyF2ZqtOtHlQ35+HWa2azNyfJlacNUFe1bTIHmCvQCiQVJwHrLjbF3fborzI1bAoi69MXze1P
+	D9KJ8orhQIxx85MD54QNhdkrCCig0Bbsa73Uwfv3vyzx6l1OPVzBQbnrYN4bs5HphLgYkk11tvS
+	P2kqOcPXRtsTYJxATWtK/3V3sqWa2RpkygtVvaLGiRbLOEhmV/eZLwAi7Gm1mkng7gDsdTysvWM
+	FK9FcUB4GbQk1KWouBUs5CnX+74agcHL7FXmvBebDiQs8RaHXGGRA1VXRaYqez7rf
+X-Received: by 2002:a05:620a:1724:b0:949:71fa:5b0f with SMTP id af79cd13be357-949baa053dbmr2113158585a.61.1795462782781;
+        Mon, 23 Nov 2026 11:39:42 -0800 (PST)
+X-Received: by 2002:a05:620a:1724:b0:949:71fa:5b0f with SMTP id af79cd13be357-949baa053dbmr2113153285a.61.1795462782173;
+        Mon, 23 Nov 2026 11:39:42 -0800 (PST)
+Received: from oss.qualcomm.com ([188.27.161.77])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6c340df4sm27574990f8f.55.2026.11.23.11.39.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 11:39:41 -0800 (PST)
+Date: Mon, 23 Nov 2026 21:39:40 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        "Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 07/20] arm64: dts: qcom: sm8150: Add GEM_NOC
+ interconnect for adreno SMMU
+Message-ID: <itpvl7qrxxa3ccj6e4q5uaveerqcitp4frv4gmtlxj4y4lxv2q@4tk4mzd5ieim>
+References: <20261120-smmu_interconnect_addition-v4-0-be30526391d9@oss.qualcomm.com>
+ <20261120-smmu_interconnect_addition-v4-7-be30526391d9@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-meson-drm-create-hdmitx-phy-v4-6-3fb94f5534ca@aliel.fr>
-References: <20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr>
-In-Reply-To: <20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Vinod Koul <vkoul@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Ulf Hansson <ulfh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- Ronald Claveau <linux-kernel-dev@aliel.fr>, linux-pm@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2681;
- i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
- bh=2pSroicxmn87L6WpeMI1TQ71NJdXRXfygd9gmAxHGRQ=;
- b=owGbwMvMwCWm1SvKXP3cUInxtFoSQzbLNL5sQ++6hzY5B5+Z/bsWLnPZw+y4ppPqnWyGbClfv
- s+zErU7SlkYxLgYZMUUWfrnWp54d/noma971FNg5rAygQxh4OIUgIkItTH8jzincSxhz4q5twuX
- X9r7263C0aH5T5X3rMO7Pm3v4VVifMzI8M080Kmb9bSV5dqwPqn5dx3e3PrKt7Lzk2+a0NGHcys
- 2sAMA
-X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
- fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
-X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
- auth_id=744
-X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261120-smmu_interconnect_addition-v4-7-be30526391d9@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=FKKOVOos c=1 sm=1 tr=0 ts=6b049680 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=asF+/XNaGoxFafzDDLC1GQ==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=fpZYgbz1ZAxLTqytCXoA:9 a=CjuIK1q_8ugA:10 a=zZCYzV9kfG8A:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-ORIG-GUID: 9AzX-tgrBMNWFIkDCHeH2tnfmq9qB6sw
+X-Proofpoint-GUID: 9AzX-tgrBMNWFIkDCHeH2tnfmq9qB6sw
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA3OCBTYWx0ZWRfXwILohKz4arUB
+ kk2nUSfbB+r38QaLmCUJipafouOZCfSZ1pGqZNZFTKqGNNqbthoAVeAtjjJad4BLvYjylfSMbU1
+ SVN4yaMXdaK7XqP7/Ay7il9XKtNktaU=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA3OCBTYWx0ZWRfX1SU0TFi0FOwb
+ GvaJvQ9DYsldKvMgI6+Bhibj6WNsAvV7/fCdbTjmtsyDlutjVBEgZbzyfaDXdHu5aOyH/alrJot
+ aYBKq8xkHNpidf9hp8mVlVrm31DDsZ5xP33jQ6TSHWpbquIy4w48mrmv5Bnx31Xejz7qAEbihMJ
+ b81s1cghdxOm1l/3MlOgPP3Mgj5nYX7A1h49Bd6c7VvSaMyDnAReok+WpZcH2rw5nKhJs9x8yv5
+ J2P5G3BlWioWoflVNjlq01CJ1TscL2D4Pj91iUtPkRwuc7ZDt7YF8qcGkitV778LCbEGgoW5O3U
+ kYyFFkle85gJUlLnaDWwEwpkRH/hxsaptc2A1nCTHpSX5847KR8yT1n7mSZKd8ezQfUWw8bnGMN
+ jOWiYtjo+AoOb051aYFwbAsLyCfqFTEUQ4B8wcsUSH1ilubLQru0k57OLlp9Gkr2u4uwB5iywhM
+ M1mNF0lhCSn4+iknRqg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_04,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 impostorscore=0 phishscore=0 suspectscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230078
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_113948_725572_49416E23 
+X-CRM114-Status: GOOD (  12.30  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,90 +155,24 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: linux-kernel-dev@aliel.fr
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+On 26-11-20 19:11:38, Bibek Kumar Patro wrote:
+> On SM8150 the Adreno SMMU GPU TCU is a separate hardware block with a
+> dedicated alm_gpu_tcu master port on GEM_NOC. Without an explicit
+> interconnect bandwidth vote, the GEM_NOC path to DDR can be left
+> unvoted during sleep/wakeup transitions, causing intermittent SMMU
+> register access failures.
+> 
+> Add the required interconnect to ensure reliable register access.
+> 
+> Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
 
-When a power domain is found already powered on at probe time (typically
-the VPU domain left enabled by the bootloader), the driver registers the
-genpd in the ON state with GENPD_FLAG_ALWAYS_ON and never calls
-meson_ee_pwrc_on(). As a result, the memory power-down bits of the domain
-are not touched.
-
-pwrc_ee_is_powered_off() only checks the top-level sleep bit, so a
-bootloader that enabled the VPU without waking every memory block
-leaves those memories powered down, and nothing in the genpd framework
-will wake them since pm_runtime_resume_and_get() is a no-op for an
-always-on domain.
-
-This is a preparatory change: a following patch drops the explicit
-HHI_MEM_PD_REG0 write from the meson_dw_hdmi driver, which relies on the
-power domain to power the HDMITX memory.
-
-Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
----
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index 338f70d77bf0..b3ae5cd7bea8 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -392,11 +392,21 @@ static int meson_ee_pwrc_off(struct generic_pm_domain *domain)
- 	return 0;
- }
- 
-+static void meson_ee_pwrc_mem_power_up(struct meson_ee_pwrc_domain *dom)
-+{
-+	int i;
-+
-+	for (i = 0; i < dom->desc.mem_pd_count; i++)
-+		regmap_update_bits(dom->pwrc->regmap_hhi,
-+				   dom->desc.mem_pd[i].reg,
-+				   dom->desc.mem_pd[i].mask, 0);
-+}
-+
- static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
- {
- 	struct meson_ee_pwrc_domain *pwrc_domain =
- 		container_of(domain, struct meson_ee_pwrc_domain, base);
--	int i, ret;
-+	int ret;
- 
- 	if (pwrc_domain->desc.top_pd)
- 		regmap_update_bits(pwrc_domain->pwrc->regmap_ao,
-@@ -404,10 +414,7 @@ static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
- 				   pwrc_domain->desc.top_pd->sleep_mask, 0);
- 	udelay(20);
- 
--	for (i = 0 ; i < pwrc_domain->desc.mem_pd_count ; ++i)
--		regmap_update_bits(pwrc_domain->pwrc->regmap_hhi,
--				   pwrc_domain->desc.mem_pd[i].reg,
--				   pwrc_domain->desc.mem_pd[i].mask, 0);
-+	meson_ee_pwrc_mem_power_up(pwrc_domain);
- 
- 	udelay(20);
- 
-@@ -478,6 +485,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
-          * prepare/enable counters won't be in sync.
-          */
- 	if (dom->num_clks && dom->desc.is_powered_off && !dom->desc.is_powered_off(dom)) {
-+		meson_ee_pwrc_mem_power_up(dom);
-+
- 		ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
- 		if (ret)
- 			return ret;
-
--- 
-2.56.1
-
-
+Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 
