@@ -2,64 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99569606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A3E606A327
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WKBrrnt0;
-	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=tzjIjC+0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WxiOVej0;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=PYvuCIEk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=E3uK4ToIL2mUz3Svln8sWa7foOIYRKuRK6T5m3vJSVY=; b=WKBrrnt01HGjHh
-	Vqm0p5n7s9E0YV+tMa0J6gGWnWko25OZNKOemnHSbf9RO9Vt8y6kTM9YMcur3AcfFvHNUDTsvkzF+
-	nawE9bC5EsNRKbAjJgsIdZoyUUIEvz3wRhJD72o4+FXQjY03qztQ+mdk8zEwMKw7L0YcXFqydRHZ2
-	tD5a7JKtoocBH18NP+T5pzj6fDKj1fZIf8PCtkoQPzxbr4Sdftws8m9vWIdrmdarQEWfhesfO0xhT
-	SuK5vsZjjSWlXBeFZBCiUxush7HMoZh048O5dWIVfX6pPoz0r/fWGCuZ1iru0Zde/yf3Mdyf0EMGJ
-	EpPWc0q3Rp7JEme+g7WA==;
+	List-Owner; bh=HkwgrMMAxh/Pa+gTNOwIrDS+SnvfT/r5RJMCGUHHVyI=; b=WxiOVej0cheVGQ
+	2DObhJ3X3jN3KCkkeRbxJh95V5aoCTYBx4F2mQpePHVqODIFkpIAQ8qm269Ru2h5Z4/Yk1B+9Hrwg
+	9k+EKuzZLnjVZ0DVo5hO906lWB2eW8mS3w1ryVO+HJE6WTGN8ZHriGf1ormpuMVnOD6yFsBznKFGR
+	woVyFxPWc4lmJwYIQoBq2s8eZPOQPkhGstHP275gcZOecyV9OJG5R/I7K2iBUE+FCFA+zdRATtisl
+	YxHrtq5Lqzl+Bwy56njkpQpQnsuSaupSPTwU3yxqRxyv+R60VuqMhIqrkLqKZK7DgwoNetT0sWUUI
+	guiV5khxnCIkd+E9oXAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMm-00000003Cd6-0w68;
-	Mon, 23 Nov 2026 11:37:48 +0000
-Received: from esa1.hc555-34.eu.iphmx.com ([23.90.104.144])
+	id 1xVSMj-00000003CXx-3BqS;
+	Mon, 23 Nov 2026 11:37:45 +0000
+Received: from esa3.hc555-34.eu.iphmx.com ([207.54.77.50])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMf-00000003CRZ-0ob6
+	id 1xVSMb-00000003CRk-0EC8
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:37:43 +0000
+	Mon, 23 Nov 2026 11:37:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1795433860; x=1826969860;
+  t=1795433857; x=1826969857;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=CVPab+eqiu3Puch8ckhPaA7dUxIgv7j+PTZCvvIA2cs=;
-  b=tzjIjC+0GA2OFqDKe66AFG6uYa5lJWHh1Sw0ZYBY6tqwPmQ41ktyOXQM
-   NWaDTeLPAx9cDmccUL7rKblKNlzSVA+ap0hrY9kdLj2a9MCdJsxAewH+N
-   m3xBKvRLRKuGMjrkiPioqDvu1CoVQLwsYTGjuEVqEzDnjdqOVds8Ky7PN
-   uiLiJ3uJEnPBMsGSuuJRZ5VgaTeYaXGXjWcY8nxPsF+YSa9ZUDyIIL5JX
-   kYIKT9HQ6tGZ2Fyk2xPHyJpgzTlHqlBEO3HPdAaQIMycwP52tk1iwU5bW
-   QJpM62JQfRxDTXFHtEuTSsQUsQvR4wEuNbXVNt8WrLiwUwIFVMLLWoXSc
+  bh=IPMwiZyW2lp+dYhB4kV60JlONdGVqmGhSYHG6tuUBlI=;
+  b=PYvuCIEkon3BNMB9NRNNf6KOrhgaikw/2jr1WGJgC0IPyr3JE+gYWHMT
+   eI1yZ8LEkFiV9p+L4xKWScA3ARmON4/l0m/r/ukQHBqoISaJwbpYf1mBR
+   hUSRoX89QyDJnAcrgDc4VyU1bmfZc0N6PDfOVPkyy7JJO9e6V4eDNj/K/
+   l4ll6IYk0OpQ5pLtYsPXjxo5dktMjMwbW9mXCKBzO/4I6wJkdPXSHafRs
+   RKEzmrnR+WTYzS+V+hPgTPvrH/uKmRwP9P/5smD85jMXekt8mqQPY54bU
+   UGelV79KYBXtszmeEsPIXU5zlz/rWfYCiFWtySfOltyG+lPQKI3PpJvFu
    w==;
-X-CSE-ConnectionGUID: arftqoi8Q1O9dT/ebXYzww==
-X-CSE-MsgGUID: 9eD7/S51TZCvSv0lGiYb+A==
+X-CSE-ConnectionGUID: 8qNEtdamTQe7y+juy3+hkQ==
+X-CSE-MsgGUID: DTVLsA6tR9OKUbC6YkoPsg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
-  by esa1.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 13:37:33 +0200
-X-CSE-ConnectionGUID: ZNX9Ay/VSMu6OR/oF7HPcQ==
-X-CSE-MsgGUID: hyqSjWXXRm2C+ZdHMiz/Ew==
+Received: from unknown (HELO ces01_data.me-corp.lan) ([146.255.191.134])
+  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 13:37:32 +0200
+X-CSE-ConnectionGUID: Vhq26FS/TdiUFJJs3EbqDg==
+X-CSE-MsgGUID: NZDwNoOGR5utMAr3dMf9dA==
 Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.2])
-  by ces02_data.me-corp.lan with SMTP; 23 Nov 2026 13:45:54 +0200
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Mon, 23 Nov 2026 13:37:33 +0200
+  by ces01_data.me-corp.lan with SMTP; 23 Nov 2026 13:45:58 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Mon, 23 Nov 2026 13:37:30 +0200
 From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Date: Mon, 23 Nov 2026 13:37:15 +0200
-Subject: [PATCH v4 5/6] MIPS: eyeq6_defconfig: enable the CM3 PMU
+Date: Mon, 23 Nov 2026 13:37:13 +0200
+Subject: [PATCH v4 3/6] MIPS: CM: export the symbols needed to access the
+ GCRs from a module
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-i6500-cm3-pmu-v4-5-5a9f5351688f@mobileye.com>
+Message-Id: <20261123-i6500-cm3-pmu-v4-3-5a9f5351688f@mobileye.com>
 References: <20261123-i6500-cm3-pmu-v4-0-5a9f5351688f@mobileye.com>
 In-Reply-To: <20261123-i6500-cm3-pmu-v4-0-5a9f5351688f@mobileye.com>
 To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
@@ -80,8 +81,8 @@ Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
  linux-hardening@vger.kernel.org
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_033741_557143_D30DA6C1 
-X-CRM114-Status: GOOD (  11.42  )
+X-CRM114-CacheID: sfid-20261123_033737_495370_50726161 
+X-CRM114-Status: GOOD (  14.31  )
 X-Spam-Score: -4.0 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,34 +101,82 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable perf events and build the Coherence Manager 3 PMU driver as a
-module.
+Allow modules to use the GCR and CPC accessors from asm/mips-cm.h and
+asm/mips-cpc.h:
+
+- mips_gcr_base and mips_cpc_base are the mapped register blocks;
+- the CPS_ACCESSOR macros consult mips_cm_is64 on every 64-bit register
+  access;
+- mips_cm_lock_other() / mips_cm_unlock_other() are the only way to
+  reach the registers of another cluster through the redirect block.
+
+This is a prerequisite for building the CM3 PMU driver as a module.
 
 Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 ---
- arch/mips/configs/eyeq6_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/mips/kernel/mips-cm.c  | 5 +++++
+ arch/mips/kernel/mips-cpc.c | 2 ++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/arch/mips/configs/eyeq6_defconfig b/arch/mips/configs/eyeq6_defconfig
-index 0a00a201937b..2d06d9ed6526 100644
---- a/arch/mips/configs/eyeq6_defconfig
-+++ b/arch/mips/configs/eyeq6_defconfig
-@@ -19,6 +19,7 @@ CONFIG_USER_NS=y
- CONFIG_SCHED_AUTOGROUP=y
- CONFIG_BLK_DEV_INITRD=y
- CONFIG_EXPERT=y
-+CONFIG_PERF_EVENTS=y
- CONFIG_EYEQ=y
- CONFIG_MACH_EYEQ6H=y
- CONFIG_MIPS_CPS=y
-@@ -86,6 +87,7 @@ CONFIG_MMC_SDHCI_PLTFM=y
- CONFIG_MMC_SDHCI_CADENCE=y
- # CONFIG_IOMMU_SUPPORT is not set
- CONFIG_RESET_CONTROLLER=y
-+CONFIG_MIPS_CM3_PMU=m
- # CONFIG_NVMEM is not set
- CONFIG_EXT4_FS=y
- CONFIG_EXT4_FS_POSIX_ACL=y
+diff --git a/arch/mips/kernel/mips-cm.c b/arch/mips/kernel/mips-cm.c
+index 3bfe85e86a9a..ed98021418b5 100644
+--- a/arch/mips/kernel/mips-cm.c
++++ b/arch/mips/kernel/mips-cm.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <linux/errno.h>
++#include <linux/export.h>
+ #include <linux/of.h>
+ #include <linux/percpu.h>
+ #include <linux/spinlock.h>
+@@ -14,8 +15,10 @@
+ #include <asm/mipsregs.h>
+ 
+ void __iomem *mips_gcr_base;
++EXPORT_SYMBOL_GPL(mips_gcr_base);
+ void __iomem *mips_cm_l2sync_base;
+ int mips_cm_is64;
++EXPORT_SYMBOL_GPL(mips_cm_is64);
+ bool mips_cm_is_l2_hci_broken;
+ 
+ static char *cm2_tr[8] = {
+@@ -373,6 +376,7 @@ void mips_cm_lock_other(unsigned int cluster, unsigned int core,
+ 	 */
+ 	mb();
+ }
++EXPORT_SYMBOL_GPL(mips_cm_lock_other);
+ 
+ void mips_cm_unlock_other(void)
+ {
+@@ -389,6 +393,7 @@ void mips_cm_unlock_other(void)
+ 
+ 	preempt_enable();
+ }
++EXPORT_SYMBOL_GPL(mips_cm_unlock_other);
+ 
+ void mips_cm_error_report(void)
+ {
+diff --git a/arch/mips/kernel/mips-cpc.c b/arch/mips/kernel/mips-cpc.c
+index 4b50c58628dc..b948a1c96e1e 100644
+--- a/arch/mips/kernel/mips-cpc.c
++++ b/arch/mips/kernel/mips-cpc.c
+@@ -6,6 +6,7 @@
+ 
+ #include <linux/bitfield.h>
+ #include <linux/errno.h>
++#include <linux/export.h>
+ #include <linux/percpu.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+@@ -14,6 +15,7 @@
+ #include <asm/mips-cps.h>
+ 
+ void __iomem *mips_cpc_base;
++EXPORT_SYMBOL_GPL(mips_cpc_base);
+ 
+ static DEFINE_PER_CPU_ALIGNED(raw_spinlock_t, cpc_core_lock);
+ 
 
 -- 
 2.43.0
