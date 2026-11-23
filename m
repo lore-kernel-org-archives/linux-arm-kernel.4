@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBEBD606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15DD606A31D
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mqx2sZzR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QG8sqYzX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ppMv677U;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YAmYtRaF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
 	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
 	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eSw5Z0+yIQVkx+BQEpJQ+jfzywFUxYk8ZiC2TGjHOi8=; b=mqx2sZzRvlpePg
-	IBZ14MApoqK3iqjinWlQCoDZ+4vyTZzjLhKWU2goorV/tCV7OhVVH+i5p91r91XtkRYAx/nTfZNRK
-	or0hFKcJaRepWKK5vyumP2sMD2HRYiusouKZqwTe45rL2g7Cvuo7p6tG0bmxWGYec2VqbDtCAP70S
-	jCGvWfC1TbvoJqkKZl/sSi/8y+Wl2S5sWiEU12c9ooxo8+v472oXMP091YqH3O5aHEYccjVE9KPsA
-	i/lqLut7IdSHqK4urRWeR4RU156/6BSxXd/ZNC6Sl+9+71lVe6TazmUKCoYKk4+P6UlD0YKEae50I
-	mWouNddG0zbjDsAlB/Nw==;
+	List-Owner; bh=hZGsiZPfJDMA7smlRJ4dLsRRcxTqNeN1zBeKd7rqlMk=; b=ppMv677U/lw5jy
+	vVmaxnts7C3ENlMbLqE+sgBwYkYwZN+/lZFnCnT1sCeJ4qAfdmDB5KyI+mEGmcaX5NvC7fxmqCoJV
+	z8g9i+fy5T/sb3CyjASBwxpoo2QZnJxutPM6Wnm4DxHAVzA/cvtH5Lk49V0WTHSdE9KUCYCPu+29D
+	m7cW2e3o/BN0Gb1UZREUrKv0eC5hDZy+tQPuxHEKjNWSeFSCIdYfVzrV9h/pLGw5hdCVc0Gt2s20C
+	65pooZByRqsV3Tp5gwvz2hwDYhGn0/Izv/HjGghM41ePNTIWZS2g6gAwmQJwqLD4Cv9DCSV6ZuIS1
+	wLiNurBACpYVhdM78q2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVIJ9-000000021s1-25Q6;
+	id 1xVIJ9-000000021rr-1h2x;
 	Mon, 23 Nov 2026 00:53:23 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVIJ6-000000021rI-3IAg
+	id 1xVIJ4-000000021qg-22Gu
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 00:53:20 +0000
+	Mon, 23 Nov 2026 00:53:18 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3C1A760D0F;
-	Mon, 23 Nov 2026 00:53:20 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C6E0A6060E;
+	Mon, 23 Nov 2026 00:53:17 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795395199;
-	b=yQk2EOIwe+qLggSF3BK6BTLM5SWSyseWKxXGC9Eqcg2a8UrEcNWJTuG2Bvawk0RM0ZDY
-	 tj7Id4SLZwSHH1OgbdiiZ+nmW7Vx5zduxc3hv18kZj7xqj3PBo1Yv4yLougzmIod5SFzP
-	 zaqQq6n1JukoLHxH6DI4ns4jxXC7t2fBLiB2o2y86gMtEkRFG92R98EWA+XzHAeF3McuP
-	 SstR/MK6zfl9LCyRcdnWx+vSYSJLM29T7sbYX561tQK4F8PeFiyRvK1pTfpVtnDZqwsiu
-	 6/8Q7IQg7GcpshYqZcoCm3SDgJWPMCzmLujLQBkkXPsF7+AeVtd54/Trzdh3Fk4ap0w==
+	t=1795395197;
+	b=I8Po4EbRcMa6mIQr4qfhnKRwy+QikTiz/yKVVNeEuDmO5cGxc5if3boZNBp2xU0Kt1pb
+	 oAGi/fpmkJykFAMvquugCWqAxZwYuBvoZYBoPCpQ3KGIrsI/WxZIuXsRY0aI5tQgmTFnA
+	 Bv8JmTfpLxF/It+i4RIxmdAVn/hI3C5Q8lfSOB/bxrxhjv2XzA6FQivGU3EDMXQFG6I26
+	 Zkvx4PEVdeNa38XNbpzQeUoOD3YWKG3avU/x+dPA9WyshWEEcpbedediZJrBYEnW8mm+I
+	 6QZYA0i47zba3nDMqB+6l+NhBJUFjkrFw7J44vs0aQI2HWka5g4i/n4yxao1D4t/wZw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795395199;
+	c=relaxed/relaxed; t=1795395197;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
 	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To;
-	bh=eSw5Z0+yIQVkx+BQEpJQ+jfzywFUxYk8ZiC2TGjHOi8=;
-	b=zkCYJP4ElasAKtok/fRXP2iezd1eDpKLbrKONLbM9nX3940fLMPAEB6V8eN9u52V+UKd
-	 aVqDdP5mtIux+5lf+jAsr/W/VciYw20upCFMkCs9H605df/opJz7k5qmHecY8GwebY9f2
-	 1nB337x46kD8n82sEpqHDACcYCC7zcrHF4byABFK4K0xLoQSgdmoNKCMXFTtoAyPS6ptl
-	 KSTP4rcXHzkBFgcRo2bKiEOAcZxIpPccUG7tTiPrta//knEREHym3mhmCmQbF7cPjptX9
-	 5CPjiYAjE1l3C9hwQrQHxXK6EOhvueQ6R8MrT7CSLYR2Qoz4tjfQlfqauvciOWGirMA==
+	bh=hZGsiZPfJDMA7smlRJ4dLsRRcxTqNeN1zBeKd7rqlMk=;
+	b=LOqS4QtYeP9CdfRYgjDFNR7NfEXM/CSNZ7lM5pzJT4btnd/WfogVtbVaGLPxTZLM5PAy
+	 0lYWK5mVwFhqF3ayvfg3RBWRSGOmDQBf1Z5bGyjvePaW25Ga5F9deD8HdDteJ2Fe44ZLh
+	 kaueSHvJugE4KKx8ttPI+G4k03KVDSkDtdU+o/vnUITh6j3kM5JaUI9OSa9FtKRhqex6F
+	 K33MP8rrvBXbFvV1+5Ed46Z+NxYq9R0GLb4a0o0Mv7B2u4kFZyNl2/kCIkHNfpjwuI4om
+	 d87rY4zQQyf8IxtFigu9teR3VHk3HFbunxCJER0b/mMYIljVxfqGMKtSm+fQTpamqCw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 63E1F1F000CA;
+	by smtp.kernel.org (Postfix) with ESMTPS id 703741F000CF;
 	Mon, 23 Nov 2026 00:53:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795395199;
-	bh=eSw5Z0+yIQVkx+BQEpJQ+jfzywFUxYk8ZiC2TGjHOi8=;
+	s=k20260515; t=1795395197;
+	bh=hZGsiZPfJDMA7smlRJ4dLsRRcxTqNeN1zBeKd7rqlMk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=QG8sqYzXMNYuO0MnWoa/6VChRBnBK/9UzCES8DUE0HGJDWhr0EdTh/8JIDt/chOJx
-	 7UYp4zMThFY/qQlAR7mkJcxwH26srEU8nL9PE4JVBC607EXxeXuf8Lr0ISdaWvNZy3
-	 kdI/9eULILb+PvoJmA+X9gjyDxGqeAM8rpKvhaYUdXadid64HLiizlsD1J2MC8+k7O
-	 tiTmfXIpEX1R+mv/cu5i5HvBUw6dxMZk37pXGC1DuF/qSLTkKDO1ivN2fZOXzL/crA
-	 xH77HBO+lG3fuiuD1soeur4i5NVySVLlKqB4AWs7sZsm3oWInHaFo/7S8uB37YczhV
-	 FL9MaE/be5RFg==
+	b=YAmYtRaF8RTMsiV/SM/mOr+ocD9610C6TNWyWCG+/Uiij87mC7adagCwFektHLg8u
+	 TKRv4CnMAQ402M7Ppk0ttAq4+TWPAn7I3FsUXXJr8LMMTGxKEpntjEBgV0Sj6N2KMK
+	 gMFj4YtJNSmr3ECtZ8S3IgwUvCsshDz9wW6zWVXSQtsWXAbSrC9Io9astmQYPnvP61
+	 PUB2o8Dwy9TV4BytVYHtol+I2ST07NdtaQ3Dy7aLKh+i/tCQRNg8uGf5EyPewJBRjj
+	 3qEu8HH6RBmBhGJf4p4eq3MLkJqeRhTyYUlYMDdaNPgdw6e79pIMlCA3WBS/GuMb4K
+	 2CX2c+xCvctHw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D8F584C298;
+	by lkml.kernel.org (Postfix) with ESMTP id F21524C299;
 	Mon, 23 Nov 2026 00:53:06 +0000 (UTC)
 From: Suyuan Wang via B4 Relay <devnull+shyckless.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 00:53:06 +0000
-Subject: [PATCH 1/2] dmaengine: at_xdmac: Kill the channel tasklets in
- remove again
+Date: Mon, 23 Nov 2026 00:53:07 +0000
+Subject: [PATCH 2/2] dmaengine: idma64: Kill the channel tasklets in remove
+ again
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-dma-chancnt-v1-1-f0eea0a4bb63@gmail.com>
+Message-Id: <20261123-dma-chancnt-v1-2-f0eea0a4bb63@gmail.com>
 References: <20261123-dma-chancnt-v1-0-f0eea0a4bb63@gmail.com>
 In-Reply-To: <20261123-dma-chancnt-v1-0-f0eea0a4bb63@gmail.com>
 To: vkoul@kernel.org, ludovic.desroches@microchip.com
@@ -88,11 +88,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Frank.Li@kernel.org, allen.lkml@gmail.com, dave.jiang@intel.com, 
  dmaengine@vger.kernel.org, andriy.shevchenko@linux.intel.com
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795395185; l=1963;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795395185; l=1951;
  i=shyckless@gmail.com; s=default; h=from:subject:message-id;
- bh=0bu2ZG6YjZNYO8i4NTeIpO5xmk3AyoVwzgyIl6x73y0=;
- b=GN+9Tcxa5FdlvNodTuggieGgo/+wwVABpHuK75TugVN8dd466Y8HGsvRXU0on8ZU1XQA21oCK
- S5A7eaMLqmhBmmnCBans7qbDW/+3QfKLdOgtOHH+EXq4UTwUItjv2Rz
+ bh=GQuussW5tcaY3AFLXhEILE+dApPEjArrisGtHmyiqFk=;
+ b=ji9WRcuHGobYS9nt8jrwgQQ3y9toNeTxMkJ70wG2ign/Yyl02TFW/2ibsbLp6r13W6629PLua
+ fsVOoXzy6TrDFRy9TrznW54l/IaQlKsFPoPFz+2vE2QOmQMhZSihUx0
 X-Developer-Key: i=shyckless@gmail.com; a=ed25519;
  pk=pMtccVGiWES3bV+7YBFuBclkvq2n2HBHQ5azaBrK2lY=
 X-Endpoint-Received: by B4 Relay for shyckless@gmail.com/default with
@@ -119,21 +119,21 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Suyuan Wang <stevewong@hust.edu.cn>
 
-at_xdmac_remove() kills the channel tasklets and frees the channel
-resources in a loop after free_irq():
+idma64_remove() frees the IRQ and then kills the channel tasklets, as
+the comment there says, so that no tasklet scheduled by the interrupt
+runs after removal:
 
-	for (i = 0; i < atxdmac->dma.chancnt; i++) {
+	for (i = 0; i < idma64->dma.chancnt; i++) {
 		...
-		tasklet_kill(&atchan->tasklet);
-		at_xdmac_free_chan_resources(&atchan->chan);
+		tasklet_kill(&idma64c->vchan.task);
 	}
 
 Since commit e81274cd6b52 ("dmaengine: add support to dynamic
 register/unregister of channels"), dma_async_device_unregister()
 unregisters each channel and decrements dma.chancnt for it, so the
-count is 0 by the time the loop runs and the loop does nothing. A
-tasklet scheduled by an interrupt can then run after atxdmac, which is
-devm-allocated, has been freed.
+count is 0 when this loop runs and no tasklet is killed. A tasklet
+scheduled by an interrupt can then run after the devm-allocated idma64
+and its channels have been freed.
 
 Read the channel count before unregistering the device.
 
@@ -145,31 +145,31 @@ Co-developed-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
 Signed-off-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
 Signed-off-by: Suyuan Wang <stevewong@hust.edu.cn>
 ---
- drivers/dma/at_xdmac.c | 4 +++-
+ drivers/dma/idma64.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/dma/at_xdmac.c b/drivers/dma/at_xdmac.c
-index ef0dfe9d37ba..ef4012c22573 100644
---- a/drivers/dma/at_xdmac.c
-+++ b/drivers/dma/at_xdmac.c
-@@ -2436,6 +2436,8 @@ static int at_xdmac_probe(struct platform_device *pdev)
- static void at_xdmac_remove(struct platform_device *pdev)
+diff --git a/drivers/dma/idma64.c b/drivers/dma/idma64.c
+index e3db213e564b..5d0df1defb14 100644
+--- a/drivers/dma/idma64.c
++++ b/drivers/dma/idma64.c
+@@ -604,6 +604,8 @@ static int idma64_probe(struct idma64_chip *chip)
+ static void idma64_remove(struct idma64_chip *chip)
  {
- 	struct at_xdmac	*atxdmac = (struct at_xdmac *)platform_get_drvdata(pdev);
+ 	struct idma64 *idma64 = chip->idma64;
 +	/* dma_async_device_unregister() decrements dma.chancnt to 0 */
-+	int		nr_channels = atxdmac->dma.chancnt;
- 	int		i;
++	unsigned short nr_chan = idma64->dma.chancnt;
+ 	unsigned short i;
  
- 	at_xdmac_off(atxdmac, true);
-@@ -2448,7 +2450,7 @@ static void at_xdmac_remove(struct platform_device *pdev)
+ 	dma_async_device_unregister(&idma64->dma);
+@@ -614,7 +616,7 @@ static void idma64_remove(struct idma64_chip *chip)
+ 	 */
+ 	devm_free_irq(chip->dev, chip->irq, idma64);
  
- 	free_irq(atxdmac->irq, atxdmac);
+-	for (i = 0; i < idma64->dma.chancnt; i++) {
++	for (i = 0; i < nr_chan; i++) {
+ 		struct idma64_chan *idma64c = &idma64->chan[i];
  
--	for (i = 0; i < atxdmac->dma.chancnt; i++) {
-+	for (i = 0; i < nr_channels; i++) {
- 		struct at_xdmac_chan *atchan = &atxdmac->chan[i];
- 
- 		tasklet_kill(&atchan->tasklet);
+ 		tasklet_kill(&idma64c->vchan.task);
 
 -- 
 2.34.1
