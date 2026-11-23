@@ -2,84 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F8A606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E06606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C5J6OWGY;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=0j5Gmmlj;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=xKFKMpGl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lHcSU/hL;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=RXQ+rBDJ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=C/XfWuCI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dDtQZ0VAonHgAXv6V61xlzs7rkDt1P1WSeLVHahPhAk=; b=C5J6OWGYTngKnk
-	d7mM0v7FmYTjdwAlLV3L1tLAmrzVaeIc/rcpvzNFLYTzX5IEfOmDL/Mt65cMDl2yi4lJedEK2g1PS
-	BUO4gRLM7beiJfYTH6WaWDj8YvuXOIXW/b8w18+6I/y3c52syjeJXE3tkLrLe7ufqcXJtdTzxY4ZR
-	O5mXeYWnqoPyW4uurOiN2QsK4sWNXPeSiqDPQ8jCaz4On4llpxS110uIDetMXiOYTDQKcMxSv3xWT
-	EESD016obwyzvO1wVupH1dskKjDwXLT84SAP9/JoLH1vgzlfIC2YqO2jaX2lgItfgbbDLeupO1IFv
-	w7/a9aGCKROBiUy9HBew==;
+	List-Owner; bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=; b=lHcSU/hL4Tjp6q
+	sP+vcNsR5QUNjO+sqrRkaN3gcRck/vCRBkuenSJrPMkz9ztUpasSpTJf80Izo6jcYy57Fj/6Jo0/u
+	l3bwq4q3N+rMjOzXcrg6nV/TKL0MTafpOBM+iNI32GCdcxMXKp5ZTV+Gny47msOn34ClyXgC26OT+
+	dXuf0AaPzxuIE2dK+ti1G/Sh54GUPRJU+0VY0NkM/R/1oZ+3pxDfvx70IwO3qym//MkL1a3RZ5X9C
+	HX+LKg/Cee14jZPGrEhlIlyc8OSZ11nuz1in4X6N34PbnoctFqVc765McStC2tLTn+2t87DkktnZr
+	0KwqUgRg92ZmjxY55KKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQUQ-00000002jqK-2bii;
-	Mon, 23 Nov 2026 09:37:34 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1xVQJU-00000002hwR-1sAx;
+	Mon, 23 Nov 2026 09:26:17 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQUM-00000002jnr-1Wct;
-	Mon, 23 Nov 2026 09:37:33 +0000
-From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1795426647;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dDtQZ0VAonHgAXv6V61xlzs7rkDt1P1WSeLVHahPhAk=;
-	b=0j5Gmmljkca/E2gltZCv/iUBQbTWeg/kQBkYf9XVAiAvA+qtjrKckZWXQHPA2f/1TeXecV
-	/zE0P2DNvoi8HzN3ElVxpGGiQAEUlNEcd6UGF8hYrc/wSMLNce0GBczPBbKvIrUO5X19RR
-	R1IdOvKig4vP9CGu5Hhx6vXZPUH55eQ55Cmk36Mb44np+ZIxlZSOLnCp0ymuePoAJEdl+5
-	TwmUudfDzyUogJxAH8+mEPtUHitYqGo8y7Cn1b+rbDaEO5y1tmknjd9BzK8UJv7cfl21hY
-	ru0ooQgiSTna2g0imjxfqNWRrK9ENYE5x9K6ykIbUErgd+RZ7TijW+6DyYVOYg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1795426647;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dDtQZ0VAonHgAXv6V61xlzs7rkDt1P1WSeLVHahPhAk=;
-	b=xKFKMpGlecHS7QXXG/FYCxByPNPhxibU2GcZwDKmWF1WUgWqaJk6Gin5FmwBxGa5E4PlWb
-	9bnxn8NrLGCuOXAA==
-Date: Mon, 23 Nov 2026 10:37:07 +0100
-Subject: [PATCH v3 02/15] auxvec.h: Move AT_VECTOR_SIZE definitions to
- linux/auxvec.h
+	id 1xVQHD-00000002haG-3mU0
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 23 Nov 2026 09:23:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=; b=RXQ+rBDJ77Dxypy3jhgbU4ITo0
+	QwfaTW0d7L8GEB/Qarqa+LS3Rw4jSKqfYkzbUUQTORBe5ggzM0nerMrtGD2ulk3qS3uLPzV72wSy8
+	Bk4QVpKDKCqbaRsgUgPeeD0WFQ8HABgeeaTurqGVgwqaE5zYY4iOYZGW8+9tU3dHvhCipjKSRAFg0
+	s3RE6j2M05fHdKuKy116qKfDfrH4eTJ4H+5b2UICZRMfXluo5TEpIqoC2rG2mphPWR5Q5fs0soog/
+	VWA+offZNvDcZxa70lAgroBmHv+DoEBs89LfnIj3RnBYCmBm4gTVBah07RDAudg1hlGxBybcvGgNW
+	XTwOi96w==;
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVQHB-00000002ux7-0eOQ
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 09:23:54 +0000
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4a5b2be99a8so25598175e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:23:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795425831; x=1796030631; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=;
+        b=C/XfWuCIREDzFZyisqhhjiSoXee8b+OE5L1g1a0P7J66TSo7j4ZcBZu0btm2kTSxNB
+         xGUwpruONd/Rnim/AWG/K5NSJsoZGgAW1KkYg6FKEsaTJIMPMVpGQXLgAvXS+zNuWCW2
+         4jJF6c68c1zVpWXsZ25qB6E8MoZgLbMAPazWjSDLefJhzrxraT9hwDDjI3J3kxW4Qh8K
+         vwOoutT+CFFAdWYARaULipSM7k9RSDKQ1DASJ7YNbihlXsiAlKAuT2QuZRTw1dgZPigO
+         CebQiAkIkqPsSGvEtSg7i1oj6Dd9UuFWHgqGnczq8nd9gwK5oZAoVOFRD7l4cgUjJvik
+         hi4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795425831; x=1796030631;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Y7VvbILs3Zv2pV7V8AkAMmQVIReBp3cvjUTRip46v1c=;
+        b=bDmdfFayQkWYwdFDIKfvfOxHofCOYrX90gEOrktNIyYspNxTWrawAVwpYKIeuoIsFF
+         0eVJW/0M3NBdKi15yIYGsYWuh+X2qUQngnVJ9Kx0OgpSbZ12MZOxz+UUaJ1NUo9CX7nY
+         X0m4h+dXwTEP3Kr2Lv7SIzFJVb9wy4np7woUbL5KuxGMuyo3TqradZ5Vj1ICiF2L6QlI
+         L3FzdCxzRdJqRR59Jdbq7WnkYAZzoafgrps7bbeOIUlq72qSYZ+g7HAb5Cdjxy13wPCc
+         M0/WH9IK7UXYtpoh+p3EDK2MRlj7rJCX8iP7VmvesaS5zEpUeKrEamRaK1FtFbUWWoui
+         7Q9g==
+X-Forwarded-Encrypted: i=1; AL+hErFDLkmMFRthSyAZZpEV19AfmOVJfMxz5F3cDGgVIcJi2WDIA/BYaecLm663JRKVsgZdwtsod1F2Rp1mY2FUHWsA@lists.infradead.org
+X-Gm-Message-State: APuU4Z+vQESOF+sip7/HCh7rGgXeIBkS3u1hIG3qS7Uwm9TcSg7kxITD
+	WptgF1/Vq1tPCQvUVHavOMndjQj0Ut14IGp/FnHVkocjjNeqCXteu3TC
+X-Gm-Gg: AZFdTZdM1fm+wQotNoCjzojbPnc/HMawW+rvG2ONrvY8kSaGvMkGVXX1fTeLuhXRK2M
+	H1KZ+ZIpH6EDwhjIdWYntlEqY0ewjtOnPKxHN4aCeDXjR3bdWZ8qDIBzvbU4ieA+CFKM1JEOl/z
+	NrrHW8sxcZvUM0lHSC20roBTnr3/yYlM4edOlcExxCELgXUuNwVYexLfLSPLHoWZL/gjrIaSP8O
+	1asuWgC1OmV6U1/zwbX67vfX96cW05YBUD5mA1CnnFyFPe4O+wWE77W2XOqjMCta1/ORqhCiwmY
+	fgrXb+bnlN0e/F7dovrJDwi9EhdevOydM1Pe66noUxY68eeNO8uGsjDXqDO+tPVWMIm297g7LGE
+	rPnnoLSPDsfvKFtHTCLsEXJFTW4xu7H6B9OS6xRys9os3UXwI1SEU6Eo3kOBjEsnryeoCrqXJ3P
+	ucnyW4gi4NCPvPk+v63EVocnuPhFNhUC1HHtSUbiZ4+EKsKC0fE08sHt0UwCu9D002euoC5VMHg
+	yYem307krj9GN0Vv2C1yh+NePSqX1GBERwbuHL+P8xrJ+aZsgn09t1liemaX2woI1hdzoSgAw/4
+	wSonufVxv37Jnr5KMFGogbjVGZ+uIm/7JsYpWL6PzrtNiB8TqzrTgy1RX10azSApcMTLMy3R7Cq
+	UUOQqv0WPbrzL7b3+hhrMRcc0RVbKSqlsug==
+X-Received: by 2002:a05:600c:6290:b0:4a3:59c9:a743 with SMTP id 5b1f17b1804b1-4bb8882a21amr217705195e9.27.1795425831349;
+        Mon, 23 Nov 2026 01:23:51 -0800 (PST)
+Received: from DavidArch.internal (catv-78-139-0-46.catv.fixed.one.hu. [78.139.0.46])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4ab6bb989eesm21060655f8f.50.2026.11.23.01.23.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 01:23:51 -0800 (PST)
+From: David Virag <virag.david003@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>
+Cc: linux-kernel@vger.kernel.org,
+	David Virag <virag.david003@gmail.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 5/5] arm64: dts: exynos: exynos7885-jackpotlte: Enable USB support
+Date: Mon, 23 Nov 2026 10:22:42 +0100
+Message-ID: <20261123092244.1792040-6-virag.david003@gmail.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261123092244.1792040-1-virag.david003@gmail.com>
+References: <20261123092244.1792040-1-virag.david003@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261123-at-vector-size-arch-v3-2-d342dae9e843@linutronix.de>
-References: <20261123-at-vector-size-arch-v3-0-d342dae9e843@linutronix.de>
-In-Reply-To: <20261123-at-vector-size-arch-v3-0-d342dae9e843@linutronix.de>
-To: Kees Cook <kees@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
- linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-riscv@lists.infradead.org, loongarch@lists.linux.dev, 
- linux-s390@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-mips@vger.kernel.org, sparclinux@vger.kernel.org, 
- linux-sh@vger.kernel.org, linux-alpha@vger.kernel.org, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795426640; l=1309;
- i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
- bh=vTIIJIwUFOUw6+gUJjUOc4a2N37x7HojOq0oR0BBlzg=;
- b=GyKn4Bxu+C22SecrgL0rmVE25rtNo0/nZVqR9YcowgOuG6XWN+hFQ7LVwF48ESsfl68yPNaNg
- 5OD4YumxPGrDTLDcZ/xMG4kmg7ZscPSTHPCE8zZxHWIbEnZdxHW3/L6
-X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
- pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_013730_547271_B865B745 
-X-CRM114-Status: UNSURE (   8.35  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261123_092353_396735_A3D5CD0E 
+X-CRM114-Status: GOOD (  15.10  )
+X-Spam-Score: 0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,57 +123,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The auxvec.h header is a more fitting place for these definitions.
+The Samsung Galaxy A8 (2018) has an USB-C port capable of USB 2.0
+speeds, used both as host and device, and is used for charging the
+phone.
 
-Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
-Reviewed-by: Kees Cook <kees@kernel.org>
+The physical port is directly connected to an S2MU004 IC, but until we
+have support for it, we can still use the USB device funtionality.
+
+Signed-off-by: David Virag <virag.david003@gmail.com>
 ---
- include/linux/auxvec.h   | 7 +++++++
- include/linux/mm_types.h | 6 ------
- 2 files changed, 7 insertions(+), 6 deletions(-)
+Changes in v2:
+  - None
 
-diff --git a/include/linux/auxvec.h b/include/linux/auxvec.h
-index 8bcb9b726262..4b364e639f08 100644
---- a/include/linux/auxvec.h
-+++ b/include/linux/auxvec.h
-@@ -6,4 +6,11 @@
- 
- #define AT_VECTOR_SIZE_BASE 24 /* NEW_AUX_ENT entries in auxiliary table */
-   /* number of "#define AT_.*" above, minus {AT_NULL, AT_IGNORE, AT_NOTELF} */
-+
-+#ifndef AT_VECTOR_SIZE_ARCH
-+#define AT_VECTOR_SIZE_ARCH 0
-+#endif
-+
-+#define AT_VECTOR_SIZE (2*(AT_VECTOR_SIZE_ARCH + AT_VECTOR_SIZE_BASE + 1))
-+
- #endif /* _LINUX_AUXVEC_H */
-diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
-index 1ed35d258d2e..c75626c5aad4 100644
---- a/include/linux/mm_types.h
-+++ b/include/linux/mm_types.h
-@@ -26,12 +26,6 @@
- 
- #include <asm/mmu.h>
- 
--#ifndef AT_VECTOR_SIZE_ARCH
--#define AT_VECTOR_SIZE_ARCH 0
--#endif
--#define AT_VECTOR_SIZE (2*(AT_VECTOR_SIZE_ARCH + AT_VECTOR_SIZE_BASE + 1))
--
--
- struct address_space;
- struct futex_private_hash;
- struct mem_cgroup;
+ .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+index 4b1961ca365b..5550b21e4113 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+@@ -59,6 +59,12 @@ power-key {
+ 			wakeup-source;
+ 		};
+ 	};
++
++	/* TODO: Remove this once PMIC is implemented  */
++	reg_dummy: regulator-0 {
++		compatible = "regulator-fixed";
++		regulator-name = "dummy_reg";
++	};
+ };
+ 
+ &mmc_0 {
+@@ -112,3 +118,17 @@ key_power: key-power-pins {
+ &serial_2 {
+ 	status = "okay";
+ };
++
++&usbdrd {
++	status = "okay";
++	vdd10-supply = <&reg_dummy>;
++	vdd33-supply = <&reg_dummy>;
++};
++
++&usbdrd_dwc3 {
++	dr_mode = "peripheral"; /* Force to peripheral until we have Type-C working */
++};
++
++&usbdrd_phy {
++	status = "okay";
++};
 -- 
 2.56.1
 
