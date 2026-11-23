@@ -2,86 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52C6606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8CE606A31F
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dMEizLOI;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=orQAYWqq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b0m7DEvK;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=ljvXLY3j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iwsAiO9OeRwcJqZpa6akbJuZXHFjd4eG1osiYUVbJJY=; b=dMEizLOIKnF3U/
-	G8HlmoJQEZON3RcldquaMtX4VZBArNMY6gv+JBxSR8p4z0ShA5grVhguNnSaevz3F+LCx1SOZb4Xu
-	7KG0RAynyIasGxt5EwLJpMi7munxvQgjU9V/qZ2ncwCbe9IgtaR5R/Qk9ch2NGffuBwRYnFDlK2a2
-	A1KqIoyw7KIWQHeN0VHBRV4meHBxMWiixWaeKvqBO9++06/qzI7JDTGzOyM/r1Te0sKpxGtJGlczv
-	j0Yduzplp2LjLc5EFm2FCqOwsi1MHM6q4dhLWgDeEeTRwmqHxDRiTVi41fh9AkfsLa3cpH4J+VbMA
-	CD151TNMVW8l2DgwtOEA==;
+	List-Owner; bh=v0mLXkSc8oXvNntVTksK1Jt854YRTKZVnh554yKeFIk=; b=b0m7DEvKkvbsKZ
+	AOdfWDkIJBMpXEnpc8UCUi5ri4Lrtmhgb73Mi06bJS+rBpuH7zkIiGAmhtschQue8vMZqZr3kjbOV
+	xyekHGOuw6KWg33aVP+Wx+sJs+aV3EfyL4zMxHMbCyBYh0hX1NWG5vlPf7nkkZFhGGrmsgs2jvyj7
+	IuoFXVUCaZzsrEP5TmlRxcF7OAm07OeoZcAIIvQjEEAFsZn1j3ywomPoo5O2YLZpkMERjuSx+7jJ5
+	fLSeZLFbXHEHv1vv1/645MCUv1tta5URoPt5gP0LFF/37OcF3mlIry1d70iDitRmeuIPC0EyA/f6r
+	2lOGY25pd88oArV2Xyxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVrT-00000003wWg-3Zce;
+	id 1xVVrT-00000003wWx-3xtE;
 	Mon, 23 Nov 2026 15:21:43 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVrK-00000003wQG-2JYs
+	id 1xVVrJ-00000003wQD-3192
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 23 Nov 2026 15:21:36 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4bb85e07aadso42048965e9.1
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c50d3ac6b51so896491566b.1
         for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:21:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre.com; s=google; t=1795447292; x=1796052092; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=iwsAiO9OeRwcJqZpa6akbJuZXHFjd4eG1osiYUVbJJY=;
-        b=orQAYWqqgWsUS+Fy6utrDIvLrcQ4xy5Cf2KLBzkOa9S8PfcIwnHPx/VUYQk8QFRyz0
-         jKOIVsmi9onqJxQKch/m/yk3pFj1XKPAo7ZCZ7HvinbD3P/GmiRmCxcdl+9bmS0q4xE/
-         +lm4eyAbwPfSzrLZUwQH0Kj27tHzHdFYXiX/pmjoPxUg2HDP+BAzRVFgA945d3zTrVuf
-         zFzrtpL5+ncyPYCAqR8kHjIx3f2j3oc8B6lRN10SPaGmQgUCdKmt0B983Xq7Woo0+Xkg
-         1aItc2LscBA8wc5MuBro4gUtpOXsHO77goA12xtOGrGTvjVjx3RuXzpLGtjO3Xa2/2BH
-         qG5Q==
+        bh=v0mLXkSc8oXvNntVTksK1Jt854YRTKZVnh554yKeFIk=;
+        b=ljvXLY3jFO4RXGQ94OZb3MudzhMpXmK0HBcmkmetpc+I5rvw3ALUD97UHZ8/xFOzKC
+         uUx7Ux6sGCer3obLL3WSQ4rRLpN/PiE6qCA2zoIMBVPIpzdYOoZguz4Ym9FwLOy8n9cA
+         QBjELk+mflTzcdBWzT8BT8js0SuR2QbW6sS1XWp845JZk5Sez9RYjRgHygooOdnZ02+k
+         9NX3RazgIqI0UnAb5LafAL6BUP5/9afCyrzG9/zeHLx6qsvYauDnDegPJCFMHgqUBhUK
+         Ao7WbMa4SNQkULlZiAw7gEAM61tagkCrB1J6j2K9NLaL4cBhJ6CNx8tb3R6Il5nNWVlv
+         +nYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20260707; t=1795447292; x=1796052092;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=iwsAiO9OeRwcJqZpa6akbJuZXHFjd4eG1osiYUVbJJY=;
-        b=adHR0UN2pLIqnlNQ5ILPjNEv7d9I1hn8ENpuSzJI5O8cpapzXtWWYuItFJ/jdzV+Mr
-         6wl1TYG0B5f9BMxXzirowg2RDyk6EPtH4u85+GrTuhz8H6sL2AObb1nUNdMGDOL5PDGX
-         u8yckQnpttD5dSpz0K1tX6u7gfWJZdFIHOduGwEL7qA1P+YieRj3vSHzazLV7tjaTyjH
-         o5cacGePSGR0ZjFX5kUUT59DUwkZ5BbUXyl7PmZ2ZjJ7cmrYjOooV97kbZPQIhYr4txI
-         DYiNnKkF1mvemVYyA0uJJSdlFsx8BeR9dkEUphBqQlgMy9m7nclXwkyoPGszpNhPrAa8
-         gYzw==
-X-Forwarded-Encrypted: i=1; AL+hErE6i8EcrkIeUa9IwI6E9MTSkEukgit8u9AjFUBf1Dxly/t2ND5E7/sa0Elikt+wbP8IfD7sI9PJOb8rQ/xcP4W4@lists.infradead.org
-X-Gm-Message-State: APuU4Z9mgIzQgR7CtbHuyOnHK1SKLvntrH0DmWQ5tp/eTkkrHcDPcqZw
-	LrBqsN9bYD/thYp5pRSykK3BxQKjNoxI08gmEqw45+mUZ2mHWKL7JuFFfeIQw6gyvpk=
-X-Gm-Gg: AZFdTZe3I9cP3w6zf1Ird/VYaMLmLPr6cnRKRJiR2XyDH6O86feeyygeWNXRRdiX0ie
-	ABiE5KZVxwbELLqIRb1r83+7iCC6TO0j9YiEkF2XZk0laars1KxuTGGew8qjuWEd7czUKncVnku
-	+Y3yS8LyYcyz6C6EF6z1qFvjZCmOzCYyOy+EVrt9ZKw6L2I79Ak1rxs+viLH837xoWxgovbt0Tu
-	rmOywWsIqp+zsuQH+vH/eNiWtBKdt6Z5QzA8D4HRrB5l2x7ghPK+fOha6g+rtIweyjTd2XICONe
-	Dbat+Nv9brutShm+jUMXpJrXvQCtFMF6P7EvKA5T9FG8s2+lYh1orBh4FcfiS9OOBle+q9HeHmu
-	pQraYuBsMJJkE6M8VBvypnTnV+FjxUUMhoxnH0Ge0/mGm8birthQHNzeo+45916AfarCgpiPA7b
-	voNsJKi5KE7wcYaEXFWArYmwItCgDlXIN8S6/2BPIBedexQPTPRtZ3tdxdXJf6NvpGsDQM+90k8
-	5DpJf8wvg+0ds6fria3UNKSt8FE2aTHySkXrcLce9Gepxbb8fM53vkCkX9k18lsekUnI1pu1Pmi
-	/flB0lJnZAkeg090hGE39T8aWDkaOqEyLIq5U03otzMV1sQz7Wo=
-X-Received: by 2002:a05:600c:1d09:b0:4bb:6b59:aac3 with SMTP id 5b1f17b1804b1-4bb88816050mr253067465e9.29.1795447292523;
-        Mon, 23 Nov 2026 07:21:32 -0800 (PST)
+        bh=v0mLXkSc8oXvNntVTksK1Jt854YRTKZVnh554yKeFIk=;
+        b=hseTHToWmtE22eGN0QfvD2COh39dW+P0cy3I4rVOX656/eFRFcOGtBAmPBKNDum/Ue
+         jOR1uEbswuyZmIT4K0X21rgipgnXaariPNITj9/ig2gQkxJ9O/0BCIsF0SU+GlAdw6he
+         DzS5+YFn45TFkCwVWdnqh94YPQhhviR7JL0K7uo4D3pHNdUpNGQz8msJp4chSVSwKC4w
+         /7LHg9+H7TwJyJye/4FfCyjC4ews4ZKaJSwVfKL3Tbt6XfUO11gGFP70cG7Yf2OETpep
+         IR4PrdHZfNzMUchq7n0LfjS9XH/xoDrFzRW3M9Qw2BhAXsgqDWdKnTLoSsyp1ijlCwpy
+         8xGg==
+X-Forwarded-Encrypted: i=1; AL+hErGCD5l5uvHRfPBiHRN73ht8FnHVnO5aj8xG1VFlmc6DWJz2Tdw3MYrDPBj/dWhsqg1NIGyTLGHdQVcuesrf2f1n@lists.infradead.org
+X-Gm-Message-State: APuU4Z/tniqm7DdtImKH1d8M2Aj9IixNi9Nc+7zjjh4h6cJCmhdWm1JP
+	Lk4+Ifasxu7+cSsajfluC0cCUTqIJtIswYE/F32MavXtX5Yl7cHNJBQwKCcUTBf1d44jlVR000A
+	7+7qQXPs=
+X-Gm-Gg: AZFdTZf2f3fCa2AKT8tBhFqOhBX/paXhntkrPKOJ9djrysBPe46cRPGvzLH5/LVaIoe
+	Cgr/P6fqZh8SGxTTbT3rDr8XsiIatsU0KMVv6RYpc9FENkD4RYiixVF4CeZI6/ipRhzNF06bmOq
+	8i83JR81xotZCrUhvANGrlrjVONIKC/5dZGdN4s14MYJhAkbGWn18Bmp0RTnLdbKbkiSJre8SNf
+	kZJqwFI+etQhUQ5niWfLXIU/JnDxOYrQOqFapC21/Y6mBgT/xERztXAXb8vTEv+8rHTLfYgMLOp
+	5YXzbxLoBIocMkoC5wbrI8+ExL82z5cyd8aQlTv79o0ueOH+lpJbu0KTTAOlxKwsuCl13i1F679
+	sZIjpnqpWiVg0/y3xHW/+bcVS/oI3676+J5uni2c4aLPOpDajdcTWUTortUwZbrSqW6Dm8iy0u/
+	z2A4uWuXSNRGKohA9vIkgKldzl7uCf18NMXsndMwBKm7TFgZHdEOfDlxcRUOfY2Yr7sidq2GAAJ
+	fNtW2Or7v6VeqeDx5GRrOs+Bp+LIRUKME4bSzQ2YUkeeR2pYxocpU/IAGuwuKQKz5wJNF26Z9jS
+	LY8N2PHoBk9W/WgJd3uzdh04isoJkz5fuVjIyQWoog94mjB4cyQ=
+X-Received: by 2002:a17:907:3d4e:b0:c4c:e91f:e1db with SMTP id a640c23a62f3a-c51319a7850mr1124091666b.25.1795447291740;
+        Mon, 23 Nov 2026 07:21:31 -0800 (PST)
 Received: from localhost (140.30.66.37.rev.sfr.net. [37.66.30.140])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884865b1sm351526825e9.5.2026.11.23.07.21.32
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b8b7888sm22628600f8f.42.2026.11.23.07.21.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 07:21:32 -0800 (PST)
+        Mon, 23 Nov 2026 07:21:31 -0800 (PST)
 From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
-Date: Mon, 23 Nov 2026 16:21:25 +0100
-Subject: [PATCH v3 03/10] firmware: arm_scmi: stop reading past
- PINCTRL_LIST_ASSOCIATIONS replies
+Date: Mon, 23 Nov 2026 16:21:24 +0100
+Subject: [PATCH v3 02/10] pinctrl: scmi: refuse an inexact drive strength
+ in milliamperes
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261123-clegoffic-pinctrl-scmi-gpio-v3-3-d61f039be008@baylibre.com>
+Message-Id: <20261123-clegoffic-pinctrl-scmi-gpio-v3-2-d61f039be008@baylibre.com>
 References: <20261123-clegoffic-pinctrl-scmi-gpio-v3-0-d61f039be008@baylibre.com>
 In-Reply-To: <20261123-clegoffic-pinctrl-scmi-gpio-v3-0-d61f039be008@baylibre.com>
 To: Sudeep Holla <sudeep.holla@kernel.org>, 
@@ -92,11 +93,12 @@ To: Sudeep Holla <sudeep.holla@kernel.org>,
  Bartosz Golaszewski <brgl@kernel.org>, 
  =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
 Cc: arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+ linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Geert Uytterhoeven <geert@linux-m68k.org>
 X-Mailer: b4 0.17-dev
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_072134_604466_0E6914BE 
-X-CRM114-Status: GOOD (  10.74  )
+X-CRM114-CacheID: sfid-20261123_072133_771932_61EFCC4A 
+X-CRM114-Status: GOOD (  12.06  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -116,29 +118,58 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The transport cuts a reply larger than the receive buffer, but the iterator
-still reads every identifier the reply announces. Return an error instead.
+A get of PIN_CONFIG_DRIVE_STRENGTH truncated a value that is not a whole
+milliampere, and a set did not check the conversion to microamperes for
+an overflow.
+Return -EINVAL in both cases instead of truncating or wrapping.
+PIN_CONFIG_DRIVE_STRENGTH_UA still reads the exact value.
 
-Fixes: 2145af01b9cb ("firmware: arm_scmi: Add basic support for SCMI v3.2 pincontrol protocol")
+Fixes: cc2f90768e97 ("pinctrl: scmi: send the drive strength in microamperes")
+Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Closes: https://lore.kernel.org/all/CAMuHMdWwp4RtKnBpFNJPHdigzrQ-wf3yt-pBZGG9QKs9tcd_Ow@mail.gmail.com/
 Signed-off-by: Clément Le Goffic <clegoffic@baylibre.com>
 ---
- drivers/firmware/arm_scmi/pinctrl.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/pinctrl/pinctrl-scmi.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/firmware/arm_scmi/pinctrl.c b/drivers/firmware/arm_scmi/pinctrl.c
-index 18761ffbf893..b071d31b5c33 100644
---- a/drivers/firmware/arm_scmi/pinctrl.c
-+++ b/drivers/firmware/arm_scmi/pinctrl.c
-@@ -265,6 +265,9 @@ static int iter_pinctrl_assoc_update_state(struct scmi_iterator_state *st,
- 	st->num_returned = RETURNED(r->flags);
- 	st->num_remaining = REMAINING(r->flags);
+diff --git a/drivers/pinctrl/pinctrl-scmi.c b/drivers/pinctrl/pinctrl-scmi.c
+index b088a24e4ec0..23287c3add35 100644
+--- a/drivers/pinctrl/pinctrl-scmi.c
++++ b/drivers/pinctrl/pinctrl-scmi.c
+@@ -11,6 +11,7 @@
+ #include <linux/errno.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
++#include <linux/overflow.h>
+ #include <linux/scmi_protocol.h>
+ #include <linux/slab.h>
+ #include <linux/types.h>
+@@ -179,8 +180,11 @@ static int pinctrl_scmi_map_pinconf_arg_get(enum pin_config_param param, u32 *va
+ 	if (pinctrl_scmi_pinconf_inactive_flag(param, *value))
+ 		return -EINVAL;
  
-+	if (st->rx_len < sizeof(*r) + sizeof(r->array[0]) * st->num_returned)
-+		return -EINVAL;
-+
+-	if (param == PIN_CONFIG_DRIVE_STRENGTH)
++	if (param == PIN_CONFIG_DRIVE_STRENGTH) {
++		if (*value % MILLI)
++			return -EINVAL;
+ 		*value /= MILLI;
++	}
+ 
  	return 0;
  }
+@@ -223,8 +227,10 @@ static int pinctrl_scmi_map_pinconf_type_set(enum pin_config_param param,
+ 	if (pinctrl_scmi_pinconf_arg_ignored(param))
+ 		*arg = 1;
  
+-	if (param == PIN_CONFIG_DRIVE_STRENGTH)
+-		*arg *= MILLI;
++	if (param == PIN_CONFIG_DRIVE_STRENGTH) {
++		if (check_mul_overflow(*arg, MILLI, arg))
++			return -EINVAL;
++	}
+ 
+ 	return pinctrl_scmi_map_pinconf_type(param, type);
+ }
 
 -- 
 2.56.1
