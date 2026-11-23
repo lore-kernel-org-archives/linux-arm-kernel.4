@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EC3606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCF2606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fZhPyIXs;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=bFm2De2+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ntCp0MLB;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=XsEEV1cv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+9PCTbh71L1HM3bKlGiIOaVmykcBeQmvpI3vljck9JA=; b=fZhPyIXs5pT1ik
-	FPuka/4Va3OtIeVYsPH6CXMLgTyRjJczJnqgRlcnIkohBZuG2l8lJBZlDBs+YGS+a/hIgz/faJEKw
-	yMARy2KccXylZWcqyAvg/HUwOrNgfuJQ3guOH0xSlvKh9dfnHr0WytY7aHrmK0c3yGWEn/CZ6UleZ
-	yVgH4D3Y3ee0mwu7eTgBqmjzUScvKdsU51hRLpOx/7XisP04Uuvd7+AZbbRAbVud/4c49PisUn5iI
-	wkHDOMqMd6OQu2LsuNkiqkWp1JqTqyH4ESbht/DNumtwUpxSaQUIt17d/PiMPioVOZeCf2/KF0QQc
-	HBhIYkIzFAiENo+l1Vog==;
+	List-Owner; bh=tMwSrV2ZjOeBiqelWNaRKRM/bJC/BjHhSGkPihEQE4o=; b=ntCp0MLBYKsuQ2
+	N/adWI5+1csqSaLu8UK/4gKK+ZTEQXczL3snAbs61PyRiRlAfYdNxMl0VaXCJb/0Zfg4+IgkLCKjn
+	ICPhWNXhjvBJk56uNSEUo0lpVKxzifd/2pvElKN9lSLF1AJ7yHeAvSFZCoIsf4mBQx0tn/nGy9RHY
+	f34VwIc/wvRmKSwoJJ4uFpDcKj8c1i/lH6RdIeGo4UlDiXZJFpvtmQLLFX+uz5zKglYzPSzz7XYcg
+	EshwzZGY/RR3+aId23vZmFN66EB/MR605949ObLkkRe4WxMnSZigE4dgCLbxTW9Lrkja3VCJBfCcv
+	NOkY/jQRoUzdpWTzKJOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQgS-00000002pHb-1OdX;
+	id 1xVQgS-00000002pHL-0ofF;
 	Mon, 23 Nov 2026 09:50:00 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQgO-00000002pE4-3UW7;
+	id 1xVQgO-00000002pDV-0rWG;
 	Mon, 23 Nov 2026 09:49:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795427395;
-	bh=qDlQ72Vc7Hc/VU08uITBDl9vO+AOoQTLBFQhPb/BZh4=;
+	s=mail; t=1795427394;
+	bh=dEpbWbiWtLxirOo3e2Y7hCJY0RRBzW/Rgxc+4UBphNw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bFm2De2+DX6rpDbSTnze1A9rSRSqcnUXretTh32/Cn7I2RwdAEgrER/L4mivzh9xL
-	 hRdrV2rdAkTMcCIe4Eo9oyWwOoNQMJX8aG188briw+qLRAVDGfxaqO5ESMYsvncL45
-	 xXLiDVaNc0XBiNKBv7R2ruM3/NdVD7h5FTYRVBV+iAmdAAS4y86KMKzTD5LqmJYItx
-	 umsbfw6IFNS8mNWp/5iufwz98gKEmde2YZnXUM4cgJg7298j7Qb1vbyljEE0k75wTZ
-	 tYd36wNlizoEd6o5rq/jQ3r0MBJjyxl9U7qf9hkmNvkCvzjoBrZ9uaK5HIuAatTDOx
-	 781Ab+hMHvKxg==
+	b=XsEEV1cv0fqWuh+8ZuPPCMrRGNWlKv+AaTbW/j1LNcnpOVToHvahyGCnwToD4wPxl
+	 meEfKwqBhJTlnynQSvzh13ov3p4A/TaM9H2Pe2OFDDhrNduv/ZXahQVmzP2q9s1ZWB
+	 SSZ6elK/gct7HR/vf5ywMBS1aYj9ByoSil15qI4Omb+YkpScc41uASC0btHGAj5iQm
+	 Fbva/+qWSGoAjH7X2JtSc3s1T7tp5zjDiT9ykceUFm9XP5kUKE+cYm2CQWXz0r/ZCl
+	 lRaHivzB+ioSSORdbbc4nEfr5ZwkmLLL1+/8WGMP9aczpmf5e80J7NY9EDjZdWu+nW
+	 2tPYpjCJb/r8g==
 Received: from [100.64.1.21] (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 249EF17E0CD7;
-	Mon, 23 Nov 2026 10:49:54 +0100 (CET)
-Message-ID: <d367dd8e-d712-49c5-a2ae-30a9b3a41d35@collabora.com>
-Date: Mon, 23 Nov 2026 10:49:53 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BCF2817E04F7;
+	Mon, 23 Nov 2026 10:49:52 +0100 (CET)
+Message-ID: <d4ae0697-2d1d-4c8e-b160-fc8389898121@collabora.com>
+Date: Mon, 23 Nov 2026 10:49:52 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] watchdog: mediatek: Add support for MT6895
+Subject: Re: [PATCH v2 8/9] arm64: dts: mediatek: Add MT6895 SoC
 To: Alexander Letuchiy <asalde.le1@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
@@ -66,15 +66,15 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
  linux-input@vger.kernel.org, phone-devel@vger.kernel.org
 References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
- <20261113-initial-mt6895-v2-4-4ab0aa9fa391@gmail.com>
+ <20261113-initial-mt6895-v2-8-4ab0aa9fa391@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20261113-initial-mt6895-v2-4-4ab0aa9fa391@gmail.com>
+In-Reply-To: <20261113-initial-mt6895-v2-8-4ab0aa9fa391@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_014957_205108_17B90D22 
-X-CRM114-Status: GOOD (  10.51  )
+X-CRM114-CacheID: sfid-20261123_014956_418286_700CEC7E 
+X-CRM114-Status: GOOD (  14.32  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,12 +95,25 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 11/13/26 20:05, Alexander Letuchiy wrote:
-> Add the compatible for the watchdog of the MediaTek MT6895 (Dimensity
-> 8000/8100) SoC. Its watchdog registers are the same as on the other
-> supported SoCs.
+> Add initial support for the MediaTek MT6895 (Dimensity 8000/8100) SoC,
+> which has four Cortex-A55 and four Cortex-A78 cores sharing a DynamIQ
+> cluster with 4 MiB of L3 cache.
 > 
-> The TOPRGU reset layout of MT6895 is not known yet, so the entry has no
-> match data and no reset controller is registered.
+> Describe the CPUs with their caches, PSCI, the GICv3 interrupt
+> controller, the CPU and DSU PMUs, the architected timer, the system
+> timer, the pin controller, two UARTs, the watchdog and the keypad.
+> There is no clock controller driver for this SoC yet, so the UARTs and
+> the keypad use a fixed 26 MHz clock, and the system timer a fixed
+> 13 MHz clock derived from it.
+> 
+> Only the CPU and cluster power down idle states are described. The
+> deeper states that also power down the MCUSYS or the whole system need
+> the SPM and the vendor low power driver, which aren't supported yet.
+> The system timer serves as the broadcast timer while the CPUs are in
+> these states.
+> 
+> The cache geometry was checked against the CCSIDR registers of each
+> core.
 > 
 > Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
 
