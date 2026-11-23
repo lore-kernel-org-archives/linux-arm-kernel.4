@@ -2,89 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0C7606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 23:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EC7606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 23:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PBgn4B1g;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=XmySqRan
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ad7tdc4Y;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ynOF02+v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WJVCNKr0SmGP9iVV1suMI71pk9j/vqJGLO6NxitJm1w=; b=PBgn4B1gFAWp2c7YdtIjv8/eu+
-	hpTLQ4u4HXPEDRe+sZvkazs8nMv8J29xpOxIuF+F0Nq+MFsuglsEIuHQV5Rri4dYUOs2+oHEMXSy6
-	Keb0+0DCR1b/PR8zBM3CKna1rCcUSPfDjur/zQkw8yvqUF+xczC2wOKgQ2TChenMsvU8PVBwzLUGz
-	ignmDKfsLGILTr2I+lOQezxN6t5aW8LscBPwZn9C9uWo/2IObgmNCmUXkK4SzgVHnAB7DGzZC9dhJ
-	4U+p+Ba58zY4CSVThRC0icJwTnfTXtK9g+UVpy8clcPaoRFCkbQolYzepjkK18dzJi6eu/7YQv8Ag
-	VVVxqvWw==;
+	bh=7sCs1EHW+8IerzbWNfyv2UgBTw/vhw4f3rwKGqlZg4g=; b=ad7tdc4YQSODvDr0vPMIQr71dl
+	m0bGqfE1p2AhoHIbFYwvf4IfTJxdtRslDyNCpISHqlXlV+sBtG6GVYJ3wdXi90rXBmeLQCUWmJQbG
+	mRvE3B+BuADY5eSCpTU9mSPQgkvBbuw73N/oaYC8C0Ol9oLbtWSoDwHttHeTucINYQo1rh6hknkdx
+	nokHjkIPHiFgXeGyyKdFVN/cgmTREiBWh/vHkSgrCQtapsQcHfwbxoa+wxWSmOIo2ZfGA20BxSWuL
+	dGnzvImDwEzgyw8eqrgmqrRacl+QCjZhvTbDWjlo39B1+Ln/1zYCkw6UTUNNY6azYhsohW2PDeulQ
+	qkpPR0Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdRE-00000005AKv-3kRD;
-	Mon, 23 Nov 2026 23:27:08 +0000
-Received: from mail-ot1-x345.google.com ([2607:f8b0:4864:20::345])
+	id 1xVdet-00000005CES-035Z;
+	Mon, 23 Nov 2026 23:41:15 +0000
+Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdQx-00000005AFY-0ysH
+	id 1xVdeq-00000005CDd-3zAr
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 23:26:53 +0000
-Received: by mail-ot1-x345.google.com with SMTP id 46e09a7af769-8615cc92488so3203096a34.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:26:50 -0800 (PST)
+	Mon, 23 Nov 2026 23:41:14 +0000
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-3acd523a802so35249291fa.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:41:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795476410; x=1796081210; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WJVCNKr0SmGP9iVV1suMI71pk9j/vqJGLO6NxitJm1w=;
-        b=XmySqRanplv+76uuUmseAVPTx9oTKGReeOYfG7VwC9CvpTE3yPUX9zAjBaPIyOjBIU
-         fZnWrl+AmxKOpBOTN1i7jL8fZwUqyJUQ9BMvGW+Es/RDRH+Ye3XNy95IpYzYiIVRkUpv
-         /4hX6wNK4guH+MZ1NRc06f0kjeIje5zfxTmBfj4cdd27/fgBRuS8bSrSMryG1VmQNQO+
-         DlArfjzFQoTDsEUrk+fPQPKtD53oYIYCQ8KVV+nwV7vwL1FVE29D8XRCWdv0tpY6A6W9
-         Yz+diq+3TnDVS8YjqqzkVNlIRYtwb2xyJ7jJyqgjTgaqzYLQTqW9zFHeLJy6VpR8WN9n
-         zypg==
+        d=gmail.com; s=20260707; t=1795477270; x=1796082070; darn=lists.infradead.org;
+        h=mime-version:content-transfer-encoding:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=7sCs1EHW+8IerzbWNfyv2UgBTw/vhw4f3rwKGqlZg4g=;
+        b=ynOF02+vMqqK+tOmSYRIWIgGC0t5erhIaoyoW2zc4RjZbog5nFE8tLgopnXhA00uPj
+         N8pfUUJiyxv1Wm3Tvb2tGPfrdroCTqu2ESiqTLHESRRiC01lVLwBc6p5XjgZQh8oLawN
+         IPhYr1W4ujDnsqHPjWmHPOIVQW0HfALGdH32yveu7tT+ajlY7Y8DZBq7GF1l1fS9xB+J
+         irZ6cjDmtO3fw+NSvnVjmRtSoiubQgNcZREjeNyKxhpAcmN3eW3KeKth4GyVQaeQS6bf
+         nMkK+h89/i93PqnzsUMnXhvtzQnpd0yINzXmhcVFs+tVIps4RaM9bFsmNCYFufNWnuy9
+         9BPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795476410; x=1796081210;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=WJVCNKr0SmGP9iVV1suMI71pk9j/vqJGLO6NxitJm1w=;
-        b=FvNVxWAyVLtMfS4yJ7b4Ac8FfuCVOZXFllLwFrzfNlIAYLIgQeyzxk8r/OMuMjzwoE
-         1KjwAaiHRKm3+s5sOurNe3sCLz2IxefSV2SK1/Yc1dHuwwe2uO5Smm7j7g0WqVFOFg72
-         Ma+5/MKcpzhfrNqGadCP3YNEnmkgqBXF5hs0qpdaBkV2JTlmTEp8Wey+pYwhixZFp2YN
-         OaAE35PQDJt0EkUIQUrUSoBRr4I4RTIOiFIO6LiHHJMt6eJY8Jm/qqYt0VIVIWlNbJeY
-         CbX0MqHBRxNZ5UgybCvq+m88GU+I9bfHN03FBKKfnKzuXqUms2w3/CIx5gvmBGYT1D9N
-         IQcw==
-X-Forwarded-Encrypted: i=1; AL+hErF0PEdxmSpWweeOOs7Av1EDd8ZIMPMf5gKO2AmKI+9LbQsrunKwNNS8hGYZTL23FvTjC8GRocCmG/Ym6gVK6HpR@lists.infradead.org
-X-Gm-Message-State: APuU4Z8AFQOpLGN46SjD4/gAdPwPnVI8/6ZbATgcG2hJRjxNb4auRyXm
-	Tp4aVubUK7Ak9L8nBvNnI8dXc4S3NjZzwS+DyyScaq4/2SV/UbePPqWE9npi2D1AU9gbWweHHwY
-	JiU0ziLv3BfYZuHRjfnF72Z/SqA==
-X-Received: from iohk21-n1.prod.google.com ([2002:a05:6602:a615:10b0:9e8:de6c:a5a3])
- (user=coltonlewis job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6808:1645:b0:567:c9d6:b2b2 with SMTP id 5614622812f47-57a0c3aa32emr13284763b6e.47.1795476409974;
- Mon, 23 Nov 2026 15:26:49 -0800 (PST)
-Date: Mon, 23 Nov 2026 23:26:47 +0000
-In-Reply-To: <20261123232647.3733149-1-coltonlewis@google.com>
+        d=1e100.net; s=20260707; t=1795477270; x=1796082070;
+        h=mime-version:content-transfer-encoding:content-type:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7sCs1EHW+8IerzbWNfyv2UgBTw/vhw4f3rwKGqlZg4g=;
+        b=X/NTAV3m9cFLd4M65tsJjPlY8CqvLlh3yAtFHfhfXdZkNFU0KfntIJIJytIa5fPRIr
+         EhROlJJN78CD0zKE8WAH1aTeyU8SmhyFMK+wBnCYzjawWQpxmmBG9mxdzStMChDtPYtb
+         Qo3MUrvCs5/YbsIxH+MsnGJTIR2JQ8g1g87I75zYg5oVDVYReHB1BG/a18uAdVlzVuwU
+         kTIO1g9ixptwnCCLHCRwN3QrW23GPoD1pcfiH0apBYcfztNJcQXuNMWaVCk1PKxBgzLL
+         BYMExkNnfh+kpBu0ObMHI7peRPE3hUCvNSYid5BJM7pH4TmPq9ltftHVBB2UskZ2YuQc
+         TRDg==
+X-Forwarded-Encrypted: i=1; AL+hErHiLK7Atjk0tZO0F59QaZXrFuNmnyBmGTmyZAPc1ifGQWuNNpb3geYhmRnP0MADuKw23tLkLeSa2onFm3P74srD@lists.infradead.org
+X-Gm-Message-State: APuU4Z+R47FCkeCmgxJi2wF/eM5HEH+T9W07RtX6jITf8+Gu1oiB6N8L
+	TydH5pkSV/okbqqnoOoyALYBSjQI9zhfLJK8PkAN5B4jMumwy2R7bHeGJl2q0TffSZV2mg==
+X-Gm-Gg: AZFdTZecGO6nTHNJnH0Tf0VTfLWKsidEbggLscXfYxvCpD8kjus1Fi+67TohMTki9m0
+	veUkOZNpWbvl9RQK5u+tqSMIjjdOH2DSwyxIPFb4+bahXaZr4dHAf+yGPy/g6ciTN9sXl6zrodv
+	UWxKDvyFY6j9o7nV964xyFighDIqMZTtfOF/Q1AjkX0h/1DhvkJ6b1uC/hoMtM9vmpim6jRXW7S
+	AbLjXEGwg+5c3p4V/aexCXLltttdbb0zLKnCsTnH5Wcij8o30FePeC+/zBE3MoWCidwNRznCsFL
+	bYj1Kp2Kv8ldPBG9YAn1p9R7lEfztwcaTMZxypjQK7MU4hC1LXFL39Go3bJriA+Y1ZZgpN40SY9
+	Hu5qzVuuh6xidpUUE3fQ5tT8OI25F+EUJp7AE8xrcLCziBpmaEl1hKKO79Bh9qZXz360sLqHsnC
+	IVwp4uMB27Gtr9NPMFysnCCawyOh9DRN/zZtRxn2j70Rdrb7YdUB6OlrLze9rxkfvCF2PBlxt30
+	YEMDS5liNqjfTlRGMXgb6nrD6mxImWF8E+qMUIzcs8p1+0q66X/g4PB4farK8eZZhqffaLxHYnJ
+	KMHTJXzWeUquDm0/yTuM+To3ljnaJClmsKouuLuAVvKVr8Z9yfjR4bE=
+X-Received: by 2002:a05:6512:124d:b0:5c1:56f2:fda4 with SMTP id 2adb3069b0e04-5c1bc89530fmr3136762e87.49.1795477270244;
+        Mon, 23 Nov 2026 15:41:10 -0800 (PST)
+Received: from [127.0.1.1] (ip-024-180.users.dtel.ru. [91.210.24.180])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c1bd04451csm3314217e87.59.2026.11.23.15.41.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 15:41:09 -0800 (PST)
+From: Fil Dunsky <filipp.dunsky@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ 	Conor Dooley <conor+dt@kernel.org>, 	Andrew Lunn <andrew+netdev@lunn.ch>,
+ 	"David S. Miller" <davem@davemloft.net>, 	Eric Dumazet <edumazet@kernel.org>,
+ 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ 	Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+ 	Linus Walleij <linusw@kernel.org>, 	Russell King <linux@armlinux.org.uk>,
+ netdev@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 4/5] net: cortina: Add CS7542 CPU network  datapath
+Date: Mon, 23 Nov 2026 23:41:02 +0000
+Message-ID: <179547726260.3.2509837092976108381@gmail.com>
+In-Reply-To: <560efd8b-44a6-4b3f-9f88-d1a891b4f253@lunn.ch>
+References: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
+ <20261123-b4-cs7542-ethernet-v1-4-fdb5e8c2d508@gmail.com>
+ <560efd8b-44a6-4b3f-9f88-d1a891b4f253@lunn.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261123232647.3733149-1-coltonlewis@google.com>
-X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
-Message-ID: <20261123232647.3733149-3-coltonlewis@google.com>
-Subject: [PATCH v2 2/2] KVM: arm64: nv: Avoid duplicate guest stage-2 mapping entries
-From: Colton Lewis <coltonlewis@google.com>
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>
-Cc: Joey Gouly <joey.gouly@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Fuad Tabba <fuad.tabba@linux.dev>, 
-	Steffen Eiden <seiden@linux.ibm.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Wei-Lin Chang <weilin.chang@arm.com>, Dan Carpenter <dan@pereq.eu>, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_152651_276198_EBF62589 
-X-CRM114-Status: GOOD (  12.38  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261123_154113_020777_E4CA02DD 
+X-CRM114-Status: GOOD (  11.12  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,76 +110,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-kvm_record_guest_s2_mapping() unconditionally inserts a new entry into
-both guest_s2_mappings interval trees. Parallel stage-2 faults on the
-same IPA or retries after -EAGAIN can therefore insert identical
-entries for the same nested and canonical IPA range.
+Hi Andrew,
 
-Check mmu->guest_s2_mappings under guest_s2_tracking_lock before
-inserting, and free the new entry if an identical one is already
-present.
+I removed both module parameters and the unused internal-buffer alternative,
+keeping the previous external-DDR QM/TM default. I could not justify weight
+16 with a hardware requirement, so the next version uses netif_napi_add()
+and the normal weight 64. The .c helpers are plain static functions, and
+ndo_open now unwinds through cleanup labels.
 
-Signed-off-by: Colton Lewis <coltonlewis@google.com>
----
- arch/arm64/kvm/nested.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+I reviewed the flags against the core transitions. opened publishes a port
+under the shared TX lock after IRQ/NAPI setup succeeds. netif_running() is
+already true while ndo_open can still fail, so it cannot identify a port
+that shared completions may safely wake. Clearing opened under that lock
+before netif_tx_disable prevents completions waking a closing queue.
 
-diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-index d3a19b1db2144..18868e0d701c0 100644
---- a/arch/arm64/kvm/nested.c
-+++ b/arch/arm64/kvm/nested.c
-@@ -930,6 +930,30 @@ static unsigned long s2_mapping_to_nested_start(struct kvm_guest_s2_mapping *map
- 	return mapping->nested.start & ~S2_MMU_IDX_MASK;
- }
- 
-+static bool guest_s2_mapping_exists(struct kvm_s2_mmu *mmu,
-+				    struct kvm_guest_s2_mapping *mapping)
-+{
-+	struct interval_tree_node *node;
-+
-+	for (node = interval_tree_iter_first(&mmu->guest_s2_mappings,
-+					     mapping->nested.start,
-+					     mapping->nested.last);
-+	     node;
-+	     node = interval_tree_iter_next(node, mapping->nested.start,
-+					    mapping->nested.last)) {
-+		struct kvm_guest_s2_mapping *curr;
-+
-+		curr = container_of(node, struct kvm_guest_s2_mapping, nested);
-+		if (curr->nested.start == mapping->nested.start &&
-+		    curr->nested.last == mapping->nested.last &&
-+		    curr->canonical.start == mapping->canonical.start &&
-+		    curr->canonical.last == mapping->canonical.last)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- void kvm_record_guest_s2_mapping(struct kvm_s2_mmu *mmu, gpa_t canonical_ipa,
- 				 gpa_t nested_ipa, size_t map_size,
- 				 struct kvm_guest_s2_mapping *mapping)
-@@ -950,6 +974,11 @@ void kvm_record_guest_s2_mapping(struct kvm_s2_mmu *mmu, gpa_t canonical_ipa,
- 	tag_s2_mapping_mmu(mapping, mmu);
- 
- 	guard(spinlock)(&kvm->arch.guest_s2_tracking_lock);
-+	if (guest_s2_mapping_exists(mmu, mapping)) {
-+		kfree(mapping);
-+		return;
-+	}
-+
- 	interval_tree_insert(&mapping->nested, &mmu->guest_s2_mappings);
- 	interval_tree_insert(&mapping->canonical, &kvm->arch.mmu.guest_s2_mappings);
- }
--- 
-2.56.1.839.g22a8290db9-goog
+stopping gates the single reap timer shared by all ports. Last-port close
+sets it under the same lock used by timer-rearm paths, before dropping the
+lock and calling hrtimer_cancel(). It prevents a running callback or RX
+poll from rearming during cancellation. I retained these flags and added
+comments explaining their roles. rx_stopping separately closes the device
+retry/IRQ-rearm window; napi_disable alone does not join a poll tail after
+napi_complete_done().
 
+Independent built-in/module ARM builds without the platform series pass.
+The revised driver also passed Almond+ RAM testing with live NAPI weight
+64, two load/unload cycles, 600 byte-exact UDP echoes and 20 ICMPv6 replies
+through the normal DSA path. A separate internal CPU-port diagnostic
+passed 448 nonlinear/jumbo frames, including 8192-byte payloads. These are
+functional checks, not throughput measurements.
+
+I will collect further review before sending v2 within the agreed cadence.
+
+Thanks,
+Fil
 
