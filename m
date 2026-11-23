@@ -2,77 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01408606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6224606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kllfJCkj;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=avj494TK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3Aw5rTCG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gbPAFq96
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=VTayRZy96830KSV7f6wsXnSstyeYaZLryI30VcYM53A=; b=kllfJCkjBExZcvt+2Y7sz1GLcb
-	Z48WCv5ai4OPAnJdbwZIvVM5ZmquICuGNSn8n/06lOogztRYS+zoA+lq50v5y/RgBGwmk69mEhwZo
-	BD+pRU0867NnaeCmVDeiXHCIX0RhhdbkNbZAkeGGHTjBJ6dc60VG8qrMcSFEDVYvglp9juk/tav0D
-	Twf3epqZYjhSN/eLkuUBSNsSmszf+DFj5qZwrjXL49idYed8QLEx4ZUpHWAJJTFQQa0rCDwmWWoAN
-	URjzndJaCZwUzhosctgs+HZUf6U6xPVZ4X6Wierr8K/TNEFXMMMMKXtd+tGXQKS510GYjJPYzY1og
-	1Gc1v8DA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=/ragaaKMlKwCffeuTGxlwHK3dNh4IOsJmPtxIjEmZmU=; b=3Aw5rTCGXEebt/
+	2ge9WsYMFLrdsC7eeffxDKPvbtXOueaz2PVH33G5ZVX93xaPS+c3trSnSRKSUDeD9j1LvScyzxH6U
+	hvGFmxk+e7COJFSCCJIkiDG/syiVeFAVzKxZov5LPH7kEiPxjb52TwxJkmFDqDAngUvJknvasnb8b
+	HTOhHnM3I1pJ70aBCnpaZ/YdllRsn1hwEpfS5W0MiMsMFSiReshj73veAVebZguFKI5RDJyw7NU1z
+	NR77vecgeUQsGCL5NOTnV0LwMFTreKtHkZ3MM1vTS5a8wGNtZAx32cckvP5mjDaLQGOWPe1jxRHLA
+	bxKnKv68tkZWmbI/RUrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZf6-00000004ecp-2JxJ;
-	Mon, 23 Nov 2026 19:25:12 +0000
-Received: from out-231.mta1.migadu.com ([2001:41d0:203:375::e7] helo=mta1.migadu.com)
+	id 1xVZfY-00000004elY-3UGh;
+	Mon, 23 Nov 2026 19:25:40 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZev-00000004eZq-1gBw
+	id 1xVZfI-00000004eg7-081w
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 19:25:10 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=u4m8lL2KdbFjVQEXYzTGdkreUDCwR6VcjSIzYNXl6Dc=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795461898; v=1; x=1796066698;
- b=avj494TK6psRmNsw1FLAjpFpfUQVc5GwwdRWd45Qu90GIUhOhauqSNwBDLKFwDKUOF+76XhY
- +dIHbgKqH+lZRlAHQ1QJa170FFQLb3ugRfG4HVVy39VYCIOxGqaETKaexR/7hL/F8B5WrKCbHgn
- egm2+9KwtO4rFnYO+7h6QRLU=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 53eb183e57c7fe91;
-	Mon, 23 Nov 2026 19:24:58 +0000
-X-Mizu-Trace-ID: 53eb183e57c7fe91
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so15600e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:24:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFHoFr7Jw0bAUZsyD0eV6c+tXTfyefb1ydqoXwr5vUYy4w2XjCfsKv5v7Xs/Wl5ZDmaMh7u1IhuplxLwW1sgknT@lists.infradead.org
-X-Gm-Message-State: APuU4Z+w3F0TD0cL77eUn0MvISZHNOJRRtQ0X3PMtIc6q59weh9mprLj
-	jDs1miejPtR6Yd5tnwxuTfnC+dHhwRbvwjxAOq+2wM6liApiIzlj/14v9iYKiNcP11PFInUucdZ
-	N4ecbN21pmfLPgSB6ZUGM1dW0AIgGL3F5GpiOEMdR
-X-Received: by 2002:a05:6512:3a87:b0:5c1:543d:2e3e with SMTP id
- 2adb3069b0e04-5c21a249a25mr260653e87.7.1795461892671; Mon, 23 Nov 2026
- 11:24:52 -0800 (PST)
+	Mon, 23 Nov 2026 19:25:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id C3F1C40AAF;
+	Mon, 23 Nov 2026 19:25:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EBE11F000D8;
+	Mon, 23 Nov 2026 19:25:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795461923;
+	bh=/ragaaKMlKwCffeuTGxlwHK3dNh4IOsJmPtxIjEmZmU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=gbPAFq96JH/QABr9L2sR0xpZiGIBgNZ9ZADAXjeCqF1ez34ShfAk7OQVMReca8fEY
+	 iKLN43gjlMrcSEyQDxAerUNQp223TTqJ8B0D73whWivvGOqAATRKp4QVHahVflBvoY
+	 VQvGXn9zurparhsG3scX4T0nt/9LPdplBZfIELwPrlAdOyh88v6PLCmnjByFH/e6Tu
+	 dsteF8/+rkHBWca6ueSvJ2t2hAU2poKe3g8QA3K13fRQ3Sf/LbTYvytvT1D6jytyhQ
+	 bq9ZVxT893y+5CuRZoXCN+npgrnIAUK3cNO+yXXL41CLBupv0yd7AGcNrfKCyTXnYS
+	 LJGFTc2fuHebw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=localhost.localdomain)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xVZfF-00000002A6V-23e4;
+	Mon, 23 Nov 2026 19:25:21 +0000
+From: Marc Zyngier <maz@kernel.org>
+To: kvmarm@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>
+Subject: [PATCH 2/3] KVM: arm64: Add GIC idregs sanitisation to common framework
+Date: Mon, 23 Nov 2026 19:24:56 +0000
+Message-ID: <20261123192457.8700-3-maz@kernel.org>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261123192457.8700-1-maz@kernel.org>
+References: <20261123192457.8700-1-maz@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261117174403.58762-1-vdonnefort@google.com> <20261117174403.58762-2-vdonnefort@google.com>
-In-Reply-To: <20261117174403.58762-2-vdonnefort@google.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Mon, 23 Nov 2026 19:24:16 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTyCo3oUiRUeLQ_YStLAzmD8J8i1kJD4H8qYLyn5EHdp=Q@mail.gmail.com>
-X-Gm-Features: Aa3M54qeQzSvLkH5nDFzJvMHktdafiAhP3uLr3VXVmWB1KOnGb85PRMxO-t136I
-Message-ID: <CA+EHjTyCo3oUiRUeLQ_YStLAzmD8J8i1kJD4H8qYLyn5EHdp=Q@mail.gmail.com>
-Subject: Re: [PATCH v4 01/23] KVM: arm64: Prefault host stage-2 entries on
- block split
-To: Vincent Donnefort <vdonnefort@google.com>
-Cc: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, joey.gouly@arm.com, 
-	seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, 
-	catalin.marinas@arm.com, will@kernel.org, kernel-team@android.com, 
-	qperret@google.com, weilin.chang@arm.com, Keir Fraser <keirf@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_112502_261763_FF396F66 
-X-CRM114-Status: GOOD (  10.17  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: kvmarm@lists.linux.dev, kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, oupton@kernel.org, yuzenghui@huawei.com, fuad.tabba@linux.dev
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,38 +82,105 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Vincent,
+It takes no least than 3 ID registers to describe whether a GICv3 or
+GICv5 is supported. Define the sanitisation tables for the relevant
+fields and the set of relevant callbacks.
 
-On Tue, 17 Nov 2026 17:43:40 +0000, Vincent Donnefort
-<vdonnefort@google.com> wrote:
-[...]
-> diff --git a/arch/arm64/kvm/hyp/pgtable.c b/arch/arm64/kvm/hyp/pgtable.c
-> index 9c83837b184d..dfbcdd3d91a4 100644
-> --- a/arch/arm64/kvm/hyp/pgtable.c
-> +++ b/arch/arm64/kvm/hyp/pgtable.c
-[...]
-> @@ -1053,6 +1095,9 @@ static int stage2_map_walk_leaf(const struct kvm_pgtable_visit_ctx *ctx,
->          if (!childp)
->                  return -ENOMEM;
->
-> +        if (pgt->flags & KVM_PGTABLE_S2_IDMAP)
-> +                stage2_map_prefault_idmap(ctx, childp);
-> +
->          if (!stage2_try_break_pte(ctx, data->mmu)) {
->                  mm_ops->put_page(childp);
->                  return -EAGAIN;
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+---
+ arch/arm64/kvm/config.c | 56 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
-Should kvm_pgtable_stage2_annotate() end with a dsb(ishst), like
-kvm_pgtable_stage2_map()? With this patch, it installs valid leaves in
-the host stage-2 too.
+diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
+index 40965513ebacf..7e702ce587a48 100644
+--- a/arch/arm64/kvm/config.c
++++ b/arch/arm64/kvm/config.c
+@@ -436,6 +436,23 @@ static bool feat_vmid16(struct kvm *kvm)
+ 	return kvm_has_feat_enum(kvm, ID_AA64MMFR1_EL1, VMIDBits, 16);
+ }
+ 
++static bool feat_gicv3(struct kvm *kvm)
++{
++	return (irqchip_in_kernel(kvm) &&
++		kvm->arch.vgic.vgic_model == KVM_DEV_TYPE_ARM_VGIC_V3);
++}
++
++static bool feat_gicv3_aarch32(struct kvm *kvm)
++{
++	return (kvm_supports_32bit_el0() && feat_gicv3(kvm));
++}
++
++static bool feat_gcie(struct kvm *kvm)
++{
++	return (irqchip_in_kernel(kvm) &&
++		kvm->arch.vgic.vgic_model == KVM_DEV_TYPE_ARM_VGIC_V5);
++}
++
+ static const struct reg_bits_to_feat_map hfgrtr_feat_map[] = {
+ 	NEEDS_FEAT(HFGRTR_EL2_nAMAIR2_EL1	|
+ 		   HFGRTR_EL2_nMAIR2_EL1,
+@@ -1357,6 +1374,42 @@ static const struct reg_bits_to_feat_map id_aa64mmfr3_el1_feat_map[] = {
+ static const DECLARE_IDREG_FEAT_MAP(id_aa64mmfr3_el1_desc, ID_AA64MMFR3_EL1,
+ 				    id_aa64mmfr3_el1_feat_map, FEAT_AA64EL1);
+ 
++static const struct reg_bits_to_feat_map aa64pfr0_gicv3[] = {
++	ENUM_FEAT(ID_AA64PFR0_EL1_GIC_IMP, feat_gicv3 ),
++	ENUM_FEAT(ID_AA64PFR0_EL1_GIC_NI, NULL ),
++};
++
++static const struct reg_bits_to_feat_map id_aa64pfr0_el1_feat_map[] = {
++	NEEDS_FEAT_FIELD(ID_AA64PFR0_EL1_GIC, aa64pfr0_gicv3),
++};
++
++static const DECLARE_IDREG_FEAT_MAP(id_aa64pfr0_el1_desc, ID_AA64PFR0_EL1,
++				    id_aa64pfr0_el1_feat_map, FEAT_AA64EL1);
++
++static const struct reg_bits_to_feat_map pfr1_gicv3[] = {
++	ENUM_FEAT(ID_PFR1_EL1_GIC_GICv3, feat_gicv3_aarch32),
++	ENUM_FEAT(ID_PFR1_EL1_GIC_NI, NULL),
++};
++
++static const struct reg_bits_to_feat_map id_pfr1_el1_feat_map[] = {
++	NEEDS_FEAT_FIELD(ID_PFR1_EL1_GIC, pfr1_gicv3),
++};
++
++static const DECLARE_IDREG_FEAT_MAP(id_pfr1_el1_desc, ID_PFR1_EL1,
++				    id_pfr1_el1_feat_map, FEAT_AA64EL1);
++
++static const struct reg_bits_to_feat_map aa64pfr2_gcie[] = {
++	ENUM_FEAT(ID_AA64PFR2_EL1_GCIE_IMP, feat_gcie),
++	ENUM_FEAT(ID_AA64PFR2_EL1_GCIE_NI, NULL),
++};
++
++static const struct reg_bits_to_feat_map id_aa64pfr2_el1_feat_map[] = {
++	NEEDS_FEAT_FIELD(ID_AA64PFR2_EL1_GCIE, aa64pfr2_gcie),
++};
++
++static const DECLARE_IDREG_FEAT_MAP(id_aa64pfr2_el1_desc, ID_AA64PFR2_EL1,
++				    id_aa64pfr2_el1_feat_map, FEAT_AA64EL1);
++
+ static const struct reg_bits_to_feat_map ich_hfgrtr_feat_map[] = {
+ 	NEEDS_FEAT(ICH_HFGRTR_EL2_ICC_APR_EL1 |
+ 		   ICH_HFGRTR_EL2_ICC_IDRn_EL1 |
+@@ -1468,6 +1521,9 @@ void __init check_feature_map(void)
+ 
+ static const struct reg_feat_map_desc *idreg_feat_maps[] = {
+ 	&id_aa64mmfr3_el1_desc,
++	&id_aa64pfr0_el1_desc,
++	&id_aa64pfr2_el1_desc,
++	&id_pfr1_el1_desc,
+ };
+ 
+ static struct resx compute_idreg_field_deps(struct kvm *kvm,
+-- 
+2.47.3
 
-Cheers,
-/fuad
 
