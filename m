@@ -2,72 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A412D606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:30:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4261606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EShIlDvh;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=JY/Va0iH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zz1ctQW+;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=atu/1LpS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=42pe+2UMicZlITyFPJxiB15+3uk5mJXNcVaAM4zz0rk=; b=EShIlDvhSD5u13
-	7JHPdxaZxOJGQ1pcRsbGHgUwNsgOjo4TOgpjccTrkpu91JYiHUSUgwWZ5DoNnT2YSmSrc+oXMKzxH
-	zIcF7fGu4oeJeJOCWj+RjihUaO1UtkiBSsT7WUY4zEW/rGnzwM2zEHQwofwdWgRRnFgdFQas6xoUd
-	K/Wj/Z+lt8lNemr6azcawgxJi8RFeYXqMvVrHUfytrnVAuajnFFy1EKHSv8ROeFKvNyGs1MvwPCci
-	mHfvcdKIF4JzM146Z1GO9fDk/W4siHtQ7hWWAN8tayuqEPqrs7weWCRkPJUWXPhdcgPNdmC3pRz0C
-	4iX3VD7LZh6DQ+bVme4Q==;
+	List-Owner; bh=ZQvS7z6b0AGal/0iSKLTcxhwhRK+gpszSACJINCNrvk=; b=zz1ctQW+4ulXPA
+	IWVjgQh+NWHsVxzdlZ8noV9+VafbHG74Rl3Jv5enS6ztpf0NeOTqGQ248aPxNLOFe7/NBGX1ju33T
+	9/f281kw/pF+eYTUbuIBx82HvHOHMTc3LUJekJ/VgbHkKMNTmg6zkfm++qNXzNEbps8zL+D2ST2DI
+	RCKJ/zYR1bImDTZbkGxXVFN39UuGvvtNTjXRqM5GywE5aDSqZFcG2WVM8x1RrmhUPN+q4c8xP1Jdn
+	LiwIms7Pb848WWd2C914HMdSoEH+EVnP1OgF+R/CWPBgb8uVziQrUWoSDwFMn+pjXa63xLu1znWGG
+	ROFNzwZL3J7jLdHt5sFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVz3-00000003zKL-2zyn;
-	Mon, 23 Nov 2026 15:29:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVz1-00000003zJM-19P7;
-	Mon, 23 Nov 2026 15:29:32 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 243B3143D;
-	Mon, 23 Nov 2026 07:29:27 -0800 (PST)
-Received: from [10.57.63.212] (unknown [10.57.63.212])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7D9073F632;
-	Mon, 23 Nov 2026 07:29:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795447770; bh=0xbcGpMrwScqUYzspFMcy4M1QTBeI7Y5dmo8IAPpgqo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JY/Va0iH6nnTm3ZCQ1P7bWW987arEPgcPp0idnNLsxO1wSYW0dvJvX7Thmdqkcx+q
-	 bMbePNqN+MqqRt4ewHMzSstT+FzKDVWQibB5NCMakFs22XmyyGWpShlWFPpl2urfsP
-	 a1XUe6lSzAB2MI9MvwrAa+scQhKwHN97tfT+Kbxw=
-Message-ID: <a9a404e8-66fc-4595-9d14-7ab97cd08583@arm.com>
-Date: Mon, 23 Nov 2026 15:29:25 +0000
+	id 1xVVWg-00000003sUP-1U87;
+	Mon, 23 Nov 2026 15:00:14 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVVVW-00000003rxC-0Ocp
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 14:59:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1795445933;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZQvS7z6b0AGal/0iSKLTcxhwhRK+gpszSACJINCNrvk=;
+	b=atu/1LpSsZ5DY22wd8a7wek+seQzxygmTX8bc8WAfDzysX0nwc6ePCxMsaiNX2MUINw8XJ
+	As+Xwu/2ME1xw0j4z20Nne3FmjMJrXPJ+MwSiPuQn+caEcwxR+EPjc+ULI8O1qf+w+Kt4H
+	BUDj7YumpwZmDJyvRzzDz5NKTlT4dl0=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-496-DuEKfpT8O6OLoZ4XXbLOPw-1; Mon, 23 Nov 2026 14:58:39 +0000
+X-MC-Unique: DuEKfpT8O6OLoZ4XXbLOPw-1
+X-Mimecast-MFC-AGG-ID: DuEKfpT8O6OLoZ4XXbLOPw_1795445913
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-4a799d93bc3so1597495f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 06:58:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795445913; x=1796050713;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ZQvS7z6b0AGal/0iSKLTcxhwhRK+gpszSACJINCNrvk=;
+        b=egVQ00M28D4ag4hv/HTr8FqS120mVbSHpurWW3D8nToQWHVb/1SPkC5x1yDSNmB4x1
+         XdzR6y/XbhJyzOXpdb8/iVagIqLyscEx+BVh3fAhYdVLUJ/qGEc/rMIW6xyImUZ5ElR2
+         s7hXiffv7I4GORpj3RMpEXNzPDFlUZGpRbCC5Dvyn/X+I5gSZ1VGdWB83mlgI76/gesP
+         SgpILnSMLD5pQYxN2EFTRNPvoi2c4qV9dGg2E9MfWWUDbClcCJqn9shvxqWGmTb61KTa
+         M5+fG5ffzo/AaRzSJ1vTmyntwM0YJx5AlXP8AlYCgStRk/a0iQ30P076CiAzssC0gmw/
+         1Q2A==
+X-Forwarded-Encrypted: i=1; AL+hErGVHnEc5XatezxRzjYrwkEkzC3MCvqzIXpD+YGUjpp2LyZ2VQXX/RhJda8MVLg9RbvUnIxpIVSoWiQsXLLGNYz+@lists.infradead.org
+X-Gm-Message-State: APuU4Z/T/VLjZXbYkz2Kqbz3lHQJ7VQ8JpvgR4mExl9qxMaPyqm2Yaqm
+	+ydVSSRcScJImZyO+/478pC9b0cts5zyeDf1ZcOqVbu0Ew4iTg0YYvYbMLTVzT4SQMji8YlG9EA
+	OW8JNTOwKQwl6zL/MfnW4UBoORsXfFv6urWDHY7eScLL1iM4xrxlLBYxh2mRO9vT2UD3iRAYreO
+	Rc
+X-Gm-Gg: AZFdTZcY+ivdy2n8lL4aeyVm1U83bo97vUjNmIcgUjn/r6PFEN/4Y1e4jUn9Uw7KC/E
+	ckqzeCJ/jRs2xyAFd0GXJzvck/2zp5iWvV7/9zsOPkwKsk5pnXvPkJXGzPicDTG8kkKBwYoQYqC
+	qW4yqlVbqqSrOvQiD2dKWgT/Er3oEiY0qsX8B6BuaeUbArZ+6onv5P6ZhQfKy5Tv0hve23L/qKx
+	/rEnBzblkYvwrdrN90tnScew7AEkUgnnWzwG8GZ3XYjZmPRdUWClY+1aO+5u+G7YKHcab6HSGLt
+	iJ9AMYtGse1xnzunmRy1igeTIxbakujF7uWTJJ7gvfUJNWsPuejB5V3TC2Ls3jkIqABuebI2Gc7
+	4C/konmYNtbrjeL227ageoe2tDqpffvsNonjrjUpVPcgS03eugJoTWW4nGW6msEBAxFv/3Peky/
+	GDkUXsC67gIbJ0578ADIGPuWsJVDBlZFVGq+RO2+3i7bXz
+X-Received: by 2002:a05:600c:1c1b:b0:4bb:87be:c138 with SMTP id 5b1f17b1804b1-4bb8893e021mr266098415e9.32.1795445912673;
+        Mon, 23 Nov 2026 06:58:32 -0800 (PST)
+X-Received: by 2002:a05:600c:1c1b:b0:4bb:87be:c138 with SMTP id 5b1f17b1804b1-4bb8893e021mr266098035e9.32.1795445912294;
+        Mon, 23 Nov 2026 06:58:32 -0800 (PST)
+Received: from [192.168.88.30] (ip231-128-192-82.pool-bba.aruba.it. [82.192.128.231])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6c248b75sm23206193f8f.54.2026.11.23.06.58.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2026 06:58:31 -0800 (PST)
+Message-ID: <15ef5667-23d6-4c8d-8cb9-ac3853677c81@redhat.com>
+Date: Mon, 23 Nov 2026 15:58:30 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/panfrost: Gate the RK3399 GPU clock in runtime
- suspend
-To: Igor Velkov <iav@iav.lv>, =?UTF-8?Q?Adri=C3=A1n_Larumbe?=
- <adrian.larumbe@collabora.com>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20261030-panfrost-rk3399-pm-rt-v1-1-e94437159a9d@iav.lv>
- <autNWETrwrHbD2H9@sobremesa>
- <20261104-panfrost-rk3399-pm-rt-larumbe-reply-1@iav.lv>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20261104-panfrost-rk3399-pm-rt-larumbe-reply-1@iav.lv>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v3] net: sparx5: check DT port reg against chip
+ port count
+To: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>,
+ Daniel Machon <daniel.machon@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>, UNGLinuxDriver@microchip.com
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>
+References: <20261118162156.17688-1-wanghr2026@mail.zgclab.edu.cn>
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20261118162156.17688-1-wanghr2026@mail.zgclab.edu.cn>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: o5t8UfAPBxhSJYmSyilKroTMWHYhT5eid2WDCjXp6kg_1795445913
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_072931_397041_024A3633 
-X-CRM114-Status: GOOD (  32.27  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261123_065902_279903_6040E8BD 
+X-CRM114-Status: GOOD (  15.40  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,102 +124,43 @@ X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 04/11/2026 19:59, Igor Velkov wrote:
-> Hi Adrián,
+On 11/19/26 10:46, Haoran Wang wrote:
+> From: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
 > 
-> On 04.11.2026, Adrián Larumbe wrote:
->>> On ROCK Pi 4A restore from hibernation hangs in genpd_restore_noirq()
->>> of the GPU while panfrost is bound. With the clock gated in runtime
->>> suspend, as on the Allwinner H616 and the Renesas parts, it restores.
->>
->> I find the wording in the preceding paragraph a bit confusing . Would
->> you mind clarifying what 'parts' means here? I guess you refer to
->> specific SoCs.
+> mchp_sparx5_probe() reads the DT ethernet-port 'reg' property into
+> portno, which sparx5_create_port() later uses to index the fixed-size
+> sparx5->ports[] array:
 > 
-> Yes, SoCs: allwinner,sun50i-h616-mali, renesas,r9a08g046-mali and
-> renesas,r9a09g047-mali already use default_pm_rt_data. v2 will name
-> them.
+>      sparx5->ports[config->portno] = spx5_port;
 > 
->> Also, I wonder why not disabling the clocks would forestall coming back
->> from a power suspension state. Have you raised this matter to the
->> maintainers of the RK3399 SoC subsystem?
+> The value is never validated, so an out-of-range 'reg' (runtime overlay,
+> corrupted or attacker-controlled DTB, kexec-supplied or bootloader
+> fixed-up DT) turns probe into an out-of-bounds write.
 > 
-> The kernel that reads the image never binds panfrost, so after
-> clk_disable_unused() aclk_gpu stays gated. The restored image still has
-> it enabled in software (enable count 1 since probe), so powering the GPU
-> domain back on, whose clocks include aclk_gpu, only bumps the count, and
-> the QoS writes that follow in rockchip_pd_power() go to a gated block
-> and hang. I traced this for rkvdec [1]; for the GPU I see the hang at
-> the same spot, genpd_restore_noirq(), and gating in runtime suspend
-> removes it. I haven't raised it separately; Heiko is on To.
+> Skip port nodes with an out-of-range 'reg'.  lan966x_probe_port() has
+> the same bounds check but fails probe with -EINVAL; skipping here keeps
+> the remaining valid ports working.  The bound is the per-chip port count
+> from the match data (sparx5->data->consts->n_ports), so lan969x, which
+> shares this probe path and has only 30 ports, is bounded correctly as
+> well.
 > 
->> Would you also mind describing what you did to reproduce this
->> resume-from-suspend issue? Lately we've been getting some fixes for
->> similar SoC issues and I wonder whether mine also has it.
+> Found by a scripted scan of of_property_read_u32() call sites used to
+> index fixed-size arrays, followed by manual review. Verified at runtime
+> on a pristine v7.4-rc2 arm64 QEMU virt machine (inline KASAN,
+> CONFIG_SPARX5_SWITCH=m): an out-of-tree module supplies only a
+> malicious DT overlay, the unmodified in-tree driver performs the store.
+> reg = 15839 yields a KASAN use-after-free, reg = 0x20000000 a wild
+> write 4 GiB out (paging oops), and reg = 65 silent in-struct corruption
+> with a later NULL oops. With this patch all three are skipped. The PoC
+> and full logs are posted in the thread. Not tested on real hardware,
+> QEMU virt (cortex-a57) and compile testing only.
 > 
-> It is hibernation (restore from disk), not suspend to RAM. ROCK Pi 4A,
-> drm-misc-next 33ed26235db9 plus [1], panfrost as a module, bound, GPU
-> idle, swap file with resume= and resume_offset=: systemctl hibernate,
-> power off and on. Without the patch restore hangs at "panfrost
-> ff9a0000.gpu: calling genpd_restore_noirq" 2 of 2, with it restores
-> 6 of 6. A quick check on another board: with panfrost bound and the GPU
-> idle, its core clock keeps enable count 1 in clk_summary.
-> 
->> If this patch depends on another fix being merged first, I think it's
->> best you delay sending a v2 until it's been committed to its relevant
->> subsystem tree and changes pulled into drm-misc-next.
-> 
-> It applies and builds without [1]; [1] only gets this board through
-> restore up to the GPU. [1] goes through linux-media, so I'd rather not
-> tie v2 to it, but fine either way.
-> 
->> I'm not entirely sure about what patch submission guidelines say about
->> testing information, but normally commit trailers must come about
->> last. Would you mind then moving this to right before the S-o-b?
-> 
-> The test notes are below the "---" on purpose, so they stay out of the
-> commit.
-> 
->>> +	{ .compatible = "rockchip,rk3399-mali", .data = &default_pm_rt_data },
->>
->> You're effectively adding support to a whole new SoC. This made me
->> wonder, are we sure suspension resumption not working is only because of
->> GPU_PM_RT? Shouldn't we know first about its supplies and power domains,
->> and any potential GPU quirks? I think this goes beyond my knowledge, so
->> maybe Steven Price can pitch in.
-> 
-> The node already carries "rockchip,rk3399-mali", "arm,mali-t860" and
-> binds through the fallback today. default_pm_rt_data differs from
-> default_data only in GPU_PM_RT; supplies and the power domain stay as
-> they are. The RK3399 GPU node has no bus clocks and no resets, so
-> GPU_PM_RT changes only aclk_gpu here. Steven's view is welcome.
-
-Sorry for the slow response, I've got quite behind on my emails.
-
-As you say the platform will previously have been able to use the
-fallback compatible. So this is such opting in this platform to use
-GPU_PM_RT. If we've got a report of this working (thanks for Igor) then
-I don't see why we wouldn't want to enable it. Basically we've taken the
-approach of being conservative until we see that GPU_PM_RT doesn't cause
-problems.
-
-I have to admit hibernation isn't something I've tested, so it's
-possible we need to look at fixing something related to that. But it's
-also quite likely that hibernation is more fundamentally broken on
-platform that don't have GPU_PM_RT, so it might not be something we can
-usefully fix.
-
-Other than the somewhat confusing commit message (e.g. a subject of
-"Enable GPU_PM_RT for RK3399" would be clearer), this is fine:
-
-Reviewed-by: Steven Price <steven.price@arm.com>
+> Fixes: f3cad2611a77 ("net: sparx5: add hostmode with phylink support")
+> Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+For future memory: please send new revisions in new threads.
 
 Thanks,
-Steve
 
-> [1] https://lore.kernel.org/r/20261030-rkvdec-runtime-pm-clocks-v2-1-8ff510a231de@iav.lv
-> 
-> --
-> Igor Velkov
+Paolo
 
 
