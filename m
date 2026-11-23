@@ -2,139 +2,154 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337E4606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A79606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iQdtfDvX;
-	dkim=pass (2048-bit key, unprotected) header.d=glider.be header.i=@glider.be header.a=rsa-sha256 header.s=fm1 header.b=lwhvrItP;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=UsLMaOp3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hZwgYz3h;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=fI55uv3y;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=fI55uv3y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eHnVdH3eygeNZ6mEwcCP89LSgWOPzbTMb7xVcTPFhqQ=; b=iQdtfDvX/4mTPe
-	IE/juOnKG4ofJAsuw3wDG84N86lS8HRJKjk6kVqjWr/tntD0AuzPaPJOZcgDQgECJnGu/6IU3OzHl
-	IGNtybqmyGPG3FxmDyF8W9eO6upPuaFwzJ7sxDDcMNmzdyyRlXeeG4Ji2EVAvnvJ6Z7L0buw9Mkuc
-	iv6U1U1Rubh9vvLRe98tukH24LPgTy/hDu17dn1HHjryNWV6yDkCxmgg3wrdcmp4gthEn9tuDPoIa
-	SrL9EOtBNSUxVFh5DrQymCWWcLzfqI4iE0AmMS/yNIbS9f7GAVXrsMTP7pVLY41RXh5ao9pIvfxNm
-	SDz2XuW72Y2/bpX8RyIw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Yv6ybAiWCJ7JLIyWK84aqsBP/EYsFSMKlj9kIXF5s4I=; b=hZwgYz3hexAn3TVP8IWtf3Ep4y
+	5npPHnK09rJvhmvkChPc+dzxjE4j2/tvyx5Rv11FzGTjBpgrzOHNMCQpv/5OQ+yr0vENfwB5BLRsC
+	MTVveiQl4293AGvYVnBomItJR/crML5hUPF5JAI3PkNyWbG2mniQf0clJDqi2Zq2qw1JOFP/ld3eD
+	v5zSRG/0Wxp23ZNMI8OfYrKzAy2ogK9WGCUJAalsGNH1nnpnmpfpvBCP6odGT9B9vmRKIM01SMTlG
+	mHaTR1ucSgCLRkSeZlU3RHoK58/IcorKfF2LpkY/jhA7B5c5t4tMQoCHGFcQAfcl5NLeFySFVtY4q
+	swFJdIDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVTG5-00000003NZZ-1Dyh;
-	Mon, 23 Nov 2026 12:34:57 +0000
-Received: from flow-b2-smtp.messagingengine.com ([202.12.124.137])
+	id 1xVTHa-00000003OGn-2ZVz;
+	Mon, 23 Nov 2026 12:36:30 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVTG0-00000003NVm-2tpg
+	id 1xVTHX-00000003OCf-0WGT
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 12:34:56 +0000
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailflow.stl.internal (Postfix) with ESMTP id 166671302F23
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:34:44 -0500 (EST)
-Received: from ams-imap-13 ([10.64.2.33])
-  by ams-compute-02.internal (MEProxy); Mon, 23 Nov 2026 07:34:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=glider.be; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1795437275;
-	 x=1795440875; bh=eHnVdH3eygeNZ6mEwcCP89LSgWOPzbTMb7xVcTPFhqQ=; b=
-	lwhvrItPrxrnWeg316nV1PuaExKq05uOnB7kdGOR+IJk3rFQ4890Jz9EcO31c0kk
-	xI5+e5MQsZ0Yu/9Wf27fOSkUCHAHEv49K9IkC+q+zMAiV0fWxL6WVhEL0+7utY0A
-	sMfoGyUVx5WNE7TkLtuFcn5bgseBGwR+2VyVL+Itg7Bp2cdvDppO16Gw3TVGIzFs
-	+veTAsVcniGMCYUlt6/hAvIA3qTBC20vLfBumf1+HmZqvHv8q4hsNKIWQCGv9AIk
-	kBIyqj9HN4qUmIGzSxUWBSlcFtdt4oVoz0eRwV++3xeZ2I5GDpbWpNk2sI5vSH5E
-	XacBZeeCuSCzIGUDtDjXyA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795437275; x=
-	1795440875; bh=eHnVdH3eygeNZ6mEwcCP89LSgWOPzbTMb7xVcTPFhqQ=; b=U
-	sLMaOp3ptN7qnKvIWkUvlnS7dH7+uzP+HriLKIrFXHLFQoGwOy+gn5VW7NtvjlTt
-	ManvQiXA/yGJs2Qs6t1/vWVROdmRhLQH/8Hcwu1SoOc4SZMVpnelETNdusb/zknJ
-	UmxWQ0dzev43r8pjIXIriUtoK8G+VORVCbl2FWAa9ww1T55Zk7Fli9ccMLHqkTRa
-	728HmALwK06es2xy8VIwZ29dfV8WS8beUKPzAiEKfZ+k1pFpUdcWF5cXI8faDOsU
-	AVE3P+q0ygfltJRFgOfUjOofusYqIx5b+2wM0O7GquksOL7nSHB2Odj/pNqvOcPx
-	EDEeO1hAn3Zw6rwm8/1hA==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=glider.be a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795437275; d=glider.be;
-	mf=PGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm1:rsa-sha256:Sl7mP09L+5ONj8iJeGZWHSv4JE7A7WNVjfwrOjomKbNxedt
-	xAtv9ZnTt+t2tRbi7lrmRNkp1u5JlMWwLNyYbcSoDmBkcx64op0TffBsEqMZQ/th
-	rlUe3GTnVvCI5n8PP54yDukw7wtM4NkEs9uUzsPUUtoVj+AIAskbcR8BNFbVnJDB
-	REIXeEwPhn4+YEsNYvr2tPXbcEiIUPMbL+GwtQpEcCPrzb/FPVjsa1c0H++r8u2k
-	uPXSrLLSLQQbb6cCGn9vytQbM/i74zLS7Z9qv3Qd17l7xoZIqtEqd7UNk/FtiSSf
-	YKG4pnQSaHw0Ifw1Mnyw2hRExwUg/vt70sYB5YA==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=12;
-	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
-	from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:NqarG23xk+ubs76/imvVRMIVR9rWyW+HFno8706/BFM=:crBsktOEwz7H50H+P11uEpNa/OLN9cRsaNs9xh5MNQY=;
-X-ME-Sender: <xms:0jIEa-kXHJSkHDBxBkbB-Rfk12hTluPPIO3BLiJ00t8HIPNy3Ml4xg>
-    <xme:0jIEawpYzEGOcdmBH7VfOrQ3QrgvR7pCr3gof4I3Y8cveujyxtwEy4Wlp9OZfM0KZ
-    6NIwSex1_RsXjNhe9UyR-zy65wJm5Tu98aBjnJFwfhWMy5aSsomJmxq>
-X-ME-Proxy-Cause: dmFkZTGjXOFYrJRxiwHc7rFicL9MWrbJzVM+Gc43OT+4O8mbpHX/5MAATZsAInI6Irclg4
-    HmBPr8P3wEx6H7B5dwsR/HHfQoqdBCUtEOiLxJS9mZIu4PwsE2PDUU94Q4jqfnzMI9Btwd
-    XpAwuZscnIVSUJsF+0koA0iiwDsWZD37XBYDpPn7VmVqd2+XDkRmbJlf9eAMXdWpLtpQMN
-    czFKZy8qBH04/Oxu9ZQMA8zOfPCNmVRws8jIRBNnncQG5Q6WPhVcUJAKcrqyeTM0Wsgfxf
-    7khQAAS5dOfnNwzM5QvQ9pzjX/BkQ1CzMMp393inSIF78qd4yR0IFm8Ms0iqIjWovz6FpU
-    CgFQgw/soK/tq/mFGhE7cmCgQ2BSc3IlcKqUnBArsu0BDneAWSEtDCvjKurDHAbPO6oPbX
-    sF57QnbFAohTkunviWyVlbAtg2pDgFRklPonksWA69xQ0TXMBe/n4cgjmLBjnjnFOL+NIQ
-    KG8IEHZU2UaWpcvWRx2fiUdHV9c6XRoVgAOrwaQm0/CLrqRT7skw2gfC9tF/v7PC1CmPph
-    Hx52t6ORfO6Jkd49V45jcWX6CXK3RoCdKJg6vWEOHTfKxESaXeoFqhF0QwDn54eSftAZVO
-    e2XmsNI60B6pmvsE0U09WBDT/LdtdFP602rgOxjdTpAl5xk+xpMyC10wzLkw
-X-ME-Proxy: <xmx:1jIEa9MdAPtePcO_m0xHaaHu0JEHLytb4ihDc7EMzSSAh4JomFv1WQ>
-    <xmx:1jIEaxKYf69HkxcKUSVCWteMnRpFcoVEdsxp4onPUsO6FVxf2CWTFQ>
-    <xmx:1jIEa8vVRg3M5Q1pMJ_4h2N16qOm3qOZcdRAwjDOgv9xHzpZR0A39A>
-    <xmx:1jIEazHtrOgobv7i74yPIQ2hjQZ8bg54nM33N94XEWR69sFzIEwHvg>
-    <xmx:2zIEa8npJ8YnsLCDqc6cvQGTXzw3RisQ_vkaFmsAS7VIUCAHgwtMzrMj>
-Feedback-ID: ia0f84a9e:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id 935AEF80098; Mon, 23 Nov 2026 07:34:26 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	Mon, 23 Nov 2026 12:36:29 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=gGJ19SrUhLWJzP98zizMpeViVhuRWS5KK63u5b6WEZjSgCxkqHqKmR+FII8afcUCWSQR8vr4MZ3QEH0kMiyLyAWmfN0KLpsVd92x+mgW0A/SYrKW5YDCUytmz0S3vBxZFSZOfcNHtLjoiABZBZMyJ1PdJFkzXz1xZFh8JpDsfRSiR4aeZVECJrsM+r8gYbYcWHuuxqSh/bz0VmeLWOtPrY4uuDZQkhBADMLDn5fz1CwpCw4dSCvjlPiq5iEm350Rr7PBwtN6mthT3Q0NKzMMy0ZwcQnl8SoEE/MjWBJighTBgRQvthsD52B1bzIjpwrpbFz3b0ydKA/WCk/jS2C+Pw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Yv6ybAiWCJ7JLIyWK84aqsBP/EYsFSMKlj9kIXF5s4I=;
+ b=gUh2pFV33IhERBw9Nl44mYoFMmrlmNQ1jKZS/F5l9xzaIg/SjPxKuZONReN919sexIDUH9On9tDWR4mKw9y8meyyZxe0Cf+LfzKqkiH5d6aKxQ3pSeWwI0yMbwB7AMtRIApXWPVjm+80AaZVQ8NMH2CNidgJy2nQKtr1Pqpjah7yYjgCAl2SKZrGwjpbxCApr9TpsZYeBFgzoo1oFhOPFr80dD3iVahnrbUNH4lTaTZG0hArvFvOCijMfH5QneujDlMgIOL/lBRqAk5REBC5S/334eGuqm5sE3DVo8c8gkgfNmIMcu62E9qg+zpdDL6+x0+FVgcJXB4+uMj6GNZeVQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=gmail.com smtp.mailfrom=arm.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
+ (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yv6ybAiWCJ7JLIyWK84aqsBP/EYsFSMKlj9kIXF5s4I=;
+ b=fI55uv3ySIsglVkD+PKKta4a8CNz11N9eHfX7wK9wujr7mZb91YdL84lE6VYjUwYFACZlU+xX62EfdbUvty/tVP5i0UTgnj7UziCaaVZmrpdlVin4yEYzAGJ/URC8ITieU9n1+n02jgkt+9C+XnvXf5DsQi9h8R+tKrupQ/2z4s=
+Received: from MA3P292CA0040.ESPP292.PROD.OUTLOOK.COM (2603:10a6:250:46::12)
+ by AS8PR08MB6453.eurprd08.prod.outlook.com (2603:10a6:20b:31b::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
+ 2026 12:36:19 +0000
+Received: from MA3PEPF00000407.eurprd04.prod.outlook.com
+ (2603:10a6:250:46:cafe::4c) by MA3P292CA0040.outlook.office365.com
+ (2603:10a6:250:46::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Mon,
+ 23 Nov 2026 12:36:18 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ MA3PEPF00000407.mail.protection.outlook.com (10.167.241.152) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.5
+ via Frontend Transport; Mon, 23 Nov 2026 12:36:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tQFpkzaTlT17Yjz/Ptn7+CoPSHjzT6BAP92at3hsyS1niWYUkTpkdYSKT1F/EyMKajOVYFVkrCBEhMGeWj9RH69drwcw2xzwEwIXjKnxogjWRvHU17hi7PiH1Nt4eoWN1GtRnJAPuEiE3OpskcASQ+R5ElLsbaQ9rJ/sBTsIJ4OgQM9+OLbViPfoTyx5qVfHMN9DJuu5+yzZDqY0GJc3FvtC+boEmLg27glk4kGkn1uIcyvenIHzObftzV0wrIUiQjUZ+2OqtwdxRmS0YWzJjtcNL66S1SBenel/YXUJsYkrRj88mg8MqoDPVSMJzw7DSXzR7PCrH5hs2qlBn2djGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Yv6ybAiWCJ7JLIyWK84aqsBP/EYsFSMKlj9kIXF5s4I=;
+ b=a0LsNGUHzlTLitvtWHUQU9NFrLRewY9174C2oho3etdpu2IHW62oKQrbj2pyjdOkwY7omDp4ie/mdSe1+pO2HlDzlrkXESr+L4shOK7iHYTfzNdiieAI/YhQtG/3GgIEpC42BJlN7e2BkEn5qSlPUz8gjPdY2zYKcg2ddKbTpbTsZBfclYvw9OeXz3fwzi9Envi4zrXFIhEUYVtxHnPI2DOT53qTXFFy2EbN1hPRSbdTErkGg88uyNErwPQy6Xj3ZsWiy82G12jFSVzP+qVuTgl8wXSKhk57yXHUGBufZ3zt54H4+PInVvfkhgWHB6zcmrK8tOCC3a0uLtB/sg6S/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yv6ybAiWCJ7JLIyWK84aqsBP/EYsFSMKlj9kIXF5s4I=;
+ b=fI55uv3ySIsglVkD+PKKta4a8CNz11N9eHfX7wK9wujr7mZb91YdL84lE6VYjUwYFACZlU+xX62EfdbUvty/tVP5i0UTgnj7UziCaaVZmrpdlVin4yEYzAGJ/URC8ITieU9n1+n02jgkt+9C+XnvXf5DsQi9h8R+tKrupQ/2z4s=
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from GV1PR08MB10370.eurprd08.prod.outlook.com (2603:10a6:150:a7::7)
+ by AS2PR08MB10180.eurprd08.prod.outlook.com (2603:10a6:20b:62d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
+ 2026 12:35:45 +0000
+Received: from GV1PR08MB10370.eurprd08.prod.outlook.com
+ ([fe80::722:98ea:caeb:b988]) by GV1PR08MB10370.eurprd08.prod.outlook.com
+ ([fe80::722:98ea:caeb:b988%6]) with mapi id 15.21.0615.009; Mon, 23 Nov 2026
+ 12:35:44 +0000
+Message-ID: <8f9f9752-4c23-48de-9483-63268627ff3c@arm.com>
+Date: Mon, 23 Nov 2026 13:35:44 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: allwinner: add Radxa Cubie A7Z board
+To: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: Enzo Adriano <enzo.adriano.code@gmail.com>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20261111134919.90264-1-vinicius.eduardo.pedrosa@gmail.com>
+ <20261111134919.90264-3-vinicius.eduardo.pedrosa@gmail.com>
+Content-Language: en-GB
+From: Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20261111134919.90264-3-vinicius.eduardo.pedrosa@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BE1P281CA0438.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:81::18) To GV1PR08MB10370.eurprd08.prod.outlook.com
+ (2603:10a6:150:a7::7)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A9C68vVDcqlZ
-Date: Mon, 23 Nov 2026 13:34:06 +0100
-From: "Geert Uytterhoeven" <geert+renesas@glider.be>
-To: "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
-Cc: "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>,
- "Brian Masney" <bmasney+clk@redhat.com>,
- "Jerome Brunet" <jbrunet+clk@baylibre.com>, "Ulf Hansson" <ulfh@kernel.org>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- "Marek Vasut" <marek.vasut+renesas@mailbox.org>,
- "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>,
- "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>,
- "Kevin Hilman" <khilman@baylibre.com>, "Vinod Koul" <vkoul@kernel.org>,
- "Wolfram Sang" <wsa+renesas@sang-engineering.com>,
- "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
- "Paul Elder" <paul.elder+renesas@ideasonboard.com>,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>,
- "Sudeep Holla" <sudeep.holla@kernel.org>,
- "Cristian Marussi" <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-Message-Id: <23ab561a-c5c5-41ff-a0f4-87a3f5ca2e49@app.fastmail.com>
-In-Reply-To: <20261123113619.GG3010398@killaraus.ideasonboard.com>
-References: <cover.1795029012.git.geert+renesas@glider.be>
- <e01baebc546ed6f1b71a0487a59cda73239ea7f1.1795029012.git.geert+renesas@glider.be>
- <20261123113619.GG3010398@killaraus.ideasonboard.com>
-Subject: Re: [PATCH v5 05/15] clk: renesas: r8a78000: Add SCMI remapping support
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+X-MS-TrafficTypeDiagnostic: GV1PR08MB10370:EE_|AS2PR08MB10180:EE_|MA3PEPF00000407:EE_|AS8PR08MB6453:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7df7923-3557-4c08-901f-08df495e5f53
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|10070799003|366016|1800799024|7416014|376014|18002099003|22082099003|3023799007|56012099006|4143699003|5023799004|11063799006|261102123227099003|261028144727099003|261022075727099003|261022105027099003|261021121427099003|261021123027099003|261021135927099003|261026140227099003|261026121527099003|261009223027099003|10067099003;
+X-Microsoft-Antispam-Message-Info-Original: D/XG8NKUhg6z7SDoL+J0egEJc3snJ6TAaWsIQBER8+gKLrFyEecPjyWaT5DfzHkHL6QgrNWXeZ2cQW+2Ux7lMUdFU8VpY3ctCCu67TBu5gU0xnfU1SioeYDhWp02O7+db5A/b9LXxUpvuobA9Cy7F9IKN/fImiQ0SUstxHyO1Hz6EExjVVE+ShVrQSARyoEy/qomZRRMHdfEowZDFUbJk1ewTCTRoQ1ntQ3T4F5Ym/1Fqc0TjwBdSA/BnIvRrUUIGmRS5sCpju0fQgaOXaxooODRWCh38OJ9bX1TGXwb8y2XPUeIdXgyzRjKCpI7we+7Z0pwRHGL7chFoK3vk6HX47TnCHSH/mPMJE3h8nrbKm5H318PQ2kbir/U/eP3Vpy8UMP+VWjxCb9A4LjmRtDOqLwztzkTxkhtNs4cACN42r+gyl4HwAqr7XpJR48j63Z4UT/aTe2tjEmBBG66JHbfmrlkHnIKOQLhvj57qjkpHIQj/v1ufMSkHeYIoEwGkZo8KJR+Efe7Fvr5KbnzatIX1g3CfaQazRQfcrh6PXIrJJiMGZCqAM+R+M+Vqf+v67uDrG7n5Uu1XU1ThugBashjPmcsCXEa7Be8mZzPctGcIBjAHONj25VmEzLUnb/EEcXUoS660YhMBTjVL3xGvBdPQ9dY2N4HKhBrdqWm2I1NYn4=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR08MB10370.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(10070799003)(366016)(1800799024)(7416014)(376014)(18002099003)(22082099003)(3023799007)(56012099006)(4143699003)(5023799004)(11063799006)(261102123227099003)(261028144727099003)(261022075727099003)(261022105027099003)(261021121427099003)(261021123027099003)(261021135927099003)(261026140227099003)(261026121527099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
+X-Exchange-RoutingPolicyChecked: BDDLnOjiU9nwFON9bYNCbpRf5RK64GW2yE8KGkhbdAVrDPDXmFsWq91usozb7iD74rI19Le2W2i8f6mNdYWzqLBsb4e9SENwxxijvyMV+QD5Zv5/EXPF5Egcl1pUShlJoTrZwImPCrv8sZy/DdB+L/xEritX6KRuRB9rZy6Eej/2V8JnF50qSJLfHqVqdKFA6yPxVHKnIHZLVsi0/Ot0XvRK3zuZtn5b2bbVSGEBbH63FQNG4loacV5FEDVkb1p0im94H+Q/jBeehL35bu7e92MucggMTkwSp0g5BQtBp9k3sqjGHMl0EVUabblcpFg4GjiU9yV50LHvNKWQCfKajQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB10180
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: MA3PEPF00000407.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: e77a0588-8c4a-465f-f623-08df495e4b04
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|14060799003|82310400026|1800799024|36860700016|35042699022|376014|7416014|18002099003|22082099003|261009223027099003|3023799007|4143699003|11063799006|5023799004|56012099006|261026121527099003|261028144727099003|261021135927099003|261021121427099003|261021123027099003|261102123227099003|261022075727099003|261022105027099003|261026140227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: wrXwC1qq1bL7XQrVk6bORaRpFTiSgA6aTtEqnHQgE1755TG+YgcAQGkCF1xla3R/+EPp38FrEQfdla032+JNg2wkBJIpRQnqqi9hEsfFweqCsTTkA+FmkPxitq669RDrxu5qGkYfVH+XQHYEqOLVjS/CtOs6raiw3kMQxk8PcjOXp2W3dUBA79MbZrxW1db7vu4THfs5La+IRvSnEH2+Dwo+NXrsSR+3ht4tx4qN2wqkCZoU10AcuH3z+l2PHQPHr6gSzew1YZrCc8+l2pKLXO8SJJQlSYoyh0jmXh9nA+YvP/+AH/fKGAbN/oPzATwbYWE5AitveHtMPYaKJEbeyp0JrixkdyjOWbg/5mdNTad7xZEG266jb/ydgDEO3EU8MJow6PiVRv8PTHFu94bjs4fniyZZxNVLlKItoYuTE5v3Uvk20fJ5GgF5k6XCyXAPXk5++HIIu4OzLIkMn81MnX+mAo7k7NqPrxqS3RuZKT7uZz40wz4rNbaxhIFMKUemaO2EMmcY/omC/mkEUEaB5Bs7H9roy/nM8kgym2TO7dkSOy5sGMEMxvWHjYEbMZIsGlptPHbahCjNvUyrXUTm6kczJ/k9/MM1BAoR4FUcf5JOhEmkkTPbccZEvRBakxMi1y5XYENYJM8CYnIQLx1epfJmcIkXVsBU5V9kWp392XaAjcg5Gv0Ettp4m6wlUCXyCKUcCfAXbMr35eWfVRgn7A==
+X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(14060799003)(82310400026)(1800799024)(36860700016)(35042699022)(376014)(7416014)(18002099003)(22082099003)(261009223027099003)(3023799007)(4143699003)(11063799006)(5023799004)(56012099006)(261026121527099003)(261028144727099003)(261021135927099003)(261021121427099003)(261021123027099003)(261102123227099003)(261022075727099003)(261022105027099003)(261026140227099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: lQFURTOeGp52T5e8dfnc6jwwcHA2y6M13D8PEIpSln/yeLxS5hqpD7uz2X6VYD7t86IebdZ/+tJFPXTjbRJbqTceUxexjGoNZeXDYdZNdEMxzNybMFkfcAq/gED9ZkERpzjUuhkw+ge2oPiOJmv8wnIaev+mPiNrRbp3fyI2c+YNbu4QL1ZuepChaFmvYDyjJ3OVTYYANZsbqojfVu/tqrJeVOPXBgbNTTVTecEPne5MexBELsWaSJ/IiUTTBB6FKPt/gdhww0xLM2qfwTID0KOJtTWo4C6XCJD9qMgDhav74NwnurLwgofEIc0OTixGnLlUUmSgP3fIckPXsNAsXCqHy5TeC7Ls2QBOV9RgMKLcjCgIUdfaHKtC37nhb9uB/3wYN1kZFfB30y6giWTm0YdDpktC/psw/vIMcwSVetXOMI/THIOvXGP4pCkWSVFT
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 12:36:18.3135
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7df7923-3557-4c08-901f-08df495e5f53
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource: MA3PEPF00000407.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6453
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_043454_030597_C6CE58CE 
-X-CRM114-Status: GOOD (  25.77  )
+X-CRM114-CacheID: sfid-20261123_043627_471792_311A2D43 
+X-CRM114-Status: GOOD (  22.58  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -146,75 +161,449 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Laurent,
+Hi Vinicius,
 
-On Mon, Nov 23, 2026, at 12:36, Laurent Pinchart wrote:
-> On Wed, Nov 18, 2026 at 08:44:53PM +0100, Geert Uytterhoeven wrote:
->> Extend the Clock Pulse Generator driver for R-Car X5H with SCMI support,
->> to remap DT clock IDs to abstractions (clocks) offered by the SCMI
->> firmware when running on a system with SCMI, and SCMI support is
->> enabled.  Take into account some peculiarities of the current SCMI
->> firmware implementations, and fall-back to fixed-rate clocks as
->> replacements for SCMI clocks that are not available.
->> Support for bus clocks used by serial, I2C, and SPI devices is included.
->> 
->> This lets us avoid putting SCMI IDs in DT, and allows us to use the same
->> hardware description in SoC DTS for systems with and without SCMI
->> firmware.
->> 
->> For now, it is assumed SCMI clock IDs are stable, and match SCP FW
->> SDKv4.31.0 and later.
->> 
->> Suggested-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
->> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+sorry, I missed your post earlier, so made my own version of the DT 
+yesterday. So this is more like comparing this to yours ;-)
+As you saw my reply to Enzo's .dtsi and A7S .dts, I will keep the same 
+issues I mentioned there brief.
 
->> --- a/drivers/clk/renesas/r8a78000-cpg.c
->> +++ b/drivers/clk/renesas/r8a78000-cpg.c
+On 11/11/26 14:49, Vinicius Pedrosa wrote:
+> Add the device tree for the Radxa Cubie A7Z. Describe UART0, the AXP318W
+> PMIC over R-I2C0, MMC0, RTC and the bank supplies. It is based on the
+> Cubie A7S DT.
+> 
+> Unlike the A7S, this board uses BLDO5 for PG and a SY8089 regulator for
+> the PMIC's BLDO and CLDO inputs, and the microSD card-detect line has an
+> external pull-up, so no internal pull-down is used. ELDO1 only supplies
+> VDD2L for LPDDR5 and this board uses LPDDR4, so it is not described.
+> SWOUT1 only feeds ports D and J on the 40-pin header, so it is not kept
+> always-on.
 
->> @@ -140,7 +182,35 @@ static struct clk_hw **get_hws(struct r8a78000_cpg_priv *priv)
->>  
->>  	for (unsigned int i = 0; i < map->size; i++) {
->>  		fw_id = map->entries[i].fw_id;
->> -		hws[i] = fixed_hws[fw_id];
->> +		if (fw_id >= FIXED_CLK_OFFSET) {
->> +			hws[i] = fixed_hws[fw_id - FIXED_CLK_OFFSET];
->> +			continue;
->> +		}
->> +
->> +		scmi_spec.np = scmi_clk_np;
->> +		scmi_spec.args_count = 1;
->> +		scmi_spec.args[0] = fw_id;
->> +
->> +		clk = of_clk_get_from_provider(&scmi_spec);
->> +		if (IS_ERR(clk))
->> +			return dev_err_cast_probe(dev, clk,
->> +				"Failed to get SCMI clock %u\n", fw_id);
->> +
->> +		hw = __clk_get_hw(clk);
->> +		clk_put(clk);
->
-> Doesn't that leave the hw pointer possibly dangling, shouldn't you keep
-> the reference to the clock ?
+I think this stanza does not belong into the commit message, as 
+comparing to some different board is not relevant here.
+Instead you should briefly list the features/connectors of this board, 
+look at other commit messages for board .dts files.
 
-Only struct clk is reference-counted; struct clk_hw is not, and exists as
-long as the clock provider hasn't unregistered it.
+> 
+> Signed-off-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+> ---
+>   arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>   .../dts/allwinner/sun60i-a733-cubie-a7z.dts   | 286 ++++++++++++++++++
+>   2 files changed, 287 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> index 792152525b43..2eee91dcbd77 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -69,3 +69,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-h728-x96qpro+.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-avaota-a1.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-orangepi-4a.dtb
+>   dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7s.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7z.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
+> new file mode 100644
+> index 000000000000..ab3d3d70f9ff
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
+> @@ -0,0 +1,286 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
 
-Gr{oetje,eeting}s,
+I think you need a copyright line here.
 
-                                                Geert
+Also please explain the situation with the v1.10 and v1.11 versions here.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +/dts-v1/;
+> +
+> +#include "sun60i-a733.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "Radxa Cubie A7Z";
+> +	compatible = "radxa,cubie-a7z", "allwinner,sun60i-a733";
+> +
+> +	aliases {
+> +		mmc0 = &mmc0;
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                                            -- Linus Torvalds
+Please remove.
+
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	reg_ps: regulator-system-power {
+
+Please add a short comment where this power comes from (USB-C connector).
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ps";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+
+As mentioned in the other mail, please add a comment that this has been 
+added in v1.11, and v1.10 doesn't have it.
+
+> +	reg_ldo_input: regulator-ldo-input {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ldo2v5-input";
+> +		/* SY8089: 0.6 V * (1 + RP11 / RP6), 30k / 10k. */
+> +		regulator-min-microvolt = <2400000>;
+> +		regulator-max-microvolt = <2400000>;
+> +		regulator-always-on;
+> +		vin-supply = <&reg_ps>;
+> +	};
+> +
+> +	osc32k: osc32k-clk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu4 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu5 {
+> +	cpu-supply = <&reg_dcdc5>;
+> +};
+> +
+> +&cpu6 {
+> +	cpu-supply = <&reg_dcdc3>;
+> +};
+> +
+> +&cpu7 {
+> +	cpu-supply = <&reg_dcdc3>;
+> +};
+> +
+> +&mmc0 {
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+
+Same as the A7S, please add the others.
+
+> +	/* PF6 has an external 10k pull-up and reads high with a card. */
+
+"reads high with a card" is a redundant comment, since this is what 
+GPIO_ACTIVE_HIGH already says.
+Please explain the situation with the v1.10 vs. v1.11 versions here.
+And my v1.10 board needs GPIO_PULL_DOWN
+
+> +	cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;
+> +	disable-wp;
+> +	max-frequency = <50000000>;
+> +	no-1-8-v;
+
+Please remove both.
+
+> +	vmmc-supply = <&reg_swout2>;
+> +	/* The 3.3 V path uses VCC-IO; no Port F voltage switching yet. */
+> +	vqmmc-supply = <&reg_swout2>;
+
+Please remove those two lines, we will add vqmmc later.
+
+> +	status = "okay";
+> +};
+> +
+> +&osc {
+> +	clock-frequency = <26000000>;
+> +};
+> +
+> +&pio {
+> +	vcc-pb-supply = <&reg_swout2>;
+
+Please add a comment that this comes from VCC-IO. See the Cubie A5E DT.
+
+> +	vcc-pc-supply = <&reg_cldo5>;
+> +	vcc-pd-supply = <&reg_swout1>;
+> +	vcc-pe-supply = <&reg_bldo1>;
+> +	/* CLDO5 feeds VCC18-PF; the 3.3 V path uses VCC-IO. */
+> +	vcc-pf-supply = <&reg_cldo5>;
+
+As it stands this is VCC-IO, so swout2, please change that, plus the 
+VCC-IO comment.
+
+> +	vcc-pg-supply = <&reg_bldo5>;
+> +	vcc-ph-supply = <&reg_swout2>;
+
+VCC-IO comment, please.
+
+> +	vcc-pj-supply = <&reg_swout1>;
+> +	vcc-pk-supply = <&reg_bldo1>;
+> +};
+> +
+> +&r_i2c0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&r_i2c0_pl_pins>;
+> +
+> +	axp318w: pmic@36 {
+> +		compatible = "x-powers,axp318w";
+> +		reg = <0x36>;
+> +		interrupt-parent = <&nmi_intc>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <1>;
+> +
+> +		aldo156in-supply = <&reg_ps>;
+> +		aldo234in-supply = <&reg_aldo1>;
+> +		bldoin-supply = <&reg_ldo_input>;
+> +		cldoin-supply = <&reg_ldo_input>;
+
+Please add a comment about v1.10 differing.
+
+> +		dldoin-supply = <&reg_ps>;
+> +		eldoin-supply = <&reg_dcdc9>;
+> +		ips-supply = <&reg_ps>;
+> +		vin19-supply = <&reg_ps>;
+> +		vin23-supply = <&reg_ps>;
+> +		vin45-supply = <&reg_ps>;
+> +		vin678-supply = <&reg_ps>;
+> +
+> +		regulators {
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-name = "vcc-3v3";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-name = "vdd-sys";
+
+Please add the voltage: 0.8V.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-name = "vdd-cpub";
+
+ From the OPP tables I could find in the Radxa repo on github, the range 
+should be 0.8V - 1.05V. We can adjust this later when we add proper DVFS 
+support, if needed.
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc4: dcdc4 {
+> +				regulator-name = "vdd-gpu";
+> +				regulator-always-on;
+
+Voltage range should be 0.8V - 0.96V, and drop the always-on.
+
+> +			};
+> +
+> +			reg_dcdc5: dcdc5 {
+> +				regulator-name = "vdd-cpul";
+
+Voltage range 0.8V - 1.05V.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc6: dcdc6 {
+> +				regulator-name = "vcc-draml";
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc7: dcdc7 {
+> +				regulator-name = "vcc-dram";
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc8: dcdc8 {
+> +				regulator-name = "vcc-ufs-io";
+
+The voltage is 1.2V, and please drop the always-on.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dcdc9: dcdc9 {
+> +				regulator-name = "eldo-input";
+
+The schematic says 1.1V/1.25V. Can you check what it is on your board, 
+at runtime? If in doubt, go with 1.1V, this should be enough headroom 
+for the ELDO6 this supplies, with outputs 0.8V.
+
+> +				regulator-always-on;
+
+Please remove.
+
+> +			};
+> +
+> +			reg_swout1: swout1 {
+> +				regulator-name = "vcc33-lcd";
+
+Please use "vcc-pd-pj" as the name.
+
+> +			};
+> +
+> +			reg_swout2: swout2 {
+> +				regulator-name = "vcc-io-card";
+
+I used "vcc-io-ph-usb", "card" does not seem to be used.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_aldo1: aldo1 {
+> +				regulator-name = "vcc-pl";
+
+Also USB it seems, so I used "vcc-pl-usb".
+
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_bldo1: bldo1 {
+> +				regulator-name = "vcc-pe-pk-mcsi";
+
+Voltage is 1.8V.
+
+> +			};
+> +
+> +			reg_bldo2: bldo2 {
+> +				regulator-name = "vcc-lvds0";
+
+1.8V as well.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_bldo4: bldo4 {
+> +				regulator-name = "vcc18-codec";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
+> +
+> +			reg_bldo5: bldo5 {
+> +				regulator-name = "vcc-pg";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
+> +
+> +			reg_cldo1: cldo1 {
+> +				regulator-name = "vcc33-18-usb";
+
+That is a confusing name ;-) "vcc-pm-lpddr" should explain the always-on.
+
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_cldo2: cldo2 {
+> +				regulator-name = "vcc18-hdmi";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +			};
+> +
+> +			reg_cldo3: cldo3 {
+> +				regulator-name = "vcc-pll-dram";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_cldo5: cldo5 {
+> +				regulator-name = "vcc18-pf-pc";
+
+"pf" is somewhat misleading. I had "vcc-pc-combo".
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dldo1: dldo1 {
+> +				regulator-name = "vcc-efuse";
+
+Voltage is 1.8V.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_dldo6: dldo6 {
+> +				regulator-name = "vcc-ufs";
+
+Voltage is 2.5V, and no always-on should be needed.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_eldo6: eldo6 {
+> +				regulator-name = "vdd-cpus";
+
+Voltage is 0.8V.
+
+> +				regulator-always-on;
+> +			};
+> +
+> +			reg_rtc_ldo: rtc-ldo {
+> +				regulator-name = "vcc-rtc";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&r_pio {
+> +	/* PL powers the PMIC bus itself; firmware must keep ALDO1 enabled. */
+
+Probably better to copy the comment from the other DTs, and have the 
+"would-be" line inside the comment (vcc-pl-supply = <&reg_aldo1>;)
+
+Cheers,
+Andre
+
+> +	vcc-pm-supply = <&reg_aldo1>;
+> +};
+> +
+> +&rtc {
+> +	clocks = <&r_ccu CLK_BUS_R_RTC>, <&osc>, <&r_ccu CLK_R_AHB>,
+> +		 <&osc32k>;
+> +	clock-names = "bus", "hosc", "ahb", "ext-osc32k";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_pb_pins>;
+> +	status = "okay";
+> +};
+
 
