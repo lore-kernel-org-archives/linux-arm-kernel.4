@@ -2,74 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6E9606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 03:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5BE606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 03:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yJ5aBiI+;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=MYrwN4Ay
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hRtu+v1u;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=oTzJt6qn;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=d2yeAAW+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=W4LfZy3z6M6i+9hH2IjYH+xMWfI5utefQOsrdUG7c0o=; b=yJ5aBiI+7TR+vD
-	pATAeQll6L0CF7+14Gf83kYPKaCJAXIiu6QYy1fJTmJ3TPxU0Mq3GCPFWptTk4N0GAS60JVuEHdFk
-	8uMp5xxNpweMUQXFai8LUzQk/T9ZyybZC70jWgKWsQHzGf6z6DdlmxVmW9kItyGaCiYSS8bhAa7zt
-	2T5tsOEvKV2JYDwytoZOypJu0LKxWJNhtEAVC9x6EckJOCFBtkP/0wsYJyqX4ayOyJdEVEcbZcVaT
-	v4LYMFFwS0vXREJM4DcEoExkXGTC3oSP4PP/fGE2uEaTX4TW7x3y+d319so/vOx/ZDjURYNDS2B3i
-	jpyaqJ3iI75vYsnkUOCQ==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=tOMQjZfNZl0Skc/H8u9J1Nf60tDa0Xn86zNJMbt3J1c=; b=hRtu+v1uN5lS1y
+	U5GOCkGuHeGkthKCp3vRd92GtJUFCo0k1ejcJjR9SfRpDuqmf6OBQylgpyFzBbF6qhHCJFpec7VUX
+	VrjZ4AoW1Lp2Hbj7PwA0ndqmw839jaeTpgtnvD+EtmfVAmJfqJvDgTAu1Qpz4z3bt4TJ8W7qmZ6qV
+	lmat+lCY3ikf8P9a/Kzn3tBG6PEmi44KtIQ5ko5RYYx5HMeYQnTrNzyfPXhHa0b76Q3+xP2GqKTU2
+	7LcjjC/jgf03R0/d/t/AHFSJWPL0Fs+JnQJDvzQhFCq0EvkHXMSoVWEmEQeoAAOiS+E6oYgXgeYwn
+	L7vp9rPjuRXEnbQ76PMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVKtq-00000002Do0-1SQV;
-	Mon, 23 Nov 2026 03:39:26 +0000
-Received: from canpmsgout12.his.huawei.com ([113.46.200.227])
+	id 1xVKwW-00000002E8g-1wys;
+	Mon, 23 Nov 2026 03:42:12 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVKtj-00000002Dmu-2tkV
+	id 1xVKwT-00000002E7s-3uz5
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 03:39:22 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=W4LfZy3z6M6i+9hH2IjYH+xMWfI5utefQOsrdUG7c0o=;
-	b=MYrwN4AydIC7GkCsxHsHcp5MBmlfxoKIR39qAxjci4JNoZWJs7H7/FU/uTgQs9uEBbkfnHVEv
-	x7Qhmwh6nVkk15eYfC0jT6y2PnAO19PrwQCZZpAgyNVDQnUJHR/ovSc0epxLAbZS7VLnG8GQNs4
-	ZKe+ijxOuz6J1towdxP8HII=
-Received: from mail.maildlp.com (unknown [172.19.163.15])
-	by canpmsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4jXs9D56klznTwv;
-	Mon, 23 Nov 2026 11:38:24 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 0B42040578;
-	Mon, 23 Nov 2026 11:39:15 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Mon, 23 Nov
- 2026 11:39:13 +0800
-Message-ID: <eb5c7773-4c90-420f-bd2e-c930a1ec9fa4@huawei.com>
-Date: Mon, 23 Nov 2026 11:39:13 +0800
+	Mon, 23 Nov 2026 03:42:11 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AMNrmtF1310691
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:42:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tOMQjZfNZl0Skc/H8u9J1Nf60tDa0Xn86zNJMbt3J1c=; b=oTzJt6qnLd0hstbd
+	xT5GdQxklui3K8aOlQ3KlmrNk7szOErxUT/OHKDYv5tl0eR8noJQLb1H9ygwURRk
+	Le99huTrH6aQVqzpwCbzYnht6MoWDr6GmvIkNp1itUcEBysCMcY2GjpjS9pM/OBr
+	VeVoQSVgla3FrtKpWN6PvXNnLaUARUR3LpN4oZGZ2QSvDWORGQiWbB8fH09xaiUc
+	w38ZoJlfqabPhdUPIOY2IzZ4JrSdbzBdGJqynRii0FaA7Ur6vJ2PbR3IOza+DfuS
+	HJ4aB34bbOWMEdHAzTldUKyuFJearU9F+ODz0wxHp5kceA/FsFW5N5VCfcEE++7p
+	Cqt1DQ==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j32a6n42m-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:42:08 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-8a0522cdaf3so2088217b3a.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 19:42:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795405327; x=1796010127; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=tOMQjZfNZl0Skc/H8u9J1Nf60tDa0Xn86zNJMbt3J1c=;
+        b=d2yeAAW+SMCmbntQMt6q8PqYPChpLyzGGmygVWQmwDHKK8DioU3olBVO3zTXlsGqi1
+         GwpOA1Q8L/JWDxZMEw01B4Au2bvjt5oi/rOf63kinawPCQwNhzNzB14PRk3Uf12Zkv32
+         jppk0RyyQZtSptqAQUv1BwfJjxhozBjfWSdO0urlqT/KY57ek3v3JB1q/A/3iwtW0JNs
+         13CuLotXm3/19Qz/OoycKv+W/V1XcTPJNYEK7G2I8EFjrsPuPYqHaDG6GznrNi3zZT1L
+         xUcZhUc2Qs8qKpu9eCATE/neCwsKztkMj1R5Lz5y8otCxLsEfgyoCFPmImHToFwai/ES
+         rpnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795405327; x=1796010127;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=tOMQjZfNZl0Skc/H8u9J1Nf60tDa0Xn86zNJMbt3J1c=;
+        b=mkzfTok8HAEew/w6uIvAIhC3MTSdbCB9Fr3g1Bv9FkTnWkCzcGKyo9QJxVZTjz9raG
+         B0quTQ5vz61EwoQbaWANhdB63t+28Cx/I3RvIQH8tKd2jl0AXuwwVOKKWnxezXh5nXYI
+         XT62DRoDT18UcDKwy3oh/9hD3lGqj+fZGpnpDBrLjeMcR1aLbOeCg6Qqk/ks83j2VUAx
+         2NgX5m3JvPY5bzBMHbL3mHZTYr858NJZIAjwwSLSGXzFI41TXuLHlodJ4M+cyP2JaW1x
+         clLAvM2Mp7EhMADuzx+fXerb0hYzYGweBRUoZ1WNlpKdS1OM52dV4kezMfx1CHSS61yX
+         n1lA==
+X-Forwarded-Encrypted: i=1; AL+hErEOdCnnoXallawrMQdn0Rkwj+cBN1ZoX58TLfNg/maf5V9NHst639mEBH7yzZlrgH5sKfwE4Aa6RXePIaEFXd1u@lists.infradead.org
+X-Gm-Message-State: APuU4Z+V7Bw2T6ccN1advgjWtG461nO4fTJY0o4xK+XDOAdHTX+232+R
+	wAJSUqIfD5qtn/FojMoy5upJitRvoHRTEqVcsSs0NUyW2oAIJILrCmNGFhpe8mhQXzjgUXdGtzk
+	DicGIRT257ZtIjGJRDIIy8jv/rkxPfThrEeNIQ92AxsYQEsUsDirh4zWgDFHSBYNPrkWpEORkii
+	9P5g==
+X-Gm-Gg: AZFdTZeGFK7pDI5t3YERjXy+Y+QkebKi+P1wn2+WP4pkLK+NzRZJD2NlNx31sUoFaEf
+	PHP49WOg3g5qMVTIIHHLlDWpG6Fq+V6tVBvaxY3bFF7y4Dt7PRY/fPR5eSZV+dWOtCJhvesvl8w
+	vFrSVnljXh6LaPFSHb7LlRbm00LGrC4+rzVNzKw6XPiDcgb0CUPq8ebl54Nh761jp3NZBBTh+ps
+	j3R2m9fo0gYGzOx1zA6ngYV4OMHOuEF/waxdHbbzbh4sCID14+/6FN6P9X1kOwS7rxtTHWSlvdI
+	LJuuEPVtPxi8c2jC2OS/PpH2LrRIDAMPh3C5IPRds2bB1WomfEdq+DdnSz02SCT5Sp5qUm0ldhq
+	5s86WY4iLLr5pC1GvcgYj2xJJ0VZscjNrt9edrIG8aoT62cRqiQ8oTEJ1bZN+C5GLuVe/ucGeKd
+	HJmnf4RiWiroalGrexeOBiRqcUbclpCFx//xISBCmvrsl2Dw==
+X-Received: by 2002:a05:6a20:7486:b0:3fa:53f1:abf1 with SMTP id adf61e73a8af0-4014e74bf27mr10216914637.66.1795405326620;
+        Sun, 22 Nov 2026 19:42:06 -0800 (PST)
+X-Received: by 2002:a05:6a20:7486:b0:3fa:53f1:abf1 with SMTP id adf61e73a8af0-4014e74bf27mr10216896637.66.1795405326163;
+        Sun, 22 Nov 2026 19:42:06 -0800 (PST)
+Received: from [10.133.33.103] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde6cfebdbasm4362204a12.13.2026.11.22.19.42.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Nov 2026 19:42:05 -0800 (PST)
+Message-ID: <f74a9623-4522-4a30-8d50-bcc148f2b9bc@oss.qualcomm.com>
+Date: Mon, 23 Nov 2026 11:42:01 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v21 00/15] arm64: entry: Convert to Generic Entry
-To: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
-	<oleg@redhat.com>, <shuah@kernel.org>, <kees@kernel.org>,
-	<luto@amacapital.net>, <wad@chromium.org>, <peterz@infradead.org>,
-	<ada.coupriediaz@arm.com>, <linusw@kernel.org>, <kevin.brodsky@arm.com>,
-	<anshuman.khandual@arm.com>, <thuth@redhat.com>, <james.morse@arm.com>,
-	<yeoreum.yun@arm.com>, <vladimir.murzin@arm.com>, <broonie@kernel.org>,
-	<ryan.roberts@arm.com>, <liqiang01@kylinos.cn>,
-	<mathieu.desnoyers@efficios.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
-References: <20261111114225.3977243-1-ruanjinjie@huawei.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20261111114225.3977243-1-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemk200008.china.huawei.com (7.202.194.74)
+Subject: Re: [PATCH 2/3] cpufreq: kirkwood: Put clocks on error and in remove
+To: shyckless@gmail.com, rafael@kernel.org, viresh.kumar@linaro.org,
+        krzk@kernel.org, peter.griffin@linaro.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, alim.akhtar@samsung.com,
+        linux-kernel@vger.kernel.org,
+        Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
+References: <20261122-cpufreq-leaks-v1-0-96fc17ff7339@gmail.com>
+ <20261122-cpufreq-leaks-v1-2-96fc17ff7339@gmail.com>
+Content-Language: en-US
+From: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
+In-Reply-To: <20261122-cpufreq-leaks-v1-2-96fc17ff7339@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: lVGT41urTDauT3GsGs1EgSlXrRDcvFX1
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDAxNCBTYWx0ZWRfXyZJhRVAWsV1f
+ UBY5qIcZcqOqPcWBvyyizhuj7jwynafhYUxUG8VTgQxIf2JvSmcOf4GJE4CWPw2Ta+nYKc6c/Jz
+ oyDtrMdR+TkY2ri0ZPnfu+YsN/1unXI=
+X-Proofpoint-ORIG-GUID: lVGT41urTDauT3GsGs1EgSlXrRDcvFX1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDAxNCBTYWx0ZWRfX7q3cj9YkJHgQ
+ H7N1eiSCGba8zLaWO0Bpca2M2KhOJR4JJWrg9wSRVi0cCSo9oz1Iwvzt6THNPHbFTiZEf2XHNO4
+ FUSuHAEuK3joXwMpxqOVAviVFIAA5hBTGrZVPhAjpVX0K3hoQAAIVPruEhU5z3FyAn22G7z9SOr
+ hwBYsR1abg+1bohys+2LYGP/FBXokcaos1JUpQFarDb6835G6c0xO7zC5L0rEUIsm3QWudkeNAn
+ oHUa1wrEwxtvf+Knpxr93/Yhx0vMqvVZDifYR7CpjPx0wjXA5i2lLmtTaLJSXUB7N9Stwqt4+D+
+ l75G1odtnmVl6lUU29bX6rwqEuYHev/mWXehPglyvgEYNG6JZzaF/GDbhxizJ7tuOGBDX2fRj4H
+ CBzGwji5MnaEyJwdNqxx3dXugnde6qdlVmAmChlp6aRfykCiw4jBCqVR8ji4rwKMB81MynTcMux
+ WS9SlGVJFfAjJb+Ty9Q==
+X-Authority-Analysis: v=2.4 cv=UbHE26SN c=1 sm=1 tr=0 ts=6b03b610 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=EUspDBNiAAAA:8 a=9A-NSSyiqZj1DCQBHqoA:9 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-22_06,2026-11-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230014
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_193920_031673_8BDFA26D 
-X-CRM114-Status: GOOD (  32.23  )
+X-CRM114-CacheID: sfid-20261122_194210_152386_6280D9DC 
+X-CRM114-Status: GOOD (  25.05  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,204 +156,103 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On 11/22/2026 7:55 PM, Suyuan Wang via B4 Relay wrote:
+> From: Suyuan Wang <stevewong@hust.edu.cn>
+> 
+> kirkwood_cpufreq_probe() gets three clocks with of_clk_get_by_name():
+> cpu_clk, ddrclk and powersave. None of them is ever released with
+> clk_put(). The error paths only disable and unprepare the clocks, and
+> kirkwood_cpufreq_remove() does the same. So the clock references leak
+> when probe fails (for example on -EPROBE_DEFER) and on every unbind.
+> 
+> Add the missing clk_put() calls to the error paths and to remove. The
+> "Unable to prepare" paths now jump to new labels that only put the clock
+> that failed to enable.
+> 
+> Found with a static analysis tool and checked by hand.
+> 
+> Fixes: 2a4bd9f0db24 ("cpufreq: kirkwood: Add a cpufreq driver for Marvell Kirkwood SoCs")
+> Co-developed-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
+> Signed-off-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
+> Signed-off-by: Suyuan Wang <stevewong@hust.edu.cn>
+
+Reviewed-by: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
 
 
-在 2026/11/11 19:42, Jinjie Ruan 写道:
-> This series converts arm64 to the generic entry infrastructure.
+> ---
+>   drivers/cpufreq/kirkwood-cpufreq.c | 15 ++++++++++++---
+>   1 file changed, 12 insertions(+), 3 deletions(-)
 > 
-> Currently, architectures such as x86, RISC-V, LoongArch, PowerPC and
-> S390 use generic entry, which significantly reduces maintenance burden
-> and improves code elegance.  arm64 already adopted generic IRQ entry
-> in commit b3cf07851b6c ("arm64: entry: Switch to generic IRQ entry"),
-> making it the right time to complete the conversion.
-> 
-> This work brings arm64 in line with other major architectures,
-> reducing duplicated code and enabling future improvements like
-> Syscall User Dispatch and rseq time slice extension optimizations.
-> 
-> What this series does
-> =====================
-> 
-> Patch  1-2: Fix two issues related to rseq and pseudo single-step.
-> Patch 3-12: Do some minor refactoring to gradually align the generic
->             entry code, without functional changes intended.
-> Patch   13: Officially switch ARM64 to the generic entry, used the
->             functions provided by the framework, and deleted the
->             duplicate code corresponding to ARM64.
-> Patch   14: Inline el0_svc_common() function to prevent performance
->             regression.
-> Patch   15: Add related ptrace test cases and rseq test cases for two
->             bug fixes.
-
-Gentle Ping.
-
-> 
-> Testing
-> ========
-> 
-> Observable (non-ABI) changes worth calling out:
-> 
-> - The traceable functions on the syscall path change: syscall_trace_enter,
->   syscall_trace_exit and el0_svc_common.constprop.0 are replaced by
->   trace_syscall_enter, trace_syscall_exit and syscall_enter_audit, the
->   same names x86, RISC-V, LoongArch already expose.
-> 
-> - CONFIG_DEBUG_RSEQ becomes unselectable on arm64 once GENERIC_ENTRY is
->   set (rseq_syscall() becomes a no-op stub).  The equivalent check is
->   done by __rseq_debug_syscall_return(), enabled with the "rseq_debug="
->   boot option.
-> 
-> The new added selftests pass, and the rseq test also passes with
-> "rseq_debug=1" after the conversion.
-> 
-> On a KVM VM (2 vCPU pinned, LOCKDEP off), with the same config, the
-> syscall hot path shows no measurable regression. Each row below is
-> the mean of 10 runs:
-> 
->     | Benchmark                         | baseline | generic entry |
->     | --------------------------------- | -------- | ------------- |
->     | UnixBench System Call Overhead    | 879982   | 877908        |
->     | perf bench syscall basic 1M (ns)  | 197.29   | 197.37        |
-> 
-> Both differences are within the noise, so there is no measurable impact
-> on syscall overhead.
-> 
-> Stress-ng (syscall and cpu) and the kselftests (breakpoints, arm64/abi,
-> arm64/fp, vDSO) were also run and all pass.
-> 
-> The hackbench, ptrace stress, Pseudo-NMI and rr test suite [1] reported
-> for v20 were not repeated as the code unchanged apart from the rebase.
-> 
-> On gVisor with systrap mode, the Syscall User Dispatch (SUD) feature
-> yields a slightly lower performance gain on arm64 (3% ~ 5%), similar to
-> that on x86 [2].
-> 
-> Result: the average over 1M getpid calls, ns/op
-> 
->     | KVM VM Configuration | SUD    | no-SUD | Savings % |
->     | -------------------  | -----  | -------| --------- |
->     | 2 vCPU, pinned       | 4269.8 | 4509.5 | 5.3%      |
->     | 4 vCPU, pinned       | 4175.4 | 4369.1 | 4.4%      |
->     | 8 vCPU, pinned       | 4352.6 | 4485.4 | 3.0%      |
-> 
-> Note that this series does not yet enable SUD or the rseq time slice
-> extension on arm64: SUD additionally needs
-> ARCH_SUPPORTS_SYSCALL_USER_DISPATCH [3] and the rseq slice extension
-> needs HAVE_GENERIC_TIF_BITS [4], neither of which arm64 selects today.
-> The numbers above are the motivation for enabling them in a follow-up.
-> 
-> The new selftests and tests are helped by an agent.
-> 
-> Testing follow-up that still requires real hardware:
-> 
-> - MTE: run the MTE selftests on real hardware; part of them do not run
->   under QEMU.
-> 
-> [1]: https://github.com/rr-debugger/rr/wiki/Building-And-Installing#tests
-> [2]: https://github.com/google/gvisor/commit/a45d6227b521012109cde9a942d644d778eb773b
-> [3]: https://lore.kernel.org/all/20260721081858.1169276-16-ruanjinjie@huawei.com/
-> [4]: https://lore.kernel.org/all/20260320104222.1381274-1-ruanjinjie@huawei.com/
-> 
-> The series is rebased on v7.4-rc1 and also available at:
->         https://github.com/ruanjinjie-eng/linux/commits/arm64_generic_entry_v21
-> 
-> Changes in v21:
-> - Rebased on v7.4-rc1.
-> - Pseudo-single-step patch rewritten as a bugfix.
-> - Rseq patch rewritten as a bugfix and moved to the front.
-> - Retitle and update the commit message.
-> - Selftests: replace the 2 SYSEMU tests with 5 tests that reproduce
->   the problems fixed by the commit ac2081cdc4d99 ("arm64: ptrace:
->   Consistently use pseudo-singlestep exceptions") series and the rseq
->   issue.
-> - Solve the sashiko commit message issue.
-> - Link to v20: https://lore.kernel.org/all/20260930101805.1770358-1-ruanjinjie@huawei.com/
-> 
-> Changes in v20:
-> - Add a kselftest covering the syscall-exit pseudo-step
->   and single-step behaviour.
-> - Reword the first patch: it skips the pseudo-step for the emulated
->   syscall rather than "fixing a redundant exit stop", and drop the
->   Fixes: tag and Reviewed-by.
-> - Add Tested-by.
-> - Cover letter: document the observable changes and the testing
->   follow-ups.
-> - Link to v19: https://lore.kernel.org/all/20260922035510.1090299-1-ruanjinjie@huawei.com/
-> 
-> Changes in v19:
-> - Rebased on v7.3-rc4.
-> - Fix build problem as Karl pointed out.
-> - Remove has_syscall_work() later to make it more clear.
-> - Add gvisor test data.
-> - Link to v18: https://lore.kernel.org/all/20260902095537.602517-2-ruanjinjie@huawei.com/
-> 
-> For changes in v7 to v17, please refer to the individual patch threads:
-> - v17: https://lore.kernel.org/all/20260721081858.1169276-1-ruanjinjie@huawei.com/
-> - v16: https://lore.kernel.org/all/20260629130616.642022-1-ruanjinjie@huawei.com/
-> - v15: https://lore.kernel.org/all/20260511092103.1974980-1-ruanjinjie@huawei.com/
-> - v14: https://lore.kernel.org/all/20260320102620.1336796-1-ruanjinjie@huawei.com/
-> - v13: https://lore.kernel.org/all/20260317082020.737779-1-ruanjinjie@huawei.com/
-> - v12: https://lore.kernel.org/all/20260203133728.848283-1-ruanjinjie@huawei.com/
-> - v11: https://lore.kernel.org/all/20260128031934.3906955-1-ruanjinjie@huawei.com/
-> - v10: https://lore.kernel.org/all/20251222114737.1334364-1-ruanjinjie@huawei.com/
-> - v9: https://lore.kernel.org/all/20251204082123.2792067-1-ruanjinjie@huawei.com/
-> - v8: https://lore.kernel.org/all/20251126071446.3234218-1-ruanjinjie@huawei.com/
-> - v7: https://lore.kernel.org/all/20251117133048.53182-1-ruanjinjie@huawei.com/
-> 
-> Jinjie Ruan (15):
->   arm64: ptrace: Fix spurious pseudo-single-step for
->     PTRACE_SYSEMU_SINGLESTEP
->   arm64: ptrace: Check rseq critical section before reporting syscall
->     exit
->   arm64: ptrace: Add syscall_enter_audit() helper
->   arm64: ptrace: Open-code seccomp check in syscall_trace_enter()
->   arm64: ptrace: Rename and clean up syscall_trace_enter()
->   arm64: syscall: Invert the exit-path flags check in el0_svc_common()
->   arm64: ptrace: Pass thread flags to trace enter/exit
->   arm64: ptrace: Extract arm64_syscall_exit_to_user_mode_work() helper
->   arm64: ptrace: Only run syscall exit work when exit work flags are set
->   arm64: syscall: Use exit-specific flags check in el0_svc_common()
->   arm64: syscall: Simplify el0_svc_common() syscall exit path
->   arm64: ptrace: Return bool from arm64_syscall_trace_enter()
->   arm64: entry: Convert to generic entry
->   arm64: Inline el0_svc_common()
->   selftests/arm64: Add ptrace single-step and rseq syscall-exit tests
-> 
->  arch/arm64/Kconfig                            |   2 +-
->  arch/arm64/include/asm/entry-common.h         |  77 ++++++++
->  arch/arm64/include/asm/syscall.h              |   5 +-
->  arch/arm64/include/asm/thread_info.h          |  16 +-
->  arch/arm64/kernel/debug-monitors.c            |   8 +
->  arch/arm64/kernel/entry-common.c              |   2 +-
->  arch/arm64/kernel/ptrace.c                    | 115 ------------
->  arch/arm64/kernel/signal.c                    |   2 +-
->  arch/arm64/kernel/syscall.c                   |  34 ++--
->  tools/testing/selftests/arm64/Makefile        |   2 +-
->  tools/testing/selftests/arm64/ptrace/Makefile |  12 ++
->  .../selftests/arm64/ptrace/ptrace_common.h    | 101 ++++++++++
->  .../selftests/arm64/ptrace/rseq_syscall_pc.c  | 130 +++++++++++++
->  .../selftests/arm64/ptrace/rseq_syscall_pc.h  |  22 +++
->  .../arm64/ptrace/rseq_syscall_pc_asm.S        |  45 +++++
->  .../arm64/ptrace/single_step_signal_handler.c | 121 ++++++++++++
->  .../arm64/ptrace/single_step_spsr_ss.c        |  79 ++++++++
->  .../arm64/ptrace/single_step_syscall_stop.c   | 138 ++++++++++++++
->  .../arm64/ptrace/sysemu_singlestep.c          | 172 ++++++++++++++++++
->  19 files changed, 923 insertions(+), 160 deletions(-)
->  create mode 100644 tools/testing/selftests/arm64/ptrace/Makefile
->  create mode 100644 tools/testing/selftests/arm64/ptrace/ptrace_common.h
->  create mode 100644 tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.c
->  create mode 100644 tools/testing/selftests/arm64/ptrace/rseq_syscall_pc.h
->  create mode 100644 tools/testing/selftests/arm64/ptrace/rseq_syscall_pc_asm.S
->  create mode 100644 tools/testing/selftests/arm64/ptrace/single_step_signal_handler.c
->  create mode 100644 tools/testing/selftests/arm64/ptrace/single_step_spsr_ss.c
->  create mode 100644 tools/testing/selftests/arm64/ptrace/single_step_syscall_stop.c
->  create mode 100644 tools/testing/selftests/arm64/ptrace/sysemu_singlestep.c
+> diff --git a/drivers/cpufreq/kirkwood-cpufreq.c b/drivers/cpufreq/kirkwood-cpufreq.c
+> index 24b285cbeb8d..e85658081c07 100644
+> --- a/drivers/cpufreq/kirkwood-cpufreq.c
+> +++ b/drivers/cpufreq/kirkwood-cpufreq.c
+> @@ -125,7 +125,7 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
+>   	err = clk_prepare_enable(priv.cpu_clk);
+>   	if (err) {
+>   		dev_err(priv.dev, "Unable to prepare cpuclk\n");
+> -		goto out_node;
+> +		goto out_put_cpu;
+>   	}
+>   
+>   	kirkwood_freq_table[0].frequency = clk_get_rate(priv.cpu_clk) / 1000;
+> @@ -140,7 +140,7 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
+>   	err = clk_prepare_enable(priv.ddr_clk);
+>   	if (err) {
+>   		dev_err(priv.dev, "Unable to prepare ddrclk\n");
+> -		goto out_cpu;
+> +		goto out_put_ddr;
+>   	}
+>   	kirkwood_freq_table[1].frequency = clk_get_rate(priv.ddr_clk) / 1000;
+>   
+> @@ -153,7 +153,7 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
+>   	err = clk_prepare_enable(priv.powersave_clk);
+>   	if (err) {
+>   		dev_err(priv.dev, "Unable to prepare powersave clk\n");
+> -		goto out_ddr;
+> +		goto out_put_powersave;
+>   	}
+>   
+>   	err = cpufreq_register_driver(&kirkwood_cpufreq_driver);
+> @@ -167,10 +167,16 @@ static int kirkwood_cpufreq_probe(struct platform_device *pdev)
+>   
+>   out_powersave:
+>   	clk_disable_unprepare(priv.powersave_clk);
+> +out_put_powersave:
+> +	clk_put(priv.powersave_clk);
+>   out_ddr:
+>   	clk_disable_unprepare(priv.ddr_clk);
+> +out_put_ddr:
+> +	clk_put(priv.ddr_clk);
+>   out_cpu:
+>   	clk_disable_unprepare(priv.cpu_clk);
+> +out_put_cpu:
+> +	clk_put(priv.cpu_clk);
+>   out_node:
+>   	of_node_put(np);
+>   
+> @@ -182,8 +188,11 @@ static void kirkwood_cpufreq_remove(struct platform_device *pdev)
+>   	cpufreq_unregister_driver(&kirkwood_cpufreq_driver);
+>   
+>   	clk_disable_unprepare(priv.powersave_clk);
+> +	clk_put(priv.powersave_clk);
+>   	clk_disable_unprepare(priv.ddr_clk);
+> +	clk_put(priv.ddr_clk);
+>   	clk_disable_unprepare(priv.cpu_clk);
+> +	clk_put(priv.cpu_clk);
+>   }
+>   
+>   static struct platform_driver kirkwood_cpufreq_platform_driver = {
 > 
 
+
+-- 
+Thx and BRs,
+Zhongqiu Han
 
