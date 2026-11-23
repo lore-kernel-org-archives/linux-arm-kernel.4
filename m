@@ -2,68 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B93A606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C14606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EAQfVi1+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OujbhL8g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H3MsR6nJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dsotbfrG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=9Z13M2q1BEju2I9bduqQgoLJT03MD/wXP6Ev3AKsXE8=; b=EAQfVi1+Yz94bMfj7P5P2c7wXc
-	ZT9IFaJ2svRJdWsHlOMartK3OcZ5cAs9YXtjNeE80Pa3fxyvDRqQQqIeND+IO/s5OyCmRNS0YlK7F
-	djTp/N3a+l8Bc0lRrig+Twy8bx7taIh7GjqO4RnfjmKpdgGXAvOcs1JoN6wgX0EMDEddExvtcFQHS
-	RiRitZt0vSqnPJEajRU3i/o4lWrB6CN1nW8SIV7jV2K+QZv7XfUedB33aIF4wWJntGD4o7TRtwyk/
-	0CzvOC+o2xq1jvXFmg7m+8JF8+kGLzuUtAe4MH5OQLmH3cXqmQs/JtUXW8/cF40MfXBk0XLbhTZHO
-	WvSpnv2A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=JNW9jAUBmXvkOgGI+ui/EiNQfjcu4cOJrlbko1e1Y0A=; b=H3MsR6nJxKGIq+
+	SzylER+tlQ/SP3Arcl5kMqMMJQSo6Dawo7AY0aixE3OO5Im9Btql0fbeLPaz48hPajRRzEpbTwUoB
+	NZyqOWXij3k47Y8SlU4ITeoE/DwOxifqYT1SK9EZt9iVMxriCeahu+XZw0Z45eM3jKAFF+/GUkPRh
+	FEa2MFZ8HkntuJsXDo7g6YM2fY0AXk6AwKUSKjF9YLvCaLJ+fQ5PshKr2aoNaB5hQitFzgbE/u+zH
+	mlhti4mP7WFINmdY9RV1XrSqj6xkLodUgMUcbup85Z8tDkkTgm0y/E0dVQA1mHv4RlfH5xzlGy7Q/
+	+8MPjZV2t8i3hX5L3xHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaIk-00000004mzp-3eqa;
-	Mon, 23 Nov 2026 20:06:10 +0000
+	id 1xVaEQ-00000004mWc-3lwI;
+	Mon, 23 Nov 2026 20:01:46 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaIj-00000004mzh-2GuQ
+	id 1xVaE0-00000004mQJ-0dFN
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 20:06:09 +0000
+	Mon, 23 Nov 2026 20:01:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AD9C0605F9;
-	Mon, 23 Nov 2026 20:06:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E2F1F000C6;
-	Mon, 23 Nov 2026 20:06:07 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 97C17624D2;
+	Mon, 23 Nov 2026 20:01:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAFDE1F000D0;
+	Mon, 23 Nov 2026 20:01:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795464368;
-	bh=9Z13M2q1BEju2I9bduqQgoLJT03MD/wXP6Ev3AKsXE8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=OujbhL8g4RjTPcaG7WStbC7wPRVKD9zNCUxUHNvz9yRdzjeEK5cLjMCFEGTf7tQLn
-	 SNTeOXnILyC+R8t7hohjDTuwu7ZxJ4tGblUEQnq3/jV3GOCFoKLrt9PAULrOg9Xc/l
-	 3G7rUInCJ5SvfOKfRMrBvS9SScrLa9dAKy6H0H/r7gvIB71I9qNg7I8USl8kfs3wrj
-	 gQY9PzLbdSGZn2I+SkWnziuwMtS9bAnmgLOjCoFzNTXY2e4918CxcXgONZvWy79RlA
-	 ARoEdVbJUpxF6HyGTirp6ggHj2sW3ddKU3UX86/QudDOMVQLpr4UI4ya8DzCrrFW9k
-	 2XDjFBPZAnRzw==
-Subject: Re: [PATCH net-next] net: stmmac: Advertise TX checksum offload only
- when supported
-From: netdev-bot+sashiko@kernel.org
-To: prabhakar.csengg@gmail.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
- prabhakar.csengg+renesas@gmail.com, biju.das.jz@bp.renesas.com,
- fabrizio.castro.jz@renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
-Date: Mon, 23 Nov 2026 20:06:07 +0000
-Message-ID: <179546436704.3135.12593345717335656860@kernel.org>
-In-Reply-To: <20261119185016.1789843-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20261119185016.1789843-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1795464075;
+	bh=JNW9jAUBmXvkOgGI+ui/EiNQfjcu4cOJrlbko1e1Y0A=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=dsotbfrGeOlzM3LXOZvq1dVrlbv5kwj3v85bUIAAIMeo+wzSth6qdDRqmpFlY/oug
+	 UggUto/JhbjRG2UgcvsyhhCTbVUJrFobLH4eXANobdoA0wZSdtrPU02P0nAJSyzE2J
+	 Woej5Mi+nenM6kse0X0MWzGH0kRBJdf6DXjG2mMb/N/2AgReT5QPaYViN4Gou+pweB
+	 neGUbC2VCcUZBIVTWzBZVq4TsZDC/ZVkr2oK2jGR8hJK9WHCDt5XYed4zTvfQwN2zR
+	 CkoT89q9DI/KM2ESiAZEOGVY0x+HnPt1YZVnupjz7F358vrWGRalBGWvxrwVaJMOuA
+	 ETPH8ESNo7S5Q==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Peter Hartley <peter.hartley@sigmatel.com>,
+	dmitry pervushin <dpervushin@embeddedalley.com>,
+	Wolfram Sang <kernel@pengutronix.de>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Wim Van Sebroeck <wim@iguana.be>,
+	linux-rtc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH 07/10] rtc: stmp3xxx: unregister child watchdog platform device on unbind
+Date: Mon, 23 Nov 2026 19:59:18 +0000
+Message-ID: <20261123200012.502284-8-lee@kernel.org>
+X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
+In-Reply-To: <20261123200012.502284-1-lee@kernel.org>
+References: <20261123200012.502284-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,151 +78,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issue(s) to consider.
+stmp3xxx_wdt_register() creates and registers the child
+"stmp3xxx_rtc_wdt" platform device without tracking or unregistering it
+when the parent RTC driver unbinds, and also assigns static wdt_pdata
+directly to dev.platform_data where platform_device_release() passes it
+to kfree().  After unbind, devres unmaps rtc_data->io and frees
+rtc_data while the parent drvdata is cleared, so subsequent watchdog
+operations or reboot notifications invoking stmp3xxx_wdt_set_timeout()
+dereference torn-down parent state.
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 1
+Register the child platform device via platform_device_register_data()
+so its platform data is heap-allocated, and tie
+platform_device_unregister() to the parent device with
+devm_add_action_or_reset() so the watchdog device is torn down before
+parent resources are released.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Fixes: 1a71fb84fda6 ("rtc: stmp3xxx: add wdt-accessor function")
+Closes: https://sashiko.dev/#/bug/linux-4ddbfe9c-a03c-4a01-a3ce-357545121630
+Cc: stable@vger.kernel.org
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
+ drivers/rtc/rtc-stmp3xxx.c | 29 +++++++++++++++++------------
+ 1 file changed, 17 insertions(+), 12 deletions(-)
 
-- [Medium] The new advertisement gate in __stmmac_dvr_probe() trusts
-  plat->tx_coe.
-- [Low] The commit message presents this as a bug fix ('This can cause
-  DSA user ports to inherit checksum offload through vlan_features…
-
---
-
-net: stmmac: Advertise TX checksum offload only when supported
-
-With this patch, __stmmac_dvr_probe() adds NETIF_F_IP_CSUM and
-NETIF_F_IPV6_CSUM to hw_features only when plat->tx_coe is set.
-Previously they were always advertised. The goal is to stop DSA user
-ports from inheriting TX checksum offload through vlan_features when the
-conduit can't do it, for example in threshold DMA mode.
-
-> The driver unconditionally advertises TX checksum offload, even when
-> the hardware capability check disables it, such as when threshold DMA
-> mode is selected. This can cause DSA user ports to inherit checksum
-> offload through vlan_features despite the conduit not supporting it.
-
-[Severity: Low]
-This reads as a bug fix, but there's no Fixes: tag, and the message
-doesn't say what actually breaks. Is this meant for net or net-next?
-
-Before this patch the conduit's own dev->features was already correct.
-stmmac_fix_features() removes the TX checksum bits:
-
-stmmac_fix_features() {
-    ...
-	if (!priv->plat->tx_coe)
-		features &= ~NETIF_F_CSUM_MASK;
-    ...
-}
-
-So only hw_features and vlan_features were wrong.
-
-For header-tagged DSA traffic, validate_xmit_skb()->skb_csum_hwoffload_help()
-on the conduit already falls back to software checksums. Also,
-stmmac_features_check() drops CSUM for non-IP ethertypes. In that case
-the only effect looks like wrong feature reporting.
-
-Wrong L4 checksums on the wire would come from trailer taggers that rely
-on the conduit (tag_trailer, tag_xrs700x). Is that the case this patch
-fixes, and could the message say so?
-
-There is also a change users can see in ethtool when tx_coe is false.
-tx-checksumming on the stmmac netdev now shows "off [fixed]" instead of
-"off [requested on]". Should the message mention that as well?
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index f256244ce0d11..8cb1e3b4030e2 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -8224,8 +8224,9 @@ static int __stmmac_dvr_probe(struct device *device,
->  	ndev->xdp_metadata_ops = &stmmac_xdp_metadata_ops;
->  	ndev->xsk_tx_metadata_ops = &stmmac_xsk_tx_metadata_ops;
->  
-> -	ndev->hw_features = NETIF_F_SG | NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM |
-> -			    NETIF_F_RXCSUM;
-> +	ndev->hw_features = NETIF_F_SG | NETIF_F_RXCSUM;
-> +	if (priv->plat->tx_coe)
-> +		ndev->hw_features |= NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM;
-
-[Severity: Medium]
-On cores without the DMA HW feature register, does plat->tx_coe reflect
-threshold DMA mode by the time this check runs?
-
-The threshold-mode override is applied only inside the hw_cap_support
-branch of stmmac_hw_init():
-
-stmmac_hw_init() {
-    ...
-	if (priv->hw_cap_support) {
-		...
-		/* TXCOE doesn't work in thresh DMA mode */
-		if (priv->plat->force_thresh_dma_mode)
-			priv->plat->tx_coe = false;
-		else
-			priv->plat->tx_coe = priv->dma_cap.tx_coe;
-		...
-	} else {
-		dev_info(priv->device, "No HW DMA feature register supported\n");
-	}
-    ...
-}
-
-Older GMACs such as 3.40a don't have this register. There,
-dwmac1000_get_hw_feature() reads 0 and returns -EOPNOTSUPP, so the else
-branch runs and tx_coe keeps the value the platform set.
-
-For "snps,dwmac-3.40a", stmmac_probe_config_dt() sets that value
-statically:
-
-	if (of_device_is_compatible(np, "snps,dwmac-3.40a")) {
-		...
-		plat->tx_coe = true;
-
-It reads "snps,force_thresh_dma_mode" for any compatible. Nothing makes
-the two settings agree.
-
-If both are set, stmmac_dma_operation_mode() checks force_thresh_dma_mode
-first:
-
-	if (priv->plat->force_thresh_dma_mode) {
-		rxmode = tc;
-	} else if (priv->plat->force_sf_dma_mode || priv->plat->tx_coe) {
-
-The TX channels are then programmed in threshold mode with tx_threshold[],
-while tx_coe stays true.
-
-In that setup the new check still adds NETIF_F_IP_CSUM and
-NETIF_F_IPV6_CSUM to hw_features, features and vlan_features. That is the
-DSA case the commit message describes. stmmac_fix_features() keeps the
-bits because it also checks only tx_coe. stmmac_xmit() then requests HW
-checksum insertion for CHECKSUM_PARTIAL skbs.
-
-The driver comment says TX COE doesn't work in threshold mode. If the
-hardware really skips it, won't those frames go out with only the
-pseudo-header partial checksum?
-
-No in-tree DT seems to combine dwmac-3.40a with
-snps,force_thresh_dma_mode (spear3xx.dtsi uses 3.40a without it). This
-may not be reachable with current in-tree users.
-
-Would it fix this to move the force_thresh_dma_mode check that clears
-tx_coe out of the hw_cap_support branch?
-
+diff --git a/drivers/rtc/rtc-stmp3xxx.c b/drivers/rtc/rtc-stmp3xxx.c
+index d79e282e3817..a5281b519540 100644
+--- a/drivers/rtc/rtc-stmp3xxx.c
++++ b/drivers/rtc/rtc-stmp3xxx.c
+@@ -92,24 +92,29 @@ static void stmp3xxx_wdt_set_timeout(struct device *dev, u32 timeout)
+ 	}
+ }
+ 
+-static struct stmp3xxx_wdt_pdata wdt_pdata = {
++static const struct stmp3xxx_wdt_pdata wdt_pdata = {
+ 	.wdt_set_timeout = stmp3xxx_wdt_set_timeout,
+ };
+ 
++static void stmp3xxx_wdt_unregister(void *data)
++{
++	platform_device_unregister(data);
++}
++
+ static void stmp3xxx_wdt_register(struct platform_device *rtc_pdev)
+ {
+-	int rc = -1;
+-	struct platform_device *wdt_pdev =
+-		platform_device_alloc("stmp3xxx_rtc_wdt", rtc_pdev->id);
+-
+-	if (wdt_pdev) {
+-		wdt_pdev->dev.parent = &rtc_pdev->dev;
+-		wdt_pdev->dev.platform_data = &wdt_pdata;
+-		rc = platform_device_add(wdt_pdev);
+-		if (rc)
+-			platform_device_put(wdt_pdev);
+-	}
++	struct platform_device *wdt_pdev;
++	int rc;
+ 
++	wdt_pdev = platform_device_register_data(&rtc_pdev->dev,
++						 "stmp3xxx_rtc_wdt",
++						 rtc_pdev->id, &wdt_pdata,
++						 sizeof(wdt_pdata));
++	rc = PTR_ERR_OR_ZERO(wdt_pdev);
++	if (!rc)
++		rc = devm_add_action_or_reset(&rtc_pdev->dev,
++					      stmp3xxx_wdt_unregister,
++					      wdt_pdev);
+ 	if (rc)
+ 		dev_err(&rtc_pdev->dev,
+ 			"failed to register stmp3xxx_rtc_wdt\n");
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261119185016.1789843-1-prabhakar.mahadev-lad.rj%40bp.renesas.com
+2.56.1.750.gf70dc682cf-goog
+
 
