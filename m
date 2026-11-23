@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F6F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70349606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xuo/nPHf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Nc3Cp1Yy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4UvdBHbh;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=d2pLYXdw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Xt4XcogETaPg/vLPHA+ZVa2mgH1C1Y+V+9gARYxKDCo=; b=xuo/nPHfaF0kyvZ/nyXpfudSHf
-	TzWIaZZscDBM7ZSNKSnIHBSY4CFStnuSznsMdRbIa5rQHaAd127rpfjwBDBhRFMqUk25AKWpeTV/u
-	Dgt3eOvi5bOJArDBOWfxDS8GXyS6ELPc62w0XFZCIkHsFXndeks1ce4v/D/ae9ysw+WtYxc78zZnG
-	8a4zz/frQw+jge+y7gvIZ38QIRyBh/ELjob7vfE/sW1GWKOtbrDkKd0wawQAzuLggofdK18dzQbwh
-	qdKG/IW753dKso3M9bYMXnhBPtloWd0WqV9BUlxqOPZjXU+YgXmZ3n4TGcfWUgiQwkFF5fUJt45HF
-	JJPNEvxw==;
+	bh=T6qSvEjZyD41I87wlBj9dRMtlhR3Lhe1Gpro/JPPIOw=; b=4UvdBHbhbyPGM7PJr1h/FnxqoR
+	0S4aL1LBWjesSPn++S4wF6F13S+FxmGYouQ371sb8/SURf9SuZzqgF7HXhSX3Bmdb+vs4VQNPbJhQ
+	Vy5YyXBxqlEayRbdtyeInAR+qZU40iS1Kk/VKqzHIaBRebybznx4MN98KDjLNW+OWEmyl38ewqVEj
+	4n+rLNHfiprMCjs7uBJZ60xekoBpbu5hyPmp8KjSxwaInkXBmF19cikz42gk08QR7YH5DrIshdZ/1
+	CBJ+Qc8CNFT3YZts9MyB+vwxFKsrySTYu/R5wFP01y4bKSKlva2yo1RWCoOhNtzw7UTQwg4bScKMU
+	DaPE9Yzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVCj-00000003lZF-3tDj;
-	Mon, 23 Nov 2026 14:39:37 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVVCu-00000003lbd-0RY8;
+	Mon, 23 Nov 2026 14:39:48 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVCi-00000003lYs-1k2u
+	id 1xVVCk-00000003lZG-0wop
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 14:39:36 +0000
+	Mon, 23 Nov 2026 14:39:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3026A43495;
+	by sea.source.kernel.org (Postfix) with ESMTP id D64A140E16;
+	Mon, 23 Nov 2026 14:39:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A073E1F000C0;
 	Mon, 23 Nov 2026 14:39:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C08AE1F000C6;
-	Mon, 23 Nov 2026 14:39:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795444775;
-	bh=Xt4XcogETaPg/vLPHA+ZVa2mgH1C1Y+V+9gARYxKDCo=;
+	s=k20260515; t=1795444777;
+	bh=T6qSvEjZyD41I87wlBj9dRMtlhR3Lhe1Gpro/JPPIOw=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Nc3Cp1YyqxS8+n1+wQNwrlyR/It0roSLBI26bH8bkouZdaqwqYuJYwYf+s3WJ80oT
-	 JbyrajvaMQD2SfQUoCgGMeklH7PEqhF3bJYzYdyhoydD2aibO2WY640cy2XR5FGD8i
-	 GfYl/sAG3oz3Mu2nUGsYnDUOpij8MvFIv+92qegDdRRVsA8oSt/zZpQFP8F9+61ELT
-	 WhaVx6cUIpdvBhYiQiTRXbs44844xRqOvA5NsxG6VBuCWbHrZBBl3Tb2iECVzAnj0J
-	 dXF0hVkLJQrW7tBYH6rkOUnJXLgmH7aCMV/JP/2O+Vmrzn1Mr9KtnYK1OLkTayC0wF
-	 CAvq9z015JQ8g==
-Subject: Re: [PATCH net v8 2/4] net: stmmac: track unfilled XSK RX descriptors
- explicitly
+	b=d2pLYXdwb8Uu/UC8PAUm7O6721joxh6PjGnTSg2poM9FgumP76d9CiuKwpxfRdWuP
+	 BAv4UZejLB4E0suNJ2cmLmHczG9XwiPJYRExlk4e3jtz4elbAMG5UhFKGNsDq8l3rs
+	 aBocclsNgdUoIRqaZaijgFIRnCFp3lC7K3N+3Sxd7axFht9rSRY8nb6BQEBWrQYzbW
+	 InLRSD/zSu1o24my0gOwC27rq9azN/cKQr5laV2Dj1Lnu8MHULW3kCEF5gpZLXsL0D
+	 kgr9UONXRfUQqw8vRzA9rLCZwEIpsPHp4HeqQyU3X6GFpq7Vx1zw2EgAInHaoVu/Jo
+	 fv3oTR9JtQY2w==
+Subject: Re: [PATCH net v8 3/4] net: stmmac: restore RX descriptor buffer
+ addresses on resume
 From: netdev-bot+sashiko@kernel.org
 To: dinghui1111@163.com
 Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
@@ -55,10 +55,10 @@ Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  dinghui@lixiang.com, xiasanbo@lixiang.com, yangchen11@lixiang.com,
  liuxuanjun@lixiang.com, fujiahui@lixiang.com, zhoujing3@lixiang.com
-Date: Mon, 23 Nov 2026 14:39:34 +0000
-Message-ID: <179544477433.3135.15487793537442434685@kernel.org>
-In-Reply-To: <31856c65c85293ac3955212a22653ca41a36ad2f.1795096430.git.dinghui@lixiang.com>
-References: <31856c65c85293ac3955212a22653ca41a36ad2f.1795096430.git.dinghui@lixiang.com>
+Date: Mon, 23 Nov 2026 14:39:36 +0000
+Message-ID: <179544477624.3135.5494306095846250622@kernel.org>
+In-Reply-To: <52672e4d879760b1434a92e12f3c7d5b2287e086.1795096430.git.dinghui@lixiang.com>
+References: <52672e4d879760b1434a92e12f3c7d5b2287e086.1795096430.git.dinghui@lixiang.com>
 X-sashiko-severity: High
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -81,10 +81,10 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
+Thank you for your contribution! Sashiko AI review found 4 potential
 issue(s) to consider.
 
-Critical: 0 · High: 2 · Medium: 0 · Low: 1
+Critical: 0 · High: 1 · Medium: 1 · Low: 2
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -92,171 +92,158 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [High] Permanent RX stall on dwmac4/dwxgmac2 XSK queues after a full-
-  ring refill that ends at a non-zero index.
-- [High] net: stmmac: pre-loop refill failure in stmmac_rx_zc() skips
-  later refills
-- [Low] The comment added in stmmac_rx_refill_zc() describes a narrower
-  condition than the code under it.
+- [High] This patch adds a failure point to stmmac_resume(): `ret =
+  stmmac_resume_descriptors(priv); if (ret) goto error_unlock;`.
+- [Medium] The new early failure in stmmac_resume()
+  (stmmac_resume_descriptors() returning -ENOMEM) jumps to error_unlock.
+- [Low] Part of the commit message describes code that is not in the
+  tree.
+- [Low] The commit message frames the bug only as GMAC4/XGMAC writeback
+  overwriting buffer addresses, which leads to a 'fatal bus error'.
 
 --
 
-net: stmmac: track unfilled XSK RX descriptors explicitly
+net: stmmac: restore RX descriptor buffer addresses on resume
 
-This commit adds an xsk_rx_pending counter that tracks XSK RX descriptors
-waiting for refill. It also adds a clear_rx_owner descriptor op so unfilled
-descriptors stay CPU-owned. stmmac_rx_zc() and stmmac_rx_refill_zc() now
-retry refills on every poll and write an end-of-ring tail address when a
-refill ends at index zero.
+The patch restores RX descriptor buffer addresses on resume. On GMAC4 and
+XGMAC, hardware writeback during suspend can overwrite them. Buffer
+preparation is factored into stmmac_prepare_rx_buffer() and
+stmmac_prepare_rx_buffer_zc(). A new stmmac_reinit_rx_descriptors()
+allocates any missing pages with GFP_KERNEL, and the per-ring resume work
+is gathered in stmmac_resume_descriptors().
+
+> Rebuild chain pointers and use stmmac_reset_rx_queue() to discard partial
+> receive state from before the DMA reset. Initialize RX descriptors after
+> restoring their addresses,
+> using the existing per-queue initializer to preserve the watchdog policy
+> and legacy control fields. Keep the unpopulated XSK suffix CPU-owned when
+> DMA restarts. This replaces the separate final ownership-setting loop.
+
+[ ... ]
+
+> The RX rings no longer undergo initialization before address restoration.
+
+[Severity: Low]
+Which ownership-setting loop does this replace? Before this patch,
+stmmac_resume() only called stmmac_reset_queues_param(),
+stmmac_free_tx_skbufs() and stmmac_clear_descriptors().
+stmmac_set_rx_owner() is only used in stmmac_rx_refill() and
+stmmac_rx_refill_zc().
+
+The second sentence has the same problem. The old resume path never
+restored RX addresses, so nothing was ever initialized "before address
+restoration".
+
+Both sentences read like notes against an earlier, unposted version. Could
+they be reworded to describe what changes relative to the current tree?
+
+> Share buffer preparation with the refill paths and restore addresses
+> from attached buffers. Allocate missing primary and secondary pages
+> independently with GFP_KERNEL. If allocation fails, return the error
+> without restarting DMA and leave the device detached.
+
+[Severity: Low]
+The commit message doesn't say why pages can be missing at resume time.
+
+stmmac_rx() hands buf->page to the stack or page_pool and sets
+buf->page = NULL. If the GFP_ATOMIC refill in stmmac_rx_refill() then
+fails, that entry is left with no page attached.
+
+The old resume path set OWN on every RX descriptor through
+stmmac_clear_descriptors() whether a page was attached or not. On cores
+whose writeback leaves the address word intact, the re-armed descriptor
+still pointed at a page the driver no longer owned. DMA could then write
+into recycled memory.
+
+The new stmmac_reinit_rx_descriptors() fixes this too. Could the commit
+message describe this case, so stable backporters know the patch also
+fixes it?
 
 > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 8bd2440461959..f9ac82d2e7266 100644
+> index f9ac82d2e7266..1508cf08f03b0 100644
 > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
 > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
 
 [ ... ]
 
-> @@ -5626,12 +5632,18 @@ static bool stmmac_rx_refill_zc(struct stmmac_priv *priv, u32 queue, u32 budget)
->  		dma_wmb();
->  		stmmac_set_rx_owner(priv, rx_desc, use_rx_wd);
+> @@ -8563,10 +8659,9 @@ int stmmac_resume(struct device *dev)
 >  
-> +		rx_q->xsk_rx_pending--;
->  		entry = STMMAC_NEXT_ENTRY(entry, priv->dma_conf.dma_rx_size);
->  	}
+>  	mutex_lock(&priv->lock);
 >  
->  	if (rx_desc) {
->  		rx_q->dirty_rx = entry;
-> -		stmmac_set_queue_rx_tail_ptr(priv, rx_q, queue, rx_q->dirty_rx);
-> +		/* Use the end-of-ring address when filling an initially empty
-> +		 * ring completely, so the tail differs from its initial base.
-> +		 */
-
-[Severity: Low]
-
-This isn't a bug, but the comment covers less than the code below it does.
-The entry ?: dma_rx_size expression applies to every refill whose last
-entry wraps to 0. That includes ordinary wrap-around on every lap of the
-ring, not only a complete fill of an initially empty ring.
-
-The commit message calls this "a refill ending at index zero", which
-matches the code. Could the comment say the same?
-
-It might also help to say why this differs from stmmac_rx_refill(), which
-writes the base address for index 0:
-
-	stmmac_set_queue_rx_tail_ptr(priv, rx_q, queue, rx_q->dirty_rx);
-
-The later patches in the series leave this comment unchanged.
-
-> +		stmmac_set_queue_rx_tail_ptr(priv, rx_q, queue,
-> +					     entry ?: priv->dma_conf.dma_rx_size);
-> +		stmmac_enable_dma_reception(priv, priv->ioaddr, queue);
->  	}
+> -	stmmac_reset_queues_param(priv);
+> -
+> -	stmmac_free_tx_skbufs(priv);
+> -	stmmac_clear_descriptors(priv, &priv->dma_conf);
+> +	ret = stmmac_resume_descriptors(priv);
+> +	if (ret)
+> +		goto error_unlock;
 
 [Severity: High]
+If stmmac_resume_descriptors() fails here, does NAPI stay disabled while
+netif_running() is still true?
 
-Can RX DMA stay stalled after a full-ring refill that ends at a non-zero
-index?
+stmmac_suspend() already called stmmac_disable_all_queues(), and
+error_unlock skips stmmac_enable_all_queues(). Any later stmmac_suspend()
+or stmmac_release() would then call napi_disable() a second time on the
+same instances:
 
-This patch removes the one-slot gap that stmmac_rx_zc() used to keep:
+stmmac_release()
+  __stmmac_release()
+    stmmac_disable_all_queues()
+      __stmmac_disable_all_queues()
+        napi_disable(&ch->rx_napi)
+          napi_disable_locked()
 
--		if (unlikely(next_entry == rx_q->dirty_rx))
--			break;
+net/core/dev.c:napi_disable_locked() {
+    ...
+		while (val & (NAPIF_STATE_SCHED | NAPIF_STATE_NPSVC)) {
+			usleep_range(20, 200);
+			val = READ_ONCE(n->state);
+		}
+    ...
+}
 
-The consume loop now stops only on dma_own or on this check:
+SCHED is still set from the first disable. Wouldn't this loop spin forever?
+In the close path (ip link set down, MTU change, XDP setup, ring resize) it
+would hold rtnl_lock. On the next system suspend it would hold priv->lock.
 
-		if (rx_q->xsk_rx_pending == priv->dma_conf.dma_rx_size)
-			break;
+The -ENOMEM comes from the GFP_KERNEL page_pool allocations in
+stmmac_reinit_rx_descriptors() -> stmmac_init_rx_buffers(). These run
+during resume with the PM gfp restriction in place, so failure looks
+reachable under memory pressure.
 
-Suppose the XSK fill ring runs dry under traffic. The CPU can then consume
-every descriptor, and the ring becomes completely empty with
-cur_rx == dirty_rx == k for any k. The last successful refill wrote the
-tail as base + k * desc, and DMA has stopped with its current pointer at k.
+The commit message says "If allocation fails, return the error without
+restarting DMA and leave the device detached". Is that detached state safe
+to leave the device in? The stmmac_hw_setup() failure path already behaves
+this way, but this patch adds a new way to reach it.
 
-Now suppose userspace supplies at least dma_rx_size buffers before the next
-poll. The refill at the top of stmmac_rx_zc() runs:
+[Severity: Medium]
+On the same failure path, is the MAC receiver left enabled?
 
-	if (rx_q->xsk_rx_pending)
-		failure = !stmmac_rx_refill_zc(priv, queue, rx_q->xsk_rx_pending);
+error_unlock only powers down the legacy SerDes and drops the locks. Only
+error_stop_dma calls stmmac_mac_set(priv, priv->ioaddr, false). With
+Wake-on-LAN enabled, stmmac_suspend() never disables the MAC:
 
-It fills all N slots and entry wraps back to k. The tail is then written as
-entry ?: dma_rx_size, which is base + k * desc again. That equals both the
-stalled DMA current pointer and the previous tail value. The ?: special
-case only covers k == 0.
+	if (priv->wolopts) {
+		stmmac_pmt(priv, priv->hw, priv->wolopts);
+		priv->irq_wake = 1;
+	} else {
+		stmmac_mac_set(priv, priv->ioaddr, false);
 
-The comment above depends on a tail equal to the DMA position not
-restarting DMA ("so the tail differs from its initial base"). Doesn't the
-same reasoning apply when k != 0?
+dwmac4_pmt() sets GMAC_CONFIG_RE when it arms wake-up. The
+stmmac_pmt(priv, priv->hw, 0) call earlier in stmmac_resume() only writes
+PMT=0 and leaves RE set. Because stmmac_hw_setup() is skipped, no DMA soft
+reset clears the configuration either.
 
-After this refill xsk_rx_pending is 0, so no later poll writes the tail
-again. Every later poll finds descriptor cur_rx DMA-owned and breaks out.
+After the failure, the MAC keeps receiving with the link still up, while
+RX DMA is stopped. The failing queue's descriptors have already been made
+CPU-owned by the OWN-clearing loop at the top of
+stmmac_reinit_rx_descriptors(). Incoming frames fill the MTL FIFO with
+nothing to drain it. STMMAC_DOWN is not set, so the pre-suspend interrupt
+enables can still reach stmmac_interrupt().
 
-stmmac_enable_dma_reception() seems to be implemented only for dwmac1000.
-On dwmac4 the RBU interrupt only increments rx_buf_unav_irq, and on xgmac
-it only schedules NAPI. On dwmac4 and dwxgmac2, would the queue stay dead
-until it is reinitialized?
-
-The later patches in the series don't seem to change this logic.
-
-[ ... ]
-
-> @@ -5661,6 +5672,9 @@ static int stmmac_rx_zc(struct stmmac_priv *priv, int limit, u32 queue)
->  	bool failure = false;
->  	int xdp_status = 0;
->  
-> +	if (rx_q->xsk_rx_pending)
-> +		failure = !stmmac_rx_refill_zc(priv, queue, rx_q->xsk_rx_pending);
-> +
->  	if (netif_msg_rx_status(priv)) {
->  		void *rx_head = stmmac_get_rx_desc(priv, rx_q, 0);
->  
-
-[Severity: High]
-Can a refill failure at the top of stmmac_rx_zc() stop buffers that
-are freed later in the same poll from being reposted?
-
-The pre-loop call asks stmmac_rx_refill_zc() for all of
-xsk_rx_pending. Whenever the pool holds fewer free buffers than that,
-xsk_buff_alloc() returns NULL partway through and failure is latched
-to true before the receive loop starts. A partially filled fill ring
-is exactly the case this patch is meant to support.
-
-Both the batch refill inside the loop and the new refill after
-stmmac_finalize_xdp_rx() are gated on !failure. Neither one runs for
-the rest of the poll.
-
-Meanwhile several paths call xsk_buff_free() on the buffer:
-
-- XDP_PASS
-- STMMAC_XDP_CONSUMED (XDP_DROP, XDP_ABORTED, failed redirect)
-- the discard_frame and rx_not_ls error paths
-- XDP_TX, via xdp_convert_buff_to_frame()
-
-Each of these puts the buffer back on the pool free_list, where
-xsk_buff_alloc() could hand it straight back out. The old code started
-every poll with failure set to false. It would have reposted those
-buffers once dirty reached STMMAC_RX_FILL_BATCH.
-
-With XDP_USE_NEED_WAKEUP, suppose those paths consume every descriptor
-that was posted. The poll then ends with xsk_rx_pending equal to
-dma_rx_size and no DMA-owned descriptor left in the ring.
-stmmac_rx_zc() returns count < limit and NAPI completes, so no further
-RX interrupt can arrive. None of these frames reach the XSK RX ring.
-Doesn't recovery then depend entirely on userspace issuing a wakeup
-without having received anything?
-
-Without need_wakeup the problem goes the other way. Suppose the pool
-has fewer than dma_rx_size buffers in total, for example a TX-only
-socket that never populates the fill ring. Then xsk_rx_pending never
-reaches zero and the pre-loop refill fails on every poll, so
-stmmac_rx_zc() returns limit every time. Wouldn't NAPI then never
-complete, even on an idle link? Before this patch the same setup left
-failure false and returned count.
-
-Should the later refills still be attempted after an earlier failure,
-for example by OR-ing the result into failure instead of skipping the
-call? And is busy polling intended when the fill ring is simply
-smaller than the RX ring?
+Should this path disable the MAC (and the DMA interrupts) before
+returning? Otherwise the device is neither armed for wake-up nor quiesced.
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/cover.1795096430.git.dinghui%40lixiang.com
