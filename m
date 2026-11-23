@@ -2,133 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6818C60A2608
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 03:07:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69B0606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 03:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4ZJt6FSE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=buAaMrRs;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZnFGWSFD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SsOfB+A2L4oAYTU8RVszrLkzMWRIW22HiilhHgWZid8=; b=4ZJt6FSEcoQ0EneCxdfAzCpcg3
-	JmdUdhxCSlBKi6oSxbOhfeR0bWp0GQkNnA3H85MbppcdOKUxciVO/IJQxZy5ZoOSNWS+6kv2AiOT/
-	yKAcB4psuEkMoMFYEOY0Gb4xEibE2c3wT5cmd5wSHqd1eFQq0eiZOtrhgEOKEPJbFC0xcpxtKxlU/
-	dZ3gY6Vh9SKotpFJBMfMkEk25D7WAPrGNBC+Z6GGZdDrDD+tv/cRCSXUFw1Kynygz/kqBY82YSk5z
-	2/Mqk9e8xKD52+etkZ1SxeONUY7vCbtnpnhToN9WXffvEsGczltd/TMX1cgAEeYH60Z2qPhGzsaY3
-	cq35f9Mw==;
+	bh=EEjXBCSermC5XnoBYhMJUthJ3HfgGrN66oi6FLQHx0A=; b=buAaMrRsSMs7EI1Oa0rpIDc5mm
+	DiaeogdCoXD/CuGk+Tsl4sdZ5NsDe6Jk1+w/nb+vlI314hq6HMI/Dh0agTKna+550LOFrUKgWVMdz
+	bH/HbKfETnSgxA7urkWTY+pPp1lxxovtP2RTFKc2FKTnvjX2Bb0xTd3lx4QebGzfylNMiUw9keYzr
+	ut54rwx1BBEDOo50So2nG8vApmyCagqNDk7XhGAyvLe5b48M+yB1H2Km1auCoqRVjtj9QAoCfJRH1
+	cDBjjuneGCplLDRvQOZcX/MG3920tNHjXgouYow2s5bZrmaaS8gc4kofInKEsAY0AnTwYdgLSGM/d
+	zjQyhKCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVKOw-00000002AVn-0nd0;
-	Mon, 23 Nov 2026 03:07:30 +0000
-Received: from exmail3.compal.com ([59.120.207.196] helo=tpecef21.compal.com)
+	id 1xVKPG-00000002Ag3-1Jjq;
+	Mon, 23 Nov 2026 03:07:50 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVKOs-00000002AV6-2QFF;
-	Mon, 23 Nov 2026 03:07:28 +0000
-X-UUID: fe3b6758e6ea11f1b2470fb4f881575f-20261123
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.20,REQID:acd933f6-2628-4f8a-839e-ea1bf839f0c7,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:291e20b,CLOUDID:016dee19-ae4c-4a2b-b1c4-72e411efd0c9,B
-	ulkID:nil,BulkQuantity:0,SF:80|81|82|83|102|110|111|836|865|888|898,TC:-5,
-	Content:0|15|50|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:n
-	il,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: fe3b6758e6ea11f1b2470fb4f881575f-20261123
-Received: from sdmg11.sdbg.compal.com [(10.113.168.9)] by tpecef21.compal.com
-	(envelope-from <jackbb_wu@compal.com>)
-	(Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
-	with ESMTP id 1739619456; Mon, 23 Nov 2026 11:07:18 +0800
-X-UUID: fad19c0ee6ea11f1907ca11d1ee29896-20261123
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.15,REQID:0cf57404-cca4-463a-bbb0-2630d6d14a67,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:e276073,CLOUDID:e9e8a766-4b51-4c95-bb1b-80ac6aad9c96,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|865|888|
-	898,TC:-5,Content:0|15|50|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS
-	:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,A
-	RC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: fad19c0ee6ea11f1907ca11d1ee29896-20261123
-Received: from sdbmbx13.tpe.compalcomm.com [(10.113.2.137)] by sdmg11.sdbg.compal.com
-	(envelope-from <jackbb_wu@compal.com>)
-	(Compal Mail Service with TLSv1.2 ECDHE-RSA-AES128-SHA 128/128)
-	with ESMTP id 1556613070; Mon, 23 Nov 2026 11:07:12 +0800
-Received: from SDBMBX13.tpe.compalcomm.com (10.113.2.137) by
- SDBMBX13.tpe.compalcomm.com (10.113.2.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.56;
- Mon, 23 Nov 2026 11:07:11 +0800
-Received: from SDBMBX13.tpe.compalcomm.com ([fe80::23a8:5ed2:f09e:3abf]) by
- SDBMBX13.tpe.compalcomm.com ([fe80::23a8:5ed2:f09e:3abf%11]) with mapi id
- 15.02.2562.056; Mon, 23 Nov 2026 11:07:11 +0800
-From: "Wu. JackBB (GSM)" <JackBB_Wu@compal.com>
-To: "netdev-bot+sashiko@kernel.org" <netdev-bot+sashiko@kernel.org>
-CC: "loic.poulain@oss.qualcomm.com" <loic.poulain@oss.qualcomm.com>,
-	"ryazanov.s.a@gmail.com" <ryazanov.s.a@gmail.com>,
-	"johannes@sipsolutions.net" <johannes@sipsolutions.net>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
-	<davem@davemloft.net>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>, "wen-zhi.huang@mediatek.com"
-	<wen-zhi.huang@mediatek.com>, "shi-wei.yeh@mediatek.com"
-	<shi-wei.yeh@mediatek.com>, "Minano.tseng@mediatek.com"
-	<Minano.tseng@mediatek.com>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "horms@kernel.org"
-	<horms@kernel.org>, "corbet@lwn.net" <corbet@lwn.net>,
-	"skhan@linuxfoundation.org" <skhan@linuxfoundation.org>, "Yu. Robert (GSM)"
-	<robert_yu@compal.com>, "Chang. Jeff (GSM)" <Jeff_Chang@compal.com>,
-	"edumazet@kernel.org" <edumazet@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>
-Subject: Re: [PATCH net-next v12 4/6] net: wwan: t9xx: Add control port
-Thread-Topic: [PATCH net-next v12 4/6] net: wwan: t9xx: Add control port
-Thread-Index: AQHdeve7m7B50+/Aw0aUAqvnatVtlA==
-Date: Mon, 23 Nov 2026 03:07:11 +0000
-Message-ID: <5ad4346ac47844bca9de6c6344394175@compal.com>
-References: <20261117-t9xx_driver_v1-v12-4-e181b616b820@compal.com>,<179526494911.3135.1691599071652469894@kernel.org>
-In-Reply-To: <179526494911.3135.1691599071652469894@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-tm-as-product-ver: SMEX-14.0.0.3239-9.1.2019-30338.002
-x-tm-as-result: No-10--21.235800-8.000000
-x-tmase-matchedrid: Bh1zlSZn7l8uv++HU7VXryRFbfQbCufdN0X64jGy2dZJTOxleK2tZuZd
-	NI5cmL7EsdzeBfTA9wL1gdTBaDcdUM9A4BdNBny91tM63VFvEPnAEu0pi7xsS13WG5Zj0joh/dk
-	Mnslb4PQe67A3WrjNyziXhSM4AAJNRLn316QYZ0KGavh+mhti3BXe4MXLih6zMaJIE4jcsfqaSj
-	mO++bbLfwSSKmZJcboaUH+X3Iw3oH+isiJUFLIeEu+LBodhvWxltO3ZXPfoUU2JdIqmm5YSQfm2
-	RpS+ujygsEZqsxgnsPj3uTfpztp/0P6AXOijry5AZiMK6zpatUSS047Imv+B3miaGC762CcspyV
-	Sx1Lnv/A8JQX5jkdSTZRY581T5wykKUi4HaZvZw70BtMXRaQwm3w6aWt6b3e1KMHTXl0Cwesj8z
-	BmH06fSaI5h63eXtD4iDTS/uhxaV0EfJ9YsMxdQvpq/ti8dx848GqN2zdnsn2KxQD1xQ2y0aRgI
-	pOhmCrJ8YILvUqlIvxJq0Dq/zxGaPNPTORGrtKBLWfGuAH4BXTZQrCWYE5yLxFJIykpwqD7KMo5
-	XEc17R8oeVn3WCAnjW+PLef066SjHwoPiG9QEsNSuarCnh50PVUZDyWvrKuD5teccobfJUk+VN5
-	SeE/CqzSbgI3g0INWjsaYI4lh3X4sfhU+lJX6+9j9/4eIKuSy4offpx2osgG/cHAXeyuhw==
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
-x-tmase-result: 10--21.235800-8.000000
-x-tmase-version: SMEX-14.0.0.3239-9.1.2019-30338.002
-x-tm-snts-smtp: A5D1E0742FD0F47B7BBF79365F18AC53BCEB86E52654CD5DB8CFDC9B2B6587022000:8
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+	id 1xVKPA-00000002AeC-4BGj;
+	Mon, 23 Nov 2026 03:07:45 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B8809450C0;
+	Mon, 23 Nov 2026 03:07:44 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795403264;
+	b=1ZtHDq93iCVKPM0Sq1Vr8mMz6Jsbrk+QpuScZPzkXbWmkBOiKjDEwbMgcT7oDMUEEwZU
+	 DSCCR7L/C5fPe7LCbJ57vxeZ22gG1PtPuULGlYhvCD8SXrmTsTl9E0efVJjXrrGwbeWLr
+	 oZ0JAnMz+eJdN1Pg3nkC3mPv1DwNofMGtD8x1z5p2Wcs3J1WY8juznmTixz1MJ1jsWqqf
+	 QkAYGoDvA4Bl8vfJ+RlJOESvDfr/BIie8oo1j5ACA6lMBaVH+9WazSNCWJ19j6XqJOVoC
+	 /L7QRpo8iuCQ6YaAz5FvMIgcvh8r+ZPqj2X8aMLQMMP5DKDDvneYQlgW5UnW7f31Fbw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795403264;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=EEjXBCSermC5XnoBYhMJUthJ3HfgGrN66oi6FLQHx0A=;
+	b=Pn/gB2tPo/CoD+lowySDu+SUaC8svw5zQ9Xlk7KVBLWL5SqVh7MnSdZzLhCtlJzy2S3S
+	 4erFXkkC7LKjPM5PsXmYR+pZ0johz6a+oUOQhItKn4NGAsn+FKrf86xFVUeov8QS1mN6N
+	 OqK0Zp3KzpqUiwRQPbq0CW0QORZU0SV+d6AkcixQzUbHh4lmJUPIUiWa2dHewcXwDMbz/
+	 +uqwR17qc4+KZbq8bsqZjgPJbnFIJNjok59jzxj+owgTVRfTfXHnYAnFOPSNzztW5luSm
+	 ntGWW1gZscDquAGzV3zsNbJ+F731eP58GqVpYoyLuJzNszkeqQDUy3joLnzp9ATEjPg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id B6AC51F00A00;
+	Mon, 23 Nov 2026 03:07:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795403264;
+	bh=EEjXBCSermC5XnoBYhMJUthJ3HfgGrN66oi6FLQHx0A=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=ZnFGWSFDWriNokQ83/4EPjHQ8QnNgYt0dBJAFaUPDJFS9O3AXyugGzxrMzauXm9Lh
+	 4POcNGhliQZX9RAAL4AY6IgBIhe+PX0QPZ8wAH2jyCieojF8eO1lgXnK4nfgq3uYQu
+	 /IDgxDN3AHx29lVhSRSN6JmsfP3M1PXneLGJHpMWSnOgjvWTPA4bxiez8R0bDiRxZh
+	 d+68enJgc6GX9EOT9gCg7vdTQbmfLmYL/59mbF2sIR/XFJb5ZceSyWNlX2Dd6n9nY0
+	 X0gwGXPvWb4P0IbUBiX1xJaCZsQ+fPFpXXGagGCyVH41lZ38ZtSWt86X1F7FnkgzTK
+	 6Qh9HhJPVVGFg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 474CF4C30B;
+	Mon, 23 Nov 2026 03:07:33 +0000 (UTC)
+From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
+Date: Mon, 23 Nov 2026 11:07:28 +0800
+Subject: [PATCH net-next v5 2/2] net: stmmac: dwmac-rk: Add RK3572 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_190727_306509_F7A96F22 
-X-CRM114-Status: GOOD (  39.61  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261123-add-board-ok3572-c-net-v5-2-8ec9012b578f@qq.com>
+References: <20261123-add-board-ok3572-c-net-v5-0-8ec9012b578f@qq.com>
+In-Reply-To: <20261123-add-board-ok3572-c-net-v5-0-8ec9012b578f@qq.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ David Wu <david.wu@rock-chips.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+ Jose Abreu <joabreu@synopsys.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Cunhao Lu <1579567540@qq.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795403251; l=4857;
+ i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
+ bh=Er103tsloFwxtyv/kT9C0DhrwH98VW9zC6CCWRpsoHU=;
+ b=Z2V7b5VvyQH25FE4KjoGgEHT/QYwAgUWmxRBa4lT7hyDodKvBmN1PGaFBn2b0tjmKvzPYotf2
+ 8ZldegRrchOBOkORIJ9EUuLmJ9wSOqR7024Wu6tPNVt8zXlkW4xgOCr
+X-Developer-Key: i=1579567540@qq.com; a=ed25519;
+ pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
+X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
+ auth_id=1177
+X-Original-From: Cunhao Lu <1579567540@qq.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,119 +117,155 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VGhhbmtzIGZvciB0aGUgcmV2aWV3LiANCg0KPiBDYW4gdHdvIFJYIHdvcmtlcnMgdXBkYXRlIHRo
-ZSBzYW1lIHBvcnQtPnJ4X3NlcSBhdCB0aGUgc2FtZSB0aW1lIGhlcmU/DQo+DQo+IFRoZSB0YXJn
-ZXQgcG9ydCBjb21lcyBmcm9tIHRoZSBjaGFubmVsIGluIHRoZSBDQ0NJIGhlYWRlci4gVGhlIG9u
-bHkNCj4gZmlsdGVyIGlzIHRoZSBwZWVyIElELiBUaGUgcXVldWUgdGhhdCBkZWxpdmVyZWQgdGhl
-IHBhY2tldCAodGhlIHBvcnQNCj4gcGFzc2VkIGluIGFzIHByaXYsIGkuZS4gcnhxLT5hcmcpIGlz
-IG5vdCB1c2VkIGZvciB0aGUgbG9va3VwLg0KPg0KPiBFYWNoIFJYIHF1ZXVlIGhhcyBpdHMgb3du
-IHJ4X2RvbmVfd29yay4gbXRrX2NsZG1hX2Rldl9pbml0KCkgY3JlYXRlcw0KPiBkcnZfaW5mby0+
-d3EgbGlrZSB0aGlzOg0KPg0KPiAgICAgZmxhZyA9IFdRX1VOQk9VTkQgfCBXUV9NRU1fUkVDTEFJ
-TSB8IFdRX0hJR0hQUkk7DQo+ICAgICBkcnZfaW5mby0+d3EgPSBhbGxvY193b3JrcXVldWUoImNs
-ZG1hJWRfd29ya3FfJXMiLCBmbGFnLCAwLCBod19pZCwNCj4gIG1kZXYtPmRldl9zdHIpOw0KPg0K
-PiBTbyB3b3JrIGl0ZW1zIGZvciBkaWZmZXJlbnQgUlggcXVldWVzIG9mIHRoZSBzYW1lIENMRE1B
-IGFyZSBub3Qgb3JkZXJlZC4NCj4gTGF0ZXIgaW4gdGhlIHNlcmllcyBDTERNQTEgc2VydmVzIFJY
-USgwKSBmb3IgTURDVFJMLCBSWFEoMikgZm9yIE1CSU0gYW5kDQo+IFJYUSg1KSBmb3IgQVQuDQo+
-DQo+IFN1cHBvc2UgdGhlIGRldmljZSBwdXRzIGEgcGFja2V0IHdob3NlIGhlYWRlciBuYW1lcyBj
-aGFubmVsIEIgb24gcXVldWUgQSdzDQo+IHJpbmcuIFF1ZXVlIEEncyB3b3JrZXIgdGhlbiBydW5z
-IG10a19wb3J0X2NoZWNrX3J4X3NlcSgpLCBkb2VzIHRoZSBwbGFpbg0KPiBzdG9yZSB0byBwb3J0
-IEIncyByeF9zZXEsIGFuZCBjYWxscyBwb3J0IEIncyAtPnJlY3YoKS4gUXVldWUgQidzIHdvcmtl
-cg0KPiBtYXkgYmUgZG9pbmcgdGhlIHNhbWUgdGhpbmcgYXQgdGhhdCBtb21lbnQuDQo+DQo+IFRo
-YXQgc2VlbXMgdG8gY29uZmxpY3Qgd2l0aCB0aGUgY29tbWVudCBpbiBzdHJ1Y3QgbXRrX3BvcnQ6
-DQo+DQo+ICAgICByeF9zZXEgb25seSBmcm9tIHRoZSByeF9kb25lDQo+ICAgICBjYWxsYmFjayBv
-ZiB0aGUgb25lIHF1ZXVlIHNlcnZpbmcgdGhpcyBjaGFubmVsLg0KPg0KPiBTaG91bGQgZGlzcGF0
-Y2ggcmVqZWN0IHBhY2tldHMgd2hvc2UgY2hhbm5lbCBkb2VzIG5vdCBiZWxvbmcgdG8gdGhlDQo+
-IGRlbGl2ZXJpbmcgcXVldWU/IE9yIHNob3VsZCByeF9zZXEgYmUgcHJvdGVjdGVkIHNvbWUgb3Ro
-ZXIgd2F5Pw0KDQpObyBjb2RlIGNoYW5nZTogdDd4eCBtYXRjaGVzIHBhdGggYW5kIGNoYW5uZWwg
-aW4gdGhlIHNhbWUgd2F5LCBib3RoDQotPnJlY3YoKSBwYXRocyB0b2xlcmF0ZSBjb25jdXJyZW50
-IGNhbGxzLCBhbmQgcnhfc2VxIG9ubHkgZmVlZHMgYQ0KcmF0ZS1saW1pdGVkIHdhcm5pbmcuICBB
-IGNoZWNrIGFnYWluc3QgdGhlIGRlbGl2ZXJpbmcgcXVldWUgd291bGQgZHJvcA0KZnJhbWVzIG9u
-IHF1ZXVlcyB0aGF0IHNldmVyYWwgY2hhbm5lbHMgc2hhcmUuICBUaGUgc3RydWN0IG10a19wb3J0
-DQpjb21tZW50IHlvdSBxdW90ZSB3aWxsIGJlIHJld29yZGVkIHNvIHRoYXQgaXQgbm8gbG9uZ2Vy
-IHJlYWRzIGFzIGEgcnVsZQ0KYWJvdXQgd2hpY2ggcXVldWUgbWF5IHdyaXRlIHJ4X3NlcS4NCg0K
-PiBJcyB0aGUgc3RydWN0IG10a19wb3J0IGNvbW1lbnQgcmlnaHQgYWJvdXQgd2hlbiB0aGVzZSBj
-b3VudGVycyBhcmUgcmVzZXQ/DQo+DQo+ICAgICBCb3RoIGFyZSByZXNldA0KPiAgICAgd2hpbGUg
-dGhlIGNoYW5uZWwgaXMgZGlzYWJsZWQsIHNvIG5laXRoZXIgbmVlZHMgYSBsb2NrLg0KPg0KPiBU
-aGUgcmVzZXQgaGFwcGVucyBhdCB0aGUgc3RhcnQgb2YgbXRrX3BvcnRfY2hfZW5hYmxlKCksIGJl
-Zm9yZSB0aGUgRU5BQkxFDQo+IHRyYiBpcyBzdWJtaXR0ZWQuIFRoZSBjaGFubmVsIGlzIG5vdCBh
-bHdheXMgZGlzYWJsZWQgYXQgdGhhdCBwb2ludC4NCj4NCj4gVGhlIEVOQUJMRSBjYW4gY29tcGxl
-dGUgd2l0aCAtRUJVU1kgaW4gdHdvIHBsYWNlczoNCj4NCj4gLSBtdGtfY2hfc3RhdHVzX2NoZWNr
-KCksIHdoZW4gdXNyX2NudCBpcyBhbHJlYWR5ID49IDENCj4gLSBtdGtfY2xkbWFfb3BlbigpLCB3
-aGVuIHRoZSBxdWV1ZXMgYWxyZWFkeSBleGlzdA0KPg0KPiBJbiBlaXRoZXIgY2FzZSB0aGUgUlgg
-cXVldWUgaXMgYWxyZWFkeSBhcm1lZCB3aXRoIHJ4cS0+YXJnID09IHBvcnQuDQo+IG10a19wb3J0
-X3J4X2Rpc3BhdGNoKCkgbWF5IGJlIHJ1bm5pbmcgdGhpcyBzdG9yZSBhdCB0aGUgc2FtZSB0aW1l
-Og0KPg0KPiAgICAgcG9ydC0+cnhfc2VxID0gRklFTERfR0VUKE1US19IRFJfRkxEX1NFUSwgbGUz
-Ml90b19jcHUoY2NjaV9oLT5zdGF0dXMpKTsNCj4NCj4gVGhlcmUgaXMgYWxzbyBhIHNlY29uZCBj
-YXNlLiBBbiBlYXJsaWVyIEVOQUJMRSB0aGF0IHRpbWVkIG91dCBtYXkgc3RpbGwgYmUNCj4gcXVl
-dWVkLCBhbG9uZyB3aXRoIGl0cyBjb21wZW5zYXRpbmcgRElTQUJMRS4gVGhhdCBwYWlyIGNhbiBh
-cm0gdGhlIHF1ZXVlDQo+IGZvciBhIHNob3J0IHRpbWUgd2hpbGUgYSBuZXcgLT5lbmFibGUoKSBy
-ZXNldHMgdGhlIGNvdW50ZXJzLg0KPg0KPiBUaGVzZSBhcmUgcGxhaW4gdW5zaWduZWQgc2hvcnQg
-YWNjZXNzZXMgd2l0aCBubyBSRUFEX09OQ0UoKSBvcg0KPiBXUklURV9PTkNFKCkuIEEgbGF0ZSBz
-dG9yZSBmcm9tIFJYIGRpc3BhdGNoIGNvdWxkIHVuZG8gdGhlIHJlc2V0LiBUaGUNCj4gZmlyc3Qg
-cGFja2V0IG9mIHRoZSBuZXcgc2Vzc2lvbiB3b3VsZCB0aGVuIGJlIGNoZWNrZWQgYWdhaW5zdCBh
-IHN0YWxlDQo+IHJ4X3NlcSBhbmQgbG9nIGEgc3B1cmlvdXMgInNlcSBudW0gb3V0LW9mLW9yZGVy
-IiB3YXJuaW5nLg0KPg0KPiBMaWtld2lzZSwgYSBUWCBsZWZ0IGluIGZsaWdodCBmcm9tIGFuIGVh
-cmxpZXIgc2Vzc2lvbiBjb3VsZCBiZSBzdGFtcGVkDQo+IHdpdGggYSB0eF9zZXEgd2hpbGUgdGhl
-IHJlc2V0IGlzIGhhcHBlbmluZy4NCg0KV2lsbCBmaXggdGhlIGNvbW1lbnQgaW4gdjEzOiBpdCB3
-aWxsIHNheSB3aG8gd3JpdGVzIGVhY2ggY291bnRlciBhbmQNCnRoYXQgcnhfc2VxIG9ubHkgZmVl
-ZHMgdGhlIG91dC1vZi1vcmRlciB3YXJuaW5nLCBhbmQgd2lsbCBubyBsb25nZXINCnN0YXRlIHdo
-ZW4gdGhleSBhcmUgcmVzZXQuICBUaGUgY29kZSBzdGF5cyBhcyBpdCBpczogdGhlIHJlc2V0IG9u
-bHkgcnVucw0Kd2l0aCBQT1JUX1NfRU5BQkxFIGNsZWFyLCB3aGljaCBpcyBlaXRoZXIgYWZ0ZXIg
-ZXZlcnkgcXVldWUgd2FzIGNsb3NlZA0Kb3IgYWZ0ZXIgYW4gZW5hYmxlIHRoYXQgbmV2ZXIgZ290
-IGFzIGZhciBhcyBvcGVuaW5nIHRoZSBwb3J0Lg0KDQo+IERvZXMgdGhpcyBjb21tZW50IG1hdGNo
-IHdoYXQgbXRrX2NoX3N0YXR1c19jaGVjaygpIGRvZXM/IFRoZSBESVNBQkxFIHBhdGgNCj4gdGhl
-cmUgaXM6DQo+DQo+ICAgICAgICAgY2FzZSBUUkJfQ01EX0RJU0FCTEU6DQo+ICAgICAgICAgICAg
-ICAgICBpZiAodHJhbnMtPnVzcl9jbnRbcXVlLT5oaWZfaWRdW3F1ZS0+dHhxbm9dID4gMCkgew0K
-PiAgICAgICAgICAgICAgICAgICAgICAgICB0cmFucy0+dXNyX2NudFtxdWUtPmhpZl9pZF1bcXVl
-LT50eHFub10tLTsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgaWYgKCF0cmFucy0+dXNyX2Nu
-dFtxdWUtPmhpZl9pZF1bcXVlLT50eHFub10pDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgYnJlYWs7DQo+ICAgICAgICAgICAgICAgICB9DQo+ICAgICAgICAgICAgICAgICB0cmIt
-PnN0YXR1cyA9IC1FQlVTWTsNCj4NCj4gU28gLUVCVVNZIGNvbWVzIGJhY2sgaW4gdHdvIGNhc2Vz
-OiB3aGVuIHRoZSBjb3VudCB3YXMgemVybywgYW5kIHdoZW4gdGhlDQo+IGNvdW50IHdhcyBkZWNy
-ZW1lbnRlZCBidXQgaXMgc3RpbGwgYWJvdmUgemVyby4NCj4NCj4gbXRrX3BvcnRfY2hfZW5hYmxl
-KCkgaGFzIGl0cyBvd24gY29tbWVudCBhYm91dCAtRUJVU1k6DQo+DQo+ICAgICAvKiAtRUJVU1kg
-bWVhbnMgYW5vdGhlciB1c2VyIGFscmVhZHkgb3ducyB0aGUgcXVldWUsIGFuZCB0aGUNCj4gICAg
-ICAqIGdlb21ldHJ5IGl0IHJlcG9ydHMgaXMgdGhhdCBxdWV1ZSdzIC0gYWxzbyB2YWxpZCBoZXJl
-Lg0KPiAgICAgICovDQo+DQo+IFRoaXMgYXNzdW1lcyBhIHF1ZXVlIGNhbiBoYXZlIG1vcmUgdGhh
-biBvbmUgb3duZXIsIHdoaWNoIGNvbmZsaWN0cyB3aXRoDQo+IHRoZSAic2luZ2xlIHBvcnQiIGNs
-YWltIGFib3ZlLiBGb2xsb3dpbmcgdGhhdCBjb21tZW50LA0KPiBtdGtfcG9ydF9pbnRlcm5hbF9l
-bmFibGUoKSB0cmVhdHMgYW4gRU5BQkxFIHRoYXQgcmV0dXJucyAtRUJVU1kgKHVzcl9jbnQNCj4g
-MS0+MikgYXMgc3VjY2VzcyBhbmQgc2V0cyBQT1JUX1NfV1IgYW5kIFBPUlRfU19FTkFCTEUuDQo+
-DQo+IFRoZSBsYXRlciBESVNBQkxFIHRoZW4gdGFrZXMgdXNyX2NudCBmcm9tIDIgdG8gMSBhbmQg
-Z2V0cyAtRUJVU1kuDQo+IG10a19jbGRtYV9jbG9zZSgpIG5ldmVyIHJ1bnMsIGFuZCB0aGUgUlgg
-cXVldWUgc3RheXMgYXJtZWQgd2l0aCByeHEtPmFyZw0KPiBwb2ludGluZyBhdCB0aGUgcG9ydC4N
-Cj4NCj4gRXZlbiB3aXRoIG9uZSBwb3J0IHBlciBxdWV1ZSwgYSBsZWZ0b3ZlciBjb3VudCBjYW4g
-Y29tZSBmcm9tIGVpdGhlciBvZg0KPiB0d28gZmFpbHVyZXM6DQo+DQo+IC0gQW4gRU5BQkxFIHRp
-bWVzIG91dCBhbmQgdGhlIGNvbXBlbnNhdGluZyBtdGtfcG9ydF9jaF9kaXNhYmxlKCkgZmFpbHMg
-aW4NCj4gICBfX2Rldl9hbGxvY19za2IoKS4gVGhlIEVOQUJMRSBpcyBzdGlsbCBxdWV1ZWQgYW5k
-IGxhdGVyIHJhaXNlcyB1c3JfY250DQo+ICAgdG8gMS4NCj4gLSBtdGtfcG9ydF9pbnRlcm5hbF9k
-aXNhYmxlKCkgY2xlYXJzIFBPUlRfU19FTkFCTEUsIGJ1dCB0aGUgRElTQUJMRSBza2INCj4gICBj
-YW5ub3QgYmUgYWxsb2NhdGVkLCBzbyB1c3JfY250IHN0YXlzIGF0IDEuDQo+DQo+IElmIG9uZSBv
-d25lciBwZXIgcXVldWUgaXMgbWVhbnQgdG8gYmUgYW4gaW52YXJpYW50LCBzaG91bGQgYW4gRU5B
-QkxFIHRoYXQNCj4gcmV0dXJucyAtRUJVU1kgYmUgdHJlYXRlZCBhcyBzdWNjZXNzPyBJZiBub3Qs
-IHNob3VsZCB0aGlzIGNvbW1lbnQgYW5kIHRoZQ0KPiBvbmUgaW4gbXRrX3BvcnRfY2hfZW5hYmxl
-KCkgYmUgcmVjb25jaWxlZD8NCg0KV2lsbCBmaXggaW4gdjEzOiB5b3UgYXJlIHJpZ2h0IHRoYXQg
-dGhlIGNvbW1lbnQgaW4NCm10a19wb3J0X2ludGVybmFsX2Rpc2FibGUoKSBjbGFpbXMgbW9yZSB0
-aGFuIHRoZSBjb2RlIGd1YXJhbnRlZXMuICBJdA0Kd2lsbCBvbmx5IHNheSB0aGF0IGEgRElTQUJM
-RSByZWZ1c2VkIHdpdGggLUVCVVNZIGRpZCBub3QgY2xvc2UgdGhlDQpxdWV1ZSwgd2hpY2ggaG9s
-ZHMgZm9yIGJvdGggY2FzZXMgaW4gbXRrX2NoX3N0YXR1c19jaGVjaygpLiBUaGUgb25lIGluDQpt
-dGtfcG9ydF9jaF9lbmFibGUoKSB3aWxsIHNheSB0aGF0IC1FQlVTWSBtZWFucyB0aGUgcXVldWUg
-aXMgYWxyZWFkeQ0Kb3Blbiwgd2l0aG91dCBuYW1pbmcgYW5vdGhlciB1c2VyLg0KDQotRUJVU1kg
-c3RheXMgYSBzdWNjZXNzZnVsIEVOQUJMRS4gV2l0aCBvbmUgcG9ydCBwZXIgcXVldWUgdGhlIG9w
-ZW4gcXVldWUNCmNhbiBvbmx5IGhhdmUgYmVlbiBhcm1lZCBieSB0aGlzIHBvcnQncyBvd24gZWFy
-bGllciBFTkFCTEUsIHdpdGggdGhlDQpzYW1lIHJ4IGNhbGxiYWNrIGFuZCBhcmd1bWVudC4NCg0K
-Tm8gY2hhbmdlIGZvciB0aGUgdHdvIGxlZnRvdmVyLWNvdW50IGNhc2VzLiAgQSBjb3VudCBsZWZ0
-IGJ5IGEgZmFpbGVkDQpESVNBQkxFIGRvZXMgbm90IG91dGxpdmUgdGhlIEhJRjogLT5kaXNhYmxl
-KCkgcnVucyBvbmx5IG9uIHRoZSB3YXkgdG8NCk9GRiBvciBhdCB1bmJpbmQsIGFuZCBtdGtfcGNp
-ZV9oaWZfZXhpdCgpIHRoZXJlIGZyZWVzIGV2ZXJ5IHF1ZXVlIHdoaWxlDQp0aGUgcG9ydHMgYXJl
-IHN0aWxsIGFsaXZlOyB0aGUgbmV4dCBISUYgaW5pdCBzdGFydHMgdGhlIGNvdW50cyBhdCB6ZXJv
-Lg0KDQpUaGFua3MsDQpKYWNrDQoNCnB3LWJvdDogY3I=
+From: Cunhao Lu <1579567540@qq.com>
+
+The RK3572 has two GMAC controllers with separate mode and clock control
+registers in the PHP and NVM0 GRFs. RGMII delay lines are configured
+through the IOC.
+
+Add the register layout and delay callback for both controllers so the
+Rockchip glue driver can configure their RGMII and RMII interfaces and
+select the appropriate clocks for each link speed. Skip parsing the
+deprecated tx_delay and rx_delay properties for RK3572.
+
+Signed-off-by: Cunhao Lu <1579567540@qq.com>
+---
+Changes in v5:
+- Use skip_rgmii_delay_props to control tx_delay and rx_delay parsing.
+
+Changes in v4:
+- Skip legacy delay properties and disable MAC RGMII delays on RK3572.
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c | 75 ++++++++++++++++++++++++--
+ 1 file changed, 71 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+index ad2bae308323..01fec12aa16a 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+@@ -66,6 +66,9 @@ struct rk_gmac_ops {
+ 	bool supports_rgmii;
+ 	bool supports_rmii;
+ 	bool supports_sgmii;
++	/* Skip parsing legacy tx_delay and rx_delay properties on new SoCs. */
++	bool skip_rgmii_delay_props;
++
+ 	bool php_grf_required;
+ 	bool regs_valid;
+ 	u32 regs[];
+@@ -900,6 +903,67 @@ static const struct rk_gmac_ops rk3568_ops = {
+ 	},
+ };
+ 
++#define RK3572_VCCIO0_3_VO_IOC_CON1		0x10608
++#define RK3572_VCCIO1_2_4_VI_IOC_CON1		0x12604
++#define RK3572_VCCIO5_6_IOC_MISC0		0x14630
++#define RK3572_PHP_GRF_GMAC0_CON		0x0070
++#define RK3572_NVM0_GRF_GMAC1_CON		0x0020
++
++static int rk3572_init(struct rk_priv_data *bsp_priv)
++{
++	switch (bsp_priv->id) {
++	case 0:
++		bsp_priv->gmac_grf_reg = RK3572_PHP_GRF_GMAC0_CON;
++		break;
++	case 1:
++		bsp_priv->gmac_grf_reg = RK3572_NVM0_GRF_GMAC1_CON;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	bsp_priv->clock_grf_reg = bsp_priv->gmac_grf_reg;
++	return 0;
++}
++
++static void rk3572_set_to_rgmii(struct rk_priv_data *bsp_priv,
++				int __always_unused tx_delay,
++				int __always_unused rx_delay)
++{
++	u32 val = GRF_CLR_BIT(15) | GRF_CLR_BIT(7);
++
++	if (bsp_priv->id == 1) {
++		regmap_write(bsp_priv->php_grf, RK3572_VCCIO0_3_VO_IOC_CON1, val);
++		regmap_write(bsp_priv->php_grf, RK3572_VCCIO5_6_IOC_MISC0, val);
++	} else {
++		regmap_write(bsp_priv->php_grf, RK3572_VCCIO1_2_4_VI_IOC_CON1, val);
++	}
++}
++
++static const struct rk_gmac_ops rk3572_ops = {
++	.init = rk3572_init,
++	.set_to_rgmii = rk3572_set_to_rgmii,
++
++	.gmac_phy_intf_sel_mask = GENMASK_U16(11, 9),
++	.gmac_rmii_mode_mask = BIT_U16(3),
++
++	.clock.io_clksel_io_mask = BIT_U16(7),
++	.clock.gmii_clk_sel_mask = GENMASK_U16(6, 5),
++	.clock.rmii_clk_sel_mask = BIT_U16(5),
++	.clock.rmii_gate_en_mask = BIT_U16(4),
++
++	.supports_rmii = true,
++	.skip_rgmii_delay_props = true,
++
++	.php_grf_required = true,
++	.regs_valid = true,
++	.regs = {
++		0x29d20000, /* gmac0 */
++		0x2a040000, /* gmac1 */
++		0x0, /* sentinel */
++	},
++};
++
+ /* VCCIO0_1_3_IOC */
+ #define RK3576_VCCIO0_1_3_IOC_CON2		0X6408
+ #define RK3576_VCCIO0_1_3_IOC_CON3		0X640c
+@@ -1341,8 +1405,9 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
+ 	 * provide (see rk_gmac_powerup()), so only the delay values for
+ 	 * those directions are needed.
+ 	 */
+-	if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII ||
+-	    bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII_RXID) {
++	if (!ops->skip_rgmii_delay_props &&
++	    (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII ||
++	     bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII_RXID)) {
+ 		ret = of_property_read_u32(dev->of_node, "tx_delay", &value);
+ 		if (ret) {
+ 			bsp_priv->tx_delay = 0x30;
+@@ -1355,8 +1420,9 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
+ 		}
+ 	}
+ 
+-	if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII ||
+-	    bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII_TXID) {
++	if (!ops->skip_rgmii_delay_props &&
++	    (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII ||
++	     bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII_TXID)) {
+ 		ret = of_property_read_u32(dev->of_node, "rx_delay", &value);
+ 		if (ret) {
+ 			bsp_priv->rx_delay = 0x10;
+@@ -1736,6 +1802,7 @@ static const struct of_device_id rk_gmac_dwmac_match[] = {
+ 	{ .compatible = "rockchip,rk3506-gmac", .data = &rk3506_ops },
+ 	{ .compatible = "rockchip,rk3528-gmac", .data = &rk3528_ops },
+ 	{ .compatible = "rockchip,rk3568-gmac", .data = &rk3568_ops },
++	{ .compatible = "rockchip,rk3572-gmac", .data = &rk3572_ops },
+ 	{ .compatible = "rockchip,rk3576-gmac", .data = &rk3576_ops },
+ 	{ .compatible = "rockchip,rk3588-gmac", .data = &rk3588_ops },
+ 	{ .compatible = "rockchip,rv1108-gmac", .data = &rv1108_ops },
+
+-- 
+2.34.1
+
+
 
