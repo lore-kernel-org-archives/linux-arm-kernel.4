@@ -2,102 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0A6606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC38A606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OFnIjnZT;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=O0vJ5cDq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iqz5Xsnc;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=KFdgICcx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BM0F8B0uZIrlmAuRI2NRKM/dmk5YstSmP3No9fJQH38=; b=OFnIjnZTCshZWp37V34Vjr1mCB
-	vsWRIoYxwqpVtCsVtA8JlaKgqjcUjANKjyzTsjlw5W8NlZteYeKJg5yEZ3vqEZAjIhLvRzxo+iq+Y
-	LdcXAAbFabxyrb2VAkGuqFx/uhcLmQCtBIimQ7psFlYu+LgcMtjlrI9sIBX51RVtWpCFOLugjZR6Q
-	b5fl4QdXU0Fyd9WGEiRlTnsPAhe+hhZDxVoo37Wt2Ds7z0kqnOWh/sOd9G9wJoL/2YP3H0lELT1Rw
-	RN3uvlWERWt8+oL/rnZkZJpb7EUa3t0Lr535om5K58dtsml9xL3qIkZ6986F/FF+fHOV/38FDpzFK
-	MQGjLC+Q==;
+	bh=WFaZs5yZ2TaZla+3aHjGks0CtdazRULWW7qGO/cJj/M=; b=iqz5Xsnc8Hw/ErZ3Bz3d7hkvv1
+	5P5Iy9ujchVFLLOCpJ8o77caAVEwHRKUX9eRcBw/0bphcwiG0T5dYbO/lwGUMTGdoMNWgjXEkt5WT
+	HdsW1zlhGjFlD7DtRUIBjHE3k6yj6QsctWoS9MPw4tPhPysRpwkR5I/MkMsZWYhMzmYGh488GU00g
+	8ZwPjQQWzVm7WIY/BktBbYfpajPGvSooMqYMAuwoqnqr6XXx+ZiGe/wy0IKuxodzLvnlPxSxBMALM
+	QN6BLH4tJU9QT37kyOEA8/aHV4Abn44wan+KyVzk3US4tAF7VQQKqP4twyCyMRNY8MQ/AN30X1aWz
+	sgwRUwlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWX0-000000047m6-1NoL;
-	Mon, 23 Nov 2026 16:04:38 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1xVWYG-000000047yP-2wW1;
+	Mon, 23 Nov 2026 16:05:56 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWWx-000000047l5-23Hz
+	id 1xVWYD-000000047xp-16HF
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 16:04:37 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-4a5024b3c28so2667764f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 08:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795449873; x=1796054673; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=BM0F8B0uZIrlmAuRI2NRKM/dmk5YstSmP3No9fJQH38=;
-        b=O0vJ5cDqcgl0SgZgKYQP050OpDQZp+0i/7J0GCXttxpvdMEh10LKEps29ZLjZkhqjS
-         x84AFbzwpYq9cUImik7yR0LUnXtmjpGDu2LI0fCJkDE85jRjgMdmK+Kw/QLY571a9QM6
-         f1rN7/2+p02A/hnlR8GQqSGBJ3ioZ/MHogae7+6+pnvFd6vtKIw6PV/jn0agNchur2Zo
-         FMrYdtAG45yhcykG840VdgK45XfCZuUqRt8pd3+5eo5jJK8A1rtIZkJ0XdjqiPe/T18L
-         ZPPJNUhD2CshwT7qtbIwEqdLgN8u+2odBRhVm6gg7isSzdeB4O0VeGkXzIfwrP3BrZrn
-         g5xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795449873; x=1796054673;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=BM0F8B0uZIrlmAuRI2NRKM/dmk5YstSmP3No9fJQH38=;
-        b=QeDDsE668RR6khDH/acHk5SdHveYBX2i9859bD5AWtEav6Q3RnJmLgI6SUBIfjJSIc
-         hCZPNRv51p2DSC5vmiqx7SxIEtvZnEhNWW2/n8T60dKadibz0CzFct/9wZ6b10b08N1/
-         Nnsku5mxIAbrOvk+UDv/BG4t2ELuGbezSNezaApmfJmfki8blCYHEvwinKH1CybpZcCU
-         v+BmAj3uhqUZneDyuWXHb5skVTXgUnUKwDQjqaVvCY4HPooKuOU/zHBYXhu7fBL13UI6
-         00NiEWpMKffGIyVmhdQoDF9SgQmhxM/PUvYyaZKSWCm2Q9/rx/3x5CAw2aGxvvsBsUnx
-         bwQA==
-X-Forwarded-Encrypted: i=1; AL+hErHBMoTtJTWKGUnf+uIx1hBoROpEhbNZTySTeH+z7Yqn/ArencrxIKD/Al7R/uXMkdullgQJrZli9mVchpAfsIhW@lists.infradead.org
-X-Gm-Message-State: APuU4Z/FTZ8XvD7a1b0ovEdDQSALWWLq0csYR2a9wwVe35/YJ5Nokzl8
-	tdVJvNMmbkFOPupPF7/03YPsNZayp0UeoPX91PE+PQGlL6TgQrWEYi6GXNlEEbtfglr5EdGJ0k8
-	lZQ75
-X-Gm-Gg: AZFdTZeRw/fUA/xadZqxOi3J2UwNaIGwICgfBPSBCIXHNHf1Q7fI0lKCWKmJj+7oABP
-	F55u8aghgIup9kaS6pnixwRC4IT72jk8MBUuxBrrDpMYOv1f0vmDB0WGNqbrAk+B4GbYf+ZWkcl
-	KjdX/inpKd05DnIpZNlGkWJZIw0ICNCSz67w4pPEJzOifs5VfKtQT0kf/0U795mZDP5DU+zipPP
-	bLllYcfBhvwrQYOZdv1ejGWEr2iwMenP8myvWIvmZhW6tA805qRTQEb2lTb4H2atRApH0NSx1GP
-	HnYkI9vORGzPQnrqSvfcfP+kJphkihtP8cETm0zbIYpKIp8qXsj4eqdd1gNQt7RXEUfq28v+IuR
-	MxT9G4oWToECASuE2KKmlb1wyC0f4jHR35n7abSs/jPL+C3YeRHgQXg2mrXjNORbVSKEV33Ptj8
-	gu2Ql6lTTN1f6Hmz6Y3pqU7jNTCKMVjJpWLaSUZDOiEK3IYlJugQJbF1DXZKNdxp0f4UFjMIhcq
-	A1hGnY8zVTCylbS6wcCLJxcISDHfbL9gpihW1ZdNIufITb9qLtDfSzmvOG9gFFZHOukSNGoKfUq
-	PWDl5qarHsRzkGrkEjYpmJAfS/y2h18Sw8zZYddcFziKpFx15iCJWpacJn1wIk+QfWE1nhdKeKU
-	X3TQTeqHOz5VwIAqC
-X-Received: by 2002:a05:6000:4310:b0:4a9:6c58:178a with SMTP id ffacd0b85a97d-4aa55bfeb43mr30234907f8f.12.1795449873436;
-        Mon, 23 Nov 2026 08:04:33 -0800 (PST)
-Received: from localhost (p200300f65f19a90445515a0bd0762d9c.dip0.t-ipconnect.de. [2003:f6:5f19:a904:4551:5a0b:d076:2d9c])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4ab6c340df4sm26507719f8f.55.2026.11.23.08.04.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 08:04:32 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>
-To: Sven Peter <sven@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc: Neal Gompa <neal@gompa.dev>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-bluetooth@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] Bluetooth: hci_bcm4377: Use named initializers for pci_device_id array
-Date: Mon, 23 Nov 2026 17:04:21 +0100
-Message-ID: <20261123160421.3227994-2-u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.56.0.rc1
+	Mon, 23 Nov 2026 16:05:56 +0000
+Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 35FFD524;
+	Mon, 23 Nov 2026 17:03:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1795449799;
+	bh=9pK6J6oL7XAG9XZBoQELiXRbBhkc76Tz47n6q6kkJAU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KFdgICcxqgkA3zwfE9GsbuyXLe7fSbl/+MVxyWxmnfzBxlItzM+xhHGfU+7lGVLPR
+	 iCJDRBNnTy1W3fGeYji3o+1IR613Jhy3HmMWP3HYW7S9LXSz5ajCmjM/LiOWM5fx4B
+	 hLr+BngZaAUkte/VYUwVgTWCSpjhnzWMhZuTiPl4=
+Date: Mon, 23 Nov 2026 18:05:50 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: =?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clegoffic@baylibre.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Paul Elder <paul.elder+renesas@ideasonboard.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping
+ support
+Message-ID: <20261123160550.GA3050935@killaraus.ideasonboard.com>
+References: <cover.1795029012.git.geert+renesas@glider.be>
+ <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
+ <20261119234759.GB2324725@killaraus.ideasonboard.com>
+ <19c3745a-6308-46ff-bb37-3acc88fe22e2@baylibre.com>
+ <awAqqg6F2Z1t55x2@ninjato>
+ <d94ad9ca-afdd-4301-a69c-0bbad5b334fa@baylibre.com>
+ <20261123103633.GB2959742@killaraus.ideasonboard.com>
+ <fc13a7a8-b825-400c-9ea0-ceb2670dc478@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2285; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=oBOBpE2L2GptXbojrM0cYbgWlJFm1d0CC7BXFv6hEeo=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBrBGQF87UbSoNY7tEf7OIpBMP8e7ER1F3nxV2e5 /rXR5oY4lqJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCawRkBQAKCRCPgPtYfRL+ TsNtB/9VbcpdzRp2saBCj7NASZGY7gQVockWHmQ2ik42IgaMyheB2m3F2iJvDHu66R8Vo52mTjs DiDGZuGAxkt1AVME1/0+H9ol8iZ9PxLZu3K8lXElNfiHuiVOG03YQwrAjVgEf9nzKVKugZaf6Th Bby5V63KB0yw3wO5GlvBxuOt2y7m+cu30Pw0RG9+Rw9+f/lbzi76ozzNRPjlzLmxE6JnH26LPjn pSgJ1bw6gSOBiZIxwOMLgX1Qwi4FsN4b4GN4s6hdhniV6bi+yJnzuwxIgp0H6UyOQVD7PB+qopi 70N+dlezC+ptpqzmmG7SgoDKO1oub3JyNF4zngG11HWyz/AA
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <fc13a7a8-b825-400c-9ea0-ceb2670dc478@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_080435_543181_2750B611 
-X-CRM114-Status: GOOD (  15.14  )
+X-CRM114-CacheID: sfid-20261123_080555_081494_416E55AE 
+X-CRM114-Status: GOOD (  27.86  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,66 +94,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Initializing a struct using list initializers is hard to read, compared
-to that using named initializers is more ideomatic. Convert the macro
-used to assign values in the driver's pci_device_id array accordingly.
+On Mon, Nov 23, 2026 at 04:46:49PM +0100, Clément Le Goffic wrote:
+> On 11/23/26 11:36 AM, Laurent Pinchart wrote:
+> >> I know several SDK versions exist, and supporting several of them is work for a vendor tree.
+> >> As Geert's cover says, "While upstream Linux must only support sufficiently mature firmware versions, vendor trees (e.g. renesas-lts) may still want to support development firmware versions".
+> >> Each SDK version can then have its own DT there.
+> > 
+> > That's not how DT works. Please be gentle with Krzysztof and avoid
+> > increasing his blood pressure :-)
+> 
+> These DTs would stay in the vendor tree, so they would not reach Krzysztof :-)
+> Upstream would have one SCMI DT, as v5 has one table.
+> 
+> >> If a release that changes ids is already out, it needs a new DT, or a quirk for that one release when the DT cannot be updated.
+> > 
+> > So you're proposing that, with any new firmware that introduces an ABI
+> > breakage, every single DTB on all boards in the wild get updated ? That
+> > just doesn't scale, sorry. Let's forget about that bad idea, and focus
+> > on finding a good solution.
+> 
+> I think the v5 tables have the same problem.
 
-This change doesn't introduce any changes to the compiled array on an
-x86 and an arm64 build.
+v5 supports one firmware version at the moment, and the driver would get
+support for new firmware versions when/if needed.
 
-Acked-by: Sven Peter <sven@kernel.org>
-Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
----
-Hello,
+> As Wolfram said, "the driver is then tied to a specific firmware version", so the same ABI breakage needs a new kernel on every board in the wild.
+> Either way every board needs an update, so I think the fix belong in the firmware.
 
-this patch was send before back in July (available at
-https://lore.kernel.org/linux-bluetooth/20260718172513.986134-2-u.kleine-koenig@baylibre.com)
-and before that in May (available at
-https://lore.kernel.org/linux-bluetooth/20260504160940.2168650-2-u.kleine-koenig@baylibre.com)
+It's much easier to update one kernel than thousands of different DTBs.
 
-The feedback on that was a linter error due to a trailing whitespace in
-the cover text that doesn't make it into git and an Acked-by by Sven
-that I added above. I rebased trivially to next-20261120.
+> I also see technical weaknesses in the remapping:
+> It adds a second layer of ids on top of the SCMI ids, so each new device needs entries in the kernel tables as well as its DT node.
+> And Zephyr already uses the SCMI ids in its DT for this chip, without such a layer.
+> 
+> With the SDK DTs only in the vendor tree, what technical weakness do you see in the solution I proposed?
 
-Best regards
-Uwe
+I have yet to see any vendor who can provide 100% stability guarantees
+for SCMI firmware interfaces. In theory, sure. In real life, I just
+don't buy it.
 
- drivers/bluetooth/hci_bcm4377.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+And even if that were to be the case, the situation we see today with
+vendors shipping BSPs that require different DTs for different SCMI
+firmware versions (I'm thinking about ST in particular) is absolutely
+horrible. There are SoCs I don't want to touch with a 10-foot pole
+because of that. It's a model we need to push back *against*.
 
-diff --git a/drivers/bluetooth/hci_bcm4377.c b/drivers/bluetooth/hci_bcm4377.c
-index efd3a6424301..ab5a593ec0ad 100644
---- a/drivers/bluetooth/hci_bcm4377.c
-+++ b/drivers/bluetooth/hci_bcm4377.c
-@@ -2525,11 +2525,12 @@ static const struct bcm4377_hw bcm4377_hw_variants[] = {
- 	},
- };
- 
--#define BCM4377_DEVID_ENTRY(id)                                             \
--	{                                                                   \
--		PCI_VENDOR_ID_BROADCOM, BCM##id##_DEVICE_ID, PCI_ANY_ID,    \
--			PCI_ANY_ID, PCI_CLASS_NETWORK_OTHER << 8, 0xffff00, \
--			BCM##id                                             \
-+#define BCM4377_DEVID_ENTRY(id)                                                 \
-+	{                                                                       \
-+		PCI_DEVICE(PCI_VENDOR_ID_BROADCOM, BCM ## id ## _DEVICE_ID),    \
-+		.class = PCI_CLASS_NETWORK_OTHER << 8,                          \
-+		.class_mask = 0xffff00,                                         \
-+		.driver_data = BCM ## id,                                       \
- 	}
- 
- static const struct pci_device_id bcm4377_devid_table[] = {
+> I still think it is a good one ^^
 
-base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
+We can agree to disagree on this, no issue.
+
 -- 
-2.56.0.rc1
+Regards,
 
+Laurent Pinchart
 
