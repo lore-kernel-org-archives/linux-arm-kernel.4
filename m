@@ -2,130 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EDD606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A3CE606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3HPfVbqJ;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=P1tD6oIT;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=bdx7Pj1y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=krbzaHEZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YqWv2qyj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=; b=3HPfVbqJIbxRYV
-	qPiTtjc/qg8+sPBM1VuhfrIHO5YTtQobBKGsP17+48meUh3nLOPa8QDiHBhFuoKjjGjJfh8Y6vvs+
-	F82COGWljmnLiiQAgOmY457zbmKVPpm9lXFvwTAVzKOOfQs15290B6ohCdaPvgveK93qmsR0+wgUq
-	dnCurNcnqJwS5UWGofsNDE3r1exf5pW2+3XFFtITaCSVv6/u5mu2j+yeymzDez37k0TFHWpTax0nA
-	a9S2OltHx9hoQJ8IlJ5E1675B6sJ5DeH7TzqQfXRfgm9HhFVIMbQRFzke/lbip1Xm3cLkiI9VA5iM
-	+fBpWj9VE7K987yVns5Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=JOZamLNrX3zI1FIx1Zgz/K1EJ0SMnsfMEV0ESniCNAw=; b=krbzaHEZp1fJ4hpvjcHxvWa1C8
+	DNM8yNWDe7aWHVkRll9t5WCr6VPtXkSYSaWuNsak+llQbktjFDw4qDEprNASQygvGOgs/Zszt/+49
+	GsuVKX725VXzmLqmfNNjdPHQVgXuofjkT+VmG/dLfe2GtypaYahf1Gb8jj0OkBO9wh2ER4iKnNyyN
+	kAoLxFQ2c6H05J10KQIbLEYys8ZGoOFxesh+VsTqNiruvSl0iDB5XwRpJn70F876a5WOyNSw9VpXc
+	dvtCXqmVYsYQ8CYmdv4FUps+/7jNiwkZMIYOclEARIAs5x4spt/uSLkPK1kNQpKsX4/lbPcusJ+K/
+	dwQZFMMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVTe-00000003qLd-3E4C;
-	Mon, 23 Nov 2026 14:57:06 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVVTi-00000003qTM-2VkW;
+	Mon, 23 Nov 2026 14:57:10 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVQf-00000003od1-30uE
-	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 23 Nov 2026 14:54:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=; b=P1tD6oITAZqo79CuRYDcK6YalQ
-	9OAdnhmvXA6950PBjbn+FCKkm7GcBZsWV13Knz6JXXLhxvBhr/fFEu4r9Tm0fzIHso4NBpexIicak
-	2cN6v9tBk/OhB6OEYEnn96hjQFPfI/mcGrQ21La4GYlsW5mG8K5iqKwXoWKtNOHeZThk6vo/OkTYa
-	A8BqNhM6tFpx+lTOz+mCHnHqg1PmEj+qcMqZw/4LTVPv7ZVRsXPsO8atdjSUmuNIPLBUljonUxCAM
-	CyU9YPRmoM6WqBl34KvUpIxJphYsX1Tf4mFv79OrA8qJtYqUziMjNCDDCReEnS016lf4ITqtjHsBA
-	ex/KgwlA==;
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVQb-00000003FyN-1lPm
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 14:54:00 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a210470b49so32706445e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 06:53:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795445635; x=1796050435; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=;
-        b=bdx7Pj1ySrdih/Ttr8XJ0nBIcTqGP8TAwGn4+tgiBHzM/YPu0ST3p3KeICXgB/1mId
-         UWmR1PKhP12MRzHre2SwXXFbTRw3Hcifblto6kYQFY9yGpmmLwjxD3mHFX1hCr7HLhXn
-         /LUFWtrWNwWCi0Ed68K865tYlD/PVIp7Z8vTokgQxQAcVpk8PHOltOqffteY/BJjhfjR
-         k8UunMUfRobqZJUasjTGM1JhESmWPKQzSIXca8UiqNYsCi+qDuRUHFaod7cxIVn2AYSR
-         5KDBPTr4qmT7iYTdkzqOnZT2BFmlx6PcvXM6mlg/G+AdU1h/5TQ1F6z3lbCWyX/6rzCX
-         yLzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795445635; x=1796050435;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=gcDUe7weJJYMrvTg7gVHHmg7tsUoApLJH7Q2bv9KvGA=;
-        b=EPgEZ4zH/rCxdhfMn6slGC5+3JZLv+SYQp0ikDvhJSD36MOHXHRL+4T6M4pBov739m
-         mAWDuYvwovSr8cFaOhJIFzti4kmwryzug9CqRmQ9VqetbY1rC81agri68PsInllvy3Eq
-         1PJIcTd6UJiM4pTGqfyiyAU33/lX3KkUtOT/w10lFbAUR/hxfm2ZxVdDT9Ia26/rXgJR
-         eapkZRG/kEjXoldzkCijkCyYDdZ2XDihaVHxd/sN9fAnn/dYmt0fCzxdOVWJnBXWBngd
-         ML3SLAygZtyC1CjuZaoVQ/KG02bX33yz96l4vNWBfGBikvnUqXl+RJWJZS98HXTvlaj+
-         RBqQ==
-X-Forwarded-Encrypted: i=1; AL+hErFhCDPlWxS/FIhdV5Vh0Penl8+EMS466S04sjv0IiinCtaN62vgwQRedS5M24Z5U0YO7d/mV7S8+NGzRyr4PXkr@lists.infradead.org
-X-Gm-Message-State: APuU4Z89asCm8VBE8vU5DKnruesGoXPDWXNlJJM+s/NaHAi70IjxsKwN
-	wElrZMJ2xLQnjCN45CITCw3/riHNMQRAjqldtHsRycMbiD0xG5IPNYfTUTqwKNkoI14=
-X-Gm-Gg: AZFdTZfCgKYTVKwks3s1yxk66BIE6xOnnGbPvJ+iadM1uMfiIeIAe41EVRCRT3NJCUn
-	QwaiQFBNNbLTDsVtvpD7d6YfIkT/6/FXXDMI7LBd2Wsd/IDCJYgG3j8vlPUugGt3RXL6GquyY3n
-	29Otr11iEQtJR02q/I3xRUE0Zjy9VxqFqwidOMNBajuAkfqJ222OK5cdBzMyFRLcES5rc1FdxHU
-	SCY35NnA/2h0KbJqyEAbjIpdWXjYNi2uguq39q8HRjcc8qx3mW1W0gbk1Yg67iLUmoYt5XV9u9u
-	Kx37dgrFF4AtwnRR3kZzjkpCSEbHbvbdDYHqivARCwisY0ICkG1OphX3F0Z5WEApV1nu2yNJDId
-	T8YtgGnClLCWUVTGnOtGrYwdm9TrLtLC3nvssmOs9UTD4UTw0ZN7mNvJUMsyrPZgC8VogfQjGBV
-	ZIDvCKsOT6IonzFrkzmmqoq6r+QSEMXXogoINxGy+DvoSwS472KKF4V6Q4s6G6qOwLoF7oidmc8
-	i5DqsxhtNsEnRKLEm8IvWbb6uQ3wXUn+bEll4EgYV5j6dbl1Pej8VhJJSvUt+85c7rpj0fk//6Y
-	2vmaK0uRjooPiH0s2N96bWVrHtg=
-X-Received: by 2002:a05:600c:1c1b:b0:4bb:87be:c138 with SMTP id 5b1f17b1804b1-4bb8893e021mr265842135e9.32.1795445635536;
-        Mon, 23 Nov 2026 06:53:55 -0800 (PST)
-Received: from localhost ([82.192.120.76])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884a3a3dsm340088765e9.10.2026.11.23.06.53.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 06:53:55 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dom Cobley <popcornmix@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Ulf Hansson <ulfh@kernel.org>,
-	linux-mmc@vger.kernel.org
-Subject: [PATCH v3 16/28] mmc: bcm2835: Pass the CPU physical address of SDDATA to the DMA engine
-Date: Mon, 23 Nov 2026 15:56:54 +0100
-Message-ID: <20261123145728.29082-17-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261123145728.29082-1-andrea.porta@suse.com>
-References: <20261123145728.29082-1-andrea.porta@suse.com>
+	id 1xVVTJ-00000003q8k-1EM9;
+	Mon, 23 Nov 2026 14:56:45 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A8AA26224A;
+	Mon, 23 Nov 2026 14:56:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD6091F000EF;
+	Mon, 23 Nov 2026 14:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795445804;
+	bh=JOZamLNrX3zI1FIx1Zgz/K1EJ0SMnsfMEV0ESniCNAw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=YqWv2qyjcmNEHZr5ibzz7SsD3Sv0fNqsfzxZTHwNk4UHOxkfmYvkT6oOT0BiMl7wm
+	 /QbzGWI73gNRm2cAqHQpSotGxxCtw2NN85IosI9IXgAw7CnM4SiMCTJxlOfOHqBd0P
+	 FEVIPm6SNuG4PHCNJdCGS4Lo+fIqw6FXLYityRX4nJq+Edu0X2+p0co49qeNLhMcX4
+	 4OSNEgIfA8AqfmtMS3MDIjbFejZ5juflZnGcXMH2BSqpTZgLqpO3I3jOvmof6eNqwo
+	 ntivX1iXJkxlIdDiq+2av3GWxI+Ez9VQvgXdD7vO5JJlmMftHUsStroK2tk4HW/kkV
+	 mIcWQfwg6fLNg==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Tarun Sahu <tarunsahu@google.com>
+Cc: Pasha Tatashin <pasha.tatashin@soleen.com>,  Mike Rapoport
+ <rppt@kernel.org>,  robin.murphy@arm.com,  maz@kernel.org,
+  will@kernel.org,  David Matlack <dmatlack@google.com>,  Alexander Graf
+ <graf@amazon.com>,  seanjc@google.com,  jgg@nvidia.com,
+  loganodell@google.com,  arnd@arndb.de,  dwmw2@infradead.org,
+  baolu.lu@linux.intel.com,  Bjorn Helgaas <bhelgaas@google.com>,
+  oupton@kernel.org,  alex@shazbot.org,  gle.com@google.com,
+  pbonzini@redhat.com,  Andrew Morton <akpm@linux-foundation.org>,
+  kevin.tian@intel.com,  joro@8bytes.org,  kvmarm@lists.linux.dev,
+  linux-pci@vger.kernel.org,  Pratyush Yadav <pratyush@kernel.org>,
+  kexec@lists.infradead.org,  kvm@vger.kernel.org,  iommu@lists.linux.dev,
+  linux-arm-kernel@lists.infradead.org,  skhawaja@google.com,
+  sagis@google.com,  linux-arch@vger.kernel.org,  linux-mm@kvack.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI
+ compatibility
+In-Reply-To: <20261110050202.529473-6-tarunsahu@google.com> (Tarun Sahu's
+	message of "Tue, 10 Nov 2026 05:01:48 +0000")
+References: <20261110050202.529473-1-tarunsahu@google.com>
+	<20261110050202.529473-6-tarunsahu@google.com>
+Date: Mon, 23 Nov 2026 14:56:36 +0000
+Message-ID: <2vxzse0rzjdn.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_145357_459680_6C4AE462 
-X-CRM114-Status: GOOD (  19.22  )
-X-Spam-Score: -0.2 (/)
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -136,88 +81,128 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The addresses in struct dma_slave_config are CPU physical addresses, and
-the DMA controller driver is responsible for translating them into its
-own view of the bus. The driver instead reads the untranslated address
-out of its reg property, which only happens to be what the BCM2835 DMA
-controller expects because the DMA engine driver used the address
-verbatim.
+On Tue, Nov 10 2026, Tarun Sahu wrote:
 
-Now that the DMA engine driver translates slave addresses itself, use the
-CPU physical address of the register resource, which also gets rid of
-the open coded parsing of the DT node.
+> Serialized structures in KHO and Live Update Orchestrator currently rely
+> on whole-structure compatibility strings or monolithic version fields to
+> validate handed-over state across kexec. Any change to a serialized
+> structure, even an optional additive field, requires bumping the
+> compatibility string or version number and breaks live update between
+> adjacent kernels.
+>
+> Introduce a generic feature header (struct kho_ser_hdr) for serialized
+> binary structures in include/linux/kho/abi/feature.h. Each subsystem
+> groups the fields of its serialized structure under feature indices,
+> starting with index 0 for base fields. When a subsystem adds a new
+> capability, it appends new fields to the end of its payload structure
+> under a new feature index. Retired fields are kept in place so existing
+> field offsets never shift; if the type or format of a field needs to
+> change, the existing field and feature are kept intact until retired and
+> a new feature index with an appended field of the new type is added.
+> Only when a change requires a complete break in the serialized layout or
+> semantics that feature flags cannot handle, a new handler or format can
+> be introduced with an incremented version number.
+>
+> Each feature belongs to either a required feature space or an optional
+> feature space. Both spaces are numbered independently starting from 0.
+> In the serialized header, required features occupy the first nr_required
+> bits, followed immediately by nr_optional bits for optional features:
+>
+>   struct kho_ser_hdr {
+>           __u32 size;
+>           __u16 nr_required;
+>           __u16 nr_optional;
+>           __aligned_u64 flags[];
+>   };
+>
+> A set bit indicates that the feature is present in the payload. The
+> truth table for deserialization:
+>
+>   Source bit       Target            Action
+>   Not set          -                 Accept: feature absent
+>   Optional set     unknown or known  Accept: ignore or use the data
+>   Required set     known             Accept: use the feature data
+>   Required set     unknown           Reject: -EOPNOTSUPP
+>
+> During deserialization, the target kernel only validates required
+> features: if the source set any required feature bit at or beyond the
+> known required feature count of the target kernel, validation fails with
+> -EOPNOTSUPP. Optional features are never rejected; the target kernel
+> simply checks whether known optional features are present before reading
+> their data.
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- drivers/mmc/host/bcm2835.c | 20 +++++---------------
- 1 file changed, 5 insertions(+), 15 deletions(-)
+I've been thinking more about this recently, and I don't think we need
+to differentiate between optional and required flags. I think all we
+need is "feature flags".
 
-diff --git a/drivers/mmc/host/bcm2835.c b/drivers/mmc/host/bcm2835.c
-index efd1903c3ccd..cea7b2b6d2f0 100644
---- a/drivers/mmc/host/bcm2835.c
-+++ b/drivers/mmc/host/bcm2835.c
-@@ -38,7 +38,6 @@
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/module.h>
--#include <linux/of_address.h>
- #include <linux/of_irq.h>
- #include <linux/platform_device.h>
- #include <linux/scatterlist.h>
-@@ -147,7 +146,7 @@ struct bcm2835_host {
- 	struct mutex		mutex;
- 
- 	void __iomem		*ioaddr;
--	u32			phys_addr;
-+	phys_addr_t		phys_addr;
- 
- 	struct clk		*clk;
- 	struct platform_device	*pdev;
-@@ -1369,7 +1368,7 @@ static int bcm2835_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct bcm2835_host *host;
- 	struct mmc_host *mmc;
--	const __be32 *regaddr_p;
-+	struct resource *res;
- 	int ret;
- 
- 	dev_dbg(dev, "%s\n", __func__);
-@@ -1382,23 +1381,14 @@ static int bcm2835_probe(struct platform_device *pdev)
- 	host->pdev = pdev;
- 	spin_lock_init(&host->lock);
- 
--	host->ioaddr = devm_platform_ioremap_resource(pdev, 0);
-+	host->ioaddr = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
- 	if (IS_ERR(host->ioaddr)) {
- 		ret = PTR_ERR(host->ioaddr);
- 		goto err;
- 	}
- 
--	/* Parse OF address directly to get the physical address for
--	 * DMA to our registers.
--	 */
--	regaddr_p = of_get_address(pdev->dev.of_node, 0, NULL, NULL);
--	if (!regaddr_p) {
--		dev_err(dev, "Can't get phys address\n");
--		ret = -EINVAL;
--		goto err;
--	}
--
--	host->phys_addr = be32_to_cpup(regaddr_p);
-+	/* the DMA engine translates the address into its own view of the bus */
-+	host->phys_addr = res->start;
- 
- 	host->dma_chan = NULL;
- 	host->dma_desc = NULL;
+Let me explain this by taking my KHO map patches [0] as the example, since
+they got me thinking about this in the first place.
+
+I sent out RFC v1 with no multi-entry support and static depth. During
+the review, we figured out that we should support multi-index entries
+and dynamic depth. Both of them need breaking ABI changes. If you use
+these features, a kernel that doesn't understand them will break.
+
+Now let's say for argument's sake that we merged my RFC v1 as-is, and
+later down the line realized that we needed multi-index and dynamic
+depth. They are backwards incompatible ABI changes, and so need required
+flags called say KHO_MAP_F_MULTI_INDEX and KHO_MAP_F_DYN_DEPTH.
+
+If memfd_luo does not know what features the incoming kernel supports,
+it can't really ever use these flags. Because it can not guarantee at
+all that the live update would succeed. So without information of what
+the incoming kernel supports, you can only ever add optional flags.
+
+From the conversations we've had at LPC and in the bi-weeklies (and also
+[1]), we want to supply a specification for all the features the
+incoming kernel understands via a uAPI.
+
+Once memfd_luo knows whether the incoming kernel supports
+KHO_MAP_F_MULTI_INDEX or KHO_MAP_F_DYN_DEPTH, it can choose to use them,
+or go with the less efficient single-slot entries. It makes that
+decision when writing out the serialization structures at runtime based
+on the spec provided. Backwards compatibility is kept by looking at what
+the incoming kernel supports, and only using what it can understand.
+
+When we have all this available, I don't see the point in
+differentiating between optional and required features at the ABI level.
+At the ABI level, all that matters is what the incoming kernel
+understands. If the incoming kernel does not understand a specific
+field, the outgoing kernel should just not use it. There's no point.
+Best case, it gets ignored.
+
+The semantics of required or optional then become "can I describe this
+object with the capabilities I can use?". If the answer is yes,
+serialization succeeds, if the answer is no, serialization fails. So
+with this, KHO_MAP_F_MULTI_INDEX or KHO_MAP_F_DYN_DEPTH are indeed
+optional. All memfds can be described without these, they just will be
+less efficient.
+
+The only thing that the optional flag buys us is to add backwards ABI
+compatible changes _until_ we add the ability to export the
+specification of the incoming kernel. Since that should be coming in the
+near future, I don't think the churn of optional flags is worth it.
+
+So in short, here's my proposal: we only do "feature flags". The
+serializer should know what the incoming side understands, and it should
+only use the features that are understood. It should simply not use
+anything else. If it can't describe an object with the flags available
+to use, serialization fails.
+
+[0] https://lore.kernel.org/kexec/20261116134013.1636689-1-pratyush@kernel.org/
+[1] https://lore.kernel.org/kexec/CA+CK2bCnS8wcVDbOymBGeJB6pDUkknOpF22EynbwSV=D5=J4ow@mail.gmail.com/
+
+[...]
+
 -- 
-2.51.0
-
+Regards,
+Pratyush Yadav
 
