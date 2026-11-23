@@ -2,78 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06B1606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C6D606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cHzlWrrh;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=QEm8CySf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GiySGgEs;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=XC7/GABB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6fEkPWmHsE1FBTbolVguk9F6xOB/+sWczlTwhCw0V+c=; b=cHzlWrrhEGl53x
-	n3jfHNH8P29dgEGXus0faLOSvcqMbVtar+rn318L36IVHL3/JjUqSCC04qRuwV+CMmFW52w7iOexx
-	LZpgxNOZZBXz5BSWy0FC0tUkPZc86oXKps5vdyVc8pcM98MEVx2kt8rCyaalDHcxFY6RKakTr1932
-	9Ndweadb156RYbzN0g0oAdabVcnEKyZbo/KKtAHwCB/qgjxdbCPE382wDcGuruWoAVlvBamDsECMw
-	2FTavXxobRbto/0oxLgBxBYysImtTyp1QQSNb31WdKGNxCyEMebXM/aAPe3ROfZjUm3UaHCWtBK8P
-	uhiT7VsxUAihWHY9XeIQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=FZTB+VKUReCx8XgfvlzddrAeMA7GwaWZltQEpDEq+1w=; b=GiySGgEsvcdySuwdt9JlIC2kgO
+	R80RXyHMAW/0HWz67CAimNQnzRjmO4DpsvqWcbk2BB5cgzh6/20cQUhYdx1bezANdo+5CH5RcEo5i
+	RWonB5PqTpYU1S86aMxV7jE7GWbSaUZH2CMLgGtwqxn1BRN+q43OOgFENhTk/RlwrvCHU7lZCcJvO
+	OianmJ8UTUPRYYtrpc/yLE0KLsmeElYba1/eyG2cj2St5SEZ9qGw286pwD/YTgPp8qdu2azKr8jT9
+	+e2laLfRCquydJKdAL1OJfohnHVyg1DfIg/WHKHw02Qnbi0eDKUBHg6KdMGKXdkI4BDYRfH5CliDJ
+	YmKs9dVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSfk-00000003Fy7-1Daf;
-	Mon, 23 Nov 2026 11:57:24 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xVSBJ-00000003ARz-0lH9;
+	Mon, 23 Nov 2026 11:25:57 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSfg-00000003FwY-2jPS
+	id 1xVSB7-00000003AMS-2bLU
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:57:22 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 54FB71A1709;
-	Mon, 23 Nov 2026 11:57:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 18B34601E1;
-	Mon, 23 Nov 2026 11:57:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 00D7111E6A292;
-	Mon, 23 Nov 2026 12:57:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795435034; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=6fEkPWmHsE1FBTbolVguk9F6xOB/+sWczlTwhCw0V+c=;
-	b=QEm8CySfaxHG78ZPs8oBzHwLlwWSTKT9teqadOb69wiEzSGroYsFWW6BGoAuCrjEGRoW6p
-	OF/c4eDaLYJhUggLvbvY7mCz5x1++RjNYRGcXi6Je+uHkfVLCUFNVEtjypjc93WtEIZHhN
-	repOzx6fwrb87HU3YNT1e1J752BXvnCRpn2PnlSuDJ0W7sGqDnI7kKWg4x9yHi/4ZsIbPj
-	OWNf8Vc9b8VYDdRVa07v1YPLaSdhcriBWKfpOUoXN6onS9OV9ECW1GttbDpzcUyMPKaIqa
-	DxtBNLUu9TJZ0pl0aZIn9QkrPhcYiY/cDk9zwJ7KJXrJsj0Bsm3Wh8Jr30JZ3Q==
-Message-ID: <4f1c4180-3a00-4b17-a27b-e61b307d3e5f@bootlin.com>
-Date: Mon, 23 Nov 2026 12:57:06 +0100
+	Mon, 23 Nov 2026 11:25:49 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 4FAA92004F5;
+	Mon, 23 Nov 2026 12:25:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795433142;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=FZTB+VKUReCx8XgfvlzddrAeMA7GwaWZltQEpDEq+1w=;
+	b=XC7/GABBbVCy6qSUBLzaxbF1Tgdso6abzV0o+CLMO7Pyrc+E4bpaPHhMYOPvqBcnH6d8Kz
+	pS744332w9d2Kp0QSlr2pLp+O5LG9/ly1US6YHoFz3jhhV4uM7cFIFjCgkeLnqFaedQ/8X
+	t59iSGt91W1E5YUbdEfD5WV/CvRzJFxllHa5BlVFlLGFnpt08gEWlnnm92Qalp8YzLgSLM
+	EhOje00UR1YbhXNIkbvE1YUmdZC3FMOe8XXkBTblXQzLoTUXRdK6aIoL+B25EFCLoV/oie
+	gwBhmddDSciXPsBhRIct8uprObwmvLzcF1sv0cLEFyP88X/pa4wtRjCzai+/6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795433142;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=FZTB+VKUReCx8XgfvlzddrAeMA7GwaWZltQEpDEq+1w=;
+	b=CZKb7kQBUh/XBdr74KsMTSaav0Yi7PRhKkXpjI35Isabftlf1S41trm1bBY9rQ2Q/hl2YL
+	Qmmjad12VNfrJkN/zhHa+QjU9aaLXBq5A7vtjkyLRSRoqZ8axd4oPN3e5BEBkRERDYX1hb
+	CH1HCW9BLduGvjeWfcOI2e3zQrC2BT9jDEpalwF4oaKewpLpzMJi2NxB26aOfVHY+hCYk+
+	rKK/3nj8XKBy1stxatUc925dn6NSryBENfIeK7M/S6ex5y4ucm3jEfuFKA5h5nuJ2MZWIA
+	fyx94IpDLymJ9rdQstIPhuRROPv97OXsA3Fsy5DQfkD6m85/bhu4ryET8OANiw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795433142; a=rsa-sha256;
+	cv=none;
+	b=Px/bp4ZMaZED356D0hsShG2xnXTdCwbJlF2VKHrd0g1sRd1h9xMausOhY1EmQISVZ/QMUO
+	tqqidIDPAUp1tgz2WaxyEVIDpYuvafWx5Oe9BJkefHqTwfE8WUwdvixgM5En6vdWpT7W4T
+	znkivYous1GncOc4DJT0vdwepOQM9fjksa9J/SeSNXEdUSP10aXUInxU8SAtxeG9jL2j7p
+	1Sn30dYn+ygxqbYanRUTyU7QOrD2vIrFkJCrBrU+Ww3TSJIVYgoM+ocb3LOyxhRaZ0qgEg
+	UOY7FA7qYrZN/jomXKqWInUUR2p15ehJFz2/3qGS33qwc8SZbTZcOMgHj4luaw==
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.2])
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <f.diener@pengutronix.de>)
+	id 1xVSB3-0016XI-2L;
+	Mon, 23 Nov 2026 12:25:42 +0100
+From: Freimut Diener <f.diener@pengutronix.de>
+Subject: [PATCH v2 0/5] arm64: dts: freescale: Fix i.MX93 FRDM hardware
+ descriptions
+Date: Mon, 23 Nov 2026 12:25:14 +0100
+Message-Id: <20261123-imx93-frdm-fixes-v2-0-dd97c7fca4b1@pengutronix.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] net: stmmac: Add glue layer for Synaptics SL2610 SoC
-To: Jisheng Zhang <jszhang@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20261116135442.4827-1-jszhang@kernel.org>
- <20261116135442.4827-5-jszhang@kernel.org>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20261116135442.4827-5-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22NwQ6CMBBEf4Xs2TVtDRU98R+GA9ItrAmFtIVgC
+ P9uQY8eX2bmzQqBPFOAe7aCp5kDDy6BOmXQdLVrCdkkBiWUllIK5H65XdB606PlhQLm2hYmJys
+ arSHNRk9HkFaP6sther6oibtnb3Qc4uDfx+cs995Pr/7oZ4kCr4UxpFSdvqgcybVT9IPj5WwIq
+ m3bPsgMzwnHAAAA
+X-Change-ID: 20261110-imx93-frdm-fixes-56f8d5ef0c66
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Freimut Diener <f.diener@pengutronix.de>, 
+ Marco Felsch <m.felsch@pengutronix.de>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_035720_863259_17460AB7 
-X-CRM114-Status: GOOD (  22.83  )
+X-CRM114-CacheID: sfid-20261123_032546_434160_FEEC8854 
+X-CRM114-Status: GOOD (  11.37  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,155 +108,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+This series fixes and completes several hardware descriptions for the
+NXP FRDM-i.MX93 board and the common i.MX91/i.MX93 device tree.
 
-On 11/16/26 14:54, Jisheng Zhang wrote:
-> Add dwmac glue driver to support the DesignWare-based GMAC controllers
-> in the Synaptics SL2610 SoC.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  MAINTAINERS                                   |   2 +
->  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
->  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->  .../net/ethernet/stmicro/stmmac/dwmac-syna.c  | 116 ++++++++++++++++++
->  4 files changed, 130 insertions(+)
->  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 430758242906..dba0288bf4da 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3808,12 +3808,14 @@ M:	Jisheng Zhang <jszhang@kernel.org>
->  M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
->  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/net/syna,sl2610-dwmac.yaml
->  F:	Documentation/devicetree/bindings/soc/synaptics/
->  F:	arch/arm/boot/dts/synaptics/
->  F:	arch/arm/mach-berlin/
->  F:	arch/arm64/boot/dts/synaptics/
->  F:	drivers/clk/berlin/*sl2610*
->  F:	drivers/clk/berlin/sl-*
-> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
->  F:	drivers/pinctrl/berlin/pinctrl-sl2610.c
->  F:	drivers/reset/reset-sl2610.c
->  F:	drivers/soc/synaptics/
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index c6559e749c0c..79ffebcaba0e 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -310,6 +310,17 @@ config DWMAC_SUN55I
->  	  stmmac device driver. This driver is used for A523/T527
->  	  GMAC200 ethernet controller.
->  
-> +config DWMAC_SYNA
-> +	tristate "Synaptics SL2610 DWMAC support"
-> +	depends on OF && HAS_DMA && (ARCH_BERLIN || COMPILE_TEST)
-> +	select MFD_SYSCON
-> +	help
-> +	  Support for the Synaptics SL2610 DesignWare Ethernet MAC glue.
-> +	  This configures the PHY interface through the system controller.
-> +
-> +	  To compile this driver as a module, choose M here. The module
-> +	  will be called dwmac-syna.
-> +
->  config DWMAC_THEAD
->  	tristate "T-HEAD dwmac support"
->  	depends on OF && (ARCH_THEAD || COMPILE_TEST)
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> index b16a456b730e..d132353e9403 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> @@ -35,6 +35,7 @@ obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
->  obj-$(CONFIG_DWMAC_SUNXI)	+= dwmac-sunxi.o
->  obj-$(CONFIG_DWMAC_SUN8I)	+= dwmac-sun8i.o
->  obj-$(CONFIG_DWMAC_SUN55I)	+= dwmac-sun55i.o
-> +obj-$(CONFIG_DWMAC_SYNA)	+= dwmac-syna.o
->  obj-$(CONFIG_DWMAC_THEAD)	+= dwmac-thead.o
->  obj-$(CONFIG_DWMAC_ULTRARISC)	+= dwmac-ultrarisc.o
->  obj-$(CONFIG_DWMAC_DWC_QOS_ETH)	+= dwmac-dwc-qos-eth.o
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> new file mode 100644
-> index 000000000000..c4bc895b29da
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> @@ -0,0 +1,116 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Synaptics DWMAC platform driver
-> + *
-> + * Copyright (C) 2026 Jisheng Zhang <jszhang@kernel.org>
-> + *
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/module.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_net.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "stmmac_platform.h"
-> +
-> +#define CTL_PHY_INTF_SEL	GENMASK(4, 1)
-> +#define CTL_PHY_INTF_RGMII	FIELD_PREP(CTL_PHY_INTF_SEL, 1)
-> +#define CTL_PHY_INTF_RMII	FIELD_PREP(CTL_PHY_INTF_SEL, 4)
+The changes enable the PMIC's I2C level shifter, describe the PCAL6524
+GPIO expander supply and USB2 VBUS supply, and restrict USDHC3 probing
+to SDIO devices.
 
-Please use PHY_INTF_SEL_RGMII and PHY_INTF_SEL_RMII from "common.h"
+Additionally, the missing EL2 virtual timer interrupt is added to the
+common i.MX91/i.MX93 timer description, allowing VHE-enabled Linux to
+use the EL2 virtual timer.
 
-> +
-> +struct syna_dwmac {
-> +	struct plat_stmmacenet_data *plat;
-> +	struct regmap *regmap;
-> +	u32 rgmii_ctl;
-> +	struct device *dev;
-> +};
-> +
-> +static int syna_dwmac_set_phy_if(struct plat_stmmacenet_data *plat)
-> +{
-> +	struct syna_dwmac *dwmac = plat->bsp_priv;
-> +	u32 phyif;
-> +
-> +	switch (plat->phy_interface) {
-> +	case PHY_INTERFACE_MODE_RMII:
-> +		phyif = CTL_PHY_INTF_RMII;
-> +		break;
-> +	case PHY_INTERFACE_MODE_RGMII:
-> +	case PHY_INTERFACE_MODE_RGMII_ID:
-> +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> +		phyif = CTL_PHY_INTF_RGMII;
-> +		break;
-> +	default:
-> +		dev_err(dwmac->dev, "unsupported phy interface %s\n",
-> +			phy_modes(plat->phy_interface));
-> +		return -EINVAL;
-> +	}
-> +
-> +	return regmap_update_bits(dwmac->regmap, dwmac->rgmii_ctl, CTL_PHY_INTF_SEL, phyif);
-> +}
-> +
-> +static int syna_dwmac_init(struct device *dev, void *priv)
-> +{
-> +	struct syna_dwmac *dwmac = priv;
-> +
-> +	return syna_dwmac_set_phy_if(dwmac->plat);
-> +}
+The changes have been tested on an NXP FRDM-i.MX93 board.
 
-Can you implement .set_phy_intf_sel() instead ? that should simplify that quite a lot.
+Signed-off-by: Freimut Diener <f.diener@pengutronix.de>
+---
+Changes in v2:
+- Keep USDHC3 at 4-bit bus width and restrict probing to SDIO.
+- Move the I2C level shifter configuration to the common DTSI.
+- Address review feedback.
+- Link to v1: https://patch.msgid.link/20261120-imx93-frdm-fixes-v1-0-78dde22a56fe@pengutronix.de
 
-Thanks,
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pengutronix Kernel Team <kernel@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
 
-Maxime
+---
+Freimut Diener (5):
+      arm64: dts: freescale: imx93-11x11-frdm-common: Enable I2C level shifter
+      arm64: dts: freescale: imx93-11x11-frdm-common: Describe PCAL6524 supply
+      arm64: dts: freescale: imx93-11x11-frdm: restrict USDHC3 to SDIO
+      arm64: dts: freescale: imx91-93-common: Add EL2 virtual timer interrupt
+      arm64: dts: freescale: imx93-11x11-frdm-common: Describe USB2 VBUS supply
+
+ arch/arm64/boot/dts/freescale/imx91_93_common.dtsi |  3 ++-
+ .../dts/freescale/imx93-11x11-frdm-common.dtsi     | 29 ++++++++++++++++++++--
+ arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts |  2 ++
+ 3 files changed, 31 insertions(+), 3 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261110-imx93-frdm-fixes-56f8d5ef0c66
+
+Best regards,
+--  
+Freimut Diener <f.diener@pengutronix.de>
+
 
