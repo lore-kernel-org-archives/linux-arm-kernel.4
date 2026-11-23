@@ -2,100 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD0F606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D239606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uF4Sji6z;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=p25iRIYb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GKJo8qOK;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZC/5Xwkp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ilZYU0nJlOfbIZpA54O6Llww2cRpeFf60lBf1k1tKTo=; b=uF4Sji6zvsv6yv
-	WBHs0Q7pFmZWBB8IMLD7udojJoi+OD080PN5HBKEPO6wVRxPoTeVO5wzO/FoW4wkUHsXTKxRKuu3Z
-	Ek0r6twv54Sc1iqr3u0t4H8sw6lDX9u63aksbns4nyai33PyRugKhT9ROWqqE8We62b93im7CaJ+/
-	LRuRXhmnqV5hdC7CvF7sDsqaNbNtKPqMYGCrKNuZSWoRpavXTlyJadiAmG/1myTvcs6h2eYgWbegt
-	Q3FzLWkisczw/ezN7RodugWz89TSfEvQ+nYWaapmA+EETG7JjxsRxN8A6xL2Lm6/95iVrcgcjm+NY
-	BLuMd+n0nO0X7TT+k3QA==;
+	List-Owner; bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=; b=GKJo8qOK96/GUB
+	5PxCQiODHYySUdE13JmVXaLjGuCa77eQIseLt27TNyUWeEqFftDEu5d6S4D4VgKi3DDUADMg22ewz
+	uoNBS4O/y8dzf0v0HtlviQUXz39iQmDOqDdofEGEWlbX34NeKTV0919rbEcj/1pu7+FJSg+0W/zKW
+	zXAo46bzWchRFEHJL8taKDpgSq7RY1jpFRneeslt6WarX/O2uZ1qSGLIihHZ99bmQSWV9r4LOjzsF
+	hQ89MWkHN74NGDnKBanvjsRNVPfzmKAZVNUOh1BxiVXlVbBL4WcwqIn9k/lAbrWDLi2B01KVjQ35i
+	zYUTubf2G6Hr1kKsHM6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYj1-00000004Tip-17aE;
-	Mon, 23 Nov 2026 18:25:12 +0000
-Received: from mout.web.de ([212.227.15.3])
+	id 1xVYlc-00000004Tzf-1cmp;
+	Mon, 23 Nov 2026 18:27:52 +0000
+Received: from mail-qt1-x82c.google.com ([2607:f8b0:4864:20::82c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYiK-00000004TXd-348P
+	id 1xVYlZ-00000004Tz7-12BR
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:24:31 +0000
-DKIM2-Signature: i=1; m=1; t=1795458266;
- mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
- rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=web.de;
- s=s29768273:rsa-sha256:F2w45Q58G+FI0FHSnRmP6Y/pLV9+
-   4wFc24Z1yj788DBSXeXrosF7gCQQRmyPx3o10Qg4mZGLZCOOTdApDNg/5dzghjSSxCGzCLhBNsq
-   z3o4d9fnIToTX8KDBBj7uEAjaoYvtkB8LRmzmvNaue/TGfNuzr5cVDIg/kPLIfDRanIwy5lC2Qd
-   IhlpJ0nbB+uBBce9s68yykKzck32hIrZdolNLGerNpwEnGTVfEmB7KvmRmJluJ+FpjcQEm9DaUc
-   zUZe4MiCc//xSaPORjWCfmSXstgevjU61XkzIW6dbqbzuysSizxs6bQkeyjVOQ5/rSV8HAIZYKf
-   zf2tIDTgt6/azQ==;
-Message-Instance: m=1;
- h=sha256:
-   lFU5GzAKl7OHOHFEhr3F8UWbmK7nMFoCDiEMXnGekGA=:
-   WxpEIgDNviJYDpLvFLwQq3jSa3mMR3LZqMWRbgfvz7Q=,
-  sha512:
-   lHmbAdtCFkvTQfCaTxC6MPuf25UWUTbj8xPsMbuH4KN05lUy55I3uD3DDLvUMmBjV0MoV5UINFgSiTcjTSYeUA==:
-   LtcOp/THSetMhJQu9FTgkRmDYsCUWeWVMi7Mb1f8Od/vNWLygPyNfQIRYfWgtphwSHkSObECctHCLAeNEdXzPQ==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1795458265; x=1796063065; i=markus.elfring@web.de;
-	bh=ilZYU0nJlOfbIZpA54O6Llww2cRpeFf60lBf1k1tKTo=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=p25iRIYbrc7mYByoWmfWtzvu4sAVhjGyrgBFwkgouJwRFhkKVrPNUcNm+izTSn5I
-	 i6DZC7HQn7+VuBtf+8ebLbRNJ5va40VaD0DaXW5hg6E1Wo2WML9lvs4Ry8uJ0Tuvh
-	 aFr7s6RrpUHlMkqg9ru8oXoda4XGp/LeFPlMut6tXKzc0u+2/zZ1e9nHg9v9vkWzV
-	 aLgWc65QRrqciOa0y/Q9Y1Gv1FH4D/9d48ag+6KQfU+tY3WQbdrNaHR870wdzxZwv
-	 QH+qiNnRdxIcZFlBPF0+bc75do61pohkVkwl7G0qUBV8nwOIXGT6zlTPQPNqVq+FV
-	 DiZBCHpPpK+e1GxvGA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1M2ggd-1xXUWM00bP-002Uz7; Mon, 23
- Nov 2026 19:24:25 +0100
-Message-ID: <797d8f02-2e16-4ca6-bfda-8b6e40742a84@web.de>
-Date: Mon, 23 Nov 2026 19:24:21 +0100
+	Mon, 23 Nov 2026 18:27:51 +0000
+Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-54492d8a988so574521cf.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 10:27:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795458464; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PhQz4smRVzU2deKoAQMhp8hCK3xz/nXy/wAgq29LVBTXrZkM7Dhrwm6KBYrr5gjAu9
+         XVK5Nen2pzC6hJ/w9C5U8LXhjfYPBQYCfuF57xI+Q0JZXd5WVZBeu0QdV9x+ssTRqRfk
+         J5JTIc07Ud/m258WHdDoy7LRRSpYhwdBehoL3cLj/w5fCoshYL6qzJNdiyO2fgR0p0C+
+         g1ljrdhG8/t8tKiQc05OeMoCagNjkMz7duOnWUawWMGGCrFlaUNP24fob/clRMbrgK/9
+         B2pL9zJ6ZY3th3++0GOLTHz69KKmvvf8MAfe9fbGDieufkIPH0gkNQadzLBJAtR05RLd
+         vf3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=;
+        fh=lA/eRgRVJzCV/axVDwdxAFzdiwb6OvhZyjgQn8DUnRc=;
+        b=rk8TT20j1XjAkc7YvOznn4LDjgVGTFsFzYfnNG1GcI7HSI3ONp7IYykDWeZteKBqh0
+         9t3crQc58qeZ5ZNdN9fGO6um7IShn0KxEvT23Zf70kEVeIBuY9XUbAAFYpfUmQXbz0VS
+         U3FSdR5tOcrc1130wrzckHeBgsJkoCSzWodIYn6jmonkD5FlgzYqGovQowHY76pvBvzZ
+         tuHQkp8SzFq8xNCKWdySmH65QXXHYjO5YZV31lRSGvNIFw3hUWv194RLir9I5I1Oi1h0
+         RL3+cRh6dTUAZG7yag9Zau3GEo30vvFdIc5eISqfdySbTTC1x/U86cDaH2M94RgFY+Jh
+         mmiw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795458464; x=1796063264; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=;
+        b=ZC/5XwkpBm6iSirie/dyr824wdIKwowQwx/lxwDsTLIqPz9QHpAUAx2lMLvA0lF28x
+         5EYsyMiAAX3/JsUzppbp1eePrY91G0AqZ8wovC6mjgPSqUPKkONoDTk/H5iwJSoGKU3P
+         Y2x3bn7SFhUINKmJSaOgmtASuwEFxtGyYWIbjppl/jlwpjuYBaW4/Ts1d7D7MrxmTsmx
+         365Hv/Xj0bJP+Ep0+cAiWbnGqACkjMiNfdBGamcRZTQwJMTND3t4cqDBhTJz4NiRQuXc
+         BHEgdHc02YRJcANXKzpTMtc2NQ5kRbMTCRcqqEHwbLxzj8KkHgq4VhH2I6HGdVNJZaj+
+         iTVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795458464; x=1796063264;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=;
+        b=XvfHQa1Nf0/k5pSje5D4JeisWBWTCPwiJPpfwcsQwQza3sBpCyqWOSCMA56LEKUiMo
+         5CYl94n6vK6MhFv+0wNxSDUFyJ5OU9ITAGC/nijeJhAyiysq9Ha6+P8oqxmdfKXKJjjm
+         1r0kVwAZqW7AQuabjmaXBrGdGNR9JZ4AxAejhas7YQXspyAe3V2k014lYlJtnj/27Wkd
+         h8UtweN5twsmctqi3aMCwomTJXjGv4f1YYVf8ERuxVlqVoi5sIror4+MT/okal8A9s6F
+         9eNq2XDhaPT06mGQr2qum5O/SJ6r//JqHxZi3Y+R6KYRUD7a8f35dJDRne70eTLvZtKw
+         3GUA==
+X-Forwarded-Encrypted: i=1; AL+hErHn0Qpev+5QAryOhQ6mYtul5QWba9HEyUM8xAsNzkJuspPiLoFfUR2FLG4KburyN8TdC/Z4n/mVyck2yRX6tpai@lists.infradead.org
+X-Gm-Message-State: APuU4Z9cQxEOCy5VE0yLhVMA8Dikr8tJA/6K66+5GsqdOtJyhL9ZUTAQ
+	uW6e/DRekXup4xA+NQmbmv2cvTEpGQGixWtCsW6jcKp5BrtRZgvrlWh3tEu3YbSY3aFcOa4f4Md
+	aufJ0M0aiilGAefpkqkhuAuIFSq7POk3Gq/fr7PFe
+X-Gm-Gg: AZFdTZekUf9qjnbEp0Sdkoh0xGuGCYzvB1ruiPPZMj+NiUcdA9OCZ3gLqEwKjourPuO
+	6QFnoZLq6iLXBEEJTrgIxufuEmoXyyX1icR6GuhF6zaU1UiGA1UbX46EYlE8o/xcnC5pCG6MjrC
+	QHvbyM36hJccQBvBQAlPUEEGm2KgMgUs/aM7evlyjpb0GO7CqOZw196wsRC2MORMOONZnCMgUTy
+	MBRpEonT9ezU5phdvR6OkUoFIEyNW6mXyEkbTqLIlR7+FFNlsUoRSw98kI3NOYpCkBnXOAQFd6X
+	guRGjNsAdSvhEdWsVH3HOD7Ufhs/wDEFIl6kY1xtDo3fZ1WL2WetBR9ESnnkog7GnVbJfpDiMX6
+	FwFtXOU4FbieezJnHoDfMEv50rzoeCW2KubRAtg==
+X-Received: by 2002:a05:622a:994:b0:531:282:6560 with SMTP id
+ d75a77b69052e-55d8906adc4mr41086201cf.15.1795458463690; Mon, 23 Nov 2026
+ 10:27:43 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: spi: imx: Use devm_clk_get_enabled() calls in spi_imx_probe()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, imx@lists.linux.dev,
- linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@pengutronix.de
-Cc: Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Johan Hovold <johan@kernel.org>, Mark Brown <broonie@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, LKML <linux-kernel@vger.kernel.org>,
- kernel-janitors@vger.kernel.org,
- Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
- Florian Fainelli <f.fainelli@gmail.com>, Michal Simek <michal.simek@amd.com>
-References: <895d50a6-3a42-44d2-8625-3b8cba8fbfff@web.de>
- <awR3jGcH97PrYNqc@ashevche-desk.local>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <awR3jGcH97PrYNqc@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8
+References: <20261113074125.4146687-1-aaupov@fb.com> <20261123175540.GE9176@e132581.arm.com>
+In-Reply-To: <20261123175540.GE9176@e132581.arm.com>
+From: Ian Rogers <irogers@google.com>
+Date: Mon, 23 Nov 2026 10:27:32 -0800
+X-Gm-Features: Aa3M54rkqvnpPz0DiXLf5e18ONtq5tQbgbU2y6PXCXZ-S06Dd1ce403DsJ35cTM
+Message-ID: <CAP-5=fXh9zDsh6J=oyDKmxLVsOw-CA4vDYu4589eLdxLsOav4A@mail.gmail.com>
+Subject: Re: [RFC] perf: SW strobing for AUX trace windows
+To: Leo Yan <leo.yan@arm.com>
+Cc: Amir Ayupov <aaupov@fb.com>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Jiri Olsa <jolsa@kernel.org>, Kan Liang <kan.liang@linux.intel.com>, 
+	Will Deacon <will@kernel.org>, James Clark <james.clark@linaro.org>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>, 
+	linux-perf-users@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, coresight@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:9cHX4ybb0CLcDRh387G8BMTzRDTbVb+A+YtoGlQvKFjiBdy/D9z
- +J4QDEssM4T5CEKLj1xw2bpccGzFVh289WJ3MbAjyxQaPDJ3hlx5NI6ZrsgCUrkNzgrZRcc
- tqT6R24r/G3+875PL+KIUbI6OmRz98x3vwbimvB1Lqjxh5FWy5cZynEBpEb+gE5BTt6XSoQ
- HmZsangITgbWRUt6N0HQQ==
-UI-OutboundReport: notjunk:1;M01:P0:AbgOBMH4gCA=;19ZxCPShFkYCIz7Vqm+XWTTyPn8 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_102429_176907_5DC4A78B 
-X-CRM114-Status: UNSURE (   7.44  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_102749_298395_E077E0F7 
+X-CRM114-Status: GOOD (  35.83  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,30 +124,114 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
->> * Reuse existing functionality from devm_clk_get_enabled() instead of
->>   keeping duplicate source code.
->>
->> * Delete clk_disable_unprepare() calls on error handling paths.
->>
->> * Omit the label =E2=80=9Cout_put_per=E2=80=9D.
->>
->> This issue was detected by using the Coccinelle software.
->=20
-> This now messes up with the PM callbacks at remove stage.
-> It's not trivial how to make it correct.
-Is there a need to adjust and extend devres programming interfaces any mor=
-e?
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/driver-api/driver-model/devres.rst?h=3Dv7.4-rc4#n242
+On Mon, Nov 23, 2026 at 9:55=E2=80=AFAM Leo Yan <leo.yan@arm.com> wrote:
+>
+> On Thu, Nov 12, 2026 at 11:41:18PM -0800, Amir Ayupov wrote:
+>
+> [...]
+>
+> > pmu_pulse (coresight-only)
+> > ----------------------------------------------
+> >
+> > The first attempt was to try to avoid perf/core entirely, and extend
+> > a coresight config with pulsing ETE external output on every cycle
+> > while tracing is enabled [1]. This way, pause event on TRCEXTOUTn
+> > ends the window after exacly N traced cycles. The use of ETE external
+> > output is pure coincidence, just a way to count cycles only while
+> > tracing is enabled.
+> >
+> > However, the review has raised that the config is not self-contained
+> > and requires a lot of checks to only enable it on capable HW:
+> > - needs a helper in the arm64 PMUv3 header and a move of PMU
+> >   definitions - needs arm64 maintainer's approval;
+> > - only works on ETE whose PMU counts TRCEXTOUTn,
+> > - the window is always measured in traced cycles;
+> > - is restricted to ETM, doesn't help Intel PT,
+> > - the further it is from a pure config change, the less understanding
+> >   I have to support the patch series further.
+> >
+> > I decided to abandon that approach and ask for a better/more general
+> > solution, hence this RFC.
+>
+> I saw you have sent CoreSight and PMU pulse v6, I will review it.
+> It is a good improvement for me.
+>
+> > Option 3: cross-event "arming" (attr.aux_pause_armed)
+> > ---------------------------------------------------------------------
+> >
+> > This extends aux-action with a new bit (aux_pause_armed):
+> > - aux pause event period is set in an overflow of aux resume in group,
+> > - restarts from the full period,
+> > - on overflow, pauses aux tracing:
+> >
+> > This is the most flexible and general solution:
+> > ```
+> >   # resume every 10M cycles, trace 5000 cycles
+> >   -e '{cs_etm/aux-action=3Dstart-paused/,
+> >        cycles/aux-action=3Dresume,period=3D10000000/,
+> >        cycles/aux-action=3Dpause-armed,period=3D5000,call-graph=3Dfp/}'
+> >
+> >   # resume on page faults, trace 100k instructions
+> >   -e '{intel_pt/aux-action=3Dstart-paused/,
+> >        page-faults/aux-action=3Dresume/,
+> >        instructions/aux-action=3Dpause-armed,period=3D100000/}'
+> > ```
+>
+> I am just wandering if we can extend a bit "aux-action" syntax to
+> support delta value, something like:
+>
+>   -e '{cs_etm/aux-action=3Dstart-paused/,
+>        cycles/aux-action=3Dresume,period=3D10000000/,
+>        cycles/aux-action=3Dpause,period=3D+5000,call-graph=3Dfp/}'
+>
+> The + symbol indicates that the pause event occurs 5,000 cycles after
+> the resume event.
+>
+> > Cons:
+> > 1. the core has to keep a disarmed event stopped across group
+> > scheduling, throttling, ioc_period, power mgmt.
+> > 2. rearming happens in the overflow handler (in NMI/IRQ).
+> > 3. Software pause events are not supported.
+>
+> Why here software pause event cannot be supported?
+>
+> > Question
+> > ---------
+> >
+> > Does it sound reasonable for perf to support this, or it's better
+> > to pursue pt/coresight-specific solutions? In the end, my use case
+> > is about tracing.
+>
+> I think you are asking perf core maintainers to explore a proper way to
+> move forward. If no feedback, it is good to send RFC series to
+> demonstrate idea if you have a preference.
+>
+> > If yes, which option is preferable?
+> > - Option 1 with restoring first period behavior that was already there,
+> > - option 2 as cleaner fix,
+> > - option 3 as completely general but with more core state to track,
+> > - something else?
+>
+> Seems to me, if we extend a bit with "+" syntax, this can be general
+> enough to benefit all AUX trace. And we don't need to introduce extra
+> new interface.
 
-Regards,
-Markus
+Sorry, I hadn't seen the original email but this reply popped it up
+the list. Could we extend the (BPF) filter format to support this use
+case? Or maybe there is an overlap with the auto counter reload
+extensions on Intel.
+
+Thanks,
+Ian
+
+> Thanks,
+> Leo
 
