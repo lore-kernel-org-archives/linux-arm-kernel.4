@@ -2,105 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BB4606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162C3606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IdTZcV9n;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=K++sd7Ds
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1PyuYJTg;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Yn3NtIas
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=uzen249UIQm/8PK5gYDtm7rMzMeyssG43QW925C4YsA=; b=IdTZcV9n30kMg2SEdIdhKzpGl3
-	5xuXzfZ5HSpt/3WrzxJ9Y/VxkI4S22uvftW+nn/I0wyMVJYb5hgR9Rcr4T1J7A8SaK06yoneocJM0
-	79ZttFapUTBS/g0xiQ8htMS60FyEHSM35jcME0WDhrNIVCq6QPHQCza/Xob5cfbXI4j96rwsYe0kY
-	eNgaA7yUwUgD8xz8NeyK60EQDbVP1APrd/pke+vVYAzGy5jxCNjRme4vTnjJRNijY55nhUa4Q/66V
-	ZULqf1ACctAYViXVvLM+ixsir5e4YEdsUTyVFIgpBCDw7DSCHeAsTMEQsZ5BD7KRW5tIANUcQrJOR
-	Rw65RXfw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=FeWTS8Q48bWPnQCGmjUGgs00u6eCx3a6nfu0+I6v/Og=; b=1PyuYJTgP4Bf3a
+	/MQfbtQHywC5QKu/yGEE7/svtyIYMXUTrYQhPLFp1PkKFfmLQ8pt/Hy9anX+81eWRVxW+Kp0Cs2/N
+	c6HS70TkKsjHMarbNNE52LGDkoDJ6cfWISNcYEgHAH5PSltt+HzuCGdmrURMNJI2ApGOh84ExQzYl
+	ibvhptT1d0nALu+yl6w1W0dvMIcxtOyEeN354zPRF2xDZJZZM/vG6tpToCnla/SmJGQALABoQf/Cq
+	HJDqTR7f62avFyA9e1IM2fZTpnXxQMI7fqicQavBOT1FrRJPIB3/GKSf5xkarOIPdtfJm4/k3Jz+l
+	rvNvOiOwBnKRNTINsRag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVrM-00000003wRe-2X3Q;
-	Mon, 23 Nov 2026 15:21:36 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1xVVvl-00000003yQO-2TKK;
+	Mon, 23 Nov 2026 15:26:09 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVrJ-00000003wQ0-1O5T
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 15:21:35 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so32002125e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:21:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795447290; x=1796052090; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=uzen249UIQm/8PK5gYDtm7rMzMeyssG43QW925C4YsA=;
-        b=K++sd7DsB6ItLmWJk3nWm/0LTtSLnRrP+brNc23r5hzqRaSiS6eY3sORDxGHCP8phz
-         pUcehP2g86L5wqVuQPrExTw4Ch7ILsbQA1CvY5oux8FPORNXN3TaFAzxH8ACRsusUi8D
-         HnG34ONd36RaEtxK6F9TgDwiFdPKz/bX3beSYtEq/JxDLg/1Khs4BivYGojANDUiH3gB
-         V/vMC/thoNYS+hKZ9K+HG8tsHGsR3OHks/g3UFvS04KLY5V1AbAJ5sMNVvv25tiOmiu2
-         cBG22heVGbBZa0NcH9AazR4ZOufFSxazoqXejP/tD7s4RsxCZ//BJ/0ye4s7/nrAOk2M
-         9zuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795447290; x=1796052090;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=uzen249UIQm/8PK5gYDtm7rMzMeyssG43QW925C4YsA=;
-        b=1EbDwKkM4+UH8S5LYJeTiVCdYzn3LEF4r34rsDHT5jclq6hhPD415ZSQYrdEXxBW5M
-         OfjV3/16+6ovGI5V32+2ExuvDhviDfMPNtskpzJaW+XgtXzw9TmvCVf1Cfbtyg7drEQV
-         I44t5E0YP7doltDX8S4BfXrRFKQQJ8+PySlIFmJKYaUzZ/xugxndnvX+6LZiI4OaeIQx
-         mR8GeTLYbJRqaJOfM0O12F4cg/QCKu29bM2OxDF/vXUElkNadodcFLz3f8104PwCaCQw
-         wm9xwyrheR6CdwoAvbjXMaWgkaXfljljWYGADceKhhG0hQH7jpkyeLYCMl7XLOozOsBp
-         Fu8Q==
-X-Forwarded-Encrypted: i=1; AL+hErEnVjY4fh3ijP0hul2+NsaPbMNphRkt1Vv6MyN+MfMpgMERmdm1mQ+Gz+TmoTSzkKYnvX3R/O15LXRsTe8WMAO7@lists.infradead.org
-X-Gm-Message-State: APuU4Z9G4TG+oOFiz7yWjzFd8UFDTW8qeIGQM+n1kbdw3w+BX77ZNQ5b
-	rctP1DS2j7a554wYxpt5f7vRRV5aVlPCgPGWXZEEodJUAEN2DiY+Q3TDB1cQyEiU6NM=
-X-Gm-Gg: AZFdTZek/57OY+mZDruuk8hk79fynt6G1u3A5eU260G7Lf4RmU4KbfHiAoYU+qIeoZa
-	vmMjFn0CAkywUSbBrgA3N2w5p1EpW6G2ru4YbAeq/3BptAoY+ztur1Mha6zsIVeVqUtPGXwtXdW
-	kIp7I78Xa/cQT4hbH6JnAu+vNDK30fH9/MDNXLwNtCovVckv0hWQJrZ/OPHPcq+dE8KmRoGLZUG
-	xtsRD04ar+3tvaU2VotO9UjWyCyKg5WI6fnUPoF12rwNG+fSRzV/mOZ9u+SDN1TLO8drlgPgL5I
-	e2UsVe+dEYBbtHys7m4u8jtdOgl97D6ykKfiDPEnIEkWusY0U55aPlzUdw7U5OObVFOkIcBdkvb
-	9Bm3V5GENlNYzQz683i6R5jwzO/48LfWxuSFzQ9gP89ggjLh1c5YEkvvL8lxjqNKT7fnP1rxBSv
-	P8OOYZPVEQvt25nbtecKwbJ5VVf+l4OiAtbnKzGwDT2asJo+SIaZaWGcJ47vP88MHz325qTua/o
-	Y66TjfT+hejOhoT80Zl+ZhowgVcSlbG6Mczlhkj8MiSmQn9b1kg1j0+9Wa6OIs8SNnGigtkWarS
-	W/KDuOewUQNDvadf08j08qCpSeK5u0aCRtl/qHX5B2vT+DdkCGM=
-X-Received: by 2002:a05:600c:4f42:b0:4bb:5c5c:8130 with SMTP id 5b1f17b1804b1-4bb8881c726mr304536705e9.5.1795447290177;
-        Mon, 23 Nov 2026 07:21:30 -0800 (PST)
-Received: from localhost (140.30.66.37.rev.sfr.net. [37.66.30.140])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6a67f204sm26542178f8f.21.2026.11.23.07.21.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 07:21:29 -0800 (PST)
-From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
-Subject: [PATCH v3 00/10] pinctrl: scmi: fixes and GPIO function support
-Date: Mon, 23 Nov 2026 16:21:22 +0100
-Message-Id: <20261123-clegoffic-pinctrl-scmi-gpio-v3-0-d61f039be008@baylibre.com>
+	id 1xVVvM-00000003y66-2nMV;
+	Mon, 23 Nov 2026 15:25:46 +0000
+Received: from [127.0.1.1] (unknown [IPv6:2a02:560:5c0a:3200:9ebf:dff:fe00:fdb5])
+	(Authenticated sender: sha@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id B82AA20228C;
+	Mon, 23 Nov 2026 16:25:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795447538;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FeWTS8Q48bWPnQCGmjUGgs00u6eCx3a6nfu0+I6v/Og=;
+	b=Yn3NtIasFB4bNE7hi+meOpZRKsfmggAyxK/Lt1XQcngGebdL97xbLGrBLYV/S6aru4k9e3
+	8XbLPmmcnjA2ogBJVTSeopfkQU7PFmo+LiAIqEl9WMCVT2HKvYRsKjLl+jzh24MQcfiRU4
+	ORo2OCcDiJwtBdqrHde8xpb7M2LCdz0gwd6m5QxbBRXW+QE4A+sVjqYj6cinz/tbx+f+Ja
+	v7Mv23v70VdvUsQspP6vYE6t40sVCNCPsahgvD+C7vVUWWvUAceekF5v/52i4JAXFJWaLo
+	4K8Jh4pH1YqFLw2AFMnPLMu+MAUbpG0A9Ul5Rl+XdzYfmJuBxjKUO9qcOHe8Yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795447538;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FeWTS8Q48bWPnQCGmjUGgs00u6eCx3a6nfu0+I6v/Og=;
+	b=daweakudbzmXaAc8BSHk7NvyNlAz6B/bgoBK7LLyaMMRSwXoYFHhhVWS0JnPBhC0R6cU5y
+	CJ1spp/BFcD4GYCFYtiNJU5l/IsSXgXz+dZGU1XD87gDwEtl6KJZVm5h8TvLNMi57wTubJ
+	/RJoX0hr5bAYKH9Vmq5m+6zANy10/rpbQ3aP8PdprW4bT72dVs4grNpE5DnZoGt+odNK0h
+	H1diJYCcULeu7bXD1SnUfZJlslmj4v00wVtGwVsVVAfZseJIy3iFSFRtACLnOuDDkhnqux
+	d2+KZPd55hK54zCt/ekG13KkPr1Xb1UQe8nqkUW9KivuQ+/8LSeU49f6savByg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sha@pengutronix.de smtp.mailfrom=s.hauer@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795447538; a=rsa-sha256;
+	cv=none;
+	b=NVQAQ9R5wm3fVB0ui2uwrt59wxEhUq8rqrmW7s3mFMKBI6Q+wn5KxHJf4/qulzs11qxHMV
+	odSY0DNSvbFMl4XfL6ITdI1lv3J7pT7/H+kvPn0yzQAqJAEPWaRT2cIj1Y6oIMYY2IP93t
+	3PdseBy5yjXotyCo5fblAmgGmB6SuvrnQj6YjXtrrLWkpxdhNVTH0yUxQ3HzLecNZIfcV+
+	jjFb4wSy4OcDgFiu8l/f0Sz726c7MLQJ10H3y3X7TWNnr2l6WcOozK8NywrvZoPnDhfpst
+	6t8MCVXvRIjvjIDHot/E3FLv4jFBZoEb9PAbufCM10J/CazfTM8H1qIXnABKdg==
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Mon, 23 Nov 2026 16:25:23 +0100
+Subject: [PATCH v8 4/4] arm64: dts: rockchip: rk356x: Add JPEG decoder node
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAPJZBGsC/43NSw6CMBSF4a2Qjq1py8PiyH0YB/RyC9cAJS0SC
- WHvAg5MHBiHf3LynZkF9ISBnaOZeRwpkOvWiA8Rg7roKuRUrs2UUJkUseDQYOWsJeA9dTD4hgd
- oiVc9OZ5osChkYoyUbBV6j5aeu369vTs8zB1h2MhtUVMYnJ/2+1Fuu/+eRskFT1WZK53ERZmfL
- qaYGjIej+Batp2N6sNJGf/m1MrZAsAkmU5Lrb+4ZVleA+JU0ioBAAA=
-X-Change-ID: 20261030-clegoffic-pinctrl-scmi-gpio-48cfe014bb11
-To: Sudeep Holla <sudeep.holla@kernel.org>, 
- Cristian Marussi <cristian.marussi@arm.com>, 
- Linus Walleij <linusw@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
- Oleksii Moisieiev <oleksii_moisieiev@epam.com>, 
- Andy Shevchenko <andy@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
- Bartosz Golaszewski <brgl@kernel.org>, 
- =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
-Cc: arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Geert Uytterhoeven <geert@linux-m68k.org>, 
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-X-Mailer: b4 0.17-dev
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261123-rockchip-jpegdec-v8-4-3316cd31b043@pengutronix.de>
+References: <20261123-rockchip-jpegdec-v8-0-3316cd31b043@pengutronix.de>
+In-Reply-To: <20261123-rockchip-jpegdec-v8-0-3316cd31b043@pengutronix.de>
+To: Lucas Sinn <lucas.sinn@wolfvision.net>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795447521; l=2421;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=XKKZeAn83nsSxMgXM9Bvv6Y9OauycMDu579tqOq4OqA=;
+ b=jh7bgTelvaHbCA5tQHRb7KpAP9ZtNbAJvWi5fzaI3ndM4ha3PDuG/w1OsEgUkdSFlC2TmWhn4
+ HcBgXQRZoWhAIEC53vTjocjrmVx9dq/38iJQZbu1KNr2NdgSuLb0Zrr
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_072133_386710_D8FF0C35 
-X-CRM114-Status: GOOD (  13.70  )
+X-CRM114-CacheID: sfid-20261123_072545_113334_4CD991F7 
+X-CRM114-Status: GOOD (  13.10  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,71 +107,73 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Fixes first: a setting the platform reports off read as set, a drive
-strength in milliamperes that is not exact was truncated on get and
-could overflow on set, the protocol layer read past a
-PINCTRL_LIST_ASSOCIATIONS reply larger than its receive buffer, and the
-pins of pin-only functions were registered as groups. Then the drive
-strength conversion uses MICRO / MILLI.
+Add device tree nodes for the Rockchip JPEG hardware decoder and its
+IOMMU on the RK356x.
 
-Then GPIO function support: mark the GPIO functions, and select the GPIO
-function of a pin on a GPIO request.
+The decoder is the same block as on the RK3588, here at 0xfded0000 with
+its MMU at 0xfded0480 and the same 0x400 register window.  Only the
+integration differs: ACLK_JDEC and HCLK_JDEC instead of the JPEG decoder
+clocks, SRST_A_JDEC and SRST_H_JDEC for the AXI and AHB resets, and the
+RGA power domain rather than VDPU.
 
-Patches 1 to 5 are fixes for v7.4, patches 6 to 10 can wait for v7.5.
+No rate is assigned to the AXI clock here.  Unlike on the RK3588 it is a
+gate off aclk_rga_pre, shared with the RGA, the IEP and the EBC, so a
+rate set for the decoder would move those too.  Its mux tops out at
+300 MHz, which is also the default rate of the downstream driver.  The
+downstream device tree assigns no rate to it either, and the vepu node
+on the same clock tree already leaves it alone.
 
-Tested on R-Car X5H with a v6.18 backport that needed adapting, all but
-the schmitt and enable settings, which the platform does not implement.
-An LLM was used to review the patches and to set up the tests.
+The domain needs nothing else, it already lists qos_jpeg_dec.
 
+Both blocks are entirely on-SoC and have no board dependency, so they are
+enabled unconditionally like the other codec blocks in this file.
+
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
-Changes in v3:
-- drop patches 1 to 3, applied for v7.4
-- patch 2: new, refuse an inexact or overflowing drive strength in mA (Geert)
-- patch 4: Fixes tag, patch 5 (v1 patch 7) needs it
-- patch 6: new, MICRO / MILLI (Geert)
-- rebase on v7.4-rc4 (Linus)
-- Link to v2: https://patch.msgid.link/20261113-clegoffic-pinctrl-scmi-gpio-v2-0-faccb4685d88@baylibre.com
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-Changes in v2:
-- patch 4: keep the enables value on get (Sashiko)
-- patch 5: error out on a truncated reply (Cristian)
-- patch 11: unsigned counts, loop variables in the for (Andy, Cristian)
-- patch 11: dev_dbg when no GPIO function is found (Cristian)
-- join the lines that fit in 100 columns (Andy)
-- collect Reviewed-by tags
-- rebase on next-20261112
-- Link to v1: https://patch.msgid.link/20261030-clegoffic-pinctrl-scmi-gpio-v1-0-52d92843ad97@baylibre.com
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index a5832895bd392..e6c7ae908a99f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -619,6 +619,28 @@ rga: rga@fdeb0000 {
+ 		power-domains = <&power RK3568_PD_RGA>;
+ 	};
+ 
++	jpegd: video-codec@fded0000 {
++		compatible = "rockchip,rk3568-jpegd";
++		reg = <0x0 0xfded0000 0x0 0x400>;
++		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_JDEC>, <&cru HCLK_JDEC>;
++		clock-names = "axi", "ahb";
++		resets = <&cru SRST_A_JDEC>, <&cru SRST_H_JDEC>;
++		reset-names = "axi", "ahb";
++		iommus = <&jpegd_mmu>;
++		power-domains = <&power RK3568_PD_RGA>;
++	};
++
++	jpegd_mmu: iommu@fded0480 {
++		compatible = "rockchip,rk3568-iommu";
++		reg = <0x0 0xfded0480 0x0 0x40>;
++		interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_JDEC>, <&cru HCLK_JDEC>;
++		clock-names = "aclk", "iface";
++		power-domains = <&power RK3568_PD_RGA>;
++		#iommu-cells = <0>;
++	};
++
+ 	vepu: video-codec@fdee0000 {
+ 		compatible = "rockchip,rk3568-vepu";
+ 		reg = <0x0 0xfdee0000 0x0 0x800>;
 
----
-Clément Le Goffic (10):
-      pinctrl: scmi: report an off setting as not set
-      pinctrl: scmi: refuse an inexact drive strength in milliamperes
-      firmware: arm_scmi: stop reading past PINCTRL_LIST_ASSOCIATIONS replies
-      firmware: arm_scmi: report the pin-only and GPIO flags of functions
-      pinctrl: scmi: give no groups to pin-only functions
-      pinctrl: scmi: convert the drive strength with MICRO / MILLI
-      pinctrl: scmi: mark the GPIO functions
-      pinctrl: scmi: report whether a function is GPIO
-      firmware: arm_scmi: add an operation to set the function of a single pin
-      pinctrl: scmi: select the GPIO function on GPIO requests
-
- drivers/firmware/arm_scmi/pinctrl.c |  51 ++++++++++++--
- drivers/pinctrl/pinctrl-scmi.c      | 133 ++++++++++++++++++++++++++++++++----
- include/linux/scmi_protocol.h       |   8 ++-
- 3 files changed, 174 insertions(+), 18 deletions(-)
----
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-change-id: 20261030-clegoffic-pinctrl-scmi-gpio-48cfe014bb11
-
-Best regards,
---  
-Clément Le Goffic <clegoffic@baylibre.com>
+-- 
+2.47.3
 
 
