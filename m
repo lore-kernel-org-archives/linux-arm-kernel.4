@@ -2,112 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24140606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFEE606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3oLaKBSK;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=01N6z/rz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=widWK6HV;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=t+ObTVki
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Content-Type:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HH0N/fL/H1cdlXVfbRCf3zvBDKyd3qa4jIZxCvneNig=; b=3oLaKBSKutCrga
-	Y4WycVgmUn5V89czoVNlRK3QkXO+7u3eb18wr6FkMAyTaaBXGjMGbk8WSCd4EbyM7lT0zd829YUMq
-	gRzFUh8LDVJBo9pI/d5UfBRnTizDLavIuUV/GU1J99/BiHrZ3kSTHsgilBZLwFWsSgxiZI0EVQRte
-	/ha+bC/nHArP/XndhNnkQi1RMjCSouHzsCcQXYBfVdGkzjCQ3l+/s5koEDSN7n/art8qs1PeDXyDQ
-	z98m6PR+G1d5yfgJtFBZM/cDrMj3dZMU1b2lgm+y/K4ZVsN5X9/nVfQnIZdV8XNQUe2gPdvGmFj1b
-	gF1Mq7sXTph1NmbbHn5Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8ylAHpMtng2B8Uq7sToFe56ldOXngVck65MbAnIvk+g=; b=widWK6HVwdpNhzQS2ZaQFKdv0v
+	t4lVTkSBkWhFku1nm0WcSlrugH/PjuKkrsbMGG3WT9i3nVPhds8h8vhv6RSx/bHlAwRoByQjwDYJB
+	fKTSYvJpYo0TbQuWpTR8rfeMtUsqMvuJMZV5NtC+vJ9TGgOqnTAB+2qYy+FAXDiCNbtvqtAG00waK
+	RxyPuQ0NOi3+XROYGwKp/xYA+5118gkZ7FDIL6FDb6mm9dj2lufIG5csBsBkVOHJg4O+cz1yaXStX
+	U+Rk9x5LvNxw8wrTPxOGaNdSZCsArQrSr1oW0PExRBn40K5qPldwZGa27Fsz9R4915w8K/wjU5PqC
+	aei8tFuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVY5g-00000004PcB-22Sd;
+	id 1xVY5f-00000004Pc6-4Be5;
 	Mon, 23 Nov 2026 17:44:32 +0000
-Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVY4d-00000004PJq-3pEK
+	id 1xVY4R-00000004PCR-2Scj
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:43:40 +0000
-Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-862df509d48so2886043a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 09:43:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795455807; x=1796060607; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=HH0N/fL/H1cdlXVfbRCf3zvBDKyd3qa4jIZxCvneNig=;
-        b=01N6z/rzPfVAYu+mdXnrWaOLHgLI3qnBh7CTXQxi7dwoYOpGMdlMNnjdkj4n5vZwd8
-         fxM9VuuVm1jvdVocGx1esVOKWinO9rDAfIZf8U8WrVAqIrb4Gf6qtKLB7qnA/4uHxCxu
-         68Bp+ZlHvw3ucQ+Jdw+KQYM2/p2w0SGEwDw7oxt7Jyyt88I7WipE8Di6Qu2mj9axCTqd
-         KU2XA3xjPYvK2L9p5x8XFwHE6TjPV93RYZv0JXfASFzVUD7QxqPkDSU59Y6xGW+GkI1B
-         F7BwzEFuoVDsXnRPN82NQff4dIGXonNIH7DZpa/1A4o6YXoh0qWCev4eW2QjZa9LU2vg
-         YK9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795455807; x=1796060607;
-        h=content-transfer-encoding:mime-version:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HH0N/fL/H1cdlXVfbRCf3zvBDKyd3qa4jIZxCvneNig=;
-        b=kW3VrMgAkvz6CS2/LH8xRZuBD4ZktadgOxniMpwFTPorcHIH1ppTQ7f+0SVIZycbYd
-         0XY1OQJOvguqSrZmtSim2P+n7BUzV/dYReH9H/OqDjQhtKTpzJDpuxs0e1/MLrYSoCEj
-         VccfVKBQEw7C5RsxL9qUita2FzbaizgA+/knCRgOs9QsSBVlb3ZxEEb8q2xler4+Aezx
-         sGBLxTfkr19pTqFHgG70AAHq99QRBQvgjs2lX75sksEqScDfvgb99GMwDZTBJaZxkUEB
-         JS5K1yd+1aKVH34wgn3ZZ/ecGEOR+dHXbvIgTwExoj3skuGYmF0Wz8Wo6BnxQnsACLSd
-         JHqw==
-X-Forwarded-Encrypted: i=1; AL+hErFSQxgFd56uo6ICo+mgIRRJE/o3C/WtteItZbG53JQ/HDtmqCjn8zj38XlMwaGGgZRPaCfETzk3VWp9UaObYwN6@lists.infradead.org
-X-Gm-Message-State: APuU4Z/f2DMyiYLvco2wPU2yN+0y9yiGeQuPr487r6HHH2aZVjgGTYqp
-	fZpzYT6FP8AobnS4yFdbqe2FcoBpJcH63EmdHWYDvDE/18HlVnGXlrYA
-X-Gm-Gg: AZFdTZc6D6bpe9KRoAjfWw8aVTiHzh3o/jtivj+0UZ7FY4wTaHB4K/2pBWVxNNpNMax
-	t42b+hhDqlPwAZH5ZItyPNksZAtpvCLbzSRrQtlpmiAJ1Z+93wqi5bxjznplD2X8JxbVHyqfguq
-	ukx+gN4xGRohHzlZ82+NBA4Y92b8jU0OqFdroLsKgCn5lr/9Dqw3DT4ISqFqXhXReTkcfHfZFi2
-	0s+BLFdCZ91OkvsUQ11OGUnlacKpHyP7J2WjNUa138RvNUy7+WgWw9L9Kp5HeExeZqxaNPc422/
-	ZWD9BiL+5KYXQsRrS0eF691RMqfeRSiG9RIl4mUAHo3HI7rInDpD/dVfS/WgTTC529BFWM1P+To
-	JMgvwrEb9xH42P2rFqHDP3FDmy0+4JGiuRDQAmoOe3eq0SWGLD5MW7G2dsH3N9PqIm9Nu8pJn1C
-	b4YInYMPuKeBj6Z71oOh+DlZV/eqcAGnRJcK/N98zuxhV6q2oig6nQpTnTXBfxQnv6TkBqk+O0O
-	TDDMFfdQhNyDeJkSW9BF4gEmC/zA5eWfKUEmbUEm31dIGyUO9Ys9oAMgQFWdiUvFe6LN/dZ42HL
-	rA4jaZsFCsk+qmI7zWPJoIQyQDwVhPTC3gW2VDdwFW+/sPY0MSHtmv7TMsNebclSOPrTZG6dbaB
-	uPMYB
-X-Received: by 2002:a05:6830:44a6:b0:843:a64b:6e3b with SMTP id 46e09a7af769-863092bc6dcmr9078109a34.32.1795455806834;
-        Mon, 23 Nov 2026 09:43:26 -0800 (PST)
-Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-863169105c2sm9566614a34.21.2026.11.23.09.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 09:43:26 -0800 (PST)
-From: Enzo Adriano <enzo.adriano.code@gmail.com>
-To: andre.przywara@arm.com
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	wens@kernel.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	Maxime Ripard <mripard@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Pablo Mazzini <pmazzini@gmail.com>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
-	Alexander Sverdlin <alex@sverdlin.org>,
-	Jun Yan <jerrysteve1101@gmail.com>,
-	Lukas Schmid <lukas.schmid@netcube.li>
-Subject: Re: [PATCH v4 3/3] arm64: dts: allwinner: add Radxa Cubie A7S board
-Date: Mon, 23 Nov 2026 12:43:24 -0500
-Message-ID: <20261121-a733-dt-v4-3-reply@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261122003932.568c099c@ryzen.lan>
-References: <cover.1795034153.git.enzo.adriano.code@gmail.com> <448e7551a6f560d8b8ede245ccfbc74101c76ef4.1795034153.git.enzo.adriano.code@gmail.com> <20261122003932.568c099c@ryzen.lan>
-Content-Type: text/plain; charset="us-ascii"
+	Mon, 23 Nov 2026 17:43:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nm9XwdhjHHddLxIQIuPvoSectrwQLj5D+CecoSqcMfchq4lAiuZCYCaM/occVRpwwUP2pYJQpGsLcgkuFRrWBouf+M9NfUHLVlL61mwiq8KIceaCYEk4HxNKpwFsf882OY858On9Jd+qvhFWi+06ozVdHTG4uBoZteXKxZWL+KPqx1Z8rMzJWYZXEzqUUbXk8hLIVffrITCByqIjhrwFmwfsUgrbnzjFE2EIWdk9lkYT+UQdA7TO3XHbFGzj93SmFXYe+5hVKWPlKL19Z8Qqbh4kduPNn0pQ+4kEYdqM5Iu0xJ72myJ69d41noe6Waz6VSPqOopN6ynE1C2Rr+5frw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8ylAHpMtng2B8Uq7sToFe56ldOXngVck65MbAnIvk+g=;
+ b=k6/6jAi2Rd426YJkY0GoL6PGWU0wmQ6kp0EZmYqhlSp1UnTDFnBC1fpJ0/eomswCsXOz9zsDUWfXoeLVriXnXEHr8uFOkg9Tp1uZwG9UykjNRH5SXDKYdyYehtJ3UkjTgS66klfEJckTYpXTm1LB3xYY298RLCa8Qk/CIYOtquo2/Gt0DurIMroIzAoltmVMIEzlIztGvnmC1JLjNIuxRrnuyH+KVtJQy4PTJuNtGYjWXHzSdMAP6eFlQwZw+LRRlVvSYf/+Z5va80HAyr5BBgMkvj9OESk2BJzCVgh6VwiWnw+b62G2ZN98LfeGRB2HUOmCHWZbiDWVZEF+U23p4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8ylAHpMtng2B8Uq7sToFe56ldOXngVck65MbAnIvk+g=;
+ b=t+ObTVki7Zbhv+o3IlDz0gZcf2eQgMcH2PuEQ2PNiPRcgJRWaBSc0rQj5Zp96Im+4SMc3lu0+vHK1ErVZlOak161EyymIsjFDDPsQc76BN8yXyA5bYDoYmkizlTmmNDFDTmyWB8LhDAKRYGpmi7MhRyyczLBphUPrn8FKmM6G4yTIs4tBfEz6yUGW/yXB2q7v249easRE/LMksrGC/nYCxY4sqnio3tTuIvjGV91MhykyD2v6Ey92vSfTyuclgvcJ6rxRFF/HzXnJlVcWxRCRnUwtBIp5vDpsDzBFAhhesczEiIWuWeaQHGMzCgVDSbllN8PArHu8agxx9fkb5twzQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AS5PR04MB9893.eurprd04.prod.outlook.com (2603:10a6:20b:653::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
+ 2026 17:43:10 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 17:43:10 +0000
+Date: Mon, 23 Nov 2026 11:42:59 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Ulf Hansson <ulfh@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
+	linux-amarula@amarulasolutions.com, michael@amarulasolutions.com,
+	Peng Fan <peng.fan@nxp.com>, Sashiko <sashiko-bot@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Kees Cook <kees+treewide@kernel.org>, Marek Vasut <marex@denx.de>,
+	Ming Qian <ming.qian@oss.nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	bui duc phuc <phucduc.bui@gmail.com>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] pmdomain: imx8m-blk-ctrl: Remove the power
+ notifier on probe failure
+Message-ID: <awR7I-p0Ig-QpuP2@SMW015318>
+References: <20261122205136.138173-1-dario.binacchi@amarulasolutions.com>
+ <20261122205136.138173-2-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261122205136.138173-2-dario.binacchi@amarulasolutions.com>
+X-ClientProxiedBy: PH7PR17CA0060.namprd17.prod.outlook.com
+ (2603:10b6:510:325::24) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS5PR04MB9893:EE_
+X-MS-Office365-Filtering-Correlation-Id: a7630e21-dd50-4445-c331-08df49893d74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|1800799024|23010399003|18002099003|22082099003|56012099006|11063799006|261009223027099003|4143699003|261028144727099003|261026140227099003|261102123227099003|261022105027099003|261021121427099003|261026121527099003|261021123027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: uo0GSusw+J3ZYZrrUZVKF4GZzWNn0iMcOA3jYCOLpqTfkEa2h7zRYrTq4eCnXHRsEcCAJOpBfxXjl4p/Dw4NLfjwx6v5yuS4BiNfwE/8xhzhMUCa7maFi5cqPec90hU+/tFFdEX0fQveShArFX/nLnJOMwBdAvhU9VPHAfnUiMgEhkgHY73vAh26EnARdRWvywMlKLtzi7yRF1lSODsyA8DUSil+wYvjXm0J2N8WtN0qRNGFD4T1+5cvx9IDm/ODBLvCaEqOsiDSciFpiYabj4QJoiRcuoFlAbez1avw2BP2hTdYKo6QP2v3O5UqXwivFDWtwwlv+s/RfKS2BSVe024EfgkX/CjCPR4pQ0vN2PlzkreHhnc3XQurNLJC0avxlruwXjvDuSdbsVnBFz93N8iPDUlLbUFXwO2UR95xr6U+y2tOG3cWyW+ETa3I5RNgCG1m7nCeWuZ/64d2RWh2Up1uJWtVErajCqqFDTpP3DE+8MNsjoNC3Urm7oDs/2SmB4YOdyfIjahk8hbOjhA71vtNcbYRc2ySAnE2txMeIHpvz8OwXEQXEQJE3eDqjad5dvATaXnaH7hOhiPDvIMJJj2QU0HjcneaBJie+e4eUtp5J0WtC0bVJv8Y4nzkJ8Kh
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(1800799024)(23010399003)(18002099003)(22082099003)(56012099006)(11063799006)(261009223027099003)(4143699003)(261028144727099003)(261026140227099003)(261102123227099003)(261022105027099003)(261021121427099003)(261026121527099003)(261021123027099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/KhYDX6+/Eva51ZjfF2jHJoxeoIxluK/yNJpm5h85lf5K5BWiMpLoQBEvLkA?=
+ =?us-ascii?Q?RHw5u+lG0hixvoiyPvvXzwi2s3eNQLB0PXb3yh5ZqL+jlSwYshx3c6r+VMVg?=
+ =?us-ascii?Q?1RZmuDvG1YpuFzFRXdaO9DiX4zGjcv0CqhKqbbZWlEa4UhgndbS2D1q0CKt7?=
+ =?us-ascii?Q?S9UkAzXgDW2vyS/+40XGUOiX6UhD+t1cO8v7cF34jJJFa4vDb4I4PM3nyPEo?=
+ =?us-ascii?Q?xaqDln4gRuH6y2iG27MbFvmaLO0OhYQeDb7U/a39DzLkWfZgt/W2UbZwL7JJ?=
+ =?us-ascii?Q?Nco9Eif5JPYA0l7MgA5OrlythKwXkTPRuBZxTpZ4tY+wGvniYnVuFOf+Choq?=
+ =?us-ascii?Q?mvh2N8ank2L7NoiSxLkpfbsZ0pUV4tqFXsHN0NAHXLFfDRdR47mwdOXO17GC?=
+ =?us-ascii?Q?hM6q/zdpjjW9BcGi7W0D5J58ehMxqaCwX8c0e2rMgKoTRjQqTW6cc+7yEXR9?=
+ =?us-ascii?Q?Xe5/AcEUhFysLh3iQa1cSpfRWoQPgWjVLrQv3u1aBXiCGn3pkCdPFWsxy393?=
+ =?us-ascii?Q?WS4Zf79V8pcBAqRPfjElwkLX3GeMM5iBbuQyM7NWQon/hATOkXIkRqbyg4jz?=
+ =?us-ascii?Q?SWiuRYvNGlePyaq7Ay1ozV3bMOA1nkR4rlp/wXrWGvnhK6gRDOshV//rHiDx?=
+ =?us-ascii?Q?tzziBv9gHY3XuOaAeM6Q1sIsxmScis38ydoriL5EfDOMFlntnIocq1qGiYUX?=
+ =?us-ascii?Q?RIvAfdBrAWD3Hdc30jBukBv4iWOQwmw0M0S2cyR6dafOU98/ydJMoI9lbaIs?=
+ =?us-ascii?Q?VhTWndLsqbjW7C0QCNXYazz9qUhJwo/gHsVoGtfypeDvSaBrLquGThbLYQAn?=
+ =?us-ascii?Q?NZWZgd3ebhBBgYirFm7gPzJ9yNcdg7Kh56Ocr7EdX8Abp2aK24c+Av14XA8o?=
+ =?us-ascii?Q?e96Nfvh48me2YqBQkU7sgYliZCmPNv/XTNxMJXeCEVXwW9lAIAOjIexvwz4W?=
+ =?us-ascii?Q?dPGFN2PwACaNk1/T6JxzqyzR/fwzV1IIe0MYxc/AotrfN7o22iSIs69yDCcw?=
+ =?us-ascii?Q?TEhNr6FNbn/bEctg67Sl4OC+pMHHmRqQk6KNv4z6rNQrG5VKmrDhEGFhNjnI?=
+ =?us-ascii?Q?H4oP6nUNFbT1F5t4ke7AAj/BAy0nEZbacxORlVDYiLLA1Obhx9BKXCXXA/6w?=
+ =?us-ascii?Q?/ERb+/Y+xzPeEyRiEgGccfxxPmfF8Kwcd5wmDDo5ilVeK/6Ns2HVNxF9TIfP?=
+ =?us-ascii?Q?hVXZudibzU9jVdMwyr5N6+DbAsiMei8pmJ3UdTFwyF4qOypLOCd4VZ0oyzlR?=
+ =?us-ascii?Q?iSeQW2gLhPy4iDiRmM7HoeoqDvlWFYMywMXDNXlDniQfjuhhvl5j9Cr/jF92?=
+ =?us-ascii?Q?7LHO7COiKTapTNHJZbRRrAy9Eb69qUnT2WGjAFkEQ4hCzPyMsjMZv07xyOAb?=
+ =?us-ascii?Q?xJ4vEEQeca6mHTDtVTmrwiLrUhRUKJLiSqr7qmZzU7gAjY7x76SZXhKyPi/l?=
+ =?us-ascii?Q?UGyd7uAWdsQX6qE+dR7BUY9XcYOrBbRAHdjjSUR54oMSfbngtzJeeOzx3R5+?=
+ =?us-ascii?Q?brThTDS1NhvGxpYpnUXAz+BCyItvx0TZM0y/cHhB/u7cmnkMRw7ON9o9jKM/?=
+ =?us-ascii?Q?wujXM0Nf7mUqYk/eDwh7AuGy/WBrQg62L8rDqc+iMzEG1GEL3clZPEkYuAL1?=
+ =?us-ascii?Q?Qh7AO831O9TbF/LsY4ZWyS2Y4v9bLAs1iaVQF3MdXADbuzz1ABa8J2h/Dl2E?=
+ =?us-ascii?Q?3RT3VZGnlJSOhjz8t6v7vAuGSsRRdFcVMhX37zcQuT1CCylnqNbaGpDfhSkH?=
+ =?us-ascii?Q?dig6tIxYFzx5LEafrBJ6u+HRAIPeMiW+6Hi8fMtf2kK627jon+4Y?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7630e21-dd50-4445-c331-08df49893d74
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 17:43:10.2444
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cqK4tJN7E/Pijyd8b7vZ31LGTLckE71EIbEsMcau3T+Ujh+SPcniKXgImgvTpMqrSGyiZTsDSL0b8pQ3IsXAKO0GVdu9txe75Y6oPqvVcpAuCEPaJwJGTOJ3xLfXn2H4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9893
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_094332_254566_57608376 
-X-CRM114-Status: GOOD (  31.37  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_094317_691481_A28D22B1 
+X-CRM114-Status: GOOD (  19.17  )
+X-Spam-Score: 1.0 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,152 +147,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,TVD_SUBJ_WIPE_DEBT autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Where does this limit come from? As it stands right now, at 3.3V you
-> won't get faster anyway, so it's moot. Please remove if you agree.
+On Sun, Nov 22, 2026 at 09:51:10PM +0100, Dario Binacchi wrote:
+> If devm_of_platform_populate() fails, the probe returns leaving the
+> power notifier registered on the bus power domain, while the memory
+> holding it is released. Remove it.
+>
+> Fixes: 9cb6d1b39a8f ("soc: imx: imx8m-blk-ctrl: Scan subnodes and bind drivers to them")
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Closes: https://lore.kernel.org/r/sashiko-outbox-227073@kernel.org
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+>
+> ---
 
-I set it to match the nominal SD High Speed clock for the initial
-3.3 V-only configuration. I dropped it in v5. SD High Speed still
-requests 50 MHz (drivers/mmc/core/sd.c); sunxi-mmc's default ceiling
-is 52 MHz, which an MMC High Speed card can use.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-> Just leave that out (for now), the default is to revert to vmmc-supply,
-> if vqmmc is not given anyway.
-
-Dropped. The MMC core acquires vmmc and vqmmc separately. Without
-vqmmc, sunxi_mmc_voltage_switch() assumes fixed 3.0/3.3 V
-signalling and accepts MMC_SIGNAL_VOLTAGE_330. SWOUT2 still
-supplies the card through vmmc (schematic sheets 4 and 13).
-
-> Same here, comment about this being VCC-IO, at least for now.
-
-I switched vcc-pf-supply to SWOUT2. Schematic v1.10 sheets 4 and 7
-show VCC-IO feeding PB and the 3.3 V PF path, with CLDO5 feeding the
-separate 1.8 V PF input. The v4 U-Boot preflight on a Cubie A7S
-showed PF on the 3.3 V path. v5 relies on that firmware selection.
-
-> We should have a voltage or a range for every regulator. Here it should
-> be 0.8V.
-
-On a Cubie A7S running Radxa's 5.15.147 BSP kernel, regulator sysfs
-reports 0.800 V for DCDC2. I set it to 0.800 V in v5.
-
-> Do we have some OPPs for the cores? The range should reflect the
-> min/max used voltages in there.
-
-Yes. The live BSP DT has separate A55 and A76 OPP tables.
-The nonzero bins span 0.800-1.050 V on both DCDC5 and DCDC3.
-BSP regulator sysfs reads 0.800 V on both, and v5 uses the
-0.800-1.050 V range for both. The source is
-configs/linux-5.15/sun60iw2p1-cpu-vf.dtsi in Radxa's allwinner-bsp,
-with the supplies on sheet 4.
-
-> Why is this always on? If I see this correctly, that's just supplying
-> the GPU, which will have its own supply property.
-> Voltages should be in the same range as for the CPUs.
-
-I removed always-on for DCDC4. Sheet 4 shows VDD-GPU on that
-output. BSP regulator sysfs reads 0.800 V. v5 uses 0.800-0.960 V,
-the range of GPU OPPs in the live BSP DT.
-
-> 0.6/0.5V I guess.
-
-BSP regulator sysfs reads 0.560 V on DCDC6. I used 0.500-0.600 V,
-covering the 0.500 V LPDDR5 and 0.600 V LPDDR4X VDDQ options on
-sheet 5. Sheet 4 shows DCDC6 feeding the DRAM PHY and that VDDQ
-path.
-
-> Probably 1.1V.
-
-BSP regulator sysfs reads 1.080 V on DCDC7. It feeds the DRAM PHY
-and LPDDR5 VDD2H. I used 1.050-1.100 V to cover the 1.050 V VDD2H
-option on sheet 5 and the 1.100 V DRAM rail shown on sheets 4 and 5.
-
-The regulator core keeps an in-range selector at registration. The
-handoff check reads the selectors in U-Boot before Linux starts,
-so the new bounds can be checked against the trained DRAM settings.
-Before booting v5 on a Cubie A7S, the selectors read from U-Boot were
-within the bounds, and none changed when the kernel registered them.
-
-> But there is no UFS on this board, right? All the UFS signals seem to
-> be not-connected, so this power supply will be going nowhere. And DCDC8
-> seems to be used exclusively for UFS, so I would just leave this whole
-> node out.
-
-Yes, sheet 6 marks the UFS signals NC. I dropped the UFS-only
-DCDC8 and DLDO6 nodes shown on sheet 4.
-
-> Again, why the always-on? This is referenced by eldoin-supply, so the
-> kernel should keep this on.
-> As for the voltage, the schematic doesn't seem to give a clue, so maybe
-> you can look this up on a running BSP kernel.
-
-The BSP regulator sysfs reads 1.240 V. I dropped always-on
-from DCDC9. The always-on ELDO1 and ELDO6 children hold it
-through eldoin-supply (the ELDO input on sheet 4). I left the
-voltage at the firmware setting.
-
-> Why always-on? Should be referenced by the pinctrl device.
-
-I dropped it. The PJ26 LED requests a PJ pin and pinctrl holds
-SWOUT1 for that bank (sheets 4, 7 and 16).
-
-> Does this intentionally miss the voltage setting?
-> The datasheets suggests that VCC-MCSI must be 1.8V.
-
-The omission was unintentional. BLDO1 reads 1.800 V in BSP
-regulator sysfs, consistent with VCC-MCSI in datasheet table 5-2.
-I set it to 1.800 V in v5.
-
-> And again, the voltage is missing. Per the datasheet, VCC_LVDS0 must be
-> 1.8V, and the VCC18-LCD label connected to BLDO2 supports this.
-
-I set BLDO2 to 1.8 V per datasheet table 5-2 and dropped always-on.
-On the test board, U-Boot hands BLDO2 over at a 1.8 V selector. The
-3.3 V selector was read on a second Cubie A7S running Radxa's 5.15.147
-BSP kernel, whose DT uses BLDO2
-as a PCIe 3.3 V supply. Schematic sheet 4
-shows a nominal 2.4 V BLDO input, so the selector alone gives
-no physical output measurement.
-
-> Do we need this at all? I don't see this (VCC18-CODEC) connected
-> anywhere?
-
-Sheet 4 shows BLDO4 on VCC18-CODEC with no load drawn elsewhere.
-The BSP sysfs also shows it disabled with zero users. I
-dropped the node.
-
-> Should not be needed.
-> Voltage is missing, should be 1.8V, I think.
-> Please try to double check on a system running with the BSP kernel.
-
-The BSP regulator sysfs shows CLDO5 at 1.800 V, which is
-also the existing v4 constraint. I removed always-on.
-
-> Voltage is missing, should be 1.8V, I think.
-> Please try to double check on a system running with the BSP kernel.
-
-DLDO1 also reads 1.800 V in BSP regulator sysfs. Sheet 8 shows
-the SoC eFuse supply. I set it to 1.800 V in v5 and kept it
-always-on.
-
-> Voltage should be 0.9V.
-
-Sheet 4 labels ELDO1's output 0.9 V and sheet 5 shows it powering
-LPDDR5 VDD2L. The BSP sysfs reads 1.075 V. I left it enabled
-at the handoff setting to avoid retuning live DRAM.
-
-> Schematics suggest 0.8V.
-
-BSP regulator sysfs reads 0.800 V on ELDO6, in line with sheet 4.
-I set it to 0.800 V in v5.
-
-Enzo
+>
+> (no changes since v3)
+>
+> Changes in v3:
+> - Add Reported-by and Closes tags
+>
+> Changes in v2:
+> - New patch
+>
+>  drivers/pmdomain/imx/imx8m-blk-ctrl.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/pmdomain/imx/imx8m-blk-ctrl.c b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+> index 9df933a7a238..7d6735728d8c 100644
+> --- a/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/pmdomain/imx/imx8m-blk-ctrl.c
+> @@ -345,10 +345,12 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+>
+>  	ret = devm_of_platform_populate(dev);
+>  	if (ret)
+> -		goto cleanup_provider;
+> +		goto cleanup_notifier;
+>
+>  	return 0;
+>
+> +cleanup_notifier:
+> +	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
+>  cleanup_provider:
+>  	of_genpd_del_provider(dev->of_node);
+>  cleanup_pds:
+> --
+> 2.43.0
+>
+>
 
