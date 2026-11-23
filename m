@@ -2,86 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDE7606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96EE606A31A
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aHMskixW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Pfrb/+1V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TokhvSUj;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZkPZbkYj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=73kaX3/gJU+TE1/qYxJBWp5+fn83LX1wOwAPpJeJd5c=; b=aHMskixWqXuCAgnzRDtgHPC6vL
-	2kCOmlrx4v97+pLYUJhMfaofeu7L49jy7m4H1yTXDogeyZW+aYqqZKEfyKrfT1LZRv3XmsI73MVAA
-	ChzA4KD4C30eV/lL5Wj7WsR18sllhQJirw/VjnqN9QSREr8M9qGi95kMNUkOKYba5HjYgxv3bx1B7
-	YeYybMhHhmQSduGntUiy7BA+7dCR2Rg8uUcvjOTxepwKcfKW+UDajxMiNkGOSoNLYxGyDA79H4Pcc
-	qlSNjJLZNFXZOPsHCMxWXNRHAAnaQ2qE8J0F856rOFLj1tT/mMc8IO60X7HdrvYygGouLyL8HyoaF
-	jIPG+QTA==;
+	bh=7ehb2ffeeQuJE9D3QIhTk8CC01gvV6R9A9P0MLypKbQ=; b=TokhvSUjwej7KrgKfuaUwjW3IP
+	AXCT7Kv/QZHNSl5Q+6TQNLQsqMCxzOWAZfkji4VnRAzC2ZS5jftlMDkgZ8OzdS8kw7HJdHNTFnSqV
+	rt69Syyv8/PndDiJOOvlzH6Nn81hK62PhU93Ux4nPdF2GnFoqzjv+Uzkz/U3+PEewsmsTK4pNqaJ9
+	fbtGE7nvqhvDMi8uZcgFv0qSdyNEhyDTfQX4/nyU/m6O12/dZ2ABYd5rfaD8jEtl182nMCfL+IBKw
+	UPttH/qHYzfNQI3x1fLC+8iSao6pawHUe6ghj8Pa9KIgdFMlRa9EAkudoasb+4Xxmw4hX1Mek2FdP
+	zoSOaTIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNyq-00000002PCp-1tsw;
+	id 1xVNyq-00000002PCi-1USU;
 	Mon, 23 Nov 2026 06:56:48 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNxb-00000002P6J-0EWW;
+	id 1xVNxb-00000002P6K-0SOn;
 	Mon, 23 Nov 2026 06:55:48 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 21D73613FC;
+	by sea.source.kernel.org (Postfix) with ESMTP id D8C264176B;
 	Mon, 23 Nov 2026 06:55:30 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795416929;
-	b=ZWu5m22Lqk8WKxzB5dua8YjcXMnTBC+2ZDnoyVmBV3sMHTaYNr6lwRCq/i8yKWl5Wg1y
-	 Xa/H6eK/6ME+5piZ70Y/0n5r7/+N7OsfZrdO3guopeVJgBvbE43MWH//iwZj0gQiw2/KH
-	 q5Npjz95ZBeS/smpkOkjWQukykHpwguEGkthidmKw+6OPZlMavRd7lgAV1FFq56drAaIP
-	 ut0wu811WSt3VnN2ZvgLdgNVhysRNUvhO+fNyiDo4boVO3FbTxywqHWiT1yklfPAq66GX
-	 rFR+z0XhUScLGpHtqk+7UMgSN6ysPyXQf8dLr+qOvHR1UCMaDnBIAyspEpchM9GkV+w==
+	t=1795416930;
+	b=V5+6gKaEZDZDVP8JG94YBpdWZJydHQFwdJZljA9bdm3h6ABVQF1+ziKcsnkU3224I/YE
+	 RRJ9o3bCerWLXLhrvYJwokByHTdDhTirh7OgOvSf6wNB6ZSI6Oe5z0Lr56W8uTbqPJ94L
+	 8yb8BUnonTDL1sDXeowm7kXwVjN5YjUDm3VkdkHeQ2kee8Gd3D0/Av25fUNliAoIJomBp
+	 OCgaZrpEJksO84IG/6vQMnJlxbtLoj9MEASOkM64vBkbnCp8GF3sr4P7ph6AyENOj75ZT
+	 5GHM6nzbgWWZfWZxZbrvsN6sHblUe1aiKc/SSuZ/eqP8DED4ga+CCOd6y+XokVUe7/A==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795416929;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=73kaX3/gJU+TE1/qYxJBWp5+fn83LX1wOwAPpJeJd5c=;
-	b=CO2/sQQ9it/wMCWBaeLmGyd7Aw4JMymrrd7khxQlYchm/U6LEYhERnIREu5GiPBa5m42
-	 S34IEcIK/uOgkhjk+OIonb/XOrdyDOAiu/5TNgIuv2gUR8jWFyIgRSQVhOzTGt5XE0DBv
-	 iYxugN5AAMOC0Sw7X+t4eepOKfttjdiqyxWAuZAPPNUo5l0FFlkoGMBcm62ijsajlIt5P
-	 eOrInuMM/8xFKw5klof3Eb4PzH78dQwfJ2cNoOrhpVdAMJwLhCMNA//jm7+RRuiakH82u
-	 n4dCWOeL3tjczG3amwjtdcX1Xf1J5UTgzRroL+9FPBtfcX8LuzHqW+0rzxYr8krXgZQ==
+	c=relaxed/relaxed; t=1795416930;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=7ehb2ffeeQuJE9D3QIhTk8CC01gvV6R9A9P0MLypKbQ=;
+	b=TSBCN+IefpJaM8oqt+eb1ZgQZmhyrGde9RdRWtVajrLRy1lZe5YHk+ukO15JT1XjgYDs
+	 miW09SOU4eoWNTaKG2UgUk3/HOZ+NKAHGDDNyHF+mjjiQ7SvqhegsEDIH2FYcAXwA1HaU
+	 ePSsNXn7ICrnZwA3s9uW9vB70TyEq5FJyLF2n1zODY2K+QwPbj8yl8AYJvnga9Zh+tUni
+	 640ALazk9nS+7+KJyW2MrW5HdQSqaRNt42Mu82TwSCB9XZJEfH/8YSlDnSHISt0I5PgXo
+	 Zh8uWE1ZFAlAzzt2Lvp+aupkpQOy1g22f8luzJNW34ba7+8xqb/8oJT4k8fg3lMnBcA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B457C1F000CF;
+	by smtp.kernel.org (Postfix) with ESMTPS id 7DBA41F000C4;
 	Mon, 23 Nov 2026 06:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795416929;
-	bh=73kaX3/gJU+TE1/qYxJBWp5+fn83LX1wOwAPpJeJd5c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=Pfrb/+1Vx2y88G+5fbe1DJbfLTGXKMaLbp0eTtHGh6FCY5BzCWYWPHh08mmnNcDfd
-	 tDsF5DnGoeDk3ee5EG5cpCKMA8mmVRNPZoQa3l86RVDM/x2aHAOrkAaD4t9rxeWbDH
-	 SmiUIDXe/isakFtDgttKv5TM+fRx9FqMbGv3A69cZwB3DtEiO4jO8riHthpSFoGYwp
-	 w9HtaqOCJYIp3INpGRLYgSDNg8YhnGrLBB08y3gEMZ38tASz2rU/au1VM4sFgXDnOT
-	 dbvNxANKsDtGCJ4M9sHribZCPX8kgnEIDS9J+HRIVlr5aBQ5EXW7hWDPYIqrwRpCdZ
-	 OBNMqAwGCSGwg==
+	s=k20260515; t=1795416930;
+	bh=7ehb2ffeeQuJE9D3QIhTk8CC01gvV6R9A9P0MLypKbQ=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=ZkPZbkYjykDMUIIDoFAasg97TNp0CLL9M3X+r6h0UXTje6hNJ656/1gct2epic9Ic
+	 4nrSQbjgyS9akZ34MT2CKpxWagerTTB7iknSCyUrOHlU3HPQ/E3jfMCtkQXp7dLk4Q
+	 VMHJiGbSAa6bZTXBLN8mG2m+bPaIkLb1bk9CS3vka892K7FarlsaaotQImNtS7RrH7
+	 V2K6RNsp1JAQyWimFTgH2jLSJLn2VRDoCnPKg9ui90rf8eqNrip+aMx/U2qi7OzRvr
+	 eQWQPxER/1tChK5Ok/OEtNMBrNpp0I+mxw6EM+vm/MOpoAdKyvU9Zg/OEdf/TFhDev
+	 YM43L3ilaoBmA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3E2E64C3AA;
-	Mon, 23 Nov 2026 06:55:16 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id CE84F4C3A2;
+	Mon, 23 Nov 2026 06:55:15 +0000 (UTC)
 From: Bobek Brzeczyszczykiewicz via B4 Relay <devnull+admin.roadbobek.com@kernel.org>
-Date: Mon, 23 Nov 2026 06:54:09 +0000
-Subject: [PATCH v2 3/3] phy: sun4i-usb: Fix phy2->clk2 reference imbalance
- in sun4i_usb_phy_init()
+Subject: [PATCH v2 0/3] usb/phy: sunxi: Assert reset before deasserting on
+ init
+Date: Mon, 23 Nov 2026 06:54:06 +0000
+Message-Id: <20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-usb-sunxi-reset-fix-v2-3-4e51d3a64964@roadbobek.com>
-References: <20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com>
-In-Reply-To: <20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NwQ6CMBBEf8Xs2TXdhoB68j8Mh7asshqp6QLBE
+ P7dgnePbzIzbwblJKxw3s2QeBSV2GWw+x2E1nV3RmkygzW2JKIKB/WoQzcJJlbu8SYTNuSMMVQ
+ Uxp0gL9+Jc7y9Xusf6+AfHPr1am20on1Mn0070tr7bxgJDQbrq5INHwumS4qu8dHz8xDiC+plW
+ b4tySluzAAAAA==
+X-Change-ID: 20261117-usb-sunxi-reset-fix-d1a0001440a9
 To: Bin Liu <b-liu@ti.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
  Samuel Holland <samuel@sholland.org>, 
@@ -95,17 +99,16 @@ Cc: linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-phy@lists.infradead.org, 
  Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795416949; l=1149;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795416949; l=3231;
  i=admin@roadbobek.com; s=20261117; h=from:subject:message-id;
- bh=2/RvSPv9KdaGKCqwuU1CPvhUhe3Y2XomCyvU8DfERlY=;
- b=8SadnOA0k7DAxtcHP3w9+5kmioUG393Aa8KvOxAQQwynz3lISKa3QefO2RtF2O3grc23Erh+Q
- ViQsz6Rgd5LAHTW+luPwAwI0GVW+8O+ncw5k4rigTo+hWItwpJOYBNG
+ bh=o4DGixHbPlv/wmE6A4a2ry81udTO6L0xxBAxUf67t/Q=;
+ b=MiwFtyzfknvO4YOvokSa0ZFcN0x5K4it0EctWcPSiBPfa05z7gGm/THCuR94ANntFQeEDF4do
+ 4F1EaYz6N7HCooIce+oMzx7c1k4KZo9IJKtQuYxIHB8iltqyWlqIm33
 X-Developer-Key: i=admin@roadbobek.com; a=ed25519;
  pk=TcWSTwITMylwCZLYbw80sv2LQx1zButqiT90TFVvhas=
 X-Endpoint-Received: by B4 Relay for admin@roadbobek.com/20261117 with
  auth_id=1548
 X-Original-From: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,40 +128,80 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
+When a bootloader such as U-Boot (for example with
+CONFIG_USB_MUSB_HOST=y) initializes USB host mode and boots Linux
+without stopping USB first, both the MUSB controller and USB PHY
+reset lines are already deasserted when Linux probes them.
 
-In sun4i_usb_phy_init(), the needs_phy2_siddq path enables phy2->clk2
-to access the REG_HCI_PHY_CTL PMU register for PHY2, but then disables
-phy->clk2 instead of phy2->clk2.
+Because reset_control_deassert() alone is a no-op on an already
+deasserted reset line, stale hardware register state persists across
+boot. On Allwinner A33, MUSB stays wedged in a_wait_bcon with
+DevCtl=0x99, Power=0xf0, and a frozen Frame counter even across
+hot-unplug and replug.
 
-This leaks a prepare/enable reference on phy2->clk2 while prematurely
-disabling phy->clk2, causing a clock disable/unprepare underflow when
-sun4i_usb_phy_exit() later runs.
+This series ensures both the MUSB controller and USB PHYs are reset
+cleanly regardless of prior bootloader state, and fixes a related
+PHY2 clock reference imbalance spotted during review:
 
-Disable and unprepare phy2->clk2 instead of phy->clk2.
+- Patch 1 uses devm_reset_control_get_exclusive() and briefly asserts
+  glue->rst in sunxi_musb_init().
+- Patch 2 uses devm_reset_control_get_exclusive() and asserts all PHY
+  resets in sun4i_usb_phy_probe() before registering the PHY provider,
+  avoiding disrupting shared PHY2 on SoCs with needs_phy2_siddq.
+- Patch 3 fixes a pre-existing phy2->clk2 reference imbalance in
+  sun4i_usb_phy_init() on SoCs with needs_phy2_siddq.
 
-Fixes: b45c6d80325b ("phy: sun4i-usb: Introduce port2 SIDDQ quirk")
+Tested on an Allwinner A33 Q8 tablet (Laser MID-786).
+
 Signed-off-by: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
 ---
- drivers/phy/allwinner/phy-sun4i-usb.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+- Use devm_reset_control_get_exclusive() in both sunxi_musb_probe() and
+  sun4i_usb_phy_probe() (Philipp Zabel).
+- Move the USB PHY reset assertion from sun4i_usb_phy_init() to
+  sun4i_usb_phy_probe() so initializing PHY2 on SoCs with
+  needs_phy2_siddq does not reset an already active shared PHY2.
+- Add Fixes tags to both reset patches.
+- Add Patch 3 fixing the pre-existing phy2->clk2 clock reference
+  imbalance in sun4i_usb_phy_init().
+- Link to v1: https://patch.msgid.link/20261117-usb-sunxi-reset-fix-v1-0-c2b76e0e84e1@roadbobek.com
 
-diff --git a/drivers/phy/allwinner/phy-sun4i-usb.c b/drivers/phy/allwinner/phy-sun4i-usb.c
-index a62558124d2d..6e35eb77c879 100644
---- a/drivers/phy/allwinner/phy-sun4i-usb.c
-+++ b/drivers/phy/allwinner/phy-sun4i-usb.c
-@@ -318,7 +318,7 @@ static int sun4i_usb_phy_init(struct phy *_phy)
- 			writel(val, phy2->pmu + REG_HCI_PHY_CTL);
- 		}
- 
--		clk_disable_unprepare(phy->clk2);
-+		clk_disable_unprepare(phy2->clk2);
- 	}
- 
- 	if (phy->pmu && data->cfg->hci_phy_ctl_clear) {
+To: Bin Liu <b-liu@ti.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>
+To: Samuel Holland <samuel@sholland.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: Hans de Goede <hansg@kernel.org>
+To: Felipe Balbi <balbi@ti.com>
+To: Vinod Koul <vkoul@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: Kishon Vijay Abraham I <kishon@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: linux-usb@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-sunxi@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
 
--- 
-2.53.0
+---
+Bobek Brzeczyszczykiewicz (3):
+      usb: musb: sunxi: Assert reset before deasserting on init
+      phy: sun4i-usb: Assert PHY resets in sun4i_usb_phy_probe()
+      phy: sun4i-usb: Fix phy2->clk2 reference imbalance in sun4i_usb_phy_init()
+
+ drivers/phy/allwinner/phy-sun4i-usb.c | 23 +++++++++++++++++++++--
+ drivers/usb/musb/sunxi.c              |  5 ++++-
+ 2 files changed, 25 insertions(+), 3 deletions(-)
+---
+base-commit: 666539eecdf4db623f5e3c3e55cf9f2dfad24aa4
+change-id: 20261117-usb-sunxi-reset-fix-d1a0001440a9
+
+Best regards,
+--  
+Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
 
 
 
