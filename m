@@ -2,68 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C37D606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24C2606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KlpmLcih;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WG78Xect
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vZqSDo/4;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OSMPdru2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2Y8yOTbhtoK28NXLx6+AHEKOz4plE0kM1KVQW0HkT0E=; b=KlpmLcihD0mWYB0vi/0MzIPrLj
-	eai2V4JRFg/0ClwkuiKuCTkD+UrPgIDmbnegARsC3Hld1zfNqab8hW3Qnt/9zwiQg7hTIaM8MQHvE
-	fjuY11QSvuqffnWK0tDiE+p0cF8Npq/GMJlNYsoZrGRpEVPi9QAKINKIr5cfYrTAW/4SNfY7+AF77
-	olbYTcrYQ9r6orGBHTnixcqgIpBW8WvKJdQ5hFiX2XiRJhIrwKowRe/MjQ7kWk4zRxjds/MzJRtqk
-	U+McmdNoiOEn9ukJD90U8+dv67pP79JsoeHWwghgbf8NGCO/FxFj/pjHYrhpnA/JAwdFlz/suIPp/
-	ZkyEk8cw==;
+	bh=PVsLeXRTOahAG2VllZyPWnhqfQeDNFZhs6x5OHNr+L0=; b=vZqSDo/4XFxlpAz+jsQ8aLMAf5
+	uicmPyA9MbMNdtP0l+OySf1K/J+MeXZUsCssm7Ulpeyz0d1m4ymAeVy2Sgi/1sll4KvQX3oc1ujpN
+	TSN8EN0i6eYAIOzBjFWkGfX3MkFVOoHxcHPDfhA/NtOPTVZqFIsg6OnOnG6X+6LEmM8NaeqE/nm9T
+	j5Xe55g4qbnghw1IPIxJG/WmI+5M1FCAcd1x2i7Y1SxksBa5IS1qYaUrd63WRx8EbjE1jJ0xwAFs/
+	aB82T8932C+P9OdcUatflateR8or4czpkvXRrzOgmk0Z3wW4uZym4tVLH+vLSc9eCoANY8+peQnqc
+	tYGFOcBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUB0-00000003agM-26MO;
-	Mon, 23 Nov 2026 13:33:46 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVUCX-00000003b0S-00eP;
+	Mon, 23 Nov 2026 13:35:21 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUAz-00000003afj-1qx2
+	id 1xVUCU-00000003azx-1INT
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 13:33:45 +0000
+	Mon, 23 Nov 2026 13:35:18 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9075461D42;
-	Mon, 23 Nov 2026 13:33:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F4A1F000D2;
-	Mon, 23 Nov 2026 13:33:40 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 64243620AF;
+	Mon, 23 Nov 2026 13:35:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62EAC1F000C4;
+	Mon, 23 Nov 2026 13:35:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795440824;
-	bh=2Y8yOTbhtoK28NXLx6+AHEKOz4plE0kM1KVQW0HkT0E=;
-	h=From:To:Cc:Subject:Date;
-	b=WG78XectP2FyDqthO37ScnDRMWI+8ex8igW/DoTTOhQMzC3nK+X/oyztCZxCKs7cW
-	 SJ8JYe19WT+SzK9KyY8RbsIoKEg4OBOvYk1XG45pA8m7CDeyVoB8Hf+uhg7pzSnNy1
-	 5jSJSxvCZQOOkyE/ryVDHK7yrStJZs1Q1Kkm7ZeJjxNH6WUDDWWgN61qhDT3yiz8cA
-	 JsyGiC0zGZFtJ89UqMTkpOjO5EEZEpftdeDhihn4SqRMeuTn/R2aLrKvWoPU1FH0SM
-	 aLysckbtOMHghFhpab7G+ooTL4pC8h2NWChExh+UL6aOcPQgzhfjcXVlcOIK/qaHma
-	 KPAgy7rY2ClPg==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>
-Cc: netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] net: stmmac: fix uninitialized axi_blen array
-Date: Mon, 23 Nov 2026 21:13:26 +0800
-Message-ID: <20261123131326.7105-1-jszhang@kernel.org>
-X-Mailer: git-send-email 2.55.0
+	s=k20260515; t=1795440916;
+	bh=PVsLeXRTOahAG2VllZyPWnhqfQeDNFZhs6x5OHNr+L0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=OSMPdru2FWrEagYOoaXRYsM+Um4FAS8VHNHm/hJ5tSMzeqDEx/H5j+2PSbNaHlAPr
+	 NR3kzA65WNJ2uwfqn/jnwqmmgnK1w5Mem5YySoddV5TCXcE50P6u2+AFVhPRd/EGB4
+	 ctWYjpLbdoro8w50bDxZIQwKz6Jwznmx7cPD3a6qD3/AvcIFQhIDCIVYF27kRbgTLU
+	 7qz66np6YpYCQCSsNqd0Nkm6xJhNBqLmFMvm3Zc77TwlRBJ6YJ8nPcxGo/GILOUVON
+	 yFJQvS10jYNcX9xOQR2+lOCOXn40LMzEwKEdWrKSHRojbhTxxuZMsDsIPcCVBpHT57
+	 7aLStW/OV91PQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xVUCQ-00000001zlA-1AXV;
+	Mon, 23 Nov 2026 13:35:14 +0000
+Date: Mon, 23 Nov 2026 13:35:13 +0000
+Message-ID: <86h5h7zn5a.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dan Carpenter <dan@pereq.eu>
+Cc: Oliver Upton <oupton@kernel.org>,	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,	Zenghui Yu
+ <yuzenghui@huawei.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
+ Deacon <will@kernel.org>,	Mark Rutland <mark.rutland@arm.com>,	Karthik
+ Bhargavan <karthik@pereq.eu>,	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau
+ <clement@cryspen.com>,	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,	stable@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: nv: Never invalidate less than a page for a TTL hint
+In-Reply-To: <20261123-inval_range-v1-1-815e15797089@pereq.eu>
+References: <20261123-inval_range-v1-1-815e15797089@pereq.eu>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dan@pereq.eu, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, karthik@pereq.eu, clement@cryspen.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, stable@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,39 +85,115 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If platform doesn't provide a valid "snps,blen" property, the
-axi_blen[] array will contain random value from stack, then the array
-will be converted to mask which will be written to DMA_AXI_BUS_MODE
-reg later. Fix it by initializing the array.
+On Mon, 23 Nov 2026 10:30:16 +0000,
+Dan Carpenter <dan@pereq.eu> wrote:
+> 
+> The compute_tlb_inval_range() function takes the size of a nested TLB
+> invalidation from the TTL hint in the TLBI operand.  A guest hypervisor
+> can give a 4K level-3 hint, which asks for a 4K invalidation.  On a host
+> with 16K or 64K pages that is less than one page.  s2_mmu_unmap_ipa()
+> passes the 4K size to kvm_stage2_unmap_range(), which hits
+> WARN_ON(size & ~PAGE_MASK).
+> 
+> WARNING: arch/arm64/kvm/mmu.c:407 at kvm_stage2_unmap_range+0x38/0x60, CPU#1: ipas2e1_ttl_tes/568
+> Call trace:
+>  kvm_stage2_unmap_range (arch/arm64/kvm/mmu.c:410) (P)
+>  s2_mmu_unmap_ipa (arch/arm64/kvm/sys_regs.c:4246)
+>  kvm_s2_mmu_iterate_by_vmid (arch/arm64/kvm/nested.c:770)
+>  handle_ipas2e1is (arch/arm64/kvm/sys_regs.c:4258)
+>  perform_access (arch/arm64/kvm/sys_regs.c:4917)
+>  kvm_handle_sys_reg (arch/arm64/kvm/sys_regs.c:5455)
+>  handle_exit (arch/arm64/kvm/handle_exit.c:466)
+>  kvm_arch_vcpu_ioctl_run (arch/arm64/kvm/arm.c:1583)
+>  kvm_vcpu_ioctl (virt/kvm/kvm_main.c:4595)
+> 
+> The shadow stage-2 is built from host pages, so invalidating less than
+> a page makes no sense.  Return at least PAGE_SIZE.
+> 
+> Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Dan Carpenter <dan@pereq.eu>
+> ---
+>  arch/arm64/kvm/nested.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+> index 78d5b18dbd2d..e964b122e9d0 100644
+> --- a/arch/arm64/kvm/nested.c
+> +++ b/arch/arm64/kvm/nested.c
+> @@ -735,7 +735,7 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
+>  	}
+>  
+>  	WARN_ON(!max_size);
+> -	return max_size;
+> +	return max(max_size, PAGE_SIZE);
+>  }
+>  
+>  /*
+> 
 
-Fixes: efd3c8cc52bb ("net: stmmac: remove axi_blen array")
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'm a bit on the fence about this one.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index b3e06aa58fe5..29ead405f449 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -96,7 +96,7 @@ static struct stmmac_axi *stmmac_axi_setup(struct platform_device *pdev)
- {
- 	struct device_node *np;
- 	struct stmmac_axi *axi;
--	u32 axi_blen[AXI_BLEN];
-+	u32 axi_blen[AXI_BLEN] = {};
+On the surface, this seems the logical thing to do. However, KVM
+imposes strong limitations on the granule sizes that a guest can
+use. Specifically, we don't allow guest S2 page sizes smaller than
+what the host can do, and advertise so in the ID regs.
+
+This means that a guest issued 4kB TLBI IPAS2E1 on a 16kB host is not
+required to take effect at all, since the page size is not advertised
+as supported at S2, as captured by the architecture:
+
+<quote>
+If an incorrect value of the TTL field is specified for the entry
+being invalidated by the instruction, then no entries are required by
+the architecture to be invalidated from the TLB.
+</quote>
+
+The trouble is that by the time we realise that the TTL is stupid,
+we're way too deep in the bowels of the invalidation code, and we're
+committed to giving a reasonable answer to this.
+
+So given that the guest is totally buggy, I'd rather treat the TLBI as
+if it didn't have a TTL field at all, as over-invalidation is always
+safe.
+
+This has the advantage of using a size that is correct for the guest:
+a 64kB guest on a 16kB host using a 4kB TTL TLBI would otherwise
+result in a 16kB invalidation, which doesn't make much sense either...
+
+Untested hack follows.
+
+Thanks,
+
+	M.
+
+diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+index 78d5b18dbd2d6..36e4e83badf0a 100644
+--- a/arch/arm64/kvm/nested.c
++++ b/arch/arm64/kvm/nested.c
+@@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
+ 	 */
+ 	max_size = __ttl_to_size(ttl);
  
- 	np = of_parse_phandle(pdev->dev.of_node, "snps,axi-config", 0);
- 	if (!np)
--- 
-2.55.0
++	/*
++	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
++	 * possible invalidation. Don't try this at home, kids!
++	 */
++	if (max_size < PAGE_SIZE)
++		max_size = 0;
++
+ 	if (!max_size) {
+ 		/* Compute the maximum extent of the invalidation */
+ 		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
 
+-- 
+Without deviation from the norm, progress is not possible.
 
