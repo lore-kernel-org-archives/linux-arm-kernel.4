@@ -2,87 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8836C606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9EB4606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=24OOHk/J;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Fy4TrY6T
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HiPyPF1X;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=3VkflIru;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=kAAiYpzk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dRuT4N91hHE9iRqRCs95W/ga15XeLCIhv2rAxfMU6cg=; b=24OOHk/JI7OK2r
-	ukDuWDPDq6eV7NX7kjCzNNLQ546850eFVWZOi4nTuZ9KV8aAbcvsGg0le107A9GZvOzgl1RQAPcKB
-	vtxsDDQzpXOFBphaQTz8eDDKGQBif2vxW9WZ+IawSqAWH+NmQySqw8h61w0UXRDNdExUF7dzn0gIJ
-	0khKL71IN9yo8rkWnUHRzW32+zlhCzX26vAKdwDlOyc6om3YyBoVfNjM6nE6JjUQw9LEPb+NEuglw
-	94VF/o1z2o5ppcKSoI+UEwSzXSjO9gwy12jyQnka52mutOrbvMld/SqbiwyP/ZsmaHRxwWpWrnTZT
-	MMPrzWuRY6/mH4lF2lGQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=CD4ic9Gltp6sjM8mfIwiECFvv0TUSDYXBdZI3py6+Hs=; b=HiPyPF1XfgUS/WXJHlMudht8V9
+	xl5BnHNyOuYG/FSEUhp70/Cs+xI49Q/mOuQJ8fg8mJ/46xegaQS3OvHz9oarMkYP0SDjkmqZYH9iw
+	vmWEQ/YO0IwAiL5oHzYqtu43M8gEHuNpPrizRekWofvtKqo4Upf8zXYO25j3fOmSJTzATU07EwbOx
+	j5VpYrttoD0OM7FzZLD26/Q3nvfDuL8XI1fhTjsL2Y98zBFF+eVi5TAhFyIrha88Fce6JRN4ZrpOz
+	lepbOoZd+hezUQ5BM6qNv8+yg7MCTZIlilcAy7tPB2Wtq7ELkcme691vsFDDOR5LpwC/NDd9Qk3yv
+	nZfd1gKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQvU-00000002tS0-1tyH;
-	Mon, 23 Nov 2026 10:05:32 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xVQtU-00000002seY-2aoM;
+	Mon, 23 Nov 2026 10:03:28 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQvR-00000002tOv-18Cj;
-	Mon, 23 Nov 2026 10:05:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795428326;
-	bh=a1/XioPUQOk/Y+CGy7Ob4OJm/x2Pd/UgMyEWsylmoiU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fy4TrY6TmXh/ljo+lsHC4WaWEu3NPgVkyxOLpm54IQha82S/0hNWaowDfWqbOZ9Q9
-	 7c5OKwrgrF9RTFGykd3PuoR0dW/b/oI2aG0DtAEUJF63bU9wpv52bLBXd3/rGicn0O
-	 FQHJVomaKIwGtUsxz83Kjhy4HYSMH+R3eCWU7TnpgKtkjnjYILzWyPnwh+g7+mkM5L
-	 G+/HPAoTC+Rq3S31aumUL7381kXn3vNC7FnA9A4cbjMc1Ie9KfUdRLwedlyG5Ur1KD
-	 xGqgkRIL3FlM+yXwz62bKtI566fz7CR5vWDQ1/VMFNvXud8H7pzlF/u5yTK7b5NPyV
-	 J29BH1iSf8yFQ==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E9C5517E007F;
-	Mon, 23 Nov 2026 11:05:25 +0100 (CET)
-Message-ID: <33cf13e4-6df0-45f8-b621-ffe3f43419c9@collabora.com>
-Date: Mon, 23 Nov 2026 11:05:25 +0100
+	id 1xVQtS-00000002sdJ-05Sk;
+	Mon, 23 Nov 2026 10:03:27 +0000
+Date: Mon, 23 Nov 2026 11:03:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1795428203;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CD4ic9Gltp6sjM8mfIwiECFvv0TUSDYXBdZI3py6+Hs=;
+	b=3VkflIruKARozyrkLHlX2mQ95+oFUmmPQ9g7O4L3WFJ+V/4YkuEfXhftFZgsdG9N+ReUrC
+	3ECXYSLczZ5sfXJmW/dp9rUJNM/FMjQfywHZgZtQzuHb0kSoe7hHEhJUgFIKC0qG05v5/W
+	deQUhf+pARzVbGBEEIbo6yBX9OA7AK30MKgGM9nFf9PO5zjwkdkfGkZM9cxjaj34VKvOsw
+	myOUpmdrBt4nOPgZIRTrtBBjy4he4UJ8IukvSGDbAO08UnI4M4oCeuCrk04sAimvWyNpHh
+	OeIZxe3E8yO3AcaESf76ss7nR72GuxDw2HX74Yv5N4Yb5IVJ8j/g7DgcR1hCiw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1795428203;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CD4ic9Gltp6sjM8mfIwiECFvv0TUSDYXBdZI3py6+Hs=;
+	b=kAAiYpzkfztPq6MYwun6e1Y8Vy2mVk9Secfye9usXniusBTfN7Fozg38iBhnOT33Y8lwOo
+	+hHvYlvL/ixDdMDQ==
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Kees Cook <kees@kernel.org>, linux-mm@kvack.org, 
+	linux-kernel@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, loongarch@lists.linux.dev, 
+	linux-s390@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, linux-mips@vger.kernel.org, 
+	sparclinux@vger.kernel.org, linux-sh@vger.kernel.org, linux-alpha@vger.kernel.org, 
+	Paul Walmsley <pjw@kernel.org>, Andy Chiu <andybnac@gmail.com>, 
+	Magnus Lindholm <linmag7@gmail.com>
+Subject: Re: [PATCH v3 00/15] exec: Remove AT_VECTOR_SIZE_ARCH from UAPI
+Message-ID: <20261123110111-6431e85f-39a4-427e-b545-2e7a590a6c19@linutronix.de>
+References: <20261123-at-vector-size-arch-v3-0-d342dae9e843@linutronix.de>
+ <ec5359c1-c16e-4177-8dfa-2ae5ab8a874f@app.fastmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 27/46] dt-bindings: display: mediatek: Introduce
- Digital Video Output HW
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "airlied@gmail.com" <airlied@gmail.com>,
- =?UTF-8?B?SnVzdGluIFllaCAo6JGJ6Iux6IyCKQ==?= <Justin.Yeh@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
- <20260714114414.184512-28-angelogioacchino.delregno@collabora.com>
- <98cde7319f539cab9f72ec370d309b26569889c9.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <98cde7319f539cab9f72ec370d309b26569889c9.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ec5359c1-c16e-4177-8dfa-2ae5ab8a874f@app.fastmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_020529_489063_5F9B49E5 
-X-CRM114-Status: GOOD (  19.11  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_020326_211868_9B154548 
+X-CRM114-Status: GOOD (  17.37  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,103 +84,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/26 03:17, CK Hu (ËÉ°‰øäÂÖâ) wrote:
-> On Tue, 2026-07-14 at 13:43 +0200, AngeloGioacchino Del Regno wrote:
->> Add documentation for the Digital Video Output (DVO) IP found in
->> the newer generation SoCs MT8196, MT8189 and their variants.
->>
->> This is effectively a more capable block replacing the DisplayPort
->> Interface (DPI/DP_INTF) one found in older SoCs.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../display/mediatek/mediatek,mt8196-dvo.yaml | 143 ++++++++++++++++++
->>   1 file changed, 143 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
->> new file mode 100644
->> index 000000000000..b38960327ca1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8196-dvo.yaml
+On Mon, Nov 23, 2026 at 10:44:40AM +0100, Arnd Bergmann wrote:
+> On Mon, Nov 23, 2026, at 10:37, Thomas Weiﬂschuh wrote:
+> > There is nothing userspace can do with this value. In the kernel is
+> > always combined with AT_VECTOR_SIZE_BASE, which is not exposed to
+> > userspace and also changes from time to time.
+> >
+> > Move the symbol to kernel-internal headers.
+> >
+> > Meant to be applied through the asm-generic or execve tree.
+> > The default recipient list was huge. I trimmed it to only the
+> > architecture lists.
+> >
+> > Signed-off-by: Thomas Weiﬂschuh <thomas.weissschuh@linutronix.de>
 > 
-> This file would include multiple SoC dvo, so it's better to use mediatek,dvo.yaml.
-
-Devicetree bindings maintainers will disagree with this statement ;-)
-
+> Hi Thomas,
 > 
->> @@ -0,0 +1,143 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,mt8196-dvo.yaml*__;Iw!!CTRNKA9wMg0ARbw!n3pk94kKoN-7zfem5SHfJn_ixDmAleFOW2dJwmZ8W5gJz-iEQGAN6yOkpupaMXAvAlr3KfAndB5Fjy57tNXsxA_uvNy3$
->> +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!n3pk94kKoN-7zfem5SHfJn_ixDmAleFOW2dJwmZ8W5gJz-iEQGAN6yOkpupaMXAvAlr3KfAndB5Fjy57tNXsxNztWOiH$
->> +
->> +title: MediaTek Digital Video Output (DVO) Controller
->> +
->> +maintainers:
->> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> +
->> +description:
->> +  The MediaTek Digital Video Output (DVO) hardware provides 120-bits (4P) data,
->> +  video timing and info data for the Embedded DisplayPort, hardware-abstracting
-> 
->  From the compatible listed below, DVO not only for eDP, but also DP, right?
-> 
+> I'm happy to take this through the asm-generic tree. I've already
+> made sure it all applies and the patches look good to me. I'd
+> wait a few more days for additional Ack or any other replies,
+> let me know once you think I should apply this version.
 
-Yeah, on MT8189 it's also for DP.
+This v3 is functionally identical to v1 and v2 which have been on the
+list of a long time. I am not sure how much more feedback will come.
+IMO it can already be applied to gain more exposure in -next.
 
->> +  the previous generation Display Port Interface (DPI/DP_INTF) blocks, other
->> +  than providing new capabilities.
-> 
-> No new capability? But what you list below is new capability or the same as DPI/DP_INTF?
-> 
 
-The new capabilities include PSR and MSO, other than the 4T1R in output (as DP_INTF
-did support that but only for very specific configurations).
-
->> +  This hardware block supports 1/2/4 pixels per iteration in both its input and
->> +  output and provides 8/10-bit RGB, YUV422 and YUV444 data formats in output,
->> +  other than supporting input/output video window cropping and padding.
->> +  Digital Video Output also provides Panel Self Refresh (PSR) and Multi-SST
->> +  Operation (MSO) features for eDP 1.3/1.4.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - mediatek,mt8189-dp-dvo
->> +      - mediatek,mt8189-edp-dvo
-> 
-> This series is so large, so it's better to drop any thing that is not related to mt8196 and you could add them back later.
-
-Are you sure you want me to drop that?
-
-It's just 10 lines of code and some platform data really, I don't think it's all
-that much to justify dropping it?
-
-Cheers,
-Angelo
-
-> 
-> Regards,
-> CK
-> 
->> +      - mediatek,mt8196-edp-dvo
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->>
-> 
+Thomas
 
