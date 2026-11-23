@@ -2,72 +2,185 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC0A1606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2060606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=USRink/q;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=JHAZeWjz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=quVctP8r;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=rClbh3Y9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2I/ZLcpNZv/FLlEGaOs97nelMu4YLIKmhdq6NuVYZTs=; b=USRink/qweDxF/
-	2nDmKf18E4iViaDdrflZWWrGd9BhN4sl5YbkcwSZLdnLXQI9gBR9JuWYJuLT+uE6BrMQ36O0vUfOs
-	m9pXv4+D/YvTvGyXn6jmXr/EJIOEUlZQ6FPE9IgRce8J3MKqCcQrOHb6MXZWYTPxs6YeKrmWDLtKI
-	/JfqAgBAG4GNC3mMjUbJy/oPU40/8OHMp4dbwtw5BEnKKrm8XccJiBv9FqgtXcAfHycbB6juGZoHf
-	FcPxB3SxkL9tjwm00B3Ljcvuee8YDzdjavLNqHmp5YPMy6c0V5TcP+SNE7lPcb/mYJw+9pIQqIi9U
-	HzO/YvkHKAiYrIy9eHfQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=H2xHejBippHR8dvsk9ry1XyysyTA/2NLrSBjVWam3J4=; b=quVctP8r2iv+hB2j/Tbdy185B2
+	KLZd79czeJgtGaA7jnnN9rHfeIflQIr9gJt5Gis1rGHJwlGh+KMMOxjwvUNaXYBxNcOQ4R5DiLMQ9
+	RU8XpY7G+9pz9Hau0exE+G2WGHTQ8vuLNDjcQZ7aeKKtphm8KS3hoStZfF4SXFFgJQExV7J8pYmKw
+	KaZLL6/wUrAs1l2tDJ4QM6qOAs5cWq5KuM9PKaABGcqqm7hMnsmYfB/Ma0NlFY9MfZTuXGUADHIQJ
+	zzdTci3/8e3OlRn5A5PApPxo5Q0q30Zfsh8CXeFT2gV5b3hLhlNR4ak9JvOEK0/pzyfUwOvHTSH6X
+	jFEbCSCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWxt-00000004CYr-3IVB;
-	Mon, 23 Nov 2026 16:32:25 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWxq-00000004CXj-3Orw;
-	Mon, 23 Nov 2026 16:32:24 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40AFB143D;
-	Mon, 23 Nov 2026 08:32:16 -0800 (PST)
-Received: from [10.57.63.212] (unknown [10.57.63.212])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AC84D3F632;
-	Mon, 23 Nov 2026 08:32:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795451539; bh=KhxNIpGSzlXvEjcbWdqGMKZlQcHc/27HY9nyACtvYyU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JHAZeWjz3labj4HkqSbae/RQ4xXHLlp++Cg7+Inbu67rR6whvGAoBW/97PRbGatoF
-	 ZDdXPZa1ingKjQBX3NZPmVbkcZQmAAYGEtAIHWUSsGV8lvyhQ9Dri90TRGpoDS1JDN
-	 NVDMvRujrs7fJlM23mYi5ak5hX00/+5RbnQd6dfA=
-Message-ID: <c6b04a8f-a575-4f78-828c-1d5684446584@arm.com>
-Date: Mon, 23 Nov 2026 16:32:13 +0000
+	id 1xVWyS-00000004CmA-1a5T;
+	Mon, 23 Nov 2026 16:33:00 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVWy6-00000004Ceb-0bGe
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 16:32:39 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nBLDSZzCnX81NnnaoVsFhH3FoZ9zNtcqxwhXifSj3Gl/N2jO8HKT5Ez7dY34co2gac5WSqcf3S9FUZ5Jy33Ds+wH3UUA6zUaA6lbRNNxbGvo5u1SxrYbbKrVp7qCCqEHi84aeboj8EKePNyKESepk8EVpgm0VvxegOcp82Yic/WCS9oeEzLWFS5N7gGUotREpki0CgMTCXIIst4AgkwcClr/xVNoNw1O+7MJRV3ZcCWS1Fu3KoRpUQT0kf852XgRwBDrJnoLFbkSpoFTIYKhznvPfPIp2I6A8K1ozEeh41RPRkzsMgdXOr3adIuT2GCYswl31K+4w2kPgvo+1mEyxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H2xHejBippHR8dvsk9ry1XyysyTA/2NLrSBjVWam3J4=;
+ b=ZJMBsYFqXmrds7YSVaOCCcDomluV/gyXAv14AKvAjVOO27Dj6ns8K8kkHOIV/14szfCmgYTP8yCJsQXjTQhkpiOFusm7T7GzQO4sAy17TkE3hNZTemJoMCW2MVNFxm2NLLL1zj8Sos0iWSiKuiuyUwpu3DMcPuoUWR+xx48KO91CjWamrTLGVdYeq9WJNycmGfSHzva2LxKatrsFUVTpjYb0JAQehjNdC4u2zGGhmM/7r+BDAt2Z6zQKsJ6z2sKH4WXT8WjFdILAXqN1iZeZN25W9SDZbL9g4H2f5hiprtF8riqn4TlLi6XcKBVJk8BSCDQ2n5gDUTuRqtUGN7YGKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H2xHejBippHR8dvsk9ry1XyysyTA/2NLrSBjVWam3J4=;
+ b=rClbh3Y9rQnmhNeNjHVXMsaLV8w5ogLHfMzVAKMVLPpjGlRWy4r0C3R0FujRZK+tShGeOwGgaKhdE3C+WLwM/VzAYR65Yb2HzDXM0FNF+9abv+lB/95s+411IEaZEig3rkljlZRCU0qH40+hfb+bNyQcI28OVogqHt4ynWlQ7CPneT4JyYA0vfhU8z5r+ZmNVhnvSrjR61JExHlfCruJsGBC2tuVFMaY1VXn7RBiIp1Hs+ZQoDGyHO38x7Cnc/KVbj1LUbn33xj0soefhCqp4OyQOQB8ebL4ybp7wUNxO47BRbOqzS3XcELYoC3tGpS8PC2ALJ6jNQ4xs6aKg9T3QQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AMBPR04MB12288.eurprd04.prod.outlook.com (2603:10a6:20b:730::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
+ 2026 16:32:33 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 16:32:33 +0000
+From: Frank.Li@oss.nxp.com
+To: linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Ge Gordon <gordon.ge@bst.ai>,
+	BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+	Jesper Nilsson <jesper.nilsson@axis.com>,
+	Lars Persson <lars.persson@axis.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+	=?UTF-8?q?Yu-Chun=20Lin=20=5B=E6=9E=97=E7=A5=90=E5=90=9B=5D?= <eleanor.lin@realtek.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Michal Simek <michal.simek@amd.com>
+Subject: Re: (subset) [PATCH v3 00/17] arm64: Use EL2 virtual timer when running VHE
+Date: Mon, 23 Nov 2026 11:32:25 -0500
+Message-ID: <179545153817.2472106.1922836629751112370.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260523140242.586031-1-maz@kernel.org>
+References: <20260523140242.586031-1-maz@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PH1PEPF00013307.namprd07.prod.outlook.com
+ (2603:10b6:518:1::14) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/panthor: Suspend devfreq until the GPU is first
- resumed
-To: aiyengar1990@gmail.com, Boris Brezillon <boris.brezillon@collabora.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Akash Goel <akash.goel@arm.com>,
- Karunika Choo <karunika.choo@arm.com>,
- Lukas Zapolskas <lukas.zapolskas@arm.com>,
- Chris Diamand <chris.diamand@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Jonas Karlman <jonas@kwiboo.se>
-References: <20261112-panthor-suspend-clk-v2-1-62e1b168052d@gmail.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20261112-panthor-suspend-clk-v2-1-62e1b168052d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AMBPR04MB12288:EE_
+X-MS-Office365-Filtering-Correlation-Id: e77b5baa-c896-4857-f912-08df497f603a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|23010399003|19092799006|10067099003|261009223027099003|11063799006|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: PEXcfTQberP5tvqt6R/wZJzVGc5zH1py08giVs5IcS7pjENZ2wRbFlcQhO7kXgVl6zcyC5D0w2kRiqHJcbbw2RzPT2886ZsArixqD8PmDT4NyY0Rc8ssI+5xOR5FkxUgEHg0pG1T9RLwuqHGUDcD7TjqwK+Ny81dP/jGCTna1m1r635TSow8+s0fi7Bzr6C9hMNsQRe86SFlqHT9S0r3Nsix3fRnAJVXMANUVj8LPHbUQUqR/zGs7y2wOGUE5h9w76qej3nD05ZkgFnPdox2NgfsOriK8Xx/BbHiRFXx0Zmc038XKQJwQv0e6yOhjoQALLnOmqNOFkY8d0NnvDkGQliO2qL+6RDh8zdXOoysgSUIVNh2UJlkU5IOLHX7JuJuq9DZ/hynD4K60ZbE73VywT/t/54HIM2JmHWM+qkPEwuVLVEPYSBe7OqQjfUCECIIHyPTOuMD9FXsyfrdquy/pI77YrG/tDcfP/Ql7AaJe9FMvpSGn/2VsEkQJqg96EblS29DQ0mjyU4Vdodjhi82HSCAuSH413D94sRSnLS7STZEcBTAs01qdEuyWBDibkPB56VHlbBUFtruxs4wj5RjytDBuLE6VztKGH21dikHS0oZ2FcF8iH1VxOGdNwPUgztCr32s2zd70vPOUpFkhK3pTRnrJJvwxkagf+8MdjXpaU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(23010399003)(19092799006)(10067099003)(261009223027099003)(11063799006)(56012099006)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vm4zQmVPYlhJc3JqVndVQmYxMGlxV21PclpQaXRCNFFPbmpXSm5kVkZmS3No?=
+ =?utf-8?B?MzNIWGZOWHIvQkN1U3U1aUNiODJvR3hhVTVURDM5SFhlVUJrVDEvZUlrTTNm?=
+ =?utf-8?B?MmdGUkxBR3N4a1M5OVYwTUxYR21yQjRtektsNkRScEJGK3B5VnMwRWdNNGdB?=
+ =?utf-8?B?akMxdHRZSmpKSkJLYTNIWTZHNllZTCtuRUdFNHMySTJRTmVURDJEbjQzTU81?=
+ =?utf-8?B?bi9kU3BHUnlrL25tYVNJdjVVR0x3d0hBTDBqMnBmMEZxOG11T0ErRkIzaHM4?=
+ =?utf-8?B?U0plaUI0UHN0Zi9waXQ5TjdHSEFiTFFyMjZwTzk2SnoyQTBFak5Mb0lRYTdX?=
+ =?utf-8?B?OWNNME9XZFp4aFdnNTdqeU1BV1RkVUtVV216em9STEJIYkJuRFBpRUtuWnNh?=
+ =?utf-8?B?bGpmS1NrVS9sOEhoRlZQTGd6WXN6d1EwWEVzeW5YeVNveGRtUUFqNDBwd2xw?=
+ =?utf-8?B?SmhtVlExTENJMUYyYlY0QVlyR1ZlQ0JNVzhuLzlrS1Z6ZFRvUzBZSy9nOXZh?=
+ =?utf-8?B?aENGN1M0OHlENGt6UkpkeThiUHNneVd6VFY2L29VcUx0cXI4VThueEI1MzJQ?=
+ =?utf-8?B?SUdLUFg5M0ZheTJpR2RjcVFiaVFQVTRhaEJMUDJUSTVCSkdNb2tiYXh1MXJv?=
+ =?utf-8?B?ZEVmNWNIZEl0YUo1QTNnQkZTNGVQQkhYY2xIdDhpbUpBRmg2b3R1dm1wMTRi?=
+ =?utf-8?B?QkVyWTNXTHBoemtoZzlCLzN5NE1nbUlxNklNYTB5aTl3TEQ5VzliWS9SUEgx?=
+ =?utf-8?B?QlRwUGVUSU1Fbk5vVHJmdS9MVHQxenF5SjV3SEtzaC9FdXZFME1wR1B2ZjBh?=
+ =?utf-8?B?YmhWSTIvZENSeklmSGlrT2ZQcDVQMU9EYldXZTExRHdDdjRua3Rwb0RBemMr?=
+ =?utf-8?B?TDVBbytQOTd2RnlrV2JrYkFqR21OamhPOUVPVFkvaGNHSE9naG4yMnlONlRU?=
+ =?utf-8?B?TWFBTVo1NXlIbFZTQlBodnlITVB5T1UralhIcWZrMVRISGI3cWJVUis0Ty9M?=
+ =?utf-8?B?Wkw1Q1ZtdWxZTDBBTHhDMFN4SVVsVCtldTYzR3dlZ3FrN1NpdWFLSHdOeUJp?=
+ =?utf-8?B?VG54UngzdEtSc0hiS3BZeVZNaUJWUkVJV1FybFplWFVYT21xbGZKMDVCOTM5?=
+ =?utf-8?B?WEpyR3RJTGcwSU8yTjl3YUtid0tGczFpTloyN2hsbE8zVVVJS0JmY2tNN004?=
+ =?utf-8?B?aTkxWTZhcDIwVlRrazJGNVpXYkQxY01kM3hUbHppeFNLZkZOKzl4c0NQeWhY?=
+ =?utf-8?B?RFNLcUQ0WGNrMmVhMllZR3BwUElHVG5qSE5DSlJKREZ1Z1NXNGI2bCtzNTJx?=
+ =?utf-8?B?Y3B4eEVwU0tWRStFQlorRFFGMVRaMEhvZjdxd0FBb0JRYS9yU3dJZWhoTnp1?=
+ =?utf-8?B?TktyN2pIUUNyVURmK2RFUEYxM0ZtclNqbW1Ub0Ruc2dVUEdrSUd5Z2R4MVRX?=
+ =?utf-8?B?Z1VqcWJZTUtZOCtnZFk3MTdxbnAxR3MrQ2RrQmx4MmFCRXppTGovdVFBZTIr?=
+ =?utf-8?B?dHo2M1RZcFlvMHU4S0VRMk1sODJESTdZMGlnN1NvNjJYMHNPdDU4SDM2QzJE?=
+ =?utf-8?B?Y2xqak1NaUxaYWVwLzRRN2sxL0QzUGlJVGxKM2JEbjJMWWtlTHhsMTNtMHo0?=
+ =?utf-8?B?cDc2bGJnajJLeDlvVlJ1bFM1VDBUNTRCVFIweVZKRStaQU03aDB4UC8xcXFi?=
+ =?utf-8?B?NmNwVFlGNk9xREdOMkx1OWpMSmh1Z1ltT0J0UHUyZXdudy9LMmhFWmxWQkN5?=
+ =?utf-8?B?ckRxQ0gvU3N5MlVnUFV6bnZBeHErQURuQitxT0xYSnFQc2pRMlgrSW5mT2tw?=
+ =?utf-8?B?U0V1V2VOUXFwN0gvcDVia1ptUnJGazVVa2xuWVJCZmtRTHJ0dDloLzZPajR4?=
+ =?utf-8?B?NUcxQTZsdFhqRVRBRlRUZmE1dFJ5MGp6MDBPaVdacmFvdC80QXhFaDArOFNu?=
+ =?utf-8?B?NjN5NytsdUZ2cDVnbGRubjBGYTYyQzZxMFlrcVNrWk1GWG90UW5qYXNPLytm?=
+ =?utf-8?B?a3NJam1zR0lVMHlyaWYvUVpVSk1OSDN2UFJFY0xUTnJQOGNtamY2THdOQmd2?=
+ =?utf-8?B?K21mNUwzYWlTcXBUaXZiRndGNGRuSnZLbktKUTFoZk93eXJid3Z0REJ2MThi?=
+ =?utf-8?B?MzJkRWk4dE1jL010SHNkTnYzSVd3R0xDNi9DY0tIamJWd0Myck1xR3RjdUVP?=
+ =?utf-8?B?YXhBT0ZZTzBGL0s5Zk0vVVlhRGN0QnFIRXFhQ0IyWEZOR1VuOTh4UkVCNjZG?=
+ =?utf-8?B?UmY0QWZ0NzBQNEZ6L3hJVTVOUFBkbXMyL09JemlQNStGd2JQK292anFUcmNi?=
+ =?utf-8?B?bmFZdGh0b1FFWlErK1BvOTVSSHJqNXY2RmNlcE42ZG5GcGFDaFhCMmhndjhI?=
+ =?utf-8?Q?kmlv2RpBF0zgku2M=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e77b5baa-c896-4857-f912-08df497f603a
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 16:32:33.5575
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 80WF8l2zbn+geADFlwQ+3KPgC0PFCcgr1GLxiImCh4KOvNTwZpu97yI0PPoHm311G5m0ZvBWqs4NF9ZJPD8gbfQKgXJaI72S0M3r9TuMN4JksZGoN0wvh002xsq55cRk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR04MB12288
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_083222_944275_4AC67E20 
-X-CRM114-Status: GOOD (  42.37  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261123_083238_660541_AA5A5E1E 
+X-CRM114-Status: GOOD (  12.61  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,135 +191,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 12/11/2026 08:10, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> panthor_devfreq_init() adds the devfreq device while the GPU is still
-> suspended, and the first panthor_device_resume() then calls
-> devfreq_resume_device() without a matching devfreq_suspend_device(). The
-> devfreq suspend count stays off by one for the lifetime of the device:
-> -1 while the GPU is active, 0 while it is runtime suspended.
-> 
-> devfreq_suspend() and devfreq_resume() around a system suspend therefore
-> treat a runtime suspended GPU as an active one: devfreq_suspend()
-> applies the suspend OPP, if there is one, and devfreq_resume() restarts
-> the polling of the simple_ondemand governor, which then sets GPU rates
-> while the GPU is still runtime suspended, until its next runtime resume
-> and suspend. With the devfreq core keeping a suspended device's
-> frequency alone ("PM / devfreq: Do not change the frequency of a
-> suspended device"), the unbalanced devfreq_resume() also marks the
-> device resumed while the GPU is powered down.
-> 
-> Suspend devfreq right after adding it, as msm_devfreq_init() does, so
-> that the devfreq suspend and resume calls pair up.
-> 
-> Fixes: fac9b22df4b1 ("drm/panthor: Add the devfreq logical block")
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+From: Frank Li <Frank.Li@nxp.com>
 
-Reviewed-by: Steven Price <steven.price@arm.com>
 
-> ---
-> v1 kept devfreq from changing the GPU clock rate while the GPU is
-> suspended by filtering the calls in panthor_devfreq_target(). As Boris
-> pointed out, that cannot be done race-free in the driver, so v2 moves it
-> to the devfreq core: "PM / devfreq: Do not change the frequency of a
-> suspended device" (linux-pm [1]) keeps devfreq from calling
-> ->target() between devfreq_suspend_device() and devfreq_resume_device()
-> and applies the requests made in between on resume. The SError fix
-> needs that patch. What is left for panthor is this patch, which makes
-> panthor's devfreq suspend and resume calls pair up; it does not depend
-> on the devfreq patch to build or to be correct.
+On Sat, 23 May 2026 15:02:25 +0100, Marc Zyngier wrote:
+> This is the third version of the series initially posted at [1],
+> which
 > 
-> Tested on an Orange Pi 5 (RK3588S) running a v7.3-based kernel with
-> this patch and the devfreq patch, with the GPU core clock on the
-> firmware-managed SCMI_CLK_GPU and a 200 MHz opp-suspend (the
-> configuration of Jonas Karlman's RFC, not in mainline): min_freq,
-> max_freq, the userspace governor's set_freq and the devfreq cooling
-> state written while the GPU was runtime suspended, also right after a
-> suspend-to-idle cycle, no longer end in an SError and take effect on
-> the next GPU job; 200 runtime suspend/resume cycles with max_freq
-> toggling every ~35 ms and a 3 minute sustained load ran without an
-> SError, WARN or panthor fault.
+> - updates the ACPI GTDT parsing to deal the v3 layout and the EL2
+>   virtual timer,
+> - moves the architected timer driver to use it when running VHE,
+> - fixes a number of DTs to reflect the reality of the HW.
 > 
-> This patch was developed with Claude (Anthropic) as a coding assistant:
-> it wrote the code and the commit message, and I reviewed it and tested
-> it as described above.
-> 
-> [1] https://lore.kernel.org/r/20261112-devfreq-suspend-sync-v1-1-af64603ef43e@gmail.com
-> ---
-> Changes in v2:
-> - Dropped the check in panthor_devfreq_target() (Boris): neither
->   pm.state nor devfreq::suspend_count can be read there without racing
->   with devfreq_suspend_device() and devfreq_resume_device(), which only
->   take devfreq->lock around the suspend and resume frequency changes.
->   The devfreq core now tracks the suspended state under devfreq->lock
->   and does not call ->target() while it is set, as Boris suggested.
-> - New patch: start with devfreq suspended. The first runtime resume
->   called devfreq_resume_device() without a matching suspend, so the
->   suspend count was -1 while the GPU was active and 0 while it was
->   suspended (the reason v1 did not use it). Without this, the devfreq
->   core change would not hold across a system suspend taken while the
->   GPU is runtime suspended.
-> - Liviu, on returning 0 instead of -EINVAL: returning 0 was wrong, devfreq
->   then records a rate the GPU does not run at (Boris). An error is
->   better than 0, but -EINVAL reports a valid request as invalid (-EBUSY
->   fits better), and either way nothing retries the request on resume:
->   the userspace and performance governors never re-evaluate, and
->   simple_ondemand only at its next poll. With the core change panthor
->   never gets these calls, so there is nothing left to reject.
-> - Liviu, on disabling the clock when the power domain goes down: the
->   clocks are already disabled in panthor_device_suspend() before the
->   domain goes down, and the SError happens in that state. On RK3588 a
->   rate change on the disabled SCMI clock still goes to TF-A, which
->   programs the PVTPLL through the GPU GRF in the powered-down domain.
->   So the rate change itself has to be held back while suspended.
-> - Liviu, on the comment length: the remaining comment is two lines.
-> - Sashiko's findings on v1 (a rate requested while suspended was lost
->   without a suspend OPP or with a non-polling governor; the lockless
->   state check could race with the clocks going off; Fixes: tag) are
->   covered by the devfreq core change, which applies deferred requests on
->   resume and keeps the state under devfreq->lock. Thanks to Sashiko for
->   them. The new patch has Fixes: fac9b22df4b1, the commit Sashiko named:
->   the unbalanced count is a mainline bug, independent of the SCMI clock.
-> - Link to v1: https://patch.msgid.link/20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com
-> ---
->  drivers/gpu/drm/panthor/panthor_devfreq.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
-> index 2249b41ca4af..45ae42dacdcb 100644
-> --- a/drivers/gpu/drm/panthor/panthor_devfreq.c
-> +++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
-> @@ -256,6 +256,12 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
->  		return ret;
->  	}
->  
-> +	/*
-> +	 * The GPU stays suspended until the first panthor_device_resume(),
-> +	 * which resumes devfreq. Suspend devfreq to match.
-> +	 */
-> +	panthor_devfreq_suspend(ptdev);
-> +
->  	cooling = devfreq_cooling_em_register(pdevfreq->devfreq, NULL);
->  	if (IS_ERR(cooling))
->  		DRM_DEV_INFO(dev, "Failed to register cooling device\n");
-> 
-> ---
-> base-commit: cb0a63f0c96e8ecb90199eeb99cc2a7fcfa703d4
-> change-id: 20261110-panthor-suspend-clk-11d5604fe5be
-> 
-> Best regards,
-> --  
-> Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> 
+> [...]
 
+Applied, thanks!
+
+[09/17] arm64: dts: freescale: Add EL2 virtual timer interrupt
+        commit: 57ab25412874a93cfabc74175d2791b7cec2656c
+
+Best regards,
+-- 
+Frank Li <Frank.Li@nxp.com>
 
