@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594F4606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C4E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ABy0HSFu;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=a76zrBzx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EVeLt3ox;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YCnUYlR0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,36 +14,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=9J9fJaDjY0Dts4Gsqz0quMcF3tDemSYv7SGUwNXF9Fc=; b=ABy0HSFujOUIZMjJsfV0T1RbbC
-	mj3YcmJXxW6ZjMMJ00hCclnVC59QmV12XYUC9GOn3Xt9cy4febbGKyViAFFLKM1yyUK9K56VsOXAO
-	zMG29C8YFvpL17UUVz87bsT9CX0d5OlVzl0xEohzNchNInGhHiG0BFTR/govOyPk/RQsR9sY6JTf8
-	erYoJoipLLzU0egZz2YriZNEFO/9CchED2P5b4I/aWjHJrXHMptcYp2vwKfO+II/DgR28sNooVlr5
-	/hHN6dtL3Uj1t1mP0/pN4gHrugb/BjvzsAgeZe/kuqHMibJQoqq6iQLAfuFg2vQO97fHoCEER1ej3
-	KHdo1pjg==;
+	bh=/SiwyGPERRZ+wI7IGJpaGAyT67P6/mQY+ZPMOD9UOv8=; b=EVeLt3ox/yWmsx6Rn0AhnGvg7s
+	5nLHeVZc5Shdhyjfc9UCi4i7wLVNIKs00IWDVPC72UBfNS9bIBnomHCwMr2etaWgfoNhsdXcA5Jji
+	dHl/CFBoqAdFtFMSat2v8p/3sDpAYcGZ8b5dsQZtT4z+LEUuJDl9WFHta1R5CGgObhq7XB4qOXIWt
+	Rfz9Wk3KRFLG7wxxBM4+vTQXpyHKjee+ekTv00aqbjlpKDaEmXvaTX/NfGykCV8qAyVHFXvKJYb2L
+	AZuHzE/wY+tZZ+0kMZJJ3rx3gPxG+MgNxAEZxADW8lruflB8U1Jqle26M00V1xwUPwFv6sFHBccTO
+	v0eBitgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSpN-00000003HP1-2Viu;
-	Mon, 23 Nov 2026 12:07:21 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVSqz-00000003HoL-1A24;
+	Mon, 23 Nov 2026 12:09:01 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSpM-00000003HOW-1CLU;
-	Mon, 23 Nov 2026 12:07:20 +0000
+	id 1xVSqq-00000003Hm3-3GbP;
+	Mon, 23 Nov 2026 12:08:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5773D61418;
-	Mon, 23 Nov 2026 12:07:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74EF81F000C4;
-	Mon, 23 Nov 2026 12:07:17 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3B14361F4B;
+	Mon, 23 Nov 2026 12:08:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFB6C1F000EF;
+	Mon, 23 Nov 2026 12:08:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795435638;
-	bh=9J9fJaDjY0Dts4Gsqz0quMcF3tDemSYv7SGUwNXF9Fc=;
+	s=k20260515; t=1795435731;
+	bh=/SiwyGPERRZ+wI7IGJpaGAyT67P6/mQY+ZPMOD9UOv8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=a76zrBzxzVcVrcVb6wqriWop3Tks1ZkXJEWtW97ujks72eIwypE0kA8khu3rIUQUm
-	 SBXpVyG3dQKRUXSpOVjQ0W5LzdM/kXVLAeqHg8yOvX7Z6M3JbUTRPdypva+/0Iwwwn
-	 ek3ZfLn4Oj3of+oTswT0+9gnynzmjzMeZvNy7E7PAv+iv3mJdZGsZna1YULbhhKA40
-	 54LlYlecfXdOkq0U9pBXD+litSzI9wpA6eoHF3Mkqii7I3/KjbCz/l0AxN+CYAT3wH
-	 1Ja9p4SrK5Utb9EgOW8JfOyCC7XpyGDjizRpeXMHN08Rr5LXARmAN9yi8g9L5LEqbY
-	 jBc0ohLZIF6YA==
-Date: Mon, 23 Nov 2026 13:07:15 +0100
+	b=YCnUYlR06NIXDwlkMqxoqluJqGGwvJWyF5BytmNeQvqkCwBMflpmZawVrGD6583TA
+	 VvkJWpwZg9AJOQs0jZYfRYZnDOwXQi/mfjpx51kYz2RQn851jLG5fx0YOIs7qI5utw
+	 lskmBmAGTmAfWa6HUCXFltCKYqf05BLYLOOhSRQ8wuhUYANAgcQ8z1Me0hltHfLwBU
+	 c+i1tHdzrUEzUMMP8dgqDx1CCLVlEVq804U3n+BpezSTjSnkwXm7V23EgmC/FvWRl0
+	 zStihzQ1ZcJOOWAo9kE1yvVsIPUL8FHvo667wgP9uTBpNUaLq1tT+zGcOrdQgBivz6
+	 npkH1DPGOGGiw==
+Date: Mon, 23 Nov 2026 13:08:48 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Stanislav Aleksandrov <lightofmysoul@gmail.com>
 Cc: Bjorn Andersson <andersson@kernel.org>, 
@@ -67,16 +67,16 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, linux-usb@vger.kernel.org, 
 	linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org, 
 	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 07/16] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy:
+Subject: Re: [PATCH v2 09/16] dt-bindings: crypto: qcom,inline-crypto-engine:
  Add Halliday
-Message-ID: <20261123-thistle-gaur-of-sufficiency-7ced66@quoll>
+Message-ID: <20261123-cherubic-sparkling-mussel-e94df1@quoll>
 References: <20261116-halliday-dts-v2-0-2c92438c6c46@gmail.com>
- <20261116-halliday-dts-v2-7-2c92438c6c46@gmail.com>
+ <20261116-halliday-dts-v2-9-2c92438c6c46@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261116-halliday-dts-v2-7-2c92438c6c46@gmail.com>
+In-Reply-To: <20261116-halliday-dts-v2-9-2c92438c6c46@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,16 +95,15 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 09:26:23PM +0000, Stanislav Aleksandrov wrote:
-> Document the QMP UFS PHY on the Qualcomm Halliday SoC, which is
-> compatible with the SM8450 one.
+On Mon, Nov 16, 2026 at 09:26:25PM +0000, Stanislav Aleksandrov wrote:
+> Document the Inline Crypto Engine on the Qualcomm Halliday SoC.
 > 
 > Signed-off-by: Stanislav Aleksandrov <lightofmysoul@gmail.com>
 > ---
->  Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
