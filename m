@@ -2,110 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0722606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:37:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1099E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FD7mIHSe;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AMI0hqwh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=idL2Qxw3;
+	dkim=pass (2048-bit key, unprotected) header.d=proton.me header.i=@proton.me header.a=rsa-sha256 header.s=protonmail2 header.b=xaALiAL2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Subject:Cc:From:To:Date:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wpD+A3zS6yZKtxBGq/xZfogVf4Yr261dCIU+g/u8beI=; b=FD7mIHSeJ5ui3XMMEIdtDG10kh
-	xBODOG+KcgQasM1f259HUMLO5U4achEyFsrKpyKzhKKV1br5A9Obv9QbmhZGsLsA0cO1bfW719G2w
-	cx3ZUy4siDMqxHWN4t2bYQ2NIhkzNJDLVcQcOuv5aIgLsr+EUzuuG9AT1VE1SYvp0OiNxuYyXcWA3
-	uWQhBaTQG/0MtdnBnKJduHGKyNLkYneKd3C88Y81WCnYDomAGZjrerR6U07gjIIIHBtXFTTn+qCvN
-	2DbMkUljhyoYqkguHd1QFvRCoLJcgZWraGA7KliOejleCdZZhflHxu6qRINJCwq9Mj0Y9rI6+sk5m
-	Zczyfgpw==;
+	bh=NLGt+82W3KE3HDzPcL9X/IIWUp24W85Da+NyWDIrhZk=; b=idL2Qxw3GCm6r+V/zuwfccM0mH
+	p0T75FC24zNwpc/HUrixjw+T5VBc0H5ZngbbaQ7h4AeB/5KjgjavKKYGbnYZgncOGVJqhhlmGO8IQ
+	VCVBO7/wu6YDFNVIR0DVzQfdrECYmMVgC3SbTNFDo3HXBD19nu6D60/1Ap8Io7vJNN3601GzYzdlw
+	QFrbjlew2UAbnMDvl0yr3R0WCZBfsQJB24Wh49Nn+o1hQmioyk5mb0EAhsndf7gr/66GoaYtBAJ1j
+	5zHqtFws32YhKoF0isnVW5Uqwa9PxcjlwGGUNJS3mVbBcQSiXtvIv0OGfnpGUJWNEp5xyBDx5bkRF
+	PI6RqXoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVeW5-00000005Gpk-0C6r;
-	Tue, 24 Nov 2026 00:36:13 +0000
-Received: from mail-oi2-x08.google.com ([2607:f8b0:4864:32::8])
+	id 1xVdZI-00000005Ays-3Ysc;
+	Mon, 23 Nov 2026 23:35:28 +0000
+Received: from mail-106119.protonmail.ch ([79.135.106.119])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVeVz-00000005Gob-0QlM
+	id 1xVdZD-00000005AxI-3Z57
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 00:36:11 +0000
-Received: by mail-oi2-x08.google.com with SMTP id 5614622812f47-568042aaf90so557037b6e.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:36:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795480566; x=1796085366; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=wpD+A3zS6yZKtxBGq/xZfogVf4Yr261dCIU+g/u8beI=;
-        b=AMI0hqwhbXcJKudy3iWe4b3jD/tSdcaWBIuqedL9QB5T4gJw9HzfOYjPhru5DHBhSR
-         Lz+DdTFYsBllVy1xT5q8BKhcX/Gxsa41iqAzs7FfCq7mZRVHKFFegMVB5414Jhdqbg4U
-         QZ17gml7BggS26k1P0I4g2NLwuUp7e8Q2+dlC1EnIOCNMOfT37AaJYwg/uPd9GNRjQu4
-         HXxZ9MuK/xqUpAXTyvpF27DuFDCAlNssgEvyWMy2pfBb+VviwxA+fu9/5IRGC+QXceNI
-         xN3We7lZ6NLqrgpbyBAsE7Aw5YgR+pGU6f3yjwFj7go9tT88CmQRNPHicQ5uSScB0ytV
-         3QpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795480566; x=1796085366;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=wpD+A3zS6yZKtxBGq/xZfogVf4Yr261dCIU+g/u8beI=;
-        b=ZEg/TMFiNKo3q2AxYmlh5Q3Xv6pwAwYdTZ81D1ChjXM51jYMQ5ifdCicC3RtOplAvy
-         fZxyz9a/ZgilHEsX5Jh9CATwLGme3fCdDNRt/KU1u3TgTnzqXS/r92O4wc9xBaqZ06fc
-         ezAvJR9XakC5db5Tyt/Rwc8zI96ZE4x6lhqFx2qRKLt02H+TTU9VOl4SDpVY84ryJGWf
-         tgJRvoSno3ZKLbZhiLA/GqUDwQKh2HuPYas/1WuQh4UDpd4w5nssTQCg+7jcbc7nVWMP
-         d9jk00N0RQ8+gjHLMNz8iqET+n2Famov0ZzZb32STpX1r0Vo5uqd/4yeCxypfcULjM1W
-         kHlg==
-X-Forwarded-Encrypted: i=1; AL+hErHJo9WkOpC3oAbf36YNmF6GvdvKiwyBy5MHFq2IM1NTZF3BpAHK1TqZkG9Jgs2UrNH5RjDQaQWANpybeTMXrL2p@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Ln6TT8YDdUig3ezkMmBgwy1skGnQSJbHKu8/YREOYKwVjTNdm
-	t3BS31g1nJBrSl7e8UFr2+77JwgM7YinwfrzS88qxBfWsPrAYkhaOU9+
-X-Gm-Gg: AZFdTZfuGH2b/H3XcRxeELAnxM2HGTkKijvwgrtg/r4DqqVLv3AuGzCtZPWaUXkxJAm
-	LdEm8cmkr2+ovc4QK5YrRcqvEal5fDPovLbP0qxfeJve+wToley/w+N0dVn0LdiDNnnX2B4wrVd
-	ViNisVq/tplQcLXg8MW93FSseUCx1LbX+vpubfbwLEVqw/hig+xu5s84Ajkg0J5vDvDTnFslXPH
-	1G3l0wqIWiGViABM9eLcAf9+H263hNdq5dwRyaDBwbtYHsm8SlcXz1ie8Tpf4DZtoD7lPdaAW/p
-	t0m1QY2Nv7UMReDSnLp56QMO4rFma5qGxPdZ8QSk85sUfdyoCrpW31iLDZqLubh7Pgxx3w2WMrn
-	v9JR3pxaz7+Y44uco0F3jFvzRLv6qDXaATO7ncWDEp5Wl4nfTeUtyn0A4ckS6X1Wx7JnQSDsB9p
-	+fV69rrowORcicBEpFk+tNWWD2v/ao86rG5iNQVJv6YqjKgPLY5wmBBVLqL4KFIK+OKyDTvnyx8
-	mCs6N7slcNMZj4ik5TN7ORUIzhakstb+UBQzJpq90SHe33rBQ5sqZO4ZPPdI+XzyskzbeMaRFqT
-	D4IB7nRoHlH36cXFLdLk6GWC
-X-Received: by 2002:a05:6808:1483:b0:4d6:9283:1bdf with SMTP id 5614622812f47-57a0c29f7bamr14157637b6e.60.1795480566115;
-        Mon, 23 Nov 2026 16:36:06 -0800 (PST)
-Received: from [192.168.18.164] ([2600:8804:5716:d800::d500])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-57a34250fa1sm9563952b6e.5.2026.11.23.16.36.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 16:36:04 -0800 (PST)
-From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Mon, 23 Nov 2026 18:35:55 -0600
-Subject: [PATCH v2] drm/mediatek: ovl: Report coverage blending on older
- SoCs
+	Mon, 23 Nov 2026 23:35:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail2; t=1795476920; x=1795736120;
+	bh=NLGt+82W3KE3HDzPcL9X/IIWUp24W85Da+NyWDIrhZk=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=xaALiAL2CIWkOcX1hWLCn+0TmRq376S6HkcTQrnts+1DuQjIIQz+x0Kq4ERfnle03
+	 t59OI59ZhTIyXPknohE5JrezetoX2QtmUiYIuRLQI5dBRD2jNbXACIwZOECeavsSzN
+	 4QuPWeMabUtCYNtJft0RmyCA5AL9pICfmCY88iIIfQVBD6/sBJFa94TmLw+6D1klKG
+	 HHOChx4M1Rymdn3Hk/A+6QDO2Nps2I7EjeKSjb9Ef7UxZMsIi/S/cTiGMPjovLu8W0
+	 8u+wCuNfd/QkWbKxFX4xT4kTqIA5j5bFGmz08WfgVBoiMLFRqBf9590Nm41VLJ/rWq
+	 1y5tncS/mhoRA==
+Date: Mon, 23 Nov 2026 23:35:13 +0000
+To: linux-bluetooth@vger.kernel.org
+From: Kyle Pepper <cochcoder@proton.me>
+Cc: luiz.dentz@gmail.com, marcel@holtmann.org, sean.wang@mediatek.com, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] Bluetooth: request LE data length for MT7922
+Message-ID: <20261123233502.222664-1-cochcoder@proton.me>
+Feedback-ID: 97716137:user:proton
+X-Pm-Message-ID: 6d0fe0c689de7908f39ef01930f83cbefd9de001
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-rbrue-suez-mtk-ovl-coverage-v2-1-4149e2ed5fee@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/33NQQ6CMBBA0as0s2ZMp4BWVt7DsCh1gEagpoVGJ
- dzdSFy7/Yv3V4gcHEeoxAqBk4vOT1AJlQmwvZk6RneDSoCS6khEGkMTFsa48BvH+Y4+DWh94mA
- 6RjprS9QY3VABmYBH4NY9d/1aZwJ6F2cfXvss0bf+XCX/uomQMC9lIaUuW5ufLt1o3HCwfoR62
- 7YP/uIBXsYAAAA=
-X-Change-ID: 20261118-rbrue-suez-mtk-ovl-coverage-198c11ba8b14
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Ryan Brue <ryanbrue.dev@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795480563; l=5868;
- i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=rWPjygIN23+DBnZBmFUqc49c7iHVLHNqhnAs+aTYCK8=;
- b=XSMIVCcnAR5FgtDLKy7jJhaRZTYV9dECaHiOwLWsXl0N1yoLco/3sS9q6cQ7ebgO71F8ogNWn
- QX6pNuS/SfhDl3o1aIGoSfZHPSN/6CZj0RAYQvL+A9cjaAgseBWl6Ew
-X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
- pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_163608_880868_E96E6EEE 
-X-CRM114-Status: GOOD (  20.92  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_153524_455957_9C5619B8 
+X-CRM114-Status: GOOD (  17.33  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,143 +66,237 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since commit 860e748bddcc ("drm: ensure blend mode supported if pixel
-format with alpha exposed"), every OVL plane on MT2701, MT8167, MT8173
-and MT8183 warns at boot:
+MT7922 USB firmware can accept maximum LE suggested default data lengths
+without negotiating a larger transmit data length on a new connection.
+On an ASUS G614PR with USB ID 0489:e0f6 and firmware 20260724143815,
+ASHA playback remains choppy until an explicit LE Set Data Length request.
+A request on the same Cochlear Nucleus 8 connection raises delivery from
+21.5 to 50 audio SDUs/s and reduces peak outstanding packets from 32 to 3.
 
-  [drm] [PLANE:37:plane-0] pixel format with alpha exposed but blend
-  mode not setup. Please fix.
+Set a quirk for MT7922 in USB setup and request the current suggested
+defaults after successful remote feature exchange on central-role links.
+Require local and remote DLE support and the LE Set Data Length command.
+Keep suggested-default initialization and PHY negotiation unchanged.
 
-These OVLs expose ARGB formats but don't have blend_modes in their driver
-data, so no "pixel blend mode" property is created. They can't blend
-premultiplied pixels: mtk_ovl_fmt_convert() always selects the
-non-premultiplied color formats for them, which is the DRM "Coverage"
-equation. Since commit 9813e158d13d ("drm/drm_blend: allow blend mode
-property without PREMULTI") a coverage-only property is allowed, so
-advertise it and drop the comment saying it couldn't be created.
+Do not restrict the workaround to the tested firmware build or OEM USB
+ID: the affected firmware range has not been confirmed. Other MediaTek
+chips do not enable the quirk. The request also applies to 1M peers that
+support DLE, and ordinary link-layer negotiation determines the result.
 
-The plane state then defaults to Coverage (1) instead of Pre-multiplied
-(0), and mtk_ovl_layer_config() enables alpha blending for any non-zero
-blend mode. On these SoCs that would set OVL_CON_AEN for XRGB formats
-too, which they can't ignore the pixel alpha of, the breakage fixed by
-commit 995d4d558eea ("drm/mediatek: ovl: Fix XRGB format breakage for
-blend_modes unsupported SoCs"). Only look at the blend mode on SoCs that
-support premultiplied blending, as mtk_ovl_fmt_convert() does, so these
-SoCs keep enabling alpha blending for formats with alpha only.
+Hold a connection reference while queued and revalidate its membership,
+state, role and capabilities before sending. Release the reference on
+completion, cancellation or queue failure. A failed optional request
+does not reject connection setup.
 
-Tested on MT8173 (Amazon Fire HD 10 2017). The warning is gone, every
-plane reports a "pixel blend mode" of Coverage, and the OVL0 layer
-registers are unchanged.
+Assisted-by: OpenCode:gpt-6.1-sol
+Assisted-by: Codex
 
-Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+Signed-off-by: Kyle Pepper <cochcoder@proton.me>
 ---
-Since 7.3, MT8173 and the other OVLs without premultiplied alpha log
-"pixel format with alpha exposed but blend mode not setup" for every
-plane at boot. They blend in coverage mode, and the blend mode helper
-now accepts a coverage-only property, so this patch advertises that.
-No register changes; tested on MT8173 (Amazon Fire HD 10 2017).
+Changes in v3: move personal correspondence out of the commit message; no s=
+ource changes.
+Previous version: https://lore.kernel.org/linux-bluetooth/20261123221206.21=
+5119-1-cochcoder@proton.me/
 
-This patch was developed with the help of an LLM.
----
+Hi Luiz,=20
+Since there hasn't been a response from
+the MediaTek folks in over 5 weeks I've gone
+ahead and prepared this v2 quirk patch that=20
+will work for USB MT7922 controllers.
+Thanks,=20
+Kyle Pepper
+
+Contingency revision: MediaTek has been asked about a firmware fix and its
+affected scope. No reply has been received as of November 23. This does
+not establish that a firmware fix is unavailable or that every MT7922
+firmware release is affected. A firmware fix remains preferable.
+
 Changes in v2:
-- Keep OVL_CON_AEN off for XRGB formats on the coverage-only SoCs: the
-  blend mode now defaults to Coverage (1), not 0, so only look at it
-  where premultiplied blending is supported (Sashiko).
-- Correct the commit message, which said both defaults were non-zero.
-- Link to v1: https://lore.kernel.org/r/20261120-rbrue-suez-mtk-ovl-coverage-v1-1-35040085fc37@gmail.com
----
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
+- Match MT7922 in USB setup, without a firmware-build or OEM USB-ID gate.
+- Remove firmware-header matching and its setup-time clear/recheck logic.
+- Rebase on current bluetooth-next; retain guarded referenced queue work.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index 5445870716f9..efa19d02ccc1 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -412,12 +412,8 @@ static unsigned int mtk_ovl_fmt_convert(struct mtk_disp_ovl *ovl,
- 	 * and supports premultiplied color formats, such as OVL_CON_CLRFMT_PARGB8888.
- 	 *
- 	 * Check blend_modes in the driver data to see if premultiplied mode is supported.
--	 * If not, use coverage mode instead to set it to the supported color formats.
--	 *
--	 * Current DRM assumption is that alpha is default premultiplied, so the bitmask of
--	 * blend_modes must include BIT(DRM_MODE_BLEND_PREMULTI). Otherwise, mtk_plane_init()
--	 * will get an error return from drm_plane_create_blend_mode_property() and
--	 * state->base.pixel_blend_mode should not be used.
-+	 * If not, the hardware only blends in coverage mode, which is the only mode
-+	 * those platforms advertise.
- 	 */
- 	if (ovl->data->blend_modes & BIT(DRM_MODE_BLEND_PREMULTI))
- 		blend_mode = state->base.pixel_blend_mode;
-@@ -516,10 +512,11 @@ void mtk_ovl_layer_config(struct device *dev, unsigned int idx,
- 		con |= state->base.alpha & OVL_CON_ALPHA;
- 
- 		/*
--		 * For blend_modes supported SoCs, always enable alpha blending.
--		 * For blend_modes unsupported SoCs, enable alpha blending when has_alpha is set.
-+		 * For SoCs supporting premultiplied blending, always enable alpha blending.
-+		 * For coverage-only SoCs, enable alpha blending when has_alpha is set.
- 		 */
--		if (blend_mode || state->base.fb->format->has_alpha)
-+		if ((blend_mode && (ovl->data->blend_modes & BIT(DRM_MODE_BLEND_PREMULTI))) ||
-+		    state->base.fb->format->has_alpha)
- 			con |= OVL_CON_AEN;
- 
- 		/*
-@@ -667,6 +664,7 @@ static const struct mtk_disp_ovl_data mt2701_ovl_driver_data = {
- 	.gmc_bits = 8,
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = false,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -677,6 +675,7 @@ static const struct mtk_disp_ovl_data mt8167_ovl_driver_data = {
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = true,
- 	.smi_id_en = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -686,6 +685,7 @@ static const struct mtk_disp_ovl_data mt8173_ovl_driver_data = {
- 	.gmc_bits = 8,
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -695,6 +695,7 @@ static const struct mtk_disp_ovl_data mt8183_ovl_driver_data = {
- 	.gmc_bits = 10,
- 	.layer_nr = 4,
- 	.fmt_rgb565_is_0 = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
-@@ -704,6 +705,7 @@ static const struct mtk_disp_ovl_data mt8183_ovl_2l_driver_data = {
- 	.gmc_bits = 10,
- 	.layer_nr = 2,
- 	.fmt_rgb565_is_0 = true,
-+	.blend_modes = BIT(DRM_MODE_BLEND_COVERAGE),
- 	.formats = mt8173_formats,
- 	.num_formats = ARRAY_SIZE(mt8173_formats),
- };
+Previous patch:
+https://lore.kernel.org/linux-bluetooth/20261016170122.27119-1-cochcoder@pr=
+oton.me/
+Luiz requested checking firmware-fix plans and avoiding a single-build
+gate unless MediaTek confirms an image-specific regression. This v2 is
+prepared in case a validated firmware fix is not forthcoming; his reply
+is conditional guidance, not an Acked-by or approval of this revision.
 
----
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261118-rbrue-suez-mtk-ovl-coverage-198c11ba8b14
+Historical evidence: manual same-link request on 0489:e0f6 with firmware
+20260724143815 gave 21.5 -> 50 SDUs/s. Automatic requests worked in the
+local patched 7.2.9 stack. No new hardware result is claimed for v2, for
+other firmware/OEM boards, or for vanilla upstream. Suspend/resume,
+other profiles, native concurrency and power regressions remain untested.
 
-Best regards,
--- 
-Ryan Brue <ryanbrue.dev@gmail.com>
+Local validation on base ffb95458a0f7: GCC and Clang baseline/candidate
+builds each compile four Bluetooth objects with W=3D1 and zero warnings.
+82 source-extracted ASan/UBSan controls pass; the baseline and five
+mutation controls detect missing behavior and guards. LeakSanitizer is
+disabled because the command runner uses ptrace; these are model tests.
+Source-only strict checkpatch is clean. Stock full-mail checkpatch flags
+the retained Assisted-by trailers as BAD_SIGN_OFF. No checker is changed
+or attribution removed; remote CI and human-signed mail remain unchecked.
+
+No introducing kernel commit has been established for this firmware bug,
+so no Fixes or stable tag is inferred. No extra patch/MR dependency.
+Human review and DCO sign-off are required before publication.
+
+AI assistance: the retained request/queue implementation originated with
+OpenCode:gpt-6.1-sol. Codex adapted matching, rebased it, and prepared this
+message, review notes and offline validation in response to Luiz's review.
+
+ drivers/bluetooth/btmtk.c        |  4 +++
+ include/net/bluetooth/hci.h      |  5 +++
+ include/net/bluetooth/hci_sync.h |  1 +
+ net/bluetooth/hci_event.c        |  8 +++++
+ net/bluetooth/hci_sync.c         | 58 ++++++++++++++++++++++++++++++++
+ 5 files changed, 76 insertions(+)
+
+diff --git a/drivers/bluetooth/btmtk.c b/drivers/bluetooth/btmtk.c
+index 1b3dab0d1..1869815cc 100644
+--- a/drivers/bluetooth/btmtk.c
++++ b/drivers/bluetooth/btmtk.c
+@@ -1858,6 +1858,10 @@ int btmtk_usb_setup(struct hci_dev *hdev)
+=20
+ =09btmtk_data->dev_id =3D dev_id;
+=20
++=09/* MT7922 needs per-link requests despite suggested defaults. */
++=09if (dev_id =3D=3D 0x7922)
++=09=09hci_set_quirk(hdev, HCI_QUIRK_NEEDS_LE_SET_DATA_LEN);
++
+ =09err =3D btmtk_register_coredump(hdev, btmtk_data->drv_name, fw_version)=
+;
+ =09if (err < 0)
+ =09=09bt_dev_err(hdev, "Failed to register coredump (%d)", err);
+diff --git a/include/net/bluetooth/hci.h b/include/net/bluetooth/hci.h
+index efb85c781..85a4931e5 100644
+--- a/include/net/bluetooth/hci.h
++++ b/include/net/bluetooth/hci.h
+@@ -348,6 +348,11 @@ enum {
+ =09 */
+ =09HCI_QUIRK_BROKEN_READ_ENC_KEY_SIZE,
+=20
++=09/* The controller needs an explicit LE Set Data Length request for
++=09 * each central-role connection despite accepting suggested defaults.
++=09 */
++=09HCI_QUIRK_NEEDS_LE_SET_DATA_LEN,
++
+ =09/*
+ =09 * When this quirk is set, the reserved bits of Primary/Secondary_PHY
+ =09 * inside the LE Extended Advertising Report events are discarded.
+diff --git a/include/net/bluetooth/hci_sync.h b/include/net/bluetooth/hci_s=
+ync.h
+index 509ec4161..eab827dfa 100644
+--- a/include/net/bluetooth/hci_sync.h
++++ b/include/net/bluetooth/hci_sync.h
+@@ -195,6 +195,7 @@ int hci_le_read_remote_features(struct hci_conn *conn);
+=20
+ int hci_acl_change_pkt_type(struct hci_conn *conn, u16 pkt_type);
+ int hci_le_set_phy(struct hci_conn *conn, u8 tx_phys, u8 rx_phys, u16 phy_=
+opts);
++int hci_le_set_data_len(struct hci_conn *conn);
+ int hci_le_set_cig_params_sync(struct hci_dev *hdev, u8 cig_id);
+ int hci_le_create_big_sync(struct hci_conn *conn, struct bt_iso_qos_ext *q=
+os,
+ =09=09=09   u8 num_bis);
+diff --git a/net/bluetooth/hci_event.c b/net/bluetooth/hci_event.c
+index b6c7f9a9f..7ef2c4d19 100644
+--- a/net/bluetooth/hci_event.c
++++ b/net/bluetooth/hci_event.c
+@@ -7436,6 +7436,14 @@ static void hci_le_remote_feat_complete_evt(struct h=
+ci_dev *hdev, void *data,
+ =09=09=09 */
+ =09=09=09conn->le_tx_def_phys &=3D ~HCI_LE_SET_PHY_HDT;
+ =09=09=09conn->le_rx_def_phys &=3D ~HCI_LE_SET_PHY_HDT;
++
++=09=09=09if (hci_test_quirk(hdev, HCI_QUIRK_NEEDS_LE_SET_DATA_LEN) &&
++=09=09=09    conn->role =3D=3D HCI_ROLE_MASTER &&
++=09=09=09    (hdev->commands[33] & BIT(6)) &&
++=09=09=09    (hdev->le_features[0] & HCI_LE_DATA_LEN_EXT) &&
++=09=09=09    (conn->le_features[0] & HCI_LE_DATA_LEN_EXT) &&
++=09=09=09    hdev->le_def_tx_len > 27)
++=09=09=09=09hci_le_set_data_len(conn);
+ =09=09}
+=20
+ =09=09if (conn->state =3D=3D BT_CONFIG) {
+diff --git a/net/bluetooth/hci_sync.c b/net/bluetooth/hci_sync.c
+index 2e88af51b..ac82aa085 100644
+--- a/net/bluetooth/hci_sync.c
++++ b/net/bluetooth/hci_sync.c
+@@ -9286,3 +9286,61 @@ int hci_le_eks_oppt_encrypt(struct hci_conn *conn)
+=20
+ =09return err;
+ }
++
++static void le_set_data_len_complete(struct hci_dev *hdev, void *data, int=
+ err)
++{
++=09struct hci_conn *conn =3D data;
++
++=09bt_dev_dbg(hdev, "err %d", err);
++=09if (err && err !=3D -ECANCELED && err !=3D -ENODEV)
++=09=09bt_dev_warn(hdev, "Failed to set LE data length (%d)", err);
++=09hci_conn_put(conn);
++}
++
++static int hci_le_set_data_len_sync(struct hci_dev *hdev, void *data)
++{
++=09struct hci_conn *conn =3D data;
++=09struct hci_cp_le_set_data_len cp;
++
++=09hci_dev_lock(hdev);
++
++=09if (!hci_conn_valid(hdev, conn) || conn->type !=3D LE_LINK ||
++=09    conn->role !=3D HCI_ROLE_MASTER ||
++=09    (conn->state !=3D BT_CONNECTED && conn->state !=3D BT_CONFIG)) {
++=09=09hci_dev_unlock(hdev);
++=09=09return -ECANCELED;
++=09}
++
++=09/* Use the current suggested defaults, including later host changes. */
++=09if (!hci_test_quirk(hdev, HCI_QUIRK_NEEDS_LE_SET_DATA_LEN) ||
++=09    !(hdev->commands[33] & BIT(6)) ||
++=09    !(hdev->le_features[0] & HCI_LE_DATA_LEN_EXT) ||
++=09    !(conn->le_features[0] & HCI_LE_DATA_LEN_EXT) ||
++=09    hdev->le_def_tx_len <=3D 27) {
++=09=09hci_dev_unlock(hdev);
++=09=09return 0;
++=09}
++
++=09cp.handle =3D cpu_to_le16(conn->handle);
++=09cp.tx_len =3D cpu_to_le16(hdev->le_def_tx_len);
++=09cp.tx_time =3D cpu_to_le16(hdev->le_def_tx_time);
++
++=09hci_dev_unlock(hdev);
++
++=09return __hci_cmd_sync_status(hdev, HCI_OP_LE_SET_DATA_LEN,
++=09=09=09=09     sizeof(cp), &cp, HCI_CMD_TIMEOUT);
++}
++
++int hci_le_set_data_len(struct hci_conn *conn)
++{
++=09struct hci_dev *hdev =3D conn->hdev;
++=09int err;
++
++=09err =3D hci_cmd_sync_queue_once(hdev, hci_le_set_data_len_sync,
++=09=09=09=09      hci_conn_get(conn),
++=09=09=09=09      le_set_data_len_complete);
++=09if (err)
++=09=09hci_conn_put(conn);
++
++=09return (err =3D=3D -EEXIST) ? 0 : err;
++}
+
+base-commit: ffb95458a0f70dcab620eee0ecf5ef7750971b2f
 
 
