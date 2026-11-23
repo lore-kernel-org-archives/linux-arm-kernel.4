@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDE3606A6B5
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33BE606A6AE
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OP0HR6Wd;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=XL3fNnOP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Rjla5zl/;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=WJYHZZed
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/uN9CCocTKEokGliyoJcgDLG/c43neFA0CPZx5pFO0M=; b=OP0HR6WdU8A3L4
-	QPyPqsVWC6upk6U0Unz6CgmycH5XRA9cirVFiELWtdIix7kRF1ivtBHyqy0Fy3EmxUHwJDosTChXh
-	opVAUNHKy0Bkz1vz+ZrveXgki76mwtU7AOpNmyILu6lP+bKsYygiAuLFj1Yj2qJjPC1utVZD+yza6
-	sNg74TmPIKPBBvL2aQabdSb8ropjtUDMZT8zpuPFA8O/Z8u7e6T3n0fR3CMcQB9YDZk7pTbstuaY7
-	V2h9FTud2BIJ1MgRbNCN6GCl8ixaTAS2TRjVGJkM5AW15NPibOGutTXx6+rcTUW1/FR08GtOGBZCJ
-	RFUFPhvOYtcJRlEbZQ6g==;
+	List-Owner; bh=tVq/cXwfFrUYTvVPC8LWfCG8earbmrGADPgjnQonGc8=; b=Rjla5zl/YXIRHt
+	myZX+TIJD6mp60Mr3r2j99Ye7VIh/NPpoBe4KLjZii1rcITCNPabL1qLWjq9DVJRuU2ZtyxdjDeE9
+	DRxiEwketos+LuagD+gnfUeeSBlTUpMU/125bR7aBcWd3D1t1GLYHI4e9mHxNsL9lWIPSnh7ckyoT
+	xEBFKCsAQl/ruFCvfM2RNBirNbqtAI+LCar8/Hp/PY15PU7QVppWeh7DFWDQzo9p6kQyS0YXQmSwU
+	+Lcn4EFkQULCGgsU+/phJk5g0Hb9cVmq9g03Y03u5FnZ9wcZD+GEqHiNFepvWNEvIHig0mTxw545P
+	VRoedtDdQ84nNHoViyfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVS4-00000003pZH-3LTM;
-	Mon, 23 Nov 2026 14:55:29 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xVVRx-00000003pVQ-04ky;
+	Mon, 23 Nov 2026 14:55:21 +0000
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVQX-00000003oWb-0K1S
+	id 1xVVQS-00000003oSY-218f
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 14:53:57 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4bb77a462c6so33193195e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 06:53:52 -0800 (PST)
+	Mon, 23 Nov 2026 14:53:49 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a35d5d4a20so33117195e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 06:53:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795445631; x=1796050431; darn=lists.infradead.org;
+        d=suse.com; s=google; t=1795445627; x=1796050427; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=/uN9CCocTKEokGliyoJcgDLG/c43neFA0CPZx5pFO0M=;
-        b=XL3fNnOP4OXukTeI5cc1ULEO/1XM5BPV6o6Cji11Upws/gUYz9T1NpAC6OrnnJ8kbG
-         AzLl6E2dPZkmt66eDsi79QNHzBI3eQgwV0DIIDcFtCAFHKb7e/C894tapQZPLiEGhfNz
-         dYWrwGpJExzlVqSXtar2FHUILnkqSfWvW/ldiUDjotk6FVgaUVdpGb0yRaVkfc3aTVoK
-         NdBP8mhBJjBW23hMKslc+pebagbxS2mn3zxxZeqfZoqJSX4U/srn2hca4mk2o0zPcQOQ
-         jCeotvWrRKVYmW1NtWK/ZuLdTxf5iupgjtPzZAqQTgy/6afxHyg2bReeIuJ8Gr/SNgUL
-         QtRg==
+        bh=tVq/cXwfFrUYTvVPC8LWfCG8earbmrGADPgjnQonGc8=;
+        b=WJYHZZedmO3F/mLklmEgS4gQgX/ouDgl9vlov0jIQ4QoV6ymJ6kBZk44uqPK/hoYke
+         mtTqbiEX6QUlgT/bvrRyWXenIneI5xo2DKcHZ5q1DPfylGtZNWCjji9QeZ80GLEBFl9a
+         dIoJ/TjiR/+iZSeYIWIruP2VcNZaR0Ds51h7yacH9/azjLzGRRKnQix61G/y7LeMN9CJ
+         IyMaVWNHHtZ5yTuHDmHfAlefHSG3qM97By2loxokS5KjGnVnycWYk7Za6y7suL2+V3W5
+         RZfd4OZISFnAnGvDp974UOrFIpGewPPiZDTMtG+vtZ9z9Rwc6y4Q2MGUmNMIEU/DVRWC
+         1vXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795445631; x=1796050431;
+        d=1e100.net; s=20260707; t=1795445627; x=1796050427;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=/uN9CCocTKEokGliyoJcgDLG/c43neFA0CPZx5pFO0M=;
-        b=QQhFyM5cAS0izZuu9+GWSxz6GUsGTqT9yhZxa0JQyE8XmsZmPRLD3XEra8EYFjrv/y
-         fM6VWpxHE1JHOiQbxHM/dBsKaawDhSibi9c0okI95sp+PjhHF/JfzRROkHOatR0Cua1A
-         MsuT7Drrg2KHFuMFxABmIIEUWD4AJ8q+J18hmH7jrUahHBNtqRy9w9WoyuvKguUHFpe0
-         GHJURX/OcySLjA8rSEWLYpnVTo+ZC18ckpSmaYIfZAdm7B31kXB1qblbs4An95Ku2GBW
-         9IqeGAwCknfwgNH1mvEsLSay1/e3UQ2WL0Mh6aHjhF2LA3Zs1DGVdmMYN1W8r5I3JkkD
-         BT6Q==
-X-Forwarded-Encrypted: i=1; AL+hErF7iimgm20xtFCY9OOrly9JQ2XIwCR0uZCukNA8+vKVhOfqTU3pUBRy4O0E2omNkNPT2cC/NEaV6prJU/YEJyZp@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Gpkt72AWP5B6hCbyd0vfSdM9CfzQey62elL6OncL71wV3Zysy
-	yfkB3mlTr0Quul33/ut7yojjR6yvGUbBVKwJG5WPvp6QjLtQKVN/NGuzq0o1KkRPX+0=
-X-Gm-Gg: AZFdTZdY8aELu4hkVGfD/oBjVbJya2eA0byBGUkMFWH7ceZQ2SbzVWr528lX5xIwbyS
-	/9FBbRDyJvv7W72Gx9DBOmMGjDACjYXvpJSPA5ZIj6HIOWRUu5R988TIJiOW5TbuZ7OUT0D6NbW
-	zlKc6DnsIFS4CvqlELtt98ios/a/u9FjGVpiGrVbQAPV+WI0VeIrYml0kT36focoepn9tKoGn8I
-	zEKXmLLZdp87ObgaB/aXgRCwn+cDnW1I/ALS4C2EvMtxyn6WGFi3uKphUa+A11DgUCsbpZshcGj
-	fQm/1vtInY29eI6s7ERyveThIZZ6rBWp9DjBr27Y0Q3hcEt4SR04TzaWr6bso00Nr7WmTmYiUwC
-	EuEoJJE70Tw5D7W0TVX/53QQk7z2oJOwqwXkwExDaeuS8MNONxKS4G5pajEw+gNt7YRMxfvXHFZ
-	xEitPm1IVQ1mhC+/9H4trgWfgwmh3OdDCxPvY2AfbS3HLPV3vlprPlLXV8pcWo94WQneAysFzoR
-	GBBdfAhF335EkVRnnx6pu9k4XlA3TdyIDwyqd933QBs7SCJUW4CCFZwvOFUNiCSpfFFGSIbAoJG
-	SSANJ4Q6hRC5+sfvr8GTrc4YD/E=
-X-Received: by 2002:a05:600d:600b:b0:4a2:18c4:61a5 with SMTP id 5b1f17b1804b1-4bb887fb6e7mr246727955e9.6.1795445631196;
-        Mon, 23 Nov 2026 06:53:51 -0800 (PST)
+        bh=tVq/cXwfFrUYTvVPC8LWfCG8earbmrGADPgjnQonGc8=;
+        b=umypYa8Vj9CM8+3pQhr7qL+0v+QKKF1dy3fyex+rNqLFVUBT3OcnVS0ZxuZX32ly0/
+         p4J1CP3pwUh6O7R8hs1fcbWLWXTmLBrkm53XqPbqwea9wTu6gaG7E+bzHafjdD9vQeIp
+         8GYGIgJA2atYz0wY9NdsBLmC10NxYZRSK0xJ3CU8ixcqrOEbGGEG4E7tohPIqx/TEgho
+         ngzQ0YveTUJvPoyE9ci3eoV3/isx6yy/tYPSTzRUewUCVlvh7stgsF2FMHbtU/AAxFyW
+         09X9ySD1bNZJnSBsVsr3Xw2B+O98ncZiWGbUIkEmoMsCAXU8bADjVitNNxz6MTSzSI8Y
+         sI7Q==
+X-Forwarded-Encrypted: i=1; AL+hErHBvmo6fzKOilr7N28oEmj4zza4e0CMtYPav9KGexHD93O4S60CGPzZ82x15T4JycFxRxOzwUR4TNMINAaEJgoa@lists.infradead.org
+X-Gm-Message-State: APuU4Z/atoZaPXXVCbPAaTfVScZLu9hD5dbONungFQmTmPMu4TaJPpAR
+	G4oYc+50Mp0MRfEXVf/xNFNYIZ6Yr/iCoc0lIB0e3I/2jorbSOHwONja6zJnjsjSdJA=
+X-Gm-Gg: AZFdTZdDLifsGPVhtPGvUd2QxMhT7HwDaA8+jcFaRz8wLl9ofSUnC5jMAruGvf/ftSc
+	ZxZDPRfqPsuIf0vShiSlhovvazkyXyv5QoN1+q7zagmQ40xeVj8Kf/OdJSnEczAQKkw3wHm4cPi
+	jPqdk6WbcQrKhSOgbUcDx3WkOOEs4YsKhj6GSBq00m+pzepQQsiEH5sPOW6AYQfDd58Egnd6Cv4
+	JmQWMyEM/s9IuQ2jS/UETsbX4tYF/+N2iZD/O1ha19dxAG4QqMPw5bcaT0Q7hKs8qnFrseUyc18
+	l32zR88oCxHjmQ5y987FoqdJEJLgha7OA6QwdJEsyazne5KuzFEls1+GZ8Ojegxl684P7k43dgf
+	1pF6daONpa+5MYcz19OQFVYsmbEdZe/6CJUZmA9+v2dnrGtP2my7Kll1eRPCsyP1c9ZFBymgnBj
+	rMmNYqAjZckpla+PyBMUkWdBR/ZTrcsNIjgnnmZNg9Fu/dV21ISHYnZhc3TYS5pnK1b4PYcMhUx
+	7O94MjQJVgwFaIX8CkZ8CcMKIKLgw9y7JwvCNMshSlQHnC9n2LTsQzPvD7FQcg8Ezlwlgn6md7y
+	NZ97Dmp0X3WH0BTY07mmBy6anMM=
+X-Received: by 2002:a05:600c:820c:b0:4bb:7987:fbbc with SMTP id 5b1f17b1804b1-4bb887c29b4mr212865605e9.1.1795445626921;
+        Mon, 23 Nov 2026 06:53:46 -0800 (PST)
 Received: from localhost ([82.192.120.76])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853b2437sm528796555e9.13.2026.11.23.06.53.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b09bsm663237455e9.4.2026.11.23.06.53.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 06:53:50 -0800 (PST)
+        Mon, 23 Nov 2026 06:53:46 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Frank Li <Frank.Li@kernel.org>,
@@ -95,9 +95,9 @@ Cc: Frank Li <Frank.Li@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v3 13/28] dmaengine: bcm2835: introduce multi platform support
-Date: Mon, 23 Nov 2026 15:56:51 +0100
-Message-ID: <20261123145728.29082-14-andrea.porta@suse.com>
+Subject: [PATCH v3 10/28] dmaengine: bcm2835: make address increment platform independent
+Date: Mon, 23 Nov 2026 15:56:48 +0100
+Message-ID: <20261123145728.29082-11-andrea.porta@suse.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20261123145728.29082-1-andrea.porta@suse.com>
 References: <20261123145728.29082-1-andrea.porta@suse.com>
@@ -105,8 +105,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_065353_307651_C4568391 
-X-CRM114-Status: GOOD (  28.50  )
+X-CRM114-CacheID: sfid-20261123_065348_666078_E0F97E57 
+X-CRM114-Status: GOOD (  16.17  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,611 +126,71 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This finally moves all platform specific stuff into a separate structure,
-which is initialized on the OF compatible during probing. Since the DMA
-control block is different on the BCM2711 platform, we introduce a common
-control block to reserve the necessary space and adequate methods for
-access.
-
-The abort sequence is completely different on the 40-bit channels, so
-make it a platform callback instead of trying to describe it through
-register offsets and bit masks.
+Actually the criteria to increment source & destination address isn't
+based on platform specific bits. It's just the DMA transfer direction which
+is translated into the info bits. So introduce two new helper functions
+and get the rid of these platform specifics.
 
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
- drivers/dma/bcm2835-dma.c | 337 ++++++++++++++++++++++++++++++--------
- 1 file changed, 266 insertions(+), 71 deletions(-)
+ drivers/dma/bcm2835-dma.c | 28 ++++++++++++++++++++++------
+ 1 file changed, 22 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-index d048cb00ce5d..f8b2202096d6 100644
+index 77b3e2f58ac5..6180a2737e07 100644
 --- a/drivers/dma/bcm2835-dma.c
 +++ b/drivers/dma/bcm2835-dma.c
-@@ -48,6 +48,11 @@ struct bcm2835_dmadev {
- 	struct dma_device ddev;
- 	void __iomem *base;
- 	dma_addr_t zero_page;
-+	const struct bcm2835_dma_cfg *cfg;
-+};
-+
-+struct bcm_dma_cb {
-+	u32 rsvd[8];
- };
- 
- struct bcm2835_dma_cb {
-@@ -61,7 +66,7 @@ struct bcm2835_dma_cb {
- };
- 
- struct bcm2835_cb_entry {
--	struct bcm2835_dma_cb *cb;
-+	struct bcm_dma_cb *cb;
- 	dma_addr_t paddr;
- };
- 
-@@ -82,6 +87,59 @@ struct bcm2835_chan {
- 	bool is_lite_channel;
- };
- 
-+/**
-+ * struct bcm2835_dma_cfg - platform specific description of the DMA channels
-+ * @cs_reg: offset of the control and status register
-+ * @cb_reg: offset of the control block address register
-+ * @int_mask: interrupt status bit in the CS register
-+ * @active_mask: channel active bit in the CS register
-+ * @cb_get_length: get the transfer length of a control block
-+ * @cb_get_addr: get the memory side address of a control block
-+ * @cb_init: initialize a control block
-+ * @cb_set_src: set the source address of a control block
-+ * @cb_set_dst: set the destination address of a control block
-+ * @cb_set_next: link a control block to the next one
-+ * @cb_set_length: set the transfer length of a control block
-+ * @cb_append_extra: add the interrupt and completion bits to a control block
-+ * @to_cb_addr: convert a control block bus address to its register format
-+ * @chan_plat_init: platform specific channel initialization
-+ * @read_addr: read the current memory side address of a channel
-+ * @cs_flags: per-channel flags for the CS register
-+ * @abort: stop and reset a channel
-+ */
-+struct bcm2835_dma_cfg {
-+	u32 cs_reg;
-+	u32 cb_reg;
-+
-+	u32 int_mask;
-+	u32 active_mask;
-+
-+	u32 (*cb_get_length)(void *data);
-+	dma_addr_t (*cb_get_addr)(void *data, enum dma_transfer_direction);
-+
-+	void (*cb_init)(void *data, struct bcm2835_chan *c,
-+			enum dma_transfer_direction direction, dma_addr_t src,
-+			dma_addr_t dst, bool zero_page);
-+	void (*cb_set_src)(void *data, enum dma_transfer_direction direction,
-+			   dma_addr_t src);
-+	void (*cb_set_dst)(void *data, enum dma_transfer_direction direction,
-+			   dma_addr_t dst);
-+	void (*cb_set_next)(void *data, u32 next);
-+	void (*cb_set_length)(void *data, u32 length);
-+	void (*cb_append_extra)(void *data,
-+				struct bcm2835_chan *c,
-+				enum dma_transfer_direction direction,
-+				bool cyclic, bool final, unsigned long flags);
-+
-+	u32 (*to_cb_addr)(dma_addr_t addr);
-+
-+	void (*chan_plat_init)(struct bcm2835_chan *c);
-+	dma_addr_t (*read_addr)(struct bcm2835_chan *c,
-+				enum dma_transfer_direction direction);
-+	u32 (*cs_flags)(struct bcm2835_chan *c);
-+	void (*abort)(struct bcm2835_chan *c);
-+};
-+
- struct bcm2835_desc {
- 	struct bcm2835_chan *c;
- 	struct virt_dma_desc vd;
-@@ -215,6 +273,13 @@ static inline struct bcm2835_dmadev *to_bcm2835_dma_dev(struct dma_device *d)
- 	return container_of(d, struct bcm2835_dmadev, ddev);
+@@ -273,6 +273,24 @@ static u32 bcm2835_dma_prepare_cb_extra(struct bcm2835_chan *c,
+ 	return result;
  }
  
-+static inline const struct bcm2835_dma_cfg *to_bcm2835_cfg(struct dma_device *d)
++static inline bool need_src_incr(enum dma_transfer_direction direction)
 +{
-+	struct bcm2835_dmadev *od = container_of(d, struct bcm2835_dmadev, ddev);
-+
-+	return od->cfg;
++	return direction != DMA_DEV_TO_MEM;
 +}
 +
- static inline struct bcm2835_chan *to_bcm2835_dma_chan(struct dma_chan *c)
- {
- 	return container_of(c, struct bcm2835_chan, vc.chan);
-@@ -291,6 +356,109 @@ static inline bool need_dst_incr(enum dma_transfer_direction direction)
- 	return false;
- }
- 
-+static inline u32 bcm2835_dma_cb_get_length(void *data)
++static inline bool need_dst_incr(enum dma_transfer_direction direction)
 +{
-+	struct bcm2835_dma_cb *cb = data;
++	switch (direction) {
++	case DMA_MEM_TO_MEM:
++	case DMA_DEV_TO_MEM:
++		return true;
++	default:
++		break;
++	}
 +
-+	return cb->length;
-+}
-+
-+static inline dma_addr_t
-+bcm2835_dma_cb_get_addr(void *data, enum dma_transfer_direction direction)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	if (direction == DMA_DEV_TO_MEM)
-+		return cb->dst;
-+
-+	return cb->src;
-+}
-+
-+static inline void
-+bcm2835_dma_cb_init(void *data, struct bcm2835_chan *c,
-+		    enum dma_transfer_direction direction, dma_addr_t src,
-+		    dma_addr_t dst, bool zero_page)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	cb->info = bcm2835_dma_prepare_cb_info(c, direction, zero_page);
-+	cb->src = src;
-+	cb->dst = dst;
-+	cb->stride = 0;
-+	cb->next = 0;
-+}
-+
-+static inline void
-+bcm2835_dma_cb_set_src(void *data, enum dma_transfer_direction direction,
-+		       dma_addr_t src)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	cb->src = src;
-+}
-+
-+static inline void
-+bcm2835_dma_cb_set_dst(void *data, enum dma_transfer_direction direction,
-+		       dma_addr_t dst)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	cb->dst = dst;
-+}
-+
-+static inline void bcm2835_dma_cb_set_next(void *data, u32 next)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	cb->next = next;
-+}
-+
-+static inline void bcm2835_dma_cb_set_length(void *data, u32 length)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	cb->length = length;
-+}
-+
-+static inline void
-+bcm2835_dma_cb_append_extra(void *data, struct bcm2835_chan *c,
-+			    enum dma_transfer_direction direction,
-+			    bool cyclic, bool final, unsigned long flags)
-+{
-+	struct bcm2835_dma_cb *cb = data;
-+
-+	cb->info |= bcm2835_dma_prepare_cb_extra(c, direction, cyclic, final,
-+						 flags);
-+}
-+
-+static inline u32 bcm2835_dma_to_cb_addr(dma_addr_t addr)
-+{
-+	return addr;
-+}
-+
-+static void bcm2835_dma_chan_plat_init(struct bcm2835_chan *c)
-+{
-+	/* check in DEBUG register if this is a LITE channel */
-+	if (readl(c->chan_base + BCM2835_DMA_DEBUG) & BCM2835_DMA_DEBUG_LITE)
-+		c->is_lite_channel = true;
-+}
-+
-+static dma_addr_t bcm2835_dma_read_addr(struct bcm2835_chan *c,
-+					enum dma_transfer_direction direction)
-+{
-+	if (direction == DMA_MEM_TO_DEV)
-+		return readl(c->chan_base + BCM2835_DMA_SOURCE_AD);
-+	else if (direction == DMA_DEV_TO_MEM)
-+		return readl(c->chan_base + BCM2835_DMA_DEST_AD);
-+
-+	return 0;
-+}
-+
-+static u32 bcm2835_dma_cs_flags(struct bcm2835_chan *c)
-+{
-+	return BCM2835_DMA_CS_FLAGS(c->dreq);
++	return false;
 +}
 +
  static void bcm2835_dma_free_cb_chain(struct bcm2835_desc *desc)
  {
  	size_t i;
-@@ -308,16 +476,19 @@ static void bcm2835_dma_desc_free(struct virt_dma_desc *vd)
- }
- 
- static bool bcm2835_dma_create_cb_set_length(struct dma_chan *chan,
--					     struct bcm2835_dma_cb *control_block,
-+					     void *data,
- 					     size_t len,
- 					     size_t period_len,
- 					     size_t *total_len)
- {
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	size_t max_len = bcm2835_dma_max_frame_length(c);
- 
- 	/* set the length taking lite-channel limitations into account */
--	control_block->length = min_t(u32, len, max_len);
-+	u32 length = min_t(u32, len, max_len);
-+
-+	cfg->cb_set_length(data, length);
- 
- 	/* finished if we have no period_length */
- 	if (!period_len)
-@@ -332,14 +503,14 @@ static bool bcm2835_dma_create_cb_set_length(struct dma_chan *chan,
- 	 */
- 
- 	/* have we filled in period_length yet? */
--	if (*total_len + control_block->length < period_len) {
-+	if (*total_len + length < period_len) {
- 		/* update number of bytes in this period so far */
--		*total_len += control_block->length;
-+		*total_len += length;
- 		return false;
- 	}
- 
- 	/* calculate the length that remains to reach period_length */
--	control_block->length = period_len - *total_len;
-+	cfg->cb_set_length(data, period_len - *total_len);
- 
- 	/* reset total_length for next period */
- 	*total_len = 0;
-@@ -371,15 +542,14 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
- 					size_t buf_len, size_t period_len,
- 					gfp_t gfp, unsigned long flags)
- {
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_dmadev *od = to_bcm2835_dma_dev(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	size_t len = buf_len, total_len;
- 	size_t frame;
- 	struct bcm2835_desc *d;
- 	struct bcm2835_cb_entry *cb_entry;
--	struct bcm2835_dma_cb *control_block;
--	u32 extrainfo = bcm2835_dma_prepare_cb_extra(c, direction, cyclic,
--						     false, flags);
-+	struct bcm_dma_cb *control_block;
- 	bool zero_page = false;
- 
- 	if (!frames)
-@@ -415,12 +585,8 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
- 
- 		/* fill in the control block */
- 		control_block = cb_entry->cb;
--		control_block->info = bcm2835_dma_prepare_cb_info(c, direction,
--								  zero_page);
--		control_block->src = src;
--		control_block->dst = dst;
--		control_block->stride = 0;
--		control_block->next = 0;
-+		cfg->cb_init(control_block, c, direction, src, dst, zero_page);
-+
- 		/* set up length in control_block if requested */
- 		if (buf_len) {
- 			/* calculate length honoring period_length */
-@@ -428,31 +594,33 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
- 							     len, period_len,
- 							     &total_len)) {
- 				/* add extrainfo bits in info */
--				control_block->info |= extrainfo;
-+				cfg->cb_append_extra(control_block, c,
-+						     direction, cyclic,
-+						     false, flags);
- 			}
- 
- 			/* calculate new remaining length */
--			len -= control_block->length;
-+			len -= cfg->cb_get_length(control_block);
- 		}
- 
- 		/* link this the last controlblock */
- 		if (frame)
--			d->cb_list[frame - 1].cb->next = cb_entry->paddr;
-+			cfg->cb_set_next(d->cb_list[frame - 1].cb,
-+					 cfg->to_cb_addr(cb_entry->paddr));
+@@ -338,10 +356,8 @@ static void bcm2835_dma_create_cb_set_length(struct bcm2835_chan *chan,
+  * @cyclic:         it is a cyclic transfer
+  * @info:           the default info bits to apply per controlblock
+  * @frames:         number of controlblocks to allocate
+- * @src:            the src address to assign (if the S_INC bit is set
+- *                  in @info, then it gets incremented)
+- * @dst:            the dst address to assign (if the D_INC bit is set
+- *                  in @info, then it gets incremented)
++ * @src:            the src address to assign
++ * @dst:            the dst address to assign
+  * @buf_len:        the full buffer length (may also be 0)
+  * @period_len:     the period length when to apply @finalextrainfo
+  *                  in addition to the last transfer
+@@ -413,9 +429,9 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
+ 			d->cb_list[frame - 1].cb->next = cb_entry->paddr;
  
  		/* update src and dst and length */
- 		if (src && need_src_incr(direction))
--			src += control_block->length;
-+			src += cfg->cb_get_length(control_block);
- 		if (dst && need_dst_incr(direction))
--			dst += control_block->length;
-+			dst += cfg->cb_get_length(control_block);
+-		if (src && (info & BCM2835_DMA_S_INC))
++		if (src && need_src_incr(direction))
+ 			src += control_block->length;
+-		if (dst && (info & BCM2835_DMA_D_INC))
++		if (dst && need_dst_incr(direction))
+ 			dst += control_block->length;
  
  		/* Length of total transfer */
--		d->size += control_block->length;
-+		d->size += cfg->cb_get_length(control_block);
- 	}
- 
- 	/* the last frame requires extra flags */
--	extrainfo = bcm2835_dma_prepare_cb_extra(c, direction, cyclic, true,
--						 flags);
--	d->cb_list[d->frames - 1].cb->info |= extrainfo;
-+	cfg->cb_append_extra(d->cb_list[d->frames - 1].cb, c, direction, cyclic,
-+			     true, flags);
- 
- 	/* detect a size mismatch */
- 	if (buf_len && d->size != buf_len)
-@@ -472,6 +640,7 @@ static void bcm2835_dma_fill_cb_chain_with_sg(
- 	struct scatterlist *sgl,
- 	unsigned int sg_len)
- {
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	size_t len, max_len;
- 	unsigned int i;
-@@ -482,29 +651,21 @@ static void bcm2835_dma_fill_cb_chain_with_sg(
- 	for_each_sg(sgl, sgent, sg_len, i) {
- 		for (addr = sg_dma_address(sgent), len = sg_dma_len(sgent);
- 		     len > 0;
--		     addr += cb->cb->length, len -= cb->cb->length, cb++) {
-+		     addr += cfg->cb_get_length(cb->cb), len -= cfg->cb_get_length(cb->cb), cb++) {
- 			if (direction == DMA_DEV_TO_MEM)
--				cb->cb->dst = addr;
-+				cfg->cb_set_dst(cb->cb, direction, addr);
- 			else
--				cb->cb->src = addr;
--			cb->cb->length = min(len, max_len);
-+				cfg->cb_set_src(cb->cb, direction, addr);
-+			cfg->cb_set_length(cb->cb, min(len, max_len));
- 		}
- 	}
- }
- 
--static void bcm2835_dma_abort(struct dma_chan *chan)
-+static void bcm2835_dma_abort_chan(struct bcm2835_chan *c)
- {
--	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	void __iomem *chan_base = c->chan_base;
- 	long timeout = 100;
- 
--	/*
--	 * A zero control block address means the channel is idle.
--	 * (The ACTIVE flag in the CS register is not a reliable indicator.)
--	 */
--	if (!readl(chan_base + BCM2835_DMA_ADDR))
--		return;
--
- 	/* We need to clear the next DMA block pending */
- 	writel(0, chan_base + BCM2835_DMA_NEXTCB);
- 
-@@ -535,8 +696,24 @@ static void bcm2835_dma_abort(struct dma_chan *chan)
- 	writel(BCM2835_DMA_RESET, chan_base + BCM2835_DMA_CS);
- }
- 
-+static void bcm2835_dma_abort(struct dma_chan *chan)
-+{
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
-+	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
-+
-+	/*
-+	 * A zero control block address means the channel is idle.
-+	 * (The ACTIVE flag in the CS register is not a reliable indicator.)
-+	 */
-+	if (!readl(c->chan_base + cfg->cb_reg))
-+		return;
-+
-+	cfg->abort(c);
-+}
-+
- static void bcm2835_dma_start_desc(struct dma_chan *chan)
- {
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	struct virt_dma_desc *vd = vchan_next_desc(&c->vc);
- 
-@@ -549,14 +726,15 @@ static void bcm2835_dma_start_desc(struct dma_chan *chan)
- 
- 	c->desc = to_bcm2835_dma_desc(&vd->tx);
- 
--	writel(c->desc->cb_list[0].paddr, c->chan_base + BCM2835_DMA_ADDR);
--	writel(BCM2835_DMA_ACTIVE | BCM2835_DMA_CS_FLAGS(c->dreq),
--	       c->chan_base + BCM2835_DMA_CS);
-+	writel(cfg->to_cb_addr(c->desc->cb_list[0].paddr), c->chan_base + cfg->cb_reg);
-+	writel(cfg->active_mask | cfg->cs_flags(c),
-+	       c->chan_base + cfg->cs_reg);
- }
- 
- static irqreturn_t bcm2835_dma_callback(int irq, void *data)
- {
- 	struct dma_chan *chan = data;
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	struct bcm2835_desc *d;
- 	unsigned long flags;
-@@ -564,9 +742,9 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
- 	/* check the shared interrupt */
- 	if (c->irq_flags & IRQF_SHARED) {
- 		/* check if the interrupt is enabled */
--		flags = readl(c->chan_base + BCM2835_DMA_CS);
-+		flags = readl(c->chan_base + cfg->cs_reg);
- 		/* if not set then we are not the reason for the irq */
--		if (!(flags & BCM2835_DMA_INT))
-+		if (!(flags & cfg->int_mask))
- 			return IRQ_NONE;
- 	}
- 
-@@ -579,9 +757,7 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
- 	 * if this IRQ handler is threaded.) If the channel is finished, it
- 	 * will remain idle despite the ACTIVE flag being set.
- 	 */
--	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE |
--	       BCM2835_DMA_CS_FLAGS(c->dreq),
--	       c->chan_base + BCM2835_DMA_CS);
-+	writel(cfg->int_mask | cfg->active_mask | cfg->cs_flags(c), c->chan_base + cfg->cs_reg);
- 
- 	d = c->desc;
- 
-@@ -589,7 +765,7 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
- 		if (d->cyclic) {
- 			/* call the cyclic callback */
- 			vchan_cyclic_callback(&d->vd);
--		} else if (!readl(c->chan_base + BCM2835_DMA_ADDR)) {
-+		} else if (!readl(c->chan_base + cfg->cb_reg)) {
- 			vchan_cookie_complete(&c->desc->vd);
- 			bcm2835_dma_start_desc(chan);
- 		}
-@@ -612,7 +788,7 @@ static int bcm2835_dma_alloc_chan_resources(struct dma_chan *chan)
- 	 * (32 byte) aligned address (BCM2835 ARM Peripherals, sec. 4.2.1.1).
- 	 */
- 	c->cb_pool = dma_pool_create(dev_name(dev), dev,
--				     sizeof(struct bcm2835_dma_cb), 32, 0);
-+				     sizeof(struct bcm_dma_cb), 32, 0);
- 	if (!c->cb_pool) {
- 		dev_err(dev, "unable to allocate descriptor pool\n");
- 		return -ENOMEM;
-@@ -638,20 +814,16 @@ static size_t bcm2835_dma_desc_size(struct bcm2835_desc *d)
- 	return d->size;
- }
- 
--static size_t bcm2835_dma_desc_size_pos(struct bcm2835_desc *d, dma_addr_t addr)
-+static size_t bcm2835_dma_desc_size_pos(const struct bcm2835_dma_cfg *cfg,
-+					struct bcm2835_desc *d, dma_addr_t addr)
- {
- 	unsigned int i;
- 	size_t size;
- 
- 	for (size = i = 0; i < d->frames; i++) {
--		struct bcm2835_dma_cb *control_block = d->cb_list[i].cb;
--		size_t this_size = control_block->length;
--		dma_addr_t dma;
--
--		if (d->dir == DMA_DEV_TO_MEM)
--			dma = control_block->dst;
--		else
--			dma = control_block->src;
-+		struct bcm_dma_cb *control_block = d->cb_list[i].cb;
-+		size_t this_size = cfg->cb_get_length(control_block);
-+		dma_addr_t dma = cfg->cb_get_addr(control_block, d->dir);
- 
- 		if (size)
- 			size += this_size;
-@@ -666,6 +838,7 @@ static enum dma_status bcm2835_dma_tx_status(struct dma_chan *chan,
- 					     dma_cookie_t cookie,
- 					     struct dma_tx_state *txstate)
- {
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	struct virt_dma_desc *vd;
- 	enum dma_status ret;
-@@ -684,14 +857,8 @@ static enum dma_status bcm2835_dma_tx_status(struct dma_chan *chan,
- 		struct bcm2835_desc *d = c->desc;
- 		dma_addr_t pos;
- 
--		if (d->dir == DMA_MEM_TO_DEV)
--			pos = readl(c->chan_base + BCM2835_DMA_SOURCE_AD);
--		else if (d->dir == DMA_DEV_TO_MEM)
--			pos = readl(c->chan_base + BCM2835_DMA_DEST_AD);
--		else
--			pos = 0;
--
--		txstate->residue = bcm2835_dma_desc_size_pos(d, pos);
-+		pos = cfg->read_addr(c, d->dir);
-+		txstate->residue = bcm2835_dma_desc_size_pos(cfg, d, pos);
- 	} else {
- 		txstate->residue = 0;
- 	}
-@@ -786,6 +953,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
- 	size_t period_len, enum dma_transfer_direction direction,
- 	unsigned long flags)
- {
-+	const struct bcm2835_dma_cfg *cfg = to_bcm2835_cfg(chan->device);
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	struct bcm2835_desc *d;
- 	dma_addr_t src, dst;
-@@ -845,7 +1013,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
- 		return NULL;
- 
- 	/* wrap around into a loop */
--	d->cb_list[d->frames - 1].cb->next = d->cb_list[0].paddr;
-+	cfg->cb_set_next(d->cb_list[d->frames - 1].cb,
-+			 cfg->to_cb_addr(d->cb_list[0].paddr));
- 
- 	return vchan_tx_prep(&c->vc, &d->vd, flags);
- }
-@@ -906,10 +1075,7 @@ static int bcm2835_dma_chan_init(struct bcm2835_dmadev *d, int chan_id,
- 	c->irq_number = irq;
- 	c->irq_flags = irq_flags;
- 
--	/* check in DEBUG register if this is a LITE channel */
--	if (readl(c->chan_base + BCM2835_DMA_DEBUG) &
--		BCM2835_DMA_DEBUG_LITE)
--		c->is_lite_channel = true;
-+	d->cfg->chan_plat_init(c);
- 
- 	return 0;
- }
-@@ -928,8 +1094,32 @@ static void bcm2835_dma_free(struct bcm2835_dmadev *od)
- 			     DMA_TO_DEVICE, DMA_ATTR_SKIP_CPU_SYNC);
- }
- 
-+static const struct bcm2835_dma_cfg bcm2835_data = {
-+	.cs_reg = BCM2835_DMA_CS,
-+	.cb_reg = BCM2835_DMA_ADDR,
-+
-+	.int_mask = BCM2835_DMA_INT,
-+	.active_mask = BCM2835_DMA_ACTIVE,
-+
-+	.cb_get_length = bcm2835_dma_cb_get_length,
-+	.cb_get_addr = bcm2835_dma_cb_get_addr,
-+	.cb_init = bcm2835_dma_cb_init,
-+	.cb_set_src = bcm2835_dma_cb_set_src,
-+	.cb_set_dst = bcm2835_dma_cb_set_dst,
-+	.cb_set_next = bcm2835_dma_cb_set_next,
-+	.cb_set_length = bcm2835_dma_cb_set_length,
-+	.cb_append_extra = bcm2835_dma_cb_append_extra,
-+
-+	.to_cb_addr = bcm2835_dma_to_cb_addr,
-+
-+	.chan_plat_init = bcm2835_dma_chan_plat_init,
-+	.read_addr = bcm2835_dma_read_addr,
-+	.cs_flags = bcm2835_dma_cs_flags,
-+	.abort = bcm2835_dma_abort_chan,
-+};
-+
- static const struct of_device_id bcm2835_dma_of_match[] = {
--	{ .compatible = "brcm,bcm2835-dma", },
-+	{ .compatible = "brcm,bcm2835-dma", .data = &bcm2835_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, bcm2835_dma_of_match);
-@@ -960,7 +1150,7 @@ static int bcm2835_dma_suspend_late(struct device *dev)
- 		void __iomem *chan_base = c->chan_base;
- 
- 		/* Check if DMA channel is busy */
--		if (readl(chan_base + BCM2835_DMA_ADDR))
-+		if (readl(chan_base + od->cfg->cb_reg))
- 			return -EBUSY;
- 	}
- 
-@@ -995,6 +1185,11 @@ static int bcm2835_dma_probe(struct platform_device *pdev)
- 	if (!od)
- 		return -ENOMEM;
- 
-+	od->cfg = device_get_match_data(&pdev->dev);
-+	if (!od->cfg)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "Failed to match compatible string\n");
-+
- 	dma_set_max_seg_size(&pdev->dev, 0x3FFFFFFF);
- 
- 	base = devm_platform_ioremap_resource(pdev, 0);
 -- 
 2.51.0
 
