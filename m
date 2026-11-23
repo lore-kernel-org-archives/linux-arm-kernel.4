@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7442D606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8245A606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eyrYk4VX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FUOuTDop
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uclasVfk;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Va6ZtEvD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,37 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=J9J3atRjzDUkmzU4NP7PeoY9nYVjUiWTLXAb7WnvcUQ=; b=eyrYk4VXPdu7XZyIz9PG2EUx3h
-	9vyaFKCiWhN5e516MUK/auld1Z3NltVXsmInYbIhCtMD8IKssVU40I1H34lkIT7NrnK6MmPTUFwfJ
-	ahtaECi/0l03ax7XZ60eC0mUqWX3AeShPUqvxnGt+h81yGxlGdtJVMA+gghZJiKVOUxRUB+CTcJWX
-	9mY7iu40wX99a0KpQR+T2Cmdf0A2xfjXGJKe3N5A73KYHRc7+Xc4ItWdMnOxPr2S4+ntBI9zKL6DB
-	xdeFIgyXf4a+QRniyn5TiwauhfgVE+3XbY6STpeDDpsnNMhlz+Q/YcDF7ThTznEkmjmnm4VUUbIb/
-	Fn/0YwIg==;
+	bh=i3MzbPidfDG/rjrcBIfelpXh/DBIpMthv6i7dnSWlog=; b=uclasVfkFq8v7hnHDSDb5e2u6s
+	oayOvZ4W2tlcL6JUsAUe36Bh7PKG3EXAUhMl/IJknkE07If7CcJlD1MApvrzjfQOYZH8VgCxFvtOZ
+	s408iKRvAqNli4q+uy6P4WfWwrG7+KfR0S0BLMXzFz36SeKYIbSz1BtV+YnwM2rXYdhi+6el60HtN
+	FCMqNBIdEc87xZSjSyoWoSw6KspK/6qrg6nwAooFekocgKNvDKVWoobQW/suhmZmzo+nhNkxjMtaI
+	aaP81uuImBnREaNjHGP/QQOacwpNNH5ZeJ1sH2nusUPM8/xC0JCKZlLQ4toiZLLYBgqDfIT8UyFeY
+	+HOuWVuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRKy-00000002xif-0AbQ;
-	Mon, 23 Nov 2026 10:31:52 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVROF-00000002yFC-1wYJ;
+	Mon, 23 Nov 2026 10:35:15 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRKs-00000002xhf-2VED
+	id 1xVROD-00000002yEW-3ZIg
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:31:46 +0000
+	Mon, 23 Nov 2026 10:35:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0426861FAC;
-	Mon, 23 Nov 2026 10:31:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEB331F000D0;
-	Mon, 23 Nov 2026 10:31:44 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3F4BB41932;
+	Mon, 23 Nov 2026 10:35:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABBC31F000C6;
+	Mon, 23 Nov 2026 10:35:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795429905;
-	bh=J9J3atRjzDUkmzU4NP7PeoY9nYVjUiWTLXAb7WnvcUQ=;
+	s=k20260515; t=1795430111;
+	bh=i3MzbPidfDG/rjrcBIfelpXh/DBIpMthv6i7dnSWlog=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=FUOuTDopHNOZqzhQEQ8HnET20lUE83sOqc4h0i1Kz51+fv54xEkDuNdvui4cLJnUS
-	 Of+CzgAcQjeK404BqAc2El9m4g2VlESlu5B2HrQZz69yL0JIboaET5fOvcXrVHepF0
-	 POifw9BWfmODvWk1/UDXTJ8MVSCz7EwSaoVduZSu+tIIl9dnOOh3IQ+s0y8R7EifkP
-	 RKf2f4LTvewEBHyYeS4B6bPzTlL2rW1xUI3ABd7r4UyDqneEnzh7s5japFg4rhFuiI
-	 Mn38Afxl5ajQSK47zIxJUwDHcHgJqoI/jC0o6zLsFcnKP1xbpdBJH6wzuLhi2UwelE
-	 ym5JNV2Y59Szg==
-Date: Mon, 23 Nov 2026 11:31:42 +0100
+	b=Va6ZtEvDlTvYtjj1YNjK7xNoTVJVh0Y/RAsRQEpFFiOZKLvESai/4iNhDf4+R7V9C
+	 ELYYIOeKUslx/uevHFFmUOa+ybosLAf+klOjQN8sm0qH7fwENosPMkhrPRxd0pV430
+	 lUSDBrs4KPK1M5IyXIpxo34u1B+liENE6ktgyHWx8fEdKkSm7rto093fWZF7vE7ZVI
+	 NFA/DIX2Hm1pKuPfXNo5reMBGK8bOkLUqfsZR1GSzQnxZvEpa49TE2CyXUQr6R4oah
+	 GRLbZvHgBKMP2EvVGv1CwqZl22nKepg49hWbuhAvt9b62pptvhFFfKIHiTT9AhetqS
+	 tGewm1yhT/fxw==
+Date: Mon, 23 Nov 2026 11:35:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jisheng Zhang <jszhang@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -55,16 +55,15 @@ Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	Linus Walleij <linusw@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 06/13] soc: synaptics: add SL2610 system controller
- support
-Message-ID: <20261123-knowing-eggplant-buffalo-fddfc3@quoll>
+Subject: Re: [PATCH v2 12/13] arm64: dts: synaptics: add SL2610 family SoCs
+Message-ID: <20261123-petite-oarfish-of-merriment-dd7e79@quoll>
 References: <20261115102401.3520-1-jszhang@kernel.org>
- <20261115102401.3520-7-jszhang@kernel.org>
+ <20261115102401.3520-13-jszhang@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261115102401.3520-7-jszhang@kernel.org>
+In-Reply-To: <20261115102401.3520-13-jszhang@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,42 +74,186 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 15, 2026 at 06:23:45PM +0800, Jisheng Zhang wrote:
-
-> +static const struct sl2610_syscon_data sl2610_mcu_data = {
-> +	.cells = sl2610_mcu_cells,
-> +	.num_cells = ARRAY_SIZE(sl2610_mcu_cells),
-> +};
+On Sun, Nov 15, 2026 at 06:23:51PM +0800, Jisheng Zhang wrote:
+> Describe the CPUs, interrupt controller, system controllers and supported
+> serial, I2C, I3C, SPI and GPIO peripherals for the SL2610 family.
+> 
+> Use the SL2610 peripheral compatibles already documented in the upstream
+> bindings and share clock, reset and pin configuration providers through
+> the system controller nodes.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  arch/arm64/boot/dts/synaptics/sl2611.dtsi | 457 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/synaptics/sl2613.dtsi |  12 +
+>  arch/arm64/boot/dts/synaptics/sl2615.dtsi |  46 +++
+>  arch/arm64/boot/dts/synaptics/sl2617.dtsi |  46 +++
+>  arch/arm64/boot/dts/synaptics/sl2619.dtsi |  44 +++
+>  5 files changed, 605 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
+>  create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/synaptics/sl2611.dtsi b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
+> new file mode 100644
+> index 000000000000..663fe6034ba0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
+> @@ -0,0 +1,457 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2024 Synaptics Incorporated
+> + *
+> + * Author: Jisheng Zhang <jszhang@kernel.org>
+> + */
 > +
-> +static const struct sl2610_syscon_data sl2610_avio_data = {
-> +	.cells = sl2610_avio_cells,
-> +	.num_cells = ARRAY_SIZE(sl2610_avio_cells),
-> +};
+> +#include <dt-bindings/clock/syna,sl2610.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/reset/syna,sl2610-reset.h>
 > +
-> +static const struct sl2610_syscon_data sl2610_cpu_data = {
-> +	.cells = sl2610_cpu_cells,
-> +	.num_cells = ARRAY_SIZE(sl2610_cpu_cells),
-
-That's just MFD driver, so should be in MFD, no? Why placing standard
-MFD code - nothing soc specific - in the soc directory?
-
-
-> +};
+> +/ {
+> +	compatible = "syna,sl2611";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
 > +
-> +static int sl2610_syscon_probe(struct platform_device *pdev)
-> +{
-> +	const struct sl2610_syscon_data *data = device_get_match_data(&pdev->dev);
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
 > +
-> +	return devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_AUTO,
-> +				    data->cells, data->num_cells, NULL, 0, NULL);
-> +}
+> +	optee {
+> +		compatible = "linaro,optee-tz";
+> +		method = "smc";
+> +	};
+> +
+> +	cpus {
+
+Messed order of nodes. Please run dt-check-style.
+
+
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a55";
+> +			device_type = "cpu";
+> +			reg = <0x0>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			i-cache-size = <32768>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&L2_0>;
+> +
+> +			L2_0: l2-cache {
+
+Labels should be lowercase rather.
+
+> +				compatible = "cache";
+> +				cache-size = <65536>;
+> +				cache-line-size = <64>;
+> +				cache-sets = <256>;
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				next-level-cache = <&L3>;
+> +			};
+> +		};
+> +
+> +		L3: l3-cache0 {
+> +			compatible = "cache";
+> +			cache-level = <3>;
+> +			cache-unified;
+> +			cache-size = <262144>;
+> +			cache-line-size = <64>;
+> +			cache-sets = <256>;
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +			CPU_SLEEP_0: cpu-sleep-0 {
+> +				compatible = "arm,idle-state";
+> +				local-timer-stop;
+> +				arm,psci-suspend-param = <0x0010000>;
+> +				entry-latency-us = <75>;
+> +				exit-latency-us = <155>;
+> +				min-residency-us = <50000>;
+> +			};
+> +		};
+> +	};
+> +
+> +	osc: osc {
+
+Please use name for all fixed clocks which matches current format
+recommendation: 'clock-<freq>' (see also the pattern in the binding for
+any other options).
+https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +	};
+> +
+
+...
+
+> +		cpuclk: cpu_wrap: syscon@f7e30000 {
+> +			compatible = "syna,sl2610-cpu-syscon", "syscon";
+> +			reg = <0xf7e30000 0x4000>;
+> +			#clock-cells = <1>;
+> +			clocks = <&osc>;
+> +			syna,gbl-syscon = <&chip>;
+> +		};
+> +
+> +		gic: interrupt-controller@f7e59000 {
+> +			compatible = "arm,gic-400";
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			reg = <0xf7e59000 0x1000>,
+> +			      <0xf7e5a000 0x2000>,
+> +			      <0xf7e5c000 0x2000>,
+> +			      <0xf7e5e000 0x2000>;
+
+Please follow DTS coding style in ordering properties.
+
+> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+
+...
+
+> +		soc_spi0: spi@f7f04000 {
+> +			compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
+> +			reg = <0xf7f04000 0x100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			num-cs = <4>;
+> +			clocks = <&clk CLK_APBSPI0>;
+> +			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+> +			status = "disabled";
+> +		};
+> +
+> +		soc_i2c0: i2c@f7f05000 {
+> +			compatible = "syna,sl2610-i2c", "snps,designware-i2c";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0xf7f05000 0x100>;
+> +			clocks = <&clk CLK_APBI2C0>;
+> +			i2c-sda-hold-time-ns = <449>;
+> +			i2c-sda-falling-time-ns = <425>;
+> +			i2c-scl-falling-time-ns = <205>;
+
+If these are here, then they are implied by compatible, no?
 
 Best regards,
 Krzysztof
