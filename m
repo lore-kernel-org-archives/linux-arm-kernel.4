@@ -2,121 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF1FA606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F561606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uLYhYFJf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=o2vTmB0+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1IXcObi7;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Pb2lYs+Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ElNb3HbvQvbFQc/bVm38lmjPu+4gNqzUV9N8Fnv5BVI=; b=uLYhYFJfFfSMG4
-	OBMbqvCVb8dU1iBZRry+WaTA5smeAewrRfXpHaUI/MEFwM2OapGjSKedSqGi/coU0DABDmLH006Pw
-	utaM0m3vPJLD5Q/8TrbbEFzTIwcefiPaglxt+cx79vanSYMP3lIy5wUuZBFs0akuHvpjnMO5KftHW
-	2WzyOurfV1ISK6wDJDF4SaiEP8MN8kcP4WRoQxfy8T+EC6F5PYwcLgB3lmaQv8vHOATgYzOKTSOgv
-	BJnaBRIIOIltPxwQha5M9QG6qpXpSFmtZ3KlQ3TouzPdyRuxnPcXcgRf9hNEiKycun7Y03KCx5ISa
-	Ijw0UOxnbsobyXjK0c4A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=n9Vi6fXV2kLrma4jnlJMeItulhA2U5CH2EzMknqFkBM=; b=1IXcObi7UrVAnXrWciCaJtT0WX
+	iPOjYfuRplvi07QQEXr6u/MD4O3HYnjcsmbd3GoQgjsPm3ZkqoYKDHABCfwpzg080k7YRQXtnsCFt
+	k5P0m8bGvFDmeGQYDKLM5YAvssnDYYKsJncseXXmfO00ok6V7S/gyyu9W2lIHbjW/sAtZhyD5zXSf
+	U2gqRqwuAKmgIE4OA8Thu5uymf/EiAjhyiphPh+/es8Gk7HK9xeFfAS0QQVbjtyyz+go0VyTuk4Uj
+	BCC8XBD4LdBCWby1nda6GCK+X8C38P2WRDJBHPsLKiEplQkcubCydy7rs3cDuhiff1kNgiBjF8+GZ
+	0XNbYvtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVW9a-000000042tx-2BWP;
-	Mon, 23 Nov 2026 15:40:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVW9Y-000000042tP-1VOJ
+	id 1xVXeC-00000004KDJ-4Btl;
+	Mon, 23 Nov 2026 17:16:09 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVXeA-00000004KCp-2nGG
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 15:40:25 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A472A62337;
-	Mon, 23 Nov 2026 15:40:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A886D1F00A00;
-	Mon, 23 Nov 2026 15:40:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795448423;
-	bh=ElNb3HbvQvbFQc/bVm38lmjPu+4gNqzUV9N8Fnv5BVI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=o2vTmB0+YrsXc0UgqmlFNdABgmJLkx1DWpNB2xbQNRXrOS4NZWu6jJOWlxmf3OVW8
-	 OLQEuSTVqBXOxsOlX2BdW1ZvZXHkylGJesL8rkeTqZ8+rpUedwAa0ZsnxO7bb6vrw5
-	 EYmQRv8ZN0PPSGVOtsdUkujkljkJyDepCo59C/WnmNdpNMxhtxqfPFtcJngsP4Nbl9
-	 dFJV8Pb33m/sOq82VJerREOe5KaSyyEMeGGZt+4L3oMOk+4cPiLNPhnqD2ub6VHkKg
-	 JzpVCfq6b0Cev+rRfdS3qrORhLvBkyNrtDBmP4Iu6P+trhyThDG+9RIawQwvTQ6hRl
-	 bL8+tTi1lAMvg==
-Message-ID: <755ed314-ac9a-45f4-9403-52e7f0754ca1@kernel.org>
-Date: Mon, 23 Nov 2026 16:40:15 +0100
+	Mon, 23 Nov 2026 17:16:08 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5621F143D;
+	Mon, 23 Nov 2026 09:16:02 -0800 (PST)
+Received: from e137867.cambridge.arm.com (unknown [10.2.213.11])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A8EF43F763;
+	Mon, 23 Nov 2026 09:16:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795454165; bh=PLmix3wUMZznq30E+gdl5v2UeGWepbJeohyBg07iSZo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Pb2lYs+YvRXVt6HKquDn6jX9yH3snAt20GK6LCJEq2uxGmYmUBH6R18hrUssoeJdW
+	 ApZLc4tGLYO9IoUhWBlje3ir8as4A5LPUMxaMwcmLfS9BDni3XN8bLdYv0tMjXbCq3
+	 Ag6srrcD4KOh/Qqu6injoweRNZIj80v7R/deJnTc=
+From: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+To: linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/3] arm64: sdei: fix entry edge cases, pseudo-NMI
+Date: Mon, 23 Nov 2026 17:15:54 +0000
+Message-ID: <20261123171557.140944-1-ada.coupriediaz@arm.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/4] crypto: qce - convert to auxiliary bus
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>,
- Stanimir Varbanov <svarbanov@mm-sol.com>,
- Eneas U de Queiroz <cotequeiroz@gmail.com>,
- Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
- Eric Biggers <ebiggers@kernel.org>,
- Demi Marie Obenour <demiobenour@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Russell King
- <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>,
- linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-References: <20261120-qce-fix-self-tests-v12-0-b5a2a44bc5ae@oss.qualcomm.com>
- <20261120-qce-fix-self-tests-v12-1-b5a2a44bc5ae@oss.qualcomm.com>
- <c26b8002-c246-45cb-bca0-8f596a2a425b@kernel.org>
- <sfsgrwaj6ichkuafqvrpmql67664x6vyxgz7lwjxhywbf5zc3l@edz4qooziklt>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <sfsgrwaj6ichkuafqvrpmql67664x6vyxgz7lwjxhywbf5zc3l@edz4qooziklt>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_091606_762221_882F1E90 
+X-CRM114-Status: GOOD (  12.64  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,34 +63,68 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, Kiryl Shutsemau <kas@kernel.org>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Usama Arif <usama.arif@linux.dev>, Peter Zijlstra <peterz@infradead.org>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, linux-kernel@vger.kernel.org, James Morse <james.morse@arm.com>, Marc Zyngier <maz@kernel.org>, Breno Leitao <leitao@debian.org>, mrigendrachaubey <mrigendra.chaubey@gmail.com>, Will Deacon <will@kernel.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23/11/2026 16:29, Bartosz Golaszewski wrote:
-> On Sat, Nov 21, 2026 at 02:05:57PM +0100, Krzysztof Kozlowski wrote:
->> On 20/11/2026 20:34, Bartosz Golaszewski wrote:
->>> This driver is disabled in arm64 defconfig but one of its
->>
->> That's true for next, but your patch #3 seems to disagree. That's
->> confusing. Maybe you meant disabled for arm64 platforms or marked as
->> broken? Because anyway defconfig does not matter here - even if drivers
->> are not enabled in defconfig (so stay disabled), they should not be
->> affected with unbisectable changes.
->>
-> 
-> Keeping this fully bisectable (it is build-time bisectable actually)
-> would mean squashing all 4 patches together. If nobody objects, I can do
-> this of course.
+Hi,
 
-That's not the point. The message is just confusing. It is not "disabled
-in arm64 defconfig" according to your next patch...
+This v3 has a few small fixes and commit message clarifications.
+More details in the [v1] cover.
 
-Best regards,
-Krzysztof
+As discussed in [0], SDEI entry has a number of remaining issues.
+This small series aims to fix the biggest potential issues :
+ - Patch 1 : with KVM in VHE, VBAR_EL1 might not be correct
+ - Patch 2 : PMR was not handled at all when using pseudo-NMI
+ - Patch 3 : very early SDEI interrupt on non-boot hotplugged CPU
+     might end up with `current == NULL`
+
+I spent most of my time digging into the details of boot and
+CPU bringup so I still do not have an SDEI test setup, so any testing
+especially with `CONFIG_ARM64_PSEUDO_NMI=y` and
+`irqchip.gicv3_pseudo_nmi=1` would be appreciated !
+
+After some discussion and digging in the code, it looks like the issue
+patch 3 fixes should be incredibly rare, so we might be OK without pulling
+this patch at all. (Though the comment change for `__entry_task`
+remains a relevant clarification.)
+
+Thanks in advance
+Ada
+
+Changes in v3:
+ - Clean up comment that an SDEI interrupt during KVM world switch
+   would always hyp panic as patch 1 should avoid it (Kiryl)
+ - Reword the commit message to detail the specifics in which the SDEI
+   handler might get a NULL `__entry_task`
+Changes in [v2] (patch 2 only):
+ - Properly use pt_regs to save/restore the PMR in `__sdei_handler()`
+   (Vladimir)
+ - Update commit message accordingly
+
+[0]: https://lore.kernel.org/r/20261105120835.3321912-1-kirill@shutemov.name
+[v2]: https://lore.kernel.org/r/20261118154233.83599-1-ada.coupriediaz@arm.com
+[v1]: https://lore.kernel.org/r/20261117174814.95936-1-ada.coupriediaz@arm.com
+
+Ada Couprie Diaz (3):
+  arm64: entry: sdei: always set VBAR_EL1 on SDEI entry
+  arm64: entry: sdei: save and restore PMR for pseudo-NMI
+  arm64: head: set __entry_task along with task setup
+
+ arch/arm64/kernel/entry-common.c | 38 +++++++++++++++++++++++---------
+ arch/arm64/kernel/head.S         |  3 +++
+ arch/arm64/kernel/process.c      |  3 ---
+ arch/arm64/kernel/sdei.c         |  3 ---
+ 4 files changed, 30 insertions(+), 17 deletions(-)
+
+
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+-- 
+2.43.0
+
 
