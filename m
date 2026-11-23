@@ -2,85 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61EB8606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89087606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pBRNvX9T;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=WtMPcweJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kn4UdMwD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E+6H/6oP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=F8qHgosTivfubEojhD9h/g4AbrUIaCm94vrYMofZ18Q=; b=pBRNvX9TqvCOan
-	H5FxWF7nOouTHfmBwPTmXvyt8u7dSfdRtW5e4P2NkR1oqCXYBe0lKqg9lQiEIAHAZuVbQBx9PY2A+
-	Qwvw8MniQX1BwA71KqpkMstWLiG06u7PsqMZ4UYo7Xh7iNnLQn2VdltnBE1jq6Z3vKupmKskNVMBU
-	clib2q3UQ0SV516w+LqtlHYenWdrb0XP+0mGBaMJgd1pCSrvg8SvN40sMdWlI5kf/DHialDejP5An
-	iQ7An/Go9tz7YNEvx8yDB8LCeZPqkKUpOhMfwonRe0PD3FN7+Rghd5qjHG6mJTrhd0my9E71OQrhT
-	wMScSrO0WuV/pOdiMvCg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=EBAlgyArUaIDoaFWbczuSy+qeFGqGHKDwrHB/xbYHXM=; b=kn4UdMwDBEpfxpNmVhcQn3KlZM
+	Lzbf4kjzGlwJ7Od/FsrKGerv9nIOa/xXqN/3kJKHKtQHHz/0toWyfBUESu3YjM10Yw0TPTyrxQyen
+	jiY21okMzIcIMhYL4KeFeZpyBuG+/ZQNJeDexWdsLON72EkjHCApZ+1cyzLBGeMtdrd97HZXyHKht
+	UTX/1WF+inFvpNzgFmH0G22rQ/Vnl7E2UhOLJtNk1x/ZZlThJpYQxqO0rFrHPKYglcZiYhfTk593h
+	Xzwx7rvsNxUeHILs7S+LGRXr3cl8djwEbZ+IHJB6e6UnihLi6CYyHMkScBH6k+B8fJjLRIHZPCvz4
+	f+UNEUaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRWP-000000030nL-0BeU;
-	Mon, 23 Nov 2026 10:43:41 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRWE-000000030h9-199D
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:43:31 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D44D719F6;
-	Mon, 23 Nov 2026 02:43:26 -0800 (PST)
-Received: from e122027.arm.com (unknown [10.57.63.212])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EE50C3F9AB;
-	Mon, 23 Nov 2026 02:43:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795430609; bh=GpnTkMmsNJrsBbQSV3YzUlyu+crXLKIz/ySS7mBnD+A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WtMPcweJKiumfvm11ci2Pif5apy4/M+un7rFjM4tdSighLl1mM+siXPnz+UpNSH0j
-	 7cUmfuBWsTjpfoILV2zA8uz2BI9fGqIjBO2of0XKlEkeP3b92Mj4Phspor14tDYg8p
-	 0w+JRxyVK4FvYxXps+WJPHlENuraEqCYtoGFK6dU=
-From: Steven Price <steven.price@arm.com>
-To: kvm@vger.kernel.org,
-	kvmarm@lists.linux.dev
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	James Morse <james.morse@arm.com>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Joey Gouly <joey.gouly@arm.com>,
-	Alexandru Elisei <alexandru.elisei@arm.com>,
-	Christoffer Dall <christoffer.dall@arm.com>,
-	Fuad Tabba <tabba@google.com>,
-	linux-coco@lists.linux.dev,
-	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-	Gavin Shan <gshan@redhat.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>,
-	Alper Gun <alpergun@google.com>,
-	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>,
-	Emi Kisanuki <fj0570is@fujitsu.com>,
-	Vishal Annapurve <vannapurve@google.com>,
-	WeiLin.Chang@arm.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kohei Enju <enju.kohei@fujitsu.com>,
-	Steven Price <steven.price@arm.com>
-Subject: [PATCH v4 09/11] KVM: arm64: CCA: Prevent memslot modifications after Realm creation
-Date: Mon, 23 Nov 2026 10:42:29 +0000
-Message-ID: <20261123104233.95710-10-steven.price@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261123104233.95710-1-steven.price@arm.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
+	id 1xVSs4-00000003IIe-1adE;
+	Mon, 23 Nov 2026 12:10:08 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVSrS-00000003I3H-3Zx5;
+	Mon, 23 Nov 2026 12:09:30 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 803D343654;
+	Mon, 23 Nov 2026 12:09:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 296FD1F000D3;
+	Mon, 23 Nov 2026 12:09:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795435770;
+	bh=EBAlgyArUaIDoaFWbczuSy+qeFGqGHKDwrHB/xbYHXM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=E+6H/6oP8nLnOr4iihKZsT5mFLOzHyhwUMzMxmC6pmAe+pt5ais3/kGYPwi8oF5zr
+	 GjAUPCdau77AfYr2a7Mpi/s9QIus/zoxYa14PAqfbidqxzxwPdaC4msn8xdwhGgYbY
+	 nrWqf+M6Mn+OtAJyvAriYXzms38kkQbkOj2aCC5vFExcHvLJrAW61nRLiv+esgmheb
+	 hmdZLQDBBvmHVNc3/BLfmVLqfolD+YZt5NvD63SBFtb0XhEPrhJcH4DKSycDVALgmF
+	 Vepzp38JoPHLXSbuUbw56Yo0Q2S6VCXBAySB6aIOmtu9udEKeBIynyCXinbFCiTHjE
+	 1yVG1ElUOlkmw==
+Date: Mon, 23 Nov 2026 13:09:26 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robert Marko <robimarko@gmail.com>, Guru Das Srinagesh <linux@gurudas.dev>, 
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, Lee Jones <lee@kernel.org>, 
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	"Joerg Roedel (AMD)" <joro@8bytes.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
+	Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Georgi Djakov <djakov@kernel.org>, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Ulf Hansson <ulfh@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mfd@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, linux-usb@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 13/16] dt-bindings: arm: qcom,ids: Add SoC ID for
+ SXR2250P
+Message-ID: <20261123-pastel-barracuda-of-rain-bce8ac@quoll>
+References: <20261116-halliday-dts-v2-0-2c92438c6c46@gmail.com>
+ <20261116-halliday-dts-v2-13-2c92438c6c46@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_024330_514825_5A16BA7F 
-X-CRM114-Status: GOOD (  17.41  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261116-halliday-dts-v2-13-2c92438c6c46@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,133 +87,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Mon, Nov 16, 2026 at 09:26:29PM +0000, Stanislav Aleksandrov wrote:
+> Add the ID for the Qualcomm SXR2250P (Snapdragon XR2+ Gen 2) SoC.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+> ---
+>  include/dt-bindings/arm/qcom,ids.h | 1 +
 
-Once the Realm is created, prevent changes to guest_memfd backed
-memslots, which can provide private memory. Validate these changes
-before KVM invalidates the old memslot, so a rejected deletion leaves
-its stage-2 mappings intact. Realm stage-2 faults will also validate
-the private memory backing in a later commit.
+This should be rebased on my patch removing the IDs.
 
-Require Realm memslots to lie in the lower half of the IPA space, as the
-upper, shared half aliases the lower, protected half.
-
-Define kvm_arch_has_private_mem() so generic KVM recognizes Realm VMs
-as supporting private memory. Defining the macro also makes
-gmem_in_place_conversion true for every arm64 VM, so guest_memfd
-memslots are marked gmem-only even for non-Realm VMs. A well-formed
-KVM_SET_MEMORY_ATTRIBUTES2 request on a non-Realm guest_memfd now
-reaches the VM check and returns -EINVAL instead of -ENOTTY.
-
-Additionally, similar to pKVM, do not support dirty logging or
-read-only memslots.
-
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Steven Price <steven.price@arm.com>
-
----
-Changes since v3:
-- Explain the arm64-wide in-place conversion effect and keep the
-  general IPA limit comment.
-
-Changes since v1:
-- Preserve private mappings if KVM invalidates a Realm guest_memfd
-  slot before the prepare hook rejects its deletion.
----
- arch/arm64/include/asm/kvm_host.h |  2 ++
- arch/arm64/kvm/mmu.c              | 37 ++++++++++++++++++++++++-------
- 2 files changed, 31 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index 3ddeddfacd06..55673d08e3eb 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -1607,6 +1607,8 @@ struct kvm *kvm_arch_alloc_vm(void);
- 
- #define kvm_vm_is_realm(kvm)		((kvm)->arch.vm_flavor == VM_REALM)
- 
-+#define kvm_arch_has_private_mem(kvm) kvm_vm_is_realm(kvm)
-+
- #define kvm_has_mte(kvm)					\
- 	(system_supports_mte() &&				\
- 	 test_bit(KVM_ARCH_FLAG_MTE_ENABLED, &(kvm)->arch.flags))
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index 800333a345cd..9af5fe6d87f0 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -2861,17 +2861,32 @@ int kvm_arch_validate_memory_region(struct kvm *kvm,
- {
- 	lockdep_assert_held(&kvm->slots_lock);
- 
--	if (kvm_vm_is_protected(kvm)) {
-+	if (kvm_vm_is_protected(kvm) && new &&
-+	    (new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)))
-+		return -EPERM;
-+
-+	switch (kvm->arch.vm_flavor) {
-+	case VM_PROTECTED_PKVM:
- 		/* Cannot modify memslots once a pVM has run. */
- 		if (pkvm_hyp_vm_is_created(kvm) &&
--		    (change == KVM_MR_DELETE || change == KVM_MR_MOVE)) {
-+		    (change == KVM_MR_DELETE || change == KVM_MR_MOVE))
- 			return -EPERM;
--		}
-+		break;
-+	case VM_REALM:
-+		/*
-+		 * Once the Realm is created, we cannot modify any slots that
-+		 * could be providing private memory. i.e., guest_memfd backed
-+		 * slots.
-+		 * TODO: Handle trusted device private memory slots
-+		 */
-+		if (!kvm_realm_is_created(kvm))
-+			break;
- 
--		if (new &&
--		    new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)) {
-+		if (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new))
- 			return -EPERM;
--		}
-+		break;
-+	default:
-+		break;
- 	}
- 
- 	return 0;
-@@ -2883,6 +2898,7 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
- 				   enum kvm_mr_change change)
- {
- 	hva_t hva, reg_end;
-+	gfn_t ipa_limit;
- 	int ret = 0;
- 
- 	if (change != KVM_MR_CREATE && change != KVM_MR_MOVE &&
-@@ -2891,9 +2907,14 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
- 
- 	/*
- 	 * Prevent userspace from creating a memory region outside of the IPA
--	 * space addressable by the KVM guest IPA space.
-+	 * space addressable by the KVM guest IPA space. Realm shared IPAs alias
-+	 * the corresponding private IPAs, so Realm memslots must reside entirely
-+	 * in the lower half of that space.
- 	 */
--	if ((new->base_gfn + new->npages) > (kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT))
-+	ipa_limit = kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT;
-+	if (kvm_vm_is_realm(kvm))
-+		ipa_limit >>= 1;
-+	if (new->base_gfn + new->npages > ipa_limit)
- 		return -EFAULT;
- 
- 	/*
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
