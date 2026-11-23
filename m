@@ -2,147 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2F2606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4487A606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yYOIEtN1;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=iekE68HP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Mdqck9ar;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=amLS0Yjn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=jx7Ph0eMdBzZ/8yol8Si1xkApW7Jgsz7SRod0EJRTaU=; b=yYOIEtN1g3fxYj
-	HOqdZCeCsqlDuptYDtCYillttXEhFxZyC3YYTRsaBq74JzwON5LRJjxxJmpNw5/2aqjYow767VifH
-	aUmTneYCDhXBIpmJ0sr7Rz8KV/fyA4JzF1gNDj+XUcIDQRaY1XPb8k/Es+JfYRMDMoYb3fd4+J21C
-	bjbnehJl+TdNa3KGeOibqCpBovWqCyEDfYmaXbjJ6Ss4OeNFJugRZtdGhItaF5qjUYuq539eKr2ui
-	Y+XorNQX8ziRvhrleyauGf+Mbpstsato/sHRi2haZSlEuBynwwBIBOfqYu4kLSi+hpRM+ylNb4HIj
-	98bZfRhEMFHgp9LjMS3g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=H5+Lix3xzZSXhmyLmSdI/jrXb/6kX811TwJY7/S4SQU=; b=Mdqck9arTKwVGQnPS0JluINvXs
+	Hzh+P8uF6jDoOmsLgc8r6ewvB2YsO03svmv4uP2lbREY6N+w2vvzKIb8ZowllsH7e3YpizPUutJJc
+	R45uEpfDs3eYrjDHeKfknHc/1s6uW7F23dtY0oCD8iWpZk44Xl+2QIqIHB8kVeYzXX6hUf5hdDcQo
+	5SAl8sl3rpCKYbUds/ftyCSD0EbNEOhVd19kt/dm3Bi4CZH43KnpUuz9WOElJOvHW+YT+aubqD1/C
+	Be4Q2JP1TXPAlCm9V3MP8HybN+p6Uxw1mrHyoW9it3vLeu6En47gUDg8lwGX7qmn8IEH5aSG2S31w
+	D6dl/jpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXrH-00000004MWE-2wJq;
-	Mon, 23 Nov 2026 17:29:39 +0000
-Received: from mail-francecentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20a::7] helo=PA4PR04CU001.outbound.protection.outlook.com)
+	id 1xVXse-00000004MlN-10gN;
+	Mon, 23 Nov 2026 17:31:11 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXrE-00000004MVn-2PwM
+	id 1xVXsc-00000004Mku-1s5T
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:29:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qcMlXykLxv8MRwJLcsyDmXxlrzQrRt4PlcgIgOReGSWXV7FFWdjISfFFl2C3GT7It3i8U2v1sOD9ljXHFxoXXqToezJ/mukOzlOIg6Dsdzqbwmqxi/ZK3Wb2d19mlxVHtYyBQzFNGegK7kXj81ndv21qjI/9UEIftBrFVbnd0qWOsA0cVSM7ewA4BeZaGw1F7F/ztm60F68/hPou6q/PuDJr14ge+gyG06Hnr75YM8e7TKn8hk0JSaZnTYaCtuq3ZjfeY88GXesbYNgSXkWZYEG2twsodrqFnZk5VPyeb2gckIdAYeQVzKEmud46quHruKMD251jgyaSu34Ty0Joiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jx7Ph0eMdBzZ/8yol8Si1xkApW7Jgsz7SRod0EJRTaU=;
- b=xtCUOaU0malmWAaF/sA5ijOIAsGgLnPYkVe6XRd8tKDhtJUvgfOiw8qHcfh6va6HhgaokXINXBXfuZEHsFnRcUDOeX7Tyr25cB+gzVRefPi2RVZUe6fqeSh6acAvxj1l9vX/NE5wLaSBEVHI4LMdDaRdDF7qR7EzFcybSTa2UQYjaIF/p13Jl7iPjzangfc/kbLeJm+xPvc9PNeGIFQuI6XAfUu8VJPR4DWkbS2IKdHCslQykbmo3rOpB/a7e8VddDA1N/2eD7dJI/snf+iXPaGDZ8+4rUkdTBELHT6hBHYGjRXkdJC/8xOiC16NpiYf0BveK51IdSs52DhaWEuu4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jx7Ph0eMdBzZ/8yol8Si1xkApW7Jgsz7SRod0EJRTaU=;
- b=iekE68HPSF48Pj/p4iBiZv1/MCvFfq3jxcrqb4FUNij19atvG6nMosP3ANuVzNW/KguBf+p9fuP7N/zQ76S4Vll7V5w0sL02t0UL3gGNk+XmRA+x5U7z73I/n/S6d52V1Zeda2gA6oscOxqw4ihKPAFgH14hhWE+duxKlgvWeGowjbtAK5TxWPk8Og6zpA+D51roiFnMl/vBvSTXOUg3NvWtX/4m9TaTcmmwI8mAAiHqpCFvSm0i+/83Tjl63MOVvYuSu8K0o2OPNHq4DDOUM4m4aSyFLGvAqjyxTl/5srl+QW4AKdFEGut8BflaRQC7qD9NymHnw6aA2pU0YO/NFA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by VE1PR04MB7472.eurprd04.prod.outlook.com (2603:10a6:800:1b2::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
- 2026 17:29:30 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
- 17:29:30 +0000
-Date: Mon, 23 Nov 2026 11:29:22 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Martin =?utf-8?B?VMWvbWE=?= <tumic@gpxsee.org>
-Cc: Lizhi Hou <lizhi.hou@amd.com>, Brian Xu <brian.xu@amd.com>,
-	Raj Kumar Rampelli <raj.kumar.rampelli@amd.com>,
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, dmaengine@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Martin =?utf-8?B?VMWvbWE=?= <martin.tuma@digiteqautomotive.com>
-Subject: Re: [PATCH v4 1/1] dmaengine: xilinx: xdma: Fix broken PM
- suspend/resume
-Message-ID: <awR38q5pZk5DKHZf@SMW015318>
-References: <20261123122236.5460-1-tumic@gpxsee.org>
- <20261123122236.5460-2-tumic@gpxsee.org>
- <awRlXmBFmE8R82qv@SMW015318>
- <7285f4da-c5c7-4077-b6cd-bc7921ab04a1@gpxsee.org>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7285f4da-c5c7-4077-b6cd-bc7921ab04a1@gpxsee.org>
-X-ClientProxiedBy: PH8P220CA0052.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:2d9::6) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Mon, 23 Nov 2026 17:31:02 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 347D240DF0;
+	Mon, 23 Nov 2026 17:31:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE51D1F000CF;
+	Mon, 23 Nov 2026 17:30:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795455062;
+	bh=H5+Lix3xzZSXhmyLmSdI/jrXb/6kX811TwJY7/S4SQU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=amLS0YjncvNQ8pmJUK54pkqj7g6R+BvKyP09zvF4FpC6ZYJmXf1rqrz7cnIDa8kEs
+	 EUWLGPx3cl2WgTRKDzJkV84pGWBytW6j9+dXVHk7oe7IXom0C0t1BBtDTglYuoGEr2
+	 +dudUVBvI0XE2yWAg43iUgkd3VALtI0xsoRsEWxc32FATRGUvTqFUJgYjC2wPW2ejR
+	 3OYKYRxwTZ9nqFnxGFvdZog3FoMn5f+9VHIRADSYUm3uJ0DVSAP7h+a0vgFv4PVXYB
+	 mCIrobfQpnSLlKmUBRL2VRuQAqVkSDv29/242VxHYj768lQqO4v6kUn4Wd1DakW3nd
+	 HKQpbNyYBIH8Q==
+Date: Mon, 23 Nov 2026 17:30:54 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Philipp Stanner <phasta@kernel.org>,
+	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 01/11] dt-bindings: iio: adc: add stm32mp2 mdf filter
+Message-ID: <20261123-barbecue-trickily-4ae8d9f01b3d@spud>
+References: <20261118-upstream_mdf_v2-v2-0-7939d3c3720a@foss.st.com>
+ <20261118-upstream_mdf_v2-v2-1-7939d3c3720a@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|VE1PR04MB7472:EE_
-X-MS-Office365-Filtering-Correlation-Id: 427e3059-823a-406c-1677-08df498754e6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|23010399003|1800799024|366016|376014|7416014|261102123227099003|261102124227099003|261028144727099003|261021121427099003|261021123027099003|261022075727099003|261022105027099003|261026121527099003|11063799006|5023799004|261026140227099003|4143699003|56012099006|10067099003|22082099003|18002099003|6133799003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: TohSRyLohd9dWeM/UHbD6TAZKftHzRWA5vvnXW1L4p6fcxwb8R8haWYtD9qvYQgQHpUtcpQ0yrjf+lSe5+6A73GxFxvHCyiYw+OH20FNK99Ou5wZn1NNZ1Mg0nEptcTu8p4pnA6f8VS+bO2xDaU2iNENxyyD8QeYjGL5LISv0FKh6vpX2uodzaJ1D6Rb7nIcQsiB/ICln34VGCZ7Lk+MitfCzlE9BQI4z+uJpthtzblnASXaQp/1V4dC+JVQ1RpySddoTaGAqX8hXqIepGi7wZvdBMLmb0QSnl5e/yOv2iMfdCRa8p/FsbVAvRUyzaejQbhfPtVF6oanPVmQ+G4hvjeG8/CKc7HVT8qx9bcK6vwN509I/Ppqdi3G3utBd1srcIieNKMO53/ORZzukfHBOALFC4dGTkjkOsMew97tq9Ds7GHD9ad1jUO1x9sDSaPvQgbfBHU5NY3uJVI0jTGv6eWvwf3XrWYKZLmNUhr7uIpz1tpQwl9ZGIRBmk8BlcO7ddDW9DbxxBo4U4YEvTz8VPSErXIf45J5eCrV6c6bRyiKqM/UnN0bTrqnCYJwi59sozZUvojAqsjzy/4ZZ7HygTY/8mgZ1j2cWivYpxJ3NLSsvC9/ghpgMVYYDm7rtKGFFZuzAvr1T9Oixf37bKodxNBWI/60RJlzfSG5Qw7ymQE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(23010399003)(1800799024)(366016)(376014)(7416014)(261102123227099003)(261102124227099003)(261028144727099003)(261021121427099003)(261021123027099003)(261022075727099003)(261022105027099003)(261026121527099003)(11063799006)(5023799004)(261026140227099003)(4143699003)(56012099006)(10067099003)(22082099003)(18002099003)(6133799003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qk0xOWpUQ2UxVkxMZ0ZCR1FzTnpwVyswTHdjSjlHaml0dElpcElQckkyWEpk?=
- =?utf-8?B?VWF1QklKNitFVDdHMDd0NzlPcER0WnZvWGM3Z01MY3kzYkZJSUtZUkNYenND?=
- =?utf-8?B?TjFBOVBERk90Y1ZZdkdOQjIyOWZxdEhOem51bk5kRFo3N3pNMU8yakxsYU9W?=
- =?utf-8?B?MS9OV1ZPY3IydlVkWlRGU1M4R0l3bzJxSjIrVHMvaGRZMmo5S2JyUnkxSnRB?=
- =?utf-8?B?b204N2d2dUVUaXNPcEZxa3p5b09ZdWRTNFRwaURxOVdYeW0yWmpucEttWGpE?=
- =?utf-8?B?bk5IMmxGUGkrZ3AzdGVvRlpCTERTbjQyeFNVNU5GK0h2eTEzYUpBSElWODZK?=
- =?utf-8?B?UDBwVEFFTDEzTlVDWkVQNVBOcllSK3UreHhjNmdmR3dJRmk2aEgyMDN2K3BV?=
- =?utf-8?B?NVgwVE1NUzZNTmtHejJIcVZsdWZCcS9ONlJIcmkwQTVzVlZUN1M3akVtTXF6?=
- =?utf-8?B?MHdvSENzZWtodlk5aEtoZmlRZ1FCTTh6YzUrRDYzWWg5THhJZmEwRFFxd3R1?=
- =?utf-8?B?b2puQlR2YlhRend5WGVBaHZ6MWpyNmgwdVQ1MGpOaU9YQzlwdVA5dzJvTGVR?=
- =?utf-8?B?bG9EN2gvM2J4RW5PdE0wY2tSeEZleUE5Snh4bGZkTHYveDljSnNpT0RQL2Zu?=
- =?utf-8?B?OGpGVmQwN0MycnpWNERkUHkzQ25LbGZxaTcxUC9MdURqR3hDSDhySGZFMmcw?=
- =?utf-8?B?V3VpdnozWEJiV1B1OXh6dzVqRXRVUXdYMXpLaDNUK1l2UGVEcEhYZU5pU1JC?=
- =?utf-8?B?WGlQYzBNTFlyWU13Rmd0K2ZEQk9NSklDWHhrS2pqczR5dFA0T2t3R0hZczZZ?=
- =?utf-8?B?ZjlKMS9Vcnd3RXAwR213aU1tTTJOUU5LaG1SYUtsc3FlSlBSaGxCQTBnUDZ6?=
- =?utf-8?B?TC9DQjEyVG9kcUZ4T2dzWVlkTGlycWQyWC9lQ3lsQlZheStwKy9DVjZ1Q0h4?=
- =?utf-8?B?Mk9MMVJhWVc2TXR0TlBwNzZoa1g3V2hxN3lJRFFTK05icndmRnpEeFpXU3VI?=
- =?utf-8?B?MkVrWjgxelNUMUttb1ZvNUF3cnp0R3E4K1QzUEZWVU5iQ3ZmdkRXNXFNKzdv?=
- =?utf-8?B?OGQvdFh5RUxNRktqL1QxRGdDdzcvSlR3Wm5VcS9Jbnh6ME9uQUlHY1pDekgz?=
- =?utf-8?B?QVBpaTdjckcyZ1ZiTlF2RDN5V0RmYlhDSEQ0TTl2WG9LaTBmdDRjdkZ5bGZZ?=
- =?utf-8?B?SlBZSTNXOHB4ODZDNGl4N0ludkQ0NkZOMS9EcUliaDZiTWpnVWd2QnFVTmx2?=
- =?utf-8?B?WThHRytjQkZoTlFsTkFyS1RlRW45ZXE2akQ2NW8wNnJWWkVhdUZRZVhPQkZH?=
- =?utf-8?B?MWpZZ0RkVUdqV21NS2pZbHlNdUZxdEVXVVRzVGVyTjdoMTNScDE2WE41eXBy?=
- =?utf-8?B?UkpEdm9TVXlpYUdOSmlBYW45R1pHclFBVm82RlBSdHAwdDBNQ3hvWEVjT20r?=
- =?utf-8?B?SmZSTTh6ZVd5MGExMk9KZENNNzJOWnVCREpGckhaNXN3WTUxb0NyUXBJbjky?=
- =?utf-8?B?dUI5VmY1a1ZiLzFOYjBFazFGcHpRNGg3eW84WjhyMUc0QXBTVjJqaDl4U2Jk?=
- =?utf-8?B?WWF5WDB1U0pSWmxndWIwVVVpTkxVN2pjV051eU1sWTZOOWZuVWd2cDhHMy9P?=
- =?utf-8?B?TGRhUWxSRGZLZmZ1RUpWVzFSWURlb3dlSWluQjFOZjF2akF1aGtMU1FVbUpq?=
- =?utf-8?B?bkxObjhOYWJZQU5DaGt3ZlRwYXBlT2RXWkJxaHJhS0hObnVuSEd0V0l6ZXJN?=
- =?utf-8?B?N0lWTlp4R3ZxZCtBbWJYWWx1TUN2VWEvTlNRdG9ZdHN0TW9qaEtkejFBZDFm?=
- =?utf-8?B?a1BTU2FUVzRRSGNtdWw2Z2k5K0hQc0RUNlBxcUU1UUI2a0xkaGloeDQzM3Nj?=
- =?utf-8?B?VVV6OU1nMDJsSVBMY3NRTXlJQm9UWlMxMW9WNFlTRVd1aUVUT2RwTHA1TUFu?=
- =?utf-8?B?TUkrRGliZk9DTTNrZXJ4bjJ5cHdsNjRZanFWNi9kcGswTDIwdWZIKzlJQ2Vy?=
- =?utf-8?B?SndNMkEyQnNZeWtpSUVtUXBubXh2MTNCc1gyUkg2WFJkTXJJcjRyWi8rNUgr?=
- =?utf-8?B?Y1FxYXE3OGt0Q0p4OFZMWisvNnFYRjVJMEdFZkFVNVIzWUxLbnA4a2k3dEVT?=
- =?utf-8?B?bmVwMG1zN1h6Z0QyTUZiQi9rdkhOR0xpQllKVlROMmN2K2RBNjhESGpsMm1o?=
- =?utf-8?B?eVYwaW9NTGNZQkxCUTJsenNCOVZVOW53bXJURldKOUx6SUw3N1FhRWdMMVlG?=
- =?utf-8?B?cXNVcGE0a3FIMC9yak1TekNCY3VMMGZBZm9JSVN5a0o0YXlndFVzdnFud0FC?=
- =?utf-8?B?QThIbDc0MXhtSUVVR25tcXZBYVgwME54V3ExSFVQQWhvOWFiZXBvVVA5TytL?=
- =?utf-8?Q?PS5ddNzLD9JbNyNUxwpmxXIImDQHO0bQIWeAf?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 427e3059-823a-406c-1677-08df498754e6
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 17:29:30.5633
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2Mk6emLH0rgLth8zrPigsFU2YjolpkSc/znxjy6dPzx6dVi+CzZacmnlkvWZBEnqUkklMLYti5lWgKJe5+S+6FTS3PEQs4GAKUGBwrHtthLL5k0h+DJipDC7wx1/7lFr
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7472
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_092936_765248_FD01E159 
-X-CRM114-Status: GOOD (  31.16  )
-X-Spam-Score: 0.0 (/)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qmIYYbkYuRL7omxq"
+Content-Disposition: inline
+In-Reply-To: <20261118-upstream_mdf_v2-v2-1-7939d3c3720a@foss.st.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,259 +89,426 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 05:33:01PM +0100, Martin Tůma wrote:
-> On 11/23/26 5:10 PM, Frank Li wrote:
-> > On Mon, Nov 23, 2026 at 01:22:36PM +0100, tumic@gpxsee.org wrote:
-> > > From: Martin Tůma <martin.tuma@digiteqautomotive.com>
-> > >
-> > > Add the missing PM suspend/resume callbacks that properly reconfigure
-> > > the XDMA HW on PCIe suspend/resume.
-> >
-> >
-> > Can you talk about more about why need reconfigure the XDMA HW? Does it
-> > power lost?
-> >
->
-> Yes, XDMA is a DMA controller used on PCIe cards. When the OS goes to
-> suspend, it powers off the complete PCIe bus and as a result the XDMA HW
-> completely looses all the configuration set up in probe(). On resume, the HW
-> must be reconfigured, otherwise you end up with a broken, iresponsible PCIe
-> card when the system wakes up.
+--qmIYYbkYuRL7omxq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Add such information in commit message, not all PCIe card lost power during
-suspend. Not all system support D3 Cold. You'd better check one register
-to decide if really power off.
+With an eye to accepting something of this nature, rather than a rework,
+I have some initial questions before suggesting some remodeling of what
+is here.
 
-Frank
+On Wed, Nov 18, 2026 at 04:17:46PM +0100, Olivier Moysan wrote:
+> Add bindings that describes STM32 MDF settings to support
+> digital filtering for Pulse Density Modulation (PDM) microphones
+> and analog sigma delta modulators, on STM32MP2 SoCs.
+>=20
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>  .../bindings/iio/adc/st,stm32mp25-mdf.yaml         | 341 +++++++++++++++=
+++++++
+>  1 file changed, 341 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32mp25-mdf.y=
+aml b/Documentation/devicetree/bindings/iio/adc/st,stm32mp25-mdf.yaml
+> new file mode 100644
+> index 000000000000..e4925a38012d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/st,stm32mp25-mdf.yaml
+> @@ -0,0 +1,341 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/st,stm32mp25-mdf.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32 Multi-function Digital Filter (MDF) ADC
+> +
+> +maintainers:
+> +  - Olivier Moysan <olivier.moysan@foss.st.com>
+> +
+> +description: |
+> +  STM32 MDF ADC is a sigma delta analog-to-digital converter dedicated to
+> +  interface external sigma delta modulators to STM32 micro controllers.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,stm32mp23-mdf
+> +      - st,stm32mp25-mdf
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    enum: [0, 1]
+> +
+> +  clock-output-names:
+> +    description: |
+> +      CCK0 and CCK1 are optional output clocks, which share the same clo=
+ck frequency,
+> +      but can be gated independently to save power.
+> +    minItems: 1
+> +    items:
+> +      - enum: [cck0, cck1]
+> +      - const: cck1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  access-controllers:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  st,interleave:
+> +    description: |
+> +      Number of interleaved filters, starting from filter 0. For a value=
+ N,
+> +      filters 0 through N - 1 participate in interleaving. Their samples=
+ are
+> +      multiplexed into a single channel and retrieved through the device
+> +      associated with filter 0. Filters 1 through N - 1 must be enabled =
+and
+> +      inherit their configuration from filter 0. If absent, interleaving=
+ is
+> +      disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2
+> +    maximum: 8
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ranges
+> +  - clocks
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  "^sitf@[0-9]+$":
+> +    type: object
+> +    description: |
+> +      Serial interface configuration, managed by the MDF core. Pin contr=
+ol
+> +      states for the serial interface pins belong to the MDF parent node.
+> +
+> +    properties:
+> +      reg:
+> +        description: Specify the SITF serial interface instance
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        description: |
+> +          Serial interface clock (optional depending on interface mode)
+> +        maxItems: 1
+> +
+> +      st,sitf-mode:
+> +        description: |
+> +          Select serial interface protocol
+> +          - spi: SPI mode
+> +          - lf_spi: low frequency SPI mode for low power applications
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum:
+> +          - spi
+> +          - lf_spi
+> +
+> +    required:
+> +      - reg
+> +      - st,sitf-mode
+> +
+> +    additionalProperties: false
+> +
+> +  "^filter@[0-9]+$":
+> +    type: object
+> +    description: Digital filter path child node
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - st,stm32mp25-mdf-dmic
+> +          - st,stm32mp25-mdf-adc
 
->
-> M.
->
-> > Frank
-> >
-> > >
-> > > Signed-off-by: Martin Tůma <martin.tuma@digiteqautomotive.com>
-> > > ---
-> > >   drivers/dma/xilinx/xdma.c | 146 ++++++++++++++++++++++++++++++++------
-> > >   1 file changed, 123 insertions(+), 23 deletions(-)
-> > >
-> > > diff --git a/drivers/dma/xilinx/xdma.c b/drivers/dma/xilinx/xdma.c
-> > > index 9d827c9a1267..fade49eaf1a8 100644
-> > > --- a/drivers/dma/xilinx/xdma.c
-> > > +++ b/drivers/dma/xilinx/xdma.c
-> > > @@ -123,6 +123,7 @@ struct xdma_desc {
-> > >    * @irq_start: Start IRQ assigned to device
-> > >    * @irq_num: Number of IRQ assigned to device
-> > >    * @status: Initialization status
-> > > + * @usr_irq_mask: User IRQ mask for PM suspend/resume
-> > >    */
-> > >   struct xdma_device {
-> > >   	struct platform_device	*pdev;
-> > > @@ -135,6 +136,7 @@ struct xdma_device {
-> > >   	u32			irq_start;
-> > >   	u32			irq_num;
-> > >   	u32			status;
-> > > +	u32			usr_irq_mask;
-> > >   };
-> > >
-> > >   #define xdma_err(xdev, fmt, args...)					\
-> > > @@ -398,6 +400,26 @@ static int xdma_xfer_stop(struct xdma_chan *xchan)
-> > >   			    CHAN_CTRL_RUN_STOP);
-> > >   }
-> > >
-> > > +/**
-> > > + * xdma_reconfig_channels - Reconfigure DMA channels
-> > > + * @chans: channels configuration
-> > > + * @chan_num: number of channels
-> > > + */
-> > > +static int xdma_reconfig_channels(struct xdma_chan *chans,
-> > > +				  u32 chan_num)
-> > > +{
-> > > +	int i, ret;
-> > > +
-> > > +	for (i = 0; i < chan_num; i++) {
-> > > +		/* init channel hardware */
-> > > +		ret = xdma_channel_init(&chans[i]);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >   /**
-> > >    * xdma_alloc_channels - Detect and allocate DMA channels
-> > >    * @xdev: DMA device pointer
-> > > @@ -1018,6 +1040,55 @@ static int xdma_set_vector_reg(struct xdma_device *xdev, u32 vec_tbl_start,
-> > >   	return 0;
-> > >   }
-> > >
-> > > +/**
-> > > + * xdma_irq_config - Configure IRQs
-> > > + * @xdev: DMA device pointer
-> > > + */
-> > > +static int xdma_irq_config(struct xdma_device *xdev)
-> > > +{
-> > > +	u32 user_irq_start;
-> > > +	int ret;
-> > > +
-> > > +	/* configure hardware IRQ registers */
-> > > +	ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
-> > > +				  XDMA_CHAN_NUM(xdev));
-> > > +	if (ret) {
-> > > +		xdma_err(xdev, "failed to set channel vectors: %d", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	/* configure user IRQ registers if needed */
-> > > +	user_irq_start = XDMA_CHAN_NUM(xdev);
-> > > +	if (xdev->irq_num > user_irq_start) {
-> > > +		ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
-> > > +					  user_irq_start,
-> > > +					  xdev->irq_num - user_irq_start);
-> > > +		if (ret) {
-> > > +			xdma_err(xdev, "failed to set user vectors: %d", ret);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	/* enable channels interrupts */
-> > > +	ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
-> > > +	if (ret) {
-> > > +		xdma_err(xdev, "failed to enable channel IRQs: %d", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	/* enable user interrupts if needed */
-> > > +	if (xdev->irq_num > user_irq_start) {
-> > > +		ret = regmap_write(xdev->rmap, XDMA_IRQ_USER_INT_EN_W1S,
-> > > +				   xdev->usr_irq_mask);
-> > > +		if (ret) {
-> > > +			xdma_err(xdev, "failed to enable user IRQs: %d", ret);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >   /**
-> > >    * xdma_irq_init - initialize IRQs
-> > >    * @xdev: DMA device pointer
-> > > @@ -1025,7 +1096,6 @@ static int xdma_set_vector_reg(struct xdma_device *xdev, u32 vec_tbl_start,
-> > >   static int xdma_irq_init(struct xdma_device *xdev)
-> > >   {
-> > >   	u32 irq = xdev->irq_start;
-> > > -	u32 user_irq_start;
-> > >   	int i, j, ret;
-> > >
-> > >   	/* return failure if there are not enough IRQs */
-> > > @@ -1060,28 +1130,8 @@ static int xdma_irq_init(struct xdma_device *xdev)
-> > >   		irq++;
-> > >   	}
-> > >
-> > > -	/* config hardware IRQ registers */
-> > > -	ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
-> > > -				  XDMA_CHAN_NUM(xdev));
-> > > -	if (ret) {
-> > > -		xdma_err(xdev, "failed to set channel vectors: %d", ret);
-> > > -		goto failed_init_c2h;
-> > > -	}
-> > > -
-> > > -	/* config user IRQ registers if needed */
-> > > -	user_irq_start = XDMA_CHAN_NUM(xdev);
-> > > -	if (xdev->irq_num > user_irq_start) {
-> > > -		ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
-> > > -					  user_irq_start,
-> > > -					  xdev->irq_num - user_irq_start);
-> > > -		if (ret) {
-> > > -			xdma_err(xdev, "failed to set user vectors: %d", ret);
-> > > -			goto failed_init_c2h;
-> > > -		}
-> > > -	}
-> > > -
-> > > -	/* enable interrupt */
-> > > -	ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
-> > > +	/* configure all HW IRQ registers */
-> > > +	ret = xdma_irq_config(xdev);
-> > >   	if (ret)
-> > >   		goto failed_init_c2h;
-> > >
-> > > @@ -1297,15 +1347,65 @@ static int xdma_probe(struct platform_device *pdev)
-> > >   	return ret;
-> > >   }
-> > >
-> > > +/**
-> > > + * xdma_suspend - PM suspend callback
-> > > + * @dev: XDMA device pointer
-> > > + */
-> > > +static int xdma_suspend(struct device *dev)
-> > > +{
-> > > +	struct xdma_device *xdev = dev_get_drvdata(dev);
-> > > +	int ret;
-> > > +
-> > > +	ret = regmap_read(xdev->rmap, XDMA_IRQ_USER_INT_EN,
-> > > +			  &xdev->usr_irq_mask);
-> > > +	if (ret) {
-> > > +		xdma_err(xdev, "User IRQ vector backup failed: %d", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1C, ~0);
-> > > +	if (ret)
-> > > +		xdma_err(xdev, "DMA channels IRQ disable failed: %d", ret);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +/**
-> > > + * xdma_resume - PM resume callback
-> > > + * @dev: XDMA device pointer
-> > > + */
-> > > +static int xdma_resume(struct device *dev)
-> > > +{
-> > > +	struct xdma_device *xdev = dev_get_drvdata(dev);
-> > > +	int ret;
-> > > +
-> > > +	ret = xdma_reconfig_channels(xdev->h2c_chans, xdev->h2c_chan_num);
-> > > +	if (ret) {
-> > > +		xdma_err(xdev, "H2C channels reconfiguration failed: %d", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret = xdma_reconfig_channels(xdev->c2h_chans, xdev->c2h_chan_num);
-> > > +	if (ret) {
-> > > +		xdma_err(xdev, "C2H channels reconfiguration failed: %d", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	return xdma_irq_config(xdev);
-> > > +}
-> > > +
-> > >   static const struct platform_device_id xdma_id_table[] = {
-> > >   	{ "xdma", 0},
-> > >   	{ },
-> > >   };
-> > >   MODULE_DEVICE_TABLE(platform, xdma_id_table);
-> > >
-> > > +static DEFINE_NOIRQ_DEV_PM_OPS(xdma_dev_pm_ops, xdma_suspend, xdma_resume);
-> > > +
-> > >   static struct platform_driver xdma_driver = {
-> > >   	.driver		= {
-> > >   		.name = "xdma",
-> > > +		.pm = pm_sleep_ptr(&xdma_dev_pm_ops),
-> > >   	},
-> > >   	.id_table	= xdma_id_table,
-> > >   	.probe		= xdma_probe,
-> > > --
-> > > 2.56.1
-> > >
->
+These two compatibles don't represent different hardware, just different
+roles from the same hardware, right?
+
+> +
+> +      reg:
+> +        description: Specify the MDF filter instance
+> +        maxItems: 1
+> +
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      dmas:
+> +        maxItems: 1
+> +
+> +      dma-names:
+> +        items:
+> +          - const: rx
+> +
+> +      "#io-channel-cells":
+> +        const: 1
+> +
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +      st,cic-mode:
+> +        description: |
+> +          Cascaded-integrator-comb (CIC) filter configuration
+> +          - 0: MCIC & ACIC filters in FastSinc mode
+> +          - [1-3]: MCIC & ACIC filters in Sinc mode order 1 to 3
+> +          - [4-5]: Single CIC filter in Sinc mode order 4 to 5
+> +          For audio purpose it is recommended to use CIC Sinc4 or Sinc5
+> +          This property is mandatory for filter 0 or filters not used in=
+ interleave mode.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 5
+> +
+> +      st,delay:
+> +        description: Filter delay in samples
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        maximum: 127
+> +
+> +      st,rs-filter-bypass:
+> +        description: Bypass RSFLT reshaping filter.
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +
+> +      st,hpf-filter-cutoff-bp:
+> +        description: |
+> +          High Pass Filter (HPF) cut-off frequency expressed as a fracti=
+on of the PCM sampling rate.
+> +          Cut-off frequency =3D st,hpf-filter-cutoff-bp x Fpcm / 10000.
+> +          If this property is not defined the HPF is disabled.
+> +        enum: [625, 1250, 2500, 9500]
+> +
+> +      st,sync:
+> +        description:
+> +          Synchronize to another filter.
+> +          Must contain the phandle of the filter providing the synchroni=
+zation.
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/phandle-array
+> +          - maxItems: 1
+> +
+
+> +      st,sitf:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        items:
+> +          - items:
+> +              - description: Phandle of the serial interface connected t=
+o the digital filter
+> +              - description: |
+> +                  The phandle's argument selects the bitstream on the fa=
+lling or rising edge
+> +                  of the serial interface clock:
+> +                  - 0: rising edge
+> +                  - 1: falling edge
+> +                enum: [0, 1]
+> +                default: 0
+> +        description:
+> +          Should be phandle/bitstream pair.
+
+Can this ever be more than a single phandle?
+
+> +
+> +      mdf-dai:
+> +        type: object
+> +        description: Audio interface for the MDF filter
+> +
+> +        properties:
+> +          compatible:
+> +            const: st,stm32mp25-mdf-dai
+> +
+> +          "#sound-dai-cells":
+> +            const: 0
+> +
+> +          io-channels:
+> +            description:
+> +              From common IIO binding. Used to pipe external sigma delta
+> +              modulator or internal ADC output to MDF channel.
+> +
+> +          power-domains:
+> +            maxItems: 1
+> +
+> +          port:
+> +            $ref: /schemas/sound/audio-graph-port.yaml#
+> +            unevaluatedProperties: false
+> +
+> +        required:
+> +          - compatible
+> +          - "#sound-dai-cells"
+> +          - io-channels
+> +
+> +        additionalProperties: false
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - interrupts
+> +      - dmas
+> +      - dma-names
+> +      - "#io-channel-cells"
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +      - st,sitf
+> +
+> +    patternProperties:
+> +      "^channel@([0-7])$":
+> +        type: object
+> +        $ref: adc.yaml
+> +        description: Represents the external channel which is connected =
+to the MDF.
+> +
+> +        properties:
+> +          reg:
+> +            maximum: 7
+> +
+> +          io-backends:
+> +            description:
+> +              Used to pipe external sigma delta modulator or internal AD=
+C backend to MDF
+> +              channel.
+> +            maxItems: 1
+> +
+> +        required:
+> +          - reg
+> +
+> +        unevaluatedProperties: false
+> +
+> +    allOf:
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                const: st,stm32mp25-mdf-adc
+> +
+> +        then:
+> +          patternProperties:
+> +            "^channel@[0-7]$":
+> +              required:
+> +                - io-backends
+> +          properties:
+> +            mdf-dai: false
+> +
+> +    unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mdf1: filter@504d0000 {
+> +      compatible =3D "st,stm32mp25-mdf";
+> +      ranges =3D <0 0x504d0000 0x1000>;
+> +      reg =3D <0x504d0000 0x8>, <0x504d0ff0 0x10>;
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <1>;
+> +      clocks =3D <&rcc CK_KER_MDF1>;
+> +      #clock-cells =3D <1>;
+> +      clock-output-names =3D "cck0", "cck1";
+> +
+> +      sitf5: sitf@300 {
+> +        reg =3D <0x300 0x4>;
+> +        st,sitf-mode =3D "spi";
+> +        clocks =3D <&mdf1 0>;
+> +        assigned-clocks =3D <&mdf1 0>;
+> +        assigned-clock-rates =3D <2048000>;
+> +      };
+> +
+> +      filter0: filter@84 {
+> +        compatible =3D "st,stm32mp25-mdf-dmic";
+> +        reg =3D <0x84 0x70>;
+> +        #io-channel-cells =3D <1>;
+> +        interrupts =3D <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
+> +        dmas =3D <&hpdma 63 0x63 0x12 0>;
+> +        dma-names =3D "rx";
+> +        st,cic-mode =3D <5>;
+> +        st,sitf =3D <&sitf5 0>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        channel@0 {
+> +          reg =3D <0>;
+> +        };
+> +
+> +        mdf-dai {
+> +          compatible =3D "st,stm32mp25-mdf-dai";
+> +          #sound-dai-cells =3D <0>;
+> +          io-channels =3D <&filter0 0>;
+> +        };
+> +      };
+> +
+> +      filter@104 {
+> +        compatible =3D "st,stm32mp25-mdf-adc";
+> +        reg =3D <0x104 0x70>;
+> +        #io-channel-cells =3D <1>;
+> +        interrupts =3D <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>;
+> +        dmas =3D <&hpdma 64 0x63 0x12 0>;
+> +        dma-names =3D "rx";
+> +        st,cic-mode =3D <2>;
+> +        st,sitf =3D <&sitf5 1>;
+
+Is this a realistic example, with multiple devices connected to the same
+sitf? I assume it is technically possible, given what I have seen in the
+docs but would anyone do this in reality?
+
+Cheers,
+Conor.
+
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        channel@1 {
+> +          reg =3D <1>;
+> +          settling-time-us =3D <1000>;
+> +          io-backends =3D <&sd_adc1>;
+> +        };
+> +      };
+> +    };
+> +
+> +...
+>=20
+> --=20
+> 2.43.0
+>=20
+
+--qmIYYbkYuRL7omxq
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCawR4TgAKCRB4tDGHoIJi
+0t1eAP9+SKDfz/fXqCrDw0Xq8RD8jyl2939S/hKOCEEMY+AzcQEA8kFKkJ2Ma5xy
+MH26truzNzaIE4lDOb7gNwiUWblYrgk=
+=JJBX
+-----END PGP SIGNATURE-----
+
+--qmIYYbkYuRL7omxq--
 
