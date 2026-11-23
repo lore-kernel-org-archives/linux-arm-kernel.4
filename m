@@ -2,106 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3328E606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAE0606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UyGze3qn;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=EZywUfdg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Vdsa3VYx;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=slSYe7we
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=MS6DmB/ULBdfOhhhYecAUBRl9PiNKo3+G/EHjFt3o2U=; b=UyGze3qnE/7Cn5
-	wPR8z7qTfgNjaDiEJ2Um0RbedMBt9K043oMJCdWSwnEIqSQrkb4PiqyL9UkZgmG9p7ImOPfrjdyFZ
-	xyerwgoSL7S/txVXKo8xsniNt84laN+tdPUjTcvCjKiQs+Ql/N7ljf25WX3uF5r6m06IUwEd5xxUs
-	0N2aGmi9NxIHdHEratszStSsZMWF26er+vZpCOH9WORF3h66rvN841Rc7IpuCDw1cEUVL/YbU7QjV
-	kxkOTMklJNk+4wlr3LkMjCoGh853l7S2d7YjgTl2RWmsUDL0wildSPeTjyc+YA6p9khiugdlVGak5
-	zuNbbhv6Sib7xJ3jl8Fg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=iKeZ2tXUAbc+Q1yEFhsgCE9SEarvq7KvC09KIeMlRqg=; b=Vdsa3VYxFRNp2SyyqhI29BjG70
+	A6BJwOqN4odKMF729MXvMxyYtBW/iKoho8jeQR7pfZhqTHzSeZDYVnc0a2uViW03roKmGnNljdNWm
+	cLB3Wi47p5UbDV5otaEB3qsTeGyG27c4gWLvlihf/Rox+1otqEohjQx70njncU9ugNSiPgogC3dRa
+	R0SPEijupBuHE/7i1F4ex+2vlgHG2i/FoFKfNk/noXQHSXgu3TdD+YkdGOppD4/r9dthvsTbOsJLa
+	RCwken4cFxvKdcEAIDiRj3UrgHBa7v0QmFtajPBgg/SxuTz0AayPPE4bGSK1sctRXxuNQS9ebuaAq
+	7OG2wJXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVO4O-00000002Q20-0tND;
-	Mon, 23 Nov 2026 07:02:32 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xVOBE-00000002RCl-1t3d;
+	Mon, 23 Nov 2026 07:09:36 +0000
+Received: from out-12.mta0.migadu.com ([2001:41d0:1004:224b::c] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVO45-00000002Puq-0EW2
+	id 1xVOBB-00000002RCB-3um4
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 07:02:16 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-492f0a1b685so2004283f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 23:02:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795417331; x=1796022131; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=MS6DmB/ULBdfOhhhYecAUBRl9PiNKo3+G/EHjFt3o2U=;
-        b=EZywUfdgWDfnOeE8BUvPpYnlf8F2DblWL0EyPUq473xKIS4vQUv4xZsz0I+PYpsY4d
-         lbS5OyinL9bknGQ59QyXphpW+q8Y00KvJlc4vxL6vulImQGpMvae2/xrOTCm7EG1fiUb
-         g9w3JNneUNVtMJFCYSQ+1/+0ZQ7q8OUOLtUCUSOSTAVD7ZKpZ2SUO0Hmz0L9Ou9tDokR
-         G9kuahYJxfUPmq8lbWxRUtLrG+OM3lG35JKDJ4xb6AxdfIn98s2QGqTwwYBtDUxTc0Rt
-         cyQp4Sp5/4NuKth07Z3t6tWKlyTwpMJh8fbCm6xqsAh09TLZtU9Hvt/5I8wq0hwYXAyr
-         mc6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795417331; x=1796022131;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=MS6DmB/ULBdfOhhhYecAUBRl9PiNKo3+G/EHjFt3o2U=;
-        b=RPjPl38usU3MVHvrjqshFVkdxB0WqlDZz8iJUcaRZwsbIBmGCSyO+INQ/3RjQ0vN7m
-         ERvpCyOVXXoxPjWDRy5IzgxxwCRsVv+gwrTnNUnrxoLTpWhSvsofZrobfqC+e7s8a76+
-         B7bfXffPbX/2+GxmIzZz7MyKA+JYpxykAxYlPNfaLNRU/AB08o3sFlWcGjvDJ1zyFFyU
-         TZlY0BkTqEecPR7BdaD0V5UelLcA0jZ3zYgb/GJNixE9ss/8nVBQYwLfMKmMVjQH4MBA
-         2BH8nmlC4qHuGlRmSaOnJTxoSPLopiWP8dzZ3Di9tPz1uyr/FlnVQBbgZ3JMh8pN0ljI
-         Gvzg==
-X-Forwarded-Encrypted: i=1; AL+hErEJVPOyzjaakPtmlDwWKqEPXQOR4yJ9narKfxrPhMYAhULY4RZFIlzlqd24hCs3278R59sgdUVKBeNpFnCZySgF@lists.infradead.org
-X-Gm-Message-State: APuU4Z+zuLp8QbaylDoSnfYeGNgLlJzHbjxwLi8EdvQgXDP+uaw5mOO9
-	Yl2pEiV2IsJwLaX63L6OY+8td2xmqUWBQ9ORbOzHMHSQ3rO4+Ps2bDz8
-X-Gm-Gg: AZFdTZdHt5JQFp0CpXPsLea/3AdP2xjnwJBr7i+JeEMQgSDlcIhS+4AQltqjSDJdlz2
-	3ASJhpnGJUDBWcAdUmSjWufONSRchgpiogJOGNwOjgw7I8JI1/PBtmy1oYdNUDBVMhnyu4HWF7o
-	2KzCZGmWxUc8Pdc+ykZ0KhMiHdB379gfRChY42HEM3osYmZMP6/Zz+4FC24DT4VURTq7b4Ahpbd
-	lgmIm2IsqCqlslwOQPtAV7aG7nfPz2qiIdXb3agMQpNsb30qTSE4xZGUz0Q3hyBMi+/L3Tjn7sG
-	rN2TcyM49B+IhIT2q9ZYPMXK1v2OFz8NrdR1xBGTtqlO0baoL/CpWlWrHK869+f5ebalgXD31S8
-	nNZPMUiFC/IpK8YGE+A/6ULxRWOzoriCH+SN0mJsRLWfoYQMkSDG0pRIBGQz/KbJcGzFUXOFHP3
-	KBVlav5qb5zrkGmA4usc2CaXnQgIKQ12S6Eb3z4pO6OO40Y1BcbYvqa/h4jBGyt68ShK3mkSQy1
-	Zgl5nZpW9uJC5opwUhUrq5YG1d9BK/2i22S8o/Fwu98XmQXMaRAvwf31dLfN0K54Ko0HydyqEyL
-	rnoGR6oDoEjQBKKZpmPCnSuxBeh+4NrFQqy9
-X-Received: by 2002:adf:e014:0:10b0:48f:bcdf:6f7d with SMTP id ffacd0b85a97d-4abb3c37b20mr15296742f8f.34.1795417331345;
-        Sun, 22 Nov 2026 23:02:11 -0800 (PST)
-Received: from fedora ([154.182.66.143])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2d60sm20779007f8f.3.2026.11.22.23.02.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 23:02:10 -0800 (PST)
-From: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
-To: jic23@kernel.org,
-	linux-iio@vger.kernel.org
-Cc: dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev,
-	giorgitchankvetadze1997@gmail.com,
-	amin.gattout@gmail.com,
-	antoniu.miclaus@analog.com,
-	gregkh@linuxfoundation.org,
-	mripard@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
-Subject: [PATCH v5 8/8] iio: adc: at91_adc: convert to device-managed resources
-Date: Mon, 23 Nov 2026 09:01:01 +0200
-Message-ID: <20261123070101.53868-9-abdelnasserhussein11@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261123070101.53868-1-abdelnasserhussein11@gmail.com>
-References: <20261123070101.53868-1-abdelnasserhussein11@gmail.com>
+	Mon, 23 Nov 2026 07:09:35 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=q3tQG3ndRBja5RIwJmSbJq8oOy/7QF8ip5BzTsP8piU=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795417770; v=1; x=1796022570;
+ b=slSYe7weT505Px2/vLvB70Al9S5OgU2HDX15Bp2NVZAJR7Xj7Pska8bqp65nCf+FNHhtXRDN
+ fQFYCKcEL5vhQRBbt91tp5qHTF1+yU9FeKiSfX1v1Aw+HH/jIMb7o73f9lkgOuP7PCsH1O8THAQ
+ opMMcZCWEDBJvVRpczQSiwYU=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 34a5fd8e430d72d2;
+	Mon, 23 Nov 2026 07:09:30 +0000
+X-Mizu-Trace-ID: 34a5fd8e430d72d2
+X-Migadu-Flow: FLOW_OUT
+Date: Mon, 23 Nov 2026 08:09:24 +0100
+From: Richard Leitner <richard.leitner@linux.dev>
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, linux-remoteproc@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, weinshec@holodeck2.de, stable@vger.kernel.org
+Subject: Re: [PATCH] remoteproc: imx_rproc: revert channel freeing order in
+ imx_rproc_free_mbox
+Message-ID: <awPmc_4VFkcpW0C_@bombadil>
+References: <20261110-imx-rproc-free-mbox-v1-1-3e33ff98570d@linux.dev>
+ <avMgJNyGez2Eyr3a@nxa18884-linux-1.ap.freescale.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <avMgJNyGez2Eyr3a@nxa18884-linux-1.ap.freescale.net>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_230215_491123_D5A14AFE 
-X-CRM114-Status: GOOD (  24.50  )
-X-Spam-Score: -0.8 (/)
+X-CRM114-CacheID: sfid-20261122_230934_206955_418D130F 
+X-CRM114-Status: GOOD (  16.21  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,303 +75,86 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Convert the driver to device-managed APIs so that all resources are
-freed automatically on probe failure and on driver detach:
-  - allocate and register the IIO triggers directly in at91_adc_probe()
-  with devm_iio_trigger_alloc() and devm_iio_trigger_register(),
-  dropping at91_adc_allocate_trigger(), at91_adc_trigger_init() and
-  at91_adc_trigger_remove() along with their manual rollback paths.
-  The st->trig array is no longer needed and is removed as well, since
-  the triggers are now owned by devres
-  - set up the triggered buffer with devm_iio_triggered_buffer_setup()
-  directly in at91_adc_probe(), dropping at91_adc_buffer_init() and
-  at91_adc_buffer_remove()
-  - allocate the touchscreen input device with
-  devm_input_allocate_device(), dropping at91_ts_unregister() and the
-  manual input_free_device() error path in at91_ts_register()
-  - register the IIO device with devm_iio_device_register()
+On Tue, Nov 10, 2026 at 09:46:12PM +0800, Peng Fan wrote:
+> On Tue, Nov 10, 2026 at 01:29:08PM +0100, Richard Leitner wrote:
+> >The imx_rproc driver is affected by a race condition in the shutdown
+> >ordering in imx_rproc_free_mbox(). A received message might cause a
+> >virtqueue_kick resulting in tx_ch access. When imx_rproc_free_mbox() is
+> >triggered between the if (!priv->tx_ch) check and the mbox_send_message()
+> >call in the imx_rproc_kick() function the mbox_send_message() then tries
+> >to dereference a NULL pointer on the tx_ch (as seen in the call trace
+> >below).
+> >
+> >Therefore fix this behaviour by first freeing the rx channel, so no new
+> >messages are received and therefore no kicking on tx_ch can happen.
+> >Afterwards release the tx channel.
+> >
+> >This problem was encountered on a fleet of i.MX8MP devices on about 1 in
+> >500 system shutdowns, resulting in Oops below. This Oops was recorded
+> >from a v7.3.0 kernel before the work-queue removal.
+> >
+> >    remoteproc remoteproc0: stopped remote processor imx8mp-cm7
+> >    Unable to handle kernel NULL pointer dereference at virtual address 0000000000000008
+> >    Internal error: Oops: 0000000096000004 [#1]  SMP
+> >    CPU: 0 UID: 0 PID: 32710 Comm: kworker/0:1 Not tainted 7.3.0-XXX #1 PREEMPT
+> >    Hardware name: XXX (DT)
+> >    Workqueue: imx8mp-cm7 imx_rproc_vq_work [imx_rproc]
+> >    pstate: 40000005 (nZcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> >    pc : mbox_send_message+0x8c/0x178
+> >    lr : mbox_send_message+0x88/0x178
+> >    sp : ffff8000897f3b70
+> >    x29: ffff8000897f3b70 x28: ffff80007a07b248 x27: ffff0000d90e1a20
+> >    x26: ffff80007a07b328 x25: ffff0000c1d31300 x24: ffff0000d90e1a40
+> >    x23: 0000000000000001 x22: 0000000000000005 x21: ffff8000897f3ba4
+> >    x20: 000000000000000b x19: ffff0000c1b24240 x18: 0000000000000000
+> >    x17: ffff80006a453000 x16: ffff800081ac8000 x15: 0000000000000000
+> >    x14: 0000000000000040 x13: 0000000000000228 x12: ffff0000c115a3e8
+> >    x11: 0000000000000000 x10: 0000000000000001 x9 : ffff800080cd6570
+> >    x8 : ffff8000897f3ba0 x7 : 0000000000000002 x6 : 0000000000000000
+> >    x5 : 000000000000000c x4 : 0000000004400000 x3 : 0000000000000000
+> >    x2 : 0000000000000000 x1 : ffff0000cb268000 x0 : 0000000000000000
+> >    Call trace:
+> >     mbox_send_message+0x8c/0x178 (P)
+> >     imx_rproc_kick+0x50/0xc0 [imx_rproc]
+> >     rproc_virtio_notify+0x3c/0xa0
+> >     virtqueue_kick+0x4c/0x68
+> >     rpmsg_recv_done+0x224/0x658 [virtio_rpmsg_bus]
+> >     vring_interrupt+0xbc/0x158
+> >     rproc_vq_interrupt+0x40/0xb0
+> >     imx_rproc_notified_idr_cb+0x20/0x40 [imx_rproc]
+> >     idr_for_each+0x74/0x100
+> >     imx_rproc_vq_work+0x2c/0x40 [imx_rproc]
+> >     process_one_work+0x194/0x520
+> >     worker_thread+0x19c/0x320
+> >     kthread+0x134/0x148
+> >     ret_from_fork+0x10/0x20
+> >    Code: 37f80574 aa1303e0 97ffff39 f9400a60 (39402001)
+> >
+> >Fixes: 99b142cf7191 ("remoteproc: imx_rproc: Request mbox channel later")
+> >Cc: stable@vger.kernel.org
+> >Signed-off-by: Richard Leitner <richard.leitner@linux.dev>
+> 
+> LGTM:
+> 
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> 
+> BTW: would you plan to fix the other issue that sashiko reported
+> regarding imx_rproc_xtr_mbox_init()?
 
-Redundant allocation error messages ("Failed to allocate TS device!" and
-"Couldn't setup the triggers.") are dropped, and at91_ts_register() now
-uses dev_err_probe() to report its remaining error.  Errors from
-devm_iio_trigger_register() are reported with dev_err_probe() as well.
+Thanks for the review and sorry for the late reply.
 
-at91_adc_probe() no longer needs any error unwinding labels and
-at91_adc_remove() is removed together with the platform driver's
-.remove callback.
+Sure. Should this be a separate patch or added to a v2 of this series?
 
-Suggested-by: Jonathan Cameron <jic23@kernel.org>
-Signed-off-by: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
----
- drivers/iio/adc/at91_adc.c | 187 +++++++------------------------------
- 1 file changed, 34 insertions(+), 153 deletions(-)
+regards;rl
 
-diff --git a/drivers/iio/adc/at91_adc.c b/drivers/iio/adc/at91_adc.c
-index 62f8db630640..5163583aa4f8 100644
---- a/drivers/iio/adc/at91_adc.c
-+++ b/drivers/iio/adc/at91_adc.c
-@@ -230,7 +230,6 @@ struct at91_adc_state {
- 	u32			startup_time;
- 	u8			sample_hold_time;
- 	bool			sleep_mode;
--	struct iio_trigger	**trig;
- 	bool			use_external;
- 	u32			vref_mv;
- 	u32			res;		/* resolution used for conversions */
-@@ -607,96 +606,6 @@ static const struct iio_trigger_ops at91_adc_trigger_ops = {
- 	.set_trigger_state = &at91_adc_configure_trigger,
- };
- 
--static struct iio_trigger *at91_adc_allocate_trigger(struct iio_dev *idev,
--						     const struct at91_adc_trigger *trigger)
--{
--	struct iio_trigger *trig;
--	int ret;
--
--	trig = iio_trigger_alloc(idev->dev.parent, "%s-dev%d-%s", idev->name,
--				 iio_device_id(idev), trigger->name);
--	if (trig == NULL)
--		return NULL;
--
--	iio_trigger_set_drvdata(trig, idev);
--	trig->ops = &at91_adc_trigger_ops;
--
--	ret = iio_trigger_register(trig);
--	if (ret) {
--		iio_trigger_free(trig);
--		return NULL;
--	}
--
--	return trig;
--}
--
--static int at91_adc_trigger_init(struct iio_dev *idev)
--{
--	struct at91_adc_state *st = iio_priv(idev);
--	int i, ret;
--
--	st->trig = devm_kcalloc(&idev->dev,
--				st->caps->trigger_number, sizeof(*st->trig),
--				GFP_KERNEL);
--
--	if (st->trig == NULL) {
--		ret = -ENOMEM;
--		goto error_ret;
--	}
--
--	for (i = 0; i < st->caps->trigger_number; i++) {
--		if (st->caps->triggers[i].is_external && !(st->use_external))
--			continue;
--
--		st->trig[i] = at91_adc_allocate_trigger(idev,
--							st->caps->triggers + i);
--		if (st->trig[i] == NULL) {
--			dev_err(&idev->dev,
--				"Could not allocate trigger %d\n", i);
--			ret = -ENOMEM;
--			goto error_trigger;
--		}
--	}
--
--	return 0;
--
--error_trigger:
--	for (i--; i >= 0; i--) {
--		if (!st->trig[i])
--			continue;
--
--		iio_trigger_unregister(st->trig[i]);
--		iio_trigger_free(st->trig[i]);
--	}
--error_ret:
--	return ret;
--}
--
--static void at91_adc_trigger_remove(struct iio_dev *idev)
--{
--	struct at91_adc_state *st = iio_priv(idev);
--	int i;
--
--	for (i = 0; i < st->caps->trigger_number; i++) {
--		if (!st->trig[i])
--			continue;
--
--		iio_trigger_unregister(st->trig[i]);
--		iio_trigger_free(st->trig[i]);
--	}
--}
--
--static int at91_adc_buffer_init(struct iio_dev *idev)
--{
--	return iio_triggered_buffer_setup(idev, &iio_pollfunc_store_time,
--		&at91_adc_trigger_handler, NULL);
--}
--
--static void at91_adc_buffer_remove(struct iio_dev *idev)
--{
--	iio_triggered_buffer_cleanup(idev);
--}
--
- static int at91_adc_read_raw(struct iio_dev *idev,
- 			     struct iio_chan_spec const *chan,
- 			     int *val, int *val2, long mask)
-@@ -930,17 +839,13 @@ static int at91_ts_register(struct iio_dev *idev, struct device *dev)
- {
- 	struct at91_adc_state *st = iio_priv(idev);
- 	struct input_dev *input;
--	int ret;
- 
--	input = input_allocate_device();
--	if (!input) {
--		dev_err(&idev->dev, "Failed to allocate TS device!\n");
-+	input = devm_input_allocate_device(dev);
-+	if (!input)
- 		return -ENOMEM;
--	}
- 
- 	input->name = DRIVER_NAME;
- 	input->id.bustype = BUS_HOST;
--	input->dev.parent = dev;
- 	input->open = atmel_ts_open;
- 	input->close = atmel_ts_close;
- 
-@@ -954,12 +859,9 @@ static int at91_ts_register(struct iio_dev *idev, struct device *dev)
- 				     0, 0);
- 		input_set_abs_params(input, ABS_PRESSURE, 0, 0xffffff, 0, 0);
- 	} else {
--		if (st->touchscreen_type != ATMEL_ADC_TOUCHSCREEN_4WIRE) {
--			dev_err(dev,
--				"This touchscreen controller only support 4 wires\n");
--			ret = -EINVAL;
--			goto err;
--		}
-+		if (st->touchscreen_type != ATMEL_ADC_TOUCHSCREEN_4WIRE)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "This touchscreen controller only support 4 wires\n");
- 
- 		input_set_abs_params(input, ABS_X, 0, (1 << MAX_RLPOS_BITS) - 1,
- 				     0, 0);
-@@ -970,20 +872,7 @@ static int at91_ts_register(struct iio_dev *idev, struct device *dev)
- 	st->ts_input = input;
- 	input_set_drvdata(input, st);
- 
--	ret = input_register_device(input);
--	if (ret)
--		goto err;
--
--	return ret;
--
--err:
--	input_free_device(input);
--	return ret;
--}
--
--static void at91_ts_unregister(struct at91_adc_state *st)
--{
--	input_unregister_device(st->ts_input);
-+	return input_register_device(input);
- }
- 
- static int at91_adc_probe(struct platform_device *pdev)
-@@ -1142,16 +1031,34 @@ static int at91_adc_probe(struct platform_device *pdev)
- 	 * trigger for classic adc.
- 	 */
- 	if (!st->touchscreen_type) {
--		ret = at91_adc_buffer_init(idev);
--		if (ret < 0)
-+		ret = devm_iio_triggered_buffer_setup(dev, idev,
-+						      &iio_pollfunc_store_time,
-+						      &at91_adc_trigger_handler,
-+						      NULL);
-+		if (ret)
- 			return dev_err_probe(dev, ret,
- 					     "Couldn't initialize the buffer.\n");
- 
--		ret = at91_adc_trigger_init(idev);
--		if (ret < 0) {
--			dev_err(dev, "Couldn't setup the triggers.\n");
--			at91_adc_buffer_remove(idev);
--			return ret;
-+		for (unsigned int i = 0; i < st->caps->trigger_number; i++) {
-+			struct iio_trigger *trig;
-+
-+			if (st->caps->triggers[i].is_external && !st->use_external)
-+				continue;
-+
-+			trig = devm_iio_trigger_alloc(dev, "%s-dev%d-%s",
-+						      idev->name,
-+						      iio_device_id(idev),
-+						      st->caps->triggers[i].name);
-+			if (!trig)
-+				return -ENOMEM;
-+
-+			iio_trigger_set_drvdata(trig, idev);
-+			trig->ops = &at91_adc_trigger_ops;
-+
-+			ret = devm_iio_trigger_register(dev, trig);
-+			if (ret)
-+				return dev_err_probe(dev, ret,
-+						     "Couldn't register trigger %u.\n", i);
- 		}
- 	} else {
- 		ret = at91_ts_register(idev, dev);
-@@ -1161,36 +1068,11 @@ static int at91_adc_probe(struct platform_device *pdev)
- 		at91_ts_hw_init(idev, adc_clk_khz);
- 	}
- 
--	ret = iio_device_register(idev);
--	if (ret < 0) {
--		dev_err(dev, "Couldn't register the device.\n");
--		goto error_iio_device_register;
--	}
-+	ret = devm_iio_device_register(dev, idev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Couldn't register the device.\n");
- 
- 	return 0;
--
--error_iio_device_register:
--	if (!st->touchscreen_type) {
--		at91_adc_trigger_remove(idev);
--		at91_adc_buffer_remove(idev);
--	} else {
--		at91_ts_unregister(st);
--	}
--	return ret;
--}
--
--static void at91_adc_remove(struct platform_device *pdev)
--{
--	struct iio_dev *idev = platform_get_drvdata(pdev);
--	struct at91_adc_state *st = iio_priv(idev);
--
--	iio_device_unregister(idev);
--	if (!st->touchscreen_type) {
--		at91_adc_trigger_remove(idev);
--		at91_adc_buffer_remove(idev);
--	} else {
--		at91_ts_unregister(st);
--	}
- }
- 
- static int at91_adc_suspend(struct device *dev)
-@@ -1340,7 +1222,6 @@ MODULE_DEVICE_TABLE(of, at91_adc_dt_ids);
- 
- static struct platform_driver at91_adc_driver = {
- 	.probe = at91_adc_probe,
--	.remove = at91_adc_remove,
- 	.driver = {
- 		   .name = DRIVER_NAME,
- 		   .of_match_table = at91_adc_dt_ids,
--- 
-2.56.0
-
+> 
+> Regards
+> Peng
 
