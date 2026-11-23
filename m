@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6918A606A68B
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0BC2606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dejFVhtq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QoAQqCrQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A98lQTJZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=L2eJdN4b
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,88 +14,85 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=O14BbX1wLIKYJhhhZsc1QX5KnrTbKI8v08Tn9x+QgPI=; b=dejFVhtqmCA91o6Pp9vwt/shsC
-	6WjS9AlAT0GtdqRA6pqPbH/CuHpDRLaimPEbmVqBRtCv6SHIm6kjZeiWdTneCDyfi7H8zZXLbAb6A
-	NdF8Zbv6Hgmwg5U+saIpNsmz0uDEYuOTIQiphz0KA5/wFM9Dz7EMkbiuHf8+hHd4o0JbdpJZQ712Q
-	8b3tEdPzaB0jFNLCNq8PRNVIzL4NLt6lkd5JzGT93gziKmq4rBIzwAIIY8Dmv8Kn/1EZdtZoGStL3
-	I7Iv0JMCTPJbkrXhuaxm4hl+sspOoVuIuqQ22qXxhBWWySc+k2UVi0yc1/ZnyhamVAO/vnJ0+W0VO
-	jJYcVvQw==;
+	bh=aGR2ezp9P4Ja129w/l+m8Ayy/DbyQLAojBQ0FlM8kps=; b=A98lQTJZNCo7dIgV8iYQVFFcwA
+	bal+lUmbtfzbUxIo3SWNvQJUATr8l0yv4JTnJbk1pfmArY1dUceMvJNdNurIJgzuZCO+u33TVwyFo
+	HN5jSJ1+/Mbwd0CI9PiI+kR8ywHUEFihWn3eDdVMWRAVsAQV+W9Dlhxda2i9MVg6V1PsuBrGEa5qx
+	ADhY2jff9uTN8mcVtxLzPUrvCOLHNhxZ913mUVk+jitJh7+fj4jgU0cwNgjPkyqjCnZSP8a7uld35
+	zTzQJuQGD/ee6omIzdblGmnfoddr/M25Qu905VCL4ZyPRt2Tq6PV3q7CegcLYUQXzRp2Y02Edf0ih
+	Vg7/dm4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYzG-00000004WOH-3f4J;
-	Mon, 23 Nov 2026 18:41:58 +0000
+	id 1xVYzH-00000004WOz-1r28;
+	Mon, 23 Nov 2026 18:41:59 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYyn-00000004W9Y-1sor
+	id 1xVYzA-00000004WLc-2wRi
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:41:29 +0000
+	Mon, 23 Nov 2026 18:41:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E086E623DE;
-	Mon, 23 Nov 2026 18:41:28 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 24BC862348;
+	Mon, 23 Nov 2026 18:41:52 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459288;
-	b=IeO5z3h8NcHm3Zq3Diy0ZVYuXD++TphEuxMgn+JccK/NhWT/Xj94bBkUoDyc/V2FW/SY
-	 xgScHFKm2OmZ/ss75h4g34BEL2gWAS3aPJG9lbYpdqo5CMq87y5IskvlgTFQvBRJfDtba
-	 fCMqoL7cbOCxj2n3xnH8y5J/4v+ERBEHYHcKIVHrccXKRh+d4AMq6jagMchKqybkdCmae
-	 M0EmrsgQraqa8zhNrV2X8PIMLzkW/5WoYXJ3qnPlCAB4KHaXg2dgM5//fIo/FMOv6+qw3
-	 4l6seBR6ByCkW/BzJ6VE+ul0bDxqF+kLxxPyzgCQW3DrSdjnT2koIih68D1ylx5FVIg==
+	t=1795459311;
+	b=emaIPw4rqXRPh1FVr6HpQRz8W2jWCKbyyuUVCQ+4sDMV29rxhkn4Mk5znAMGRmDvy7ya
+	 IEWXsDmLPa25l+ZBCDZv0JZfIhMQPUT8GMKLzPZWQtgknF55W4Iw+zpMP/XTYkfZmncxJ
+	 NCmeGgu9oBdSBnNuTqPyYXwsKw/ubeYHptR3EHp5IpD21GJGo3kNS+RgQA9dtaQS5eLON
+	 z5ou1cmEYdoFoY4gWWnEOVAQULxLMP6nBpCX9jORaYXcEJLDK/sV65F2UpCbl1He940J+
+	 E+Gl9DD+4mnk3fqck9jcJq5xZh1NQq3U3eQvlvQ3Unc1lhdAIwn52H5Xw6yLknRAYhg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459288;
+	c=relaxed/relaxed; t=1795459311;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=O14BbX1wLIKYJhhhZsc1QX5KnrTbKI8v08Tn9x+QgPI=;
-	b=V3v6OxhDuSktbdkRePBDYlAqc1Q5rlLtanPQIq8xiD4O1gd74UYDpQYYJ7NEkY6+5Qix
-	 NdwjPw3gvkOC51n9/nl71eEk6Uvseu9a+6Zu0g5jBOO/iNMVbMavHw+Y5GHbrvZwTdKNn
-	 OAnbq/rp8Cd1JEN2QgnVVXXlx+mRWSxB170OzgdcOPqg9m8KAkqWopU3l8v8YS2pKiE3m
-	 SKs5MhiMBqZFt3312osxnID9M06NSlcBf4tnLegqnYqvw5xZPuRe8JXGXKf5FWLWkkuAD
-	 AqPGa+beocfBfQmcSjG/arNWq1aSXiLr1gscB6Fjp7GSwRRNF8Cp4egZDuyvp9tI9Lg==
+	bh=aGR2ezp9P4Ja129w/l+m8Ayy/DbyQLAojBQ0FlM8kps=;
+	b=vHs0Ld/+8Cr/a1z8cn73uVOjtId2BF8rV8skhb9f334tImGYKDzpu7F05ypdunJJD+dz
+	 XuBaDTwxu76j8VmWfNsgt38854VzD6C2/zhn50RRKDYd1UmDy3NvY6J+mjeeKohGhENTE
+	 ie7vq9rhu6xXGMKD8HRjYeVdWIuvjp4pZ++gBd3Tq4JWoBBo+6cmpMumYXuljT/mXPDne
+	 8g8S5GYvpvmBGNCnxaotudDVWW26DbMJ3d2O8qdaWDSixuJ6S1jwa6K5SSN2jrp94cJdO
+	 Epy+FXFgGP8AXd5PuJW1Jt4lXXv6mr63jOrD/c1qiPEkichxvKwU7j4fiPtJJhHdYSA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3C34A1F000D8;
-	Mon, 23 Nov 2026 18:41:14 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 993211F00A19;
+	Mon, 23 Nov 2026 18:41:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459288;
-	bh=O14BbX1wLIKYJhhhZsc1QX5KnrTbKI8v08Tn9x+QgPI=;
+	s=k20260515; t=1795459311;
+	bh=aGR2ezp9P4Ja129w/l+m8Ayy/DbyQLAojBQ0FlM8kps=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=QoAQqCrQWkMvHImLgV0+zKzlmX78AIEO/c7wbo7ao2mYua2Gbskopn/5S7CgovvhB
-	 Oazb16HQM6nvx+tyPOQknj4R24A0ECiRHxbR2K/BeBQXyAerZ4jWXbMTa9iIacBHH8
-	 jz5wLVijcm6wjWKZ7Z2Y68ul34MXNEo4TwLQh7DGTelKKLPuJbRpMAK/dfTk2pzLJ9
-	 xyoC+bTfZe6hNdkNrdWU7C6PMaDH7lEkmfULBJXdC5ertt6sFzOi5Yav+Bv22ceiqj
-	 SqmSTR3VRkuYKOm8iXHayHiH6zOL4QLrc5sVBAXSkiIRFIeGkR/1mECERptt1mgaHa
-	 U0Jm/5MhYct0A==
+	b=L2eJdN4bVPR8sGVoA9CtPdNK1b3JS/0bw7KDmv0HNNV3MwmrPALPOqTLLsz6u4xHg
+	 n8uCXk/tebg6v1KBfhzbBjm7ay8rvp4TaDqqhImfF4j8WUiQ/nMTFr8H4RW6vVKQXQ
+	 bs+ZKVTIhFJ5N0q4wlDzfswS2wK9wzEHABuconk+GAtRlifa0z8sqTPlzmN4vkFRwA
+	 UgT8ql3utTr3FUriAdBmY5awphF+evf9h5khelm3G0s8uF2x8K+/YU5HpmlWHbFTCM
+	 k5b55KWRg9jOHSucVM9zeU5+1MmQLMGVrlLgjwP/Mvz6yJ2onWGpfQQccKOcYqXjO1
+	 cNtbX2TnbslUw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 6C1D34C5B7;
-	Mon, 23 Nov 2026 18:41:13 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 280594C5BF;
+	Mon, 23 Nov 2026 18:41:32 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:41:14 +0300
-Subject: [PATCH 3/5] clk: Add Cortina Systems CS7542 strap-selected clocks
+Date: Mon, 23 Nov 2026 21:41:31 +0300
+Subject: [PATCH 1/3] dt-bindings: rtc: Add Cortina Systems CS7542 RTC
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-cs7542-syscon-v1-3-49858e631449@gmail.com>
-References: <20261123-cs7542-syscon-v1-0-49858e631449@gmail.com>
-In-Reply-To: <20261123-cs7542-syscon-v1-0-49858e631449@gmail.com>
-To: Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-gpio@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
+Message-Id: <20261123-b4-cs7542-rtc-v1-1-6c53761ffa03@gmail.com>
+References: <20261123-b4-cs7542-rtc-v1-0-6c53761ffa03@gmail.com>
+In-Reply-To: <20261123-b4-cs7542-rtc-v1-0-6c53761ffa03@gmail.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459271; l=5002;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459290; l=1725;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=JEa90SGQ0FgER4S1FcL2NkC7oSwXVNfRbOUFnfhpGuk=;
- b=e0rWIO8xaF7w/JxsQI1xMpXHd7PA0yFu8QyZU0nPuYXJuZbaup7pL+v3doiI2mBjTRi0pqYQ3
- 4w6h8Ukd29VAWNQe8XizC1ikSTIqHkjSXy5cPSfa07jcQ2a0Jt0chie
+ bh=zpMLao1XyuPRjMljD/Vh3jkbZiWoCb7Hr28HjaR1ywM=;
+ b=FH4dylyL9MHMlQgX/Od5LCuwMnaNohqrrCaDNMi3cVfgNuLwDYK9SVr2v6Si0rlF62sIyNcl9
+ b7bbAt0QW5DDAGkdpPD3RUyfWATnu0eutPvBAgODqVQTMum7+sdZcM7
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -123,153 +120,69 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Register APB, CPU and AXI fixed-rate outputs from GLOBAL_STRAP[3:1],
-using the seven configurations recorded in the vendor kernel. Reject
-the reserved encoding instead of publishing a guessed frequency.
-
-Register before timer initialization and leave the syscon platform node
-available for its pinctrl child. Use the shared regmap, only read strap
-status, and unwind all registered clocks if provider setup fails. This
-is intentionally not a DVFS or programmable PLL driver.
-
-AI assistance: Codex prepared this change from the existing OpenWrt port
-and GPL vendor sources.
+Describe the RTC register block and its optional alarm and periodic
+interrupt lines. The initial driver supports the calendar without
+requiring those interrupts.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- drivers/clk/Kconfig      |  9 +++++
- drivers/clk/Makefile     |  1 +
- drivers/clk/clk-cs7542.c | 90 ++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 100 insertions(+)
+ .../bindings/rtc/cortina,cs7542-rtc.yaml           | 48 ++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 37a8e35d4..47b5265fe 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -58,6 +58,15 @@ config LMK04832
- 	  Say yes here to build support for Texas Instruments' LMK04832 Ultra
- 	  Low-Noise JESD204B Compliant Clock Jitter Cleaner With Dual Loop PLLs
- 
-+config COMMON_CLK_CS7542
-+	bool "Cortina Systems CS7542 strap-selected clocks"
-+	depends on OF && HAS_IOMEM
-+	select MFD_SYSCON
-+	help
-+	  Read the boot straps of the CS7542 global control block to provide
-+	  its APB, CPU and AXI clocks. This driver does not change PLLs or
-+	  dividers. It is built in because the APB clock is needed by timers.
-+
- config COMMON_CLK_APPLE_NCO
- 	tristate "Clock driver for Apple SoC NCOs"
- 	depends on ARCH_APPLE || COMPILE_TEST
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 52d138d4f..16b1168c8 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -63,6 +63,7 @@ obj-$(CONFIG_ARCH_AXXIA)		+= clk-axm5516.o
- obj-$(CONFIG_COMMON_CLK_BD718XX)	+= clk-bd718x7.o
- obj-$(CONFIG_COMMON_CLK_BM1880)		+= clk-bm1880.o
- obj-$(CONFIG_COMMON_CLK_CDCE706)	+= clk-cdce706.o
-+obj-$(CONFIG_COMMON_CLK_CS7542)		+= clk-cs7542.o
- obj-$(CONFIG_COMMON_CLK_CDCE925)	+= clk-cdce925.o
- obj-$(CONFIG_ARCH_CLPS711X)		+= clk-clps711x.o
- obj-$(CONFIG_COMMON_CLK_CS2000_CP)	+= clk-cs2000-cp.o
-diff --git a/drivers/clk/clk-cs7542.c b/drivers/clk/clk-cs7542.c
+diff --git a/Documentation/devicetree/bindings/rtc/cortina,cs7542-rtc.yaml b/Documentation/devicetree/bindings/rtc/cortina,cs7542-rtc.yaml
 new file mode 100644
-index 000000000..4e6c1e98a
+index 000000000..8c2cc7ec9
 --- /dev/null
-+++ b/drivers/clk/clk-cs7542.c
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* Cortina Systems CS7542 strap-selected clocks */
++++ b/Documentation/devicetree/bindings/rtc/cortina,cs7542-rtc.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/cortina,cs7542-rtc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/of.h>
-+#include <linux/printk.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
++title: Cortina Systems CS7542 real-time clock
 +
-+#include <dt-bindings/clock/cortina,cs7542-clock.h>
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
 +
-+#define CS7542_GLOBAL_STRAP	0x0c
-+#define CS7542_STRAP_SPEED	GENMASK(3, 1)
-+#define CS7542_NUM_CLKS		3
++allOf:
++  - $ref: rtc.yaml#
 +
-+/* Rates from the GPL vendor kernel's get_platform_clk(). */
-+static const unsigned long cs7542_rates[][CS7542_NUM_CLKS] = {
-+	/* APB, CPU, AXI */
-+	{ 100000000, 400000000, 133333333 },
-+	{ 100000000, 600000000, 150000000 },
-+	{ 100000000, 700000000, 140000000 },
-+	{ 100000000, 800000000, 160000000 },
-+	{ 100000000, 900000000, 150000000 },
-+	{ 150000000, 750000000, 150000000 },
-+	{ 170000000, 850000000, 141666667 },
-+};
++properties:
++  compatible:
++    const: cortina,cs7542-rtc
 +
-+static const char * const cs7542_clock_names[] = {
-+	[CS7542_CLK_APB] = "cs7542-apb",
-+	[CS7542_CLK_CPU] = "cs7542-cpu",
-+	[CS7542_CLK_AXI] = "cs7542-axi",
-+};
++  reg:
++    maxItems: 1
 +
-+static void __init cs7542_clk_init(struct device_node *np)
-+{
-+	struct clk_hw_onecell_data *data;
-+	struct regmap *map;
-+	unsigned int strap, speed;
-+	int i, ret;
++  interrupts:
++    items:
++      - description: Alarm interrupt
++      - description: Periodic interrupt
 +
-+	map = syscon_node_to_regmap(np);
-+	if (IS_ERR(map)) {
-+		pr_err("%pOF: cannot get global regmap: %ld\n", np, PTR_ERR(map));
-+		return;
-+	}
++  interrupt-names:
++    items:
++      - const: alarm
++      - const: periodic
 +
-+	ret = regmap_read(map, CS7542_GLOBAL_STRAP, &strap);
-+	if (ret) {
-+		pr_err("%pOF: cannot read clock strap: %d\n", np, ret);
-+		return;
-+	}
++required:
++  - compatible
++  - reg
 +
-+	speed = FIELD_GET(CS7542_STRAP_SPEED, strap);
-+	if (speed >= ARRAY_SIZE(cs7542_rates)) {
-+		pr_err("%pOF: unsupported clock strap %u\n", np, speed);
-+		return;
-+	}
++additionalProperties: false
 +
-+	data = kzalloc_flex(*data, hws, CS7542_NUM_CLKS);
-+	if (!data)
-+		return;
-+	data->num = CS7542_NUM_CLKS;
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+	for (i = 0; i < CS7542_NUM_CLKS; i++) {
-+		data->hws[i] = clk_hw_register_fixed_rate(NULL,
-+							  cs7542_clock_names[i], NULL,
-+							  0, cs7542_rates[speed][i]);
-+		if (IS_ERR(data->hws[i])) {
-+			ret = PTR_ERR(data->hws[i]);
-+			goto err_unregister;
-+		}
-+	}
-+
-+	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, data);
-+	if (!ret)
-+		return;
-+
-+err_unregister:
-+	while (i--)
-+		clk_hw_unregister_fixed_rate(data->hws[i]);
-+	kfree(data);
-+	pr_err("%pOF: cannot register clocks: %d\n", np, ret);
-+}
-+
-+/* Timers need APB before platform devices, but the pinctrl child must probe. */
-+CLK_OF_DECLARE_DRIVER(cs7542_clk, "cortina,cs7542-syscon", cs7542_clk_init);
++    rtc@f4920000 {
++        compatible = "cortina,cs7542-rtc";
++        reg = <0xf4920000 0x50>;
++        interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "alarm", "periodic";
++    };
 
 -- 
 2.53.0
