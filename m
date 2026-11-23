@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D9A606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B89606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y0ZrfPtv;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=KbRP1oa5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NTGpVJvZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=M+M3OK3d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,109 +14,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KwKJYzn8WLQVMy0cXsVtL9y2X6vJwk+tvAqZ0nntlug=; b=y0ZrfPtvist06Hvr0nvlw6EBGn
-	oQekBDaDxAgH7hEiD/JqMzatLbz1RVkLHQPinr3rH15g3JVGMOtSpvbCsmYok6jC80dCUzMbyo3Ds
-	E83HQqAYvbmQn2o1T+ze6owe2GC2XCfO/y5RVk2VJ8hpzxZl9RJaapc93ZE5FPCM/ntA3JFtgGNmi
-	hWnIzlpj0fRRlYoie3dSqid80GoFlWDTXn6uQxIsf4M0BtnndJsVDBjuL21Tb1ERdtY0+3bAptCuu
-	vg8zP61/qrqfhq6fkznDjUXMSez30LA397Sg7yoJAOfFREPrxROzrvxOI60OZ5DLPLmbsA8tt+kul
-	Bc7uG14g==;
+	bh=DKHpltpuTjnnQLiZ/Ai1c8nmsECa5rHnQiL1XcqN74w=; b=NTGpVJvZcb0gQ2s+8AyE0KI9kT
+	KMZ6WE2Pm+gZ7JOKsYMbm2O83p9TIE+oWaeBJ4NxZ4zBRhdIlfKKQlntTsl23IJo9L1luM8XJ3IZe
+	uJWnp4akmJ61wo2a0vkDRRSW9dB703Oj2OuqNjUV4ptEa7Q5BQ4Wf29Mk9Yt15EoJ6pW7UF2kDWii
+	eTZAC7iyw3x0clKLBMR2TmIDWwi4kZw5Xw6uMothuie7DnDk1TZGrFAF+7RYdFIiTcE1Dn+qPIiVa
+	tGCrZXQlBt0cXPBb0H+23HUNY8h6A4xnd+RwK4i4/szygcjlQgh86HNG7NDBqyE9QErzvOhQiPkbM
+	vSRdmckw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRqg-000000034hA-49Xs;
-	Mon, 23 Nov 2026 11:04:39 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xVRtR-0000000352W-2AmV;
+	Mon, 23 Nov 2026 11:07:29 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRqe-000000034go-292d
+	id 1xVRtP-0000000352O-45ri
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:04:37 +0000
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9Z9Pj3196021;
-	Mon, 23 Nov 2026 11:04:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pp1; bh=KwKJYzn8WLQVMy0cXsVtL9y2X6vJwk
-	+tvAqZ0nntlug=; b=KbRP1oa5AZ4JlYwpONu3FypgrplczvmHk2hlydqYySpVFa
-	TCcgl+gwvPQqqkFbuR6HBidx2m+qk59S0WrzpqYeVplhzDbltQIriwK9qS0QI3i0
-	E3aAx0m/GFuM3+xSc23ZXv2sZV4yJUDn1ZwX5frcW/t7qUJp2FE/tp9sCqVblCwX
-	dpkAx2pAwfGZ/Ex4YEp34J7bxfy22IM4FYBDgETnkezzMrMnafKcguIL7hHTjfJL
-	DhiOfkshVojuGvBsgGE6OkIRXgLX2bF7FLueZG6oCK1xqEEx++pGh2hiX4G1YZlJ
-	mJd1H6vsajHjvna4XKQQaOL0v/Z5h+bF38X4Whtg==
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34gv2jk3-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 11:04:25 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9JFB01708379;
-	Mon, 23 Nov 2026 11:04:24 GMT
-Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j3raye82n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 11:04:24 +0000 (GMT)
-Received: from smtpav01.fra02v.mail.ibm.com (smtpav01.fra02v.mail.ibm.com [10.20.54.100])
-	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ANB4M4V48366048
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 23 Nov 2026 11:04:22 GMT
-Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 307402004F;
-	Mon, 23 Nov 2026 11:04:22 +0000 (GMT)
-Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B40C52004B;
-	Mon, 23 Nov 2026 11:04:21 +0000 (GMT)
-Received: from osiris (unknown [9.87.148.25])
-	by smtpav01.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Mon, 23 Nov 2026 11:04:21 +0000 (GMT)
-Date: Mon, 23 Nov 2026 12:04:20 +0100
-From: Steffen Eiden <seiden@linux.ibm.com>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oupton@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Sascha Bischoff <Sascha.Bischoff@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fuad Tabba <tabba@google.com>
-Subject: Re: [PATCH 8/9] arm64: sysreg: Reject an out-of-range register
- encoding
-Message-ID: <20261123110420.20959-H-seiden@linux.ibm.com>
-References: <20261123075219.369042-1-fuad.tabba@linux.dev>
- <20261123075219.369042-9-fuad.tabba@linux.dev>
+	Mon, 23 Nov 2026 11:07:28 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 562F4409D3;
+	Mon, 23 Nov 2026 11:07:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F32D1F000E6;
+	Mon, 23 Nov 2026 11:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795432047;
+	bh=DKHpltpuTjnnQLiZ/Ai1c8nmsECa5rHnQiL1XcqN74w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=M+M3OK3df9XMgE4aQ+VKLf8xE0ss0pkbKppEeIcMwkJv8E7Du39WwQOV7MK64bgLb
+	 h4qADtTOsAlbeudZ59Ue6QwvtqT604pETsN7Y3gVLQyEcfS+KCXPxxUbIjCqpNcQzL
+	 YCuurPECD0Bxg2e6xZNV2Z6v+285EMPyogkWFn5ItKnNwf6+2vPbvEyNDlWiW4jl+l
+	 jQGO4cBsdgs98IYxwsTvRvmXjmxOYR60+civnPQp34IJ7RL3vAu/Mc2d/P3tN0leqL
+	 TjNlMRShjE4DT4tgKC1f0n2HBo6f28IopvQ+2gsxMJ47CiIQCkcTsD/8fShu1Ql10N
+	 CeFPPdpmf8MAw==
+Date: Mon, 23 Nov 2026 12:07:24 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: michael@amarulasolutions.com, linux-amarula@amarulasolutions.com, 
+	David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Marek Vasut <marex@denx.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Simona Vetter <simona@ffwll.ch>, Stefan Agner <stefan@agner.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 6/8] drm/mxsfb: Implement hw state readout
+Message-ID: <awQdObBL6kNzvBnj@houat>
+References: <20261122153032.2782768-1-dario.binacchi@amarulasolutions.com>
+ <20261122153032.2782768-7-dario.binacchi@amarulasolutions.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="x5h4dpsvgdc5hplh"
 Content-Disposition: inline
-In-Reply-To: <20261123075219.369042-9-fuad.tabba@linux.dev>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=CYCdd7rl c=1 sm=1 tr=0 ts=6b041db9 cx=c_pps
- a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
- a=149SWqO4EUXa_a3VMKkA:9 a=CjuIK1q_8ugA:10 a=zgiPjhLxNE0A:10
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA0NCBTYWx0ZWRfX/p/mgF/oVxwu
- MsWELUFlQ6fnyRTu433DmD26/OiHwcfnxDAlvH/iOXjfzQYZ96VijlBOBWSXUFGfSzQT+0JUwY/
- OjnDcjwbiCrn+3utPYoA725c6kbcy7A=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA0NCBTYWx0ZWRfX4TwFNvg/RiSm
- WcrZcGrn01rRCUhDkBJwUbcARVUX1vucRYyzvyP8o5uQUWDpezU12kpVRpdElNzJof5bTzfE7cQ
- 1KDA7E/zAw/GK81JckyG78FtxAlF/5XOQ3Ku0n/CbSJNQc6MQF9MUScUFbLaK22JYQ8IYdlgWWc
- YKZVJ8lIcX41AKWEEcL3HVAvx/d2Sy/7+6k78P+aZwQibT8s1ZWHoE1nKZWllbuUdYvRf6U0iw3
- vAPSi/IC8g/H3tp+enPuZKNoxd3sFRK6Tqa0pIGtZveaWPu2fuXhIvylxVS5a0YabIQ3i23W/Ct
- N31AsB/dpOCsOq2a8G+B7u0YKFZIn0vMbr9nWGzqEKU/1re2/DQC3fwixggOWlQCbEARDr+bTdo
- uAZd2xKZZXINSB2f1FNSjObVD2F1hGy+VSWZzHw+7IcYloW48rFQ9sWeJqVnEZluuHu0JZEm7z/
- IvdFqY1VbZMavt6Bsug==
-X-Proofpoint-ORIG-GUID: qrxfSx8q008Zk296eaXtaSfY9F604lpj
-X-Proofpoint-GUID: tvYF5jnjzUW0RPVVdEUe5xUsxMQa5N1k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-23_02,2026-11-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 spamscore=0 bulkscore=0 impostorscore=0 adultscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611230044
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_030436_686917_BC170A56 
-X-CRM114-Status: GOOD (  14.85  )
-X-Spam-Score: -2.6 (--)
+In-Reply-To: <20261122153032.2782768-7-dario.binacchi@amarulasolutions.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,26 +74,458 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 07:52:18AM +0000, Fuad Tabba wrote:
-> The generator copies a register's op0, op1, CRn, CRm and op2 into
-> SYS_<reg> without checking them. sys_reg() shifts each into place
-> without masking it, so a value too wide for its field spills into the
-> next one. SYS_<reg> then names a different register's encoding, and the
-> build doesn't report it.
-> 
-> Require each of the five to be a decimal number that fits its field (two
-> bits for op0, three for op1 and op2, four for CRn and CRm). Reject a
-> leading zero too, since C reads such a value as octal.
-> 
-> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 
-Reviewed-by: Steffen Eiden <seiden@linux.ibm.com>
- 
+--x5h4dpsvgdc5hplh
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [RFC PATCH 6/8] drm/mxsfb: Implement hw state readout
+MIME-Version: 1.0
+
+On Sun, Nov 22, 2026 at 04:30:06PM +0100, Dario Binacchi wrote:
+> +/* The overlay plane starts 64 bytes within the framebuffer */
+> +#define MXSFB_AS_BUF_OFFSET	64
+> +
+> +/* Framebuffer read out from the hardware, without a GEM object */
+> +struct mxsfb_readout_fb {
+> +	struct drm_framebuffer base;
+> +	dma_addr_t dma_addr;
+> +};
+
+It's not clear to me why you need to store dma_addr (and thus roll your
+own framebuffer structure). Can you expand on that?
+
+> +static void mxsfb_readout_fb_destroy(struct drm_framebuffer *fb)
+> +{
+> +	drm_framebuffer_cleanup(fb);
+> +	kfree(container_of(fb, struct mxsfb_readout_fb, base));
+> +}
+> +
+> +static const struct drm_framebuffer_funcs mxsfb_readout_fb_funcs =3D {
+> +	.destroy =3D mxsfb_readout_fb_destroy,
+> +};
+> +
+> +static dma_addr_t mxsfb_plane_get_dma_addr(struct drm_plane_state *pstat=
+e)
+> +{
+> +	struct drm_framebuffer *fb =3D pstate->fb;
+> +
+> +	if (fb->funcs =3D=3D &mxsfb_readout_fb_funcs)
+> +		return container_of(fb, struct mxsfb_readout_fb,
+> +				    base)->dma_addr;
+> +
+> +	return drm_fb_dma_get_gem_addr(fb, pstate, 0);
+> +}
+> +
+>  /* ---------------------------------------------------------------------=
+--------
+>   * CRTC
+>   */
+> @@ -418,7 +452,7 @@ static void mxsfb_crtc_atomic_enable(struct drm_crtc =
+*crtc,
+>  	mxsfb_crtc_mode_set_nofb(mxsfb, bridge_state, bus_format);
+> =20
+>  	/* Write cur_buf as well to avoid an initial corrupt frame */
+> -	dma_addr =3D drm_fb_dma_get_gem_addr(new_pstate->fb, new_pstate, 0);
+> +	dma_addr =3D mxsfb_plane_get_dma_addr(new_pstate);
+>  	if (dma_addr) {
+>  		writel(dma_addr, mxsfb->base + mxsfb->devdata->cur_buf);
+>  		writel(dma_addr, mxsfb->base + mxsfb->devdata->next_buf);
+> @@ -463,6 +497,114 @@ static void mxsfb_crtc_hw_reset(struct drm_crtc *cr=
+tc)
+>  	mxsfb_hw_put(mxsfb);
+>  }
+> =20
+> +static bool mxsfb_is_running(struct mxsfb_drm_private *mxsfb)
+> +{
+> +	u32 mask =3D CTRL_RUN | CTRL_DOTCLK_MODE;
+> +
+> +	/* A controller being stopped keeps running until the end of frame */
+> +	return (readl(mxsfb->base + LCDC_CTRL) & mask) =3D=3D mask;
+> +}
+> +
+> +static int mxsfb_readout_mode(struct mxsfb_drm_private *mxsfb,
+> +			      struct drm_display_mode *mode)
+> +{
+> +	const struct mxsfb_devdata *devdata =3D mxsfb->devdata;
+> +	u32 ctrl, vdctrl0, vdctrl2, vdctrl3, reg;
+> +	u16 hsync_len, vsync_len;
+> +
+> +	ctrl =3D readl(mxsfb->base + LCDC_CTRL);
+> +	if (!(ctrl & CTRL_DOTCLK_MODE) || !(ctrl & CTRL_MASTER))
+> +		return -EINVAL;
+> +
+> +	vdctrl0 =3D readl(mxsfb->base + LCDC_VDCTRL0);
+> +	if (!(vdctrl0 & VDCTRL0_ENABLE_PRESENT) ||
+> +	    !(vdctrl0 & VDCTRL0_VSYNC_PERIOD_UNIT) ||
+> +	    !(vdctrl0 & VDCTRL0_VSYNC_PULSE_WIDTH_UNIT))
+> +		return -EINVAL;
+> +
+> +	reg =3D readl(mxsfb->base + devdata->transfer_count);
+> +	mode->hdisplay =3D TRANSFER_COUNT_GET_HCOUNT(reg);
+> +	mode->vdisplay =3D TRANSFER_COUNT_GET_VCOUNT(reg);
+> +
+> +	mode->vtotal =3D readl(mxsfb->base + LCDC_VDCTRL1);
+> +
+> +	vdctrl2 =3D readl(mxsfb->base + LCDC_VDCTRL2);
+> +	mode->htotal =3D VDCTRL2_GET_HSYNC_PERIOD(vdctrl2);
+> +	hsync_len =3D (vdctrl2 >> devdata->hs_wdth_shift) & devdata->hs_wdth_ma=
+sk;
+> +	vsync_len =3D VDCTRL0_GET_VSYNC_PULSE_WIDTH(vdctrl0);
+> +
+> +	vdctrl3 =3D readl(mxsfb->base + LCDC_VDCTRL3);
+> +	mode->hsync_start =3D mode->htotal - GET_HOR_WAIT_CNT(vdctrl3);
+> +	mode->hsync_end =3D mode->hsync_start + hsync_len;
+> +	mode->vsync_start =3D mode->vtotal - GET_VERT_WAIT_CNT(vdctrl3);
+> +	mode->vsync_end =3D mode->vsync_start + vsync_len;
+> +
+> +	if (!mode->hdisplay || !mode->vdisplay ||
+> +	    mode->hsync_start < mode->hdisplay ||
+> +	    mode->vsync_start < mode->vdisplay)
+> +		return -EINVAL;
+> +
+> +	mode->clock =3D DIV_ROUND_CLOSEST(clk_get_rate(mxsfb->clk), 1000);
+
+Just like the other discussion for tilcdc, you need to be more flexible
+than that and take clock rounding into account. We have a function to do
+that for tidss, dispc_find_closest_refresh_rate_from_clk(), that would
+be useful as a helper.
+
+> +	/* An active low sync signal can't be told from an unspecified one */
+> +	if (vdctrl0 & VDCTRL0_HSYNC_ACT_HIGH)
+> +		mode->flags |=3D DRM_MODE_FLAG_PHSYNC;
+> +	if (vdctrl0 & VDCTRL0_VSYNC_ACT_HIGH)
+> +		mode->flags |=3D DRM_MODE_FLAG_PVSYNC;
+> +
+> +	mode->type |=3D DRM_MODE_TYPE_DRIVER;
+> +	drm_mode_set_name(mode);
+> +	drm_mode_set_crtcinfo(mode, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mxsfb_crtc_readout_state(struct drm_crtc *crtc,
+> +				    struct drm_atomic_sro_state *state,
+> +				    struct drm_crtc_state *crtc_state)
+> +{
+> +	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(crtc->dev);
+> +	struct drm_display_mode mode =3D {};
+> +	int ret =3D 0;
+> +
+> +	mxsfb_hw_get(mxsfb);
+> +
+> +	if (!mxsfb_is_running(mxsfb))
+> +		goto out;
+> +
+> +	ret =3D mxsfb_readout_mode(mxsfb, &mode);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret =3D drm_atomic_set_mode_for_crtc(crtc_state, &mode);
+> +	if (ret)
+> +		goto out;
+> +
+> +	drm_mode_copy(&crtc_state->adjusted_mode, &mode);
+> +	crtc_state->active =3D true;
+> +
+> +out:
+> +	mxsfb_hw_put(mxsfb);
+> +	return ret;
+> +}
+> +
+> +static void mxsfb_crtc_install_state(struct drm_crtc *crtc,
+> +				     struct drm_crtc_state *crtc_state)
+> +{
+> +	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(crtc->dev);
+> +
+> +	if (!crtc_state->active)
+> +		return;
+> +
+> +	/* Take the references mxsfb_crtc_atomic_enable() would have taken */
+> +	mxsfb_hw_get(mxsfb);
+> +	if (mxsfb->clk_disp_axi)
+> +		clk_prepare_enable(mxsfb->clk_disp_axi);
+> +	clk_prepare_enable(mxsfb->clk);
+> +
+> +	drm_crtc_vblank_on(crtc);
+> +}
+> +
+>  static int mxsfb_crtc_enable_vblank(struct drm_crtc *crtc)
+>  {
+>  	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(crtc->dev);
+> @@ -535,6 +677,9 @@ static const struct drm_crtc_funcs mxsfb_crtc_funcs =
+=3D {
+>  	.atomic_destroy_state =3D drm_atomic_helper_crtc_destroy_state,
+>  	.enable_vblank =3D mxsfb_crtc_enable_vblank,
+>  	.disable_vblank =3D mxsfb_crtc_disable_vblank,
+> +	.atomic_sro_readout_state =3D mxsfb_crtc_readout_state,
+> +	.atomic_sro_install_state =3D mxsfb_crtc_install_state,
+> +	.atomic_sro_compare_state =3D drm_atomic_helper_crtc_compare_state,
+>  };
+> =20
+>  static const struct drm_crtc_funcs mxsfb_crtc_with_crc_funcs =3D {
+> @@ -546,6 +691,9 @@ static const struct drm_crtc_funcs mxsfb_crtc_with_cr=
+c_funcs =3D {
+>  	.atomic_destroy_state =3D drm_atomic_helper_crtc_destroy_state,
+>  	.enable_vblank =3D mxsfb_crtc_enable_vblank,
+>  	.disable_vblank =3D mxsfb_crtc_disable_vblank,
+> +	.atomic_sro_readout_state =3D mxsfb_crtc_readout_state,
+> +	.atomic_sro_install_state =3D mxsfb_crtc_install_state,
+> +	.atomic_sro_compare_state =3D drm_atomic_helper_crtc_compare_state,
+>  	.set_crc_source =3D mxsfb_crtc_set_crc_source,
+>  	.verify_crc_source =3D mxsfb_crtc_verify_crc_source,
+>  };
+> @@ -554,8 +702,17 @@ static const struct drm_crtc_funcs mxsfb_crtc_with_c=
+rc_funcs =3D {
+>   * Encoder
+>   */
+> =20
+> +static struct drm_crtc *
+> +mxsfb_encoder_get_current_crtc(struct drm_encoder *encoder)
+> +{
+> +	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(encoder->dev);
+> +
+> +	return &mxsfb->crtc;
+> +}
+> +
+>  static const struct drm_encoder_funcs mxsfb_encoder_funcs =3D {
+>  	.destroy =3D drm_encoder_cleanup,
+> +	.atomic_sro_get_current_crtc =3D mxsfb_encoder_get_current_crtc,
+>  };
+> =20
+>  /* ---------------------------------------------------------------------=
+--------
+> @@ -587,7 +744,7 @@ static void mxsfb_plane_primary_atomic_update(struct =
+drm_plane *plane,
+>  									    plane);
+>  	dma_addr_t dma_addr;
+> =20
+> -	dma_addr =3D drm_fb_dma_get_gem_addr(new_pstate->fb, new_pstate, 0);
+> +	dma_addr =3D mxsfb_plane_get_dma_addr(new_pstate);
+>  	if (dma_addr)
+>  		writel(dma_addr, mxsfb->base + mxsfb->devdata->next_buf);
+>  }
+> @@ -603,7 +760,7 @@ static void mxsfb_plane_overlay_atomic_update(struct =
+drm_plane *plane,
+>  	dma_addr_t dma_addr;
+>  	u32 ctrl;
+> =20
+> -	dma_addr =3D drm_fb_dma_get_gem_addr(new_pstate->fb, new_pstate, 0);
+> +	dma_addr =3D mxsfb_plane_get_dma_addr(new_pstate);
+>  	if (!dma_addr) {
+>  		writel(0, mxsfb->base + LCDC_AS_CTRL);
+>  		return;
+> @@ -615,7 +772,7 @@ static void mxsfb_plane_overlay_atomic_update(struct =
+drm_plane *plane,
+>  	 * is understood, live with the 16 initial invalid pixels on the first
+>  	 * line and start 64 bytes within the framebuffer.
+>  	 */
+> -	dma_addr +=3D 64;
+> +	dma_addr +=3D MXSFB_AS_BUF_OFFSET;
+> =20
+>  	writel(dma_addr, mxsfb->base + LCDC_AS_NEXT_BUF);
+> =20
+> @@ -663,6 +820,182 @@ static void mxsfb_plane_overlay_atomic_disable(stru=
+ct drm_plane *plane,
+>  	writel(0, mxsfb->base + LCDC_AS_CTRL);
+>  }
+> =20
+> +static int mxsfb_plane_readout_state(struct drm_plane *plane,
+> +				     struct drm_atomic_sro_state *state,
+> +				     struct drm_plane_state *plane_state,
+> +				     u32 format, dma_addr_t dma_addr)
+> +{
+> +	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(plane->dev);
+> +	struct drm_crtc *crtc =3D &mxsfb->crtc;
+> +	struct drm_crtc_state *crtc_state;
+> +	struct mxsfb_readout_fb *rfb;
+> +	struct drm_framebuffer *fb;
+> +	u32 reg;
+> +	int ret;
+> +
+> +	crtc_state =3D drm_atomic_sro_get_crtc_state(state, crtc);
+> +	if (!crtc_state)
+> +		return -ENODEV;
+> +
+> +	rfb =3D kzalloc_obj(*rfb);
+> +	if (!rfb)
+> +		return -ENOMEM;
+> +
+> +	/* The planes can be neither scaled nor positioned */
+> +	reg =3D readl(mxsfb->base + mxsfb->devdata->transfer_count);
+> +
+> +	rfb->dma_addr =3D dma_addr;
+> +	fb =3D &rfb->base;
+> +	fb->dev =3D plane->dev;
+> +	fb->format =3D drm_format_info(format);
+> +	fb->width =3D TRANSFER_COUNT_GET_HCOUNT(reg);
+> +	fb->height =3D TRANSFER_COUNT_GET_VCOUNT(reg);
+> +	fb->pitches[0] =3D fb->width * fb->format->cpp[0];
+> +
+> +	ret =3D drm_framebuffer_init(plane->dev, fb, &mxsfb_readout_fb_funcs);
+> +	if (ret) {
+> +		kfree(rfb);
+> +		return ret;
+> +	}
+> +
+> +	plane_state->fb =3D fb;
+> +	plane_state->crtc =3D crtc;
+> +	plane_state->visible =3D true;
+> +	plane_state->crtc_w =3D fb->width;
+> +	plane_state->crtc_h =3D fb->height;
+> +	plane_state->src_w =3D fb->width << 16;
+> +	plane_state->src_h =3D fb->height << 16;
+> +	plane_state->src.x2 =3D plane_state->src_w;
+> +	plane_state->src.y2 =3D plane_state->src_h;
+> +	plane_state->dst.x2 =3D plane_state->crtc_w;
+> +	plane_state->dst.y2 =3D plane_state->crtc_h;
+> +
+> +	crtc_state->plane_mask |=3D drm_plane_mask(plane);
+> +
+> +	return 0;
+> +}
+> +
+> +static int
+> +mxsfb_plane_primary_readout_state(struct drm_plane *plane,
+> +				  struct drm_atomic_sro_state *state,
+> +				  struct drm_plane_state *plane_state)
+> +{
+> +	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(plane->dev);
+> +	u32 ctrl, ctrl1, format;
+> +	dma_addr_t dma_addr;
+> +	int ret =3D 0;
+> +
+> +	mxsfb_hw_get(mxsfb);
+> +
+> +	if (!mxsfb_is_running(mxsfb))
+> +		goto out;
+> +
+> +	ctrl =3D readl(mxsfb->base + LCDC_CTRL);
+> +	ctrl1 =3D readl(mxsfb->base + LCDC_CTRL1);
+> +
+> +	switch (ctrl & CTRL_WORD_LENGTH_MASK) {
+> +	case CTRL_WORD_LENGTH_16:
+> +		format =3D DRM_FORMAT_RGB565;
+> +		break;
+> +	case CTRL_WORD_LENGTH_24:
+> +		/* Packed pixels are not supported */
+> +		if (CTRL1_GET_BYTE_PACKAGING(ctrl1) =3D=3D 0x7) {
+> +			format =3D DRM_FORMAT_XRGB8888;
+> +			break;
+> +		}
+> +		fallthrough;
+> +	default:
+> +		ret =3D -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	dma_addr =3D readl(mxsfb->base + mxsfb->devdata->next_buf);
+> +	ret =3D mxsfb_plane_readout_state(plane, state, plane_state, format,
+> +					dma_addr);
+> +
+> +out:
+> +	mxsfb_hw_put(mxsfb);
+> +	return ret;
+> +}
+> +
+> +static int
+> +mxsfb_plane_overlay_readout_state(struct drm_plane *plane,
+> +				  struct drm_atomic_sro_state *state,
+> +				  struct drm_plane_state *plane_state)
+> +{
+> +	struct mxsfb_drm_private *mxsfb =3D to_mxsfb_drm_private(plane->dev);
+> +	dma_addr_t dma_addr;
+> +	u32 ctrl, format;
+> +	bool alpha;
+> +	int ret =3D 0;
+> +
+> +	mxsfb_hw_get(mxsfb);
+> +
+> +	if (!mxsfb_is_running(mxsfb))
+> +		goto out;
+> +
+> +	ctrl =3D readl(mxsfb->base + LCDC_AS_CTRL);
+> +	if (!(ctrl & AS_CTRL_AS_ENABLE))
+> +		goto out;
+> +
+> +	alpha =3D (ctrl & AS_CTRL_ALPHA_CTRL_MASK) =3D=3D AS_CTRL_ALPHA_CTRL_EM=
+BEDDED;
+> +
+> +	switch (ctrl & AS_CTRL_FORMAT_MASK) {
+> +	case AS_CTRL_FORMAT_RGB444:
+> +		format =3D DRM_FORMAT_XRGB4444;
+> +		break;
+> +	case AS_CTRL_FORMAT_ARGB4444:
+> +		format =3D DRM_FORMAT_ARGB4444;
+> +		break;
+> +	case AS_CTRL_FORMAT_RGB555:
+> +		format =3D DRM_FORMAT_XRGB1555;
+> +		break;
+> +	case AS_CTRL_FORMAT_ARGB1555:
+> +		format =3D DRM_FORMAT_ARGB1555;
+> +		break;
+> +	case AS_CTRL_FORMAT_RGB565:
+> +		format =3D DRM_FORMAT_RGB565;
+> +		break;
+> +	case AS_CTRL_FORMAT_RGB888:
+> +		format =3D DRM_FORMAT_XRGB8888;
+> +		break;
+> +	case AS_CTRL_FORMAT_ARGB8888:
+> +		format =3D DRM_FORMAT_ARGB8888;
+> +		break;
+> +	default:
+> +		ret =3D -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	if (alpha !=3D drm_format_info(format)->has_alpha) {
+> +		ret =3D -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	dma_addr =3D readl(mxsfb->base + LCDC_AS_NEXT_BUF) - MXSFB_AS_BUF_OFFSE=
+T;
+> +	ret =3D mxsfb_plane_readout_state(plane, state, plane_state, format,
+> +					dma_addr);
+> +
+> +out:
+> +	mxsfb_hw_put(mxsfb);
+> +	return ret;
+> +}
+> +
+> +static bool mxsfb_plane_compare_state(struct drm_plane *plane,
+> +				      struct drm_printer *p,
+> +				      struct drm_plane_state *expected,
+> +				      struct drm_plane_state *actual)
+> +{
+> +	struct drm_crtc *crtc =3D expected->crtc;
+> +
+> +	/* The planes can't be read out while the controller is stopped */
+> +	if (crtc && !crtc->state->active && !actual->fb)
+> +		return true;
+
+That one should be fixed in v9, and you can use the helper directly.
+
+Maxime
+
+--x5h4dpsvgdc5hplh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCawQeawAKCRAnX84Zoj2+
+duMBAYDffQpP5knPNYl28GwB6FLsLf/BVXvnBYmd4awIpFVuCPBpBSeon7rvbmAE
+55yz6nEBgL5O/59/ca3Iw9p3T10Z8wOBycf2wdUBTsBXzDz1HWhoOK+iiYact5GI
+6RJdzCCTiw==
+=4td7
+-----END PGP SIGNATURE-----
+
+--x5h4dpsvgdc5hplh--
 
