@@ -2,100 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23293606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13D5606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mLDf66Lc;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cFO+e0u1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uRYGj+AQ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Q4Fqwtcf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=tVpg3m8XkKzY55cEmyE7VyD81pFXe7BeKUYNIVpFSxU=; b=mLDf66LcgPMzRVD8eAsWwpkPo4
-	9etkrL+bLi3eJR+5yQzu78l1/No8Ry53wpUWMbPFwmN7B3vbuy90HzM+EG1xyyajBSxbQartr8AZQ
-	iyVVk820Ge8ItTT29Gs0A8FJ5pQqu802skjngogLeAyG+tUewycxHZ2NQPnSOKsqxbA154UNFwoBT
-	X9q9AwJcAOQprXoQ8wnxPhdTZSvuIxraXwy3o4Zsnm8ykijdPtRzj2B1zC5ntO9QA1jIsMNbncEag
-	A4PHovBDvrTOqbZ3CKIWRkCL+HwahG+EVc9twGt2wa3+i7x1pSv6bRme/xPUCqFn611FA9Dh/Zvyt
-	BOLGKMKg==;
+	bh=z+dq6Ervyi98/+N8sziu7yKbuSrwvrBsyjh52/p6ALM=; b=uRYGj+AQi80QGaLEgiTqh1x7q+
+	Y773qFtrlq1Z7ns3W/CC04Cf2BX00NZYVIqDLKRTa/16GWbkEgIyQQw+f3zFgLsG3sfP93mrM/vzn
+	uhjZALa0xA5Vgxz3Q04ZiCNeAdtW+eU4QFtbjXHVP+S3lY0lorfJNdM74KQsc+mQpTi+ISsaXcUFR
+	AFlteXDwMlGKY9G1EkSKgTx5LkDU5pzVc9uEWWscWEyGd1TId2eNEErX4pQgh1rFiNjLLQjl9bFj1
+	lpFc78gJsNcLQp+vtIfo8tmLnz3j53gNJeCTVUqjhaJp0J8XCm45J+4SgKqQJBO67hZST+az208Qf
+	LvOEqomA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZiA-00000004fKX-0Rj1;
-	Mon, 23 Nov 2026 19:28:22 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1xVZkO-00000004fa0-1Pg3;
+	Mon, 23 Nov 2026 19:30:40 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZi3-00000004fIE-1vAE
+	id 1xVZkM-00000004fZq-3Hvs
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 19:28:17 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-498f5fa5103so2210474f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:28:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795462093; x=1796066893; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=tVpg3m8XkKzY55cEmyE7VyD81pFXe7BeKUYNIVpFSxU=;
-        b=cFO+e0u1jycmHyqamx/5Rg59LXD8MaW2oX/vnM1gmZHXAfHybagDeew3lH7c1NPfwn
-         E6DAjcFSSAb34zcoOmLtTDmv57U1uVMMAF88gCA58sDShF0kJ4Wehefzg9ODOyb/s2yt
-         hWFRcTaA3shkzggp0a8yCMPL+WIuQWTMeQg9Gqa1AqCNbvueL42y+QKnPAhhhcrhxwJx
-         E3spi26UGdWaGw6vFCi0ipuqRwnuDd1s87hDBau0BGQ+IymvLZyt++cvmBjDHvJS3Rf6
-         BF53IbxOopy+1yHiqOesj0zvXi8reWXMtGyY0fTW8lzmHgMZ98MYo+Vg6DWuqYyG6CLy
-         8mNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795462093; x=1796066893;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=tVpg3m8XkKzY55cEmyE7VyD81pFXe7BeKUYNIVpFSxU=;
-        b=elsG9LyleZkmH0e0n0v7iPhquSAwck+NN9B1z/z6obPqxkhHbgJ+Yt71tYGm5o02mJ
-         ZB8NJBiFAoxtc+BCcLV61VeUMX2FpWZRRL49rpXAXO1XiXbTmnzw7SPydDZJ/RcE1MMq
-         VqV+CXbULJAHpGuVZtOTTOnRh9Mn7rJe8Q3OgHjPDXXG85FXccXZfBfMZojvBjYkGsY1
-         N9KDhS5HkSYG9uKyBFva0vXsyayJyCese01rbQ/ERsllvM/UmxAeMFxjlcugbNI91nz6
-         +HMihL+aWmdIYQ4WOhzEc1we/WFGbVJKnQWt3vkz4wpxhCFXh1ajK2qm4AXQNtiofa4m
-         1vJg==
-X-Forwarded-Encrypted: i=1; AL+hErGgYmMmdZfzvJdFf0IeBtdCz8LXw+815tEoZ0Jq/soGwnaYQ19EP49PjGDLSjRF5e8sF3kw55I2rFXesO/CwdRH@lists.infradead.org
-X-Gm-Message-State: APuU4Z92Wz2E44VKP83+zuTNHkmtJdODhzvbRYP1kAM3VYjUGwXDkjP8
-	xEr7azqfOcN7VQT99gevGCcfqlJtDxdNCw+6tcdH2rT0WHXMEZc8IWz2YevcBIvph1u8IQ==
-X-Gm-Gg: AZFdTZcmPLOWmJ9QA7sBU1wj25MQHIMEKSZqDkAeeA2L0bWY7fh4MmgaVnE2Q6EGGwR
-	09r4JEFakWwmDxr2goT3WcnsF+JXkYhzAkWoCsJf4gY5+5e4dj3UtkufQz++p+MlXS2vqhlDThU
-	aNaenHFt5Q69FbKmoaBEH2PSojOyexEFSDQve5Qf9eUD9F0Nepxp4JcWQGVpQ8F/I3kumeVSsBf
-	UASeEf7T78rlfDYEohZdJ353rJFMM1L27xx4PmZKhklmZLlKSl7cHOjZEvlc+Zw7gpR6KGvKXBD
-	t5KHME0ei4s+mCpGOquJoce1dV8dOgvImRuiiW277pwyqU0BVC0cpvdfJ7NCSGm8T1rFB/ssteL
-	n3JKcZ4tcMgggPkvFegZKaR4WGD88mR48giERBZP2e7IgGVDxw4sJ0X0EL+YkyFkmgIT8UPxn+e
-	v+GRBKX+ovPVfAXtXfseCPYMuL+kh1hUmjln7ZTZgMFFO1TJYeeF7n9Oc/6o54wunmXKXEFMVh1
-	vPgcmkQghV0IMZnV+Gg1Qg0QC+7HRmj5y8xFY37jF29sEpckV4b/1C4FUOcb90dy1xN8USfzkQr
-	3AgqUcSgS4ag+siz8JBs7eG7Ugp2OcYueYk+ekDbflIkAmE4jZ97o3IFAEfahWAIz9+LDgk=
-X-Received: by 2002:a05:6000:2383:b0:4a8:8004:5261 with SMTP id ffacd0b85a97d-4abb6d04250mr27449503f8f.44.1795462092747;
-        Mon, 23 Nov 2026 11:28:12 -0800 (PST)
-Received: from kidala-computer.. (ip-109-41-51-17.web.vodafone.de. [109.41.51.17])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2d1bsm24879522f8f.8.2026.11.23.11.28.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 11:28:12 -0800 (PST)
-From: Oleh Shcherba <scherbaoleg4@gmail.com>
-To: Felix Fietkau <nbd@nbd.name>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>
-Cc: Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-wireless@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
+	Mon, 23 Nov 2026 19:30:38 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6C0F940020;
+	Mon, 23 Nov 2026 19:30:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D5F31F000C6;
+	Mon, 23 Nov 2026 19:30:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795462238;
+	bh=z+dq6Ervyi98/+N8sziu7yKbuSrwvrBsyjh52/p6ALM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Q4FqwtcfPIuZLt0rOsqefYMLZEjKMFzh2SZylcjdl3N7FtCfhpwnF6/HadiP98Mvu
+	 iKjq+NFC6v31+JILqy9ea1An3NewSDWZjIC7tlgy7Lj/qXVqJJfu7IvC4FewQBRSAS
+	 2sbDfyettR5SI/ySjItyJXGZ4phz8pSQqOOgi1v2z1IHcHIrRONAJzErTHehWGcWfD
+	 6SwjMKHJx3YdXPNVVrUZNCvJJzO5c4LjLJ9NSHFJZ+U/27630Ps25zmaQpZQm1L+vG
+	 29H2z8AFFJO+NLanPktuNoSs2eVK2fS9StH4X3PMWjtywBF7rohbVIJLteTUy7GAbP
+	 G3hVLPskPTpDw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xVZkK-00000002BkY-23wk;
+	Mon, 23 Nov 2026 19:30:36 +0000
+Date: Mon, 23 Nov 2026 19:30:36 +0000
+Message-ID: <86bj7fz6oz.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dan Carpenter <dan@pereq.eu>
+Cc: kvmarm@lists.linux.dev,
+	kvm@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Oleh Shcherba <scherbaoleg4@gmail.com>
-Subject: [PATCH] wifi: mt76: mt7603: remove dead WEP handling code
-Date: Mon, 23 Nov 2026 20:27:34 +0100
-Message-ID: <20261123192734.7149-1-scherbaoleg4@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
+In-Reply-To: <awSTFVxQQuz1tbk4@stanley.mountain>
+References: <20261123182312.4842-1-maz@kernel.org>
+	<awSTFVxQQuz1tbk4@stanley.mountain>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_112815_516197_BAABC138 
-X-CRM114-Status: GOOD (  11.58  )
-X-Spam-Score: -1.9 (-)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dan@pereq.eu, kvmarm@lists.linux.dev, kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, oupton@kernel.org, yuzenghui@huawei.com, fuad.tabba@linux.dev, stable@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,68 +88,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mt7603_set_key() only offloads TKIP and CCMP keys to the hardware and
-returns -EOPNOTSUPP for everything else, so WEP is always handled in
-software by mac80211. Hardware WEP was disabled as broken in the
-out-of-tree mt76 repository before the driver was merged upstream (see
-Link below), and in mainline mt7603_set_key() has never accepted WEP
-ciphers.
+On Mon, 23 Nov 2026 19:25:09 +0000,
+Dan Carpenter <dan@pereq.eu> wrote:
+> 
+> On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
+> > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
+> > that describe a base granule size smaller than the host's page size,
+> > we take the resulting size at face value and feed it to the S2 unmapping
+> > code. Which legitimately screams about something not being page-aligned.
+> > 
+> > The architecture allows us to drop the TLBI on the floor, as we don't
+> > support a S2 granule size smaller than the host's page size. But it turns
+> > out that doing so is proving pretty hard (we call compute_tlb_inval_range
+> > from a number of places, none of which is amenable to an early out).
+> > 
+> > Instead, detect the annoying case, and pretend that we don't have a TTL
+> > hint at all, leaving the size upgrade mechanism to take place and use
+> > the largest possible size for the guest's S2 granule size.
+> > 
+> > This will still allow nonsensical stuff to get through, such as a 4kB
+> > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
+> > on a 16kB page size host, but that's not worse than doing nothing, and
+> > the host code won't get shouty.
+> > 
+> > Reported-by: Dan Carpenter <dan@pereq.eu>
+> > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
+> > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
+> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > Cc: stable@vger.kernel.org
+> > ---
+> > 
+> > Notes:
+> >     Reposting this as a first class patch, as I'd like to plug that one
+> >     as early as possible (and Dan has plenty of other patches in flight...)
+> 
+> Tested-by: Dan Carpenter <dan@pereq.eu>
+> 
+> Although obviously zero is handled on the next line so there wasn't
+> much call for testing, but I still did do the testing.
 
-The WEP cases in mt7603_mac_get_key_info() and the WEP-specific key
-offset/length handling in mt7603_wtbl_set_key() are therefore
-unreachable. No functional change.
+And that's much appreciated. Thank you!
 
-Link: https://github.com/openwrt/mt76/commit/cd456ca87fb0afe4485ce9b091f40cf2faa3991a
-Signed-off-by: Oleh Shcherba <scherbaoleg4@gmail.com>
----
- drivers/net/wireless/mediatek/mt76/mt7603/mac.c | 12 +-----------
- 1 file changed, 1 insertion(+), 11 deletions(-)
+	M.
 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/mac.c b/drivers/net/wireless/mediatek/mt76/mt7603/mac.c
-index 196c39f..836ce7d 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/mac.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/mac.c
-@@ -894,10 +894,6 @@ mt7603_mac_get_key_info(struct ieee80211_key_conf *key, u8 *key_data)
- 	memcpy(key_data, key->key, key->keylen);
- 
- 	switch (key->cipher) {
--	case WLAN_CIPHER_SUITE_WEP40:
--		return MT_CIPHER_WEP40;
--	case WLAN_CIPHER_SUITE_WEP104:
--		return MT_CIPHER_WEP104;
- 	case WLAN_CIPHER_SUITE_TKIP:
- 		/* Rx/Tx MIC keys are swapped */
- 		memcpy(key_data + 16, key->key + 24, 8);
-@@ -916,18 +912,12 @@ int mt7603_wtbl_set_key(struct mt7603_dev *dev, int wcid,
- 	enum mt76_cipher_type cipher;
- 	u32 addr = mt7603_wtbl3_addr(wcid);
- 	u8 key_data[32];
--	int key_len = sizeof(key_data);
- 
- 	cipher = mt7603_mac_get_key_info(key, key_data);
- 	if (cipher == MT_CIPHER_NONE && key)
- 		return -EOPNOTSUPP;
- 
--	if (key && (cipher == MT_CIPHER_WEP40 || cipher == MT_CIPHER_WEP104)) {
--		addr += key->keyidx * 16;
--		key_len = 16;
--	}
--
--	mt76_wr_copy(dev, addr, key_data, key_len);
-+	mt76_wr_copy(dev, addr, key_data, sizeof(key_data));
- 
- 	addr = mt7603_wtbl1_addr(wcid);
- 	mt76_rmw_field(dev, addr + 2 * 4, MT_WTBL1_W2_KEY_TYPE, cipher);
 -- 
-2.43.0
-
+Without deviation from the norm, progress is not possible.
 
