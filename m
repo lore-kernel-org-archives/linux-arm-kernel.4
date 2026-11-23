@@ -2,102 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199C9606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 01:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6BEE606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 01:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3Y0ccgy9;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VXz0/ij6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wjPd7BVI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ivOklNN2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4B36WbMifke7+O2AJIQ+hm2Rk03uKtR2vzfH5UQsqfg=; b=3Y0ccgy92Hicy4
-	BWDmTadlNR+8PRS2CzedVyviy5p+G8NrJIO3CyKjGprPFIQHpy7KboJj3T/SBgxfgim7Stg8AW76w
-	nws5m9X3P1kw3OCng4UjLyvLuyMMgVfDLekG+36abJ99aYJ46E/XHoLTin5fWa9u9ljHmi+JkHgcw
-	Fkywm2unRsReRk93ImlvDVIh9yacTjao+nomTOBBO+jCvq57wXlqmAt2nFtmeTTV1UnA31yieUuVT
-	S62O+L1plooUQWBvdF9e0ctyOnobr1KjYwIhZtD+nchgQUXrWO2ecLNPMYd8MkK+1uCMBYQNcSZ3P
-	8IVBTky5n6eoXh46vPjQ==;
+	List-Owner; bh=mZqHayVGS1xgtvg32Na1JhcmVegYW+rmWEW78/lQ8ms=; b=wjPd7BVI04exke
+	y2WwMwhAVSbxXx0LZ0XTc0Vff79vqg4JHn0spGefOoAHRMecd9M2AWaHlGftr61CuWzwHcXVrn8fk
+	fbOS1JvUp6Ml/FMOurGD0GfaW/EW9T82k1kXO8P0Nvx1GGsWWHFBbsmEzn4VvZ7OmwDnifgphlZx7
+	NeqWRIok2yu0Jv3bUgEqhkYtEEUQNE1y4EYKAK97vWGPzkArL3BwM/RQ3LGpaFAP+Kir1PHvh1RdA
+	j9rG8zT2dyr6oN97jEg5Go4ITFEgkXKhrEAaMEZKND0dBWty9ucokTZ8rYSrY6NioYer1HDbI7Ctl
+	SmhwRpT29O80LmyKQsHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVIgf-0000000244O-0J9z;
-	Mon, 23 Nov 2026 01:17:41 +0000
+	id 1xVIk1-000000024Tr-3kfW;
+	Mon, 23 Nov 2026 01:21:09 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVIgd-0000000243f-3Dc7
+	id 1xVIk0-000000024Td-1Az5
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 01:17:39 +0000
+	Mon, 23 Nov 2026 01:21:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3C04E4425F;
-	Mon, 23 Nov 2026 01:17:39 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795396659;
-	b=b/VvX1KUEugZVjTe1n3JiHC7O78Avsn8WjdHgSyiI2jYjw4VFAG9pZr9hn5T6wOQgOT1
-	 +PyGOgd7PoffFC4nOS5ysYCSISi/hYPuVSqPM95mRSodqHEuVXabWN1JEh6snVcoKGEh9
-	 E8qfv27x7/f7qvZrAIH9/Rl1CK8aNpPyyj0bH60Bpj/gb+H4KaDTob9zpC7DwRcmqczO7
-	 eoERR+Ce7QavnopY12VRNT4W/QLKBPxWQjuECyOckKyzz8DRiK0ZE5UnJp/xVlKvJcCq5
-	 qavP6Sd7oIcVpq9u3+wXlfQXwLGy4y7x2suZtDPkG45jcCd5Yo132x3GviRBqCWoQYg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795396659;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=4B36WbMifke7+O2AJIQ+hm2Rk03uKtR2vzfH5UQsqfg=;
-	b=xOVWOGP2Ed5OUUr1WZHHP/Rh20JNr/sZeLpmvm6lxXxHPjJ9Wvo0yWuk3J8ySYaoeQnw
-	 U0Lqkjd2mirtq3o7lwpnKHElx7AUj8p+6jT3oX84ZuSwZtIrUHor0wTmHfGaGUvCaLNdo
-	 m0wwZ2vOOzQ+5bNDnWGrbEE4L9YE4XLu1VIpvBuXPS3OS+bbhI6obOdcNo8S5kA1wl2kA
-	 Rc37wR+X606GFSjsbMZVNy+vXHSK7CAEzzD4s01ngx8pYZFeCExTo8Qrd7VSUtx9TXZ6E
-	 NYWIBHzjKpm7dYdD3iooETPTUjKaq+/tYnL1EvrVxeHJ9TM3no7K1fxTKTR0XqmaNDA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 90DC71F000C4;
-	Mon, 23 Nov 2026 01:17:38 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id EAE40410A8
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:21:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF9DB1F000C4
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:21:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795396659;
-	bh=4B36WbMifke7+O2AJIQ+hm2Rk03uKtR2vzfH5UQsqfg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VXz0/ij6zrNgfGTuKKVRNSVAZqB75F4iuEcPh6yc+SpHJg9ANTqwKFvMFgfI1paQo
-	 +C6UiM20Ick79CyJl9O6zmNGBRuHQ1x92laGk666FI6oGJfqgDBbwQuVRmdqpy4rNt
-	 rv86eQbwj7E0J5KsxaUHEMjni4OsID26m5NKngeHjqXm4BLrBjB0yhVXG7iwEXyd/J
-	 7+gCVSoW4GeNh0F24fnFtAiBIKxLlMHn3bGzB2zQ7NidVKuNLEpXVAAqwjzEh+e2Ku
-	 Zn3TvpJ3SL/7iWEFY1BqsQzX5OySIuvuVL/B47ksQElmUl4MxepKFSVeoKZ0EnsSmS
-	 X+awfoX1SF5jg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1211D4C2A1;
-	Mon, 23 Nov 2026 01:17:38 +0000 (UTC)
-From: Suyuan Wang via B4 Relay <devnull+shyckless.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 01:17:37 +0000
-Subject: [PATCH v2 1/2] dmaengine: at_xdmac: Kill the channel tasklets
- before unregistering
+	s=k20260515; t=1795396867;
+	bh=mZqHayVGS1xgtvg32Na1JhcmVegYW+rmWEW78/lQ8ms=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=ivOklNN2KOGbBFBnB9FPVh7Ld7SVUF0l6X/QpLensP7wYUOgIaUzgygVwGuX7E66A
+	 wa5iA5ScRg88Zqb2fwPTGVh7+I+j/AmodinTS0CRnmjCVZaKjS6LnTKBWYLWgP5GwZ
+	 xyx6e8khX7plnxrs1xYCkPsOtjoHXTksvq1K97EenFi/26xOxfKZzoHNEYrs5boju4
+	 MDi3UwugVv1uuAQI7Z7FakahmJbHcb/vEFgHGr65TyzTFcEM+z1N6HzGLxc8EUmc7Z
+	 hQr+k3m+qe+pBonf4F92P9FjY+aM5LUrwkzUjMMt+YKdS7APbtTG9F4yBDYve8LJ5y
+	 ggDdZwilvsWQw==
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4ac95761c85so20220575e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 17:21:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErF1Oj2MB53Azzus9mNzZBBUNVAnCM8NblIzDnszZN4fhOY3Js+t2viVKZIcYZ7NVCDtnGbmhT4okv+cR/jyJpAM@lists.infradead.org
+X-Gm-Message-State: APuU4Z9xiuWjyRslet3p5Ypz9ukTIgMWhEFycB2fBoeH0ShDlE/nWOI4
+	RyaD7p8a5M3T7lP9kMbXmj/Q++NBuzYYlL8S0jrdBiXIfgRA0+rwvOhiLO8DHxCrAZwIfMtiGOp
+	zDR+7rGWhk+0zArjVzcPtTKyUWUr3yQQ=
+X-Received: by 2002:a05:600d:600b:b0:4a2:167a:c939 with SMTP id
+ 5b1f17b1804b1-4bb88815f1fmr209227025e9.21.1795396866520; Sun, 22 Nov 2026
+ 17:21:06 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-dma-chancnt-v2-1-241b1672883e@gmail.com>
-References: <20261123-dma-chancnt-v2-0-241b1672883e@gmail.com>
-In-Reply-To: <20261123-dma-chancnt-v2-0-241b1672883e@gmail.com>
-To: ludovic.desroches@microchip.com, vkoul@kernel.org
-Cc: Frank.Li@kernel.org, dave.jiang@intel.com, linux-kernel@vger.kernel.org, 
- andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org, 
- allen.lkml@gmail.com, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795396657; l=2983;
- i=shyckless@gmail.com; s=default; h=from:subject:message-id;
- bh=37CrXOmHngl8hduNk3ISIljXPc21J8blRcQ8FE7hl2Y=;
- b=xRJ6Jxg/MhAl8yKoKVPpMjDP/LVLwP5ZpBd/diE5bv3dkjKDbpzQCVIlWfz7HhwBjyX63FBkB
- /MZbutFOEfxCVN5Mx/JaIOV72KLvp6HbenUm+7kfvvRMGTQwAVNw7pH
-X-Developer-Key: i=shyckless@gmail.com; a=ed25519;
- pk=pMtccVGiWES3bV+7YBFuBclkvq2n2HBHQ5azaBrK2lY=
-X-Endpoint-Received: by B4 Relay for shyckless@gmail.com/default with
- auth_id=1498
-X-Original-From: Suyuan Wang <shyckless@gmail.com>
+References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn> <20261114-v861-v1-6-eb71ec3ee523@iscas.ac.cn>
+ <c8OwiyQSR8ivEFULfFWNow@gmail.com>
+In-Reply-To: <c8OwiyQSR8ivEFULfFWNow@gmail.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Mon, 23 Nov 2026 09:20:52 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTRiDrhOTJ77nnHm_v3k52iz2JPk15zZVE0SS_w1KJAVeg@mail.gmail.com>
+X-Gm-Features: Aa3M54ouhks5E3p4QI9taB6w48IYX-BM80EMc8-2bbL7hF7KLogcDmZQZpD8tBk
+Message-ID: <CAJF2gTRiDrhOTJ77nnHm_v3k52iz2JPk15zZVE0SS_w1KJAVeg@mail.gmail.com>
+Subject: Re: [PATCH 06/19] clk: sunxi-ng: add support for the Allwinner V861 CCU
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Anup Patel <anup@brainfault.org>, Han Gao <gaohan@iscas.ac.cn>, 
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Maxime Ripard <mripard@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
+	Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+	linux-csky@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rtc@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,100 +92,52 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: shyckless@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Suyuan Wang <stevewong@hust.edu.cn>
+Some references for v861:
 
-at_xdmac_remove() unregisters the DMA device and disables the clock,
-and only then frees the IRQ and kills the channel tasklets in a loop
-over dma.chancnt:
+https://www.cnx-software.com/2026/01/04/allwinner-v861-dual-core-64-bit-ris=
+c-v-ai-camera-sip-features-128mb-ddr3l-4k-h-265-h-264-video-encoder/
 
-	dma_async_device_unregister(&atxdmac->dma);
-	...
-	clk_disable_unprepare(atxdmac->clk);
+https://www.allwinnertech.com/index.php?c=3Dproduct&a=3Dindex&id=3D148
 
-	free_irq(atxdmac->irq, atxdmac);
+https://docs.allwinnertech.com/docs/soc/v861-tina-linux/en/
 
-	for (i = 0; i < atxdmac->dma.chancnt; i++) {
-		...
-		tasklet_kill(&atchan->tasklet);
-		at_xdmac_free_chan_resources(&atchan->chan);
-	}
+Hope these help you.
 
-Since commit e81274cd6b52 ("dmaengine: add support to dynamic
-register/unregister of channels"), dma_async_device_unregister()
-unregisters each channel and decrements dma.chancnt for it, so the
-loop does nothing and a tasklet scheduled by an interrupt can run after
-the devm-allocated atxdmac has been freed. Even when the loop ran,
-tasklet_kill() let a pending tasklet run after the channel devices
-were freed and the clock was disabled, and the tasklet reads the
-channel registers and logs through the channel device.
-
-Free the IRQ, kill the tasklets and free the channel resources right
-after at_xdmac_off(), before the channels are unregistered and the
-clock is disabled.
-
-Found with a static analysis tool and checked by hand.
-
-Fixes: e1f7c9eee707 ("dmaengine: at_xdmac: creation of the atmel eXtended DMA Controller driver")
-Fixes: e81274cd6b52 ("dmaengine: add support to dynamic register/unregister of channels")
-Cc: stable@vger.kernel.org
-Co-developed-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
-Signed-off-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
-Signed-off-by: Suyuan Wang <stevewong@hust.edu.cn>
----
- drivers/dma/at_xdmac.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/dma/at_xdmac.c b/drivers/dma/at_xdmac.c
-index ef0dfe9d37ba..d5d60f3d3543 100644
---- a/drivers/dma/at_xdmac.c
-+++ b/drivers/dma/at_xdmac.c
-@@ -2439,21 +2439,26 @@ static void at_xdmac_remove(struct platform_device *pdev)
- 	int		i;
- 
- 	at_xdmac_off(atxdmac, true);
--	of_dma_controller_free(pdev->dev.of_node);
--	dma_async_device_unregister(&atxdmac->dma);
--	pm_runtime_disable(atxdmac->dev);
--	pm_runtime_set_suspended(&pdev->dev);
--	pm_runtime_dont_use_autosuspend(&pdev->dev);
--	clk_disable_unprepare(atxdmac->clk);
--
- 	free_irq(atxdmac->irq, atxdmac);
- 
-+	/*
-+	 * Do this before dma_async_device_unregister(): it frees the channel
-+	 * devices and decrements dma.chancnt, and the tasklets also need the
-+	 * clock.
-+	 */
- 	for (i = 0; i < atxdmac->dma.chancnt; i++) {
- 		struct at_xdmac_chan *atchan = &atxdmac->chan[i];
- 
- 		tasklet_kill(&atchan->tasklet);
- 		at_xdmac_free_chan_resources(&atchan->chan);
- 	}
-+
-+	of_dma_controller_free(pdev->dev.of_node);
-+	dma_async_device_unregister(&atxdmac->dma);
-+	pm_runtime_disable(atxdmac->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+	clk_disable_unprepare(atxdmac->clk);
- }
- 
- static const struct dev_pm_ops __maybe_unused atmel_xdmac_dev_pm_ops = {
-
--- 
-2.34.1
+On Sun, Nov 15, 2026 at 3:31=E2=80=AFPM Jernej =C5=A0krabec <jernej.skrabec=
+@gmail.com> wrote:
+>
+> Dne petek, 13. november 2026 ob 23:33:32 Srednjeevropski standardni =C4=
+=8Das je Han Gao via B4 Relay napisal(a):
+> > From: Han Gao <gaohan@iscas.ac.cn>
+> >
+> > Add the main CCU driver for the V861, based on the A523 one. The CPU
+> > PLL, the CPU subsystem clocks and the E907 clocks are left to the
+> > firmware.
+> >
+> > Unlike on the A523, the second divider of the 27 MHz output is a power
+> > of two. pll-audio-4x does not pass rate changes up, as its parent also
+> > feeds the UART clock mux.
+> >
+> > Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+>
+> Do you have any user manual for it? Or at least BSP code? It's hard to
+> review patches without any of those references.
+>
+> Best regards,
+> Jernej
+>
+>
 
 
+--=20
+Best Regards
+ Guo Ren
 
