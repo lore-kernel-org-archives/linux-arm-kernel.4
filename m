@@ -2,74 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D22606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:24:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCFC606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HO1/Qzz0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=T+0djCW7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vEBGS1ZK;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=e8iUMloO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mvYDAmTPND065bEyMUQdFya2DyZKAiR6PvyK6Q17Cwk=; b=HO1/Qzz0gxKfbPz/ZO4CCROAmI
-	WzlGjgcTSZD6damldlhwR9VJ/G5Lh9NLLN829yk1TyIc+KvI4ggWj+ZymW4ANdd3X7JLnFv0OjfKA
-	U36ihmheIojbzH3V06rYwv+pSM3bUygxPRx+jkFXUgmV2R/iKZ25r311b0WyH2hTOPAt1z8FQ2gfk
-	pTNIuzsh3qQWv0r01iHnO2Zrs/GH1gtHO/EAZENTRaapCsoRHUSCDQUWKPMih6F5EOoZ/hhbl9P30
-	A0edZETww5icRls0eTIrbrSt8nL5tGsHI0Vd/KF2u8y85tGgzJXUAEOlClPeAtngcQvKuK6EdmURl
-	w2bKm+yQ==;
+	bh=KYlDHaU0d0BcNbHJgBpvpRlrSDERAzx5Le8G4/1rMoY=; b=vEBGS1ZKHmd+7ac9dWyIpK+2cV
+	8GOFsiGIZxoVY2nHkzWSlUe7n6bu7B6N05UpAj9eDLiJmyCE8LSxwBu98JjXN6/u+CBQRQV0jHHkG
+	KwfhbXq+aQeTxmUd5xi4Jep0tkiVsUP0K+3boeWJrPpmWcRVGmZtvQMY6d9rI3v2wEjH0qQeq4S9+
+	JtonB5aRRl1gr/NUtX2XcZDUciM/mNGQ1FO3V5lTBjPUXo1wp4D3b2icgC/NVj9Kb5Y4plbFr1dRf
+	r7Fp10Nd6/MdE0X9xfCTJKvbiFOaUvX3FJqnhHss3mT9y9Qrd9SFWW74N8KdBycqTDwTbiP5385Z4
+	GOA8nK4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVU1i-00000003Yjv-35ec;
-	Mon, 23 Nov 2026 13:24:10 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVTSz-00000003QVQ-3rCN;
+	Mon, 23 Nov 2026 12:48:17 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVU1f-00000003YjU-3zNr
+	id 1xVTSw-00000003QUh-2o4b
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 13:24:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B0EA1436B1;
-	Mon, 23 Nov 2026 13:24:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB0CE1F000D2;
-	Mon, 23 Nov 2026 13:24:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795440247;
-	bh=mvYDAmTPND065bEyMUQdFya2DyZKAiR6PvyK6Q17Cwk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=T+0djCW7dr/ynsSXYMgJn6R5Dl91QlBCh+TcSiMGPYIbXagqvOYKjIC/LqIKJIgVh
-	 2tsRenK8/vfzdGWeHGahRSnb451bLxXc9xXAo/gLuPnnRa/xnoe1EoX54fGV4iXZ9E
-	 kz4VgkOo4cTPP04Vwc32qERrb8x/HKIXnjuN5XHbbIWblFOwTjAqTE07P8bzqrt3YF
-	 EJbq3R8OFhttE2WXN2QcIjmpa2X6erPzeJjtQuIBQW4LY+zme38htbGcGefYQjZedX
-	 UJxBxBd8Mqr6E+S1TX5FgF5sgRMmr84L1JYc4NtQDI1n2RysHzx/G6B+BuWJLQjfDC
-	 1t2Dma2vfEGkQ==
-Date: Mon, 23 Nov 2026 21:03:41 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/8] net: stmmac: Add glue layer for Synaptics SL2610 SoC
-Message-ID: <awQ5raWYlMBpCqIl@xhacker>
-References: <20261116135442.4827-1-jszhang@kernel.org>
- <20261116135442.4827-5-jszhang@kernel.org>
- <4f1c4180-3a00-4b17-a27b-e61b307d3e5f@bootlin.com>
+	Mon, 23 Nov 2026 12:48:15 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 9107D1A1797;
+	Mon, 23 Nov 2026 12:48:12 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 5D6D7601E1;
+	Mon, 23 Nov 2026 12:48:12 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 73FB511E68F49;
+	Mon, 23 Nov 2026 13:48:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795438087; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=KYlDHaU0d0BcNbHJgBpvpRlrSDERAzx5Le8G4/1rMoY=;
+	b=e8iUMloOyNJ5zVEl5crV5boCsvIE2wqWJbvWJD1T/kqsFeIKQNBGWqNcHnCOFXGUiNYLY+
+	sGj+sEJ5Ef750Gq6UB03oHHNijrhoaM5+i268AOMVpa/UREepJVHTthHBtSm40OECGKN4t
+	g4f7lblY4VI/EFFs4FdqwdpjwEXfiD3wdu0OgDrBuHtqLrl6u3mdU9oy+Jwfc3MZpP+Yav
+	qsseEMREUtf7fFvyWmDhSPmsj9JNcTfkkFx9omDo3/Qiuc4GM/ukV1G8O29b88Lm+TixkG
+	8u07UvH8Zj746anst5Kk2/7wkKrVQefA/k0euVl7MVC8n6xWdRN7h2TnbhjcSA==
+Message-ID: <06c5bb031304c493763b829899211cb46efb96f8.camel@bootlin.com>
+Subject: Re: [PATCH v3 0/2] mailbox: Add Marvell MHU driver
+From: Paul Cercueil <paul.cercueil@bootlin.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Sunil Kovvuri Goutham	
+ <sgoutham@marvell.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date: Mon, 23 Nov 2026 13:48:02 +0100
+In-Reply-To: <20261123094542.44101-1-paul.cercueil@bootlin.com>
+References: <20261123094542.44101-1-paul.cercueil@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.56.2-0+deb13u1 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <4f1c4180-3a00-4b17-a27b-e61b307d3e5f@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_044814_847401_4B952B53 
+X-CRM114-Status: GOOD (  13.73  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,159 +78,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 12:57:06PM +0100, Maxime Chevallier wrote:
-> Hi,
-> 
-> On 11/16/26 14:54, Jisheng Zhang wrote:
-> > Add dwmac glue driver to support the DesignWare-based GMAC controllers
-> > in the Synaptics SL2610 SoC.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  MAINTAINERS                                   |   2 +
-> >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
-> >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
-> >  .../net/ethernet/stmicro/stmmac/dwmac-syna.c  | 116 ++++++++++++++++++
-> >  4 files changed, 130 insertions(+)
-> >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 430758242906..dba0288bf4da 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -3808,12 +3808,14 @@ M:	Jisheng Zhang <jszhang@kernel.org>
-> >  M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-> >  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> >  S:	Maintained
-> > +F:	Documentation/devicetree/bindings/net/syna,sl2610-dwmac.yaml
-> >  F:	Documentation/devicetree/bindings/soc/synaptics/
-> >  F:	arch/arm/boot/dts/synaptics/
-> >  F:	arch/arm/mach-berlin/
-> >  F:	arch/arm64/boot/dts/synaptics/
-> >  F:	drivers/clk/berlin/*sl2610*
-> >  F:	drivers/clk/berlin/sl-*
-> > +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> >  F:	drivers/pinctrl/berlin/pinctrl-sl2610.c
-> >  F:	drivers/reset/reset-sl2610.c
-> >  F:	drivers/soc/synaptics/
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > index c6559e749c0c..79ffebcaba0e 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > @@ -310,6 +310,17 @@ config DWMAC_SUN55I
-> >  	  stmmac device driver. This driver is used for A523/T527
-> >  	  GMAC200 ethernet controller.
-> >  
-> > +config DWMAC_SYNA
-> > +	tristate "Synaptics SL2610 DWMAC support"
-> > +	depends on OF && HAS_DMA && (ARCH_BERLIN || COMPILE_TEST)
-> > +	select MFD_SYSCON
-> > +	help
-> > +	  Support for the Synaptics SL2610 DesignWare Ethernet MAC glue.
-> > +	  This configures the PHY interface through the system controller.
-> > +
-> > +	  To compile this driver as a module, choose M here. The module
-> > +	  will be called dwmac-syna.
-> > +
-> >  config DWMAC_THEAD
-> >  	tristate "T-HEAD dwmac support"
-> >  	depends on OF && (ARCH_THEAD || COMPILE_TEST)
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > index b16a456b730e..d132353e9403 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > @@ -35,6 +35,7 @@ obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-> >  obj-$(CONFIG_DWMAC_SUNXI)	+= dwmac-sunxi.o
-> >  obj-$(CONFIG_DWMAC_SUN8I)	+= dwmac-sun8i.o
-> >  obj-$(CONFIG_DWMAC_SUN55I)	+= dwmac-sun55i.o
-> > +obj-$(CONFIG_DWMAC_SYNA)	+= dwmac-syna.o
-> >  obj-$(CONFIG_DWMAC_THEAD)	+= dwmac-thead.o
-> >  obj-$(CONFIG_DWMAC_ULTRARISC)	+= dwmac-ultrarisc.o
-> >  obj-$(CONFIG_DWMAC_DWC_QOS_ETH)	+= dwmac-dwc-qos-eth.o
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> > new file mode 100644
-> > index 000000000000..c4bc895b29da
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-syna.c
-> > @@ -0,0 +1,116 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Synaptics DWMAC platform driver
-> > + *
-> > + * Copyright (C) 2026 Jisheng Zhang <jszhang@kernel.org>
-> > + *
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of_net.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include "stmmac_platform.h"
-> > +
-> > +#define CTL_PHY_INTF_SEL	GENMASK(4, 1)
-> > +#define CTL_PHY_INTF_RGMII	FIELD_PREP(CTL_PHY_INTF_SEL, 1)
-> > +#define CTL_PHY_INTF_RMII	FIELD_PREP(CTL_PHY_INTF_SEL, 4)
-> 
-> Please use PHY_INTF_SEL_RGMII and PHY_INTF_SEL_RMII from "common.h"
+WW91IGNhbiBpZ25vcmUgdGhpcyB2My4KCkl0IGRvZXMgbm90IGNvbXBpbGUgYWx3YXlzIHdpdGgg
+Q09NUElMRV9URVNULCBzbyBJJ2xsIHNlbmQgYSB2NC4KCkNoZWVycywKLVBhdWwKCkxlIGx1bmRp
+IDIzIG5vdmVtYnJlIDIwMjYgw6AgMTA6NDUgKzAxMDAsIFBhdWwgQ2VyY3VlaWwgYSDDqWNyaXTC
+oDoKPiBIaSBKYXNzaSwKPiAKPiBUaGlzIGlzIHRoZSB2MyBvZiBteSBwYXRjaHNldCB0aGF0IGFk
+ZHMgc3VwcG9ydCBmb3IgdGhlIG1haWxib3ggZm91bmQgaW4KPiB0aGUgT2N0ZW9uVFggYW5kIE9j
+dGVvblRYMiBiYXNlZCBTb0NzLCB3aGljaCBpcyB1c2VkIGZvciBTQ01JCj4gY29tbXVuaWNhdGlv
+bi4KPiAKPiBUaGlzIHYzIGZpeGVzIGEgZmV3IHRoaW5ncyB0aGF0IFNhc2hpa28gY29tcGxhaW5l
+ZCBhYm91dC4KPiAKPiBDaGFuZ2VzIGluIHYzOgo+IAo+IFsyLzJdOgo+IMKgLSBSZXF1ZXN0IGFu
+IGludGVycnVwdCB2ZWN0b3Igb2YgZXhhY3RseSAzIGludGVycnVwdHMKPiDCoC0gUGFzcyBJUlFG
+X05PX0FVVE9FTiB0byBkZXZtX3JlcXVlc3RfaXJxKCkKPiDCoC0gSW52ZXJ0IHN1Y2Nlc3MgY29u
+ZGl0aW9uIG9mIG1ydmxfbWh1X2xhc3RfdHhfZG9uZSgpCj4gCj4gQ2hlZXJzLAo+IC1QYXVsCj4g
+Cj4gR2VvcmdlIENoZXJpYW4gKDIpOgo+IMKgIGR0LWJpbmRpbmdzOiBtYWlsYm94OiBhZGQgTWFy
+dmVsbCBNSFUKPiDCoCBtYWlsYm94OiBtYXJ2ZWxsLW1odTogYWRkIE1hcnZlbGwgTUhVIGRyaXZl
+cgo+IAo+IMKgLi4uL2JpbmRpbmdzL21haWxib3gvbWFydmVsbCxtaHUueWFtbMKgwqDCoMKgwqDC
+oMKgwqAgfMKgIDYxICsrKysrCj4gwqBNQUlOVEFJTkVSU8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDcgKwo+
+IMKgZHJpdmVycy9tYWlsYm94L0tjb25maWfCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCB8wqAgMTEgKwo+IMKgZHJpdmVycy9tYWlsYm94L01ha2VmaWxlwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDIgKwo+IMKgZHJpdmVy
+cy9tYWlsYm94L21hcnZlbGxfbWh1LmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8
+IDIzOCArKysrKysrKysrKysrKysrKysKPiDCoDUgZmlsZXMgY2hhbmdlZCwgMzE5IGluc2VydGlv
+bnMoKykKPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbWFpbGJveC9tYXJ2ZWxsLG1odS55YW1sCj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
+dmVycy9tYWlsYm94L21hcnZlbGxfbWh1LmMK
 
-I read this as "use SYNA_PHY_INTF_SEL_RGMII and SYNA_PHY_INTF_SEL_RMII",
-correct me if there's misunderstanding.
-
-> 
-> > +
-> > +struct syna_dwmac {
-> > +	struct plat_stmmacenet_data *plat;
-> > +	struct regmap *regmap;
-> > +	u32 rgmii_ctl;
-> > +	struct device *dev;
-> > +};
-> > +
-> > +static int syna_dwmac_set_phy_if(struct plat_stmmacenet_data *plat)
-> > +{
-> > +	struct syna_dwmac *dwmac = plat->bsp_priv;
-> > +	u32 phyif;
-> > +
-> > +	switch (plat->phy_interface) {
-> > +	case PHY_INTERFACE_MODE_RMII:
-> > +		phyif = CTL_PHY_INTF_RMII;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +	case PHY_INTERFACE_MODE_RGMII_ID:
-> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> > +		phyif = CTL_PHY_INTF_RGMII;
-> > +		break;
-> > +	default:
-> > +		dev_err(dwmac->dev, "unsupported phy interface %s\n",
-> > +			phy_modes(plat->phy_interface));
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return regmap_update_bits(dwmac->regmap, dwmac->rgmii_ctl, CTL_PHY_INTF_SEL, phyif);
-> > +}
-> > +
-> > +static int syna_dwmac_init(struct device *dev, void *priv)
-> > +{
-> > +	struct syna_dwmac *dwmac = priv;
-> > +
-> > +	return syna_dwmac_set_phy_if(dwmac->plat);
-> > +}
-> 
-> Can you implement .set_phy_intf_sel() instead ? that should simplify that quite a lot.
-> 
-
-Good idea. Thanks for the suggestion
 
