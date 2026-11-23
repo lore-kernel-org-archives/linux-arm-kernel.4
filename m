@@ -2,76 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CD0606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000C7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e4awJwwb;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FhxF28VO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LiceTK20;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YIPojpav
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SCQzlcbNwCmuhr5iFrK9gJq6siqjEJF99ctxEcILNVU=; b=e4awJwwb5odOJ2
-	eT4nlFEJzzmi8HJLhWvsXlZBUaxuUO6d05d1nkrpwZ8+K05gP9m8U2RZlDeXX4twe5QiHzH7RmYxT
-	5QelcO5PRi5OGkTSl/ziyEsBN34Vn7g0qxoPHq6FlHjbkQZ52bQHr283lUSEzv8H5VFtrzxL5gRwY
-	B3kkKRYnng0a+jNxerYRxveH5x2G1KOfWAlPwA/acZXB/r1JdWv1DeVp3pExCGZfxyhvJmMPlB3We
-	gp3kM5BJs+aoh8ZjoC3Kkz87shwVeplvVGlTp6JQknNCwDNzR78NMMDaBpSP26NFlE/0wzzB5Fg+8
-	pb5yrPN9H1V2jdY71TDw==;
+	List-Owner; bh=3G6I2HBy1UTihgVzffidRJ8qc0m2dAG1ryDyw90kJ+U=; b=LiceTK20hstCuA
+	3ibzZYdJWBZ8JwISJ9EP9Jf8MGzkcnxwOhc/q7h14ECRxJzZ6rolLVNrVWrnCzxe9g1zFR1WSmJEK
+	dOAy3RvycxOm+QDAZLJzUX83HK1nSFL+6y6XbuqPCQkl5CbmB8mrg4+aj7v48u5Ef18bTSJQKRR2b
+	NUVoQ1QrTZ6SGLQyxFWv60OYSsFamolNtbC7UdqIaCJX1wZuXgKqEodqke9wCGHblSXbUKSl63peY
+	knLkzwgEtqp8Wf6sZGXeVaWC0pbFTirc/EQlpRwxZvDChd6kDjjO9SV2cup5IqyP8ffHlflsvDCM1
+	pVHrEsY7B+b4CcBGUigA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWIu-000000044pD-3IeT;
-	Mon, 23 Nov 2026 15:50:07 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVWO6-000000045lT-1vMe;
+	Mon, 23 Nov 2026 15:55:26 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWIo-000000044mG-3vvH
+	id 1xVWO5-000000045lC-1nha
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 15:49:59 +0000
+	Mon, 23 Nov 2026 15:55:25 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 08319622FA
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:49:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998BF1F00A36
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:49:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3470243D0C
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:55:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7263A1F00ACF
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:55:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795448997;
-	bh=SCQzlcbNwCmuhr5iFrK9gJq6siqjEJF99ctxEcILNVU=;
+	s=k20260515; t=1795449324;
+	bh=3G6I2HBy1UTihgVzffidRJ8qc0m2dAG1ryDyw90kJ+U=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=FhxF28VOIx6y+hROoeNp60dLhhrLpae7rXzvw5rF7qUHPlYBCLyMDNMQrcWOhiw+K
-	 JOho/jbZlZPyi/MQG4qrbOTx6O2AC+OlL0ImJHsNE0LlHpxtBfDzhLu35Yc3hfleS2
-	 ihgiKn7z2XWHEBsgVwvIEcniBlcJpVjzCmrj4zEmHNqUfPvlqH3QNhxNUqR4e/eo3H
-	 h6lnzAzDOV+cx6KIn2xsrZSX3gL8aAGSYVRRpmSdUv6WOpi6ANFIcZ0ulo0yf2is4j
-	 URk3Qs2PoDSTaxmIQ3BmGcwDoC8R99MU4xDeAYvMS3AV/kqFPabpp+UfMAigDS9p7q
-	 wXQ2sWK9pU6yg==
-Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-36a315ed211so4397547eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:49:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFdkygTnaOxOokbfUi6ttila8sXVHhENjGtCT1YZ7X10j/7GB+Fzhw1MJy5i9YXtvSaisoRL3Qjrdmn+UbNXtW6@lists.infradead.org
-X-Gm-Message-State: APuU4Z8+9anvu2MY98lJc7Yj8AMRKYBfRsQS8CEUvn1u47ZwaQeUpAB+
-	j49pR9XDzkwyShxmLuD79yux24Uz7Wi24lmqMbRA9kEoOkzTgutFztiRe7MEk1R7sefwfZTeBRp
-	S57iWHmSddqv7SQ/HOQfJsnB70HEw7A==
-X-Received: by 2002:a05:693c:8943:20b0:386:af00:e9a6 with SMTP id
- 5a478bee46e88-386af00eb48mr3600530eec.2.1795448996995; Mon, 23 Nov 2026
- 07:49:56 -0800 (PST)
+	b=YIPojpav0O7GuwdQ8vBLY/e71DVXviFdsS44PLAZ6U3mzJmNA6TR2JMjsN8z5lxCr
+	 DbkvMGQFYOuHHzjMf8u668uvyZWYP73Ki5QI4dd172ddRmjLFNCa1RTUNH56JBlA59
+	 DWJcJyl8C/QXuR7xiGNwKc63hL3TIUzKnOEhWm6p/JSDwbCrHijVfhs4JXS77SRl23
+	 /lEkfV1otEaHf0WCm2jhnwz3dRQVyDEuB/CgyXWuGu6IpZPRjTt1E7VOxNwDDZILJd
+	 Wh0IWvZYsXb6pcvxsO9MTrZusQddlEn9jgt7S6z878feRaXG9PYA+wtFIkq7dSQc6L
+	 qisckzr3Lptsw==
+Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-1b50a4bd2f3so5083777c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:55:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGZ4Y1YfgRy4zmJ0zLboVs87qHjoxuT8SM/yTtYmUgncsNEiMV2GijoexdVmjkeuYJ4wLLA8ONCu35GuDJUH5ke@lists.infradead.org
+X-Gm-Message-State: APuU4Z9Q4X6T5uTxsmKWA7nI5vr8jjIf6dl8cOoOSCF5/rr3OQoaehu5
+	1AZDOvO2YMfL5oE7U4ZbdR9IqlezxRBNKlbC4ZqwFXe982KQXN7Nx0sWt32gq7dC7Ue3Jmxt2Tf
+	/ydRKkxbeTRzDjLRDpfCg06eWHgJxiQ==
+X-Received: by 2002:a05:701b:4212:20b0:195:49ee:94c7 with SMTP id
+ a92af1059eb24-1b556877b4bmr13673422c88.8.1795449323806; Mon, 23 Nov 2026
+ 07:55:23 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261011004248.1117649-1-agentzoan@gmail.com> <20261011004248.1117649-4-agentzoan@gmail.com>
-In-Reply-To: <20261011004248.1117649-4-agentzoan@gmail.com>
+References: <20261105-mtk-dsi-long-read-v1-1-0b6d9b67c011@protonmail.ch>
+In-Reply-To: <20261105-mtk-dsi-long-read-v1-1-0b6d9b67c011@protonmail.ch>
 From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Mon, 23 Nov 2026 15:49:44 +0000
-X-Gmail-Original-Message-ID: <CAAOTY_8NSXSj64NBQN11kLs1ik0YXWH1FZ5gzJtzWYNEozQ7Lg@mail.gmail.com>
-X-Gm-Features: Aa3M54oYdPL6VD3WqMQ7QRwBmptZ5_Vy6FcQra7b4AqYYR8h27_8PCC_wigfSRA
-Message-ID: <CAAOTY_8NSXSj64NBQN11kLs1ik0YXWH1FZ5gzJtzWYNEozQ7Lg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/mediatek: mtk_crtc: Pick the connector route on
- every CRTC enable
-To: zoan37 <agentzoan@gmail.com>
+Date: Mon, 23 Nov 2026 15:55:09 +0000
+X-Gmail-Original-Message-ID: <CAAOTY_86OXNzY1ZCM-TkRHJBL2D251TmMUAb7KciJ=J67zzpdA@mail.gmail.com>
+X-Gm-Features: Aa3M54odlecVrJk7CoDKPAKnCFnRzxRnnufzNqT2mcMd-MnXgiezzVi7wDx4zUE
+Message-ID: <CAAOTY_86OXNzY1ZCM-TkRHJBL2D251TmMUAb7KciJ=J67zzpdA@mail.gmail.com>
+Subject: Re: [PATCH RESEND] drm/mediatek: dsi: Fix handling of long packet reads
+To: bengris32@protonmail.ch
 Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
 	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
 	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Jason-JH Lin <jason-jh.lin@mediatek.com>, CK Hu <ck.hu@mediatek.com>, 
-	Nancy Lin <nancy.lin@mediatek.com>, Nathan Lu <nathan.lu@mediatek.com>, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu <ck.hu@mediatek.com>, 
+	shaoming chen <shaoming.chen@mediatek.com>, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -92,29 +90,24 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-zoan37 <agentzoan@gmail.com> =E6=96=BC 2026=E5=B9=B410=E6=9C=8811=E6=97=A5=
-=E9=80=B1=E6=97=A5 =E4=B8=8A=E5=8D=8812:43=E5=AF=AB=E9=81=93=EF=BC=9A
+Ben Grisdale via B4 Relay <devnull+bengris32.protonmail.ch@kernel.org>
+=E6=96=BC 2026=E5=B9=B411=E6=9C=885=E6=97=A5=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=
+=8D=882:35=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> mtk_crtc_update_output() only picks the output component of a CRTC
-> with connector routes when connectors_changed is set in the commit that
-> enables the CRTC. But connectors_changed only says that the connectors
-> changed in that commit, not since the CRTC was last enabled. A connector
-> can be attached to (or moved to) the CRTC while it is inactive, and the
-> later commit that only sets ACTIVE then has active_changed but not
-> connectors_changed:
+> From: Ben Grisdale <bengris32@protonmail.ch>
 >
-> - If the CRTC had never been enabled, the route slot is still NULL and
->   mtk_crtc_ddp_hw_init() dereferences it (mtk_ddp_comp_clk_enable()
->   and so on).
-> - If the CRTC was driven through another route before, e.g. a CRTC
->   shared by an HDMI bridge on DSI and a DisplayPort output that is
->   switched off (DPMS) while the monitor moves from one to the other,
->   the pipeline is set up for the old output.
+> mtk_dsi_host_transfer() decides where the payload starts in the
+> received data based on the byte count returned by mtk_dsi_recv_cnt(),
+> treating anything longer than 2 bytes as a long packet.
 >
-> update_output() only runs from atomic_enable and the lookup is a short
-> loop over the routes, so do it on every enable.
+> This breaks long read responses with a 1 or 2 byte payload: they are
+> treated as short packets, so the word count from the packet header is
+> copied into rx_buf instead of the payload.
+>
+> Fix this by checking the packet's data type instead of inferring it
+> from the length.
 
-With modification, applied to mediatek-drm-fixes [1], thanks.
+Applied to mediatek-drm-fixes [1], thanks.
 
 [1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
 log/?h=3Dmediatek-drm-fixes
@@ -123,9 +116,8 @@ Regards,
 Chun-Kuang.
 
 >
-> Fixes: 01389b324c97 ("drm/mediatek: Add connector dynamic selection capab=
-ility")
-> Assisted-by: LLM
-> Signed-off-by: zoan37 <agentzoan@gmail.com>
+> Fixes: 21898816831f ("drm/mediatek: add dsi transfer function")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ben Grisdale <bengris32@protonmail.ch>
 > ---
 
