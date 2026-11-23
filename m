@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278D9606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EB1606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BT5Y1JPB;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=ZN1L0SVB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oarwF6mF;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=ErTUaYgV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sJT0P0pxlnO/2UL96KYZBEI78j4iAu+YUCI/UbuX7rw=; b=BT5Y1JPBuVTUZOf/O9VrrQ0ML4
-	ndztYL4ir+hsetM6abEta4s+I/EdLDFjEzDlka1pBGNmuE6BjEkVx4QWdp3Czk9p5IbOHSkURwxot
-	on/JNTG+qfG56KWCxAXwFOWcC2++oWhFAe51Pc3wLpe5LvmUiL6oVyz87QcXm9jpDf+UnKlDtlIXl
-	nE4zcDabNfDNsF9U8H/MB5BT6g1YgUBHl/qnBiLPicOfF5rF/XI7rxywCiE/EjIEtZPrCHJflWKVj
-	ztAfmoFJqPue2wnfcO08skVYoC7shqhdsWBzu5r2WlgNN67akl28VqQ0YULtmu7Va4DwE/Qxj4YWt
-	cYcESAqg==;
+	bh=D0XxOveY3MvX4YNA5Xd6Wt1k8TtEcHHOm0lTDavOO54=; b=oarwF6mFxnCwBRoN9nnIL21ReN
+	vV/Cjlb53Ruyb4wHhIUQqlDnthzsYWz0p+XWqbDWk7RLi9aZTCNn9saC9Fe5k644+F4Tz1SjnbyMb
+	7gNFnakq89qqAw7+CapP/Po1gcQsWv2CefqVaY9OBRbggV4b9Up3evw5VxIGZfNMi0uuYgTPeLZLW
+	218MA7vY6z5YTSCNRnSs66tyAv65ERDaK7nH703A4qN3ATuu+R7DT+O3V1gGzlHkTm0FrEj4ExXrG
+	VHTgHcDaxTNK45jTIb5AZTZFpMiSTN0UM1ne0F2gup7n0djUEedhevX7nBB2fG/ctm4gUj/hDrHHR
+	QQyjqW0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMl-00000003CbV-1tDx;
-	Mon, 23 Nov 2026 11:37:48 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xVSMn-00000003Cfo-0cPH;
+	Mon, 23 Nov 2026 11:37:49 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMe-00000003CSb-19DB;
-	Mon, 23 Nov 2026 11:37:42 +0000
-X-UUID: 4791100ae73211f1afed4741b24580c9-20261123
+	id 1xVSMh-00000003CWs-3GqH;
+	Mon, 23 Nov 2026 11:37:44 +0000
+X-UUID: 4918d782e73211f1acbe4559397dec65-20261123
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=sJT0P0pxlnO/2UL96KYZBEI78j4iAu+YUCI/UbuX7rw=;
-	b=ZN1L0SVBiogJU+Yj/I6HkXp/xxWu7ONEFfFxc6l+GnugO9I2/GpnOsNaE9jvKEqrhjcVs7qniCkYkGeq8fpmhbwicIvzgApxECeQ/uUuJAmUnm3d+KUt0cK5YuvMLpsBBj7H3yWNsz9R3eTGMgJiu1tDv24GM5FoFwtcCfm3WxI=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=D0XxOveY3MvX4YNA5Xd6Wt1k8TtEcHHOm0lTDavOO54=;
+	b=ErTUaYgVbge0eg7FoHBWn7/VYkyBYYxFHirm1FJSoae9LUe4ns8YTOW5UH3lVyOEvtYt6lhnTAEAgmYv2Ky1oONdmaNC/3hGJvEFHbOuzGIUTknn3WCj83inEOXdmcJYDRiZhQJPJO9F3FKS73RJ2dPhOZv/lblM9pHMOGxDx0I=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:d41053f0-ab2d-48ef-85c1-52b85c2ff06b,IP:0,U
+X-CID-O-INFO: VERSION:1.3.21,REQID:2d5574c6-c684-429f-b56a-964ccbd75d60,IP:0,U
 	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
 	N:release,TS:-25
-X-CID-META: VersionHash:b0318ac,CLOUDID:5cf7f319-ae4c-4a2b-b1c4-72e411efd0c9,B
-	ulkID:nil,BulkQuantity:0,SF:102|136|836|865|888|898,TC:-5,Content:0|15|50|
-	99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
-	I:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-META: VersionHash:b0318ac,CLOUDID:035b3c31-f289-4656-bb36-27baf4489f11,B
+	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
+	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
 X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 4791100ae73211f1afed4741b24580c9-20261123
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+X-UUID: 4918d782e73211f1acbe4559397dec65-20261123
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
 	(envelope-from <chunfeng.yun@mediatek.com>)
 	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1740457769; Mon, 23 Nov 2026 04:37:36 -0700
+	with ESMTP id 1501865315; Mon, 23 Nov 2026 04:37:38 -0700
 Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 23 Nov 2026 19:37:33 +0800
+ 15.2.2562.56; Mon, 23 Nov 2026 19:37:34 +0800
 Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
  mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.53 via Frontend Transport; Mon, 23 Nov 2026 19:37:32 +0800
+ 15.2.2562.53 via Frontend Transport; Mon, 23 Nov 2026 19:37:33 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Mika Westerberg <westeri@kernel.org>
 CC: Andreas Noever <andreas.noever@gmail.com>, Konrad Dybcio
@@ -66,18 +66,20 @@ CC: Andreas Noever <andreas.noever@gmail.com>, Konrad Dybcio
 	<linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-mediatek@lists.infradead.org>, Chunfeng Yun
 	<chunfeng.yun@mediatek.com>
-Subject: [PATCH 0/8] thunderbolt: Add support platform NHI driver
-Date: Mon, 23 Nov 2026 19:36:47 +0800
-Message-ID: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
+Subject: [PATCH v3 1/8] thunderbolt: Prefix NHI core functions with tb_ and tb_ring_
+Date: Mon, 23 Nov 2026 19:36:48 +0800
+Message-ID: <20261123113705.2297329-2-chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
+References: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_033740_413760_547B3CD4 
-X-CRM114-Status: GOOD (  21.96  )
+X-CRM114-CacheID: sfid-20261123_033743_824099_025493C3 
+X-CRM114-Status: GOOD (  18.63  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,170 +91,187 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Historically, the USB4 / Thunderbolt subsystem has had a hard dependency
-on PCI, bundling the core framework, the PCIe-attached Native Host
-Interface (NHI) driver (pci.c), and the Intel Connection Manager (icm.c)
-into a single module (thunderbolt.ko).
+In preparation for modularizing PCIe NHI support and allowing PCIe
+and platform NHI drivers to be built as separate modules atop the
+Thunderbolt core framework, several NHI functions and structures will
+need to be exported.
 
-Modern ARM64 SoCs (such as MediaTek MT8901 / MT8992) integrate the USB4
-host router / NHI directly as an MMIO platform device rather than sitting
-on an external PCIe bus. Furthermore, embedded and SoC-based platforms
-often do not include PCIe-attached host routers or require Intel ICM
-support, making a mandatory PCI dependency and bundled PCIe code
-undesirable.
+Currently, several of these functions lack standard subsystem prefixes,
+risking namespace pollution or collisions across the flat kernel symbol
+namespace:
 
-This series decouples PCIe NHI and Intel ICM support from the Thunderbolt
-core framework, introduces a generic platform NHI driver supporting ACPI
-bindings, and addresses probe error handling, link training timing, and
-disconnect warning issues observed during runtime PM and suspend/resume.
+- ring_msix() lacks any subsystem prefix and diverges from all other
+  exported ring functions in the driver, which use the "tb_ring_" prefix.
+- nhi_probe(), nhi_shutdown(), and nhi_pm_ops lack the standard "tb_"
+  prefix used across the Thunderbolt public interface (such as struct
+  tb_nhi and struct tb_nhi_ops).
+- nhi_msi() is named after PCI MSI, even though the ISR simply schedules
+  the interrupt work and can serve as a generic ISR for non-PCIe platform
+  controllers as well.
 
-Overview of Changes
-===================
+Rename these functions and symbols to conform to Thunderbolt subsystem
+naming conventions before exporting them:
 
-1. Modularization & Namespace Cleanups (Patches 1-3)
-   - Patches 1 & 2 clean up internal interfaces before exporting. Core NHI
-     functions are prefixed with standard tb_/tb_ring_ namespace prefixes.
-     Intel ICM mailbox helpers (nhi_mailbox_cmd/mode) are moved into icm.c
-     and made static, and interrupt work initialization is internalized in
-     tb_nhi_probe().
-   - Patch 3 drops the hard "depends on PCI" from CONFIG_USB4, introduces
-     CONFIG_USB4_PCI (defaulting to USB4) to build PCIe NHI and ICM as an
-     opt-in module (thunderbolt_pci.ko), adds a .select_cm() hook in
-     tb_nhi_ops to allow connection manager selection without core hardcoding,
-     and exports symbols required by the modular drivers.
+- ring_msix       -> tb_ring_msix
+- nhi_msi         -> tb_nhi_isr
+- nhi_probe       -> tb_nhi_probe
+- nhi_shutdown    -> tb_nhi_shutdown
+- nhi_pm_ops      -> tb_nhi_pm_ops
 
-2. Core Probe Error Handling & Unwind Fix (Patch 4)
-   - Patch 4 fixes initialization ordering and error unwind paths in
-     tb_nhi_probe(). Moves dma_set_mask_and_coherent() and spin_lock_init()
-     before ops->init_interrupts() to avoid race conditions with early
-     interrupts, and consolidates post-interrupt failure paths by invoking
-     tb_nhi_shutdown() to ensure interrupt work is flushed, IRQs are
-     masked, and controller power-off callbacks are executed.
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v3: no changes
+---
+ drivers/thunderbolt/nhi.c | 14 +++++++-------
+ drivers/thunderbolt/nhi.h | 10 +++++-----
+ drivers/thunderbolt/pci.c | 10 +++++-----
+ 3 files changed, 17 insertions(+), 17 deletions(-)
 
-3. Platform NHI Driver (Patch 5)
-   - Introduces CONFIG_USB4_PLATFORM (thunderbolt_platform.ko), adding
-     support for memory-mapped USB4 NHIs via ACPI ("ACPI0015").
-   - Implements platform-specific tb_nhi_ops hooks and runtime PM.
-   - Adds support for an optional dedicated wakeup interrupt from an
-     always-on power domain, necessary for SoCs where the primary NHI
-     MAC/PHY power domain is gated during suspend.
-   - Calls pm_runtime_resume() in nhi_suspend() if the device is
-     runtime-suspended, ensuring the controller is in an active state
-     before system suspend (unlike the PCI bus, the platform bus does
-     not automatically runtime-resume devices prior to system suspend).
-
-4. Link Training and Disconnect Improvements (Patches 6-7)
-   - Patch 6 increases the port link training timeout in tb_wait_for_port()
-     from 1s to 2s and updates the kernel-doc documentation. In the USB4
-     specification, Phase 5 (Link Equalization) alone is permitted up to
-     1000 ms. Factoring in Phases 2-4 (~200 ms) and retimer command
-     transaction delays across dual-retimer topologies, physical link
-     establishment can legitimately take 1.2s to 1.5s+, which previously
-     led to spurious disconnects during wakeups.
-   - Patch 7 decouples the TB_PORT_UNPLUGGED wait time from the overall 2s
-     link-up timeout. Under normal link training, the port enters
-     TB_PORT_CONNECTING within ~200 ms. Capping TB_PORT_UNPLUGGED retries to
-     400 ms allows genuine device disconnect wakeups to be handled promptly
-     without waiting the full 2s.
-
-5. Drop WARN_ON in Disconnect Flow (Patch 8)
-   - Patch 8 drops WARN_ON(!up) and WARN_ON(!tunnel) checks in
-     tb_disconnect_pci(). When userspace deauthorizes a router via sysfs
-     (writing 0 to 'authorized'), missing upstream ports or tunnels can
-     legitimately happen if a router was unplugged/lost during sleep or if
-     tunnel activation previously failed. Removing WARN_ON() avoids false
-     kernel splats and panics on panic_on_warn systems while cleanly
-     returning -ENODEV.
-
-Differences from Previous Versions
-==================================
-
-Changes in v3:
-- Patch 3: Added 'default USB4' to CONFIG_USB4_PCI in Kconfig so existing
-  configurations retain PCIe NHI support by default without config churn.
-  Exported tb_xdomain_remove symbol.
-- Patch 4: Added new patch to fix error handling and unwind paths in
-  tb_nhi_probe(). Reordered DMA mask setup and spinlock initialization
-  before interrupt setup, and ensured tb_nhi_shutdown() is invoked on all
-  post-interrupt probe failure paths.
-- Patch 5: Added 'depends on ACPI' to CONFIG_USB4_PLATFORM and focused
-  platform device matching on ACPI0015. Added pm_runtime_resume() call in
-  nhi_suspend() to handle platform bus runtime PM behavior during system
-  suspend. Cleaner Wake IRQ Handling. Kernel Coding Cleanups.
-- Patch 6: Updated kernel-doc comment in tb_wait_for_port() to reflect
-  the new 2-second timeout value.
-- Patch 7: Clarified kernel-doc comment phrasing ("router resume").
-- Patch 8: Reworked from v2's sw->is_unplugged checks to directly drop
-  the WARN_ON(!up) and WARN_ON(!tunnel) checks in tb_disconnect_pci(),
-  as missing ports/tunnels are expected under dynamic disconnect conditions
-  and do not indicate a kernel bug.
-
-Changes in v2:
-- Based on Konrad's patch, decoupled PCIe NHI and ICM into a separate
-  module (thunderbolt_pci.ko, CONFIG_USB4_PCI) and removed the hard PCI
-  dependency from CONFIG_USB4.
-- Added preparatory patches to prefix core NHI functions with tb_/tb_ring_
-  and internalize ICM mailbox and interrupt work.
-- Built platform driver as a separate module (thunderbolt_platform.ko,
-  CONFIG_USB4_PLATFORM).
-- Renamed plat.c to platform.c and updated driver symbols.
-- Squashed optional dedicated wake IRQ support directly into the platform
-  driver patch.
-- Reduced link training timeout from 2.5s to 2.0s, and decoupled the
-  TB_PORT_UNPLUGGED timeout to 400ms.
-
-Testing
-=======
-This series has been tested on MediaTek ARM64 SoC platforms with an
-integrated platform USB4 NHI, verifying:
-- Cold boot, device discovery, and tunnel allocation (PCIe, USB3).
-- System/runtime suspend and wake-on-connect/disconnect/remote wakeup.
-- Link training across wakeups with dual-retimer topologies.
-- Concurrent sysfs deauthorization during disconnect events (verifying
-  absence of WARN_ON splats).
-- Modular builds with CONFIG_USB4=m, CONFIG_USB4_PCI=m, and
-  CONFIG_USB4_PLATFORM=m, as well as built-in configurations.
-
-Chunfeng Yun (7):
-  thunderbolt: Prefix NHI core functions with tb_ and tb_ring_
-  thunderbolt: Move ICM mailbox functions to icm.c and internalize
-    interrupt work
-  thunderbolt: Fix error handling and unwind paths in tb_nhi_probe()
-  thunderbolt: Add platform NHI driver
-  thunderbolt: Increase the lane adapter link-up timeout value
-  thunderbolt: Decouple the waiting time of TB_PORT_UNPLUGGED and
-    TB_PORT_UP
-  thunderbolt: Drop WARN_ON() in tb_disconnect_pci()
-
-Konrad Dybcio (1):
-  thunderbolt: Make PCIe NHI support opt-in
-
- drivers/thunderbolt/Kconfig    |  22 ++++-
- drivers/thunderbolt/Makefile   |  10 +-
- drivers/thunderbolt/ctl.c      |   6 +-
- drivers/thunderbolt/domain.c   |  14 ++-
- drivers/thunderbolt/icm.c      |  59 ++++++++++++
- drivers/thunderbolt/nhi.c      | 132 +++++++++----------------
- drivers/thunderbolt/nhi.h      |  16 ++--
- drivers/thunderbolt/pci.c      |  51 ++++------
- drivers/thunderbolt/platform.c | 170 +++++++++++++++++++++++++++++++++
- drivers/thunderbolt/switch.c   |  23 +++--
- drivers/thunderbolt/tb.c       |   4 +-
- drivers/thunderbolt/tb.h       |   2 -
- drivers/thunderbolt/tunnel.c   |   1 +
- drivers/thunderbolt/xdomain.c  |   5 +
- include/linux/thunderbolt.h    |   4 +
- 15 files changed, 375 insertions(+), 144 deletions(-)
- create mode 100644 drivers/thunderbolt/platform.c
-
+diff --git a/drivers/thunderbolt/nhi.c b/drivers/thunderbolt/nhi.c
+index e99a3fcc4a29..c574c336f25b 100644
+--- a/drivers/thunderbolt/nhi.c
++++ b/drivers/thunderbolt/nhi.c
+@@ -535,7 +535,7 @@ static void ring_clear_msix(const struct tb_ring *ring)
+ 			  4 * (ring->nhi->hop_count / 32));
+ }
+ 
+-irqreturn_t ring_msix(int irq, void *data)
++irqreturn_t tb_ring_msix(int irq, void *data)
+ {
+ 	struct tb_ring *ring = data;
+ 
+@@ -935,7 +935,7 @@ void tb_ring_free(struct tb_ring *ring)
+ 
+ 	/*
+ 	 * ring->work can no longer be scheduled (it is scheduled only
+-	 * by nhi_interrupt_work, ring_stop and ring_msix). Wait for it
++	 * by nhi_interrupt_work, ring_stop and tb_ring_msix). Wait for it
+ 	 * to finish before freeing the ring.
+ 	 */
+ 	flush_work(&ring->work);
+@@ -1072,7 +1072,7 @@ void nhi_interrupt_work(struct work_struct *work)
+ 	spin_unlock_irq(&nhi->lock);
+ }
+ 
+-irqreturn_t nhi_msi(int irq, void *data)
++irqreturn_t tb_nhi_isr(int irq, void *data)
+ {
+ 	struct tb_nhi *nhi = data;
+ 	schedule_work(&nhi->interrupt_work);
+@@ -1216,7 +1216,7 @@ static int nhi_runtime_resume(struct device *dev)
+ 	return tb_domain_runtime_resume(tb);
+ }
+ 
+-void nhi_shutdown(struct tb_nhi *nhi)
++void tb_nhi_shutdown(struct tb_nhi *nhi)
+ {
+ 	int i;
+ 
+@@ -1306,7 +1306,7 @@ static struct tb *nhi_select_cm(struct tb_nhi *nhi)
+ 	return tb;
+ }
+ 
+-int nhi_probe(struct tb_nhi *nhi)
++int tb_nhi_probe(struct tb_nhi *nhi)
+ {
+ 	struct device *dev = nhi->dev;
+ 	struct tb *tb;
+@@ -1371,7 +1371,7 @@ int nhi_probe(struct tb_nhi *nhi)
+ 		 */
+ 		tb_domain_put(tb);
+ 		wait_for_completion(&nhi->domain_released);
+-		nhi_shutdown(nhi);
++		tb_nhi_shutdown(nhi);
+ 		return dev_err_probe(dev, res, "failed to add domain\n");
+ 	}
+ 	dev_set_drvdata(dev, tb);
+@@ -1391,7 +1391,7 @@ int nhi_probe(struct tb_nhi *nhi)
+  * the tunnels asap. A corresponding pci quirk blocks the downstream bridges
+  * resume_noirq until we are done.
+  */
+-const struct dev_pm_ops nhi_pm_ops = {
++const struct dev_pm_ops tb_nhi_pm_ops = {
+ 	.suspend_noirq = nhi_suspend_noirq,
+ 	.resume_noirq = nhi_resume_noirq,
+ 	.freeze_noirq = nhi_freeze_noirq,  /*
+diff --git a/drivers/thunderbolt/nhi.h b/drivers/thunderbolt/nhi.h
+index 88af9ab9fde7..a36c62c49a5c 100644
+--- a/drivers/thunderbolt/nhi.h
++++ b/drivers/thunderbolt/nhi.h
+@@ -32,11 +32,11 @@ enum nhi_fw_mode nhi_mailbox_mode(struct tb_nhi *nhi);
+ void nhi_enable_int_throttling(struct tb_nhi *nhi);
+ void nhi_disable_interrupts(struct tb_nhi *nhi);
+ void nhi_interrupt_work(struct work_struct *work);
+-irqreturn_t nhi_msi(int irq, void *data);
+-irqreturn_t ring_msix(int irq, void *data);
+-int nhi_probe(struct tb_nhi *nhi);
+-void nhi_shutdown(struct tb_nhi *nhi);
+-extern const struct dev_pm_ops nhi_pm_ops;
++irqreturn_t tb_nhi_isr(int irq, void *data);
++irqreturn_t tb_ring_msix(int irq, void *data);
++int tb_nhi_probe(struct tb_nhi *nhi);
++void tb_nhi_shutdown(struct tb_nhi *nhi);
++extern const struct dev_pm_ops tb_nhi_pm_ops;
+ 
+ /**
+  * struct tb_nhi_ops - NHI specific optional operations
+diff --git a/drivers/thunderbolt/pci.c b/drivers/thunderbolt/pci.c
+index 4408229d8ac7..2f0abf4d27a3 100644
+--- a/drivers/thunderbolt/pci.c
++++ b/drivers/thunderbolt/pci.c
+@@ -212,7 +212,7 @@ static int nhi_pci_init_msi(struct tb_nhi *nhi)
+ 		if (irq < 0)
+ 			return irq;
+ 
+-		res = devm_request_irq(&pdev->dev, irq, nhi_msi,
++		res = devm_request_irq(&pdev->dev, irq, tb_nhi_isr,
+ 				       IRQF_NO_SUSPEND, "thunderbolt", nhi);
+ 		if (res)
+ 			return res;
+@@ -281,7 +281,7 @@ static int nhi_pci_ring_request_msix(struct tb_ring *ring, bool no_suspend)
+ 	ring->irq = ret;
+ 
+ 	irqflags = no_suspend ? IRQF_NO_SUSPEND : 0;
+-	ret = request_irq(ring->irq, ring_msix, irqflags, "thunderbolt", ring);
++	ret = request_irq(ring->irq, tb_ring_msix, irqflags, "thunderbolt", ring);
+ 	if (ret)
+ 		goto err_ida_remove;
+ 
+@@ -588,7 +588,7 @@ static int nhi_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+ 
+ 	pci_set_master(pdev);
+ 
+-	return nhi_probe(&nhi_pci->nhi);
++	return tb_nhi_probe(&nhi_pci->nhi);
+ }
+ 
+ static void nhi_pci_do_remove(struct pci_dev *pdev, bool reset)
+@@ -610,7 +610,7 @@ static void nhi_pci_do_remove(struct pci_dev *pdev, bool reset)
+ 
+ 	tb_domain_remove(tb);
+ 	wait_for_completion(&nhi->domain_released);
+-	nhi_shutdown(nhi);
++	tb_nhi_shutdown(nhi);
+ }
+ 
+ static void nhi_pci_remove(struct pci_dev *pdev)
+@@ -724,7 +724,7 @@ static struct pci_driver nhi_driver = {
+ 	.probe = nhi_pci_probe,
+ 	.remove = nhi_pci_remove,
+ 	.shutdown = nhi_pci_shutdown,
+-	.driver.pm = &nhi_pm_ops,
++	.driver.pm = &tb_nhi_pm_ops,
+ };
+ 
+ static int __init nhi_init(void)
 -- 
 2.45.2
 
