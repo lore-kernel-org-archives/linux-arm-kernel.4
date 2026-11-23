@@ -2,85 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B10606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08AD606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E3sla41a;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=GMFzn4c6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SjlYoOC4;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=T8eNMmJw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=u75N2UHCo0Q1IQlaoRk+wtzVKvHVQ52rjy0wDjruBvY=; b=E3sla41adbHmAB
-	vqMTvXMmiWC9QspanCvlbJdYASzi/WgXbcDMELGp97Or3b3q68PMe+Qyoh7/vVNI1Uspso96YOz6/
-	Iy8krifXu5vH41RKniRXMlBv2woVenuUF3TROpEgxKPdLuP/U43FAeGayE3PCA0zYDWOrnV46n6mu
-	23NefsnO9FZiNBjwQ7aLOxfgVAWL9RK2ECaeqbo58m8SdpWK6H9zPYip7Xb7J+8nWj9CsmgNyW3SR
-	wsQhssUVfOXDOJ7DKHwmSRwfXDbTIkDTarrjOb5JuBG6YKaWNfg4JUW592i+mfPreifRLVRVAjM9s
-	MD1qsP1t1QtDEf/Ra3Fw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xIqRuuyi3s4SC841Ot37hEBBxupspYSo1v4iRKPGuWo=; b=SjlYoOC4HOkVbmtFO9G4zKgVfq
+	gGIjckRdIrv+H3DENT2Ro/azUB/I9WdLcI5qj55yooOsYf292P1f1ZJiuRDLNdGkLfG3olaOti6zH
+	vpHaql18IsG6Kx+I8mAKfkvew/92VIhJt2x31nW540J5BvUrgMcaZJmzzVtw+90acotSi4EmcaAcq
+	vGZC9sj+je6MmbOAYMcw3UgycKRbaOPw5+ipDEhvep9e0PxJmLv1HNaN5w85IM0+betWimJyx6AiP
+	zoLkmJVt8zzSfjCk3N+nX0DXPxAign5n3mwMLrG8yAZeM3uz38SQU/vREjz/um0faaImuhYFDsrd1
+	QIAbB4xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRX0-000000031GX-2puH;
-	Mon, 23 Nov 2026 10:44:18 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRWO-000000030m0-2Wtq
+	id 1xVRYq-000000031gM-0zPk;
+	Mon, 23 Nov 2026 10:46:12 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVRYn-000000031fI-2FMQ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:43:44 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8AF711476;
-	Mon, 23 Nov 2026 02:43:36 -0800 (PST)
-Received: from e122027.arm.com (unknown [10.57.63.212])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CBC023F632;
-	Mon, 23 Nov 2026 02:43:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795430619; bh=XPK8ICnszazWaOOfoo2WmCdjdXKFyVejf/EIua6bpzE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GMFzn4c6f/tEnXI1562O6v0JYndteS9LFOgaoMftuMVWOj6JNgVH3OPtiNvEwHJ34
-	 iQ6rrjFbYCPDhl/2rSmibPVl+pIoEf684sZIxj80ChFR3ul7nWFZ7ZgVsdT9sr5zgR
-	 OUsd/lukwjTYuppHOw5URnMz9O4SQjsV7+cX9v4U=
-From: Steven Price <steven.price@arm.com>
-To: kvm@vger.kernel.org,
-	kvmarm@lists.linux.dev
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	James Morse <james.morse@arm.com>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Joey Gouly <joey.gouly@arm.com>,
-	Alexandru Elisei <alexandru.elisei@arm.com>,
-	Christoffer Dall <christoffer.dall@arm.com>,
-	Fuad Tabba <tabba@google.com>,
-	linux-coco@lists.linux.dev,
-	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-	Gavin Shan <gshan@redhat.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>,
-	Alper Gun <alpergun@google.com>,
-	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>,
-	Emi Kisanuki <fj0570is@fujitsu.com>,
-	Vishal Annapurve <vannapurve@google.com>,
-	WeiLin.Chang@arm.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kohei Enju <enju.kohei@fujitsu.com>,
-	Steven Price <steven.price@arm.com>
-Subject: [PATCH v4 11/11] KVM: arm64: CCA: Add Realm stage-2 MMU operations
-Date: Mon, 23 Nov 2026 10:42:31 +0000
-Message-ID: <20261123104233.95710-12-steven.price@arm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261123104233.95710-1-steven.price@arm.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
+	Mon, 23 Nov 2026 10:46:10 +0000
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9YX1c3194393;
+	Mon, 23 Nov 2026 10:45:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=xIqRuuyi3s4SC841Ot37hEBBxupspY
+	So1v4iRKPGuWo=; b=T8eNMmJwE9RlUSpm4gPa94j3iz/6gi6WujSrHaOSFq7ieH
+	sS4BWpaXmVv8kNkas+sGuO7cNQmfEzknjTMWBaRl1st/48UQXMAtNhbsYRPBE+CQ
+	vlYuShTODi1aqhonxZTtysMCPmszg3PEFI0tLOeF7W7GgGtkak/F1BtZbe77fs4v
+	k54Tqmtn1LonaX/WP3VWYfK7iI5auix64hGQIAyvX4Bb26MIxm+bA0nLpF4wQ45s
+	RaTlZMOKfuflMnYbKMDzCdij/QD6AHeAau56h0G+cciHmGBN/j7yxFtRs6EnddS9
+	i6ZvpE7aXxrlu5YH0xtMvzj0SoGUbwe3GwdxA5ew==
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34gv2gaa-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 10:45:58 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9JHxB1708408;
+	Mon, 23 Nov 2026 10:45:57 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j3raye62q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 10:45:57 +0000 (GMT)
+Received: from smtpav04.fra02v.mail.ibm.com (smtpav04.fra02v.mail.ibm.com [10.20.54.103])
+	by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ANAjtRi32506604
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 23 Nov 2026 10:45:55 GMT
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id ABC9720040;
+	Mon, 23 Nov 2026 10:45:55 +0000 (GMT)
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 2E9AC20043;
+	Mon, 23 Nov 2026 10:45:55 +0000 (GMT)
+Received: from osiris (unknown [9.87.148.25])
+	by smtpav04.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Mon, 23 Nov 2026 10:45:55 +0000 (GMT)
+Date: Mon, 23 Nov 2026 11:45:53 +0100
+From: Steffen Eiden <seiden@linux.ibm.com>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oupton@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Sascha Bischoff <Sascha.Bischoff@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH 6/9] arm64: sysreg: Reject an enum value not written at
+ its field's width
+Message-ID: <20261123104553.20959-F-seiden@linux.ibm.com>
+References: <20261123075219.369042-1-fuad.tabba@linux.dev>
+ <20261123075219.369042-7-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123075219.369042-7-fuad.tabba@linux.dev>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Authority-Analysis: v=2.4 cv=CYCdd7rl c=1 sm=1 tr=0 ts=6b041966 cx=c_pps
+ a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=IEvGn1zUL_vtJd7OkNwA:9
+ a=CjuIK1q_8ugA:10
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA0MiBTYWx0ZWRfX2roCqqfTqkw8
+ YEROHFQZ88IvlrCijNa5miUOeg4EVxim4+TWlmYUoVkjcbrShgur+68IB8xIYpznvYd3iorjuUp
+ 2HQRU4PRh4zrlr1Ue32xFdaMUkIoLCY=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA0MiBTYWx0ZWRfX2FPRqvNF3h9r
+ KChK8u5v17NX6EmnrQK+2oQMkLb3cEm2E0YXQzzNnRnff5pDAuswZYx6yHr4XbQGW2lYSmoxFvQ
+ bH/rSu89Y86ggNF1opMZ4HWP9m7mTPIaSJDSUew9XvahLS7xQZ9L1k6c4LXOrVeWQmuF9iiAfc+
+ Tp5J5OZpIqXMxFn9WGTRStsfDcGml51+2Uxm96QAloGG3dOYtuiYUth4Ob9QdYUZiDQKkN7eIji
+ 35QoEXxvCve/P7hIKN0+zCQbWMTsjbS/+w9QZYwz/CD1TKCpH/nciTbLEr3Nv/7jlEe4ivQtUq5
+ ezEfVYSlIZzUmdicQ21aofr4zToRIXtlrDCAbZghTDiyQsgsKIvej5O8qFi1gBOA2y2/634Xyjt
+ OK7foVdUYOIf4DY6LNhx6zJ0aJXjihT5TT397rcp6c7I+m9Ku2awncg4sOIuCvCYQzkwHo8EGin
+ BE+C8CqjVOaDrgEbZag==
+X-Proofpoint-ORIG-GUID: xvXmXRxewmVX3uEZMer83MfDNwFp9XZn
+X-Proofpoint-GUID: 49DySJUMN-cKB_jeklQg8KakNNn62Xjj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_02,2026-11-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
+ clxscore=1015 spamscore=0 bulkscore=0 impostorscore=0 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611230042
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_024340_792161_DCCC99A2 
-X-CRM114-Status: GOOD (  14.79  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261123_024609_700013_609B9749 
+X-CRM114-Status: GOOD (  25.82  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,142 +127,92 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Mon, Nov 23, 2026 at 07:52:16AM +0000, Fuad Tabba wrote:
+> The generator emits each enum value as written and doesn't check it
+> against the width of its field, so a value wider than the field defines
+> a constant the field can't hold. The duplicate value check compares the
+> strings as written, so 0b01 and 0b001 in the same field pass as distinct
+> values, and the rule's pattern, an unanchored /0b[01]+/, accepts 0b12
+> too.
+> 
+> Require each value to be 0b followed by exactly as many binary digits as
+> its field has bits. The one enum written otherwise is TS, a two-bit
+> field of TRFCR_EL1 and TRFCR_EL2 whose values have four digits. Write
+> them with two digits, which leaves the numbers unchanged.
+> 
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+> ---
+>  arch/arm64/tools/gen-sysreg.awk |  3 +++
+>  arch/arm64/tools/sysreg         | 14 +++++++-------
+>  2 files changed, 10 insertions(+), 7 deletions(-)
+> 
 
-Register the Realm stage-2 MMU operations now that the RMM mapping
-and unmapping helpers are available. Route unmapping through the
-RMM, and use the Realm-specific fault handler for Realm memory faults.
+Lets split this patch into two: 
 
-The RMM handles TLB invalidation when stage-2 mappings change, so
-the host has no separate TLB flush to perform. Realm stage-2 does
-not support access flags, including for shared IPAs.
+1. Fix the bitwidth of the Enums
+2. Add the new check to the awk script
 
-Realm teardown destroys non-root RTTs through RMI, so the Realm
-stage-2 destruction callback frees only the root RTT pages.
+Then the fix is split apart from the enforcement.
 
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Steven Price <steven.price@arm.com>
+The actual changes LGTM.
 
----
-Changes since v3:
-- Register realm_mem_abort() as the Realm stage-2 fault handler.
+	Steffen
 
-Changes since v2:
-- Move common stage-2 destruction dispatch to a separate patch;
-  retain the Realm-specific destruction callback here.
----
- arch/arm64/kvm/mmu.c | 47 ++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 45 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index 870dc7e2699b..274dfe8ea364 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -191,6 +191,12 @@ static int kvm_vm_flush_remote_tlbs(struct kvm *kvm)
- 	return 0;
- }
- 
-+static int realm_flush_remote_tlbs(struct kvm *kvm)
-+{
-+	/* Nothing to do here, RMM does the job */
-+	return 0;
-+}
-+
- /**
-  * kvm_arch_flush_remote_tlbs() - flush all VM TLB entries for v7/8
-  * @kvm:	pointer to kvm structure.
-@@ -218,6 +224,13 @@ static int kvm_vm_flush_remote_tlbs_range(struct kvm *kvm,
- 	return 0;
- }
- 
-+static int realm_flush_remote_tlbs_range(struct kvm *kvm,
-+					 gfn_t gfn, u64 nr_pages)
-+{
-+	/* Nothing to do here, RMM does the job */
-+	return 0;
-+}
-+
- int kvm_arch_flush_remote_tlbs_range(struct kvm *kvm,
- 				     gfn_t gfn, u64 nr_pages)
- {
-@@ -353,6 +366,15 @@ static void no_stage2_unmap_range(struct kvm_s2_mmu *mmu,
- {
- }
- 
-+static void realm_stage2_unmap_range(struct kvm_s2_mmu *mmu,
-+				     phys_addr_t start, u64 size, bool may_block,
-+				     enum kvm_gfn_range_filter filter)
-+{
-+	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
-+
-+	kvm_realm_unmap_range_filter(kvm, start, size, may_block, filter);
-+}
-+
- /*
-  * Unmapping vs dcache management:
-  *
-@@ -1054,6 +1076,17 @@ static void pkvm_stage2_destroy(struct kvm_pgtable *pgt)
- 	pkvm_pgtable_stage2_destroy_pgd(pgt);
- }
- 
-+static void realm_stage2_destroy(struct kvm_pgtable *pgt)
-+{
-+	/*
-+	 * Realm RTTs are inaccessible to the host and may contain stale data
-+	 * after the RMM has released them. The non-root RTTs are explicitly
-+	 * destroyed through RMI before the RD is destroyed; only the root PGD
-+	 * pages remain to be freed here.
-+	 */
-+	kvm_pgtable_stage2_destroy_pgd(pgt);
-+}
-+
- static void kvm_stage2_destroy(struct kvm_pgtable *pgt)
- {
- 	struct kvm *kvm = kvm_s2_mmu_to_kvm(pgt->mmu);
-@@ -2486,7 +2519,7 @@ static int kvm_vm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
- 		return user_mem_abort(s2fd, NULL, kvm_s2_fault_map, false);
- }
- 
--static int __maybe_unused realm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
-+static int realm_mem_abort(const struct kvm_s2_fault_desc *s2fd)
- {
- 	struct kvm *kvm = s2fd->vcpu->kvm;
- 
-@@ -3389,6 +3422,16 @@ static const struct kvm_vm_s2_ops kvm_default_vm_s2_ops = {
- 	.vm_mem_abort			= kvm_vm_mem_abort,
- };
- 
-+static const struct kvm_vm_s2_ops realm_vm_s2_ops = {
-+	.vm_stage2_destroy		= realm_stage2_destroy,
-+	.vm_flush_remote_tlbs		= realm_flush_remote_tlbs,
-+	.vm_flush_remote_tlbs_range	= realm_flush_remote_tlbs_range,
-+	.vm_age_gfn			= no_age_gfn,
-+	.vm_test_age_gfn		= no_age_gfn,
-+	.vm_stage2_unmap_range		= realm_stage2_unmap_range,
-+	.vm_mem_abort			= realm_mem_abort,
-+};
-+
- #define KVM_VM_S2_OPS(flavor, ops)		\
- 		[(flavor)] = &(ops)
- 
-@@ -3397,7 +3440,7 @@ static const struct kvm_vm_s2_ops *arm64_vm_s2_ops[] = {
- 	KVM_VM_S2_OPS(VM_NVHE, kvm_default_vm_s2_ops),
- 	KVM_VM_S2_OPS(VM_PKVM, pkvm_vm_s2_ops),
- 	KVM_VM_S2_OPS(VM_PROTECTED_PKVM, protected_pkvm_vm_s2_ops),
--	[VM_REALM] = NULL,
-+	KVM_VM_S2_OPS(VM_REALM, realm_vm_s2_ops),
- };
- 
- static int kvm_vm_init_vm_s2_ops(struct kvm *kvm)
--- 
-2.43.0
-
+> diff --git a/arch/arm64/tools/gen-sysreg.awk b/arch/arm64/tools/gen-sysreg.awk
+> index 1843d283192d2..cde526896ed96 100755
+> --- a/arch/arm64/tools/gen-sysreg.awk
+> +++ b/arch/arm64/tools/gen-sysreg.awk
+> @@ -367,6 +367,9 @@ $1 == "EndEnum" && block_current() == "Enum" {
+>  	val = $1
+>  	name = $2
+>  
+> +	if (val !~ /^0b[01]+$/ || length(val) - 2 != msb - lsb + 1)
+> +		fatal("Enum value " val " for " name " is not " (msb - lsb + 1) " binary digits")
+> +
+>  	if (val in seen_enum_vals)
+>  		fatal("Duplicate Enum value " val " for " name)
+>  	seen_enum_vals[val] = 1
+> diff --git a/arch/arm64/tools/sysreg b/arch/arm64/tools/sysreg
+> index ebe5c5bd6fef6..5b587a7544e40 100644
+> --- a/arch/arm64/tools/sysreg
+> +++ b/arch/arm64/tools/sysreg
+> @@ -2919,9 +2919,9 @@ EndSysreg
+>  Sysreg	TRFCR_EL1	3	0	1	2	1
+>  Res0	63:7
+>  UnsignedEnum	6:5	TS
+> -	0b0001	VIRTUAL
+> -	0b0010	GUEST_PHYSICAL
+> -	0b0011	PHYSICAL
+> +	0b01	VIRTUAL
+> +	0b10	GUEST_PHYSICAL
+> +	0b11	PHYSICAL
+>  EndEnum
+>  Res0	4:2
+>  Field	1	ExTRE
+> @@ -4300,10 +4300,10 @@ EndSysreg
+>  Sysreg TRFCR_EL2	3	4	1	2	1
+>  Res0	63:7
+>  UnsignedEnum	6:5	TS
+> -	0b0000	USE_TRFCR_EL1_TS
+> -	0b0001	VIRTUAL
+> -	0b0010	GUEST_PHYSICAL
+> -	0b0011	PHYSICAL
+> +	0b00	USE_TRFCR_EL1_TS
+> +	0b01	VIRTUAL
+> +	0b10	GUEST_PHYSICAL
+> +	0b11	PHYSICAL
+>  EndEnum
+>  Res0	4
+>  Field	3	CX
+> -- 
+> 2.47.3
+> 
 
