@@ -2,57 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F561606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C175C606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1IXcObi7;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Pb2lYs+Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2YpBtD2u;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=O0QnIOfk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:To:From:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=n9Vi6fXV2kLrma4jnlJMeItulhA2U5CH2EzMknqFkBM=; b=1IXcObi7UrVAnXrWciCaJtT0WX
-	iPOjYfuRplvi07QQEXr6u/MD4O3HYnjcsmbd3GoQgjsPm3ZkqoYKDHABCfwpzg080k7YRQXtnsCFt
-	k5P0m8bGvFDmeGQYDKLM5YAvssnDYYKsJncseXXmfO00ok6V7S/gyyu9W2lIHbjW/sAtZhyD5zXSf
-	U2gqRqwuAKmgIE4OA8Thu5uymf/EiAjhyiphPh+/es8Gk7HK9xeFfAS0QQVbjtyyz+go0VyTuk4Uj
-	BCC8XBD4LdBCWby1nda6GCK+X8C38P2WRDJBHPsLKiEplQkcubCydy7rs3cDuhiff1kNgiBjF8+GZ
-	0XNbYvtw==;
+	bh=ya6v0UyKzX4mmCXRtci1TvYwloWMFBhWYhOd/yqiouQ=; b=2YpBtD2u/S8Ewo1G70fhbVgGbx
+	ON643IDjDYaMvO+UCaUCFOwmQFj+GJYrLO1Wh3b+Wav1HHJui0Fp1O/dKgsBfFvncuqlDzKWGmPlU
+	DOLuI2oI6NK7Ombw7dolg5yMmVi/qxcmWDvyfeI23MXRFzjAKjgaS7ON4eR2homx0Rgig3pTugQrg
+	L3LycMVxnztPMzhGeGExNwdMMlPFPgcTo5dJtku1ugj2bfyJQLCx1evruLGlhF5BmU98p5p+u3+23
+	3TnQp0z4MCzDkoyqoVOIVbVsGcvrC+3+YBumRnr2qRbBlyGbVLTXhU4FWuQr3s2FGCN4j3aLlDlGM
+	d3z2PiRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXeC-00000004KDJ-4Btl;
-	Mon, 23 Nov 2026 17:16:09 +0000
+	id 1xVXeO-00000004KIM-0m4E;
+	Mon, 23 Nov 2026 17:16:20 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXeA-00000004KCp-2nGG
+	id 1xVXeD-00000004KDL-0dey
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:16:08 +0000
+	Mon, 23 Nov 2026 17:16:10 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5621F143D;
-	Mon, 23 Nov 2026 09:16:02 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 53586176B;
+	Mon, 23 Nov 2026 09:16:05 -0800 (PST)
 Received: from e137867.cambridge.arm.com (unknown [10.2.213.11])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A8EF43F763;
-	Mon, 23 Nov 2026 09:16:02 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 870AC3F763;
+	Mon, 23 Nov 2026 09:16:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795454165; bh=PLmix3wUMZznq30E+gdl5v2UeGWepbJeohyBg07iSZo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Pb2lYs+YvRXVt6HKquDn6jX9yH3snAt20GK6LCJEq2uxGmYmUBH6R18hrUssoeJdW
-	 ApZLc4tGLYO9IoUhWBlje3ir8as4A5LPUMxaMwcmLfS9BDni3XN8bLdYv0tMjXbCq3
-	 Ag6srrcD4KOh/Qqu6injoweRNZIj80v7R/deJnTc=
+	t=1795454168; bh=LFtDzB/okrnQHH291WRp6toxRg+swNwN8gcOpZd7uFQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=O0QnIOfkL73MNoc91NYxTAD9VVYpv8ma/GCrN8yHd55fA8kVyYwGHRJBz2Q66uArH
+	 ISKQvISI9h+0x2jCkTCVGx2Tt7lbgJT22BHox58wgqTQ2m7D1nUkyyd8AKgr7TpeRk
+	 7SJGdZVWmDqQhZfU+6XvkfWcGn5hY1txFhlDZk7Q=
 From: Ada Couprie Diaz <ada.coupriediaz@arm.com>
 To: linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 0/3] arm64: sdei: fix entry edge cases, pseudo-NMI
-Date: Mon, 23 Nov 2026 17:15:54 +0000
-Message-ID: <20261123171557.140944-1-ada.coupriediaz@arm.com>
+Subject: [PATCH v3 1/3] arm64: entry: sdei: always set VBAR_EL1 on SDEI entry
+Date: Mon, 23 Nov 2026 17:15:55 +0000
+Message-ID: <20261123171557.140944-2-ada.coupriediaz@arm.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261123171557.140944-1-ada.coupriediaz@arm.com>
+References: <20261123171557.140944-1-ada.coupriediaz@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_091606_762221_882F1E90 
-X-CRM114-Status: GOOD (  12.64  )
+X-CRM114-CacheID: sfid-20261123_091609_269818_5974DF48 
+X-CRM114-Status: GOOD (  18.99  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -63,67 +65,91 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Kiryl Shutsemau <kas@kernel.org>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Usama Arif <usama.arif@linux.dev>, Peter Zijlstra <peterz@infradead.org>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, linux-kernel@vger.kernel.org, James Morse <james.morse@arm.com>, Marc Zyngier <maz@kernel.org>, Breno Leitao <leitao@debian.org>, mrigendrachaubey <mrigendra.chaubey@gmail.com>, Will Deacon <will@kernel.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
+Cc: Mark Rutland <mark.rutland@arm.com>, Kiryl Shutsemau <kas@kernel.org>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Usama Arif <usama.arif@linux.dev>, Peter Zijlstra <peterz@infradead.org>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, James Morse <james.morse@arm.com>, Marc Zyngier <maz@kernel.org>, Breno Leitao <leitao@debian.org>, mrigendrachaubey <mrigendra.chaubey@gmail.com>, Will Deacon <will@kernel.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+SDEI can interrupt at any time, so we cannot guarantee that VBAR_EL1
+points to the kernel vectors.
+Unconditionally set VBAR_EL1 to the kernel vectors on SDEI entry so
+the SDEI handler always runs on the correct vectors.
 
-This v3 has a few small fixes and commit message clarifications.
-More details in the [v1] cover.
+Commit 9bf6ee7952c7 ("arm64: sdei: Run the event handler on the kernel
+vectors") sets VBAR_EL1 to the kernel vectors when KPTI is on
+and it still points to the trampoline vectors.
 
-As discussed in [0], SDEI entry has a number of remaining issues.
-This small series aims to fix the biggest potential issues :
- - Patch 1 : with KVM in VHE, VBAR_EL1 might not be correct
- - Patch 2 : PMR was not handled at all when using pseudo-NMI
- - Patch 3 : very early SDEI interrupt on non-boot hotplugged CPU
-     might end up with `current == NULL`
+This is only covers the KPTI case, as any other VBAR_EL1 value would
+not be changed, while pointing to the wrong exception vectors.
+KVM in VHE mode would be such a case as, in VHE, VBAR_EL1 is an alias for
+VBAR_EL2, which KVM uses for the hypervisor vectors when running guests.
 
-I spent most of my time digging into the details of boot and
-CPU bringup so I still do not have an SDEI test setup, so any testing
-especially with `CONFIG_ARM64_PSEUDO_NMI=y` and
-`irqchip.gicv3_pseudo_nmi=1` would be appreciated !
-
-After some discussion and digging in the code, it looks like the issue
-patch 3 fixes should be incredibly rare, so we might be OK without pulling
-this patch at all. (Though the comment change for `__entry_task`
-remains a relevant clarification.)
-
-Thanks in advance
-Ada
-
-Changes in v3:
- - Clean up comment that an SDEI interrupt during KVM world switch
-   would always hyp panic as patch 1 should avoid it (Kiryl)
- - Reword the commit message to detail the specifics in which the SDEI
-   handler might get a NULL `__entry_task`
-Changes in [v2] (patch 2 only):
- - Properly use pt_regs to save/restore the PMR in `__sdei_handler()`
-   (Vladimir)
- - Update commit message accordingly
-
-[0]: https://lore.kernel.org/r/20261105120835.3321912-1-kirill@shutemov.name
-[v2]: https://lore.kernel.org/r/20261118154233.83599-1-ada.coupriediaz@arm.com
-[v1]: https://lore.kernel.org/r/20261117174814.95936-1-ada.coupriediaz@arm.com
-
-Ada Couprie Diaz (3):
-  arm64: entry: sdei: always set VBAR_EL1 on SDEI entry
-  arm64: entry: sdei: save and restore PMR for pseudo-NMI
-  arm64: head: set __entry_task along with task setup
-
- arch/arm64/kernel/entry-common.c | 38 +++++++++++++++++++++++---------
- arch/arm64/kernel/head.S         |  3 +++
- arch/arm64/kernel/process.c      |  3 ---
+Fixes: 79e9aa59dc29 ("arm64: sdei: Add trampoline code for remapping the kernel")
+Cc: stable@vger.kernel.org
+Cc: Kiryl Shutsemau (Meta) <kas@kernel.org>
+Cc: Breno Leitao <leitao@debian.org>
+Signed-off-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+---
+ arch/arm64/kernel/entry-common.c | 25 ++++++++++++++-----------
  arch/arm64/kernel/sdei.c         |  3 ---
- 4 files changed, 30 insertions(+), 17 deletions(-)
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+diff --git a/arch/arm64/kernel/entry-common.c b/arch/arm64/kernel/entry-common.c
+index beb56891fc4f..cb122163a68d 100644
+--- a/arch/arm64/kernel/entry-common.c
++++ b/arch/arm64/kernel/entry-common.c
+@@ -1079,19 +1079,22 @@ __sdei_handler(struct pt_regs *regs, struct sdei_registered_event *arg)
+ 	far = read_sysreg(far_el1);
+ 
+ 	/*
+-	 * With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
+-	 * EL0 until the next exception from EL0 maps the kernel. They only
+-	 * handle exceptions from EL0: an exception taken here would run their
+-	 * empty current-EL half and never come back. Switch to the kernel
+-	 * vectors. The IRQ-like resume keeps using the interrupted VBAR, so it
+-	 * still goes through the trampoline.
++	 * As an SDEI event can take over at any point, VBAR_EL1 might not allow
++	 * us to take an exception safely :
++	 * - With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
++	 *   EL0 until the next exception from EL0 maps the kernel. They only
++	 *   handle exceptions from EL0: an exception taken here would run their
++	 *   empty current-EL half and never come back ;
++	 * - With VHE, the kernel runs at EL2 and VBAR_EL1 accesses VBAR_EL2.
++	 *   KVM might be running a guest and switched VBAR_EL2 to the
++	 *   hypervisor vectors.
++	 *
++	 * Switch to the kernel vectors unconditionally and restore
++	 * the interrupted VBAR_EL1 before returning.
+ 	 */
+ 	vbar = read_sysreg(vbar_el1);
+-	if (arm64_kernel_unmapped_at_el0() &&
+-	    vbar == (unsigned long)raw_cpu_read(this_cpu_vector)) {
+-		write_sysreg((unsigned long)vectors, vbar_el1);
+-		isb();
+-	}
++	write_sysreg((unsigned long)vectors, vbar_el1);
++	isb();
+ 
+ 	state = irqentry_nmi_enter(regs);
+ 	ret = do_sdei_event(regs, arg, vbar);
+diff --git a/arch/arm64/kernel/sdei.c b/arch/arm64/kernel/sdei.c
+index 1b902da8ba43..1027138ba5b4 100644
+--- a/arch/arm64/kernel/sdei.c
++++ b/arch/arm64/kernel/sdei.c
+@@ -255,9 +255,6 @@ unsigned long __kprobes do_sdei_event(struct pt_regs *regs,
+ 	 * exception registers; __sdei_handler() puts them back. Only the last
+ 	 * one's syndrome survives; report it if it is not one known to be
+ 	 * harmless.
+-	 *
+-	 * If the event interrupted a KVM world switch, VBAR points at the KVM
+-	 * hyp vectors and any such exception is a hyp panic instead.
+ 	 */
+ 	nested_elr = read_sysreg(elr_el1);
+ 	nested_esr = read_sysreg(esr_el1);
 -- 
 2.43.0
 
