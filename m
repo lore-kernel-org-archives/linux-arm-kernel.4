@@ -2,103 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0BC2606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D473606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:42:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A98lQTJZ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=L2eJdN4b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3yojY3zE;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SnALd6/n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aGR2ezp9P4Ja129w/l+m8Ayy/DbyQLAojBQ0FlM8kps=; b=A98lQTJZNCo7dIgV8iYQVFFcwA
-	bal+lUmbtfzbUxIo3SWNvQJUATr8l0yv4JTnJbk1pfmArY1dUceMvJNdNurIJgzuZCO+u33TVwyFo
-	HN5jSJ1+/Mbwd0CI9PiI+kR8ywHUEFihWn3eDdVMWRAVsAQV+W9Dlhxda2i9MVg6V1PsuBrGEa5qx
-	ADhY2jff9uTN8mcVtxLzPUrvCOLHNhxZ913mUVk+jitJh7+fj4jgU0cwNgjPkyqjCnZSP8a7uld35
-	zTzQJuQGD/ee6omIzdblGmnfoddr/M25Qu905VCL4ZyPRt2Tq6PV3q7CegcLYUQXzRp2Y02Edf0ih
-	Vg7/dm4w==;
+	bh=6HrLUrfwuiFFOmr5EytGTWpbXEC4l6L9WDEJOgI0ypw=; b=3yojY3zE4sjtGnqS3sgU+DxUOa
+	0B/PvTKvX6YSfdJokr0lQU49WeLtvqUD5aCYL5LzJhdzFEDLzIgyac5h+0vp7yAz4SvHOnIQm3XzO
+	VyjWHjGUMzGIlAL7TlGw7bnAR1t3rqzmMA0MftfSjW0Hs+KAvif4NOhh2a3UAMMpe7qg8gseLX9dT
+	BhyEAbVwj6eavacvPETzDvlZ1AhNL4u2jFekL5P7jXmN/M6MBjZhcSdasP3L++HQmJ2PH38hLj3hy
+	T5091disMydbJkOsWEOUOvc89L1jU5RdhDtMXpoBMux/gEx+D6YkSZsMZ99fQ9N/LOmchmIwSM/L+
+	0R88Am5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYzH-00000004WOz-1r28;
-	Mon, 23 Nov 2026 18:41:59 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVYzI-00000004WQb-2jpl;
+	Mon, 23 Nov 2026 18:42:00 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYzA-00000004WLc-2wRi
+	id 1xVYzF-00000004WNy-2KNd
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:41:52 +0000
+	Mon, 23 Nov 2026 18:41:57 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 24BC862348;
-	Mon, 23 Nov 2026 18:41:52 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 535B540A00;
+	Mon, 23 Nov 2026 18:41:57 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459311;
-	b=emaIPw4rqXRPh1FVr6HpQRz8W2jWCKbyyuUVCQ+4sDMV29rxhkn4Mk5znAMGRmDvy7ya
-	 IEWXsDmLPa25l+ZBCDZv0JZfIhMQPUT8GMKLzPZWQtgknF55W4Iw+zpMP/XTYkfZmncxJ
-	 NCmeGgu9oBdSBnNuTqPyYXwsKw/ubeYHptR3EHp5IpD21GJGo3kNS+RgQA9dtaQS5eLON
-	 z5ou1cmEYdoFoY4gWWnEOVAQULxLMP6nBpCX9jORaYXcEJLDK/sV65F2UpCbl1He940J+
-	 E+Gl9DD+4mnk3fqck9jcJq5xZh1NQq3U3eQvlvQ3Unc1lhdAIwn52H5Xw6yLknRAYhg==
+	t=1795459316;
+	b=j9OWKK7xbbjHx69IIf6NJRE4IwPa8UV+M2EIueU/u3TzznvfL/+O+piplnhE9oN2k8Bi
+	 1qvGtKwKEhifghDZa1/Mcsz+2qk9r0vh5/DN6XPK/clJQHDjw3OzHeLnYRBIEb9SFMcbc
+	 SggSK1fVyJFwl9rODrvo+GOeUkXuW/WunjfIKWDIjOFLAZtfU8+hT/Sp0pYu+iqZ8B/MJ
+	 PQiI4th4X9RJLNesZQ+eLvEN5gDfnrGYXjA+FTTFnqtwmgeQ5t5jLim22L849+BatlBnN
+	 zrCYL+5L15Oepl7VCa6TJOJz+AQ3TKUbmAf04Uu8FGe5eRC6qTfGmUwGwQrm2HPX7fg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459311;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=aGR2ezp9P4Ja129w/l+m8Ayy/DbyQLAojBQ0FlM8kps=;
-	b=vHs0Ld/+8Cr/a1z8cn73uVOjtId2BF8rV8skhb9f334tImGYKDzpu7F05ypdunJJD+dz
-	 XuBaDTwxu76j8VmWfNsgt38854VzD6C2/zhn50RRKDYd1UmDy3NvY6J+mjeeKohGhENTE
-	 ie7vq9rhu6xXGMKD8HRjYeVdWIuvjp4pZ++gBd3Tq4JWoBBo+6cmpMumYXuljT/mXPDne
-	 8g8S5GYvpvmBGNCnxaotudDVWW26DbMJ3d2O8qdaWDSixuJ6S1jwa6K5SSN2jrp94cJdO
-	 Epy+FXFgGP8AXd5PuJW1Jt4lXXv6mr63jOrD/c1qiPEkichxvKwU7j4fiPtJJhHdYSA==
+	c=relaxed/relaxed; t=1795459316;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=6HrLUrfwuiFFOmr5EytGTWpbXEC4l6L9WDEJOgI0ypw=;
+	b=iQxM7fPRJ6NZaQ8yG6OMRbL3fJXQt6i5Pj+0sdk8C4vrTsF+RgMRXJ8OeZbzJ4an2l+O
+	 zFXu8xFCVskk5rKaCZIBR3eljyC4u9ZQToxgIvUx24Ag330IakdEqX5V9UyX9jAnJu7z9
+	 vBMWkFidMLeX6IjFj6wVXPrfAvdsJepKRso7g7V5d8fIByY9XlBI5fzTOFGpllQFkvxQb
+	 uZychnVzR/CojiRfHoHUjaMmk0kaeAVBn+WK+NmkS6JPeO+vt5SxYzt4jluqCtaszsFmb
+	 FiWfC457fEdKhbKmzvtxyBnF9Eu/xaCw+ILhixvKq4iWPqKyxeGUGYDZajBTbq66Cuw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 993211F00A19;
-	Mon, 23 Nov 2026 18:41:32 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 8FB391F01569;
+	Mon, 23 Nov 2026 18:41:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459311;
-	bh=aGR2ezp9P4Ja129w/l+m8Ayy/DbyQLAojBQ0FlM8kps=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=L2eJdN4bVPR8sGVoA9CtPdNK1b3JS/0bw7KDmv0HNNV3MwmrPALPOqTLLsz6u4xHg
-	 n8uCXk/tebg6v1KBfhzbBjm7ay8rvp4TaDqqhImfF4j8WUiQ/nMTFr8H4RW6vVKQXQ
-	 bs+ZKVTIhFJ5N0q4wlDzfswS2wK9wzEHABuconk+GAtRlifa0z8sqTPlzmN4vkFRwA
-	 UgT8ql3utTr3FUriAdBmY5awphF+evf9h5khelm3G0s8uF2x8K+/YU5HpmlWHbFTCM
-	 k5b55KWRg9jOHSucVM9zeU5+1MmQLMGVrlLgjwP/Mvz6yJ2onWGpfQQccKOcYqXjO1
-	 cNtbX2TnbslUw==
+	s=k20260515; t=1795459316;
+	bh=6HrLUrfwuiFFOmr5EytGTWpbXEC4l6L9WDEJOgI0ypw=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=SnALd6/nIWd9wPvhyXa+EpMZS0ynoism/bdTv0kV3jiP8qfvmXzOiRRu1wPcLNetx
+	 FC2nny3iKOx6FiYkQcyyIbxZiiVO1PNzUTomMzyI9wKcVXPHnkp/wIaikxFmFxLVUE
+	 dgg7hhwxHpMXx0GbCcWx9h6Xel3JObBH9nJFx/kP/rzhyE6IgxorWyku/hVy9SjCOs
+	 +w80NE75GaQt4FPf3pE4JcPmMAKlBNPhD15GwLQiWq2ijU+6GLnTTjxErzEy5bCZpx
+	 xZfHmwRiMNdEyvCdzca6/k/fGZLEFC/OYGcRh4QjRlCJ8p9/YYIATH63FIJe4kMqM/
+	 UdtkcUhSbYSYg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 280594C5BF;
-	Mon, 23 Nov 2026 18:41:32 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 2114E4C5CD;
+	Mon, 23 Nov 2026 18:41:35 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:41:31 +0300
-Subject: [PATCH 1/3] dt-bindings: rtc: Add Cortina Systems CS7542 RTC
+Subject: [PATCH 0/3] hwrng: Add Cortina Systems CS7542 random number
+ generator
+Date: Mon, 23 Nov 2026 21:41:33 +0300
+Message-Id: <20261123-b4-cs7542-trng-v1-0-92d9ffcee531@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-rtc-v1-1-6c53761ffa03@gmail.com>
-References: <20261123-b4-cs7542-rtc-v1-0-6c53761ffa03@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-rtc-v1-0-6c53761ffa03@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMPQ6DMAxA4asgz1jC5qeiV0EdSDDgDqGKoUJC3
+ J3Qjt/w3gEmUcXgmR0Q5aumS0igPAM/92ES1CEZuOCGiEt0FXp71BXjGsOE1JNrR/JD2TKk6BN
+ l1P037F5/2+be4tf7Aud5AT2b1DVyAAAA
+X-Change-ID: 20261123-b4-cs7542-trng-1a1b9f1cd392
+To: Olivia Mackall <olivia@selenic.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459290; l=1725;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459294; l=2873;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=zpMLao1XyuPRjMljD/Vh3jkbZiWoCb7Hr28HjaR1ywM=;
- b=FH4dylyL9MHMlQgX/Od5LCuwMnaNohqrrCaDNMi3cVfgNuLwDYK9SVr2v6Si0rlF62sIyNcl9
- b7bbAt0QW5DDAGkdpPD3RUyfWATnu0eutPvBAgODqVQTMum7+sdZcM7
+ bh=+5fdkP17MS5TugucRLc1SqQw0TM5TWxx5LmS9OinWPM=;
+ b=EFCNN0/CVf4KaFDdPKiaayM2jbxBRe5MW+HGmsu9zePsIYfmrkoTcPS1ib5beUOjZ5cqYckJf
+ NHISGsOTHKzBmTAzSFmdwY7uo8ot2660zzP6z6qMzLYAj7ZxTldlKVx
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
  auth_id=1085
 X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,82 +114,72 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Add the Elliptic random number generator integrated in the CS7542,
+based on the GPL vendor and OpenWrt implementations. The driver has no
+platform Kconfig dependency. Its shared global scratch bit is updated
+through a syscon regmap rather than an overlapping raw ioremap.
 
-Describe the RTC register block and its optional alarm and periodic
-interrupt lines. The initial driver supports the calendar without
-requiring those interrupts.
+Polling is bounded. A nonblocking read starts or resumes a pending
+transaction and returns immediately if data is not ready, instead of
+entering the blocking poll path. Partial output and failure cleanup
+preserve the caller's buffer bounds.
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+The existing OpenWrt quality setting of 512 is retained for review.
+The output tests below only check access and obvious stuck output;
+they do not characterize entropy or establish this quality estimate.
+Feedback on that inherited policy is explicitly requested before
+publication of a final version.
+
+The three patches are the binding, the driver/Kconfig/Makefile and a
+MAINTAINERS entry. They apply to Linux v7.4-rc4 without the pending
+CS75xx platform or clock/pinctrl series. The TRNG syscon phandle can
+refer to a generic syscon; the local board integration uses the new
+CS7542 global-control binding being prepared separately.
+
+Validation:
+- binding schema, example compilation and style checks passed
+- strict source checkpatch with --no-signoff: no errors/warnings/checks
+- complete minimal ARM vmlinux and modules builds with both new
+  drivers built in and modular, COMPILE_TEST=n, without the platform
+- actual driver functions tested with mocked MMIO/regmap and UBSAN
+- exact sources booted in a Linux 7.4-rc4 RAM integration kernel on
+  Almond+, with platform v9, clock/pinctrl and the accepted watchdog
+
+The first nonblocking read returned EAGAIN and subsequent reads
+provided 4096 bytes. Output was neither all zero nor repetitions of one
+16-byte block; no entropy estimate is inferred from those tests.
+The final combined RAM test recorded 16 checks with no failures and
+returned to installed OpenWrt 6.18.64 through the watchdog. Both CPUs
+were online. The firmware was not flashed. Earlier incomplete or
+experimental alarm runs are not counted as this successful test.
+
 ---
- .../bindings/rtc/cortina,cs7542-rtc.yaml           | 48 ++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Fil Dunsky (3):
+      dt-bindings: rng: Add Cortina Systems CS7542 TRNG
+      hwrng: Add Cortina Systems CS7542 TRNG driver
+      MAINTAINERS: Add Cortina Systems CS7542 TRNG support
 
-diff --git a/Documentation/devicetree/bindings/rtc/cortina,cs7542-rtc.yaml b/Documentation/devicetree/bindings/rtc/cortina,cs7542-rtc.yaml
-new file mode 100644
-index 000000000..8c2cc7ec9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/cortina,cs7542-rtc.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/cortina,cs7542-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina Systems CS7542 real-time clock
-+
-+maintainers:
-+  - Fil Dunsky <filipp.dunsky@gmail.com>
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+properties:
-+  compatible:
-+    const: cortina,cs7542-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Alarm interrupt
-+      - description: Periodic interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: alarm
-+      - const: periodic
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    rtc@f4920000 {
-+        compatible = "cortina,cs7542-rtc";
-+        reg = <0xf4920000 0x50>;
-+        interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "alarm", "periodic";
-+    };
+ .../bindings/rng/cortina,cs7542-trng.yaml          |  38 +++++
+ MAINTAINERS                                        |   7 +
+ drivers/char/hw_random/Kconfig                     |  11 ++
+ drivers/char/hw_random/Makefile                    |   1 +
+ drivers/char/hw_random/cs75xx-trng.c               | 159 +++++++++++++++++++++
+ 5 files changed, 216 insertions(+)
+---
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+change-id: 20261123-b4-cs7542-trng-1a1b9f1cd392
 
--- 
-2.53.0
+Best regards,
+--  
+Fil Dunsky <filipp.dunsky@gmail.com>
 
 
 
