@@ -2,110 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E69606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF67606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rFy9H3Pb;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GMtjhjMh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q+E0RAt7;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=X7TNJr/b
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=3fluvVfpug5iLZdmMQUOn3FkiB9On0yEomcYIj2Ur5Q=; b=rFy9H3PbCNQlZS8Ra3LQrDUJ0d
-	4rGSPzFxqX+/8IOwbyBD+e9qPf3INDxilMeeIr/1mt0SG4hRfgPQcWZfild0XZsDn7xrmbCiG9CVS
-	a+aT8xZe984nMcYTBfQOsZkmFfYAlrhu2EnPUwAqI+N+5SnPEEQpmvClYVY7ybUoiVuRbjgOqvCX5
-	UXzwWSuDAQ4pAHe+0NgyrAFfqZ52zoidTDv2QCaxkkGhCsiBICl2k+u1oKWOzr4NGZDo67HIMc94u
-	xMwdAoGpy22nRg9QbgjR0Qh35LDi0y7OaA1XD3H+fCAsJJtkmSbtiCRWVEYdPBaLJ5UGOE3ydAI0b
-	QuLFv2Mg==;
+	bh=Cj3zguVu7lWCJCgLfs0Mb2vwVUbkkSnlbqSfbG7RdEA=; b=Q+E0RAt7Ug9C/rQ8Zp69ypxtde
+	WjjJEveMjG0c0W5bcjk3G2SBiGp3jHuFU3ZTX4Myx9wteDLwDkeMfddBHYVcUqhhLajeDK5E4xV8L
+	hIPOVS1LzIcZ93TzWM/pYZG9J2g/FL6eVHZVEjPvd5BreVWZUGdAfpWYetMK78VCWqkJwDZ1wfyFB
+	q+NgJ7vSFu091m3f3Eulyctrdv341yKjfmOc3WHphjjmyYxhCEcwzTwxlxrtHX2vc2jVgrE7AK4IS
+	h0adfvxm8fJQfo6eCCrWZkwHvj0JFBSz896Xv4eDpQ3yvk6SOD5BGN7mp8XBTJYVMSDSJry/kE17A
+	/sQUpaVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUsU-00000003hi2-3TH1;
-	Mon, 23 Nov 2026 14:18:42 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVUzZ-00000003jiD-2FDA;
+	Mon, 23 Nov 2026 14:26:01 +0000
+Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVUsP-00000003hgY-3hyL
+	id 1xVUzV-00000003jdd-2MQz
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 14:18:39 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3263245970;
-	Mon, 23 Nov 2026 14:18:37 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795443516;
-	b=T5Xo5wQsDiMK0MA22EE1uu9b6zYfZUMqvinsvIkU7NU7Aq/FH7G4aPCJCipN7ETL0ozT
-	 RSz9GYx+xQNTbKzT2wLaw3Z1yTqJ0DYP/nV0C+5AHysJDkIKSsNQCXjDuKv49NTRHQ+UQ
-	 MkjJut55V26LgX6qgAFkS+OY79t+jQ4zQzuFZesWH6ZZg3YcUkxo29JK3MvRw8Qzo6sM1
-	 1fyWRe2W60DyADWZVMA4k5UQUZhfu24H4g7A5A3ZANVy2eLxlinF83PyGkH86ZCNaGl8L
-	 Puo4rzlZx9BYPG81ikkCfsEIwH/DY854t6XnsS8LMoDUhIlwng+WvFrVVrpsw6k5+VA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795443516;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=3fluvVfpug5iLZdmMQUOn3FkiB9On0yEomcYIj2Ur5Q=;
-	b=BXIjrMzNoGEEXuhQ9vjMWHaGzeEaWDbJ7fGdHXcbf3CoJ455jv2BLzKP6mxO+pK4qyKO
-	 7azx+3yEjNsYXWR8Y2NiheahuKtWIAADuxe1qT5qD+3QJLBz9AidYCQyGzNhMrrpvEFul
-	 pY7aObl5cJz6LG7T4qAYoUqKa+RycDTMCJKj4sSeJnqcAqm/Clwx1ytRhFfoOIp8osh00
-	 PAfKD0Uaz5H+jZxfl+lYws1Ry6HfRi9lqefJ3foRKZjRZoLWCO3PhadumfSwrVVu4HHKZ
-	 x/4S/cn26z1P2RLSBR32os3Wzq8ifSHiNksQ3FwVUO9WaoAmlSdDBPZADuW5+ZanGvA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 21B921F00ADE;
-	Mon, 23 Nov 2026 14:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795443516;
-	bh=3fluvVfpug5iLZdmMQUOn3FkiB9On0yEomcYIj2Ur5Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=GMtjhjMhHBUmUEiFgCuCB3PpiHm6lfLwevUogNkUHh11zJL0HFuFqLtD6jVv6s33h
-	 KDoMzwu90uJci8RVj+iKquPxs/mDXCETJJhdT12P7WvO8hsIkqlzeVzuHEq1yr4g6E
-	 lgaRQ0Wk833F6moivGBWtV9ab/gGT8Y18TVpsGY7vwhZWorOP8gzA0sgi7xdlVfF2U
-	 3SJckakh6AvScDbIGOwpwZ5m+IywRCD+EhB3KYPbl1P4rUAeTB/gS4l9fc9Ax9pArB
-	 7Ze7FEYPZOEEU8FtrNrTiA+yx+8rMbHWbgfpdk5hLmj+F9KW/5TLrUcU0rpwZPY9TC
-	 rRRed9tjfzKrA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id ABDAC4C4D4;
-	Mon, 23 Nov 2026 14:18:25 +0000 (UTC)
-From: Shigeaki Asai via B4 Relay <devnull+y-asai.0816.docomonet.jp@kernel.org>
-Date: Mon, 23 Nov 2026 23:18:24 +0900
-Subject: [PATCH RFC 2/2] clk: samsung: exynos5-subcmu: defer probe until
- power domains are registered
+	Mon, 23 Nov 2026 14:26:00 +0000
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-c51373ae637so507340466b.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 06:25:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795443955; x=1796048755; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=Cj3zguVu7lWCJCgLfs0Mb2vwVUbkkSnlbqSfbG7RdEA=;
+        b=X7TNJr/bqRJFrnEVfCkE5Z55ZU3H4CvIcfIfsmJ2mBUGaQA3YZ2g5Yx5HMSaryYCTC
+         drC7xpc6BEZKhmARDWCixSJ53aM8DdPI4A4uaP78EzmfdwGJve3GYuTnC+TYzILYI3Uo
+         Fc2LRrAdPQ58RqqE+hJzrQd67tqua3qyqy8y0ysWso+RTulJJmEdE1Oig9en9QIVfhji
+         88Dj9Wu56kzmmDDe0CO01qRPsJLjgOQf11GEwTML+1ywooRpctH19xOBkCUp6aPAgV3t
+         Pnkve/rK9nn+jwLBQP4qUHzBfbAWUu27FDr80H0ViUhxcK0e0gTj56FqyfQZTc6SN6Qk
+         B/Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795443955; x=1796048755;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Cj3zguVu7lWCJCgLfs0Mb2vwVUbkkSnlbqSfbG7RdEA=;
+        b=zbTxiHlVJEfhv61/QApyGdwue3K4g8c1cOSe60eurrsYCtpskbDahaAtWmB10kZJFH
+         LWM7YmMvPPvpkI5b4iliONMenQ5BqBYEx2PSVGvUqIz0kWBehqJ4JDq4uABdMcw/U1tm
+         XyeO9qhPAZyq5OAhhteKLVZ/xuBGpTyEQyHanXH64ir7qE2PUD6fpnGBIV+ddhYMUgfK
+         +jZ9RDW1FOI3gshTzMryMg+woDySUl6zPrfG87Bm6utJ6LAOZ4x3CKT7Ay+4cBf2yIwz
+         0ocpE0NIF7aSwr7AFh4oEAv2VmO6u5HsV5rLpsZ0QfC+vZtq/XGz/Y3mNJdW1KH9QkU4
+         aNaw==
+X-Forwarded-Encrypted: i=1; AL+hErHp4a/hIZGlFIlWUVXsVgZr4Go/QhkH04IM4qUzxtiRg5cdaeIHp70OZinWOT0an1EJdBidCjG1Gf061bE8nqrY@lists.infradead.org
+X-Gm-Message-State: APuU4Z8WfUmKiOjTVVbjYpQ7DprgYmJPzuW/uom9EpCIuptzXN3q+IHP
+	/wM5YmOISxBLJ1dz2ygQoIbP560eKII/g03LWSvqKi7dBPqVLlvGMoS5d8U4GB7mOU8=
+X-Gm-Gg: AZFdTZeRXeZw+/OrH0i29f3Nw8AZ6t954sbrl39vXtE557AqM0ojS1NhyhhSZHFC0mC
+	2pJdY/Pdai+gayMT6DLYWZKJtWToXF+KdauIw1wvX0I+RM+b6/j+d0eTDyTp9Z1J2iuFTtTeNzh
+	V45TJa56wb9BlvxnJ+G/+plJkYg//zW8taObUYHnAqBEbBKHqdDaDIF0l4f9uO09/auDIRW+FwT
+	refLZy4yIyDPVXK5+oB85qYtTV7LhS1wbya4RUiYiM0OpsndlAnu4IUgEyhJ9ymLTXhuxcZPxpn
+	qIOXX/uuqjOsmzlPC22pG+/OFq9fZc0gv4E7Dgt1g9mVG66i1VzDFOnR/FxRkLDFIrH2LYy3yPq
+	MSzagENTkLPJPrE2Zhl8jI+cGakg8MarE9AzYjwkVFc9d50Mh2VmR6ReF78KaDxaRkqe+Rq7jOS
+	CZCPMITrsrDGjT538eqeYPMtJ2qEx7FrmxnLRA5fdhRRmRzoZL/qLdKSk5pSVhGkrZYEdMF7Fzd
+	u9FSfQKY05w1HPsU5A+tHTOlh+YISWKu/oi3ulMmPDvSWhEDGSVrcUDE+39B+MkX+YzpDcNu04W
+	KzpjmGNXzxO3Nl2A/OS5HsvydzasyVtbh3nVrnJcOXQtB8tZlWlJkapi9cNKkzhhavzaq3J4Gs3
+	3QfK5xTPKkA75HHMIig==
+X-Received: by 2002:a17:906:1c11:b0:c50:8d2b:4392 with SMTP id a640c23a62f3a-c513ab38967mr715904966b.49.1795443955446;
+        Mon, 23 Nov 2026 06:25:55 -0800 (PST)
+Received: from puffmais2.c.googlers.com (226.124.90.34.bc.googleusercontent.com. [34.90.124.226])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ae67cbfsm428224366b.14.2026.11.23.06.25.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 06:25:55 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v2 0/2] phy: exynos5-usbdrd: gs101 PIPE3 init fixes
+Date: Mon, 23 Nov 2026 14:25:53 +0000
+Message-Id: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-exynos5-subcmu-defer-v1-2-43aef47d4f2b@docomonet.jp>
-References: <20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
-In-Reply-To: <20261123-exynos5-subcmu-defer-v1-0-43aef47d4f2b@docomonet.jp>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, 
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPFMBGsC/42NQQrCMBBFr1Jm7UgmBqmuvEfpoolJOiBJSWqxl
+ N7dsSdw8+F9eP9vUH1hX+HebFD8wpVzEtCnBtw4pOiRn8Kglb4S0Q1jJUX4rhanccUscpqHWSw
+ 0xrk2kAlKKxB/Kj7w59jueuGR65zLelwt9Gv/WV0ICW24OGMldesfL05DyedcIvT7vn8BPNREj
+ sMAAAA=
+X-Change-ID: 20261119-gs101-usb-phy-orientation-44cc8f14f020
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
  Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Shigeaki Asai <y-asai.0816@docomonet.jp>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795443504; l=4200;
- i=y-asai.0816@docomonet.jp; s=20261004; h=from:subject:message-id;
- bh=06wGL2OqoYzK5WTk4tX/mGxzOuQQyJdcsjmAmiOi95k=;
- b=De7pQ0KDp06OwJJM4PZolf4jW8UVsKntB1DYNyexEkHDE6wWOnybAAzOtp6kMInVJ5bwNGIUs
- uPLGYaZQuhkB93P9XKCNnR5yJc3UQrHyJ+xAi+e+Ter2V3Sv/eeDWUo
-X-Developer-Key: i=y-asai.0816@docomonet.jp; a=ed25519;
- pk=jkd95ViSn8i/X3oPMHYG1A8mae8IOwOKGE64kzLqC5c=
-X-Endpoint-Received: by B4 Relay for y-asai.0816@docomonet.jp/20261004 with
- auth_id=1110
-X-Original-From: Shigeaki Asai <y-asai.0816@docomonet.jp>
-Content-Transfer-Encoding: 7bit
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ RD Babiera <rdbabiera@google.com>, Juan Yescas <jyescas@google.com>, 
+ kernel-team@android.com, phone-devel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_062557_645700_91629F2C 
+X-CRM114-Status: GOOD (  11.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,7 +114,6 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: y-asai.0816@docomonet.jp
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -125,145 +123,46 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Shigeaki Asai <y-asai.0816@docomonet.jp>
+Hi,
 
-Since the Exynos power domain driver became a regular platform driver,
-exynos5_clk_probe() may run before the power domains are registered.
-The sub-CMU devices are created by the clock driver without a DT node,
-so fw_devlink cannot order them after their power domains.
-of_genpd_add_device() then fails silently, the sub-CMU devices are added
-without a power domain and their clock setup is not restored across
-power domain off/on cycles. On ODROID-XU4 this leaves the G3D clocks
-misconfigured, causing very poor GPU performance and panfrost
-"gpu sched timeout" errors.
+This series contains two fixes for the USB 3.1 PIPE3 PHY initialization
+on Google Tensor gs101:
 
-Attach all sub-CMU devices to their power domains first, and defer the
-probe if a power domain provider is not registered yet.
+1. Re-initialize the PIPE3 PHY from the Type-C orientation switch
+   callback when the orientation changes while the PHY is already
+   initialized. When a cable is connected during boot, the PHY can be
+   initialized before the TCPC reports the orientation, and DWC3 runtime
+   PM is forbidden by default. Without re-initializing, the SuperSpeed
+   lanes stay programmed for the wrong orientation and the link comes up
+   in high-speed only.
 
-This patch was written with the help of Claude (claude-opus-5-5).
+2. Apply the existing gs101_tunes_pipe3_postlock[] table once the PLL
+   and CDR have locked. It disables the high-speed RX squelch detector
+   in P3 / U3 to save power while the link is suspended. The table was
+   added in commit 32267c29bc7d ("phy: exynos5-usbdrd: support Exynos
+   USBDRD 3.1 combo phy (HS & SS)") but never applied.
 
-Fixes: c09a3e6c97f0 ("soc: samsung: pm_domains: Convert to regular platform driver")
-Signed-off-by: Shigeaki Asai <y-asai.0816@docomonet.jp>
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- drivers/clk/samsung/clk-exynos5-subcmu.c | 85 ++++++++++++++++++++++----------
- 1 file changed, 58 insertions(+), 27 deletions(-)
+Changes in v2:
+- Add patch 2 to apply the existing gs101 postlock tuning table
+  (PTS_PIPE3_POSTLOCK).
+- Patch 1 is unchanged from v1.
+- Link to v1: https://lore.kernel.org/r/20261119-gs101-usb-phy-orientation-v1-1-bf3c4bbf328e@linaro.org
 
-diff --git a/drivers/clk/samsung/clk-exynos5-subcmu.c b/drivers/clk/samsung/clk-exynos5-subcmu.c
-index 373129847301..797ec9f059cb 100644
---- a/drivers/clk/samsung/clk-exynos5-subcmu.c
-+++ b/drivers/clk/samsung/clk-exynos5-subcmu.c
-@@ -9,6 +9,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/slab.h>
- 
- #include "clk.h"
- #include "clk-exynos5-subcmu.h"
-@@ -131,43 +132,73 @@ static struct platform_driver exynos5_subcmu_driver __refdata = {
- 	.probe = exynos5_subcmu_probe,
- };
- 
--static int __init exynos5_clk_register_subcmu(struct device *parent,
--					 const struct exynos5_subcmu_info *info,
--					      struct device_node *pd_node)
--{
--	struct of_phandle_args genpdspec = { .np = pd_node };
--	struct platform_device *pdev;
--	int ret;
--
--	pdev = platform_device_alloc("exynos5-subcmu", PLATFORM_DEVID_AUTO);
--	if (!pdev)
--		return -ENOMEM;
--
--	pdev->dev.parent = parent;
--	platform_set_drvdata(pdev, (void *)info);
--	of_genpd_add_device(&genpdspec, &pdev->dev);
--	ret = platform_device_add(pdev);
--	if (ret)
--		platform_device_put(pdev);
--
--	return ret;
--}
--
- static int __init exynos5_clk_probe(struct platform_device *pdev)
- {
-+	struct platform_device **subcmus;
- 	struct device_node *np;
- 	const char *name;
--	int i;
-+	int i, n = 0, ret;
-+
-+	subcmus = kcalloc(nr_cmus, sizeof(*subcmus), GFP_KERNEL);
-+	if (!subcmus)
-+		return -ENOMEM;
- 
- 	for_each_compatible_node(np, NULL, "samsung,exynos4210-pd") {
-+		struct of_phandle_args genpdspec = { .np = np };
-+
- 		if (of_property_read_string(np, "label", &name) < 0)
- 			continue;
--		for (i = 0; i < nr_cmus; i++)
--			if (strcmp(cmu[i]->pd_name, name) == 0)
--				exynos5_clk_register_subcmu(&pdev->dev,
--							    cmu[i], np);
-+		for (i = 0; i < nr_cmus && n < nr_cmus; i++) {
-+			struct platform_device *sub;
-+
-+			if (strcmp(cmu[i]->pd_name, name) != 0)
-+				continue;
-+
-+			sub = platform_device_alloc("exynos5-subcmu",
-+						    PLATFORM_DEVID_AUTO);
-+			if (!sub) {
-+				of_node_put(np);
-+				ret = -ENOMEM;
-+				goto err;
-+			}
-+			sub->dev.parent = &pdev->dev;
-+			platform_set_drvdata(sub, (void *)cmu[i]);
-+
-+			ret = of_genpd_add_device(&genpdspec, &sub->dev);
-+			if (ret == -ENOENT || ret == -EPROBE_DEFER) {
-+				platform_device_put(sub);
-+				of_node_put(np);
-+				ret = dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-+						    "power domain %s not ready\n",
-+						    name);
-+				goto err;
-+			} else if (ret) {
-+				dev_warn(&pdev->dev,
-+					 "failed to add %s sub-CMU to its power domain: %d\n",
-+					 name, ret);
-+			}
-+			subcmus[n++] = sub;
-+		}
-+	}
-+
-+	for (i = 0; i < n; i++) {
-+		ret = platform_device_add(subcmus[i]);
-+		if (ret) {
-+			pm_genpd_remove_device(&subcmus[i]->dev);
-+			platform_device_put(subcmus[i]);
-+		}
- 	}
-+
-+	kfree(subcmus);
- 	return 0;
-+
-+err:
-+	while (n--) {
-+		pm_genpd_remove_device(&subcmus[n]->dev);
-+		platform_device_put(subcmus[n]);
-+	}
-+	kfree(subcmus);
-+	return ret;
- }
- 
- static const struct of_device_id exynos5_clk_of_match[] = {
+---
+André Draszik (2):
+      phy: exynos5-usbdrd: gs101: re-init PIPE3 on orientation change
+      phy: exynos5-usbdrd: apply gs101 postlock tuning
 
+ drivers/phy/samsung/phy-exynos5-usbdrd.c | 63 ++++++++++++++++++++++++++++++--
+ 1 file changed, 60 insertions(+), 3 deletions(-)
+---
+base-commit: 749a4de370409464cf8501ec5b2451df45c84eb4
+change-id: 20261119-gs101-usb-phy-orientation-44cc8f14f020
+
+Best regards,
 -- 
-2.43.0
-
+André Draszik <andre.draszik@linaro.org>
 
 
