@@ -2,68 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8245A606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE38606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uclasVfk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Va6ZtEvD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Dy8e8OC;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=RoaFQN//;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=fuQVgPFD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=i3MzbPidfDG/rjrcBIfelpXh/DBIpMthv6i7dnSWlog=; b=uclasVfkFq8v7hnHDSDb5e2u6s
-	oayOvZ4W2tlcL6JUsAUe36Bh7PKG3EXAUhMl/IJknkE07If7CcJlD1MApvrzjfQOYZH8VgCxFvtOZ
-	s408iKRvAqNli4q+uy6P4WfWwrG7+KfR0S0BLMXzFz36SeKYIbSz1BtV+YnwM2rXYdhi+6el60HtN
-	FCMqNBIdEc87xZSjSyoWoSw6KspK/6qrg6nwAooFekocgKNvDKVWoobQW/suhmZmzo+nhNkxjMtaI
-	aaP81uuImBnREaNjHGP/QQOacwpNNH5ZeJ1sH2nusUPM8/xC0JCKZlLQ4toiZLLYBgqDfIT8UyFeY
-	+HOuWVuw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=lWio/ZaYW+Ez8es1JnqyfDCIZ2Tx6iwXiB9k3U+N5Zs=; b=1Dy8e8OCuhlB43
+	Z8QnpAt+MDPTT+J5w5kGv8yN11haUnQ59x0DNmawjuFysbn6DD2JgtRZFB9S+xuAs2lcd8oYjsPMD
+	lusMSbz5qmgZzH+uoU4LEkgnap60tES6E48Qi+07+MZUqNRTyR6n0HLQmnFw3GWG5+rmjtkX26ije
+	xwVF1anhxOqw9t8/riSDtKC42BNszGsBSQuY5t7cEEnZQAcdUgHXwPRMF3l32J3VGCbWLbW9y+KVG
+	pr1g9gevwVeHcySqeZPITQeYsI/i1jZ7MTAii+SYZmRibFNuWMUwjoS+MX/b7KQqJLVFw8YZsnxVp
+	olYFPDNwOmymswvHgMBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVROF-00000002yFC-1wYJ;
-	Mon, 23 Nov 2026 10:35:15 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVROq-00000002yNr-3PBm;
+	Mon, 23 Nov 2026 10:35:52 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVROD-00000002yEW-3ZIg
+	id 1xVROK-00000002yGy-2lEI
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 23 Nov 2026 10:35:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=lWio/ZaYW+Ez8es1JnqyfDCIZ2Tx6iwXiB9k3U+N5Zs=; b=RoaFQN//cQTi9PI8CkJmuerO/l
+	RTAI1IxlR4VbgWhf/Fh6LQEli3RArVnflX2CSJ8RmgdEM/UT7tzrl/cZMx/HqTPpWCQnUBqhAOxZa
+	b7soiWCMdPGOMkFr/nrsrhXusppi3zR8fD5BYd7jcgKLLUt0yS07yaGp6Lcy10Ys0nWXXpik8KoqK
+	WeJxgetcbs/NpClIFHQA5THt+FceVgWjLjOITIzXKWzma+XVltyFDmIS9Fo3JwJ3CUlYFjaO3DzLu
+	xgROkNc/EXXCdpcJMQtdZWCAeznt2aSH44ACasAkQQlWePOZiM4UO1P3Lw4epf8NtWf3RjYniWg22
+	3xR9GM/g==;
+Received: from out-11.mta1.migadu.com ([2001:41d0:203:375::b] helo=mta1.migadu.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVROI-00000002zhd-06bG
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:35:13 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3F4BB41932;
-	Mon, 23 Nov 2026 10:35:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABBC31F000C6;
-	Mon, 23 Nov 2026 10:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795430111;
-	bh=i3MzbPidfDG/rjrcBIfelpXh/DBIpMthv6i7dnSWlog=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Va6ZtEvDlTvYtjj1YNjK7xNoTVJVh0Y/RAsRQEpFFiOZKLvESai/4iNhDf4+R7V9C
-	 ELYYIOeKUslx/uevHFFmUOa+ybosLAf+klOjQN8sm0qH7fwENosPMkhrPRxd0pV430
-	 lUSDBrs4KPK1M5IyXIpxo34u1B+liENE6ktgyHWx8fEdKkSm7rto093fWZF7vE7ZVI
-	 NFA/DIX2Hm1pKuPfXNo5reMBGK8bOkLUqfsZR1GSzQnxZvEpa49TE2CyXUQr6R4oah
-	 GRLbZvHgBKMP2EvVGv1CwqZl22nKepg49hWbuhAvt9b62pptvhFFfKIHiTT9AhetqS
-	 tGewm1yhT/fxw==
-Date: Mon, 23 Nov 2026 11:35:07 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
-	Linus Walleij <linusw@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 12/13] arm64: dts: synaptics: add SL2610 family SoCs
-Message-ID: <20261123-petite-oarfish-of-merriment-dd7e79@quoll>
-References: <20261115102401.3520-1-jszhang@kernel.org>
- <20261115102401.3520-13-jszhang@kernel.org>
+	Mon, 23 Nov 2026 10:35:19 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=IDG8FN6cGRh+zZL5h3B/Xnl0MXwN5GMGINSU+pdwgF8=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795430112; v=1; x=1796034912;
+ b=fuQVgPFDCIdL2Zne2TVj3GoYIYtkL33UcpxVa0zTpwA7uFOXdeVnZfCEJZbBfkYG1QGTyU/a
+ KMtiH5BOJSLLaqTnmShzo6ivxYpeYCAxE4WDKkYu73UbzXeu/wjjNjbOV2tmwQabVJTEu5M7pAJ
+ sehEXEVntOWW4KyeWfjNVnfo=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 82def4b9cf94a7df;
+	Mon, 23 Nov 2026 10:35:10 +0000
+X-Mizu-Trace-ID: 82def4b9cf94a7df
+X-Migadu-Flow: FLOW_OUT
+From: Fuad Tabba <fuad.tabba@linux.dev>
+To: Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	kvmarm@lists.linux.dev
+Cc: Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Gavin Shan <gshan@redhat.com>,
+	Alexandru Elisei <alexandru.elisei@arm.com>,
+	Vincent Donnefort <vdonnefort@google.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fuad Tabba <tabba@google.com>
+Subject: [PATCH 2/2] KVM: arm64: selftests: Test a THP whose first fault is on a tail page
+Date: Mon, 23 Nov 2026 10:35:05 +0000
+Message-ID: <20261123103505.1006067-3-fuad.tabba@linux.dev>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261123103505.1006067-1-fuad.tabba@linux.dev>
+References: <20261123103505.1006067-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261115102401.3520-13-jszhang@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_103518_030055_AA51DCA9 
+X-CRM114-Status: GOOD (  17.92  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,188 +96,120 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 15, 2026 at 06:23:51PM +0800, Jisheng Zhang wrote:
-> Describe the CPUs, interrupt controller, system controllers and supported
-> serial, I2C, I3C, SPI and GPIO peripherals for the SL2610 family.
-> 
-> Use the SL2610 peripheral compatibles already documented in the upstream
-> bindings and share clock, reset and pin configuration providers through
-> the system controller nodes.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  arch/arm64/boot/dts/synaptics/sl2611.dtsi | 457 ++++++++++++++++++++++
->  arch/arm64/boot/dts/synaptics/sl2613.dtsi |  12 +
->  arch/arm64/boot/dts/synaptics/sl2615.dtsi |  46 +++
->  arch/arm64/boot/dts/synaptics/sl2617.dtsi |  46 +++
->  arch/arm64/boot/dts/synaptics/sl2619.dtsi |  44 +++
->  5 files changed, 605 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/synaptics/sl2611.dtsi
->  create mode 100644 arch/arm64/boot/dts/synaptics/sl2613.dtsi
->  create mode 100644 arch/arm64/boot/dts/synaptics/sl2615.dtsi
->  create mode 100644 arch/arm64/boot/dts/synaptics/sl2617.dtsi
->  create mode 100644 arch/arm64/boot/dts/synaptics/sl2619.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/synaptics/sl2611.dtsi b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
-> new file mode 100644
-> index 000000000000..663fe6034ba0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/synaptics/sl2611.dtsi
-> @@ -0,0 +1,457 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2024 Synaptics Incorporated
-> + *
-> + * Author: Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +#include <dt-bindings/clock/syna,sl2610.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/reset/syna,sl2610-reset.h>
-> +
-> +/ {
-> +	compatible = "syna,sl2611";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	optee {
-> +		compatible = "linaro,optee-tz";
-> +		method = "smc";
-> +	};
-> +
-> +	cpus {
+On a host whose PMD level is folded, KVM mapped host memory past a THP
+when the guest first touched the THP at a page other than its first.
 
-Messed order of nodes. Please run dt-check-style.
+Add a scenario for that case. The guest writes to the second host page
+of a memslot backed by one THP, then reads the first address past the
+memslot. The test checks that the write landed in that page, and that
+the read exits to userspace as MMIO. On a host whose PMD level isn't
+folded, the scenario passes with or without the fix. It doesn't use
+hugetlb pages, so it runs before the probe that skips the rest of the
+test when they aren't reserved.
 
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+---
+ .../kvm/arm64/stage2_block_transitions.c      | 56 ++++++++++++++++++-
+ 1 file changed, 53 insertions(+), 3 deletions(-)
 
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "arm,cortex-a55";
-> +			device_type = "cpu";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +			cpu-idle-states = <&CPU_SLEEP_0>;
-> +			i-cache-size = <32768>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-sets = <128>;
-> +			d-cache-size = <32768>;
-> +			d-cache-line-size = <64>;
-> +			d-cache-sets = <128>;
-> +			next-level-cache = <&L2_0>;
-> +
-> +			L2_0: l2-cache {
-
-Labels should be lowercase rather.
-
-> +				compatible = "cache";
-> +				cache-size = <65536>;
-> +				cache-line-size = <64>;
-> +				cache-sets = <256>;
-> +				cache-level = <2>;
-> +				cache-unified;
-> +				next-level-cache = <&L3>;
-> +			};
-> +		};
-> +
-> +		L3: l3-cache0 {
-> +			compatible = "cache";
-> +			cache-level = <3>;
-> +			cache-unified;
-> +			cache-size = <262144>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <256>;
-> +		};
-> +
-> +		idle-states {
-> +			entry-method = "psci";
-> +			CPU_SLEEP_0: cpu-sleep-0 {
-> +				compatible = "arm,idle-state";
-> +				local-timer-stop;
-> +				arm,psci-suspend-param = <0x0010000>;
-> +				entry-latency-us = <75>;
-> +				exit-latency-us = <155>;
-> +				min-residency-us = <50000>;
-> +			};
-> +		};
-> +	};
-> +
-> +	osc: osc {
-
-Please use name for all fixed clocks which matches current format
-recommendation: 'clock-<freq>' (see also the pattern in the binding for
-any other options).
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +	};
-> +
-
-...
-
-> +		cpuclk: cpu_wrap: syscon@f7e30000 {
-> +			compatible = "syna,sl2610-cpu-syscon", "syscon";
-> +			reg = <0xf7e30000 0x4000>;
-> +			#clock-cells = <1>;
-> +			clocks = <&osc>;
-> +			syna,gbl-syscon = <&chip>;
-> +		};
-> +
-> +		gic: interrupt-controller@f7e59000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +			reg = <0xf7e59000 0x1000>,
-> +			      <0xf7e5a000 0x2000>,
-> +			      <0xf7e5c000 0x2000>,
-> +			      <0xf7e5e000 0x2000>;
-
-Please follow DTS coding style in ordering properties.
-
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-
-...
-
-> +		soc_spi0: spi@f7f04000 {
-> +			compatible = "syna,sl2610-spi", "snps,dw-apb-ssi";
-> +			reg = <0xf7f04000 0x100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			num-cs = <4>;
-> +			clocks = <&clk CLK_APBSPI0>;
-> +			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
-> +		soc_i2c0: i2c@f7f05000 {
-> +			compatible = "syna,sl2610-i2c", "snps,designware-i2c";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0xf7f05000 0x100>;
-> +			clocks = <&clk CLK_APBI2C0>;
-> +			i2c-sda-hold-time-ns = <449>;
-> +			i2c-sda-falling-time-ns = <425>;
-> +			i2c-scl-falling-time-ns = <205>;
-
-If these are here, then they are implied by compatible, no?
-
-Best regards,
-Krzysztof
+diff --git a/tools/testing/selftests/kvm/arm64/stage2_block_transitions.c b/tools/testing/selftests/kvm/arm64/stage2_block_transitions.c
+index 5fd47f4ada1f3..000e8ec7ce8cc 100644
+--- a/tools/testing/selftests/kvm/arm64/stage2_block_transitions.c
++++ b/tools/testing/selftests/kvm/arm64/stage2_block_transitions.c
+@@ -3,10 +3,10 @@
+  * Copyright (c) 2026 Google LLC
+  * Author: Fuad Tabba <fuad.tabba@linux.dev>
+  *
+- * stage2_block_transitions - Exercise stage-2 block/page granularity changes
+- * that dirty logging forces at fault time, and assert the guest completes.
++ * stage2_block_transitions - Exercise stage-2 block/page granularity at fault
++ * time: the changes dirty logging forces, and how far a THP block reaches.
+  *
+- * Both scenarios need the fault handler to allocate at fault time (a fresh
++ * Scenarios 1 and 2 need the fault handler to allocate at fault time (a fresh
+  * mapping and/or page-table pages while holding mmu_lock), so a fault path
+  * that fails to stage that memory manifests as a KVM_RUN error or, worse, a
+  * host crash. The asserted property is host-agnostic: the guest runs the
+@@ -27,6 +27,11 @@
+  *   fault that must split the block into pages during logging, draining
+  *   page-table pages. Skipped on CTR_EL0.DIC hardware, where mappings are
+  *   made executable eagerly and the execute fault never occurs.
++ *
++ * Scenario 3 - THP whose first fault is on a tail page:
++ *   The guest writes to the second host page of a memslot backed by one
++ *   THP, then reads the first address past it. If KVM mapped the THP and
++ *   nothing past it, the write lands in the memslot and the read exits as MMIO.
+  */
+ #include <linux/bitfield.h>
+ #include <linux/bitmap.h>
+@@ -198,6 +203,49 @@ static void test_exec_split_drain(void)
+ 	kvm_vm_free(vm);
+ }
+ 
++static void thp_guest_code(u64 touch_gva, u64 past_gva)
++{
++	WRITE_ONCE(*(u64 *)touch_gva, 0x1);
++	READ_ONCE(*(u64 *)past_gva);
++	GUEST_DONE();
++}
++
++static void test_thp_tail_first_touch(void)
++{
++	struct kvm_vcpu *vcpu;
++	struct kvm_vm *vm;
++	struct ucall uc;
++	size_t npages;
++	u64 thp_size;
++	u64 gpa;
++
++	if (!thp_configured()) {
++		ksft_print_msg("SKIP THP tail first touch: THP not configured\n");
++		return;
++	}
++	thp_size = get_trans_hugepagesz();
++
++	vm = vm_create_with_one_vcpu(&vcpu, thp_guest_code);
++	npages = thp_size / vm->page_size;
++
++	gpa = (vm_compute_max_gfn(vm) * vm->page_size) - 2 * thp_size;
++	gpa = align_down(gpa, thp_size);
++
++	vm_userspace_mem_region_add(vm, VM_MEM_SRC_ANONYMOUS_THP, gpa, DATA_SLOT, npages, 0);
++	virt_pg_map(vm, TEST_GVA + getpagesize(), gpa + getpagesize());
++	virt_pg_map(vm, TEST_GVA + thp_size, gpa + thp_size);
++	vcpu_args_set(vcpu, 2, TEST_GVA + getpagesize(), TEST_GVA + thp_size);
++
++	vcpu_run(vcpu);
++	TEST_ASSERT(get_ucall(vcpu, &uc) != UCALL_DONE,
++		    "Read past the memslot completed without an exit");
++	TEST_ASSERT_KVM_EXIT_REASON(vcpu, KVM_EXIT_MMIO);
++	TEST_ASSERT_EQ(vcpu->run->mmio.phys_addr, gpa + thp_size);
++	TEST_ASSERT_EQ(*(u64 *)addr_gpa2hva(vm, gpa + getpagesize()), 0x1);
++
++	kvm_vm_free(vm);
++}
++
+ /*
+  * The explicit-size hugetlb backing hard-fails region creation if the pages
+  * are not already reserved, so probe here and skip rather than abort. The
+@@ -216,6 +264,8 @@ static void require_hugepages(size_t bytes)
+ 
+ int main(void)
+ {
++	test_thp_tail_first_touch();
++
+ 	require_hugepages(NR_BLOCKS * BLOCK_SIZE);
+ 
+ 	test_block_collapse();
+-- 
+2.47.3
 
 
