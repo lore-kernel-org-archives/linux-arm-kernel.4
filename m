@@ -2,209 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAEB1606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:53:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7065A606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oHzyo33B;
-	dkim=pass (2048-bit key) header.d=vtelectron.com header.i=@vtelectron.com header.a=rsa-sha256 header.s=DKIM header.b=CE9eYG6p;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.a=rsa-sha256 header.s=DKIM header.b=Huf2Fw5J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YDeMS0BU;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=BJWhJ7WD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Z9YPFBs0/UL6V/xt6AcKxd1qjEKuCkhFqD1d/gc4JEc=; b=oHzyo33Bb4zkZY
-	m3IeBMQZ8e1I7w3EqMGNHbveYmh8DQLHww0uaDmiaGY98NiH3s64W4ZVhQ7uMyGrX1qw66v33+7tA
-	5pmr/nNvf5FXOnhHX8ApTzyzM7OaNMo6HXBkfTEbII/BSvGO/IohlEgpvI8cGen2OoLHkhDeU+Cdu
-	X6oXOt+CVwLtqF4B+t6rE8BhA1z+rPYW/dc+qsllfppqt+bbv2oDbcBYQ9orgX5d1bRmyX7tWbcYC
-	5eQmuMwUik32R1EIfcZTLSArt3ZZMY24fKUi/wIb06Dv9oC7mSqqDkd950uKWRD5ei2OJ2DA39kxN
-	xHkXux5NiTTx8WDceNqg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Uwx0NG3uKtnrDSAtqR9l2sngz111pr86ksoehzxrkGc=; b=YDeMS0BUXTm0V9AEf8GV0LWbP9
+	Zg0p2zv5H71oV+QseenOqQWIs4wthGLx0YXHfQvcSW21dTClnDhzUXCe8qLF0fly1xYSnepvv2kxh
+	Kb948mZrD2xpm08Ds8CfkelU45/Sdr2U2X1RUhGOUlKSmFsju7d6nbDQWmmQrx3fhiCOZcw5JYy4K
+	l4XdQ2NnmUtCfN+zsbasqZaKAsCyNx3e9p7eWXL+N4y0ebYiWodZXllwzYh7QAljHP8mq4RUrqZ28
+	PPiwCkgWvfPbpBjAnum3ODGYKDgCsRwy7XZ+104PAcKZxIVvH58EWNO7p7fzCfyKMkT0cFHbaaI6B
+	gXQC4QPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRfG-0000000332E-2Ox8;
-	Mon, 23 Nov 2026 10:52:50 +0000
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77])
+	id 1xVRgV-000000033F7-3Xqe;
+	Mon, 23 Nov 2026 10:54:08 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVRfD-0000000331e-3bz2
+	id 1xVRgT-000000033DL-2Uv8
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:52:49 +0000
-Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9Hbcn260835;
-	Mon, 23 Nov 2026 05:52:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vtelectron.com;
-	 h=cc:content-transfer-encoding:content-type:date:from
-	:in-reply-to:message-id:mime-version:references:subject:to; s=
-	DKIM; bh=Z9YPFBs0/UL6V/xt6AcKxd1qjEKuCkhFqD1d/gc4JEc=; b=CE9eYG6
-	pyjt9BTTuuHjfCqBJysNAcGrdXsitF8pfdXMzT51s1p4DaLx6NSFyJWsOoTuItWD
-	g2OOy0wRRFNeQyfDOrp34+dO78Xfn8TDCfj3pp12iBUreZ80UTOwZsilMDWu3p1P
-	s6dpJh6ddHrg3ALLchTsUljFG6c03EHd8JWOgWpWFUrASzX3WR/31KC1PBpMW7ef
-	UoBghzjoOK8087WTn1Mya/3tcbpTbnxK/XKLIP0BbyFteIXQpHaD980Y+a2ehkj2
-	zOGCxzpVCGrYoCYDYGO8fIPWEJqNfTBjbrHhsCgzP74OgH8r1WSiXuRxvoSuDUrB
-	vHZsF7/1pEzWIMw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=Z9YPF
-	Bs0/UL6V/xt6AcKxd1qjEKuCkhFqD1d/gc4JEc=; b=Huf2Fw5JHa2SfyPCSNRti
-	FCzPsaAbc0NiutaF1ZZgN0MtigXRxT7bwJNs6tGSv+rxr2CBIzI8D+p55gxbg73U
-	IK4yelFLyFtlYl4BmKOli3SKjsev5Du/1BH5zR/qb5V4Rxv+i2G/romaybbLm1po
-	2F/5Ss6Av1g8EYS/u2ksD0Y3uKkfFTa/eVP4HQCN38YUbBPV3BrXIS1cDcWSJw2d
-	WxQJM+gODSnl+dEVKD/5FLZ6W3ScrvEoNUIwkR4Jgr3FCPP1SAUc4iLucR3PDxuW
-	vLi2k+dumqsDNJaiY8X7wUlCuPH0sjrr+U3HGQc391UdYEmKrJUXkGVErQN0rGvM
-	w==
-Received: from ph0pr06cu001.outbound.protection.outlook.com (mail-westus3azon11011016.outbound.protection.outlook.com [40.107.208.16])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4j3wgm5p17-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 05:52:25 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k6gBn7NvZGvkJhWR4FEem8oLmP4oV4vYf+j58vNGL0xp1sE6Nf6cXHyv9r2m2I+DBHhA3nxjasto5CkSG6ADb7LVPCVuJ+0K0guxPPL+y1mKAIOHfp/HEeEpm77687oiKiJ3ehjuHm+JPtBwZVKXfGq8pOxS36dV5zSAbtyMYNs29z2VeLIO6TXqGEFphcQKpVNU7UUwZ9fYq9XuCUs6VShPKn+J1/XvEX04sk3UlPhpZBhCg8Noxtk7OMb+LsWCzKtZpP9lNy+kV9I9E2pxuk2SNRIrNeYe4HvVjZXBRvqC+TlNMBZo5rGFCr3taoQbdXIG9hyj3fftIhyqtuv4Bw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z9YPFBs0/UL6V/xt6AcKxd1qjEKuCkhFqD1d/gc4JEc=;
- b=cbU1sr71RaJFOlRhqxkTEEAuLFkNhcXwQucntoRhbEgrXMTBLQ4Q+6MvP5yh7W625PH5ZjTr3uRfcPEcNGKdVkmdibo9KyFJV7TokhUdqdOsNAeTRHiEn85wQSLpr8etU2i97rf5mDAokLqtuRjv35a5/WcF5WY0Ut3LbiPNgLT9Q655Rll9+IllKtf6Nn4u9XzVuxjF5lhegFx9krh9yENLiBp9wsVFUrrVYCRfKgSwxZeKEPJSqzgpKnMZsItKGoi5BMIWfHVp5RXiXUJdz/XZsK8t97RhbKctYVogkAi1YbexhV1BTsx3bOgp+nxERvNCi4vN0/mmde5II5IaEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=analog.com;
-Received: from SJ0PR03MB5469.namprd03.prod.outlook.com (2603:10b6:a03:28a::17)
- by PH0PR03MB989335.namprd03.prod.outlook.com (2603:10b6:510:110::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
- 2026 10:52:23 +0000
-Received: from SJ0PR03MB5469.namprd03.prod.outlook.com
- ([fe80::2a19:76b2:e731:8c5a]) by SJ0PR03MB5469.namprd03.prod.outlook.com
- ([fe80::2a19:76b2:e731:8c5a%5]) with mapi id 15.21.0639.011; Mon, 23 Nov 2026
- 10:52:23 +0000
-Date: Mon, 23 Nov 2026 10:52:19 +0000
-From: Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
-To: Vinod Koul <vkoul@kernel.org>
-Cc: linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
-        linux-sound@vger.kernel.org, linux-spi@vger.kernel.org,
-        Frank Li <Frank.Li@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        =?utf-8?Q?Am=C3=A9lie?= Delaunay <amelie.delaunay@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        David Lechner <dlechner@baylibre.com>,
-        Andy Shevchenko <andy@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Mark Brown <broonie@kernel.org>,
-        Frank Li <Frank.Li@nxp.com>,
-        Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>
-Subject: Re: [PATCH v6 0/9] dmaengine: Support bus widths of 32 bytes and
- above
-Message-ID: <awQa0Sg6-AyfDwpN@nsa>
-References: <20261014-dmaengine-support-wider-dma-masks-v6-0-5b3ffdef8191@analog.com>
- <auiDhzNcif3LhPlq@nsa>
- <awAVoMe1VphXwQIw@parshuram>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <awAVoMe1VphXwQIw@parshuram>
-X-ClientProxiedBy: MR1P264CA0207.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:56::7) To SJ0PR03MB5469.namprd03.prod.outlook.com
- (2603:10b6:a03:28a::17)
+	Mon, 23 Nov 2026 10:54:06 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4bb85e07aadso37761705e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 02:54:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20260707; t=1795431243; x=1796036043; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Uwx0NG3uKtnrDSAtqR9l2sngz111pr86ksoehzxrkGc=;
+        b=BJWhJ7WDrewjysDtS2ilhnrA/ihuAw5ryoGbnPauSvv+brWlVycSm74VRe5KN3aN4l
+         UhSC/2VqVRISSBrCsedR09ioavKOcgZa0Bv6Jcwzhyew46TtY7FIfqub0ujpHmRMccIr
+         rvBBILsSpl9FwLIOCAzuW6XK35lHfdVDxZpoGCDR+fAqYHht4rbinNppQPAljdszhvlj
+         hIH3rdFsg+oPhTZ2gRvcK9KLy0U1HdpSEAlHdH5FeEgcySTEB8w31taJMzuyC0lmtQxG
+         BHb06Blm+dlqOf6qr2INmp7gBC/M5uDmd94IcXKM7l6vyd6butzzndvfqNE2R9edhOq6
+         CyJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795431243; x=1796036043;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Uwx0NG3uKtnrDSAtqR9l2sngz111pr86ksoehzxrkGc=;
+        b=VUf8SgH2+977dyTEncHQLwcdu7jhvHSFAydp3P6v8cNzE8hNQH/bAzCA1lKMkIb4Yw
+         FQmIynH48gll6H7EJoYF7DGNMZVt2KrJtAPFT09zT9qiO5e4VCfKVQsE2E8rinyB0f18
+         01DAFREQtP3UV8U7wDzcHBKdH/6OvamstVuoSr33H0mgxmzMQ7mXTk+to+J3AUhzxM6q
+         MxM71WO4sIdw5eSdOmnUvfapBDZLyn70Q65oLoEQb6PFvvENDqYuWNvzX5w02b91ae20
+         zsU9pu+TRV+lBHaj7Bkp2AT4jlLqjz5JqeOUh5uDXru3mPam/7Tuxc6f5v/mxjVv6FF3
+         fVrw==
+X-Forwarded-Encrypted: i=1; AL+hErE0THIYUGxHJ5pxAl6Fa5dGvuePjzCn1BC3odmQzBGxuJGmZEYCJ+LKociLP9RspvnE9fu9XThSczzvTZYfqJ9N@lists.infradead.org
+X-Gm-Message-State: APuU4Z+9cKUDfwLplGQIdikOHPOattpRH+2lmHNayhtdUBWI1CX00hOB
+	VJExtPeiPJkDPVTEQpWwI+x/F6BzwoY+nVX13qaQeZC99kWZ78oqnq+k47BJJTTu
+X-Gm-Gg: AZFdTZcFx9Y8nFGsgRmfKjReYDQlQPjeoK9MeS2YzaZbhXpnUt/jZmjd80UeyoFNGQs
+	aOF5a01O9STCAUBu3gy2OWqrOz1/25ZkdH+ZzDPVSZa/8RwlA1GliNe32bdA+zsp9+yxL0zq2Qp
+	ALuEFWCZg1HmFoA3Rjpa6pBfXwBR5zI3Ve5bDh9IzTCWTYHpxJ6iuIS1ZQRxE0hur/cxbri4Ekl
+	a88IMUswhiT1j0UipfIDtrflo5p7rVeap8wtkus7+RQIb5K+bFHUAffBwxlLXX9f26ANSzyuF0W
+	tpbIIRWcvjyeJqwmWrbOZpdTZN6lRFcUewEdl8A7mT4DQEyf4j9/23dkOYsmp2lDdAGeUGKhyL0
+	LDRSdFL0ZSRI3t2b3WR/L7AlfF/L86C/Tlmcno2Km92CJGc6/B6/sb1V2+KREfWQXBQ/tl2f/H5
+	PbkJfeb6wWb6QBHlNmnh/tEiluPADHjS1m2y1lqg0ertkZS2zrLdIl6TWzaj9N9LHTh6IftzQYj
+	lvkFyMPAGBN+9k5lTXvJK2rdsCf/u4T+ANTCZ7tFgav3F/SpsuwbSm2PmXEXiNNdUV9/wkVHbIU
+	63DLATlhWEjSnHkkhNt8RbOZhhMGWwpMe4nQt5XZ5UsSFVRkwSQLuUNj+y56NB3YpcHxr3JEbx9
+	Ubek4CZyMcv6ua0AeV74N9tA01Jw6RbPDxRw=
+X-Received: by 2002:a05:600c:5395:b0:4b1:4017:c4f4 with SMTP id 5b1f17b1804b1-4bb8880ca2fmr222661655e9.20.1795431243355;
+        Mon, 23 Nov 2026 02:54:03 -0800 (PST)
+Received: from nixos.speedport.ip (p200300facf0c97e239628f9633b68e4c.dip0.t-ipconnect.de. [2003:fa:cf0c:97e2:3962:8f96:33b6:8e4c])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb85399d52sm332544245e9.6.2026.11.23.02.54.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 02:54:02 -0800 (PST)
+From: Cenk Uluisik <cenk.uluisik@googlemail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: Enable Wi-Fi and Bluetooth on Orange Pi 5B
+Date: Mon, 23 Nov 2026 11:53:58 +0100
+Message-ID: <20261123105358.640680-1-cenk.uluisik@googlemail.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR03MB5469:EE_|PH0PR03MB989335:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e35c252-01ae-4670-b72f-08df494fdacf
-X-LD-Processed: eaa689b4-8f87-40e0-9c6f-7228de4d754a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|376014|7416014|366016|261028144727099003|261102123227099003|261021121427099003|261021123027099003|261026140227099003|261026121527099003|261022075727099003|261022105027099003|11063799006|4143699003|56012099006|10067099003|18002099003|22082099003|261009220027099003|261009221227099003|6133799003|261009223027099003|261009221727099003|261009223327099003;
-X-Microsoft-Antispam-Message-Info: C7DA0taXW9jr59bQe7hr9g/9/pcptBLf62XycCEsWVnM9moAZE1xXr0jZAM7J+HJnErndCRzOy4I0GEdm/CKyHmDtu5dwagRQt4+ZA/ikrPLeAuBuNcWAvry+TYqmORHVtt2YokybNf7bQKOeM8sDTH/LkmIE4+W2LgFF2YwBKdszxXmbd3qyQ+czS7bvOj3iUSpdUEyHvKBZjOhEi+/gQOhpPpD545tbZGZsLivKlrVg7hcxwfAV+PaLyialM6vNUS6Zw10vdU1lETxF2GxCe0KDPF2OeJZi73OBrZ8wgJ3AQb9NaPcD4KddGX3SdpCXRdOwsGejQtbCCHXV7cdtprixsnDUwUUrWibe2zEEJ3Q2Y67xdjjZFgfcSU8ypiVujmTLXs2zLSrx3D2fz0OqOO90hW0M4u+PIAPEIe19Fw1MAGqMH4Le6RClZF/KYFmdlaTKSHUYugV62Dh9DQsUC0jsPib6/gP4HcEqPXsOaVv/wxeJeZmlf8PP2VXqtyMFO3IlOebYB8fEwQjeXklyzei7AEKKS6JYvxNvhQw/wZWgxXgH+R7RX8PMjTjjSDFr8cN2IY/sJDf4m4RFLxs20gSLCWG64/E3bRBWh5RNbU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB5469.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(7416014)(366016)(261028144727099003)(261102123227099003)(261021121427099003)(261021123027099003)(261026140227099003)(261026121527099003)(261022075727099003)(261022105027099003)(11063799006)(4143699003)(56012099006)(10067099003)(18002099003)(22082099003)(261009220027099003)(261009221227099003)(6133799003)(261009223027099003)(261009221727099003)(261009223327099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTV2TzhHc2RtZENlcWhSMVNOZlB6N1pjdEZjZ3ZwL050WWhrdEJDYlZ5L3U3?=
- =?utf-8?B?NEJ2M0VkTzg4WkNmT20xbVRHc1QyVm11djAwOE9MYkZuMTJBQkNrbThmY2FE?=
- =?utf-8?B?TEVoVitXQXFmSTBjWGN3NFVTQlVZSEk3KzI0UUZJVnZoWG0xQzlzUDNRUUdj?=
- =?utf-8?B?aHlreUpDbEszL1E0Q0dDNHB3RzRPeE8xZDRXbERHQmp3bU9Nb1FIQWZDMk5V?=
- =?utf-8?B?MzQ2YXNzSXBzWk53YUxXcWZaNlpyRVJSZUZnS2tWV0V6WXZHQWQ3MkZBeERz?=
- =?utf-8?B?YUE1N0ExaGczbm9WSS9mT1J3WW51SjQ5VFdGZy80S3RpYWpNSTZrZnJ1OTRv?=
- =?utf-8?B?U3FTeXR3M0FPR0krNk42cFdzZTdVNGU3NlJmSE5zcStCRzAxTEpwTEZxS0p2?=
- =?utf-8?B?UDhWNUJTOXhXS2h6RDJZL1V2ZXY2UXRWcVhyQzdmdWhtNnlRWlFrMis5cC8w?=
- =?utf-8?B?SyswYWw4eXlpRktRVUJJc3pYTzNzSmNFMWdhTm54TkN2S043S0pvL080Z0NX?=
- =?utf-8?B?NllMODdxVzlnbjhNOUNsdG5YOExFeTl0SGhTTEpkbUlTQWJGbU1sMGdOT3NL?=
- =?utf-8?B?dE9EdTQ2S1NXeFRJaWtGWERubG5lRStLSHlOSjNFaDZyUGxBWVJVbVB4M2VQ?=
- =?utf-8?B?ZUtvZzR1Vk5nMlE1M0trUDR2UW1HaGlFTklKRzJ0WTU1Z0lvMDRZeWxKejRx?=
- =?utf-8?B?TllIUC9yRml0YmxtcnYzZWxEVHJ4bTNCc3labm9pSjBqMExLZ01UbHRWTkV4?=
- =?utf-8?B?bi9UZXJYQmY4NlU4UmZwYmpvd1ZFYXZsV3A0b2FTMnBLdHg1VUMzbkFad0NZ?=
- =?utf-8?B?bWRzV05adzErN2lHakhRNE5id0gvWnkveE0xTWMzdlpHOGNsMDcrdkNQT1JM?=
- =?utf-8?B?eFN0QkdSREtUSFJzcTRMMUxzb0R2djhkOXJJMCs1L3FIRm9iWUxYeFRZMFJJ?=
- =?utf-8?B?SWdwdHgwOHdSdkxRZXkyOWFnUTIxd2V0UnZqbzhDYk9XdHNkeTdIWEFhRjQ0?=
- =?utf-8?B?VWJ0MU5ZQjVrVm1rRkhWczVwZS8zOExlYnNQVWlQN09rSEg2N0tFVytkMlhJ?=
- =?utf-8?B?YkdMM3greS9wSEE5Wm5NQUo4N1c0UmlZdlBDM1FLYzlkWForUkdrbGNJbXhM?=
- =?utf-8?B?bG0xTU0wK3ZBVWRaS1JxV01JdFp4dkVzRTdWakc3cGdhc3RYZUYzeEJiVWdV?=
- =?utf-8?B?M2FSZnhaK0J2Q0FyTi9DeTdqSFRXZTdsNUFLR3R1NWZYRkRMdVRieW00d2lm?=
- =?utf-8?B?clJrc3lBYjcrbXBoay9VWkE4OHZKVTdnb3l0Vi9GdzB3Znd6Mk9ZSzdFNVZm?=
- =?utf-8?B?c3pPMkJjOHltVVBhSTYwTG9sVFlvYm9zb0FObGFVUUxtVWhaaGpnUXpsYlJ6?=
- =?utf-8?B?Z2w0YitYbmtTSVdZTVhiNzA0R0lBTzBvcko4ekhOZnpRSXUrS3pwMmRWdWI4?=
- =?utf-8?B?ejdvYzVEaEZPaElwSmxCdW42Qk5JUlhCa29VNlFhdjJvQ3g4eWx0L1Y5T1pC?=
- =?utf-8?B?OHFiazlTRXc3NzdxVjRyRjE4R3FLR20weU1oSWZaS0owSWxMbHNPdGtNOUls?=
- =?utf-8?B?RlJyTnp2aDM0ekw5M3Bsc3VzR0tOMU5QaE0zNVJTWTd1UGoycEVVKzlwYXVU?=
- =?utf-8?B?ZjVMckdCVDlsTnFHMStmSm9BNW5Nc0UzVVIzNDBUU0lPbFRrV09vMXFidnF2?=
- =?utf-8?B?cTNNUyt5REM0Q3huT0ZLQzBxNWJ3Znh4ZFlpTjdjN3RaaDFJNUdMazFTWkQ4?=
- =?utf-8?B?eXB2YyszeGx1aXpabHJkaDJYdlNDaHpGYU1VeFd0cE9CS2d6UG1kK09UVFFS?=
- =?utf-8?B?QUxQd2YwOEJFOFZ1Um0wb3JndTMrRDFIdXB4dHNIdmNnd1Q2WWlhT0hFTzBl?=
- =?utf-8?B?N3NWbWQrdWdvaWFUZU1UTXJEWTY5Mndtb2NLbEVIQnliK0RvUksra3phbEJD?=
- =?utf-8?B?SzFRMFBmS00wSlBwUmFKaHJZbXQrMWQwaHgvUTJPYk5LTHBPdGFmUk05R2tq?=
- =?utf-8?B?ZmJFOWNENllGbndLdWtXcEc1aWVvaURhclhwNXlGOXAwVWZTRGx5dkttZ0Ew?=
- =?utf-8?B?TEJtZlZlSG1BellWUEx1U0VPREhZc3A1WU9UUVIzVFZMOEF4aUFiRzJJRDVD?=
- =?utf-8?B?SzRSY0NZWEtFQXVQdU1SWkdXUG5wbkZRV1hkRXFpbSt1SWM0aHhwTUI1a3Rm?=
- =?utf-8?B?OUpUeFBnWVM4Slp0Y2JMdVptUWJMQkZFWGZpazAzR2wrdkZUVDF1ZitsTW93?=
- =?utf-8?B?YzJqSFJ3SkcwZ1REQ294UXFDeTNOZWdoKzZ6c3JmS3lqMGtUTWtWRHZIV2pD?=
- =?utf-8?B?b0p2YVBXajZmMnE3K2ZTcXpTVjd1bmpWZEFQelVyUU8xNEovR0RzUT09?=
-X-Exchange-RoutingPolicyChecked: RQzv8DYyiJ0el7XBydThCsphaiMIJrKGQ3Bw2L40I1pSuo9FgbK06mtuJGLcKy9UHOVXQKpAunXI2JmlBdhq5UdlJqsdjkVC7HLHJMSb6AZtvrvh8BF384xkInnJj2X1iR3aiAQt550LvQ0VctRlwbToBjnk1T8gq2D2mEc6BVYAdOJi8WyZxtDhIK0ocRSSM8iSGuM3O5Ndt7ofDh1Un4IPC+L3Op1Lsu7+PgcmtTLGLtY6gO8Dynw3EMzxb+igkSFLSos9lMlCu+PpW1jY2g+D0d8ENeNyMDp0J7ey1u6T3fxkpglzAHzriEBqTRXVzqVHgj+YAdOvxJEbbdrAbQ==
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e35c252-01ae-4670-b72f-08df494fdacf
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB5469.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 10:52:23.3342
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3sYkDvCC+NF+/nCGhAEQfpGSajWfgBdwtcTvJ+KLy7s8HLB9+NcxihPNBfM5N5x6bHIDyRgk/K2zjajp9EbbZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB989335
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA0MyBTYWx0ZWRfX57ueH/fmpwUT
- 1Auhip57OMcQF2DIZUW/4UBj/bNuHLJJ+frRNIMNHQ91Sso9iJfLwovOoeG9OtqfL/hAJTzsz0E
- xyvi/OAhfJOoWsMWFIkeEoM8BKyzSCFTK1gCqtN9CGD2lIB7ruEntd9TJNDa4CBRgW4RtI2tzTq
- Ra9t2IUcI92hNSdaxMAVdKFBLaJXWsvx1XfLyxebPjY9sv9p8IHqy2gDVt195VKCpBiwCGyIHQv
- rRnXvkpwYSHZD96aVag7QzMxddCb9C1EMkE0W7TEn+OO/vDtiwdXafmFI8SlwbZ6p4Im5tnEvht
- Sc3bvw2e6gJG7OQI6PFVkI+4lGi9/HyitrWi4JXhF/kRSrHfHZByPSfm57RgGyMnlyPoGYMdIlK
- 4Ut/2XTkp3oNlzUCwFvWbXILnbZDhm9qTJApKOpGw6fH+FOXk6t8r7oqagpmjk3R+PZ+YHbU1Nv
- bcLNIC9ksAcj92H0utw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA0MyBTYWx0ZWRfXwkGNp1vUoeia
- mvN4yOeNws8f4av3RkBafl963PYVccxCtmQxH7wowAlP7yZm1yckqRVsIR5/qu/gkiaJStPVyNI
- KSR1Yp5ud3Ui59cJpkEy9RtjQja2WB/K9GTrPv6/fzbGtHJU1gG3
-X-Authority-Analysis: v=2.4 cv=FeGiV5+6 c=1 sm=1 tr=0 ts=6b041ae9 cx=c_pps
- a=CJt2AWVwLbfAHulDA2arTw==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M51BFTxLslgA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22
- a=VwQbUJbxAAAA:8 a=bC-a23v3AAAA:8 a=gAnH3GRIAAAA:8 a=S-ZOCt0gclX-FooYNv4A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=FO4_E8m0qiDe52t0p3_H:22
-X-Proofpoint-ORIG-GUID: kdd8IC0XmEuTs9a9kTakOwMzfYeOhUn-
-X-Proofpoint-GUID: kdd8IC0XmEuTs9a9kTakOwMzfYeOhUn-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-23_02,2026-11-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- spamscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230043
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_025247_906135_E7C056DB 
-X-CRM114-Status: GOOD (  24.38  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261123_025405_651566_963EB2ED 
+X-CRM114-Status: GOOD (  11.87  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -215,94 +102,138 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 20, 2026 at 03:10:48PM +0530, Vinod Koul wrote:
-> On 02-11-26, 12:36, Nuno Sá wrote:
-> > On Wed, Oct 14, 2026 at 03:19:10PM +0100, Nuno Sá wrote:
-> > > The DMA engine slave capabilities advertise the supported source and
-> > > destination bus widths through src_addr_widths / dst_addr_widths. These
-> > > are plain u32 bitmasks where a set bit's position equals the
-> > > corresponding enum dma_slave_buswidth value, e.g.
-> > > DMA_SLAVE_BUSWIDTH_4_BYTES sets bit 4.
-> > > 
-> > > The consequence is that widths of 32 bytes and above cannot be
-> > > represented at all: DMA_SLAVE_BUSWIDTH_32/64/128_BYTES would need bits
-> > > 32, 64 and 128, which do not fit in a u32. Hardware with wider data
-> > > paths is becoming common, so add a representation that can express these
-> > > widths while still using enum dma_slave_buswidth.
-> > > 
-> > > This series switches consumers and a small set of producers to the new
-> > > bus width capabilities, represented by a dma_buswidth_mask_t modeled
-> > > after dma_cap_mask_t. The legacy dma_device u32 fields are kept for now
-> > > so the remaining DMA controller drivers can be converted incrementally:
-> > > dma_async_device_register() folds a legacy-only producer's u32 into the
-> > > mask, so consumers only ever have to look at the mask.
-> > > 
-> > > Once the remaining producers are converted, the legacy dma_device
-> > > src/dst_addr_widths fields can be removed as a final cleanup.
-> > > 
-> > > This issue was discussed before here:
-> > > 
-> > > https://lore.kernel.org/dmaengine/abkoXXbaxaiqbBuX@vaman/
-> > > 
-> > > Changes in v6:
-> > > - Patch 1:
-> > >   - Prefix the bus width helpers with dmaengine_ (Frank).
-> > >   - Drop the wrapper macros taking the address of their mask arguments.
-> > >     The helpers are now static inline functions taking a
-> > >     dma_buswidth_mask_t pointer (Frank).
-> > >   - Drop a stray blank line in dma_get_slave_caps() (Frank).
-> > > - Patch 2-8:
-> > >   - Use the renamed helpers, passing the masks by pointer.
-> > > - Link to v5: https://patch.msgid.link/20261009-dmaengine-support-wider-dma-masks-v5-0-4c4e63a7a1af@analog.com
-> > > 
-> > > ---
-> > > Nuno Sá (9):
-> > >       dmaengine: Support bus widths of 32 bytes and above
-> > >       dmaengine: dma-axi-dmac: Use bus width capability helpers
-> > >       dmaengine: dw-axi-dmac: Use bus width capability helpers
-> > >       dmaengine: qcom: gpi: Use bus width capability helpers
-> > >       dmaengine: stm32-dma3: Use bus width capability helpers
-> > >       iio: buffer-dmaengine: Use dma_slave_caps bus width accessors
-> > >       ALSA: pcm_dmaengine: Use dma_slave_caps bus width helpers
-> > >       spi: dw: Use dma_slave_caps bus width helpers
-> > >       dmaengine: Drop legacy bus width fields from dma_slave_caps
-> > > 
-> > >  drivers/dma/dma-axi-dmac.c                         |  13 +-
-> > >  drivers/dma/dmaengine.c                            |  23 ++-
-> > >  drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c     |  39 +++--
-> > >  drivers/dma/qcom/gpi.c                             |  11 +-
-> > >  drivers/dma/stm32/stm32-dma3.c                     |  37 ++--
-> > >  drivers/iio/buffer/industrialio-buffer-dmaengine.c |  15 +-
-> > >  drivers/spi/spi-dw-dma.c                           |   7 +-
-> > >  drivers/spi/spi-dw.h                               |   3 +-
-> > >  include/linux/dmaengine.h                          | 188 +++++++++++++++++++--
-> > >  sound/core/pcm_dmaengine.c                         |  20 ++-
-> > >  10 files changed, 289 insertions(+), 67 deletions(-)
-> > > ---
-> > > base-commit: 42c31fec1ca76b8b5f7759def122d418dff2cd4b
-> > > change-id: 20260615-dmaengine-support-wider-dma-masks-5aac12497e27
-> > > --
-> > > 
-> > > Thanks!
-> > > - Nuno Sá
-> > > 
-> > 
-> > Hi Vinod, pinging this one before resend. Already got the rb  tag from Frank on the
-> > first patch. If anything left to do, let me know please.
-> 
-> This fails to apply for me, can you rebase on next and send
+The Orange Pi 5B carries an AP6275P module: a BCM43752 Wi-Fi chip on
+PCIe plus a companion Bluetooth chip on UART9.
 
-Sure, will do it today!
+Describe the Wi-Fi side below the pcie2x1l2 controller. The module's
+WL_REG_ON line (GPIO0_PD0) is modelled as a fixed regulator and used
+as the PCIe 3.3V supply, and the PCIe reset line (GPIO3_PD1) gets its
+pinctrl group.
 
-- Nuno Sá
-> 
-> -- 
-> ~Vinod
+Describe the Bluetooth side on UART9 with hardware flow control.
+GPIO3_PA6 drives BT_REG_ON, GPIO0_PC6 is BT_WAKE, GPIO0_PC5 is the
+host wake interrupt, and the 32.768 kHz LPO clock comes from the
+hym8563 RTC.
+
+The plain Orange Pi 5 has no wireless module, so keep these nodes in
+the 5B device tree and leave rk3588s-orangepi-5-5b.dtsi shared with
+it untouched.
+
+Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
+---
+ .../boot/dts/rockchip/rk3588s-orangepi-5b.dts | 88 +++++++++++++++++++
+ 1 file changed, 88 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+index 8af174777..384a70e4f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+@@ -12,8 +12,96 @@ aliases {
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+ 	};
++
++	vcc3v3_wifi: regulator-vcc3v3-wifi {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio0 RK_PD0 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_reg_on>;
++		regulator-name = "vcc3v3_wifi";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us = <50000>;
++		vin-supply = <&vcc_3v3_s3>;
++	};
++};
++
++&pcie2x1l2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_2_rst>;
++	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
++	vpcie3v3-supply = <&vcc3v3_wifi>;
++	status = "okay";
++
++	pcie@0,0 {
++		reg = <0x400000 0 0 0 0>;
++		#address-cells = <3>;
++		#size-cells = <2>;
++		ranges;
++		device_type = "pci";
++		bus-range = <0x40 0x4f>;
++
++		wifi: wifi@0,0 {
++			compatible = "pci14e4,449d";
++			reg = <0x410000 0 0 0 0>;
++			clocks = <&hym8563>;
++			clock-names = "lpo";
++		};
++	};
++};
++
++&pinctrl {
++	bluetooth {
++		bt_reset_pin: bt-reset-pin {
++			rockchip,pins = <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		bt_wake_pin: bt-wake-pin {
++			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++
++		bt_wake_host_irq: bt-wake-host-irq {
++			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++	};
++
++	pcie {
++		pcie2_2_rst: pcie2-2-rst {
++			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	wlan {
++		wifi_reg_on: wifi-reg-on {
++			rockchip,pins = <0 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
+ };
+ 
+ &sdhci {
+ 	status = "okay";
+ };
++
++&uart9 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart9m2_xfer &uart9m2_ctsn &uart9m2_rtsn>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		clocks = <&hym8563>;
++		clock-names = "lpo";
++		device-wakeup-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
++		interrupt-names = "host-wakeup";
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_HIGH>;
++		max-speed = <1500000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_wake_host_irq &bt_wake_pin &bt_reset_pin>;
++		shutdown-gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_HIGH>;
++		vbat-supply = <&vcc_3v3_s3>;
++		vddio-supply = <&vcc_1v8_s3>;
++	};
++};
+-- 
+2.56.0
+
 
