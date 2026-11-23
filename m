@@ -2,79 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C66606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:32:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEDF606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:33:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MXKi0nfq;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=JhGBw1bG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nl4M9BUQ;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=JIq3PC1Q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0bvStAAxeZ8Gkfe5Tw5hh4wU3B/vHxdCM1DeCTbELao=; b=MXKi0nfqNece+y
-	2Y4IYLwMTFaUl17QbT5sXmht6Ym5gl7StyfplWI+aEkGZZ2alwL8TcoEh1NANOrTP9hbNKZIlOxZi
-	/+i5Gyp9cDDBMHNR9ymjhU1cRJ5LbxXdYIZhMbWylgG65P3sCqT9jN9Ur+HCBVqDC+q7fzY3CF9v6
-	6tsd4XRArfbwYSjOPoNYzO14wk9Y8EaJkA/hd3Kt8/HUrZJqxJmjAdz4dq3t9QEEi2uMgxv+0VLvN
-	qE+FzPR9KEX4S2zRV3pbhlo9JIvGzQ+z3tl0+1Rk5l+U0bQoKx+42j1XFqha3YHcg2Nt4oStay79u
-	/Tn+kITZ4ufl7qgG87Ig==;
+	List-Owner; bh=Yyfk8X7hQAsUD9G+4fe4CzUE4boCyIRsCV8/4Z21Gnc=; b=Nl4M9BUQx618IY
+	3Kd/G/lVV2c9+eXT/Wo7qb4NY93izCIHQWIXS5+7WIfJqh3Oq5eNp57cU1xwhRdm7lkzR1vBfA6eo
+	ZYnM/yi92ckPt7NXY4xoPBjNCXRZ87t3/5RR621bZmpH7SDOoKpV4N/X5D9G0oYm3RIzfe9JWhiAC
+	ulZGWfzxanHUbXO6g4vlH1BYly/iQ7krBhfD4ztWgSf7ZrRIiPghh5ZdKDY4zwVtLOP1CT8eumzk4
+	NaFgYokZ/rlDHDQW+KuxFT6OQK3v6QTJR+N9PNWH95TymDQxmB5Fwmx3urGL2u9kA8uWe3LaNgJQ8
+	s4CmvWDM2w1JmUQdNQcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVU9g-00000003aNQ-0Mod;
-	Mon, 23 Nov 2026 13:32:24 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVU9d-00000003aMh-3bj4
+	id 1xVUAV-00000003aYG-3eZ7;
+	Mon, 23 Nov 2026 13:33:16 +0000
+Received: from mail-ej1-x62e.google.com ([2a00:1450:4864:20::62e])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVUAR-00000003aX5-1Uzz
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 13:32:23 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E63DA143D;
-	Mon, 23 Nov 2026 05:32:17 -0800 (PST)
-Received: from [10.0.129.12] (Suzukis-MBP.cambridge.arm.com [10.0.129.12])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 258BF3F86F;
-	Mon, 23 Nov 2026 05:32:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795440740; bh=o6hmJo//5wX2bOXoad+z4zz40/4XRN6NpGXUmq6iWS0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JhGBw1bGfH7RhQ7jNe1Smx3D+gZlG+FUW1byFCfFuf6p6ojgIrqzytv1khguy8lQC
-	 k9St/nUgNMFcrNzz+9t6s9WV5Y7fZKu9n6pUkwCGY26ICJ+aKcOSO6xgai0x/e2Whe
-	 tzoWgRShMgYtuRSC29OBsisHnBm8nPoJPCy7Qoo0=
-Message-ID: <d332948e-48ac-4f84-b620-d39d36992c55@arm.com>
-Date: Mon, 23 Nov 2026 13:32:15 +0000
+	Mon, 23 Nov 2026 13:33:15 +0000
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-c5188e17487so54725266b.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 05:33:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795440789; x=1796045589; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Yyfk8X7hQAsUD9G+4fe4CzUE4boCyIRsCV8/4Z21Gnc=;
+        b=JIq3PC1QK1RY0i95ufg3vkNvBS8ur79Ww4lO1ScdobcM87x109z9qUtYHfeXDIMXx4
+         EgGtM8P3IjHfW3iA45BU0KQGFSagMxQvgLqKhszB9mkr6wQyMfMa3HvnfdpBSvnL6dl8
+         9tG3PJ/mtJ42k/UibsmUw6O2W1fuWSwzc1KN16R38kiMsRvFsCiqlZK3IWpSDdfhbDBT
+         w0F1zdDJ4tstdnUGJkwUE7po8Xaiww967L9oj55Ujm8bRA2Ob3YAmhNpCjVDzGPna8NZ
+         i3BCPwsf/uI8YvHvCvwflizDvpeUILbCvrc+gVyiuC9hU8M5Ri/O1epUqR7cSIk5t0ox
+         3l2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795440789; x=1796045589;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Yyfk8X7hQAsUD9G+4fe4CzUE4boCyIRsCV8/4Z21Gnc=;
+        b=QIBi9wTRM/FuXmORtWQoSYzmAaDfoXyAJ8nMOegKUBzq/fQcKj3GpymK0ObGFEEQ+E
+         wkEybjt6Px7a12MF1WVO+S8thtRHuw6Ao6iNomdkqrIoM/N5fCTDvynFkhkHfb+SpLnM
+         thLLtbJuxFscESfVMUBgunLCy6e0kFTKLtk2fLB2p37Y5Oim0WKp7O/xxKQgBexDdear
+         AHG37T+4SBkfTo3D7Z//+MciWAeVRxCgBflRWuLX6ylKprncsdC+CF8UfjLfFcdpidQ7
+         Df+jutyVBilF8Z2Sg2ZADP3AIV5xlPR8V/PCtQfbtJBH8KyEP7lrgdaXcD6h2wNMxgLD
+         joAw==
+X-Forwarded-Encrypted: i=1; AL+hErFKO7wSjQhNFnTqOZV+FuUhg8UKuo2gOEB/y/MZungU4iWs5URdvHIDjysHpAAa/vBUftvxeem23AgIif+hznWW@lists.infradead.org
+X-Gm-Message-State: APuU4Z9wfJiaKMNmqCfdKg2DOwtK5HCW1J15mz7iqABINIHI60ZybJwD
+	FahQiYd2rn1uMzhk2VFbSUaFTYWc8wZa0I1n+rh6ufVuRbXc8ywmvoTSFqxKms0LVOw=
+X-Gm-Gg: AZFdTZfN1gxVXtM9HyC4dRkmrr1YAxCUkxUxk0EilCwKqIeHP0ZXrHu5oNUByIlUYbv
+	/FIwZGK7Ldi7Ha479O6yxmvrvQXG9a/m91B5e7ryhd1tZNhB1qGPAaGijQ+ByXJt5orWzb6KXUc
+	fvFZcsKdvuM2mbVeUafMIi9NbJh4GiOZTfP/Q4UCKVzUniC2G78xCUEwFE+MGMIoeVy6CHtKH0/
+	HLgZSzkqrJvhV/3k1svWaVrDEP1iBBe4of7T0/Vf7O8nFAmKUjewX4tRylShpkTgrPQAYCV0Lgx
+	CRHqrpL5IrC2N0pg8ghjr3ibRNXnk4qCuAQNbSTj4/RDHK92JgNonShvuxJaWb+kvaYa/EtVjWU
+	kQ+vQA7YXgRQ3tafE2NNMohHLTO1pMMfjA9q7AVceTlCzzFX5lsSpAI7QtTuB2iaIJfzSN+yc+c
+	IB5U7rjeYumr+9Sz7CDf5ayXqwG7vayOBwfl4Dtno12E4dDLeeXOAZNSR+MMh4Tdg3/AjOQya+b
+	0xhAgXF44Hxx4hsd95EMsITW7WB6j0GNkF27zGz6CdFR+E0ZV1sbCpz+EC+gIOG/4nNEc7bKwB9
+	KdnCBTVyVCequvdqe+v2e8zM2IUkIdcJ51pzuD4=
+X-Received: by 2002:a17:906:a88c:b0:c29:22cf:b0f5 with SMTP id a640c23a62f3a-c513ab3ad84mr761410766b.33.1795440788381;
+        Mon, 23 Nov 2026 05:33:08 -0800 (PST)
+Received: from [10.11.12.111] ([79.115.63.240])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513ae68788sm407213566b.29.2026.11.23.05.33.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2026 05:33:07 -0800 (PST)
+Message-ID: <c3200683-9d2c-4ab3-bc7a-d78452456bf3@linaro.org>
+Date: Mon, 23 Nov 2026 15:33:04 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/11] KVM: arm64: CCA: Add Realm RTT mapping and
- invalidation helpers
-Content-Language: en-GB
-To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
- <20261123104233.95710-8-steven.price@arm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261123104233.95710-8-steven.price@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] firmware: samsung: acpm: Don't use pdev after putting it
+ in acpm_get_by_node()
+To: shyckless@gmail.com, krzk@kernel.org, peter.griffin@linaro.org
+Cc: alim.akhtar@samsung.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20261123-exynos-acpm-put-v1-1-447097ce7998@gmail.com>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20261123-exynos-acpm-put-v1-1-447097ce7998@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_053222_017354_9C1DA042 
-X-CRM114-Status: UNSURE (   8.92  )
+X-CRM114-CacheID: sfid-20261123_053311_411769_DCCC12C1 
+X-CRM114-Status: UNSURE (   4.97  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,29 +113,6 @@ X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23/11/2026 10:42, Steven Price wrote:
-> Add the RMI RTT creation and unmap helpers needed by CCA Realm stage-2
-> memory operations. REC exit handling and guest requested RIPAS changes
-> follow in the vCPU series.
-> 
-> Signed-off-by: Steven Price <steven.price@arm.com>
-> 
-...
 
-
-
---8>--
-
->   static int realm_destroy_rtts(struct kvm *kvm)
->   {
->   	struct realm *realm = &kvm->arch.realm;
->   	unsigned int ia_bits = realm->ia_bits;
->   
->   	lockdep_assert_held(&kvm->arch.config_lock);
-> +	if (WARN_ON_ONCE(!realm->stage2_unmapped))
-> +		return -EINVAL;
-
-minor nit: Does this hunk belong to the previous patch ?
-
-Suzuki
+Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 
