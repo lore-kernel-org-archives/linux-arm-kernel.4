@@ -2,113 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DD2606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA9D606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bKiaLCK7;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xqpm/07f
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ILgVf8O3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Q4lJ8uFI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZXMGETsC9In5OHuZKA5+0j1fdxY6lC4P1HFXTVDB2us=; b=bKiaLCK7Nektxl
-	7wM9GlmttVrJcXitI7Cbh7CsZQ7S+QIA/Z3sBlB0vyL4uoKNc1w0PqhuKGgEojzecZFhB07qfTnEX
-	Qp0V03VEEyQWvkSkmfzhdGBdkMSi7Nc63gDwYiI579e3ecGxCQG7CH6Cl9A2YTBHm0ts4dpgyJDKE
-	sj6iCXww3m+Ix6lI1nnE/UHbEj8JwsAKIAg/ziwrOEyR8J4Lh93yxRWFUPM7cakIYwr5DX37eoC6X
-	iqh1WM+QkJ3sV0Hx0cod3AZkMX4S9cstvdBexPEu7Vuk7QC4V7pB/UGYj4dPGoqKW65XMOmFIY3gz
-	BMu6FWVJpTN/lISOgsKQ==;
+	List-Owner; bh=kWqmv7rZviZxwAV6IYLCoh/nbwvKUfSnhaqZW8v00kc=; b=ILgVf8O3tHv8uG
+	shqGox4E/N5rRxSh3j7MiBfNIMW61LUGxXeU5PwJPlh0tfiDwYr4f565to3OOwJZ2jzITc5S/8FwF
+	4Gr4gCvf8UtW4nx17oDwy0MWSM3UghCjD/z1T0lg2Yt5EAXHJKsHrmxY2X7lljQbsNpX8JH4CGmFf
+	iaFOu3Vr+OLueQl8pek8r/DUEuS5VUa4+4NCd2ISgUkjSWS+PVwK1ypnvpJ+fjnBIBTKilkxn0piJ
+	d0ViKtL9tKnePGsqbT7cDILO2/30mWVwcp9H7Il7WWkKZxVE6QZtjrEPMJ3YMVwqG4Jyxp6iTg9cj
+	z/OE+KmrIOawxF6A/ZOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZN6-00000004cBz-0j3B;
-	Mon, 23 Nov 2026 19:06:36 +0000
-Received: from mail-yw1-x1135.google.com ([2607:f8b0:4864:20::1135])
+	id 1xVZOM-00000004cRM-1jnU;
+	Mon, 23 Nov 2026 19:07:54 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZMx-00000004cAc-3npK
+	id 1xVZOK-00000004cRB-1Acy
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 19:06:34 +0000
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-8b0dba37a7fso29370837b3.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:06:22 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795460782; cv=none;
-        d=google.com; s=arc-20260327;
-        b=M/e1RTk4KCo7TBGEFO5NJRFUlE/ALoQSYbU0UxWlGEHDEd7a7t/IpUeiqxl23HWLJ2
-         o7Jckb7AUnBEWT22f5ycrKY/vMJthSNuHT5eyHSlE8Eu4TsoiB2C609JguXjyd61E3tW
-         7kQPOWTyUi/78kL+fK+I2IIxYZevdx4dqqjtR/vx4zTGdERBnfdBSckLb8rl4/bS5p2U
-         dGiHAEwaM6oFHTXlsAImliLfyq/VvyRoqAsLTaJDV95p8LOM3AwGHNdQOCzQFcWfdChZ
-         ffx5On+MbvNtTRSoeORvXBUoGSk0ZwjG1hw2eRhP7wWWi4fXiuLi1dQW2v47oOS9wRML
-         PjkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ZXMGETsC9In5OHuZKA5+0j1fdxY6lC4P1HFXTVDB2us=;
-        fh=fsetPEY2PyzAPpvkrqDIsojLwDgy1/G8RxjBtQe5nC4=;
-        b=rgHBccrN3fx7bYSodGx0PYvXumvGdwPU6pc7B65D6110XUEcehZG8mJBMjQXupltc3
-         fjYsdUda2CpqbwMOR7rxboTip6WWIOnAO+X+hL6VIezk7iUFgNg1iNYrjkwrP+o9mW1w
-         YXkFFomx6CDIAZCXxLCPz1AcJL+2BtHzqXgqWpogXbzQZBmLePq9f18BxFpeVkz8gP8s
-         D4kGzIiOU0gvXa+G6Bernq9ViRCBeokfXDrJvnjS0Xgx5GdYeG+NNJGnfPOo4BoxB8lg
-         xUedq96NfT/9YAYNNfTLE8crh8w3SOsX+cMRiJeqL1pP8YKwyF3teN+xH1AZdI/Gwpwq
-         xgAw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795460782; x=1796065582; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ZXMGETsC9In5OHuZKA5+0j1fdxY6lC4P1HFXTVDB2us=;
-        b=xqpm/07foYkQK0S7jIiMh+VpWTQ1hCqw73k2SBrh9FbgDD/I9AloC++FS3J2guK4HT
-         A6nL8PGbGtlJvWx6J/mZ7MWswzNihtvQcSNGoL7HKjMNO+Rd7286DMPcFzhiu/a38Slv
-         ZblcPkv1xba5gMyMV1OAvi/JN8844nuImpnYU3nM0C7SMZhXTQs63NpN2MCG8VtpRdIF
-         beZRFgWknPUmzIWiQQHxNQ6FNUfL5AUZ8+yFOpzC8MM677Y4YU9VT0nXmGvM7cSnvPSh
-         CSk7l+T/zdjw/eLbF1N2ylduCsO9zjejWCoUGuIDAozOPW0yPeq4yjPlhbDdrVpctfS6
-         8/XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795460782; x=1796065582;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ZXMGETsC9In5OHuZKA5+0j1fdxY6lC4P1HFXTVDB2us=;
-        b=fzWZHN7i4XVi/QVLy4TMB9iLWk6zrpLYbAsF/Mnaa1MWXICYUYPzyqdaJwiYh+ZnEG
-         CpzgWjCXa9PBSw5FTSl/NQGi7DloXOkrRWkZarIurBonvSDsM9XU78Lf+5uw8s8QmiNz
-         KtAfUVSYG6gP2DwpBmpWPPUNLK20QjZDU6WQIgVxtVjFx5/7TMf9KNMcFebDZ74InES1
-         yEnPtYq+4HAfm+3UTfz421bfo5jy3HPCHjcxg9lavx2YsdpGWhyCca7Qwx0iypmsoew4
-         rKAEzuXI5Uu7mTs0btFilhFC7MqdaA18PfPy6XBj1BC4SzRpv7r4qRRrAcxrYTrbiWzD
-         WvzA==
-X-Forwarded-Encrypted: i=1; AL+hErHMR5b+qbnS4xAYdyi1dQQhyH1nEeq0LdlDaMtnsjS3W//Kv9JYqsJhVI94Zog2ZpIexekY9GEbrKrGq/eOnYRB@lists.infradead.org
-X-Gm-Message-State: APuU4Z941U6UJViR7KA78xeVwR1fbexTmC8nXnqljZzWO/BfcUXBNPnc
-	BgNwOxqQqi/P+pOjizHqJT1fjl3Nsg5sp9/M3Drft4tVbMigxahV3Rx+k7xvGcFu30Oax7V4S4T
-	LlMijGqUo2M8DRQ2B6TO5WpwAXHO4u38=
-X-Gm-Gg: AZFdTZfv2VWZdg04hrJtUxguJGNb8JU1+H22rDu1BpLzIpsuFCwQVXyBOdn0y5RNkSu
-	j0f5PHRCI+nHuLIDuXkQ8rLRCMVeuiFLFXLgsU4wXqogSe+NIEz0xpjxEngLe4C6R9l7sKYtbA1
-	EMMqg9n/ZpJfYUTpNUcN5jKHsU71c5Se77sh0J8NbqVV/6dGlxc+ICEZ+IOlK8PlfZs8TUMmaTF
-	wQJuIfWim67tQC8e/QbIPb91g9309OmvrYxBhocShyxdG+DLzSu0Y9Z3zxz4EqeuTTjqVj8T1Yc
-	7H52AC7/sxi23LY8GDx3wAXGlklwsb2fp2zMO9FrnE9VtpNHHy5QmBYiBcowLODUYQxIoA8M/lV
-	n6pe4zTa3zqbQtZEoYXdu33XcsBAD9sZTt+C/f0y72fz0e3DPo1my9TySANKN
-X-Received: by 2002:a05:690e:168e:b0:67b:f3b8:aef2 with SMTP id
- 956f58d0204a3-67df4425a32mr4425732d50.25.1795460781865; Mon, 23 Nov 2026
- 11:06:21 -0800 (PST)
+	Mon, 23 Nov 2026 19:07:53 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id F1EB54570A
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:07:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5CDD1F000F0
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795460871;
+	bh=kWqmv7rZviZxwAV6IYLCoh/nbwvKUfSnhaqZW8v00kc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=Q4lJ8uFIEp4P2HJ2+afuQ5DiJaBD1FdtMzcpNyEUWZXcfsZSKgBCy4IXSqzzU5Krr
+	 KbB+jo9dAFyAV+bMkFQ3sbMyWAfZZPfBSPUvpbToFUWl5kZhrptIR7JhuZKXWlclH4
+	 KN7Yd9e7HyRYGVYEYm8FH4WtgE9bXw1QC1XUL26ByCwkGIe8sIB0TcHCtgLJzjyFgt
+	 0bqRhp9oUOmeyzNi2I7Xq942ciiLwt8UkD/zymlCCXaTNVINr7Vxjk/QCa1emRurIv
+	 eq+ugiCgE1yqxvg1gpXCJZjIoyTDpLLXYLJVX2z19vb/amVwg1jYz5m/wjajVCDIzn
+	 AE8sUt7inO2xQ==
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-55d2f5f1e26so42251761cf.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:07:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErH5+IQGdFksNfpQIKs2mXqKmu/snsNZm8KrYVJkWTbvV5MZg7M3SNWDrIv6UTAAGTjByWzAooJ8euTcaUNvOIew@lists.infradead.org
+X-Gm-Message-State: APuU4Z8anVziFQQWu7U3py08v7PuKPnhz5XxJCgUqjx67zBv+nQHsw6i
+	1RmABuPBDfEW4r5/lEE9caJeh2GRfYeSqV5DIIiwpCOTyvXDIv5MlHi6VXjTdqxwShjAGJdCHL0
+	wXRaTCFdiuCroAJ+YUm5+HGtEWYrDa8o=
+X-Received: by 2002:a05:622b:cc:20b0:55d:8486:8fba with SMTP id
+ d75a77b69052e-55d8486a033mr125240201cf.21.1795460870678; Mon, 23 Nov 2026
+ 11:07:50 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123085351.3415122-2-thi.zirnstein@gmail.com> <20261123085351.3415122-4-thi.zirnstein@gmail.com>
-In-Reply-To: <20261123085351.3415122-4-thi.zirnstein@gmail.com>
-From: Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date: Tue, 24 Nov 2026 00:36:10 +0530
-X-Gm-Features: Aa3M54q7qggItqO2nWN8m27kiDXSWPUp3jrrfb_cbuCo6wTR6DNactR6aMlLEKg
-Message-ID: <CAKfKVtFDez0kDJp0Kx4WbJ4BwqV8-0hb6eeRNjQ8YDFm917_UA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] i2c: i2c-xiic: fix waiting/clearing while atomic
-To: Thilo Zirnstein <thi.zirnstein@gmail.com>
-Cc: michal.simek@amd.com, andi.shyti@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20260915-arm_cs_support_aux_sample-v1-0-35cf6f297d20@arm.com> <20260915-arm_cs_support_aux_sample-v1-4-35cf6f297d20@arm.com>
+In-Reply-To: <20260915-arm_cs_support_aux_sample-v1-4-35cf6f297d20@arm.com>
+From: Song Liu <song@kernel.org>
+Date: Mon, 23 Nov 2026 11:07:37 -0800
+X-Gmail-Original-Message-ID: <CAPhsuW665wcpXxE8pfzRMfdxZwh9ogGsvd1aEBFREq61cz4Y5w@mail.gmail.com>
+X-Gm-Features: Aa3M54oRjUHwS-SqxP1Lf23z7Eqetpo8inZD1IWbmdRW8zklQQV2JTemygu-EbM
+Message-ID: <CAPhsuW665wcpXxE8pfzRMfdxZwh9ogGsvd1aEBFREq61cz4Y5w@mail.gmail.com>
+Subject: Re: [PATCH 04/25] coresight: perf: End AUX output when an event is throttled
+To: Leo Yan <leo.yan@arm.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	James Clark <james.clark@linaro.org>, Mike Leach <mike.leach@arm.com>, 
+	Anshuman Khandual <anshuman.khandual@arm.com>, Yeoreum Yun <yeoreum.yun@arm.com>, 
+	Jonathan Corbet <corbet@lwn.net>, Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>, 
+	Ingo Molnar <mingo@kernel.org>, linux-perf-users@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, coresight@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_110628_039815_E0606826 
-X-CRM114-Status: UNSURE (   7.88  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,22 +84,157 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 2:25=E2=80=AFPM Thilo Zirnstein <thi.zirnstein@gmai=
-l.com> wrote:
+Hi Leo,
+
+On Tue, Sep 15, 2026 at 8:49=E2=80=AFAM Leo Yan <leo.yan@arm.com> wrote:
 >
-> Use non jiffies based waiting functions,
-> if in atomic context.
+> Since commit 9734e25fbf5a ("perf: Fix the throttle logic for a
+> group"), the perf core stops every event in a throttled group by calling
+> the PMU stop callback with flags set to zero:
 >
-> Suggested-by: Andi Shyti <andi.shyti@kernel.org>
-> Signed-off-by: Thilo Zirnstein <thi.zirnstein@gmail.com>
-> ---
-Reviewed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+>   perf_event_throttle()
+>     `> event->pmu->stop(event, 0)
+>
+> The ETM perf stop callback only ends the AUX output handle when
+> PERF_EF_UPDATE was set. For throttling with mode is zero, it skips to
+> end the AUX handle. When the event is later unthrottled and ETM tracing
+> is started again, perf_aux_output_begin() sees the perf handle is nest
+> enabled and triggers a warning:
+
+While testing this patch, we found a crash:
+
+[20122.800818] Unable to handle kernel NULL pointer dereference at
+virtual address 0000000000000038
+[20122.800836] Mem abort info:
+[20122.800839]   ESR =3D 0x0000000096000007
+[20122.800842]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
+[20122.800845]   SET =3D 0, FnV =3D 0
+[20122.800847]   EA =3D 0, S1PTW =3D 0
+[20122.800849]   FSC =3D 0x07: level 3 translation fault
+[20122.800852] Data abort info:
+[20122.800854]   ISV =3D 0, ISS =3D 0x00000007, ISS2 =3D 0x00000000
+[20122.800857]   CM =3D 0, WnR =3D 0, TnD =3D 0, TagAccess =3D 0
+[20122.800860]   GCS =3D 0, Overlay =3D 0, DirtyBit =3D 0, Xs =3D 0
+[20122.800862] user pgtable: 64k pages, 48-bit VAs, pgdp=3D00000001683e1800
+[...]
+[20123.261147] pstate: 034010c9 (nzcv daIF +PAN -UAO +TCO +DIT +SSBS BTYPE=
+=3D--)
+[20123.275144] pc : arm_trbe_irq_handler+0x58/0x4d8 [coresight_trbe]
+[20123.287396] lr : arm_trbe_irq_handler+0x28/0x4d8 [coresight_trbe]
+[20123.299645] sp : ffff800083ccff40
+[20123.306298] x29: ffff800083ccff40 x28: ffff0000b1bbdb80 x27: 00000000000=
+00000
+[20123.320645] x26: 0000000000000000 x25: 0000000000000000 x24: 00000000000=
+00000
+[20123.334992] x23: 0000000000000028 x22: ffff800083095f98 x21: ffff0000e83=
+80280
+[20123.349338] x20: 0000000000520001 x19: ffff003fe685c8e0 x18: 00000000000=
+00000
+[20123.363686] x17: ffff803f64150000 x16: ffff800083cc0000 x15: 00000000000=
+00000
+[20123.378033] x14: 0000000000000000 x13: 000000000000000c x12: 00000000002=
+00000
+[20123.392380] x11: ffff0000c00010d0 x10: ffff803f64150000 x9 : 00000000000=
+00028
+[20123.406725] x8 : 0000000000000000 x7 : 0000000000000000 x6 : 00000000000=
+00000
+[20123.421072] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 00000000000=
+00000
+[20123.435420] x2 : 0000000000000000 x1 : ffffffdfbf459f58 x0 : 00000000000=
+00000
+[20123.449766] Call trace:
+[20123.454671]  arm_trbe_irq_handler+0x58/0x4d8 [coresight_trbe] (P)
+[20123.466920]  handle_percpu_devid_irq+0x80/0x1b0
+[20123.476029]  generic_handle_domain_irq+0x3c/0x80
+[20123.485308]  gic_handle_irq+0x174/0x328
+[20123.493014]  call_on_irq_stack+0x30/0x48
+[20123.500894]  do_interrupt_handler+0x50/0x78
+[20123.509299]  el0_interrupt+0x48/0x2c8
+[20123.516654]  __el0_irq_handler_common+0x14/0x20
+[20123.525755]  el0t_64_irq_handler+0xc/0x18
+[20123.533807]  el0t_64_irq+0x17c/0x180
+[20123.540987] Code: d5381237 927ef6e9 d5181229 d5033fdf (f9401d15)
+[20123.553236] SMP: stopping secondary CPUs
+[20124.617250] SMP: failed to stop secondary CPUs 60
+
+LLM suggests the following change should fix it. Does this make
+sense to you?
+
+Thanks,
+Song
+
+diff --git a/drivers/hwtracing/coresight/coresight-trbe.c
+b/drivers/hwtracing/coresight/coresight-trbe.c
+index 3fa663c7f026..a11381675ef7 100644
+--- a/drivers/hwtracing/coresight/coresight-trbe.c
++++ b/drivers/hwtracing/coresight/coresight-trbe.c
+@@ -1060,6 +1060,16 @@ static int arm_trbe_disable(struct
+coresight_device *csdev)
+  return -EINVAL;
+
+  trbe_drain_and_disable_local(cpudata);
++ /*
++ * The TRBE may have raised an IRQ (e.g. on reaching the limit) that
++ * has not been taken yet, as our caller runs with IRQs disabled. When
++ * the event is stopped without PERF_EF_UPDATE (e.g. on throttling),
++ * update_buffer() did not run to consume it, and the AUX handle and
++ * this buffer may be gone by the time the IRQ is taken. The session
++ * on this CPU is over, so there is nothing left to handle: drop it.
++ */
++ clr_trbe_irq();
++ isb();
+  buf->cpudata =3D NULL;
+  cpudata->buf =3D NULL;
+  cpudata->mode =3D CS_MODE_DISABLED;
+@@ -1144,7 +1154,7 @@ static irqreturn_t arm_trbe_irq_handler(int irq,
+void *dev)
+ {
+  struct perf_output_handle **handle_ptr =3D dev;
+  struct perf_output_handle *handle =3D *handle_ptr;
+- struct trbe_buf *buf =3D etm_perf_sink_config(handle);
++ struct trbe_buf *buf;
+  enum trbe_fault_action act;
+  u64 status;
+  bool truncated =3D false;
+@@ -1161,6 +1171,22 @@ static irqreturn_t arm_trbe_irq_handler(int
+irq, void *dev)
+
+  /* Prohibit the CPU from tracing before we disable the TRBE */
+  trfcr =3D cpu_prohibit_trace();
++
++ /*
++ * The event may have been stopped, and the AUX handle closed or the
++ * sink disabled, after the IRQ was raised but before it was taken.
++ * The TRBE was disabled then and there is nothing to collect, so just
++ * acknowledge the IRQ. Don't touch buf->cpudata, it may be NULL.
++ */
++ buf =3D handle ? etm_perf_sink_config(handle) : NULL;
++ if (!buf || !buf->cpudata) {
++ WARN_ON_ONCE(is_trbe_enabled());
++ clr_trbe_irq();
++ isb();
++ write_trfcr(trfcr);
++ return IRQ_HANDLED;
++ }
++
+  /*
+  * Ensure the trace is visible to the CPUs and
+  * any external aborts have been resolved.
+@@ -1169,9 +1195,6 @@ static irqreturn_t arm_trbe_irq_handler(int irq,
+void *dev)
+  clr_trbe_irq();
+  isb();
+
+- if (WARN_ON_ONCE(!handle) || !perf_get_aux(handle))
+- return IRQ_NONE;
+-
+  if (!is_perf_trbe(handle))
+  return IRQ_NONE;
 
