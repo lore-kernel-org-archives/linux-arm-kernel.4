@@ -2,101 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C13C606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 19:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21407606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xq3Z9bB9;
-	dkim=pass (2048-bit key, unprotected) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=VhuxzhJu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q6lYuxt1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ULBEWwwh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Ivc+yZF1e+YkHBH2XdPHCIshByex18b++1Ftez3VniI=; b=xq3Z9bB94+xackCsIY+s6C3Wf5
-	kKZOGowhJBvGkF38eKN6h3SXBfnm49URanlP2WgEZUo/wM2/9HLUwEiNnVB05h7VXxod/AlF5aTFl
-	8j7TCyemQ35zOgiDhTBoDLQGBlohTFKNMz1a75DeCfI4DLRhKt2tdhfSczUlfbLy+C01OpUGMHbYZ
-	j0O6+BfATG69zGpsL01z2hEKK62Scvo8xoRj5nmaDhl5QQ2uNBZYEp9Yc1NJaD9GLvNHj0NgGrrIq
-	MUcMicz/BcGv76i55KqUjPP6ZsaoSHQG3+ZywEawKztdqrGa5XoWfge6KPSKVinjaSR0uAcUzyqNY
-	1txwpnWQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=r5R4hf5cfxy+Cy66jVTd+1Csi3vyz5AZOLaI2RR9hWw=; b=q6lYuxt1y75aHs
+	K355DUEewJSLE+9ivhyxKQy81dOxpAzbBEWDoJYaM8OWN1ryLFEF1mqU+gYtqH3hknyACydV0/ICL
+	m1h6YzJTNK42dhVdFxnGCsJRyl9BW2VcFMVSARO9v6ToEZ/kY6eYHWjXrjpy2gnHVfAsDmTj0UDtD
+	NhnPcrq4i+dZ6A3pGfIAOtlHLPMXEhrI8sNmzoN0m2wQyi6yGCjXQstwnRxIYYIJifQ3r1RLocMgl
+	8mGmFPu1G5k8vBOb+q7fjzH9p06DCWUwAimLUrovWiwYdbYGeISzS0Ba26b6fHOtffT3sORQsjLjs
+	sRUs7saHm9BNTMvQXcsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZfY-00000004elQ-2wlq;
-	Mon, 23 Nov 2026 19:25:40 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1xVaCu-00000004lzN-3I18;
+	Mon, 23 Nov 2026 20:00:08 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZfA-00000004edJ-20g5
+	id 1xVaCs-00000004lxJ-3bgg
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 19:25:18 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4b467581b98so35238365e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:25:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795461913; x=1796066713; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Ivc+yZF1e+YkHBH2XdPHCIshByex18b++1Ftez3VniI=;
-        b=VhuxzhJur764swy+9NHYClvmE8w2ylNQC9YBMJo731t4/2PHayi2QFznTVPDl2Wdyh
-         ibbZa4EP3fm46HavFbW86Ew9ElHaOfKYeigU9diQLXVVJ0XkznmHTPMM29iDs3VknDsT
-         zZri+StoJ0+/QUom6SPD02yI3vNbsxGc5gLfFJAmyAg8gH2jtqTWomKs0i+F05kcZtDX
-         8sR2fGKtYm9Z+HpJGzEl/kdad1f91Yj7slASIGehtKn9nldJt8W+g9bG7RpSOUXlLW6N
-         idu8JdkacPKTvyJSZXKk9s2XQXI9zMoNAujSnqLmRoJVR0slFZWEz231+mGYW5462Qdc
-         eO/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795461913; x=1796066713;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Ivc+yZF1e+YkHBH2XdPHCIshByex18b++1Ftez3VniI=;
-        b=StQotLdSsWRqYAhqUS+E0QxCVMICMFAXPagqMwd81mUTr2GHwOtxE/FTiS1PBDtnMk
-         xBgBfSTnTfqAI7g4ZnbMu4kVez/8mmse+xE1XBeZBfY+9DB5NYCbQcNNYf14ROGKc3d3
-         oOLCu2zArDsuTEYDh7v/2dAedOdZ8OcXOCKHrIg1TEtlE1O+plwerCS7M/RnwJee/30A
-         j6Z76cSI8nrqowRtpyt+c7omHIEl9lD3KI2YSYubiNHQI9MzFo2SitY2cjT8t/ajo5W+
-         2yllIzrGMHkOpG40coRi4fIz8/wFlzF+j4o2XUBpA373yxp7/dVSmRv7hiMmSG+ftUTR
-         jbCg==
-X-Forwarded-Encrypted: i=1; AL+hErEfxxw9yhA/SHYmxKn5sxX4tj51GujfaIriHfHIUJJLOBSitTBqYSoshh7dvPqhVMLMW6IDeI3TSyzEFZcBMBmw@lists.infradead.org
-X-Gm-Message-State: APuU4Z+WpcreYkVKBmaxZpADFLUYsM3LAA91B+KcIs/8RQe2ZQznZLYs
-	Gb1jcbLpcFxJAhmE6ETLCwOMbA0yBGkq9W+LAD+TDiS55ePmJnFYZxHJyY2Gu+oZBgkSlKWW294
-	7KtF2WkDoSg==
-X-Gm-Gg: AZFdTZf4O1DHqUEHQ9dgh/qHHUOUWmMc+AIEDMdc2bDLprq0Kd39z53mCZ9Y6geOOE7
-	NYBpFcDWnIq3I4d679mGD9Vt0m28SMclvRIsWzefUt20M3b14G+oPntwjboUcqnBAfv4CkL9Epd
-	uuNL83s1d/kMLA9RyVxjVqguKUX8RRpZEU4K99nnLf5ztqkE1VOcnnwnbREcwDC+KN8Jf0Ts5Tj
-	f7IeTfJm6Hi0uzLV1PalBkQSd19nKT79hxcw0dgxEPmAC/tBzxv9y51TZnbdyG9javKFSSqjG5S
-	cef0/9QqGoJptOBGhpMEkskhD38PONX5e3d+R8s3E55l/jFsqc56Qrg2c+848KJKU4lkVah7JVN
-	4dr1niGKTzQ/ohKbvtIdxX2G2joNYDlKasvQVXlhNiMNgfnUV4HerGHc2smYXUyj5SUdaRjAbp2
-	d78Z9Vsrc6OUJn3BJnhS3hWzpGZpDD6nOrORDpCpugTiH8oEBQ006838tfHS8L1Ua+7+QYMJyT7
-	/KZuivE/ag/hy8uOJLLAijI9raw9bL7C1cj3kyU+HS+Hc43VeHHkiNBtMRhvKX626FiPk5Sbt+B
-	rM0RLarpagiYnax3rpY=
-X-Received: by 2002:a05:600c:670b:b0:4a6:30c3:1114 with SMTP id 5b1f17b1804b1-4bb88922df3mr240330235e9.12.1795461912931;
-        Mon, 23 Nov 2026 11:25:12 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884911e3sm442986305e9.6.2026.11.23.11.25.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 11:25:12 -0800 (PST)
-Date: Mon, 23 Nov 2026 22:25:09 +0300
-From: Dan Carpenter <dan@pereq.eu>
-To: Marc Zyngier <maz@kernel.org>
-Cc: kvmarm@lists.linux.dev, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Oliver Upton <oupton@kernel.org>, Zenghui Yu <yuzenghui@huawei.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>, stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
-Message-ID: <awSTFVxQQuz1tbk4@stanley.mountain>
-References: <20261123182312.4842-1-maz@kernel.org>
+	Mon, 23 Nov 2026 20:00:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 37B3043491;
+	Mon, 23 Nov 2026 20:00:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D23B1F000C4;
+	Mon, 23 Nov 2026 20:00:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795464006;
+	bh=r5R4hf5cfxy+Cy66jVTd+1Csi3vyz5AZOLaI2RR9hWw=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc;
+	b=ULBEWwwhcbZzrBysQKKO4FG0TZ1MltLY8mtcu1aywOvuipeHwsbdmXxmancaosNCY
+	 37B/r0Rpeia5wYFfJRSxPqtsNRBRveV+xZDNY39ALewgj4vAZyhFTvoTxPngH0QZzw
+	 dCp4+vXLufsU+X4Op6MKHWS8Z8Q9bnwKpKpZNxIc8H4+SYMZycXHOKsT5VKzlPrVBS
+	 hTPtbloypixzbHTP8mWOWjL4f8LxTRrAIxfJ3MjNPhVgnPcQIFboSL3aEOQEttjr5/
+	 +7CH+KW+z7JYtayqXCesnjSbq25lBbuOoaEL6bnaRnBM24gcMd498yrYqdSxVd5BMX
+	 JSdlsZnX7F1Tw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F1668392FFD1;
+	Mon, 23 Nov 2026 20:00:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261123182312.4842-1-maz@kernel.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_112516_818194_EEECB2A8 
-X-CRM114-Status: GOOD (  20.32  )
-X-Spam-Score: -1.8 (-)
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] Bluetooth: hci_bcm4377: Use named initializers for
+ pci_device_id array
+From: patchwork-bot+bluetooth@kernel.org
+Message-Id: <179546400452.3090992.2341650194008923425.git-patchwork-notify@kernel.org>
+Date: Mon, 23 Nov 2026 20:00:04 +0000
+References: <20261123160421.3227994-2-u.kleine-koenig@baylibre.com>
+In-Reply-To: <20261123160421.3227994-2-u.kleine-koenig@baylibre.com>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig_=28The_Capable_Hub=29_=3Cu=2Ekleine-koenig?=@aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org,
+	=?utf-8?q?=40baylibre=2Ecom=3E?=@aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org
+Cc: sven@kernel.org, j@jannau.net, marcel@holtmann.org, luiz.dentz@gmail.com,
+ neal@gompa.dev, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,47 +74,34 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
-> Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
-> that describe a base granule size smaller than the host's page size,
-> we take the resulting size at face value and feed it to the S2 unmapping
-> code. Which legitimately screams about something not being page-aligned.
-> 
-> The architecture allows us to drop the TLBI on the floor, as we don't
-> support a S2 granule size smaller than the host's page size. But it turns
-> out that doing so is proving pretty hard (we call compute_tlb_inval_range
-> from a number of places, none of which is amenable to an early out).
-> 
-> Instead, detect the annoying case, and pretend that we don't have a TTL
-> hint at all, leaving the size upgrade mechanism to take place and use
-> the largest possible size for the guest's S2 granule size.
-> 
-> This will still allow nonsensical stuff to get through, such as a 4kB
-> level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
-> on a 16kB page size host, but that's not worse than doing nothing, and
-> the host code won't get shouty.
-> 
-> Reported-by: Dan Carpenter <dan@pereq.eu>
-> Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
-> Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> Cc: stable@vger.kernel.org
-> ---
-> 
-> Notes:
->     Reposting this as a first class patch, as I'd like to plug that one
->     as early as possible (and Dan has plenty of other patches in flight...)
+Hello:
 
-Tested-by: Dan Carpenter <dan@pereq.eu>
+This patch was applied to bluetooth/bluetooth-next.git (master)
+by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
 
-Although obviously zero is handled on the next line so there wasn't
-much call for testing, but I still did do the testing.
+On Mon, 23 Nov 2026 17:04:21 +0100 you wrote:
+> Initializing a struct using list initializers is hard to read, compared
+> to that using named initializers is more ideomatic. Convert the macro
+> used to assign values in the driver's pci_device_id array accordingly.
+> 
+> This change doesn't introduce any changes to the compiled array on an
+> x86 and an arm64 build.
+> 
+> [...]
 
-regards,
-dan carpenter
+Here is the summary with links:
+  - [v2] Bluetooth: hci_bcm4377: Use named initializers for pci_device_id array
+    https://git.kernel.org/bluetooth/bluetooth-next/c/ffb95458a0f7
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
