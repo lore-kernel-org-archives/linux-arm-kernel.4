@@ -2,112 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EC0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC47F606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:41:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vzI8Vebr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mNi9GM5h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PFhChjWA;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=tFn3vYTn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6P272XRmtxVRxUwOCYKqdPoT8y/CgT8kIkZk04v3YWI=; b=vzI8Vebron9D8k/e1TIWS1MiZS
-	11stVDImLiEiD/gOwv/v9iz2ger3YMjPsgX6fsOTlLianq4fDFe4uORdJxkozvvR3WnTo5gR4E5lv
-	WjTYqml1InZja5MPql7W+GE6QWSfvn+IgHOxmZqhxNntDno/CPr2cUr3LlfjeIp4fMTMbw56SWC1q
-	AZzY6lQVEUJCPfDz/T1rIP/3PA5ArrIViLd0WGou6CBq9DaLY5erxFSv+4mCrLI+1FJU9MeoG9VUE
-	wuilvMLVYF2PPpCumcipbB5LQFWgm10PPphHtB3xzFbvFDVkscMBl8AqQIlA1V4k0WKvowuGKTo01
-	bfzYzaTg==;
+	bh=GK26KF0rEouW6Pt03m3PN+6BNa6sEHxbDqdUEV8QxJ0=; b=PFhChjWAN8yQoGLXaAKID1WTPG
+	ks/ruu2fQ6B/DRgjDZ2q9PnHWnVgb2u1J3l3r+AQ/gOLDD5E5+i7OeEqCGgtYhQWcbIvGV8QkFRzk
+	wDSikOPWOmlV7gZIuIT3ES9+f0AkHVlJ4Cjy0ZIQXZb9JaKpzBf9tThP/9hLlWs1G8s80KJQDvLFg
+	AVsaF2lWQnRbO6b2JTi1C2mnXcKF6h5FajtA/ZcveGSw86qwqJ6xSnvcpSsXlgsmhsfIN11yDJv5M
+	DVLJt4jzporzWAGPbz/2xmzNFVtjqOJcfSw0s5sISIWNt7fWVBlSN74ulUgoS8KqUlzqkXS9X7s8a
+	lfGigCZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaj2-00000004qsN-1uiV;
-	Mon, 23 Nov 2026 20:33:20 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVbmz-000000050Bo-3GlT;
+	Mon, 23 Nov 2026 21:41:29 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaiT-00000004qYV-0d49;
-	Mon, 23 Nov 2026 20:32:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 399966110A;
-	Mon, 23 Nov 2026 20:32:44 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795465963;
-	b=O0KU5gMTHRZ6ha1UDuyB7fxH28xZWF1JM5HtVisr7qMVIveTwTorp7CTeURvKHlP0rXV
-	 Awj7xsaQ4zm5naZq8Y+HKauqGj9RgkXLDpGd8YfW78OcNJC2LrMm2FovAyTmm5zn45+as
-	 DxUoRJHXYOIbX7H3z4n2jdcE4r5z5j1IvetdbM+Rxfuo/CXgFFKSQRkVfJdJOi/NF7ksU
-	 FA81Vi1LRxFIog93NS4A9YD2JN7u0ODW4XcHpBbKi8Bi4yElAw2kc73aqGR2ovxlkoBiR
-	 3B8DsxImOMqRd0cgjvvnx8gwn7Lh0h3P0FIQR0nqkZ78V26Jh4Ofoi0dn5D3b36YF9g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795465963;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=6P272XRmtxVRxUwOCYKqdPoT8y/CgT8kIkZk04v3YWI=;
-	b=eYqQz+9W8x4LlTsaUXxBJrtNOhxbfADkbD85SKH1364v9tRrqjoIbXB494ZWhyjWnpIh
-	 EI1TkroOFnkPp1wC4hcC3UkkoEFDeCCP8Vf6dwDhhzusj9+eZTlpd1UizQuUrsaQBmOth
-	 EuEzvEI9mUR7jfTEPZRtgQSy0o7jLorzEDU5YHVNdtxVSejOLIhp/KceGPXEZJiN9uRdR
-	 ZeeaAShv50NWa7ioW0R7hy1QgZ1yh/tNCM6Ot3UqzzLIuNrv27D+FSDFgv7FDha3HmPhN
-	 9ZwIFV/9bRwBIHR5AmrJSAisTQjcfWx8xJKEdjv7rUercGVr8ldMvskSHJMBGbb0veA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id F06AA1F000EB;
-	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795465963;
-	bh=6P272XRmtxVRxUwOCYKqdPoT8y/CgT8kIkZk04v3YWI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mNi9GM5hyJs9lnuUF2uiubdVbfjOBxrAp3WFP47gtTBjX0shGksTkE9l2U24xH7IA
-	 +cdYhbgXghO2/mmrew1ZEbx51+nB3aJhtY9EXYt3qEJSiTA7McziVBh3t2CUH7QVHR
-	 o5LlzkzoZH2SppelWjEkuNnkN4xOSeorKKB7Y2LgUgnbxdNq6++TO6H/pswOnEwD04
-	 nHieyVuEXYK8aN345fcXF7jMLyjn9B375tgY8NGQvIbo5jqfFEGzjAh2GHc0h97Zcq
-	 FJ5wbyqWGFR5r7TpJr6aGCvrEG51hofvfldSZX33FGTUCjbkhqeCCWwcHlcilmKSLE
-	 J6v3nUx7OJcKQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 799A24C6FB;
-	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 23:32:16 +0300
-Subject: [PATCH v2 2/8] dt-bindings: soc: Describe CS7542 PCIe clocks and
- resets
+	id 1xVbmv-000000050Ao-3jD1;
+	Mon, 23 Nov 2026 21:41:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=GK26KF0rEouW6Pt03m3PN+6BNa6sEHxbDqdUEV8QxJ0=; b=tFn3vYTn+c1LCQlwETyuMJkJcF
+	MZQjnZodQD4WfIFd0yqVj8/N/qmuABjfFQwg3DDOtNbMMIiypgKTo+4aHQfC9q8mivFou3pLxj/qa
+	SpaTbQxa7z2H31vqQPvXTob93C/FuKwJD1eESkqbGZQfIAMyKlYuhd1fqHJ4ULSo48jI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xVbmV-000u8B-8U; Mon, 23 Nov 2026 22:40:59 +0100
+Date: Mon, 23 Nov 2026 22:40:59 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+Cc: chester.a.unal@arinc9.com, daniel@makrotopia.org, olteanv@gmail.com,
+	davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org,
+	pabeni@redhat.com, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] net: dsa: mt7530: disable the power rails on setup
+ failure
+Message-ID: <66d0cc53-b1e9-4c5d-adcd-ac752c21e3fe@lunn.ch>
+References: <179543215348.11880.18316180385674365789@mail.zgclab.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-pcie-v2-2-f589a9cd0bef@gmail.com>
-References: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Krzysztof Wilczynski <kwilczynski@kernel.org>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465935; l=3193;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=f8i2MUsoVg+zzyGMskQHqPaf9wJgR56JnWGThlimNzg=;
- b=DMG0WPKRoRxeDezktvzlUVonyL/6hwSDG2kJFWn3seAiKvsgWodsaxp7f0DPc7Rymn84o8WIF
- Pg28KF8cPe7D2TkrATMT7wBqddl/i2RrOVv/6qddpnMuBCUlh0VzPeR
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <179543215348.11880.18316180385674365789@mail.zgclab.edu.cn>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_134125_949276_5B4F6EFD 
+X-CRM114-Status: GOOD (  22.88  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,96 +70,117 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+On Mon, Nov 23, 2026 at 07:09:13PM +0800, Haoran Wang wrote:
+> mt7530_setup() enables the core and io regulators, but only
+> mt7530_remove() disables them. A failed probe never reaches .remove(),
+> so the rails stay enabled on every setup failure path, and the regulator
+> core warns when devres later puts an enabled regulator. The common case
+> is mt7530_setup_irq() returning -EPROBE_DEFER, where each re-probe
+> enables the rails again.
+> 
+> Tie the regulator lifetime to the switch setup/teardown pair. Disable the
+> rails in mt753x_teardown() and on the mt753x_setup() error paths after
+> sw_setup() succeeds, and drop the now-redundant disables from
+> mt7530_remove(). This also avoids an unbalanced disable when a switch in
+> a multi-switch tree fails setup while already bound. Move
+> mt7530_setup_gpio() after the FDB flush so the gpiochip is not left
+> registered when the rails are dropped.
+> 
+> Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
 
-The global register block already supplies the strap clocks. Extend that
-same provider with the three PCIe gate clocks and controller reset lines,
-rather than inventing a resource-less child to instantiate a driver.
+Please break this patch up into lots of small patches, with good
+commit messages, which are obviously correct.
 
-Keep the existing APB/CPU/AXI indices and add named PCIe clock and reset
-specifiers. The reset property is optional for clock-only descriptions.
+taerdown is the opposite of setup. So do that code movement as one
+patch.
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+Then add patches to fix the missing error handling.
+
+> -	if (priv->id == ID_MT7530) {
+> -		ret = regulator_disable(priv->core_pwr);
+> -		if (ret < 0)
+> -			dev_err(priv->dev,
+> -				"Failed to disable core power: %d\n", ret);
+> -
+> -		ret = regulator_disable(priv->io_pwr);
+> -		if (ret < 0)
+> -			dev_err(priv->dev, "Failed to disable io pwr: %d\n",
+> -				ret);
+> -	}
+
+This prints error messages when things go wrong.
+
+> +static void
+> +mt7530_disable_pwrs(struct mt7530_priv *priv)
+> +{
+> +	if (priv->id != ID_MT7530)
+> +		return;
+> +
+> +	regulator_disable(priv->core_pwr);
+> +	regulator_disable(priv->io_pwr);
+
+This does not. Why? If you add this helper as a little patch, you can
+explain in the commit message why you decided to throw away the error
+messages.
+
+> +	/* Flush the FDB table */
+> +	ret = mt7530_fdb_cmd(priv, MT7530_FDB_FLUSH, NULL);
+> +	if (ret < 0)
+> +		goto err_disable_pwrs;
+> +
+>  #ifdef CONFIG_GPIOLIB
+>  	if (of_property_read_bool(priv->dev->of_node, "gpio-controller")) {
+>  		ret = mt7530_setup_gpio(priv);
+>  		if (ret)
+> -			return ret;
+> +			goto err_disable_pwrs;
+>  	}
+>  #endif /* CONFIG_GPIOLIB */
+>  
+> -	/* Flush the FDB table */
+> -	ret = mt7530_fdb_cmd(priv, MT7530_FDB_FLUSH, NULL);
+> -	if (ret < 0)
+> -		return ret;
+
+This move should be one patch, and the commit message explaining why.
+
+> +
+> +err_disable_pwrs:
+> +	mt7530_disable_pwrs(priv);
+> +
+> +	return ret;
+> +
+> +err_disable_core_pwr:
+> +	if (priv->id == ID_MT7530)
+> +		regulator_disable(priv->core_pwr);
+> +
+> +	return ret;
+
+Having two error cleanup blocks of code with a return is very
+unusual. Look at other cleanup blocks. How often do you see this?
+Please make it have just one return statement.
+
+> -	if (ret && priv->irq_domain)
+> -		mt7530_free_mdio_irq(priv);
+> +	if (ret) {
+> +		if (priv->irq_domain)
+> +			mt7530_free_mdio_irq(priv);
+> +		goto err_disable_pwrs;
+> +	}
+
+Since you are adding error cleanup at the end of the function, move
+this to the end as well.
+
+    Andrew
+
 ---
- .../devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml | 10 ++++++++--
- include/dt-bindings/clock/cortina,cs7542-clock.h               |  4 ++++
- include/dt-bindings/reset/cortina,cs7542-reset.h               |  9 +++++++++
- 3 files changed, 21 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-index fb074de87..dc7306868 100644
---- a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-+++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-@@ -12,8 +12,10 @@ maintainers:
- description:
-   The global control block contains the boot strap status, GPIO/peripheral
-   mux registers, reset controls and the secondary CPU release register.
--  It provides the APB, CPU and AXI clock rates selected by the boot straps.
--  The clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h.
-+  It provides the APB, CPU and AXI clock rates selected by the boot straps,
-+  and the three PCIe clock gates and controller reset lines.
-+  Clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h;
-+  reset specifiers are defined in dt-bindings/reset/cortina,cs7542-reset.h.
-   The pin controller uses the same register map through its parent syscon.
- 
- properties:
-@@ -29,6 +31,9 @@ properties:
-   "#clock-cells":
-     const: 1
- 
-+  "#reset-cells":
-+    const: 1
-+
-   pinctrl:
-     type: object
-     $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
-@@ -46,4 +51,5 @@ examples:
-         compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
-         reg = <0xf0000000 0x100>;
-         #clock-cells = <1>;
-+        #reset-cells = <1>;
-     };
-diff --git a/include/dt-bindings/clock/cortina,cs7542-clock.h b/include/dt-bindings/clock/cortina,cs7542-clock.h
-index 34d544238..c68c6ba20 100644
---- a/include/dt-bindings/clock/cortina,cs7542-clock.h
-+++ b/include/dt-bindings/clock/cortina,cs7542-clock.h
-@@ -6,4 +6,8 @@
- #define CS7542_CLK_CPU	1
- #define CS7542_CLK_AXI	2
- 
-+#define CS7542_CLK_PCIE0	3
-+#define CS7542_CLK_PCIE1	4
-+#define CS7542_CLK_PCIE2	5
-+
- #endif
-diff --git a/include/dt-bindings/reset/cortina,cs7542-reset.h b/include/dt-bindings/reset/cortina,cs7542-reset.h
-new file mode 100644
-index 000000000..bfd5799b2
---- /dev/null
-+++ b/include/dt-bindings/reset/cortina,cs7542-reset.h
-@@ -0,0 +1,9 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+#ifndef _DT_BINDINGS_RESET_CORTINA_CS7542_H
-+#define _DT_BINDINGS_RESET_CORTINA_CS7542_H
-+
-+#define CS7542_RESET_PCIE0	0
-+#define CS7542_RESET_PCIE1	1
-+#define CS7542_RESET_PCIE2	2
-+
-+#endif
-
--- 
-2.53.0
-
-
+pw-bot: cr
 
