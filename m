@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A356606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1935F606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 14:52:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xLba/lgX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YAZVdFjD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ycPYaSaG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Qak6zpwX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OM5RiI5MPg9K/gV7t/uunDu6RnP3U/TYNj4L/SIdYKc=; b=xLba/lgXqnLNFocLsbVrfQRIMq
-	QpQa+Yj0IouduIUs4OIueMUoo+0Kw0gANsPn/a6jP8da5hygsRvWGjNnw90z7lzYtjlcMzPxH/Gb1
-	Jw4DTdU5tVS6sqtvYTgOHlFnnlch22d/KEsNQHVy6tNvfO74eAWxvfTKJWtCY3RC3FGIjtiPtldZh
-	yLzP0/7CEn4AI6djm/lZvoSQHZlT7IMqb+5Fds1sV86pxs4jLrCOwj0nkGwngtzILAPOkVyC4Ka0M
-	7k4W6PKZi1rMgaMp+GmMBKY1uyi34S0fG48oci6AKdwmd/vBehc7oXQmTQSt3iPTxFllQiaoeQalx
-	LmFpas2w==;
+	bh=9JDW8BjO8pV2V62+zC72GsPlWIjoxqy4Dkv4PW8Y9/w=; b=ycPYaSaGA/TChr8V2R813SaXQu
+	1sI+++ZyVCil1qZLyGrZN3tWGereyiQ9mnsyBF22JpstIyvTPxSKVBShu8+XtJtt/Olnf/ncbrcTG
+	uFLkRsr5T6a62qjpxIZzWK2TcZ7FILvopngzyyduQHgRiXerq/W9qDSzEfQG/Y53YUx4Fjj++vhYX
+	Mjw+1Cd6dL8QYFRDh93tl+g6qJVtLQ+XJUIZHdkeWpPDAddqeQy0J49OuoVRipkHlRJVp4G/W/lW4
+	AFtAwHEh4vrIhgtnvSOT8YxIFNILSpdqN13/x19xqnLJTXIN//qtRLNZYxI8WlYeUyNWYjlSdPFM9
+	0M89ogNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVOj-00000003nvj-2w3e;
-	Mon, 23 Nov 2026 14:52:01 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVVOr-00000003nxf-3oxF;
+	Mon, 23 Nov 2026 14:52:09 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVOi-00000003nvP-0pAT
+	id 1xVVOj-00000003nvg-2TsP
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 14:52:00 +0000
+	Mon, 23 Nov 2026 14:52:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 427EC6223B;
+	by sea.source.kernel.org (Postfix) with ESMTP id 424FA43DC7;
+	Mon, 23 Nov 2026 14:52:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C253E1F000D1;
 	Mon, 23 Nov 2026 14:51:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B739C1F000CA;
-	Mon, 23 Nov 2026 14:51:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795445518;
-	bh=OM5RiI5MPg9K/gV7t/uunDu6RnP3U/TYNj4L/SIdYKc=;
+	s=k20260515; t=1795445521;
+	bh=9JDW8BjO8pV2V62+zC72GsPlWIjoxqy4Dkv4PW8Y9/w=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=YAZVdFjDFEs0NzeNC9ZBFipCn50+OJD1FhfJDKJIG9+2Ye+6MuGT+5KOdWqzczomL
-	 1vDrFJmuDqfKIM4Gihh3D7LyHgVFo5g3cwIzrwfsc6XD7VxKYi8AthMvCm+OvHVMaE
-	 Y/tlkC8M5TpfIlLC3BoxgfdUQ20PB+5gFH5BmCxRCJhiyJ+7h2OacdXCsVX9jFzW4m
-	 yijw7+N4MT0qDz5XVvjQtxr6wxytTWJ6agFqBBf5yikMZsadymw1KW2pH8Z/W6GwyJ
-	 X7Ui+2IFY7ahw1ZYRShTIZRe1EHv7akMEnt2os4lmsF9e/BV/1SngxKXwJ6pK/UK1Z
-	 V42Wjr7MN15Dg==
-Subject: Re: [PATCH net-next 1/3] net: stmmac: dwmac-sun8i: allow controlling
- TX and RX flow control separately
+	b=Qak6zpwXQJLL3Kvq6BKWq53jr5EnQT+eXPjt5h9GM9HBjjdLh8vjMyXNOJ3ihQOmR
+	 oKSJyZ0ARs+nkqN3CUTDERe7H7uXl1iFvONORXopVNbfNZajlZvSqpoXFRT/vXUFtm
+	 4xxzBjadJV/vlVscAEFb1qk8HB+EX5nT3/2mSSQromZXe1m/UKTTqfa0ggEp0y0qnc
+	 rxp1gwWEDnxihTYnd7RveF0HylGtogWM7lsHvmO7J9tXjoA1U/fRvz/sr4hx0BjwHI
+	 D1CKEUYtXjsoErHwgqloaC9NIIwv+GBnPKFsLgqY3OYk4UzmAmuPzYN0enAOeu4jCh
+	 Q2dGMnPGPwkCw==
+Subject: Re: [PATCH net-next 2/3] net: stmmac: dwmac-sun8i: emit pause frames
+ when the RX FIFO fills
 From: netdev-bot+sashiko@kernel.org
 To: maxime.chevallier@bootlin.com
 Cc: andrew+netdev@lunn.ch, kuba@kernel.org, davem@davemloft.net,
@@ -56,11 +56,11 @@ Cc: andrew+netdev@lunn.ch, kuba@kernel.org, davem@davemloft.net,
  thomas.petazzoni@bootlin.com, alexis.lothore@bootlin.com,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Date: Mon, 23 Nov 2026 14:51:57 +0000
-Message-ID: <179544551726.3135.4955672049699501900@kernel.org>
-In-Reply-To: <20261122144926.284857-2-maxime.chevallier@bootlin.com>
-References: <20261122144926.284857-2-maxime.chevallier@bootlin.com>
-X-sashiko-severity: Low
+Date: Mon, 23 Nov 2026 14:51:59 +0000
+Message-ID: <179544551937.3135.9976133356956488963@kernel.org>
+In-Reply-To: <20261122144926.284857-3-maxime.chevallier@bootlin.com>
+References: <20261122144926.284857-3-maxime.chevallier@bootlin.com>
+X-sashiko-severity: Medium
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -75,73 +75,113 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found more severe
-issue(s) in other patches of this series. This mail is only an FYI, in case
-you want to address the nit picks below when you respin.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue(s) to consider.
 
-Low priority / nit picks for your consideration:
+Critical: 0 · High: 0 · Medium: 1 · Low: 0
 
-- [Low] In drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c, the commit
-  message for sun8i_dwmac_flow_ctrl() presents the change as a new…
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
+
+- [Medium] Unserialized read-modify-write of EMAC_RX_CTL1 in
+  sun8i_dwmac_flow_ctrl() (drivers/net/ethernet/stmicro/stmmac/dwmac-…
 
 --
 
-net: stmmac: dwmac-sun8i: allow controlling TX and RX flow control separately
+net: stmmac: dwmac-sun8i: emit pause frames when the RX FIFO fills
 
-This changes sun8i_dwmac_flow_ctrl() in dwmac-sun8i.c to test the FLOW_RX
-and FLOW_TX bits on their own. Before, it only enabled
-EMAC_RX_FLOW_CTL_EN and EMAC_TX_FLOW_CTL_EN when fc == FLOW_AUTO.
+This commit sets the RX FIFO flow control thresholds in EMAC_RX_CTL1 from
+sun8i_dwmac_flow_ctrl(). With these thresholds, the MAC sends pause
+frames when less than 2K is left in the RX FIFO and stops when more than
+4K is free. The new bits are set only when TX flow control is requested.
 
-> Currently, the sun8i flow control setup only looks at FLOW_AUTO (which
-> is FLOW_RX | FLOW_TX), and enables RX/TX based on that.
->
-> Allow enabling RX/TX flow control directions separately.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> index c63f4d87de509..75c743dfe3483 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
 
-[Severity: Low]
-Would this be better described as a fix than as a new capability?
+[ ... ]
 
-Since commit 9cb54af214a7 ("net: stmmac: Fix IP-cores specific MAC
-capabilities"), sun8i_dwmac_setup() advertises asymmetric pause to
-phylink:
+> @@ -766,6 +772,17 @@ static void sun8i_dwmac_flow_ctrl(struct mac_device_info *hw,
+>  		v &= ~EMAC_RX_FLOW_CTL_EN;
+>  	writel(v, ioaddr + EMAC_RX_CTL0);
+>  
+> +	v = readl(ioaddr + EMAC_RX_CTL1);
+> +	v &= ~(EMAC_RX_FIFO_FLOW_CTL | EMAC_RX_FLOW_CTL_TH_ACT |
+> +	       EMAC_RX_FLOW_CTL_TH_DEACT);
+> +	if (fc & FLOW_TX)
+> +		v |= EMAC_RX_FIFO_FLOW_CTL |
+> +		     FIELD_PREP(EMAC_RX_FLOW_CTL_TH_ACT,
+> +				EMAC_RX_FLOW_CTL_TH_2K) |
+> +		     FIELD_PREP(EMAC_RX_FLOW_CTL_TH_DEACT,
+> +				EMAC_RX_FLOW_CTL_TH_4K);
+> +	writel(v, ioaddr + EMAC_RX_CTL1);
 
-    mac->link.caps = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-                     MAC_10 | MAC_100 | MAC_1000;
+[Severity: Medium]
+Can this read-modify-write of EMAC_RX_CTL1 race with the RX DMA start and
+stop helpers?
 
-When pause resolves asymmetrically, stmmac_mac_link_up() passes a single
-direction:
+EMAC_RX_CTL1 also holds EMAC_RX_DMA_EN and EMAC_RX_DMA_START.
+sun8i_dwmac_dma_start_rx() and sun8i_dwmac_dma_stop_rx() update those bits
+without a lock:
 
-    if (rx_pause && tx_pause)
-        flow_ctrl = FLOW_AUTO;
-    else if (rx_pause && !tx_pause)
-        flow_ctrl = FLOW_RX;
-    else if (!rx_pause && tx_pause)
-        flow_ctrl = FLOW_TX;
+    v = readl(ioaddr + EMAC_RX_CTL1);
+    v &= ~EMAC_RX_DMA_EN;
+    writel(v, ioaddr + EMAC_RX_CTL1);
 
-With the old fc == FLOW_AUTO test in sun8i_dwmac_flow_ctrl(), FLOW_RX or
-FLOW_TX alone cleared both EMAC_RX_FLOW_CTL_EN and EMAC_TX_FLOW_CTL_EN.
-Phylink and ethtool -a still reported pause as active.
+The phylink resolve worker reaches sun8i_dwmac_flow_ctrl() through this
+path:
 
-There are two ways to reach the rx-only case:
+phylink_resolve()
+  phylink_link_up()
+    stmmac_mac_link_up()
+      stmmac_mac_flow_ctrl()
+        sun8i_dwmac_flow_ctrl()
 
-- The link partner advertises only Asym_Pause, so linkmode_resolve_pause()
-  gives rx_pause=1 and tx_pause=0.
-- The admin runs "ethtool -A ethX autoneg off rx on tx off".
+That path holds pl->phydev_mutex and pl->state_mutex, but not rtnl.
 
-In that case the MAC ignores the partner's PAUSE frames.
+On the XDP and XSK paths, the DMA start and stop callers hold only rtnl
+and never call phylink_stop(). One example:
 
-Should the commit message say that this fixes that behaviour, and add a
-tag like this one?
+stmmac_xdp_set_prog()
+  stmmac_xdp_release()
+    stmmac_stop_all_dma()
+    free_dma_desc_resources()
 
-Fixes: 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i")
+The same applies to stmmac_xdp_open()->stmmac_start_all_dma(), and to
+stmmac_disable_rx_queue() and stmmac_enable_rx_queue() during XSK pool
+setup.
 
-That would let the stable maintainers consider it for backporting.
+If a link-up event is handled while an XDP program is being attached or
+detached, two interleavings look possible.
+
+In the first, flow_ctrl reads RX_CTL1 while DMA_EN is set. Then
+stmmac_xdp_release() clears DMA_EN and frees the RX rings. Finally,
+flow_ctrl writes back the stale value, which sets DMA_EN again.
+
+If the sun8i RX DMA resumes on DMA_EN alone, could the hardware then
+access the freed descriptors?
+
+In the second, flow_ctrl reads DMA_EN as 0. Then stmmac_xdp_open() or
+stmmac_enable_rx_queue() sets DMA_EN | DMA_START, and flow_ctrl writes
+DMA_EN back as 0.
+
+Would RX then stay stopped until the interface is reconfigured?
+
+Before this patch, flow_ctrl did not touch EMAC_RX_CTL1, so these writers
+could not overlap. Could accesses to this register be serialized, or could
+the thresholds be programmed from a path that is already ordered against
+DMA start and stop?
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261122144926.284857-1-maxime.chevallier%40bootlin.com
