@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE499606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96B1606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PUs6Not0;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=a/ra4Oxi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tH/7pM6c;
+	dkim=pass (2048-bit key, unprotected) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=kHPIv9+V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
@@ -14,90 +14,103 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Jh1FAcyIFxWBHDTEoMkBkVWCay9xDRHExguDM+g3k4s=; b=PUs6Not0psEKz6/Bs83OwvIW6q
-	4EZV/STHQIdmQITA/nLHffEHWOQXiFJX/fI/tz2NIfG8TYGTqQ97P6Gv5h9dM8H3ASFdhPSkQTQ/n
-	/JqnB1CHY56SlATz0dpQtV35sTO0G10rkRyNhmayFkw0JAMm1U5ImKTDownvSPw7p1l9LVips5ezA
-	bjH4tkDkIbn+Mfeu7fIsQEpLL/iTCqsTyK5pM6lhoVymPConWEItTHbuDx+TFeo+G/j/ItftK3e2x
-	jSSU2WS9KnGTzbCgsRWGAGDCOMtLO2lQh/g1D8Zofn5O8ou4rScJuHu0Jq/Ru+eQGdkGImQE1yOZO
-	wT5ES7pg==;
+	bh=WJ9u915aobNPmfIneqbGjqdZiarGAKLNjxdAyEJTY/k=; b=tH/7pM6cPpACISPjQw5bnOgLS8
+	jr9dwMB9JO0AqNPB+XvCEJTJBnHYPHOLLTQRHZHYwZuaDu19h7Ph98PKbm7apro64/ab55edqSMFh
+	AcDNK36vb8Wo3ADmGQhfO2h3pZErnvObjQEI3kwOTMXN3XIC3i/LCKZ+b5xaPKqNJBOVxtumwofNq
+	7DQ+drxrt7n018mehvFUcF2HKHtdfeDHF0YdFsa1jhWk5s913yrKpowej8Gu+RhWDeQGtiRHwGK5q
+	v0bOwAIrrGAp/BfO5DnCWvTa6hx7vLps0xc3/xAfNDCg3B2zucJIuJsu8lW8hxN7GZ4v+rD9cKePz
+	RHHcQY6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVvC-00000003xz5-0NUI;
-	Mon, 23 Nov 2026 15:25:34 +0000
-Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	id 1xVW56-000000040xI-1yqs;
+	Mon, 23 Nov 2026 15:35:48 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVv6-00000003xxW-0kho;
-	Mon, 23 Nov 2026 15:25:32 +0000
-Received: from [127.0.1.1] (unknown [IPv6:2a02:560:5c0a:3200:9ebf:dff:fe00:fdb5])
-	(Authenticated sender: sha@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id BC92F2004FC;
-	Mon, 23 Nov 2026 16:25:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795447521;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Jh1FAcyIFxWBHDTEoMkBkVWCay9xDRHExguDM+g3k4s=;
-	b=a/ra4Oxi5RsqC2frbeatoZnBPDf5yAZDYJ7vKmhKyuEcHgZeRtZUvjrWqduh3emYY0yG0E
-	yllsZtRgM/AXkNlsE5rEyC5NaHcmalIZJx3UfeA7IWWmRL4FjmcCTqrmgh99XGLSZ8hSDK
-	J+A6aMokzEJsAG8r83mDzoG+a77JjOfTJz9YCL7Tc0gxNgzp3vxThq+58EsWZZF8je/79U
-	ZqbWhIgg9i66CVNwmRTW105HuKe5FOlYH2Gb3y2lHySVnLMF/iu7hHiqQN9dEFG5gkeDyH
-	5kU9b/DC96fMrchTZLaJ1pDOol9iDKxX/UEIHUXPzVmNnMbpV1XwmptKSUpkzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795447521;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Jh1FAcyIFxWBHDTEoMkBkVWCay9xDRHExguDM+g3k4s=;
-	b=Rx57CHe2FGy1EN30pT9Ubv0PqdSFwY2iXarXp77oiXSfjiFHP6zBwq9ra3KNvpOvaMQMsx
-	3LjrTjgDP7zzwOENIrbc4no+4ZHtuVN/3dooPfqa4YyGh4+HmUGj2i3PUwsbJk6dKG7NcK
-	D1Wc5OnigGnnAJ7N5VRKal/E0234Hts78POtnTHlZuXmtZbLt0EIDsskv9iEz4Ii7GoN/9
-	0Qrzqr4V/UQeaXvX41yJyD+vhZpZ8JDvX3fIuor4EO/xxTsh3c/SDDwXq0mtrNV1FlCwz2
-	p08SFjhNOd8RHrFGsPQTeoIIM5TfFWMXHXHQFuo9Ib2UhscDyhutwsFThTzb1g==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sha@pengutronix.de smtp.mailfrom=s.hauer@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795447521; a=rsa-sha256;
-	cv=none;
-	b=gjMPppAsIYrfJ82PM9SS8o2gvMzcdtBhd6Po+pA9xjWArvimmnLBptkCLvNOwlOt81zSul
-	T+xxBrkOr2+HqTTsXQQtCDZwbzVQEhtURSxwLinbB8sjmI7UMgCFiSXLXdwG4+RQF8pEH0
-	+m3P07En62fP/Wa1c/U0ZfjL/UBS/mtPGVD3YIv0MVzymG6C/P/HMue0yLlBQv7rpmXMhz
-	BQLdQ77UyJ/1NLWFPNJ0DCD6Tc2GxpUf3nDy6k1qyIjbOXa7FCKKBp9Ny5M2Lynq2M5+18
-	VYPzBUJyMhDK9tISrG90QMZ7EwpvDs04M8Rz/vi0ja5TfgmJGPmwboG9zaYNWQ==
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v8 0/4] media: rockchip: Add JPEG decoder driver
-Date: Mon, 23 Nov 2026 16:25:19 +0100
-Message-Id: <20261123-rockchip-jpegdec-v8-0-3316cd31b043@pengutronix.de>
+	id 1xVW51-000000040vC-1kcS
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 15:35:46 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-49d05d51553so24986365e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:35:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1795448141; x=1796052941; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=WJ9u915aobNPmfIneqbGjqdZiarGAKLNjxdAyEJTY/k=;
+        b=kHPIv9+Vx3JpfHRPH/ejWA9ajcrWsgK48aPNGwnveAx20Os1cxm9yLsFUGQ8WLMq2d
+         yIfLN8Tdb+omvrZnxvKNQmcXFzfyTbae/J6eHD35GeSlZbXz9A2eW5FrqzZhEgawop/0
+         tLuqldE8WzJHYYgnqACWCun6TstZAniaw+y1Qh/WtQnIHkFSrRVsHGeZ9NJFcO+aEswi
+         u+pSYINumqy+eYv41ChsvvnJ23zRontxUwwIzthjXKRdfh23F7AwIMUY/6trPpTuD0hl
+         YEe2O+UGbGAInr7gxFaTaa0k+NEGcNZMeiFb5GsHK/8j3uRsN3jKufj5KatSBg3rSarr
+         lRig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795448141; x=1796052941;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=WJ9u915aobNPmfIneqbGjqdZiarGAKLNjxdAyEJTY/k=;
+        b=pHoj6NUytPwuaB/ibvxfreTrDuvGng5U02rjnwCsES1geYpIrPwazp/mguN9StnFva
+         t1NZRQKUVoZDco4iSSKeBYRFXHUVY/jhTEsT9bhB3dcmdB81Q9WA6efkvKkrQeMiA9SP
+         /r0PrvBXHyP6WC54QEYgbETRv0TgVKZOb4fPrKp+5YE9xq9DYwLqJDLaAHQlHesugo/b
+         3CdG/WiFNZSyM/8Dg7rldqhFGyBNa0EM9wlzHU91g2DSpILC8Pd7By6z+EZk8i3lJeNr
+         YbZWl3eOWZtATPKtJSO0zAAv9sD9UhU/d6bm66ZjMQY+LNT5QPaqlYMoJGGytOi32nx4
+         hcBQ==
+X-Forwarded-Encrypted: i=1; AL+hErFXqo1sZKiuAjfW72xBGYIT+4tiYOOFZnMMEkOiDpjSzAuLrpyO0tUewfZmfBPJuCXjnEtqbKCCqmrVk26u46Ep@lists.infradead.org
+X-Gm-Message-State: APuU4Z+FNJf2E2FnoDFuKqJUOeTh6kb/UDrkiAmLYJN+glKwqFsVHVpt
+	kgbib2tWo7eHDlWSFtuQawhcd8zIbYuUn7NyP/2ExiUdYcbKtPDozYQu0WYUOCme5ac=
+X-Gm-Gg: AZFdTZe9MkwQcafjpDvRlfjIVDXK6Uy+biCrMOH2MX9DINsXKqVVkabkvUbJc/7lIBn
+	o1nurq70RMRxTNam68UcYbeLmSnPtfzslANztzeW4Ts9UMYJiawTxRcceVr3MxKd47nQH8x1FKa
+	tCNOvuE7ksMJ7y03bDXYBX4hl3kwQbG3AyKI22hTyCHU5phm5KzgimLJccrU06MyI3GnV7cBsuz
+	jBuV53F4+P2vMV+opYdGDEF3mQe6ENySmRvoJDwNcywAtNmAk5pvTbDAzD/qya44e3bLqtZlXRy
+	xlXaGcSlziJ2vsx+/vLkNLISUAno6MT/1RT+iV6AWEQCb24bITnEB4ClX9zS4Bi6p3GVwaNF15k
+	qlSjSpMv54+Ue3TpWxyDk3E2ere2dIdvgYH2Dox2UD2y64Msj4pw1DgKCqGjltnwxlaRv6/gCUT
+	UEQm7ClDD2OQzQm8KUerJtYPBnYzpv/5EbOXhyLpt4wnVI5H6+uSUsrxAytGFvgGigdKfafGAsa
+	Lk+/FdoQRTwG4vaQZjKSD27CTRs/gRIkrPFMqWJ4ZyTWtp7m1OpUlpbRvkr70INDvZ7tNklugnI
+	+uCxFKl1571+CE+BdlYFP37dIJ0rrPnawDu6eF/J3yJE5SmIRBw8rJwLG7QlmmpKoy6JWaxEYre
+	CCfWp1E1+nTXkNn6oKN7uai87zb4oTVEP
+X-Received: by 2002:a05:600c:3555:b0:4a1:9663:7639 with SMTP id 5b1f17b1804b1-4bb8882907fmr248126085e9.34.1795448141435;
+        Mon, 23 Nov 2026 07:35:41 -0800 (PST)
+Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb853a1e8bsm305917455e9.9.2026.11.23.07.35.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 07:35:41 -0800 (PST)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH v3 0/5] nvmem: Derive Rockchip MAC addresses from the OTP
+ CPU ID
+Date: Mon, 23 Nov 2026 19:35:34 +0400
+Message-Id: <20261123-rk3576-otp-cpuid-mac-v3-0-40c756dcf36f@flipper.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAN9aBGsC/23PwWrDMAwG4FcpPs9DlmPZ2WnvMXZILDv1Bklwu
- tBR8u5zCtsC9fEX6NOvm1hCTmERL6ebyGFNS5rGEtzTSfhzNw5BJi5ZICCBQyXz5D/9Oc3yYw4
- DBy+ByTnwkQx5UdbmHGK63sm395LPablM+ft+YVX79BdrHrFVSZAOlHKIfTQAr3MYh69LnsZ0f
- eYgdnHFo2IqCu4KddGZttNIVFX0v9KqWhddFG2c9toSA2NVaY6KqyhNUYC5tRwb2/V9VTEHpfq
- R2bsAGee09j25qkJ/igKoKVQUNFERh05Ra6uKPSiIFcXuXSJbZmNiA49dtm37AYG7FeFZAgAA
-X-Change-ID: 20260821-rockchip-jpegdec-0d6880cf656c
-To: Lucas Sinn <lucas.sinn@wolfvision.net>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WNyw7CIBQFf8WwFgOXPl35H8YFpReLj5YAJZqm/
+ 26pG10Yl5OcMzMRj86gJ/vNRBxG483QLyC2G6I62Z+RmnZhAgwKVjNO3VXkZUGHYKmyo2npXSo
+ qVM0gEy2rqowsV+tQm8eqPZ7e7MfmgiokV1p0xofBPddu5Gn3JxE5ZRRlzUUOJdMKDvpmrEW36
+ zGQFInwqYEfGkiarCk1gmy40N+aeZ5fWqpr6xMBAAA=
+X-Change-ID: 20260901-rk3576-otp-cpuid-mac-3c90243d0884
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795447521; l=8565;
- i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=rbKUoeFc1Zv6Eaoh7f4mgSkA6iWDdk7Y4gMxMnD33EY=;
- b=RefEf2UcSCLdPUJkGh1GnzGzfbrcdLGMLCxYmtPU55bSEeOLKS+SqDZA3icHn17u8/cjdUY/d
- j9juXb6IgKHBnvLoMvPq6SAjWPpCmqFsu4lzA951NF1L0thiI4TWm/R
-X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
- pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Michael Walle <michael@walle.cc>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Finley Xiao <finley.xiao@rock-chips.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Ryan Leung <untilscour@protonmail.com>, 
+ Ricardo Pardini <ricardo@pardini.net>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, Alexey Charkov <alchark@flipper.net>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4623; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=IWttZoeJgqIMmrtNEkRl3I83UNMkrzhGlF9ZFlBL9Mc=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWSzxHpu39yaVaHQnM63ueTGPo35mtytz5lN/x14+ICth
+ a9056fHHRNZGMS4GCzFFFnmfltiO9WIb9YuD4+vMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
+ oZGOsY4RAxenAEy1GSMjw+OF980D55QurfkRuId7t6/AQWWha0H7312u62YIv10absXwP+ryn6e
+ xFw5JBXQ8PsedE31J4W3LTIZtX74+03wrc9d+FiMA
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_072528_380765_7D04D57C 
-X-CRM114-Status: GOOD (  30.29  )
+X-CRM114-CacheID: sfid-20261123_073544_675281_42D5D0F5 
+X-CRM114-Status: GOOD (  24.45  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,173 +130,95 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds support for the Rockchip JPEG decoder hardware. The JPEG decoder
-is an in-house IP which is integrated into various Rockchip SoCs. The driver is
-tested on a RK3588 board but reportedly works on RK3568 as well.
+Rockchip SoCs are shipped with a unique CPU ID in their internal OTP
+memory, and Rockchip bootloaders use it to give boards which have no
+dedicated storage for a MAC address a stable one anyway: they hash the CPU
+ID and patch the resulting addresses into the device tree they hand over.
 
-An earlier version of this driver was posted as part of the Hantro
-driver [1]. That turned out to be the wrong abstraction, so it was split
-up into a series with the Hantro fixes [2] and this series with a
-standalone driver, which started over at v1.
+Kernels started without that fixup, e.g. straight from the SPL in Falcon
+mode or by any other loader which does not implement Rockchip's derivation,
+fall back to random MAC addresses which change on every boot.
 
-[1] https://lore.kernel.org/r/20260819-rk3588-jpegdec-v1-0-33d74cdf369c@pengutronix.de
-[2] https://lore.kernel.org/r/20260824-rk3588-jpegdec-v1-0-180a30a2852d@pengutronix.de
+Formalize the derivation in the DT binding and implement it in the
+Rockchip OTP driver, so that a Linux image can use the same stable
+addresses regardless of the boot flow.
 
-An LLM (Claude) was used throughout the development of this series:
-for parts of the driver code, for reviewing it and working through
-review comments, and for debugging on the hardware and with
-GStreamer.  I have reviewed and tested all of it.
+v3 is a redesign following the v2 discussion. Instead of a separate
+SoC-specific NVMEM layout, which could not coexist with the fixed layouts
+already used by RK3528, RK3562 and RK356x, the existing CPU ID cell gets
+a "rockchip,cpuid" compatible. Referencing it as a "mac-address" cell
+selects the derived address, while any other reference keeps getting the
+raw CPU ID. The CPU ID location comes from the cell's reg property, so
+no per-SoC data is needed, and other SoCs only need the compatible on
+their CPU ID cell plus the GMAC references. This is similar to the
+behavior already present upstream in drivers/nvmem/imx-ocotp.c
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Plain "mac-base" does not fit here: its argument is an offset added to
+the base address, whereas the existing Rockchip derivation used by the
+bootloaders XORs the index into the last octet.
+
+Patch 2 lets an NVMEM read post-processor report a shorter output than
+the raw cell, which the OTP driver needs to hand out six bytes of MAC
+address from the 16-byte CPU ID cell without truncating it for anyone
+else.
+
+Patch 4 moves the RK3576 OTP cells from the deprecated direct-child
+syntax into a fixed layout, as the former does not allow a compatible on
+a cell.
+
+Only RK3576 is wired up here, that being the SoC I can test on.
+
+Cross-checked on an RK3576 board: the addresses fixed up into the FDT by
+U-Boot match the ones derived by the driver, and the driver correctly
+assigns them to the network interfaces when the kernel is booted without
+U-Boot proper at all (via Falcon mode). The raw CPU ID cell remains
+readable alongside (e.g. via sysfs).
+
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
 ---
-Changes in v8:
-- Decode 4:2:2 frames to NV16, or to NV12 on request.  ENUM_FMT on the
-  capture queue lists the formats the current frame can decode to
-  (Philipp)
-- Report the coded frame sizes as continuous up to 65535.  Frames whose
-  size is not a multiple of 8, e.g. 1366x768, failed to negotiate in
-  GStreamer (Philipp)
-- Size coded buffers for at least 3 bytes per pixel, also when userspace
-  asks for less (Sergei)
-- Don't resume the m2m queue when runtime PM resume fails (Philipp),
-  drop a dead error path from suspend
-- Use one RKJPEGD_MIN_SIZE for both dimensions, inline
-  rkjpegd_irq_done() (Philipp)
-- Link to v7: https://lore.kernel.org/r/20261022-rockchip-jpegdec-v7-0-3fd7dd55f408@pengutronix.de
-
-Changes in v7:
-- Don't set a capture payload larger than the buffer when a job fails
-  because the buffer is too small (sashiko)
-- Drop the Assisted-by tags, upstream removed them in favour of a
-  note in the cover letter
-- Drop the review questions and answers from the driver patch
-- Link to v6: https://lore.kernel.org/r/20261005-rockchip-jpegdec-v6-0-25f16dea1697@pengutronix.de
-
-Changes in v6:
-- Rework dynamic resolution change: a changed frame is marked when it
-  is queued, the decoder stops in front of it, and only the ioctls that
-  resume change the capture format, so fmt_lock is gone
-- Keep a drain going across the capture restart of a resolution change
-- Decode grayscale frames to GREY instead of filling the NV12 chroma
-  plane from the CPU, and allocate capture buffers without a kernel
-  mapping
-- Leave cache maintenance of coded buffers to videobuf2, drop the
-  dma-buf CPU access calls
-- Drop the EOI scan, a truncated frame fails through BUF_EMPTY, and log
-  all hardware errors
-- Drop the runtime PM check in the interrupt handler
-- Drop the interrupt masking around the watchdog reset
-- Drop the hard reset fallback
-- Drop the media device
-- Drop the EOS event on STREAMOFF(OUTPUT)
-- Allow up to 65535 pixels per side, limited by the size of the decoded
-  frame instead of 16384 per side
-- Report sRGB colorimetry on the capture queue, keep what is set on the
-  coded queue and default it to V4L2_COLORSPACE_JPEG
-- Return a failed frame with its full payload, GStreamer takes an empty
-  capture buffer for the end of the stream
-- Return errors from the header parse instead of setting a flag
-- Use guard() and __free(), drop NULL checks the core rules out
-- Name the VDPU720 in the Kconfig help
-- Use Assisted-by: LLM
-- Link to v5: https://lore.kernel.org/r/20260925-rockchip-jpegdec-v5-0-30658833cb68@pengutronix.de
-
-Changes in v5:
-- Keep the device until both the binding and the last file handle are
-  gone, devres freed it under an open file
-- Let a job still running in rkjpegd_remove() finish and start no more,
-  close() waited forever
-- Reset the block after a job that ended in error
-- Reset the block after a frame that left SOFT_RST_RDY clear
-- Skip trailing padding of any length when looking for the EOI, 63 bytes
-  of padding hid the marker, and search only the entropy coded data
-- Annotate the DMA side buffer as little-endian
-- Return -EINVAL from enum_framesizes() for an unsupported format
-- Drop most of the in-function comments
-- Drop the review note on rkjpegd_remove(), the code is fixed instead
-- Bound the Huffman value copy by the table length parsed at queue time
-- Fall back to the standard Huffman tables for frames without a DHT
-- Resume decoding on V4L2_DEC_CMD_START after a drain or resolution change
-- Do not re-arm a drain that already completed
-- Report no resolution change for a corrupt frame past the first one
-- Send no EOS event for the LAST buffer of a resolution change
-- Correct the IRQ clear and Huffman table set comments
-- Keep a resolution change out of the mem2mem drain state, a STOP sent
-  before the capture queue was restarted ended the stream at once
-- Look for a mid-stream resolution change only in device_run(), buf_queue()
-  raced the interrupt handler for the capture buffer
-- Set the field on every capture buffer and the sequence on every LAST
-  buffer the driver returns itself
-- Report the first resolution after CREATE_BUFS on the OUTPUT queue too
-- Report the capture colorimetry from the OUTPUT format rather than echoing
-  what userspace passed, and stop S_FMT(CAPTURE) changing the OUTPUT format
-- Refuse RGB coded frames, Adobe APP14 transform 0, instead of decoding them
-  as YCbCr
-- Drop the 4:4:0 mode, the JPEG parser never lets such a frame through
-- Depend on V4L_MEM2MEM_DRIVERS
-- Correct the downstream clock rate in the rk356x DT commit message
-- Serialise V4L2_DEC_CMD_STOP/START with the job completion, a drain
-  racing the last job's interrupt never finished
-- Forget a drain that STREAMOFF(CAPTURE) aborted, a later resolution
-  change re-armed it
-- Bracket CPU reads of imported coded buffers with
-  dma_buf_begin_cpu_access()
-- Wait for a running job when probe fails after registering the video
-  device
-- Add an SPDX line to the Makefile
-- Link to v4: https://lore.kernel.org/r/20260918-rockchip-jpegdec-v4-0-0dd97df47abb@pengutronix.de
-
-Changes in v4:
-- Set and read the source change flags under fmt_lock
-- Check the runtime PM state in the interrupt handler
-- Use dma-buf CPU access around the grayscale chroma fill
-- Update the review notes in the driver patch
-- Link to v3: https://lore.kernel.org/r/20260914-rockchip-jpegdec-v3-0-3583c376d0d2@pengutronix.de
-
 Changes in v3:
-- Rename binding to rockchip,rk3568-jpegd.yaml to match the compatible
-- Link the earlier Hantro based series in the cover letter
-- Enable clocks from the runtime PM callbacks, use pm_ptr()
-- Protect capture format and crop with a mutex
-- Clear bytesused on capture buffers returned without a picture
-- Revert padding the capture buffer to the MCU width, it broke 4:1:1
-- Add notes on review questions to the driver patch
-- Link to v2: https://lore.kernel.org/r/20260825-rockchip-jpegdec-v2-0-86af859a3266@pengutronix.de
+- Dropped the OTP read serialization patch, applied separately
+- Replaced the SoC-specific NVMEM layout with a "rockchip,cpuid"
+  compatible on the existing CPU ID fixed cell, so that it works
+  alongside other fixed cells (Ricardo) and needs no per-SoC table (Ryan)
+- Moved the derivation into the rockchip-otp driver's cell fixup hook,
+  which also makes the layout module unload issue moot (Sashiko)
+- Made #nvmem-cell-cells required for the new compatible (Sashiko)
+- Dropped the dead match data and address validity checks (Srinivas)
+- Allowed MAC address indices up to 255 rather than just 0 and 1
+- Added an NVMEM core change letting post-processing shorten the output
+- Moved the RK3576 OTP cells into a fixed layout
+- Dropped Miquel's Reviewed-by from the driver patch, as the code moved
+- Link to v2: https://patch.msgid.link/20260902-rk3576-otp-cpuid-mac-v2-0-e4b7fe2ab13f@flipper.net
 
 Changes in v2:
-- rename clocks from aclk/hclk to axi/ahb
-- Add missing Signed-off-by
-- Fix suspend/resume path
-- Pad the capture buffer to the mode's MCU width, not to a macroblock
-- Reject a frame header picture size outside the supported range
-- Set the capture payload at decode time, not at queue time
-- Trim comments in the driver
-- Link to v1: https://lore.kernel.org/r/20260824-rockchip-jpegdec-v1-0-8011822bf500@pengutronix.de
+- Switched from a scope-based guard to explicit lock/unlock calls in the
+  OTP driver to avoid mixing styles in a function using goto error
+  handling (Sashiko)
+- Link to v1: https://patch.msgid.link/20260901-rk3576-otp-cpuid-mac-v1-0-ea9135270fc2@flipper.net
 
 ---
-Sascha Hauer (4):
-      media: dt-bindings: Add Rockchip JPEG decoder
-      media: rockchip: Add JPEG decoder driver
-      arm64: dts: rockchip: rk3588: Add JPEG decoder node
-      arm64: dts: rockchip: rk356x: Add JPEG decoder node
+Alexey Charkov (5):
+      dt-bindings: nvmem: fixed-cell: Add Rockchip CPU ID
+      nvmem: core: Let read post-processing return a shorter length
+      nvmem: rockchip-otp: Derive MAC addresses from the CPU ID
+      arm64: dts: rockchip: Move RK3576 OTP cells into a fixed layout
+      arm64: dts: rockchip: Derive GMAC MAC addresses from OTP on RK3576
 
- .../bindings/media/rockchip,rk3568-jpegd.yaml      |   92 +
- MAINTAINERS                                        |    9 +
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |   22 +
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   24 +
- drivers/media/platform/rockchip/Kconfig            |    1 +
- drivers/media/platform/rockchip/Makefile           |    1 +
- drivers/media/platform/rockchip/rkjpegd/Kconfig    |   16 +
- drivers/media/platform/rockchip/rkjpegd/Makefile   |    4 +
- .../rockchip/rkjpegd/rkjpegd-vdpu720-regs.h        |  235 ++
- drivers/media/platform/rockchip/rkjpegd/rkjpegd.c  | 2332 ++++++++++++++++++++
- 10 files changed, 2736 insertions(+)
+ .../bindings/nvmem/layouts/fixed-cell.yaml         |  33 ++++++
+ .../bindings/nvmem/layouts/fixed-layout.yaml       |   6 ++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           | 111 +++++++++++----------
+ drivers/nvmem/Kconfig                              |   4 +-
+ drivers/nvmem/core.c                               |  17 +++-
+ drivers/nvmem/rockchip-otp.c                       |  45 +++++++++
+ include/linux/nvmem-provider.h                     |   8 +-
+ 7 files changed, 168 insertions(+), 56 deletions(-)
 ---
-base-commit: c03c1a14507dfaf8b856c2608f9ac216021fc222
-change-id: 20260821-rockchip-jpegdec-0d6880cf656c
+base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
+change-id: 20260901-rk3576-otp-cpuid-mac-3c90243d0884
 
 Best regards,
--- 
-Sascha Hauer <s.hauer@pengutronix.de>
+--  
+Alexey Charkov <alchark@flipper.net>
 
 
