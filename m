@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B0F606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB89606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y9t/noae;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WjdELp7n
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RivTE6ph;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KpviSj7e
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=o723m0djv4llTVaMLMWyJBdlGd6TGnVmWvYWsA2QBxE=; b=Y9t/noae4LVq7B+RZu+OFVWREO
-	H7I2NPbS/V2FFu4u0sgyY6V1oVr6LKg495UR+yJKDxk9iP5uQrq1lqe8JcLjojek4O/5fKTCTzLLN
-	8lXtRN5Pe7FCBWA5JGffM3YAT6szQcXQ59KEYbbxFDt58Qr4lQb8gw21/g+bckSA8uCEB7wQwXAdM
-	AAkTRx0rdW6ef9JW3zKK9rFQwpLiBSmM0a1HYc6NQ/NbewxRwEHt8VCF1/xvPivgJIxJwGQXhCp2Q
-	ONJI0O/u8rorWYcv32HCVQB2ae5yn1QVIvqNWhrl/rcdUFewP/cnLme8hsrTS2vgTE+KqK4j8MgyN
-	viTq1WjA==;
+	bh=MjeKjHN4rePYNfzb7vgeU2LsVigAmUGjCvKXHqpWDDE=; b=RivTE6phP1ZCr+sqk45FETMMO+
+	LcyRFvKPeXwjI+VuFgqpkk/dBrh0B0OwnW406zISKPLI7gq6heqC8ZtTJN4cY4OmzDRxcXke9s4Rz
+	hf5sDGyHBIg+aP+suzGi9OxLOJoDRkiVW6rzccc7wIXVYICZkkglLjCkJB1bek5uVHmym3oWsaDSh
+	70bnvqNEOv0eNGwfBdtAd43RXNPvbLYBCsiZBPe3IDbf7cD2abM93NzlaFzohoIsBmVtJsTaLifv9
+	MYEpby289SYY4OpfPnnnBmmYnR4EFTq2TRNv2Y0uz864Tfk73Qp3cQCcKKkUowsaVAWjvTmaPxShq
+	bzpCbDJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ2K-00000004YwV-2J0k;
-	Mon, 23 Nov 2026 18:45:08 +0000
+	id 1xVZ2U-00000004Z1j-1puO;
+	Mon, 23 Nov 2026 18:45:18 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1e-00000004YRO-3YUq
+	id 1xVZ1t-00000004Yec-3xBG
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:44:28 +0000
+	Mon, 23 Nov 2026 18:44:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D5A4662455;
-	Mon, 23 Nov 2026 18:44:25 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E822D62455;
+	Mon, 23 Nov 2026 18:44:40 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459465;
-	b=FAg3B6bouq3U+ydWXpOhDHsbouVTsvWSLcnpIQS+GTb763yBw1Ii00tuoam7ckyhkpoW
-	 eOJI+1NNlW7wBbdqEmHYJEYE4Hx4M2F6fX/H0rimIbz5Yw8LCxOkJOyTSBqkdQ0Esd19j
-	 ZecO5Wi/9N6FbzVJmryssT7WAWjvxJ+IU4ISFNrw7fN5Es3wNqnGjsuWlbx1n0aNrMnur
-	 QqfGLA2wqww3Ea03E9tV1Sfb8bLrNLHIzmYURgFRCOWXP/zr5YRL5/kMO914MnFuyYMbz
-	 T4OIzm0E6JlI/ngAVuv1TCe/kroOtHzz3f9y2SCsUR0iQ9mHzUSMwv2H4K0w+kX7cfw==
+	t=1795459480;
+	b=In7JgtJjfpkXYGo1AYR1lwjrmgAdNZHMCKwi0kC6T08lQZnNaT7mbMwWYvXqwV8WBNmd
+	 3ruTJHTu2b0ZxxUWzFY/8OIaQvWi5pycIcvDNsIcv9P/ghSA6L7ybJyGH1zcqkecBqUEJ
+	 c4OB9gymrz1fOh5I/0ailmVYiFmb/b7R5e3hQFGHDKVkuBcFVs77ktQZKRizPq7zBHkfU
+	 WqM6yO3rD4vDx7bJo8ZHlLf4bX9+VsiEnB44lSRQPUWta9ELa4/rX77oyhabawd6SaWsu
+	 BhrBFNSmkF/KQ9dCHPS2bfLgxPY1wuktV0kqP+xbkSmNs4yk/SzmeeVtSPvHE0FCGrQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459465;
+	c=relaxed/relaxed; t=1795459480;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=o723m0djv4llTVaMLMWyJBdlGd6TGnVmWvYWsA2QBxE=;
-	b=aMm/l40pQ6j2r2Vqhnx5Um2h4vZ9DKIQcOybm4IlwdQA+R7Agkw29SoXRlMbVW4MOE3y
-	 m7+3+HAPodjFr+ba35Ky1DM57umnki9VQLF6HegGvragPSImfj13bfAn0l6q2uOkmdthW
-	 dYLUdMqbffSfolqOdQ0/P/q7jRh03UprovQBo4xWm8doWrR8t29WOrP+bDZRAUgyPqBJ6
-	 P3N8d4J98/2H0GGwOrl8XLDonpcpbPD35/X5fSuPlPkc+zgp/q3Dmx2rSNQaCqcZd8FDv
-	 yUShuBSdDyo/wfygNLq+7OQU7ci7S35FKQ0v41OXQkPIvJrdZ2ubsyj2NkWG+5xfyaQ==
+	bh=MjeKjHN4rePYNfzb7vgeU2LsVigAmUGjCvKXHqpWDDE=;
+	b=qOBzvcJvAfZf6mqWiviT/4tMnGhpEqreY2RXosJD8gdHSAV+dO7zVfsZWLvxJO60Pe6q
+	 zqobO2lAHmHVkrtTn1g/UMryOlEIC14GkBnRteQ5MkooCEIoxJXlJQ9A3r019iNMoknzT
+	 JtnUoTGTEr4W/vBt7TCTjdJHg7xnwkzPQa2rBVEIZl8yBchuyYiREm4c2lJ6/JCohM5vt
+	 fwS7BejHjakMEqtt4yUX2ZNYtOnUpDSGaS1FCOzPoA+oV89TXiAQZTigYF3NqmqcXKSmT
+	 RTwLp7pT7cAAagCOV4wmswAKdUv78S/lrsphf9T5NKoRt5cIdLF5JnhevFOuVuhxBTQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id F05881F000ED;
+	by smtp.kernel.org (Postfix) with ESMTPS id EF0B41F000EC;
 	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459465;
-	bh=o723m0djv4llTVaMLMWyJBdlGd6TGnVmWvYWsA2QBxE=;
+	s=k20260515; t=1795459480;
+	bh=MjeKjHN4rePYNfzb7vgeU2LsVigAmUGjCvKXHqpWDDE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=WjdELp7nmuH604FdNWK/Lf2muE6pEPhUmUCEAn/9lMtnAObRVyLb/jBf58faUGQE6
-	 kbYFpN8MvaX9+w91K6kQlfG51TcW9AanwRzTkPUxWwneVK/Hy4pGcjiWLkvDf6eDtH
-	 vcrrvPyuxL9ycSXQ2tAz5u8WDeDkx9IMZ+aLyMYjQACurvE5MBq8MRIZfSgOjJVoBi
-	 mDwQL8g+QhOn4vwFRd4Uz6bnvymxJRm8jPVzCOxoyLio9GTreVEM09WJJIDugA+F6Y
-	 ePHGWar9FUhIfInmxUAiLGUt++73yV4AnCZvQ5mjj0kSRVF0sOt2FB7v9M1DvjuTcA
-	 hYaVrTyz0PEtA==
+	b=KpviSj7e8Vq16WefT0FDzgq5IUNuprQBlyKY3+F1aZ6JM2+iot16TZhIgSyTdgdN0
+	 vMI5+56j09nKrPd+D4R3CAlTsHoZE6nLevsNYDIeLGYA6YqePItBXTsy7ciuS1OP1N
+	 5SP/vsLpDQdel+UqmnigtMiY0gB/dJFhsfRgmQri5hXJmVc0HJ1GaPVl6HXhlpproi
+	 SY8MEl4HVVs5HDvAsFydA3XSb0zujGh5XKwZoZGHNSW2V+dCAuqNI0+xOK6vZL5czX
+	 MhBXL8tzj95TLk7RttVK+I5Mq6V8sxe0/X8VBKO8J3g3vt7kdvkWRophCGuEXAlSt3
+	 i5MmfMJMiEzXg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 53A454C5F5;
+	by lkml.kernel.org (Postfix) with ESMTP id 3B1174C607;
 	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:44:11 +0300
-Subject: [PATCH net-next 2/5] reset: Add Cortina CS7542 network engine
- domain control
+Date: Mon, 23 Nov 2026 21:44:10 +0300
+Subject: [PATCH net-next 1/5] dt-bindings: reset: Add Cortina CS7542
+ network engine reset domain
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-ethernet-v1-2-fdb5e8c2d508@gmail.com>
+Message-Id: <20261123-b4-cs7542-ethernet-v1-1-fdb5e8c2d508@gmail.com>
 References: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
 In-Reply-To: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
@@ -93,11 +93,11 @@ To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
 Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459449; l=5565;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459449; l=2664;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=Ad0mfeyBbvzfZar0R5EFFyw87GP4uLfbc0CLfuGkDwY=;
- b=Y1kLU2a4JK6H4FID7LfLwqIXJMTjXZtgobCgCmdZNXVXcHeu66v8erxtssLMEV41yW1On2LKq
- lqixskegE8lDwvyNATBw6iPbcMb6q8Dc0iuW5yK27rjhuvNSIg/p89w
+ bh=afQd1qV0B7xeIKmVAhfGJ0iLxscNrcmWGV+PpdebZtc=;
+ b=tfTFkWIjfmcOGW0TyJsPhNwJ/7RsQQNGNr1PBzxNsUCebQE2Wyz4+JuGq072EW0dq4+4Z4BE8
+ jSsGPN+vfVaCj+ze3S+IwQ9+oRNjzxQrLPDPyOBex52cVlc4QS+qzJK
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -125,169 +125,80 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Expose the NI, FE, TM, scheduler, QM, DMA-LSO/SSP and XRAM resets as one
-exclusive logical domain. Change all owned bits in one masked
-global-regmap update, preserve neighboring resets and require bounded
-hardware readback. Return an error for a partially asserted domain.
+Describe the atomic reset domain required to stop all network-engine and
+LSO/SSP DMA users before releasing their mappings. Exclude the SDRAM
+controller and independent PCIe resets. Allow this provider as a child
+of the shared global syscon.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- drivers/reset/Kconfig           |  10 ++++
- drivers/reset/Makefile          |   2 +
- drivers/reset/reset-cs7542-ne.c | 114 ++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 126 insertions(+)
+ .../bindings/reset/cortina,cs7542-ne-reset.yaml    | 42 ++++++++++++++++++++++
+ .../soc/cortina/cortina,cs7542-syscon.yaml         |  4 +++
+ 2 files changed, 46 insertions(+)
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index eda9c698a..8218d639f 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -15,6 +15,16 @@ menuconfig RESET_CONTROLLER
- 
- if RESET_CONTROLLER
- 
-+config RESET_CS7542_NE
-+	tristate "Cortina CS7542 network engine reset domain"
-+	depends on OF && HAS_IOMEM
-+	select MFD_SYSCON
-+	help
-+	  Control the combined NI/FE/TM/SCH/QM/XRAM and DMA-LSO/SSP domain.
-+	  The consumer must exclusively own the entire network and DMA block.
-+	  Use this with the network engine driver when no separate SSP DMA
-+	  consumer is enabled; the NAND controller may operate through PIO.
-+
- config RESET_A10SR
- 	tristate "Altera Arria10 System Resource Reset"
- 	depends on MFD_ALTERA_A10SR || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 489fafd6b..c24b8e281 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -55,3 +55,5 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
- obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
- obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
- obj-$(CONFIG_RESET_ZYNQMP) += reset-zynqmp.o
-+
-+obj-$(CONFIG_RESET_CS7542_NE) += reset-cs7542-ne.o
-diff --git a/drivers/reset/reset-cs7542-ne.c b/drivers/reset/reset-cs7542-ne.c
+diff --git a/Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml b/Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml
 new file mode 100644
-index 000000000..81442c6a9
+index 000000000..8f5b5b835
 --- /dev/null
-+++ b/drivers/reset/reset-cs7542-ne.c
-@@ -0,0 +1,114 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* The network engine and DMA-LSO/SSP reset domain has one exclusive owner. */
-+#include <linux/bitfield.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
++++ b/Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/cortina,cs7542-ne-reset.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#define CS7542_GLOBAL_RESET	0x04
-+/* NI, FE, TM, SCH, QM, DMA-LSO/SSP, NI XRAM; never reset SDRAM (bit 4). */
-+#define CS7542_NE_RESET_MASK	(GENMASK(3, 0) | BIT(5) | BIT(16) | BIT(17))
++title: Cortina Systems CS7542 network engine reset domain
 +
-+struct cs7542_ne_reset {
-+	struct reset_controller_dev rcdev;
-+	struct regmap *map;
-+};
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
 +
-+static int cs7542_ne_reset_update(struct reset_controller_dev *rcdev,
-+				  unsigned long id, bool asserted)
-+{
-+	struct cs7542_ne_reset *rst = container_of(rcdev, struct cs7542_ne_reset, rcdev);
-+	unsigned int value, target = asserted ? CS7542_NE_RESET_MASK : 0;
-+	int ret;
++description: |
++  Child of the CS7542 global syscon. One reset domain covers NI, FE, TM,
++  scheduler, queue manager, NI XRAM and the entire DMA block (LSO and SSP).
++  SDRAM and unrelated peripheral reset bits are not modified. The consumer
++  must own all these blocks exclusively. This reset is not suitable for a
++  network-only consumer while a separate driver uses SSP DMA.
 +
-+	if (id)
-+		return -EINVAL;
-+	ret = regmap_update_bits(rst->map, CS7542_GLOBAL_RESET,
-+				 CS7542_NE_RESET_MASK, target);
-+	if (ret)
-+		return ret;
-+	return regmap_read_poll_timeout(rst->map, CS7542_GLOBAL_RESET, value,
-+				       (value & CS7542_NE_RESET_MASK) == target,
-+				       1, 1000);
-+}
++properties:
++  compatible:
++    const: cortina,cs7542-ne-reset
 +
-+static int cs7542_ne_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	return cs7542_ne_reset_update(rcdev, id, true);
-+}
++  "#reset-cells":
++    const: 0
 +
-+static int cs7542_ne_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	return cs7542_ne_reset_update(rcdev, id, false);
-+}
++required:
++  - compatible
++  - "#reset-cells"
 +
-+static int cs7542_ne_reset_status(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	struct cs7542_ne_reset *rst = container_of(rcdev, struct cs7542_ne_reset, rcdev);
-+	unsigned int value;
-+	int ret;
++additionalProperties: false
 +
-+	if (id)
-+		return -EINVAL;
-+	ret = regmap_read(rst->map, CS7542_GLOBAL_RESET, &value);
-+	if (ret)
-+		return ret;
-+	value &= CS7542_NE_RESET_MASK;
-+	if (value && value != CS7542_NE_RESET_MASK)
-+		return -EIO;
-+	return !!value;
-+}
++examples:
++  - |
++    syscon@f0000000 {
++        compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
++        reg = <0xf0000000 0x100>;
++        #clock-cells = <1>;
++        reset-controller {
++            compatible = "cortina,cs7542-ne-reset";
++            #reset-cells = <0>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+index fb074de87..5aca670cd 100644
+--- a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
++++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+@@ -33,6 +33,10 @@ properties:
+     type: object
+     $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
+ 
++  reset-controller:
++    type: object
++    $ref: /schemas/reset/cortina,cs7542-ne-reset.yaml#
 +
-+static int cs7542_ne_reset_xlate(struct reset_controller_dev *rcdev,
-+				 const struct of_phandle_args *spec)
-+{
-+	return spec->args_count ? -EINVAL : 0;
-+}
-+
-+static const struct reset_control_ops cs7542_ne_reset_ops = {
-+	.assert = cs7542_ne_reset_assert,
-+	.deassert = cs7542_ne_reset_deassert,
-+	.status = cs7542_ne_reset_status,
-+};
-+
-+static int cs7542_ne_reset_probe(struct platform_device *pdev)
-+{
-+	struct cs7542_ne_reset *rst;
-+
-+	rst = devm_kzalloc_obj(&pdev->dev, *rst);
-+	if (!rst)
-+		return -ENOMEM;
-+	rst->map = syscon_node_to_regmap(pdev->dev.of_node->parent);
-+	if (IS_ERR(rst->map))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rst->map), "global syscon\n");
-+	rst->rcdev.dev = &pdev->dev;
-+	rst->rcdev.owner = THIS_MODULE;
-+	rst->rcdev.ops = &cs7542_ne_reset_ops;
-+	rst->rcdev.nr_resets = 1;
-+	rst->rcdev.of_node = pdev->dev.of_node;
-+	rst->rcdev.of_reset_n_cells = 0;
-+	rst->rcdev.of_xlate = cs7542_ne_reset_xlate;
-+	return devm_reset_controller_register(&pdev->dev, &rst->rcdev);
-+}
-+
-+static const struct of_device_id cs7542_ne_reset_match[] = {
-+	{ .compatible = "cortina,cs7542-ne-reset" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cs7542_ne_reset_match);
-+
-+static struct platform_driver cs7542_ne_reset_driver = {
-+	.probe = cs7542_ne_reset_probe,
-+	.driver = {
-+		.name = "cs7542-ne-reset",
-+		.of_match_table = cs7542_ne_reset_match,
-+	},
-+};
-+module_platform_driver(cs7542_ne_reset_driver);
-+
-+MODULE_DESCRIPTION("Cortina CS7542 exclusive network engine reset domain");
-+MODULE_LICENSE("GPL");
+ required:
+   - compatible
+   - reg
 
 -- 
 2.53.0
