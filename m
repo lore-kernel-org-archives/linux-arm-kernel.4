@@ -2,92 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE274606A327
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B0F606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o3lSFz7h;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fYHv7ajB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y9t/noae;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WjdELp7n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=hlFje3mu64D8tZjZSmjSeWykRYlygG1YqFQ9P/8ISqY=; b=o3lSFz7htXU95OOsQb8FmOB0Ia
-	vQtTNB9Fuhch2rL3dk+Vwlq1WP4xHm7aXzuoqToAQu3+vTqIwWXISYMXhIU4BrAzv/8r+vc2K8DNK
-	0xo50YUpVNosk7Ib4RhgfPMqH0lEaCdZrUt5V1g5w4jezPTpJ8oLnOUbqc73wCH2w6sMRwW0eA5jc
-	vXM+CUrfoppJCRxiiIIuW1ztt4QrPmDy8zxzrAGhWR3Fji/XrcsDFBAYmPTHVfsmiTuyOgcHpstiZ
-	ZaiibOAxnE4UmX8646dmI8QpxxUFBKOVy+YXd+6eHN6sBZFT08Z23/jnhWWyQx5LCOKcbwyvd/LfI
-	BgDDp3kQ==;
+	bh=o723m0djv4llTVaMLMWyJBdlGd6TGnVmWvYWsA2QBxE=; b=Y9t/noae4LVq7B+RZu+OFVWREO
+	H7I2NPbS/V2FFu4u0sgyY6V1oVr6LKg495UR+yJKDxk9iP5uQrq1lqe8JcLjojek4O/5fKTCTzLLN
+	8lXtRN5Pe7FCBWA5JGffM3YAT6szQcXQ59KEYbbxFDt58Qr4lQb8gw21/g+bckSA8uCEB7wQwXAdM
+	AAkTRx0rdW6ef9JW3zKK9rFQwpLiBSmM0a1HYc6NQ/NbewxRwEHt8VCF1/xvPivgJIxJwGQXhCp2Q
+	ONJI0O/u8rorWYcv32HCVQB2ae5yn1QVIvqNWhrl/rcdUFewP/cnLme8hsrTS2vgTE+KqK4j8MgyN
+	viTq1WjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ2K-00000004Yvv-1MtZ;
+	id 1xVZ2K-00000004YwV-2J0k;
 	Mon, 23 Nov 2026 18:45:08 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1a-00000004YNc-0vMH
+	id 1xVZ1e-00000004YRO-3YUq
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:44:22 +0000
+	Mon, 23 Nov 2026 18:44:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 55E2862453;
-	Mon, 23 Nov 2026 18:44:21 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D5A4662455;
+	Mon, 23 Nov 2026 18:44:25 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459460;
-	b=VBBgQ6Kgiu9hrl8cjnsxnBXtU9DZdGF81ZN3y+conxf1Wq1mY5mOKRvWLm1UljS1TGWI
-	 WJG4CxgdgpaDNhF0r5GlAiOeGT+WFTlZSICIoR4mrWRjhxv8nYmMXlb6Xuxbrx3W+X7Et
-	 r1mq4qOK6BJfC5/Dm8rUIw4lLrDVgG7InRF9f5Bk4V/7VTyYxoqPW7i5j3rp7yrnTBSpb
-	 tupnUowanM6+eLUkiTeUzBdUO09OOTMBQvFdvhEUIfahgx7pKQrUvynNkDS1XhSPJSMu0
-	 ZAwFA650n9OVHlkeKOLy43t6fSVhM48/MS6iQs1HvlegkCjfyrIW9HJf8dRxthgpQVA==
+	t=1795459465;
+	b=FAg3B6bouq3U+ydWXpOhDHsbouVTsvWSLcnpIQS+GTb763yBw1Ii00tuoam7ckyhkpoW
+	 eOJI+1NNlW7wBbdqEmHYJEYE4Hx4M2F6fX/H0rimIbz5Yw8LCxOkJOyTSBqkdQ0Esd19j
+	 ZecO5Wi/9N6FbzVJmryssT7WAWjvxJ+IU4ISFNrw7fN5Es3wNqnGjsuWlbx1n0aNrMnur
+	 QqfGLA2wqww3Ea03E9tV1Sfb8bLrNLHIzmYURgFRCOWXP/zr5YRL5/kMO914MnFuyYMbz
+	 T4OIzm0E6JlI/ngAVuv1TCe/kroOtHzz3f9y2SCsUR0iQ9mHzUSMwv2H4K0w+kX7cfw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459460;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=hlFje3mu64D8tZjZSmjSeWykRYlygG1YqFQ9P/8ISqY=;
-	b=dsuiIk+W5pPtniUFAsPRckWt+YSCF7TcrDwNxEzNibCZhNoZ8FPhylwSpfxtWG7fqeay
-	 HiCY3wg3q2sdWtWVjUffuU8BTYkIRe+qQdE30ZPCYW995VDeDnLwqb60RCY59Jw7i7v/W
-	 nvhwB/2kuHRGMiC39OD1OO+pr8dIl81N3DcRZn9V+YJwbFAJseDHEO4ecqM+YWIs0+Xe0
-	 o0wEWh9tFa9an10F1F9gqolP1xNHynjg3eO6jm0qOwP4TeYBc0kFvhG5Aa4f4c57uZ54H
-	 pyvXHQ1AaZVnLrJE9VfTfEL2ueGNuV+zsEvlaJQYLrdd25oTO6bHjc3+UCwidJgjDcg==
+	c=relaxed/relaxed; t=1795459465;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=o723m0djv4llTVaMLMWyJBdlGd6TGnVmWvYWsA2QBxE=;
+	b=aMm/l40pQ6j2r2Vqhnx5Um2h4vZ9DKIQcOybm4IlwdQA+R7Agkw29SoXRlMbVW4MOE3y
+	 m7+3+HAPodjFr+ba35Ky1DM57umnki9VQLF6HegGvragPSImfj13bfAn0l6q2uOkmdthW
+	 dYLUdMqbffSfolqOdQ0/P/q7jRh03UprovQBo4xWm8doWrR8t29WOrP+bDZRAUgyPqBJ6
+	 P3N8d4J98/2H0GGwOrl8XLDonpcpbPD35/X5fSuPlPkc+zgp/q3Dmx2rSNQaCqcZd8FDv
+	 yUShuBSdDyo/wfygNLq+7OQU7ci7S35FKQ0v41OXQkPIvJrdZ2ubsyj2NkWG+5xfyaQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 89B1B1F0093C;
+	by smtp.kernel.org (Postfix) with ESMTPS id F05881F000ED;
 	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459460;
-	bh=hlFje3mu64D8tZjZSmjSeWykRYlygG1YqFQ9P/8ISqY=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=fYHv7ajB1a42uH9qbeYYI2RqbeJkjgM06y1KTnOJ7/6+AYulhTpA1qxEAnQtxSpp+
-	 ZqOnCNfG3kf2dhKoNsGH4DF2nPLRfA7vkR3my8Z+yaA9xT5OxZqCd6+5owcYpS1TJO
-	 2xueHUuWQrNeBM/DvHDyaaCfcKC+pqzFhxxK7mpfTF/QsYtNdy5v5xZPcZwmxGE0lI
-	 oFqdKQuYOxEwxY0XHNNVc0VjkhNxBGtW6QHrd2B2Bhfp4Ch1Siiv9dSRzUn3Oqy0sA
-	 bTN4T7U4jOmI0EdeF79xBKE3WC5r7IKpzZ1oA/oQ4gfdGQ9/Omi1cI4b3THfc6/OOX
-	 F62cCFW3jkJ4w==
+	s=k20260515; t=1795459465;
+	bh=o723m0djv4llTVaMLMWyJBdlGd6TGnVmWvYWsA2QBxE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=WjdELp7nmuH604FdNWK/Lf2muE6pEPhUmUCEAn/9lMtnAObRVyLb/jBf58faUGQE6
+	 kbYFpN8MvaX9+w91K6kQlfG51TcW9AanwRzTkPUxWwneVK/Hy4pGcjiWLkvDf6eDtH
+	 vcrrvPyuxL9ycSXQ2tAz5u8WDeDkx9IMZ+aLyMYjQACurvE5MBq8MRIZfSgOjJVoBi
+	 mDwQL8g+QhOn4vwFRd4Uz6bnvymxJRm8jPVzCOxoyLio9GTreVEM09WJJIDugA+F6Y
+	 ePHGWar9FUhIfInmxUAiLGUt++73yV4AnCZvQ5mjj0kSRVF0sOt2FB7v9M1DvjuTcA
+	 hYaVrTyz0PEtA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 190554C5BB;
+	by lkml.kernel.org (Postfix) with ESMTP id 53A454C5F5;
 	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Subject: [PATCH net-next 0/5] net: cortina: Add CS7542 network engine
- support
-Date: Mon, 23 Nov 2026 21:44:09 +0300
-Message-Id: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
+Date: Mon, 23 Nov 2026 21:44:11 +0300
+Subject: [PATCH net-next 2/5] reset: Add Cortina CS7542 network engine
+ domain control
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/z2OTW7DIBCFr2LNulTBgA1e9R5VFjAeEqoatwyJU
- kW5e3Fqdfn0fr53B6aSiGHq7lDomjituQn50gGefT6RSHPT0B/6QcpeiaAF8mh0L6ieqWSqwji
- UZg440kjQil+FYro9R99hC2S6VTj+OXwJH4R129yzhb4vjVv3QvBMAtdlSXXqwuBd9EojaWlHD
- IObFRprvQ4hRlQSqZFt3KYWYvbPw1P3f3f/yj+MaxZXKQ5CO2ssDUpq7d5Oi0+frw0Hx8fjF1X
- dTlkOAQAA
-X-Change-ID: 20261123-b4-cs7542-ethernet-59c15dbc7e7e
+Message-Id: <20261123-b4-cs7542-ethernet-v1-2-fdb5e8c2d508@gmail.com>
+References: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
+In-Reply-To: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -98,16 +93,17 @@ To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
 Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459449; l=4440;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459449; l=5565;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=LeaWLqxAis70C57qJ2TkPR2rGUR35IIvdrZPO5ZWMxo=;
- b=VpNX0QkmzL8UhlH1vyDAY2gb2UkTdTsvcZieISVbZwONR0kkncKFDMB2NxwMFsp2qbe82X3BF
- 2D1gOAJgTwOCeNEqRepguPnzuN9sLOLjbzMohlnT5fZ5KjmQFKQhipy
+ bh=Ad0mfeyBbvzfZar0R5EFFyw87GP4uLfbc0CLfuGkDwY=;
+ b=Y1kLU2a4JK6H4FID7LfLwqIXJMTjXZtgobCgCmdZNXVXcHeu66v8erxtssLMEV41yW1On2LKq
+ lqixskegE8lDwvyNATBw6iPbcMb6q8Dc0iuW5yK27rjhuvNSIg/p89w
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
  auth_id=1085
 X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,94 +115,182 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a CPU datapath for the Cortina Systems CS7542 network engine and
-an exclusive reset provider for its NI/FE/TM/QM/scheduler/XRAM and
-DMA-LSO/SSP domain. The three GMACs use phylink; Almond+ connects two
-of them to the CPU ports of a QCA8337 switch handled by DSA.
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-The driver uses NAPI receive queues and a shared coherent TX ring,
-with scatter-gather TX and multi-buffer RX. Hardware-returned RX
-addresses are checked against tracked mappings and their ownership.
-Indirect initialization waits are bounded and errors prevent activation.
-Unregister/remove drains ports and software work, then confirms the
-complete reset domain before releasing DMA allocations. If reset fails
-after activation, those allocations remain pinned until reboot.
+Expose the NI, FE, TM, scheduler, QM, DMA-LSO/SSP and XRAM resets as one
+exclusive logical domain. Change all owned bits in one masked
+global-regmap update, preserve neighboring resets and require bounded
+hardware readback. Return an error for a partially asserted domain.
 
-The whole DMA-LSO/SSP block is exclusively owned. Another SSP DMA user
-cannot run concurrently; the separately prepared CS7542 NAND driver
-uses PIO. Initial QM support requires a no-map reservation of the upper
-64 MiB of the verified 512 MiB DDR layout. Hardware offload, unverified
-coalescing clock assumptions and power management are not advertised.
-
-This series depends on the CS7542 global clock/pinctrl v1 series:
-https://lore.kernel.org/all/20261123-cs7542-syscon-v1-0-49858e631449@gmail.com/
-Both series are based on Linux v7.4-rc4. Board DTS enablement is
-kept in the integration branch and OpenWrt target, outside these five
-patches. The reset provider and Ethernet driver do not depend on the
-Cortina platform Kconfig symbol or COMPILE_TEST.
-
-Validation on Securifi Almond+:
-- Full independent ARM vmlinux and module builds, =y and =m, with
-  COMPILE_TEST=n and no platform series; DT schemas and examples.
-- Actual helper fault-path tests under ASan/UBSan, including RX ownership,
-  TX mapping rollback, probe failures, table timeouts and reset failures.
-- RAM module lifecycle: 132 checks / 0 failures, ten load/unload cycles,
-  active-port teardown, reset readback and reset-failure DMA retention.
-- External LAN1: 600/600 UDP echoes with byte comparison and 20/20 ICMPv6
-  packets with 1400-byte payloads; no GMAC RX/TX errors.
-- QCA CPU6-to-CPU0: 448/448 nonlinear packets, including RX buffer
-  boundaries and 8192-byte payloads, with TX descriptor-ring wrap.
-- Combined RAM test with PCIe and read-only NAND: all six PCIe devices,
-  protected NAND hashes while the NE reset is held, and Ethernet reload.
-- The original 14 protected flash/configuration hashes remained unchanged
-  after returning to the installed OpenWrt.
-
-Only LAN1 has been externally cable-tested in these runs. No throughput
-or entropy claim follows from these functional checks.
-
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
-Fil Dunsky (5):
-      dt-bindings: reset: Add Cortina CS7542 network engine reset domain
-      reset: Add Cortina CS7542 network engine domain control
-      dt-bindings: net: Add Cortina CS7542 network engine
-      net: cortina: Add CS7542 CPU network datapath
-      MAINTAINERS: Add CS7542 network engine support
+ drivers/reset/Kconfig           |  10 ++++
+ drivers/reset/Makefile          |   2 +
+ drivers/reset/reset-cs7542-ne.c | 114 ++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 126 insertions(+)
 
- .../bindings/net/cortina,cs7542-ethernet.yaml      |  139 ++
- .../bindings/reset/cortina,cs7542-ne-reset.yaml    |   42 +
- .../soc/cortina/cortina,cs7542-syscon.yaml         |    4 +
- MAINTAINERS                                        |    9 +
- drivers/net/ethernet/cortina/Kconfig               |   14 +
- drivers/net/ethernet/cortina/Makefile              |    3 +
- drivers/net/ethernet/cortina/cs752x_fe.c           |  477 ++++++
- drivers/net/ethernet/cortina/cs752x_ne.c           | 1783 ++++++++++++++++++++
- drivers/net/ethernet/cortina/cs752x_ne.h           |   13 +
- drivers/net/ethernet/cortina/cs752x_sch_tm.c       |  679 ++++++++
- drivers/reset/Kconfig                              |   10 +
- drivers/reset/Makefile                             |    2 +
- drivers/reset/reset-cs7542-ne.c                    |  114 ++
- 13 files changed, 3289 insertions(+)
----
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261123-b4-cs7542-ethernet-59c15dbc7e7e
-prerequisite-message-id: 20261123-cs7542-syscon-v1-0-49858e631449@gmail.com
-prerequisite-patch-id: 4b568d742095f1a61312c911d2b6e81c8e754312
-prerequisite-patch-id: a4bba26a3aac57e4e4229a727fdf94677373493a
-prerequisite-patch-id: f8a2ba71717f71ca2bedda986f8b861995cdc586
-prerequisite-patch-id: 7a2275c69dcde437fc8badf2bba06d451943a66f
-prerequisite-patch-id: 25220835f5d2506a01ba652d86f9b9ac3ad5121a
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index eda9c698a..8218d639f 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -15,6 +15,16 @@ menuconfig RESET_CONTROLLER
+ 
+ if RESET_CONTROLLER
+ 
++config RESET_CS7542_NE
++	tristate "Cortina CS7542 network engine reset domain"
++	depends on OF && HAS_IOMEM
++	select MFD_SYSCON
++	help
++	  Control the combined NI/FE/TM/SCH/QM/XRAM and DMA-LSO/SSP domain.
++	  The consumer must exclusively own the entire network and DMA block.
++	  Use this with the network engine driver when no separate SSP DMA
++	  consumer is enabled; the NAND controller may operate through PIO.
++
+ config RESET_A10SR
+ 	tristate "Altera Arria10 System Resource Reset"
+ 	depends on MFD_ALTERA_A10SR || COMPILE_TEST
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index 489fafd6b..c24b8e281 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -55,3 +55,5 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+ obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+ obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
+ obj-$(CONFIG_RESET_ZYNQMP) += reset-zynqmp.o
++
++obj-$(CONFIG_RESET_CS7542_NE) += reset-cs7542-ne.o
+diff --git a/drivers/reset/reset-cs7542-ne.c b/drivers/reset/reset-cs7542-ne.c
+new file mode 100644
+index 000000000..81442c6a9
+--- /dev/null
++++ b/drivers/reset/reset-cs7542-ne.c
+@@ -0,0 +1,114 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* The network engine and DMA-LSO/SSP reset domain has one exclusive owner. */
++#include <linux/bitfield.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/slab.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/reset-controller.h>
++
++#define CS7542_GLOBAL_RESET	0x04
++/* NI, FE, TM, SCH, QM, DMA-LSO/SSP, NI XRAM; never reset SDRAM (bit 4). */
++#define CS7542_NE_RESET_MASK	(GENMASK(3, 0) | BIT(5) | BIT(16) | BIT(17))
++
++struct cs7542_ne_reset {
++	struct reset_controller_dev rcdev;
++	struct regmap *map;
++};
++
++static int cs7542_ne_reset_update(struct reset_controller_dev *rcdev,
++				  unsigned long id, bool asserted)
++{
++	struct cs7542_ne_reset *rst = container_of(rcdev, struct cs7542_ne_reset, rcdev);
++	unsigned int value, target = asserted ? CS7542_NE_RESET_MASK : 0;
++	int ret;
++
++	if (id)
++		return -EINVAL;
++	ret = regmap_update_bits(rst->map, CS7542_GLOBAL_RESET,
++				 CS7542_NE_RESET_MASK, target);
++	if (ret)
++		return ret;
++	return regmap_read_poll_timeout(rst->map, CS7542_GLOBAL_RESET, value,
++				       (value & CS7542_NE_RESET_MASK) == target,
++				       1, 1000);
++}
++
++static int cs7542_ne_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	return cs7542_ne_reset_update(rcdev, id, true);
++}
++
++static int cs7542_ne_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	return cs7542_ne_reset_update(rcdev, id, false);
++}
++
++static int cs7542_ne_reset_status(struct reset_controller_dev *rcdev, unsigned long id)
++{
++	struct cs7542_ne_reset *rst = container_of(rcdev, struct cs7542_ne_reset, rcdev);
++	unsigned int value;
++	int ret;
++
++	if (id)
++		return -EINVAL;
++	ret = regmap_read(rst->map, CS7542_GLOBAL_RESET, &value);
++	if (ret)
++		return ret;
++	value &= CS7542_NE_RESET_MASK;
++	if (value && value != CS7542_NE_RESET_MASK)
++		return -EIO;
++	return !!value;
++}
++
++static int cs7542_ne_reset_xlate(struct reset_controller_dev *rcdev,
++				 const struct of_phandle_args *spec)
++{
++	return spec->args_count ? -EINVAL : 0;
++}
++
++static const struct reset_control_ops cs7542_ne_reset_ops = {
++	.assert = cs7542_ne_reset_assert,
++	.deassert = cs7542_ne_reset_deassert,
++	.status = cs7542_ne_reset_status,
++};
++
++static int cs7542_ne_reset_probe(struct platform_device *pdev)
++{
++	struct cs7542_ne_reset *rst;
++
++	rst = devm_kzalloc_obj(&pdev->dev, *rst);
++	if (!rst)
++		return -ENOMEM;
++	rst->map = syscon_node_to_regmap(pdev->dev.of_node->parent);
++	if (IS_ERR(rst->map))
++		return dev_err_probe(&pdev->dev, PTR_ERR(rst->map), "global syscon\n");
++	rst->rcdev.dev = &pdev->dev;
++	rst->rcdev.owner = THIS_MODULE;
++	rst->rcdev.ops = &cs7542_ne_reset_ops;
++	rst->rcdev.nr_resets = 1;
++	rst->rcdev.of_node = pdev->dev.of_node;
++	rst->rcdev.of_reset_n_cells = 0;
++	rst->rcdev.of_xlate = cs7542_ne_reset_xlate;
++	return devm_reset_controller_register(&pdev->dev, &rst->rcdev);
++}
++
++static const struct of_device_id cs7542_ne_reset_match[] = {
++	{ .compatible = "cortina,cs7542-ne-reset" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, cs7542_ne_reset_match);
++
++static struct platform_driver cs7542_ne_reset_driver = {
++	.probe = cs7542_ne_reset_probe,
++	.driver = {
++		.name = "cs7542-ne-reset",
++		.of_match_table = cs7542_ne_reset_match,
++	},
++};
++module_platform_driver(cs7542_ne_reset_driver);
++
++MODULE_DESCRIPTION("Cortina CS7542 exclusive network engine reset domain");
++MODULE_LICENSE("GPL");
 
-Best regards,
---  
-Fil Dunsky <filipp.dunsky@gmail.com>
+-- 
+2.53.0
 
 
 
