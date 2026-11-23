@@ -2,55 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2B2606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52545606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4NosF8ZJ;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=HaVxhite
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rggH43WO;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=3GE/Ksqf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=H3n6mAsS5DvYsC96ijuqCARg8ELNAIedKoWS8muN3HQ=; b=4NosF8ZJfkftmBHtsWrY6a+nSc
-	kvaezjN+JFHf8EoWtgyG1gMS/tB+cQJ3xv9iC/mrzuCNgZUeq7XJqVQjwIR6JiuDp/0R31XgLVIqU
-	U432D5UEoD+RByN/pffCPnPiIS5qtX8+Bnm7idTeG1hfdqYP5K7ePLhW/DpvHdXUFZ5Bu/JCrEvIs
-	SHV/A+65fAQXLvlbIUEiGg5VK4+BLgkot9QSPOM9FGeVY9Gxas/H+7OJcsoas+DdFii3SB/RgIfYi
-	Vh7B74IDksR2rNVGIY3SzF5Mgc7jAnW8MKSNy9p5lB2wNG5T7Jrbc59qvArt6L8KM+SHVWyZ2rLD2
-	Y7o3kPDA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=MeOL5WQuiPJrRNxkrcCwP2WQz32GfGwFwheiNLPGmRs=; b=rggH43WOx/KSrS
+	QvoItPk0fAhNe9+aqRM0A+KrSZVflVI7qLmaz7NPNTUWlXYprHPAJVehmKwMf8nSn+XVgI46Xq9pL
+	mKtC4NdzFvS5df1BgipBHhetDCDNZj/OeWdKw494pXX4xhkIdDBKrL6qLcAXgf44cv4PoLmMtj5Xl
+	bned21pSW1B7hH9nz8v01avHk8DvpSsaMr04WdajZWkVWKW7kG+kS97m1j4anAnH+iSCDCL1M4zHd
+	iOI988GiEp+Yvg+7p3hDzpprphU61gJwX6DmZQrW+UDi9tKSdfoyIMmbNMmQMMmaZiVsEmX+hZ0Qi
+	0XGI8PR2OtNdZtZVeD0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVajs-00000004rNE-1tV4;
+	id 1xVajs-00000004rNQ-2ZY8;
 	Mon, 23 Nov 2026 20:34:12 +0000
 Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaik-00000004qdm-3WYx
+	id 1xVaik-00000004qdj-2vLr
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 20:33:04 +0000
+	Mon, 23 Nov 2026 20:33:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:To:Subject:From:Reply-To:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=H3n6mAsS5DvYsC96ijuqCARg8ELNAIedKoWS8muN3HQ=; t=1795465982; x=1796675582; 
-	b=HaVxhitepFpouuV1rhK+NQhLoFVAWcktlvCYgghYa4javS18si4VD6irLVpYAcGzbV3mAafM6Iz
-	HEj/BeJo5KcK04h4bizyb4CCWmdvNkkeMCmY0MQ5k4TzrKUMVd1gEbmMKLl7ThLtaz3s+zAmTI0el
-	QE0lZlBkV2KOOYSzqPIh7N4tpXK+Q92/QRNWly37eLkAcx95kh858wktY5kF1qYaaGfUZQRCCiNov
-	3OyFEi616dC4dwWN/VOVVh3608gDvTc1cpFuAvlVuoIZztQDglP46IEOtGmkmpRJbpWWHzPUrvJ5z
-	uNNUHAAss87qt9AN9EVgfLGFK7+Uvvr2KmFw==;
+	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
+	Reply-To:Content-ID:Content-Description;
+	bh=MeOL5WQuiPJrRNxkrcCwP2WQz32GfGwFwheiNLPGmRs=; t=1795465982; x=1796675582; 
+	b=3GE/KsqfC34qbBWNeQisC2s71GUQdYXRT0p/bZD4OEA5KJh2EH2ktClCvuTr9TU3f9BxbEkimcZ
+	/GAFXHA5jpuMGqx3O5og2l2yMl60KQ6hPYn27B6uqOB0fFzdUBfWbeY0HOYz8a4oAcGuaZPGbtwQw
+	B5IWJsHZbHc6koK4hS0RGcyOGqKH28rB2tTJZ0rLeJT7Ejy8E90WsuC0IT2+gXbJ3wE+hup2A7t1f
+	fGK2Tz1x9OqdWmn1J4tAZ7hM1cFbO3rhb/rY0tqZo7mT8M8ajvQZqx0wgD/BrmWnmcp1IcoR7/NOp
+	KNPEaJfPr/IPqyM/hTwsizjityf3Es2Wx+nA==;
 From: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH RFC 0/3] ARM: imx: Add a more agressive idle mode on
- i.MX6SLL
-Date: Mon, 23 Nov 2026 21:31:18 +0100
-Message-Id: <20261123-imx6-idlestop-v1-0-e32f1f44e46f@kemnade.info>
+Date: Mon, 23 Nov 2026 21:31:20 +0100
+Subject: [PATCH 2/3] timer-imx-gpt: Allow 32K clock to be used as a clock
+ source
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJaiBGsC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQyNj3czcCjOgWE5qcUl+gW6SoYmJqUmipWGqmbkSUE9BUWpaZgXYvOh
- YCL+4NCkrNbkEZIhSbS0AaYt1WnEAAAA=
-X-Change-ID: 20261123-imx6-idlestop-b14454a91e67
+Message-Id: <20261123-imx6-idlestop-v1-2-e32f1f44e46f@kemnade.info>
+References: <20261123-imx6-idlestop-v1-0-e32f1f44e46f@kemnade.info>
+In-Reply-To: <20261123-imx6-idlestop-v1-0-e32f1f44e46f@kemnade.info>
 To: Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>, 
  Sascha Hauer <s.hauer@pengutronix.de>, 
  Pengutronix Kernel Team <kernel@pengutronix.de>, 
@@ -63,25 +60,25 @@ Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  linux@yoavmoshe.com, Andreas Kemnade <andreas@kemnade.info>
 X-Mailer: b4 0.17-dev-e5168
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2710; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=Hxj0SZ3rC+SPvFigy5m6+QiE4mX53fcOuVFZ5Bi27dY=;
- b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBrBKKmZbyCj/we5x+baOU/ADXBrxjmg0W4muH6x
- QEQOnJoAb+JAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCawSipgAKCRCEYUX6QCjc
- 8WrsD/97uMR+tAVbPbcosjxxdibZzavWR3FLDAHpesQUukjgItYmQ/reMgRGvcD7NmA1/K3ovto
- 82iQEefJnzz/LZdsOWBTfAQczC3Zabne1Str3ZFOXKwTQC8oLVLsnpSeqFh0zM75jDggNui4i4S
- NQQGOUjUYQT4KMeIZY5UYv5Cw7Fnauo9GAy5fmSZtJlCUNKS7cujlTYmwJabY41CtwI4I+vZgtZ
- R14zuNKX1Vn9KTYAzGBIcP6xGoRtOYJwTkC3ewULcLJIhRxMxA5V+HpJGaSiu2BiGLmlfwXNoSN
- zrXze/Ke2VydtJ8SskPhAoaDSqdYKXauzwaL2TX3aQdyHnrXGooriSMmydcGhy0g5rkrIw1UWJC
- ffbd0dba++JZQ1fidQrvw69PENWoGEg2oxbr6HTf7Llh1wKiUHCj0zI551gbQHL6DCPVA8Cs8Np
- Wf9V+uyFUDsLmZ+8S9fXlzCw6Xn14HgD7RpR7pP+u6xk8S1wUSU6AdydmGssVdYaIq+hGDyqr4z
- 4suAH2XsgJlRB+ywfuQDCTnPIh5fcAZw0viEB5Jev3aJW+7C/IBkSlC4gBhdZ282ZIoASPRvSfH
- boY98KXQi2C89iq3RIA8MM5ObaCt7h5AupdBH0k/BdfBOqN7/9d7aj6VTdgSqSWAuFXgtiYiMvW
- bFPk5EimRzpa77Q==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1764; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=OMgusFlYnyHNaF3mFmXvpoVMfUD10qiEbL98nAnPX60=;
+ b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBrBKKx0JnQSzWfDoJjNNYZbebVRLqsRoHC87Iu/
+ wxiPP28pJyJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCawSisQAKCRCEYUX6QCjc
+ 8V+MD/4tj/iELyGTEIUG5cntzZaNXrbq8ktvputcge1aQ5MfnhJxBlMc+3KmmaWjVqBP2VauODu
+ 8uKlX2wy0kytjdUeL7WmO6cZUVVF7fsGsHBb4cfEdcf8u5V/WFUvN936f88rVBlWRy7Z+WlgHuX
+ JOtlXQpe6/qEt3994+vdGQhyjCO/XpPm7EIfB5PA87gA4t5hWUGdJWW1I8kBuAcrafriGH9PkV1
+ vz6pPDjHmhwqAxDNY5fOoxL3+6eG7BNwd9aHhRHXVfOq/NLxjE+iysd56KG+ctfyRrNQdGrTOJ+
+ PSeDinod5Tu/icJBA6opBY+L95V8cCed5iPL7x79vPdI/jku/1GRRb/p3136u9eM0ZwZVu3PJt6
+ m7eNLb8fKs0n+Uwj/ebH9IusKaqZndywD7dlyXxgtoUQ7b/cP640Pc2nSE+JxNSDrhFpQrjL/X8
+ DZ2aZpQ0QQDVv/BeizU9GD8aSegNcqqYXVA+tC4MeZdVKCJdQEFUMM5eIIuDyDtW9eR6k69XjyD
+ JPnW1BjNvH/uUiNZhYczZr/1V43zi7zVzMeCQg0qgaBNhC1Vyyx/bxvJ89kLdPowhQh7O9zE5pQ
+ Rtp+zf/s23N2boQLuCtgCaFeQL8dCFxNfsMX7Wmayf5mZUckpSvx/r18L04NueLBnplvfZfI/yI
+ ZDVrCauXF9X/WFQ==
 X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
  fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_123302_905201_B0231999 
-X-CRM114-Status: GOOD (  17.59  )
+X-CRM114-CacheID: sfid-20261123_123302_932242_D1B575C5 
+X-CRM114-Status: GOOD (  12.87  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,63 +98,54 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Ebook readers there are often situations in which the system waits
-only for some GPIO IRQs and no module is active, all the clock system
-is using most of the power, not every clock gets disabled via RPM,
-esp. those are marked as CLK_IS_CRITICAL.
-A usual he situation might be mainly wating for touchscreen input.
-Since nothing needs to be sent to the display continously, clocks
-are not in use. Maybe some frontlight is consuming power, but if it
-is not used in maximum brightness mode, the clock system is still
-using a significant portion of power.
-
-In contrast to suspend state, that is not forcefully turning things of
-and wake up only on selected important things when the device is not used.
-E.g. you might still want to have frontlight enabled.
-Vendor kernel work around this by adding an extended suspend mode in
-which more things are disabled, e.g. the touchscreen.
-
-So rather add another idle state, which is only conditionally used
-depending on clock usage.
-
-System timekeeping is currently using a high speed clock, which is a
-major blocker for this idle state.
-The imx-thermal driver currently needs to be disabled, maybe some
-cpuidle notifier block called by cpu_cluster_pm_enter() is the solution.
-PXP driver is missing power management, so it should be disabled, too.
-Also serial console needs to be disabled.
-
-Use 32K clock for the timer and the clock source to avoid that
-dependency and allow the timer to be used in stop mode if that low
-power clock source is used.
-
-With these patches are applied (and the not-yet-upstreamed EPDC driver)
-I can run a loop displaying the current consumption in every 20 seconds
-for about one week. Power saving is around 70% in such
-situations.
-
-Probably patch 1 needs a more clean solution, Patch 2 should be good to
-go, after that patch 3 can go in, too.
+To avoid depending on PLL infrastructure for timekeeping, prepare for
+using the 32K clock by configuring the clock source accordingly.
 
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
-Andreas Kemnade (3):
-      [RFC] ARM: imx: enable STOP-ON mode in idle if wakeup requirements permit
-      timer-imx-gpt: Allow 32K clock to be used as a clock source
-      ARM: dts: imx: kobo-clarahd: Use 32K clock for the timer
+ drivers/clocksource/timer-imx-gpt.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
- arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts |  5 +++
- arch/arm/mach-imx/common.h                         |  1 +
- arch/arm/mach-imx/cpuidle-imx6sx.c                 | 42 +++++++++++++++++++++-
- arch/arm/mach-imx/pm-imx6.c                        | 23 ++++++++++++
- drivers/clocksource/timer-imx-gpt.c                | 13 +++++--
- 5 files changed, 80 insertions(+), 4 deletions(-)
----
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261123-imx6-idlestop-b14454a91e67
+diff --git a/drivers/clocksource/timer-imx-gpt.c b/drivers/clocksource/timer-imx-gpt.c
+index 8335bd7f8c6ce..3c023da565564 100644
+--- a/drivers/clocksource/timer-imx-gpt.c
++++ b/drivers/clocksource/timer-imx-gpt.c
+@@ -50,8 +50,10 @@ enum imx_gpt_type {
+ 
+ /* MX31, MX35, MX25, MX5, MX6 */
+ #define V2_TCTL_WAITEN		(1 << 3) /* Wait enable mode */
++#define V2_TCTL_STOPEN		(1 << 5) /* Stop enable mode */
+ #define V2_TCTL_CLK_IPG		(1 << 6)
+ #define V2_TCTL_CLK_PER		(2 << 6)
++#define V2_TCTL_CLK_32K		(4 << 6)
+ #define V2_TCTL_CLK_OSC_DIV8	(5 << 6)
+ #define V2_TCTL_FRR		(1 << 9)
+ #define V2_TCTL_24MEN		(1 << 10)
+@@ -314,14 +316,19 @@ static void imx6dl_gpt_setup_tctl(struct imx_timer *imxtm)
+ 	u32 tctl_val;
+ 
+ 	tctl_val = V2_TCTL_FRR | V2_TCTL_WAITEN | MXC_TCTL_TEN;
+-	if (clk_get_rate(imxtm->clk_per) == V2_TIMER_RATE_OSC_DIV8) {
++	if (clk_get_rate(imxtm->clk_per) == V2_TIMER_RATE_OSC_DIV8)  {
+ 		tctl_val |= V2_TCTL_CLK_OSC_DIV8;
+ 		/* 24 / 8 = 3 MHz */
+ 		writel_relaxed(7 << V2_TPRER_PRE24M, imxtm->base + MXC_TPRER);
+ 		tctl_val |= V2_TCTL_24MEN;
+-	} else {
++	} else if (clk_get_rate(imxtm->clk_per) == 32768)
++		/*
++		 * if powered by that always on clock, it is feasible to let
++		 * it run in stop mode, too, allowing lower idle states
++		 */
++		tctl_val |= V2_TCTL_CLK_32K | V2_TCTL_STOPEN;
++	else
+ 		tctl_val |= V2_TCTL_CLK_PER;
+-	}
+ 
+ 	writel_relaxed(tctl_val, imxtm->base + MXC_TCTL);
+ }
 
-Best regards,
---  
-Andreas Kemnade <andreas@kemnade.info>
+-- 
+2.47.3
 
 
