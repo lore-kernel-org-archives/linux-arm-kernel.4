@@ -2,103 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 124CE606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E656E606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 08:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MEwwCYrG;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=IzSnD1GS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UCfDCIZC;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=F2Fa3Pg4;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=kfuuIUW2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=f9MB3bWT0jyY4n2Kpgos+T2A2jxKzbR0OabGMZP+mY0=; b=MEwwCYrGPWHfESvltPPZEUrw69
-	kGdDs4yKAatjfesDMwwo79qNoq/gs3i7NjW6JStRNV0DWN+cmPkfh0+ml79zqyR6z6Qnoy5hJvmVs
-	zUP/z4XSWmGCxkykZkwMuQdrhtp/T+GVD4REC8G0yZ2+pzFnssnYfS5fO3ygEJIvMs0haPfBeRAZU
-	e/VM3ITBRfbKOC3/lL4GUOM9+qon6RxuK8i/8+ce2qDncXGLmIcU1HjhqbTuhFoXRSXq3YPzoUvWC
-	OepqKIjmcIlO2oJtvVvEPXxiZgUssJ4QWVcro+9NJ0l3ayS/XB/DxolI1T2oRKc8K8m6U6WXDum2p
-	BikgWTCQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
+	From:CC:Subject:Message-ID:Date:Content-Type:Content-Transfer-Encoding:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=BmnMKZZmIQB55ncMr0DcY94/GMqbQqtJc77bZJchLLU=; b=UCfDCIZCijNMb1
+	fACsC4sgMXOazFpSfpsuiF4C7xNySHZrewTmOSG5pMxfjkCalo1DNEbcO2kwriGyQXiELSr4VNucm
+	HmbLVwjSp6g9T/54KkYZ+dNukIzs2SndqVl8AqA5kGZ0me6hE/gEuAERMoEgAEvSrXJPyqSvPS40V
+	BsBZaxxiokyhXPSdAcYz+ukN+qOMvrjKVb5v2uk2uJSgTNVyzSmEvLmd1/jhhZT8iE5jUuoUIhdgH
+	QJr/JxrZYh2sbPvPVmoA/XXxnzKIEUf52oRcrqSXi6VUXFPfynAxAGV+pBpnZ04UYWSFguXHxBh/p
+	6PEeto3QW4EnMrPHIWRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPqc-00000002cMv-45Jj;
-	Mon, 23 Nov 2026 08:56:26 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xVPra-00000002cXI-2vig;
+	Mon, 23 Nov 2026 08:57:26 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPpy-00000002cFW-221U
+	id 1xVPqb-00000002cKG-24v8
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 23 Nov 2026 08:56:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:References:To:From:CC:
+	Subject:Message-ID:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=BmnMKZZmIQB55ncMr0DcY94/GMqbQqtJc77bZJchLLU=; b=F2Fa3Pg4F088f54SG7TOmlopwb
+	knGQEBmKvyDR8HhpQ7rFLvsiBSmHSvbGt1yEUDlVtGPUOKjtxWqgkERQtyarT8VTc4yIgrqjBuEqp
+	/THC4kBLkOeviTk4DiTvJRNMhxLogmWc5EzKeFSYRU9Z64LPIs3OwqYIjVWGMENm2QSl502Oz8xHC
+	qSrkFMnMjgl2VXJBqvZwTm1FU/Pxw++kIojcJPblXN7WsNEuOr3J6BZh3zDlN4z603zjY7dSk6wYW
+	cCgQceuuWv5X8o6glLG4unol3RjYp9f4Y0e6PWx8g0C+x0PKHID2cvY+kZyZ1T32cOxQxJQinLURX
+	7JkZi8/A==;
+Received: from esa.microchip.iphmx.com ([68.232.153.233])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVPqX-00000002sxP-24kj
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 08:55:49 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-49d05d51553so20909045e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 00:55:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795424144; x=1796028944; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=f9MB3bWT0jyY4n2Kpgos+T2A2jxKzbR0OabGMZP+mY0=;
-        b=IzSnD1GSNzyw59hS9guQfEUrc2c7w8qLIvpHcQrBZjfDAp+3CN2RNr7VzteIDUua4K
-         MlLYOMxcymM4MxfUdVdmUzYCDXUSuL/YWDk8Nr8xMDSkbLJsOrAjdv/DCicRIIPC+DTX
-         kkeoR29iFSgwP177L8sxbvIBQJ55BkL3XxWwx8MoPN7uwzE6EYm6yUOFPZDihsBLASom
-         Mr1zzjJOeTvg3C0/Oe6cveLHv1Af53acU8yFQjMfcZN/eMcugif0rKrz3zSi22238F0N
-         F5I7fqcH3eEfT73lLZFBCuhSLSTS4HnEP3YaobCJp79Jf0F1NHqpjO4a7gsc8eKfmUbV
-         1dHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795424144; x=1796028944;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=f9MB3bWT0jyY4n2Kpgos+T2A2jxKzbR0OabGMZP+mY0=;
-        b=r9pyR5oNrNyeE9N2LlM6g+WsWGtdRRFGlCg3NVKPa6t/iMe1ggB7NQ8mWzA69uuWrK
-         MoUM2wWgVaSkBJsrim1/8PpdX+7rAnBzNaPvjrGJLh75x+CNN9UcTi7xMKlRVcLnTDHe
-         VF3XIFh1YPlEA1RyLqgIJvvO4es2E195m69Y2kGOWU7a+SCdQT1SJ6HIZZy3X8cZA+1K
-         84knVQwxSl+Z1RkTz+1T9T9Gh6OYgB9WxS1/APE2p42kXlzkNPrMCnqQftFupG+qaGRE
-         ztTu9XDrJt+j1IoFm5hU8cHnCANVv9EqFf25GymppdRYdfvK722FJs/bbF4GT0zfsioC
-         49tg==
-X-Forwarded-Encrypted: i=1; AL+hErFtqAx6tLdO0I1q+LWXgFmCVOWPY0nilDTApNSoFN2Bz2lYsQ5PDfaSmqM8FzPBVdP6KMZ/6zMp1D5JgmqIwiSX@lists.infradead.org
-X-Gm-Message-State: APuU4Z8M5f3BKMVIpsLhMf5ESJmyTzTAE7qh5JkJQ4OTWKgOuB4iYunH
-	O3xtHaL0DPyMiKzHxzjm3z0rTo2cFgmUJOtn/HoFkT2G6iBWBYkS3Sxo0a2psaCETTg=
-X-Gm-Gg: AZFdTZdvWeGq9NIltDjlcPMhlxL63xwJWgG3gJHdvVQqnbF7QpSBAJidzCYmDhSJiWY
-	MPLkZV6/qxhknSa8gpoux5kXbkyjI0791jq47gMSQbrG3q+vEIntyBQzaznss3yn51ClnusEBno
-	HE0++WNgiBvB11FQhQvTUi0wxsoJ1OOnaUozdYd7HhkTZXDdCY9YdTlgBp0ZUxehw8T7vekR9CE
-	HHu4h0kCyGVLx2j1NLXTsdydaP24m2UJN5nsNZm4ZNPPBnF1Wwou2EByMkyQvry+/DmMbmDGoL+
-	lZpQ74WxplEw/NP4Ncn7hgFtmx4P4nf041p6WDqACumMUyY+vlbHzgZ/d3cOODgez1pieAIp6mF
-	gs97TxCQ44R4HvkrwqAza9MpnOAew9IB/eUo7Sup/4RERCpg+Ysavw7NTuhbjanF7BJ9ugBd7fm
-	p7wg0rI6ZqqkJfHkBJEVe5vCPkL+0BhUuo1RUVL5d7h+S6uUwMmtkdxIlj7q/TgZHZBOBEmoPCk
-	0LT+e+V+PNVqTT/F/fbo4ZOk9KLByXy0xTy1WRdSuDhGUKzDwzgX/Z8lFpKo6fghoDCwHn97/jn
-	qBLqorwwg1S5AH9q2O+GCDh5tRdzvIY7tMDc5HmYSHM/Q0bCXjwotUfvWFz2kthTIQTWt0KlQBZ
-	io+kqyk1qV5OlJBKh
-X-Received: by 2002:a05:600c:4f84:b0:4bb:5f3b:25a9 with SMTP id 5b1f17b1804b1-4bb88820f39mr208644975e9.30.1795424143773;
-        Mon, 23 Nov 2026 00:55:43 -0800 (PST)
-Received: from localhost (p200300f65f19a90438645cebc2ee104e.dip0.t-ipconnect.de. [2003:f6:5f19:a904:3864:5ceb:c2ee:104e])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4ab6bc8ce06sm20503412f8f.47.2026.11.23.00.55.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 00:55:43 -0800 (PST)
-Date: Mon, 23 Nov 2026 09:55:41 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	kernel@pengutronix.de, Bjorn Helgaas <bhelgaas@google.com>, 
-	Danilo Krummrich <dakr@kernel.org>, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
-	Kees Cook <kees@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, LKML <linux-kernel@vger.kernel.org>, 
-	kernel-janitors@vger.kernel.org, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Christophe Jaillet <christophe.jaillet@wanadoo.fr>, Florian Fainelli <f.fainelli@gmail.com>, 
-	Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH] w1: mxc_w1: Use devm_clk_get_enabled() in mxc_w1_probe()
-Message-ID: <awP9_l7UNqElhewY@monoceros>
-References: <4b99426a-d831-4d55-9b3c-ce83ba9fb081@web.de>
+	Mon, 23 Nov 2026 08:56:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795424179; x=1826960179;
+  h=mime-version:content-transfer-encoding:date:message-id:
+   subject:cc:from:to:references:in-reply-to;
+  bh=nOvYNUGI3PD3pe/j1wWkp8TO50U2foUVygE/9kp6vYs=;
+  b=kfuuIUW25obmUOOczwQD7YwmTsrxgbUks+OL/PeP6D0dXtXh7CINCENZ
+   KEjJhHnxLVmwr3o8c90pVSdcrTN0BQWoJabNrCLphYuRUaiS4pywnXq3A
+   Nk/fJOpjIY2ZhL0gENoGmZfQnoONIZQLl4qCjQLk9GMYE4xqajqqRQvjI
+   FrqaD1wCahCA2QmQkM0XuZhpLgrzv/vECL8X56oaa/GYDWreHGZe6k8Tv
+   hpPybRbTXLu27JfkrHdSxv3AxxrvpcmNfL7kHgyQFxNNyrKTQN9ps/TjH
+   0TcQRE+VRi6Z/CIHhrNx+PVeJ35UFahP6R+gS+MI4iFICoeQjBogxCqn2
+   g==;
+X-CSE-ConnectionGUID: OpVKFLk0RW2QtAvrvDKj8w==
+X-CSE-MsgGUID: jO3L0NokTZuWN/acjPMVtQ==
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="77690234"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Nov 2026 01:56:12 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Mon, 23 Nov 2026 01:56:13 -0700
+Received: from localhost (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Mon, 23 Nov 2026 01:56:12 -0700
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fwfemldnzzy4vyl7"
-Content-Disposition: inline
-In-Reply-To: <4b99426a-d831-4d55-9b3c-ce83ba9fb081@web.de>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 23 Nov 2026 09:56:11 +0100
+Message-ID: <DN2GR1X3SMRL.3RJ6A1DJMG1H6@microchip.com>
+Subject: Re: [PATCH net-next v3 3/3] net: sparx5: keep router legs in sync
+ with the bridge
+CC: <horatiu.vultur@microchip.com>, <UNGLinuxDriver@microchip.com>,
+	<andrew+netdev@lunn.ch>, <davem@davemloft.net>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <daniel.machon@microchip.com>,
+	<Steen.Hegelund@microchip.com>, <kees@kernel.org>, <gustavoars@kernel.org>,
+	<robert.marko@sartura.hr>, <edumazet@kernel.org>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-hardening@vger.kernel.org>
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+To: <netdev-bot+sashiko@kernel.org>, <jensemil.schulzostergaard@microchip.com>
+X-Mailer: aerc 0.21.0
+References: <20261117-sparx5_l3_routing-v3-3-e680ed79c7dc@microchip.com>
+ <179515919073.3136.18115865975545072840@kernel.org>
+In-Reply-To: <179515919073.3136.18115865975545072840@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_005547_086539_04E958DD 
-X-CRM114-Status: GOOD (  26.15  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_085621_910244_9FB6E107 
+X-CRM114-Status: GOOD (  51.23  )
+X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,133 +108,260 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Fri Nov 20, 2026 at 8:19 AM CET, netdev-bot+sashiko wrote:
+> Thank you for your contribution! Sashiko AI review found 4 potential
+> issue(s) to consider.
+>
+> Critical: 0 =C2=B7 High: 1 (1) =C2=B7 Medium: 1 =C2=B7 Low: 2
+>
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwor=
+k
+> know by including "pw-bot: cr" as a separate line at the end of your repl=
+y
+> (one such reply per series is enough).
+>
+> - [High] sparx5_rr_legs_reconcile() now walks
+>   netdev_for_each_upper_dev_rcu(sparx5->hw_bridge_dev, ...) from the=E2=
+=80=A6
+> - [Medium] Contrary to the commit message, a router leg can be lost while
+>   its upper is down.
+> - [Low] In sparx5_rr_router_init() the new comment says "The exported
+>   helpers use leg_list once sparx5->router is set".
+> - [Low] The function comment above sparx5_rr_bridge_legs_flush() still
+>   reads "Tear down the router legs of a bridge that is no longer=E2=80=A6
+>
+> Pre-existing issues:
+> - [High] This problem wasn't introduced by this patch, but this patch
+>   extends the affected code.
+>
+> --
+>
+> net: sparx5: keep router legs in sync with the bridge
+>
+> This commit makes the sparx5 L3 router legs follow later changes to the
+> bridge and the vlan upper. A leg is destroyed when vlan filtering is
+> disabled, when the bridge moves to a non-802.1Q protocol, when the upper
+> is linked to a master, or when the upper's MAC changes. Ingress routing
+> on a leg is limited to when the upper is up and the bridge carries the
+> vid tagged, and the reconcile now also creates legs for eligible uppers
+> of the offloaded bridge.
+>
+>> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_router.c b/dri=
+vers/net/ethernet/microchip/sparx5/sparx5_router.c
+>> index 26aeee17733cd..7412db7a6e7b4 100644
+>> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
+>> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_router.c
+>
+> [ ... ]
+>
+>> @@ -568,19 +650,66 @@ static void sparx5_rr_router_legs_flush(struct spa=
+rx5 *sparx5)
+>
+> [ ... ]
+>
+>> +void sparx5_rr_legs_reconcile(struct sparx5 *sparx5)
+>>  {
+>>  	struct sparx5_rr_router_leg *leg, *tmp;
+>> +	struct net_device *bridge, *dev;
+>>  	struct sparx5_router *router;
+>> +	struct list_head *iter;
+>> =20
+>>  	ASSERT_RTNL();
+>> =20
+>>  	router =3D sparx5->router;
+>> +	if (!router)
+>> +		return;
+>> =20
+>>  	mutex_lock(&router->lock);
+>>  	list_for_each_entry_safe(leg, tmp, &router->leg_list, leg_list_node) {
+>> -		if (sparx5_rr_dev_addr_list_empty(leg->dev))
+>> +		if (sparx5_rr_dev_addr_list_empty(leg->dev) ||
+>> +		    !sparx5_rr_dev_real_is_vlan_aware(sparx5, leg->dev)) {
+>>  			sparx5_rr_router_leg_destroy(leg);
+>> +			continue;
+>> +		}
+>
+> [Severity: Medium]
+> The commit message says:
+>
+>   "A leg with an IPv4 address is kept while the upper is down, so it is
+>   available again when the interface comes back up."
+>
+> Does this still hold if the bridge MAC changes while a NET_ADDR_STOLEN vl=
+an
+> upper is down?
+>
+> When the bridge sends NETDEV_CHANGEADDR, vlan_device_event() in
+> net/8021q/vlan.c skips uppers that are not IFF_UP. A down upper therefore
+> keeps the old MAC, and sparx5_rr_dev_real_is_vlan_aware() then fails here=
+:
+>
+> 	if (dev->addr_assign_type !=3D NET_ADDR_STOLEN ||
+> 	    !ether_addr_equal(dev->dev_addr, vlan_rdev->dev_addr))
+> 		return false;
+>
+> On the next reconcile, the new check above destroys the down upper's IPv4
+> leg and frees its VMID.
+>
+> Unrelated events can queue that reconcile: an inet6addr UP/DOWN on any vl=
+an
+> device, a bridge vlan add or del, or the VLAN_FILTERING attr that is sent
+> when a sparx5 port joins. For example, a port with a lower MAC joins the
+> bridge. That queues the reconcile, and br_stp_recalculate_bridge_id()
+> changes the bridge MAC before the reconcile runs.
+>
+> Suppose the bridge MAC then changes back before the upper comes up, for
+> example because the port leaves again or after ip link set br0 address
+> <old>. What recreates the leg then? The bridge NETDEV_CHANGEADDR in
+> sparx5_rr_netdevice_event() does not queue a reconcile, because
+> is_vlan_dev(bridge) is false:
+>
+> 	case NETDEV_CHANGEADDR:
+> 		mutex_lock(&router->lock);
+> 		if (sparx5_rr_bridge_has_legs(sparx5, dev))
+> 			sparx5_rr_leg_base_mac_set(sparx5, dev->dev_addr);
+> 		mutex_unlock(&router->lock);
+> 		if (is_vlan_dev(dev))
+> 			sparx5_rr_legs_reconcile_schedule(sparx5);
+>
+> When the upper is later brought up, the MACs already match, so no
+> CHANGEADDR is sent. The NETDEV_UP case only refreshes an existing leg. Th=
+e
+> IPv4 address already exists, so the validator does not run either. With
+> IPv6 disabled on the upper (disable_ipv6, or addr_gen_mode none), no
+> link-local NETDEV_UP arrives.
+>
+> Wouldn't the upper then stay without a leg until something unrelated
+> triggers a reconcile?
+>
+> Now take the case where the upper comes up while the bridge still has the
+> new MAC. vlan_dev_open()->vlan_dev_inherit_address() does queue a reconci=
+le.
+> But if another upper has taken the freed VMID in the meantime, creating t=
+he
+> leg fails, and only a ratelimited warning is printed.
+>
 
---fwfemldnzzy4vyl7
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] w1: mxc_w1: Use devm_clk_get_enabled() in mxc_w1_probe()
-MIME-Version: 1.0
+This is right. A NET_ADDR_STOLEN upper which is down keeps the old MAC
+when the bridge MAC changes, so a reconcile in that window destroys its
+leg. If the MAC is back to the old value when the upper comes up it
+is not requeued. v4 queues the reconcile on NETDEV_UP of a vlan upper of
+the offloaded bridge that has no leg.
 
-Hello,
+>> +
+>> +		bridge =3D vlan_dev_real_dev(leg->dev);
+>> +		leg->vlan_present =3D sparx5_rr_bridge_vlan_present(bridge,
+>> +								  leg->vid);
+>> +		sparx5_rr_leg_hw_uc_update(sparx5, leg);
+>> +	}
+>> +
+>> +	bridge =3D sparx5->hw_bridge_dev;
+>> +	if (!bitmap_empty(sparx5->bridge_mask, SPX5_PORTS) && bridge) {
+>> +		netdev_for_each_upper_dev_rcu(bridge, dev, iter) {
+>
+> [Severity: High]
+> Can this walk a bridge that has already been freed during driver removal?
+>
+> The driver holds no reference on hw_bridge_dev. Only
+> sparx5_port_bridge_leave() clears hw_bridge_dev and bridge_mask, and it r=
+uns
+> from the main sparx5 netdevice notifier on NETDEV_CHANGEUPPER. Before thi=
+s
+> patch, the reconcile walked only leg_list, whose entries hold netdev
+> references.
+>
+> mchp_sparx5_remove() unregisters that notifier before the router notifier=
+s:
+>
+> 	sparx5_unregister_notifier_blocks(sparx5);
+> 	sparx5_rr_router_deinit(sparx5);
+>
+> Suppose ip link del br0 runs in that window. del_nbp() unlinks the ports,
+> but hw_bridge_dev and bridge_mask stay set. The router notifiers are stil=
+l
+> registered, so addrconf_ifdown() on the bridge's vlan uppers can, for
+> example, send inet6addr NETDEV_DOWN, and sparx5_rr_inet6addr_event() queu=
+es
+> legs_work. After rtnl_unlock(), netdev_run_todo() frees the bridge.
+>
+> legs_work can then run, including during the drain in
+> sparx5_rr_router_deinit(), while sparx5->router is still set:
+>
+> 	destroy_workqueue(router->sparx5_router_owq);
+> 	sparx5_rr_router_legs_flush(sparx5);
+> 	sparx5_rr_router_hw_deinit(sparx5);
+> 	sparx5->router =3D NULL;
+>
+> The bridge_mask/hw_bridge_dev check passes on this stale state, and
+> netdev_for_each_upper_dev_rcu() reads the adj_list of the freed bridge.
+> Could a garbage dev then reach __sparx5_rr_inetaddr_event(), which may ca=
+ll
+> netdev_hold() on it and program hardware?
+>
 
-On Sun, Nov 22, 2026 at 06:03:00PM +0100, Markus Elfring wrote:
-> From: Markus Elfring <elfring@users.sourceforge.net>
-> Date: Sun, 22 Nov 2026 17:52:20 +0100
->=20
-> * Reuse existing functionality from devm_clk_get_enabled() instead of
->   keeping duplicate source code.
->=20
-> * Omit a clk_disable_unprepare() call on an error handling path
->   and in the implementation of the function =E2=80=9Cmxc_w1_remove=E2=80=
-=9D.
->=20
-> * Delete the label =E2=80=9Cout_disable_clk=E2=80=9D.
->=20
-> This issue was detected by using the Coccinelle software.
->=20
-> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+I think this is correct, but it needs a bridge del racing with driver
+removal. mchp_sparx5_remove() unregisters the notifiers that maintain
+hw_bridge_dev and bridge_mask before the router stops, so router work
+can run on stale bridge state. The next version tears the router down
+before the notifier blocks: its notifiers are unregistered and the work
+disabled first, and sparx5->router is cleared under RTNL.
 
-Not a big issue, but for me the commit log is too detailed, most of the
-things mentioned here are trivially visible from the patch. So I'd just
-write:
+>> @@ -683,6 +705,7 @@ static int sparx5_handle_port_vlan_del(struct net_de=
+vice *dev,
+>>  				     switchdev_blocking_nb);
+>> =20
+>>  		sparx5_mact_forget(sparx5, dev->broadcast, vid);
+>> +		sparx5_rr_bridge_vlan_clear(sparx5, dev, vid);
+>>  		return 0;
+>>  	}
+>
+> [Severity: High]
+> This is a pre-existing issue that this patch did not introduce, but the
+> patch extends the affected branches. The bridge-master paths of
+> sparx5_handle_port_vlan_add() and sparx5_handle_port_vlan_del() never che=
+ck
+> dev =3D=3D sparx5->hw_bridge_dev, or the netns. The switchdev blocking no=
+tifier
+> chain is global.
+>
+> Can a software-only bridge in another namespace remove the broadcast entr=
+y
+> here? The bridge sends master VLAN add/del notifications for every bridge=
+.
+> A user with CAP_NET_ADMIN only in its own user namespace can run:
+>
+>   ip link add br0 type bridge
+>   bridge vlan add vid X dev br0 self
+>   bridge vlan del vid X dev br0 self
+>
+> sparx5_mact_forget() then deletes the chip-wide (ff:ff:ff:ff:ff:ff, X)
+> entry that points at PGID_BCAST. PGID_BCAST is the only flood group that
+> sparx5_start() sets up with CPU copy enabled. After that, broadcasts on v=
+id
+> X of the offloaded bridge no longer reach the CPU, so ARP fails for host
+> interfaces and for the router legs on that vid.
+>
+> The new sparx5_rr_bridge_vlan_clear() and
+> sparx5_rr_legs_reconcile_schedule() calls are added to the same unfiltere=
+d
+> branches. Would an early check like this be appropriate?
+>
+> 	if (dev !=3D sparx5->hw_bridge_dev)
+> 		return 0;
 
-	w1: mxc_w1: Simplify probe routine using devm_clk_get_enabled()
+Preexisting, but correct, the bridge master vlan add and del paths act
+on any bridge. The calls this patch adds there only touch legs of the
+bridge passed in, and the reconcile is idempotent, so it does not add to
+this. I do not think this should be fixed in this series.
 
-	devm_clk_get_enabled() combines the functionality of
-	devm_clk_get() and clk_prepare_enable() with an automatic
-	cleanup callback registered to disable the clock in the error
-	paths and at unbind time.
-
-	Simplify accordingly.
-
-> ---
->  drivers/w1/masters/mxc_w1.c | 20 ++++----------------
->  1 file changed, 4 insertions(+), 16 deletions(-)
->=20
-> diff --git a/drivers/w1/masters/mxc_w1.c b/drivers/w1/masters/mxc_w1.c
-> index 06be7bf0b715..f40ea120127c 100644
-> --- a/drivers/w1/masters/mxc_w1.c
-> +++ b/drivers/w1/masters/mxc_w1.c
-> @@ -98,14 +98,10 @@ static int mxc_w1_probe(struct platform_device *pdev)
->  	if (!mdev)
->  		return -ENOMEM;
-> =20
-> -	mdev->clk =3D devm_clk_get(&pdev->dev, NULL);
-> +	mdev->clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
->  	if (IS_ERR(mdev->clk))
->  		return PTR_ERR(mdev->clk);
-> =20
-> -	err =3D clk_prepare_enable(mdev->clk);
-> -	if (err)
-> -		return err;
-> -
->  	clkrate =3D clk_get_rate(mdev->clk);
->  	if (clkrate < 10000000)
->  		dev_warn(&pdev->dev,
-> @@ -118,10 +114,8 @@ static int mxc_w1_probe(struct platform_device *pdev)
->  			 "Incorrect time base frequency %lu Hz\n", clkrate);
-> =20
->  	mdev->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(mdev->regs)) {
-> -		err =3D PTR_ERR(mdev->regs);
-> -		goto out_disable_clk;
-> -	}
-> +	if (IS_ERR(mdev->regs))
-> +		return PTR_ERR(mdev->regs);
-> =20
->  	/* Software reset 1-Wire module */
->  	writeb(MXC_W1_RESET_RST, mdev->regs + MXC_W1_RESET);
-> @@ -137,13 +131,9 @@ static int mxc_w1_probe(struct platform_device *pdev)
-> =20
->  	err =3D w1_add_master_device(&mdev->bus_master);
->  	if (err)
-> -		goto out_disable_clk;
-> +		return err;
-> =20
->  	return 0;
-
-This can be shortend to
-
-	return w1_add_master_device(....);
-
-=2E Looking at w1_add_master_device() there are error paths that don't
-emit an error message, not sure they are all -ENOMEM. dev_err_probe()
-wouldn't hurt.
-
-> -
-> -out_disable_clk:
-> -	clk_disable_unprepare(mdev->clk);
-> -	return err;
->  }
-> =20
->  /*
-
-Best regards
-Uwe
-
---fwfemldnzzy4vyl7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmsD/4sACgkQj4D7WH0S
-/k77kgf9EmPcIEwAzVRo6kECyMEJc45Xjnn9AdThD7oC/Gx6VUMQQbPauzt2UPVq
-EPGTRco9qjVrbKq5TD+9PnMqvp5YpyujTitlI/4Ot30bdC17egDfWuTjZJ3tkh0J
-yXyV1jzLTy2HUKizAclwIdiVYb+ma7idz7GXO4uab/wsXytomYiuffn41vxTC6uN
-EStMlztHN7uFwxmiiies0bPR9k2pMqP8HbFcHI5b+DYJc3AGTwfZ9RUBWNrux7tb
-V3yWHM69SXZzWDVhDEQd/mxBjlxfXztMiI14uz2I1W2cLjNd+7shMWip4SQTGrxi
-gcS1M6jY+9uF29+WuZSxazEv+bsT5A==
-=o1fQ
------END PGP SIGNATURE-----
-
---fwfemldnzzy4vyl7--
+pw-bot: cr
 
