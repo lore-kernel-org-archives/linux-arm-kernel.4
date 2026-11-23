@@ -2,154 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08A28606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F17E606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2aym1LK3;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=a2gq6HSS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3dvLh+xS;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=HSvYYxz4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cuzRwxmF586+nXRSiJZ6v6PoIb4ECDNrQNP5RVNdUUk=; b=2aym1LK3EEovdN7wX3/mDijoV4
-	DLD4NPOi1b4bIG+QorWF1IEzlVYCtLLDmVrZJp5MIrkbN9XzZTrhBzFA6tUaGvXb2+baKLK+je456
-	HUIAShd2OXzTeYWcUK8vCXqZrClFbL+pMxBOqcQ5U4DBJMExm8Ptcz+lZMQ8K9h1pg8Wm/TMmDYYG
-	oZGeWILw3B1dlzqC+0bTVXS43ymV98nPl6uNFdJn8osIyO19/pJzANNy+KSO1JoWiA9zonGJ2HKhG
-	caMb1y95vXN7xriE7zLxgy+TFAVwueH4yr9vS5t1AygSCOTA79w5/AaXFvCvB85ftz2Fp9d1K4IHs
-	ckjiuwSQ==;
+	bh=XZB01VxXXHZ8JGUr/Kjr5B+9ghGqWLtm2u4oVk4hZ5A=; b=3dvLh+xSlUW8kk9OHTUQBeLWxZ
+	G2gG4/IlUFjP7WxNF6RamYHhLDeN21uHBs1RZzKwvKUQOwrHQ8JGifl9u657tLH/Djrdg8BowLdaS
+	YTCfjiEJK4nWUNPG4bcu3/H8HxJgyExpzkol7Avf6AdeIrNeHgAV/BXnGeGWxKAQNjz1z5dxvMDsU
+	b9CeA8W0LhCjLLCgaG3DmOtywzLstq6oxFZJ3GMpe8ZInS9ZqS1tcNqg+QHQxM3ZUsqJr7yGJmjml
+	HIpc1DT/T99o7CwddCBvGvtWKBCok8zu6x5+89lg1gkr5Tnd7KIn1jfNwKvXo05bzmH8NzcJsN42u
+	YyQxF2iw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbhB-00000004zQN-3zaS;
-	Mon, 23 Nov 2026 21:35:30 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
+	id 1xVbjZ-00000004zls-0AER;
+	Mon, 23 Nov 2026 21:37:58 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbgX-00000004zNS-14pK;
-	Mon, 23 Nov 2026 21:35:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cMoigdUpDGX0pGE7C1aqA8HtsVF2f3Nsus92P/zTW7JxUr0CIhoOd5aDxUO9R1neWroMGnSox5JMGZu2j4+RtbHio93eGTpCh0lVgNzVqN4AJs1kZ6Ss36UwZlIlMw8bTruzk3YqU+zHs23eNfKQLPEY7Bsgt8U+aOPq1pyh9lQ6WZ4QduZMNcmf+GzZGXm7V2hjCcQKWJfMj/zHDgUMv/676DrkYTl46Ao6thYdDNSb7M9p2hIUQHLzGXD6Svsl/XWqJOlAd5ETGgxh95HdCT0VlZYo3JsbKfyvjpmf/zzEiWdge66JuJXFZsRlnx/INw8U4Wd5WqPsmx3YZml6Ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cuzRwxmF586+nXRSiJZ6v6PoIb4ECDNrQNP5RVNdUUk=;
- b=sLyugc23HClGe+EZN4QfI3BKcZQsu1CMIlE4HMxYBb+e7/HL2ipwsAWscAS9eDhxtPGbKDr4GX4B0bUe3fJLV/MK3E4Fy+Pht1vxmKTjlQkNBWFvSAXssu63rZASExr3yAKyT+2/s3IIYr8cHUQU69Spy3Z8ys9dheSYEOmd7QqHlPthNgSXp+Q67mo9G80rsNzHWjdmuJ7vhYu4JwxBHOWp3wplnATkU14DXfOe2edwX1T2m9uIKYSuwYzpvlkOxeu497AjqDxwswQltUs2xKkhdVtufWejUawwyQSgRyw+uY33+Ldtd91N9J96tVApV/Yr1gO1RBP8v4ukDZ4iVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cuzRwxmF586+nXRSiJZ6v6PoIb4ECDNrQNP5RVNdUUk=;
- b=a2gq6HSSbuEEgyvpIODu4m4hf+9dRt0V4aUDYqfbxGZmXa4IS5rAwrTMWFjdP6OG5pE8bAOU3zsZwwuC0039SQW3iPfS4914ouYzE1WyvEgFBI5103jytwFXNal7xQU4IyeqFAQ1ztMg37UG1qgHIQy8bIbeVnuux0J7M5EAbSgmUxOwj8Wj1l3CdHq4MuDr4dX2l3R558CLCQnAAr+qjiuZiTzkfezLlxjwAukqaJBqKmO94NWSrTLWMADKVeiY0ge9A7CpGhTQmrRC5o0du1oabnnzhRI8wpkUBoKysQ2BGDcGQuJBVuxQfVZueQfeVJQTSZIyFTRr556VleYrmw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by DB9PR04MB9750.eurprd04.prod.outlook.com (2603:10a6:10:4c5::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
- 2026 21:34:41 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
- 21:34:41 +0000
-From: Frank.Li@oss.nxp.com
-To: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Vitor Soares <ivitro@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	Vitor Soares <vitor.soares@toradex.com>,
-	linux-bsp@toradex.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	ath12k@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: freescale: imx95-aquila: Add ath12k calibration variant
-Date: Mon, 23 Nov 2026 16:34:34 -0500
-Message-ID: <179546967140.2966585.2831171429960186619.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261118123837.651915-2-ivitro@gmail.com>
-References: <20261118123837.651915-2-ivitro@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH3PEPF0000409C.namprd05.prod.outlook.com
- (2603:10b6:518:1::48) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xVbjU-00000004zkL-0R5S;
+	Mon, 23 Nov 2026 21:37:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795469867;
+	bh=eqTz5I5hXDw/utCcHS4ZZHudHX0/EsrXro8Gc1lz+Ro=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=HSvYYxz4hFHJFR/ULMOWK5fixWjJk8ihJMLLpTqi1mYhOy6TG6rGg3D1/NOgqSsTi
+	 fZ2ZNH7LPyrS1+Pgdbl6FVtI1xAWwVsEBFbsRMEsWSwYJ+4tCmZKzgBPDyndmHvHBo
+	 p3WMpS1d/1YQsnf1854UNB/KRzskp7MMD9G1Cg+l0z5BdABPu03LzZtNb/HfR9swnj
+	 ooJIucIZFqjqiYMwyTqa/ro63A473ypL+boC7bKpb94t6GVIggS6dCKDjasj/h+jPB
+	 yc9GJUFSRmNXnr+zDToQ6ZD/nK1ScW7MemSzYVIM3wswQFQ3gi6AKXIomaj7uMBwHZ
+	 Os7BjdgPgsMHg==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A349717E04F7;
+	Mon, 23 Nov 2026 22:37:45 +0100 (CET)
+Message-ID: <aa951ce0fd972085a4c9fb19a3c67e36ed90dc7f.camel@collabora.com>
+Subject: Re: [PATCH v3 0/3] media: rockchip: Add the IEP2 deinterlacer of
+ RK3568/RK3588
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: aiyengar1990@gmail.com, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley	 <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp
+ Zabel	 <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>, Alex Bee
+	 <knaerzche@gmail.com>, Krzysztof Kozlowski
+	 <krzysztof.kozlowski@oss.qualcomm.com>
+Date: Mon, 23 Nov 2026 16:37:43 -0500
+In-Reply-To: <20261120-iep2-v3-0-e94eb9f629d2@gmail.com>
+References: <20261120-iep2-v3-0-e94eb9f629d2@gmail.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-FWklcH9hjr78QjddYyVY"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DB9PR04MB9750:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb381494-1634-4332-1cad-08df49a9958c
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|19092799006|23010399003|1800799024|366016|22082099003|6133799003|18002099003|261009223027099003|11063799006|261028144727099003|56012099006|261021121427099003|261102123227099003|261022105027099003|261026121527099003|261022075727099003|261026140227099003|10067099003;
-X-Microsoft-Antispam-Message-Info: igchNHxEngZB+fcvdGgC3Iehr/PyMn3b7/P02kP/aokUbccMHWx7pUF/X0jKWWw1NW2e5ZyoLSj3yAuawcII03TscJP5asldUkwIUFO3XO39kFuDeiHClhaO7nLf83kcqJsxXl/DPv3xyooDu5cfQ7AB2Tq2kbgZ9jx0SQt57x2W4o3bgpjEaC283ZwCXn1ahRK8r+x37EWd9SaLwLTtw04sN7qDHtuy2YETps2wIUCegZAYDOPA6LCp8aOvzCkW3qY03yEqdUtLEgB6wxRXYyXylpXQHX/Sqp/n+WqD92KKI1C4WDzW6pUqtPChudK90lklg0ZBa3A/VhiFWwlZ8nAKNe0JR+yV+XtzJPy/EbJ6i6qQA9DWjwRvA5LhJRwvPywBY5pSP54N8+zNKhGioRZq2fBlQvVIEq8Dy5Lvd34maavboWM3rb+se1CZ9KIxsAt2xfM55Ja8n2r51Pluwm3Hk2uyc09uIAW7G+llncLtpeY0DyPyW7dZHdwXGuP5dTDfVJIYlc3Gw2aA2cmi/7vn3bk7gJYht8p9HE8ON7NxYu+n3UBdS8t3AGVqxkr8rq+mEYjsVFJXJkdn8PxLqHPUSYGQPcCl6vfPma3bxv7aRwyfVhhZsXooVrIIZY+hjvWeUKt3Ll8eYhIdtPzjlytd/h9KJ/Rzn0uRnmT0x48=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(19092799006)(23010399003)(1800799024)(366016)(22082099003)(6133799003)(18002099003)(261009223027099003)(11063799006)(261028144727099003)(56012099006)(261021121427099003)(261102123227099003)(261022105027099003)(261026121527099003)(261022075727099003)(261026140227099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aFY4N1UwVElYZXN4TmlLWVVTcjZUSktwbGJFcWJlbkU2YktPNEYrYnhPZnpR?=
- =?utf-8?B?TWU5ZDZheFRuMUZvWmlJU1RvVmlKRmtBRkY3NTFLVWdOWW9rQWtiYTZ0V3R4?=
- =?utf-8?B?azU5amgwWEFZQnRhWnlQK01DT2xMZlFSK2E5QXdUdHlmWGV6ZEVhOTFSUTMw?=
- =?utf-8?B?b2ViS3RJVTJzaDFrZkJ0QVZXL3RZZk9CdE01aVpVS1l1WHZ6UnkzZGJVcHNX?=
- =?utf-8?B?OTZaRG9EVXZxR0VIaXk1RFNaVDEreFBUdWt4ZDd5ejhPVjNtT0RzZWJxVGFo?=
- =?utf-8?B?UFJZckZ0QkVqdWJNMHEyS3pXeFhPZ04zSHg2RDlxSWJabU9HUjVjeWVweVFE?=
- =?utf-8?B?RUF3MHdJUmwrN2w3VzZQcDB5QkowbGJXaGZsdFhiUjY2OFhVMTRJUDNhbTI2?=
- =?utf-8?B?MStiTk9kVlFtRGpCeFF1Y3M2dTJheTI4eGpFN0dBUkU0aGVuS0I2L0ZFT1BW?=
- =?utf-8?B?T0Rwb1A2bmx4a0NqQ3dTeHFOdTdxVkRSYUpmWjdvMXZiYWtvUk92Z0Z0RHdU?=
- =?utf-8?B?b0V0d3hTM2gzOE5VRjRpd1hsUFR5emZTMDFwL01PSWs5YS9DMVJ5VWNmbWZQ?=
- =?utf-8?B?Y1kySStiaGtkbi9tRzVZTEV6aTJ6ck8xMTEzRzFDOWRvTnZtZ2o0bWxtWHNV?=
- =?utf-8?B?VlR5YVRZaE1nV0h6NHEwZXVUSHg4dFBXZU1vdFZXTDZ5N3AwNUVSZGNabEx3?=
- =?utf-8?B?K0hkRU8xK1pJbUM1MHdsWVJKWVZEeWRySzk5alQ2eG8xQVZhNVUySnNMdEoy?=
- =?utf-8?B?VnJLcXlIS1AxRjZtUERDWWFyeXpJc3E0OGF1V0ZHcVdxU1pobjlZTi8yd29R?=
- =?utf-8?B?cEF5YkFha1JCQ2w3ZkwyWHBCMGJ5NjdjVHMyQStDTzRXMy9aMG5XcC9yMjc1?=
- =?utf-8?B?eVBqUDZoZmNuR1pEdlJieGswLzhwb3orQ1pQMlM0c1MvOFFpYkRqVmovNWpJ?=
- =?utf-8?B?Nk9IQUYrS1R5OWdtOU9ZbzIyc0QxL1dGK3ZSdktVeUUrSXlkR1dhVHhsRkt1?=
- =?utf-8?B?QnVxWnA4ZTVuMlZYUWdlVURTaTNXOExOVnlkU2UxblVDRkIzMFI2Rm5tUkI3?=
- =?utf-8?B?VEU1VGRJSkxudzFreU9IYzJXV2liMW9JeDhmNngvZEszUndTS0VRRFRqZERS?=
- =?utf-8?B?VW5ON1BaMU51amdJVXp4d1dRT3REb1ZvcnY5SVhEZTdLcitzR1hjRnZ6bTY4?=
- =?utf-8?B?NXMzZ2x1YUE5Wi94cVNPeVRZWDhEZUNNVk56cVZRdVBmdnhlaGdFRXcydERC?=
- =?utf-8?B?R0ZwSkJ5TGZDVm5wb05Qd0xCWGxuS0kzMk5qTFN1RUtsTUR4THpacm9EbDZO?=
- =?utf-8?B?ZlgzWnl6RGg3ZWxvZFR6cDA4Y0xJUHVjdC9aTW1JQzlXUHhLYmdpYjNYQTY3?=
- =?utf-8?B?WUtVdGNvS3hIR21DSjI4aFllVTluVHQ3NkphWVJyVlJMQU5aaGZCRDdONzBi?=
- =?utf-8?B?TGNpVTNtdHYvUWx3ZnZwL3V3SlJYcFlONnlEYWN6NVQyUmFIMTNHNjc2bXZO?=
- =?utf-8?B?OC9xdHdTNndGM3Q0YnMyZE50QWl1QzlYUUpSMmt3M3hQMEZJRCtWQ3JhV25q?=
- =?utf-8?B?VDROM09aZmx2Y3N6TmVKKzN1Mmd2UzJpYlFrMkhWWmw5M1Z4dTlPd1kxc3Jx?=
- =?utf-8?B?ZmlwTDZlS3N0bXpEWWdMcTBNc3dIUGV2Y1Y5QVFUdU5SYjNwRnpVK1h1NUNv?=
- =?utf-8?B?M0NFV3Y1WTVmaWxPVTRIZS9GdENQT09mbUN4NHJ0VC9oVEd2ZVNSQUgrbHlW?=
- =?utf-8?B?RnpDY2lqQzJERWZ0Z245VlVnYTJCZFZJZDhIUmVnWHVJa3NWNEZVQWZIMHVr?=
- =?utf-8?B?OTVlWERiNS9QWEt6bGNkeE9ZV2VQeTYrbkQ4eWlReHV1clFySm9OYXpqbDRo?=
- =?utf-8?B?L3lReGFlOUtwM280Mk9XTU9Kb0ZJL2xGWWZSeEhGUU41emlCWmxDZzRBZ2k0?=
- =?utf-8?B?dWtMcG5ZdjczMlQ0Rlo1ZDNwdXQrRlBaL2N5OEpCcWFrTVAwelhKVm5vSXh0?=
- =?utf-8?B?L3hwekRvTTJwMVZvNzNWUEdRUzY5OG91SlBOYTdIeWQwNGdqVUF3NXY2Yk9D?=
- =?utf-8?B?TTdEV1Z0SUNzOHkzQTFnNHQyeHE1eVdHQjUvUHRnVitlYkJPMFRDTDVheHFI?=
- =?utf-8?B?OHdsa3RBdHdsVG5JTFBzbzZPemZHZ1NPV3FwbWRocUorSEpFUzE1M3o0WFpq?=
- =?utf-8?B?RlBpbmkzcVFSaGd3SW9PdEsyTjB6YVJ5elJlM1A1L1NIR01rQ3Z0U1NoMmlL?=
- =?utf-8?B?aWVTTWpxZG5idnlFYTNTOTFOL0JiSldxYjl0dW1IN295ckpheDNrQXRVVzZa?=
- =?utf-8?B?YlYrOWk3WklQdmRNb2psR0VzL1hPN2piQjBqdWg0ZGNBelRBMHRBcW16Z25D?=
- =?utf-8?Q?b9v6/Om22QW+wIJYy6Ca6FYFaGXHP34zfMyiO?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb381494-1634-4332-1cad-08df49a9958c
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 21:34:41.7950
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D8KAwpj2Ue+xhMoiB+OMgh5Ep3CLHnuQ1/rGq++EwqHepChP/jcc6XX660M52Z4qHBg9T93PBEM3knD/J3Wldc7VOmVPOdIz1iKWHKuvUz7/n3EoEvfp3OZeIFcM72AO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9750
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_133449_564763_8C5DFB57 
-X-CRM114-Status: UNSURE (   8.29  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261123_133753_964210_FFF9EB63 
+X-CRM114-Status: GOOD (  24.37  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -160,34 +94,107 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Frank Li <Frank.Li@nxp.com>
+--=-FWklcH9hjr78QjddYyVY
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Le vendredi 20 novembre 2026 =C3=A0 11:30 +0000, Arun Iyengar via B4 Relay =
+a =C3=A9crit=C2=A0:
+> Add a V4L2 mem2mem driver for the IEP2 deinterlacer of the RK3568 and
+> RK3588, with its binding and the RK3588 DT node. The V4L2 side follows
+> Alex Bee's IEP driver.
+>=20
+> Tested on an Orange Pi 5 (RK3588S) with a 7.3-based kernel (KASAN,
+> lockdep); build-tested on media next. v4l2-compliance 59/59, all four
+> modes at 1080i without IOMMU faults, s2idle and deep suspend while
+> streaming, unbind while streaming, forced watchdog and IOMMU fault
+> resets. Not tested: RK3568. DMABUF imports of exactly the image size
+> are refused, because of the 4 KiB OUTPUT padding (see 2/3).
 
-On Wed, 18 Nov 2026 12:38:37 +0000, Vitor Soares wrote:
-> The Aquila iMX95 has a Silex SX-PCEBE Wi-Fi module (WCN7850). The
-> module reports the same PCI and QMI IDs as other WCN7850 designs, and
-> its board data also comes in variants for different regulatory domains
-> (US/EU/JP, UK/CA low and high). The IDs alone therefore cannot identify
-> the right board data.
-> 
-> Describe the Wi-Fi device behind the PCIe1 root port and set
-> qcom,calibration-variant to the US/EU/JP board data.
-> 
-> [...]
+What software makes use of this driver? Did you test in a real application?
 
-Applied, thanks!
+>=20
+> One case is still open: a reset during a transfer, seen only with
+> forced watchdog resets, can leave the IOMMU busy. Jobs then fail
+> without DMA and the driver suspends at once so that PD_VDPU powers
+> off, which restores it. While another device of the domain, e.g. a
+> video decoder, keeps it on, the jobs keep failing.
 
-[1/1] arm64: dts: freescale: imx95-aquila: Add ath12k calibration variant
-      commit: 8a03967da41f55b803d31a6c5b5052bc35346eb6
+What do you mean by iommu busy? In the decoder, some errors would lead to t=
+he
+decoder core doing a self reset witch we believe wipes the MMU registers. C=
+ould
+the watchdog reset endup doing the same?
 
-Best regards,
--- 
-Frank Li <Frank.Li@nxp.com>
+>=20
+> Developed with Claude (Anthropic), which wrote the code and the commit
+> messages. I reviewed every change.
+>=20
+> ---
+> Changes in v3:
+> - Drop the vendor kernel notes from the commit messages and cover (Krzysz=
+tof)
+> - 1/3: drop the linux-media list from the MAINTAINERS entry (Krzysztof)
+> - 1/3: add Krzysztof's Reviewed-by
+> - 2/3: start the job and its watchdog under irq_lock (Sashiko)
+> - 2/3: soft-reset the core with the AXI side, CRU reset if the IOMMU
+>   stays lost, shared IRQ off during a reset; no DMA until the IOMMU is
+>   restored
+> - 2/3: return OUTPUT buffers before CAPTURE buffers
+> - 2/3: mask and clear all interrupts on completion and before a job
+> - 2/3: suspend at once when the IOMMU is lost
+> - 2/3: take the mutex in system suspend
+> - Link to v2: https://patch.msgid.link/20261115-iep2-v2-0-3d8798cd9a55@gm=
+ail.com
+>=20
+> ---
+> Arun Iyengar (3):
+>       media: dt-bindings: Add Rockchip IEP2 deinterlacer
+>       media: rockchip: Add IEP2 deinterlacer driver
+>       arm64: dts: rockchip: Add IEP2 deinterlacer to RK3588
+>=20
+>  Documentation/admin-guide/media/rockchip-iep2.rst  |   32 +
+>  Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
+>  .../bindings/media/rockchip,rk3568-iep2.yaml       |   95 ++
+>  MAINTAINERS                                        |    8 +
+>  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   22 +
+>  drivers/media/platform/rockchip/Kconfig            |    1 +
+>  drivers/media/platform/rockchip/Makefile           |    1 +
+>  drivers/media/platform/rockchip/iep2/Kconfig       |   16 +
+>  drivers/media/platform/rockchip/iep2/Makefile      |    3 +
+>  drivers/media/platform/rockchip/iep2/iep2-regs.h   |  191 +++
+>  drivers/media/platform/rockchip/iep2/iep2.c        | 1320 ++++++++++++++=
+++++++
+>  drivers/media/platform/rockchip/iep2/iep2.h        |  108 ++
+>  12 files changed, 1798 insertions(+)
+> ---
+> base-commit: ad6549a46748d00818483b535e5cd2a704685c98
+> change-id: 20261110-iep2-b9a9c6e77c44
+>=20
+> Best regards,
+> -- =20
+> Arun Iyengar <aiyengar1990@gmail.com>
+>=20
+
+--=-FWklcH9hjr78QjddYyVY
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawSyJwAKCRDZQZRRKWBy
+9HpuAQD2iyW68QKwqexXSmR8w/lWArl2Njqs9To+Zvdg2jBNBAEA6vJcr0L5MZYS
+Rnl6XvNw8L5b5ihSSaBSPLHj+IItZgE=
+=1qmu
+-----END PGP SIGNATURE-----
+
+--=-FWklcH9hjr78QjddYyVY--
 
