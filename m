@@ -2,96 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58B5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DF4606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OQd3nWdL;
-	dkim=pass (2048-bit key, unprotected) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=hqhJ2FXo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zo8ndmze;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HDCBx/5k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lUoG2M6Mlj8pfmjNuGBCjjggKSsvMYqMH3T6v1F2QZ4=; b=OQd3nWdLbuQrUy2xmQYwByTAgw
-	Hn0DtO44hpugdemv0cUUvIFE6FfywVCNsbkPWpvI8Msu4Bt+qQX32hQ2c/KsyrgeZDxinoMMFBv94
-	e0gIPavl4WENXTM92C5ashVzB3qEI37GSyqWxOIXcQ6jQMuQK3KRvwEP29qXe0chiHaP5J8Hjvkw7
-	996O02MA0j6MARiTl29f3pMSuHaGG/xRBrjiflQ6eDSwgaaZSMW0LiLFVPqjUKn3WSWdk1Y+5MN5/
-	FVm6kZ4RZZ+7oe/sZTPBXmjLvGWXG92DP+5u+jN+B7BDvLLRwmQJ9uxt+gHA+2riC2zDCyOFIKytI
-	1USMD3Xg==;
+	bh=etweggmvewghqZeCOi7wUZ9wIdIXkNXXNOxh61ejO+Q=; b=zo8ndmzeWSmSOawXKT52/zQ7pC
+	Wp+7OWIeU+5zUdQggZ+F20FHGL4B2a/ZP4JpZ1esFjOqdaiQyVwxSjWlLVxmf2/zpYDM8f0QEZbWc
+	O8cacD+jEmJxDPOObsh2MDu1ZSOseN/jz6u6xssO32B69hx1mNC2uw87g7FmsJy4CQOuzjH5htR3d
+	lUKFNOHs+O556pqGEIsFKz5ETTlBDbSMNfw35tsvhLx23F0D7S6xClY02XMBxwDzVM1PKHimYDXuD
+	94fpE1HZr8TO2suoLb16gbxKIuCxI3LkRzX4zPVUeoPfIdW8njncsWCnTDGGfdQXxA2umrhvzx2WV
+	10VrCXaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbBa-00000004v3k-49Tq;
-	Mon, 23 Nov 2026 21:02:50 +0000
-Received: from mout.web.de ([212.227.15.3])
+	id 1xVad1-00000004p0z-2U44;
+	Mon, 23 Nov 2026 20:27:07 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbBY-00000004v2p-0Li4
+	id 1xVad0-00000004p0q-11xz
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 21:02:50 +0000
-DKIM2-Signature: i=1; m=1; t=1795467764;
- mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
- rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=web.de;
- s=s29768273:rsa-sha256:dmOthbl86y2+J0VkLmbyV0+/+hRS
-   L06ZttJbU8NWXyXk7kEgODCTSoj8Zb/i2STV3W/fMdLqLvwUE+HumPnaMPlBqFhdCxe98IiaEFk
-   eNb3BbBH9f3LDtNbWRWjyWy9vHOwgYM7uYlzPIQw6uCxEdq9PmIKtDaWuagRmCRBCeR8TgyFbkk
-   fwD5Pl903qmh2wEqD6UtItIbprPqTjkJGYXv5MCwrhUvhsUOHD1TmasIY3wqVl2K2HvRK4mbJD1
-   nTMHpoyM1oGOJskBnXA1B34jPV/8yIXiYhXJEI7f+boAf186TVjRM3Qj57vycJSf94POUSRtenZ
-   KYRV1qEKbbat5w==;
-Message-Instance: m=1;
- h=sha256:
-   2ylPr61Vl8wSzuoOO0FS1UPf/2voYb+xyX5k5nCDEhE=:
-   dBwnmNZ0twDUxk9hE7k+LCqdsgOTKI4ZP32BRk9Dihg=,
-  sha512:
-   Dr3P+Iyhyhk5nIFpJgQUOKhG5TT38zenUkhmZGZkoWg8fYOTs55wnq/kTMBKy3LJxfaW5ZYpQx0e+088NaSItA==:
-   EAbfk2KS+oPyNaYFe/DIRoj6CPKLj32E0DK/JVdqis+zc6r6qeYuam0xyqzzfniQlqX5M1DkTYqRtwCG2ziEyw==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1795467764; x=1796072564; i=markus.elfring@web.de;
-	bh=lUoG2M6Mlj8pfmjNuGBCjjggKSsvMYqMH3T6v1F2QZ4=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
-	 Subject:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=hqhJ2FXo9i6CaMJZCPbCo5UBse8U96zP0qGjTnaRMD1mVE+saWLIEBGH7pg1W9r8
-	 1xAB/xqmTI9n73gzSax9giSxGylklGf6vD2WK49XWyIKF2JAJbyNDqjMcx23kp709
-	 ydONjyI+ETVQ1PiomUOa0jaW5l+Kr6eLGILLidj3aic9DpnYlfEQtGiT78fHchnnI
-	 lEMOHPY/gbxk54Gpz3Mxrxxm3UmlGAMvV5dA0h/I4J8Ak7SiLh3hHjx+dREurqZBu
-	 w9wIVXrwOeTkQ+i2Nz8srV6SpQ89C2MdlVa1/kZZpe44cqKoMXKO12Iqe0ltYp3mo
-	 3kkwwrrcV27jx7H3qg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1M9qcr-1xZC53328r-005EBR; Mon, 23
- Nov 2026 22:02:44 +0100
-Message-ID: <ef3d0b97-e1ad-4924-b380-16a46fd17b94@web.de>
-Date: Mon, 23 Nov 2026 22:02:29 +0100
+	Mon, 23 Nov 2026 20:27:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1EF916247B;
+	Mon, 23 Nov 2026 20:27:05 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795465624;
+	b=Hca5SzEFNJNFNxn8dwgk6RYCMIH7GIrOHfLKIYMuBWMnMYAeSKVE8xu9BBnt6LaPnaFB
+	 oAHQo4Pb0KLZZjDQwmNQtaz1QSe2ZPZ6dTtCWN9Pby1r7ZXpCPSDfC18XdchVCV/EiHZy
+	 INHaUFHcnskgXUSIlD3hoBBj1gfoM1zQRB7rFd+n8tzXnvx8LA1a1OR9+VMTZ+uR1dfut
+	 I2ioaEfkTApCBcJlTYZJCIqjVCTeUr4ykDFZ+g0QapO9YC4mS2tEdXt2n2EKKXWht2kDH
+	 vgTP/ELf4Gu69qB6ALuQv6F7oBkGCUOyg2jIPTpFJT8v4EnOty3xtyiBh//d3ueOr+g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795465624;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=etweggmvewghqZeCOi7wUZ9wIdIXkNXXNOxh61ejO+Q=;
+	b=GswKGq8CU8mD1k43P8YtHNZtlItEwXY82z5VBSBKzX1kdtZ8p2UFPlBlAI84jr4mTTQj
+	 Ot4jjkcQLGuGesjQmNU1+J6nv0AUO8scvtTkZ1QqvhtQxLeWzCwOJLYx7UHVzxFod2osZ
+	 hsJiQpX/g3JpPl8XdoiE5PEE0pMl07RVBlsPv6q91y7HV25a9OEvySKQ+ZY8FCiHUBJ/O
+	 0wUFlzwmxGSutYUhtAoxo1H7oh/pxct3+LFdgyOyQuwekpp5oP1EKwDgKIrDgLzSa9mUc
+	 pWtmtRguz90dl6y+wplnVDoP6ECmOwCWE5YkyaCiuDw9LZ1ZVI+tGWSWg8byOW1XPiQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id B51181F000C4;
+	Mon, 23 Nov 2026 20:26:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795465624;
+	bh=etweggmvewghqZeCOi7wUZ9wIdIXkNXXNOxh61ejO+Q=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=HDCBx/5kEhJnHc6TMy99sgojmZsqPB16Hare43hVfykqGf5dKDrmWaY/ShKCiURef
+	 ORCwdehUUjDWTPWgJsKkIoK9HuK5wwCG7J7mWJ8z4Fs2H0nrJ8JfLAcx/YKHiAH7DW
+	 ++X7Y0Nc8dnbMz3OdZLq0UjkpUQozjpB7g/P95tgnB4q5B+kQq7Jo3dGODZDDlZljo
+	 un0BVt6wZNMMvWuDOblDQCiv/mkrMT3TGrB3kinL0oLXBGrVuFEbx9rBYP8vD3n655
+	 LcvEVvcuN8rgup3zARzpKfIYJPpxtp7XlrcZePi8lLESJKa1pWJjPjYEHFm3CMcjKo
+	 bxiihkAFh3znw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 397994C6CB;
+	Mon, 23 Nov 2026 20:26:58 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Mon, 23 Nov 2026 23:26:55 +0300
+Subject: [PATCH v2 1/5] dt-bindings: soc: Add Cortina Systems CS7542 global
+ control block
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-GB, de-DE
-To: linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Chuhong Yuan <hslester96@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- Oleksij Rempel <linux@rempel-privat.de>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
- Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] rtc: asm9260: Use devm_clk_get_enabled() in
- asm9260_rtc_probe()
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:++jd6/nmszqVoMYV2FP9TKcTxsCLrAOnyMVF9IO9wtCH3N++glD
- QGmU3SbLGBnMbS2Y8Kkvx4qClG6owO/3nOZRp4lXtAONkmTuYmwol/lWq5X9GKZQA5sXkEJ
- AagcQyXChx6DH42mrUkheX7QUyuON0lnzW+HTk+Kx+VZWRte5pog68gDNTU1QoDVUOmDejJ
- l+xCJLK5csyrhT1RuU+DQ==
-UI-OutboundReport: notjunk:1;M01:P0:PmMUrv4sBpI=;R1TiQoiMWva+KF15U7vWCLg6Hu6 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 lu8iruoqAjlCnSzzeQ==
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_130248_490032_8FA7F6CC 
-X-CRM114-Status: GOOD (  12.09  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261123-cs7542-syscon-v2-1-1cd74b2522f9@gmail.com>
+References: <20261123-cs7542-syscon-v2-0-1cd74b2522f9@gmail.com>
+In-Reply-To: <20261123-cs7542-syscon-v2-0-1cd74b2522f9@gmail.com>
+To: Linus Walleij <linusw@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-gpio@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465614; l=2734;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=FpK/rtN440rKXrT4wuja3g3AXioE5n0xbhhWrVDfiGg=;
+ b=ipRGVR0liCQjBfbPvnA26IUI9W9GGepF2VaOm+/bXlvPaqbrCcpP4bUSV8WHhC3NX+J4IDHAy
+ PcVVeMO+ubKBmJyrDhQqLxgra6qTHJsYyrtDI3FnrwRgtyB3mAARPtN
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,94 +112,105 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Mon, 23 Nov 2026 21:50:07 +0100
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-* Reuse existing functionality from devm_clk_get_enabled() instead of
-  keeping duplicate source code.
+Describe the shared global register block and its strap-selected APB,
+CPU and AXI clocks. A pinctrl child will share the syscon regmap. Keep
+clock IDs in the order used by the previous out-of-tree CS75xx clock
+provider.
 
-* Delete a clk_disable_unprepare() call on an error handling path
-  and in the implementation of the function =E2=80=9Casm9260_rtc_remove=E2=
-=80=9D.
+AI assistance: Codex prepared this change from the existing OpenWrt port
+and GPL vendor sources.
 
-* Omit the label =E2=80=9Cerr_return=E2=80=9D.
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ .../soc/cortina/cortina,cs7542-syscon.yaml         | 49 ++++++++++++++++++++++
+ include/dt-bindings/clock/cortina,cs7542-clock.h   |  9 ++++
+ 2 files changed, 58 insertions(+)
 
-This issue was detected by using the Coccinelle software.
+diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+new file mode 100644
+index 000000000..fb074de87
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/cortina/cortina,cs7542-syscon.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cortina Systems CS7542 global control block
++
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
++
++description:
++  The global control block contains the boot strap status, GPIO/peripheral
++  mux registers, reset controls and the secondary CPU release register.
++  It provides the APB, CPU and AXI clock rates selected by the boot straps.
++  The clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h.
++  The pin controller uses the same register map through its parent syscon.
++
++properties:
++  compatible:
++    items:
++      - const: cortina,cs7542-syscon
++      - const: syscon
++      - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 1
++
++  pinctrl:
++    type: object
++    $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    syscon@f0000000 {
++        compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
++        reg = <0xf0000000 0x100>;
++        #clock-cells = <1>;
++    };
+diff --git a/include/dt-bindings/clock/cortina,cs7542-clock.h b/include/dt-bindings/clock/cortina,cs7542-clock.h
+new file mode 100644
+index 000000000..34d544238
+--- /dev/null
++++ b/include/dt-bindings/clock/cortina,cs7542-clock.h
+@@ -0,0 +1,9 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++#ifndef _DT_BINDINGS_CLOCK_CORTINA_CS7542_H
++#define _DT_BINDINGS_CLOCK_CORTINA_CS7542_H
++
++#define CS7542_CLK_APB	0
++#define CS7542_CLK_CPU	1
++#define CS7542_CLK_AXI	2
++
++#endif
 
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/rtc/rtc-asm9260.c | 17 +++--------------
- 1 file changed, 3 insertions(+), 14 deletions(-)
+-- 
+2.53.0
 
-diff --git a/drivers/rtc/rtc-asm9260.c b/drivers/rtc/rtc-asm9260.c
-index 95d7b894acd5..38a9bb8b3f9b 100644
-=2D-- a/drivers/rtc/rtc-asm9260.c
-+++ b/drivers/rtc/rtc-asm9260.c
-@@ -261,16 +261,10 @@ static int asm9260_rtc_probe(struct platform_device =
-*pdev)
- 	if (IS_ERR(priv->iobase))
- 		return PTR_ERR(priv->iobase);
-=20
--	priv->clk =3D devm_clk_get(dev, "ahb");
-+	priv->clk =3D devm_clk_get_enabled(dev, "ahb");
- 	if (IS_ERR(priv->clk))
- 		return PTR_ERR(priv->clk);
-=20
--	ret =3D clk_prepare_enable(priv->clk);
--	if (ret) {
--		dev_err(dev, "Failed to enable clk!\n");
--		return ret;
--	}
--
- 	ccr =3D ioread32(priv->iobase + HW_CCR);
- 	/* if dev is not enabled, reset it */
- 	if ((ccr & (BM_CLKEN | BM_CTCRST)) !=3D BM_CLKEN) {
-@@ -287,7 +281,7 @@ static int asm9260_rtc_probe(struct platform_device *p=
-dev)
- 	if (IS_ERR(priv->rtc)) {
- 		ret =3D PTR_ERR(priv->rtc);
- 		dev_err(dev, "Failed to register RTC device: %d\n", ret);
--		goto err_return;
-+		return ret;
- 	}
-=20
- 	ret =3D devm_request_threaded_irq(dev, irq_alarm, NULL,
-@@ -296,14 +290,10 @@ static int asm9260_rtc_probe(struct platform_device =
-*pdev)
- 	if (ret < 0) {
- 		dev_err(dev, "can't get irq %i, err %d\n",
- 			irq_alarm, ret);
--		goto err_return;
-+		return ret;
- 	}
-=20
- 	return 0;
--
--err_return:
--	clk_disable_unprepare(priv->clk);
--	return ret;
- }
-=20
- static void asm9260_rtc_remove(struct platform_device *pdev)
-@@ -312,7 +302,6 @@ static void asm9260_rtc_remove(struct platform_device =
-*pdev)
-=20
- 	/* Disable alarm matching */
- 	iowrite32(BM_AMR_OFF, priv->iobase + HW_AMR);
--	clk_disable_unprepare(priv->clk);
- }
-=20
- static const struct of_device_id asm9260_dt_ids[] =3D {
-=2D-=20
-2.56.1
 
 
