@@ -2,111 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DCE7606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296BE606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I4bt0b9K;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Y0sBiONL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hhR6ppAF;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=ooMIwlxg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kdpz+AudG/ZxQ3ty4U7YkuGjF3ZMob1/L9CPKOhLwSk=; b=I4bt0b9K+y+htNuJ77b67prCQE
-	U3pVg3bRKRsESYGRbG5q/nHyQuDCzVYEMCmrP7f+i9ZYgggTCPYjOQdIJpx9ozhYDj67Or/U5IIGQ
-	X2MEWEtTEnbyCmgW/fOv8ZEfgsY0n476472RgQyi7seKlF9WzmfRfl6lsf6OOnUycs4j18NirwynD
-	pmCixMfJto0TLkhSgUWetto4yuIzcOT95T050pJyR2b0ASED11mlG+k+uUHVPH2UuUO/ihz6x5CO+
-	MGk8Y3bnUdCcB++ZC6pDH1j+IZONyEXOUAOi/WLRnJRt8mu7eDkSjpAt9vli4B5yo5pY2gDuOZOTO
-	k2Ai8vhg==;
+	bh=cjblWQP22DDkX8PQwyqUXo6ncqKIwHv586PCd1qQti4=; b=hhR6ppAFiT5p0ZHTM6ChPTzzCq
+	1r1/K5evGQWNGZxfCeG8QSJKpfaR5hM0FPrJcqp4t/QKta2BFXkCtaEREo2coKK0H15grP4yj+vjn
+	3qgLt5VfWMZOCC0/ejCQ8uPqM2ni2ugIWfwwwkpBJ2Pk4FSCqgabFRoOUluBmSb89K7uQQWxDdVdi
+	Z5dT896BYFo8A3QsG+C6fIGFeDNpBpUhD5rbzmoeel55khYxo6SMyREoZaUlmlJMm2o2h7Egt5SvF
+	Z4MFJbyzMP5deFiHg+5Bwav0lmbQ132HsN8XlrdWXHrmyzlUd08VLO366iyRYpdl4YgXpe1vSFCas
+	XKoAtBvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVeS-00000003u8a-1PVQ;
-	Mon, 23 Nov 2026 15:08:16 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVVer-00000003uMv-3aXt;
+	Mon, 23 Nov 2026 15:08:41 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVeC-00000003twv-0uMW;
-	Mon, 23 Nov 2026 15:08:00 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 67F706222B;
-	Mon, 23 Nov 2026 15:07:59 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795446478;
-	b=BsWvmfchGsydRjrzkAzOT7WpnuYBRuk5p05sVGs2Tn5ad9XxFa8LTparb+I4CO1eMLBy
-	 8CwTQx6pNnFGDJ11xWnagjI70aM8j1coM4LSW9n1eVz6YSfMbguH1Oc1F9stQ4Gj20Ndv
-	 PII0MvcNxQlxLd5g6yFK9aTKikc5Rzy4OQ7iNp/V2wQXO979capbC97aoVx8tGYfrxF4+
-	 mK+AbUq0a+BU2z5QrLiS+k6I+0zlQ7390r/Xx9ua77Ialz1Of5ZXkCAEs8AnAmluu5lbC
-	 7H6W8WnFO3Lepp3CIohmVw7kbwy6TkElDihLPDha95PfylTafDzXwpLkou8zCDEBsYw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795446478;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=kdpz+AudG/ZxQ3ty4U7YkuGjF3ZMob1/L9CPKOhLwSk=;
-	b=jtX6DQ6/f03KwrUTY3w40Ftt7j3JdDYcZgnskjH3qqG5knbONcp+gNfS2I+N6tHAXQLQ
-	 mXXRXb1KMmgI35GlnYSnLoqCHoTBxkM7TYs+S8Lvm2nAigNrvqbY+kImnukE0Rkz9f+4e
-	 DxqHNTSbsVdgXzbt6sb4lRteAHGMTWQagcWPWqNZkCNX2Lx7grdzy5kdTAqT948/vzXUH
-	 no51oLQdNvQ1rFCSDS3OVGeRL0+gmwVsp2QvmNRvvRF9djwo/B4AK8UtHSLL1ukF/cBVQ
-	 napBVmcBXaqdnoy3GQB2nMtAB9vPET+oP0C5Qq9He4vsolc3lGhfAxw8PD/LW6gXvBA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1DB921F000ED;
-	Mon, 23 Nov 2026 15:07:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795446478;
-	bh=kdpz+AudG/ZxQ3ty4U7YkuGjF3ZMob1/L9CPKOhLwSk=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=Y0sBiONLaiAXOlcbfjaERNj4zZMbwIp3C1sDI0DDFJo51DDn2oJJSFYRtuZ29actm
-	 rcPwrVqOwN4z1DIZ+KLOScpbllkLhccB12J3OqJNWtPL6m1vlIkSVH6com2KqGRclv
-	 kDApwqow6eLV4aaOyVDSv25Ms0w5pnVSUHC2XZMLhWz4o1t7c5viaINFsGR7TfPCx5
-	 kV9l9TG5Zbl+fgf7PWgQ9MEySMW+9Yv0PjFNYGEatmFEN2taTUBMFyIKS6bPddcU5U
-	 TtQue6zJn6QFvuTwd1EL3P1wT+Zt0SOvnuA7iUz/SLzJJVwRsAVRCPY400OiblgzjF
-	 QEtGJLHvfw07Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 8DF304C513;
-	Mon, 23 Nov 2026 15:07:37 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Subject: [PATCH v2 0/3] arm64: dts: rockchip: Add Mekotronics R58X-Pro
-Date: Mon, 23 Nov 2026 16:07:25 +0100
-Message-Id: <20261123-rk3588-mekotronics-r58x-pro-v2-0-2a3430cf5f88@pardini.net>
+	id 1xVVep-00000003uLh-2wND
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 15:08:41 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=cjblWQP22DDkX8PQwyqUXo6ncqKIwHv586PCd1qQti4=; b=ooMIwlxgNI33rP63+Ad3nDuhiS
+	S+S+xP7FY8nMS6Hcz9h2CIDRnqiLbNwX+E1kpoG6nRApr1vLNGYfAgvNTmmXiyiBQSkdZ9mPQE3gU
+	/962kEe+CI852MVoo3PV30dPW/u97302eFEgw85NsSKZGlxkjNLOhmzpe/xv6xk6x6IU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xVVeZ-000obW-B9; Mon, 23 Nov 2026 16:08:23 +0100
+Date: Mon, 23 Nov 2026 16:08:23 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 4/8] net: stmmac: Add glue layer for Synaptics SL2610 SoC
+Message-ID: <c86cfa4a-5738-4b8d-bed5-4dd075f7cbf8@lunn.ch>
+References: <20261116135442.4827-1-jszhang@kernel.org>
+ <20261116135442.4827-5-jszhang@kernel.org>
+ <4f1c4180-3a00-4b17-a27b-e61b307d3e5f@bootlin.com>
+ <awQ5raWYlMBpCqIl@xhacker>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAK1WBGsC/32NQQ6CMBAAv0J6tqatxTae/IfhUNpFVmJLtkgwh
- L8L6NnjJJOZmWUghMwuxcwIRsyY4grqUDDfungHjmFlpoQ6Syktp+5UWsuf0KWBUkSfOZV24j0
- lXmrfBKfrYJ1ma6EnaHDa67fqy/lVP8APW3IzWsxDove+H+Xm/U5K/D2NkguuwQgvjPGm1tfeU
- cCIxwgDq5Zl+QCrsTHh2gAAAA==
-X-Change-ID: 20261118-rk3588-mekotronics-r58x-pro-54cfda4bd8a4
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2971;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=d2sf5RqKKP9EUG7tTzYnxgGQH1qtUjbKzdzzezlCuVE=;
- b=owEBbQGS/pANAwAKATteP+Oex+3pAcsmYgBrBFa3i9XtZ2yfNALYmNG/zUk/nnL2bqosYSJzh
- 5WtRwkL9QiJATMEAAEKAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCawRWtwAKCRA7Xj/jnsft
- 6b8DB/9fKKUAJaUDZv3oDrjKGN+Vrd+GWo6/Kq2LKb0lsBhmXMmWxF9c7WrV3bsU5AJ15Ou8ZXV
- fxslsOp99JLuzjWBl4QaDpDTspokn24Z8Ikndie+8EKNy1BnrK0cxIqHjOS4EAz0ByTu6oFILky
- byMxTnrynnnl5YpY6dtn36No2j4C6X9sVOMqkJZQutpcvC6jQTHuBr2MdKYJoGCq/FNGbtOfTpC
- kWCQPXmOdcyr+u/aVZALPm3zV5SmHbsYPyqWrrF/IRLSViY6FlDjuCQlrb5WCN0i+//3y5+gqGI
- vgqKdlWo+RKWadHCcEbFhWFTCr4CHH/m+W4mkAVDDWwpIV2W
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awQ5raWYlMBpCqIl@xhacker>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_070839_737506_4EE6D6D4 
+X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,79 +82,37 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: ricardo@pardini.net
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds support for the Mekotronics R58X-Pro, an industrial
-mini PC based on the Rockchip RK3588.
+> > > +#define CTL_PHY_INTF_SEL	GENMASK(4, 1)
+> > > +#define CTL_PHY_INTF_RGMII	FIELD_PREP(CTL_PHY_INTF_SEL, 1)
+> > > +#define CTL_PHY_INTF_RMII	FIELD_PREP(CTL_PHY_INTF_SEL, 4)
+> > 
+> > Please use PHY_INTF_SEL_RGMII and PHY_INTF_SEL_RMII from "common.h"
+> 
+> I read this as "use SYNA_PHY_INTF_SEL_RGMII and SYNA_PHY_INTF_SEL_RMII",
+> correct me if there's misunderstanding.
 
-There is no public schematic; the DT is based on Armbian's and on the
-vendor BSP DT.
+https://elixir.bootlin.com/linux/v7.3.1/source/drivers/net/ethernet/stmicro/stmmac/common.h#L316
 
-dt-check-style --mode=strict is clean except where the existing
-rockchip DTs differ (pinctrl-names first, no blank line before status)
-and for names fixed by bindings.
+#define PHY_INTF_SEL_RGMII	1
+#define PHY_INTF_SEL_SGMII	2
+#define PHY_INTF_SEL_TBI	3
+#define PHY_INTF_SEL_RMII	4
 
-GMAC0 gets RX CRC errors with rgmii-id under iperf3 load, so it uses
-rgmii-rxid with tx_delay = <0x44>; GMAC1 uses rgmii-id.
+Which is easier to understand?
 
-The Type-C port is source only (the board is powered from a 12V barrel
-jack). usbdp_phy0 has both orientation-switch and mode-switch, as
-asked for in the cover letter of [2]. On its own, v7.4-rc3 brings up
-USB 3.0 in either orientation at boot, but when the cable is re-plugged
-the other way round, the SuperSpeed link does not come up until the
-USBDP PHY is re-initialized. With Sebastian Reichel's pending DWC3 glue
-[1] and USBDP [2] series applied, it works in both orientations on
-hotplug. DP alt mode goes to dp0 (VP1) through usbdp_phy0. With [1],
-[2] and the dw-dp series [3], an Apple USB-C to HDMI adapter gives
-1080p60 in both orientations, with USB 3.0 on the adapter working too.
+#define CTL_PHY_INTF_RGMII	FIELD_PREP(CTL_PHY_INTF_SEL, 1)
+or
+#define CTL_PHY_INTF_RGMII	FIELD_PREP(CTL_PHY_INTF_SEL, PHY_INTF_SEL_RGMII)
 
-Tested on the board with v7.4-rc3: it boots from eMMC and NVMe, and
-both GbE ports, USB 3.0 over Type-C, the HDMI and DP outputs, DP alt
-mode, headphone audio, the RTC, WiFi/BT, the LEDs, the keys, the GPU
-(Panfrost) and the NPU (Mesa Teflon) work.
+You should try to avoid magic numbers.
 
-I used Claude for cleanups, ordering and naming, according to recent
-series lore.
-
-[1] https://lore.kernel.org/all/20261114-b4-rockchip-dwc3-rockchip-glue-v19-0-b79fb5f4b42a@collabora.com/
-[2] https://lore.kernel.org/all/20261119-b4-rockchip-usbdp-cleanup-part3-v18-0-fb325e336494@collabora.com/
-[3] https://lore.kernel.org/all/20261114-synopsys-dw-dp-improvements-v12-0-d42d3dc5bdd4@collabora.com/
-
----
-Changes in v2:
-- Describe DP alt mode on the Type-C port (dp0 via usbdp_phy0)
-- Keep the default USB3 PHY on usb_host1_xhci, so the USBDP PHY disables
-  the unused U3 port (Sashiko)
-- Pull down the BT host-wake pin, it is active high (Sashiko)
-- Add pinctrl for the HDMI0 FRL enable GPIO (Sashiko)
-- Link to v1: https://patch.msgid.link/20261120-rk3588-mekotronics-r58x-pro-v1-0-4e70c077c7b4@pardini.net
-
----
-Ricardo Pardini (3):
-      dt-bindings: vendor-prefixes: Add Mekotronics
-      dt-bindings: arm: rockchip: Add Mekotronics R58X-Pro
-      arm64: dts: rockchip: Add Mekotronics R58X-Pro
-
- .../devicetree/bindings/arm/rockchip.yaml          |    5 +
- .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
- arch/arm64/boot/dts/rockchip/Makefile              |    1 +
- .../dts/rockchip/rk3588-mekotronics-r58x-pro.dts   | 1285 ++++++++++++++++++++
- 4 files changed, 1293 insertions(+)
----
-base-commit: 23c62304dde29abe92013d85910d03a77dada35d
-change-id: 20261118-rk3588-mekotronics-r58x-pro-54cfda4bd8a4
-
-Best regards,
---  
-Ricardo Pardini <ricardo@pardini.net>
-
-
+	Andrew
 
