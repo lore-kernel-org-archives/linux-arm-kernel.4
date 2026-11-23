@@ -2,89 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F03606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC71606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2wp/Hu/i;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Z1uGPCbV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sOC0LvcC;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j3TuCmyq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Mh4ScxtQECCT949jebGxf3rSb7AyqZ70JiHFshhq54c=; b=2wp/Hu/iNVc+q6Qr9rhe0cSa8R
-	EwaLwKrA1em5jyCk/WdvBSnIVwgUmQZnj1qEm0Jz5jEeb/5+qSTH/5uN+zHnmcVQKsty6a2gpGDy4
-	YZXha0TO73js53NhYFXYIV6w9KZGINwPOIaIu9DDMujgK38s1gCL6M0gaUBQ6NefP5pduExifjEd2
-	OsFFClUSZi1gob62SQKCQEv3YqqmRj8gahBCAmzI+/V5tL+xBHX91SI4erZDKjNGBpGKwq/KX4ENv
-	lFyd73WxZxK+9ko7qO9k1enqg0+oblowhFsfSbBLLS5I7VTdJyhvT+FdNdP/GHnM4LIhYIO3ZgryE
-	5jH5ABww==;
+	bh=Lej6RTvtrpI2hEP/db8Qbcau2rotxEBHFNsfNijRJu8=; b=sOC0LvcC7/MEgcq1PWeM1b6wsp
+	9RGxTCjQ27fYlhB+QBk7gDkFzO4WDyFlRsL0hTlSAutiAVpYx5t29l9Sd1K0QV7sU/Bh1DXQTSd0L
+	HZULZpOjhmqoHKm9xaNcpq38qtgWhH3kQzMCy1jqcljdXmiMwR3QLkuJpk/w51xFkM4uvKs3PrBnm
+	S5MVnefuceH8/EAKCnvFDF0P7wuEnz7seqVRsrYaUIySkgy+BfDO7SiUDC5Ts9XkgaYro/W2wZwqn
+	F3Yw0GZEh9oCu9eNd/kGPmjyBbMxvZpzrzH3/7cctxjfwU4/d6ClBo4zdNfXqlvfGG7CdLbSLz7k3
+	zBjFr8XA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVb9m-00000004ujQ-1YiB;
-	Mon, 23 Nov 2026 21:01:03 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xVajg-00000004rFs-3NPA;
+	Mon, 23 Nov 2026 20:34:00 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVb9g-00000004uiI-19TN;
-	Mon, 23 Nov 2026 21:00:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795467650;
-	bh=rxwZ8xnQVcV8fFd+YcHOcqVoBr8GDgKmqzGHhvx3CZo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Z1uGPCbVLLv8Z1Af1t/4L+/E2FKSLCn3QqtfI/yfMHTyKfGrWfjORetd/7DZ+tLUC
-	 3rw1UOxw+ADuA4SUuY3UoNy8ywW/k9iLJ4Ur/qiQK4snRwHRrUm31pfzuHJVsw45qe
-	 or9x/bU6nohvkxjKpTLLtjgV6zESC2CPRLSPlu8w7WXMWEnwivM9ldoZvot3nxYoJe
-	 SYPNeD+rKjRUFkUcXWVDzzHyBTgOMVywN8X8NkgOvu/Y/FF6vPBRHJlnR1/PX0ZIT/
-	 DQ6NgcqzJ93qfWNgGrt84P4QUcauPKIGs0eFcdD1+ycob/2QLI6ES1+UwBUFyVzcWv
-	 KBqx2TUEwQvdA==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
+	id 1xVaif-00000004qev-3PKP;
+	Mon, 23 Nov 2026 20:33:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 0067C624B9;
+	Mon, 23 Nov 2026 20:32:57 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795465976;
+	b=rZ+uTr+orARP/Vcb2rVjKEsCV4/tylX0sYou8d8WmpJka1WFhlYhOsKA4NTApHuImCX3
+	 EmD2qli6Fgx+BqosiciAn/o9APZWP4DCof9c5wZn6ucNvV45yuZsmudpHXvCOSfbh3lSf
+	 h0rJzRFxInIJGGO3kWc7hO+KwAZF8l+A2uMtg2PExjJasvt453G/ESvEAoqejLvp7uYyR
+	 Kz7zjl6bE/L6FUQj3gkhmvNi00epoQ3LrlFGZ6xOCWEox1U+vrOezitK3MXs2RK7cDTXa
+	 vYZ/qyAVz/JUS/QEsL5vPxkz8HsFRzp3KK6XhtGbuDgUM/6jqgNJcR/K9YKNtWtuJVw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795465976;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=Lej6RTvtrpI2hEP/db8Qbcau2rotxEBHFNsfNijRJu8=;
+	b=yjtaHckWJk6LRVVoQ4h7gHVDl8ASFaWgZczE1AWjjGxIJlpd6xutZIuRtXc8mHCFAkm9
+	 lf2WZhjNksFiCb/GQJAyKxFOStWwKlGC84QBErk8MkqguRzRBHCW8yQnaSvEAZTfGcKvV
+	 ZomfCDZ2jYVV0V3yohKZL4ZLqcAyYlQBIE8txeT57lv+j7ng9wAArE+ghr26DCSDKeItA
+	 BA/S3enpMmGj7O/gF9Mtq6zJlhWJSqbjG/pilI0J+rsxMy0ewgr+eTZReobOMhCmE0Ltb
+	 B5OWk86JjCXV/symfIk9EWBpz786/PgeFf5LiMZls8Ri6tmqR8HvYsiwAVLnqGwu6pg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5F05617E00C4;
-	Mon, 23 Nov 2026 22:00:48 +0100 (CET)
-Message-ID: <855103db6f4103f30c57af2f8d3fb03818c3d8b3.camel@collabora.com>
-Subject: Re: [PATCH v2 1/3] media: verisilicon: stop the VEPU1 JPEG encoder
- after an unfinished frame
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: shomenkow@gmail.com, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
-	 <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Ezequiel Garcia
-	 <ezequiel@vanguardiasur.com.ar>, Chen-Yu Tsai <wenst@chromium.org>, Hugues
- Fruchet <hugues.fruchet@foss.st.com>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
-	stable@vger.kernel.org
-Date: Mon, 23 Nov 2026 16:00:47 -0500
-In-Reply-To: <20261110-hantro-buflimit-v2-1-ff7790def9fc@gmail.com>
-References: <20261110-hantro-buflimit-v2-0-ff7790def9fc@gmail.com>
-	 <20261110-hantro-buflimit-v2-1-ff7790def9fc@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-vtIt28Q+Zkk3sX+hpprP"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	by smtp.kernel.org (Postfix) with ESMTPS id 1C5751F0093C;
+	Mon, 23 Nov 2026 20:32:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795465976;
+	bh=Lej6RTvtrpI2hEP/db8Qbcau2rotxEBHFNsfNijRJu8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=j3TuCmyqIDDR8NGD5LuQq5sXRj6fH32sOmv8uCX+++9Fem+v9yg6pXxafl552aMco
+	 fdfgPP9C+1FFxsAqzZ7Heuac1Qm+3+2PWTnFhLgBMQvfZXy1n5TMgKdFL6uCrk02j3
+	 nPSH4SioRgMHqPsxOBk394Tu+01/OL7DCeP+jXbjWoEdzcPGAl3PN2yIwvL6dy/OS4
+	 bMSzNCbWSVREEXjj/UcerYGGoY95hSWPUXLpDx+e8vKaqvbHFoTPtnhA7yBIGWYMpS
+	 68dXjwStQsrN6b0B3natzvKxyfwih6/oA1MpsrHgSRx6orNSf1dFh62s+yTHtaHVK/
+	 p9YHKOe32HZag==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 34DAC4C71A;
+	Mon, 23 Nov 2026 20:32:18 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Mon, 23 Nov 2026 23:32:22 +0300
+Subject: [PATCH v2 8/8] MAINTAINERS: Add CS7542 PCIe support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_130053_054812_705E9DFE 
-X-CRM114-Status: GOOD (  20.55  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261123-b4-cs7542-pcie-v2-8-f589a9cd0bef@gmail.com>
+References: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
+In-Reply-To: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
+To: Manivannan Sadhasivam <mani@kernel.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Krzysztof Wilczynski <kwilczynski@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465935; l=1356;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=jDKZmt7guwHzNgRKzZtW9q1sZuhebiJ5PQkmWsr+DNk=;
+ b=COAIM9n7CTGeI8/L4LkcbqnsEldMGtaqCfIl/GPNmucZysECPadrp5Gs0ZzEUCWCmxfqt0Ccb
+ lEinjDjWYRmCm41Fm5Fkw5271BcAEUcjoMXeS16jSw1BCeT47F5tcqn
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,110 +116,55 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-vtIt28Q+Zkk3sX+hpprP
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Le mardi 10 novembre 2026 =C3=A0 15:41 +0300, Sergei Khomenkov via B4 Relay=
- a =C3=A9crit=C2=A0:
-> From: Sergei Khomenkov <shomenkow@gmail.com>
->=20
-> When the JPEG stream reaches the stream buffer limit, the H1 raises a
-> buffer-full interrupt and pauses with the enable bit of H1_REG_ENC_CTRL
-> still set. rockchip_vpu1_vepu_irq() does not stop it, so the next job is
-> programmed into the paused encoder and times out.
->=20
-> Clear only the enable bit when an interrupt does not report a finished
-> frame, and warn (rate limited) about each fault bit that is set, as
-> hantro_g2_irq() does.
->=20
-> Found with an LLM coding assistant while porting mainline Linux to a
-> Rockchip RK3026 board; the assistant also drafted this change. Tested
-> on that board, with the next patch applied: a frame that does not fit
-> now ends with the ERROR flag and one interrupt, and the following jobs
-> complete. Not tested on other SoCs.
->=20
-> Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
-> ---
->  drivers/media/platform/verisilicon/hantro_h1_regs.h  |  4 ++++
->  drivers/media/platform/verisilicon/rockchip_vpu_hw.c | 18 ++++++++++++++=
-++++
->  2 files changed, 22 insertions(+)
->=20
-> diff --git a/drivers/media/platform/verisilicon/hantro_h1_regs.h b/driver=
-s/media/platform/verisilicon/hantro_h1_regs.h
-> index 8650cc489392..a7f18683dac1 100644
-> --- a/drivers/media/platform/verisilicon/hantro_h1_regs.h
-> +++ b/drivers/media/platform/verisilicon/hantro_h1_regs.h
-> @@ -11,6 +11,10 @@
-> =20
->  /* Encoder registers. */
->  #define H1_REG_INTERRUPT=09=09=09=090x004
-> +#define     H1_REG_INTERRUPT_TIMEOUT=09=09=09BIT(6)
-> +#define     H1_REG_INTERRUPT_BUFFER_FULL=09=09BIT(5)
-> +#define     H1_REG_INTERRUPT_RESET=09=09=09BIT(4)
-> +#define     H1_REG_INTERRUPT_BUS_ERROR=09=09=09BIT(3)
->  #define     H1_REG_INTERRUPT_FRAME_RDY=09=09=09BIT(2)
->  #define     H1_REG_INTERRUPT_DIS_BIT=09=09=09BIT(1)
->  #define     H1_REG_INTERRUPT_BIT=09=09=09BIT(0)
-> diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drive=
-rs/media/platform/verisilicon/rockchip_vpu_hw.c
-> index 02673be9878e..d201b058e5e8 100644
-> --- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-> +++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-> @@ -376,6 +376,24 @@ static irqreturn_t rockchip_vpu1_vepu_irq(int irq, v=
-oid *dev_id)
->  =09state =3D (status & H1_REG_INTERRUPT_FRAME_RDY) ?
->  =09=09VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
-> =20
-> +=09if (status & H1_REG_INTERRUPT_BUFFER_FULL)
-> +=09=09dev_warn_ratelimited(vpu->dev, "stream buffer full\n");
-> +=09if (status & H1_REG_INTERRUPT_BUS_ERROR)
-> +=09=09dev_warn_ratelimited(vpu->dev, "bus error detected\n");
-> +=09if (status & H1_REG_INTERRUPT_TIMEOUT)
-> +=09=09dev_warn_ratelimited(vpu->dev, "frame encode timed out\n");
-> +=09if (status & H1_REG_INTERRUPT_RESET)
-> +=09=09dev_warn_ratelimited(vpu->dev, "encoder reset\n");
-> +
-> +=09/* After a buffer full the encoder pauses, still enabled: stop it. */
-> +=09if (!(status & H1_REG_INTERRUPT_FRAME_RDY)) {
-> +=09=09u32 ctrl =3D vepu_read(vpu, H1_REG_ENC_CTRL);
-> +
-> +=09=09if (ctrl & H1_REG_ENC_CTRL_EN_BIT)
-> +=09=09=09vepu_write(vpu, ctrl & ~H1_REG_ENC_CTRL_EN_BIT,
-> +=09=09=09=09   H1_REG_ENC_CTRL);
-> +=09}
-> +
+Cover the new PCIe control, SerDes and host drivers and their bindings
+under the existing CS7542 entry.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ MAINTAINERS | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
->  =09vepu_write(vpu, 0, H1_REG_INTERRUPT);
->  =09vepu_write(vpu, 0, H1_REG_AXI_CTRL);
-> =20
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d8835aeca..511a6cb34 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2949,15 +2949,20 @@ F:	tools/perf/tests/shell/coresight/*
+ F:	tools/perf/util/cs-etm-decoder/*
+ F:	tools/perf/util/cs-etm.*
+ 
+-ARM/CORTINA SYSTEMS CS7542 GLOBAL CONTROL
++ARM/CORTINA SYSTEMS CS7542 GLOBAL CONTROL AND PCIE
+ M:	Fil Dunsky <filipp.dunsky@gmail.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
++F:	Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
++F:	Documentation/devicetree/bindings/phy/cortina,cs7542-pcie-phy.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
+ F:	Documentation/devicetree/bindings/soc/cortina/
+ F:	drivers/clk/clk-cs7542.c
++F:	drivers/pci/controller/dwc/pcie-cs7542.c
++F:	drivers/phy/phy-cs7542-pcie.c
+ F:	drivers/pinctrl/pinctrl-cs7542.c
+ F:	include/dt-bindings/clock/cortina,cs7542-clock.h
++F:	include/dt-bindings/reset/cortina,cs7542-reset.h
+ 
+ ARM/CORTINA SYSTEMS GEMINI ARM ARCHITECTURE
+ M:	Hans Ulli Kroll <ulli.kroll@googlemail.com>
 
---=-vtIt28Q+Zkk3sX+hpprP
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+-- 
+2.53.0
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawSpfwAKCRDZQZRRKWBy
-9A8UAP0UvBlBF4AVvJxBf8F0/qG7WhetKMXmVNr9eOsYgUV6JgEA8Q+Du3Q723Nr
-gd9jJjAz9JO7HsTVsj1SE4sAmvIilwA=
-=c0o/
------END PGP SIGNATURE-----
-
---=-vtIt28Q+Zkk3sX+hpprP--
 
