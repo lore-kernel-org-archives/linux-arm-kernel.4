@@ -2,100 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12517606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF146606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:53:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i3OR9SIx;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=g5Gh9NCS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e2VYXq0K;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Qt75YU3b
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZtisJYhM86UyOxDcysd9jBL2fDZTQgOga1PJnW60c8w=; b=i3OR9SIxsOIAgQ
-	KttSIZAmw2BhIdQ3otUC+RCSRDhNQZ93IDXOZhBi7eyrC00RAdt0cPUr0xgxctVNseJd+ZkSpUQvg
-	BIlckOMTh0/g2Z0TFSD02t9ke0Y+wUmB0ElaZambYDDGTvfXlsTJTXZd3HfDZHofPlq1acATYLrBi
-	o8BF/JMXPn3WFRrQ5oQeqUTqB+syQPy6lTI9O6R4lKcc9Pq32FAfVcAEaosyNoEHJKTsx2gYEupjL
-	Syc6Yv1PgAkcEPXp7HV4QDI+leFYuh5whjiW2Ib6FcxOlH4FbuJr+juOOdmZE0juPeDsfCBALjuCs
-	SA11V4X/WVuqmPRfMerA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=XvzEmeTIxXyutq1PXClFF3+A3A4QaLFL8E1yjF/uOVM=; b=e2VYXq0KymgjNe67UTZu8Y7pXp
+	WkVgBcOJbzgCMJeApKTut1Ch4x0/0Nboh6j2RwQIqH8F0MwA3w7XaO2J/edSiu9ObeZfZnLNxRU/s
+	q2mV5MIwZZoCXTL5Q1GQyhDU4+7DIi0ugqstThZrVjiJQnqGiL/2pIlYbPbiDayTzPUWuFjQpzk4H
+	rHb51XIeodhnQDS8zxDtOWqMFocwEgKkmosr7JO34NfMYxRzwfbAeMippwVn9YtiXaW9GxjtP/QZx
+	auhGybzssbmAGJ0srNdXrZrDKdyGMAgdftMLsFTdkHUHYsbKdxapQh2/4RZRSv1rtRmfSk4Q2k/FZ
+	ngTRLDVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSBI-00000003AR3-1Sbd;
-	Mon, 23 Nov 2026 11:25:56 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSB7-00000003AMV-2TnY
+	id 1xVSbv-00000003FcG-2MjJ;
+	Mon, 23 Nov 2026 11:53:27 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVSbu-00000003Fbw-0UhK
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:25:48 +0000
-Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
-	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id A1B792020DC;
-	Mon, 23 Nov 2026 12:25:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795433142;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZtisJYhM86UyOxDcysd9jBL2fDZTQgOga1PJnW60c8w=;
-	b=g5Gh9NCS8DCn5Zb41igXrUOwh8oxz2zAv0RbRFLEz1NvXCerXMjFEpkf9lW4Uarl9cCkW7
-	HGLp1Bjk9YlmoWQ9KEFsTJ4Ts9F56PuL6m88ZhTvMMTQMe55iq6BcQDEV4d/5+cwFdfSPU
-	WJszExLZKzZ9KLJqwaNB/jafPBFAoZkNtdlA/kyklxifF5UO8Gy/ZkKwgaqDG2wz2oUsFN
-	uuW6ggS+/F3TA3pW4hHQMxRjAQHViKV8KcWYG6kS/bkW79w2uzJ7vF4lVmV7iPJbGnV9cX
-	9zba42NdkoibfZaaGsZqutWlr0XHkOPT7jzXRtJ3DZ4Osuko65U0z9Anp6lF8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795433142;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZtisJYhM86UyOxDcysd9jBL2fDZTQgOga1PJnW60c8w=;
-	b=LwHN8qNjxymoJMW1tf2KTkiiPY9oG162Skwh8Hz9GSGg885POEkhutS1WfZuCPKBD4a6I5
-	AoXFanX+Aepq1hkbgNEGaE0G4tbjyPjS2qvqGDuJkNBbFZbaGL62pMXBYr8TUs0zY4ZqJd
-	ED6TiPtNQAUeRmcxtKgw4Mum0uQ4gJZCGZowrEChs4q5Oi5gMuan28tPQDeUR5q52nTuz6
-	BDRHVyZdPvv38MjccPv9d4PTUhdLwPZ18awhNvtEZead6r6UB3VJqlDLxp3G7GqAWx0du8
-	bgy2MrZafzwZcMWru0Y1un6DfLOYb3YsuTbsBAhMJ+nDHWZkFgCTEC0kyauJ1g==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795433142; a=rsa-sha256;
-	cv=none;
-	b=T7olXURK/CaoHX7hbUynCoN1Lh4/GbF22pfbO3CDfgWfVSqw/ESGupcpdaJ6zhhkEEllxb
-	JJxZglSj4fl8M2aGzK7OJMlZRAyGnb2ROFPT9uxCdtWI1b/msn5wQr+5goUnzMvzlQok+5
-	AWpcS3heFASXaXDdxOUX1dmKpa6MKvxCZH7D8bjPJ+ptfoVVaeQF7exZL0RX5PHT2e2Oj6
-	ipTex6R/rGu5WZJla4dBmw4Ti9XJocWLYmqMYaKXKSFkiGxJemM/T8bbqJj0JtnKVSeQ0X
-	C6JPRN27l1monEJ2xZy1KnPT26dgyn7ZMElLpnUiZvyvQgGNpC3agi3sJK9y8g==
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.2])
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
-	(envelope-from <f.diener@pengutronix.de>)
-	id 1xVSB4-0016XI-0C;
-	Mon, 23 Nov 2026 12:25:42 +0100
-From: Freimut Diener <f.diener@pengutronix.de>
-Date: Mon, 23 Nov 2026 12:25:17 +0100
-Subject: [PATCH v2 3/5] arm64: dts: freescale: imx93-11x11-frdm: restrict
- USDHC3 to SDIO
+	Mon, 23 Nov 2026 11:53:27 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 32098143D;
+	Mon, 23 Nov 2026 03:53:22 -0800 (PST)
+Received: from localhost (unknown [10.2.196.114])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B0AEC3F882;
+	Mon, 23 Nov 2026 03:53:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795434805; bh=RYiIfxkDaSmX84xLMRyq6/NcK2Xs3/5CbbES0suYhVc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qt75YU3b9IX1teTA93OzvDq6X7Oe3ZnyDyVLUjwaAHC4X7Nb36+f9OfXtVZiu6E8N
+	 QyrHjBzaMwPjmpSIc+kKHmbJ7YcOKGgyW8B0UiNQRSz6JKof8vAkU+dwT7fr04Xi78
+	 Q8GmkPvA7o5KPkoovCNy2agd85FsSuoCiSVEi2Vo=
+Date: Mon, 23 Nov 2026 11:53:22 +0000
+From: Leo Yan <leo.yan@arm.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	James Clark <james.clark@linaro.org>,
+	Mike Leach <mike.leach@arm.com>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Yeoreum Yun <yeoreum.yun@arm.com>, Jonathan Corbet <corbet@lwn.net>,
+	Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
+	Ingo Molnar <mingo@kernel.org>, linux-perf-users@vger.kernel.org,
+	linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH 04/25] coresight: perf: End AUX output when an event is
+ throttled
+Message-ID: <20261123115322.GC9176@e132581.arm.com>
+References: <20260915-arm_cs_support_aux_sample-v1-0-35cf6f297d20@arm.com>
+ <20260915-arm_cs_support_aux_sample-v1-4-35cf6f297d20@arm.com>
+ <5b94b79b-8c4c-433d-8c9c-d92b4a8399c5@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-imx93-frdm-fixes-v2-3-dd97c7fca4b1@pengutronix.de>
-References: <20261123-imx93-frdm-fixes-v2-0-dd97c7fca4b1@pengutronix.de>
-In-Reply-To: <20261123-imx93-frdm-fixes-v2-0-dd97c7fca4b1@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@pengutronix.de, Freimut Diener <f.diener@pengutronix.de>
-X-Mailer: b4 0.15.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5b94b79b-8c4c-433d-8c9c-d92b4a8399c5@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_032546_419228_6323946F 
-X-CRM114-Status: UNSURE (   9.93  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_035326_199873_3B80B947 
+X-CRM114-Status: GOOD (  17.74  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,43 +81,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-USDHC3 is connected to the onboard Wi-Fi module by default and can
-alternatively be routed to the M.2 Key E connector. Both interfaces
-provide a 4-bit SDIO connection.
+On Mon, Nov 23, 2026 at 11:01:04AM +0000, Suzuki K Poulose wrote:
 
-Add no-sd and no-mmc to skip unnecessary card detection and avoid
-the HS400 warning from mmc_validate_host_caps():
+[...]
 
-     sdhci-esdhc-imx 428b0000.mmc: drop HS400 support since no 8-bit bus
+> > @@ -748,13 +748,16 @@ static void etm_event_stop(struct perf_event *event, int mode)
+> >   	 * handle due to lack of buffer space), we don't
+> >   	 * have to do anything here.
+> >   	 */
+> > -	if (handle->event && (mode & PERF_EF_UPDATE)) {
+> > +	if (!handle->event)
+> > +		goto out;
+> > +
+> > +	if (mode & PERF_EF_UPDATE) {
+> >   		if (WARN_ON_ONCE(handle->event != event))
+> > -			return;
+> > +			goto out;
+> 
+> We seem to be disabling the path in this case, which is a new side
+> effect ? Do we want this ?
 
-Signed-off-by: Freimut Diener <f.diener@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Yes, it is intentional to disable path for this case. By this point,
+the source has already been disabled and the event marked stopped,
+so I intend to complete teardown of the whole path.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
-index 6e8351d120160..40997115e4a26 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
-@@ -73,6 +73,8 @@ &usdhc3 {
- 	keep-power-in-suspend;
- 	mmc-pwrseq = <&usdhc3_pwrseq>;
- 	non-removable;
-+	no-mmc;
-+	no-sd;
- 	pinctrl-0 = <&pinctrl_usdhc3>;
- 	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
- 	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> Also, could we not move this out of the if condition ?
 
--- 
-2.56.0
+I initially left the check in its existing position to keep the
+validation changes together in patch 05, which reworks the AUX-state
+checks with perf_get_aux().
 
+I can update condition check like:
+
+  if (!handle->event || WARN_ON_ONCE(handle->event != event))
+      goto out;
+
+If this is okay for you, I will update patch and send out.
+
+Thanks,
+Leo
 
