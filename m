@@ -2,99 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30118606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:44:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE1E606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=quoZhx+Y;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=YCJ1Sm9w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fU8eJvii;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=NR0yTnO8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RtZuQpjBISQ5PzofF8ezvlSlMkGFsIg2Ig7KZUE+5nI=; b=quoZhx+YCi6mec
-	5d4vKXuEXrkB966d9zOs8UX0w5Z77h25IKzg/W7v86rHnCdD/7f5aC9rYxAxkczUVPP6XtFp1ftjT
-	p+ACsg+tSKM1FvpDjlHSeF3z5dJxP5FMQthzR6M03OLGfw5Qjr9s/WjLth2cBcSB1id49uPv4wvNl
-	nc4M3YNntLrJ7jPy8nq9S2S5f8OomKFiRzvUiZXvzYFwqlU1abjDECcDzV2FXZOrlJjUpXVBT6bdY
-	1RLz/2hrj7pyTzfXOE3KGRMj7gqiYO9vbR65DrBjN7b1oi1/+ehmbkswxUj3tZ2dFljv9ahfp6qFv
-	ewl7HA1nkyfl8Zgc1Y0w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=+Dr3Yxe6IMfqQTqamQRvWaq+1EPQPGHIOcF25gOzcos=; b=fU8eJviimeeaosA0R2JsE2GYtD
+	vy2nghdZzlHorXf582eaYHjCrWMcIcmvQH1eVY0gxPme43nUHpRQfV3Z3wFy8bY4lpS8hB3pPlSId
+	O4zsP2erXZoD3ODXqQr9Xfo7jd8+x83vU3pP5LchxU6PbtWj1uKfPoEGiBfp19qc/2XJEPZfKYOxq
+	3ABLLBS/TjHx8L6YWNBRL4ICv/KEzM97HRKlXva6i4nwPpcKOZyxfP3OQzF+z41clJOXciIJRkJOP
+	dxjbneGi2R5VqL3lIwPb9AfbjDF6zV4D3/p6fPebSt00OxtZGUmFf1MjW8oKPlx6+6fMDP0AfVeeV
+	5ZlZEFKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVvb-00000003yIt-1BJI;
-	Mon, 23 Nov 2026 15:25:59 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVVvI-00000003y2f-1eET;
-	Mon, 23 Nov 2026 15:25:41 +0000
-Received: from [127.0.1.1] (unknown [IPv6:2a02:560:5c0a:3200:9ebf:dff:fe00:fdb5])
-	(Authenticated sender: sha@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 87D9920215A;
-	Mon, 23 Nov 2026 16:25:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795447534;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RtZuQpjBISQ5PzofF8ezvlSlMkGFsIg2Ig7KZUE+5nI=;
-	b=YCJ1Sm9wSJyTcVdstzw5TsvJXDZrTsBfIFbBj2QnEq1t68ZAOhF3V5MaZ9/eAxq3HNlxTp
-	jc/3pewzJvQrqCfRvXslFI41qGS5lBjg0x25htfrqy69o18UWIzMycjC4ezzcslHcaTVUO
-	yYB+LVEVHPQWIoKv8KRRldVuVgiFzJsxXSo9LY/LMgeCXpZcjqrHbpYUPQyWkbrhloHJT7
-	jJq1PlkUyLZAH9dM7b0ECp+0irb9iNxbL8SqnvSjsxsTvnvFAU7itTDyeE2yrtBI+IbiJu
-	PQQFI0W9324A5dSTzfGxgS2F9GZ3iLMG2TkSreMvydlRcKVLyB8p4S86jVau7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795447534;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RtZuQpjBISQ5PzofF8ezvlSlMkGFsIg2Ig7KZUE+5nI=;
-	b=JdFLa67ldlJXlkWYyXw5VpJGdvOdZ4zAAp3LVTkbFNiGrVQy2ofOAx5QaZbHyFSfuXZkYU
-	fTXayBwvauLYRfU4pUsaVy92lJRz3PX+cDVEXkuHzd1F9AcophTX/yEdIERH1WQnG0eoI7
-	sk3S+N9qaXNAYADa/SjWp9LjfkerXaR6bIXpSYdEFkiA3MtsvbJ+295evOJfVbDoBcqLj5
-	NHqs9sCNlnwM6sdexA6Kc9aJe3dw4iuJjnERt8K2vpcZmUXIyG31XmJ2W3LB4lGVwzukLc
-	kvZHOYlPctPwsu/UgkXEmXoeo/l62guBLiRSvkdRercqqKAsaGYhiJFdfMg4Og==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sha@pengutronix.de smtp.mailfrom=s.hauer@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795447534; a=rsa-sha256;
-	cv=none;
-	b=PSfHtdakjULySKUW65G9H7whHeWSjhN4P340vni8F5U5Mv2jTVc7M3bcCjfFLOMXvOx4zt
-	GXGeuvGQWhpuaxtoFepPIjcNqW0U6In9KQUX+t2tJe7WgzI6Gv/Pyn3gbyeTF5Fyvp2UlF
-	xxiWg1Fi/3c7PsEdyGUQAxDrMIrTlqpTtQDva+McDmsxHZIRuF0q8qo0vG9qexCR3hcqYt
-	8jEpNoTEgUCfBfSy5PtfXYSbmbGzkCpMLpX6spo5x0pgMnm4gfaMOpZz8d5EBA9zeM6i+J
-	uOKoM5yWcXbJcNpq4PVtkhUi/IXQU0L8Ahs1kL30uIAf/NiWduqpfY7IEGZXqA==
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Mon, 23 Nov 2026 16:25:22 +0100
-Subject: [PATCH v8 3/4] arm64: dts: rockchip: rk3588: Add JPEG decoder node
+	id 1xVW7K-000000042DA-1WET;
+	Mon, 23 Nov 2026 15:38:06 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVW7I-000000042CR-1vqF
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 15:38:05 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5017C176B;
+	Mon, 23 Nov 2026 07:38:00 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5C4F43F763;
+	Mon, 23 Nov 2026 07:38:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795448283; bh=ZtZSCFfSS7AH1eoflbymwNl2l/6JZjRWRRcFOneOrtQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NR0yTnO8eL//qf8rHTLt5m/S5J1hkJUzo1muilLaNZrwO0c1pSt7D9cwwm9bCG3Zw
+	 dxeucstnM+0H/F4tzbbBlYMXzGETjbM+Dd8y/v+KiUzCy6GO1YfI6fTbJhyUhaP/gx
+	 PjEgbnLXZA2jNZiRzkOHlyEm203Of8VqEoZYwClw=
+Date: Mon, 23 Nov 2026 15:37:58 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Ryan Roberts <ryan.roberts@arm.com>
+Cc: Alexei Starovoitov <alexei.starovoitov@gmail.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Daniel Borkmann <daniel@iogearbox.net>,
+	John Fastabend <john.fastabend@gmail.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Alexander Viro <viro@zeniv.linux.org.uk>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	bpf@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: Mitigate Spectre v1 in the BPF interpreter
+Message-ID: <awRd1mHcQDVNi9U9@arm.com>
+References: <20261117172341.3152407-1-ryan.roberts@arm.com>
+ <DMYSI3BOQWOC.2P2FZB0H872DR@gmail.com>
+ <awAay4FFj1_wQtaL@arm.com>
+ <DN07ZMOAD4GP.37PG3XUPBG4CM@gmail.com>
+ <a6cda8a2-992f-41f9-a814-ee78363c3a69@arm.com>
+ <DN2ALO12MI1Z.3HI553HDMO2FL@gmail.com>
+ <85385aae-af06-4742-a39b-5a95e3e73a7e@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-rockchip-jpegdec-v8-3-3316cd31b043@pengutronix.de>
-References: <20261123-rockchip-jpegdec-v8-0-3316cd31b043@pengutronix.de>
-In-Reply-To: <20261123-rockchip-jpegdec-v8-0-3316cd31b043@pengutronix.de>
-To: Lucas Sinn <lucas.sinn@wolfvision.net>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795447521; l=2087;
- i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=/5otNey9wykcyEsqmcE7HpFPjCyCSXpdbrUJbjJZsqU=;
- b=2yShTeDEluSQe4gR/nnFNAVc68Wmhp64tCITD1cDWJyFuY4hJMhVnxPZHxrlXbGauz3QEGvJs
- 7rU4X2ja9DjAqPaBb1+6B14MWm1tcWrq5unELJp/aHNaTFVL3NnZJtZ
-X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
- pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85385aae-af06-4742-a39b-5a95e3e73a7e@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_072540_591121_EE8689FE 
-X-CRM114-Status: GOOD (  10.80  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_073804_606641_D36533F6 
+X-CRM114-Status: GOOD (  25.43  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,67 +80,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add device tree nodes for the Rockchip JPEG hardware decoder and its
-IOMMU on the RK3588.
+On Mon, Nov 23, 2026 at 10:49:58AM +0000, Ryan Roberts wrote:
+> On 23/11/2026 04:07, Alexei Starovoitov wrote:
+> > On Sun, Nov 22, 2026 at 12:58 AM Ryan Roberts <ryan.roberts@arm.com> wrote:
+> >> I view this patch as a fix to arm64, not as a fix to BPF. I haven't changed any
+> >> BPF code - I've only removed an out of date comment in BPF code, which assumed
+> >> the code path was for Spectre v4 only. But that's not true since Commit
+> >> dff883d9e93a ("bpf, arm64, powerpc: Change nospec to include v1 barrier").
+> > 
+> > Fair enough, but the arm64 part of that comment is stale.
+> > The verifier relies on nospec for v1 since
+> > commit d6f1c85f2253 ("bpf: Fall back to nospec for Spectre v1").
+> > 
+> >> arm64 was previously nop'ing barrier_nospec() despite seemingly needing it in
+> >> the same situation as x86. I think this is orthogonal to whether or not the BPF
+> >> interpreter permits speculation attacks in other places?
+> > 
+> > Not quite. In the interpreter the barrier sits behind an indirect branch:
+> > 
+> >   goto *jumptable[insn->code];
+> > 
+> > arm64 has no retpoline, and the prog can train this branch.
+> > With a wrong target the CPU skips ST_NOSPEC and runs the next insn.
+> > So the interpreter is still not safe.
+> > Yet you're arguing that you're making bpf interpreter a viable option
+> > on arm64. That's just not fair to users.
 
-The decoder is at 0xfdb90000 with its MMU at 0xfdb90480.  It takes the
-AXI and AHB clocks and resets, and sits in the VDPU power domain.  The
-AXI clock is pinned to 600 MHz, which is the rate the downstream BSP
-runs it at; it is a dedicated clock, not shared with another block.
+[...]
 
-Both blocks are entirely on-SoC and have no board dependency, so they are
-enabled unconditionally like the other codec blocks in this file.
+> > Say it in the commit log that you're fixing one tiny issue and leaving
+> > giant security hole in place.
+> > With that I'm no longer nacking it.
+> 
+> Happy to fix up the commit log as you suggest.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+This patch closes the Spectre v1 hole in the interpreter but, as per
+Alexei's point, we are still left open to Spectre v2, even with CSV2.
+CSV2 only isolates branch prediction between contexts and here the
+predictor could be trained from within the BPF program itself (in
+theory, not sure if this has been demonstrated on arm64 though).
+Training it this way is harder but I wonder whether it's worth patching
+the kernel for v1 or just recommend that people disable unprivileged,
+interpreted BPF (that's Arm's official recommendation anyway). Would we
+give the wrong impression that such configuration is safe?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 376ad04e07869..cc53878502898 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1317,6 +1317,30 @@ rga: rga@fdb80000 {
- 		power-domains = <&power RK3588_PD_VDPU>;
- 	};
- 
-+	jpegd: video-codec@fdb90000 {
-+		compatible = "rockchip,rk3588-jpegd";
-+		reg = <0x0 0xfdb90000 0x0 0x400>;
-+		interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_JPEG_DECODER>, <&cru HCLK_JPEG_DECODER>;
-+		clock-names = "axi", "ahb";
-+		assigned-clocks = <&cru ACLK_JPEG_DECODER>;
-+		assigned-clock-rates = <600000000>;
-+		resets = <&cru SRST_A_JPEG_DECODER>, <&cru SRST_H_JPEG_DECODER>;
-+		reset-names = "axi", "ahb";
-+		iommus = <&jpegd_mmu>;
-+		power-domains = <&power RK3588_PD_VDPU>;
-+	};
-+
-+	jpegd_mmu: iommu@fdb90480 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb90480 0x0 0x40>;
-+		interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_JPEG_DECODER>, <&cru HCLK_JPEG_DECODER>;
-+		clock-names = "aclk", "iface";
-+		power-domains = <&power RK3588_PD_VDPU>;
-+		#iommu-cells = <0>;
-+	};
-+
- 	vepu121_0: video-codec@fdba0000 {
- 		compatible = "rockchip,rk3588-vepu121";
- 		reg = <0x0 0xfdba0000 0x0 0x800>;
+If Alexei makes the Kconfig change to force JIT always on, I'd be
+inclined to drop this patch.
 
 -- 
-2.47.3
-
+Catalin
 
