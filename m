@@ -2,84 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DEA606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D536B606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tu2k4ah3;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Zi9H4Suv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VR+nb7lT;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=gp7zuQST
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PyZ9yQC5Ep4/P10hYAHGznQfdWo4mmzt/SNYST0pY9E=; b=Tu2k4ah3nYSN2+
-	hhin/FDVSQ1AGVujxv0xYj3efKf2EWQjzQaKnvrz5M9x9DySm4IJwFArd+nFSVzxs0gGDpBbGhQu4
-	ioFCRv47yIMCxJ8wXBvZ7AjpWvxVpCCmvJDVh74b7Dtpz+GumyB5DTMFk1K0ZuAaX6QUg4DR38v9e
-	yjqyIhsUasXnY6HYywWXkwV4cn4hvOL+5UyyREJMHkxo1Sem8eL8sYlHfhfCo5EmAI7OmnqE/9dbQ
-	fCp+l4X1a8Efm/c05S+t7x7kRHPPPdjX6EfqwybasQPu8X9SH+4ZOUlSLgc7Jdg1EiKUspMa3krct
-	ZO2o+5fsqtGiQxNnyiiA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=o4c3gw5ayTeVyj4tzoPmy8cMt5RLKRl7oVUcToc0K6g=; b=VR+nb7lTWz1+JCnhk4FSSJIvZP
+	ZUbweDAypLLJuH5cDEIzFfqvSzOVyZjWisAI9OowT9upkHL7BpqqE55+UFkeJ2wfftCP84eS+X/9d
+	+RSHj9/tG8GVj9xxJLMKNEemNGuXdw3TSZe9VSjnGWzwaw00FvFjCb+FAl9yDEsVsySE7EKrkwZEx
+	7KJredajytcFqV5jqi8cTwsH/OI8Y7zHlHmZi0ntDCXnLWV0b7z7/pcDEG9/ARu0GthG5LgClIr4x
+	hG/Ku1WFTIMpzE59IYqupaylGk7WT3rrMiTaLTrYKQoJ5mZ/72VWHKte48SHrF4l8v6OFEBQgDFDV
+	64Cl/2Fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQqX-00000002sAf-09i1;
-	Mon, 23 Nov 2026 10:00:25 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVQOz-00000002iuv-3AIh;
+	Mon, 23 Nov 2026 09:31:57 +0000
+Received: from mgamail.intel.com ([198.175.65.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQqT-00000002s8O-38gE
+	id 1xVQOr-00000002itg-3GNv
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 10:00:23 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4169E401B9;
-	Mon, 23 Nov 2026 10:00:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1B0F1F000EB;
-	Mon, 23 Nov 2026 10:00:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795428021;
-	bh=PyZ9yQC5Ep4/P10hYAHGznQfdWo4mmzt/SNYST0pY9E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Zi9H4SuvGgLmReGW5/Ottuna/ZQ5hZ+k6ORJlbhlBFfv1dKS3NMd4j/6mf7lCRd2x
-	 3Ylgz/slXhnP0k6Un5Q+su6zCdrBj5KS41eaw101GEZFEB5wz/3lboFZbGFIrv4ZHx
-	 U84xpQrHxI3bI1jAGWwjxQjOI/kvjHwWUHjLwhFs1r5SdYzJOQMSpu3hi2A7GcGqqk
-	 2D8uvRAUFJxe5CIArpMrVmOfbNenSMvot8t24AATAM7OzkmBQrdwEpDPltG0xcfK7d
-	 yqAA3NhatV7/s6XRUb/rA+vp5Du2LoOjKIe0t0GMB7cq0CVJb9A6aUV7IlH8dx23jY
-	 Sl7KULA/hft9w==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=valley-girl.lan)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVQqQ-00000001tC3-3w8R;
-	Mon, 23 Nov 2026 10:00:19 +0000
-From: Marc Zyngier <maz@kernel.org>
-To: Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Dan Carpenter <dan@pereq.eu>
-Cc: Karthik Bhargavan <karthik@pereq.eu>,
-	=?UTF-8?q?Cl=C3=A9ment=20Blaudeau?= <clement@cryspen.com>,
-	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
-	Sashiko <sashiko-bot@kernel.org>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Reset MMIO state when committing a nested exception
-Date: Mon, 23 Nov 2026 10:00:11 +0000
-Message-ID: <179542800495.4189470.7702534547191717526.b4-ty@b4>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261123-stale_mmio-v1-1-73f9c67a1bb0@pereq.eu>
-References: <20261123-stale_mmio-v1-1-73f9c67a1bb0@pereq.eu>
+	Mon, 23 Nov 2026 09:31:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795426310; x=1826962310;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=E2y5GFJ9BPlcQ4pbbpDmSkF+0dOWl7ZmiyJDcKj96mg=;
+  b=gp7zuQST+LVKrhz0uR9yTKN9QTptA98uCnlTFdDLv1rzNPoOdOj6j8XR
+   hZWOEXIl2SE82Vcpbmno7x2laQoNlOF590kHsGxDE6TFtzKR8DE3cNkCr
+   AVAI6ni2PhEyhLxEiYyPKtAwIo8fRl5Q9P+y8fXOUSRAJ+JF46DUgs16c
+   CR8rIZDBSl9OP4q2EvRQdfBKWJTR/a6yIC1gA2KsBmhKWdIPqurpzBNUF
+   Az0rynYjMtC5jkNhq/o2g3L63FXkUW3n6vfzltsMRQg/4ZXOxB1BLxAy4
+   Vh29eiVQ63jh+oEEMgj6EcvguUhxv44gusqVtDoMfgqcdCkV+1jSKOMhh
+   A==;
+X-CSE-ConnectionGUID: r1PeuGi9QcGdN70oDbsxKg==
+X-CSE-MsgGUID: RO86KprvSEOoiTiRqhEiFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4236415"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="4236415"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 01:31:48 -0800
+X-CSE-ConnectionGUID: RalA61qXRWWn9SmkXAgNwA==
+X-CSE-MsgGUID: O9rcS9HvTJGEA/JvnhVvbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="11133388"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.204])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 01:31:44 -0800
+Date: Mon, 23 Nov 2026 11:31:41 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>,
+	linux-iio@vger.kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	giorgitchankvetadze1997@gmail.com, amin.gattout@gmail.com,
+	antoniu.miclaus@analog.com, gregkh@linuxfoundation.org,
+	mripard@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] iio: adc: at91_adc: fix NULL pointer dereference
+ on trigger remove
+Message-ID: <awQH_Rr8b_Eu0Vew@ashevche-desk.local>
+References: <20261117140510.391907-1-abdelnasserhussein11@gmail.com>
+ <20261117140510.391907-2-abdelnasserhussein11@gmail.com>
+ <avyEb9La1tqS90Cp@ashevche-desk.local>
+ <avyEqQEL3A_YNcgg@ashevche-desk.local>
+ <20261122002118.723b23b3@jic23-hlaptop>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, dan@pereq.eu, karthik@pereq.eu, clement@cryspen.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, sashiko-bot@kernel.org, stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261122002118.723b23b3@jic23-hlaptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_013149_854065_E5D8CFC0 
+X-CRM114-Status: GOOD (  20.20  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,41 +96,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 23 Nov 2026 12:47:42 +0300, Dan Carpenter wrote:
-> KVM has two ways to commit a pending exception, commit_pending_events()
-> which also resets the MMIO emulation state, and a direct call to
-> __kvm_adjust_pc() which doesn't.  The EL1 to EL2 path in
-> kvm_inject_nested() uses __kvm_adjust_pc(), but it needs to use
-> commit_pending_events() instead.
+On Sun, Nov 22, 2026 at 12:21:18AM +0000, Jonathan Cameron wrote:
+> On Tue, 17 Nov 2026 18:45:29 +0200
+> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> > On Tue, Nov 17, 2026 at 06:44:37PM +0200, Andy Shevchenko wrote:
+> > > On Tue, Nov 17, 2026 at 04:05:08PM +0200, Abdelnasser Hussein wrote:  
+
+...
+
+> > > >  	for (i = 0; i < st->caps->trigger_number; i++) {
+> > > > +		if (!st->trig[i])
+> > > > +			continue;
+> > > >  		iio_trigger_unregister(st->trig[i]);
+> > > >  		iio_trigger_free(st->trig[i]);
+> > > >  	}  
+> > > 
+> > > Yes, but no. Please, rather fix the above mentioned IIO trigger APIs to be
+> > > NULL-aware.  
+> > 
+> > Actually the iio_trigger_free() is already NULL-aware, so make it only for
+> > iio_trigger_unregister().
 > 
-> The scenario is: the vcpu exits to userspace for an MMIO access and
-> userspace then injects a synchronous external abort or an SError using
-> the KVM_SET_VCPU_EVENTS ioctl.  If the vcpu is in L2 context and L1 has
-> asked for the exception, then kvm_inject_nested() enters the exception
-> straight away and vcpu->mmio_needed stays set.  On the next KVM_RUN,
-> kvm_handle_mmio_return() completes the access in L1's context so it
-> skips the first instruction of L1's exception vector and writes the
-> MMIO data to one of L1's registers.
-> 
-> [...]
+> I'd rather we didn't.  Any code that is unregistering a trigger
+> that it didn't register is probably really very very buggy.
+> I'd like them to crash or at least guarantee that sashiko
+> flags it.  We could add a warn if it is called on NULL I suppose
+> but that is ugly.
 
-Applied to fixes, thanks!
+Can we add a comment there to avoid making such a change explaining
+why we won't iio_trigger_unregister() be NULL-aware?
 
-[1/1] KVM: arm64: nv: Reset MMIO state when committing a nested exception
-      commit: 551e73d9e21ee2a6d045736246eafcd79b32d9c4
-
-Cheers,
-
-	M.
 -- 
-Without deviation from the norm, progress is not possible.
+With Best Regards,
+Andy Shevchenko
 
 
 
