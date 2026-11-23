@@ -2,76 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18AF6606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890AA606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aLx/xn7h;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=O74+mP8Z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=licqMGYC;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=k1PB6R/+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pJ+7nfcFzRim3a/y3yfomDmbdCPIRW2m246LLxOsgHo=; b=aLx/xn7h2L8yJp
-	BYcNtY5saFw1jL1h8UNibQd66UXxjGql73X8wyp5AY7FvZPkMpA8kmfeZQjzav5DrajIxeg9svfRV
-	bBpvNHIsx3u2uXEvNupuMGCHZxvL/zjzcD9R8w6Qvnk9cu+wnL7HYqlgqO6xOmmFvJ4czVwdVApFe
-	wkNJZDlsqVfUk7GfOmoTWiuDQ8ToG6QJrMGICjodnqhPfaBkZSWEmMFkVEYosWYHwN/af71JUN3xs
-	yAi0CrQXm7iapgqBejeS5ppvLLXt19WOnUoAdIUwkc/VPG9sNg3JFX82Gyp1AbunmryKvzTUdAgDP
-	Cn+5ItPgUpeyZpVqBNfA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=x+gGftbRHFSjjMtooCgaTjgU4II0/q4+ovgYoYGeY08=; b=licqMGYCWRGZeUY9ua5P91QwV0
+	264eSO3fTdJnWSxVz//YtXs6HKndXCQLfzkU9mAFZ9HVVk/hGBQjp/pzAPYjhUfj7rkjUxYitXz5L
+	OHQ9H9yTjbvWyXMx42R4YCgViUid5LC5nLsheUf6l18dyjAOYai9CR8w50oD/88OSjpipsUPtGXnG
+	+JWrxSQv+en51yItO4wZwf8abVvms34Uwwl/Ed1BmJi29o7Zli/xrCPopGAco544grFmzxYissVeE
+	ox9VLbaJ/X2KXTr0j8WU8D1BO25G6iJ2KH7YRJgc6qmF7/otqGMi5bE0Idmprgp9LG6IDbMycbadL
+	CTBYlQ7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQck-00000002o5Z-2Wp4;
-	Mon, 23 Nov 2026 09:46:10 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xVRTs-00000002zzq-0jNC;
+	Mon, 23 Nov 2026 10:41:05 +0000
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQcf-00000002o35-1uHp
+	id 1xVRTo-00000002zzM-3ezK
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:46:07 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 16DE4C6914A;
-	Mon, 23 Nov 2026 09:46:08 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 237E35FAEB;
-	Mon, 23 Nov 2026 09:46:01 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5744C11E689B4;
-	Mon, 23 Nov 2026 10:45:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795427159; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=pJ+7nfcFzRim3a/y3yfomDmbdCPIRW2m246LLxOsgHo=;
-	b=O74+mP8ZmvzyzI2bI0oj38gnLSeiRp+5MkiOcAmEgdhePkFb6d3Yc4JNdu3VkbtcSJrkXc
-	VGq3VBFkiZFT4lnCxqkDUglABuOU7SCoAsWM3eaRNn1O/SO0oDfPRV4JOqAv9ne+jyS9X4
-	VzAjG6SiPFpUYNQm/mF+G5vw145dEyVQOScWzhG+jvWY2ek6KYzsEZKxL6oVOe9ALdvUg8
-	3bxDeKI89DF6IYyhjLajTQhqSxKdW1t3ytpoeEZ6HC7rI3BsMy7AMAjpbqcKtD6ylIadEq
-	wH0FFNxFjJx+SXJ/rByDrnSlIXtEVzsP9bJfVx8Q1bcnPoElGyfkFgV++mbcTg==
-From: Paul Cercueil <paul.cercueil@bootlin.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Sunil Kovvuri Goutham <sgoutham@marvell.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	George Cherian <gcherian@marvell.com>,
-	Sujeet Baranwal <sbaranwal@marvell.com>,
-	Paul Cercueil <paul.cercueil@bootlin.com>
-Subject: [PATCH v3 2/2] mailbox: marvell-mhu: add Marvell MHU driver
-Date: Mon, 23 Nov 2026 10:45:42 +0100
-Message-ID: <20261123094542.44101-3-paul.cercueil@bootlin.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261123094542.44101-1-paul.cercueil@bootlin.com>
-References: <20261123094542.44101-1-paul.cercueil@bootlin.com>
+	Mon, 23 Nov 2026 10:41:02 +0000
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9Ygwh3385417;
+	Mon, 23 Nov 2026 10:40:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=x+gGftbRHFSjjMtooCgaTjgU4II0/q
+	4+ovgYoYGeY08=; b=k1PB6R/+61m1vjo//HxxoPQ2a1BQtCzVfIxHp8ABqC7f9N
+	66Ql4sOxTGyfzg5AhVfzMw0qbVubyy2IEC+0PYdnsfcS13WoaFLWlzeggk8YbHeF
+	C1R72oFQbQ0A/boXoXh6nGIHtBsHwavaHDBDzv68Qiw27djZZYRLMMP6ekpVa9Z0
+	4HQXl3wt1jOP9taUoAItagdIuM/HyV85BUWQOWgeWIX1jkUHCgy23cgbFsEXW79T
+	qe0M7Iw9Me4RqEayVFdi/nYe16r7EmMRQ6RBX70LOUzkRP6nEVyMBk0moX51LUhm
+	XXPNErR3zA8yGd98tbUc3DROL2RvO1MOhSs8Iu7g==
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34fa2sf2-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 10:40:39 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN9JE0X3088763;
+	Mon, 23 Nov 2026 10:40:38 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j3pmjxfe0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 23 Nov 2026 10:40:38 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
+	by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6ANAea6431785640
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 23 Nov 2026 10:40:36 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 9D7BE2004D;
+	Mon, 23 Nov 2026 10:40:36 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 325BF20040;
+	Mon, 23 Nov 2026 10:40:36 +0000 (GMT)
+Received: from osiris (unknown [9.87.148.25])
+	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Mon, 23 Nov 2026 10:40:36 +0000 (GMT)
+Date: Mon, 23 Nov 2026 11:40:34 +0100
+From: Steffen Eiden <seiden@linux.ibm.com>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
+        Oliver Upton <oupton@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Sascha Bischoff <Sascha.Bischoff@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH 5/9] arm64: sysreg: Reject a Fields or Mapping line with
+ an undefined target
+Message-ID: <20261123104034.20959-E-seiden@linux.ibm.com>
+References: <20261123075219.369042-1-fuad.tabba@linux.dev>
+ <20261123075219.369042-6-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123075219.369042-6-fuad.tabba@linux.dev>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA0MiBTYWx0ZWRfXzCeWznFjPIy2
+ HVKqOBQiLscNgXewFPy+gKoqfp7STCVj+JaCwQk1kmWHXwxOL+OVhpLWwS5S2ztMmIFPrsBkRYu
+ C6wYkWWqqlJywbdY+DH0DV0hsCdTsZPkzUDg6s+mmPYqUp55gkRvbwr9Q0g8mrY2dRqiDpcHF+f
+ dOwhv5n6MaJV4w8N+tneDIEa/b5eDtI4jgSt3M5CIyGIMJMegcGIGbwiCvHmO27GsYH7pBjRMvW
+ ZgLr7aedRo0vxw7wo27etqC8H4fP5KLxePEKiWt8entqng4UGHqXDvXc3OiZKpCnUo6UdrpKW88
+ QrAbvtcrwFqDXnY+wa7OWZa633I+mEmm68l0+EhtPVU2R6nYVsP16+RAZAB/iR93uOdUyN5IJux
+ Gh/NDM8E6snic5oIEdd13DBB93K56OFlCKNWQOg52lB/W+aIVyay0+I8AyB4+knq1/WJ8b5OF7p
+ OESwUIGUxBan8yY/FUg==
+X-Proofpoint-ORIG-GUID: R28LBXb8yXFjeAkLWqi_9CuYsk6VMpdD
+X-Authority-Analysis: v=2.4 cv=U6QHnuru c=1 sm=1 tr=0 ts=6b041828 cx=c_pps
+ a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VnNF1IyMAAAA:8
+ a=rEkJRZTFVfSPeZ2QoV8A:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: sxok427SFCgBSa-a-aV1rH5D5LkdaNw3
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA0MiBTYWx0ZWRfX0cej24OK+nsL
+ 0tN0yG2Ag4syhosi1bnvPka6cENOh06GyFTDOEOo6a89t/Tm2HJdJqvTYMj0xU2BWGeXmtZ9yil
+ YZhlWQ6IxcsU1KWEFW3NdDJfKp3WjSA=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_02,2026-11-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 impostorscore=0
+ clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 phishscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611230042
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_014605_669753_AB9126BA 
-X-CRM114-Status: GOOD (  30.06  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_024101_020305_5556F934 
+X-CRM114-Status: GOOD (  15.78  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,347 +127,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: George Cherian <gcherian@marvell.com>
+On Mon, Nov 23, 2026 at 07:52:15AM +0000, Fuad Tabba wrote:
+> A Sysreg block can use another block's layout. "Fields X" names a
+> SysregFields block and "Mapping X" another Sysreg. The generator emits
+> the register's RESx and UNKN masks as X_RES0, X_RES1 and X_UNKN, but it
+> doesn't check that X exists. A misspelt or missing X gives macros that
+> expand to undefined names, and the build fails only once something uses
+> them. MPAM1_EL12 had such a line.
+> 
+> Check every Fields and Mapping target once the whole file is read, since
+> a target may be defined after the register that names it (MPAM1_EL1
+> follows MPAM1_EL12). Either kind of block defines the masks, so the
+> check accepts either kind as the target of a Fields or a Mapping line.
+> Give fatal() an optional line number, so that the error is reported at
+> the Fields or Mapping line.
+> 
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 
-Add support for Message Handling Units on Marvell OcteonTx and OcteonTx2
-platforms. The module uses mailbox controller interface to provide
-communication between SCP and AP using SCMI protocol over a single
-shared memory communication channel.
-
-Signed-off-by: George Cherian <gcherian@marvell.com>
-Co-developed-by: Sujeet Baranwal <sbaranwal@marvell.com>
-Signed-off-by: Sujeet Baranwal <sbaranwal@marvell.com>
-Signed-off-by: Paul Cercueil <paul.cercueil@bootlin.com>
----
-
-v3:
- - Request an interrupt vector of exactly 3 interrupts
- - Pass IRQF_NO_AUTOEN to devm_request_irq()
- - Invert success condition of mrvl_mhu_last_tx_done()
-
-v2:
- - Add Kconfig dependency on PCI
- - Order includes properly
- - Remove duplicated macros
- - Pass a pointer to the "mhu" variable to mrvl_mhu_setup_irq(), instead
-   of getting it from drvdata. Then we don't even need to set drvdata.
- - Use devm functions unconditionally. This fixes an issue where
-   pci_free_irq_vectors() was called while IRQs were still in place.
-   It also allows to drop mrvl_mhu_remove().
- - Use pcim_iomap_region() instead of pcim_request_region() +
-   pcim_iomap().
- - Enable IRQ in .startup(), disable it in .shutdown().
- - ACK the IRQ after calling mbox_chan_received_data()
- - Fix register used for polling TX done
- - Clean up macros
----
- MAINTAINERS                   |   1 +
- drivers/mailbox/Kconfig       |  11 ++
- drivers/mailbox/Makefile      |   2 +
- drivers/mailbox/marvell_mhu.c | 238 ++++++++++++++++++++++++++++++++++
- 4 files changed, 252 insertions(+)
- create mode 100644 drivers/mailbox/marvell_mhu.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8f6f98acc8fc..06c49bef8390 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15830,6 +15830,7 @@ M:	Sujeet Baranwal <sbaranwal@marvell.com>
- M:	George Cherian <gcherian@marvell.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/mailbox/marvell,mhu.yaml
-+F:	drivers/mailbox/marvell_mhu.c
+Reviewed-by: Steffen Eiden <seiden@linux.ibm.com>
  
- MARVELL MV643XX ETHERNET DRIVER
- M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index ab869769e278..62744399cdb8 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -195,6 +195,17 @@ config MAILBOX_TEST
- 	  Test client to help with testing new Controller driver
- 	  implementations.
- 
-+config MARVELL_MHU
-+	tristate "Marvell Message Handling Unit"
-+	depends on (ARM64 || COMPILE_TEST) && 64BIT
-+	depends on PCI && OF
-+	help
-+	  This driver adds support for Marvell MHU controller.
-+	  The MHU mailbox is used by SCMI for OcteonTX and OcteonTX2
-+	  to control various aspects of platform operation like cpufreq
-+	  or sensors. The controller supports single channel to SCP.
-+	  Say Y here to build this module. If unsure say N.
-+
- config POLARFIRE_SOC_MAILBOX
- 	tristate "PolarFire SoC (MPFS) Mailbox"
- 	depends on HAS_IOMEM
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 45dc59bb3e7f..83b26e7bbd27 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -49,6 +49,8 @@ obj-$(CONFIG_BCM_PDC_MBOX)	+= bcm-pdc-mailbox.o
- 
- obj-$(CONFIG_BCM_FLEXRM_MBOX)	+= bcm-flexrm-mailbox.o
- 
-+obj-$(CONFIG_MARVELL_MHU)	+= marvell_mhu.o
-+
- obj-$(CONFIG_POLARFIRE_SOC_MAILBOX)	+= mailbox-mpfs.o
- 
- obj-$(CONFIG_MCHP_SBI_IPC_MBOX)		+= mailbox-mchp-ipc-sbi.o
-diff --git a/drivers/mailbox/marvell_mhu.c b/drivers/mailbox/marvell_mhu.c
-new file mode 100644
-index 000000000000..de7690897cc9
---- /dev/null
-+++ b/drivers/mailbox/marvell_mhu.c
-@@ -0,0 +1,238 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Marvell Message Handling Unit
-+ *
-+ * Copyright (c) 2023, 2026 Marvell
-+ */
-+
-+#define DRIVER_NAME	"marvell-mhu"
-+
-+#define pr_fmt(fmt)	DRIVER_NAME ": " fmt
-+
-+#include <linux/acpi.h>
-+#include <linux/device/devres.h>
-+#include <linux/interrupt.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/pci.h>
-+
-+#define SCP_INDEX	0x0
-+#define DEV_AP0		0x2
-+#define SCP_TO_AP_INTERRUPT	2
-+#define INT_VECS	3
-+
-+#define XCP_ADDR(offt, xcp_core, device_id) \
-+	((offt) | ((uint64_t)(xcp_core) << 36) | ((uint64_t)(device_id) << 4))
-+
-+#define DEV_TO_XCP_MBOX_LINT(xcp_core, device_id)  \
-+	XCP_ADDR(0x000E1C00, xcp_core, device_id)
-+
-+/* The transmit interrupt status register */
-+#define AP0_TO_SCP_MBOX_LINT    DEV_TO_XCP_MBOX_LINT(SCP_INDEX, DEV_AP0)
-+
-+/*
-+ * Doorbell-Register: XCP(0..1)_DEV(0..7)_XCP_MBOX
-+ * Communication data from devices to XCP. When written, sets
-+ * XCP(0..1)_DEV(0..7)_XCP_MBOX.
-+ * PS: it doesn't matter what is written into this register,
-+ * Attempting to writing 'anything' would cause an interrupt
-+ * to the target!
-+ */
-+#define DEV_TO_XCP_MBOX(xcp_core, device_id) \
-+	XCP_ADDR(0x000E1000, xcp_core, device_id)
-+
-+/* AP0-to-SCP doorbell */
-+#define AP0_TO_SCP_MBOX         DEV_TO_XCP_MBOX(SCP_INDEX, DEV_AP0)
-+
-+/*  Register offset: Enable interrupt from SCP to AP */
-+#define XCP_TO_DEV_XCP_MBOX_RINT_ENA_W1S(xcp_core, device_id) \
-+	XCP_ADDR(0x000D1C40, xcp_core, device_id)
-+
-+#define SCP_TO_AP0_MBOX_RINT_ENA_W1S XCP_TO_DEV_XCP_MBOX_RINT_ENA_W1S(SCP_INDEX, DEV_AP0)
-+
-+/* Rx interrupt from SCP to Non-secure AP (linux kernel) */
-+#define XCP_TO_DEV_MBOX_RINT(xcp_core, device_id) \
-+	XCP_ADDR(0x000D1C00, xcp_core, device_id)
-+
-+/* The receive interrupt status register */
-+#define SCP_TO_AP0_MBOX_RINT  XCP_TO_DEV_MBOX_RINT(SCP_INDEX, DEV_AP0)
-+
-+struct mrvl_mhu {
-+	/* SCP link information */
-+	void __iomem *base; /* tx_reg, rx_reg */
-+
-+	int irq;
-+
-+	struct mbox_controller ctrl;
-+	struct mbox_chan chan;
-+};
-+
-+static irqreturn_t mrvl_mhu_rx_interrupt(int irq, void *p)
-+{
-+	struct mrvl_mhu *mhu = p;
-+	u64 val;
-+
-+	/* Read interrupt status register */
-+	val = readq_relaxed(mhu->base + SCP_TO_AP0_MBOX_RINT);
-+	if (val) {
-+		/* Poke mbox */
-+		mbox_chan_received_data(&mhu->chan, (void *)&val);
-+
-+		/* Clear the interrupt */
-+		writeq_relaxed(1ul, mhu->base + SCP_TO_AP0_MBOX_RINT);
-+
-+		return IRQ_HANDLED;
-+	}
-+
-+	return IRQ_NONE;
-+}
-+
-+static int mrvl_mhu_send_data(struct mbox_chan *chan, void *data)
-+{
-+	const u64 doorbell = 0xff;  /* Arbitrary value, SCP requires a value */
-+	struct mrvl_mhu *mhu = chan->con_priv;
-+
-+	/* signal SCP */
-+	iowrite64(doorbell, mhu->base + AP0_TO_SCP_MBOX);
-+
-+	return 0;
-+}
-+
-+static bool mrvl_mhu_last_tx_done(struct mbox_chan *chan)
-+{
-+	struct mrvl_mhu *mhu = chan->con_priv;
-+	u64 status;
-+
-+	status = ioread64(mhu->base + AP0_TO_SCP_MBOX_LINT);
-+
-+	return status == 0;
-+}
-+
-+static int mrvl_mhu_startup(struct mbox_chan *chan)
-+{
-+	struct mrvl_mhu *mhu = chan->con_priv;
-+
-+	/* Enable interrupts only if there is client for data */
-+	writeq_relaxed(1ul, mhu->base + SCP_TO_AP0_MBOX_RINT_ENA_W1S);
-+
-+	enable_irq(mhu->irq);
-+
-+	return 0;
-+}
-+
-+static void mrvl_mhu_shutdown(struct mbox_chan *chan)
-+{
-+	struct mrvl_mhu *mhu = chan->con_priv;
-+
-+	/* Could be using SCP_TO_AP0_MBOX_RINT_DIS_W1S if we knew where it was */
-+	disable_irq(mhu->irq);
-+}
-+
-+/* Define operations related to mbox */
-+static const struct mbox_chan_ops mrvl_mhu_chan_ops = {
-+	.startup = mrvl_mhu_startup,
-+	.shutdown = mrvl_mhu_shutdown,
-+	.send_data = mrvl_mhu_send_data,
-+	.last_tx_done = mrvl_mhu_last_tx_done,
-+};
-+
-+static void mrvl_mhu_free_irq_vector(void *pdev)
-+{
-+	pci_free_irq_vectors(pdev);
-+}
-+
-+static int mrvl_mhu_setup_irq(struct mrvl_mhu *mhu, struct pci_dev *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret, nvec;
-+
-+	nvec = pci_alloc_irq_vectors(pdev, INT_VECS, INT_VECS, PCI_IRQ_MSIX);
-+	if (nvec < 0)
-+		return nvec;
-+
-+	ret = devm_add_action_or_reset(dev, mrvl_mhu_free_irq_vector, pdev);
-+	if (ret)
-+		return ret;
-+
-+	mhu->irq = pci_irq_vector(pdev, SCP_TO_AP_INTERRUPT);
-+	if (mhu->irq < 0)
-+		return mhu->irq;
-+
-+	return devm_request_irq(dev, mhu->irq, mrvl_mhu_rx_interrupt,
-+				IRQF_NO_AUTOEN, "mvl-mhu", mhu);
-+}
-+
-+static const struct of_device_id mrvl_mhu_dt_ids[] = {
-+	{ .compatible = "marvell,octeontx-mhu" },
-+	{ .compatible = "marvell,octeontx2-mhu" },
-+	{ .compatible = "marvell,cn10-mhu" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mrvl_mhu_dt_ids);
-+
-+#define PCI_DEVICE_ID_CAVIUM_OCTEON_MHU	0xa067
-+static const struct pci_device_id mrvl_mhu_ids[] = {
-+	{ PCI_VDEVICE(CAVIUM, PCI_DEVICE_ID_CAVIUM_OCTEON_MHU) },
-+	{ 0 },
-+};
-+MODULE_DEVICE_TABLE(pci, mrvl_mhu_ids);
-+
-+static int mrvl_mhu_probe(struct pci_dev *pdev, const struct pci_device_id *id)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mrvl_mhu *mhu;
-+	int ret;
-+
-+	/* Only support PCI devices with a corresponding OF node. */
-+	if (!dev->of_node)
-+		return -ENODEV;
-+	if (!of_match_node(mrvl_mhu_dt_ids, dev->of_node))
-+		return -EINVAL;
-+
-+	mhu = devm_kzalloc(dev, sizeof(*mhu), GFP_KERNEL);
-+	if (!mhu)
-+		return -ENOMEM;
-+
-+	mhu->chan = (struct mbox_chan) {
-+		.con_priv = mhu,
-+	};
-+
-+	mhu->ctrl = (struct mbox_controller){
-+		.chans = &mhu->chan,
-+		.num_chans = 1,
-+		.txdone_poll = true,
-+		.txpoll_period = 100,
-+		.ops = &mrvl_mhu_chan_ops,
-+		.dev = dev,
-+	};
-+
-+	ret = pcim_enable_device(pdev);
-+	if (ret)
-+		return ret;
-+
-+	mhu->base = pcim_iomap_region(pdev, 0, DRIVER_NAME);
-+	if (IS_ERR(mhu->base))
-+		return PTR_ERR(mhu->base);
-+
-+	/* Configure IRQ from SCP to AP */
-+	ret = mrvl_mhu_setup_irq(mhu, pdev);
-+	if (ret)
-+		return ret;
-+
-+	return devm_mbox_controller_register(dev, &mhu->ctrl);
-+}
-+
-+static struct pci_driver mrvl_mhu_driver = {
-+	.name = DRIVER_NAME,
-+	.id_table = mrvl_mhu_ids,
-+	.probe = mrvl_mhu_probe,
-+	.driver = {
-+		.name = DRIVER_NAME,
-+		.of_match_table = mrvl_mhu_dt_ids,
-+	},
-+};
-+module_pci_driver(mrvl_mhu_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Marvell Message Handling Unit");
-+MODULE_AUTHOR("Sujeet Baranwal <sbaranwal@marvell.com>");
-+MODULE_AUTHOR("George Cherian <gcherian@marvell.com>");
--- 
-2.47.3
-
 
