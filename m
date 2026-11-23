@@ -2,119 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8E4606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73D3606A31F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EpUAq7U/;
-	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=YcJj10zG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dCd5Mx4U;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=Nzq5JetP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=LTJZ6Z0BiW6sHaALZZ7IN+IFHkESfyt83jD2NHGY+AI=; b=EpUAq7U/rHIl27OHe3LNhjPZOl
-	iwVCIsZ5rINMzRvJ0athkrSsLpsbWqJi/zOKJmDkJ6OFYi8vp/EH050QkgsHrxE5cBeR4uRIDKfv1
-	FkMrMJmI1aLk+5PFFnfT7OZ/7R+T1piXz3WajJDYC8DfBscPM9N05zAKcsw60gK4R5L2afMYzHfNS
-	pBiWS9Q5h7mfUE1s0GzWg4WwFricy6xyd1FHoGY9mk/TLJ07W2Wv9MgHE7mQ8l/Q0IUDfVXuORb/5
-	tELLfE+1iuOZoQO1SMftQd0fwoZLR2IWXPFg/cIpR9on7r86aEnyf5Tpn8EyZiMQUnl+pgjpO+aSX
-	nV3FyaWQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=NScpSoVMTvDY0tx4JExOhys7fsIHvxci/UHNQCAHM/s=; b=dCd5Mx4UK0sRgs
+	m/+TEBk3NYcIMkEXl8QpYyRzBo65zenGFEmlPcU96TDSeDyjruN7mYzHSnyt2dw1E/SSXyoI6LX6i
+	oiqjwV+cNVyHTe2vuuPGZfTleUCCGUH534oKja7xIqgHQ1Q+CkJwA3WniFjZfXSvKOWZ3C86G4qfE
+	0/4bP7ljGWUFLUXp0iGZZWM8/RBp3HXIRuxddPeJAorJdsykgGEySy3tZeJTQo7RRSgOl0pgrpn+f
+	BPar6YxjI1oWwlHJokRbQeUf2RTW+prSOvki00NBn57nLd+D0RKW5H42noxjYO9XkhHxSiSInHbWY
+	29e+f97vjIc2PtLJg2wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPig-00000002bRo-3RYB;
-	Mon, 23 Nov 2026 08:48:14 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xVQBD-00000002fnJ-33rd;
+	Mon, 23 Nov 2026 09:17:43 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVPiQ-00000002bPy-47iG
+	id 1xVQAy-00000002fip-0PqE
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 08:48:08 +0000
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN54fD82633054;
-	Mon, 23 Nov 2026 08:47:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pp1; bh=LTJZ6Z0BiW6sHaALZZ7IN+IFHkESfy
-	t83jD2NHGY+AI=; b=YcJj10zGY6wChhmq9fch180g1AOpYPOFVLuZgSHhyI8985
-	kcNL+rB6lqsjzTWFKsFDWJNaktcjRDypjFMDLfVbttPtU6i7A5yS9OEzBtEyick5
-	Qgm6RZW7dykuwOk/6zpYbPI3zRamoRg+ceRVH7jJ064Gfpdd+fl+idi/E/uYPADs
-	Djvpu/HwDRI13+Na2mxcO6KVoYqOsg66ZwNb7G4JAKUCwzvG8UNVcixM8moZJVXq
-	6UkzuHq06oKDmV79aQTAV0ZDycD+9KqJVSDGGNCgfv5fLLjktQXiINWU2qDsC3q7
-	Trp6AlNjNFnb7xWykdZArxeMzHFtLw3oXXheU0uw==
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g11yq9-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 08:47:40 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AN54Qr12487418;
-	Mon, 23 Nov 2026 08:47:40 GMT
-Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j3q4h5xa2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 08:47:40 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com [10.20.54.105])
-	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AN8lbjk44827102
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 23 Nov 2026 08:47:38 GMT
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E1C6C2004B;
-	Mon, 23 Nov 2026 08:47:37 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 7D60820049;
-	Mon, 23 Nov 2026 08:47:37 +0000 (GMT)
-Received: from osiris (unknown [9.87.148.25])
-	by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Mon, 23 Nov 2026 08:47:37 +0000 (GMT)
-Date: Mon, 23 Nov 2026 09:47:36 +0100
-From: Steffen Eiden <seiden@linux.ibm.com>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oupton@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Sascha Bischoff <Sascha.Bischoff@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fuad Tabba <tabba@google.com>
-Subject: Re: [PATCH 1/9] arm64: sysreg: Map MPAM1_EL12 to MPAM1_EL1
-Message-ID: <20261123084736.20959-A-seiden@linux.ibm.com>
-References: <20261123075219.369042-1-fuad.tabba@linux.dev>
- <20261123075219.369042-2-fuad.tabba@linux.dev>
+	Mon, 23 Nov 2026 09:17:33 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Bxs2yl8ZAwanElzL3tGTtaIDTA6NNsoBphGpgB1M0azRVMyBfExAZcaQDY0nqo26R/8V1KekvoQW0+DpsUO98XtymaCTnG28fhlPfbfgTeLqveUDAHHqPU0NxVHgugfR0XpvLbfJOSGggP/jmzqxF/qJpCNpDb0zDZT2W0N+6dH2GkMwntaWt+bL/FuVtZ0xB3dW75wgj8zhGQ8BVBNFd0S/74x03uQsQQzBBg+iFf6O1bNFqwAsUUxnbUTmveCPd/4jLd1uA+eka9kNwtAIfIwuJD40CmqtBB/svPMyov3oArzBFJgdeSMAXT8F/Xv36TeyRmT41raNWdQWXswzzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NScpSoVMTvDY0tx4JExOhys7fsIHvxci/UHNQCAHM/s=;
+ b=UMwmwm2+tL8NZkzTpa9nIsUVFMehA+KWzUYKqMchVGMwotSq+w/TeZmSPqP8g0j7MtQnZHjAkcQm0qX4d6LxgdHbubOJJMZVLs5ErLzgTcPrRwX4w5fWeZLR5yPMPPn9vjkVdGfJPvr/tdyXAaY8TK1frwpjyaYgcAmSM/vdlRsKbye51roe9gWTwDuG3MW90QTVgjipURb9ML0f13G8ktBh/PirYeQzY1GCCe9z3EYtaE3YdB0MioHS9/+4m6exViEzQKH0Usp4FjzUXbSqIjLQmf5MRitDTDMmPl898wbZZAim1L0ckhxvy6fzxbJuvB93X0sUP2vi9L6PEqCW7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NScpSoVMTvDY0tx4JExOhys7fsIHvxci/UHNQCAHM/s=;
+ b=Nzq5JetPQj5AV4aoj4ZxC6eRsdQLJh1aApVGRVjKOtoWfSzeSAuzLhTV2uw5H0Xmpdw2xETbdyo72QpBL3kEhCat44BSQy0KtOOeGNIrBXaGfKqAezo9670nv+/Pman5Eh89yjGW0FuEQOBR+/L79l605E+vmMWAOwtKEZMHIeLaTHNbUVec4qo/8OJu+puiS5nsfP89KZbWsE2gOS/yaP9ZTBfDXB/VRfVpoAetd2EhhrIcNTrdhRdP6yd5ql9w16QnIHQy6Bda2scE1upNzzBRZprXwh7RkHYF5NJT6K98hrW0x153utAHBcO8PYBOmu0+bVUnK1GLSC9nv+KAnA==
+Received: from VI1PR07CA0257.eurprd07.prod.outlook.com (2603:10a6:803:b4::24)
+ by DU0PR10MB7566.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:402::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.1; Mon, 23 Nov
+ 2026 09:17:22 +0000
+Received: from ZR1PEPF0000E6BB.eurprd07.prod.outlook.com
+ (2603:10a6:803:b4:cafe::20) by VI1PR07CA0257.outlook.office365.com
+ (2603:10a6:803:b4::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Mon, 23
+ Nov 2026 09:17:21 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ ZR1PEPF0000E6BB.mail.protection.outlook.com (10.167.241.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Mon, 23 Nov 2026 09:17:21 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 23 Nov
+ 2026 10:18:24 +0100
+Received: from localhost (10.48.87.222) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Mon, 23 Nov
+ 2026 10:17:20 +0100
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Date: Mon, 23 Nov 2026 10:17:05 +0100
+Subject: [PATCH v2 1/4] dmaengine: stm32-dma3: clear flags before signaling
+ transfer completion
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261123075219.369042-2-fuad.tabba@linux.dev>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: HrrfkGD43JXnqT8diAfJKbosF-Tnrzfj
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDAzNCBTYWx0ZWRfX9KMEe7uYL4Xi
- zD9Wan/8eG4I0Ka/Sqc/bIAUDbbOmCDXIOht5F7qm9BAp0yVBvgrRAAM5+mxY4saJZkROdj9eRX
- Y6JOx8A/oQsbBQjZSPkBUhyn4VsUTh0=
-X-Proofpoint-GUID: xo2bGLz2kMWEJJn6hlKAJ2ud1k0Gr6xK
-X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b03fdad cx=c_pps
- a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
- a=pjIY73NwuUxA7bRLkYsA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDAzNCBTYWx0ZWRfX1CzLx2JdkU3b
- NbzFxju0KVlmEIXZAT9TpsLI2m1eRfMM7VUqIjUnzZ6m/Zeo5ar7MMc7n/eIlQLy1x3V+lcW9iW
- C4OP+Gp1rO4KQdQ2+6Na9LuJFp7Jca6CfrmrGj67KsEyFMSBLNGFPpCqfYQyxHOBJ2OqgNErNc/
- yb76pZ55OdKVFmXZOVw1CdPbudqCCLWSDvq6CdppwTcmkQhuvHdxL14EtwZQjesc6fWJemrRKMR
- KQ0lGDYQVjTpDnBsB7APgv6YMZLKiHHrUsGdnb3dL9Z2mqk7uLcp4fkD0ElBLpCvXjHUYldjJjV
- DNi1H53IYhLlzDOWNece0O++Gd3wEM8+vagqjYCnFj3OC2IgARc48sNnwcajfhG4fXZrLFrxUVX
- iaZRcLyAlAxu9dGhTm5uT3rvoio3kUwrzeC41E2F10q6m6ZJK4z4A/KYga4PkKSknPAnOPgbXQZ
- qu5NwTJgfvQX85JdyWA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-23_01,2026-11-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1011 malwarescore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230034
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261123-dma3-fixes-v2-1-0a5b013f79d2@foss.st.com>
+References: <20261123-dma3-fixes-v2-0-0a5b013f79d2@foss.st.com>
+In-Reply-To: <20261123-dma3-fixes-v2-0-0a5b013f79d2@foss.st.com>
+To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, =?utf-8?q?Am=C3=A9lie_Delaunay?=
+	<amelie.delaunay@foss.st.com>
+CC: <dmaengine@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Jerome Audu <jerome.audu@st.com>, <stable@vger.kernel.org>
+X-Mailer: b4 0.16.0
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZR1PEPF0000E6BB:EE_|DU0PR10MB7566:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7243c05c-4c37-4118-cc79-08df49429461
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|1800799024|376014|36860700016|22082099003|18002099003|11063799006|56012099006|261022075727099003|261028144727099003|261021121427099003|261026140227099003|10067099003|261022105027099003|261021123027099003|261009223027099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: 05waSiMzzJYMXsgTqrXWnGDvfkx1kO3VOE97wyBf8G7Sb3xLTo6dZE218p89C4sR6lrrL6S64HdULCQARRLlV664whUT2yDSObRIMlCS4X0YxMCmf483su2j7qTVQ6oqZ3TaXrVsd+894+n+msr7NIw7QCoCCOB9FWl0cdwInrFXV7Xhe39kYj07aemxe786MHN9Zro3w1Umfr9Duz7drjJU7j2A6nNWQIZpzZeB5JZE3Jg3Ou4fJFuvj6gEEUa6+c+NNDvQXOAj5wxM1Xz98DbTB50ywg2nN2fdqI/sO9JILYeHalQN+YGu8VsVbquJLw4f9vD2Z9KV0scE4GLzry4xCC/Z1FSTq43sklD60N4DI7eNEYSMifXKUdCXlCffATQIn2uadEeyNryjd5ka4ZFkwhoeMN7X1DFOgZHHxhJbA595WE/knW9nARekPAKUQAzOCrqgS061tL0sGRsgcTBUCRAdx/QWi72WjPh6Kr+38PcWw2qRp6i1u7oareLEoLS8dTLO0sFKdKMEw4VOMaUzg+jmsC4t0bOeBqWRL8k3gv1bDefAHKZXRgf4urUrSZEwDeBd6vvuz5Ie+toil6XM57gZyLFUic3wKwEms4XyHvitf1XbKmep9v+ijYZP3J8Vx36BX8nIF9rf5bitgHoAbDphJHw34c66CtoL7LDSK0j3StVU7eYYO/NmDb5gOzfRNKqkwn3E094ngvrxQQ==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(1800799024)(376014)(36860700016)(22082099003)(18002099003)(11063799006)(56012099006)(261022075727099003)(261028144727099003)(261021121427099003)(261026140227099003)(10067099003)(261022105027099003)(261021123027099003)(261009223027099003)(261102123227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: tHdH76lv1nbJdJDm92iVSridsf/KSGbq17vIK1wJVkxI/NY0rPKbPcNUnnQv+QzCWkxuN/EChinnMfslngtZrvVPZcvtM0VO8Eook25g1sohrmi+3dps7Oai6djS6jQZUvkXDGeZ1B2RhToYAzZAOkNIyCp1cQTnIX9sHoSYnKXL9leO9iAnY35T0XFGQzWyupZyXUGSDWk5luXs5HQByUzGCTch6Qt2hBxemEsqeY2NOyhxbJ5hSwgRYHO02sL42nD+2C5H3+iybwsp4PsHvewQHjhm6PNtPa//z9K/Pwqd6MFABqjA1M3H1H4ax+fgDXGSFsIwjkvmtbmvosPefLcAVsT4sorYWhau4UMreh24ljnqqAAfNWsmU0LbN+jZgE++0SuXXLdHBoG9C+ZOgFjT355wsh+Xb70JuZSRXasp5TrxmJNhJX2MVExmdL83
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 09:17:21.5654
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7243c05c-4c37-4118-cc79-08df49429461
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: ZR1PEPF0000E6BB.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7566
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_004804_638113_A104803C 
-X-CRM114-Status: GOOD (  14.53  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261123_011731_456410_F2B754D2 
+X-CRM114-Status: GOOD (  10.76  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,25 +128,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 07:52:11AM +0000, Fuad Tabba wrote:
-> MPAM1_EL12 is the EL12 alias of MPAM1_EL1, but its entry in the sysreg
-> file is "Fields MPAM1_ELx", and the file doesn't have an MPAM1_ELx
-> block. Since commit 6ae7fab7d9d33 ("arm64: sysreg: Emit RESx/UNKN values
-> for Mapping/Fields definitions"), the generator's MPAM1_EL12_RES0, _RES1
-> and _UNKN expand to MPAM1_ELx_RES0 and the like, which aren't defined.
-> They aren't used yet, but the first user would fail to build.
-> 
-> Describe the register as a mapping of MPAM1_EL1.
-> 
-> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+From: Jerome Audu <jerome.audu@st.com>
 
-Reviewed-by: Steffen Eiden <seiden@linux.ibm.com>
+The interrupt handler clears channel flags after handling the captured
+status. However, stm32_dma3_chan_complete() can start another transfer.
+If that transfer completes before the flags are cleared, its Transfer
+Complete flag is cleared without handling its completion, potentially
+causing a timeout.
+
+Clear the captured interrupt flags immediately after reading the channel
+status and interrupt enables, before handling the events. This prevents
+the handler from clearing a completion flag raised by a newly started
+transfer.
+
+Fixes: f561ec8b2b33 ("dmaengine: Add STM32 DMA3 support")
+Cc: stable@vger.kernel.org
+Signed-off-by: Jerome Audu <jerome.audu@st.com>
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+
+---
+Changes in v2:
+- Commit message rephrased according to Frank Li's review
+---
+ drivers/dma/stm32/stm32-dma3.c | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/dma/stm32/stm32-dma3.c b/drivers/dma/stm32/stm32-dma3.c
+index 4fe226541efa..a464e0cefd64 100644
+--- a/drivers/dma/stm32/stm32-dma3.c
++++ b/drivers/dma/stm32/stm32-dma3.c
+@@ -1008,7 +1008,7 @@ static irqreturn_t stm32_dma3_chan_irq(int irq, void *devid)
+ {
+ 	struct stm32_dma3_chan *chan = devid;
+ 	struct stm32_dma3_ddata *ddata = to_stm32_dma3_ddata(chan);
+-	u32 misr, csr, ccr;
++	u32 misr, csr, ccr, cfcr;
  
+ 	spin_lock(&chan->vchan.lock);
+ 
+@@ -1021,6 +1021,14 @@ static irqreturn_t stm32_dma3_chan_irq(int irq, void *devid)
+ 	csr = readl_relaxed(ddata->base + STM32_DMA3_CSR(chan->id));
+ 	ccr = readl_relaxed(ddata->base + STM32_DMA3_CCR(chan->id)) & CCR_ALLIE;
+ 
++	/*
++	 * Half Transfer Interrupt may be disabled but Half Transfer Flag can be set,
++	 * ensure HTF flag to be cleared, with other flags.
++	 */
++	cfcr = csr & (ccr | CCR_HTIE);
++	if (cfcr)
++		writel_relaxed(cfcr, ddata->base + STM32_DMA3_CFCR(chan->id));
++
+ 	if (csr & CSR_TCF && ccr & CCR_TCIE) {
+ 		if (chan->swdesc->cyclic)
+ 			vchan_cyclic_callback(&chan->swdesc->vdesc);
+@@ -1050,15 +1058,6 @@ static irqreturn_t stm32_dma3_chan_irq(int irq, void *devid)
+ 		stm32_dma3_chan_reset(chan);
+ 	}
+ 
+-	/*
+-	 * Half Transfer Interrupt may be disabled but Half Transfer Flag can be set,
+-	 * ensure HTF flag to be cleared, with other flags.
+-	 */
+-	csr &= (ccr | CCR_HTIE);
+-
+-	if (csr)
+-		writel_relaxed(csr, ddata->base + STM32_DMA3_CFCR(chan->id));
+-
+ 	spin_unlock(&chan->vchan.lock);
+ 
+ 	return IRQ_HANDLED;
+
+-- 
+2.43.0
+
 
