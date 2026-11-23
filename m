@@ -2,72 +2,150 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED37C606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732D9606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jRLqLFut;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oHDB07x0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UXYx4LM3;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=l8a67050
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uOViL6s1ZH3I4W/r3A50yJP31I+R+h3vMj5i5mSRSr0=; b=jRLqLFutHDy64z
-	ZG06CvO3gweABKofq2fcifKxo0txFPlVjNERvvIhp5R+0SJZUVfoGWkiVJ713d/VZ9B0BrTHSkYaz
-	xn0ArQDmZdGvNprl/9u41yFzX/vQTeH6LZk90Zk8rmDNFZlv2IkNBJ0jtcr7J+lISUSdxBgyFpwib
-	mUX2qWqKqeRRAE/gLhSJH6vgGLLY2OnLftbe+ZX24276WHxY5OXPguRPVYRxLOgC0U9f9fomIx0XO
-	HNjaVnj9gDTJDMfCBtPeEJBA6026ZJmBIT1SDghCUDyghR94XcUTxO9fen1MFFn2264j2iQQUoDOX
-	kT7OO1S774kRe1do5uaQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=SlN1iedGIdSnNkJxuutd3w7e1Jbzw6sccZoEjYLTkIE=; b=UXYx4LM3k4mMVSMQFVuiq2mLgP
+	GzMc+CBj5O8qlEt6RWeUKXzT7uqy7v01zbNtIPJSfC4E0wxVC4aWVadi+aylJe7o02FXStewzeJSy
+	HX8TJtB7EItRrP1pIkEpF+tUE6ngfzJpGCs93dYpjRn8egCcGxYeJPi47b0Pp0Ez2oU/QbgZU7ohA
+	skx04RwgCPI3srjhAgo0Cd/nsdhDsxDQUdP9/sUNrWlBXY+OyHjqshjhQi10K3sTCUPGNb5xUAV6e
+	y3DFQaWYVB1Tz3WKgO5CLFpIWGKykb/ImX7eU6U0Y5i/1x76c5nvfGTZhxFA+jMPcRLFVZ6UH/hk+
+	zWNFu2uA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVc1a-000000051bR-42aB;
-	Mon, 23 Nov 2026 21:56:34 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVc4d-0000000521l-1712;
+	Mon, 23 Nov 2026 21:59:43 +0000
+Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVc1a-000000051bI-013t;
-	Mon, 23 Nov 2026 21:56:34 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 62C4040C32;
-	Mon, 23 Nov 2026 21:56:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A2DC1F000C0;
-	Mon, 23 Nov 2026 21:56:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795470993;
-	bh=uOViL6s1ZH3I4W/r3A50yJP31I+R+h3vMj5i5mSRSr0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=oHDB07x0IeuPsdAU32f0RWYDNf6TxYIFLnTE+u5CtJaLY85OuRViUqypjn4sZ54tl
-	 eaL/D9cbQaY1Z9U9k9jcXs+mj4qkH6jED7RQe943m3B2fZUeerWK2mhdF9DZxXy/hP
-	 JwiH3dMQG1xWLevaaKMEDotcsaEb4ifG+t7FQg5VwByw8/MuqliYq6Df9VYcEA6Cfy
-	 VzxW0LaHijUV42sSFMP+5WAkhvM7wXCcunZABwaHQDNif4rmcJYx4UaHnZDoQk359N
-	 jzYB5nUAXyLEgbyNIqDOuIH6CwxQ4P9fElnzLptPt44YBy86w++rFDEVXKDDi/26mD
-	 lLiWEYxa6eG6Q==
-Message-ID: <0391e09d-3d44-4f91-8cad-dbfe8d4741d5@kernel.org>
-Date: Mon, 23 Nov 2026 21:56:29 +0000
+	id 1xVc4a-0000000520b-47za
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 21:59:42 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CLfHlkkMmEo5wMInA3Cj8GkpJNtRW4xokHArDeDHpvRAquEA5rRfeSEvef9/wlcm7Jyg65rl+ka5keAxaTqoRRQNMUAWwOo9eegRC7FwVF5LExwGwXoFcNsMrwJ/+2C2Nj1t+LFGc7mlui561vURiQFVS0c3GcSUTk1zG0EJfZQmq7nsmTH4T/sJGaqDVmuwPubBKcl0APdAt8+IOAKAJd9awoSCI+LtkHodupiSt2n5XIiZ3Ua9AKMgXJipg3RKXRUjy9AC4/pMYDmFJ2kb7HNg1DMuuFglKrax+hAzb2N1cQ6lyvEVVMx6Dl2V/xSo/fJ77MN3/xF0pKFNc/ZKGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SlN1iedGIdSnNkJxuutd3w7e1Jbzw6sccZoEjYLTkIE=;
+ b=AOB/LdShY19CMjFrjH9lbrBD+UXvvu2yQbJi+mncxr96pxwzwDcpfgYyaOsWkmtkZvVm5Y+bYzPLkm/WaOwm+DCmnPSQT0NMMSKzIoTVyX+5n/df/e4E1YrTbNmTWFacD98y+Y7nLOj8FXUhwz3GzOkWcq8rIWY+VSZ/1BALYNI0VL22BkDh8veZ6diDkyII7oT2AaOa7IdSvI67IeEt8lcR9aBY+9jpSwoRlLxlt3Hxl+hXTqUrKCvFTjY9AtWux4RM/Q723mKZMtaB57ZKpDi01YMrgXnGEtQEYr4eUB7n2c47mOT3E+InlddFjb6tblJHLYif7LoK20tBxulMmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SlN1iedGIdSnNkJxuutd3w7e1Jbzw6sccZoEjYLTkIE=;
+ b=l8a67050XOEn7msYT9p3xk9dV3sQku6NpmFNSCvFORRlxeYItBjjjSwlNIX0iW67i/rgBEgdR7kS2zWR4AyrGYdIPjoxnVTCt9wwn6pK549wW1nQ29bJZYYUVTkf3zczpZy1NiAC8/Zlkk6ZW8s4rGyze6Jl8ELpl2K8WnwY0TNGyJ87P4OJPKnHl/hd7EjIAqccrq87+9jFpHSQQ7fgzQ/jvUJWDfngcKPVL5qckkpuDu5sVqQP+LkHDW1fa8dY6jj/2OP8xvtybpHPUdX0EMDGZ7IZWA1wMXffSvXtlYPIUMglHJ0E+0uKjDOgelO/rHhEAGIAMwpjMns4nJnIQw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by PAXPR04MB8349.eurprd04.prod.outlook.com (2603:10a6:102:1bd::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
+ 2026 21:59:35 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 21:59:35 +0000
+From: Frank.Li@oss.nxp.com
+To: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Leonardo Costa <leoreis.costa@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Leonardo Costa <leonardo.costa@toradex.com>
+Subject: Re: [PATCH v2 0/2] Add Toradex DSI to LVDS adapter with the 10.1" V2 display
+Date: Mon, 23 Nov 2026 16:59:26 -0500
+Message-ID: <179547116080.3011330.9892542532663386900.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261117-v2-imx8mm-verdin-add-lvds-v2-v2-0-ecfd237cf7ee@toradex.com>
+References: <20261117-v2-imx8mm-verdin-add-lvds-v2-v2-0-ecfd237cf7ee@toradex.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PH8P223CA0010.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:510:2db::20) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] nvmem: core: Let read post-processing return a
- shorter length
-To: Alexey Charkov <alchark@flipper.net>,
- Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Michael Walle <michael@walle.cc>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Finley Xiao <finley.xiao@rock-chips.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Ryan Leung <untilscour@protonmail.com>,
- Ricardo Pardini <ricardo@pardini.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20261123-rk3576-otp-cpuid-mac-v3-0-40c756dcf36f@flipper.net>
- <20261123-rk3576-otp-cpuid-mac-v3-2-40c756dcf36f@flipper.net>
-From: Srinivas Kandagatla <srini@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20261123-rk3576-otp-cpuid-mac-v3-2-40c756dcf36f@flipper.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PAXPR04MB8349:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb9f5cdb-1130-47de-8a8a-08df49ad0fd1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7416014|23010399003|19092799006|10067099003|11063799006|56012099006|261009223027099003|261022075727099003|261026121527099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: TGwiWXCC0Af1Rzggx4jVaF+DSjCQzhyUksmFgipKm7plWEvsS3LfxBMUk+LOVbsfy0SdCZuMF7B8YX7dSFjO7QQ7xVOMrZKYld6wVNw+6qQ6Mgz2CuWSARuWwnOiZG+ZMZXhrGdGpSsG3bXflfS9+OidJjt3s8vVTAJdFQ0iIJ94ZO6HTM6Lp2GZn7inrsO3ZLWvOEDSoaNe2YuMO+Z3FuOV5hHlzBf0yGf8VP9Vl7F0cy8fOejXkmTB092stcxxLZ2UvRQI/lTqgYdIU3mFsc1ovWco/MTR2J2X8aEDLzSpNagGU4zWbmsMJjvsIpSDOXXM8ApkkVOZ2QWFQCVmksPDBnzyiPAj30rY5+Me0azt/qrU1GmhIi7BqNbKcN+rCSEFqAFadeNeGBY7trMNptrI19bmyVSBRon7bBzyX/kvlTVrk7+ALKDcWGNwNk+86B1uyiVGKgKqOy6puE/LlaPIgkwlQ1e4TTX1Khyv0jVwriLbSZCUMRH4bUAnX6TZ1+1TECOpkqeC+PPVenxHGFEm4mYCp/QaXyKSxXGjYO7x+NHFnIhc/ALxRqY9S6HeoeG+KAGab8g1Aq2bFrP26VLRmkDXGxz41m6peg4puYL4VoVByFDG4KM74Jy0U9xsBvhgEArsZ8TmLhzT6ImVpZsflstOu8kJbMaB/+wPmBc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014)(23010399003)(19092799006)(10067099003)(11063799006)(56012099006)(261009223027099003)(261022075727099003)(261026121527099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXJQSXBTRGRsL0hvTm1VeFN0QUZZdXNtVjFmRVFEUU9EVmZpSDl0U0ZKeE5X?=
+ =?utf-8?B?U09wUXBWdzRZemY2d0huQllhVWZUUkZ0Z2puYmlYemRlYmRvbUt4Tk1wQkdj?=
+ =?utf-8?B?WSt2K0JnT21WSGNTSjhzWXMxL21SR0JLbWFhY3Q4WFhBZElIWG5JSTltRkJT?=
+ =?utf-8?B?TDAwMU1wT2tYbnQrdnJuZmRyLzVScCtnYXRiVjIxRUhvWVIzbS94RG00Rlpz?=
+ =?utf-8?B?VXNPUDU0MTdKaGJYWlFVeUdRQmpHeUxnc3dkMytsaGdaaDFMUG5yeS9YRkk3?=
+ =?utf-8?B?cHBUQ1JRVWswN2JuOWxPZmtDNkNzeDg1VVYzeENxaDFMTFIvK3pTRTBmOHpH?=
+ =?utf-8?B?aWpDN1M3Y202MG1hdXo3RW5OejNLRXRmdDA2L2YwRDhhS1Z4M3UrYjZhUDBx?=
+ =?utf-8?B?dkdMbUdJdTBlelFqU2IxaThKdzBXN1I3TzFsQm4yck04Vld6MkFkY0xMQWs0?=
+ =?utf-8?B?VjRyYzBXa2cxdEh1c2JHQ3BXVFdoNHRLNzlGb0RhUXlRc3pHdncySU1rVEVC?=
+ =?utf-8?B?MnVLS0VjcDRaSzFsMWVtdWltWU9idmpKbVJSdmUwcDlYR2ZSeXg1eERnenhO?=
+ =?utf-8?B?d2lyZ1pWc0kzNVVZbkdtTW1iaVhpWmtqTm8rYUs1MlNJR21Ga2R4SUZ1bWl2?=
+ =?utf-8?B?LzdNWngrVFFJcVI3TG1lUGtRN20xU2FsQ1VuUnBTWWlVZ0FmemtvaUV2Yk83?=
+ =?utf-8?B?QkpWN1RwYUY3WmZ1OWVjcXZyUUsrdlJtdEVjcmxwQ2ZaR2txM2ZYUlZ5NkQx?=
+ =?utf-8?B?WE05LzFyeFM4ZzNtL2RWVnNkL2FuUERFdG45ZkNXMDZqVWdLcVpVR291cTZu?=
+ =?utf-8?B?ZGhKTE5CU2JDdEs2M2FPN2RmVnVMUG1PdG1UZTRrb0IvZWVid3pGZWVudU9z?=
+ =?utf-8?B?bjdPL3pxaVF1bFZYc1NIRTAway9zWEJzWGlWZWpYQnJ3K3JpUzlmZGxVcVp0?=
+ =?utf-8?B?R2ZxQnJ6VGtTeEJvUldqTTJrSlJqazhGTUY3VmR1b01USkhsVkpIT3BOOWN2?=
+ =?utf-8?B?NUpHY3ExZmhEa3AvVEZ3RDlFRHg3SGpHcU9PcmljSHRoWUd0NllCM3dJdkha?=
+ =?utf-8?B?VC9oK2hacVc1VkNrbzQydE45am01aWRBR3NUWGNJZGxKbW05eXhLZW9ZbWJx?=
+ =?utf-8?B?bTBoV2VvdENjQUN2MmJZM2IvdFh2VHlFOHdTWUNjbWFCRnE1UXFGSDVoYmlG?=
+ =?utf-8?B?QUZVZEsxbVkxU0NkUS8ybkVzRGhJMWhseUU3VEdZWUh5bGh4aU9iOC8zbjd1?=
+ =?utf-8?B?Rm1ycjJBUm8vaTduSkZoZUtPNGwwVStkVWEvVU5WWml4RlgxcW9ja1FETVFv?=
+ =?utf-8?B?SXB0ZThCZzlnSHltNkJIM0poQjU4R3RXcDM3bDJnSHpwdzc1TW1laGI3bWVa?=
+ =?utf-8?B?bTNDSUVwRHNqSUJxUGxPQ09uRGpMWEtQbkRMSzcxU211aW9iemYxZHFCWXlD?=
+ =?utf-8?B?VWJDc0V0Tyt6V2dnOGxTVGdhRDNZTjBGUk52ZG10RkppMEc3NE9GZWcrem5i?=
+ =?utf-8?B?aExsUUM2MUtYQmFrN2hnMEExODBiaXVTUXhhb25hbFBJRzA5TElqemJFRkZL?=
+ =?utf-8?B?UVVObWhQLzNTRE5iNFhURzR3dWNUWjkyZW1tL0U3Uml5UG9udUFKa0l0Uklw?=
+ =?utf-8?B?YStRMStucnVJSjNUQUd3ZE05Zno1MGxwNTBqZXFCRDZPby9kYkk1Q2tySkJn?=
+ =?utf-8?B?SUV2c1hvNnl0dlZ5ZnBrdnZCUGkxMUdsd2ZKb1dua1hmUFhlRldNVFNhSGtZ?=
+ =?utf-8?B?Qk1XZ0ZpTmdzMHZ4eXJ1dTI0aERBM29mcm5nQ21rQWl5QUR0RmtldXMvUXR4?=
+ =?utf-8?B?dFZ3NW54cTR3L1hJdkt1VGc1WXVNeDhKb3RoVlJyRGxxampaWU1rQ3BKZmtU?=
+ =?utf-8?B?TFo3cXRnS2NZcmVSSEpNdTVLSzZURzlld0RBR3dja3lGMm5BeDYrckQxWk9X?=
+ =?utf-8?B?d2FKZzdqSCswTXluemx5Z3pHSHErMG9wREozYmpHcEQrY012cmtNSnpCL2xh?=
+ =?utf-8?B?Q3hNQkl2aWhRVjFPSUJ6b0xkRmYzQS9JV2dNUSt6b3RmMVlBY0JES2JQY0N4?=
+ =?utf-8?B?ZEpIbFdLalZBSDc3bzE5MHk0bG5aRHhUREFCQzZSd0d5aHl4MmhrN3o4b3Ev?=
+ =?utf-8?B?M0plVkFrVEc5QU42K3I1YXMwelhDYmx3THdUOTlDTjMxd0R6MzRDOWcrM2hn?=
+ =?utf-8?B?RDZyaWpuL09QVkVXMThCVWt2eW56NUdWTGRDTEdnU3NibkhKU01YU2UzS1VG?=
+ =?utf-8?B?RDc4S29XUUw4Zld0TUtSRmFxRDlQRFM4N0dDeG4zSVhKQ0VTMk50UklSOS9u?=
+ =?utf-8?B?U1IwalREeGZXazd5d3EzNzJtOExuNFZiR01YaFplVlBEK0FqbFVDVVBPOHFK?=
+ =?utf-8?Q?u17uzxX/klfc60vNKsZR2j7nF78mllZi/Zuwv?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb9f5cdb-1130-47de-8a8a-08df49ad0fd1
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 21:59:35.4132
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Kx1ieQxTQcVMY5ZLcDcT1jXHRXpDbrIE8i7ZQK1MRGS5XXaB3Wc4iH4/TbF53JN8JIFqG9HrgTlPLgz+xLuacVZ1n8g1mq3RLIZN5t4B2RY35xDVT63zQaLGw7ZtE43W
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8349
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_135941_029176_A8E16195 
+X-CRM114-Status: GOOD (  10.18  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,116 +156,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Frank Li <Frank.Li@nxp.com>
 
 
-On 11/23/26 3:35 PM, Alexey Charkov wrote:
-> A cell can hold data from which a provider derives a shorter value for
-> some of its consumers, while others still need the raw cell content. A
-> CPU ID which serves as the base for MAC addresses is one example: the
-> MAC address consumer needs six bytes, whereas anyone after the ID itself
-> needs all of it. The post-processing hook has no way to express that,
-> as the reported length is always the full cell size, and consumers such
-> as of_get_mac_address() reject anything but the exact length they
-> expect.
-This is the correct behaviour.
+On Tue, 17 Nov 2026 09:44:12 -0300, Leonardo Costa wrote:
+> This patch series adds the device tree overlay for the Toradex
+> Capacitive Touch Display 10.1" LVDS V2 through the DSI to LVDS bridge on
+> the Verdin iMX8M Mini.
 > 
-
-nvmem cell fundamentally has cells that are fixed size during creation.
-
-
-> Let the hook return the shortened length of its output instead of 0,
-> and zero the buffer beyond it, so that a caller ignoring the reported
-this looks like workaround.
-
-This behavior should be inside the provider not in the core.
-
---srini
-
-> length sees no leftovers of the raw cell. Reject a length beyond the
-> cell size as a bug in the hook. Every existing hook returns 0 on
-> success, so their behaviour does not change. Clamp the sysfs cell
-> attribute read to the reported length, as it can now be shorter than
-> the attribute size.
+> It also renames the existing DSI to LVDS adapter with the 10.1" V1 display
+> overlay, to keep a consistent naming scheme with the V2 and with the other
+> Toradex Displays being introduced.
 > 
-> Signed-off-by: Alexey Charkov <alchark@flipper.net>
-> ---
->  drivers/nvmem/core.c           | 17 ++++++++++++++---
->  include/linux/nvmem-provider.h |  8 +++++++-
->  2 files changed, 21 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index d976c0d6603b..dde77f78e109 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -384,7 +384,8 @@ static ssize_t nvmem_cell_attr_read(struct file *filp, struct kobject *kobj,
->  		goto destroy_cell;
->  	}
->  
-> -	read_len = min_t(unsigned int, cell_sz - pos, count);
-> +	/* Post-processing may have left less data than the attribute size */
-> +	read_len = pos < cell_sz ? min_t(size_t, cell_sz - pos, count) : 0;
->  	memcpy(buf, content + pos, read_len);
->  	kfree(content);
->  
-> @@ -1647,6 +1648,7 @@ static int __nvmem_cell_read(struct nvmem_device *nvmem,
->  			     struct nvmem_cell_entry *cell,
->  			     void *buf, size_t *len, const char *id, int index)
->  {
-> +	size_t out_len = cell->bytes;
->  	int rc;
->  
->  	rc = nvmem_reg_read(nvmem, cell->offset, buf, cell->raw_len);
-> @@ -1661,12 +1663,21 @@ static int __nvmem_cell_read(struct nvmem_device *nvmem,
->  	if (cell->read_post_process) {
->  		rc = cell->read_post_process(cell->priv, id, index,
->  					     cell->offset, buf, cell->raw_len);
-> -		if (rc)
-> +		if (rc < 0)
->  			return rc;
-> +
-> +		/* The post-processor may have shrunk the data: drop the rest */
-> +		if (rc > 0) {
-> +			if (WARN_ON_ONCE(rc > cell->bytes))
-> +				return -EINVAL;
-> +
-> +			out_len = rc;
-> +			memset(buf + out_len, 0, cell->bytes - out_len);
-> +		}
->  	}
->  
->  	if (len)
-> -		*len = cell->bytes;
-> +		*len = out_len;
->  
->  	return 0;
->  }
-> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-> index 6063fe5b7784..a95529aa3e80 100644
-> --- a/include/linux/nvmem-provider.h
-> +++ b/include/linux/nvmem-provider.h
-> @@ -20,7 +20,13 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
->  				void *val, size_t bytes);
->  typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
->  				 void *val, size_t bytes);
-> -/* used for vendor specific post processing of cell data */
-> +/*
-> + * Used for vendor specific post processing of cell data. Returns 0 if the
-> + * data keeps the cell size (the cell's bytes, not the raw length passed in),
-> + * the length of the processed data if it ends up shorter (1 up to the cell
-> + * size), or a negative error code. The core zeroes the buffer beyond a
-> + * shortened length. An empty result cannot be reported.
-> + */
->  typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
->  					 unsigned int offset, void *buf,
->  					 size_t bytes);
-> 
+> [...]
 
+Applied, thanks!
+
+[1/2] arm64: dts: freescale: imx8mm-verdin: Rename Toradex display overlays
+      commit: c28db479bbc3aee4ad40c3a8af725c30f288e938
+[2/2] arm64: dts: freescale: imx8mm-verdin: Add Toradex DSI to LVDS adapter with the 10.1" V2 display
+      commit: 88ca7b43866db1a409e63d165e100a3bbccf5448
+
+Best regards,
+-- 
+Frank Li <Frank.Li@nxp.com>
 
