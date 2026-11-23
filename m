@@ -2,148 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6DE606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 02:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84E9606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 03:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kTa+VEUQ;
-	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=aaWbmw7D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=073A2cGj;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Je3rYygI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=uamSJL7kR7eafNJ+Uq8YA9Hu8PFg0ZESPtkdJciTX5o=; b=kTa+VEUQ6Dv3mxTzHt1nUTdvzR
-	/tl8ITqaJTXEfuua6mzOKq7QCVuESp2MxspaKeCENoqAx+HMyJ8eQ3ImO/7hylY98GHEdJYr3QoRO
-	CsszVfEFqbka+aHVV3WPbJ/x6vcizjqXv+7ptPE+N1TALu3sZE052PP6J+96UG+H6Kz52DSscGzAy
-	oayGADlrJSp3J5A/eoLOAOxtbYpTpYt/QBFo2mhmXCNZMXN5lChTFUm74cySIh7GjivWo+tZgnz9u
-	nlusQkwWq8sbMSnJ9xmHrTEpIlcImjGWVeLu/+2fKv4MpKEeQxzDm2tjo2AulMjvf6W7KtpWuQkOv
-	gvYvVpZg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=rVGtwWIUrwg3vjkZky9jBduG/TMeysWW9WrLvNCpeaU=; b=073A2cGjI0+dAX
+	Q+z7aVV9AYf6tJ7siiKbvlyTlEBkqqpQr/FrcjBl5+oKXk8P4gT1N6YlUCKGl5EyugjRAB4yjcwLM
+	f8tGuRbbd0vAY+YK2Epxx790GIh/CGGkXrqDN1ljQ9JcnhuRo0G6VZ9n6OaW+sTTyCtxTogb835jR
+	zlM4A1Bk54Tud7pDH3FlFAm3zTqZxkbmEEO57bse34r6cVRi+LmqG1PDjx+EjEmlr7fJnluSisS/4
+	hnlNxVrB7qNLVna1nivB0ezsbrIsgTOSrIJ34FN5hrYKcKbtF1D/EcocaJPyjNDKxLtNOitZQnYb5
+	M6ohtXkMaGluQeAKg3bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVK9r-000000029hL-0yCf;
-	Mon, 23 Nov 2026 02:51:55 +0000
-Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1xVKJD-00000002A2J-1Kjo;
+	Mon, 23 Nov 2026 03:01:35 +0000
+Received: from out-176.mta0.migadu.com ([2001:41d0:1004:224b::b0] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVK9m-000000029g7-27HW;
-	Mon, 23 Nov 2026 02:51:54 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UJUhWZhpgaesiAhmgSvvPWczrLBwrGb160KePAvwxfg/gzYYbWYlRaYgIDsY2kUaJ6YTBehWbIs5Wfz7zeWGfIWfbCPVaKEUYTvsiBZHimOm2flOVO+Mkm459tteo4Au4klqmhYdvOeB7pz5dCJwbxT/Rc+q84qFx0cOoGMIBZscWEIyedY54tbFuP3X0rBruvyvAADVAqD0TTSS1P8/2E+CmUE/biZSlQ4EMqhZMcuDtncVU/bRseayKwxWa+swCHwvM3EJUxBS5xLl2MdClMB+9gIWzO/klOavCckAsp+F+E680FlET+ptLJDUxbOrRLMJCE6Apr8/7MQueLS+4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uamSJL7kR7eafNJ+Uq8YA9Hu8PFg0ZESPtkdJciTX5o=;
- b=M+7NMOHWyDf5JHNqEzEWeghBko7yH/YCLrXWwzv92BCkm16ZseMDctm1Q6O5X4EvKfgW+2CAC/pMGb0o0tvQpbhfYPbRZVV1tbJLBTTx0N3HOLeKjnwjm2DyyNIpTTmH+XnhNhn70m+krIDIIJwszUyaugxa74Ld/fQudRuXmzcWWv6SYzuP7MAPmVU2Ms1VTKYlWpbUIz5E7K86RxOMVejkBmHyWPlo91vTE2qbwPu1ultdNKcuK+omEE62n9zreZvzw4qNY9qokp2sa+5kFeDRZkMy87jARs6JO5pqKbiJihxLzT/wDQR/qLksxRKBSfMvE4NV83srI2af+sxJZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uamSJL7kR7eafNJ+Uq8YA9Hu8PFg0ZESPtkdJciTX5o=;
- b=aaWbmw7DsBjjQYAJmPOIZSR26JKGQz2ps2OygkdzGhKMIPNOlXeylwVGRbT4l7SF57jGgQc3wDpEkvn2FGYlqvLFBh9NP4JErInsgpFZbs6zERxpTn1v0ZHSpcTS0Bclyy+BrJ6/zdErMJmqtUXdb8xfBhHaAnbwDV249iTvwwzR2m+LJCZsyhLYGVqdGh+eS18sIzSu/Z1hS2Pb/G/I/Lc3prfDiliapyXYN7/L/Ovdn6x9GBdnQXAkb2moXKQG34tWYIpk60gWSlxh/ya/BJf5YSEsjlawtjJ0U9K4zYzx2yu4o+wNe9IT8AEZUjM1kWAaMeEprYno3zTXDBY6Kw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
- (2603:1096:405:3c1::21) by JH0PR03MB7509.apcprd03.prod.outlook.com
- (2603:1096:990:15::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Mon, 23 Nov
- 2026 02:51:42 +0000
-Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
- ([fe80::ff5:e524:cf10:5d7]) by TYNPR03MB10226.apcprd03.prod.outlook.com
- ([fe80::ff5:e524:cf10:5d7%6]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
- 02:51:42 +0000
-Message-ID: <0ea53475-4112-4e27-b06b-b6301f28e14c@amlogic.com>
-Date: Mon, 23 Nov 2026 10:51:36 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/5] Add support for S4 audio
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
-References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
- <179536124894.2728475.16240917993133855473.b4-review@b4>
-From: Jiebing Chen <jiebing.chen@amlogic.com>
-In-Reply-To: <179536124894.2728475.16240917993133855473.b4-review@b4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: JH0PR01CA0071.apcprd01.prod.exchangelabs.com
- (2603:1096:990:57::13) To TYNPR03MB10226.apcprd03.prod.outlook.com
- (2603:1096:405:3c1::21)
+	id 1xVKJ7-00000002A1h-3zK7
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 03:01:33 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=mIgBcbUV5ixDOvXz3J1MusGef0bPdFIqnXiTXJGakI8=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795402887; v=1; x=1796007687;
+ b=Je3rYygIgpzY1nXNspU9V2667bbCxLLQx2mNTGfA5ycudJIdi0ddpU3flrQfQ+x3bu/n4JwP
+ EHkGQ2b2RtFhdpJIDn16/2YsyMpdxpo9jc0VZClg2ybCSOXNcWbKs036kkjhk0PZ+OuQ/szJxZH
+ 3U2NuV9anPz/kTarzHXX0zWQ=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 195945ff91ad8013;
+	Mon, 23 Nov 2026 03:01:26 +0000
+X-Mizu-Trace-ID: 195945ff91ad8013
+X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain;
+	charset=us-ascii
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYNPR03MB10226:EE_|JH0PR03MB7509:EE_
-X-MS-Office365-Filtering-Correlation-Id: e813fded-62d1-48bd-6fe7-08df490cb45c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|23010399003|366016|376014|18002099003|22082099003|4143699003|11063799006|261026121527099003|261022105027099003|261026140227099003|56012099006|261028144727099003|10067099003;
-X-Microsoft-Antispam-Message-Info: LObOe3zk2qdqtsaqVd8Stg1fbkPGGV/VeWTtH31MRSGPTIbfloPurTT/eg4G7xbgYtBOuiWdtqPw5WrDoi1FaL0flZA2hZMdwUuamo47TCioSbXWFv9RY9JHUna2DkoMoR7j8myD5sIbR0J3OoYTDDES3KestpwsooD1XJ4EFJI/VGkcZ58+5w97q9vdSaPHwIZXgPpyPz10gkG3qaZNyZEmo8RBisaU5sh+G8csEkSbKYQzio+K0uT6D6NMtmabRoA51e3B8Acp5Bk0eZ5Tt33XBbmKKg1QWaNgWZnd9sXN5np9IENpHpkLlR9jm5QNvQQMemTkLxUioFsOO0HqO44CS33wNebnl3za53i2LZRRKgkVLEShgjmv5ys56x1c3NXWAiV7PNDsQ+q15KErpkpMJz0n0qY6JZ05NQvLwf3VysKBp+MVvrB1P/c5zalQo3hrEoKpTAs5KLXzzjj8Vd2ed2FyKUormJ4a6SzIlaZh0PIXODSHweNX+hT1gmW6NFyuQxEIvV5fVD2R6y4svvbNWx1dHBsofParUb9gykfLaPEhCUx35zve3l8ZkfQ/PMy9PCLsbv4tBDM3Kuz9dVUK866DJzh4XBT9Unb763r/57AaOfwm0LbmS6mFKfzOhl+noeQ6gbkAS/kTHY2dPDjmIjcSvQJzLqEdQsd9+Ug=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYNPR03MB10226.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(23010399003)(366016)(376014)(18002099003)(22082099003)(4143699003)(11063799006)(261026121527099003)(261022105027099003)(261026140227099003)(56012099006)(261028144727099003)(10067099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QytXVFhBYWhTdzdYZzZ2SnNESWhVN0RSOVVBdlM1MXpGVENwVVovMys2LzBw?=
- =?utf-8?B?UUhyek1ES3JOaUhyN0F1QUNkeEVJaTJsWEVOek1tME82blBlUUdBRFltS21C?=
- =?utf-8?B?SE1sald3ZzJ1L0RhUi9WS2x4ZDRBZVFOcGtaMzRFckNvMUZ5RUlIR3kwMkw5?=
- =?utf-8?B?QS9vb1ZYL1NsbG5zMExTUUNZOVhrSzBSa3hzTWNLVFNOcFVENllwMzhxNXRF?=
- =?utf-8?B?YkJRUFk1UzRlT2ZHZlJxaGNtNVVUYVhyYmpHTUl2d2cxaFZORVg2YlUvL1gr?=
- =?utf-8?B?dThVRzJHd28zN2hoWEdPQjhqNmRDZjAvaTgvMkdldEtnZzVoUDRWWTBWbTds?=
- =?utf-8?B?MGo2eTlacU5iTU4vR3ZpR1l5QWx3WjhsUThMMFR0UHl5dFNrWmdmakdQQnNN?=
- =?utf-8?B?eEdqZk8ybHlTVVNvcVg5aTFnOUNBZUJrMTJ5aHM5cUNYVUo5cWE0ZERIaFNF?=
- =?utf-8?B?UWxhR0RMaEQ4anVmeEhXUDF6YURCUEFET0JyZHhnblhRUVZUd3ZuYUhsNUFz?=
- =?utf-8?B?SHFmQVRZcWJhMm1zem9BY0Q0SHQ4L2dVWXB4VGY1Zng4N014eHVYZ290a1Vl?=
- =?utf-8?B?eDU5K09HbEFINU1mZ2VjRHRkTnBtcURBRHhEVkZhNnZEWVI5WHQ0R0R6MUgx?=
- =?utf-8?B?UjkxMEp4Y1BTSGdQdHRqUW9EODdJZCt3dlRZM1pDUnZIcXlNS0I0d1Jlc3FX?=
- =?utf-8?B?Wm1RRGNZckVXdW9GODk0RmRVMmRIU0x6Mk45QTJCc01sNnB3anpsMDVkcmRq?=
- =?utf-8?B?RXlUd2V0U3k2cVltN3J6UXR5bGRkVzVSMlhyb1M1aVdrUmpoQ1lPOWhKWVZO?=
- =?utf-8?B?NkpqUXkyQ285bXM3N2tMZy94UjAveHlyekx0UkRoTWgyRGdmK2ZMeUdkVVI2?=
- =?utf-8?B?Nmt6dE9NODdlRitFeVdaVHVJZkdtT1d2c2F3cXFodjJXcW9UNFZzOUR0Rldn?=
- =?utf-8?B?clRxa2pKOXlJcnUrTHlPNmJrdmpwM2VGcW8xRkQvZnZHWmkrL1hva3hqVlZp?=
- =?utf-8?B?ckx2QUp0a01PNi9kNkVCbk1TL25xd0hBdEk1TWptTjB3VjlvbFhkNlcySXZQ?=
- =?utf-8?B?OWM5NlJKVS9TTFpDc3MvOTVueUlZTEQ2VmRYVWtRWmZZZDgrM1R0cWNhZDZ2?=
- =?utf-8?B?dnh6ci9veHEzeVYxbjhYTXNvVm1BK0k2OUlsS2VabnJJUFd3Y1JpMXdBdmRG?=
- =?utf-8?B?MVNCK3R6SUdHQ2ZuR3hBVUpRNEJlKzdQZnNuUnNTa1gvcUhTVTNyUE1IRkdF?=
- =?utf-8?B?aHFPN2xoTWUxcEtTZk0wck1LbGwzcGI4YWlOUjJBZ2ZGMzlZNlZUckpvRnFJ?=
- =?utf-8?B?aXhta1cwZHcwd1RjWGQyUkxHK1pHREZOamlXRGJJd0lvdHNVdlBndlZXakUy?=
- =?utf-8?B?eUdJUU41VTVvODd2Q25PK1BROS9ZRGErV3hZTk15ejFPVk9qRzBoUEJFMGdx?=
- =?utf-8?B?cUVHQ29QNDc2UjlHRjlWS2NCSjdaRkxYeEJWV0VQTnVxZzZNK0d2M2pnL1hI?=
- =?utf-8?B?dy9PaUpMQlB0TVZRV0FEYmZScW9ESG1uTjE0K3JydnIwc21lRlZ2YnNSSThT?=
- =?utf-8?B?eUNabS8zWWlwOEJDdjFxbzBJcFAzUzI0cmtwcktLMmVlNllEL2JlTi9OZXFS?=
- =?utf-8?B?NklyUjcwVXJrVWtyOHRmQVJTNXh6ZjZJbkwvSld0Mkc4cEZMRld4NTlQeGxx?=
- =?utf-8?B?MCtZbkp0UHBNVUcyWGtWeDNaemlOei9CKzJGd2NXQ0Q2cXJhakpraUcycDRk?=
- =?utf-8?B?U2R0dTA3SEUvcUxEN25NQ2lKWXBKVG1WMlFOSCtLbmlLbWJKaW85bXMvVGc2?=
- =?utf-8?B?YitlN0NpWHB0TFdCd1Nvb2I0VnduU1l4QkNVYWRnKzBlQzNma0ZlenVCckhY?=
- =?utf-8?B?QnRCZS91SFZTSVRnck1LWUk1Zkw0ZDFiUVIzb3BCbnZ1bHRtYkFvckJCeWVk?=
- =?utf-8?B?d0Q3RXZBZ2dIWmgvMWxjTGhZOGFjaCtKdGExR3Rzamg2dW9iTHBqem1NclVM?=
- =?utf-8?B?RERtM1k2c3dWVU1EU3Qvck4wcWFhdGVtNzNhZ3BhMEFhNDZ5TEhMRkpHeGR1?=
- =?utf-8?B?NTNhNytCMDlidDRGcjdpYUFJanhEUG5oeU1NWWhDcFY1RWRZeDQwWElxaUJm?=
- =?utf-8?B?NGg3TTNsNDRXMW1EQ01rUjM2a3krZEYydnJMbmo1RWdjUmx4V2d2Y1RlSFZE?=
- =?utf-8?B?c2pnSUdDZ0xzdUQ2WnNjTStuYldNQWUvejVyUUkrSCtMV0diR0dqZmo5RUxm?=
- =?utf-8?B?aitNNUR0TWtXNEtCUDZkYmc3UnZlR1lMa3lhOXNXWFk4V0xRb29YbUYvd1Zt?=
- =?utf-8?B?b296d1hMY3NRajlnbHRzNjBBUng5QTlTRjBaNUNsZldSSy9wYjN4dz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e813fded-62d1-48bd-6fe7-08df490cb45c
-X-MS-Exchange-CrossTenant-AuthSource: TYNPR03MB10226.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 02:51:42.5601
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u5BbiWR2qzMAYArejtFUX4vADv1mVY9JN4sRFes/idUStP2Yw62ToWJyAtUZMaIev7VpFNEOuxm9gG4lxgf87V0ZhSIhxrNTn3Q3uqLOENs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7509
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
+Subject: Re: [PATCH v3 05/19] hugetlb_vmemmap: Allow architectures to
+ dynamically disallow HVO
+From: Muchun Song <muchun.song@linux.dev>
+In-Reply-To: <20261122184453.2668189-6-jthoughton@google.com>
+Date: Mon, 23 Nov 2026 11:01:07 +0800
+Cc: Muchun Song <muchun.song@linux.dev>,
+ Will Deacon <will@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>,
+ Nikos Nikoleris <nikos.nikoleris@arm.com>,
+ Linu Cherian <linu.cherian@arm.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ David Hildenbrand <david@kernel.org>,
+ Ryan Roberts <ryan.roberts@arm.com>,
+ Nanyong Sun <sunnanyong@huawei.com>,
+ Yu Zhao <yuzhao@google.com>,
+ Frank van der Linden <fvdl@google.com>,
+ David Rientjes <rientjes@google.com>,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-mm@kvack.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <C1CC6F31-4F75-41D8-89D8-CE43465FBB6C@linux.dev>
+References: <20261122184453.2668189-1-jthoughton@google.com>
+ <20261122184453.2668189-6-jthoughton@google.com>
+To: James Houghton <jthoughton@google.com>
+X-Mailer: Apple Mail (2.3901.200.71.1.16)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_185150_549336_9CCCA87C 
-X-CRM114-Status: UNSURE (   9.41  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261122_190132_689197_CA2316E5 
+X-CRM114-Status: GOOD (  26.31  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -155,38 +88,115 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-在 2026/11/22 23:27, Jerome Brunet 写道:
-> [ EXTERNAL EMAIL ]
->
->> This series completes the end-to-end audio support
->> for S4 SoC from hardware bindings to driver implementation
->> and system integration.
->>
->> 1 Device Tree Bindings Updates
->> Added audio power domain and S4 audio clock support for S4 SoC.
->> Added S4 audio tocodec binding support.
->>
->> 2 Driver Implementation
->> Implemented S4 tocodec driver for G12A architecture.
->> Added S4 audio clock support in AXG audio clock
->>
->> 3 Device Tree Integration
->> Add Amlogic S4 audio subsystem support in arm64 DTS.
-> A clock immutable branch is going to be necessary to handle the dependencies
-> in this series. Please re-submit with clock changes only and a proper cover letter
-> so I can merge apply this and provide the IB. Thanks
-i will submit the clock changes as a separate patch. Thanks.
->
-> --
-> Jerome
->
+
+> On Nov 23, 2026, at 02:44, James Houghton <jthoughton@google.com> =
+wrote:
+>=20
+> For arm64, only some platforms support HVO. Add an arch hook,
+> arch_support_vmemmap_remap(), to prevent HVO from taking effect if the
+> architecture lacks support. The hook is not HugeTLB-specific, so it =
+can
+> also be used by other users of in-place vmemmap remapping (e.g. =
+FS-DAX).
+>=20
+> Check it in hugetlb_vmemmap_optimizable_size(), so that hstates are =
+not
+> reported or treated as optimizable (e.g. by report_hugepages() and the
+> HugeTLB allocation and freeing paths) when the architecture does not
+> support HVO.
+>=20
+> It may be the case that arch_support_vmemmap_remap() returns false at
+> first but eventually returns true. This is the case on arm64, where
+> support depends on a system-wide CPU capability that is not yet known
+> when bootmem hugepages are allocated. Such architectures cannot =
+pre-HVO
+> bootmem hugepages, so they must disable the section-based vmemmap
+> optimization in their vmemmap population path with
+> section_vmemmap_optimization_disable(). Their bootmem hugepages are =
+then
+> optimized when they are gathered instead.
+>=20
+> Signed-off-by: James Houghton <jthoughton@google.com>
+> ---
+> include/linux/pgtable.h | 15 +++++++++++++++
+> mm/hugetlb_vmemmap.h    |  2 ++
+> 2 files changed, 17 insertions(+)
+>=20
+> diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
+> index ab33df268955..8cf44120e2ed 100644
+> --- a/include/linux/pgtable.h
+> +++ b/include/linux/pgtable.h
+> @@ -480,6 +480,21 @@ static inline int try_update_vmemmap_pte(unsigned =
+long addr, pte_t *ptep,
+> }
+> #endif
+>=20
+> +#ifndef arch_support_vmemmap_remap
+
+We usually add a 's' to 'support'. Like arch_supports_vmemmap_remap.
+
+> +/*
+> + * arch_support_vmemmap_remap - Whether in-use vmemmap mappings may =
+be remapped.
+> + *
+> + * Vmemmap optimizations, such as the HugeTLB vmemmap optimization =
+(HVO),
+> + * remap vmemmap page table entries while they are in use. =
+Architectures that
+> + * can only do this on some systems may override this hook. It may =
+return false
+
+"Some systems" is not clear for me, How about rewrite this sentence =
+with:
+
+  May override this hook based on architecture-specific runtime =
+conditions.
+
+> + * early during boot and true later, once system-wide features are =
+known.
+
+I think the description should be general, so the last sentence I think =
+should
+be removed.
+
+Thanks,
+Muchun
+
+> + */
+> +static inline bool arch_support_vmemmap_remap(void)
+> +{
+> +	return IS_ENABLED(CONFIG_VMEMMAP_OPTIMIZATION);
+> +}
+> +#endif
+> +
+> #ifndef __HAVE_ARCH_PTEP_SET_ACCESS_FLAGS
+> extern int ptep_set_access_flags(struct vm_area_struct *vma,
+> 				 unsigned long address, pte_t *ptep,
+> diff --git a/mm/hugetlb_vmemmap.h b/mm/hugetlb_vmemmap.h
+> index 8b28063d78cc..440477288d19 100644
+> --- a/mm/hugetlb_vmemmap.h
+> +++ b/mm/hugetlb_vmemmap.h
+> @@ -48,6 +48,8 @@ static inline unsigned int =
+hugetlb_vmemmap_optimizable_size(const struct hstate
+>=20
+> 	if (!is_power_of_2(sizeof(struct page)))
+> 		return 0;
+> +	if (!arch_support_vmemmap_remap())
+> +		return 0;
+> 	return size > 0 ? size : 0;
+> }
+> #else
+> --=20
+> 2.56.1.809.ga0b61035b5-goog
+>=20
+
 
