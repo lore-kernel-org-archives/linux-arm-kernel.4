@@ -2,89 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C80606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CD1606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PVscZk3z;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AvzgeGpS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e67tX6c6;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=uH3ISwkJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=QVIPG461oIfrGlgT39BuSMqYwlesz2HjWtAEDH4eZM8=; b=PVscZk3zWlu/dxZp3yjYd+7Xii
-	GfHM13mdsbhKXpFfHWyHqzFLyt1nfGok9j7KbxSLn1EGPHAI+0rVutp7kWpO+/Zk0aw06otxs5yyG
-	ehg2mHCPNJ4iUM7TZf13bSCfo++E9m1BPQ69nR+iePR/Jr5JhtQ/zjnX3m5syuRB1SslLv1FaCLT6
-	U0l6UogRO7fIU91Il9GkEw5DGIzqmUx1VbxsdTlFYJOI3X8e0mzxAT9jnZAzHRh8RCllekA+irTNr
-	CUSBznBURsDz24DOLdI4672IbLHlmQ5cEvwPa/D7NWpIpQoJvtkpc0g3PKFrvwnmE/3mVzPVVNjm/
-	6XYPM3HQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wZAivBtRtLWcgM4HWvBb1J0EkN1/qMExe1gj1iNUfz8=; b=e67tX6c6B3gA04
+	Q1PVPWgsTaojTOyw5GiRoKp6Ez0kAOaLnyfT5s2mJzd16oZp5raYrkdJ6/ISuE8Zwu/P6AKevQ3C2
+	Bcn2hPklAoqHZAxct1whQCznpAAsBbsUSTHbd8AVcwmSjXzUPn94qQYMbG+74PjOpvo4hZHUH5KHY
+	lfk0Z2fl9UP3Js9l6hrm/AId4bQ7dnyoe0HYpmEeVN0GTqrLuW6fQWheSfYPxSnFwPPWwta0CW4sv
+	FthUw+RCex3WOlIftuu6k6Ezb2bWwnwTOeVfuVWNcCwxq5XVOBTEPYKQU/YSVgrch781zahjq4rJZ
+	YejcEOCSIYFQa9n2rZmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbVd-00000004xoB-0kdY;
-	Mon, 23 Nov 2026 21:23:33 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xVbXY-00000004y7b-1wfg;
+	Mon, 23 Nov 2026 21:25:32 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbVa-00000004xnM-1tOY;
-	Mon, 23 Nov 2026 21:23:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795469008;
-	bh=qXsWzwhK9zcOB2dUhIS8bc94DISbCNVtGQbuPkQF+Nk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=AvzgeGpSfG57TZIkqGQiAm3tNLJj5Mf1vSRfrWQYE6gfwXCEPy8CDEnY2FZceYvtk
-	 WNcYewCiwo+MFT422mNBjHwEv4sH1HeCoPruVNbBgLAoAnzNXX/pmzQ8rmFPeY9dkj
-	 j/iG5sLeQ3TNYhnZ8Mtvz2FJUIjbPuhQYCsiJLv85bVMBAH4DDt+4pKChtsGdGB30h
-	 lYA35h1a+ePcA5l8rpHSB4InCNXK7QyFwPK03oS3aaWm6ofQSdEGtP0bHT8ngIXEon
-	 q/+MyFlsoxCAy2wOQiXJKz1On+ggrKJJfj5PCqveTxR8B7ZzwYvA+mbGYtnZixjA6e
-	 aSDhhesUr2qUQ==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5E17F17E02F2;
-	Mon, 23 Nov 2026 22:23:26 +0100 (CET)
-Message-ID: <4fc740ba49bcd5880d13b627fc16a7b8f119e0a0.camel@collabora.com>
-Subject: Re: [PATCH v2 3/3] media: verisilicon: leave room for the JPEG
- header and one stream burst
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: shomenkow@gmail.com, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
-	 <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Ezequiel Garcia
-	 <ezequiel@vanguardiasur.com.ar>, Chen-Yu Tsai <wenst@chromium.org>, Hugues
- Fruchet <hugues.fruchet@foss.st.com>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
-	stable@vger.kernel.org
-Date: Mon, 23 Nov 2026 16:23:24 -0500
-In-Reply-To: <20261110-hantro-buflimit-v2-3-ff7790def9fc@gmail.com>
-References: <20261110-hantro-buflimit-v2-0-ff7790def9fc@gmail.com>
-	 <20261110-hantro-buflimit-v2-3-ff7790def9fc@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-GXXpYju9zHAOXYjKgWjd"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xVbXV-00000004y6n-18lY
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 21:25:30 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UuNAVThaG4I64K2tIg+uKVcwfqa/I9YfdX/Bwxbx3Net1VrWz2LpUFX+bbELPlO9dzvQt9l3BHoS9/Pn/nyu5ymkdTSONeHNRfg+o/qNAfkjgBmaEzDgX+jhS+6PmAlv04jDfJ1X+mZCcKRdxQUYjveLuFggxCBQyvhMy1pTahwB7BqqNA8yGN4rhLw5HVdGMFmYtb3z1UatIYOKgUZQOiuJNE1NwtrCB8hz3aQKyONqX8gvqFS4jT/jyKm4ze0wUNHfUlaoOvKTFR/GwAPqmUnWWFccP9xVgwXoZCBssIR0dfIDd/MYjxn8HfrUJGtYq1tzTR44qikwpvLc8zlfDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wZAivBtRtLWcgM4HWvBb1J0EkN1/qMExe1gj1iNUfz8=;
+ b=EROYBXcHRYJ4CPjvDP+FuW6uvzw/4BCzJhQdeYCoTKnJsaYhXTKnMI3Nx6Cv6cga3oRyiBwe+k//NxBLLL4OfBF8zKNF1ij8IfbVbFSJoiS4B14sKVCAWhSjr/3MlXyGiqoP9XUBHLpnfkh7KeBcUl/Wgg5JUEzpF4uC4hwgwmRjrVx9gP46J9gOprcJTgY/FiHqqrKCWHcVVgf46mV1KlEji6ALMauE/8zA75+SDkiRXADzBmxJr13MnAkkvxI8NJT24wi4zyEcOcCnQHadQZij4fRITRmJxRtTwrVievPl9QGKRdwmRrR8qt8hLXNl4TLhYUmwSduCBurU60WR0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wZAivBtRtLWcgM4HWvBb1J0EkN1/qMExe1gj1iNUfz8=;
+ b=uH3ISwkJ24n85bjYoBj6dndsehQ8OEvAeNFZJytoOR+fhVNs0WXHLMrU0Oj1q+wMX+lPQ4CE3S9QDGiCC4AbZoPHMNkeKWrhK1ygBZ+wAJtUsgIRJjv/chOpkO6E6ru0Jx3QAIFERQBsTHsyMCNKj9UXx6BWJWW6CEeiwhVWGiX3GcHejn+ejAVP40TTC76gYL3VbWk5uJfXne1ouWntI0TcRpToSFHfcg+Ev8p8V7MxACcmnEYjaNtwfPsQLC+6jL7qJny5JHxzWp0aiGiAuICnBum/CxEeglBX107et2nlGB1LekqlAI8JWuqeWNk29aydbUueiObO8ljQyg6dcA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by GV4PR04MB11823.eurprd04.prod.outlook.com (2603:10a6:150:2db::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
+ 2026 21:25:20 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 21:25:20 +0000
+Date: Mon, 23 Nov 2026 16:25:11 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Petko Manolov <petko.manolov@konsulko.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	arnemaximilian.richter@draeger.com, martynas.grybauskas@draeger.com
+Subject: Re: [PATCH v4 0/2] arm: dts: nxp: imx: add Draeger M48 CPU board
+Message-ID: <awSvNwkscHbCNZts@lizhi-Precision-Tower-5810>
+References: <20261118090914.38082-1-petko.manolov@konsulko.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261118090914.38082-1-petko.manolov@konsulko.com>
+X-ClientProxiedBy: PH7P221CA0032.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:33c::35) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV4PR04MB11823:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea3d145b-8d62-4cf9-4d47-08df49a846aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|19092799006|23010399003|261009223027099003|18002099003|22082099003|3023799007|261021121427099003|261022075727099003|261022105027099003|261026140227099003|261026121527099003|261102123227099003|261028144727099003|56012099006|10067099003|11063799006;
+X-Microsoft-Antispam-Message-Info: 9Xc8qrkD3qEtdtqW1YDlNMWIP+IrkG+aQGDLWN3zirV0zQUrjVqqiG020Wr86d2kIC9VZHeHD4O/sgCkOdkjlqeji/vkQ9ZdOF3GmsiaOe3J0y+V5LtaFrgsfntXPgXx9oS4rXjKb+vGX/vEK3dHwRSekkBpGz15XFUwdXuJC4sz7IKDk1+COC0htl0Ct0oERqgfXX7tVedwkkzNf7ODp9FRKyr55D4PPXrgPjR9Ddk0mse7KRJJpWo0n2MaK9F0VXBLO4JQ3Pw+dl4pzpVB4xC7C2U2gtWaFje2C/8y+P0Yx/NzMyQvz196j+HHPWC9pN+CRQrXEATxwWgOjTz+yoqVaB8ONlA2Dw4+iV/x1DC7NCdmGZFZa8upVgJAMEJy+gxx4MAyGWbxIHxzS8OkSY60WS81qCnW33MRa3Pr0rtrxQbKI+bcPC96YcB8MzCJUUq2hoeyGYdJNbJQgeA/KzEeEc77TE0IUjzY0NuKzZRNeUsncAzRDVs3jR6IQC3zbkG69oyTmrE00JwIZykzchuIpNpc+UQGGjX08qOULZcMxjwDo7++SEMH7MmJsDdM2Y3r6tRZ1rFbDq5Afxx4PtS4oOsK5phKj6Dr+ZCVYVE/vGnnfEWAAsKRLqQjP5vp
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(19092799006)(23010399003)(261009223027099003)(18002099003)(22082099003)(3023799007)(261021121427099003)(261022075727099003)(261022105027099003)(261026140227099003)(261026121527099003)(261102123227099003)(261028144727099003)(56012099006)(10067099003)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cGJFWW5uQXJIN0s1SkwwQ3I3VVJuU3JCRlpHQklVUHhoV24yUlZUc25nSTF3?=
+ =?utf-8?B?VjhRTWhZemRhT2dQamVXdWRrRUFyT0JJQzVWSno5S0hUaUsxTGt0NXp6UUoz?=
+ =?utf-8?B?elRwWmxic2lMNG9SVm1ISURnR3ptN1hGdis3SUVaMHFKcmNDbGRkN1M2cFgz?=
+ =?utf-8?B?MFVheTlCc2Z0MXZGUHBreTZqeVZWUmxseUVUTjVWTUIxVnowdEJqc3htblBO?=
+ =?utf-8?B?ampRTStIWU9SS3J5Vk9PZk5jUGFHSmkySkZYSUI0UUZDNWhPNTRDemVvZW5E?=
+ =?utf-8?B?ZjMzb2pRem4zcUZQT2FwVzM4NE9GclZhTHAyN2hlYXZucm5IQmJYeXlsdndw?=
+ =?utf-8?B?YmNqalFjbHVGTUYwZlpwd3c4TUhNZkw4Qm8rNldCSnNWbHZZcGxabUx1WGVI?=
+ =?utf-8?B?Z1hKNVN3RnBITlduVHE4WnVHMmdJOGtBeUlvbGJkbGtSeWtVWHBvSm01Qzhp?=
+ =?utf-8?B?bisrZ1BDZ1NnN2lxTG1FenhaZkpFdHJ5VXJ2cktFcXNWcDFPR3IvTjBsb0ZP?=
+ =?utf-8?B?YVNYMG9zcUpoS0MveVZKdHB4bjUweFRlNE9JMVBQaXZ5Qno2OGhFSFpYY0VV?=
+ =?utf-8?B?a2s4ZjNzcjBhSlFtMVNneWp4QXVHSE8vZEtlaStsZmxoQzhWNTZkRjFoMnk2?=
+ =?utf-8?B?Sjg3dTh1WlpXeTBTbExxd0dHc2xBK1dQVVhhQ20rU2xsUHYrZ0lCSEk0TURz?=
+ =?utf-8?B?KzlUVC9rTEE4aE9wMm5CcWh2V2s4VmdtRVhwazN4U1BnakN6MWxNSXAwclR5?=
+ =?utf-8?B?czl5QzAxMXNwMXdpOG9sNnhMK0FDMzNCajYxSjd1Rk1PNEw5aUt6TVpPZk5k?=
+ =?utf-8?B?NGw5WU5Vb2hPWGsrZ2tCOUkyMWQ1SEpaeEdyZlV6UzFUQzFxS0g2R21NSW44?=
+ =?utf-8?B?WmtlWXVQOVpnNGN2THpJRjlKUERQajBtRmE5R1hobUZvbVJaSHdLVFFOd3ZQ?=
+ =?utf-8?B?TkxhcHhBamQ1NFRQanpoak80SmdtbmkyTHZTUmFQeUtqcDRTaml0OSt1UXJ3?=
+ =?utf-8?B?ckFkSHRzOFo1eTFEcFVWeW5iQk1nRVc0T1U2UWxTNXYzYjRkNUpjK21IUHRx?=
+ =?utf-8?B?MjN3a2xjTFMwSkV1U0pxU29yVmNOSHJKWTlGTTNvK3NEa01UZmJOdjUvZURV?=
+ =?utf-8?B?d1BQbE9QbitCWVJBcndxcUF4ODhoN1AzQVJSd0MvOG5UakdjOHF5UFp6MFZU?=
+ =?utf-8?B?bytuZXdydHdPZVJXZGdHM2VTd1RUUEl5TXhZQVVNdnI5RnVHTW9TMFpQampn?=
+ =?utf-8?B?L0FoY3hiYmNaSzVCci9IWHBwRTFIbFIxWHpYRTF6a01rcFhQWG56eE13d0ZP?=
+ =?utf-8?B?MlhLMDVZNnF2VWxiakVFV2dacTVaTUpRUFYvMlhUMnZiYm8wWkxTck1VNXI1?=
+ =?utf-8?B?SFZvUGZER2hpWHRRNC8vSlNQSmhQSUgvMk9MclFHSm4yaEJTUGxZd2NvR0xw?=
+ =?utf-8?B?T2g5a01tWUdzczBSSzg4bjRsQVFmYkJJMnVXb01NRmVMeTFXOXVJS2tQV1Ni?=
+ =?utf-8?B?Z0hsSXVBMCtMY3RHQndNdEZlakhCRzhOOUZOcGZMZ2JHemNPa1JUdDdxQ0ZU?=
+ =?utf-8?B?M1RkVTl5NzZna1M0aFAzSmt3WmRiUm1BMmpjSENWRThnbEVqZUF4aHNlUEdx?=
+ =?utf-8?B?WTBTSjkyeDBtS3lac1padmszaDM3WmZlT2RpVng2djhNNHhxdUlCKzJlYnJw?=
+ =?utf-8?B?V2Y2V2tQSFQyZ1YxbXE0blduOG5DMDQ5Um4xVEJxa1FsdWtmd3VhOS9JdGV1?=
+ =?utf-8?B?YXBLUlF6R2JaQ2ZQZ2REMDhXMVBNOXhlbUx3U2JjNEZLTE4wQmwrUnFBOXBZ?=
+ =?utf-8?B?QmVmVTAvdFFUWmppVE1vRzdMT21MY0I1TmJITW1mM3VXZ1dJMkNwQTkvSDFq?=
+ =?utf-8?B?KytuVFpWZ3dHV1pBUllydUd2NFJHOUFPSVRJRnVuSDRWZkxpeUV3ZVNVeUxt?=
+ =?utf-8?B?TE1UWVBLS0M0NkZqcVBLcFFpYlZHa0RWL2I1TUVhZndEcmlVUzhFaEJGMFhS?=
+ =?utf-8?B?S2FyVEJBQjFEUGQ1bDNJbHk2RmxXS3RrVFZiU0luWm1yWXlPWWlJdUFmRWVv?=
+ =?utf-8?B?S3lTaHhtRGVVZklTcDBnT3RTQzJLZ1lFOFR2eUtWV2o2aEwwd1NkbW9XVlpY?=
+ =?utf-8?B?Y0RySnFCRVJ2VTVSQzBpVkxtWFBZcmxFelZQODJEV3FQcDNUVjNKNk14ejJq?=
+ =?utf-8?B?SFRKWVhsL1BHMCtmdXdmaWxnU3ZLbXJSeDFpbkMyQ0dQcytvcVlXbDQxT1Uw?=
+ =?utf-8?B?d2hLc0kwdGpyUEpDT01WUHUwcHgxaERqVHU5bWZ6WVNRVktCR2JlRTBiWC9m?=
+ =?utf-8?B?dVZRWTV3bkVlSGJJVG9adHNub3paZ1NmN1RuVGQ3aWNnemlnRklJdHVvY2pK?=
+ =?utf-8?Q?JEeACueSEzDv47FAEIVo4eb9Q0g9v1sir3cIR?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea3d145b-8d62-4cf9-4d47-08df49a846aa
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 21:25:19.9560
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZLhuzr7KXkkuY+jw/5sTeYfw5JMKTct7XiiO15aKouweS7h3QJH7JllJWs1azBm7zh90X9hw5+VcR9ZPeodPqtZO05ed2yJRMi8Ni9BQrurr70ea+rvSd/Eiej9yHY7u
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11823
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_132330_640581_1A57F224 
-X-CRM114-Status: GOOD (  21.31  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_132529_381943_962E005C 
+X-CRM114-Status: GOOD (  17.35  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,85 +149,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-GXXpYju9zHAOXYjKgWjd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, Nov 18, 2026 at 11:09:10AM +0200, Petko Manolov wrote:
+> Adds the device trees for “Dräger M48 on NXP i.MX6 (Q|DL) and Intel/Altera
+> SoCFPGA Cyclone V” board variant.  It has both (the SoC and FPGA) on the
+> same carrier and they are cross-monitoring each other.  The SoCFPGA boots
+> independently off qspi flash.
+>
+> This is the imx6 devicetree part.  There are two bindings as well as device
+> trees, since M48 is using two parts: imx6q and imx6dl.
+>
+> new in v4:
+>   - added the missing GPIO_OPEN_DRAIN definitions on I2C recovery GPIOs;
+>   - fixed the halved LVDS pixel clock in split mode;
 
-Le mardi 10 novembre 2026 =C3=A0 15:41 +0300, Sergei Khomenkov via B4 Relay=
- a =C3=A9crit=C2=A0:
-> From: Sergei Khomenkov <shomenkow@gmail.com>
->=20
-> hantro_try_fmt() keeps any non-zero CAPTURE sizeimage of the JPEG
-> encoder, however small. The CPU writes the 624-byte header into the
-> plane, and on the RK3026 VEPU1 the encoder then writes at least one
-> 64-byte burst even with a stream limit of 0, so a smaller plane is
-> written past its end. A plane smaller than the header also makes the
-> WARN_ON() in hantro_h1_jpeg_enc_set_buffers() fire on every job.
->=20
-> Raise a smaller request to header_size + 64.
->=20
-> Found with an LLM coding assistant while porting mainline Linux to a
-> Rockchip RK3026 board; the assistant also drafted this change. Tested
-> on that board: a sizeimage of 1 or 600 now reads back 688, and frames
-> that do not fit a 688-byte plane stop exactly at its end. Not tested on
-> other SoCs.
+Your patch in my tree,
+https://git.kernel.org/pub/scm/linux/kernel/git/frank.li/linux.git/log/?h=imx/dt
 
-Move after --, and add Assisted-by: tag.
+If there are update, please base on the above tree.
 
->=20
-> Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
-> ---
->  drivers/media/platform/verisilicon/hantro_v4l2.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->=20
-> diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/m=
-edia/platform/verisilicon/hantro_v4l2.c
-> index 83af9fa1ce94..6a6d27443a5e 100644
-> --- a/drivers/media/platform/verisilicon/hantro_v4l2.c
-> +++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
-> @@ -394,6 +394,15 @@ static int hantro_try_fmt(const struct hantro_ctx *c=
-tx,
->  =09=09 */
->  =09=09pix_mp->plane_fmt[0].sizeimage =3D fmt->header_size +
->  =09=09=09pix_mp->width * pix_mp->height * fmt->max_depth;
-> +=09} else if (fmt->codec_mode =3D=3D HANTRO_MODE_JPEG_ENC) {
-> +=09=09/*
-> +=09=09 * Room for the header and one stream burst (64 bytes on the
-> +=09=09 * RK3026 VEPU1), which the encoder writes even with a stream
-> +=09=09 * limit of 0.
-> +=09=09 */
-> +=09=09pix_mp->plane_fmt[0].sizeimage =3D
-> +=09=09=09max_t(u32, pix_mp->plane_fmt[0].sizeimage,
-> +=09=09=09      fmt->header_size + 64);
+Frank
 
-hantro_v4l2 is generic, place the magic numbers in the variants.
-
->  =09}
-> =20
->  =09return 0;
-
---=-GXXpYju9zHAOXYjKgWjd
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawSuzAAKCRDZQZRRKWBy
-9DYBAQDCgXE5fTFdXAXHZOSEBSHB/laGe9BGvnk6D9+hz4Bi5AEA8+/dAfYesZCV
-A/5MqFlc0hlRBS1kr1RJQjUjauLTjAw=
-=IDgL
------END PGP SIGNATURE-----
-
---=-GXXpYju9zHAOXYjKgWjd--
+>
+> new in v3:
+>   - used LLM to cleanup most of the errors and warnings;
+>   - proper use of dt-schema this time around;
+>
+> new in v2:
+>   - add the tag from Conor Dooley <conor.dooley@microchip.com>;
+>   - it should be clarified that "draeger" vendor prefix is added in
+>     my previous Draeger M48 patch series;
+>
+> Petko Manolov (2):
+>   dt-bindings: arm: fsl: add Draeger M48 dual-cpu board
+>   arm: dts: nxp: imx: Add devicetree files for M48
+>
+>  .../devicetree/bindings/arm/fsl.yaml          |   2 +
+>  arch/arm/boot/dts/nxp/imx/Makefile            |   2 +
+>  .../boot/dts/nxp/imx/imx6dl-draeger-m48.dts   |  16 ++
+>  .../boot/dts/nxp/imx/imx6q-draeger-m48.dts    |  16 ++
+>  .../boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi | 213 ++++++++++++++++++
+>  5 files changed, 249 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-draeger-m48.dts
+>  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-draeger-m48.dts
+>  create mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-draeger-m48.dtsi
+>
+> --
+> 2.47.3
+>
 
