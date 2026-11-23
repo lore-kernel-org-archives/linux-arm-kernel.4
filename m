@@ -2,64 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA53606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99569606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qo/ePDNB;
-	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=h7O5IjTt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WKBrrnt0;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=tzjIjC+0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lyATTZSpPwfe+0tTFDl9okuYREBYcyzOpR8HimDcF54=; b=Qo/ePDNB0N0oCb
-	zq3SQBSbdXWhQ2zKWpbapS5hwW+m+wZsJsB6KDgRt7bebgcsf1oUcCmE0ivCp9Etrql+s2t5SO+1W
-	KmkKiOqEI4NLj20jZhlo1h3m+XCZy/UHRkREJkbwT7NU0rTKa9KcFwnhn7Vi4PnEaF9O1D/nRu8Ig
-	1uFK4alszcSczIZsWJPgz2oidl9WKLPAcocVWnV73F5Yc7nPrLSJ1EE5Sibn/ZQ2FRNFnUGXwDt5I
-	wW++znMdM0laVM9UXq+RvnNlI9+Ro0sFZalEvq29YYwLzv0Dxm2KqEz3qQWnxKJJPIgvxGT3N6EVw
-	lNNd3tpKFDfxNo0vtPXA==;
+	List-Owner; bh=E3uK4ToIL2mUz3Svln8sWa7foOIYRKuRK6T5m3vJSVY=; b=WKBrrnt01HGjHh
+	Vqm0p5n7s9E0YV+tMa0J6gGWnWko25OZNKOemnHSbf9RO9Vt8y6kTM9YMcur3AcfFvHNUDTsvkzF+
+	nawE9bC5EsNRKbAjJgsIdZoyUUIEvz3wRhJD72o4+FXQjY03qztQ+mdk8zEwMKw7L0YcXFqydRHZ2
+	tD5a7JKtoocBH18NP+T5pzj6fDKj1fZIf8PCtkoQPzxbr4Sdftws8m9vWIdrmdarQEWfhesfO0xhT
+	SuK5vsZjjSWlXBeFZBCiUxush7HMoZh048O5dWIVfX6pPoz0r/fWGCuZ1iru0Zde/yf3Mdyf0EMGJ
+	EpPWc0q3Rp7JEme+g7WA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMl-00000003Cav-0qLT;
-	Mon, 23 Nov 2026 11:37:47 +0000
-Received: from esa3.hc555-34.eu.iphmx.com ([207.54.77.50])
+	id 1xVSMm-00000003Cd6-0w68;
+	Mon, 23 Nov 2026 11:37:48 +0000
+Received: from esa1.hc555-34.eu.iphmx.com ([23.90.104.144])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMb-00000003CQz-3jJY
+	id 1xVSMf-00000003CRZ-0ob6
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:37:42 +0000
+	Mon, 23 Nov 2026 11:37:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1795433858; x=1826969858;
+  t=1795433860; x=1826969860;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=huVfTbErH6adnt9mw42pnrtw5P+Ckl7UHBlLJGXkTlo=;
-  b=h7O5IjTtTm43RVujexZvIkV1vbqi1IMSaSKJbcgRCWRXF9HnYI8pE4LN
-   433k+nvT2TfXBkZc1tfcYaMBMSCZ7L6q+DE8wHO0FqkNV9q5wSP+u1KkV
-   4q57i2gUizRYtAh+a/NkKXjK37Ju9nf8eySfkWUibAh7K0rg0/7lNUw9W
-   nYrlCaTImaGmBYg/1N/l6KCdCw91nDV9+oMhv8HmGGE/0z+4iNl+Ty4pz
-   binku1E5DbHqIG4pmqqFLACLj7GhBXUQK7/z2VMQL5mUFSTCv1zCIXudq
-   6Q7t5DLU+QzPnES+ib1WgYU1xLobw4F3MRAdE9lbMKme+8J78Y/Md0Y+y
-   g==;
-X-CSE-ConnectionGUID: 8qNEtdamTQe7y+juy3+hkQ==
-X-CSE-MsgGUID: /kNlf01DSpGYdaewx06QfA==
+  bh=CVPab+eqiu3Puch8ckhPaA7dUxIgv7j+PTZCvvIA2cs=;
+  b=tzjIjC+0GA2OFqDKe66AFG6uYa5lJWHh1Sw0ZYBY6tqwPmQ41ktyOXQM
+   NWaDTeLPAx9cDmccUL7rKblKNlzSVA+ap0hrY9kdLj2a9MCdJsxAewH+N
+   m3xBKvRLRKuGMjrkiPioqDvu1CoVQLwsYTGjuEVqEzDnjdqOVds8Ky7PN
+   uiLiJ3uJEnPBMsGSuuJRZ5VgaTeYaXGXjWcY8nxPsF+YSa9ZUDyIIL5JX
+   kYIKT9HQ6tGZ2Fyk2xPHyJpgzTlHqlBEO3HPdAaQIMycwP52tk1iwU5bW
+   QJpM62JQfRxDTXFHtEuTSsQUsQvR4wEuNbXVNt8WrLiwUwIFVMLLWoXSc
+   w==;
+X-CSE-ConnectionGUID: arftqoi8Q1O9dT/ebXYzww==
+X-CSE-MsgGUID: 9eD7/S51TZCvSv0lGiYb+A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces01_data.me-corp.lan) ([146.255.191.134])
-  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 13:37:35 +0200
-X-CSE-ConnectionGUID: T/+ivEZMSnequjDciurdfg==
-X-CSE-MsgGUID: HzNCZGvDT7KSUg+TBTkCEQ==
+Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
+  by esa1.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 13:37:33 +0200
+X-CSE-ConnectionGUID: ZNX9Ay/VSMu6OR/oF7HPcQ==
+X-CSE-MsgGUID: hyqSjWXXRm2C+ZdHMiz/Ew==
 Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.2])
-  by ces01_data.me-corp.lan with SMTP; 23 Nov 2026 13:46:01 +0200
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Mon, 23 Nov 2026 13:37:34 +0200
+  by ces02_data.me-corp.lan with SMTP; 23 Nov 2026 13:45:54 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Mon, 23 Nov 2026 13:37:33 +0200
 From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Date: Mon, 23 Nov 2026 13:37:16 +0200
-Subject: [PATCH v4 6/6] MAINTAINERS: Add entry for MIPS CM3 PMU
+Date: Mon, 23 Nov 2026 13:37:15 +0200
+Subject: [PATCH v4 5/6] MIPS: eyeq6_defconfig: enable the CM3 PMU
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-i6500-cm3-pmu-v4-6-5a9f5351688f@mobileye.com>
+Message-Id: <20261123-i6500-cm3-pmu-v4-5-5a9f5351688f@mobileye.com>
 References: <20261123-i6500-cm3-pmu-v4-0-5a9f5351688f@mobileye.com>
 In-Reply-To: <20261123-i6500-cm3-pmu-v4-0-5a9f5351688f@mobileye.com>
 To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
@@ -80,8 +80,8 @@ Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
  linux-hardening@vger.kernel.org
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_033738_224339_579E6448 
-X-CRM114-Status: GOOD (  11.82  )
+X-CRM114-CacheID: sfid-20261123_033741_557143_D30DA6C1 
+X-CRM114-Status: GOOD (  11.42  )
 X-Spam-Score: -4.0 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,30 +100,34 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a MAINTAINERS entry covering the driver for the MIPS CM3 PMU
+Enable perf events and build the Coherence Manager 3 PMU driver as a
+module.
 
 Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 ---
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/mips/configs/eyeq6_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 782389bd5cd3..e9a02076017b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18227,6 +18227,12 @@ F:	arch/mips/configs/generic/board-boston.config
- F:	drivers/clk/imgtec/clk-boston.c
- F:	include/dt-bindings/clock/boston-clock.h
- 
-+MIPS CM3 PMU
-+M:	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-+S:	Maintained
-+F:	Documentation/admin-guide/perf/mips_cm3_pmu.rst
-+F:	drivers/perf/mips_cm3_pmu.c
-+
- MIPS CORE DRIVERS
- M:	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
- L:	linux-mips@vger.kernel.org
+diff --git a/arch/mips/configs/eyeq6_defconfig b/arch/mips/configs/eyeq6_defconfig
+index 0a00a201937b..2d06d9ed6526 100644
+--- a/arch/mips/configs/eyeq6_defconfig
++++ b/arch/mips/configs/eyeq6_defconfig
+@@ -19,6 +19,7 @@ CONFIG_USER_NS=y
+ CONFIG_SCHED_AUTOGROUP=y
+ CONFIG_BLK_DEV_INITRD=y
+ CONFIG_EXPERT=y
++CONFIG_PERF_EVENTS=y
+ CONFIG_EYEQ=y
+ CONFIG_MACH_EYEQ6H=y
+ CONFIG_MIPS_CPS=y
+@@ -86,6 +87,7 @@ CONFIG_MMC_SDHCI_PLTFM=y
+ CONFIG_MMC_SDHCI_CADENCE=y
+ # CONFIG_IOMMU_SUPPORT is not set
+ CONFIG_RESET_CONTROLLER=y
++CONFIG_MIPS_CM3_PMU=m
+ # CONFIG_NVMEM is not set
+ CONFIG_EXT4_FS=y
+ CONFIG_EXT4_FS_POSIX_ACL=y
 
 -- 
 2.43.0
