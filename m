@@ -2,70 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9093A606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965C7606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QFJzVd0R;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=I7cdb4vd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WobcNVjk;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DXqaD13V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CuV1HgSyHeqmHnQ6X0W8EKjH6rdyvaViJZVeUHENJ3o=; b=QFJzVd0RDiO1wQIn66LPm8gavf
-	0qUuTGQnsCujuPXk04uRLfIuJKp/Tcr8xzWJh3MoTw+dcC/MGc7ZLwmdp8W8Et75QipRvPuTk5Yt6
-	TjkJJ3LwAGYUOxsIG4EoK0O1eP2OX/aseiP3PDU9Wr0RrjWZQwcTIP+e3nTzaCEN/wFS3Nygk+z0N
-	nXnlOAPHgVf7gDZAtPtCITVZzOVpP/lh2x6EaqaHV1zpChblO5YNPCgvb/w4ruVdgQimNGLX7ub4x
-	X+0WGV9/8max2ftJp8XfIvon7pUoEt0+LFn4FefBQvxx793GOr7ea59T83vp+BFWTJEHAWZYQ6j5A
-	7QtmY7Sg==;
+	bh=ls0ihH44PL2mVhwZqJdmouRg8mWtj30ZBhLZKvd0FsM=; b=WobcNVjk0Kg9AONkoJk0Gt8yzP
+	EsoGcVjABOVnxEjjBbcXy1/nI7V6BXIqOGExCwMuw1hOhRR+hPylQqmnF/xmwS37kZFTY0S1xUsPb
+	0cyzNwPdfVC/c8kPEzUiZ2HgBIQ41s3zRfOgMir4w6QfwOfJOjrU+T8Xf4nwxwMUbk6PbOOx4q1pt
+	slCKVVZhjZJDJIreZkhZCxf9sAMRw7klagIMgqTXlWoji4RfOQlIePdfKDnar9suG1GBqUQU2l66e
+	fiA3vBdrX5nAM6JscPdtanEZZ5OWS8Yg+viYfHJIdoIR3xp858dBEnfqGaEp9iS5v6pzl9JY5HDmV
+	dYgMst9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWe4-000000049Ub-2b0h;
-	Mon, 23 Nov 2026 16:11:56 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWe3-000000049UG-3266;
-	Mon, 23 Nov 2026 16:11:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3D7E743213;
-	Mon, 23 Nov 2026 16:11:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89A5E1F000C0;
-	Mon, 23 Nov 2026 16:11:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795450315;
-	bh=CuV1HgSyHeqmHnQ6X0W8EKjH6rdyvaViJZVeUHENJ3o=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=I7cdb4vdNUK3v3piY+BZlJjEe9R4MEyMtBgnxanHlmElStgvqGfQY7m05L2McBrOR
-	 VP+sk9kRQ+s6g7KtRfwY1IGa/cRy5HXcbrKutTfHWiHSdpSGmhzT2snp63v0kVxoPP
-	 D61kJ8ra9i6aLDn7pdM82YRC39mtoLm+pEdt28w6iLFn2sYZknfRXOwISv/FM3j447
-	 d8OreZirnkqEWu7JNN9y41OAQcEAUcPYoV2mGz3YuP8hvByYVXaDF5jhMXpDRAwBDK
-	 98UKa8QcdVSbM0GLaB87W8AMcxgfQMC03x9D4Rc++I920eQzGHmX5MGcXkTqRzy2mZ
-	 WIcA6ugK5QGbA==
-Subject: Re: [PATCH net-next 2/2] dt-bindings: net: dsa: Flag unexpected
- ethernet ports
-From: netdev-bot+sashiko@kernel.org
-To: krzysztof.kozlowski@oss.qualcomm.com
-Cc: hauke@hauke-m.de, andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, woojung.huh@microchip.com,
- UNGLinuxDriver@microchip.com, jensemil.schulzostergaard@microchip.com,
- ansuelsmth@gmail.com, arinc.unal@arinc9.com, Landen.Chao@mediatek.com,
- dqfext@gmail.com, sean.wang@mediatek.com, daniel@makrotopia.org,
- marex@denx.de, john@phrozen.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Date: Mon, 23 Nov 2026 16:11:53 +0000
-Message-ID: <179545031306.3135.11482802242328622537@kernel.org>
-In-Reply-To: <20261122160907.200727-4-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20261122160907.200727-4-krzysztof.kozlowski@oss.qualcomm.com>
-X-sashiko-severity: High
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xVWex-000000049g3-0clb;
+	Mon, 23 Nov 2026 16:12:51 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVWet-000000049fO-3qIt
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 16:12:49 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 21D99143D;
+	Mon, 23 Nov 2026 08:12:42 -0800 (PST)
+Received: from cesw-lenovo-m90-1s-i9-03.blr.arm.com (cesw-lenovo-m90-1s-i9-03.blr.arm.com [10.164.19.7])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF4983F632;
+	Mon, 23 Nov 2026 08:12:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795450365; bh=ukFGV1tlM/I4qZGGJcmm4FjJHsd3fH+2IjsdGegi+/s=;
+	h=From:To:Cc:Subject:Date:From;
+	b=DXqaD13Vq3UbkO2oB/WGqzcy3rIGNRcVRtOkXxS59ccSMuKoHdA2Bd2RTIFk7EB3+
+	 T8ZQ7o4DtHRpYvLHrlOj94UlSEY/eRjQwuzmSrzIg7ggvanaxPsCs7mMbf5qbnw99x
+	 TscZY14yr5abpWKyq7Vjc1R5h/5+46PtQ13VyJ28=
+From: Omkar Anand Kulkarni <omkar.kulkarni@arm.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: james.morse@arm.com,
+	Omkar Anand Kulkarni <omkar.kulkarni@arm.com>
+Subject: [PATCH] mailbox: pcc: Use threaded IRQ for shared platform IRQs
+Date: Mon, 23 Nov 2026 21:42:31 +0530
+Message-ID: <20261123161231.3912629-1-omkar.kulkarni@arm.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_081247_994387_877888F2 
+X-CRM114-Status: GOOD (  10.97  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,105 +66,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue(s) to consider.
+PCC platform interrupts can be shared with other ACPI interrupt
+consumers. One observed case is a PCC platform interrupt sharing the
+same hardware IRQ line with ACPI GED.
 
-Critical: 0 · High: 1 · Medium: 0 · Low: 0
+ACPI GED requests shared interrupts with request_threaded_irq() and
+IRQF_ONESHOT. If PCC requests the same shared IRQ without IRQF_ONESHOT,
+genirq rejects the second registration because the shared IRQ users do
+not agree on oneshot semantics.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Commit 673327028cd6 ("mailbox: pcc: Remove spurious IRQF_ONESHOT usage")
+removed IRQF_ONESHOT from the PCC request because PCC was using
+devm_request_irq(), and IRQF_ONESHOT is only valid with a threaded
+handler.
 
-- [High] The fix is incomplete because it skips a sibling DSA binding
-  that has the exact defect described in the commit message.
+Fix the shared platform IRQ case by requesting it with
+devm_request_threaded_irq() and IRQF_SHARED | IRQF_ONESHOT. Keep
+non-shared platform IRQs on devm_request_irq().
 
---
+Signed-off-by: Omkar Anand Kulkarni <omkar.kulkarni@arm.com>
+---
+ drivers/mailbox/pcc.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-dt-bindings: net: dsa: Flag unexpected ethernet ports
+diff --git a/drivers/mailbox/pcc.c b/drivers/mailbox/pcc.c
+index cd51d8e9c665..e8e5d93b39d8 100644
+--- a/drivers/mailbox/pcc.c
++++ b/drivers/mailbox/pcc.c
+@@ -526,10 +526,16 @@ static int pcc_startup(struct mbox_chan *chan)
+ 	pcc_chan_acknowledge(pchan);
+ 
+ 	if (pchan->plat_irq > 0) {
+-		irqflags = pcc_chan_plat_irq_can_be_shared(pchan) ?
+-						IRQF_SHARED : 0;
+-		rc = devm_request_irq(chan->mbox->dev, pchan->plat_irq, pcc_mbox_irq,
+-				      irqflags, MBOX_IRQ_NAME, chan);
++		if (pcc_chan_plat_irq_can_be_shared(pchan)) {
++			irqflags = IRQF_SHARED | IRQF_ONESHOT;
++			rc = devm_request_threaded_irq(chan->mbox->dev,
++						       pchan->plat_irq, NULL,
++						       pcc_mbox_irq, irqflags,
++						       MBOX_IRQ_NAME, chan);
++		} else {
++			rc = devm_request_irq(chan->mbox->dev, pchan->plat_irq,
++					      pcc_mbox_irq, 0, MBOX_IRQ_NAME, chan);
++		}
+ 		if (unlikely(rc)) {
+ 			dev_err(chan->mbox->dev, "failed to register PCC interrupt %d\n",
+ 				pchan->plat_irq);
 
-Several DSA bindings reference dsa.yaml ports, use "additionalProperties:
-true", and limit their port node pattern to a subset of unit addresses.
-Because of that, port nodes with any other unit address pass validation
-without a warning. The patch drops the unit address from the pattern and
-limits the port reg value with a maximum instead.
-
-[ ... ]
-
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> index 167398ab253aa..3840b336bdb93 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> @@ -75,13 +75,15 @@ patternProperties:
->      type: object
->      additionalProperties: true
->      patternProperties:
-> -      "^(ethernet-)?port@[0-6]$":
-> +      "^(ethernet-)?port@":
->          type: object
->          description: Ethernet switch ports
->  
->          $ref: dsa-port.yaml#
->  
->          properties:
-> +          reg:
-> +            maximum: 6
-
-[Severity: High]
-Was renesas,rzn1-a5psw.yaml left out of this conversion on purpose? It
-looks like it has the same problem the commit message describes. It
-references dsa.yaml ports, its ethernet-ports node uses
-additionalProperties: true, and its port pattern still limits the unit
-address:
-
-Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml:
-
-allOf:
-  - $ref: dsa.yaml#/$defs/ethernet-ports
-...
-  ethernet-ports:
-    type: object
-    additionalProperties: true
-    patternProperties:
-      "^(ethernet-)?port@[0-4]$":
-
-Under a renesas,rzn1-a5psw switch, a node such as port@5 or port@7 does
-not match this pattern. It does match the generic
-"^(ethernet-)?port@[0-9a-f]+$" pattern in dsa.yaml, so only the generic
-dsa-port.yaml checks apply and it passes validation. This hardware only
-has ports 0-4 (4 ports plus 1 CPU port).
-
-Would the same change used here for qca8k.yaml work for that file too,
-i.e. "^(ethernet-)?port@" plus reg: maximum: 4?
-
-nxp,netc-switch.yaml has a weaker form of the same gap:
-
-  ethernet-ports:
-    type: object
-    patternProperties:
-      "^ethernet-port@[0-9a-f]$":
-        type: object
-        $ref: dsa-port.yaml#
-
-A node named port@1 (no ethernet- prefix) or ethernet-port@10 does not
-match this pattern. Instead it matches the
-'^(ethernet-)?port@[0-9a-f]+$' pattern in ethernet-switch.yaml, which is
-reached through $ref: dsa.yaml# and only applies type: object.
-
-Such a node skips the NETC port schema, including dsa-port.yaml and its
-unevaluatedProperties: false, and passes without a warning.
-
-Should this patch cover nxp,netc-switch.yaml as well?
-
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261122160907.200727-3-krzysztof.kozlowski%40oss.qualcomm.com
+2.43.0
+
 
