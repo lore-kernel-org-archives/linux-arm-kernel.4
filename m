@@ -2,99 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B594606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A51606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j5n2Uz2w;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=iWGi/UYf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GSBnUcEx;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UnEfzNiL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Pl5LlU8oba1tB9cYFDtFrGCDtd6q3xDmJZtY4vUlwMQ=; b=j5n2Uz2wkvM2kp8+mgSA+3zcU2
-	GDnzap7F2EADV4Es6mB2lPKXnlPQVmL7VUY2vz93zEiSUxr0tpqkCCrBSF7SoI/9krKQD+gTtCdHL
-	+N5tXWAB0T2KYhPy9z4Qpql5FwrHrZF3sJCHyEIBMC5ZS9bSYt7LtJx52/wSIUB3Wm4NGjQ0G8OpE
-	QUsaHBi6J1micdzpnWocrIUx6vXASuwMPHuOS+F44836DZWNtxDJc4Oph1xyntqYKGD+lvNAe5uu0
-	07uMSRXBQFnquya2BIlgChRSQ+sObCbQsD0ya9kBC0wrBfs46Y3tOobPsC1UnuIm0Xvums/G6dkUo
-	u0LB6Lxw==;
+	bh=oGfpPu9gr9IBoVaVzDyYn6H9qOc8GM5ox900QdAqGB8=; b=GSBnUcExCzgXb2uI5mrioX0/aj
+	qJDAQ7TqwkUtEiI0o/SwYyJI2nvju3iSY6Xxqb3s553spXom6EFcpdvXdvlEpNNzR6UukCd0iXrIK
+	LUg/LxB421pFeV2l8yrq54akIWQf9qZ6IWOTOdkXvT1BcPYAARqCAI9fqVqLF7yQ27ze4pfVmpDxA
+	6lSbYEY+GUvfmh7jQvVh5TjHRWEH5NHAaCvpEdroRrLOgBVwg7LxLPgOdVt5yGudG4SyH75L1i+nX
+	pAjJC9rs0kgy7GoH5Icq/p2wb7DeJcVYZlnPhuZk9M/y38bJvbgRCp/KvVpTuJMu0jGkYFXlWPM5J
+	nEkiS+Jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXhW-00000004KnW-3Ldg;
-	Mon, 23 Nov 2026 17:19:34 +0000
-Received: from mail-pf1-x42d.google.com ([2607:f8b0:4864:20::42d])
+	id 1xVXi7-00000004Ksw-3t9K;
+	Mon, 23 Nov 2026 17:20:11 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXhU-00000004Kmy-2iiI
+	id 1xVXi6-00000004KsD-429y
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:19:34 +0000
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-8b5a6f2f27fso1439571b3a.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 09:19:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795454371; x=1796059171; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Pl5LlU8oba1tB9cYFDtFrGCDtd6q3xDmJZtY4vUlwMQ=;
-        b=iWGi/UYfCTU20PgsfuUHy0gGGLLGTqeFrGRB/yyZdZNWTTtNqUvom2BpjoaA7AOEXM
-         S8pRmZR0hvYrnZ7hJ5eqen5hNOA+tYc+hjFVr+SBk+cYaVy3Eo5pI9CZfix3KRKxz6HP
-         4YdkkbzKfukpGeXSCJ+0kjtKFPTnZ3XpXkZRknLt0kCEU0hNavCBgOMGFqxrn8op+xsq
-         rVJbnUbMBdtPUmhfHf2yVxPRvFBxaga50kMjhd5210+e1aXVPkE4Lo/5BJHQbbBxQO9q
-         5Yot6pCBXycifQq7GC+ltQ6bgc5YFv/kUtcw24f4VsOXXwJmSX6sFusjA9p6NHDHjm7M
-         0UgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795454371; x=1796059171;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Pl5LlU8oba1tB9cYFDtFrGCDtd6q3xDmJZtY4vUlwMQ=;
-        b=HLLkJNbEgnqZW+OOa6C6Ry1gLHggFeNSSkDUTNS/kblqBxejXn/4Uo8IO2G2KqWdpA
-         bQVNuhzmXRbJxNIzeS48NITQ1u3xPqZhBPtNXPugHeNVYsTajDj1ZWEdwcahX3APNVHu
-         QFyYk4lMBP7iIXsrzMxS2dbkxszaAf0JZDLb2VZNd5UScJu3mKOrafd3UIdGlaG81IJW
-         e4Yq/QW2rkJOUo2k/xOo6TUQtH4KV/3+LiAV/AtQnPwDwVj2ECQ2Bk8xhfH8rOvHfSX3
-         8e2azQLKMdICCxskrILywkpT8kZy/KRxC96gryAZA6wezKtY1+MdEHHGanSz7lFGkzRD
-         E6jg==
-X-Forwarded-Encrypted: i=1; AL+hErG0/U+AprAsazdeMj8c6oKHhhnmq1k39OLFarlgP9em1nrKtfV6RkdQSb4/abvrmtqF2rrGvvs+x0my/orBClK5@lists.infradead.org
-X-Gm-Message-State: APuU4Z8g5g+fCKQJ3Q7m5pkUlGVSn+IkFnU1hc3aSQTUdpo5N0IVtevw
-	/uC8ZAdMteFflPNyo2X53iesosUKtz/E8f8a/QFjDy6pYLvv5Sc7jaw=
-X-Gm-Gg: AZFdTZfAQXjfmX5rmOuU4d/8bOUZS/zY6mzm81KTF5rWUXGbzq2G67OEmLOTM7Fpjz4
-	qoRtMk/1IDpF35qF6UbSCOm1E10K4uNfL0mM5nuf7rOT5E8Bt01HLSb4x+1hCjal8fpj6LR5/KC
-	y9osBIfWJaZfoFbEPM/jPJXGDu1BdrIqwua6nvbpbqTkm2kt6peb5L2dWzJF06pBqw/oI7EHS34
-	NwwuY1jjkhkowDTYOTKRlwNEZwV795LZlpCRKLKwQ4K4pYQpde6EvLzk3I4vSzvZU0tGWLNq3HL
-	hW20n28XA6JmOJAZgMo4PB+aDvuCBY4ZzgM4KJOKi3nZoB0GxkWv/S/qcHiiX3RYS8ENJd7fLd9
-	itQLzz6UuTIOdDFHyE8DWxOskhc+PraZ0K1iAp6Dx4dpvRbHR+EhBnBk6K8AoVfWXLeRN6l7on2
-	XD1vvxx8sWD0pLG1YddGgN1n2bPwEZYXR4T5TyHVV30y/sDy0lSM0T1qUQUbqUbcKIG/Mn5U8QK
-	a7F0sk3YDESvL8VAfwI1AJhFxfxT6RuWxnJg+A5ISa68fM8TJ+1BkNIOEssLQcL56uFxz/m0LYE
-	6pMXYk1QyMclrae9ZQuRatqvVQ+aL/6UQnA9W59lzfgsYw/CO8TdZLX02cL5reNyK2rU
-X-Received: by 2002:a05:6a00:844:b0:88b:76e3:cd8a with SMTP id d2e1a72fcca58-8c87cb4bc4dmr11130870b3a.38.1795454371512;
-        Mon, 23 Nov 2026 09:19:31 -0800 (PST)
-Received: from localhost.localdomain ([2406:3003:2002:639c:7883:5066:4773:c572])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c873c1cf5bsm5985151b3a.52.2026.11.23.09.19.28
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 23 Nov 2026 09:19:31 -0800 (PST)
-From: Yige Jiang <yigejiang86@gmail.com>
-To: Ulf Hansson <ulfh@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Yige Jiang <yigejiang86@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-pm@vger.kernel.org,
-	imx@lists.linux.dev,
+	Mon, 23 Nov 2026 17:20:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1144C6138B;
+	Mon, 23 Nov 2026 17:20:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33E221F000C6;
+	Mon, 23 Nov 2026 17:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795454409;
+	bh=oGfpPu9gr9IBoVaVzDyYn6H9qOc8GM5ox900QdAqGB8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=UnEfzNiLgh2CDX2b+d3Smms3qMKcqnyozT00s6XocFhOkS7x2tV931WGfPqKEvQpB
+	 w2dWPboF0hP8MbVd7XATAoaa6Z79hwZfCqldawUWJyWvweCzL8qiQTG6aQ3ctQFD6m
+	 3fr0ypskBJLYsAOeuB8ip7R/vGMHEB5JEz8av9um4SKPhBDBLltdmfS/UhA/3xpOf2
+	 MXvAbcklkyy60QPzz6ODPBkb7BBQOSbo4ZB6HkRXaxbQ2oLFRFMoPdbkNXkWo8D3kA
+	 UGGqsHMwv3y2H69Bm6JLDKSv3CG8t5RG4Pli+HDcwa4Szhw4drNnm8IKiwopEEMXKB
+	 kpBR+3IKTHeGw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xVXi2-000000026r2-3t1k;
+	Mon, 23 Nov 2026 17:20:07 +0000
+Date: Mon, 23 Nov 2026 17:20:06 +0000
+Message-ID: <86eccbzcqh.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Jia He <justin.he@arm.com>
+Cc: Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Sean Christopherson <seanjc@google.com>,
+	Shuah Khan <shuah@kernel.org>,
+	Sascha Bischoff <Sascha.Bischoff@arm.com>,
 	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH] pmdomain: imx: gpcv2: Take a reference to each PGC node
-Date: Tue, 24 Nov 2026 01:19:23 +0800
-Message-ID: <confirmed-20261105-18-6a8421e1b241@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	kvm@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	Lorenzo Stoakes <ljs@kernel.org>
+Subject: Re: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before first run
+In-Reply-To: <20261123150917.2679600-2-justin.he@arm.com>
+References: <20261123150917.2679600-1-justin.he@arm.com>
+	<20261123150917.2679600-2-justin.he@arm.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_091932_690055_EEB022A2 
-X-CRM114-Status: GOOD (  12.91  )
-X-Spam-Score: -1.9 (-)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: justin.he@arm.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, pbonzini@redhat.com, seanjc@google.com, shuah@kernel.org, Sascha.Bischoff@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, kvm@vger.kernel.org, linux-kselftest@vger.kernel.org, ljs@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,51 +97,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The child-node iterator owns the reference to each PGC node, but
-imx_gpcv2_probe() assigns the node to a newly allocated platform device
-without taking another reference. If platform_device_add() fails,
-platform_device_put() releases the node through platform_device_release(),
-and the iterator then drops the same reference again.
+[+ Lorenzo]
 
-Use platform_device_set_of_node() to give the child device its own node
-reference, paired with the put in platform_device_release().
+Hey Jia,
 
-Fixes: 03aa12629fc4 ("soc: imx: Add GPCv2 power gating driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/r/20260530004541.E04701F00898@smtp.kernel.org/
-Signed-off-by: Yige Jiang <yigejiang86@gmail.com>
----
-AI assistance was used for analysis and patch preparation.
+On Mon, 23 Nov 2026 15:09:15 +0000,
+Jia He <justin.he@arm.com> wrote:
+> 
+> KVM_PRE_FAULT_MEMORY calls vcpu_load() as soon as KVM_ARM_VCPU_INIT has
+> completed. On arm64, however, kvm->arch.sysreg_masks, the trap
+> configuration, vncr_tlb and nested vGIC state are only set up on the
+> first KVM_RUN in kvm_arch_vcpu_run_pid_change().
 
-Based on next-20261104 (8b7179210b22).
-Compile-tested: arm64, GCC 14.2.0, W=1, drivers/pmdomain/imx/gpcv2.o;
-baseline and patched objects built with no warnings.
-Static source review; no hardware, boot, or KASAN test was performed.
+I think I'm going to queue a patch disabling prefaulting immediately,
+and then we can fix this crap.
 
- drivers/pmdomain/imx/gpcv2.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> Running the full vcpu_load() path before then reads unsanitised guest
+> sysregs and touches uninitialised nested state: get_s2_mmu_nested()
+> populates nested_mmus[] from raw VTTBR_EL2/VTCR_EL2/HCR_EL2 values, FGT
+> and HCRX_EL2 are written before kvm_calculate_traps() has run, and
+> kvm_vgic_load() can enter vgic_v3_load_nested() early. In particular, if
+> userspace creates an EL2 vCPU with ID_AA64MMFR4_EL1.NV_frac cleared to 0
+> (so vncr_tlb is never allocated), sets HCR_EL2.NV=1 and an EL1 PSTATE,
+> and calls KVM_PRE_FAULT_MEMORY, kvm_vcpu_load_hw_mmu() queues
+> KVM_REQ_MAP_L1_VNCR_EL2. The next KVM_RUN then dereferences a NULL
+> vncr_tlb in kvm_map_l1_vncr() with preemption disabled and kvm->mmu_lock
+> held for read:
+> 
+>   [   73.636014] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000078
+>   [   73.801972] pc : kvm_map_l1_vncr+0x48/0x2d0
+>   [   73.884820] Call trace:
+>   [   73.887253]  kvm_map_l1_vncr+0x48/0x2d0 (P)
+>   [   73.891422]  check_nested_vcpu_requests+0xb8/0x168
+>   [   73.896200]  check_vcpu_requests+0x2a0/0x428
+>   [   73.900458]  kvm_arch_vcpu_ioctl_run+0x2d8/0x6d8
+>   [   73.905062]  kvm_vcpu_ioctl+0x388/0xaf0
+> 
+> KVM_PRE_FAULT_MEMORY still needs generic vcpu_load() to set
+> kvm_running_vcpu for dirty-ring tracking in mark_page_dirty_in_slot(),
+> but kvm_arch_vcpu_pre_fault_memory() only walks and populates
+> &kvm->arch.mmu and does not use any hardware vCPU state. Skip the arch
+> vcpu_load()/vcpu_put() callbacks until vcpu_has_run_once() is true. In
+> KVM_RUN, vcpu->pid is set under vcpu->mutex right after
+> kvm_arch_vcpu_run_pid_change() succeeds and before
+> kvm_arch_vcpu_ioctl_run() calls vcpu_load().
+> 
+> Since kvm_running_vcpu can now be set without VHE state on the CPU, use
+> host_ctxt->__hyp_running_vcpu in VHE enter_vmid_context() (matching
+> nVHE)
 
-diff --git a/drivers/pmdomain/imx/gpcv2.c b/drivers/pmdomain/imx/gpcv2.c
-index 6a54ee734514645db7e0628bdddcf579d1f0d904..7b377bf0196491298e9e772b97d15a2bda9ff83a 100644
---- a/drivers/pmdomain/imx/gpcv2.c
-+++ b/drivers/pmdomain/imx/gpcv2.c
-@@ -1513,7 +1513,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
- 		domain->genpd.power_off = imx_pgc_power_down;
- 
- 		pd_pdev->dev.parent = dev;
--		device_set_node(&pd_pdev->dev, of_fwnode_handle(np));
-+		platform_device_set_of_node(pd_pdev, np);
- 
- 		ret = platform_device_add(pd_pdev);
- 		if (ret) {
+Can you clarify under which circumstances we end-up on the TLB
+invalidation path? Simply faulting things in should not result in
+invalidation. Unless we end-up with MMU notifiers firing?
 
-base-commit: 8b7179210b22f8e48a82c5ceacb9d56a9c4cfec4
+> and check vcpu_has_run_once() in vgic_maintenance_handler().
+
+I have similar questions here. It isn't obvious how you end-up getting
+a VGIC MI if you don't run and don't load the state on the CPU.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
