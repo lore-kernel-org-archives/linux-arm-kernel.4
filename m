@@ -2,86 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F712606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2295606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:33:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4SGWZbHq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TQnk4T/g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iYlbDw1v;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=g6DV9Eo4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=zvxd9dARkZhllOfsvOtfG9Epi2HmWipiIYRGTUsDCJw=; b=4SGWZbHq+w+sAurECS3S2eeIJb
-	mGgyxBeQtoFX92OjtC3ozUWpJCIpw3n8Mh3laIkN0cJz5OQCF5xqEARO4hP5tGlVOKn9YV04THsFS
-	Tylhd14u1DKEcfrQyNIqEk4KkjPXER8Q9fXFCQf7Q6Hc1dKL/v3Uqnk3sfCJ29jJ+XZsMhAtwOR1B
-	WZrnt+BsGoTi99cNIakYYPXEtFZYS7/eeWJ2cmqLgDkIeRwpDieTEas4Jt156h03E5o9o7Tzu+wuT
-	iIDOWVaxY/zcGMB8NfFJg5mTDoJ5VqryCrCKAT6bUpjxbm/SPPat4zFr5RnfhzEr96EvJLFDjhFBY
-	bfjIndvg==;
+	bh=9r3Pre0r4NItXk0EkmkIa/89K2E/lW0nEW1wW9AtDoE=; b=iYlbDw1vYSaUh/aJgXdS4zM6+J
+	JvZD1rRUBcTmL4hNFvNQP73YAj0UaEgk4TgjxAI1ceocOufhYvd2dEjWuzWT53c1rJAwT9VNvByx/
+	Vk/yjFLde4vl/RapGRtT1d4XGSEXAm6i8llcrNc7/H85E0Cb7us9R9CxdVYzhZd4RYkfx7VZy9FXs
+	EWIcFlE8S/pnZh/70vyMellbX9I5dbXPuVeUEERp+mnJq4HDrUXHAbdyCeRG6ayyZd5Zc02CJRuGU
+	Uw70Ek7lTbk3B0m+j6P13SMXgrPGMMzIfJvLxRv9wQvZ2hwkIiz44NSJcjjQTC9CY+yAuvKhRsXmC
+	Ckv8HW5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaiu-00000004qmz-10Q5;
-	Mon, 23 Nov 2026 20:33:12 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVail-00000004qhF-0MLa;
+	Mon, 23 Nov 2026 20:33:03 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaiQ-00000004qXH-0Phl;
-	Mon, 23 Nov 2026 20:32:42 +0000
+	id 1xVaiP-00000004qXA-1hNF;
+	Mon, 23 Nov 2026 20:32:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1DA3B62145;
+	by sea.source.kernel.org (Postfix) with ESMTP id 2A59A45983;
 	Mon, 23 Nov 2026 20:32:41 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1795465960;
-	b=q+/5PvYnFQe60dArcwUXOraV8MnXCMlNdaUTYGSxwQTs/mF/rRIQHq/mrwB+MOjPyWLv
-	 jtZr/pFnSPtPZUdODpUtXS65hA01syzYbI209HyeinrxjPBsD0hdOLsauBD9gQtPteVUW
-	 uc2J51TYJ2riYIJV3NMcdClpmzy/ueTNeSwKJdQDq/zBRI6/d+uF3g9Xv8JASPPPbs3le
-	 QJLvCGITHl+DBOBf18mdI/uVvuE1Xcu8FFJ5fZZCctVdglmi3o3BlGjOIhmEmFQLeBPYS
-	 iqjmDjHvRwHrNVzOrXh0CSEFG8y1cTgOSrsXGnSQA0R+Wg9ckrx7LdT85bHS86CSKKw==
+	b=Bvgoipplmy6fHs134UIKd7PviolEA8gTTthn3spTpWWUO1HCbHnfaluhjyiVf3MdxY5x
+	 3VQJgKKhM5HtbbmNkck/Xl8DY3014DxC3Xrx/IPZDHFfjuWzXRGX3cKyswtW9ziz+FcmM
+	 FOQayMrIJvUDpG+egvUr5jbEEbd5p7d4nKaWR1Mz9PCZj1DLKzmbsuW55geQqIxNsKcWG
+	 EGVvUIOGQUDCFkR8CrkJL1mr2ppOVxoR6aIeSxm/k9OCnu3vCouvgby2yGhZ24LPuFraS
+	 TevwmB5zh8xKKjeGz4QCQwlfj0d5C9J4CdN/OHW7TSpXMuAwK90OSqivn7tQEbSdhkg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1795465960;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=zvxd9dARkZhllOfsvOtfG9Epi2HmWipiIYRGTUsDCJw=;
-	b=MSVqzgCOfysHAy6HbLWS3xkZ+PjEq+pAQV4dA7N1ba4MFNmMKL/8wf+zeYRjruAm5k+A
-	 49VVqcL1aZSVMx748PRhtNemfB8qLbgcrEXO9UNrZAJzYB735aYYJ8YmDKcFFOvmz3Ld4
-	 EK27wQ8khaXeuDnD3HHxqVkRGDOPhZSpS0x4y0jJ/s9S9xw06hOj68pwcyok9aWzPXfi+
-	 P3Y5bO2ZyjVW26aaRHA1Xc9ud/zaTVpky1aLCad9+YUpuRRIbiO7RJLLJyH7sEx2QE6Ts
-	 eCeAkUy1R74ljSkJ9RS/txzdjn1nGF2cv4ZxfJDK8MEU6D1PwSpgFlfclkMCXWK1Wow==
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=9r3Pre0r4NItXk0EkmkIa/89K2E/lW0nEW1wW9AtDoE=;
+	b=2tnZXJlD+yBf3KMSkMOs88VyQcI9W4JOp/1x2aRQkXz/JG//PCRGP8XZCfeIqzPFSbYl
+	 TBhUD1PpPBZHsDxq5pqb5AdoEfNYcdJBRBj0Z0ZtQaQ3j9MJagHVDGdhTYT5bbvIlhUET
+	 TJOOjU+t46W72if3agZc8YSfHi+oigotjwE7nluuHQ2HYzPO8rAOomGtZwghT1zPm0gzR
+	 wpDlEYSizM1zb6pxe3lnMWRnEo3cIizAIU/FVXV3AgQhfHNKZj10Oqb0tT8uwPfSk4XY4
+	 6I4ltjKs93hyMqWOJtxeJy/7mJHpHnizUlPQuDUdNQxCIfvVyQQHi/E0IgIsMHcqn/A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 165561F000EF;
-	Mon, 23 Nov 2026 20:32:18 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id DC8A91F000D2;
+	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1795465960;
-	bh=zvxd9dARkZhllOfsvOtfG9Epi2HmWipiIYRGTUsDCJw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=TQnk4T/g2M/XspQOYlU6DS3sPuCQd8AjTew4bdpEjy+fPgb8xBTDTzjimHIwaPbhL
-	 xBd3mlI0v9LLnCtWh8WvfYA7IVfGGGm4OqBZEIgo3VCNOIruhCJGNhRpRFkruKh3tP
-	 /Uw4xBJTnzLCw4nUf7lLBH42pbOdkN9sxRBARoOMjnV219k9RPNz2BP1CK0+0DyOun
-	 KwAWzlABcK5KGSGirlEy3/YNghQ6ruoBCwNFZecOEhtOXpGYMTr6P2i6Unzkx0cX0Y
-	 VH+U73T83SqphRSGyzP26OcRLualACzOba/6qUzr8iHKIkxZZzmExhm9zcyN2Raa1f
-	 rF1DPkrNC8mWg==
+	bh=9r3Pre0r4NItXk0EkmkIa/89K2E/lW0nEW1wW9AtDoE=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=g6DV9Eo4aL8d1WcuLCWX2DfrNUowmhw4eP+/MBJ4Dme2B2qrNC2Xfprd804iBUs2M
+	 VQGasSGjPQMCPr77El5+K5okDIReh24SjYGmTk8uthc3Ni4RIGXleUAs0lHBGjx/Rj
+	 nE95+nYyG0a+OA9sYAkeBkcvCzZmEv6xkN8K6Eua7Mc2vs8q0c9evoD1OZz/HCjQTJ
+	 VQ8ObagBId55ynynPnKQ1xxhxMJ0tLe83IcyIjOWHHNnFCyOURrdVxKQLUtIC1RwM/
+	 TIFWloUPOwbbzMpAj76SEeIkB3pwYJPsyJsf9Vf4ZplUXbooWdrqYv5WI8PofQ8FiV
+	 jkZcFwID9HrRw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 949AC4C706;
+	by lkml.kernel.org (Postfix) with ESMTP id 3A8834C6E9;
 	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 23:32:17 +0300
-Subject: [PATCH v2 3/8] clk: cs7542: Add PCIe gates and resets to the
- global provider
+Subject: [PATCH v2 0/8] soc: cortina: Add CS7542 PCIe control, SerDes and
+ host support
+Date: Mon, 23 Nov 2026 23:32:14 +0300
+Message-Id: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-pcie-v2-3-f589a9cd0bef@gmail.com>
-References: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WPQW6DMBBFr4K8ris82GCy6j2qLuzxOHFVIPEQ1
+ Cji7jUklbrp8kt/3n9zF0w5EYtDdReZlsRpGkuAl0rgyY1HkimULKCGVilopNcSuTMa5BkTSQB
+ NjenRtr0V5eicKabvHfj+8ch89Z+E80Z5NjJdrmVpftSEd0wSp2FI86HyreujazSSVrZD3/ahQ
+ WOt097HiI1CMsHbuKEGYna7YjH+FXza8Y1xGuUCspYKQ6c9GIDYvx0Hl75ey5zY/E6J5ynf9v8
+ Xtev89+qiCkpjIAO1CrrWf1Hruv4AIYoFQEwBAAA=
+X-Change-ID: 20261123-b4-cs7542-pcie-224e359c8698
 To: Manivannan Sadhasivam <mani@kernel.org>, 
  Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
 Cc: Jingoo Han <jingoohan1@gmail.com>, 
@@ -97,17 +102,16 @@ Cc: Jingoo Han <jingoohan1@gmail.com>,
  linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465935; l=8596;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465935; l=5529;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=wxPmwU/hDwsNVP5PJfG+P4N3ss/7sNIINtDOJjhHa0o=;
- b=ZJTbQ/sULq7QjHr8zIbPK9QgGbx1VxtG9MD1hMnVjq5cTMZvYO9zSuS1nDiBuKu2UAQZuNRgD
- ZrzFvW22cJlA1L8EEBHEvjzyVtQg/5BPOYPWNFcaB2cTTIlt0u9xolY
+ bh=R3MajGKj6VJAQnzG5H4txrr1+B19HSrtNKMUWSyBtcQ=;
+ b=kM2sUfrYHm8idroYzoX+8G2g8KmPVRJD2fBFdfZ/MqMeeqLwVrZi3bQ5hlRnLtTAgNgsSWxAA
+ vCcYz5D+N82ApsCDSaf+bEe7ANJX51Ca3/9MWIHCNrx3HQrJQmoZrkU
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
  auth_id=1085
 X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,292 +123,122 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Add CS7542 PCIe support with global gate/reset controls, a Snow Bush
+SerDes PHY and DesignWare host glue. The global syscon already provides
+the APB/CPU/AXI clocks; extend that same provider with three PCIe gates
+and controller resets. No resource-less pcie-control child is created.
+The existing clock indices remain unchanged; PCIe gets named specifiers.
 
-Register the three PCIe gate clocks and controller resets from the global
-syscon node. Preserve the early strap clocks used by the ARM timers and
-the shared regmap updates that protect unrelated reset and gate bits.
+This series depends on the posted global clock/pinctrl v2:
+https://lore.kernel.org/all/20261123-cs7542-syscon-v2-0-1cd74b2522f9@gmail.com/
+The complete prerequisite and this series apply to Linux v7.4-rc4.
+Board DTS changes are prepared separately.
 
-The driver is built in because APB is needed during timer discovery. The
-PCIe host and PHY consumers remain independently modular. Unwind all
-registered clocks and the reset provider on initialization failures.
+The host protects its 512-byte root configuration limit, owns the
+combined INTx/MSI interrupt lifecycle and reads link status from the
+application wrapper. Unused SATA mode, hotplug and suspend are outside
+this initial support. Gate source rates are not assumed.
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+Validation of v2:
+- Full independent ARM GCC14.2 vmlinux/modules builds with PHY/host=y
+  and=m, COMPILE_TEST=n and no Cortina platform series. The early global
+  provider is built in because the APB timer clock must be available early.
+- Updated schemas/examples and strict global-driver checkpatch pass.
+- Actual parent-provider source: 461 cases and 23309 assertions under
+  ASan/UBSan, including all strap modes, six clock outputs, unrelated
+  bits and every allocation/registration failure path.
+- Combined ARM multi_v7 vmlinux/modules and board DT build pass.
+
+The revised parent provider and PCIe host booted Linux 7.4 on Almond+
+in RAM. Enumeration, all 3 root ports' post-enumeration MSI enable bits,
+MSI-X/INTx xHCI completions and host unload/reload passed. The INTx
+mapping count returned to its pre-probe baseline after unload. Final
+result: failures=0, followed by automatic return to installed OpenWrt.
+No flash writes were performed. Actual config/DBI tests cover 49298
+cases, including zero hardware accesses after link loss; lifecycle tests
+check locked masking, IRQ draining and sparse mapping disposal.
+
 ---
- drivers/clk/Kconfig      |   6 +-
- drivers/clk/clk-cs7542.c | 183 +++++++++++++++++++++++++++++++++++++++++------
- 2 files changed, 166 insertions(+), 23 deletions(-)
+Changes in v2:
+- Expose PCIe gates/resets on the existing global syscon provider.
+- Remove the virtual child binding and separate gate/reset driver.
+- Preserve early strap clocks and unwind partial registration failures.
+- Put clocks before interrupts in the host binding and example.
+- Enable root-port MSI after enumeration; dispose INTx mappings on teardown.
+- Return 0 for lost-link DBI reads to fail iATU polling; serialize quiesce,
+  config/DBI access and IRQ draining before reset.
+- Link to v1: https://patch.msgid.link/20261123-b4-cs7542-pcie-v1-0-4cde5201d404@gmail.com
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 47b5265fe..4dcc60979 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -59,13 +59,15 @@ config LMK04832
- 	  Low-Noise JESD204B Compliant Clock Jitter Cleaner With Dual Loop PLLs
- 
- config COMMON_CLK_CS7542
--	bool "Cortina Systems CS7542 strap-selected clocks"
-+	bool "Cortina Systems CS7542 global clocks and resets"
- 	depends on OF && HAS_IOMEM
- 	select MFD_SYSCON
-+	select RESET_CONTROLLER
- 	help
- 	  Read the boot straps of the CS7542 global control block to provide
- 	  its APB, CPU and AXI clocks. This driver does not change PLLs or
--	  dividers. It is built in because the APB clock is needed by timers.
-+	  dividers. It also provides the three PCIe clock gates and resets.
-+	  It is built in because the APB clock is needed by timers.
- 
- config COMMON_CLK_APPLE_NCO
- 	tristate "Clock driver for Apple SoC NCOs"
-diff --git a/drivers/clk/clk-cs7542.c b/drivers/clk/clk-cs7542.c
-index 4e6c1e98a..e4bb1bb70 100644
---- a/drivers/clk/clk-cs7542.c
-+++ b/drivers/clk/clk-cs7542.c
-@@ -1,24 +1,28 @@
- // SPDX-License-Identifier: GPL-2.0-only
--/* Cortina Systems CS7542 strap-selected clocks */
-+/* Cortina Systems CS7542 global clocks and PCIe resets. */
- 
- #include <linux/bitfield.h>
- #include <linux/clk-provider.h>
-+#include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/init.h>
- #include <linux/mfd/syscon.h>
-+#include <linux/module.h>
- #include <linux/of.h>
- #include <linux/printk.h>
- #include <linux/regmap.h>
-+#include <linux/reset-controller.h>
- #include <linux/slab.h>
- 
- #include <dt-bindings/clock/cortina,cs7542-clock.h>
- 
- #define CS7542_GLOBAL_STRAP	0x0c
- #define CS7542_STRAP_SPEED	GENMASK(3, 1)
--#define CS7542_NUM_CLKS		3
-+#define CS7542_NUM_FIXED_CLKS	3
-+#define CS7542_NUM_CLKS		6
- 
- /* Rates from the GPL vendor kernel's get_platform_clk(). */
--static const unsigned long cs7542_rates[][CS7542_NUM_CLKS] = {
-+static const unsigned long cs7542_rates[][CS7542_NUM_FIXED_CLKS] = {
- 	/* APB, CPU, AXI */
- 	{ 100000000, 400000000, 133333333 },
- 	{ 100000000, 600000000, 150000000 },
-@@ -33,14 +37,115 @@ static const char * const cs7542_clock_names[] = {
- 	[CS7542_CLK_APB] = "cs7542-apb",
- 	[CS7542_CLK_CPU] = "cs7542-cpu",
- 	[CS7542_CLK_AXI] = "cs7542-axi",
-+	[CS7542_CLK_PCIE0] = "cs7542-pcie0",
-+	[CS7542_CLK_PCIE1] = "cs7542-pcie1",
-+	[CS7542_CLK_PCIE2] = "cs7542-pcie2",
-+};
-+
-+#define CS7542_PORTS	3
-+#define GLOBAL_RESET	0x04
-+#define GLOBAL_CONFIG	0x10
-+
-+struct cs7542_gate {
-+	struct clk_hw hw;
-+	struct regmap *map;
-+	u32 mask;
-+};
-+
-+struct cs7542_control {
-+	struct reset_controller_dev rcdev;
-+	struct regmap *map;
-+	struct cs7542_gate gates[CS7542_PORTS];
-+	struct clk_hw_onecell_data *clks;
-+};
-+
-+static int cs7542_gate_prepare(struct clk_hw *hw)
-+{
-+	struct cs7542_gate *gate = container_of(hw, struct cs7542_gate, hw);
-+
-+	return regmap_update_bits(gate->map, GLOBAL_CONFIG, gate->mask, gate->mask);
-+}
-+
-+static void cs7542_gate_unprepare(struct clk_hw *hw)
-+{
-+	struct cs7542_gate *gate = container_of(hw, struct cs7542_gate, hw);
-+
-+	regmap_update_bits(gate->map, GLOBAL_CONFIG, gate->mask, 0);
-+}
-+
-+static int cs7542_gate_is_prepared(struct clk_hw *hw)
-+{
-+	struct cs7542_gate *gate = container_of(hw, struct cs7542_gate, hw);
-+	unsigned int value;
-+	int ret;
-+
-+	ret = regmap_read(gate->map, GLOBAL_CONFIG, &value);
-+	return ret ? ret : !!(value & gate->mask);
-+}
-+
-+static const struct clk_ops cs7542_gate_ops = {
-+	.prepare = cs7542_gate_prepare,
-+	.unprepare = cs7542_gate_unprepare,
-+	.is_prepared = cs7542_gate_is_prepared,
-+};
-+
-+static int cs7542_reset_update(struct reset_controller_dev *rcdev,
-+			       unsigned long id, bool assert)
-+{
-+	struct cs7542_control *ctl = container_of(rcdev, struct cs7542_control, rcdev);
-+	u32 mask = BIT(6 + id);
-+
-+	return regmap_update_bits(ctl->map, GLOBAL_RESET, mask, assert ? mask : 0);
-+}
-+
-+static int cs7542_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	return cs7542_reset_update(rcdev, id, true);
-+}
-+
-+static int cs7542_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	return cs7542_reset_update(rcdev, id, false);
-+}
-+
-+static int cs7542_reset_status(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	struct cs7542_control *ctl = container_of(rcdev, struct cs7542_control, rcdev);
-+	unsigned int value;
-+	int ret;
-+
-+	ret = regmap_read(ctl->map, GLOBAL_RESET, &value);
-+	return ret ? ret : !!(value & BIT(6 + id));
-+}
-+
-+static int cs7542_reset_pulse(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	int ret;
-+
-+	ret = cs7542_reset_assert(rcdev, id);
-+	if (ret)
-+		return ret;
-+	usleep_range(10000, 12000);
-+	ret = cs7542_reset_deassert(rcdev, id);
-+	if (ret)
-+		return ret;
-+	usleep_range(10000, 12000);
-+	return 0;
-+}
-+
-+static const struct reset_control_ops cs7542_reset_ops = {
-+	.assert = cs7542_reset_assert,
-+	.deassert = cs7542_reset_deassert,
-+	.status = cs7542_reset_status,
-+	.reset = cs7542_reset_pulse,
- };
- 
- static void __init cs7542_clk_init(struct device_node *np)
- {
--	struct clk_hw_onecell_data *data;
-+	struct cs7542_control *ctl;
- 	struct regmap *map;
- 	unsigned int strap, speed;
--	int i, ret;
-+	int i, j, ret;
- 
- 	map = syscon_node_to_regmap(np);
- 	if (IS_ERR(map)) {
-@@ -60,30 +165,66 @@ static void __init cs7542_clk_init(struct device_node *np)
- 		return;
- 	}
- 
--	data = kzalloc_flex(*data, hws, CS7542_NUM_CLKS);
--	if (!data)
-+	ctl = kzalloc(sizeof(*ctl), GFP_KERNEL);
-+	if (!ctl)
-+		return;
-+	ctl->map = map;
-+	ctl->clks = kzalloc_flex(*ctl->clks, hws, CS7542_NUM_CLKS);
-+	if (!ctl->clks) {
-+		kfree(ctl);
- 		return;
--	data->num = CS7542_NUM_CLKS;
--
--	for (i = 0; i < CS7542_NUM_CLKS; i++) {
--		data->hws[i] = clk_hw_register_fixed_rate(NULL,
--							  cs7542_clock_names[i], NULL,
--							  0, cs7542_rates[speed][i]);
--		if (IS_ERR(data->hws[i])) {
--			ret = PTR_ERR(data->hws[i]);
--			goto err_unregister;
-+	}
-+	ctl->clks->num = CS7542_NUM_CLKS;
-+
-+	for (i = 0; i < CS7542_NUM_FIXED_CLKS; i++) {
-+		ctl->clks->hws[i] = clk_hw_register_fixed_rate(NULL,
-+							       cs7542_clock_names[i], NULL,
-+							       0, cs7542_rates[speed][i]);
-+		if (IS_ERR(ctl->clks->hws[i])) {
-+			ret = PTR_ERR(ctl->clks->hws[i]);
-+			goto err_unregister_fixed;
- 		}
- 	}
- 
--	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, data);
-+	for (j = 0; j < CS7542_PORTS; j++) {
-+		struct cs7542_gate *gate = &ctl->gates[j];
-+		struct clk_init_data init = {
-+			.name = cs7542_clock_names[CS7542_CLK_PCIE0 + j],
-+			.ops = &cs7542_gate_ops,
-+		};
-+
-+		/* Gate-only controls: no source frequency is assumed. */
-+		gate->map = map;
-+		gate->mask = BIT(10 + 2 * j);
-+		gate->hw.init = &init;
-+		ret = clk_hw_register(NULL, &gate->hw);
-+		if (ret)
-+			goto err_unregister_gates;
-+		ctl->clks->hws[CS7542_CLK_PCIE0 + j] = &gate->hw;
-+	}
-+
-+	ctl->rcdev.owner = THIS_MODULE;
-+	ctl->rcdev.ops = &cs7542_reset_ops;
-+	ctl->rcdev.of_node = np;
-+	ctl->rcdev.nr_resets = CS7542_PORTS;
-+	ret = reset_controller_register(&ctl->rcdev);
-+	if (ret)
-+		goto err_unregister_gates;
-+
-+	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get, ctl->clks);
- 	if (!ret)
- 		return;
- 
--err_unregister:
-+	reset_controller_unregister(&ctl->rcdev);
-+err_unregister_gates:
-+	while (j--)
-+		clk_hw_unregister(&ctl->gates[j].hw);
-+err_unregister_fixed:
- 	while (i--)
--		clk_hw_unregister_fixed_rate(data->hws[i]);
--	kfree(data);
--	pr_err("%pOF: cannot register clocks: %d\n", np, ret);
-+		clk_hw_unregister_fixed_rate(ctl->clks->hws[i]);
-+	kfree(ctl->clks);
-+	kfree(ctl);
-+	pr_err("%pOF: cannot register global controls: %d\n", np, ret);
- }
- 
- /* Timers need APB before platform devices, but the pinctrl child must probe. */
+To: Jingoo Han <jingoohan1@gmail.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Krzysztof Wilczyński <kwilczynski@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>
+To: Fil Dunsky <filipp.dunsky@gmail.com>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Brian Masney <bmasney+clk@redhat.com>
+To: Jerome Brunet <jbrunet+clk@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: Vinod Koul <vkoul@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-pci@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-phy@lists.infradead.org
 
--- 
-2.53.0
+---
+Fil Dunsky (8):
+      PCI: dwc: Export the multiplexed MSI interrupt handler
+      dt-bindings: soc: Describe CS7542 PCIe clocks and resets
+      clk: cs7542: Add PCIe gates and resets to the global provider
+      dt-bindings: phy: Describe CS7542 PCIe SerDes
+      phy: Add CS7542 PCIe SerDes support
+      dt-bindings: PCI: Describe the CS7542 host controller
+      PCI: cs7542: Add CS7542 PCIe host support
+      MAINTAINERS: Add CS7542 PCIe support
+
+ .../bindings/pci/cortina,cs7542-pcie.yaml          | 129 +++++
+ .../bindings/phy/cortina,cs7542-pcie-phy.yaml      |  67 +++
+ .../soc/cortina/cortina,cs7542-syscon.yaml         |  10 +-
+ MAINTAINERS                                        |   7 +-
+ drivers/clk/Kconfig                                |   6 +-
+ drivers/clk/clk-cs7542.c                           | 183 ++++++-
+ drivers/pci/controller/dwc/Kconfig                 |  12 +
+ drivers/pci/controller/dwc/Makefile                |   2 +
+ drivers/pci/controller/dwc/pcie-cs7542.c           | 551 +++++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-designware-host.c  |   1 +
+ drivers/phy/Kconfig                                |  11 +
+ drivers/phy/Makefile                               |   2 +
+ drivers/phy/phy-cs7542-pcie.c                      | 232 +++++++++
+ include/dt-bindings/clock/cortina,cs7542-clock.h   |   4 +
+ include/dt-bindings/reset/cortina,cs7542-reset.h   |   9 +
+ 15 files changed, 1200 insertions(+), 26 deletions(-)
+---
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+change-id: 20261123-b4-cs7542-pcie-224e359c8698
+prerequisite-message-id: 20261123-cs7542-syscon-v2-0-1cd74b2522f9@gmail.com
+prerequisite-patch-id: 4b568d742095f1a61312c911d2b6e81c8e754312
+prerequisite-patch-id: a4bba26a3aac57e4e4229a727fdf94677373493a
+prerequisite-patch-id: f8a2ba71717f71ca2bedda986f8b861995cdc586
+prerequisite-patch-id: 7fbe9405265ef3d1ec62811415a46c0061afd7c8
+prerequisite-patch-id: 25220835f5d2506a01ba652d86f9b9ac3ad5121a
+
+Best regards,
+--  
+Fil Dunsky <filipp.dunsky@gmail.com>
 
 
 
