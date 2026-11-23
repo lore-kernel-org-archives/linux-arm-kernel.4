@@ -2,108 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CEC606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CDB606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2Y8jGvUX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OV4JrOj5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZEaLoPcP;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BPC4D3ew
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=hUFvvMrtcN3xKAWIZoqvLk+7RqIxx8dguKgTelmkfsM=; b=2Y8jGvUXb2t7sJCHAjD+toYFAM
-	PTLu2DkyhCeY83Kdq2HzuRdHnd84qZkm7bRqwVE9eQc+oTE5yr0/K+yA4xURp2OLsZp4zgq2VtnP9
-	gWgIlZKut5fIGzSL0WqmE8Ag/dk7tyUFJvI25TSR9GXHWxntxzoRqfDsrHS7OQTIcF4q4OM2FT6Fg
-	Dv2LfzEZIOT1LGEi1sPld7D15pttZofz3GQ91zjkEEsUj/xBz66gZgUxsfiOL4ZZHpoiYbdvuRL4I
-	cWKAvB7bs4TbmzOUWzSPwB6Ze0EGgCIWm0/xwSxsjPGYkSiZTpcmBbk7wuDXTmwT9LbcXVVWV/H0o
-	DDF0cyGg==;
+	bh=Rzz9rMTxPu5h4zXuwInMggFJc9C7/q94I+f+8DTqNVs=; b=ZEaLoPcP0iWA6DAxMOYjl+pfvW
+	XNrtVHS5lbey/Z43nCNmnfnfs98JsckeokxyDwyyamOXI3tl3D6n5osqZzZ8Smo/CecOQl4DQ54lc
+	+ewmduJJlqdjTF/lIPsD1QbSMOvOFdyiCQb3sQUUKtH71sdYZTibSVDkT5MyU54JP8H4k96JNw92A
+	xEIHqJtGTInSA4rR6+jJmy8vJ0CcwdGCOO7jsPl6LkrhsxUZ/7cYjpOihiNkSLjdBYzt5lQCAOIsu
+	/YCa9+nxItDSoF8j6qsqXqQuq1M+0I9bYJsTR88ca2I2zL+vKI1ST7Q8BaYzpuaFDF55r3xIT/+b3
+	4MT/zQrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ2U-00000004Z0g-00q0;
-	Mon, 23 Nov 2026 18:45:18 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVZ7A-00000004a3P-2uAe;
+	Mon, 23 Nov 2026 18:50:08 +0000
+Received: from mgamail.intel.com ([192.198.163.14])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1o-00000004YaQ-2RYN
+	id 1xVZ76-00000004a2d-3HiG
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:44:38 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 578A644D46;
-	Mon, 23 Nov 2026 18:44:36 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459476;
-	b=KzT7mAT98CCBciMIiudfpRF9OKpaklN1TQ9hHJo2QphWKijMdY50nGkqPACgDAGCaBg+
-	 3+DLzqdjTEx/7MKFtRqCYeNsic5GIqvjHTJJwEHW6tq+VBpGDkjTOVaSQnLfOtOk3yuFH
-	 MIdPV9u3wZNKzhBgtIBleuA3cpP3olwS3Ot437r+Ukh1OthY8e7SQJOzgs7Jvxnig0Qga
-	 8DRQuNYK4t3Pmy+8gnT18hmWcsWGZH4RVwvFCe4+DJK9DnhFBw1DIhHJf5cHN0T2vMqb0
-	 I1OyO4rjx2kMIhVbHJUx/vpePvONoMv6WwBrS9w+IGOGN9W/0DYG3iTIu2ocup5AOyg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459476;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=hUFvvMrtcN3xKAWIZoqvLk+7RqIxx8dguKgTelmkfsM=;
-	b=P+sg0jvPPUNrO6bG8qQN8uIxYmMyFrvZV8iQkm/pXUkAM/XnJ9mYUCZIXPgJfKZ843mG
-	 64RzDbI7zXcamns6KDuBif044L6WW4eDw8dvqeU4nB5PSMxtBZ03H7Gij2vXJzbMdoEO9
-	 s7ULIfNS1F+6TALdr7pkKV69/1gMPU9oml1FhOvoM4N37Ar334RCkiqtlEXI1aY+tGqJ+
-	 IiG9W/6i2NAYBujBUwDjtYmz4UfDjWcGZngCrjiPWCE6wrkFB5VJ7BtEsE5dh2xpUALs3
-	 0s9NbbuJTXK4fwxOWoMmLmptkhS/NPBhwRtMlJTTA5zOYXM6rtrGuSQR3oangDkREiw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 280751F0093E;
-	Mon, 23 Nov 2026 18:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459476;
-	bh=hUFvvMrtcN3xKAWIZoqvLk+7RqIxx8dguKgTelmkfsM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=OV4JrOj50sAqztog0hetQwa+bPERizMvGtBxtvU3GCoAMV4MUFSdVbLurgPp1YzeE
-	 +//pchrpUTm8FWFNB3AnTbWvUwL4f2u7/FVVlHdrNWNx3SPdbNs4RX6v1OiNJBEgzX
-	 G52hOi8etMZfCPFNjr2i5To1vQetX9YSs78Di3C0W2nk0gLoaOiDJfuxx1dqsrL0W9
-	 S6Xi0Ewnf7oFNviVPb0y0OOYZ+S2g+uA7X5YixF7YGL4AoKhZZ2ee8qr/GoaTm1xjF
-	 SXuxQKRSFykuxQS8lH/i3pqEZrb3VTPmqyYCa7FtpAXoOIhrcaaCMEFdfkbaWZaadJ
-	 Gqcl8OO8U7qfA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id AB97F4C625;
-	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:44:14 +0300
-Subject: [PATCH net-next 5/5] MAINTAINERS: Add CS7542 network engine
- support
+	Mon, 23 Nov 2026 18:50:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795459805; x=1826995805;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=cjeMKRm7en+iyA3bcXvhdG5tSoNAe/JoC/WPf09zNkA=;
+  b=BPC4D3ewULvm+L9mcLNqXgkW6hAdY57PmQITA9OEmrNBaJ6qOzOrtl4V
+   ZZ8/y0YJEwHYEPcCb7mjtRDldPR7x2YHnWc28GYjFCiYldOdRk5m7gA3P
+   25SzXDnfoais4RDaaA87TgY24bSQtXznmDm/rOrI4M/lUO8kqE9aH5nJ1
+   kHiBsDMtMazKHh+pilDUoMccXAFO2xeM4A3e2vN7qqoMLsR0/ojD7eBfo
+   GOQbk0geZ2Spwydx784zh89652+vyTvpP3u+MrkQGAVKmsUXky1kQUn0H
+   en+nyDnrMbasdZ6ob/ku8wNOwa8Gh05hVX0jV/msiFF+MmR+MpEbCJDXm
+   Q==;
+X-CSE-ConnectionGUID: pPxwGKqvTtakqarU1iKK6w==
+X-CSE-MsgGUID: NDHL2OpxRamhqfxLe4qk2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4176998"
+X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; 
+   d="scan'208";a="4176998"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 10:49:56 -0800
+X-CSE-ConnectionGUID: zr2t5mSNRrKoMsxKB4AbwA==
+X-CSE-MsgGUID: Ee1aOYQAQ5qEWJP8jTM6yg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; 
+   d="scan'208";a="11776613"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.204])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 10:49:52 -0800
+Date: Mon, 23 Nov 2026 20:49:50 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: imx@lists.linux.dev, linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
+	Johan Hovold <johan@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	LKML <linux-kernel@vger.kernel.org>,
+	kernel-janitors@vger.kernel.org,
+	Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Michal Simek <michal.simek@amd.com>
+Subject: Re: spi: imx: Use devm_clk_get_enabled() calls in spi_imx_probe()
+Message-ID: <awSKzgNGzuxl2OXO@ashevche-desk.local>
+References: <895d50a6-3a42-44d2-8625-3b8cba8fbfff@web.de>
+ <awR3jGcH97PrYNqc@ashevche-desk.local>
+ <797d8f02-2e16-4ca6-bfda-8b6e40742a84@web.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-ethernet-v1-5-fdb5e8c2d508@gmail.com>
-References: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
- Linus Walleij <linusw@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459449; l=1003;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=G+m7gJTK/NeHqNoGXUe2fybpj2Fx+enthhwoUjEoXRw=;
- b=7ecsMKI92CxEavAgE91R7+aRS33PjSd5cBpv9g0WV8kA+QieWXLcDOLx0NYijgRNp1xIpfZUr
- 2EjrS+tfyxXAkzlfCo2vL7KTb7EQCGjP8pVNMjP32958r/NdAhVg+4h
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <797d8f02-2e16-4ca6-bfda-8b6e40742a84@web.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_105004_912549_2AE0546B 
+X-CRM114-Status: GOOD (  14.12  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,49 +95,38 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+On Mon, Nov 23, 2026 at 07:24:21PM +0100, Markus Elfring wrote:
+> >> * Reuse existing functionality from devm_clk_get_enabled() instead of
+> >>   keeping duplicate source code.
+> >>
+> >> * Delete clk_disable_unprepare() calls on error handling paths.
+> >>
+> >> * Omit the label “out_put_per”.
+> >>
+> >> This issue was detected by using the Coccinelle software.
+> > 
+> > This now messes up with the PM callbacks at remove stage.
+> > It's not trivial how to make it correct.
+> Is there a need to adjust and extend devres programming interfaces any more?
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/driver-api/driver-model/devres.rst?h=v7.4-rc4#n242
 
-Cover the Ethernet binding, network engine and reset provider under a
-dedicated CS7542 network engine entry.
+I guess you did get my point. You can't simply do what you have done in this
+patch, because the devm*() will do something with clock reference counting on
+remove stage _after_ the driver.
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d8835aeca..e5d1edd7b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2959,6 +2959,15 @@ F:	drivers/clk/clk-cs7542.c
- F:	drivers/pinctrl/pinctrl-cs7542.c
- F:	include/dt-bindings/clock/cortina,cs7542-clock.h
- 
-+ARM/CORTINA SYSTEMS CS7542 NETWORK ENGINE
-+M:	Fil Dunsky <filipp.dunsky@gmail.com>
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/cortina,cs7542-ethernet.yaml
-+F:	Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml
-+F:	drivers/net/ethernet/cortina/cs752x_*
-+F:	drivers/reset/reset-cs7542-ne.c
-+
- ARM/CORTINA SYSTEMS GEMINI ARM ARCHITECTURE
- M:	Hans Ulli Kroll <ulli.kroll@googlemail.com>
- M:	Linus Walleij <linusw@kernel.org>
+NAK to this change.
 
 -- 
-2.53.0
+With Best Regards,
+Andy Shevchenko
 
 
 
