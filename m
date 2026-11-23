@@ -2,100 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF10606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB19606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pomx7/ch;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=ULywT2CQ;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=I4aNr1yC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GIIpHQ8B;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=SEDOM6wr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=PRXvGXWiLhUZfSPTLsYZVP3/cuMLTt0j/3uv3gxjm5I=; b=pomx7/chGi3J/h3HClhL2N3hWj
-	mOprbJPJVjIcJwtCptbWkJjRxFMnm49AaAO47QAUZruPtNUWTQsTY+j+2UFWROj1o92NGr7bfo46R
-	xHyjjvexs3jdjtUcwsNvvxV4Eg1R5cOYUOpNvweswlJm8QzwEX/yjAP4ETJtisJkUxR2tcRzsCqS3
-	FEajPu+CsFtagjGJnTr+baKEl4rPvZrksCogZ+NXcWIehpJ+OFOepyqCBtCp9/cAiZXH9TldwXSl+
-	Hi5iv7qr2I9LAtq62wSedlbUdpz/ia/BfsTCLGvMhFNofHMV6cplh9kOW9mP8jxUjDay0DJQlrAE9
-	SLRErrBg==;
+	bh=HHGmLupEWefFEvnztUn4+WoF1FkERF+EXpdnacXhrEo=; b=GIIpHQ8BpjE08ysg/31APrOxYl
+	VMmisRT6uXCl+SmvbB2zl+rdb5e8lLCgmDv3n+p87owDpgw9SmZdv5YkkU3mJScPhJZAJ5sDIlJzX
+	GG1FCiJ6M+rvqImKbKTRupJZk89epuaY+fzOiWjPlOgO78q9nV8hL9XEIdhIcPGi++iKL5U9csp5O
+	o18OXn2ALm+J9iG0LGX0oAtoAbhz7rTuXCBd73nEJnl7sDnjP2V7MbA7S5CjUnJkij1ZP0iKDhcSQ
+	2Mh6rAj3+1Wg3ruICCfZViH5cple19MaVCCafIK6OLlN+c2GDy3VNZk30v6Ha0MXYHeo7BSP8GfDl
+	9OvjpoKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSNw-00000003DhP-1W2D;
-	Mon, 23 Nov 2026 11:39:00 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVSOP-00000003E0z-2FvN;
+	Mon, 23 Nov 2026 11:39:29 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSN0-00000003CuY-14KR;
-	Mon, 23 Nov 2026 11:38:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=PRXvGXWiLhUZfSPTLsYZVP3/cuMLTt0j/3uv3gxjm5I=; b=ULywT2CQkq0Wj3krUZuKHhtsqH
-	PGZG4xEMP6MixBSJ8isa5EtCne7r9lCiYFBeqYkRMTy8Ya84YSDsfOGSGaEPrmbtGm4TqFZxv3g6J
-	29DMBGTKfNDbYXHB044gFSL+wW7mImWc2/lwM3H5qu885Vc1dDbqeVJ3Rdipv2yHt5HnFHHBTFTTw
-	uDQQwS5/sn8DAA1AovomasaDCyU6xyk3F9RqV0N6CIr4O2t+kIQxmDPtBEP5nQoUYsXdOCy1L/S1X
-	s3JUeTw2xWYsIqSIxcfWYDhwBtqT8GgJjsKGQVJ4wPcXUeGIaoGmTSSvus9ICumfLlGxeNXJ0wWcG
-	GFm56LYQ==;
-Received: from mailgw01.mediatek.com ([216.200.240.184])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMw-000000033lC-1es7;
-	Mon, 23 Nov 2026 11:38:00 +0000
-X-UUID: 4b2718eae73211f1afed4741b24580c9-20261123
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=PRXvGXWiLhUZfSPTLsYZVP3/cuMLTt0j/3uv3gxjm5I=;
-	b=I4aNr1yCX8n2yzkvnTC2WVDMur+VTmQ+9pqizbn8iNIATfBYDgxvwRgjfkuildE5Vb4PxesxU8bztSsaLFKQM7KPEk9MYbboMgvJgnKvx6uirP3aOARqoNlb4RvlLcd5szoZ2+HahZ4DqPUox4kT2sw7s4GoHFAhflBz4fkskG4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:20287a61-3f8b-4b3d-bfad-c4005ebf44cf,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:b0318ac,CLOUDID:c9f7f319-ae4c-4a2b-b1c4-72e411efd0c9,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
-	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 4b2718eae73211f1afed4741b24580c9-20261123
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <chunfeng.yun@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 712190739; Mon, 23 Nov 2026 04:37:42 -0700
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 23 Nov 2026 19:37:39 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.53 via Frontend Transport; Mon, 23 Nov 2026 19:37:38 +0800
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Mika Westerberg <westeri@kernel.org>
-CC: Andreas Noever <andreas.noever@gmail.com>, Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>, Sven Peter <sven@kernel.org>, Yehezkel
- Bernat <YehezkelShB@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <linux-kernel@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Chunfeng Yun
-	<chunfeng.yun@mediatek.com>
-Subject: [PATCH v3 7/8] thunderbolt: Decouple the waiting time of TB_PORT_UNPLUGGED and TB_PORT_UP
-Date: Mon, 23 Nov 2026 19:36:54 +0800
-Message-ID: <20261123113705.2297329-8-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
-References: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
+	id 1xVSOE-00000003Dwq-3ssl
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 11:39:23 +0000
+Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E58434;
+	Mon, 23 Nov 2026 12:36:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1795433805;
+	bh=twN40ocQKuIxsUo/Hj5ZWM2UJ1adNtywfmriFNONsX4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SEDOM6wrVeABopjd6nno09PgGLDk0rJ6n6z+83f1myistJ04J56SIQ/yyvkXwdcbm
+	 5ktdY8RdyH5x7SBWcgbb0eXFDM+/fKsPjwA3OMHz83mbxTWlAYfG2/5opz4pPmws+4
+	 6M03F/iNxa2gK5G3D3vjJtR+JBn1tA7hE4Jq+Ftk=
+Date: Mon, 23 Nov 2026 13:39:15 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Paul Elder <paul.elder+renesas@ideasonboard.com>,
+	=?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clegoffic@baylibre.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 12/15] pmdomain: renesas: r8a78000: Replace sentinel
+ by explicit ID map size
+Message-ID: <20261123113915.GI3010398@killaraus.ideasonboard.com>
+References: <cover.1795029012.git.geert+renesas@glider.be>
+ <ee60a54c457af21277a13e8e1db36ce83209b3f5.1795029012.git.geert+renesas@glider.be>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ee60a54c457af21277a13e8e1db36ce83209b3f5.1795029012.git.geert+renesas@glider.be>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_113758_748541_F08B3C64 
-X-CRM114-Status: GOOD (  17.82  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261123_033919_868476_B2659E4B 
+X-CRM114-Status: GOOD (  29.91  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,60 +86,165 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When USB4 is woke up by device disconnect, no need wait for 2s,
-usually the phase2~4 takes at most about 200ms, and enters to
-TB_PORT_CONNECTING, if it is still in TB_PORT_UNPLUGGED after 400ms,
-treat it as disconnected.
+On Wed, Nov 18, 2026 at 08:45:00PM +0100, Geert Uytterhoeven wrote:
+> The use of a sentinel in the module ID mapping array will become
+> cumbersome when the need arises to find out the actual number of
+> elements in the array.  Rework the mapping data structure to fix this,
+> also improving naming.  Let mod_id_map_find() return an index, to be
+> used for indexing additional mapping target arrays later.
+> Add a MOD_ID_MAP() initialization macro for brevity.
+> 
+> While at it, drop the check for "!map" in mod_id_map_find(), as that
+> pointer can never be NULL.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v5:
+>   - New.
+> ---
+>  drivers/pmdomain/renesas/r8a78000-mdlc.c | 49 +++++++++++++-----------
+>  1 file changed, 27 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/renesas/r8a78000-mdlc.c
+> index 1ace1fb10870f646..6477abe64511e880 100644
+> --- a/drivers/pmdomain/renesas/r8a78000-mdlc.c
+> +++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
+> @@ -16,13 +16,23 @@
+>  
+>  #include <dt-bindings/power/renesas,r8a78000-mdlc.h>
+>  
+> -struct mod_map {
+> -	int hw_id;		/* Hardware module ID or -1 sentinel */
+> +struct mod_id_map_entry {
+> +	u32 hw_id;		/* Hardware module ID */
+>  };
+>  
+> +struct mod_id_map {
+> +	const struct mod_id_map_entry *entries;
+> +	unsigned int size;
+> +};
+> +
+> +#define MOD_ID_MAP(_entries) .mod_map = &(struct mod_id_map) {		\
+> +	.entries = _entries,						\
+> +	.size = ARRAY_SIZE(_entries),					\
+> +}
+> +
+>  struct mdlc_info {
+>  	u32 base;
+> -	const struct mod_map *mod_map;
+> +	const struct mod_id_map *mod_map;
+>  };
+>  
+>  /**
+> @@ -41,7 +51,7 @@ struct r8a78000_mdlc_priv {
+>  	struct reset_controller_dev rcdev;
+>  	struct device *dev;
+>  	struct device_node *np;
+> -	const struct mod_map *mod_map;
+> +	const struct mod_id_map *mod_map;
+>  };
+>  
+>  static struct generic_pm_domain *r8a78000_genpd_always_on;
+> @@ -77,17 +87,14 @@ static struct generic_pm_domain *r8a78000_genpd_xlate(
+>  #define rcdev_to_priv(_rcdev)	\
+>  	container_of(_rcdev, struct r8a78000_mdlc_priv, rcdev)
+>  
+> -static const struct mod_map *mod_map_find(const struct mod_map *map, u32 id)
+> +static int mod_id_map_find(const struct mod_id_map *map, u32 hw_id)
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v3: fix code style
----
- drivers/thunderbolt/switch.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+Same comment as in the clock driver about prefixes and namespace
+clashes.
 
-diff --git a/drivers/thunderbolt/switch.c b/drivers/thunderbolt/switch.c
-index 97e3fd8cdc0c..0da5b7ee4c29 100644
---- a/drivers/thunderbolt/switch.c
-+++ b/drivers/thunderbolt/switch.c
-@@ -489,8 +489,9 @@ int tb_port_state(struct tb_port *port)
-  * Wait up to 2 seconds for a port to reach state TB_PORT_UP. If
-  * wait_if_unplugged is set then we also wait if the port is in state
-  * TB_PORT_UNPLUGGED (it takes a while for the device to be registered after
-- * switch resume). Otherwise we only wait if a device is registered but the link
-- * has not yet been established.
-+ * router resume, Wait at most 400 ms for link to start connecting,
-+ * if timeout, means the device is disconnected). Otherwise we only wait
-+ * if a device is registered but the link has not yet been established.
-  *
-  * Return:
-  * * %0 - If the port is not connected or failed to reach
-@@ -500,6 +501,7 @@ int tb_port_state(struct tb_port *port)
-  */
- int tb_wait_for_port(struct tb_port *port, bool wait_if_unplugged)
- {
-+	int unplugged_retries = 4;
- 	int retries = 20;
- 	int state;
- 	if (!port->cap_phy) {
-@@ -519,7 +521,7 @@ int tb_wait_for_port(struct tb_port *port, bool wait_if_unplugged)
- 			return 0;
- 
- 		case TB_PORT_UNPLUGGED:
--			if (wait_if_unplugged) {
-+			if (wait_if_unplugged && unplugged_retries--) {
- 				/* used during resume */
- 				tb_port_dbg(port,
- 					    "is unplugged (state: 7), retrying...\n");
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
+>  {
+> -	if (!map)
+> -		return NULL;
+> -
+> -	for (; map->hw_id >= 0; map++) {
+> -		if (map->hw_id == id)
+> -			return map;
+> +	for (unsigned int i = 0; i < map->size; i++) {
+> +		if (map->entries[i].hw_id == hw_id)
+> +			return i;
+>  	}
+>  
+> -	return NULL;
+> +	return -1;
+>  }
+>  
+>  static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
+> @@ -95,7 +102,7 @@ static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
+>  {
+>  	struct r8a78000_mdlc_priv *priv = rcdev_to_priv(rcdev);
+>  	struct device *dev = priv->dev;
+> -	const struct mod_map *map;
+> +	int idx;
+>  	u32 id;
+>  
+>  	if (spec->args_count != 1)
+> @@ -103,8 +110,8 @@ static int r8a78000_mdlc_reset_xlate(struct reset_controller_dev *rcdev,
+>  
+>  	id = spec->args[0];
+>  
+> -	map = mod_map_find(priv->mod_map, id);
+> -	if (!map) {
+> +	idx = mod_id_map_find(priv->mod_map, id);
+> +	if (idx < 0) {
+>  		dev_err(dev, "Unknown reset 0x%x\n", id);
+>  		return -ENOENT;
+>  	}
+> @@ -141,9 +148,8 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
+>  	struct device_node *np = dev->of_node;
+>  	struct r8a78000_mdlc_priv *priv;
+>  	struct of_phandle_args pd_spec;
+> -	const struct mod_map *map;
+>  	unsigned int id;
+> -	int ret;
+> +	int ret, idx;
+>  
+>  	ret = of_parse_phandle_with_args(np, "power-domains",
+>  					 "#power-domain-cells", 0, &pd_spec);
+> @@ -166,8 +172,8 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
+>  	id = pd_spec.args[1];
+>  	of_node_put(pd_spec.np);
+>  
+> -	map = mod_map_find(priv->mod_map, id);
+> -	if (!map) {
+> +	idx = mod_id_map_find(priv->mod_map, id);
+> +	if (idx < 0) {
+>  		dev_err(dev, "Unknown module 0x%x\n", id);
+>  		return -ENOENT;
+>  	}
+> @@ -292,15 +298,14 @@ static int r8a78000_mdlc_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> -static const struct mod_map r8a78000_mdlc_perw_mod_default[] = {
+> +static const struct mod_id_map_entry r8a78000_mdlc_perw_mod_default[] = {
+>  	{ 0x54 },	/* HSCIF0 */
+> -	{ -1 }
+>  };
+>  
+>  static const struct mdlc_info r8a78000_mdlc_default[] = {
+>  	{
+>  		.base = 0xc05d0000,
+> -		.mod_map = r8a78000_mdlc_perw_mod_default,
+> +		MOD_ID_MAP(r8a78000_mdlc_perw_mod_default),
+>  	},
+>  	{ /* sentinel */ }
+>  };
+
 -- 
-2.45.2
+Regards,
 
+Laurent Pinchart
 
