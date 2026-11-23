@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23AD2606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31081606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iCQ0PSdG;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pMqwM1gE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DuaTyFVf;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cSzIx+mV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BaHVj1vymyANMIuaDlnAd/LpWMipmRDfZVKqcVMgeBQ=; b=iCQ0PSdGIHr2AM
-	d4MUNosT5Phb9EauA5RRYMRtlpLcYvs1ESm7SowJXrAokwAqzSXLD6QlI2un2+IsM8a4m+YpRk1Q5
-	kI+EPoLqVKZO16I7L72HpOW2SV41klSPjDgWZVedwfP4sXDGt8ajq/R9LMs1BfJcnVApAVuDqyAwt
-	vB6uPNOLM2nliKFFSqYcgU5ROnAmpXlnZmMbuXHH26xKWR/zge4xN0Lg8+MUHCa24rHW7xKY0OvAG
-	MF5a7mUN2ZaDpk2Hp6Ivb9oBbW/QOYjJFLY9UgEz2yHFYM58JSP0AAxlVZYde9uDPDx5bO/0HsPV0
-	DdeoBsJZt3DjbMMqCn5w==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Fgm5ZvS0zUq+ILWdJEIWmTetdq2Cml8WgKwtmZG127A=; b=DuaTyFVfHbA2mJUvvC2T1OwKen
+	t4HR2+UBGjt/+22jegjiR/9+c+4qgDsTNpC1nuUcyZc+JrP5lQdVDJeAgSM9CgpegTY4C/GOhSTZY
+	57T2RH40W/UkBQguMGPjlWWeAnP9y6FfyrZaexeTMqoflgHCTbi+g+NJ7E/pOQG71NEqHe9uinrf0
+	FHdo/ARjdvfHU0cp7nkFMDMx4Q1CxNyUb+nYeZQlHKwJ1VRLdtn2x61s25/AgRYkBne39iBNIuXNZ
+	E3vTuja6NjtYNJB7Az0Kky7GUfeInxO8F8MwLAxd+AesrxvHcuZFE6iVt42yTDyHMAJUMa64r91zp
+	oyGIIsyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVO4O-00000002Q2N-1b7c;
-	Mon, 23 Nov 2026 07:02:32 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1xVO4N-00000002Q12-2XD2;
+	Mon, 23 Nov 2026 07:02:31 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVO3k-00000002Pri-3dem
+	id 1xVO3b-00000002Pr4-3CIQ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 07:02:16 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4bb702a7548so21600805e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 23:01:52 -0800 (PST)
+	Mon, 23 Nov 2026 07:02:10 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so1758594f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 23:01:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795417311; x=1796022111; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=BaHVj1vymyANMIuaDlnAd/LpWMipmRDfZVKqcVMgeBQ=;
-        b=pMqwM1gEb3O7kqIO5FcXG4iH2PSzKRbA23B+9szYv5TqpLH3evDmVDj/FCRHxzuUoq
-         WRBaXoSgNTm1lSeUsHO0QlepqZKlq9/nWs/iK5b3SosYj5Zl9A5ikWrQ4HAIjATIvfUT
-         fJ8rnZhb1b3xRC+N0s4Yn7RtQvAwRm/e3fqRMsGiwDhcVZCPlpc9hmaYzXBMmJjU+biD
-         pt+8xQcNpzlVaF2k+5eBNGS0GJoikd+stNONp6h3l16AyGBLUgQFTmVIX4OWmJ6fJ2YW
-         xi8+9BcMrWTq1blFQIsriVs8PadhpEX+MWeGhU2Iy8ofMqInKxR5zU1/3ydGbWCA/XJa
-         cekQ==
+        d=gmail.com; s=20260707; t=1795417282; x=1796022082; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Fgm5ZvS0zUq+ILWdJEIWmTetdq2Cml8WgKwtmZG127A=;
+        b=cSzIx+mVPM9IVXmaR5LDPofWiV0dtNSShkssQSa5uAfvy+TPeDJaduii1HN2O7Udwo
+         yH4kQ64aDXn8jncp5kMKvkjv+VqVRPesO4qwjMAj7itYsw9L7Q6jjezy7Ip2LQQ0d7zd
+         PRSXz6SnuxfNjeHCv1K/qleEYjnkb/dVuL+xo4yroyNfESZEVPW3JGI0SUsyYIwBgS2H
+         gCCGLmShRhbyjZ9zZxuEuyUFdFKtIdFT01XsgOYhbJmx3CSKkFsfviKGMpjq9JUAXZ40
+         sA43tnB3gHhTJcpt+RAHL/kFp5sw6dGGmgXZORkghLo/yzGxkqkwTsEvyfScC5daoxZT
+         P4eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795417311; x=1796022111;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=BaHVj1vymyANMIuaDlnAd/LpWMipmRDfZVKqcVMgeBQ=;
-        b=raySCCOe9bh4wmS+85tLcpTLPGra2uuvjHaLx5uvOvsNLW4O3BtLnIo/Dj7kbV7p/D
-         1gXw1a++IRKMojWqxVxtDmAkFoja+mH6M+1WqgZ7olPcrdSxWfkY5Ofkhqc58Y5HoDca
-         kk4BfUW9MCLwzxHd5MyFKLR5ahrNCKikQZs9PdgGoFwv4VoElyIT+x0fGDGF2mL6sg1j
-         PfyFPev9ye0cO4aLedj7qYAEEJLAK32cR4yHZmkEgDjW38XmbBuOG/68khu3D6Tq63V6
-         XeCX4jZ2cGP9g3n51+lFPYZFRXHmu65seR5eLPdnXPHzqwCsxGMVTyDhbJjknD/68yUN
-         QDSQ==
-X-Forwarded-Encrypted: i=1; AL+hErHgR5QClzCDr0xyh+zyKJuFKDTgGQV554oOTIuQJMGj4jiqnTlTWBKCg2W8Dk5ufKNE1CoNMPSShVfxIPHxyZGn@lists.infradead.org
-X-Gm-Message-State: APuU4Z9sDqGEiPgUt0cHcNjr+NbgpOsc6PbHpWtFI9yc9LK9E2nNnzEe
-	aErNOCCCFlLOhF3rMK7FTsaRiFVPEpZg/s10WW4BMartXDX2tOR/IwB6
-X-Gm-Gg: AZFdTZdvxnySqgVgqSm6ze74XKi01ATbM2yo+1tEP33YJirUXLtW9XX1dL1ttGXwMbj
-	lfuN9BOx5sQbN0hf7mvOn+YpEJCdlIqq0I2FGGOTAOFLg06d+Qsf1v9PqvAhUtrmf4A6eo/Cb9C
-	RXNcjLCVrYBVN6VfhXP+m7YluRcHGwZVjTsnG9Spad7Yl7aLA+ICvABxpAiMbG0sv26D3rcu35S
-	q+w3pqIpuxAmlCiHc05RSgjPgaXiB6UqQK7pzmQt+j/iigbpRvtNwkhhZ2A/WrO5BT8hp07BT49
-	Xw25tYHhAK0G8jxtY+XwK+rHJXJCiEn8EOR5/63vB1KXd2goMhcvfOHyD/8fsKw9/YV8efTIf1U
-	e6CHSBIu4NChmKWcy5IOuBILSVQ/x7ZQzD+DpBDUVrU8+f/RAZk46l/iIbLuEf9i7rMDNYAY+RA
-	BJjrcCUj98/+WwENIIlLInVof016MFl++9XCvn9R6Yn8Fma+C/PYpOrKBrINkZO7bg3mqLI6160
-	uCC5Uhsl+3zPN1v4M3vK0hTj1O/Ko3Opc9Hv9R0VKjzakEO76TNYEXu+83LH63zu4voiDUtAAkY
-	cvjTNLNhHPNbW8mSXBUjawpykORsoDfdTuPH
-X-Received: by 2002:a05:600c:4e0d:b0:4a5:e6fd:65e5 with SMTP id 5b1f17b1804b1-4bb88922a67mr213919275e9.31.1795417310939;
-        Sun, 22 Nov 2026 23:01:50 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795417282; x=1796022082;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Fgm5ZvS0zUq+ILWdJEIWmTetdq2Cml8WgKwtmZG127A=;
+        b=BTF9Ui80S99uAyal7+JEqEkZ19LdpLoV/IT4SGF0Mjk6/BY9RVxgn5ImKLKjVepuKq
+         zgos0HjHezuebgH/OzIjTlkYZFPxi3i6+Uw3JQ049feg7QvFEaU9QwMtz+3H8RSaSTJ5
+         5M+Ox/+G9050szWPYVqtVs9mj8Gkz3WwIuZYb7HGcNcT3ReCzj4R2Gqtydi/iZulCEYf
+         Pjue7YuhsqSnwo3Q1Q5mpQ/h/6giEywhB1nQ4HW9Lpgp0DhdxCF3sm8lhqkcGPkGhfAI
+         w5FEXDzjreRqE8j1QxgcvsBgzAyxmcXqGCWUqhtnKdvFVBmqb925zTZp241giGDw2Ewe
+         7VRA==
+X-Forwarded-Encrypted: i=1; AL+hErEnnf15F04trQAUdNM285BeY8cqm9rbTpbVnys/OoXfLHJ1C/PZaEvte3z0/RsWfg7cQGi9gDimuSc7bcoq9Z9a@lists.infradead.org
+X-Gm-Message-State: APuU4Z/+3TcWqBlLC93H/+VKcn+FjxD7Hbjtd7wKvaCWZ3gTcvvMt5+L
+	zOOqWzbvW+zhgvmuaJ4LPWcmTF6XrIc8ZHJB6zIW3crs9ByYYJjFipng
+X-Gm-Gg: AZFdTZcLYN5nOGBiOzEqKXg3TgQ7ZrUBAD/ly7vu2Dy5KLYGh/7QJw76OiW8JFA6yoD
+	HhxMWjmZoC7Whuuz5ZhcBM5ZbQqp8LUk/hF7PwaV7M3gBRtM+ogNKGSJ73hLxzYZaJ4boICtToM
+	V4E93XMPXGJEUYpI1gPyTafXmnUTtN8zg1cvzXaXCINp9qsU0SksZC91AyGhiw69jerPFPRnpG5
+	D5cHU4+lTDVafiYhDv4/p1juiUh0SuSr3O/k783vyTUiVnngywVgwXs9EoYrM8IkQ//8ox+Ut1q
+	Vm3nmLoflkebQ5nypNvL1NThtGK29mExMQH3I1fs7VaCYKf+7jZeClC2wMXAjybZGchq4+QEQ7O
+	IrE68Y5cw1LPfQmaf/RxmMNqTi1dtB/1v5TgQxq4fBD6ZCaKk6ACT1S9yO7vXuORlybIfFIK6Zo
+	WNpQQjVPqKWDYzlB6pgdtDprJy63jzk77I22na5uh+tXYr42jyZcTcS8MF/5LELPqfnDGEDtWsw
+	WWeC4pb4gClyKolWXDRFXnWxlXR5dSWaxpVGe6hfNMS/oIs1VHOT41lP1MOInGeLxkNOfVcvTY7
+	MhAitKRXjLdukkVLJjmcSw==
+X-Received: by 2002:a05:6000:258a:b0:48e:720a:ccaf with SMTP id ffacd0b85a97d-4abaab633d2mr21602958f8f.5.1795417282236;
+        Sun, 22 Nov 2026 23:01:22 -0800 (PST)
 Received: from fedora ([154.182.66.143])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2d60sm20779007f8f.3.2026.11.22.23.01.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab658e2d60sm20779007f8f.3.2026.11.22.23.01.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2026 23:01:50 -0800 (PST)
+        Sun, 22 Nov 2026 23:01:21 -0800 (PST)
 From: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
 To: jic23@kernel.org,
 	linux-iio@vger.kernel.org
@@ -89,18 +89,16 @@ Cc: dlechner@baylibre.com,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
-Subject: [PATCH v5 4/8] iio: adc: at91_adc: convert to device_property_*() APIs
-Date: Mon, 23 Nov 2026 09:00:57 +0200
-Message-ID: <20261123070101.53868-5-abdelnasserhussein11@gmail.com>
+Subject: [PATCH v5 0/8] iio: adc: at91_adc: fix NULL trigger dereference and convert to devm
+Date: Mon, 23 Nov 2026 09:00:53 +0200
+Message-ID: <20261123070101.53868-1-abdelnasserhussein11@gmail.com>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261123070101.53868-1-abdelnasserhussein11@gmail.com>
-References: <20261123070101.53868-1-abdelnasserhussein11@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_230201_455426_16F8F358 
-X-CRM114-Status: GOOD (  18.90  )
+X-CRM114-CacheID: sfid-20261122_230200_858953_699B4847 
+X-CRM114-Status: GOOD (  12.86  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,138 +110,78 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the firmware-agnostic device_property_*() helpers instead of the
-OF-specific property readers, so the driver does not depend on a device
-node being available in probe.
+This series fixes a NULL pointer dereference during trigger teardown in
+at91_adc and modernizes the driver to use firmware-agnostic property
+APIs and device-managed (devm) resources.
 
-Update at91_adc_probe_dt_ts() to take a struct device and read its
-properties through device_property_read_u32() as well.  Since the helper
-no longer uses DT-specific APIs, rename it from at91_adc_probe_dt_ts() to
-at91_adc_probe_ts().  This removes the need for a struct device_node
-pointer in at91_adc_probe(); as a result, at91_adc_probe_ts() now logs
-against dev (&pdev->dev) instead of &idev->dev.
+When the "atmel,adc-use-external-triggers" property is omitted from the
+Device Tree, at91_adc_trigger_init() leaves external trigger slots in
+st->trig as NULL. Patch 1 provides a minimal fix in at91_adc for easy
+backporting to stable kernels, while the subsequent patches modernize
+the driver and convert it to devm_* APIs (removing the manual teardown
+code and the st->trig array altogether).
 
-Drop the " in the DT" suffix from the missing property messages to match
-the firmware-agnostic property APIs.
+Changes in v5:
+- Patch 1: Keep the minimal NULL check in at91_adc instead of modifying
+  iio_trigger_unregister(), and explicitly note in the commit message
+  that it is a minimal fix for backporting before devm removal (as
+  requested by Jonathan Cameron).
+- Patch 2: Drop the redundant dev_err_probe() message after
+  devm_request_irq() in a separate patch.
+- Patch 3: Switch from of_device_get_match_data() to
+  device_get_match_data() and check for NULL in a separate patch.
+- Patch 4: Convert of_property_*() calls in at91_adc_probe() and
+  at91_adc_probe_dt_ts() (renamed to at91_adc_probe_ts()) to
+  device_property_*() APIs, removing the local device_node pointer and
+  dropping "in the DT" from missing-property logs.  Since no OF APIs
+  remain, replace <linux/of.h> with <linux/mod_devicetable.h>.
+- Patch 5: Introduce local struct device *dev in at91_adc_probe() and
+  switch devm_iio_device_alloc() to sizeof(*st).
+- Patch 6: Pass struct device *dev instead of struct platform_device *pdev
+  to at91_ts_register() in a separate patch.
+- Patch 7: Replace raw 1000 with HZ_PER_KHZ from <linux/units.h>.
+- Patch 8: Convert the remaining buffer, trigger, touchscreen input, and
+  IIO device registrations to devm_* APIs, use unsigned int for the
+  trigger loop index, drop the now-unused st->trig array, drop the
+  redundant input->dev.parent assignment, and remove at91_adc_remove().
 
-With no OF APIs or struct device_node left in the file, drop the
-<linux/of.h> include and add <linux/mod_devicetable.h> for struct
-of_device_id.
+Changes in v4:
+- Split the series into 3 atomic patches: (1) standalone NULL trigger
+  teardown fix for stable backporting, (2) local struct device pointer
+  cleanup, and (3) full devm_* conversion.
 
-Signed-off-by: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
----
- drivers/iio/adc/at91_adc.c | 34 +++++++++++++++++-----------------
- 1 file changed, 17 insertions(+), 17 deletions(-)
+Changes in v3:
+- Address review feedback from Andy Shevchenko on v2 (drop redundant
+  -ENOMEM log, use local struct device pointer, scope loop index to the
+  for-loop, and convert error paths to dev_err_probe()).
 
-diff --git a/drivers/iio/adc/at91_adc.c b/drivers/iio/adc/at91_adc.c
-index 2a378540837d..b6e6fa77c782 100644
---- a/drivers/iio/adc/at91_adc.c
-+++ b/drivers/iio/adc/at91_adc.c
-@@ -15,8 +15,8 @@
- #include <linux/interrupt.h>
- #include <linux/jiffies.h>
- #include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/module.h>
--#include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/property.h>
- #include <linux/sched.h>
-@@ -790,13 +790,12 @@ static u32 calc_startup_ticks_9x5(u32 startup_time, u32 adc_clk_khz)
- 	return ticks;
- }
- 
--static int at91_adc_probe_dt_ts(struct device_node *node,
--	struct at91_adc_state *st, struct device *dev)
-+static int at91_adc_probe_ts(struct device *dev, struct at91_adc_state *st)
- {
- 	int ret;
- 	u32 prop;
- 
--	ret = of_property_read_u32(node, "atmel,adc-ts-wires", &prop);
-+	ret = device_property_read_u32(dev, "atmel,adc-ts-wires", &prop);
- 	if (ret) {
- 		dev_info(dev, "ADC Touch screen is disabled.\n");
- 		return 0;
-@@ -815,7 +814,7 @@ static int at91_adc_probe_dt_ts(struct device_node *node,
- 	if (!st->caps->has_tsmr)
- 		return 0;
- 	prop = 0;
--	of_property_read_u32(node, "atmel,adc-ts-pressure-threshold", &prop);
-+	device_property_read_u32(dev, "atmel,adc-ts-pressure-threshold", &prop);
- 	st->ts_pressure_threshold = prop;
- 	if (st->ts_pressure_threshold) {
- 		return 0;
-@@ -990,7 +989,6 @@ static void at91_ts_unregister(struct at91_adc_state *st)
- static int at91_adc_probe(struct platform_device *pdev)
- {
- 	unsigned int prsc, mstrclk, ticks, adc_clk, adc_clk_khz, shtim;
--	struct device_node *node = pdev->dev.of_node;
- 	int ret;
- 	struct iio_dev *idev;
- 	struct at91_adc_state *st;
-@@ -1007,32 +1005,34 @@ static int at91_adc_probe(struct platform_device *pdev)
- 	if (!st->caps)
- 		return -ENODEV;
- 
--	st->use_external = of_property_read_bool(node, "atmel,adc-use-external-triggers");
-+	st->use_external = device_property_read_bool(&pdev->dev,
-+						     "atmel,adc-use-external-triggers");
- 
--	if (of_property_read_u32(node, "atmel,adc-channels-used", &prop))
-+	if (device_property_read_u32(&pdev->dev, "atmel,adc-channels-used", &prop))
- 		return dev_err_probe(&idev->dev, -EINVAL,
--				     "Missing adc-channels-used property in the DT.\n");
-+				     "Missing adc-channels-used property.\n");
- 	st->channels_mask = prop;
- 
--	st->sleep_mode = of_property_read_bool(node, "atmel,adc-sleep-mode");
-+	st->sleep_mode = device_property_read_bool(&pdev->dev,
-+						   "atmel,adc-sleep-mode");
- 
--	if (of_property_read_u32(node, "atmel,adc-startup-time", &prop))
-+	if (device_property_read_u32(&pdev->dev, "atmel,adc-startup-time", &prop))
- 		return dev_err_probe(&idev->dev, -EINVAL,
--				     "Missing adc-startup-time property in the DT.\n");
-+				     "Missing adc-startup-time property.\n");
- 	st->startup_time = prop;
- 
- 	prop = 0;
--	of_property_read_u32(node, "atmel,adc-sample-hold-time", &prop);
-+	device_property_read_u32(&pdev->dev, "atmel,adc-sample-hold-time", &prop);
- 	st->sample_hold_time = prop;
- 
--	if (of_property_read_u32(node, "atmel,adc-vref", &prop))
-+	if (device_property_read_u32(&pdev->dev, "atmel,adc-vref", &prop))
- 		return dev_err_probe(&idev->dev, -EINVAL,
--				     "Missing adc-vref property in the DT.\n");
-+				     "Missing adc-vref property.\n");
- 	st->vref_mv = prop;
- 
- 	st->res = st->caps->high_res_bits;
- 	if (st->caps->low_res_bits &&
--	    !of_property_read_string(node, "atmel,adc-use-res", &s)
-+	    !device_property_read_string(&pdev->dev, "atmel,adc-use-res", &s)
- 	    && !strcmp(s, "lowres"))
- 		st->res = st->caps->low_res_bits;
- 
-@@ -1043,7 +1043,7 @@ static int at91_adc_probe(struct platform_device *pdev)
- 
- 	/* Check if touchscreen is supported. */
- 	if (st->caps->has_ts) {
--		ret = at91_adc_probe_dt_ts(node, st, &idev->dev);
-+		ret = at91_adc_probe_ts(&pdev->dev, st);
- 		if (ret)
- 			return ret;
- 	}
+Changes in v2:
+- Drop the simple NULL check approach from v1 and refactor the driver to
+  use device-managed (devm_*) APIs as suggested by Jonathan Cameron,
+  removing manual cleanup functions and at91_adc_remove(), and inlining
+  trigger initialization into at91_adc_probe().
+
+Abdelnasser Hussein (8):
+  iio: adc: at91_adc: skip unpopulated triggers on teardown
+  iio: adc: at91_adc: drop duplicate IRQ allocation error message
+  iio: adc: at91_adc: switch to device_get_match_data()
+  iio: adc: at91_adc: convert to device_property_*() APIs
+  iio: adc: at91_adc: use local struct device pointer in probe
+  iio: adc: at91_adc: pass struct device to at91_ts_register()
+  iio: adc: at91_adc: use HZ_PER_KHZ instead of raw 1000
+  iio: adc: at91_adc: convert to device-managed resources
+
+ drivers/iio/adc/at91_adc.c | 266 +++++++++++--------------------------
+ 1 file changed, 77 insertions(+), 189 deletions(-)
+
 -- 
 2.56.0
 
