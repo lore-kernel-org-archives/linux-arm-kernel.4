@@ -2,102 +2,133 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 599F4606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 22:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39A4606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 22:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZnI9uPmt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BtqszdU6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DCCAr+ae;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IUfnCFTe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=eZY4Md2Mn1mF5VRqkw4gWdxxhirtIkLziyS1NyK/aTo=; b=ZnI9uPmtudG0dG4k436byH5hN7
-	zIA4uDxFxh1ARXSu3UeWSuC1KkwbZZAvPDGD5hN71qWqFBvNJYdQX2D79GTJBskbQ48yO5Rb+ejvz
-	1Eo9sOHmF7tRxC0Ig+N8oqIUS7oRHbsmIOEYHtDHe4RJgvSSSkfsaq56AFumbzbr3nogCPLOmWxax
-	0VxruZPPANtNSRpbg0e/kAlO37BT7vg9p3xjbtRRhZ968+ZLmX0BiOewZgXnKuDaM+he56GQM7GTR
-	bla2jAE/JiYTz0UYJVrvCBkF2/ntFjNkTda9teRTlnOZkVeEn7M9VeS7CLQsRpD6c74SSz5znhRhi
-	viYmYWAA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zZOr86x6Nbcrswj0/CdPx/id2jV0MiHrJmrhX/el+Dk=; b=DCCAr+aejBZTmL
+	NXVBGbQxw8rYANtDlT+/Z5sTVYpk0g9jhbGOAu7o1QGP0a/9QGID2QBRO9+I9sTPPZgL+ptDjKC16
+	XT4VjxRS0XOdTHGQX3tmJj/e/K6SW6d6cfOBuAgRoevF/+x9nYA9/d4sy1Mn8eJ1uRLCs3krJJjRN
+	5N6N/tVGd90CIxvx3U8t9kRnDf6dKd+E9navvoJSH22bbCjJJuOySH8KAr7JG7H2R5K5hpwUW4F0L
+	NkrYXUmoMBhJ4Clddr1m/fxhfIIieGV0bqc2euaJlB2/p6aO+MMV0ByFge8J0HjXXRV2BTfupAETj
+	VNeS9XStYLk0yBvpLEaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVcrZ-000000056nW-2agA;
-	Mon, 23 Nov 2026 22:50:17 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVcK9-000000053lJ-2WCL;
+	Mon, 23 Nov 2026 22:15:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVcrW-000000056mI-2S9z
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 22:50:14 +0000
+	id 1xVcK5-000000053l7-0QBt;
+	Mon, 23 Nov 2026 22:15:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0050E44046;
-	Mon, 23 Nov 2026 22:50:14 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795474213;
-	b=3G7a/BsqSEJWwSrPU8CIC6V1d9mJaCEsPy/PsmIXr/+S2+ddAwggVpZpTFbqxBTD057Y
-	 DibN7rDp8vpNUks2rTfofnqAwKhBhXiSLS98jgPDUsT/7qtnqjPQB4n+Z8hEBlmHmXJDo
-	 A95UZj0vZGD+RsVnRxhCj1hmy4C6N+f3JrLFLj5y9sDocb2DR3DTUVF9d8cXPCZy31jq/
-	 tMvObApljIH48CHmC2vh9fgSG79hMxPvXZwrTzW1j3aTYLuUKqoBsydX5fTJWtL4uVgWZ
-	 tmPZtbEmwQNi/Qk+a0EhMnEIwBZrpa45S+dx5BNHjTn1ihxnbWjDNeFmu6+HERFTaUQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795474213;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=eZY4Md2Mn1mF5VRqkw4gWdxxhirtIkLziyS1NyK/aTo=;
-	b=gy6qAO4aWszJDdRDNskIcg4mCqu/YR91rLWFZW9zP0ROUcS3Dcq83YZQaS1TOy0uQk08
-	 4FfHCV0f1DXUonGigY05s4SPgY2sm+YcD/AxdaquoYHi9gH0zbUZndwVIV0P1yJvDejJI
-	 7ySViIGUKihW0ReIKTiXLF+Tqt9ZjadbUmUFtiyvKoY0qxPNwLJHZsLV7fQOIhSk/eNLv
-	 a76IF/XrxpzbJUZAjoEq3epg7otLc1OfTGRprkQ5h6bR+53sRtFdx/VY8jUFo8NmD1G8T
-	 Xn9rR4dA0zksBUTIekftKgYGA75HB3uNXEdnI4Jfa4ZtMNQ8Bvki/AoKxpKezDyWN5Q==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 04C391F000C4;
-	Mon, 23 Nov 2026 22:50:02 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B042061CA6;
+	Mon, 23 Nov 2026 22:15:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A6B1F000C0;
+	Mon, 23 Nov 2026 22:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795474213;
-	bh=eZY4Md2Mn1mF5VRqkw4gWdxxhirtIkLziyS1NyK/aTo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=BtqszdU6BMH5dHstudJD0uZzIgE9O7HSA4rep8wOFlWQT77gyXt0RQ1yuEvmyb8GT
-	 auFKkJLGv6CLDUnBLgBo0YbjHy6zvbA6+GBE8gfsnr3/Cn9lMtmKPS8I+rOxhcKaVB
-	 arWWppxMMDZGoDEUjMfQ/DMuoObLlEZSNvx2KdBiUCXycBUYfFWG0fSaB10CF9X1GX
-	 JBD7YGOcQHga7z2FDRfHs4DQ7YPDmD/KB2LAYTlGgVL7Bl0JsPbPng3s5pOzGRcfS6
-	 W2yYqC80ftYtoj+xxn/HcD2KCg3KNXlHJtlpwFLrsH/Nv78zEEAc+yUG+BLtQU0q0p
-	 7orah1FmYwxcA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 8788F4C7B5;
-	Mon, 23 Nov 2026 22:50:01 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Tue, 24 Nov 2026 01:50:02 +0300
-Subject: [PATCH v4 2/3] rtc: Add Cortina Systems CS7542 RTC driver
+	s=k20260515; t=1795472138;
+	bh=zZOr86x6Nbcrswj0/CdPx/id2jV0MiHrJmrhX/el+Dk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=IUfnCFTe+dBvsPU7O06E2fZSVhth+KzFXsodtvncGuI0ZJrIUURRRNuTzOpaaXs8w
+	 Yx9tfQxFf0bhkud/FZpgu8M5GraijG/vUGk9+qgLWv+yC4PuuWis9FcdtnPM2p8/tG
+	 NklJrEq+wTwwduRL6DBLbHPZLz+aXeAy3qLhhsEFf9ixKzUsda7LHBGm13m+YJOsTj
+	 +gWPX2J9lF6u1D3o3sYOKIey0FJQdYR9Jjzcr3TUQ/YuUOZy6BswMLeTvEZxX29xaW
+	 Gu+Kppy1E9Sp1P5RVB5zVWQpcZkzx78goOMCIq4LogvU6xwyAC4c4KQGNxt064WKP0
+	 npRyr50ofJOxw==
+Message-ID: <356dfc79-1918-4024-b40a-57a8cb05418d@kernel.org>
+Date: Mon, 23 Nov 2026 23:15:19 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-b4-cs7542-rtc-v4-2-bceefd844074@gmail.com>
-References: <20261124-b4-cs7542-rtc-v4-0-bceefd844074@gmail.com>
-In-Reply-To: <20261124-b4-cs7542-rtc-v4-0-bceefd844074@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795474200; l=7239;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=3y4dhdM81ScD1PX2zJH//bIg+oja/F142CEVGUvmYsk=;
- b=HrmsFiQX8H1WBNPV3FcwUY90yOGXI56CiX4MI+byFOZ73RGnuFdjq407TJd04ZRJZH3mtGfGT
- R7OVb8Y3AD/DqPw1Hq1I9kgFQU3WiduPWscCBbhCgl7zE3IVTj41Ni1
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/16] dt-bindings: arm: qcom,ids: Add SoC ID for
+ SXR2250P
+To: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>,
+ Guru Das Srinagesh <linux@gurudas.dev>, Thomas Gleixner <tglx@kernel.org>,
+ Radu Rendec <radu@rendec.net>, Lee Jones <lee@kernel.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ "Joerg Roedel (AMD)" <joro@8bytes.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>,
+ Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Georgi Djakov <djakov@kernel.org>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Ulf Hansson <ulfh@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mfd@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ linux-usb@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-pm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20261116-halliday-dts-v2-0-2c92438c6c46@gmail.com>
+ <20261116-halliday-dts-v2-13-2c92438c6c46@gmail.com>
+ <20261123-pastel-barracuda-of-rain-bce8ac@quoll>
+ <20261123211723.1065310-1-lightofmysoul@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGPBBMBCgA5AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJp2mE8AAoJEBuTQ307QWKbeaIP
+ /ihHTkTW4KsN/DQ945JJbyu5tI0J80Wue7QyyLPglyKfhgb5cLLNPpOC8cCIJsc7+W3i2P38
+ s2c1cOH6CYGE7E9ur3Vfme8NW2S2I/Z8VC7bZnzyS23wT17LrsdS/qCpx4o8U+pt/xdXDKph
+ EGRYrIEmMpUWvyYzyYKGIe25FtaayIIKpq8eZYyFcp2f/sG5IkOW5uZzHPMPdcm87jU7fyuQ
+ rAU2vx9r+ulUfQ/q9Z2roC/ode3l7t2pN7BCBCsUDp6JCrUyZrtT1e7EbA0ZRP3aOBNk2P2E
+ DQOgJGjGdO5Yx2Y9LFtltu6JbsBJHi1syGRX3AtQYOMc4Y1WGoeZJmMlvKj2ZqqXNkcWi2DS
+ IQEWB0uW6CqFsBBIMGDa+6OzdaVO/uAVXWDWml02Men3CILdI1MbVjoh8ECqYUY7OQ+JJvNN
+ vnliuq5WM3Ghd3jg/LZZrxXjdIginRHFQCjIJYLKpLZWm1/iDFedcfzqRNYmTtqscdCNHW41
+ oT3Z7BmO9xwdjuwBS6nmS6JJwkbf5Ot2QR4pB/DRU7ZwjT1qHe+9r9gF32wXVQatHNGK/VVu
+ sfwOnkdxCWkp/qb2gdQRmZh+SedStWshigH6sNfuHBloF/q+hjMRc8b2m326OZdrbSHwY1Sz
+ vti8Hn7n8NjdHO9LKB7BIdjkA9DA5WsqOuVCzsFNBFVDXDQBEADNkrQYSREUL4D3Gws46JEo
+ Z9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLueMNsWLJBv
+ BaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6eiOMheesVS
+ 5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wAGldWsRxb
+ f3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA6z6lBZn0
+ WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9YegxWKvX
+ XHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt91pFzBSO
+ IpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gUBLHFTg2h
+ YnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/JoFzZ4B0
+ p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu4vXVFBYI
+ GmpyNPYzRm0QPwARAQABwsF2BBgBCgAgAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmna
+ YUkACgkQG5NDfTtBYptX+BAApg32CkxwNucNEi8WfWA8oKkW0y8YDuY6ORMo9FWNGiT/OTy0
+ vyJrLocrpn86zwfjVp+eCrssPYh8eqJfnWqmYv6ACQtHPYzPZQ3mSo8H97Z01oUxITzCxpXm
+ ZkLgPIqtDPcC2E3dPM/fVxcyowM8XsaMA9wcsaUYrta8toOq2b9tKcjleKMfMrm0gQ9u7wUc
+ QbLkwj6TCLOwucb07GXzLTNF9PZmaDUpKAZjMjmrW+le+SFvQbhamx0rxLWPR0NWntXpbCn+
+ +ACch03p/JyTBVktxFsFyCt7pTPE1kEaeuXBTe/a2D9iQvRxRW19LvuO2e59/u1wYUiH/orz
+ wbIC2S4dBsPAPihL3ztOU1yE86GPyQtSE0kU+/7snnLt4QGi6PChf3t5gnNjAzjUUovO8rgI
+ c+5yN5heq5loYHgK6OQ9OlHzsPHO9e9MOQcKlFycs1pyijFGzDwdNUm/SchK8iWT2QApTx4A
+ K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
+ n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
+ qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
+In-Reply-To: <20261123211723.1065310-1-lightofmysoul@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,245 +139,29 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+On 23/11/2026 22:17, Stanislav Aleksandrov wrote:
+> On Mon, Nov 23, 2026 at 01:09:26PM +0100, Krzysztof Kozlowski wrote:
+>> This should be rebased on my patch removing the IDs.
+> 
+> Thanks for review. I will rebase it, but I am not sure about
+> the order, could you please clarify?
+> 
+> 1. Should I wait for sending v3 until your patch is applied?
+> or
+> 2. Should I apply your patch locally and then send v3 based on it?
+> (but if something changes in your patch a v4 might be needed)
 
-Adapt the vendor-derived OpenWrt calendar implementation to an OF driver
-without a platform Kconfig dependency. Decode the four-digit BCD year,
-retry reads across second changes and preserve RTCEN after programming.
+I suggest rebasing on top of my set, so the (2).
 
-Leave the RTC control state unchanged at probe and reject reads when it
-is disabled or held in reset. Enable it and clear reset when a known
-time is supplied through set_time. Let the RTC core validate calendar
-fields and handle the absence of alarm callbacks.
-
-Describe the physical 0000-9999 calendar with RTC_TIMESTAMP_BEGIN_0000
-and RTC_TIMESTAMP_END_9999. The vendor BCDYEAR register has 16 year-data
-bits; direct-callback RAM tests on Almond+ verified year 0000 and early
-century carry/leap transitions, plus 1969 to 1970, in addition to the
-upper-century
-and 9999 endpoint tests. Core validation of normal reads/sets before 1970
-is unchanged; only the separate fixture bypassed it. These are targeted
-hardware checks, not a sweep of every year.
-
-Alarm interrupts and suspend wake are not supported.
-
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
----
- drivers/rtc/Kconfig      |   9 +++
- drivers/rtc/Makefile     |   1 +
- drivers/rtc/rtc-cs75xx.c | 159 +++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 169 insertions(+)
-
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 73ec9230e..e8d6aaf37 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -1463,6 +1463,15 @@ config RTC_DRV_ASM9260
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-asm9260.
- 
-+config RTC_DRV_CS75XX
-+	tristate "Cortina Systems CS7542 RTC"
-+	depends on OF && HAS_IOMEM
-+	help
-+	  Support the calendar clock of the Cortina Systems CS7542 SoC.
-+	  The hardware's four-digit calendar covers years 0000-9999.
-+	  Alarm interrupts are not supported.
-+	  The module will be named rtc-cs75xx.
-+
- config RTC_DRV_CV1800
- 	tristate "Sophgo CV1800 RTC"
- 	depends on SOPHGO_CV1800_RTCSYS || COMPILE_TEST
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 46f1a0fc2..516cc6c9c 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -45,6 +45,7 @@ obj-$(CONFIG_RTC_DRV_CADENCE)	+= rtc-cadence.o
- obj-$(CONFIG_RTC_DRV_CMOS)	+= rtc-cmos.o
- obj-$(CONFIG_RTC_DRV_CPCAP)	+= rtc-cpcap.o
- obj-$(CONFIG_RTC_DRV_CROS_EC)	+= rtc-cros-ec.o
-+obj-$(CONFIG_RTC_DRV_CS75XX)	+= rtc-cs75xx.o
- obj-$(CONFIG_RTC_DRV_CV1800)	+= rtc-cv1800.o
- obj-$(CONFIG_RTC_DRV_DA9052)	+= rtc-da9052.o
- obj-$(CONFIG_RTC_DRV_DA9055)	+= rtc-da9055.o
-diff --git a/drivers/rtc/rtc-cs75xx.c b/drivers/rtc/rtc-cs75xx.c
-new file mode 100644
-index 000000000..8ab8cfc33
---- /dev/null
-+++ b/drivers/rtc/rtc-cs75xx.c
-@@ -0,0 +1,159 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <linux/module.h>
-+#include <linux/bits.h>
-+#include <linux/err.h>
-+#include <linux/slab.h>
-+#include <linux/platform_device.h>
-+#include <linux/rtc.h>
-+#include <linux/bcd.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+
-+#define DRV_NAME	"cs75xx-rtc"
-+
-+#define G2_RTC_RTCCON		0x00
-+#define G2_RTC_RTCCON_STARTB	BIT(0)
-+#define G2_RTC_RTCCON_RTCEN	BIT(1)
-+#define G2_RTC_RTCCON_CLKRST	BIT(2)
-+#define G2_RTC_RTCCON_OSCEN	BIT(3)
-+
-+#define G2_RTC_RTCSEC		0x24
-+#define G2_RTC_RTCMIN		0x28
-+#define G2_RTC_RTCHOUR		0x2c
-+#define G2_RTC_RTCDATE		0x30
-+#define G2_RTC_RTCDAY		0x34
-+#define G2_RTC_RTCMON		0x38
-+#define G2_RTC_RTCYEAR		0x3c
-+struct g2_rtc {
-+	void __iomem		*base;
-+	struct rtc_device	*rtc;
-+};
-+
-+static u32 g2_rtc_readl(struct g2_rtc *p, unsigned int addr)
-+{
-+	return readl(p->base + addr);
-+}
-+
-+static u8 g2_rtc_readb(struct g2_rtc *p, unsigned int addr)
-+{
-+	return readl(p->base + addr) & 0xff;
-+}
-+
-+static void g2_rtc_writel(struct g2_rtc *p, unsigned int addr, u32 val, u32 mask)
-+{
-+	u32 reg = (readl(p->base + addr) & ~mask) | (val & mask);
-+
-+	writel(reg, p->base + addr);
-+}
-+
-+static void g2_rtc_write_enable(struct g2_rtc *p)
-+{
-+	u32 tmp = g2_rtc_readb(p, G2_RTC_RTCCON);
-+
-+	g2_rtc_writel(p, G2_RTC_RTCCON,
-+		      (tmp & ~G2_RTC_RTCCON_CLKRST) | G2_RTC_RTCCON_RTCEN |
-+		      G2_RTC_RTCCON_STARTB, 0xff);
-+}
-+
-+static void g2_rtc_write_disable(struct g2_rtc *p)
-+{
-+	u32 tmp = g2_rtc_readb(p, G2_RTC_RTCCON);
-+
-+	g2_rtc_writel(p, G2_RTC_RTCCON,
-+		      tmp & ~G2_RTC_RTCCON_STARTB, 0xff);
-+}
-+
-+static int g2_rtc_gettime(struct device *dev, struct rtc_time *tm)
-+{
-+	struct g2_rtc *p = dev_get_drvdata(dev);
-+	u32 year, sec, ctrl;
-+	int retry;
-+
-+	ctrl = g2_rtc_readb(p, G2_RTC_RTCCON);
-+	if (!(ctrl & G2_RTC_RTCCON_RTCEN) || (ctrl & G2_RTC_RTCCON_CLKRST))
-+		return -EINVAL;
-+
-+	for (retry = 0; retry < 3; retry++) {
-+		sec = g2_rtc_readb(p, G2_RTC_RTCSEC);
-+		tm->tm_min = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCMIN));
-+		tm->tm_hour = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCHOUR));
-+		tm->tm_mday = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCDATE));
-+		tm->tm_mon = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCMON)) - 1;
-+		year = g2_rtc_readl(p, G2_RTC_RTCYEAR) & 0xffff;
-+		if (sec == g2_rtc_readb(p, G2_RTC_RTCSEC)) {
-+			tm->tm_sec = bcd2bin(sec);
-+			tm->tm_year = bcd2bin(year & 0xff) +
-+				      bcd2bin(year >> 8) * 100 - 1900;
-+			return 0;
-+		}
-+	}
-+
-+	return -EAGAIN;
-+}
-+
-+static int g2_rtc_settime(struct device *dev, struct rtc_time *tm)
-+{
-+	struct g2_rtc *p = dev_get_drvdata(dev);
-+	int year = tm->tm_year + 1900;
-+
-+	g2_rtc_write_enable(p);
-+	g2_rtc_writel(p, G2_RTC_RTCSEC,  bin2bcd(tm->tm_sec), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCMIN,  bin2bcd(tm->tm_min), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCHOUR, bin2bcd(tm->tm_hour), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCDATE, bin2bcd(tm->tm_mday), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCMON,  bin2bcd(tm->tm_mon + 1), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCYEAR,
-+		      (bin2bcd(year / 100) << 8) | bin2bcd(year % 100), 0xffff);
-+	g2_rtc_write_disable(p);
-+
-+	return 0;
-+}
-+
-+static const struct rtc_class_ops g2_rtcops = {
-+	.read_time		= g2_rtc_gettime,
-+	.set_time		= g2_rtc_settime,
-+};
-+
-+static int g2_rtc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct g2_rtc *p;
-+
-+	p = devm_kzalloc(dev, sizeof(*p), GFP_KERNEL);
-+	if (!p)
-+		return -ENOMEM;
-+
-+	p->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(p->base))
-+		return PTR_ERR(p->base);
-+
-+	platform_set_drvdata(pdev, p);
-+
-+	p->rtc = devm_rtc_allocate_device(dev);
-+	if (IS_ERR(p->rtc))
-+		return PTR_ERR(p->rtc);
-+	p->rtc->ops = &g2_rtcops;
-+	p->rtc->range_min = RTC_TIMESTAMP_BEGIN_0000;
-+	p->rtc->range_max = RTC_TIMESTAMP_END_9999;
-+
-+	return devm_rtc_register_device(p->rtc);
-+}
-+
-+static const struct of_device_id cs75xx_rtc_of_match_table[] = {
-+	{ .compatible = "cortina,cs7542-rtc" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, cs75xx_rtc_of_match_table);
-+
-+static struct platform_driver g2_rtc_driver = {
-+	.probe		= g2_rtc_probe,
-+	.driver		= {
-+		.name	= DRV_NAME,
-+		.of_match_table = cs75xx_rtc_of_match_table,
-+	},
-+};
-+module_platform_driver(g2_rtc_driver);
-+
-+MODULE_DESCRIPTION("Cortina CS75xx RTC driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:cs75xx-rtc");
-
--- 
-2.53.0
-
-
+Best regards,
+Krzysztof
 
