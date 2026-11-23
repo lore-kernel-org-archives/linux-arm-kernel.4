@@ -2,54 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDCF2606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74705606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ntCp0MLB;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=XsEEV1cv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N10OpigM;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=nZXPQ0pW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tMwSrV2ZjOeBiqelWNaRKRM/bJC/BjHhSGkPihEQE4o=; b=ntCp0MLBYKsuQ2
-	N/adWI5+1csqSaLu8UK/4gKK+ZTEQXczL3snAbs61PyRiRlAfYdNxMl0VaXCJb/0Zfg4+IgkLCKjn
-	ICPhWNXhjvBJk56uNSEUo0lpVKxzifd/2pvElKN9lSLF1AJ7yHeAvSFZCoIsf4mBQx0tn/nGy9RHY
-	f34VwIc/wvRmKSwoJJ4uFpDcKj8c1i/lH6RdIeGo4UlDiXZJFpvtmQLLFX+uz5zKglYzPSzz7XYcg
-	EshwzZGY/RR3+aId23vZmFN66EB/MR605949ObLkkRe4WxMnSZigE4dgCLbxTW9Lrkja3VCJBfCcv
-	NOkY/jQRoUzdpWTzKJOw==;
+	List-Owner; bh=vi9YIEkgcpNDo67MMyhT4GNsmJycA+jIPzIUFtZs4+8=; b=N10OpigMa7aZ0T
+	9rSbQLY4vNthXJKrGLmgjcVcVXoOeERxh6DaSGcolboOswwBJhXpSeiRKuyYTVLOOZ2MtuixgwyCo
+	BgrDye56UXNb2vVv+24w69+93serFdvXbXkm4My9tL8+ki8yj6CLprh9UQWYJvRGmHmX2Y772De1a
+	y6jHR72ICZPY2+XUi/TjVE8GWeyW7rHN68lZpjE7fkNadi6mS6eQ/kQbX/ikW708bvrm0TCCHwTAP
+	7siCVAvzdH7/7xaYdK69vKpargjlyVKdvPC28PTShTP7l8r5V3xUpatI1gkqL6xsUVbn2QidNumtS
+	sByMz8JoKzxRfXQN3LqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQgS-00000002pHL-0ofF;
-	Mon, 23 Nov 2026 09:50:00 +0000
+	id 1xVQgm-00000002par-1uqU;
+	Mon, 23 Nov 2026 09:50:20 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQgO-00000002pDV-0rWG;
-	Mon, 23 Nov 2026 09:49:58 +0000
+	id 1xVQgQ-00000002pF5-2Fqq;
+	Mon, 23 Nov 2026 09:49:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795427394;
-	bh=dEpbWbiWtLxirOo3e2Y7hCJY0RRBzW/Rgxc+4UBphNw=;
+	s=mail; t=1795427396;
+	bh=oklZcB2ZgODd1ccU587GZpgoAJhA7Noc6dkU+5Gv3MM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XsEEV1cv0fqWuh+8ZuPPCMrRGNWlKv+AaTbW/j1LNcnpOVToHvahyGCnwToD4wPxl
-	 meEfKwqBhJTlnynQSvzh13ov3p4A/TaM9H2Pe2OFDDhrNduv/ZXahQVmzP2q9s1ZWB
-	 SSZ6elK/gct7HR/vf5ywMBS1aYj9ByoSil15qI4Omb+YkpScc41uASC0btHGAj5iQm
-	 Fbva/+qWSGoAjH7X2JtSc3s1T7tp5zjDiT9ykceUFm9XP5kUKE+cYm2CQWXz0r/ZCl
-	 lRaHivzB+ioSSORdbbc4nEfr5ZwkmLLL1+/8WGMP9aczpmf5e80J7NY9EDjZdWu+nW
-	 2tPYpjCJb/r8g==
+	b=nZXPQ0pWy7EEBsRu6tuBGZHmF2oIfTurhP+6ee3Bl9Qqjfpoyiy0xPCf+q4QNLYio
+	 mA37bJr0KWyITQFT8bEmRA1DGUv3+wDw1O78meVdldFoDhl9TEOmUHPOl/SJZs/1Nk
+	 ctscHYRJSAk0agzND9uZ+vn72PaOS6lFNsgZJwg5mJsLx9nW/AnI4l6PToSletBKfO
+	 K1kc/i5ukSZ7jg7ZyEa7LwIPK/Q9woZqVcXzk1Y4ogftHtILq0nbvNGZUFlaqrgQvY
+	 lMiH/TVkYM8n0hSqMF/RICmMK9FbdxjR2wMKotT2QVolkkFCZdLycy8nAEp00YzAmf
+	 7vEoPWs7drgUQ==
 Received: from [100.64.1.21] (unknown [100.64.1.21])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BCF2817E04F7;
-	Mon, 23 Nov 2026 10:49:52 +0100 (CET)
-Message-ID: <d4ae0697-2d1d-4c8e-b160-fc8389898121@collabora.com>
-Date: Mon, 23 Nov 2026 10:49:52 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CF2E617E0DB6;
+	Mon, 23 Nov 2026 10:49:55 +0100 (CET)
+Message-ID: <db39aa16-0a42-4588-9efc-06e894bb506e@collabora.com>
+Date: Mon, 23 Nov 2026 10:49:55 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/9] arm64: dts: mediatek: Add MT6895 SoC
+Subject: Re: [PATCH v2 7/9] arm64: dts: mediatek: Add MT6895 pinmux macro
+ header file
 To: Alexander Letuchiy <asalde.le1@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
@@ -66,15 +67,16 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
  linux-input@vger.kernel.org, phone-devel@vger.kernel.org
 References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
- <20261113-initial-mt6895-v2-8-4ab0aa9fa391@gmail.com>
+ <20261113-initial-mt6895-v2-7-4ab0aa9fa391@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20261113-initial-mt6895-v2-8-4ab0aa9fa391@gmail.com>
+In-Reply-To: <20261113-initial-mt6895-v2-7-4ab0aa9fa391@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_014956_418286_700CEC7E 
-X-CRM114-Status: GOOD (  14.32  )
+X-CRM114-CacheID: sfid-20261123_014958_762087_43B8E474 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,25 +97,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 11/13/26 20:05, Alexander Letuchiy wrote:
-> Add initial support for the MediaTek MT6895 (Dimensity 8000/8100) SoC,
-> which has four Cortex-A55 and four Cortex-A78 cores sharing a DynamIQ
-> cluster with 4 MiB of L3 cache.
-> 
-> Describe the CPUs with their caches, PSCI, the GICv3 interrupt
-> controller, the CPU and DSU PMUs, the architected timer, the system
-> timer, the pin controller, two UARTs, the watchdog and the keypad.
-> There is no clock controller driver for this SoC yet, so the UARTs and
-> the keypad use a fixed 26 MHz clock, and the system timer a fixed
-> 13 MHz clock derived from it.
-> 
-> Only the CPU and cluster power down idle states are described. The
-> deeper states that also power down the MCUSYS or the whole system need
-> the SPM and the vendor low power driver, which aren't supported yet.
-> The system timer serves as the broadcast timer while the CPUs are in
-> these states.
-> 
-> The cache geometry was checked against the CCSIDR registers of each
-> core.
+> Add the pinmux macro header for the MediaTek MT6895 (Dimensity
+> 8000/8100) SoC. It defines the PINMUX_GPIOx__FUNC_* macros used to
+> select the function of each pin in the device trees.
 > 
 > Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
 
