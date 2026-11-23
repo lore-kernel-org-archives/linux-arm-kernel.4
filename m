@@ -2,81 +2,148 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16018606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 02:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127A3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 02:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r/KjwGGd;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=IYs+Dzbd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DeA2/Fx1;
+	dkim=pass (2048-bit key, unprotected) header.d=amlogic.com header.i=@amlogic.com header.a=rsa-sha256 header.s=selector1 header.b=TalrCIhg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=keQB3M+G/U6WjdBKTwroAHxhrPCNUChEnSJ8dtIR1rc=; b=r/KjwGGdWCSMT/
-	wsgB7uA7Yu/N0ZdfbwJVqtThp/Zx/hsookYk7rnFLKrIsHnbIg42Jsvgs15t7XXeo4id12+5UHL3E
-	Qqe/hxO5S1YU85d0FUXvp+mHTGn3oXtObbepVRXFUVaqc/9Bkt9zeFiPr8ROo2z5KxwzAkpbjRctP
-	RLTtClZZrK8YnzPwb1zOk0DeOPfQV+ONfBVhj9eCaZawHRklPJRkXNj30uc7KAudtOi88sxJ3n6Lp
-	RHzfep7IL4ATFJZJD0LHorpYozPUSSKwNWUxQ+ZTUq95IfA4WideGSkEfV2PTFlJ68vNTIDImJwhB
-	ufVGTy/KT1ZSs7o7W4Vw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=VK1T2HwlPyFHMRMv7r8NO5LBtROymS3xhOkA36Wy8H4=; b=DeA2/Fx1fA/UXXAPdFGNZ6BSDu
+	a/NWlYYDS75eV3dnEuPvJ3eaEN3zRy7X7qkc3JP8PZ9KV013/H2QLiR5niF6000ad6U9v3dgwqB2U
+	iD93/Nj8nqUFFYV2vxkcxEknBVpNsYZTxgUTpUPSKo+vz/ElR/d6QZPxchQMy21fQD8jF1Q+FzSgc
+	ONBsRknnWzgHp2wPRUB7tp+8OQ6sNBCa4m4O+TU4F1x9zVrPxDiNw5TtIXwINlnpUe2Y9SwpiPPWd
+	LZDGRt/V/TKyDTn9gR3+t5u7LWWyF6FAn/brluuOlLlIujrwVtv7ZveKNP4G9k0HzhE5kMdN6G7aW
+	AWiDHD0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVK63-000000029HQ-0XU7;
-	Mon, 23 Nov 2026 02:47:59 +0000
-Received: from out-47.mta1.migadu.com ([2001:41d0:203:375::2f] helo=mta1.migadu.com)
+	id 1xVK7B-000000029Sg-2OfP;
+	Mon, 23 Nov 2026 02:49:09 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVK5w-000000029Gs-2pFJ
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 02:47:56 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=nnvohv3LVojod6b27B4KpgPlDmXt/sOZCq2yD9lZsww=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795402068; v=1; x=1796006868;
- b=IYs+DzbdoUB/2VyxbAb7oDGq6nRMXsX5EHi7ficM+zbFLgpcgHaa2vKl93lFEKb3C2ytlrva
- 62gP4n3WAjLUk3lMxfvhOGd+c47xdMc79gvDZd1IXDp7+L7yLwAdTW+VzfWyptNI+NVBm/Hr6G5
- ha5RUcyaQ4Ti2fwi1L80FasI=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 6a387cbfdc5f01e9;
-	Mon, 23 Nov 2026 02:47:48 +0000
-X-Mizu-Trace-ID: 6a387cbfdc5f01e9
-X-Migadu-Flow: FLOW_OUT
-Content-Type: text/plain;
-	charset=us-ascii
+	id 1xVK76-000000029Ra-14Ez;
+	Mon, 23 Nov 2026 02:49:05 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HZBiYK1BqG+dCdLGFlkOEEa9uT71Of1W9WEbiOCQMZq1LoXqOjJUsUfs2vZQ2EcjqjO/VhX4QotlZIXyo3UnT/P2WVBQDXkF4sAwW6hzAar2IUeMuIW3T3ZxNx4stmeEqV3aB3o+hdtyjRrIrQgL2z12XLfPcws+MXbW/owhVTPF4gxw3MQG8E63qjXx1h/6iMj6lfH65XG8mM3wwz1vrfTIUkv9WOs5kJct6+ThOi8TeOkjC/Uze50iq1nJX6+SqXTV55k3PD9sh2cd1iEHQQeqYYWb8whjKX276EmjdvG93g+xIeDR0rWJln9ni9XUTd6R2rNssuhlLQ+XkDJ6Cw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VK1T2HwlPyFHMRMv7r8NO5LBtROymS3xhOkA36Wy8H4=;
+ b=weHxpap0WthzC1fnm26xSdA8L4Z0WorxtXr7Fq9t394or0TRqdQNeRuD9NM/Ei0q9OkVfe6Q0mqrAVYdlN7CEdlfMuyQCLq5T/gC8TSFiYjbQpe8Itjr7tFPtGAWjfMbzoMYHmYP0qul+YTJSwYiOTM9hxANlTJoRCpIXZJxT1Z7PHNQ5X0o6Rd9VGtM5gKh3YijkxBLRy5G2lK5S5z0p75VuBlWnork/KrV6bAxG3jtUVf372nwPh7OTsmrILcOF2cjP8o3x0kZtj0C56Ql8BK/ExsdkTuYrlyvfaImMOdAdwYAfBaoZugfZVa6agHiq73HBzwzZnKJXjxAebHIdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VK1T2HwlPyFHMRMv7r8NO5LBtROymS3xhOkA36Wy8H4=;
+ b=TalrCIhgqrZqmyP5fNHQL3FVZ9HP4SZxR7xk7x0rWsiM7Ho0gwkLXBtYv9IYTt/gxCF9xpfxzMjqILNAm/q5g3hbolVxbn/FcbRsuZcNVh0H2/Dz9m2bX61WotEYBLLZ414ZQG5Isy5L0KavHKxZFlo3UekreuZvH2tzsoacgea0OZgdugr6pSCKy5DpETzeKrWJaHgvtv4a2I6l1r2sxkoUZvu1Pj0miTzeFUM9d0JO0mLdRqms34YI4iLH2V6ZnX43tDqyEv6MXXEUFBDkC6HXbFuIEDDXKKxHIdgs36qWZaRQlBYN+QU+FY4jsQxwXHdSlFzUQXytUghHQnej8w==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
+ (2603:1096:405:3c1::21) by SE3PR03MB10620.apcprd03.prod.outlook.com
+ (2603:1096:101:322::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
+ 2026 02:48:55 +0000
+Received: from TYNPR03MB10226.apcprd03.prod.outlook.com
+ ([fe80::ff5:e524:cf10:5d7]) by TYNPR03MB10226.apcprd03.prod.outlook.com
+ ([fe80::ff5:e524:cf10:5d7%6]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 02:48:55 +0000
+Message-ID: <832c4090-d6d7-4c3b-85e7-ed7dfb8c85c4@amlogic.com>
+Date: Mon, 23 Nov 2026 10:48:49 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/5] arm64: dts: amlogic: Add Amlogic S4 Audio
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
+References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
+ <20261110-audio_drvier-v8-5-1489241e4c83@amlogic.com>
+ <179536111581.2728475.9919460533427781841.b4-review@b4>
+From: Jiebing Chen <jiebing.chen@amlogic.com>
+In-Reply-To: <179536111581.2728475.9919460533427781841.b4-review@b4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: JH0PR01CA0061.apcprd01.prod.exchangelabs.com
+ (2603:1096:990:57::8) To TYNPR03MB10226.apcprd03.prod.outlook.com
+ (2603:1096:405:3c1::21)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
-Subject: Re: [PATCH v3 04/19] hugetlb_vmemmap: Use try_update_vmemmap_pte to
- update in-use PTEs
-From: Muchun Song <muchun.song@linux.dev>
-In-Reply-To: <20261122184453.2668189-5-jthoughton@google.com>
-Date: Mon, 23 Nov 2026 10:47:33 +0800
-Cc: Muchun Song <muchun.song@linux.dev>,
- Will Deacon <will@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Oscar Salvador <osalvador@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>,
- Kefeng Wang <wangkefeng.wang@huawei.com>,
- Nikos Nikoleris <nikos.nikoleris@arm.com>,
- Linu Cherian <linu.cherian@arm.com>,
- Mark Rutland <mark.rutland@arm.com>,
- David Hildenbrand <david@kernel.org>,
- Ryan Roberts <ryan.roberts@arm.com>,
- Nanyong Sun <sunnanyong@huawei.com>,
- Yu Zhao <yuzhao@google.com>,
- Frank van der Linden <fvdl@google.com>,
- David Rientjes <rientjes@google.com>,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-mm@kvack.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <4508589C-2E30-4DAB-9465-73121835D0D8@linux.dev>
-References: <20261122184453.2668189-1-jthoughton@google.com>
- <20261122184453.2668189-5-jthoughton@google.com>
-To: James Houghton <jthoughton@google.com>
-X-Mailer: Apple Mail (2.3901.200.71.1.16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYNPR03MB10226:EE_|SE3PR03MB10620:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0da04716-41e1-4a85-c1c2-08df490c508e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|23010399003|18002099003|22082099003|260925021911599003|260925021311599003|260925022911599003|261009223027099003|3023799007|261021123027099003|261021121427099003|261022105027099003|261026121527099003|261026140227099003|261028144727099003|4143699003|56012099006|10067099003|261102123227099003|11063799006;
+X-Microsoft-Antispam-Message-Info: GtZqkqK2SALF80BYwhKSFt4V8aoRgYOfN46gyuCDOEH/f/BWCnCWC7T0L/KzTxM+eKNzSeVxHsM+SeS//vRXI+lPJScSYNnWciYob6u666QOPW1o2eXUu4Ib0zafkiZZ92YdBqxqm+cPcMMJF0UMplAfNSMI9Jx0Uu8aGccCXcGBM0NA+nrVeNJqDkHe4SWeqPGWloAf48PReYVSFNiFBT3pQdYCelnL80zfWMgkTsDWd2Gt+eCbO/rMdQL3RMhIJ/vetxoyd30OU6OUINK6xYBy0NIlFnLLgj/NF+nZf3oi9utN14fqpVB1NZC028g+t1joNVAM0jbuHtjaSMxIFHj7wb5h3o+cW+kUFkQOKO7Y27luRVsfVVUlP7fCv1zF1GEv0rHuD+TYMpVpYFLQX6UAesEX31uhay7pR+EeuWmtQuEzD67YAwAHETw7/AwSByPc2gP0xCk/S9zxl6zMbcAwHErrRfTbVX8M4XDCdx+KsjsfcbXRUokuTI9wyS6cCs6LH4RLQSNyaxcVVpXcNO3tWKGQYgtA/vSe4yeY1PhyhT0JulxNqnw8GMhNm/QN7ie5j9mTWOyiBh1Lrqpdp3gEfQ4hAdrEkWtNs28+S+JIQet1L3AkO3rjGRNLUiLMOMXcTOo49HoJQQ6INzMvke+0XtUyvPZzf2ZppKy0vyc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYNPR03MB10226.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(23010399003)(18002099003)(22082099003)(260925021911599003)(260925021311599003)(260925022911599003)(261009223027099003)(3023799007)(261021123027099003)(261021121427099003)(261022105027099003)(261026121527099003)(261026140227099003)(261028144727099003)(4143699003)(56012099006)(10067099003)(261102123227099003)(11063799006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QkVxLzdyMmV4d1RweFVpU2RVcm9XUFljUEdJNmc3azRneGxIRHd0Z2h6SVRy?=
+ =?utf-8?B?aTJiQjNBSWNKWjJEYlFhT0JBWFRxcDdwdFZsOWp6WVdYYW9PSXJna0hJcFZV?=
+ =?utf-8?B?MUFGL08wM2U1alk2RHF1bFBBZ1c3NnJLRTBHS0pSS1VsM2lPOC93M0ZDZXVj?=
+ =?utf-8?B?RnRGWFBlODFEZEExSHg1dXYxdEZTejVJSnRMWFBLbW5CS2xzdmdEK3ZuNmp4?=
+ =?utf-8?B?cVkzVnR0WmxIUmdrRzdLSnlvVGMrWmxQWXJzSEZpR1l2amJSWkVDbi9VRWhB?=
+ =?utf-8?B?b01yODU1UG5ja1pUVDFrNEF4QTZJUGt3VjhQdXJSUnVaNHg3QnF0aW5ycVox?=
+ =?utf-8?B?NTltM2tqUEhZTlFFQXFuQmtyOEFuT0IwUVBqaUlMa3p0d3kzNi9PMHNzS1FW?=
+ =?utf-8?B?R0xBTS8rc0lLYnpNdkZsT1EzbzhteldLalNGdGNkN24xR1QxZUxUYVI1TTNF?=
+ =?utf-8?B?QTY1cnhFcVFMV2NCcUJDMFpSdmRoQjNYejV3K2EwV0FvK2oxVkpncFFUNXFx?=
+ =?utf-8?B?aW02dktCV3lOSTBIbnJqRkpkd0F3eFlTZjFDNEJoVkRRWThmMHpuZU96ZDJY?=
+ =?utf-8?B?akhKbEtvZHpEb3R6ZEhkdFYrYnRIcXhHRERjdVcvSEdBZnJVQ0ZsdUVrcHVB?=
+ =?utf-8?B?ZVo5eGwxNk9SVVRTOE9KSVZNSnloQlluTW9CVnVCWm1xdlgzV0NFZ3YrUy9L?=
+ =?utf-8?B?K3FPYm1QbmpCNHByNXFyYzh3MGt0OFN5Q2xVdTVLQ1FtQXA0THVyOHdFRVdD?=
+ =?utf-8?B?SzNaZVpBR2NxQnp2NWNvU1lVbnFqTmJTdkFBcGo5OGdaQ1dObWVyMHdEVUsx?=
+ =?utf-8?B?KzRpMFpzd1h4eUdFVTJVMjdFWWJQLzR3SXdtTFVuTnJvTG5nT1h5OGVqZHVK?=
+ =?utf-8?B?SFc1S2hrMDNXa3NiYVdTRWRwSDFVOWpTekR0WTJwNWQzcUN3dlh3WExjUSs2?=
+ =?utf-8?B?WnZvTXBYOFZTRGxvdXhXZWtNOE5KS2VhMlFhRUMwTFBaMzk4MXF5RER6TTRt?=
+ =?utf-8?B?ZGNTOElJdzkySEVoUHNGR2lKUWRocll1K1RyblYwclBBYzhDVTZVSWtFSnla?=
+ =?utf-8?B?WjVvSTZMSXQ2aUhqa1ExRFFtUGtvVXAxamh2OExrY3lnQmJBaStTdUFOTFE3?=
+ =?utf-8?B?UTRuZ1pwZlVLK0V5eFhjL2dQaGFNV255cStKOUt3WE12Z2xwNllsVVYxM2VU?=
+ =?utf-8?B?K2syQXEyMzJ4MWg3c1N1aHlaSWpwcnBiM2RNWlRhN3FIbkpZY1FDMlJITlhk?=
+ =?utf-8?B?QWpXRFYrbjRELzA4TWpibEQ2WDVzdlArbkladG1FRU80UXE1NUZMMDVjQXJl?=
+ =?utf-8?B?aEsyYVVKcStHU1M0TUNwY015QjJ3cUlsYk1lS292dzVxOHVPaFEyRThJM1hn?=
+ =?utf-8?B?RE0vMVhWeDdTWlNXbTZHTzNIL3ZpbkpaS2psYmhHWEpFUnpKeFhXRjlDL1Vk?=
+ =?utf-8?B?QzdvS0Z1VG5mejB5MC9iUUFCZGxzNEVMVmRwaUx4Vm1SM2tHb3NFREVLaVFh?=
+ =?utf-8?B?b0gyS1ZyU3U4ejcxN2xDOFhLZkFrdnlYMExOTzBpL0UwbThIcjE3SHEyV2lv?=
+ =?utf-8?B?YTZBWmU4bmVYdXk4dmdoUUdIR2g5QzhRYWxxOHZoNEJOdEN6dktrTDBhR3Z5?=
+ =?utf-8?B?dTNWRXdkMi9pN1hzUWphUld1UFhETHA1OWJreUlvL1l6YVZQN1oyaFp6ZVRz?=
+ =?utf-8?B?a1lXbXRnMmIvR0Rhb0lMaElCWU50TlAyQ3Y3ZVlvblVPTHN0elJGQzRxMkd2?=
+ =?utf-8?B?clpKZlB4c0lEb3YwcEpTOCtkTDZ3NWYxY3FQVzVDM2puRUtzNUJyTTdEV2hG?=
+ =?utf-8?B?cWgyR1dlQys3blY5VjQrSFpBZjVwSzczL1ZzSU1qelR6Mjhidm9PVUFnT3hr?=
+ =?utf-8?B?b2lnMXRBTHlYaysvSy9CRkpyOGluV0hhYVNWaWd2cWJsdUhoUlo2UUJXR24y?=
+ =?utf-8?B?UmUzYnZlZHpyajRTOHoyMU9pZDduRndaNDJEd09zRXdTem0rQ0VoMlpVdjJq?=
+ =?utf-8?B?WkRpTk90T3AwWGMvQkNBNzdpSmZtYURHSDUrSzZLUXBVeDBCdWFwcnNvUS8w?=
+ =?utf-8?B?cjA4MnRFZ04zclFSY1BxWjFvazJMZk8rUEg4eUNWQ3hGN0YrUUM5ZXBRbk5Z?=
+ =?utf-8?B?QWRBT2tqYWNyUEd1aFI1d0g0V1gvQjV4cExRcFdUYU1qa0dNRkN3Z1l2UE1x?=
+ =?utf-8?B?TThVVzJvOE5OMG5oSHVNdHdiZ2F5S0JDRDN0cTN3cVhTRnpQRVdvSXZYVFdt?=
+ =?utf-8?B?THZ2OVhCYkE0ZUxibjJXYlN3cmRMbUpCT3hVWkdCNDlmcTQyK1ZIRjNpUUp5?=
+ =?utf-8?B?MGtkN2JIS3BmRkhHUSs5bC9wODdTeWJBYkRTVnZuQlIrTTVEN2tMUT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0da04716-41e1-4a85-c1c2-08df490c508e
+X-MS-Exchange-CrossTenant-AuthSource: TYNPR03MB10226.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 02:48:55.0976
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bgGT/ADOr4uDMxBJttJQbc7e92Uxqqxf2zsWcijRR0DGQU2ZSrl2N6K5fiVc4j+lC8fjaqlXML3EdhWdVyNq27OVPBq00Tsfzs4Q/guWZt8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE3PR03MB10620
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_184753_554665_CB009D10 
-X-CRM114-Status: GOOD (  41.20  )
+X-CRM114-CacheID: sfid-20261122_184904_420026_622139DF 
+X-CRM114-Status: GOOD (  10.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,255 +155,300 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-
-> On Nov 23, 2026, at 02:44, James Houghton <jthoughton@google.com> =
-wrote:
->=20
-> set_pte_at() cannot be used to replace in-use vmemmap PTEs on arm64, =
-so
-> replace it with a more specific routine, try_update_vmemmap_pte().
->=20
-> try_update_vmemmap_pte() is used for modifying page table entries such
-> that there is a guarantee that no fault will be taken.
->=20
-> For the generic implementation, please note one difference: set_pte()
-> does not invoke page_table_check_ptes_set(), but set_pte_at(), the =
-call
-> we are about to replace, does. However, this is a functional no-op
-> because page_table_check_ptes_set() does nothing for init_mm PTEs, =
-which
-> vmemmap PTEs are.
->=20
-> Signed-off-by: James Houghton <jthoughton@google.com>
-> ---
-> arch/loongarch/include/asm/pgtable.h |  2 ++
-> arch/riscv/include/asm/pgtable.h     |  2 ++
-> arch/x86/include/asm/pgtable.h       |  2 ++
-> include/linux/pgtable.h              | 22 +++++++++++++++++++
-> mm/hugetlb_vmemmap.c                 | 32 +++++++++++++++++++++++-----
-> 5 files changed, 55 insertions(+), 5 deletions(-)
->=20
-> diff --git a/arch/loongarch/include/asm/pgtable.h =
-b/arch/loongarch/include/asm/pgtable.h
-> index f87603135131..123eda3f6035 100644
-> --- a/arch/loongarch/include/asm/pgtable.h
-> +++ b/arch/loongarch/include/asm/pgtable.h
-> @@ -633,6 +633,8 @@ static inline long pmd_protnone(pmd_t pmd)
-> #define pmd_leaf(pmd)		((pmd_val(pmd) & _PAGE_HUGE) !=3D 0)
-> #define pud_leaf(pud)		((pud_val(pud) & _PAGE_HUGE) !=3D 0)
->=20
-> +#define ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
-> +
-> /*
->  * We provide our own get_unmapped area to cope with the virtual =
-aliasing
->  * constraints placed on us by the cache architecture.
-> diff --git a/arch/riscv/include/asm/pgtable.h =
-b/arch/riscv/include/asm/pgtable.h
-> index 2ebd5fa5adc5..c8d05bc12cc8 100644
-> --- a/arch/riscv/include/asm/pgtable.h
-> +++ b/arch/riscv/include/asm/pgtable.h
-> @@ -1172,6 +1172,8 @@ static inline pud_t pud_modify(pud_t pud, =
-pgprot_t newprot)
->=20
-> #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
->=20
-> +#define ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
-> +
-> /*
->  * Encode/decode swap entries and swap PTEs. Swap PTEs are all PTEs =
-that
->  * are !pte_none() && !pte_present().
-> diff --git a/arch/x86/include/asm/pgtable.h =
-b/arch/x86/include/asm/pgtable.h
-> index 000fc6c1ca37..271cdc61de3a 100644
-> --- a/arch/x86/include/asm/pgtable.h
-> +++ b/arch/x86/include/asm/pgtable.h
-> @@ -1372,6 +1372,8 @@ static inline pmd_t pmdp_establish(struct =
-vm_area_struct *vma,
-> }
-> #endif
->=20
-> +#define ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
-> +
-> #ifdef CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD
-> static inline pud_t pudp_establish(struct vm_area_struct *vma,
-> 		unsigned long address, pud_t *pudp, pud_t pud)
-> diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
-> index bc1353f03b08..ab33df268955 100644
-> --- a/include/linux/pgtable.h
-> +++ b/include/linux/pgtable.h
-> @@ -458,6 +458,28 @@ static inline void set_ptes(struct mm_struct *mm, =
-unsigned long addr,
-> #endif
-> #define set_pte_at(mm, addr, ptep, pte) set_ptes(mm, addr, ptep, pte, =
-1)
->=20
-> +#ifdef ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
-
-Why not ARCH_WANTS_VMEMMAP_UPDATE_PTE? Then x86, loogarch and RISC-V do =
-not need define
-this macro in their ptable.h.
-
-> +/*
-> + * try_update_vmemmap_pte - Remap PTEs used by the vmemmap.
-> + * @addr: Base address of the remapped PTE.
-> + * @ptep: Page table pointer to be overwritten.
-> + * @pte: Page table entry to write.
-> + *
-> + * This function is only to be used to update PTEs that map the =
-vmemmap. The
-> + * only valid transitions supported by this function are: leaf-level
-> + * (PAGE_SIZE), valid-to-valid. The pfn and prot bits may be changed.
-> + *
-> + * Implementations of this function must ensure that, while the =
-update is taking
-> + * place, CPUs will not fault on the remapped virtual address.
-> + */
-> +static inline int try_update_vmemmap_pte(unsigned long addr, pte_t =
-*ptep,
-> +					 pte_t pte)
-
-Please rename it to vmemmap_update_pte, all HVO-related helpers will be =
-prefixed
-with vmemmap.
-
-Again, I still recommend having this function return void. That will =
-make the
-overall code simpler. If we actually run into related issues in the =
-future, we
-can add support for it then. I don't want to introduce unnecessary code
-maintenance now.
-
-Thanks,
-Muchun
-
-> +{
-> +	set_pte(ptep, pte);
-> +	return 0;
-> +}
-> +#endif
-> +
-> #ifndef __HAVE_ARCH_PTEP_SET_ACCESS_FLAGS
-> extern int ptep_set_access_flags(struct vm_area_struct *vma,
-> 				 unsigned long address, pte_t *ptep,
-> diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-> index 2e9cf8d39c89..b4d0311bcc4a 100644
-> --- a/mm/hugetlb_vmemmap.c
-> +++ b/mm/hugetlb_vmemmap.c
-> @@ -218,15 +218,19 @@ static int alloc_vmemmap_page_list(struct =
-list_head *head,
-> 	return -ENOMEM;
-> }
->=20
-> +/*
-> + * Copy @src into the first page on @vmemmap_pages and return it. The =
-page is
-> + * left on the list; the caller must remove it only once it has =
-successfully
-> + * been installed in the vmemmap.
-> + */
-> static struct page *vmemmap_dup_page_from_list(const struct page *src,
-> 		struct list_head *vmemmap_pages)
-> {
-> 	struct page *dst =3D list_first_entry(vmemmap_pages, struct =
-page, lru);
->=20
-> -	list_del(&dst->lru);
-> 	copy_page(page_address(dst), page_address(src));
->=20
-> -	/* Ensure updates to @dst page are visible before set_pte_at(). =
-*/
-> +	/* Ensure updates to @dst page are visible before =
-try_update_vmemmap_pte(). */
-> 	smp_wmb();
->=20
-> 	return dst;
-> @@ -248,6 +252,8 @@ static int vmemmap_optimize_pte(pte_t *pte, =
-unsigned long addr,
-> 	const struct page *page =3D (const struct page *)addr;
-> 	const struct folio *folio =3D page_folio(page);
-> 	struct page *src =3D pte_page(ptep_get(pte)), *dst;
-> +	bool dup =3D false;
-> +	int ret;
->=20
-> 	if (likely(vmemmap_optimizable_pfn(page_to_pfn(page), =
-folio_order(folio)))) {
-> 		dst =3D folio_vmemmap_shared_tail_page(folio);
-> @@ -255,16 +261,27 @@ static int vmemmap_optimize_pte(pte_t *pte, =
-unsigned long addr,
-> 			return -ENOMEM;
-> 	} else {
-> 		dst =3D vmemmap_dup_page_from_list(src, =
-walk->vmemmap_pages);
-> +		dup =3D true;
-> 	}
->=20
-> -	list_add(&src->lru, walk->vmemmap_pages);
-> 	/*
-> 	 * Map the shared tail page writable intentionally. A lockless =
-get that
-> 	 * read a non-zero refcount before the remap can still do its =
-cmpxchg
-> 	 * after it. The refcount is zero, so the cmpxchg fails and =
-leaves the
-> 	 * page unchanged.
-> 	 */
-> -	set_pte_at(&init_mm, addr, pte, mk_pte(dst, PAGE_KERNEL));
-> +	ret =3D try_update_vmemmap_pte(addr, pte, mk_pte(dst, =
-PAGE_KERNEL));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * We successfully overwrote the vmemmap PTE, so the page that =
-was just
-> +	 * unmapped can be freed, and if we mapped a duplicated page, =
-remove it
-> +	 * from the list so that it doesn't get freed later.
-> +	 */
-> +	if (dup)
-> +		list_del(&dst->lru);
-> +	list_add(&src->lru, walk->vmemmap_pages);
->=20
-> 	return 0;
-> }
-> @@ -275,6 +292,7 @@ static int vmemmap_restore_pte(pte_t *pte, =
-unsigned long addr,
-> 	const struct page *page =3D (const struct page *)addr;
-> 	const struct folio *folio =3D page_folio(page);
-> 	struct page *src =3D pte_page(ptep_get(pte)), *dst, *tail;
-> +	int ret;
->=20
-> 	if (unlikely(!vmemmap_optimizable_pfn(page_to_pfn(page), =
-folio_order(folio))))
-> 		return 0;
-> @@ -291,7 +309,11 @@ static int vmemmap_restore_pte(pte_t *pte, =
-unsigned long addr,
-> 		return 0;
->=20
-> 	dst =3D vmemmap_dup_page_from_list(src, walk->vmemmap_pages);
-> -	set_pte_at(&init_mm, addr, pte, mk_pte(dst, PAGE_KERNEL));
-> +	ret =3D try_update_vmemmap_pte(addr, pte, mk_pte(dst, =
-PAGE_KERNEL));
-> +	if (ret)
-> +		return ret;
-> +
-> +	list_del(&dst->lru);
->=20
-> 	return 0;
-> }
-> --=20
-> 2.56.1.809.ga0b61035b5-goog
->=20
-
+在 2026/11/22 23:25, Jerome Brunet 写道:
+> [ EXTERNAL EMAIL ]
+>
+>> Add basic audio driver support for the Amlogic S4 based
+>> Amlogic AQ222 board.
+>>
+>> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
+>> ---
+>>   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 311 ++++++++++++++++
+>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 396 +++++++++++++++++++++
+>>   2 files changed, 707 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+>> index 0a3f81ea0fb0..334b57bde4de 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+>> @@ -75,6 +75,17 @@ vddio_ao1v8: regulator-vddio-ao1v8 {
+>>               regulator-always-on;
+>>        };
+>>
+>> +     vcc5v_reg: regulator-vcc-5v {
+>> +             compatible = "regulator-fixed";
+>> +             vin-supply = <&main_12v>;
+>> +             regulator-name = "VCC5V";
+>> +             regulator-min-microvolt = <5000000>;
+>> +             regulator-max-microvolt = <5000000>;
+>> +             gpio = <&gpio GPIOH_7 GPIO_ACTIVE_HIGH>;
+>> +             startup-delay-us = <7000>;
+>> +             enable-active-high;
+>> +     };
+>> +
+>>        /* SY8120B1ABC DC/DC Regulator. */
+>>        vddcpu: regulator-vddcpu {
+>>                compatible = "pwm-regulator";
+>> @@ -129,6 +140,207 @@ vddcpu: regulator-vddcpu {
+>>                                <699000 98>,
+>>                                <689000 100>;
+>>        };
+>> +
+>> +     dioo2133: audio-amplifier-0 {
+>> +             compatible = "simple-audio-amplifier";
+>> +             enable-gpios = <&gpio GPIOH_8 GPIO_ACTIVE_HIGH>;
+>> +             VCC-supply = <&vcc5v_reg>;
+>> +             sound-name-prefix = "Analog_PA";
+>> +     };
+>> +
+>> +     spdif_dir: audio-spdif-in {
+>> +             compatible = "linux,spdif-dir";
+>> +             #sound-dai-cells = <0>;
+>> +             sound-name-prefix = "DIR";
+>> +     };
+>> +
+>> +     spdif_dit: audio-spdif-out {
+>> +             compatible = "linux,spdif-dit";
+>> +             #sound-dai-cells = <0>;
+>> +             sound-name-prefix = "DIT";
+>> +     };
+>> +
+>> +     sound {
+>> +             compatible = "amlogic,axg-sound-card";
+>> +             model = "aq222";
+>> +             audio-widgets = "Line", "Lineout";
+>> +             audio-aux-devs = <&tdmout_a>, <&tdmout_b>, <&tdmout_c>,
+>> +                              <&tdmin_a>, <&tdmin_b>, <&tdmin_c>,
+>> +                              <&tdmin_lb>, <&dioo2133>;
+>> +             audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+>> +                             "TDMOUT_A IN 1", "FRDDR_B OUT 0",
+>> +                             "TDMOUT_A IN 2", "FRDDR_C OUT 0",
+>> +                             "TDM_A Playback", "TDMOUT_A OUT",
+>> +                             "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+>> +                             "TDMOUT_B IN 1", "FRDDR_B OUT 1",
+>> +                             "TDMOUT_B IN 2", "FRDDR_C OUT 1",
+>> +                             "TDM_B Playback", "TDMOUT_B OUT",
+>> +                             "TDMOUT_C IN 0", "FRDDR_A OUT 2",
+>> +                             "TDMOUT_C IN 1", "FRDDR_B OUT 2",
+>> +                             "TDMOUT_C IN 2", "FRDDR_C OUT 2",
+>> +                             "TDM_C Playback", "TDMOUT_C OUT",
+>> +                             "SPDIFOUT_A IN 0", "FRDDR_A OUT 3",
+>> +                             "SPDIFOUT_A IN 1", "FRDDR_B OUT 3",
+>> +                             "SPDIFOUT_A IN 2", "FRDDR_C OUT 3",
+>> +                             "SPDIFOUT_B IN 0", "FRDDR_A OUT 4",
+>> +                             "SPDIFOUT_B IN 1", "FRDDR_B OUT 4",
+>> +                             "SPDIFOUT_B IN 2", "FRDDR_C OUT 4",
+>> +                             "TDMIN_A IN 0", "TDM_A Capture",
+>> +                             "TDMIN_A IN 1", "TDM_B Capture",
+>> +                             "TDMIN_A IN 2", "TDM_C Capture",
+>> +                             "TDMIN_A IN 3", "TDM_A Loopback",
+>> +                             "TDMIN_A IN 4", "TDM_B Loopback",
+>> +                             "TDMIN_A IN 5", "TDM_C Loopback",
+>> +                             "TDMIN_B IN 0", "TDM_A Capture",
+>> +                             "TDMIN_B IN 1", "TDM_B Capture",
+>> +                             "TDMIN_B IN 2", "TDM_C Capture",
+>> +                             "TDMIN_B IN 3", "TDM_A Loopback",
+>> +                             "TDMIN_B IN 4", "TDM_B Loopback",
+>> +                             "TDMIN_B IN 5", "TDM_C Loopback",
+>> +                             "TDMIN_C IN 0", "TDM_A Capture",
+>> +                             "TDMIN_C IN 1", "TDM_B Capture",
+>> +                             "TDMIN_C IN 2", "TDM_C Capture",
+>> +                             "TDMIN_C IN 3", "TDM_A Loopback",
+>> +                             "TDMIN_C IN 4", "TDM_B Loopback",
+>> +                             "TDMIN_C IN 5", "TDM_C Loopback",
+>> +                             "TDMIN_LB IN 3", "TDM_A Capture",
+>> +                             "TDMIN_LB IN 4", "TDM_B Capture",
+>> +                             "TDMIN_LB IN 5", "TDM_C Capture",
+>> +                             "TDMIN_LB IN 0", "TDM_A Loopback",
+>> +                             "TDMIN_LB IN 1", "TDM_B Loopback",
+>> +                             "TDMIN_LB IN 2", "TDM_C Loopback",
+>> +                             "TODDR_A IN 0", "TDMIN_A OUT",
+>> +                             "TODDR_B IN 0", "TDMIN_A OUT",
+>> +                             "TODDR_C IN 0", "TDMIN_A OUT",
+>> +                             "TODDR_A IN 1", "TDMIN_B OUT",
+>> +                             "TODDR_B IN 1", "TDMIN_B OUT",
+>> +                             "TODDR_C IN 1", "TDMIN_B OUT",
+>> +                             "TODDR_A IN 2", "TDMIN_C OUT",
+>> +                             "TODDR_B IN 2", "TDMIN_C OUT",
+>> +                             "TODDR_C IN 2", "TDMIN_C OUT",
+>> +                             "TODDR_A IN 3", "SPDIFIN Capture",
+>> +                             "TODDR_B IN 3", "SPDIFIN Capture",
+>> +                             "TODDR_C IN 3", "SPDIFIN Capture",
+>> +                             "TODDR_A IN 6", "TDMIN_LB OUT",
+>> +                             "TODDR_B IN 6", "TDMIN_LB OUT",
+>> +                             "TODDR_C IN 6", "TDMIN_LB OUT",
+>> +                             "Analog_PA INL", "ACODEC LOLP",
+>> +                             "Analog_PA INR", "ACODEC LORP",
+>> +                             "Lineout", "Analog_PA OUTL",
+>> +                             "Lineout", "Analog_PA OUTR";
+>> +             clocks = <&clkc_pll CLKID_HIFI_PLL>,
+>> +                      <&clkc_pll CLKID_MPLL0>,
+>> +                      <&clkc_pll CLKID_MPLL1>;
+>> +             assigned-clocks = <&clkc_pll CLKID_HIFI_PLL>,
+>> +                               <&clkc_pll CLKID_MPLL0>,
+>> +                               <&clkc_pll CLKID_MPLL1>;
+>> +             assigned-clock-rates = <1179648000>,
+>> +                                    <270950400>,
+>> +                                    <393216000>;
+>> +
+>> +             dai-link-0 {
+>> +                     sound-dai = <&frddr_a>;
+>> +             };
+>> +
+>> +             dai-link-1 {
+>> +                     sound-dai = <&frddr_b>;
+>> +             };
+>> +
+>> +             dai-link-2 {
+>> +                     sound-dai = <&frddr_c>;
+>> +             };
+>> +
+>> +             dai-link-3 {
+>> +                     sound-dai = <&toddr_a>;
+>> +             };
+>> +
+>> +             dai-link-4 {
+>> +                     sound-dai = <&toddr_b>;
+>> +             };
+>> +
+>> +             dai-link-5 {
+>> +                     sound-dai = <&toddr_c>;
+>> +             };
+>> +
+>> +             dai-link-6 {
+>> +                     sound-dai = <&tdmif_a>;
+>> +                     dai-format = "i2s";
+>> +                     dai-tdm-slot-tx-mask-0 = <1 1>;
+>> +                     mclk-fs = <256>;
+>> +                     codec-0 {
+>> +                             sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
+>> +                     };
+>> +                     codec-1 {
+>> +                             sound-dai = <&toacodec TOACODEC_IN_A>;
+>> +                     };
+>> +             };
+>> +
+>> +             dai-link-7 {
+>> +                     sound-dai = <&tdmif_b>;
+>> +                     dai-format = "i2s";
+>> +                     dai-tdm-slot-tx-mask-0 = <1 1>;
+>> +                     mclk-fs = <256>;
+>> +                     codec-0 {
+>> +                             sound-dai = <&toacodec TOACODEC_IN_B>;
+>> +                     };
+>> +                     codec-1 {
+>> +                             sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+>> +                     };
+>> +             };
+>> +
+>> +             /* 8ch HDMI interface */
+>> +             dai-link-8 {
+>> +                     sound-dai = <&tdmif_c>;
+>> +                     dai-format = "i2s";
+>> +                     dai-tdm-slot-tx-mask-0 = <1 1>;
+>> +                     dai-tdm-slot-tx-mask-1 = <1 1>;
+>> +                     dai-tdm-slot-tx-mask-2 = <1 1>;
+>> +                     dai-tdm-slot-tx-mask-3 = <1 1>;
+>> +                     mclk-fs = <256>;
+>> +                     codec-0 {
+>> +                             sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
+>> +                     };
+>> +             };
+>> +
+>> +             /* spdif hdmi and coax output */
+>> +             dai-link-9 {
+>> +                     sound-dai = <&spdifout_a>;
+>> +
+>> +                     codec-0 {
+>> +                             sound-dai = <&spdif_dit>;
+>> +                     };
+>> +
+>> +                     codec-1 {
+>> +                             sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
+>> +                     };
+>> +             };
+>> +
+>> +             /* spdif hdmi interface */
+>> +             dai-link-10 {
+>> +                     sound-dai = <&spdifout_b>;
+>> +
+>> +                     codec {
+>> +                             sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
+>> +                     };
+>> +             };
+>> +
+>> +             /* spdif coax input */
+>> +             dai-link-11 {
+>> +                     sound-dai = <&spdifin>;
+>> +
+>> +                     codec {
+>> +                             sound-dai = <&spdif_dir>;
+>> +                     };
+> Was this tested ? ...
+>
+>> +             };
+>> +
+>> +             dai-link-12 {
+>> +                     sound-dai = <&toacodec TOACODEC_OUT>;
+>> +
+>> +                     codec {
+>> +                             sound-dai = <&acodec>;
+>> +                     };
+>> +             };
+>> +     };
+>>   };
+>>
+>>   &pwm_ef {
+>> @@ -235,3 +447,102 @@ &ethmac {
+>>        phy-handle = <&internal_ephy>;
+>>        phy-mode = "rmii";
+>>   };
+>> +
+>> +&acodec {
+>> +     AVDD-supply = <&vddio_ao1v8>;
+>> +     status = "okay";
+>> +};
+>> +
+>> +&arb {
+>> +     status = "okay";
+>> +};
+>> +
+>> +&clkc_audio {
+>> +     status = "okay";
+>> +};
+>> +
+>> +&frddr_a {
+>> +     status = "okay";
+>> +};
+>> +
+>> +&frddr_b {
+>> +     status = "okay";
+>> +};
+>> +
+>> +&frddr_c {
+>> +     status = "okay";
+>> +};
+>> +
+>> +&spdifin {
+>> +     status = "okay";
+> ... as sashiko pointed out, you are indeed missing a pinctrl for it.
+>
+> With sashiko remarks handled
+AP222 does not have an SPDIF IN port. I will remove it and update the 
+interrupt number for SPDIF IN.
+>
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+>
+> --
+> Jerome
+>
 
