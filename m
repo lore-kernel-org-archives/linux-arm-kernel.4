@@ -2,61 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB15606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2A9606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FMxSUltK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RFGOyNFY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WCLZRcQR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PhjbVFPumlXKVdjkF+Dvk7jRJ44IJZRUnEdRtn/WA6k=; b=FMxSUltKKqiryX
-	KttO+Ud/By2oLR4vnb/QlL+vdk8vLeDlR0qG06nVROnTsxZvoqkArQfc0nFOXaF1uvaHEQeAZO6Ef
-	oxWohVX6kq9+ROq0YhmrX8pE/Efc6d/rdhjVhyapBrCf5ZYFxYias5Mevm115AyQ7JTqn75boPnNY
-	3RjXk91wbnkiH//vSYIPqhiVuHhcI4Bx6N5EMZh8xJNpq+cQBYLmuqU4fj/o1JjOPK9g9u3hnK2r5
-	zbafPpoZx1lxBh6yVoCpmSbCamdLq//SAPuw1qjWXi6tzlkHAQt7beS6d2l/ieibHo+LkJb/AfF61
-	u6Lwji3aiuJMxuwirS4g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=l9bZ/Z4zkSpMsXFfmdertwdtzZqERHTevFQJLNpFelA=; b=RFGOyNFYrVMRJfEB1fLr3Bw926
+	PgoW4l4L7+OA7Ob7ORyiprFapOnH3Qs/7hNiGUZ1CC5Gr3Dsgv+UYk25gsO03p8a0uWrwSm/b8hPG
+	//lyHKsW0XSdPzL3byPUK80ln+CRTPOmiJ/pCoRhvpiy0DQKujctYMuP0kFviDXPalMgSSG6lgbvw
+	TgOzhHzF0qiwhCzXjGTIRb74PI6/Ez5n4IJJ6Nw0EYHENeFiSkBgUElHaZbom4UkhmvvHJNJoErN7
+	poDvF/CWL4cH1BYrgz3dOgiYhGwHkiwo6d1xdvI2yrCB5w6xX6fndaxvfaxmh2A+Y0THEIwbrrXyi
+	JDrzbwvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYsT-00000004VUk-1Oll;
-	Mon, 23 Nov 2026 18:34:57 +0000
-Received: from mx.gpxsee.org ([37.205.14.76])
+	id 1xVYyf-00000004W7h-0KUP;
+	Mon, 23 Nov 2026 18:41:21 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYsM-00000004VTD-1xi0
+	id 1xVYyd-00000004W7M-2EDq
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:34:55 +0000
-Received: from [192.168.4.18] (unknown [62.77.71.229])
-	by mx.gpxsee.org (Postfix) with ESMTPSA id B75BCC3892;
-	Mon, 23 Nov 2026 19:34:45 +0100 (CET)
-Message-ID: <d10831e3-2d70-4733-984c-ede25be0eae1@gpxsee.org>
-Date: Mon, 23 Nov 2026 19:34:44 +0100
+	Mon, 23 Nov 2026 18:41:19 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D60B76141E;
+	Mon, 23 Nov 2026 18:41:18 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795459278;
+	b=nOFI2nR9O02h+2s9rVukDxLQPHKK+lsLN92RpJ44it9hAlNcCbeWlRX4il80gNy94poK
+	 sH42TDKYpuf+7qZ0HVgB7jtnwlnUUg7TghuNdiBTR12Zzl/XkDTq7+Iuy664AXYKvx/Yt
+	 5sFaBQ6F2KmDMM/ZqwFquBaWr6K927BFXIQXVabugmQO6idEtWK77QNxTl5i/5B7crSyt
+	 yjXmg388Ab2dcOqMFpYEMKWcKvUYpN9Je3xc6QQx/Yw8e21srsK1bjyVtX+rK6MQeWIQm
+	 ylP/GKirMPAp81S+EhYjQ3NrhulnydM3iJZJlFkntkDAJrALV4WIBppgnAZgxO/55oQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795459278;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=l9bZ/Z4zkSpMsXFfmdertwdtzZqERHTevFQJLNpFelA=;
+	b=z9TUIU/H+mDSBGAYVPvhKrKXmqVxX80iGSicYoxvYZYyxb4rw4WRK+U/I6t0BQ9KaMzd
+	 V/PTfO3kMmuHp7pzinoVZ5ICtaGXX/iVKFSza8S14l6IJQ4wKZj2SY1T1kVvNm7ETnuSk
+	 lRHrw0IPzoVvw2meGUb3flFSSo6X+up9+aEskNJYlAh19SUvY7INDdnSmRCW/yPEcuggm
+	 TIsaub/3KG7Oocj/ahsZXJi0ENVhji2JAX4W1CFGcirUTP6WSSvqZJpTv9BSKdB+ItNAd
+	 vgWYg/rU3GmKImNNTtT8YGkSJVtSQoilOkk4eXjEYKYXhY7ggnTbMUs03vEitpVhbGQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3C37E1F000E0;
+	Mon, 23 Nov 2026 18:41:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795459278;
+	bh=l9bZ/Z4zkSpMsXFfmdertwdtzZqERHTevFQJLNpFelA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=WCLZRcQRhnunx3ncBde7d4/wfKUikDruboZ4tfsbfUmediZD9zhOC1XLKOBk1L/c8
+	 xRbs0APQlCjAwrWiOJdSAeoV+AEyUYQKyI5EVLDRvzWX+eefgV28B1oVQEp/5/SPyI
+	 cvI3slNE4WDldtd4gkhmcUwTY5nif87TgNskEzmwvlQDlZL77QLKwv0utKhj7UWxym
+	 4f2SgB+PfMqJ9rGmNY4nExWcBkBPnAPDT1K8HqrCD0/zC9ZPGQrtlj2LceLZTTD3IQ
+	 SeXRQPKVYRC3lqohJ+kTeBwIMrH6kANfW9+g7szTnAUi7xBCTMwxv/lj0qRTfaFZfZ
+	 VlbQnlZgYExfw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 4F2D84C5B3;
+	Mon, 23 Nov 2026 18:41:13 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Mon, 23 Nov 2026 21:41:13 +0300
+Subject: [PATCH 2/5] dt-bindings: pinctrl: Add Cortina Systems CS7542 pin
+ mux
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] dmaengine: xilinx: xdma: Fix broken PM
- suspend/resume
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Lizhi Hou <lizhi.hou@amd.com>, Brian Xu <brian.xu@amd.com>,
- Raj Kumar Rampelli <raj.kumar.rampelli@amd.com>,
- Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
- Michal Simek <michal.simek@amd.com>, dmaengine@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Martin_T=C5=AFma?= <martin.tuma@digiteqautomotive.com>
-References: <20261123122236.5460-1-tumic@gpxsee.org>
- <20261123122236.5460-2-tumic@gpxsee.org> <awRlXmBFmE8R82qv@SMW015318>
- <7285f4da-c5c7-4077-b6cd-bc7921ab04a1@gpxsee.org>
- <awR38q5pZk5DKHZf@SMW015318>
-Content-Language: en-US
-From: =?UTF-8?Q?Martin_T=C5=AFma?= <tumic@gpxsee.org>
-In-Reply-To: <awR38q5pZk5DKHZf@SMW015318>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_103450_681106_27271527 
-X-CRM114-Status: GOOD (  26.78  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261123-cs7542-syscon-v1-2-49858e631449@gmail.com>
+References: <20261123-cs7542-syscon-v1-0-49858e631449@gmail.com>
+In-Reply-To: <20261123-cs7542-syscon-v1-0-49858e631449@gmail.com>
+To: Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459271; l=3060;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=F7pjXfN4EBv+S1ypEhkh5BVaKDFizMnbeKv3RXHbfp0=;
+ b=w8dkZuv2wVtDFo9Ev6CsnIlivgO3sDNUIIHTMLKxbC8nlqrBQr1KZ8oLyKx46tGoO9O33Cy7/
+ StVSRq9sZfIDaPDpwNf8DMlihSaS3bGND+y2N6FyXPtGX8HwNfZ3M28
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,278 +112,124 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/23/26 6:29 PM, Frank Li wrote:
-> On Mon, Nov 23, 2026 at 05:33:01PM +0100, Martin Tůma wrote:
->> On 11/23/26 5:10 PM, Frank Li wrote:
->>> On Mon, Nov 23, 2026 at 01:22:36PM +0100, tumic@gpxsee.org wrote:
->>>> From: Martin Tůma <martin.tuma@digiteqautomotive.com>
->>>>
->>>> Add the missing PM suspend/resume callbacks that properly reconfigure
->>>> the XDMA HW on PCIe suspend/resume.
->>>
->>>
->>> Can you talk about more about why need reconfigure the XDMA HW? Does it
->>> power lost?
->>>
->>
->> Yes, XDMA is a DMA controller used on PCIe cards. When the OS goes to
->> suspend, it powers off the complete PCIe bus and as a result the XDMA HW
->> completely looses all the configuration set up in probe(). On resume, the HW
->> must be reconfigured, otherwise you end up with a broken, iresponsible PCIe
->> card when the system wakes up.
-> 
-> Add such information in commit message, not all PCIe card lost power during
-> suspend. Not all system support D3 Cold. You'd better check one register
-> to decide if really power off.
-> 
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-All documentation that I have seen states, that __you can not know if 
-the power will be cut or no in .suspend__ and __the standard Linux 
-kernel design rule is to assume your device will lose all power (D3cold) 
-during .suspend, save all volatile hardware state, and reinitialize it 
-cleanly in .resume.__
+Describe the GPIO/peripheral selector in the global control block.
+Expose GPIO selection for all five banks and the UART signals used by
+the OpenWrt port, without inventing routes for other peripherals.
+Register offsets and masks are kept out of the device tree ABI.
 
-Finding/writing some scratch register and reading it in .resume (which 
-is probably what you are refering to) seems like a hack to me that only 
-makes the suspend/resume code more complicated. Re-writing the registers 
-even when they were not lost should IMHO cause no harm, so why to 
-complicate the code?
+AI assistance: Codex prepared this change from the existing OpenWrt port
+and GPL vendor sources.
 
-M.
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ .../bindings/pinctrl/cortina,cs7542-pinctrl.yaml   | 84 ++++++++++++++++++++++
+ 1 file changed, 84 insertions(+)
 
-> Frank
-> 
->>
->> M.
->>
->>> Frank
->>>
->>>>
->>>> Signed-off-by: Martin Tůma <martin.tuma@digiteqautomotive.com>
->>>> ---
->>>>    drivers/dma/xilinx/xdma.c | 146 ++++++++++++++++++++++++++++++++------
->>>>    1 file changed, 123 insertions(+), 23 deletions(-)
->>>>
->>>> diff --git a/drivers/dma/xilinx/xdma.c b/drivers/dma/xilinx/xdma.c
->>>> index 9d827c9a1267..fade49eaf1a8 100644
->>>> --- a/drivers/dma/xilinx/xdma.c
->>>> +++ b/drivers/dma/xilinx/xdma.c
->>>> @@ -123,6 +123,7 @@ struct xdma_desc {
->>>>     * @irq_start: Start IRQ assigned to device
->>>>     * @irq_num: Number of IRQ assigned to device
->>>>     * @status: Initialization status
->>>> + * @usr_irq_mask: User IRQ mask for PM suspend/resume
->>>>     */
->>>>    struct xdma_device {
->>>>    	struct platform_device	*pdev;
->>>> @@ -135,6 +136,7 @@ struct xdma_device {
->>>>    	u32			irq_start;
->>>>    	u32			irq_num;
->>>>    	u32			status;
->>>> +	u32			usr_irq_mask;
->>>>    };
->>>>
->>>>    #define xdma_err(xdev, fmt, args...)					\
->>>> @@ -398,6 +400,26 @@ static int xdma_xfer_stop(struct xdma_chan *xchan)
->>>>    			    CHAN_CTRL_RUN_STOP);
->>>>    }
->>>>
->>>> +/**
->>>> + * xdma_reconfig_channels - Reconfigure DMA channels
->>>> + * @chans: channels configuration
->>>> + * @chan_num: number of channels
->>>> + */
->>>> +static int xdma_reconfig_channels(struct xdma_chan *chans,
->>>> +				  u32 chan_num)
->>>> +{
->>>> +	int i, ret;
->>>> +
->>>> +	for (i = 0; i < chan_num; i++) {
->>>> +		/* init channel hardware */
->>>> +		ret = xdma_channel_init(&chans[i]);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>>    /**
->>>>     * xdma_alloc_channels - Detect and allocate DMA channels
->>>>     * @xdev: DMA device pointer
->>>> @@ -1018,6 +1040,55 @@ static int xdma_set_vector_reg(struct xdma_device *xdev, u32 vec_tbl_start,
->>>>    	return 0;
->>>>    }
->>>>
->>>> +/**
->>>> + * xdma_irq_config - Configure IRQs
->>>> + * @xdev: DMA device pointer
->>>> + */
->>>> +static int xdma_irq_config(struct xdma_device *xdev)
->>>> +{
->>>> +	u32 user_irq_start;
->>>> +	int ret;
->>>> +
->>>> +	/* configure hardware IRQ registers */
->>>> +	ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
->>>> +				  XDMA_CHAN_NUM(xdev));
->>>> +	if (ret) {
->>>> +		xdma_err(xdev, "failed to set channel vectors: %d", ret);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	/* configure user IRQ registers if needed */
->>>> +	user_irq_start = XDMA_CHAN_NUM(xdev);
->>>> +	if (xdev->irq_num > user_irq_start) {
->>>> +		ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
->>>> +					  user_irq_start,
->>>> +					  xdev->irq_num - user_irq_start);
->>>> +		if (ret) {
->>>> +			xdma_err(xdev, "failed to set user vectors: %d", ret);
->>>> +			return ret;
->>>> +		}
->>>> +	}
->>>> +
->>>> +	/* enable channels interrupts */
->>>> +	ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
->>>> +	if (ret) {
->>>> +		xdma_err(xdev, "failed to enable channel IRQs: %d", ret);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	/* enable user interrupts if needed */
->>>> +	if (xdev->irq_num > user_irq_start) {
->>>> +		ret = regmap_write(xdev->rmap, XDMA_IRQ_USER_INT_EN_W1S,
->>>> +				   xdev->usr_irq_mask);
->>>> +		if (ret) {
->>>> +			xdma_err(xdev, "failed to enable user IRQs: %d", ret);
->>>> +			return ret;
->>>> +		}
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>>    /**
->>>>     * xdma_irq_init - initialize IRQs
->>>>     * @xdev: DMA device pointer
->>>> @@ -1025,7 +1096,6 @@ static int xdma_set_vector_reg(struct xdma_device *xdev, u32 vec_tbl_start,
->>>>    static int xdma_irq_init(struct xdma_device *xdev)
->>>>    {
->>>>    	u32 irq = xdev->irq_start;
->>>> -	u32 user_irq_start;
->>>>    	int i, j, ret;
->>>>
->>>>    	/* return failure if there are not enough IRQs */
->>>> @@ -1060,28 +1130,8 @@ static int xdma_irq_init(struct xdma_device *xdev)
->>>>    		irq++;
->>>>    	}
->>>>
->>>> -	/* config hardware IRQ registers */
->>>> -	ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
->>>> -				  XDMA_CHAN_NUM(xdev));
->>>> -	if (ret) {
->>>> -		xdma_err(xdev, "failed to set channel vectors: %d", ret);
->>>> -		goto failed_init_c2h;
->>>> -	}
->>>> -
->>>> -	/* config user IRQ registers if needed */
->>>> -	user_irq_start = XDMA_CHAN_NUM(xdev);
->>>> -	if (xdev->irq_num > user_irq_start) {
->>>> -		ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
->>>> -					  user_irq_start,
->>>> -					  xdev->irq_num - user_irq_start);
->>>> -		if (ret) {
->>>> -			xdma_err(xdev, "failed to set user vectors: %d", ret);
->>>> -			goto failed_init_c2h;
->>>> -		}
->>>> -	}
->>>> -
->>>> -	/* enable interrupt */
->>>> -	ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
->>>> +	/* configure all HW IRQ registers */
->>>> +	ret = xdma_irq_config(xdev);
->>>>    	if (ret)
->>>>    		goto failed_init_c2h;
->>>>
->>>> @@ -1297,15 +1347,65 @@ static int xdma_probe(struct platform_device *pdev)
->>>>    	return ret;
->>>>    }
->>>>
->>>> +/**
->>>> + * xdma_suspend - PM suspend callback
->>>> + * @dev: XDMA device pointer
->>>> + */
->>>> +static int xdma_suspend(struct device *dev)
->>>> +{
->>>> +	struct xdma_device *xdev = dev_get_drvdata(dev);
->>>> +	int ret;
->>>> +
->>>> +	ret = regmap_read(xdev->rmap, XDMA_IRQ_USER_INT_EN,
->>>> +			  &xdev->usr_irq_mask);
->>>> +	if (ret) {
->>>> +		xdma_err(xdev, "User IRQ vector backup failed: %d", ret);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1C, ~0);
->>>> +	if (ret)
->>>> +		xdma_err(xdev, "DMA channels IRQ disable failed: %d", ret);
->>>> +
->>>> +	return ret;
->>>> +}
->>>> +
->>>> +/**
->>>> + * xdma_resume - PM resume callback
->>>> + * @dev: XDMA device pointer
->>>> + */
->>>> +static int xdma_resume(struct device *dev)
->>>> +{
->>>> +	struct xdma_device *xdev = dev_get_drvdata(dev);
->>>> +	int ret;
->>>> +
->>>> +	ret = xdma_reconfig_channels(xdev->h2c_chans, xdev->h2c_chan_num);
->>>> +	if (ret) {
->>>> +		xdma_err(xdev, "H2C channels reconfiguration failed: %d", ret);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	ret = xdma_reconfig_channels(xdev->c2h_chans, xdev->c2h_chan_num);
->>>> +	if (ret) {
->>>> +		xdma_err(xdev, "C2H channels reconfiguration failed: %d", ret);
->>>> +		return ret;
->>>> +	}
->>>> +
->>>> +	return xdma_irq_config(xdev);
->>>> +}
->>>> +
->>>>    static const struct platform_device_id xdma_id_table[] = {
->>>>    	{ "xdma", 0},
->>>>    	{ },
->>>>    };
->>>>    MODULE_DEVICE_TABLE(platform, xdma_id_table);
->>>>
->>>> +static DEFINE_NOIRQ_DEV_PM_OPS(xdma_dev_pm_ops, xdma_suspend, xdma_resume);
->>>> +
->>>>    static struct platform_driver xdma_driver = {
->>>>    	.driver		= {
->>>>    		.name = "xdma",
->>>> +		.pm = pm_sleep_ptr(&xdma_dev_pm_ops),
->>>>    	},
->>>>    	.id_table	= xdma_id_table,
->>>>    	.probe		= xdma_probe,
->>>> --
->>>> 2.56.1
->>>>
->>
+diff --git a/Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
+new file mode 100644
+index 000000000..cd5c81a0d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cortina Systems CS7542 pin multiplexer
++
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
++
++description:
++  The pin multiplexer is a child of the CS7542 global control syscon.
++  Five 32-bit registers select GPIO mode when a pin's bit is set, or the
++  peripheral signal when it is clear. Pin numbers match the five GPIO
++  banks, from gpio0 to gpio159. Initially only GPIO mode and the UART
++  signals on gpio72 through gpio77 are supported. Other peripheral
++  routes and electrical configuration are not described here.
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++properties:
++  compatible:
++    const: cortina,cs7542-pinctrl
++
++patternProperties:
++  '-pins$':
++    type: object
++    $ref: pinmux-node.yaml#
++    additionalProperties: false
++
++    properties:
++      function:
++        enum: [gpio, uart]
++
++      pins:
++        items:
++          pattern: '^gpio([0-9]|[1-9][0-9]|1[0-5][0-9])$'
++        minItems: 1
++        maxItems: 160
++
++    required:
++      - function
++      - pins
++
++    allOf:
++      - if:
++          properties:
++            function:
++              const: uart
++        then:
++          properties:
++            pins:
++              items:
++                enum: [gpio72, gpio73, gpio74, gpio75, gpio76, gpio77]
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    syscon@f0000000 {
++        compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
++        reg = <0xf0000000 0x100>;
++        #clock-cells = <1>;
++
++        pinctrl {
++            compatible = "cortina,cs7542-pinctrl";
++
++            reset-pins {
++                function = "gpio";
++                pins = "gpio37";
++            };
++
++            aux-uarts-pins {
++                function = "uart";
++                pins = "gpio72", "gpio73", "gpio74", "gpio75",
++                       "gpio76", "gpio77";
++            };
++        };
++    };
+
+-- 
+2.53.0
+
 
 
