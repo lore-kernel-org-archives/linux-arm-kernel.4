@@ -2,111 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11F8606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE274606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mqk5z6Tj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ajmtnBUJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o3lSFz7h;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fYHv7ajB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=QnkvwRjxalFfpIWRivbWeaDT7ktUTxee4WzIGdLxdG4=; b=mqk5z6Tj8x9/6ekPXvu1OSro3f
-	aeapVUP368Inhj0dcJmwmaiKpOixR6sPhSD+jV0l6nfowKjhSFBCJRf3oCZ2K2Gzfnx0bgAprfh1b
-	eO10AeSj+ztO6Y9mBuKXzOySu2VcgQuA78cYlfOtYbIeBZZr8T1pMsj8s2f008ZkWDAjUhk9JtJuy
-	tzPqHYUxt3ym0bPoevP0JnVFSNxzumlMz/UovqO3zpmRYgjJtPckKgKQuaF9OhTjnHelejfhAIKdv
-	CUd4v199bBWO6OC1yIyUk5Vbv04YyeCcgdI7dqCSoe03QAdmEEsk/p8JpfIg46oRSXCtKHEscaBrP
-	7tEFGE3w==;
+	bh=hlFje3mu64D8tZjZSmjSeWykRYlygG1YqFQ9P/8ISqY=; b=o3lSFz7htXU95OOsQb8FmOB0Ia
+	vQtTNB9Fuhch2rL3dk+Vwlq1WP4xHm7aXzuoqToAQu3+vTqIwWXISYMXhIU4BrAzv/8r+vc2K8DNK
+	0xo50YUpVNosk7Ib4RhgfPMqH0lEaCdZrUt5V1g5w4jezPTpJ8oLnOUbqc73wCH2w6sMRwW0eA5jc
+	vXM+CUrfoppJCRxiiIIuW1ztt4QrPmDy8zxzrAGhWR3Fji/XrcsDFBAYmPTHVfsmiTuyOgcHpstiZ
+	ZaiibOAxnE4UmX8646dmI8QpxxUFBKOVy+YXd+6eHN6sBZFT08Z23/jnhWWyQx5LCOKcbwyvd/LfI
+	BgDDp3kQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1i-00000004YUa-0lQS;
-	Mon, 23 Nov 2026 18:44:30 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVZ2K-00000004Yvv-1MtZ;
+	Mon, 23 Nov 2026 18:45:08 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1R-00000004YGW-3sM3;
-	Mon, 23 Nov 2026 18:44:14 +0000
+	id 1xVZ1a-00000004YNc-0vMH
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 18:44:22 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 562666242E;
-	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 55E2862453;
+	Mon, 23 Nov 2026 18:44:21 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459452;
-	b=iwM1qdrPfmVbcUTXLfzvhiziiK0DWKtP31u1Rb9bkFka84OmxWSe3pXAdGTP1wtUVo+d
-	 uwLq2ZBY1Vee8aEP0J3TkRIkZNZu57V++HyTxX7AmeAKdgow7Zhg5dJznbNMObuGhFGUf
-	 ngdmACrxllxU/rqA4zFQSGELRBTqqi9dcIXUJ3yFGmDhlyZiBypItpVaU72X8I90T9fLM
-	 zJ4aQDUXAh/4wc9/oGhFXxqQy8I1BwCdzFoKUpCKHduZ6yAWiSKAIzbuxf8UTHLOs6vkD
-	 oOkPwDnOsPI/Oim7F18NHjyZJC3DP8UGhCV9Oa7e/nYHOgI6kjuI3G9YXnoCVHmzd0A==
+	t=1795459460;
+	b=VBBgQ6Kgiu9hrl8cjnsxnBXtU9DZdGF81ZN3y+conxf1Wq1mY5mOKRvWLm1UljS1TGWI
+	 WJG4CxgdgpaDNhF0r5GlAiOeGT+WFTlZSICIoR4mrWRjhxv8nYmMXlb6Xuxbrx3W+X7Et
+	 r1mq4qOK6BJfC5/Dm8rUIw4lLrDVgG7InRF9f5Bk4V/7VTyYxoqPW7i5j3rp7yrnTBSpb
+	 tupnUowanM6+eLUkiTeUzBdUO09OOTMBQvFdvhEUIfahgx7pKQrUvynNkDS1XhSPJSMu0
+	 ZAwFA650n9OVHlkeKOLy43t6fSVhM48/MS6iQs1HvlegkCjfyrIW9HJf8dRxthgpQVA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459452;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=QnkvwRjxalFfpIWRivbWeaDT7ktUTxee4WzIGdLxdG4=;
-	b=O9FZxIK7V74wo0ipTWQzJKHEIu2YRkZV+vOEg7v/soVOQTfW6qm3KMnpZF+NHHEOedRJ
-	 JHes5/5MDYY3lfHDwU38KomEdm1DB4A4NZwiu9FDmZBbPpr9A/PhJYhmuZb9YqhTU0f1H
-	 MsVa4/3M2kRvMAxlrDm3jjIn022xJq64uxqq+hNt76g6N7agvo2LB8SCdg1aLHlHsel8v
-	 +Tjb8kiYSC/apwFu7zP3jfzsps2043METs22FSvEOcRwKKZTrJZakaTyK4BzaKwWWQe5T
-	 0sqZTsbcYOA4SdIocdmU3iqV6k1M2mKmzWOIuV3puPUaMspPcrsgso5u22EEbDb2SDg==
+	c=relaxed/relaxed; t=1795459460;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=hlFje3mu64D8tZjZSmjSeWykRYlygG1YqFQ9P/8ISqY=;
+	b=dsuiIk+W5pPtniUFAsPRckWt+YSCF7TcrDwNxEzNibCZhNoZ8FPhylwSpfxtWG7fqeay
+	 HiCY3wg3q2sdWtWVjUffuU8BTYkIRe+qQdE30ZPCYW995VDeDnLwqb60RCY59Jw7i7v/W
+	 nvhwB/2kuHRGMiC39OD1OO+pr8dIl81N3DcRZn9V+YJwbFAJseDHEO4ecqM+YWIs0+Xe0
+	 o0wEWh9tFa9an10F1F9gqolP1xNHynjg3eO6jm0qOwP4TeYBc0kFvhG5Aa4f4c57uZ54H
+	 pyvXHQ1AaZVnLrJE9VfTfEL2ueGNuV+zsEvlaJQYLrdd25oTO6bHjc3+UCwidJgjDcg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5C6EB1F000E6;
-	Mon, 23 Nov 2026 18:43:41 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 89B1B1F0093C;
+	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459452;
-	bh=QnkvwRjxalFfpIWRivbWeaDT7ktUTxee4WzIGdLxdG4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=ajmtnBUJsEarNGNTrFpLcdUmna3AXEwf3NGNRe69mR9XYhxh4x8sZ7nFxNY27qCAz
-	 0KHyaLRnVZ48Nm+YMKg06IaXDRPENBxux58XEKccw429GoWHL91ySXes0Bd9zvl8dY
-	 SPSyux8wo5TPaS05RWAs+89tU/jWcOQD3QLBmYv7dBi6kZl2o2vXgD2EKkv+NQhs9l
-	 eWg0P42IXU1Mjqi9lQXtzyH5KPxXiJR6XlrLUZdWT8YqVLtESzi+03++rtb7O6nNDP
-	 PXHTsqoh3Tm7X20/7j6uqMAwy+imKr8wXL2J52cnBfbewVQYadwFz3SCwFCO3qkjdh
-	 SHbBUtCSOM6fw==
+	s=k20260515; t=1795459460;
+	bh=hlFje3mu64D8tZjZSmjSeWykRYlygG1YqFQ9P/8ISqY=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=fYHv7ajB1a42uH9qbeYYI2RqbeJkjgM06y1KTnOJ7/6+AYulhTpA1qxEAnQtxSpp+
+	 ZqOnCNfG3kf2dhKoNsGH4DF2nPLRfA7vkR3my8Z+yaA9xT5OxZqCd6+5owcYpS1TJO
+	 2xueHUuWQrNeBM/DvHDyaaCfcKC+pqzFhxxK7mpfTF/QsYtNdy5v5xZPcZwmxGE0lI
+	 oFqdKQuYOxEwxY0XHNNVc0VjkhNxBGtW6QHrd2B2Bhfp4Ch1Siiv9dSRzUn3Oqy0sA
+	 bTN4T7U4jOmI0EdeF79xBKE3WC5r7IKpzZ1oA/oQ4gfdGQ9/Omi1cI4b3THfc6/OOX
+	 F62cCFW3jkJ4w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7F34D4C60E;
-	Mon, 23 Nov 2026 18:43:34 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 190554C5BB;
+	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:43:34 +0300
-Subject: [PATCH 6/8] dt-bindings: PCI: Describe the CS7542 host controller
+Subject: [PATCH net-next 0/5] net: cortina: Add CS7542 network engine
+ support
+Date: Mon, 23 Nov 2026 21:44:09 +0300
+Message-Id: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-pcie-v1-6-4cde5201d404@gmail.com>
-References: <20261123-b4-cs7542-pcie-v1-0-4cde5201d404@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-pcie-v1-0-4cde5201d404@gmail.com>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Krzysztof Wilczynski <kwilczynski@kernel.org>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/z2OTW7DIBCFr2LNulTBgA1e9R5VFjAeEqoatwyJU
+ kW5e3Fqdfn0fr53B6aSiGHq7lDomjituQn50gGefT6RSHPT0B/6QcpeiaAF8mh0L6ieqWSqwji
+ UZg440kjQil+FYro9R99hC2S6VTj+OXwJH4R129yzhb4vjVv3QvBMAtdlSXXqwuBd9EojaWlHD
+ IObFRprvQ4hRlQSqZFt3KYWYvbPw1P3f3f/yj+MaxZXKQ5CO2ssDUpq7d5Oi0+frw0Hx8fjF1X
+ dTlkOAQAA
+X-Change-ID: 20261123-b4-cs7542-ethernet-59c15dbc7e7e
+To: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
+ Linus Walleij <linusw@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459409; l=3852;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459449; l=4440;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=VvGufEimroLNQa6ffIpguLzS7u9g0TkrXCLDyMng0v4=;
- b=JieypMZCDH6u0OxjVZGYNq5tN+RDJuSJisbUr1Op0hPgZa3zMYJsYqEAUt37atyhVE4j2mlKr
- OOdPQkLlypZBhyDxaq9DYII4vS/uhs4vFH9UOn3f+Zi1eNBjOlZ0okt
+ bh=LeaWLqxAis70C57qJ2TkPR2rGUR35IIvdrZPO5ZWMxo=;
+ b=VpNX0QkmzL8UhlH1vyDAY2gb2UkTdTsvcZieISVbZwONR0kkncKFDMB2NxwMFsp2qbe82X3BF
+ 2D1gOAJgTwOCeNEqRepguPnzuN9sLOLjbzMohlnT5fZ5KjmQFKQhipy
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
  auth_id=1085
 X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,160 +119,94 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Add a CPU datapath for the Cortina Systems CS7542 network engine and
+an exclusive reset provider for its NI/FE/TM/QM/scheduler/XRAM and
+DMA-LSO/SSP domain. The three GMACs use phylink; Almond+ connects two
+of them to the CPU ports of a QCA8337 switch handled by DSA.
 
-Describe the DesignWare host wrapper, clock/reset/PHY consumers, combined
-interrupt and INTx domain. Document the root configuration access limit.
+The driver uses NAPI receive queues and a shared coherent TX ring,
+with scatter-gather TX and multi-buffer RX. Hardware-returned RX
+addresses are checked against tracked mappings and their ownership.
+Indirect initialization waits are bounded and errors prevent activation.
+Unregister/remove drains ports and software work, then confirms the
+complete reset domain before releasing DMA allocations. If reset fails
+after activation, those allocations remain pinned until reboot.
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+The whole DMA-LSO/SSP block is exclusively owned. Another SSP DMA user
+cannot run concurrently; the separately prepared CS7542 NAND driver
+uses PIO. Initial QM support requires a no-map reservation of the upper
+64 MiB of the verified 512 MiB DDR layout. Hardware offload, unverified
+coalescing clock assumptions and power management are not advertised.
+
+This series depends on the CS7542 global clock/pinctrl v1 series:
+https://lore.kernel.org/all/20261123-cs7542-syscon-v1-0-49858e631449@gmail.com/
+Both series are based on Linux v7.4-rc4. Board DTS enablement is
+kept in the integration branch and OpenWrt target, outside these five
+patches. The reset provider and Ethernet driver do not depend on the
+Cortina platform Kconfig symbol or COMPILE_TEST.
+
+Validation on Securifi Almond+:
+- Full independent ARM vmlinux and module builds, =y and =m, with
+  COMPILE_TEST=n and no platform series; DT schemas and examples.
+- Actual helper fault-path tests under ASan/UBSan, including RX ownership,
+  TX mapping rollback, probe failures, table timeouts and reset failures.
+- RAM module lifecycle: 132 checks / 0 failures, ten load/unload cycles,
+  active-port teardown, reset readback and reset-failure DMA retention.
+- External LAN1: 600/600 UDP echoes with byte comparison and 20/20 ICMPv6
+  packets with 1400-byte payloads; no GMAC RX/TX errors.
+- QCA CPU6-to-CPU0: 448/448 nonlinear packets, including RX buffer
+  boundaries and 8192-byte payloads, with TX descriptor-ring wrap.
+- Combined RAM test with PCIe and read-only NAND: all six PCIe devices,
+  protected NAND hashes while the NE reset is held, and Ethernet reload.
+- The original 14 protected flash/configuration hashes remained unchanged
+  after returning to the installed OpenWrt.
+
+Only LAN1 has been externally cable-tested in these runs. No throughput
+or entropy claim follows from these functional checks.
+
 ---
- .../bindings/pci/cortina,cs7542-pcie.yaml          | 127 +++++++++++++++++++++
- 1 file changed, 127 insertions(+)
+Fil Dunsky (5):
+      dt-bindings: reset: Add Cortina CS7542 network engine reset domain
+      reset: Add Cortina CS7542 network engine domain control
+      dt-bindings: net: Add Cortina CS7542 network engine
+      net: cortina: Add CS7542 CPU network datapath
+      MAINTAINERS: Add CS7542 network engine support
 
-diff --git a/Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml b/Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
-new file mode 100644
-index 000000000..8883b8d09
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/cortina,cs7542-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina Systems CS7542 PCIe host controller
-+
-+maintainers:
-+  - Fil Dunsky <filipp.dunsky@gmail.com>
-+
-+description: |
-+  DesignWare host with a Cortina application wrapper. A single interrupt
-+  multiplexes four INTx lines, the internal MSI receiver and link errors.
-+  Root-port configuration is accessible only below offset 0x200; the
-+  DesignWare private register bank starts at offset 0x700.
-+
-+allOf:
-+  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-+
-+properties:
-+  compatible:
-+    const: cortina,cs7542-pcie
-+
-+  reg:
-+    items:
-+      - description: DBI registers including the viewport iATU
-+      - description: Downstream configuration window
-+      - description: Application wrapper registers
-+
-+  reg-names:
-+    items:
-+      - const: dbi
-+      - const: config
-+      - const: app
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    const: msi
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    const: pcie
-+
-+  num-lanes:
-+    const: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Optional active-low endpoint PERST#
-+
-+  interrupt-controller:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      "#address-cells":
-+        const: 0
-+      "#interrupt-cells":
-+        const: 1
-+      interrupt-controller: true
-+    required:
-+      - "#address-cells"
-+      - "#interrupt-cells"
-+      - interrupt-controller
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - resets
-+  - phys
-+  - phy-names
-+  - num-lanes
-+  - interrupt-controller
-+  - interrupt-map
-+  - interrupt-map-mask
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    pcie@80000000 {
-+        compatible = "cortina,cs7542-pcie";
-+        reg = <0x80000000 0x1000>, <0x80001000 0x1000>,
-+              <0xf00a0000 0x100>;
-+        reg-names = "dbi", "config", "app";
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        device_type = "pci";
-+        bus-range = <0 0xff>;
-+        num-lanes = <1>;
-+        ranges = <0x82000000 0 0x80200000 0x80200000 0 0x1fe00000>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "msi";
-+        clocks = <&pcie_control 0>;
-+        resets = <&pcie_control 0>;
-+        phys = <&serdes 0>;
-+        phy-names = "pcie";
-+        #interrupt-cells = <1>;
-+        interrupt-map-mask = <0 0 0 7>;
-+        interrupt-map = <0 0 0 1 &pcie_intc 1>,
-+                        <0 0 0 2 &pcie_intc 2>,
-+                        <0 0 0 3 &pcie_intc 3>,
-+                        <0 0 0 4 &pcie_intc 4>;
-+
-+        pcie_intc: interrupt-controller {
-+            #address-cells = <0>;
-+            #interrupt-cells = <1>;
-+            interrupt-controller;
-+        };
-+    };
+ .../bindings/net/cortina,cs7542-ethernet.yaml      |  139 ++
+ .../bindings/reset/cortina,cs7542-ne-reset.yaml    |   42 +
+ .../soc/cortina/cortina,cs7542-syscon.yaml         |    4 +
+ MAINTAINERS                                        |    9 +
+ drivers/net/ethernet/cortina/Kconfig               |   14 +
+ drivers/net/ethernet/cortina/Makefile              |    3 +
+ drivers/net/ethernet/cortina/cs752x_fe.c           |  477 ++++++
+ drivers/net/ethernet/cortina/cs752x_ne.c           | 1783 ++++++++++++++++++++
+ drivers/net/ethernet/cortina/cs752x_ne.h           |   13 +
+ drivers/net/ethernet/cortina/cs752x_sch_tm.c       |  679 ++++++++
+ drivers/reset/Kconfig                              |   10 +
+ drivers/reset/Makefile                             |    2 +
+ drivers/reset/reset-cs7542-ne.c                    |  114 ++
+ 13 files changed, 3289 insertions(+)
+---
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+change-id: 20261123-b4-cs7542-ethernet-59c15dbc7e7e
+prerequisite-message-id: 20261123-cs7542-syscon-v1-0-49858e631449@gmail.com
+prerequisite-patch-id: 4b568d742095f1a61312c911d2b6e81c8e754312
+prerequisite-patch-id: a4bba26a3aac57e4e4229a727fdf94677373493a
+prerequisite-patch-id: f8a2ba71717f71ca2bedda986f8b861995cdc586
+prerequisite-patch-id: 7a2275c69dcde437fc8badf2bba06d451943a66f
+prerequisite-patch-id: 25220835f5d2506a01ba652d86f9b9ac3ad5121a
 
--- 
-2.53.0
+Best regards,
+--  
+Fil Dunsky <filipp.dunsky@gmail.com>
 
 
 
