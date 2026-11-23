@@ -2,100 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2022606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28DD606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g34L6ejK;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=is5rjkXy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WdKamUoy;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=FQFfSCeT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ig8NpIwfuVm57PMXnS1/HkeHo8NBh9VYFSj4z2Q3cYI=; b=g34L6ejKqdDRKf
-	OVnfoZevFgNUVv+UN1LHdrBB3j9nYRHidAoyjCqmYg4bjt6Fa/cSmMmNLruyyYZx6/+oQnPDVTXpP
-	m9O04LjmZePQoWnxZdscDDgrvRUsjMD0MgjJkdmLnmT4W/LwnB5p56T06i4YJ2hsky7yTTt2vFblr
-	4cGzllybOeDN8sLls22TPkCWjAOeS3BXkdoXJBiirZ2z3fDJNA0Vr/46vcEvtH8Gk80mLB06CPR+o
-	dKsslPxweCp+4ZHcTT7eeTE4e/i3LZPdxGWkVRlpvV0YjYTRYBgCzRKNoIRJEGucMEYrs3IjMlUe9
-	ABS3rhLepLxo0eA28XbA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=lHyRaJe2Oxu6YF/YZuFS79LHuEjt4FTk13YOidFcKI0=; b=WdKamUoyWDxLNs/C/hQW2S554Z
+	hmxMIKcQfc4qoBjkqUsKtJJE+ZKeVrA1KWqNoolW+VU30k0JNz7NpCe/dxxmEsPAYboTqtR0R/Q4i
+	3h4YNFRUz4gwp5wuVpuKvQ9O7VDFf09vBFyMbknbF5KFSd42w5ZTi3bJat/MfeMPO4kqCbvRXBDth
+	D2c4VYsuW5scI6gMJ2HhTaH6ve2RfLByCk+zHUoeqCCWOoCtxjy+xuQbw2VAiXCt5oyv6WqgY8IDh
+	6gVXyuwbw51pTyfxr//jeIo/kdjWDXdQa9LcG/Vhuw9Y7GWiLFoKhtqJxNsyYvmv9KiE7RMP26E78
+	35Hncd/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQFq-00000002hKi-0S3C;
-	Mon, 23 Nov 2026 09:22:31 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQER-00000002gmp-2otn
+	id 1xVQGD-00000002hQ7-1oQh;
+	Mon, 23 Nov 2026 09:22:53 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVQER-00000002gmq-2Ow3
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:21:14 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so29082995e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:20:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795425651; x=1796030451; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Ig8NpIwfuVm57PMXnS1/HkeHo8NBh9VYFSj4z2Q3cYI=;
-        b=is5rjkXyAZk/gdPB4hCA9eLzdRJeF4dJxOacloxN7WTUGbkWivoKAbXdJrbzhmU47h
-         aZ8IMWwtT5RTbZXiLEGckwB4r6jSUA9/TQMnI6e/2tcr4U5L2YeIrZHCAE7AJ8jUK+kL
-         rmkwWQMbgl2/eq0H54pgtakYM3IjSGdk/QfNFY199Ej3ds0aaYhfY/WWYW/7of9dnkvC
-         w4JHrrB/Gz3MhSdnJR9pNcgNP0EpFLceYBKkr9ZG4+xlUFn28yq7FX5CYxLWV1GUgd0l
-         zf8QCoUpqHZX56sWPCS6SGc5pHR1z6zA5OXCRZLTDS7EETxz6tdXeBXNoEYHupRjiesz
-         SKeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795425651; x=1796030451;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Ig8NpIwfuVm57PMXnS1/HkeHo8NBh9VYFSj4z2Q3cYI=;
-        b=KbsGpgWUXRc1nxqDyePxtMtrjC2nJQamiP5qF7KiTFzlRiHWe+8gOlCYsb0NoSSxoR
-         TJXgv4T4QrdZLy/gLYCQTpLA3GQk/lcHI99iIb6CNFbAArZJbPSu69cP3g/eGqOHVEkV
-         9qJAg7cdwL83cI6ODmyaAC9MywABl8yCf3CX2udUcqPQn6+GgxVQWC5IVzL0hfUIqDge
-         pdqzGtr1g+nCCXxJ9iZkP256RwGKNNSqDzKzUFzjo7+dZjS7tysQU67tq22TGqloGsyi
-         qsGGJn8HoMjkikH5LgZUCM2sc9Hn4o0+Jzks0pjHYeMMlVM2OCBqPwlGx1/lboiQaTNZ
-         JGVQ==
-X-Gm-Message-State: APuU4Z8dUdkWBPCHcqH+30XlUoIHz9KwnhdqiiFSsEt+aVMogCJzPT0q
-	FgaNZkSWI06SPUKfQAubaGVw8LLeVovlSDJ+VvKPyVDA7rhi63cWCIqZemeH17U0Aps=
-X-Gm-Gg: AZFdTZdf4zL43QeFy6dYCOf2s3OGwwf0Zese7HkzbAr41eMePCStBdoWyKyBif8msmD
-	IOUvnlPIVHQErx2NHPiNl5GhFWO8Vb2J8/l/MrXoHAUlna2EfwCzSflPmizcMC7jLnj38RYqi2Y
-	NOVzBh0QfQuyCQMsnj7utjeRDp67nHde0hbqE77+AjgKru4hzsCylMbsZV3r5Bn8vAwSKs+EBU0
-	yjfu4pRpFe5884f0brx9nn3A2p1q6O2v4x9Y6y49SiiKNdeKopSn3V+568bU0o2PS/eCyVDKWzU
-	1HBXGgHqER+1FqHyJPSMj37dBMr6JP20Cfhpknh+hw9IxqejjgZlvqnA/6iIH2lCBdlKiLLEjgG
-	0wIeZcd58bfoZFWZGv1o41ykBWN8z4NKpzFJd6rDY3cheIn1ew+addi8ngCNwIkiDB2AGrS2HUF
-	rOINTZHkrXEtFedv6ZJY/nIFsrZpJz7F7r/xGIoP7j2Mw+nU7ByaLFIzN2XbN3dqoJJab/bkZGb
-	DRa4HgkmKZAF6/hu9kPNN2V8Z/+Ys+S+rCrIOFr58KxqwAcylLJriGqiod9qJRLQXoxxff/VBfL
-	aFtjJGAHUE9A7bgNHVLkeCiKK5Wwx13gOolCdOBFDeXNPNB1hXYRQCMM+a2tLWw/TTF9joePrLv
-	jI2yMJwXaeJN6vwZniBjP8e4ucKdFnUjWLqciOLt8KLvLtQ==
-X-Received: by 2002:a05:600c:1548:b0:4a1:e00b:a10b with SMTP id 5b1f17b1804b1-4bb88800020mr245433325e9.7.1795425651076;
-        Mon, 23 Nov 2026 01:20:51 -0800 (PST)
-Received: from macbook.homenet.telecomitalia.it (host-95-246-144-141.retail.telecomitalia.it. [95.246.144.141])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884b39b6sm296458505e9.12.2026.11.23.01.20.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 01:20:50 -0800 (PST)
-From: Carlo Caione <ccaione@baylibre.com>
-Date: Mon, 23 Nov 2026 10:20:45 +0100
-Subject: [PATCH 1/3] arm64: dts: amlogic: s7: add the SCMI firmware node
+	Mon, 23 Nov 2026 09:21:18 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 489121476;
+	Mon, 23 Nov 2026 01:20:48 -0800 (PST)
+Received: from localhost (a079125.arm.com [10.164.21.43])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F56C3F632;
+	Mon, 23 Nov 2026 01:20:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795425651; bh=sjyw09+6rOZQXtyPBevqw2Txy/HdpRHEm1XHUYTVWQo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FQFfSCeT03MCVMYM6WdTXW5pv96OMoHNbrbaoBV0kV3ZyS9Skat5hbubcRn4GCPYY
+	 Qc8vcmuM3sdMjmGSFU0kfk09qVx2V5xUI3whlekXrJKUb726o0zmc//w3HaOC70SUd
+	 9PhFFOWVyCwXdsG76Wk7bf+RpHbrx365abQt7g3M=
+Date: Mon, 23 Nov 2026 14:50:47 +0530
+From: Linu Cherian <linu.cherian@arm.com>
+To: Ryan Roberts <ryan.roberts@arm.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v1 1/6] arm64: cpufeature: Remove Neoverse-V3/AE from the
+ BBML3 allow list
+Message-ID: <cw2i2nfhwffg7wwybrttwynnmuujckh25dhe5jrlmmr3byowrz@ggccunczsoka>
+References: <20261113145022.2592454-1-ryan.roberts@arm.com>
+ <20261113145022.2592454-2-ryan.roberts@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-upstream-s7-clk-dt-v1-1-95f46d67d8b4@baylibre.com>
-References: <20261123-upstream-s7-clk-dt-v1-0-95f46d67d8b4@baylibre.com>
-In-Reply-To: <20261123-upstream-s7-clk-dt-v1-0-95f46d67d8b4@baylibre.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Carlo Caione <ccaione@baylibre.com>
-X-Mailer: b4 0.16.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261113145022.2592454-2-ryan.roberts@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_012106_480301_46680A79 
-X-CRM114-Status: GOOD (  13.46  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_012106_482790_1118EFF7 
+X-CRM114-Status: GOOD (  18.83  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,107 +71,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The firmware of the Amlogic S7 SoC family exposes the clocks it owns
-over SCMI. Add the SCMI node, its shared memory and a header with the
-SCMI clock IDs.
+On Fri, Nov 13, 2026 at 02:50:15PM +0000, Ryan Roberts wrote:
+> Neoverse-V3 and Neoverse-V3AE erratum 3053180 can cause a load or store
+> to livelock when mapping size changes without break-before-make or when
+> contiguous hints are programmed inconsistently.
+> 
+> The erratum was previously reported as fixed in r0p2. On that basis,
+> commit 5aa4b625762e ("arm64: Add BBM Level 2 cpu feature") allowed
+> Neoverse-V3 from r0p2, and commit 8fca3852e33d ("arm64: cpufeature: add
+> Neoverse-V3AE to BBML2 allow list") did the same for Neoverse-V3AE.
+> 
+> The updated SDENs, MP168 v11 for Neoverse-V3 and MP172 v12 for
+> Neoverse-V3AE, dated 9 June 2026, list r0p0, r0p1 and r0p2 as affected
+> and the erratum as open. There is no fixed revision on which to base
+> either allow-list entry.
+> 
+> Remove both entries so these CPUs observe break-before-make, and record
+> the workaround in the silicon errata registry.
+> 
+> Cc: stable@vger.kernel.org
+> Link: https://support.arm.com/documentation/109231/11-0/?lang=en
+> Link: https://support.arm.com/documentation/109704/12-0/?lang=en
+> Signed-off-by: Ryan Roberts <ryan.roberts@arm.com>
+> ---
+>  Documentation/arch/arm64/silicon-errata.rst | 4 ++++
+>  arch/arm64/kernel/cpufeature.c              | 2 --
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/arch/arm64/silicon-errata.rst b/Documentation/arch/arm64/silicon-errata.rst
+> index afe109afe692..9ad965d3e1ea 100644
+> --- a/Documentation/arch/arm64/silicon-errata.rst
+> +++ b/Documentation/arch/arm64/silicon-errata.rst
+> @@ -243,10 +243,14 @@ stable kernels.
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | ARM            | Neoverse-V2     | #4193787        | ARM64_ERRATUM_4118414       |
+>  +----------------+-----------------+-----------------+-----------------------------+
+> +| ARM            | Neoverse-V3     | #3053180        | N/A                         |
+> ++----------------+-----------------+-----------------+-----------------------------+
+>  | ARM            | Neoverse-V3     | #3312417        | ARM64_ERRATUM_3194386       |
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | ARM            | Neoverse-V3     | #4193784        | ARM64_ERRATUM_4118414       |
+>  +----------------+-----------------+-----------------+-----------------------------+
+> +| ARM            | Neoverse-V3AE   | #3053180        | N/A                         |
+> ++----------------+-----------------+-----------------+-----------------------------+
+>  | ARM            | Neoverse-V3AE   | #3312417        | ARM64_ERRATUM_3194386       |
+>  +----------------+-----------------+-----------------+-----------------------------+
+>  | ARM            | Neoverse-V3AE   | #4193784        | ARM64_ERRATUM_4118414       |
+> diff --git a/arch/arm64/kernel/cpufeature.c b/arch/arm64/kernel/cpufeature.c
+> index 34c5c03c0c9b..b15619690f42 100644
+> --- a/arch/arm64/kernel/cpufeature.c
+> +++ b/arch/arm64/kernel/cpufeature.c
+> @@ -2012,8 +2012,6 @@ bool cpu_supports_bbml3(void)
+>  	/* CPUs that support BBML3 but dont advertise through ID_AA64MMFR2_EL1 */
+>  	static const struct midr_range supports_bbml3_list[] = {
+>  		MIDR_REV_RANGE(MIDR_CORTEX_X4, 0, 3, 0xf),
+> -		MIDR_REV_RANGE(MIDR_NEOVERSE_V3, 0, 2, 0xf),
+> -		MIDR_REV_RANGE(MIDR_NEOVERSE_V3AE, 0, 2, 0xf),
+>  		MIDR_ALL_VERSIONS(MIDR_NVIDIA_OLYMPUS),
+>  		MIDR_ALL_VERSIONS(MIDR_NVIDIA_RIGEL),
+>  		MIDR_ALL_VERSIONS(MIDR_AMPERE1),
+> -- 
+> 2.43.0
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Carlo Caione <ccaione@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-s7-scmi-clk.h | 27 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi       | 29 +++++++++++++++++++++++
- 2 files changed, 56 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7-scmi-clk.h b/arch/arm64/boot/dts/amlogic/amlogic-s7-scmi-clk.h
-new file mode 100644
-index 000000000000..71630bc94531
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7-scmi-clk.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2026 BayLibre, SAS.
-+ */
-+
-+#ifndef __DTS_AMLOGIC_S7_SCMI_CLK_H
-+#define __DTS_AMLOGIC_S7_SCMI_CLK_H
-+
-+#define CLKID_DDR_PHY_OSC			0
-+#define CLKID_USB1_PLL_OSC			1
-+#define CLKID_TOP_PLL_OSC			2
-+#define CLKID_HDMI_PLL_OSC			3
-+#define CLKID_USB0_PHY_PLL_OSC			4
-+#define CLKID_USB1_PHY_PLL_OSC			5
-+#define CLKID_USB0_PLL_OSC			6
-+#define CLKID_ETH_PLL_OSC			7
-+#define CLKID_ADC_PLL_OSC			8
-+#define CLKID_CPU_CLK				9
-+#define CLKID_DSU_CLK				10
-+#define CLKID_GP1_PLL				11
-+#define CLKID_ACLKM				12
-+#define CLKID_PWM_G				13
-+#define CLKID_PWM_H				14
-+#define CLKID_PWM_I				15
-+#define CLKID_PWM_J				16
-+
-+#endif /* __DTS_AMLOGIC_S7_SCMI_CLK_H */
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-index 64440df4f542..69dec312e7d6 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/amlogic,pinctrl.h>
- #include <dt-bindings/power/amlogic,s7-pwrc.h>
-+#include "amlogic-s7-scmi-clk.h"
- 
- / {
- 	cpus {
-@@ -109,6 +110,34 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	sram@50f6000 {
-+		compatible = "mmio-sram";
-+		reg = <0x0 0x050f6000 0x0 0x100>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x0 0x050f6000 0x100>;
-+
-+		scmi_shmem: sram@0 {
-+			compatible = "arm,scmi-shmem";
-+			reg = <0x0 0x100>;
-+		};
-+	};
-+
-+	firmware {
-+		scmi: scmi {
-+			compatible = "arm,scmi-smc";
-+			arm,smc-id = <0x820000c1>;
-+			shmem = <&scmi_shmem>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_clk: protocol@14 {
-+				reg = <0x14>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
-
--- 
-2.56.1
-
+Reviewed-by: Linu Cherian <linu.cherian@arm.com>
 
