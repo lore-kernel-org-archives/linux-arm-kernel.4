@@ -2,105 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93D7606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED37C606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t72qAGtz;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aWSYysNq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jRLqLFut;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oHDB07x0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=t+FOp9DCq8PwbPSQQPKOP0UE+T4Wr9a4DcQWSA7fMIA=; b=t72qAGtzEFPbOh9NTelDbLgdOr
-	o9lS7aujKpfiLiYXKS1UIraqRMJWKOtbeQsSMSTOWWa+orBZXiwoPTznojbHlDwnwa01JJkKI6tav
-	6WG1keQTrOmNmHcAvfBcumHzP3LVI0TvjDM7gxmkgXze4+JlSG8NmjC/GCQEiX1R/6p24EqvWOFbP
-	xfipRiT0ummhG+r3MVsCh/nfMeLCEnqUwS9qB3DFVs/SanVuRRXL1cHa3OjUqD10pIEoSsKwC1ucO
-	cjTdRWCrWNvdeFlBnusj4VQkCIVENb3mlsLwfKB4Zq8rJ3HrObM+dQxiwv8eTvXvm4P4c+yEXFOa0
-	J4gJQNHQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=uOViL6s1ZH3I4W/r3A50yJP31I+R+h3vMj5i5mSRSr0=; b=jRLqLFutHDy64z
+	ZG06CvO3gweABKofq2fcifKxo0txFPlVjNERvvIhp5R+0SJZUVfoGWkiVJ713d/VZ9B0BrTHSkYaz
+	xn0ArQDmZdGvNprl/9u41yFzX/vQTeH6LZk90Zk8rmDNFZlv2IkNBJ0jtcr7J+lISUSdxBgyFpwib
+	mUX2qWqKqeRRAE/gLhSJH6vgGLLY2OnLftbe+ZX24276WHxY5OXPguRPVYRxLOgC0U9f9fomIx0XO
+	HNjaVnj9gDTJDMfCBtPeEJBA6026ZJmBIT1SDghCUDyghR94XcUTxO9fen1MFFn2264j2iQQUoDOX
+	kT7OO1S774kRe1do5uaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbwg-0000000518S-22B7;
-	Mon, 23 Nov 2026 21:51:30 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVc1a-000000051bR-42aB;
+	Mon, 23 Nov 2026 21:56:34 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbwO-0000000515o-0qHQ
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 21:51:16 +0000
+	id 1xVc1a-000000051bI-013t;
+	Mon, 23 Nov 2026 21:56:34 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A0177412C5;
-	Mon, 23 Nov 2026 21:51:11 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795470671;
-	b=0WlQw0A1ArtUXJmcIrqPoNnYvqt2a6DtNowYReNAKpjfrShOUWFzwc8BsJzeXq9mT4mc
-	 XXF3o6Jqb933zIDOonTJY4dEH8DHVBMzx9HEyvkVPqYnJJq2O6v7oTD2QK2fw9qsrj6j9
-	 pKPYVrr2GxHk9raBGxzUSo5bx/vn6H2f/XIyo1FCuetNd5UonzKE71RD/ZeLfU2C8i/S3
-	 HNHOuBjlo3p7BAj81vDxJrXIxnRTYHDFTfMoDOSvyXhqhTDcAc98hT/bLM+TIG7VaGQt/
-	 PVAXOxM9n8I3NNZZw5V3YdAli8pppj1Qt/fl25fBEHkft5YjCHQ39K1PO6u8zKxD3cQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795470671;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=t+FOp9DCq8PwbPSQQPKOP0UE+T4Wr9a4DcQWSA7fMIA=;
-	b=EGlLvt5S0YsJTyod1kILKPSTvSlTN82DgUaVEV9bymyQ1eNd80GuXEDgIPyiFLOju516
-	 oL0H0ZjP5ESqgY8w0/aP/xfvZ63BMzwOU0aj1hxUBk3lPP7q0OijYd89TB2XILSTvrs3V
-	 tMHrQ2SpBVOgTDrldiR8YpQmbVQPMr9mIQHIULcJknRIBC3gS3knrPTUqU8eVf4j1DBtj
-	 Kq5vXGpLg0vShVo6JT3cepSCRREAnlsoYUsLLBJtZvdH2zrpa77F9JIfal9+1nRedObnk
-	 IqsJdU8fR5YqnEjd5xM/tQx+K+/CSvR3+k8Bietld+S5qwHFIVSaMpg3fRd928L0NxA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 338C81F000D3;
-	Mon, 23 Nov 2026 21:50:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 62C4040C32;
+	Mon, 23 Nov 2026 21:56:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A2DC1F000C0;
+	Mon, 23 Nov 2026 21:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795470671;
-	bh=t+FOp9DCq8PwbPSQQPKOP0UE+T4Wr9a4DcQWSA7fMIA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=aWSYysNqGwsQZ9SHgcHxcvSUEzZIw0eNDU5T7+RJdXZyTCOW3L7GL3oBH1kOeL/7H
-	 dLg9c5wbmHf4tEKt4ofxvZ1axhDseV/Wty9Ec4QjIRf76AmBZHyXF1l/u/sB3v7XdX
-	 Tw329eZH7kN+xCX8OeU53zfFWT0lpGXQhCsb+OTihY59dsBfxlPgynq7OKCD/rOeGa
-	 8iP90HF+lRYw3BLwUZu8c5HFDwW9mGDbAtS6dL8oTL0TYjZtzra8Oh4eaLV1DkK/Nh
-	 lwOspnJD5c8P+zBq/HUdl4FpDfYWY1JkLZySq7IcW35CQcjYzRmOjOQ+J22yFvF7YO
-	 PJ1EH16kGFcJQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B6C5F4C77F;
-	Mon, 23 Nov 2026 21:50:58 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Tue, 24 Nov 2026 00:50:58 +0300
-Subject: [PATCH 1/3] dt-bindings: soc: Describe CS7542 global gates and
- reset domains
+	s=k20260515; t=1795470993;
+	bh=uOViL6s1ZH3I4W/r3A50yJP31I+R+h3vMj5i5mSRSr0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=oHDB07x0IeuPsdAU32f0RWYDNf6TxYIFLnTE+u5CtJaLY85OuRViUqypjn4sZ54tl
+	 eaL/D9cbQaY1Z9U9k9jcXs+mj4qkH6jED7RQe943m3B2fZUeerWK2mhdF9DZxXy/hP
+	 JwiH3dMQG1xWLevaaKMEDotcsaEb4ifG+t7FQg5VwByw8/MuqliYq6Df9VYcEA6Cfy
+	 VzxW0LaHijUV42sSFMP+5WAkhvM7wXCcunZABwaHQDNif4rmcJYx4UaHnZDoQk359N
+	 jzYB5nUAXyLEgbyNIqDOuIH6CwxQ4P9fElnzLptPt44YBy86w++rFDEVXKDDi/26mD
+	 lLiWEYxa6eG6Q==
+Message-ID: <0391e09d-3d44-4f91-8cad-dbfe8d4741d5@kernel.org>
+Date: Mon, 23 Nov 2026 21:56:29 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-b4-cs7542-global-controls-v1-1-12548785df2c@gmail.com>
-References: <20261124-b4-cs7542-global-controls-v1-0-12548785df2c@gmail.com>
-In-Reply-To: <20261124-b4-cs7542-global-controls-v1-0-12548785df2c@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795470657; l=3633;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=n/z0ljwGjp/3VFKQErO4wbHMgKIiXYh7j3B5tNIJnUo=;
- b=Q9HYthlORc5L0xu0ndiFe+2NOZiLVjcykhEDFU4Zs1cGK0rkrmFEHwoNu1R5doyVM+WP85Kds
- O7nCXMCEafLB93uxR26YcbG5YA+XcXKNWTIAeMsYL6uIbm1R73pFnYK
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] nvmem: core: Let read post-processing return a
+ shorter length
+To: Alexey Charkov <alchark@flipper.net>,
+ Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Michael Walle <michael@walle.cc>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Finley Xiao <finley.xiao@rock-chips.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Ryan Leung <untilscour@protonmail.com>,
+ Ricardo Pardini <ricardo@pardini.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261123-rk3576-otp-cpuid-mac-v3-0-40c756dcf36f@flipper.net>
+ <20261123-rk3576-otp-cpuid-mac-v3-2-40c756dcf36f@flipper.net>
+From: Srinivas Kandagatla <srini@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20261123-rk3576-otp-cpuid-mac-v3-2-40c756dcf36f@flipper.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,104 +77,117 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Expose PCIe gates and resets and the exclusive network engine composite
-reset on the existing global syscon node. Preserve clock indices 0..2,
-add PCIe clock indices 3..5 and reset indices 0..2, and give the NE domain
-index 3. No virtual control child is required. The optional reset-cells
-property preserves compatibility with clock-only users.
 
-AI assistance: Codex prepared this draft from the posted CS7542 series.
+On 11/23/26 3:35 PM, Alexey Charkov wrote:
+> A cell can hold data from which a provider derives a shorter value for
+> some of its consumers, while others still need the raw cell content. A
+> CPU ID which serves as the base for MAC addresses is one example: the
+> MAC address consumer needs six bytes, whereas anyone after the ID itself
+> needs all of it. The post-processing hook has no way to express that,
+> as the reported length is always the full cell size, and consumers such
+> as of_get_mac_address() reject anything but the exact length they
+> expect.
+This is the correct behaviour.
+> 
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
----
- .../bindings/soc/cortina/cortina,cs7542-syscon.yaml        | 14 ++++++++++++--
- include/dt-bindings/clock/cortina,cs7542-clock.h           |  4 ++++
- include/dt-bindings/reset/cortina,cs7542-reset.h           | 12 ++++++++++++
- 3 files changed, 28 insertions(+), 2 deletions(-)
+nvmem cell fundamentally has cells that are fixed size during creation.
 
-diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-index fb074de87..12f750dab 100644
---- a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-+++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
-@@ -12,8 +12,14 @@ maintainers:
- description:
-   The global control block contains the boot strap status, GPIO/peripheral
-   mux registers, reset controls and the secondary CPU release register.
--  It provides the APB, CPU and AXI clock rates selected by the boot straps.
--  The clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h.
-+  It provides the APB, CPU and AXI clock rates selected by the boot straps,
-+  and the three PCIe clock gates and controller reset lines. The network
-+  engine reset domain covers NI, FE, TM, scheduler, QM, NI XRAM and the
-+  entire DMA block (LSO and SSP). It excludes SDRAM. The network engine
-+  consumer must own this complete domain exclusively; it cannot run
-+  concurrently with a separate SSP DMA user.
-+  Clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h;
-+  reset specifiers are defined in dt-bindings/reset/cortina,cs7542-reset.h.
-   The pin controller uses the same register map through its parent syscon.
- 
- properties:
-@@ -29,6 +35,9 @@ properties:
-   "#clock-cells":
-     const: 1
- 
-+  "#reset-cells":
-+    const: 1
-+
-   pinctrl:
-     type: object
-     $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
-@@ -46,4 +55,5 @@ examples:
-         compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
-         reg = <0xf0000000 0x100>;
-         #clock-cells = <1>;
-+        #reset-cells = <1>;
-     };
-diff --git a/include/dt-bindings/clock/cortina,cs7542-clock.h b/include/dt-bindings/clock/cortina,cs7542-clock.h
-index 34d544238..c68c6ba20 100644
---- a/include/dt-bindings/clock/cortina,cs7542-clock.h
-+++ b/include/dt-bindings/clock/cortina,cs7542-clock.h
-@@ -6,4 +6,8 @@
- #define CS7542_CLK_CPU	1
- #define CS7542_CLK_AXI	2
- 
-+#define CS7542_CLK_PCIE0	3
-+#define CS7542_CLK_PCIE1	4
-+#define CS7542_CLK_PCIE2	5
-+
- #endif
-diff --git a/include/dt-bindings/reset/cortina,cs7542-reset.h b/include/dt-bindings/reset/cortina,cs7542-reset.h
-new file mode 100644
-index 000000000..546e643a3
---- /dev/null
-+++ b/include/dt-bindings/reset/cortina,cs7542-reset.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+#ifndef _DT_BINDINGS_RESET_CORTINA_CS7542_H
-+#define _DT_BINDINGS_RESET_CORTINA_CS7542_H
-+
-+#define CS7542_RESET_PCIE0	0
-+#define CS7542_RESET_PCIE1	1
-+#define CS7542_RESET_PCIE2	2
-+
-+/* NI, FE, TM, scheduler, QM, NI XRAM and DMA-LSO/SSP, excluding SDRAM. */
-+#define CS7542_RESET_NE		3
-+
-+#endif
 
--- 
-2.53.0
+> Let the hook return the shortened length of its output instead of 0,
+> and zero the buffer beyond it, so that a caller ignoring the reported
+this looks like workaround.
 
+This behavior should be inside the provider not in the core.
+
+--srini
+
+> length sees no leftovers of the raw cell. Reject a length beyond the
+> cell size as a bug in the hook. Every existing hook returns 0 on
+> success, so their behaviour does not change. Clamp the sysfs cell
+> attribute read to the reported length, as it can now be shorter than
+> the attribute size.
+> 
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> ---
+>  drivers/nvmem/core.c           | 17 ++++++++++++++---
+>  include/linux/nvmem-provider.h |  8 +++++++-
+>  2 files changed, 21 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index d976c0d6603b..dde77f78e109 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -384,7 +384,8 @@ static ssize_t nvmem_cell_attr_read(struct file *filp, struct kobject *kobj,
+>  		goto destroy_cell;
+>  	}
+>  
+> -	read_len = min_t(unsigned int, cell_sz - pos, count);
+> +	/* Post-processing may have left less data than the attribute size */
+> +	read_len = pos < cell_sz ? min_t(size_t, cell_sz - pos, count) : 0;
+>  	memcpy(buf, content + pos, read_len);
+>  	kfree(content);
+>  
+> @@ -1647,6 +1648,7 @@ static int __nvmem_cell_read(struct nvmem_device *nvmem,
+>  			     struct nvmem_cell_entry *cell,
+>  			     void *buf, size_t *len, const char *id, int index)
+>  {
+> +	size_t out_len = cell->bytes;
+>  	int rc;
+>  
+>  	rc = nvmem_reg_read(nvmem, cell->offset, buf, cell->raw_len);
+> @@ -1661,12 +1663,21 @@ static int __nvmem_cell_read(struct nvmem_device *nvmem,
+>  	if (cell->read_post_process) {
+>  		rc = cell->read_post_process(cell->priv, id, index,
+>  					     cell->offset, buf, cell->raw_len);
+> -		if (rc)
+> +		if (rc < 0)
+>  			return rc;
+> +
+> +		/* The post-processor may have shrunk the data: drop the rest */
+> +		if (rc > 0) {
+> +			if (WARN_ON_ONCE(rc > cell->bytes))
+> +				return -EINVAL;
+> +
+> +			out_len = rc;
+> +			memset(buf + out_len, 0, cell->bytes - out_len);
+> +		}
+>  	}
+>  
+>  	if (len)
+> -		*len = cell->bytes;
+> +		*len = out_len;
+>  
+>  	return 0;
+>  }
+> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+> index 6063fe5b7784..a95529aa3e80 100644
+> --- a/include/linux/nvmem-provider.h
+> +++ b/include/linux/nvmem-provider.h
+> @@ -20,7 +20,13 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
+>  				void *val, size_t bytes);
+>  typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+>  				 void *val, size_t bytes);
+> -/* used for vendor specific post processing of cell data */
+> +/*
+> + * Used for vendor specific post processing of cell data. Returns 0 if the
+> + * data keeps the cell size (the cell's bytes, not the raw length passed in),
+> + * the length of the processed data if it ends up shorter (1 up to the cell
+> + * size), or a negative error code. The core zeroes the buffer beyond a
+> + * shortened length. An empty result cannot be reported.
+> + */
+>  typedef int (*nvmem_cell_post_process_t)(void *priv, const char *id, int index,
+>  					 unsigned int offset, void *buf,
+>  					 size_t bytes);
+> 
 
 
