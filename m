@@ -2,77 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01184606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5AC606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lFdIiWwX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F14sZ5ih
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R47nsS76;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=uVOvnrOT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=hwTobTkBKm2/JiwiYi2htTTLwpWNDT0Iwb6zrj1effc=; b=lFdIiWwX010wy631UtQHmJ42yn
-	uO/4S7QMoE06ru+NaxHHreYR1W43njOjbDwjX0kHBRMAaYxwppsQ8868QS5kLKghHY4oqNPnxLo/w
-	KNfUO95uvmCgE4OnY7AaHa61uoUkJp0XPIyw/BBCP2eVOkYmgX3OsGwLNcnqK3hAzyHL2lxxi+Rug
-	75u1N+tRrQ1p4ieZXbHUPwP3+i1eFEoqnWqvv5qj7VYoWVHnvMmw/wYErT4uMzhXPnVvyDNzGWeqo
-	PkzcYJQ90gjimd2mLAl1575bw4oUejt3iKbKSQ0kJJlLf14/2oUgf35RoIkZVnmHenAhexc95A8ND
-	FVWSXr6A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=bFQeSIonQoNAJlvVjuvJ7vB2WO8yi3wgzbUUjHoVyjo=; b=R47nsS7674ivIv
+	PrAFoiTU1EHhvFhOFY6Avvdf5GgSTlnmF1FI/Eg3T4hPLt4uCc+ahri1u65B3IS+yxaUzI9mNL3Jg
+	eqo+CVu8q8BFk0GGwl0c04rS9xiPhTOCPVtH2ACCKcQkMdcDhMjtH+KXpLotpJ6aip9g75r95ILch
+	LRzdXB7aC8E4SgP6OOqCoPmjPJA2d8CcJBTJWL+XoYwQghoZEicVET2E02E5MF7KL127FJNucTGCV
+	DAMHvdYQdvrztK2bPNryqSTSBGr4JSCaDIHMjzdMsnVJ/Zcs9YyvOJ2uPXud9JbEB1TWR+gufZEUu
+	dNzcVok0EfOi9kNC/SuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSJ2-00000003BgT-2LLW;
-	Mon, 23 Nov 2026 11:33:56 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSJ0-00000003Bfc-3R0S
+	id 1xVSKE-00000003C5D-2JL9;
+	Mon, 23 Nov 2026 11:35:10 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVSKC-00000003C40-3iq4
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:33:54 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DF51461DB7
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:33:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 825831F000ED
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 11:33:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795433633;
-	bh=hwTobTkBKm2/JiwiYi2htTTLwpWNDT0Iwb6zrj1effc=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=F14sZ5ihiSJcWYxHWXyA0XiJs3VZapM4gtxOv6f/78F22yc/zW94Pe+rIceK5uiQN
-	 rN4vxdPjMMyLaTkeVfu+6xo0dfJ+WOpuacTaL4RBIkvsIZQjOu2V3Shk9FxH4Eb0h9
-	 zM55HI9U2oCZop0+xtrhlkfvq2SR0fDNU9jENSHnvKbmmyM/MmX8kH9MTgwd5u34qg
-	 908tlanZCWRgXMEdez/va9HaUALagWY5NhhKO54WUiiLhS9qpkNa7QBt4eryDHMu51
-	 /Xs3wt7iWWXS6/OeXZeVt1EO2w1Vvic1+0yPI8IAZ/mGTmboaUfmvlxXnHgwfcCWCe
-	 eo021p1gITiOw==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3ae5ab4fcdcso20144991fa.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:33:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFdkFREyIbIT+yyfncvFGb7+/t7ZTTiaqOq/CpuzgZWrKk8CdiWIgUtJQ2j8yQOudxvFP54f73wJZHmrJKU9f3R@lists.infradead.org
-X-Gm-Message-State: APuU4Z8lzBGAdD6+I3vs3jjM/Abn36+dvZuuSxDP2AN6QxUrhVEeWfy3
-	y+mxJloGKYplKEd+gtC3Zgk0GThUvEWzsMrgsOpjIvVTZe6m/k2eLESPMBpwIefoaYK1JPd6cGY
-	XLILzHLuzOJNjachrKzFmPG2Ne3yyPhQ=
-X-Received: by 2002:a05:651c:2214:b0:3ac:e24f:aa11 with SMTP id
- 38308e7fff4ca-3ae7f9978cemr32522291fa.7.1795433631887; Mon, 23 Nov 2026
- 03:33:51 -0800 (PST)
+	Mon, 23 Nov 2026 11:35:10 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE5BB143D;
+	Mon, 23 Nov 2026 03:35:04 -0800 (PST)
+Received: from [10.0.129.12] (Suzukis-MBP.cambridge.arm.com [10.0.129.12])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 80E383F9AB;
+	Mon, 23 Nov 2026 03:35:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795433707; bh=z2UjvLOic3835pBC+7T3rWMtMHbQw/5uf0dNP5+l1zY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uVOvnrOTwpVLMcG+Dlh+WlY7FSjZJK+7KsCxa4yQPWdBcAsUxKfmHFNlhpfRP2QKw
+	 04JoSaUxntF0XyMj2D/TDk44iVt+iM0RY5dNlmXWk9T66VIIvSB9igiX2YEyN7au3r
+	 BqwK97UJttJ9K3rBNG3rmC7kiFx4hn+AfGk1vJG8=
+Message-ID: <882a401c-c701-4770-bb7b-970d8869ae61@arm.com>
+Date: Mon, 23 Nov 2026 11:35:03 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261111134919.90264-1-vinicius.eduardo.pedrosa@gmail.com>
- <CAGb2v66nKWdF3AvXDfb07iYVQE5FC5yDkhuutShp+Z-EgFXEfg@mail.gmail.com> <20261123111547.24280-1-vinicius.eduardo.pedrosa@gmail.com>
-In-Reply-To: <20261123111547.24280-1-vinicius.eduardo.pedrosa@gmail.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Mon, 23 Nov 2026 19:33:39 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67+kz8kdz1FBX+dn8oifOkQie6hv4FZ2Fw9VHZUvzAcSg@mail.gmail.com>
-X-Gm-Features: Aa3M54rCROWHf9umhZr72KzYmEmJvMkYMlPSpk2XNjS86lerVQ17v5gLjZWKnw8
-Message-ID: <CAGb2v67+kz8kdz1FBX+dn8oifOkQie6hv4FZ2Fw9VHZUvzAcSg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] arm64: dts: allwinner: add Radxa Cubie A7Z support
-To: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>, 
-	Enzo Adriano <enzo.adriano.code@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 05/11] KVM: arm64: CCA: Add basic infrastructure for
+ creating a realm
+Content-Language: en-GB
+To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
+ kvmarm@lists.linux.dev
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261123104233.95710-1-steven.price@arm.com>
+ <20261123104233.95710-6-steven.price@arm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20261123104233.95710-6-steven.price@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_033509_028822_555A0FD7 
+X-CRM114-Status: GOOD (  32.57  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,70 +83,260 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 7:16=E2=80=AFPM Vinicius Pedrosa
-<vinicius.eduardo.pedrosa@gmail.com> wrote:
->
-> On Sat, Nov 21, 2026 at 12:14 AM Chen-Yu Tsai <wens@kernel.org> wrote:
-> > There seem to be 3 revisions of A7Z. Which one are you targeting? Or ar=
-e
-> > there no differences as far as the OS is concerned?
->
-> I'm targeting V1.11, which is the board I have and tested.
->
-> I compared the published schematics. V1.10 differs from V1.11 in two
-> places relevant to this DT:
->
-> On V1.10, BLDOIN comes from SWOUT2 and CLDOIN from PS. V1.11 uses a
-> separate SY8089 step-down regulator at 2.4 V for both.
+On 23/11/2026 10:42, Steven Price wrote:
+> Introduce the skeleton functions for creating and destroying a realm.
+> The requested IPA size is checked against both the KVM and RMM limits.
+> 
+> The actual work of constructing the realm will be added in future
+> patches.
+> 
+> Signed-off-by: Steven Price <steven.price@arm.com>
+> 
+> ---
+> Changes since v3:
+> - Use the preceding destruction dispatch instead of a temporary
+>    Realm-specific check in kvm_stage2_destroy().
+> 
+> Changes since v2:
+> - Move ARM_RMM_RMI selection and rmi.o build registration here.
+>    Store the RD physical address from the outset and free SRO state
+>    on Realm teardown errors.
+> 
+> Changes since v1:
+> - Cap the Realm IPA size at the smaller KVM and RMM limit, and record
+>    the selected IPA size when initializing Realm state.
+> ---
+>   arch/arm64/include/asm/kvm_rmi.h | 23 ++++++++++++
+>   arch/arm64/kvm/Kconfig           |  1 +
+>   arch/arm64/kvm/Makefile          |  2 +-
+>   arch/arm64/kvm/arm.c             |  9 +++++
+>   arch/arm64/kvm/mmu.c             |  7 +++-
+>   arch/arm64/kvm/rmi.c             | 63 ++++++++++++++++++++++++++++++++
+>   6 files changed, 103 insertions(+), 2 deletions(-)
+>   create mode 100644 arch/arm64/kvm/rmi.c
+> 
+> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
+> index 67f16793b4d0..4ac1af622872 100644
+> --- a/arch/arm64/include/asm/kvm_rmi.h
+> +++ b/arch/arm64/include/asm/kvm_rmi.h
+> @@ -6,6 +6,9 @@
+>   #ifndef __ASM_KVM_RMI_H
+>   #define __ASM_KVM_RMI_H
+>   
+> +#include <linux/arm-smccc-rmi.h>
+> +#include <linux/kvm.h>
+> +
+>   /**
+>    * enum realm_state - State of a Realm
+>    *
+> @@ -50,10 +53,30 @@ enum realm_state {
+>   /**
+>    * struct realm - Additional per VM data for a Realm
+>    *
+> + * @rd_phys: Physical address of the RMM-managed Realm Descriptor (RD) granule
+> + * @sro: Preallocated SRO state context for Realm MMU operations
+>    * @state: The lifetime state machine for the realm
+> + * @ia_bits: Number of valid Input Address bits in the IPA
+> + * @start_level: Starting level of the Realm Translation Table
+>    */
+>   struct realm {
+> +	phys_addr_t rd_phys;
+> +	/*
+> +	 * Reused by RTT map/unmap SRO commands. Those commands are only
+> +	 * issued from Realm stage-2 map/unmap paths while kvm->mmu_lock is
+> +	 * held for write, including Realm fault handling where
+> +	 * kvm_fault_lock() takes the write side, so concurrent use is
+> +	 * serialized.
+> +	 */
+> +	struct rmi_sro_state *sro;
+>   	enum realm_state state;
+> +	unsigned int ia_bits;
+> +	int start_level;
+>   };
+>   
+> +u32 kvm_rmm_ipa_limit(void);
+> +
+> +int kvm_init_realm(struct kvm *kvm);
+> +void kvm_destroy_realm(struct kvm *kvm);
+> +
+>   #endif /* __ASM_KVM_RMI_H */
+> diff --git a/arch/arm64/kvm/Kconfig b/arch/arm64/kvm/Kconfig
+> index cecea0820e52..d067063a3686 100644
+> --- a/arch/arm64/kvm/Kconfig
+> +++ b/arch/arm64/kvm/Kconfig
+> @@ -34,6 +34,7 @@ menuconfig KVM
+>   	select GUEST_PERF_EVENTS if PERF_EVENTS
+>   	select KVM_GUEST_MEMFD
+>   	select KVM_GENERIC_PRE_FAULT_MEMORY
+> +	select ARM_RMM_RMI
+>   	help
+>   	  Support hosting virtualized guest machines.
+>   
+> diff --git a/arch/arm64/kvm/Makefile b/arch/arm64/kvm/Makefile
+> index 7aaeeb84e788..66a719ab5b6b 100644
+> --- a/arch/arm64/kvm/Makefile
+> +++ b/arch/arm64/kvm/Makefile
+> @@ -16,7 +16,7 @@ CFLAGS_handle_exit.o += -Wno-override-init
+>   kvm-y += arm.o mmu.o mmio.o psci.o hypercalls.o pvtime.o \
+>   	 inject_fault.o va_layout.o handle_exit.o config.o \
+>   	 guest.o debug.o reset.o sys_regs.o stacktrace.o \
+> -	 vgic-sys-reg-v3.o fpsimd.o pkvm.o \
+> +	 vgic-sys-reg-v3.o fpsimd.o pkvm.o rmi.o \
+>   	 arch_timer.o trng.o vmid.o emulate-nested.o nested.o at.o \
+>   	 vgic/vgic.o vgic/vgic-init.o \
+>   	 vgic/vgic-irqfd.o vgic/vgic-v2.o \
+> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+> index d79e5451923d..7c22d9474a38 100644
+> --- a/arch/arm64/kvm/arm.c
+> +++ b/arch/arm64/kvm/arm.c
+> @@ -300,6 +300,13 @@ int kvm_arch_init_vm(struct kvm *kvm, unsigned long type)
+>   
+>   	bitmap_zero(kvm->arch.vcpu_features, KVM_VCPU_MAX_FEATURES);
+>   
+> +	/* Initialise the realm bits after the generic bits are enabled */
+> +	if (kvm_vm_is_realm(kvm)) {
+> +		ret = kvm_init_realm(kvm);
+> +		if (ret)
+> +			goto err_uninit_mmu;
+> +	}
+> +
+>   	return 0;
+>   
+>   err_uninit_mmu:
+> @@ -364,6 +371,8 @@ void kvm_arch_destroy_vm(struct kvm *kvm)
+>   
+>   	kvm_destroy_nested(kvm);
+>   	kvm_arm_teardown_hypercalls(kvm);
+> +	if (kvm_vm_is_realm(kvm))
+> +		kvm_destroy_realm(kvm);
+>   }
+>   
+>   static bool kvm_has_full_ptr_auth(void)
+> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+> index fab915ddeaab..84b02699f103 100644
+> --- a/arch/arm64/kvm/mmu.c
+> +++ b/arch/arm64/kvm/mmu.c
+> @@ -981,10 +981,14 @@ static struct kvm_pgtable_mm_ops kvm_s2_mm_ops = {
+>   
+>   static int kvm_init_ipa_range(struct kvm_s2_mmu *mmu, unsigned long type)
+>   {
+> +	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
+>   	u32 kvm_ipa_limit = get_kvm_ipa_limit();
+>   	u64 mmfr0, mmfr1;
+>   	u32 phys_shift;
+>   
+> +	if (kvm_vm_is_realm(kvm))
+> +		kvm_ipa_limit = min(kvm_ipa_limit, kvm_rmm_ipa_limit());
+> +
+>   	phys_shift = KVM_VM_TYPE_ARM_IPA_SIZE(type);
+>   	if (is_protected_kvm_enabled()) {
+>   		phys_shift = kvm_ipa_limit;
+> @@ -1097,6 +1101,8 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
+>   		return -EINVAL;
+>   	}
+>   
+> +	mmu->arch = &kvm->arch;
+> +
+>   	err = kvm_init_ipa_range(mmu, type);
+>   	if (err)
+>   		return err;
+> @@ -1105,7 +1111,6 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
+>   	if (!pgt)
+>   		return -ENOMEM;
+>   
+> -	mmu->arch = &kvm->arch;
+>   	err = KVM_PGT_FN(kvm_pgtable_stage2_init)(pgt, mmu, &kvm_s2_mm_ops);
+>   	if (err)
+>   		goto out_free_pgtable;
+> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
+> new file mode 100644
+> index 000000000000..fafca2439c46
+> --- /dev/null
+> +++ b/arch/arm64/kvm/rmi.c
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023-2026 ARM Ltd.
+> + */
+> +
+> +#include <linux/arm-rmi-cmds.h>
+> +#include <linux/kvm_host.h>
+> +
+> +#include <asm/kvm_emulate.h>
+> +#include <asm/kvm_mmu.h>
+> +#include <asm/kvm_pgtable.h>
+> +#include <asm/virt.h>
+> +
+> +u32 kvm_rmm_ipa_limit(void)
+> +{
+> +	return u64_get_bits(rmi_feat_reg(0), RMI_FEATURE_REGISTER_0_S2SZ);
+> +}
+> +
+> +void kvm_destroy_realm(struct kvm *kvm)
+> +{
+> +	struct realm *realm = &kvm->arch.realm;
+> +	size_t pgd_size = kvm_pgtable_stage2_pgd_size(kvm->arch.mmu.vtcr);
+> +
+> +	if (!kvm_realm_is_created(kvm))
+> +		goto out_free_sro;
+> +
+> +	kvm_set_realm_state(kvm, REALM_STATE_DYING);
+> +
+> +	if (realm->rd_phys) {
 
-This is pretty much invisible to the OS though, unless it is toggle-able.
+Do we expect this to be otherwise ? Or do we get called twice
+on this function ?
 
-> V1.11 adds a 10k external pull-up (R59) to the microSD card-detect line,
-> which V1.10 doesn't have.
+> +		phys_addr_t rd_phys = realm->rd_phys;
+> +
+> +		if (WARN_ON(rmi_realm_terminate(rd_phys, realm->sro)))
+> +			goto out_free_sro;
+> +
+> +		if (WARN_ON(rmi_realm_destroy(rd_phys, realm->sro)))
+> +			goto out_free_sro;
+> +		rmi_free_delegated_page(rd_phys);
+> +		realm->rd_phys = 0;
+> +	}
+> +
+> +	if (WARN_ON(rmi_undelegate_range(kvm->arch.mmu.pgd_phys,
+> +					 pgd_size)))
+> +		goto out_free_sro;
 
-I think this is more of a fix, but again, mostly invisible to the OS.
-The only possible difference would be that you could disable the internal
-pull-up. But leaving it on shouldn't be an issue either.
+In the integration branch, we undelegate the Stage2 root RTTs, if the
+Realm create fails. Is there a particular reason why we may have the
+delegated S2 RTTs with realm->rd_phys = 0 ?
 
-> So the power supplies and card-detect configuration would need changes
-> for V1.10.
->
-> From the V2.00 schematic, the parts covered by this DT (PMIC, microSD,
-> LED and UART) appear unchanged from V1.11. V2.00 adds MIPI DSI, a second
-> CSI connector and a backlight driver, none of which are described here.
->
-> Would you prefer keeping this DT for V1.11 (and V2.00), with a separate
-> DT for V1.10 if needed, or splitting the revision-specific parts now?
-
-From what you mentioned it's not a big deal. For the new connectors
-on V2.00, we're still a very long way from that, and it could just
-be a separate .dts file with the new bits, and include the v1.1x one
-as its base.
-
-> I also saw Andre's review of Enzo's v4 [1]. I'll apply the relevant
-> changes to this DT, including removing the MMC alias and revisiting the
-> regulator descriptions and constraints. I'll wait for Enzo's v5, test on
-> my V1.11 board and send a v2 with those changes and the LED patch
-> squashed into the board DT, as Krzysztof requested.
-
-Sure.
+Suzuki
 
 
-Thanks
-ChenYu
+> +
+> +	kvm_set_realm_state(kvm, REALM_STATE_DEAD);
+> +
+> +out_free_sro:
+> +	kfree(realm->sro);
+> +	realm->sro = NULL;
+> +}
+> +
+> +int kvm_init_realm(struct kvm *kvm)
+> +{
+> +	struct realm *realm = &kvm->arch.realm;
+> +
+> +	realm->ia_bits = VTCR_EL2_IPA(kvm->arch.mmu.vtcr);
+> +	realm->start_level = 4 - VTCR_EL2_LVLS(kvm->arch.mmu.vtcr);
+> +	realm->sro = kmalloc_obj(*realm->sro);
+> +	if (!realm->sro)
+> +		return -ENOMEM;
+> +
+> +	return 0;
+> +}
 
-> [1] https://lore.kernel.org/all/20261122003932.568c099c@ryzen.lan/
->
-> Thanks,
-> Vinicius
->
 
