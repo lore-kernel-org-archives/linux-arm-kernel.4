@@ -2,73 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF07F606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA271606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pI2jHDsS;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DpOMEAqL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zFr3HRe/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U1NqD8MW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4hKfDKhS/y0v7LwYfVdwmNntrIbkTnTWq8HGysu213g=; b=pI2jHDsS4JoIxk
-	h5ld/v5uuvFbHT8I8/sUglCWK73zTweqjlrgAnskb59ss/LLyHk5tqEirCNh4WYxkFXVpK5R67YF6
-	/qREO2KV542o8jV9EysvMYsAjnZhUehp2JjQkFa3XO7OGQmKEywyCFF+XhBvVlzFKqlE02zxQDsO7
-	dxPRiV+S6xWYyxfPlZgkQoMc+a/gCBOT68mGI0IhJS789k8vPmi+DdU7VVuQJlN+4dy/82DqmQYKq
-	ga1iRWFY97Pcs+KF4trAs/imC0BJGFaYzu3Nv04Kp5Tyw8rV8BLaz2P1tKJ7JQfT58zi2ID232YHP
-	paNUSlvxBrFL34UmSSmg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=HEGGQVuIBFkEhUMA1Ueybmyt4JoPDl4tjH9NOl/AzyM=; b=zFr3HRe/nlVYZbMfwQPAjWQt1x
+	5CTfVxGt7Tc2kR+Rrx5TxpR/Oz6hURfb7VxJdcwtI8OU6iAmVbEo1O+Wu0AMNiz6PITTaudlh+UfP
+	7fr2LKIFQYo7Lzh5/h8ZavBXIdlZ9DD2uLlx8sILyEzRqcJ2ZMpk9gMS4Y67e82jRyS7+hvglFbRx
+	KecvWtgHXekIXkygiPCldS6yAvQS3dmgp2ro0zPUC0vAhSp5LyOIcftuPOEyCAg++wnWdRS8UbZ8J
+	EG06bW1AjVK2iBP6bmK8sorBgR1sSYpuMY+tIUjYTeVx/Vdr0hqOZxSDRGbCsCuXlwW/w1VE8WGF8
+	h8XLLnxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZBi-00000004abf-1uJV;
-	Mon, 23 Nov 2026 18:54:50 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZBb-00000004aaq-3ZWb
+	id 1xVYzH-00000004WPa-33wb;
+	Mon, 23 Nov 2026 18:42:00 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVYzD-00000004WMu-12z4
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:54:47 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 196F7143D;
-	Mon, 23 Nov 2026 10:54:40 -0800 (PST)
-Received: from [10.57.91.245] (unknown [10.57.91.245])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DF2003F763;
-	Mon, 23 Nov 2026 10:54:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795460082; bh=KBj2RreVlKeNnFDTM1L6+3NBD7uGNn8uIi6vqvj5hOc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DpOMEAqLprlXADevvML5TdqeEd1ZjIXSfm3e8eAMLiVg31HW93XTJMwDlVRLK6yBQ
-	 szl/Px0I/yh7C98FfCLq38MVoUWyuPfLWLOCjmXeZ5+LPiwcedW4xjd3t0oHgc3jWs
-	 v923uc/ClVoNwttizcJzuNR/My8eAzGiuKw17Z7g=
-Message-ID: <74b99755-bc3d-4cad-9678-c2de740fe20a@arm.com>
-Date: Mon, 23 Nov 2026 18:54:39 +0000
+	Mon, 23 Nov 2026 18:41:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 08675430DF;
+	Mon, 23 Nov 2026 18:41:55 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795459314;
+	b=OkxialD/LHBTeP+ofSFD3hVU1/DTDX4w1VbCotDZZH9LOeUQS25MW3EDThZuD4Uy+teg
+	 Sm4jJnnmL36ul7qlYYki8M9bq5r/4GCiGS5gXPtIee8JVcgmcIZ8RW3yIebeGNjn8a59z
+	 flYMcIiW8Kj1V/tKdqjxyfGk4CQLDQG5eRmWmUBcBaiaUs3PVFVC5pcovG0X19Qkd2qn3
+	 P7VutNuo2rWW5F6ed1M+8lI4m2OT46HXxiJs35as2ElYZrlk5JIx8JWailkh/zMUdw9f7
+	 rSBC2aLVWsSnjiye/kjo8DRC/OzDsw2idHNYmmnrZx6xgTQCv8t2qts85kGnaTRSD0Q==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795459314;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=HEGGQVuIBFkEhUMA1Ueybmyt4JoPDl4tjH9NOl/AzyM=;
+	b=TkMNtCbJH611XEBsO2CLHi9sc89yFSHqB1/jkpfZCRkhMGQWMwuxL+cxfHhWcB1wBIX5
+	 7sVOxZoyteEYQ++NnvW/uYquyoqBqy5PvD4p3bORPZSuzvMEfdjR7Chomj6R/UFhD03G/
+	 9xdKgTyT3yVWt3xHiWvzaTsgNAM1mhLw9/Ek9M6elW9SGJ1QfgvmQ1Tma/mwmCW5pCab2
+	 9Bw/mGnOLdYJAA7TL18rNwsdEJsb4YHYBRuHnD0/F2YM2zgy9uEzrSuwjgbxn4/pQG8c/
+	 cY5VhMbIHSDkVzDbeStph1EUVBU8WXe7uXoIIsVOmX6bNGFVzIhIoseZOWaCaXlpp5A==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 794BE1F000D3;
+	Mon, 23 Nov 2026 18:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795459314;
+	bh=HEGGQVuIBFkEhUMA1Ueybmyt4JoPDl4tjH9NOl/AzyM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=U1NqD8MWeXpLIvMNCSAAYU9vcvCE/lsrTKpgm+GcTRM9IIMfJCpi2XLmKNPFh9Urv
+	 vYudcRD+hxZOrXvGJtFrBogeSlrLPzafP5e7DJ8ms+yr3HGez2Pv160uSlUM0fsipv
+	 0PPHoIoM/vd3UU3cWWA6wqzydyw96yEba2eqy1GuuRCgFEbylyaHYT77gFWXpHWw5u
+	 rFvP4v7uE0uoaEfsZDlE+jYPWy7xt2Sh38DortiIlEv6+8+SCWbrQ8nJWKmDoh4/N+
+	 X6GZugg0KtpC2aTzdhKgGwKMJVdXka+mcl/NVMtQOFQz1HWvXzbQ/9LvOHfSceTgXJ
+	 xoFr4Wb22fkLA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 550364C5D5;
+	Mon, 23 Nov 2026 18:41:35 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Mon, 23 Nov 2026 21:41:35 +0300
+Subject: [PATCH 2/3] hwrng: Add Cortina Systems CS7542 TRNG driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: mm: Don't defer the barriers when installing a
- fixmap entry
-To: Kevin Brodsky <kevin.brodsky@arm.com>, Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Ard Biesheuvel <ardb@kernel.org>,
- Yang Shi <yang@os.amperecomputing.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20261120121638.194154-1-fuad.tabba@linux.dev>
- <20261120121638.194154-4-fuad.tabba@linux.dev>
- <6782b5ee-3dfe-4076-a79c-fbeb2c2ac7da@arm.com>
- <CA+EHjTziXrRdR+guikKbj93Az96T+AMx_=0sVeyWG5C4fwaaTg@mail.gmail.com>
- <5b0a26ee-30b0-4a79-9cca-9848dc9d65c5@arm.com>
- <f543aea2-3a21-44ce-bb44-c84bd66b0a76@arm.com>
-From: Ryan Roberts <ryan.roberts@arm.com>
-Content-Language: en-GB
-In-Reply-To: <f543aea2-3a21-44ce-bb44-c84bd66b0a76@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_105444_790305_F8A92186 
-X-CRM114-Status: GOOD (  19.49  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261123-b4-cs7542-trng-v1-2-92d9ffcee531@gmail.com>
+References: <20261123-b4-cs7542-trng-v1-0-92d9ffcee531@gmail.com>
+In-Reply-To: <20261123-b4-cs7542-trng-v1-0-92d9ffcee531@gmail.com>
+To: Olivia Mackall <olivia@selenic.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459294; l=6425;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=CejmhadnINs86sI3uuQCpiGMjWxvRmque4I7XB53Ot4=;
+ b=/mF0/7U7u87NRBflb7R5E4A221BOZ0XmRS/f0yI/Up5OecriUR3Q4vfEr+r0XZjrrcp1yELoF
+ Pbusqw00garBqjEwA82DrwLB0WgCshIeF1HdjCplyH9jlFaGIiHJtgQ
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,81 +109,232 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23/11/2026 13:08, Kevin Brodsky wrote:
-> On 23/11/2026 11:36, Ryan Roberts wrote:
->>>
->>>>> @@ -127,7 +127,9 @@ void __set_fixmap(enum fixed_addresses idx,
->>>>>          ptep = fixmap_pte(addr);
->>>>>
->>>>>          if (pgprot_val(flags)) {
->>>>> -                __set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
->>>>> +                /* The slot must be usable on return, even in lazy MMU mode. */
->>>>> +                __set_pte_nosync(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
->>>>> +                emit_pte_barriers();
->>>> I wonder if it would be clearer to wrap __set_ptes():
->>>>
->>>> lazy_mmu_mode_pause()
->>>> __set_ptes()
->>>> lazy_mmu_mode_resume()
->>> That would work. However, there's the stable backport. 6.18 has the
->>> bug, but lazy_mmu_mode_pause() was added in 7.0, so 6.18.y would need
->>> its own patch. This patch applies to 6.18 unchanged.
->>>
->>> I'm happy with either, or with a followup patch in the same series.
->> I'd personally prefer to use pause/resume since it's makes it very clear what's
->> going on and avoids the layer violation. Perhaps your approach as the back
->> portable one, then pause/resume as follow up (along with ptep_try_set() tidy
->> up)? Others might think differently though...
-> 
-> Using pause/resume does work, but it is a bigger hammer than necessary.
-> If other features make use of lazy MMU mode, then we may end up paying
-> extra cost by leaving/re-entering the mode.
-> 
-> For instance, with page table hardening [1], using the pause/resume
-> approach means 4 extra ISBs:
-> - 1 when pause() leaves lazy MMU mode: restoring default kpkeys context
-> - 2 in __set_pte(): switching to page table update kpkeys context, and
-> then back to default
-> - 1 when resume() enters lazy MMU mode: entering page table update
-> kpkeys context
-> 
-> An explicit __set_pte_nosync() + emit_pte_barriers() achieves exactly
-> what we're after (immediately visible PTE update) and doesn't disrupt
-> lazy MMU mode - we don't unnecessarily set TIF_LAZY_MMU_PENDING. 
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-It's so ugly to spill this stuff everywhere though.
+Adapt the OpenWrt implementation to use a syscon regmap for the shared
+scratch bit. Bound polling and retain a pending request across
+nonblocking calls instead of entering a blocking poll when wait=false.
+Handle partial output and wipe the temporary data on error paths.
 
-How about a nested lazy mmu section?
+Retain the existing OpenWrt entropy quality setting of 512 for review.
+Hardware output smoke tests do not establish an entropy estimate.
 
-lazy_mmu_mode_enable()
-__set_ptes()
-lazy_mmu_mode_disable()
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ drivers/char/hw_random/Kconfig       |  11 +++
+ drivers/char/hw_random/Makefile      |   1 +
+ drivers/char/hw_random/cs75xx-trng.c | 159 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 171 insertions(+)
 
-If it's nested the enable() is essentially nop, and the disable is a flush,
-which emits the barriers. If it's the first enable, we still set
-TIF_LAZY_MMU_PENDING though...
+diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
+index d3108991c..1c6a3f9f8 100644
+--- a/drivers/char/hw_random/Kconfig
++++ b/drivers/char/hw_random/Kconfig
+@@ -648,6 +648,17 @@ config HW_RANDOM_QCOM
+ 	  To compile this driver as a module, choose M here. The
+ 	  module will be called qcom-rng. If unsure, say N.
+ 
++
++config HW_RANDOM_CS75XX
++	tristate "Cortina Systems CS7542 random number generator"
++	depends on OF && HAS_IOMEM
++	select MFD_SYSCON
++	help
++	  Support the Elliptic random number generator in the CS7542 SoC.
++	  Access the shared global control block through a syscon regmap.
++	  Provide polled reads through the hardware RNG framework.
++	  The module will be named cs75xx-trng.
++
+ endif # HW_RANDOM
+ 
+ config UML_RANDOM
+diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
+index 8fce2aa6c..b7b5fdaa7 100644
+--- a/drivers/char/hw_random/Makefile
++++ b/drivers/char/hw_random/Makefile
+@@ -55,3 +55,4 @@ obj-$(CONFIG_HW_RANDOM_ROCKCHIP) += rockchip-rng.o
+ obj-$(CONFIG_HW_RANDOM_JH7110) += jh7110-trng.o
+ obj-$(CONFIG_HW_RANDOM_XILINX) += xilinx-trng.o
+ obj-$(CONFIG_HW_RANDOM_QCOM) += qcom-rng.o
++obj-$(CONFIG_HW_RANDOM_CS75XX)		+= cs75xx-trng.o
+diff --git a/drivers/char/hw_random/cs75xx-trng.c b/drivers/char/hw_random/cs75xx-trng.c
+new file mode 100644
+index 000000000..38a1958df
+--- /dev/null
++++ b/drivers/char/hw_random/cs75xx-trng.c
+@@ -0,0 +1,159 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Cortina CS75xx (Goldengate) true random number generator
++ *
++ * The block is an Elliptic TRNG: control at 0x00, interrupt status at 0x04,
++ * interrupt enable at 0x08 and four data words from 0x10. A new value is
++ * requested with GEN_NEW and is ready when the DONE status bit is set.
++ * The vendor driver also sets bit 5 of the GLOBAL_SCRATCH register before
++ * using the block, so does this one.
++ */
++
++#include <linux/bits.h>
++#include <linux/hw_random.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/mfd/syscon.h>
++#include <linux/mod_devicetable.h>
++#include <linux/of.h>
++#include <linux/regmap.h>
++#include <linux/slab.h>
++#include <linux/string.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++
++#define TRNG_CTRL		0x00
++#define TRNG_CTRL_GEN_NEW	BIT(0)
++#define TRNG_CTRL_RESEED	BIT(31)
++#define TRNG_IRQ_STAT		0x04
++#define TRNG_IRQ_EN		0x08
++#define TRNG_IRQ_DONE		BIT(27)
++#define TRNG_DATA		0x10
++#define TRNG_WORDS		4
++
++#define GLOBAL_SCRATCH		0xc0
++#define GLOBAL_SCRATCH_TRNG	BIT(5)
++
++#define TRNG_TIMEOUT_US		10000
++
++struct cs75xx_trng {
++	struct hwrng rng;
++	void __iomem *base;
++	struct regmap *global;
++	bool pending;
++};
++
++static int cs75xx_trng_wait(struct cs75xx_trng *t)
++{
++	u32 val;
++	int ret;
++
++	ret = readl_poll_timeout(t->base + TRNG_IRQ_STAT, val,
++				 val & TRNG_IRQ_DONE, 1, TRNG_TIMEOUT_US);
++	writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
++	return ret;
++}
++
++static int cs75xx_trng_init(struct hwrng *rng)
++{
++	struct cs75xx_trng *t = container_of(rng, struct cs75xx_trng, rng);
++	int ret;
++
++	ret = regmap_update_bits(t->global, GLOBAL_SCRATCH,
++				 GLOBAL_SCRATCH_TRNG, GLOBAL_SCRATCH_TRNG);
++	if (ret)
++		return ret;
++	writel(0, t->base + TRNG_IRQ_EN);
++	writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
++	t->pending = false;
++	writel(TRNG_CTRL_RESEED, t->base + TRNG_CTRL);
++	return cs75xx_trng_wait(t);
++}
++
++static int cs75xx_trng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
++{
++	struct cs75xx_trng *t = container_of(rng, struct cs75xx_trng, rng);
++	u32 data[TRNG_WORDS];
++	size_t done = 0;
++	int i, ret;
++
++	while (done < max) {
++		size_t n = min(max - done, sizeof(data));
++
++		if (!t->pending) {
++			writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
++			writel(TRNG_CTRL_GEN_NEW, t->base + TRNG_CTRL);
++			t->pending = true;
++		}
++
++		if (wait) {
++			ret = cs75xx_trng_wait(t);
++		} else {
++			if (!(readl(t->base + TRNG_IRQ_STAT) & TRNG_IRQ_DONE))
++				break;
++			writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
++			ret = 0;
++		}
++		t->pending = false;
++		if (ret) {
++			memzero_explicit(data, sizeof(data));
++			return done ? done : ret;
++		}
++
++		for (i = 0; i < TRNG_WORDS; i++)
++			data[i] = readl(t->base + TRNG_DATA + 4 * i);
++		memcpy((u8 *)buf + done, data, n);
++		done += n;
++
++		if (!wait)
++			break;
++	}
++
++	memzero_explicit(data, sizeof(data));
++	return done;
++}
++
++static int cs75xx_trng_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct cs75xx_trng *t;
++
++	t = devm_kzalloc(dev, sizeof(*t), GFP_KERNEL);
++	if (!t)
++		return -ENOMEM;
++
++	t->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(t->base))
++		return PTR_ERR(t->base);
++
++	t->global = syscon_regmap_lookup_by_phandle(dev->of_node,
++						    "cortina,syscon");
++	if (IS_ERR(t->global))
++		return dev_err_probe(dev, PTR_ERR(t->global),
++				     "cannot get global control regmap\n");
++
++	t->rng.name = dev_name(dev);
++	t->rng.init = cs75xx_trng_init;
++	t->rng.read = cs75xx_trng_read;
++	t->rng.quality = 512;
++
++	return devm_hwrng_register(dev, &t->rng);
++}
++
++static const struct of_device_id cs75xx_trng_of_match[] = {
++	{ .compatible = "cortina,cs7542-trng" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, cs75xx_trng_of_match);
++
++static struct platform_driver cs75xx_trng_driver = {
++	.probe = cs75xx_trng_probe,
++	.driver = {
++		.name = "cs75xx-trng",
++		.of_match_table = cs75xx_trng_of_match,
++	},
++};
++module_platform_driver(cs75xx_trng_driver);
++
++MODULE_DESCRIPTION("Cortina CS75xx TRNG driver");
++MODULE_LICENSE("GPL");
 
-> 
-> An alternative approach that addresses your point about layer violation
-> is to call arch_flush_lazy_mmu_mode() and leave the __set_pte() call
-> unchanged. This is slightly slower as we still end up setting/clearing
-> the TIF flag in that case. Not sure this is worth it - ultimately we
-> have to be mindful of what lazy MMU mode is doing to ensure this code is
-> correct. I'm happy with the current approach.
-> 
-> Reviewed-by: Kevin Brodsky <kevin.brodsky@arm.com>
-> 
-> - Kevin
-> 
-> [1] https://lore.kernel.org/r/20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com
+-- 
+2.53.0
+
 
 
