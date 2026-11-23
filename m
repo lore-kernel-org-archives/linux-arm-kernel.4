@@ -2,113 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96EE606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA485606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TokhvSUj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZkPZbkYj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KAA7j5IH;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Rn0lInkE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7ehb2ffeeQuJE9D3QIhTk8CC01gvV6R9A9P0MLypKbQ=; b=TokhvSUjwej7KrgKfuaUwjW3IP
-	AXCT7Kv/QZHNSl5Q+6TQNLQsqMCxzOWAZfkji4VnRAzC2ZS5jftlMDkgZ8OzdS8kw7HJdHNTFnSqV
-	rt69Syyv8/PndDiJOOvlzH6Nn81hK62PhU93Ux4nPdF2GnFoqzjv+Uzkz/U3+PEewsmsTK4pNqaJ9
-	fbtGE7nvqhvDMi8uZcgFv0qSdyNEhyDTfQX4/nyU/m6O12/dZ2ABYd5rfaD8jEtl182nMCfL+IBKw
-	UPttH/qHYzfNQI3x1fLC+8iSao6pawHUe6ghj8Pa9KIgdFMlRa9EAkudoasb+4Xxmw4hX1Mek2FdP
-	zoSOaTIA==;
+	bh=B4or4yeY8OHZRKSj5APXjf36hThUdnZ1Yx/De8GBlX4=; b=KAA7j5IHU7mUN9J1BPZ5WzzJ+C
+	gRiHrp8CbBHz2jTk+B5V2uMiWIJAeTXHrgJVAWiYIFdy0AoYfPYMXUwE1xzaB0kq2F21E1jcaeqAH
+	0HcGD3QThGaGj60fEuESNwTJdN3dtp3zEUOboM/OCInU3draLbcMWbPfXQhrsE7ZafRTAaTIAInGh
+	301IlPqFl4/6H7lCRtp/j+vsQnOfgzfDFk+UJuiwaXYNZeluMrO9UraKtoSD4pTfw0uTkAV5kmbkq
+	g9oYmDPTmZRSRSpNmGiNjCSx68zSpfTNi/bSrxYswHZsJD/2Sa1PCgwVWMucAX+b7EZcRrSVV/d/4
+	Yrk8QwEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNyq-00000002PCi-1USU;
-	Mon, 23 Nov 2026 06:56:48 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVO0S-00000002PZm-33HW;
+	Mon, 23 Nov 2026 06:58:37 +0000
+Received: from mail-dy1-x1347.google.com ([2607:f8b0:4864:20::1347])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNxb-00000002P6K-0SOn;
-	Mon, 23 Nov 2026 06:55:48 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D8C264176B;
-	Mon, 23 Nov 2026 06:55:30 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795416930;
-	b=V5+6gKaEZDZDVP8JG94YBpdWZJydHQFwdJZljA9bdm3h6ABVQF1+ziKcsnkU3224I/YE
-	 RRJ9o3bCerWLXLhrvYJwokByHTdDhTirh7OgOvSf6wNB6ZSI6Oe5z0Lr56W8uTbqPJ94L
-	 8yb8BUnonTDL1sDXeowm7kXwVjN5YjUDm3VkdkHeQ2kee8Gd3D0/Av25fUNliAoIJomBp
-	 OCgaZrpEJksO84IG/6vQMnJlxbtLoj9MEASOkM64vBkbnCp8GF3sr4P7ph6AyENOj75ZT
-	 5GHM6nzbgWWZfWZxZbrvsN6sHblUe1aiKc/SSuZ/eqP8DED4ga+CCOd6y+XokVUe7/A==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795416930;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=7ehb2ffeeQuJE9D3QIhTk8CC01gvV6R9A9P0MLypKbQ=;
-	b=TSBCN+IefpJaM8oqt+eb1ZgQZmhyrGde9RdRWtVajrLRy1lZe5YHk+ukO15JT1XjgYDs
-	 miW09SOU4eoWNTaKG2UgUk3/HOZ+NKAHGDDNyHF+mjjiQ7SvqhegsEDIH2FYcAXwA1HaU
-	 ePSsNXn7ICrnZwA3s9uW9vB70TyEq5FJyLF2n1zODY2K+QwPbj8yl8AYJvnga9Zh+tUni
-	 640ALazk9nS+7+KJyW2MrW5HdQSqaRNt42Mu82TwSCB9XZJEfH/8YSlDnSHISt0I5PgXo
-	 Zh8uWE1ZFAlAzzt2Lvp+aupkpQOy1g22f8luzJNW34ba7+8xqb/8oJT4k8fg3lMnBcA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 7DBA41F000C4;
-	Mon, 23 Nov 2026 06:55:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795416930;
-	bh=7ehb2ffeeQuJE9D3QIhTk8CC01gvV6R9A9P0MLypKbQ=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=ZkPZbkYjykDMUIIDoFAasg97TNp0CLL9M3X+r6h0UXTje6hNJ656/1gct2epic9Ic
-	 4nrSQbjgyS9akZ34MT2CKpxWagerTTB7iknSCyUrOHlU3HPQ/E3jfMCtkQXp7dLk4Q
-	 VMHJiGbSAa6bZTXBLN8mG2m+bPaIkLb1bk9CS3vka892K7FarlsaaotQImNtS7RrH7
-	 V2K6RNsp1JAQyWimFTgH2jLSJLn2VRDoCnPKg9ui90rf8eqNrip+aMx/U2qi7OzRvr
-	 eQWQPxER/1tChK5Ok/OEtNMBrNpp0I+mxw6EM+vm/MOpoAdKyvU9Zg/OEdf/TFhDev
-	 YM43L3ilaoBmA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id CE84F4C3A2;
-	Mon, 23 Nov 2026 06:55:15 +0000 (UTC)
-From: Bobek Brzeczyszczykiewicz via B4 Relay <devnull+admin.roadbobek.com@kernel.org>
-Subject: [PATCH v2 0/3] usb/phy: sunxi: Assert reset before deasserting on
- init
-Date: Mon, 23 Nov 2026 06:54:06 +0000
-Message-Id: <20261123-usb-sunxi-reset-fix-v2-0-4e51d3a64964@roadbobek.com>
+	id 1xVO09-00000002PVv-2aMp
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 06:58:23 +0000
+Received: by mail-dy1-x1347.google.com with SMTP id 5a478bee46e88-386b8624cf7so207731eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 22:58:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795417086; x=1796021886; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=B4or4yeY8OHZRKSj5APXjf36hThUdnZ1Yx/De8GBlX4=;
+        b=Rn0lInkE5FpEBDIWbMoT7Smg6ChrklLmh73X58fsa+Jz86hBIklxuGqY23lEly+Srn
+         63/duwJiQXYDeynSRq6AtUZJhM1D0NbA6yYA4C1liWvmuPQNAtmNbxINyQ1C3tBslfuH
+         7TiXqpV6UpV3IGBs8WGp23zHl8d3OuxSLNMgzxW1BGgpb6POISL2TRKrcoZHiLsIGtgo
+         jq7ZhUE9xcqlDP8V3fhZZaKQ8AhV2f/M9NT5+BUmpTm83wvMv6IQFG6p3F4lBMl9Es0/
+         uUekihARVAFVZQ1sDvzsUo3OAnRPIE8bzES0E2hdDJ5qt0XH5STLUuUzYCGM+bRaHafw
+         YCQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795417086; x=1796021886;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=B4or4yeY8OHZRKSj5APXjf36hThUdnZ1Yx/De8GBlX4=;
+        b=KprPrYNLiYLDoFreRctC04nAvdUF1MIfg081rUX0oKeCMcLNMf5HESxpe1gJaxOdN7
+         026g6QjipmLH2GVMErQCQvO3U8hDxGZAMfzN14Sg+OMO5dTlYll0JNJE62ikHbw5g/ry
+         WGqpqs/DW8YRxpB073zLQRgmDyCyrtXxIdF7wNmKqvw42lVKJq5v7FELJQI/WfOmJjuk
+         g2xpbu82VIQnvjnz6/66YyZAQNK1cQcHQKaC+xuNTP+8Rg2FgZLnILrIy6e4lM+jL1bN
+         cs5Y2USYv4AaYUvmsEoZf9uKPH8ppr8AHD0N/ga6Tb5/1m2cmNa67PXwLBUgW1195kTE
+         Tohg==
+X-Forwarded-Encrypted: i=1; AL+hErFd/BG2buYcuoYy3RQFtix2OvJbCf6UycidPidBBR5xozpK6C10r7ntIXG6QjLAs5B0N+iW4BIjMN3z0Efcdb7Y@lists.infradead.org
+X-Gm-Message-State: APuU4Z/dY8NQuINbu2CnlfGf0lsHRl98ko1umI/VUHNb/wk7Cgop+Aiv
+	Ie9B3YLvvn29Xh0LmPf/yWQbgW0lAAb0vYl7tWv2MAZ42osBOXz2gGLbP6OaIxQZgERH5hSsJEI
+	xHd/fxFrU0w==
+X-Received: from dybmw18.prod.google.com ([2002:a05:7300:cd92:b0:380:c63f:6b75])
+ (user=yidilin job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7300:f68e:b0:383:d3d1:f31e
+ with SMTP id 5a478bee46e88-3856e94760dmr10863514eec.6.1795417085859; Sun, 22
+ Nov 2026 22:58:05 -0800 (PST)
+Date: Mon, 23 Nov 2026 14:58:01 +0800
+In-Reply-To: <0964123eb95cd4a6516df05003f59f3cdb260d00.camel@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NwQ6CMBBEf8Xs2TXdhoB68j8Mh7asshqp6QLBE
- P7dgnePbzIzbwblJKxw3s2QeBSV2GWw+x2E1nV3RmkygzW2JKIKB/WoQzcJJlbu8SYTNuSMMVQ
- Uxp0gL9+Jc7y9Xusf6+AfHPr1am20on1Mn0070tr7bxgJDQbrq5INHwumS4qu8dHz8xDiC+plW
- b4tySluzAAAAA==
-X-Change-ID: 20261117-usb-sunxi-reset-fix-d1a0001440a9
-To: Bin Liu <b-liu@ti.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Hans de Goede <hansg@kernel.org>, 
- Felipe Balbi <balbi@ti.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Maxime Ripard <mripard@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795416949; l=3231;
- i=admin@roadbobek.com; s=20261117; h=from:subject:message-id;
- bh=o4DGixHbPlv/wmE6A4a2ry81udTO6L0xxBAxUf67t/Q=;
- b=MiwFtyzfknvO4YOvokSa0ZFcN0x5K4it0EctWcPSiBPfa05z7gGm/THCuR94ANntFQeEDF4do
- 4F1EaYz6N7HCooIce+oMzx7c1k4KZo9IJKtQuYxIHB8iltqyWlqIm33
-X-Developer-Key: i=admin@roadbobek.com; a=ed25519;
- pk=TcWSTwITMylwCZLYbw80sv2LQx1zButqiT90TFVvhas=
-X-Endpoint-Received: by B4 Relay for admin@roadbobek.com/20261117 with
- auth_id=1548
-X-Original-From: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
+Mime-Version: 1.0
+References: <0964123eb95cd4a6516df05003f59f3cdb260d00.camel@mediatek.com>
+X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
+Message-ID: <20261123065802.322838-1-yidilin@google.com>
+Subject: Re: [PATCH] drm/mediatek: dp: Wait for the complete AUX reply before
+ reading it
+From: Yidi Lin <yidilin@google.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, CK Hu <ck.hu@mediatek.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Fei Shao <fshao@chromium.org>, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_225810_144431_BD261A7D 
+X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,90 +95,29 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: admin@roadbobek.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-16.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When a bootloader such as U-Boot (for example with
-CONFIG_USB_MUSB_HOST=y) initializes USB host mode and boots Linux
-without stopping USB first, both the MUSB controller and USB PHY
-reset lines are already deasserted when Linux probes them.
+Hi CK,
 
-Because reset_control_deassert() alone is a no-op on an already
-deasserted reset line, stale hardware register state persists across
-boot. On Allwinner A33, MUSB stays wedged in a_wait_bcon with
-DevCtl=0x99, Power=0xf0, and a frozen Frame counter even across
-hot-unplug and replug.
+Please don't apply this patch for now. It breaks AUX reads with one eDP
+panel (CSOT MNB601LS1-6, EDID ID CSW 0x1106) on an MT8189 Chromebook:
+the wait for AUX_RX_AUX_RECV_COMPLETE times out with the AUX RX PHY not
+idle ("AUX Rx Aux hang, need SW reset"), so the EDID can't be read and
+the panel falls back to conservative timings. The current code doesn't
+hit this because it reads the RX FIFO as soon as the write pointer
+moves.
 
-This series ensures both the MUSB controller and USB PHYs are reset
-cleanly regardless of prior bootloader state, and fixes a related
-PHY2 clock reference imbalance spotted during review:
+I'm looking into what is different about this panel's replies, and will
+either send a v2 that handles it or drop the patch.
 
-- Patch 1 uses devm_reset_control_get_exclusive() and briefly asserts
-  glue->rst in sunxi_musb_init().
-- Patch 2 uses devm_reset_control_get_exclusive() and asserts all PHY
-  resets in sun4i_usb_phy_probe() before registering the PHY provider,
-  avoiding disrupting shared PHY2 on SoCs with needs_phy2_siddq.
-- Patch 3 fixes a pre-existing phy2->clk2 reference imbalance in
-  sun4i_usb_phy_init() on SoCs with needs_phy2_siddq.
+Sorry for the noise, and thanks for the review.
 
-Tested on an Allwinner A33 Q8 tablet (Laser MID-786).
-
-Signed-off-by: Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
----
-Changes in v2:
-- Use devm_reset_control_get_exclusive() in both sunxi_musb_probe() and
-  sun4i_usb_phy_probe() (Philipp Zabel).
-- Move the USB PHY reset assertion from sun4i_usb_phy_init() to
-  sun4i_usb_phy_probe() so initializing PHY2 on SoCs with
-  needs_phy2_siddq does not reset an already active shared PHY2.
-- Add Fixes tags to both reset patches.
-- Add Patch 3 fixing the pre-existing phy2->clk2 clock reference
-  imbalance in sun4i_usb_phy_init().
-- Link to v1: https://patch.msgid.link/20261117-usb-sunxi-reset-fix-v1-0-c2b76e0e84e1@roadbobek.com
-
-To: Bin Liu <b-liu@ti.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Samuel Holland <samuel@sholland.org>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: Hans de Goede <hansg@kernel.org>
-To: Felipe Balbi <balbi@ti.com>
-To: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: linux-usb@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-sunxi@lists.linux.dev
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-phy@lists.infradead.org
-
----
-Bobek Brzeczyszczykiewicz (3):
-      usb: musb: sunxi: Assert reset before deasserting on init
-      phy: sun4i-usb: Assert PHY resets in sun4i_usb_phy_probe()
-      phy: sun4i-usb: Fix phy2->clk2 reference imbalance in sun4i_usb_phy_init()
-
- drivers/phy/allwinner/phy-sun4i-usb.c | 23 +++++++++++++++++++++--
- drivers/usb/musb/sunxi.c              |  5 ++++-
- 2 files changed, 25 insertions(+), 3 deletions(-)
----
-base-commit: 666539eecdf4db623f5e3c3e55cf9f2dfad24aa4
-change-id: 20261117-usb-sunxi-reset-fix-d1a0001440a9
-
-Best regards,
---  
-Bobek Brzeczyszczykiewicz <admin@roadbobek.com>
-
-
+Yidi
 
