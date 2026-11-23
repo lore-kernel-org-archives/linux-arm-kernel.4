@@ -2,113 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F2B606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3607F606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dsS7ZhTU;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=2mU5GQlq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tlWnAOdS;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=ZOvPiFo2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=FkwbwviojkM4gKR0Wj2UdEk1IhthcXzsco0vEBT+c3Y=; b=dsS7ZhTUIbE+WXg2Qod1oDPLWs
-	UA08L8oPBWVNo11N+/gsZTGYmwwDMgDR9z8r+uaiV/MGPJSJYyvhmP1tal8pElPZK5cAMSiT7ZDbZ
-	EjvQYdrX1gLk+LcCfJu8g8WUFk2PnRgDYTDjiHeEQ6F0l3TFhzXjtVR9695oTImUEJ5m6x13Aooo7
-	yWxufC5JkL+pkE6AeKLnDMJFQFDsYfTJQ6hphfZ8IiSTXFp0vO1hh3eN1wyizfpQBfvXSVxBe7xn6
-	5PtW45R4f9tFLANUvRR7LaDmsJ1ENOBzKKhu/VLzBqv0qWKWIb0tDHZXurLwNgg4iMTIP99H1CllJ
-	dee5CH2A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Zvqnrlc7MSEtVSmfRRlydngWRQ+r+L5CkYiMb5jwDlo=; b=tlWnAOdS18IQtD
+	IUfhavAzhEKP27OXukx6G9dcmkVXlHMta1xGlbAYAdrh4A5Y+4OALAZNwaFfJpXp0MNkOiygDvgJA
+	yJfm/V6c8G6XCq9WHtxrEg0+1WR8928HJcsheRnI1zRlt/TMpaWd0X2FUPZaYzoU0FGARe5qcFrh6
+	+e2hxuQyy948uarfnUSMDYtJU6OEsLU6QLFDCbBX/TfWx/gdnatqWFPv10B/2DFsdhMnjZU7XGXdl
+	Ri+iXihK5imxk4qIp8Zk4tPbjmpfNz8wywxVQnjQo02GagNA1e89CeupACe2GHL7H2UldTUvgU9Aj
+	Dt2puVxR628DV7ck7D2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVX8H-00000004ET3-0DXG;
-	Mon, 23 Nov 2026 16:43:09 +0000
-Received: from mail-westus3azlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c107::1] helo=PH8PR06CU001.outbound.protection.outlook.com)
+	id 1xVVRb-00000003pL8-3o8a;
+	Mon, 23 Nov 2026 14:54:59 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVX8D-00000004ESG-3vGt
+	id 1xVVQV-00000003oVF-2Nk5
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 16:43:08 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QWolYgO26gWeFlLGX44Jen1GudTtdhod9/KAC8cQhJxQOyuQmLUXZl2qroBQzgNHH1ly6+BAY532p3FN58P5TElDKda2iuie9A01FMhwcUSKYSk9JIjQKRyGfNxTn1MX5z6br6qXp1HRnKLAuIlp0WAu2O695pHluKLEXQITqkISjr5ARqTkZDzExS+JltnDRmNfOOQJtP5lnppjp/1woF2x/XYPf8IKRMS3iihT0dTVmRI4uVHg4+HVd4MAMRcsLhicAItiPRCRg+IvBXLgdBIvkI0L4nCjtp8v3Cnz+CSBJs5sHWDcPkaoJ7Sm1Lw4ZGQiiQxVlqxUKgPYRDCbDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FkwbwviojkM4gKR0Wj2UdEk1IhthcXzsco0vEBT+c3Y=;
- b=OX5q4WYc2dLRK5EDZSDcCU9ykm2WgzuILcLEbfoYlaU45nGqNwfCp2gBEgKHnF19AaqDHHEblMldVEKHfpmRw8ho/bIJtZtVhoCGI+PwJ3PKEcVqmeetyl8FaUP/FihIBHSBCqP8G93tSQ0Rpg+GBKY9YSc9C7dTADS5+krrt810pu6lrlQchm2+0wB+OAJZ5W8hQmfY5GswdbUVcittwWNkeqZv7XeHWTT1vfBAsBVhHwUmAsVc8HIQ8q99ZxaqfVcBKz0MF3fXny6GUJXXEjxccAjn3J7uw4radsVEei3Mz8f5YdWiYeT5awk6jFeG1bNChmeAlQKQWKJyFJR2vQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lunn.ch smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FkwbwviojkM4gKR0Wj2UdEk1IhthcXzsco0vEBT+c3Y=;
- b=2mU5GQlqWVedpPiX8SfZGqFxRr4IVfJ5ehQKlF4KGC3t+9pbGVongLYdnp1q9h2SPtp0RLoDOobkZHlxdLvYKjjwlzN/ltam15grhVY5LFdNPwC80S5tmUXeZRF/waf1CDJawG3ePWOzS5xlEKlqF7KGDoQYLnc65GcrxM9POVA=
-Received: from PH8PR22CA0014.namprd22.prod.outlook.com (2603:10b6:510:2d1::29)
- by SJ2PR12MB8883.namprd12.prod.outlook.com (2603:10b6:a03:538::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
- 2026 16:42:59 +0000
-Received: from BY1PEPF0001AE17.namprd04.prod.outlook.com
- (2603:10b6:510:2d1:cafe::93) by PH8PR22CA0014.outlook.office365.com
- (2603:10b6:510:2d1::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Mon,
- 23 Nov 2026 16:42:59 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BY1PEPF0001AE17.mail.protection.outlook.com (10.167.242.107) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Mon, 23 Nov 2026 16:42:58 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
- 2026 10:42:55 -0600
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
- Transport; Mon, 23 Nov 2026 10:42:52 -0600
-From: Srinivas Neeli <srinivas.neeli@amd.com>
-To: <radhey.shyam.pandey@amd.com>, <andrew+netdev@lunn.ch>,
-	<davem@davemloft.net>, <edumazet@kernel.org>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <michal.simek@amd.com>, <horms@kernel.org>
-CC: <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [PATCH net-next v2] net: xilinx: axienet: Derive RX frame length from residue in dmaengine path
-Date: Mon, 23 Nov 2026 22:12:51 +0530
-Message-ID: <20261123164251.48234-1-srinivas.neeli@amd.com>
-X-Mailer: git-send-email 2.43.0
+	Mon, 23 Nov 2026 14:53:53 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4a42b34e930so2984884f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 06:53:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1795445630; x=1796050430; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Zvqnrlc7MSEtVSmfRRlydngWRQ+r+L5CkYiMb5jwDlo=;
+        b=ZOvPiFo2WoQ4MyX2lM7lFdtPBEQSiEVJvciJvswBoYubB6vww0yJo7/PnUQfaS2aCh
+         7Ochpj0G+GDeFSo7HIxpuoADMBH8C2ALUYLqlbO3tpj0yudpcpkVj7fLKld1fwpAoNOG
+         SZr9phSJoutW4dnk4RlrDhSQnpgSHsZ4i9b7sE+qDzPk6TJExrtkXCL+HhZ0mRmHHUDv
+         uWnLn+EJLICaXomExl5XOdBJWfjqtUoID0r3v8lGNGyrG8ja9y7npdvZkuLdmtF+btwK
+         jOf9a7df0hKKUDjuTrP7bYUhRebxEpOklV88fK44jeHKBleDaMlj+BrVvlraAJ75S2Ml
+         utEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795445630; x=1796050430;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Zvqnrlc7MSEtVSmfRRlydngWRQ+r+L5CkYiMb5jwDlo=;
+        b=QAKr0FEgDggal7JP/mU75ZKHL/bgZyPzgvQkk0/5q57ZtxLw2aJav8JPI+xT2jw6AF
+         x5RsCel11SpGFEWJ7zywoNhlcpzvtwsArb7K975jLCJA92tTzNdmARbm+Zu88DVigIWi
+         z2GnaKophLBKr54R/RCOEqHJO86bXE4JLMKvlqCokKnVXedNT7LdNoe+t6n/yMkuiOXg
+         jsjnjZYydKo85e0IO2Lbn5VKEFWP2/kjnUeMX7gY9GcUv7QQbDXEVr6W9a3EFvXGpyD5
+         fjGpn1aXUk9YpRdP+FrGhhlV4zknTyQDRcVdBY3XDzTnyEK+uRRAeURr2geMkQN9daBI
+         EqOg==
+X-Forwarded-Encrypted: i=1; AL+hErGSf70qQRqRDbpaI/IjDdwostSYhXw60TQNwztOBvkHZQ40c3LJrEfQRgwHrW2vs6UHk2n0tz5tx8s/LnegC/WH@lists.infradead.org
+X-Gm-Message-State: APuU4Z/8tF5Hn3vVAENIWvcqxWsU/i0l6SjloPaPN9T3H5dIDbMFfDG+
+	29dFBz84Ke1qWXVi8KVKYGWKILsjmRJ+8a38HBO5W7/o49WJTpLWVNJz9cI3+UNuqXw=
+X-Gm-Gg: AZFdTZd0ByiBfKYukn8KVLF/nQHGgMSZvZ/N8OwbOksMpcVfUqzrHJ3Kv9ObaJ9gMDm
+	oQoAHNDMdItPIZyggM9kTS85fIHAcSsOO25OGw/VMdOdIm+0oPnPh9V83VHR2cGIJYnOSWuPsqU
+	7/+jopq7NhzuB/mCgzLsZXu/Fmeg6F0+YXINLfEnJfrmbNNIJYNq2btitj0FI9Ysgb/FhVl8jpt
+	xgBq7iyWyUEn5g3OiHNnW3koOi/W9/WhuKsEqo+X7q8qa+F5U0X5WnNdqap1UJMc9E6yqi70gEi
+	7AACrwrMH9CF7HeCA5HvlogBEal0FCBxz/dMzAvpRCbYeEdVcz2hdjB5c9Ejw/UDp9TgY360GaA
+	eDzEO8ndAhrvqv+o0fDTr9StjNwW3ywee7FgHQ0RjCFB/Zaq+onihblRH5E1mthWb2FDcexcwVO
+	nnnAm2cf4JCnFMPpxMHrKDAVzAo1VPa0PHUgvl4teO6dVjqqlWz8MwMM2SqXfa9yhvBKqAXAtxS
+	yisFDAwLyf6e0uZYnE1VZXBcilBWyO574PSmNbp/AR3FMbVXXs3x1LH6kFXkqjhjOkvTauoNNCz
+	VlBF7HjyCcBDJgbxsja4RFAeQBY=
+X-Received: by 2002:a05:6000:2313:b0:490:50c1:f359 with SMTP id ffacd0b85a97d-4abb4d70071mr25023593f8f.39.1795445629731;
+        Mon, 23 Nov 2026 06:53:49 -0800 (PST)
+Received: from localhost ([82.192.120.76])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dd55sm22090607f8f.30.2026.11.23.06.53.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 06:53:49 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Vinod Koul <vkoul@kernel.org>
+Cc: Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dom Cobley <popcornmix@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Andrea della Porta <andrea.porta@suse.com>
+Subject: [PATCH v3 12/28] dmaengine: bcm2835: pass dma_chan to generic functions
+Date: Mon, 23 Nov 2026 15:56:50 +0100
+Message-ID: <20261123145728.29082-13-andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261123145728.29082-1-andrea.porta@suse.com>
+References: <20261123145728.29082-1-andrea.porta@suse.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE17:EE_|SJ2PR12MB8883:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd8a27e0-31a8-4c78-6f62-08df4980d503
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|82310400026|1800799024|376014|261102123227099003|261026121527099003|261026140227099003|261022075727099003|261022105027099003|261028144727099003|261021121427099003|261021123027099003|11063799006|56012099006|10067099003|261009223027099003|18002099003|6133799003|13003099007|3023799007;
-X-Microsoft-Antispam-Message-Info: mOG0yGFkax9pzAIkolMhn4iVmpZKbVxM3xT9VBqYhIqPG7gTYv9Dqfb9yYLifEf0ltNSB58b07t7ofiQw3mBVCumMsz2Vdh6VpeGNBJA2hsFV4QKDdvaPxsUuVbmLutknOyI088q7F2b7zYa1mdrzO92yLaUAK0cUXsFjt8rK2L4ub/wIEpbcZiXnyHnhKU41eoJx2moamKAJBDbkQ12U/+P0UprcoQL8WXsAmXkTUTuUwKknnrbfM2/V0Y62HyXNU+b+S2XSZhan+4Bnvzy1t+TY1o8Je9qDVWX4/itYwdfmqvv8rVNJMx4PoCnEuEGINF/a1OX2mnvl5rDjXms41PlZ2RnRby0JUxW8XMN2FNxn4f6i5JQtHQIrtaBYsTaAkcUNADGeys4RnkyNorfa+c5kLjTs0P3fLNwDBwNAVxgdB/uO46uYmySYvP6+u8DkTldL1QAyTI0aPl2PAkKtMaG8LmXi2sw0EXziS4dhoMjiMMzuDo+8eiGH9jv0dhL8Gpg8GzZ/BRriUdQaeSUhvZ05e7Qz78g3zSIi+BwhYFBKtAznK4rgBw0JMrtkuPvLgXUil8u1LT/e3Bwoot6qXLj0CAQbTyRRc46zWaPy11to0PJjk0G1Ay3aZ/fdxaiKJqDbxRdkyEw3Aea1gnV7XEgWxzdpT9w10KUHu/awP8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(82310400026)(1800799024)(376014)(261102123227099003)(261026121527099003)(261026140227099003)(261022075727099003)(261022105027099003)(261028144727099003)(261021121427099003)(261021123027099003)(11063799006)(56012099006)(10067099003)(261009223027099003)(18002099003)(6133799003)(13003099007)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: NPGtpyWmRI6l5G7fZcJZ0G9eYTyeG3j3+bZlUhdXRlyreR7jhL55XUCJWZyenx+JQ8UzPeX1Y/ftKxf63AdNVe4chvRmJx7ZUbN75hb5k3OKuP4rIucjxPNRwhDD7UhGfCCV0oor/0fHvudIQXslwn+y0RRTLhSYKSm6XtDSJNC1z8mXLAWl+Ph0ir1PgqMDT9PkmbTnbRWbnI4RMcnIIMdAt+4AcHg037AaXktFubbNpoyAUTE+K9u4tLDdY730c67bIdWx5En1dhaDaXgkZtlioQPthJ7bYWlSF4ZSwkhj67gL+eGdGzKbxYhC9Nz0SZsXRRcaC94ywPFp5c+pljbnqZI48/QxAoptGaYu6yzRZg5Sd+MjBE6Ft/kv1yzxYDjZNlOd9AmlNkPmH/h54MKxDmHuB+XMCqmWTBLSPjMGvKCs99ULkPGkKiTO+pOh
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 16:42:58.7065
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd8a27e0-31a8-4c78-6f62-08df4980d503
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0001AE17.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8883
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_084306_106908_67FF6267 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20261123_065351_637408_F3B8A5BB 
+X-CRM114-Status: GOOD (  17.93  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,93 +126,124 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The dmaengine RX path derived the received frame length from the descriptor
-APP metadata. That only works when the optional AXI4-Stream status/control
-interface is present, because the hardware populates the APP fields solely
-when that interface is enabled. On designs without it the length read back
-is invalid.
+In preparation to support more platforms pass the dma_chan to the
+generic functions. This provides access to the DMA device and possible
+platform specific data.
 
-The AXI DMA engine already reports how many bytes it wrote into the buffer
-through the standard dmaengine residue mechanism. Compute the RX frame
-length as the posted buffer length minus result->residue, which is
-independent of the status/control interface and correct across all designs,
-including multi-descriptor frames where the residue is summed over the
-chain.
-
-Drop the descriptor metadata lookup, which was only used for this purpose.
-Detect a failed transfer from dmaengine_result.result instead of the
-metadata pointer return value, and remove the now unused LEN_APP macro.
-
-The transmit path is unaffected. It still passes APP metadata for checksum
-offload and derives its length from the skb.
-
-Reviewed-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
-Changes in v2:
-- Refresh the patch against next-20261120 to address the reported
-  git am failure. No intended change to the RX logic.
-base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
+ drivers/dma/bcm2835-dma.c | 26 +++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
-Apply failure reported in:
-https://lore.kernel.org/lkml/20261123140311.GB31322@horms.kernel.org/
-
-This patch was originally posted as part of the MCDMA series and can
-be applied independently of the other patches in that series.
-https://lore.kernel.org/lkml/20260818174151.1608971-4-srinivas.neeli@amd.com/
----
- drivers/net/ethernet/xilinx/xilinx_axienet_main.c | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-index 7e83c4b5f193..5b4998e2ca14 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-@@ -55,7 +55,6 @@
- #define TX_BD_NUM_MAX			4096
- #define RX_BD_NUM_MAX			4096
- #define DMA_NUM_APP_WORDS		5
--#define LEN_APP				4
- #define RX_BUF_NUM_DEFAULT		128
+diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+index 1d322cad4ca3..d048cb00ce5d 100644
+--- a/drivers/dma/bcm2835-dma.c
++++ b/drivers/dma/bcm2835-dma.c
+@@ -307,13 +307,14 @@ static void bcm2835_dma_desc_free(struct virt_dma_desc *vd)
+ 	bcm2835_dma_free_cb_chain(container_of(vd, struct bcm2835_desc, vd));
+ }
  
- /* Must be shorter than length of ethtool_drvinfo.driver field to fit */
-@@ -1219,30 +1218,27 @@ axienet_start_xmit(struct sk_buff *skb, struct net_device *ndev)
- static void axienet_dma_rx_cb(void *data, const struct dmaengine_result *result)
+-static bool bcm2835_dma_create_cb_set_length(struct bcm2835_chan *chan,
++static bool bcm2835_dma_create_cb_set_length(struct dma_chan *chan,
+ 					     struct bcm2835_dma_cb *control_block,
+ 					     size_t len,
+ 					     size_t period_len,
+ 					     size_t *total_len)
  {
- 	struct skbuf_dma_descriptor *skbuf_dma;
--	size_t meta_len, meta_max_len, rx_len;
- 	struct axienet_local *lp = data;
- 	struct sk_buff *skb;
--	u32 *app_metadata;
-+	size_t rx_len;
- 	int i;
+-	size_t max_len = bcm2835_dma_max_frame_length(chan);
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
++	size_t max_len = bcm2835_dma_max_frame_length(c);
  
- 	skbuf_dma = axienet_get_rx_desc(lp, lp->rx_ring_tail++);
- 	skb = skbuf_dma->skb;
--	app_metadata = dmaengine_desc_get_metadata_ptr(skbuf_dma->desc, &meta_len,
--						       &meta_max_len);
- 	dma_unmap_single(lp->dev, skbuf_dma->dma_address, lp->max_frm_size,
- 			 DMA_FROM_DEVICE);
- 	skbuf_dma->skb = NULL;
+ 	/* set the length taking lite-channel limitations into account */
+ 	control_block->length = min_t(u32, len, max_len);
+@@ -423,7 +424,7 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
+ 		/* set up length in control_block if requested */
+ 		if (buf_len) {
+ 			/* calculate length honoring period_length */
+-			if (bcm2835_dma_create_cb_set_length(c, control_block,
++			if (bcm2835_dma_create_cb_set_length(chan, control_block,
+ 							     len, period_len,
+ 							     &total_len)) {
+ 				/* add extrainfo bits in info */
+@@ -491,8 +492,9 @@ static void bcm2835_dma_fill_cb_chain_with_sg(
+ 	}
+ }
  
--	if (IS_ERR(app_metadata)) {
-+	if (result->result != DMA_TRANS_NOERROR) {
- 		if (net_ratelimit())
--			netdev_err(lp->ndev, "Failed to get RX metadata pointer\n");
-+			netdev_err(lp->ndev, "RX DMA transfer failed\n");
- 		dev_kfree_skb_any(skb);
- 		lp->ndev->stats.rx_dropped++;
- 		goto rx_submit;
+-static void bcm2835_dma_abort(struct bcm2835_chan *c)
++static void bcm2835_dma_abort(struct dma_chan *chan)
+ {
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	void __iomem *chan_base = c->chan_base;
+ 	long timeout = 100;
+ 
+@@ -533,8 +535,9 @@ static void bcm2835_dma_abort(struct bcm2835_chan *c)
+ 	writel(BCM2835_DMA_RESET, chan_base + BCM2835_DMA_CS);
+ }
+ 
+-static void bcm2835_dma_start_desc(struct bcm2835_chan *c)
++static void bcm2835_dma_start_desc(struct dma_chan *chan)
+ {
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	struct virt_dma_desc *vd = vchan_next_desc(&c->vc);
+ 
+ 	if (!vd) {
+@@ -553,7 +556,8 @@ static void bcm2835_dma_start_desc(struct bcm2835_chan *c)
+ 
+ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
+ {
+-	struct bcm2835_chan *c = data;
++	struct dma_chan *chan = data;
++	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 	struct bcm2835_desc *d;
+ 	unsigned long flags;
+ 
+@@ -587,7 +591,7 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
+ 			vchan_cyclic_callback(&d->vd);
+ 		} else if (!readl(c->chan_base + BCM2835_DMA_ADDR)) {
+ 			vchan_cookie_complete(&c->desc->vd);
+-			bcm2835_dma_start_desc(c);
++			bcm2835_dma_start_desc(chan);
+ 		}
  	}
  
--	/* TODO: Derive app word index programmatically */
--	rx_len = (app_metadata[LEN_APP] & 0xFFFF);
-+	/* Actual length = posted buffer length - residue. */
-+	rx_len = lp->max_frm_size - result->residue;
- 	skb_put(skb, rx_len);
- 	skb->protocol = eth_type_trans(skb, lp->ndev);
- 	skb->ip_summed = CHECKSUM_NONE;
+@@ -615,7 +619,7 @@ static int bcm2835_dma_alloc_chan_resources(struct dma_chan *chan)
+ 	}
+ 
+ 	return request_irq(c->irq_number, bcm2835_dma_callback,
+-			   c->irq_flags, "DMA IRQ", c);
++			   c->irq_flags, "DMA IRQ", chan);
+ }
+ 
+ static void bcm2835_dma_free_chan_resources(struct dma_chan *chan)
+@@ -623,7 +627,7 @@ static void bcm2835_dma_free_chan_resources(struct dma_chan *chan)
+ 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
+ 
+ 	vchan_free_chan_resources(&c->vc);
+-	free_irq(c->irq_number, c);
++	free_irq(c->irq_number, chan);
+ 	dma_pool_destroy(c->cb_pool);
+ 
+ 	dev_dbg(c->vc.chan.device->dev, "Freeing DMA channel %u\n", c->ch);
+@@ -704,7 +708,7 @@ static void bcm2835_dma_issue_pending(struct dma_chan *chan)
+ 
+ 	spin_lock_irqsave(&c->vc.lock, flags);
+ 	if (vchan_issue_pending(&c->vc) && !c->desc)
+-		bcm2835_dma_start_desc(c);
++		bcm2835_dma_start_desc(chan);
+ 
+ 	spin_unlock_irqrestore(&c->vc.lock, flags);
+ }
+@@ -868,7 +872,7 @@ static int bcm2835_dma_terminate_all(struct dma_chan *chan)
+ 	if (c->desc) {
+ 		vchan_terminate_vdesc(&c->desc->vd);
+ 		c->desc = NULL;
+-		bcm2835_dma_abort(c);
++		bcm2835_dma_abort(chan);
+ 	}
+ 
+ 	vchan_get_all_descriptors(&c->vc, &head);
 -- 
-2.43.0
+2.51.0
 
 
