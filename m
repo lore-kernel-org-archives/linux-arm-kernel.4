@@ -2,88 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F17E606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EC0606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3dvLh+xS;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=HSvYYxz4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vzI8Vebr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mNi9GM5h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XZB01VxXXHZ8JGUr/Kjr5B+9ghGqWLtm2u4oVk4hZ5A=; b=3dvLh+xSlUW8kk9OHTUQBeLWxZ
-	G2gG4/IlUFjP7WxNF6RamYHhLDeN21uHBs1RZzKwvKUQOwrHQ8JGifl9u657tLH/Djrdg8BowLdaS
-	YTCfjiEJK4nWUNPG4bcu3/H8HxJgyExpzkol7Avf6AdeIrNeHgAV/BXnGeGWxKAQNjz1z5dxvMDsU
-	b9CeA8W0LhCjLLCgaG3DmOtywzLstq6oxFZJ3GMpe8ZInS9ZqS1tcNqg+QHQxM3ZUsqJr7yGJmjml
-	HIpc1DT/T99o7CwddCBvGvtWKBCok8zu6x5+89lg1gkr5Tnd7KIn1jfNwKvXo05bzmH8NzcJsN42u
-	YyQxF2iw==;
+	bh=6P272XRmtxVRxUwOCYKqdPoT8y/CgT8kIkZk04v3YWI=; b=vzI8Vebron9D8k/e1TIWS1MiZS
+	11stVDImLiEiD/gOwv/v9iz2ger3YMjPsgX6fsOTlLianq4fDFe4uORdJxkozvvR3WnTo5gR4E5lv
+	WjTYqml1InZja5MPql7W+GE6QWSfvn+IgHOxmZqhxNntDno/CPr2cUr3LlfjeIp4fMTMbw56SWC1q
+	AZzY6lQVEUJCPfDz/T1rIP/3PA5ArrIViLd0WGou6CBq9DaLY5erxFSv+4mCrLI+1FJU9MeoG9VUE
+	wuilvMLVYF2PPpCumcipbB5LQFWgm10PPphHtB3xzFbvFDVkscMBl8AqQIlA1V4k0WKvowuGKTo01
+	bfzYzaTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbjZ-00000004zls-0AER;
-	Mon, 23 Nov 2026 21:37:58 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xVaj2-00000004qsN-1uiV;
+	Mon, 23 Nov 2026 20:33:20 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbjU-00000004zkL-0R5S;
-	Mon, 23 Nov 2026 21:37:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795469867;
-	bh=eqTz5I5hXDw/utCcHS4ZZHudHX0/EsrXro8Gc1lz+Ro=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=HSvYYxz4hFHJFR/ULMOWK5fixWjJk8ihJMLLpTqi1mYhOy6TG6rGg3D1/NOgqSsTi
-	 fZ2ZNH7LPyrS1+Pgdbl6FVtI1xAWwVsEBFbsRMEsWSwYJ+4tCmZKzgBPDyndmHvHBo
-	 p3WMpS1d/1YQsnf1854UNB/KRzskp7MMD9G1Cg+l0z5BdABPu03LzZtNb/HfR9swnj
-	 ooJIucIZFqjqiYMwyTqa/ro63A473ypL+boC7bKpb94t6GVIggS6dCKDjasj/h+jPB
-	 yc9GJUFSRmNXnr+zDToQ6ZD/nK1ScW7MemSzYVIM3wswQFQ3gi6AKXIomaj7uMBwHZ
-	 Os7BjdgPgsMHg==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
+	id 1xVaiT-00000004qYV-0d49;
+	Mon, 23 Nov 2026 20:32:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 399966110A;
+	Mon, 23 Nov 2026 20:32:44 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795465963;
+	b=O0KU5gMTHRZ6ha1UDuyB7fxH28xZWF1JM5HtVisr7qMVIveTwTorp7CTeURvKHlP0rXV
+	 Awj7xsaQ4zm5naZq8Y+HKauqGj9RgkXLDpGd8YfW78OcNJC2LrMm2FovAyTmm5zn45+as
+	 DxUoRJHXYOIbX7H3z4n2jdcE4r5z5j1IvetdbM+Rxfuo/CXgFFKSQRkVfJdJOi/NF7ksU
+	 FA81Vi1LRxFIog93NS4A9YD2JN7u0ODW4XcHpBbKi8Bi4yElAw2kc73aqGR2ovxlkoBiR
+	 3B8DsxImOMqRd0cgjvvnx8gwn7Lh0h3P0FIQR0nqkZ78V26Jh4Ofoi0dn5D3b36YF9g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795465963;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=6P272XRmtxVRxUwOCYKqdPoT8y/CgT8kIkZk04v3YWI=;
+	b=eYqQz+9W8x4LlTsaUXxBJrtNOhxbfADkbD85SKH1364v9tRrqjoIbXB494ZWhyjWnpIh
+	 EI1TkroOFnkPp1wC4hcC3UkkoEFDeCCP8Vf6dwDhhzusj9+eZTlpd1UizQuUrsaQBmOth
+	 EuEzvEI9mUR7jfTEPZRtgQSy0o7jLorzEDU5YHVNdtxVSejOLIhp/KceGPXEZJiN9uRdR
+	 ZeeaAShv50NWa7ioW0R7hy1QgZ1yh/tNCM6Ot3UqzzLIuNrv27D+FSDFgv7FDha3HmPhN
+	 9ZwIFV/9bRwBIHR5AmrJSAisTQjcfWx8xJKEdjv7rUercGVr8ldMvskSHJMBGbb0veA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A349717E04F7;
-	Mon, 23 Nov 2026 22:37:45 +0100 (CET)
-Message-ID: <aa951ce0fd972085a4c9fb19a3c67e36ed90dc7f.camel@collabora.com>
-Subject: Re: [PATCH v3 0/3] media: rockchip: Add the IEP2 deinterlacer of
- RK3568/RK3588
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: aiyengar1990@gmail.com, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp
- Zabel	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>, Alex Bee
-	 <knaerzche@gmail.com>, Krzysztof Kozlowski
-	 <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Mon, 23 Nov 2026 16:37:43 -0500
-In-Reply-To: <20261120-iep2-v3-0-e94eb9f629d2@gmail.com>
-References: <20261120-iep2-v3-0-e94eb9f629d2@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-FWklcH9hjr78QjddYyVY"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	by smtp.kernel.org (Postfix) with ESMTPS id F06AA1F000EB;
+	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795465963;
+	bh=6P272XRmtxVRxUwOCYKqdPoT8y/CgT8kIkZk04v3YWI=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=mNi9GM5hyJs9lnuUF2uiubdVbfjOBxrAp3WFP47gtTBjX0shGksTkE9l2U24xH7IA
+	 +cdYhbgXghO2/mmrew1ZEbx51+nB3aJhtY9EXYt3qEJSiTA7McziVBh3t2CUH7QVHR
+	 o5LlzkzoZH2SppelWjEkuNnkN4xOSeorKKB7Y2LgUgnbxdNq6++TO6H/pswOnEwD04
+	 nHieyVuEXYK8aN345fcXF7jMLyjn9B375tgY8NGQvIbo5jqfFEGzjAh2GHc0h97Zcq
+	 FJ5wbyqWGFR5r7TpJr6aGCvrEG51hofvfldSZX33FGTUCjbkhqeCCWwcHlcilmKSLE
+	 J6v3nUx7OJcKQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 799A24C6FB;
+	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Mon, 23 Nov 2026 23:32:16 +0300
+Subject: [PATCH v2 2/8] dt-bindings: soc: Describe CS7542 PCIe clocks and
+ resets
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_133753_964210_FFF9EB63 
-X-CRM114-Status: GOOD (  24.37  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261123-b4-cs7542-pcie-v2-2-f589a9cd0bef@gmail.com>
+References: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
+In-Reply-To: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
+To: Manivannan Sadhasivam <mani@kernel.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Krzysztof Wilczynski <kwilczynski@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465935; l=3193;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=f8i2MUsoVg+zzyGMskQHqPaf9wJgR56JnWGThlimNzg=;
+ b=DMG0WPKRoRxeDezktvzlUVonyL/6hwSDG2kJFWn3seAiKvsgWodsaxp7f0DPc7Rymn84o8WIF
+ Pg28KF8cPe7D2TkrATMT7wBqddl/i2RrOVv/6qddpnMuBCUlh0VzPeR
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,108 +117,96 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-FWklcH9hjr78QjddYyVY
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Le vendredi 20 novembre 2026 =C3=A0 11:30 +0000, Arun Iyengar via B4 Relay =
-a =C3=A9crit=C2=A0:
-> Add a V4L2 mem2mem driver for the IEP2 deinterlacer of the RK3568 and
-> RK3588, with its binding and the RK3588 DT node. The V4L2 side follows
-> Alex Bee's IEP driver.
->=20
-> Tested on an Orange Pi 5 (RK3588S) with a 7.3-based kernel (KASAN,
-> lockdep); build-tested on media next. v4l2-compliance 59/59, all four
-> modes at 1080i without IOMMU faults, s2idle and deep suspend while
-> streaming, unbind while streaming, forced watchdog and IOMMU fault
-> resets. Not tested: RK3568. DMABUF imports of exactly the image size
-> are refused, because of the 4 KiB OUTPUT padding (see 2/3).
+The global register block already supplies the strap clocks. Extend that
+same provider with the three PCIe gate clocks and controller reset lines,
+rather than inventing a resource-less child to instantiate a driver.
 
-What software makes use of this driver? Did you test in a real application?
+Keep the existing APB/CPU/AXI indices and add named PCIe clock and reset
+specifiers. The reset property is optional for clock-only descriptions.
 
->=20
-> One case is still open: a reset during a transfer, seen only with
-> forced watchdog resets, can leave the IOMMU busy. Jobs then fail
-> without DMA and the driver suspends at once so that PD_VDPU powers
-> off, which restores it. While another device of the domain, e.g. a
-> video decoder, keeps it on, the jobs keep failing.
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ .../devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml | 10 ++++++++--
+ include/dt-bindings/clock/cortina,cs7542-clock.h               |  4 ++++
+ include/dt-bindings/reset/cortina,cs7542-reset.h               |  9 +++++++++
+ 3 files changed, 21 insertions(+), 2 deletions(-)
 
-What do you mean by iommu busy? In the decoder, some errors would lead to t=
-he
-decoder core doing a self reset witch we believe wipes the MMU registers. C=
-ould
-the watchdog reset endup doing the same?
+diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+index fb074de87..dc7306868 100644
+--- a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
++++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+@@ -12,8 +12,10 @@ maintainers:
+ description:
+   The global control block contains the boot strap status, GPIO/peripheral
+   mux registers, reset controls and the secondary CPU release register.
+-  It provides the APB, CPU and AXI clock rates selected by the boot straps.
+-  The clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h.
++  It provides the APB, CPU and AXI clock rates selected by the boot straps,
++  and the three PCIe clock gates and controller reset lines.
++  Clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h;
++  reset specifiers are defined in dt-bindings/reset/cortina,cs7542-reset.h.
+   The pin controller uses the same register map through its parent syscon.
+ 
+ properties:
+@@ -29,6 +31,9 @@ properties:
+   "#clock-cells":
+     const: 1
+ 
++  "#reset-cells":
++    const: 1
++
+   pinctrl:
+     type: object
+     $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
+@@ -46,4 +51,5 @@ examples:
+         compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
+         reg = <0xf0000000 0x100>;
+         #clock-cells = <1>;
++        #reset-cells = <1>;
+     };
+diff --git a/include/dt-bindings/clock/cortina,cs7542-clock.h b/include/dt-bindings/clock/cortina,cs7542-clock.h
+index 34d544238..c68c6ba20 100644
+--- a/include/dt-bindings/clock/cortina,cs7542-clock.h
++++ b/include/dt-bindings/clock/cortina,cs7542-clock.h
+@@ -6,4 +6,8 @@
+ #define CS7542_CLK_CPU	1
+ #define CS7542_CLK_AXI	2
+ 
++#define CS7542_CLK_PCIE0	3
++#define CS7542_CLK_PCIE1	4
++#define CS7542_CLK_PCIE2	5
++
+ #endif
+diff --git a/include/dt-bindings/reset/cortina,cs7542-reset.h b/include/dt-bindings/reset/cortina,cs7542-reset.h
+new file mode 100644
+index 000000000..bfd5799b2
+--- /dev/null
++++ b/include/dt-bindings/reset/cortina,cs7542-reset.h
+@@ -0,0 +1,9 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++#ifndef _DT_BINDINGS_RESET_CORTINA_CS7542_H
++#define _DT_BINDINGS_RESET_CORTINA_CS7542_H
++
++#define CS7542_RESET_PCIE0	0
++#define CS7542_RESET_PCIE1	1
++#define CS7542_RESET_PCIE2	2
++
++#endif
 
->=20
-> Developed with Claude (Anthropic), which wrote the code and the commit
-> messages. I reviewed every change.
->=20
-> ---
-> Changes in v3:
-> - Drop the vendor kernel notes from the commit messages and cover (Krzysz=
-tof)
-> - 1/3: drop the linux-media list from the MAINTAINERS entry (Krzysztof)
-> - 1/3: add Krzysztof's Reviewed-by
-> - 2/3: start the job and its watchdog under irq_lock (Sashiko)
-> - 2/3: soft-reset the core with the AXI side, CRU reset if the IOMMU
->   stays lost, shared IRQ off during a reset; no DMA until the IOMMU is
->   restored
-> - 2/3: return OUTPUT buffers before CAPTURE buffers
-> - 2/3: mask and clear all interrupts on completion and before a job
-> - 2/3: suspend at once when the IOMMU is lost
-> - 2/3: take the mutex in system suspend
-> - Link to v2: https://patch.msgid.link/20261115-iep2-v2-0-3d8798cd9a55@gm=
-ail.com
->=20
-> ---
-> Arun Iyengar (3):
->       media: dt-bindings: Add Rockchip IEP2 deinterlacer
->       media: rockchip: Add IEP2 deinterlacer driver
->       arm64: dts: rockchip: Add IEP2 deinterlacer to RK3588
->=20
->  Documentation/admin-guide/media/rockchip-iep2.rst  |   32 +
->  Documentation/admin-guide/media/v4l-drivers.rst    |    1 +
->  .../bindings/media/rockchip,rk3568-iep2.yaml       |   95 ++
->  MAINTAINERS                                        |    8 +
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   22 +
->  drivers/media/platform/rockchip/Kconfig            |    1 +
->  drivers/media/platform/rockchip/Makefile           |    1 +
->  drivers/media/platform/rockchip/iep2/Kconfig       |   16 +
->  drivers/media/platform/rockchip/iep2/Makefile      |    3 +
->  drivers/media/platform/rockchip/iep2/iep2-regs.h   |  191 +++
->  drivers/media/platform/rockchip/iep2/iep2.c        | 1320 ++++++++++++++=
-++++++
->  drivers/media/platform/rockchip/iep2/iep2.h        |  108 ++
->  12 files changed, 1798 insertions(+)
-> ---
-> base-commit: ad6549a46748d00818483b535e5cd2a704685c98
-> change-id: 20261110-iep2-b9a9c6e77c44
->=20
-> Best regards,
-> -- =20
-> Arun Iyengar <aiyengar1990@gmail.com>
->=20
+-- 
+2.53.0
 
---=-FWklcH9hjr78QjddYyVY
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawSyJwAKCRDZQZRRKWBy
-9HpuAQD2iyW68QKwqexXSmR8w/lWArl2Njqs9To+Zvdg2jBNBAEA6vJcr0L5MZYS
-Rnl6XvNw8L5b5ihSSaBSPLHj+IItZgE=
-=1qmu
------END PGP SIGNATURE-----
-
---=-FWklcH9hjr78QjddYyVY--
 
