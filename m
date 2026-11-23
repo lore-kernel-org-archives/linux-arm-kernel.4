@@ -2,111 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26642606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5FE606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:34:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pvL/Xj1p;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HaRtxg2+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XAqK0Jay;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=USAeoKvv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Zz6L92ZDSFMnlI2YQdsV7kK/kM96g1+mYDq69MPiFmU=; b=pvL/Xj1px5nf3leQzfHqIZoKsc
-	7vt78Pmg9sL7zwWdcmj4E7XEa1IN23oVc6qFI9C+wSsWonVaFjKR9gJi7+ROxjUPnoXuWnU7BR3xg
-	Uzw6GkWh7VjrzbMoFX5oKmtyRSfkn/AqKdklBeAhLcZM7KJx3awmM1NE9+EQSJMIP7latertGqlZj
-	5uhe3vfvAXDsFvb5rPJgnw1dYUk5E3yCXlVB5QFvWL7+Rex2IXbG6qPEzCE+YjlIIO8gFla6GWnOP
-	iPfJ4HannrbYf3RWKo5rqrVZgqbOCwIJ111pDnsaeI1mTQVGbxZ6lNubAsmu1+diwY8rlXvoYF2PI
-	a1fAmCeA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=FWj5LUnrVFJezexmVCR2EhLrxxSIAJtvNmwpJufMB68=; b=XAqK0JayCYHFXA
+	sw1u0gwo9/rs6J4kmlDawsV/dzGMjDpqdov5Ivnxq7HFwCZDzYXDiTc6HmXZXNFOsXp78W9rz7joy
+	Yia8K8fTtihQVzM36JgnlpQ67x3YK+dwhmfizVjYYORHJb3JGoM7Jm/QD7Xd9S2HngsakVOsdtz4G
+	6i8kaCpgbVyBowf3qMffB5+yeUGuLL0NHF6RGceP9qzJNJAHu4qQEMg1fpOdSa2X3DWJW4Qd4lv61
+	MLFrCBBKn6NzBW+tk8H/ghvp0DTpqR5Bsk5pHTqZRtoPtRbqtTE0wwm7wAi6a3A9uKeZYTanbkkFw
+	FLP2bB6bxTion0etkBdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVajO-00000004r4L-0dqU;
-	Mon, 23 Nov 2026 20:33:42 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVajt-00000004rNz-0qyu;
+	Mon, 23 Nov 2026 20:34:13 +0000
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaiW-00000004qaf-3bNN;
-	Mon, 23 Nov 2026 20:32:48 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9722240722;
-	Mon, 23 Nov 2026 20:32:48 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795465968;
-	b=qyxoT7WR06Xmz5AwJq/7M6WjYxdFo3zcWDfGw4uvVwLQFrrobBa0+CBUF8KVTr0Asfkf
-	 /YafirODe1oI5NCZ4rXcww35ofdrV8V8b+fazdblhmCmS0rl3+T/puPuM/za+4e1+9ph5
-	 SxGv0k2UaqqDVivrseyaLwjot12CeKV5vEfcvWcivp/UinsztE3W0wix1u3ftJJgF3vmj
-	 Ihkq/6vKUCOUN/pS3h8g4j8zRwc3PtNPqjSphTJQsze+ZO/wzUvut2bzSXFwU+W0Ww24d
-	 ndUBzF2iyK5NGVjPMkj7y8d1ICmkDTr6frFkgoQGfEYI/ksLb77GjWu36uEOMjHpBFw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795465968;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Zz6L92ZDSFMnlI2YQdsV7kK/kM96g1+mYDq69MPiFmU=;
-	b=D+dd9jcU19J+0tAynY+QpY05Y8VC6Xg2O0HhxpQgVYyWELA+/TmyewDpmt2Byzvv+CNR
-	 esw9F9F5UrDrOG1bM1SvrAG+dHqsWfAYa394sKr89C0t2PkKuBiH80khxJasR0GNuYmnN
-	 WArKMRoVLlZ6s6T8tDf30eNnE0ELOv/1VCTjAa31cECk4CsWV9JMXsjeSrrhibPHXp3wX
-	 gz5nGZj+MtROZZWEu6QzDg7aIDUGn5LToMz+0RyUAbBAmdgcVpv109PWlyNRq/CGceqMr
-	 tk1j8+FUngerLuKR6mc5zLMhs8T6G/Bawa+U3RXyGz9XGKdtlW0bBhx0zqdHQiSU1SQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1299F1F000ED;
-	Mon, 23 Nov 2026 20:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795465968;
-	bh=Zz6L92ZDSFMnlI2YQdsV7kK/kM96g1+mYDq69MPiFmU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=HaRtxg2+P/EL8rMR+2MUOMlzr/pT4NIlSF9DGaxGScIICK8lKQ6OBo7WF4DlSer8z
-	 5DYbefu1jHy8MRS68EIoPFDctgawFu+Y2wRNRIkjukdy6bXPbbrVMbEuARf4Yxotqe
-	 gIk8HlHklYeh9Pshn6vaBHSPi740WlDDqzUkeY2hn4M4jvJjFBs1pMh4eZawCKuEad
-	 Q+UnKtSVmitJBPRbY7A+kDCg4shig6g56M3KGdVJLgW7ruGthk7A/r8MDE1sPPgG80
-	 zAKSifi3lmWAe06pGXc0BMu6vZNPsKLQl1M5Lxs+lyOcDJEq5PudlAfEq1/6BVe2iA
-	 ojCCrZum2+Gqw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id CC3D64C70E;
-	Mon, 23 Nov 2026 20:32:17 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 23:32:19 +0300
-Subject: [PATCH v2 5/8] phy: Add CS7542 PCIe SerDes support
+	id 1xVajY-00000004qdl-20mQ
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 20:33:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
+	Reply-To:Content-ID:Content-Description;
+	bh=FWj5LUnrVFJezexmVCR2EhLrxxSIAJtvNmwpJufMB68=; t=1795466032; x=1796675632; 
+	b=USAeoKvvZKbwpxxRXIgkd8kadMG6helwX4TX3mka0/wpsjzuHZwl+FcKiEwxeul/b5+ctIxj5QN
+	CNP4VnGO0vIQ/YZEZ9MqbaBjYTSpenzMRUK3VqTkLjZkNTCBwVCStcHM1CD9h5L/lxQFURjjMzP4E
+	5KBApvg8Wf9nofId1j6OIXudlYTb5lUBKEv+oHuDArj2WrTdQ0asZfNnPUUsioKvvAYj+dtIhtGsq
+	5qlrar+yPdfDyTK9D76D0vWazDwJF+JoD4yBpoEgZuAbZ5sTYgwzZbA2TxxdUI21u2S9Qj8Bn7JH0
+	mMCR9i6NOEX7yThv25MWwbTekUilpKXT7LCg==;
+From: Andreas Kemnade <andreas@kemnade.info>
+Date: Mon, 23 Nov 2026 21:31:21 +0100
+Subject: [PATCH 3/3] ARM: dts: imx: kobo-clarahd: Use 32K clock for the
+ timer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-pcie-v2-5-f589a9cd0bef@gmail.com>
-References: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Krzysztof Wilczynski <kwilczynski@kernel.org>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795465935; l=9297;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=xbqhgVGjORFnQ5gPtfVS3sFJz4weZ5kVBK/LGnXuSak=;
- b=MUSxUum1MJLt+e2T6Y8GAHpAgGq1H1etG6XJ04YCQDH64a5vh8Z7F1aUXhahMXMbnu7Vb4MxP
- YFPFk3WpKAlBAWKsJ68EfQfhi8FhtDeIoZHrggR2GGSh3fpLwGV7kgE
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 Content-Transfer-Encoding: 7bit
+Message-Id: <20261123-imx6-idlestop-v1-3-e32f1f44e46f@kemnade.info>
+References: <20261123-imx6-idlestop-v1-0-e32f1f44e46f@kemnade.info>
+In-Reply-To: <20261123-imx6-idlestop-v1-0-e32f1f44e46f@kemnade.info>
+To: Russell King <linux@armlinux.org.uk>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux@yoavmoshe.com, Andreas Kemnade <andreas@kemnade.info>
+X-Mailer: b4 0.17-dev-e5168
+X-Developer-Signature: v=1; a=openpgp-sha256; l=733; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=AUY2ja8XxCirP2QoDjD5UZpqa/ZPfxBH7gIhNFVOPf4=;
+ b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBrBKK0QCYfavdLJiHacwCF3628Roxkq5L1tBpwA
+ IkILqTHqnmJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCawSitAAKCRCEYUX6QCjc
+ 8RGZD/oDT5Vqyz3h36XS4BnWBmGsEdpxDgFKSJKMsw430YzrtJY43d5tIhwGYQ7pWjR3nQx5qQC
+ 2ODVYtMEMbMU8TX2GQGG5QLxaBJgJ+ElTlsSREw88q7+bRYOcqha2KodbeyhceTvJbHdH8FUYKL
+ n4Z8aUUWwPSNSNg7yr42Z574PnykDPWSdkp9+RPxIJG1IJo2cMmQbjeeQ+AkgqcIx/HN9bkPzZu
+ g28wglabWaoqjsRG9WO4ZIIylBrRH++pfrD+y0jAhnsRjQyx96PztMnW5Zn+V5AYfRxRVIs7w9G
+ IWvfxJYu51R7/uDFf6bRwjmIyRXx49T3g8ViV+dEyfugYBm3pJKqNcZgCzpT4DhhNCP4ahLnoGP
+ k06An7xFxK/vnrPfbaIygo5xgHRCJNc1l5cFhjQx76l3HbRrfqtTfL96OYfzVh2+viaBbBPO8TL
+ i+SrXYSRBcTuAx7VPKbbH7tKu4ioFHQ4D8MTvUvQO/N+B9c/e1/YB9xg/IbWbuTp93Y1LV6k6GN
+ eOWBbNi2nErNTX7/rNY5Jrn7McErllyVL917YgyssUsY9K4+vWSjik2WGRIhqpdV3EYVdM+uSV0
+ Q2PwiqSO5n1+gBQbcaOPsn1EyiPBaR48bIB2wjHL+ExmrNeDiJ4NOICN376yjqIyUVOd21pmQz/
+ NIr6AuJdxq4rykg==
+X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_123352_527922_E6670714 
+X-CRM114-Status: UNSURE (   8.55  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,301 +90,39 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
-
-Provide per-lane generic PHYs using the vendor 24 MHz programming table
-and revision-dependent value. Sequence power and reset through the shared
-global regmap and fail on CMU lock timeout with balanced power cleanup.
-Use the shared PHY status bank without overlapping PCIe wrapper resources.
-
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+To avoid depending on PLL infrastructure for timekeeping, use 32K timer
+for the timer.
 ---
- drivers/phy/Kconfig           |  11 ++
- drivers/phy/Makefile          |   2 +
- drivers/phy/phy-cs7542-pcie.c | 232 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 245 insertions(+)
+ arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 105fbe408..77cff94fe 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -204,4 +204,15 @@ source "drivers/phy/tegra/Kconfig"
- source "drivers/phy/ti/Kconfig"
- source "drivers/phy/xilinx/Kconfig"
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts
+index 1000ee8b807aa..2e907c4163629 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-clarahd.dts
+@@ -46,6 +46,11 @@ &gpio_keys {
+ 	pinctrl-0 = <&pinctrl_gpio_keys>;
+ };
  
-+config PHY_CS7542_PCIE
-+	tristate "Cortina Systems CS7542 PCIe SerDes"
-+	depends on OF && HAS_IOMEM && COMMON_CLK
-+	select GENERIC_PHY
-+	select MFD_SYSCON
-+	help
-+	  Support the three CS7542 Snow Bush SerDes lanes in PCIe mode
-+	  with a 24 MHz reference clock. Lane resets share the global syscon.
-+	  SATA mode and other reference frequencies are not supported.
-+	  The module is called phy-cs7542-pcie.
-+
- endmenu
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index c6dd02003..54df29e74 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -55,3 +55,5 @@ obj-$(CONFIG_GENERIC_PHY)		+= allwinner/	\
- 					   tegra/	\
- 					   ti/		\
- 					   xilinx/
-+
-+obj-$(CONFIG_PHY_CS7542_PCIE) += phy-cs7542-pcie.o
-diff --git a/drivers/phy/phy-cs7542-pcie.c b/drivers/phy/phy-cs7542-pcie.c
-new file mode 100644
-index 000000000..d027baa93
---- /dev/null
-+++ b/drivers/phy/phy-cs7542-pcie.c
-@@ -0,0 +1,232 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* CS7542 Snow Bush SerDes, PCIe mode with a 24 MHz reference clock. */
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define GLOBAL_JTAG_ID	0x00
-+#define GLOBAL_PHY_CONTROL 0x14
-+#define PHY_REFCLK_MASK(p) (3U << ((p) * 2))
-+#define PHY_REFCLK_24MHZ(p) (2U << ((p) * 2))
-+#define PHY_PD(p)	BIT(8 + (p))
-+#define PHY_CMU_RESETN(p) BIT(16 + (p) * 4)
-+#define PHY_LN0_RESETN(p) BIT(17 + (p) * 4)
-+#define PHY_POR_N(p)	BIT(19 + (p) * 4)
-+#define PHY_CMU_OK	BIT(18)
-+#define PHY_STATUS_STRIDE 0x80
-+#define SNOW_COM_REG0	0x00
-+#define SNOW_REG0_CFG	0x00090006
-+#define SNOW_REG0_AHB_RESETN BIT(0)
-+#define SNOW_REV_REG	96
-+#define SNOW_REV_REG_A0	0x5e082e00
-+#define SNOW_REV_REG_A1	0x5e080600
-+#define SNOW_COM_LANE_REG0 0xc8
-+#define SNOW_LANE_REG0_CFG 0x400290c0
-+#define SNOW_LANE_REG0_MASTER_RESETN BIT(1)
-+#define CS7542_PORTS	3
-+
-+struct cs7542_serdes;
-+struct cs7542_lane {
-+	struct cs7542_serdes *serdes;
-+	void __iomem *base;
-+	struct phy *phy;
-+	unsigned int id;
++&gpt1 {
++	clocks = <&clks IMX6SLL_CLK_GPT_BUS>,
++		 <&clks IMX6SLL_CLK_CKIL>;
 +};
 +
-+struct cs7542_serdes {
-+	struct device *dev;
-+	struct regmap *global;
-+	void __iomem *status;
-+	struct clk *ref;
-+	struct cs7542_lane lanes[CS7542_PORTS];
-+	u32 revision_value;
-+};
-+
-+struct snow_reg {
-+	u16 off;
-+	u32 val;
-+};
-+
-+static const struct snow_reg snow_phy_24mhz[] = {
-+	{ 0,   SNOW_REG0_CFG }, { 4,   0x000e0960 }, { 32,  0x68a00000 },
-+	{ 44,  0x50040000 }, { 48,  0x40250270 }, { 52,  0x00004001 },
-+	{ 100, 0xf0914200 }, { 104, 0x4c0c9048 }, { 108, 0x00000373 },
-+	{ 124, 0x04841000 }, { 128, 0x000000e0 }, { 132, 0x04000023 },
-+	{ 136, 0x68001038 }, { 140, 0x0d181ea2 }, { 144, 0x0000000c },
-+	{ 196, 0x0f600000 }, { 200, SNOW_LANE_REG0_CFG }, { 204, 0x0000003c },
-+	{ 208, 0xc68b8300 }, { 212, 0x98280301 }, { 216, 0xe1782819 },
-+	{ 220, 0x00f410f0 }, { 232, 0xa0a0a000 }, { 236, 0xa0a0a0a0 },
-+	{ 240, 0x9fc00068 }, { 244, 0x00000001 }, { 248, 0x00000000 },
-+	{ 252, 0xd07e4130 }, { 256, 0x935285cc }, { 260, 0xb0dd49e0 },
-+	{ 264, 0x0000020b }, { 300, 0xd8000000 }, { 304, 0x0001ff1a },
-+	{ 308, 0xf0000000 }, { 312, 0xffffffff }, { 316, 0x3fc3c21c },
-+	{ 320, 0x0000000a }, { 324, 0x00f80000 },
-+};
-+
-+static int cs7542_phy_power_off(struct phy *phy)
-+{
-+	struct cs7542_lane *lane = phy_get_drvdata(phy);
-+	unsigned int p = lane->id;
-+	u32 mask = PHY_PD(p) | PHY_CMU_RESETN(p) | PHY_LN0_RESETN(p) | PHY_POR_N(p);
-+	int ret;
-+
-+	ret = regmap_update_bits(lane->serdes->global, GLOBAL_PHY_CONTROL, mask, PHY_PD(p));
-+	clk_disable_unprepare(lane->serdes->ref);
-+	return ret;
-+}
-+
-+static int cs7542_phy_power_on(struct phy *phy)
-+{
-+	struct cs7542_lane *lane = phy_get_drvdata(phy);
-+	struct cs7542_serdes *sd = lane->serdes;
-+	unsigned int p = lane->id;
-+	u32 mask, value;
-+	int ret, i;
-+
-+	ret = clk_prepare_enable(sd->ref);
-+	if (ret)
-+		return ret;
-+	mask = PHY_PD(p) | PHY_CMU_RESETN(p) | PHY_LN0_RESETN(p) | PHY_POR_N(p) |
-+	       PHY_REFCLK_MASK(p);
-+	ret = regmap_update_bits(sd->global, GLOBAL_PHY_CONTROL, mask,
-+				 PHY_PD(p) | PHY_REFCLK_24MHZ(p));
-+	if (ret)
-+		goto power_off;
-+	msleep(100);
-+	ret = regmap_update_bits(sd->global, GLOBAL_PHY_CONTROL, PHY_PD(p) | PHY_POR_N(p),
-+				 PHY_POR_N(p));
-+	if (ret)
-+		goto power_off;
-+	usleep_range(10, 20);
-+	for (i = 0; i < ARRAY_SIZE(snow_phy_24mhz); i++) {
-+		if (snow_phy_24mhz[i].off == SNOW_REV_REG + 4)
-+			writel(sd->revision_value, lane->base + SNOW_REV_REG);
-+		writel(snow_phy_24mhz[i].val, lane->base + snow_phy_24mhz[i].off);
-+	}
-+	writel(SNOW_REG0_CFG | SNOW_REG0_AHB_RESETN, lane->base + SNOW_COM_REG0);
-+	ret = regmap_update_bits(sd->global, GLOBAL_PHY_CONTROL, PHY_CMU_RESETN(p),
-+				 PHY_CMU_RESETN(p));
-+	if (ret)
-+		goto power_off;
-+	ret = readl_poll_timeout(sd->status + p * PHY_STATUS_STRIDE, value,
-+				 value & PHY_CMU_OK, 100, 100000);
-+	if (ret) {
-+		dev_err(sd->dev, "lane %u CMU did not lock\n", p);
-+		goto power_off;
-+	}
-+	writel(SNOW_LANE_REG0_CFG | SNOW_LANE_REG0_MASTER_RESETN,
-+	       lane->base + SNOW_COM_LANE_REG0);
-+	ret = regmap_update_bits(sd->global, GLOBAL_PHY_CONTROL, PHY_LN0_RESETN(p),
-+				 PHY_LN0_RESETN(p));
-+	if (ret)
-+		goto power_off;
-+	msleep(100);
-+	return 0;
-+
-+power_off:
-+	cs7542_phy_power_off(phy);
-+	return ret;
-+}
-+
-+static int cs7542_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-+{
-+	return mode == PHY_MODE_PCIE && !submode ? 0 : -EINVAL;
-+}
-+
-+static const struct phy_ops cs7542_phy_ops = {
-+	.power_on = cs7542_phy_power_on,
-+	.power_off = cs7542_phy_power_off,
-+	.set_mode = cs7542_phy_set_mode,
-+	.owner = THIS_MODULE,
-+};
-+
-+static struct phy *cs7542_phy_xlate(struct device *dev, const struct of_phandle_args *args)
-+{
-+	struct cs7542_serdes *sd = dev_get_drvdata(dev);
-+
-+	if (args->args_count != 1 || args->args[0] >= CS7542_PORTS)
-+		return ERR_PTR(-EINVAL);
-+	return sd->lanes[args->args[0]].phy;
-+}
-+
-+static int cs7542_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct phy_provider *provider;
-+	struct cs7542_serdes *sd;
-+	unsigned int id;
-+	int ret, i;
-+
-+	sd = devm_kzalloc(dev, sizeof(*sd), GFP_KERNEL);
-+	if (!sd)
-+		return -ENOMEM;
-+	sd->dev = dev;
-+	sd->global = syscon_regmap_lookup_by_phandle(dev->of_node, "cortina,global-syscon");
-+	if (IS_ERR(sd->global))
-+		return dev_err_probe(dev, PTR_ERR(sd->global), "global register map\n");
-+	sd->ref = devm_clk_get(dev, NULL);
-+	if (IS_ERR(sd->ref))
-+		return dev_err_probe(dev, PTR_ERR(sd->ref), "reference clock\n");
-+	if (clk_get_rate(sd->ref) != 24000000)
-+		return dev_err_probe(dev, -EINVAL, "only 24 MHz reference supported\n");
-+	ret = regmap_read(sd->global, GLOBAL_JTAG_ID, &id);
-+	if (ret)
-+		return ret;
-+	switch (FIELD_GET(GENMASK(15, 12), id)) {
-+	case 0:
-+	case 1:
-+		sd->revision_value = SNOW_REV_REG_A0;
-+		break;
-+	case 8:
-+	case 9:
-+		sd->revision_value = SNOW_REV_REG_A1;
-+		break;
-+	default:
-+		return dev_err_probe(dev, -ENODEV, "unsupported silicon revision %#x\n", id);
-+	}
-+	sd->status = devm_platform_ioremap_resource(pdev, CS7542_PORTS);
-+	if (IS_ERR(sd->status))
-+		return PTR_ERR(sd->status);
-+	for (i = 0; i < CS7542_PORTS; i++) {
-+		struct cs7542_lane *lane = &sd->lanes[i];
-+
-+		lane->id = i;
-+		lane->serdes = sd;
-+		lane->base = devm_platform_ioremap_resource(pdev, i);
-+		if (IS_ERR(lane->base))
-+			return PTR_ERR(lane->base);
-+		lane->phy = devm_phy_create(dev, NULL, &cs7542_phy_ops);
-+		if (IS_ERR(lane->phy))
-+			return PTR_ERR(lane->phy);
-+		phy_set_drvdata(lane->phy, lane);
-+	}
-+	platform_set_drvdata(pdev, sd);
-+	provider = devm_of_phy_provider_register(dev, cs7542_phy_xlate);
-+	return PTR_ERR_OR_ZERO(provider);
-+}
-+
-+static const struct of_device_id cs7542_phy_match[] = {
-+	{ .compatible = "cortina,cs7542-pcie-phy" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cs7542_phy_match);
-+
-+static struct platform_driver cs7542_phy_driver = {
-+	.probe = cs7542_phy_probe,
-+	.driver = {
-+		.name = "cs7542-pcie-phy",
-+		.of_match_table = cs7542_phy_match,
-+	},
-+};
-+module_platform_driver(cs7542_phy_driver);
-+
-+MODULE_DESCRIPTION("Cortina Systems CS7542 PCIe SerDes");
-+MODULE_LICENSE("GPL");
+ &i2c1 {
+ 	pinctrl-names = "default","sleep";
+ 	pinctrl-0 = <&pinctrl_i2c1>;
 
 -- 
-2.53.0
-
+2.47.3
 
 
