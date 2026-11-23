@@ -2,107 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3DD606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1590606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wx1tCGAW;
-	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=c2EjCvnm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qyE+VmIN;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FrA9Wssl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xXoaW7puZQVXtPvVEP8J871ckV5Jm7nnXRP/lyhSBaM=; b=Wx1tCGAWEjwvP5HSQyXPTOhEIV
-	2N3/j48Fze40dX3KlB6cR+GDLLXMVzzFIerdYWTUnd3nkBbHLiD5bd5XWPST/JAhaPgvvWPiclc7K
-	nCnCLGMRPsU8UnaJ/FwFt6Zhi1jUIVEGUfESIQPkzatjRmjl41pl8cUADkmVhz5/SIWutUGmt8U8T
-	XHFFdYBZF2zSpQZ5ckxGzjrRXoc/ekGU1oglsvZ1jvWA1mnUr+AYKrKIYUK3TepopbHErtqSRnP53
-	xaRXgqfX/BJg5FVrjJLh+I0WGAxtbo1/FhZn+SZxRIbUqPAa6s9ZQHAqZDR4WvE73GCJvl7wwUqgt
-	N+WtSV5g==;
+	bh=FUV/UoOBr/J6VY5krtiDaidQIeLgBTXxPj1B21P7IyY=; b=qyE+VmINPkf9d62Ao3hwSODvxe
+	qm7GS7jx1OcapJUie8Yw3Yq8L5OgmLdBGxsQdgAEgLAH/x6bmwJ/wjoY8rdggzPZFKpUlN/EfIrv5
+	htOLs/l6k0IjJP75E5FeFy6OsT/rSis3KnprCmCyoiwTWL4yZuqVI/Nt1SzMf23OxVJRn7xCXMKYS
+	QPFk0+Y7Q1ZxuzZTc8yG2rotEPaoORhoTCyUz+QCY4LLlDe9U/c6LhvLee4sdkCOqurnsX9atz1jU
+	iJzmr8VU/pwRMa8JkcsswyDrnlLX1fBFcRr/NGE2X1OiHkutGlMnRguO07R0i8GlV90Z1atX2hsIs
+	wqCsW/wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQed-00000002okc-18nl;
-	Mon, 23 Nov 2026 09:48:07 +0000
-Received: from mail-wr1-x42a.google.com ([2a00:1450:4864:20::42a])
+	id 1xVQfc-00000002oye-1svJ;
+	Mon, 23 Nov 2026 09:49:08 +0000
+Received: from mgamail.intel.com ([198.175.65.14])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQeY-00000002oia-0tZ4
+	id 1xVQfY-00000002oxJ-3zAA
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:48:04 +0000
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-4a32576da88so1734158f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:48:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pereq.eu; s=google; t=1795427280; x=1796032080; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=xXoaW7puZQVXtPvVEP8J871ckV5Jm7nnXRP/lyhSBaM=;
-        b=c2EjCvnmlMsGPG2Yobt6bt5JiudKsfjMKEJvMpqkpaVhvcnSp+qDl4wF1N58sxRMVV
-         y/ZSwIb6uZCvdkKTECJl/8kFFVQzpaSmiuU0zYWizGDJGnvx7ypGUseT+cwwmSACqmE3
-         L9FnA6dJw2J3A1twBMxHYEGrsj4K5qiHLMPP3EqOurdVPagl5a9Z3tVUjMvmVAs5pAJ+
-         lTudkpIJ23tJoJU6lxw4mdsBFKBol2HBJQ+ZIVs7egiBXXDEATYOqm6f0wagNV0gS6DZ
-         /Ghc+Ulpbl8veQ0Bs8pLoLshgVZNrLjQsrDS0b6er3ucfyI4uvG0/OPOeUMgsQ4gjSgA
-         aSrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795427280; x=1796032080;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=xXoaW7puZQVXtPvVEP8J871ckV5Jm7nnXRP/lyhSBaM=;
-        b=MXaWL9DDaOaMlNwQtnuxMbEiU5QG/or70UPLiRePd/dbz/vSEgmgFQ8v4uB9ExFQKB
-         G0t4ZF7fKUiIFv5z1b1iY9kxKr3pJOyIw4mu8ZBZcmx/O7eQ6qkpsO6sgDI0J+ZbA0E4
-         ySTNjBIhpYMDCkWKvLNg/XdQjtefhwyH91eWeCiccBO9EWIiShIPpzP560/zPwSXfa9f
-         2qAYdscwTrfcA5s2k6eI+LxR5kFqc25AJwHYM5r8PBQZI/lkvgsrH3IwWcm0OGN5YEQ5
-         b+QoibjdRVKdyBWlYbluH0GZ8N+8AAs9qtToXaGYMqQQF5Sbb72Cnaa0CXp95hJA0fxG
-         zLBw==
-X-Forwarded-Encrypted: i=1; AL+hErGdjDDmSnHcYlcRBzGaUsrzj0yZN38IQ4BHS3JqLmzZQzeikMqRu1HHeQNNS/7XhCaJKbFz+73zvIof941E3Yq4@lists.infradead.org
-X-Gm-Message-State: APuU4Z/AWXaiiatgdKaozX44WX4hUpqq+zJL98rB+r3Rp1TuhGGNQz9p
-	ZocEz/goaTEsU/npvtDPUoGugm/DzkJT8f5LOQ2x5HcfSSKcXVDkUwVJLNEuxkcigok=
-X-Gm-Gg: AZFdTZfIj3jG3581tU5Eyxdm/d5aaiLD+ZJ8Q2L0P1NvREm3eu5NExdEop6i78TzBV2
-	SodAdDT5Pw6sqHYA/Ca79kUkVJxhNwTngBIb5IdzE/NQGTW+/1OsPF33i7KMpnhY9OqsFlxIhfr
-	6vmYynfj9BO4bjWbSQ8a81lxXiCzHcwVVtqxAhipeIND/BH93ufAL7j3yw0CaLQ40YpFYgztuiT
-	0QKL7wlKOQj5reSt8CDz25XgD4P4UW1GO3kFLRyiCg94GdW/cz24LWJ9f3EOeiOBvxuKgq5BcDg
-	datJZZ5Nf0k0ddNCy61gGcTvUME4lztb/CPff+8TCSNJH5DgUZVWETl2ngaBXJ1FT2Q9QsGtMys
-	Rbn8nUT0SYD1Vi6tXzbzU4oAtQsHEqJ/rp0O5ElY1IOtRruzQUEM+sL2NWoSs7MgsaiIcQcXULn
-	qWOv83akIJnswF3oUqsgWQCpen+YlRQlYQ84O0CAxOPSbWcHL/HodFr1yrjI9VlERrsWiRG9xah
-	LhbT1DIn/sMdg7M6lOIIaO1leI8GYAjR3VoC4v9ro2KExnM18jbgIAvQUBApTR88YlsSomAsgC4
-	3NIjvlNfd2KzfVGoI4JR
-X-Received: by 2002:a05:6000:26c1:b0:4b3:b495:d5ad with SMTP id ffacd0b85a97d-4b3b495d6efmr3113266f8f.23.1795427279778;
-        Mon, 23 Nov 2026 01:47:59 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110ba3sm17295126f8f.35.2026.11.23.01.47.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 01:47:59 -0800 (PST)
-From: Dan Carpenter <dan@pereq.eu>
-Date: Mon, 23 Nov 2026 12:47:42 +0300
-Subject: [PATCH] KVM: arm64: nv: Reset MMIO state when committing a nested
- exception
+	Mon, 23 Nov 2026 09:49:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795427345; x=1826963345;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mKeY8d2xWdIsSGaHzmL0LiD0HoPYA5papgqXVJCBlWI=;
+  b=FrA9Wssla9ukfgCDmPjFFjsuMc55eNP1UEdT1Y2Jtjahe7U4UBBWQ66B
+   S6/mUG8J/IAjPbVMAsCVrYHdcZ7j7JyN+qj7UiU0EyJBCuVVy2diLhIaT
+   QQL2drCToljoDLOIO1W/IhkX7MdsgaDkmx7DOtJrW/81TajCtfYicgbbJ
+   F2TQKj1daO6eJt793BJcmyWJisIF02xHxOEDfygKG/EmnrI7Z++2vZ2j5
+   z8/Ul1PrgOymOMErU4lQqPWofbTvGIyRfdesv+pigbjyJLtCBJT/v+Z24
+   NEScVZY6O/aqeGY95Q/GlpSyKhvTbflVuJ0I7B1QffuwM7+wkdPDVYfe7
+   A==;
+X-CSE-ConnectionGUID: wQ/ituIzSk+r8LiKUnHxpw==
+X-CSE-MsgGUID: eYMgZS7oRhWzEvvJXgl6Uw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4121841"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="4121841"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 01:49:04 -0800
+X-CSE-ConnectionGUID: 7sJ0TC2JQa2OxIi6kqHNlw==
+X-CSE-MsgGUID: D7r8MFobSSCJb+ypfE4Rsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="13240187"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.204])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 01:49:02 -0800
+Date: Mon, 23 Nov 2026 11:48:59 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: shyckless@gmail.com
+Cc: ludovic.desroches@microchip.com, vkoul@kernel.org, Frank.Li@kernel.org,
+	dave.jiang@intel.com, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org, allen.lkml@gmail.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] dmaengine: idma64: Kill the channel tasklets in
+ remove again
+Message-ID: <awQMCxhy6BurLowU@ashevche-desk.local>
+References: <20261123-dma-chancnt-v2-0-241b1672883e@gmail.com>
+ <20261123-dma-chancnt-v2-2-241b1672883e@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-stale_mmio-v1-1-73f9c67a1bb0@pereq.eu>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02MTQqDMBBGryKzbsAkNEKvUkqZxKmO1FgyKoJ4d
- 5N20+X7ft4OQolJ4FbtkGhl4Slm0JcKQo+xI8VtZjC1cVqbWsmMb3qOI08KrUXXNNZ6d4V8+CR
- 68faV3R8/lsUPFOZiKAuPQsonjKEv0Z+rNHAcJ++xAeuQAAAA
-X-Change-ID: 20261120-stale_mmio-a33a67733b65
-To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
- Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
- Steffen Eiden <seiden@linux.ibm.com>, 
- Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Zenghui Yu <yuzenghui@huawei.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Mark Rutland <mark.rutland@arm.com>
-Cc: Karthik Bhargavan <karthik@pereq.eu>, 
- =?utf-8?q?Cl=C3=A9ment_Blaudeau?= <clement@cryspen.com>, 
- linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
- Sashiko <sashiko-bot@kernel.org>, stable@vger.kernel.org, 
- Dan Carpenter <dan@pereq.eu>
-X-Mailer: b4 0.16.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123-dma-chancnt-v2-2-241b1672883e@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_014802_295885_F35D1385 
-X-CRM114-Status: GOOD (  14.07  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261123_014905_033738_D4057F31 
+X-CRM114-Status: GOOD (  13.91  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,89 +89,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-KVM has two ways to commit a pending exception, commit_pending_events()
-which also resets the MMIO emulation state, and a direct call to
-__kvm_adjust_pc() which doesn't.  The EL1 to EL2 path in
-kvm_inject_nested() uses __kvm_adjust_pc(), but it needs to use
-commit_pending_events() instead.
+On Mon, Nov 23, 2026 at 01:17:38AM +0000, Suyuan Wang via B4 Relay wrote:
+> 
+> idma64_remove() frees the IRQ and then kills the channel tasklets, as
+> the comment there says, so that no tasklet scheduled by the interrupt
+> runs after removal:
+> 
+> 	for (i = 0; i < idma64->dma.chancnt; i++) {
+> 		...
+> 		tasklet_kill(&idma64c->vchan.task);
+> 	}
+> 
+> Since commit e81274cd6b52 ("dmaengine: add support to dynamic
+> register/unregister of channels"), dma_async_device_unregister()
+> unregisters each channel and decrements dma.chancnt for it, so the
+> count is 0 when this loop runs and no tasklet is killed. A tasklet
+> scheduled by an interrupt can then run after the devm-allocated idma64
+> and its channels have been freed.
+> 
+> Read the channel count before unregistering the device.
+> 
+> Found with a static analysis tool and checked by hand.
 
-The scenario is: the vcpu exits to userspace for an MMIO access and
-userspace then injects a synchronous external abort or an SError using
-the KVM_SET_VCPU_EVENTS ioctl.  If the vcpu is in L2 context and L1 has
-asked for the exception, then kvm_inject_nested() enters the exception
-straight away and vcpu->mmio_needed stays set.  On the next KVM_RUN,
-kvm_handle_mmio_return() completes the access in L1's context so it
-skips the first instruction of L1's exception vector and writes the
-MMIO data to one of L1's registers.
+You have to wait a sensible time before resubmission.
+Look at the v1 and act accordingly.
 
-Replace the __kvm_adjust_pc() with commit_pending_events() so that the
-MMIO emulation state is cleared.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/all/sashiko-outbox-221074@kernel.org/
-Fixes: 9aba641b9ec2 ("KVM: arm64: nv: Respect exception routing rules for SEAs")
-Fixes: 77ee70a07357 ("KVM: arm64: nv: Honor SError exception routing / masking")
-Cc: stable@vger.kernel.org
-Signed-off-by: Dan Carpenter <dan@pereq.eu>
----
- arch/arm64/include/asm/kvm_host.h | 1 +
- arch/arm64/kvm/emulate-nested.c   | 2 +-
- arch/arm64/kvm/guest.c            | 2 +-
- 3 files changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index 0614c3b3a40d..c75b0c623824 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -1354,6 +1354,7 @@ int __kvm_arm_vcpu_get_events(struct kvm_vcpu *vcpu,
- 
- int __kvm_arm_vcpu_set_events(struct kvm_vcpu *vcpu,
- 			      struct kvm_vcpu_events *events);
-+void commit_pending_events(struct kvm_vcpu *vcpu);
- 
- void kvm_arm_halt_guest(struct kvm *kvm);
- void kvm_arm_resume_guest(struct kvm *kvm);
-diff --git a/arch/arm64/kvm/emulate-nested.c b/arch/arm64/kvm/emulate-nested.c
-index 39136a89d74b..5a7019bb719b 100644
---- a/arch/arm64/kvm/emulate-nested.c
-+++ b/arch/arm64/kvm/emulate-nested.c
-@@ -2921,7 +2921,7 @@ static int kvm_inject_nested(struct kvm_vcpu *vcpu, u64 esr_el2,
- 	 * Make sure the exception actually took place before we load
- 	 * the new context.
- 	 */
--	__kvm_adjust_pc(vcpu);
-+	commit_pending_events(vcpu);
- 
- 	kvm_arch_vcpu_load(vcpu, smp_processor_id());
- 	vcpu_clear_flag(vcpu, IN_NESTED_EXCEPTION);
-diff --git a/arch/arm64/kvm/guest.c b/arch/arm64/kvm/guest.c
-index ba4570c52a91..b7d36c2abfdf 100644
---- a/arch/arm64/kvm/guest.c
-+++ b/arch/arm64/kvm/guest.c
-@@ -770,7 +770,7 @@ int __kvm_arm_vcpu_get_events(struct kvm_vcpu *vcpu,
- 	return 0;
- }
- 
--static void commit_pending_events(struct kvm_vcpu *vcpu)
-+void commit_pending_events(struct kvm_vcpu *vcpu)
- {
- 	if (!vcpu_get_flag(vcpu, PENDING_EXCEPTION))
- 		return;
-
----
-base-commit: 5a7235e9adff42aa043ac9473dbeb0354dca0967
-change-id: 20261120-stale_mmio-a33a67733b65
-
-Best regards,
---  
-Dan Carpenter <dan@pereq.eu>
 
 
