@@ -2,70 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3752606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26467606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AFicIqs1;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=dWvkARxy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cejSEuz7;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=B/n32vMV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=8mbQTvtrZIi49PDytRQi6d2CD0lZbL/3QWzafrofBmQ=; b=AFicIqs153Pjkg
-	kwhc8XIUtovoCulaZKRCKaPRW1FkKBxz3jiRmb6Z2zCehNCccpZui1ERgiYaRUjPjM1nRz+IH1CRO
-	fsz+uRt5Ss0B1SNNwPwwC7cfnVYCOC0XSlD6zY7V5X0hmgg/cfn+uKtR+ufWEJ1PYfiMGR2Mro0uV
-	d29yVtooalb8yVnxlz7iQ2xdd3SQOYq6P0dD9JCH4dMNGpLKjg2J97F+oXDurg7DZRichEom1O1T6
-	icXI0mJx/reR8g2s8RHHAJrSNmT9fQydoPkv4vovyWiu48xkXDl31bFVykZdZX0euH4e4kfBc9j+l
-	cDlwXNdHIbWcZ26GtJRA==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=RsghqF/m5W3+Sk6FDMeWBFDKibQsse7a2Bj9+KgEx1c=; b=cejSEuz78hbTyfPTREuIbr/lhv
+	x9aaRox6To93AKBuXMzQy/l1q5B0mUUFN0UxNqNJOaIeykL34TkFEFgt5UM9fK14Eakj2sMXMvn7s
+	V5/hzLDeq+PDloT40mre2GBCKcxXnKpEWPAKEAzgGSMDxvK9oWyJT/sYRRYjt6pCFb+UTGzLTtz9m
+	XSlKPQ+M//dTcgOJbLEfJ+/++BTHHuC4M9LR1KPfazw8xeqtGOWkxK6kqH8X3S8ohHITIp/eBnRFs
+	t2PdvfvUmXCC6ocpFoZehTd0Xu9UOrxdKDUu6ObxAaHASaJ2GO/18dIzotZr4ZWSpOi3QIfTUq8Uw
+	tP0kr65g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNsu-00000002OcX-2vmE;
-	Mon, 23 Nov 2026 06:50:40 +0000
-Received: from cmccmta6.chinamobile.com ([111.22.67.139])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNsn-00000002Oby-3d0i
+	id 1xVNuN-00000002Onq-0jQB;
+	Mon, 23 Nov 2026 06:52:16 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVNtA-00000002OfJ-2FEK
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 06:50:38 +0000
+	Mon, 23 Nov 2026 06:51:00 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-3b4a93d0814so136377a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 22:50:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=dWvkARxyR0QvDgfJqZs74eYMOK4isqDvpggE5BB4Wc6HleGrUvdqlMeq5i9ZRtxLs+s3os8n3g2j0
-	 EV1m1qPrRS9cJIlpa6rY1ZDOeSbKg3ivEbwaaNRE0ouADC9XagfNgeyD1+4fA/C2LgXMqM30qxp/Dm
-	 3qlJMSCSVqH+oLR0=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app01-12001 (RichMail) with SMTP id 2ee16b03e222650-16391;
-	Mon, 23 Nov 2026 14:50:10 +0800 (CST)
-X-RM-TRANSID: 2ee16b03e222650-16391
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from Z04181456177947 (unknown[10.55.1.71])
-	by rmsmtp-syy-appsvr10-12010 (RichMail) with SMTP id 2eea6b03e21f673-8a128;
-	Mon, 23 Nov 2026 14:50:10 +0800 (CST)
-X-RM-TRANSID: 2eea6b03e21f673-8a128
-From: zhaofeng2@cmss.chinamobile.com
-To: Nishanth Menon <nm@ti.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>
-Cc: Zhao Feng <zhaofeng2@cmss.chinamobile.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] soc: ti: knav_dma: fix device node leak in of_channel_match_helper()
-Date: Mon, 23 Nov 2026 14:50:06 +0800
-Message-ID: <20261123065006.275-1-zhaofeng2@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.55.0.windows.5
-In-Reply-To: <20261110101131.443-1-zhaofeng2@cmss.chinamobile.com>
-References: <20261110101131.443-1-zhaofeng2@cmss.chinamobile.com>
+        d=gmail.com; s=20260707; t=1795416654; x=1796021454; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=RsghqF/m5W3+Sk6FDMeWBFDKibQsse7a2Bj9+KgEx1c=;
+        b=B/n32vMVEaq+/fhz90FyE6oJ2U2MMXD0dium/7QVhGpQuMcjKdEI1Ms5QwMkbNEoF9
+         Df48OFnxFdNug9eOc/XSYqdo6MY4KyNkkFNpmiOh4BDJ4yns5CUVPSwfaEVAZ7pktCZZ
+         s5m2rlw0xd2/nCC115sqEE+ADJyWEH555qlHSlE6iH306KwWisE03pq+MOZZBUxa71RK
+         Nx6b5Dwf+A+o9Ddabb1+UkqKIvcDyxsfOrMQ1ROfu1wkU5DAWGRMdaJBQOzOVBF8f6cK
+         DRA58GSRmnWFnIxphQM78j68fo3MHDwOsTt3CuCawvGcuCUaJ2RQBZ0WvyBolpyOWYuD
+         xHfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795416654; x=1796021454;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=RsghqF/m5W3+Sk6FDMeWBFDKibQsse7a2Bj9+KgEx1c=;
+        b=CU1T67SA4EAyeJ7DImY3CuJbhX/+vxCS91lJppchm31U1kIb6CKekZq/2qoHN2ALkH
+         JNFl5CnjVM4FHbJNrey5GAEpLXU/nopqRbdBpYRbtRZh3b/hHz8KWL24ZCvm+Cqiv3t+
+         lOob5wtX4VuRo8aWTNDv3vAZIjeDB/FFnlnn3MGK1VTMe8JYJmVJrONS9lO/91ZwBp8w
+         lveSUZ7ZaId2sdnkLprhwZk/W7iko+ctyIfa3W8Pj4aM4cDUf35ShDDbrMeLg0w5QSmN
+         V7Z9VJMdB3vRsWQ3orQ1M9JfK6nGbOPvpUKqRHRCmf5ar5BrEp8bEtNCZ0UYFekt08JT
+         F3jA==
+X-Gm-Message-State: APuU4Z/skeDqjxk9Kxtl/56zRIUq8Bz21fO5jLAApggmJZtmenKczgW0
+	c/8IDlfShga0oaIIkYO6I2XrBRpyWOZ5wjojEvXonkDkJG2TS8yaA5DV
+X-Gm-Gg: AZFdTZfHxEGQjwYa3NkuQ7gazDXD2gVwq3T9mLphtIkFOcRG6i4VQs3uEPX78Wtra1S
+	9F3AJwzaZ15qJPE9azkuvPAgyQEjIDbCjD0NGFY/F8dHIhj/5TIG7KoZ1jkLEf744jxp7H5BpeV
+	+MtdwjnkAv9zOqg7GUBgJGm4vhwUlQ6Hr7+85fjVsrWJKrGZml+BoDLNcXA6JJjnDyz6SWv6gaR
+	AhIsJZIY0SW1XPkpNvgP/wKzvxJoOoG7yoX0I6OUpCbIBIGD4YdkcIpWqyzDUwHU8GlCh3zyASw
+	5/Lf44APIHg+jVGx+UqQbsiqkFcqnRdXL0ucSQFWfuhjeYc1SBlmJmXqRcUSBQmqhACzJswcM2I
+	+k2dHlm0L/hVeivPU8I/5QtMkTUJtBLj6IRkPH51R+OM5NQ4Z/xgndXJCUvvYO2wz86YjrxIWME
+	33QsfMGVF7VASxaMTCooKarb1d6pqk8prNZZ+Igk0DVQPCeSM8FUqcCtdNUwn4+B9I4d1gtiN4o
+	lIB8UU4vd+i2BfKsr5r0OKWm/01ysQ7VUsk1PM9Q6oikd260Kcgs2sRfXfEHt0lNfQTrWSZ8//5
+	S4kYE3WU3Vyex/1Vs84uuDJ1J6sa5T9/65iy7CJhhvscncSZ1xKCi6XDkUayFiIk5ZD88eL1QOJ
+	dCRyBC019gTmjjNM=
+X-Received: by 2002:a17:90b:55d0:b0:3b0:92be:ea4a with SMTP id 98e67ed59e1d1-3b41c9830demr9484321a91.45.1795416654083;
+        Sun, 22 Nov 2026 22:50:54 -0800 (PST)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b48b41928esm5224811a91.9.2026.11.22.22.50.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Nov 2026 22:50:53 -0800 (PST)
+From: Chi-Wen Weng <cwweng.linux@gmail.com>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cwweng@nuvoton.com,
+	cwweng.linux@gmail.com
+Subject: [PATCH v7 0/2] pwm: Add Nuvoton MA35D1 PWM controller support
+Date: Mon, 23 Nov 2026 14:50:04 +0800
+Message-Id: <20261123065006.28768-1-cwweng.linux@gmail.com>
+X-Mailer: git-send-email 2.25.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_225035_298843_F7BB6529 
-X-CRM114-Status: GOOD (  11.35  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261122_225056_614156_BB1C5753 
+X-CRM114-Status: GOOD (  23.44  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,133 +104,149 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Zhao Feng <zhaofeng2@cmss.chinamobile.com>
+From: Chi-Wen Weng <cwweng@nuvoton.com>
 
-of_channel_match_helper() takes two OF references: one via
-of_parse_phandle() into dma_node (for the ->name string handed out
-through *dma_instance) and one via of_parse_phandle_with_fixed_args()
-into args.np (for the channel number).  Both are leaked:
+This series adds the device tree binding and PWM framework driver for the
+Nuvoton MA35D1 EPWM controller.
 
-- The three error paths (property match failure, fixed-args parse
-  failure, missing args) drop neither dma_node nor args.np.
+The MA35D1 EPWM controller provides 6 PWM channels. The hardware supports
+up, down and up-down counter types, auto-reload and one-shot modes, and
+independent and complementary output modes.
 
-- The successful path leaked both prior to the initial fix.
+The initial driver supports independent output mode only and configures a
+channel for up-counting and auto-reload operation when an explicit .apply()
+request is made. The waveform generator drives the output high at the zero
+point and low at the compare-up point.
 
-Drop dma_node on the two error paths present in upstream, drop
-args.np on the one error path where it is obtained, and on success
-transfer dma_node to the caller so that knav_dma_open_channel(),
-which only uses the ->name string to locate the matching DMA instance
-within the function, can release the reference once the lookup is
-complete.
+In up-counting mode, the counter counts from 0 to PERIOD inclusive. With
+the selected waveform actions, CMPDAT = 0 generates a 0% duty cycle and
+CMPDAT > PERIOD generates a 100% duty cycle. The driver keeps PERIOD one
+count below the 16-bit field maximum so that CMPDAT can be programmed
+greater than PERIOD for the full-duty case.
 
-Fixes: 88139ed03058 ("soc: ti: add Keystone Navigator DMA support")
-Signed-off-by: Zhao Feng <zhaofeng2@cmss.chinamobile.com>
----
-v2: also release dma_node on error paths and transfer it to
-    knav_dma_open_channel() for release after last use, per review
-    from Nishanth Menon.
+PERIOD and CMPDAT use the hardware period-loading buffers. Since the two
+registers are written separately, if a period boundary occurs between the
+writes, one transitional cycle can use the new PERIOD value with the
+previous CMPDAT value. The following period then uses both new values.
 
- drivers/soc/ti/knav_dma.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+The driver selects period loading mode by clearing IMMLDENn, WINLDENn and
+CTRLDn. When a PWM is disabled, POENn and CNTENn are cleared. Clearing
+POENn disables the output driver and puts the output pin into high
+impedance.
 
---- a/drivers/soc/ti/knav_dma.c
-+++ b/drivers/soc/ti/knav_dma.c
-@@ -364,7 +364,8 @@
- DEFINE_SHOW_ATTRIBUTE(knav_dma_debug);
- 
- static int of_channel_match_helper(struct device_node *np, const char *name,
--					const char **dma_instance)
-+					const char **dma_instance,
-+					struct device_node **dma_node_out)
- {
- 	struct of_phandle_args args;
- 	struct device_node *dma_node;
-@@ -378,15 +379,20 @@
- 	index = of_property_match_string(np, "ti,navigator-dma-names", name);
- 	if (index < 0) {
- 		dev_err(kdev->dev, "No 'ti,navigator-dma-names' property\n");
-+		of_node_put(dma_node);
- 		return -ENODEV;
- 	}
- 
- 	if (of_parse_phandle_with_fixed_args(np, "ti,navigator-dmas",
- 					1, index, &args)) {
- 		dev_err(kdev->dev, "Missing the phandle args name %s\n", name);
-+		of_node_put(dma_node);
- 		return -ENODEV;
- 	}
- 
-+	of_node_put(args.np);
-+
-+	*dma_node_out = dma_node;
- 	return args.args[0];
- }
- 
-@@ -403,6 +409,7 @@
- {
- 	struct knav_dma_device *dma = NULL, *iter1;
- 	struct knav_dma_chan *chan = NULL, *iter2;
-+	struct device_node *dma_node;
- 	int chan_num = -1;
- 	const char *instance;
- 
-@@ -411,7 +418,7 @@
- 		return NULL;
- 	}
- 
--	chan_num = of_channel_match_helper(dev->of_node, name, &instance);
-+	chan_num = of_channel_match_helper(dev->of_node, name, &instance, &dma_node);
- 	if (chan_num < 0) {
- 		dev_err(kdev->dev, "No DMA instance with name %s\n", name);
- 		return NULL;
-@@ -425,6 +432,7 @@
- 	if (config->direction != DMA_MEM_TO_DEV &&
- 	    config->direction != DMA_DEV_TO_MEM) {
- 		dev_err(kdev->dev, "bad direction\n");
-+		of_node_put(dma_node);
- 		return NULL;
- 	}
- 
-@@ -437,6 +445,7 @@
- 	}
- 	if (!dma) {
- 		dev_err(kdev->dev, "No DMA instance with name %s\n", instance);
-+		of_node_put(dma_node);
- 		return NULL;
- 	}
- 
-@@ -457,6 +466,7 @@
- 	if (!chan) {
- 		dev_err(kdev->dev, "channel %d is not in DMA %s\n",
- 				chan_num, instance);
-+		of_node_put(dma_node);
- 		return NULL;
- 	}
- 
-@@ -464,6 +474,7 @@
- 		if (!check_config(chan, config)) {
- 			dev_err(kdev->dev, "channel %d config miss-match\n",
- 				chan_num);
-+			of_node_put(dma_node);
- 			return NULL;
- 		}
- 	}
-@@ -476,6 +487,8 @@
- 
- 	dev_dbg(kdev->dev, "channel %d opened from DMA %s\n",
- 				chan_num, instance);
-+
-+	of_node_put(dma_node);
- 
- 	return chan;
- }
+The driver does not modify the PWM controller during probe. This preserves
+PWM outputs that may have been configured and enabled by firmware, such as
+a display backlight. The counter and waveform configuration is changed
+only for the channel passed to .apply().
 
+Since the independent/complementary mode selection is shared by each pair
+of channels, the driver refuses to change an active complementary pair to
+independent mode when the paired channel is active.
+
+Changes in v7:
+- Rename register macros to match the EPWM register names in the
+  reference manual.
+- Rename bitfield macros to use the corresponding register name
+  as a prefix.
+- Rename CNTTYPE and related CTL1 field macros to match the reference
+  manual naming.
+- Keep short register update calls on a single line.
+- No functional changes.
+
+Changes in v6:
+- Document that clearing POENn disables the output driver and puts the
+  output pin into high impedance.
+- Document that a period boundary between the PERIOD and CMPDAT writes can
+  result in one transitional cycle using the new period with the previous
+  duty cycle.
+- No functional changes.
+
+Changes in v5:
+- Remove the probe-time controller initialization to preserve PWM outputs
+  configured by firmware.
+- Configure the counter and waveform settings only for the channel passed to
+  .apply().
+- Keep the disable path limited to clearing POENn and CNTENn.
+- Check for an active paired channel before changing a complementary pair to
+  independent mode.
+- Return -EBUSY when changing the shared output mode would disturb an active
+  paired channel.
+- Document that the initial driver supports independent output mode only.
+- Remove the unnecessary <linux/mod_devicetable.h> include.
+- Simplify the WGCTL action field handling and remove the associated static
+  inline mask helpers.
+- Rename the PWM field and period limits to clarify their different
+  semantics.
+- Configure period loading mode explicitly in .apply().
+- Preserve the pair-shared clock prescaler and account for it in period and
+  duty-cycle calculations.
+- Limit the period to 0xffff counter cycles while reserving CMPDAT = 0xffff
+  for the full-duty case.
+
+Changes in v4:
+- Add a Limitations section to describe the hardware capabilities and driver
+  limitations.
+- Add a link to the MA35D1 reference manual.
+- Replace register address macros containing the base pointer with register
+  offset macros.
+- Add readl/writel/rmw helper functions.
+- Rename TOTAL_CHANNELS to NUM_CHANNELS.
+- Use unsigned long for the cached clock rate.
+- Use devm_clk_rate_exclusive_get().
+- Configure polarity before enabling the counter and output.
+- Add controller initialization for up-counting, auto-reload and independent
+  output mode.
+- Configure the waveform generator for zero-point-high and compare-up-low
+  output.
+- Fix the period conversion because the hardware period is PERIOD + 1 cycles.
+- Limit the maximum PERIOD value to 0xfffe so that CMPDAT = 0xffff can be used
+  to generate 100% duty cycle.
+- Use CNTEN and POEN bits to report the enabled state in .get_state().
+- Disable the PWM by clearing POENn and CNTENn.
+- Fix error message capitalization and trailing newlines.
+- Fix coding style issues reported by review/checkpatch-style tools.
+
+Changes in v3:
+- Update nuvoton,ma35d1-pwm.yaml:
+  - Add maintainers entry.
+  - Increase "#pwm-cells" to 3.
+- Update the MA35D1 PWM driver:
+  - Organize include headers and macro definitions.
+  - Rename REG_PWM_XXXX macros to MA35D1_REG_PWM_XXXX.
+  - Add register address macros.
+
+v2 resend:
+- Remove incorrect Reviewed-by tags.
+
+Changes in v2:
+- Update nuvoton,ma35d1-pwm.yaml:
+  - Fix maxItems of reg to 1.
+  - Remove unused label.
+- Update the MA35D1 PWM driver:
+  - Remove MODULE_ALIAS().
+  - Add chip->atomic = true.
+
+Chi-Wen Weng (2):
+  dt-bindings: pwm: Add Nuvoton MA35D1 PWM controller
+  pwm: Add Nuvoton MA35D1 PWM controller support
+
+ .../bindings/pwm/nuvoton,ma35d1-pwm.yaml      |  45 +++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-ma35d1.c                      | 382 ++++++++++++++++++
+ 4 files changed, 438 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/nuvoton,ma35d1-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-ma35d1.c
+
+-- 
+2.25.1
 
 
