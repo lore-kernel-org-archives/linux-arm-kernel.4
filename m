@@ -2,119 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2BD606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E45606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X2JiWOXp;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=X77qFgRN;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KrH2j1fN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T26FC7ED;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=obyXd8ix;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=0uzOAneY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eklyttWk1u0PJELvwASOzqqyz2Z6Z/tZtmPAub2HSPM=; b=X2JiWOXpClHKNS
-	DeLd51xiTAYY9FqZVgiCIfnslsOIY6qe53DKGuhMRqP+p4W8P6jo3J561ZFp5q+4B6piL5x11FOhv
-	b8raeubZFPNil2Yuy7ZJmblk26DNzImGfOj1cnHnIhkqW5eyy2HV5LeC+oZsSVNWUygLFo/d8hVtb
-	Ueden4mwVOoB0iKIk4MvFt/YX9GRAALXPXm47uIgFQj4PuO6x2kOgdGyRGTl9TT8gpp3YHfaf+/JW
-	HsY4Gqhbj9ZbWA30C0epp7BLt6/ZSrFIckDSuq8jneTRW/bwTpLcmLLQhZ5fBOjle4lDnxYf0t+4d
-	BS7X3wwIT33Jc5hjqeAA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=k4/rvLgtcMpaUxMn6Fqp7RLo2TbuALQdqASFTyuNpDE=; b=T26FC7EDIVLGaliRZlwZJEPg2J
+	j4fTvTuzpN8jQaKtepBhG+X6r3KdHxrmHZRhjbogSBzXOJ0UskWY3hAtu4K+St9Zr1XkDLhkSb4mn
+	02FooujFWO8Dvr8t4pmLTIh3HZVh05KLhYF41ynTPEGV0sLonN7DnQCXUGGJ565YMCB9tTSMdXyxx
+	O2UYXz/EzlyMnG5JGqIqk153AwUuFjVAmB5wLBhKnaLnD1bcsA3tokWT0jDyBkg6o1V9w3KmWf3nO
+	uTu4BrYZ4I+ZRbhOed4riD8QFyReUyUumQUbZdhZcBF65+RfDli49rJ/SGq593T3IB/T/kK6us1kK
+	m2CBqPxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQJV-00000002hwg-0p87;
+	id 1xVQJV-00000002hwu-1LXn;
 	Mon, 23 Nov 2026 09:26:17 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQHC-00000002ha9-1P82
+	id 1xVQHC-00000002haB-1bzw
 	for linux-arm-kernel@bombadil.infradead.org;
 	Mon, 23 Nov 2026 09:23:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=eklyttWk1u0PJELvwASOzqqyz2Z6Z/tZtmPAub2HSPM=; b=X77qFgRNwvoC8AE0N/GvlDuMJj
-	2vLZFEaDq6x2vLo1wTw9iX1KE1hgKHShYIomTJZd69NXHNsRlO98bFtB6U0T1Vekba5hRK74HidPX
-	fO1h26N6yZMJyDzZf0MfwmZ5Si7mM1oF30Z0oVLMzmrZ29hkcILFDH9bMFymLI4KKC8l8ryW4EQRX
-	jkdIOvgjVTtettNkw5x9f9pGXMRWVC9VvrVy6rpCAFUcurVY5RL7RF4o/ycxFDzMEb7j7suIv6wmV
-	tIGpDkPGgsosMX1SDUEWYZa+ALn06RmZhN6KRVibnsJYoy6gRQBl2oBNFT+pHjtSxRDsL45VHkzHW
-	NPvsAEag==;
-Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
+	:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=k4/rvLgtcMpaUxMn6Fqp7RLo2TbuALQdqASFTyuNpDE=; b=obyXd8ixza5nkqR8YIsOmTraqx
+	FdxGa3kI0zgu7Lvb3MkZTYiJIKkmau4IBEYJtD6UoAWCA2cgiDhEdY+bHAv+QzOFJu6oHBzKsnXup
+	J0wCwlBTzEKqEQTkBQv6D1I2TFmMdLyaRuwzgBFURpfSYJfyQjxdM7aTMJnWM0ZC/vguUtEx4N/5J
+	kCUJywnLQ0XtEmM873uUhmsXq/sJXTEwegrH7xSwfHiFOqu/rFguIHBWtnLCAhQ6y5FexdKdRIGMJ
+	8UaF3RAmhXFcybQ/LbdnF3FNROyqqYJgK03IhemmpaARKKld/CKK+zRAxP4vYGx3EwHQ/PfOFUxd8
+	L6xPDIaA==;
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQH7-00000002uuY-3K8I
+	id 1xVQH6-00000002uuP-2wdS
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 09:23:52 +0000
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-4a34ffd3e39so1606281f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:23:49 -0800 (PST)
+	Mon, 23 Nov 2026 09:23:51 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-4a7b8abe209so2299830f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 01:23:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795425828; x=1796030628; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=eklyttWk1u0PJELvwASOzqqyz2Z6Z/tZtmPAub2HSPM=;
-        b=KrH2j1fNmoiTbHtQAg8tJt0NUaNAv8q1NtNERwukLIUNunFulH6w7lU5aJwgBdzktS
-         LQYi7vvM87Su80iZEXCDXURrmfvvgRF51IEEcil527hBVYrl/eZrShLeqFKYb2BCs39/
-         jiIUcHnWfDO9eEL3CWoS7hFswE78bD2QVrHwP7+05+/sYe2xZXfgC35ooKiyctggCZ5T
-         txlIwXhRhTdX5nY7yQw2DacsTVGtfUxGPlNqinwqxeehQOC3t/9CGao0z1XZ4m7Gc48P
-         XGlCRlFV0QcB0WdFGIRO1h+LJTvf3mAuIYGXSfSSEbseVhs7LAHzFA9sG017PKzxu0i/
-         QCMg==
+        d=gmail.com; s=20260707; t=1795425825; x=1796030625; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=k4/rvLgtcMpaUxMn6Fqp7RLo2TbuALQdqASFTyuNpDE=;
+        b=0uzOAneYKbKmmIPtxWxbUOrwsloV58s3aPE6Y2n9xa7qOpYq293wbacxb6CnhqBqRC
+         3R7PFQZtRPC7L8T1j8maiTrDmv08nbr89sserHVR7pxzRDZ2CZ6nA9DBr+/IyDCoKu8B
+         ide26vm/e9qr4ugmWXt3WsOigcoyqn29ECtbxmO5/8/3afYqSSakfqpRynZpxyyX2oao
+         M07g0fy9OCPUfAATh0Pg2rjr/+vk3FIZf9U0QFFMXuKdGyJDAym5dIb1w3hacpHcSr3T
+         0oGlSKzSLiGSl0ezovkHiDFPD6PEfC96fQoFYiDYmjDlsY6W5ScH6U2oVYRykMq4IchK
+         Py5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795425828; x=1796030628;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=eklyttWk1u0PJELvwASOzqqyz2Z6Z/tZtmPAub2HSPM=;
-        b=jfDTGrKhUmeOC1jwgBUDWxZlvETt66qqMq5T+mfgAWYmOSJJeqsn/e40prQLVdN0DB
-         Jei/it8AeIfxZIi9lS0HKI9hd+7rWs5R9un4Y7U7qwkt1Wb+smjUVUVZwzyxhcfxDgbL
-         rP8tljIT/PxWPZk5IJI/exHABgMfAs3NMqJyi4VmbS3CJ0z2YIc3BXTKiBULcP+DZ5wT
-         nyBFpgp/WvEZbAQn+0nDbFOjb0XNT1KFaFydoLYfFAP3dBf0dv1hGRKWr7kwc8yh7vtg
-         NiB/N0oasss+Rs7K1c9moxdBoCEoHtxPfWPs/xnNtjqZXPxCgVpwC9mBrfuiPBZt+AYf
-         qPrw==
-X-Forwarded-Encrypted: i=1; AL+hErGkBSZNIVleER0AMMGGBKvFgo1uXBapS8/WgQ0aPxtMCCgi0Sm9o2+QVmxhiNY23cC1TGoHixUfjignypW1UnPn@lists.infradead.org
-X-Gm-Message-State: APuU4Z8V1tKYvcmxyDqC+fTBxJ7DBniEsdBG8XGtve1sSg6q5O7YvGPr
-	VfnVCbq2B/AXSotGqZzaFsMbAL8Ao+JZcEHUy316TrHLbYvLA3jmZBaj
-X-Gm-Gg: AZFdTZfF1UoqP1acsZSN5nAIoq0sGYzahj3O6hz6eFWrv5ytuEOJ6EmClbIeuQgNbq1
-	MbQTuLNNVyy+QQu3QiOzwMqkjePgrMn/8iDyyVGqNsD6SgsSveKBEIzhuHXYTNWu3WXJNHPeKxC
-	F6Ip3ah+9I+sl8eE/twFPUeqLtBbLKD95XjOfJaSkl9WSqZEBvhieZrzholF7R++zktattNd+1b
-	FrMrpxdUBfJMD1WXzwLdPMXIwNbeUkQFgDbnCMzPO9oIG7JGcL7kKge45l7LtBS9cDJTq/EkGTC
-	zt1kAoMyQ8HULOOiaoWPzkEltHPvVU3nWCZByvqlipQs+znnu84AzG1fXlOXCN+U7QsU93MwDfn
-	44xASH+YdVuSWrP4GQ/lrPWarHGqQPrOc1Yf8sSbwWjNAJQdAgfbHrWMeEJDcnSV8abI8YSGJ0Y
-	eWXOVrtnkSYgrz2xaXqTpNwWCv7fRg6nWIgn454ZASWn/rO9RmVvMsmBekJehlFWMwdTcA8OixW
-	qhsj6zhs6EuhRf4ymKbdga2Jw7eapag2RHd+TnwFHcj+8Ex0umpozvMRyQoNvHYUXPef6ZyfvC3
-	b0h02SHi6GpQdZJuVFYe2KiaoOQTb/NpxwSrlBb1LwOsgLmsx9subtnZNGxlv6PzD5E8Fhv2qMK
-	7K0CkSW8dDndcUkRNves+qJAQ9/TaQMlPQA==
-X-Received: by 2002:a5d:5f41:0:b0:4b4:510c:519e with SMTP id ffacd0b85a97d-4b4510c5231mr2688118f8f.27.1795425827893;
-        Mon, 23 Nov 2026 01:23:47 -0800 (PST)
+        d=1e100.net; s=20260707; t=1795425825; x=1796030625;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=k4/rvLgtcMpaUxMn6Fqp7RLo2TbuALQdqASFTyuNpDE=;
+        b=HEbGbAceyIatcg4+Cu+7JNoAwUqFnJ5zLihaBU48Ugs+iexG9ZhE01vhFJJSqPMZX+
+         fptpcFHH8lfqbPAD60aIona7HBvjcWYUYTQN2T4QGDAIaIFAibPue3KmqcA1lvZrKpJM
+         ZSUL0Q/W/r0K8jAf14V4FmgPkuKp6MF/DM+d46XnuFiSArXZi+dX2/mqHm98Wd8nIb51
+         D28+Yj7hudbzZzunJbr18sD5aQ34unvaR/RvDJ/hU/1vIeUhtv3MUsLxLvVjSaxyFU7O
+         aJ4jgDwktEnUI6ecJ1VnhZoI6dh2nkBTI01jh1Iof2frSITBbwctZg9JXr/Lkypb4nt4
+         cwvw==
+X-Forwarded-Encrypted: i=1; AL+hErH4JdFqN3IVh/qRFva0u5pxliCAcAQeKdm5c1oOI0Jg64BGsAWp5nGmOurGfXdRyciIDlR85XAiXUCCtTUeJkym@lists.infradead.org
+X-Gm-Message-State: APuU4Z8dececIlkQ85W3gJuIrIhSL2KHFzpA3vIKakP0uzEyepS85P8X
+	BJtXVcAbmzgurSF2XNIsODqrlRjUiK9PgqavqdFSDA00xI2D8KCUfKlj
+X-Gm-Gg: AZFdTZdEk99SxtlasuPfait/4rME0zDBRMUzdUFbbNM3ZOE6edW6e764BsyndEqhojL
+	6pznROBmb9a6Gylg2Y1FPxeLlVttEx6Li2GAMLQwZBgKXdiMG12QONdxSF/xLUlbSCsR+Zb36yN
+	SzYX7/VWgeIiAzmjtPyKDqIWfB54uXYzVMC6VonMKqG0ncaquvD9aOadMUG3b5E82ld7kE5vTLw
+	eTWwzNy2LXEZJ9bs+BrfQwKyKlXp2wG4ncwbWBgnSFIg/N4iE8K+AOa4zPRj3uxLgDcTP6FTMfm
+	+2xfN4FJPaqgnMC0iKgGsWTB/ODNwUaR+UFwXy+soVFP/V41cXL1Q3V55/7Lh8FpdTTowUXKJQr
+	Skrzae18xCbl7l1wW/Uh8tnIrIatzoySe+klnSMWf74XZ3C/IfaT9iNZ1vU2N5KQ/KUJGXfPEE1
+	dLeVxS4nSqshj1IICbdYBlIDWJ9EGCWZkTQtdkJolEgpQt9f31+Wxq+Z2zMFBZkh4ayOH4dlmE/
+	h6eeixQC1riC4kDbmAjyo67eyfFaSUx/EJOu12l6oyC4ZRh9xnKaesIsKZB5j/YX0VMU3Vbhzqt
+	WH1VHhJnYOp/E18rZQ+VhN5B1qGwwWFSfk2mp+rj6ivgqcC+wIMbhCwks/gFbZeQIQA7dGhfizl
+	awTHYxroSD1aEnmGcqWc3J8F8cRzM9k3EueA=
+X-Received: by 2002:a05:600c:4f0f:b0:4bb:87f4:3674 with SMTP id 5b1f17b1804b1-4bb8880ef40mr276942035e9.15.1795425825278;
+        Mon, 23 Nov 2026 01:23:45 -0800 (PST)
 Received: from DavidArch.internal (catv-78-139-0-46.catv.fixed.one.hu. [78.139.0.46])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4ab6bb989eesm21060655f8f.50.2026.11.23.01.23.47
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4ab6bb989eesm21060655f8f.50.2026.11.23.01.23.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 01:23:47 -0800 (PST)
+        Mon, 23 Nov 2026 01:23:44 -0800 (PST)
 From: David Virag <virag.david003@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Vinod Koul <vkoul@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>
 Cc: linux-kernel@vger.kernel.org,
 	David Virag <virag.david003@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
 	Alim Akhtar <alim.akhtar@samsung.com>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-usb@vger.kernel.org,
+	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 2/5] dt-bindings: usb: samsung,exynos-dwc3: Add Exynos7885 support
-Date: Mon, 23 Nov 2026 10:22:39 +0100
-Message-ID: <20261123092244.1792040-3-virag.david003@gmail.com>
+	linux-samsung-soc@vger.kernel.org,
+	Umer Uddin <umer.uddin@mentallysanemainliners.org>
+Subject: [PATCH v2 0/5] Add USB support to Exynos7885
+Date: Mon, 23 Nov 2026 10:22:37 +0100
+Message-ID: <20261123092244.1792040-1-virag.david003@gmail.com>
 X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261123092244.1792040-1-virag.david003@gmail.com>
-References: <20261123092244.1792040-1-virag.david003@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_092349_887416_695634ED 
-X-CRM114-Status: GOOD (  12.41  )
+X-CRM114-CacheID: sfid-20261123_092349_329607_D663076B 
+X-CRM114-Status: GOOD (  15.71  )
 X-Spam-Score: 0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -134,32 +139,51 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Exynos7885 SoC has a DWC3 compatible USB controller, so it can reuse the
-existing Exynos glue layer. It is also compatible with the Exynos850
-variant. Document Exynos7885 compatible.
+This set of patches adds support for USB on the Exynos7885 SoC.
+ 
+The Exynos7885 has a DWC3 compatible USB controller and an Exynos USB
+PHY that theoretically supports USB3 SuperSpeed, but is not implemented
+in any known device. The vendor kernel also stubs out USB3 functions, so
+we do not support it.
 
-Signed-off-by: David Virag <virag.david003@gmail.com>
----
+This is a v2 of a previous set [1], which was split into a clk patchset
+I did submit back in 2024 and eventually it got applied, and this set,
+which I never ended up submitting until now.
+
+This version fixes some things noted by Krzysztof Kozlowski, and also
+contains a change made by Umer Uddin, as he recently tried to resubmit
+my old patches from github [2], fixing some things up, but missing the
+previous remarks.
+
+[1] https://lore.kernel.org/linux-samsung-soc/20240804215458.404085-1-virag.david003@gmail.com/
+[2] https://lore.kernel.org/linux-samsung-soc/20261119-gta3xllte-usb-battery-v1-0-0cf5f763522e@mentallysanemainliners.org/
+
 Changes in v2:
- - Use samsung,exynos850-dwusb3 fallback compatible
+- Clk changes not included as they are already applied
+- Add Reviewed-by: tags where appropriate
+- Use samsung,exynos850-dwusb3 fallback compatible for dwusb3
+- Use unsigned long for set_ref_clk_rate
+- (from Umer Uddin:) Error-check clk_set_rate, and fail if returns an
+  error.
+- Keep dt nodes ordered by unit address.
 
- Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+David Virag (5):
+  dt-bindings: phy: samsung,usb3-drd-phy: Add Exynos7885 support
+  dt-bindings: usb: samsung,exynos-dwc3: Add Exynos7885 support
+  phy: exynos5-usbdrd: support Exynos7885 USB PHY
+  arm64: dts: exynos: Enable USB in Exynos7885
+  arm64: dts: exynos: exynos7885-jackpotlte: Enable USB support
 
-diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-index 8af0143c3e47..f62e3ed82257 100644
---- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-@@ -24,6 +24,9 @@ properties:
-       - items:
-           - const: samsung,exynos8890-dwusb3
-           - const: samsung,exynos7-dwusb3
-+      - items:
-+          - const: samsung,exynos7885-dwusb3
-+          - const: samsung,exynos850-dwusb3
-       - items:
-           - const: samsung,exynos990-dwusb3
-           - const: samsung,exynos850-dwusb3
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |  2 ++
+ .../bindings/usb/samsung,exynos-dwc3.yaml     |  3 ++
+ .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 +++++++++++
+ arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 36 +++++++++++++++++++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 26 ++++++++++++++
+ include/linux/soc/samsung/exynos-regs-pmu.h   |  3 ++
+ 6 files changed, 90 insertions(+)
+
+
+base-commit: 5d7b9f865597a74b323d512619c42f3e07ae043a
 -- 
 2.56.1
 
