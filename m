@@ -2,78 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D06606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D84606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B3lZRc1x;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=SKG4uQkI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PE7uM2YD;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=jX+T78FG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wfoqPgqjOoBEdt77NL+di01ivSMv9tm+04A93YFGYZ0=; b=B3lZRc1xxv+0gR
-	Mp95evcrPluQ+pvDb2ouG2H416Pzs3v64p9tw1dVWxVzLB2c/A/DsOQlok/kzgXEKMvZ6qyeuWr40
-	GN0qs5KKsnDjUbEcJmc2xCSQlkL/m7hLWqW8UOyYjTUikNdqoTe+ZUyFyKcIsHjXjAZJM12T66Ndo
-	2o3XQ3uGHRPRwVJzScsrBbfMPSGBzj/LhIM02n4U9I5mj71mArInpyW3VgzFzU8s0nDJSMqp5V+pg
-	9ftbArpJMCy5HzLUMInNWVSFXrRxgkGEDqm7xkpsvmiB6DhPsGx+sq+4ofksoeVdjv4VSZHEOzibu
-	f8O4k79n8s+Z83N87QjA==;
+	List-Owner; bh=jwL10KRKcG6XAu94ns6q7rnAqyJIXDIiUk5S1uZsgLw=; b=PE7uM2YD8ZNiX9
+	oqjC9CwTFpP30URI1OIiIRkU2VF3UUpOD74wzAYBYV/Vyiz1RyMGupoIGomWmM3E7rSIByaADExEG
+	k9nQrXz9nhArNmphlCZRm4pUBe4y2SEgRapaHcUeWeh6rrQozLUNPh5fQr3F/eFkr+DL6Ig5UQ+KG
+	2jpjhQXVy2ZOd39lgqDvZ8dZmWU6erVMmllvEgAANndeUd3IpQJcNGu2D/fzr3sUATGbWoV1OSrOJ
+	0NAu4jq8OoSIPq6yP3/LRb50OFt1emDVraVIc12gxTrJNzhZKV6G0vKGL+BcKOw7/SfCL8gDQvo04
+	tyAFfIiazZ5nwmQw6iwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS4p-000000036qu-3G1B;
+	id 1xVS4p-000000036r6-3lET;
 	Mon, 23 Nov 2026 11:19:15 +0000
-Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS4c-000000036dQ-3QiU
+	id 1xVS4b-000000036bN-1M19
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 23 Nov 2026 11:19:05 +0000
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-4aa5833c263so2993888f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:19:02 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4b79502c27aso28889315e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:19:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795432741; x=1796037541; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1795432739; x=1796037539; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=wfoqPgqjOoBEdt77NL+di01ivSMv9tm+04A93YFGYZ0=;
-        b=SKG4uQkIJ8oyF8lSqOmujWpF4Ya3aQtVGdz1u8FaiTfQi0upGY7eJbNBBwIzMAFtLb
-         ZL9ku7lHl7s8WQEeOU4V3YJamr5P2MpSXEe8NIqhqBBo1ohUl3xqVWWCTAKkm9YChEjz
-         Vd7cbAf4C/tcHmpx45NqcZMTN7yt/ldarKJ3nHN69BjcJhk2v+xzXC1KlU6lkPLw7OTg
-         n8Fs5oCVlTeKHBEprmTJ7Ktn5yB9xAnYV+5ImPWp/10TcfiarqFY6Smg5A7i7+77XMsM
-         dUcOxqxfXFvgE+CjWnJVduZT6P/Kjs9Kr2063fgnRjIoXnnISj4rTqTuGXflYaIOrJCB
-         yFxA==
+        bh=jwL10KRKcG6XAu94ns6q7rnAqyJIXDIiUk5S1uZsgLw=;
+        b=jX+T78FGiswDnd4T2Myw1wdzCPoYrYD/QPMLRyA4JMqthxN18srFqkEWYcsm7hRfa1
+         dO4CnU55WSf/bDXcl2t5JJ2RJON0a2I8Tf/9v+nrdq7ZYlGHujZA/iNuhjHETLf27W17
+         UCiSHfOkh2Ed1WH+l1k5MM2ndn4BbwuMi96DMJiQ18KwxZqn4htcxUhSiMj9v+qfw0x3
+         FeAEdkVfFgaCEkp9Cw4Ff+XT05YijALCgeeaAtDaWPPaDsF8OeykakigkBFz795eblsv
+         tGldqXtMqt7taUGmBVc2NBSZ9zKKJhNC2/B8UOOm0B96W9HT7hYg5fJj/k4Nm3fV/y73
+         4v5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795432741; x=1796037541;
+        d=1e100.net; s=20260707; t=1795432739; x=1796037539;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=wfoqPgqjOoBEdt77NL+di01ivSMv9tm+04A93YFGYZ0=;
-        b=Rnm1TrzM8Mcx7SBgFNQnqdgNDRx7z9aqYV2eN4EXa4JgtSHaXAqg3ldSqS76he1uxm
-         fCYTH/gNXHRi+x0/hWzQOl4W5tV59iNV5ZTmy23H4X3OYCfiAIIc2q3Y8aVwb9kHNjs0
-         fc51p7CbG6/2fKU4g78dDzI9aCocW9lpWqzqs4k5tRQ1imKlQA++F0VW6RFcNo5j/npc
-         CYl2q3HBHoMf+a9mlIcO4kSFBPfXJt58EUkLusZrbk8BeXbUFpwcwZUpGo1boIDXHUJy
-         3KOptFxJEE+kEW4X354mtJ6hsjqGXkRH+O43LAOasdC8p1V8/I0/nmJiinOrr4JAi8No
-         e4VA==
-X-Forwarded-Encrypted: i=1; AL+hErH4Z6eU+eWBTbdmoPUnM4jSLsNuG/TySYPefF/y+edZfWQDqOdsTwgj3OZ0qGuFUjabSXoJhjzx6FdYXhrHCqkW@lists.infradead.org
-X-Gm-Message-State: APuU4Z9qa35pTDNKs0LC9W5B1oDatbjSZbVtzKeDyV624oJ7HKB5gVYP
-	6lHrMuXVrcLKalwpsjlNVtVnoluKnai2agdFh2VB6HX3NHQhjfqw/42po30L3742q6E=
-X-Gm-Gg: AZFdTZeMafbkzMONBcQQGc08DPQ6Tq+bQzrY/aFwYECD4NJvpO1Wng1srKBQfkINs2w
-	00VZ46bznAiLp072U9/lhLkIX0LgrXOxs2wrub91UmVoHsqwSHEiE7mRw/gR7X0sEzvqI5x9oDj
-	kZziA+QgXZiIdpqQKEBcwkiQFTCe6GtXmbOeqGfE/PXaROEIpMWoTQPqlixd31uIIKzClJ9Dj0B
-	dqqcqt5tD2Dz9gTagSotJHLq5cTjLpSUPM9R94eRDjNm77nE51K71+0ctiQAVzrATVEn2hgD3aE
-	IliO4WQLSfNQCO4W/ZJQPx/g9e70Grs++iw+3Wc/qFFhOEzg7c5+TEgRqJZSoiSBzp1pEY86o4R
-	4WQ4NfxIRmNX3LZ81lf/g1QAB4vze4xYwU4P8DXiltrQ8WyC9LLR6znzdRDN0lAmXPARjwBzJY6
-	enK2T/ZT5I1Af+unwXGR9r9SpkkqI2tPtes/T+/dbP/FFJ16T3we8cb1qOccwCd4U5arzkxolCM
-	rEdlxP8Yke/qW7VybTmlXoEAMwVrBxm9/7AAZIKKUCfi8Hnhc5gbxJnrlICbrTlcHxJ9iu+1L8r
-	K3pp2Bi+S8Pi74mysmXtNP9arIkGfPqV3pQN5mZ9t0FXLKru6UUqh5Y7mKIQwxdKcB9Zx8XNQcD
-	mpo0a8MifedDLMB/i
-X-Received: by 2002:a05:600c:6749:b0:4a2:1867:10e8 with SMTP id 5b1f17b1804b1-4bb8881a294mr230949095e9.25.1795432740837;
-        Mon, 23 Nov 2026 03:19:00 -0800 (PST)
+        bh=jwL10KRKcG6XAu94ns6q7rnAqyJIXDIiUk5S1uZsgLw=;
+        b=EcaXXb7r6TvzCOsxdrk/OGMihTtLMsYEQk+UKjsx9k+xNydE4HZiK6BYoCXKOzNHjy
+         vTz/+V8ae7CqCVW0UDYMGSj9OWUQWEywyp6h5LtYlTC3gg8wnC7ftPScsWH3KKor+oip
+         kNSyJ4MerHf5YYLB6tJvImQwCeUQoD67QS5cXIRRE25j4sfEUfa4MihvHjeZMWCqTv5R
+         cwUkOExnwPGTemNYu9Q9wPkf9SgUeKi2ieAWLjYRm6hgtFJ5xpSGEwB+O0i3iB/EBgy9
+         L0EbGtcMMjX+wSOFHiK2s1+kupXvimU9SIlPW48zYxlmKFk8erRbAWSQMmUV3Pl4f39C
+         u9bA==
+X-Forwarded-Encrypted: i=1; AL+hErHBRc3jvixxtHmZ+kHocY9iKYxuumkWzsUfS0hOXb/dSUiFaArg4iFHfYbKGs8pGawH7zIOtCKSr4HkOkTq2q3s@lists.infradead.org
+X-Gm-Message-State: APuU4Z/hBvFO/+b/ItaUTcUsu8Qhq7OFlMQvjVUfgqeJdfDytACPv30a
+	3ReeDEKJ9uUxZDxiXcgaljFZg6NcdShJnLNYVb5xX8AUfQMyBX/xRvspknS1VosbFMM=
+X-Gm-Gg: AZFdTZdYt3KhpOkq/ByhR/afCSi9fJMn6HGmMoX4aGbJZ+bT5L+qRb3JiMomFJADpJy
+	WEW7CmFvEkvgcy/5sevRhG2KbFnaMYAANKwwJ/+3lEF8Snpl+jCg4ha9+hLuhXR9eJvTe/rB0sg
+	Xb1tnML6l3ZnUR5oKThSxD4SpveYHK3YR0cqYbdHCakRV639XgA3vpiEX54TxZj68s6hwj2J84z
+	atMdL+OJ7x09KuNodefXDnz/KZBK4gI+oujUG4DLGv2QOD5DjqJpolukzSTi6MARQVFTE2h4SjE
+	qxpzGz+X1udGSlEEuVrvuxujxJUEfNqhwM0pQ7zK3oypb84NaENVAi7KQoBtewwxQVsaWDNA+La
+	HMfZWplVVB7NiFiL6i3CABKN5ujiDFaN7mTbc7jM4lVXTBOHnnTWy1TdOpr6bPOsc9NuI5qSAL7
+	jjjeIhr7Qc53fzv6N5HYQYNMGq2CcVnABK3zKg7jcCRCMFwDnS9pJdtB79gX+lbfv1H0MWUxfwt
+	bCa9cu9Qb+IFQU3VG89LwFklUbjZGXUwBrhf6JfJhMPEq3kFyIOqMKIuNX9GRyzeouiduMRB8UR
+	mqO6gwi/1pZMfq/kAxicT+bOzPiBsJ8a2nU3TzqaC1KBEXnH6EYxr6N5I+j/hAOaAyKGYsMOwho
+	Ws8wRyjRRhHLJ5fQg
+X-Received: by 2002:a05:600c:a088:b0:4a2:1a:a120 with SMTP id 5b1f17b1804b1-4bb8880ac02mr221401195e9.6.1795432739420;
+        Mon, 23 Nov 2026 03:18:59 -0800 (PST)
 Received: from localhost (p200300f65f19a90438645cebc2ee104e.dip0.t-ipconnect.de. [2003:f6:5f19:a904:3864:5ceb:c2ee:104e])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb8526cbd0sm451761005e9.0.2026.11.23.03.19.00
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb85399e2esm393577795e9.7.2026.11.23.03.18.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 03:19:00 -0800 (PST)
+        Mon, 23 Nov 2026 03:18:59 -0800 (PST)
 From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 To: Lee Jones <lee@kernel.org>
 Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
@@ -85,21 +85,21 @@ Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-ko
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Linus Walleij <linusw@kernel.org>
-Subject: [PATCH v5 02/17] mfd: bcm2835-pm: Drop unused header
-Date: Mon, 23 Nov 2026 12:18:00 +0100
-Message-ID: <a9189a77d973c1de0919e677b3aa2356987cd189.1795431460.git.u.kleine-koenig@baylibre.com>
+Subject: [PATCH v5 01/17] mfd: bcm2835-pm: Remove member of struct bcm2835_pm that is only used locally
+Date: Mon, 23 Nov 2026 12:17:59 +0100
+Message-ID: <eb63d4f97f6ca7b02843ae7f847e05f638da7244.1795431460.git.u.kleine-koenig@baylibre.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1795431460.git.u.kleine-koenig@baylibre.com>
 References: <cover.1795431460.git.u.kleine-koenig@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=861; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=NEe9YBbMZXMEbXYJMX3Yb/1ndoZ/Dmuud2fnIKbLu4s=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBrBCDsN9DaGbH4sRvm1kmMVMoZQoYD+THO7sMJq c5fvKlpPEWJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCawQg7AAKCRCPgPtYfRL+ TohNCACV8HRlC7pWjZBnU0TL84vAdSWAfOva9050R6uNV8ih8XuaoI0NfZEX0PGyUeuRt8bs4dM v2XA5PW6cc1tr1+JGiM70igioPAzQU7KobIh0gdtSGT2PiITyNZY7ZlAwcDS69V/EIqrOPvUJ8G iXXu2csZXsOmU//uNaOz/GnDIqoJjl4hQkzXnvBiIwRbv453hOVxYR1Gv3GQCRSZ0160OxLIjPr JsbSXt4Vu2XINOJwlB4uDWvQRb7Hb1Q5aTPXdXUYm6IGCcKVhFBLGLPzGyBKCC7KbQofxcwzj0W 0zirKNJvCxvPazYCUkPlfQT0E7koHud2EKIx+tnvDU4Fke5i
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2378; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=exzuZn6/A2flHssSAn+wVJWquiw1+beBF6wV3QD1uzg=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBrBCDpWobcWgfJETkKzicHPb9yb1Q1GEbAd3fRS P06FmSW3syJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCawQg6QAKCRCPgPtYfRL+ TqnRCACB34VmkH/Zrf4kcZRTb8jyWXVRlaCXFu9f9mPWr4O6yveUz5kyugfZc3cc6JKYSC8vT9M h6MbSNuPXyVYUUJjlfyqfnF1pRoQ8FfnOZmfxZI+nkx03Kmw58dG19VasOBEvWJD0WkluRQgYiO MtH4WUtCqLkeMhZYh7GC6xhdAKG0F0FHALVNvjHkpo6UyyLBnlAIK+U0VS3kgXZS5tsHdrCuE/2 iwH5uL2w3Hqh4F0/jCuAn+vG01VkNGmISzwXdH0emgTbs6DYBGBNif/mLlcXhAmzlYp97yMNJB4 2TeYN7/s/DXqGRTGr3IE6+cxSTfuGBgIp/4zArY6PUnkZtXb
 X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_031902_969922_16E203E6 
-X-CRM114-Status: GOOD (  10.54  )
+X-CRM114-CacheID: sfid-20261123_031901_378145_B64812A8 
+X-CRM114-Status: GOOD (  15.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,32 +121,82 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 
-<linux/mfd/bcm2835-pm.h> doesn't use any symbols provided by
-<linux/regmap.h>, and neither does any of its users (i.e.
-drivers/mfd/bcm2835-pm.c, drivers/pmdomain/bcm/bcm2835-power.c,
-drivers/watchdog/bcm2835_wdt.c).
+struct bcm2835_pm::soc is only used in bcm2835_pm_probe() and thus can be
+replaced by a local variable.
 
-So the header is unused and can be dropped.
+With that change enum bcm2835_soc is only used in the mfd core driver and
+so the definition can move there.
 
 Reviewed-by: Linus Walleij <linusw@kernel.org>
 Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 ---
- include/linux/mfd/bcm2835-pm.h | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/mfd/bcm2835-pm.c       | 11 +++++++++--
+ include/linux/mfd/bcm2835-pm.h |  7 -------
+ 2 files changed, 9 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
+index 14b18dc38058..f21d5689561a 100644
+--- a/drivers/mfd/bcm2835-pm.c
++++ b/drivers/mfd/bcm2835-pm.c
+@@ -69,10 +69,17 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
+ 	return 0;
+ }
+ 
++enum bcm2835_soc {
++	BCM2835_PM_SOC_BCM2835,
++	BCM2835_PM_SOC_BCM2711,
++	BCM2835_PM_SOC_BCM2712,
++};
++
+ static int bcm2835_pm_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct bcm2835_pm *pm;
++	enum bcm2835_soc soc;
+ 	int ret;
+ 
+ 	pm = devm_kzalloc_obj(dev, *pm);
+@@ -81,7 +88,7 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+ 	platform_set_drvdata(pdev, pm);
+ 
+ 	pm->dev = dev;
+-	pm->soc = (uintptr_t)device_get_match_data(dev);
++	soc = (uintptr_t)device_get_match_data(dev);
+ 
+ 	ret = bcm2835_pm_get_pdata(pdev, pm);
+ 	if (ret)
+@@ -98,7 +105,7 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+ 	 * bcm2835-pm binding as the key for whether we can reference
+ 	 * the full PM register range and support power domains.
+ 	 */
+-	if (pm->asb || pm->soc == BCM2835_PM_SOC_BCM2712)
++	if (pm->asb || soc == BCM2835_PM_SOC_BCM2712)
+ 		return devm_mfd_add_devices(dev, -1, bcm2835_power_devs,
+ 					    ARRAY_SIZE(bcm2835_power_devs),
+ 					    NULL, 0, NULL);
 diff --git a/include/linux/mfd/bcm2835-pm.h b/include/linux/mfd/bcm2835-pm.h
-index f70a810c55f7..12bb6bc2c07f 100644
+index d2e17ab1dbfc..f70a810c55f7 100644
 --- a/include/linux/mfd/bcm2835-pm.h
 +++ b/include/linux/mfd/bcm2835-pm.h
-@@ -3,8 +3,6 @@
- #ifndef BCM2835_MFD_PM_H
- #define BCM2835_MFD_PM_H
+@@ -5,18 +5,11 @@
  
--#include <linux/regmap.h>
+ #include <linux/regmap.h>
+ 
+-enum bcm2835_soc {
+-	BCM2835_PM_SOC_BCM2835,
+-	BCM2835_PM_SOC_BCM2711,
+-	BCM2835_PM_SOC_BCM2712,
+-};
 -
  struct bcm2835_pm {
  	struct device *dev;
  	void __iomem *base;
+ 	void __iomem *asb;
+ 	void __iomem *rpivid_asb;
+-	enum bcm2835_soc soc;
+ };
+ 
+ #endif /* BCM2835_MFD_PM_H */
 -- 
 2.47.3
 
