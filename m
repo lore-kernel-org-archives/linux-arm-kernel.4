@@ -2,68 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6E1606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B6F9606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VWA9zRvU;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UdWIAy0I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yyDN4ggr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WGez+3Tb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HmV9sETKCIqTEm5gpQSn0ZKljOkssnactLIkz6YmI5s=; b=VWA9zRvU4yo+2C
-	tbtmE8NLumvYwYk7lPYpEwjsUppO6fGsDH0Z64JFubRtiDJqM/V7tSqFkYMj0sssAQc6FgCdcyZZZ
-	3dTbKK29bs35uGxyStkoTt5THIT7jgYmNgaMEJTd78XRkljopfqz81FbyWdkhnKC3GPtxBqEM2S4Q
-	/EZVtUzDFDjs55QS084vx3oxh63E1XhnvPNotQe8i6+w1LoN4Dw3625u+Ye2hgPZ6QXM6sVpTLle8
-	ryN+2yxJAeZSoKpchovrp/sp6sxHvqOdfkLNFSnPXRIKN0/iovOOoGnPQZ7H1kVPg40/scheGrvzq
-	JLEKNjJ3AUQv3KgfQT/w==;
+	List-Owner; bh=S1Gp2Tv8FiLL9zGaZkwNFKOWLqDNS1bHIMrQXS8jtIQ=; b=yyDN4ggrrowrXs
+	Hw2CWxSKyTlgA3ILPA6dPXvAZlMsZvYbWnHdFWeURut5Q1JSyAieMdTJW72heU5RMQnZZCrBII3t3
+	Tus8c9eznHlSc3yMSh/oEk5+d4HyIhTdQlZimD+uOmSXulXlmSpjxVl/miiU1FAymqrR6FwnMoboD
+	UYQs7jrpGmv7If8ykYFpq8HYrcJAQNWybR4PTVjoVtl7S/35+roNJxemxPE4dr7RhEHbFyPTGmUYp
+	V0oMZ2pPXB/qjoZTQ0ap4nzpE5GFOC6BI+zEyZqTYMLF1YTgKNuiNG238dVTqt7OWYUseQUzuTVol
+	uoIxQqDJznLwmbWaZ9Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXku-00000004LUx-3j3y;
-	Mon, 23 Nov 2026 17:23:04 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVXEX-00000004FVn-2hYE;
+	Mon, 23 Nov 2026 16:49:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXkr-00000004LTG-1AC1
+	id 1xVXEW-00000004FVM-2UEs
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:23:01 +0000
+	Mon, 23 Nov 2026 16:49:36 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0D93D40939;
-	Mon, 23 Nov 2026 17:23:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4729D1F000D0;
-	Mon, 23 Nov 2026 17:22:58 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 598D642489;
+	Mon, 23 Nov 2026 16:49:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEEE51F000EE;
+	Mon, 23 Nov 2026 16:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795454580;
-	bh=HmV9sETKCIqTEm5gpQSn0ZKljOkssnactLIkz6YmI5s=;
+	s=k20260515; t=1795452576;
+	bh=S1Gp2Tv8FiLL9zGaZkwNFKOWLqDNS1bHIMrQXS8jtIQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=UdWIAy0IYBltJGVJMVfmHqWjwv6Mpp8Pq0EQnRnN4LY4bdqGl9tvW36dWPYuUjipM
-	 fG+6WkatUFaSKiUU7SdiMmcPybvYYg+fDz3X2HgPVi0Kp5wK0UakOut1SyuwjnJXHg
-	 6TtiX/5NcpW6iwm1HtZ/xVb69hkry+/4IMRDPS1Hf7m6zGK5QZ/XKkbJ3oJJT9Wo9q
-	 BxRTLBUCg4yxiUTCXs13qMY6F0Wq7pjl+RfoE4orvHnG8w8NxqJGBb16nQMyzdgrgm
-	 T5vrm7tIEVTXqrn1pAAg6QxhQnzQKS9WQLfW69M4v/8d58sK5yPOXALFdwdBbv1fNP
-	 uEOKxgr3hsrIw==
+	b=WGez+3TbhzDNmdt3TH3qQ2mUFSBDqJipZdrUehk+BuWGlCZygu3oxgjQAavQVtsu/
+	 +OysUCxOj/tDJTC7Kl2fFGLJEZJ83KK3yP7eEehbi+PGQVLDf300s85Z4+F0Bekk26
+	 +bb3PTVFJ6WBZsSKZ8O0L1IY4fvnerVFsVA79cZuINjM6RCckp0A/3LFH2PrRETDes
+	 NR81R+HKsMKHm7SZIdaYCV6IXdBKb+ooanP0zaUYm5rfqwCWd2Ylnt9SfqqcO5Fn24
+	 Ixqnj6MB/a0mXHnqHvCCdAI0fgOV0ne8wzS5dZnkTEVCpxWqtcTzHsJtSFNor2q6Ls
+	 MEJbNoTnIQL3g==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Iuliana Prodan <iuliana.prodan@nxp.com>,
-	linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Thomas Abraham <thomas.ab@samsung.com>,
+	Chander Kashyap <k.chander@samsung.com>,
+	Amit Daniel Kachhap <amit.daniel@samsung.com>,
+	Tomasz Figa <t.figa@samsung.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Marian Mihailescu <mihailescu2m@gmail.com>,
+	linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH 10/10] remoteproc: imx_dsp_rproc: Fix off-by-one bitmask for trailing bytes
-Date: Mon, 23 Nov 2026 17:20:54 +0000
-Message-ID: <20261123172140.3547896-11-lee@kernel.org>
-X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-In-Reply-To: <20261123172140.3547896-1-lee@kernel.org>
-References: <20261123172140.3547896-1-lee@kernel.org>
+Subject: [PATCH 07/10] clk: samsung: exynos5420: Terminate PLL rate tables with sentinels
+Date: Mon, 23 Nov 2026 16:47:40 +0000
+Message-ID: <20261123164834.3330320-8-lee@kernel.org>
+X-Mailer: git-send-email 2.56.1.750.gf70dc682cf-goog
+In-Reply-To: <20261123164834.3330320-1-lee@kernel.org>
+References: <20261123164834.3330320-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -86,45 +92,63 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When size is not a multiple of 4, both imx_dsp_rproc_memcpy() and
-imx_dsp_rproc_memset() compute affected_mask as GENMASK(8 * r, 0) for
-the remaining r bytes (1 <= r <= 3).  Because GENMASK(h, l) is inclusive
-of bit h, GENMASK(8 * r, 0) sets 8 * r + 1 bits and clears or overwrites
-the least-significant bit of the first byte past the end of the target
-region during the 32-bit read-modify-write.
+_samsung_clk_register_pll() sizes each PLL rate table by scanning until
+it encounters an entry with .rate == 0, then copies the counted entries
+into pll->rate_table.  However, exynos5420_pll2550x_24mhz_tbl,
+exynos5422_bpll_rate_table, exynos5420_epll_24mhz_tbl, and
+exynos5420_vpll_24mhz_tbl all omit a terminating zero sentinel, causing
+out-of-bounds reads into adjacent read-only data and populating
+pll->rate_table with bogus entries.
 
-Use GENMASK(8 * r - 1, 0) to mask exclusively the r trailing bytes.
+Append a sentinel entry to each of the four PLL rate tables.
 
-Fixes: 408ec1ff0caa ("remoteproc: imx_dsp_rproc: Add custom memory copy implementation for i.MX DSP Cores")
-Closes: https://sashiko.dev/#/bug/linux-2e407b68-a7e9-42ff-a613-e61b47a4461b
+Fixes: ca5b40293822 ("clk: samsung: register exynos5420 apll/kpll configuration data")
+Fixes: 9842452acd3d ("clk: samsung: exynos542x: Add EPLL rate table")
+Fixes: 8b4a7acf7b30 ("clk: samsung: add BPLL rate table for Exynos 5422 SoC")
+Fixes: b92981de92cb ("clk: samsung: exynos5420: Add VPLL rate table")
+Closes: https://sashiko.dev/#/bug/linux-553831f9-0a7b-4e94-be60-222de60ca8c3
 Cc: stable@vger.kernel.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/remoteproc/imx_dsp_rproc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/clk/samsung/clk-exynos5420.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/remoteproc/imx_dsp_rproc.c b/drivers/remoteproc/imx_dsp_rproc.c
-index 2771043ee433..0e0325d5df9f 100644
---- a/drivers/remoteproc/imx_dsp_rproc.c
-+++ b/drivers/remoteproc/imx_dsp_rproc.c
-@@ -799,7 +799,7 @@ static int imx_dsp_rproc_memcpy(void *dst, const void *src, size_t size)
- 		writel(source[i], dest + i * 4);
+diff --git a/drivers/clk/samsung/clk-exynos5420.c b/drivers/clk/samsung/clk-exynos5420.c
+index 400a5c59815c..35baeabf3ccb 100644
+--- a/drivers/clk/samsung/clk-exynos5420.c
++++ b/drivers/clk/samsung/clk-exynos5420.c
+@@ -1419,6 +1419,7 @@ static const struct samsung_pll_rate_table exynos5420_pll2550x_24mhz_tbl[] __ini
+ 	PLL_35XX_RATE(24 * MHZ, 400000000,  200, 3, 2),
+ 	PLL_35XX_RATE(24 * MHZ, 300000000,  200, 2, 3),
+ 	PLL_35XX_RATE(24 * MHZ, 200000000,  200, 3, 3),
++	{ /* sentinel */ }
+ };
  
- 	if (r) {
--		affected_mask = GENMASK(8 * r, 0);
-+		affected_mask = GENMASK(8 * r - 1, 0);
+ static const struct samsung_pll_rate_table exynos5422_bpll_rate_table[] = {
+@@ -1430,6 +1431,7 @@ static const struct samsung_pll_rate_table exynos5422_bpll_rate_table[] = {
+ 	PLL_35XX_RATE(24 * MHZ, 275000000, 275, 3, 3),
+ 	PLL_35XX_RATE(24 * MHZ, 206000000, 206, 3, 3),
+ 	PLL_35XX_RATE(24 * MHZ, 165000000, 110, 2, 3),
++	{ /* sentinel */ }
+ };
  
- 		/*
- 		 * first read the 32bit data of dest, then change affected
-@@ -849,7 +849,7 @@ static int imx_dsp_rproc_memset(void *addr, u8 value, size_t size)
- 	}
+ static const struct samsung_pll_rate_table exynos5420_epll_24mhz_tbl[] = {
+@@ -1448,6 +1450,7 @@ static const struct samsung_pll_rate_table exynos5420_epll_24mhz_tbl[] = {
+ 	PLL_36XX_RATE(24 * MHZ,  49152000U, 197, 3, 5, -25690),
+ 	PLL_36XX_RATE(24 * MHZ,  45158401U, 90, 3, 4, 20762),
+ 	PLL_36XX_RATE(24 * MHZ,  32768001U, 131, 3, 5, 4719),
++	{ /* sentinel */ }
+ };
  
- 	if (r) {
--		affected_mask = GENMASK(8 * r, 0);
-+		affected_mask = GENMASK(8 * r - 1, 0);
+ static const struct samsung_pll_rate_table exynos5420_vpll_24mhz_tbl[] = {
+@@ -1459,6 +1462,7 @@ static const struct samsung_pll_rate_table exynos5420_vpll_24mhz_tbl[] = {
+ 	PLL_35XX_RATE(24 * MHZ, 266000000U,  266, 3, 3),
+ 	PLL_35XX_RATE(24 * MHZ, 177000000U,  118, 2, 3),
+ 	PLL_35XX_RATE(24 * MHZ, 100000000U,  200, 3, 4),
++	{ /* sentinel */ }
+ };
  
- 		/*
- 		 * first read the 32bit data of addr, then change affected
+ static struct samsung_pll_clock exynos5x_plls[nr_plls] __initdata = {
 -- 
 2.56.1.750.gf70dc682cf-goog
 
