@@ -2,69 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E170606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A9C606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:22:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=edGfLKsw;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=hstLZrCp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hCOW2fwm;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=D/Nn6Wa2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Zs6ODemD0A60MW9aPf1NQdG6KomEoEDS4UdX3N3dA0Y=; b=edGfLKswU15Ivi
-	bTqrsfVQHliqKyC6U7O5Hj5hDYmLWYkQBZYw5UEPA2AeJ6FRFQEUPEitxT8Ug0bXNbNK576hDtc9R
-	ayvjQv87+b3ObvmVO87Ic3yA83JPnB5NnNtjNx4MsddRhQCXhcHgJzQlc2XBG/XtwPjFvzf/CFraM
-	K8w0U5577feUK3jf4RCatsUA279h8iyvGDNPaOLzRm2iyEJyr9MP0vVr6uQEN5xWA483XNnXbmVu8
-	B3lQHRQZcMaVlL5GLSabNKQRiMW+TwQsVBNHpEPKGXzbuz0Vx6eBv7PP1EHVZjZiCjgwl7OfEoT54
-	i5HTAiGaYMY4CmmGmCww==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ZYFw71kldd76QCwTZ1pURFS8nTenSTNKqbr9YucnS7g=; b=hCOW2fwm8/SJahc79MK6TC83Ir
+	7FNTqI7wXQcPm+SwowkMRG1kqsuxtuoUi+srzvq1DSMMxuQOX8Ni61CRHz8UaQ+4mu6jf4PJaMut2
+	Du+YVFJ+ELiHHKBDZDpd8SDxB/x5DEuPMhFmysAcs0E/gscUCmmr9GEM82D8NKs5DQw0Egq5p3YzH
+	Gk55AvN0GKNDB/yBkLy90LqufN9wlljunM3ihFaBhkUDqlCgCK3lSjpgv6/88hj2jDqqRFgbBVGTF
+	YvLAeW83tnEWLJRuSJnQ6cGMk81lC1ZAOKPNOBiA/9+LEEMXbuYght+aXbeC4cJWgarh2yUzbp72l
+	DCbLEQKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXRC-00000004I8s-3jhk;
-	Mon, 23 Nov 2026 17:02:42 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXR9-00000004I88-1bss
+	id 1xVXji-00000004L8G-3gOa;
+	Mon, 23 Nov 2026 17:21:50 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVXjg-00000004L7t-3VMZ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 17:02:41 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 65127143D;
-	Mon, 23 Nov 2026 09:02:35 -0800 (PST)
-Received: from [10.57.69.138] (unknown [10.57.69.138])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2038A3F632;
-	Mon, 23 Nov 2026 09:02:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795453358; bh=6og8JjoteR1OR9XmbXU7Qe5NkDb+Li/Uj9lHNxClAAk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hstLZrCpD0pFFB1FhcOgXTeMLO88zumcdAk2AtDxhmt4G9BIsX/AugvmgM7JTBdwj
-	 UU+e9lurTsWqUjV8TgO6oI9iNXKHdZpFmN+rzwsn30XHnP2ghNpi79qECvJ9aMvKFx
-	 r5C6rN9lcGXUipJgTQU5pSA2BtoDcjPk+oLhKllA=
-Message-ID: <e06ebd54-d41d-4cec-8f1d-cce8339297a4@arm.com>
-Date: Mon, 23 Nov 2026 18:02:34 +0100
+	Mon, 23 Nov 2026 17:21:48 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4894343B21;
+	Mon, 23 Nov 2026 17:21:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2F311F000EC;
+	Mon, 23 Nov 2026 17:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795454508;
+	bh=ZYFw71kldd76QCwTZ1pURFS8nTenSTNKqbr9YucnS7g=;
+	h=From:To:Cc:Subject:Date;
+	b=D/Nn6Wa2rIrY+rFe7e5OfAVwggkMCdiXLvP/gKvKJXNsVGzZQmYEyW6hlSUEi6Xn9
+	 kUziZo18Hnj7REt0Qud+keOUi7HOtPwptft2p5f/UcGPQdFWm/iLn7vuam0Bk2zo7W
+	 pYHT0ML2IuSxKG+HMt07z+NlnlTspnc9cCMxaTXeTPWAdqebtnzgVJEkvSRtw99zwc
+	 UkzC1IxLJexDVUfQ9bqFIpUALJYxJM/MYB3wnLcRJHjWAyA1lp4uEAK9SpYGEsfozM
+	 6IOAV1V0pBMmy2hg+N8BSZ5xZkzsIveo6qaZTB7dxyBXc9UHN+jhoc7YpsU+u/v+ZZ
+	 BuzmuOuJNjDBQ==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org
+Subject: [PATCH 00/10] remoteproc: Assorted bug fixes across remoteproc core and drivers
+Date: Mon, 23 Nov 2026 17:20:44 +0000
+Message-ID: <20261123172140.3547896-1-lee@kernel.org>
+X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: allwinner: add Radxa Cubie A7Z board
-To: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, wens@kernel.org,
- jernej.skrabec@gmail.com, samuel@sholland.org
-Cc: enzo.adriano.code@gmail.com, mripard@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20261111134919.90264-1-vinicius.eduardo.pedrosa@gmail.com>
- <20261111134919.90264-3-vinicius.eduardo.pedrosa@gmail.com>
- <8f9f9752-4c23-48de-9483-63268627ff3c@arm.com>
- <nh-1384c024-38de-4962-9d4f-a0bfb55471a6@google.com>
-Content-Language: en-GB
-From: Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <nh-1384c024-38de-4962-9d4f-a0bfb55471a6@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_090240_589730_80B68453 
-X-CRM114-Status: GOOD (  33.71  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,485 +63,79 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: imx@lists.linux.dev, Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>, Fabio Estevam <festevam@gmail.com>, Mark Grosen <mgrosen@ti.com>, Hari Nagalla <hnagalla@ti.com>, "Rob Herring \(Arm\)" <robh@kernel.org>, Guzman Lugo <fernando.lugo@ti.com>, Uday Khare <udaykhare77@gmail.com>, Clement Leger <cleger@kalray.eu>, Oleksij Rempel <o.rempel@pengutronix.de>, Sascha Hauer <s.hauer@pengutronix.de>, Ohad Ben-Cohen <ohad@wizery.com>, HyeongJun An <sammiee5311@gmail.com>, Iuliana Prodan <iuliana.prodan@nxp.com>, linux-arm-msm@vger.kernel.org, De Leon <x0095078@ti.com>, Beleswar Padhi <b-padhi@ti.com>, linux-remoteproc@vger.kernel.org, Daniel Baluta <daniel.baluta@nxp.com>, Siddharth Gupta <sidgup@codeaurora.org>, linux-arm-kernel@lists.infradead.org, Hari Kanigeri <h-kanigeri2@ti.com>, Alex Elder <elder@kernel.org>, Robert Tivy <rtivy@ti.com>, Loic Pallardy <loic.pallardy@st.com>, Mathieu Poirier <mathieu.poirier@linaro.org>, Brian Swetland <swetland@google.com>, Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, Andrew Davis <afd@ti.com>, Tero Kristo <t-kristo@ti.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rishabh Bhatnagar <rishabhb@codeaurora.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, =?UTF-8?q?Sjur=20Br=C3=A6ndeland?= <sjur.brandeland@stericsson.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+These issues were reported by Sashiko.
 
-On 11/23/26 17:57, Vinicius Pedrosa wrote:
-> On Mon, Nov 23, 2026 at 1:35 PM Andre Przywara <andre.przywara@arm.com> wrote:
->> sorry, I missed your post earlier, so made my own version of the DT
->> yesterday. So this is more like comparing this to yours ;-)
-> 
-> No worries. I'll fold your comments into a v2 once Enzo's v5 is out. Do
-> you plan to post yours? I'd rather end up with one A7Z DT than two.
+None of these changes have been tested on physical hardware.
 
-No, yours was first, and you got my review on it, so we go with that.
-I have an A7A .dts almost ready as well, will post that later.
+Cc: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: "Sjur Brændeland" <sjur.brandeland@stericsson.com>
+Cc: Alex Elder <elder@kernel.org>
+Cc: Andrew Davis <afd@ti.com>
+Cc: Beleswar Padhi <b-padhi@ti.com>
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Brian Swetland <swetland@google.com>
+Cc: Clement Leger <cleger@kalray.eu>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Cc: De Leon <x0095078@ti.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Guzman Lugo <fernando.lugo@ti.com>
+Cc: Hari Kanigeri <h-kanigeri2@ti.com>
+Cc: Hari Nagalla <hnagalla@ti.com>
+Cc: HyeongJun An <sammiee5311@gmail.com>
+Cc: imx@lists.linux.dev
+Cc: Iuliana Prodan <iuliana.prodan@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-remoteproc@vger.kernel.org
+Cc: Loic Pallardy <loic.pallardy@st.com>
+Cc: Mark Grosen <mgrosen@ti.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Ohad Ben-Cohen <ohad@wizery.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rishabh Bhatnagar <rishabhb@codeaurora.org>
+Cc: Robert Tivy <rtivy@ti.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: Siddharth Gupta <sidgup@codeaurora.org>
+Cc: Suman Anna <s-anna@ti.com>
+Cc: Tero Kristo <t-kristo@ti.com>
+Cc: Uday Khare <udaykhare77@gmail.com>
 
->>> + reg_dcdc9: dcdc9 {
->>> + regulator-name = "eldo-input";
->>
->> The schematic says 1.1V/1.25V. Can you check what it is on your board,
->> at runtime? If in doubt, go with 1.1V, this should be enough headroom
->> for the ELDO6 this supplies, with outputs 0.8V.
-> 
-> It reads 1240 mV at runtime on my v1.11, what the firmware leaves. I also
-> ran it at a fixed 1.1 V and it was fine for a few minutes, but the
-> AXP318W datasheet draft lists 1.2 V as the minimum ELDOIN as an LDO. I'd
-> use a 1.2 to 1.25 V range, which keeps 1.24 V.
+Lee Jones (10):
+  remoteproc: core: Fix integer overflow in rproc_check_carveout_da()
+  remoteproc: k3: Fix integer overflow in k3_rproc_da_to_va()
+  remoteproc: omap: Fix integer overflow in omap_rproc_da_to_va()
+  remoteproc: elf_loader: Fix overflow in rproc_elf_load_segments()
+  remoteproc: imx_rproc: Avoid stale mailbox pointers on request failure
+  remoteproc: imx_rproc: Register SCU cleanup after resource acquisition
+  remoteproc: qcom: Clear glink->node on allocation failure
+  remoteproc: qcom: Skip unregistering uninitialised SSR subdevice
+  remoteproc: imx_dsp_rproc: Fix pointer stride in
+    imx_dsp_rproc_memset()
+  remoteproc: imx_dsp_rproc: Fix off-by-one bitmask for trailing bytes
 
-Ah, I missed that requirement in the AXP datasheet, 1.24V it is, then.
+ drivers/remoteproc/imx_dsp_rproc.c         | 10 ++++---
+ drivers/remoteproc/imx_rproc.c             | 33 ++++++++++++++--------
+ drivers/remoteproc/omap_remoteproc.c       | 11 +++++---
+ drivers/remoteproc/qcom_common.c           |  5 ++++
+ drivers/remoteproc/remoteproc_core.c       |  7 ++---
+ drivers/remoteproc/remoteproc_elf_loader.c |  6 ++--
+ drivers/remoteproc/ti_k3_common.c          | 27 +++++++++++-------
+ 7 files changed, 61 insertions(+), 38 deletions(-)
 
-Thanks,
-Andre
-
-> Thanks,
-> Vinicius
-> 
-> On Mon, 23 Nov 2026 13:35:44 +0100, Andre Przywara
-> <andre.przywara@arm.com> wrote:
->> Hi Vinicius,
->>
->> sorry, I missed your post earlier, so made my own version of the DT
->> yesterday. So this is more like comparing this to yours ;-)
->> As you saw my reply to Enzo's .dtsi and A7S .dts, I will keep the same
->> issues I mentioned there brief.
->>
->> On 11/11/26 14:49, Vinicius Pedrosa wrote:
->>> Add the device tree for the Radxa Cubie A7Z. Describe UART0, the AXP318W
->>> PMIC over R-I2C0, MMC0, RTC and the bank supplies. It is based on the
->>> Cubie A7S DT.
->>>
->>> Unlike the A7S, this board uses BLDO5 for PG and a SY8089 regulator for
->>> the PMIC's BLDO and CLDO inputs, and the microSD card-detect line has an
->>> external pull-up, so no internal pull-down is used. ELDO1 only supplies
->>> VDD2L for LPDDR5 and this board uses LPDDR4, so it is not described.
->>> SWOUT1 only feeds ports D and J on the 40-pin header, so it is not kept
->>> always-on.
->>
->> I think this stanza does not belong into the commit message, as
->> comparing to some different board is not relevant here.
->> Instead you should briefly list the features/connectors of this board,
->> look at other commit messages for board .dts files.
->>
->>>
->>> Signed-off-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
->>> ---
->>> arch/arm64/boot/dts/allwinner/Makefile | 1 +
->>> .../dts/allwinner/sun60i-a733-cubie-a7z.dts | 286 ++++++++++++++++++
->>> 2 files changed, 287 insertions(+)
->>> create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
->>> index 792152525b43..2eee91dcbd77 100644
->>> --- a/arch/arm64/boot/dts/allwinner/Makefile
->>> +++ b/arch/arm64/boot/dts/allwinner/Makefile
->>> @@ -69,3 +69,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-h728-x96qpro+.dtb
->>> dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-avaota-a1.dtb
->>> dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-orangepi-4a.dtb
->>> dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7s.dtb
->>> +dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7z.dtb
->>> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
->>> new file mode 100644
->>> index 000000000000..ab3d3d70f9ff
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
->>> @@ -0,0 +1,286 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->>
->> I think you need a copyright line here.
->>
->> Also please explain the situation with the v1.10 and v1.11 versions here.
->>
->>> +/dts-v1/;
->>> +
->>> +#include "sun60i-a733.dtsi"
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +
->>> +/ {
->>> + model = "Radxa Cubie A7Z";
->>> + compatible = "radxa,cubie-a7z", "allwinner,sun60i-a733";
->>> +
->>> + aliases {
->>> + mmc0 = &mmc0;
->>
->> Please remove.
->>
->>> + serial0 = &uart0;
->>> + };
->>> +
->>> + chosen {
->>> + stdout-path = "serial0:115200n8";
->>> + };
->>> +
->>> + reg_ps: regulator-system-power {
->>
->> Please add a short comment where this power comes from (USB-C connector).
->>
->>> + compatible = "regulator-fixed";
->>> + regulator-name = "ps";
->>> + regulator-min-microvolt = <5000000>;
->>> + regulator-max-microvolt = <5000000>;
->>> + regulator-always-on;
->>> + };
->>> +
->>
->> As mentioned in the other mail, please add a comment that this has been
->> added in v1.11, and v1.10 doesn't have it.
->>
->>> + reg_ldo_input: regulator-ldo-input {
->>> + compatible = "regulator-fixed";
->>> + regulator-name = "ldo2v5-input";
->>> + /* SY8089: 0.6 V * (1 + RP11 / RP6), 30k / 10k. */
->>> + regulator-min-microvolt = <2400000>;
->>> + regulator-max-microvolt = <2400000>;
->>> + regulator-always-on;
->>> + vin-supply = <&reg_ps>;
->>> + };
->>> +
->>> + osc32k: osc32k-clk {
->>> + compatible = "fixed-clock";
->>> + #clock-cells = <0>;
->>> + clock-frequency = <32768>;
->>> + };
->>> +};
->>> +
->>> +&cpu0 {
->>> + cpu-supply = <&reg_dcdc5>;
->>> +};
->>> +
->>> +&cpu1 {
->>> + cpu-supply = <&reg_dcdc5>;
->>> +};
->>> +
->>> +&cpu2 {
->>> + cpu-supply = <&reg_dcdc5>;
->>> +};
->>> +
->>> +&cpu3 {
->>> + cpu-supply = <&reg_dcdc5>;
->>> +};
->>> +
->>> +&cpu4 {
->>> + cpu-supply = <&reg_dcdc5>;
->>> +};
->>> +
->>> +&cpu5 {
->>> + cpu-supply = <&reg_dcdc5>;
->>> +};
->>> +
->>> +&cpu6 {
->>> + cpu-supply = <&reg_dcdc3>;
->>> +};
->>> +
->>> +&cpu7 {
->>> + cpu-supply = <&reg_dcdc3>;
->>> +};
->>> +
->>> +&mmc0 {
->>> + bus-width = <4>;
->>> + cap-sd-highspeed;
->>
->> Same as the A7S, please add the others.
->>
->>> + /* PF6 has an external 10k pull-up and reads high with a card. */
->>
->> "reads high with a card" is a redundant comment, since this is what
->> GPIO_ACTIVE_HIGH already says.
->> Please explain the situation with the v1.10 vs. v1.11 versions here.
->> And my v1.10 board needs GPIO_PULL_DOWN
->>
->>> + cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;
->>> + disable-wp;
->>> + max-frequency = <50000000>;
->>> + no-1-8-v;
->>
->> Please remove both.
->>
->>> + vmmc-supply = <&reg_swout2>;
->>> + /* The 3.3 V path uses VCC-IO; no Port F voltage switching yet. */
->>> + vqmmc-supply = <&reg_swout2>;
->>
->> Please remove those two lines, we will add vqmmc later.
->>
->>> + status = "okay";
->>> +};
->>> +
->>> +&osc {
->>> + clock-frequency = <26000000>;
->>> +};
->>> +
->>> +&pio {
->>> + vcc-pb-supply = <&reg_swout2>;
->>
->> Please add a comment that this comes from VCC-IO. See the Cubie A5E DT.
->>
->>> + vcc-pc-supply = <&reg_cldo5>;
->>> + vcc-pd-supply = <&reg_swout1>;
->>> + vcc-pe-supply = <&reg_bldo1>;
->>> + /* CLDO5 feeds VCC18-PF; the 3.3 V path uses VCC-IO. */
->>> + vcc-pf-supply = <&reg_cldo5>;
->>
->> As it stands this is VCC-IO, so swout2, please change that, plus the
->> VCC-IO comment.
->>
->>> + vcc-pg-supply = <&reg_bldo5>;
->>> + vcc-ph-supply = <&reg_swout2>;
->>
->> VCC-IO comment, please.
->>
->>> + vcc-pj-supply = <&reg_swout1>;
->>> + vcc-pk-supply = <&reg_bldo1>;
->>> +};
->>> +
->>> +&r_i2c0 {
->>> + status = "okay";
->>> + pinctrl-names = "default";
->>> + pinctrl-0 = <&r_i2c0_pl_pins>;
->>> +
->>> + axp318w: pmic@36 {
->>> + compatible = "x-powers,axp318w";
->>> + reg = <0x36>;
->>> + interrupt-parent = <&nmi_intc>;
->>> + interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
->>> + interrupt-controller;
->>> + #interrupt-cells = <1>;
->>> +
->>> + aldo156in-supply = <&reg_ps>;
->>> + aldo234in-supply = <&reg_aldo1>;
->>> + bldoin-supply = <&reg_ldo_input>;
->>> + cldoin-supply = <&reg_ldo_input>;
->>
->> Please add a comment about v1.10 differing.
->>
->>> + dldoin-supply = <&reg_ps>;
->>> + eldoin-supply = <&reg_dcdc9>;
->>> + ips-supply = <&reg_ps>;
->>> + vin19-supply = <&reg_ps>;
->>> + vin23-supply = <&reg_ps>;
->>> + vin45-supply = <&reg_ps>;
->>> + vin678-supply = <&reg_ps>;
->>> +
->>> + regulators {
->>> + reg_dcdc1: dcdc1 {
->>> + regulator-name = "vcc-3v3";
->>> + regulator-min-microvolt = <3300000>;
->>> + regulator-max-microvolt = <3300000>;
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc2: dcdc2 {
->>> + regulator-name = "vdd-sys";
->>
->> Please add the voltage: 0.8V.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc3: dcdc3 {
->>> + regulator-name = "vdd-cpub";
->>
->>  From the OPP tables I could find in the Radxa repo on github, the range
->> should be 0.8V - 1.05V. We can adjust this later when we add proper DVFS
->> support, if needed.
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc4: dcdc4 {
->>> + regulator-name = "vdd-gpu";
->>> + regulator-always-on;
->>
->> Voltage range should be 0.8V - 0.96V, and drop the always-on.
->>
->>> + };
->>> +
->>> + reg_dcdc5: dcdc5 {
->>> + regulator-name = "vdd-cpul";
->>
->> Voltage range 0.8V - 1.05V.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc6: dcdc6 {
->>> + regulator-name = "vcc-draml";
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc7: dcdc7 {
->>> + regulator-name = "vcc-dram";
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc8: dcdc8 {
->>> + regulator-name = "vcc-ufs-io";
->>
->> The voltage is 1.2V, and please drop the always-on.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dcdc9: dcdc9 {
->>> + regulator-name = "eldo-input";
->>
->> The schematic says 1.1V/1.25V. Can you check what it is on your board,
->> at runtime? If in doubt, go with 1.1V, this should be enough headroom
->> for the ELDO6 this supplies, with outputs 0.8V.
->>
->>> + regulator-always-on;
->>
->> Please remove.
->>
->>> + };
->>> +
->>> + reg_swout1: swout1 {
->>> + regulator-name = "vcc33-lcd";
->>
->> Please use "vcc-pd-pj" as the name.
->>
->>> + };
->>> +
->>> + reg_swout2: swout2 {
->>> + regulator-name = "vcc-io-card";
->>
->> I used "vcc-io-ph-usb", "card" does not seem to be used.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_aldo1: aldo1 {
->>> + regulator-name = "vcc-pl";
->>
->> Also USB it seems, so I used "vcc-pl-usb".
->>
->>> + regulator-min-microvolt = <3300000>;
->>> + regulator-max-microvolt = <3300000>;
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_bldo1: bldo1 {
->>> + regulator-name = "vcc-pe-pk-mcsi";
->>
->> Voltage is 1.8V.
->>
->>> + };
->>> +
->>> + reg_bldo2: bldo2 {
->>> + regulator-name = "vcc-lvds0";
->>
->> 1.8V as well.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_bldo4: bldo4 {
->>> + regulator-name = "vcc18-codec";
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + };
->>> +
->>> + reg_bldo5: bldo5 {
->>> + regulator-name = "vcc-pg";
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + };
->>> +
->>> + reg_cldo1: cldo1 {
->>> + regulator-name = "vcc33-18-usb";
->>
->> That is a confusing name ;-) "vcc-pm-lpddr" should explain the always-on.
->>
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_cldo2: cldo2 {
->>> + regulator-name = "vcc18-hdmi";
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + };
->>> +
->>> + reg_cldo3: cldo3 {
->>> + regulator-name = "vcc-pll-dram";
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_cldo5: cldo5 {
->>> + regulator-name = "vcc18-pf-pc";
->>
->> "pf" is somewhat misleading. I had "vcc-pc-combo".
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dldo1: dldo1 {
->>> + regulator-name = "vcc-efuse";
->>
->> Voltage is 1.8V.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_dldo6: dldo6 {
->>> + regulator-name = "vcc-ufs";
->>
->> Voltage is 2.5V, and no always-on should be needed.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_eldo6: eldo6 {
->>> + regulator-name = "vdd-cpus";
->>
->> Voltage is 0.8V.
->>
->>> + regulator-always-on;
->>> + };
->>> +
->>> + reg_rtc_ldo: rtc-ldo {
->>> + regulator-name = "vcc-rtc";
->>> + regulator-min-microvolt = <1800000>;
->>> + regulator-max-microvolt = <1800000>;
->>> + regulator-always-on;
->>> + };
->>> + };
->>> + };
->>> +};
->>> +
->>> +&r_pio {
->>> + /* PL powers the PMIC bus itself; firmware must keep ALDO1 enabled. */
->>
->> Probably better to copy the comment from the other DTs, and have the
->> "would-be" line inside the comment (vcc-pl-supply = <&reg_aldo1>;)
->>
->> Cheers,
->> Andre
->>
->>> + vcc-pm-supply = <&reg_aldo1>;
->>> +};
->>> +
->>> +&rtc {
->>> + clocks = <&r_ccu CLK_BUS_R_RTC>, <&osc>, <&r_ccu CLK_R_AHB>,
->>> + <&osc32k>;
->>> + clock-names = "bus", "hosc", "ahb", "ext-osc32k";
->>> +};
->>> +
->>> +&uart0 {
->>> + pinctrl-names = "default";
->>> + pinctrl-0 = <&uart0_pb_pins>;
->>> + status = "okay";
->>> +};
+-- 
+2.56.1.750.gf70dc682cf-goog
 
 
