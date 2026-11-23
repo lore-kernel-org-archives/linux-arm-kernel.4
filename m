@@ -2,182 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48B60606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59DB7606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5AVoIKWn;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=VXsRvltQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V0kZRAO7;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=d1TUo5jS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SPkTlABN6jBq06tO6VLN1KLxuU8g7ywcEEezla+CEbU=; b=5AVoIKWnB3+ge2
-	rwjX/BOUHm3SrcxBAh/qb6v/o4ZV4hWt0HKWSYUwE/p4Vcf3TMfdMsVqSs1OSMaBjT6M+jjjRjCae
-	XgoE6k54W17KS0M1qSE1V8S6iI0dg6p8x2V3e9ztv6gOTJxjSIkKip7uKtzLFS4dwud+g4fAcL6pO
-	/hbQlGFN7XUuVSEFPV85RRruutnfq0RpI2X7gJkIr0s9ka5me12R4QE20M0hAWCe7AggyQ9BS1xW1
-	LTuATc3qhyl9+KwffqJW+ab8QO1Z0G8MY6ndyGEHxGrFMexvd9Xv56Paj9NYn67Hc2UtfzqLtPar8
-	AYkPA/QpgX6liSoZhytA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=JqwOi7/BVktI2ZHP/U/3Nu9WMQA6oh0lX3SVmULq8WU=; b=V0kZRAO7+lM6tRocDb31ee8J22
+	S46L7a+ZO15QlW3NdvUmGnozBHHzXAMrSUewg9t3HMrMnva9BREjwqr/iftgHw0vtPEhnNdDqNiwI
+	o3FcSCaAP7rjWOpr21xalo6U04LeJYwHBufhIKoS14fB8PPBcYGUwdfsNa5so0Ap+sr8YMzT+cn9Q
+	V98AaKtMkgR9YZuZ29RQGaZ8I3A0Suq56bXnvdTlKlSv+9DapBF7gt86rxffZXbOC7liG+vXh14Qj
+	gUfNP8fNXjNTNU1Dn/VGh6+7JZN17OebQzMMs7xOwD7MAxJxF6WrYmcS/gSqZICgPfFCeSoXWDCBc
+	J/KN9HOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVTj6-00000003Vtv-0zdL;
-	Mon, 23 Nov 2026 13:04:56 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xVTjq-00000003W5h-3a1m;
+	Mon, 23 Nov 2026 13:05:42 +0000
+Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVTj3-00000003Vt2-0x4t
+	id 1xVTjC-00000003VwA-2s7K
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 13:04:54 +0000
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ANCYoLR3575074;
-	Mon, 23 Nov 2026 13:04:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=SPkTlA
-	BN6jBq06tO6VLN1KLxuU8g7ywcEEezla+CEbU=; b=VXsRvltQMwjk6rv6HZFCE8
-	RXdk7t25ZWN2XitKdsZbix2SmQkffkJwX/1HTx3sFC0T+oclBVn0YdK80IAg8MCS
-	AjMFlvCjvdaBl8ZKJVuzf9ylHqCqxbsLZpWYBbxmV3jQ2eXwvDnRJN9ZGrCcC39h
-	eleWhMFJLZs7XFUzcMQ7uVs4Hdua2BJA99auQsWxfSUxvN2OAolKyEUAZazQEHeS
-	ugK6+tDvn65hQLIsR783uOi7nlYRO/Be2qsizj5rI2GRLX56TY/KYHuQyMLGVmOC
-	3OIdeKTqklWUU0XZ/8NILTSHJNnF7SfotQEPWa8Veb+iewjmk50qWul7AchgERLg
-	==
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34gv2y9q-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 13:04:18 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ANCJN6J741919;
-	Mon, 23 Nov 2026 13:04:17 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j3qufppe5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Nov 2026 13:04:17 +0000 (GMT)
-Received: from smtpav03.fra02v.mail.ibm.com (smtpav03.fra02v.mail.ibm.com [10.20.54.102])
-	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AND4DRx42533368
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 23 Nov 2026 13:04:13 GMT
-Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id BD2D62004B;
-	Mon, 23 Nov 2026 13:04:13 +0000 (GMT)
-Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 1B62420040;
-	Mon, 23 Nov 2026 13:04:13 +0000 (GMT)
-Received: from [9.111.39.166] (unknown [9.111.39.166])
-	by smtpav03.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Mon, 23 Nov 2026 13:04:13 +0000 (GMT)
-Message-ID: <01631f5a-9140-4dcb-a91b-5c431b384be6@linux.ibm.com>
-Date: Mon, 23 Nov 2026 14:04:12 +0100
+	Mon, 23 Nov 2026 13:05:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=JqwO
+	i7/BVktI2ZHP/U/3Nu9WMQA6oh0lX3SVmULq8WU=; b=d1TUo5jS4ydnerrVYxvi
+	FOjyUW9RHzWhbtnnBffSPtASsbJMFsiv2MCg3IkhHaErxN3gA2dn3rL8LLU1d7vm
+	9EAulY1oJj1QcWGIkXUfPmEWzZak6Ti8hjczVubxJGe7SsO0y8SuWOuT8lWTCHSS
+	ctrkKGhkKr9favHNjoFIas+G3xyEjXWnFI5bep1ogTFtjl7XNpDghdBIolOU2r4h
+	X/EZrjj1l6DYqNZOn9Y47MUbxHZOzm8yIXSWwyMqLR7or4/92nno7LzV7XiB7t+l
+	Yv6tp4CxjmX1j76x6bTN2KbORQwh1B4hwdvMiuJrwH77CaukBcvyuJwzutTTaINY
+	BA==
+Received: (qmail 2734062 invoked from network); 23 Nov 2026 14:05:00 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Nov 2026 14:05:00 +0100
+X-UD-Smtp-Session: l3s3148p1@oH7GPfFgdo0ujnsu
+Date: Mon, 23 Nov 2026 14:05:00 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Paul Walmsley <paul@pwsan.com>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+	Andy Yan <andyshrk@163.com>, Ulf Hansson <ulfh@kernel.org>,
+	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/6] clk: Add dev_clk_get_from_provider()
+Message-ID: <awQ5_Fjh6hKTx9Qo@ninjato>
+References: <cover.1795094688.git.geert+renesas@glider.be>
+ <7155949aea78042fd399da5ad23a72765b2b6cc7.1795094688.git.geert+renesas@glider.be>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 23/23] s390: Report AEF features to sysfs
-To: Steffen Eiden <seiden@linux.ibm.com>, Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas
- <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Andreas Grapentin <gra@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@linux.ibm.com>,
-        Claudio Imbrenda <imbrenda@linux.ibm.com>,
-        David Hildenbrand <david@kernel.org>,
-        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
-        Alexander Gordeev
- <agordeev@linux.ibm.com>,
-        Sven Schnelle <svens@linux.ibm.com>,
-        Friedrich Welter <fritz@linux.ibm.com>,
-        Gautam Gala <ggala@linux.ibm.com>,
-        Hariharan Mari <hari55@linux.ibm.com>,
-        Hendrik Brueckner <brueckner@linux.ibm.com>,
-        Nico Boehr <nrb@linux.ibm.com>,
-        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
-Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org
-References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
- <20261106-sysreg-v3-23-75e95980fb10@linux.ibm.com>
-Content-Language: en-US
-From: Janosch Frank <frankja@linux.ibm.com>
-Autocrypt: addr=frankja@linux.ibm.com; keydata=
- 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
-In-Reply-To: <20261106-sysreg-v3-23-75e95980fb10@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Authority-Analysis: v=2.4 cv=CYCdd7rl c=1 sm=1 tr=0 ts=6b0439d2 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
- a=VwQbUJbxAAAA:8 a=z66wZ0Kh3ARbYNmR0dMA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA1MiBTYWx0ZWRfXymFP4SkiqWsW
- Pm2Mk/7WqEVjnM/E7zfbHPsw5SWu3rWN+iPeRj+HMRNO97rYLLKj1QTNIIPxNENaydMKV+zhkWc
- NXGWkxB5YqhjbYwX6J1LG22xVJ8Rol0=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA1MiBTYWx0ZWRfXxCZs1gpJ5z8E
- 7uuwSFEKlOEpyOES02W/YAKXC/Xh2Z4H/OyeNTwJDNU+wjRGhh/CiE/MDINMtGN6hemv1ZwN3i3
- 28i0NxURvD4nj49iExiC0/KR+YMtowxZTcfFaOXlw86UADzgruhkODUoGEvjsSWvijeTcQQTtEd
- ypwJ7Lm3tZ0/wTxkqLy40Z8M4xQJvRKPZl/cb/DdrAOhKM/Np9A+EHaRI/xAPIbWR+mfaqfkD2s
- sfzmQ2zo/WT7WkCQjRd7VDr8LVhTKRTH+rc4c3LzHpgDKXoAKllQiS6aSQ2mK3SZUr3/BpzK+AD
- jFi/H3uCZ+hDku2cT7va9UvHVD+G9f2MKijY4xepfYt2+NvwP7L1KYCmtY6yCNCevR0xGqypyF3
- WIr38QZUif08vgCAPscmstXg/6qowMKtnD4QRCoav/QxjkEhVSJPwp1w18vK9zWmncDtGAAZaM7
- AD7zcq65VjtINwg9+8A==
-X-Proofpoint-ORIG-GUID: qllvn7jbl9j9C9bDrZh1OcCUIR-5vXzu
-X-Proofpoint-GUID: qllvn7jbl9j9C9bDrZh1OcCUIR-5vXzu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-23_02,2026-11-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 spamscore=0 bulkscore=0 impostorscore=0 adultscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611230052
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7155949aea78042fd399da5ad23a72765b2b6cc7.1795094688.git.geert+renesas@glider.be>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_050453_385851_4A4F9D8E 
-X-CRM114-Status: GOOD (  20.65  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261123_050503_017954_0C62B640 
+X-CRM114-Status: GOOD (  10.78  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -188,68 +83,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/6/26 5:07 PM, Steffen Eiden wrote:
-> Display various information about the Arm execution Facility (AEF) to
-> userspace. The files are located in /sys/firmware/aef/. Show if the
-> feature is available and usable for the host, which formats are
-> available, and how many arm vCPUS per guest are supported by the
-> machine. Additionally, provide the raw binary output of QAAF fc1 (Query
-> Model Capabilities) in the file qmc and fc2 (Initial
-> System-Registers-Save Area) in the file save_area.
+On Thu, Nov 19, 2026 at 02:40:35PM +0100, Geert Uytterhoeven wrote:
+> Clocks obtained through of_clk_get_from_provider() show up as
+> "deviceless" in the consumer column of the clk_summary file in debugfs.
+> Add a new variant dev_clk_get_from_provider() that also takes a consumer
+> device, so callers can provide it, and consumer's name will be shown in
+> the clk_summary output.
 > 
-> Co-developed-by: Janosch Frank <frankja@linux.ibm.com>
-> Signed-off-by: Janosch Frank <frankja@linux.ibm.com>
-> Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
-> Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
-> Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
-> ---
->   Documentation/ABI/testing/sysfs-firmware-aef |  70 +++++++++++++++++
->   arch/s390/kernel/aef.c                       | 113 +++++++++++++++++++++++++++
->   2 files changed, 183 insertions(+)
+> Reimplement of_clk_get_from_provider() on top of
+> dev_clk_get_from_provider().
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-firmware-aef b/Documentation/ABI/testing/sysfs-firmware-aef
-> new file mode 100644
-> index 000000000000..6ccd8491a017
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-firmware-aef
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-[...]
+Very minor: Maybe of_dev_clk_get_from_provider? It is still OF specific.
+But in general:
 
-> +
-> +What:		/sys/firmware/aef/query/sae_avail
-> +KernelVersion:	7.5
-> +Contact:	linux-s390@vger.kernel.org
-> +Description:	Read-only, decimal boolean. Reports 1 if the machine
-> +		provides the SAE instruction.
-> +
-> +What:		/sys/firmware/aef/query/ptff_avail
-> +KernelVersion:	7.5
-> +Contact:	linux-s390@vger.kernel.org
-> +Description:	Read-only, decimal boolean. Reports 1 if the PTFF
-> +		instruction supports the QAGTO and QAGPT subfunctions.
-> +
-> +What:		/sys/firmware/aef/query/edat2_avail
-> +KernelVersion:	7.5
-> +Contact:	linux-s390@vger.kernel.org
-> +Description:	Read-only, decimal boolean. Reports 1 if the EDAT-2
-> +		facility is available.
-
-I don't think we need any of the three files above.
-sae should be reported as a feature in /proc/cpuinfo, same as sief2.
-
-edat2 is facility 78 in the same file.
-
-PTFF-QAF is unprivileged.
-
-Also, if aef is the requirement for the directory to exist, why would 
-saef not be enabled?
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
 
