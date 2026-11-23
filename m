@@ -2,76 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000C7606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFAD606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 15:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LiceTK20;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YIPojpav
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=caPlal5D;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UTb1u+Nm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3G6I2HBy1UTihgVzffidRJ8qc0m2dAG1ryDyw90kJ+U=; b=LiceTK20hstCuA
-	3ibzZYdJWBZ8JwISJ9EP9Jf8MGzkcnxwOhc/q7h14ECRxJzZ6rolLVNrVWrnCzxe9g1zFR1WSmJEK
-	dOAy3RvycxOm+QDAZLJzUX83HK1nSFL+6y6XbuqPCQkl5CbmB8mrg4+aj7v48u5Ef18bTSJQKRR2b
-	NUVoQ1QrTZ6SGLQyxFWv60OYSsFamolNtbC7UdqIaCJX1wZuXgKqEodqke9wCGHblSXbUKSl63peY
-	knLkzwgEtqp8Wf6sZGXeVaWC0pbFTirc/EQlpRwxZvDChd6kDjjO9SV2cup5IqyP8ffHlflsvDCM1
-	pVHrEsY7B+b4CcBGUigA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8tlyN40+7Qkubt+Fz9S4uHt3fLqvkl8zPBbV6YJWTAo=; b=caPlal5DZlI0sUi/V1tl96eDwm
+	upYgF/vVjrnSuNqoRlH4EcafGTxM81w/R0le3gL2MzhqURnvu3cFPkQ/BkZFEIlZs2w12PBE/0EPm
+	j0zPkJHINPx1nCqTg1jvONLgypS92SNp8Ttl/z1fUtYIBgaqBfW9X9/YkALACk9k8FXy7HHHLNW3t
+	TFp+MXu03E4VdxwlIH+2FPm9IZfMYtmF3HAsf3SR24qfwlQ8ZPTpMe+qCod/+A4BEe+kTqoW6b6MJ
+	Q5XAX8rrZzA4CjAqCG4KLHIwUafVrxFPjvWC+LoVRwCbB8C+JXMXWUlNxHQ4lddrWqa7VbLN/VlEs
+	F2atqUhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWO6-000000045lT-1vMe;
-	Mon, 23 Nov 2026 15:55:26 +0000
+	id 1xVWQC-0000000467H-1QPn;
+	Mon, 23 Nov 2026 15:57:36 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWO5-000000045lC-1nha
+	id 1xVWQB-00000004677-01Eu
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 15:55:25 +0000
+	Mon, 23 Nov 2026 15:57:35 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3470243D0C
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:55:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7263A1F00ACF
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:55:24 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BF01E41B71;
+	Mon, 23 Nov 2026 15:57:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C0071F008B2;
+	Mon, 23 Nov 2026 15:57:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795449324;
-	bh=3G6I2HBy1UTihgVzffidRJ8qc0m2dAG1ryDyw90kJ+U=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=YIPojpav0O7GuwdQ8vBLY/e71DVXviFdsS44PLAZ6U3mzJmNA6TR2JMjsN8z5lxCr
-	 DbkvMGQFYOuHHzjMf8u668uvyZWYP73Ki5QI4dd172ddRmjLFNCa1RTUNH56JBlA59
-	 DWJcJyl8C/QXuR7xiGNwKc63hL3TIUzKnOEhWm6p/JSDwbCrHijVfhs4JXS77SRl23
-	 /lEkfV1otEaHf0WCm2jhnwz3dRQVyDEuB/CgyXWuGu6IpZPRjTt1E7VOxNwDDZILJd
-	 Wh0IWvZYsXb6pcvxsO9MTrZusQddlEn9jgt7S6z878feRaXG9PYA+wtFIkq7dSQc6L
-	 qisckzr3Lptsw==
-Received: by mail-dl1-f45.google.com with SMTP id a92af1059eb24-1b50a4bd2f3so5083777c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 07:55:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGZ4Y1YfgRy4zmJ0zLboVs87qHjoxuT8SM/yTtYmUgncsNEiMV2GijoexdVmjkeuYJ4wLLA8ONCu35GuDJUH5ke@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Q4X6T5uTxsmKWA7nI5vr8jjIf6dl8cOoOSCF5/rr3OQoaehu5
-	1AZDOvO2YMfL5oE7U4ZbdR9IqlezxRBNKlbC4ZqwFXe982KQXN7Nx0sWt32gq7dC7Ue3Jmxt2Tf
-	/ydRKkxbeTRzDjLRDpfCg06eWHgJxiQ==
-X-Received: by 2002:a05:701b:4212:20b0:195:49ee:94c7 with SMTP id
- a92af1059eb24-1b556877b4bmr13673422c88.8.1795449323806; Mon, 23 Nov 2026
- 07:55:23 -0800 (PST)
+	s=k20260515; t=1795449454;
+	bh=8tlyN40+7Qkubt+Fz9S4uHt3fLqvkl8zPBbV6YJWTAo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UTb1u+Nmrdi5Yh8tOqyRuQfy/U1vNrfIzK093DF4CmwWZJYfM4yTJ5E3GRnlpArCG
+	 UKGrU9Sbmep1TMn93hhi180d9nH+DFlUR4cLaBE2fY2MNUgK8Q500JD1B5QuACTVV6
+	 7Lh3+zv8IndoNEYYahvhuzjlOuowvTjpF1pPz+zsby+eyC32UQm9R5sjwnrFwULFwo
+	 FHg1q1SjCXwJ38lzD51LpLBizCTi3PH0kBmqRz0WTxV4hHwME9r2anHp4zeqjGGETh
+	 I+5hy9LtJWP514Fq1HNg+yBa+gCq9osa+Ll1nXBq8TW+BX1N2q91OX3n6GWL/CEeG0
+	 2BC5bzQ9XFNIQ==
+Date: Mon, 23 Nov 2026 15:57:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+	Sascha Bischoff <Sascha.Bischoff@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH 6/9] arm64: sysreg: Reject an enum value not written at
+ its field's width
+Message-ID: <aabfdc59-8f37-4573-9956-14f077274d3f@sirena.org.uk>
+References: <20261123075219.369042-1-fuad.tabba@linux.dev>
+ <20261123075219.369042-7-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261105-mtk-dsi-long-read-v1-1-0b6d9b67c011@protonmail.ch>
-In-Reply-To: <20261105-mtk-dsi-long-read-v1-1-0b6d9b67c011@protonmail.ch>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Mon, 23 Nov 2026 15:55:09 +0000
-X-Gmail-Original-Message-ID: <CAAOTY_86OXNzY1ZCM-TkRHJBL2D251TmMUAb7KciJ=J67zzpdA@mail.gmail.com>
-X-Gm-Features: Aa3M54odlecVrJk7CoDKPAKnCFnRzxRnnufzNqT2mcMd-MnXgiezzVi7wDx4zUE
-Message-ID: <CAAOTY_86OXNzY1ZCM-TkRHJBL2D251TmMUAb7KciJ=J67zzpdA@mail.gmail.com>
-Subject: Re: [PATCH RESEND] drm/mediatek: dsi: Fix handling of long packet reads
-To: bengris32@protonmail.ch
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, CK Hu <ck.hu@mediatek.com>, 
-	shaoming chen <shaoming.chen@mediatek.com>, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7/fkz7ZJG6AWevJ1"
+Content-Disposition: inline
+In-Reply-To: <20261123075219.369042-7-fuad.tabba@linux.dev>
+X-Cookie: Truth is free, but information costs.
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,42 +76,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Ben Grisdale via B4 Relay <devnull+bengris32.protonmail.ch@kernel.org>
-=E6=96=BC 2026=E5=B9=B411=E6=9C=885=E6=97=A5=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=
-=8D=882:35=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> From: Ben Grisdale <bengris32@protonmail.ch>
->
-> mtk_dsi_host_transfer() decides where the payload starts in the
-> received data based on the byte count returned by mtk_dsi_recv_cnt(),
-> treating anything longer than 2 bytes as a long packet.
->
-> This breaks long read responses with a 1 or 2 byte payload: they are
-> treated as short packets, so the word count from the packet header is
-> copied into rx_buf instead of the payload.
->
-> Fix this by checking the packet's data type instead of inferring it
-> from the length.
 
-Applied to mediatek-drm-fixes [1], thanks.
+--7/fkz7ZJG6AWevJ1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-fixes
+On Mon, Nov 23, 2026 at 07:52:16AM +0000, Fuad Tabba wrote:
+> The generator emits each enum value as written and doesn't check it
+> against the width of its field, so a value wider than the field defines
+> a constant the field can't hold. The duplicate value check compares the
+> strings as written, so 0b01 and 0b001 in the same field pass as distinct
+> values, and the rule's pattern, an unanchored /0b[01]+/, accepts 0b12
+> too.
+>=20
+> Require each value to be 0b followed by exactly as many binary digits as
+> its field has bits. The one enum written otherwise is TS, a two-bit
+> field of TRFCR_EL1 and TRFCR_EL2 whose values have four digits. Write
+> them with two digits, which leaves the numbers unchanged.
+>=20
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 
-Regards,
-Chun-Kuang.
+Reviewed-by: Mark Brown <broonie@kernel.org>
 
->
-> Fixes: 21898816831f ("drm/mediatek: add dsi transfer function")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Ben Grisdale <bengris32@protonmail.ch>
-> ---
+--7/fkz7ZJG6AWevJ1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmsEYmgACgkQJNaLcl1U
+h9CNFwf/YNeLN46QZ/8fTDBpDox7PAhAxy/YFSdH0aX5xpsxry/XZ3zcL4wXBwk4
+4yz10kSaD4fxpPK4sSLhtF2JIJs9k8HllEjxbbsu3SHnxbgH6nQyO2zI9sooeL3a
+3C7PFlpifQ1pMj+NWN7ecK+a+Nwj/oqILFcRHBEeBNDRpK2ueRvCBdA5LjDIxWEe
+ddRIQnMKZe3AaZ/hOW69CW6rZ/MFZMJyXkoVV5t2UBgubA1kVh5+WK5cZds9xEB4
+WHEFGiuo1N42Mbjk3KrGN+NFXZBzqjSVNiek4XWAOfFX1081bzJGY+Xp9dKN0rSx
+fO5SsapAeGWrnohmXacu6LdpJJHjug==
+=YhFc
+-----END PGP SIGNATURE-----
+
+--7/fkz7ZJG6AWevJ1--
 
