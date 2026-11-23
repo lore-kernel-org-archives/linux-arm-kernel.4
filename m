@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06BBE606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92603606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QNF1jDuM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OIIF6fdf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pj0Y4EEh;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LSgZZF5t
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,58 +14,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NvDPN1uzBydiluj4pwaIyQ1aBVv33ogPl+ZaFWP3YRE=; b=QNF1jDuM4hSsm/d2sqkjO1EW1d
-	8G+Su1jkF3zWPPM+5TaH66asWqOFIVi6ZCa3uONH9fz9z1Jt8bwKtb2T22wEdRdkI7UC5aAwpwknY
-	Ls/FKrjqK4NsNp+sQWSsaEi/wi/7JIQHtKK/dds1DRvhtkY67ra0tvjekZfq1fAT/HDF7uMT02rIK
-	pQ4QSopq/zt/AhkbDvQ6OA8+puy0sUQ3Y5D0gW70Y/peC9WHAQ7gEDJvdD8T5WK/aOt2YusZzHxGr
-	57XuCtnr0oh5ZLGfPhRw9+1yml5DjL8TRlcyjEIILOh+TFPRe7Trgo2n99XPOGs3LsBxZTj/VzCHe
-	LgyMQrnA==;
+	bh=FR6wWEGn+t+BtzbC/LIorR/2/RzdWcrbFjRruoMp+fg=; b=pj0Y4EEh19tLNjcks84NLD2zc7
+	HDfOTnPb686a1InuffnP3YGjYh22FYrtwoej4FNCTxucO94e7745fm5P7jbtWnobQva2JKbjxivnz
+	Fdj1E2r6VLKzoTT3zy+VKN198MZ0KFbTMPXGMDuPPX6PNQ+wXUZCXqfqfaaR8iMVHmFG+7Juxsyiv
+	XkqkOHnndvgQDDwGTx7pq7zzyuXT3TcD8O9wKzj/JQ9Hw8oGBtyx+3lVPKPUdFlQX6dNCyl65wAPD
+	iKPuLpSCML7dFPAqhxYJ0fQwqhqVqzEX84dC0EeSKrqTgJR6xk1iqVdOUEtGNdWKAaHESZWnlLskh
+	JaELCS/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS6e-000000038Gh-1Rtg;
-	Mon, 23 Nov 2026 11:21:08 +0000
+	id 1xVTFk-00000003NSE-19YN;
+	Mon, 23 Nov 2026 12:34:36 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS5e-000000037ZN-2sqV
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:20:06 +0000
+	id 1xVTFi-00000003NRO-1dGk;
+	Mon, 23 Nov 2026 12:34:34 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B049461F8F;
-	Mon, 23 Nov 2026 11:20:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C7B91F000EE;
-	Mon, 23 Nov 2026 11:20:04 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id AAE5960D36;
+	Mon, 23 Nov 2026 12:34:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 308181F000CA;
+	Mon, 23 Nov 2026 12:34:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795432805;
-	bh=NvDPN1uzBydiluj4pwaIyQ1aBVv33ogPl+ZaFWP3YRE=;
+	s=k20260515; t=1795437273;
+	bh=FR6wWEGn+t+BtzbC/LIorR/2/RzdWcrbFjRruoMp+fg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OIIF6fdf1BrCCs+ruq1Mvor5MI237MSEBGArpu+IeV8lxMgB1PSycdxaJfBNCzQKZ
-	 BULGgtpV9n+x8VbHXVo462EzyHat97zTLMaHuaDA+YsNznBqPT29IXzl/v5xarrLbC
-	 kSDUIQUT/JdX6oFMkAAwmiSSuVN56ncum0N785MpKGK6eTMK7dlhbbAf0UPJIu4RpG
-	 ZmTmvKQKTuBkJHX5lkf7JquLJAPy8/2x+1KtdYeUqEF0R5+oRXaRExyGVmqUR4nvoV
-	 Qa3GshrtY9qHhtuvfM/PcfCIaTcO9o3piwHMUMtmQqmp+ViPR9zXjFbsJ+c4pJ4VDd
-	 O7bjESx+6ongA==
-Date: Mon, 23 Nov 2026 12:20:02 +0100
+	b=LSgZZF5tuZj++6QvvJXJgJmD5X/zU83rYNkS4t0au6BRsx9K9Y7s4CcgPgijo8k+g
+	 aUhMlNx65inEh/R1VLcX2Smt1Tn460aTKSLFROhhB1MjqUBo89b4IB8zmmV7H3K4bp
+	 LwSZi5oBZErg7SsKvrfPjSjKV4S+T/ABoG02UuUwEA6voMiI9fpuw+4TBIj6evqCrI
+	 LXdFc58L6IuJO49fHqjIxrm7JMaHp/+EreQJPvDzOPsWzrP5e4AzHK/n9j3/ZUyJ93
+	 X2ezds2Kdo/Bj9aRKeweqQ35mcmPonyC36Ew4KHqD5LdFsnwlg5J7GMebW6TDCV0EJ
+	 bfj7FkkfB45IA==
+Date: Mon, 23 Nov 2026 13:34:29 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 5/8] dt-bindings: soc: synaptics: Allow SL2610 mux
- controller children
-Message-ID: <20261123-imposing-crimson-chinchilla-fe56de@quoll>
-References: <20261116135442.4827-1-jszhang@kernel.org>
- <20261116135442.4827-6-jszhang@kernel.org>
+	Chen-Yu Tsai <wenst@chromium.org>, Laura Nao <laura.nao@collabora.com>, 
+	Chris Chen <chris-qj.chen@mediatek.com>, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: mediatek: Add MT8196 PWM muxes
+Message-ID: <20261123-sassy-tacky-jackdaw-3dbb2f@quoll>
+References: <20261117-mt8196-pwm-clk-v1-0-d8725bcea9f4@baylibre.com>
+ <20261117-mt8196-pwm-clk-v1-1-d8725bcea9f4@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261116135442.4827-6-jszhang@kernel.org>
+In-Reply-To: <20261117-mt8196-pwm-clk-v1-1-d8725bcea9f4@baylibre.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,30 +75,25 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 09:54:39PM +0800, Jisheng Zhang wrote:
-> The SL2610 system controller includes selector fields for routing shared
-> peripheral signals. Allow a mux-controller child using the register mux
-> binding and show the shared MDIO master selector in the example.
+On Tue, Nov 17, 2026 at 07:16:02PM +0000, Alexandre Mergnat wrote:
+> From: Chris Chen <chris-qj.chen@mediatek.com>
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> Assisted-by: LLM
-
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
+> Add clock IDs for the MT8196 PWM source selectors, so that the peri_ao
+> clock driver can register them and devicetrees can select a PWM clock
+> source with assigned-clock-parents.
+> 
+> Signed-off-by: Chris Chen <chris-qj.chen@mediatek.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->  .../bindings/soc/synaptics/syna,sl2610-soc-syscon.yaml | 10 ++++++++++
+>  include/dt-bindings/clock/mediatek,mt8196-clock.h | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-There is no such file, which means you are fixing in-flight patches.
-Squash it with in-flight patches instead so we see entire picture.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
