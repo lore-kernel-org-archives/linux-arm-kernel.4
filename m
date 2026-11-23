@@ -2,111 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8285606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C9E606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BhkWJa/v;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hNBNIjjH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N6BjUvA5;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=YC4QiESN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EtVDEEY+1Q2B+PJRdO/nFO/tm1fJ8wXwnQSpYA2WKh8=; b=BhkWJa/vqopRBZ
-	tGocYPm7ncNKc7DY24W4xK0mUE7QrEOh9a6c4nEeHs7jKLhjrr163FMcBUpWG/s1MxoxBhWDnEeRa
-	kfHItRWXIT37FAeq3brxR0wh6zPqqo4CTnDZZ0FyZm7wmeeKFJjgUxB/JeqpGBelJ/OND/7DqtJ1L
-	c7A2fz7MepxdDMqOiiXIw5KsVdj1E/GViNVu1q3kMAnbnWh705C5OkxBiUkN8sbh2jivjPMinFVwS
-	+uEGJAT69ZeuQ9moQBxU5gU8N0n/ZOthpTyaLrZwBs2mEbURlbKvqxsYoKrFqD4F4a+IVGc4YxDrx
-	Co5y/1fCxiYX0BNmH77w==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ntmDGlnmzvQf5w67HzPiljgwsUTYnXg53ZXpL1yExdk=; b=N6BjUvA5WT8dJqLx+x3SFNEd8l
+	TTcZNyrvu8Zj9NaNJZjAaJsTykC5HeQmfyP+VkkmtbscBjfmCw3VFjQFd3dmzc3rMEwh+AIBJwwtI
+	8DdC/mVk/teAiLvd5hf+W6DdSfnJPYi5IKyeVCoAOV3geyALxUscn9FZUK7ET1db9kAF4BtSjmv4F
+	HjFQSWAgP35CMGBk49F3gdamLKqTpc4arvmAby1A5OLL9w41w0Rs7aydIMtwbLDIrt5hlxLkLE7Kr
+	qpl4cw8wRWPZVeuVjeIiDHjdxXHgLeQ94Kc5AYGc9U2opbR1YI1Ga68k9AP0QqfFKUp30rDqmx6cx
+	I1oMz5mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS5U-000000037Qb-1O01;
-	Mon, 23 Nov 2026 11:19:56 +0000
-Received: from mail-ej1-x62d.google.com ([2a00:1450:4864:20::62d])
+	id 1xVSMj-00000003CXg-2Kk4;
+	Mon, 23 Nov 2026 11:37:45 +0000
+Received: from esa4.hc555-34.eu.iphmx.com ([207.54.77.171])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS4g-000000036fa-0V2M
+	id 1xVSMX-00000003CQq-05Dg
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:19:07 +0000
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-c511cdd5a82so350022766b.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:19:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795432744; x=1796037544; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=EtVDEEY+1Q2B+PJRdO/nFO/tm1fJ8wXwnQSpYA2WKh8=;
-        b=hNBNIjjHDf1h9uz7FssokQkBwIb0cYfapK9y7DE9WWqVMyNX/UfHRFp0fG4/hgValf
-         o6NL7H3oVCQCnDrshtCfnd+0Pfp6gp8V6ueMXFrea8ygNUDcKxfrLBhz2KlupWEmuAGL
-         FyY79TGGGpZZG7Po+4N6yV324hp9M6rv+epdOQkeyKNgtFEtKFKJTOzGLCh5H5qChxN2
-         2uU8j9IriPuxIEuqMi3C70mRd3kwYpjWxbY/j8BZkwfE2L+p6+GiWtt5dBPW8TLkxoM8
-         UxKFi6F6f0aDzSBog1yW1SRrD6jckc74XmAh6s3RtFDbNGcKobsl5N6d2eesliAwf/y6
-         FinA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795432744; x=1796037544;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=EtVDEEY+1Q2B+PJRdO/nFO/tm1fJ8wXwnQSpYA2WKh8=;
-        b=2XvMkuSgIcF4tRdXXpfcRDklGsRqYM6skzET5vO+QrZ1YL3DKR3rEFRd0DFBvfGyyP
-         vyYcpJcLcnuIg3zXtd2P1YoCem7RRxvfXPkqphf5V03pNaupiwMp1GQftsAf+mCCj6Tb
-         EXV8QqWyO56ffEs/V6SwbFEi7fbHE8dOfHW1O04WIZotdlKaBdEP5LZAlj5uGsVRI6ym
-         Yfw01UMq3jSJiTib9D/NbZJt+xLQtvO/c3gS6bFAxASEZMPBa/7c1iC9Qd13Kx0B1rKf
-         26Dmi/ONdDAl5u8FdB7mGCVKEXA6ORxx5vDIShwgk7TlxbgBWnC96gidYNW/5x9LC90W
-         bNEg==
-X-Forwarded-Encrypted: i=1; AL+hErHacjerc+lgSgGJyrlJyomK343v2VzvGR4Xtuc/pC5LhmY6/bG5GhP+mTuOZJN5Lap8POOvA7rlUrI+ANvmg1ny@lists.infradead.org
-X-Gm-Message-State: APuU4Z/IW4FM4JxXV1YKmASUejy622peilr1xVhOFb4rm7x0hYYCq5Qd
-	sU4oj9QE4XKdqWolaYjio8nQZd/VtqJk0EdTAEFERrqLWEoPCvS0payx
-X-Gm-Gg: AZFdTZdDcDTu2Mv96skTLY5RiZcRwmlC++gtdyEvKDBpI0MTem893s99XaUwEVVk9Qe
-	aNNHfaF1wX/qyf/BGPF2TR8cXuoR0QknokbbU8cAp+dKvG0g8ZeNo1nxHxh0bF8ByynyuMkejmG
-	dBUzlk3MuHAJ2iV8ezzxGedP8PfZNddWgEzRDOMPjS5acSaPUZ/ZwQcnAb8/6p2/g2FIBVtYYCQ
-	zqO3QRYVUbNt+jPXxIpWsk7tUyeISD1jg5TP+mMmIuoTVJPw41qEP+26ASHlWHZKOqgtS14MdrV
-	hkEsi/iI/ZSoBKeWZKyMDuLcPdx8/e1jl1tkXTwu1MRMZghfZ0kunM7AsYuFRkTZnRgucdcwO2L
-	0DPx+JKQZAsE59SBgp4nTzqWE6fKo4ydupoFT6dIJ3rv+UhLsOueqCs1qqndb8Vz+kEHTQTiQXj
-	x7Ed5LlWeNxGBfPkgfmU/x7jzuoeknp3Qxy+MSstK4kAD4EYI1QiwE0YMP7cqNQeEuoV9xt+KL7
-	ZZkSnafKER8/uPZI5vl87JeeZeARVVDmIkAStiN+/lZkfjvUPxgaT3kLSJtErA1IdQSKDG9FJLT
-	u/1ywpWtYEuSNynA4lZhwTVUWne/sOAwIeHCe2WCTsr9DAjrs8UCaf+prCDEk5Kcrw==
-X-Received: by 2002:a17:907:948e:b0:c51:3b09:f7f8 with SMTP id a640c23a62f3a-c513b09f8eamr826376566b.25.1795432744060;
-        Mon, 23 Nov 2026 03:19:04 -0800 (PST)
-Received: from [10.120.183.232] ([50.7.123.82])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afc679bsm392442266b.63.2026.11.23.03.19.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 03:19:03 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-Date: Mon, 23 Nov 2026 14:18:35 +0300
-Subject: [PATCH v3 2/7] dt-bindings: serial: mediatek,uart: Add compatible
- for MT6895
+	Mon, 23 Nov 2026 11:37:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
+  t=1795433853; x=1826969853;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=mpj84e/t345Jz8Ts2bXCenjgwm5ag9QWiJ6Vn+kZ7O4=;
+  b=YC4QiESNEe1efpxgbCNcFvqf0SAdMGXYOj68XgtRtqmEi8N1TJSIfn4R
+   yzi6rFEsbDTPlmKjgCNJOAOOgaGbDfzK/sPoWhEmI5ChkZWK/Fc6oC8ik
+   pE+b++krhh+XyuJkxR7hI3zs0Gm68jLbqCKuxR+Ma/LL/u+P+PZFsk9Ey
+   8eIiosTQny/hyYdGBgerYcBhhULwnilq37SViGPdFUyw/HRr954PEmSpX
+   9Gk8Iz+bMU0j6+Q7dFjogZJZ0eOpRLfI57IWtLjP/e0XEhAyMK4CDEwjH
+   e85h9Tuk33XRRF63LOiALEspZZPbyHlKp7WRpMy0kM2mRkC2p/MY2NruR
+   w==;
+X-CSE-ConnectionGUID: CwCs2L1ARR6js4e9gi2O+w==
+X-CSE-MsgGUID: UZR7aZb7TTe+ucmbhCm7Bg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from unknown (HELO ces04_data.me-crop.lan) ([146.255.191.134])
+  by esa4.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2026 13:37:29 +0200
+X-CSE-ConnectionGUID: 804G1mV/Txq5mdhr1QNE7w==
+X-CSE-MsgGUID: 2UB6xt0mRC+5r71+VZVmIA==
+Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.2])
+  by ces04_data.me-crop.lan with SMTP; 23 Nov 2026 13:45:48 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Mon, 23 Nov 2026 13:37:27 +0200
+From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: [PATCH v4 0/6] perf: add PMU driver for the MIPS Coherence Manager
+ 3 performance counters
+Date: Mon, 23 Nov 2026 13:37:10 +0200
+Message-Id: <20261123-i6500-cm3-pmu-v4-0-5a9f5351688f@mobileye.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261123-initial-mt6895-v3-2-95c46597e63d@gmail.com>
-References: <20261123-initial-mt6895-v3-0-95c46597e63d@gmail.com>
-In-Reply-To: <20261123-initial-mt6895-v3-0-95c46597e63d@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, 
- Mattijs Korpershoek <mkorpershoek@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-serial@vger.kernel.org, linux-input@vger.kernel.org, 
- phone-devel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
- Alexander Letuchiy <asalde.le1@gmail.com>
-X-Mailer: b4 0.15.2
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAGYlBGsC/23NSwrCMBSF4a1IxkZy8zJx5D7EQZOmNmIfNG2xl
+ O7dpiKU4PCHc787o+A67wK6HGbUudEH39Rr8OMB2TKrHw77fG1ECZUABLCXghBsK4bbasA8Ayi
+ Y1oYzgtabtnOFf2/e7f7tMJins31E4qL0oW+6aXs4Qtz9bJXYI2CCTQ6gheJKQ3atGuNfbnIn2
+ 1Qo8iPdAUBTgK6AzamQWpxBgf4DsD2gU4BFQEkORDNuBCTAsiwfl3558EEBAAA=
+X-Change-ID: 20261101-i6500-cm3-pmu-4a11f399b430
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Fu Chao-Ying <chao-ying.fu@globalfoundries.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-rt-devel@lists.linux.dev, linux-doc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Paul Burton <paulburton@kernel.org>
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_031906_188148_04DF5E12 
-X-CRM114-Status: GOOD (  10.92  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261123_033733_666471_8A4F0B3D 
+X-CRM114-Status: GOOD (  38.00  )
+X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,38 +98,257 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a compatible string for the UART of the MediaTek MT6895 (Dimensity
-8000/8100) SoC. It works with the existing driver through the
-mediatek,mt6577-uart fallback.
+The Coherence Manager 3 (CM3) of the MIPS I6500 multiprocessing system
+is the point where the requests of all cores, I/O coherence units and
+the hardware prefetcher are serialized before reaching the shared L2
+cache and the memory interface. It carries a small set of performance
+counters which observe this traffic: two programmable 32-bit event
+counters and a 32-bit cycle counter, programmed through the GCR global
+debug block (GCR_DB_PC_*).
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
+The counters can count requests serialized by the CM, requests received
+by an IOCU, requests issued on the memory interface, AXI handshake
+cycles on the memory and IOCU buses, and PDTrace statistics. Each event
+is refined by a 64-bit qualifier made of groups of bits (originating
+port, thread, command, cacheability, L1/L2 line state, eviction, bank,
+scheduler, ...): a request is counted when it matches a set bit in
+every group, so the same event can be narrowed down to, for example,
+L2 misses caused by coherent reads from core 1.
+
+This is the only visibility into the L2 and the memory interface that
+the I6500 offers; the per-core counters stop at the L1. It is the
+natural place to attribute memory bandwidth to cores and IOCUs, or to
+measure the L2 hit rate of a workload, on SoCs such as the Mobileye
+EyeQ6H.
+
+This series adds an uncore perf driver for these counters.
+
+Design notes
+------------
+
+The driver binds to the existing coherency-manager device tree node
+("mti,mips-cm" / "mobileye,eyeq6-cm") and reuses the GCR mapping
+already set up by mips_cm_probe(), so no new reg property is needed:
+the GCR base is discovered from CP0 CMGCRBase as for everything else in
+the CM. The register definitions go into asm/mips-cm.h next to the
+other GCRs, following the existing accessor scheme.
+
+Events are described by two fields: 'event' (config:0-8) is the number
+written to GCR_DB_PC_EVENT, with 0x100 as a pseudo event selecting the
+cycle counter, and 'qual' (config1:0-63) is the raw qualifier. A
+qualifier of 0 picks a per-event default counting every occurrence;
+this matters for the I/O and AXI events, whose qualifiers contain
+encoded values (IOCU number, AXI channel) rather than masks, so "all
+ones" is not a sensible default there. Named events cover the common
+combinations and, since they are plain event=/qual= strings, serve as
+templates for custom qualifiers.
+
+A multi-cluster system has one CM3, and thus one set of counters, per
+cluster. The number of clusters comes from GCR_CONFIG and one PMU is
+registered per cluster, named mips_cm3_pmu_<cluster>. A cluster need
+not have CPUs, online or at all, for its CM to be busy: its L2 and
+memory interface may serve the I/O devices behind its IOCUs while its
+cores are absent or powered down. The counters of a cluster are thus
+accessed through the GCR redirect block (GCR_Cx_OTHER with BLOCK set
+to the debug block) from whichever CPU the PMU runs on, which may be in
+any cluster. The one thing required is that the CM of the counted
+cluster is powered, which the driver checks in the CPC (the CM "core"
+STAT_CONF sequencer state) when an event is opened; the counters of a
+cluster that is powered down at probe time are initialized on first
+use, and events on it fail with -ENODEV until then. The counters are
+shared by the whole cluster: events are system-wide only, pinned to one
+CPU which follows CPU hotplug, and sampling, task events and the
+exclude_* attributes are rejected.
+
+A cluster holding CPUs is a special case of the above: Linux leaves
+CPC_PWRUP_CTL.CM_PWRUP clear once it has booted a cluster, so the CM
+powers down together with the last of its cores and the counters go
+with it. The hotplug callbacks track this: when the last online CPU
+of a cluster goes down and CM_PWRUP is clear, the PMU of that cluster
+is paused (counts harvested, running events kept but not counting,
+new events refused with -ENODEV) and it is resumed, the events
+restarted, when a CPU of the cluster comes back online and the CM
+with it. Pause and resume run on the PMU's CPU with interrupts
+disabled, like the perf callbacks, so they do not race with them;
+the pause precedes the death of the last CPU, hence the power down,
+so everything that touches the counters either runs on that CPU
+with interrupts disabled or is waited for by the pause (the poll
+timer). The remaining exposure is a cluster without CPUs whose power
+is not managed by this kernel: only the CPC check at event open
+covers it.
+
+Overflow is where the SoC integration leaks in. The CM3 has a
+so_cm_perf_cnt_int output, but whether it is wired to a GIC input is
+the integrator's choice and is not discoverable. Adding here lack of the
+platform to test interrupt part, desision is to not use the overflow
+interrupt. Poll 32-bit counters every 250 ms, which is comfortably
+below the time the fastest event needs to wrap at the CM3 clock rates,
+this yield 64-bit counts.
+
+The driver can be built as a module. That requires exporting
+mips_gcr_base, mips_cpc_base, mips_cm_{lock,unlock}_other() and, less
+obviously, mips_cm_is64, since the CPS accessor macros consult it on
+every 64-bit GCR access. All are exported _GPL.
+
+The redirect block is reached from the perf callbacks, which run under
+the raw perf context lock, and from the polling timer in hard
+interrupt context. mips_cm_lock_other() takes cm_core_lock, a plain
+spinlock, which is an invalid wait context there and on PREEMPT_RT.
+Paul Burton's patch turning it into a raw spinlock, posted in 2019 but
+never merged, is picked up as the first patch of the series, ammended
+with similar conversion to thew raw spinlock for CPC.
+
+Patches
+-------
+
+Patch 1 is Paul Burton's conversion of cm_core_lock to a raw spinlock,
+with cpc_core_lock added
+
+Patch 2 adds the GCR_DB_PC_* register and field definitions, with
+local and redirect accessors.
+
+Patch 3 exports the CM and CPC symbols needed by a modular user of the
+GCR accessors.
+
+Patch 4 is the driver itself together with its admin-guide document,
+which describes the perf interface and transcribes the event numbers
+and qualifier layouts so that users do not need the TRM to build a
+qualifier.
+
+Patch 5 enables the driver (as a module) in eyeq6_defconfig.
+
+Patch 6 adds MAINTAINERS entry
+
+Testing
+-------
+
+Built with eyeq6_defconfig with the driver both built-in and as a
+module; every patch of the series builds on its own, and the binding
+and the document pass their respective checkers.
+
+Run on the EyeQ6H board with 2 clusters, loaded as module.
+
+[   66.128375] mips_cm3_pmu coherency-manager: mips_cm3_pmu_0: 2 counters + cycles
+[   66.129617] mips_cm3_pmu coherency-manager: mips_cm3_pmu_1: 2 counters + cycles
+
+dev / # perf stat -a -e mips_cm3_pmu_0/cm_requests_l2_hit/,mips_cm3_pmu_0/cm_requests_l2_miss/,mips_cm3_p
+mu_1/cm_requests_l2_hit/,mips_cm3_pmu_1/cm_requests_l2_miss/,mips_cm3_pmu_0/cycles/,mips_cm3_pmu_1/cycles
+/ sleep 1
+
+ Performance counter stats for 'system wide':
+
+            505821      mips_cm3_pmu_0/cm_requests_l2_hit/                                   
+             49083      mips_cm3_pmu_0/cm_requests_l2_miss/                                   
+            184893      mips_cm3_pmu_1/cm_requests_l2_hit/                                   
+             37760      mips_cm3_pmu_1/cm_requests_l2_miss/                                   
+        1807514589      mips_cm3_pmu_0/cycles/                                      
+        1807491360      mips_cm3_pmu_1/cycles/                                      
+
+       1.005857149 seconds time elapsed
+
+Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 ---
- Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v4:
+- use __DEVICE_ATTR instead of __ATTR
+- cm3_pmu_format_show is just a duplication of device_show_string,
+  use device_show_string
+- drop overflow interrupt support, it complicates the code and I have no
+  platform to test it
+- fix hrtimer left running unattended
+- drop patch 4 (dt-bindings), not needed for polling mode;
+  re-generate To/Cc list
+- Link to v3: https://patch.msgid.link/20261119-i6500-cm3-pmu-v3-0-c86410934b51@mobileye.com
 
-diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-index 5bd8a8853ae0..a3969cfdea7e 100644
---- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-@@ -35,6 +35,7 @@ properties:
-               - mediatek,mt6795-uart
-               - mediatek,mt6797-uart
-               - mediatek,mt6893-uart
-+              - mediatek,mt6895-uart
-               - mediatek,mt7622-uart
-               - mediatek,mt7623-uart
-               - mediatek,mt7629-uart
+Changes in v3:
+- added MAINTAINERS entry (patch 7)
+- Converted cpc_core_lock to raw_spinlock, addressing comment by
+  sashiko-bot@kernel.org (patch 1).
+- Link to v2: https://patch.msgid.link/20261112-i6500-cm3-pmu-v2-0-cd2569571819@mobileye.com
 
--- 
-2.56.0
+Changes in v2:
+- Pick up Paul Burton's "MIPS: CM: Make cm_core_lock raw spinlocks" as
+  patch 1: the redirect block is accessed under the raw perf context
+  lock and from hard interrupt context (Sashiko).
+- Account a full counter turn in interrupt mode: fold the overflow
+  status into the delta instead of relying on the 32-bit difference
+  alone, which lost 2^32 on every wrap (Sashiko).
+- Keep the 64-bit qualifier in hwc->config1 rather than the
+  unsigned long hwc->config_base, truncated on 32-bit (Sashiko).
+- Set hwc->config before validating the group, and do not walk the
+  siblings of an event that is its own leader: it has none yet and
+  its context is not set (Sashiko).
+- Use cpuhp_state_remove_instance_nocalls() so that the unregistered
+  PMU is not migrated (Sashiko).
+- Check that the cluster is powered on every event open, not only
+  the first time (Sashiko).
+- Pause the PMU of a cluster when its last online CPU goes down and
+  the CM is set to power down with its cores, resume it when a CPU
+  of the cluster comes back online; closes the window where the
+  counters of a cluster could vanish under running events. The
+  poll timer stops with the pause and is re-armed by the resume.
+- Note in the cover letter that the interrupt mode was not validated
+  on hardware.
+- Link to v1: https://patch.msgid.link/20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com
+
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Clark Williams <clrkwllms@kernel.org>
+To: Steven Rostedt <rostedt@goodmis.org>
+To: Jonathan Corbet <corbet@lwn.net>
+To: Shuah Khan <skhan@linuxfoundation.org>
+To: Randy Dunlap <rdunlap@infradead.org>
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+To: Will Deacon <will@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Kees Cook <kees@kernel.org>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Benoît Monin <benoit.monin@bootlin.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Théo Lebrun <theo.lebrun@bootlin.com>
+To: Fu Chao-Ying <chao-ying.fu@globalfoundries.com>
+Cc: linux-mips@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-rt-devel@lists.linux.dev
+Cc: linux-doc@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-perf-users@vger.kernel.org
+Cc: linux-hardening@vger.kernel.org
+
+---
+Paul Burton (1):
+      mips: {cm,cpc}: Make cm_core_lock, cpc_core_lock raw spinlocks
+
+Vladimir Kondratiev (5):
+      MIPS: CM: add CM3 performance counter GCR definitions
+      MIPS: CM: export the symbols needed to access the GCRs from a module
+      perf: add MIPS Coherence Manager 3 (CM3) PMU driver
+      MIPS: eyeq6_defconfig: enable the CM3 PMU
+      MAINTAINERS: Add entry for MIPS CM3 PMU
+
+ Documentation/admin-guide/perf/index.rst        |    1 +
+ Documentation/admin-guide/perf/mips_cm3_pmu.rst |  317 +++++++
+ MAINTAINERS                                     |    6 +
+ arch/mips/configs/eyeq6_defconfig               |    2 +
+ arch/mips/include/asm/mips-cm.h                 |   51 +-
+ arch/mips/kernel/mips-cm.c                      |   25 +-
+ arch/mips/kernel/mips-cpc.c                     |   14 +-
+ drivers/perf/Kconfig                            |   12 +
+ drivers/perf/Makefile                           |    1 +
+ drivers/perf/mips_cm3_pmu.c                     | 1128 +++++++++++++++++++++++
+ 10 files changed, 1540 insertions(+), 17 deletions(-)
+---
+base-commit: c03c1a14507dfaf8b856c2608f9ac216021fc222
+change-id: 20261101-i6500-cm3-pmu-4a11f399b430
+
+Best regards,
+--  
+Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 
 
