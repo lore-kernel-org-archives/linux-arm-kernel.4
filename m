@@ -2,87 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13621606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE22C606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 10:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ia6xTlsS;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=mva1vmAt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MetXE4AY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Dsrkcxhg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9uFnVsSuSjwnHdza2PvBe3O79v5OiuiGzGTqkCMEeUs=; b=ia6xTlsSl7eZRQ
-	VxHl5Sr3DAwBULuk5lJdUYvW5Hbon9FWYU3bFrev6KxdgBxQYsV8V9ys/6R7PLXbIb7s7Xxu7iDn8
-	gJ5r3+CHAHmILZnddx1OTUnVWR4rv8smKYp6B4ftRDEeESCUXXQhBMpYaoTgwHk9r/tuE+bOJ/yrL
-	aG1iNfqkAJW8LIKgb8hbGJkOw9Ts3DiWV3XjrCtpxUzRmiev2WMSqIzfjcyorHjW8/fBpfOl5oZcF
-	eMW1LZ5UyKdjzVe7WEi6VWeC4YdbrQCCVBuau1S+8up9kOCIRUNctBtxAJ9WuqQCQpFAWXSAdJaKc
-	s+quZd/O2yyOuUNGjP3A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=6dWrzTEqrK6nKc1TJcUidD5GK19M6KlUED1psMXUX8s=; b=MetXE4AY2WrRBCxf7UkCouI4uQ
+	AFiuOMBV2qvBUzeBX59A/BvEkcI4QVlVcCeC/ocUHFaFeKKq73Cwa+fzzTWwLsGP0z307dGYYEP2v
+	tx4MCWsOzgpB0iqm2/uHtjZcYDoqNYZH0ZaYzfpw+1SJ3/gbXU6TP/NbPm+V4SksNQzYel4lgO4Vr
+	pltAu5J3YQvJl1YbP5UZI2K0NmsUarWmpk7SNMU50n2cvt2uIINq/OhU9mZFPmlmB5oxHWMHZKSWh
+	xSdHTl/iX6Z6g/is24JFWVHfFrdiLcXXrut25f7ARnLUB9cBSrPWuFsm8jL9gpxezRsDV6f4KGFgJ
+	oUofYKgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQtz-00000002soL-3ZCK;
-	Mon, 23 Nov 2026 10:03:59 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xVQx5-00000002tsB-0Bx7;
+	Mon, 23 Nov 2026 10:07:11 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVQtx-00000002smn-1bax;
-	Mon, 23 Nov 2026 10:03:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795428234;
-	bh=GTPJKfk+Vuy2iJXONi3rgzMkg2upooVyvUQ8sikp9Ko=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mva1vmAt4wiEfY/P6hmAexz+TZmUVwCKqFfC68UosI6UC5iRnTQ/MKVWSlCQaLDkm
-	 srypqWcI8XjD/3X4m/cN9cbhpxeqKTESHIWvyr2kIiDZOO4Ae82RYHGZ1v1T5BVbcs
-	 DDYc4ZSS2GUK8RkLPIB1LKKn/y8hfvrJTLTTKnxjjeeAWHPZ0CePtF6YbhTu2HIZJy
-	 4yE7GaFfatjjgjW7vslx8PHwAFyGwLA/TS5cu7QSq0/hKTo6s/GPqmKJTYszKWOeMJ
-	 OP6+dXPSMniA10R5/pEIMOYrsu2btNPplVo5wAw+353PXjeUzuOYSg2DvsKviI03kt
-	 V6Ny6qwxp2i5w==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 348EF17E031C;
-	Mon, 23 Nov 2026 11:03:54 +0100 (CET)
-Message-ID: <b973584f-55c7-4d66-b02a-f253bf774ad7@collabora.com>
-Date: Mon, 23 Nov 2026 11:03:53 +0100
+	id 1xVQwv-00000002tof-2j9H
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 10:07:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0791D43D98;
+	Mon, 23 Nov 2026 10:07:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E551F000D8;
+	Mon, 23 Nov 2026 10:06:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795428420;
+	bh=6dWrzTEqrK6nKc1TJcUidD5GK19M6KlUED1psMXUX8s=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Dsrkcxhg1JctUS6kzFQxFlyk5X67Z+ZI3nDmladFozerpVBrQpgk9Sy12Ec05yQ6Z
+	 Nz80e8sE9yrbv0SpzoPuusPH3f0gkuQDAuYYz9gWv8vmMUkdX4Vlcn7kxfVASgeDF+
+	 lGFtldgSDVgsGG+ts9EiN0O6EpuT40RHaN4F03ix8sQf8zNWzh76Ndu4s2EBeFnWBn
+	 XqHMVsnLzjl50UIrFqDGL5tzwgSfFimzMLZEw7hlTlyKBENHbPkPWaNujOKAB+x/cx
+	 zZ7lPl1ffVVWTVMyLuZEhmxPRoVytWlmDpyaGNrUcNVFrJq3qLg9qTzsAeE3zwBB3Q
+	 mxYTFXlNGjYKA==
+Subject: Re: [PATCH net v2 2/2] net: stmmac: dwmac-sun8i: Limit the MTU to 2018
+From: netdev-bot+sashiko@kernel.org
+To: aiyengar1990@gmail.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, wens@kernel.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, clabbe.montjoie@gmail.com,
+ netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ rmk+kernel@armlinux.org.uk, nb@tipi-net.de, stable@vger.kernel.org
+Date: Mon, 23 Nov 2026 10:06:59 +0000
+Message-ID: <179542841933.3135.13344268634308620175@kernel.org>
+In-Reply-To: <20261122-sun8i-emac-mtu-limit-v2-2-c4081e5b83cf@gmail.com>
+References: <20261122-sun8i-emac-mtu-limit-v2-2-c4081e5b83cf@gmail.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 28/46] drm/mediatek: Add support for MediaTek Digital
- Video Output (DVO)
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "airlied@gmail.com" <airlied@gmail.com>,
- =?UTF-8?B?SnVzdGluIFllaCAo6JGJ6Iux6IyCKQ==?= <Justin.Yeh@mediatek.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
- <20260714114414.184512-29-angelogioacchino.delregno@collabora.com>
- <b7b4c2bf61a88b533e504603c4dcbc79c1de6f06.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <b7b4c2bf61a88b533e504603c4dcbc79c1de6f06.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_020357_572843_01DEF688 
-X-CRM114-Status: GOOD (  24.84  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,263 +73,147 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/20/26 08:42, CK Hu (胡俊光) wrote:
-> On Tue, 2026-07-14 at 13:43 +0200, AngeloGioacchino Del Regno wrote:
->> Add a new driver for the Digital Video Output (DVO) hardware found
->> in the MT8189, MT8196 Kompanio SoCs and their Dimensity and Genio
->> variants.
->>
->> This version currently supports output to Embedded DisplayPort on
->> MT8189 and MT8196, and to DisplayPort on MT8189.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
-> 
-> [snip]
-> 
->>   static inline struct mtk_dpi *bridge_to_dpi(struct drm_bridge *b)
->> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> index f7cbf9b47672..f96f887809c0 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
->> @@ -621,8 +621,12 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
->>   	  .data = (void *)MTK_DISP_DSI },
->>   	{ .compatible = "mediatek,mt8188-dsi",
->>   	  .data = (void *)MTK_DISP_DSI },
->> -	{ .compatible = "mediatek,mt8196-dsi",
-> 
-> Why do you remove "mediatek,mt8196-dsi"? This is not related to this patch.
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-That was not supposed to be here and it's a (huge) mistake.
+Critical: 0 · High: 0 · Medium: 1 · Low: 2
 
-Thanks for pointing that out.
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-> 
->> -	  .data = (void *)MTK_DISP_DSI },
->> +	{ .compatible = "mediatek,mt8189-dp-dvo",
->> +	  .data = (void *)MTK_DISP_DVO },
->> +	{ .compatible = "mediatek,mt8189-edp-dvo",
->> +	  .data = (void *)MTK_DISP_DVO },
->> +	{ .compatible = "mediatek,mt8196-edp-dvo",
->> +	  .data = (void *)MTK_DISP_DVO },
->>   	{ }
->>   };
->>   
-> 
-> [snip]
-> 
->> +static void mtk_dvo_config_color_format(struct mtk_dpi *dvo,
->> +					enum mtk_dpi_out_color_format format)
->> +{
->> +	mtk_dvo_config_channel_swap(dvo, dvo->channel_swap);
->> +
->> +	dev_err(dvo->dev, "[DPTX] format:%d", format);
-> 
-> I think you should use debug, not err.
-> 
+- [Medium] The patch hard-codes a 2044-byte limit as an MTU cap in one
+  glue driver.
+- [Low] The commit message and the code do not cover the same hardware.
+- [Low] The 2044-byte fill limit was measured on the H616, an arm64 SoC
+  where NET_IP_ALIGN is 0 (arch/arm64/include/asm/processor.h:17).
 
-Yes.
+--
 
->> +
->> +	switch (format) {
->> +	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
->> +		mtk_dvo_config_yuv422_enable(dvo, false);
->> +		mtk_dvo_config_csc_enable(dvo, true);
->> +		break;
->> +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
->> +		mtk_dvo_config_yuv422_enable(dvo, true);
->> +		mtk_dvo_config_csc_enable(dvo, true);
->> +		break;
->> +	case MTK_DPI_COLOR_FORMAT_RGB:
->> +	default:
->> +		mtk_dvo_config_yuv422_enable(dvo, false);
->> +		mtk_dvo_config_csc_enable(dvo, false);
->> +		break;
->> +	}
->> +}
->> +
-> 
-> [snip]
-> 
->> +static void mtk_dvo_config_hw(struct mtk_dpi *dvo,
->> +			      struct videomode *vm, struct mtk_dpi_sync *sync,
->> +			      struct mtk_dpi_polarities *dpi_pol,
->> +			      struct mtk_dpi_yc_limit *limit)
->> +{
->> +	struct drm_display_mode *mode = &dvo->mode;
->> +	u32 vactive = vm->vactive;
->> +
->> +	mtk_dvo_sw_reset(dvo, true);
->> +
->> +	mtk_dvo_irq_enable(dvo);
->> +
->> +	mtk_dpi_config_pol(dvo, dpi_pol);
->> +
->> +	mtk_dvo_config_hsync(dvo, &sync->hsync);
->> +	mtk_dvo_config_vsync(dvo, &sync->vsync_l_odd, DVO_TGEN_V0, DVO_TGEN_V1);
->> +	mtk_dvo_config_vsync(dvo, &sync->vsync_l_even, DVO_TGEN_V_EVEN0, DVO_TGEN_V_EVEN1);
->> +
->> +	mtk_dvo_config_interface(dvo, !!(vm->flags & DISPLAY_FLAGS_INTERLACED));
->> +
->> +	if (vm->flags & DISPLAY_FLAGS_INTERLACED)
->> +		vactive >>= 1;
->> +
->> +	mtk_dvo_config_fb_size(dvo, vm->hactive, vactive);
->> +
->> +	mtk_dvo_config_channel_limit(dvo, limit);
->> +	mtk_dvo_config_channel_swap(dvo, dvo->channel_swap);
->> +	mtk_dvo_config_color_format(dvo, dvo->color_format);
->> +
->> +	mtk_dvo_info_queue_start(dvo);
->> +	mtk_dpi_buffer_ctrl(dvo);
->> +
->> +	mtk_dvo_trailing_blank_setting(dvo);
->> +	mtk_dvo_get_gs_level(dvo);
->> +	mtk_dvo_golden_setting(dvo);
-> 
-> The two register set by mtk_dvo_golden_setting() would immediately set by mtk_dvo_sodi_setting(),
-> so mtk_dvo_golden_setting() is redundant function. Drop it.
-> 
+net: stmmac: dwmac-sun8i: Limit the MTU to 2018
 
-That's right. I'll recheck that part.
+This commit caps the maximum MTU of the dwmac-sun8i glue driver by setting
+plat_dat->maxmtu in sun8i_dwmac_probe(). The cap makes a frame with two
+VLAN tags and the FCS fit in 2044 bytes. According to the commit message,
+the H616 RX DMA fills only 2044 bytes of a buffer.
 
->> +	mtk_dvo_sodi_setting(dvo, mode);
->> +
->> +	mtk_dvo_set_output_pixiter(dvo);
->> +
->> +	mtk_dvo_sw_reset(dvo, false);
->> +}
->> +
-> 
-> [snip]
-> 
->> +
->> +static enum drm_mode_status
->> +mtk_dvo_bridge_mode_valid(struct drm_bridge *bridge,
->> +			  const struct drm_display_info *info,
->> +			  const struct drm_display_mode *mode)
->> +{
-> 
-> In dpi driver, it check mode->clock max_clock_khz, so I think here should also check this.
-> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> index 2ece7ba9dd73b..ec401cae8187b 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> @@ -1208,6 +1208,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
+>  	plat_dat->mac_setup = sun8i_dwmac_setup;
+>  	plat_dat->tx_fifo_size = 4096;
+>  	plat_dat->rx_fifo_size = 16384;
+> +	plat_dat->maxmtu = 2044 - ETH_HLEN - 2 * VLAN_HLEN - ETH_FCS_LEN;
 
-Yeah, thing is - this was a bit more complicated than just checking max_clock_hz to
-actually be correct, and I was planning to improve that later - but I guess that a
-basic check for max_clock_hz is better than unconditionally and stupidly accepting
-any mode.
+[Severity: Low]
+The commit message says:
 
-I'll add a decent check here, thanks for pointing that out.
+  The H616 RX DMA fills only 2044 bytes of a buffer, so frames of 2045 to
+  2047 bytes, allowed by the previous patch, are dropped.
 
->> +	return MODE_OK;
->> +}
->> +
-> 
-> [snip]
-> 
->> --- /dev/null
->> +++ b/drivers/gpu/drm/mediatek/mtk_dvo_regs.h
->> @@ -0,0 +1,192 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2014 MediaTek Inc.
->> + * Author: Jie Qiu <jie.qiu@mediatek.com>
->> + */
->> +#ifndef __MTK_DPI_REGS_H
-> 
-> __MTK_DVO_REGS_H
-> 
->> +#define __MTK_DPI_REGS_H
->> +
-> 
-> [snip]
-> 
->> +#define DVO_TGEN_INFOQ_LATENCY	0x80
->> +#define INFOQ_START_LATENCY		0
->> +#define INFOQ_START_LATENCY_MASK	(0xffff << 0)
->> +#define INFOQ_END_LATENCY		16
->> +#define INFOQ_END_LATENCY_MASK		(0xffff << 16)
->> +
->> +#define DVO_BUF_CON0		0x220
-> 
-> It's better to place register definition in address number order.
-> 
+This assignment in sun8i_dwmac_probe() does not check gmac->variant. So
+it applies to every entry in sun8i_dwmac_match[]:
 
-I completely agree. That was my intention, but with all this stuff that I've done
-some things started slipping out of my sight ;-)
+  allwinner,sun8i-h3-emac
+  allwinner,sun8i-v3s-emac
+  allwinner,sun8i-a83t-emac
+  allwinner,sun8i-r40-gmac
+  allwinner,sun50i-a64-emac
+  allwinner,sun50i-h6-emac
+  allwinner,sun50i-h616-emac1
 
+H616 EMAC0 is covered too, through the a64-emac fallback. On all of these
+max_mtu drops from 2021 to 2018.
 
->> +#define DISP_BUF_EN			BIT(0)
->> +#define FIFO_UNDERFLOW_DONE_BLOCK	BIT(4)
->> +
-> 
-> [snip]
-> 
->> +#define DVO_PATTERN_COLOR		0x104
->> +#define PAT_R					(0x3ff << 0)
->> +#define PAT_G					(0x3ff << 10)
->> +#define PAT_B					(0x3ff << 20)
->> +
->> +#define DVO_Y_LIMIT			0x130
->> +#define Y_LMT_BOT				GENMASK(9, 0)
->> +#define Y_LMT_TOP				GENMASK(21, 12)
->> +
->> +#define DVO_C_LIMIT			0x134
->> +#define C_LMT_BOT				GENMASK(9, 0)
->> +#define C_LMT_TOP				GENMASK(21, 12)
->> +
->> +#define DVO_SHADOW_CTRL			0x190
->> +#define FORCE_COMMIT				BIT(0)
->> +#define BYPASS_SHADOW				BIT(1)
->> +#define READ_WRK_REG				BIT(2)
->> +
->> +#define DVO_SIZE			0x18
-> 
-> Ditto.
-> 
->> +#define DVO_TGEN_VWIDTH			0x28
->> +#define DVO_TGEN_VPORCH			0x2c
->> +#define DVO_TGEN_HPORCH			0x24
->> +#define DVO_TGEN_HWIDTH			0x20
->> +
->> +#define DVO_BUF_SODI_HIGHT		0x230
->> +#define DVO_BUF_SODI_LOW		0x234
->> +#define DVO_BUF_DVFS_HIGHT		0x238
->> +#define DVO_BUF_DVFS_LOW		0x23c
->> +#define DVO_BUF_PREULTRA_HIGHT		0x240
->> +#define DVO_BUF_PREULTRA_LOW		0x244
->> +#define DVO_BUF_ULTRA_HIGHT		0x248
->> +#define DVO_BUF_ULTRA_LOW		0x24c
->> +#define DVO_BUF_URGENT_HIGHT		0x250
->> +#define DVO_BUF_URGENT_LOW		0x254
->> +#define DVO_DISP_BUF_MASK		GENMASK(31 ,0)
-> 
-> GENMASK(31, 0)
+Has the 2044 byte limit been seen on the non-H616 parts as well? If it
+belongs to the whole sun8i EMAC IP, could the commit message say so? If
+not, should the cap be per variant, for example kept in struct
+emac_variant?
 
-Thanks, will cleanup
+The Fixes: tag points to 9f93ac8d4085 ("net-next: stmmac: Add
+dwmac-sun8i"). That commit added H3/A83T/A64 support, and H616 was not
+supported at the time. Doesn't the tag contradict the H616-only
+explanation?
 
-Cheers,
-Angelo
+The phrase "allowed by the previous patch" also seems misleading. Before
+"net: stmmac: Limit the MTU of normal descriptors to one buffer", max_mtu
+for normal descriptors was SKB_MAX_HEAD(), about 3712. So frames of 2045
+to 2047 bytes were allowed long before that patch. Once the series is
+merged, "the previous patch" will also mean little to stable backporters.
 
-> 
-> Regards,
-> CK
-> 
->> +
->> +#define DVO_MATRIX_SET			0x140
->> +#define DVO_CSC_EN			BIT(0)
->> +#define DVO_INT_MTX_SEL_MASK		GENMASK(8, 4)
->> +
->> +#define DVO_YUV422_SET			0x170
->> +#define DVO_YUV422_EN			BIT(0)
->> +#define DVO_CRYCB_MAP			BIT(8)
->> +
-> 
+[Severity: Medium]
+Is 2044 really a sun8i-specific limit? It could also come from the RX
+buffer size that the shared normal descriptor code programs.
+
+drivers/net/ethernet/stmicro/stmmac/common.h states:
+
+/* RX Buffer size must be multiple of 4/8/16 bytes */
+#define BUF_SIZE_16KiB 16368
+#define BUF_SIZE_8KiB 8188
+
+But ndesc_init_rx_desc() in norm_desc.c still programs 2047:
+
+	bfsize1 = min(bfsize, BUF_SIZE_2KiB - 1);
+	p->des1 |= cpu_to_le32(bfsize1 & RDES1_BUFFER1_SIZE_MASK);
+
+2047 is not a multiple of 4, and 2047 & ~3 is exactly 2044.
+
+__stmmac_dvr_probe() also still sets this for every ndesc_ops platform:
+
+	else if (priv->hw->desc == &ndesc_ops)
+		ndev->max_mtu = BUF_SIZE_2KiB - 1 - ETH_HLEN - 2 * VLAN_HLEN -
+				ETH_FCS_LEN;
+
+Other normal descriptor users, such as older GMAC 3.x and MAC100 cores
+without enhanced descriptors, would still advertise an MTU of 2021. The
+largest frames at that MTU need the out-of-spec 2047 byte buffer. If that
+hardware handles an unaligned RBS1 the way the H616 does, those frames
+would span descriptors and be silently discarded. On 64-bit or 128-bit
+buses the aligned size would be 2040 or 2032, so the gap would be larger.
+
+Could ndesc_init_rx_desc() program an aligned RBS1 instead, with the
+ndesc max_mtu in __stmmac_dvr_probe() derived from it? That would remove
+the need for the hard-coded 2044 here.
+
+Neither the code nor the commit message explains where 2044 comes from.
+
+[Severity: Low]
+Was 2044 measured only on the arm64 H616? There NET_IP_ALIGN is 0, so
+RX buffers start word-aligned at page + NET_SKB_PAD.
+
+On the 32-bit sun8i SoCs (H3/H2+, V3s, A83T, R40), arch/arm does not
+override NET_IP_ALIGN, so the default of 2 applies. stmmac_rx_offset()
+includes it in the DMA buffer start:
+
+static unsigned int stmmac_rx_offset(struct stmmac_priv *priv)
+{
+	if (stmmac_xdp_is_enabled(priv))
+		return XDP_PACKET_HEADROOM + NET_IP_ALIGN;
+
+	return NET_SKB_PAD + NET_IP_ALIGN;
+}
+
+So every RX buffer on those SoCs starts 2 bytes into a 32-bit word.
+
+Suppose the EMAC DMA rounds its fill relative to the start address and
+not only the size field. Could the usable fill on the 32-bit variants
+then be below 2044? Maximum-size frames at MTU 2018 would span
+descriptors and be silently dropped again.
+
+Could the commit message say which SoCs and buffer alignments the 2044
+constant was checked on?
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261122-sun8i-emac-mtu-limit-v2-0-c4081e5b83cf%40gmail.com
 
