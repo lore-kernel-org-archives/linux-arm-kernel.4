@@ -2,69 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE19606A6B2
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414A5606A692
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 09:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bX7AAuF6;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=bY/x1nM6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I1ajUa2w;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=jRITqFx8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qIJrEsV8q5q46A4SsJPRQvMZx8idsb7sIBvke3Yk/1c=; b=bX7AAuF6CWlKGD
-	xtY6WUzkKSm9G/U2V4Ksi1MElTYwBPaz1wkl1BR1YkkoI9wDZqZ0aAVgbPggouWms7qgMaVliae8W
-	3fAlMplKL109HqoFu6ZkCTLAdulQOvw/WRYmf/C23mJpMaE57ml+i8mmn2TtAwz22vjRoD0vxrBXj
-	TRwXMxTPywcxzGCY5wVDFV/Yc5upA67l8JlxpJjY8n0Uzy2EHGZ3/SHiACxrxD9T6aP7T1Jvi9s8V
-	tzkzTiNYHUrq8E/E4h0oC/tfPGaPxzQH2gNCaQx0AXmkg4JRXxWFlii48na5RJj4OIbnpXzbn846G
-	IfULSQ/Ntxf9Yfn6F+dg==;
+	List-Owner; bh=N7yDg1jS2E8ZCXNtP72vSPpBD2Z2Qt0T19MdanjZIfs=; b=I1ajUa2w0eaGoW
+	NRVpaaeXgO0NBtOddXpaE8MZoye6K8W65Dph1eREqlYMOugh9IDgASkXD4+PM1hDcakmQZq+gj2yu
+	sCbZiu09q3ERHMqrzsKxh3edLiv38C4ww3qM+uGZQAfCWbW5B64ha5gArGwCsGMWSidOKynkJX3W7
+	PBex7Jw2qH4V8bEE4F/hBMeAZBXly9yv/z2Gw7Cvt+F8GVC5m1UKy/9mQbVLtzBWxL1DbDc0D5Qw8
+	9mzrhbHaLJxTWQaPnWU+i6dq3sJYVGQkltoji+pLd+lWDwivoMMRJe6EuJ1tEF5xGTeclvLbsBpPR
+	wTEzGuA9NjWg+qykaj2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVOtC-00000002VHX-31k0;
-	Mon, 23 Nov 2026 07:55:02 +0000
-Received: from out-124.mta0.migadu.com ([2001:41d0:1004:224b::7c] helo=mta0.migadu.com)
+	id 1xVQiI-00000002q66-1zSL;
+	Mon, 23 Nov 2026 09:51:54 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVOrA-00000002UrK-1se0
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 07:52:57 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=Tw6dB4B92oC7xpmbobifcQLnjJ3eaMJDfve4ZFo9YAw=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795420374; v=1; x=1796025174;
- b=bY/x1nM64e3fEjvdFSh7LZ93NgGsJMGuQDn0JXXUvCFtmlrls7Yi2p4bR7ZG6Bn3+GeD/l0A
- bCpo8QDrAfTR1dapAgJueQdao4sr+XqL7j1UyHduDSlzq+QL1n97DV0mbPVQ47R6NYiBVQWyVK7
- xBPbqnRsIoH+2KtHC0oqqjqI=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id bbb240c3c967fa07;
-	Mon, 23 Nov 2026 07:52:54 +0000
-X-Mizu-Trace-ID: bbb240c3c967fa07
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Sascha Bischoff <Sascha.Bischoff@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Fuad Tabba <tabba@google.com>
-Subject: [PATCH 8/9] arm64: sysreg: Reject an out-of-range register encoding
-Date: Mon, 23 Nov 2026 07:52:18 +0000
-Message-ID: <20261123075219.369042-9-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261123075219.369042-1-fuad.tabba@linux.dev>
-References: <20261123075219.369042-1-fuad.tabba@linux.dev>
+	id 1xVQgW-00000002pM3-1Tkv;
+	Mon, 23 Nov 2026 09:50:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795427402;
+	bh=CPgJojwzYBCxEhJmvECCQ+W9MCWeNgq7tm1d4lpevIM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jRITqFx8dcuWF5L8ddFKB7RdkiTji2UrVdFR3yRyshOEO0LJyY6mB9jQaDW6HHRE0
+	 PWwfXI44nIZiA6T+mpabpGmephLhwESHRQKdBjgEXn0tZYV+Qwl7wb3BjJg6/nuRcM
+	 bZ0s4bM6K9oL7jWZfmjVCAbf/cL1/uVsGKUcWqMyXAikqlU1DFk++x114e87SLlU9N
+	 6msKMyRuSLvwWducNH5dEDGDpXzWLxYg9oogAwGiq6VwqDzC2zCespXEnP+TX9gmbO
+	 o0WGY8I9UuOUQeN/q9Z9JWXyCeQHhLU/MxMw6bQ25ZPRakpHDU0uqAOqEcLmR3Fnkf
+	 OR4cH11C15A5A==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 870E417E0EB0;
+	Mon, 23 Nov 2026 10:50:01 +0100 (CET)
+Message-ID: <ec9462da-2e48-4140-8648-e566da305010@collabora.com>
+Date: Mon, 23 Nov 2026 10:50:01 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/9] dt-bindings: watchdog: mediatek,mtk-wdt: Add
+ compatible for MT6895
+To: Alexander Letuchiy <asalde.le1@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Wim Van Sebroeck
+ <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner
+ <tglx@kernel.org>, Mattijs Korpershoek <mkorpershoek@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ linux-input@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
+ <20261113-initial-mt6895-v2-3-4ab0aa9fa391@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20261113-initial-mt6895-v2-3-4ab0aa9fa391@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_235256_643111_DC926127 
-X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-CacheID: sfid-20261123_015004_860428_5262C704 
+X-CRM114-Status: UNSURE (   8.60  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -77,60 +88,22 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The generator copies a register's op0, op1, CRn, CRm and op2 into
-SYS_<reg> without checking them. sys_reg() shifts each into place
-without masking it, so a value too wide for its field spills into the
-next one. SYS_<reg> then names a different register's encoding, and the
-build doesn't report it.
+On 11/13/26 20:04, Alexander Letuchiy wrote:
+> Add a compatible string for the watchdog of the MediaTek MT6895
+> (Dimensity 8000/8100) SoC. It does not fall back to mediatek,mt6589-wdt,
+> which implies the MT6589 TOPRGU reset layout, as the MT6895 one is not
+> known yet.
+> 
+> Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
 
-Require each of the five to be a decimal number that fits its field (two
-bits for op0, three for op1 and op2, four for CRn and CRm). Reject a
-leading zero too, since C reads such a value as octal.
-
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
- arch/arm64/tools/gen-sysreg.awk | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/tools/gen-sysreg.awk b/arch/arm64/tools/gen-sysreg.awk
-index 0bd6aab8aae0f..057dc98082b5e 100755
---- a/arch/arm64/tools/gen-sysreg.awk
-+++ b/arch/arm64/tools/gen-sysreg.awk
-@@ -43,6 +43,12 @@ function expect_fields(nf) {
- 		fatal(NF " fields found where " nf " expected")
- }
- 
-+# Check that one field of a register's encoding is a number in [0, max]
-+function check_encoding(reg, name, val, max) {
-+	if (val !~ /^(0|[1-9][0-9]*)$/ || val > max)
-+		fatal(reg " has invalid " name " " val)
-+}
-+
- # Print a CPP macro definition, padded with spaces so that the macro bodies
- # line up in a column
- function define(prefix, name, val) {
-@@ -198,6 +204,12 @@ $1 == "Sysreg" && block_current() == "Root" {
- 		fatal("Duplicate definition for " reg)
- 	defined_regs[reg] = 1
- 
-+	check_encoding(reg, "op0", op0, 3)
-+	check_encoding(reg, "op1", op1, 7)
-+	check_encoding(reg, "CRn", crn, 15)
-+	check_encoding(reg, "CRm", crm, 15)
-+	check_encoding(reg, "op2", op2, 7)
-+
- 	define_reg("REG_" reg, "S" op0 "_" op1 "_C" crn "_C" crm "_" op2)
- 	define_reg("SYS_" reg, "sys_reg(" op0 ", " op1 ", " crn ", " crm ", " op2 ")")
- 
--- 
-2.47.3
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
