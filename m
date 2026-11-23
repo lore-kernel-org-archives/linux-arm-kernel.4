@@ -2,75 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC516606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0A6606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:04:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m+P+pk+3;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iqHVOFQr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OFnIjnZT;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=O0vJ5cDq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LA9T27Ncxx+yiFs4glj94r98G+0HTVpceCAL9vn3vWw=; b=m+P+pk+37uq4X/
-	1OUJ4RY6a+YwYocQZ0BHIoNhZ+gWHYvu/C6u61jngeRXhZt97YzmSsut/ixTYPI0vxm2pp16j71py
-	zAgLe99ircs6KAfet+pMSSX28lLx7AmrupNb0dKKPSlDlh3kympblLPNu8AcjsoK9sk916ii2ui+g
-	h5bInR54qq4b0HxEBfCr/9vXkajFROShFJR3lDVJK7woEDFZk/JQjqRNYFoRzvesKBuX5nU1zzqOC
-	zys3WwVI3BtPfY1Gjl4m8j4AqTKUcsCwb7W7UatDNwdZXeVhmh+rD3jFSys4BBKIQZT2cZ7GSAhMM
-	PpSFkaGbBiEL+zA9mu+g==;
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=BM0F8B0uZIrlmAuRI2NRKM/dmk5YstSmP3No9fJQH38=; b=OFnIjnZTCshZWp37V34Vjr1mCB
+	vsWRIoYxwqpVtCsVtA8JlaKgqjcUjANKjyzTsjlw5W8NlZteYeKJg5yEZ3vqEZAjIhLvRzxo+iq+Y
+	LdcXAAbFabxyrb2VAkGuqFx/uhcLmQCtBIimQ7psFlYu+LgcMtjlrI9sIBX51RVtWpCFOLugjZR6Q
+	b5fl4QdXU0Fyd9WGEiRlTnsPAhe+hhZDxVoo37Wt2Ds7z0kqnOWh/sOd9G9wJoL/2YP3H0lELT1Rw
+	RN3uvlWERWt8+oL/rnZkZJpb7EUa3t0Lr535om5K58dtsml9xL3qIkZ6986F/FF+fHOV/38FDpzFK
+	MQGjLC+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWVg-000000047UR-3yQO;
-	Mon, 23 Nov 2026 16:03:16 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVWX0-000000047m6-1NoL;
+	Mon, 23 Nov 2026 16:04:38 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVWVf-000000047Tj-1bmO
+	id 1xVWWx-000000047l5-23Hz
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 16:03:15 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 02F334562A
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:03:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD3871F000EC
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:03:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795449794;
-	bh=LA9T27Ncxx+yiFs4glj94r98G+0HTVpceCAL9vn3vWw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=iqHVOFQrPft4VbHPO76CWA1BpOC8W4aQgOxO3192qIaqhDWkCGOtIb0zf/9957cRv
-	 OY85scrKfWlovZrSWtNcS3a9Q8U73Hfbm+coaw4eyVUB9BpYXPP8ufRQ1vqSyifmnD
-	 GtKhnQioCnsdrMqz0NNrpXa3I+lDjm/djiJOxcaenqqLRIsMyoPEbvKA0iIOmQ1Mqh
-	 E31X06nJhd3iS+BAkIES0Qj+kIUKrBf7FuZhY3tvLO7x6ZOFXEiTju2n2L6cG8mxtq
-	 GvbRtan+t8cXskamWaKeYYP9GvQgPhtp4s9+xxc2Rc3UJiBh83g5C7ROESeB/qhE/k
-	 2vch88fK6Jnqw==
-Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-1a3c08d6928so4811540c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 08:03:14 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErG0etui41rYNlW/E6ysyOyfq2JFls4Ecg5UYcTtYRCCd0d/2xxBidBgyrFqBAgoRDwWMNcmhMawQZlWn5W6jASz@lists.infradead.org
-X-Gm-Message-State: APuU4Z9009sZUOL/eR7clHOlyXWAbR0fSIWyR9nnX2zF8lZHtVGq3AcQ
-	T7sYGgcOSmMdCKh+5uiYECZwvMmWpjvK/2JUUnBNpchk8KNQK+CUK405bcUrjZl3MUYE4kunPSe
-	RlWBqfU8V1iOkglxRX81hAsLK4DINBQ==
-X-Received: by 2002:a05:7022:f118:b0:159:2c6d:fcc3 with SMTP id
- a92af1059eb24-1b5568d34cbmr10453148c88.33.1795449794126; Mon, 23 Nov 2026
- 08:03:14 -0800 (PST)
+	Mon, 23 Nov 2026 16:04:37 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-4a5024b3c28so2667764f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 08:04:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1795449873; x=1796054673; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=BM0F8B0uZIrlmAuRI2NRKM/dmk5YstSmP3No9fJQH38=;
+        b=O0vJ5cDqcgl0SgZgKYQP050OpDQZp+0i/7J0GCXttxpvdMEh10LKEps29ZLjZkhqjS
+         x84AFbzwpYq9cUImik7yR0LUnXtmjpGDu2LI0fCJkDE85jRjgMdmK+Kw/QLY571a9QM6
+         f1rN7/2+p02A/hnlR8GQqSGBJ3ioZ/MHogae7+6+pnvFd6vtKIw6PV/jn0agNchur2Zo
+         FMrYdtAG45yhcykG840VdgK45XfCZuUqRt8pd3+5eo5jJK8A1rtIZkJ0XdjqiPe/T18L
+         ZPPJNUhD2CshwT7qtbIwEqdLgN8u+2odBRhVm6gg7isSzdeB4O0VeGkXzIfwrP3BrZrn
+         g5xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795449873; x=1796054673;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=BM0F8B0uZIrlmAuRI2NRKM/dmk5YstSmP3No9fJQH38=;
+        b=QeDDsE668RR6khDH/acHk5SdHveYBX2i9859bD5AWtEav6Q3RnJmLgI6SUBIfjJSIc
+         hCZPNRv51p2DSC5vmiqx7SxIEtvZnEhNWW2/n8T60dKadibz0CzFct/9wZ6b10b08N1/
+         Nnsku5mxIAbrOvk+UDv/BG4t2ELuGbezSNezaApmfJmfki8blCYHEvwinKH1CybpZcCU
+         v+BmAj3uhqUZneDyuWXHb5skVTXgUnUKwDQjqaVvCY4HPooKuOU/zHBYXhu7fBL13UI6
+         00NiEWpMKffGIyVmhdQoDF9SgQmhxM/PUvYyaZKSWCm2Q9/rx/3x5CAw2aGxvvsBsUnx
+         bwQA==
+X-Forwarded-Encrypted: i=1; AL+hErHBMoTtJTWKGUnf+uIx1hBoROpEhbNZTySTeH+z7Yqn/ArencrxIKD/Al7R/uXMkdullgQJrZli9mVchpAfsIhW@lists.infradead.org
+X-Gm-Message-State: APuU4Z/FTZ8XvD7a1b0ovEdDQSALWWLq0csYR2a9wwVe35/YJ5Nokzl8
+	tdVJvNMmbkFOPupPF7/03YPsNZayp0UeoPX91PE+PQGlL6TgQrWEYi6GXNlEEbtfglr5EdGJ0k8
+	lZQ75
+X-Gm-Gg: AZFdTZeRw/fUA/xadZqxOi3J2UwNaIGwICgfBPSBCIXHNHf1Q7fI0lKCWKmJj+7oABP
+	F55u8aghgIup9kaS6pnixwRC4IT72jk8MBUuxBrrDpMYOv1f0vmDB0WGNqbrAk+B4GbYf+ZWkcl
+	KjdX/inpKd05DnIpZNlGkWJZIw0ICNCSz67w4pPEJzOifs5VfKtQT0kf/0U795mZDP5DU+zipPP
+	bLllYcfBhvwrQYOZdv1ejGWEr2iwMenP8myvWIvmZhW6tA805qRTQEb2lTb4H2atRApH0NSx1GP
+	HnYkI9vORGzPQnrqSvfcfP+kJphkihtP8cETm0zbIYpKIp8qXsj4eqdd1gNQt7RXEUfq28v+IuR
+	MxT9G4oWToECASuE2KKmlb1wyC0f4jHR35n7abSs/jPL+C3YeRHgQXg2mrXjNORbVSKEV33Ptj8
+	gu2Ql6lTTN1f6Hmz6Y3pqU7jNTCKMVjJpWLaSUZDOiEK3IYlJugQJbF1DXZKNdxp0f4UFjMIhcq
+	A1hGnY8zVTCylbS6wcCLJxcISDHfbL9gpihW1ZdNIufITb9qLtDfSzmvOG9gFFZHOukSNGoKfUq
+	PWDl5qarHsRzkGrkEjYpmJAfS/y2h18Sw8zZYddcFziKpFx15iCJWpacJn1wIk+QfWE1nhdKeKU
+	X3TQTeqHOz5VwIAqC
+X-Received: by 2002:a05:6000:4310:b0:4a9:6c58:178a with SMTP id ffacd0b85a97d-4aa55bfeb43mr30234907f8f.12.1795449873436;
+        Mon, 23 Nov 2026 08:04:33 -0800 (PST)
+Received: from localhost (p200300f65f19a90445515a0bd0762d9c.dip0.t-ipconnect.de. [2003:f6:5f19:a904:4551:5a0b:d076:2d9c])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4ab6c340df4sm26507719f8f.55.2026.11.23.08.04.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 08:04:32 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>
+To: Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: Neal Gompa <neal@gompa.dev>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] Bluetooth: hci_bcm4377: Use named initializers for pci_device_id array
+Date: Mon, 23 Nov 2026 17:04:21 +0100
+Message-ID: <20261123160421.3227994-2-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.56.0.rc1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261106103932.1219696-1-fshao@chromium.org>
-In-Reply-To: <20261106103932.1219696-1-fshao@chromium.org>
-From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date: Mon, 23 Nov 2026 16:02:57 +0000
-X-Gmail-Original-Message-ID: <CAAOTY_8GoSOkVYeH6qGYxidNJaHF+5sOBs9rbmNNT0JTRRyUhA@mail.gmail.com>
-X-Gm-Features: Aa3M54pCW39BI00fZZY2JtJokM0N_1IJyOAlnAV7U4nNlRDiy6OFr5lwg7Buxk8
-Message-ID: <CAAOTY_8GoSOkVYeH6qGYxidNJaHF+5sOBs9rbmNNT0JTRRyUhA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/mediatek: Validate gamma_lut size
-To: Fei Shao <fshao@chromium.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, David Airlie <airlied@gmail.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2285; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=oBOBpE2L2GptXbojrM0cYbgWlJFm1d0CC7BXFv6hEeo=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBrBGQF87UbSoNY7tEf7OIpBMP8e7ER1F3nxV2e5 /rXR5oY4lqJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCawRkBQAKCRCPgPtYfRL+ TsNtB/9VbcpdzRp2saBCj7NASZGY7gQVockWHmQ2ik42IgaMyheB2m3F2iJvDHu66R8Vo52mTjs DiDGZuGAxkt1AVME1/0+H9ol8iZ9PxLZu3K8lXElNfiHuiVOG03YQwrAjVgEf9nzKVKugZaf6Th Bby5V63KB0yw3wO5GlvBxuOt2y7m+cu30Pw0RG9+Rw9+f/lbzi76ozzNRPjlzLmxE6JnH26LPjn pSgJ1bw6gSOBiZIxwOMLgX1Qwi4FsN4b4GN4s6hdhniV6bi+yJnzuwxIgp0H6UyOQVD7PB+qopi 70N+dlezC+ptpqzmmG7SgoDKO1oub3JyNF4zngG11HWyz/AA
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_080435_543181_2750B611 
+X-CRM114-Status: GOOD (  15.14  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,36 +109,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Fei Shao <fshao@chromium.org> =E6=96=BC 2026=E5=B9=B411=E6=9C=886=E6=97=A5=
-=E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=8810:39=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> The DRM core checks that a gamma_lut blob is aligned to
-> sizeof(struct drm_color_lut) and at most GAMMA_LUT_SIZE entries, so
-> shorter blobs still reach the driver. mtk_aal_gamma_set() and
-> mtk_gamma_set() read up to the fixed hardware LUT size, which is an OOB
-> read when the blob is shorter.
->
-> Add mtk_crtc_atomic_check() and reject gamma_lut if its entry count does
-> not match crtc->gamma_size.
+Initializing a struct using list initializers is hard to read, compared
+to that using named initializers is more ideomatic. Convert the macro
+used to assign values in the driver's pci_device_id array accordingly.
 
-Applied to mediatek-drm-fixes [1], thanks.
+This change doesn't introduce any changes to the compiled array on an
+x86 and an arm64 build.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-fixes
+Acked-by: Sven Peter <sven@kernel.org>
+Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
+---
+Hello,
 
-Regards,
-Chun-Kuang.
+this patch was send before back in July (available at
+https://lore.kernel.org/linux-bluetooth/20260718172513.986134-2-u.kleine-koenig@baylibre.com)
+and before that in May (available at
+https://lore.kernel.org/linux-bluetooth/20260504160940.2168650-2-u.kleine-koenig@baylibre.com)
 
->
-> Fixes: 2f3f4dda747c ("drm/mediatek: Add gamma correction.")
-> Signed-off-by: Fei Shao <fshao@chromium.org>
-> ---
+The feedback on that was a linter error due to a trailing whitespace in
+the cover text that doesn't make it into git and an Acked-by by Sven
+that I added above. I rebased trivially to next-20261120.
+
+Best regards
+Uwe
+
+ drivers/bluetooth/hci_bcm4377.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/bluetooth/hci_bcm4377.c b/drivers/bluetooth/hci_bcm4377.c
+index efd3a6424301..ab5a593ec0ad 100644
+--- a/drivers/bluetooth/hci_bcm4377.c
++++ b/drivers/bluetooth/hci_bcm4377.c
+@@ -2525,11 +2525,12 @@ static const struct bcm4377_hw bcm4377_hw_variants[] = {
+ 	},
+ };
+ 
+-#define BCM4377_DEVID_ENTRY(id)                                             \
+-	{                                                                   \
+-		PCI_VENDOR_ID_BROADCOM, BCM##id##_DEVICE_ID, PCI_ANY_ID,    \
+-			PCI_ANY_ID, PCI_CLASS_NETWORK_OTHER << 8, 0xffff00, \
+-			BCM##id                                             \
++#define BCM4377_DEVID_ENTRY(id)                                                 \
++	{                                                                       \
++		PCI_DEVICE(PCI_VENDOR_ID_BROADCOM, BCM ## id ## _DEVICE_ID),    \
++		.class = PCI_CLASS_NETWORK_OTHER << 8,                          \
++		.class_mask = 0xffff00,                                         \
++		.driver_data = BCM ## id,                                       \
+ 	}
+ 
+ static const struct pci_device_id bcm4377_devid_table[] = {
+
+base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
+-- 
+2.56.0.rc1
+
 
