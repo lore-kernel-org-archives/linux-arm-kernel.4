@@ -2,118 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7100606A31F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D06606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XvN6DI7+;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=h4kS87YM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B3lZRc1x;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=SKG4uQkI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=n+j7JQq7bAOQ9NxHtgY5eV6al7EOgUbRC6r9lYqsMuA=; b=XvN6DI7+n8UCN3jexokkhNxb3X
-	0E0t0vbAYBZErgDq/7/B+cGhzVK9oZHmX12oCYw2QmRGJGdyPK1yKzFBnL55eNMr/t6HpEqBQe8d0
-	POAzmxxLTKam96VNPWxnm72QIj2wR13c/hFw1bRAQdkFLr9KWLAoXlXk/TAjDbTGYe3HrAF/MCR+Z
-	ogX3mVVXL1wStvIaKUAZRdp5KeAtXk264Zt+TOIybqdObkCj4ZiDcnVziWQRgcJTWbXYi7WaCugOO
-	iwdBEuDYJYHsW5faII3TbQO7o3kJPjb9qLUdAMx0dz0bNi4mytT4tAGudaF/9SRxpSVU90qf5zqau
-	DAOUICow==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wfoqPgqjOoBEdt77NL+di01ivSMv9tm+04A93YFGYZ0=; b=B3lZRc1xxv+0gR
+	Mp95evcrPluQ+pvDb2ouG2H416Pzs3v64p9tw1dVWxVzLB2c/A/DsOQlok/kzgXEKMvZ6qyeuWr40
+	GN0qs5KKsnDjUbEcJmc2xCSQlkL/m7hLWqW8UOyYjTUikNdqoTe+ZUyFyKcIsHjXjAZJM12T66Ndo
+	2o3XQ3uGHRPRwVJzScsrBbfMPSGBzj/LhIM02n4U9I5mj71mArInpyW3VgzFzU8s0nDJSMqp5V+pg
+	9ftbArpJMCy5HzLUMInNWVSFXrRxgkGEDqm7xkpsvmiB6DhPsGx+sq+4ofksoeVdjv4VSZHEOzibu
+	f8O4k79n8s+Z83N87QjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS4f-000000036gJ-2e7H;
-	Mon, 23 Nov 2026 11:19:05 +0000
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+	id 1xVS4p-000000036qu-3G1B;
+	Mon, 23 Nov 2026 11:19:15 +0000
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVS4a-000000036bH-18rC
+	id 1xVS4c-000000036dQ-3QiU
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:19:03 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-c50ac25cdd4so425276066b.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:18:59 -0800 (PST)
+	Mon, 23 Nov 2026 11:19:05 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-4aa5833c263so2993888f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 03:19:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795432738; x=1796037538; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=n+j7JQq7bAOQ9NxHtgY5eV6al7EOgUbRC6r9lYqsMuA=;
-        b=h4kS87YMr18TYFGt6GVAYeopQtrfmUGg5CZwDWh2kJc8L6N7rDUZWBoBQvWzPV2ZY+
-         UdyAcJYqUvw6eh8qFxhhZEJdZiRlrtV01CYPeCp5VS1AilBCb41kanb80PcVmRUtZLv4
-         NS3IWSVCKyxlgTyIYUfu1HHcMkVLp+6xL9YfBVLMbkncusVYvx1aBbtUrqatQI1lBaYG
-         UcgAv8H13hZGIKJJXWCm8cobaUo+5yRoRH8912OFVi8zhIBkr/JxxBDIK3K68Th+4vB1
-         RVkaJlfdbg0vO/3QWhdvoxc0YkI2m/cPnPzXqxpaOyjMz7N4Hj4j2BdMnEphOx1d1zRR
-         1DiA==
+        d=baylibre.com; s=google; t=1795432741; x=1796037541; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=wfoqPgqjOoBEdt77NL+di01ivSMv9tm+04A93YFGYZ0=;
+        b=SKG4uQkIJ8oyF8lSqOmujWpF4Ya3aQtVGdz1u8FaiTfQi0upGY7eJbNBBwIzMAFtLb
+         ZL9ku7lHl7s8WQEeOU4V3YJamr5P2MpSXEe8NIqhqBBo1ohUl3xqVWWCTAKkm9YChEjz
+         Vd7cbAf4C/tcHmpx45NqcZMTN7yt/ldarKJ3nHN69BjcJhk2v+xzXC1KlU6lkPLw7OTg
+         n8Fs5oCVlTeKHBEprmTJ7Ktn5yB9xAnYV+5ImPWp/10TcfiarqFY6Smg5A7i7+77XMsM
+         dUcOxqxfXFvgE+CjWnJVduZT6P/Kjs9Kr2063fgnRjIoXnnISj4rTqTuGXflYaIOrJCB
+         yFxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795432738; x=1796037538;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=n+j7JQq7bAOQ9NxHtgY5eV6al7EOgUbRC6r9lYqsMuA=;
-        b=zVWLPK6Fp9Xe9s3czkrko8vuI9YvpZC5h3NdzpGvWL/733AtuLTxpxTwMYV6mnOjFx
-         pbH6PBHZbydPqNBXItsumPlkztevTu8iZNOEpPYP5YGRgzibzVe0FeoQ4IjBwSxudA5q
-         aQ3yvbE4CPbOVbMehKmW2oxNviJcQsU2kcJJiu/QOGy888SpCsuHTd1cAQ3CdpCNRi+y
-         z5c4TM2c9yB4g1v/BLY8GHu192C5Ng087lP0Ne6zKpzWyACerWwz6ewDqB54vWU6I9u7
-         e9d/O96wsdy4XF4Bk2V05m66V9d6pX27/rrghPBDJdPYVgC+J8+y/+FX2QAHsSr7i4Gy
-         /hQA==
-X-Forwarded-Encrypted: i=1; AL+hErHxToVViAbPV5d0IoQRyL9CIYk1j5ieg5Tb4z749j1lRNCodQAUm9EGrLQ4/IA39heVr+25j/8gQ9XakbFZ/q7R@lists.infradead.org
-X-Gm-Message-State: APuU4Z8mVenPQdHeEIXcvHvggrKJiskBIBmqfunk3tUnXLGvcBG3ECC5
-	aXLhWc5vUXHbrhae+2tzTyjC1be/bqkkLtMH8qnSMsH+6bu3tZ/8sd1+
-X-Gm-Gg: AZFdTZfFOG7dHD192lg2tXzJdnv5Jp3kHyUeLUTSleO16E3zMpFi0nROllDUDHmJsBv
-	hi3ghcB3bcrzlSk135xl+PONJ8HOyXtQZzF0O+pqr14LStJbJYc0aFamvWD2P/P79dnpiHJojJq
-	qkJirI3cFc6VtNQDjXRvxTRITITjZ/8Y0mtjg7sVgjU45r/qRVibRKcRT24yudA8V2xjHRkM1T3
-	pT/k1YhYhR1ftmufSYilV9NBpp6xZYxYzZqDgqT0ZE/Yc4OQcWnb6iz16+YkJ62cHWogXchkVuJ
-	YTSygnoba9sb0LaauVA5NIsE+lKIvIhWRcIkhgpl7YBKIZV0KE1B2QHzu+4jFXyTOGvxha3vtb/
-	Eyrs4PiCOwMG/WPDYu5nB2Du+/IAyqqdO1Dh1ZqRzIUThwrFsQzWtJwGqSqxPGZlGs3W20jWb9B
-	VOshQMaBnILkRtk/q856UqfajArUmVhnYEtx820mEr+OfbBT4zh8/k6fKM5HJyD52UA3NodWyk7
-	CdXU82Z+nMxRe3W0e+/RiY41wtoKQ6T5WPcmY+bQXyVHQTa43djSL7pX5VDyFCSvfveSwwkDH2P
-	/+izCtkLH17xp1OUX8HnRrB+/DRH54pi6geqtHbdDc9PgEbdFOyvbrQ5vIFV57Pd6g==
-X-Received: by 2002:a17:906:6690:b0:c4d:167d:dcee with SMTP id a640c23a62f3a-c513aabb216mr686937766b.40.1795432737778;
-        Mon, 23 Nov 2026 03:18:57 -0800 (PST)
-Received: from [10.120.183.232] ([50.7.123.82])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c513afc679bsm392442266b.63.2026.11.23.03.18.55
+        d=1e100.net; s=20260707; t=1795432741; x=1796037541;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=wfoqPgqjOoBEdt77NL+di01ivSMv9tm+04A93YFGYZ0=;
+        b=Rnm1TrzM8Mcx7SBgFNQnqdgNDRx7z9aqYV2eN4EXa4JgtSHaXAqg3ldSqS76he1uxm
+         fCYTH/gNXHRi+x0/hWzQOl4W5tV59iNV5ZTmy23H4X3OYCfiAIIc2q3Y8aVwb9kHNjs0
+         fc51p7CbG6/2fKU4g78dDzI9aCocW9lpWqzqs4k5tRQ1imKlQA++F0VW6RFcNo5j/npc
+         CYl2q3HBHoMf+a9mlIcO4kSFBPfXJt58EUkLusZrbk8BeXbUFpwcwZUpGo1boIDXHUJy
+         3KOptFxJEE+kEW4X354mtJ6hsjqGXkRH+O43LAOasdC8p1V8/I0/nmJiinOrr4JAi8No
+         e4VA==
+X-Forwarded-Encrypted: i=1; AL+hErH4Z6eU+eWBTbdmoPUnM4jSLsNuG/TySYPefF/y+edZfWQDqOdsTwgj3OZ0qGuFUjabSXoJhjzx6FdYXhrHCqkW@lists.infradead.org
+X-Gm-Message-State: APuU4Z9qa35pTDNKs0LC9W5B1oDatbjSZbVtzKeDyV624oJ7HKB5gVYP
+	6lHrMuXVrcLKalwpsjlNVtVnoluKnai2agdFh2VB6HX3NHQhjfqw/42po30L3742q6E=
+X-Gm-Gg: AZFdTZeMafbkzMONBcQQGc08DPQ6Tq+bQzrY/aFwYECD4NJvpO1Wng1srKBQfkINs2w
+	00VZ46bznAiLp072U9/lhLkIX0LgrXOxs2wrub91UmVoHsqwSHEiE7mRw/gR7X0sEzvqI5x9oDj
+	kZziA+QgXZiIdpqQKEBcwkiQFTCe6GtXmbOeqGfE/PXaROEIpMWoTQPqlixd31uIIKzClJ9Dj0B
+	dqqcqt5tD2Dz9gTagSotJHLq5cTjLpSUPM9R94eRDjNm77nE51K71+0ctiQAVzrATVEn2hgD3aE
+	IliO4WQLSfNQCO4W/ZJQPx/g9e70Grs++iw+3Wc/qFFhOEzg7c5+TEgRqJZSoiSBzp1pEY86o4R
+	4WQ4NfxIRmNX3LZ81lf/g1QAB4vze4xYwU4P8DXiltrQ8WyC9LLR6znzdRDN0lAmXPARjwBzJY6
+	enK2T/ZT5I1Af+unwXGR9r9SpkkqI2tPtes/T+/dbP/FFJ16T3we8cb1qOccwCd4U5arzkxolCM
+	rEdlxP8Yke/qW7VybTmlXoEAMwVrBxm9/7AAZIKKUCfi8Hnhc5gbxJnrlICbrTlcHxJ9iu+1L8r
+	K3pp2Bi+S8Pi74mysmXtNP9arIkGfPqV3pQN5mZ9t0FXLKru6UUqh5Y7mKIQwxdKcB9Zx8XNQcD
+	mpo0a8MifedDLMB/i
+X-Received: by 2002:a05:600c:6749:b0:4a2:1867:10e8 with SMTP id 5b1f17b1804b1-4bb8881a294mr230949095e9.25.1795432740837;
+        Mon, 23 Nov 2026 03:19:00 -0800 (PST)
+Received: from localhost (p200300f65f19a90438645cebc2ee104e.dip0.t-ipconnect.de. [2003:f6:5f19:a904:3864:5ceb:c2ee:104e])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb8526cbd0sm451761005e9.0.2026.11.23.03.19.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 03:18:57 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-Subject: [PATCH v3 0/7] arm64: mediatek: Add initial MT6895 and Xiaomi Poco
- X4 GT support
-Date: Mon, 23 Nov 2026 14:18:33 +0300
-Message-Id: <20261123-initial-mt6895-v3-0-95c46597e63d@gmail.com>
+        Mon, 23 Nov 2026 03:19:00 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Lee Jones <lee@kernel.org>
+Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>,
+	Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	mfd@lists.linux.dev,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Linus Walleij <linusw@kernel.org>
+Subject: [PATCH v5 02/17] mfd: bcm2835-pm: Drop unused header
+Date: Mon, 23 Nov 2026 12:18:00 +0100
+Message-ID: <a9189a77d973c1de0919e677b3aa2356987cd189.1795431460.git.u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1795431460.git.u.kleine-koenig@baylibre.com>
+References: <cover.1795431460.git.u.kleine-koenig@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/12Py2rDMBBFf8VoXRk9LMkypfQ/ShdjeZSo+JFKi
- mkJ+ffKTqBNlxfmnjn3QhLGgIl01YVEXEMKy1yCfKqIO8J8QBqGkolgQnPOGQ1zyAFGOmXdWkW
- 5Rs97DuiVIqV0iujD1w58e7/ldO4/0OWNsl0cQ8pL/N4/rny7u8OZEpxpIWolpGkM5RQSjAPWI
- /LXwwRhrN0ykY26ij89Lv9LrYIy2kDPAKwHaR/q15tVxM9zWZtvqmTClGBf21XPd25LT2F2OT5
- ymRGta3AYHLhf7ss2rYeEtIQp5K6yzKI3YEEyD1xa1BaVUig107plXjkHxghdjK4/QrqXzIcBA
- AA=
-X-Change-ID: 20261110-initial-mt6895-16ef1b1aef55
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, 
- Mattijs Korpershoek <mkorpershoek@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-serial@vger.kernel.org, linux-input@vger.kernel.org, 
- phone-devel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Alexander Letuchiy <asalde.le1@gmail.com>, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.15.2
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=861; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=NEe9YBbMZXMEbXYJMX3Yb/1ndoZ/Dmuud2fnIKbLu4s=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBrBCDsN9DaGbH4sRvm1kmMVMoZQoYD+THO7sMJq c5fvKlpPEWJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCawQg7AAKCRCPgPtYfRL+ TohNCACV8HRlC7pWjZBnU0TL84vAdSWAfOva9050R6uNV8ih8XuaoI0NfZEX0PGyUeuRt8bs4dM v2XA5PW6cc1tr1+JGiM70igioPAzQU7KobIh0gdtSGT2PiITyNZY7ZlAwcDS69V/EIqrOPvUJ8G iXXu2csZXsOmU//uNaOz/GnDIqoJjl4hQkzXnvBiIwRbv453hOVxYR1Gv3GQCRSZ0160OxLIjPr JsbSXt4Vu2XINOJwlB4uDWvQRb7Hb1Q5aTPXdXUYm6IGCcKVhFBLGLPzGyBKCC7KbQofxcwzj0W 0zirKNJvCxvPazYCUkPlfQT0E7koHud2EKIx+tnvDU4Fke5i
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_031900_382683_CF9F76DD 
-X-CRM114-Status: GOOD (  23.24  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261123_031902_969922_16E203E6 
+X-CRM114-Status: GOOD (  10.54  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,148 +111,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds initial support for the MediaTek MT6895 (Dimensity
-8000/8100) SoC and the Xiaomi xaga board, sold as Xiaomi Poco X4 GT, Redmi
-Note 11T Pro/Pro+ and Redmi K50i. It is enough to boot to an initramfs
-with a serial console, CPU idle, the CPU and DSU PMUs and the volume down
-key.
+From: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 
-Dependencies
-------------
-The SoC DT describes the pin controller and the board DT uses its pinmux
-macros, so this series depends on the MT6895 pinctrl series:
-https://patch.msgid.link/20261118-pinctrl-mt6895-v2-0-0728c4eddcac@gmail.com
+<linux/mfd/bcm2835-pm.h> doesn't use any symbols provided by
+<linux/regmap.h>, and neither does any of its users (i.e.
+drivers/mfd/bcm2835-pm.c, drivers/pmdomain/bcm/bcm2835-power.c,
+drivers/watchdog/bcm2835_wdt.c).
 
-Bootloader dependency
----------------------
-This was tested with a modified LK bootloader that is not public.
-The stock LK cannot boot this DT, as its Android fixups expect nodes
-that are not present here.
+So the header is unused and can be dropped.
 
-The DT relies on the bootloader to:
-
- - update the /memory node
- - add all firmware carveouts to /reserved-memory
- - pass the command line from the boot image
-
-The carveout addresses are therefore not listed in the DT, as the
-bootloader allocates some of them dynamically. I can describe the
-fixed ones in the DT if that is preferred.
-
-Firmware behaviour
-------------------
-Two things in the stock TF-A affect what the DT describes, but not the
-DT itself:
-
- - TF-A rejects CPU_SUSPEND for about the first 40 seconds after boot.
-   The vendor kernel lifts this earlier with a SiP call, so with this
-   series the idle states only start to be used after that time.
- - The DSU PMU registers are lost when the cluster powers down. TF-A
-   can preserve them (PRESERVE_DSU_PMU_REGS), but the MediaTek firmware
-   does not, so DSU PMU counts are only reliable while the cluster stays
-   powered up.
-
-Testing
--------
-Tested on a Poco X4 GT with 8 GiB of RAM, using a minimal config and a
-script in the initramfs. The results were:
-
- - All 8 CPUs come up and match the DT (A55 on 0-3, A78 on 4-7), and
-   CPUs 1-7 can be taken offline and brought back through PSCI.
- - The cache sizes and geometry in sysfs match the CCSIDR registers on
-   every CPU.
- - The redistributor is found for each CPU, and timer interrupts reach
-   every CPU.
- - Once TF-A accepts CPU_SUSPEND, every CPU enters the CPU and cluster
-   power down states, and the system timer wakes them up as the
-   broadcast timer.
- - Each core PMU counts only on its own CPUs, and its overflow interrupt
-   arrives on the right CPU through its PPI partition.
- - The DSU PMU counts, and its overflow interrupt arrives on SPI 18.
- - The pin configuration of the UART0 and keypad pins matches the DT.
- - The volume down key reports presses and releases, with no bounce
-   through the 32 ms debounce.
- - UART0 output works at 921600 baud, and its TX interrupt fires on the
-   expected line.
- - About 7 GiB of RAM was written and verified with no errors, with the
-   carveouts added by the bootloader.
- - The watchdog resets the board once it is no longer pinged, and the
-   ramoops console log survives that reset.
-
-UART1 is disabled and was not tested. Only a minimal config was tested
-on the device, not defconfig.
-
-Tool use
---------
-The commit messages, this cover letter and the test script were
-drafted with Claude Code (Claude Opus 5.5). I reviewed them
-and tested the result on the device.
-
-Based on next-20261120.
-
+Reviewed-by: Linus Walleij <linusw@kernel.org>
+Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 ---
-Changes in v3:
-- Drop the watchdog binding and driver patches, they are now in
-  linux-next (next-20261119).
-- Board DT: use a zero-size placeholder for the memory node,
-  instead of hardcoding the size.
-- Board DT: order properties alphabetically.
-- Board DT: drop Angelo's Reviewed-by, as the memory node was changed
-  beyond the requested property reordering.
-- Rebase onto next-20261120.
-- Link to v2: https://patch.msgid.link/20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com
+ include/linux/mfd/bcm2835-pm.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-Changes in v2:
-- Describe MT6895 as Dimensity 8000/8100 in the commit messages.
-- watchdog binding: drop the mediatek,mt6589-wdt fallback, as the
-  MT6895 reset layout is not known, and drop Conor's Acked-by.
-- New patch: add the MT6895 compatible to the mtk_wdt driver.
-- New patches: system timer and keypad bindings, pinmux header.
-- SoC DT: add the cache nodes, CPU capacities and idle states, the CPU
-  PMUs with PPI partitions, the DSU PMU, the system timer with a 13 MHz
-  clock, the pin controller and the keypad.
-- SoC DT: use IRQ_TYPE_LEVEL_HIGH for the architected timer PPIs.
-- SoC DT: order the nodes as required by dt-check-style.
-- Board DT: add the UART0 pins and the volume down key.
-- The series now depends on the MT6895 pinctrl series.
-- Link to v1: https://patch.msgid.link/20261105210622.523747-1-asalde.le1@gmail.com
-
----
-Alexander Letuchiy (7):
-      dt-bindings: arm: mediatek: Add MT6895 and Xiaomi Poco X4 GT
-      dt-bindings: serial: mediatek,uart: Add compatible for MT6895
-      dt-bindings: timer: mediatek,timer: Add compatible for MT6895
-      dt-bindings: input: mediatek,mt6779-keypad: Add compatible for MT6895
-      arm64: dts: mediatek: Add MT6895 pinmux macro header file
-      arm64: dts: mediatek: Add MT6895 SoC
-      arm64: dts: mediatek: Add Xiaomi Poco X4 GT
-
- .../devicetree/bindings/arm/mediatek.yaml          |    4 +
- .../bindings/input/mediatek,mt6779-keypad.yaml     |    1 +
- .../devicetree/bindings/serial/mediatek,uart.yaml  |    1 +
- .../devicetree/bindings/timer/mediatek,timer.yaml  |    1 +
- arch/arm64/boot/dts/mediatek/Makefile              |    1 +
- arch/arm64/boot/dts/mediatek/mt6895-pinfunc.h      | 1524 ++++++++++++++++++++
- .../arm64/boot/dts/mediatek/mt6895-xiaomi-xaga.dts |   87 ++
- arch/arm64/boot/dts/mediatek/mt6895.dtsi           |  461 ++++++
- 8 files changed, 2080 insertions(+)
----
-base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
-change-id: 20261110-initial-mt6895-16ef1b1aef55
-prerequisite-message-id: <20261118-pinctrl-mt6895-v2-0-0728c4eddcac@gmail.com>
-prerequisite-patch-id: 68c077b6ff907e42d02115ed9b95bb5349eae7ef
-prerequisite-patch-id: b404409a8981e9d462b7fdb6eeb092c69bba50bd
-
-Best regards,
---  
-Alexander Letuchiy <asalde.le1@gmail.com>
+diff --git a/include/linux/mfd/bcm2835-pm.h b/include/linux/mfd/bcm2835-pm.h
+index f70a810c55f7..12bb6bc2c07f 100644
+--- a/include/linux/mfd/bcm2835-pm.h
++++ b/include/linux/mfd/bcm2835-pm.h
+@@ -3,8 +3,6 @@
+ #ifndef BCM2835_MFD_PM_H
+ #define BCM2835_MFD_PM_H
+ 
+-#include <linux/regmap.h>
+-
+ struct bcm2835_pm {
+ 	struct device *dev;
+ 	void __iomem *base;
+-- 
+2.47.3
 
 
