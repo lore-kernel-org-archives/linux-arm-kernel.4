@@ -2,80 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 950FE606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577DD606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dHHfHrGN;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=OGx4r+fe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RFd4Maq8;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YSUEm629
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=QjXQMNryhuvAvTuJVIUvtiTRHIcheq2l+6vCggwxoWY=; b=dHHfHrGN/Y8k7qmvrAsEYwW2H+
-	9dgB1hJt/EAvoz07CQwjcRJ559Kq5T6mS5501WQnJb2rIiJuiDrDp9grFQp3EGKswGngzerbum2iS
-	zpIy/kx1LFIVBMfJtXx/60U1Of+KbNSjPTGV5KzT38HKj0kFmtEISVja3PIjywf47IWE7yosda9vj
-	zOnsUUNKFe72Yg8XMKiKQYiSbcRQobABluAa3dLcjZCG8E6IIU1SN+3NuO3AYT3uXbpyIfA+veirh
-	1HUi9PVu8BeBqx/oJmHINSklCj99TndOeD+d5Lf/BtIQdmlOik1Vpfw4SXmPrMeX3dFZ94iOkcgUv
-	fGb3nTKA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=yS1PD/mSABpPWdi3YyNUmeRXH9kC13Aa88IyEkHWUUQ=; b=RFd4Maq8bv885H
+	7REtkKLrM0IdtuDALgTz8tEukhMHbFgt2nWO/YTuyR3MtXocpVbZGwhi6neRZAIziXxCBs20Bt15B
+	SYb2Ejbrris6R54dtqBet6mzm4xyf7sP08eHIWmnyl3do3bbQv4umbJji38TT2RG//tftP3tzXNLq
+	td0FwYiBaGU7pvYHRXLqQfGO7rg1tEuNitk3dRzniFBKosmgFzBQcEK1+AVD4BbgGFKckx/VnPBpc
+	TLI8ToV9zSly5XU67TuvUgagtWP0vLMhhc4aT78Q9T9uMeYEUr5r7HdgXOL2J7ScMS7/VRAWo9Oq2
+	1rsurJK9J+OYv/nVSQ2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMQ-00000003CPq-1GHC;
-	Mon, 23 Nov 2026 11:37:26 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1xVSXW-00000003FF9-3Y3O;
+	Mon, 23 Nov 2026 11:48:54 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSMN-00000003CPJ-48vh
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:37:25 +0000
-Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C1F3177;
-	Mon, 23 Nov 2026 12:34:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1795433690;
-	bh=efBUn+KMT7fQIEAsOONhxg/wXG2a/zfIvlMf5DPX1Ls=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OGx4r+fetQOlAWhbjarDIbVCklN3ZQXCUPUp4J2gVVno0l61nyedpk7I0KDPbnkJm
-	 R/gxt64WDJ4ZnR8bxORwWx5eT+vxd/pkC5IV4QbNh6K1YINcol42KR0qLQ1dX3ljlC
-	 S3xQBleXSIPu/WQR0KlYfNx4Hhezjjf/O1uGD8mE=
-Date: Mon, 23 Nov 2026 13:37:21 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Paul Elder <paul.elder+renesas@ideasonboard.com>,
-	=?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clegoffic@baylibre.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 11/15] pmdomain: renesas: r8a78000: Drop MDLC name
- comment
-Message-ID: <20261123113721.GH3010398@killaraus.ideasonboard.com>
-References: <cover.1795029012.git.geert+renesas@glider.be>
- <11c375d15b5073212ca79e11330e422539eae4b5.1795029012.git.geert+renesas@glider.be>
+	id 1xVSXV-00000003FEw-2oVl;
+	Mon, 23 Nov 2026 11:48:53 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 18CBE4429E;
+	Mon, 23 Nov 2026 11:48:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998071F000C6;
+	Mon, 23 Nov 2026 11:48:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795434532;
+	bh=yS1PD/mSABpPWdi3YyNUmeRXH9kC13Aa88IyEkHWUUQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=YSUEm629l0Rj0StN6eLcY46vHBFNH0sjwk6KP63wPLbmzH8kP0ZcxcJ90P3pTYoEB
+	 fSFWmK7Hh0joa0fuNkQpbgMpvLwS0b9FtVjAJr2xd9r0yo8saFLiH7dfXp0JlLtdil
+	 di5tRf0DYF1+IIayORijUFbyaacfUL8EJx8cD+pasD2HUqOP7q7R416BtEH/QgkzOV
+	 oyj9Uy9vwolSJu0Ofi8voLlqdkoGcerXBa4uxph5gJ+t0uIGVdwbpS+XIGTtOCfHAe
+	 /pfj1GWZemAeKhb+GKCtOj9V6kLtlOd/QNM8bsookyRT5A0dIH71NXnyPTypLRNT56
+	 pAht8xncEF+1A==
+Message-ID: <ccb79f6a-6a44-46a0-9ad0-7a59e1a50567@kernel.org>
+Date: Mon, 23 Nov 2026 12:46:24 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <11c375d15b5073212ca79e11330e422539eae4b5.1795029012.git.geert+renesas@glider.be>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_033724_196822_682E25EF 
-X-CRM114-Status: GOOD (  17.63  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] phy: apple: atc: Split generation-specific code
+To: Sasha Finkelstein <k@chaosmail.tech>
+Cc: asahi@lists.linux.dev, Janne Grunau <j@jannau.net>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Manivannan Sadhasivam <mani@kernel.org>
+References: <20261122-t8122-phy-v2-0-8d5c8fdf31ba@chaosmail.tech>
+ <20261122-t8122-phy-v2-5-8d5c8fdf31ba@chaosmail.tech>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20261122-t8122-phy-v2-5-8d5c8fdf31ba@chaosmail.tech>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,46 +73,612 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 08:44:59PM +0100, Geert Uytterhoeven wrote:
-> There is no need to document Module Controller base addresses in
-> mdlc_info tables, as a mod_map initializer already contains the Module
-> Controller's name.
+
+
+On 22.11.26 13:28, Sasha Finkelstein wrote:
+> atc.c is getting pretty big, split out the hardware generation-specific
+> code into separate files.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
+> Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
 > ---
-> v5:
->   - New.
-> ---
->  drivers/pmdomain/renesas/r8a78000-mdlc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/phy/apple/Makefile    |    2 +-
+>   drivers/phy/apple/atc-t8103.c |  215 ++++++
+>   drivers/phy/apple/atc-t8122.c |  588 +++++++++++++++
+>   drivers/phy/apple/atc.c       | 1582 +----------------------------------------
+>   drivers/phy/apple/atc.h       |  806 +++++++++++++++++++++
+>   5 files changed, 1616 insertions(+), 1577 deletions(-)
 > 
-> diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-> index 75de869872de9e82..1ace1fb10870f646 100644
-> --- a/drivers/pmdomain/renesas/r8a78000-mdlc.c
-> +++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-> @@ -299,7 +299,7 @@ static const struct mod_map r8a78000_mdlc_perw_mod_default[] = {
->  
->  static const struct mdlc_info r8a78000_mdlc_default[] = {
->  	{
-> -		.base = 0xc05d0000 /* mdlc_perw */,
-> +		.base = 0xc05d0000,
->  		.mod_map = r8a78000_mdlc_perw_mod_default,
->  	},
->  	{ /* sentinel */ }
 
--- 
-Regards,
+[...]
 
-Laurent Pinchart
+> diff --git a/drivers/phy/apple/atc.h b/drivers/phy/apple/atc.h
+> new file mode 100644
+> index 000000000000..d6a608c67769
+> --- /dev/null
+> +++ b/drivers/phy/apple/atc.h
+> @@ -0,0 +1,806 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> +
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+> +
+> +#ifndef __ATC_H__
+> +#define __ATC_H__
+> +
+> +#define AUSPLL_FSM_CTRL 0x1014
+> +
+> +#define AUSPLL_APB_CMD_OVERRIDE 0x2000
+> +#define AUSPLL_APB_CMD_OVERRIDE_REQ BIT(0)
+> +#define AUSPLL_APB_CMD_OVERRIDE_ACK BIT(1)
+> +#define AUSPLL_APB_CMD_OVERRIDE_UNK28 BIT(28)
+> +#define AUSPLL_APB_CMD_OVERRIDE_CMD GENMASK(27, 3)
+> +
+> +#define AUSPLL_FREQ_DESC_A 0x2080
+> +#define AUSPLL_FD_FREQ_COUNT_TARGET GENMASK(9, 0)
+> +#define AUSPLL_FD_FBDIVN_HALF BIT(10)
+> +#define AUSPLL_FD_REV_DIVN GENMASK(13, 11)
+> +#define AUSPLL_FD_KI_MAN GENMASK(17, 14)
+> +#define AUSPLL_FD_KI_EXP GENMASK(21, 18)
+> +#define AUSPLL_FD_KP_MAN GENMASK(25, 22)
+> +#define AUSPLL_FD_KP_EXP GENMASK(29, 26)
+> +#define AUSPLL_FD_KPKI_SCALE_HBW GENMASK(31, 30)
+> +
+> +#define AUSPLL_FREQ_DESC_B 0x2084
+> +#define AUSPLL_FD_FBDIVN_FRAC_DEN GENMASK(13, 0)
+> +#define AUSPLL_FD_FBDIVN_FRAC_NUM GENMASK(27, 14)
+> +
+> +#define AUSPLL_FREQ_DESC_C 0x2088
+> +#define AUSPLL_FD_SDM_SSC_STEP GENMASK(7, 0)
+> +#define AUSPLL_FD_SDM_SSC_EN BIT(8)
+> +#define AUSPLL_FD_PCLK_DIV_SEL GENMASK(13, 9)
+> +#define AUSPLL_FD_LFSDM_DIV GENMASK(15, 14)
+> +#define AUSPLL_FD_LFCLK_CTRL GENMASK(19, 16)
+> +#define AUSPLL_FD_VCLK_OP_DIVN GENMASK(21, 20)
+> +#define AUSPLL_FD_VCLK_PRE_DIVN BIT(22)
+> +
+> +#define AUSPLL_DCO_EFUSE_SPARE 0x222c
+> +#define AUSPLL_RODCO_ENCAP_EFUSE GENMASK(10, 9)
+> +#define AUSPLL_RODCO_BIAS_ADJUST_EFUSE GENMASK(14, 12)
+> +
+> +#define AUSPLL_FRACN_CAN 0x22a4
+> +#define AUSPLL_DLL_START_CAPCODE GENMASK(18, 17)
+> +
+> +#define AUSPLL_CLKOUT_MASTER 0x2200
+> +#define AUSPLL_CLKOUT_MASTER_PCLK_DRVR_EN BIT(2)
+> +#define AUSPLL_CLKOUT_MASTER_PCLK2_DRVR_EN BIT(4)
+> +#define AUSPLL_CLKOUT_MASTER_REFBUFCLK_DRVR_EN BIT(6)
+> +
+> +#define AUSPLL_CLKOUT_DIV 0x2208
+> +#define AUSPLL_CLKOUT_PLLA_REFBUFCLK_DI GENMASK(20, 16)
+> +
+> +#define AUSPLL_BGR 0x2214
+> +#define AUSPLL_BGR_CTRL_AVAIL BIT(0)
+> +
+> +#define AUSPLL_CLKOUT_DTC_VREG 0x2220
+> +#define AUSPLL_DTC_VREG_ADJUST GENMASK(16, 14)
+> +#define AUSPLL_DTC_VREG_BYPASS BIT(7)
+> +
+> +#define AUSPLL_FREQ_CFG 0x2224
+> +#define AUSPLL_FREQ_REFCLK GENMASK(1, 0)
+> +
+> +#define AUS_COMMON_SHIM_BLK_BIAS_REG 0x0a00
+> +#define AUS_COMMON_SHIM_BLK_BIAS_REG_BGBIAS_OV BIT(1)
+> +
+> +#define AUS_COMMON_SHIM_BLK_VREG 0x0a04
+> +#define AUS_VREG_TRIM GENMASK(6, 2)
+> +
+> +#define AUS_COMMON_DIG_RCAL1 0x804
+> +#define AUS_COMMON_DIG_RCAL1_ALL_CODES_DONE BIT(0)
+> +
+> +#define AUS_UNK_A20 0x0a20
+> +#define AUS_UNK_A20_TX_CAL_CODE GENMASK(23, 20)
+> +
+> +#define ACIOPHY_CMN_SHM_STS_REG0 0x0a74
+> +#define ACIOPHY_CMN_SHM_STS_REG0_CMD_READY BIT(0)
+> +
+> +#define CIO3PLL_CLK_CTRL 0x2a00
+> +#define CIO3PLL_CLK_PCLK_EN BIT(1)
+> +#define CIO3PLL_CLK_REFCLK_EN BIT(5)
+> +
+> +#define CIO3PLL_DCO_NCTRL 0x2a38
+> +#define CIO3PLL_DCO_COARSEBIN_EFUSE0 GENMASK(6, 0)
+> +#define CIO3PLL_DCO_COARSEBIN_EFUSE1 GENMASK(23, 17)
+> +
+> +#define CIO3PLL_FRACN_CAN 0x2aa4
+> +#define CIO3PLL_DLL_CAL_START_CAPCODE GENMASK(18, 17)
+> +
+> +#define CIO3PLL_DTC_VREG 0x2a20
+> +#define CIO3PLL_DTC_VREG_ADJUST GENMASK(16, 14)
+> +
+> +#define ATCPHY_EVT_USB2_CTL 0x0
+> +#define ATCPHY_EVT_USB2_CTL_EVT_EN 0x1
+> +#define ATCPHY_EVT_USB2_CTL_LOAD_CNT 0x8
+> +
+> +#define ACIOPHY_CFG0 0x08
+> +#define ACIOPHY_CFG0_COMMON_BIG BIT(0)
+> +#define ACIOPHY_CFG0_COMMON_BIG_OV BIT(1)
+> +#define ACIOPHY_CFG0_COMMON_SMALL BIT(2)
+> +#define ACIOPHY_CFG0_COMMON_SMALL_OV BIT(3)
+> +#define ACIOPHY_CFG0_COMMON_CLAMP BIT(4)
+> +#define ACIOPHY_CFG0_COMMON_CLAMP_OV BIT(5)
+> +#define ACIOPHY_CFG0_RX_SMALL_OV GENMASK(9, 8)
+> +#define ACIOPHY_CFG0_RX_BIG_OV GENMASK(13, 12)
+> +#define ACIOPHY_CFG0_RX_CLAMP_OV GENMASK(17, 16)
+> +
+> +#define ACIOPHY_CROSSBAR_PROTOCOL GENMASK(4, 0)
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_USB4 0x0
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_USB4_SWAPPED 0x1
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_USB3 0xa
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_USB3_SWAPPED 0xb
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_USB3_DP 0x10
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_USB3_DP_SWAPPED 0x11
+> +#define ACIOPHY_CROSSBAR_PROTOCOL_DP 0x14
+> +#define ACIOPHY_CROSSBAR_DP_SINGLE_PMA GENMASK(16, 5)
+> +#define ACIOPHY_CROSSBAR_DP_SINGLE_PMA_NONE 0x0000
+> +#define ACIOPHY_CROSSBAR_DP_SINGLE_PMA_UNK100 0x100
+> +#define ACIOPHY_CROSSBAR_DP_SINGLE_PMA_UNK008 0x008
+> +#define ACIOPHY_CROSSBAR_DP_BOTH_PMA BIT(17)
+> +
+> +#define ACIOPHY_LANE_MODE_RX0 GENMASK(2, 0)
+> +#define ACIOPHY_LANE_MODE_TX0 GENMASK(5, 3)
+> +#define ACIOPHY_LANE_MODE_RX1 GENMASK(8, 6)
+> +#define ACIOPHY_LANE_MODE_TX1 GENMASK(11, 9)
+> +
+> +enum atcphy_lane_mode {
+> +	ACIOPHY_LANE_MODE_USB4 = 0,
+> +	ACIOPHY_LANE_MODE_USB3 = 1,
+> +	ACIOPHY_LANE_MODE_DP = 2,
+> +	ACIOPHY_LANE_MODE_OFF = 3,
+> +};
+> +
+> +#define ACIOPHY_TOP_BIST_CIOPHY_CFG1 0x84
+> +#define ACIOPHY_TOP_BIST_CIOPHY_CFG1_CLK_EN BIT(27)
+> +#define ACIOPHY_TOP_BIST_CIOPHY_CFG1_BIST_EN BIT(28)
+> +
+> +#define ACIOPHY_TOP_BIST_OV_CFG 0x8c
+> +#define ACIOPHY_TOP_BIST_OV_CFG_LN0_RESET_N_OV BIT(13)
+> +#define ACIOPHY_TOP_BIST_OV_CFG_LN0_PWR_DOWN_OV BIT(25)
+> +
+> +#define ACIOPHY_TOP_BIST_READ_CTRL 0x90
+> +#define ACIOPHY_TOP_BIST_READ_CTRL_LN0_PHY_STATUS_RE BIT(2)
+> +
+> +#define ACIOPHY_TOP_PHY_STAT 0x9c
+> +#define ACIOPHY_TOP_PHY_STAT_LN0_UNK0 BIT(0)
+> +#define ACIOPHY_TOP_PHY_STAT_LN0_UNK23 BIT(23)
+> +
+> +#define ACIOPHY_TOP_BIST_PHY_CFG0 0xa8
+> +#define ACIOPHY_TOP_BIST_PHY_CFG0_LN0_RESET_N BIT(0)
+> +
+> +#define ACIOPHY_TOP_BIST_PHY_CFG1 0xac
+> +#define ACIOPHY_TOP_BIST_PHY_CFG1_LN0_PWR_DOWN GENMASK(13, 10)
+> +
+> +#define ACIOPHY_BIST_CFG1 0x17000
+> +#define ACIOPHY_BIST_CFG1_CLOCK_EN BIT(0)
+> +#define ACIOPHY_BIST_CFG1_USB_EN BIT(2)
+> +
+> +#define ACIOPHY_BIST_CFG2 0x17004
+> +#define ACIOPHY_BIST_CFG2_LN0_PHY_STATUS_RE BIT(2)
+> +
+> +#define ACIOPHY_BIST_MAC_USBPHY_STATUS2 0x17080
+> +#define ACIOPHY_BIST_MAC_USBPHY_STATUS2_LN0_PHY_STATUS2 BIT(7)
+> +
+> +#define ACIOPHY_BIST_MAC_USBPHY_CFG_OV1 0x17088
+> +#define ACIOPHY_BIST_MAC_USBPHY_CFG_OV1_LN0_PIPE_RESET_N_OV 0x100000
+> +#define ACIOPHY_BIST_MAC_USBPHY_CFG_OV1_LN0_PWR_DOWN_OV GENMASK(26, 25)
+> +
+> +#define ACIOPHY_BIST_MAC_USBPHY_CFG_OV2 0x1708c
+> +#define ACIOPHY_BIST_MAC_USBPHY_CFG_OV2_LN0_RESET_N_OV 0x200
+> +#define ACIOPHY_BIST_MAC_USBPHY_CFG_OV2_LN0_PWR_DOWN_OV 0x20
+> +
+> +#define ACIOPHY_SLEEP_CTRL 0x1b0
+> +#define ACIOPHY_SLEEP_CTRL_TX_BIG_OV GENMASK(3, 2)
+> +#define ACIOPHY_SLEEP_CTRL_TX_SMALL_OV GENMASK(7, 6)
+> +#define ACIOPHY_SLEEP_CTRL_TX_CLAMP_OV GENMASK(11, 10)
+> +
+> +#define ACIOPHY_PLL_PCTL_FSM_CTRL1 0x1014
+> +#define ACIOPHY_PLL_APB_REQ_OV_SEL GENMASK(21, 13)
+> +#define ACIOPHY_PLL_COMMON_CTRL 0x1028
+> +#define ACIOPHY_PLL_WAIT_FOR_CMN_READY_BEFORE_RESET_EXIT BIT(24)
+> +
+> +#define ATCPHY_POWER_CTRL 0x20000
+> +#define ATCPHY_POWER_STAT 0x20004
+> +#define ATCPHY_POWER_SLEEP_SMALL BIT(0)
+> +#define ATCPHY_POWER_SLEEP_BIG BIT(1)
+> +#define ATCPHY_POWER_CLAMP_EN BIT(2)
+> +#define ATCPHY_POWER_APB_RESET_N BIT(3)
+> +#define ATCPHY_POWER_PHY_RESET_N BIT(4)
+> +
+> +#define ATCPHY_MISC 0x20008
+> +#define ATCPHY_MISC_RESET_N BIT(0)
+> +#define ATCPHY_MISC_LANE_SWAP BIT(2)
+> +
+> +#define ACIOPHY_LANE_DP_CFG_BLK_TX_DP_CTRL0 0x7000
+> +#define DP_PMA_BYTECLK_RESET BIT(0)
+> +#define DP_MAC_DIV20_CLK_SEL BIT(1)
+> +#define DPTXPHY_PMA_LANE_RESET_N BIT(2)
+> +#define DPTXPHY_PMA_LANE_RESET_N_OV BIT(3)
+> +#define DPTX_PCLK1_SELECT GENMASK(6, 4)
+> +#define DPTX_PCLK2_SELECT GENMASK(9, 7)
+> +#define DPRX_PCLK_SELECT GENMASK(12, 10)
+> +#define DPTX_PCLK1_ENABLE BIT(13)
+> +#define DPTX_PCLK2_ENABLE BIT(14)
+> +#define DPRX_PCLK_ENABLE BIT(15)
+> +
+> +#define ACIOPHY_DP_PCLK_STAT 0x7044
+> +#define ACIOPHY_AUSPLL_LOCK BIT(3)
+> +
+> +#define LN0_AUSPMA_RX_TOP 0x9000
+> +#define LN0_AUSPMA_RX_EQ 0xA000
+> +#define LN0_AUSPMA_RX_SHM 0xB000
+> +#define LN0_AUSPMA_TX_TOP 0xC000
+> +#define LN0_AUSPMA_TX_SHM 0xD000
+> +
+> +#define LN1_AUSPMA_RX_TOP 0x10000
+> +#define LN1_AUSPMA_RX_EQ 0x11000
+> +#define LN1_AUSPMA_RX_SHM 0x12000
+> +#define LN1_AUSPMA_TX_TOP 0x13000
+> +#define LN1_AUSPMA_TX_SHM 0x14000
+> +
+> +#define LN_AUSPMA_RX_TOP_PMAFSM 0x0010
+> +#define LN_AUSPMA_RX_TOP_PMAFSM_PCS_OV BIT(0)
+> +#define LN_AUSPMA_RX_TOP_PMAFSM_PCS_REQ BIT(9)
+> +
+> +#define LN_AUSPMA_RX_TOP_TJ_CFG_RX_TXMODE 0x00F0
+> +#define LN_RX_TXMODE BIT(0)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_CTLE_CTRL0 0x00
+> +#define LN_TX_CLK_EN BIT(20)
+> +#define LN_TX_CLK_EN_OV BIT(21)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_AFE_CTRL1 0x04
+> +#define LN_RX_DIV20_RESET_N_OV BIT(29)
+> +#define LN_RX_DIV20_RESET_N BIT(30)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL2 0x08
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL3 0x0C
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL4 0x10
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL5 0x14
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL6 0x18
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL7 0x1C
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL8 0x20
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL9 0x24
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_DFE_CTRL10 0x28
+> +#define LN_DTVREG_ADJUST GENMASK(31, 27)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_DFE_CTRL11 0x2C
+> +#define LN_DTVREG_BIG_EN BIT(23)
+> +#define LN_DTVREG_BIG_EN_OV BIT(24)
+> +#define LN_DTVREG_SML_EN BIT(25)
+> +#define LN_DTVREG_SML_EN_OV BIT(26)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_DFE_CTRL12 0x30
+> +#define LN_TX_BYTECLK_RESET_SYNC_CLR BIT(22)
+> +#define LN_TX_BYTECLK_RESET_SYNC_CLR_OV BIT(23)
+> +#define LN_TX_BYTECLK_RESET_SYNC_EN BIT(24)
+> +#define LN_TX_BYTECLK_RESET_SYNC_EN_OV BIT(25)
+> +#define LN_TX_HRCLK_SEL BIT(28)
+> +#define LN_TX_HRCLK_SEL_OV BIT(29)
+> +#define LN_TX_PBIAS_EN BIT(30)
+> +#define LN_TX_PBIAS_EN_OV BIT(31)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_DFE_CTRL13 0x34
+> +#define LN_TX_PRE_EN BIT(0)
+> +#define LN_TX_PRE_EN_OV BIT(1)
+> +#define LN_TX_PST1_EN BIT(2)
+> +#define LN_TX_PST1_EN_OV BIT(3)
+> +#define LN_DTVREG_ADJUST_OV BIT(15)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_UNK_CTRL14A 0x38
+> +#define LN_AUSPMA_RX_SHM_TJ_UNK_CTRL14B 0x3C
+> +#define LN_AUSPMA_RX_SHM_TJ_UNK_CTRL15A 0x40
+> +#define LN_AUSPMA_RX_SHM_TJ_UNK_CTRL15B 0x44
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_SAVOS_CTRL16 0x48
+> +#define LN_RXTERM_EN BIT(21)
+> +#define LN_RXTERM_EN_OV BIT(22)
+> +#define LN_RXTERM_PULLUP_LEAK_EN BIT(23)
+> +#define LN_RXTERM_PULLUP_LEAK_EN_OV BIT(24)
+> +#define LN_TX_CAL_CODE GENMASK(29, 25)
+> +#define LN_TX_CAL_CODE_OV BIT(30)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_TX_CTRL17 0x4C
+> +#define LN_TX_MARGIN GENMASK(19, 15)
+> +#define LN_TX_MARGIN_OV BIT(20)
+> +#define LN_TX_MARGIN_LSB BIT(21)
+> +#define LN_TX_MARGIN_LSB_OV BIT(22)
+> +#define LN_TX_MARGIN_P1 GENMASK(26, 23)
+> +#define LN_TX_MARGIN_P1_OV BIT(27)
+> +#define LN_TX_MARGIN_P1_LSB GENMASK(29, 28)
+> +#define LN_TX_MARGIN_P1_LSB_OV BIT(30)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_TX_CTRL18 0x50
+> +#define LN_TX_P1_CODE GENMASK(3, 0)
+> +#define LN_TX_P1_CODE_OV BIT(4)
+> +#define LN_TX_P1_LSB_CODE GENMASK(6, 5)
+> +#define LN_TX_P1_LSB_CODE_OV BIT(7)
+> +#define LN_TX_MARGIN_PRE GENMASK(10, 8)
+> +#define LN_TX_MARGIN_PRE_OV BIT(11)
+> +#define LN_TX_MARGIN_PRE_LSB GENMASK(13, 12)
+> +#define LN_TX_MARGIN_PRE_LSB_OV BIT(14)
+> +#define LN_TX_PRE_LSB_CODE GENMASK(16, 15)
+> +#define LN_TX_PRE_LSB_CODE_OV BIT(17)
+> +#define LN_TX_PRE_CODE GENMASK(21, 18)
+> +#define LN_TX_PRE_CODE_OV BIT(22)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_TERM_CTRL19 0x54
+> +#define LN_TX_TEST_EN BIT(21)
+> +#define LN_TX_TEST_EN_OV BIT(22)
+> +#define LN_TX_EN BIT(23)
+> +#define LN_TX_EN_OV BIT(24)
+> +#define LN_TX_CLK_DLY_CTRL_TAPGEN GENMASK(27, 25)
+> +#define LN_TX_CLK_DIV2_EN BIT(28)
+> +#define LN_TX_CLK_DIV2_EN_OV BIT(29)
+> +#define LN_TX_CLK_DIV2_RST BIT(30)
+> +#define LN_TX_CLK_DIV2_RST_OV BIT(31)
+> +
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL20 0x58
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_UNK_CTRL21 0x5C
+> +#define LN_AUSPMA_RX_SHM_TJ_RXA_VREF_CTRL22 0x60
+> +#define LN_VREF_ADJUST_GRAY GENMASK(11, 7)
+> +#define LN_VREF_ADJUST_GRAY_OV BIT(12)
+> +#define LN_VREF_BIAS_SEL GENMASK(14, 13)
+> +#define LN_VREF_BIAS_SEL_OV BIT(15)
+> +#define LN_VREF_BOOST_EN BIT(16)
+> +#define LN_VREF_BOOST_EN_OV BIT(17)
+> +#define LN_VREF_EN BIT(18)
+> +#define LN_VREF_EN_OV BIT(19)
+> +#define LN_VREF_LPBKIN_DATA GENMASK(29, 28)
+> +#define LN_VREF_TEST_RXLPBKDT_EN BIT(30)
+> +#define LN_VREF_TEST_RXLPBKDT_EN_OV BIT(31)
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_CFG_MAIN_REG0 0x00
+> +#define LN_BYTECLK_RESET_SYNC_EN_OV BIT(2)
+> +#define LN_BYTECLK_RESET_SYNC_EN BIT(3)
+> +#define LN_BYTECLK_RESET_SYNC_CLR_OV BIT(4)
+> +#define LN_BYTECLK_RESET_SYNC_CLR BIT(5)
+> +#define LN_BYTECLK_RESET_SYNC_SEL_OV BIT(6)
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_CFG_MAIN_REG1 0x04
+> +#define LN_TXA_DIV2_EN_OV BIT(8)
+> +#define LN_TXA_DIV2_EN BIT(9)
+> +#define LN_TXA_DIV2_RESET_OV BIT(10)
+> +#define LN_TXA_DIV2_RESET BIT(11)
+> +#define LN_TXA_CLK_EN_OV BIT(22)
+> +#define LN_TXA_CLK_EN BIT(23)
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_IMP_REG0 0x08
+> +#define LN_TXA_CAL_CTRL_OV BIT(0)
+> +#define LN_TXA_CAL_CTRL GENMASK(18, 1)
+> +#define LN_TXA_CAL_CTRL_BASE_OV BIT(19)
+> +#define LN_TXA_CAL_CTRL_BASE GENMASK(23, 20)
+> +#define LN_TXA_HIZ_OV BIT(29)
+> +#define LN_TXA_HIZ BIT(30)
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_IMP_REG1 0x0C
+> +#define LN_AUSPMA_TX_SHM_TXA_IMP_REG2 0x10
+> +#define LN_TXA_MARGIN_OV BIT(0)
+> +#define LN_TXA_MARGIN GENMASK(18, 1)
+> +#define LN_TXA_MARGIN_2R_OV BIT(19)
+> +#define LN_TXA_MARGIN_2R BIT(20)
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_IMP_REG3 0x14
+> +#define LN_TXA_MARGIN_POST_OV BIT(0)
+> +#define LN_TXA_MARGIN_POST GENMASK(10, 1)
+> +#define LN_TXA_MARGIN_POST_2R_OV BIT(11)
+> +#define LN_TXA_MARGIN_POST_2R BIT(12)
+> +#define LN_TXA_MARGIN_POST_4R_OV BIT(13)
+> +#define LN_TXA_MARGIN_POST_4R BIT(14)
+> +#define LN_TXA_MARGIN_PRE_OV BIT(15)
+> +#define LN_TXA_MARGIN_PRE GENMASK(21, 16)
+> +#define LN_TXA_MARGIN_PRE_2R_OV BIT(22)
+> +#define LN_TXA_MARGIN_PRE_2R BIT(23)
+> +#define LN_TXA_MARGIN_PRE_4R_OV BIT(24)
+> +#define LN_TXA_MARGIN_PRE_4R BIT(25)
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_UNK_REG0 0x18
+> +#define LN_AUSPMA_TX_SHM_TXA_UNK_REG1 0x1C
+> +#define LN_AUSPMA_TX_SHM_TXA_UNK_REG2 0x20
+> +
+> +#define LN_AUSPMA_TX_SHM_TXA_LDOCLK 0x24
+> +#define LN_LDOCLK_BYPASS_SML_OV BIT(8)
+> +#define LN_LDOCLK_BYPASS_SML BIT(9)
+> +#define LN_LDOCLK_BYPASS_BIG_OV BIT(10)
+> +#define LN_LDOCLK_BYPASS_BIG BIT(11)
+> +#define LN_LDOCLK_EN_SML_OV BIT(12)
+> +#define LN_LDOCLK_EN_SML BIT(13)
+> +#define LN_LDOCLK_EN_BIG_OV BIT(14)
+> +#define LN_LDOCLK_EN_BIG BIT(15)
+> +
+> +#define LN_AUSPMA_TX_TOP_EQ1 0x0050
+> +#define LN_AUSPMA_TX_TOP_EQ17 0x00d0
+> +#define LN_AUSPMA_TX_TOP_EQ18 0x00d4
+> +#define LN_AUSPMA_RX_TOP_EQ1 0x0210
+> +#define LN_AUSPMA_RX_TOP_EQ17 0x0244
+> +#define LN_AUSPMA_RX_TOP_EQ18 0x0248
+> +#define LN_EQ_SWING GENMASK(3, 0)
+> +#define LN_EQ_SWING_LSB GENMASK(15, 14)
+> +#define LN_EQ_SWING_OV BIT(28)
+> +#define LN_EQ_AUTO_CTRL_DP BIT(20)
+> +/* Deemphasis and override bits; individual fields unknown */
+> +#define LN_EQ_DEEMPH_FIELDS GENMASK(18, 0)
+> +
+> +#define LN_AUSPMA_TX_SHM_MAIN2 0x0004
+> +#define LN_MAIN2_BYTECLK_SYNC_SEL BIT(24)
+> +#define LN_MAIN2_BYTECLK_SYNC_SEL_OV BIT(25)
+> +#define LN_MAIN2_BYTECLK_SYNC_EN BIT(28)
+> +#define LN_MAIN2_BYTECLK_SYNC_EN_OV BIT(29)
+> +#define LN_AUSPMA_TX_SHM_MAIN4 0x000c
+> +#define LN_MAIN4_DIV2_4_EN GENMASK(25, 24)
+> +#define LN_MAIN4_DIV2_4_EN_OV BIT(26)
+> +#define LN_AUSPMA_TX_SHM_MAIN5 0x0010
+> +#define LN_MAIN5_CLK_EN BIT(9)
+> +#define LN_MAIN5_CLK_EN_OV BIT(10)
+> +#define LN_AUSPMA_TX_SHM_CLKMON1 0x001c
+> +#define LN_CLKMON1_HIZ BIT(22)
+> +#define LN_CLKMON1_HIZ_OV BIT(23)
+> +#define LN_AUSPMA_TX_SHM_LDOCLK1 0x0044
+> +#define LN_LDOCLK1_VREG_ADJ GENMASK(10, 6)
+> +#define LN_LDOCLK1_VREF_EN BIT(12)
+> +#define LN_LDOCLK1_VREF_FILTER_BOOST (GENMASK(18, 17) | GENMASK(15, 14))
+> +#define LN_LDOCLK1_BYPASS_SMALL BIT(20)
+> +#define LN_LDOCLK1_BYPASS_BIG BIT(22)
+> +#define LN_LDOCLK1_EN_SMALL BIT(24)
+> +#define LN_LDOCLK1_EN_BIG BIT(26)
+> +
+> +#define LN_AUSPMA_RX_TOP_TXMODE 0x0160
+> +#define LN_AUSPMA_RX_TOP_AFE1 0x01d4
+> +#define LN_AFE1_DIV20_RESET_N_OV BIT(0)
+> +#define LN_AFE1_DIV20_RESET_N BIT(1)
+> +#define LN_AUSPMA_RX_TOP_DCO1 0x01dc
+> +#define LN_DCO1_LPBKIN_RECOVERED_DATA GENMASK(16, 15)
+> +
+> +#define LN_AUSPMA_RX_SHM_CTLE2 0x0030
+> +#define LN_CTLE2_TX_CLK_EN BIT(10)
+> +#define LN_CTLE2_TX_CLK_EN_OV BIT(11)
+> +#define LN_AUSPMA_RX_SHM_DFE101 0x0064
+> +#define LN_DFE101_DFEH1FB_EN BIT(2)
+> +#define LN_DFE101_DFEH1FB_EN_OV BIT(3)
+> +#define LN_DFE101_DTVREG_ADJUST_FIELDS GENMASK(15, 10)
+> +#define LN_AUSPMA_RX_SHM_DFE111 0x0068
+> +#define LN_DFE111_DTVREG_BIG_EN BIT(5)
+> +#define LN_DFE111_DTVREG_BIG_EN_OV BIT(6)
+> +#define LN_DFE111_DTVREG_SMALL_EN BIT(7)
+> +#define LN_DFE111_DTVREG_SMALL_EN_OV BIT(8)
+> +#define LN_AUSPMA_RX_SHM_DFE121 0x006c
+> +#define LN_DFE121_TX_BYTECLK_SYNC_CLR BIT(9)
+> +#define LN_DFE121_TX_BYTECLK_SYNC_CLR_OV BIT(10)
+> +#define LN_DFE121_TX_BYTECLK_SYNC_EN BIT(11)
+> +#define LN_DFE121_TX_HRCLK_SEL BIT(13)
+> +#define LN_DFE121_TX_HRCLK_SEL_OV BIT(14)
+> +#define LN_DFE121_TX_PBIAS_EN BIT(15)
+> +#define LN_DFE121_TX_PBIAS_EN_OV BIT(16)
+> +#define LN_AUSPMA_RX_SHM_SAVOS161 0x00a4
+> +#define LN_SAVOS161_RXTERM_EN BIT(0)
+> +#define LN_SAVOS161_RXTERM_EN_OV BIT(1)
+> +#define LN_AUSPMA_RX_SHM_TERM191 0x00a8
+> +#define LN_TERM191_TX_TEST_EN BIT(15)
+> +#define LN_TERM191_TX_TEST_EN_OV BIT(16)
+> +#define LN_TERM191_TX_EN BIT(17)
+> +#define LN_TERM191_TX_EN_OV BIT(18)
+> +#define LN_TERM191_TX_DIV2_EN GENMASK(20, 19)
+> +#define LN_TERM191_TX_DIV2_EN_OV BIT(21)
+> +#define LN_TERM191_TX_DIV2_RST BIT(22)
+> +#define LN_TERM191_TX_DIV2_RST_OV BIT(23)
+> +#define LN_AUSPMA_RX_SHM_VREF221 0x00d4
+> +/* Adjust, filter and enable overrides; individual fields unknown */
+> +#define LN_VREF221_INIT_FIELDS (GENMASK(20, 16) | GENMASK(12, 7))
+> +#define LN_VREF221_BIAS_FIELDS GENMASK(15, 13)
+> +#define LN_VREF221_EN BIT(16)
+> +#define LN_VREF221_FILTER_ADJUST GENMASK(19, 18)
+> +#define LN_AUSPMA_RX_SHM_VREF231 0x00d8
+> +#define LN_VREF231_BOOST_CTRL GENMASK(1, 0)
+> +#define LN_VREF231_BOOST_CTRL_OV BIT(2)
+> +#define LN_AUSPMA_RX_SHM_VREG1 0x00dc
+> +#define LN_VREG1_DTVREG_POWER_MODE GENMASK(4, 3)
+> +
+> +/* LPDPTX registers */
+> +#define LPDPTX_AUX_CFG_BLK_AUX_CTRL 0x0000
+> +#define LPDPTX_BLK_AUX_CTRL_PWRDN BIT(4)
+> +#define LPDPTX_BLK_AUX_RXOFFSET GENMASK(25, 22)
+> +
+> +#define LPDPTX_AUX_CFG_BLK_AUX_LDO_CTRL 0x0008
+> +
+> +#define LPDPTX_AUX_CFG_BLK_AUX_MARGIN 0x000c
+> +#define LPDPTX_MARGIN_RCAL_RXOFFSET_EN BIT(5)
+> +#define LPDPTX_AUX_MARGIN_RCAL_TXSWING GENMASK(10, 6)
+> +
+> +#define LPDPTX_AUX_SHM_CFG_BLK_AUX_CTRL_REG0 0x0204
+> +#define LPDPTX_CFG_PMA_AUX_SEL_LF_DATA BIT(15)
+> +
+> +#define LPDPTX_AUX_SHM_CFG_BLK_AUX_CTRL_REG1 0x0208
+> +#define LPDPTX_CFG_PMA_PHYS_ADJ GENMASK(22, 20)
+> +#define LPDPTX_CFG_PMA_PHYS_ADJ_OV BIT(19)
+> +
+> +#define LPDPTX_AUX_CONTROL 0x4000
+> +#define LPDPTX_AUX_PWN_DOWN 0x10
+> +#define LPDPTX_AUX_CLAMP_EN 0x04
+> +#define LPDPTX_SLEEP_B_BIG_IN 0x02
+> +#define LPDPTX_SLEEP_B_SML_IN 0x01
+> +#define LPDPTX_TXTERM_CODEMSB 0x400
+> +#define LPDPTX_TXTERM_CODE GENMASK(9, 5)
+> +
+> +/* pipehandler registers */
+> +#define PIPEHANDLER_OVERRIDE 0x00
+> +#define PIPEHANDLER_OVERRIDE_RXVALID BIT(0)
+> +#define PIPEHANDLER_OVERRIDE_RXDETECT BIT(2)
+> +
+> +#define PIPEHANDLER_OVERRIDE_VALUES 0x04
+> +#define PIPEHANDLER_OVERRIDE_VAL_RXDETECT0 BIT(1)
+> +#define PIPEHANDLER_OVERRIDE_VAL_RXDETECT1 BIT(2)
+> +#define PIPEHANDLER_OVERRIDE_VAL_PHY_STATUS BIT(4)
+> +
+> +#define PIPEHANDLER_MUX_CTRL 0x0c
+> +#define PIPEHANDLER_MUX_CTRL_CLK GENMASK(5, 3)
+> +#define PIPEHANDLER_MUX_CTRL_DATA GENMASK(2, 0)
+> +#define PIPEHANDLER_MUX_CTRL_CLK_OFF 0
+> +#define PIPEHANDLER_MUX_CTRL_CLK_USB3 1
+> +#define PIPEHANDLER_MUX_CTRL_CLK_USB4 2
+> +#define PIPEHANDLER_MUX_CTRL_CLK_DUMMY 4
+> +
+> +#define PIPEHANDLER_MUX_CTRL_DATA_USB3 0
+> +#define PIPEHANDLER_MUX_CTRL_DATA_USB4 1
+> +#define PIPEHANDLER_MUX_CTRL_DATA_DUMMY 2
+> +
+> +#define PIPEHANDLER_LOCK_REQ 0x10
+> +#define PIPEHANDLER_LOCK_ACK 0x14
+> +#define PIPEHANDLER_LOCK_EN BIT(0)
+> +
+> +#define PIPEHANDLER_AON_GEN 0x1C
+> +#define PIPEHANDLER_AON_GEN_DWC3_FORCE_CLAMP_EN BIT(4)
+> +#define PIPEHANDLER_AON_GEN_DWC3_RESET_N BIT(0)
+> +
+> +#define PIPEHANDLER_NONSELECTED_OVERRIDE 0x20
+> +#define PIPEHANDLER_NATIVE_RESET BIT(12)
+> +#define PIPEHANDLER_DUMMY_PHY_EN BIT(15)
+> +#define PIPEHANDLER_NATIVE_POWER_DOWN GENMASK(3, 0)
+> +
+> +#define PIPEHANDLER_LOCK_ACK_TIMEOUT_US 1000
+> +
+> +/* USB2 PHY regs */
+> +#define USB2PHY_USBCTL 0x00
+> +#define USB2PHY_USBCTL_USB_MODE 0x7
+> +#define USB2PHY_USBCTL_RUN 2
+> +#define USB2PHY_USBCTL_ISOLATION 4
+> +
+> +#define USB2PHY_CTL 0x04
+> +#define USB2PHY_CTL_RESET BIT(0)
+> +#define USB2PHY_CTL_PORT_RESET BIT(1)
+> +#define USB2PHY_CTL_APB_RESET_N BIT(2)
+> +#define USB2PHY_CTL_SIDDQ BIT(3)
+> +
+> +#define USB2PHY_SIG 0x08
+> +#define USB2PHY_SIG_VBUSDET_FORCE_VAL BIT(0)
+> +#define USB2PHY_SIG_VBUSDET_FORCE_EN BIT(1)
+> +#define USB2PHY_SIG_VBUSVLDEXT_FORCE_VAL BIT(2)
+> +#define USB2PHY_SIG_VBUSVLDEXT_FORCE_EN BIT(3)
+> +#define USB2PHY_SIG_HOST (7 << 12)
+> +
+> +#define USB2PHY_MISCTUNE 0x1c
+> +#define USB2PHY_MISCTUNE_APBCLK_GATE_OFF BIT(29)
+> +#define USB2PHY_MISCTUNE_REFCLK_GATE_OFF BIT(30)
+
+Splitting this already looks much better imho. I think we should be able 
+to move many of these register #defines into either of the atc*.c files 
+as well.
+
+With that:
+
+Reviewed-by: Sven Peter <sven@kernel.org>
+
+
+Sven
+
 
