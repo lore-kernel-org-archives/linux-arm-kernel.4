@@ -2,145 +2,159 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737FA606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C00F9606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 06:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PuBVU5zl;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=LAvV9Egm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=13buZat7;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=FcHquteg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kVEBj/OyEAp99ErMEz3ErQ6TttANznsYWFxVX5CjnwE=; b=PuBVU5zlR/ISPWGyVdqY17ywIl
-	DicRWqlmy+CsdorExE9y8d9vZGBdvUUjqmpYeSDitwBvYtC9Gal0KtAAses71ht+B6eQK7QMa0MjL
-	fE4eN7B3sGUfKHSRgYgRp7DcrjcexHshnJLfDQBAuYUfuqdrHtPv6p0OUhgldxY1ryPRUu7L+Gd5g
-	S3xrs6B2HrY6X9+gYgFBAVfcp0TMb+/W6Id8E3Tm+zciHWAm2KDnqAEqlt6hvRiVABq0jUwlO6zDb
-	TV33NeHEFee3EnR2d2EMJZr4L7pyQovkctYw3Xq5CaosmdhSX0jssFqySItRnJYR4DYDf3HbD9dJ9
-	msrYQAng==;
+	bh=pHh3X6JJdHxq2/niH+3LtBoYiZJY8jH8742cfNju9Y8=; b=13buZat7G5vMqbI0KDNUHslA1P
+	gNef5VPkV+zePSC9lpHuZPm+8Nde3HvQTNnQkq2LvMhLZ/85tPlCLmfLLeZv95K21Hx+SGCoouR1G
+	6WrzG15IWwWhoK1eMTPWDwt1Zzj3jKNegLuPXSq0TkR7ckGt2w/9Jl0VSneJKMErwP+VKnEQorsQE
+	0sWKWii/MS7hAFQnj/M4mKFJYz6UG72+N8wckELcPvODpIEUTqypEhAFOMKTFby4L7OpEwtTCd65k
+	Li9OCHSHFAbRepqyNlxIem921Z6J0OfRIATDNb4qnDKpVvClKIsgwTiaB5aOEZVBwNAVS3WoCuDxg
+	9bChx4QA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNh8-00000002Nq8-2uHY;
-	Mon, 23 Nov 2026 06:38:30 +0000
-Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	id 1xVNjq-00000002O0U-0AuY;
+	Mon, 23 Nov 2026 06:41:18 +0000
+Received: from mail-northcentralusazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c105::1] helo=CH1PR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVNh5-00000002NpU-3p85
+	id 1xVNji-00000002Nzn-04pv
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 06:38:29 +0000
+	Mon, 23 Nov 2026 06:41:16 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xZwKg9QSOx6WItTWpLLgAwXRW2ganJe+wg6yBoy8EIRJvHaA9NU23JCo0PoHyVVK5RCLiN6BYbMnyn03ywCoub4PLnyFVtIL0zstLEYFsgPD7fsegBJsYjlAZ4aGi8YYnDgoyoGpUmLWxKLE9Rb1WTtPPbtKwWuUKAqbal1p/Zhcd90aWqxwzSQd3c/wGrDUopWAJiwix0Z93HV2OpnfkwYfInfVzsyxYWDJwKpqcL+P/q4UMHoZqABUSjRhJZpypuX2q1BtZ8TT2G6TS/a9UH6D5FWISgLBmFIMAB0cxcIUwO3uZlIjVRs61t7r7CKRG2+IKLTOacAC1XWw7/BYHA==
+ b=fgmJnXjBwwNHMDnBGp9m+62XzUtXTfiubqMLdqaZtxN3j8tPHVajyWzAanLZ+EM/LH2tNaacjNDlaqRVEqbRatAPNVelkQDFeqRjUfWAZo/lWYpkUAUAxGTqZLKi7hu1a8NyLejNxq5M4ZfQiq50hWBaXa8LiEQ5JAGWu+ZoUEUmNVwnDv/Gyy08zYlibvU9wnx7QIHICue4JUInJK6TgnPlEwkPaW3RuhlFFTXTWEiyE5DyjbCYb+Gsxrwx1UOaF5j6HruhZWN3/Yjz0PSzQz/TcXAE7KNHlU9JaKBzSDIOhQAqSUR3DCdQLycvKWaQppuRS+5C/Ao8PWlGfkunxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kVEBj/OyEAp99ErMEz3ErQ6TttANznsYWFxVX5CjnwE=;
- b=s8Q36y5zDeOLqUFubKMirwQHwMC3knQysTi2RS/uC0V1KYlIzniQGuskI2ehQ8tuN3+BXqozc3E4xuR1wkLiupjEn9TNgcwsOp2qwDBQJDtihLh6a+fV0AG2tjG4yHdewTMjPl19LSU0j4lABP0XTnIp6zU16XE8Y2QKQHiAydxHNk6zQgWhKvxk30ptC/p7E8nb6dE+f8FEZ+YcSqlnKwqKuq5VZYcCp25htPKVfiT7QEjPu+OYfy3F4kw4AByMvCxgfCdvad8qYrL6vL95OAyHPLTibsaukgZdO9WV/TUPgPzZwOAvRXJ7T/YOlh7bVRJzXFHgypouDVniKAHfPA==
+ bh=pHh3X6JJdHxq2/niH+3LtBoYiZJY8jH8742cfNju9Y8=;
+ b=h3tIi2kjqy0n0MJZHzeEa3IU2IkgXxztrIMoCy3AdQ6ZTrAvJObalCLVEzC06/zFuh31yJYM+ymyITZTzBqTraK2IMWAhPr7bUzGPJJF1xV+133MTk7B2Z8J2pk3ft6nikFoHHXaiMCmKALzKlx7lkDMGgms4bLgmzQH0U5d80KBbdg7uWAgQB0Q7VL17DxUzYHqfzUNs1eiqoA1YmDgrAw+LYNEFtPpx43WVuNgp/fjyhv9tLzzDZ3GwptoXsjdQ0cf8U2PA+lQOwDuNszOciH/B91NeJP/zMv8BasrQpLLD/AqeS2GwA2xJFhHELxQsSG+sWvf65QC/rtsOWiA8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kVEBj/OyEAp99ErMEz3ErQ6TttANznsYWFxVX5CjnwE=;
- b=LAvV9EgmP3XKZ7iW641UPg3A9o09CEpLvvfqCxOlwkpuqXlanePIzBBzCZ/oqciE5MQnYMhDGeMbWoJz7viaDUzLl877kxJF79kr/5N8soVxBjJS+nhNnshAmBDg4drV4U6y2I+gBrSQ5o9whlmEi48pHk/c5mAUHEbcr9eI4mMCYl8HYmzcrc4AVQTG9j0XfnmdrAg+84I4TYQ9O9ktCBknYAuAnfxdwGmozd4zk4RgBDdx3ZA/bjvfVYw0+SjIGrdKh5drHSUy5nsRK2oBOcQ+DZEo3YnlTT35BjO4cp5AvZEGDZ8RM97lN7+NUOTmkDEPTysbUylUA9rFpziBCQ==
-Received: from AS4PR04MB9338.eurprd04.prod.outlook.com (2603:10a6:20b:4e6::17)
- by VI2PR04MB10594.eurprd04.prod.outlook.com (2603:10a6:800:26f::11) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=pHh3X6JJdHxq2/niH+3LtBoYiZJY8jH8742cfNju9Y8=;
+ b=FcHqutegGO8tme1DGpYUcyZ+6Ko6mgZBHK25yXu3epws7I8771OtAcolgfwTFcBtljmqHRFhTnWwOODiM08urnfx5QrsrJ1mPNoXLtGEhtob/+o5b3A9v2FWm4GiJtoXEeh3Nvnf6w0GxG7M0URJwSBl8ormQjdPIADzKB7yeTc=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA1PR12MB999228.namprd12.prod.outlook.com
+ (2603:10b6:806:4db::10) by IA1PR12MB6409.namprd12.prod.outlook.com
+ (2603:10b6:208:38b::7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
- 2026 06:38:21 +0000
-Received: from AS4PR04MB9338.eurprd04.prod.outlook.com
- ([fe80::7c4c:9c56:8552:f680]) by AS4PR04MB9338.eurprd04.prod.outlook.com
- ([fe80::7c4c:9c56:8552:f680%7]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
- 06:38:21 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: "netdev-bot+sashiko@kernel.org" <netdev-bot+sashiko@kernel.org>, "Wei Fang
- (OSS)" <wei.fang@oss.nxp.com>
-CC: Clark Wang <xiaoning.wang@nxp.com>, "andrew@lunn.ch" <andrew@lunn.ch>,
-	"olteanv@gmail.com" <olteanv@gmail.com>, "andrew+netdev@lunn.ch"
-	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
-	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"horms@kernel.org" <horms@kernel.org>, "richardcochran@gmail.com"
-	<richardcochran@gmail.com>, "linusw@kernel.org" <linusw@kernel.org>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v8 net-next 9/9] net: dsa: netc: add PTP one-step
- timestamping support
-Thread-Topic: [PATCH v8 net-next 9/9] net: dsa: netc: add PTP one-step
- timestamping support
-Thread-Index: AQHdd9JIdl+/U/SmjUCoTA9XHTJLv7c7IOwAgAAYPaA=
-Date: Mon, 23 Nov 2026 06:38:21 +0000
-Message-ID: <AS4PR04MB93381D265BF5C51D8B320A9988452@AS4PR04MB9338.eurprd04.prod.outlook.com>
-References: <20261119030534.1892935-10-wei.fang@oss.nxp.com>
- <179541034095.3135.13496206683389250613@kernel.org>
-In-Reply-To: <179541034095.3135.13496206683389250613@kernel.org>
-Accept-Language: en-US
+ 2026 06:41:01 +0000
+Received: from SA1PR12MB999228.namprd12.prod.outlook.com
+ ([fe80::4dba:119e:8e7c:37b3]) by SA1PR12MB999228.namprd12.prod.outlook.com
+ ([fe80::4dba:119e:8e7c:37b3%6]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 06:41:01 +0000
+Message-ID: <3573001a-24b8-49f3-97c8-7a414c88deb4@amd.com>
+Date: Mon, 23 Nov 2026 17:40:48 +1100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 00/13] iommufd: TSM-backed virtual IOMMUs for
+ confidential guests
+To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
+ linux-coco@lists.linux.dev
+Cc: Alex Williamson <alex@shazbot.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
+ Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
+ Nicolin Chen <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
+ Samuel Ortiz <sameo@rivosinc.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Steven Price <steven.price@arm.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
+ Xu Yilun <yilun.xu@linux.intel.com>, Ashish Kalra <ashish.kalra@amd.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, iommu@lists.linux.dev,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ linux-tegra@vger.kernel.org, patches@lists.linux.dev
+References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
+From: Alexey Kardashevskiy <aik@amd.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS4PR04MB9338:EE_|VI2PR04MB10594:EE_
-x-ms-office365-filtering-correlation-id: 5a272205-22b6-46e0-8b2d-08df492c5e22
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|19092799006|7416014|376014|366016|23010399003|1800799024|18002099003|22082099003|261009223027099003|4143699003|10067099003|5023799004|11063799006|56012099006|261102123227099003|261028144727099003|261026121527099003|261026140227099003|261021121427099003|261021123027099003|261022105027099003|38070700021;
-x-microsoft-antispam-message-info: blbp+uSgdgy1VwLRZHpwCYiq75/kQCyKzQAQoCa2F80mWYRouNF4/B1Hm+ECAbh93oWeZekZCFo0XU59dKDURhKPnxkcVGTilfLtZGNkl2l9p8yPtI3k+2TD9Ip8iLOMN5/5rQ32JGA+GUeVF23coHYT8x97e5nehE1gb9zL77gRPBlIKbTT20bBwi1Cbp4paNIbgXw2lUUmh27LDz4Kt4jhLhiPM7I2pDVaG6cHnjh+oGCS+J7utA7nRF8UMXRdI1d4cguVPJ1R2SO3FAywe9uN4xZm/oRJuF7Rn89LezOqp/Rs/02CdxYdenxJ56kHCKdoNuZvGj9z2wp9qiy5jEMSKryetUJ+Vm5dUmlfe6PcPhN/LFrKKAVmg9UhGGKJ4ideBJwE/pIRY7pJYk+aIqjBh90ZB7e36HcnorEhd0LdNHIbvO4G7nqRghCqMpgkcIqBV/vPqETgntDfkDfauXFFBk9SEQ4bH3DhxHApJUKixJzO32rXDl6CxOLNJPt2Daiz0AN+O/vV3AIzqzg6NhVIUynkLhggRbePzppVg9BdJ6ORzc13sOpx2hMORJkisYudAla81x1M0IGxny6qh1L1/or21DHrdKKiFII8oJMW6yXPYLXHrbFJvmjoLdv55akBqYVLXD3S1TfsxkhJhRTN60cchWvkxeZ2x/kigQ4P0gIZas+YXd0RtryujVNgmkCLuuyBoxveiki+a7n+MsI4cG5dGEwTcWAVU+maGi8=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9338.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(366016)(23010399003)(1800799024)(18002099003)(22082099003)(261009223027099003)(4143699003)(10067099003)(5023799004)(11063799006)(56012099006)(261102123227099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021121427099003)(261021123027099003)(261022105027099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bu/Ql7mZEAxzJXUQ68BKmLnukQRGEXs5dBGDRmN7IjZA/MVYR9U4zSzqQgEq?=
- =?us-ascii?Q?HvWTfYe8GEczcqup4pu3VlmgKkB2r1qhg9DAZzjAjk/1AQMPWD0+75sVj3Jf?=
- =?us-ascii?Q?OGC4MMgKa8T91SRVTmmpaO5BTboHoOtFe32vGlv7SY2TpTaGeXXf3+H4mEQf?=
- =?us-ascii?Q?VN9pyIDaFYPC/fNasVJ+5IQmffi8Mqir7G4svW5Swt4AUAiaFwthsUmoSrZ7?=
- =?us-ascii?Q?9BOieum8QAbSnyOqO9oV6cTHi+2S3nERApeA65ksWVIx3ysrc2GjT/S2kq87?=
- =?us-ascii?Q?SbMhh6RZzplMJJjifKpyZnIoV9vVNraOjE2oTlLysXwz7uwj0pONdnnDtzE7?=
- =?us-ascii?Q?MLmmwdpHiBl8KeKi0AVUDc4sIyc/PHw+48MX9MyEfGEwdHmBbsVroEEbgbbt?=
- =?us-ascii?Q?FymaKl8DFnO+OLXCmm/iSl2sYROI5MHNZ7B12fA5h5tErn05zNwPuFPvOeFO?=
- =?us-ascii?Q?6BWQ0FhzVCX0VqaKzKRhZP51LYbHzKqDOXijVJ5z0mS/pS39D8mwIMxW87oF?=
- =?us-ascii?Q?5dmFqC6bylT08zEHjXTwdZebxz/VIlbuig6HZTxTp8UpnggcgdNdYDNJoSoA?=
- =?us-ascii?Q?qOTwmo+pxiKEVEA/cHRy2oaNpAji5oBDUdZns3R7Fs28PVkUU2pY81vXmq4v?=
- =?us-ascii?Q?EY4FBzsEthuYqD7NznCwWMtH0jFUn1eQz3coQSW2dLHTViSvCc/lxQa+nyvH?=
- =?us-ascii?Q?JDEVuWBumGcOZvwOlFoaHnAuTIgGR8I1b9MtKykUOMdO2JL+j27qOoIrfZrc?=
- =?us-ascii?Q?qeIVnkMiy1dUGyo1uXV36nZZyBQM7JXNhV1zLQimsuPVC+xXjJHun2V+e5av?=
- =?us-ascii?Q?O7Sgt3gU4Bvw2uu8QdXyVGWVLHtfQJUlNmWIhbg5SWBAZJRRrTxr7jv3SRXe?=
- =?us-ascii?Q?67n/ei4lN6s5Bwv2+CAqsqXdMSDUmWk54jp71gBsyhh4RMgophTH8SbpjSKz?=
- =?us-ascii?Q?OE9xMusAa43vSLn3JmQN1t58aiG9I4wqgu1eLJbevfPiyt9tlJcxcjrM+Whw?=
- =?us-ascii?Q?yfjAU2ZuTO4YUnT/fe+0iHMXFmPWzIEfND+UyCrkeyliPBDby2qEbUDXMMrf?=
- =?us-ascii?Q?57nztLxrSK7LCbenizuVc5xfzPknFrpanGDQUqoydirRT6XYBSwzYJYPV8hx?=
- =?us-ascii?Q?/8g2l4e7pxY8KsmD8Fga9Q9v/P13Z2TgY0alNN82dwTGDQfzaxSiKB/A70EV?=
- =?us-ascii?Q?XZcWfbSeZarEq9QvfWYnz4KWkaq/iKjwRmaZQYf9PzGKEDm7fCCdGJq4k4mC?=
- =?us-ascii?Q?CoaQA3qk2+V5zxWtXIzBI6CXB+9iPAKxxKf27OqTBordZOSJflpG6VC1QwWz?=
- =?us-ascii?Q?p2jYeAcx/YNHeUwuSNdjVInAqzH0zsHsLo1Eqlr2yHKQEG1LmwWOMx8T9I1U?=
- =?us-ascii?Q?ALJ2CpsMsga00olpGdhT4NrJXRgzFNrJDn3UylPffFr+h5sYDg3V9mSGQZjJ?=
- =?us-ascii?Q?MyQywppuvr9ORAMklmBwTwxY/et0deSi/ShQlYEGPD72tXFHY5QhpeazRfuN?=
- =?us-ascii?Q?j9Pm4AoERTuRL09tgSO4toUkYCHsPeG1EkT/9L3ZN9MWRfBb86vy63ViZNoY?=
- =?us-ascii?Q?8USPdTrAJ5AVfJ8FozMYUxzMI5DMbAJCkU+mMrOXTSZUDVpA51vsFCS8nFHH?=
- =?us-ascii?Q?bCVnq/BcJj3f/+4Bj+xm4cJNDEf36Fc9hSw7mlcIQvzBiZvJrd11YR2vWLss?=
- =?us-ascii?Q?vYuRhBVAMHha5l2QORCmVaNYbPIolrGGbCqKERTT0RrsVq3H?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20261116081935.85372-1-aneesh.kumar@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SY6PR01CA0026.ausprd01.prod.outlook.com
+ (2603:10c6:10:eb::13) To SA1PR12MB999228.namprd12.prod.outlook.com
+ (2603:10b6:806:4db::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR12MB999228:EE_|IA1PR12MB6409:EE_
+X-MS-Office365-Filtering-Correlation-Id: 62dab75d-3ff5-4728-73cd-08df492cbd15
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|23010399003|6133799003|22082099003|18002099003|3023799007|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261021123027099003|261022105027099003|261021135927099003|261009223027099003|261021121427099003|261022075727099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 1WrV9HONL6/KVp1tNng6eEZaXVtm8YdpybbLARDp/YaoiRwfeO1mVA6+nUC3rT4fNWURDdM56+S+LnmaTUOVP8fprJ5HGGyNFB+lLTuUWmXjLJG8KNRLqLaeyEHMWHRPVrCEzDxPUbxYwmHRG6YtiQo2+UYy6aM1iZvZ7DvcmhdrQQZy7V5cO4aQdXOnp5HqBTM7a3yJ/+ybFdE5RwZhaTU9Mq3zozbW9GsNVzk1uZT088gTHuxa1LEYomMTTUoJ9d/77Ix/80xGxjjwxSjycf/bdGF9ZcdFhQVCD76Mp+n+BmMtEpLfmie3YG/uG9IEvvBsik2oQKJHrW157rsEGZZBvmEOZf3B7AfkGCAWimyTiJuKHSJp1YuibZLc1wd7QsM3MYUrN8YSKRcwJb7scFsGW9YZWwRF4Q9R1TLGMVoGnhhmpn54sT5eI1URVFTVFPxA3lCa/fAqpxqHpFK/umUy1kA2p4AfkunJTkZWwToODM7IrxPdUrNvBvEU4PhQgT2Az35MEw8wsnu/2jU/TPlDRYwM9W8FN+T7a8HRUJ3IOK+8OkmbD83HLYscsMgh/QY/nQoGDj7l6aCGzFgaL/Ql/BcPSaMugznI7TDrH+UDTHJuu4CR5guGcTSKwbwp
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR12MB999228.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(6133799003)(22082099003)(18002099003)(3023799007)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261021123027099003)(261022105027099003)(261021135927099003)(261009223027099003)(261021121427099003)(261022075727099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eDg4Vkp0VjYrK1hmbzI4b1JycmFLS2JPL01ObEZscEZ4UlUwNlJ4RUxxMzA0?=
+ =?utf-8?B?SXYwdzJKa0Q3ZmgvbjJGQTBYTGduUjJZd0w3bHE2ZEN2Z2lybG5ybnJFVWlR?=
+ =?utf-8?B?cTZXenNPVHZoSnFqNnIyVkdvbzNjOTFZUFhsOXBLNzhzZWdLaUdNVVgrZVpo?=
+ =?utf-8?B?cUhqY29ETkRzbjlVL3Rxdy85Tm5hT1JuYTJBK2RCTmgrT25pR3hjenpiVXdy?=
+ =?utf-8?B?cDRlRG1LRVRtSy9mU2NNekIySEhRSjBrZjRDakVnQm1tTUlXTThRNmdqSlNY?=
+ =?utf-8?B?WW1JaHBRTW1oUU1tQmhNMlZlUnpVMWN5a1JRTHJ2bU51SVVZckN0ZXV1bGhH?=
+ =?utf-8?B?OUdMbWR1VDVDMk9lcXRJZWs3eUVNQm4xT1RpWitJL0t5aGJ2WjhZMmk2NUhL?=
+ =?utf-8?B?cFlOSUY3OW9TazlnaXhjN0FYN2psOGxUc1NpLzc0eHhGRzJDTU9zbjd4SXU2?=
+ =?utf-8?B?VGd0am8xa21jVzlOWEkrUGZjTHBldFFwOThlREFwS2F1S3paQm5VQXdZdEpV?=
+ =?utf-8?B?RVNOTHhzMDd2OG5MN2txUTdTcXNjYzdFRmRDbEw5eWFJZy8reWhtS0syZVky?=
+ =?utf-8?B?SmlhVTk4NFZOOE5tNXJTU1hKTzNBU1lYTUs1WGJhOFpiVCtuMkR6NWYxdEJR?=
+ =?utf-8?B?REwrYW1GSXdwcWpsMEc2eGJmSUR0UnQ5VW9rMnlYMktkTzZmZC94SFo1aWcz?=
+ =?utf-8?B?aDk1cDdMZTZockgzWWZUT3BKaE9IR29sWWxQK2dEbU9VWEJEcWNCelVsV3Bq?=
+ =?utf-8?B?Zzg3WDQ3emRrN0MyY3lNeThrOEVTQzlKVUZUMEFacDhvckV1ZjVzUGhlK1Ir?=
+ =?utf-8?B?YXN0ajBYUXV2ckVteWFWV0J0OThna0tjRUtNd2xReDlwNEV4ZHVQVTZSVGxM?=
+ =?utf-8?B?L1llY0VyOTI3TjVuVFNmT1BsNnZWZmNDaHZXNHJqZktDNHhBaFFOZ0xWRGZH?=
+ =?utf-8?B?M2duNi9NRGtPSklWaXpKYjBkSkpKSUppemEzWTBXTy81WkJaMmI3cTFXdWVl?=
+ =?utf-8?B?Y0E5SHI5Sk9QSEQyOUhKbzRKdE1ldFFwalB1SnJlalVNcWEyaTdSMUhRNVFt?=
+ =?utf-8?B?MW9xL3l5SjVhK1h1bkM1cnpIamk2bGV2dkJyVDRUbXRHSlhzNVdmckxUalM0?=
+ =?utf-8?B?Y0h6Uy9vcmN2ZHZmM3JuS2gwekhrbkgydC9GTUVtWlV1T1BjeWdjc0JieHl1?=
+ =?utf-8?B?RFZIZ2p5V0FYVHpKbzRnTGpncUY5WVlGMHIxcDhheVNrdmlLVjNzZGFUWTJy?=
+ =?utf-8?B?MzNPaHYycjlNR0hjdTdSaDhpUTNZVEtPTVhZTXdXOERsdEFWc0pRNjRVMFF1?=
+ =?utf-8?B?M01GVmM5dS9iOWRTVGRzWGhrUUhYblFvb2IwYlFXTjY4WHV2KzdpM0RDbHJi?=
+ =?utf-8?B?YXJEb2o4TmM1dHl3Nk10S0l4aW9OdC9PZmI5NDdUR1ZtckI5THRjQXo3NS9D?=
+ =?utf-8?B?OGV2bDNFM0JKMjd5YjlMS3ZGY25Lekc2cFVvZnFVY1QrQWNVRC9QdjBoNEJq?=
+ =?utf-8?B?cmVxd20wMG9mL2NsNnhIQ083RStJSGhyc1B6VERlUEcxKzc4emg1Z3pDS2J3?=
+ =?utf-8?B?U2pmWXhZREliajhjYXorOEdzUzM3d096Rm4yNmlnVTVXRjBHVzU0TDhLOVF5?=
+ =?utf-8?B?MXZJaHRWVEZKM0ZmZEJDUGJGTzRXdFlwSWxMN2RTaTBpNUZRQm1VRGhvL2hP?=
+ =?utf-8?B?c1pyTFR3bUYwVmhkdHdVa1lwSjRhN05yVklYNXNWZ0JUVVRYS3hkclA5VHcv?=
+ =?utf-8?B?YUpWSER6dkw1akVSQzV6MENvc0JSY09MNHJLemQzdldtdFRkNHBZZnJWK05B?=
+ =?utf-8?B?MytPR1U0SEIvanBsbEJhTEdpaU0xRnA1ZHd2akc4Tk4yaTRTaERXVlJ6WVdF?=
+ =?utf-8?B?Y0Rpa2xCNURDN1BUSnhYUnFYcGZFV1Zta1l1a0FaN3NJZWowUlJCLzFURHU5?=
+ =?utf-8?B?S0QybzQyZ0t2bWhZVjZlYU5tRkVoU3AvODBJckg3ZVBJVFBGV2JROEg2dmFu?=
+ =?utf-8?B?UjFyZjhYa0lUQk1yT09ycGdMNVp3Nll5emtZdFZJMk0wRXR5Vm1SbzNUNHBw?=
+ =?utf-8?B?VGsrbjkxeEVDSENDd0M2ak42elFaRzYzMDJHdk5yK2hDYm5vZWhQS3MxcVhZ?=
+ =?utf-8?B?KzVOTFpmYXdFNHVGZEE4TVJ5R1RVUjY2V2g1cXpzYTYvYmdVc1d4dE9lbXNL?=
+ =?utf-8?B?ZEtMNTVEWE41KzJRTEFlNVNnYzBzbjhKU3ZuZTlJaU43WnlSdWJTRnJjY0x6?=
+ =?utf-8?B?YlNiTWQ3QVNlelU3RlUwWnNHd1FtWnVCTWF2N3ZQV2k0R0Fac3htd2dFWTVt?=
+ =?utf-8?Q?JWU4RJoiu2j9fHxgaE?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62dab75d-3ff5-4728-73cd-08df492cbd15
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB999228.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9338.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a272205-22b6-46e0-8b2d-08df492c5e22
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2026 06:38:21.6355
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 06:41:01.0584
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: y9JNcS8alanoyppKFEIn9Qhj1zuw31bobX/n+GYxelEnPYuTYjUYoi9TZNP2yewnYxXaN8Disq+V8GJKhW0vlg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10594
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4VH20lg8cUnmIBPd3OkOBF6aUnncGiBRw0lvbI/f/VsJ4DgI7IaJdeWkYj/X9dTcC/kwPpT4zN1NvL6Dv1KZrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6409
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261122_223827_979533_0EE5C9E5 
-X-CRM114-Status: GOOD (  26.03  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261122_224112_892767_0006C8E0 
+X-CRM114-Status: GOOD (  24.46  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,89 +165,204 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> > +static void netc_port_prepare_onestep_sync(struct netc_port *np,
-> > +					   struct sk_buff *skb,
-> > +					   u32 ptp_class, bool *twostep)
-> > +{
->=20
-> [ ... ]
->=20
-> > +	/* Ensure the buffer is linear and writable so the packet can be
-> > +	 * parsed and updated in place. Otherwise, fall back to two-step.
-> > +	 */
-> > +	if (unlikely(skb_linearize_cow(skb))) {
-> > +		*twostep =3D true;
-> > +		return;
-> > +	}
->=20
-> [Severity: Medium]
-> What happens here if the frame is a one-step Sync and skb_linearize_cow()
-> fails?
->=20
-> skb_linearize_cow() runs before the message type is checked. It can retur=
-n
-> -ENOMEM under GFP_ATOMIC pressure for any nonlinear or cloned skb, for
-> example one cloned by dev_queue_xmit_nit() while a packet tap is attached=
-.
-> When that happens, the Sync goes down the two-step path:
->=20
-> dsa_user_xmit()
->   dsa_skb_tx_timestamp()
->     netc_port_txtstamp()
->       netc_port_prepare_onestep_sync()
->         skb_linearize_cow() fails -> *twostep =3D true
->       netc_port_prepare_twostep()
->=20
-> The frame gets a To_Port subtype 2 tag, or a subtype 0 tag if
-> skb_clone_sk() also fails. Its twoStepFlag is still 0, but PM_SINGLE_STEP
-> is never programmed, and originTimestamp and correctionField are never
-> updated. Would the peer then accept a one-step Sync carrying whatever
-> originTimestamp software put there?
->=20
-> netc_port_txtstamp_handler() would also later deliver a hardware TX
-> timestamp for this Sync through skb_complete_tx_timestamp(). Doesn't that
-> conflict with the HWTSTAMP_TX_ONESTEP_SYNC description in
-> include/uapi/linux/net_tstamp.h:
->=20
->     In this case, transmitted Sync packets will not received a time
->     stamp via the socket error queue.
->=20
-> The commit message also says:
->=20
->     If the originTimestamp field of the sync frame is not in the linear
->     buffer of the skb or the correction offset exceeds the hardware
->     capability, the frame will be dropped.
->=20
-> skb_linearize_cow() runs first, so the later check:
->=20
->     if (unlikely(tstamp_offset + 10 > skb_headlen(skb) ||
->                  correction_offset > NETC_MAX_STEP_OFFSET)) {
->             NETC_SKB_CB(skb)->ptp_flag =3D NETC_PTP_FLAG_DROP;
->=20
-> only catches truncated frames. The "not linear" case falls back to
-> two-step and is not dropped.
->=20
-> Should a linearize failure on a Sync frame be handled the same way as the
-> other error paths in this function, with NETC_PTP_FLAG_DROP and a
-> tx_dropped increment?
+On 16/11/26 19:19, Aneesh Kumar K.V (Arm) wrote:
+> This series adds IOMMUFD and PCI/TSM infrastructure for assigning PCI
+> devices to confidential guests. A TEE Security Manager (TSM) can provide a
+> virtual IOMMU (vIOMMU), and an IOMMUFD vDEVICE object represents a physical
+> device within that virtual IOMMU.
+> 
+> The series adds a common framework for operations on vDEVICE objects and
+> updates lifetime management to keep the VM and device-security resources
+> available while those objects are in use.
+> 
+> The Arm CCA backend is provided in a separate series, together with
+> operations for TEE Device Interface Security Protocol (TDISP) state changes
+> and access to cached device-attestation objects.
+> 
+> The full series, including the Arm CCA backend, is available at:
 
-From a software perspective, this is a trade-off and cannot completely solv=
-e
-the problem unless skb_linearize_cow() never fails; otherwise, the driver
-cannot parse the message type. Therefore, we cannot discard it, as it could
-be another two-step packet, such as Delay_Req, Pdelay_Req, or Pdelay_Res.
-The issue raised by Sashiko can indeed occur, but only under memory pressur=
-e.
-Once the memory pressure subsides, PTP synchronization will return to norma=
-l.
-So there is nothing we can do for this issue, I would like to leave it as i=
-t is.
+nah, it is not :(
+
+> 
+>    https://git.gitlab.arm.com/linux-arm/linux-cca.git cca/topics/7.4/tdisp-host-rc3
+> 
+> Notes:
+> * Codex was used to assist with commit message formatting and code
+>    rearrangement.
+> 
+> Changes from v8:
+> https://lore.kernel.org/all/20261104161632.3547423-1-aneesh.kumar@kernel.org
+> * Drop the patch taking an additional KVM file reference for the
+>    iommufd_device lifetime.
+> * Rename the IOMMU_VDEVICE_OP reserved field to __reserved and return
+>    -EOPNOTSUPP when it is nonzero. Keep the ioctl table entries ordered.
+> * Collect Reviewed-by tags.
+> * Address review feedback.
+> 
+> Changes from v7:
+> https://lore.kernel.org/all/20261008055955.4014342-1-aneesh.kumar@kernel.org
+> * Replace IOMMU_VDEVICE_TSM_REQ with the common IOMMU_VDEVICE_OP ioctl
+>    framework. Keep operation definitions and callbacks in the Arm CCA
+>    backend series.
+> * Replace architecture-specific request dispatch, TSM result codes and
+>    buffer-residue returns with operation-specific request/response formats,
+>    a zero-success return convention and resp_len for response lengths.
+> * Hold a KVM file reference for the full iommufd_device lifetime and
+>    require matching device/vIOMMU KVM associations for vDEVICE allocation.
+> * Hold TSM device and user references as well as the backend module
+>    reference for the vIOMMU lifetime. Make unregister reject new users
+>    and wait for existing users before tearing down PCI connections.
+> * Coordinate DSM removal with TSM unregister so the completion used to
+>    wait for users remains valid throughout teardown.
+> * Complete PCI registration before publishing the TSM device and roll
+>    back PCI registration if publication fails. Require PCI operations
+>    when registering a TSM.
+> * Move PCI/TSM core code into drivers/pci/tsm/core.c.
+> * Temporarily disable AMD vIOMMU allocation while its interfaces are updated.
+> 
+> Changes from v6:
+> https://lore.kernel.org/all/20260917140159.1163281-1-aneesh.kumar@kernel.org
+> * Replace the IOMMUFD provider registry with per-device TSM operation lookup.
+> * Move vIOMMU allocation size and initialization into the selected vIOMMU ops.
+> * Select parent HWPT policy from the vIOMMU ops flags.
+> * Pin a vIOMMU's TSM backend module through vIOMMU destruction.
+> 
+> Changes from v5:
+> https://lore.kernel.org/all/20260525154816.1029642-1-aneesh.kumar@kernel.org
+> * Replace the TSM bind/unbind interface with reference-counted contexts.
+> * Add the IOMMUFD vIOMMU provider abstraction.
+> * Route TSM guest requests through vIOMMU ops.
+> 
+> Changes from v4:
+> https://lore.kernel.org/all/20260427061005.901854-1-aneesh.kumar@kernel.org
+> * Switch VFIO/iommufd to use struct file *kvm_file instead of relying on
+>    kvm->users_count references.
+> * Define TSM request scope values globally in iommufd.
+> * Rename the ioctl to IOMMU_VDEVICE_TSM_REQ.
+> * Address other review feedback.
+> 
+> Changes from v2:
+> https://lore.kernel.org/all/20260309111704.2330479-1-aneesh.kumar@kernel.org
+> * Bump the series revision to v4 to keep it in sync with the dependent CCA DA
+>    patchsets. There was no v3 posting.
+> * Drop [PATCH v2 1/3] iommufd/viommu: Allow associating a KVM VM fd with a
+>    vIOMMU
+> * Add two new patches to associate a struct kvm * with iommufd objects:
+>    iommufd/device: Associate a kvm pointer to iommufd_device
+>    iommufd/viommu: Associate a kvm pointer to iommufd_viommu
+> * Address review feedback
+> 
+> Changes from v1:
+> https://lore.kernel.org/all/20250728135216.48084-8-aneesh.kumar@kernel.org
+> * Rebase onto the latest kernel
+> * Address review feedback
+> * Drop the TSM map ioctl; the KVM prefault patch will be used instead to
+>    ensure that private memory is preallocated
+> 
+> 
+> Cc: Alex Williamson <alex@shazbot.org>
+> Cc: Alexey Kardashevskiy <aik@amd.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> CC: Jacob Pan <jacob.pan@linux.microsoft.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: Kevin Tian <kevin.tian@intel.com>
+> Cc: Krishna Reddy <vdumpa@nvidia.com>
+> Cc: Lukas Wunner <lukas@wunner.de>
+> Cc: Nicolin Chen <nicolinc@nvidia.com>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Samuel Ortiz <sameo@rivosinc.com>
+> Cc: Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>
+> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Cc: Thierry Reding <thierry.reding@kernel.org>
+> Cc: Vasant Hegde <vasant.hegde@amd.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Xu Yilun <yilun.xu@linux.intel.com>
+> Cc: Ashish Kalra <ashish.kalra@amd.com>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: iommu@lists.linux.dev
+> Cc: Jonathan Cameron <jonathan.cameron@huawei.com>
+> Cc: Tom Lendacky <thomas.lendacky@amd.com>
+> Cc: kvm@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-coco@lists.linux.dev
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-tegra@vger.kernel.org
+> Cc: patches@lists.linux.dev
+> 
+> Aneesh Kumar K.V (Arm) (11):
+>    virt: coco: tsm: Require PCI operations when registering a TSM
+>    virt: coco: tsm: Remove the device from lookup before PCI teardown
+>    virt: coco: tsm: Complete PCI registration before publishing the
+>      device
+>    iommufd: Add a vDEVICE operation ioctl framework
+>    PCI/TSM: Remove the legacy guest request interface
+>    PCI/TSM: Keep connections active while device contexts exist
+>    iommufd/viommu: Select vIOMMU operations before allocation
+>    iommufd/viommu: Allow PCI TSM backends to provide vIOMMU operations
+>    iommufd/viommu: Allow vIOMMUs without a parent HWPT
+>    PCI/TSM: Wait for device contexts before removing a DSM
+>    PCI/TSM: Wait for users during unregister
+> 
+> Nicolin Chen (1):
+>    iommufd/viommu: Keep a reference to the KVM file
+> 
+> Shameer Kolothum (1):
+>    iommufd/device: Associate KVM file pointer with iommufd_device
+> 
+>   Documentation/ABI/testing/sysfs-bus-pci       |  15 +-
+>   Documentation/userspace-api/iommufd.rst       |  44 +-
+>   drivers/crypto/ccp/sev-dev-tsm.c              |   4 +-
+>   drivers/iommu/amd/iommu.c                     |   3 +-
+>   drivers/iommu/amd/iommufd.c                   |  18 +-
+>   drivers/iommu/amd/iommufd.h                   |  11 +-
+>   drivers/iommu/amd/nested.c                    |   4 +-
+>   .../arm/arm-smmu-v3/arm-smmu-v3-iommufd.c     |  37 +-
+>   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   |   7 +-
+>   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  16 +-
+>   .../iommu/arm/arm-smmu-v3/tegra241-cmdqv.c    |  24 +-
+>   drivers/iommu/iommufd/device.c                |   7 +-
+>   drivers/iommu/iommufd/hw_pagetable.c          |  14 +-
+>   drivers/iommu/iommufd/iommufd_private.h       |   3 +
+>   drivers/iommu/iommufd/main.c                  |   3 +
+>   drivers/iommu/iommufd/selftest.c              |  33 +-
+>   drivers/iommu/iommufd/viommu.c                | 155 ++++--
+>   drivers/pci/tsm/core.c                        | 448 ++++++++++--------
+>   drivers/vfio/iommufd.c                        |   3 +-
+>   drivers/virt/coco/tsm-core.c                  | 213 +++++++--
+>   include/linux/iommu.h                         |  20 +-
+>   include/linux/iommufd.h                       |  29 +-
+>   include/linux/pci-tsm.h                       | 154 +++---
+>   include/linux/tsm.h                           |  41 +-
+>   include/uapi/linux/iommufd.h                  |  36 +-
+>   25 files changed, 880 insertions(+), 462 deletions(-)
+> 
+> 
+> base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+
+This is v7.4-rc3.
+
+> prerequisite-patch-id: 121492d71cc22b2adbfdedd668868c5a449ad764
+> prerequisite-patch-id: ed31fd728f0adba3d60dcd6f3bae8da1a2193bcc
+
+What are these two? Cannot find them any tree... I really want try this all but also trying to eliminate guessing...
+
+Thanks,
+
+-- 
+Alexey
 
 
