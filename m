@@ -2,106 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21B0606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B44606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 16:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xZNv3BwR;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=NIOLzvXf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pWc0JYTq;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pBFr0qX8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YRMha8kezy82Lb7FBCLkHRd6Bd/GNI0Qqhk8lamcaMQ=; b=xZNv3BwRMN4jzj
-	+X0DkUY4ICwnDhS/QrnOOQiY8K7mp5uksyzv589rs2fAmDaMrR2uc+W7XSWxl3TOl9/6nHOsOsD2x
-	1msZjZ2HNJfDhQO+tcgiWhSdr25mTUISkx3ZmAAUKsN5VSFrtsmbu2GTuM2EMRwJ1UIHhlLpshiOr
-	aXxXzc89dfquYF9SgJdKLNnrdDzYzVa07Pvopfz93QkIwsUhz2Wo+YR/SvfNtYqnVFXuDz1dXn3bj
-	Lc13MARNKHszN7+Gpj9S64RMFW9Se7P9Fr7lBDLgMgclP1L+vNHkK3Y8eQsLekHxPku8QeZxoRChi
-	gpsSySnQy5TAlSvhnZsg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:References:In-Reply-To:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=7dN/vVzubn6FBy5JBi1JKDPMoy3qFWTVECLWV3xaYhk=; b=pWc0JYTqBjiEYwaD4VzBcpHn5F
+	nP1XIWEdMIeJyuP34Ti0og3CY5q6vgjs8hdA42eXuiHtSpZ1/HyBPZAoivH5uzgdsmXeIMniPcvcb
+	I42JLLsQluaoVuEx3gMS5Re36zAXL/Ii+1ya6bm3gFIZxpzvk4KTaztSIlpbJxj5PbRpl9w1pX3V+
+	hPUIdGp/ZFaXe8YpJ8GJLVKeERofW3t5GqoWg4cRIhxA7PaX7OeizeoMzXAJ5y6FNlcaw4G+9fNWR
+	wKocySoyVfVfsmTN9bvybcIUh6mdNyuMAF8kIwy18itwp8rihzQOZFSkEtvX8vNM0e50+nMKn80lR
+	db7qJr/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXJN-00000004GMx-2THk;
-	Mon, 23 Nov 2026 16:54:38 +0000
-Received: from mail-vk1-xa35.google.com ([2607:f8b0:4864:20::a35])
+	id 1xVXMK-00000004H1Z-40yW;
+	Mon, 23 Nov 2026 16:57:40 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXJK-00000004GML-2nZo
+	id 1xVXMH-00000004Gys-0yGo
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 16:54:36 +0000
-Received: by mail-vk1-xa35.google.com with SMTP id 71dfb90a1353d-5ee3e658c70so1038867e0c.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 08:54:34 -0800 (PST)
+	Mon, 23 Nov 2026 16:57:39 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-6ba38c41804so4003328a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 08:57:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795453055; cv=none;
+        d=google.com; s=arc-20260327;
+        b=mtFrvJIpxSNWMe4/wsOMhb7/JFXP5DoOIxeJvDjdV5kZK7QwO7Re9DqlDYFl41UIUP
+         gEXYtAp5PU5PRwKPvDWlOO8FpK4ACwaGWpKbuSzBFvr/dVqpwtxW0HQna56S2XtSAhi2
+         7URzabVVPQWsSb5TudcgJcbEjA40cId/+K09JOZU+ghPE473CpixWH/mNLOT9Sme0REZ
+         V6g1ZUdS9G6sN18P1a2LFfQvRvQenFAl4bRbn1EYuuOKuTkcgL621Ke5tYSIoJgYU4Ri
+         5+ECHRoUFzVL529z+6wTsu4TgAjEYm8CNg7n0NSLy5QdhZsQhmuwRLY8bEfB9pweTLbP
+         FAqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:references
+         :in-reply-to:dkim-signature;
+        bh=7dN/vVzubn6FBy5JBi1JKDPMoy3qFWTVECLWV3xaYhk=;
+        fh=sgBIjAHz0cuHSSb7Xo3Ow0FnfLXkgitn4klOe/0+KIQ=;
+        b=HJTUi81Lc+Fx9Z7awH5D0pIJgMBSBowkS54aubvOA209r9GjbjFrkIjaI0UOfpQVO3
+         yjyQZWp8/wPKTltI7B0XgdzW6zihzFkl16bNtv6PIFd4FwqHIV382+jdgAciA6s7EX5I
+         eUuU7N2NawsBmhPiizLGPNNPpErOrvNHrkVCQbHeugatqXxKGxci7q1V9JkcMGGjVveV
+         e04FvylfSJNd2klYIXkohYhL/IZjijYoW3GLMDDgb6vLTGC+QuDfhLPT32hDE5/Y+Vx6
+         x2GiVgSOMTtLD9DNQrqUVCoCxRoyqR2aRbfWX5aP1Lhy3UApt67zyZPt9/ZZWcETZqpo
+         2a2g==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795452873; x=1796057673; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=YRMha8kezy82Lb7FBCLkHRd6Bd/GNI0Qqhk8lamcaMQ=;
-        b=NIOLzvXfem5WrwKwmSPOdLbdSWrAoi86A6mntT0oTnoqehJu/ytR+WJDz2w2tWHJ8L
-         e5o22mh5hf2h2iHu86obGPDgzNIzTlejwe/ASuIWNW6pPgEJF679Nt9j3EONvBx9YsgN
-         QHy8c4F36GChaa1zQULN3uQ8v9LPO+Rk5w0wzbw11Cwb91ZUAsIYZGx7Djpn3bDoCzKD
-         sibUGYsG54cK7hhO+3ehfSirB0zgO8oR+pZaf8Y2ZXsD4JF1MxvS899jdSvXePsujvuH
-         5lFbf9pq4Wn1hAkPbXeMXKXSUUaxzfSmUQi4dQv2GOkd9251y864w6zy/up434Uthpkc
-         QTnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795452873; x=1796057673;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=gmail.com; s=20260707; t=1795453055; x=1796057855; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=YRMha8kezy82Lb7FBCLkHRd6Bd/GNI0Qqhk8lamcaMQ=;
-        b=rINPE+bVg4z9hcgadBkmuOfuPU2EYuZ9bDz/LK41vN/4yY3gH6B0yMicCD5MrYkheX
-         dheltmfvUhD9qXitW7kDSsXproc+FpQTTMB7bUtT7J4QKah867ahmnNwuJOPoFS3fyjm
-         o7Q1c1n1Zx4Wnlc5c/ot+dtKskw9f1r9RrIaGsn9VRj7Q8fwoSrF3myMNtARcoNsjUfT
-         r7O2go8abJpLsu/PvfoMls2H3U+FEsww6WqCHGFRHmGyZC+mnKkDg6LIOZh94vM20hwG
-         02OVH3/1kShkv3pWrg6LXQP+Vsey663X5OEizTCEsp5oPNJw+yjBMiXEk087sk6t9coE
-         fpqQ==
-X-Forwarded-Encrypted: i=1; AL+hErHHO0Y6gw9VSP1rc7UcbCXt5m9VaMrwqSR9K/EO/bu9AqiS0K+Gk8W4bMAUMzG+IXupe0005r0i586He3/4GY81@lists.infradead.org
-X-Gm-Message-State: APuU4Z9/lq9zwx23Szhpqmf2WHb3+2RyouNM8FXgs3tr/LZ7nwm5xJAY
-	WA6EEIVabY99ezq1BJDHzfJsdXjWEKivPpoG4/MvMXCZoxhBiGYfoupr
-X-Gm-Gg: AZFdTZcRc4zirk5oYrOnDwVXZa+J/RAUuzhHU/jDHY+wVrUUGtAmeeAryHG3DtH743d
-	yUMyqtvO3HYj0bkElwzsVdHrwKQmrzBSoQojyKatZtDsn5pp8sW24ktbd/n+hIR0I1DcHQRZADz
-	9Yy0Mil46mAcBpN9r5ViUUsERI1GytEotco2bgTtCOVBrDLazqavJVXV+1X4nH/AIZsyb4ueIkn
-	sF6awSvYacymDTqfk+rUsW+iN9JcxNIbZ6U2gPFhWKLUQtjQf8E3MMQbODBoEYUM5zzKArt05Ic
-	9RIjI2Fp4zKOvKme60/ng13JxbpG5glCnF/vcyjS7Vb/tSKm2W+/wNzft6u2xQaHvlQWrEQzLk9
-	gWxr7rCwWmPzw6bAjnKb/nE9s8wkq0GNjdlBBjpaeZ7t4L2t5I0s+hXw7n6jCF+V13L5SmbTyy2
-	xW3a+/9bBIDodWO1fq8BiZA4ckRB2u8qJRkj9xpkfCVAWyJpruwAZGpG1+5S8xxZno9fY2cKZuh
-	3esxygK2UNFfsGn0xuxPSQbhXWfgPNgDnDqDQL+gr9kDD7iES6nJyKK4Lj1sCgvAmJgqPaRsW4C
-	3dV1Wj0mGgxGQ8C7XJPQYWrWQPBnEsdD7W99pWJN/KWr/QVablgoFnZhNPZFAnGb2w7zrGH9BzB
-	9WkbXoHnHXaqOqJnpehPwXH76vkihjLouMZoQ
-X-Received: by 2002:a05:6122:488e:b0:5ea:c120:4514 with SMTP id 71dfb90a1353d-5ee8af3457cmr6237914e0c.15.1795452873322;
-        Mon, 23 Nov 2026 08:54:33 -0800 (PST)
-Received: from MaquinaLab.. ([2804:1b2:aa42:30d0:88c6:e1ab:a806:9c3d])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5ee8b5a8fd3sm11386824e0c.8.2026.11.23.08.54.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 08:54:32 -0800 (PST)
-From: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Enzo Adriano <enzo.adriano.code@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] arm64: dts: allwinner: add Radxa Cubie A7Z support
-Date: Mon, 23 Nov 2026 13:54:15 -0300
-Message-ID: <20261123165415.69710-1-vinicius.eduardo.pedrosa@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <374d9bf5-5c91-4f93-aa25-f0666802e153@arm.com>
-References: <20261111134919.90264-1-vinicius.eduardo.pedrosa@gmail.com> <20261123111547.24280-1-vinicius.eduardo.pedrosa@gmail.com> <374d9bf5-5c91-4f93-aa25-f0666802e153@arm.com>
+        bh=7dN/vVzubn6FBy5JBi1JKDPMoy3qFWTVECLWV3xaYhk=;
+        b=pBFr0qX8uwAiG5iLefBjOoyjgCpMqrJsXcjrMUMdXE0fzDcjVZ3tgVFEhV2LhYBLN0
+         CsD9U/nQ4FGNBzyMBRbpi4U2s3vG0sF+9WGRwz0/Fxby5m2a26scKGRiSbkiOLH4wiaf
+         pJci3izzAUxgVfOWM527xjIOIed+C4pNPtjQLuIuRnDaRrGNPfqox3Zn7kwMXFAfCggG
+         YD+ZYlH49U0tYRKZsyC9jqW/fadmmOjBciOsOS32DX/yTJwPKJ6hBXH8yFZsISSQesK/
+         zxqf/V41/M509T9o1313d71LqYw4CaJjBchzutAknX7q4jqLMbNfunByMLEB7wZJilLl
+         PC0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795453055; x=1796057855;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=7dN/vVzubn6FBy5JBi1JKDPMoy3qFWTVECLWV3xaYhk=;
+        b=hOCQYJTeDecYenLn6dEQbFOWaUfKUa1cZfGMZLi2kTzAuDiWHA9+LfwAJjCthH/gWQ
+         6wteO5ezitBkt7jlSU69KeRZGhHtCMQ0dU6dN8wpvy+YSY7F5IOOmmfWFqJPtOyCFl36
+         5W2qxSjoblSA/ZXHiogvAYUiIgtWy4eQnd6+2Nqj5Fg85rqrauojTQ/z7u7lcCF7NYDu
+         DMO49erRVTuGNJ1WwbB2OIJeb5ND/mC5mWDkOyhN38YbiqtJeZQvf8SY9S4i3RNB3WPv
+         WzQnNiUHKmQfmQz2dFD0gD1UKLitPgzEsJTud9+MJ7dGOmxhovr4K8QSwe+NJkgByldC
+         ISlw==
+X-Forwarded-Encrypted: i=1; AL+hErFy3vBtMnMFNK7R3Z0xR1tlkrit3RP/Pf1mcC9hviy8VHzjy0Glpr/E0aqn5XUHf8Tc+VdrVyY2EjJ6lXxrgHtr@lists.infradead.org
+X-Gm-Message-State: APuU4Z9KFdfxnnPxfM6FYM+PuHCkNYgbWaCdvDhbmte3eQTjafPn6ID1
+	p/9kIokWsJRQQC7rqPpvhtvd1rs11dhGb6xByWLrPQ1XifL7NxAxtYd+cH/3jiS+bD+ldK1D8jy
+	KJG44jpWdt6TrnS0VOsZrKEKseCQlau0=
+X-Gm-Gg: AZFdTZeuF70Ljlj6UXrypkrU1vGV7ReN2kVdA0bG+/CnWV8izFs4IG7KMQjZUwx3nqM
+	qqTn4XL6WGUEl395ueitmAuXuA53ei1yiULAlyreOz2o8cRtJ9+6Y5vkNKt0dksHVE1rgwR8lB9
+	t9lushGR0B8tCZm5lWuJASfQYXDeJZdyapTHj5OyR3wPGfCcaunJPIbPFfeqXuOX1ZZArZyu4r2
+	khzmvOqCxCjxFYg3qWta5XhI6dFI1OKkhMmyf3JpXadTjt8bXZpJaUQl+PQ/gHsF6OpiS6ruuo0
+	DBUVn4PReuPKfGF5VXeXUoK445MoUF39wAJiqdQCqZ2V8MVhfj5jhfEantooZC3a7dZiI27LHnW
+	MBPe//HDrHSXOgdL3mPbUDW7ns3JssZO65IYU/Y2Ay+gjSQYZ677bslAtinbmK8ED4DywaoPO0p
+	92bm0l6xTZj79PaJzG6no209s=
+X-Received: by 2002:aa7:da13:0:b0:6b4:1037:2b87 with SMTP id
+ 4fb4d7f45d1cf-6ba37e8ded8mr5943359a12.31.1795453055285; Mon, 23 Nov 2026
+ 08:57:35 -0800 (PST)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 23 Nov 2026 08:57:34 -0800
+In-Reply-To: <8f9f9752-4c23-48de-9483-63268627ff3c@arm.com>
+References: <20261111134919.90264-1-vinicius.eduardo.pedrosa@gmail.com>
+ <20261111134919.90264-3-vinicius.eduardo.pedrosa@gmail.com> <8f9f9752-4c23-48de-9483-63268627ff3c@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+X-Google-Nh-Sender: AW_J_UrASlPMOi1enYGbDd7RalW38PQ50ZaFfiwV6Y_BxvNUm5lQPRQ5rH16_Fvib--E9iewX8hh0ND8RTsKAmoDL-KACpMwZtTzhG4ooDVpLbIj8uuiHeWRLBxnpU6OrkTH2tfBoZswn_Qm0uzsBw3F6Pv7eX0d1rI4IiVhDjv6Ay7Xw0JxWYfgxfY6jaL6C_sJv31GI0AF0uqrzU2IspM9ed5gPH_aJSa3SXHBMMqxg189u8lFZgVlTPL0iQ7gqi-DGGyPJWyDsA
+Date: Mon, 23 Nov 2026 08:57:34 -0800
+X-Gm-Features: Aa3M54r3FfAiu2L7EUgWFmqbow6mlwYvIizYOohUXl_c9RKexdrT-6tJ232IkjI
+Message-ID: <nh-1384c024-38de-4962-9d4f-a0bfb55471a6@google.com>
+Subject: Re: [PATCH 2/3] arm64: dts: allwinner: add Radxa Cubie A7Z board
+To: andre.przywara@arm.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com, 
+	samuel@sholland.org
+Cc: enzo.adriano.code@gmail.com, mripard@kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_085434_713053_28613D35 
-X-CRM114-Status: GOOD (  14.06  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_085738_477257_0D9FF229 
+X-CRM114-Status: GOOD (  43.69  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,42 +124,472 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 1:11 PM Andre Przywara <andre.przywara@arm.com> wrote:
-> I wonder if this works anyway with using both the internal pull-down and
-> potentially external pull-up resistors? As one would win over the other?
-> Can you try how your board behaves with:
->          cd-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+On Mon, Nov 23, 2026 at 1:35 PM Andre Przywara <andre.przywara@arm.com> wrote:
+> sorry, I missed your post earlier, so made my own version of the DT
+> yesterday. So this is more like comparing this to yours ;-)
 
-Tried it on my v1.11 and it doesn't work: card removal is detected, but
-reinsertion isn't. PF6 stays low with the card in, in every attempt (two
-DTBs), although it read high at boot with the card already in.
+No worries. I'll fold your comments into a v2 once Enzo's v5 is out. Do
+you plan to post yours? I'd rather end up with one A7Z DT than two.
 
-Neither one wins cleanly. The A733 datasheet gives PF6 a 15k typical
-internal pull (9k to 21k), so with R59 (10k) the pull-down leaves it at
-roughly 1.6 to 2.2 V, below the VIH minimum of 0.7*VCC (2.3 V). That's
-my math, I didn't measure it.
+> > + reg_dcdc9: dcdc9 {
+> > + regulator-name = "eldo-input";
+>
+> The schematic says 1.1V/1.25V. Can you check what it is on your board,
+> at runtime? If in doubt, go with 1.1V, this should be enough headroom
+> for the ELDO6 this supplies, with outputs 0.8V.
 
-I then tried GPIO_PULL_UP and GPIO_PULL_DISABLE. Both work: three
-complete hotplug cycles each, plus booting without a card and inserting
-it later. With no flag it also works, but only because U-Boot sets the
-pull-up (sunxi_mmc.c requests the CD GPIO with GPIOD_PULL_UP in the
-2026.01-rc1 tree I use). To check that Linux applies the flag itself, I
-forced the pull register to pull-down in U-Boot before booti, and Linux
-wrote pull-up back.
-
-Could you try PULL_UP and PULL_DISABLE on your v1.10, card in and out?
-"grep 'pin 166' /sys/kernel/debug/pinctrl/*/pinconf-pins" shows the bias
-Linux applied. If PULL_UP works there too, one DT can carry it. If not,
-I'd add a small v1.10 .dts that includes the v1.11 one.
+It reads 1240 mV at runtime on my v1.11, what the firmware leaves. I also
+ran it at a fixed 1.1 V and it was fine for a few minutes, but the
+AXP318W datasheet draft lists 1.2 V as the minimum ELDOIN as an LDO. I'd
+use a 1.2 to 1.25 V range, which keeps 1.24 V.
 
 Thanks,
 Vinicius
+
+On Mon, 23 Nov 2026 13:35:44 +0100, Andre Przywara
+<andre.przywara@arm.com> wrote:
+> Hi Vinicius,
+>
+> sorry, I missed your post earlier, so made my own version of the DT
+> yesterday. So this is more like comparing this to yours ;-)
+> As you saw my reply to Enzo's .dtsi and A7S .dts, I will keep the same
+> issues I mentioned there brief.
+>
+> On 11/11/26 14:49, Vinicius Pedrosa wrote:
+> > Add the device tree for the Radxa Cubie A7Z. Describe UART0, the AXP318W
+> > PMIC over R-I2C0, MMC0, RTC and the bank supplies. It is based on the
+> > Cubie A7S DT.
+> >
+> > Unlike the A7S, this board uses BLDO5 for PG and a SY8089 regulator for
+> > the PMIC's BLDO and CLDO inputs, and the microSD card-detect line has an
+> > external pull-up, so no internal pull-down is used. ELDO1 only supplies
+> > VDD2L for LPDDR5 and this board uses LPDDR4, so it is not described.
+> > SWOUT1 only feeds ports D and J on the 40-pin header, so it is not kept
+> > always-on.
+>
+> I think this stanza does not belong into the commit message, as
+> comparing to some different board is not relevant here.
+> Instead you should briefly list the features/connectors of this board,
+> look at other commit messages for board .dts files.
+>
+> >
+> > Signed-off-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+> > ---
+> > arch/arm64/boot/dts/allwinner/Makefile | 1 +
+> > .../dts/allwinner/sun60i-a733-cubie-a7z.dts | 286 ++++++++++++++++++
+> > 2 files changed, 287 insertions(+)
+> > create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> > index 792152525b43..2eee91dcbd77 100644
+> > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > @@ -69,3 +69,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-h728-x96qpro+.dtb
+> > dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-avaota-a1.dtb
+> > dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-orangepi-4a.dtb
+> > dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7s.dtb
+> > +dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7z.dtb
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
+> > new file mode 100644
+> > index 000000000000..ab3d3d70f9ff
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7z.dts
+> > @@ -0,0 +1,286 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>
+> I think you need a copyright line here.
+>
+> Also please explain the situation with the v1.10 and v1.11 versions here.
+>
+> > +/dts-v1/;
+> > +
+> > +#include "sun60i-a733.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > + model = "Radxa Cubie A7Z";
+> > + compatible = "radxa,cubie-a7z", "allwinner,sun60i-a733";
+> > +
+> > + aliases {
+> > + mmc0 = &mmc0;
+>
+> Please remove.
+>
+> > + serial0 = &uart0;
+> > + };
+> > +
+> > + chosen {
+> > + stdout-path = "serial0:115200n8";
+> > + };
+> > +
+> > + reg_ps: regulator-system-power {
+>
+> Please add a short comment where this power comes from (USB-C connector).
+>
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "ps";
+> > + regulator-min-microvolt = <5000000>;
+> > + regulator-max-microvolt = <5000000>;
+> > + regulator-always-on;
+> > + };
+> > +
+>
+> As mentioned in the other mail, please add a comment that this has been
+> added in v1.11, and v1.10 doesn't have it.
+>
+> > + reg_ldo_input: regulator-ldo-input {
+> > + compatible = "regulator-fixed";
+> > + regulator-name = "ldo2v5-input";
+> > + /* SY8089: 0.6 V * (1 + RP11 / RP6), 30k / 10k. */
+> > + regulator-min-microvolt = <2400000>;
+> > + regulator-max-microvolt = <2400000>;
+> > + regulator-always-on;
+> > + vin-supply = <&reg_ps>;
+> > + };
+> > +
+> > + osc32k: osc32k-clk {
+> > + compatible = "fixed-clock";
+> > + #clock-cells = <0>;
+> > + clock-frequency = <32768>;
+> > + };
+> > +};
+> > +
+> > +&cpu0 {
+> > + cpu-supply = <&reg_dcdc5>;
+> > +};
+> > +
+> > +&cpu1 {
+> > + cpu-supply = <&reg_dcdc5>;
+> > +};
+> > +
+> > +&cpu2 {
+> > + cpu-supply = <&reg_dcdc5>;
+> > +};
+> > +
+> > +&cpu3 {
+> > + cpu-supply = <&reg_dcdc5>;
+> > +};
+> > +
+> > +&cpu4 {
+> > + cpu-supply = <&reg_dcdc5>;
+> > +};
+> > +
+> > +&cpu5 {
+> > + cpu-supply = <&reg_dcdc5>;
+> > +};
+> > +
+> > +&cpu6 {
+> > + cpu-supply = <&reg_dcdc3>;
+> > +};
+> > +
+> > +&cpu7 {
+> > + cpu-supply = <&reg_dcdc3>;
+> > +};
+> > +
+> > +&mmc0 {
+> > + bus-width = <4>;
+> > + cap-sd-highspeed;
+>
+> Same as the A7S, please add the others.
+>
+> > + /* PF6 has an external 10k pull-up and reads high with a card. */
+>
+> "reads high with a card" is a redundant comment, since this is what
+> GPIO_ACTIVE_HIGH already says.
+> Please explain the situation with the v1.10 vs. v1.11 versions here.
+> And my v1.10 board needs GPIO_PULL_DOWN
+>
+> > + cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;
+> > + disable-wp;
+> > + max-frequency = <50000000>;
+> > + no-1-8-v;
+>
+> Please remove both.
+>
+> > + vmmc-supply = <&reg_swout2>;
+> > + /* The 3.3 V path uses VCC-IO; no Port F voltage switching yet. */
+> > + vqmmc-supply = <&reg_swout2>;
+>
+> Please remove those two lines, we will add vqmmc later.
+>
+> > + status = "okay";
+> > +};
+> > +
+> > +&osc {
+> > + clock-frequency = <26000000>;
+> > +};
+> > +
+> > +&pio {
+> > + vcc-pb-supply = <&reg_swout2>;
+>
+> Please add a comment that this comes from VCC-IO. See the Cubie A5E DT.
+>
+> > + vcc-pc-supply = <&reg_cldo5>;
+> > + vcc-pd-supply = <&reg_swout1>;
+> > + vcc-pe-supply = <&reg_bldo1>;
+> > + /* CLDO5 feeds VCC18-PF; the 3.3 V path uses VCC-IO. */
+> > + vcc-pf-supply = <&reg_cldo5>;
+>
+> As it stands this is VCC-IO, so swout2, please change that, plus the
+> VCC-IO comment.
+>
+> > + vcc-pg-supply = <&reg_bldo5>;
+> > + vcc-ph-supply = <&reg_swout2>;
+>
+> VCC-IO comment, please.
+>
+> > + vcc-pj-supply = <&reg_swout1>;
+> > + vcc-pk-supply = <&reg_bldo1>;
+> > +};
+> > +
+> > +&r_i2c0 {
+> > + status = "okay";
+> > + pinctrl-names = "default";
+> > + pinctrl-0 = <&r_i2c0_pl_pins>;
+> > +
+> > + axp318w: pmic@36 {
+> > + compatible = "x-powers,axp318w";
+> > + reg = <0x36>;
+> > + interrupt-parent = <&nmi_intc>;
+> > + interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> > + interrupt-controller;
+> > + #interrupt-cells = <1>;
+> > +
+> > + aldo156in-supply = <&reg_ps>;
+> > + aldo234in-supply = <&reg_aldo1>;
+> > + bldoin-supply = <&reg_ldo_input>;
+> > + cldoin-supply = <&reg_ldo_input>;
+>
+> Please add a comment about v1.10 differing.
+>
+> > + dldoin-supply = <&reg_ps>;
+> > + eldoin-supply = <&reg_dcdc9>;
+> > + ips-supply = <&reg_ps>;
+> > + vin19-supply = <&reg_ps>;
+> > + vin23-supply = <&reg_ps>;
+> > + vin45-supply = <&reg_ps>;
+> > + vin678-supply = <&reg_ps>;
+> > +
+> > + regulators {
+> > + reg_dcdc1: dcdc1 {
+> > + regulator-name = "vcc-3v3";
+> > + regulator-min-microvolt = <3300000>;
+> > + regulator-max-microvolt = <3300000>;
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc2: dcdc2 {
+> > + regulator-name = "vdd-sys";
+>
+> Please add the voltage: 0.8V.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc3: dcdc3 {
+> > + regulator-name = "vdd-cpub";
+>
+> From the OPP tables I could find in the Radxa repo on github, the range
+> should be 0.8V - 1.05V. We can adjust this later when we add proper DVFS
+> support, if needed.
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc4: dcdc4 {
+> > + regulator-name = "vdd-gpu";
+> > + regulator-always-on;
+>
+> Voltage range should be 0.8V - 0.96V, and drop the always-on.
+>
+> > + };
+> > +
+> > + reg_dcdc5: dcdc5 {
+> > + regulator-name = "vdd-cpul";
+>
+> Voltage range 0.8V - 1.05V.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc6: dcdc6 {
+> > + regulator-name = "vcc-draml";
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc7: dcdc7 {
+> > + regulator-name = "vcc-dram";
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc8: dcdc8 {
+> > + regulator-name = "vcc-ufs-io";
+>
+> The voltage is 1.2V, and please drop the always-on.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dcdc9: dcdc9 {
+> > + regulator-name = "eldo-input";
+>
+> The schematic says 1.1V/1.25V. Can you check what it is on your board,
+> at runtime? If in doubt, go with 1.1V, this should be enough headroom
+> for the ELDO6 this supplies, with outputs 0.8V.
+>
+> > + regulator-always-on;
+>
+> Please remove.
+>
+> > + };
+> > +
+> > + reg_swout1: swout1 {
+> > + regulator-name = "vcc33-lcd";
+>
+> Please use "vcc-pd-pj" as the name.
+>
+> > + };
+> > +
+> > + reg_swout2: swout2 {
+> > + regulator-name = "vcc-io-card";
+>
+> I used "vcc-io-ph-usb", "card" does not seem to be used.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_aldo1: aldo1 {
+> > + regulator-name = "vcc-pl";
+>
+> Also USB it seems, so I used "vcc-pl-usb".
+>
+> > + regulator-min-microvolt = <3300000>;
+> > + regulator-max-microvolt = <3300000>;
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_bldo1: bldo1 {
+> > + regulator-name = "vcc-pe-pk-mcsi";
+>
+> Voltage is 1.8V.
+>
+> > + };
+> > +
+> > + reg_bldo2: bldo2 {
+> > + regulator-name = "vcc-lvds0";
+>
+> 1.8V as well.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_bldo4: bldo4 {
+> > + regulator-name = "vcc18-codec";
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + };
+> > +
+> > + reg_bldo5: bldo5 {
+> > + regulator-name = "vcc-pg";
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + };
+> > +
+> > + reg_cldo1: cldo1 {
+> > + regulator-name = "vcc33-18-usb";
+>
+> That is a confusing name ;-) "vcc-pm-lpddr" should explain the always-on.
+>
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_cldo2: cldo2 {
+> > + regulator-name = "vcc18-hdmi";
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + };
+> > +
+> > + reg_cldo3: cldo3 {
+> > + regulator-name = "vcc-pll-dram";
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_cldo5: cldo5 {
+> > + regulator-name = "vcc18-pf-pc";
+>
+> "pf" is somewhat misleading. I had "vcc-pc-combo".
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dldo1: dldo1 {
+> > + regulator-name = "vcc-efuse";
+>
+> Voltage is 1.8V.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_dldo6: dldo6 {
+> > + regulator-name = "vcc-ufs";
+>
+> Voltage is 2.5V, and no always-on should be needed.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_eldo6: eldo6 {
+> > + regulator-name = "vdd-cpus";
+>
+> Voltage is 0.8V.
+>
+> > + regulator-always-on;
+> > + };
+> > +
+> > + reg_rtc_ldo: rtc-ldo {
+> > + regulator-name = "vcc-rtc";
+> > + regulator-min-microvolt = <1800000>;
+> > + regulator-max-microvolt = <1800000>;
+> > + regulator-always-on;
+> > + };
+> > + };
+> > + };
+> > +};
+> > +
+> > +&r_pio {
+> > + /* PL powers the PMIC bus itself; firmware must keep ALDO1 enabled. */
+>
+> Probably better to copy the comment from the other DTs, and have the
+> "would-be" line inside the comment (vcc-pl-supply = <&reg_aldo1>;)
+>
+> Cheers,
+> Andre
+>
+> > + vcc-pm-supply = <&reg_aldo1>;
+> > +};
+> > +
+> > +&rtc {
+> > + clocks = <&r_ccu CLK_BUS_R_RTC>, <&osc>, <&r_ccu CLK_R_AHB>,
+> > + <&osc32k>;
+> > + clock-names = "bus", "hosc", "ahb", "ext-osc32k";
+> > +};
+> > +
+> > +&uart0 {
+> > + pinctrl-names = "default";
+> > + pinctrl-0 = <&uart0_pb_pins>;
+> > + status = "okay";
+> > +};
 
