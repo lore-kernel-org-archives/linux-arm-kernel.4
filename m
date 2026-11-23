@@ -2,110 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA736606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531B4606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 17:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=br8zHhvH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F3kwWrlk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iQGd8ipT;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=cfPEEsAV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=URDPaglQXKS7bojwQwMsPG/Rk5Gel8tTQUM0/WVvGKU=; b=br8zHhvHqyMillnuFY54oCwve5
-	shLqHcd+RI37Zs6kEEEP9gTaMz6780ppSeZOTqgYZVkytTzXib8LIyERsLCxsp9UuBmnFkbifm4/G
-	A85ZzF12kxFaUmw1W6V2Yjb5HZzWaobheAYsSzVUoUhd2USjLG6TA5ey8qgvW6yQ+U1I6xoj9FTdJ
-	V8a2FmDnU6RWE7r5kWVrVZ7qaiDcrd7naoDbkghgsTGwEu4lfQxJQaQBZ3fbhnwQSX9xbvY7S+7OI
-	s0kPLyJ2qq54ed1X8z0wz7JUV7GH3RctzRzkL1EB0aXc/WYzzoulYq10yxe6yePOKWw5B3n2JfnrT
-	KrWV2VvA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:
+	Subject:Cc:To:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=bipnXXOP6GEac7VhzrWgQysb5XbdawIYcGpzXVL1ASg=; b=iQGd8ipTewMQ3O
+	aaSQL4v+eVfZE1DTVJyz694T9pNTqdffslMFzzhkFGt5Ya/azNsR14pSF54sfZKuyro6NXFMmsdeB
+	B9c35HHCplkXNxI+647Hc3cnCOXNUtgWL2pX+GAiSEx6XDKVvxw5xUpfd0Je7WbdB7A1QdlhhGqBl
+	l8lhdqTdo4mG8SBhdPL7YAgpoO+V64dZNkKJVxn93R6uYrUtYgmcHjSnP9TueDalMThi7BHk4nJH1
+	oma8Siwbc++eDCzOGqlngkXkWoUemPdX0i3zGw+Pq+JR6I4hLRuCfUW7RcZXFUsZaa5K1UwdTyuEJ
+	NwjYKdOHSNDwNorwy1WA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXvA-00000004NUB-3ig3;
-	Mon, 23 Nov 2026 17:33:40 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVXwd-00000004NnH-27nQ;
+	Mon, 23 Nov 2026 17:35:12 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVXv9-00000004NTk-3S0j;
-	Mon, 23 Nov 2026 17:33:39 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 91F70438A6;
-	Mon, 23 Nov 2026 17:33:39 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795455219;
-	b=O3VhYw4UdVinZG9MApj+VL7kEGLTp/yh7XAF9eW7CeDjrJM4AnggPGxk5GR4VA03D2Ox
-	 SL6fZnffCD3F+vydEW/cfApUoKxbjYIJEH3DTI2kaK5WbedP1OdRAR7BoQ5jQlqLK0m7P
-	 gpk5+LBtZUbnUTj4OA6y00gqqtx6hDNGg1PBdxCG5H84cLNxLXqoRGcMWBH57nEX+OfV4
-	 PsRwjUamZ4vRJM5oFVoiZwTcKNva8762CCuGKG8ZK4e/zBX9w2rIgwog9TwTcpqQgHQKJ
-	 x+b5Q0xZojKv2O18/Ncl7z3pCKXpIFOExxwc6bJzrrzw/dFnRiwKneuZqcl00b7wDQg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795455219;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=URDPaglQXKS7bojwQwMsPG/Rk5Gel8tTQUM0/WVvGKU=;
-	b=Aw2EmvpH0lNV5lYDEGnGFbQ7UWNZO7GOROEpycl+V+LfBZXknoEBFWvg8sWsuaTm+AKP
-	 bn+ewYUovybJOEXhxboxqf4Fzb4ieAVXF61Qg4sIXXyt9rS6bo5KxZxZk7YZR5ToL1MQ9
-	 LBYPXzRZd6MpKtJIFrcEMgPn2guprbK9RyClxwyLZ4KFhR5RqTOY/V5k4ivdpXRxOhfZU
-	 Rt6knv1irWqV4ggjOIigSqYa0hZq7rej9VpwRwx5dDrlli/MrTssHMKk/FkCRtD2DZd3Z
-	 NOwVqRBcE+EaJ4NCpll8dVsIXYUqhRnZ6imzz3PLOVQ6rIDiWJP3AXobagfPXKossGA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B7EC21F000ED;
-	Mon, 23 Nov 2026 17:33:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795455218;
-	bh=URDPaglQXKS7bojwQwMsPG/Rk5Gel8tTQUM0/WVvGKU=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=F3kwWrlk9YB9aXOSXyEBLDwDYiLI+DQ0ms2dW2DaC4Cj+zZnqDbwMq5N9ESAkai/B
-	 kuN0HftO7z1nN0N24S8XJlAlvMq67zK6Fumf0bmU/oiiDl5UYPYB/YyLN+ehXdDLiR
-	 Ds4mSfxP5aB6JvrP790OyAs3L1fdFGR1AdDd5VjlOvlaCS6U5ylxFDLsIgLwbVigAu
-	 RyYtK6yPXluo2cJta6dwp0eLNv0LtC5PDTM8Lf1g0v3ce5kczGk0NnpF4ahZwthw/j
-	 NiMxKNO13VZbKOwVkMfXtcbWSmQxHRJQBwLuyCRZOaKU+4G5HjRCZRejN9dYXYGtrj
-	 4/DFaPaQL+67A==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4A5FA4C580;
-	Mon, 23 Nov 2026 17:33:28 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 23 Nov 2026 17:33:26 +0000
-Subject: [PATCH v3] drm/panfrost: Enable GPU_PM_RT for RK3399
+	id 1xVXwa-00000004Nmv-3KIY
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 17:35:10 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so33595615e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 09:35:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795455306; x=1796060106; darn=lists.infradead.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-type:content-transfer-encoding:mime-version:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=bipnXXOP6GEac7VhzrWgQysb5XbdawIYcGpzXVL1ASg=;
+        b=cfPEEsAVp/oDeld8AGot7cDq1q/a/hgBJbCUtDUhQd2J281QyubGbPYl2d+c1VocSH
+         ZlAhmDMHlmAENMTWi3gygrlbJ6mjBgLlvo0lFW8TCTl+b1cwsE+3Ru9L/Pfuh2RvGFEC
+         GkgZSKlZZ7HRTkvC9SmbkEo1qY6hJ+IE6cMwEp9IkGP9dDooyKT151xEiUo3OeGzQV5G
+         m2kfu50RED2ay27IB/OxRUGUME94kfRu7UB01njimbUmSTCvC3YIfC0x+273U57lwN4C
+         W+NxOokrIJ6OUn9ri1RE8v/0amLnq9bb3ZC88dlMrAoEh5dXhvi90gtpgNlm65N/EsMP
+         mX+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795455306; x=1796060106;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-type:content-transfer-encoding:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bipnXXOP6GEac7VhzrWgQysb5XbdawIYcGpzXVL1ASg=;
+        b=1pJT21DdDzWXCxjRUEsq8una+NdbqG+rUQDZcIVGFcliBziTPmCE7B4PPN7lGFjfuO
+         w70l3y3EAaM3VeQB+61FwIK9WFyirm53nEDDk8xn0aBJhN3bNwIfDpBuKIA/HOplKe0Q
+         /N6po6igb44+8A15H6IUKdoMBDlYcDZkKvEMzQkgI7i/jJSVvjzDu5V6yseFJiyOASol
+         jUjrx/KodtpBkHkCcs+vL1juDI613Nwo7CIK6VaPY73XH4g6JnnScj4Qyo+Fhw2GYyIT
+         TjS/zK2DjWzn3fPKoyATtvnqFziQlLguXwvEXs+hBn8zTtBWGv0CKxDqjGqI64k0sNrP
+         hpew==
+X-Forwarded-Encrypted: i=1; AL+hErHQ8c5zrUTmV5GNUX66rV+wLa+xRHaAqLZztdz7e6lNB6eCcHLFWab+yJ5KMQ9EqBJMnggKsMoIuELP2v3wOinT@lists.infradead.org
+X-Gm-Message-State: APuU4Z+G51kxMSvfK1kqsZs5b+6TONQMR3LCCkbRVtwO/LGYiuGbBsqj
+	NO4KuOuJr2Q1jBtFmVXxQE55Egzf4YNB7NCgCQRaTSRDwlGoDQr9FcMru0DrYyaB6QQ=
+X-Gm-Gg: AZFdTZfocuBeoef1TqonxdxzBJe4v0WWHIW93EaJwQDSO8hQ3xaWgSoUb1XQKg+QowE
+	GC6BYbzbYKi9BEp5sX62nR/I24UvUQrEkbsV4z6Cmh/m1D5xAGbF3zxFHx9f9l17r0Hxn5lGY5v
+	Iz8yd02FT5Yc8uaBXjSTg1jPzeohqfZNKQc+yTswY8hpBXU9DG0Tevq0BczHdSqfVnfA0vI3Ewc
+	PvdgGeYZH/0dpw9aODjG8CJ0OvaD9vzbjyLjSYmgndL0/90++8IGKbZmSJojiBaR38XoJ0Y/J/o
+	lQ8B9UxgliuQ6Bm4gZvidTnL+THbPZK3GesRxZGQRpoJnfnfBsohpvcRqKnT/8coxvKQSDnEoS6
+	UEBX2biAuCpvNmS3p8RD8o0bojO4UqbzO20nT1GiOM+X4FDnsNDZ/YsoeVbEocMuU2vrQ1nWCN+
+	hNLcC6v+m1+7w2K1pAXbEZo4S6Tziu0gkyvnDM6I/uMWK9pfpPvaza8IEcJbTnoFkPhM6SDS9jk
+	/kosUAaAbTPm1C5Dh6fGBDm4KOJ7/ELnIdhyYREPt1fctljPtFb5/90IpbhFELANlnXyrL72rZh
+	8vpX1PdK5t+XTosjgoaCyQEv+PXgjb3aVK0qOneouh9pLIPb4nUaOKmA2LZYgZChv3EGh3LYNH/
+	DK4Aai3H3g+/tonyCA/s=
+X-Received: by 2002:a05:600c:820c:b0:49c:d019:70c5 with SMTP id 5b1f17b1804b1-4bb887876c0mr279140365e9.0.1795455306378;
+        Mon, 23 Nov 2026 09:35:06 -0800 (PST)
+Received: from localhost ([2a00:2381:fd67:101:aee4:8c07:a9a3:c706])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88402ce9sm291142275e9.0.2026.11.23.09.35.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2026 09:35:05 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-panfrost-rk3399-pm-rt-v3-1-04c7c58d1140@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAOV4BGsC/4XOwQ6CMAyA4VchO1uzbijWk+9hPDSwyaIC6ciiI
- by7g4OejMe/Sb92UtFJcFEdi0mJSyGGvsthN4WqW+6uDkKTWxlt9qithoE7L30cQW7WEsHwABm
- hdmx9jRXphlTeHcT58Fzd8yV3G+LYy2s9k3CZ/hMTAoKjsrQV7oipOQVO23tSC5fMl0BjfhEmE
- 6X2+S1kRj58iHme34wldAD6AAAA
-To: Boris Brezillon <boris.brezillon@collabora.com>, 
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>, 
- =?utf-8?q?Adri=C3=A1n_Larumbe?= <adrian.larumbe@collabora.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Heiko Stuebner <heiko@sntech.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Daniel Stone <daniel@fooishbar.org>, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2865; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=jVdmdH5Fy/vduyoI4gZY5e3ymBwUoj6ShIzYh5QXSJg=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNksFc8rdlg+iPedscv2zTeRq886bvTwXj389ETWup/Tx
- Yx0XCpfd5SyMIhxMciKKbJMOKRxK2PJ1b/+HuYPYOawMoEMYeDiFICJvNjCyLDxom9Vt/Cntm3z
- p2a3/bu646580qG17p4BC/eL/+p9a1fH8M+OY+r5VRVeDdumxLzwZV7zhZVPfseqbxx3Tm3hi2R
- 78JkTAA==
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 23 Nov 2026 17:35:04 +0000
+Message-Id: <DN2RSBZYE9CU.1T1IA1OH8S0UC@linaro.org>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+Cc: "Sam Protsenko" <semen.protsenko@linaro.org>, "Jonathan Cameron"
+ <jic23@kernel.org>, "David Lechner" <dlechner@baylibre.com>,
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
+ <andy@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Peter Griffin"
+ <peter.griffin@linaro.org>, "Alim Akhtar" <alim.akhtar@samsung.com>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/4] iio: adc: exynos_adc: add Exynos850 support
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+X-Mailer: aerc 0.20.0
+References: <20261001-exynos850_adc-v1-0-791b3516bb9d@linaro.org>
+ <20261001-exynos850_adc-v1-2-791b3516bb9d@linaro.org>
+ <ar9elr1_tuFhJi1r@ashevche-desk.local>
+In-Reply-To: <ar9elr1_tuFhJi1r@ashevche-desk.local>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_093509_024127_F0A378D0 
+X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,80 +111,29 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+On Fri Oct 2, 2026 at 8:34 AM BST, Andy Shevchenko wrote:
+> On Thu, Oct 01, 2026 at 04:09:13AM +0100, Alexey Klimov wrote:
+>> Abstract the read_value() operation in driver data exynos_adc_data to
+>> support SoC-dependent data register read callbacks.
+>> Add the exynos850_adc_data struct that describes Exynos850 ADC ops.
+>> It also requires its own hardware initialization and exit routines.
+>> Add them as well.
+>
+> Split this to at least two patches:
+> - add .read_value() callback and switch existing users
+> - add new user
 
-The RK3399 Mali-T860 matches arm,mali-t860 and gets default_data, so
-panfrost enables aclk_gpu at probe and keeps it enabled until unbind;
-runtime suspend powers the GPU off but leaves the clock on.
-
-On ROCK Pi 4A restore from hibernation hangs in genpd_restore_noirq()
-of the GPU when the hibernated kernel had panfrost bound and the
-kernel that loads the image does not. There clk_disable_unused()
-gates aclk_gpu, while the restored image still holds an enable count
-on it, so powering the GPU domain back on does not ungate the clock.
-With the clock gated in runtime suspend, as on the Allwinner H616 and
-the Renesas RZ/G3L and RZ/G3E, restore completes.
-
-Match rockchip,rk3399-mali to default_pm_rt_data, which differs from
-default_data only in GPU_PM_RT.
-
-Reviewed-by: Steven Price <steven.price@arm.com>
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Tested on ROCK Pi 4A, drm-misc-next c408466a4dfa with the rkvdec fix [1]
-applied: hibernation restores 9 of 9 with this patch (3 with an HDMI
-mode held, 3 right after glmark2-es2-drm, 3 idle), and the GPU renders
-after restore. With the GPU node left with arm,mali-t860 only, restore
-hangs 2 of 2, in genpd_restore_noirq() of the GPU.
-[1] fixes the same kind of hang in rkvdec, which otherwise hits first;
-this patch applies and builds without it.
-
-[1] https://lore.kernel.org/r/20261030-rkvdec-runtime-pm-clocks-v2-1-8ff510a231de@iav.lv
-
-Changes in v3:
-- Retitle as Steven suggested, say what GPU_PM_RT changes
-- Add Steven's Reviewed-by, given on v1 (same code)
-- Link to v2: https://lore.kernel.org/r/20261122-panfrost-rk3399-pm-rt-v2-1-40f1791aa1a8@iav.lv
-
-Changes in v2:
-- Name the SoCs that already use default_pm_rt_data
-- Say why restore hangs
-- Rebase onto drm-misc-next
-- Link to v1: https://lore.kernel.org/r/20261030-panfrost-rk3399-pm-rt-v1-1-e94437159a9d@iav.lv
----
- drivers/gpu/drm/panfrost/panfrost_drv.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-index eeda113037fe..91acfa13ef42 100644
---- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-@@ -983,6 +983,7 @@ static const struct of_device_id dt_match[] = {
- 	  .data = &amlogic_data, },
- 	{ .compatible = "renesas,r9a08g046-mali", .data = &default_pm_rt_data },
- 	{ .compatible = "renesas,r9a09g047-mali", .data = &default_pm_rt_data },
-+	{ .compatible = "rockchip,rk3399-mali", .data = &default_pm_rt_data },
- 	{ .compatible = "arm,mali-t604", .data = &default_data, },
- 	{ .compatible = "arm,mali-t624", .data = &default_data, },
- 	{ .compatible = "arm,mali-t628", .data = &default_data, },
-
----
-base-commit: c408466a4dfaee4b12587e926c5b85e68c8b3c40
-change-id: 20261030-panfrost-rk3399-pm-rt-cea3fc1790d9
+Thanks! Sure, will do.
 
 Best regards,
--- 
-Igor Velkov <iav@iav.lv>
-
+Alexey
 
 
