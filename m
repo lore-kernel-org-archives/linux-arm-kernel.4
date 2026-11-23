@@ -2,92 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688D5606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93D7606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tu7hOObf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bdL5Bah1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t72qAGtz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aWSYysNq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xjXNGYnj7m/BeYzbOpPelNrEBThHGMUhvfbeKCE5olU=; b=Tu7hOObf8zTQosyjMsB9kxgGo6
-	R0Qu4RMulL9yE346KA04GCRDpJCAduhGSaRYVTl6pwt0jiAjhonBmzSCunNAY/+R7W0pGWnMBDiC4
-	2PT/tclUm19K5z4vITlt7icU8v6RrFRl7ZBLz7CCEEqFYDigBVPvwbAEJ0evHyA2mLIyNQEtL3DF3
-	LUHNz67giiF/GM2L7tf5F0iJk+LsUhMuspCptYUxcLzcbgJs0RQr+ceursOTdyMwTe/9XO1RAGBgg
-	bHY+wEghgKxfyCohVvZm3q9H5eWBgv5RRFExnqrFuuCWRyrDG1AyY1uE9vJ1BDSVx7fgc7qjGxLsM
-	7++fwq7g==;
+	bh=t+FOp9DCq8PwbPSQQPKOP0UE+T4Wr9a4DcQWSA7fMIA=; b=t72qAGtzEFPbOh9NTelDbLgdOr
+	o9lS7aujKpfiLiYXKS1UIraqRMJWKOtbeQsSMSTOWWa+orBZXiwoPTznojbHlDwnwa01JJkKI6tav
+	6WG1keQTrOmNmHcAvfBcumHzP3LVI0TvjDM7gxmkgXze4+JlSG8NmjC/GCQEiX1R/6p24EqvWOFbP
+	xfipRiT0ummhG+r3MVsCh/nfMeLCEnqUwS9qB3DFVs/SanVuRRXL1cHa3OjUqD10pIEoSsKwC1ucO
+	cjTdRWCrWNvdeFlBnusj4VQkCIVENb3mlsLwfKB4Zq8rJ3HrObM+dQxiwv8eTvXvm4P4c+yEXFOa0
+	J4gJQNHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbwd-0000000516j-0MIi;
-	Mon, 23 Nov 2026 21:51:27 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVbwg-0000000518S-22B7;
+	Mon, 23 Nov 2026 21:51:30 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbwN-0000000515U-1sBb
+	id 1xVbwO-0000000515o-0qHQ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 21:51:11 +0000
+	Mon, 23 Nov 2026 21:51:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B292E6057A;
-	Mon, 23 Nov 2026 21:51:10 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id A0177412C5;
+	Mon, 23 Nov 2026 21:51:11 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795470670;
-	b=oPtdlqCuD1HfS+sCE1Ev12MhbcuR9wfespY5sBOqwGrpnPdlncVrIMPAU6zxae5DIn2k
-	 J4h4pyRHc1pG9zGgtlgl3ZgZA0Qfj+lzD5g/adepxPBNGZpTcltUWclpWcFV+O+M8/E8F
-	 lZQuQr8YxkO3HjzJgvCY0qpQEu/oKfH7u8BW1zORnhfXJCwddKRXBi1hDMiUsIU6Qpf2N
-	 YEBX63DPYxODyP9JRh6PgB2IBVcch0cT3kRkGgKSoS34gKJncDDoDajcPR79BYOcgEYl2
-	 Ta85Gl0T1n3Q2s3K0MBQOvsiilWZzgTFZQfslCP+3pwnNfh7X0ZCwWsf260UzipTdDQ==
+	t=1795470671;
+	b=0WlQw0A1ArtUXJmcIrqPoNnYvqt2a6DtNowYReNAKpjfrShOUWFzwc8BsJzeXq9mT4mc
+	 XXF3o6Jqb933zIDOonTJY4dEH8DHVBMzx9HEyvkVPqYnJJq2O6v7oTD2QK2fw9qsrj6j9
+	 pKPYVrr2GxHk9raBGxzUSo5bx/vn6H2f/XIyo1FCuetNd5UonzKE71RD/ZeLfU2C8i/S3
+	 HNHOuBjlo3p7BAj81vDxJrXIxnRTYHDFTfMoDOSvyXhqhTDcAc98hT/bLM+TIG7VaGQt/
+	 PVAXOxM9n8I3NNZZw5V3YdAli8pppj1Qt/fl25fBEHkft5YjCHQ39K1PO6u8zKxD3cQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795470670;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=xjXNGYnj7m/BeYzbOpPelNrEBThHGMUhvfbeKCE5olU=;
-	b=2vRruO0jVziZtRpJdK75XuQXrfSgIOR1K8fo5g1gmDkgA/RR0sQRbgrOnV13Jlad8fyy
-	 TGbPYNenfWi2D87i+vxntcfX4m1FRjIxCeRD33ieUsOuElGAkyz3NRqIH2k1+sv0PfL7M
-	 w8icK4zzhB/fjdEq8/WCxYJ5d5LyyD9QbH/f83agQeGwlHDTRdZFBenqLH+iyCCXU4uli
-	 snnXvzq7rDXbvq9kewj1GrDcm9sPp0mALOMtE779mt60shbvTNjgS2H0SeywD5SfImmmR
-	 K6X9B3dtpzPU8ywwyax2hJTF0ecVeIc82pUhmMdDFk8MNWswLvMTSH/8CuJ5DgNcSrw==
+	c=relaxed/relaxed; t=1795470671;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=t+FOp9DCq8PwbPSQQPKOP0UE+T4Wr9a4DcQWSA7fMIA=;
+	b=EGlLvt5S0YsJTyod1kILKPSTvSlTN82DgUaVEV9bymyQ1eNd80GuXEDgIPyiFLOju516
+	 oL0H0ZjP5ESqgY8w0/aP/xfvZ63BMzwOU0aj1hxUBk3lPP7q0OijYd89TB2XILSTvrs3V
+	 tMHrQ2SpBVOgTDrldiR8YpQmbVQPMr9mIQHIULcJknRIBC3gS3knrPTUqU8eVf4j1DBtj
+	 Kq5vXGpLg0vShVo6JT3cepSCRREAnlsoYUsLLBJtZvdH2zrpa77F9JIfal9+1nRedObnk
+	 IqsJdU8fR5YqnEjd5xM/tQx+K+/CSvR3+k8Bietld+S5qwHFIVSaMpg3fRd928L0NxA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 123311F000D2;
+	by smtp.kernel.org (Postfix) with ESMTPS id 338C81F000D3;
 	Mon, 23 Nov 2026 21:50:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795470670;
-	bh=xjXNGYnj7m/BeYzbOpPelNrEBThHGMUhvfbeKCE5olU=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=bdL5Bah15ParTBHLRn0eDSWgOmgidA1jRJh7mAn7piHifFS94+KEk3wqF+LTKsI0a
-	 MO8mmfU/58Q0zRHv675xTjU2PmAb3m0bGlq+9ol7ObUoEGEU1NuFeqZaxm5fP1P0Rs
-	 YsbfqsCKPJJzOl21T4hyStcoA/EfZt2pdWYcU1gxZta369/vkoFwtkXWMxSJCEPZGX
-	 Cq4JXGu8lKsbeFWsXaPJjE8sTfDlJA07fXKhMh0fhQPY+pbQTWjq3TBTkn71pExQvG
-	 cjo5lG8GCqPfzzRinIXsHFmoFjq1GNTKZXBvMhRYpQwzWQeZMP3FIDa5FHBh6kyoq2
-	 eKZhxYIqLVw4g==
+	s=k20260515; t=1795470671;
+	bh=t+FOp9DCq8PwbPSQQPKOP0UE+T4Wr9a4DcQWSA7fMIA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=aWSYysNqGwsQZ9SHgcHxcvSUEzZIw0eNDU5T7+RJdXZyTCOW3L7GL3oBH1kOeL/7H
+	 dLg9c5wbmHf4tEKt4ofxvZ1axhDseV/Wty9Ec4QjIRf76AmBZHyXF1l/u/sB3v7XdX
+	 Tw329eZH7kN+xCX8OeU53zfFWT0lpGXQhCsb+OTihY59dsBfxlPgynq7OKCD/rOeGa
+	 8iP90HF+lRYw3BLwUZu8c5HFDwW9mGDbAtS6dL8oTL0TYjZtzra8Oh4eaLV1DkK/Nh
+	 lwOspnJD5c8P+zBq/HUdl4FpDfYWY1JkLZySq7IcW35CQcjYzRmOjOQ+J22yFvF7YO
+	 PJ1EH16kGFcJQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 949084C780;
+	by lkml.kernel.org (Postfix) with ESMTP id B6C5F4C77F;
 	Mon, 23 Nov 2026 21:50:58 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Subject: [PATCH 0/3] soc: cortina: Add CS7542 shared gates and reset
- domains
-Date: Tue, 24 Nov 2026 00:50:57 +0300
-Message-Id: <20261124-b4-cs7542-global-controls-v1-0-12548785df2c@gmail.com>
+Date: Tue, 24 Nov 2026 00:50:58 +0300
+Subject: [PATCH 1/3] dt-bindings: soc: Describe CS7542 global gates and
+ reset domains
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/zWOSW7DMBAEvyLwHAbiIonWyf8wfJgZDWUGWhKOb
- CQw/PfQ27GB7uq6KuGcWFRfXVXmS5K0LiWYj0rRCZaRdRpKVra2rTHWa/SapGu81eO0Ikya1mX
- L6ySavXeEgJGDVWX/nTmm3wf7cHxmOeMX03YHvhqZf87ldHvWFIJwIc5z2voKW9hFcJ7Ym9ARt
- rvBURMCeMQYyRniZsAQ76iZReBh21cvV/cWlT8pkvridK2joboD09Uuhv04Q5o+y5063m7/3tA
- fLgsBAAA=
-X-Change-ID: 20261124-b4-cs7542-global-controls-e443cbabfe82
+Message-Id: <20261124-b4-cs7542-global-controls-v1-1-12548785df2c@gmail.com>
+References: <20261124-b4-cs7542-global-controls-v1-0-12548785df2c@gmail.com>
+In-Reply-To: <20261124-b4-cs7542-global-controls-v1-0-12548785df2c@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
  Brian Masney <bmasney+clk@redhat.com>, 
@@ -96,16 +91,17 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795470657; l=3632;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795470657; l=3633;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=oWwEGHbvb0LFq8Gwa0S1Oy8KMPiFJPQoiptcl7pgoU4=;
- b=yIq+dxLdfFEletCfSzHbkgBFAvZw9FdhHtkrme/yaAI1obYfBq3IaTyySKRj2cYNP3GCwjZS9
- Kx70zwC4m6kDotVXQUXBQ51uUBsdhShNfmYG6yeLT2rhZdTwiGTX/hC
+ bh=n/z0ljwGjp/3VFKQErO4wbHMgKIiXYh7j3B5tNIJnUo=;
+ b=Q9HYthlORc5L0xu0ndiFe+2NOZiLVjcykhEDFU4Zs1cGK0rkrmFEHwoNu1R5doyVM+WP85Kds
+ O7nCXMCEafLB93uxR26YcbG5YA+XcXKNWTIAeMsYL6uIbm1R73pFnYK
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
  auth_id=1085
 X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,72 +121,94 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CS7542 global block contains PCIe clock gates and controller resets,
-and a composite network engine reset. Publish these controls together
-through the existing early global provider, so PCIe and Ethernet can use
-the same provider without either consumer depending on the other driver.
-This also avoids a resource-less network reset child node.
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-This series extracts the global controls from PCIe v2 and moves the NE
-reset implementation from Ethernet v1 to that same provider. PCIe reset
-indices 0..2 and clock indices 3..5 remain unchanged; the network engine
-uses reset index 3. The NE domain includes the entire DMA-LSO/SSP block
-and excludes SDRAM. Its consumer must own the domain exclusively.
+Expose PCIe gates and resets and the exclusive network engine composite
+reset on the existing global syscon node. Preserve clock indices 0..2,
+add PCIe clock indices 3..5 and reset indices 0..2, and give the NE domain
+index 3. No virtual control child is required. The optional reset-cells
+property preserves compatibility with clock-only users.
 
-The existing NE assert/deassert readback polling and partial-domain error
-handling are retained. The new NE reset index does not support pulse
-reset; its consumer uses assert/deassert/status. PCIe pulse timing and
-registration error cleanup are retained. Clock-only DTs remain valid.
-
-This is based on the posted clock/pinctrl v3 series:
-https://lore.kernel.org/all/20261123-cs7542-syscon-v3-0-f1c07a1703f8@gmail.com/
-
-The next PCIe and Ethernet revisions will remove their duplicate provider
-patches and use this prerequisite. They do not need a dependency on one
-another. Board DTS changes are prepared separately.
-
-Validation completed so far: full independent ARM multi_v7 vmlinux and
-modules with W=1, COMPILE_TEST=n and no pending platform series; binding
-examples and complete integrated board DT validation; actual-source
-fault tests covering gates, resets, partial NE masks, polling timeouts,
-regmap errors and registration cleanup (736 cases/106098 assertions).
-On Almond+ with the moved provider in a Linux RAM kernel, checked all
-six clocks, NE assert/deassert/status and unrelated global-register
-preservation, real factory MAC probing and two Ethernet load/unload
-cycles. A second exclusive reset acquisition correctly returned EBUSY
-while the datapath was bound. After unload the entire NE domain was
-held in reset. All six PCIe devices and root-port MSI remained present
-throughout, and MDIO read/write/induced-timeout recovery checks passed.
-The test partitions were read-only; no flash writes were performed.
-The board returned automatically to the installed OpenWrt.
+AI assistance: Codex prepared this draft from the posted CS7542 series.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
-Fil Dunsky (3):
-      dt-bindings: soc: Describe CS7542 global gates and reset domains
-      clk: cs7542: Add global PCIe controls and network engine reset
-      MAINTAINERS: Track CS7542 global reset specifiers
+ .../bindings/soc/cortina/cortina,cs7542-syscon.yaml        | 14 ++++++++++++--
+ include/dt-bindings/clock/cortina,cs7542-clock.h           |  4 ++++
+ include/dt-bindings/reset/cortina,cs7542-reset.h           | 12 ++++++++++++
+ 3 files changed, 28 insertions(+), 2 deletions(-)
 
- .../soc/cortina/cortina,cs7542-syscon.yaml         |  14 +-
- MAINTAINERS                                        |   1 +
- drivers/clk/Kconfig                                |   7 +-
- drivers/clk/clk-cs7542.c                           | 211 +++++++++++++++++++--
- include/dt-bindings/clock/cortina,cs7542-clock.h   |   4 +
- include/dt-bindings/reset/cortina,cs7542-reset.h   |  12 ++
- 6 files changed, 224 insertions(+), 25 deletions(-)
----
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
-change-id: 20261124-b4-cs7542-global-controls-e443cbabfe82
-prerequisite-message-id: 20261123-cs7542-syscon-v3-0-f1c07a1703f8@gmail.com
-prerequisite-patch-id: 083c8eb9fa3b09678418ed19c0dd275afd66ae1f
-prerequisite-patch-id: 746951fd830617cad03b52208443a8b6f7e8f440
-prerequisite-patch-id: f8a2ba71717f71ca2bedda986f8b861995cdc586
-prerequisite-patch-id: 7fbe9405265ef3d1ec62811415a46c0061afd7c8
-prerequisite-patch-id: 25220835f5d2506a01ba652d86f9b9ac3ad5121a
+diff --git a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+index fb074de87..12f750dab 100644
+--- a/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
++++ b/Documentation/devicetree/bindings/soc/cortina/cortina,cs7542-syscon.yaml
+@@ -12,8 +12,14 @@ maintainers:
+ description:
+   The global control block contains the boot strap status, GPIO/peripheral
+   mux registers, reset controls and the secondary CPU release register.
+-  It provides the APB, CPU and AXI clock rates selected by the boot straps.
+-  The clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h.
++  It provides the APB, CPU and AXI clock rates selected by the boot straps,
++  and the three PCIe clock gates and controller reset lines. The network
++  engine reset domain covers NI, FE, TM, scheduler, QM, NI XRAM and the
++  entire DMA block (LSO and SSP). It excludes SDRAM. The network engine
++  consumer must own this complete domain exclusively; it cannot run
++  concurrently with a separate SSP DMA user.
++  Clock specifiers are defined in dt-bindings/clock/cortina,cs7542-clock.h;
++  reset specifiers are defined in dt-bindings/reset/cortina,cs7542-reset.h.
+   The pin controller uses the same register map through its parent syscon.
+ 
+ properties:
+@@ -29,6 +35,9 @@ properties:
+   "#clock-cells":
+     const: 1
+ 
++  "#reset-cells":
++    const: 1
++
+   pinctrl:
+     type: object
+     $ref: /schemas/pinctrl/cortina,cs7542-pinctrl.yaml#
+@@ -46,4 +55,5 @@ examples:
+         compatible = "cortina,cs7542-syscon", "syscon", "simple-mfd";
+         reg = <0xf0000000 0x100>;
+         #clock-cells = <1>;
++        #reset-cells = <1>;
+     };
+diff --git a/include/dt-bindings/clock/cortina,cs7542-clock.h b/include/dt-bindings/clock/cortina,cs7542-clock.h
+index 34d544238..c68c6ba20 100644
+--- a/include/dt-bindings/clock/cortina,cs7542-clock.h
++++ b/include/dt-bindings/clock/cortina,cs7542-clock.h
+@@ -6,4 +6,8 @@
+ #define CS7542_CLK_CPU	1
+ #define CS7542_CLK_AXI	2
+ 
++#define CS7542_CLK_PCIE0	3
++#define CS7542_CLK_PCIE1	4
++#define CS7542_CLK_PCIE2	5
++
+ #endif
+diff --git a/include/dt-bindings/reset/cortina,cs7542-reset.h b/include/dt-bindings/reset/cortina,cs7542-reset.h
+new file mode 100644
+index 000000000..546e643a3
+--- /dev/null
++++ b/include/dt-bindings/reset/cortina,cs7542-reset.h
+@@ -0,0 +1,12 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++#ifndef _DT_BINDINGS_RESET_CORTINA_CS7542_H
++#define _DT_BINDINGS_RESET_CORTINA_CS7542_H
++
++#define CS7542_RESET_PCIE0	0
++#define CS7542_RESET_PCIE1	1
++#define CS7542_RESET_PCIE2	2
++
++/* NI, FE, TM, scheduler, QM, NI XRAM and DMA-LSO/SSP, excluding SDRAM. */
++#define CS7542_RESET_NE		3
++
++#endif
 
-Best regards,
---  
-Fil Dunsky <filipp.dunsky@gmail.com>
+-- 
+2.53.0
 
 
 
