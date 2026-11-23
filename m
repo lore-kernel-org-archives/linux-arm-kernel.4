@@ -2,83 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2110B606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC26E606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 13:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QfGfyFsS;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Lrgz+gK2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LR7BY6+C;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=c6ZTL8F1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=f/CLwrc5waSKUo+/4figVP/7jz8OonesKXu7+E62yJ8=; b=QfGfyFsSKhTAe+NDPZxtPBjuyi
-	Nw5MQXbZ3qf0dH3SnUVfXpzvX+SP9uBoC8ewUZhRNmPcmD4Vj3zLj+ebjWDyBm+joiCXEpLB2ExxO
-	T8RPRfOtpAaY9SgNyvzjAAOw137hemPQ2Wcjyuc63BD2cbJIYZdxZ9BumWsAldNcZCCrGWO4dZcAD
-	z3NPMPeWlLfIsSeslSI8yZn8GX+Uy9DTucwbbn/YUxF7t+aspy8g/+asVcVC2VMKHF63jct2FJG9W
-	pp8Sx2HsVNjknobjEcwjyN/J1bcThltlTQNoIzs+btCcVSudib+il7ORcM4mQboH0Qj4E8ahsORag
-	PoxvYBxA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+3y6Gl+AMYAPKZ5GKJkPS2Y5iAYxufirKNhQH64c5DQ=; b=LR7BY6+CSKjjWU
+	zjv7iTZTHNI7KsU0dw2xlqxKcsiYpxo3dBuzIHntN0jXzDKXqFgbU49N//bWRqEBxsiB46Hf5iN9J
+	QySV9Roe7lYUcz25RUYnXQ8dFdf3bd57h+Pawi3m2j1HYKYHG4VctpbHh0NREHOXqFjGKtcNbQl2C
+	gK8k3P/75zUc85yIQjPIL+VFxx8IGMfB8hK02jTaAoL1X0lciIJw/8JKTyWS4lA/fokSJWbeRC+sQ
+	LKtw0vcklnAwKHiUKc7Lg2JDwcppAfxHSRB9oNcpOQzWrBpBF2d/mzE+zFb6iRgePm8PDIAlZMv/w
+	rOgJL2s0LYHhhQgodYtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVTfn-00000003V3N-1PAx;
-	Mon, 23 Nov 2026 13:01:31 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVToE-00000003X64-1Op1;
+	Mon, 23 Nov 2026 13:10:14 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVTfg-00000003Uzz-39X3
+	id 1xVToD-00000003X5u-0v6j
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 13:01:27 +0000
+	Mon, 23 Nov 2026 13:10:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A431562126;
-	Mon, 23 Nov 2026 13:01:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D62371F000E0;
-	Mon, 23 Nov 2026 13:01:22 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 6C35B6207E;
+	Mon, 23 Nov 2026 13:10:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 908091F000C0;
+	Mon, 23 Nov 2026 13:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795438882;
-	bh=f/CLwrc5waSKUo+/4figVP/7jz8OonesKXu7+E62yJ8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Lrgz+gK28QFkC5sArMrEjtdBx9R3KwdMYv02P7IrD1uL/w4RGnzN0Cbtzt9HkdvOv
-	 fh/PzLK6dMVoxGDNyFDtjrw9GbG7unClsKRhVNtWc3CNnzbRhVJ5M0wVImfQnKWMKL
-	 RmLvxepPnh4cFz1mQVBRNfDZRq+otywXEM6JsXmKeg/OKBziw2hyKPevrYpd9iUE2I
-	 Q4njtfCZdMekRtPdQBSlkaJKxQMtxrvqbV2zje+ynWGFtNBXhQ6qV/aGje0q3EcLQF
-	 JLEuyJY0jywiJBuk6FlBNSN2ngzbwiSvoSlu6ceFpwzsOOKEfFoAbsbQ12ydQJ0K43
-	 DTBRrDsIrUlVw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVTfd-00000001yqX-0MTk;
-	Mon, 23 Nov 2026 13:01:21 +0000
-Date: Mon, 23 Nov 2026 13:01:20 +0000
-Message-ID: <86ik1nzopr.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Thomas Gleixner <tglx@kernel.org>,
-	Radu Rendec <radu@rendec.net>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Steven Price <steven.price@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Fuad Tabba <tabba@google.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] irqchip/gic-v3-its: Align sub-page ITTs to 256 bytes
-In-Reply-To: <20261116192933.3266502-4-fuad.tabba@linux.dev>
-References: <20261116192933.3266502-1-fuad.tabba@linux.dev>
-	<20261116192933.3266502-4-fuad.tabba@linux.dev>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1795439412;
+	bh=+3y6Gl+AMYAPKZ5GKJkPS2Y5iAYxufirKNhQH64c5DQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=c6ZTL8F1ik8PjE34Coitaq6FQJ6wV46b+weVq1QlTAObPkUZj5mf3sCUYANSlnCIU
+	 2scvOvmgSMM30FR91zAOT7d97MIf2dWHDUe77M8wX4TQAwNvmXhjoeVw7F0AYNJqkC
+	 vl0R8oKxCPpIFoNVed6KmCRG4yfJ7t2lvyc7RMsRIzrtpViqCgw0DLpAYerVurJGQT
+	 sGNbwGMau6638bx9w11+IOJtNEcswlh91nbw9YK5D4RxZBbATw1KWMompgffiPgSEd
+	 xP/kCr/4Ys+O153GFAamMURlNyNp69Mj2iTcZ3/Dq1zXaR2kMnyb6edtr/iq3WjsO8
+	 AEeffnG7GT5iQ==
+Message-ID: <5a1930d2-65a8-4822-b6cb-21440d122eaf@kernel.org>
+Date: Mon, 23 Nov 2026 14:10:03 +0100
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: fuad.tabba@linux.dev, tglx@kernel.org, radu@rendec.net, yuzenghui@huawei.com, lpieralisi@kernel.org, steven.price@arm.com, suzuki.poulose@arm.com, aneesh.kumar@kernel.org, will@kernel.org, tabba@google.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] dt-bindings: fsl: remove phyCORE-i.MX 8M Plus FPSC
+To: Yannic Moog <Y.Moog@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Benjamin Hahn <B.Hahn@phytec.de>,
+ Christian Hemp <C.Hemp@phytec.de>, Jan Remmet <J.Remmet@phytec.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "upstream@lists.phytec.de" <upstream@lists.phytec.de>
+References: <20261116-imx8mp-phyflex-v1-0-4adcf8b4d373@phytec.de>
+ <20261116-imx8mp-phyflex-v1-5-4adcf8b4d373@phytec.de>
+ <20261120-intelligent-victorious-jackrabbit-4caf35@quoll>
+ <0ca6fb6acea9fe40cf2190f3a67d6376f9bfaaae.camel@phytec.de>
+ <4a325394-9d5b-49cf-a3c0-6b945e6cd241@kernel.org>
+ <93ece91784725dd2f37a40a7edc59cc9144e18d7.camel@phytec.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <93ece91784725dd2f37a40a7edc59cc9144e18d7.camel@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,58 +126,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 16 Nov 2026 19:29:31 +0000,
-Fuad Tabba <fuad.tabba@linux.dev> wrote:
+On 23/11/2026 13:53, Yannic Moog wrote:
+> On Mon, 2026-11-23 at 13:33 +0100, Krzysztof Kozlowski wrote:
+>> On 23/11/2026 13:28, Yannic Moog wrote:
+>>> On Fri, 2026-11-20 at 15:39 +0100, Krzysztof Kozlowski wrote:
+>>>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> index 2d21a1949d949..ae823a7670b02 100644
+>>>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> @@ -1227,11 +1227,6 @@ properties:
+>>>>>  
+>>>>>        - description: PHYTEC i.MX8MP FPSC based boards
+>>>>>          oneOf:
+>>>>> -          - items:
+>>>>> -            - enum:
+>>>>> -                - phytec,imx8mp-libra-rdk-fpsc  # i.MX 8M Plus Libra RDK
+>>>>
+>>>> You just changed this line in earlier patch.
+>>>
+>>> Yep, afaik I need this order to avoid errors. 
+>>>
+>>> Strategy is 
+>>>
+>>> 1. introduce "current" binding
+>>> 2. introduce "current" dts
+>>> 3. remove predecessor dts
+>>> 4. remove predecessor binding
+>>>
+>>> What shall I do differently?
+>>
+>> That's pointless. Commits are one after another, so just squash them. Or
+>> explain why do you need any of such strategy (as exception of kernel rules).
 > 
-> Commit e36d4165f0796 ("irqchip/gic-v3-its: Rely on genpool alignment")
-> dropped the ALIGN() of the ITT address in MAPD, on the premise that the
-> ITT pool returns 256-byte aligned blocks. However, the pool's minimum
-> allocation order is get_order(ITS_ITT_ALIGN), which is 0, so its
-> granule is a single byte. An ITT whose size is not a multiple of 256
-> leaves the next device's ITT misaligned. MAPD drops the low bits of its
-> address, so that device's ITEs land on the previous device's ITT.
-> QEMU's emulated ITS has 12-byte ITEs, so two devices with 32 vectors
-> each are enough to hit it.
-> 
-> Create the pool with a granule of ITS_ITT_ALIGN.
-> 
-> Fixes: e36d4165f0796 ("irqchip/gic-v3-its: Rely on genpool alignment")
-> Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
-> ---
->  drivers/irqchip/irq-gic-v3-its.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index 6932dd0a02c42..5756ffe4ec13e 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -5854,7 +5854,7 @@ int __init its_init(struct fwnode_handle *handle, struct rdists *rdists,
->  	bool has_v4_1 = false;
->  	int err;
->  
-> -	itt_pool = gen_pool_create(get_order(ITS_ITT_ALIGN), -1);
-> +	itt_pool = gen_pool_create(ilog2(ITS_ITT_ALIGN), -1);
->  	if (!itt_pool)
->  		return -ENOMEM;
->  
+> Okay, I am happy to move the bindings patch between the dts patches and squash them. 
+> Thanks.
 
-This one really wants a
+And you do not get any renames, obviously... Your try to avoiding errors
+was actually a way to hide breaking ABI and breaking users, so a no-go.
 
-Cc: stable@vger.kernel.org
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Best regards,
+Krzysztof
 
