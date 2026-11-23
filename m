@@ -2,89 +2,139 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C147D606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65E4606A33E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 21:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nR4EeKhm;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=WKfelPKb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dDlzYW8x;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=og5B9sP6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Z0C24pzM8Xx4iRU4E+5H2+km50LELSDvrxMawEqxDEs=; b=nR4EeKhmckJv5RYA+mzw+uofEa
-	N1SpnjAh/Jdx8cTeClu0cKzQlGr2zJYxo0j55mkoVEpwvoQG/Z0HUK8x9cyatzd3AGuTFt7JF2uCF
-	gCbNr9KS27KvIAxZkUdHA73SiGW4WULFOG4hGHtAgi/EKjQmqZCzoglvC3ASy8gaxtJdkkfi2YkIZ
-	fc9Jky2oXU+IGpYLegr5G+V4LzRphhORL2yQ412Q8AG8H1bcpKS264g37/l9CtBns0A6lXYYnezOm
-	XHrJ0FCFHTODprc2QLmqE9y4c/CHY9Yr/UomA5cLUGbdRQDm7r9IWwYh6XwqgdjCh5tGBTt0/rc5u
-	idHVBhfA==;
+	bh=UknjKM/2e+00MUhQQt0NXDwdL3NEyetFuZAF+JKC/GE=; b=dDlzYW8xGrxuf4LgF5LVMEIWcF
+	UA4iJUYlL5ZioTelkyAaGB+PHCk4PVxTcASNgTqcvwmc+rQUr4Zfo1kOWwWtvXQzkbpDQNLYpYm7v
+	tTYSoRNTnlIfUPV6+uxAPC418Prx3XvG59zgFxw/91fwJaActuG37P+jb5nMutOnsNWVO/1Sy+cMy
+	xojUHAqhebz05KMaC4TYnSqhkBO/3F1f7PM52IRyfghSlTPSzb8tdNd7FxxU0uT2nDnSSNghb+aZG
+	s6WzIMEymzYzpzgt6Yq/1aAYBdlhad2IPw2egYjDPhKeAsScZ9wNYr3LjRbcI5jEvcoZXemytMQZ1
+	iuecUBWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbLe-00000004wRZ-2ve6;
-	Mon, 23 Nov 2026 21:13:14 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xVbcu-00000004yo0-2LJo;
+	Mon, 23 Nov 2026 21:31:04 +0000
+Received: from mail-francecentralazon11013068.outbound.protection.outlook.com ([40.107.162.68] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVbLb-00000004wR5-0nQa;
-	Mon, 23 Nov 2026 21:13:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795468387;
-	bh=iu9XpwdJa26Z7o/BScxC2C2qx9clmv3hojJxBRLM6PM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=WKfelPKb613ib9VmkQX9i28SLZy0CqEYwko96dYB+PPaK9qoqvUgplmOpfTIRyb2P
-	 KbNFgVWSaNYd/oW0l2vFxpCq7+fGzFr3ujbWmuUsaB2GW5EmOWLaJIzKURfYsCDgPx
-	 MCY54+c2te/THmmhD++m90sO38KS0xSf1U7oS6q+5zrUkrZzr7e5VQ+nlpk5f1rQhQ
-	 7xWBD1TG6+eIoQ5w0FfZTNMGuZw+weGKKOeHIor8oEL8UQSiFrS7q1SvvdJ8muqLfw
-	 G55k3OK+KfkHQZHrq79OtJ3CzGZdO/UEYdL+ODFtA7E/a1qsAO/IskdgNbSV4/xX7t
-	 ebPJGVO/JMQCw==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8054B17E0DB6;
-	Mon, 23 Nov 2026 22:13:05 +0100 (CET)
-Message-ID: <859f39e1b7c0e9e91504a34c37cccb922ef0ec6b.camel@collabora.com>
-Subject: Re: [PATCH v2 2/3] media: verisilicon: program the H1 JPEG stream
- limit in 64-bit words
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: shomenkow@gmail.com, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
-	 <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Ezequiel Garcia
-	 <ezequiel@vanguardiasur.com.ar>, Chen-Yu Tsai <wenst@chromium.org>, Hugues
- Fruchet <hugues.fruchet@foss.st.com>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
-	stable@vger.kernel.org
-Date: Mon, 23 Nov 2026 16:13:03 -0500
-In-Reply-To: <20261110-hantro-buflimit-v2-2-ff7790def9fc@gmail.com>
-References: <20261110-hantro-buflimit-v2-0-ff7790def9fc@gmail.com>
-	 <20261110-hantro-buflimit-v2-2-ff7790def9fc@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-/pZ7QRKaT58RrTydTrIs"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xVbcW-00000004ylS-0DLE;
+	Mon, 23 Nov 2026 21:30:44 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VlZFc2XUK9ye0WulJbmfbs3iM2VFXqFiIxXHQJdMBeq+4UligywbacLMEgeCrHOLcFvkRVsPzPYK3HtpsEKcbxYMxgerGDdz5fvH1Fr7Eeeq9XmTniFvmdSBsJ2lvje0Q536h5Qu52VnHe97Qq7BIRJ/c/6dhrxeRpcL6tIjjH2P2qNYUE8ht+MDwGTZPfs3AuEvITNxyH+vpC9dyD80pyfTYKMc5GHA8JQm5a/igyt7PGNsv6OaEVb2MU7yVV3Nwx6Z+hzHNnqIF6DTquWqJmRnZqbHJOj5ja7Z93vtGT022SvXDJyZQuOEgcHTX9J29z+lLdcexxVkKol8Z2riYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UknjKM/2e+00MUhQQt0NXDwdL3NEyetFuZAF+JKC/GE=;
+ b=XvlAMBcnOJj9v297xra4dO+w2KCSI8Ebhvt4F0tEeNkIXHZkt8sxQ0Bkk3jXOCn0pZ/NkGbRPvWNAx+sEzTkUi9EgL8LT+9YwLzzAWcO3gaMHlfA5cbRuQRABrgcBbyLG8ZjDwFdNKz5EGqwkxl2nuTHHTNFyBYX/m5Rg95bU8GkDYVp4JY3hsCZyY2LuPuqwHT/XqXP6P/F3YSsrtKHr8lV5vePSM1a86S+vvt3BZPXxWceWOGT80VXGPcOJciHXtMbQPiZLfru5koxEXCPE3rSjA2A2ytjnUjFNC+3dslUciFMGQKVc35g/XjvSjyD1gT3xm5VgM03JGOE07Pmug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UknjKM/2e+00MUhQQt0NXDwdL3NEyetFuZAF+JKC/GE=;
+ b=og5B9sP6UYh9a7bFW1O/q0RzJIFzDUtPO+NYv0KxzPjAjZgk2M3ndrs4vaHhLqzk8mtei3GDjV7ARuk2rSpq+FZynglypr+JAQ3WLBqLbaaNZUan6SoB25WAU4QgztQUhpikN8yqpnxOvNjgM5GffSjDZ/OnTumWLcf5myUGUH0MYK49VF9axrXzbtQcn6P3cp3wdFsawSwZzzqXjtUmjNh5Z6PO6jMN8oJvFVvv5N6m3daelsABLFTS7aVzp+HNrAW0SBzCPvBwtLCSPIxQf+hhgnajGFJALeUy4vJeQldY9Nov0wzUkUTxj861p7MovhjJbEYPw8nz5zCAfI3gSA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AM0PR04MB6963.eurprd04.prod.outlook.com (2603:10a6:208:18b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
+ 2026 21:30:33 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 21:30:32 +0000
+Date: Mon, 23 Nov 2026 16:30:24 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Arun Iyengar <aiyengar1990@gmail.com>
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: verisilicon: Limit the i.MX8MM G1 decoder to 1920
+ pixel wide pictures
+Message-ID: <awSwcDzT60vVypXE@lizhi-Precision-Tower-5810>
+References: <20261119-hantro-imx8mm-vp8-v1-1-835dd9b5382c@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119-hantro-imx8mm-vp8-v1-1-835dd9b5382c@gmail.com>
+X-ClientProxiedBy: PH8P220CA0053.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:2d9::26) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AM0PR04MB6963:EE_
+X-MS-Office365-Filtering-Correlation-Id: 076297b5-6fec-4a4d-0413-08df49a90122
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|19092799006|261009223027099003|6133799003|260925021311599003|260925021911599003|260925022911599003|18002099003|22082099003|261022105027099003|261022075727099003|261022113327099003|261102123227099003|261026121527099003|261021123027099003|261021135927099003|261021121427099003|261028144727099003|261026140227099003|56012099006|11063799006|10067099003;
+X-Microsoft-Antispam-Message-Info: uPlHfqZEAJ7xu/Y6OlBfkIrPsFZPHXeTQg88mW1bv8tNvzmjjvUZCGwfgIwMFK8GfcGHtKFZV2xjRugZuAcJPVYWPxgbxR+/b7S2t3SjJ80dg4vwJjuoI77Cnsrs1WTuNxUDdbS0IVfelmrD3HAWJffhNa8jAuOFyak57OlXpbREqofARvIk6s7wlb5a69XRQSrap1Jx5mcJiWR18w02iqkdmMKPe99T5rmxqyjH+MWHCvpFs5AqRHFh/GAxAncjDCGajHiTy37hCQirsH8ia6tv/0PrwN2CpR4fq2H1WgDadBnah1maHJuAIDd9DL2zatQ8/KK9WjXSLABmIZjLhbGAb2bb3nlUr0shvqz7r3cBEoVdZjaN62oQ9tGx264ZMgXP51OpcC87S8PhNIGhD+OLOa65G0/yrwnyaiP/6faKmpZdnFUGy7boIJOrcWeGhmESVZdKl1+QdPxTVFROLJPHVgCv0rBUmab2mHRNhy/BczLMJLFl9tszm3P5e82f5ntlIx7b/y04Fq8BGrEmyjgQ50HBsvUg593sSgyFkkgmE3p6uLg/bw8Nq9EQQVKFQ91v/44O4X2GCMH6ZhjEF4cgeIq4e/0VXLPSj3DEK+p7Qnjye08HnajU0278iB2j
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(19092799006)(261009223027099003)(6133799003)(260925021311599003)(260925021911599003)(260925022911599003)(18002099003)(22082099003)(261022105027099003)(261022075727099003)(261022113327099003)(261102123227099003)(261026121527099003)(261021123027099003)(261021135927099003)(261021121427099003)(261028144727099003)(261026140227099003)(56012099006)(11063799006)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IIMJ/JUYB+AsxWHBsgWMc5j9DT8dF3skmB9wPVFSHaxzlzNnDiSxU/+NzLf7?=
+ =?us-ascii?Q?adrC5W8ypl4IfCd3fGX/mZzR945KhRY87DI1dZuGOLBwzeA2WgS+45OoTAH2?=
+ =?us-ascii?Q?hfHlGRV60OXpOmpsfZf+GOXWb8NGMhOAW81df4H6KOMaJn2+V0Gy7HOEI3o8?=
+ =?us-ascii?Q?4+58l4rUdaPj8aWrjn7UbUhipFZBrd+n+N93jngZ6AHfu6PiUbRNioAPHPAj?=
+ =?us-ascii?Q?lO6eEWL00oOomQAh5yozQeIKp03yYop9uuvvYxARC+WsOsqelfKXWdlIg7yu?=
+ =?us-ascii?Q?wBfCtfD2GsetMfFby/q8f573EcBfGwe10P6vds+etU/01hyS7GOe2o11SYV3?=
+ =?us-ascii?Q?sL84CiZg8PgYe+UehKvpZRWaP2uBS8V3tI1C60r9FJ5gaXAJNeGVRTo9LEnH?=
+ =?us-ascii?Q?/A2XnhVLjK/HT8B+hU9v0uBiWEyH51qAfxmXZlaCWOzgBlpJJHAHRIAhaKdI?=
+ =?us-ascii?Q?yvJQNMWBY1p6reIbigJDhnT0j+G+uPwnPQixl568ECglQLgUp0rPabU2GyXu?=
+ =?us-ascii?Q?9q1mQyayLlHAPFj6UnQHO8Cf9vB7JG1thklOgDqD5WbquazCrUPBE7jd0hld?=
+ =?us-ascii?Q?/iAYQzFXJkK4Z6XfjkTL4lVCeTOKTKdflVw6EENWqHcsBhzyEyfryx/HmPXE?=
+ =?us-ascii?Q?j5iDMeDSOko6OiKzvQ7ikOtT4Q8y0SnuOmd3Xw0sxi8X+o4ryCJG3IfY162n?=
+ =?us-ascii?Q?x3RPlfzrGnTmQKPIPxw+3MaevebZYY4TvkWint9v4H33jT9h/I3DqmxoiF4Y?=
+ =?us-ascii?Q?TrBtMJpU6QzBS9ddblFhGK0GiWdnb+7GHVH6+wRVFeb4WL3uHfLAvgQroKXS?=
+ =?us-ascii?Q?4wIUlZH26r8CyCI5dJD2FivvGIWlxuT/yjgThVURR4ajJSzkJAvQ5FZ2iHlO?=
+ =?us-ascii?Q?mzeW8vtUrqtHifg26AP1WK2BZiuqg3QX/INpWAx2BpIeFRcq/ab0qtjAKpOR?=
+ =?us-ascii?Q?MOZhBt8qfA55EudIlkFuZ2e6cWyR1pFwr64SOAa879cf61q1xNViY25i12xj?=
+ =?us-ascii?Q?mZcJA8+fWpuaR+deR+Fn4LMKxldgYn1nMvnN/R9mdRTs+fr+DpwFy7Pho7ss?=
+ =?us-ascii?Q?tK3TwBdrtgSaZLS37puyxEBu9fIJckx0/O4DdJJJdcXIB0ry6ofmxyzSmJkK?=
+ =?us-ascii?Q?5ehvcmS0O2QTU3GFPROxcbg21WUHj40YJyWQbDaI1cwY+V1AA6Pb2NksJnCD?=
+ =?us-ascii?Q?/s3+Yp/vlJBeMFQB7f7xhd8faO7XMygNeWQxqHj51iBS97E7Jg1mrFBEkdhZ?=
+ =?us-ascii?Q?5UAPZaruJfNDuuWmDJd3YH/8qHi1QkAC8Cv6gRLIosj7Zzv5qMrZSzuBSVfp?=
+ =?us-ascii?Q?cZbo5Jyat6b7++cTAl6YM6wRuxVDrhLAjGcMyhvSyQa3J7mPSOqokW0K2FL8?=
+ =?us-ascii?Q?kWokM3hTWEeYrmBgxNQuMROu7HA0p/M+OR6m8ZRrnXLm6zWxQrnhWTkKWF6o?=
+ =?us-ascii?Q?rIbh7HQt+iOmJ0F0i0+7digoSjcnnVcfiz4FGijqg4nLvKxhtikZuay48Hff?=
+ =?us-ascii?Q?uBFr4hpai2PXDGWIJD9GKGAWA7gBRCiAGDI3DjFtuMvvJgj25s0p5Zh5jx5M?=
+ =?us-ascii?Q?XOAM+7wA2fFokV9MtkQfV34U5Wl4QL6pURpogRDf1LQ7ovW3TN2Ktuq+cbjq?=
+ =?us-ascii?Q?GOZX2zFLOUJY00hwBjg9ooN3+bjNQCa365iQWxl7zBZOdy750KLC/O34RwGR?=
+ =?us-ascii?Q?GtrBFcQ84gGgQrigMp86yfWO7N5q46K7dTqIDJlrfWSNEJ9BNsS012CPRPYc?=
+ =?us-ascii?Q?wG8a5XF7vEqaAwSdtdCWwJUid08dDAJJGaFoYvAduGbPzJTtCcJu?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 076297b5-6fec-4a4d-0413-08df49a90122
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 21:30:32.7940
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UStuit0A06eBRMVWWP7T06x+6+tPyy08O7tpbZqvD/uLDEzwLsNgq6Xo8mPtrsdqyUP5aQtqnkhBFG+NHz0hAjkJOvrFTpkW4haV8U4QKZVWiAIjsQQlq70ej1mWyZi9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6963
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_131311_484647_947AEEB5 
-X-CRM114-Status: GOOD (  22.05  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_133040_145088_8A364EF6 
+X-CRM114-Status: GOOD (  22.66  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,88 +145,125 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-/pZ7QRKaT58RrTydTrIs
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le mardi 10 novembre 2026 =C3=A0 15:41 +0300, Sergei Khomenkov via B4 Relay=
- a =C3=A9crit=C2=A0:
-> From: Sergei Khomenkov <shomenkow@gmail.com>
->=20
-> H1_REG_STR_BUF_LIMIT counts 64-bit words, but the driver writes the room
-> left in the CAPTURE plane in bytes. A stream that does not fit, such as
-> a quality 100 frame of noise in a default-sized buffer, is then written
-> past the end of the plane, up to eight times its size.
->=20
-> Write the limit in 64-bit words, rounded down to whole 64-byte bursts:
-> the encoder finishes a burst it has started, so an unrounded limit lets
-> it write up to 56 bytes past it.
->=20
-> Found with an LLM coding assistant while porting mainline Linux to a
-> Rockchip RK3026 board; the assistant also drafted this change. Tested
-> on that board: overflowing frames now stop at the programmed limit
-> without writing past the plane, and frames that fit are byte for byte
-> the same as before. Not tested on other SoCs, including the STM32MP25,
-> which shares this code.
-
-Move the paragraph after --, its not need in the commit and add an Assisted=
--by:
-tag.
-
->=20
-> Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
+On Thu, Nov 19, 2026 at 10:07:58AM +0000, Arun Iyengar wrote:
+> The i.MX8MM G1 uses the i.MX8MQ format table, which allows H.264, VP8
+> and NV12 up to 3840x2160. The i.MX 8M Mini data sheet rates the decoder
+> at 1080p60, and NXP's hantro_v4l2 driver offers a decoder of that size
+> 1920 pixels wide and up to 4096 high.
+>
+> Give it its own table with these formats limited to 1920 pixels wide.
+> Heights are kept so that portrait pictures such as 1080x1920 are still
+> accepted, as in NXP's driver.
+>
+> Fixes: cf1abc501a5c ("media: hantro: Add support for i.MX8MM Hantro-G1")
+> Reported-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> Closes: https://lore.kernel.org/r/f041c5d87698ab3be8283ecc71ead0679327238e.camel@collabora.com
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 > ---
->  drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c b/dr=
-ivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
-> index 86cc1a07026f..665a87e9fe92 100644
-> --- a/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
-> +++ b/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
-> @@ -55,7 +55,12 @@ static void hantro_h1_jpeg_enc_set_buffers(struct hant=
-ro_dev *vpu,
->  =09vepu_write_relaxed(vpu, vb2_dma_contig_plane_dma_addr(dst_buf, 0) +
->  =09=09=09=09ctx->vpu_dst_fmt->header_size,
->  =09=09=09   H1_REG_ADDR_OUTPUT_STREAM);
-> -=09vepu_write_relaxed(vpu, size_left, H1_REG_STR_BUF_LIMIT);
-> +=09/*
-> +=09 * The limit is in 64-bit words. The encoder finishes a 64-byte burst
-> +=09 * it has started (measured on the RK3026), so give it whole bursts.
-> +=09 */
-> +=09vepu_write_relaxed(vpu, round_down(size_left, 64) / 8,
-> +=09=09=09   H1_REG_STR_BUF_LIMIT);
 
-Its safe to apply to rockchip_vpu2_hw_mpeg2_dec.c, I'll test it for you.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-Nicolas
-
-> =20
->  =09if (pix_fmt->num_planes =3D=3D 1) {
->  =09=09src[0] =3D vb2_dma_contig_plane_dma_addr(src_buf, 0);
-
---=-/pZ7QRKaT58RrTydTrIs
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawSsXwAKCRDZQZRRKWBy
-9HNIAQC1AkHZ6E5OyxDSWJREMVm1CeMIoPq3mhZfx4yRWXyUQQEA8Mtv0S6aS9JT
-HeguwlOq2Yfa54g5tPNoGKDwqB5fCw4=
-=eW1k
------END PGP SIGNATURE-----
-
---=-/pZ7QRKaT58RrTydTrIs--
+> Not tested on hardware: I have no i.MX8MM board, so the limit is from the
+> data sheet and NXP's driver, not from the decoder's configuration
+> register. Build-tested only (W=1 arm64). The i.MX8MQ table is unchanged:
+> NXP's driver gives VP8 the same 4096x4096 as H.264 there.
+>
+> Developed with Claude (Anthropic), which wrote the code and the commit
+> messages. I reviewed every change.
+> ---
+>  drivers/media/platform/verisilicon/imx8m_vpu_hw.c | 58 ++++++++++++++++++++++-
+>  1 file changed, 56 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
+> index fa4224de4b99..805c57a4adcb 100644
+> --- a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
+> +++ b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
+> @@ -148,6 +148,60 @@ static const struct hantro_fmt imx8m_vpu_dec_fmts[] = {
+>  	},
+>  };
+>
+> +static const struct hantro_fmt imx8mm_vpu_g1_dec_fmts[] = {
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_NV12,
+> +		.codec_mode = HANTRO_MODE_NONE,
+> +		.frmsize = {
+> +			.min_width = FMT_MIN_WIDTH,
+> +			.max_width = FMT_FHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = FMT_MIN_HEIGHT,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_MPEG2_SLICE,
+> +		.codec_mode = HANTRO_MODE_MPEG2_DEC,
+> +		.max_depth = 2,
+> +		.frmsize = {
+> +			.min_width = FMT_MIN_WIDTH,
+> +			.max_width = FMT_FHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = FMT_MIN_HEIGHT,
+> +			.max_height = FMT_FHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_VP8_FRAME,
+> +		.codec_mode = HANTRO_MODE_VP8_DEC,
+> +		.max_depth = 2,
+> +		.frmsize = {
+> +			.min_width = FMT_MIN_WIDTH,
+> +			.max_width = FMT_FHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = FMT_MIN_HEIGHT,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +	{
+> +		.fourcc = V4L2_PIX_FMT_H264_SLICE,
+> +		.codec_mode = HANTRO_MODE_H264_DEC,
+> +		.max_depth = 2,
+> +		.frmsize = {
+> +			.min_width = FMT_MIN_WIDTH,
+> +			.max_width = FMT_FHD_WIDTH,
+> +			.step_width = MB_DIM,
+> +			.min_height = FMT_MIN_HEIGHT,
+> +			.max_height = FMT_UHD_HEIGHT,
+> +			.step_height = MB_DIM,
+> +		},
+> +	},
+> +};
+> +
+>  static const struct hantro_fmt imx8m_vpu_g2_postproc_fmts[] = {
+>  	{
+>  		.fourcc = V4L2_PIX_FMT_NV12,
+> @@ -382,8 +436,8 @@ const struct hantro_variant imx8mq_vpu_g2_variant = {
+>  };
+>
+>  const struct hantro_variant imx8mm_vpu_g1_variant = {
+> -	.dec_fmts = imx8m_vpu_dec_fmts,
+> -	.num_dec_fmts = ARRAY_SIZE(imx8m_vpu_dec_fmts),
+> +	.dec_fmts = imx8mm_vpu_g1_dec_fmts,
+> +	.num_dec_fmts = ARRAY_SIZE(imx8mm_vpu_g1_dec_fmts),
+>  	.codec = HANTRO_MPEG2_DECODER | HANTRO_VP8_DECODER |
+>  		 HANTRO_H264_DECODER,
+>  	.codec_ops = imx8mq_vpu_g1_codec_ops,
+>
+> ---
+> base-commit: aa0f4c41d4870a18e65772a1817af16427200371
+> change-id: 20261119-hantro-imx8mm-vp8-23fe87f19d49
+>
+> Best regards,
+> --
+> Arun Iyengar <aiyengar1990@gmail.com>
+>
 
