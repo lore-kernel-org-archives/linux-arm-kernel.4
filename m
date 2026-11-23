@@ -2,108 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF5C606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 23:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43937606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 23:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BtbKVZwi;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cQguBENL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z4raBxsl;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=htrT8TXc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Subject:Cc:To:From:
+	Message-ID:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/sGiRa42r1FyIucsWxDt+Wy08NdPZogFnK1cktUjeHk=; b=BtbKVZwi4tSMNEWZIXYwOLDor0
-	UmbLXewNn4SRWgRAEQBMAQIjniNPr/KwMMzE+vxsdr/GwDdV7cbOAY2KP7cug1uMeMYUdYuR5CLZs
-	MD8lbdQFCMdE9s8qVVjiGs4NcD0wCHns3rQ8OEe+OjF67Fd71UZN1GI6NcS+WEL6VV/LV4rDG1R9b
-	6Wphhl+FOVELcpx5VjMOLW8Q2sn4heWhPpMhD+kv0vcMqmOm+20gLoLZGjcgtA4fx5zElkl1wEbtI
-	DdAMvp/FLugRyB3uNEp2l61bC33CyVY9y6rOtKAD/gPAbaGwWxGJuahBmjj8qQUy2/pKsrtj7QipN
-	aplF5g1Q==;
+	bh=MNWlDqY5Q61g7lNZmof1nMmtIa+WfJ4+kLyYstNyQbg=; b=Z4raBxslCiv2mFtyB+RuZxz1/t
+	dusjEPbOcq4taYhL9RLeED0CMikx6y66Z4iDxYMMN/CO89FUAWbub50KZCCrxYORE6/G9N0ltPAOq
+	Tym4S9rAyQ/6OqQSGBLM2TKmvVR0EG0Z1tJlmfP/8HnUNlB2fVLqBPgQ4zwZ/7TkRpDoK/Ky0Ih/O
+	Znb27SbAgC37gADvbR/GeSajBIwPwVppHjcqYeSk1dQajYPlO5/SLXRPAjnif9/v3Dut7rV3YW9cu
+	XyEJrgy6k6Fbk7lZEM5Szu88E5CzTD/z1UCYRxlMLCm8yZdZtqMT3EaGN9RlPEs90wEkR3N5RNg4L
+	Jh7SHHEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdGc-000000059UK-038p;
-	Mon, 23 Nov 2026 23:16:10 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1xVdPC-00000005A5s-1ApK;
+	Mon, 23 Nov 2026 23:25:02 +0000
+Received: from mail-dl1-x1232.google.com ([2607:f8b0:4864:20::1232])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdGR-000000059Qs-2Smm
+	id 1xVdP9-00000005A4l-2Hvg
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 23:16:04 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4bb702a7548so31319555e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:15:58 -0800 (PST)
+	Mon, 23 Nov 2026 23:25:00 +0000
+Received: by mail-dl1-x1232.google.com with SMTP id a92af1059eb24-1b3ada81853so4469448c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 15:24:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795475754; x=1796080554; darn=lists.infradead.org;
-        h=mime-version:content-transfer-encoding:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=/sGiRa42r1FyIucsWxDt+Wy08NdPZogFnK1cktUjeHk=;
-        b=cQguBENLXwVZRk9ZNYAWBQ7BGYMmbwZdiFaIwpXeUxIATe8XXgzv4lgBYY9CTfB36R
-         XfR6HE5+1/lJKmEyfFQdywwzTHSGxg65OAGcxq2Aox03j1GX2sNRVXqfXnAOIRrB0Wdm
-         QlkT38VEcpuMoisirFh9xPUZhq+5hnzM2rtLQv7os/HR/Yhf3F5iB8OeA2ae/vD+0E0K
-         1zSifx0A/AmaLSq3uFpMytkAb6JW9IBnGjPk0qDxYvkaA/ZVv1AobaSrTP7bP5nXVZz2
-         H4LTb9umIEuX0Vs1s9Y4vQq68xSPtIVIx182nylmK87OPQ0jON4n6viwmK+4uZiYiHfq
-         b6Gg==
+        d=gmail.com; s=20260707; t=1795476299; x=1796081099; darn=lists.infradead.org;
+        h=content-disposition:content-transfer-encoding:content-type
+         :mime-version:references:in-reply-to:subject:cc:to:from:message-id
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=MNWlDqY5Q61g7lNZmof1nMmtIa+WfJ4+kLyYstNyQbg=;
+        b=htrT8TXc+RbqH4+5HMQjlgQiRU/aPRUERBRpsfaUeNxpzzjohJa6QEzmu3807pxw2m
+         JZrNDvTB7gfk4V7N7L2fNZoXTgvRi/V9o2TifdUQsh7ofhatqUZR5NLsqwkzJuZwkvL6
+         ys2bgYLM7tzTYWsfmZOL0kZTFnUxdGst+cUqSWIsNU7Xf9bivv8C7+8O1Nl3FG1nZQ3b
+         x/uXSZNJjeMz2FgmEz8vVdCt8grFuxlzKFaiQWfjB7t4YVYVQ8DUdC778wjuwJHUxKTN
+         IlxpQiq8SaFpt9bJi6NguZDukNvHwZg5U1Y9CLWxlNCa3qLtzVt22tDdf3GTC/x98Wlx
+         tniw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795475754; x=1796080554;
-        h=mime-version:content-transfer-encoding:content-type:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/sGiRa42r1FyIucsWxDt+Wy08NdPZogFnK1cktUjeHk=;
-        b=p3Z3AVFWe1wu53xaJfEuj4ctJBqNBo6+LX/rNHelOfB6U6zTfkm149a9Ekxd4uOhmU
-         OWE4R+lKw3E/+fQ6I/y3rTd4zL/G70BR5SCEJICnBdkOuoBlm7GKkb0m4/igMUU7G8nr
-         In6/UE1qrIDtuWryNcRRT8LWK1iHug6hznnfN7PuhzHE0b2891RUlb5+vpoXVFlmhO/v
-         ID8YYoUwbOydJN5qYeRTICvrmAz/MQ4cjPAGZW5PfX4VHshaCH454X5VTwjU13klWr+e
-         uGxxsFiEERYtlyBMmJKGMLC/p9FPbRY6RjK8a4ToZuVvotuXAakTUOC2se+P7CO6f/lw
-         ++fw==
-X-Forwarded-Encrypted: i=1; AL+hErG3GqgJeSaLoTtbnpjjzaSfOom0HtC8uOfpYKMvDfPu3vyrb2YqTHX9XMfLzwuVcY27xjZAh980zjkqQcs9aMSc@lists.infradead.org
-X-Gm-Message-State: APuU4Z8GsjGAoMr/MGbOOe7x3jCowch7v7xvXfr20knTQwaKl0NWG4aG
-	k9FzkKefSYFQ91iDMbPwPZgs9SCj7gdA8EJ/U9N8SbTxVGpjrj30C5au
-X-Gm-Gg: AZFdTZfgM0EpmExngkvkMbA/3bmZGOzYFIVW7BASaaW3mzuQxa9NizuL+2QwDr9duQB
-	dvBEyCPbO6FJrMhM0y8/MyEuaeyWntpEQEFIIUCiYJZzlJRhI8absS8kChLC3StPmB06bO9qSTt
-	EuojNCGGQDD9idAPwlseEvETfqC2Wwcy95hM/InPKdQWzwBnzJl3CsZlrcTnPCgrZK/lzS5BsFz
-	vGltTq8fD0NDMlRVGRsDnT+mWHsFmLrpaIjPA0KHweGzFl3I8KHkJC6H2Hg3yG/6Z5JDUlv83Wm
-	NIheke94x5dXFfQJdoub0ulpEXNKmawWdiJnRtUkI9E8/Fg3uCCXH6IBBO/Rt9L0O7+95qGMI3j
-	ivxeZPL4k32EGakG83H6hgLVip/JbAtPsPyI2NVKTb69zvmoNSmyZQW6LX7KLLP5EXe5E1d9Tom
-	kj+s8x2dxh0piA9VKoi3++7AUSQhNEpcT/tVYaitZj87H5CwBlTPa089ZTtQYy+nCIy9xoZWGU1
-	jDoBLuCDHEmPUJW488epmMSQYbv137s9JFKJfG1ugmVB+mbls7vQJLptnt9PJwnM/4iL0Azv+ml
-	OtON4pXwAIhifo1tm9aEGu8FOSagULcu6YsHloNr+aPLyH2+S1YGCIQ=
-X-Received: by 2002:a05:600c:46cc:b0:4bb:6f41:399f with SMTP id 5b1f17b1804b1-4bb888236a3mr269607585e9.24.1795475753577;
-        Mon, 23 Nov 2026 15:15:53 -0800 (PST)
-Received: from [127.0.1.1] (ip-024-180.users.dtel.ru. [91.210.24.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb90655f5asm214620235e9.1.2026.11.23.15.15.50
+        d=1e100.net; s=20260707; t=1795476299; x=1796081099;
+        h=content-disposition:content-transfer-encoding:content-type
+         :mime-version:references:in-reply-to:subject:cc:to:from:message-id
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=MNWlDqY5Q61g7lNZmof1nMmtIa+WfJ4+kLyYstNyQbg=;
+        b=GBFoh8b6mL9uGZIxj+puJ5VoAkcvrc6vQG2IC09kmdkhtBDLavTL8w4FPBQmw1cZwL
+         iatiyjsbB+ElgXLpA3xK6BAlJXhBKiEMlUnvnCnhyI38jvBMCy6g2ZsG6n3vEk2nq11k
+         +yneKnj0v2CNXCGAzlUmUOqtBCr5UoaxSVDXxzjpoPj8aFwxhtdb2JOFN85sjJLIYfIo
+         dfZVzarT097p1sv5OUwFZz0pqx8sEiivQJBHMYEqbxv5Absggu8viRPecSEzxPwy3N+E
+         7W+l9M0AX+4PvckVCffAweDCztOgwlZYGQwGaakfeMpq+Y/lwuLGrDiTbb7XJ8jqU0Qx
+         ydYw==
+X-Forwarded-Encrypted: i=1; AL+hErENx+yqf4TjBF43uJ7QcQTcDvg5r6FX+VXJhKSPk6PvUJOiNo4m5EvMOR6fv4ivUBMlPLm4Pk8nRaTYO+ibe+Vl@lists.infradead.org
+X-Gm-Message-State: APuU4Z+2W3yM1ZA5wmVy9iRCKrVpW6pjcrvG0+oPrQ6TFIsQDaKlaORr
+	rN0n2GkFRKf4U5PY3uRJCGNG61qZs3UAUZ+y2uYp7essOggS3VZ+u+XE
+X-Gm-Gg: AZFdTZcPbEgfBLz1gAVeJgyojvUMup0ycvOWZ6A7HHuTriW/fjenE/o3Qh0tL284zZY
+	79sOn9QLPEVkXZh18u3sTMOUDcrcTiygBEQrR4x9zuDPN1IBEI1vH8DzmL82dmeFzu86NRHKgVu
+	3+XieGtDiDs2ZYjfqaB/U3E3zSZbeas3swlmCbML4iCfM1I8rU5vyFZ8cTJ49eaaOauY42q0lD0
+	4dQ0Dsmaa9n8HpyvVr2tGc0++cUsVpx9q8nrWHgzTjjNeSHrWzd4/T+Wm4b91r1h0tgVucqc1kM
+	66BcX4OUguC3veikXfOuN9ggbiGUWFBAN9wNmNkVQW/u4gPYOnbs5oSqZWb1pPJGWoT3Ul/RHuZ
+	b2xmENc6fe1QFax3QKAfFDJbZ98YVZkD6XYKsqnmJspEH7QePymm+YVgBGV3EwGz5423CR1noEP
+	yxDfuZxLpkNU0LWWJqWJojFTpgKpodzbSJupqNmEyL8Scz88pmie9S6TteZRh7u7f7r2nniZQwv
+	hfBeN+IWMZN5zv1Y4KYFcsnh9xJ9eK0RVkjSrnaO1R/6mL6vyPNKhUDdpAcF/l4/GkR+LrCxjbp
+	ZULFOCzs3QHqUivE+tRRE5Rk+V1zPz2Bd+V13Srmg2DaeafaMn0yFms9PxzAY34GB0nYeVWIxsz
+	Hn9/eOx7MwmBXNVA=
+X-Received: by 2002:a05:7022:2209:b0:1b2:43ac:d3a3 with SMTP id a92af1059eb24-1b5568b9e59mr16444195c88.24.1795476298544;
+        Mon, 23 Nov 2026 15:24:58 -0800 (PST)
+Received: from localhost ([2a00:79e0:2ebe:8:4121:d698:201c:9274])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b556847fdasm34835125c88.13.2026.11.23.15.24.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 15:15:52 -0800 (PST)
-From: Fil Dunsky <filipp.dunsky@gmail.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, 	Stephen Boyd <sboyd@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, 	Jingoo Han <jingoohan1@gmail.com>,
- 	Lorenzo Pieralisi <lpieralisi@kernel.org>,
- 	Krzysztof Wilczynski <kwilczynski@kernel.org>,
- 	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- 	Brian Masney <bmasney+clk@redhat.com>,
- 	Jerome Brunet <jbrunet+clk@baylibre.com>,
- 	Neil Armstrong <neil.armstrong@linaro.org>,
- 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
- 	Conor Dooley <conor+dt@kernel.org>, 	Philipp Zabel <p.zabel@pengutronix.de>,
- linux-pci@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, 	linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/8] soc: cortina: Add CS7542 PCIe control, SerDes and
-  host support
-Date: Mon, 23 Nov 2026 23:15:46 +0000
-Message-ID: <179547574633.3.10816077515932240445@gmail.com>
-In-Reply-To: <20261123225447.GA1119216@bhelgaas>
-References: <20261123-b4-cs7542-pcie-v2-0-f589a9cd0bef@gmail.com>
- <20261123225447.GA1119216@bhelgaas>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+        Mon, 23 Nov 2026 15:24:57 -0800 (PST)
+Date: Mon, 23 Nov 2026 15:24:56 -0800
+Message-ID: <a545ef5377ee473829c3780e94d107e5@gmail.com>
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: linux-input@vger.kernel.org,
+	Hans de Goede <hansg@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] Input: goodix - sync the irq controller while starting firmware
+In-Reply-To: <CAORyz2LNRfnvbCLe+49A5kAF4NSi0zuYdpd95+7=Hx=KQh0B1g@mail.gmail.com>
+References: <20261020122712.526797-1-l.scorcia@gmail.com> <avZiZoGO4jXjIP7D@google.com> <CAORyz2LNRfnvbCLe+49A5kAF4NSi0zuYdpd95+7=Hx=KQh0B1g@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_151601_909815_012EA729 
-X-CRM114-Status: UNSURE (   7.79  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261123_152459_584968_BD6ECD86 
+X-CRM114-Status: GOOD (  22.78  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,11 +115,44 @@ X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Understood, sorry for the rapid reroll. I will wait a few days between
-PCIe revisions and collect the review before sending the next version.
-I will use the meantime to address your comments and test the changes
-on Almond+.
+Hi Luca,
 
-Thanks,
-Fil
+On Mon, Nov 16, 2026 at 07:53:58PM +0100, Luca Leonardo Scorcia wrote:
+> > There is call to goodix_int_sync() right after call to
+> > goodix_start_firmware(). Is it still needed if we call it here? I think
+> > the vendor drivers does not do it.
+>
+> Hi,
+> unfortunately yes, it's needed right there on the Lenovo Tab E7.
+> Without it, the REG_SW_WDT right after it fails with the error "Error
+> reading 1 bytes from 0x8041: -6".
+> The vendor sources for this device [1] show the call to
+> goodix_int_sync exactly between the two interactions with the WDT
+> register.
+>
+> Actually, in the same sources I see no trace of a second
+> goodix_int_sync after firmware has loaded, so the existing call could
+> be moved a little earlier instead of introducing a duplicated new one.
+> I tested moving the existing call on my device and it works just as
+> fine (basically, my patch + commenting out the existing call at the
+> end of goodix_firmware_upload.
+>
+> Which vendor sources are you using for your reference?
+
+Sorry for not being clear. I was looking at the same vendor driver you
+linked to, and I was asking whether the second goodix_int_sync() at the
+end of goodix_firmware_upload() was still needed once we call it inside
+goodix_start_firmware(), since the vendor driver only does it once.
+
+Since moving the call works on your device, please send a v2 that calls
+goodix_int_sync() inside goodix_start_firmware() and removes the second
+goodix_int_sync() call at the end of goodix_firmware_upload(). Also,
+please change goodix_start_firmware() to take struct goodix_ts_data *ts
+directly and use a local "struct i2c_client *client = ts->client;" temp
+instead of going through i2c_get_clientdata().
+
+Thanks.
+
+-- 
+Dmitry
 
