@@ -2,103 +2,162 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29AE4606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FC0606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:42:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Rm9s3jM1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OUZjtSBx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BQgzNMd6;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=XzqhkUp9;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=IH3i7yHA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qttTN4ymDbf5U1h4cEZyyAQDtK1HID8crAui/74k7k4=; b=Rm9s3jM1vjwd9AVLvRWUo7KT/i
-	i5VIpdvzaByxYck1193+iU7/Bg2hqEHGNRQvxnd53QpyLhJHVkQFsFcnCAFR2jAHO+NC2Zuf0iirS
-	WlpRxb6VfdcdfbKkyZS+uy05jC8imTakNFaXDYQyZgbnKh6Irtphwu9h/H60/IiuRctFsVsGPkTVR
-	QEm4hpOKsyATaZEPWaQ8NLArscQvtN0RYDf/A8pFhpi2kCfzo5upkhAfaCNAy4NKOrcWp2DZmqpzV
-	D7ucaDot3VeOPaL7kyCB+izLyyY1sVNjt/1XbMFopq5mcbebqPD/KIn9pnNXCpPzBdh56fmHAj/ZH
-	wMO7bckA==;
+	bh=svF14fRerx1BSkQmBrzjUcfz3cY+DPEYvRHCJyqzfP0=; b=BQgzNMd6S+zH1yL87KE6EoF8g9
+	9+GccdB9IRSyjoHBZZefyNRHGqOL/wY8CMtAU/rQEjRX05fdLXWN68HvU8w3olvti/8HwH4EMrpPQ
+	+G4aPL3yVixf/FKdfz/MfsX6dtZH9BKewNtEhBOIqA+0MBzbYoQBSWOvDZADPiHMkaz8Sn8KRpRhX
+	MUx0sUH7SCmKm9cP0nQLLxJozKc+HE7zosn/OTRn0v7pCUhGuUffE2yH7U+1GWc7YSqTxLWVtS60c
+	vfzjJpM084mtrp5Bp41lxFvyu75PtJCRebigZ7XIicaPB8QA/E0xuS0pWdGvWzR3FBTKfN0g7tSyJ
+	5AFIgCPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYzw-00000004X28-1Bjp;
-	Mon, 23 Nov 2026 18:42:40 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVYzy-00000004X6b-3Ai0;
+	Mon, 23 Nov 2026 18:42:47 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYzM-00000004WUs-0Fkb
+	id 1xVYzO-00000004WYb-40tp
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:42:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CE2A9458F9;
-	Mon, 23 Nov 2026 18:42:03 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459323;
-	b=ebu/86Ko3DbXfC3JowXhAN0tOUoZWWil/qboZTCtvDpaAYNW9nISvMXPOkt8gRSSo0ZA
-	 I1bRXaYDsWi+fGIUC23KFH2TgmrWh0LExIp2Dyfp//i4cAbUA4hZMLCOwBqT6QOiU4lM1
-	 4IS8VN4261tZSN7BjZpARx1zifqw4KjJSMb09YdpQjVxY/tIat6AnyMRxPh+YszdwFr4B
-	 br1fEr0BwztSWVi4EBtydf1ZwBDgE/FqYMgWCCSgqq0cLlKXuMpq+J0io6hxqtzREbLYK
-	 rV1jsFCBJ86iTP+c01s9x5/a2BH49+yF2C/lCxeBHX1+ZVk8Vm0SzSZyBHVux6QXs9w==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459323;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=qttTN4ymDbf5U1h4cEZyyAQDtK1HID8crAui/74k7k4=;
-	b=AHpjGUgG8LJ0YVGugVYck1PLkKh+CH/d9pNSgMlltSDehcCqgFtRez3EgGAP53K7kywE
-	 IFXK+oSHSt/gVNg+oMgoJZs4u+FYgeLuukmF72mfvUJowEhmJB6IYrZzIk6cawqqyT4mn
-	 0iwOUKIYE/U/tSEk+7n6STSWWeBgbsF/7Nn+Uy+7bMkXdTgNbR0lC0O/dP8SHHdrw8uaq
-	 7lGHkrSeHQbcptsuPo4BiNi+5brnBD6bCUkGbVmdyndHdDFlVGJQR2inQTamUdvzV4aTz
-	 FdFejtKPpuRkHQQM7cqawkycG5ltsmE5lVh7dvBGzM/6xB7NbsZuiIyfKV8xuL8S+kA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B673B1F0156A;
-	Mon, 23 Nov 2026 18:41:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459323;
-	bh=qttTN4ymDbf5U1h4cEZyyAQDtK1HID8crAui/74k7k4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=OUZjtSBx6H0m0u8LdC9PGvZ3ZyTBcMMHvTlwmAJ7En/1NVzxnTgb8rgBiIHnvNZxG
-	 gv9xpmJ/y3piTtqGUz0d7vEo6mxRo5j3RvQrCOmvyhS8cxCp3+BLCiAeoBqMIqJMlG
-	 aBNVVnZ8ssLLEgaj7iGRX5u1mD/gMduPHuYBlMrNOG9hx8kHSci5L8O9XWoWXIzQ+p
-	 76njguFQDrpMiiTLJLtGkpim93BVjIn5RZZxUI81tEOCGAviDACbLRbaxXMIdR0Pc6
-	 43Cx4fuccRs3topUGNP7ZFQBZa3QirrzZLhwHw9HbdzuPltn0izR/ceZ2pOR/CgTa8
-	 RWjqE23vUUoUA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 44BB34C5BB;
-	Mon, 23 Nov 2026 18:41:32 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:41:32 +0300
-Subject: [PATCH 2/3] rtc: Add Cortina Systems CS7542 RTC driver
+	Mon, 23 Nov 2026 18:42:08 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ANGH68r1093937
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 18:42:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=svF14fRerx1BSkQmBrzjUc
+	fz3cY+DPEYvRHCJyqzfP0=; b=XzqhkUp9yxvizDH9n4WZ3/0ohqJSDyqGA8tknN
+	3zLIxR5uhk8TsBb3hF77CAM8Ld/BYuYiKQnXLU2cO+xeYSq//UZdKIsz3KAiQaLh
+	Zf4rsbP4yV3AuqtdJXtY07lhuLom/TZ8L+BINN+n0EFAeYsNvYvyNOTxIORHUW67
+	sPbG6URbRRUNDzRCGrxXXIle99ORpnNgVMqW7QSIRGf+Gqtux2sEn8ZrCoKi7Hf6
+	Ho7JbPweu4e09XLawQjH85jwWSpUz9JhqtXPDJ9LUxCWcYhhrpOOW5nTMaXrNDd0
+	tiRVYp90f55m00LeBy+1bHc4C+t/yfU9rqKM1N7O4GoSp09Q==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j4ma0susm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 18:42:06 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2f0467a525eso26772785ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 10:42:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795459326; x=1796064126; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=svF14fRerx1BSkQmBrzjUcfz3cY+DPEYvRHCJyqzfP0=;
+        b=IH3i7yHAjASAkP0WnVfcIXHdIE/6S/iA9ebJHj7hJTZpC+Q0bOMU3neCvMFNlcHN5K
+         seYL6cMZ8en5UQpr8zlar6ldY3hFbMnoTLWZfDU0XBL25jJDbTTHyigQT+dy/zgR3xv1
+         LyjrvO8g6k/7B6iH8KM1FD5mPkOUHFbTUqnR3Ngd7jeXAtYGpiUw4OY832+MxEL4aapT
+         ScJqdqad7eMKuHt/NyowHDCjf3Yo31UZqeJgZ/5FgKnWMKo137fjfRRJyFPugDXMbLBB
+         iffqu9SvdaNctYJr0SrG0FKwbJ2hWArO1Gg+ynk+j6e6WzcBBcXAuKEwcGfi6qLI9zI8
+         iHTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795459326; x=1796064126;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=svF14fRerx1BSkQmBrzjUcfz3cY+DPEYvRHCJyqzfP0=;
+        b=C8AAFlLEjx2q7gNdiTb6dLYTMjSMpu/OIzOhWCUT7XKAILoyMRLlCD5mt0UjDPOwFN
+         tAWYYhWaOAEX2+ZxSWzPG4mADtlLjvlHUs6DTuYJJUgMIPEnkJxh0r+urPXA+i9dY+8f
+         P7o1c4Ol3Tdg4EuY07x8plkZuG5QKwbdXEA3o5gTjQ1LKBy7hAR7yxVCxvER5E0wjzJf
+         aL5MnAD+zfo37PkthB8PFiFtsVgH2Bt0Hj0BXWSz8tXMjU8zD1CRp63yJOiXB9kZ6YNH
+         4bpRPv+bdjXym8pfpMW+FSzjmytXkiC31JJmSWN6+iCep5tlDGT1wYlWCuGo/zBYXddV
+         s5QQ==
+X-Forwarded-Encrypted: i=1; AL+hErGxuiMVEzCE55kC3SAzX59CHf61Ozy4Bt5/nLxUXWyjq59D6MG2ZKRFTQoO8gQ7XOs1ChvXmG16bmuROPM4FuBF@lists.infradead.org
+X-Gm-Message-State: APuU4Z94m3U56KCv0NIcq02OLEURszkBTftJNHcZcyZHyEgm9GaSV+hX
+	uLMVYg0YhTkFvel1CKcLWwJsx78r/kO8B5fZdyEUNZOc9iWkNJZ9s6n8QlXpkGS3WoPCjJiciga
+	8+Ism/3CHlHKypzj/x+e/Mc9qyGRCj677tMHP9SrPT99BANaFn4A+d9bpc6AEhAqVJpAKF5LVTu
+	nzI+7FNhLvRg==
+X-Gm-Gg: AZFdTZfdlyr6x39X8l93wVDM/Xi5zrvvV8kmjU0aR16Ug9xTrJA4eHUrmV+dk2dr3Y/
+	IQFquIYmHg+Uve0pcwcCyYYZe+lGGb0K4E9mm397VllkMv5HjDBqHd5Oe4zvXIqGYkzbGB0Di4o
+	cLWo5ET3Bt/uP8HlLyMrUyay3uOw+7a1zmnE3BpM50c+Gbfj3m6eqq7mzsUo5xpbMaUtxIej81/
+	Lj2bURL5mu15MAldW5DHLIx8W7k+7YsBg1DQ0J1u1RqWqYFqsogeSW1FvQwM2C5YG9EUZjQHpfM
+	sEGRsX+WTA1N8YdnI6df+vbZdxLeB6RHA4CtXav4qnAx+wBsm2o2r+S5v6wuYcoCENlLg34ecqb
+	fY+O76GRulz/YW6PEwVN/ClYu/SFUzCj9clm7dxjK9x6+8cw4+13S7ZeOovcdDcfvPk1ECz9oN+
+	RlDZw=
+X-Received: by 2002:a17:902:ef4e:b0:2f0:4ebf:84e5 with SMTP id d9443c01a7336-2f04ebf8708mr112150835ad.45.1795459325417;
+        Mon, 23 Nov 2026 10:42:05 -0800 (PST)
+X-Received: by 2002:a17:902:ef4e:b0:2f0:4ebf:84e5 with SMTP id d9443c01a7336-2f04ebf8708mr112150575ad.45.1795459324872;
+        Mon, 23 Nov 2026 10:42:04 -0800 (PST)
+Received: from hu-mohdayaa-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f118c7dsm57984705ad.55.2026.11.23.10.41.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 10:42:04 -0800 (PST)
+From: Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
+Subject: [PATCH RFC net-next 0/2] net: stmmac: qcom-ethqos: add support for
+ RMII
+Date: Tue, 24 Nov 2026 00:11:44 +0530
+Message-Id: <20261124-ethqos_rmii-v1-0-1754643d593c@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-rtc-v1-2-6c53761ffa03@gmail.com>
-References: <20261123-b4-cs7542-rtc-v1-0-6c53761ffa03@gmail.com>
-In-Reply-To: <20261123-b4-cs7542-rtc-v1-0-6c53761ffa03@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459290; l=6878;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=jcM5vyGwgCHh4U340a2tm5zkxATl0n1Mpb3h9SNWUog=;
- b=1N9M5LsCgDouu4rv0mbly7hYBwa01Sp9VOi/0pgqjDPgKBhe1k4jsS9mj2T7ZIENZYQkNkRN0
- dcK0ShPtrBFCmKBzSZVNOzf6HOYQ41d0cgqqVxbMbdUnLxaWkYXu65S
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOiIBGsC/yWMwQrCMBAFfyXs2YDZlmK9Cn6A1yKi8cWuYFqzU
+ Qql/27U4zDMzKRIAqWtmSnhLSpDLOBWhnx/jjdYuRYmXnPjHFcWuX8OekoPERtabv2mDlyjoVK
+ MCUGm362jw35nIrKNmDId/1Zflzt8/g5pWT5JJwbmfQAAAA==
+X-Change-ID: 20261123-ethqos_rmii-f929c84f24e6
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>
+Cc: Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Giuseppe CAVALLARO <peppe.cavallaro@st.com>,
+        Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459319; l=3039;
+ i=mohd.anwar@oss.qualcomm.com; s=20250907; h=from:subject:message-id;
+ bh=Eozd2XBF6qkMrOFBsjC0iY8JAZG6nfTTy3vV5qFG3G8=;
+ b=1/sjeU+R6y4z4oLE/0FhsjtnLl2ubfL0fg/7N75Gszao/o/5Kx4DkrG5BCFQt7g7t4ZIhOFHM
+ KS/LQkOhiIWDPSFTNC1ObzAVDYpjjA11n/qet3vUye1jWdoYd+H/0Ib
+X-Developer-Key: i=mohd.anwar@oss.qualcomm.com; a=ed25519;
+ pk=7JNY72mz7r6hQstsamPYlUbLhQ5+W64pY4LgfSh9DJU=
+X-Proofpoint-GUID: emLGhpeceTWC5gi5C9X0H7kmEJcNBxuJ
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA3NCBTYWx0ZWRfXzr69/ERaL1KL
+ 31k6fl8HdrKlzwnNNArUN1/yRUxvLbl+TK8/CVpFz97gMFDJiIvuFz0ztQnC4ROGIy1Qqni9VR7
+ T4miE+I3Ysr6EOA44s7c0Gai3oWaT9s=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA3NCBTYWx0ZWRfXwWDlTygaj97R
+ R43B4cL6Fcetr61M9DSqb3AluQogYUNpZCpdbsRXvsul5d4RqEBnmYGsh60NGDoY2jWwNYlLeOQ
+ 4n/JCv93awHuyRvv+9U8i1ForBNhgVxl24ZOMBldgP3dAb5tMHc87A+ZUFSj99yiCBMcv30ZtyB
+ c4uLaI6ukC6B4SZ/Czw/Ep51OwT4AzzXzXPhVUXJPac3DFa31/YVv5A+9UJf4FaMkujbLni4kH9
+ szMphCBWoalhYI8jfvn5uuo3LO/VVGd4faHGKXcGzmdNM9us2L1PwsnZ02yZh4ODH4nIjqeexdY
+ z9Nu4PMyaqannwQkIeChA/m5FLWue8hIWDuGjTkwSpQCEC4aywjocc0dTJn5WIaodLk8kknximf
+ dqfpN+sA07d91d1C1H/c61Rf5JRH805X06MlxSX2s8swtQypvwFUOAmvbEyxVtDlQvo5rBmhwqA
+ lQ1NeaG2YoOwbmlOBCw==
+X-Authority-Analysis: v=2.4 cv=Yr+a1IYX c=1 sm=1 tr=0 ts=6b0488fe cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=8b9GpE9nAAAA:8 a=EUspDBNiAAAA:8 a=fnaMMcORItm61ZtTJu4A:9 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-ORIG-GUID: emLGhpeceTWC5gi5C9X0H7kmEJcNBxuJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_04,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ clxscore=1015 phishscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230074
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_104207_011633_C4665F1A 
+X-CRM114-Status: GOOD (  20.95  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,7 +167,6 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -118,233 +176,74 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+Hi,
 
-Adapt the vendor-derived OpenWrt calendar implementation to an OF driver
-without a platform Kconfig dependency. Decode the four-digit BCD year,
-retry reads across second changes and preserve RTCEN after programming.
-Expose the verified 2000-2099 calendar read/set operations. Do not
-advertise alarm interrupts or suspend wake until their hardware
-behaviour has been established.
+I am sending this RFC as I am looking for some feedback and inputs on
+handling a HW quirk that affects the RMII PHY mode on the Qualcomm
+ETHQOS controller. Maybe someone has seen similar behavior on other
+platforms?
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+The Qualcomm ETHQOS core supports the RMII PHY mode, but only if you
+ignore the dribble error, which is set in each receive descriptor. The
+programming guide provides some details on why this happens, and an
+excerpt is included below [0].
+
+I initially thought about using a platform specific flag that would
+ensure that the dribble error would only be ignored for the qcom-ethqos
++ "rmii" combination. But some digging pointed out the commit below,
+which does something similar for norm_desc.c and enh_desc.c:
+
+  commit 1cc5a735185a963ed9324a65e1f2db02bf52c0d4
+  Author: Giuseppe CAVALLARO <peppe.cavallaro@st.com>
+  Date:   Wed Feb 15 00:10:37 2012 +0000
+
+  stmmac: do not discard frame on dribbling bit assert
+
+  If this bit is set and the CRC error is reset, then the packet is
+  valid. Only report this as stat info.
+
+Apart from this, the wording in 802.3 around "Integer Number of Octets
+in Frame" and "aAlignmentErrors" specifically calls out packets as
+being error packets only if they do not pass the FCS check, although I
+might be missing something here.
+
+Anyway, this series has two patches - the first adds logic to accept
+receive frames if the dribble error bit is the only error bit set in
+the descriptors, and the second adds RMII support to the qcom-ethqos
+driver. It has been tested with the KSZ8081RNB PHY attached to a Shikra
+SoC based board. Since the programming guide mentions a generic
+programming sequence for all SoCs, I have kept the platform glue logic
+generic.
+
+[0] Here's the excerpt from the ETHQOS programming guide (paraphrased
+and shortened):
+In RMII 10/100 receive mode, differences between the PHY's recovered
+clock and the local reference clock can leave data temporarily buffered.
+Consequently, CRS_DV may transition at a nibble boundary near the end of
+a frame.
+
+To handle this, software must ignore the dribble indication, RDES3[19],
+while processing RMII receive write-back descriptors. The dribble
+indication may contribute to the descriptor error summary even though
+the complete octets and FCS are valid. Other receive errors remain
+subject to normal validation and must not be masked.
+
+Signed-off-by: Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
 ---
- drivers/rtc/Kconfig      |  10 +++
- drivers/rtc/Makefile     |   1 +
- drivers/rtc/rtc-cs75xx.c | 174 +++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 185 insertions(+)
+Mohd Ayaan Anwar (2):
+      net: stmmac: dwmac4: accept dribble-only receive frames
+      net: stmmac: qcom-ethqos: add RMII support
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 73ec9230e..0878ec33c 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -2212,4 +2212,14 @@ config RTC_DRV_HID_SENSOR_TIME
- 	  If this driver is compiled as a module, it will be named
- 	  rtc-hid-sensor-time.
- 
-+
-+config RTC_DRV_CS75XX
-+	tristate "Cortina Systems CS7542 RTC"
-+	depends on OF && HAS_IOMEM
-+	help
-+	  Support the calendar clock of the Cortina Systems CS7542 SoC.
-+	  Read and set dates in the 2000-2099 range.
-+	  Alarm interrupts are not supported.
-+	  The module will be named rtc-cs75xx.
-+
- endif # RTC_CLASS
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 46f1a0fc2..bc73db37b 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -200,3 +200,4 @@ obj-$(CONFIG_RTC_DRV_WM8350)	+= rtc-wm8350.o
- obj-$(CONFIG_RTC_DRV_X1205)	+= rtc-x1205.o
- obj-$(CONFIG_RTC_DRV_XGENE)	+= rtc-xgene.o
- obj-$(CONFIG_RTC_DRV_ZYNQMP)	+= rtc-zynqmp.o
-+obj-$(CONFIG_RTC_DRV_CS75XX)		+= rtc-cs75xx.o
-diff --git a/drivers/rtc/rtc-cs75xx.c b/drivers/rtc/rtc-cs75xx.c
-new file mode 100644
-index 000000000..2ba25ac04
---- /dev/null
-+++ b/drivers/rtc/rtc-cs75xx.c
-@@ -0,0 +1,174 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <linux/module.h>
-+#include <linux/bits.h>
-+#include <linux/err.h>
-+#include <linux/slab.h>
-+#include <linux/platform_device.h>
-+#include <linux/rtc.h>
-+#include <linux/bcd.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+
-+#define DRV_NAME	"cs75xx-rtc"
-+
-+#define G2_RTC_RTCCON		0x00
-+#define G2_RTC_RTCCON_STARTB	BIT(0)
-+#define G2_RTC_RTCCON_RTCEN	BIT(1)
-+#define G2_RTC_RTCCON_CLKRST	BIT(2)
-+#define G2_RTC_RTCCON_OSCEN	BIT(3)
-+
-+#define G2_RTC_RTCSEC		0x24
-+#define G2_RTC_RTCMIN		0x28
-+#define G2_RTC_RTCHOUR		0x2c
-+#define G2_RTC_RTCDATE		0x30
-+#define G2_RTC_RTCDAY		0x34
-+#define G2_RTC_RTCMON		0x38
-+#define G2_RTC_RTCYEAR		0x3c
-+struct g2_rtc {
-+	void __iomem		*base;
-+	struct rtc_device	*rtc;
-+};
-+
-+static u32 g2_rtc_readl(struct g2_rtc *p, unsigned int addr)
-+{
-+	return readl(p->base + addr);
-+}
-+
-+static u8 g2_rtc_readb(struct g2_rtc *p, unsigned int addr)
-+{
-+	return readl(p->base + addr) & 0xff;
-+}
-+
-+static void g2_rtc_writel(struct g2_rtc *p, unsigned int addr, u32 val, u32 mask)
-+{
-+	u32 reg = (readl(p->base + addr) & ~mask) | (val & mask);
-+
-+	writel(reg, p->base + addr);
-+}
-+
-+static void g2_rtc_write_enable(struct g2_rtc *p)
-+{
-+	u32 tmp = g2_rtc_readb(p, G2_RTC_RTCCON);
-+
-+	g2_rtc_writel(p, G2_RTC_RTCCON,
-+		      tmp | G2_RTC_RTCCON_RTCEN | G2_RTC_RTCCON_STARTB, 0xff);
-+}
-+
-+static void g2_rtc_write_disable(struct g2_rtc *p)
-+{
-+	u32 tmp = g2_rtc_readb(p, G2_RTC_RTCCON);
-+
-+	g2_rtc_writel(p, G2_RTC_RTCCON,
-+		      tmp & ~G2_RTC_RTCCON_STARTB, 0xff);
-+}
-+
-+static int g2_rtc_gettime(struct device *dev, struct rtc_time *tm)
-+{
-+	struct g2_rtc *p = dev_get_drvdata(dev);
-+	u32 year, sec;
-+	int retry;
-+
-+	for (retry = 0; retry < 3; retry++) {
-+		sec = g2_rtc_readb(p, G2_RTC_RTCSEC);
-+		tm->tm_min = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCMIN));
-+		tm->tm_hour = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCHOUR));
-+		tm->tm_mday = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCDATE));
-+		tm->tm_mon = bcd2bin(g2_rtc_readb(p, G2_RTC_RTCMON)) - 1;
-+		year = g2_rtc_readl(p, G2_RTC_RTCYEAR) & 0xffff;
-+		if (sec == g2_rtc_readb(p, G2_RTC_RTCSEC)) {
-+			tm->tm_sec = bcd2bin(sec);
-+			tm->tm_year = bcd2bin(year & 0xff) +
-+				      bcd2bin(year >> 8) * 100 - 1900;
-+			return rtc_valid_tm(tm);
-+		}
-+	}
-+
-+	return -EAGAIN;
-+}
-+
-+static int g2_rtc_settime(struct device *dev, struct rtc_time *tm)
-+{
-+	struct g2_rtc *p = dev_get_drvdata(dev);
-+	int year = tm->tm_year + 1900;
-+
-+	g2_rtc_write_enable(p);
-+	g2_rtc_writel(p, G2_RTC_RTCSEC,  bin2bcd(tm->tm_sec), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCMIN,  bin2bcd(tm->tm_min), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCHOUR, bin2bcd(tm->tm_hour), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCDATE, bin2bcd(tm->tm_mday), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCMON,  bin2bcd(tm->tm_mon + 1), 0xffffffff);
-+	g2_rtc_writel(p, G2_RTC_RTCYEAR,
-+		      (bin2bcd(year / 100) << 8) | bin2bcd(year % 100), 0xffff);
-+	g2_rtc_write_disable(p);
-+
-+	return 0;
-+}
-+
-+static const struct rtc_class_ops g2_rtcops = {
-+	.read_time		= g2_rtc_gettime,
-+	.set_time		= g2_rtc_settime,
-+};
-+
-+static void g2_rtc_enable(struct device *dev, struct g2_rtc *p)
-+{
-+	u32 tmp;
-+
-+	if ((g2_rtc_readb(p, G2_RTC_RTCCON) & G2_RTC_RTCCON_RTCEN) == 0) {
-+		dev_info(dev, "rtc disabled, re-enabling\n");
-+		tmp = g2_rtc_readb(p, G2_RTC_RTCCON);
-+		g2_rtc_writel(p, G2_RTC_RTCCON, tmp | G2_RTC_RTCCON_RTCEN, 0xff);
-+	}
-+	if (g2_rtc_readb(p, G2_RTC_RTCCON) & G2_RTC_RTCCON_CLKRST) {
-+		dev_info(dev, "removing RTCCON_CLKRST\n");
-+		tmp = g2_rtc_readb(p, G2_RTC_RTCCON);
-+		g2_rtc_writel(p, G2_RTC_RTCCON, tmp & ~G2_RTC_RTCCON_CLKRST, 0xff);
-+	}
-+}
-+
-+static int g2_rtc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct g2_rtc *p;
-+
-+	p = devm_kzalloc(dev, sizeof(*p), GFP_KERNEL);
-+	if (!p)
-+		return -ENOMEM;
-+
-+	p->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(p->base))
-+		return PTR_ERR(p->base);
-+
-+	platform_set_drvdata(pdev, p);
-+
-+	g2_rtc_enable(dev, p);
-+
-+	p->rtc = devm_rtc_allocate_device(dev);
-+	if (IS_ERR(p->rtc))
-+		return PTR_ERR(p->rtc);
-+	p->rtc->ops = &g2_rtcops;
-+	p->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
-+	p->rtc->range_max = RTC_TIMESTAMP_END_2099;
-+	/* Alarm interrupt generation has not yet been verified. */
-+	clear_bit(RTC_FEATURE_ALARM, p->rtc->features);
-+
-+	return devm_rtc_register_device(p->rtc);
-+}
-+
-+static const struct of_device_id cs75xx_rtc_of_match_table[] = {
-+	{ .compatible = "cortina,cs7542-rtc" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, cs75xx_rtc_of_match_table);
-+
-+static struct platform_driver g2_rtc_driver = {
-+	.probe		= g2_rtc_probe,
-+	.driver		= {
-+		.name	= DRV_NAME,
-+		.of_match_table = cs75xx_rtc_of_match_table,
-+	},
-+};
-+module_platform_driver(g2_rtc_driver);
-+
-+MODULE_DESCRIPTION("Cortina CS75xx RTC driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:cs75xx-rtc");
+ .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 49 ++++++++++++++++++++++
+ drivers/net/ethernet/stmicro/stmmac/dwmac4_descs.c |  4 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac4_descs.h |  1 +
+ 3 files changed, 53 insertions(+), 1 deletion(-)
+---
+base-commit: 5a1f6793361524314b442371dc05ce3cd4f2f838
+change-id: 20261123-ethqos_rmii-f929c84f24e6
 
--- 
-2.53.0
-
+Best regards,
+--  
+Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
 
 
