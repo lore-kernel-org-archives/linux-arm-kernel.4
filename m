@@ -2,118 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D239606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167BC606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GKJo8qOK;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZC/5Xwkp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uOUMpkLo;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=oTE+WejT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=; b=GKJo8qOK96/GUB
-	5PxCQiODHYySUdE13JmVXaLjGuCa77eQIseLt27TNyUWeEqFftDEu5d6S4D4VgKi3DDUADMg22ewz
-	uoNBS4O/y8dzf0v0HtlviQUXz39iQmDOqDdofEGEWlbX34NeKTV0919rbEcj/1pu7+FJSg+0W/zKW
-	zXAo46bzWchRFEHJL8taKDpgSq7RY1jpFRneeslt6WarX/O2uZ1qSGLIihHZ99bmQSWV9r4LOjzsF
-	hQ89MWkHN74NGDnKBanvjsRNVPfzmKAZVNUOh1BxiVXlVbBL4WcwqIn9k/lAbrWDLi2B01KVjQ35i
-	zYUTubf2G6Hr1kKsHM6Q==;
+	List-Owner; bh=/7EBtZ3ZhYiV3N0p/c5cCwDwkFdY7/hSi3pC7nQcOCI=; b=uOUMpkLo90Arqx
+	LkyLc6F3G7M48HjsoZiDVAR6cfjBFqhzmLj/ttZrbs4jJKSe5ZIDcSxR7YkDNSmKIcht1yBEWG6jP
+	IFgBjEKWoZB74XLdovgi40asefyGi4LzNORLjvB2xCsXpkYvU0OmeBn1cwDGRV19Kg603Vr8+Y+fs
+	yDDKH1sxAKkRMWmXJ0DD3kHcG0U0pGiuWPNGR3ul91d06vGLtIxCwCT1+YGePM0oyC//B8g/wIP5n
+	E6NCHHsLmhA/59gQKO8wMHfSGcBNNxTYfdgcRk3fk/YWX0mKpHpFsWzlz32vnp/XY7x83472jQMYn
+	iUBp97UaY7CxwnSAXyQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYlc-00000004Tzf-1cmp;
-	Mon, 23 Nov 2026 18:27:52 +0000
-Received: from mail-qt1-x82c.google.com ([2607:f8b0:4864:20::82c])
+	id 1xVYn9-00000004UQi-3Jyy;
+	Mon, 23 Nov 2026 18:29:27 +0000
+Received: from mout.web.de ([212.227.15.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVYlZ-00000004Tz7-12BR
+	id 1xVYn5-00000004UOq-3qlD
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 18:27:51 +0000
-Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-54492d8a988so574521cf.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 10:27:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795458464; cv=none;
-        d=google.com; s=arc-20260327;
-        b=PhQz4smRVzU2deKoAQMhp8hCK3xz/nXy/wAgq29LVBTXrZkM7Dhrwm6KBYrr5gjAu9
-         XVK5Nen2pzC6hJ/w9C5U8LXhjfYPBQYCfuF57xI+Q0JZXd5WVZBeu0QdV9x+ssTRqRfk
-         J5JTIc07Ud/m258WHdDoy7LRRSpYhwdBehoL3cLj/w5fCoshYL6qzJNdiyO2fgR0p0C+
-         g1ljrdhG8/t8tKiQc05OeMoCagNjkMz7duOnWUawWMGGCrFlaUNP24fob/clRMbrgK/9
-         B2pL9zJ6ZY3th3++0GOLTHz69KKmvvf8MAfe9fbGDieufkIPH0gkNQadzLBJAtR05RLd
-         vf3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=;
-        fh=lA/eRgRVJzCV/axVDwdxAFzdiwb6OvhZyjgQn8DUnRc=;
-        b=rk8TT20j1XjAkc7YvOznn4LDjgVGTFsFzYfnNG1GcI7HSI3ONp7IYykDWeZteKBqh0
-         9t3crQc58qeZ5ZNdN9fGO6um7IShn0KxEvT23Zf70kEVeIBuY9XUbAAFYpfUmQXbz0VS
-         U3FSdR5tOcrc1130wrzckHeBgsJkoCSzWodIYn6jmonkD5FlgzYqGovQowHY76pvBvzZ
-         tuHQkp8SzFq8xNCKWdySmH65QXXHYjO5YZV31lRSGvNIFw3hUWv194RLir9I5I1Oi1h0
-         RL3+cRh6dTUAZG7yag9Zau3GEo30vvFdIc5eISqfdySbTTC1x/U86cDaH2M94RgFY+Jh
-         mmiw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795458464; x=1796063264; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=;
-        b=ZC/5XwkpBm6iSirie/dyr824wdIKwowQwx/lxwDsTLIqPz9QHpAUAx2lMLvA0lF28x
-         5EYsyMiAAX3/JsUzppbp1eePrY91G0AqZ8wovC6mjgPSqUPKkONoDTk/H5iwJSoGKU3P
-         Y2x3bn7SFhUINKmJSaOgmtASuwEFxtGyYWIbjppl/jlwpjuYBaW4/Ts1d7D7MrxmTsmx
-         365Hv/Xj0bJP+Ep0+cAiWbnGqACkjMiNfdBGamcRZTQwJMTND3t4cqDBhTJz4NiRQuXc
-         BHEgdHc02YRJcANXKzpTMtc2NQ5kRbMTCRcqqEHwbLxzj8KkHgq4VhH2I6HGdVNJZaj+
-         iTVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795458464; x=1796063264;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=mv59fVvaG8+1uwanG9a9AV3qrfmi8QzYRDjJgUgr+zg=;
-        b=XvfHQa1Nf0/k5pSje5D4JeisWBWTCPwiJPpfwcsQwQza3sBpCyqWOSCMA56LEKUiMo
-         5CYl94n6vK6MhFv+0wNxSDUFyJ5OU9ITAGC/nijeJhAyiysq9Ha6+P8oqxmdfKXKJjjm
-         1r0kVwAZqW7AQuabjmaXBrGdGNR9JZ4AxAejhas7YQXspyAe3V2k014lYlJtnj/27Wkd
-         h8UtweN5twsmctqi3aMCwomTJXjGv4f1YYVf8ERuxVlqVoi5sIror4+MT/okal8A9s6F
-         9eNq2XDhaPT06mGQr2qum5O/SJ6r//JqHxZi3Y+R6KYRUD7a8f35dJDRne70eTLvZtKw
-         3GUA==
-X-Forwarded-Encrypted: i=1; AL+hErHn0Qpev+5QAryOhQ6mYtul5QWba9HEyUM8xAsNzkJuspPiLoFfUR2FLG4KburyN8TdC/Z4n/mVyck2yRX6tpai@lists.infradead.org
-X-Gm-Message-State: APuU4Z9cQxEOCy5VE0yLhVMA8Dikr8tJA/6K66+5GsqdOtJyhL9ZUTAQ
-	uW6e/DRekXup4xA+NQmbmv2cvTEpGQGixWtCsW6jcKp5BrtRZgvrlWh3tEu3YbSY3aFcOa4f4Md
-	aufJ0M0aiilGAefpkqkhuAuIFSq7POk3Gq/fr7PFe
-X-Gm-Gg: AZFdTZekUf9qjnbEp0Sdkoh0xGuGCYzvB1ruiPPZMj+NiUcdA9OCZ3gLqEwKjourPuO
-	6QFnoZLq6iLXBEEJTrgIxufuEmoXyyX1icR6GuhF6zaU1UiGA1UbX46EYlE8o/xcnC5pCG6MjrC
-	QHvbyM36hJccQBvBQAlPUEEGm2KgMgUs/aM7evlyjpb0GO7CqOZw196wsRC2MORMOONZnCMgUTy
-	MBRpEonT9ezU5phdvR6OkUoFIEyNW6mXyEkbTqLIlR7+FFNlsUoRSw98kI3NOYpCkBnXOAQFd6X
-	guRGjNsAdSvhEdWsVH3HOD7Ufhs/wDEFIl6kY1xtDo3fZ1WL2WetBR9ESnnkog7GnVbJfpDiMX6
-	FwFtXOU4FbieezJnHoDfMEv50rzoeCW2KubRAtg==
-X-Received: by 2002:a05:622a:994:b0:531:282:6560 with SMTP id
- d75a77b69052e-55d8906adc4mr41086201cf.15.1795458463690; Mon, 23 Nov 2026
- 10:27:43 -0800 (PST)
+	Mon, 23 Nov 2026 18:29:26 +0000
+DKIM2-Signature: i=1; m=1; t=1795458562;
+ mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=web.de;
+ s=s29768273:rsa-sha256:ZSGZCnkaI3hCRIjn1J7xkwm2veyH
+   Je4D6iprLXRgOXWVnEnq7dl3HzUZC2HFfMfIIGYKib27o6OwQSafPUghxy+STUKECrPLuwuCaK+
+   lrXbipzaduguaO8aKku5L0jJXk1ig59CnXsyLtyTQIAgadA6Ri2lbkUOgHcaN2Lh6Su3r8BA12Z
+   rvMXkTD80USOTdj/mkO5U1gyVBUv/16YUBhGxlaJtPkrwNfr82Cl5M+qv4RfGp3rOeDfx7JjcdH
+   bd37eWz6dLDJCPBQ/MgQuaXy2FrlS6yGLbx0ygMeatBz1nxBOcnBR2zN7ZiMea8pQkUJo0MOHZS
+   kY1+73mNXitsKw==;
+Message-Instance: m=1;
+ h=sha256:
+   xpTSHVp+eMBaHm+tYFOMxDwmuNBiJPF6e3oJb2WvS0U=:
+   McPPzdxviAIqfRgFu/IbKp2UInt39WCQSS5tHQPTT7Y=,
+  sha512:
+   ZZ9PPYG/TMBgE3bBrDp4YHjjWYgbeYCmqEs6bgtbkBLFN4Ai4OzLOXqjUU2OE2LEN4WC5UtPV9lt3cywYLSGKg==:
+   uXNSa3QlsZS2OlqhMgwSYedlM6yDmIsQcxY3KVxoOQsaJEN2E3NnGSHOUlfdXll9oHxSqrM4TT0I3fxpIDbOSg==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1795458500; x=1796063300; i=markus.elfring@web.de;
+	bh=/7EBtZ3ZhYiV3N0p/c5cCwDwkFdY7/hSi3pC7nQcOCI=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=oTE+WejThE04hFoTzclzZX2BxhxuE1CsVjdnIvpWIdlsoAqNmKxGR0GQOo1fYKEe
+	 768ypc4DZuPJRwJhHQ2iJ71M66yrf14eLeE6NMtmUofXhmk5KHhocagGIOy9/gYZ3
+	 is1ef22WNDyxVBXmGhmylnSuQB021ZCETPM2yVuoEXf5G99AE2/0i1wpoX2m+fvi3
+	 1cwPAfUSNEyhcuMk4s6PgVOuTKRIPzECE+6DZbQvS8oeCh45XeKFyL5CdujmEt2zj
+	 jm2GJHa8KjL24yfjqBAA0o7vSQNhQI/utI4EmyBB39DmPGCw3HVXLX32lZnBKj0sb
+	 qJ2b8Wwm8IZkcaX8ZA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1M2xrs-1xWfEm1fxc-00DhEm; Mon, 23
+ Nov 2026 19:28:20 +0100
+Message-ID: <996eeda4-c363-406b-988a-a2ee6262f04b@web.de>
+Date: Mon, 23 Nov 2026 19:28:17 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261113074125.4146687-1-aaupov@fb.com> <20261123175540.GE9176@e132581.arm.com>
-In-Reply-To: <20261123175540.GE9176@e132581.arm.com>
-From: Ian Rogers <irogers@google.com>
-Date: Mon, 23 Nov 2026 10:27:32 -0800
-X-Gm-Features: Aa3M54rkqvnpPz0DiXLf5e18ONtq5tQbgbU2y6PXCXZ-S06Dd1ce403DsJ35cTM
-Message-ID: <CAP-5=fXh9zDsh6J=oyDKmxLVsOw-CA4vDYu4589eLdxLsOav4A@mail.gmail.com>
-Subject: Re: [RFC] perf: SW strobing for AUX trace windows
-To: Leo Yan <leo.yan@arm.com>
-Cc: Amir Ayupov <aaupov@fb.com>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Jiri Olsa <jolsa@kernel.org>, Kan Liang <kan.liang@linux.intel.com>, 
-	Will Deacon <will@kernel.org>, James Clark <james.clark@linaro.org>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>, 
-	linux-perf-users@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, coresight@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: PCI: xilinx-nwl: Use devm_clk_get_enabled() in nwl_pcie_probe()
+To: Frank Li <Frank.li@oss.nxp.com>, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Michal Simek
+ <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, LKML
+ <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+ Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>
+References: <f691bbaa-ddb5-45bf-8f85-fcf354a6af03@web.de>
+ <awR8rehnxAE3SNFh@SMW015318>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <awR8rehnxAE3SNFh@SMW015318>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ULkA1SX0Bji2GQMEaoYexBAynTCg7+tZWjSYvaW++MwYx/7xC6G
+ SN2CZu0MSbNk39gSdzwpezyot01eLX+XR8Q+eaeHYOua20FG/ZVcEH/ZpfUbOOPwefwGVgH
+ 8TOL3Ezs4FVOd+xkBXYQ75r1kzLmuJnUqgEWkhos4ASCx7HMDktm9t5w3x76Gdc62JxsQMY
+ IkTCY0/j1oAAeWBaRY0PA==
+UI-OutboundReport: notjunk:1;M01:P0:NcbT3qHiMxA=;2c09klyQMaYSH87qYz+YhTAu350 ZyLSNMe+PrZ3JG2U0JFFPKaxq+IM4T5enVSD0YGz1bvo1AN6kq48sCJlr9Zv495cB0BwxXiwD 0Mq53U6lpHgV2FcePq6zSAipv283sm/GYqWdOOLphZKGQX2mVW9uCFSJPlQMDKdwRzfHv7kkF 7YGYJXPFna4w6VSi22hCxIafOIU6O/QoO06voQ790yQ8TXjFtxjuf8Kmt+8ttfx79NXJ+Wq0R vEFeNHnf3elO77LRVs33rCQqnUpcSOW+b7YZqVs2o5EqVeDTREulxn7P57MNkbpYZuLycf21a i2tDupuWCtnYLIJxYofU1jiDru2Ll2j4QvZnQHm4wlsy6o1PuVt+ecwA9yHuRqhP8L7IuueC4 YMVPJpQ0e4t7Vxud53Wd5OEB7K0Q03683ybno+GhjWI8AwGf7eYJPgJD7cUcN0pM9QXLVRWWj d5CAYOJKTDw9c0u0VYmEiXtBEO1Tl1lei/184QU6rqNCTEPmBIAps1OTgoQgidF5nIptmVfhC GKAdYjwplz/bvy546gdkiH6dyE6ENV10fvGgbgHjQ9m7zE5XxuKVrv0cyH1f9QmLNvgFsNUn/ qP0j1EiQuNom7ulZAMYCsaqK5imifmOBLlDAu+20EFBg3OFfHbxidHenCsT0xUQa5XNnhybzR 4qRE+ke6z2WdmAW8mxZlNhbjiHwmSJEGaTdkcULVsFMLmoUwB1U/DSG+wHV2fa1J7y6dQazBh mldvkdTZiEcLk645kaHPtRfT1Eo9O2/SoIlhXjqUFMUQ4fde7qjIO6CX9sDznFS0ACefpLM1q j1OFtpZ+xN3AWQHwEGqXIv5zWRVg4Y5nAXV7Ir4Rh3FEnL3ougDNdzR9/Cka00aCnXUixntJT RzMmRehbnYdM9093QEfUHbXEc1eGMzJ6S4inuG911sOS0APm8r2QLg398ukcc9Auf28VfkZKC pgXojVEA+VcDHroGO1dqdECa5/xooc+uJcmfo8fkpePudERqlu0Jl0ovACa3s/BBLBwvGrwnG Q63F+uwjus8SXY2H7F03Kp7wZJiJHmzc3TC/ty/m0e7UXsvJvn+eUGLJP0WYmhP3Vy6yF27o8 ImPT1VLAuqXxghg9s29uv/cvv93Vn9atAnER9iLFCH108Pz2LZOxW1WEatYQ0IUmglP1RRX7t wNtk75NHO6Y+8R4eMJ6D96lvr+cvhepivmHC23D/PnXzpBpW76lijTBDWGut51jEM114xrv3l ecNLS0NbKKO+nhhj2QCfAKUprf6MLtTWIAxc4UpwF8JHIi7RAgOHyhSWSpIBmcYmpL3L/Ldvt +rQNs1qtzc30eQacnEol7bRbdCgSST1e8YwC8IktkG3TCpcqMgguQ6d2M1rZ6OApRCkgOHbMX y800mO7g4xwmDZLSw0f3Nl9cI8D861Ue5x68icmKJHrCaILjlIpoaBHKjnebg3x7flddkzGE3 HrXQ0frK8IdHQ17TNqK0KaNBtYRiITPkSoXiY3lfDWS5i++FReINxcfcKA8SmbioeRJD6C7Yt c5x0tdtyVTegT0LK/jwB0H7IfGR9O9SaxvKj3knXGlgF96GWuSfWvJMStoUaf7mIGjqXgplHn 0p7ISDpSf4HjFvnfHMALHmOXnqKBjSirPJyBzQrPyLQ+I4hoEXqGJBcUKKkbuhSYeMnqvyNOL sGpqvd+SACCoa6TOkQORfuS6rO0InIv/dC1V5PgZnrdbZ97O8jn20Xh2nEnz15W9+vWAu9Pz5 6bOrCJyOJJc1sLhBUEa2z7DlC3EYeBcrf7C8PKbvr7hrP1unjMjPFtc5UIzuerwSOddWBEuwR fL7Y9NJ6XxT9giIfx8rsvIlOVCppmwm4Uz155AhZzBvH4YQtmdPZJ7QSYqFoCF75QZVbhtjKt IfRWfB7orjWPmuAozoQgMfsnl78G2/VgeUwtGWN4DmhNL9KsLF77l0Tk9xLyXEsRspdG1kDFS XarzuN9jDmbNuzklYO30AMpFyl/63K5TxCMbBaaeubvw/A6hFHSDqSVGtA+BKQsl97Pi1peNp Hl6uwtFLcbU1jZPpk61yW3/i1m+uCmTVsZmumdFYMuJXX/cJyfy2dQsyqhFNiF9hlhpOW9H7r oyoUMRp9K4crjydswkkhW5J4M7DdfNUA8xPfCHWehEwlcawGKVJZRNG8joNrLYNQGrmb8d7E+ 68oe5nnBDUsBvRe/yFaYEen35sUD3tt4fGNB5LMbl6/IB7bPjSk6/JxSADc21ECu7JXBV6fAa GHVLUTrzU4Z81Daz50qruy7UhXMFr7DrV3mWE0LVdxkBhSWWArcUIJOdqYkKObpQrMhS+e1O1 Lb7zVhPrE8Luzh0OiUaMEAkpKcb2fQ9kt8KK6AxpSN/PHiulR+DyCkHfRHyv8kQ3tqrxm/IyR FHM0PvThtil6kDY+i2kuNRDrAPkMBth2CdWu31p6kPOPQk1HUgw1SwVT2RdObtoVGc2qmGxMg +vRkEhqsX7Ey1uNe0M1tyRpRgM5FqrjhPDSP69ZOxlxjOptB9+fWJ0kq9qGrhQF9iO+ooARLQ 8MdVhTNzWH7UWbjQoOIQSyP3tinRcGPimVSO7YxUCpSu/789WFP2+/UUgVqFN1ws2iGUdWx1i nytTG6409me6oNqAYMCv4xArMZwmr0I+mPX0p1tR5qd5anAxvCpwxNhOWzVEbr5mWRiLVRZvG vuFQHOASHIbSt8EHjaTDPlXuFg16L5HmIvvGIC0zQbPCB+aCdE0/VzmR1BOV9rUfx+EahQbhB Vah1BFYjdbO5HhijP2acysVkh4LytixgrqQKYO4W8XyN/CGKqZa0cj9URQDXE3j5koCVJleJS R+m6qGz9Ztjaq0dk3XhTSZVqzRahReyCBh2GoLAJbaqHpV8TVGvTEZcfnms8gM+BBByyQp/mK k6vRfrrLFE6J3zKvwlVb1KYxF8rzOprmDTDXetvWZhTPvoToBCTqfQwmhi3KaMAICnyIRj513 KH6vWyRLDw8Y0Qy/IERzcr72TOu50HKugKcg9oe9zLxk7qJ2Z8ct9ou2OkmLU4xhd+qAeJrTi twHBsru1US6lB4JXSrVNWmyPYq6oW5zpHXtcOYFTRvYBr15+xV7duDj0DomQuokX78i2CidIZ gmREztplO7UaApWKABrk0smgcelHv4WnFk1+QeuA20bZuh8sgwo9yn8+RTa/ACjNH2Fn5jyx0 zhS3hb+L0z8JgUVdTQzKcvbrhTLoQAXpxva2NzyXSkOua11NFMPO13aTbndg4z/X8ntuI+lOr 2093+at9O6dbPBTDXiPMl/Tlv1rktsw2p3WsqFjnPFRCm5GrG20NZVwE0lbqruDGDxqXf/fqT 86h5UJW0p9omBSRjqTZChBYnFpo+WdizkNkDebJ9fh1dWmfXwm7tS2IWqR7zm+/IXfRRgd6PR n5gtEGwRgV68LuJ6pPWnkij2z6i7zWfA4EEHmctx/mXURFQIwYsJI1jTnzZsNvC97LTQyiyba 0qKY9go90ks0mwKwQz478ApjcL7fxfM2gaX/KYBxGmfsOVxCIWzOady9rc1l42sjMofeG2LYp ikmxCHvNg3rdHdzXP8sqJiQVVUFReMbVFDYXDIkg7ETNdYFmB2C6RskfMHRCfh8vyjBJYbJSF +++6Uvd+Yo7bcm6j9XCo+uOiPsXHBi3jd8bILYbGup6kYu3m+aeTWnrbKZnIT+hZg9jWJ/gyj Aq0EMe8MFps13oOthRTKAP7mq4xf/e0K7rRLbdPtn8SjM83t1jVQfcC1R+l6reC6BUPE8vvFa /Z9tkn1JMjwE94uhIsbec3DyDFiyOakccdS2k15uEN9YfRv23Te3HLYzGVMJDXejvsvegpQvA jsn4IL4H03G1yNJYuH4iLvUSFwy6nNgaKDev2OfrQMWpAwa1ReOrfjXo2eO0k+FKj9ahNXfh7
+ 2XttQonW6b5CRlgAM5dhZM2BHTMk0ldpcdrcYkCatVZWn5ixOkttI2hfP8fvKc8fLVJV0fD0x 6VGfi9O0w5TXAmHSxn8Rtf8cuJGokqnEZcX7gLkDA6FAYxj3ikeqq+3gI6oRe9zLKjWEXVS60 cCZppKflVJb5ZFnGcaXEZcAKCfXlvBWSuqng0nbkpNhur326Sn+UM8WbQZheHWxWM7eL5prWn DDHqBqogEqcMi5lWRnAyPFK4NjC+fAq9C+PgyA1WBGHgKx8CFH5JWxnzmP7CVGlDz0KrGAzmg 6+SRoWYWjEn5Z0dTFNkoZ56qATRW5eG5Uv20mDW5AIuvucj5EQr0N2xuYd/tMVPobUBbMNJ3b h3nnZgm70e5jhOA8xFYXTH+B88TYCxPODP3QcKrrymyqzhypU9W/giT//GuYMnnhO8yo7ci9p KpcLPcnhIR/lfYP+YxVaOMhhyXFuVaC9l3YrRE4JLiYeq2It7yZHzfIpBYxUsQsuwR0YuNIwR EWKDorfxH5+6CJdKK5B7bkAzkhp+HHUPdayeGrOXJp02USKPrx+PDnPKiUAfrfZTkvqAFFDlR wCjSxOTpE1w0kBhnA5Vb0FUjVIAezHFabDR6qBu/WDendNqppO3rsitg1MHMYmExpIJOJVklE FB6KtxOQbRZRv6b63Nw+yFxLvBMk8zzBNdW0JSQ28kjsBs8s/8GVdGY/04tHEeKTIylFVjcam Zoa3nzuvSJMCREP9JyBpvZ/y9qmoxKy03DURC8ie5TiyR8E+kIkjpuE/1LmVG9AtGbBtkssBq U+HtaS3p7vhRFvI5IaZ9sZHSm5vJv4OZed78M1qz7OrYJBigUhHkLCW0VS56nlfSoVqtRuOfT ufnbUbF7X8KOxl+QXJyBzo9LHzoy1ynMvuI0TkxvKFPTplgNff+MZEspNHSZLbiQxJffhht7B QjlpwJSVpc5rCDZc30NBSbCFPrGkXDjcNHvj2JCWOuaz/GL06lFKDJy7aPOsjyCquzyv20paW v3TpcPNXyBDd6k4sfXMsm7gkTR3vjlRU0vzzGHnwEczHfeiKaErYeWe2XUHtecQ9tD5nvk5ns ybBJz2BO7QlDS3JMYvD61aPrPajmlbDVowd4VuF4ZbEW1wTGotLRt22VIL4v4krEJxndmDj5h PBi+NEHn96saLEaOOxUj7I9zX1ZrJ8Z5+f+eiG7BpsSET2UQkFMsjSd0QnsadpAl/jjIPHycs CRt7c/TSVzd4HbOICLSVlfEO/g/XBzFRWTat+mUx1P3CM51or1753jk2ev6jZSjO+z31uljFK LoQeTNKMEFeWR9vg1lPHgFy+F89p2MBDz0bmBFwyhhCCEEEVui6RvGR4pqH1vHx4p+VeeSNTu sgSI89NY2DpJluRjCE372/MdHlwvWpAkAvODYuUSRxzyc4b+wdzrj09baMGuLGvirXGfAFyzt KEa3k23x/xcgolaCQXjVtGZfk7UXlN6ZQaYeZkQWOtPH+YcDTbWqcFMLUN6KQfWvBgcUcxbNM Xf9faQDZ7FBFQ58jHtZeiErDghElKf8OCBepcGIagOYE2RtAvk4/bAxeKfaL8WhaFKXoCntWj D4cd42NHGQBV/OYWXC6Nxm3ODVsqhJ/HyW6x6jmyrA1usdzD1DzEgx0VkPh9qxhX1od7lj+gA BJJvlGQYtHBLpDh4Z+hgmoJUFX/1VjRycHwmGXvr/+dG+Vb+5J0Q/2YnBKpKyUfjLqtpyb9F7 jJkDYqfZWqB+Ca/7ufOuT3g+6i2irkz5VryZSVNpfb+o8HnjOP17T/AfLN9gbeKmMoJGY1A4t PT2HITOwKnAp6ufxM4ZIkvPzs8wpV7NbOycoHwg0n4Rx7U4Rf2ug1AXrxaAjVrtzWa+vbiaqB qC63jt8PgxcVLt9JO+pE/Y+4+LRyJqhHXXqak5wU81RXEE+o70lLsLxvvJ0Vvp7hxn9ROuLwL yf7XIWMbrnBRwIQ8LymUqotfuA3GvjbQJS03bMHKXr+andiFI4v394NnE1Ssb04hbDJUoMIfN I1QrHHW2kv2ZE/PUQQqTK/ZnwEos6TT5gm0RwH0z6xa9X5s5jNJmff246RRIWleWzvja+yRdh Kwoqc8HCxB/H3u/ON33pJRUYW6vDLg5tX8ImdZg09yTXNjNkG5Y0tkIAtvVHTyEVTtf8B6QFW F2CH1bhF3W6UA3Hxm9y2624x4l6+GSW+hfVzohBKUMrBmTcrvFUj/S6iwOGnTTJBbBoFWyqMr lwDimFEr166ZmU0jH/4s4BVUgQm1gVyuTV/QljqOhyt1BbzKre/iZ8ylUtuaWYdKj6owfy3CW oF0our3Uaw+CiEj28vE5Kcyp+plvuIXHvUXQXaU0F2v/NgZ9LvWfWMBmzew1qMXhl9X37WktE Yet7j9nNk5sx2wn7o3BiYUSH0evIHJ9FgenHFeDPgqr2NayQSO2uf4l3kJL9F89X6eHH9jCsa 8OzB/Qz82IxgmY4ys0ZOX37gukPzjY54OM1QBXb6JrSTqOaLVPFOdsCwLddLAYDQ2CSc8Pon9 PK89PpQQhgHlW8ksZgjYOjtf3VXCOXtLwm5myFSCNjY51TNXwjwEV2GBApEt6PYavtJSpkYbE fq3pyVOXOEtgIAL8KJ0cdg5p5PfaXx/ZSHIVIyYVwkz0MUHwJfNgtKt96frDLsZhoqGKy4t7E hu7nKOgX/K0D4gRX93YG2e4XyZf2Ry6FjZXy2qWbu07+Vkwmjud8ijmB/Hx1OX4GxpnqUZQse 2KZH4njm3CWNNQoJzT/IRUjSR0lwHTrVMOp9todVWgwGKgsxid/8GEOBLMJU77pKgWA/zXPUH vSoF7Q9YPCqNbTgYRGkwaVb+EAWozgRNE7Sylfg5gSEMOwjnSroywfXp4H0z9U36cCyRCRdS5 Y/sUNIIoZWZW7R7KfU5hCOs2gb99B2XrepvLnMxHCqe2BdAkvnNhc1zvH0N02Mt18td7FDtp/ JZRMBg6uakfFwgawSRau+Q6s3cM9O8nH8H16CFSer0HLeMF6SKZZxG/gE8UnF0n3Nsjew+V/B /63cJt9HQnBSO4skYR5QbUBtfYwf0I5zXe+S7TG6ml+eXL7rxg7daeBTxNqb+1bn9baqtSmvE 8WS/iW6P0AYvTZrrMs8fL1uONNOvzX9xvKofWFVMq/4IeHzX1UZ13yhuuqRf62dnel+7i3tqr a4LqT+FwcJ103RhwbRX3FRd2BueBK0Eg+CEPtKCY26TkddIXMgoo/Yz1sPNziQx05DBj1xoQo XTQyGz6M39lpOQy5jyMDEtFfwmAnnl4Or0du8Psw6JpWkhLmv0VG2I7TbUuimbKpCWx/e+/8/ cg+y/brCcx0hbyI5ki7u1QvzguoS9UWVll1S4UTC8PXLfcd+6kHvFZvjtmeEZcWNoVpQb/Xim WvdvEejy1lIh8vOg8jXni+cm8QMkuFeuHty4Z6EmpBKMve79RwRaeNyzaVpfXEa+PMMd9Gk0Q kxIVzMhfAhSdK94JqLBRM1bzbmUOmEnrMkRQ70To6KdJ+32TyKRAvIlQ/FcSTyw5Tfq6iFdVS NZAK7ADch4A/R9Y307ntiZkK4P+v5pTLnr+0uEBGwKbNpaYqHfQQflEBLlqYAmPHEApm0lDUO tG/AUW81MqgavV79UKvkNGxXuDJIEBlLmb+iBU8iY2fb3PMyRzv2EMruBWy5cDCFiXp17NY37 cKuvv6f3M91FMCH0f7v7fGIPMyAOEl2oG57Qhx9UIPFh9Bqw1crOSatKTnixIvMSa0+6ISHJM /zkowM2rqkxJIFtRUXWtIhXgFrlVksRzdfAkM5QUHVu+22mbT6WeGsOEb0S0AetLxUj04rMRV nuzGxPBAji2qT9Ok6UxJVga6jAZgkpQgUdBVPZxabiJY77v1DPECz2MNqZpgSUl9p0Y5qTUvF 7l9ma0aZCDOrwfaVS02psIkG3w76KUx/bUET79txlESMdD4wKPyyB5Q0mbyEvC+ZbAe5gUcRc
+ WTWN7g4BoULZdiUT7IerZI1H5qI1ayU0XJbxDFCGRbdncOZOYUWZJe1i8YFmnkJcYrxhRUmig cfkscb0WkY/yHTAXtM3OoglcQUGjuy1h6FtVmue+rAYCeBP8syKu/iFkcv1WerpF/5uA812aj eZMOQUZ7+H1EJpL6C+2w==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_102749_298395_E077E0F7 
-X-CRM114-Status: GOOD (  35.83  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261123_102924_267793_A395C70C 
+X-CRM114-Status: UNSURE (   5.99  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,114 +110,26 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 9:55=E2=80=AFAM Leo Yan <leo.yan@arm.com> wrote:
->
-> On Thu, Nov 12, 2026 at 11:41:18PM -0800, Amir Ayupov wrote:
->
-> [...]
->
-> > pmu_pulse (coresight-only)
-> > ----------------------------------------------
-> >
-> > The first attempt was to try to avoid perf/core entirely, and extend
-> > a coresight config with pulsing ETE external output on every cycle
-> > while tracing is enabled [1]. This way, pause event on TRCEXTOUTn
-> > ends the window after exacly N traced cycles. The use of ETE external
-> > output is pure coincidence, just a way to count cycles only while
-> > tracing is enabled.
-> >
-> > However, the review has raised that the config is not self-contained
-> > and requires a lot of checks to only enable it on capable HW:
-> > - needs a helper in the arm64 PMUv3 header and a move of PMU
-> >   definitions - needs arm64 maintainer's approval;
-> > - only works on ETE whose PMU counts TRCEXTOUTn,
-> > - the window is always measured in traced cycles;
-> > - is restricted to ETM, doesn't help Intel PT,
-> > - the further it is from a pure config change, the less understanding
-> >   I have to support the patch series further.
-> >
-> > I decided to abandon that approach and ask for a better/more general
-> > solution, hence this RFC.
->
-> I saw you have sent CoreSight and PMU pulse v6, I will review it.
-> It is a good improvement for me.
->
-> > Option 3: cross-event "arming" (attr.aux_pause_armed)
-> > ---------------------------------------------------------------------
-> >
-> > This extends aux-action with a new bit (aux_pause_armed):
-> > - aux pause event period is set in an overflow of aux resume in group,
-> > - restarts from the full period,
-> > - on overflow, pauses aux tracing:
-> >
-> > This is the most flexible and general solution:
-> > ```
-> >   # resume every 10M cycles, trace 5000 cycles
-> >   -e '{cs_etm/aux-action=3Dstart-paused/,
-> >        cycles/aux-action=3Dresume,period=3D10000000/,
-> >        cycles/aux-action=3Dpause-armed,period=3D5000,call-graph=3Dfp/}'
-> >
-> >   # resume on page faults, trace 100k instructions
-> >   -e '{intel_pt/aux-action=3Dstart-paused/,
-> >        page-faults/aux-action=3Dresume/,
-> >        instructions/aux-action=3Dpause-armed,period=3D100000/}'
-> > ```
->
-> I am just wandering if we can extend a bit "aux-action" syntax to
-> support delta value, something like:
->
->   -e '{cs_etm/aux-action=3Dstart-paused/,
->        cycles/aux-action=3Dresume,period=3D10000000/,
->        cycles/aux-action=3Dpause,period=3D+5000,call-graph=3Dfp/}'
->
-> The + symbol indicates that the pause event occurs 5,000 cycles after
-> the resume event.
->
-> > Cons:
-> > 1. the core has to keep a disarmed event stopped across group
-> > scheduling, throttling, ioc_period, power mgmt.
-> > 2. rearming happens in the overflow handler (in NMI/IRQ).
-> > 3. Software pause events are not supported.
->
-> Why here software pause event cannot be supported?
->
-> > Question
-> > ---------
-> >
-> > Does it sound reasonable for perf to support this, or it's better
-> > to pursue pt/coresight-specific solutions? In the end, my use case
-> > is about tracing.
->
-> I think you are asking perf core maintainers to explore a proper way to
-> move forward. If no feedback, it is good to send RFC series to
-> demonstrate idea if you have a preference.
->
-> > If yes, which option is preferable?
-> > - Option 1 with restoring first period behavior that was already there,
-> > - option 2 as cleaner fix,
-> > - option 3 as completely general but with more core state to track,
-> > - something else?
->
-> Seems to me, if we extend a bit with "+" syntax, this can be general
-> enough to benefit all AUX trace. And we don't need to introduce extra
-> new interface.
+>> * Reuse existing functionality from devm_clk_get_enabled() instead of
+>>   keeping duplicate source code.
+>>
+>> * Omit a clk_disable_unprepare() call on an error handling path
+>>   and in the implementation of the function =E2=80=9Cnwl_pcie_remove=E2=
+=80=9D.
+>>
+>> * Delete the label =E2=80=9Cerr_clk=E2=80=9D.
+>=20
+> Needn't * in this case. Not title ahead of a list at body.
+Which wording variation would you prefer finally?
 
-Sorry, I hadn't seen the original email but this reply popped it up
-the list. Could we extend the (BPF) filter format to support this use
-case? Or maybe there is an overlap with the auto counter reload
-extensions on Intel.
-
-Thanks,
-Ian
-
-> Thanks,
-> Leo
+Regards,
+Markus
 
