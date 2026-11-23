@@ -2,66 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7599A606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A53606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 20:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1lZ86ktk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hTYRYfo2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q8SkLcTt;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gVTSML+c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2XPrAVxeEBOl/91jeQU5k7j8fuWUtX0/F5/UrgSfTUQ=; b=1lZ86ktkGco/my
-	51EH9bGRMYTVqBG/NtOXiFYTlXoUaO8noYoxr4jUEP7FozMKtLJkNv46lT+dQd9M41RnwpnQoBUR9
-	CqL+4amQPQ9fDu47Gh5VEU8yeUo5sf9149tac+ciBa7QlKOJ/OOxLLJHdpH0i0HpLFRMB3FrogD6x
-	3INXB2u1KPT+jtWSJw5l6n2kmv6kYzL+semrjRAJioUUXZwz3KNDTHFySk9C133/8ElhejCPNe7kE
-	+NCuPB2z61Nh3F3z5ntmjOTFnhP26IY52U5Khb39O5WfSzFcdroxxBA9rDLDkUviuDo0mH66nZvqK
-	ll5bQF6dnNb5j3ijTS0w==;
+	List-Owner; bh=4eAcgUNnxWrp9hy8N4DuyA/w6sJxP6JRbsBLxfU6jTs=; b=q8SkLcTttpopJx
+	uJgJhjmz9vBTxx8kb5pouAw5emzYLeDSoHq5CJa17v/ZWSDAKWA9tQ3SEzZBgSZIpM3kGt1STfeGe
+	DH+AemM/T1jOuM1A3Olh1CvLM3t1JtvfLk6LEH7S4vEsYgwCOLo4xhtW9XvrMk3nQEvUZjEy91aE0
+	0RfCQy3EFc6d/CUolwEwsR9LBv48a5AGEtyPGRcUHcrtdWY8eVFK44FkLcAwD909XlDqacghw9LS4
+	5IXWgdKqe2vBQGibG6uMDhnLAOnmmuSz3c65rhcJbcIg1LZ05QtDWM5AKQKtSXdFCTymWsPyhGqOb
+	fthhWR6bkCs4gE8gDjoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaDS-00000004mFx-0vAa;
-	Mon, 23 Nov 2026 20:00:42 +0000
+	id 1xVaE0-00000004mQi-3CDo;
+	Mon, 23 Nov 2026 20:01:16 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVaDR-00000004mFA-0Ghv;
-	Mon, 23 Nov 2026 20:00:41 +0000
+	id 1xVaDX-00000004mJ1-3gDU
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 20:00:53 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 838FD62314;
-	Mon, 23 Nov 2026 20:00:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658591F000C0;
-	Mon, 23 Nov 2026 20:00:37 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 56758624C4;
+	Mon, 23 Nov 2026 20:00:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72DA71F000D8;
+	Mon, 23 Nov 2026 20:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795464040;
-	bh=2XPrAVxeEBOl/91jeQU5k7j8fuWUtX0/F5/UrgSfTUQ=;
+	s=k20260515; t=1795464047;
+	bh=4eAcgUNnxWrp9hy8N4DuyA/w6sJxP6JRbsBLxfU6jTs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=hTYRYfo2s+ByadcdVqp89uBh0lCXz0eBLSeSrCSF1ZVmkASs7w6m5Q26vD2aeqi5/
-	 qI9Z2HsdhqYKBU9KV5P0TWFUdR5hnBEpzbsbHPm93QEssAbVsljnoboHXxTGJJEBCN
-	 hrXf0ErfvA315/YeANd6Y+CRBA2xVxF4wy8WAsBE9nUWJYK2tZKR5bJbMPAh6zs/I2
-	 i6JnClLwWrfegfB52TqFH3wDPYH4KJE7XF83gED+C3w2/F8yvucGAH2z1uWbKrBD2O
-	 FznccK18Ksua6d1K1rRkmL1R9gh4zHUplB4pkag5FgunplTuiQHPYScyZzAQXFG26i
-	 xdlPoo3TIoXqA==
+	b=gVTSML+cPW/P25YS69F7J0HcOpM5kwo3uCfWf2rnSAppsh8q8UQfyO9MmSOx7kpTj
+	 d6N9VaPGiw0QyCJo9o/OcnCKLoEBAAUhTmp0mZ/f6J202u9xjyj3cWFQ0R8TQbDtfJ
+	 /BybRBPNSJeg+ezcNLjT6d2OiaQeJFuARiXPg/SB9dtB9L4mkgIz5TmuoFnUxIjT3e
+	 AgxHl4VRV+WYknmTHI8EUJXt/bheVdj2XDF0EfZRft3obwl2zDVjsnep2MhhYGZNjD
+	 pWqMMFlmq+WuRKO3CryNksoxas0w/IgoA3fd+ktsnP3T7z3oH0CXKCw8Ley046CJ9Y
+	 aY3wVjTW+f/4w==
 From: Lee Jones <lee@kernel.org>
 To: lee@kernel.org,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
 	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ryan Brue <ryanbrue.dev@gmail.com>,
-	"Tianping.Fang" <tianping.fang@mediatek.com>,
-	Yingjoe Chen <yingjoe.chen@mediatek.com>,
-	Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-	Sebastian Reichel <sre@kernel.org>,
+	Ming-Jen Chen <mjchen@nuvoton.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
 	linux-rtc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: stable@vger.kernel.org
-Subject: [PATCH 02/10] rtc: mt6397: handle non-DT platform device matching in probe
-Date: Mon, 23 Nov 2026 19:59:13 +0000
-Message-ID: <20261123200012.502284-3-lee@kernel.org>
+Subject: [PATCH 03/10] rtc: ma35d1: allocate RTC device before requesting interrupt
+Date: Mon, 23 Nov 2026 19:59:14 +0000
+Message-ID: <20261123200012.502284-4-lee@kernel.org>
 X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
 In-Reply-To: <20261123200012.502284-1-lee@kernel.org>
 References: <20261123200012.502284-1-lee@kernel.org>
@@ -82,74 +76,64 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The parent MediaTek PMIC MFD driver instantiates RTC platform
-subdevices even when the optional RTC child Device Tree node is omitted,
-and devices can also be bound via sysfs driver_override.  In those
-cases, of_device_get_match_data() returns NULL, yet mtk_rtc_probe()
-succeeds with rtc->data left NULL and mtk_rtc_write_trigger()
-subsequently crashes when dereferencing rtc->data->wrtgr.
+ma35d1_rtc_probe() registers ma35d1_rtc_interrupt() via
+devm_request_irq() before allocating rtc->rtcdev via
+devm_rtc_allocate_device().  During driver unbind or if
+devm_rtc_register_device() fails, devres unwinds in reverse order and
+frees struct rtc_device in devm_rtc_release_device() before
+devm_irq_release() unregisters the interrupt handler.  An RTC interrupt
+arriving in that teardown window passes a dangling rtc->rtcdev pointer
+to rtc_update_irq(), dereferencing freed memory and scheduling a freed
+work_struct.
 
-Provide a platform_device_id table covering the MediaTek PMIC RTC cells
-and fall back to platform_get_device_id() when no OF match data is
-present, returning -ENODEV if neither match path provides driver data.
+Allocate and initialise rtc->rtcdev before requesting the IRQ so that
+devres frees the interrupt handler before releasing the RTC device.
 
-Fixes: 29ee40091e27 ("rtc: mt6397: Add support for the MediaTek MT6358 RTC")
-Closes: https://sashiko.dev/#/bug/linux-35993d35-d776-4f86-9bd2-42c6ee078f88
+Fixes: dc0684adf3b6 ("rtc: Add driver for Nuvoton ma35d1 rtc controller")
+Closes: https://sashiko.dev/#/bug/linux-26674087-baed-4ef2-83a0-78888ea8d16a
 Cc: stable@vger.kernel.org
 Signed-off-by: Lee Jones <lee@kernel.org>
 ---
- drivers/rtc/rtc-mt6397.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/rtc/rtc-ma35d1.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
-index ab402f9f85c3..c40644ae509a 100644
---- a/drivers/rtc/rtc-mt6397.c
-+++ b/drivers/rtc/rtc-mt6397.c
-@@ -343,6 +343,14 @@ static int mtk_rtc_probe(struct platform_device *pdev)
- 	rtc->addr_base = res->start;
+diff --git a/drivers/rtc/rtc-ma35d1.c b/drivers/rtc/rtc-ma35d1.c
+index eb0da8b091dc..beeef6db92d9 100644
+--- a/drivers/rtc/rtc-ma35d1.c
++++ b/drivers/rtc/rtc-ma35d1.c
+@@ -235,13 +235,6 @@ static int ma35d1_rtc_probe(struct platform_device *pdev)
+ 			return dev_err_probe(&pdev->dev, ret, "rtc init failed\n");
+ 	}
  
- 	rtc->data = of_device_get_match_data(&pdev->dev);
-+	if (!rtc->data) {
-+		const struct platform_device_id *id = platform_get_device_id(pdev);
+-	rtc->irq_num = platform_get_irq(pdev, 0);
+-
+-	ret = devm_request_irq(&pdev->dev, rtc->irq_num, ma35d1_rtc_interrupt,
+-			       IRQF_NO_SUSPEND, "ma35d1rtc", rtc);
+-	if (ret)
+-		return dev_err_probe(&pdev->dev, ret, "Failed to request rtc irq\n");
+-
+ 	platform_set_drvdata(pdev, rtc);
+ 
+ 	device_init_wakeup(&pdev->dev, true);
+@@ -254,6 +247,13 @@ static int ma35d1_rtc_probe(struct platform_device *pdev)
+ 	rtc->rtcdev->range_min = RTC_TIMESTAMP_BEGIN_2000;
+ 	rtc->rtcdev->range_max = RTC_TIMESTAMP_END_2099;
+ 
++	rtc->irq_num = platform_get_irq(pdev, 0);
 +
-+		if (!id)
-+			return -ENODEV;
++	ret = devm_request_irq(&pdev->dev, rtc->irq_num, ma35d1_rtc_interrupt,
++			       IRQF_NO_SUSPEND, "ma35d1rtc", rtc);
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "Failed to request rtc irq\n");
 +
-+		rtc->data = (const struct mtk_rtc_data *)id->driver_data;
-+	}
- 
- 	rtc->irq = platform_get_irq(pdev, 0);
- 	if (rtc->irq < 0)
-@@ -427,6 +435,16 @@ static const struct of_device_id mt6397_rtc_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, mt6397_rtc_of_match);
- 
-+static const struct platform_device_id mt6397_rtc_id[] = {
-+	{ "mt6323-rtc", (kernel_ulong_t)&mt6397_rtc_data },
-+	{ "mt6357-rtc", (kernel_ulong_t)&mt6358_rtc_data },
-+	{ "mt6358-rtc", (kernel_ulong_t)&mt6358_rtc_data },
-+	{ "mt6359-rtc", (kernel_ulong_t)&mt6358_rtc_data },
-+	{ "mt6397-rtc", (kernel_ulong_t)&mt6397_rtc_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, mt6397_rtc_id);
-+
- static struct platform_driver mtk_rtc_driver = {
- 	.driver = {
- 		.name = "mt6397-rtc",
-@@ -434,6 +452,7 @@ static struct platform_driver mtk_rtc_driver = {
- 		.pm = &mt6397_pm_ops,
- 	},
- 	.probe	= mtk_rtc_probe,
-+	.id_table = mt6397_rtc_id,
- };
- 
- module_platform_driver(mtk_rtc_driver);
+ 	ret = devm_rtc_register_device(rtc->rtcdev);
+ 	if (ret)
+ 		return dev_err_probe(&pdev->dev, ret, "Failed to register rtc device\n");
 -- 
 2.56.1.750.gf70dc682cf-goog
 
