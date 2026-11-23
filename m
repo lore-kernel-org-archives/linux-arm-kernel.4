@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F879606A682
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11F8606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 18:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zh5zA4qg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aDPs4Ra4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mqk5z6Tj;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ajmtnBUJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,71 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+o+JlwNGILg9TS+MqHvdFg2BeF8SIkQObMLxudXZheY=; b=zh5zA4qgm35XgPr5YWiw3LiqJA
-	5x2GtGD3dnyUr3YIaDb+tKyGYbxqpKqVkuuEHVYHg+ll6X1NAuxUe8t75FndU8GFv3vFOHJJsjolE
-	3bnrf41mKftW9SDQiJXk71mtUWMRK9zZ9slebLV9S+o3RfGp+DlQjw71ctcqGOis5wz5Afs9iMz1N
-	Aqqlc96f1J4n8YqlmYAJOYYGoXSwgUncVnPuIWfK71JlO48vkqRs/ULJB8JMNWr7bhanVuWNd/+q6
-	twRmlSHv3qjh/SXczYB/gqfWfkdiKFCNQ6i10CFnSMCGa9kelBH2ShLFofuaiB981Rs/LZCtHTrPh
-	d/4lk+3g==;
+	bh=QnkvwRjxalFfpIWRivbWeaDT7ktUTxee4WzIGdLxdG4=; b=mqk5z6Tj8x9/6ekPXvu1OSro3f
+	aeapVUP368Inhj0dcJmwmaiKpOixR6sPhSD+jV0l6nfowKjhSFBCJRf3oCZ2K2Gzfnx0bgAprfh1b
+	eO10AeSj+ztO6Y9mBuKXzOySu2VcgQuA78cYlfOtYbIeBZZr8T1pMsj8s2f008ZkWDAjUhk9JtJuy
+	tzPqHYUxt3ym0bPoevP0JnVFSNxzumlMz/UovqO3zpmRYgjJtPckKgKQuaF9OhTjnHelejfhAIKdv
+	CUd4v199bBWO6OC1yIyUk5Vbv04YyeCcgdI7dqCSoe03QAdmEEsk/p8JpfIg46oRSXCtKHEscaBrP
+	7tEFGE3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1h-00000004YTy-1wIU;
-	Mon, 23 Nov 2026 18:44:29 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVZ1i-00000004YUa-0lQS;
+	Mon, 23 Nov 2026 18:44:30 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVZ1P-00000004YDp-0762;
-	Mon, 23 Nov 2026 18:44:11 +0000
+	id 1xVZ1R-00000004YGW-3sM3;
+	Mon, 23 Nov 2026 18:44:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BC22A42482;
-	Mon, 23 Nov 2026 18:44:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 562666242E;
+	Mon, 23 Nov 2026 18:44:13 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795459450;
-	b=qW9DfzQJVE38QvPlqPmBh1Jan1VcHEOitT99doJfNgP/VXSwyrpwWXnM0uA9jHNBdxwE
-	 4zwYChTDr1p99ppZUfEDwnnzzVKFVejLfBMJfEGZdeYyZKQWUeq6KzCkgh+CVC1MJVMm8
-	 NDB4MME/uy2Wbs8zt2sND36J2fsXAOpsSz/WVz3tOVYBJsjiX/IwmOkyh7E9ZJFnFuFlf
-	 IW3fx/P62bjE3/4Gb6H72Xfk5wD0wwOxYsxJgt+rDMRLJH96vmJEKi9XETABLHXaw/Qtk
-	 f8exa6Zxuwm6so6CcVgFvk9XQTSllhe0kWNVAfnLQhUaumh59NG/4dG6ZZBqidzF6xg==
+	t=1795459452;
+	b=iwM1qdrPfmVbcUTXLfzvhiziiK0DWKtP31u1Rb9bkFka84OmxWSe3pXAdGTP1wtUVo+d
+	 uwLq2ZBY1Vee8aEP0J3TkRIkZNZu57V++HyTxX7AmeAKdgow7Zhg5dJznbNMObuGhFGUf
+	 ngdmACrxllxU/rqA4zFQSGELRBTqqi9dcIXUJ3yFGmDhlyZiBypItpVaU72X8I90T9fLM
+	 zJ4aQDUXAh/4wc9/oGhFXxqQy8I1BwCdzFoKUpCKHduZ6yAWiSKAIzbuxf8UTHLOs6vkD
+	 oOkPwDnOsPI/Oim7F18NHjyZJC3DP8UGhCV9Oa7e/nYHOgI6kjuI3G9YXnoCVHmzd0A==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795459450;
+	c=relaxed/relaxed; t=1795459452;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=+o+JlwNGILg9TS+MqHvdFg2BeF8SIkQObMLxudXZheY=;
-	b=mq4TxaXVmVEuNLi76kBR6jRpsM0Luw+1y891XzuBGMDfl865X0CnPFl5mg+vMoGGzprO
-	 woYfHSFS9aUJnvgwv/pixZkGTrd/p2QTKS1rRKNB/F3pXasHX+xcnxADdsvSCY34hifGW
-	 ouc2RqM58wCmdMUZ0E/x/PG3ZV07nSOTAFHOeGmlv65iXd8J2DCSsSiq00KFg0Xu7JzqX
-	 o9hjzhTMIQnCdbSjXGy/igy7MVCSVJyndCIuCrvesPeMNBK9N8NdJ84eIfgoM7S0HTlBK
-	 wlHgDb5RlJdbRkayfUxu1D29hm+lKayA4OlnRV3vmpRVkCaJpj2G8ivBUbYGnX7TQjg==
+	bh=QnkvwRjxalFfpIWRivbWeaDT7ktUTxee4WzIGdLxdG4=;
+	b=O9FZxIK7V74wo0ipTWQzJKHEIu2YRkZV+vOEg7v/soVOQTfW6qm3KMnpZF+NHHEOedRJ
+	 JHes5/5MDYY3lfHDwU38KomEdm1DB4A4NZwiu9FDmZBbPpr9A/PhJYhmuZb9YqhTU0f1H
+	 MsVa4/3M2kRvMAxlrDm3jjIn022xJq64uxqq+hNt76g6N7agvo2LB8SCdg1aLHlHsel8v
+	 +Tjb8kiYSC/apwFu7zP3jfzsps2043METs22FSvEOcRwKKZTrJZakaTyK4BzaKwWWQe5T
+	 0sqZTsbcYOA4SdIocdmU3iqV6k1M2mKmzWOIuV3puPUaMspPcrsgso5u22EEbDb2SDg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A1CE71F00ADE;
-	Mon, 23 Nov 2026 18:43:46 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5C6EB1F000E6;
+	Mon, 23 Nov 2026 18:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795459450;
-	bh=+o+JlwNGILg9TS+MqHvdFg2BeF8SIkQObMLxudXZheY=;
+	s=k20260515; t=1795459452;
+	bh=QnkvwRjxalFfpIWRivbWeaDT7ktUTxee4WzIGdLxdG4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=aDPs4Ra4jTLj535EXb2q0WBdhPvEZBUS2UsIK41YMxbSE1I738ghK9D/hsZ2aG7eB
-	 kDPJBqO7mdnSw0AIQHZNocISENrfYOT/DEm0mwK+ZEXsguI7swrg0hPRiyGCmIs6lL
-	 Mk7x1TPK9zFvUFeVatuZTjC4liXQekSzXUcEnjCUxmSIDBB002AiPSEoJ6cvnS31yO
-	 Pf3V0Hu0IEsZha6krG05xqEIO8KlT20Rq/SccbpIvUc4SBLosq2X/oBJ6xH3FSC+1F
-	 icmiprHuVTmwggnYOHwvwPl8UGIziFNXTJftsv6B02sultKqTrBwHIEN95hdt4kwFm
-	 raXNPFZeHs1oQ==
+	b=ajmtnBUJsEarNGNTrFpLcdUmna3AXEwf3NGNRe69mR9XYhxh4x8sZ7nFxNY27qCAz
+	 0KHyaLRnVZ48Nm+YMKg06IaXDRPENBxux58XEKccw429GoWHL91ySXes0Bd9zvl8dY
+	 SPSyux8wo5TPaS05RWAs+89tU/jWcOQD3QLBmYv7dBi6kZl2o2vXgD2EKkv+NQhs9l
+	 eWg0P42IXU1Mjqi9lQXtzyH5KPxXiJR6XlrLUZdWT8YqVLtESzi+03++rtb7O6nNDP
+	 PXHTsqoh3Tm7X20/7j6uqMAwy+imKr8wXL2J52cnBfbewVQYadwFz3SCwFCO3qkjdh
+	 SHbBUtCSOM6fw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id BA1284C616;
+	by lkml.kernel.org (Postfix) with ESMTP id 7F34D4C60E;
 	Mon, 23 Nov 2026 18:43:34 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Mon, 23 Nov 2026 21:43:36 +0300
-Subject: [PATCH 8/8] MAINTAINERS: Add CS7542 PCIe support
+Date: Mon, 23 Nov 2026 21:43:34 +0300
+Subject: [PATCH 6/8] dt-bindings: PCI: Describe the CS7542 host controller
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-cs7542-pcie-v1-8-4cde5201d404@gmail.com>
+Message-Id: <20261123-b4-cs7542-pcie-v1-6-4cde5201d404@gmail.com>
 References: <20261123-b4-cs7542-pcie-v1-0-4cde5201d404@gmail.com>
 In-Reply-To: <20261123-b4-cs7542-pcie-v1-0-4cde5201d404@gmail.com>
 To: Manivannan Sadhasivam <mani@kernel.org>, 
@@ -96,11 +96,11 @@ Cc: Jingoo Han <jingoohan1@gmail.com>,
  linux-clk@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459409; l=1321;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795459409; l=3852;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=QHj1rsaxQpilF2S2K/I8XJEDNkzvjAgVnMPKiPzY1VY=;
- b=tPTmBU/Q6JWbN1fb1Rw5jN7N8a2+v3+qHKavCh3GAprkTVytOkoit+bNqhXYVQ7xo4ZZbLL72
- M+Kh19wnycdA7AYEOizhL08pou1T1L4EJ4YbplBb6U1Sd4FFRe2YTrb
+ bh=VvGufEimroLNQa6ffIpguLzS7u9g0TkrXCLDyMng0v4=;
+ b=JieypMZCDH6u0OxjVZGYNq5tN+RDJuSJisbUr1Op0hPgZa3zMYJsYqEAUt37atyhVE4j2mlKr
+ OOdPQkLlypZBhyDxaq9DYII4vS/uhs4vFH9UOn3f+Zi1eNBjOlZ0okt
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -128,39 +128,147 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Cover the new PCIe control, SerDes and host drivers and their bindings
-under the existing CS7542 entry.
+Describe the DesignWare host wrapper, clock/reset/PHY consumers, combined
+interrupt and INTx domain. Document the root configuration access limit.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- MAINTAINERS | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ .../bindings/pci/cortina,cs7542-pcie.yaml          | 127 +++++++++++++++++++++
+ 1 file changed, 127 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d8835aeca..d4cada9f8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2949,13 +2949,19 @@ F:	tools/perf/tests/shell/coresight/*
- F:	tools/perf/util/cs-etm-decoder/*
- F:	tools/perf/util/cs-etm.*
- 
--ARM/CORTINA SYSTEMS CS7542 GLOBAL CONTROL
-+ARM/CORTINA SYSTEMS CS7542 GLOBAL CONTROL AND PCIE
- M:	Fil Dunsky <filipp.dunsky@gmail.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/cortina,cs7542-pcie-control.yaml
-+F:	Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
-+F:	Documentation/devicetree/bindings/phy/cortina,cs7542-pcie-phy.yaml
- F:	Documentation/devicetree/bindings/pinctrl/cortina,cs7542-pinctrl.yaml
- F:	Documentation/devicetree/bindings/soc/cortina/
-+F:	drivers/clk/clk-cs7542-pcie.c
- F:	drivers/clk/clk-cs7542.c
-+F:	drivers/pci/controller/dwc/pcie-cs7542.c
-+F:	drivers/phy/phy-cs7542-pcie.c
- F:	drivers/pinctrl/pinctrl-cs7542.c
- F:	include/dt-bindings/clock/cortina,cs7542-clock.h
- 
+diff --git a/Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml b/Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
+new file mode 100644
+index 000000000..8883b8d09
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/cortina,cs7542-pcie.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/cortina,cs7542-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cortina Systems CS7542 PCIe host controller
++
++maintainers:
++  - Fil Dunsky <filipp.dunsky@gmail.com>
++
++description: |
++  DesignWare host with a Cortina application wrapper. A single interrupt
++  multiplexes four INTx lines, the internal MSI receiver and link errors.
++  Root-port configuration is accessible only below offset 0x200; the
++  DesignWare private register bank starts at offset 0x700.
++
++allOf:
++  - $ref: /schemas/pci/snps,dw-pcie.yaml#
++
++properties:
++  compatible:
++    const: cortina,cs7542-pcie
++
++  reg:
++    items:
++      - description: DBI registers including the viewport iATU
++      - description: Downstream configuration window
++      - description: Application wrapper registers
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: config
++      - const: app
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    const: msi
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    const: pcie
++
++  num-lanes:
++    const: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: Optional active-low endpoint PERST#
++
++  interrupt-controller:
++    type: object
++    additionalProperties: false
++    properties:
++      "#address-cells":
++        const: 0
++      "#interrupt-cells":
++        const: 1
++      interrupt-controller: true
++    required:
++      - "#address-cells"
++      - "#interrupt-cells"
++      - interrupt-controller
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - clocks
++  - resets
++  - phys
++  - phy-names
++  - num-lanes
++  - interrupt-controller
++  - interrupt-map
++  - interrupt-map-mask
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    pcie@80000000 {
++        compatible = "cortina,cs7542-pcie";
++        reg = <0x80000000 0x1000>, <0x80001000 0x1000>,
++              <0xf00a0000 0x100>;
++        reg-names = "dbi", "config", "app";
++        #address-cells = <3>;
++        #size-cells = <2>;
++        device_type = "pci";
++        bus-range = <0 0xff>;
++        num-lanes = <1>;
++        ranges = <0x82000000 0 0x80200000 0x80200000 0 0x1fe00000>;
++        interrupt-parent = <&gic>;
++        interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "msi";
++        clocks = <&pcie_control 0>;
++        resets = <&pcie_control 0>;
++        phys = <&serdes 0>;
++        phy-names = "pcie";
++        #interrupt-cells = <1>;
++        interrupt-map-mask = <0 0 0 7>;
++        interrupt-map = <0 0 0 1 &pcie_intc 1>,
++                        <0 0 0 2 &pcie_intc 2>,
++                        <0 0 0 3 &pcie_intc 3>,
++                        <0 0 0 4 &pcie_intc 4>;
++
++        pcie_intc: interrupt-controller {
++            #address-cells = <0>;
++            #interrupt-cells = <1>;
++            interrupt-controller;
++        };
++    };
 
 -- 
 2.53.0
