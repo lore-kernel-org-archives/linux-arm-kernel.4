@@ -2,63 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278C1606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C055606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 07:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xXuXApV8;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GnDlvS7l
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wb0ekwAm;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hnUEHKCx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=5DFw/e8NbLOtDgOVzRqL/UczE4S7lgWwLX+RaMIW35c=; b=xXuXApV84BknLS1wvyXgKORsTb
-	g8GWdJ+eAAX4NnuyMKtujeacioWQ63FUmvv9NM8l0TG0USMS/0tCNszt06ctN3aKKmgv+GaLYM6u3
-	ZObj8L6opO13IS6cx3W2mK0ibf9z7KUMVUKCFPaM+53UIKqSLnuTOdKs6BrU7X+klyEQ6w8lm+/Pq
-	6esvlaE8f5wEmZPUPapaT+0Do5o6n3JzA4V0no6mFepq9yiMP8+GrxyYPgJpL+t/EiQ2xqkANgwxX
-	IoArl+fs502AaBF4RRyxuPMC9gn+bKDNs1LxjrK6VERBgg1dkaYvdsXycBy0N+/xDlWhxY+Pl9OCI
-	zTSZAYDA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=0OSpOlJ5QU7jjdI5ogSU6KcCruhdHca3yQivXfMqClg=; b=Wb0ekwAmyhCXp4
+	htJ6yF6qf80/ONRklPql6AP5n6zg9l6hzeK0dmtFYbqkDVmphlvQ4mVFAKu3pv/Qf54XUBrPVkZkC
+	eEvFaqxz2UzvkFRQVNViqhy3VhG8JJehjz/710AAxDlLcEhGhcuVDN5Xi5qLvQcC+8W2YxNgbC3aa
+	+Sg7qz4PL5DiBEFgYCgDTNKWfMO6sSUR4vGcS2ioROzu9R1i4dVgtyyXr6SNdR6UYwRgcRKL7ypbQ
+	udvv6wJzlfeflyUY6LYdDVQFWog4JhKl95j+cl1tFjpwShh+BvJ6iS8nheTNolDQkgYU592MqM7j2
+	ikBMLmhKsMHXCmpHug2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVOM0-00000002RoP-3zx3;
-	Mon, 23 Nov 2026 07:20:45 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVOfM-00000002TUG-3Rku;
+	Mon, 23 Nov 2026 07:40:44 +0000
+Received: from mail-pj2-x08.google.com ([2607:f8b0:4864:39::8])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVOLy-00000002Ro1-006h
+	id 1xVOfE-00000002TRR-0uxK
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 07:20:43 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 27BE761D9F;
-	Mon, 23 Nov 2026 07:20:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD61D1F000C6;
-	Mon, 23 Nov 2026 07:20:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795418440;
-	bh=5DFw/e8NbLOtDgOVzRqL/UczE4S7lgWwLX+RaMIW35c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GnDlvS7lvlzKZ78arn3vcFhBxyJCTZrE+Pc4xkF8k/7Cwxy2Z1DeeWugf7SvDyYFp
-	 SYVw43rG1xRBKleTZAEx4pn/0I1CshwLFf1WZRkKnxtXYujdoQZnwTtzqTxjTR8K9c
-	 +ITbQcbffwX8rEOMrI5c8o3mBP8pbrzkqbrZYnwqeLVmH/GWQL4rne+lQd6JXv1vTI
-	 jGx/nHYlVbTBe4c2cB1ihz6ed5GUg+PsfBW/emWGBYRjA8bERn31yXuFUWHUTQJbN0
-	 9JGyv9bWRBDFwO1pYyxaM1ag1FCJ7SSAjmWnDQuCAhTXALJB+zsNx8eoYPErMlClHb
-	 OSQ+LH9OvbPeA==
-Date: Mon, 23 Nov 2026 08:20:36 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: joakim.zhang@cixtech.com
-Cc: tiwai@suse.de, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	cix-kernel-upstream@cixtech.com, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ALSA: hda: dt-bindings: cix: add hda dma memory-region
-Message-ID: <20261123-mature-arboreal-seal-5a01fa@quoll>
-References: <20261111103924.3395516-1-joakim.zhang@cixtech.com>
+	Mon, 23 Nov 2026 07:40:38 +0000
+Received: by mail-pj2-x08.google.com with SMTP id 98e67ed59e1d1-3adc0ac3566so709060a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 22 Nov 2026 23:40:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795419635; x=1796024435; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=0OSpOlJ5QU7jjdI5ogSU6KcCruhdHca3yQivXfMqClg=;
+        b=hnUEHKCxs25ibK8s8PZveTfVavr916DlwWOWG0NSCEWfSpVWuHMX/yugM9TcXlfnvh
+         731fhe1pgUahWBMpfkrQxDJAV+kFy7nXFH2p7VUIwVN3zCj0GEH6pVaHlI4Jxq/CTWsm
+         MLDjtjo53Mum3DV0qbhnDjeJZY9GsCgRCHiIJyKvqt2OB/svjl7tdtkbZzscnZss9yAd
+         oj+ybhNr7fYss90ZXuFnntSsopu1a29awbDoEDpEDhBnvrUw+JXPnSUzN6fMHUGU3Hgb
+         j+3UiebIBEG5R/kH2sgSbKcwkO110zV2qGTj7oq9pJkoaUYWuAj7HrrIGLUoZiLMabMg
+         nOtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795419635; x=1796024435;
+        h=content-transfer-encoding:content-type:in-reply-to:content-language
+         :references:cc:to:from:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=0OSpOlJ5QU7jjdI5ogSU6KcCruhdHca3yQivXfMqClg=;
+        b=HBRoEBQejHsfX9MAdC9e4OrdvXIxtNogfXMgTqzBKBQMJoolhWB2INmuQwp8opWiiA
+         hvCBSMkP4fRMUnxel1BngSHmhfI8leTZP5joCnDP2urE+fg/i3vK5KheUDPNHk84LPrr
+         GRyL1+rN2e0b/1I49Mhlqk4x4MXa941P4Dx8RnLvoAciY+QrVQUZcUHGlcwBYCHJ527t
+         Uh5pnoJToXh9lw3gUrBs7S+3Wu/M0mGlkCXP1nem/DjweG8xs+hDIjYs5a/8w6qWgvUV
+         GWwf4fWPNy4HekfJAACSVliSopibx8VKE9ZNPC120mMBztTKt7Fr90cQgE77ECaWgVrW
+         mtiA==
+X-Forwarded-Encrypted: i=1; AL+hErGNhuVtZOkMBf4EApjyBIwetEQ4aZsp8d28USa8HJXRr+cHZLAtKfKY5wSFOfSfpq5kyOn0TjOC+7JziH6WaAmk@lists.infradead.org
+X-Gm-Message-State: APuU4Z+qeQnERFPWwZ7OitkPjpGcuqUknBpMOCNQAJs7+sgz7+qdQ2kv
+	VZXk3UH1AT37HU0RsPP25jKzIPqqYxvCN1GgY+ZdAVrgWZZoMlNyYXAb
+X-Gm-Gg: AZFdTZd1+w7ppRf3nNek0I06Jfm5PBV/bjojqRHC3TDgzC6bAGhE2dWSAIa99nTClmH
+	4qn+oU4lhTA9SznZvVT1ca7hvjEf5l5GlAWCRea1/bVyeuGKEsDdvFAcocnpPa6lJEy1YACj4Gb
+	GwftXo9EN0BbNfNju40CtbaJrNFq4yq/hdpgMLOyLCXnjZnHxlNiR+DUj0piz6R3NsIyy1gWdfV
+	RoztPDDVQ0ljFJTngThHdLwiqK3DrxIjeedQ6FWxsIbw1OubGTShn7mGQmJOaFaRu2VkxG3mkg1
+	wzv9JC/SL7RtcCuoQrbzULo93zBWhbD6/HEKq7tA55Tz1v6eaQ93kFkAU+JKDL9FpXOSbTMT9m3
+	fnz06+fGnhJL3xtePwDvb6cupjgkpQ2JGHEeGW+YUzLQjAp62FEnY+OP47BDu7x2EjsPDCiaryO
+	dLXjS5dFcZCCaV4FQvW3H6hQHy7twjUv9zWxUhTUsoYBpQwWsgQUad5KAzHChZiOgkozjaFfPJY
+	0lWA2Q/dbdPcD60+uYcr9qhAn4cUeoECm6MtPEsKKHseXNPvReFGEGQ72nUPLFdxdFs//mtiuuU
+	dZMiKWQdS70/PHa9ZF5o/bOp2lump/vZLJas
+X-Received: by 2002:a17:90b:2f8c:b0:3b4:1997:3495 with SMTP id 98e67ed59e1d1-3b41c9613bbmr9155015a91.57.1795419634749;
+        Sun, 22 Nov 2026 23:40:34 -0800 (PST)
+Received: from [10.125.112.22] ([122.11.210.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad8ef99sm17103994a91.12.2026.11.22.23.40.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Nov 2026 23:40:34 -0800 (PST)
+Message-ID: <a3ebfc1c-9c98-44a1-96e2-4d92daed4ba4@gmail.com>
+Date: Mon, 23 Nov 2026 15:40:19 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261111103924.3395516-1-joakim.zhang@cixtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/8] riscv: build crash_mem ranges from memblock
+ instead of resource tree
+From: Wandun <chenwandun1@gmail.com>
+To: pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu
+Cc: catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com,
+ chenhuacai@kernel.org, kernel@xen0n.name, alex@ghiti.fr, tglx@kernel.org,
+ mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org,
+ hpa@zytor.com, saravanak@kernel.org, akpm@linux-foundation.org,
+ pasha.tatashin@soleen.com, pratyush@kernel.org, ruirui.yang@linux.dev,
+ robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ kexec@lists.infradead.org, linux-mm@kvack.org, iommu@lists.linux.dev,
+ robh@kernel.org, baoquan.he@linux.dev, rppt@kernel.org,
+ m.szyprowski@samsung.com
+References: <20261021083011.2170525-1-chenwandun1@gmail.com>
+ <20261021083011.2170525-2-chenwandun1@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20261021083011.2170525-2-chenwandun1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261122_234036_259701_66FC72F0 
+X-CRM114-Status: GOOD (  18.19  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,38 +113,120 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 06:39:24PM +0800, joakim.zhang@cixtech.com wrote:
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
+
+
+On 10/21/26 16:30, Wandun Chen wrote:
+> From: Wandun Chen <chenwandun@lixiang.com>
 > 
-> Document the reserved memory region used for IPBLOQ HDA DMA buffers,
-> since the memory accessed by HDA DMA has certain limitations.
+> Replace walk_system_ram_res() with for_each_mem_range(). A later patch
+> introduces MEMBLOCK_NODUMP in memblock, the reserved-memory regions
+> marked with MEMBLOCK_NODUMP can be excluded from the vmcore by walking
+> memblock.
 > 
-> The property is optional: the controller driver falls back to system
-> memory when it is absent, but the limited region should be used when
-> the platform provides one.
+> for_each_mem_range() iterates memblock.memory, which is freed after
+> init unless ARCH_KEEP_MEMBLOCK is selected. riscv needs ARCH_KEEP_MEMBLOCK
+> to filter reserved memory from the vmcore, so extend its condition
+> (ACPI || KEXEC) with CRASH_DUMP. arm64 and loongarch already select
+> ARCH_KEEP_MEMBLOCK unconditionally.
+
+
+Hi Paul, Palmer, Albert,
+
+A gentle ping on this patch.
+
+Mike has requested a RISC-V maintainer Ack before taking the revised
+series through the kexec tree. Could you please take a look when you
+have a chance?
+
+Thanks,
+Wandun
+
 > 
-> Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
+> Signed-off-by: Wandun Chen <chenwandun@lixiang.com>
+> Tested-by: Meijing Zhao <zhaomeijing@lixiang.com>
+> Acked-by: Baoquan He <baoquan.he@linux.dev>
 > ---
->  .../devicetree/bindings/sound/cix,sky1-ipbloq-hda.yaml    | 8 ++++++++
->  1 file changed, 8 insertions(+)
-
-Where is any user of this property? Why patch is alone?
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-Best regards,
-Krzysztof
+>  arch/riscv/Kconfig                     |  2 +-
+>  arch/riscv/kernel/machine_kexec_file.c | 31 ++++++++++----------------
+>  2 files changed, 13 insertions(+), 20 deletions(-)
+> 
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index e7891a2a89da..e21d0bab77ee 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -58,7 +58,7 @@ config RISCV
+>  	select ARCH_HAS_UBSAN
+>  	select ARCH_HAS_VDSO_ARCH_DATA
+>  	select ARCH_HAVE_NMI_SAFE_CMPXCHG
+> -	select ARCH_KEEP_MEMBLOCK if ACPI || KEXEC
+> +	select ARCH_KEEP_MEMBLOCK if ACPI || KEXEC || CRASH_DUMP
+>  	select ARCH_MHP_MEMMAP_ON_MEMORY_ENABLE	if 64BIT && MMU
+>  	select ARCH_OPTIONAL_KERNEL_RWX if ARCH_HAS_STRICT_KERNEL_RWX
+>  	select ARCH_OPTIONAL_KERNEL_RWX_DEFAULT
+> diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/machine_kexec_file.c
+> index 26cd2a8bd0cd..808e872f4063 100644
+> --- a/arch/riscv/kernel/machine_kexec_file.c
+> +++ b/arch/riscv/kernel/machine_kexec_file.c
+> @@ -37,39 +37,32 @@ int arch_kimage_file_post_load_cleanup(struct kimage *image)
+>  }
+>  
+>  #ifdef CONFIG_CRASH_DUMP
+> -static int get_nr_ram_ranges_callback(struct resource *res, void *arg)
+> -{
+> -	unsigned int *nr_ranges = arg;
+> -
+> -	(*nr_ranges)++;
+> -	return 0;
+> -}
+> -
+>  unsigned int arch_get_system_nr_ranges(void)
+>  {
+>  	unsigned int nr_ranges = 2 + crashk_cma_cnt; /* For exclusion of crashkernel region */
+> +	u64 i;
+> +	phys_addr_t start, end;
+>  
+> -	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
+> +	for_each_mem_range(i, &start, &end)
+> +		nr_ranges++;
+>  
+>  	return nr_ranges;
+>  }
+>  
+> -static int prepare_elf64_ram_headers_callback(struct resource *res, void *arg)
+> +int arch_crash_populate_cmem(struct crash_mem *cmem)
+>  {
+> -	struct crash_mem *cmem = arg;
+> +	u64 i;
+> +	phys_addr_t start, end;
+>  
+> -	cmem->ranges[cmem->nr_ranges].start = res->start;
+> -	cmem->ranges[cmem->nr_ranges].end = res->end;
+> -	cmem->nr_ranges++;
+> +	for_each_mem_range(i, &start, &end) {
+> +		cmem->ranges[cmem->nr_ranges].start = start;
+> +		cmem->ranges[cmem->nr_ranges].end = end - 1;
+> +		cmem->nr_ranges++;
+> +	}
+>  
+>  	return 0;
+>  }
+>  
+> -int arch_crash_populate_cmem(struct crash_mem *cmem)
+> -{
+> -	return walk_system_ram_res(0, -1, cmem, prepare_elf64_ram_headers_callback);
+> -}
+> -
+>  static char *setup_kdump_cmdline(struct kimage *image, char *cmdline,
+>  				 unsigned long cmdline_len)
+>  {
 
 
