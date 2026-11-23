@@ -2,117 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9865F606A31D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625A9606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 00:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g3vYsDOV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gujkP6jO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DXMsumB6;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DBKLzie6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kxGGhR/P1EpVrGtRyUb20WvpccAqTJevEP1rssKg7Yo=; b=g3vYsDOVpOCxDTGg7/Y4dJE/if
-	842C97eU42TRVaIck6Bp2PIx/ujiFNjB3lU+C4daszb6PQt7f0znLwQXO4FO0X6LlrKYnrTfrFx3n
-	oZKUIrXS3yr2KMWn8irU4L4zvII1mKVZcd1kyHzWEOZLb5aG4yRRSAyNDvaCg5AfLFwxPlr1KyW+n
-	OdHCOnQTLkOpLA44IHVVpK4uKHscPyvEmc16FvAZMIPkR9FTKPEfSwcEH/yru7iga2jsuNeAglgBf
-	xSQTXjSUsg9HYJdDidU/If0oasxVZToMaXmbD9KMMkdeDHzcNtukDlOQbIhOjgG6HbCX+B9Uhn4/4
-	ymZNYrYw==;
+	bh=kwqoALvAUHoiWUrDjdoaNf7rx6mzBmQ4g0NH3zyQSKw=; b=DXMsumB6W7PZ7NMWDKgbZGgje6
+	MWumrGypuqiR+vtWO+k5BfwH9CCdLecb5DJp+eECz/XF/CtXoYTcvvkohGF7rIyMiroXVPEr20R5V
+	qjJEX0x1Llw1G7YqyiqdpvZzXdqETFs6jhqZ5qbECku/2F2iOblTfoD+P396tMHbxIofnLoGFXiA0
+	lzO4Up9AzOjcJATaInJgZYQxc/iG1t1B57pV10ZQXsZu/dIwKH0VjRty23yHU70gpBDh4c1jrTi7m
+	mO01jN2qnK0RdGhiio8atx1vJVT/k3mA34tjlqCLuRy4zZQrxYnOjF//WfycnlfYZUb9cMS+54m/x
+	NZpa/7/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVID7-000000020tw-0V69;
-	Mon, 23 Nov 2026 00:47:09 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVIDS-0000000219R-0v73;
+	Mon, 23 Nov 2026 00:47:30 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVICc-000000020VH-32ZJ;
-	Mon, 23 Nov 2026 00:46:38 +0000
+	id 1xVICe-000000020X0-2ZBS
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 00:46:40 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1B91F618D6;
-	Mon, 23 Nov 2026 00:46:38 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 4F72B44879;
+	Mon, 23 Nov 2026 00:46:40 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795394797;
-	b=3KCpvCs9Rs1RrH4ErBSxg31bOE661oa5SYWi+32Y/jnBSrPUB++bJxX6nmTGNQrkjSnq
-	 C55vFQA3pgl0EsUQVx8cG5etgpwT/XX9oGKoXvOjfLmvgLchF5dlL+HR5YGTg0fuI9Ldg
-	 LgUschGae75+v7AaIe1AeJDKG8/RQ4eHpaVNZDYnzZJO4rwPgqZJfyykJlUg0KmdKtGf7
-	 q5DxInEPmnt3QgYJTtz8snMPaLW0WTvzzBsywnr7+83qadPpZNzF9B29mOupwgwXuYaix
-	 R/wzBeKi3ZT3x4NDCDuJ18GTLSbQnB2r7KenSoYqRbZ9juUgdAA1oK6keA6oTOyMw1w==
+	t=1795394800;
+	b=OsnaK4TX6BjOqeezB0Y8k1vyf/xunFbBdhLF91pkk1O7e5BjMQ6OrkSqj4sYpA2HJ7Nh
+	 g/jfRCq13cL5tEoQ5GCFuIzAg+nFUuYaKq4h9B7n+J4x7UOKzuRBbZT+hqfWm043pHe1M
+	 sho9RiJv893oOpcpdm0AKjPcDBoIMj1iZOCfaBKWHmfB69TbVAWWaHxNOYRu/KKvsqalO
+	 MENM9Sr7otpBPF86/QUKVj0clk4M0xGRt+p1yhk86bL8r4kdh/KJKk8uv3TqTDL/E3SOJ
+	 re2TRDkkZMTljGMXTdDCNx9D1CBxW4pGpj/5kHvq9biu0xIqU9pnDxj/WGW7URw7FYg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795394797;
+	c=relaxed/relaxed; t=1795394800;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=kxGGhR/P1EpVrGtRyUb20WvpccAqTJevEP1rssKg7Yo=;
-	b=iQl+x1W84zjyKhJ8MaYDztMyRTJzLNlg5EAWQe8il+T62U5Mbbj+rb/j5/r4/Ut6CSLr
-	 R3os2U10MUFQLcn5+WuBw5+FG8tvha1A0Kz2gXNQtjw+i+udqTuz5mUzVSOseSPCmucLA
-	 TIU2QBr7qHXK2zgVXm+XywN9w1ncfp/RR1bn/SKHDk3PgiDjlIBJROoxvIpocT8DwR2ms
-	 cTtOvGb6OzE1HpSfoQKYgDgGQUvNwhSI+cwD+mfXgb4qHAxTA9yxbD7cM5ULI0ShXbh6Y
-	 ju2lqXTra/rgMphdiGT4R8TKncKFo+61Z2e5lRnKIAWzf6zBwxTLNOWj6M4dhM7++rA==
+	 Content-Transfer-Encoding:Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:
+	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=kwqoALvAUHoiWUrDjdoaNf7rx6mzBmQ4g0NH3zyQSKw=;
+	b=HDcstHDGT844DaQxYI/4MId64UlVzxLkmbfvf/QjyHVdbJv5yCOwjNymQxlUskIJvtly
+	 bFfA5ROVYyppWM9xeuMATC3hw0KIzbLOm3M56QL0OYjoCc3BxfBjx9W5oHWLGJJpGM1Ve
+	 +9MnK0J5zfJkz5oWkHsEJL+5FBUw9gw5mzqyYFa6ZTrK4fyNU/eLYj/sUDMnzTp2/YC32
+	 p5gAavKN4pQRr/1nK4sbTiumAi4DghvoPPSM8preSkFhdscAjvomvlIgSP8L+vitlNNea
+	 /enE8Fp+VZ4F2z+aZvtWkTbsyQr5Tl9Te+U4eVCaYpfRVNd+ikqZ86Rof0VVy/cAqYQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 05D9E1F000ED;
-	Mon, 23 Nov 2026 00:46:27 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id C3E931F000F4;
+	Mon, 23 Nov 2026 00:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795394797;
-	bh=kxGGhR/P1EpVrGtRyUb20WvpccAqTJevEP1rssKg7Yo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=gujkP6jOwbAyd6fHwik7d4mgYXYaM1KJGnStxnhzLpyDK+WdjQD62PITjflF1HD6B
-	 7ZxuBWXtp52y3/QR0Y7017mHkZaD+sheZW9TWQlv1TwXXEi4zGgdocy1vkz1BRxLd8
-	 RmHD5z6A6WiZvL9qoBMV1L1GcWMi9bi/PnlcDZHnKXoImNU5/n8uFmgdKPJS7V5cYc
-	 Ayeq6VSNP87wmiRBnGBi9sk6qhA7UbP2r9OX4SsWbdaXw1tFB2j+3KcKY4kursC2fh
-	 FuBHl9PokKvNtypcUdfRg3LlJEL72+2r8Evt1EIHpn6fglrLC8Fqe4BPbGb0j/tGAX
-	 zSojzVWzdWUzg==
+	s=k20260515; t=1795394799;
+	bh=kwqoALvAUHoiWUrDjdoaNf7rx6mzBmQ4g0NH3zyQSKw=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=DBKLzie6lUVo4IWXAOW+p21Ja2vrYE8AHnozXy/EAscxpjINHyKtOw/cb2iZCCrHr
+	 FgIqyNDxM39ZtSVBLdiPRZutt4zWhhWy8zUQufynXKibXQg90wk+jGHocDoCHdv9kf
+	 iR9xBVrVVZ5vxD3GME3VDCfmd0BJu79z5hQAaHDmC4T2UFFbYKdiSJRiqTjL0GbKIa
+	 eJQPVmd3Wy9gNEvRCljlscUYj3dyWEGiX0H5fFY6eRcunguI0oMHgr34kNTBTBjonU
+	 Rd8i9o5E4016kWju3EHCIhiYcbzPImcux5sPn3Isi/coq9eSlIDgri33zdeQE+Q8YS
+	 DJ2hiTT2NuHBg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id CDE114C28E;
-	Mon, 23 Nov 2026 00:46:19 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 23 Nov 2026 00:46:17 +0000
-Subject: [PATCH net v8 5/5] net: phy: postpone PHY interrupts during sleep
- with MAC-managed PM
+	by lkml.kernel.org (Postfix) with ESMTP id 4EE2A4C276;
+	Mon, 23 Nov 2026 00:46:28 +0000 (UTC)
+From: Suyuan Wang via B4 Relay <devnull+shyckless.gmail.com@kernel.org>
+Date: Mon, 23 Nov 2026 00:46:28 +0000
+Subject: [PATCH] firmware: samsung: acpm: Don't use pdev after putting it
+ in acpm_get_by_node()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261123-b4-phylib-mac-pm-irq-v3-v8-5-e9f706e79614@iav.lv>
-References: <20261123-b4-phylib-mac-pm-irq-v3-v8-0-e9f706e79614@iav.lv>
-In-Reply-To: <20261123-b4-phylib-mac-pm-irq-v3-v8-0-e9f706e79614@iav.lv>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
-Cc: Thomas Gleixner <tglx@kernel.org>, linux-pm@vger.kernel.org, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Lukas Wunner <lukas@wunner.de>, 
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
- Wei Fang <wei.fang@nxp.com>, 
- =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
- Paul Barker <paul@pbarker.dev>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Doug Berger <opendmb@gmail.com>, 
- Thangaraj Samynathan <Thangaraj.S@microchip.com>, 
- Shenwei Wang <shenwei.wang@nxp.com>, 
- Haoning Cheng <Haoning.CHENG@cn.bosch.com>, netdev@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13942; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=/2w9XPVi3IQJ1MGUV9hFU/N44O2waJYWgwEwJd+EKc0=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDNnMPTdfvT15c+brO3cnbH23d8pEn2zd42k2sWkfErM6n
- U/ev9Y+r6OUhUGMi0FWTJFlwiGNWxlLrv719zB/ADOHlQlkCAMXpwBMRP4kI8Pre2drcqQcrBkW
- JbSyitQe1IuZeUA35rkGF/tGvsNlnqsZGfaFinzwCp/aMV1Vc/KG6JcFBo+d2auFf6w/XCd1em2
- DOAsA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
 Content-Transfer-Encoding: 7bit
+Message-Id: <20261123-exynos-acpm-put-v1-1-447097ce7998@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAOOMA2sC/yXMQQ6CMBBA0auQWTsJUwyIVzEs2jrKmFCaDhAI4
+ e5UXb7F/zsoJ2GFe7FD4kVUxpBBlwJ8b8ObUZ7ZYEpTE5kKed3CqGh9HDDOE7obuZaa6mqphlz
+ FxC9Zf8dH97fO7sN++m7gOE6xNCuvcwAAAA==
+X-Change-ID: 20261123-exynos-acpm-put-b81b91734a16
+To: tudor.ambarus@linaro.org, krzk@kernel.org, peter.griffin@linaro.org
+Cc: alim.akhtar@samsung.com, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795394787; l=1475;
+ i=shyckless@gmail.com; s=default; h=from:subject:message-id;
+ bh=bChsoGwuOPp0ZcQo4sMwjJk0mSKlHPd8ZsaLm0M8RC4=;
+ b=dlh7WxPdsQpKUOCbkeS09eaORPYYJsWQ32yurBgjgsxUeyfMzWXuLHNHLFAClztR21aOZnvPM
+ egBpPS8BVPoCjv0hliZYoEw/AwDhzC89wp3oPh2bTv7J+55+XXipdwu
+X-Developer-Key: i=shyckless@gmail.com; a=ed25519;
+ pk=pMtccVGiWES3bV+7YBFuBclkvq2n2HBHQ5azaBrK2lY=
+X-Endpoint-Received: by B4 Relay for shyckless@gmail.com/default with
+ auth_id=1498
+X-Original-From: Suyuan Wang <shyckless@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,7 +109,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
+Reply-To: shyckless@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -132,333 +119,50 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+From: Suyuan Wang <stevewong@hust.edu.cn>
 
-mdio_bus_phy_suspend() and mdio_bus_phy_resume() return early when the
-MAC driver manages PHY PM, so the PHY never gets irq_suspended and
-phy_interrupt() runs the PHY driver's handler at any point of the sleep
-transition. If the MAC driver powers the MDIO bus down, the MDIO access
-in that handler can stall the CPU. This happens on both sides:
+When device_link_add() fails, acpm_get_by_node() drops the reference to
+the ACPM platform device and only then reads its driver to drop the
+module reference:
 
-- suspend: the MAC's suspend callback stops the PHY, the link goes
-  down, and the handler runs while the MAC powers down;
-- resume: resume_device_irqs() re-enables a pending interrupt before
-  the MAC resumes.
+	platform_device_put(pdev);
+	module_put(pdev->dev.driver->owner);
 
-On Helios64 (dwmac-rk, RTL8211F with its interrupt line described in DT)
-both hang the board: the handler reads INSR while the GMAC clocks are
-off, after rk_gmac_suspend() or before rk_gmac_resume(). The commit in
-the Fixes tag added the postponing after the early return for
-MAC-managed PHY PM, and stmmac has set mac_managed_pm since commit
-f151c147b3af ("net: stmmac: Enable mac_managed_pm phylink config").
+The reference from of_find_device_by_node() is what keeps pdev around
+here, so pdev must not be used after the put.
 
-Postpone the interrupts of these PHYs too, and start in the prepare
-callback. The PM core calls prepare for all devices before the first
-suspend callback, so irq_suspended is set before any MAC driver
-suspends. The system still runs between prepare and the suspend
-callbacks, and for hibernation it allocates the image memory there: a
-link change of such a PHY in that window is handled only after resume or
-complete. mdio_bus_phy_suspend() is too late when the PHY sits on an
-MDIO bus the MAC does not own: phy_attach_direct() links the MAC as a
-consumer of the PHY, and the MAC suspends first. ODROID-HC4 (stmmac,
-RTL8211F behind mdio-mux-meson-g12a) takes this path. There, without
-this series, a magic packet that arrived after stmmac_suspend() ran the
-handler, which acknowledged the PME; the RTL8211F raises PME once per
-arming, and the board slept through the packets that followed. PHYs
-without MAC-managed PM still start postponing in mdio_bus_phy_suspend().
+Drop the module reference before the device reference, as
+acpm_handle_put() already does.
 
-The PM core skips the resume callback of a device whose suspend
-callback it did not call, so the complete callback stops the postponing
-when the transition aborted before mdio_bus_phy_suspend().
+Found with a static analysis tool and checked by hand.
 
-The PHY device is a child of its MDIO bus, so mdio_bus_phy_resume() runs
-after the resume callbacks of the bus and its parents (with stmmac, the
-MAC) and replays the postponed interrupt then. The PM core resumes
-children of a device whose resume callback failed, and phylib cannot
-tell: if the MAC fails to power the bus up, the replay still reaches the
-bus. Behind the device link the PHY resumes before the MAC, so there
-the replay still runs before the MAC resumes, as the handler did from
-resume_device_irqs() before this change. phy_suspend(), phy_resume() and
-the state machine stay with the MAC driver, and no MAC driver needs a
-change. Doing this in phylink_suspend() instead would miss macb, which
-sets mac_managed_pm but suspends with phylink_stop().
-
-A postponed interrupt cannot read the PHY, so it cannot tell Wake-on-LAN
-from a link change. A PHY without MAC-managed PM reports what
-phy_interrupt() reports today. A PHY with MAC-managed PM reports no
-wakeup from the postponed interrupt: the MAC can change the link in its
-suspend callback, as stmmac lowers the link speed through
-phylink_suspend() when the PHY may wake the system.
-
-A postponed interrupt leaves its line disabled. suspend_device_irqs()
-runs before the noirq callbacks: it arms a wakeup line and leaves a
-disabled one disabled unless the irqchip has
-IRQCHIP_ENABLE_WAKEUP_ON_SUSPEND, so a PHY whose interrupt line is also
-its wake IRQ would sleep through a wakeup. Enable the line a postponed
-interrupt disabled in the noirq suspend callback while it is still
-disabled and armed for wakeup, and disable it again in the noirq resume
-callback, before resume_device_irqs(). The irq core turns an interrupt
-on an armed line into a wakeup without running the handler, and clears
-the armed state before it disables the line, so a line that already woke
-the system is left alone, and so is a line that is no longer disabled.
-An edge the postponed interrupt consumed does not repeat, so on an
-edge-triggered line a magic packet that arrives during the transition
-does not abort it. The next one wakes the system if the PHY raises
-another edge for it; the RTL8211F, which raises PME once per arming,
-does not. On a level-triggered line, a PHY that keeps a link interrupt
-asserted, such as the one from the speed change above, aborts every
-suspend with Wake-on-LAN enabled: its driver has to restrict the
-interrupt to Wake-on-LAN in its suspend callback, as rtl8211f_suspend()
-does; with Wake-on-LAN enabled, phy_suspend() calls that callback only
-for a driver that sets PHY_ALWAYS_CALL_SUSPEND. The noirq callbacks also
-run as freeze_noirq and thaw_noirq, so all of this holds while a
-hibernation image is created.
-
-Tested with 7.4-rc3 and this series, s2idle with the link up.
-
-Helios64:
-- no Wake-on-LAN, GMAC clocks off in suspend: 7 of 7 cycles suspended
-  and resumed; on 7.3 without this series the same test hung or reset
-  the board after the link went down 10 of 10 times;
-- MAC power/wakeup enabled, no Wake-on-LAN: 3 of 3 slept;
-- Wake-on-LAN in the PHY, so phylink_suspend() also drops the link
-  speed: a magic packet woke the board 2 of 2 times, no suspend
-  aborted;
-- the same under a flood of magic packets: a packet after
-  rtl8211f_suspend() was postponed and disabled the line, the noirq
-  callback enabled it, and the wakeup aborted the suspend 5 of 5 times
-  (traced).
-
-ODROID-HC4:
-- Wake-on-LAN in the PHY under a flood of magic packets: a packet
-  after stmmac_suspend() was postponed, and the wakeup aborted the
-  suspend 6 of 6 times (5 traced); without this series the board slept
-  until the RTC alarm 5 of 5 times;
-- Wake-on-LAN in the PHY, no packets: 5 of 5 slept until the RTC
-  alarm, with no PHY interrupt.
-
-Fixes: 1758bde2e4aa ("net: phy: Don't trigger state machine while in suspend")
-Signed-off-by: Igor Velkov <iav@iav.lv>
+Fixes: a88927b534ba ("firmware: add Exynos ACPM protocol driver")
+Cc: stable@vger.kernel.org
+Co-developed-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
+Signed-off-by: Kaixuan Li <kaixuan.li@ntu.edu.sg>
+Signed-off-by: Suyuan Wang <stevewong@hust.edu.cn>
 ---
-Haoning Cheng's Tested-by on v5 is not carried: MAC-managed PHYs no
-longer report a wakeup.
+Compile tested on arm64 (W=1). I don't have the hardware.
 ---
- drivers/net/phy/phy.c        | 13 ++++++--
- drivers/net/phy/phy_device.c | 79 ++++++++++++++++++++++++++++++++++++++++++--
- include/linux/phy.h          | 17 +++++++---
- 3 files changed, 98 insertions(+), 11 deletions(-)
+ drivers/firmware/samsung/exynos-acpm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/phy/phy.c b/drivers/net/phy/phy.c
-index 6cc94b525e09..45891570a56e 100644
---- a/drivers/net/phy/phy.c
-+++ b/drivers/net/phy/phy.c
-@@ -1419,7 +1419,10 @@ static irqreturn_t phy_interrupt(int irq, void *phy_dat)
- 	if (IS_ENABLED(CONFIG_PM_SLEEP) && READ_ONCE(phydev->irq_suspended)) {
- 		struct net_device *netdev = phydev->attached_dev;
- 
--		if (netdev) {
-+		/* With MAC-managed PM, a postponed interrupt cannot tell
-+		 * Wake-on-LAN from a link change the MAC causes.
-+		 */
-+		if (netdev && !phydev->mac_managed_pm) {
- 			struct device *parent = netdev->dev.parent;
- 
- 			if (netdev->ethtool->wol_enabled)
-@@ -1486,8 +1489,10 @@ void phy_request_interrupt(struct phy_device *phydev)
- 
- 	/* A line without users restarts at depth 0, so our disable is gone */
- 	mutex_lock(&phydev->irq_pm_lock);
--	if (phydev->irq_rerun && !irq_has_action(phydev->irq_rerun_line))
-+	if (phydev->irq_rerun && !irq_has_action(phydev->irq_rerun_line)) {
- 		phydev->irq_rerun = false;
-+		phydev->irq_wake_enabled = false;
-+	}
- 	mutex_unlock(&phydev->irq_pm_lock);
- 
- 	err = request_threaded_irq(phydev->irq, NULL, phy_interrupt,
-@@ -1522,8 +1527,10 @@ void phy_free_interrupt(struct phy_device *phydev)
- 	/* free_irq() shuts down a line left without users and the next request
- 	 * resets its depth; mdio_bus_phy_resume_irq() enables a shared line.
- 	 */
--	if (!irq_has_action(phydev->irq))
-+	if (!irq_has_action(phydev->irq)) {
- 		phydev->irq_rerun = false;
-+		phydev->irq_wake_enabled = false;
-+	}
- 	mutex_unlock(&phydev->irq_pm_lock);
- }
- EXPORT_SYMBOL(phy_free_interrupt);
-diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
-index 8bc394ff7d2d..082ae31c2234 100644
---- a/drivers/net/phy/phy_device.c
-+++ b/drivers/net/phy/phy_device.c
-@@ -18,6 +18,7 @@
- #include <linux/init.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
-+#include <linux/irq.h>
- #include <linux/kernel.h>
- #include <linux/list.h>
- #include <linux/mdio.h>
-@@ -372,11 +373,41 @@ static __maybe_unused void mdio_bus_phy_resume_irq(struct phy_device *phydev)
- 	mutex_unlock(&phydev->irq_pm_lock);
- }
- 
-+static __maybe_unused int mdio_bus_phy_prepare(struct device *dev)
-+{
-+	struct phy_device *phydev = to_phy_device(dev);
-+
-+	/* The MAC can suspend the PHY or power the MDIO bus down before our
-+	 * suspend callback runs, so we postpone interrupts from here on.
-+	 */
-+	if (phydev->mac_managed_pm) {
-+		mdio_bus_phy_suspend_irq(phydev);
-+		phydev->irq_prepared = true;
-+	}
-+
-+	return 0;
-+}
-+
-+static __maybe_unused void mdio_bus_phy_complete(struct device *dev)
-+{
-+	struct phy_device *phydev = to_phy_device(dev);
-+
-+	/* The PM core skips our resume callback if the transition aborted
-+	 * before our suspend callback.
-+	 */
-+	if (phydev->irq_prepared) {
-+		phydev->irq_prepared = false;
-+		mdio_bus_phy_resume_irq(phydev);
-+	}
-+}
-+
- static __maybe_unused int mdio_bus_phy_suspend(struct device *dev)
- {
- 	struct phy_device *phydev = to_phy_device(dev);
- 	int ret;
- 
-+	phydev->irq_prepared = false;
-+
- 	if (phydev->mac_managed_pm)
- 		return 0;
- 
-@@ -414,8 +445,10 @@ static __maybe_unused int mdio_bus_phy_resume(struct device *dev)
- 	struct phy_device *phydev = to_phy_device(dev);
- 	int ret;
- 
--	if (phydev->mac_managed_pm)
-+	if (phydev->mac_managed_pm) {
-+		mdio_bus_phy_resume_irq(phydev);
- 		return 0;
-+	}
- 
- 	if (!phydev->suspended_by_mdio_bus)
- 		goto no_resume;
-@@ -446,8 +479,48 @@ static __maybe_unused int mdio_bus_phy_resume(struct device *dev)
- 	return 0;
- }
- 
--static SIMPLE_DEV_PM_OPS(mdio_bus_phy_pm_ops, mdio_bus_phy_suspend,
--			 mdio_bus_phy_resume);
-+static __maybe_unused int mdio_bus_phy_suspend_noirq(struct device *dev)
-+{
-+	struct phy_device *phydev = to_phy_device(dev);
-+	struct irq_data *d;
-+
-+	mutex_lock(&phydev->irq_pm_lock);
-+	/* We enable the line a postponed interrupt disabled if the irq core
-+	 * armed it for wakeup, so that it wakes the system.
-+	 */
-+	if (phydev->irq_rerun) {
-+		d = irq_get_irq_data(phydev->irq_rerun_line);
-+		if (d && irqd_irq_disabled(d) && irqd_is_wakeup_armed(d)) {
-+			enable_irq(phydev->irq_rerun_line);
-+			phydev->irq_wake_enabled = true;
-+		}
-+	}
-+	mutex_unlock(&phydev->irq_pm_lock);
-+
-+	return 0;
-+}
-+
-+static __maybe_unused int mdio_bus_phy_resume_noirq(struct device *dev)
-+{
-+	struct phy_device *phydev = to_phy_device(dev);
-+
-+	mutex_lock(&phydev->irq_pm_lock);
-+	if (phydev->irq_wake_enabled) {
-+		phydev->irq_wake_enabled = false;
-+		disable_irq_nosync(phydev->irq_rerun_line);
-+	}
-+	mutex_unlock(&phydev->irq_pm_lock);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops mdio_bus_phy_pm_ops = {
-+	.prepare = pm_sleep_ptr(mdio_bus_phy_prepare),
-+	.complete = pm_sleep_ptr(mdio_bus_phy_complete),
-+	SET_SYSTEM_SLEEP_PM_OPS(mdio_bus_phy_suspend, mdio_bus_phy_resume)
-+	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(mdio_bus_phy_suspend_noirq,
-+				      mdio_bus_phy_resume_noirq)
-+};
- 
- /**
-  * genphy_match_phy_device - match a PHY device with a PHY driver
-diff --git a/include/linux/phy.h b/include/linux/phy.h
-index 9253a07e84be..048f6b743099 100644
---- a/include/linux/phy.h
-+++ b/include/linux/phy.h
-@@ -649,10 +649,14 @@ struct phy_oatc14_sqi_capability {
-  * @mdix_ctrl: User setting of crossover
-  * @pma_extable: Cached value of PMA/PMD Extended Abilities Register
-  * @interrupts: Flag interrupts have been enabled
-- * @irq_suspended: Flag indicating PHY is suspended and therefore interrupt
-- *                 handling shall be postponed until PHY has resumed
-+ * @irq_suspended: Flag indicating a system sleep transition, so interrupt
-+ *                 handling shall be postponed until the PHY has resumed
-  * @irq_rerun: Set by the postponed interrupt that disabled the line
-  * @irq_rerun_line: The line the postponed interrupt disabled
-+ * @irq_wake_enabled: Set while @irq_rerun_line is enabled for the noirq
-+ *                    phase, as it wakes the system
-+ * @irq_prepared: Set for a PHY with MAC-managed PM from the prepare callback
-+ *                until the suspend callback runs
-  * @default_timestamp: Flag indicating whether we are using the phy
-  *		       timestamp as the default one
-  * @interface: enum phy_interface_t value
-@@ -676,8 +680,9 @@ struct phy_oatc14_sqi_capability {
-  * @max_n_ports: Max number of ports this PHY can expose
-  * @lock:  Mutex for serialization access to PHY
-  * @irq_pm_lock: Held by the PM callbacks, and by the requesting and freeing
-- *               of the interrupt where they test and clear @irq_rerun;
-- *               taken before @lock; phy_interrupt() never takes it
-+ *               of the interrupt where they test and clear @irq_rerun and
-+ *               @irq_wake_enabled; taken before @lock; phy_interrupt()
-+ *               never takes it
-  * @state_queue: Work queue for state machine
-  * @link_down_events: Number of times link was lost
-  * @shared: Pointer to private data shared by phys in one package
-@@ -735,6 +740,8 @@ struct phy_device {
- 	bool irq_suspended;
- 	bool irq_rerun;
- 	int irq_rerun_line;
-+	bool irq_wake_enabled;
-+	bool irq_prepared;
- 
- 	unsigned default_timestamp:1;
- 
-@@ -813,7 +820,7 @@ struct phy_device {
- 
- 	struct mutex lock;
- 	/* Held where the PM callbacks and the requesting and freeing of the
--	 * interrupt test and clear irq_rerun
-+	 * interrupt test and clear irq_rerun and irq_wake_enabled
- 	 */
- 	struct mutex irq_pm_lock;
+diff --git a/drivers/firmware/samsung/exynos-acpm.c b/drivers/firmware/samsung/exynos-acpm.c
+index a575caf871b9..15d2f708b0c7 100644
+--- a/drivers/firmware/samsung/exynos-acpm.c
++++ b/drivers/firmware/samsung/exynos-acpm.c
+@@ -816,8 +816,8 @@ static struct acpm_handle *acpm_get_by_node(struct device *dev,
+ 		dev_err(&pdev->dev,
+ 			"Failed to create device link to consumer %s.\n",
+ 			dev_name(dev));
+-		platform_device_put(pdev);
+ 		module_put(pdev->dev.driver->owner);
++		platform_device_put(pdev);
+ 		return ERR_PTR(-EINVAL);
+ 	}
  
 
--- 
-2.43.0
+
 
 
 
