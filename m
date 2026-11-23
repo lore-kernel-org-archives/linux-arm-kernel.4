@@ -2,80 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67BD606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E5A606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 12:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XTo0bRA5;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=sAyxzm4R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CcmFcRLj;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZnhVmfxo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ERbB76zpet3DuApuKnLZM5P0t4NNQkDvueQ2YL5Mbns=; b=XTo0bRA52B1xjY8J8RpU/S5KPo
-	5ewaHvQQmm+C9W5J8BZkikOa9dRgiODETSPRv71bMC6L+tHZ8YrZk+qo4za6td1faJLQfKg/razsr
-	F1ddYx0ezOVWl4o3a5h8AUZP01B67bRyh7kxX9x6xROwi5OnfgUNSdCylPL3JQVzcUMTfD3aqcM2s
-	drg9y1eSDCwF/QWdrmCg9PwwtBuxjAHWFqCKcpYkvPYWLUAjMPELKVEFgAvlhk2wpvbNZbZKwgm5e
-	J2XtD7RZabOAsoAfmyEi/l00PHng4U1eb8LqueNwKmu11Jqfg4eC2IW+R0bNauJSEP/B2lmxB2su/
-	Qd2aJErA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=V/jszaLqFac/crQAxB5IifHu1SuTLXteVToa6JFG688=; b=CcmFcRLjPehK3o
+	Wj0Zsx3T+G/NOPePk4I3ZhZS0fUvEoqy56J9t6iWCEzRz5fIZRc63wFLTI4HLWJn3eSOTxxo486BQ
+	OPujxzfq2H7D/rk5jU/Tc0Zu2F4TTYLyXoNi3lRqIJDrfAYyh84E02/sKoFheWg5p+KD4U9CbgT7P
+	hiiS2WbCJMJPqBOhFftPxq1Xd5qBCOe3Yw7sJLI3AhZpodEqgDs/KtbqlZosrDJeja7xfrCKhNnN1
+	sjpb5Cp6SAOLatmOzmn8NMrtgJ/rKZEryPoVDeVZwoh8y+/yFWfAj7lZnsqCatyUEWymv7As06WMS
+	oP969U1nkgCw4ATmIRvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSOh-00000003E8m-3cq5;
-	Mon, 23 Nov 2026 11:39:48 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1xVTFA-00000003NKB-0bzZ;
+	Mon, 23 Nov 2026 12:34:00 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSOc-00000003E6P-30gK
+	id 1xVTF8-00000003NJi-3piv
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 23 Nov 2026 11:39:45 +0000
-Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 38C3B34;
-	Mon, 23 Nov 2026 12:37:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1795433829;
-	bh=d/fYOVW5pZ7TatqYKzHhPfuzuwLHZqwD4bIlohGjcyU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sAyxzm4R8p58eVBo/8lbZhtFx5M3sca61vhovfL37qG1VnayPd67mJfh4XuzgS+Rx
-	 Db8HBACnacnBJYoQDIQKvSWB7ggObdmtWwXfxA6yE5sK64Y8kZJIeTBFlp7DIA7zdH
-	 8L68N/UfI4413vqF5K4KxAzj4wdLKTFp2zfFCzKo=
-Date: Mon, 23 Nov 2026 13:39:40 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Ulf Hansson <ulfh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Paul Elder <paul.elder+renesas@ideasonboard.com>,
-	=?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clegoffic@baylibre.com>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 13/15] pmdomain: renesas: r8a78000: Shrink IDs to 16
- bits
-Message-ID: <20261123113940.GJ3010398@killaraus.ideasonboard.com>
-References: <cover.1795029012.git.geert+renesas@glider.be>
- <72f8eae23faefaa169cff7a52cdbafce2cd50e1f.1795029012.git.geert+renesas@glider.be>
+	Mon, 23 Nov 2026 12:33:58 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7BCE341AB7;
+	Mon, 23 Nov 2026 12:33:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FCE71F000CA;
+	Mon, 23 Nov 2026 12:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795437237;
+	bh=V/jszaLqFac/crQAxB5IifHu1SuTLXteVToa6JFG688=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=ZnhVmfxoCXrlekZuM0wM3F6YaIb4TJ0ciwauJFulwLhD7FDgipxe64FWOReheQx7w
+	 iTpAS8Mzc+U33vUQAWBuI6V/WlIZi4vBejKOX9dYVf/H0/2jfrD9B+AlejapNVs+vI
+	 x6wtwZgSLHKYDsTts0d3pRhfSx02VFUHG05P+L9q6AoR1x9NVMFIbXcrm7ltCSvEPb
+	 xlUDzqKJbRqEmUw9yeni75wGN60uQo/pm9y5YxnpPj3p2Ge4Tqj6WmwY2GKG0wSM3F
+	 aiP4PgSFZ5z7HBevAKE/go4YLI9qMfjeh37pBvlt7REjl1F65pxjzce5uOufwTjPQb
+	 rVNDqO8dEjXxw==
+Message-ID: <4a325394-9d5b-49cf-a3c0-6b945e6cd241@kernel.org>
+Date: Mon, 23 Nov 2026 13:33:49 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <72f8eae23faefaa169cff7a52cdbafce2cd50e1f.1795029012.git.geert+renesas@glider.be>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_033944_010043_36D4F031 
-X-CRM114-Status: GOOD (  18.42  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] dt-bindings: fsl: remove phyCORE-i.MX 8M Plus FPSC
+To: Yannic Moog <Y.Moog@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Benjamin Hahn <B.Hahn@phytec.de>,
+ Christian Hemp <C.Hemp@phytec.de>, Jan Remmet <J.Remmet@phytec.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "upstream@lists.phytec.de" <upstream@lists.phytec.de>
+References: <20261116-imx8mp-phyflex-v1-0-4adcf8b4d373@phytec.de>
+ <20261116-imx8mp-phyflex-v1-5-4adcf8b4d373@phytec.de>
+ <20261120-intelligent-victorious-jackrabbit-4caf35@quoll>
+ <0ca6fb6acea9fe40cf2190f3a67d6376f9bfaaae.camel@phytec.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <0ca6fb6acea9fe40cf2190f3a67d6376f9bfaaae.camel@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,58 +124,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 08:45:01PM +0100, Geert Uytterhoeven wrote:
-> Reduce table size by shrinking hardware module IDs from 32 to 16 bits,
-> which is still plenty.
+On 23/11/2026 13:28, Yannic Moog wrote:
+> On Fri, 2026-11-20 at 15:39 +0100, Krzysztof Kozlowski wrote:
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index 2d21a1949d949..ae823a7670b02 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -1227,11 +1227,6 @@ properties:
+>>>  
+>>>        - description: PHYTEC i.MX8MP FPSC based boards
+>>>          oneOf:
+>>> -          - items:
+>>> -            - enum:
+>>> -                - phytec,imx8mp-libra-rdk-fpsc  # i.MX 8M Plus Libra RDK
+>>
+>> You just changed this line in earlier patch.
 > 
-> While at it, use u32 to store of_phandle_args.args[1] in
-> r8a78000_mdlc_attach_dev().
+> Yep, afaik I need this order to avoid errors. 
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
-> ---
-> v5:
->   - New.
-> ---
->  drivers/pmdomain/renesas/r8a78000-mdlc.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Strategy is 
 > 
-> diff --git a/drivers/pmdomain/renesas/r8a78000-mdlc.c b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-> index 6477abe64511e880..733bf68dab2ce6dc 100644
-> --- a/drivers/pmdomain/renesas/r8a78000-mdlc.c
-> +++ b/drivers/pmdomain/renesas/r8a78000-mdlc.c
-> @@ -17,7 +17,7 @@
->  #include <dt-bindings/power/renesas,r8a78000-mdlc.h>
->  
->  struct mod_id_map_entry {
-> -	u32 hw_id;		/* Hardware module ID */
-> +	u16 hw_id;		/* Hardware module ID */
->  };
->  
->  struct mod_id_map {
-> @@ -148,8 +148,8 @@ static int r8a78000_mdlc_attach_dev(struct generic_pm_domain *domain,
->  	struct device_node *np = dev->of_node;
->  	struct r8a78000_mdlc_priv *priv;
->  	struct of_phandle_args pd_spec;
-> -	unsigned int id;
->  	int ret, idx;
-> +	u32 id;
->  
->  	ret = of_parse_phandle_with_args(np, "power-domains",
->  					 "#power-domain-cells", 0, &pd_spec);
+> 1. introduce "current" binding
+> 2. introduce "current" dts
+> 3. remove predecessor dts
+> 4. remove predecessor binding
+> 
+> What shall I do differently?
 
--- 
-Regards,
+That's pointless. Commits are one after another, so just squash them. Or
+explain why do you need any of such strategy (as exception of kernel rules).
 
-Laurent Pinchart
+Best regards,
+Krzysztof
 
