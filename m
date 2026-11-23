@@ -2,74 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB54606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFDE606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon, 23 Nov 2026 11:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xFpEaWx0;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mail.zgclab.edu.cn header.i=@mail.zgclab.edu.cn header.a=rsa-sha256 header.s=dkim header.b=nkwPE3gD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j1Dc+Siw;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=QELFWCRI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:MIME-Version:
-	Content-Type:Content-Transfer-Encoding:References:In-Reply-To:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pd7yZOfR/6/VdDILFb0nLqoZvgJwsuh6QMQF6pgZpBQ=; b=xFpEaWx0hf3Xx8
-	alSlmfIEaxQs6pvwD8uH1+3k5k7ydJ8YzQocRZBdsCgebzZXtq2xK2aoHq+D/NAtQVr2CDQitBVdR
-	tf3j3as9cSef9BWJ62rRV8970ViCk8JhWCWjO0oBf6sX+lcu2R/9QPZpDKXk7VLkfZ7QH+Uv5pv0v
-	3SPHfqu1Ia1BcTR+KNS/4i3kfV6SwpNghNfzW2ADWIIKtMR2secun7PWAUUMztSYh4OFynH8sLWz5
-	/aDxCUabWOnjEm8BOj1xHzGAwlMSJ6ZTGy/lgWj4/qmUFxkPKOgQ+fuluLjjPVCLCFlv72V7j7U+6
-	xHVyaB5oW/tUCPCXQeiw==;
+	List-Owner; bh=9i619VUkzjRlAOTYasUS9lnWRT+j5nIwsaaf6wvh5Wo=; b=j1Dc+Siwjxmh+k
+	OR6Rr6EeD+ALOdjST/y2Z+F72M8cB401sbCe05lHZ7cN2WYhAEEQgp3FKnzrADg1Q/d7ggf0nh1IR
+	dnMlId93YrZSKhEzw6/hqukZ6gHRv/7F8eFUhW6rVip8Qa3p6vBe+SBG5UjLEOiNLGt18jiJN7aYC
+	nbRCnHWCXu+ZfSF4xlaMGRRD0FAaNJp8e2fg5aqyAa5ABmfoHERKLVeHpeQo2vEtKyMN7HhwW5yyV
+	pKIL0T5EXQKWJLI5IxZJn/k7nZ5aj8TGQKL16JJHDBWy1LETx1TK2e+k8r7bPxSYJ6wFr4YNQsyrY
+	oYodgJQL9mNpzLiYW/Ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSAX-00000003AI0-042K;
-	Mon, 23 Nov 2026 11:25:09 +0000
-Received: from azure-sdnproxy.icoremail.net ([207.46.229.174])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVSAK-00000003ACy-13Ob;
-	Mon, 23 Nov 2026 11:24:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mail.zgclab.edu.cn; s=dkim; h=Received:Date:From:To:Cc:Subject:
-	In-Reply-To:References:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Message-ID; bh=/Ggu3rj0ThvKcNpBPXLiuiRBY02aVQgcwxpp
-	10zH9iI=; b=nkwPE3gDvJGKrSHgbKpWIGcydqeX56abOG+5Qe9CkWFoxWH4IguJ
-	9H84WETfFpEFGA/uEnnqL8HzGz5BJKHtby8AtWKnoGWUarBKdhQQ2/zKodlZus/C
-	YBcc9YS8dcPYOTBYgGdY0/UWJ/aaYrVNQWudojT11gzkb25sC6hIE+c=
-Received: from wanghr2026$mail.zgclab.edu.cn ( [58.206.202.88] ) by
- ajax-webmail-web2 (Coremail) ; Mon, 23 Nov 2026 19:24:40 +0800 (GMT+08:00)
-Date: Mon, 23 Nov 2026 19:24:40 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?546L5rWp54S2?= <wanghr2026@mail.zgclab.edu.cn>
-To: netdev-bot+sinfo@kernel.org
-Cc: chester.a.unal@arinc9.com, daniel@makrotopia.org, andrew@lunn.ch,
-	olteanv@gmail.com, davem@davemloft.net, edumazet@kernel.org,
-	kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: Re: [PATCH v2] net: dsa: mt7530: disable the power rails on
- setup failure
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT5 build
- 20261010(691d8f62) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-4df55a87-4b50-4a66-85a0-70f79cb6c8b5-tsinghua.edu.cn
-In-Reply-To: <179543235894.3294.8827397951204336522@kernel.org>
-References: <179543215348.11880.18316180385674365789@mail.zgclab.edu.cn>
- <179543235894.3294.8827397951204336522@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	id 1xVSBA-00000003AO5-0cfR;
+	Mon, 23 Nov 2026 11:25:48 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVSB8-00000003AMU-0RwC
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 23 Nov 2026 11:25:47 +0000
+Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
+	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 85108200B79;
+	Mon, 23 Nov 2026 12:25:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795433142;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9i619VUkzjRlAOTYasUS9lnWRT+j5nIwsaaf6wvh5Wo=;
+	b=QELFWCRI/YMRTODpYMAaTVzFpAbrLSxBSoCzoAIbpuZzj2q/xElkwa8mT119G7ZIJ938SD
+	+mskMFKwJGsgn2UR+Qdkh17dkXkIfKGXtN7BXSkzah+xtHFIzO5ETaWhPhC8p67vxpW1Ia
+	l0/276Fs2qp4z2KO8ON3koCkNpszu5oGGxljpYwOEHGExdrtGxO3tcyP2AsdBfKhiC/oHz
+	/FqtDo+65t7x0iK+AX/GY7NBFW4smrFuE5vkSLusAVC5eY6T+Fj0LuuEZUg6bRIR41+sNH
+	2gegrZzzpBafny9Q1oat7kHNkcUueD06/mHZxrmykik4ij7D9SFB3dCAh/21Ig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795433142;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9i619VUkzjRlAOTYasUS9lnWRT+j5nIwsaaf6wvh5Wo=;
+	b=D99SckPceFM8GjoWU7L9lZM/tSQS370rhm4HivDfgrFy4yX7AcjwXiotNOenOVkRqBTF0u
+	pQye6/ntdUaN8Mghi4UsM0AVoTtogzv25i7Ab+8qF5qyOypXpqMdrr0oUCvbK2FhAFp0cq
+	rpD5MCVVpu1jBjI5ii4RP8GNGd7ZdCcPv1bV/kjV1jUnOwCufX+yFnM+Cqa7cPhGF8h+RY
+	L/Nl20PT3Ext0OpPwrLzR9WrST9/jAqCbYL92RS6Sd7qMoYw8PZGyt+Gy5JsGsQXQ8moGc
+	4mjdq4NO/VEcGafa5kjw55LcZRqd6iTWrXJ2JdgPRg6YCJspDJ4XCmn3u75jZw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=f.diener@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795433142; a=rsa-sha256;
+	cv=none;
+	b=U9h+4/Q2VCp+yKWW0T2gaD11LHgBvKnCai8ccpp+YVyr+YQ9lozLZNlW+4DL6/OPVjyjB0
+	ww1BgKUPBpkfZob7SoJC4eChOBlVU6gX1Jk/2vXFayeBrReYJeiuD4kI22IVTN20+WBzFf
+	FRL5+Z6sry86JxGxaw3AxN5OjJgpRdRdWkSUaYHw0u3TPmq76fycOPmo0VljMTCfYegN95
+	lH7repmWO+p/43B1FlchKRH1gSHcCDLap35RBAWNuoFnKp0ewvNuMPdOQzFH3Estraikt5
+	FYsMKWVVlxir8RJQbY+Hod3B1J6gSL/1HUp9mxeNXoQpfInFaL2Lg5fHlcdtJA==
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.2])
+	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <f.diener@pengutronix.de>)
+	id 1xVSB3-0016XI-32;
+	Mon, 23 Nov 2026 12:25:42 +0100
+From: Freimut Diener <f.diener@pengutronix.de>
+Date: Mon, 23 Nov 2026 12:25:16 +0100
+Subject: [PATCH v2 2/5] arm64: dts: freescale: imx93-11x11-frdm-common:
+ Describe PCAL6524 supply
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-ID: <2a2bfab1.269a1.1a20826a7dd.Coremail.wanghr2026@mail.zgclab.edu.cn>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: yQQGZQCHtmp4IgRrBoVgAQ--.19466W
-X-CM-SenderInfo: pzdqwxbusqjlo62juzldeovvfxof0/1tbiAQYAD2sD8X5PDgABsv
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261123-imx93-frdm-fixes-v2-2-dd97c7fca4b1@pengutronix.de>
+References: <20261123-imx93-frdm-fixes-v2-0-dd97c7fca4b1@pengutronix.de>
+In-Reply-To: <20261123-imx93-frdm-fixes-v2-0-dd97c7fca4b1@pengutronix.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Freimut Diener <f.diener@pengutronix.de>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_032456_623519_2F7B8BE1 
-X-CRM114-Status: GOOD (  15.09  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261123_032546_371772_55E3344A 
+X-CRM114-Status: GOOD (  13.58  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,47 +105,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-LSBIb3cgaXQgd2FzIGRpc2NvdmVyZWQuIFN0YXRpYyBzY2FubmluZywgbm90IGEgcnVudGltZSBy
-ZXBvcnQuIEkKc2Nhbm5lZCBmb3IgcmVndWxhdG9yX2VuYWJsZSgpIGNhbGxzIGFuZCBjaGVja2Vk
-IHRoYXQgZWFjaCBvbmUgaGFzIGEKbWF0Y2hpbmcgcmVndWxhdG9yX2Rpc2FibGUoKSBvbiB0aGUg
-ZXJyb3IgcGF0aHMuIG10NzUzMF9zZXR1cCgpCmVuYWJsZXMgdGhlIGNvcmUgYW5kIGlvIHJhaWxz
-LCBidXQgb25seSBtdDc1MzBfcmVtb3ZlKCkgZGlzYWJsZXMgdGhlbSwKc28gYSBwcm9iZSB0aGF0
-IGZhaWxzIGFmdGVyIHRoZSBlbmFibGUgaGFzIG5vIG1hdGNoaW5nIGRpc2FibGUuCi0gV2hldGhl
-ciBpdCB3YXMgdHJpZ2dlcmVkLiBJdCB3YXMgbm90IHRyaWdnZXJlZCwgYW5kIEkgZGlkIG5vdApy
-ZXByb2R1Y2UgaXQgb24gaGFyZHdhcmUuIAoKClRoYW5rcywKSGFvcmFuCgoKPiAtLS0tLeWOn+Wn
-i+mCruS7ti0tLS0tCj4g5Y+R5Lu25Lq6OiBuZXRkZXYtYm90K3NpbmZvQGtlcm5lbC5vcmcKPiDl
-j5HpgIHml7bpl7Q6MjAyNi0xMS0yMyAxOToxMjozOCAo5pif5pyf5LiAKQo+IOaUtuS7tuS6ujog
-Ikhhb3JhbiBXYW5nIiA8d2FuZ2hyMjAyNkBtYWlsLnpnY2xhYi5lZHUuY24+Cj4g5oqE6YCBOiBj
-aGVzdGVyLmEudW5hbEBhcmluYzkuY29tLCBkYW5pZWxAbWFrcm90b3BpYS5vcmcsIGFuZHJld0Bs
-dW5uLmNoLCBvbHRlYW52QGdtYWlsLmNvbSwgZGF2ZW1AZGF2ZW1sb2Z0Lm5ldCwgZWR1bWF6ZXRA
-a2VybmVsLm9yZywga3ViYUBrZXJuZWwub3JnLCBwYWJlbmlAcmVkaGF0LmNvbSwgbWF0dGhpYXMu
-YmdnQGdtYWlsLmNvbSwgYW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bjb2xsYWJvcmEuY29tLCBu
-ZXRkZXZAdmdlci5rZXJuZWwub3JnLCBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5v
-cmcsIGxpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcsIGxpbnV4LWtlcm5lbEB2Z2Vy
-Lmtlcm5lbC5vcmcKPiDkuLvpopg6IFJlOiBbUEFUQ0ggdjJdIG5ldDogZHNhOiBtdDc1MzA6IGRp
-c2FibGUgdGhlIHBvd2VyIHJhaWxzIG9uIHNldHVwIGZhaWx1cmUKPiAKPiBIaSEKPiAKPiBUaGlz
-IGlzIGFuIGF1dG9tYXRlZCBtZXNzYWdlLiBUaGlzIHNlcmllcyBsb29rcyBsaWtlIGEgZml4LCBi
-dXQgaXRzCj4gY29tbWl0IG1lc3NhZ2VzIHNlZW0gdG8gYmUgbWlzc2luZyBzb21lIGluZm9ybWF0
-aW9uOgo+IAo+ICAtIEhvdyB0aGUgaXNzdWUgd2FzIGRpc2NvdmVyZWQsIGUuZy4gaGl0IGluIHBy
-b2R1Y3Rpb24sIGhpdCBkdXJpbmcKPiAgICBkZXZlbG9wbWVudCwgc3l6Ym90IHJlcG9ydCwgbWFu
-dWFsIGNvZGUgaW5zcGVjdGlvbiwgTExNIG9yIHN0YXRpYwo+ICAgIGFuYWx5c2lzIHRvb2wgc2Nh
-bi4KPiAKPiAgLSBXaGV0aGVyIHRoZSBpc3N1ZSB3YXMgYWN0dWFsbHkgdHJpZ2dlcmVkLCBvciBp
-cyBvbmx5IHRoZW9yZXRpY2FsCj4gICAgKGUuZy4gZm91bmQgYnkgTExNIGFuZCBub3QgcHJvdmVu
-IGF0IHJ1bnRpbWUpLiBJZiBpdCB3YXMgdHJpZ2dlcmVkCj4gICAgcGxlYXNlIGluY2x1ZGUgdGhl
-IHN5bXB0b21zLCBsaWtlIHRoZSBzdGFjayB0cmFjZSBvciBrZXJuZWwgbWVzc2FnZXMuCj4gCj4g
-UGxlYXNlIGRvIG5vdCByZXBvc3QgdGhlIHNlcmllcyBqdXN0IHRvIGFkZHJlc3MgdGhlIGFib3Zl
-LiBJbnN0ZWFkLAo+IHJlcGx5IHRvIHRoaXMgZW1haWwgd2l0aCB0aGUgbWlzc2luZyBpbmZvcm1h
-dGlvbiwgc28gdGhhdCByZXZpZXdlcnMKPiBjYW4gdGFrZSBpdCBpbnRvIGFjY291bnQuCj4gCj4g
-KklNUE9SVEFOVCo6IElmIHlvdSBkbyByZXBvc3QgKGZvciBvdGhlciByZWFzb25zKSAtIHBsZWFz
-ZSBpbmNsdWRlCj4gdGhlIHJlbGV2YW50IGluZm8gaW4gdGhlIGNvdmVyIGxldHRlciBvciBjb21t
-aXQgbWVzc2FnZXMuCj4gLS0gCj4gVGhlIGV2YWx1YXRpb24gaXMgZG9uZSBieSBhbiBMTE0gc28g
-aXQgbWF5IGJlIHdyb25nLCBpZiB5b3UgdGhpbmsKPiB0aGF0IGlzIHRoZSBjYXNlIHBsZWFzZSBy
-ZXBseSBhbmQgZXhwbGFpbi4K
+The PCAL6524 GPIO expander is powered by the PMIC's BUCK4 regulator.
+The PMIC in turn uses the expander as its interrupt controller.
+
+Referencing BUCK4 directly through the expander's vcc-supply
+property creates a circular dependency: the expander requires the
+PMIC regulator to probe, while the PMIC requires the expander for
+its interrupt.
+
+Describe the expander's 3.3 V supply using an always-on fixed
+regulator as a proxy for BUCK4. This allows the GPIO expander to
+acquire its supply without introducing the dependency cycle and avoid a
+respective warning:
+
+     pca953x 1-0022: supply vcc not found, using dummy regulator
+
+The proxy does not represent a separate physical regulator.
+
+Signed-off-by: Freimut Diener <f.diener@pengutronix.de>
+---
+ .../boot/dts/freescale/imx93-11x11-frdm-common.dtsi      | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
+index b3dfe516b1d55..e81b2342c50dc 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm-common.dtsi
+@@ -49,6 +49,19 @@ button-k3 {
+ 		};
+ 	};
+ 
++	/*
++	 * PCAL6524 is powered by PMIC BUCK4, but the PMIC uses PCAL6524
++	 * as its interrupt controller. Model the supply with a fixed
++	 * regulator to avoid a circular device dependency.
++	 */
++	reg_pcal6524_vcc: regulator-pcal6524-vcc {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_3V3_PCAL6524";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++
+ 	reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		compatible = "regulator-fixed";
+ 		off-on-delay-us = <12000>;
+@@ -207,8 +220,7 @@ pcal6524: gpio@22 {
+ 		gpio-controller;
+ 		pinctrl-0 = <&pinctrl_pcal6524>;
+ 		pinctrl-names = "default";
+-		/* does not boot with supplier set, because it is the bucks interrupt parent */
+-		/* vcc-supply = <&buck4>; */
++		vcc-supply = <&reg_pcal6524_vcc>;
+ 	};
+ 
+ 	pmic@25 {
+
+-- 
+2.56.0
+
 
