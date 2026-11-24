@@ -2,103 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB4A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95EC606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h2KHe4W9;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fr0PCH40
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dgbda2A3;
+	dkim=pass (2048-bit key, unprotected) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=FGEemmNH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=/HRoKuntgt7z4Sw/zF+HWikpndrv0Kbgyj8m5F8gu7w=; b=h2KHe4W9DHt6NuqtUnWfIHlBop
-	tafj3RJxCp5pKcnQonnfZi9TVQ9XsoE/EmzXeMrljVbJMk1Kz4ZENbs/zUH6flkyn9tM99nhYbFd1
-	2dzuyeyJreyZ++eGdCSh7Nsc9vFzcnSq80ir4vvop8klrU/X6rptNsP0mmPzPOG88noUkbBPVzEft
-	okWgFhi62vDdF/GYDMV4EQIydRlCS+7X0a98WsbnVWeKBl8FeMzG/0tfRgH2paz2eL2G+6DuZjUKz
-	YDL9xQZT7D6o7xAPpnAWhA885BGC7fquypPoHNq8ZtM9VJS3Wdhr8Etl4tsNn09z8VN6vTsnCrILx
-	X0mUBCpg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=6gTe3OIXtvUr8l7NQ+B00W/LQtsjPBr3owczjn6ZYLY=; b=Dgbda2A3nKyl/Y
+	8ZU/p8AnlWH4PLc4diclJHTcQAUKuWQKJgV31HFXLigB7r+iajtA3Ci/PjpaRRof+J5cECTdEqGxb
+	HguLO5XvQ2c/TaLL3IRiUZ5DXQTIWfYcHMTEOhXyviObSd6xZs7+kmEZBKXYvjB3hd9fF0W2NjoQ5
+	M/66JjW2wQx9WtUfjEtdtoveKOeNCB1WHAfZC/ND+r/vPNLZxtslhVhEJRaKeU8nmZ+Vt6ZuEe5iP
+	DfrdE8jU9mjZlulzMP/6YJNW038LTiVW+LesXM8cqnKHTukUOKNkW4n9na2axrTBMiiu2PQpW7ylJ
+	U4Dwou0OsADGGrW6NmqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqa0-00000006dbJ-04KW;
-	Tue, 24 Nov 2026 13:29:10 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVqEE-00000006Zef-0hTe;
+	Tue, 24 Nov 2026 13:06:34 +0000
+Received: from mail.kernelriot.com ([74.208.142.49])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqZz-00000006das-01Ww
+	id 1xVqEB-00000006Zdv-0fmF
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 13:29:03 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8547C440CD;
-	Tue, 24 Nov 2026 13:29:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C7F81F000C4;
-	Tue, 24 Nov 2026 13:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795526942;
-	bh=/HRoKuntgt7z4Sw/zF+HWikpndrv0Kbgyj8m5F8gu7w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=fr0PCH40STXrlXHmQtkXH7r5TNp4huoMmo+7xg4o5Lka8RyRtO/2FlVVDUTXB7rZ5
-	 3rNYkvEsNxCBdcxdMqFUA8CHg+v2BtNrWx25wVkut8r75xGUq+9Xyz+V0Vwk4LA5O1
-	 Zybhp83eX37Sm64PZ4Fc59w2p3zDy9S+X2vWa/j0aSh6FSKk43g73Qz257JK3n+mN8
-	 AyTAqeMK3bgbGfwcpleBjxDknkYCFOF7vxte4R3WCmnbeovSIB/dAf0U033DcfPKVx
-	 uHs22+iNIVbbGQqesGS+0m+J6rLeNS5/O4UVG2ge9usloyARrq0XRsfcboCkxedlOI
-	 0fzTE+XVrevZg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVqZv-00000002atd-32ML;
-	Tue, 24 Nov 2026 13:28:59 +0000
-Date: Tue, 24 Nov 2026 13:28:59 +0000
-Message-ID: <865wxmz7c4.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Justin He <Justin.He@arm.com>
-Cc: Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey
- Gouly <Joey.Gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki
- Poulose <Suzuki.Poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin
- Marinas <Catalin.Marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark
- Rutland <Mark.Rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Sean
- Christopherson <seanjc@google.com>,
-	Shuah Khan <shuah@kernel.org>,
-	Sascha
- Bischoff <Sascha.Bischoff@arm.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	"kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-	Lorenzo
- Stoakes <ljs@kernel.org>
-Subject: Re: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before first run
-In-Reply-To: <AS2PR08MB97865A914C46DA0CE54F9197F7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-References: <20261123150917.2679600-1-justin.he@arm.com>
-	<20261123150917.2679600-2-justin.he@arm.com>
-	<86eccbzcqh.wl-maz@kernel.org>
-	<AS2PR08MB97865A914C46DA0CE54F9197F7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Tue, 24 Nov 2026 13:06:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
+	s=kr2026; t=1795525589;
+	bh=6gTe3OIXtvUr8l7NQ+B00W/LQtsjPBr3owczjn6ZYLY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:From;
+	b=FGEemmNHrmqUTdaDHo8qr+JUyTMRQdHosYEikuWqodR9P94M0ApDiye/zX8oWbfQA
+	 /vaqU8IUajnrnL+Qx7DARKZLyeuKAFrwxWP/EvPc26jj+G2/g6zmx8mJ1AImARC8Gz
+	 oZbUSjVVxXL7CuOnDsXKpvjKsJFEHIsy2PhbAffGiiIov4JGxYGwwjd3LXSeMzCKKq
+	 PeGoMF8IfDbXPY7MTHw5IZ1nsceyRnRYNcTUrNd25mwoqojr051sjiu/lvhkkYCJqs
+	 V41rfQjJ/wdOt0uapbJA4EaSi7uzSM+MpLAS1HcFMQyN4JnaXrxLWXtZmi5yUDZFAI
+	 TPslTPJhYnuPA==
+Received: by mail.kernelriot.com (Postfix, from userid 995)
+	id B8FB981A0D; Tue, 24 Nov 2026 13:06:29 +0000 (UTC)
+From: Magnus Leatti <magnusleatti@kernelriot.com>
+To: netdev-bot+sashiko@kernel.org
+Cc: Yao Zi <me@ziyao.cc>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Nespolino <g.nespolino@gmail.com>,
+	netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] net: stmmac: dwmac-motorcomm: remove the device at shutdown
+Date: Tue, 24 Nov 2026 10:06:10 -0300
+Message-ID: <20261124130610.3254004-1-magnusleatti@kernelriot.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <179551786477.3135.6652175828683602957@kernel.org>
+References: <20261120102754.778283-2-magnusleatti@kernelriot.com> <179551786477.3135.6652175828683602957@kernel.org>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: Justin.He@arm.com, oupton@kernel.org, fuad.tabba@linux.dev, Joey.Gouly@arm.com, seiden@linux.ibm.com, Suzuki.Poulose@arm.com, yuzenghui@huawei.com, Catalin.Marinas@arm.com, will@kernel.org, Mark.Rutland@arm.com, pbonzini@redhat.com, seanjc@google.com, shuah@kernel.org, Sascha.Bischoff@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, kvm@vger.kernel.org, linux-kselftest@vger.kernel.org, ljs@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_050631_252063_2616B617 
+X-CRM114-Status: UNSURE (   8.52  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,45 +81,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 09:06:32 +0000,
-Justin He <Justin.He@arm.com> wrote:
-> 
-> 
-> 
-> > -----Original Message-----
-> [...]
-> > On Mon, 23 Nov 2026 15:09:15 +0000,
-> > Jia He <justin.he@arm.com> wrote:
-> > >
-> > > KVM_PRE_FAULT_MEMORY calls vcpu_load() as soon as
-> > KVM_ARM_VCPU_INIT has
-> > > completed. On arm64, however, kvm->arch.sysreg_masks, the trap
-> > > configuration, vncr_tlb and nested vGIC state are only set up on the
-> > > first KVM_RUN in kvm_arch_vcpu_run_pid_change().
-> > 
-> > I think I'm going to queue a patch disabling prefaulting immediately,
-> > and then we can fix this crap.
-> 
-> I can still reproduce the same vncr_tlb NULL dereference with prefaulting
-> disabled. On kvmarm/fixes, commit 5651590be08a ("KVM: arm64: Load the vcpu
-> in KVM_SET_VCPU_EVENTS") added a vcpu_load() call to KVM_SET_VCPU_EVENTS.
-> A single KVM_SET_VCPU_EVENTS with an all-zero struct kvm_vcpu_events,
-> issued before the first KVM_RUN, is enough to trigger it.
-> For v2, I'll build on your patch and use vcpu_has_run_once() to gate the
-> arch load/put paths for both ioctls.
+On Tue, Nov 24, 2026 at 10:57:44AM +0000, netdev-bot+sashiko@kernel.org wrote:
+> [Severity: Low]
+> Should this carry a Fixes: tag?
 
-Ah, you spotted that one already. I should have checked the full
-thread before replying...
+No. I never saw anything break without the hook, so it's not a fix.
+net-next, no tag.
 
-	M.
+> [Severity: Medium]
+> With this change, can stmmac_dvr_remove() run twice on the same
+> binding?
 
--- 
-Without deviation from the norm, progress is not possible.
+Only if something unbinds or unplugs the NIC *after* .shutdown ran, in
+the middle of a power-off. funeth, otx2, nfp VF and ps3_gelic wire
+.shutdown to their remove the same way, and it's the design that came
+out of the v1 review [1]. Keeping it.
+
+[1] https://lore.kernel.org/netdev/avsebFtnIASV-KpV@pie/
+
+Magnus
 
