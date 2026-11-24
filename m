@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254C9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F99606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qNU/Qvo9;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=KGExVFoc;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=f8+28I9c
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mREVpeN4;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=ZOl59z23;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=NCYXhsjk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,77 +15,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Zuvz3xSe0E/I6IGKMXvL4wAnV5TL5l4pOkC0AqyMf6I=; b=qNU/Qvo9cdyT53746igmhD4ND4
-	E+VUNRcLch6ONltxpN3BaqWx/64WNJc7FqNSLhVc4bFNYXZ+TAeto/Bb0a8oKTr7HNLfzWfeCUHOY
-	1xONvjN0j6LuTSCzWx8aR269BH0fdJYhVEDs96hXCTHcrHJHhABH6EZLn2h11lzGKyUlu/DjAfJHR
-	GiDzkQ48zK1fv2WpvWpHNCfE69Xzs8zswvKy2wtvLYUeD2/JHAfz2D8FIg4ZlFrJMiYWl1BDxtGvO
-	KCm3Y8GM27rGG2K/X8WXWZP1xEX7tbaH7WfsIpjCPiQOr3MK+sfcQFup4kpFAPs4CtgMI6pXpjSkT
-	dAtobS+w==;
+	bh=by0iiR0FmpORjCFtMsoAirkpYQWXRnrV8zvJq/f2IKQ=; b=mREVpeN4pEa0cUWjocYRELQGoM
+	t4oXBt608FoLNx2LwuLiITKneWW39VRs2hPBz4xZlgleXKP3CwjJIi53xqL9XgI1E6b0JBn7le3YI
+	ngaM6PovU4W2Ns2cNG7YVBy4lp9DTDLlwwyHE0bxIao5iuXuE/LocZsChBR/Ch1ON2KHaMrWKrc1T
+	vCC9qwFVhanLAvSGteLM1NX3x24sVYRzTjmIzBqj9Adg0tPbcmvzPrq9cKgN45Cn8mI6GNozy0LnR
+	7qzl/+fKljeWuH3j+XLJqWGPcsoBPdW79WW5UF0SAb6uaJr2MIfMqrsoLn5/1Z67RhYibkrDrFQ0O
+	lBoFQYhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVte4-00000007Ai7-1dz5;
-	Tue, 24 Nov 2026 16:45:28 +0000
+	id 1xVteK-00000007AtF-2zWX;
+	Tue, 24 Nov 2026 16:45:44 +0000
 Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdx-00000007Afd-3qZW
+	id 1xVte2-00000007AhE-28fZ
 	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 16:45:25 +0000
+	Tue, 24 Nov 2026 16:45:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
 	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=Zuvz3xSe0E/I6IGKMXvL4wAnV5TL5l4pOkC0AqyMf6I=; b=KGExVFocqt/YqIjiSnYpYVei/b
-	b8iKmFGf/LAQVr9tKvb0k4qdIC/3wrJ6YKoODTWzNMdacFHL5zWAOrw/3KGjO8Lu00tRuBggsTTMp
-	DrhTUgzKcGU0OWKB0rfU5Py5GTQPdvE5GGv/uM6Xs3X9S3YF27UdODtSs/rNmKVlAfJhxHat9ZNEM
-	mibk5QDdz03RUL63+2vZYUmQb1lktVnJ/gYUB/xgbkzak6QXKR/B3zg6ONlRQ8rU7dM5jyfm8PQ0l
-	XkhHi7gnEV2y3AYFkFwdgRq0pwtNwcG5osKIARopw0df/Bwt4dlDzhgFoCQHwMoPP6RysJujAhxcJ
-	T98LersQ==;
-Received: from mail-ej1-x648.google.com ([2a00:1450:4864:20::648])
+	bh=by0iiR0FmpORjCFtMsoAirkpYQWXRnrV8zvJq/f2IKQ=; b=ZOl59z23kFFb/sLrxXxo2jaeak
+	MRYRaEYEO0t0UamOeRczWE2LrYIvm9uvk1XTr2iF8wJPH3wyWzYWrGPMSXu3raH6TfVr8dwo38LQx
+	y2hZ70KwteOA36Y/Cc0f4xZwc0/Faa8MVgnONWKDBz/Fe43F/IwB5qNrNXslEbwlhoEyewp2+b1qJ
+	IzlqXYnJHKvaNEN+SnsejXSrA/qSBs1n4K/7bctPaFQLQeS7nL23JEXouJcm095EJo/Pi1QGg3ogl
+	mU7wvxx6/K+3LcBnJfUejRICa17UCy4OyIu0W5D3aUC6iqktWnJ4UmvCl9XopPyBmfcg3y+w2D1xn
+	n6kUi7pw==;
+Received: from mail-wr1-x447.google.com ([2a00:1450:4864:20::447])
 	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdq-00000009Dbn-48KE
+	id 1xVtdu-00000009DiT-14kf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:45:20 +0000
-Received: by mail-ej1-x648.google.com with SMTP id a640c23a62f3a-c504bdea834so342793666b.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 08:45:13 -0800 (PST)
+	Tue, 24 Nov 2026 16:45:25 +0000
+Received: by mail-wr1-x447.google.com with SMTP id ffacd0b85a97d-499ca65ae87so2047314f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 08:45:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795538712; x=1796143512; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795538716; x=1796143516; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Zuvz3xSe0E/I6IGKMXvL4wAnV5TL5l4pOkC0AqyMf6I=;
-        b=f8+28I9cRiY0/M6ouGKJDHYSC+3ZbbyxQ0L+X4jCpUMvaEwfgWNo12kkcoFBK+IDtG
-         qmdaiwHMVUhocQDf1J0DN64zxjphku1Yjn0qSc/YM1vHhK7cwSGwPFfVlgUHAAhAoX9B
-         R8+nsGCSYT19+Zt751AQuHYeesU4FzKjp39Ysl661p+Ohi6EUUxSk2zij0V/9c3KFVWY
-         m8dAaHXk2VCpLvEjz5XE+xaRVpjvbZJuhV9BkR6Tqe1BzRd2KVrqSkSG8lPVKfHssH+z
-         4uOB1mMUMP64qcMwc3oQINHHPf8+8d09w07579QZ3QS+GrlrSWUHm0uqFsymh02ccUyV
-         2okg==
+        bh=by0iiR0FmpORjCFtMsoAirkpYQWXRnrV8zvJq/f2IKQ=;
+        b=NCYXhsjkPadf8U20NEU4YBBEvPCewLnVyREqJhaOSOnrdCec6jTHINggmPbVTakfO9
+         IkV457KARHhtDP1eYvKpFDIvc481YZRCAQAUA0spM7n1WL3HsnV58Z/UC7w4Dc/wX4yr
+         Wk+7so+/N2bfCVOCx/K19dqTGPfgIuiuGujhB7rMaQTebJCNWuba5kLY/vzs8BKA7zCV
+         PJC2FcYrVjnxBlHcuyZUG2inuO2dt9UOyUVGZKbW+qA+ZRPv+fPXV/7ZvEhNVhzZJTwo
+         H8BKiY7kuWr/Ih5PYUwSz5rytoEAkiRM91G2lLkaQu1jjQ2ds00A2GraEQtRGt+uYi4e
+         w3Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795538712; x=1796143512;
+        d=1e100.net; s=20260707; t=1795538716; x=1796143516;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Zuvz3xSe0E/I6IGKMXvL4wAnV5TL5l4pOkC0AqyMf6I=;
-        b=lcbu30u2ev1C9haSHcCl9X3Zx6k1OH25YPUky8/cObpWyG9RPOUdr/EWiinoDPiJzX
-         Ug5mBgZ0iuTc2GgNrHtuVYpKEQQlzkCqIayssGuc+Mt0BK56qyys6xaksJQCHLSwBP82
-         IEKq3ro4v77NYKJ3XuLYypGbEkx2DnD9Faejb/X0kpdb3e2smDVHdt/aB1KbE7A+M8pA
-         IOvxupEqZPiGw1isEdZos6WnC8VQFx+1OHrIIMrKQX1jzIaxiddX0Q8zezqSYV8qF7oH
-         oUrJscGXfd/od7xs1IzGONBWAxAh2I3bmM1CLPcSRXQ9f6h+GzkpmMbtkW38/PLNaAM9
-         nWUA==
-X-Gm-Message-State: APuU4Z9UKJdllXbTCxsI0nlhdRAGUZiL3VJKBYGjqTjmKXHyhiERX9lw
-	zBR0bk3p23c8HLKJnNiPe7ESr8LEn4TKSOeNM0EtpiHE5FbzGhTNafUwBOqqNMYlac78Wh9GWNc
-	2Ikz6N3mscmC4HLWujZkSXg==
-X-Received: from ejbca4.prod.google.com ([2002:a17:906:a3c4:b0:c4d:23b9:1c75])
+        bh=by0iiR0FmpORjCFtMsoAirkpYQWXRnrV8zvJq/f2IKQ=;
+        b=IaVFcgG0Rqxp1hQPxb63TpT1Qv6eHY4nkR4U4D5/QAHysr3Sel+xOEbjaj9bIpo4uc
+         OzoOIQUhODZONpDBdfi1jjnCT+RlRYRbBlvT5Inj2e9sRDblEFkzbdtx5B1MxJjRt00V
+         vSzsLahFKpw15QUA7l3gq0tcRN+VvywUHXrXOMqf3cym4V4ZNuPAnrBCx8PH64PJcBRX
+         sBSSqrmuNtUCbci9zLFHmKauz9lTOEuyVBYsokLKFFoTxU2fAvj6gFKdavLc4mGb8we6
+         qxWJvhIGobcndVsF3sl8od78ZBCDN9osKevYJBMfozcnxo+O3udpqzKvURh56LSi0Eao
+         hIFQ==
+X-Gm-Message-State: APuU4Z+j1+fLZX10epder1flHS+jh8ov8w+qsyiRlCmGZvQ2J4EBsjcH
+	RU9Fp65BRqC+TRXZMJ4HB1UNGZCtq6Z/qJnSSnnp0461v5KhCvWHwiNLkgP+UNlN9byMztztp1K
+	F2Xo89wJOfMYeO5A2Gm8ofQ==
+X-Received: from wrty9.prod.google.com ([2002:a5d:6149:0:b0:48d:ee00:f39d])
  (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:e00b:20b0:c4d:22e2:1a2b with SMTP id a640c23a62f3a-c513a47e2ffmr836800066b.1.1795538712212;
- Tue, 24 Nov 2026 08:45:12 -0800 (PST)
-Date: Tue, 24 Nov 2026 16:44:43 +0000
+ 2002:a05:6000:2681:b0:4a7:dcc2:a36f with SMTP id ffacd0b85a97d-4aa5a2dc7bfmr42491230f8f.26.1795538713310;
+ Tue, 24 Nov 2026 08:45:13 -0800 (PST)
+Date: Tue, 24 Nov 2026 16:44:44 +0000
 In-Reply-To: <20261124164446.2371939-1-vdonnefort@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261124164446.2371939-1-vdonnefort@google.com>
 X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261124164446.2371939-3-vdonnefort@google.com>
-Subject: [PATCH v2 2/5] drivers/virt: pkvm: Make pkvm_granule __ro_after_init
+Message-ID: <20261124164446.2371939-4-vdonnefort@google.com>
+Subject: [PATCH v2 3/5] drivers/virt: pkvm: Handle a granule larger than
+ PAGE_SIZE for MEM_SHARE
 From: Vincent Donnefort <vdonnefort@google.com>
 To: catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
@@ -93,8 +94,8 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	Vincent Donnefort <vdonnefort@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_164515_066914_2EDA06EC 
-X-CRM114-Status: GOOD (  10.03  )
+X-CRM114-CacheID: sfid-20261124_164518_481968_7435ABAF 
+X-CRM114-Status: GOOD (  13.55  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,29 +115,107 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-pkvm_granule is only written once during init in
-pkvm_init_hyp_services(). Mark it as __ro_after_init.
+From: Fuad Tabba <fuad.tabba@linux.dev>
 
-Tested-by: Fuad Tabba <fuad.tabba@linux.dev>
-Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
+In preparation for allowing protected VMs to run on a system where the
+granule is bigger than their PAGE_SIZE, allow the encryption/decryption
+callbacks to work with the hypervisor granule increment instead of
+PAGE_SIZE.
+
+Reject requests which are not aligned with the granule.
+
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+Co-developed-by: Vincent Donnefort <vdonnefort@google.com>
 Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
 ---
- drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c | 42 +++++++------------
+ 1 file changed, 15 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c b/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c
-index e7d7cedf7f6f..fbcb57c31186 100644
+index fbcb57c31186..98b1026cf68b 100644
 --- a/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c
 +++ b/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c
-@@ -17,7 +17,7 @@
- 
- #include <asm/hypervisor.h>
- 
--static size_t pkvm_granule;
-+static size_t __ro_after_init pkvm_granule;
+@@ -20,35 +20,19 @@
+ static size_t __ro_after_init pkvm_granule;
  DEFINE_STATIC_KEY_FALSE_RO(pkvm_guest);
  
- static int arm_smccc_do_one_page(u32 func_id, phys_addr_t phys)
+-static int arm_smccc_do_one_page(u32 func_id, phys_addr_t phys)
++static int arm_smccc_do_range(u32 func_id, phys_addr_t phys, size_t size)
+ {
+-	phys_addr_t end = phys + PAGE_SIZE;
++	phys_addr_t end = phys + size;
+ 
+-	while (phys < end) {
++	if (!IS_ALIGNED(phys | size, pkvm_granule))
++		return -EINVAL;
++
++	for (; phys < end; phys += pkvm_granule) {
+ 		struct arm_smccc_res res;
+ 
+ 		arm_smccc_1_1_invoke(func_id, phys, 0, 0, &res);
+ 		if (res.a0 != SMCCC_RET_SUCCESS)
+ 			return -EPERM;
+-
+-		phys += pkvm_granule;
+-	}
+-
+-	return 0;
+-}
+-
+-static int __set_memory_range(u32 func_id, unsigned long start, int numpages)
+-{
+-	void *addr = (void *)start, *end = addr + numpages * PAGE_SIZE;
+-
+-	while (addr < end) {
+-		int err;
+-
+-		err = arm_smccc_do_one_page(func_id, virt_to_phys(addr));
+-		if (err)
+-			return err;
+-
+-		addr += PAGE_SIZE;
+ 	}
+ 
+ 	return 0;
+@@ -56,14 +40,16 @@ static int __set_memory_range(u32 func_id, unsigned long start, int numpages)
+ 
+ static int pkvm_set_memory_encrypted(unsigned long addr, int numpages)
+ {
+-	return __set_memory_range(ARM_SMCCC_VENDOR_HYP_KVM_MEM_UNSHARE_FUNC_ID,
+-				  addr, numpages);
++	return arm_smccc_do_range(ARM_SMCCC_VENDOR_HYP_KVM_MEM_UNSHARE_FUNC_ID,
++				  virt_to_phys((void *)addr),
++				  numpages * PAGE_SIZE);
+ }
+ 
+ static int pkvm_set_memory_decrypted(unsigned long addr, int numpages)
+ {
+-	return __set_memory_range(ARM_SMCCC_VENDOR_HYP_KVM_MEM_SHARE_FUNC_ID,
+-				  addr, numpages);
++	return arm_smccc_do_range(ARM_SMCCC_VENDOR_HYP_KVM_MEM_SHARE_FUNC_ID,
++				  virt_to_phys((void *)addr),
++				  numpages * PAGE_SIZE);
+ }
+ 
+ static const struct arm64_mem_crypt_ops pkvm_crypt_ops = {
+@@ -90,7 +76,7 @@ static int mmio_guard_ioremap_hook(phys_addr_t phys, size_t size,
+ 	while (phys < end) {
+ 		const int func_id = ARM_SMCCC_VENDOR_HYP_KVM_MMIO_GUARD_FUNC_ID;
+ 
+-		WARN_ON_ONCE(arm_smccc_do_one_page(func_id, phys));
++		WARN_ON_ONCE(arm_smccc_do_range(func_id, phys, PAGE_SIZE));
+ 		phys += PAGE_SIZE;
+ 	}
+ 
+@@ -118,6 +104,8 @@ void __init pkvm_init_hyp_services(void)
+ 		return;
+ 
+ 	pkvm_granule = res.a0;
++	if (pkvm_granule > PAGE_SIZE)
++		pr_info("pKVM: sharing memory in %zu-byte granules\n", pkvm_granule);
+ 	arm64_mem_crypt_ops_register(&pkvm_crypt_ops);
+ 
+ 	if (kvm_arm_hyp_service_available(ARM_SMCCC_KVM_FUNC_MMIO_GUARD))
 -- 
 2.56.1.809.ga0b61035b5-goog
 
