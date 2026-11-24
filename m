@@ -2,66 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A50606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF71606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OS2EMmv6;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=H5MXMBDM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HytU9UBq;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XM02+DLz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SSz1UkrPYOtP7qjRzAhNmZAnsxclw+c33mPfbQ/t5hM=; b=OS2EMmv6HIVdpLmI1geTaHXk66
-	0ybBwkFxd5rorZd7uB+FjScmokBj7Kb4j+qQEaO7wqdCR1KRoldOWCdq/MHt3KNNFi5JyYItDoISm
-	L8lhyjZNrtqmtK2zynumcoYuFf54GZHkzuqD2WuX19xxpmnPbq0z+b5UlMn/Ng3bOurdxLWte3UrO
-	hr5cO5lZmgy8HkS9hXjq0xjxUYvamWHwXQer4faNXlPw6KrHTQYtKdlOJ2g5S/EVi4bDnbUEjap3O
-	ssTW5kYvT1wfXdzr6XIaQ1mIjkz0AdL+fT41Rc93Z0IRtN4bVDT0tWLkgUMD1BavPrnMTZyONMQJa
-	YbMuADBA==;
+	bh=d1InUdNvrxxB04G5bxXtj4JDVBuTsOLfVQpVUmwkbqM=; b=HytU9UBqyFmI/rgxu8C1CbY5ZL
+	P7IWLMQw6bRK5gXBwUa0QdDUbZ3W/M8T09fJJCHK3EtdOR3lb4wv5n2NJ8LFeMB1zZLQFNusNqIsN
+	FrSSOJoPAl7yZ0Z8GCBadX2+uOzBC0LNfQhl+wz3kuWKN5ULAZK8Dn3C7EyhUBlNg0/qb+/rIS0VE
+	5LOPzoGgyKHI9SQ9KYDnkrhJQeZhGvoeOutfWk/GAAElQRyinVFr0yXTf4zGR4hoQaM1bnTaMHs8U
+	MOCJMat/9gGHWb8qIR6rSinlBGkhsFLNGMfFMeHwhR9AWSQybfbZIlky/x3rOzb5s8OfUQTuwPW6j
+	SH7eZZnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoli-00000006Mes-3hoQ;
-	Tue, 24 Nov 2026 11:33:02 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVolf-00000006MeL-03hz
+	id 1xVo6L-00000006Gjp-3XCY;
+	Tue, 24 Nov 2026 10:50:17 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVo6J-00000006Gjd-3hUO
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:33:00 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6785C339;
-	Tue, 24 Nov 2026 03:32:55 -0800 (PST)
-Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5906B3F86F;
-	Tue, 24 Nov 2026 03:32:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795519978; bh=v3Pi6dD8yf3tjc5InZwV+u8P5LclNlEmMiAiF4I5Szk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H5MXMBDMJKVCFIyGahPkkVnBRk2zGUz5hPAU1GIsup9V1bpYv2c/A7RVEs05X4yR5
-	 UHBKcGMJ/KeicUdin1Q4DVsFxIbV39gmdD3c9YRrru+iuVV9tAv9/9jegJT1JdBnxt
-	 tOLjTds56EIfwL8EX+LGaPXSAno4XavXzNqROgUA=
-Date: Tue, 24 Nov 2026 11:32:53 +0000
-From: Catalin Marinas <catalin.marinas@arm.com>
+	Tue, 24 Nov 2026 10:50:15 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1B71A60E70;
+	Tue, 24 Nov 2026 10:50:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 784E31F000C0;
+	Tue, 24 Nov 2026 10:50:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795517414;
+	bh=d1InUdNvrxxB04G5bxXtj4JDVBuTsOLfVQpVUmwkbqM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=XM02+DLzzE4PhFkSToQX7gQrNAky1EYIzU20SU9GIlmoRJjLrx5wEUx63VzSxL1/v
+	 UjVhkTvTFjO75C06GyrybkRR2uMJm8JGAzRCPDZKVy8vaXE981I5yHaQLJilz6DoG9
+	 pYRGSsv0wYct22PwdBhgRm1+tFx/+QS25DHoBOtYf9GkBUJMxJ2ylfJLqPU/TNVEOk
+	 +LY7DpEfCnd6hd+IxhfawETl0j7mRbJFF3GaYwsIOep7nGdCD67ZA1VgJdyHM3eqU9
+	 B3YxGQADb5LGbNJD2p03wiS+cpMJzLSmtCwti9nfEiB3Ns/jhIcArFP2NE0ktmifWL
+	 2I1UJH6xwjR+g==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xVo6G-00000002Wua-0c5I;
+	Tue, 24 Nov 2026 10:50:12 +0000
+Date: Tue, 24 Nov 2026 10:50:11 +0000
+Message-ID: <86a4myzeos.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
 To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: will@kernel.org, mark.rutland@arm.com, maz@kernel.org,
-	oupton@kernel.org, joey.gouly@arm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, anshuman.khandual@arm.com, tabba@google.com,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: Use symbolic constants for the ccmp NZCV
- immediates
-Message-ID: <awV15Rv-caDclC9K@arm.com>
-References: <20261009072147.474952-1-fuad.tabba@linux.dev>
+Cc: kvmarm@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Zenghui Yu <yuzenghui@huawei.com>
+Subject: Re: [PATCH 3/3] KVM: arm64: Drop open-coded GIC idreg sanitisation
+In-Reply-To: <CA+EHjTynhBzhjrFzd514Sycib=1rmh7JqYp0xSPVBvurk6Sm-A@mail.gmail.com>
+References: <20261123192457.8700-1-maz@kernel.org>
+	<20261123192457.8700-4-maz@kernel.org>
+	<CA+EHjTynhBzhjrFzd514Sycib=1rmh7JqYp0xSPVBvurk6Sm-A@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261009072147.474952-1-fuad.tabba@linux.dev>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_033259_177637_8D6D2469 
-X-CRM114-Status: GOOD (  10.91  )
-X-Spam-Score: -4.4 (----)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: fuad.tabba@linux.dev, kvmarm@lists.linux.dev, kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, oupton@kernel.org, yuzenghui@huawei.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,34 +87,77 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 09, 2026 at 08:21:47AM +0100, Fuad Tabba wrote:
-> diff --git a/arch/arm64/include/asm/ptrace.h b/arch/arm64/include/asm/ptrace.h
-> index f7dc5fb9427d6..15c381ef7d2c2 100644
-> --- a/arch/arm64/include/asm/ptrace.h
-> +++ b/arch/arm64/include/asm/ptrace.h
-> @@ -30,6 +30,10 @@
->  #define PSR_MODE_THREAD_BIT	(1 << 0)
->  #define PSR_IL_BIT		(1 << 20)
->  
-> +/* CCMP NZCV immediates that make the named condition hold */
-> +#define CCMP_NZCV_EQ		(PSR_Z_BIT >> 28)
-> +#define CCMP_NZCV_LT		(PSR_N_BIT >> 28)
-> +
->  /* AArch32-specific ptrace requests */
->  #define COMPAT_PTRACE_GETREGS		12
->  #define COMPAT_PTRACE_SETREGS		13
+On Tue, 24 Nov 2026 09:38:00 +0000,
+Fuad Tabba <fuad.tabba@linux.dev> wrote:
+> 
+> Hi Marc,
+> 
+> On Mon, 23 Nov 2026 19:24:57 +0000, Marc Zyngier <maz@kernel.org> wrote:
+> [...]
+> > diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
+> [...]
+> > @@ -5874,51 +5874,6 @@ static int kvm_vm_finalize_sys_regs(struct kvm *kvm)
+> [...]
+> > -                 * On GICv5 hardware that supports FEAT_GCIE_LEGACY we can run
+> > -                 * both GICv3- and GICv5-based guests. Therefore, we initially
+> > -                 * present both ID_AA64PFR0.GIC and ID_AA64PFR2.GCIE as IMP to
+> > -                 * reflect that userspace can create EITHER a vGICv3 or a
+> > -                 * vGICv5. This is an architecturally invalid combination, of
+> > -                 * course. Once an in-kernel GIC is created, the sysreg state is
+> > -                 * updated to reflect the actual, valid configuration.
+> 
+> nit: This comment is the only place that explains why, on a
+> FEAT_GCIE_LEGACY host, a VM's ID registers can show both GIC and GCIE
+> as IMP before the VM first runs. sanitise_id_aa64pfr0_el1() and
+> sanitise_id_aa64pfr2_el1() still set both at reset. Is it worth having
+> a short version of it next to the tables patch 2 adds?
 
-One nit: I'd place the definitions above (or below) the
-ARM64_S390_COMMON block, the generated s390 header shouldn't need them.
-Otherwise it greatly improves clarity.
+I don't think that's the correct place. If anything, such comment
+should be in the reset code, not in the sanitisation code, which
+actually generates the architecturally compliant view.
 
-Reviewed-by: Catalin Marinas <catalin.marinas@arm.com>
+> 
+> [...]
+> > diff --git a/arch/arm64/kvm/vgic/vgic-init.c b/arch/arm64/kvm/vgic/vgic-init.c
+> [...]
+> > @@ -180,7 +180,7 @@ int kvm_vgic_create(struct kvm *kvm, u32 type)
+> >           * We've now created the GIC. Update the system register state
+> >           * to accurately reflect what we've created.
+> >           */
+> > -        kvm_vgic_finalize_idregs(kvm);
+> > +        kvm_idregs_enforce_dependencies(kvm);
+> 
+> This now also applies the S1P[IO]E dependencies when the vGIC is
+> created, at a point where userspace can still write the ID registers.
+> Was that intended? If this clears S1PIE or S1POE, the first KVM_RUN
+> doesn't restore it, so the final ID_AA64MMFR3_EL1 can change with the
+> order in which userspace writes the ID registers and creates the vGIC.
+> If that's the intent, should it say so in the commit message?
+
+The commit message has no influence on the behaviour of the kernel.
+However, I want to know whether this change is an acceptable behaviour
+or not *from an ABI perspective*. We have several options:
+
+(1) delay all idreg enforcement to the same (late) point
+
+(2) keep things as currently done, meaning that the GIC fields are
+    special and sanitised at a different time
+
+(3) say that idregs can change at any point if you change the
+    configuration of the system, such as creating a GIC
+
+I'd be tempted to go with either (1) or (3). (2) feels like a total
+bodge.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
