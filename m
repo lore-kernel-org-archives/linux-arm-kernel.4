@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E19E606A332
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FD5B606A333
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RxBxmCs5;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=tCVuD/1C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IQ5As6nt;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=s5wVnR7f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qECIJQpjfuH1ZjZJ/r1/HeSCxlIyRoe7mrKRIpv1eYs=; b=RxBxmCs5B/wn+M
-	1ZJKoIB2Z34XwaSiw+HYadG69her7u29xnlZvzdToy6sFQIYKvlf9wszBhH+pBV2TMnJlHLXjdFjr
-	K/pAP/w+LvMfKwAPzFtwq3hpM1Tf4Yvmkwt/BXAJi6y58YiWiyu9JUVibEU9niZZvZNBFs6teSUgX
-	bAEceYRwDYs6kitCpGEdCYDFdavShu5xvnQnSjb9eoWHnoFZ2vo+6563bEWlmoYzouCaPNurqES2q
-	U5vyDGWVSL6Axdzn9pL2a1tctN2kzCJz7ivHMgPb8wjkP2Y8RhS0nDuFgvevchCIsnlFncyPNwuiY
-	G34F9HhhqnU5VemStVVA==;
+	List-Owner; bh=IOJIIhaShdUyDKLEcCFlOIvxSocbbsFDchLBsqemX2E=; b=IQ5As6ntK5XFNk
+	qRiySO/JJatpY+8lgWnxB3+f854C4OYEuCf/jyGezjUieyFFUKYUjmHCcNWmorwDNlOoHkNg+OYYo
+	RhHU5jCXbGcZVZsYNMJCe9pesqBitMarzg2gbdFk2qqwC2BmbGFeeR2rQr3Emz6q6e+DHsOlcQ3K0
+	4wSNixC24Wt008S6MmG1VsRTo1kNCQYZADkIXNKhI5f+cvu+IvrLE+23vx11wnH/IRttKB80wgQsD
+	9+ZPK5uVUczlZ/1eSzlYBlbHWkxKhZkEzmtpVHgPkJKrisMymwwB1Wmf6OHPepQ9k9dD06sLKmGs0
+	T+azIAXF5OZX7cqkHSdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwXd-00000007dSL-3Ez6;
-	Tue, 24 Nov 2026 19:51:01 +0000
+	id 1xVwXh-00000007dWQ-0fRb;
+	Tue, 24 Nov 2026 19:51:05 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwXH-00000007dEp-1cFC
+	id 1xVwXY-00000007dPF-2Gpm
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:50:40 +0000
+	Tue, 24 Nov 2026 19:50:57 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E6AA497;
-	Tue, 24 Nov 2026 11:50:35 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6FA3516F3;
+	Tue, 24 Nov 2026 11:50:52 -0800 (PST)
 Received: from pluto.guest.local (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E6C13F763;
-	Tue, 24 Nov 2026 11:50:34 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 675AA3F763;
+	Tue, 24 Nov 2026 11:50:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795549838; bh=/SQydrJmcQbyexqcY63QR4hJ8qgiHzXl7qLMR3pL2Cc=;
+	t=1795549855; bh=e/eQMSn2TP30mbgdyFE36Keivnq7iTjRkPX+crUC6Uo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=tCVuD/1C+E0CEtwigo3CyzjpCkIzggnVs5gvep3MWRqrwK2OdplPwT2sYtQapVgeO
-	 p94PVIN+TUKywlpIly1pyOtQAgv9B+UCBkpIOWk8jCz0AEPJyBkG8iCv0eeGCMAIWc
-	 U5p5HpFOH8dMgsHZ1tBeg+jUgvxD8MsDn3NTlrgI=
+	b=s5wVnR7fP9UJmx0Olmo4gmOOpFxfHRAoDqTPMNeb+rMmHv6YyvWdnn63BUJ5UkEMp
+	 hybV+qc5Q+wm6YksS8SsULP899pGwBWcZLdQNkujFXWY+3bJf4yKq4IRTA2DvkI/vv
+	 f2P5jt7Ua1Ab5CWuH1pt5y91ppydeqJE6N+H09zE=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -65,9 +65,9 @@ Cc: sudeep.holla@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
 	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v17 10/34] include: trace: Add Telemetry trace events
-Date: Tue, 24 Nov 2026 19:48:16 +0000
-Message-ID: <20261124194841.1147072-11-cristian.marussi@arm.com>
+Subject: [PATCH v17 14/34] firmware: arm_scmi: Add Telemetry SHMTI areas enumeration
+Date: Tue, 24 Nov 2026 19:48:20 +0000
+Message-ID: <20261124194841.1147072-15-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261124194841.1147072-1-cristian.marussi@arm.com>
 References: <20261124194841.1147072-1-cristian.marussi@arm.com>
@@ -75,9 +75,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_115039_470899_5693BF02 
-X-CRM114-Status: UNSURE (   8.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261124_115056_657942_7CE33D21 
+X-CRM114-Status: GOOD (  20.92  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,76 +96,503 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add custom traces to report Telemetry accesses and collection events.
+Add Telemetry support to enumerate SHMTI areas.
 
-Reviewed-by: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
-v12 --> v13
- - better commit message
- - use const char where required
-v7 --> v8
- - use proper FTRACE helpers for variable strings
+v16 --> v17
+ - use %pa for phys_addr
+ - skip LIST_SHMTI with num_shmti = 0
+ - fix %pa and spell USPECIFIED
+v15 --> v16
+ - fixed missing \n in dev_err
+v14 --> v15
+ - fix prologue/epilogue endianity fields
+ - rework SHMTI initialization and allocation
+ - add snapshot suppport data structures
+ - added alignment checks on SHMTII length size
+ - fixed error string formatting
+ - warn if less than expected SHMTIs are enumerated
+ - improve memory area sanity checks
+v13 --> v14
+ - splitted out of the old Basic Telemetry patch, contains the
+   SHMTI areas enumeration routines
 ---
- include/trace/events/scmi.h | 45 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ drivers/firmware/arm_scmi/telemetry.c | 312 ++++++++++++++++++++++++++
+ include/linux/scmi_protocol.h         |  59 +++++
+ 2 files changed, 371 insertions(+)
 
-diff --git a/include/trace/events/scmi.h b/include/trace/events/scmi.h
-index b421c253df00..ae63a13fd141 100644
---- a/include/trace/events/scmi.h
-+++ b/include/trace/events/scmi.h
-@@ -178,6 +178,51 @@ TRACE_EVENT(scmi_msg_dump,
- 		  __get_str(tag), __entry->msg_id, __entry->seq, __entry->status,
- 		__print_hex_str(__get_dynamic_array(cmd), __entry->len))
- );
-+
-+TRACE_EVENT(scmi_tlm_access,
-+	TP_PROTO(u64 de_id, const char *tag, u64 startm, u64 endm),
-+	TP_ARGS(de_id, tag, startm, endm),
-+
-+	TP_STRUCT__entry(
-+		__field(u64, de_id)
-+		__string(tag, tag)
-+		__field(u64, startm)
-+		__field(u64, endm)
-+	),
-+
-+	TP_fast_assign(
-+		__entry->de_id = de_id;
-+		__assign_str(tag);
-+		__entry->startm = startm;
-+		__entry->endm = endm;
-+	),
-+
-+	TP_printk("[%s] de_id=0x%llX - startm=%016llX endm=%016llX",
-+		  __get_str(tag), __entry->de_id, __entry->startm, __entry->endm)
-+);
-+
-+TRACE_EVENT(scmi_tlm_collect,
-+	TP_PROTO(u64 ts, u64 de_id, u64 value, const char *tag),
-+	TP_ARGS(ts, de_id, value, tag),
-+
-+	TP_STRUCT__entry(
-+		__field(u64, ts)
-+		__field(u64, de_id)
-+		__field(u64, value)
-+		__string(tag, tag)
-+	),
-+
-+	TP_fast_assign(
-+		__entry->ts = ts;
-+		__entry->de_id = de_id;
-+		__entry->value = value;
-+		__assign_str(tag);
-+	),
-+
-+	TP_printk("[%s] ts=%llu de_id=0x%04llX value=%016llu",
-+		   __get_str(tag), __entry->ts, __entry->de_id, __entry->value)
-+);
-+
- #endif /* _TRACE_SCMI_H */
+diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
+index 4ef4e44230d1..62e7970f64af 100644
+--- a/drivers/firmware/arm_scmi/telemetry.c
++++ b/drivers/firmware/arm_scmi/telemetry.c
+@@ -16,6 +16,7 @@
+ #include <linux/limits.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
++#include <linux/sizes.h>
+ #include <linux/slab.h>
+ #include <linux/sprintf.h>
+ #include <linux/string.h>
+@@ -56,6 +57,19 @@ struct scmi_msg_resp_telemetry_protocol_attributes {
+ 	__le32 default_blk_ts_rate;
+ };
  
- /* This part must be outside protection */
++struct scmi_shmti_desc {
++	__le32 id;
++	__le32 addr_low;
++	__le32 addr_high;
++	__le32 length;
++	__le32 flags;
++};
++
++struct scmi_msg_resp_telemetry_shmti_list {
++	__le32 num_shmti;
++	struct scmi_shmti_desc desc[];
++};
++
+ struct de_desc_fastchannel {
+ 	__le32 addr_low;
+ 	__le32 addr_high;
+@@ -107,6 +121,72 @@ struct scmi_msg_resp_telemetry_update_intervals {
+ 	__le32 intervals[];
+ };
+ 
++/* TDCF */
++
++#define _I(__a)		(ioread32((void __iomem *)(__a)))
++
++struct prlg {
++	__le32 sign_start;
++#define SIGNATURE_START	0x5442474E	/* TBGN */
++	__le32 match_start;
++	__le32 num_qwords;
++	__le32 hdr_meta_1;
++#define TDCF_REVISION_GET(x)	(le32_get_bits((x)->hdr_meta_1, GENMASK(7, 0)))
++};
++
++struct eplg {
++	__le32 match_end;
++	__le32 sign_end;
++#define SIGNATURE_END	0x54454E44	/* TEND */
++};
++
++#define TDCF_EPLG_SZ	(sizeof(struct eplg))
++
++struct tdcf {
++	struct prlg prlg;
++	unsigned char payld[];
++};
++
++#define SHMTI_MIN_SIZE	(sizeof(struct tdcf) + TDCF_EPLG_SZ)
++/* An arbitrary upper bound to avoid crazy allocations driven by buggy FW */
++#define SHMTI_MAX_SIZE	SZ_64K
++
++#define TDCF_START_SIGNATURE(x)	(_I(&((x)->prlg.sign_start)))
++#define TDCF_END_SIGNATURE(e)	(_I(&((e)->sign_end)))
++
++struct telemetry_shmti;
++
++struct shmti_snap {
++	struct telemetry_shmti *shmti;
++	u32 magic;
++	u8 base[] __aligned(8);
++};
++
++struct telemetry_shmti {
++	u32 flags;
++	void __iomem *base;
++	struct scmi_telemetry_shmti_info info;
++	/* Protect srcu operation */
++	struct mutex lock;
++	struct srcu_struct srcu;
++	struct shmti_snap *snaps[2];
++	struct shmti_snap __rcu	*cur;
++	/* Mutex to protect @xa_lines */
++	struct mutex lines_mtx;
++	struct xarray xa_lines;
++	#define PAYLD_HASH_BITS  4
++	struct mutex payld_locks[1 << PAYLD_HASH_BITS];
++};
++
++#define SHMTI_EPLG(s)						\
++	({							\
++		struct telemetry_shmti *_s = (s);		\
++		struct eplg __iomem *_eplg;			\
++								\
++		_eplg = _s->base + _s->info.len - TDCF_EPLG_SZ;	\
++		(_eplg);					\
++	})
++
+ #define IS_TDE_TSTAMP_TYPE(__t, __ttype)	((__t)->ts_type == (__ttype))
+ #define IS_TDE_TS_NONE(_t)	(IS_TDE_TSTAMP_TYPE((_t), TSTAMP_NONE))
+ #define IS_TDE_TS_LINE(_t)	(IS_TDE_TSTAMP_TYPE((_t), TSTAMP_LINE))
+@@ -124,6 +204,7 @@ struct telemetry_de {
+ 	enum timestamps ts_type;
+ 	bool enumerated;
+ 	void __iomem *base;
++	struct eplg __iomem *eplg;
+ 	u32 sid;
+ 	u32 offset;
+ 	/* NOTE THAT DE data_sz is registered in scmi_telemetry_de */
+@@ -142,6 +223,7 @@ struct telemetry_info {
+ 	unsigned int num_des_tstamp;
+ 	unsigned int default_blk_ts_rate;
+ 	const struct scmi_protocol_handle *ph;
++	struct telemetry_shmti *shmti;
+ 	struct telemetry_de *tdes;
+ 	struct xarray xa_des;
+ 	/* Mutex to protect access to @free_des */
+@@ -783,6 +865,211 @@ scmi_telemetry_enumerate_common_intervals(struct telemetry_info *ti)
+ 					ti->info.intervals);
+ }
+ 
++static int iter_shmti_update_state(struct scmi_iterator_state *st,
++				   const void *response, void *priv)
++{
++	const struct scmi_msg_resp_telemetry_shmti_list *r = response;
++
++	st->num_returned = le32_get_bits(r->num_shmti, GENMASK(15, 0));
++	st->num_remaining = le32_get_bits(r->num_shmti, GENMASK(31, 16));
++
++	if (st->rx_len < (sizeof(*r) + sizeof(r->desc[0]) * st->num_returned))
++		return -EINVAL;
++
++	return 0;
++}
++
++static inline int
++scmi_telemetry_shmti_validate(struct device *dev, struct telemetry_shmti *shmti)
++{
++	struct tdcf __iomem *tdcf = shmti->base;
++	u32 sign_start, sign_end;
++
++	sign_start = TDCF_START_SIGNATURE(tdcf);
++	sign_end = TDCF_END_SIGNATURE(SHMTI_EPLG(shmti));
++
++	if (sign_start != SIGNATURE_START || sign_end != SIGNATURE_END) {
++		dev_err(dev,
++			"BAD signature for SHMTI ID:%u @phys:%pa - START:0x%08X END:0x%08X\n",
++			shmti->info.sid, &shmti->info.phys, sign_start, sign_end);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static int iter_shmti_process_response(const struct scmi_protocol_handle *ph,
++				       const void *response,
++				       struct scmi_iterator_state *st,
++				       void *priv)
++{
++	const struct scmi_msg_resp_telemetry_shmti_list *r = response;
++	struct telemetry_info *ti = priv;
++	struct telemetry_shmti *shmti;
++	const struct scmi_shmti_desc *desc;
++	void __iomem *addr;
++	phys_addr_t phys_addr;
++	size_t len;
++	int ret;
++
++	desc = &r->desc[st->loop_idx];
++	shmti = &ti->shmti[st->desc_index + st->loop_idx];
++
++	shmti->info.sid = le32_to_cpu(desc->id);
++	shmti->flags = le32_to_cpu(desc->flags);
++
++	ret = scmi_telemetry_area_check(ph->dev, "SHMTI",
++					le32_to_cpu(desc->addr_low),
++					le32_to_cpu(desc->addr_high),
++					le32_to_cpu(desc->length),
++					&phys_addr, &len);
++	if (ret) {
++		dev_err(ph->dev, "Malformed SHMTI ID:%u. Abort.\n",
++			shmti->info.sid);
++		return ret;
++	}
++
++	if (len < SHMTI_MIN_SIZE || len > SHMTI_MAX_SIZE) {
++		dev_err(ph->dev,
++			FW_BUG "Invalid length for SHMTI ID:%u len:%zu. Abort.\n",
++			shmti->info.sid, len);
++		return -EINVAL;
++	}
++
++	/* SHMTI base phys_addr SHOULD be 64bit aligned by the SCMI spec */
++	if (!IS_ALIGNED(phys_addr, 8))
++		dev_warn(ph->dev,
++			 "SHMTI ID:%u is NOT 64bit aligned (paddr:%pa)\n",
++			 shmti->info.sid, &phys_addr);
++
++	addr = devm_ioremap(ph->dev, phys_addr, len);
++	if (!addr)
++		return -EADDRNOTAVAIL;
++
++	shmti->base = addr;
++	shmti->info.len = len;
++	shmti->info.phys = phys_addr;
++	shmti->info.offset = shmti->info.phys & ~PAGE_MASK;
++
++	ret = scmi_telemetry_shmti_validate(ph->dev, shmti);
++	if (ret)
++		return ret;
++
++	ti->num_shmti++;
++
++	return 0;
++}
++
++static int scmi_telemetry_shmti_list(const struct scmi_protocol_handle *ph,
++				     struct telemetry_info *ti)
++{
++	struct scmi_iterator_ops ops = {
++		.prepare_message = iter_tlm_prepare_message,
++		.update_state = iter_shmti_update_state,
++		.process_response = iter_shmti_process_response,
++	};
++	int num_shmti;
++	void *iter;
++	int ret;
++
++	if (!ti->num_shmti)
++		return 0;
++
++	/* Save and zero...calculate real number of returned */
++	num_shmti = ti->num_shmti;
++	ti->num_shmti = 0;
++	iter = ph->hops->iter_response_init(ph, &ops, num_shmti,
++					    TELEMETRY_LIST_SHMTI,
++					    sizeof(u32), ti);
++	if (IS_ERR(iter))
++		return PTR_ERR(iter);
++
++	ret = ph->hops->iter_response_run(iter);
++	if (ret)
++		return ret;
++
++	if (num_shmti != ti->num_shmti)
++		dev_warn(ph->dev,
++			 FW_BUG "SHMTI enumeration returned %u items, expected %u\n",
++			 ti->num_shmti, num_shmti);
++
++	return 0;
++}
++
++static void scmi_telemetry_shmti_cleanup(void *arg)
++{
++	struct telemetry_shmti *shmti = arg;
++
++	cleanup_srcu_struct(&shmti->srcu);
++
++	kvfree(shmti->snaps[0]);
++	kvfree(shmti->snaps[1]);
++
++	xa_destroy(&shmti->xa_lines);
++}
++
++static int scmi_telemetry_shmti_init(struct device *dev,
++				     struct telemetry_shmti *shmti)
++{
++	int ret;
++
++	struct shmti_snap *s0 __free(kvfree) =
++		kvzalloc_flex(*s0, base, shmti->info.len);
++	if (!s0)
++		return -ENOMEM;
++
++	struct shmti_snap *s1 __free(kvfree) =
++		kvzalloc_flex(*s1, base, shmti->info.len);
++	if (!s1)
++		return -ENOMEM;
++
++	ret = init_srcu_struct(&shmti->srcu);
++	if (ret)
++		return ret;
++
++	for (int i = 0; i < 1 << PAYLD_HASH_BITS; i++)
++		mutex_init(&shmti->payld_locks[i]);
++
++	mutex_init(&shmti->lock);
++	RCU_INIT_POINTER(shmti->cur, NULL);
++
++	mutex_init(&shmti->lines_mtx);
++	xa_init(&shmti->xa_lines);
++
++	s0->shmti = shmti;
++	shmti->snaps[0] = no_free_ptr(s0);
++
++	s1->shmti = shmti;
++	shmti->snaps[1] = no_free_ptr(s1);
++
++	return devm_add_action_or_reset(dev, scmi_telemetry_shmti_cleanup, shmti);
++}
++
++static int scmi_telemetry_enumerate_shmti(struct telemetry_info *ti)
++{
++	const struct scmi_protocol_handle *ph = ti->ph;
++	int ret;
++
++	ret = scmi_telemetry_shmti_list(ph, ti);
++	if (ret) {
++		dev_err(ph->dev, "Cannot get SHMTI list descriptors\n");
++		return ret;
++	}
++
++	for (int i = 0; i < ti->num_shmti; i++) {
++		ret = scmi_telemetry_shmti_init(ph->dev, &ti->shmti[i]);
++		if (ret)
++			return ret;
++
++		ti->info.shmtis[i] = &ti->shmti[i].info;
++	}
++
++	/* Expose the fully initialized SHMTI infos */
++	smp_store_release(&ti->info.base.num_shmtis, ti->num_shmti);
++
++	return 0;
++}
++
+ static const struct scmi_telemetry_info *
+ scmi_telemetry_info_get(const struct scmi_protocol_handle *ph)
+ {
+@@ -836,7 +1123,20 @@ static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
+  * Return: 0 on Success, errno otherwise
+  */
+ static int scmi_telemetry_resources_alloc(struct telemetry_info *ti)
++
+ {
++	/* Array to hold SHMTIs descriptors */
++	struct telemetry_shmti *shmtis __free(kfree) =
++		kzalloc_objs(*shmtis, ti->num_shmti);
++	if (!shmtis)
++		return -ENOMEM;
++
++	/* Array of initialized SHMTIs references */
++	struct scmi_telemetry_shmti_info **shmtis_info __free(kfree) =
++		kzalloc_objs(*shmtis_info, ti->num_shmti);
++	if (!shmtis_info)
++		return -ENOMEM;
++
+ 	/* Array to hold pointers to discovered DEs */
+ 	struct scmi_telemetry_de **des __free(kfree) =
+ 		kzalloc_objs(*des, ti->info.base.num_des);
+@@ -871,6 +1171,9 @@ static int scmi_telemetry_resources_alloc(struct telemetry_info *ti)
+ 
+ 	INIT_LIST_HEAD(&ti->fcs_des);
+ 
++	ti->shmti = no_free_ptr(shmtis);
++	ti->info.shmtis = no_free_ptr(shmtis_info);
++
+ 	ti->tdes = no_free_ptr(tdes);
+ 	xa_init(&ti->xa_des);
+ 
+@@ -902,6 +1205,9 @@ static void scmi_telemetry_resources_free(struct telemetry_info *ti)
+ 	scmi_telemetry_tdes_cleanup(ti);
+ 	xa_destroy(&ti->xa_des);
+ 
++	kfree(ti->info.shmtis);
++	kfree(ti->shmti);
++
+ 	kfree(ti->tdes);
+ 
+ 	kfree(rinfo->des);
+@@ -1050,6 +1356,12 @@ static int scmi_telemetry_protocol_init(const struct scmi_protocol_handle *ph)
+ 		return ret;
+ 	}
+ 
++	ret = scmi_telemetry_enumerate_shmti(ti);
++	if (ret) {
++		dev_err(dev, FW_BUG "Cannot enumerate SHMTIs. Abort.\n");
++		return ret;
++	}
++
+ 	ti->info.base.version = ph->version;
+ 
+ 	return ph->set_priv(ph, ti);
+diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
+index a373b782f05e..4a765a529ebf 100644
+--- a/include/linux/scmi_protocol.h
++++ b/include/linux/scmi_protocol.h
+@@ -830,6 +830,57 @@ struct scmi_pinctrl_proto_ops {
+ 	int (*pin_free)(const struct scmi_protocol_handle *ph, u32 pin);
+ };
+ 
++enum scmi_telemetry_de_type {
++	SCMI_TLM_DE_TYPE_UNSPECIFIED,
++	SCMI_TLM_DE_TYPE_ACCUMUL_IDLE_RESIDENCY,
++	SCMI_TLM_DE_TYPE_ACCUMUL_IDLE_COUNTS,
++	SCMI_TLM_DE_TYPE_ACCUMUL_OTHERS,
++	SCMI_TLM_DE_TYPE_INSTA_IDLE_STATE,
++	SCMI_TLM_DE_TYPE_INSTA_OTHERS,
++	SCMI_TLM_DE_TYPE_AVERAGE,
++	SCMI_TLM_DE_TYPE_STATUS,
++	SCMI_TLM_DE_TYPE_RESERVED_START,
++	SCMI_TLM_DE_TYPE_RESERVED_END = 0xef,
++	SCMI_TLM_DE_TYPE_OEM_START = 0xf0,
++	SCMI_TLM_DE_TYPE_OEM_END = 0xff,
++};
++
++enum scmi_telemetry_compo_type {
++	SCMI_TLM_COMPO_TYPE_UNSPECIFIED,
++	SCMI_TLM_COMPO_TYPE_CPU,
++	SCMI_TLM_COMPO_TYPE_CLUSTER,
++	SCMI_TLM_COMPO_TYPE_GPU,
++	SCMI_TLM_COMPO_TYPE_NPU,
++	SCMI_TLM_COMPO_TYPE_INTERCONNECT,
++	SCMI_TLM_COMPO_TYPE_MEM_CNTRL,
++	SCMI_TLM_COMPO_TYPE_L1_CACHE,
++	SCMI_TLM_COMPO_TYPE_L2_CACHE,
++	SCMI_TLM_COMPO_TYPE_L3_CACHE,
++	SCMI_TLM_COMPO_TYPE_LL_CACHE,
++	SCMI_TLM_COMPO_TYPE_SYS_CACHE,
++	SCMI_TLM_COMPO_TYPE_DISP_CNTRL,
++	SCMI_TLM_COMPO_TYPE_IPU,
++	SCMI_TLM_COMPO_TYPE_CHIPLET,
++	SCMI_TLM_COMPO_TYPE_PACKAGE,
++	SCMI_TLM_COMPO_TYPE_SOC,
++	SCMI_TLM_COMPO_TYPE_SYSTEM,
++	SCMI_TLM_COMPO_TYPE_SMCU,
++	SCMI_TLM_COMPO_TYPE_ACCEL,
++	SCMI_TLM_COMPO_TYPE_BATTERY,
++	SCMI_TLM_COMPO_TYPE_CHARGER,
++	SCMI_TLM_COMPO_TYPE_PMIC,
++	SCMI_TLM_COMPO_TYPE_BOARD,
++	SCMI_TLM_COMPO_TYPE_MEMORY,
++	SCMI_TLM_COMPO_TYPE_PERIPH,
++	SCMI_TLM_COMPO_TYPE_PERIPH_SUBC,
++	SCMI_TLM_COMPO_TYPE_LID,
++	SCMI_TLM_COMPO_TYPE_DISPLAY,
++	SCMI_TLM_COMPO_TYPE_RESERVED_START = 0x1d,
++	SCMI_TLM_COMPO_TYPE_RESERVED_END = 0xdf,
++	SCMI_TLM_COMPO_TYPE_OEM_START = 0xe0,
++	SCMI_TLM_COMPO_TYPE_OEM_END = 0xff,
++};
++
+ #define	SCMI_TLM_GET_UPDATE_INTERVAL_SECS(x)	(FIELD_GET(GENMASK(20, 5), (x)))
+ #define SCMI_TLM_GET_UPDATE_INTERVAL_EXP(x)	(sign_extend32((x), 4))
+ 
+@@ -889,6 +940,13 @@ struct scmi_telemetry_base_info {
+ 	unsigned int num_shmtis;
+ };
+ 
++struct scmi_telemetry_shmti_info {
++	unsigned int sid;
++	unsigned int len;
++	unsigned long offset;
++	phys_addr_t phys;
++};
++
+ struct scmi_telemetry_info {
+ 	bool single_read_support;
+ 	bool continuous_update_support;
+@@ -898,6 +956,7 @@ struct scmi_telemetry_info {
+ 	struct scmi_telemetry_base_info base;
+ 	unsigned int active_update_interval;
+ 	struct scmi_telemetry_intervals *intervals;
++	struct scmi_telemetry_shmti_info **shmtis;
+ };
+ 
+ /**
 -- 
 2.54.0
 
