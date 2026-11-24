@@ -2,79 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF6B606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A1A606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:50:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PT66otCK;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=KiSU1s0E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AIHk7vGM;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=Q1lGulrP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3o5GKOHC/f7YDGjWodZFo/bOjUuvywEOFfsWjvIURik=; b=PT66otCKZau2hg
-	Q9yLg+m72ZyiTfTbIXqgyEHkLTGs/I0eCLhC/ehCOcFTrIf99TuUH/R7lUkssNNmhgqM8KOCLCK+c
-	kF16jthBKZXdolB4noYSN952cFrwX0lQGz11ToYxa1HvijcslJLPYJm5oa9ge9df2+X5MNayixtoT
-	vSYVSNrU8XBRLSE2zST50W+nBZg+UjDfDHVWhZClUIx0dAQXFJJyeqRmw4tHo9aZFygOCTx4nDarj
-	3LcetVgN3n+8/4+plOacwnLo2qSjn3B36WdZqR0p6v+MhJ2DSgCCqpzcCFO6+kXPY++M6V57ZebSn
-	iP81tdGo3bastdLh3J/A==;
+	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8FUjrlp8DFnqvbeuktq9OdqLZ8OjRBLAv8DgXJswiD8=; b=AIHk7vGMYJuPhC+rjeHiiHgt6T
+	+dew8mZOlChg4z7RPUKg6llFTaTO7XjD96Lpk5PSoeBE8mkULDNKfODpyOO5u7mUI6ddw7dsMR4sI
+	L2PCmTZ845QRcyuqe0Q/WdHsbTud7c3wLtR4MKZ59GWwq4ga7CtoLF3cv7zxlQdd6Tiez26ZRqtl0
+	4grVbXPqdDkuL3+XEIALZtYCWkZP1FMIdyjEPXqAZX4rkT335ofi3lXKp4acOS1iNR9XxEcTcgEM5
+	770STN07UfBKEYsD5bkbTywyDy5VNJcUrT96Mp2B9ZGhKj2kezL05XkdaUYcPYWvOMwZ0DEarxK3w
+	CPdxeJhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm8Y-00000005whH-0nQY;
-	Tue, 24 Nov 2026 08:44:26 +0000
-Received: from mail-m3274.qiye.163.com ([220.197.32.74])
+	id 1xVmEa-00000005xRR-4Bku;
+	Tue, 24 Nov 2026 08:50:41 +0000
+Received: from mout.web.de ([212.227.17.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm8P-00000005wdl-2tF7;
-	Tue, 24 Nov 2026 08:44:21 +0000
-Received: from [127.0.0.1] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 55cc84df9;
-	Tue, 24 Nov 2026 16:44:12 +0800 (GMT+08:00)
-Message-ID: <a797b2da-ea60-4b81-8fbf-e027afc89cc6@rock-chips.com>
-Date: Tue, 24 Nov 2026 16:44:08 +0800
+	id 1xVmEX-00000005xQb-3PyT
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 08:50:39 +0000
+DKIM2-Signature: i=1; m=1; t=1795510234;
+ mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=web.de;
+ s=s29768273:rsa-sha256:HSRD44kbSJuv2rHO+p9eqybHlfVN
+   x46I7M0JWtnd7PEKoGEyQE8+Gfj68+pbvckHj/eujSbrj1UqEDuiwcNGc1fbQwuiRxatIIlTl49
+   E+Pbje4mrUus3+lpHc/4M/ACFQL15ush1J9lHrktFdDdjhhWFz8vA/yk2WA2k3l67x3BIDnSxA4
+   OzzQSlHeDxtrx1WottNnzX/7SFVna4yrTl/VWBgtNnPinio0KQiuMVkRuBz4Tya1WSv4l2hNSi5
+   +YHyHfD/PMcoHFicd5Mfogxp+aZ3YERzvBr3DgwG1HFNQkk1AYjoumdDGwbn1ON/tRQG+aGNFYS
+   ig4wIqNQ+dHCPQ==;
+Message-Instance: m=1;
+ h=sha256:
+   nXGs1zQsJJwgkdled81yj9qqtmd5cno+mSGErXddBqY=:
+   xGcNkp1X4+UKP+X1hw4V/NvPLrgZ/zlkILAoya5XiMc=,
+  sha512:
+   fx5udn1NW2Man9Q5VLL6McAlheU9voLykmgV3eLQplc2aMdfu3R0htxqu+onmsa0DgpGQXRq4N+Y/UbHsVd5eQ==:
+   O8Hs5/G8xTiFKeuO2du6ttZFdf8wgOS1wEMK1QNhPP7ClwAorx4ULRmCn0b9F21HGfPyNB5VfMnIV0uoPzP/wg==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1795510215; x=1796115015; i=markus.elfring@web.de;
+	bh=8FUjrlp8DFnqvbeuktq9OdqLZ8OjRBLAv8DgXJswiD8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
+	 Subject:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=Q1lGulrPo5ot5LRDXpCtTLR2YiAxN81I7ykY/YvlJVuuhElwvD9LavU7rc+fzXHO
+	 UDKb0D5W8K8dFzqOKBV0quYqfOJfNYMHf/Y3gHb7FtOeePisyoKXcTIXiZK+qs0mz
+	 L71IlLNtc5c7nWIVuhhx5F+2EPtwLRoTDgPHYqpUbFA0ESXOuFF2GAXlJnZKW2etg
+	 wZv0MZWigCaDrdJcEm1EdnKhpszyb9ApH+lMNJxxyVWFj652wKnWikF646Y1wzuxj
+	 516ww2+vFr0tNHjTmtb7ebmmuuDl64ofrVsfHiW62SY/MipPg26+cUcnHijU2QKv3
+	 90v+72PNruhbaO4S5Q==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1Ma0Tu-1xzSAk2caq-00WfUs; Tue, 24
+ Nov 2026 09:50:14 +0100
+Message-ID: <de6c1040-c4d1-4703-9932-b3b668801c72@web.de>
+Date: Tue, 24 Nov 2026 09:50:11 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] drm/bridge: add TH1520 DesignWare MIPI DSI host
- controller
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
- <andyshrk@163.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-riscv@lists.infradead.org, Han Gao <gaohan@iscas.ac.cn>
-References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
- <20261124-th1520-dw-mipi-dsi-v3-2-ffcf2d87971b@iscas.ac.cn>
- <af27260f-1911-47bb-8fe2-8eaa8bec31b0@rock-chips.com>
- <561b5dc1b3a87ebc78f2357d253df4676395fb10.camel@iscas.ac.cn>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <561b5dc1b3a87ebc78f2357d253df4676395fb10.camel@iscas.ac.cn>
+To: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Sebastian Reichel <sre@kernel.org>
+Content-Language: en-GB, de-DE
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+ Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] power: reset: at91: Use devm_clk_get_enabled() in three probe
+ functions
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa20cba18a103a7kunm6bf4055ecd9ecd
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGUtIVh9MHxkaThgYS0kdTVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUJCSU
-	5LVUpLS1VKQktCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=KiSU1s0EZ9KLCJQu6nw9dDe2DvvbXGp7ViKi5ZWPxWjVQUJlHixIgT9LEmYWiGVNpxlrSWk74CK2wqbjjs+phiZFCZSSZSnsmbAexYguA/zthzViEwImPghq/k0S+UitYLfLGWlnoiUaoQM7mKFEbTDawxKBpoaUSpJ/UyOYwYM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=3o5GKOHC/f7YDGjWodZFo/bOjUuvywEOFfsWjvIURik=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:8jfZFG8Qt71bmrU3G0lLnAGH8HQ2x4GTqqjfWrY4amw+KI3OIXE
+ 4uM23s8/9J6jlSRqPa6vjU0I9q/gAe5JmeP9gxBjD74l5TYAIK2pvdvMMz++QTjE2BKYET6
+ hHG8mZ6uZVh1zhoQyjURLZDG8TulFQMn/n9m0TRMzvd4r+0jLAAu7bbdg3She2rcJIah8Ct
+ eyPLyfLtKTfF2aYnc6VHA==
+UI-OutboundReport: notjunk:1;M01:P0:5qpJgtpu8Kw=;Eaaog7QxJmjVnGmhnhhUZkGjlNX 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 X4rKBBIlSmFx5SSYamiUqNeWJpw2cA=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_004419_668541_EFD9853B 
-X-CRM114-Status: GOOD (  15.30  )
+X-CRM114-CacheID: sfid-20261124_005038_227343_8CB3CF7F 
+X-CRM114-Status: GOOD (  12.17  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,360 +104,223 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Icenowy,
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Tue, 24 Nov 2026 09:23:44 +0100
 
-On 11/24/2026 4:34 PM, Icenowy Zheng wrote:
-> 在 2026-11-24二的 16:29 +0800，Chaoyi Chen写道：
->> Hi Icenowy,
->>
->> On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
->>> The T-Head TH1520 SoC contains a Synopsys DesignWare MIPI DSI host
->>> controller with an internal DesignWare MIPI D-PHY.
->>>
->>> Add a glue driver configuring clocks and PHY parameters for it.
->>>
->>> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
->>> ---
->>>  drivers/gpu/drm/bridge/Kconfig              |  12 +
->>>  drivers/gpu/drm/bridge/Makefile             |   1 +
->>>  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c | 570 ++++++++++++++++++++++++++++
->>>  3 files changed, 583 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
->>> index c7da6b02d7b6b..f8987e8946fbb 100644
->>> --- a/drivers/gpu/drm/bridge/Kconfig
->>> +++ b/drivers/gpu/drm/bridge/Kconfig
->>> @@ -372,6 +372,18 @@ config DRM_THEAD_TH1520_DW_HDMI
->>>  	  Choose this to enable support for the internal HDMI bridge found
->>>  	  on the T-Head TH1520 SoC.
->>>  
->>> +config DRM_THEAD_TH1520_DW_MIPI_DSI
->>> +	tristate "T-Head TH1520 DesignWare MIPI DSI bridge"
->>> +	depends on OF
->>> +	depends on COMMON_CLK
->>> +	depends on ARCH_THEAD || COMPILE_TEST
->>> +	select DRM_DW_MIPI_DSI
->>> +	select GENERIC_PHY_MIPI_DPHY
->>> +	select MFD_SYSCON
->>> +	help
->>> +	  Choose this to enable support for the internal MIPI DSI bridge
->>> +	  found on the T-Head TH1520 SoC.
->>> +
->>>  config DRM_TOSHIBA_TC358762
->>>  	tristate "TC358762 DSI/DPI bridge"
->>>  	depends on OF
->>> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
->>> index 15cc821d85b7e..5af871ba5ce77 100644
->>> --- a/drivers/gpu/drm/bridge/Makefile
->>> +++ b/drivers/gpu/drm/bridge/Makefile
->>> @@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_SII9234) += sii9234.o
->>>  obj-$(CONFIG_DRM_SIMPLE_BRIDGE) += simple-bridge.o
->>>  obj-$(CONFIG_DRM_SOLOMON_SSD2825) += ssd2825.o
->>>  obj-$(CONFIG_DRM_THEAD_TH1520_DW_HDMI) += th1520-dw-hdmi.o
->>> +obj-$(CONFIG_DRM_THEAD_TH1520_DW_MIPI_DSI) += th1520-dw-mipi-dsi.o
->>>  obj-$(CONFIG_DRM_THINE_THC63LVD1024) += thc63lvd1024.o
->>>  obj-$(CONFIG_DRM_TOSHIBA_TC358762) += tc358762.o
->>>  obj-$(CONFIG_DRM_TOSHIBA_TC358764) += tc358764.o
->>> diff --git a/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
->>> new file mode 100644
->>> index 0000000000000..8e866b70aec88
->>> --- /dev/null
->>> +++ b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
->>> @@ -0,0 +1,570 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
->>> + *
->>> + * Author:
->>> + *   Icenowy Zheng <zhengxingda@iscas.ac.cn>
->>> + *
->>> + * Based on dw_mipi_dsi-stm.c, which is:
->>> + *   Copyright (C) STMicroelectronics SA 2017
->>> + *
->>> + * Based on dw-mipi-dsi-rockchip.c, which is:
->>> + *   Copyright (C) Rockchip Electronics Co., Ltd.
->>> + *
->>> + * Based on vendor kernel phy-dw-mipi-dphy.c, which is:
->>> + *   Copyright (C) Alibaba Group Holding Limited.
->>> + */
->>> +
->>> +#include <linux/bitfield.h>
->>> +#include <linux/clk.h>
->>> +#include <linux/kernel.h>
->>> +#include <linux/mfd/syscon.h>
->>> +#include <linux/module.h>
->>> +#include <linux/phy/phy.h>
->>> +#include <linux/phy/phy-mipi-dphy.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/regmap.h>
->>> +#include <linux/regulator/consumer.h>
->>> +
->>> +#include <video/mipi_display.h>
->>> +
->>> +#include <drm/bridge/dw_mipi_dsi.h>
->>> +#include <drm/drm_mipi_dsi.h>
->>> +
->>> +/* DSI controller registers for DPHY access */
->>> +
->>> +#define DSI_PHY_TST_CTRL0		0xb4
->>> +#define PHY_TESTCLK			BIT(1)
->>> +#define PHY_UNTESTCLK			0
->>> +#define PHY_TESTCLR			BIT(0)
->>> +#define PHY_UNTESTCLR			0
->>> +
->>> +#define DSI_PHY_TST_CTRL1		0xb8
->>> +#define PHY_TESTEN			BIT(16)
->>> +#define PHY_UNTESTEN			0
->>> +#define PHY_TESTDOUT(n)			(((n) & 0xff) << 8)
->>> +#define PHY_TESTDIN(n)			(((n) & 0xff) << 0)
->>> +
->>> +/* DPHY registers */
->>> +
->>> +#define PLL_DELAY_LP_TX_START_LP11	0x02
->>> +#define TXDINDLYTIME_9_2		GENMASK(7,  0)
->>> +
->>> +#define PLL_FSM_CNTRL			0x03
->>> +
->>> +#define PLL_PROP_CHARGE_PUMP_CTRL	0x0e
->>> +#define PLL_PROP_CNTRL			GENMASK(5,  0)
->>> +
->>> +#define PLL_INT_CHARGE_PUMP_CTRL	0x0f
->>> +#define PLL_INT_CNTRL			GENMASK(5,  0)
->>> +
->>> +#define PLL_VCO_CTRL			0x12
->>> +#define PLL_VCO_CNTRL_OVR_EN		BIT(6)
->>> +#define PLL_VCO_CNTRL_OVR		GENMASK(5,  0)
->>> +
->>> +#define PLL_GMP_CTRL_DIGITAL_TEST	0x13
->>> +#define PLL_TESTLOCK			BIT(7)
->>> +#define PLL_GMP_CNTRL			GENMASK(5,  4)
->>> +#define TSTPLLDIG			GENMASK(3,  1)
->>> +#define TSTPLLDIG_LOCK			(0x0 << 1)
->>> +#define TSTPLLDIG_REFCLK		(0x1 << 1)
->>> +#define TSTPLLDIG_FBCLK			(0x2 << 1)
->>> +#define TSTPLLDIG_INT_CLKIN		(0x3 << 1)
->>> +#define TSTPLLDIG_LOCK_FROM_DETECTOR	(0x4 << 1)
->>> +#define TSTPLLDIG_OUTPUT		(0x5 << 1)
->>> +#define TSTPLLDIG_BUF_VCOCLK		(0x6 << 1)
->>> +#define TSTPLLDIG_UPDATEPLL		(0x7 << 1)
->>> +
->>> +#define PLL_N_DIV_FSM_SIG		0x17
->>> +#define PLL_N_OVR			GENMASK(3,  0)
->>> +
->>> +#define PLL_M_DIV			0x18
->>> +#define PLL_M_OVR_4_0			GENMASK(4,  0)
->>> +#define PLL_M_OVR_9_5			GENMASK(4,  0)
->>> +
->>> +#define PLL_N_AND_M_DIV_CTRL		0x19
->>> +#define PLL_M_OVR_EN			BIT(5)
->>> +#define PLL_N_OVR_EN			BIT(4)
->>> +
->>> +#define PLL_CHARGE_PUMP_BIAS_CTRL	0x1c
->>> +#define PLL_CPBIAS_CNTRL		GENMASK(6,  0)
->>> +
->>> +#define PLL_ANALOG_PROGRAM_CONTROL	0x1f
->>> +#define PLL_MPLL_PROG_5_0		GENMASK(5,  0)
->>> +#define PLL_MPLL_PROG_11_6		GENMASK(5,  0)
->>> +#define PLL_MPLL_PROG_16_12		GENMASK(4,  0)
->>> +
->>> +#define HS_FREQ_RANGE_OF_OPERATION	0x44
->>> +#define HSFREQRANGE_OVR_EN		BIT(7)
->>> +#define HSFREQRANGE_OVR			GENMASK(6,  0)
->>> +#define HSFREQRANGE			HSFREQRANGE_OVR
->>> +
->>> +#define PG_LP_BIAS_LANE0		0x4a
->>> +#define PRG_ON_LANE0			BIT(6)
->>> +
->>> +#define SR_FSM_OVR_CNTRL		0xa0
->>> +#define SR_DDL_LOOP_CONF		0xa3
->>> +
->>> +/* syscon registers */
->>> +
->>> +#define MIPIDSI0_SYSREG			0x8
->>> +#define MIPIDSI1_SYSREG			0xc
->>> +#define MIPIDSI_HSFREQRANGE		GENMASK(9,  3)
->>> +#define MIPIDSI_CFGCLKFREQRANGE		GENMASK(15, 10)
->>> +#define MIPIDSI_CFGCLKFREQRANGE_DEF	(0x1c << 10)
->>> +
->>> +struct pll_hsfreqrange {
->>> +	unsigned int max_mbps;
->>> +	u8 hsfreqrange;
->>> +};
->>> +
->>> +static const struct pll_hsfreqrange hsfreqrange_table[] = {
->>> +	{ 80,  0x00 },
->>> +	{ 90,  0x10 },
->>> +	{ 100, 0x20 },
->>> +	{ 110, 0x30 },
->>> +	{ 120, 0x01 },
->>> +	{ 130, 0x11 },
->>> +	{ 140, 0x21 },
->>> +	{ 150, 0x31 },
->>> +	{ 160, 0x02 },
->>> +	{ 170, 0x12 },
->>> +	{ 180, 0x22 },
->>> +	{ 190, 0x32 },
->>> +	{ 205, 0x03 },
->>> +	{ 220, 0x13 },
->>> +	{ 235, 0x23 },
->>> +	{ 250, 0x33 },
->>> +	{ 275, 0x04 },
->>> +	{ 300, 0x14 },
->>> +	{ 325, 0x25 },
->>> +	{ 350, 0x35 },
->>> +	{ 400, 0x05 },
->>> +	{ 450, 0x16 },
->>> +	{ 500, 0x26 },
->>> +	{ 550, 0x37 },
->>> +	{ 600, 0x07 },
->>> +	{ 650, 0x18 },
->>> +	{ 700, 0x28 },
->>> +	{ 750, 0x39 },
->>> +	{ 800, 0x09 },
->>> +	{ 850, 0x19 },
->>> +	{ 900, 0x29 },
->>> +	{ 950, 0x3A },
->>> +	{ 1000, 0x0A },
->>> +	{ 1050, 0x1A },
->>> +	{ 1100, 0x2A },
->>> +	{ 1150, 0x3B },
->>> +	{ 1200, 0x0B },
->>> +	{ 1250, 0x1B },
->>> +	{ 1300, 0x2B },
->>> +	{ 1350, 0x3C },
->>> +	{ 1400, 0x0C },
->>> +	{ 1450, 0x1C },
->>> +	{ 1500, 0x2C },
->>> +	{ 1550, 0x3D },
->>> +	{ 1600, 0x0D },
->>> +	{ 1650, 0x1D },
->>> +	{ 1700, 0x2E },
->>> +	{ 1750, 0x3E },
->>> +	{ 1800, 0x0E },
->>> +	{ 1850, 0x1E },
->>> +	{ 1900, 0x2F },
->>> +	{ 1950, 0x3F },
->>> +	{ 2000, 0x0F },
->>> +	{ 2050, 0x40 },
->>> +	{ 2100, 0x41 },
->>> +	{ 2150, 0x42 },
->>> +	{ 2200, 0x43 },
->>> +	{ 2250, 0x44 },
->>> +	{ 2300, 0x45 },
->>> +	{ 2350, 0x46 },
->>> +	{ 2400, 0x47 },
->>> +	{ 2450, 0x48 },
->>> +	{ 2500, 0x49 },
->>> +};
->>> +
->>> +struct hstt {
->>> +	unsigned int max_mbps;
->>> +	struct dw_mipi_dsi_dphy_timing timing;
->>> +};
->>> +
->>> +#define HSTT(_max_mbps, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)	\
->>> +{					\
->>> +	.max_mbps = _max_mbps,		\
->>> +	.timing = {			\
->>> +		.clk_lp2hs = _c_lp2hs,	\
->>> +		.clk_hs2lp = _c_hs2lp,	\
->>> +		.data_lp2hs = _d_lp2hs,	\
->>> +		.data_hs2lp = _d_hs2lp,	\
->>> +	}				\
->>> +}
->>> +
->>> +static struct hstt hstt_table[] = {
->>> +	HSTT(80, 21, 17, 15, 10),
->>> +	HSTT(90, 23, 17, 16, 10),
->>> +	HSTT(100, 22, 17, 16, 10),
->>> +	HSTT(110, 25, 18, 17, 11),
->>> +	HSTT(120, 26, 20, 18, 11),
->>> +	HSTT(130, 27, 19, 19, 11),
->>> +	HSTT(140, 27, 19, 19, 11),
->>> +	HSTT(150, 28, 20, 20, 12),
->>> +	HSTT(160, 30, 21, 22, 13),
->>> +	HSTT(170, 30, 21, 23, 13),
->>> +	HSTT(180, 31, 21, 23, 13),
->>> +	HSTT(190, 32, 22, 24, 13),
->>> +	HSTT(205, 35, 22, 25, 13),
->>> +	HSTT(220, 37, 26, 27, 15),
->>> +	HSTT(235, 38, 28, 27, 16),
->>> +	HSTT(250, 41, 29, 30, 17),
->>> +	HSTT(275, 43, 29, 32, 18),
->>> +	HSTT(300, 45, 32, 35, 19),
->>> +	HSTT(325, 48, 33, 36, 18),
->>> +	HSTT(350, 51, 35, 40, 20),
->>> +	HSTT(400, 59, 37, 44, 21),
->>> +	HSTT(450, 65, 40, 49, 23),
->>> +	HSTT(500, 71, 41, 54, 24),
->>> +	HSTT(550, 77, 44, 57, 26),
->>> +	HSTT(600, 82, 46, 64, 27),
->>> +	HSTT(650, 87, 48, 67, 28),
->>> +	HSTT(700, 94, 52, 71, 29),
->>> +	HSTT(750, 99, 52, 75, 31),
->>> +	HSTT(800, 105, 55, 82, 32),
->>> +	HSTT(850, 110, 58, 85, 32),
->>> +	HSTT(900, 115, 58, 88, 35),
->>> +	HSTT(950, 120, 62, 93, 36),
->>> +	HSTT(1000, 128, 63, 99, 38),
->>> +	HSTT(1050, 132, 65, 102, 38),
->>> +	HSTT(1100, 138, 67, 106, 39),
->>> +	HSTT(1150, 146, 69, 112, 42),
->>> +	HSTT(1200, 151, 71, 117, 43),
->>> +	HSTT(1250, 153, 74, 120, 45),
->>> +	HSTT(1300, 160, 73, 124, 46),
->>> +	HSTT(1350, 165, 76, 130, 47),
->>> +	HSTT(1400, 172, 78, 134, 49),
->>> +	HSTT(1450, 177, 80, 138, 49),
->>> +	HSTT(1500, 183, 81, 143, 52),
->>> +	HSTT(1550, 191, 84, 147, 52),
->>> +	HSTT(1600, 194, 85, 152, 52),
->>> +	HSTT(1650, 201, 86, 155, 53),
->>> +	HSTT(1700, 208, 88, 161, 53),
->>> +	HSTT(1750, 212, 89, 165, 53),
->>> +	HSTT(1800, 220, 90, 171, 54),
->>> +	HSTT(1850, 223, 92, 175, 54),
->>> +	HSTT(1900, 231, 91, 180, 55),
->>> +	HSTT(1950, 236, 95, 185, 56),
->>> +	HSTT(2000, 243, 97, 190, 56),
->>> +	HSTT(2050, 248, 99, 194, 58),
->>> +	HSTT(2100, 252, 100, 199, 59),
->>> +	HSTT(2150, 259, 102, 204, 61),
->>> +	HSTT(2200, 266, 105, 210, 62),
->>> +	HSTT(2250, 269, 109, 213, 63),
->>> +	HSTT(2300, 272, 109, 217, 65),
->>> +	HSTT(2350, 281, 112, 225, 66),
->>> +	HSTT(2400, 283, 115, 226, 66),
->>> +	HSTT(2450, 282, 115, 226, 67),
->>> +	HSTT(2500, 281, 118, 227, 67),
->>> +};
->>> +
->>
->> Where do these data come from?
-> 
-> This is part of the vendor DPHY driver, see [1].
-> 
-> Thanks,
-> Icenowy
-> 
-> [1]
-> https://github.com/revyos/th1520-linux-kernel/blob/th1520-lts/drivers/phy/synopsys/phy-dw-mipi-dphy.c#L185
+* Reuse existing functionality from devm_clk_get_enabled() instead of
+  keeping duplicate source code.
 
-This looks consistent with imx93-mipi-dsi.c, but the TH1520 does not
-use the same TSMC 16nm process as the IMX93. As far as I know, they
-are usually different. 
+* Delete a clk_disable_unprepare() call on error handling paths
+  and in the implementation of three remove functions.
 
-Could you confirm this from the DesignWare PHY databook?
+* Omit the label =E2=80=9Cclk_disable=E2=80=9D.
 
--- 
-Best, 
-Chaoyi
+This issue was detected by using the Coccinelle software.
+
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/power/reset/at91-poweroff.c      | 20 +++----------------
+ drivers/power/reset/at91-reset.c         | 17 +++-------------
+ drivers/power/reset/at91-sama5d2_shdwc.c | 25 +++++-------------------
+ 3 files changed, 11 insertions(+), 51 deletions(-)
+
+diff --git a/drivers/power/reset/at91-poweroff.c b/drivers/power/reset/at9=
+1-poweroff.c
+index 7bc779055cf3..ffbaba309917 100644
+=2D-- a/drivers/power/reset/at91-poweroff.c
++++ b/drivers/power/reset/at91-poweroff.c
+@@ -159,16 +159,10 @@ static int at91_poweroff_probe(struct platform_devic=
+e *pdev)
+ 	if (IS_ERR(at91_shdwc.shdwc_base))
+ 		return PTR_ERR(at91_shdwc.shdwc_base);
+=20
+-	at91_shdwc.sclk =3D devm_clk_get(&pdev->dev, NULL);
++	at91_shdwc.sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(at91_shdwc.sclk))
+ 		return PTR_ERR(at91_shdwc.sclk);
+=20
+-	ret =3D clk_prepare_enable(at91_shdwc.sclk);
+-	if (ret) {
+-		dev_err(&pdev->dev, "Could not enable slow clock\n");
+-		return ret;
+-	}
+-
+ 	at91_wakeup_status(pdev);
+=20
+ 	if (pdev->dev.of_node)
+@@ -179,10 +173,8 @@ static int at91_poweroff_probe(struct platform_device=
+ *pdev)
+ 		at91_shdwc.mpddrc_base =3D of_iomap(np, 0);
+ 		of_node_put(np);
+=20
+-		if (!at91_shdwc.mpddrc_base) {
+-			ret =3D -ENOMEM;
+-			goto clk_disable;
+-		}
++		if (!at91_shdwc.mpddrc_base)
++			return -ENOMEM;
+=20
+ 		ddr_type =3D readl(at91_shdwc.mpddrc_base + AT91_DDRSDRC_MDR) &
+ 				 AT91_DDRSDRC_MD;
+@@ -196,10 +188,6 @@ static int at91_poweroff_probe(struct platform_device=
+ *pdev)
+ 	pm_power_off =3D at91_poweroff;
+=20
+ 	return 0;
+-
+-clk_disable:
+-	clk_disable_unprepare(at91_shdwc.sclk);
+-	return ret;
+ }
+=20
+ static void at91_poweroff_remove(struct platform_device *pdev)
+@@ -209,8 +197,6 @@ static void at91_poweroff_remove(struct platform_devic=
+e *pdev)
+=20
+ 	if (at91_shdwc.mpddrc_base)
+ 		iounmap(at91_shdwc.mpddrc_base);
+-
+-	clk_disable_unprepare(at91_shdwc.sclk);
+ }
+=20
+ static const struct of_device_id at91_poweroff_of_match[] =3D {
+diff --git a/drivers/power/reset/at91-reset.c b/drivers/power/reset/at91-r=
+eset.c
+index a9ad43217f48..bcf77a5162f1 100644
+=2D-- a/drivers/power/reset/at91-reset.c
++++ b/drivers/power/reset/at91-reset.c
+@@ -374,21 +374,15 @@ static int at91_reset_probe(struct platform_device *=
+pdev)
+ 	reset->nb.notifier_call =3D at91_reset;
+ 	reset->nb.priority =3D 192;
+=20
+-	reset->sclk =3D devm_clk_get(&pdev->dev, NULL);
++	reset->sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(reset->sclk))
+ 		return PTR_ERR(reset->sclk);
+=20
+-	ret =3D clk_prepare_enable(reset->sclk);
+-	if (ret) {
+-		dev_err(&pdev->dev, "Could not enable slow clock\n");
+-		return ret;
+-	}
+-
+ 	platform_set_drvdata(pdev, reset);
+=20
+ 	ret =3D at91_rcdev_init(reset, pdev);
+ 	if (ret)
+-		goto disable_clk;
++		return ret;
+=20
+ 	if (of_device_is_compatible(pdev->dev.of_node, "microchip,sam9x60-rstc")=
+) {
+ 		u32 val =3D readl(reset->rstc_base + AT91_RSTC_MR);
+@@ -399,7 +393,7 @@ static int at91_reset_probe(struct platform_device *pd=
+ev)
+=20
+ 	ret =3D register_restart_handler(&reset->nb);
+ 	if (ret)
+-		goto disable_clk;
++		return ret;
+=20
+ 	ret =3D device_create_file(&pdev->dev, &dev_attr_power_on_reason);
+ 	if (ret) {
+@@ -410,10 +404,6 @@ static int at91_reset_probe(struct platform_device *p=
+dev)
+ 	dev_info(&pdev->dev, "Starting after %s\n", at91_reset_reason(reset));
+=20
+ 	return 0;
+-
+-disable_clk:
+-	clk_disable_unprepare(reset->sclk);
+-	return ret;
+ }
+=20
+ static void at91_reset_remove(struct platform_device *pdev)
+@@ -421,7 +411,6 @@ static void at91_reset_remove(struct platform_device *=
+pdev)
+ 	struct at91_reset *reset =3D platform_get_drvdata(pdev);
+=20
+ 	unregister_restart_handler(&reset->nb);
+-	clk_disable_unprepare(reset->sclk);
+ }
+=20
+ static struct platform_driver at91_reset_driver =3D {
+diff --git a/drivers/power/reset/at91-sama5d2_shdwc.c b/drivers/power/rese=
+t/at91-sama5d2_shdwc.c
+index 589599cca076..cab94ef5a8a0 100644
+=2D-- a/drivers/power/reset/at91-sama5d2_shdwc.c
++++ b/drivers/power/reset/at91-sama5d2_shdwc.c
+@@ -357,33 +357,23 @@ static int at91_shdwc_probe(struct platform_device *=
+pdev)
+ 	match =3D of_match_node(at91_shdwc_of_match, pdev->dev.of_node);
+ 	at91_shdwc->rcfg =3D match->data;
+=20
+-	at91_shdwc->sclk =3D devm_clk_get(&pdev->dev, NULL);
++	at91_shdwc->sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(at91_shdwc->sclk))
+ 		return PTR_ERR(at91_shdwc->sclk);
+=20
+-	ret =3D clk_prepare_enable(at91_shdwc->sclk);
+-	if (ret) {
+-		dev_err(&pdev->dev, "Could not enable slow clock\n");
+-		return ret;
+-	}
+-
+ 	at91_wakeup_status(pdev);
+=20
+ 	at91_shdwc_dt_configure(pdev);
+=20
+ 	np =3D of_find_matching_node(NULL, at91_pmc_ids);
+-	if (!np) {
+-		ret =3D -ENODEV;
+-		goto clk_disable;
+-	}
++	if (!np)
++		return -ENODEV;
+=20
+ 	at91_shdwc->pmc_base =3D of_iomap(np, 0);
+ 	of_node_put(np);
+=20
+-	if (!at91_shdwc->pmc_base) {
+-		ret =3D -ENOMEM;
+-		goto clk_disable;
+-	}
++	if (!at91_shdwc->pmc_base)
++		return -ENOMEM;
+=20
+ 	if (at91_shdwc->rcfg->ddrc.type_mask) {
+ 		np =3D of_find_compatible_node(NULL, NULL,
+@@ -417,9 +407,6 @@ static int at91_shdwc_probe(struct platform_device *pd=
+ev)
+=20
+ unmap:
+ 	iounmap(at91_shdwc->pmc_base);
+-clk_disable:
+-	clk_disable_unprepare(at91_shdwc->sclk);
+-
+ 	return ret;
+ }
+=20
+@@ -437,8 +424,6 @@ static void at91_shdwc_remove(struct platform_device *=
+pdev)
+ 	if (shdw->mpddrc_base)
+ 		iounmap(shdw->mpddrc_base);
+ 	iounmap(shdw->pmc_base);
+-
+-	clk_disable_unprepare(shdw->sclk);
+ }
+=20
+ static struct platform_driver at91_shdwc_driver =3D {
+=2D-=20
+2.56.1
+
 
