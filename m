@@ -2,105 +2,140 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480B4606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD59606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yu4ub+GV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JzpLzb8T
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J3G4jJgc;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=Ppz3CK7G;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=q3lqT7jd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=aSK3uZGdL2yKOLTc3rwVRQD1pUWB4xKuWSy7NRpYEdg=; b=Yu4ub+GV4K5iC8mMC/jc3Nb9Ng
-	872VIvvWVgZtaJc1+hFPqleYEnlJNQbdSsMM6F8jMx1HvhdGwxSlcf9OrnUrxsFXxby88xIMc8Y5E
-	YZTJoccPHjTaEmO6FtRWWjqhPA7rNPUme5lTjUsV6+kE1ePYTyaH/qzn7vytziVFBujN7O4i+iRbu
-	944SFFJgwmvLCgxsi/p/6nUmwu6F0aJl5f7X0dQ6vH3dKWgdT8XrIZBUtGu9tvoLPztc4CYd0Z97p
-	lFr3oOesM6fxklc3YoZWEjaydcvCfaQ26E9FSkE4msXIAQhGdfuNkPsEElo1ve6LB5+Ih2Ul91geA
-	n+lKiFfA==;
+	bh=qOWnDIUirnp7niKKgcme9VVUTThomhs09luZ9kZoQDA=; b=J3G4jJgckEPK951QMYGURI/ACo
+	RiJjrCEyVAKfyhXkyS89gtW7vxrWh3XkA7xM9eKOch3RzwypYTFLHcPGwmOnjqSBHixcLVne4NDal
+	mK04faqUsSIaM+AfV3t9+zHxcno5XtnjusQoxMY1u+4RvKf+RShcw1MeJQ6plwqUDVL069ZXMoH2t
+	O0Jz/fyVOWObdVYaeI3+BH/WjFkyKAj7T7iFLvt5rME5Epjo+RZIJ04sZM7qT6VWeatmR4OehT0GT
+	epo5KhSij+dbbGexkZI9enZ5P+l0LUeKKp/ete5eN6+hCrzoki5nZelUL5YZC32ONTWwLsMnRHGmf
+	RexvPusw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVllW-00000005ruP-3HCq;
-	Tue, 24 Nov 2026 08:20:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVkwf-00000005jvK-3871;
+	Tue, 24 Nov 2026 07:28:05 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.179])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVllU-00000005rtT-2OjD
+	id 1xVkvK-00000005jKr-1K71
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:20:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B2F2B44EC8;
-	Tue, 24 Nov 2026 08:20:35 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795508435;
-	b=Om6rhg6u8TKr8HaHx5fPOHRd6opMyx4mHlCrOK24UAIbsmYmToiE+fwYpeoDltS1Y1XQ
-	 MPOd7gcFkv81Tt3Xc0TRuBtZAicUIGezdE/pQPU4ohegWpReM8fSIYTT9x89lxSrrlUcU
-	 BUmN3agV7JXMsOeRXGE/8o9ofhwcvb7B8f2PMD0uPfmOwErLk0PZ9sd+yKI1xsW2upPeR
-	 dmHhDdD6TIZpDjJe5bh1G4j/HA0PBxy8m9vEJ3rZPr9HqEw9XsUwEmr+uInsy3M6W+n99
-	 qQliMDXbtBS8ImzLQ2qffAELNLM7EBWmg6XFVc5SOwZXZNThfl6shXQWXrcoTZdT6lQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795508435;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=aSK3uZGdL2yKOLTc3rwVRQD1pUWB4xKuWSy7NRpYEdg=;
-	b=3S95cs9WLZxpgFPwIBbFa5lVkenJcV4J82R/aq2dx0K+rhgS85ovUqqUZKJ9QiSmK2rU
-	 1rCBvkTFejf0YTITv7vgcs/s7VVwX7Ke4uhQpA4uzrrqEQGfvOtNbGyDV8rAE6Q5ZnIYN
-	 0mt9utHtyJhdN9PUJkAfU8SZiugiKgFVUItflLbLkeuGJQn+f5TQcZn8y+78npe2+yfcR
-	 Cg+nHeMaDyPjyGhM/228e0K6R9IaVnKsTIR9J1DhOMF9taqreBydZ8SbaeKDUGCLMwZdJ
-	 cjXrTUp5YOa10uT06R1TScoGG0U1INHoSbI8w1XLeq/I1txs+vU5ypUchuxBKG4LC5g==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 77DE01F000CF;
-	Tue, 24 Nov 2026 08:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795508435;
-	bh=aSK3uZGdL2yKOLTc3rwVRQD1pUWB4xKuWSy7NRpYEdg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=JzpLzb8TIp/Kj4h7fOs3AnSfOvdCxY/yZi02oWqeW+VpFZE8ZjU+gXybOTU47UZ5r
-	 DsIzEMvr2dbF43mmGkQ+b3RnGBXDRu7cBYeOxXsNTXyuWS54CjtPl4qT4Z4r/3OEso
-	 UiNPtG1o61Eaw27OyD3nWj6Ck5ELjfuR0O7IeF0ErLNn9QmTI5bB/wmcuoWnQfaEnR
-	 SJlh1Kv878YzOYi1P3IbB9W7yxRsThHJ/BCUStRxv99MRCl9dRvw4J+j85XVdl9tTS
-	 KyMgC2LLHHVbkuVPe9WNArDR9swIx36FWzhMRXh2ML3DpGMTYM7EVf8y9HcdpBIxck
-	 R8H+8Yn1MhVaw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 09F2F4C93D;
-	Tue, 24 Nov 2026 08:20:21 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Tue, 24 Nov 2026 11:20:20 +0300
-Subject: [PATCH v2 2/3] hwrng: Add Cortina Systems CS7542 TRNG driver
+	Tue, 24 Nov 2026 07:26:54 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505172; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=rnfMq0NIP64ben5wNgoxFUkpWi/QCqJTUvbvxmcALWU186r+XM1A8Jx70X4Q7naPlV
+    895nrgY6UdcnRTP/xtRpEbj0Tn+yP3xix3zTMF++sS0nmcUXyBDVn5TLiBP7zH1hKUcx
+    aGUkahLH9YH0oGj6OdXDklRDzwvDAVuPXXW0tESU+XB0m+kZBw+VgNzhqN2w1slY63ag
+    xmegAHB5gxQS3GrZzfzff4qhWg8PlsGC/pkg/ggiiwUQqNFAnFbINbY4tq0TlMH5Swec
+    DRi+N5IZV2jg49lgDVu3tuUwTF2Mj4XBX0XeMsn5XURyQcLNUn+uOgEAoCnHiqHWutYO
+    TYzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505172;
+    s=strato-dkim-0002; d=strato.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=qOWnDIUirnp7niKKgcme9VVUTThomhs09luZ9kZoQDA=;
+    b=ctg1tfJhMBCY0UxGqdBv+lUs6wbDc1wXAA6SYcnxfz6oep7U0m4+6INj8onFO18gcs
+    WxWoySjSEtdrtmPBU0QcXCGFENFvAWlCdnmWnquGKkrUaplH91H1HK3m1d4kgQ08gKpA
+    yaY5T+SxNksdbrf1+6NMwl5xcXm83x5j+wQUTEJQeNUOeAIbczuEkjn8KTJl1u/1ZVe1
+    5s4s0yzCPwQEgLW1Y2EN6VmbKgI2rRDD/7jpyl0VxK/ou4a3x06be7tgt/vJ6sxXT3MC
+    Oicf2zPuHhdWk+9/gYG0h7LjgltTExfC94bwflDVVZel0H+QJ/wtNOMkC+anMEl4hBrw
+    sBLQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505172;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=qOWnDIUirnp7niKKgcme9VVUTThomhs09luZ9kZoQDA=;
+    b=Ppz3CK7G8KlukLX4l8Ri8vE/AOw4vXQvrTCQLH+d/EmYXaoMgxgJdK7GgUeBrDfWtM
+    Fz7f/bIPbK88J7RPGnZN4ZBwf07qRHBCg/rkwv5/+xD0tgnS8XMddaa3kioHYAJ62/0O
+    2dcHbeABOa2zcfwpGQHPd7pPKSEb6MiICHzlnyqNOKcFpojASAmB9wUID36AmorYislc
+    MfbR4tC9aZeTcdvcoTvygIZ+GN76O9weUkNpc8B4rOndtsZHLbMjP7WJSOnW4qwC66nC
+    QzJsf69yGH6JOQ1XytRSfl4nmTnXadm/puZZemyrgHVdt6Q0HcqH1qdnFWkUyHrLZyJt
+    zsYQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505172;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=qOWnDIUirnp7niKKgcme9VVUTThomhs09luZ9kZoQDA=;
+    b=q3lqT7jd2ldNGdU8vf6Y1FKiK09q6fAjJTR1HLJ5/iM+RUkB855FkMN/44SLueamXS
+    Qj9HYsK9Dt4M+OHHCGDQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 55.6.3 AUTH)
+    with ESMTPSA id Qb56a22AO7QB1HI
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 24 Nov 2026 08:26:11 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>
+Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	kernel@pyra-handheld.com,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 06/20] dt-bindings: sound: Document OpenPandora sound card
+Date: Tue, 24 Nov 2026 08:25:46 +0100
+Message-ID: <5c6f7deca16f70f1f19cb40c57d70e30068d6000.1795505160.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
+References: <cover.1795505160.git.hns@goldelico.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-b4-cs7542-trng-v2-2-0192937b44be@gmail.com>
-References: <20261124-b4-cs7542-trng-v2-0-0192937b44be@gmail.com>
-In-Reply-To: <20261124-b4-cs7542-trng-v2-0-0192937b44be@gmail.com>
-To: Olivia Mackall <olivia@selenic.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795508418; l=7579;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=EbhGuW4MhEmmYMpCueJmo2Q0TXeXTrLb12lTWkCu7Fk=;
- b=2ENFilAs7BivhuX0dExb/hOBvlkya5wFsxKdbYO2u9XEpXkyXH5E/vpkEUOaLnQIniqdGnsb1
- AGTdcLjbBaTAVLKot6Arch91JtKQMwjw2RZascgOSqMe0tX0VUW8LTp
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_232650_650892_DB2EAB38 
+X-CRM114-Status: GOOD (  16.42  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,266 +145,135 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+The OpenPandora audio subsystem describes the routing links between the
+OMAP3 McBSP interface, the external PCM1773 DAC, and the TWL4030 audio
+codec, alongside amplifiers and power supplies.
 
-Adapt the OpenWrt implementation to use a syscon regmap for the shared
-scratch bit. Bound polling and retain a pending request across
-nonblocking calls instead of entering a blocking poll when wait=false.
-Handle partial output and wipe the temporary data on error paths.
-
-Retain the existing OpenWrt entropy quality setting of 512 for review.
-Hardware output smoke tests do not establish an entropy estimate.
-
-Restrict hardware reseeding to the documented CS7542 A1 revision, using
-identification bits read through the global syscon before registration.
-The vendor driver avoids ring reseeding on A0 for erratum 28891; its
-RTC/timer-derived nonce workaround is not a replacement entropy source.
-Propagate identification errors and reject unsupported revisions.
-
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
- drivers/char/hw_random/Kconfig       |  11 +++
- drivers/char/hw_random/Makefile      |   1 +
- drivers/char/hw_random/cs75xx-trng.c | 187 +++++++++++++++++++++++++++++++++++
- 3 files changed, 199 insertions(+)
 
-diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-index d3108991c..1c6a3f9f8 100644
---- a/drivers/char/hw_random/Kconfig
-+++ b/drivers/char/hw_random/Kconfig
-@@ -648,6 +648,17 @@ config HW_RANDOM_QCOM
- 	  To compile this driver as a module, choose M here. The
- 	  module will be called qcom-rng. If unsure, say N.
- 
-+
-+config HW_RANDOM_CS75XX
-+	tristate "Cortina Systems CS7542 random number generator"
-+	depends on OF && HAS_IOMEM
-+	select MFD_SYSCON
-+	help
-+	  Support the Elliptic random number generator in the CS7542 SoC.
-+	  Access the shared global control block through a syscon regmap.
-+	  Provide polled reads through the hardware RNG framework.
-+	  The module will be named cs75xx-trng.
-+
- endif # HW_RANDOM
- 
- config UML_RANDOM
-diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
-index 8fce2aa6c..b7b5fdaa7 100644
---- a/drivers/char/hw_random/Makefile
-+++ b/drivers/char/hw_random/Makefile
-@@ -55,3 +55,4 @@ obj-$(CONFIG_HW_RANDOM_ROCKCHIP) += rockchip-rng.o
- obj-$(CONFIG_HW_RANDOM_JH7110) += jh7110-trng.o
- obj-$(CONFIG_HW_RANDOM_XILINX) += xilinx-trng.o
- obj-$(CONFIG_HW_RANDOM_QCOM) += qcom-rng.o
-+obj-$(CONFIG_HW_RANDOM_CS75XX)		+= cs75xx-trng.o
-diff --git a/drivers/char/hw_random/cs75xx-trng.c b/drivers/char/hw_random/cs75xx-trng.c
+Notes:
+    Changes against V1:
+    - Address Krzysztof Kozlowski's V1 request to run the documented
+      DT schema checks and fix the errors reported by Rob Herring's
+      automated DT validation.
+    - Update the binding example and schema during DT consistency review.
+    - Binding and commit-message review assisted by ChatGPT.
+
+ .../sound/openpandora,omap3pandora-sound.yaml | 95 +++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/openpandora,omap3pandora-sound.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/openpandora,omap3pandora-sound.yaml b/Documentation/devicetree/bindings/sound/openpandora,omap3pandora-sound.yaml
 new file mode 100644
-index 000000000..588a01aae
+index 0000000000000..6c4d69ffc1c50
 --- /dev/null
-+++ b/drivers/char/hw_random/cs75xx-trng.c
-@@ -0,0 +1,187 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Cortina CS75xx (Goldengate) true random number generator
-+ *
-+ * The block is an Elliptic TRNG: control at 0x00, interrupt status at 0x04,
-+ * interrupt enable at 0x08 and four data words from 0x10. A new value is
-+ * requested with GEN_NEW and is ready when the DONE status bit is set.
-+ * The vendor driver also sets bit 5 of the GLOBAL_SCRATCH register before
-+ * using the block, so does this one.
-+ */
++++ b/Documentation/devicetree/bindings/sound/openpandora,omap3pandora-sound.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/openpandora,omap3pandora-sound.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/hw_random.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/string.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
++title: OpenPandora OMAP3 Audio Complex
 +
-+#define TRNG_CTRL		0x00
-+#define TRNG_CTRL_GEN_NEW	BIT(0)
-+#define TRNG_CTRL_RESEED	BIT(31)
-+#define TRNG_IRQ_STAT		0x04
-+#define TRNG_IRQ_EN		0x08
-+#define TRNG_IRQ_DONE		BIT(27)
-+#define TRNG_DATA		0x10
-+#define TRNG_WORDS		4
++maintainers:
++  - H. Nikolaus Schaller <hns@goldelico.com>
 +
-+#define GLOBAL_JTAG_ID		0x00
-+#define GLOBAL_JTAG_ID_SOC	GENMASK(15, 12)
-+#define GLOBAL_JTAG_ID_CS7542_A1	8
++description:
++  The OpenPandora audio subsystem describes the routing links between the
++  OMAP3 McBSP interface, the external PCM1773 DAC, and the TWL4030 audio codec,
++  alongside amplifiers and power supplies.
 +
-+#define GLOBAL_SCRATCH		0xc0
-+#define GLOBAL_SCRATCH_TRNG	BIT(5)
++properties:
++  compatible:
++    const: openpandora,omap3pandora-sound
 +
-+#define TRNG_TIMEOUT_US		10000
++  label:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: User-visible name for this sound card.
 +
-+struct cs75xx_trng {
-+	struct hwrng rng;
-+	void __iomem *base;
-+	struct regmap *global;
-+	bool pending;
-+};
++  amp-gpios:
++    maxItems: 1
++    description: GPIO pin controlling the amplifier power state.
 +
-+static int cs75xx_trng_wait(struct cs75xx_trng *t)
-+{
-+	u32 val;
-+	int ret;
++  amp-supply:
++    description: Regulator supplying power to the amplifier.
 +
-+	ret = readl_poll_timeout(t->base + TRNG_IRQ_STAT, val,
-+				 val & TRNG_IRQ_DONE, 1, TRNG_TIMEOUT_US);
-+	writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
-+	return ret;
-+}
++  sound-dai:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    minItems: 2
++    maxItems: 2
++    description:
++      Phandles to the audio CPU DAI (OMAP3 McBSP) and the codec DAI.
 +
-+static int cs75xx_trng_init(struct hwrng *rng)
-+{
-+	struct cs75xx_trng *t = container_of(rng, struct cs75xx_trng, rng);
-+	int ret;
++  routing:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description:
++      A list of the connections between audio components.
++      Each entry is a pair of strings, the first being the connection's sink,
++      the second being the connection's source.
 +
-+	ret = regmap_update_bits(t->global, GLOBAL_SCRATCH,
-+				 GLOBAL_SCRATCH_TRNG, GLOBAL_SCRATCH_TRNG);
-+	if (ret)
-+		return ret;
-+	writel(0, t->base + TRNG_IRQ_EN);
-+	writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
-+	t->pending = false;
-+	writel(TRNG_CTRL_RESEED, t->base + TRNG_CTRL);
-+	return cs75xx_trng_wait(t);
-+}
++  widgets:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description:
++      User-specified audio sound widgets.
++      Each entry is a pair of strings, the first being the widget type
++      (e.g., "Speaker", "Headphone", "Microphone", "Line") and the second being its name.
 +
-+static int cs75xx_trng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-+{
-+	struct cs75xx_trng *t = container_of(rng, struct cs75xx_trng, rng);
-+	u32 data[TRNG_WORDS];
-+	size_t done = 0;
-+	int i, ret;
++required:
++  - compatible
++  - sound-dai
 +
-+	while (done < max) {
-+		size_t n = min(max - done, sizeof(data));
++additionalProperties: false
 +
-+		if (!t->pending) {
-+			writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
-+			writel(TRNG_CTRL_GEN_NEW, t->base + TRNG_CTRL);
-+			t->pending = true;
-+		}
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
 +
-+		if (wait) {
-+			ret = cs75xx_trng_wait(t);
-+		} else {
-+			if (!(readl(t->base + TRNG_IRQ_STAT) & TRNG_IRQ_DONE))
-+				break;
-+			writel(TRNG_IRQ_DONE, t->base + TRNG_IRQ_STAT);
-+			ret = 0;
-+		}
-+		t->pending = false;
-+		if (ret) {
-+			memzero_explicit(data, sizeof(data));
-+			return done ? done : ret;
-+		}
++    sound {
++        compatible = "openpandora,omap3pandora-sound";
++        status = "okay";
 +
-+		for (i = 0; i < TRNG_WORDS; i++)
-+			data[i] = readl(t->base + TRNG_DATA + 4 * i);
-+		memcpy((u8 *)buf + done, data, n);
-+		done += n;
++        label = "OpenPandora";
 +
-+		if (!wait)
-+			break;
-+	}
++        amp-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
++        amp-supply = <&aux_5v>;
 +
-+	memzero_explicit(data, sizeof(data));
-+	return done;
-+}
++        widgets =
++            "Line", "Line Out",
++            "Line", "Line In",
++            "Headphone", "Headphone Jack",
++            "Microphone", "Mic (internal)",
++            "Microphone", "Mic (external)";
 +
-+/* A0 ring reseeding is affected by vendor erratum 28891. Do not replace
-+ * the entropy source with the vendor's RTC/timer-derived nonce workaround.
-+ */
-+static int cs75xx_trng_check_revision(struct device *dev, struct regmap *global)
-+{
-+	u32 id;
-+	int ret;
++        routing =
++            "DAC1", "APLL Enable",
++            "DAC2", "APLL Enable",
++            "Headphone Amplifier", "VOUTL",
++            "Headphone Amplifier", "VOUTR",
++            "Line Out", "VOUTL",
++            "Line Out", "VOUTR",
++            "Headphone Jack", "Headphone Amplifier",
++            "AUXL", "Line In",
++            "AUXR", "Line In",
++            "MAINMIC", "Mic (internal)",
++            "Mic (internal)", "Mic Bias 1",
++            "SUBMIC", "Mic (external)",
++            "Mic (external)", "Mic Bias 2";
 +
-+	ret = regmap_read(global, GLOBAL_JTAG_ID, &id);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "cannot read SoC revision\n");
-+
-+	if (FIELD_GET(GLOBAL_JTAG_ID_SOC, id) != GLOBAL_JTAG_ID_CS7542_A1)
-+		return dev_err_probe(dev, -ENODEV,
-+				     "hardware reseeding requires CS7542 A1\n");
-+
-+	return 0;
-+}
-+
-+static int cs75xx_trng_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct cs75xx_trng *t;
-+	int ret;
-+
-+	t = devm_kzalloc(dev, sizeof(*t), GFP_KERNEL);
-+	if (!t)
-+		return -ENOMEM;
-+
-+	t->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(t->base))
-+		return PTR_ERR(t->base);
-+
-+	t->global = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						    "cortina,syscon");
-+	if (IS_ERR(t->global))
-+		return dev_err_probe(dev, PTR_ERR(t->global),
-+				     "cannot get global control regmap\n");
-+
-+	ret = cs75xx_trng_check_revision(dev, t->global);
-+	if (ret)
-+		return ret;
-+
-+	t->rng.name = dev_name(dev);
-+	t->rng.init = cs75xx_trng_init;
-+	t->rng.read = cs75xx_trng_read;
-+	t->rng.quality = 512;
-+
-+	return devm_hwrng_register(dev, &t->rng);
-+}
-+
-+static const struct of_device_id cs75xx_trng_of_match[] = {
-+	{ .compatible = "cortina,cs7542-trng" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, cs75xx_trng_of_match);
-+
-+static struct platform_driver cs75xx_trng_driver = {
-+	.probe = cs75xx_trng_probe,
-+	.driver = {
-+		.name = "cs75xx-trng",
-+		.of_match_table = cs75xx_trng_of_match,
-+	},
-+};
-+module_platform_driver(cs75xx_trng_driver);
-+
-+MODULE_DESCRIPTION("Cortina CS75xx TRNG driver");
-+MODULE_LICENSE("GPL");
-
++        sound-dai = <&mcbsp2>, <&dac>;
++    };
 -- 
-2.53.0
-
+2.56.0
 
 
