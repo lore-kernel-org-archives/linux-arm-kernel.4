@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9C4606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 05:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A2D606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 05:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E2QXYkX0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VmOoe8fI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lAlDV5s/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bMuZ/82I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
@@ -14,41 +14,40 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vc9ZjW3MdZZrSawTDR1LO60vJFvLL8Ygoa4DX6STls8=; b=E2QXYkX0tllmsFTz0MHvKF5DAa
-	VIDMe+G0h9qvMF2hs2qd/e12dk+kHcs3Jtg3cEJYPuwlI2YT4Jq1vBSv8Gv0rbtUk2/vpN7942zIk
-	cub9D2Unw653qV6ZJIx9S9XwRCpKbbq/FFFxTi8Q67BeuBcVV/ViJia0WyYeMKNa7+p46kmziK+yM
-	HTXwSBlOjzwwiUGDoBPhFn7F6tgLsuioWR5hsAS8ajAGE5HoEl1sdAATM5y7xQrXR70blZMDcdjb8
-	jRf6qjp+QTpTx62k60CRetdudOGKcAP+4rmJNzzZmAQTf2s4ggBK2Pfgy/AxP1VIZRit98n0txxMu
-	cJSbnKKQ==;
+	bh=6hEHnZ4sfgUflRbEhxUh0CD0ylQZFIJ15GBUvc4I5mw=; b=lAlDV5s/BFZF+gzI4QAfdm/C8c
+	+TX2IsEVkP7fJ8mxrtmnnzH1/7PVf1NYV8NS5a2+DO8Oglk5aiyQOdSSO0psOu0siUracLrtHdNXQ
+	UaIN9Hn26IBM1xif29OIiCVuWXtB3t0Teex3PQGxcEPkNF4AVCtv4C5O6x3K1DtYjll6HkT1Xfz+2
+	crOymG8dBNRE8RruWlhIHJRL/5qEXXJA2POnXgFxMM8KHrYtN2oWtAGKNlF5a6tEhcIaVgfM8SnQd
+	EQKmQ8cEwO7yP5520W0WUey2wMVkaDZeyiAASIqzSrLeSFCmVl1semIIS3bA5MtqAj30ydv1XlZbr
+	eC1RhTpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVj0K-00000005bPC-1uRO;
-	Tue, 24 Nov 2026 05:23:44 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVj3O-00000005bi8-3Tcx;
+	Tue, 24 Nov 2026 05:26:54 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVj0I-00000005bOs-2x82
+	id 1xVj3M-00000005bhv-1014
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 05:23:42 +0000
+	Tue, 24 Nov 2026 05:26:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CCF7A60DC3;
-	Tue, 24 Nov 2026 05:23:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF3B21F000D0;
-	Tue, 24 Nov 2026 05:23:30 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 9D345409DC;
+	Tue, 24 Nov 2026 05:26:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC0C21F000C4;
+	Tue, 24 Nov 2026 05:26:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795497820;
-	bh=vc9ZjW3MdZZrSawTDR1LO60vJFvLL8Ygoa4DX6STls8=;
+	s=k20260515; t=1795498011;
+	bh=6hEHnZ4sfgUflRbEhxUh0CD0ylQZFIJ15GBUvc4I5mw=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=VmOoe8fIHUx8L+nCT7j0WFguj/mguXuQR+RGYclGZKFMdy5PEqlwkPvJZux3QVsb3
-	 +BwWMmsS1qJ+8/JwL+UpJSrNkZlHXHU1QLvTZFptUArdX/bTBrW1UPnRTO2q+RDxmS
-	 O1S4B2d4ZwGaIaDmOfEyz4z+3HMfvTZof4a76BDCAs9HoV3uiX1V/fHDcJVz/2iX2N
-	 UlDOCiqW0cyYxgG2vcmjxmTYQ9FwgbMUtavZB2X3C0kJYq7ZdPZudm3NbNVsRgkdsj
-	 0j0VJA+pjn/QLwJ6eSWg4h4DIYzRwnNjwFoW8rNAPvswHpBqjJRQL9CmofF4QogBGl
-	 Q8aMWhaAGmr4w==
+	b=bMuZ/82I+vs+8NKsF31D7nQhBoDtC/vh+MdJDEQFc6RfLu9u4tc1iXSnh9tQUIt1R
+	 7B4aBvaDLvXRLuiTN1J7kRllSEWDL5FAyMso3WrOUo3yd+gxajeQWfNT+SPnw1JR85
+	 nBowKBVgT76oli9zpQaDZRhbQAs8+j2FbwhIxOTktb7YTs9tvpPqUQff1wyBXBTqZX
+	 UWpTbmZiOBunZB6QKAj5MxB+n26rmgEzueQlO0KVhXTYiGVNLPvsfiB8Qz9ab3ckww
+	 3NiPz4iKGto4wg14EG/cvFr3KsGIznEulrKB1dyBb+9p9Y/pw05d9hw5P8rcLwFQCN
+	 Ocw7AG9iUNzXQ==
 X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
 From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: Baolu Lu <baolu.lu@linux.intel.com>, linux-coco@lists.linux.dev
-Cc: baolu.lu@linux.intel.com, Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
+To: Alexey Kardashevskiy <aik@amd.com>, linux-coco@lists.linux.dev
+Cc: Alex Williamson <alex@shazbot.org>,
 	Bjorn Helgaas <bhelgaas@google.com>,
 	Catalin Marinas <catalin.marinas@arm.com>,
 	Jacob Pan <jacob.pan@linux.microsoft.com>,
@@ -77,14 +76,13 @@ Cc: baolu.lu@linux.intel.com, Alex Williamson <alex@shazbot.org>,
 	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
 	linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 11/13] iommufd/viommu: Allow vIOMMUs without a parent
- HWPT
-In-Reply-To: <620712ae-e21e-4daa-9cd3-0c5d06ffb67f@linux.intel.com>
+Subject: Re: [PATCH v9 00/13] iommufd: TSM-backed virtual IOMMUs for
+ confidential guests
+In-Reply-To: <3573001a-24b8-49f3-97c8-7a414c88deb4@amd.com>
 References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-12-aneesh.kumar@kernel.org>
- <620712ae-e21e-4daa-9cd3-0c5d06ffb67f@linux.intel.com>
-Date: Tue, 24 Nov 2026 10:53:27 +0530
-Message-ID: <yq5ajym2by5s.fsf@kernel.org>
+ <3573001a-24b8-49f3-97c8-7a414c88deb4@amd.com>
+Date: Tue, 24 Nov 2026 10:56:40 +0530
+Message-ID: <yq5ah5h6by0f.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -98,108 +96,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Baolu Lu <baolu.lu@linux.intel.com> writes:
+Alexey Kardashevskiy <aik@amd.com> writes:
 
-> On 11/16/2026 4:19 PM, Aneesh Kumar K.V (Arm) wrote:
->> VIOMMU_ALLOC currently requires a nesting parent HWPT_PAGING even when
->> the selected vIOMMU implementation has no use for one. This would force
->> implementations such as the following Arm Realm vIOMMU to create an
->> unused parent.
+> On 16/11/26 19:19, Aneesh Kumar K.V (Arm) wrote:
+>> This series adds IOMMUFD and PCI/TSM infrastructure for assigning PCI
+>> devices to confidential guests. A TEE Security Manager (TSM) can provide a
+>> virtual IOMMU (vIOMMU), and an IOMMUFD vDEVICE object represents a physical
+>> device within that virtual IOMMU.
 >> 
->> Add IOMMUFD_VIOMMU_NO_HWPT so an implementation can opt out. Require
->> hwpt_id to be zero in that case and pass a NULL parent domain to its
->> initialization callback. For implementations that require a HWPT, verify
->> that the parent supports nesting and its domain belongs to the device's
->> physical IOMMU driver before invoking viommu_init().
+>> The series adds a common framework for operations on vDEVICE objects and
+>> updates lifetime management to keep the VM and device-security resources
+>> available while those objects are in use.
 >> 
->> Reject nested domain and hardware queue allocation for a vIOMMU without
->> a parent, and document the two allocation modes in the UAPI.
+>> The Arm CCA backend is provided in a separate series, together with
+>> operations for TEE Device Interface Security Protocol (TDISP) state changes
+>> and access to cached device-attestation objects.
 >> 
->> Cc: Jason Gunthorpe <jgg@ziepe.ca>
->> Cc: Kevin Tian <kevin.tian@intel.com>
->> Cc: Joerg Roedel <joro@8bytes.org>
->> Cc: Will Deacon <will@kernel.org>
->> Cc: Robin Murphy <robin.murphy@arm.com>
->> Cc: iommu@lists.linux.dev
->> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
->> ---
->>   Documentation/userspace-api/iommufd.rst | 44 +++++++++---------
->>   drivers/iommu/iommufd/hw_pagetable.c    | 14 ++++--
->>   drivers/iommu/iommufd/viommu.c          | 62 +++++++++++++++----------
->>   include/linux/iommufd.h                 | 13 ++++--
->>   include/uapi/linux/iommufd.h            |  3 +-
->>   5 files changed, 81 insertions(+), 55 deletions(-)
+>> The full series, including the Arm CCA backend, is available at:
+>
+> nah, it is not :(
+>
 >> 
+>>    https://git.gitlab.arm.com/linux-arm/linux-cca.git cca/topics/7.4/tdisp-host-rc3
+
+
+Can you use https://git.gitlab.arm.com/linux-arm/linux-cca.git cca/topics/7.4/cca-da-integration-v1
+
+
+>> 
+>> Notes:
+>> * Codex was used to assist with commit message formatting and code
+>>    rearrangement.
+>> 
+
+ [ ... 148 lines skipped ... ] 
+
+>>   include/linux/tsm.h                           |  41 +-
+>>   include/uapi/linux/iommufd.h                  |  36 +-
+>>   25 files changed, 880 insertions(+), 462 deletions(-)
+>> 
+>> 
+>> base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
 >
-> [...]
+> This is v7.4-rc3.
 >
->> diff --git a/drivers/iommu/iommufd/hw_pagetable.c b/drivers/iommu/iommufd/hw_pagetable.c
->> index ae62db50885c..52e52ef089a2 100644
->> --- a/drivers/iommu/iommufd/hw_pagetable.c
->> +++ b/drivers/iommu/iommufd/hw_pagetable.c
->> @@ -306,6 +306,10 @@ iommufd_viommu_alloc_hwpt_nested(struct iommufd_viommu *viommu, u32 flags,
->>   		return ERR_PTR(-EOPNOTSUPP);
->>   	if (!user_data->len)
->>   		return ERR_PTR(-EOPNOTSUPP);
->> +	if (!viommu->hwpt)
->> +		return ERR_PTR(-EOPNOTSUPP);
->> +	if (!viommu->iommu_dev)
->> +		return ERR_PTR(-EOPNOTSUPP);
->>   	if (!viommu->ops || !viommu->ops->alloc_domain_nested)
->>   		return ERR_PTR(-EOPNOTSUPP);
->>   
->> @@ -404,10 +408,12 @@ int iommufd_hwpt_alloc(struct iommufd_ucmd *ucmd)
->>   		struct iommufd_viommu *viommu;
->>   
->>   		viommu = container_of(pt_obj, struct iommufd_viommu, obj);
->> -		iommu_dev = iommufd_device_get_iommu_dev(idev);
->> -		if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
->> -			rc = -EINVAL;
->> -			goto out_unlock;
->> +		if (viommu->iommu_dev) {
->> +			iommu_dev = iommufd_device_get_iommu_dev(idev);
->> +			if (!iommu_dev || viommu->iommu_dev != iommu_dev) {
->> +				rc = -EINVAL;
->> +				goto out_unlock;
->> +			}
+>> prerequisite-patch-id: 121492d71cc22b2adbfdedd668868c5a449ad764
+>> prerequisite-patch-id: ed31fd728f0adba3d60dcd6f3bae8da1a2193bcc
 >
-> Is it intended that every tsm-provided viommu has viommu->iommu_dev ==
-> NULL?
->
-> If so, could the tsm-provider patch make provider selection exclusive by
-> looking up the physical iommu only on the fallback path? All checks
-> against viommu->iommu_dev should be in that patch. This non-parent-hwpt
-> viommu support patch should no longer check viommu->iommu_dev.
+> What are these two? Cannot find them any tree... I really want try this all but also trying to eliminate guessing...
 >
 
-IIUC, you are suggesting moving the iommu_dev check from this patch to
-patch 10?
+Those prerequisite patches are from this series:
 
->
-> Also, if viommu->iommu_dev and viommu->tsm_dev are mutually exclusive,
-> could that be made explicit in a comment or by using a tagged union?
->
-
-That would be a much larger change, as it would require updating all
-current users of iommu_dev to check the tag. We can address that
-separately from this series.
-
->
->>   		}
->>   		hwpt_nested = iommufd_viommu_alloc_hwpt_nested(
->>   			viommu, cmd->flags, &user_data);
->> diff --git a/drivers/iommu/iommufd/viommu.c b/drivers/iommu/iommufd/viommu.c
-
- [ ... 163 lines skipped ... ] 
-
+https://lore.kernel.org/all/20261116075420.76205-1-aneesh.kumar@kernel.org
 
 -aneesh
 
