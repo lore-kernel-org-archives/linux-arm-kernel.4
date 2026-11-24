@@ -2,82 +2,144 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443F8606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160B3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EjlbDMey;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E8xOoZm1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H6l+cudL;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=jxoOJYul
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lXwLpfc4aS4+J/jJs2iTIAGiSEtFcclowGK9/tjyUGk=; b=EjlbDMeyISYvT3
-	vwDh4b/DTYI/5j/1JaCMOjglvWd92w6ni8QMV9coLlpaMdf0gjjVDKI+ksM6jHCDXsO429j94D3hl
-	+Lba1ALyoREsg9jJUDFGmkiU7tkV+rhlDCYhJmttBvdueO40uW+oF0hpSWZoC8JeY5H7NSA6bFSFD
-	UhWKGfQ+Kh8aiu84+dFX9wLekMMvs5rd8a6cMDvwj0dpmDfRoGBu/lscT7vBZkOBim+G69Xx897Cr
-	Ww465QRnbTKkhoUezHrDYyDjPzkWEq25UDReOdYqZNWS5OFY5peL8NAQ76IwXmZOxFmL2QgF/sE+s
-	9TViNc5qP1heHwqvg8+w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=UUX283FTJ3Eit9xaeTKCL9fIV7FQ1ssXq/6S784oV/U=; b=H6l+cudL1989gXVl6hZo47Kq6Y
+	iCBJwOjIVHjrqUZuaA963IDgRXOo58fruISq7uW/LxtZGfBSCKQ5a2qZVo6svgn1/k2Qb/1AWdA/U
+	/0Aruelsieydp/kDik9BSBh3WyHz8Tvt1/PqCNXR61krJTSlDo6H+RRsZKo/dybD5yDroUMYjUYky
+	FBa1OvvHb37I1rXg1PuhnBRQKq+Zlv/xKRT3Lq3M8hrGzM2erN0NYf3x8Mof0Xn8kUX1wskJ7YVqi
+	i5SduNtD1xok6q6I02M8F048oYJt8G7k+l8YplHG5LJrhGGj8op5c3Rp25jKljIw4Qg1cdqfBpdC1
+	/aF/VELw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVw0C-00000007a6V-0cPh;
-	Tue, 24 Nov 2026 19:16:28 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVw4R-00000007aG4-31Oz;
+	Tue, 24 Nov 2026 19:20:51 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVw0B-00000007a6P-1TBj
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:16:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DC36F455A0;
-	Tue, 24 Nov 2026 19:16:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 333321F000C6;
-	Tue, 24 Nov 2026 19:16:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795547786;
-	bh=lXwLpfc4aS4+J/jJs2iTIAGiSEtFcclowGK9/tjyUGk=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=E8xOoZm1tkyvMNjNixCEnPcZxqSvm7nQHecKeztfjP56GWSvZjYReB7gYKUMnv/w0
-	 Sm3JsLa7BScRVmvAS4iQD2/oBRunDKNEBcW7/bWITGa+2n8302BouwuRDbV60VPuZg
-	 oZD4mrDpCZ1837ckijBp0VEFr+jUN1AjhTzGkgLhtEEqiV2h/rj9UlQWbhuUhiftc3
-	 hJCM24QqfT+wOyzl0fIt8DCweVrvK0lJJ5CWDml25DFhXcZc4D2vJUPPWYy6DpgpaN
-	 JsVYyoyZsZchDF+71Dwm6d7BrOJ9Mko0WLASP4tj/CWY13bXLducdhFzpeREsi4KOj
-	 iyQDhLG7PwCJw==
+	id 1xVw4P-00000007aFa-1p8H;
+	Tue, 24 Nov 2026 19:20:50 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RR1YM9OGV4GcbpqppUnwCcFKKbnh5hENBNQ1iwwkr1GYjMC5soN4FLy1TPZN8iNyoS8ofFMANjRNiB5Ga6cegDHr0OVo54h6vRJSKi4YlQn9er20FXS3BcXVwvDFQwjCAlT0FjDerZUfQ6/NqxREagFhzygn7IasVqhAy/NhO3uM502uLBxZ7M2dWPpTBvKuEFN5JFm4IiEdex2mOnjkBETF5qudTG/QIbaJhFCbSW8QPwfnmIMqFSPwZRj/sHRSvLJdtSf7bVikXGJN2/8z8jML0rJabJluJxHDFKNGmz1MzM2K8sXPps1GpP2QetD+al6HR7+O/YSeB/r8vSwoow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UUX283FTJ3Eit9xaeTKCL9fIV7FQ1ssXq/6S784oV/U=;
+ b=VqN5wsn1YWwr+5IswyO7GigDPwvvkSAbASEBNGxlptDjS0ARpoq6eecSGRHHKCPUImW23h59kZleY6Vb+ItUNl/3gcqU7rS/6i1wPgNNEaLR4oYfBt8wsbC7WwzBHOaIyjRES1XaH7L+TKtSC8KESuoOBj8+bGibXDCvX9HCeP0IOUoyTXWMJZvtihrinGXlxFfqLLeokD3zVT7udi38JDZ22GFOWzunmU+5on3FXqSpCxVbdCKV+/uuqUCOAQFR1bae6B0fBrOKwGtQq6SIrw5kI/D7INsAqs0KLRHPKc9uKmGvmdoSrmTxXZOc/liO3CkCKp8G/QckSU2wcsIbCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UUX283FTJ3Eit9xaeTKCL9fIV7FQ1ssXq/6S784oV/U=;
+ b=jxoOJYulTLaQ+9U0jwsVIhHAmk08YP4rxgv5o/YOuEQ23WFSidCM+6rZI9rhgEsrhzp5i6YBkJ3EHNAxRUOtXq1wORnPP/plFSu/RM4fDzvb0DWEPCVMhq4K+42i/uUMyn9NHWEHPh2S8Nn8+6Sjg4N6/aRtphxB0cItld4mMd31ZBdZu2UNFuQq9M3wkWZgVYamBaWX96WnzE+rtqI9C0MQlkS4m63TgpsA7ED8mSwYEB24XdaNNtRdtgRHF15f7xMBpOpLw74gBKj3OnSFk/VnY5J8+wVEZFO38UtIhAt8n+EAmAjg1ONU4iUESUgOtT6sw7zMlx223P8oZNh0fQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AS8PR04MB8755.eurprd04.prod.outlook.com (2603:10a6:20b:42e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
+ 2026 19:20:42 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Tue, 24 Nov 2026
+ 19:20:42 +0000
+Date: Tue, 24 Nov 2026 14:20:32 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dom Cobley <popcornmix@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 02/28] dmaengine: bcm2835: Add support for per-channel
+ flags
+Message-ID: <awXjgCtgR5wtadnb@lizhi-Precision-Tower-5810>
+References: <20261123145728.29082-1-andrea.porta@suse.com>
+ <20261123145728.29082-3-andrea.porta@suse.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123145728.29082-3-andrea.porta@suse.com>
+X-ClientProxiedBy: PH7PR10CA0008.namprd10.prod.outlook.com
+ (2603:10b6:510:23d::14) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v4 3/5] soc: st: stm32mp2-syscfg: register the clock
- device
-From: Brian Masney <masneyb@kernel.org>
-To: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Christophe Roullier <christophe.roullier@foss.st.com>, 
- Dario Binacchi <dario.binacchi@amarulasolutions.com>, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Brian Masney <masneyb@kernel.org>
-In-Reply-To: <20261124-ups_mp25_clk_syscfg-v4-3-894d95dffec4@foss.st.com>
-References: <20261124-ups_mp25_clk_syscfg-v4-0-894d95dffec4@foss.st.com>
- <20261124-ups_mp25_clk_syscfg-v4-3-894d95dffec4@foss.st.com>
-Date: Tue, 24 Nov 2026 14:16:18 -0500
-Message-Id: <179554777875.338124.2443153902372697503.b4-review@b4>
-X-Mailer: b4 0.17-dev-8145e
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1998; i=masneyb@kernel.org;
- s=20250903; h=from:subject:message-id;
- bh=F1WVQywTa9F2r7TDaCAJztvWfqC8Q7gfotXdlbvqROs=;
- b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLJZH7W0Czi4fuJvs6oPT7shs7bSP1zXa3Km+xF5bf0jV
- WcZTao7SlkYxLgYZMUUWZbkGhVEpK6yvXdHkwVmDisTyBAGLk4BmIjUKUaGnbHpPgx+ZmUPVnA3
- zjwxl7/CLpDp4EoWvXb912Enmq8kMTI0tLaL5vuELPvwdL0ES9a6wooZclMLAliN9nutq72Wxcs
- PAA==
-X-Developer-Key: i=masneyb@kernel.org; a=openpgp;
- fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS8PR04MB8755:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f753dbd-6d10-4087-201d-08df4a60083a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|19092799006|7416014|376014|1800799024|261102123227099003|4143699003|10067099003|56012099006|11063799006|261022105027099003|261028144727099003|261021121427099003|261021135927099003|261026140227099003|261021123027099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: f5V2EE16bLA9d+R1tNgyqSxUuwQXAynyebp206IuWvg5LERIdSwM26EhDc4kBrwfB39W9JXj67cns1ROu6Gk9RDxg2G88yIm88xg8YnCXzzQTd6EKmIfi+ybySiGh3pFttENcH9EDYpHB2qLXiBE1QO/bDGAeqjy4hJM2krtXgOCIAVEOkkuEECCPGl5id1lmVNAvuZES1oMZTyJAGrShdR3l3rhgI6AGNl7ARu+ebY3gcG4MBTN+18RNU9OKZXU19nrHh0xXiQL1+lTN6+JtyP7FaN/TKN7utDlYC/q2Q00vRCu4KuY5Xv/vYblVLfiMZei0YisJNrIL4MyCEd3gBYdDzW2aWdFNL2PCmMovW2P0wUO3hqyv+gQB6sI0KIPmiMeM/eP3nLddgI7Go3aZeNXdZF8u0pGlHyjjySYLJfs1/T4z5zUJWsuve4yWTT74l2OlV+clV/UAn43QrOCPydNqrIQTZj/xkOKqQmo4ouQ22d5bgrlG/jiH7p7eMXzz5L6SHtBohT7HWMCPfVrtHicEjXCBc6jelU+aFsqoFAmiJ0Q5lLSvXQC8HzbooToWj7yfIXnzaxQDi62x3XmT3O0VMSyWp57AZJ5qniUCsJraWwOHd4mm0nt1w4M1gG5fGy83rI/HHILstXMmp6NZJr0cPYJgWjR/7WwBwvN35E=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(19092799006)(7416014)(376014)(1800799024)(261102123227099003)(4143699003)(10067099003)(56012099006)(11063799006)(261022105027099003)(261028144727099003)(261021121427099003)(261021135927099003)(261026140227099003)(261021123027099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NiYTwTZw6fVmdh91Nt2mZsp1clUFllVAAMkGi6gXFlqiVIbJP5dxJwrOyW5t?=
+ =?us-ascii?Q?9Psyv+Q3EQeDtQUbySfxNUVH+1rQ8YNnGRsL+Xdr5ZZhBmNWusGfO8ademhX?=
+ =?us-ascii?Q?KAdujNJ0zQ05RDvo138rOiAt9KtdWi31HM6CIy9H91oQw8STBwR/M7CRd3LJ?=
+ =?us-ascii?Q?W41jJBIUHeV8I5vnJmn+SpqttEvwwehlwdFqxQOwtTT02Kcjgq9qvH4PDITm?=
+ =?us-ascii?Q?2GpTAmu8jI3+wkc9J+2o3diu3IaKoN/L65wnlOXHpYSQ5OLtj8I/RdsxGDcP?=
+ =?us-ascii?Q?kA6xf9Z6g3QSOBW/irddjsBgliV0gBglCMCbwFJW1QlGIBxfb7K3zX5wk+k7?=
+ =?us-ascii?Q?rLIhfE0FkVt2ln1euaXo83UpoB/OV5ta7nxzW78YRwjSrLWC9XMRkFxrebv8?=
+ =?us-ascii?Q?r60RwSb5gHm7f7ncx9xRflDjEgCYnybO7a/VZuPHBJjqH+TIUc3rPoCRL6Q3?=
+ =?us-ascii?Q?syPUQemuqqHZd49VC1TUHIDU/rYu0C+cfT1ufry3AexuMSdrxKHYCpVyvTtV?=
+ =?us-ascii?Q?NEns8NJ1wRaChp3R05t7u6cDJWPjS87I0IYB9cX72EuFZ1YuVFwrXac1zYoO?=
+ =?us-ascii?Q?Lz72RhhHih5UsXl37tALEhRo2a85vXN8ZHdOirjCFcLjdPsSUy9wSftwTJbN?=
+ =?us-ascii?Q?XnEn8HHjsSDqT/UeL/z2/x85jDRYElVu7bKBufXtOf7pVNc7Sv/JOwilNuxn?=
+ =?us-ascii?Q?0ATc/u0IlHhIpwY8fD0jg/2jNTUHbvGa2K9FEWD26TQzzs3yjT32JsbyzTL2?=
+ =?us-ascii?Q?tEm5L+dxlPYzNKfVeFnJByY5h9HGijfArHJcZ/fJGttxdqKlANe/KqB5dilD?=
+ =?us-ascii?Q?YeNH1rSztiHTRQBexltiUYn/PMCUWL+Lv1n/A8csacODXiKyQEjka6NoccUm?=
+ =?us-ascii?Q?PnjF1x7V9ax5GZ/G11OuhEVj070RbKiAj1HtaCeKO1I+o9MA04vvS5PJS62k?=
+ =?us-ascii?Q?j3egRcRmsTPM6kDwFZSD9xhpgVAmQwoixzPlsu4zBZU4mZUdopaaBp6hpqxb?=
+ =?us-ascii?Q?BrUs+dBwbqmLB7SK19VJIWN+nLK+WQNo6QZLQq7an8UHg3tIBcgzopQ/zu+X?=
+ =?us-ascii?Q?wDbv9ymstRlWNtQBzdOz/CKnL7TKWqfmR17c9lV5nFtsEHMKixRleqjt+Woa?=
+ =?us-ascii?Q?vYMxwgbMl8AydHfzHzrUhS1/4y5JsAzjOnxSVxEYjs+vKQdELfq5AGKQqvao?=
+ =?us-ascii?Q?sdCroVeHoa2yMSYo7418bu83vZTX6kAdjvIJkefzkl9Vs0nmD1j87DCgxIoR?=
+ =?us-ascii?Q?+3mckZg8yncMYppaNZ/ztANzTkQMVea3vnHtkhUDfb4UC8T09fMh2KTV058X?=
+ =?us-ascii?Q?6pf8bcgZVljUB8gxjqwSx12hteUiqhLkBi+LYjyv8/qspA7AKKeyABA0whcK?=
+ =?us-ascii?Q?Pp07VQtTeIVBQSx51j+C+mqgRR+m0xhlmocU2SVnU4i3eM4R6Z1XQ2/Z1yQz?=
+ =?us-ascii?Q?fTUK1xsCNmZKsIOfLLmphywwNfyOy5GUXZDq2viKZVq6w6aAZcXvzLbVohwk?=
+ =?us-ascii?Q?iiguqvx38sfUe+3yMtycWHNQGLEaidm/n3nlm2gGk42aj70tWE021RRWUgxs?=
+ =?us-ascii?Q?A0akN7iZY1tSfW+04S58OASgaVZSADR0IqLh8Zwnq5RcI7uvO5V7Y+vzmWIE?=
+ =?us-ascii?Q?kk3XATfSHzUyst7UCqe3ttJ7s2tU4LuJ0fvXZXiQtoGuoDQ9U5cGfpJsy9LC?=
+ =?us-ascii?Q?mof9gczx1n+G0J9D+M3QuZ6rAdhHMezonvxYeqPYDYMxSWJVJEMpceShs+vU?=
+ =?us-ascii?Q?tP6MiFCSu9br57lTWoFxbw8XLUBr1O73mKiquJQjOFOwppiFYorC?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f753dbd-6d10-4087-201d-08df4a60083a
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:20:42.6032
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XKxIROcJvepVlAJNVFD29uHYclBhhGvYIGh5gCOmviEerItFm6Edg59sBOCeKRKM+sWTQGda86IKJdC241fGo4725g3/jLX3gH5Vn/a2f8yLAekiL51w1hB8JmeDwOIx
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8755
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_112049_485103_0C6C07A8 
+X-CRM114-Status: GOOD (  21.78  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,74 +150,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Gabriel,
-
-> The STM32MP23x and STM32MP25x SYSCFG provides the LTDC pixel clock mux,
-> whose driver is an auxiliary driver since the SYSCFG node is bound to
-> this driver.
-> 
-> Create the auxiliary device for the clock driver.
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> [gabriel.fernandez@foss.st.com: create the device on STM32MP23x too]
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> ---
->  drivers/soc/st/Kconfig           |  1 +
->  drivers/soc/st/stm32mp2-syscfg.c | 14 +++++++++++++-
->  2 files changed, 14 insertions(+), 1 deletion(-)
+On Mon, Nov 23, 2026 at 03:56:40PM +0100, Andrea della Porta wrote:
+> From: Phil Elwell <phil@raspberrypi.org>
 >
-> diff --git a/drivers/soc/st/Kconfig b/drivers/soc/st/Kconfig
-> index 2a9d6a77be45..62bbe8c63238 100644
-> --- a/drivers/soc/st/Kconfig
-> +++ b/drivers/soc/st/Kconfig
-> @@ -5,6 +5,7 @@ config SOC_STM32MP2
->  	tristate "STM32MP2 SoC family support"
->  	depends on ARCH_STM32 || COMPILE_TEST
->  	default ARCH_STM32 && ARM64
-> +	select AUXILIARY_BUS
->  	select SOC_BUS
->  	help
->  	  If you say yes here, you get support for the ST STM32MP2 family
-> diff --git a/drivers/soc/st/stm32mp2-syscfg.c b/drivers/soc/st/stm32mp2-syscfg.c
-> index 770321a4a6f7..1160b65d3dde 100644
-> --- a/drivers/soc/st/stm32mp2-syscfg.c
-> +++ b/drivers/soc/st/stm32mp2-syscfg.c
-> @@ -3,13 +3,25 @@
->   * Copyright 2026 Marek Vasut
->   */
->  
-> +#include <linux/auxiliary_bus.h>
->  #include <linux/module.h>
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  
->  static int stm32mp2_syscfg_probe(struct platform_device *pdev)
->  {
-> -	return devm_of_platform_populate(&pdev->dev);
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	ret = devm_of_platform_populate(dev);
-> +	if (ret)
-> +		return ret;
-> +
+> Add the ability to interpret the high bits of the dreq specifier as
+> flags to be included in the DMA_CS register. The motivation for this
+> change is the ability to set the DISDEBUG flag for SD card transfers
+> to avoid corruption when using the VPU debugger.
+>
+> Signed-off-by: Phil Elwell <phil@raspberrypi.org>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  drivers/dma/bcm2835-dma.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+> index b19182c6e3df..690f5ba1c439 100644
+> --- a/drivers/dma/bcm2835-dma.c
+> +++ b/drivers/dma/bcm2835-dma.c
+> @@ -137,6 +137,10 @@ struct bcm2835_desc {
+>  #define BCM2835_DMA_S_DREQ	BIT(10) /* enable SREQ for source */
+>  #define BCM2835_DMA_S_IGNORE	BIT(11) /* ignore source reads - read 0 */
+>  #define BCM2835_DMA_BURST_LENGTH(x) (((x) & 15) << 12)
+> +#define BCM2835_DMA_CS_FLAGS(x) ((x) & (BCM2835_DMA_PRIORITY(15) | \
+> +				      BCM2835_DMA_PANIC_PRIORITY(15) | \
+> +				      BCM2835_DMA_WAIT_FOR_WRITES | \
 
-Looking at the dt binding, I see that the clocks property is optional.
-Should this have the following check?
+Your commit message said "ability to set the DISDEBUG flag", why need
+other flags here?
 
-    if (!of_property_present(dev->of_node, "clocks"))
-        return 0;
+Frank
 
-Brian
-
--- 
-Brian Masney <masneyb@kernel.org>
+> +				      BCM2835_DMA_DIS_DEBUG))
+>  #define BCM2835_DMA_PER_MAP(x)	(((x) & 31) << 16) /* REQ source */
+>  #define BCM2835_DMA_WAIT(x)	(((x) & 31) << 21) /* add DMA-wait cycles */
+>  #define BCM2835_DMA_NO_WIDE_BURSTS BIT(26) /* no 2 beat write bursts */
+> @@ -433,7 +437,8 @@ static void bcm2835_dma_start_desc(struct bcm2835_chan *c)
+>  	c->desc = to_bcm2835_dma_desc(&vd->tx);
+>
+>  	writel(c->desc->cb_list[0].paddr, c->chan_base + BCM2835_DMA_ADDR);
+> -	writel(BCM2835_DMA_ACTIVE, c->chan_base + BCM2835_DMA_CS);
+> +	writel(BCM2835_DMA_ACTIVE | BCM2835_DMA_CS_FLAGS(c->dreq),
+> +	       c->chan_base + BCM2835_DMA_CS);
+>  }
+>
+>  static irqreturn_t bcm2835_dma_callback(int irq, void *data)
+> @@ -460,7 +465,8 @@ static irqreturn_t bcm2835_dma_callback(int irq, void *data)
+>  	 * if this IRQ handler is threaded.) If the channel is finished, it
+>  	 * will remain idle despite the ACTIVE flag being set.
+>  	 */
+> -	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE,
+> +	writel(BCM2835_DMA_INT | BCM2835_DMA_ACTIVE |
+> +	       BCM2835_DMA_CS_FLAGS(c->dreq),
+>  	       c->chan_base + BCM2835_DMA_CS);
+>
+>  	d = c->desc;
+> --
+> 2.51.0
+>
 
