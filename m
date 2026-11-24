@@ -2,83 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A11606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0078E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vPebNnRs;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FwyR1IKx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BgFlXzDj;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=UQHhnatg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=7ADkkO7OrDOakoZissUe/feLBFMvVo6YnTMs5lxIDuc=; b=vPebNnRs/bhXUv9UjxL7hYuXQ5
-	Z8GAgLnCW7q3i5IwpaXIhNj2FKojnNe+VUYtZOsUzEkVARUbCtZURE/eSStIfItycMnb9/1yCHRS5
-	wMI4lidbRXmJQa+QdLe9H36ihSE8kmTkDFo8fQj9p8GYoyj9ZLL3iN82mFro4xnpIW+bsMUVV0P0D
-	kC3fzNbh/Zc1S4tbosvowoJObpzeOLIZO7d88WEwF2EboEUQu2VLx+0tMb9IzdZ+OTcKCnQJUyaKh
-	aUI7xH1KGRGwL3SUYk+ZEZrAKrzHRsHv8fYDzedftJD0lnJBo7IZib+/RARWbNRFBHcDUgH0l9vqh
-	QvJtTEMA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Czsesa5ZeOVdF9UZnZPtwINhyqTnZrrNDtc5MtD/hAc=; b=BgFlXzDjOZu2ts
+	4IUfQwawGdUCO4Y2ebPA0MhQ89HcGmQRYYqlpsbACc8H2JQ1cvj8CgIIGxA0f4ti+oHOw46k3bZEN
+	0heBlbt9tUzE6u+GQz2M9sNFdFwA1eOuquOCZSusJXnRVOVNRmQYl6VHTCAVf2CkmsikEzGNWgIv/
+	dXTEFWue2/BhZt94RH13GyFVAf+wWI5uCsbJVuqVb+h8biQfPefoTcX9ELTKDcU29oYuCFENJC6Zr
+	aBHaKSQLiA/yLE/2ASTjCwq3dVJSmv+mLP3l1dSPnyMaqomrkvEv8UZwP1IPAC1Z8rsuYrelVjnz2
+	YbaRL602sljJe9yR9XGg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtXa-000000078up-3zst;
-	Tue, 24 Nov 2026 16:38:46 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVtrM-00000007FDD-2406;
+	Tue, 24 Nov 2026 16:59:12 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtXZ-000000078uV-0D13
+	id 1xVtrH-00000007FC2-386i
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:38:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 685DE62450;
-	Tue, 24 Nov 2026 16:38:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F35251F000D2;
-	Tue, 24 Nov 2026 16:38:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795538324;
-	bh=7ADkkO7OrDOakoZissUe/feLBFMvVo6YnTMs5lxIDuc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=FwyR1IKxg5LZccDINcjDUnc6lyk1XGb6HBTNrvll1u4ipuyfAQeb4fEqM0eXjX7SM
-	 PRPRC2DYZ8MNcLmvzgqzgxnk+abDN7UJFiJs+Whb8Lc5LRBAFjUGBVW6E22fOFAq1W
-	 VjfbUkP0MdPqTDBmO+oRifVIa7l716FkzcWCzDpuFUK0X/QkoXIkAD1ONEUFjXYiOG
-	 wkCnL4dQhDRlreZZ4ZMenD7XtWULaUo2wSgzz+VAzp6JPr4XgW2Fvc4IVB1X1i3XfZ
-	 Is342rsqStkMEb42NbPEAYrcIkt3YK6J3a+cul02S6tfI6o6mSjCEjIfWEpJzQWHB9
-	 4Y/JznUmdU8Aw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVtXV-00000002gMn-3c6E;
-	Tue, 24 Nov 2026 16:38:41 +0000
-Date: Tue, 24 Nov 2026 16:38:41 +0000
-Message-ID: <864id6yyjy.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Leonardo Bras <leo.bras@arm.com>
-Cc: kvmarm@lists.linux.dev,
-	kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Oliver Upton <oupton@kernel.org>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Dan Carpenter <dan@pereq.eu>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
-In-Reply-To: <awW5QKqGZAqw1ru9@LeoBrasDK>
-References: <20261123182312.4842-1-maz@kernel.org>
-	<awW5QKqGZAqw1ru9@LeoBrasDK>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Tue, 24 Nov 2026 16:59:10 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c4d21051042so771605266b.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 08:59:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795539546; cv=none;
+        d=google.com; s=arc-20260327;
+        b=dencwqJTzbCM6O02dJXXh9BbYHfm9as9sssgvJiEv3pBVxfS9mUtLVcXYHPFvu88NG
+         g8WA738W21MtNSEMLOwlKmGq9Qi1OVakck86PpwYBLqgtjQg+OL7RnmlSXpapEzCjV7i
+         LIIIWt4UrmK/Gab/f7lNNiaDc6tRAT5m+Ub7S2Bp8giGcrf5hFkpuI26HEPqWElitJQT
+         kKula3ltN6Ytk49GaM3xZrf0I9nIQvnlm6Fy7X3NEMHZUQEw+VY3/BLKvanizgCgLd6g
+         lkbX/TXXvY3/KHSBGfZATSXOO6rWqCr0EQIP7Fc78ntVaj8q++VAaNeIfDQIgLs4C1Dc
+         KJzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Czsesa5ZeOVdF9UZnZPtwINhyqTnZrrNDtc5MtD/hAc=;
+        fh=+NNAbfeiZ3ImcAgIK+8GFBhM+SmB8Ez/+r6iIeok1Kk=;
+        b=A/3d1i2vkbXiPM8fXvX1pAOAgz+bzEI0Nbp35ymT74efWxhfvpBb/jCvLOH2SBVhMs
+         o3axsyvfef0ye7SJ7vGRvGATt+p07pFsovtQiGjlPW76r4nZJYZcc5kLvYJ4JKj9Wd/3
+         ktpceD21kFekEVgzd0V0bDg75MV5V/Jj+eMsT0wGM6Bzs8/hMCQZAFQH8YT2d5ltJoUj
+         Rm305Fg0LRsELERkGzt33oPpIWJ3n7w3Rddp9zObDMLGQnbZguA9FrT207NkqMqrYLO9
+         kA5iLhjaciHlxieB3O0ZZvtUYdHC6BFHJeYYLfB5ux6f9TdbgxMIYrpe9gUSRpBiIBvx
+         aT/w==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795539546; x=1796144346; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Czsesa5ZeOVdF9UZnZPtwINhyqTnZrrNDtc5MtD/hAc=;
+        b=UQHhnatg6YzY31zDhaQ90iAsXfBS5yY9naddtdHQAFjiGJz1DPTm5BI6pJ8PyhCLnK
+         kibSkf0cZSVC16hIzV/GRzPqyUIopcaNHFuuMB7VCx/x6zEfusbpVCwj2L/b595rwX8l
+         2cm1+i9OXozN/mxb+2HvFb9XAMkDuZ96IJ+OUS+n5Wgxvp85HrTBNgV9b3VvhZ7D9zLN
+         rzsE/KKazMVrRm0uIsB+qiOgO0hFAZr5uqnfxmvDKt78winRGn0BAyeagEs7iCsAzcyI
+         pI48MabxeSD4kEONuHSSymVyg59pWsFbUFeCHcCt7D0I4Pwu9ixz9HABCXyw9ess5Sk4
+         ASsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795539546; x=1796144346;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Czsesa5ZeOVdF9UZnZPtwINhyqTnZrrNDtc5MtD/hAc=;
+        b=TXWWFbaqFe18rl58W8mUe9Yyouzqw9aAT7xaBbqvj/pZo+SEQi/5UX8z9kk61SrgeG
+         QAXOKr0jUX5debn/zsq9eqz7B1eFPce1wAYtA2PzZPi1ZWZCe9FvjQkNO5mx5GR7LIIT
+         t8hrUce6wr9Qu6/gV9WDrJQWB6CHLqf3zXQRHuf/h/TUBKsSICQwxjQ38JED2LeXrO6R
+         jnmvRBTOHx4tMChxGNCDx1ZjWQUffH+hqcSThrrpM8hQjaGeixPLNoY5rPfwShbesvmf
+         JLha41+rmaliiB3gpfxYn7sLOqH1Hh/yZPMRFry2DJgnylUlRnGcPX8BCZ2Gwo3qMW6n
+         Jl6g==
+X-Forwarded-Encrypted: i=1; AL+hErGEpEJ5GeiM+b309TC0cjD5Vq7kjYzw8mtRLXJlYlkojnfVvKWjksBCi5CuUAWnuAVKf0QCsybo6WtQNTJ5MKq8@lists.infradead.org
+X-Gm-Message-State: APuU4Z+2sCxms+pYVqntEsFsGNERtNKcpHVRNqQiMqrGM3lMC5hU3fj+
+	BAHiA760phy5FinDcQ5oSwmm4JXkYlVVXTBPrB2Y7e4ovU9ommIdED/I+kPDp/Egi10YwlYXSXM
+	W1eC2ca28b0N2SB7ggVd+zAgRMZEhRR4J3/Fzszo+
+X-Gm-Gg: AZFdTZdg/eBAwgJf1NPKC8dnfoFhDRY1vrIuaG57gJOL33qPzqjilVSNiwbVkqwkBwr
+	uglMmnaE45zN5hFSd1vcqO7E+e4NfssQjbxTQmBlEmyM0oscHQc2D8cHyVlkshxK/GDdOhJuSHb
+	DcQIbJN2rKDQ52hBD/F15cqhfs4YAnTVljolXfnk+Dmih9A6cS9bWvWl1DyYW+YCzjowyhl6eCe
+	MBWe2ctX1oTmMxMrJu8zDdR4Tu4x8UquMpJ9iap6KJi2dOGYq+2gAO7ruUHbfoFXs0WtQBMkHHL
+	Gp22bkc8GqtUgF0lN134De9n3Az7KPRXjpU8XsBRN8N6kAtAKEKZG+nnO64cNT2KkPvAkj5wCeR
+	ds7Zb0AeAJJoF91NtUOnTBiv3Bk/8VPXzGZoe0FtnLt8meMz66pKSRfyoMEdJnIpRXKOmZnQ/iC
+	709rNaFCLnWHEwhH3gEbJEp7Z/dYUriqyIFTR41IBD6IOfFoqD9OXe
+X-Received: by 2002:a17:907:9d1a:b0:c51:3b58:b99b with SMTP id
+ a640c23a62f3a-c513b58bc59mr1253328666b.19.1795539545161; Tue, 24 Nov 2026
+ 08:59:05 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: leo.bras@arm.com, kvmarm@lists.linux.dev, kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, oupton@kernel.org, yuzenghui@huawei.com, fuad.tabba@linux.dev, dan@pereq.eu, stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+References: <20261122184453.2668189-1-jthoughton@google.com>
+ <20261122184453.2668189-7-jthoughton@google.com> <CF94E7D7-87D2-4523-9343-512EE00094FA@linux.dev>
+In-Reply-To: <CF94E7D7-87D2-4523-9343-512EE00094FA@linux.dev>
+From: James Houghton <jthoughton@google.com>
+Date: Tue, 24 Nov 2026 11:58:27 -0500
+X-Gm-Features: Aa3M54ohYXliwBIhyvf_be5zFFZBRmz0PsOJzrNeOCUHJCfDe6sQjb1ES_TJZKg
+Message-ID: <CADrL8HW8+eFt5f1VBQ0zt-ioiU3X150W4ROaKf2Nzw4j9+0i_Q@mail.gmail.com>
+Subject: Re: [PATCH v3 06/19] hugetlb: Optimize bootmem folios that were not pre-HVOed
+To: Muchun Song <muchun.song@linux.dev>
+Cc: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Oscar Salvador <osalvador@suse.de>, Andrew Morton <akpm@linux-foundation.org>, 
+	Kefeng Wang <wangkefeng.wang@huawei.com>, Nikos Nikoleris <nikos.nikoleris@arm.com>, 
+	Linu Cherian <linu.cherian@arm.com>, Mark Rutland <mark.rutland@arm.com>, 
+	David Hildenbrand <david@kernel.org>, Ryan Roberts <ryan.roberts@arm.com>, 
+	Nanyong Sun <sunnanyong@huawei.com>, Yu Zhao <yuzhao@google.com>, 
+	Frank van der Linden <fvdl@google.com>, David Rientjes <rientjes@google.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_085907_809812_402A1EC4 
+X-CRM114-Status: GOOD (  30.67  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,123 +125,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 16:20:16 +0000,
-Leonardo Bras <leo.bras@arm.com> wrote:
-> 
-> On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
-> > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
-> > that describe a base granule size smaller than the host's page size,
-> > we take the resulting size at face value and feed it to the S2 unmapping
-> > code. Which legitimately screams about something not being page-aligned.
-> > 
-> > The architecture allows us to drop the TLBI on the floor, as we don't
-> > support a S2 granule size smaller than the host's page size. But it turns
-> > out that doing so is proving pretty hard (we call compute_tlb_inval_range
-> > from a number of places, none of which is amenable to an early out).
-> > 
-> > Instead, detect the annoying case, and pretend that we don't have a TTL
-> > hint at all, leaving the size upgrade mechanism to take place and use
-> > the largest possible size for the guest's S2 granule size.
-> > 
-> > This will still allow nonsensical stuff to get through, such as a 4kB
-> > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
-> > on a 16kB page size host, but that's not worse than doing nothing, and
-> > the host code won't get shouty.
-> > 
-> > Reported-by: Dan Carpenter <dan@pereq.eu>
-> > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
-> > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > Cc: stable@vger.kernel.org
+On Sun, Nov 22, 2026 at 10:11=E2=80=AFPM Muchun Song <muchun.song@linux.dev=
+> wrote:
+>
+>
+>
+> > On Nov 23, 2026, at 02:44, James Houghton <jthoughton@google.com> wrote=
+:
+> >
+> > Boot-time gigantic folios are expected to be pre-HVOed through the
+> > section-based vmemmap optimization, so the bulk optimization pass for
+> > bootmem folios was dropped.
+> >
+> > However, arch_support_vmemmap_remap() may not yet
+> > return true when bootmem folios are allocated (e.g. on arm64, where
+> > support depends on a system-wide CPU capability), while it does return
+> > true by the time the bootmem folios are gathered. Such architectures
+> > disable the section-based vmemmap optimization in their vmemmap
+> > population path (see section_vmemmap_optimization_disable()), so the
+> > folios are not pre-HVOed and would never be optimized.
+>
+> Yeah, when I removed support for this part of the code, I figured you
+> might add a new patch in the future to add support back. It is fine.
+>
+> >
+> > Optimize such folios when gathering bootmem folios. Their tail struct
+> > pages have all been initialized by memmap_init_compound_page(),
+> > as they were not pre-HVOed. Pre-HVOed folios are skipped by
+> > vmemmap_should_optimize_folio().
+> >
+> > Signed-off-by: James Houghton <jthoughton@google.com>
 > > ---
-> > 
-> > Notes:
-> >     Reposting this as a first class patch, as I'd like to plug that one
-> >     as early as possible (and Dan has plenty of other patches in flight...)
-> > 
-> >  arch/arm64/kvm/nested.c | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> > index 78d5b18dbd2d6..36e4e83badf0a 100644
-> > --- a/arch/arm64/kvm/nested.c
-> > +++ b/arch/arm64/kvm/nested.c
-> > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
-> >  	 */
-> >  	max_size = __ttl_to_size(ttl);
-> >  
-> > +	/*
-> > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> > +	 * possible invalidation. Don't try this at home, kids!
-> > +	 */
-> > +	if (max_size < PAGE_SIZE)
-> > +		max_size = 0;
-> > +
-> >  	if (!max_size) {
-> >  		/* Compute the maximum extent of the invalidation */
-> >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> > -- 
-> > 2.47.3
-> > 
-> 
-> Hey Marc,
-> 
-> I think the changes make sense, although rounding up to PAGE_SIZE also 
-> looks a valid solution in my unexperienced viewpoint.
+> > mm/hugetlb.c | 11 +++++++++++
+> > 1 file changed, 11 insertions(+)
+> >
+> > diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+> > index 72839e98f998..8756c0206922 100644
+> > --- a/mm/hugetlb.c
+> > +++ b/mm/hugetlb.c
+> > @@ -3325,6 +3325,17 @@ static void __init prep_and_add_bootmem_folios(s=
+truct hstate *h,
+> >       unsigned long flags;
+> >       struct folio *folio, *tmp_f;
+> >
+> > +     /*
+> > +      * Bootmem folios are normally pre-HVOed through the section-base=
+d
+> > +      * vmemmap optimization. However, an architecture that can only
+> > +      * determine whether it supports HVO after bootmem allocation dis=
+ables
+> > +      * the section-based optimization (see
+> > +      * section_vmemmap_optimization_disable()), in which case the fol=
+ios
+> > +      * were not pre-HVOed and must be optimized now. Pre-HVOed folios=
+ are
+> > +      * skipped.
+> > +      */
+>
+> I'd like to condense these comments to something like:
+>
+> /*
+>  * Some architectures do not support section-based vmemmap optimization,
+>  * so their bootmem folios should be optimized here with folio-based
+>  * optimization.
+>  */
 
-No, it isn't the same thing. Taker the example I have given, where the
-host is 16k, the guest 64k, and the invalidation 4k. If you round
-things up to 16k, you're still not invalidating anything that is
-consistent with the *minimum page size* for the guest. Anything larger
-is a multiple of both the host and guest page sizes, and therefore
-always correct.
+Applied in v4, thanks!
 
-> 
-> I am curious if there is any particular reason not to merge that with the 
-> test below, such as:
-> 
-> diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> index 78d5b18dbd2d6..36e4e83badf0a 100644
-> --- a/arch/arm64/kvm/nested.c
-> +++ b/arch/arm64/kvm/nested.c
-> @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
->  	 */
->  	max_size = __ttl_to_size(ttl);
->  
-> +	/*
-> +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> +	 * possible invalidation. Don't try this at home, kids!
-> +	 */
-> +	if (max_size < PAGE_SIZE) {
-> - 	if (!max_size) {
->  		/* Compute the maximum extent of the invalidation */
->  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> --
-> 
-> Given max_size is unsigned (>=0), and it will be changed again in the 
-> switch case below, I was not able to understand the need to make it zero 
-> first.
+Also just so you don't miss it, would appreciate your thoughts on my
+reply to Sashiko's comments on this patch[1]. Let me know if you would
+like me to do something different.
 
-There is more than one way to write similar things, and what I wrote
-made the most sense to me.
-
-I want to single out this particular corner case, which is not the
-much more general case if "max_size is 0 because there is no TTL
-information". Lumping these two things together makes it, IMO,
-pointlessly hard to reason about the various cases.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+[1] https://lore.kernel.org/linux-mm/20261124165516.1182390-1-jthoughton@go=
+ogle.com/
 
