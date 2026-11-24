@@ -2,72 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D960606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD92A606A695
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FubbLKkn;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vYu9P6Yh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y/uJT0zI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VHqkHaCR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ji2VLaS8JrXvWDzuTDl7OqX2b0eX02T1MrHfqF7t+BM=; b=FubbLKknF5hn9U
-	nmKrMzMNyQVPDbYYC9ZEIFLPFtW4Sr9RsDDrbNpmpAzZc25lcn3ZO4lBb6+AEkGYZwgXWMJSQojed
-	Pi6BosLau6k7hMQv/y2DeemJadI6JXKY37uyECDnCNjcxY6geDYuA9wPuybg1K8+jM0LoJiUpiPWo
-	3uQWgd+fGMOE/VYtHYAcb6CI4tYEeAcld/x9JHiHHD1fjiVz0KTe0eepc3H3rTlzXjiz7663jPogj
-	apH9i0S3NenEIhuH62jB73i1h6rjM6fNhaqoqxR9mhPO6IXSBF1DnPI8nDpOm7sVFSu5dRiv6sGg1
-	pZMZ9gjy+jqwpBmw4jKw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
+	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=V+4F6I7uCMsa56sY8qxl3MrFvsZqFdQNXxT4S0Y1kkE=; b=y/uJT0zIQHtJ1o
+	bAM2h0WX5dxyji3rkSiW5INvI9eFTfm8k6ljiR9+VEEY3Wrdcp73r0k/P+R0YfUu74WMVJhO/VrDk
+	Mgt1/Ns6y8T/FPMOrLv95cyiDrLpbbeUikB5nJB39cI/Pa3yC1QRJXp1LPGrOAlPvDuBfrHZ/EdQv
+	A/BZld8sG7lE+WzC/l3hEbxl0k8Lf1PrBlTeqe6FBB6YwfjfdWNQKPC7p+bJ5TU5KRSeIt5KQXmLH
+	4pYHqKJA0xRCOfr3OkrYaZXX44fETC78OLKHCxaFgjkyH/wg9j5W5vPG/RAEjlzKbq11GbwpVaKxY
+	mzdJPCarYtCoYT2Jh5kQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVowW-00000006Nck-0Vik;
-	Tue, 24 Nov 2026 11:44:12 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVowS-00000006Nc9-0jV2
+	id 1xVoxp-00000006NoT-1Ecm;
+	Tue, 24 Nov 2026 11:45:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVoxo-00000006Nnb-227t
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:44:10 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1577339;
-	Tue, 24 Nov 2026 03:44:03 -0800 (PST)
-Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A11E13F86F;
-	Tue, 24 Nov 2026 03:44:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795520646; bh=kLST5Raz2y3p+T1wViYiMm3EjjWntGVOgzxZ0ZkDjHs=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=vYu9P6YhAjjoYr/hTwSTR/LIhWweLpp9HQEP2iWhlEaZAw0vMnI8dLTTuiyxRlbLL
-	 jYmTMOFDlFj0dEIgofQYRVGSOTq8s6GLPihqGCHlHQ2by/OWK4MDXUwUQLR4uvp2QM
-	 PTx6uRtxQJl2preDj0zhtlZ1IonFUJEFnyF011Lg=
-Message-ID: <ba518021-4098-48cb-b59f-a07cf7a418da@arm.com>
-Date: Tue, 24 Nov 2026 11:44:02 +0000
+	Tue, 24 Nov 2026 11:45:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E57D943BCD;
+	Tue, 24 Nov 2026 11:45:31 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795520731;
+	b=C+jFIU8X9PNNhjltL0ZCA9cpvqRvZ4ph1MajS+tNo442V6mTJKLhIlRsNoGB6Z7NJGjP
+	 AhvXyFC4T5Ay8vdt1QZDnoCCAf6wMV280AwpxzF/OlAP3WMl4mKKM0r1ruAoMinR0nt+B
+	 N4K/tHJq3pTK1Bl/wO2VjKoa7hF3cWL3l/CKA1Uij/0MTLCtPBycejTXHn2rmCw1p3BJF
+	 PwLXIR0/ermGQF/2AJF+epSaZg9EJQrU1L7Oz+zbufap5CAdv1qWIXeSsYRzc/vkNkTQB
+	 DCg6qAHOYI4WlkToUcEYOjNx9hK6faLOgxQY5losYIXRWgqFPyCngJ2SkXtnYuCGrPQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795520731;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
+	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=V+4F6I7uCMsa56sY8qxl3MrFvsZqFdQNXxT4S0Y1kkE=;
+	b=ESojCyUJZYwyGgD3qdaDaoTFA1WFCeEHEBKN9QGKUiYuHGCwex9TnLKy5jNoAd8IVsVa
+	 ulMOdZv0GbUZOAaitsWNyvdfwqBtJ+kNrh8xtExLPgFh3h2WI6VoI/dnA/6YFAxlsVIYS
+	 CkjXDUT1d8bnG8j8E0SmZ7pU1kkk4JnsbkfB6sUDLB8b6Vu+2zRprzG/eXvuXyzIfUETY
+	 dFiWjszA48VZtwgzhSKbyjXBbrxKymhXwvVSDhsq3C9DkdtDujv+Ni8rgxzVxc5TfPDyk
+	 K6GU3SmYYU/ZQz4xp+ic9VhDz2e/Ukc3iNRfYYppAJhNVifPasAe4OoGOccWBV6eC3Q==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 6C7741F000D0;
+	Tue, 24 Nov 2026 11:45:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795520731;
+	bh=V+4F6I7uCMsa56sY8qxl3MrFvsZqFdQNXxT4S0Y1kkE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=VHqkHaCRz3S0EON7z9scfxhtaAz5gPNZ7pYtBLwuSeogN6V9WHpYpLc/7ETrf/U72
+	 dKOFSjN7dZDMixTA1efJVvKaoJ8bsAcyv5Mn2dVNPKowwdbl0xrAZWKPlL5RM84ojZ
+	 zAZxa7gnGbpZWNunxWECVHxbU57AKe/KYpd6zgXQ1SAYzyUi6ikqkivGgqGh73OoSP
+	 lj1fAz63OmvqCpMjwWTegmErABkC79itJQopvXJ7l9PWc0DMM6bZZPt2GZeBMyhuXF
+	 KlEnMor+mNjbfPjs2lX3BMwcWwjBVCoUp+ZJEdlTCCli+nSHnpuXr5i/vNaPV6Vg0o
+	 XE7oRzS+Fe3MA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id E4E414C9B1;
+	Tue, 24 Nov 2026 11:45:26 +0000 (UTC)
+From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
+Date: Tue, 24 Nov 2026 17:15:03 +0530
+Subject: [PATCH v13 01/20] dmaengine: ti: k3-udma: Fix sporadic crash on
+ AM62x
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 5/9] fs/resctrl: Allow mba_MBps with assignable MBM
- counters
-To: Jinjie Ruan <ruanjinjie@huawei.com>, tony.luck@intel.com,
- reinette.chatre@intel.com, Dave.Martin@arm.com, james.morse@arm.com,
- babu.moger@amd.com, corbet@lwn.net, skhan@linuxfoundation.org,
- rdunlap@infradead.org, tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
- dave.hansen@linux.intel.com, hpa@zytor.com, fenghuay@nvidia.com,
- tan.shaopeng@fujitsu.com, quic_jiles@quicinc.com, x86@kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20261112131255.4043381-1-ruanjinjie@huawei.com>
- <20261112131255.4043381-6-ruanjinjie@huawei.com>
- <1defc561-e7bc-4864-90ad-6aa3fb6be7da@arm.com>
- <e814cf3a-61ee-466e-ae2b-6abf8db16dc0@huawei.com>
-Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <e814cf3a-61ee-466e-ae2b-6abf8db16dc0@huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_034409_052659_B25FF8F5 
-X-CRM114-Status: GOOD (  46.93  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261124-dma-upstream-v13-v13-1-bd4251fdc6d4@ti.com>
+References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520723; l=2302;
+ i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
+ bh=0QbFZNXvvMb+ue0ziAGKkg7DBgtCKZ+KVB36CbCIP+g=;
+ b=MRewRL5HmtOr8dMHDtNNoJPPgWV02lzo2xXfLL/qI8dUiJyKIOfFBiHACm9/3gPEyXhCNTLlm
+ ZN6RO5wDQ1CBKlWU1ak3bBEsCgPHEAKHEZuEqw0OTwXvAjJqtCbOeIS
+X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
+ pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
+X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
+ auth_id=1627
+X-Original-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,271 +112,69 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: s-adivi@ti.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jinjie,
+From: Vignesh Raghavendra <vigneshr@ti.com>
 
-On 18/11/2026 03:52, Jinjie Ruan wrote:
-> 
-> 
-> 在 2026/11/17 19:37, Ben Horgan 写道:
->> Hi Jinjie,
-> 
-> Hi Ben,
-> 
->>
->> On 12/11/2026 13:12, Jinjie Ruan wrote:
->>> The controller needs a counter for the event selected by mba_MBps_event
->>> in every monitoring group, so mba_MBps is refused when MBM counters are
->>> assignable. On MPAM a group's monitor is assigned from a fixed pool
->>> when the group is created, and users can otherwise only pick a
->>> percentage of a maximum that firmware does not report.
->>>
->>> Allow the controller when the architecture has a fixed assignment mode
->>> and assigns counters when a group is created. Keep mbm_assign_on_mkdir
->>> enabled while the controller is in use, restore its previous value
->>> when the controller is disabled, and refuse to unassign the
->>> controller's counter meanwhile.
->>
->> I'm afraid there has been some miscommunication here. What I was trying
->> to suggest is that MPAM could when using the software controller use the
->> default mbm_assign_mode as is used in intel systems. All the counters
->> are allocated up front and there is one of each supported type per
->> monitor group. Using mbm_assign_on_mkdir doesn't always give you
-> 
-> In this case, it is unnecessary to restrict that mbm_assign_on_mkdir
-> cannot be disabled during the soft controller is enabled
-> 
->> guaranteed assigned counters as you point out in your
->> patch "arm_mpam: resctrl: Use the domain's counter ID". I haven't
-> 
-> Yes, that patch is addressing the related issues.
-> 
->> thought through all the abi consideration but it seems plausible, what
->> do you think?
-> 
-> I like the "default mbm_assign_mode" idea which I think achieved through
-> the closid and rmid trimming discussed earlier, while
-> mbm_assign_on_mkdir is only a best-effort.
-> 
-> I have a few questions as below:
-> 
-> 1、Should report MPAM as the default mode only during the mba_MBps
-> mounting?
+ring_init_data is declared on stack and left uninitialized, so any
+field not explicitly assigned afterwards carries garbage. Every field
+that exists on struct k3_ringacc_init_data today (tisci, tisci_dev_id,
+num_rings) is set immediately below, so this is currently a no-op, but
+a later patch in this series adds a base_rt field to the same struct
+that is not set by this call site. Without this fix, that field would
+carry stack garbage here, and k3_ringacc_dmarings_init() could use a
+junk address for the ringrt base, causing a crash during ring pop:
 
-I'm not completely sure but it does seem that if we are going to the trouble of adding support for
-'default' mode then we should make it more generally available.
+[    1.998239] cadence-qspi fc40000.spi: couldn't determine phase-detect-selector
+[    2.532106] Unable to handle kernel paging request at virtual address ffff800081a84b98
+[    2.540051] Mem abort info:
+[...]
+[    2.629987] Workqueue: events_unbound deferred_probe_work_func
+[    2.635832] pstate: 800000c5 (Nzcv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    2.642787] pc : k3_ringacc_ring_pop+0x48/0x94
+[    2.647234] lr : udma_pop_from_ring+0x7c/0xb4
+[...]
+[    2.726250] Call trace:
+[    2.728691]  k3_ringacc_ring_pop+0x48/0x94
+[    2.732786]  udma_ring_irq_handler+0x34/0x218
+[    2.737141]  __handle_irq_event_percpu+0x60/0x14c
+[    2.741846]  handle_irq_event+0x4c/0xa8
 
-> 
-> In this way, when remount without "MBps", the default behavior can be
-> restored instead of permanently trimming the number of control groups
-> and monitoring groups based on the hardware's mbw counter count.
-> 
-> 2、 Should the resctrl files remains unchanged in the ABI?
+Fix this proactively by explicitly initializing the variable to 0,
+before the base_rt field is introduced.
 
-Yes. We don't want to change the ABI.
+Fixes: 017794739702 ("dmaengine: ti: k3-udma: Initial support for K3 BCDMA")
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ drivers/dma/ti/k3-udma.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> mbm_assign_mode is displayed as [default], and the semantics of
-> assignments/available is still "not enabled".
-> 
-> And update the document about the changes in the mode and
-> num_closids/num_rmids caused by the MBps mount option.
-> 
-> Whether num_mbm_cntrs should still be displayed during the default period?
+diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+index 75bd1977fb423..6f3f0467fd5e0 100644
+--- a/drivers/dma/ti/k3-udma.c
++++ b/drivers/dma/ti/k3-udma.c
+@@ -5467,7 +5467,7 @@ static int udma_probe(struct platform_device *pdev)
+ 	if (ud->match_data->type == DMA_TYPE_UDMA) {
+ 		ud->ringacc = of_k3_ringacc_get_by_phandle(dev->of_node, "ti,ringacc");
+ 	} else {
+-		struct k3_ringacc_init_data ring_init_data;
++		struct k3_ringacc_init_data ring_init_data = { 0 };
+ 
+ 		ring_init_data.tisci = ud->tisci_rm.tisci;
+ 		ring_init_data.tisci_dev_id = ud->tisci_rm.tisci_dev_id;
 
-Any cntrs and assign are only part of the mbm_event mode rather than default mode.
-> 
-> Whether mpam allocates the monitor during group creation or lazily when
-> the first read occurs?
-> 
-> Perhaps we only need to align with the default behavior of resctrl and
-> x86 default mode?
+-- 
+2.55.0
 
-We should match existing x86 resctrl where possible.
-
-I'd like to understand how important it is to have the mba_MBps feature on MPAM platforms. Do you
-have a real platform with sufficient memory bandwidth monitors for the default mode to be useful and
-that users want the software controller on?
-
-Thanks,
-
-Ben
-
-> 
-> Best regards,
-> Jinjie
-> 
->>
->> Thanks,
->>
->> Ben
->>
->>>
->>> Only MPAM has this mode; other systems keep the previous behavior.
->>>
->>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
->>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
->>> ---
->>>  Documentation/filesystems/resctrl.rst |  7 +++++--
->>>  fs/resctrl/monitor.c                  | 25 ++++++++++++++++++++++
->>>  fs/resctrl/rdtgroup.c                 | 30 +++++++++++++++++++++------
->>>  3 files changed, 54 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
->>> index b52795e03303..d70aec6f7096 100644
->>> --- a/Documentation/filesystems/resctrl.rst
->>> +++ b/Documentation/filesystems/resctrl.rst
->>> @@ -471,7 +471,8 @@ with the following files:
->>>  	Determines if a counter will automatically be assigned to an RMID, MBM event
->>>  	pair when its associated monitor group is created via mkdir. Enabled by default
->>>  	on boot, also when switched from "default" mode to "mbm_event" counter assignment
->>> -	mode. Users can disable this capability by writing to the interface.
->>> +	mode. Users can disable this capability by writing to the interface. While the
->>> +	MBA software controller is enabled, auto assignment cannot be disabled.
->>>  
->>>  	"0":
->>>  		Auto assignment is disabled.
->>> @@ -704,7 +705,9 @@ When monitoring is enabled all MON groups may also contain:
->>>  	   mbm_total_bytes:0=e;1=e
->>>  	   mbm_local_bytes:0=e;1=e
->>>  
->>> -	Assignments can be modified by writing to the interface.
->>> +	Assignments can be modified by writing to the interface. While the
->>> +	MBA software controller is enabled, the counter of the event the
->>> +	controller uses cannot be unassigned.
->>>  
->>>  	Examples:
->>>  
->>> diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
->>> index 8f3b8c3e3010..5a67c8089615 100644
->>> --- a/fs/resctrl/monitor.c
->>> +++ b/fs/resctrl/monitor.c
->>> @@ -1210,6 +1210,12 @@ ssize_t resctrl_mbm_assign_on_mkdir_write(struct kernfs_open_file *of, char *buf
->>>  		goto out_unlock;
->>>  	}
->>>  
->>> +	if (!value && is_mba_sc(NULL)) {
->>> +		rdt_last_cmd_puts("mbm_assign_on_mkdir is required by the software controller\n");
->>> +		ret = -EBUSY;
->>> +		goto out_unlock;
->>> +	}
->>> +
->>>  	r->mon.mbm_assign_on_mkdir = value;
->>>  
->>>  out_unlock:
->>> @@ -1776,6 +1782,19 @@ static struct mon_evt *mbm_get_mon_event_by_name(struct rdt_resource *r, char *n
->>>  	return NULL;
->>>  }
->>>  
->>> +/*
->>> + * Return the event the MBA software controller uses as its input for @rdtgrp.
->>> + * A monitor group has no event of its own: its bandwidth is summed into the
->>> + * parent control group, which is the group with the mba_MBps_event setting.
->>> + */
->>> +static enum resctrl_event_id rdtgrp_mba_mbps_event(struct rdtgroup *rdtgrp)
->>> +{
->>> +	if (rdtgrp->type == RDTMON_GROUP)
->>> +		return rdtgrp->mon.parent->mba_mbps_event;
->>> +
->>> +	return rdtgrp->mba_mbps_event;
->>> +}
->>> +
->>>  static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *d,
->>>  					struct rdtgroup *rdtgrp, struct mon_evt *mevt)
->>>  {
->>> @@ -1789,6 +1808,12 @@ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *
->>>  		ret = rdtgroup_assign_cntr_event(d, rdtgrp, mevt);
->>>  		break;
->>>  	case '_':
->>> +		if (is_mba_sc(NULL) &&
->>> +		    mevt->evtid == rdtgrp_mba_mbps_event(rdtgrp)) {
->>> +			rdt_last_cmd_puts("Counter is in use by the software controller\n");
->>> +			ret = -EBUSY;
->>> +			break;
->>> +		}
->>>  		rdtgroup_unassign_cntr_event(d, rdtgrp, mevt);
->>>  		break;
->>>  	default:
->>> diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
->>> index b32831871f70..518d89b0c67d 100644
->>> --- a/fs/resctrl/rdtgroup.c
->>> +++ b/fs/resctrl/rdtgroup.c
->>> @@ -2610,10 +2610,9 @@ static void mba_sc_domain_destroy(struct rdt_resource *r,
->>>   * The MBA software controller is supported only if MBM is supported and MBA is
->>>   * in linear scale, and the MBM monitor scope is the same as MBA control scope.
->>>   *
->>> - * The software controller cannot be supported when the MBM counters are
->>> - * assignable.  There is no guarantee that MBM counters are assigned to the
->>> - * event backing the software controller in all monitoring domains of all
->>> - * monitoring groups.
->>> + * The controller needs a counter for its event in every monitoring group.
->>> + * With assignable counters that requires a fixed assignment mode, with
->>> + * counters assigned automatically while the controller is in use.
->>>   */
->>>  static bool supports_mba_mbps(void)
->>>  {
->>> @@ -2623,9 +2622,13 @@ static bool supports_mba_mbps(void)
->>>  	return (resctrl_is_mbm_enabled() &&
->>>  		r->alloc_capable && is_mba_linear() &&
->>>  		r->ctrl_scope == rmbm->mon_scope &&
->>> -		!rmbm->mon.mbm_cntr_assignable);
->>> +		(!rmbm->mon.mbm_cntr_assignable ||
->>> +		 rmbm->mon.mbm_cntr_assign_fixed));
->>>  }
->>>  
->>> +/* mbm_assign_on_mkdir before the software controller forced it on. */
->>> +static bool mba_sc_saved_assign_on_mkdir;
->>> +
->>>  /*
->>>   * Enable or disable the MBA software controller
->>>   * which helps user specify bandwidth in MBps.
->>> @@ -2633,6 +2636,7 @@ static bool supports_mba_mbps(void)
->>>  static int set_mba_sc(bool mba_sc)
->>>  {
->>>  	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_MBA);
->>> +	struct rdt_resource *rmbm = resctrl_arch_get_resource(RDT_RESOURCE_L3);
->>>  	u32 num_closid = resctrl_arch_get_num_closid(r);
->>>  	struct rdt_ctrl_domain *d;
->>>  	unsigned long fflags;
->>> @@ -2643,6 +2647,20 @@ static int set_mba_sc(bool mba_sc)
->>>  
->>>  	r->membw.mba_sc = mba_sc;
->>>  
->>> +	/*
->>> +	 * The controller needs its event counted in every monitoring group:
->>> +	 * force automatic assignment on, and restore the user's setting when
->>> +	 * the controller is disabled.
->>> +	 */
->>> +	if (rmbm->mon.mbm_cntr_assignable) {
->>> +		if (mba_sc) {
->>> +			mba_sc_saved_assign_on_mkdir = rmbm->mon.mbm_assign_on_mkdir;
->>> +			rmbm->mon.mbm_assign_on_mkdir = true;
->>> +		} else {
->>> +			rmbm->mon.mbm_assign_on_mkdir = mba_sc_saved_assign_on_mkdir;
->>> +		}
->>> +	}
->>> +
->>>  	rdtgroup_default.mba_mbps_event = mba_mbps_default_event;
->>>  
->>>  	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
->>> @@ -3352,7 +3370,7 @@ static int rdt_parse_param(struct fs_context *fc, struct fs_parameter *param)
->>>  		ctx->enable_cdpl2 = true;
->>>  		return 0;
->>>  	case Opt_mba_mbps:
->>> -		msg = "mba_MBps requires MBM (mbm_event mode not supported) and linear scale MBA at L3 scope";
->>> +		msg = "mba_MBps requires MBM and linear scale MBA at L3 scope";
->>>  		if (!supports_mba_mbps())
->>>  			return invalfc(fc, msg);
->>>  		ctx->enable_mba_mbps = true;
->>
-> 
 
 
