@@ -2,92 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03CC606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C576A606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OgdCuZ5Q;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h8Ws8tl1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GNVO8P3x;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=UQbkwpeb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=hbVHtz/VdYNG4+MjjYkeMuPNijBtmeBtCtXVJa8U9S8=; b=OgdCuZ5QEUYdaqdhPVB9Yg7Q1j
-	4RrMrhznd5dpWilezlnsPOviIH3NO2LgW4kpm2HnGUWZA841o6k6Kmo1dIRAekyki6C3WbW9a+Wpi
-	MBUEhc+DoauIiCOWIsAlA+lI0pDYa2Ls3c7ujfY8jeHhNBNV9kmsNPm7oE4iUrxkDz3Npv9hKJdu/
-	Zlo9IZhURzf6yoaOSlR6c+LkzdNWyPO8zL8jmsfzCO8dSj8IqGA2KpxF5tmUYaS73bicjYpF2QLUL
-	nEca8qhAm1bYrkH5FZDjhikvgZDKojzEJE7uqwUjQHpWCsKNLakSFVVaACmgaY4BNUc01rYj/ux9W
-	dmnZHGmA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=2hYgJTGOVG3PmfpKBaoS4qDAQowoVvAH2GzSLtrNeFo=; b=GNVO8P3xgBlnHv
+	W/6FbR4y/9jpxiT1Aahe/G7UJHXnlu0ZA0fQnAiGnZ1ZK1dLMJ3I0RFkRCw46y5hjv3t81GLaaePz
+	3Mvd7vfiK+7/ycaJWGlK2nb+K5n7yraVHOATP6CcQFr5m1cLkBeXxy5CYHOx0WduEydh5ZrLi5n/Z
+	NTO86ktJVZEGDKZBwNisomfwpl4DkFKrFrdBUbH0IKmR+gmswlxIqrB7tqq5ZK1cw9OECVltBuRt9
+	WHBuWQGQfaOpcKmvh+1ERkZHT3KjoQXwnFtC3HP6pF6Uu/zTYu5s8TF4VTZJzZT+Ym8FXep4k9OHv
+	CKn4AQHzNxx6+EvsFjhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVi2Y-00000005WYR-43YY;
-	Tue, 24 Nov 2026 04:21:58 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVi31-00000005Wgn-2wik;
+	Tue, 24 Nov 2026 04:22:27 +0000
+Received: from omta036.useast.a.cloudfilter.net ([44.202.169.35])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVi2X-00000005WXR-0eaE
+	id 1xVi2x-00000005Wew-1p4G
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 04:21:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BE7B6612A9;
-	Tue, 24 Nov 2026 04:21:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37C901F000C6;
-	Tue, 24 Nov 2026 04:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795494115;
-	bh=hbVHtz/VdYNG4+MjjYkeMuPNijBtmeBtCtXVJa8U9S8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=h8Ws8tl1T+bdpKBk1d2DZoqHGkqwkaVFD9PJ2bQmIN0sXVsrZPP5Dpfk9SsatQCYi
-	 ejhnA9ix9Ge6tkTCbNK/mI9KuER/1ttGP7k/XDy9PynlBs93PrBE5DdvwhRzz5y/c6
-	 53I8CeJk2nJfa7/Tbjq3HlUx0/On3fJyvYhUreeHd/nwE3pxxD1uwHwQpyXQ3sapmU
-	 1FuUrvGWrKLgZj5qZ63wNo69Bsf9CpJrfm88moDzevtidQsa1FvZOkKPK6reP4mRnZ
-	 baIA3//cUFGDVUkN0YSqh3lbjDPHWLZFcEKKsga1Hy2MX/MlBG9Ug1CAALFKXGOjCJ
-	 SaluYIuRuFRMQ==
-X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
-From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: Jacob Pan <jacob.pan@linux.microsoft.com>
-Cc: linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>,
-	Will Deacon <will@kernel.org>,
-	Xu Yilun <yilun.xu@linux.intel.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	iommu@lists.linux.dev,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org, patches@lists.linux.dev,
-	jacob.pan@linux.microsoft.com
-Subject: Re: [PATCH v9 10/13] iommufd/viommu: Allow PCI TSM backends to
- provide vIOMMU operations
-In-Reply-To: <20261119115041.00007215@linux.microsoft.com>
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-11-aneesh.kumar@kernel.org>
- <20261119115041.00007215@linux.microsoft.com>
-Date: Tue, 24 Nov 2026 09:51:40 +0530
-Message-ID: <yq5aqzgac10r.fsf@kernel.org>
+	Tue, 24 Nov 2026 04:22:26 +0000
+Received: from eig-obgw-5004b.ext.cloudfilter.net ([10.0.29.208])
+	by cmsmtp with ESMTPS
+	id VdVnxxzFj4vCDVi2wxGiFq; Tue, 24 Nov 2026 04:22:22 +0000
+Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
+	by cmsmtp with ESMTPS
+	id Vi2uxWgR4uJrPVi2uxfh4v; Tue, 24 Nov 2026 04:22:21 +0000
+X-Authority-Analysis: v=2.4 cv=WLZ/XmsR c=1 sm=1 tr=0 ts=6b0510fd
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=VwQbUJbxAAAA:8
+ a=pGLkceISAAAA:8 a=AbtGE6NwjiPdwgDzpaUA:9 a=QEXdDO2ut3YA:10
+ a=KPbNTLLc3YvdawN95zVk:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
+	List-Archive; bh=2hYgJTGOVG3PmfpKBaoS4qDAQowoVvAH2GzSLtrNeFo=; b=UQbkwpebRpfS
+	Cr9b0kn5ydmVBmPyDTOfkX/qVTUwlgi4KeeFpytXRw5D51YTduzNuJIFjVkcK00jrcfmK5z0xA49d
+	uK0mO6trUmCGNL73SZgU57j4BBZHVST4vmhZDbHPUuLMTXsiiquXO2kRXF162qXB3dzpQ+ajErjUe
+	LWoR29tGYZ65OATHiYJ63x9h6w3zdyJ2pPSEDv4Cd1mVtfh4QIb0LgZnwC9DRJtWMAfxy1ry7kzJ1
+	+LkDZYhQRfEGQGo87wClVhmNekB7IUWd6rbfhd5+OtNRfpSYC8uT1Xd/cSgWnc6wJQjKRyJwXmmWa
+	JzRpZlOzZqCEa2NpGkYhPw==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:44576)
+	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <linux@roeck-us.net>)
+	id 1xVi2u-00000000cfP-0pyg;
+	Tue, 24 Nov 2026 09:52:20 +0530
+Message-ID: <f1e825ef-f81d-4ed5-bd18-a04ad210f112@roeck-us.net>
+Date: Mon, 23 Nov 2026 20:22:18 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] watchdog: histb: Add HiSilicon STB watchdog driver
+To: David Yang <mmyangfl@gmail.com>, linux-watchdog@vger.kernel.org
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261124012755.328774-1-mmyangfl@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20261124012755.328774-1-mmyangfl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1xVi2u-00000000cfP-0pyg
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:44576
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 1
+X-Org: HG=direseller_whb_net_legacy;ORG=directi;
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfLWQuAakCB5CkqRzNwf3Myn37KzOdFkamQzxX/MBktpBBs2cLC8OeCis4r4+v9plwmlAdMBNVKjs42kvFD0lqNcGyIj1/kcsH8pqZR+4h2cxBszkRsjw
+ Attk+G57TYoPaRYgj+7inpZYfKtIqu37Lp3UYlS/pdNQAEs9LSWJ4+62b3hn7wYgWSNAqgaiRCAPTwbdKbu7Ha4dFZNzW8J30sfBcM6Yy119bfB1VyvILgk5
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_202225_680848_7A2758F1 
+X-CRM114-Status: UNSURE (   7.86  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,212 +153,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Jacob Pan <jacob.pan@linux.microsoft.com> writes:
+On 11/23/26 17:27, David Yang wrote:
+> The watchdog integrated on HiSilicon STB SoCs reuses the register layout
+> of sp805, but deviates from the standard sp805 in several ways that make
+> the existing sp805 driver unusable on these SoCs. Add a dedicated
+> platform driver to handle these SoC-specific semantics natively without
+> regressing generic SP805 users.
+> 
+> v2:
+>   - fix issues reported by sashiko
 
-> Hi Aneesh,
->
-> On Mon, 16 Nov 2026 13:49:32 +0530
-> "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org> wrote:
->
->> In confidential-computing configurations, a vIOMMU may be implemented
->> by a TSM driver rather than by the physical IOMMU driver. Such an
->> implementation also needs the TSM identity when creating and
->> validating vdevices.
->> 
->> Allow VIOMMU_ALLOC to first query the TSM associated with the target
->> PCI device for vIOMMU operations. Fall back to the physical IOMMU
->> driver when the TSM does not provide operations for the requested
->> vIOMMU type.
->> 
->> Resolve the PCI TSM association under pci_tsm_rwsem, take a TSM device
->> reference, and pin the module providing the operations. Store the TSM
->> device in the vIOMMU. Release the device reference and module pin on
->> allocation failure, fallback to the physical IOMMU driver, or vIOMMU
->> destruction. Drop the device reference before releasing the module
->> pin, since the final put may call into the backend module.
->> 
->> The device reference preserves the TSM allocation. Backends providing
->> vIOMMU operations must not unregister their TSM while the module is
->> pinned, since the reference does not prevent backend resource
->> teardown.
->> 
->> Cc: Jason Gunthorpe <jgg@ziepe.ca>
->> Cc: Kevin Tian <kevin.tian@intel.com>
->> Cc: Joerg Roedel <joro@8bytes.org>
->> Cc: Will Deacon <will@kernel.org>
->> Cc: Robin Murphy <robin.murphy@arm.com>
->> Cc: Bjorn Helgaas <bhelgaas@google.com>
->> Cc: Alexey Kardashevskiy <aik@amd.com>
->> Cc: Lukas Wunner <lukas@wunner.de>
->> Cc: Xu Yilun <yilun.xu@linux.intel.com>
->> Cc: iommu@lists.linux.dev
->> Cc: linux-pci@vger.kernel.org
->> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
->> ---
->>  drivers/iommu/iommufd/viommu.c | 35 +++++++++++++++++++++++++++-----
->>  drivers/pci/tsm/core.c         | 22 ++++++++++++++++++++
->>  drivers/virt/coco/tsm-core.c   | 37
->> ++++++++++++++++++++++++++++++++++ include/linux/iommufd.h        |
->> 2 ++ include/linux/pci-tsm.h        | 24 ++++++++++++++++++++++
->>  include/linux/tsm.h            | 25 +++++++++++++++++++++++
->>  6 files changed, 140 insertions(+), 5 deletions(-)
->> 
->> diff --git a/drivers/iommu/iommufd/viommu.c
->> b/drivers/iommu/iommufd/viommu.c index 2eba1562a704..7e74d3992ae4
->> 100644 --- a/drivers/iommu/iommufd/viommu.c
->> +++ b/drivers/iommu/iommufd/viommu.c
->> @@ -15,6 +15,8 @@ void iommufd_viommu_destroy(struct iommufd_object
->> *obj) 
->>  	if (viommu->ops && viommu->ops->destroy)
->>  		viommu->ops->destroy(viommu);
->> +	if (viommu->tsm_dev)
->> +		tsm_put_device(viommu->tsm_dev);
->>  	refcount_dec(&viommu->hwpt->common.obj.users);
->>  	if (viommu->kvm_file)
->>  		fput(viommu->kvm_file);
->> @@ -30,6 +32,7 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd
->> *ucmd) .len = cmd->data_len,
->>  	};
->>  	struct iommufd_hwpt_paging *hwpt_paging;
->> +	struct tsm_dev *tsm_dev = NULL;
->>  	struct iommufd_viommu *viommu;
->>  	struct iommufd_device *idev;
->>  	struct iommu_device *iommu_dev;
->> @@ -49,15 +52,33 @@ int iommufd_viommu_alloc_ioctl(struct
->> iommufd_ucmd *ucmd) rc = -EOPNOTSUPP;
->>  		goto out_put_idev;
->>  	}
->> -	if (!iommu_dev->ops->get_viommu_ops) {
->> -		rc = -EOPNOTSUPP;
->> +	tsm_dev = tsm_get_device(idev->dev);
->> +	if (IS_ERR(tsm_dev)) {
->> +		rc = PTR_ERR(tsm_dev);
->> +		tsm_dev = NULL;
->>  		goto out_put_idev;
->>  	}
->> -	ops = iommu_dev->ops->get_viommu_ops(idev->dev, cmd->type);
->> -	if (!ops) {
->> -		rc = -EOPNOTSUPP;
->> +	ops = tsm_dev ? tsm_viommu_get_ops(tsm_dev, idev->dev,
->> cmd->type) : NULL;
->> +	if (IS_ERR(ops)) {
->> +		rc = PTR_ERR(ops);
->>  		goto out_put_idev;
->>  	}
->> +	if (!ops) {
->> +		if (tsm_dev) {
->> +			tsm_put_device(tsm_dev);
-> nit: Since tsm_get_device() may legitimately return NULL, maybe you can
-> make tsm_put_device NULL safe, then you can avoid this check and other
-> places.
->
->
->> +			tsm_dev = NULL;
-> nit: maybe a candidate for cleanup helper? if tsm_put_device is null
-> safe. then:
->            tsm_put_device(no_free_ptr(tsm_dev));
->
+Please spell those out in future revisions.
 
-I will see whether both suggestions can be added.
+Thanks,
+Guenter
 
->
->> +		}
->> +		if (!iommu_dev->ops->get_viommu_ops) {
->> +			rc = -EOPNOTSUPP;
->> +			goto out_put_idev;
->> +		}
->> +		ops = iommu_dev->ops->get_viommu_ops(idev->dev,
->> cmd->type);
->> +		if (!ops) {
->> +			rc = -EOPNOTSUPP;
->> +			goto out_put_idev;
->> +		}
->> +	}
->> +
->>  	/*
->>  	 * It is a driver bug to omit the required operations or
->> provide a size
->>  	 * smaller than the core vIOMMU structure.
->> @@ -95,6 +116,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd
->> *ucmd) viommu->kvm_file = get_file(idev->kvm_file);
->>  	viommu->type = cmd->type;
->>  	viommu->ictx = ucmd->ictx;
->> +	viommu->tsm_dev = tsm_dev;
->> +	tsm_dev = NULL;
->    viommu->tsm_dev = no_free_ptr(tsm_dev)
->
->>  	viommu->hwpt = hwpt_paging;
->>  	refcount_inc(&viommu->hwpt->common.obj.users);
->>  	INIT_LIST_HEAD(&viommu->veventqs);
->> @@ -119,6 +142,8 @@ int iommufd_viommu_alloc_ioctl(struct
->> iommufd_ucmd *ucmd) out_put_hwpt:
->>  	iommufd_put_object(ucmd->ictx, &hwpt_paging->common.obj);
->>  out_put_idev:
->> +	if (tsm_dev)
->> +		tsm_put_device(tsm_dev);
-> ditto, can be unconditional.
->
->>  	iommufd_put_object(ucmd->ictx, &idev->obj);
->>  	return rc;
->>  }
->> diff --git a/drivers/pci/tsm/core.c b/drivers/pci/tsm/core.c
->> index 8f0e5af808a5..4107ff443228 100644
->> --- a/drivers/pci/tsm/core.c
->> +++ b/drivers/pci/tsm/core.c
->> @@ -9,6 +9,8 @@
->>  #define dev_fmt(fmt) "PCI/TSM: " fmt
->>  
->>  #include <linux/bitfield.h>
->> +#include <linux/iommufd.h>
->> +#include <linux/module.h>
->>  #include <linux/pci.h>
->>  #include <linux/pci-doe.h>
->>  #include <linux/pci-tsm.h>
->> @@ -36,6 +38,26 @@ static const struct pci_tsm_ops
->> *to_pci_tsm_ops(struct pci_tsm *tsm) return tsm->tsm_dev->pci_ops;
->>  }
->>  
->> +struct tsm_dev *pci_tsm_get_device(struct pci_dev *pdev)
->> +{
->> +	const struct pci_tsm_ops *ops;
->> +	struct tsm_dev *tsm_dev;
->> +
->> +	guard(rwsem_read)(&pci_tsm_rwsem);
->> +	if (!pdev->tsm)
->> +		return NULL;
->> +
->> +	tsm_dev = pdev->tsm->tsm_dev;
->> +	ops = tsm_dev->pci_ops;
->> +	if (!ops->viommu_get_ops)
->> +		return NULL;
->> +	if (!try_module_get(ops->owner))
->> +		return ERR_PTR(-ENODEV);
->> +	get_device(&tsm_dev->dev);
-> what if tsm_unregister() is called directly? without protection from
-> tsm_dev->users, unregister can succeed tearing down backend while this
-> reference is held.
->
-> For bisectable result, maybe you can move tsm_get() and wait patch
-> before this one?
->
+> v1: https://lore.kernel.org/r/20261122065549.3265519-1-mmyangfl@gmail.com
+> 
+> David Yang (4):
+>    dt-bindings: watchdog: hisilicon,histb-wdt: Add HiSilicon STB watchdog
+>    watchdog: histb: Add HiSilicon STB watchdog driver
+>    arm64: dts: hisilicon: hi3798cv200: Add watchdog node
+>    MAINTAINERS: Add HiSilicon STB drivers entry
+> 
+>   .../watchdog/hisilicon,histb-wdt.yaml         |  56 ++++
+>   MAINTAINERS                                   |   8 +
+>   .../arm64/boot/dts/hisilicon/hi3798cv200.dtsi |   8 +
+>   drivers/watchdog/Kconfig                      |   8 +
+>   drivers/watchdog/Makefile                     |   1 +
+>   drivers/watchdog/histb_wdt.c                  | 305 ++++++++++++++++++
+>   6 files changed, 386 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/hisilicon,histb-wdt.yaml
+>   create mode 100644 drivers/watchdog/histb_wdt.c
+> 
 
-But, the current code calls tsm_unregister() only during module
-unload, so this cannot happen.
-
->
->> +	return tsm_dev;
->> +}
->> +EXPORT_SYMBOL_GPL(pci_tsm_get_device);
-
- [ ... 201 lines skipped ... ] 
-
--aneesh
 
