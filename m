@@ -2,99 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BCA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15860606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rwK2hUBQ;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ziRWaNlV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4tymkZVc;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=UURWRjVw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Content-Transfer-Encoding:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ImrZa/CtUYdIECWeql7+P6fyscSC7J3tVy4vOnUjZhA=; b=rwK2hUBQmccHWP
-	DxyYFqybaYt8AOMrxvHjuQMvmcyWCqhpkaRuHNwMnBg/2Y17Pn2k8Agd00LVhmI8KHpz2zd+7D7g3
-	7vS8OqBVwX3U5aOeveyn39ksVVrD+O0U6nAi2tbiIM4NmulJtHF4NiuOQRw/vBUyP9Dkoom6Z/4aI
-	TzqjlV7oAkMau6jcqf9VAmAHJDjWUsfW5XrKchF698HfAtpGxAPlSIQ4BOG2/fxeF3IS1gdqKx/Je
-	XygOgxGqgjRkntc0G49sWVQ1ns0Bigmybv1xXm1U5hM/e35ZDA8A3Q1UzcOOvSi5pfAjizimMUnOQ
-	7pp30C4IvIsKLYEsfREQ==;
+	List-Owner; bh=CIIxCHmaf4fxrIyFS/BRlR2dhrRZVanUxs4tziQTo54=; b=4tymkZVcZUjWxU
+	4l55AlwmUHyFFSumM5s4GIBpIP771AMPBHWLL0cIUHrlUbbeYCSrGGHbrbCnYkPOxZmluvIICcxLH
+	i55O+iczYSln3PM0/0Ve6mxk5qwVMZymBI2tZkcEoIcpnta3DHAADhUqomcFX/wf/tERTLtumnzxm
+	sl/h6Q1lx+64Z6FXf5itXhisJWOH+8o7HpiJHPEK/QFtffHpWqwwNyXt64rE73IfAglILWFTM3+E/
+	feNQKROQyiuE+5Ost/tkppJNQ7lnFmM+/jMD/SmJ0R/tHV22W1+bkfIfKILbh+14RdkZk33E1Sxme
+	Gi/trlWRmn+P88N7HwpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlnf-00000005sKd-0wiO;
-	Tue, 24 Nov 2026 08:22:51 +0000
-Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
+	id 1xVlpL-00000005se0-0Izl;
+	Tue, 24 Nov 2026 08:24:35 +0000
+Received: from mail-m1602365392.xmail.ntesmail.com ([160.236.53.92])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlnc-00000005sJE-00EQ
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:22:49 +0000
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-5be47aa555cso5241489e87.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:22:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795508565; x=1796113365; darn=lists.infradead.org;
-        h=content-type:mime-version:content-transfer-encoding:message-id:date
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=ImrZa/CtUYdIECWeql7+P6fyscSC7J3tVy4vOnUjZhA=;
-        b=ziRWaNlVXE89wmSe05lxhirY+DYlFv/gDt2fwzvZH8udm5c+GVMmt0C7mKUMk4KuzJ
-         j0RzKMLo3iF2jdM+N59vlIHliSTfjuZzpGxCh0j0bgo2YiJ+Dnbyr0NQu0kIXjIIVx+1
-         P8fAXe6gM1fBko0zn+7XGxtFruAmvJdHDjPpsLouHwT8IuiFxc92g4/TV9TXxn0H5xd7
-         ybTFZNvTToETo3y2e5BNdwmton5qb0Rnulu/Ja45pSWEuhS+xoy5UNB5/oer/rsZh2nj
-         dHCm6KKycYenCnuE6fbKkoLLWR3u+3BryI0o2tWRa7m/YiLfRT7Q4VSodH2XXq2BxqzE
-         nmAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795508565; x=1796113365;
-        h=content-type:mime-version:content-transfer-encoding:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ImrZa/CtUYdIECWeql7+P6fyscSC7J3tVy4vOnUjZhA=;
-        b=u1lxcJ9Da7ODEJTKALGHl5wPHkfg2nyQjcupR9KLx5UefTSBfHhvSX66nSMsX8fgxs
-         mDtkZlYJXXZ9WXcMaqVa+VYMG0rHJchqQTaILY8Nj8nfAq6Ap5aCRpb0ppW589J5oZkL
-         9y12H5UevV/aVME/W2Qjb5TKMVfExLJVhfGs4GI0o6Ts6N2XrH36IkWSxtm1TobvzPMW
-         ow0TU3NRcAiV2ox+frh14zdsBjVR9TGB1gSJaf6U0FLZAwv19H3W/jWUAPSRW+QtmD3k
-         cwIM72iUlRnVXsGBSi8WEWQcqKJi+Z+bSD5rSwIaDLiGGqqC3FaQ47Wg9ib4Zzz3Hju6
-         VS6Q==
-X-Forwarded-Encrypted: i=1; AL+hErEzhayO22bNJ0zFt97hUaM2dw0VS7tmd4t2cI9+wlQYjqhX+5RMgU+m4sT0rxFyveNeVB0pdujRnZ3mAYDm2NE/@lists.infradead.org
-X-Gm-Message-State: APuU4Z/wOPmSExZgjJHrLPswCjIzwjCQkihEAuVNG2bDpSoXNQrEaRpg
-	2ZwnBqzziI6UdAA0e1yybyC1AdI6Gd0C23JvER4bKPl113jTWF3WAzQ+
-X-Gm-Gg: AZFdTZf4flDR4WEDxSQpFMLy1UVBg2TUhkkZP9quz6FFcH0ezs3aCKgdapppkock1ER
-	oT2E82v/x4Ls/B7iGpCP21B5XVIBSr6oy09+0X01gTPtgmdmYny1LaCEc9GgXvDnkoZkupcdaZ4
-	gUL0wqUifQEL0ut3qV+0eGiQWl26i6iFTXw+Ko2qIue8ObyC2eTs4WAgJBl6xsTMlU7pxcva/zF
-	ZaHGeyhgraM7vliDCM8NCcTJoqBn6VOX2VrTSGOYbo11nT3/X9vAT0QokuPOhUoqsR6cmO0f1GQ
-	0+9LSiv2wYNkdTqwcZo/6AEeVNnhxCoO0OPrZilz/z6CZm1sQkXSBvOgnTE2LpWvpnrHnl99Pcl
-	Y8AXMEIfpNJFrxbixDDffWblH38mU+O2CmUnAjLhOxEnJTuFR8tOReqdyjfwwy7jvuWqjVPjmCv
-	bVItG6trm+MyAOVwAfQlmz0E3sdeLcPS6PWDHh7xudkBpYsus34i53lzz6++7LxDi4ow8GOZ9XP
-	nwGcYhgYGhZH2jF/XGnMdkwFqbcAm7XInZIN2Kezp3kiiynJEsexz3C550T/SvTPUj9Rsak3YOe
-	Fok+Ax4buF/QgYLLVYbk7Wm2s2HVzvDbovbIu1R/hWV1ZH/Zm7EtUgY=
-X-Received: by 2002:a05:6512:108a:b0:5c1:4e18:39d7 with SMTP id 2adb3069b0e04-5c1bc7bccd9mr4434489e87.12.1795508565068;
-        Tue, 24 Nov 2026 00:22:45 -0800 (PST)
-Received: from [127.0.1.1] (ip-024-180.users.dtel.ru. [91.210.24.180])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c1bd0563casm3560147e87.67.2026.11.24.00.22.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 00:22:44 -0800 (PST)
-From: Fil Dunsky <filipp.dunsky@gmail.com>
-To: Uwe =?utf-8?q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] hwrng: Add Cortina Systems CS7542 TRNG driver
-In-Reply-To: <awU2-KjkZB7WvqfX@monoceros>
-References: <20261123-b4-cs7542-trng-v1-0-92d9ffcee531@gmail.com>
- <20261123-b4-cs7542-trng-v1-2-92d9ffcee531@gmail.com>
- <awU2-KjkZB7WvqfX@monoceros>
-Date: Tue, 24 Nov 2026 11:22:01 +0300
-Message-ID: <179550852171.3.3520172407021510093@gmail.com>
-Content-Transfer-Encoding: 8bit
+	id 1xVlpF-00000005scg-2qL5;
+	Tue, 24 Nov 2026 08:24:33 +0000
+Received: from [127.0.0.1] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 55cb96efc;
+	Tue, 24 Nov 2026 16:24:16 +0800 (GMT+08:00)
+Message-ID: <c89271be-85f9-41ba-9c19-c78743d212c8@rock-chips.com>
+Date: Tue, 24 Nov 2026 16:24:12 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format="fixed"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] drm/bridge: add glue driver for T-Head TH1520 DW
+ MIPI DSI
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
+ <andyshrk@163.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-riscv@lists.infradead.org, Icneowy Zheng <uwu@icenowy.me>,
+ Han Gao <gaohan@iscas.ac.cn>
+References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0aa20ca7d7d303a7kunmc11de194cd4c3b
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDSkpOVkgdHx1PSkseQkpJTlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=UURWRjVwdo+3l2AULyocD6fSNflb4NLvemODSt3E0BkJ4SDNYTRbIrvF97HUU4K2rtd/SDBnXtHZ+9biRxmmr2VYZUHyx1vjJo4sQNiVBRKlCiF1JgNn+It/uQ2dEKWkUHaT+/LN1vLB/a+9UefWRH0gS3pOe07esi2EjWKgg4A=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=CIIxCHmaf4fxrIyFS/BRlR2dhrRZVanUxs4tziQTo54=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_002248_049760_F89B48DE 
-X-CRM114-Status: UNSURE (   7.71  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261124_002430_361884_AB786EE7 
+X-CRM114-Status: GOOD (  17.92  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,31 +84,73 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Uwe,
+Hi Icenowy,
 
-Thanks, I removed the redundant linux/mod_devicetable.h include in v2.
+On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
+> T-Head TH1520 contains a DesignWare MIPI DSI host controller paired with
+> an internal DesignWare PHY, as a similar design (but with a different
+> PHY) with the Rockchip DW MIPI DSI.
+> 
+> The functionality to write to the PHY is shared between these two
+> implementations of DW MIPI DSI, so it's extracted from the Rockchip
+> driver to the common code. (The same sequence could be seen in the
+> HiSilicon Kirin DRM driver, but that one hasn't been converted to common
+> DW MIPI DSI.)
+> 
+> Tested on a Lichee Console 4A (with a Mingjun MJ070BI30IA2 panel) with
+> further pending DT patches.
+> 
+> One question remains: I have to copy the extra lane bandwidth headroom
+> from the Rockchip driver, otherwise the Mingjun panel cannot keep sync
+> to the display signal; from my testing, changing the hardcoded
+> PHY_STOP_WAIT_TIME from 0x20 to 0x2 (which is written by the vendor
+> driver) can also make this panel to work w/o the extra headroom. I want
+> some advice on whether to keep the extra headroom or changing the common
+> code to make the PHY_STOP_WAIT_TIME parameter adjustable.
+> 
 
-During the additional source review I also found the vendor's A0 reseeding
-erratum workaround. The driver now checks the global SoC identification
-register and limits hardware reseeding to CS7542 A1, rather than adopting
-the vendor's RTC/timer-derived nonce workaround. Our Almond+ is A1; its
-identification register was checked read-only as well.
+Does the DesignWare PHY databook describe about PHY_STOP_WAIT_TIME?
+  
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> ---
+> Changes in v3:
+> - Fixed a remaining `syscon` in the DT binding.
+> - Link to v2: https://patch.msgid.link/20261119-th1520-dw-mipi-dsi-v2-0-9ab5f9808f87@iscas.ac.cn
+> 
+> Changes in v2:
+> - Changed `syscon` to `thead,vo-syscon` in the DT binding.
+> - Dropped the patch moving common PHY write routine to dw-mipi-dsi
+>   common code.
+> - Fixed a few problems pointed out by Sashiko in v1.
+> - Link to v1: https://patch.msgid.link/20261030-th1520-dw-mipi-dsi-v1-0-753f34fd304f@iscas.ac.cn
+> 
+> ---
+> Icenowy Zheng (2):
+>       dt-bindings: display: bridge: document TH1520 MIPI DSI controller
+>       drm/bridge: add TH1520 DesignWare MIPI DSI host controller
+> 
+>  .../display/bridge/thead,th1520-dw-mipi-dsi.yaml   | 103 ++++
+>  drivers/gpu/drm/bridge/Kconfig                     |  12 +
+>  drivers/gpu/drm/bridge/Makefile                    |   1 +
+>  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c        | 570 +++++++++++++++++++++
+>  4 files changed, 686 insertions(+)
+> ---
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+> change-id: 20261030-th1520-dw-mipi-dsi-580d5b2792f9
+> 
+> Best regards,
+> --  
+> Icenowy Zheng <zhengxingda@iscas.ac.cn>
 
-The built-in and module ARM builds were repeated with COMPILE_TEST=n.
-The A1 generation path is unchanged; the new guard and its error paths
-were tested with the actual C code, without claiming a new entropy test.
-
-Sent v2:
-https://lore.kernel.org/all/20261124-b4-cs7542-trng-v2-0-0192937b44be@gmail.com/
-
-Thanks,
-Fil
-
+-- 
+Best, 
+Chaoyi
 
