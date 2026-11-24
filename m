@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38343606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8AD606A33C
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y6vTi7TN;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=X0uqcui/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B/fYyo5O;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=kysLkPoq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PRJi50mtDkCTYBP7NV+RqEIe0+Z58cVBzstfeiDJZnI=; b=y6vTi7TN7hMNz2
-	IYLkeG3Q7pBEpqSqW820GjpplqT/b90TrGxR5KZXxH5oKS3WmCLhrhItd8SjyfgAvwVx41yB9ncWl
-	ryW/oHNee9BsTcTZHwnxiL6uocFJNjowmYTwrLdBRxiJSgwp+VGBkZMPbp4gTgWs0OtSKoFwmDyRx
-	WDHg5O1fMmbzLhr5lwhHbrJ8XdobOEVx8c05amHgdA6O1Jltz9Ah7TAMj8hwtkGiKQ4mdjeI5BOre
-	OWSUHrKn7fhS0s5qzQMzVhGv3VH9RvRPQ/y0dlzMYSg6vVPZANUNti+1Kp5o7rCoDHTwQBq+7wSft
-	5bOoK0NJa/dAf0H3kriA==;
+	List-Owner; bh=UAVsxfMz3/e69OooPsZPrKI++x1O0xtoJW4/SbuMi5o=; b=B/fYyo5OrWyfPe
+	tmzYCfNTELJwN8MGMK5d/ti5A48GGKe/GOSg2lhwgp4uy/+BtpyVyNu0W+6Izlc1GuaTpkY/a8nJS
+	abVKAjGUvSFpcOMuhtBYuWfReCPczJtkoG2VnL3inqgIJOFwL+Eu+yttNqNSdG6D56Hw6R8zVDuDR
+	aQHZsFj7H9ilkQFRYDQuB8+E9xXTQkltx+aJ515HDPJZKOEFbDm6pckQv6tr3duk5YaK1sgJknemj
+	sm6awEdw1Ev/dSjXwqyy2ow2Z8n9B5d9z5v2CXHrbT9bJ/HcnP//KFgT4qy4j4w+DCuhwCPzeuVtD
+	iZcsVpiA07Ns9feISu9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmaD-000000061VG-31Oj;
+	id 1xVmaD-000000061V6-2b21;
 	Tue, 24 Nov 2026 09:13:01 +0000
 Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmZt-000000061Pq-2KZz
+	id 1xVmZp-000000061O5-1NW1
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 09:12:50 +0000
+	Tue, 24 Nov 2026 09:12:39 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id F3BBF1A17B5;
-	Tue, 24 Nov 2026 09:12:39 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id D291B1A17A9;
+	Tue, 24 Nov 2026 09:12:35 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C884D601E1;
-	Tue, 24 Nov 2026 09:12:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B957611E6A5DB;
-	Tue, 24 Nov 2026 10:12:36 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9F9F8601E1;
+	Tue, 24 Nov 2026 09:12:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 28E0F11E6A790;
+	Tue, 24 Nov 2026 10:12:32 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795511558; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1795511553; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=PRJi50mtDkCTYBP7NV+RqEIe0+Z58cVBzstfeiDJZnI=;
-	b=X0uqcui/Ml65OSyYJQaLGypiGdIoRdWNPw5kWVCNKPfVlp1ec2CWFhlsqk+m+qJXzeH5oH
-	8yPk1DWegx37vHbg8LuEQ3HX5YIfyYH1/bW3v2tZUeVh/s2JbtbJourRvvJVVsvH8rCBqk
-	2bTDNiHNW04GriJPhXJxLXlEtzAHQGlLxhlxYwgYyTS8M8lG+AOJQozyuSJLPayM1Ap0hR
-	GHgsat/X7LeqRZAphzuxD6ZY9Y2egaT40DPOd/QimisCildOF3xK+uJejysN93ActLrWSW
-	xW5uXlgHhc4fEUBIoK5a4aqdqt7cIIk6Cd6mXwCWef+8hJNrKtwY2Rayd6ucpg==
+	bh=UAVsxfMz3/e69OooPsZPrKI++x1O0xtoJW4/SbuMi5o=;
+	b=kysLkPoqYoyohxCfqRl0TJqCIOaMxHqZwk51RgQgexqGvOg+FWHM1oAXGyFpxolVWxvrNg
+	wCeqitqKvaoRWRg/UL5jqk5M6prF+qiLt/lpxQizwaP/RrDTjWDbNQhGm253tsHVj5UpZz
+	L+y7iFnOT/F2LlXhd0L+PqVdZQ/vzJT/NQuVmyrWewIJZnTGQjtgJPC15DuzCAsHtVBVya
+	afssUN12BY4QmF/6Zvxikm1u6pnSEEVlwg0tOs1Whm4MyJtB1NqzG5XU4zoWlo1q4u7nOU
+	tDUi6mzkUATUkmqIN49tRP5jEIN6lmsjsvTz7PY2oxstz6POq7u1JXbkycHS8w==
 From: "Richard Genoud (TI)" <richard.genoud@bootlin.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>
@@ -62,9 +62,9 @@ Cc: Tero Kristo <kristo@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Richard Genoud <richard.genoud@bootlin.com>
-Subject: [PATCH v7 6/6] arm64: dts: ti: k3-j722s-ti-ipc-firmware: Reserve memory for LPM metadata
-Date: Tue, 24 Nov 2026 10:12:21 +0100
-Message-ID: <20261124091221.2593576-7-richard.genoud@bootlin.com>
+Subject: [PATCH v7 4/6] arm64: dts: ti: k3-j721s2-ti-ipc-firmware: Reserve memory for LPM metadata
+Date: Tue, 24 Nov 2026 10:12:19 +0100
+Message-ID: <20261124091221.2593576-5-richard.genoud@bootlin.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261124091221.2593576-1-richard.genoud@bootlin.com>
 References: <20261124091221.2593576-1-richard.genoud@bootlin.com>
@@ -73,8 +73,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_011243_892067_15133629 
-X-CRM114-Status: GOOD (  13.23  )
+X-CRM114-CacheID: sfid-20261124_011237_537232_A94EBBCB 
+X-CRM114-Status: GOOD (  13.33  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,7 +94,7 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Declare a carveout memory region to store LPM metadata on J722S.
+Declare a carveout memory region to store LPM metadata on J721S2.
 
 For Jacinto devices, this memory region is needed for saving ATF context
 and the certificate information of ATF and OPTEE and DM image. This LPM
@@ -126,33 +126,33 @@ at suspend)
 Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
 Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
 ---
- arch/arm64/boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi | 12 ++++++++++--
+ .../arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi | 12 ++++++++++--
  1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi
-index a59c3648d805..9b7c3c8df427 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-ti-ipc-firmware.dtsi
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
+index 5253d028da09..6e52c0821fcf 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
 @@ -6,6 +6,12 @@
   */
  
  &reserved_memory {
-+	lpm_memory_region: memory@9e480000 {
-+		reg = <0x00 0x9e480000 0x00 0x00300000>;
++	lpm_memory_region: memory@9e500000 {
++		reg = <0x00 0x9e500000 0x00 0x300000>;
 +		no-map;
 +		bootph-pre-ram;
 +	};
 +
- 	mcu_r5fss0_core0_dma_memory_region: memory@a1000000 {
+ 	mcu_r5fss0_core1_dma_memory_region: memory@a1000000 {
  		compatible = "shared-dma-pool";
  		reg = <0x00 0xa1000000 0x00 0x100000>;
-@@ -122,8 +128,10 @@ &wkup_r5fss0 {
- &wkup_r5fss0_core0 {
- 	mboxes = <&mailbox0_cluster0 &mbox_wkup_r5_0>;
- 	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
--			<&wkup_r5fss0_core0_memory_region>;
+@@ -189,8 +195,10 @@ &mcu_r5fss0 {
+ &mcu_r5fss0_core0 {
+ 	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
+ 	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+-			<&mcu_r5fss0_core0_memory_region>;
 -	memory-region-names = "dma", "firmware";
-+			<&wkup_r5fss0_core0_memory_region>,
++			<&mcu_r5fss0_core0_memory_region>,
 +			<&lpm_memory_region>;
 +	memory-region-names = "dma", "firmware", "lpm-metadata";
 +	bootph-pre-ram;
