@@ -2,85 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B216606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA984606A684
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ORvzrZMR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Yn/l+G+X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O9Uve6C3;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gID+J2N4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YxnkC+H0WyqL4UcCcv5HjKqJ5O4y9emPPKJptv760hc=; b=ORvzrZMR2voSdnsWTzsyill7z6
-	4f5898Gwq+hkDio+OE2ubn5D8uTRHjhD1MA7h9O4PBkg/u8DjAsEECk5ATFeUKhtEkx23WANsbHMS
-	NE27abZQDxwwOAoEdZB0foNzgl9HiTmaDx1f/Jq9okyPmQsxgMKLhre2l4PTGWqA4Lsg0M5CDT/O7
-	hx2KhbktOESGEfqfTv05aOxtGdLTkUa0Nj7P8Smdvq39ECi/dPX0Drm6f26WEd2iheq1y2VsfWKzy
-	XivmMW6UZbVGjUx7SPeWPysVMRMDDaP6eVizaNJvScvdyEDz5GZIEeQbpA6DqbV0ANUk1p9s5F+vM
-	ebLR6dPQ==;
+	bh=5J01ZOJdhCMA8zsKrJKkfRkGLE9elsf3RiNcT7zsnao=; b=O9Uve6C3nnP508fMEaZg76juzQ
+	fwkiTfHpfyBlY0JtuMbMVHWW5STdC0HOquhWrrEReJMIZTR/c91UBEjQ7HOGanR2GUXr6ESsZI5v7
+	JHsqLgawcrgbiCM9aNezY4KtMgjmfBle1szZ0lEbTrxDEQF7cajDIEVMxTA5crCKsnz7AjkzvVNRa
+	dcF3zUIVyfYc8qxZohPjIDnDd0kGPToZ8zpV6K4yv448XpxImQNDF7mgiLUkxNPHSg/EgToLPbsus
+	axYujqtvRvD0mnZDMs5FGcUSih9glgslwsOabQu5ciMRf2wfGMHXeeLekw7RL80tUkeCq+i5cWTCj
+	hLel9BUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwSL-00000007c9c-3Izh;
-	Tue, 24 Nov 2026 19:45:33 +0000
+	id 1xVwU1-00000007cLd-1LAZ;
+	Tue, 24 Nov 2026 19:47:17 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwSK-00000007c9W-3pHv
+	id 1xVwTz-00000007cLK-2fFW
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:45:32 +0000
+	Tue, 24 Nov 2026 19:47:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5AF4F42E4A;
-	Tue, 24 Nov 2026 19:45:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D9C81F000C0;
-	Tue, 24 Nov 2026 19:45:32 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 6615745C5A;
+	Tue, 24 Nov 2026 19:47:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B03F1F000CA;
+	Tue, 24 Nov 2026 19:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795549532;
-	bh=YxnkC+H0WyqL4UcCcv5HjKqJ5O4y9emPPKJptv760hc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Yn/l+G+XwG6rnIr7gMg63Q/wt9fpkcsxai1AKo/AIZ6U5qrXSvVBszTWQi/D1nkr6
-	 mKmw+HUszIT+CHB/DuzwKgYNByZNvK+BMQzUgDz+0/dyvYt/aaP7yJD45tZLR5xdZz
-	 2MKVFBKpf1EteIKmBf7wAI36O98sFgf3Oj/SyXI0quMfea7ruoC51FEJZiA1mfooLo
-	 9eTLMfj/d8XbP4dbRoyKVQXqAWCUp/QWpy6XqjpPTTI+ey1P37+bmYoZ1beZ8wTdpK
-	 dOComrq2+g9ZhWhVmHaWbVjLrmbXkUtdJefn/0kogerOoJk2we8cmm2+w3+q9V608q
-	 RGxmHDzjeexRQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVwSI-00000002l5B-0U4K;
-	Tue, 24 Nov 2026 19:45:30 +0000
-Date: Tue, 24 Nov 2026 19:45:29 +0000
-Message-ID: <861p8aypwm.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Leonardo Bras <leo.bras@arm.com>
-Cc: kvmarm@lists.linux.dev,
-	kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Oliver Upton <oupton@kernel.org>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Dan Carpenter <dan@pereq.eu>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
-In-Reply-To: <awXSCgN4JLLKXErv@LeoBrasDK>
-References: <20261123182312.4842-1-maz@kernel.org>
-	<awW5QKqGZAqw1ru9@LeoBrasDK>
-	<864id6yyjy.wl-maz@kernel.org>
-	<awXSCgN4JLLKXErv@LeoBrasDK>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1795549635;
+	bh=5J01ZOJdhCMA8zsKrJKkfRkGLE9elsf3RiNcT7zsnao=;
+	h=From:To:Cc:Subject:Date;
+	b=gID+J2N4pc96FAGoaAdH9GNoyuk7pm/dJ+Pd1dLjC5UYwrf/2XXaiSDqR5Euswhj0
+	 sJMCCPYvAXOJnPSpjddWI5vircAM4cpLXkdv7zMBKq7YtZYBsXLWu2Yk+tjyMe3dDx
+	 9xyzRKC5yaHN5ndp6zBFA2eGmxq/46X0asFrabrgupkiuu5/Ad4SqNuuysY15OWCJM
+	 Ja/MTu/+pURvovmn6BkUeyiAxihKX7G+i69Uzw+7txSYWS12eL9RhqD//BMsAjbVih
+	 hFeqCiTIYatN5sEE0bCjcu+JpmSfIUjOt58uPkIu2oQe8XoJfE7tx01fgzPeCTMb7c
+	 rLyTWF0N2uqEg==
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 4AF0E1980047;
+	Tue, 24 Nov 2026 14:47:10 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-11.internal (MEProxy); Tue, 24 Nov 2026 14:47:11 -0500
+X-ME-Sender: <xms:vekFazy-q0gutZ7ux0FCvcouxXRxAsHD34FNLCUkK1fuewqtUaqS5Q>
+    <xme:vekFayNFPbrDfoDWNGpBn2pKSD_E5S8LbKakNnZYjiRXw19kBMBVyeCxLM8EdpnsX
+    528oHUr8lqcvU_uwceoVN_NHgO0YO_dsaWuLI_dcdXenzg8-lnCvSIK>
+X-ME-Received: <xmr:vekFayY0ZyDCUQZvCIkdB952g1vLWtuV1YXbqfih5Zldm3T5QriCgJ7f3Bo>
+X-ME-Proxy-Cause: dmFkZTGUX4TdwkcU+s5tAMz9Yp1WUvFjhlftEjNS8e63BxeNN7yQom4qhi+EDz7Y31fNHS
+    VqelmG4hXUQhSnQKx90mkPkGjS/Ib/iBqwLxCgM1q+hZMnhrdSgkjdm4UEMT8GOdDxt5Z2
+    7Lg6Eb6MKboetZY01n/Hk7uozefc7YF5hljgdbmJ4lbazD83XBGpus63VsFuzXmhXDEeZ9
+    JWdTxiLjrWHBiUq8/dP/MzCYgBCjoEn2Rtgli+x14FjTF6SI5r8vv/15/QJ2H+QpE5X9kd
+    KRGhRx/BN1j26Et6RkG3SYm5hSAJA2HNDEMsr+bFOEgSNncmefC1a7U8PQb8pOch7ngxf1
+    TH5RdbbWHADsYXTPBUS4gRfpDxngpqbMNQVrK10l35jqedfF0BB3QCysPDTKOO7eHI8ovf
+    idn9dNdDLs7YY0EsnDjgUqIuacUiQfqhXDbUqRKeddn0k6LE0OkDP8c6CcUePcjGVVRjT/
+    1Dmk2gxT42KUoHNP1lF3WlEPPJO2yyF4hmflWKq95hRtJPQKIxeQMfyuF851GWnjKdDT3g
+    SbqvGWAO4miVaJC22MxZHaamB1zkVFgWEyLguUH9HRyTjYn5kFnPMv2mqcyEbUK3OcfO9u
+    MgL7kHeZdsm22wy1cjhaB+lVWVcBx4HC9CC7zBZD36CdiZb8YqTljRRpgwMA
+X-ME-Proxy: <xmx:vekFa0qQibBd5Yjy5EDY4qwQUHYEh8Jewoz4q7BmzAD7BnOD_BdArQ>
+    <xmx:vekFa_zfywy1OGE3qkkRXlIpISdYaw86n2DSZjwWwdES5ay66R-Wkw>
+    <xmx:vekFa8KdLB_QyPLQGQzZnGGV-levXzamS0cBt16XgEABqKCVqSewpQ>
+    <xmx:vekFax7A3zle1yCe6-c7eXVhSt3HY3FhBsf6HN1wJIdeck5M5QzF8g>
+    <xmx:vekFa6wPi6anooP1ZJHrXVg7yqmH00bZr8TksT7umWyBWjJFjNPxOnes>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 24 Nov 2026 14:47:09 -0500 (EST)
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	James Morse <james.morse@arm.com>
+Subject: [PATCH 0/2] firmware: arm_sdei: Fix NMI backtrace lockups on idle CPUs
+Date: Tue, 24 Nov 2026 19:47:03 +0000
+Message-ID: <20261124194707.1030653-1-kas@kernel.org>
+X-Mailer: git-send-email 2.54.0
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: leo.bras@arm.com, kvmarm@lists.linux.dev, kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, oupton@kernel.org, yuzenghui@huawei.com, fuad.tabba@linux.dev, dan@pereq.eu, stable@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,140 +92,55 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: "Kiryl Shutsemau \(Meta\)" <kas@kernel.org>, Yin Fengwei <fengwei_yin@linux.alibaba.com>, kernel-team@meta.com, Vladimir Murzin <vladimir.murzin@arm.com>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, Cong Wang <cwang@multikernel.io>, Liao Chang <liaochang1@huawei.com>, Doug Anderson <dianders@chromium.org>, linux-kernel@vger.kernel.org, Ashok Raj <ashok.raj@oss.qualcomm.com>, linux-arm-kernel@lists.infradead.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, Pengjie Zhang <zhangpengjie2@huawei.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 18:06:02 +0000,
-Leonardo Bras <leo.bras@arm.com> wrote:
-> 
-> On Tue, Nov 24, 2026 at 04:38:41PM +0000, Marc Zyngier wrote:
-> > On Tue, 24 Nov 2026 16:20:16 +0000,
-> > Leonardo Bras <leo.bras@arm.com> wrote:
-> > > 
-> > > On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
-> > > > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
-> > > > that describe a base granule size smaller than the host's page size,
-> > > > we take the resulting size at face value and feed it to the S2 unmapping
-> > > > code. Which legitimately screams about something not being page-aligned.
-> > > > 
-> > > > The architecture allows us to drop the TLBI on the floor, as we don't
-> > > > support a S2 granule size smaller than the host's page size. But it turns
-> > > > out that doing so is proving pretty hard (we call compute_tlb_inval_range
-> > > > from a number of places, none of which is amenable to an early out).
-> > > > 
-> > > > Instead, detect the annoying case, and pretend that we don't have a TTL
-> > > > hint at all, leaving the size upgrade mechanism to take place and use
-> > > > the largest possible size for the guest's S2 granule size.
-> > > > 
-> > > > This will still allow nonsensical stuff to get through, such as a 4kB
-> > > > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
-> > > > on a 16kB page size host, but that's not worse than doing nothing, and
-> > > > the host code won't get shouty.
-> > > > 
-> > > > Reported-by: Dan Carpenter <dan@pereq.eu>
-> > > > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
-> > > > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> > > > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > > > Cc: stable@vger.kernel.org
-> > > > ---
-> > > > 
-> > > > Notes:
-> > > >     Reposting this as a first class patch, as I'd like to plug that one
-> > > >     as early as possible (and Dan has plenty of other patches in flight...)
-> > > > 
-> > > >  arch/arm64/kvm/nested.c | 7 +++++++
-> > > >  1 file changed, 7 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> > > > index 78d5b18dbd2d6..36e4e83badf0a 100644
-> > > > --- a/arch/arm64/kvm/nested.c
-> > > > +++ b/arch/arm64/kvm/nested.c
-> > > > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
-> > > >  	 */
-> > > >  	max_size = __ttl_to_size(ttl);
-> > > >  
-> > > > +	/*
-> > > > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> > > > +	 * possible invalidation. Don't try this at home, kids!
-> > > > +	 */
-> > > > +	if (max_size < PAGE_SIZE)
-> > > > +		max_size = 0;
-> > > > +
-> > > >  	if (!max_size) {
-> > > >  		/* Compute the maximum extent of the invalidation */
-> > > >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> > > > -- 
-> > > > 2.47.3
-> > > > 
-> > > 
-> > > Hey Marc,
-> > > 
-> > > I think the changes make sense, although rounding up to PAGE_SIZE also 
-> > > looks a valid solution in my unexperienced viewpoint.
-> > 
-> > No, it isn't the same thing. Taker the example I have given, where the
-> > host is 16k, the guest 64k, and the invalidation 4k. If you round
-> > things up to 16k, you're still not invalidating anything that is
-> > consistent with the *minimum page size* for the guest. Anything larger
-> > is a multiple of both the host and guest page sizes, and therefore
-> > always correct.
-> 
-> Ah, right!
-> In this case, could we not invalidate the largest page size supported 
-> (64k)?
+The SDEI NMI backtrace signals event 0 to every other CPU, including the
+ones in a power-down idle state, where the kernel has SDEI masked. TF-A
+acknowledges the SGI behind event 0 on a masked PE and never ends it,
+and the PE takes no Non-secure interrupt again. Jinjie hit it on a
+384-CPU HIP12, where one sysrq-l locked up the machine.
 
-Because that's not what the absence of TTL means.
+Patch 1 keeps event 0 away from masked PEs. Patch 2 sends the regular
+backtrace IPI to the CPUs that SDEI refused, which wakes them.
 
-> 
-> IIUC:
-> - To have max_size between 0 and PAGE_SIZE means it's either 4k or 16k, 
->   so invalidating the 64k should be enough?
+TF-A v2.13 and later refuse to signal a masked PE, but a PE that masks
+right after the check still takes the SGI. The TF-A fix is under review:
 
-No.
+  https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55414
 
->  
-> - max_size=0 from __ttl_to_size() means largest blocksize supported by 
->   stage2 in current TG.
+Tested under QEMU TCG with TF-A built without that check, 4 CPUs. One
+CPU masks and unmasks SDEI in a loop, through cpu_pm, the mask calls and
+CPU hotplug, while another signals it; sysrq-l afterwards. Signalling
+with plain SMCs, as the kernel does now, wedges the target. With the
+series every run passed, lockdep included, and a panic in the middle of
+it completes.
 
-Yes.
+Jinjie ran an earlier version on HIP12 with the power-down state
+enabled: sysrq-l got 384/384 answers every run. The handshake has
+changed since; Jinjie, could you give this one a run as well?
 
-> 
-> The two above are opposite ends, no? Like, the first is "this is too small 
-> for us to invalidate, let's pick something bigger", and the other one is 
-> "we want to invalidate the largest supported block".
-> 
-> Is it really ok to put them in the same bucket?
+Kiryl Shutsemau (Meta) (2):
+  firmware: arm_sdei: Do not signal event 0 to a masked PE
+  firmware: arm_sdei_nmi: Send the backtrace IPI to CPUs with SDEI
+    masked
 
-That's the *only* thing you can do, short of not invalidating anything
-at all. The commit message alreayd explains the IMPDEF choice that is
-made, and why it is made. Let me explain it again:
+ arch/arm64/include/asm/nmi.h    |   7 ++
+ arch/arm64/kernel/smp.c         |   2 +-
+ drivers/firmware/arm_sdei.c     | 130 ++++++++++++++++++++++++++++++--
+ drivers/firmware/arm_sdei_nmi.c |  30 ++++++--
+ include/linux/arm_sdei.h        |   4 +-
+ 5 files changed, 157 insertions(+), 16 deletions(-)
 
-- An invalid TTL allows us to ignore the TLBI altogether. No ifs, no
-  buts. This is definitely an invalid TTL.
 
-- However, by the time we reach this code, we are committed to perform
-  an invalidation, and we can't backtrack (doing so would be really
-  ugly).
-
-- Our next port of call is to still perform an invalidation with
-  something reasonable. Since the TTL is invalid, only the IPA tells
-  us anything. And for any IPA without any range information, the only
-  sane thing to do is to invalidate the largest possible size.
-
-You could refine this a bit more, but frankly this is not worth it. We
-are already allowing a broken guest to do some invalidations, but
-there is no need to go out of our way to do anything more.
-
-The end.
-
-	M.
-
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
 -- 
-Without deviation from the norm, progress is not possible.
+2.54.0
+
 
