@@ -2,80 +2,144 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C75606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C90E606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:17:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qq2hs5dt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n1bcvz/q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MMa6eGOR;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=LN33lgUI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4Nv92dxJ4w/rbnjAgaKNTvEaElRmvxU69eClhfhiUIs=; b=Qq2hs5dtECEp3B8jpIVRQ8hTjT
-	K1niR0rMOAi3WN6UZ/iEH1zTRegBAIVAs8mNad1xa3BNrcFh1aUMCeech9dG5l+vYihPq6MDK2jrm
-	l/UW00BbD2Tm54930XZ78LSB/0/ZK2sPE8c/Zyu6wdN1I4sj6mMMmkMHq4Z1vx3RY4AYH4KpJ+Dln
-	lJFHfS4mMaZt7KWe7xZulVJJp1uU7LerSTcTWbu7lV6zAELhwWpEjkgPUZntl3jOKpkAJkoX+8oXG
-	IgF8gcu4H7f9xYTjBBoqvu2SilDYNX95NFIYSgVslE2dW3qlHGj0yh4YtCDd8ULNqBrizZ6LM3rXj
-	fzWWV95A==;
+	bh=NA12plOgNF0dRdortBeeBQ3+AQqK0NAkzAT49GXK1LY=; b=MMa6eGOR9Q81txCmfnvwXTib3e
+	7yrTYxYvCMpSStZVMCfz/jMdaGo1upCB4TaOdRF8DhD2wAZV/vBPH2rPLfcYr9nvaD1bXCEE2OkXC
+	76V5pSmH7n+5LQHZi8Panl8lGWzXYFvA8VjH6OxnpPF+GBwxvYzcfls0x7/4FUYTvV+rZISw+RY56
+	TNj6nTYhKoSH1AtnY+nNCOfpNisYlNngKoZZ/q4l16MIdB+wGjKWPR6RovnQLvJl3mfVPdBb/cVXi
+	7Pb9sZsmUq0vnqtYCCXie1BVuEBisAGJj4xmZZDSzYs0zJ3mMdNwE9FAGLmUEDV2N0yTLYDy+rxH9
+	+eyjZyig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrli-00000006o3O-4Bvt;
-	Tue, 24 Nov 2026 14:45:16 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVtCR-000000075ci-1DKc;
+	Tue, 24 Nov 2026 16:16:55 +0000
+Received: from mail-norwayeastazon11013062.outbound.protection.outlook.com ([40.107.159.62] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrli-00000006o3I-01wX
+	id 1xVtCO-000000075c3-0z9s
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:45:14 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A5BE2440F3;
-	Tue, 24 Nov 2026 14:45:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A72A91F000CF;
-	Tue, 24 Nov 2026 14:45:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795531513;
-	bh=4Nv92dxJ4w/rbnjAgaKNTvEaElRmvxU69eClhfhiUIs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=n1bcvz/qeq9Ha5Q2rYDT/yOsThuugZ60fYPMtesxbQLDUbsqv01PuYYF75cT470VJ
-	 DknZtTatgltJFfhqpA59xGxe3tmnmekjfufDT8/PIWNbvYt5fnZUdoBOgoOegRbjJD
-	 cK6Muxro7N4LY8C2oxuRh3hVMlKzqs5iF6sKZ+C0lKnVseMXqLnPxTTjScAtXNEhro
-	 Aqbdpx0FdkUlqBytLgPc/7RoUbE/U7BVRiGTDPo3zjtG+RYyrb67RMptNA9HG1mbS3
-	 SguyyRHy3DqpNTXQcywxpM/ypGdAnzHjNiyO5COVa8sg6ZbIN2ZikhNVXjboSubZc+
-	 5Sqi1eojYbmBg==
-Date: Tue, 24 Nov 2026 15:45:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
-	Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
-	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
-	Russell King <linux@armlinux.org.uk>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Peter Ujfalusi <peter.ujfalusi@gmail.com>, Jarkko Nikula <jarkko.nikula@bitmer.com>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org, letux-kernel@openphoenux.org, 
-	kernel@pyra-handheld.com
-Subject: Re: [PATCH v2 06/20] dt-bindings: sound: Document OpenPandora sound
- card
-Message-ID: <20261124-crocodile-of-marvelous-essence-ee7b3c@quoll>
-References: <cover.1795505160.git.hns@goldelico.com>
- <5c6f7deca16f70f1f19cb40c57d70e30068d6000.1795505160.git.hns@goldelico.com>
+	Tue, 24 Nov 2026 16:16:54 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P52y2DhqzDs2jKMrUv+7scsp5kx7WOsjJjAFyzMOp4SgboH9n5eGZ57Jkc62gfkXaikPWbCsZWBvq1rEjTIjaoSixkQ6S0RfvjgQLLygcg7+LKI6QiDqP2MrGEJCFdr9zwNPqH4lZ7gvn3dNfdBLBeXlmFLm9xttVGzYpR8Fcbk4FA0umPwxA779kRtyAvFIpc6mYRU6eLGtZ80QN9jk1kbRSXFbLLPc4hayzQjk4RORAWNQNeDpg5p7KXPeNjvx0IxHdAlpYofvetPuu4S5iDP9K6swRf5flcazGjEZ+5FM6/jjq22PfYL+FtUX/NOE5b5108c+KgYohjes6Vqorg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NA12plOgNF0dRdortBeeBQ3+AQqK0NAkzAT49GXK1LY=;
+ b=mC3fk6+94rWpDRxzG++vIT9mQ3nYXNIlCxT6yIEsFxmjZLoEZHrI6YLWbjxJKFiODhUWqdBCwvPVsojR34wfmUVCK5nuclrrfZ/6rU1cdZDleC13TYlKb2wFOzfmbUow5PCwyCeRSC7Qz1WHYzNivoLPkX+j9rdqFj2go7VbkQkKjFNn+C0gpsq0rtAsYEZlLA3Uhk0yek6OHXyZQmFX7nKDKPBQpLTPx5MaL6OfavmbE+3l1ows31uKzcD0SyKSwDpHiNWwRMsvjUgFFjE7x7jvkeB3cIRbT3Q/Ycz3QTR/m9MdaDwvjRQoId/WZ4eIjQCSs3FepMSwBOc0PcKIqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NA12plOgNF0dRdortBeeBQ3+AQqK0NAkzAT49GXK1LY=;
+ b=LN33lgUIcIw4oYtyi6eB/L3E6zETifgPkF/oJlleQvUmoutejQifQO6BDmCD8kpdkjslfC7XEwOUx9eZjP+8ekpbtwSpuXTBMeo7XUZyfIBEMtjex4a4A1yhQ3QWQdLHt/MvD1ZIsfuXx8KmaREZugaRqfxbvCCfSavvp8ry++h0fGz/gHakMpI+uo8exJUp01e43oE4f2hx6KzHbHtd44nHn5mSzsoPMVxTxtZd6v2hSHuki5cIRbPmrCuQ0w0RcD0fK536m8eq+i+KobSjL34wf/cHdi3X4wFEFqXTcfTToPC4032US6ov0t4oKPfIZAmQP/eV6DA+ITZPFP6kDg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AMBPR04MB12445.eurprd04.prod.outlook.com
+ (2603:10a6:20b:75e::21) by VI0PR04MB262470.eurprd04.prod.outlook.com
+ (2603:10a6:800:35f::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
+ 2026 16:16:46 +0000
+Received: from AMBPR04MB12445.eurprd04.prod.outlook.com
+ ([fe80::ba23:1fa4:ce58:ff06]) by AMBPR04MB12445.eurprd04.prod.outlook.com
+ ([fe80::ba23:1fa4:ce58:ff06%3]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 16:16:46 +0000
+Date: Tue, 24 Nov 2026 10:16:37 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Stefan Ghetu <stefan.ghetu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Liu Ying <victor.liu@nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH] drm/bridge: imx93-mipi-dsi: Fix mode validation
+Message-ID: <awW4ZcGL8EXb6FoZ@SMW015318>
+References: <20261124115255.679017-1-stefan.ghetu@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261124115255.679017-1-stefan.ghetu@nxp.com>
+X-ClientProxiedBy: CPAP307CA0005.DNKP307.PROD.OUTLOOK.COM
+ (2603:10a6:380:3::13) To AMBPR04MB12445.eurprd04.prod.outlook.com
+ (2603:10a6:20b:75e::21)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5c6f7deca16f70f1f19cb40c57d70e30068d6000.1795505160.git.hns@goldelico.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMBPR04MB12445:EE_|VI0PR04MB262470:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0097142d-cd30-4a62-3b8b-08df4a4655ce
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|376014|7416014|366016|23010399003|1800799024|18002099003|22082099003|261009223027099003|10067099003|11063799006|56012099006|261028144727099003|261026140227099003|261021121427099003|261022105027099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: usBjCtOYXe2S3dykaVz2uaW4LR119G5ojRQD8hc1AaEAQBOwtLbDKjWhAr6VuzSdAgML2+4kxZmmW2p1/VfZ3FZ7GqPDmO0PArizxp+He8vOAa6gm5AHXTDA9uStYBAhJdFjrzvv20UTQjlaJ7LEwRjWASvkt29NJM6Kv0YstU8ONpTBTIQV4Xap6M3HuGq0X6CwjTiRncmfguO0BEf2VELPKBmKpSjLucrx5NA9svfiilWprkGD8VVTD6dCTy6h+3qZB0eednRhGXMTMaEzRy/NTF5Vp4ohbmGd+C0Pm3NDQRq2hJdi+ggDfCML+pgXhwbfbNXOjaiT4ObNUzCj4QMVHjxW3nozemYjACFRFaLw6V//jNFK/q/l3V8VqChMHZuk7SQ1ica//UYvkPJgvw45HoVxkqRfqZdPg87u+qGIBLUgBEnh28+R+cUD4xjj5hPaHtY/uo6caPbajTRLz05TN0/ow4wbSx/zXWFG68BwFbBfK1FIKEy/VEoYvR4v0Jv3jjYm4yVtjE18gkQbhuGRZK6Pzw7UngtuIGjPeQwckO91jUksmt1SPXqDnCOeFTjuIZx1+nS5O5nZBHH6lLXZWatACZYIZd722LRHVPeZeCUARoIHXYpC50BTsudVxU404AFs8kGzZiCE8l/WumJ8DZsn9I6HtetU7Iw+6Lo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AMBPR04MB12445.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(366016)(23010399003)(1800799024)(18002099003)(22082099003)(261009223027099003)(10067099003)(11063799006)(56012099006)(261028144727099003)(261026140227099003)(261021121427099003)(261022105027099003)(261102123227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/hxafxAM1wowNDMFaUTnhGJPY7J8I7tVPmLtgwAdGEzDV+LamIXq/DsXJwhV?=
+ =?us-ascii?Q?Iagnn5uWLmyN/7R+EclWr/PVvKNIy1apSUpijsEI7LWoqvto1rqeUAedQ9KI?=
+ =?us-ascii?Q?awxwjPDQrvlRpf2kuL+CrxgebgPXtmPBE7gR8xSj1R9W2Cl7/jAZ9MbK8d+O?=
+ =?us-ascii?Q?F2TCunwJ18mzDSG8krfQ9f3TeJSHKkKCv/KV1hKE8WiZ8GPwCz4LlR6Aevg4?=
+ =?us-ascii?Q?VSM29wNNxLnmVDMiRXyg/bd9kq9GgFQvy9HyG1/3nnAkfnukjLEG0AxvODqU?=
+ =?us-ascii?Q?kjXycTERUxLWBgpfu/9KsrmgKLVK/idRwcr5Bsr+vBLkRqym8oEJSoMRwCaU?=
+ =?us-ascii?Q?33ohfJFHlznXCQab/37q+rGlFBbtF/S9rD9Pl29orZIou00Olk5wqZpxll8S?=
+ =?us-ascii?Q?D7CdUiOAec2jlSqFn+zb0/60LURw9x6fGQlcdKD+ESK1uOp0cLE84U8MZEY0?=
+ =?us-ascii?Q?PK9AgFqmWRQsZ1AUem9Wx8zU614aHH/02DOVPsew1vaeoDfIIzWeKStY9w4U?=
+ =?us-ascii?Q?U7PyVzKaXJ4aRk5WpgysqL9/XfzDa5yC4JBvAceSQ+3/G6rrowyIEGShn4gb?=
+ =?us-ascii?Q?+4GRRqtTR7SAp6RqmgnFNprQ8oHzVA/jt5waR97fe4WmCeu0tvy/uUrkfo5V?=
+ =?us-ascii?Q?NfRa9cV7p6KgGUKwpliQwkDcziXNSSCBKuEtzbScZxdq8g55I7at5mJ/YNgY?=
+ =?us-ascii?Q?nhFuNIigOWfcl/miJnaOtjLxV6+Yrcc4LkcB79iaep9sGmJI0lOez+qeWmQd?=
+ =?us-ascii?Q?9A3X84gUlrRdsXt78OkO190VZCaBUKprLEdJp/vxg/0qsNJPtxOlJVr9mcvL?=
+ =?us-ascii?Q?mCeqlTpz7KOfUF42djWy/vmzae0RvXksFUnPaxoN9ASjPe8IVhmTN1xAI6n+?=
+ =?us-ascii?Q?yAAV/QTqODPyzOsTRO4sV0E/7xlbeBgj7AUr0rCFwoN3ZD47Bp3nJQj4My4y?=
+ =?us-ascii?Q?lt+MpvcjSLPIqTPZ5pOg9HXFmwfkTrIGI9lcAA9sjWzHV+mb/VBLJMEoczoD?=
+ =?us-ascii?Q?TwFCXNryGd238elxIHuhJgKfR5APaq0KRtRAJ3dnETnjJubycOS66joCRQ/+?=
+ =?us-ascii?Q?GO4FEs3PPRlMXer7Uc5bn8bnJq9JT1qO5o1C7TEk/Ma9us6jc8B2KpH0tnl8?=
+ =?us-ascii?Q?6cpex8ma0CX1g6/SeIPOMReh46njZqAJv1S8LQM7o9h6caf4J6UNMTbtLeBf?=
+ =?us-ascii?Q?rV9evmaVKWOmNpq4XtzLKPPuP3Yv9zY7ikfTeoarPw2dsb+hkg6ATPuZfpkZ?=
+ =?us-ascii?Q?qaxKvrfiT1af5gBnglOUWq5OFY6LFGS5z+jFjVQgQ2rzU03TpkxMXLFR8c42?=
+ =?us-ascii?Q?ISf6LwYJNMNqsJ/UQ/yGc2OnevZ0GHbInMs8SOi8SinnWk4xLpNsSeM5ZBNC?=
+ =?us-ascii?Q?LvFHb8kvR2kVmx0c0TR6OL6G7mNS3D7BqzMPCtBnHfIvLXdPvVgwHRRYUViR?=
+ =?us-ascii?Q?+XBCNUDof49SYrN5VmZ1jJ7wfRfaSQ2fbq1MDn0d1i4xs+vuODCZ60RM2MwZ?=
+ =?us-ascii?Q?Emh5iBgK77kNQkK8/ShDVylGzI/Q26SbxlFzo/KayCe+PhiEiuttOanhOPMq?=
+ =?us-ascii?Q?oZMOJK7ThcL2DEXxyRyamfxBPoWFT6EHuGRM95uj/vQ5v9JHLpVtK3GMy1uT?=
+ =?us-ascii?Q?h4oWAkMU3CY4AAnzPdx5asyBUpqjBTTFlQzQ5zeWIRA5YUilK/3h2kIlBHWG?=
+ =?us-ascii?Q?mFmsJxUO4dlPfd6Nf76OoXdms6COP7mrMMssmtOwprYwfEiKVfJEB7iEdyn0?=
+ =?us-ascii?Q?e7ZYYIUUiPt3abwBEIsnXyy5N6OQYoh2ncVdmC4RcFTlNCg1plc3?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0097142d-cd30-4a62-3b8b-08df4a4655ce
+X-MS-Exchange-CrossTenant-AuthSource: AMBPR04MB12445.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 16:16:46.0595
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kOikmkmJ+xSIrDat7EvzZyR9CUDJKPOex297nYG5WjT+EO7JPRGVHaFTUjDMsNVMuCWHoxBbqrpI5+SCNvZXCTkTg6vhcYdA3FlRB8ktzfTOwNYeSNhn+Vfb25iEy1tX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB262470
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_081653_041947_CFD79A91 
+X-CRM114-Status: GOOD (  13.56  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,102 +150,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 08:25:46AM +0100, H. Nikolaus Schaller wrote:
-> +description:
-> +  The OpenPandora audio subsystem describes the routing links between the
-> +  OMAP3 McBSP interface, the external PCM1773 DAC, and the TWL4030 audio codec,
-> +  alongside amplifiers and power supplies.
-> +
-> +properties:
-> +  compatible:
-> +    const: openpandora,omap3pandora-sound
+On Tue, Nov 24, 2026 at 01:52:55PM +0200, Stefan Ghetu wrote:
+> From: Liu Ying <victor.liu@nxp.com>
+>
+> i.MX93 MIPI DPHY PLL has limitation for matching with some pixel clock
+> rates, e.g., the best DPHY PLL frequency is 445.333333MHz for a typical
+> 1920x1080p@60Hz CEA/DMT display mode with a pixel clock rate running
+> at 148.5MHz with 4 data lanes + RGB888 pixel in MIPI DSI sync pulse mode,
+> while the expected PLL frequency is (148.5 * 24) / 4 / 2 MHz = 445.5MHz.
+> Fortunately, VESA Display Monitor Timing Standard allows +/-0.5% pixel
+> clock rate deviation for timings.  So, for those display modes read
+> from EDID through a bridge with DRM_BRIDGE_OP_DETECT and DRM_BRIDGE_OP_EDID
+> operation bit masks set, pixel clock rate could be adjusted to match
+> with the PLL frequency(for the above example, the pixel clock rate is
+> adjusted to be 148.444444MHz with about -0.03% deviation from the 148.5MHz
+> nominal rate so that the adjusted rate matches with the 445.333333MHz PLL
+> frequency).
+>
+> Instead of checking the last bridge's operation bit masks against
+> DRM_BRIDGE_OP_DETECT and DRM_BRIDGE_OP_EDID to determine if allowing
+> +/-0.5% pixel clock rate deviation, check any bridge after this bridge,
+> because the last bridge is usually a display connector bridge without
+> any operation bit mask when the clock rate deviation is allowed.
+>
+> Fixes: ce62f8ea7e3f ("drm/bridge: imx: Add i.MX93 MIPI DSI support")
+> Fixes: 5849eff7f067 ("drm/bridge: imx93-mipi-dsi: use drm_bridge_chain_get_last_bridge()")
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-openpandora,omap3-pandora-sound
+It is v1. Need drop review tags before post at next time. Reviewed tag
+need explicitly sent out to mail list.
 
-(add hyphen) to match other style?
+I reviewed in internal pre-post version.
 
-> +
-> +  label:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: User-visible name for this sound card.
-> +
-> +  amp-gpios:
-> +    maxItems: 1
-> +    description: GPIO pin controlling the amplifier power state.
-> +
-> +  amp-supply:
-> +    description: Regulator supplying power to the amplifier.
-> +
-> +  sound-dai:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    minItems: 2
-> +    maxItems: 2
-> +    description:
-> +      Phandles to the audio CPU DAI (OMAP3 McBSP) and the codec DAI.
-> +
-> +  routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description:
-> +      A list of the connections between audio components.
-> +      Each entry is a pair of strings, the first being the connection's sink,
-> +      the second being the connection's source.
-> +
-> +  widgets:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description:
-> +      User-specified audio sound widgets.
-> +      Each entry is a pair of strings, the first being the widget type
-> +      (e.g., "Speaker", "Headphone", "Microphone", "Line") and the second being its name.
-> +
-> +required:
-> +  - compatible
-> +  - sound-dai
-> +
-
-allOf with $ref to sound-card-common.yaml and you can drop routing property.
-
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    sound {
-> +        compatible = "openpandora,omap3pandora-sound";
-> +        status = "okay";
-
-Drop
-
-> +
-> +        label = "OpenPandora";
-> +
-> +        amp-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-> +        amp-supply = <&aux_5v>;
-> +
-> +        widgets =
-> +            "Line", "Line Out",
-
-Join these two lines
-
-> +            "Line", "Line In",
-> +            "Headphone", "Headphone Jack",
-> +            "Microphone", "Mic (internal)",
-> +            "Microphone", "Mic (external)";
-> +
-> +        routing =
-> +            "DAC1", "APLL Enable",
-
-As well
-
-
-Best regards,
-Krzysztof
-
+Frank
 
