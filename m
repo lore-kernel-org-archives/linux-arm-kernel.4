@@ -2,75 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B470F606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35F6606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CWzvhKBv;
-	dkim=pass (1024-bit key) header.d=mail.zgclab.edu.cn header.i=@mail.zgclab.edu.cn header.a=rsa-sha256 header.s=dkim header.b=MrPP42qm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I4rMB7Zg;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=2UC03c4o
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SHQD7/yk1kc5LIzMqPgYiZblY3LzJCrNlaOhDTO3yRk=; b=CWzvhKBvwHognh
-	w/6rM4dBJt9EMc0xN4DwUvducxV71tTJgDr3wSXM79tk+UiPQyq9FcDZM3JjV0Z9N2Zwt9dvHm1uM
-	nHhCasjnAZDXZF/7e04HW967tCJSwsA0y+uWYlwogQmDd+7C3i7tAz19WAD97Sc7g8bL7uCpBo6aS
-	Sr94I89sZoiiH9tc4MRa/YqELCyM/QUPu0EjcCeDwqtVrJBoBmCx4+9lOOc46JRPvCkwkzbdT9M03
-	pIjb4dRMVN83Ga2SgIMoXk/nwAFd5ud1Vjb+DusrxzRgtlcRgadv0ZpPeCoU9udexQ8Yp8knJwoNa
-	Po35cZJ1LeGz+8hEvrtA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=oO9NoKkGUBW79Pz13XzckI1UHKiYF6Aol+ytGcTDdWY=; b=I4rMB7ZgsUiFsxF9e7aOPj8BrZ
+	Zs3wf5uC4mH5fUfVXTZnU3t+4WhT6atZ8AoykKC7Prxs18Es4RIRBP0uIzvx4duilQGNzc+rM/tkJ
+	fvI6bPQ5ZHLR24WumAioZCCYWMHmpTeqRzyVpuHokcoCJ0/wv9NuRaHOcnUF7VuRfQvhQWBMAIvaD
+	pRj/7OB7X6sy+OBQbNcDjX8jGdH+d1dsrifvuojP4fwZFj9mxyoo1vGEYnTbxQWGOn/NU8zG3RQg1
+	HsPVjKUAQ7Swrwlc27Zs6/GekFOfxHOy5cCjOQ+ChdfOgAD04N99wFvPdsOwTJr9KR/24FbhWguFI
+	x4YBTANQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlsM-00000005tMW-1Bqq;
+	id 1xVlsM-00000005tMI-0dwy;
 	Tue, 24 Nov 2026 08:27:42 +0000
-Received: from fraori-sdnproxy-3.icoremail.net ([132.226.202.154])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlsC-00000005tBS-3Uwy;
-	Tue, 24 Nov 2026 08:27:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mail.zgclab.edu.cn; s=dkim; h=Received:From:To:Cc:Subject:Date:
-	Message-ID:In-Reply-To:References:MIME-Version:Content-Type:
-	Content-Transfer-Encoding; bh=SHQD7/yk1kc5LIzMqPgYiZblY3LzJCrNla
-	OhDTO3yRk=; b=MrPP42qmI+mfYCKON9L0qHcSluwY1bsa5f3uZIHqAE/fZ1Mcq4
-	0BHJEjGbtqN9rKdmGVjn4nFOd5IXFuPKbz0O/EmwkTj1pA/POSDC+a4enDoWBG8w
-	a/JYD7GSm3Xhl1EjfhIZQOsnuxwtUDb26Hp2SoD31C9CD2N8RnTjFhHgE=
-Received: from mt7530_series_05.eml (unknown [58.206.202.11])
-	by web4 (Coremail) with SMTP id ywQGZQD3sgBkSgVrlGxJAg--.14120S2;
-	Tue, 24 Nov 2026 16:27:16 +0800 (CST)
-From: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
-To: chester.a.unal@arinc9.com, daniel@makrotopia.org, andrew@lunn.ch, olteanv@gmail.com
-Cc: davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net 5/5] net: dsa: mt7530: disable regulators on mt753x_setup() failure
-Date: Tue, 24 Nov 2026 16:25:57 +0800
-Message-ID: <179550875790.4156.14185923394520188230@mail.zgclab.edu.cn>
-In-Reply-To: <179550875789.4156.361477684651496992@mail.zgclab.edu.cn>
-References: <179550875789.4156.361477684651496992@mail.zgclab.edu.cn>
+Received: from canpmsgout08.his.huawei.com ([113.46.200.223])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVls7-00000005t99-0ihz
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 08:27:33 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=oO9NoKkGUBW79Pz13XzckI1UHKiYF6Aol+ytGcTDdWY=;
+	b=2UC03c4oNo2p/hq51MOvjt8zUjY+V12fB21OirzeR5P9Jzj8Uualt8s0Y0cgEV+oDIVhLbFhD
+	X7VYFn+aWIrkk7GoPYNjU1E4L+3RKQ/0zfCKvDWH+ijCuxMzXttt8LBdCwEfG6vsVP7F8XDF/NK
+	hj0EZbBZFzmBOKn6JEe0BK8=
+Received: from mail.maildlp.com (unknown [172.19.163.214])
+	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jYbWY0jpGzmVWs;
+	Tue, 24 Nov 2026 16:26:49 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 3C3C44057C;
+	Tue, 24 Nov 2026 16:27:12 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 24 Nov
+ 2026 16:27:11 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
+	<fenghuay@nvidia.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH RFC] arm_mpam: Save and restore the MSC state across system sleep
+Date: Tue, 24 Nov 2026 16:27:08 +0800
+Message-ID: <20261124082708.1705024-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: ywQGZQD3sgBkSgVrlGxJAg--.14120S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7ur1furW8ur1DAw48WFyrtFb_yoW8AFykp3
-	yUZa40krWvgF1UWa97Cw4UZas8ArZ3Ga4UGFZ7KwsIkw4ayrn09F18ta4q9rnxtr4rtw4S
-	y395AFWruFsrZaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBCb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4
-	vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE
-	52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAV
-	WUtwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48J
-	M4IIrI8v6xkF7I0E8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxkIecxEwVAFwVW8Zw
-	CF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j
-	6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64
-	vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_
-	Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42
-	IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUcR6wDUUUU
-X-CM-SenderInfo: pzdqwxbusqjlo62juzldeovvfxof0/1tbiAgQBD2sFSC8E2AAAsd
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_002733_205812_906FDC8E 
-X-CRM114-Status: GOOD (  11.92  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_002730_621318_81E03890 
+X-CRM114-Status: GOOD (  21.80  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,74 +75,204 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mt753x_setup() calls the per-variant sw_setup() (mt7530_setup() for the
-MT7530), which enables the regulators, but the steps that follow returned
-on error without disabling them. The common case is mt7530_setup_irq()
-returning -EPROBE_DEFER, which leaves the rails on and re-enables them on
-every re-probe.
+The MPAM driver reprograms an MSC's configuration when the first CPU
+that can access it comes online, and resets it, saving the bandwidth
+monitor state, when the last one goes offline.
 
-Route all failure paths after sw_setup() to a shared error label that
-disables the regulators, and move the mdio irq teardown there instead of
-handling it inline.
+The CPU that suspends the system stays online, so the MSCs it can
+access, such as the L3 and memory side MSCs, are never seen going
+offline by these cpuhp callbacks. An MSC can still lose its registers
+while the system sleeps, for example when its power domain is not
+retained across suspend-to-RAM. resctrl then reports the cached
+configuration while the hardware is back at its defaults, and the
+bandwidth monitor counters restart from zero, losing the traffic
+counted before the sleep.
 
-Fixes: b8f126a8d543 ("net-next: dsa: add dsa support for Mediatek MT7530 switch")
-Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+Save the state from the driver's system sleep callback, which runs
+while the MSC is still accessible, and reprogram it from the matching
+resume callback. The cpuhp callbacks then leave the MSC alone: a second
+save when its last CPU goes offline would find the monitors already
+disabled by the first save, and lose the monitor configuration from
+the saved state.
+
+Cc: James Morse <james.morse@arm.com>
+Cc: Ben Horgan <ben.horgan@arm.com>
+Cc: Reinette Chatre <reinette.chatre@intel.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- drivers/net/dsa/mt7530.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+ drivers/resctrl/mpam_devices.c  | 101 ++++++++++++++++++++++++--------
+ drivers/resctrl/mpam_internal.h |   1 +
+ 2 files changed, 78 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/net/dsa/mt7530.c b/drivers/net/dsa/mt7530.c
-index 1ac4ac1a0566..963d14534175 100644
---- a/drivers/net/dsa/mt7530.c
-+++ b/drivers/net/dsa/mt7530.c
-@@ -3223,11 +3223,11 @@ mt753x_setup(struct dsa_switch *ds)
- 
- 	ret = mt7530_setup_irq(priv);
- 	if (ret)
--		return ret;
-+		goto err_disable_pwrs;
- 
- 	ret = mt7530_setup_mdio(priv);
- 	if (ret)
--		return ret;
-+		goto err_disable_pwrs;
- 
- 	/* Initialise the PCS devices */
- 	for (i = 0; i < priv->ds->num_ports; i++) {
-@@ -3239,15 +3239,23 @@ mt753x_setup(struct dsa_switch *ds)
- 	if (priv->create_sgmii)
- 		ret = priv->create_sgmii(priv);
- 
--	if (ret && priv->irq_domain)
--		mt7530_free_mdio_irq(priv);
-+	if (ret)
-+		goto err_free_irq;
- 
--	if (!ret && priv->bus) {
-+	if (priv->bus) {
- 		mt7530_stats_refresh(priv);
- 		schedule_delayed_work(&priv->stats_work,
- 				      MT7530_STATS_POLL_INTERVAL);
- 	}
- 
-+	return 0;
-+
-+err_free_irq:
-+	if (priv->irq_domain)
-+		mt7530_free_mdio_irq(priv);
-+err_disable_pwrs:
-+	mt7530_disable_pwrs(priv);
-+
- 	return ret;
+diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+index c067b6d57d71..49ace93280a7 100644
+--- a/drivers/resctrl/mpam_devices.c
++++ b/drivers/resctrl/mpam_devices.c
+@@ -23,6 +23,7 @@
+ #include <linux/mailbox_client.h>
+ #include <linux/mutex.h>
+ #include <linux/platform_device.h>
++#include <linux/pm.h>
+ #include <linux/printk.h>
+ #include <linux/property.h>
+ #include <linux/srcu.h>
+@@ -2223,6 +2224,37 @@ static void _enable_percpu_irq(void *_irq)
+ 	enable_percpu_irq(*irq, IRQ_TYPE_NONE);
  }
  
++static void mpam_msc_power_on(struct mpam_msc *msc)
++{
++	mutex_lock(&msc->error_irq_lock);
++	if (msc->error_irq_hw_enabled)
++		mpam_touch_msc(msc, mpam_enable_msc_ecr, msc);
++	mutex_unlock(&msc->error_irq_lock);
++
++	mpam_reprogram_msc(msc);
++}
++
++static void mpam_msc_power_off(struct mpam_msc *msc)
++{
++	struct mpam_msc_ris *ris;
++
++	mutex_lock(&msc->cfg_lock);
++	list_for_each_entry_srcu(ris, &msc->ris, msc_list,
++				 srcu_read_lock_held(&mpam_srcu)) {
++		mpam_touch_msc(msc, &mpam_reset_ris, ris);
++
++		/*
++		 * The reset state for non-zero partid may be
++		 * lost while the CPUs are offline.
++		 */
++		ris->in_reset_state = false;
++
++		if (mpam_is_enabled())
++			mpam_touch_msc(msc, &mpam_save_mbwu_state, ris);
++	}
++	mutex_unlock(&msc->cfg_lock);
++}
++
+ static int mpam_cpu_online(unsigned int cpu)
+ {
+ 	struct mpam_msc *msc;
+@@ -2236,14 +2268,8 @@ static int mpam_cpu_online(unsigned int cpu)
+ 		if (msc->reenable_error_ppi)
+ 			_enable_percpu_irq(&msc->reenable_error_ppi);
+ 
+-		if (atomic_fetch_inc(&msc->online_refs) == 0) {
+-			mutex_lock(&msc->error_irq_lock);
+-			if (msc->error_irq_hw_enabled)
+-				mpam_touch_msc(msc, mpam_enable_msc_ecr, msc);
+-			mutex_unlock(&msc->error_irq_lock);
+-
+-			mpam_reprogram_msc(msc);
+-		}
++		if (atomic_fetch_inc(&msc->online_refs) == 0 && !msc->pm_suspended)
++			mpam_msc_power_on(msc);
+ 	}
+ 
+ 	if (mpam_resctrl_enabled)
+@@ -2304,30 +2330,56 @@ static int mpam_cpu_offline(unsigned int cpu)
+ 		if (msc->reenable_error_ppi)
+ 			disable_percpu_irq(msc->reenable_error_ppi);
+ 
+-		if (atomic_dec_and_test(&msc->online_refs)) {
+-			struct mpam_msc_ris *ris;
++		if (atomic_dec_and_test(&msc->online_refs) && !msc->pm_suspended)
++			mpam_msc_power_off(msc);
++	}
+ 
+-			mutex_lock(&msc->cfg_lock);
+-			list_for_each_entry_srcu(ris, &msc->ris, msc_list,
+-						 srcu_read_lock_held(&mpam_srcu)) {
+-				mpam_touch_msc(msc, &mpam_reset_ris, ris);
++	return 0;
++}
+ 
+-				/*
+-				 * The reset state for non-zero partid may be
+-				 * lost while the CPUs are offline.
+-				 */
+-				ris->in_reset_state = false;
++static int mpam_msc_suspend(struct device *dev)
++{
++	struct mpam_msc *msc = dev_get_drvdata(dev);
+ 
+-				if (mpam_is_enabled())
+-					mpam_touch_msc(msc, &mpam_save_mbwu_state, ris);
+-			}
+-			mutex_unlock(&msc->cfg_lock);
+-		}
++	if (!msc)
++		return 0;
++
++	guard(mutex)(&mpam_cpuhp_state_lock);
++	if (!mpam_is_enabled())
++		return 0;
++
++	guard(cpus_read_lock)();
++	guard(srcu)(&mpam_srcu);
++	if (atomic_read(&msc->online_refs)) {
++		mpam_msc_power_off(msc);
++		msc->pm_suspended = true;
+ 	}
+ 
+ 	return 0;
+ }
+ 
++static int mpam_msc_resume(struct device *dev)
++{
++	struct mpam_msc *msc = dev_get_drvdata(dev);
++
++	if (!msc)
++		return 0;
++
++	guard(mutex)(&mpam_cpuhp_state_lock);
++	if (!mpam_is_enabled() || !msc->pm_suspended)
++		return 0;
++
++	guard(cpus_read_lock)();
++	guard(srcu)(&mpam_srcu);
++	msc->pm_suspended = false;
++	if (atomic_read(&msc->online_refs))
++		mpam_msc_power_on(msc);
++
++	return 0;
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(mpam_msc_pm_ops, mpam_msc_suspend, mpam_msc_resume);
++
+ static void mpam_register_cpuhp_callbacks(int (*online)(unsigned int online),
+ 					  int (*offline)(unsigned int offline),
+ 					  char *name)
+@@ -2578,6 +2630,7 @@ static struct platform_driver mpam_msc_driver = {
+ 	.driver = {
+ 		.name = "mpam_msc",
+ 		.suppress_bind_attrs = true,
++		.pm = pm_sleep_ptr(&mpam_msc_pm_ops),
+ 	},
+ 	.probe = mpam_msc_drv_probe,
+ 	.remove = mpam_msc_drv_remove,
+diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
+index 1f86cc158100..2e6da63c61c6 100644
+--- a/drivers/resctrl/mpam_internal.h
++++ b/drivers/resctrl/mpam_internal.h
+@@ -86,6 +86,7 @@ struct mpam_msc {
+ 	struct mpam_msc * __percpu	*error_dev_id;
+ 
+ 	atomic_t		online_refs;
++	bool			pm_suspended;
+ 
+ 	/*
+ 	 * probe_lock is only taken during discovery. After discovery these
+-- 
+2.34.1
 
 
