@@ -2,52 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F38E60A263B
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D25606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vRsQ9X5v;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=lxw0oUy0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QuhGDnt7;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=fsFxGhqF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9pmOQdUXxeqpS7wKiA21ejTwSSfBYfWNjqKekXL+2hM=; b=vRsQ9X5vMtNVKZ
-	Ebenv1Lr6GJgmnoGn9c5rmFXoj/7DKpsXVx+cPgtLRp75ufJbq8IXuNey/5vyWctibnstbaAUs/eF
-	7xIrFPBx6axBIBPd1JFccwlw2EB5nOEwDA7Tg9Ctc71tqAIwnPkpTVvbqn3heSyPhdyaYYZu/HFd/
-	1WYIkLzzFdZ+r8wIUTgIo68M0jnweAO71hqdkhh7aw6J3yQ02a4He8OycbuLZoxHdSOPOKeo0pUUm
-	GGpvh+xPkR9iYZ7Xnb3yWJuZ2l+CgaQgaCD/kv6hONc5HeI733acot3685O67XoskHDd64iDjjUVa
-	y1DgPc+jM8ppgv8Gvdzw==;
+	List-Owner; bh=WbMalliMMc03VHzWLBITU00Ot6YpvYATLzypowQsz/w=; b=QuhGDnt7hjWqkQ
+	/L8iXNH/eStxPRM1oMsRMiIiUbEBHAFc79IxMsyih16nxvcDmyTrVjGXsS4cXO+Y1cDkO9qq3fBQp
+	4isBILpeLZsPVCUunt6bidUvE7etjD6AZwgIZ/zp1M8KUnYRVuBRKNk32E3sVgNH1+BWovPD9kDQW
+	U+lFGPVf/T6ESI041QH3O2ogC88EYOv2JQ46eS7yLju1a6C7FCgw9Q4n8ti/EQ1JnBLIvrYNHvLPO
+	6BaBGeQy0U9JjmxaT6+0TVjsWmNkQPb05MDWBLpNfrTL2nS9vZWpYdeN0cgma7eq89EeuZLmhVWWv
+	jvhvEZHGyvJWBh1AOCPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu0z-00000007GqC-1TSG;
-	Tue, 24 Nov 2026 17:09:10 +0000
+	id 1xVu0w-00000007Gp8-3ajX;
+	Tue, 24 Nov 2026 17:09:09 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu0E-00000007GLN-0huM
+	id 1xVu0B-00000007GI8-0Hkf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:08:23 +0000
+	Tue, 24 Nov 2026 17:08:20 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3D7B21762;
-	Tue, 24 Nov 2026 09:08:18 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14B8F16F8;
+	Tue, 24 Nov 2026 09:08:15 -0800 (PST)
 Received: from e126453.arm.com (e126453.arm.com [10.33.8.63])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 46E913F763;
-	Tue, 24 Nov 2026 09:08:18 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39E4A3F763;
+	Tue, 24 Nov 2026 09:08:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795540101; bh=vnR5vYi4yPiKzgs3i+YxzPzqQ/WvZmW18JO4t05gnJA=;
+	t=1795540097; bh=F0Ui/9CIJgHyYbeTgendvQd9UsMu45h3f9tGv/4wGZc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=lxw0oUy0KAiIt8RIdMT+s2OEDRRsoGEWuuVbtyk41+hLU7F3SnyvUfCyjw4qZhLYJ
-	 pffE+wgsHjCAc/uV3rpHGnhbxdaup38EOLUgr4PLAmqMF0wUoPJdivYcCzmk4CrBXV
-	 Lz2ENDD7NIFXCVZyQJ9wG1huZ+GYa9I5QyiSI0p0=
+	b=fsFxGhqFuO8EvUwE49p/zHx64iOTXj+v7bB5nxDoMdAEUzRi93K/nn0SKBiOmAgoc
+	 mTaXCCAPZdLMJJxXXPsIeVY/yIK8iUnxBoLQqeW2QJzoGUrWnZXctFUTu9eBDMdX8f
+	 qma+UNvz9acMraPmuGYkHfZwoTl2/wXu43soaSVU=
 From: Anthony McGivern <anthony.mcgivern@arm.com>
-Date: Tue, 24 Nov 2026 17:07:34 +0000
-Subject: [PATCH 06/24] media: mali-c720: Add format handling
+Date: Tue, 24 Nov 2026 17:07:33 +0000
+Subject: [PATCH 05/24] media: mali-c720: Add hardware identification
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-b4-initial-upstream-candidate-v1-6-0cb9bde1bd30@arm.com>
+Message-Id: <20261124-b4-initial-upstream-candidate-v1-5-0cb9bde1bd30@arm.com>
 References: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
 In-Reply-To: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
 To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
@@ -65,16 +65,16 @@ Cc: Anthony McGivern <anthony.mcgivern@arm.com>,
  Conor Dooley <conor+dt@kernel.org>, 
  Anthony McGivern <Anthony.McGivern@arm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540078; l=19047;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540078; l=10501;
  i=Anthony.McGivern@arm.com; s=20261124; h=from:subject:message-id;
- bh=QGJazcA9ntEWFug/aIlBtH3Ud97UjO1jwBvTaLIk4zI=;
- b=VPqoXeWDmVHK2egX8EGlT5Se8NGl+7he7z4mIgCYogwx56SoSBYNvdf18GTIwGWEFVHKIVbDu
- OADZ1s+hIoCA1kTWIgvLI4OPX23Q373Rp8v9EmpzYwUxi3M7x1x1v0r
+ bh=MrP09vzI2+KeyeyoX9tQc9xh7vluGDweeyIb00uoKhk=;
+ b=9UzIwe+m5H07p4vtQ7UUFBtp853hIzLKIEtWzNe3i2IIVCThEuNNaF9j+ZU6HZgqRHY1Ch/ZX
+ 268ZO+u/iOoAP1wjixqUWwRnpzZkr/o/DbD7JDJlAAiNW9oa9jlxZL2
 X-Developer-Key: i=Anthony.McGivern@arm.com; a=ed25519;
  pk=cvw1HHVRuWpdkn55JpnRyCO2oGBkBWaBXcc2S3CmHTU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_090822_330976_58D5E652 
-X-CRM114-Status: GOOD (  18.88  )
+X-CRM114-CacheID: sfid-20261124_090819_359890_3E5407C1 
+X-CRM114-Status: GOOD (  22.38  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,53 +96,48 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Anthony McGivern <Anthony.McGivern@arm.com>
 
-Define the supported media bus and capture formats, their bit depths
-and hardware buffer layouts. Add helpers to select formats and check
-which capture outputs support them.
+Read the ISP identification registers and match the device against
+the currently supported hardware revisions, rejecting unsupported
+hardware.
 
-A future series may extend format enumeration to expose different sets
-of supported formats depending on the hardware version.
+Add register-map selection based on the identified hardware revision.
 
 Signed-off-by: Anthony McGivern <Anthony.McGivern@arm.com>
 ---
- .../platform/arm/mali-c720/mali-c720-common.h      |   8 +
- .../platform/arm/mali-c720/mali-c720-formats.c     | 452 +++++++++++++++++++++
- .../platform/arm/mali-c720/mali-c720-formats.h     | 132 ++++++
- 3 files changed, 592 insertions(+)
+ .../platform/arm/mali-c720/mali-c720-common.h      |   3 +
+ .../media/platform/arm/mali-c720/mali-c720-id.c    | 165 +++++++++++++++++++++
+ .../media/platform/arm/mali-c720/mali-c720-id.h    |  34 +++++
+ .../platform/arm/mali-c720/mali-c720-registers.c   |  27 ++--
+ .../platform/arm/mali-c720/mali-c720-registers.h   |   5 +-
+ 5 files changed, 223 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-common.h b/drivers/media/platform/arm/mali-c720/mali-c720-common.h
-index 0685bb7e0f5545091a022bf4ed19b3f2b249c2de..4f8e2918937c1ca212a11ccc6c4a0edb72dca72c 100644
+index 7cf7380202a4587b844b66b45bfe76f6bac61635..0685bb7e0f5545091a022bf4ed19b3f2b249c2de 100644
 --- a/drivers/media/platform/arm/mali-c720/mali-c720-common.h
 +++ b/drivers/media/platform/arm/mali-c720/mali-c720-common.h
-@@ -12,7 +12,9 @@
- #include <linux/mutex.h>
+@@ -13,6 +13,7 @@
  #include <linux/refcount.h>
  #include <linux/spinlock.h>
-+#include <linux/videodev2.h>
  
-+#include "mali-c720-formats.h"
- #include "mali-c720-id.h"
++#include "mali-c720-id.h"
  #include "mali-c720-register-access.h"
  #include "mali-c720-registers.h"
-@@ -20,6 +22,12 @@
- #include "mali-c720-registers-ctx-mgr.h"
- #include "mali-c720-registers-modules.h"
+ #include "mali-c720-registers-top.h"
+@@ -40,6 +41,8 @@ struct mali_c720 {
+ 	resource_size_t mmio_size;
  
-+enum mali_c720_cap_devs {
-+	MALI_C720_CAP_DEV_FR0_RGB,
-+	MALI_C720_CAP_DEV_FR0_YUV,
-+	MALI_C720_MAX_NUM_CAP_DEVS,
-+};
+ 	struct mali_c720_registers registers;
 +
- struct mali_c720_context_regs {
- 	dma_addr_t dma_handle;
- 	u8 *base;
-diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-formats.c b/drivers/media/platform/arm/mali-c720/mali-c720-formats.c
++	const struct mali_c720_hw_version *hw_version;
+ };
+ 
+ #endif /* MALI_C720_COMMON_H */
+diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-id.c b/drivers/media/platform/arm/mali-c720/mali-c720-id.c
 new file mode 100644
-index 0000000000000000000000000000000000000000..a4a1ae89327886fdd1d728a8b0b548dc555658ce
+index 0000000000000000000000000000000000000000..5d8dc9319e74a6e8bc96673e317a880f1fcf2b61
 --- /dev/null
-+++ b/drivers/media/platform/arm/mali-c720/mali-c720-formats.c
-@@ -0,0 +1,452 @@
++++ b/drivers/media/platform/arm/mali-c720/mali-c720-id.c
+@@ -0,0 +1,165 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
 + * ARM Mali-C720 ISP Driver - Image signal processor
@@ -151,588 +146,263 @@ index 0000000000000000000000000000000000000000..a4a1ae89327886fdd1d728a8b0b548dc
 + */
 +
 +#include <linux/array_size.h>
-+#include <linux/media-bus-format.h>
++#include <linux/bitfield.h>
++#include <linux/device.h>
 +
 +#include "mali-c720-common.h"
 +
-+static const struct mali_c720_buffer_cfg mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_MAX] = {
-+	[MALI_C720_BUFFER_CFG_BAYER24] = {
-+	  .data_format = 23,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
++#define MALI_C720_ID_PART 0x560
++#define MALI_C720_ID_DESIGNER_ARM 0x43b
++#define MALI_C720_ID_PREAMBLE 0xb105000d
++#define MALI_C720_ID_CLASS 0xe
 +
-+	[MALI_C720_BUFFER_CFG_BAYER20_DENSE] = {
-+	  .data_format = 19,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
++struct mali_c720_id_registers {
++	u32 pid0;
++	u32 pid1;
++	u32 pid2;
++	u32 pid3;
++	u32 pid4;
++	u32 preamble;
++	u32 class;
++};
 +
-+	[MALI_C720_BUFFER_CFG_BAYER16] = {
-+	  .data_format = 15,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
++static const struct mali_c720_hw_version
++mali_c720_supported_hw_versions[MALI_C720_VERSION_ID_MAX] = {
++	[MALI_C720_VERSION_ID_R0_P0] = {
++		.name = "Mali-C720 r0p0",
++		.id = MALI_C720_VERSION_ID_R0_P0,
++		.part = MALI_C720_ID_PART,
++		.revision = 0x0,
++		.revand = 0x0,
++		.cmod = 0x0,
 +	},
-+
-+	[MALI_C720_BUFFER_CFG_BAYER14_DENSE] = {
-+	  .data_format = 13,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
-+
-+	[MALI_C720_BUFFER_CFG_BAYER12_DENSE] = {
-+	  .data_format = 11,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
-+
-+	[MALI_C720_BUFFER_CFG_BAYER10_DENSE] = {
-+	  .data_format = 9,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
-+
-+	[MALI_C720_BUFFER_CFG_BAYER8] = {
-+	  .data_format = 7,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
-+
-+	[MALI_C720_BUFFER_CFG_3SEMIPLANE_24BIT] = {
-+	  .data_format = 48,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 1,
-+	},
-+
-+	[MALI_C720_BUFFER_CFG_NV12] = {
-+	  .data_format = 144,
-+	  .data_layout = MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	  .data_align = MALI_C720_BUFFER_ALIGN_DENSE,
-+	  .num_fifos = 2,
++	[MALI_C720_VERSION_ID_R0_P1] = {
++		.name = "Mali-C720 r0p1",
++		.id = MALI_C720_VERSION_ID_R0_P1,
++		.part = MALI_C720_ID_PART,
++		.revision = 0x1,
++		.revand = 0x0,
++		.cmod = 0x0,
 +	},
 +};
 +
-+static const struct mali_c720_mbus_format_info mali_c720_mbus_fmts[] = {
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_24BIT,
-+	  .bit_depth = 24,
-+	  .code = MEDIA_BUS_FMT_SRGGB24_1X24,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER24],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_20BIT,
-+	  .bit_depth = 20,
-+	  .code = MEDIA_BUS_FMT_SRGGB20_1X20,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER20_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_16BIT,
-+	  .bit_depth = 16,
-+	  .code = MEDIA_BUS_FMT_SRGGB16_1X16,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER16],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_14BIT,
-+	  .bit_depth = 14,
-+	  .code = MEDIA_BUS_FMT_SRGGB14_1X14,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER14_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_12BIT,
-+	  .bit_depth = 12,
-+	  .code = MEDIA_BUS_FMT_SRGGB12_1X12,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER12_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_10BIT,
-+	  .bit_depth = 10,
-+	  .code = MEDIA_BUS_FMT_SRGGB10_1X10,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER10_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_RGGB,
-+	  .depth = MALI_C720_FORMAT_8BIT,
-+	  .bit_depth = 8,
-+	  .code = MEDIA_BUS_FMT_SRGGB8_1X8,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER8],
-+	},
-+
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_24BIT,
-+	  .bit_depth = 24,
-+	  .code = MEDIA_BUS_FMT_SGRBG24_1X24,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER24],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_20BIT,
-+	  .bit_depth = 20,
-+	  .code = MEDIA_BUS_FMT_SGRBG20_1X20,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER20_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_16BIT,
-+	  .bit_depth = 16,
-+	  .code = MEDIA_BUS_FMT_SGRBG16_1X16,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER16],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_14BIT,
-+	  .bit_depth = 14,
-+	  .code = MEDIA_BUS_FMT_SGRBG14_1X14,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER14_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_12BIT,
-+	  .bit_depth = 12,
-+	  .code = MEDIA_BUS_FMT_SGRBG12_1X12,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER12_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_10BIT,
-+	  .bit_depth = 10,
-+	  .code = MEDIA_BUS_FMT_SGRBG10_1X10,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER10_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GRBG,
-+	  .depth = MALI_C720_FORMAT_8BIT,
-+	  .bit_depth = 8,
-+	  .code = MEDIA_BUS_FMT_SGRBG8_1X8,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER8],
-+	},
-+
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_24BIT,
-+	  .bit_depth = 24,
-+	  .code = MEDIA_BUS_FMT_SGBRG24_1X24,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER24],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_20BIT,
-+	  .bit_depth = 20,
-+	  .code = MEDIA_BUS_FMT_SGBRG20_1X20,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER20_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_16BIT,
-+	  .bit_depth = 16,
-+	  .code = MEDIA_BUS_FMT_SGBRG16_1X16,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER16],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_14BIT,
-+	  .bit_depth = 14,
-+	  .code = MEDIA_BUS_FMT_SGBRG14_1X14,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER14_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_12BIT,
-+	  .bit_depth = 12,
-+	  .code = MEDIA_BUS_FMT_SGBRG12_1X12,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER12_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_10BIT,
-+	  .bit_depth = 10,
-+	  .code = MEDIA_BUS_FMT_SGBRG10_1X10,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER10_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_GBRG,
-+	  .depth = MALI_C720_FORMAT_8BIT,
-+	  .bit_depth = 8,
-+	  .code = MEDIA_BUS_FMT_SGBRG8_1X8,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER8],
-+	},
-+
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_24BIT,
-+	  .bit_depth = 24,
-+	  .code = MEDIA_BUS_FMT_SBGGR24_1X24,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER24],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_20BIT,
-+	  .bit_depth = 20,
-+	  .code = MEDIA_BUS_FMT_SBGGR20_1X20,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER20_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_16BIT,
-+	  .bit_depth = 16,
-+	  .code = MEDIA_BUS_FMT_SBGGR16_1X16,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER16],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_14BIT,
-+	  .bit_depth = 14,
-+	  .code = MEDIA_BUS_FMT_SBGGR14_1X14,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER14_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_12BIT,
-+	  .bit_depth = 12,
-+	  .code = MEDIA_BUS_FMT_SBGGR12_1X12,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER12_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_10BIT,
-+	  .bit_depth = 10,
-+	  .code = MEDIA_BUS_FMT_SBGGR10_1X10,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER10_DENSE],
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_BAYER_BGGR,
-+	  .depth = MALI_C720_FORMAT_8BIT,
-+	  .bit_depth = 8,
-+	  .code = MEDIA_BUS_FMT_SBGGR8_1X8,
-+	  .buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_BAYER8],
-+	},
-+
-+	{
-+	  .type = MALI_C720_FORMAT_RGB,
-+	  .depth = MALI_C720_FORMAT_16BIT,
-+	  .bit_depth = 16,
-+	  .code = MEDIA_BUS_FMT_RGB161616_1X48
-+	},
-+	{
-+	  .type = MALI_C720_FORMAT_RGB,
-+	  .depth = MALI_C720_FORMAT_12BIT,
-+	  .bit_depth = 12,
-+	  .code = MEDIA_BUS_FMT_RGB121212_1X36
-+	},
-+
-+	{
-+	  .type = MALI_C720_FORMAT_YUV,
-+	  .depth = MALI_C720_FORMAT_16BIT,
-+	  .bit_depth = 16,
-+	  .code = MEDIA_BUS_FMT_YUV16_1X48
-+	},
-+};
-+
-+static const struct mali_c720_v4l2_format_info mali_c720_v4l2_fmts[] = {
-+	/* RGB formats */
-+	{
-+		.fourcc = V4L2_PIX_FMT_RGB24,
-+		.mbus_code = MEDIA_BUS_FMT_RGB161616_1X48,
-+
-+		.comp_planes = 1,
-+		.bpp = { 24, 0, 0, 0 },
-+		.hdiv = 1,
-+		.vdiv = 1,
-+
-+		.supported_mask = BIT(MALI_C720_CAP_DEV_FR0_RGB),
-+
-+		.buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_3SEMIPLANE_24BIT],
-+	},
-+
-+	/* YUV formats */
-+	{
-+		.fourcc = V4L2_PIX_FMT_NV12,
-+		.mbus_code = MEDIA_BUS_FMT_YUV16_1X48,
-+
-+		.comp_planes = 2,
-+		.bpp = { 8, 16, 0, 0 },
-+		.hdiv = 2,
-+		.vdiv = 2,
-+
-+		.supported_mask = BIT(MALI_C720_CAP_DEV_FR0_YUV),
-+
-+		.buffer_cfg = &mali_c720_buffer_configs[MALI_C720_BUFFER_CFG_NV12],
-+	},
-+};
-+
-+int mali_c720_validate_mbus_format_match(const struct mali_c720_mbus_format_info *format,
-+					 const struct mali_c720_mbus_format_match *match)
++static void mali_c720_read_id_registers(struct mali_c720 *mali_c720,
++					struct mali_c720_id_registers *id)
 +{
-+	return (match->type_mask & format->type) &&
-+	       (match->depth_mask & format->depth);
++	const struct mali_c720_id_regs *id_regs = mali_c720->registers.id;
++
++	id->pid0 = mali_c720_read(mali_c720, &id_regs->pid0);
++	id->pid1 = mali_c720_read(mali_c720, &id_regs->pid1);
++	id->pid2 = mali_c720_read(mali_c720, &id_regs->pid2);
++	id->pid3 = mali_c720_read(mali_c720, &id_regs->pid3);
++	id->pid4 = mali_c720_read(mali_c720, &id_regs->pid4);
++
++	/* Assemble the component preamble, keeping the class separate. */
++	id->preamble = mali_c720_read(mali_c720, &id_regs->cid0_prmbl_0);
++	id->preamble |= mali_c720_read(mali_c720, &id_regs->cid1_prmbl_1) << 8;
++	id->preamble |= mali_c720_read(mali_c720, &id_regs->cid2_prmbl_2) << 16;
++	id->preamble |= mali_c720_read(mali_c720, &id_regs->cid3_prmbl_3) << 24;
++	id->class = mali_c720_read(mali_c720, &id_regs->cid1_class);
 +}
 +
-+const struct mali_c720_mbus_format_info *
-+mali_c720_get_mbus_config_by_code(u32 code)
++static u16 mali_c720_id_designer(const struct mali_c720_id_regs *id_regs,
++				 const struct mali_c720_id_registers *id)
 +{
++	return (u16)(field_get(mali_c720_reg_mask(&id_regs->pid1_des_0), id->pid1) |
++		     (field_get(mali_c720_reg_mask(&id_regs->pid2_des_1), id->pid2) << 4) |
++		     (field_get(mali_c720_reg_mask(&id_regs->pid4_des_2), id->pid4) << 8));
++}
++
++static u16 mali_c720_id_part(const struct mali_c720_id_regs *id_regs,
++			     const struct mali_c720_id_registers *id)
++{
++	return (u16)(field_get(mali_c720_reg_mask(&id_regs->pid0_part_0), id->pid0) |
++		     (field_get(mali_c720_reg_mask(&id_regs->pid1_part_1), id->pid1) << 8));
++}
++
++static u8 mali_c720_id_revision(const struct mali_c720_id_regs *id_regs,
++				const struct mali_c720_id_registers *id)
++{
++	return (u8)field_get(mali_c720_reg_mask(&id_regs->pid2_revision), id->pid2);
++}
++
++static u8 mali_c720_id_revand(const struct mali_c720_id_regs *id_regs,
++			      const struct mali_c720_id_registers *id)
++{
++	return (u8)field_get(mali_c720_reg_mask(&id_regs->pid3_revand), id->pid3);
++}
++
++static u8 mali_c720_id_cmod(const struct mali_c720_id_regs *id_regs,
++			    const struct mali_c720_id_registers *id)
++{
++	return (u8)field_get(mali_c720_reg_mask(&id_regs->pid3_cmod), id->pid3);
++}
++
++static const struct mali_c720_hw_version *
++mali_c720_find_hw_version(const struct mali_c720_id_regs *id_regs,
++			  const struct mali_c720_id_registers *id)
++{
++	u16 part = mali_c720_id_part(id_regs, id);
++	u8 revision = mali_c720_id_revision(id_regs, id);
++	u8 revand = mali_c720_id_revand(id_regs, id);
++	u8 cmod = mali_c720_id_cmod(id_regs, id);
 +	unsigned int i;
 +
-+	for (i = 0; i < ARRAY_SIZE(mali_c720_mbus_fmts); i++) {
-+		if (mali_c720_mbus_fmts[i].code == code)
-+			return &mali_c720_mbus_fmts[i];
++	for (i = 0; i < ARRAY_SIZE(mali_c720_supported_hw_versions); i++) {
++		const struct mali_c720_hw_version *version =
++			&mali_c720_supported_hw_versions[i];
++
++		if (version->part == part &&
++		    version->revision == revision &&
++		    version->revand == revand &&
++		    version->cmod == cmod)
++			return version;
 +	}
 +
 +	return NULL;
 +}
 +
-+const struct mali_c720_mbus_format_info *
-+mali_c720_get_mbus_config_by_matched_index(unsigned int index,
-+					   const struct mali_c720_mbus_format_match *match)
++int mali_c720_identify_hw(struct mali_c720 *mali_c720)
 +{
-+	unsigned int i;
-+	unsigned int count = 0;
++	const struct mali_c720_id_regs *id_regs = mali_c720->registers.id;
++	struct mali_c720_id_registers id;
++	const struct mali_c720_hw_version *version;
++	u16 part, designer;
++	u8 revision, revand, cmod;
 +
-+	for (i = 0; i < ARRAY_SIZE(mali_c720_mbus_fmts); i++) {
-+		if (!mali_c720_validate_mbus_format_match(&mali_c720_mbus_fmts[i],
-+							  match))
-+			continue;
++	mali_c720_read_id_registers(mali_c720, &id);
 +
-+		if (count++ == index)
-+			return &mali_c720_mbus_fmts[i];
++	designer = mali_c720_id_designer(id_regs, &id);
++	if (designer != MALI_C720_ID_DESIGNER_ARM)
++		return dev_err_probe(mali_c720->dev, -ENODEV,
++				     "unsupported ISP designer ID: %#x\n", designer);
++
++	if (id.preamble != MALI_C720_ID_PREAMBLE)
++		return dev_err_probe(mali_c720->dev, -ENODEV,
++				     "unsupported ISP component preamble: %#x\n", id.preamble);
++
++	if (id.class != MALI_C720_ID_CLASS)
++		return dev_err_probe(mali_c720->dev, -ENODEV,
++				     "unsupported ISP component class: %#x\n", id.class);
++
++	version = mali_c720_find_hw_version(id_regs, &id);
++	if (!version) {
++		part = mali_c720_id_part(id_regs, &id);
++		revision = mali_c720_id_revision(id_regs, &id);
++		revand = mali_c720_id_revand(id_regs, &id);
++		cmod = mali_c720_id_cmod(id_regs, &id);
++
++		return dev_err_probe(mali_c720->dev, -ENODEV,
++				     "unsupported ISP version: part=%#x revision=%u revand=%u cmod=%u\n",
++				     part, revision, revand, cmod);
 +	}
 +
-+	return NULL;
++	mali_c720->hw_version = version;
++
++	dev_info(mali_c720->dev, "detected %s\n", version->name);
++
++	return 0;
 +}
-+
-+const struct mali_c720_mbus_format_info *
-+mali_c720_shift_mbus_format(const struct mali_c720_mbus_format_info *format,
-+			    enum mali_c720_format_depth out_depth)
-+{
-+	unsigned int i;
-+
-+	if (format->depth == out_depth)
-+		return format;
-+
-+	for (i = 0; i < ARRAY_SIZE(mali_c720_mbus_fmts); i++) {
-+		if (mali_c720_mbus_fmts[i].type == format->type &&
-+		    mali_c720_mbus_fmts[i].depth == out_depth)
-+			return &mali_c720_mbus_fmts[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+bool
-+mali_c720_mbus_code_supports_fmt(const struct mali_c720_v4l2_format_info *fmt,
-+				 u32 code)
-+{
-+	/* Display all formats if no code is provided */
-+	if (!code)
-+		return true;
-+
-+	return fmt->mbus_code == code;
-+}
-+
-+bool
-+mali_c720_format_supported_by_vdev(const struct mali_c720_v4l2_format_info *fmt,
-+				   unsigned int dev_id)
-+{
-+	if (fmt->supported_mask & BIT(dev_id))
-+		return true;
-+
-+	return false;
-+}
-+
-+static int
-+mali_c720_validate_v4l2_format_match(const struct mali_c720_v4l2_format_info *format,
-+				     const struct mali_c720_v4l2_format_match *match)
-+{
-+	if (!mali_c720_mbus_code_supports_fmt(format, match->mbus_code))
-+		return 0;
-+
-+	if (!mali_c720_format_supported_by_vdev(format, match->dev_id))
-+		return 0;
-+
-+	return 1;
-+}
-+
-+const struct mali_c720_v4l2_format_info *
-+mali_c720_get_v4l2_config_by_fourcc(u32 fourcc)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(mali_c720_v4l2_fmts); i++) {
-+		if (mali_c720_v4l2_fmts[i].fourcc == fourcc)
-+			return &mali_c720_v4l2_fmts[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+const struct mali_c720_v4l2_format_info *
-+mali_c720_get_v4l2_config_by_matched_index(unsigned int index,
-+					   const struct mali_c720_v4l2_format_match *match)
-+{
-+	unsigned int i;
-+	unsigned int count = 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(mali_c720_v4l2_fmts); i++) {
-+		if (!mali_c720_validate_v4l2_format_match(&mali_c720_v4l2_fmts[i], match))
-+			continue;
-+
-+		if (count++ == index)
-+			return &mali_c720_v4l2_fmts[i];
-+	}
-+
-+	return NULL;
-+}
-diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-formats.h b/drivers/media/platform/arm/mali-c720/mali-c720-formats.h
+diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-id.h b/drivers/media/platform/arm/mali-c720/mali-c720-id.h
 new file mode 100644
-index 0000000000000000000000000000000000000000..5d6f01a14296028ac69affbcbb1e7df3ea62f012
+index 0000000000000000000000000000000000000000..2253672a9a46ee65045a1a0c3bc08662b5309b02
 --- /dev/null
-+++ b/drivers/media/platform/arm/mali-c720/mali-c720-formats.h
-@@ -0,0 +1,132 @@
++++ b/drivers/media/platform/arm/mali-c720/mali-c720-id.h
+@@ -0,0 +1,34 @@
 +/* SPDX-License-Identifier: GPL-2.0-only */
 +/*
-+ * ARM Mali-C720 ISP Driver - Image signal processor
++ * ARM Mali-C720 ISP Driver - Hardware identification
 + *
 + * Copyright (C) 2026 Arm Ltd
 + */
 +
-+#ifndef MALI_C720_FORMATS_H
-+#define MALI_C720_FORMATS_H
++#ifndef MALI_C720_ID_H
++#define MALI_C720_ID_H
 +
-+#include <linux/bits.h>
 +#include <linux/types.h>
 +
-+enum mali_c720_format_type {
-+	MALI_C720_FORMAT_BAYER_RGGB = BIT(0),
-+	MALI_C720_FORMAT_BAYER_GRBG = BIT(1),
-+	MALI_C720_FORMAT_BAYER_GBRG = BIT(2),
-+	MALI_C720_FORMAT_BAYER_BGGR = BIT(3),
-+	MALI_C720_FORMAT_RGB = BIT(4),
-+	MALI_C720_FORMAT_YUV = BIT(5),
++#define MALI_C720_ID_SIZE 0x1000
++
++struct mali_c720;
++
++enum mali_c720_version_id {
++	MALI_C720_VERSION_ID_R0_P0,
++	MALI_C720_VERSION_ID_R0_P1,
++	MALI_C720_VERSION_ID_MAX,
 +};
 +
-+#define MALI_C720_FORMAT_BAYER		(MALI_C720_FORMAT_BAYER_RGGB | \
-+					 MALI_C720_FORMAT_BAYER_GRBG | \
-+					 MALI_C720_FORMAT_BAYER_GBRG | \
-+					 MALI_C720_FORMAT_BAYER_BGGR)
-+
-+enum mali_c720_format_depth {
-+	MALI_C720_FORMAT_8BIT = BIT(0),
-+	MALI_C720_FORMAT_10BIT = BIT(1),
-+	MALI_C720_FORMAT_12BIT = BIT(2),
-+	MALI_C720_FORMAT_14BIT = BIT(3),
-+	MALI_C720_FORMAT_16BIT = BIT(4),
-+	MALI_C720_FORMAT_20BIT = BIT(5),
-+	MALI_C720_FORMAT_24BIT = BIT(6),
++struct mali_c720_hw_version {
++	const char *name;
++	enum mali_c720_version_id id;
++	u16 part;
++	u8 revision;
++	u8 revand;
++	u8 cmod;
 +};
 +
-+enum mali_c720_buffer_layout_ids {
-+	MALI_C720_BUFFER_LAYOUT_NORMAL,
-+	MALI_C720_BUFFER_LAYOUT_ALTERNATE,
-+};
++int mali_c720_identify_hw(struct mali_c720 *mali_c720);
 +
-+enum mali_c720_buffer_align_ids {
-+	MALI_C720_BUFFER_ALIGN_DENSE = 0,
-+	MALI_C720_BUFFER_ALIGN_LSB = 2,
-+	MALI_C720_BUFFER_ALIGN_MSB = 3,
-+};
++#endif /* MALI_C720_ID_H */
+diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-registers.c b/drivers/media/platform/arm/mali-c720/mali-c720-registers.c
+index d6a731e9c1fa6e9b1579fd53a14c2eb45894f070..1c2d0ad7948d41ebc7d9666effb881f72ce0ed43 100644
+--- a/drivers/media/platform/arm/mali-c720/mali-c720-registers.c
++++ b/drivers/media/platform/arm/mali-c720/mali-c720-registers.c
+@@ -36,15 +36,22 @@ const struct mali_c720_id_regs *mali_c720_get_id_regs(void)
+ 	return &id_regs;
+ }
+ 
+-int mali_c720_get_registers(struct mali_c720_registers *regs)
++int mali_c720_get_registers(enum mali_c720_version_id version,
++			    struct mali_c720_registers *regs)
+ {
+-	*regs = (struct mali_c720_registers) {
+-		.id = &id_regs,
+-		.top = mali_c720_get_top_regs(),
+-		.cm = mali_c720_get_ctx_mgr_regs(),
+-		.modules = mali_c720_get_modules_regs(),
+-		.context_offset = 0x80000,
+-		.context_size = 0x100000,
+-	};
+-	return 0;
++	switch (version) {
++	case MALI_C720_VERSION_ID_R0_P0:
++	case MALI_C720_VERSION_ID_R0_P1:
++		*regs = (struct mali_c720_registers) {
++			.id = &id_regs,
++			.top = mali_c720_get_top_regs(),
++			.cm = mali_c720_get_ctx_mgr_regs(),
++			.modules = mali_c720_get_modules_regs(),
++			.context_offset = 0x80000,
++			.context_size = 0x100000,
++		};
++		return 0;
++	default:
++		return -ENODEV;
++	}
+ }
+diff --git a/drivers/media/platform/arm/mali-c720/mali-c720-registers.h b/drivers/media/platform/arm/mali-c720/mali-c720-registers.h
+index 288bd168be41c8569f79ff147c919c7daceaa039..c1697d19b22907a24396b6f295287919c528c72b 100644
+--- a/drivers/media/platform/arm/mali-c720/mali-c720-registers.h
++++ b/drivers/media/platform/arm/mali-c720/mali-c720-registers.h
+@@ -10,6 +10,8 @@
+ 
+ #include <linux/types.h>
+ 
++enum mali_c720_version_id;
 +
-+enum mali_c720_buffer_cfg_ids {
-+	/* Bayer */
-+	MALI_C720_BUFFER_CFG_BAYER24,
-+	MALI_C720_BUFFER_CFG_BAYER20_DENSE,
-+	MALI_C720_BUFFER_CFG_BAYER16,
-+	MALI_C720_BUFFER_CFG_BAYER14_DENSE,
-+	MALI_C720_BUFFER_CFG_BAYER12_DENSE,
-+	MALI_C720_BUFFER_CFG_BAYER10_DENSE,
-+	MALI_C720_BUFFER_CFG_BAYER8,
-+
-+	/* Packed/Planar for RGB and YUV */
-+	MALI_C720_BUFFER_CFG_3SEMIPLANE_24BIT,
-+
-+	/* YUV */
-+	MALI_C720_BUFFER_CFG_NV12,
-+
-+	MALI_C720_BUFFER_CFG_MAX,
-+};
-+
-+struct mali_c720_buffer_cfg {
-+	unsigned int data_format;
-+	unsigned int data_layout;
-+	unsigned int data_align;
-+	unsigned int num_fifos;
-+};
-+
-+struct mali_c720_v4l2_format_match {
-+	u32 mbus_code;
-+	unsigned int dev_id;
-+};
-+
-+struct mali_c720_v4l2_format_info {
-+	u32 fourcc;
-+	unsigned int mbus_code;
-+
-+	unsigned int comp_planes;
-+	unsigned int bpp[4];
-+	unsigned int hdiv;
-+	unsigned int vdiv;
-+
-+	/* Mask designating which of the available video devs support this format. */
-+	unsigned int supported_mask;
-+
-+	const struct mali_c720_buffer_cfg *buffer_cfg;
-+};
-+
-+struct mali_c720_mbus_format_match {
-+	unsigned int type_mask;
-+	unsigned int depth_mask;
-+};
-+
-+struct mali_c720_mbus_format_info {
-+	enum mali_c720_format_type type;
-+	enum mali_c720_format_depth depth;
-+	unsigned int bit_depth;
-+	u32 code;
-+
-+	const struct mali_c720_buffer_cfg *buffer_cfg;
-+};
-+
-+int mali_c720_validate_mbus_format_match(const struct mali_c720_mbus_format_info *format,
-+					 const struct mali_c720_mbus_format_match *match);
-+const struct mali_c720_mbus_format_info *
-+mali_c720_get_mbus_config_by_code(u32 code);
-+const struct mali_c720_mbus_format_info *
-+mali_c720_get_mbus_config_by_matched_index(unsigned int index,
-+					   const struct mali_c720_mbus_format_match *match);
-+const struct mali_c720_mbus_format_info *
-+mali_c720_shift_mbus_format(const struct mali_c720_mbus_format_info *format,
-+			    enum mali_c720_format_depth out_depth);
-+
-+bool
-+mali_c720_mbus_code_supports_fmt(const struct mali_c720_v4l2_format_info *fmt,
-+				 u32 code);
-+bool
-+mali_c720_format_supported_by_vdev(const struct mali_c720_v4l2_format_info *fmt,
-+				   unsigned int dev_id);
-+const struct mali_c720_v4l2_format_info *
-+mali_c720_get_v4l2_config_by_fourcc(u32 fourcc);
-+const struct mali_c720_v4l2_format_info *
-+mali_c720_get_v4l2_config_by_matched_index(unsigned int index,
-+					   const struct mali_c720_v4l2_format_match *match);
-+
-+#endif /* MALI_C720_FORMATS_H */
+ struct mali_c720_top_regs;
+ struct mali_c720_ctx_mgr_regs;
+ struct mali_c720_modules_regs;
+@@ -56,7 +58,8 @@ struct mali_c720_registers {
+ };
+ 
+ const struct mali_c720_id_regs *mali_c720_get_id_regs(void);
+-int mali_c720_get_registers(struct mali_c720_registers *regs);
++int mali_c720_get_registers(enum mali_c720_version_id version,
++			    struct mali_c720_registers *regs);
+ 
+ static inline u32 mali_c720_reg_addr(u32 base, const struct mali_c720_reg_field *field)
+ {
 
 -- 
 2.55.0
