@@ -2,112 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCA5606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA76B606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nlhj3B+8;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IQzbiJRR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V6NcOaEe;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=og2ZiiB9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=nzFWxb9EM1aBm69mxNmKrGLCe/kN+fOhobHOhwqxJug=; b=Nlhj3B+8oxrDNevM+E9G2zTeHK
-	8N8x0njL4XXI1c00sc1UW4FGxUE8G9PQWce7JCHeL03v+iU365KIUJ16CmIhekKeUhTwyo2o3wj5L
-	L7FaHfprVOdTnmz/FZJEwjZFuyjidC/miU6qmlVvSUBUAcj6XnV4+mIMuGdr/9kf9x/aOPZREqZQ3
-	MIdF4oI+C+E8zxwjCmCdFhDOeIj7/tSetPq+wpmuWhoUxlGzf/IazspyN8NcppwctPCCv52L5Y17v
-	2KuaNBEcbWaQd9QFggE0D8KlHlJmPAsM1hFt3FhSK/sz6hGw+dir2CpiqpfRHu58ez4YHGx7Y2XUm
-	62vHL4vA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3ucKS45RXEHn2gU7vhNXFmg0bqnAk6ju+Nq34BVO1yk=; b=V6NcOaEeoTfSfE
+	A1PO6L1fDNP1btdV2yC9B7yCRWJu9V1STwqfGatmzaS9dyCx0XBO0RhTC+c144CKI4CNXeAM1ZcX1
+	xpJO4OCp3Ig8YPe8Dng8ffSzOXoV9VPM+rixKRb1rGAJbWQBnfVX6EuvYJvlx2HAAqZ9vNiVP7Y1l
+	67f1K87t8fAWpzGuR6TeizqY5tvf3Pn5qcT/7n0INC9TsP/NoH5nUhckPBhTcUf4DwH+uMidhrZYp
+	c2OgVNJPpkAuXNakF9E2N/H6ckgtKnahFH3+ThFeQy5D/UFwBWO0xHnb71bDELI5mpye96fYhmrwm
+	fNA33pNxUgR6gWx9d5Dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqlB-00000006ekm-2pqX;
-	Tue, 24 Nov 2026 13:40:37 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVrSM-00000006jpr-37Eo;
+	Tue, 24 Nov 2026 14:25:14 +0000
+Received: from mail-francecentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20a::7] helo=PA4PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVql7-00000006ej3-3laz;
-	Tue, 24 Nov 2026 13:40:33 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 34F3141AD2;
-	Tue, 24 Nov 2026 13:40:33 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795527633;
-	b=zgEo+fL0Q3aqdVW68IzFQB73cC2DNjQxkFKIMQ69SYuyaqn5K+/jjdPElZJb0csjahqO
-	 HqQJyGHtGwnh/XHj7ukGgvJHozbH6zB1XjfGTIzJ8JFlwrRHPy9ZqOpQFJzjYo7SgT+Fm
-	 Ju/2OL7vQ3BcRTEK+j1Wi/Lsst2c5EeyCP6GY08IIMSIT/cng5Fgilrzn70mhqWPn2eWS
-	 DeSwzFs7Vs/MkCLP/rEU9MzHmBZJGeFjCRX4DbIK4kf9DviuQpd51ObmFkB2El1K7hJGr
-	 BSd/B5Wktz+URN3qewDy7qB32p6U99cqufGCT49gVk1vvZPWdi3OAXupYMepRB+2Jaw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795527633;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=nzFWxb9EM1aBm69mxNmKrGLCe/kN+fOhobHOhwqxJug=;
-	b=Zjw5sovYicyrdntzPYqbFUmYF0OFGxFDnJ3/PTwHGRezk/PAttwjEvSHe4S/QE0yihKM
-	 cxEw0wAQK98taYEOduaz0Rk2BWitOoBmXp2Z65le3F9VSN9jJPxtvhY3MDK7fxRK8GFOW
-	 mUdKlhDFphqX44xTn/g8TJPaV/EDMHvlndxVjWR/VAkhWXlskK1lVoK2zGRinv6DCEQjs
-	 bGo+aDnZa7UQqxt4Vz7WA3LrouIulIq7tD6cUfNs53pSir0DBbE8hmuS7ibQVAa9OgZEV
-	 nB02xIllkm0D+arHi7i/hjeQxQoQcbPMgKebYcglv3eiznd69OY9NnSpiVwC1rbmygQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E5AEC1F000D0;
-	Tue, 24 Nov 2026 13:40:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795527633;
-	bh=nzFWxb9EM1aBm69mxNmKrGLCe/kN+fOhobHOhwqxJug=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IQzbiJRRK7qyKdQ3oGuG0+e4Alpy1TEE4X6RCtRz7vDH4DiwQKuVT1Iim4Ta248hf
-	 YTvhmXgLV5xKmmMVOg226oUt1My5sOCJJHNuzWlsI4NzOdfnvaox8ayugnT9/sE0Zz
-	 rFo7+CZA4UEP6VKM7e+U3XOhjpflhR9xblwQVphfIXhT9j1EcAGFLpT9ribIr0V3/1
-	 L5HConGX7zMwQmiw8k25BgceuuR9K1GN/Azi4lWAEkMO87ZUJjNB2tBZxmRDPo6E2C
-	 vgRQubzNCner6CFpxK0rOcgIyM4G5xEzlTHA/LrzT5q/5CHLIjPMOOe8ODIxdMnD0f
-	 6U/GJlg5xNWdA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 77BB84CA5F;
-	Tue, 24 Nov 2026 13:40:21 +0000 (UTC)
-From: Sergei Khomenkov via B4 Relay <devnull+shomenkow.gmail.com@kernel.org>
-Date: Tue, 24 Nov 2026 16:40:18 +0300
-Subject: [PATCH v3 2/3] media: verisilicon: program the JPEG encoder stream
- limit in 64-bit words
+	id 1xVrSJ-00000006jnU-2BnA
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 14:25:13 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WEth1D0EY1kH442i4/h34Pe+fIZeVzlXY0vDmoTnChCbh/JEBLHwpn3MiTPLgAOdZqoMqEkGz4cg+l31S40ojmvj2Z4NiJFeWQSNAHyolYXktEQB+f6Hbm0bWoSCOdnP83HwhU+cYEEqCtRCt70Nkh0383R6UndO7IauNuwW4FAalXUHeUdbjkBBYueBXuFhqqRnOot30cdjSF5d2uut+vtYwys1g0yd5w6eDi6VTTOPd4J7sjVqWhyxYtAVB3ALRq+JHs2bVg2m3SmOftylvn+rjMH2LThS1B4ZJbADefvsNUHjAs91zk1f/X76R4RBYtXorIFwwqRsbhTTHC/Xlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3ucKS45RXEHn2gU7vhNXFmg0bqnAk6ju+Nq34BVO1yk=;
+ b=ueB8/uWVxSU0iDa1fPZj5AvF4UadBNlE3r2Os5+bTRmH7RRCoqFJzW9o60CAzoWMUSu1QZssAR+26qK/ijbjDjZuptzq6Cxagt+5cPKWglRSYubxB/4dMRh1PqIzJ7SMJMIowjJMTTAiOrMvewKf7cyJ2jcYEibnBSasWYgjaQnxzGRefj3c909v7aIHCb5nNuQ5g9OUvk4JTdy9UgPhZLtHyT7Hvz2xjUKaQ+LTFkkJuT268dARYmyyRXzRKro3HLn1ymXUwMWEGMAF8rNTj6qgb5kZrzfOtvCskOvLuhMG7Ro8EIm12G4jZDDJUUgZ72GdjIE633K1Pp5y2UlB/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3ucKS45RXEHn2gU7vhNXFmg0bqnAk6ju+Nq34BVO1yk=;
+ b=og2ZiiB9+h4Yz8e5dmLBcGTcL5uBdw26UhtaHHjD28z1veYAdHvVmxKo1LhRqtwDU9LTK+u8N+vbSi1Gl1FKOWYRxF71dO0kQruvq2nRxKeIOZI6RtailMvonpxGgRvETyH4BGYbGMRhYiV3lZP5L4c7r8hO69iiOxu6jOAiSeon8TjxyawZO24vIj/9K26XrJeNu+bXP1hDiAVGYKvQZbHtl6gIjOACHMNfPpEezzNilx+iXpkIzND435o9KAfZV4tn1EPjdsI+XOSXdhYO4i5K6lExmRpUQjMxL0nZqvjgzE/0uG+HCfPIElCNPi2BN+3bN1WOn3b2BXqgHC8QQA==
+Received: from GVX0EPF0005F6CF.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:401::64c) by MMZPR10MB615434.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:190:34::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
+ 2026 14:25:03 +0000
+Received: from WA1PEPF00009B38.eurprd05.prod.outlook.com (2603:10a6:1d8::115)
+ by GVX0EPF0005F6CF.outlook.office365.com (2603:10a6:158:401::64c) with
+ Microsoft SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id
+ 15.21.639.14 via Frontend Transport; Tue, 24 Nov 2026 14:25:03 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ WA1PEPF00009B38.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 14:25:03 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 24 Nov
+ 2026 15:25:19 +0100
+Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 24 Nov
+ 2026 15:24:14 +0100
+Message-ID: <a3c0dd3c-d528-49fc-9c1a-94ca14023f96@foss.st.com>
+Date: Tue, 24 Nov 2026 15:24:13 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-hantro-buflimit-v3-2-780903970ca0@gmail.com>
-References: <20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com>
-In-Reply-To: <20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Hans Verkuil <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Chen-Yu Tsai <wenst@chromium.org>, 
- Hugues Fruchet <hugues.fruchet@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795527620; l=3597;
- i=shomenkow@gmail.com; s=20261104; h=from:subject:message-id;
- bh=biQGrB6UYPvhg65jUpDgSfn1YhBxiYA0k15PHlCqCLk=;
- b=P5pNeXlKk5cfoFc6oXQ0j5mBRlqXJJwCmuZ2j/huGy6S5VX16cLw9qmvdyeaWZf4mr/NJV6lN
- V8/NCe6s+/ICjb9cvrhYg3ULwwHNjWcpWWCHX+0sSk4Vq+DaDS7Cm4L
-X-Developer-Key: i=shomenkow@gmail.com; a=ed25519;
- pk=FwuHDVe7aiISDMLmQEcMC+RflEIJ6kEp/ekwznWXmI8=
-X-Endpoint-Received: by B4 Relay for shomenkow@gmail.com/20261104 with
- auth_id=1409
-X-Original-From: Sergei Khomenkov <shomenkow@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: st: mark STM32MP23 timer as stopping in
+ suspend
+To: Patrick Delaunay <patrick.delaunay@foss.st.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, "Amelie
+ Delaunay" <amelie.delaunay@foss.st.com>
+CC: Linux STM32 <linux-stm32@st-md-mailman.stormreply.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+References: <20261030102907.1.I0ef2a7ac525ef18fa683368382d93e98cc36ee25@changeid>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20261030102907.1.I0ef2a7ac525ef18fa683368382d93e98cc36ee25@changeid>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: WA1PEPF00009B38:EE_|MMZPR10MB615434:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18172374-e22d-4454-4fca-08df4a36bafe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|1800799024|82310400026|376014|261022075727099003|261102123227099003|261021121427099003|261021123027099003|10067099003|11063799006|56012099006|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: qQ/Mss6xKW7ZdU3u6o0KnsvJFzit6lKSSSwVOSSYnCt/QdeuEhMAZBqmw+mpcTtTh5XjCpW//yXu36Gt0MAyyC1Ke+gXUr8k9KemeLGL+ZWAwNw096WgUrXrZQWIUQcA/9hJT/HAtZnJrp5Z15FA1s0pMDFaPRZgXVpBERZu9DGR78nO0scllcVO7DW73zbghYRqSXj0LoqgD71XGFpn68opGM1N9ucEAe5PwAoAPjevel0gQ+PgRkS6xZc3fdfbw/OsEOm8rmjATTIpZt16B0t2BNgj+0kAia4sV0WB1cNyOPnIJDUWM1wSK5uhVOxaBIvcZAMF5APCieoCpwmzQ7M2fMxwxpjR7xCIJ/WEtcmluCr9hiQ8WNhlZ4KvlHu98u63M3UhbgSjr/ZsVE2a/m/Kb7E35sQJJcb55eJ4VumiA8+lA5yWhjXdEJnUvalirfmxhaM5oggw318rHbYlovglKxHt5Xys1Iiin3ovlhPr607uOJV5OhDG8gcgdkQCTvt/i5TfX5IJZRK61Zc6K8GqrZEHh8CxmSx2UjF6vSNThj9+LdpcJEG6NZvm1ZLYRbD+LqfZ+29Ucqn6dhoM5wUxE/tzoy1W0BxrJ51bD+JILf9ew8QRYc85KKkAydfOGRs57JdP2uqW81tp9zWQxhH2sZKfekm2+5iRalNbmYNSCPRMiPhFpnSJy5RWp2hZRjJXg2R8R2PublnJHRgDGA==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(376014)(261022075727099003)(261102123227099003)(261021121427099003)(261021123027099003)(10067099003)(11063799006)(56012099006)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: He/rkupT380AIRiXoliwHG2RH/trblVwt6GQy+jYniLu6Oz/L3ehq66C87gh0iDdgA6xYid5kCaD04Wo4Uw+wv1kLuLFok9MenUpJJOoK1RUg4MAXtcA5h4dLis/yuZnMMBb2cPeZh0vuJAY+75HZk75iARiDOV1RPgUvovmfcEMfGGYZeUzx49+fRKmEgZPKZTaCoHgjUsA/ZWdktOBcECg9gdSKrBWusAnxOd8wgOeg0yYflUA9k49IxQ98qX5zNJdrPLruq8SIhaVUFbYjxUs9IKPcEfzg2XYzzLvJR0B0B3QLiGvJEuwVCb78Ak56vjbAqIUw0T88nZ68wojbYGf4CiT8KtxKmPGf8LS54FmJ5EM+fYWDvWllmOT7TrdsBl5xPzr/F1bhwK9xf0sAT9ep6EwVbB6nYMiWwS+LTGaDMUAEdXkjODNuLEdnUR/
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:25:03.4775
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18172374-e22d-4454-4fca-08df4a36bafe
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: WA1PEPF00009B38.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MMZPR10MB615434
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_062511_742389_BD040F20 
+X-CRM114-Status: GOOD (  13.19  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,87 +127,49 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: shomenkow@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Sergei Khomenkov <shomenkow@gmail.com>
+hi
 
-H1_REG_STR_BUF_LIMIT counts 64-bit words, but the driver writes the room
-left in the CAPTURE plane in bytes. A stream that does not fit, such as
-a quality 100 frame of noise in a default-sized buffer, is then written
-past the end of the plane, up to eight times its size.
+On 10/30/26 10:29, Patrick Delaunay wrote:
+> The generic ARM timer, based on STGEN, stops ticking in low-power
+> states such as Stop1. Replace the always-on property with
+> arm,no-tick-in-suspend in the STM32MP23 timer node, matching the
+> STM32MP25 configuration.
+> 
+> Fixes: e9b03ef21386 ("arm64: dts: st: introduce stm32mp23 SoCs family")
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> ---
+> 
+>   arch/arm64/boot/dts/st/stm32mp231.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp231.dtsi b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> index fefbf6f4f153..a7970fdebec7 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> @@ -143,7 +143,7 @@ timer {
+>   			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+>   			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+> -		always-on;
+> +		arm,no-tick-in-suspend;
+>   	};
+>   
+>   	soc@0 {
+> ---
+> base-commit: c339f4010dea8b0d754f84ace70cd1b089878ef8
+> branch: sdfsdfssfdfsd
+> 
 
-Write the limit in 64-bit words, rounded down to whole 64-byte bursts:
-the encoder finishes a burst it has started, so an unrounded limit lets
-it write up to 56 bytes past it. rockchip_vpu2_jpeg_enc_set_buffers()
-has the same bug with VEPU_REG_STR_BUF_LIMIT, which
-rockchip_vpu2_jpeg_enc_done() reads back as a bit count; give the VEPU2
-the same limit.
+Applied on stm32-fixes
 
-Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
-Cc: stable@vger.kernel.org
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
----
-Found with an LLM coding assistant while porting mainline Linux to a
-Rockchip RK3026 board; the assistant also drafted this change. Tested
-on that board (its H1 is Rockchip's VEPU1): overflowing frames now
-stop at the programmed limit without writing past the plane (a canary
-after the plane stays intact), and frames that fit are byte for byte
-the same as before. Not tested on other SoCs, including the STM32MP25,
-which shares the H1 code. The VEPU2 change is not tested: there is no
-VEPU2 on the RK3026.
-
-Rockchip's MPP programs VEPU_REG_STR_BUF_LIMIT the same way ("limit >>=
-3; limit &= ~7" in hal_h264e_vepu2_v2.c). Patch 1 stops the encoder
-only in the VEPU1 interrupt handler; the VEPU2 and STM32MP25 handlers do
-not: if those encoders pause on a full buffer as the RK3026 H1 does, the
-next job may time out.
----
- drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c        | 4 +++-
- drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c | 4 +++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c b/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
-index 86cc1a07026f..cbf0e3d034f6 100644
---- a/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
-+++ b/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
-@@ -55,7 +55,9 @@ static void hantro_h1_jpeg_enc_set_buffers(struct hantro_dev *vpu,
- 	vepu_write_relaxed(vpu, vb2_dma_contig_plane_dma_addr(dst_buf, 0) +
- 				ctx->vpu_dst_fmt->header_size,
- 			   H1_REG_ADDR_OUTPUT_STREAM);
--	vepu_write_relaxed(vpu, size_left, H1_REG_STR_BUF_LIMIT);
-+	/* In 64-bit words; the encoder finishes a started 64-byte burst. */
-+	vepu_write_relaxed(vpu, round_down(size_left, 64) / 8,
-+			   H1_REG_STR_BUF_LIMIT);
- 
- 	if (pix_fmt->num_planes == 1) {
- 		src[0] = vb2_dma_contig_plane_dma_addr(src_buf, 0);
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c b/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
-index 61621b1be8a2..ab976c762239 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
-@@ -82,7 +82,9 @@ static void rockchip_vpu2_jpeg_enc_set_buffers(struct hantro_dev *vpu,
- 	vepu_write_relaxed(vpu, vb2_dma_contig_plane_dma_addr(dst_buf, 0) +
- 				ctx->vpu_dst_fmt->header_size,
- 			   VEPU_REG_ADDR_OUTPUT_STREAM);
--	vepu_write_relaxed(vpu, size_left, VEPU_REG_STR_BUF_LIMIT);
-+	/* In 64-bit words, in whole 64-byte bursts as on the H1. */
-+	vepu_write_relaxed(vpu, round_down(size_left, 64) / 8,
-+			   VEPU_REG_STR_BUF_LIMIT);
- 
- 	if (pix_fmt->num_planes == 1) {
- 		src[0] = vb2_dma_contig_plane_dma_addr(src_buf, 0);
-
--- 
-2.53.0
-
-
+Alex
 
