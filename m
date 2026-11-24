@@ -2,192 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F043606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5848606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jw+V3buc;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=CFD/bb2d;
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-mediateko365-onmicrosoft-com header.b=pasWkBAs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=phjaAw96;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=eag0CYGK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=k7/Td9BIRq9/tQEwZkr2bar8Jaioor79U/uNYdFTFgw=; b=jw+V3bucALNjt0oYj+j/1RA5W3
-	x9Zq8xQjIUuozVLQrmo/EIEmwhfgS3kkaTM+S0otqaVulTWiHRbXPKRY+jOH7YdFKDeNgMCorQJKh
-	NtawznwaQZIPfV9z7MUJ31Pg6GlAgFE9mw/xVKS5x6/YIQRdypyjo3sMos0wE9cXJtULfToiVRW+2
-	qBTbLHgGo8jZakEAzHBdENZSr1Mem2Lxs64pfUyc4z968ujY7rY04Jxw0E1pQroaj694QNX12y9v1
-	cmBz+9XlfcBPUhB/AieOwq3rUvJTw7UXo86lrDbCdUfTHcvjnulyUTZLM5HmFZeItcwzA/mjTcnhk
-	i/oM3HCA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AbNOtxb6yhEp3NM4ZeDlzdv7ARvX7bbvk32I0ZeT7Qw=; b=phjaAw96woN1gX
+	X6xJfmAdlQ8m8nh4HLNfzsqhK+1idgIQcxXURzjhaClqMGfSEnnU9GlXLeDt7yNj1Lcwh8SACql5h
+	WT8ikeLgBpmIAMROqiBrLOvHDqoLiY0F3HS+HsrwBJRmCkCpkYQSb/MdGwJbU03ITn/bIlffvSWSb
+	A+F6PUUCnrWzWqm+yJ1REmY5K5jTvyEFG6j1krum49aBHTaDC6wPJp4MfcfmeUnjdpEkel1S7xQvg
+	aeADJU8CfBO9TLujjvdA3p932pJ5gY/OtPxg4alZG6PIW49SrOv3pQBfZy4MUwWPVpU3MELW8ayHb
+	+CilHxaM6TrVC3COxm2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVgJk-00000005Mqy-3gMC;
-	Tue, 24 Nov 2026 02:31:36 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1xVgIG-00000005MgO-2f0R;
+	Tue, 24 Nov 2026 02:30:04 +0000
+Received: from canpmsgout01.his.huawei.com ([113.46.200.216])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVgJg-00000005Mpv-0mxM;
-	Tue, 24 Nov 2026 02:31:35 +0000
-X-UUID: 25cd44fce7af11f1acbe4559397dec65-20261123
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=k7/Td9BIRq9/tQEwZkr2bar8Jaioor79U/uNYdFTFgw=;
-	b=CFD/bb2dzSmF1sP52wdGzMV0mbz0sFyUXPOOSf44cZGaFxjt37/MdPpo4XR/E2sPEawTZBAaBQRH7lZo5boIn2Nj0R3a2sQXnWkCif75349ql9ZSHYV4r+MnAPpCK8i1ELc//w9xm4Mzyhl20CTrVHMVQ9oMVnyYtsRDsU5SOSc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:fa8bab0b-e5af-455a-a84e-6b41b882bab2,IP:0,U
-	RL:12,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:12
-X-CID-META: VersionHash:b0318ac,CLOUDID:793a16ea-4eb9-4755-ac2a-8e95ba251d29,B
-	ulkID:nil,BulkQuantity:0,SF:80|81|82|83|102|110|111|836|865|888|898,TC:-5,
-	Content:0|15|50|99,EDM:-3,IP:nil,URL:99|11|97|93|83|106|80|1,File:130,RT:0
-	,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,B
-	RR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 25cd44fce7af11f1acbe4559397dec65-20261123
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1845624143; Mon, 23 Nov 2026 19:31:26 -0700
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Tue, 24 Nov 2026 10:31:23 +0800
-Received: from SG2PR04CU010.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.2562.56 via Frontend Transport; Tue, 24 Nov 2026 10:31:23 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GFjQSHC40xShTVQiQjx2BLzWQhTcL9B2fXemY5Z+OaTTRHoxZC4ybDaBCQmSWDd4zlnk2M6AfbWU2MFKIE/aoCzJ3CSjm/L5xb72+ahVIbOSnHYO6mB5qUDzor5x8NM3xwQKJJw53shyw+xF8Mi3bVRlwACmLXRV/zsKnOUC2Ra50ajDoviYcSwhpj2TijbP8G6mdKsvcgMdR2+fVasAsSh9FVt5uCwWYxjrjIzaQLi0uHXyPTeRpxpz9BVzSBfW0reKDoJLVAUrlpKbX9hgxztZs6DUZu9HN1U3okB5qE0IXyXYRON9PpLCiMuYf3mh437BiiAje0nYHjQrsWkrHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k7/Td9BIRq9/tQEwZkr2bar8Jaioor79U/uNYdFTFgw=;
- b=F6jkvSCMewBSm1SKzJpUMEGcI3JiRYJIhtzso5fyX7VKBjscMIWy+fXNIC55ZurZzhgjJPXYKmF69llnJQirPCrwqhJze45hhMTQjL+7EUZI0ZSmodnMDZAirCuKCmPwHsW/cCzS1XUD/yelV/r8vEjJE5gmAkQzGW56+fPhp8dEYfLb51HNHFC4Qvug32QOW5Rk9gSYo7Li2C6gLtD6k2zB8h/45g2PEC2lwd7B0iuoRhU/J2XY2Fjs/1P+52muwsMfoa2a0mubFxtPmiUcSUXzF4tVZkGwaIi9Xi3NdWcZNnn8dtDw+G+3813P7o1vHf41SBO5dWMdF33k3J40FA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k7/Td9BIRq9/tQEwZkr2bar8Jaioor79U/uNYdFTFgw=;
- b=pasWkBAsKfMj/TCSGoROAcRwchmCPdby2OWFXDOXw9pzHKrNVZ67bBaFoogj8YqkFMp4ryMhtqrhTBu4l2GOAnRjOCHsOlXQPRKm7/aar5ruvQMHCunoiSC5efsoyWXZ/NChZeckDdA3S4Xw60Zl82y4XINxEu6w9IYPAMfuZuU=
-Received: from KUYPR03MB9902.apcprd03.prod.outlook.com (2603:1096:d10:91::20)
- by SE1PPFFD46BE63E.apcprd03.prod.outlook.com (2603:1096:108:1::873) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
- 2026 02:31:19 +0000
-Received: from KUYPR03MB9902.apcprd03.prod.outlook.com
- ([fe80::9598:2e59:20dd:960b]) by KUYPR03MB9902.apcprd03.prod.outlook.com
- ([fe80::9598:2e59:20dd:960b%5]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 02:31:19 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-CC: "robh@kernel.org" <robh@kernel.org>, "tzimmermann@suse.de"
-	<tzimmermann@suse.de>, "simona@ffwll.ch" <simona@ffwll.ch>,
-	"mripard@kernel.org" <mripard@kernel.org>, "kernel@collabora.com"
-	<kernel@collabora.com>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "airlied@gmail.com" <airlied@gmail.com>,
-	=?utf-8?B?SnVzdGluIFllaCAo6JGJ6Iux6IyCKQ==?= <Justin.Yeh@mediatek.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-Subject: Re: [PATCH v2 30/46] dt-bindings: display: mediatek: Introduce MT8196
- Layer Blender
-Thread-Topic: [PATCH v2 30/46] dt-bindings: display: mediatek: Introduce
- MT8196 Layer Blender
-Thread-Index: AQHdE4ZnDez1KIL5zEeH3wHu886ZGLc9ULmA
-Date: Tue, 24 Nov 2026 02:31:19 +0000
-Message-ID: <70ed0b351afc640bb297d33582a20825460d9c11.camel@mediatek.com>
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
-	 <20260714114414.184512-31-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20260714114414.184512-31-angelogioacchino.delregno@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: KUYPR03MB9902:EE_|SE1PPFFD46BE63E:EE_
-x-ms-office365-filtering-correlation-id: 85dc2138-c1b3-41d5-7db0-08df49d305e6
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|42112799006|23010399003|1800799024|366016|376014|7416014|261102123227099003|261022115727099003|261022105027099003|261022113327099003|261022075727099003|261021121427099003|261021130227099003|261028144727099003|261021123027099003|261021133027099003|261021135927099003|261026140227099003|261026121527099003|261026130827099003|38070700021|4143699003|11063799006|56012099006|261026135527099003|10067099003|18002099003|22082099003|6133799003|261009223027099003|4133799003|3023799007;
-x-microsoft-antispam-message-info: A6Q6OzaX4NZOrtAbexIiclY0wEr1MPD5IBHYfqY8GA3Sgef8Fc8KlvC8w4ZuMIKuEtwBOtPqrIp6lpwtTIyN3IQBmbB565FMn4s8ac4tGSChvXx5desleAOrr4abP/Uu9I1hvNAErLne7dNMDDpc79pzro7upG/3ShDeEjoJkoVZQwB1CZwcuDnYr4PCwNpPQ2Un8dpRLqHQDhxlQMtI9GgY4kI++N97gd9BLV4MnlbTX0him9qhkztDSb3zE6fE2ClO12wZlScq3cKvVZAHQchEtP5S9RcSQiGnqb0Bb6deszXVzJ5MUbmTiFAn51UjjtZiwX6CRS37GoT7uUsBa+fzu5Xic8lhOqwxoiiZoA6tqOwGNu0ZC7I9XMCHlwZGEFFLKcQAxhg+jBUMOlCPTztTXsZZuIkh68V7N2pfhNIfMyZyunF6/0gtbXOqgHsth5XiZCDAlFGBxyrR3Yzc76b20Fty3TJNN2YlNZL3qHjWbMNrYZL2bIyZyttSGqPpzb4ay0ovC5SODSkW2Cftzj+AUGxn+nfv5Xb9ufwCrRtH2HW5J9o1sOJuvBcck1sZQagjVINVbmgjcuK+vSKc2q24yxA2v7bW72hax2jpMna07OCYgIhf4wlJxqbkwuHolbqm6wDsAQcQxqImuXAPb1l5jRw/dDIK4L7NdhnkRJ4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KUYPR03MB9902.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(42112799006)(23010399003)(1800799024)(366016)(376014)(7416014)(261102123227099003)(261022115727099003)(261022105027099003)(261022113327099003)(261022075727099003)(261021121427099003)(261021130227099003)(261028144727099003)(261021123027099003)(261021133027099003)(261021135927099003)(261026140227099003)(261026121527099003)(261026130827099003)(38070700021)(4143699003)(11063799006)(56012099006)(261026135527099003)(10067099003)(18002099003)(22082099003)(6133799003)(261009223027099003)(4133799003)(3023799007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b2JqY2JUNldjeXdJa0p2cFREYUF3RStsTk1QbEVNZ1haQzFpdjhxVEpPTWk2?=
- =?utf-8?B?TnhkR1Y0MjVad2RBRVkrbUJlUDFOUitzTzIzQm04K3hlNlhiNy9MNHJhUENz?=
- =?utf-8?B?L09aZGNCTi9ZUUZaZ00yL0tlTHhqbGR3cW1WVVFVUmtpLzQvQkNiL1Z3YkNZ?=
- =?utf-8?B?TTJxeG05V0JheC9BVVVSam9PQzhnVU9DTUQ1bnZPYURGRFZySEpzZzliSHFl?=
- =?utf-8?B?Q1JpYmZvTit0L0ExWi9mSHZRcXdXR1VZbU9WTTdjT1M4TjZ4bVI4YlYvL1NS?=
- =?utf-8?B?c0dzd01KYWpRdjFFVGxETm9VaVNjd010WG42TXhtOEZudXZ6d1l6WFdMSFF6?=
- =?utf-8?B?bWFMbEs3MGgxdWhvZlJmUlFyQTdUbVNLUG55WlFGTGEvZXR3Qll4SHBScm1I?=
- =?utf-8?B?UGl1dmcyREozQW9tV0g1MmFBam8rUkZhN2trbnlRR0JTdk5oVzA0V0oyaTFZ?=
- =?utf-8?B?OHBMREhUSDl2Z1ZEMFhqWGxMTm1ZS21vNFg5eXJYSmIza2cyeGgzV21yNmdC?=
- =?utf-8?B?d3lMYkV1ZTBLemlMUFNDWU00Ym51cDFFUW10a1ozUThPV2J5c3ZQYklNT05M?=
- =?utf-8?B?TzRTT1Q2RTU2YTN2aXRpTXpURWFxVlBGems2QzFvL1FxQ2Y5cEY2cFhVYUJB?=
- =?utf-8?B?N2p3bkxBbG5ZZDdkVDRpUGhSKzNOZDNlbTllUHNIckFZbVJTZjFEN0E4aDRq?=
- =?utf-8?B?NU1EQVJhTEd5NVpjU3pycWMwZUdxWGVXbW91QjhxQTREOHRqdERqV3o2WFlG?=
- =?utf-8?B?UFRtSXh3N2JCK1lTRkdYUkFhWWdGM0xZOUg1TzJDZUFzT0lmMlBnckJ3clVU?=
- =?utf-8?B?RFZzUGErR2JETnFBdzBOYkpXN29pS0pNYUd5MmtVQ1M3cHpoWDRPUUI2R0FB?=
- =?utf-8?B?aEUvRm1rV09wYkJjcGFMYW81ODRiS1lzMEQzTTFPVDR2ME5XY1FLL2VqOTYy?=
- =?utf-8?B?MzNSOWdQTU0xcEMrU0dmT2lZaUUyWEFibHdkTFdBTlkwUStDYTcxbVQ3a3RS?=
- =?utf-8?B?YVUxcjMzeWlPRXhNN1Vkbk84dDZmN0dGUDUycWtnWC8va0NZamVwNmtJMmFZ?=
- =?utf-8?B?ZTNDTzg1QzNqbHJLd1ZuYm1qQzV3THBiSVFsYU5tVGI3b3I1MDh5R1lmMUdZ?=
- =?utf-8?B?Y3FCcG15Y0hhUjdJTFVuLzNndng4cndTSitsZ2s1Y1N5QWVLMCt5dWhPamE5?=
- =?utf-8?B?dmtZSG44dlVPM1RxSTU0MWZQZi8xSGV4Z0hYRFFnQTAzeG12WU9vV3dFSStJ?=
- =?utf-8?B?OW5nbVZzSGI5aElkVlQ5aTI4OGhvS3RhbjJXTXV4d0JaUWtwRmsrWWxRVE5Z?=
- =?utf-8?B?Q3J2Y21YaWduWU15aXh5L3l1Zko3N1dESjFWUWkvQ0VxUnZDWVh2bXNNS2hK?=
- =?utf-8?B?NDhyM3ZPeFRYeWlyRjBoOW1Na2xJL2dUQVcwbnVHRGJEZ05yWmpveU55U2w4?=
- =?utf-8?B?REhBaGZqbjZ5dXpseG8xNTkvai9teDJmaHFON1IwMmRZcFV4S1h4Nm9OOTQ5?=
- =?utf-8?B?V0Z4M3ZreFhMZ1puWjFaRzFDV1pCNjRlQVZ3aXNZenphc045eS9vWGQvckVr?=
- =?utf-8?B?MVJ3eGZydEp2Qm9WbVZ0cXNxU0xtbU8xclB6U2s0N0hBTzJVbWlDTGQvWEl6?=
- =?utf-8?B?b2dvWFh4Y2dwUndoSHlTeGlRQnY0ekdyS3ZORDhZZVNVdEZNbUV0TEx4R0pj?=
- =?utf-8?B?S3VUSmFLZzZtcVQwMFpNYjhvQXV3Tm9LdWIrc0Z5MC9jRkZSbmhxTTZ2SXA2?=
- =?utf-8?B?SEp1RTZkaWkxd2diSW5tb0xFMDZTaU5xQmE3bkx5OTVpTEpDaENRL213Rlg3?=
- =?utf-8?B?KzIwTmN1Y2lybDI1TVFxMXAySFdkajBSdHc0L01qN0JRSWJIK1pqT21QQjND?=
- =?utf-8?B?YXhlbVNwOFM2dzdMWUVieTlFMWtvR0NuWWtKVC8rQVVkVUNjSlJvb2VaeXUw?=
- =?utf-8?B?RDhLOW1HRHFxK2d4VndiSmlmczJoaG0rcURnVURjaWZTUEhJRFpETFFYTXBQ?=
- =?utf-8?B?YTRZZkI4bFE4b3pBeFRDVE44QXo1eVFoWENEck9OWTR6a3V3ZjZhYVdZdlZ1?=
- =?utf-8?B?alExR0lEb1IvOE00aDBFSlFFbU4waEVUbUhwZk5qSWRJbDBHaXpqbzZGTVhs?=
- =?utf-8?B?THl1aEZvNEJMeXVlZTk0dXk1V2lMN3lNc1BaUWNxY2ZsLzRNQXN4UVJjdnAv?=
- =?utf-8?B?cFhzdTV4a2ZQRzl1MGxYZGVxcjcvSTRQMnpWcktCZHlnVEZ5UjhZamJwaHZa?=
- =?utf-8?B?RVR4cVF6UVdQLzRPN1NueFZjc0krdDBsK1NsdXkyY2xlZWd2U0NQSEw0bEtU?=
- =?utf-8?B?Z3hTcXEvVHRWbUVVcmNjRTFXZUlZZTUvN2llOGVTTm9KWndEYWZnZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5C3889780E181348ACF90C5984357278@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	id 1xVgI3-00000005Mcu-2BIf
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 02:29:54 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=AbNOtxb6yhEp3NM4ZeDlzdv7ARvX7bbvk32I0ZeT7Qw=;
+	b=eag0CYGKsqr8Eqkd2bLe63eEBSbtoqozwT2OiQTnCAApFgkVrt+e2Jv/UbssZwsl71JQZYM73
+	AcK5FJ6TdWe1R2DtWUiWejBAJq5iRvjhroZw6SlK/0rSvDXcQcK91Kt7MdUUobEUahpy1OFoQA+
+	LGl73fSpIS6pbTSGrJCA5cA=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jYRZf3DxBz1T4Fd;
+	Tue, 24 Nov 2026 10:28:58 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 534DF20333;
+	Tue, 24 Nov 2026 10:29:46 +0800 (CST)
+Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 24 Nov
+ 2026 10:29:45 +0800
+Message-ID: <ad1c15be-a8ae-48b6-9fbe-786d069a4db0@huawei.com>
+Date: Tue, 24 Nov 2026 10:29:44 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: ZVbzxZU9StUD+nHGepZb9TZRHhEfrKeuCHvE4Sf1lyhtlYQfui1BKCjtCqfIx7eAKIXCvK/Az6R9GoAW1ns1dQZxCxX2/7Gu7cQCvqg60c+ujj08+IHa16hlSVBzVehXIZESK8adW6yKImEPpnfQZ363z6lHTyNTIpRQRARzPEhOhKSF/4FZMdaJueyxmakQT3eDiGbDFY9o9blM62VYqNXw/FTBO/0+fg/DMiW1deoB77SZ0B6VVj4+HM92bdOSvbHK057eDM1qFG6X7uLXmVWB2ldCjuGV5+ttegRY6KMqrBeMskhM6d+qEc17xWwFyL0Gy+s9jDNCFZzh4R+7Kg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: KUYPR03MB9902.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85dc2138-c1b3-41d5-7db0-08df49d305e6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2026 02:31:19.5626
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JCSzA1C8uykcC/K4/Ib9kAoidEzon7RTxyfU8++xEUmIrZbtSFibgnaH1whjqhK5wTRFiUp+G6QUsluxpy/7nA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1PPFFD46BE63E
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm_mpam: resctrl: Use the domain's counter ID
+To: Ben Horgan <ben.horgan@arm.com>, <james.morse@arm.com>,
+	<reinette.chatre@intel.com>, <fenghuay@nvidia.com>, <will@kernel.org>,
+	<jic23@kernel.org>, <gshan@redhat.com>, <tan.shaopeng@jp.fujitsu.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261118125417.671859-1-ruanjinjie@huawei.com>
+ <b0cd49ed-65ad-4a6d-9845-0ee9060a478d@arm.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <b0cd49ed-65ad-4a6d-9845-0ee9060a478d@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_183132_252090_4D4D4C24 
-X-CRM114-Status: GOOD (  16.32  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_182952_876809_48A4322A 
+X-CRM114-Status: GOOD (  29.66  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -198,57 +77,244 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gVHVlLCAyMDI2LTA3LTE0IGF0IDEzOjQzICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gQWRkIGRvY3VtZW50YXRpb24gZm9yIHRoZSBPdmVybGF5IExheWVyIEJs
-ZW5kZXIgSVAgZm91bmQgaW4gdGhlDQo+IG5ld2VyIGdlbmVyYXRpb24gU29DcyBsaWtlIE1UODE5
-NiwgTVQ4ODk0LCBNVDY5OTEsIGFuZCB0aGVpcg0KPiB2YXJpYW50cy4NCj4gDQo+IFNpZ25lZC1v
-ZmYtYnk6IEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDxhbmdlbG9naW9hY2NoaW5vLmRlbHJl
-Z25vQGNvbGxhYm9yYS5jb20+DQo+IC0tLQ0KPiAgLi4uL21lZGlhdGVrL21lZGlhdGVrLG10ODE5
-Ni1ibGVuZGVyLnlhbWwgICAgIHwgOTcgKysrKysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNo
-YW5nZWQsIDk3IGluc2VydGlvbnMoKykNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxtdDgxOTYt
-YmxlbmRlci55YW1sDQo+IA0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssbXQ4MTk2LWJsZW5kZXIueWFtbCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlh
-dGVrLG10ODE5Ni1ibGVuZGVyLnlhbWwNCj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXgg
-MDAwMDAwMDAwMDAwLi40MDJlY2NiNWZkNzANCj4gLS0tIC9kZXYvbnVsbA0KPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxt
-dDgxOTYtYmxlbmRlci55YW1sDQo+IEBAIC0wLDAgKzEsOTcgQEANCj4gKyMgU1BEWC1MaWNlbnNl
-LUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiArJVlBTUwgMS4y
-DQo+ICstLS0NCj4gKyRpZDogaHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHA6Ly9kZXZp
-Y2V0cmVlLm9yZy9zY2hlbWFzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssbXQ4MTk2LWJsZW5k
-ZXIueWFtbCpfXztJdyEhQ1RSTktBOXdNZzBBUmJ3IWdmSWRleFJBSnFJa25MU1U4Ny1SeXZLUFlt
-Q2d0TFAxNkNXc3Rva0NwTHlEN3h3c2ZJWThYbi1hM2RQek5jbjhkSGxERWlUb05wUGtQdEkybkh6
-U01GeUZBX29jJCANCj4gKyRzY2hlbWE6IGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRw
-Oi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCpfXztJdyEhQ1RSTktBOXdN
-ZzBBUmJ3IWdmSWRleFJBSnFJa25MU1U4Ny1SeXZLUFltQ2d0TFAxNkNXc3Rva0NwTHlEN3h3c2ZJ
-WThYbi1hM2RQek5jbjhkSGxERWlUb05wUGtQdEkybkh6U01KSVRXVlVfJCANCj4gKw0KPiArdGl0
-bGU6IE1lZGlhVGVrIERpc3BsYXkgT3ZlcmxheSBMYXllciBCbGVuZGVyDQo+ICsNCj4gK21haW50
-YWluZXJzOg0KPiArICAtIEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDxhbmdlbG9naW9hY2No
-aW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+DQo+ICsNCj4gK2Rlc2NyaXB0aW9uOg0KPiArICBU
-aGUgTWVkaWFUZWsgRGlzcGxheSBPdmVybGF5IExheWVyIEJsZW5kZXIgaGFyZHdhcmUgaXMgcmVz
-cG9uc2libGUNCj4gKyAgZm9yIHBlcmZvcm1pbmcgdGhlIGFscGhhIGJsZW5kaW5nIG9wZXJhdGlv
-biBmb3Igb3ZlcmxhcHBpbmcgbGF5ZXJzDQo+ICsgIGZyb20gdmFyaW91cyBzb3VyY2VzLg0KPiAr
-DQo+ICtwcm9wZXJ0aWVzOg0KPiArICBjb21wYXRpYmxlOg0KPiArICAgIGNvbnN0OiBtZWRpYXRl
-ayxtdDgxOTYtZGlzcC1ibGVuZGVyDQo+ICsNCj4gKyAgcmVnOg0KPiArICAgIG1heEl0ZW1zOiAx
-DQo+ICsNCj4gKyAgY2xvY2tzOg0KPiArICAgIG1heEl0ZW1zOiAxDQo+ICsNCj4gKyAgcG93ZXIt
-ZG9tYWluczoNCj4gKyAgICBtYXhJdGVtczogMQ0KPiArDQo+ICsgIHBvcnRzOg0KPiArICAgICRy
-ZWY6IC9zY2hlbWFzL2dyYXBoLnlhbWwjL3Byb3BlcnRpZXMvcG9ydHMNCj4gKw0KPiArICAgIHBy
-b3BlcnRpZXM6DQo+ICsgICAgICBwb3J0QDA6DQo+ICsgICAgICAgICRyZWY6IC9zY2hlbWFzL2dy
-YXBoLnlhbWwjL3Byb3BlcnRpZXMvcG9ydA0KPiArDQo+ICsgICAgICBwb3J0QDE6DQo+ICsgICAg
-ICAgICRyZWY6IC9zY2hlbWFzL2dyYXBoLnlhbWwjL3Byb3BlcnRpZXMvcG9ydA0KPiArDQo+ICsg
-ICAgcmVxdWlyZWQ6DQo+ICsgICAgICAtIHBvcnRAMA0KPiArICAgICAgLSBwb3J0QDENCj4gKw0K
-PiArICB0cmlnZ2VyLXNvdXJjZXM6DQo+ICsgICAgbWF4SXRlbXM6IDENCj4gKw0KPiArcmVxdWly
-ZWQ6DQo+ICsgIC0gY29tcGF0aWJsZQ0KPiArICAtIHJlZw0KPiArICAtIGNsb2Nrcw0KPiArICAt
-IGNsb2NrLW5hbWVzDQoNCmNsb2NrLW5hbWVzIGlzIHJlcXVpcmVkLCBidXQgaXQncyBub3QgbGlz
-dGVkIGluIHByb3BlcnRpZXMuDQoNClJlZ2FyZHMsDQpDSw0KDQo+ICsgIC0gcG9ydHMNCj4gKw0K
-PiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ICsNCg==
+
+
+在 2026/11/24 4:21, Ben Horgan 写道:
+> Hi Jinjie,
+
+Hi Ben,
+
+> 
+> On 18/11/2026 12:54, Jinjie Ruan wrote:
+>> resctrl assigns MBM counters per domain: mbm_L3_assignments takes a
+>> domain ID, a group can have a counter in one domain and none in
+>> another, and resctrl_arch_cntr_read() and resctrl_arch_reset_cntr()
+>> are given the counter to use.
+>>
+>> The driver ignores that counter and looks the monitor up in
+>> mbwu_idx_to_mon[], indexed by CLOSID and RMID.
+>> resctrl_arch_config_cntr() fills that array without looking at the
+>> domain, so each group has one monitor for the whole resource.
+>> Whichever assignment is written last selects the monitor the group
+>> reads in every domain.
+>>
+>> For example, with the counter ID each group uses for mbm_total_bytes
+>> on each domain and "_" for none:
+>>
+>>                                 domain 0         domain 1
+>>   mount, mkdir g1               default=0 g1=1   default=0 g1=1
+>>   unassign both on domain 1     default=0 g1=1   default=_ g1=_
+>>   assign g1 on domain 1         default=0 g1=1   default=_ g1=0
+>>
+>> g1 is assigned the lowest free counter on domain 1, counter 0. That
+>> assignment is the last one written for g1, so it selects the monitor
+>> g1 reads in every domain. On domain 0, g1 uses counter 1, but reads
+>> the monitor of counter 0:
+>>
+>>                       counter whose monitor is read on domain 0
+>>                       default      g1
+>>   expected            0            1
+>>   actual              0            0
+>>
+>> That is the default group's monitor.
+>>
+>> Translate the counter ID with assigned_counters[], which maps a counter
+>> ID to a monitor of the class and is valid in every domain.
+>>
+>> mbwu_idx_to_mon[] is left alone: resctrl_arch_config_cntr() still fills
+>> it, but the read and reset paths no longer consult it, and a future
+>> default mbm_assign_mode may use the array, so removing it can be
+>> considered separately. Unassigning a counter now resets its monitor,
+>> where before the lookup made the reset a no-op; the monitor is reset
+>> again when the counter is next assigned.
+>>
+>> Fixes: a5ff6ef2d73e ("arm_mpam: resctrl: Add resctrl_arch_cntr_read() & resctrl_arch_reset_cntr()")
+>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
+>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>> Cc: <stable@vger.kernel.org>
+>> ---
+>> v3:
+>> - Keep mbwu_idx_to_mon[] and remove the cleanup. (Ben)
+>> - Split out as a mpam seperate patch.
+>> - Remove unnessary stable version.
+>> - v2: https://lore.kernel.org/all/20261113083506.4129060-2-ruanjinjie@huawei.com/
+>> ---
+>>  drivers/resctrl/mpam_resctrl.c | 50 ++++++++++++++++++++++++++++------
+>>  1 file changed, 42 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+>> index 8e9d5c68c2c1..0d290962ef62 100644
+>> --- a/drivers/resctrl/mpam_resctrl.c
+>> +++ b/drivers/resctrl/mpam_resctrl.c
+>> @@ -463,6 +463,15 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
+>>  	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
+>>  }
+>>  
+>> +/* The monitor resctrl's counter @cntr_id uses for @cdp_type. */
+>> +static int mon_for_cntr(struct mpam_resctrl_mon *mon, int cntr_id,
+>> +			enum resctrl_conf_type cdp_type)
+> 
+> I think we can drop the comment but improve a bit on the naming. How about calling this helper mon_idx_from_cntr_id()?
+> 
+
+It's good to have self-explanatory function names; and this name matches
+the function's purpose.
+
+>> +{
+>> +	u32 idx = resctrl_get_config_index(cntr_id, cdp_type);
+>> +
+>> +	return mon->assigned_counters[idx];
+>> +}
+>> +
+>>  static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>>  		      enum mpam_device_features mon_type,
+>>  		      int mon_idx,
+>> @@ -558,7 +567,7 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+>>  
+>>  /* MBWU counters when in ABMC mode */
+>>  int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+>> -			   u32 closid, u32 rmid, int mon_idx,
+>> +			   u32 closid, u32 rmid, int cntr_id,
+>>  			   enum resctrl_event_id eventid, u64 *val)
+>>  {
+>>  	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
+>> @@ -574,8 +583,30 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+>>  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+>>  	mon_comp = l3_dom->mon_comp[eventid];
+>>  
+>> -	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
+>> -				 USE_PRE_ALLOCATED, closid, rmid, val);
+>> +	/* A counter ID maps to one monitor per CDP configuration. */
+>> +	if (cdp_enabled) {
+>> +		u64 code_val = 0, data_val = 0;
+>> +		int err;
+>> +
+>> +		err = __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
+>> +				 mon_for_cntr(mon, cntr_id, CDP_CODE),
+>> +				 CDP_CODE, closid, rmid, &code_val);
+>> +		if (err)
+>> +			return err;
+>> +
+>> +		err = __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
+>> +				 mon_for_cntr(mon, cntr_id, CDP_DATA),
+>> +				 CDP_DATA, closid, rmid, &data_val);
+>> +		if (err)
+>> +			return err;
+>> +
+>> +		*val = code_val + data_val;
+>> +		return 0;
+>> +	}
+>> +
+>> +	return __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
+>> +			  mon_for_cntr(mon, cntr_id, CDP_NONE),
+>> +			  CDP_NONE, closid, rmid, val);
+>>  }
+>>  
+>>  static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> @@ -603,13 +634,16 @@ static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon
+>>  }
+>>  
+>>  static void reset_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+>> -			       int mon_idx, u32 closid, u32 rmid)
+>> +			       int cntr_id, u32 closid, u32 rmid)
+> 
+> This leaves us with reset_mon_cdp_safe() which uses counter id and
+> read_mon_cdp_safe() which uses monitor index. Having these two similarly
+
+Yes, now these two functions, the mon_index/cntr_id parameter, have
+diverged.
+
+> named handlers not follow the same pattern is confusing. It seems best
+> if they support both. How about something like the below for
+> read_mon_cdp_safe() and the same pattern for reset_mon_cdp_safe()?
+
+I agree with this change. The function signatures will be more consistent.
+
+Best regards,
+Jinjie
+
+> 
+>  static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+> -                            enum mpam_device_features mon_type,
+> +                            enum mpam_device_features mon_type, bool is_cntr,
+>                              int mon_idx, u32 closid, u32 rmid, u64 *val)
+>  {
+>         if (cdp_enabled) {
+> +               int code_idx = mon_idx, data_idx = mon_idx;
+>                 u64 code_val = 0, data_val = 0;
+>                 int err;
+> 
+> -               err = __read_mon(mon, mon_comp, mon_type, mon_idx,
+> +               if (is_cntr) {
+> +                       code_idx = mon_idx_from_cntr_id(mon_idx, CDP_CODE);
+> +                       data_idx = mon_idx_from_cntr_id(mon_idx, CDP_DATA);
+> +               }
+> +
+> +               err = __read_mon(mon, mon_comp, mon_type, code_idx,
+>                                  CDP_CODE, closid, rmid, &code_val);
+>                 if (err)
+>                         return err;
+> 
+> -               err = __read_mon(mon, mon_comp, mon_type, mon_idx,
+> +               err = __read_mon(mon, mon_comp, mon_type, data_idx,
+>                                  CDP_DATA, closid, rmid, &data_val);
+>                 if (err)
+>                         return err;
+> @@ -506,6 +520,9 @@ static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component
+>                 return 0;
+>         }
+> 
+> +       if (is_cntr)
+> +               mon_idx = mon_idx_from_cntr_id(mon_idx, CDP_NONE);
+> +
+>         return __read_mon(mon, mon_comp, mon_type, mon_idx,
+>                           CDP_NONE, closid, rmid, val);
+>  }
+> @@ -537,13 +554,13 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+> 
+>         mon_type = mpam_feat_msmon_csu;
+> 
+> -       return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx,
+> +       return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx, false,
+>                                  closid, rmid, val);
+>  }
+> 
+> Thanks,
+> 
+> Ben
+> 
+>>  {
+>>  	if (cdp_enabled) {
+>> -		__reset_mon(mon, mon_comp, mon_idx, CDP_CODE, closid, rmid);
+>> -		__reset_mon(mon, mon_comp, mon_idx, CDP_DATA, closid, rmid);
+>> +		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_CODE),
+>> +			    CDP_CODE, closid, rmid);
+>> +		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_DATA),
+>> +			    CDP_DATA, closid, rmid);
+>>  	} else {
+>> -		__reset_mon(mon, mon_comp, mon_idx, CDP_NONE, closid, rmid);
+>> +		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_NONE),
+>> +			    CDP_NONE, closid, rmid);
+>>  	}
+>>  }
+>>  
+>> @@ -631,7 +665,7 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
+>>  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+>>  	mon_comp = l3_dom->mon_comp[eventid];
+>>  
+>> -	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
+>> +	reset_mon_cdp_safe(mon, mon_comp, cntr_id, closid, rmid);
+>>  }
+>>  
+>>  /*
+> 
+
 
