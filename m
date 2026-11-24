@@ -2,187 +2,155 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F0E60A3816
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B8F606CED3
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b2bp24ai;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=hvR6clk1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YpApn4V9;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=eKBnG7F1;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=EBSkkM5y;
+	dkim=neutral header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=6IXrjucF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DDRQ6Ns5hfGL2pwIYoXCA0wi0ZoM0hLh/DPtkPT4GFU=; b=b2bp24ai0Mm4jfK2pDajNH762R
-	x/911OKqjXoEBWvlRWCoER6R9CKGaoxq6lnPhCiDisZa8EqOuwwjplBPCxW7RgQ7vet7xhYyrcpNb
-	0RNLtHOBIdlZ2FIbMhDFa5m9YQmSd+y6ppVeu9V4RR6eq+RexCmFRzLoSVc7sGjgeGZ49OW1WBOgX
-	67wI/bdH1zu56GRwygWXm9LR+gpG2quRqppR3OBhvszzZEZYgMLAT3PZ9+O9RZdotPCMY9FK8pZXi
-	WPGA+yTiamo5B56CCOngAou8S7N/YoMtq9s//HBrdM9evX/4D1y+nWG8321yMhWkQ5jaGx5wooQ1K
-	bZeBl0Jg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=d/XWg+z+3driH60oKg1jDoiUHNLVCm4AplbKyR0sUbM=; b=YpApn4V9FICckj
+	twerpcy0i+BTee+k2T3ivURltr78I4djd0BFNjsllSDkv8R16Y3M/guG8lMYkxPmaeosIxjglhVeK
+	UH49seRAy6Qkd1ZidqgSiqFhOmRHbFK4kRzYcwmR3UlaMq6ML9+klYkZpnhIafmne30k83+VWcJ1x
+	KGBFwohAMEayQBpKRSR7Va2xqaZ58dQILoUymLDhBBcToEeNsKdTO0al+hGJ+an424ZvQWETanlPP
+	ad1ygNo8mqng1Dp/RCqsq6eZ28wY+60CYb6gLmQbbrmHWUKV4c1Rr8kfxCLNrjW3VtOmLT4nkaaOj
+	7AZD6nZsPWUVUB1PwVBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkSB-00000005gP7-176c;
-	Tue, 24 Nov 2026 06:56:35 +0000
-Received: from mail-southcentralusazlp170120001.outbound.protection.outlook.com ([2a01:111:f403:c10d::1] helo=SN4PR2101CU001.outbound.protection.outlook.com)
+	id 1xVkvX-00000005jRT-31mW;
+	Tue, 24 Nov 2026 07:26:55 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkS8-00000005gOS-2kSs
+	id 1xVkvO-00000005jLr-1n3P
+	for linux-arm-kernel@bombadil.infradead.org;
+	Tue, 24 Nov 2026 07:26:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=d/XWg+z+3driH60oKg1jDoiUHNLVCm4AplbKyR0sUbM=; b=eKBnG7F1n76L6dF73pSZdyBPOY
+	1GebmVX7TxV1ujA+hh04LHhgN43O2t8HBKxkm5FPU2XASPMO03yywb7hbfmk4px2pFJ0g+DRG494x
+	Yn4js2JuiIt4TVgMtwqSi1OsotCMX3wvl3NXDn9x1N6kGwKPtZeSiEYywjEOCSipglAgL4N/sNO4B
+	CgPvsNBGPmbcI0WRtj8oavnEvcU9I/EGNJoOutSHM08GY7zzJehY0KCm5ewuQzJdTz8zNC0rJrr7L
+	FJpTDrCyRWIt1j+af7k5JYWEd7QNyWKcYEJvdfj8KUTyXCtWtdf7Q8ZdMB31T7o9IbzwtuSW9gX9p
+	NQSTLe3w==;
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.179])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVkvK-00000003skK-1hfl
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 06:56:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BaiicU05DlLTkdRf0HBWjK0H/7orM9XUrmb3kgPy75n0+SDHei2HG6e0dq9ekfuW/FkFZGPZcxBpwgSILCqjiJelo2kZwBQ7d4bDXWn/kS+3ShxMVhSqsi+SXXu3qY2ctdP+6ID9PD9fCrGvUmLNmoP8wPgSLwxGAxsRSQpi8xxpqY/S0NWofga0RhJQdwebiMM4umZZ4tzNKVTChcV9MdbwKzHWEMoxxxyAcx/8PwlX6yiR8ZP93xEgTzIEbNKzMOB69zMpUXsAcQkVRQtlm5lliDyxV3VY5XODYnJVCw1kiYBfWnf/ELDVo44gbT/wyvaF0eNkN2oxeD53XwFctA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DDRQ6Ns5hfGL2pwIYoXCA0wi0ZoM0hLh/DPtkPT4GFU=;
- b=X7vUekD4hXUL1sXVkapiOqUmGwl3DhGtWhUYWh9IUsbBjPcc/S8bn9hJbEL+tO5GJ3eOfx/Aof9OXaKN6sc0ly/+SmHn38j2VpjvoA2Le/irW8TJLq4e0EXkNjHWDNUAnw0RBe0oiXev4yw/xueR17ul/yA8KD/kgRXoiKMMJ9zs3CL+uE2zwGTdOXshNe6ZT4TzQB1Vwef59/u/58p1BjaIOpYRcOswpksWO8aA9lxHfGZYQ3inUSIzp/LuQXwqSFrD4vgBjYMGH/FwUpTWPGbvRtHWSzsjGozuAlz8mvjPGff/BkUQ8geh+H2+/F/LSxWiZSkNPUTBN9NeqRkYaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DDRQ6Ns5hfGL2pwIYoXCA0wi0ZoM0hLh/DPtkPT4GFU=;
- b=hvR6clk1KHIs6fLtHTlz0Cg+XdYjeHwHWkGjfFGmKhcXuLhhtNEm5iBrjBofAyqGY50N/Gpk1cTyBKHHYT0ltQdhIRJYWM6/xdAuE2CE8etH96ix3uEQydUrfIRgxKv0rny3Zw5e2PWotn4B5Tm53htHmeEHx83M1p1POT4dqCE=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS5PR12MB052986.namprd12.prod.outlook.com (2603:10b6:8:47e::11)
- by DS0PR12MB7900.namprd12.prod.outlook.com (2603:10b6:8:14e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 06:56:24 +0000
-Received: from DS5PR12MB052986.namprd12.prod.outlook.com
- ([fe80::4e51:5777:a687:af48]) by DS5PR12MB052986.namprd12.prod.outlook.com
- ([fe80::4e51:5777:a687:af48%3]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 06:56:24 +0000
-Message-ID: <bb0f0661-1c75-4b8b-9320-56ede0f31689@amd.com>
-Date: Tue, 24 Nov 2026 07:56:20 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: zynqmp: Disable DP for Kria SOM
-To: linux-kernel@vger.kernel.org, monstr@monstr.eu, git@amd.com
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-References: <ef31d389e963485d19ea5837d442ab0b1ac39b6a.1794574131.git.michal.simek@amd.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <ef31d389e963485d19ea5837d442ab0b1ac39b6a.1794574131.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0P220CA0020.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::26) To DS5PR12MB052986.namprd12.prod.outlook.com
- (2603:10b6:8:47e::11)
+	Tue, 24 Nov 2026 07:26:44 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505186; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=AS9oXN5tsyXXd3U9WEVXr3jzIoOIwhGyA+Z5/H/QsuJvocdfDLuNXt+lF4dw5TOo6f
+    3oU+qAlrpxFceh8q5rI3/8HKdKKzMmwTxzQqxsP6lbpMrQHfROrfOkdFQkAx+KU6yYQq
+    HsruygDtVofAZIZLz+aBLt+0BC9du+UlPNOITeVBWb69McMV8679NdJl5h8br8Ulvmgq
+    yxeJ4nw8Vq9KrkptCchbQ6aABrJdDpZM3ETLE0K8bEZToAl0yBYpLT6NClQkCN9kPI9y
+    H+Hl0P5aXv/Yu9CEypS80Rla0aQji6t/IN4kgKEnLUDtQ9ZxKVuzVteE2F0G8XDnYoSP
+    geFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505186;
+    s=strato-dkim-0002; d=strato.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=d/XWg+z+3driH60oKg1jDoiUHNLVCm4AplbKyR0sUbM=;
+    b=C7GFpg4fmQ8v+KL0rIqMa6Nisk74GQZFmY6acThHF1MMiutn8d7c4+ULnreDYGGIJj
+    TvRLC2rpFyAliI1p8RlaMr5RqQoDPxRNjoyloJZ2aUFFfm3r3PpopvEjKFPo9cIt9GlW
+    AgmkbwGOGxOSTSTk8fBXE68ELTDNoeEyC0rjhWaEQw7IjFH5TOFyI/gG+biUJsxrQV7H
+    uqrYguv7f39dbC/TIIMKfqxoMMLHT9/u4co/2wvODDFUSQMkCa4MOmFej0Oizb1o5fO+
+    pIpbQg6KwlyewCpxDk4olHujyDtuUH+v4kz0s5qqqrVDIX/07qeYvMNu4TApf86VC9TX
+    l6Lg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505186;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=d/XWg+z+3driH60oKg1jDoiUHNLVCm4AplbKyR0sUbM=;
+    b=EBSkkM5yKvYGwF2v1DFNuZHwdJwTR9rFIneuFbamTLUnlgeVnphMAmt6XWXTUNrEe3
+    Z1zR7NSAt4ZnzG4L83roOk/IT0OlwIUu+fkR2xO74KzNUDO3t2JEZyaL89vtXNMfqCWl
+    m8Uxoy9uc29ryTZcK9Rfq8MFCRTWUvGUMdJIUG+deKrw4Zj/ZBjTeMXzHhaodV2hMBDL
+    ayzgKzYnsJA3Q1BAfHdaLfOpalg5oJ8yktV5WPtE79DXaEcUjJyXGtTvoHHlSG5BjdOD
+    xedjmZ5ScSNtg/sBVgwJXRmY8lOVqQExHW9ytB5AR0viCqy45lzPSltq2V8bNeiiZErQ
+    1uRg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505186;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=d/XWg+z+3driH60oKg1jDoiUHNLVCm4AplbKyR0sUbM=;
+    b=6IXrjucF3IPHUcmaUIJSpxa5icjMafAAhdlobGZrizciH/X1yYPtp+Xu5LzOElTpA/
+    RszQ9kCHh4ZnvWZvHIBQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 55.6.3 AUTH)
+    with ESMTPSA id Qb56a22AO7QO1HX
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 24 Nov 2026 08:26:24 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>
+Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	kernel@pyra-handheld.com,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 19/20] backlight: Remove legacy Pandora driver
+Date: Tue, 24 Nov 2026 08:25:59 +0100
+Message-ID: <41a3bded8cc0a65d90c7ca6f41438f5c78ee3586.1795505160.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
+References: <cover.1795505160.git.hns@goldelico.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS5PR12MB052986:EE_|DS0PR12MB7900:EE_
-X-MS-Office365-Filtering-Correlation-Id: fde65cc0-1cde-45e8-d00d-08df49f80ddf
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|23010399003|18002099003|22082099003|261009223027099003|3023799007|261021123027099003|56012099006|10067099003|11063799006;
-X-Microsoft-Antispam-Message-Info: rvAbxIqyfgd/MGpc38UbZ3qljkkOtFe6+S31s0dp47kMeZc5r1oGgh787FUYuXXTcf+Zzny1ReS7ACi2OPm3mJAd3bc9VCl4gBFNVdpw8U84bqmk4eHCNUazOIWk4rYw77gW/pz3jcgfQ/PWJaodAe+sUppaN7YSehUSj534siPg8tWgtyONkVg2ROz1JOl4pwN2zBiKWemgp691OcJCqvNQYRA6h2MzrvpfmZS2NORVoxlczJaJfWDyqt/Z4ahPkBoxLRnfW0WIkSb/gI4oCrSk4cP0qNmbholLaxJgdvyRA1P/6f3k+3TZVasXTmt6Ed2MrEI2BYjF6yEpBnYba1zlrcl7q8n3e3dUFdH1v5+3S6Ffo01Uci70QwX7qR41h5sgcPAYyujm1FmT/AuUZvS2gPpkMNk4W0tn03cAjt1nWxs5+N6aCRAIuZ36IIhVry5fsOqrua4Lc/E17S5JukfYMegLr8kb7nl9k3TgddwNyUs/OoGZM6xRf0b/lkRuvxJJewHdxRdWiM1s377ltPCacNY3yn0zViVmrUcBiq1yvBfmqz9gNl2MrfCqtAyJPFj+3TPG3VG4Y6CCC+ceyml09KrSgySv0Wm7hyWzjQVYXtuz3d3mqdDzGy6ELk+vFKfwlXu9COc+jrr/8BuNf+hS/ZvNO6eVsjFhAQY+I2U=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS5PR12MB052986.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(18002099003)(22082099003)(261009223027099003)(3023799007)(261021123027099003)(56012099006)(10067099003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkYydnF4SnRWdVF1NmxqWVJGdkQxZjBIRnVSSENIcEw0SlBoalBmM3dva1ZO?=
- =?utf-8?B?NDcxc3dyVlJ4TjFDbFo5S1dQOHhyZHNsV0lSOFJpZHU3SkoyeVFSeE5oQnNv?=
- =?utf-8?B?MG8xeTd1ak05NU93dy9TYkRERU1tVFpEeGdPamgreit3VHhXNHZOYWxTNGVI?=
- =?utf-8?B?UFh5SHl3ZElLOGUwWmI2M0E5c0NSYktRdTJ1MjNnY3VmaWRMTkhDOHJ2UFNX?=
- =?utf-8?B?YTVYRFZMTlBQVU5KVTB0SHIrMEZIR01zck8vYmJ3cE80Y1VkNUhaMERtazhI?=
- =?utf-8?B?M2NkNW5HVWlHcUcrWEc0T091SVVzeEFsREVuOGM1WGQ5MWJpZ2ExaXdLeVpV?=
- =?utf-8?B?bmMxcGVrM0M4UjhJcXFITCtTVHNuYjF5azZCMUtIWGhvNEFGVDFMZVNUOEcx?=
- =?utf-8?B?LzdTY0dBTTI2d2M1U0I2cXJSaEs3bCtEd2l3Zlk5ZitVaG0xb1dqYVhadTRN?=
- =?utf-8?B?bmtGcU5td3pYUlZsbmxuWnozelg1UDlja3ZUOGFuUkJCaFhrWGxhUHdWMU8w?=
- =?utf-8?B?RjQrZlRTSmdVVlUydHZWLzh2V0liakYwOFZiMEdBeC8xdFhkZHVQZmxlMzJ5?=
- =?utf-8?B?WTBEcStaQmphd1RPaUZDaStnbzdmMzBPUzVicUtyU1BMSVk4VGQvbVZFWjR3?=
- =?utf-8?B?WTBHRC9sOVVmOFNxZFNaLzJyYUt3bDVUM0hQYVg0aHd3WWxqRGxXSW5xYnR4?=
- =?utf-8?B?bFF3cjd2SVgyM3NrdDg0RHNyUnFLdGNGZ1ZxN0oza2o2eUhtMUovZkJ6VnUr?=
- =?utf-8?B?K0lxNHZhK1UvQithV3U4TzZERGVWR0tTU3BxS3lYREVTVFY1bEZ0Q0ZDWTRs?=
- =?utf-8?B?eW1manVZZVY4TlN4eDhXTlZwRGFVYjBDSGttMVRwQ2RoYmxsWGgyUHozMXBB?=
- =?utf-8?B?K3EyZkNBNHNHOFd5YUVBd1FwY1VZOHdLL1cxZDJMeGNsc1NxK3hjLzNRZXVa?=
- =?utf-8?B?Y2tLYk5zOGcxOFlQMEttVFpxMUVyMGl4VjdVeGxHNk14VFVnOURWbkhjczRK?=
- =?utf-8?B?S3B1NFFhWnFWR00yQ2REa05mQTY4ZzF5NjREUjdwNnNmcGZiWkJLT3VXL2hi?=
- =?utf-8?B?L3J6b1phZXg5WTZ6RmVpMW9oZkl3MUw0ZGtFWTM4R3JvNW9PZXhMLzZpREpT?=
- =?utf-8?B?SUFZRzM2NzZNQUgzZy9wVUZ0ZmF2cjEyYW1WVzFCSE00SS9NOUdpUVg4ZnMv?=
- =?utf-8?B?c1pNOGdZQ0xGN3p0VjFzWVo3bGV4cWxjazRjTDNLeCtOaHE2UkZ6SXhSaENt?=
- =?utf-8?B?Qk9NSkNZYThTc2V1em5SWi9xUGhBbXphb0xHSERIbVdlaWRndURPSG1DV2dY?=
- =?utf-8?B?Yjl6UEQrL1orQ3d4T3hGNXZQMVlMWUMyT3pKVElIN1lkUXMrZGtKcjc2K0xG?=
- =?utf-8?B?ZmdkUkhRbDJGL2lsUXc0VVJnOG84SnFwL1FSNFR4WE0wMVp4TmI1cmJHSXlk?=
- =?utf-8?B?eDVmM3NucEt1UE90aUphTlhadUs5S3N5YkpuTGYraU5QOFZWN1FjSTk5VjhS?=
- =?utf-8?B?RVR5YzVzMTc5NWFKNjcrTnR5eG1uTVZ6K1hyN1hza25kVTV5NDIzQ1VZZ1hw?=
- =?utf-8?B?ZWxPZDRmTEJ5cUNPcStOb1QrbWRVWHVQYkFQbHJza1pjbFpjSTVWdEo4OVBL?=
- =?utf-8?B?YlhTOFAxQ0poblloRjIxWTU2bTk1eTJUYi9QOGF6YUl6Y3NZejlrUkhHMDA0?=
- =?utf-8?B?d1BOWUw1eGJYaWhFZ3hQc21zUm9HVUR1SFFJamF3bS9Zck90bzVlNXk5ZHow?=
- =?utf-8?B?d08va1g4R3IvYTJ3MS9NR29YdVVBQ1czWlJmRHk5TEFSVVZZdk80akwxRnox?=
- =?utf-8?B?U2g3K2V4d05DM1ovZG9jWjUvWkxlWmNGcTlYYzdDZ09DblRGRzU4OWc0ZWY1?=
- =?utf-8?B?ZW81b0xFdVllNzZuT1FVMEgzN0hrT2dSSS82UG5mL1dXcS9FRWEzWmlmNUVt?=
- =?utf-8?B?ZkFyVWJsZ3FGUVVwbnljcEM5TDBZb1Faa2xFSTZwTjVTM0UrWmtDb1p1d2Qw?=
- =?utf-8?B?QVlXZWhzQ1I4Y1VzYURPL2xzZUlzQVlDelBIUklBOHgyajM4NXdwSjFrSW9P?=
- =?utf-8?B?NEpsbklPVmJxamtBMjlGR25kdDh6Q3daeFRoOG9nc01kQXFHbzhJNk1Ed2hn?=
- =?utf-8?B?SFFlTldDTGlkdFhrUFZSY1VsWVZvdHBmczlJOFJJMVgrRC9WMGxrUjlVU2k4?=
- =?utf-8?B?ditwblJBYThZdFJ1b2Y1UWM3cy94RWt2cGlpanB6VmJSdEZEOFpLbXNZMmE3?=
- =?utf-8?B?VXVRdVA0bGFZVlkwb1N1MTVmYUxENkpDRDl1MkUraExOWEpwTXpZbmtWZjJG?=
- =?utf-8?B?bk00YjVOdXlUcjJDMUxtS2p3YmZmaVNZMis4TmNBY2dkamhRS3ZFUT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fde65cc0-1cde-45e8-d00d-08df49f80ddf
-X-MS-Exchange-CrossTenant-AuthSource: DS5PR12MB052986.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 06:56:24.4542
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: v/WPVa68Xw1HHey07yjc7VkCXliJHLRkKfvvT5uf71ON65cilR8xTCN+s1TvaJIq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7900
+Content-Type: text/plain; charset=UTF8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_225632_703251_04E80408 
-X-CRM114-Status: GOOD (  13.66  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_072643_052345_92FD0C2F 
+X-CRM114-Status: GOOD (  23.29  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -193,45 +161,246 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Remove the Pandora-specific backlight platform driver after its
+functionality has been replaced by the TWL4030 PWM provider and the
+generic pwm-backlight driver described in the device tree.
 
+Remove its Kconfig and Makefile entries and the obsolete
+omap2plus_defconfig selection.
 
-On 11/13/26 13:48, Michal Simek wrote:
-> DP is enabled via DT overlays and there is no need to have it enabled for
-> SOM only. Schema validation also reports that phys/phy-names are required
-> property which is not valid for SOM only DTs.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
-> 
->   arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts | 4 ----
->   1 file changed, 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-> index 500af1d2232f..a81e61a4f4d4 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-> @@ -363,10 +363,6 @@ &ams_pl {
->   	status = "okay";
->   };
->   
-> -&zynqmp_dpsub {
-> -	status = "okay";
-> -};
-> -
->   &rtc {
->   	status = "okay";
->   };
-> ---
-> 
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+---
 
-Applied.
-M
+Notes:
+    Changes against V1:
+    - Daniel Thompson gave Reviewed-by for the V1 removal of
+      pandora_bl. V2 additionally removes the stale defconfig option;
+      the old Reviewed-by is documented here, not carried as a tag.
+    - Explain replacement by generic pwm-backlight and removal of the defconfig selection.
+    - Commit-message review assisted by ChatGPT.
+
+ arch/arm/configs/omap2plus_defconfig |   1 -
+ drivers/video/backlight/Kconfig      |   7 --
+ drivers/video/backlight/Makefile     |   1 -
+ drivers/video/backlight/pandora_bl.c | 159 ---------------------------
+ 4 files changed, 168 deletions(-)
+ delete mode 100644 drivers/video/backlight/pandora_bl.c
+
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index 5791953b75fff..ef5e8d1bf9da1 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -517,7 +517,6 @@ CONFIG_LCD_CLASS_DEVICE=y
+ CONFIG_LCD_PLATFORM=y
+ CONFIG_BACKLIGHT_CLASS_DEVICE=y
+ CONFIG_BACKLIGHT_PWM=m
+-CONFIG_BACKLIGHT_PANDORA=m
+ CONFIG_BACKLIGHT_GPIO=m
+ CONFIG_BACKLIGHT_LED=m
+ CONFIG_FRAMEBUFFER_CONSOLE=y
+diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+index dbf4ca23a9b6d..040e6cc7e5a29 100644
+--- a/drivers/video/backlight/Kconfig
++++ b/drivers/video/backlight/Kconfig
+@@ -459,13 +459,6 @@ config BACKLIGHT_MP3309C
+ 	  To compile this driver as a module, choose M here: the module will
+ 	  be called mp3309c.
+ 
+-config BACKLIGHT_PANDORA
+-	tristate "Backlight driver for Pandora console"
+-	depends on TWL4030_CORE
+-	help
+-	  If you have a Pandora console, say Y to enable the
+-	  backlight driver.
+-
+ config BACKLIGHT_SKY81452
+ 	tristate "Backlight driver for SKY81452"
+ 	depends on MFD_SKY81452
+diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+index 34469711c6cd9..c62c920e64b96 100644
+--- a/drivers/video/backlight/Makefile
++++ b/drivers/video/backlight/Makefile
+@@ -52,7 +52,6 @@ obj-$(CONFIG_BACKLIGHT_MAX8925)		+= max8925_bl.o
+ obj-$(CONFIG_BACKLIGHT_MP3309C)		+= mp3309c.o
+ obj-$(CONFIG_BACKLIGHT_MT6370)		+= mt6370-backlight.o
+ obj-$(CONFIG_BACKLIGHT_OMAP1)		+= omap1_bl.o
+-obj-$(CONFIG_BACKLIGHT_PANDORA)		+= pandora_bl.o
+ obj-$(CONFIG_BACKLIGHT_PWM)		+= pwm_bl.o
+ obj-$(CONFIG_BACKLIGHT_QCOM_WLED)	+= qcom-wled.o
+ obj-$(CONFIG_BACKLIGHT_RT4831)		+= rt4831-backlight.o
+diff --git a/drivers/video/backlight/pandora_bl.c b/drivers/video/backlight/pandora_bl.c
+deleted file mode 100644
+index e6889e2ac55e1..0000000000000
+--- a/drivers/video/backlight/pandora_bl.c
++++ /dev/null
+@@ -1,159 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Backlight driver for Pandora handheld.
+- * Pandora uses TWL4030 PWM0 -> TPS61161 combo for control backlight.
+- * Based on pwm_bl.c
+- *
+- * Copyright 2009,2012 Gražvydas Ignotas <notasas@gmail.com>
+- */
+-
+-#include <linux/module.h>
+-#include <linux/kernel.h>
+-#include <linux/platform_device.h>
+-#include <linux/delay.h>
+-#include <linux/backlight.h>
+-#include <linux/mfd/twl.h>
+-#include <linux/err.h>
+-
+-#define TWL_PWM0_ON		0x00
+-#define TWL_PWM0_OFF		0x01
+-
+-#define TWL_INTBR_GPBR1		0x0c
+-#define TWL_INTBR_PMBR1		0x0d
+-
+-#define TWL_PMBR1_PWM0_MUXMASK	0x0c
+-#define TWL_PMBR1_PWM0		0x04
+-#define PWM0_CLK_ENABLE		BIT(0)
+-#define PWM0_ENABLE		BIT(2)
+-
+-/* range accepted by hardware */
+-#define MIN_VALUE 9
+-#define MAX_VALUE 63
+-#define MAX_USER_VALUE (MAX_VALUE - MIN_VALUE)
+-
+-struct pandora_private {
+-	unsigned old_state;
+-#define PANDORABL_WAS_OFF 1
+-};
+-
+-static int pandora_backlight_update_status(struct backlight_device *bl)
+-{
+-	int brightness = bl->props.brightness;
+-	struct pandora_private *priv = bl_get_data(bl);
+-	u8 r;
+-
+-	if (bl->props.power != BACKLIGHT_POWER_ON)
+-		brightness = 0;
+-	if (bl->props.state & BL_CORE_FBBLANK)
+-		brightness = 0;
+-	if (bl->props.state & BL_CORE_SUSPENDED)
+-		brightness = 0;
+-
+-	if ((unsigned int)brightness > MAX_USER_VALUE)
+-		brightness = MAX_USER_VALUE;
+-
+-	if (brightness == 0) {
+-		if (priv->old_state == PANDORABL_WAS_OFF)
+-			goto done;
+-
+-		/* first disable PWM0 output, then clock */
+-		twl_i2c_read_u8(TWL4030_MODULE_INTBR, &r, TWL_INTBR_GPBR1);
+-		r &= ~PWM0_ENABLE;
+-		twl_i2c_write_u8(TWL4030_MODULE_INTBR, r, TWL_INTBR_GPBR1);
+-		r &= ~PWM0_CLK_ENABLE;
+-		twl_i2c_write_u8(TWL4030_MODULE_INTBR, r, TWL_INTBR_GPBR1);
+-
+-		goto done;
+-	}
+-
+-	if (priv->old_state == PANDORABL_WAS_OFF) {
+-		/*
+-		 * set PWM duty cycle to max. TPS61161 seems to use this
+-		 * to calibrate it's PWM sensitivity when it starts.
+-		 */
+-		twl_i2c_write_u8(TWL_MODULE_PWM, MAX_VALUE, TWL_PWM0_OFF);
+-
+-		/* first enable clock, then PWM0 out */
+-		twl_i2c_read_u8(TWL4030_MODULE_INTBR, &r, TWL_INTBR_GPBR1);
+-		r &= ~PWM0_ENABLE;
+-		r |= PWM0_CLK_ENABLE;
+-		twl_i2c_write_u8(TWL4030_MODULE_INTBR, r, TWL_INTBR_GPBR1);
+-		r |= PWM0_ENABLE;
+-		twl_i2c_write_u8(TWL4030_MODULE_INTBR, r, TWL_INTBR_GPBR1);
+-
+-		/*
+-		 * TI made it very easy to enable digital control, so easy that
+-		 * it often triggers unintentionally and disabes PWM control,
+-		 * so wait until 1 wire mode detection window ends.
+-		 */
+-		usleep_range(2000, 10000);
+-	}
+-
+-	twl_i2c_write_u8(TWL_MODULE_PWM, MIN_VALUE + brightness, TWL_PWM0_OFF);
+-
+-done:
+-	if (brightness != 0)
+-		priv->old_state = 0;
+-	else
+-		priv->old_state = PANDORABL_WAS_OFF;
+-
+-	return 0;
+-}
+-
+-static const struct backlight_ops pandora_backlight_ops = {
+-	.options	= BL_CORE_SUSPENDRESUME,
+-	.update_status	= pandora_backlight_update_status,
+-};
+-
+-static int pandora_backlight_probe(struct platform_device *pdev)
+-{
+-	struct backlight_properties props;
+-	struct backlight_device *bl;
+-	struct pandora_private *priv;
+-	u8 r;
+-
+-	priv = devm_kmalloc_obj(&pdev->dev, *priv);
+-	if (!priv)
+-		return -ENOMEM;
+-
+-	memset(&props, 0, sizeof(props));
+-	props.max_brightness = MAX_USER_VALUE;
+-	props.type = BACKLIGHT_RAW;
+-	bl = devm_backlight_device_register(&pdev->dev, pdev->name, &pdev->dev,
+-					priv, &pandora_backlight_ops, &props);
+-	if (IS_ERR(bl)) {
+-		dev_err(&pdev->dev, "failed to register backlight\n");
+-		return PTR_ERR(bl);
+-	}
+-
+-	platform_set_drvdata(pdev, bl);
+-
+-	/* 64 cycle period, ON position 0 */
+-	twl_i2c_write_u8(TWL_MODULE_PWM, 0x80, TWL_PWM0_ON);
+-
+-	priv->old_state = PANDORABL_WAS_OFF;
+-	bl->props.brightness = MAX_USER_VALUE;
+-	backlight_update_status(bl);
+-
+-	/* enable PWM function in pin mux */
+-	twl_i2c_read_u8(TWL4030_MODULE_INTBR, &r, TWL_INTBR_PMBR1);
+-	r &= ~TWL_PMBR1_PWM0_MUXMASK;
+-	r |= TWL_PMBR1_PWM0;
+-	twl_i2c_write_u8(TWL4030_MODULE_INTBR, r, TWL_INTBR_PMBR1);
+-
+-	return 0;
+-}
+-
+-static struct platform_driver pandora_backlight_driver = {
+-	.driver		= {
+-		.name	= "pandora-backlight",
+-	},
+-	.probe		= pandora_backlight_probe,
+-};
+-
+-module_platform_driver(pandora_backlight_driver);
+-
+-MODULE_AUTHOR("Gražvydas Ignotas <notasas@gmail.com>");
+-MODULE_DESCRIPTION("Pandora Backlight Driver");
+-MODULE_LICENSE("GPL");
+-MODULE_ALIAS("platform:pandora-backlight");
+-- 
+2.56.0
+
 
