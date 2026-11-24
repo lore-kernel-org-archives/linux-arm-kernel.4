@@ -2,111 +2,145 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB1F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC525606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jfKydFZP;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=SLb0PxfJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=su3M6o+Q;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=dY2ZJn4G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=J1NeJEfZebfbcpy8hj3dQLRnIcpIwRmtjjuLE6tESEc=; b=jfKydFZPfByhQG
-	YWaihWANpaTFRvx2Ij/RCqndy2jmstuDMXNhUhAv2a9tiaTRxPCxOYFKH4qttyEuQgitp8QbDazQc
-	q+Iu/vQoeyfbzNTmSdPFKp6FNmK+bKkfmyM0SpmcjHY5K+sRlx0fxHn/0B8JW53bnHWAS+xITrgRM
-	SZyu7NDu7rQyoIfma/08J+0y8Ke6hdWup/t000PJcKqfZRtuUeidWqXLD6HWLgSwJTmWGNq2xFfOA
-	ydiSPpCbcyf9VzN2pH3TF2xnKnUlOidEL8RfMiMkpbV6pn1N9nqt+DqHI5ikQQsRsq1eoCbQYwptT
-	fJVCPx2LGuSCQhii80bA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=6WzDFzRlQvG6jxJCaBjMWLUBknQsy2kqZHHbWf1+cEg=; b=su3M6o+QNtWZVbN+WcPkCxpSZw
+	U0q1KsmVZXjKXwmPpkZBXXn63idVlbf8FbQA5Pqxz9XIv6Zi5tQGC6SEz6cBbXBIEoFlWQrz6vohs
+	Y6WRGRJV+8seJDpeP81twyTzLqr9daNj968PEVnNfZwIoFLYW+wo7yqD1oE+PWCSXYXP63UAOWhrI
+	ZyC9KdgIa8wkCENyDKwCX2q4z2cW4Pc9nmCSmHj8pvryH9tr00P0CyBmqbRN2UOFZZlA4gu40h8od
+	izdQpz9+4HPsTCMITWJmp+AOSO99zCrEdV0YgB2cW6QoxmckeKeXrXCvsXUSzEE3A55ltSBFb4mhh
+	R5jCV4KA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp1i-00000006QDr-2kD5;
-	Tue, 24 Nov 2026 11:49:34 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1xVp5D-00000006QZD-0m57;
+	Tue, 24 Nov 2026 11:53:11 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp1T-00000006Q81-3sXZ
+	id 1xVp5A-00000006QYY-2n9g
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:49:28 +0000
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4bb666304fdso48120795e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 03:49:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795520958; x=1796125758; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=J1NeJEfZebfbcpy8hj3dQLRnIcpIwRmtjjuLE6tESEc=;
-        b=SLb0PxfJaSEehDCG29EP87znubKzT8rU1Jh+I65GQAtPUbY9zq3vhfhoq30n/zr9PZ
-         IAQO6GdSX+1wOYky0j7KakgQQiTO7Sa/ZQvBt3/8OtkLG4j9OHgcKwCxGKvKg9I7SC/W
-         mTj2CwH8N2IVBSeQ6rZp5/NoE4Y+wa+dTEq1W9bIEjws60LJzTPy4YHR5CvQAsm8Qsht
-         Y1AkcM1eYM1eXhueLM/7cMMMIYEXdxcQfJQZXQcaxMeBXfSPcjLr3ql3eVjMBs3pUggA
-         5LyxqnkftHCHGK+kAO6vi4B+CX/lcta4qg07BBFzRyNRf83SzHVgzNgpxCWTWjrk8/LG
-         Gn1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795520958; x=1796125758;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=J1NeJEfZebfbcpy8hj3dQLRnIcpIwRmtjjuLE6tESEc=;
-        b=0hOZn1NJIomhZNU4RHqOmZ+zrD8pyeWXx6waDiFsjPPbEM1wPtDHOprVN2fhNb03Or
-         Jm4p08wcJ3I9MUuY5x6N6qPdSNGGYdr0/ABDRy72fuAsiKvY0ewQcJe6Ii4FswKpXnmV
-         E6TlS4Oirc6faQPTFf5Y9zm0OsfrP8ZRI60WlVvGTAK1f3cGI9dg802RlBaDm26lsQJL
-         mB3YWV9l7rndaTR8zNg++Fnb8aOodgU2syEMVF5TM8kLwLYzPlUzcXP1lAZEImXg5E5I
-         v+d3rWPMRR6u2lz51O0CfeHAvqEMb3BR8n9BCCEjPBtjzSC8UmSJmtJpeehKqs8WiBy5
-         x0Fg==
-X-Forwarded-Encrypted: i=1; AL+hErES7VLihoJRZCZYWq4dbgIrFKnuO0cp9JDmQIpVgrInoGCUnZZiS4Bl+VMti5L+WgtSkiP6QUzGyVeCMkSkLFLC@lists.infradead.org
-X-Gm-Message-State: APuU4Z8ryLWUG5kxisS++AQeXpQXC4NhwxSr2oD7nx+gpwxIW56pvIQ6
-	TXVaffFLqpM/+TVp/41gJU4PGm+b3AaX597X3IhlbrtZ+c+nhwwoMjWRIKozCr/bP3NAM4ncHqh
-	dTdyF0jE=
-X-Gm-Gg: AZFdTZdpWIbtHwbKco4kCz1UFkjuN4//OJYIrtHZ0MmnRPVTfyhvosKgvuHaj+okw1/
-	r7cQ6U9mrdnw4huqWvsazXXJOb3YxG0o8PRI78Raj7QY+LJkzvuElkzB3+jsQ0sNKEesFUVdb7m
-	HmjWLYoFuWm8JBlwEQw4NP08hq9ybjetls23+rwd+AwhI4stQiLZ4Ri7+um9J46ZnbSWnZuqmwV
-	lMny9sp2mrwqf+Zn/YaqO//eji/qTv/luTv/QU6xqYc5rWLFnkpXTa/3+hkGb0Vg0t3kTuCx6QZ
-	TnzMI56KqLUBOS0XwV7sIY29zTfwUcDe/0x+7HZSbYxGbhBDGezPik2LL4hcOHKfqbZj+WNThrf
-	cUg3QGt6r5isccNThDzSD6k8PE90Ha6vf8qJRn9HEkMBJfXLyd/3S/NPvcLzx4TrSTTaw1Xohwi
-	TMyssXIHtnt3qqf/5YSjcizrzGhVdbr05LsuJWWLaBBVaR1sgeTS+2le5UgTny3L5USv2etVtEk
-	nbh/MyDaG1X0G6pNpDOxWeebQo0J2/wWraRGjh6EW3050oPnS2360KVJocXuts5FgxVuc+fi6R/
-	3Wbs3ACPT4UzKIvPWFd1laUjDuFietqsNOiovDNWwwzAvDWbW7DnKctFhj+ku+ZFGXAOtz2VIhk
-	jaEQcFVd20/5MMM4eXsJc9Pc=
-X-Received: by 2002:a05:600c:b8a:b0:4a0:20b4:ba93 with SMTP id 5b1f17b1804b1-4bb88818156mr290637705e9.16.1795520957605;
-        Tue, 24 Nov 2026 03:49:17 -0800 (PST)
-Received: from ?IPV6:2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183? ([2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884a3a3dsm416542295e9.10.2026.11.24.03.49.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 03:49:17 -0800 (PST)
-Message-ID: <99f6fa65-33f1-4865-9745-c092fff2e032@baylibre.com>
-Date: Tue, 24 Nov 2026 11:49:14 +0000
+	Tue, 24 Nov 2026 11:53:09 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IVflSU9HHzwNuqGpqawYo6yNW4oEetXWN0Bis6vjlTU64kN2xq+HRx+FHD2EENrPHGMywez1pkr613wnhTx27m43RG1cDGJR/5wc1PiVYM21fQTDmXzS8tB9AbOZ5FIl/oaNN00gwd4mKetc/RCfyTODJH9E4HYuuc9wxh/Ttb750vBJSHeBzZWeFDuJme8LFrHxumjSbxw+sLkPvR+Z/FaiDlSYZMqYYhbb8JSUcqSD+j9XS3HsMn3v9fnXkNqXWtwntc+G+knUV2dW/SzRM6fWCXwdVsU3uVDGt4l5SX4Kr8eRxheLfML34q2x8vhhwTboEwe6hOdT2VGijvrChg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6WzDFzRlQvG6jxJCaBjMWLUBknQsy2kqZHHbWf1+cEg=;
+ b=HInh9Ir13NwyAbbW1OzDmqM3ywzV9R+9clQxr6Qpd9DEx+scIP6IdOiwK0kDhMDGjQcM9t4i5VOyJ0lZv0OP/s1rV/Y6cx8VZtxWbWvl7T5lmW2lYQyX4qqxQ+xykvZH2JoJdlPIstlgnT3Am291mbAvmhflzvUGRFALjFlFIP8GqM38xQMgvPg6teUOjDro5V/DIvdDMD2qLMQr5X1saZQe5cYptsrHQ61I3Gv3K4bsQHyZGhGLDXkm3ylFQYI+84RjaQyUyjTRp/FGmzhVJyx/e1MEhyt5Bu/aLQC4kQsY4siJ9ivq9RAM3E93t8+raubEy6dmfIIkXKpbv7HgwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6WzDFzRlQvG6jxJCaBjMWLUBknQsy2kqZHHbWf1+cEg=;
+ b=dY2ZJn4Gbi49HqPhqrUeLjQuXMlf9cYKY+KBKaczJ+gKk5yDcZ9bYk7vbPQXkPAmnPnvR+18Y4tld/+8VEjme3GCnNR3L1ZNmZHui8bvki+aUmkeqlRfTnSx11s4tEq0qQyo50Lhk/21Nk3g2c3siErxc7K82dHZ6xbt6ik3OvoKfGB+d8UJXtm0o/jwQ9T1VOoLcrTmwHm0brK2X9yqT3j2PWA2qpfm8fkpuK0gtIMj/ZDHpexr8jT0Wpt5hYkI0e09+IiWSPdvhDtzU0C0Zr6dlzxhRG/SWQjkDr4nE4JzfMoB+XHyFgoMnTjTyj7pp7S6o8rM+EdCJHr/H580Jg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4472.eurprd04.prod.outlook.com (2603:10a6:20b:23::20)
+ by MMZPR04MB669910.eurprd04.prod.outlook.com (2603:10a6:190:52::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
+ 2026 11:53:00 +0000
+Received: from AM6PR04MB4472.eurprd04.prod.outlook.com
+ ([fe80::aed9:e8b9:c352:9ba0]) by AM6PR04MB4472.eurprd04.prod.outlook.com
+ ([fe80::aed9:e8b9:c352:9ba0%6]) with mapi id 15.21.0639.010; Tue, 24 Nov 2026
+ 11:53:00 +0000
+From: Stefan Ghetu <stefan.ghetu@nxp.com>
+To: dri-devel@lists.freedesktop.org
+Cc: imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Liu Ying <victor.liu@nxp.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] drm/bridge: imx93-mipi-dsi: Fix mode validation
+Date: Tue, 24 Nov 2026 13:52:55 +0200
+Message-ID: <20261124115255.679017-1-stefan.ghetu@nxp.com>
+X-Mailer: git-send-email 2.53.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AM4PR03CA0036.eurprd03.prod.outlook.com
+ (2603:10a6:205:2::16) To AM6PR04MB4472.eurprd04.prod.outlook.com
+ (2603:10a6:20b:23::20)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v18 7/8] arm64: dts: rockchip: add NPU (RKNN) nodes to
- rk3576
-To: Jiaxing Hu <gahing@gahingwoo.com>, tomeu@tomeuvizoso.net,
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
- p.zabel@pengutronix.de, ogabbay@kernel.org, zhangqing@rock-chips.com
-Cc: royalnet026@gmail.com, sidong.yang@furiosa.ai,
- ulf.hansson@oss.qualcomm.com, abel.vesa@oss.qualcomm.com,
- sebastian.reichel@collabora.com, chaoyi.chen@rock-chips.com,
- shawn.lin@rock-chips.com, finley.xiao@rock-chips.com,
- diederik@cknow-tech.com, alchark@flipper.net, leonard@lausen.nl,
- vlwwwwww@gmail.com, jeff.hugo@oss.qualcomm.com,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1795478392.git.gahing@gahingwoo.com>
- <f1d20ec832e10a80dc813aa10697632e8024a685.1795478392.git.gahing@gahingwoo.com>
-Content-Language: en-US
-From: Daniel Drake <ddrake@baylibre.com>
-In-Reply-To: <f1d20ec832e10a80dc813aa10697632e8024a685.1795478392.git.gahing@gahingwoo.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4472:EE_|MMZPR04MB669910:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a7594e6-6c37-4390-31e2-08df4a217d0d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|23010399003|7416014|376014|1800799024|366016|18002099003|11063799006|5023799004|56012099006|261021121427099003|261102123227099003|261022105027099003|261028144727099003|261022075727099003|261026140227099003|261021123027099003|261009223027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: rJ9umvIOvm6QVe281IcFVP3EQrH2goljvIiZ+5z4QkhPIbmI+bu6iLibtSDTGpjS7wf8xX4nko75eN58/YXFRlGKkjcU+PUx0N7SJL/HeH6XpHrR10L/hn0ozw/T3P+soqKlYCt18aRNX+AuXjh79PqBoRNOFchqN51kqN1/44XWlZHKdMOmCWJTcJj53UmwU5q/miKfJ4mjZoAy9FGvTGajrmcTnrBbfDveqk4AxyHhmkkNPUGzZeo/yyz07GeGq5YuC+QGP+2aJk8CPiy1GriNQUdhKymVgo9p5vykM42JQJ6fjXuIX+jEb20/ZSHH3w/kg7WlvaJO1DLEISOrq27/l0tENSYk+p44jv53nGg7hk3LSwZsSk2ZP40PGLWOCaxIKaNbUT//umIqQGwKXy7dL6OWdfQ+joGztsDrugYg6GdVl4IVYSgKHYw44iHLW/aUl6BCIQBr5nTR/WPmyPWry3/iWLd7djYSMSw7NFCQ53IsgkMdnxU+1Y3FK1l0myOW6g2ULZehRK4MMfYKR8zppDkAyXRnyosvmfQIub4conjO6U5ATMFPjcpNtE2SxJGy+Jy9gdQpAUfZAViF4GhzjhuUCq4oUCCgfy6l/dklk96fyc7SJajX2w4wpD3y1IrSHdD3mfYCyMW+mkig/1DWLxg3Qfl7wRGtqzeAHlI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4472.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(23010399003)(7416014)(376014)(1800799024)(366016)(18002099003)(11063799006)(5023799004)(56012099006)(261021121427099003)(261102123227099003)(261022105027099003)(261028144727099003)(261022075727099003)(261026140227099003)(261021123027099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TThp94w0kzi+U5ATHag5QmNwQSxToszIqaLSO+Bu8RcFsnpdiTYlA1SJCmFP?=
+ =?us-ascii?Q?Xidmbi1Vs6LWSZaOHX9sIbPR4/it0B3KzcEEqjkfUwK4hUSBIR3yOhe/9hY0?=
+ =?us-ascii?Q?g2Rsb0SpApN9ZpTCAyph73Mv1f7UBitSOeajl5mhINW8seCLDTiSOiwOvvu9?=
+ =?us-ascii?Q?IEnJisy+ICEOoHkPv52hutSoQxcVeW/f0v7IhD/OQrL91oi78SGsuYs/LVW4?=
+ =?us-ascii?Q?LtTAqWSuMZwbf0mskc+dHjdb8Rj4YxIUimyevJwN/OvFevcTGV9/vt+sLLnI?=
+ =?us-ascii?Q?t1cPIebXmiL34ZBO3YPYNIJzzKjlLibXHTWPFinTtCDQqpeUOu0n7WAyhUqL?=
+ =?us-ascii?Q?mv2/8kbwgeXbFt25NBqARpjocBvKRjGZXvmoPMxjmyPt6jlMhKa30LC41jKZ?=
+ =?us-ascii?Q?+jiOmt+TV24MWsU6RQAHuELmKQAqn3WqI7/fxY6qnzauMyTL+1DrxwVIw8oX?=
+ =?us-ascii?Q?t+sfsT1FaprBOVXGroY74IaZxhHsILEKCm//DqCfrOpzW6pEJCCdV9ZIqoll?=
+ =?us-ascii?Q?fZS6TDT56IBSWbHN9EoIpW+dZ4uo1dqos4ARe3pr9uUf4r3bxVc7wWXLpE/d?=
+ =?us-ascii?Q?kgMMtdU0zSV5n8s60cY8T6MLygC2Tn8n+vVtmQpZI1GReCmVxubJ/S584hgX?=
+ =?us-ascii?Q?RO1DvIdj6lrxc+Hj+6Vy+YRbDfwT1jBZiOcqyup7YeRK8to+nKHIt8GkawPB?=
+ =?us-ascii?Q?ti9XIR/Hah13lQiGuYimTPXka8PjdyhqTUtqC7UA8fnalSVMUjgbGv08qMrb?=
+ =?us-ascii?Q?sa5+eIA9cZ/MVokq4wE/oHQtcngPcwXp/A/gFBDyosnjKb521fJDN8ert529?=
+ =?us-ascii?Q?mmrK83U6b10/ygi7st0HWcuWr2ARs8cEKqU6Ph+Dbt6JbdXOGXfcY94s3BAm?=
+ =?us-ascii?Q?dOPLMP8C1pp23jg9mMzu5DoDpeOeZZ6eC4SCB/yc8ISU7gZqCo6/usV8mQo6?=
+ =?us-ascii?Q?K3b+TMnK/LLl39MRMAMMXHcjvT7Ft3T53sY7cmgwpYxGXYjyEbT0JDai9+NR?=
+ =?us-ascii?Q?tPTUSqYMPZSqap+9W3U8plkgVhKAw2VhfEkJaw1A4hn6VMPvn+miqAnJ3Haz?=
+ =?us-ascii?Q?oo447NwYusfOgbrBj2Vg+ESchvyLDb5f14VpPYl7b8RQhsiH2jCiD01zZmwD?=
+ =?us-ascii?Q?e1DivpHuC7Q8TJ7TayZAb7WD0RpIySqScAYrgJOOmcjmMaZt2gt8VFLrYFD4?=
+ =?us-ascii?Q?aVGhvDfn8TCPCYE8GfSj7NgLq+f5NqRh5rQ/LBHz0iJ98s5Q4Anz8VBbshv3?=
+ =?us-ascii?Q?EdFpIKDTiYjuDVh7M2F6t6dIJ0Z6+iLWkGjKFjPlvGRqv3Z3JTimpLwSWdwl?=
+ =?us-ascii?Q?JgWLZhmvD6TGsyItb6pEQdl4cf2qaaMa7t+fp6N/0/fbEkNt71DZNBvzl9v0?=
+ =?us-ascii?Q?Z8QAN/QJ/WObYnsWsV4Mr3slLUFnOKRuT2ZUwyfTrgw8WkGac08+FTwJdv7B?=
+ =?us-ascii?Q?ED/L+zZQP2cp15nZu6LqC8ObJ3u2EIsi/fy0dhvJ8q/bI9gc54N4LyMk3XkT?=
+ =?us-ascii?Q?F/q1iRtIXFwWPpD/lIxfyFdGTV3SXV97ACkM0XQMX/HjneP7N4ewOiaPJd0G?=
+ =?us-ascii?Q?wxuSk11ZVsoPWYx4+iFgn+CcaMCTYPHzAIohjcpB90GcCxDt8SFAbZe39wl1?=
+ =?us-ascii?Q?5A79KOrHDcve+lGnHniq+MUaYtZcbJr5MHGzC3N2MFOoMX9FBnb6JWNHgusX?=
+ =?us-ascii?Q?XwZn5VJsSVwnd26SPhFE5amzUMMVqHPgF311LyTRc/ROaCt3Nv3zvQ2Abw8L?=
+ =?us-ascii?Q?IuLJNqtyQA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a7594e6-6c37-4390-31e2-08df4a217d0d
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4472.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 11:53:00.4006
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VnZzdlPdCu2O9Mbe5nbg2Bv+lIPJvYLkKAeLv1ZvA7wTlyjPhBUX78qSuv1Q+XxMkhEl5Ot6IAmphUCzsvEzGg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MMZPR04MB669910
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_034920_817943_C3C7072E 
-X-CRM114-Status: GOOD (  11.13  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_035308_729252_AC60DB96 
+X-CRM114-Status: GOOD (  19.14  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,38 +151,115 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 24/11/2026 00:01, Jiaxing Hu wrote:
-> Add the two NPU cores and their IOMMUs, disabled by default. Core 0 is
-> in PD_NPU0, core 1 in PD_NPU1. Label PD_NPU so that boards can give it
-> the NPU supply.
-> 
-> Set CLK_RKNN_DSU0 to 594 MHz. Nothing scales the NPU clock or voltage in
-> mainline, and the boot rate of 786 MHz at the boot voltage of 750 mV is
-> outside the vendor OPP table and gives wrong results; that table runs
-> up to 600 MHz at 725 mV.
+From: Liu Ying <victor.liu@nxp.com>
 
-I still struggled to understand this (particularly the choice of 594
-MHz) even with your notes, but I think I got it now. Suggested rewrite
-that will hopefully make it easier for others:
+i.MX93 MIPI DPHY PLL has limitation for matching with some pixel clock
+rates, e.g., the best DPHY PLL frequency is 445.333333MHz for a typical
+1920x1080p@60Hz CEA/DMT display mode with a pixel clock rate running
+at 148.5MHz with 4 data lanes + RGB888 pixel in MIPI DSI sync pulse mode,
+while the expected PLL frequency is (148.5 * 24) / 4 / 2 MHz = 445.5MHz.
+Fortunately, VESA Display Monitor Timing Standard allows +/-0.5% pixel
+clock rate deviation for timings.  So, for those display modes read
+from EDID through a bridge with DRM_BRIDGE_OP_DETECT and DRM_BRIDGE_OP_EDID
+operation bit masks set, pixel clock rate could be adjusted to match
+with the PLL frequency(for the above example, the pixel clock rate is
+adjusted to be 148.444444MHz with about -0.03% deviation from the 148.5MHz
+nominal rate so that the adjusted rate matches with the 445.333333MHz PLL
+frequency).
 
+Instead of checking the last bridge's operation bit masks against
+DRM_BRIDGE_OP_DETECT and DRM_BRIDGE_OP_EDID to determine if allowing
++/-0.5% pixel clock rate deviation, check any bridge after this bridge,
+because the last bridge is usually a display connector bridge without
+any operation bit mask when the clock rate deviation is allowed.
+
+Fixes: ce62f8ea7e3f ("drm/bridge: imx: Add i.MX93 MIPI DSI support")
+Fixes: 5849eff7f067 ("drm/bridge: imx93-mipi-dsi: use drm_bridge_chain_get_last_bridge()")
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Signed-off-by: Stefan Ghetu <stefan.ghetu@nxp.com>
 ---
-Set the DSU0 clock to 594 MHz for now. Radxa ROCK 4D boots with the DSU0
-clock at 786 MHz with a voltage of 750 mV, however this gives wrong
-results and the vendor OPP table suggests this voltage is only workable
-up to 700 MHz. The rocket driver does not control the voltage yet, so
-594 MHz (GPLL/2) is selected as the highest rate that we can select for
-this operating point. Voltage and frequency scaling could be implemented
-in future to more closely match the vendor driver behaviour.
----
+ drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c | 54 +++++++++++++++------
+ 1 file changed, 39 insertions(+), 15 deletions(-)
 
-Please tweak something along those lines, you can add my reviewed-by.
+diff --git a/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+index 8f312f9edf974..64beedde7c464 100644
+--- a/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
++++ b/drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c
+@@ -489,25 +489,49 @@ static int imx93_dsi_get_phy_configure_opts(struct imx93_dsi *dsi,
+ 	return 0;
+ }
+ 
++static inline struct drm_bridge *
++imx93_dsi_get_next_bridge_in_chain(struct drm_bridge *bridge)
++{
++	struct drm_bridge *next = drm_bridge_get_next_bridge(bridge);
++
++	drm_bridge_put(bridge);
++
++	return next;
++}
++
+ static enum drm_mode_status
+ imx93_dsi_validate_mode(struct imx93_dsi *dsi, const struct drm_display_mode *mode)
+ {
+ 	struct drm_bridge *dmd_bridge = dw_mipi_dsi_get_bridge(dsi->dmd);
+-	struct drm_bridge *last_bridge __free(drm_bridge_put) =
+-		drm_bridge_chain_get_last_bridge(dmd_bridge->encoder);
+-
+-	if ((last_bridge->ops & DRM_BRIDGE_OP_DETECT) &&
+-	    (last_bridge->ops & DRM_BRIDGE_OP_EDID)) {
+-		unsigned long pixel_clock_rate = mode->clock * 1000;
+-		unsigned long rounded_rate;
+-
+-		/* Allow +/-0.5% pixel clock rate deviation */
+-		rounded_rate = clk_round_rate(dsi->clk_pixel, pixel_clock_rate);
+-		if (rounded_rate < pixel_clock_rate * 995 / 1000 ||
+-		    rounded_rate > pixel_clock_rate * 1005 / 1000) {
+-			dev_dbg(dsi->dev, "failed to round clock for mode " DRM_MODE_FMT "\n",
+-				DRM_MODE_ARG(mode));
+-			return MODE_NOCLOCK;
++	struct drm_bridge *bridge;
++
++	/*
++	 * This function is called by DRM bridge infrastructure core code
++	 * when validating a mode against all bridges in the encoder chain,
++	 * so it assumes that the locking for the encoder chain is already
++	 * in place and handled by the core code.
++	 */
++	for (bridge = drm_bridge_get_next_bridge(dmd_bridge);
++	     bridge;
++	     bridge = imx93_dsi_get_next_bridge_in_chain(bridge)) {
++		if ((bridge->ops & DRM_BRIDGE_OP_DETECT) &&
++		    (bridge->ops & DRM_BRIDGE_OP_EDID)) {
++			unsigned long pixel_clock_rate = mode->clock * 1000;
++			unsigned long rounded_rate;
++
++			/* Allow +/-0.5% pixel clock rate deviation */
++			rounded_rate = clk_round_rate(dsi->clk_pixel, pixel_clock_rate);
++			if (rounded_rate < pixel_clock_rate * 995 / 1000 ||
++			    rounded_rate > pixel_clock_rate * 1005 / 1000) {
++				dev_dbg(dsi->dev,
++					"failed to round clock for mode " DRM_MODE_FMT "\n",
++					DRM_MODE_ARG(mode));
++				drm_bridge_put(bridge);
++				return MODE_NOCLOCK;
++			}
++
++			drm_bridge_put(bridge);
++			break;
+ 		}
+ 	}
+ 
+-- 
+2.53.0
 
 
