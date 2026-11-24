@@ -2,104 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10193606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5B5606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vPJhwAxQ;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=UEm0aSJR;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=jMB28q3R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AgwqqrrO;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=u5tCTsoq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vQ6vW3sYbcgyOH9bAhfE5XUba6QBbadxNG/psr8B7AQ=; b=vPJhwAxQZ1DYtcLhzwV0nShu7W
-	x8L7YKO++2Q9GCcGAnVeOcOL9lan1F1O1EZcVUJqsX62G+LvGkSyJJELTTvPjI0a3gRzzSSgdFzsb
-	yO0vjjxB1zL9sYKwTkSy9KaajU8EbDLVfP5zNMjidNomUbdO+KKu9zjc7cK7oZKafFFb8I33h8JSm
-	8GfvUbs1MRIQZnfNMaEVP6MWpMKM7d1OUo6vejxI5EuV3rxSyGhY1k++9hPlSAFhAZsLI9mWSS3NJ
-	NPivwyFFzzAahJwN9WWWAVPOXJfcQcHZp/Ws6SMHBlPUTD+8EpqFqTvMBH9GH11ieOzd5xR1raxIw
-	Z4WM3qww==;
+	bh=TGbZUVyB/p7B87G7D24DxnnI40WatEQY2ar/09q3cHo=; b=AgwqqrrORuu36MlCUp2ggphurp
+	NwZL8gMpXMy49rUZGugi8cqYw7QTXurGg7dE4T3dPSqGlZQlHrLIZ9PgICBM3dgWs71QEtr1XXu9u
+	O5lsNqgqXeJg5xuwuYqRtJU/XNhubpFYcDFLP45rw6Q3Wqmi6pbbdQo6+F2RrAxT/cI0Aytx4c8/p
+	bOj5cne/e6kjgZrHj5PZ2xoYsSYI5dT7qsMF+RxtXrEdNGJBcMFkyVlgazgsKsqJP/fmURUny84rj
+	8+gjfgVj5qtXNYxrWpcxBZZWlf5zyBvpr6DQt8uIJs2xVgrBwV1u4fUnTYHvKpiyZ08QIxM9YaFWw
+	OVjfrP8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVt88-000000074V6-155m;
-	Tue, 24 Nov 2026 16:12:28 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVsjE-00000006x5J-1hht;
+	Tue, 24 Nov 2026 15:46:45 +0000
+Received: from mail-oa1-x2b.google.com ([2001:4860:4864:20::2b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVt83-000000074TM-2cps;
-	Tue, 24 Nov 2026 16:12:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=vQ6vW3sYbcgyOH9bAhfE5XUba6QBbadxNG/psr8B7AQ=; b=UEm0aSJRaJt+LCz28ezmXuPX7B
-	+Pt/c8nMJNSmZkaeIbFAi7UXfNILf4z+A8f290IxKxXWl5XXnxBnkoUybeZRKhESPV3h3fv6PSmtp
-	XlQ5vNu8pfaw73pM5Nk/ThmPR0BdFuVCiS/131E7TT3b8Pkc0uY8AslN3nu+lOhuzRbjVNQF20KcL
-	WXkYjAffYQ0Eae1u+ap4yMTz0ZQYZeJovNRohyrjnlAuEHSCJhISIuggV5ik/wcCkRoB2cSUqBuz2
-	TlAwkqh6P1M2T0qWWmHMTVwOSgwB1GzaS7xaVLKK8EkDBUZHJvcBXKlI3zmh5jDAoZg82PKABiK92
-	hll6ID4Q==;
-Received: from mgamail.intel.com ([192.198.163.14])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVt7q-00000004K8w-3cHi;
-	Tue, 24 Nov 2026 16:12:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795536731; x=1827072731;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8jNXelQh+v0UQsg1z1NZYZFU+UF9jDOrLrEkTGht43Q=;
-  b=jMB28q3Rqb3QGr0LEnnxh3RGwkOVpXH7czujAdRzmAJo4ltBijv5qqaq
-   tWOeAYae5fPRD0LY7D0i13qVqwIZkCZiDUCiyznlgkSJOge7eDn/AS5R8
-   S61P0nKbxUu3Wpz6LhsZpU+rkSKQR4syqgJPP/KV7UbGoSGhC09BIxvqf
-   Vw6DOrxRhKJcvzRJjZiee8diBkiUeyN5gu95WXkRTDOjexGn1NLoik7gj
-   OJES0vq55pYLuEp/az5oLshQE+gqNvH4mmn6CYoifgPJJOzLsbAQcWH5i
-   ee2MZ15kJ6NGfcLKoUUDJXLuvyC/tEykNI2Blnvn/tUnj3KmBpc+lCTjx
-   w==;
-X-CSE-ConnectionGUID: FXhI4XvSQxmbpv14XAJaWg==
-X-CSE-MsgGUID: D4NIvkvPSluOaH0BVYDbwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4295124"
-X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
-   d="scan'208";a="4295124"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2026 08:12:04 -0800
-X-CSE-ConnectionGUID: FH2dgkoDSi+u1P9aQStNLg==
-X-CSE-MsgGUID: PVd8xENCQ86iO+qjC6OoJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
-   d="scan'208";a="11946919"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by fmviesa007.fm.intel.com with ESMTP; 24 Nov 2026 08:12:01 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1001)
-	id 0321C94; Tue, 24 Nov 2026 17:12:00 +0100 (CET)
-Date: Tue, 24 Nov 2026 17:11:59 +0100
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc: Mika Westerberg <westeri@kernel.org>,
-	Andreas Noever <andreas.noever@gmail.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Sven Peter <sven@kernel.org>,
-	Yehezkel Bernat <YehezkelShB@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	id 1xVsix-00000006x3g-1Gsu
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 15:46:42 +0000
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-4b8587b395aso2743415fac.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 07:46:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795535186; x=1796139986; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=TGbZUVyB/p7B87G7D24DxnnI40WatEQY2ar/09q3cHo=;
+        b=u5tCTsoqr+WfzUBs7txY8jTe7xoUN/+fUn1NNpL3mMsbh38R+x60M45jfx/+KduU03
+         6a6Zi+yk2odmpuk6dISWNlFzV/NewVgXsSAskcA6WbBoXT80eniBS2hxI766nQHQhEaM
+         QrcD5t4Wcl03NZe4IRjaTvYz3PMO5Rv+/5WOGIRUYZut7mvEnE8/DbjoTCARYUJgWMBT
+         xhWkhaOE4hcMI4ulRx+kuoEEEdJ0Q4uPnmnpUPLgv/7QxmJ8RmsDUFvUwTaA/xu0vRFG
+         o4MbInmWnAA0zIWj3CQ0fayV1n+7npO4VrpjZRgDMlDzUg1gfh7B98xRA0xaIGcsQgkV
+         wiag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795535186; x=1796139986;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=TGbZUVyB/p7B87G7D24DxnnI40WatEQY2ar/09q3cHo=;
+        b=RiPaSvepLy51IXxznvXqmylcSBiNtRdx0CQ7tJoVLFHlBKrdWTpxrXyymHIlYoibzD
+         XI1LPaRo2TIpXv0T90/Q16/TVK8DrCYfzloVu8mNy7yxzj0hLeQyRTNKFbIzDKxhr4Dj
+         EZae3/vfYr95QoMcNV/YCKdA8564v3cRnCc03GzarLYTw3GEG46prucg/ug5CwssAi4b
+         Sxi6eBb4leG2oAsKeh0ZSmAlXCAZpSU6i+g1hxOHpRNA6U5edc3DR6Xk7Owlo4QUzxZ9
+         JonBNNze3W2EQ+7k2cIWQBl0D3aB0bRxOWPU8TYcv3fYYjfpTIYV/WkwmOlmhVJ3XHfM
+         NyoA==
+X-Forwarded-Encrypted: i=1; AL+hErF3LYfZcZXi+uGSR/WTo81Bvy1uLOWwsAg09VoktBPUBZnUjEMvLRfBxV7oN/SP704RK0CFgX6NPEaWD5ydupNL@lists.infradead.org
+X-Gm-Message-State: APuU4Z+JiloVpKaFvbK0CxX0+dLqCuwr9tWaSG0an+haTeKFCTG4viTc
+	jlPWZO4bijsorll60+KTNdEelj6ABMnG7rb/qVzTHnpcTPM2zk+x5Z1w
+X-Gm-Gg: AZFdTZfDwd+wzvyHHRVwAr2Vbkzz7ith1/CGkU2C0TL2uuYI37Mva/2rv4XYYLT1X5X
+	mXiEntCi07Fym794ZMnM7V1mmk7+6S+pwlt+3tfQ1DOvmw0KQJla09DCoQTlBOHoEkr83FhIpML
+	jHcKlDJlLRbqaGkh1bwHi28M6ADlcAKUE8TuYqimqyj9kR9qBNpLoYLQZPoDpcVdloP9fMpcc2s
+	9+WWnDZmFG1fzsndpNqSPJ6Gg93lX/oOUIT3XANbq60OEsWFT/VQgzNM57i0AkkW54nRFyeXnSZ
+	4wHEJDfSIVfU2inICxXi7mXxymxlklQneaE3JhhsVD/6kgno7nSKYLo1DBfH3vP+Z+sT7YHmA3d
+	We4Et5fw3g4yW7QFNeGWEskG8KvPcFZoW6oeGnSU+DPEpD0zUD6qvk8eFOx2glNe3i1rv8sRBov
+	kaEpnwc7Mm3iH6hWHT3dJ0ejurkyxPEvirorD6UIcbji6WHlkNt8ePJexZL7d1+/vVZ11EnSObM
+	B6bIgPqEU8mCUm5m3Tl6kXuiyZSpADe6GLIxGjN4x49A9h/OEuy/5kAJ9Nb+Fnf3aZ455SWS7nV
+	BSM03GyCSm3uHTjxs5rtp6Jd41gC+ZB9u7rog0mwF4jMufJJDq1cvcHNSOSAABl0P1k4wdWH8mk
+	Tq3p09rJjHu5kFsYQEUYIyId2o3WZuyWGa+aWYr6PILDd9q98rbErNVm6dltIcxFMFEc=
+X-Received: by 2002:a05:6871:7bc7:b0:4a7:2bbe:4601 with SMTP id 586e51a60fabf-4bc85af4396mr12338931fac.57.1795535185954;
+        Tue, 24 Nov 2026 07:46:25 -0800 (PST)
+Received: from tempest-testimage-cc-centos9-stream-server-1191361818 (chi-dyn-129-114-108-164.tacc.chameleoncloud.org. [129.114.108.164])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bd044fc4besm12324129fac.7.2026.11.24.07.46.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 07:46:25 -0800 (PST)
+From: Yuho Choi <oss.patchbox@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Santosh Shilimkar <ssantosh@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>,
+	Kevin Hilman <khilman@baylibre.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 1/8] thunderbolt: Prefix NHI core functions with tb_
- and tb_ring_
-Message-ID: <20261124161159.GT229695@black.igk.intel.com>
-References: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
- <20261123113705.2297329-2-chunfeng.yun@mediatek.com>
+	linux-kernel@vger.kernel.org,
+	Yuho Choi <oss.patchbox@gmail.com>
+Subject: [PATCH] ARM: keystone: Fix OF node reference leak in keystone_pm_runtime_init()
+Date: Tue, 24 Nov 2026 15:46:21 +0000
+Message-ID: <20261124154623.340362-2-oss.patchbox@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261123113705.2297329-2-chunfeng.yun@mediatek.com>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_161216_999336_46B222B1 
-X-CRM114-Status: GOOD (  18.57  )
-X-Spam-Score: -2.3 (--)
+X-CRM114-CacheID: sfid-20261124_074636_118550_1D4163DA 
+X-CRM114-Status: GOOD (  15.30  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,52 +102,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 07:36:48PM +0800, Chunfeng Yun wrote:
-> In preparation for modularizing PCIe NHI support and allowing PCIe
-> and platform NHI drivers to be built as separate modules atop the
-> Thunderbolt core framework, several NHI functions and structures will
-> need to be exported.
-> 
-> Currently, several of these functions lack standard subsystem prefixes,
-> risking namespace pollution or collisions across the flat kernel symbol
-> namespace:
-> 
-> - ring_msix() lacks any subsystem prefix and diverges from all other
->   exported ring functions in the driver, which use the "tb_ring_" prefix.
-> - nhi_probe(), nhi_shutdown(), and nhi_pm_ops lack the standard "tb_"
->   prefix used across the Thunderbolt public interface (such as struct
->   tb_nhi and struct tb_nhi_ops).
-> - nhi_msi() is named after PCI MSI, even though the ISR simply schedules
->   the interrupt work and can serve as a generic ISR for non-PCIe platform
->   controllers as well.
-> 
-> Rename these functions and symbols to conform to Thunderbolt subsystem
-> naming conventions before exporting them:
-> 
-> - ring_msix       -> tb_ring_msix
+keystone_pm_runtime_init() calls of_find_matching_node() only to check
+whether it runs on a K2HK, K2E or K2L SoC. The node it finds is
+returned with its reference count raised, but the function only tests
+the pointer and never drops that reference. keystone_init() calls it
+once at boot, so a single reference is leaked.
 
-I think we can move MSI-X completely to pci.c. As far as I can tell ARM
-stuff is not going to need that. While there we can drop MSI, that has been
-never used (MSI-X was supported from day 0 by the HW).
+The compatibles in of_keystone_table are only used on the root node,
+so use of_machine_device_match(), which checks the root node without
+leaving a reference behind.
 
-Then I would just make the glue driver to pass ->irq to the core driver and
-if that's set it does the request_irq() and so on. And PCI side does not
-fill that because it uses MSIX always. Then we don't need to export the
-interrupt handler functions either.
+Fixes: 8620d2c536dc ("ARM: keystone: fix PM domain initcall to be keystone only")
+Signed-off-by: Yuho Choi <oss.patchbox@gmail.com>
+---
+Compile-tested only (ARM multi_v7_defconfig, W=1). I have no Keystone
+board to test it on. All uses of the "ti,k2hk", "ti,k2e" and "ti,k2l"
+compatibles in arch/arm/boot/dts are on the root node.
 
-> - nhi_msi         -> tb_nhi_isr
+ arch/arm/mach-keystone/keystone.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
+diff --git a/arch/arm/mach-keystone/keystone.c b/arch/arm/mach-keystone/keystone.c
+index f63671a3024c..4e1f02a73887 100644
+--- a/arch/arm/mach-keystone/keystone.c
++++ b/arch/arm/mach-keystone/keystone.c
+@@ -53,10 +53,7 @@ static const struct of_device_id of_keystone_table[] = {
+ 
+ static int __init keystone_pm_runtime_init(void)
+ {
+-	struct device_node *np;
+-
+-	np = of_find_matching_node(NULL, of_keystone_table);
+-	if (!np)
++	if (!of_machine_device_match(of_keystone_table))
+ 		return 0;
+ 
+ 	pm_clk_add_notifier(&platform_bus_type, &platform_domain_notifier);
 
-> - nhi_probe       -> tb_nhi_probe
-> - nhi_shutdown    -> tb_nhi_shutdown
-> - nhi_pm_ops      -> tb_nhi_pm_ops
+base-commit: 8dac6df92a2e66e2098bbc69061964cfe7e8375b
+-- 
+2.56.1
 
-These are good.
 
