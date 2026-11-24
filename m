@@ -2,122 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C99606A684
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 03:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932A3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jkNGoSme;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=rDWxIiFV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=beAhxLRA;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dUBfTU2b
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=baPHYrggxoOLvarHOfIl1pCBNTJ74QC7TJKrXOZSnO0=; b=jkNGoSme8XWK5rVkQhvla54cwN
-	rf99qnQM4nnAaGGjxm8dOR6/zrtrl6UcFL20UG/tmAq8O6NiG6BTS0TJL6+u6VuqeWb/p57EjMpWh
-	FbJ5nS6EkpeV8U4c39c03/fK/w0p3ByLKplsLVB9mz2Jh98PFzcOIv6/KiL8v62aJnV9JmApp/ePu
-	V3K+f4Kehyevc3BFVX8uU9UXcwFCv1uxuKKpmcdRMCkWbznFUgpnXQ4DxhBPnhnphC3JB1zfUPeIJ
-	BwV/gGROlNDhTdwJEWTYxh7diuG6+HUXBLDEYvCsTdVe7I4CqvkhP6GjbPWe2h8al2Psq7QhqB4vJ
-	yaZbmcog==;
+	bh=0uolOVqD40xxzEqeWG55ZDWSlt7NaVVPmj6fMxUPPhA=; b=beAhxLRAldOc92v7iucGA6Om0T
+	GP/IEpRCYtgm8luKJ1j1/nxOPew43gnrE9gTV8gn5LlC05nM1Ww5jUvyWxDsUxgCWa98sXgaiHmKW
+	VcaXBVVNIM59hrhz4TJtGBPhrrFhIx7LbM+oHA7dyPRLooThvF9opKIpmCEzRgbyE3D9pZgHQqkCL
+	7TZJQP3s9uxizL5gbG4zE1p59fWrvtpJf4iz9Mdaqym/wEMaVZFkbac9d8r0qxu8HfSNJOs1SzYzO
+	fcmBjcXw0L02wvYdBv3k0oFHZFmtPjZWP2w1sVCUA957EShPedxaohb2erNEOSg8Tkx562SsICsn1
+	qycSq8ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhex-00000005TtG-1ktI;
-	Tue, 24 Nov 2026 03:57:35 +0000
-Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
+	id 1xVhkd-00000005Uq1-2nvu;
+	Tue, 24 Nov 2026 04:03:27 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVheN-00000005TZf-0eEM
+	id 1xVhkV-00000005Up9-1xmV
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 03:57:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JGOHIqAA8sEYoYSB+R4VWcygr1qyG7taEFZNHVvP/AsWABHgSBvGWRW1/zPK8siG4BcsZ2ykC+NXtCS+jQe60vTsbB8pY7kdu+AmMZfQolmJVHZrgZlau+m4tbT0IT4ZCAvgF4ljtmHWR8+IkhUJ6adJGwF8GTZG3VhgOSuWAy+xG8C+2y3FMA9+uh6R1ywSnqZVbOncTl4rcEZ8/aKkkSZ8waaC/z87QE4o15c4A1q6PNE5dP5qi4wCkr808UMa7whZcFMOx4xytMOFtKrkyaqvq9jZfpm4hL8jgoHWNOKr8yUli0LJyxapkQY031wTIifRzzyTNJcymdmhtEpOPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=baPHYrggxoOLvarHOfIl1pCBNTJ74QC7TJKrXOZSnO0=;
- b=CRv1gwqWXUT4oZwIy1WPbn0r2wKBDERevuB/z1Mg4wZN9jUXdBsXsJqWeqef1aQbWYi/JhbFL91dBO56aoTU46fS4nfIUlB/97XV5ZvKhSBam+DozPL6rXaFkjoZJGWlP2cdW0fxDfqH/FicZ1yWJAjOTlKY12R2UsIOo9ppydlRDeliXUzvLLHBTUHxran61c6mTNYQkFTb9N2i4Q9Ym2uFTaNrROhp4lTCqffPouqQzo/S2jFx0OTp0IirWpqrYIv2C7ia0vwwTYYdwKGmYVQIlaWfJhddrOdIpAb4rNKLYx83bj1hRp8CL6XhRCueJtgCH6Kvz9fJfl6eDkuDxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=baPHYrggxoOLvarHOfIl1pCBNTJ74QC7TJKrXOZSnO0=;
- b=rDWxIiFVBFor5WbYYEwqMX3Fbn7Tbxt3vLix+b6gp+h2Qr0rxGWL+HkNBXh4txuHG4rvnbDfnfmI+Z8uybuEbYW2mkuJqMcpuMaqt3y5pt2M8/MT9fc9x/GAzF3QhhaxebQk6Ayyo1bC5MLxGSCr6F8xRTb5HPT4lfNy+nzEl4s=
-Received: from CH2PR19CA0023.namprd19.prod.outlook.com (2603:10b6:610:4d::33)
- by DS0PR12MB8526.namprd12.prod.outlook.com (2603:10b6:8:163::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 03:56:46 +0000
-Received: from DS8PEPF000000E0.namprd05.prod.outlook.com
- (2603:10b6:610:4d:cafe::5b) by CH2PR19CA0023.outlook.office365.com
- (2603:10b6:610:4d::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
- 24 Nov 2026 03:56:46 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- DS8PEPF000000E0.mail.protection.outlook.com (10.167.23.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 03:56:46 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
- 2026 21:56:45 -0600
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
- 2026 21:56:44 -0600
-Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
- Transport; Mon, 23 Nov 2026 21:56:41 -0600
-From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-To: <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <git@amd.com>, <shubhrajyoti.datta@gmail.com>, Michael Turquette
-	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, "Shubhrajyoti
- Datta" <shubhrajyoti.datta@amd.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v4 7/8] clk: clocking-wizard: Fix division by zero and unbounded register write
-Date: Tue, 24 Nov 2026 09:25:52 +0530
-Message-ID: <20261124035613.1968260-8-shubhrajyoti.datta@amd.com>
-X-Mailer: git-send-email 2.44.4
-In-Reply-To: <20261124035613.1968260-1-shubhrajyoti.datta@amd.com>
-References: <20261124035613.1968260-1-shubhrajyoti.datta@amd.com>
+	Tue, 24 Nov 2026 04:03:22 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id F0F886126F;
+	Tue, 24 Nov 2026 04:03:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B5A81F000D0;
+	Tue, 24 Nov 2026 04:03:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795492997;
+	bh=0uolOVqD40xxzEqeWG55ZDWSlt7NaVVPmj6fMxUPPhA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=dUBfTU2bZcriHyCyznmH+wtA4cnOoSaG8LaH1IiDJmFTGiErgOff/JaXdhZtcKNpR
+	 QVrWCpJegIFq7g/12U5wBrAGd+26SB9CbXYXNjEJddRYB/CEBLMRRSly+b67LsJFLa
+	 vH6tqLGB05fpyjzFuvcVfpD1qP1GdWX8X991h3E88f19Nm/bD3flaoI5G3ei9yJp78
+	 glKx0hXlkIKU7OobyUcTjw/wXDd5+EnqSvZQyJBYQ55CZJDfqAwbDsksWrIu7/TPu5
+	 J0l8jFnsHmTZuwZsGnBw/hhNHfDY31+c6PfotH7V5Kytit6yI755loWgbMEnvqOReH
+	 o7scafsqHqvow==
+X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
+From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
+To: Baolu Lu <baolu.lu@linux.intel.com>, linux-coco@lists.linux.dev
+Cc: baolu.lu@linux.intel.com, Alex Williamson <alex@shazbot.org>,
+	Alexey Kardashevskiy <aik@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Joerg Roedel <joro@8bytes.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Krishna Reddy <vdumpa@nvidia.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>,
+	Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>,
+	Ashish Kalra <ashish.kalra@amd.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	iommu@lists.linux.dev,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-tegra@vger.kernel.org, patches@lists.linux.dev
+Subject: Re: [PATCH v9 08/13] PCI/TSM: Keep connections active while device
+ contexts exist
+In-Reply-To: <0996eead-a63e-4a17-96d3-45ccd48cd4b1@linux.intel.com>
+References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
+ <20261116081935.85372-9-aneesh.kumar@kernel.org>
+ <0996eead-a63e-4a17-96d3-45ccd48cd4b1@linux.intel.com>
+Date: Tue, 24 Nov 2026 09:33:02 +0530
+Message-ID: <yq5awlq2c1vt.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS8PEPF000000E0:EE_|DS0PR12MB8526:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82a5e5ab-c34f-4d0a-18ef-08df49def5c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|7416014|82310400026|1800799024|376014|261102123227099003|261021123027099003|261021121427099003|11063799006|56012099006|10067099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: WsV/Sb/ujuD2nlifee2DIChhMywUXHFbziGNuOtz4sIAWklf+ToiOU6vd/aRRCtZ8cG9CgVHO9/OzN8iBBl+sjcojG+EfdizokOjwNVA1ojabXScaJjlbj57ym0UNV++JLBWg8HzTBjY1tR7lUZOB2/DrBXl3hezErxfXlT1bD3lblP6Hr/9oNZkVX/W20w9Bd/DiL7SNyLqbXfoSXHOYMbRWgBuIZ7hf2ffnNG7YOD7jxEtyLau6dozMMADXK4D/qRU/SgJsIfg/Bc277Q7un7h4QFfDIY+vXIUYkdJfF4iOFxfGUi6xp2Isc4jvhrWBHJLHPjpTzJ4Al0E3rwgjY0Nk7V9eFwhnMw2kCggbiusvubrK+WUO/c7kWzeMQ076opXyIZ0hn/f40mA/90mfBUaSmHZ4Q9UKPgBttxjzy+MnIOXmYY22NbvrNBor8rgrLVBRb4Pr2rtQuyZesowZvWhXaZd2wIvEeJtuJQFAFSg9Inx37yEAeufI/bYHQH1+pjNQXTYcNlpcRzm0h8lMU02JautBYJhAtmFgOon9NVCL+bhlStd9DufBVZdgHuDLh9sdhtPUA68yFoG+hM/2IHdL3h2sruGcK4g++TltBNLdXzeDt+K/UuNrbRTqs7PJIYlJSf3XQpv90fAASw3NYnIRNbpjQJLPAW6cPJt4qgFpfrOzUxRfic8Sgt7qc24RgtbuKp3/kxEiHim+/ucyQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(7416014)(82310400026)(1800799024)(376014)(261102123227099003)(261021123027099003)(261021121427099003)(11063799006)(56012099006)(10067099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 8jOt/pLQaPFH+SG6nDHX3U/5QYn85k4UexG8npk9Rs9t6msadEYfoRxe0wEeRYqjfrx7YzOcgyIgi1a1kW96zRUr3qSXEwa16NNF+/fIdq39o7Dkint39DfzhP9zOBO3CYYX/eFdQU+S9s4Mlk1NJ62lvrLz4B7Y7iX7P2Nvl/LUUJgWq8Yar85/rPpsdX077xqsN3BXhSprFyNLGz5WmmjjU4lycy1nzcX6qCXpMYh1nrnYS7lQIfjjVPLLyOTJ7ecV14u6HOzivX39E4jBIEG3QWDyJOoCS2gApcrNZ8Ud9oR1gmcqGA6zfdU1Q2alBaTOyJ35fHtPVQuhAOFFxawcn/P2qWmD9+34/T0NBKHrrZO5SgZix/thWU4Z0g6QBQzqQ2FM/paos6dQkAKwoE/ja75wRDNsKE9rUbecDNOfkw2ifqAvH2A1REkup2bF
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 03:56:46.3734
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82a5e5ab-c34f-4d0a-18ef-08df49def5c0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS8PEPF000000E0.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8526
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_195659_496374_04330720 
-X-CRM114-Status: GOOD (  14.47  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,80 +98,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-1. clk_wzrd_determine_rate(): DIV_ROUND_CLOSEST() can return 0 when
-   the requested rate greatly exceeds the parent rate, causing a
-   division by zero on the subsequent parent_rate / div. Clamp div
-   to a minimum of 1.
+Baolu Lu <baolu.lu@linux.intel.com> writes:
 
-2. clk_wzrd_dynamic_reconfig(): min_t() result was not assigned back
-   to value, so the cap to WZRD_DR_MAX_INT_DIV_VALUE was never applied
-   before the register write.
+> On 11/16/2026 4:19 PM, Aneesh Kumar K.V (Arm) wrote:
+>> Add PCI TEE Security Manager (TSM) contexts that prevent PF0 disconnect
+>> while in use. Verify that the device is connected to the requested TSM.
+>> Each successful get returns a separate context and requires a matching
+>> put. Reject disconnect with -EBUSY until all contexts are released.
+>> 
+>> Remove the legacy bind and unbind interface. Device security state is
+>> managed by the backend, so also remove the associated "bound" sysfs
+>> attribute and its ABI documentation.
+>
+> This patch does two things: add pci tsm contexts to keep the pf0 active
+> while in use, and remove the old device bind/unbind interface. Could
+> these changes be split into separate patches? That would make the
+> changes easier to review.
+>
 
-3. clk_wzrd_get_divisors() and clk_wzrd_get_divisors_ver(): If rate is
-   0, DIV_ROUND_CLOSEST_ULL divides by zero. Return -EINVAL early.
+Sure, I will split the bind/unbind removal into a separate patch.
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
----
-
-(no changes since v2)
-
-Changes in v2:
-- New patch
-
- drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-index 7fe8d0d4cfba..046efa5c77c9 100644
---- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-@@ -303,7 +303,7 @@ static int clk_wzrd_dynamic_reconfig(struct clk_hw *hw, unsigned long rate,
- 	value = DIV_ROUND_CLOSEST(parent_rate, rate);
- 
- 	/* Cap the value to max */
--	min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
-+	value = min_t(u32, value, WZRD_DR_MAX_INT_DIV_VALUE);
- 
- 	/* Set divisor and clear phase offset */
- 	writel(value, div_addr);
-@@ -341,6 +341,8 @@ static int clk_wzrd_determine_rate(struct clk_hw *hw,
- 	 * achievable
- 	 */
- 	div = DIV_ROUND_CLOSEST(req->best_parent_rate, req->rate);
-+	if (!div)
-+		div = 1;
- 
- 	req->rate = req->best_parent_rate / div;
- 
-@@ -355,6 +357,9 @@ static int clk_wzrd_get_divisors_ver(struct clk_hw *hw, unsigned long rate,
- 	u32 m, d, o;
- 	u32 mmin, mmax, dmin, dmax, omin, omax;
- 
-+	if (!rate)
-+		return -EINVAL;
-+
- 	mmin = VER_WZRD_M_MIN;
- 	mmax = VER_WZRD_M_MAX;
- 	dmin = VER_WZRD_D_MIN;
-@@ -397,6 +402,9 @@ static int clk_wzrd_get_divisors(struct clk_hw *hw, unsigned long rate,
- 	u64 m, d, o;
- 	u64 mmin, mmax, dmin, dmax, omin, omax, mdmin, mdmax;
- 
-+	if (!rate)
-+		return -EINVAL;
-+
- 	mmin = WZRD_M_MIN << 3;
- 	mmax = WZRD_M_MAX << 3;
- 	dmin = WZRD_D_MIN;
--- 
-2.34.1
-
+-aneesh
 
