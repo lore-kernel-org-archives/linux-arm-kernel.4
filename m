@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99901606A322
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4293606A326
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OqUiUPI9;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AqXbJWLq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wmomai+1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AjEW+11E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/JHsj5XYVb93AB37wVwmsxk2ADTrBnbXPrV926MbgJ0=; b=OqUiUPI9CuhyC3+R8pd7QJhUus
-	UaHbxPWoZga6v96Z99DdnFgQHM2JS+FezbyL0Jcoj/ZBR0k/PmFKENHjGIw9WmHbxvr8hQngPYTEz
-	1WcpVCzH5UY4VaZiflW8a7A4DHfwP7teqDG/35yqakEsUYMOx1IKu2iUFuwfp2/miyUNJGydN3Wzt
-	Fsp0rA2hwzg8Jvb8uR4STVx0T6522l4h3HnVg1rgpZ+t8pcucTY9D7VjSGMI8z/JYKGlDKQAOIXiu
-	RHvTLgfYo8pnqCMbSxGFlG/z9bTKB3p/Q5rLtowNVZUGu6rM7gBwABe/DtHEMNumqhcxziGdwD5mW
-	rNR+Sr+w==;
+	bh=gGYGuSuaVpODQQ3es/+vsxFr8tOJptjHSxqFWklmGrU=; b=Wmomai+1CEaI3yPO1UT/uveKiw
+	Ulqw8oujS7dYSXbB4fkLvLhHN7RlW2UPug+emtEK81Zus2JT6OYcg5r3nJ4C2guqO2rQqSC680QMM
+	IXQUH8nVTH/LGfWUZX+hrijlmENlmNM45U7biO6/5f4B3FNVFPU0DZO9YmF77gLAN/7o9zWSP2+k4
+	8wbFKtIQ0oUcJ1Y8hT0iDtmN/+kxq/f6pOFCghXc7/raHEgZPaZ2vf3xNCbAXKuhcPEKset7DeGW+
+	p8Mb5Ow96ItC7aJr79g0y5LfDeq0ZXTsJJ5rwVLM8VGqzSO2Id7FoK3FdXX4ikSDM+V3K+8rNwafi
+	0hZmYaIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoyw-00000006OTy-0AXv;
-	Tue, 24 Nov 2026 11:46:42 +0000
+	id 1xVoyv-00000006OT0-2c62;
+	Tue, 24 Nov 2026 11:46:41 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoyK-00000006O6H-2lsR
+	id 1xVoyK-00000006O6F-12tq
 	for linux-arm-kernel@lists.infradead.org;
 	Tue, 24 Nov 2026 11:46:04 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6A66845936;
+	by sea.source.kernel.org (Postfix) with ESMTP id 07FB5459EC;
 	Tue, 24 Nov 2026 11:46:04 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795520764;
-	b=toaNHezfPPfxIlIrMNsRXZ1Hq28k8StVmuBnCiJnsepZuX9G5cV7cLYwsL8tFs4HLyXD
-	 JKjCOfnCia9Emeqg6ZYXNpvyBh6Drs/tuPT0LFFwqeBe7YrQJSnHlhg2EgahYcedwnSc4
-	 +KbH5d0tyEQc9lWJitkjCFh+KjF4unz4NbqufaI2wzL0TGguuVaNILdwg2mt4fOuIEmF1
-	 GjVZt5/4fwZBs4p9HmR9Wvry5ZGmM7wFApNhYkL34f3zduUSUvdmnUa2HY8F0VNA3MdB/
-	 RxogX35K1TCuBUTOUVgV00luYaYWrXcldFlsOy0VDpfrsKnv6C1clLLxQB8sMoK6zNA==
+	t=1795520763;
+	b=gFcu6ai6ZKCnIMea6xFMGK9bnLcqmgh5nMkTu8BjiLvgtXuQyxH/bA5LfNie4TGQgXqb
+	 uYgCDwv5YY0njYRFOqJ9CmxvGYRV5AzZP4cqwK/mAK2OQetLGpW5ttnKq/9+7wTNgb+0M
+	 jWtjt/XmS9+I4Nk+qQ3R0A0uSIphmdyVH9WL0spARBWn6e9dsCjz0YNT+RWXdj4LTg3Dr
+	 BTFqK2mIuinyxnEYhRLkJvk9qOQrkmNew/hCmsgtewkKj9mDmzWHIfY1gn2BcRnXYihM5
+	 YngXWmxqomhj4TTZKQ4mrYMTx90QDaY6FppGK5HBPYsA6ftoI0KhYEE/KF2eaEm0QVA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795520764;
+	c=relaxed/relaxed; t=1795520763;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=/JHsj5XYVb93AB37wVwmsxk2ADTrBnbXPrV926MbgJ0=;
-	b=jzbejrh1sCIZ4FfluTmsW+LUk3fq/JVwFWlciRGUoxS3/s0KtDr2CQP+JeRZ0Tw6iQ+1
-	 +1gtQWpNHYDm6gdd+2gOqub3T+bNaUAtJJ3xQBQuyX3hPkj2kU19+/oohHJEdv0YuPP6i
-	 yyvQEI3ML/tWYwqP+LAE7UjsWwx+rlzqQQRfUYNcKmAc3zrljawaqLr9oFFLh225EGRS9
-	 Sj0efKbAkVf+0NEBl63NaibRgu4lOTs9zLgR9kS/fFrxsgqGrW8h8UiHxd/zqS4XE42Vg
-	 /Gho9rV3i7puPK2uz9mOotXQ5YDq9PtsgeTcXFS2+eih1xHrf3bYf3wZmzc/TmQxVDQ==
+	bh=gGYGuSuaVpODQQ3es/+vsxFr8tOJptjHSxqFWklmGrU=;
+	b=A+FpvkwkD9KG71YEMgmA7lvF8BB5FtdEMChXJwhV2Oya0jrdPhYDowmz4c3HCMREwELQ
+	 eaRkJe0viR/m5+DOOmQ3E78bPqSuro89cIHTy4+6DglPLGY6hlH9u6rOc3C/n4P9a6T5n
+	 Ref6aIlQJi6I0iFKByHDC36OQlJCfkm9dn+sehLUdTVvIqK7aNQbYfaFJg1aHYdPOM+vs
+	 yqZHfbfEV2nZ3LysffqfNid6UGl1UdXar0kkb4vLVMGuAZhqIjf+G3RJRHkHXS3faKHR6
+	 dU6dvEhOhi9x0TTK7FCBaE46xZwbIE3NdcqxYi3OIiBEG+1C83ZhWTIg05hte+RbdMQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 534011F00AD3;
-	Tue, 24 Nov 2026 11:45:48 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 34C671F00A19;
+	Tue, 24 Nov 2026 11:45:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795520764;
-	bh=/JHsj5XYVb93AB37wVwmsxk2ADTrBnbXPrV926MbgJ0=;
+	s=k20260515; t=1795520763;
+	bh=gGYGuSuaVpODQQ3es/+vsxFr8tOJptjHSxqFWklmGrU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=AqXbJWLqmnGZMpoT/jQoq9oDEesO694i7Ly0Z6llyONuNlg3rjCKPZST6LnrYscdl
-	 SwzLGmDigsGqX1Vmp36JUf5NejAxU567YHXXGVhlIAzz0LyESaaDKBFZFHluCHbXde
-	 +vN3Obq+XLNURPDJ3Y5bBTy7ZUXFCLvZt02USc5SiNKR4z5W9MXOY8OfzJH8qwHp1A
-	 hFkA6Tep4R83G+WLOg0f8rWPd08irykbxLQOGa9aKyj9xGiU9prHWkr68IQL5IiF9z
-	 N3OlWc4NnoxWZKGlrVDaRJMuZ5r9D+dEZNuUmPv0fqMMxoVre2HCR0ZCwn8+TPYboO
-	 bXF7nf0Z4b32Q==
+	b=AjEW+11EgQHxLLmnt/T6Ow7jncLIz6+lM6wjotL9RC9iVv6ayQrfz/b+eJZsNtD2c
+	 jvwSoChy25IMfKMw3Wcez4K/2/XhK+cQ4QSJytHCxWqRSxiWrsQbJ6ZKvj+7QbU8p9
+	 pth/uao5zcjaeD6HbJ5S5cILBngEZY6pfI8QqrCsl8LTIOGFt+aUOVblBh0DIA8zAG
+	 6e8ijuA0NJBwDMmPqAz1KOF/vVmUmsLfVL+mXJMosgBzx7hWcqfrm9CyNc/ECsS46q
+	 hHeM82VspGeYl1RWiNg4mdh8Wu+moM5mM2pQ/HcWHs1cEJVajzR1lwQH+8KlA/yacd
+	 e8YZE1wfrI8Zg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7FC194CA23;
+	by lkml.kernel.org (Postfix) with ESMTP id ED38E4CA33;
 	Tue, 24 Nov 2026 11:45:28 +0000 (UTC)
 From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
-Date: Tue, 24 Nov 2026 17:15:17 +0530
-Subject: [PATCH v13 15/20] dt-bindings: dma: ti: Add K3 PKTDMA V2
+Date: Tue, 24 Nov 2026 17:15:21 +0530
+Subject: [PATCH v13 19/20] dmaengine: ti: k3-udma-v2: Update glue layer to
+ support PKTDMA V2
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-dma-upstream-v13-v13-15-bd4251fdc6d4@ti.com>
+Message-Id: <20261124-dma-upstream-v13-v13-19-bd4251fdc6d4@ti.com>
 References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
 In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
 To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -89,14 +90,13 @@ To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520724; l=9145;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520724; l=13872;
  i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
- bh=g+XPjcM/yGpqSIZFeMbqxUU830r1orA7/OBSg0r3owI=;
- b=P/0MufbImaygPVZfTI4/fvXQRLgwKj/xjwd4dKMCgr5ALBRrotZALo1w8DcIokxBnS88HwxN8
- ua0UwwtjhQbDY7iOt5ZmmoJfjKCbzfOJiwPRkD1Ml3HzY2heVYYBuPY
+ bh=bHxeE83uSDmZeHn0L8pix2/hfsPaG6sGhBnO0c0WLdE=;
+ b=Kb3TzvxYfrzhwNArKvVjbRWFzKleChurSdQGhnenuFi18wFkpraQHaK0T+9On/xk4+1hgeBox
+ AAbZDf96yBQA1Z3Wlf85PpiPuRkaXvO3Gw9BpaJYQKr9NauD7PTn4tl
 X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
  pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
 X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
@@ -124,211 +124,391 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 
-New binding document for Texas Instruments K3 Packet DMA (PKTDMA) V2.
+Update glue layer to support PKTDMA V2 for non DMAengine users.
 
-PKTDMA V2 is introduced as part of AM62L.
+The updates include
+- Handling absence of TISCI
+- Direct IRQs
+- Autopair: Lack of PSIL pair.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
 Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 ---
- .../bindings/dma/ti/ti,am62l-dmss-pktdma.yaml      | 189 +++++++++++++++++++++
- 1 file changed, 189 insertions(+)
+ drivers/dma/ti/Kconfig           |   2 +-
+ drivers/dma/ti/k3-udma-glue.c    | 190 ++++++++++++++++++++++++++++++---------
+ drivers/dma/ti/k3-udma-private.c |   5 ++
+ drivers/dma/ti/k3-udma.h         |  13 +++
+ 4 files changed, 169 insertions(+), 41 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-pktdma.yaml b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-pktdma.yaml
-new file mode 100644
-index 0000000000000..caeacd4cf5ab3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-pktdma.yaml
-@@ -0,0 +1,189 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2026 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/ti/ti,am62l-dmss-pktdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/dma/ti/Kconfig b/drivers/dma/ti/Kconfig
+index e6a2cf37062e7..e7a579f42b584 100644
+--- a/drivers/dma/ti/Kconfig
++++ b/drivers/dma/ti/Kconfig
+@@ -68,7 +68,7 @@ config TI_K3_UDMA_COMMON
+ config TI_K3_UDMA_GLUE_LAYER
+ 	tristate "Texas Instruments UDMA Glue layer for non DMAengine users"
+ 	depends on ARCH_K3 || COMPILE_TEST
+-	depends on TI_K3_UDMA
++	depends on TI_K3_UDMA || TI_K3_UDMA_V2
+ 	help
+ 	  Say y here to support the K3 NAVSS DMA glue interface
+ 	  If unsure, say N.
+diff --git a/drivers/dma/ti/k3-udma-glue.c b/drivers/dma/ti/k3-udma-glue.c
+index d25f8f46a4301..681e084f8893e 100644
+--- a/drivers/dma/ti/k3-udma-glue.c
++++ b/drivers/dma/ti/k3-udma-glue.c
+@@ -12,6 +12,7 @@
+ #include <linux/dma-mapping.h>
+ #include <linux/io.h>
+ #include <linux/init.h>
++#include <linux/iopoll.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+ #include <linux/soc/ti/k3-ringacc.h>
+@@ -267,6 +268,23 @@ static int k3_udma_glue_cfg_tx_chn(struct k3_udma_glue_tx_channel *tx_chn)
+ 	const struct udma_tisci_rm *tisci_rm = tx_chn->common.tisci_rm;
+ 	struct ti_sci_msg_rm_udmap_tx_ch_cfg req;
+ 
++	if (!tisci_rm->tisci) {
++		u32 val = 0;
 +
-+title: Texas Instruments K3 DMSS PKTDMA V2
++		if (tx_chn->tx_pause_on_err)
++			val |= UDMA_CHAN_CFG_PAUSE_ON_ERR;
++		if (tx_chn->tx_filt_einfo)
++			val |= UDMA_CHAN_CFG_FILT_EINFO;
++		if (tx_chn->tx_filt_pswords)
++			val |= UDMA_CHAN_CFG_FILT_PSWORDS;
++		if (tx_chn->tx_supr_tdpkt)
++			val |= UDMA_CHAN_CFG_TX_SUPR_TDPKT;
 +
-+maintainers:
-+  - Sai Sree Kartheek Adivi <s-adivi@ti.com>
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CFG_REG, val);
 +
-+description:
-+  The PKTDMA V2 is intended to perform similar functions as the packet mode
-+  channels of K3 UDMA-P. PKTDMA V2 only includes Split channels to service
-+  PSI-L based peripherals.
++		return 0;
++	}
 +
-+  The peripherals can be PSI-L native or legacy, non PSI-L native peripherals
-+  with PDMAs. PDMA is tasked to act as a bridge between the PSI-L fabric and the
-+  legacy peripheral.
+ 	memset(&req, 0, sizeof(req));
+ 
+ 	req.valid_params = TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |
+@@ -528,21 +546,39 @@ int k3_udma_glue_enable_tx_chn(struct k3_udma_glue_tx_channel *tx_chn)
+ {
+ 	int ret;
+ 
+-	ret = xudma_navss_psil_pair(tx_chn->common.udmax,
+-				    tx_chn->common.src_thread,
+-				    tx_chn->common.dst_thread);
+-	if (ret) {
+-		dev_err(tx_chn->common.dev, "PSI-L request err %d\n", ret);
+-		return ret;
+-	}
++	if (tx_chn->common.udmax->match_data->version == K3_UDMA_V1) {
++		ret = xudma_navss_psil_pair(tx_chn->common.udmax,
++					    tx_chn->common.src_thread,
++					    tx_chn->common.dst_thread);
++		if (ret) {
++			dev_err(tx_chn->common.dev, "PSI-L request err %d\n", ret);
++			return ret;
++		}
+ 
+-	tx_chn->psil_paired = true;
++		tx_chn->psil_paired = true;
+ 
+-	xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_PEER_RT_EN_REG,
+-			    UDMA_PEER_RT_EN_ENABLE);
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_PEER_RT_EN_REG,
++				    UDMA_PEER_RT_EN_ENABLE);
+ 
+-	xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG,
+-			    UDMA_CHAN_RT_CTL_EN);
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG,
++				    UDMA_CHAN_RT_CTL_EN);
++	} else {
++		u32 val;
 +
-+allOf:
-+  - $ref: /schemas/dma/dma-controller.yaml#
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG,
++				    UDMA_CHAN_RT_CTL_AUTOPAIR | UDMA_CHAN_RT_CTL_EN);
 +
-+properties:
-+  compatible:
-+    const: ti,am62l-dmss-pktdma
++		ret = read_poll_timeout(xudma_tchanrt_read, val,
++					val & (UDMA_CHAN_RT_CTL_PAIR_COMPLETE |
++					       UDMA_CHAN_RT_CTL_PAIR_TIMEOUT),
++					100, 500, false,
++					tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG);
++		if (ret || (val & UDMA_CHAN_RT_CTL_PAIR_TIMEOUT)) {
++			dev_err(tx_chn->common.dev, "TX channel autopair timeout\n");
++			xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG, 0);
++			return -ETIMEDOUT;
++		}
++	}
+ 
+ 	k3_udma_glue_dump_tx_rt_chn(tx_chn, "txchn en");
+ 	return 0;
+@@ -576,8 +612,16 @@ void k3_udma_glue_tdown_tx_chn(struct k3_udma_glue_tx_channel *tx_chn,
+ 
+ 	k3_udma_glue_dump_tx_rt_chn(tx_chn, "txchn tdown1");
+ 
+-	xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG,
+-			    UDMA_CHAN_RT_CTL_EN | UDMA_CHAN_RT_CTL_TDOWN);
++	if (tx_chn->common.udmax->match_data->version == K3_UDMA_V1) {
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG,
++				    UDMA_CHAN_RT_CTL_EN | UDMA_CHAN_RT_CTL_TDOWN);
++	} else {
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_PEER_REG(8),
++				    UDMA_CHAN_RT_PEER_REG8_FLUSH);
++		val = xudma_tchanrt_read(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG);
++		xudma_tchanrt_write(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG,
++				    val | UDMA_CHAN_RT_CTL_TDOWN);
++	}
+ 
+ 	val = xudma_tchanrt_read(tx_chn->udma_tchanx, UDMA_CHAN_RT_CTL_REG);
+ 
+@@ -592,10 +636,12 @@ void k3_udma_glue_tdown_tx_chn(struct k3_udma_glue_tx_channel *tx_chn,
+ 		i++;
+ 	}
+ 
+-	val = xudma_tchanrt_read(tx_chn->udma_tchanx,
+-				 UDMA_CHAN_RT_PEER_RT_EN_REG);
+-	if (sync && (val & UDMA_PEER_RT_EN_ENABLE))
+-		dev_err(tx_chn->common.dev, "TX tdown peer not stopped\n");
++	if (tx_chn->common.udmax->match_data->version == K3_UDMA_V1) {
++		val = xudma_tchanrt_read(tx_chn->udma_tchanx,
++					 UDMA_CHAN_RT_PEER_RT_EN_REG);
++		if (sync && (val & UDMA_PEER_RT_EN_ENABLE))
++			dev_err(tx_chn->common.dev, "TX tdown peer not stopped\n");
++	}
+ 	k3_udma_glue_dump_tx_rt_chn(tx_chn, "txchn tdown2");
+ }
+ EXPORT_SYMBOL_GPL(k3_udma_glue_tdown_tx_chn);
+@@ -708,7 +754,6 @@ static int k3_udma_glue_cfg_rx_chn(struct k3_udma_glue_rx_channel *rx_chn)
+ 			   TI_SCI_MSG_VALUE_RM_UDMAP_CH_CHAN_TYPE_VALID |
+ 			   TI_SCI_MSG_VALUE_RM_UDMAP_CH_ATYPE_VALID;
+ 
+-	req.nav_id = tisci_rm->tisci_dev_id;
+ 	req.index = rx_chn->udma_rchan_id;
+ 	req.rx_fetch_size = rx_chn->common.hdesc_size >> 2;
+ 	/*
+@@ -728,11 +773,24 @@ static int k3_udma_glue_cfg_rx_chn(struct k3_udma_glue_rx_channel *rx_chn)
+ 	req.rx_chan_type = TI_SCI_RM_UDMAP_CHAN_TYPE_PKT_PBRR;
+ 	req.rx_atype = rx_chn->common.atype_asel;
+ 
++	if (!tisci_rm->tisci) {
++		u32 val = 0;
 +
-+  reg:
-+    items:
-+      - description: Packet DMA Control & Status
-+      - description: Channel Realtime
-+      - description: Ring Realtime
++		if (!rx_chn->common.epib)
++			val |= UDMA_CHAN_CFG_FILT_EINFO;
++		if (!rx_chn->common.psdata_size)
++			val |= UDMA_CHAN_CFG_FILT_PSWORDS;
 +
-+  reg-names:
-+    items:
-+      - const: gcfg
-+      - const: chanrt
-+      - const: ringrt
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_CFG_REG, val);
 +
-+  "#dma-cells":
-+    const: 2
-+    description: |
-+      cell 1: Flow ID for the peripheral
-+        This is the hardware flow index assigned to the peripheral. TX and RX
-+        flow indices are mixed across the valid range. For XYMF peripherals
-+        (SPI, CRC32) each chip-select/FIFO has a distinct flow ID; use the
-+        flow ID for the specific direction and chip-select being requested.
++		return 0;
++	}
 +
-+        Please refer to the device documentation for the flow map.
++	req.nav_id = tisci_rm->tisci_dev_id;
+ 	ret = tisci_rm->tisci_udmap_ops->rx_ch_cfg(tisci_rm->tisci, &req);
+ 	if (ret)
+ 		dev_err(rx_chn->common.dev, "rchan%d cfg failed %d\n",
+-			rx_chn->udma_rchan_id, ret);
+-
++				rx_chn->udma_rchan_id, ret);
+ 	return ret;
+ }
+ 
+@@ -781,8 +839,11 @@ static int k3_udma_glue_cfg_rx_flow(struct k3_udma_glue_rx_channel *rx_chn,
+ 	}
+ 
+ 	if (xudma_is_pktdma(rx_chn->common.udmax)) {
+-		rx_ringfdq_id = flow->udma_rflow_id +
++		if (tisci_rm->tisci)
++			rx_ringfdq_id = flow->udma_rflow_id +
+ 				xudma_get_rflow_ring_offset(rx_chn->common.udmax);
++		else
++			rx_ringfdq_id = flow->udma_rflow_id;
+ 		rx_ring_id = 0;
+ 	} else {
+ 		rx_ring_id = flow_cfg->ring_rxq_id;
+@@ -829,6 +890,21 @@ static int k3_udma_glue_cfg_rx_flow(struct k3_udma_glue_rx_channel *rx_chn,
+ 		rx_ringfdq_id = k3_ringacc_get_ring_id(flow->ringrxfdq);
+ 	}
+ 
++	if (!tisci_rm->tisci) {
++		u32 val = 0;
 +
-+      cell 2: ASEL value for the channel
++		if (rx_chn->common.epib)
++			val |= UDMA_FLOWRT_RFA_RX_EINFO_PRESENT;
++		if (rx_chn->common.psdata_size)
++			val |= UDMA_FLOWRT_RFA_RX_PSINFO_PRESENT;
++		if (flow_cfg->rx_error_handling)
++			val |= UDMA_FLOWRT_RFA_RX_ERROR_HANDLING;
 +
-+  interrupts:
-+    maxItems: 78
-+    description:
-+      Interrupts for DMA channels.
++		xudma_rflowrt_write(flow->udma_rflow, UDMA_RX_FLOWRT_RFA, val);
++		rx_chn->flows_ready++;
++		return 0;
++	}
 +
-+  interrupt-names:
-+    minItems: 78
-+    maxItems: 78
-+    items:
-+      pattern: "^(t|r)x-([0-9]|1[0-3]|1[6-9]|2[0-9]|3[0-9]|4[0-7]|6[4-9]|7[0-9]|9[6-9]|10[0-9]|11[01])$"
-+    description:
-+      The name of the interrupt corresponding to the DMA flow.
-+      TX flows use the "tx-" prefix, RX flows use the "rx-" prefix.
+ 	memset(&req, 0, sizeof(req));
+ 
+ 	req.valid_params =
+@@ -1334,6 +1410,9 @@ int k3_udma_glue_rx_flow_enable(struct k3_udma_glue_rx_channel *rx_chn,
+ 	if (!rx_chn->remote)
+ 		return -EINVAL;
+ 
++	if (!tisci_rm->tisci)
++		return 0;
 +
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - "#dma-cells"
-+  - interrupts
-+  - interrupt-names
+ 	rx_ring_id = k3_ringacc_get_ring_id(flow->ringrx);
+ 	rx_ringfdq_id = k3_ringacc_get_ring_id(flow->ringrxfdq);
+ 
+@@ -1375,6 +1454,9 @@ int k3_udma_glue_rx_flow_disable(struct k3_udma_glue_rx_channel *rx_chn,
+ 	if (!rx_chn->remote)
+ 		return -EINVAL;
+ 
++	if (!tisci_rm->tisci)
++		return 0;
 +
-+unevaluatedProperties: false
+ 	memset(&req, 0, sizeof(req));
+ 	req.valid_params =
+ 			TI_SCI_MSG_VALUE_RM_UDMAP_FLOW_DEST_QNUM_VALID |
+@@ -1410,21 +1492,39 @@ int k3_udma_glue_enable_rx_chn(struct k3_udma_glue_rx_channel *rx_chn)
+ 	if (rx_chn->flows_ready < rx_chn->flow_num)
+ 		return -EINVAL;
+ 
+-	ret = xudma_navss_psil_pair(rx_chn->common.udmax,
+-				    rx_chn->common.src_thread,
+-				    rx_chn->common.dst_thread);
+-	if (ret) {
+-		dev_err(rx_chn->common.dev, "PSI-L request err %d\n", ret);
+-		return ret;
+-	}
++	if (rx_chn->common.udmax->match_data->version == K3_UDMA_V1) {
++		ret = xudma_navss_psil_pair(rx_chn->common.udmax,
++					    rx_chn->common.src_thread,
++					    rx_chn->common.dst_thread);
++		if (ret) {
++			dev_err(rx_chn->common.dev, "PSI-L request err %d\n", ret);
++			return ret;
++		}
+ 
+-	rx_chn->psil_paired = true;
++		rx_chn->psil_paired = true;
+ 
+-	xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG,
+-			    UDMA_CHAN_RT_CTL_EN);
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG,
++				    UDMA_CHAN_RT_CTL_EN);
+ 
+-	xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_PEER_RT_EN_REG,
+-			    UDMA_PEER_RT_EN_ENABLE);
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_PEER_RT_EN_REG,
++				    UDMA_PEER_RT_EN_ENABLE);
++	} else {
++		u32 val;
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG,
++				    UDMA_CHAN_RT_CTL_AUTOPAIR | UDMA_CHAN_RT_CTL_EN);
 +
-+    dma-controller@485c0000 {
-+        compatible = "ti,am62l-dmss-pktdma";
-+        reg = <0x485c0000 0x4000>,
-+              <0x48900000 0x80000>,
-+              <0x47200000 0x100000>;
-+        reg-names = "gcfg", "chanrt", "ringrt";
++		ret = read_poll_timeout(xudma_rchanrt_read, val,
++					val & (UDMA_CHAN_RT_CTL_PAIR_COMPLETE |
++					       UDMA_CHAN_RT_CTL_PAIR_TIMEOUT),
++					100, 500, false,
++					rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG);
++		if (ret || (val & UDMA_CHAN_RT_CTL_PAIR_TIMEOUT)) {
++			dev_err(rx_chn->common.dev, "RX channel autopair timeout\n");
++			xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG, 0);
++			return -ETIMEDOUT;
++		}
++	}
+ 
+ 	k3_udma_glue_dump_rx_rt_chn(rx_chn, "rxrt en");
+ 	return 0;
+@@ -1461,8 +1561,16 @@ void k3_udma_glue_tdown_rx_chn(struct k3_udma_glue_rx_channel *rx_chn,
+ 
+ 	k3_udma_glue_dump_rx_rt_chn(rx_chn, "rxrt tdown1");
+ 
+-	xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_PEER_RT_EN_REG,
+-			    UDMA_PEER_RT_EN_ENABLE | UDMA_PEER_RT_EN_TEARDOWN);
++	if (rx_chn->common.udmax->match_data->version == K3_UDMA_V1) {
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_PEER_RT_EN_REG,
++				    UDMA_PEER_RT_EN_ENABLE | UDMA_PEER_RT_EN_TEARDOWN);
++	} else {
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_PEER_REG(8),
++				    UDMA_CHAN_RT_PEER_REG8_FLUSH);
++		val = xudma_rchanrt_read(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG);
++		xudma_rchanrt_write(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG,
++				    val | UDMA_CHAN_RT_CTL_TDOWN);
++	}
+ 
+ 	val = xudma_rchanrt_read(rx_chn->udma_rchanx, UDMA_CHAN_RT_CTL_REG);
+ 
+@@ -1477,10 +1585,12 @@ void k3_udma_glue_tdown_rx_chn(struct k3_udma_glue_rx_channel *rx_chn,
+ 		i++;
+ 	}
+ 
+-	val = xudma_rchanrt_read(rx_chn->udma_rchanx,
+-				 UDMA_CHAN_RT_PEER_RT_EN_REG);
+-	if (sync && (val & UDMA_PEER_RT_EN_ENABLE))
+-		dev_err(rx_chn->common.dev, "TX tdown peer not stopped\n");
++	if (rx_chn->common.udmax->match_data->version == K3_UDMA_V1) {
++		val = xudma_rchanrt_read(rx_chn->udma_rchanx,
++					 UDMA_CHAN_RT_PEER_RT_EN_REG);
++		if (sync && (val & UDMA_PEER_RT_EN_ENABLE))
++			dev_err(rx_chn->common.dev, "TX tdown peer not stopped\n");
++	}
+ 	k3_udma_glue_dump_rx_rt_chn(rx_chn, "rxrt tdown2");
+ }
+ EXPORT_SYMBOL_GPL(k3_udma_glue_tdown_rx_chn);
+diff --git a/drivers/dma/ti/k3-udma-private.c b/drivers/dma/ti/k3-udma-private.c
+index 3f6235cd4d72a..1acab00bbd5a9 100644
+--- a/drivers/dma/ti/k3-udma-private.c
++++ b/drivers/dma/ti/k3-udma-private.c
+@@ -3,6 +3,10 @@
+  *  Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com
+  *  Author: Peter Ujfalusi <peter.ujfalusi@ti.com>
+  */
++#include <linux/irq.h>
++#include <linux/irqchip.h>
++#include <linux/irqdomain.h>
++#include <linux/interrupt.h>
+ #include <linux/of.h>
+ #include <linux/of_platform.h>
+ 
+@@ -181,6 +185,7 @@ void xudma_##res##rt_write(struct udma_##res *p, int reg, u32 val)	\
+ EXPORT_SYMBOL(xudma_##res##rt_write)
+ XUDMA_RT_IO_FUNCTIONS(tchan);
+ XUDMA_RT_IO_FUNCTIONS(rchan);
++XUDMA_RT_IO_FUNCTIONS(rflow);
+ 
+ int xudma_is_pktdma(struct udma_dev *ud)
+ {
+diff --git a/drivers/dma/ti/k3-udma.h b/drivers/dma/ti/k3-udma.h
+index cd705fcc94f08..b71e8129459c4 100644
+--- a/drivers/dma/ti/k3-udma.h
++++ b/drivers/dma/ti/k3-udma.h
+@@ -86,6 +86,17 @@
+ #define UDMA_CHAN_RT_CTL_PAIR_COMPLETE BIT(16)
+ #define UDMA_CHAN_RT_CTL_ERROR		BIT(0)
+ 
++/* UDMA_CHAN_CFG_REG */
++#define UDMA_CHAN_CFG_PAUSE_ON_ERR	BIT(31)
++#define UDMA_CHAN_CFG_FILT_EINFO	BIT(30)
++#define UDMA_CHAN_CFG_FILT_PSWORDS	BIT(29)
++#define UDMA_CHAN_CFG_TX_SUPR_TDPKT	BIT(8)
 +
-+        #dma-cells = <2>;
++/* UDMA_RX_FLOWRT_RFA */
++#define UDMA_FLOWRT_RFA_RX_EINFO_PRESENT	BIT(30)
++#define UDMA_FLOWRT_RFA_RX_PSINFO_PRESENT	BIT(29)
++#define UDMA_FLOWRT_RFA_RX_ERROR_HANDLING	BIT(28)
 +
-+        interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 327 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 504 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 510 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 514 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 484 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 485 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 487 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 490 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 491 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 492 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 493 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 494 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 497 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "rx-0", "tx-1", "rx-2", "tx-3", "rx-4",
-+                          "tx-5", "rx-6", "tx-7", "rx-8", "tx-9",
-+                          "rx-10", "tx-11", "rx-12", "tx-13",
-+                          "rx-16", "tx-17", "rx-18", "tx-19",
-+                          "rx-20", "tx-21", "rx-22", "tx-23",
-+                          "rx-24", "tx-25", "rx-26", "tx-27",
-+                          "rx-28", "tx-29", "rx-30", "tx-31",
-+                          "rx-32", "tx-33", "rx-34", "tx-35",
-+                          "rx-36", "tx-37", "rx-38", "tx-39",
-+                          "rx-40", "tx-41", "rx-42", "tx-43",
-+                          "rx-44", "tx-45", "rx-46", "tx-47",
-+                          "tx-64", "tx-65", "tx-66", "tx-67",
-+                          "tx-68", "tx-69", "tx-70", "tx-71",
-+                          "tx-72", "tx-73", "tx-74", "tx-75",
-+                          "tx-76", "tx-77", "tx-78", "tx-79",
-+                          "rx-96", "rx-97", "rx-98", "rx-99",
-+                          "rx-100", "rx-101", "rx-102", "rx-103",
-+                          "rx-104", "rx-105", "rx-106", "rx-107",
-+                          "rx-108", "rx-109", "rx-110", "rx-111";
-+    };
+ /* UDMA_CHAN_RT_PDMA_STATE_REG */
+ #define UDMA_CHAN_RT_PDMA_STATE_IN_EVT		BIT(31)
+ #define UDMA_CHAN_RT_PDMA_STATE_TDOWN		BIT(30)
+@@ -714,6 +725,8 @@ u32 xudma_rchanrt_read(struct udma_rchan *rchan, int reg);
+ void xudma_rchanrt_write(struct udma_rchan *rchan, int reg, u32 val);
+ bool xudma_rflow_is_gp(struct udma_dev *ud, int id);
+ int xudma_get_rflow_ring_offset(struct udma_dev *ud);
++u32 xudma_rflowrt_read(struct udma_rflow *rflow, int reg);
++void xudma_rflowrt_write(struct udma_rflow *rflow, int reg, u32 val);
+ 
+ int xudma_is_pktdma(struct udma_dev *ud);
+ 
 
 -- 
 2.55.0
