@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D70606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7135606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3sbHVVqn;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RWhY64mj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DdaNP0Un;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VqdG6rdH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1cURh+cWjXvoC2szq8gQr/Fkr90VJ750fgGr+ihKYe4=; b=3sbHVVqnuxZ++RBTQMHgJnJ+WE
-	0gK6M5tZolf4WyGDM9nL2hpYYY/ozicF4yRz9JwvUyetkgkcJAysyn9upAXMUhoM8valDOfsbdTbv
-	TOy2OOqiwGeOH1eLnupeqIiG7+5heN44Re/pN7XuM7aoVM9LPXSODSRgRF4ptsQV6OLNy1h3E5Ojr
-	42Ii7cqy8MMvyUHClLUjs+CzZW1uhZXCTAWdUuStNAkhKfuwQWz45dsDLT8mIinr/6D9rismih4z+
-	3RvdZMt69FX4dZx6KWvFANNZdQB9DxmY9lVqc0KfM2l09w7ybU4NZaCw81iREyKTL5xXbOzv3KxMf
-	Rkt5P2tA==;
+	bh=wv8u8ktOF6zrlPKjMXn9Mf18f6YMxUqDbvX5ZSbyaHo=; b=DdaNP0UnptV5eOhf3wRlW7q+Sm
+	2VjSltXswV9XDczLu+H846fzI8u3sghVLGlJTM5WamEzmiayccGnoxdCtEEdSZ/l5vGJaCil7Dr+7
+	GRbi8I7YL2wbaZ42EYU2Z0qC3vp+l6Y9YbeG1fPcUZkKmAcYUDoAs0TNmogcTuIkp+qVBuNGzvE+h
+	62EQVDLt9wzNmJ4lveoz2Fx1E5JTGFkPhsnXr10a+FGjC2fNrbo7w5zDSBpwnRN955edEf9qlik+r
+	SUa2vIUshjeV8pup+kPk9gY3QMFP2F+jYtHlRhoyywMcP8XMQxZbfUX/Z/Aheyiq0gHWUe6HHLsSk
+	nPNFRaQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoys-00000006OP2-23R9;
-	Tue, 24 Nov 2026 11:46:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVoyq-00000006OMg-1A4c;
+	Tue, 24 Nov 2026 11:46:36 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoy9-00000006Ny8-2tMf
+	id 1xVoy6-00000006NxV-2c0K
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:45:56 +0000
+	Tue, 24 Nov 2026 11:45:50 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 73F8B4559B;
-	Tue, 24 Nov 2026 11:45:53 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 0AC5461D27;
+	Tue, 24 Nov 2026 11:45:50 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795520753;
-	b=Ys5P4A/3NQ1pi7jZxK0SWhtBWQUdeLufRAYQx2iz8dO3elD4Pl9MgdWY3PDZY5Z792qU
-	 Vm/ZqDfAE1Zj9OYq51CILvFDaVo9pCOAGNjQcECu87ImNdLCoX3IRG4k0QSz2WvKb/fqj
-	 VkuXsi5m8P4wmM+7K7R/bABoSELohGaM6uBgek69YsQl0WOJgessdZvmYuF93VUeRNfgM
-	 +PShBdBzrOSENP9EstEftTfs2ZKhzie04Vurmm+gukFzLA2AvhmVA3ni6Q3W3OFXifwPm
-	 KY1gOYjwi63Kylq2+GF3wDLyENgLSBBJu78/K0GXU0TVrRjK0pxIcGDrRi8XJDLa5mg==
+	t=1795520749;
+	b=TKeHgOyKt33FP3F8gUqrrDKc6obr7yO4xJT4N8Ck2JII10G00J6L89aHREbCmwuSVqQu
+	 L7qq2upEqXQS3dv6NQ4skveTf/dZHWLo7jEESJolClfNcacDGl/sll98YGvdQlpPCzo3m
+	 KfDAncDhKye54Zczq4dZev8qNzl3XuSpud5OU2wvYRBP7PGcEsCpP74AqF3g0XNmuN0kA
+	 gkh0/x8ueB4zS7tP4CSBe1Tc/XR9f1LbvgGdz83H31BbDX4FK8Qh3tgBKCoUFy1AUrdJj
+	 OgHpfKLQSrjX7QeTXzP1PaKFKPsrTaZgcAyACvUehR5AdmSKicgcLiqWFcDgvWArzDQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795520753;
+	c=relaxed/relaxed; t=1795520749;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=1cURh+cWjXvoC2szq8gQr/Fkr90VJ750fgGr+ihKYe4=;
-	b=D/MxLom7vaT8iKxu37wyNY0m8MGBTdWIQ5DnFhjnbJHXd+tGYwgygbJsd6O5YChHYdZx
-	 luoZnDrin21OoK2Bv3N9V0Ed+hlg6oczctbM4+3R6mwQulJ/g4mTpXOWG8ubu0z8SsfiR
-	 aJ6nQuk16+JH5q+LFhwYXOq0Y5AIlzVj+fXRLYDfnk/kcTcEcq9LrNwxg/zfWacNKkHEo
-	 pP0USiNYMkf2/6ETvh96kaYdWTy5ZNjyoxb24HlJziI3HSR0aATEFc/gQ28qJQxWShReb
-	 7/WBnF93a0mgAGgs7j76X8aaeTvwxNAXAFekhoHzjnO1Hb3uh4u6u3TkxAHXrBEfHBg==
+	bh=wv8u8ktOF6zrlPKjMXn9Mf18f6YMxUqDbvX5ZSbyaHo=;
+	b=FXGm3fqp1xNHEKwjT/WOaMLU9lzdPCtqVdsN+7MrbEKC2W+xNvU+mtxp3NaOEzAjrcm/
+	 S4Hu3s0/j0O082zsTpDSQAqDkYT/VIWyNTbP0296Lo2PtsRu67vtGSj9fSEu9wAH/Ku9x
+	 BDAv/x1uOZYSEfP7YBPPcJsNvpCiYMkjMGvprbx4dqm01GpvcClFQFlg9i/MXNlBda84O
+	 BEfDpQQ+ZmP1wKfgPsYnzjp4YVROqU0S7/Z3uhh4orALz1+MYOojShx8ZKHiviJ87sxzO
+	 SiO9ap0ueUuU9Eio8ORIq6AiSOuAX6uMe9vpnNVBuTzjkUgegS1mHBoWkUoEgQSlosw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5639F1F01570;
-	Tue, 24 Nov 2026 11:45:39 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 645611F0093E;
+	Tue, 24 Nov 2026 11:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795520753;
-	bh=1cURh+cWjXvoC2szq8gQr/Fkr90VJ750fgGr+ihKYe4=;
+	s=k20260515; t=1795520749;
+	bh=wv8u8ktOF6zrlPKjMXn9Mf18f6YMxUqDbvX5ZSbyaHo=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=RWhY64mjJWKnXzC7L2N1uiBecYM/3Xc6M6a6zPj2y66bugy4LaG4PHb1z9ALygcLw
-	 GSnAwa4YVpGhdM3pJOCatCHmi9bauv+OBv8k21VOGufA59UHvyn6p4zBlO66HTxvPR
-	 W00jRqJFK4ZnYpjkXXywZsR5rl/KUoKTR7T3NjBdGQaTz3MeVyWH6W7+J8Pz/iPOiL
-	 zFcfg5EHp1O4YxiXJgXJPMwkEYL0doWHQmqo3ChlPu09VAphqCMyVIjWMQTTJsBJUw
-	 zkrv2AATqmEjAsBzSr+HthoImbP/z5fH+t9aiVjde067a1wlKJK0fbcQdlDFAq5by0
-	 xfSxyrAKUyZbw==
+	b=VqdG6rdH9Zgl7KdqSEguh27a+skj3/eln33h/Gria8fdSDpLjy91Skig/ItGFPvZO
+	 jy2GgxWEhoHAFHvc4KNRAh+CmaLOnRGgjqCtY/aaZyaPqGX7h7wDiaI8IzkigC3pBC
+	 HMlnXcEHQsCGv5oKc9dlwXJB2JqkSPB+NTtgwm0/HVSzyAjEXAicw/UORTQpAzFGoh
+	 WnsBKeHMepqpdAsm/KqCtZA+IR8TCgByyxMCqQLMN14QVBdCI3Qt4rXllMQlfQ2G8C
+	 zhr+3w9aGQHV/rlaa5Qi3m5XtYNNLmL0/VwLQzMMXy9OQUXy3aV87qQVDoIcoddqwU
+	 5SABaWOF80tlQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 13EE04CA13;
-	Tue, 24 Nov 2026 11:45:28 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 7DA4C4C9FF;
+	Tue, 24 Nov 2026 11:45:27 +0000 (UTC)
 From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
-Date: Tue, 24 Nov 2026 17:15:13 +0530
-Subject: [PATCH v13 11/20] dmaengine: ti: k3-udma: move inclusion of
- k3-udma-private.c to k3-udma-common.c
+Date: Tue, 24 Nov 2026 17:15:08 +0530
+Subject: [PATCH v13 06/20] dmaengine: ti: k3-udma: move ring management
+ functions to k3-udma-common.c
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-dma-upstream-v13-v13-11-bd4251fdc6d4@ti.com>
+Message-Id: <20261124-dma-upstream-v13-v13-6-bd4251fdc6d4@ti.com>
 References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
 In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
 To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -90,13 +90,14 @@ To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
+ Frank Li <Frank.Li@nxp.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520724; l=1324;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520723; l=9607;
  i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
- bh=VVeX4J/dXs4ejzP8B+9y6agBzE8c91pMInXbG2KOEqo=;
- b=G5PdmSp8RSYF5NzncygzFsSMzW67ZfiKQUY+NSuy3NcWVq2sjPmFK/I8ws2RgOSrEUIBFpUdY
- 7Lus++NIQk1BybdBJ9jnqS4iRSZ5Cy9HruugryauVnPjfDIm63SnK2W
+ bh=GYtjFL2d97JRSvvo0vrQ/LsTe2zrkrtKVBX2YTefwYE=;
+ b=t/q52ezPWt7ZxQ+I8wSfN4Z3C5dGF5dv2Z4+V9r3UZQH4OiJZBWJsKH5dVC+xa04gftNE+/Pd
+ i14PHFywA9mCSJ0tUqbW4YFQhSF9AA/r5LVfYTi96iUA6qRUH1S8wch
 X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
  pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
 X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
@@ -124,40 +125,333 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 
-Relocate the #include directive for k3-udma-private.c from k3-udma.c to
-k3-udma-common.c so that the code can be shared between other UDMA
-variants (like k3-udma-v2). This change improves modularity and
-prepares for variant-specific implementations.
+Relocate the ring management functions such as push, pop, and reset
+from k3-udma.c to k3-udma-common.c file. These operations are
+common across multiple K3 UDMA variants and will be reused by
+future implementations like K3 UDMA v2.
 
 No functional changes intended.
 
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 ---
- drivers/dma/ti/k3-udma-common.c | 3 +++
- drivers/dma/ti/k3-udma.c        | 2 --
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/dma/ti/k3-udma-common.c | 119 ++++++++++++++++++++++++++++++++++++++--
+ drivers/dma/ti/k3-udma.c        | 100 ---------------------------------
+ drivers/dma/ti/k3-udma.h        |  11 ++--
+ 3 files changed, 118 insertions(+), 112 deletions(-)
 
 diff --git a/drivers/dma/ti/k3-udma-common.c b/drivers/dma/ti/k3-udma-common.c
-index 7c44f5dcb117c..ff5c9aedaecf3 100644
+index f9060bcab8a5a..c9cbe93f2391d 100644
 --- a/drivers/dma/ti/k3-udma-common.c
 +++ b/drivers/dma/ti/k3-udma-common.c
-@@ -2538,3 +2538,6 @@ EXPORT_SYMBOL_GPL(k3_udma_setup_resources);
+@@ -13,6 +13,13 @@
  
+ #include "k3-udma.h"
+ 
++static int udma_attach_metadata(struct dma_async_tx_descriptor *desc,
++				 void *data, size_t len);
++static void *udma_get_metadata_ptr(struct dma_async_tx_descriptor *desc,
++				    size_t *payload_len, size_t *max_len);
++static int udma_set_metadata_len(struct dma_async_tx_descriptor *desc,
++				  size_t payload_len);
++
+ static const struct dma_descriptor_metadata_ops metadata_ops = {
+ 	.attach = udma_attach_metadata,
+ 	.get_ptr = udma_get_metadata_ptr,
+@@ -121,7 +128,7 @@ void udma_desc_free(struct virt_dma_desc *vd)
+ }
+ EXPORT_SYMBOL_GPL(udma_desc_free);
+ 
+-bool udma_desc_is_rx_flush(struct udma_chan *uc, dma_addr_t addr)
++static bool udma_desc_is_rx_flush(struct udma_chan *uc, dma_addr_t addr)
+ {
+ 	if (uc->config.dir != DMA_DEV_TO_MEM)
+ 		return false;
+@@ -131,7 +138,6 @@ bool udma_desc_is_rx_flush(struct udma_chan *uc, dma_addr_t addr)
+ 
+ 	return false;
+ }
+-EXPORT_SYMBOL_GPL(udma_desc_is_rx_flush);
+ 
+ bool udma_is_desc_really_done(struct udma_chan *uc, struct udma_desc *d)
+ {
+@@ -723,7 +729,7 @@ udma_prep_slave_sg_pkt(struct udma_chan *uc, struct scatterlist *sgl,
+ 	return d;
+ }
+ 
+-int udma_attach_metadata(struct dma_async_tx_descriptor *desc,
++static int udma_attach_metadata(struct dma_async_tx_descriptor *desc,
+ 			 void *data, size_t len)
+ {
+ 	struct udma_desc *d = to_udma_desc(desc);
+@@ -759,7 +765,7 @@ int udma_attach_metadata(struct dma_async_tx_descriptor *desc,
+ 	return 0;
+ }
+ 
+-void *udma_get_metadata_ptr(struct dma_async_tx_descriptor *desc,
++static void *udma_get_metadata_ptr(struct dma_async_tx_descriptor *desc,
+ 			    size_t *payload_len, size_t *max_len)
+ {
+ 	struct udma_desc *d = to_udma_desc(desc);
+@@ -780,7 +786,7 @@ void *udma_get_metadata_ptr(struct dma_async_tx_descriptor *desc,
+ 	return h_desc->epib;
+ }
+ 
+-int udma_set_metadata_len(struct dma_async_tx_descriptor *desc,
++static int udma_set_metadata_len(struct dma_async_tx_descriptor *desc,
+ 			  size_t payload_len)
+ {
+ 	struct udma_desc *d = to_udma_desc(desc);
+@@ -1240,5 +1246,108 @@ void udma_desc_pre_callback(struct virt_dma_chan *vc,
+ }
+ EXPORT_SYMBOL_GPL(udma_desc_pre_callback);
+ 
++int udma_push_to_ring(struct udma_chan *uc, int idx)
++{
++	struct udma_desc *d = uc->desc;
++	struct k3_ring *ring = NULL;
++	dma_addr_t paddr;
++
++	switch (uc->config.dir) {
++	case DMA_DEV_TO_MEM:
++		ring = uc->rflow->fd_ring;
++		break;
++	case DMA_MEM_TO_DEV:
++	case DMA_MEM_TO_MEM:
++		ring = uc->tchan->t_ring;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	/* RX flush packet: idx == -1 is only passed in case of DEV_TO_MEM */
++	if (idx == -1) {
++		paddr = udma_get_rx_flush_hwdesc_paddr(uc);
++	} else {
++		paddr = udma_curr_cppi5_desc_paddr(d, idx);
++
++		wmb(); /* Ensure that writes are not moved over this point */
++	}
++
++	return k3_ringacc_ring_push(ring, &paddr);
++}
++EXPORT_SYMBOL_GPL(udma_push_to_ring);
++
++int udma_pop_from_ring(struct udma_chan *uc, dma_addr_t *addr)
++{
++	struct k3_ring *ring = NULL;
++	int ret;
++
++	switch (uc->config.dir) {
++	case DMA_DEV_TO_MEM:
++		ring = uc->rflow->r_ring;
++		break;
++	case DMA_MEM_TO_DEV:
++	case DMA_MEM_TO_MEM:
++		ring = uc->tchan->tc_ring;
++		break;
++	default:
++		return -ENOENT;
++	}
++
++	ret = k3_ringacc_ring_pop(ring, addr);
++	if (ret)
++		return ret;
++
++	rmb(); /* Ensure that reads are not moved before this point */
++
++	/* Teardown completion */
++	if (cppi5_desc_is_tdcm(*addr))
++		return 0;
++
++	/* Check for flush descriptor */
++	if (udma_desc_is_rx_flush(uc, *addr))
++		return -ENOENT;
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(udma_pop_from_ring);
++
++void udma_reset_rings(struct udma_chan *uc)
++{
++	struct k3_ring *ring1 = NULL;
++	struct k3_ring *ring2 = NULL;
++
++	switch (uc->config.dir) {
++	case DMA_DEV_TO_MEM:
++		if (uc->rchan) {
++			ring1 = uc->rflow->fd_ring;
++			ring2 = uc->rflow->r_ring;
++		}
++		break;
++	case DMA_MEM_TO_DEV:
++	case DMA_MEM_TO_MEM:
++		if (uc->tchan) {
++			ring1 = uc->tchan->t_ring;
++			ring2 = uc->tchan->tc_ring;
++		}
++		break;
++	default:
++		break;
++	}
++
++	if (ring1)
++		k3_ringacc_ring_reset_dma(ring1,
++					  k3_ringacc_ring_get_occ(ring1));
++	if (ring2)
++		k3_ringacc_ring_reset(ring2);
++
++	/* make sure we are not leaking memory by stalled descriptor */
++	if (uc->terminated_desc) {
++		udma_desc_free(&uc->terminated_desc->vd);
++		uc->terminated_desc = NULL;
++	}
++}
++EXPORT_SYMBOL_GPL(udma_reset_rings);
++
  MODULE_DESCRIPTION("Texas Instruments K3 UDMA Common Library");
  MODULE_LICENSE("GPL v2");
-+
-+/* Private interfaces to UDMA */
-+#include "k3-udma-private.c"
 diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-index c5de54d2a24a6..8a8e2b5e0f473 100644
+index 50c5bca7d9788..2fba734616272 100644
 --- a/drivers/dma/ti/k3-udma.c
 +++ b/drivers/dma/ti/k3-udma.c
-@@ -2850,5 +2850,3 @@ module_platform_driver(udma_driver);
- MODULE_DESCRIPTION("Texas Instruments UDMA support");
- MODULE_LICENSE("GPL v2");
+@@ -174,106 +174,6 @@ static bool udma_is_chan_paused(struct udma_chan *uc)
+ 	return false;
+ }
  
--/* Private interfaces to UDMA */
--#include "k3-udma-private.c"
+-static int udma_push_to_ring(struct udma_chan *uc, int idx)
+-{
+-	struct udma_desc *d = uc->desc;
+-	struct k3_ring *ring = NULL;
+-	dma_addr_t paddr;
+-
+-	switch (uc->config.dir) {
+-	case DMA_DEV_TO_MEM:
+-		ring = uc->rflow->fd_ring;
+-		break;
+-	case DMA_MEM_TO_DEV:
+-	case DMA_MEM_TO_MEM:
+-		ring = uc->tchan->t_ring;
+-		break;
+-	default:
+-		return -EINVAL;
+-	}
+-
+-	/* RX flush packet: idx == -1 is only passed in case of DEV_TO_MEM */
+-	if (idx == -1) {
+-		paddr = udma_get_rx_flush_hwdesc_paddr(uc);
+-	} else {
+-		paddr = udma_curr_cppi5_desc_paddr(d, idx);
+-
+-		wmb(); /* Ensure that writes are not moved over this point */
+-	}
+-
+-	return k3_ringacc_ring_push(ring, &paddr);
+-}
+-
+-static int udma_pop_from_ring(struct udma_chan *uc, dma_addr_t *addr)
+-{
+-	struct k3_ring *ring = NULL;
+-	int ret;
+-
+-	switch (uc->config.dir) {
+-	case DMA_DEV_TO_MEM:
+-		ring = uc->rflow->r_ring;
+-		break;
+-	case DMA_MEM_TO_DEV:
+-	case DMA_MEM_TO_MEM:
+-		ring = uc->tchan->tc_ring;
+-		break;
+-	default:
+-		return -ENOENT;
+-	}
+-
+-	ret = k3_ringacc_ring_pop(ring, addr);
+-	if (ret)
+-		return ret;
+-
+-	rmb(); /* Ensure that reads are not moved before this point */
+-
+-	/* Teardown completion */
+-	if (cppi5_desc_is_tdcm(*addr))
+-		return 0;
+-
+-	/* Check for flush descriptor */
+-	if (udma_desc_is_rx_flush(uc, *addr))
+-		return -ENOENT;
+-
+-	return 0;
+-}
+-
+-static void udma_reset_rings(struct udma_chan *uc)
+-{
+-	struct k3_ring *ring1 = NULL;
+-	struct k3_ring *ring2 = NULL;
+-
+-	switch (uc->config.dir) {
+-	case DMA_DEV_TO_MEM:
+-		if (uc->rchan) {
+-			ring1 = uc->rflow->fd_ring;
+-			ring2 = uc->rflow->r_ring;
+-		}
+-		break;
+-	case DMA_MEM_TO_DEV:
+-	case DMA_MEM_TO_MEM:
+-		if (uc->tchan) {
+-			ring1 = uc->tchan->t_ring;
+-			ring2 = uc->tchan->tc_ring;
+-		}
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	if (ring1)
+-		k3_ringacc_ring_reset_dma(ring1,
+-					  k3_ringacc_ring_get_occ(ring1));
+-	if (ring2)
+-		k3_ringacc_ring_reset(ring2);
+-
+-	/* make sure we are not leaking memory by stalled descriptor */
+-	if (uc->terminated_desc) {
+-		udma_desc_free(&uc->terminated_desc->vd);
+-		uc->terminated_desc = NULL;
+-	}
+-}
+-
+ static void udma_decrement_byte_counters(struct udma_chan *uc, u32 val)
+ {
+ 	if (uc->desc->dir == DMA_DEV_TO_MEM) {
+diff --git a/drivers/dma/ti/k3-udma.h b/drivers/dma/ti/k3-udma.h
+index 38a54226836a5..1777f0e1f085e 100644
+--- a/drivers/dma/ti/k3-udma.h
++++ b/drivers/dma/ti/k3-udma.h
+@@ -566,14 +566,7 @@ struct udma_desc *udma_udma_desc_from_paddr(struct udma_chan *uc,
+ 					    dma_addr_t paddr);
+ void udma_purge_desc_work(struct work_struct *work);
+ void udma_desc_free(struct virt_dma_desc *vd);
+-bool udma_desc_is_rx_flush(struct udma_chan *uc, dma_addr_t addr);
+ bool udma_is_desc_really_done(struct udma_chan *uc, struct udma_desc *d);
+-int udma_attach_metadata(struct dma_async_tx_descriptor *desc,
+-			 void *data, size_t len);
+-void *udma_get_metadata_ptr(struct dma_async_tx_descriptor *desc,
+-			    size_t *payload_len, size_t *max_len);
+-int udma_set_metadata_len(struct dma_async_tx_descriptor *desc,
+-			  size_t payload_len);
+ struct dma_async_tx_descriptor *udma_prep_slave_sg(struct dma_chan *chan,
+ 						   struct scatterlist *sgl, unsigned int sglen,
+ 						   enum dma_transfer_direction dir,
+@@ -589,6 +582,10 @@ void udma_desc_pre_callback(struct virt_dma_chan *vc,
+ 			    struct virt_dma_desc *vd,
+ 			    struct dmaengine_result *result);
+ 
++int udma_push_to_ring(struct udma_chan *uc, int idx);
++int udma_pop_from_ring(struct udma_chan *uc, dma_addr_t *addr);
++void udma_reset_rings(struct udma_chan *uc);
++
+ /* Direct access to UDMA low lever resources for the glue layer */
+ int xudma_navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread);
+ int xudma_navss_psil_unpair(struct udma_dev *ud, u32 src_thread,
 
 -- 
 2.55.0
