@@ -2,107 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD92A606A695
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267E1606A6A5
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y/uJT0zI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VHqkHaCR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fJjfCFl6;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=oHS1j/OD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=V+4F6I7uCMsa56sY8qxl3MrFvsZqFdQNXxT4S0Y1kkE=; b=y/uJT0zIQHtJ1o
-	bAM2h0WX5dxyji3rkSiW5INvI9eFTfm8k6ljiR9+VEEY3Wrdcp73r0k/P+R0YfUu74WMVJhO/VrDk
-	Mgt1/Ns6y8T/FPMOrLv95cyiDrLpbbeUikB5nJB39cI/Pa3yC1QRJXp1LPGrOAlPvDuBfrHZ/EdQv
-	A/BZld8sG7lE+WzC/l3hEbxl0k8Lf1PrBlTeqe6FBB6YwfjfdWNQKPC7p+bJ5TU5KRSeIt5KQXmLH
-	4pYHqKJA0xRCOfr3OkrYaZXX44fETC78OLKHCxaFgjkyH/wg9j5W5vPG/RAEjlzKbq11GbwpVaKxY
-	mzdJPCarYtCoYT2Jh5kQ==;
+	List-Owner; bh=FaOzZeSEcsiEu7Danddjhvc2fvrZGUSlNkNLOC9h7EU=; b=fJjfCFl6kzvm0W
+	ir2VnmhCXpksFHpuHnMEamX32+25TuUKzV94EiNwUQjh8yzY6H+YWfpPPP9H2OP0WRO1cWTGB5dF7
+	RJxpK1QmGIkORX5q7q/bkfURWRuCDknb+W+czwaVPCu2sl9BAHwtN4aN3QCJ6RyghLSwhHiJv7WbK
+	f9z/4lVVu2Ij6OJYlz8G2HetXivpzSJD6meZP7e/u04ACvcnd9tFxNZuM3vLUjwPvklZ5woyTbtIb
+	AII3pRn4Dfg6VPCYJmhgeZJweBjVULJxpG2QwemqRuCpGlsRAXcJl/UL0p0GPm8PvHG1oOKcCDRYq
+	C9kwQpvhqwrm4KLapP8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoxp-00000006NoT-1Ecm;
-	Tue, 24 Nov 2026 11:45:33 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoxo-00000006Nnb-227t
+	id 1xVoy0-00000006Nr4-1fG5;
+	Tue, 24 Nov 2026 11:45:44 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVoxo-00000006NnU-366i
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:45:32 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E57D943BCD;
-	Tue, 24 Nov 2026 11:45:31 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795520731;
-	b=C+jFIU8X9PNNhjltL0ZCA9cpvqRvZ4ph1MajS+tNo442V6mTJKLhIlRsNoGB6Z7NJGjP
-	 AhvXyFC4T5Ay8vdt1QZDnoCCAf6wMV280AwpxzF/OlAP3WMl4mKKM0r1ruAoMinR0nt+B
-	 N4K/tHJq3pTK1Bl/wO2VjKoa7hF3cWL3l/CKA1Uij/0MTLCtPBycejTXHn2rmCw1p3BJF
-	 PwLXIR0/ermGQF/2AJF+epSaZg9EJQrU1L7Oz+zbufap5CAdv1qWIXeSsYRzc/vkNkTQB
-	 DCg6qAHOYI4WlkToUcEYOjNx9hK6faLOgxQY5losYIXRWgqFPyCngJ2SkXtnYuCGrPQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795520731;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=V+4F6I7uCMsa56sY8qxl3MrFvsZqFdQNXxT4S0Y1kkE=;
-	b=ESojCyUJZYwyGgD3qdaDaoTFA1WFCeEHEBKN9QGKUiYuHGCwex9TnLKy5jNoAd8IVsVa
-	 ulMOdZv0GbUZOAaitsWNyvdfwqBtJ+kNrh8xtExLPgFh3h2WI6VoI/dnA/6YFAxlsVIYS
-	 CkjXDUT1d8bnG8j8E0SmZ7pU1kkk4JnsbkfB6sUDLB8b6Vu+2zRprzG/eXvuXyzIfUETY
-	 dFiWjszA48VZtwgzhSKbyjXBbrxKymhXwvVSDhsq3C9DkdtDujv+Ni8rgxzVxc5TfPDyk
-	 K6GU3SmYYU/ZQz4xp+ic9VhDz2e/Ukc3iNRfYYppAJhNVifPasAe4OoGOccWBV6eC3Q==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6C7741F000D0;
-	Tue, 24 Nov 2026 11:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795520731;
-	bh=V+4F6I7uCMsa56sY8qxl3MrFvsZqFdQNXxT4S0Y1kkE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VHqkHaCRz3S0EON7z9scfxhtaAz5gPNZ7pYtBLwuSeogN6V9WHpYpLc/7ETrf/U72
-	 dKOFSjN7dZDMixTA1efJVvKaoJ8bsAcyv5Mn2dVNPKowwdbl0xrAZWKPlL5RM84ojZ
-	 zAZxa7gnGbpZWNunxWECVHxbU57AKe/KYpd6zgXQ1SAYzyUi6ikqkivGgqGh73OoSP
-	 lj1fAz63OmvqCpMjwWTegmErABkC79itJQopvXJ7l9PWc0DMM6bZZPt2GZeBMyhuXF
-	 KlEnMor+mNjbfPjs2lX3BMwcWwjBVCoUp+ZJEdlTCCli+nSHnpuXr5i/vNaPV6Vg0o
-	 XE7oRzS+Fe3MA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E4E414C9B1;
-	Tue, 24 Nov 2026 11:45:26 +0000 (UTC)
-From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
-Date: Tue, 24 Nov 2026 17:15:03 +0530
-Subject: [PATCH v13 01/20] dmaengine: ti: k3-udma: Fix sporadic crash on
- AM62x
+	Tue, 24 Nov 2026 11:45:35 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36740339;
+	Tue, 24 Nov 2026 03:45:27 -0800 (PST)
+Received: from [10.0.136.47] (LRYFGMQP07.cambridge.arm.com [10.0.136.47])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8C7EC3F86F;
+	Tue, 24 Nov 2026 03:45:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795520730; bh=okJBaBQeKqLQjanlOT9Hdjoxc/5u+umivG32ad9P2p0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oHS1j/ODs9XrlcrwFcErJAuiUASAVqGdlM5jJ0TrHu5LO/ecVQpI92au9My9i5YB4
+	 IsEgPf5Eg2D9VfrdTht5Jho7YM+cHWoKdHuykVuNBYuauGW6ByyOMfILaILRHgrzmk
+	 HHo8zI77+KVFXie7ld9oLUNxjfzFuhYGbQQR91gM=
+Message-ID: <3d88c31d-04cc-49e4-b30a-3ece06908da6@arm.com>
+Date: Tue, 24 Nov 2026 11:45:27 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-dma-upstream-v13-v13-1-bd4251fdc6d4@ti.com>
-References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
-In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
- Frank Li <Frank.Li@kernel.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>, 
- Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
- Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520723; l=2302;
- i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
- bh=0QbFZNXvvMb+ue0ziAGKkg7DBgtCKZ+KVB36CbCIP+g=;
- b=MRewRL5HmtOr8dMHDtNNoJPPgWV02lzo2xXfLL/qI8dUiJyKIOfFBiHACm9/3gPEyXhCNTLlm
- ZN6RO5wDQ1CBKlWU1ak3bBEsCgPHEAKHEZuEqw0OTwXvAjJqtCbOeIS
-X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
- pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
-X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
- auth_id=1627
-X-Original-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: mm: Don't defer the barriers when installing a
+ fixmap entry
+To: Kevin Brodsky <kevin.brodsky@arm.com>, Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Ard Biesheuvel <ardb@kernel.org>,
+ Yang Shi <yang@os.amperecomputing.com>,
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20261120121638.194154-1-fuad.tabba@linux.dev>
+ <20261120121638.194154-4-fuad.tabba@linux.dev>
+ <6782b5ee-3dfe-4076-a79c-fbeb2c2ac7da@arm.com>
+ <CA+EHjTziXrRdR+guikKbj93Az96T+AMx_=0sVeyWG5C4fwaaTg@mail.gmail.com>
+ <5b0a26ee-30b0-4a79-9cca-9848dc9d65c5@arm.com>
+ <f543aea2-3a21-44ce-bb44-c84bd66b0a76@arm.com>
+ <74b99755-bc3d-4cad-9678-c2de740fe20a@arm.com>
+ <f9a42849-fe8f-4a96-81a1-ab58193b222d@arm.com>
+From: Ryan Roberts <ryan.roberts@arm.com>
+Content-Language: en-GB
+In-Reply-To: <f9a42849-fe8f-4a96-81a1-ab58193b222d@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_034532_856235_B18370AD 
+X-CRM114-Status: GOOD (  19.89  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,69 +80,91 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: s-adivi@ti.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Vignesh Raghavendra <vigneshr@ti.com>
+On 24/11/2026 08:22, Kevin Brodsky wrote:
+> On 23/11/2026 19:54, Ryan Roberts wrote:
+>> On 23/11/2026 13:08, Kevin Brodsky wrote:
+>>> On 23/11/2026 11:36, Ryan Roberts wrote:
+>>>>>>> @@ -127,7 +127,9 @@ void __set_fixmap(enum fixed_addresses idx,
+>>>>>>>          ptep = fixmap_pte(addr);
+>>>>>>>
+>>>>>>>          if (pgprot_val(flags)) {
+>>>>>>> -                __set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
+>>>>>>> +                /* The slot must be usable on return, even in lazy MMU mode. */
+>>>>>>> +                __set_pte_nosync(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
+>>>>>>> +                emit_pte_barriers();
+>>>>>> I wonder if it would be clearer to wrap __set_ptes():
+>>>>>>
+>>>>>> lazy_mmu_mode_pause()
+>>>>>> __set_ptes()
+>>>>>> lazy_mmu_mode_resume()
+>>>>> That would work. However, there's the stable backport. 6.18 has the
+>>>>> bug, but lazy_mmu_mode_pause() was added in 7.0, so 6.18.y would need
+>>>>> its own patch. This patch applies to 6.18 unchanged.
+>>>>>
+>>>>> I'm happy with either, or with a followup patch in the same series.
+>>>> I'd personally prefer to use pause/resume since it's makes it very clear what's
+>>>> going on and avoids the layer violation. Perhaps your approach as the back
+>>>> portable one, then pause/resume as follow up (along with ptep_try_set() tidy
+>>>> up)? Others might think differently though...
+>>> Using pause/resume does work, but it is a bigger hammer than necessary.
+>>> If other features make use of lazy MMU mode, then we may end up paying
+>>> extra cost by leaving/re-entering the mode.
+>>>
+>>> For instance, with page table hardening [1], using the pause/resume
+>>> approach means 4 extra ISBs:
+>>> - 1 when pause() leaves lazy MMU mode: restoring default kpkeys context
+>>> - 2 in __set_pte(): switching to page table update kpkeys context, and
+>>> then back to default
+>>> - 1 when resume() enters lazy MMU mode: entering page table update
+>>> kpkeys context
+>>>
+>>> An explicit __set_pte_nosync() + emit_pte_barriers() achieves exactly
+>>> what we're after (immediately visible PTE update) and doesn't disrupt
+>>> lazy MMU mode - we don't unnecessarily set TIF_LAZY_MMU_PENDING. 
+>> It's so ugly to spill this stuff everywhere though.
+>>
+>> How about a nested lazy mmu section?
+>>
+>> lazy_mmu_mode_enable()
+>> __set_ptes()
+>> lazy_mmu_mode_disable()
+>>
+>> If it's nested the enable() is essentially nop, and the disable is a flush,
+>> which emits the barriers. If it's the first enable, we still set
+>> TIF_LAZY_MMU_PENDING though...
+> 
+> Yes that's essentially the same as the explicit call to
+> arch_flush_lazy_mmu_mode() I mentioned below. IMHO that looks pretty
+> obfuscated though - the casual reader will wonder why we're creating a
+> lazy MMU section for setting just one PTE. If we go down this route, I'd
+> argue the explicit call to arch_flush_lazy_mmu_mode() is clearer (and
+> our implementation is safe to call even outside of a lazy MMU section).
 
-ring_init_data is declared on stack and left uninitialized, so any
-field not explicitly assigned afterwards carries garbage. Every field
-that exists on struct k3_ringacc_init_data today (tisci, tisci_dev_id,
-num_rings) is set immediately below, so this is currently a no-op, but
-a later patch in this series adds a base_rt field to the same struct
-that is not set by this call site. Without this fix, that field would
-carry stack garbage here, and k3_ringacc_dmarings_init() could use a
-junk address for the ringrt base, causing a crash during ring pop:
+OK let's just leave it as Faud has done it then. I don't have a strong opinion.
 
-[    1.998239] cadence-qspi fc40000.spi: couldn't determine phase-detect-selector
-[    2.532106] Unable to handle kernel paging request at virtual address ffff800081a84b98
-[    2.540051] Mem abort info:
-[...]
-[    2.629987] Workqueue: events_unbound deferred_probe_work_func
-[    2.635832] pstate: 800000c5 (Nzcv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    2.642787] pc : k3_ringacc_ring_pop+0x48/0x94
-[    2.647234] lr : udma_pop_from_ring+0x7c/0xb4
-[...]
-[    2.726250] Call trace:
-[    2.728691]  k3_ringacc_ring_pop+0x48/0x94
-[    2.732786]  udma_ring_irq_handler+0x34/0x218
-[    2.737141]  __handle_irq_event_percpu+0x60/0x14c
-[    2.741846]  handle_irq_event+0x4c/0xa8
-
-Fix this proactively by explicitly initializing the variable to 0,
-before the base_rt field is introduced.
-
-Fixes: 017794739702 ("dmaengine: ti: k3-udma: Initial support for K3 BCDMA")
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
----
- drivers/dma/ti/k3-udma.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-index 75bd1977fb423..6f3f0467fd5e0 100644
---- a/drivers/dma/ti/k3-udma.c
-+++ b/drivers/dma/ti/k3-udma.c
-@@ -5467,7 +5467,7 @@ static int udma_probe(struct platform_device *pdev)
- 	if (ud->match_data->type == DMA_TYPE_UDMA) {
- 		ud->ringacc = of_k3_ringacc_get_by_phandle(dev->of_node, "ti,ringacc");
- 	} else {
--		struct k3_ringacc_init_data ring_init_data;
-+		struct k3_ringacc_init_data ring_init_data = { 0 };
- 
- 		ring_init_data.tisci = ud->tisci_rm.tisci;
- 		ring_init_data.tisci_dev_id = ud->tisci_rm.tisci_dev_id;
-
--- 
-2.55.0
-
+> 
+> - Kevin
+> 
+>>> An alternative approach that addresses your point about layer violation
+>>> is to call arch_flush_lazy_mmu_mode() and leave the __set_pte() call
+>>> unchanged. This is slightly slower as we still end up setting/clearing
+>>> the TIF flag in that case. Not sure this is worth it - ultimately we
+>>> have to be mindful of what lazy MMU mode is doing to ensure this code is
+>>> correct. I'm happy with the current approach.
+>>>
+>>> Reviewed-by: Kevin Brodsky <kevin.brodsky@arm.com>
+>>>
+>>> - Kevin
+>>>
+>>> [1] https://lore.kernel.org/r/20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com
 
 
