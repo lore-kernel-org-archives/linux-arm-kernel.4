@@ -2,119 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65048606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74E4606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wy0nOsdm;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=d0QOGZnt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dj7qge1A;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SjagkggL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=I1ulVDnQMydRA55SV06KZXVEPk+ELjbN3ZZrUa+XmEo=; b=Wy0nOsdm4noL32ggyafR6cFfxs
-	YfRGFplGClIs/u7vcnFXr3x2RkDl6/lg40e/rzRKr0Xkbrx++3OWhof8YjYzzkWW/xG4L5LkUIan2
-	dpA9Ri3/h75TnCOBaNYRJ80UghnGaRxkTf50/oxE/NbeCGe3gQPfauB8vHBB1qezmXOrTxrpkv6D2
-	zTPIlST95KusK8C4cweQnir+Ec/+HeXEoiUQZqUMT3U30adWT4ksKyeSYy/hNDzCyJJy6eaOZgMVi
-	9iG6aCvFwOOzDs8vLhOJGigrHLTAJZRD5zhbuTdiAI1x/yFLTOK1o8xlb53QXRzpCQDVxULR2UAXb
-	ZM6q6lAw==;
+	bh=2Zz08HcZjLaS0TJTRQJhra6xzx2tZMzbWAVsBrWjmS4=; b=Dj7qge1AYjX6hI3FMgkBw4tFQu
+	N1als00lpbd2m9OlhFfCHZ4DNHkG7wYLR7paCuemDmrQigIdnvgqU2Ay5ddsKNndZX98IcM3nWPJk
+	ulk0cjQmzvXwMNRRjuNZNT4uSkrRDcy6Yn5NOS4rZmx4s5NDe6OAQMij2e8VX1r3kY3KSX10bpauB
+	OON0lAH4dTCfc7I5tn47ytQHG1f59AGnMoSn7jBjoPM+ZudaURvcX8RWQRocwwp71+ECQg5eCGok3
+	sLf88EJNen3eWiyIslRZoHMGHcwIbFvOSejgkz6LTrjHMixUJvwfQTTMLmrbeVoIZvvV0gl58gjxC
+	CCCvdfYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqQz-00000006cPP-1kwD;
-	Tue, 24 Nov 2026 13:19:45 +0000
-Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+	id 1xVoyz-00000006Ob4-0Tpz;
+	Tue, 24 Nov 2026 11:46:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqQu-00000006cNP-11La
+	id 1xVoyg-00000006OHY-2jOu
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 13:19:43 +0000
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-6ba1e22ff4dso5186931a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 05:19:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795526378; cv=none;
-        d=google.com; s=arc-20260327;
-        b=VpxZYBzqczYk2P1BEiIbb3JsTjpUHVp5iRtsFXN78SOPXhD2P8Pab/6DdDIZXylyIv
-         HmOzj3X9gyCL+OAQ58Pnc64Vrw+PikxStuNcKz+Z0qGPalgVTG8ldKoR/GIAoBa+L42J
-         aE2RO4/HiYXOe46csXJhpUSZJigzbjX3pmeKtohnr47nFsPY2GtFxNdjo/1L5hZXb/Nt
-         NNClArp01wtwGyOc7kDU+EG44ejV9KXpRu3sHgYK+bbKTfmJHPUFPbFVyv0y0nHL+YmB
-         EkCvXaVnVbxUCfVpiTYAlFVq67AKYaViaRP6+RLY9Rrojii8EfS5tfml80QyNSdFeE+N
-         BOLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=I1ulVDnQMydRA55SV06KZXVEPk+ELjbN3ZZrUa+XmEo=;
-        fh=q1aHbO5780jtmZCTlWWKfOHy4ICF273I+Gt+aZN6S1I=;
-        b=cpCsGqdN2lwWoes9X3DC4xtM80mel90jyoRLiBT3lt42ELG2U8+Pi6F/3LztypNPWj
-         6oJ/YyZtVu5dc40e0o331N8h6+fFVSG62HG793J3kBbGCO0PnAJhXXxmWT4bv4b/jiSn
-         GFKs9AbenHEkWjy3cI8iGxcDB6cWYuM54RyS+mAzEA3nuzKpDcxYtKfyPzOs4BOW8auF
-         5SJf2Ucgq0CxLCFjXkGqiHQzxthiNEYq1lo4kgdAF4VBecg7KRfLg/G7UhUxZnAfoqmz
-         K4Ek6pLASeCDcQMGm4BgHPXn/e25VBTQN9ZswaXWmT4Ivjb9vZMwL1Z/K+tUpBxIJ3q+
-         4CaA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795526378; x=1796131178; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=I1ulVDnQMydRA55SV06KZXVEPk+ELjbN3ZZrUa+XmEo=;
-        b=d0QOGZnteEjId5WH2IPBLILrJC8mQPqOXqJZvprSDdEmevLK4KfQ1V2n6ZLXVCNb5D
-         +UcTBpjcANsCajcwV5TrvZWkIEJ4ykidbr4xIDWHQ7MwqJUSOxCKTZ+bMtqkszv6C5PB
-         6Br9m43VgmPU5xgaMCD2J49+1I9uRZepWEdxjrJ8Y9yWUwjs4wkIFDlnH05H50hKHy2q
-         DxFt19HTCa4tfVb5gRQi/CF8aKkQ7lNcN4i1J1bgu1Z/byIH0vJca3b1VYOpSz7hStkU
-         bGSwPrzafAbphpFynO5ClSiXeyH/wRWOnVM34lVwY6ebmxCkpZBnkcjBeb2fOEAtQ35q
-         bR/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795526378; x=1796131178;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=I1ulVDnQMydRA55SV06KZXVEPk+ELjbN3ZZrUa+XmEo=;
-        b=A+MdtmBQymp+1p5rdn1yYyEMb/lHxm+FtV2Njn3MxA3WsmXOexMedJfvhqz0+fPS0F
-         ItYFd/UFoqPPKIy/oUF0+cRbqQsBp4LN9DrZDsINOQmovutdHybTGPH7S5el111klvmi
-         f1Tv8RZlYAKDz7cOun91uOM921WTNyPpZhM/uIjHTsTQ/Njh+0b5r64MuT9T4hFh1UL3
-         AuaYQDGJl37LhO3NUhQTkvigeGXaZyQGmURoDCGmoKraVlqzdZUBRl6Sakd4iA0bPoEo
-         j8SXoZN9GC5fpfJQ7JUrGSAIzFpJY+dNB7rHKndouzteCIsxoAcereLDCfZSE0SkMRtA
-         pQdg==
-X-Forwarded-Encrypted: i=1; AL+hErF4YKRiBSf3AIfcoe2J2gz+hGsif3nVhQd+VUUPWZh1kJ4Ua3UVizXlgGmd638pxtcO/4lCfpoKnC/riBIVweEa@lists.infradead.org
-X-Gm-Message-State: APuU4Z/MmYFhWf37i0acY4sWlgDMYqgb5WlrHJIU/SA9IhDYG7yEKTQO
-	AY7vAShP8blUwn+f0Uzf2osip0x74TFvn8P9RTMfMSJlZA/47yJ8sEUtQhFctkdXYlKnyfnmQg6
-	oVaRsoeJRYwkcf3hQSSr7pCUQz4VQvw06oTBKgzYQRQ==
-X-Gm-Gg: AZFdTZekViGaQ6v5YQGbdCgROGA7k2pybSpIiofKNkeAIWX+1Lbtf64NdW9YtBo9oso
-	Z7Vjmc2XrzStKZjyQ+yHTOE3nQRYWnVFyVBUkAdOmM6o11QVgiY83a0XeXa59B/7MKcu+AG87KF
-	8eFKHnZ+AgpWV6WmL8L6FF0W6uf4AzHJtWJpDtV0pyOhOGsZUSkOeS5g81cqthpLSombrwQ+OEV
-	6nNLYsIJ/XSvYMNC7UqQBIY3e3QMCRbQmQAMLgoCGHF6V5Xu0y8Ze+l6C0tGqYhxXzWA62WXEHV
-	i5epyakEvVcrk3wRQIaXdl9IATsZJh1/5KaS70JbrBSScgIZuBFtKqBijhU90Qr+IVAHs1WKM91
-	MO2b6XsvoOL85VgJieNmOeCCD/2kVGhmrp5wPi7MF3fQ1ogmCmBdXTsEl
-X-Received: by 2002:a05:6402:1596:b0:6bb:6c8:c4d2 with SMTP id
- 4fb4d7f45d1cf-6bb06c8ce30mr940474a12.31.1795526378188; Tue, 24 Nov 2026
- 05:19:38 -0800 (PST)
+	Tue, 24 Nov 2026 11:46:27 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1BC9E625DA;
+	Tue, 24 Nov 2026 11:46:26 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795520785;
+	b=M0gTENFTvswihkTCTUkXdpQlC5ExGoPnFloMoMTu4BjlU4S+lbvk0LKZ30zIIv5BEqH4
+	 FAumdt/j9vjh+CNaFrUzjN7ZVdvHAheV1F29suqSopHDnUBhLS9klFS37N6t664EXTlaT
+	 kfwtxZjadybZAJSkDu71uqy/o1gaL9jFaamrvtHYofN5jKINLrtUmTfPSib3mBOXHZaeU
+	 Zx+bok9CLgDwOJMIWtXokG3eTQQaPVWtfUD//IkIYJt2r5t9anD3iIR/ZsO8gVoKHuVFi
+	 lFcj4hB7b+E7i9pHeYckrJL5MPT0mtsss3lL5myE+mfXobwRGbp4hdz+W/Eat5WOcxQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795520785;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=2Zz08HcZjLaS0TJTRQJhra6xzx2tZMzbWAVsBrWjmS4=;
+	b=yQC4+xKUHvBBxF9yGWeNHtbHnO2gX2MI0Q6DtCQb/SSeVsMcC3U8vg7so+33wPm4G3Nw
+	 XdVDkp4zYSBtaUCVVgwJ3PF3c/uHhHX1bNVovMLdupBu4I/deGeBGKj8Ra+rxmR3bgqGq
+	 /PAF6qNB5mqoNcf6LD5aSGifU0E8pQYsagj82GgPlJvi4DVs/0LwCgmlrinUPhQ0EugW6
+	 YQvcZmlyz0err5zMoQkL7xe46DMPzVjgoW59Xnum+oXRlskbvgiZqj8EYh9A3oO1pA2IV
+	 zNQXHblVTzEebO2XPQbq5AhesbvQnzYrpVYOivX9K9G1KjdM1Gp5bAtcmhm0yOqSMfw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 34CD01F00A3C;
+	Tue, 24 Nov 2026 11:45:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795520785;
+	bh=2Zz08HcZjLaS0TJTRQJhra6xzx2tZMzbWAVsBrWjmS4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=SjagkggLOYNkPxeIo+sj7KYBN3s5XTrrlJVSy9lulDP6zBrqjCpCCT9LUZVwMwKVt
+	 khrLCBBbe8twWp6tV4SimBUQSyWjmk0k/6fU9pE/jlcrflfj+kyZ8OHgeBEcHxcF9K
+	 w+LQC47eDa8WUODOmdoDFA7qL/fsUpdO71Xm0yfN/7LZL5J5YjbuFiQZZhhVxNswXW
+	 T/lk5wHulFz10G3H3oyM7hz7jxoJJSegjfI0M5TWR5Ww1Y8pt8Q+50O9YYFthL/rX+
+	 cBg4EERhNzl+uzf3/cArgzKp0L1lSyNY/wX+gdSXqWz4hZ0qe/KsMP9IsAO+yzWtAW
+	 ncj409ywl9vNw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 13C8B4CA37;
+	Tue, 24 Nov 2026 11:45:29 +0000 (UTC)
+From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
+Date: Tue, 24 Nov 2026 17:15:22 +0530
+Subject: [PATCH v13 20/20] dmaengine: ti: k3-udma: Validate resource ID and
+ fix logging in reservation
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261026214359.3122870-1-briannorris@chromium.org>
-In-Reply-To: <20261026214359.3122870-1-briannorris@chromium.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 24 Nov 2026 13:19:24 +0000
-X-Gm-Features: Aa3M54ooVkb3f-H5oJfKOqKUsi4VT1Jkh00xU7wD3yuOn0cj9WC5t6c3w4KgoWc
-Message-ID: <CADrjBPojS5tSJw+7E99AYec6NY46QLcM6iv=i3xodNJvvxKJRg@mail.gmail.com>
-Subject: Re: [PATCH 0/9] google: Add support for Laguna CPM
-To: Brian Norris <briannorris@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
-	Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, 
-	linux-arm-kernel@lists.infradead.org, 
-	Mariano Marciello <mmarciello@google.com>, Douglas Anderson <dianders@chromium.org>, linux-clk@vger.kernel.org, 
-	=?UTF-8?Q?Jakub_G=C5=82owacki?= <jglow@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_051940_929867_1B889882 
-X-CRM114-Status: GOOD (  23.86  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261124-dma-upstream-v13-v13-20-bd4251fdc6d4@ti.com>
+References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520724; l=1811;
+ i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
+ bh=3SmkAPYsTzacE+IK1GgfJoKJ8iRPP+nzvDNxs+11xKY=;
+ b=s7M6c6qRUdqFBHU8PhL96fM8whg+saMsieN9Pil9t9aJNsjhbo8Ql66Q1SBqQImGh9V8tevEk
+ NwXDhzTW6wRCoY7I3WYGg6kc3so7JBEDCU+ruL4Jj4lwXHzKX3Yb6Vj
+X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
+ pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
+X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
+ auth_id=1627
+X-Original-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,81 +112,66 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: s-adivi@ti.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Brian,
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 
-On Mon, 26 Oct 2026 at 21:45, Brian Norris <briannorris@chromium.org> wrote:
->
-> The Central Power Manager (CPM) is a co-processor on the Google Tensor
-> SoCs, as used on Pixel phones. CPM supports power-management and a
-> number of other features.
->
-> The Application Processor communicates with CPM over a pair of mailbox
-> channels. CPM provides clock, power-domain, reset, and interrupt
-> services.
->
-> This series adds device tree bindings, DTS, and drivers to support CPM,
-> and several of the basic services provided by CPM. These services are a
-> minimal set needed to bootstrap many other components on the SoC --
-> e.g., I have a working proof-of-concept PCIe driver running on top of
-> this series + pinctrl (not included here). CPM provides some other
-> components not yet included in this series (e.g., PMIC, RTC).
->
-> This series depends on the bindings and mailbox-payload-definitions from
-> this series:
->
->   https://lore.kernel.org/all/20261023235408.3063350-1-dianders@chromium.org/
->   [PATCH v2 0/4] mailbox: Improve the mbox core then introduce the goog-mba driver
->
-> So this series cannot be applied as-is yet. However, v1 of that series
-> was under review for about 3 months, so I'd like to at least:
->
->   1) demonstrate its clients (this came up at
->      https://lore.kernel.org/all/CAD=FV=VW2h1zWDYWQ6LknX3O+3=EY665jde35Ly+UQzuscXy=Q@mail.gmail.com/,
->      for one); and
->
->   2) start review for anything that isn't significantly impacted by
->      potential changes in the above mailbox series.
->
-> With luck, the general design and DT bindings don't need to change, but
-> even if so, I expect any changes should not significantly affect:
->
->  (a) the CPM DT binding or DTS (apart from #mbox-cells)
->
->  (b) the CPM interface (cpm_request_client(), cpm_send_message())
->
->  (c) any of the CPM clients (irqchip, reset, clk, pmdomain)
->
-> Thus, I think this falls somewhere between "PATCH" and "RFC".
->
-> This series has been tested on a Pixel 10 Pro XL (a.k.a., Mustang) both
-> as-is (plus the aforementioned mailbox patches), and also with minimal
-> additional local patches to get other components running on top
-> (pinctrl, PCIe, RTC), to prove out some more realistic use cases.
->
-> - Brian
+The `__udma_reserve_##res` macro currently lacks a bounds check for
+the provided `id`. If a caller passes an ID exceeding the resource
+count (`ud->res##_cnt`), `test_bit()` performs an out-of-bounds
+memory access on the bitmap.
 
-FWIW, I tested this series, plus Doug's mailbox series on my Blazer
-and Frankel devices. It was enough to see USB come to life as a gadget
-using the already in-tree tensor USB glue and phy drivers (see patch
-here https://gitlab.com/LinaroLtd/googlelt/linuxlt/-/commit/b7866f74743fd6828036bae570ca6d022e23c4ff)
+Additionally, the macro returns `-ENOENT` when a resource is already
+in use, which is semantically incorrect. The logging logic is also
+broken, printing the literal "res##<id>" instead of the resource
+name.
 
-Tested-by: Peter Griffin <peter.griffin@linaro.org> (Blazer/Frankel)
+Update the macro to:
+1. Validate `id` against `ud->res##_cnt` and return `-EINVAL` if out
+   of bounds.
+2. Return `-EBUSY` instead of `-ENOENT` when a resource is already
+   reserved, correctly reflecting the resource state.
+3. Use the stringification operator `#res` to correctly print the
+   resource name (e.g., "tchan") in error messages.
 
-Regarding merging the dts/dtsi (arch/arm64/boot/dts/google) and
-(drivers/soc/google) parts can go via my Tensor SoC tree. We will
-likely need an immutable branch for driver/soc/google part to base the
-other drivers off.
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ drivers/dma/ti/k3-udma-common.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-regards,
+diff --git a/drivers/dma/ti/k3-udma-common.c b/drivers/dma/ti/k3-udma-common.c
+index 42c4064d72b4f..20a2ef5445ae7 100644
+--- a/drivers/dma/ti/k3-udma-common.c
++++ b/drivers/dma/ti/k3-udma-common.c
+@@ -2046,9 +2046,14 @@ struct udma_##res *__udma_reserve_##res(struct udma_dev *ud,	\
+ 					       int id)			\
+ {									\
+ 	if (id >= 0) {							\
++		if (id >= ud->res##_cnt) {				\
++			dev_err(ud->dev,				\
++				#res " id %d is out of bounds.\n", id);	\
++			return ERR_PTR(-EINVAL);			\
++		}							\
+ 		if (test_bit(id, ud->res##_map)) {			\
+-			dev_err(ud->dev, "res##%d is in use\n", id);	\
+-			return ERR_PTR(-ENOENT);			\
++			dev_err(ud->dev, #res "%d is in use\n", id);	\
++			return ERR_PTR(-EBUSY);			\
+ 		}							\
+ 	} else {							\
+ 		int start;						\
 
-Peter
+-- 
+2.55.0
+
+
 
