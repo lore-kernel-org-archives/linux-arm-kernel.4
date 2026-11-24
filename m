@@ -2,66 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA83606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 06:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DE7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 06:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qg7o9HL0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QCQzmhjA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=19xvXAVA;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=B/3MInbc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PgqRXdTZ4ONcvPOx0PqGgwz2ExETKo+FnP18SHLENdg=; b=Qg7o9HL0GnrEf8
-	BUmpy8TlkejQM7xlezHeF/+ctXhVy1aCMT3KhiBco8wpXgAS0yN+zKlVC+COT9GNSOKAljtbNo/tK
-	iZUt+VAZDNpr5jS1DeYzb6NZSnfoia9AIn6ZWxS0S5EuDGczJXvVAI9OpvL/Nlv4jOR0N7V+lVsvg
-	3KxBiYNcS8cCc4hh1zg26KlYkmgMFVOzzD+2q4LjblfcnaZ+F0K3ODmfaqLlzxpCsVgeaYY5EmxHX
-	rn04ab2BZlplt8l8B4L/+QV4pYFEgL5fC2LUKi5kD3oKYATwfpazsqecOaWDoWTyv/F5/EC+MFs8A
-	BB5vo6vL3JND7v9xXAOw==;
+	List-Owner; bh=G4Jws+luoVJ3BEeYNiEMEcC6CxB49mTq6uZPEZLGGks=; b=19xvXAVApjW18w
+	Bo39Ojd80WyHJoH9NQVQBbZ1/bpmqcdMuvkZVS4GeSEFrOMN65WUo8xEb8dHQuOo7/VE/zHnwcG0z
+	ZetJ1QQaq/YKNMMhMXhGyGDRpbRHAl5T6CsFZsruu+RO9OoqUAiLLq08ieeZFtoR90aUnDTsgnlUU
+	/WdTnFHkG9fJ89TW5XfHdpaX1ff1laMGqPxCvQsphOihTyhMQM1mZ1Z5/M9rftorpCvzpU1JA9tz+
+	+/37r0qy02iPKhYawN2i8AzsldLfUmarsMFcYglg+P0Ak2nJj1gW1nYXBEo4SFnw7CU04BxkVSjqY
+	NrJ6C1KwePf9a2HssrIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkBU-00000005f70-2dI9;
-	Tue, 24 Nov 2026 06:39:20 +0000
+	id 1xVkAi-00000005f2f-3lK4;
+	Tue, 24 Nov 2026 06:38:33 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkBT-00000005f6u-0M2P
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 06:39:19 +0000
+	id 1xVkAh-00000005f2U-2UJV;
+	Tue, 24 Nov 2026 06:38:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D3FA043FF8;
-	Tue, 24 Nov 2026 06:39:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 187C41F000C6;
-	Tue, 24 Nov 2026 06:39:12 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 0DF7241AC6;
+	Tue, 24 Nov 2026 06:38:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFD911F000C6;
+	Tue, 24 Nov 2026 06:38:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795502358;
-	bh=PgqRXdTZ4ONcvPOx0PqGgwz2ExETKo+FnP18SHLENdg=;
+	s=k20260515; t=1795502310;
+	bh=G4Jws+luoVJ3BEeYNiEMEcC6CxB49mTq6uZPEZLGGks=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=QCQzmhjAK1/uACJ8EuxssUw36mmNcSMppc698Ic47HVXYveBPBiF/fOg8lsbDHRdk
-	 v/Wyo0N6h94PEi/aebDwRe8QgFa38QMc1YYT9IgqSGW5o8j7TZFyd1YXFGwl8IFfVI
-	 opWrQLUgAoIXsABgp5Fh5NlgVGBWYH6GgAWJzim0t1Vj61MB1ngZI4pdwLVvo8CE9+
-	 2fjfQjmIAgLUvhUINLMaufMDMZHoh30ptQ4jy5i6id9y1h06Jj3SWyU512Q4ovY+bq
-	 rWwkzFELoTwMlbS0a7UDfgZgDMe332DSzM/R66wnMNcmBsrOLI+xYy0xd8UnXQE7c0
-	 +zkZT/nwIrLPw==
-Message-ID: <eacbc1ca-d12f-45f7-804e-2c7454d97eaa@kernel.org>
-Date: Tue, 24 Nov 2026 07:39:10 +0100
+	b=B/3MInbc+7/0bDMIJBx5IpI7khMruoB3nanB6Qr6Ea1AR/zDoK4FSJ9uzLlLEPqdi
+	 hWQyJlkkVSq57rbY1JorQgZG6eeGCh4/t0gs4SpMfrtxDiZiFm/4jJffnl/d9W2aM9
+	 Yud68vicJZxeyqYsenMLhSgIl5gAyQYsO1qrBEgwSGITXC3Q5F1KhRg61ZkqbT1LVP
+	 bWwS8kQ3NYxHanEI5oTl2ocYbSaxB8BnOl7ctH/7NGWo1opvfAEzc7GnxXsMNckYNU
+	 JcGHalGxDkLnKM/+fccXSeZb/3mj6OJLe1zHuxp4/gvoxpZNA91DeoinsSqX9DbBVT
+	 qkQPr9dj60Jlw==
+Message-ID: <831a6498-9c1a-4829-b47d-52035fe15444@kernel.org>
+Date: Tue, 24 Nov 2026 07:38:22 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/5] dt-bindings: reset: Add Cortina CS7542
- network engine reset domain
-To: Fil Dunsky <filipp.dunsky@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 2/8] dt-bindings: clock: Describe CS7542 PCIe gates and
+ resets
+To: filipp.dunsky@gmail.com, Manivannan Sadhasivam <mani@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kwilczynski@kernel.org>, Rob Herring
+ <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Hans Ulli Kroll <ulli.kroll@googlemail.com>,
- Linus Walleij <linusw@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261123-b4-cs7542-ethernet-v1-0-fdb5e8c2d508@gmail.com>
- <20261123-b4-cs7542-ethernet-v1-1-fdb5e8c2d508@gmail.com>
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20261123-b4-cs7542-pcie-v1-0-4cde5201d404@gmail.com>
+ <20261123-b4-cs7542-pcie-v1-2-4cde5201d404@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,7 +110,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261123-b4-cs7542-ethernet-v1-1-fdb5e8c2d508@gmail.com>
+In-Reply-To: <20261123-b4-cs7542-pcie-v1-2-4cde5201d404@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -120,63 +123,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 23/11/2026 19:44, Fil Dunsky wrote:
-> Describe the atomic reset domain required to stop all network-engine and
-> LSO/SSP DMA users before releasing their mappings. Exclude the SDRAM
-> controller and independent PCIe resets. Allow this provider as a child
-> of the shared global syscon.
-> 
-> Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
-> ---
->  .../bindings/reset/cortina,cs7542-ne-reset.yaml    | 42 ++++++++++++++++++++++
->  .../soc/cortina/cortina,cs7542-syscon.yaml         |  4 +++
->  2 files changed, 46 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml b/Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml
-> new file mode 100644
-> index 000000000..8f5b5b835
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/cortina,cs7542-ne-reset.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/cortina,cs7542-ne-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cortina Systems CS7542 network engine reset domain
-> +
-> +maintainers:
-> +  - Fil Dunsky <filipp.dunsky@gmail.com>
-> +
-> +description: |
-> +  Child of the CS7542 global syscon. One reset domain covers NI, FE, TM,
-> +  scheduler, queue manager, NI XRAM and the entire DMA block (LSO and SSP).
-> +  SDRAM and unrelated peripheral reset bits are not modified. The consumer
-> +  must own all these blocks exclusively. This reset is not suitable for a
-> +  network-only consumer while a separate driver uses SSP DMA.
-> +
+On 23/11/2026 19:43, Fil Dunsky via B4 Relay wrote:
 > +properties:
 > +  compatible:
-> +    const: cortina,cs7542-ne-reset
+> +    const: cortina,cs7542-pcie-control
+> +
+> +  "#clock-cells":
+> +    const: 1
 > +
 > +  "#reset-cells":
-> +    const: 0
+> +    const: 1
 > +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
 
-Same comments, no resources here, not a separate device. Fold it into
-the parent node.
+No resources here, not a separate device. Fold it into the parent.
 
 Best regards,
 Krzysztof
