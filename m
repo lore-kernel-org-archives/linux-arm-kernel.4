@@ -2,61 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D518606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:47:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99D1606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HwgsVFDZ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=InJ53J6q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AnqEdqvJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lNU3gMqO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=PRfJE8GxHxVJ2EQC9BwBA4K3kl6PgE402eg5bYUwmUw=; b=HwgsVFDZLdHKnjOBauE0J+SVZA
-	ERD9DATLCjXRvIEaivxNQ+fYsMaCn7eNhreNMSCA0249oGsaBBmhQBLYNobayzHnrwsZT88UYDf6C
-	ZW2+hIznyta7ZxQU0xG1zrBISZ0eOQK81hcya2zOp54EXqjdW6n7g8akWLEXsn5GmjCVV1UVUostG
-	tLVqtT31n0XdJV+r51sKx8TX6B7Bj4RXoY6+ITB0/qCPtHDev427CKS+661VpxI97KmM4hG5L6/6w
-	qQbe2TwcKv5I3Xt1g33NY0WBApyG3GCf5Xia6WWJOlIp6aMZgsIExnj4zTM+pOaFJJZaZU/UHbvhP
-	c8ga/y8A==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=CuMg05a98HcJAkKkDl2QaTqHQIdMFGxRksNhla9SB8E=; b=AnqEdqvJdqu3pM
+	QjjPEOk04A+/MBZsoZowPesbtC0ALmQOBf5UCOhudeBJazjVUEbLdQi9mwqd0GzqMCo6LM8mAKzcF
+	aXME7/eqCanZNYZf7mdmgSdCkp9Z0th8H2/F6wDscG3yE+bTOXFFTkueSWJrQ5APmhFkH7GF1z4b7
+	xNF3yttZU2Bo75zq0rs7hQFlYYRkrXy2USToVznG1klI/OrZLU/c+on6TRK4HXI6/ISSFdiHE/Wgr
+	QTL0fXT2XTFH2KTTj95gUuHdrOIxHobf/yYtkb26jQCEpOfUfaub3rUrojA6nBEySMJDL4AWu0qmW
+	zESjOOT1XcFKNYioeoqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxQL-00000007lWd-1zti;
-	Tue, 24 Nov 2026 20:47:33 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVxQX-00000007lcJ-3hWv;
+	Tue, 24 Nov 2026 20:47:45 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxQK-00000007lVw-19a7
+	id 1xVxQT-00000007lYf-0BFU
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 20:47:32 +0000
+	Tue, 24 Nov 2026 20:47:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B0BED439F2;
-	Tue, 24 Nov 2026 20:47:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56DB61F000CF;
-	Tue, 24 Nov 2026 20:47:31 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id CA8FE40313;
+	Tue, 24 Nov 2026 20:47:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A6811F00A3C;
+	Tue, 24 Nov 2026 20:47:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795553251;
-	bh=PRfJE8GxHxVJ2EQC9BwBA4K3kl6PgE402eg5bYUwmUw=;
-	h=From:Subject:Date:To:Cc;
-	b=InJ53J6qQfLulBuU25OUMAr8+UfWNKTRm1VH+e/FX8P6lKyqWEXaJI041fLRXXfQm
-	 L2Ws/RySDXQL0k49k8+bP+afb/QEISxqmX2UBI/RMBNDH/aJ309/AK+rt4wkXrj90Q
-	 GEvHev6xLj7eIP/QYstU8MWIrELQ4uYmnYqkTGFc8m47saJBsLKqr1zFxRjLtZSRpy
-	 VrpWpsSuQP7KpKX06i/r7e6pCgPSCndYMGFSr4BYD9TyhWMEEj2v6ivB6hV3cpGhJW
-	 KVn4RY2fZ14QqiBA9/OmaZ4Dk/Uyd59/jXZp+JvAILS6fDVIxrqfma7WQHSGChklsv
-	 qy5wLB49ER7og==
+	s=k20260515; t=1795553260;
+	bh=CuMg05a98HcJAkKkDl2QaTqHQIdMFGxRksNhla9SB8E=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=lNU3gMqObQuk8TM7A8W9Rc8yaIsKKJ+Z0Y/yfFvghzBJOAZRaOUh8uHwPJ9r3XLg6
+	 rr1PFpcnWihTp1M7xLILD2BYHW15tw4u7wUdN5WrZlhhvb9YgOwpIdA/s3PH2LWMk9
+	 IDR3b1EgM9POYUf090Z15syvEzGfzdJ2eZS5Vju5lSXc9sE8QPZOXMAF5efr114mO7
+	 WsrxkBf88BImcfdDfsEr/XsiIy+KA8KS32LZDAhjYxnD7Z25HKdchcTgPovribQ5Cn
+	 wYNOiyrDqfxVw3Ln5boLERtUU8P8j447gBr1fHo3Dbnewv0+XLubMTgYrIiIbxiuuQ
+	 JjaMJGv+gwyXg==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Subject: [PATCH v2 0/9] arm64: dts: marvell: DT warning fixes
-Date: Tue, 24 Nov 2026 14:46:33 -0600
-Message-Id: <20261124-dtbs-marvell-v2-0-663009a769da@kernel.org>
+Date: Tue, 24 Nov 2026 14:46:38 -0600
+Subject: [PATCH v2 5/9] arm64: dts: marvell: Fix w25q32 compatible strings
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNQQ7CIBREr9L8tZhCjUVX3sN0QeHTopWaTyWah
- rsLde3sXjLzZoWA5DDAuVqBMLrgZp9B7CrQo/IDMmcyg6jFkecws/SBPRRFnCbWKBRcS6UPrYE
- 8eRJa99501+7H4dXfUC/FURqjC8tMn+0v8tL7o46c1ezUyFZKZW0+utyRPE77mQboUkpfy+sTH
- bsAAAA=
-X-Change-ID: 20261111-dtbs-marvell-3ae21c8ac47d
+Message-Id: <20261124-dtbs-marvell-v2-5-663009a769da@kernel.org>
+References: <20261124-dtbs-marvell-v2-0-663009a769da@kernel.org>
+In-Reply-To: <20261124-dtbs-marvell-v2-0-663009a769da@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
  Gregory Clement <gregory.clement@bootlin.com>, 
@@ -82,52 +78,43 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Another batch of DT schema warning fixes for Marvell platforms. This
-fixes most of the remaining warnings on Marvell platforms.
-
-It's best if the whole series is taken together.
+The w25q32 SPI NOR Flash is a Winbond, not ST, part and is missing the
+"jedec,spi-nor" fallback.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-Changes in v2:
-- Update the system controller compatible strings to avoid using the old
-  legacy ones. 
-- Drop patch dropping 'phy-supply'.
-- New patch to rework ac5-98dx25xx 'behind-32bit-controller@7f000000' 
-  bus.
-- Link to v1: https://patch.msgid.link/20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org
+ arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 2 +-
+ arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
----
-Rob Herring (Arm) (9):
-      dt-bindings: mfd: Add Marvell AP806/CP110 system controller schema
-      arm64: dts: marvell: Add AP806/CP110 syscon compatibles
-      arm64: dts: marvell: Drop SPI max frequency
-      arm64: dts: marvell: armada-8040: Fix node names
-      arm64: dts: marvell: Fix w25q32 compatible strings
-      arm64: dts: marvell: Drop unused USB 'phy-names'
-      arm64: dts: marvell: cn9131-cf-solidwan: Drop st,m41t80 reset-gpios
-      arm64: dts: marvell: armada-3720-gl-mv1000: Add switch fixed-link
-      arm64: dts: marvell: ac5-98dx25xx: Rework 'behind-32bit-controller' bus
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+index f9695b25da79..ee3cb89ead0b 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+@@ -590,7 +590,7 @@ &cp1_spi1 {
+ 	status = "okay";
+ 
+ 	flash@0 {
+-		compatible = "st,w25q32";
++		compatible = "winbond,w25q32", "jedec,spi-nor";
+ 		spi-max-frequency = <50000000>;
+ 		reg = <0>;
+ 	};
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+index f2d278d171eb..1c36763178a9 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+@@ -361,7 +361,7 @@ &cp1_spi1 {
+ 	status = "okay";
+ 
+ 	flash@0 {
+-		compatible = "st,w25q32";
++		compatible = "winbond,w25q32", "jedec,spi-nor";
+ 		spi-max-frequency = <50000000>;
+ 		reg = <0>;
+ 	};
 
- .../mfd/marvell,ap806-cp110-system-controller.yaml |  59 ++++++++++++
- arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi      | 101 +++++++++------------
- .../boot/dts/marvell/armada-3720-gl-mv1000.dts     |   6 ++
- .../dts/marvell/armada-8040-clearfog-gt-8k.dts     |   4 +-
- arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi |   2 +-
- .../boot/dts/marvell/armada-8040-puzzle-m801.dts   |  10 +-
- arch/arm64/boot/dts/marvell/armada-ap80x.dtsi      |   6 +-
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi      |   6 +-
- arch/arm64/boot/dts/marvell/cn9130-crb-A.dts       |   2 -
- arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi     |   2 -
- arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts |   1 -
- .../boot/dts/marvell/cn9131-db-comexpress.dtsi     |   4 +-
- 12 files changed, 127 insertions(+), 76 deletions(-)
----
-base-commit: 3191063649dbf7c0d0b768e1f3655e4c5fc6edb5
-change-id: 20261111-dtbs-marvell-3ae21c8ac47d
-
-Best regards,
---  
-Rob Herring (Arm) <robh@kernel.org>
+-- 
+2.53.0
 
 
