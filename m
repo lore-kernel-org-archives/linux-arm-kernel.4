@@ -2,85 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46084606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401F2606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wio4fkNg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZTqo6cx1;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=i6kA3afv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=nNq6TWbysgOa1vqC3EQFS0jj416q5gx+MqMAuTR/X8A=; b=wio4fkNgwnIzDlvfY7VgaEWjmO
-	206EBA6Us5MfO5zsLJ9C4HZT9mCE24o/b9cT/eXZ1y1XVmQ7wfvDU+SyQwuhjm56SK/lZkbSZMfeL
-	m6VpipQ7cDN75JEdf6H6gEwbuMF3+ZQKp6ZpFlAMUy1Rb7oGxeiiLX02SpvrZJdDXV6Bi6pwSWBHZ
-	JkX02r2NqmDtfEM+BX8JEnWayn8qkxCqy+G+cZN6ywQQHBXJcZwiDNNA1vlUorL19Z7K9N2qANr6w
-	8QtLlq/WomtTeAGw316QaxZQW5ni0DjHKpEpPP948UbGI+0mF8mk/DRGKSw+8TdTpiTNVqYjrjzfL
-	gQNJiY/A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=miq8lHAk9j+ldEOiiht4iRcOG6aLFpZt8I9oVYIzhag=; b=ZTqo6cx14cZiBw
+	m+22mbwwZPs6Mhe5qnbLLNCxcVlsRAjCmP+YlAlW0RlT9Sw/vGA2iTUBpDe4+AXu4tbM0VKAlL6NA
+	MMb8ZPfPnTPy9+z8eV3ozJkPgGs3hB0PUmClPh2Hk9EWcdbrIrhS0KezMz/drDVi2J+KsOAjaaXtM
+	Uc/4Rnszhtl0i3sfkHQmREhmFxqS20jC+zu4q8J8j5j+jsfLjNQusr9IoP3I8SSGsrij73eVVvOr4
+	rPrMgvjg1Q8SzUOMwt/LkVmEZWDSQJBw3IoFo10acoVSB1YHEUD1yfGJOmF4rgVpUo0wT2SN2NiQ3
+	0ZMQ/7zL+gXE7KH35iBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm4C-00000005vvU-3Qt3;
-	Tue, 24 Nov 2026 08:39:56 +0000
-Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
+	id 1xVm6C-00000005wMl-2TqV;
+	Tue, 24 Nov 2026 08:42:00 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm49-00000005vuL-3xeJ;
-	Tue, 24 Nov 2026 08:39:56 +0000
-Received: from edelgard.fodlan.icenowy.me (unknown [120.85.97.139])
-	by APP-01 (Coremail) with SMTP id qwCowADnDfhFTQVrj+mUAQ--.9372S2;
-	Tue, 24 Nov 2026 16:39:34 +0800 (CST)
-Message-ID: <6fd9adfbb46959316ea18581513e21a71732df80.camel@iscas.ac.cn>
-Subject: Re: [PATCH v3 0/2] drm/bridge: add glue driver for T-Head TH1520 DW
- MIPI DSI
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong	
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart	 <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring	 <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Sandy
- Huang <hjc@rock-chips.com>, Heiko =?ISO-8859-1?Q?St=FCbner?=	
- <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
- dri-devel@lists.freedesktop.org, 	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, 	linux-riscv@lists.infradead.org, Han
- Gao <gaohan@iscas.ac.cn>
-Date: Tue, 24 Nov 2026 16:39:33 +0800
-In-Reply-To: <c89271be-85f9-41ba-9c19-c78743d212c8@rock-chips.com>
-References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
-	 <c89271be-85f9-41ba-9c19-c78743d212c8@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	id 1xVm68-00000005wMD-2KGj
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 08:41:58 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3b439e37813so1895015a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:41:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795509715; x=1796114515; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=miq8lHAk9j+ldEOiiht4iRcOG6aLFpZt8I9oVYIzhag=;
+        b=i6kA3afvzmgc5hWz810FGHS4/apn2ChCjRmlODN6/ZZWiwqOvSp6ruosqihTz5xA7I
+         D2bi5NlbsszB8A36Il/KaPTuLiDOCuwVihozf0JViEg1Y4C7dgIdJovjBEOx/M90qXdv
+         c+gtfWroSLJKGUA5MqXtfqz2kuVc4P+ob0PH1sfECiS+26w2zhVAl1UVAzYgzVE+e26a
+         FppZB8uU1AEbB8RrAmDN1YdChx0V19L2GfQ9lxYcI4kq9DtCTMQ+4uNe7HLLDLLGikmn
+         l2u6Qms5lJd1A37SuHO+Z96q/+n9pZXB9Lfxtn2DBAZCPQ42GEnjVKjQBECea91PdOIl
+         QH8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795509715; x=1796114515;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=miq8lHAk9j+ldEOiiht4iRcOG6aLFpZt8I9oVYIzhag=;
+        b=ZnA/6khm/2fMjFJ51uRza43qFE5D7azCIEYIUc0YGXT2rePAZZL2M+vItbsi0MnAI4
+         Oex0WoC58wDRRsVBPz+qsJ7gNNrv9l4++Nh31HBleqOAoP96ZgmYwTVI/mR5S5RFqp/l
+         Xbi7Q6a2ExXvYoo1g228ClEcXHkQyxy/K1cdWavOemrw4TdWXSZbxJTd+g66N2Ormwif
+         6xzjsW2StVTxa06N9NgFT85th9ioUjcOViCHS5rVUaeqaqkhMTVO981RA70DYs3v8nb+
+         IRauqAb2k+aMMNDarEGQ+fAvvs73MgNADG6ezNz1lDygl/eNGIL9qXqbIoCEXUnHksL/
+         gkoA==
+X-Forwarded-Encrypted: i=1; AL+hErGimhOkika5Rxcy9J0YLffXBcEUrfvHgl3ahMFg0YUlCDLUgCnVgEtFFmIIdCcVewi2jt6PiJFVp3MWGmbPyovz@lists.infradead.org
+X-Gm-Message-State: APuU4Z+B6zjjDVGR4u7saVBro2Ry1hfzDPDpP6d9yE2czD+Nd3y+myGD
+	hOHaHMBaYdN+zzfpuneGlKO9GWsRVwO8TACJS8z3mGluRnaFCO8x4ZcV
+X-Gm-Gg: AZFdTZcB418uc3J3Zh0t1ehu7MGxo+E9+twij1YTMEfLbAIWwcZ00VDBir7LuJ3u7mR
+	trtXSCn1+0GQSKJKDi/YAKUiRr8bRmyTK04nSswoSgbqKAyesMlLNgvkD5HUBg4Hi1/lhki2/GP
+	7ozQY+Pcn9bWlfTY3vEwnwNjmVuF557anGGNSlS2ajqLIjdqn9Nl12ESXQ5j3TIuqsp1bqBHLR8
+	fVoRnCdLceFjLeGkozSZReZWX25IOcCh10L+ezz2tUqeQP1l3oa/NxS75ReTPyjrCltYmHoSA7d
+	nhAU54cg04tiFKkP2ZirWsY3VuYJ2DXZTky+FmlK+upRoN1nOeoWXIhllqXadulOkUACkTFNuzU
+	st3YNBriL0l9/Xwrbh+9KFyL3ZsSlAT096Sny+P2BRnqHjvB/UcBmYCPBGYHMAY/tm3zKloFZho
+	rpQE+E25djnYLifCYvI4gkBE+w3H6B6s0LA+tv/vv4mBS3mRljAbs0DM44NWkcz1RSlcJoyLGQu
+	Nrap6XkdK4pcCaRJ9A8SoqLPcPJ+r6RQS0fTNX8OGNH/z/5cy1JMtuIT1XSREViUcVhv94sFTav
+	fMH3DWZTlIi8K6fCPxdqlUYf5031jXkIHI7jut4P0YMd3kt5CToPE3YhVxsBG4LfmfZD9PJygLm
+	xSyCZdQ==
+X-Received: by 2002:a17:90b:1644:b0:3ac:c98e:345e with SMTP id 98e67ed59e1d1-3b41caef685mr10503851a91.45.1795509715146;
+        Tue, 24 Nov 2026 00:41:55 -0800 (PST)
+Received: from [172.19.1.42] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d135e9sm24432973a91.4.2026.11.24.00.41.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2026 00:41:54 -0800 (PST)
+Message-ID: <c88fd429-025a-406d-ad80-ec464db7d1cd@gmail.com>
+Date: Tue, 24 Nov 2026 16:41:51 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID: qwCowADnDfhFTQVrj+mUAQ--.9372S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxXw4fCr1rGry5Xw4DtF47Arb_yoW5Xr43pa
-	17GFy3AFWDJrn2gF97tw1rXFW5Xws5JFyvgrW5tw1fZws8Wa4xXF9Fkrs8WFy8Xr1fuF12
-	vF40g34fWrnFvaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_KF4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
-	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr
-	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
-	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
-	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
-	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2I
-	x0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvE
-	x4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa
-	73UjIFyTuYvjxUVuWlDUUUU
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] iio: adc: Add Nuvoton MA35D1 EADC driver
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ chernyakin.victor.j@outlook.com, cwweng@nuvoton.com
+References: <20261117082832.1551574-1-cwweng.linux@gmail.com>
+ <20261117082832.1551574-4-cwweng.linux@gmail.com>
+ <20261122030647.70b41b61@jic23-hlaptop>
+Content-Language: en-US
+From: Chi-Wen Weng <cwweng.linux@gmail.com>
+In-Reply-To: <20261122030647.70b41b61@jic23-hlaptop>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_003954_754184_0AC25ECF 
-X-CRM114-Status: GOOD (  23.88  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261124_004156_599849_D354B038 
+X-CRM114-Status: GOOD (  22.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,84 +109,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-=E5=9C=A8 2026-11-24=E4=BA=8C=E7=9A=84 16:24 +0800=EF=BC=8CChaoyi Chen=E5=
-=86=99=E9=81=93=EF=BC=9A
-> Hi Icenowy,
->=20
-> On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
-> > T-Head TH1520 contains a DesignWare MIPI DSI host controller paired wit=
-h
-> > an internal DesignWare PHY, as a similar design (but with a different
-> > PHY) with the Rockchip DW MIPI DSI.
-> >=20
-> > The functionality to write to the PHY is shared between these two
-> > implementations of DW MIPI DSI, so it's extracted from the Rockchip
-> > driver to the common code. (The same sequence could be seen in the
-> > HiSilicon Kirin DRM driver, but that one hasn't been converted to commo=
-n
-> > DW MIPI DSI.)
-> >=20
-> > Tested on a Lichee Console 4A (with a Mingjun MJ070BI30IA2 panel) with
-> > further pending DT patches.
-> >=20
-> > One question remains: I have to copy the extra lane bandwidth headroom
-> > from the Rockchip driver, otherwise the Mingjun panel cannot keep sync
-> > to the display signal; from my testing, changing the hardcoded
-> > PHY_STOP_WAIT_TIME from 0x20 to 0x2 (which is written by the vendor
-> > driver) can also make this panel to work w/o the extra headroom. I want
-> > some advice on whether to keep the extra headroom or changing the commo=
-n
-> > code to make the PHY_STOP_WAIT_TIME parameter adjustable.
-> >=20
->=20
-> Does the DesignWare PHY databook describe about PHY_STOP_WAIT_TIME?
+On Sun, Nov 22, 2026 at 03:06:47AM +0000, Jonathan Cameron wrote:
+ > > +	/*
+ > > +	 * pollfunc->irq is not initialized until the pollfunc is first
+ > > +	 * attached to a trigger, so only suspend and resume triggering
+ > > +	 * while the buffer is enabled.
+ > > +	 */
+ >
+ > True enough but isn't it also guarded by if indio_dev->pollfunc
+ > inside the iio_device_suspend_triggering()?
+ >
+ > I think in the case you are avoiding it is a noop anyway.
+ >
+ > disable_irq() nests fine so it shouldn't even matter if anyone turned
+ > it on yet.
 
-Unfortunately I don't have the databook for this specific PHY, and I don't
-know whether this field is a PHY-specific value.
+I checked this again on v7.4-rc4 (b6a9fa34ce41).
+
+iio_alloc_pollfunc() uses kmalloc_obj() without initializing pf->irq, 
+while iio_triggered_buffer_setup_ext() allocates the pollfunc before the 
+buffer is enabled.
+
+The PM helpers check whether pollfunc is non-NULL and pf->irq > 0. If 
+the uninitialized IRQ value happens to be positive, disable_irq() could 
+be called with an invalid or unrelated IRQ number.
+
+This is why I added the iio_buffer_enabled() check for the 
+inactive-buffer case.
+
+ > > +	if (!iio_buffer_enabled(indio_dev))
+ > > +		return 0;
+ >
+ > As above, I'm missing why we need to protect the call
+ > to resume_triggering. The pollfunc can't change between
+ > suspend and resume so there is either one there or not
+ > in both cases and the guards inside that call should take care
+ > of the rest. If I'm missing something we should look to
+ > fix it in those calls!
+
+Agreed. The same uninitialized IRQ concern applies to the resume helper.
+
+I also noticed that iio_trigger_attach_poll_func() does not clear 
+pf->irq on its error paths. If request_threaded_irq() or 
+set_trigger_state() fails, pf->irq can retain a stale positive IRQ 
+number after the resources have been released. The normal detach path 
+explicitly resets it to 0.
+
+The error propagation from iio_trigger_get_irq() was fixed by 
+dff701806ab6, but these two IRQ state issues remain in v7.4-rc4.
+
+Would it make sense to initialize pf->irq to 0 in iio_alloc_pollfunc() 
+and clear it on the attach error paths?
+
+I agree that fixing this in the IIO core would be preferable to relying 
+on driver-specific checks. I haven't reproduced an IRQ failure at 
+runtime; these findings are based on source inspection.
 
 Thanks,
-Icenowy
-
->  =20
-> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > ---
-> > Changes in v3:
-> > - Fixed a remaining `syscon` in the DT binding.
-> > - Link to v2: https://patch.msgid.link/20261119-th1520-dw-mipi-dsi-v2-0=
--9ab5f9808f87@iscas.ac.cn
-> >=20
-> > Changes in v2:
-> > - Changed `syscon` to `thead,vo-syscon` in the DT binding.
-> > - Dropped the patch moving common PHY write routine to dw-mipi-dsi
-> >   common code.
-> > - Fixed a few problems pointed out by Sashiko in v1.
-> > - Link to v1: https://patch.msgid.link/20261030-th1520-dw-mipi-dsi-v1-0=
--753f34fd304f@iscas.ac.cn
-> >=20
-> > ---
-> > Icenowy Zheng (2):
-> >       dt-bindings: display: bridge: document TH1520 MIPI DSI controller
-> >       drm/bridge: add TH1520 DesignWare MIPI DSI host controller
-> >=20
-> >  .../display/bridge/thead,th1520-dw-mipi-dsi.yaml   | 103 ++++
-> >  drivers/gpu/drm/bridge/Kconfig                     |  12 +
-> >  drivers/gpu/drm/bridge/Makefile                    |   1 +
-> >  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c        | 570 +++++++++++++=
-++++++++
-> >  4 files changed, 686 insertions(+)
-> > ---
-> > base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-> > change-id: 20261030-th1520-dw-mipi-dsi-580d5b2792f9
-> >=20
-> > Best regards,
-> > -- =20
-> > Icenowy Zheng <zhengxingda@iscas.ac.cn>
-
+Chi-Wen
 
