@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B948A606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D488606A322
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DTI6VsGh;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=a3KaLGJt;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=h3aJvplq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W//AIesZ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=fROvGnzB;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=H5IWVszY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -15,69 +15,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gAIN7iE4u/BQ8emUvIO6sNS6XCYcMUaeapeftYIyo6s=; b=DTI6VsGhvO+jXf3U/zfdOKkHK9
-	+WAMS1fwli8T19kZmedzl7zvle2aeIEBhtq9BEuDXpoIIreWyvHG/MalFJx7QL+H36A2tk6lwutjo
-	ehjO7/NgyMnG16YAjJ4kyzkmBEIJBZ9lgW2imUN13G0ob0pe7pmPkTzDJwOu3BUue6XwNEtpbQXHp
-	qnDdyWtjIV1FoB5oh8BxcjaClnLpDGxFjneATiOCBW+g2Sa8xB9sr8jrj+UmpysLGpXGHS6gcdMhi
-	dhOX40l5HTSJ3SCpkvmtyIzlXyIEfOqfcHUrPraAC0jxvsjoTw4n/49fbENDiV05qzqPkrBdTETfd
-	2qtKyxMg==;
+	bh=d9xpumlCbgaIU/3xB5JAGANrE1Hm+hxXtNW2reVreRs=; b=W//AIesZyugc3RftlYGJNQrIXJ
+	aq/IGRUttpceKOTzrUn5EF43jaCwZ430U6FDU95x+/mr3jyEBdf63HEybC6LDFLDKIy8pHXMvzuLE
+	FNkabFDwpDJP82R3TzPygZkysrwLLPrMwXsquJAcQe+syLNaX25ipwb/Vzu5N7+MupjNo4bdqgK14
+	hiPplMJj9dYNsEbByqitw1VyajHoPKdBTRr/HV50NAFiV+HPz2V21ORgXgMMPR4KuuDfT/mWI5THq
+	Tzm16EQPEkXocOWWezNVtvIO6q1s1Z6Q/YlGdAobFIYpsJYU/pWpgrJ1ndNzptKq77V9ED6o1qRAu
+	X+uzza6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkwh-00000005jyx-1nP3;
-	Tue, 24 Nov 2026 07:28:07 +0000
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.172])
+	id 1xVkwi-00000005k1C-2no7;
+	Tue, 24 Nov 2026 07:28:08 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.178])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvT-00000005jL1-0Ykj
+	id 1xVkvT-00000005jL2-0LIU
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:26:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505166; cv=none;
+	Tue, 24 Nov 2026 07:26:58 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505169; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=Jw1B75AZR9r37pV72wMrabDcm66aq2L5065KPSA7+H3MAYiJokwL8WkpOc9nz+yebw
-    R52KxSfyLCxevdO0Vh8pWaopgVt/J02yGiDaBIB6s78KG8Cw2ECT9wwXtQy/Cs6YFWBP
-    52n6H5Tmf3gt/V4h9LdxzvISaAR3h5L0YUZrrykv4jFZTsERFEVmePoddeefHXt3x8Qi
-    Q6vfLOD7VIcAX+wmBGJ03w2GTeQI7X7EWk4X0hZ1TjO8IIA9us1kXkQ9wJ+sDLZet9v1
-    /fr9JZG3lUVFuwOFPdrTWsPfGYBo97jxKTpKajsmHyBbA62ig030qEZYxeUInLca+gva
-    ghTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505166;
+    b=bIiaZG0aB1A8EglnZPzLotr0APPVW+C+JttAhWgICeK1uivIxOxrQ3tY3MQ2NmCbSq
+    5MK0e+w6jhhlBqw3diP5fp9kEtkvG9L1JRX2l8cLJaddsIqTo8K5hpds2e4Hf2GTfFz4
+    uQcmzSwFw4Ug5txQ8lN/B+HCLwiH/64z2ztYX0pvnRgLPkkeQdGF5Fbn28R1OrXrd7yn
+    2k5nQZvCDncZjPGC2JoVdAYNmN2bLNBaYMy9Nd0KniZvAsoSTB752DXCduiwkeaAzhQL
+    oVwycnJekINI2m3gDW/iz69h0pqiphtUEeFI24tkg/7nPLeHOKud8q2hxazd2kgBpVCG
+    7kZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505169;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=gAIN7iE4u/BQ8emUvIO6sNS6XCYcMUaeapeftYIyo6s=;
-    b=jaC9A0CwwPT26qXZECMleSSd86xcXk5Mftx5phl5RznaJES9XY4Oqdo5LBu/C0RFhe
-    rWTsfelWx9RZx9/mXcw1MEII7a8U+91QH9/PgjLwgawrjUooBBBgfVyEExMgSCbMlArI
-    lMg+XWZs3fEyJ4NJeAl0iwqMsaxRnaSc1WA4Qd6g5+cVE3ZZw5affwnQWPx8liomLWHd
-    XIuTDJjF4VCjY1m7deqIvYEtb5alALG/dLXWpsgRlZMeeS93qumVRRadmZwvCVbtlKyr
-    /ikXjkqlBmfRFsI/TMtODweKq6fVI1XrojjSB00/JUfhc8x5SVBu9Sq3JOLlvuyBK3g6
-    0bHQ==
+    bh=d9xpumlCbgaIU/3xB5JAGANrE1Hm+hxXtNW2reVreRs=;
+    b=aPabauCX+WGDUQJXlMAX03F/Wb+Sq18WrA4ZCBukx9c4PduStiynt6VO5IPt+MoffQ
+    uGsdWN7JRBa6lNOuKgoMx1ZfI1Ibfcsm6PckPJz+abSD0KSCVbp9wVprM3eBFxtFMiMK
+    YVQk7oQgel4f+0xqBaXULmf/kHeUJCLE9nh2iy7LgeLeTyg7OzG7WIdZWIpkqWcISxqa
+    7oXnvi6jmBw2FS8NX3r7vPlrGjR1iweiZTRwWxgzkAj1f8eVqptrGh8f8/k74iY3JVWw
+    M5YW3BIYJSamSuPZDcjLnAMLuKW7tqtTAZ9FZY/olSbwjXi46NEO9qggp+z9lfhTc8Lt
+    UT5g==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
-X-RZG-CLASS-ID: mo03
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505166;
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505169;
     s=strato-dkim-0002; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=gAIN7iE4u/BQ8emUvIO6sNS6XCYcMUaeapeftYIyo6s=;
-    b=a3KaLGJtVvMLsOwdQZUYs+7gK4y5yMMC88fm09lTN7l6NG9gu8eI8W2icosjN3MpA2
-    bj6C07vlxiYwLcPYf5IkR78Iqaoz41qwEoq8WUwjURKL22gWnOuuuLOfP+HjN9KNrTaE
-    Lei5ojY3O7JlF8Hc1MihqnTEvrTrPZzGN5IoK7krNf4CFQvSh+R5yxJUvoaRqaz1Yz9y
-    3xagrdTDB3n0mDS1sZE14Sn+jRVds2NJ3y1yPheBCRhVQt2KRPv+oFiMFrMj/s+zUYTF
-    LHIAzqKyk2qD+bUdyyGEfw1Wkhjx+3NfNr4ib/LP/UazcxgirFOK+s1ooMG1J/EIxaXo
-    BulA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505166;
+    bh=d9xpumlCbgaIU/3xB5JAGANrE1Hm+hxXtNW2reVreRs=;
+    b=fROvGnzByh/J1FZLbReBn/Lsyo2c8cGB6I99GEWTrbblCQl7YqqUXVTvepg1IGzivx
+    paENMFItZfi/1hp17JvbIx082Xux6CtV0zaZylkpeDrVX9aghrPqzh/AFR5AnjqAWREv
+    7ytbW64OB/7xGE0wzGknonmpya0LLnlmtkIsr2RmmGHi3oJYKOz1g6hlf6jqJwcI/y9a
+    YhkzsY6/2WaTWBQeiAt/SoDJqogD7f5//hbUVWQpN75u6fr9EUBPeGyWxMyW4AfTp+1l
+    XGn2PBqaNfllfHm6I2e0389zqNl87Xu5+pXZkceigSaB2z/YZAeMWwjN3jg7mKs1hZO2
+    M8Dg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505169;
     s=strato-dkim-0003; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=gAIN7iE4u/BQ8emUvIO6sNS6XCYcMUaeapeftYIyo6s=;
-    b=h3aJvplqETdwNO8kY5RutWsO9gupBKll+2yH2AoQUGLuJZB0vkQ0wtDTAaen7gHL8k
-    5hFyXlXfUyNF6mSyn3Cg==
+    bh=d9xpumlCbgaIU/3xB5JAGANrE1Hm+hxXtNW2reVreRs=;
+    b=H5IWVszYs9rjCq5iy4gaYkFOMYQqGb46RRw6KMSLbr9oqCLpTNyDiHhtUuXTimbx50
+    ZZ+KaIYgQul+9842OgBg==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
 Received: from iMac.fritz.box
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7Q51HC
+    with ESMTPSA id Qb56a22AO7Q81HF
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:05 +0100 (CET)
+    Tue, 24 Nov 2026 08:26:08 +0100 (CET)
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -122,9 +122,9 @@ Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
 	letux-kernel@openphoenux.org,
 	kernel@pyra-handheld.com,
 	"H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v2 01/20] dt-bindings: gpio: twl4030: Document REGEN GPIO
-Date: Tue, 24 Nov 2026 08:25:41 +0100
-Message-ID: <21030cf6957c49c8114829970cf64c2638050220.1795505160.git.hns@goldelico.com>
+Subject: [PATCH v2 04/20] dt-bindings: sound: pcm1754: Describe PCM1773
+Date: Tue, 24 Nov 2026 08:25:44 +0100
+Message-ID: <a92d44c4ba920358003d475d4cac7541af037f41.1795505160.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
@@ -133,8 +133,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_232651_353387_304F05C3 
-X-CRM114-Status: GOOD (  12.36  )
+X-CRM114-CacheID: sfid-20261123_232651_318919_BE3097CC 
+X-CRM114-Status: GOOD (  14.66  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -153,44 +153,66 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document the optional ti,use-regen property for the TWL4030 GPIO
-controller. It exposes the REGEN power-management output through the
-GPIO controller so that device tree consumers can control it using a
-GPIO specifier.
+Extend the PCM1754 device tree binding to describe the related
+PCM1773 stereo DAC.
 
-The property is opt-in to preserve the existing GPIO numbering for
-systems that do not use REGEN as a GPIO.
+Add the ti,pcm1773 compatible string and an optional enable-gpios
+property for the PCM1773 power-down input. The format-gpios property
+selects the hardware audio format.
 
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
 
 Notes:
     Changes against V1:
-    - Replaces the former REGEN regulator binding following Mark Brown's
-      recommendation to model the control signal as a GPIO and
-      Krzysztof Kozlowski's binding review.
-    - Expand the binding commit message to explain why REGEN exposure is
-      opt-in and how consumers use it.
+    - The standalone PCM1773 binding from V1 was replaced by an
+      extension of the existing PCM1754 binding. Address Krzysztof
+      Kozlowski's request to use current bindings and validate the
+      schema, as well as the DT validation failures reported by
+      Rob Herring's bot.
+    - Add the rationale for the compatible and optional enable GPIO to
+      the commit message.
     - Commit-message review assisted by ChatGPT.
 
- Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/sound/ti,pcm1754.yaml          | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-index 96d50d14c0710..25ba4328ac2d0 100644
---- a/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/ti,twl4030-gpio.yaml
-@@ -47,6 +47,10 @@ properties:
-     type: boolean
-     description: Enables LEDA and LEDB outputs if set
+diff --git a/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml b/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml
+index a757f737690c1..ee2ebd819db00 100644
+--- a/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,pcm1754.yaml
+@@ -4,10 +4,10 @@
+ $id: http://devicetree.org/schemas/sound/ti,pcm1754.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+  ti,use-regen:
-+    type: boolean
-+    description: Enables the REGEN output as a GPIO if set
+-title: Texas Instruments PCM1754 Stereo DAC
++title: Texas Instruments PCM1754/PCM1773 Stereo DAC
+ 
+ description:
+-  The PCM1754 is a simple stereo DAC that is controlled via hardware gpios.
++  The PCM1754 and PCM1773 are stereo DACs controlled through hardware pins.
+ 
+ maintainers:
+   - Stefan Kerkmann <s.kerkmann@pengutronix.de>
+@@ -19,12 +19,18 @@ properties:
+   compatible:
+     enum:
+       - ti,pcm1754
++      - ti,pcm1773
+ 
+   vcc-supply: true
+ 
+   '#sound-dai-cells':
+     const: 0
+ 
++  enable-gpios:
++    maxItems: 1
++    description:
++      GPIO used to control the PCM1773 power-down input (/PD)
 +
- additionalProperties: false
- 
- examples:
+   format-gpios:
+     maxItems: 1
+     description:
 -- 
 2.56.0
 
