@@ -2,92 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A52606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F79C606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CT6FtK99;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Q8lzSdZq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P49/7rm3;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=cC5cNUw7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=TDfQrDs0VJJpLswhqOkr8Amdn3FxE2RvcuAwVP6cJFo=; b=CT6FtK99RBVrduJCk4kk2TZ0jp
-	Fe9Q+tlJSJD1nyZodCjCK/5IU09OQgaGXoy5ZlHJXwEsA1am5++KqoQmz/w74XbNenU+Zwh1wfLlW
-	+11POgzGTV8B0QrpIMY5AoPkxgT7/maHt07JTGpNoBvVc+z/6ddHT6SwPBFp5NEGUx6hjMKTDpfka
-	AXDWzeTTUFavN2F3b+F0XZeuLMtOl5LEMmxM7G2yy2KA7WGyZcRDVJeXylM59a9OyTk/uSJa3JK9R
-	cKxMBFMzPOWlxGa+C0LFKNyQ//T+P0U/gJi8UiwlA3OhHMJcDYwNRIFYbgMXjWsc30o9B9ks8pX9I
-	VtehxcoQ==;
+	bh=cheJlkoanCZTRG4AhCJxbSrRT9zoO/I9wDY38Qxp5Hk=; b=P49/7rm3Auw1fi6dc11LxvWpzh
+	Em+mPy/Gixl4GTjKbfuHLP+wF3oub9u2HsrMan6nAYQZZxKw2HXNbKKGWlB2Ud2MS4TsR9Hexr+l+
+	1GlkjGcGix6PTvd2NxnuzI6C5PB33VpMQd1amJRvPGMKZqpmB39XdUE6VDKIOzEX52vx1+cbE7l+p
+	vAPNPU0HH5CtwhabdmiE9miRWC4zw0K5fyviVypTPCJFy8Xf97Fxa50XtF075qWlhdDRdMEAD8eEm
+	K5qwBhF/4EpXV2ZUsYcYX647oryXVg9OKa+mXxSZiwB0otLkrVOSclpsp+uyo7DOErAUfBMZbHCEg
+	cwO/K42w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtX0-000000078o9-3tDu;
-	Tue, 24 Nov 2026 16:38:11 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xVtaT-000000079BD-1jTu;
+	Tue, 24 Nov 2026 16:41:45 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtWx-000000078nM-0kFI;
-	Tue, 24 Nov 2026 16:38:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795538284;
-	bh=/QZ+irOHsWaC/ChJazv1fX2AjDKuXTFkIcL1lxRycPM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Q8lzSdZqNQsy2LbpNePfKX8KQh7pIMERWPxdBSw3wkx1WOgtvWjSMVDtbLtNHhKi8
-	 uYKj8/MoSIcaW0v1BzkTok23qLTkyBt1VBkqtjhOsNXLjSD5akpLoNf53w3rntaSS0
-	 BUS5vp2VWLxZ2BhPxrgyzeGD0TPj7s5mB2D3L2Ovc3gS9DSZlD7736/uhb5P9l3yGb
-	 Dpz83spNUgC2jGlmUPwf2QclEoWAATsQolBSTA806m2YM/hbvtumvbFlr9/gLoskP1
-	 5ls7Ph35rDMM9wi6OQXmsaZMhN7eUET5A8crPpoCFPnbVGTGpJvarj5bZo7WI+ISU0
-	 lgDxI5zAa0VLw==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8700617E005B;
-	Tue, 24 Nov 2026 17:38:02 +0100 (CET)
-Message-ID: <871fa86e8a524f7d3ae7a0ac54adf57f14eaa187.camel@collabora.com>
-Subject: Re: [PATCH 4/8] media: mtk-mdp: Round MT21C sources up to whole
- tiles
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Ryan Brue <ryanbrue.dev@gmail.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Hans
- Verkuil <hverkuil@kernel.org>, Minghsiu Tsai	 <minghsiu.tsai@mediatek.com>,
- Houlong Wei <houlong.wei@mediatek.com>, Enric Balletbo i Serra
- <eballetbo@kernel.org>, Eizan Miyamoto <eizan@chromium.org>, Francois
- Buergisser	 <fbuergisser@chromium.org>
-Cc: Youngjoon Lee <getfeus@gmail.com>, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Mauro Carvalho Chehab
-	 <mchehab+huawei@kernel.org>
-Date: Tue, 24 Nov 2026 11:38:00 -0500
-In-Reply-To: <20261120-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v1-4-877dea14c3d0@gmail.com>
-References: <20261120-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v1-0-877dea14c3d0@gmail.com>
-	 <20261120-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v1-4-877dea14c3d0@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-Ap9Z8iPA9oUAx81PJBIK"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xVtaO-000000079AO-3Ux0;
+	Tue, 24 Nov 2026 16:41:43 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 86173C2C65F;
+	Tue, 24 Nov 2026 16:41:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id ED19B601E1;
+	Tue, 24 Nov 2026 16:41:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A4A9211E69A7F;
+	Tue, 24 Nov 2026 17:41:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795538489; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=cheJlkoanCZTRG4AhCJxbSrRT9zoO/I9wDY38Qxp5Hk=;
+	b=cC5cNUw7oFJed13YEaX4fWUIaxKQkdzydKfQ9yy80c4r8hL2EGyps+9mJ9gPa29bZau93Z
+	Mm1WW2W0cSx8HaIZMfhL8Sptorsuabrl1dcNoZflp6Fq1/r8sVQHlybGU079m+Fz4TNUT6
+	cYwawPDm55MjDOIwMVGf0aPeWweEWwNEl5LljDozd9ecGuUzMutf6GwrFFPV8yw5+zfTOR
+	1VLNmelAq4LWQODxHw7mpEce9TdtfE7LVBSIZBXXLTs32hcgPBpUOMAV8PJ6Fv5aOBPJYN
+	w5d5TTZUCQxTY2eLtRCdP7Nrk5UXXYUZ+ff4wW+D+Cnu3nlAnXVzWj00DBMliA==
+From: Benjamin Robin <benjamin.robin@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yuti Amonkar <yamonkar@cadence.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Andrew Davis <afd@ti.com>,
+ Vinod Koul <vkoul@kernel.org>, Chintan Vankar <c-vankar@ti.com>,
+ Abhash Kumar Jha <a-kumar2@ti.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Thomas Richard <thomas.richard@bootlin.com>,
+ Swapnil Jakhade <sjakhade@cadence.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 3/4] dt-bindings: phy: cadence-torrent: add phy-mode constants
+Date: Tue, 24 Nov 2026 17:41:19 +0100
+Message-ID: <8vihTUc0Sjqm4gFwtZkB5w@bootlin.com>
+In-Reply-To: <20261121-wine-nautilus-of-courage-94af4f@quoll>
+References: <20261120-phy-cadence-torrent-ng-v1-0-da2db7125cd7@bootlin.com>
+ <20261120-phy-cadence-torrent-ng-v1-3-da2db7125cd7@bootlin.com>
+ <20261121-wine-nautilus-of-courage-94af4f@quoll>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_083807_423087_55BECC5D 
-X-CRM114-Status: GOOD (  17.18  )
+X-CRM114-CacheID: sfid-20261124_084141_023166_B6CD9D1C 
+X-CRM114-Status: GOOD (  18.31  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,69 +99,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-Ap9Z8iPA9oUAx81PJBIK
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le vendredi 20 novembre 2026 =C3=A0 13:55 -0600, Ryan Brue a =C3=A9crit=C2=
-=A0:
-> MT21C, the MT8173 decoder's output, is laid out in tiles of 16x32
-> pixels, and the MDP firmware refuses a source of a size that is not a
-> whole number of them: converting a 1280x720 picture fails with -EINVAL
-> for every frame, while 1280x736, the decoder's own buffer size, works.
-> The alignment was 16x16, so 720 lines passed the format check.
+On Saturday, November 21, 2026 at 5:20=E2=80=AFPM, Krzysztof Kozlowski wrot=
+e:
+> On Fri, Nov 20, 2026 at 01:55:51PM +0100, Benjamin Robin wrote:
+> > Add the `CDNS_TORRENT_MODE_*` constants to
+> > include/dt-bindings/phy/phy-cadence.h such as SATA-LP and 2500BASE-X.
 >=20
-> Align MT21C to 16x32. mtk_mdp_bound_align_image() already rounds a size
-> up to the alignment, so a source covers its picture, and the visible
-> part is the crop rectangle.
+> But why? Why do we need more of these properties?
+
+The Torrent PHY supports multiple standards: PCIe, USB, SATA, XAUI and
+SGMII, ... For some of them, additional configuration options exist:
+
+=2D USB:
+  We need to know the I/O supply voltage (1.1 V or 1.2 V), since it
+  affects the TX full-swing magnitude multiplier configuration for the
+  USB TX/RX pad supply.
+
+  The link can also be limited to Gen 1 speed (5 Gb/s SuperSpeed)
+  instead of Gen 2 (10 Gb/s SuperSpeed+) to reduce power, which is why
+  the option is named "LP" (low power).
+
+=2D SATA:
+  The PHY supports SATA Gen 1 (1.5 Gb/s), Gen 2 (3.0 Gb/s) and Gen 3
+  (6.0 Gb/s). The link can also be limited to Gen 2 to reduces power.
+
+=2D XAUI:
+  The link can be configured to 1X only (3.125 Gb/s lane rate),
+  dropping the 2X rate (6.25 Gb/s), again to reduce power.
+
+=2D SGMII:
+  The link can be "overclocked" to 2500BASE-X (called SGMII+ in the
+  user guide) instead of 1Gbps. There is no PHY type in
+  `include/dt-bindings/phy/phy.h` for 2500BASE-X, and since it is
+  technically SGMII at a higher speed, I am not sure adding a new PHY
+  type there is appropriate. That is why I added these constants to
+  phy-cadence.h instead of reusing PHY_* types. If there is a preferred
+  way, I am happy to rework this.
+
+> >=20
+> > These constants are used by the new Cadence Torrent PHY driver and
+> > are referenced by the `cdns,phy-mode` property of the Cadence Torrent
+> > PHY binding to select the PHY mode.
 >=20
-> Fixes: c8eb2d7e8202 ("[media] media: Add Mediatek MDP Driver")
+> That's obvious, explain why you are duplicating phy type instead.
 
-Is this commit in stable? If so you should CC stable.
+You are right, the commit message needs improvement.
 
-> Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+Any guidance on how you would like these options represented in the
+binding would be much appreciated as I am not entirely sure about the
+best approach myself.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+The plan is to eventually allow reconfiguring the SGMII link speed
+dynamically through phy_set_mode(), but for now the configuration needs
+to be expressed statically from the DTS.
 
-> ---
->  drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c b/drivers/=
-media/platform/mediatek/mdp/mtk_mdp_m2m.c
-> index d2813890cceb..34d02de4453d 100644
-> --- a/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-> +++ b/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-> @@ -40,7 +40,7 @@ struct mtk_mdp_pix_limit {
-> =20
->  static struct mtk_mdp_pix_align mtk_mdp_size_align =3D {
->  =09.org_w=09=09=09=3D 16,
-> -=09.org_h=09=09=09=3D 16,
-> +=09.org_h=09=09=09=3D 32,
->  =09.target_w=09=09=3D 2,
->  =09.target_h=09=09=3D 2,
->  };
+=2D-=20
+Benjamin Robin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
---=-Ap9Z8iPA9oUAx81PJBIK
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawW9aAAKCRDZQZRRKWBy
-9I6LAP97J054sBtnp+eLh55dXZmQlNt8Cj6YYU+GZPToghAE0AEA+FmJ/e9Hv+dy
-mWFFrQT47bJIutO025aeyEtaLq0Fuw4=
-=EFQo
------END PGP SIGNATURE-----
-
---=-Ap9Z8iPA9oUAx81PJBIK--
 
