@@ -2,120 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911D0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03DBA606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=glWItbRP;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=R90t7onI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gRY6Vkjz;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=PqRwvsNa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=; b=glWItbRPd7X+Wg
-	1Ua7eN6c1ebTqZHeAimSXPlTuvuzxjnT4Ak3LVplsmKI7949psxACgFjzSHV/mrRPHd5t4XeWjhLH
-	dB9udNtkyjoyZpIuOVULBZ0wQ3U3YLMXlaJ8OHPrv/X0c2degc/7wlUp5TbWkKExKZJ9pLfuiuVb4
-	uGc8wgxuTaMa8OqDLUJyHVk2DZ79k/oGzlV/HGOl8gXE6fzphcvwrc80uxK700oRd++01ZSU2uhnm
-	CTTSzO1MASHdQnjphtSicO9dt8S8pHVSiH9d4iow+k7zSdE+noZZ8hr/mpeF/3c6djv28HWh8aGt9
-	3qxnUN4Ig7qaMVaIfsDw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=GAeuGjA0ohrbKm/YKYQMvDRAMTyL5dqBXRmsdS2B1bw=; b=gRY6Vkjz9h0ZSArwgFEvJ8+u/e
+	wF0DxAbuxcMPTvvlJY7Fjs5YRbyRXgrSba51EcKFfpgYVpBoEqhHk1Rg1yPspl8moBbd5x5Yp92s3
+	Ck1XX6QiJJTRNMpgFVP8bGt85w/944FwTCRssi2Z4wDIwq0ZyQHAiSVAHNFUuKTWfFEfekIiicXQd
+	ChQdaHNWtNB/T9QgJqmVtTF3eWLcr0ddJUUy1aoCXbF7UQ8aBRKVwP/9k1k0jLId26PhVjVdGOaIJ
+	tzu4vsVSDyJ2v3El1oWEmzDJrOINxkG8/XGpw71G/xfh8M++E0rh8LV68m0edurcF8YjwQRSQu+AD
+	OmVW8i2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxOR-00000007kkx-33RZ;
-	Tue, 24 Nov 2026 20:45:35 +0000
-Received: from mail-yw1-x1133.google.com ([2607:f8b0:4864:20::1133])
+	id 1xVxPH-00000007l07-3vG0;
+	Tue, 24 Nov 2026 20:46:27 +0000
+Received: from mail-qk1-x72c.google.com ([2607:f8b0:4864:20::72c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxOP-00000007kj4-2IKp
+	id 1xVxPE-00000007kyW-3AKU
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 20:45:34 +0000
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-8b315dd057bso31755587b3.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 12:45:32 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795553132; cv=none;
-        d=google.com; s=arc-20260327;
-        b=YgSM8CxpFpz90Deon2PkB3Eyjin+eiw+En2Wz/9Nitja/nkOYWss/uI0Kf/DimOium
-         48vb4grODjWB6iR5y1Lpv8nZ2z3fXbQMPUTj8bid9vHi+EMoB3IX10Aul84nX/rv9DaZ
-         iGtPPcWgkBlPUZAFNDBBUtBIghhzKjTsg7YudSyN5/L+f7SPn3vvD2ramyyaqtIX+oYd
-         boAObxJ45pkTP+d/HYq8bHk7tjvQ3IWYaabfiMwKyN8fdZIi1o1eWPIoQ9+kX+6XaV+D
-         Ic1kAOtYqexA3tKLomc2qHm2RWnNwbrjulYzJZq2i4LNGLZ9j9act2+pnA8NvxbVVO8Y
-         Jurw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=;
-        fh=VLn1mh4rKBvz8QYWXiykTDbnqGEgjPCCkAiDSIORRfQ=;
-        b=WLeTuEwj/yWW2OyVaLblMq36A6D9Hkced43KFNUEqyUZuCeV7QzNB87jsrfPtMacmW
-         s/tPOowOJx35v9Z8a1qXw22QrHFdcx/dhGEDvzOnRXDUbQbBiKlPXpQDQQVN5WDl9y+V
-         EtGmYQOzV2rErLExnlDx9k3dkHVWQTfQUYc9u1MRnMjD8AEXud4PcPTnDG72cZsikZb+
-         OXwg4pKhD6qArjkVv+GvvqRD3BAbk7ZdRI56+GQpblO9J8p/T77c2d5oS85IjO7EtvPP
-         GqbovTBjaAYPxmWdZ2z83cA+WJs0lHqY3m/70KK8LX1tPJC7tMOiIYAgitIYgF0uWuXl
-         5lkw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 24 Nov 2026 20:46:27 +0000
+Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-93f269e335eso589780085a.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 12:46:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1795553132; x=1796157932; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795553183; x=1796157983; darn=lists.infradead.org;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=;
-        b=R90t7onIqWceTO7ycfHwDRpJODze4oLHqHC+nwDR5adEV7+dsLUebxRWRkUVu1Iksx
-         zk/xva1PZLoc3nYIymmFYC2L5cSOUnVFeotjeiycz/j/0gjXPUWXgkMQdpb/4o63lhDL
-         AdSuquUPKU8HR90/ofdDULHjgPcuYVfcfzQb+NEh2wjh9KhPPGMXaLOY0fShBAkPcSM7
-         WjBCTJ/ZxpCsTO4JyF22c3KmRlj/mlnuKK/o7tx6u/qmshkV2hkuy4LqBV8GpCyKUQSJ
-         MEE2W19m6EqqY3EFx3tqf2wxaGHZvam+vGLAYz7ZEWxsExh3Es5FO40vs7BphzsN6IcE
-         Z4rw==
+        bh=GAeuGjA0ohrbKm/YKYQMvDRAMTyL5dqBXRmsdS2B1bw=;
+        b=PqRwvsNaXCUwNZW+sLfLiPbJhbFpgjILBI9TlXSxF0RsATNqaG4Xn3M4CDHZqlm7MG
+         NOiGI4kMO2FQmds6qcmybgR3KLdOU6+hXLdeouK/M9+28g+TUqGD1fND/OBM+l+dzQWQ
+         Mk6LDwLwSWOq7IzI0zUjFmnuZl8iGaq/vejmkeNfxCF8NZiSX28wBo8DXEpzcvdRCfZo
+         1UakwshsMuISBNmbEAtqJfxo22QidvuJZHTl3pSF9/qLETO5py6vcEk1k7ZHn5OV3BDv
+         Y5cR5EYx1QD9A5I1iY4ej19L/x381kpc04+HkMxSFoTp4/SNH71IxrRmtBfO7j/arAaJ
+         dSuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795553132; x=1796157932;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1795553183; x=1796157983;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=KFzLi3vzdDSPGhuH40A8wZRyinBPu8g/pRL5DsdlYi8=;
-        b=EUuVEr6WIt8qTe/MBRJ3kT/+Cr3LSsxe++lRUbrOVxIOj3wO7YmaJlLYvEd1jCsYSv
-         bwnfTd+1u+fH/0tGR3r8IAlGDQ9cyrEoFgDXQmAcxRuIJ6xXoIGj8/tJeXP4h6WTWnrp
-         MXpC4dzuCVfxulr2EswgNc4wRSDhFLgZ8LW84708oHQ1dZdHW+0SNki+ViMZvB7YH8wC
-         7eiWlXQgZtHzG1Ksyil08qCQC+vaC2WeY6wWgBRb2Ee4ZMpsJZ42rFfFzJVJFcRBTY2X
-         OvZLC0DIE5Bm4v4UnL+WaeL+r9EcKb/3dtvw/bAQ68KQEarGJ3vXNt2KFXOdOIAABFhn
-         60WA==
-X-Forwarded-Encrypted: i=1; AL+hErH7mQDm8Kbi8UiMVEVL6+kbx7kuAGm2tSdtDnYsfEhMwSr05pFCVcCtFcyTGEOFSepznL4T9yzjel4oDTqzU7wQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z++LiMNGoGIF0Xq2a5Izak0PN64+yMDhwy8p14iMeSjdMaM5pgP
-	AgDko/1wmqEmgJpV+QYamIwMpokEBkv4vjZjgfWeEu3gx8cGBj1ryell9igoklZF7wtbnXMEnD3
-	t8EeGXjOHtM552ZV/iOOM+clGDsnuXvo=
-X-Gm-Gg: AZFdTZev76et2imazGk7AHTdgssghjm6rYsvQTkwvpR9cqRhtbQwRatEHNrYRSQiT+J
-	ODYtGbSHk8+tW8XAFhxYFYO9F/WqCHQD2YkAfJUJ8QgtqOlQQKl+wg1tiEz/tLOg4E+0NzGLiDg
-	JLk9W53g8D6aEMl+19vyTDXZ/vTXr/3ATQAog1qLzax0euZOy9EPG/+1x2hskDxrfju92osKRCB
-	RPGSPqpvNJIi6UQ7OYrh28uCOiQlrrqnRArJFk7oFaeYAdYyKhN/xOVAt79Er6ETrPjPFqcc5Cx
-	iyWbN2Wojb2aj7VqI5gvo+VJcmhLtJVhv38374qB9E7JyA+kZTYfzfe4c0C0vRcZzGXRlzhNozL
-	nvzpOVpbGgUn8nLfQa4grQC6UXd8qQ0V/oaWPLJYlOLgbSoTZXc/vUqNYsIRdjSH6OuXrKtAILb
-	07SEuIWQ/2x3ooLbHE
-X-Received: by 2002:a05:690c:799:b0:8b4:d584:6165 with SMTP id
- 00721157ae682-8b52043ff55mr69264227b3.21.1795553131511; Tue, 24 Nov 2026
- 12:45:31 -0800 (PST)
+        bh=GAeuGjA0ohrbKm/YKYQMvDRAMTyL5dqBXRmsdS2B1bw=;
+        b=ip8kJxTYrHdi+OAygPmcaG/5uqYJkPaq+J1A+O8vA7TbfBBN5PHFIIlCd8aB06jSMZ
+         BqPaFXfSvkqh1+no+p59g5J4ewrKx6JwdX4cn1eLZYfBWXEmmZ5BBw/Lygck4kaA0sJj
+         GHyBkzQ8cLYYB8OJZRdba0sWB0F8ShoiX96IM4m+CMnIoWoR8FmK1YU2KWM13gnRl5xR
+         CxlOrwLNzmlP15UliLaQiKc6lRB6o397UEajjDGjLnaalQBpLZ/NmJHIXnq4+OUFJYFS
+         1iARwY6wuM/lbYZmg+v59bWadys6gsMOW0+arhextIueuNxA2d3SAl0wo8WIYXyPo3B/
+         blyw==
+X-Forwarded-Encrypted: i=1; AL+hErGbPvGR6DDVixLFE8Iu8RRnYd4P3c+Vl4aQL9zWkZX4LIADHvr1Qfu0b2Yp7dYVVMkHI/Bya6BUP8R7SrC00G32@lists.infradead.org
+X-Gm-Message-State: APuU4Z+8oq10JkuZPtrYtt1fW72LOgJE68BulFZGZv+Ih9iSlzPp5q3z
+	TKc0hu2YqRYWBBQj9iBCDktdwM8HiqPAZEiEFudf8jf7UHeFYmPRa5txuuB20sC2jOQ=
+X-Gm-Gg: AZFdTZeBIBXYBXDvVI6X4ro24DixffUvFF2cZLWVmoxfnN9dsnOhlBpAsgr5nWjulU5
+	fG9or05RiksGSvA5L3fFoFKZ67b5/zgudHDY9Ysp9zp9QP413//CJyb7gnZTDGEDwTPAae/6Ixu
+	rVrb4TD7vU/D5CVTL7VYVW7Tkw3zIdANwXkd5rOo56lzu07lzxjWHW/Rr0KonsvOylVTZzx5mf6
+	i4hTOS49gslsjneBUKnl325jhrKpg+7chNazopC03T+Omdidpww5RpjfvjYUzQfZXxVKXbBxWnS
+	o2UKCWP7AlVwqtbcYeCV6vOUIuBNce/KkQoSgtjehRSJG2+iOhe96RiTrAPyEJSJOGf45+lknXc
+	VJRED33EL8Ini7tieT5LIzdMLroh2gizfMNa3ZY2RMKHckGBrMoAQUz2RPwHDwNcH8HwrcoyU32
+	880HHCSo/nrArZ+QBx+DAraL5P1i9mEEH2lC2zDc4cvY+pemb3/We39XW9fFOUS3mW8yhmYh3IZ
+	Bz3LnPtdC4CwFiHaS3xQ7X1kN/5P4rToN+PPGvipsWvz/YdUaIBZn8UyTsfkxqpQV1TvNZnEGH8
+	OiXOhU3q+AJx1qE7h0Ls3VgGQreHPKvoWlBLAVhMqVcwYa8o+cn6big=
+X-Received: by 2002:a05:620a:2605:b0:949:9f1e:d8b with SMTP id af79cd13be357-949ba99cb12mr2707807885a.16.1795553183318;
+        Tue, 24 Nov 2026 12:46:23 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb35005dsm1135466685a.11.2026.11.24.12.46.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 12:46:22 -0800 (PST)
+Message-ID: <6e1ea0410e9a1ff6a811914a0718117e18763374.camel@ndufresne.ca>
+Subject: Re: [PATCH v2 03/17] media: rockchip: rga: move early return into
+ if condition in vidioc_enum_fmt
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
+	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
+	 <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
+ Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
+ <lgs201920130244@gmail.com>
+Date: Tue, 24 Nov 2026 15:46:21 -0500
+In-Reply-To: <20260916-spu-rga3multicore-v2-3-23aa2cb74e61@pengutronix.de>
+References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
+	 <20260916-spu-rga3multicore-v2-3-23aa2cb74e61@pengutronix.de>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-Kr3UTuiIQsdfzM6RH7S6"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-2-tanure@linux.com>
-In-Reply-To: <20261121213102.143130-2-tanure@linux.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 24 Nov 2026 21:45:20 +0100
-X-Gm-Features: Aa3M54pybnp1CQPsafQYDf0P2DptibC917JzUwMw-x18aat2wfvVMhiMsv1rR3s
-Message-ID: <CAFBinCDPGYpR6rmtJvN5pT1OdSN-ne=YJVeT0kk4Ff2SB2vraA@mail.gmail.com>
-Subject: Re: [PATCH v8 1/4] dt-bindings: net: amlogic,g12a-mdio-mux: add the
- T7 compatible
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_124533_600999_3CF11268 
-X-CRM114-Status: GOOD (  13.12  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_124626_216616_447E39D1 
+X-CRM114-Status: GOOD (  18.67  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,28 +124,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 21, 2026 at 10:31=E2=80=AFPM Lucas Tanure <tanure@linux.com> wr=
-ote:
->
-> The T7 has the same management bus multiplexer as the G12A, in front
-> of the same on-chip 100M PHY, and the G12A driver runs it unchanged.
-> But a device tree that names only the G12A string leaves no way to
-> tell the two apart later: if a difference between the two blocks
-> turns up, every T7 board would have to change its compatible to get
-> the fix.
->
-> Give the T7 a compatible of its own with the G12A one as fallback, so
-> the existing driver keeps binding and a T7-specific match can be added
-> without touching the boards.
->
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+--=-Kr3UTuiIQsdfzM6RH7S6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
+=A9crit=C2=A0:
+> Instead of a doing an early return when we don't have a capture device,
+> merge the condition with the following if condition. This improves
+> readability, as the condition now explicitly contains a check for a
+> capture device instead of returning when we don't have a capture device.
+>=20
+> Also use the V4L2_TYPE_IS_CAPTURE helper and improve the comment.
+>=20
+> The early return if was copied from the vivid drivers
+> vivid_enum_fmt_vid function.
+>=20
+> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
+
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
+> ---
+>  drivers/media/platform/rockchip/rga/rga.c | 14 ++++++++------
+>  1 file changed, 8 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
+atform/rockchip/rga/rga.c
+> index efe5541078214..8c03422d669cf 100644
+> --- a/drivers/media/platform/rockchip/rga/rga.c
+> +++ b/drivers/media/platform/rockchip/rga/rga.c
+> @@ -372,12 +372,14 @@ static int vidioc_enum_fmt(struct file *file, void =
+*priv, struct v4l2_fmtdesc *f
+>  =09if (ret !=3D 0)
+>  =09=09return ret;
+> =20
+> -=09if (f->type !=3D V4L2_BUF_TYPE_VIDEO_CAPTURE &&
+> -=09    f->type !=3D V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
+> -=09=09return 0;
+> -
+> -=09/* allow changing the quantization and xfer func for YUV formats */
+> -=09if (v4l2_is_format_yuv(v4l2_format_info(f->pixelformat)))
+> +=09/*
+> +=09 * Allow changing the quantization and ycbcr_enc func for YUV formats
+> +=09 * on the capture side for RGB -> YUV conversions.
+> +=09 *
+> +=09 * These flags are only relevant for capture devices.
+> +=09 */
+> +=09if (V4L2_TYPE_IS_CAPTURE(f->type) &&
+> +=09    v4l2_is_format_yuv(v4l2_format_info(f->pixelformat)))
+>  =09=09f->flags |=3D V4L2_FMT_FLAG_CSC_QUANTIZATION |
+>  =09=09=09    V4L2_FMT_FLAG_CSC_YCBCR_ENC;
+> =20
+
+--=-Kr3UTuiIQsdfzM6RH7S6
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawX3nQAKCRDZQZRRKWBy
+9EPvAP9qmu6NjbxJIVrwPbtNCb2o5iC32gRQgn1s5lFgDIFY+QD9GU/Itmf98PeY
+254GJzxL0n7DdfgEkaSI/if1tyvWuwE=
+=f1zz
+-----END PGP SIGNATURE-----
+
+--=-Kr3UTuiIQsdfzM6RH7S6--
 
