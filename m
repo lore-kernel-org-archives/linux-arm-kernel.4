@@ -2,84 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532DE606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5BC606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZprZ1Avq;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Z435zaMX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0cecgKb6;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=YsmCe1jJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=H+3HlGDl0jWhkQoLDJvtkNrFV/RdM1LfAUEpDa6mtKQ=; b=ZprZ1AvqPId4KCmJEsg+tj7VyH
-	jI1FjzvaoTxmc5sTtn2c+YyPv1MQ4pyCmLR3hBhhc2aPTvmRx1ac7MIrf/1JKyoY8BGgiionz7fFX
-	myZgcQa1ufaa1hf2FyxY/Rgc/oyvr+2Q1vxmFnrUhPbCuPGV+EkrXtYhCFRqBptJwYoHqyP4bmszl
-	XtobEDqKoTclEn5iT7OmfFD5hrJygK5aF5ibeY1tJlLgF37MQ2GDGhLgIw9DKVLrVrkO9+Lxk1aK4
-	v0oqFB6cABh4FngxobexqDRdni7ZnV16NPjYrYJdbctC1lDCpPJvyOMNBu4ywiH1F53zvq5MPTHMu
-	VbfIDqfQ==;
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=JoPbedAyc1PugLj6beZG+rft5KDyqU0AHU8dUGfft8o=; b=0cecgKb6wOwUea
+	DkkKRq3NIcE7Fw4YOcn16U9gPfYthjGCVHjWbLor8A7Ugty8CY+G7xAwWWx3Hgd0ZqgH2WYxUp+yh
+	BO6Gj/iDUBRMncNkE6wq/SFVrc78xi8HBwfILDV9fenFaVu+ioXMOcDccCJn2yorEEQvMe8cpBdjH
+	8PqT7mtS1ggviKxYjPXkrPdQifG+5YL3NZYKX9bPMA+GZkSHFR4MijIlZdzRHdBTqyNTQbEH/rldM
+	3Uu6J/7krjBhKyMT1XEJqkHaHU/qxRiJU/6MwpjqsYDXsqjn6dTA26iocb8Q4xybKiROjGf16rQLj
+	7o/7j5HsVSBMmY87JWsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhVV-00000005T1r-3nIn;
-	Tue, 24 Nov 2026 03:47:49 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xVhDM-00000005Qp4-0akm;
+	Tue, 24 Nov 2026 03:29:04 +0000
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhVT-00000005T1O-1spu;
-	Tue, 24 Nov 2026 03:47:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795492062;
-	bh=WugA1Xe6UFchQyqrR/baOIOB+aIVWuHq2eVJHKMBAII=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=Z435zaMXqZi+mNCGq7FMDiwNkztASb7kCOR1vOP8q6L2/TSfBCHSHBzaklBXgzP/M
-	 /vPV9bVtqmwpxr2iqrJSx2M+kezCkKDzNIW77smXJlte/9K4WtkYRK+TOMoNjFwFB4
-	 MtYtsYMEU5dWbNOQrSc5HfOkYeyhbf26We46lWLHdrU7MxMxvbtWfH4h6nJyCJpY03
-	 mKI9DQ22deF5g3cfH+sZn9bgyhcjrf8wnzS/kujaAi3ZIra1qaGoWriTeskmaGReVk
-	 OqplmhnEVOYsDGMMYvpmtUeWDha2SXYCyR1Y3A7L7dw6Ucod8yPG0Sgrlec7yTkG1d
-	 9OIfqTKZxuFdA==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6050C17E00B2;
-	Tue, 24 Nov 2026 04:47:41 +0100 (CET)
-Message-ID: <afb9f3dd7efebeadcfd04621d57e72374313fcc8.camel@collabora.com>
-Subject: Re: [PATCH v7 3/3] media: verisilicon: Create AV1 helper library
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	p.zabel@pengutronix.de, mchehab@kernel.org, heiko@sntech.de,
- hverkuil@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Date: Mon, 23 Nov 2026 22:47:39 -0500
-In-Reply-To: <20261120143135.71134-4-benjamin.gaignard@collabora.com>
-References: <20261120143135.71134-1-benjamin.gaignard@collabora.com>
-	 <20261120143135.71134-4-benjamin.gaignard@collabora.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-rIlrM5CQacjfgEh5f7QL"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xVhDI-00000005Qo4-2m3Y
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 03:29:02 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VGuwF8BaM9AZaYGW5vjBeUP6dnBeA4+9H0o9ydbExxG0YsUbF2Cc25eH1pm7gV3EpvQDUvPGA+YT+UiVlRvff3H4EBhHsgO/VjKJUnYGlU+kSGgQGLAHfb7v962XrnPxQnSKmzI0ZY0OkhmAiX/rlI9DHTDqs7ZtFYVLoVOi/ujwUYXT3B+88qm8Tm8VZIYTgGnfwBon9T8H28Xb4xBGzW48ShI2W9a5fpfboN1cS3xLswJaQaQJzFkEPaGt4jmzSNO0ODRmTni/PWWWV0aNQGzxcjpLRVA50RDPX/kw5cssd9vonnq5e3womOfBURVZjMTonn2kda1mXCJAQP9JLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JoPbedAyc1PugLj6beZG+rft5KDyqU0AHU8dUGfft8o=;
+ b=wX5NpVOFfNrezS/7XS82bVeL2+SAHjbWy6r6ijwvkaLkfFjY0Ei+KZsbftp70Hcu01xXus+/57zT5kXkjPoQ1rJYeRTSwVL4iyUkbMdH+VJpkfyceN9bLzplqJBK6rGS070Qo5qHkWxq2X0ktC1+4jYEih19ohZB2xty6TQFXap1tkReWBm3ExdzWv+9YzymCnvVNBdpwKIjK8vPofX7xsAaw7ftypEQeovgKB6ERcm7lU4nN3+axyZvUt1/YoNezxBtw0n5bIepAamCHOGrRggf+WYXExENiZVrOeIbrSgtJome6miuDGBgxfxiR8hof/r5i8jkP2XA8QiMUn6Clg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JoPbedAyc1PugLj6beZG+rft5KDyqU0AHU8dUGfft8o=;
+ b=YsmCe1jJOaJdzoKKqyQVQm/JtAwRaPvcqXPWwV6rd3oU+7Wj3yOZWzsgUUGqlQq8L5ypw0elcTohbeLi4qqrMMn9kPCdhJmCSWui5zasxAprELoQwSZPVlAMZNUGb/uya9RlTB5oGagjD1t5tC4mIpEpvH6pEL8KGlyuqrpFnCyfZE4kXWUorX6+2u4yfxFTLj5LkyefOThkJzswl/cZj8Wc8Z5922lcRod17rMW4g1mwumzLKA9hNIozViQKGjlcezC3GVahcqT+dhMoNlFBWSzthbM9GfOiTa5YAUTTP0PiHAX9oqmu2tH6wjpZVVqf+qw2jg/GgFJXv/ich4eEA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by DB9PR04MB8393.eurprd04.prod.outlook.com (2603:10a6:10:25f::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
+ 2026 03:28:53 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 03:28:53 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Peng Fan <peng.fan@oss.nxp.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Iuliana Prodan <iuliana.prodan@nxp.com>,
+	linux-remoteproc@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 09/10] remoteproc: imx_dsp_rproc: Fix pointer stride in imx_dsp_rproc_memset()
+Date: Tue, 24 Nov 2026 11:25:56 +0800
+Message-ID: <20261124032557.5358-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261123172140.3547896-10-lee@kernel.org>
+References: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: JH0PR01CA0076.apcprd01.prod.exchangelabs.com
+ (2603:1096:990:55::9) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|DB9PR04MB8393:EE_
+X-MS-Office365-Filtering-Correlation-Id: 244f2eb8-6bf3-4c84-f98b-08df49db1072
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|19092799006|1800799024|376014|7416014|366016|261102123227099003|261022105027099003|261026140227099003|261028144727099003|261021121427099003|10067099003|11063799006|56012099006|261009223027099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: munmyW4AUR5QUROm97TBT+BAOaWSrIr0yzE9250j2e4Rj3zXgwSk/BTa2wG0ZbVRQfgvju0/gTEl03u0nBhwVHQTjxcF9T3nyzMchKT6yY8Jx6i6P+WLozZmUhoQAEVdjk1iy6mFBKGqws4Hv/T0J1FbNk/O//E5Kx4uw3kRnwZQQcAf0KCpVKF92h6RPzUGBBUPyv7Kx9XZno0bUweBO6D4JrttkYpUI/by0+zNtdG4H/pU0dDVaebrR6EC+vjNIOKuH2yeiD63JqZaXPJIr0l0TC2yG9di5CgmO/jn6ze2ooBqtG+AlUAb1AKibiTpQxOWRmH6rzMFW7PFvCP4bL27AOPKVaWnJPtdjCOzV01HbKjCX3uDXLQxv037KmLENKWAesybRh29FFgWeWL+2MuEzUOcdJETd0Ac9v2RwzlCuuNhNCtfoLQ9xQbgpkhyKYIGLrzl+GLwZ0fMDsVKIeE2AxOFR/Hg68DEJovvRK3aMOOlfnF8IUfFx6DHKKqx0Qr9YqjJW1FSB/LngxuBq+trRVNePuyxzeJ3fdu+zojHBhRKaVWKDEgZD7/Aty+vfE/U2UCJnQsfxd6a2M0rQAMm5/QCdvgVC45P+PyFZPY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(19092799006)(1800799024)(376014)(7416014)(366016)(261102123227099003)(261022105027099003)(261026140227099003)(261028144727099003)(261021121427099003)(10067099003)(11063799006)(56012099006)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KoM3Rk+Tu1s6vaHPkCpxVv+sdgbmC+77nZBt80sMT9TfLKlBdn1TOI4g8SiG?=
+ =?us-ascii?Q?uIndsuK3XRZV0+vO8O7xGV+l4RXlaX/LlRQVAUuc9GGkBav6HVgzYkS8dJeI?=
+ =?us-ascii?Q?Zn02iz9SWN0plX5iVRCK1Qp0lMyPtI2Onr/1+e3oM20itZLw/khwCKuN8yu6?=
+ =?us-ascii?Q?EzEfKN3ve1+/uztV033lbpO0oAcHj+G81940AFiuZxPwR2dZC9X/g6LjY9Eu?=
+ =?us-ascii?Q?pLGQbQbpuCjmTVnSvQAFoJ4jOOCKgeq4AwD24S7FPhWyWJy+CrxaoPQV6D6l?=
+ =?us-ascii?Q?vdCR5Cti1wt271iV3Pkq3tB3w353M4//uwjPWqSW74lF3/eeOTGk5ByJIRue?=
+ =?us-ascii?Q?QSHofA6i5b/SVABzU/72rgGXzkXDui/NEGBoohuv9i7uD1yb1VSwt/VLWIoe?=
+ =?us-ascii?Q?AQEkXn+oAH4SZqF0R4fY33YDga2+Og7JYgoGWBQ73Xj0hAMLWhDsuX3XIE9C?=
+ =?us-ascii?Q?kSjtwAURcFSVRYX848ap7m8G9oEZ6wtLoiLRA8ecGv8lZo8qSWOZ63Scbz4p?=
+ =?us-ascii?Q?LtDPgThno5y2ANx2rq3KK1kMLp7NR/441RaU6XKfsqmVFbFThCedFOAkERP5?=
+ =?us-ascii?Q?CSqRkZJubQqL7R6YybJltAmzjzAUIFh+/yTM7YtjWTVobgK6ps//NllntSMY?=
+ =?us-ascii?Q?JWkjsdjNMSkmQnB1GRnaBD9myojYIPJbCrVroPGkwIUkZblRmioz2kud8u6r?=
+ =?us-ascii?Q?axRe1kE/IzMVoaZ/sEGV0Sg1Z6Bn9gZ7TQCc4OEG//sfskSSjdXXaWzfk4/4?=
+ =?us-ascii?Q?Af4FGExakNxNMIc9I2k7wMoWpZWxiAtic4Cp06StGjhUYFpV8gsh8Ir+QxBd?=
+ =?us-ascii?Q?iDWjFjQy12SMsDq96ZlX2PYpt5xYcunwBaSOkSqW8C2K9EPv4QwkcIBLPEOd?=
+ =?us-ascii?Q?TDewS764UNbNsmDoBBifCJkD7g4rbg6x1wn1utdWTalK+jZ3ZeaTQKfVVPI9?=
+ =?us-ascii?Q?k99/wPGbn9IpE+Y97/+g+tYN5IyVwKvVlSsqA72YRLCIi/g+DcLlPBceDhTe?=
+ =?us-ascii?Q?q9fQpAW6kRrDgU1xXP8x/JtX5/0rRnLLKpjGpaRkIXxlzkaPTMn6q2oFDsIG?=
+ =?us-ascii?Q?GAvHsOMX4mdJNgWdU4bPuERwKBZw4TTFrA/hC09yfz13U/vPVPNRuzNZkRpX?=
+ =?us-ascii?Q?PHIPmk/cNof+jvZ+bx51wPLb9D8bdEWjllWV4eW1512wn6uJyIXSJNSv1xoT?=
+ =?us-ascii?Q?eHPaxu75klpKBPr1oda7samoWXcHD2vDll2wYYu40RWCvsyBaaLvDI82AVzK?=
+ =?us-ascii?Q?R+39b0Ig5n5AEuN6soATirunyEFOyqhRmEh822spT85tXBGOWjvMljXbgl89?=
+ =?us-ascii?Q?r2sVUuRc91KyarWVCcNgA35iTNXp2UD6vKJxDmf42RZr3c5FhWYvz1EDOYay?=
+ =?us-ascii?Q?JJ1msAaYD+tFeStTUqmHhrh+eYiQsz2vTDv4BFwurANDrtuaisfEe2HX1c26?=
+ =?us-ascii?Q?/GSJCE9XsHd9jwOnlVO2/odADAXD7PxSDGcUonOzbhKrzaagxvosy43vmsAp?=
+ =?us-ascii?Q?L4EgOI5QCeeGYOokH8nMSKfKLsgHp6fheh5o6v9i4J3EmbGtTb80ifxE0POJ?=
+ =?us-ascii?Q?TePKDS9zlwsee0MH+hBzyvY1stpSCyHPXUKL4aPNSGgFaznrbH8EOUPeCcfs?=
+ =?us-ascii?Q?GIZYu2mM8YrsjAuv1LQ3zd8tRhC7x9Zc2e8nOuAOWMDi0aRyJi1xM1sfn5wR?=
+ =?us-ascii?Q?5HspT39yQamFL7EtKjJcJbr2rZTeQFUO3C7cnafpI/ZVFiqzm27J+BOdYLCE?=
+ =?us-ascii?Q?x2ahPimJsbRMhGCGp9bPJkbbP2Ij2ILDOo05AU4BxVbL9rp518cm?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 244f2eb8-6bf3-4c84-f98b-08df49db1072
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 03:28:53.4705
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vLPkjcCWZhFEy72EfGBIqnyWElCLA/XhPPxvKW3M3TTJ7AzdDYYC42E5XUQ5cJvMjOZm+YCTz4N8OXJWWEWHMBMVjjaXwYqwyOLOB9tyMfHjUPXGaM47Q0chXxLHkiIn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8393
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_194747_745615_E18233A2 
-X-CRM114-Status: GOOD (  16.69  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_192901_079396_FF154E39 
+X-CRM114-Status: UNSURE (   7.86  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,116 +149,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-rIlrM5CQacjfgEh5f7QL
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 23 Nov 2026 17:20:53 +0000 Lee Jones <lee@kernel.org> wrote:
 
-Le vendredi 20 novembre 2026 =C3=A0 15:31 +0100, Benjamin Gaignard a =C3=A9=
-crit=C2=A0:
-> Regroup all none hardware related AV1 functions into a helper library.
-> The goal is to avoid code duplication for future AV1 codecs.
->=20
-> Tested on rock 5b board Fluster score remains the same 204/241.
->=20
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> ---
-> change in v7:
-> - rebase the series on v7.4-rc3 tag
->=20
-> change in v6:
-> - include b84f6533a8ed ("media: verisilicon: rockchip: guard VPU981 AV1 d=
-ivisor and tile buffer")
->   and 367db8b23c26 ("media: verisilicon: rockchip: reject AV1 frames exce=
-eding the tile capacity")
->   fixes into the patch to not losing these improvements.
->=20
->  drivers/media/platform/verisilicon/Makefile   |    7 +-
->  .../media/platform/verisilicon/hantro_av1.c   |  816 ++++++++++++
->  .../media/platform/verisilicon/hantro_av1.h   |   64 +
->  ...entropymode.c =3D> hantro_av1_entropymode.c} |   18 +-
->  ...entropymode.h =3D> hantro_av1_entropymode.h} |   18 +-
->  ...av1_filmgrain.c =3D> hantro_av1_filmgrain.c} |  125 +-
->  .../verisilicon/hantro_av1_filmgrain.h        |   48 +
->  .../media/platform/verisilicon/hantro_hw.h    |    7 +-
->  .../verisilicon/rockchip_av1_filmgrain.h      |   36 -
->  .../verisilicon/rockchip_vpu981_hw_av1_dec.c  | 1091 ++---------------
->  .../platform/verisilicon/rockchip_vpu_hw.c    |    7 +-
->  11 files changed, 1140 insertions(+), 1097 deletions(-)
->  create mode 100644 drivers/media/platform/verisilicon/hantro_av1.c
->  create mode 100644 drivers/media/platform/verisilicon/hantro_av1.h
->  rename drivers/media/platform/verisilicon/{rockchip_av1_entropymode.c =
-=3D> hantro_av1_entropymode.c} (99%)
->  rename drivers/media/platform/verisilicon/{rockchip_av1_entropymode.h =
-=3D> hantro_av1_entropymode.h} (95%)
->  rename drivers/media/platform/verisilicon/{rockchip_av1_filmgrain.c =3D>=
- hantro_av1_filmgrain.c} (85%)
->  create mode 100644 drivers/media/platform/verisilicon/hantro_av1_filmgra=
-in.h
->  delete mode 100644 drivers/media/platform/verisilicon/rockchip_av1_filmg=
-rain.h
->=20
-> diff --git a/drivers/media/platform/verisilicon/Makefile b/drivers/media/=
-platform/verisilicon/Makefile
-> index f6f019d04ff0..a1dd6c2d29be 100644
-> --- a/drivers/media/platform/verisilicon/Makefile
-> +++ b/drivers/media/platform/verisilicon/Makefile
-> @@ -19,7 +19,10 @@ hantro-vpu-y +=3D \
->  =09=09hantro_hevc.o \
->  =09=09hantro_mpeg2.o \
->  =09=09hantro_vp8.o \
-> -=09=09hantro_vp9.o
-> +=09=09hantro_vp9.o \
-> +=09=09hantro_av1.o \
-> +=09=09hantro_av1_filmgrain.o \
-> +=09=09hantro_av1_entropymode.o
-> =20
->  hantro-vpu-$(CONFIG_VIDEO_HANTRO_IMX8M) +=3D \
->  =09=09imx8m_vpu_hw.o
-> @@ -33,8 +36,6 @@ hantro-vpu-$(CONFIG_VIDEO_HANTRO_ROCKCHIP) +=3D \
->  =09=09rockchip_vpu2_hw_mpeg2_dec.o \
->  =09=09rockchip_vpu2_hw_vp8_dec.o \
->  =09=09rockchip_vpu981_hw_av1_dec.o \
-> -=09=09rockchip_av1_filmgrain.o \
-> -=09=09rockchip_av1_entropymode.o \
->  =09=09rockchip_vpu_hw.o
-> =20
->  hantro-vpu-$(CONFIG_VIDEO_HANTRO_SUNXI) +=3D \
-> diff --git a/drivers/media/platform/verisilicon/hantro_av1.c b/drivers/me=
-dia/platform/verisilicon/hantro_av1.c
-> new file mode 100644
-> index 000000000000..2cde32f0e935
-> --- /dev/null
-> +++ b/drivers/media/platform/verisilicon/hantro_av1.c
-> @@ -0,0 +1,816 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2026, Collabora
+> Commit 3c497f624d40 ("remoteproc: imx_dsp_rproc: Fix kernel test robot
+> sparse warning") changed tmp_dst from u32 * to void __iomem *.  In GNU
+> C, incrementing a void pointer advances it by 1 byte rather than 4
+> bytes.  Consequently, the word-fill loop in imx_dsp_rproc_memset()
+> steps by 1 byte per 32-bit writel(), triggering unaligned 32-bit MMIO
+> accesses on Device-mapped DSP IRAM, mispositioning tmp_dst for the
+> trailing-byte read-modify-write, and leaving roughly three quarters of
+> the target region uninitialised.
+> 
+> Advance tmp_dst by 4 bytes per 32-bit word write.
+> 
+> Fixes: 3c497f624d40 ("remoteproc: imx_dsp_rproc: Fix kernel test robot sparse warning")
+> Closes: https://sashiko.dev/#/bug/linux-720f943f-eefd-4df7-806e-0b50cad1abbe
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Lee Jones <lee@kernel.org>
 
-To be accurate:
-
-+ * Copyright (c) 2023-2026, Collabora
-
---=-rIlrM5CQacjfgEh5f7QL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawUI2wAKCRDZQZRRKWBy
-9IsJAQDzPkOm075MMWXCcLeu5KEwD4phFMCdQJprCIwoqnSh/AD+JXWa/422lgSo
-mr69aLQM+/vfddhCSMK0pGiFDSIpzgs=
-=rDF1
------END PGP SIGNATURE-----
-
---=-rIlrM5CQacjfgEh5f7QL--
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
