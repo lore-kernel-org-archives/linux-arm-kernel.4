@@ -2,79 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1694D606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B35E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RF/CdBHB;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Ll8gehkX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wbc1g4h9;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=MDRTN/tS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gLeqhE3IjCWF0jBSGCa8QFfucZOwBTvWp/RJIhCMdKw=; b=RF/CdBHBc6jsuM
-	1uibhCFFYTyX90UlDEBVwXK+01xen1NQuqd9z9dQwo97XhgAAgxZfi8dC6+5YJz1bSBi7j4NMx5dw
-	4r28QYxqSPPyj59cIMT4SCldbPqyFDYD3TAW3sUE5hclF+1t6yOTv7ELI3U4U0JoVOIVIneoZ+KyO
-	WXgSiR3cnb/d4muo09FjnxYX+bU5W63Su5z9m/6QrYM2xVzg72Ueo/PLDzdxA3OmSBAB/ccLvATC7
-	rwCgv/wD7X3veaXfiG48OghQPrQovpiO8f3K01Dm35skbMTlWgokZDvskDtOeW5LgOGPc9wbIcpDp
-	RiCEID59fOD2jrzVdEZQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=bGnX/iGZlgGEkI+A2mMrk0IcJmCgekVCaIDWKQdKsXc=; b=wbc1g4h9SKG9V0LpoCzzSzeIv8
+	wd69wg+qIB2q6cnl3hT3NRB7I2FzWuAl0JqaGqnYYt3yjg4/iWSJxI5FunnPxJtYEvc38A0AlcqCj
+	P1oUDANvA9pH7u4HL90mtq89MlzNxYjkX8ljTvW75bojwLQEezkX6BiJq7jgR4s+YbrN/lKU7m+GB
+	80lL+goVkojrckG9MH8zp3KbDOqYlxhCG/FBsXF3hGWLnh1/AqHuRIbnsjbNwnHnKobbwBod64GKl
+	UvTGJiudDn0dGkewyiEOxhTAIMQ2bi1BLLV7W9JIpvSGacuLr8g2z1JaLjNjcHaPMrU+aGI9lAphR
+	O5sDqQ+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoM9-00000006IJ2-1h1j;
-	Tue, 24 Nov 2026 11:06:38 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xVoP0-00000006IU3-2XxU;
+	Tue, 24 Nov 2026 11:09:34 +0000
+Received: from esa.microchip.iphmx.com ([68.232.153.233])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoM6-00000006IIM-1IHK;
-	Tue, 24 Nov 2026 11:06:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795518389;
-	bh=TTFGIJjPz1husjeNRaaCxxGeA1hw8TRijgsgTglhZgQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ll8gehkXU3J0waBF64H0aeHsOAswyjIa+rRVWjrk4GUtXeni+O9uS4VB3PdVFLFfE
-	 cIUyKqHQAL1s35+Uog8fIZ9Nd16LLEZz6wqH2u54XoL2+VGw4jXfsrXDPWii74CS4U
-	 DBVOAEYvy9p5iYyKqXDrfx2vDdv5Do67lzyDBiRUXEZ5M1eT2cS9tqMnUqtBjkmOg2
-	 PPpZJPEA312b5EubHSiVLCapTco7YADU0o1IiKslDwDgjpUbk6z6+UPqW0SzNOcSe/
-	 YtRC9vFGSuWkPBcazfqO9bVH2/xJ8q4vCNLCuoG8LyU9gNTZA5ciRjRkUfqO4/UePn
-	 0zDXBRiBFml7w==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2B08217E00E8;
-	Tue, 24 Nov 2026 12:06:29 +0100 (CET)
-Message-ID: <67738c52-3f49-4f26-9638-9536b0fba09e@collabora.com>
-Date: Tue, 24 Nov 2026 12:06:28 +0100
+	id 1xVoOx-00000006ITf-3Nht
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 11:09:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795518579; x=1827054579;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=FgzITZRt5fWSTf72IJZ4AJHUAoY48XOZrElrGCAvSG0=;
+  b=MDRTN/tSqwlKEHy/o6VEkTyvDglEhKrTahMorXn2gk9LTKpI1DbQmHWa
+   tLMWP8CcS37cojsF37zDgW+fuInGYtN5iH4/4soyQ1ldV+kxHs/xVRBIE
+   Ntedc0uc38emVPnLgEMOqPBWFgV2/NhXApVdtP9jbwMzTcph9pQL9m+wZ
+   BEAWdhdXA3rS3fkd+CUyz8yX2XT8I54WhTehcG05TrWiZboGjEco9ZGBN
+   ynrI7qhX/gM6ZaNOS+gUO3OESzkjUEib2ohCGodOj341kNwcYCWT0pa3r
+   iG0TGZQvCZJjUbbKAxTOUL7s8SP3JiDJxTZ3HnSoimMEa5G3UevgsAHjm
+   Q==;
+X-CSE-ConnectionGUID: AKY9yM2+ROe7nyPTM4+KAA==
+X-CSE-MsgGUID: 9HGun83SRcybvxP03o15dA==
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
+   d="scan'208";a="66982986"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2026 04:09:38 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
+ chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.57; Tue, 24 Nov 2026 04:09:30 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 24 Nov 2026 04:09:27 -0700
+Date: Tue, 24 Nov 2026 12:09:26 +0100
+From: Daniel Machon <daniel.machon@microchip.com>
+To: <netdev-bot+sashiko@kernel.org>
+CC: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@kernel.org>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <Steen.Hegelund@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, <richardcochran@gmail.com>,
+	<linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<robert.marko@sartura.hr>, <horatiu.vultur@microchip.com>,
+	<jensemil.schulzostergaard@microchip.com>, <horms@kernel.org>
+Subject: Re: [PATCH net-next v3 7/9] net: sparx5/lan969x: scale the queue
+ watermarks with the MTU
+Message-ID: <20261124110926.o3pm6urngmdca72s@DEN-DL-M70577>
+References: <20261120-sparx5-mtu-change-v3-7-55c272fe1acc@microchip.com>
+ <179544589953.3135.16152141389643791611@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: mt8167: Add DRM nodes for
- primary display path
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-mediatek@lists.infradead.org
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
- Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Roman Vivchar <rva333@protonmail.com>
-References: <20261123085840.8687-1-l.scorcia@gmail.com>
- <20261123085840.8687-3-l.scorcia@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20261123085840.8687-3-l.scorcia@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <179544589953.3135.16152141389643791611@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_030634_519085_A1340180 
-X-CRM114-Status: GOOD (  21.51  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_030931_882722_0703EE75 
+X-CRM114-Status: GOOD (  36.81  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,383 +91,136 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/23/26 09:57, Luca Leonardo Scorcia wrote:
-> Add all the DRM nodes required to get DSI and DPI0 to work on MT8167 SoC.
+> Thank you for your contribution! Sashiko AI review found 2 potential
+> issue(s) to consider.
 > 
-> The primary display pipeline is defined using an OF graph identical to the
-> fixed fallback implemented in driver code to maintain compatibility with
-> existing boards. Its block sequence is as follows:
+> Critical: 0 · High: 0 · Medium: 1 · Low: 1
 > 
-> OVL -> COLOR -> CCORR -> AAL -> GAMMA -> DITHER -> RDMA0 -> DSI
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwork
+> know by including "pw-bot: cr" as a separate line at the end of your reply
+> (one such reply per series is enough).
 > 
-> If a board wants to use the DPI0 display output the last connection should
-> be overridden in the board DTS. As far as I know however there are no
-> devices using the DPI0 display output.
+> - [Medium] At this commit (and at the next one, "scale the TAS guard band
+>   with the MTU"), sparx5_port_wm_set() in…
+> - [Low] This commit adds sparx5_port_wm_update() (sparx5_port.c:717) as a
+>   non-static function with a prototype in sparx5_port.h:94, but nothing…
 > 
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-
-Luca, (Cc Krzysztof)
-
-My brain got looped around the aliases mess - but I have eventually found a good
-solution to... the aliases thing, which doesn't imply adding a bunch of MMIOs in
-mediatek-drm nor in mmsys.
-
-This solution, though, needs a decent devicetree with a proper description of the
-hardware - which is not what you're providing here (and it's not really your fault)
-
-I know I asked you to just drop the aliases, and I'm truly sorry for
-   1. Wasting your time here, though only a few minutes, still wasted
-   2. Asking you to redo this in a different way
-
-Getting to point 2...
-
-Of course, on all MediaTek SoCs, all of the Display Controller components are
-effectively embedded in their own hardware subsystem - and this does effectively
-include legacy chips - along with MT8167.
-
-The right thing to do here is something I should've asked you to do on v1, and
-that is describing the display controller Sub-IPs exactly as such: so those should
-be children (read: subnodes) of mmsys.
-
-This is also because there's no way to use any of the display controller components
-if the display controller itself is not powered up (and I can go on with a billion
-other reasons but I have no time right now, so sorry again).
-
-Please, move the display controller children to the display controller node.
-
-Cheers,
-Angelo
-
-> ---
->   arch/arm64/boot/dts/mediatek/mt8167.dtsi | 297 +++++++++++++++++++++++
->   1 file changed, 297 insertions(+)
+> --
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> index 27cf32d7ae35..a7818fd92edc 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-> @@ -120,10 +120,297 @@ iommu: m4u@10203000 {
->   			#iommu-cells = <1>;
->   		};
->   
-> +		disp_pwm: pwm@1100f000 {
-> +			compatible = "mediatek,mt8167-disp-pwm", "mediatek,mt8173-disp-pwm";
-> +			reg = <0 0x1100f000 0 0x1000>;
-> +			clocks = <&topckgen CLK_TOP_PWM_MM>, <&mmsys CLK_MM_DISP_PWM_MM>;
-> +			clock-names = "main", "mm";
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +			#pwm-cells = <2>;
-> +			status = "disabled";
-> +		};
-> +
->   		mmsys: syscon@14000000 {
->   			compatible = "mediatek,mt8167-mmsys", "syscon";
->   			reg = <0 0x14000000 0 0x1000>;
->   			#clock-cells = <1>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			port {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				mmsys_main: endpoint@0 {
-> +					reg = <0>;
-> +					remote-endpoint = <&ovl0_in>;
-> +				};
-> +			};
-> +		};
-> +
-> +		ovl0: ovl@14007000 {
-> +			compatible = "mediatek,mt8167-disp-ovl";
-> +			reg = <0 0x14007000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_OVL0>;
-> +			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_LOW>;
-> +			iommus = <&iommu M4U_PORT_DISP_OVL0>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					ovl0_in: endpoint {
-> +						remote-endpoint = <&mmsys_main>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					ovl0_out: endpoint {
-> +						remote-endpoint = <&color_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		rdma0: rdma@14009000 {
-> +			compatible = "mediatek,mt8167-disp-rdma", "mediatek,mt2701-disp-rdma";
-> +			reg = <0 0x14009000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
-> +			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-> +			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					rdma0_in: endpoint {
-> +						remote-endpoint = <&dither_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					rdma0_out: endpoint {
-> +						remote-endpoint = <&dsi_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		wdma: wdma@1400b000 {
-> +			compatible = "mediatek,mt8167-disp-wdma", "mediatek,mt8173-disp-wdma";
-> +			reg = <0 0x1400b000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_WDMA>;
-> +			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_LOW>;
-> +			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +		};
-> +
-> +		color: color@1400c000 {
-> +			compatible = "mediatek,mt8167-disp-color";
-> +			reg = <0 0x1400c000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_COLOR>;
-> +			interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					color_in: endpoint {
-> +						remote-endpoint = <&ovl0_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					color_out: endpoint {
-> +						remote-endpoint = <&ccorr_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		ccorr: ccorr@1400d000 {
-> +			compatible = "mediatek,mt8167-disp-ccorr", "mediatek,mt8183-disp-ccorr";
-> +			reg = <0 0x1400d000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_CCORR>;
-> +			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					ccorr_in: endpoint {
-> +						remote-endpoint = <&color_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					ccorr_out: endpoint {
-> +						remote-endpoint = <&aal_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		aal: aal@1400e000 {
-> +			compatible = "mediatek,mt8167-disp-aal", "mediatek,mt8173-disp-aal";
-> +			reg = <0 0x1400e000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_AAL>;
-> +			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					aal_in: endpoint {
-> +						remote-endpoint = <&ccorr_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					aal_out: endpoint {
-> +						remote-endpoint = <&gamma_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		gamma: gamma@1400f000 {
-> +			compatible = "mediatek,mt8167-disp-gamma", "mediatek,mt8173-disp-gamma";
-> +			reg = <0 0x1400f000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_GAMMA>;
-> +			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					gamma_in: endpoint {
-> +						remote-endpoint = <&aal_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					gamma_out: endpoint {
-> +						remote-endpoint = <&dither_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		dither: dither@14010000 {
-> +			compatible = "mediatek,mt8167-disp-dither", "mediatek,mt8183-disp-dither";
-> +			reg = <0 0x14010000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DISP_DITHER>;
-> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					dither_in: endpoint {
-> +						remote-endpoint = <&gamma_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					dither_out: endpoint {
-> +						remote-endpoint = <&rdma0_in>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		dsi: dsi@14012000 {
-> +			compatible = "mediatek,mt8167-dsi";
-> +			reg = <0 0x14012000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DSI_ENGINE>, <&mmsys CLK_MM_DSI_DIGITAL>,
-> +				 <&mipi_tx>;
-> +			clock-names = "engine", "digital", "hs";
-> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>;
-> +			phys = <&mipi_tx>;
-> +			phy-names = "dphy";
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +			status = "disabled";
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					dsi_in: endpoint {
-> +						remote-endpoint = <&rdma0_out>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					dsi_out: endpoint { };
-> +				};
-> +			};
-> +		};
-> +
-> +		dpi0: dpi@14013000 {
-> +			compatible = "mediatek,mt8167-dpi";
-> +			reg = <0 0x14013000 0 0x1000>;
-> +			clocks = <&mmsys CLK_MM_DPI0_PXL>, <&mmsys CLK_MM_DPI0_ENGINE>,
-> +				 <&apmixedsys CLK_APMIXED_LVDSPLL>;
-> +			clock-names = "pixel", "engine", "pll";
-> +			interrupts = <GIC_SPI 172 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
-> +			status = "disabled";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					dpi0_in: endpoint { };
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					dpi0_out: endpoint { };
-> +				};
-> +			};
-> +		};
-> +
-> +		mutex: mutex@14015000 {
-> +			compatible = "mediatek,mt8167-disp-mutex";
-> +			reg = <0 0x14015000 0 0x1000>;
-> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
->   		};
->   
->   		larb0: larb@14016000 {
-> @@ -145,6 +432,16 @@ smi_common: smi@14017000 {
->   			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
->   		};
->   
-> +		mipi_tx: dsi-phy@14018000 {
-> +			compatible = "mediatek,mt8167-mipi-tx", "mediatek,mt2701-mipi-tx";
-> +			reg = <0 0x14018000 0 0x90>;
-> +			clocks = <&topckgen CLK_TOP_MIPI_26M_DBG>;
-> +			clock-output-names = "mipi_tx0_pll";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->   		imgsys: syscon@15000000 {
->   			compatible = "mediatek,mt8167-imgsys", "syscon";
->   			reg = <0 0x15000000 0 0x1000>;
+> net: sparx5/lan969x: scale the queue watermarks with the MTU
+> 
+> The commit now computes the QSYS PAUSE_START, PAUSE_STOP and ATOP
+> watermarks from the port MTU, plus the Ethernet header, FCS and two VLAN
+> tags, rounded up to whole buffer cells. Before, they were fixed multiples
+> of a 1518 byte frame. The watermarks are programmed at port init and when
+> pause is resolved. The commit also adds sparx5_port_wm_update() for MTU
+> changes and a per-port wm_lock.
+> 
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_port.c b/drivers/net/ethernet/microchip/sparx5/sparx5_port.c
+> > index 701d310df0ba6..87aa0b7841359 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_port.c
+> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_port.c
+> 
+> [ ... ]
+> 
+> > @@ -676,24 +679,53 @@ int sparx5_port_fwd_urg(struct sparx5 *sparx5, u32 speed)
+> 
+> [ ... ]
+> 
+> > +/* Pause start/stop and tail drop at 6/4/20 frames of the port MTU */
+> > +static void sparx5_port_wm_set(struct sparx5 *sparx5, struct sparx5_port *port,
+> > +			       u8 pause)
+> > +{
+> > +	u32 len = SPX5_HW_MTU(READ_ONCE(port->ndev->mtu)) + 2 * VLAN_HLEN;
+> > +	u32 cells = DIV_ROUND_UP(len, SPX5_BUFFER_CELL_SZ);
+> 
+> [Severity: Medium]
+> At this commit, can port->ndev->mtu drift away from the MAC max frame
+> length?
+> 
+> sparx5_port_init() still programs a fixed max length:
+> 
+> 	sparx5_port_max_len_set(sparx5, port, ETH_MAXLEN);
+> 
+> sparx5_port_netdev_ops has no .ndo_change_mtu. With the ether_setup()
+> defaults (min_mtu 68, max_mtu 1500), the core writes dev->mtu directly
+> and no hardware gets reconfigured.
+> 
+> Suppose the MTU is lowered to 68 with ip link. The next link-up then runs:
+> 
+>   sparx5_port_config()->sparx5_port_fc_setup()->sparx5_port_wm_set()
+> 
+> That gives len = 94 and cells = 1. PAUSE_START becomes 6 cells,
+> PAUSE_STOP 4 cells and ATOP 20 cells.
+> 
+> The MAC still accepts 1518-byte frames, which take 9 cells each. With TX
+> pause enabled, wouldn't one full-size frame go past PAUSE_START, so that
+> a pause frame is sent for every received frame? ATOP would also drop to
+> about two full-size frames, which means heavy tail drop. That is the
+> problem the commit message describes, only triggered by a smaller MTU
+> instead of a larger one.
+> 
+> The problem is also present at the next patch, "scale the TAS guard band
+> with the MTU". The final patch of the series, "net: sparx5/lan969x: add
+> support for changing the MTU", fixes it. It adds
+> sparx5_port_change_mtu(), which returns -EOPNOTSUPP when FDMA is not in
+> use. Otherwise it calls sparx5_port_max_len_set() with
+> SPX5_HW_MTU(new_mtu) and then sparx5_port_wm_update(). So this only
+> affects the intermediate bisection points.
+> 
+> Could the series be ordered so that the watermarks and the MAC max length
+> stay in sync at every commit?
 
+This goes away with patch 9, which keeps the watermarks and the MAC max
+frame length in sync. Until then, it needs the MTU to be lowered from
+userspace, and it does not break anything. At worst the port sends extra
+pause frames and tail drops earlier. I dont think that is worth
+reordering the series for.
+
+> 
+> > +	u32 pause_stop = 0xFFF - 1; /* FC gen disabled */
+> > +
+> 
+> [ ... ]
+> 
+> > +}
+> > +
+> > +void sparx5_port_wm_update(struct sparx5 *sparx5, struct sparx5_port *port)
+> > +{
+> > +	mutex_lock(&port->wm_lock);
+> > +	sparx5_port_wm_set(sparx5, port, port->wm_pause);
+> > +	mutex_unlock(&port->wm_lock);
+> > +}
+> 
+> [Severity: Low]
+> This isn't a bug, but sparx5_port_wm_update() is non-static and has a
+> prototype in sparx5_port.h, yet nothing calls it at this commit.
+> sparx5_port_netdev_ops has no .ndo_change_mtu yet, so the MTU-change part
+> of this patch is not connected to anything.
+> 
+> This comment in sparx5_port_disable() also refers to an MTU-change path
+> that does not exist yet:
+> 
+> 	/* 5: Disable Flowcontrol, and keep an MTU change from re-enabling it */
+> 
+> The first caller is sparx5_port_change_mtu(), added by the final patch of
+> the series, "net: sparx5/lan969x: add support for changing the MTU". It
+> calls sparx5_port_wm_update() after WRITE_ONCE(dev->mtu, new_mtu), so the
+> READ_ONCE() in sparx5_port_wm_set() picks up the new MTU.
+> 
+> Could the helper be added in the same patch as its caller?
+> 
+> [ ... ]
+> 
+> -- 
+> Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120-sparx5-mtu-change-v3-0-55c272fe1acc%40microchip.com
 
