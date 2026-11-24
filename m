@@ -2,147 +2,145 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9595606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D751606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iGw01ee0;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=fAboNPbu;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=6BMe9E2q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q1pDWjtz;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=WsuLAtoB;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=YLDp6/zg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FagAZg+Im8kBz6Vcei8zm5WZ7a1dtTdHDa3QEm1Bml0=; b=iGw01ee0vTb00h
-	fu14k9pshPCZqL6eMXm1tOl2usVoztzmpd5yOdRjgiX0BtUCkDRjpGWroLibglJj78jwAhAwcDhA8
-	V5Ok3FhQqY1JNX0Kc+HOZb1WN74IWF+GSxVItw0Nza13nleuegnrD6llhooOq3Qg/N9iaTnMEY6gt
-	PTdQjncvIf8NN2IgfIHZQSKkdlxOusK3i6/ZPzIbrdnqC4xMDo56O7vNi4eAieWC6EMkwblU+HryV
-	LTqRrqUI53FwNuo3gwhVs63Np3og2LP/SjwG1pkb/D565ozMqfnbOm/1Zz30e06oX7fUkgelQR82Q
-	AmV2QfyVyQh3KOccpV2A==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Qm1RQNetAuFgXdndilb+UqjdnHPgEpFGABMCjzlVzYU=; b=Q1pDWjtzQ1WYSMmejEWX4hhRIE
+	DBdTqUh/z0SPxjDrKog5c3RAJpFJ4DaTcFxypXu7nkJm21qmAENfmL9uPRk/qw8I/4iBaWlcOYF7j
+	sXbAytW/sad8XSCfu0tXQl+a6AeJT+MkEra9uIVPhZdKy4+YlctAHg2l2EXYPv8x9P+xpZvXfkw3/
+	QKxPO418EB7PgFiwksu9Qb9t4Eu+1eK6FS2gVUkBnNWAad/N91WJFblaJ1STxaZ8ayi2Gsh5cdxWY
+	BKyu8yYFRCZtOlT/Q1u3V/p7ZwtDaftZPZqeijr/OSXr4C5FEi2UhOqb7yDexS6sWlJKq4jFjaqzz
+	JK9vh3vg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdzu-00000005EJt-0fIn;
-	Tue, 24 Nov 2026 00:02:58 +0000
-Received: from fhigh-a8-smtp.messagingengine.com ([103.168.172.159])
+	id 1xVe1G-00000005EvS-3ILg;
+	Tue, 24 Nov 2026 00:04:22 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdzm-00000005EEC-1wKh
+	id 1xVe1E-00000005EuK-0jsK
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 00:02:52 +0000
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id AFE5114003AA
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:02:49 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Mon, 23 Nov 2026 19:02:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1795478569; x=
-	1795564969; bh=FagAZg+Im8kBz6Vcei8zm5WZ7a1dtTdHDa3QEm1Bml0=; b=f
-	AboNPbu9dG6rWXMqRDfDQ0BcbMYvTO36fMJUm5Yb51iZtsfiJ+kk5Tp6tVPK98Mz
-	mUdShBiv6BREb9w4LRB79dyWJLkPMtU5NvFpJhvbjHq/uyci654fBIH/V8FGGHGj
-	z6ORZOrA6cs91ILWeW6sLu684BVmHDAPmCzfFnjFDXi6n0zjiN2Mm8SXLz5MRr+3
-	KsC/EHHSIC/HZxIWhhn00UF5v9HMg/8dja+Cl4fVK2zsAp/BozDgW1O6YB3IpALl
-	wwHQSbcrHahWFaMnaQUUpf5xMPdUNsgNfUOBJjddmd80LVhIsgdIY2tRfxPDDzYO
-	rbiQsnSVs3gVee+c2pn2g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1795478569; x=1795564969; bh=F
-	agAZg+Im8kBz6Vcei8zm5WZ7a1dtTdHDa3QEm1Bml0=; b=6BMe9E2qyXpwxbraK
-	w41uF9ukHJ5CgAXn8QztQRwPtVweVWPITDJDhmp9WEe/e553OkDzCJzJwrGSEY56
-	83+5e1vU11z/So6uFK3R2ybAfDxlQllfb/fD7Qki8bQqqW7C77UgEfyLbFMEl60l
-	g0gdxrbpQfkTBGESu45kaABhi2yBOj+VR4Rgw6nGVRbA0Tg87eJ+hPyUnx5lZAHR
-	OFS3z/w/YC4Zq/Zuw2V4X6XmH+n4eercfNIKcR35vYHYxkDJAhZUZLKSJCqEiF+0
-	ZqmdEykPFDgKQD/sWSj/VHXoPvjyOjqdc4nIbL9z+wKvmMzBaSV+0bU+K8FZ/rd8
-	tImdw==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795478569; d=gahingwoo.com;
-	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:GplAVDQFKicdVFXiCD5nkb41U+DqsWf4E6bTJSgWR/0dGWP
-	7MD/tqEFC8uXTjZ+miCGwhwP4UYRxIAh1xWwNgFIUMdBDbD9j3B63+wAe+Jg/zFC
-	UB/rLNJryipmbbk81wlulzNTwYaIswHrRcbo3JxLJIrvkSKY/0YcndCY0YyV4JGZ
-	zhb4aE8+FgtbtBYm97EFN0d8spbC1k4XQPLyE795NaVCvUMYZFAYrNCS6Ptb+JdI
-	x7neMG/3IJ2oF9zhuPUq5iWCazovALjyjblSh2b+jxAdQxl1KFgefc3i+YBtwgGI
-	tm7SCXpg715m5OwZMKefaKz7lbOe9/d6HbgW2kQ==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=11;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:o6FP75dJKH9X5/9KPNLMRJ9lfUK/DT24mcLPsEaVg+c=:AHiG4a7x119G+X4jdteSkHgTCheNVw/xoy7P3CIiUKY=;
-X-ME-Sender: <xms:KdQEa3U_8BkE3Ae3AyIDhshogt2qlYW8YxVT87jkz59S0At9QzYT5A>
-    <xme:KdQEa58Km3iD1FSuOes4RZkeBFR2Mfal_B8xMRBx3oU5NHV25wAYczg-zS0sNlCEw
-    7fTa9tEd8Xwn4nuGfVVAbehuRpapy4OE2hvmz73Rof0hYcLaTWqn4Jx>
-X-ME-Received: <xmr:KdQEa-_g--3woyN6QziPdAXjsCwQUdiADt2GUSjbSDM8EVnB56buIyVj4M40qsiQprP1bJdh>
-X-ME-Proxy-Cause: dmFkZTFGJwiJYq3bYmfBLb8pMOOvLmIOZgVzH901YDuykMl1dQznEGwIVrklNvPXzWnPu7
-    fShZisimGLCbctWsvfk14BQ9Z8GtL4/tyCc2kin9zS/oloRTXmjb9giwCT+mcbqOg+OmOd
-    k1FdvdUynDyL8kBV9+4RAISGHAEL/bgEYJ+vJw344jxkEBIbLc5oapoi/JYx4ozS4mQE9k
-    Etq6lydb9uYCqCXYOWnLKpk5G3ixKNSXJUInIJOQFVjTBYMYq5+EOO0l6OAa8RgRhARcRT
-    8kECX18/pyz8TwgSsWL/kps1Gl6gGTw6vLOWFFeWEhWKydQnLF7BSQXoJp22mQMskgz6GI
-    wizvM0qsIrAMqUlKU37NfquZj1MkwmA55EK+HZG3CpsYu5ITnSvSCWA4axCAAC4RBtykYH
-    1s8zqb9GoMzPnMLSRUda+O8+W52I+cYk8vJTn+tmHnH0xg79YqUrFB/7CB5ptdr583WtH9
-    EDW9D7fv2dD4Nc55P0Yz53keVpU+MDrtwgxGJyS/HFNBRU5Z/L10nzf59TS2bJu6DplVmO
-    6Wrlg0PTMdZ9go0FDZEf7EXUTIJ4LUQG7DC+SnqluV+5WLD1vbsg/v569aAcMUo4XSqz0N
-    HmK5K8SmRutZeKucoNyRFH7q0gtZfRPryDfAurrmyxWgdBjjBbwOiNAX9u5Q
-X-ME-Proxy: <xmx:KdQEa8U6SYxpFEnn7828_PkbM7x-pRRRk8gES3-fZHCx4gXevO8CDQ>
-    <xmx:KdQEa7aVz1hvl26GcI7iP5313I-_FMTXSpBkGQV922vjCVQb5uTX9g>
-    <xmx:KdQEa-oO1Pqpu1P6ME_QuFD6DHLedKtv2MbCLBF3hguoPzV2cLzqUg>
-    <xmx:KdQEa65NUAeUdlyJmK1WNto2udrla_geX80cu_Khijt17Z4fQP9U_Q>
-    <xmx:KdQEax8EFZ9PIF-KEem3LopjWg6yaXFZXSDq7ttca_dbP-EX1sAPYbla>
-Feedback-ID: i7a5e4b5f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Nov 2026 19:02:40 -0500 (EST)
-From: Jiaxing Hu <gahing@gahingwoo.com>
-To: tomeu@tomeuvizoso.net,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	p.zabel@pengutronix.de,
-	ogabbay@kernel.org,
-	zhangqing@rock-chips.com
-Cc: ddrake@baylibre.com,
-	royalnet026@gmail.com,
-	sidong.yang@furiosa.ai,
-	ulf.hansson@oss.qualcomm.com,
-	abel.vesa@oss.qualcomm.com,
-	sebastian.reichel@collabora.com,
-	chaoyi.chen@rock-chips.com,
-	shawn.lin@rock-chips.com,
-	finley.xiao@rock-chips.com,
-	diederik@cknow-tech.com,
-	alchark@flipper.net,
-	leonard@lausen.nl,
-	vlwwwwww@gmail.com,
-	jeff.hugo@oss.qualcomm.com,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v18 5/8] accel/rocket: add a GET_PARAM ioctl for the hardware version
-Date: Tue, 24 Nov 2026 13:01:40 +1300
-Message-ID: <cbb77a43deedadb6667a84bd1c57030cf1c9ce74.1795478392.git.gahing@gahingwoo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1795478392.git.gahing@gahingwoo.com>
-References: <cover.1795478392.git.gahing@gahingwoo.com>
+	Tue, 24 Nov 2026 00:04:21 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ANJuapl2973605
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:04:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=Qm1RQNetAuFgXdndilb+UqjdnHPgEpFGABM
+	CjzlVzYU=; b=WsuLAtoBPvFCnvZOFiNOb7w6/tgENSRqbkGK8bz8EXAvevvza7f
+	izgoRuO7tjbvhGrZvBEWOAq7uqjWK/2R8W2eFbEWnZ56JIJmgM+L289khjFsVPZH
+	kaIV838m6IqVtnV9/MJS6BMjBhA0B2k/erOxB0tXLHtVS/qDBGZ6WgF0RRoJOVgu
+	0cpG3XnUvxc+yuHJoZNfhWUwu/SPrxtJq96kZ/mrAHwOpKYzhw4TR8R9myOvQ82S
+	yRPfT+5CGNfzpNNyj1AnbxpzGw9dGEbCiAyB6NouuJz3JF2FsMlakHsr9Zuu3e1A
+	ooG2vOuyPkjC8MmvlgTHMK5Eorw4h/nhNhQ==
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j4fy041mh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:04:18 +0000 (GMT)
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-33713e5e6daso6950197eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:04:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795478658; x=1796083458; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Qm1RQNetAuFgXdndilb+UqjdnHPgEpFGABMCjzlVzYU=;
+        b=YLDp6/zg39S5qSm2ApyoBVjnfKuLFeSeqqCXxmHmzAO6zNmPMNMYH2weEXL60YsV+H
+         i+4FAjhP3+Ea4d9OhCxumEe1IOdfR1bHEoAIhs+bX3j2x+w3g0rXjxk3m7jFMGZyHfx8
+         BOZvBOA+EHi9TlyZbr4yM31/EiDx+7xL57wP//88eki/+mkauktjobUP/lfuFWs1tfCQ
+         ih+V/eaaXwFFLAnENl9P0tAv082yReNVbiFxbgMo6pHF2m2llg56mFeye/b7XLHQl9cQ
+         RCiGB3CgduiWNfHB+DvnN0vw2+ON4MuF2pskeMqEN41OrZhY+EPb6PymGxNi1gP2+5Ll
+         MQ7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795478658; x=1796083458;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Qm1RQNetAuFgXdndilb+UqjdnHPgEpFGABMCjzlVzYU=;
+        b=TmK/bdb0ExXfThkT5sIRBDmxHCxX/XK6S2mDJQyFwyoyidwyb19rbzXfQxlJc7XRkP
+         +TeTc4ozd76TKDJhv7g8fxKZ43PQ60fwj/+hE7fzzbVVPiv1sYZdtsLPSdELuDOH+JT1
+         76Y8RrsKzQwDpblD9XYCOoQjc8CImCX493ySAyFp5s6da10eQ2P40IDKXZqfrPWKguYU
+         A7i8Zynvw53xB7JZPy3ftDob6TktSFEGd0hAQqP/KiHYzGMCCVegoUGoGNTMxxN2NgZz
+         4e25qBUsOsFzsW66vOKGUZm7mW+n1B3NvGCH8whc1JDMqv1suZVAnH5CIWqMp0paeVyi
+         Q7cg==
+X-Forwarded-Encrypted: i=1; AL+hErFZx7WWnlPHGHUC0TNsYiivym1GQUe9AqU0m8PLwjx2OOBe8WlXVc1wSToyhJ2NEM+oobQv7jaf93+Dei1DJsAr@lists.infradead.org
+X-Gm-Message-State: APuU4Z8ZiP18me9YhyVZ3NO1DwlkeuA5cmN+IFe8aALxxtDBm7Q085ID
+	+KFhsNy5CWb3xPCw4eP9PEYcrGPDHtw+LFTArNtbOmk1N2MdRDab7UwXauOAm6PTUYNwLKoORBr
+	c7NuSSIbRvlCA7PVB+83GCqsEp3b/ZLHe5xcLqw+3fPZaPb2qUD8IZ7iu8tBSZ1QdHdJTKrRULf
+	u4gw==
+X-Gm-Gg: AZFdTZfkrcCaMZTASn1JNwelX/Gj0PaMCnRRoDhbJXEu+MSUuL2FS1K2AhqJ3XBC1Va
+	2pFA/fo/fzOXE4IxP4bdTW989PU3Nvujqcx3VxqMUz+fi7cEjNKhtkzUNrIwmRhprsO6rQt4kRg
+	KAJXLyjLBXvk9jpUelp22eKt8NCZ0qdMz9xNQTzjt//zXnWRSyELVIyFCB9dSpCU71KSnjPrIof
+	w57RwP1GH0aX8U1A7eZsdbZQGUXtOjs6Tt59CH32SH6Vg1ucYRi5pGfhccAu2QamXJuk7BDBTY/
+	BEH/vAp3HESWlT+R0yBAfdKslYyLg63Ci5/gbCaF+wNfP7t5qaCXnkA44RV8IGsKTuH7nW7ehHy
+	kdWaZQj6+Uxj4khnz35MjlJ+bLgMj6OuB2xBIwHQpPQKHSIKVOxCIAaUEHFsVJpkUcA96dfcNr5
+	IMINbR6ODGHOPkEKnETmshhkk4NKnVVigUCEs=
+X-Received: by 2002:a05:7301:4281:b0:386:a193:9afa with SMTP id 5a478bee46e88-386a1939c38mr8920262eec.11.1795478657520;
+        Mon, 23 Nov 2026 16:04:17 -0800 (PST)
+X-Received: by 2002:a05:7301:4281:b0:386:a193:9afa with SMTP id 5a478bee46e88-386a1939c38mr8920228eec.11.1795478656983;
+        Mon, 23 Nov 2026 16:04:16 -0800 (PST)
+Received: from hu-scheluve-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385666e7f59sm41662125eec.6.2026.11.23.16.04.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 16:04:16 -0800 (PST)
+From: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
+To: j.raczynski@samsung.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+        edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, cs0617.lee@samsung.com,
+        k.domagalski@samsung.com, k.tegowski@samsung.com,
+        abhishek.chauhan@oss.qualcomm.com, lorenzo.bianconi@oss.qualcomm.com,
+        sarosh.hasan@oss.qualcomm.com, hongmei.xu@oss.qualcomm.com,
+        sagar.cheluvegowda@oss.qualcomm.com
+Subject: [PATCH net-next v2 0/3] net: stmmac: support up to 16 MTL/DMA queues on XGMAC
+Date: Mon, 23 Nov 2026 16:04:12 -0800
+Message-Id: <20261124000415.4067701-1-sagar.cheluvegowda@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA5NSBTYWx0ZWRfX0VLBrBea3/4O
+ kJrbk5BD5nTzJIA1Qp5Gk9/ih4ljd30qffnmRjS1pPdPpMvZGTmMGrHVOZCrCU39X9jWDbhOF3o
+ vo4f7DGbEa4Zus6B2E6jVJ2++SI1eWleOZQI20TIxokjWLeh1wr0bekcIxtjRX3v16kG6w0jiiD
+ T4EhHH27ViBIUy+HFOADqifPHafZWD1DIsml9RK0lwtEjRvwkS2Youqg5qk5wRxCC3PURTEnFFz
+ ygjR5hN183wa6nbxORee/MrGNGl1kA616xPHurRR6JgzesMP6EPiYbCO5upGrGBx3ltCSLQyOUs
+ N5LbOoAgvQWnUdP3EFPOeOb1mwCKF6q7Ha6AGMMMztkFxKi59JHUkHfeE8OoAeE98H2BZuCoxUU
+ SaUm4+CPxFkMRaNl+/liee9JtWPLGlYb7Lxykm0v5MG3cwrgfl+EyC30uOqrCToV9YrNGm5Zt2u
+ GEIpVQbB0s4T93dPgcA==
+X-Proofpoint-ORIG-GUID: 2Txfjm2V438uzbFWNgsx8lcMaVyg91ok
+X-Authority-Analysis: v=2.4 cv=QrXLTlyd c=1 sm=1 tr=0 ts=6b04d482 cx=c_pps
+ a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=VwQbUJbxAAAA:8
+ a=hD80L64hAAAA:8 a=EUspDBNiAAAA:8 a=j8eSvQKXAAAA:8 a=fBzlRZiCmRc88xsmlxcA:9
+ a=bBxd6f-gb0O0v-kibOvt:22 a=j1SoD6Fdrn8k65qUt67a:22
+X-Proofpoint-GUID: 2Txfjm2V438uzbFWNgsx8lcMaVyg91ok
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA5NSBTYWx0ZWRfX01yLVjGaJwbT
+ k+tAEFa0FN3pQR0Oaru1l8m1OcuOVAVkEdA2hABvji/TcDKflQyBhvX5Ty2aE0k1/bHKMdJh+ab
+ pQloQFhg6DLtdjgz0J1lL5dbeRLoMyM=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_05,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 clxscore=1015 malwarescore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230095
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_160250_605815_725C077B 
-X-CRM114-Status: GOOD (  25.53  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_160420_393904_FA303EC3 
+X-CRM114-Status: GOOD (  13.81  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,234 +151,71 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add DRM_IOCTL_ROCKET_GET_PARAM so that userspace can tell which NPU it
-runs on. DRM_ROCKET_PARAM_HW_VERSION returns an enum
-drm_rocket_hw_version value, taken from the compatible's match data when
-the first core probes. The PC_VERSION registers cannot be used: the
-RK3568 reads 0 from them.
+This series continues Jakub Raczynski's v2 series "Extend MTL/DMA
+support to 16 queues":
+https://lore.kernel.org/netdev/20260601162537.553512-1-j.raczynski@samsung.com/
 
-A core with a different hardware version is refused. An unknown
-parameter or a non-zero reserved field returns -EINVAL.
+Newer XGMAC hardware can have more queues than traffic classes: Qualcomm
+Nord is a 25GMAC-based SoC with 12 queues enabled (the core supports 16)
+and 8 TCs. The driver assumes one TC per queue and bounds every TC
+register write by the number of queues, so the DMA/queue count and the
+TC count need to be separated before the queue limit can be raised. This
+was raised in the review of the v2 1/3.
 
-Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
----
- drivers/accel/rocket/rocket_device.c |  4 ++-
- drivers/accel/rocket/rocket_device.h |  6 +++-
- drivers/accel/rocket/rocket_drv.c    | 34 +++++++++++++++++++++--
- include/uapi/drm/rocket_accel.h      | 41 ++++++++++++++++++++++++++++
- 4 files changed, 81 insertions(+), 4 deletions(-)
+ 1/3: separate the TC count from the queue count. Bound the per TC
+      registers (ETS, CBS, weight, TC_PRTY) by the number of TCs and
+      the per priority registers (Qx_TX_FLOW_CTRL, PSRQ) by the 8
+      priorities, and do the checks in the callers so that errors are
+      returned to the user. This is a rework of Jakub's v2 1/3.
+      tc_setup_cbs() is not changed: CBS offload on queues without their
+      own TC needs the HDMA support, which is not upstream yet.
+ 2/3: extend the RX queue to DMA channel mapping to 16 queues (MAP2/MAP3).
+      Jakub's v2 2/3 with netdev_err() replaced by WARN_ON(), authorship and
+      sign-offs kept.
+ 3/3: raise the maximum number of queues to 16. Jakub's v2 3/3 as it was.
 
-diff --git a/drivers/accel/rocket/rocket_device.c b/drivers/accel/rocket/rocket_device.c
-index db137e2ec15e..3bceeb2cbedb 100644
---- a/drivers/accel/rocket/rocket_device.c
-+++ b/drivers/accel/rocket/rocket_device.c
-@@ -11,7 +11,8 @@
- #include "rocket_device.h"
- 
- struct rocket_device *rocket_device_init(struct platform_device *pdev,
--					 const struct drm_driver *rocket_drm_driver)
-+					 const struct drm_driver *rocket_drm_driver,
-+					 u32 hw_version)
- {
- 	struct device *dev = &pdev->dev;
- 	struct device_node *core_node;
-@@ -26,6 +27,7 @@ struct rocket_device *rocket_device_init(struct platform_device *pdev,
- 
- 	ddev = &rdev->ddev;
- 	dev_set_drvdata(dev, rdev);
-+	rdev->hw_version = hw_version;
- 
- 	for_each_compatible_node(core_node, NULL, "rockchip,rk3588-rknn-core")
- 		if (of_device_is_available(core_node))
-diff --git a/drivers/accel/rocket/rocket_device.h b/drivers/accel/rocket/rocket_device.h
-index c62d56701069..40cabae538bc 100644
---- a/drivers/accel/rocket/rocket_device.h
-+++ b/drivers/accel/rocket/rocket_device.h
-@@ -20,10 +20,14 @@ struct rocket_device {
- 	struct rocket_core *cores;
- 	unsigned int num_cores;
- 	unsigned int max_cores;
-+
-+	/* enum drm_rocket_hw_version of the NPU, the same for all cores */
-+	u32 hw_version;
- };
- 
- struct rocket_device *rocket_device_init(struct platform_device *pdev,
--					 const struct drm_driver *rocket_drm_driver);
-+					 const struct drm_driver *rocket_drm_driver,
-+					 u32 hw_version);
- void rocket_device_fini(struct rocket_device *rdev);
- #define to_rocket_device(drm_dev) \
- 	((struct rocket_device *)(container_of((drm_dev), struct rocket_device, ddev)))
-diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/rocket_drv.c
-index b72f4fbd8e29..8aa431db5968 100644
---- a/drivers/accel/rocket/rocket_drv.c
-+++ b/drivers/accel/rocket/rocket_drv.c
-@@ -5,6 +5,7 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_ioctl.h>
-+#include <drm/drm_print.h>
- #include <drm/rocket_accel.h>
- #include <linux/clk.h>
- #include <linux/err.h>
-@@ -12,6 +13,7 @@
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/property.h>
- 
- #include "rocket_device.h"
- #include "rocket_drv.h"
-@@ -128,6 +130,26 @@ rocket_postclose(struct drm_device *dev, struct drm_file *file)
- 	module_put(THIS_MODULE);
- }
- 
-+static int
-+rocket_ioctl_get_param(struct drm_device *dev, void *data, struct drm_file *file)
-+{
-+	struct rocket_device *rdev = to_rocket_device(dev);
-+	struct drm_rocket_get_param *args = data;
-+
-+	if (args->reserved != 0) {
-+		drm_dbg(dev, "Reserved field in drm_rocket_get_param struct should be 0.\n");
-+		return -EINVAL;
-+	}
-+
-+	switch (args->param) {
-+	case DRM_ROCKET_PARAM_HW_VERSION:
-+		args->value = rdev->hw_version;
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
- static const struct drm_ioctl_desc rocket_drm_driver_ioctls[] = {
- #define ROCKET_IOCTL(n, func) \
- 	DRM_IOCTL_DEF_DRV(ROCKET_##n, rocket_ioctl_##func, 0)
-@@ -136,6 +158,7 @@ static const struct drm_ioctl_desc rocket_drm_driver_ioctls[] = {
- 	ROCKET_IOCTL(SUBMIT, submit),
- 	ROCKET_IOCTL(PREP_BO, prep_bo),
- 	ROCKET_IOCTL(FINI_BO, fini_bo),
-+	ROCKET_IOCTL(GET_PARAM, get_param),
- };
- 
- DEFINE_DRM_ACCEL_FOPS(rocket_accel_driver_fops);
-@@ -174,9 +197,13 @@ static int rocket_core_hw_index(struct device *dev)
- 
- static int rocket_probe(struct platform_device *pdev)
- {
-+	u32 hw_version = (uintptr_t)device_get_match_data(&pdev->dev);
- 	int index = rocket_core_hw_index(&pdev->dev);
- 	int ret;
- 
-+	if (!hw_version)
-+		return -ENODEV;
-+
- 	if (index < 0)
- 		return index;
- 
-@@ -185,7 +212,7 @@ static int rocket_probe(struct platform_device *pdev)
- 		rdev_group = devres_open_group(&drm_dev->dev, NULL, GFP_KERNEL);
- 		if (!rdev_group)
- 			return -ENOMEM;
--		rdev = rocket_device_init(drm_dev, &rocket_drm_driver);
-+		rdev = rocket_device_init(drm_dev, &rocket_drm_driver, hw_version);
- 		if (IS_ERR(rdev)) {
- 			int err = PTR_ERR(rdev);
- 
-@@ -197,6 +224,9 @@ static int rocket_probe(struct platform_device *pdev)
- 		devres_close_group(&drm_dev->dev, rdev_group);
- 	}
- 
-+	if (hw_version != rdev->hw_version)
-+		return -EINVAL;
-+
- 	unsigned int core = rdev->num_cores;
- 
- 	dev_set_drvdata(&pdev->dev, rdev);
-@@ -243,7 +273,7 @@ static void rocket_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id dt_match[] = {
--	{ .compatible = "rockchip,rk3588-rknn-core" },
-+	{ .compatible = "rockchip,rk3588-rknn-core", .data = (void *)DRM_ROCKET_HW_RK3588 },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, dt_match);
-diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_accel.h
-index d0685e372b79..c9271e469231 100644
---- a/include/uapi/drm/rocket_accel.h
-+++ b/include/uapi/drm/rocket_accel.h
-@@ -15,11 +15,13 @@ extern "C" {
- #define DRM_ROCKET_SUBMIT			0x01
- #define DRM_ROCKET_PREP_BO			0x02
- #define DRM_ROCKET_FINI_BO			0x03
-+#define DRM_ROCKET_GET_PARAM			0x04
- 
- #define DRM_IOCTL_ROCKET_CREATE_BO		DRM_IOWR(DRM_COMMAND_BASE + DRM_ROCKET_CREATE_BO, struct drm_rocket_create_bo)
- #define DRM_IOCTL_ROCKET_SUBMIT			DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET_SUBMIT, struct drm_rocket_submit)
- #define DRM_IOCTL_ROCKET_PREP_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET_PREP_BO, struct drm_rocket_prep_bo)
- #define DRM_IOCTL_ROCKET_FINI_BO		DRM_IOW(DRM_COMMAND_BASE + DRM_ROCKET_FINI_BO, struct drm_rocket_fini_bo)
-+#define DRM_IOCTL_ROCKET_GET_PARAM		DRM_IOWR(DRM_COMMAND_BASE + DRM_ROCKET_GET_PARAM, struct drm_rocket_get_param)
- 
- /**
-  * struct drm_rocket_create_bo - ioctl argument for creating Rocket BOs.
-@@ -185,6 +187,45 @@ struct drm_rocket_submit {
- 	__u64 reserved;
- };
- 
-+/**
-+ * enum drm_rocket_param - parameters for DRM_IOCTL_ROCKET_GET_PARAM
-+ * @DRM_ROCKET_PARAM_HW_VERSION: which NPU this is, as an
-+ *	enum drm_rocket_hw_version value.
-+ */
-+enum drm_rocket_param {
-+	DRM_ROCKET_PARAM_HW_VERSION = 0,
-+};
-+
-+/**
-+ * enum drm_rocket_hw_version - the NPU, for DRM_ROCKET_PARAM_HW_VERSION
-+ * @DRM_ROCKET_HW_RK3588: the NPU of the RK3588.
-+ *
-+ * 0 is not used.
-+ */
-+enum drm_rocket_hw_version {
-+	DRM_ROCKET_HW_RK3588 = 1,
-+};
-+
-+/**
-+ * struct drm_rocket_get_param - ioctl argument for querying a parameter.
-+ */
-+struct drm_rocket_get_param {
-+	/**
-+	 * @param: Input: an enum drm_rocket_param value.
-+	 */
-+	__u32 param;
-+
-+	/**
-+	 * @reserved: Reserved, must be zero.
-+	 */
-+	__u32 reserved;
-+
-+	/**
-+	 * @value: Output: the value of the parameter.
-+	 */
-+	__u64 value;
-+};
-+
- #if defined(__cplusplus)
- }
- #endif
+The review of Jakub's v2 3/3 asked whether the other cores, whose per queue
+registers only cover 8 queues, could now be configured with more. They
+cannot: stmmac_hw_init() already limits the number of queues to the
+count reported by the HW feature register, which is at most 8 on those
+cores.
+
+Changes in v2:
+- v1 was the MAP2/MAP3 patch on its own:
+  https://lore.kernel.org/netdev/20261016193823.2711773-1-sagar.cheluvegowda@oss.qualcomm.com/
+  Following Jakub's review of it:
+  https://lore.kernel.org/netdev/atXhR0sgdW84YxcQ@AMDC4622.eu.corp.samsungelectronics.net/
+  - add 1/3, which splits the TC count from the queue count, as Nord
+    has 12 queues (the core supports 16) and 8 TCs
+  - add 3/3, which raises the queue limits, so the MAP2/MAP3 mapping
+    in 2/3 can be reached
+  - 2/3 is unchanged
+
+
+Jakub Raczynski (2):
+  net/stmmac/dwxgmac: Extend MTL/DMA support to 16 queues
+  include/stmmac: Increase max DMA/MTL channel count from 8 to 16
+
+Sagar Cheluvegowda (1):
+  net: stmmac: separate the TC count from the queue count on XGMAC
+
+ .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  3 +++
+ .../ethernet/stmicro/stmmac/dwxgmac2_core.c   | 23 ++++++++++++++++---
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h  | 17 ++++++++++++++
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c | 22 +++++++++++-------
+ .../net/ethernet/stmicro/stmmac/stmmac_tc.c   | 21 ++++++++++-------
+ include/linux/stmmac.h                        |  6 ++---
+ 6 files changed, 70 insertions(+), 22 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
 
