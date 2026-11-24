@@ -2,80 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701B5606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6B1606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3+EUJYpF;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=C49+SZq1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r0lBSGfi;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=IxRSbBN9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RAV1IdK9ll2YiAow1763lmAOyMd2ZFB8VR3ExdHkkYo=; b=3+EUJYpFvUTx5N
-	Rn4NPMvZD8mow2Kv8UcnPD+OwZ6Jk4nyKNzGfAaWilWEOzXptwpsFwvrPBPITBaVnD6gQA1TMruAK
-	5QDdtZOsZWIkVo32zS1vA2mac9d/e4THrwsyz+IkTxBNshpe3/MCFFSbVG+fM/D/7ouj8LS3Hm04v
-	jFboOv3cxOARxgsBkKkAhpZkSBeD5QpCu+IWj1Bj9au4JzeL+3XRguYuj/ikdN7D1atvCvrrHqV1W
-	IjH4/pkhzZqord0vqaHBQzBPCFmGFl+1a6650rJOdY1oNx1JBHyDK4OX0uuTMUiZ6OJeK7qt8CXCg
-	NgvzkT+8E51g2nr1sXTw==;
+	List-Owner; bh=ltTURVc/B61NB8M+NPxaLWlyjRFzLAwlBdJe1DTkHmk=; b=r0lBSGfilv6Pdd
+	00IAeXa4mXCDqHJc5SHSZYv4B/wnkXhJYV9XhU2fEi4kN+M2FcMhuNuVt3ZGleCM++7bFBhPiZBf2
+	z8I3nOdod30Y5u/aaft2/ruUTsDVfxoBBfu6UYpkP69x6AO0WOLdhMxh2YdyAb1Vq32Fz31k/Z3fd
+	k0GRiXekfZHEFATxf6R7PLJ/elASsw1orce2rxZusl0qdqQGMHspvinA8ayw7w4Xo1ezrIoG31Qbc
+	yEtISQn/4fE3cMdeT4mOIS/xmnDU03+4UB8wBAorJ3M7gIT3j6faZhRaV07GwFi9UealKTKylpWlW
+	JaOYIOeviAuKEIDXbrTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu16-00000007Gzb-25tZ;
-	Tue, 24 Nov 2026 17:09:16 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu0i-00000007GhH-2Mm8
+	id 1xVumM-00000007RL5-12Hn;
+	Tue, 24 Nov 2026 17:58:06 +0000
+Received: from mail-northcentralusazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c105::7] helo=CH4PR04CU002.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVumI-00000007RKW-2HPU
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:08:53 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D13D1BB2;
-	Tue, 24 Nov 2026 09:08:49 -0800 (PST)
-Received: from e126453.arm.com (e126453.arm.com [10.33.8.63])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 438F23F763;
-	Tue, 24 Nov 2026 09:08:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795540132; bh=yx3ouZnaG/jM4uhFqZLSd7F4g0A9hh6nuGcAOMTuPQI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=C49+SZq1SFdpgp4Fs2nAb3jXRDvZb0T+IqUoF1yOVLZtRKQRKyZzOB8MNpPSYFPgo
-	 YxFMecsNO00cEDTV/UxrS8YwKQhOskhy4F8AsJ4Qi/e97k2KPrYXXtZWSvCgU5LKBB
-	 iBfLFXuD53qfdeevkOhNdHbAoeolUBg9+TkXxcr0=
-From: Anthony McGivern <anthony.mcgivern@arm.com>
-Date: Tue, 24 Nov 2026 17:07:44 +0000
-Subject: [PATCH 16/24] media: uapi: Add Mali-C720 statistics meta format
+	Tue, 24 Nov 2026 17:58:05 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BfaVr+P/zghkKGx7zyjZL9kdbwrBIEZ7pIRvr3Z1cgO4aBLTJCVZjRc/k4rYrZQz3HFbeUxdMdADQPaoiHemg/ipaortcSt7A067SIyq2Q6FU6Ic74gh3n6Qh5RI28/ip7gtGXAJU0yNnAoHb9a6eKtTUqqtT9i0ePTI9+c9FZzcTCjzrHIb0TckXmYCoQWCzkdaK7nAnOrRNPxzoe6uaulgFTjTguUWCawFZvw5GGc7jXmkx+h2cZBN8s7FfEWMIWKiQcF/EEUv1k+Gc76iEABJRlpD4QWXNWPqBjYrAC3HJ6AIMtk5cM1VxVZXit+kfuda4XgqD6UjqKvzRYhnrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ltTURVc/B61NB8M+NPxaLWlyjRFzLAwlBdJe1DTkHmk=;
+ b=tOp86w57dhdWPKfGgYkdHWW4+Sax/3/+BTeANWuafgD6N4s5NXw9kcEdbVtXID0wbCABFREBj/GS6YAK76ZuQsDhPjXMT9VesX9W/Gkrzhhp6oO7Q5p6WP8FDKGupZ4E8QHvUpEbw+3AttDSOAzivEdTdiSpDJP7Lo7ZlovjMrv54LQG3cAMlrm3onk7l3iACrXj5QYiovy/dScWMG4Dk2R5VFlTVMP65AAwCKUKIf2e1Ci5FtqDckMri7e/BVPHTONNaJep5B7iwTbvby8CIZ8FkRVsLFYu9r28ps3Es/ZAzORNBNq464eDLM+BjhH66SxnXRagmziyb+hq8kyM1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gpxsee.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ltTURVc/B61NB8M+NPxaLWlyjRFzLAwlBdJe1DTkHmk=;
+ b=IxRSbBN98cwnQTzGsTVzURMLJxlKqTjuXnwQj6QnYBqOeXANwIQsCcXke23ayX9qqhB96OpIDrJSqQVdn1HTk4/EEVmYcW3VLveZ8HJK53WcEj533YXBRNbQ+6l9/crcQzuhdY3B6N2HJCwti00znLNNC4dW3g8myLerxcvWxTE=
+Received: from MW4PR03CA0293.namprd03.prod.outlook.com (2603:10b6:303:b5::28)
+ by CH3PR12MB8726.namprd12.prod.outlook.com (2603:10b6:610:17b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 17:57:52 +0000
+Received: from BY1PEPF00026957.namprd05.prod.outlook.com
+ (2603:10b6:303:b5:cafe::10) by MW4PR03CA0293.outlook.office365.com
+ (2603:10b6:303:b5::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
+ 24 Nov 2026 17:57:52 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BY1PEPF00026957.mail.protection.outlook.com (10.167.244.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 17:57:51 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Tue, 24 Nov
+ 2026 11:57:48 -0600
+Received: from [172.19.71.207] (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Tue, 24 Nov 2026 11:57:48 -0600
+Message-ID: <2e8444da-ad9f-033c-c22d-400b27bf0d76@amd.com>
+Date: Tue, 24 Nov 2026 09:57:47 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-b4-initial-upstream-candidate-v1-16-0cb9bde1bd30@arm.com>
-References: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
-In-Reply-To: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
-To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: Anthony McGivern <anthony.mcgivern@arm.com>, 
- Vincenzo Frascino <vincenzo.frascino@arm.com>, 
- Nayden Kanchev <nayden.kanchev@arm.com>, 
- Konstantin Babin <konstantin.babin@arm.com>, 
- Linus Walleij <linusw@kernel.org>, jacopo.mondi@ideasonboard.com, 
- kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
- dan.scally@ideasonboard.com, Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Anthony McGivern <Anthony.McGivern@arm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540079; l=2171;
- i=Anthony.McGivern@arm.com; s=20261124; h=from:subject:message-id;
- bh=j6Gm/dnMdks3celwDJxd0CeZ6Ie4FbVKuf8nwrJybFA=;
- b=Qju6e7NDF6TAeyEqUJEqnP9OhhIpF1T43gtYIba2J8Tl3wUcgO6ZLYLmU5p57GYnY3LJtn5FC
- B6t7Dablh7ND1SO0KwaSl2jjhUCM4JuiXzocOS+TsZt95XdD/pwKeDh
-X-Developer-Key: i=Anthony.McGivern@arm.com; a=ed25519;
- pk=cvw1HHVRuWpdkn55JpnRyCO2oGBkBWaBXcc2S3CmHTU=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3 1/1] dmaengine: xilinx: xdma: Fix broken PM
+ suspend/resume
+Content-Language: en-US
+To: =?UTF-8?Q?Martin_T=c5=afma?= <tumic@gpxsee.org>, Brian Xu
+	<brian.xu@amd.com>, Raj Kumar Rampelli <raj.kumar.rampelli@amd.com>, "Vinod
+ Koul" <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, Michal Simek
+	<michal.simek@amd.com>
+CC: <dmaengine@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	=?UTF-8?Q?Martin_T=c5=afma?= <martin.tuma@digiteqautomotive.com>
+References: <20261120172356.5858-1-tumic@gpxsee.org>
+ <20261120172356.5858-2-tumic@gpxsee.org>
+ <754c498c-7252-3f2b-54e6-3ebfdf0181ff@amd.com>
+ <47182dbe-018a-4ca6-b20c-f6e2afa5f474@gpxsee.org>
+ <c7f5a712-a2ca-2424-cc63-d262c21d5381@amd.com>
+ <dce94458-c9bc-4762-902c-7094d9bdc3c8@gpxsee.org>
+From: Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <dce94458-c9bc-4762-902c-7094d9bdc3c8@gpxsee.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF00026957:EE_|CH3PR12MB8726:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b4fcd27-7cfd-4e64-331b-08df4a547542
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|23010399003|376014|1800799024|82310400026|10067099003|261102123227099003|261021121427099003|5023799004|11063799006|56012099006|4143699003|261022075727099003|261009223027099003|261026121527099003|261021123027099003|261022105027099003|261026140227099003|261102124227099003|261028144727099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: zjlCLICwXU079ICVfYYKrVj+eDK8bAu5eJcHMzF0qFC9iX1ntho2fdD8GywVW/b7kM6XD0/RPuNbHpvapu8CY2vbFT/EHGpft4rxUdHrgiwC+3dSN6/QrzsA7EaQi0pkIMD8zWuZHHF14eGgHR7OH3usfDVhkol80w6r+udtwIhsScZoFWI42blJh+QrOo1LejakGhcTyjAaKdcPcbx2Svh91m/ctqLKlIXA9bCx1uTs3bK/hGjjiC2uBqMm6qQxtzBwxv9yWr5OnsCSkgd9HApApWiOddW8FmS+UE0KKXGKYvaIFXDN0VK9xjgQ3rIDpVCETrSGqq3Rj+3zmp/PuowHGn6uCLiW6HuRhXd0TzSVA3uybNBMKxu66pnGO33Etc2PAa+Ca+cd/JSFkNSOhoX9vcscGEVVVriK8BDkoB45aXISa+uIq+GqCN9FR4FgttJ+51t/Bhizh4mXlqIMFkfzJbpeJOO90UlPOAXq66iS24fa8jwU9l1E3Dlt3d+nWU1yYTGXRTAk4BnZIpOode+2zMwEcvi3BTsgdzkQs+buliDpvqI4OxRDexqVpKhJ06acFB1nwkFK0PPNFlI9vYX2ymvvkQUl6/0vz1KjSsDZVAN6StHE0WUgmNPdmrlrjgoI7EN+jZkN1IaL0mMhGgNBK1wt32mm35z7ivn2+snO/a96Swmze30AwzFRSTJF/ldz8+aS4tkX1t3hzpXJZQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(23010399003)(376014)(1800799024)(82310400026)(10067099003)(261102123227099003)(261021121427099003)(5023799004)(11063799006)(56012099006)(4143699003)(261022075727099003)(261009223027099003)(261026121527099003)(261021123027099003)(261022105027099003)(261026140227099003)(261102124227099003)(261028144727099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: Pcl5ROfzlY/2akW1hflZP3gw8+9mJ8fUK/J2HPcbC03lBMtLw+drYYYbASrUXMNqF1mbONwcX6/8iYrCw/5AkFSQwpjBvdXpZc/4Tcld/z8bFRodElKOcmesV5jTFGN6A8OXXqM89S6flZcPbbm6HARLEFq/sPrqHbiT2ZQs6d4SOBf6nKlDbWClEA9o1RJ8+nLedtYYgvUVoJyOiFoILlbKCpzcolWmR7NsgG224otFUh+XWpG5aFkdKuECXL4mTvZfKbxZlWQLr4WqrG0M3QefIOYch9HPaavXl2OXhKdhwDIxj6lDDOWQHwaz/IEdA+luK+m+MbhAml0O2sAaCxTR/+3vAyAKMiHlEQwFIq/BgF1NNrKkHQspHroJbKXd9ukYAMIgxTBmTT3ep6drgalaqav2jR9wpp4uW42VVVg8GCzH2EOGFpGO5efRGl6q
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 17:57:51.3477
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b4fcd27-7cfd-4e64-331b-08df4a547542
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF00026957.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8726
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_090852_704843_D1A40B70 
-X-CRM114-Status: GOOD (  10.78  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_095802_923030_CD4170F4 
+X-CRM114-Status: GOOD (  36.36  )
+X-Spam-Score: -3.8 (---)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,53 +130,313 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Anthony McGivern <Anthony.McGivern@arm.com>
 
-Add a new meta format for the Mali-C720 ISP's 3A statistics along
-with a format description.
+On 11/24/26 02:35, Martin Tůma wrote:
+> On 11/23/26 8:00 PM, Lizhi Hou wrote:
+>>
+>> On 11/20/26 14:21, Martin Tůma wrote:
+>>>
+>>>
+>>> On 11/20/26 22:40, Lizhi Hou wrote:
+>>>>
+>>>> On 11/20/26 09:23, tumic@gpxsee.org wrote:
+>>>>> From: Martin Tůma <martin.tuma@digiteqautomotive.com>
+>>>>>
+>>>>> Add the missing PM suspend/resume callbacks that properly reconfigure
+>>>>> the XDMA HW on PCIe suspend/resume.
+>>>>
+>>>> Just wondering if we could destroy xdma platform device in your 
+>>>> PCIe suspend routine and re-create xdna device in PCIe resume?
+>>>>
+>>>
+>>> While this may also be theoretically possible, there are several 
+>>> arguments against this:
+>>>
+>>> - Every driver using the device would have to do it instead of doing 
+>>> nothing and rely on the already established infrastructure for PM in 
+>>> the kernel. 
+>>
+>> I am not sure if all xdma users would expect the same suspend and 
+>> resume happening automatically.
+>>
+>
+> Why wouldn't they? This is the standard Linux PM model that the driver 
+> is responsible for the device to be fully operational after resume 
+> like it was before suspend.
 
-Signed-off-by: Anthony McGivern <Anthony.McGivern@arm.com>
----
- drivers/media/v4l2-core/v4l2-ioctl.c | 1 +
- include/uapi/linux/videodev2.h       | 3 +++
- 2 files changed, 4 insertions(+)
+There is sound card case which uses cyclic dma. In this case, it might 
+need to restart the data transfer after resume.
 
-diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-index 17ba1ae707355a134047de646f61fcc2d1512d4c..657adc0f4550e50aafc8855de524eb2e7c6297cb 100644
---- a/drivers/media/v4l2-core/v4l2-ioctl.c
-+++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-@@ -1471,6 +1471,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
- 	case V4L2_META_FMT_C3ISP_STATS:		descr = "Amlogic C3 ISP Statistics"; break;
- 	case V4L2_META_FMT_MALI_C55_PARAMS:	descr = "ARM Mali-C55 ISP Parameters"; break;
- 	case V4L2_META_FMT_MALI_C55_STATS:	descr = "ARM Mali-C55 ISP 3A Statistics"; break;
-+	case V4L2_META_FMT_MALI_C720_STATS:	descr = "ARM Mali-C720 ISP 3A Statistics"; break;
- 	case V4L2_META_FMT_RPPX1_PARAMS:	descr = "Dreamchip RPP-X1 ISP Parameters"; break;
- 	case V4L2_META_FMT_RPPX1_STATS:	descr = "Dreamchip RPP-X1 ISP Statistics"; break;
- 	case V4L2_PIX_FMT_NV12_8L128:	descr = "NV12 (8x128 Linear)"; break;
-diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-index 5373dba640fae3d19247ab1c74ba336e05dc0fe0..a59f6642ce3d120c28f395f72653137831ef09b6 100644
---- a/include/uapi/linux/videodev2.h
-+++ b/include/uapi/linux/videodev2.h
-@@ -889,6 +889,9 @@ struct v4l2_pix_format {
- #define V4L2_META_FMT_MALI_C55_PARAMS	v4l2_fourcc('C', '5', '5', 'P') /* ARM Mali-C55 Parameters */
- #define V4L2_META_FMT_MALI_C55_STATS	v4l2_fourcc('C', '5', '5', 'S') /* ARM Mali-C55 3A Statistics */
- 
-+/* Vendor specific - used for Arm Mali-C720 ISP */
-+#define V4L2_META_FMT_MALI_C720_STATS	v4l2_fourcc('C', '7', '2', 'S') /* ARM Mali-C720 3A Statistics */
-+
- /* Vendor specific - used for Dreamchip RPP-X1 ISP */
- #define V4L2_META_FMT_RPPX1_PARAMS	v4l2_fourcc('D', 'R', '1', 'P') /* Dreamchip RPP-X1 Parameters */
- #define V4L2_META_FMT_RPPX1_STATS	v4l2_fourcc('D', 'R', '1', 'S') /* Dreamchip RPP-X1 Statistics */
+Also I did not see you stop the inflight DMA in the suspend callback? 
+Would that work on other devices?
 
--- 
-2.55.0
+>
+>> How about adding device_pause() and device_resume() callbacks to xdma 
+>> driver and use dmaengine_pause() and dmaengine_resume() in your pci 
+>> driver?
+>>
+>
+> This seems like a crazy workaround for something for which there 
+> already is a standard kernel mechanism that works fine. No one will 
+> like to implement some obscure special handling for xdma devices to 
+> make a standard case (PM suspend/resume) work. Especially when there 
+> is no real reason to do that as the standard method works fine 
+> (tested) for XDMA as well.
 
+Just provide options to minimize the risk and unblock your work. Are you 
+confident to have the common suspend/resume to handle all the cases? :)
+
+
+Lizhi
+
+>
+> M.
+>
+>>
+>> Thanks
+>>
+>> Lizhi
+>>
+>>> And it is not a simple "one function call" which would be needed
+>>> (and duplicated in every driver), there is some additional re- 
+>>> configuration needed, eg. the user IRQs.
+>>> - The creation/destroying of platform devices does a lot more stuff 
+>>> than just initializing some registers. It fiddles with the IRQ and 
+>>> memory allocation/deallocation which you don't want or even can't do 
+>>> while the system is in a PM suspend or PM resume state.
+>>>
+>>> M.
+>>>
+>>>> Lizhi
+>>>>
+>>>>>
+>>>>> Signed-off-by: Martin Tůma <martin.tuma@digiteqautomotive.com>
+>>>>> ---
+>>>>>   drivers/dma/xilinx/xdma.c | 147 +++++++++++++++++++++++++++++++ 
+>>>>> +------
+>>>>>   1 file changed, 124 insertions(+), 23 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/dma/xilinx/xdma.c b/drivers/dma/xilinx/xdma.c
+>>>>> index 9d827c9a1267..d6772b38d8f7 100644
+>>>>> --- a/drivers/dma/xilinx/xdma.c
+>>>>> +++ b/drivers/dma/xilinx/xdma.c
+>>>>> @@ -123,6 +123,7 @@ struct xdma_desc {
+>>>>>    * @irq_start: Start IRQ assigned to device
+>>>>>    * @irq_num: Number of IRQ assigned to device
+>>>>>    * @status: Initialization status
+>>>>> + * @usr_irq_mask: User IRQ mask for PM suspend/resume
+>>>>>    */
+>>>>>   struct xdma_device {
+>>>>>       struct platform_device    *pdev;
+>>>>> @@ -135,6 +136,7 @@ struct xdma_device {
+>>>>>       u32            irq_start;
+>>>>>       u32            irq_num;
+>>>>>       u32            status;
+>>>>> +    u32            usr_irq_mask;
+>>>>>   };
+>>>>>   #define xdma_err(xdev, fmt, args...) \
+>>>>> @@ -398,6 +400,27 @@ static int xdma_xfer_stop(struct xdma_chan 
+>>>>> *xchan)
+>>>>>                   CHAN_CTRL_RUN_STOP);
+>>>>>   }
+>>>>> +/**
+>>>>> + * xdma_reconfig_channels - Reconfigure DMA channels
+>>>>> + * @xdev: DMA device pointer
+>>>>> + * @chans: channels configuration
+>>>>> + * @chan_num: number of channels
+>>>>> + */
+>>>>> +static int xdma_reconfig_channels(struct xdma_chan *chans,
+>>>>> +                  u32 chan_num)
+>>>>> +{
+>>>>> +    int i, ret;
+>>>>> +
+>>>>> +    for (i = 0; i < chan_num; i++) {
+>>>>> +        /* init channel hardware */
+>>>>> +        ret = xdma_channel_init(&(chans[i]));
+>>>>> +        if (ret)
+>>>>> +            return ret;
+>>>>> +    }
+>>>>> +
+>>>>> +    return 0;
+>>>>> +}
+>>>>> +
+>>>>>   /**
+>>>>>    * xdma_alloc_channels - Detect and allocate DMA channels
+>>>>>    * @xdev: DMA device pointer
+>>>>> @@ -1018,6 +1041,55 @@ static int xdma_set_vector_reg(struct 
+>>>>> xdma_device *xdev, u32 vec_tbl_start,
+>>>>>       return 0;
+>>>>>   }
+>>>>> +/**
+>>>>> + * xdma_irq_config - Configure IRQs
+>>>>> + * @xdev: DMA device pointer
+>>>>> + */
+>>>>> +static int xdma_irq_config(struct xdma_device *xdev)
+>>>>> +{
+>>>>> +    u32 user_irq_start;
+>>>>> +    int ret;
+>>>>> +
+>>>>> +    /* configure hardware IRQ registers */
+>>>>> +    ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
+>>>>> +                  XDMA_CHAN_NUM(xdev));
+>>>>> +    if (ret) {
+>>>>> +        xdma_err(xdev, "failed to set channel vectors: %d", ret);
+>>>>> +        return ret;
+>>>>> +    }
+>>>>> +
+>>>>> +    /* configure user IRQ registers if needed */
+>>>>> +    user_irq_start = XDMA_CHAN_NUM(xdev);
+>>>>> +    if (xdev->irq_num > user_irq_start) {
+>>>>> +        ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
+>>>>> +                      user_irq_start,
+>>>>> +                      xdev->irq_num - user_irq_start);
+>>>>> +        if (ret) {
+>>>>> +            xdma_err(xdev, "failed to set user vectors: %d", ret);
+>>>>> +            return ret;
+>>>>> +        }
+>>>>> +    }
+>>>>> +
+>>>>> +    /* enable channels interrupts */
+>>>>> +    ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
+>>>>> +    if (ret) {
+>>>>> +        xdma_err(xdev, "failed to enable channel IRQs: %d", ret);
+>>>>> +        return ret;
+>>>>> +    }
+>>>>> +
+>>>>> +    /* enable user interrupts if needed */
+>>>>> +    if (xdev->irq_num > user_irq_start) {
+>>>>> +        ret = regmap_write(xdev->rmap, XDMA_IRQ_USER_INT_EN_W1S,
+>>>>> +                   xdev->usr_irq_mask);
+>>>>> +        if (ret) {
+>>>>> +            xdma_err(xdev, "failed to enable user IRQs: %d", ret);
+>>>>> +            return ret;
+>>>>> +        }
+>>>>> +    }
+>>>>> +
+>>>>> +    return 0;
+>>>>> +}
+>>>>> +
+>>>>>   /**
+>>>>>    * xdma_irq_init - initialize IRQs
+>>>>>    * @xdev: DMA device pointer
+>>>>> @@ -1025,7 +1097,6 @@ static int xdma_set_vector_reg(struct 
+>>>>> xdma_device *xdev, u32 vec_tbl_start,
+>>>>>   static int xdma_irq_init(struct xdma_device *xdev)
+>>>>>   {
+>>>>>       u32 irq = xdev->irq_start;
+>>>>> -    u32 user_irq_start;
+>>>>>       int i, j, ret;
+>>>>>       /* return failure if there are not enough IRQs */
+>>>>> @@ -1060,28 +1131,8 @@ static int xdma_irq_init(struct xdma_device 
+>>>>> *xdev)
+>>>>>           irq++;
+>>>>>       }
+>>>>> -    /* config hardware IRQ registers */
+>>>>> -    ret = xdma_set_vector_reg(xdev, XDMA_IRQ_CHAN_VEC_NUM, 0,
+>>>>> -                  XDMA_CHAN_NUM(xdev));
+>>>>> -    if (ret) {
+>>>>> -        xdma_err(xdev, "failed to set channel vectors: %d", ret);
+>>>>> -        goto failed_init_c2h;
+>>>>> -    }
+>>>>> -
+>>>>> -    /* config user IRQ registers if needed */
+>>>>> -    user_irq_start = XDMA_CHAN_NUM(xdev);
+>>>>> -    if (xdev->irq_num > user_irq_start) {
+>>>>> -        ret = xdma_set_vector_reg(xdev, XDMA_IRQ_USER_VEC_NUM,
+>>>>> -                      user_irq_start,
+>>>>> -                      xdev->irq_num - user_irq_start);
+>>>>> -        if (ret) {
+>>>>> -            xdma_err(xdev, "failed to set user vectors: %d", ret);
+>>>>> -            goto failed_init_c2h;
+>>>>> -        }
+>>>>> -    }
+>>>>> -
+>>>>> -    /* enable interrupt */
+>>>>> -    ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1S, ~0);
+>>>>> +    /* configure all HW IRQ registers */
+>>>>> +    ret = xdma_irq_config(xdev);
+>>>>>       if (ret)
+>>>>>           goto failed_init_c2h;
+>>>>> @@ -1297,15 +1348,65 @@ static int xdma_probe(struct 
+>>>>> platform_device *pdev)
+>>>>>       return ret;
+>>>>>   }
+>>>>> +/**
+>>>>> + * xdma_suspend - PM suspend callback
+>>>>> + * @dev: XDMA device pointer
+>>>>> + */
+>>>>> +static int xdma_suspend(struct device *dev)
+>>>>> +{
+>>>>> +    struct xdma_device *xdev = dev_get_drvdata(dev);
+>>>>> +    int ret;
+>>>>> +
+>>>>> +    ret = regmap_read(xdev->rmap, XDMA_IRQ_USER_INT_EN,
+>>>>> +              &xdev->usr_irq_mask);
+>>>>> +    if (ret) {
+>>>>> +        xdma_err(xdev, "User IRQ vector backup failed: %d", ret);
+>>>>> +        return ret;
+>>>>> +    }
+>>>>> +
+>>>>> +    ret = regmap_write(xdev->rmap, XDMA_IRQ_CHAN_INT_EN_W1C, ~0);
+>>>>> +    if (ret)
+>>>>> +        xdma_err(xdev, "DMA channels IRQ disable failed: %d", ret);
+>>>>> +
+>>>>> +    return ret;
+>>>>> +}
+>>>>> +
+>>>>> +/**
+>>>>> + * xdma_resume - PM resume callback
+>>>>> + * @dev: XDMA device pointer
+>>>>> + */
+>>>>> +static int xdma_resume(struct device *dev)
+>>>>> +{
+>>>>> +    struct xdma_device *xdev = dev_get_drvdata(dev);
+>>>>> +    int ret;
+>>>>> +
+>>>>> +    ret = xdma_reconfig_channels(xdev->h2c_chans, 
+>>>>> xdev->h2c_chan_num);
+>>>>> +    if (ret) {
+>>>>> +        xdma_err(xdev, "H2C channels reconfiguration failed: %d", 
+>>>>> ret);
+>>>>> +        return ret;
+>>>>> +    }
+>>>>> +
+>>>>> +    ret = xdma_reconfig_channels(xdev->c2h_chans, 
+>>>>> xdev->c2h_chan_num);
+>>>>> +    if (ret) {
+>>>>> +        xdma_err(xdev, "C2H channels reconfiguration failed: %d", 
+>>>>> ret);
+>>>>> +        return ret;
+>>>>> +    }
+>>>>> +
+>>>>> +    return xdma_irq_config(xdev);
+>>>>> +}
+>>>>> +
+>>>>>   static const struct platform_device_id xdma_id_table[] = {
+>>>>>       { "xdma", 0},
+>>>>>       { },
+>>>>>   };
+>>>>>   MODULE_DEVICE_TABLE(platform, xdma_id_table);
+>>>>> +static DEFINE_NOIRQ_DEV_PM_OPS(xdma_dev_pm_ops, xdma_suspend, 
+>>>>> xdma_resume);
+>>>>> +
+>>>>>   static struct platform_driver xdma_driver = {
+>>>>>       .driver        = {
+>>>>>           .name = "xdma",
+>>>>> +        .pm = pm_sleep_ptr(&xdma_dev_pm_ops),
+>>>>>       },
+>>>>>       .id_table    = xdma_id_table,
+>>>>>       .probe        = xdma_probe,
+>>>>
+>>>
+>>
+>
 
