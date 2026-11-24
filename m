@@ -2,161 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7639E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 01:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0262E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 01:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YLQhiw/4;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=RYdI/Geh;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=RYdI/Geh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NTm2A0Sn;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=qDuT0jeZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=; b=YLQhiw/44OkEQNpgNN5z4J5ht4
-	YO5o7kmkG6tldpdYpwcHnG+BrMNPtI8oePFqh6fqd65g4EOWzWYAGFnuW52lUHFlyS6CP9lF4qfV0
-	JfNNPq2FPZDIXIpIhOBTL+yrYn/dzVhy6swVL0MZwxOlrxGvScpEANAARTgUm6Wr4RTtc/4rzYs/N
-	uFyXOXmN6Z//FdK49/tjwqpUNEMJJn/SdeGpAKU+hZkc61pbuB54J7kAEdiqaDxwzXAfg+AAXBDp2
-	+65C+1vDNLBDf5eDAFJn0N2HnP/alDiubSqwgAw/yfXZ9fLE7S06agypntC07VPygReEa0EwUTzIi
-	B1jPWoYA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=fh0x5VQQJAWMGfm2v5ASdgMgkGoChGrLjbjXEFbyGzQ=; b=NTm2A0SnmQRDWD
+	qzYEsHBMhdSF9oJd+h4kY5l8xt4crhZF6Ph9VLBnELBZeSIjIsTP7p8d4N9+Rd32Pmos6keEVbAy8
+	lVSrMB/KTla6MYnUKEZ/vArwCrsf6GOTUlC8HneHF7+WQBoowpNJTkqAnWcwlXSckTWYrztC/dITi
+	fsJDOe5AFLvzGwgXKBDzLSpKOv9fy7lk4ouocrXjXFE2FKHZy7Jz5l7pPo57uaQeKZCz8063/Ym9a
+	pVAJY5PzckJgsssAzzxwiyCKsEDQWtKCGGF/9foPGTdo01F82rPLD2Be4fPAVhoWEHFKIaQfsZNf4
+	INobe83O9oof+t4dcrFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfWA-00000005Kip-3UOQ;
-	Tue, 24 Nov 2026 01:40:23 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1xVfKv-00000005JhS-1QKQ;
+	Tue, 24 Nov 2026 01:28:45 +0000
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfW6-00000005Khr-42x8
+	id 1xVfKo-00000005Jfm-18nu
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 01:40:21 +0000
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=suuH2BTJdUYMJPZxmAYwX13kVv3DtC71v4eA2m9b69wSOGNyZIzQAW+AMReaYGboZZpX0YoeK0RgxdfM+w7U7HDG5B9aCjdhLPLDzsWPsKBHxQWX7l6jaVoXH4cHEKHM1//b5iP74EpTK2m40Y/FXw6EXZqmivlPh6uBAmHhVaoWtPfMZMvDuAjpi9NNDdBxX6u0nwzNCQGHZwWhU9caP0uy0co15gUxzc9FxyIJpr3nznwTmNHvuj9gfylGpp9JjN0mN539XwCSLgCQEAQBteVC/G7VF0rhJcy2hmXiCJU+NctdRn62yeFZqzmyyseiqcOnzuSje+ay2b3ehOvSzw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
- b=Yb3PtaiTw9uclnyd/8e8lXAZ5yl0JGJGtM91R6MTmbeeD9fLEB+9r9J3SDptvDuJASoig0SR26tcZwQDYr/IbSsVls+2wQ/8pngyNdVM/meUz9CCM8NavqtESx7cdtEVH69F7FcbKJa2EIaXD4xGUIE5kA5XUHOtMt1bNYuY2OF1B+2zVb+2eWNukYdRFaz+HmPPD4hDzcuBbJ6HZvE54ZcPvLyNdiUk8KanYTE3lg8VsQ0MtrRrp5SeEeA7oJ/JUJk1DK6j2khiDpYRza2lk8xIjuIdW6KJdUwD1yoIQp43pjU7A0U2p3XOxSGWMpqqY69b/o2xzNJtB87FxK6gzQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=kernel.org smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
- b=RYdI/GehypcaT5PJft7gWw4b/lkpMAbZXIjFLakZsc0xKSaEf48BldUJ2WF44SmDQBRuQA0DQlFdFMvw1KN2ZvSJ6CscJ9GIKPgZwViNGQZDsRKz8UDLFLoSMi1cipzM07T4POHU7/X50bwu9Nx01Gvddjl8vQ/PEkpS6B4szIw=
-Received: from GVZP280CA0035.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:26f::12)
- by GV2PR08MB11417.eurprd08.prod.outlook.com (2603:10a6:150:2c9::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 01:39:58 +0000
-Received: from WA1PEPF000099D1.eurprd04.prod.outlook.com
- (2603:10a6:150:26f:cafe::7f) by GVZP280CA0035.outlook.office365.com
- (2603:10a6:150:26f::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
- 24 Nov 2026 01:39:58 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- WA1PEPF000099D1.mail.protection.outlook.com (10.167.242.25) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.3
- via Frontend Transport; Tue, 24 Nov 2026 01:39:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dvCU6h7hJnlUKZtwKP5T28bhllsJtOHwX/sB5+azIdq4PjF0W7lQKq6AISKVguUfAG7gOfzvJLSf+794snyjBuJBWkp1TTQZ+fv0wXtqrA/didpeUjxYm+ZHjzzIu0INXZenFETo6ETnwzjsoIrpleXgkCoTJASy3+mVKpupEJhJpxnVIkqQpdLJkqBqp24iWix57ZcWarZnXekCiWDsyw43F6/7j1HP1ssJ/v2L/YnruL7l1XkMz9mKYep58CNFvFpIZ6T5I72XpNa6/6RdY8vRqGBbAQhEdnPrCXzkKFhAQUIATL6zxHisRUk9BuaxY1bLpGzX3AMDzr/HgdMZFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
- b=PRAgagQ2yZ1kids1Rmat6sKb41kN67EosMpAEvAb5TMPg0LmmNMQQ6zzjIk8r67eAIIqgdqFyUhjsdWzUybPZhnKPBwoF08+/ef4KjseaaB+zw6ArD/FBSlE8NREbW6PHOLb7rmkV1HcuUriMWEtMVna1sv2DicpehU/c5lcwU0Wz65I4e7IimoirUFOS/Qu4yo6ZVO7Lfos4UwFVsNHnxujR7YeWRfdMIRJnyRvOANp3qzVqQMp8vgohaIa33eFdsdDsGcn8+UnhdlQ69sKJN6LuERBlc8fiuH9JfSyzD59O3bbXUPIQUD78B0IxZDqO2FssKXbXRH5oPLDHRmtVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
- b=RYdI/GehypcaT5PJft7gWw4b/lkpMAbZXIjFLakZsc0xKSaEf48BldUJ2WF44SmDQBRuQA0DQlFdFMvw1KN2ZvSJ6CscJ9GIKPgZwViNGQZDsRKz8UDLFLoSMi1cipzM07T4POHU7/X50bwu9Nx01Gvddjl8vQ/PEkpS6B4szIw=
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com (2603:10a6:20b:605::22)
- by AS8PR08MB9072.eurprd08.prod.outlook.com (2603:10a6:20b:5c0::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
- 2026 01:39:23 +0000
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155]) by AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 01:39:23 +0000
-From: Justin He <Justin.He@arm.com>
-To: Marc Zyngier <maz@kernel.org>
-CC: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>, Joey
- Gouly <Joey.Gouly@arm.com>, Steffen Eiden <seiden@linux.ibm.com>, Suzuki
- Poulose <Suzuki.Poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, Catalin
- Marinas <Catalin.Marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
- Rutland <Mark.Rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>, Sean
- Christopherson <seanjc@google.com>, Shuah Khan <shuah@kernel.org>, Sascha
- Bischoff <Sascha.Bischoff@arm.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>, Lorenzo
- Stoakes <ljs@kernel.org>
-Subject: RE: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before
- first run
-Thread-Topic: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before
- first run
-Thread-Index: AQHde1zAtBC9mmT//0CTNvJgc0eqU7c75woAgACKa9A=
-Date: Tue, 24 Nov 2026 01:39:23 +0000
-Message-ID: <AS2PR08MB978600ED2150F773D3E1631DF7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-References: <20261123150917.2679600-1-justin.he@arm.com>
-	<20261123150917.2679600-2-justin.he@arm.com> <86eccbzcqh.wl-maz@kernel.org>
-In-Reply-To: <86eccbzcqh.wl-maz@kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: AS2PR08MB9786:EE_|AS8PR08MB9072:EE_|WA1PEPF000099D1:EE_|GV2PR08MB11417:EE_
-X-MS-Office365-Filtering-Correlation-Id: f47065bf-5900-4cb4-573b-08df49cbd91d
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|38070700021|261102123227099003|10067099003|56012099006|11063799006|4143699003|261022105027099003|261026140227099003|261028144727099003|261026121527099003|261022075727099003|261021135927099003|261021121427099003|22082099003|6133799003|18002099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info-Original: mpEPE/ItsBQaAmIKLsQ94WCoOXzytY6tIn/5H8Lmw7PqC0wh4URgcJKfal0YxZ6bstkkWnLAoYIKzUXxOehMeQsNyfql0709+0fmnE/ALkglDmpwm0Lc4lgovaKvo2Kqz2Rtw+Q2sQfAil+C06H5xce28arreNJuEetZO5TAif9cHW8Cv0B+UNhtAvLjeB6VLDKnW1YP++wMuTywvwKtMAnV862jbdYs/kjjikovkaNL9CJ2cTepctgA6plgktyAsGmPHtEvb5q6NBSMLjDmDVlxg0qodLxjL2KWyFgkds2FPtEzBPwxidllqWk/+W3AZax5ZR23V/6isVwgF76Gf3Ke6CKMRYK0yXZWyoX60e+3gdzhda9j+5C5Oa0xTUwJLeXBvHtqoywV5GDOZou4puStNArJYFBhDXV+pqU5KtJgJhigQ0gx5Rzc/VqCWKs2cjEKfPRCShCz5KJ6MThx/m/HVU6VtiPWomcKiueJ77XWN2NeQaZEo/LI8y3Dgr9KOt7gakun6rLr6cYxr7uvGlGYnMpjnJ71IfXtreASBECnSDeDjTLIl8E6vtvH42AryRKxi5XpZbJg6HQEUie7Najfhp147wn52l7luxrm/+YCRcgvQKnQxtl1WRcouNEONskdiKrpKNHhMsuLGJhFF09YyvLriwdYE/8jjpMD/N6xONVDqB8lSJ9F/PGLAIhKKFE5B6Cm0DlOpkFTLgZlm9SmwRQZS5BiJb4Km4bk1Yk=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR08MB9786.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(38070700021)(261102123227099003)(10067099003)(56012099006)(11063799006)(4143699003)(261022105027099003)(261026140227099003)(261028144727099003)(261026121527099003)(261022075727099003)(261021135927099003)(261021121427099003)(22082099003)(6133799003)(18002099003)(261009223027099003);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	Tue, 24 Nov 2026 01:28:39 +0000
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-8c4cc85a315so2859340b3a.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 17:28:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795483717; x=1796088517; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=fh0x5VQQJAWMGfm2v5ASdgMgkGoChGrLjbjXEFbyGzQ=;
+        b=qDuT0jeZ8UV8EIP3WxI0R3L/qWquxNJLUq3iM3Gr+kfIjK4k6d/4uEqTYmST+rmnBi
+         C1UDlmGQlsS+pw2VFfTks8PKW+yBI/U36jlWlbztEXjhxJ0SeHLNjbMmgpCxLGzuBS4R
+         /9Je2oZXZoo4CZR+WujpTPfenv3fRR8KKsloQSHgxf61CrbYzq/B44ZZSEaK5QW7v8vz
+         aCpf2aYjY/QSE8nPyOAdwQgedQTNkpGoZO64XSwWM0LI7WjyaTb7c88KQL7KRQuP7XjT
+         5GrXSPYnI5GOn3uhxVcYJSVzMxDdntC3nEc2E3LMH0AEAy1sYIZQ+b3cp0b3ty6rLtPn
+         zeSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795483717; x=1796088517;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=fh0x5VQQJAWMGfm2v5ASdgMgkGoChGrLjbjXEFbyGzQ=;
+        b=Z1VOH4HuQ7ZWOZO8FjH266bv1j9WZUuge0Ur85dffKmtnILg4w+PvTMm9Obk6b3JkA
+         +raf7H9NuvAfD2Lm8SHXzr0Ovmr7OwsEqxMbKmpQDpTXmo5zteXezq228+dWuJemOm41
+         OqlXe6xFqs/sJTTshJ3xMh6PQmUl6e6Dnoq4JbgoFSyQzhiAWDZDeIFh3OIe3EPWYx+c
+         N/VmOlSQg9K0JzDk1yYQ8Q/26fA4Ft5eHT365oIMQot0Ra06pQFDw/YYNXJxVh2uEuCN
+         OthmkwbegWMqvxS4vcwFUnq3L2jF3NOxrqcdYHh6djg6/Sfhep9eipbjdGeIEXU0cFve
+         8Qvg==
+X-Forwarded-Encrypted: i=1; AL+hErGKJcuzEG5H6D7zhf+zf0V2mK7jCXcUtst160HV9FPlCEv8+s3W0t1NpO6rq2nQ7mwgJ0KGajq9FmRPcSxEJibG@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Lxx7PLOugiF6WtLJ3+Qy54Vaau+hP87ZvJUEeFU30s0sLgHB7
+	J9xWs0sdNeNKQLnKQAh3T+mFpqBT0aSI2MNuHBBhfRJ/tDKYGTanHNcl
+X-Gm-Gg: AZFdTZem6dICsuhs0so5sAzCAMnPRFIKQKk7bwCJctbDffqp9AE8gi/FXSS3dJPSel0
+	s9sKlnxlYWVChIL9exl7zBMz7ge6VEW742TAN1LA92pDzCxw9u/C0Joco5/wsK21C4OQ+Zj2yHu
+	bGxWc24mzcsBUeJ3YuaR++IDFJtrRzOvah9mk405iklJv6IBMeY5Sycs4bEkUZQN8TBERC1X05P
+	KjFruM7lLo+lFur0e4EJ3bGnETvS7awg2+KTSzG7Z8BkbDGSxkxu4AHJw4UkCtnDGBQ5p+fiHja
+	VDxVKvaZwNEmqdST9Gm8ZRjSHPM09J+okUKkUpVWB1XTkAt2rQXBcFVcEv9rx4JMrJ1BrMKgZrq
+	u4WY+u5cXVB5+HFQvG4eMlBKhKuV7H3yeBT717a+TJUqIku186qAjsil7VkC1PS8hywFI7vEN5S
+	oxCqotORHF55pNBx55g7icMzM7vdS5rFZswdoKj8rfpjId/xjDTDl27Guo3BetAm4ZgxKBvB1v+
+	uPTwu7vTzYpXhvDOTjNsBLiRR4h0BcTXcoehldjnSp1iNDDRkeneByWuPArfv2kwC8OoAWKJguo
+	tkZA67CBKvFjDuIuFjw0RjLR13gHb9RvH8tfo0aj2NLvfetES1YW+NH/VFB6I6X4w7xrb6dVRpR
+	/
+X-Received: by 2002:a05:6a00:a117:b0:883:71f6:5fb with SMTP id d2e1a72fcca58-8c87b4f42ccmr11288308b3a.13.1795483717212;
+        Mon, 23 Nov 2026 17:28:37 -0800 (PST)
+Received: from d.home.yangfl.dn42 ([2a09:bac1:7680:d30::4d0:8e])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c872e457d1sm6115243b3a.30.2026.11.23.17.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 17:28:36 -0800 (PST)
+From: David Yang <mmyangfl@gmail.com>
+To: linux-watchdog@vger.kernel.org
+Cc: David Yang <mmyangfl@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wei Xu <xuwei5@hisilicon.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 2/4] watchdog: histb: Add HiSilicon STB watchdog driver
+Date: Tue, 24 Nov 2026 09:27:36 +0800
+Message-ID: <20261124012755.328774-3-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261124012755.328774-1-mmyangfl@gmail.com>
+References: <20261124012755.328774-1-mmyangfl@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: RE/b39+J0Kqd1rNsM6c1cNC0mCS3rceupCU0UFq3XB6bqEXQCdekDrisFEB7Rl6SnTsCks6hYAB5vMDbJRrTs4+ZRMkpofEOCAm4cgH53Z5sNDrqtdhCdBw9UOMLY95sye768vSTBxCCMS63CvWTrtUjxBdGjdYwTHgFu1xTZFes4Vi5RiYx90i/wVe9TbHZ5YJzTbxQEshhRvA+zYus1/c2IyVoDNHlNNnaKA4izj95NRjA1chXWwzHlQhgQkXfCtwkKHUTLF67WDm8Z4icLlCkHzSmGY55vFk25dHeZwJ3MLxts9xhW0GKIgPmEEpiDoI2+Rog8bFTXepTSgxd6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9072
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: WA1PEPF000099D1.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 3bb031df-dca3-4bd3-e855-08df49cbc483
-X-Microsoft-Antispam: BCL:0;ARA:13230040|35042699022|23010399003|14060799003|36860700016|82310400026|1800799024|376014|7416014|261102123227099003|261026121527099003|261022075727099003|261022105027099003|261026140227099003|261028144727099003|261021121427099003|261021135927099003|10067099003|11063799006|4143699003|56012099006|261009223027099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: BGCUzdwhvL4GXIMz1Eq2J5Zbph8zAQxXzsrJ0LeH3iCFxpCFXx/4IGoof4pIUvOXSmdiK96/gOQgUWM6zY300N6wawdUnSXAYQKcIkeff9Z+wuXGGp/PnQDtSTjT3DQOavG725000VNfXbddTHX8jnsmwYcfiRbX8MRBjXQ3UtySGZ5TSGnprzGxhtAap7JeqlzS3bdJiX9XZlw8LM0XJ4CZCShTLovyzhxlhDEfceoeEn7sW0ZE3PVVr8vEJSKWNhjCHeZ43loj2wfbZm5/EWx2+R4pRWnFRsf6WaIY/VKWO5AzbrHVLV4Sui8PQgH7qWXxtymajVLwWVSbS99vz5VdghWrHqGlIcksuKhmO4XOWIGiKGUTdif4Q35Wou0MmANxG9YQUTWM9iGMXLjkzP9Su8x4QwYN/454t14/CU5sTAAYR9vXy2P1k/y2Vg/ry+ku/C3+DXuGo3OJkMnMyDPHJheDCCLZalvcX62S/eaVXDAwJX/HaQ55gq3SUklCLnj0urAANt/ZIzFHd2RiZDzN4n99mgJQVoaaTE8omucFlCCnnmuFyzpqChsPWyHwKMdCO7bT+9VWKfP4XMzlaLizuLo4wZhttSze2mZpJ5Ju00kd/AH6mKyOFsGGBKEUg9n896hyMtVq96ZFxMk7vPlpCfP/lcyUimfSXh0E5KLeRgzm90wVlkHgwSib06QkhLwUJqZOTisUP0u0QUSfRA==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(35042699022)(23010399003)(14060799003)(36860700016)(82310400026)(1800799024)(376014)(7416014)(261102123227099003)(261026121527099003)(261022075727099003)(261022105027099003)(261026140227099003)(261028144727099003)(261021121427099003)(261021135927099003)(10067099003)(11063799006)(4143699003)(56012099006)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: E+GOguSOWPGziyHLMOkQ7K+2oKW6OWqlAx+zig2VjT15N488oSWcvEjw20UWE2u/VTQeiWA/BfgwhCgEUkC3T6kZjVZg+xIRD65MsW/6PmyFZH1t/Sg92jY4lj89mQIHs0Ygr1kP5Ltgpn410r7jhRic159jTBKid2/z28k1FQ6t61ouoiRff5Ni51iII1ENVW+72EXTZn5XxOtb4E0IfLcH5ZAvdfKnpLyJNI8I3MiVzwjg8We1nOndlQk17SVg6v5JYnTw2zXmfF6e8dQPIDujaKDu/MwXcl+mkTBX0LhqNYUaiByg+y9UEo9Dcj1MCq4s50fdlRYD4dOPAymwsyGuPCRvyopekptB2hpcYOzzhD/yNXnxU1ViMdEnDB5kvFXaynANsw6675b9tG5LkLFgzUORqHuyA8B48LIqu/DNfq+Gsnlxedpm3rWV+ZiK
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 01:39:57.7839
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f47065bf-5900-4cb4-573b-08df49cbd91d
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: WA1PEPF000099D1.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB11417
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_174019_403988_033B77AA 
-X-CRM114-Status: GOOD (  22.68  )
+X-CRM114-CacheID: sfid-20261123_172838_343837_046BFC3F 
+X-CRM114-Status: GOOD (  29.44  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -168,87 +108,371 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi, Marc
+The watchdog integrated on HiSilicon STB SoCs reuses the register layout
+of sp805, but deviates from the standard sp805 in several ways that make
+the existing sp805 driver unusable on these SoCs. Add a dedicated
+platform driver to handle these SoC-specific semantics natively without
+regressing generic SP805 users.
 
-> -----Original Message-----
-[...]
-> > KVM_PRE_FAULT_MEMORY calls vcpu_load() as soon as
-> KVM_ARM_VCPU_INIT has
-> > completed. On arm64, however, kvm->arch.sysreg_masks, the trap
-> > configuration, vncr_tlb and nested vGIC state are only set up on the
-> > first KVM_RUN in kvm_arch_vcpu_run_pid_change().
->=20
-> I think I'm going to queue a patch disabling prefaulting immediately,
-> and then we can fix this crap.
->=20
-Fine with me. I'll rebase on top of it and have v2 re-enable
-pre-faulting together with the load/put change.
+Signed-off-by: David Yang <mmyangfl@gmail.com>
+---
+ drivers/watchdog/Kconfig     |   8 +
+ drivers/watchdog/Makefile    |   1 +
+ drivers/watchdog/histb_wdt.c | 305 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 314 insertions(+)
+ create mode 100644 drivers/watchdog/histb_wdt.c
 
-> >
-> > Running the full vcpu_load() path before then reads unsanitised guest
-> > sysregs and touches uninitialised nested state: get_s2_mmu_nested()
-> > populates nested_mmus[] from raw VTTBR_EL2/VTCR_EL2/HCR_EL2 values,
-> FGT
-> > and HCRX_EL2 are written before kvm_calculate_traps() has run, and
-> > kvm_vgic_load() can enter vgic_v3_load_nested() early. In particular, i=
-f
-> > userspace creates an EL2 vCPU with ID_AA64MMFR4_EL1.NV_frac cleared
-> to 0
-> > (so vncr_tlb is never allocated), sets HCR_EL2.NV=3D1 and an EL1 PSTATE=
-,
-> > and calls KVM_PRE_FAULT_MEMORY, kvm_vcpu_load_hw_mmu() queues
-> > KVM_REQ_MAP_L1_VNCR_EL2. The next KVM_RUN then dereferences a
-> NULL
-> > vncr_tlb in kvm_map_l1_vncr() with preemption disabled and kvm-
-> >mmu_lock
-> > held for read:
-> >
-> >   [   73.636014] Unable to handle kernel NULL pointer dereference at vi=
-rtual
-> address 0000000000000078
-> >   [   73.801972] pc : kvm_map_l1_vncr+0x48/0x2d0
-> >   [   73.884820] Call trace:
-> >   [   73.887253]  kvm_map_l1_vncr+0x48/0x2d0 (P)
-> >   [   73.891422]  check_nested_vcpu_requests+0xb8/0x168
-> >   [   73.896200]  check_vcpu_requests+0x2a0/0x428
-> >   [   73.900458]  kvm_arch_vcpu_ioctl_run+0x2d8/0x6d8
-> >   [   73.905062]  kvm_vcpu_ioctl+0x388/0xaf0
-> >
-> > KVM_PRE_FAULT_MEMORY still needs generic vcpu_load() to set
-> > kvm_running_vcpu for dirty-ring tracking in mark_page_dirty_in_slot(),
-> > but kvm_arch_vcpu_pre_fault_memory() only walks and populates
-> > &kvm->arch.mmu and does not use any hardware vCPU state. Skip the arch
-> > vcpu_load()/vcpu_put() callbacks until vcpu_has_run_once() is true. In
-> > KVM_RUN, vcpu->pid is set under vcpu->mutex right after
-> > kvm_arch_vcpu_run_pid_change() succeeds and before
-> > kvm_arch_vcpu_ioctl_run() calls vcpu_load().
-> >
-> > Since kvm_running_vcpu can now be set without VHE state on the CPU, use
-> > host_ctxt->__hyp_running_vcpu in VHE enter_vmid_context() (matching
-> > nVHE)
->=20
-> Can you clarify under which circumstances we end-up on the TLB
-> invalidation path? Simply faulting things in should not result in
-> invalidation. Unless we end-up with MMU notifiers firing?
->=20
-I found this by code inspection, not from a failure. A TLBI from a stage-2
-BBM or an MMU notifier can hit this path during pre-faulting, but before
-the first run hw_mmu is canonical, so it makes no difference. As Lorenzo
-said, I'll drop this hunk.
+diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+index f7d0a0c2c0ef..d3421bb76326 100644
+--- a/drivers/watchdog/Kconfig
++++ b/drivers/watchdog/Kconfig
+@@ -1183,6 +1183,14 @@ config SUNPLUS_WATCHDOG
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called sunplus_wdt.
+ 
++config HISTB_WATCHDOG
++	tristate "HiSilicon STB Watchdog"
++	depends on (ARCH_HISI || COMPILE_TEST) && OF
++	select WATCHDOG_CORE
++	help
++	  Say Y here to include support for the watchdog timer in HiSilicon STB
++	  SoCs.
++
+ # X86 (i386 + ia64 + x86_64) Architecture
+ 
+ config ACQUIRE_WDT
+diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+index 9ac406677aba..d2455e54ab23 100644
+--- a/drivers/watchdog/Makefile
++++ b/drivers/watchdog/Makefile
+@@ -106,6 +106,7 @@ obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
+ obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
+ obj-$(CONFIG_GUNYAH_WATCHDOG) += gunyah_wdt.o
+ obj-$(CONFIG_MA35D1_WDT) += ma35d1_wdt.o
++obj-$(CONFIG_HISTB_WATCHDOG) += histb_wdt.o
+ 
+ # X86 (i386 + ia64 + x86_64) Architecture
+ obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
+diff --git a/drivers/watchdog/histb_wdt.c b/drivers/watchdog/histb_wdt.c
+new file mode 100644
+index 000000000000..456de7e92562
+--- /dev/null
++++ b/drivers/watchdog/histb_wdt.c
+@@ -0,0 +1,305 @@
++// SPDX-License-Identifier: GPL-2.0+ OR MIT
++/*
++ * HiSilicon STB Watchdog Driver
++ *
++ * The watchdog integrated on HiSilicon STB SoCs reuses the register layout of
++ * sp805, but deviates from the standard sp805 in several ways that make the
++ * existing sp805 driver unusable on these SoCs:
++ *   - The ID registers at 0xfe0..0xffc are unimplemented and read zero,
++ *     requiring a platform device driver rather than AMBA probe;
++ *   - Writing WDTLOCK freezes the counter instead of only blocking register
++ *     writes, so the block must remain unlocked while running;
++ *   - Writing WDTLOAD never reloads the running counter; the counter takes
++ *     WDTLOAD when re-armed by WDTINTCLR or by enabling WDTCONTROL;
++ *   - Writing WDTLOAD with 0 results in a counter starting at 0xffffffff,
++ *     resetting after 2*179s (~6min) at 24 MHz;
++ *   - The counter only advances while unlocked and INT_ENABLE is set.
++ *
++ * Copyright (c) 2026 David Yang
++ */
++
++#include <linux/bitops.h>
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/io.h>
++#include <linux/ioport.h>
++#include <linux/kernel.h>
++#include <linux/math64.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/pm.h>
++#include <linux/spinlock.h>
++#include <linux/watchdog.h>
++
++#define HISTB_WDT_LOAD			0x000
++#define HISTB_WDT_VALUE			0x004
++#define HISTB_WDT_CONTROL		0x008
++#define  HISTB_WDT_RESET_ENABLE			BIT(1)
++#define  HISTB_WDT_INT_ENABLE			BIT(0)
++#define HISTB_WDT_INTCLR		0x00c
++#define HISTB_WDT_RIS			0x010
++#define HISTB_WDT_MIS			0x014
++#define  HISTB_WDT_INT_MASK			BIT(0)
++#define HISTB_WDT_LOCK			0xc00
++#define  HISTB_WDT_UNLOCK_KEY			0x1acce551
++#define  HISTB_WDT_LOCK_KEY			0x00000001
++
++#define MHz 1000000
++
++/* default timeout in seconds */
++#define HISTB_WDT_DEFAULT_TIMEOUT	60
++
++struct histb_wdt {
++	struct watchdog_device wdd;
++
++	void __iomem *base;
++	struct clk *clk;
++	spinlock_t lock;
++	u32 rate;
++	u32 load_val;
++};
++
++/* load cannot be 0, see documentation */
++static void histb_wdt_arm(struct histb_wdt *wdt, u32 load)
++{
++	void __iomem *base = wdt->base;
++
++	writel_relaxed(HISTB_WDT_UNLOCK_KEY, base + HISTB_WDT_LOCK);
++	writel_relaxed(0, base + HISTB_WDT_CONTROL);
++	writel_relaxed(HISTB_WDT_INT_MASK, base + HISTB_WDT_INTCLR);
++	writel_relaxed(load, base + HISTB_WDT_LOAD);
++	writel_relaxed(HISTB_WDT_INT_ENABLE | HISTB_WDT_RESET_ENABLE,
++		       base + HISTB_WDT_CONTROL);
++
++	/* Flush posted writes. */
++	readl_relaxed(base + HISTB_WDT_LOCK);
++}
++
++static int histb_wdt_start(struct watchdog_device *wdd)
++{
++	struct histb_wdt *wdt = watchdog_get_drvdata(wdd);
++	int res;
++
++	res = clk_enable(wdt->clk);
++	if (res)
++		return res;
++
++	spin_lock(&wdt->lock);
++	histb_wdt_arm(wdt, wdt->load_val);
++	spin_unlock(&wdt->lock);
++
++	return 0;
++}
++
++static int histb_wdt_stop(struct watchdog_device *wdd)
++{
++	struct histb_wdt *wdt = watchdog_get_drvdata(wdd);
++	void __iomem *base = wdt->base;
++
++	spin_lock(&wdt->lock);
++	writel_relaxed(HISTB_WDT_UNLOCK_KEY, base + HISTB_WDT_LOCK);
++	writel_relaxed(0, base + HISTB_WDT_CONTROL);
++	writel_relaxed(HISTB_WDT_LOCK_KEY, base + HISTB_WDT_LOCK);
++	readl_relaxed(base + HISTB_WDT_LOCK);
++	spin_unlock(&wdt->lock);
++
++	clk_disable(wdt->clk);
++
++	return 0;
++}
++
++static int histb_wdt_ping(struct watchdog_device *wdd)
++{
++	struct histb_wdt *wdt = watchdog_get_drvdata(wdd);
++	void __iomem *base = wdt->base;
++
++	spin_lock(&wdt->lock);
++	writel_relaxed(HISTB_WDT_INT_MASK, base + HISTB_WDT_INTCLR);
++	writel_relaxed(wdt->load_val, base + HISTB_WDT_LOAD);
++	readl_relaxed(base + HISTB_WDT_LOCK);
++	spin_unlock(&wdt->lock);
++
++	return 0;
++}
++
++static int
++histb_wdt_set_timeout(struct watchdog_device *wdd, unsigned int timeout)
++{
++	struct histb_wdt *wdt = watchdog_get_drvdata(wdd);
++	u64 rate = wdt->rate;
++	u64 load;
++
++	/*
++	 * histb-wdt runs counter with given value twice, after the end of first
++	 * counter it gives an interrupt and then starts counter again. If
++	 * interrupt already occurred then it resets the system. This is why
++	 * load is half of what should be required.
++	 */
++	load = div_u64(rate * timeout, 2) - 1;
++	load = clamp_val(load, 1, U32_MAX);
++
++	wdt->load_val = load;
++	/* roundup timeout to closest positive integer value */
++	wdd->timeout = div_u64((load + 1) * 2 + (rate / 2), rate);
++
++	if (watchdog_active(wdd)) {
++		spin_lock(&wdt->lock);
++		histb_wdt_arm(wdt, wdt->load_val);
++		spin_unlock(&wdt->lock);
++	}
++
++	return 0;
++}
++
++static unsigned int histb_wdt_get_timeleft(struct watchdog_device *wdd)
++{
++	struct histb_wdt *wdt = watchdog_get_drvdata(wdd);
++	u64 value;
++
++	spin_lock(&wdt->lock);
++	value = readl_relaxed(wdt->base + HISTB_WDT_VALUE);
++	if (!(readl_relaxed(wdt->base + HISTB_WDT_RIS) & HISTB_WDT_INT_MASK))
++		value += (u64)wdt->load_val + 1;
++	spin_unlock(&wdt->lock);
++
++	return div_u64(value, wdt->rate);
++}
++
++static int
++histb_wdt_restart(struct watchdog_device *wdd, unsigned long mode, void *cmd)
++{
++	struct histb_wdt *wdt = watchdog_get_drvdata(wdd);
++
++	/*
++	 * For reset, we start the WDT clock and leave it running.
++	 * The clock was prepared at probe time; only clk_enable() is
++	 * safe in this atomic (restart notifier) context.
++	 */
++	clk_enable(wdt->clk);
++	/*
++	 * Other CPUs may have been stopped while holding wdt->lock, arm without
++	 * taking it.
++	 */
++	histb_wdt_arm(wdt, 1);
++
++	mdelay(1);
++
++	return 0;
++}
++
++static const struct watchdog_info histb_wdt_info = {
++	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
++	.identity = "HiSilicon STB Watchdog",
++};
++
++static const struct watchdog_ops histb_wdt_ops = {
++	.owner = THIS_MODULE,
++	.start = histb_wdt_start,
++	.stop = histb_wdt_stop,
++	.ping = histb_wdt_ping,
++	.set_timeout = histb_wdt_set_timeout,
++	.get_timeleft = histb_wdt_get_timeleft,
++	.restart = histb_wdt_restart,
++};
++
++static int histb_wdt_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct histb_wdt *wdt;
++	struct watchdog_device *wdd;
++	int res;
++
++	wdt = devm_kzalloc_obj(dev, *wdt);
++	if (!wdt)
++		return -ENOMEM;
++
++	wdt->base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(wdt->base))
++		return PTR_ERR(wdt->base);
++
++	/*
++	 * Keep the clock prepared for the lifetime of the driver:
++	 * .restart() runs in atomic context and may only call clk_enable().
++	 */
++	wdt->clk = devm_clk_get_optional_prepared(dev, NULL);
++	if (IS_ERR(wdt->clk))
++		return dev_err_probe(dev, PTR_ERR(wdt->clk),
++				     "Failed to get clock\n");
++
++	if (wdt->clk)
++		wdt->rate = clk_get_rate(wdt->clk);
++	if (!wdt->rate)
++		device_property_read_u32(dev, "clock-frequency", &wdt->rate);
++	if (!wdt->rate)
++		/* 24 MHz crystal clock default on HiSTB */
++		wdt->rate = 24 * MHz;
++
++	wdd = &wdt->wdd;
++	wdd->parent = dev;
++	wdd->info = &histb_wdt_info;
++	wdd->ops = &histb_wdt_ops;
++	wdd->timeout = HISTB_WDT_DEFAULT_TIMEOUT;
++	wdd->min_timeout = 1;
++	wdd->max_timeout = div_u64(((u64)U32_MAX + 1) * 2, wdt->rate);
++	watchdog_stop_on_reboot(wdd);
++	watchdog_stop_on_unregister(wdd);
++	watchdog_init_timeout(wdd, 0, dev);
++	watchdog_set_drvdata(wdd, wdt);
++
++	spin_lock_init(&wdt->lock);
++
++	histb_wdt_set_timeout(wdd, wdd->timeout);
++
++	platform_set_drvdata(pdev, wdt);
++
++	res = devm_watchdog_register_device(dev, wdd);
++	if (res)
++		return dev_err_probe(dev, res,
++				     "Failed to register watchdog device\n");
++
++	return 0;
++}
++
++static int __maybe_unused histb_wdt_suspend(struct device *dev)
++{
++	struct histb_wdt *wdt = dev_get_drvdata(dev);
++
++	if (watchdog_active(&wdt->wdd))
++		histb_wdt_stop(&wdt->wdd);
++
++	return 0;
++}
++
++static int __maybe_unused histb_wdt_resume(struct device *dev)
++{
++	struct histb_wdt *wdt = dev_get_drvdata(dev);
++
++	if (watchdog_active(&wdt->wdd))
++		return histb_wdt_start(&wdt->wdd);
++
++	return 0;
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(histb_wdt_pm_ops, histb_wdt_suspend,
++				histb_wdt_resume);
++
++static const struct of_device_id histb_wdt_match[] = {
++	{ .compatible = "hisilicon,histb-wdt" },
++	{}
++};
++MODULE_DEVICE_TABLE(of, histb_wdt_match);
++
++static struct platform_driver histb_wdt_driver = {
++	.probe = histb_wdt_probe,
++	.driver = {
++		.name = "histb-wdt",
++		.pm = &histb_wdt_pm_ops,
++		.of_match_table = histb_wdt_match,
++	},
++};
++module_platform_driver(histb_wdt_driver);
++
++MODULE_AUTHOR("David Yang <mmyangfl@gmail.com>");
++MODULE_DESCRIPTION("HiSilicon STB Watchdog Driver");
++MODULE_LICENSE("Dual MIT/GPL");
+-- 
+2.53.0
 
-> > and check vcpu_has_run_once() in vgic_maintenance_handler().
->=20
-> I have similar questions here. It isn't obvious how you end-up getting
-> a VGIC MI if you don't run and don't load the state on the CPU.
-I can't construct a case either. It was defensive, so I'll drop it.
-
-Thanks,
-Jia He (Justin)
 
