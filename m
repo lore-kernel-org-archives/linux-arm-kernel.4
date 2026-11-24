@@ -2,76 +2,130 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9617606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E9A606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M5RlJ/yh;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=B2KRURmV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TntPpxo0;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Ur3Rd0JD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Mbpbveztx44WinZd0OoXNduwiZpW+0sT5m096jfRZC0=; b=M5RlJ/yhD/z/hT
-	hAqwgCozaajj/ZBEtlF3mIOB0qfOYbCzDNAr2I85arL0MWOXVW7YL2EGG+rgiJRwEgnA4Pfg/MXcV
-	H3MJGGXvurzTCigrY9EPRKumzSc5nOCUCtviZjGe7BRwY/7x5t0t/reBKYeiylH8luRQ1benhdpK8
-	6qNqje9oGxuF0VKUwvMVaVbTPJvo5cQ/Elv7ZDbSEVjl1cPVDCnNMeZfT0J92FtlZ/xLKyOmfJ/pY
-	3ihW4yXV7qT1Kb88z/aaQ6DV2I8XXnzL/9RJ8S+/uqs6Ic5Bz4Uspxcw0fC7sYrpeB826OeqvjaLt
-	RmDQEdM2uo0/nssqTTHw==;
+	List-Owner; bh=ra1Twgfh9jA9NUiT3kKjO7S8JG98ltNrPlCqI5RdaAo=; b=TntPpxo0408e1E
+	JaboOT69d104XBKTBlYbwzbARhX1DhA1hBb0LVtmszelmo52Zf0eTOKxcQaAFqI/Gdz33LhMpYhdQ
+	WXo0grzxOj8p01G7W+YCfRIj3o+GULNaILGbFimJlQ1NioZq1nukJc4Aj9iKIQBIEh4pN1phssbm8
+	jvpAqSm2MXSy/tVLBf9rIGOogl5vbQd8dyvbWOuhZn9THmnvgoJ68uI8eDIfzY18pjqNz21lptbtv
+	yraVha0iLsVfTojbPPrWONVOxaSPyVPi56Rxn5mLriqmgv/zr8ZXoK2PVLlHWEeDEQHSWYnNTvEoE
+	NAA+EOshTf3av5uoY9Dg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrk7-00000006nG9-0kZL;
-	Tue, 24 Nov 2026 14:43:35 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xVsHa-00000006ryY-0eyK;
+	Tue, 24 Nov 2026 15:18:10 +0000
+Received: from mgamail.intel.com ([198.175.65.14])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrk0-00000006nDH-1QcK;
-	Tue, 24 Nov 2026 14:43:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795531406;
-	bh=+xcAFVyfZjCXw78iH5eaRb7q+NmVOvWAJooUbJ43vpY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B2KRURmVMnzlSfh/3guyYTv0j1AWRjCGZuabqe/B3OntHxn9B6dKAJlHu3SsD0SmX
-	 LVx7ce9h7L/4YDDzakQDdcWAV5/SuxSmQdgV9W4q9R3Q/+FadUwYCgwbpDXfwx/tTL
-	 YDOcAga1u2SeU8oIAoUCrt+yi1oenovqKr0WL994FrkADzRCCR7p1TGPJ3rSPs7lhg
-	 DohKMBp6gc3i+Tye2dAgBd45g8euDbjJaI5s2Yrds/IbAWjjsiKDXGXkqveYe/14NK
-	 idOJPckaCha8mz4XAFBjFkKfjPJgAsyYB5ypR+h02NteusfcQz7da1fm/ePzS4rn08
-	 aAf3b6kdgfguw==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C90117E09ED;
-	Tue, 24 Nov 2026 15:43:25 +0100 (CET)
-Message-ID: <05cb7522-7894-43b1-8bf5-96a1a3792289@collabora.com>
-Date: Tue, 24 Nov 2026 15:43:24 +0100
+	id 1xVsHX-00000006rxm-11HN
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 15:18:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795533487; x=1827069487;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ra1Twgfh9jA9NUiT3kKjO7S8JG98ltNrPlCqI5RdaAo=;
+  b=Ur3Rd0JD5BDXtl69Dd81Q67iT7NB57EzPB0L37JgfCA/aATbpEkeGLWr
+   bxO6aqmRJHsgmH5q3i1BY7jbWGi1scIBuqiqAZ3ymYz9x4MikbWRDOoll
+   Z216xsT8mNdYzaOgJIpb/3qQI3mR4fq+yrgNxnBLz0NqwDRhIHu2kZ72S
+   EaqEljCQjvqwizWjzBkwBwvTJY7tT+tTdZ6smec+OGMZGdt5doUxNUm3R
+   QX+V9WiR94Ar0uaROsMqplwpGysziFmX5EyrYt1KMGWpI14/xDRTzcoNu
+   xAOmcDMQJ08CJvlBHVLMNkTpvcbDD8Lu2hQDFagpnsCyXasz02WVB2KcN
+   w==;
+X-CSE-ConnectionGUID: PLh/xmYbT4yXe21WAgrHvQ==
+X-CSE-MsgGUID: QLd5d5g9RaOqwiJI0Wi6xA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4270891"
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
+   d="scan'208";a="4270891"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2026 07:12:06 -0800
+X-CSE-ConnectionGUID: C3nz4S4CS4mm9LsESrORTQ==
+X-CSE-MsgGUID: PKh01/73Ta6dABOPmwBl1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
+   d="scan'208";a="13381574"
+Received: from sghuge-mobl2.amr.corp.intel.com (HELO [10.125.110.20]) ([10.125.110.20])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2026 07:12:05 -0800
+Message-ID: <c2cf0aaa-7ded-4223-9ef3-302513b13977@intel.com>
+Date: Tue, 24 Nov 2026 07:12:04 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/46] drm/mediatek: Export OVL Blend function
-To: Daniel Stone <daniel@fooishbar.org>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
- simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, justin.yeh@mediatek.com,
- jason-jh.lin@mediatek.com, kernel@collabora.com,
- Paul-pl Chen <paul-pl.chen@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
- <20260714114414.184512-4-angelogioacchino.delregno@collabora.com>
- <CAPj87rOEtG9JqJsEZkatqrWUkerO9Xx93MBUrXXChJwCokE0Vw@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v1 0/2] arm64: dts: ti: Add tdx vendor prefix to display
+ overlays
+To: Francesco Dolcini <francesco@dolcini.it>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kiryl Shutsemau <kas@kernel.org>,
+ Rick Edgecombe <rick.p.edgecombe@intel.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, x86@kernel.org, linux-coco@lists.linux.dev,
+ kvm@vger.kernel.org
+References: <20261124124207.199382-1-francesco@dolcini.it>
+From: Dave Hansen <dave.hansen@intel.com>
 Content-Language: en-US
-In-Reply-To: <CAPj87rOEtG9JqJsEZkatqrWUkerO9Xx93MBUrXXChJwCokE0Vw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=dave.hansen@intel.com; keydata=
+ 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
+In-Reply-To: <20261124124207.199382-1-francesco@dolcini.it>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_064328_848212_65921511 
-X-CRM114-Status: GOOD (  16.81  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_071807_376436_513954F0 
+X-CRM114-Status: UNSURE (   6.26  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,38 +144,12 @@ X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/24/26 15:30, Daniel Stone wrote:
-> Hi Angelo,
-> 
-> On Tue, 14 Jul 2026 at 12:44, AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->> +unsigned int mtk_ovl_get_blend_mode(struct mtk_plane_state *state, unsigned int blend_modes)
->> +{
->> +       unsigned int blend_mode = DRM_MODE_BLEND_COVERAGE;
->> +
->> +       /*
->> +        * For the platforms where OVL_CON_CLRFMT_MAN is defined in the hardware data sheet
->> +        * and supports premultiplied color formats, such as OVL_CON_CLRFMT_PARGB888
->> +        * and supports premultiplied color formats, such as OVL_CON_CLRFMT_PARGB8888.
->> +        *
->> +        * Check blend_modes in the driver data to see if premultiplied mode is supported.
->> +        * If not, use coverage mode instead to set it to the supported color formats.
->> +        *
->> +        * Current DRM assumption is that alpha is default premultiplied, so the bitmask of
->> +        * blend_modes must include BIT(DRM_MODE_BLEND_PREMULTI). Otherwise, mtk_plane_init()
->> +        * will get an error return from drm_plane_create_blend_mode_property() and
->> +        * state->base.pixel_blend_mode should not be used.
->> +        */
-> 
-> This hasn't been true since 9813e158d13d. I know this series predates
-> that, and this is just existing code, but it's another instance of
-> 'lie to userspace and fix stuff up behind its back' which we should
-> get rid of ASAP please.
+On 11/24/26 04:42, Francesco Dolcini wrote:
+> Add a "tdx" vendor prefix to the Toradex display accessory overlays of
+> the Verdin AM62 and Aquila AM69, and a "-v1"/"-v2" suffix to the
+> Capacitive Touch Display 10.1" LVDS ones.
 
-Hey Daniel,
-
-thanks for that - it's coming just at the right moment, I think. :-)
-
-Cheers,
-Angelo
+I know we can't avoid all name collisions in the tree, but I do think
+calling this thing "tdx" is going to confuse folks, like it confused
+get_maintainer.pl. ;)
 
