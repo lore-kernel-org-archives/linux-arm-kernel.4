@@ -2,143 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE439606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAA72606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S3NhyQEM;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=iWP9oYfo;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=gQR7ZRGp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lcfo3EAY;
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.a=rsa-sha256 header.s=alien8 header.b=dxtTMzrI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KKx5Q0VuU2/e6f1PoJVzvJ/nSVlotgFqvYyL3B4vcIA=; b=S3NhyQEM22vsk9lRnHB5EWiK5v
-	nWr/swDn4V+hV8tGHP+8Q5x9hfLD9b2bn8XiVkmrmiDMprY4PQpoPSW/GyYgnv+aEsvr8KiwQVXs0
-	k7jRa3gw6vjSuTYvJZsTuL4lpbku22pa9MapUXYGkfzbZ9tRn7dW/D3iBaWUjGDCzsbk+KhZqBXZG
-	nhizODjqRWixCpwMOcnWEjtLSHalBNMWMddWCVXGw8D6LZUShGNIWScJkm/haPSrhmiWQ56ZiW76w
-	62Ty4mcfMBdBcVFZ7z0qqjQbYKUWijyRzideNyuWQ5JabK7naVdZV//3eiWvBYS4v1yR6hri+U38N
-	CWScD2zQ==;
+	bh=7IpkPkVFHEadLY409nUalcnMRClqdAQR7VTRSz1ZcO8=; b=lcfo3EAYyj+xjs35112yQdRd2l
+	z6vcvYR9a/UZBgRo8UAX/J+R2douLzxQ3YGWubSXxaarkSnbC0uaxNOTYZZSRZ9W6ZSGUh/2jRZFT
+	0pTEnX+bHpyM0CG2BHU7TCkuRDPpRq+TPHOpu2hDf7fV/Yv1ytyZHSvZht3KhA4QUygg593q33soJ
+	JByYjPSUlhL3wfpecfJq7IYMe1F1v9uIJahPNQ6BbXg/ExnP4mEogzWqE32P1QsAyK/8qiB+2Auzk
+	iqIiltqG7OWzoHDmayCdRp4x/JPS4xjsf1KmNQwQb4uzJfRD3C1PQmZncw5q0QkbncPWbGs+RF/Em
+	xHOMELTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdyx-00000005DkV-0NcY;
-	Tue, 24 Nov 2026 00:01:59 +0000
-Received: from fout-a3-smtp.messagingengine.com ([103.168.172.146])
+	id 1xVeS2-00000005GYU-1vrr;
+	Tue, 24 Nov 2026 00:32:02 +0000
+Received: from mail.alien8.de ([2a01:4f9:3051:3f93::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVdyu-00000005Djn-0PpZ
+	id 1xVeRk-00000005GTz-3NhC
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 00:01:57 +0000
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailfout.phl.internal (Postfix) with ESMTP id 70244EC0B19
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:01:54 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-02.internal (MEProxy); Mon, 23 Nov 2026 19:01:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to; s=fm2; t=1795478514; x=1795564914; bh=KKx5Q0VuU2
-	/e6f1PoJVzvJ/nSVlotgFqvYyL3B4vcIA=; b=iWP9oYfoKz8vdvVNcJkyegK3+z
-	oxjhFo8zLPV1e5JTMsdtpsA71/dRj2MAPN1RaxlitWXRGx2fYBQxhIKv/zgylpQD
-	Tf3vK2EXGngcYtBN9c0+9kYAMut5WqBjt9Q9Z82sFd2nFb+GzYkuXjToxQcoQUoR
-	3wa/umu+6zFYqVpV1ihmJ7JSK9vJvhaym9KrKY0AMjk3OEXCvsRBVf2H0kWOhrrK
-	OPDpadAmmfd/LZFSHt+4nAj18BCPqcDiJmiyLSbgVdECd2O+AG+TQvJmMSJvqUxQ
-	YeCsxuS3Vsk3EM3sYw8SSmAGFTmUX0cR/xTxx+We8BX+zTRNrheEGfPLMhBg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1795478514; x=1795564914; bh=KKx5Q0VuU2/e6f1PoJVzvJ/nSVlotgFqvYy
-	L3B4vcIA=; b=gQR7ZRGpskGrnADFQKWrb14P8mlnCclct9k2/KYMVnN6Gf93Ybx
-	1LU1kQVBem85ahKLYrtkst1Cs7DqG43rz6G7vcwhndP2Zei4wVHxv0ufYTjR7fw4
-	kEargYnXlT/8wRI1E9TJU48GfAJF1RvIT94eNvcnRR6nNBqxRpyd0GJwjdMt3T5y
-	cf83Jwy9z6A1yUjxSfP3xuYSnVJYuMk6AdkTHu25p2kOHsbJC3fBpJMZuW7elhBV
-	/U4b29hoC2vyWgbB0KEMQPIOSIn1wx1Gh9IUARvZ7V0VWmw+J/dVyv4LsDaQBBR4
-	lEv2SDPgagWX7x073PEYlOiufFME48j5bQw==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795478514; d=gahingwoo.com;
-	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:UCEu7022OJYoIVvs2msBcobxKSoSp+a9iiyTN51UaSFPqRy
-	YbXtnbctoHyDrvJj7zw+FozNV+X4wBTVGPDNNKKGVkmJDAZKTXmayxcVkmsls8z7
-	UR2uX+YGnCNqxx9oD8wjthmoupaLEfS6j9qiZz4jOavEn6QFGz4toNkCr4l0YuZz
-	d7RBccrZTsEavlwsQebmxk247fwV+ytdSwvCRg0vam7DxDgS4nFSMaIMMHkJjfLC
-	0S1oVWxoCykpIfA+Q2Z6GyIsX17i/xTyOUKGw8dfTqZTcIfccHDAzVkvfH1Fub82
-	uME2sxPbxkUOCvqJmUoHzRtUktCu+jaHgSVXO2g==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=9;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	message-id,mime-version,subject,to;
-Message-Instance: m=1; h=sha256:XBkiax/mVjOMH/ql7HbN1vjdn1dgmhEk1Pibb2QZj2k=:WYvuWbIIUB3/05DuEse5xWx7f10TYxwWRMKXRK08Xl4=;
-X-ME-Sender: <xms:8dMEa5Q7GFQyWfmn6M9VlmrtPHkVNST4OkH2QALO10rOkYdGcpJlQA>
-    <xme:8dMEa9I9uXZbbBl6PBd5LpSWy3I5vUvriH2bzmx8NTeQ-Ma5SCHGuNG5EPzLNBAcA
-    qdNubJmgBJCV6t8tmo_w7UkW-TJvZ6pGXYLk1tTHiggjpKFT4cra4cB>
-X-ME-Received: <xmr:8dMEa6Z_269ozBlVDI5c3b5mczVizDJ2V8PnXiYVNlEsMffgrL4ei_qXvYG1RRtc4Xn1zYiE>
-X-ME-Proxy-Cause: dmFkZTEO+jdX3VbqHwNFG1H/l5IqV/QA4KK2LxyqGkusUGBknKv3Xj1lEXrn/q0NWh9696
-    uJcRyqwNAgUu1eI3+mw5Mm0lXI+Exbp4rbR7odfV5Ie/H0+KLpwyZZ9uObBJ4SUlfoT+VV
-    jocDoaizgQd+irp/EWqfciQcGw/n6DFOoj1bsZAd80lRzyEqUKsjh5+A1TUQJwLoKPrirF
-    8d754mQQjnz/m7I+bJphRJV6dZeDq5BGGozuCVQyiIOs/eBUa85noikxAgpdNeqSmOEuFe
-    PF00S25zKkH6GNlyYmUPhzJBBYBJYmg4dhW0bNIZ1ocOseioSLu17CndKIRu5UbiZ7B2Wf
-    ATDSyiy6FfIwiCqc/QL1C7jwcUgXg62S5yLczvcCP4qxN3pTTRxSVSuctoE7SO2Jv2ayUH
-    0//0I1s/t/BMhQ+1jndiqqyRhZ63gfp/VP+M2qNceL7vyl9PNi1xi2PFYpDYfMk/kE2CsC
-    SHGVwn9U/i0vmhucAEGBzmh6r/iyGS3AUJiio4tZEGOUlWCvYtGLJT/RdtXNjnmM3FypAq
-    /3dEJc7sfWi4mEASfJV/tN4Kiw3hWAmi/mKOjZG9Cee7fImCoG4tZJPIz7HgDT/wpLuEWa
-    J5ZoXeBdOSpflVemgYwT6jlfQhiiLUe1HXIWLy0L+Q13w/cGAhJRuP1cFzWg
-X-ME-Proxy: <xmx:8dMEa7A4zAOKarBr9xXMWLiVNimIkqor8QYvbth8i3N05OZym_Sr2g>
-    <xmx:8dMEa8XUWsqAPPDWYowJDKdh5vGsj10EcaLLAbu2IZ-Mc9cbuRSlhA>
-    <xmx:8dMEa01imZHdK2-zwjv01fhHmen8aSw_yKvCDuaFrWtrL9OoLbuQYg>
-    <xmx:8dMEa9XAgztFcAtfHyF-goqFUxB_ZAcGa9HN5Xxd406HjJFlpXQSFA>
-    <xmx:8tMEa9HK4cR-7P3qY6agrjudQ3l39i8KhrPlp4qd2TTjwTa3bSsKA5U4>
-Feedback-ID: i7a5e4b5f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Nov 2026 19:01:45 -0500 (EST)
-From: Jiaxing Hu <gahing@gahingwoo.com>
-To: tomeu@tomeuvizoso.net,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	p.zabel@pengutronix.de,
-	ogabbay@kernel.org,
-	zhangqing@rock-chips.com
-Cc: ddrake@baylibre.com,
-	royalnet026@gmail.com,
-	sidong.yang@furiosa.ai,
-	ulf.hansson@oss.qualcomm.com,
-	abel.vesa@oss.qualcomm.com,
-	sebastian.reichel@collabora.com,
-	chaoyi.chen@rock-chips.com,
-	shawn.lin@rock-chips.com,
-	finley.xiao@rock-chips.com,
-	diederik@cknow-tech.com,
-	alchark@flipper.net,
-	leonard@lausen.nl,
-	vlwwwwww@gmail.com,
-	jeff.hugo@oss.qualcomm.com,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v18 0/8] accel/rocket: RK3576 NPU (RKNN) enablement
-Date: Tue, 24 Nov 2026 13:01:35 +1300
-Message-ID: <cover.1795478392.git.gahing@gahingwoo.com>
-X-Mailer: git-send-email 2.43.0
+	Tue, 24 Nov 2026 00:31:47 +0000
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 025B340E02AA;
+	Tue, 24 Nov 2026 00:31:35 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id xKx_-KTIfSpn; Tue, 24 Nov 2026 00:31:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1795480289; bh=7IpkPkVFHEadLY409nUalcnMRClqdAQR7VTRSz1ZcO8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dxtTMzrIL2fiuW2uuAg3o2TZ7OmmjPyRs4XTm6+40JI43cDYin4TG1Ke8hvvdeOE3
+	 6VG7vmghoywou2l3QfBlsSZU5jaKZwecLlfOjb/FNHgxaYyBvWTRdNjlBqQlNXBn0f
+	 V6QGk4z05IY5zZMYcoWYkMnjBmIXdyoCoJ7DYF2R7rPJY7QSObTY5zBZigUEH203Ys
+	 tXd5zqDVZA5syLn/Zh3fu+xApkDk1GBT5soKeVyvicfMGZ3RqLZhpkf8DSGmgWhzqg
+	 RwDFltz3o9zqd2Jt1MlK/Bqm/OlH1BZ0ZAkIzIcEUMjaf0j+fSsmEufdA1a2qG74fl
+	 SPKkcYEOplQX7bntkepvRlsTHKrYWUGIxh86h69Zjb0olSEsXO8M1BLxnpbqtQNOjt
+	 qvpnfeWTlaYTckcl1ggafe8aCh9mMzbf3/+etfuyv9BhcvUaK3gHV2KA49g2cV/A5Z
+	 rlZx9W+idJ2eEFHHWOWSo+13fZM+3L0F4+Zm43SI/6RTzonngU4uZxRKoCHjgjt+4k
+	 2avTfLz7xn0sKUaTteGBWjNYj8INDKK9ddwqE3Y5xZdNCZ1u+JT4D7saRDTkjIaGJ6
+	 AHYoXdF9Rrqdu6xQtkEKC7XeRX3ZMCt0Dlp0bijOwauJ2ycqiAq3+BJWSH6FGnNxH3
+	 wetm2jf087EkhHzioUWE3XQw=
+Received: from stx.tnic (unknown [IPv6:2600:1700:38ca:c00::2b])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E18E140E0240;
+	Tue, 24 Nov 2026 00:31:13 +0000 (UTC)
+Date: Mon, 23 Nov 2026 16:31:10 -0800
+From: Borislav Petkov <bp@alien8.de>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Stefan Schaeckeler <sschaeck@cisco.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Tony Luck <tony.luck@intel.com>,
+	Billy Tsai <billy_tsai@aspeedtech.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
+	Borislav Petkov <bp@suse.de>
+Subject: Re: [PATCH v6 0/4] Add Aspeed AST2700 SDRAM EDAC support
+Message-ID: <20261124003110.GHawTazmnfEiwzjh-0@fat_crate.local>
+References: <20261117-edac-v6-0-a2a747b95c3f@aspeedtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261117-edac-v6-0-a2a747b95c3f@aspeedtech.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_160156_212645_B5F661A8 
-X-CRM114-Status: GOOD (  17.26  )
+X-CRM114-CacheID: sfid-20261123_163145_318333_63792358 
+X-CRM114-Status: GOOD (  14.71  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -150,122 +92,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds RK3576 NPU (RKNN) support to the mainline rocket
-driver.
+On Tue, Nov 17, 2026 at 05:26:37PM +0800, Ryan Chen wrote:
+> Add ECC error reporting for the Aspeed AST2700 SoC to the existing
+> aspeed_edac driver.
 
-Changes in v18
+Ok, I thought I can fix up small things while applying but there are waaay too
+many issues.
 
-- Rebased onto next-20261120. Patches 1-4 of v17 are in v7.4-rc4 and
-  are dropped. The pmdomain series has been applied by Ulf (1/3 to
-  fixes, 2/3 and 3/3 to next).
+1. Split the biggish patches - a patch should do one logical change but yours
+   are doing more. Do not do any drive-by changes while adding driver support
+   for some new chip. They need to be in a separate patch. If not sure, refer
+   to the documentation I pointed you to.
 
-- 4/8 (was 8/12), following Daniel's review: the clocks are taken with
-  devm_clk_bulk_get_all() and the resets as a reset array, so their
-  number is no longer given per SoC and enum rocket_clk is gone. On the
-  RK3588 this changes the reset deassert order: srst_a is now released
-  before srst_h.
+2. Write your commit messages in English do not use made up terms like "DRAMC"
+   and "isr()" and so on. Those should be readable by humans.
 
-- 5/8 (was 10/12): GET_PARAM now comes before the RK3576 support. The
-  hardware version is taken from the match data when the first core
-  probes and stored in rocket_device, so READ_ONCE is not needed and
-  core 0 is not assumed to exist. The driver keeps its own enum rather
-  than PC_VERSION, which reads 0 on the RK3568. The UAPI documentation
-  no longer ties the version to a compatible.
+3. Do not explain the code in your commit messages - only the non-obvious
+   stuff.
 
-- 6/8 (was 9/12): the RK3576 TASK_CON uses a register definition
-  generated from Mesa's registers.xml, selected by the hardware
-  version. The cores are counted in rocket_drv.c. The "# Conflicts:"
-  lines left in v17 are gone.
+4. Do not put in the commit message how a patch has been tested - that goes
+   below the "---" line. I think I mentioned that to you already.
 
-- 7/8 and 8/8: test notes removed from the commit messages; 8/8 states
-  its dependency on b1bff9ced657 in Ulf's tree.
+5. Drop the "aspeed_" prefix from all static functions - they don't need it.
+   That can be a final patch ontop if it is easier. One logical thing per
+   patch.
 
-- All commit messages shortened.
+In any case, tell your Claude to do those things because there's a human on
+the other end reading and human does not like it when Claude does a stinking
+pile.
 
-Review tags
+:)
 
-Kept: Reviewed-by from Igor and Heiko and Tested-by from Sidong on 1/8,
-Reviewed-by from Krzysztof on 2/8, Acked-by from Conor on 3/8. Dropped
-Sidong's Tested-by on v17 8-10, which were rewritten.
+Thx.
 
-Sidong, could you test this again on the RK3588? The reset and recovery
-path after a job timeout matters most, since the deassert order has
-changed.
-
-Testing
-
-Radxa ROCK 4D (RK3576), v7.4-rc4 with this series, in an image built
-with Armbian:
-
-- Both NPU cores probe.
-- GET_PARAM returns the RK3576 hardware version (2); invalid requests
-  return -EINVAL.
-- 30 inference runs in a row give identical output, with no job
-  timeout, IOMMU error or SError.
-- Booted 3 times with the NPU not enabled: NPUTOP, NPU0 and NPU1 are
-  switched off, and so is the NPU rail.
-
-Known issue
-
-A core reset after a job timeout can leave bank 0 of the IOMMU paging,
-and the NPU then does not recover. The fix has been sent separately:
-
-https://lore.kernel.org/all/20261123235154.315460-1-gahing@gahingwoo.com/
-
-With repeated forced timeouts on the ROCK 4D, about one in every 2 to
-10 is not recovered from without the fix; with it, 20 in a row all
-recovered.
-
-Notes
-
-- 594 MHz (Daniel's question): mainline does not scale the NPU
-  frequency or voltage yet. The NPU boots at 786 MHz and 750 mV, which
-  is not in the vendor's OPP table. That table runs up to 600 MHz at
-  725 mV, so 594 MHz is within it.
-
-- npu-supply: the binding requires it and the RK3588 device trees set
-  it, but the driver does not use it. The NPU rail is switched by the
-  power domain through domain-supply.
-
-- The register definitions are generated from Mesa's registers.xml;
-  the XML change will go with Mesa MR !43804.
-
-LLM-assisted.
-
-Jiaxing Hu (8):
-  accel/rocket: factor the completion tail out of the IRQ handler
-  dt-bindings: npu: rockchip: add rockchip,rk3576-rknn-core
-  dt-bindings: iommu: rockchip: describe the RK3576 NPU MMU
-  accel/rocket: take the core clocks and resets from the devicetree
-  accel/rocket: add a GET_PARAM ioctl for the hardware version
-  accel/rocket: add RK3576 NPU (RKNN) support
-  arm64: dts: rockchip: add NPU (RKNN) nodes to rk3576
-  arm64: dts: rockchip: enable the NPU on rk3576-rock-4d
-
- .../bindings/iommu/rockchip,iommu.yaml        | 26 +++++++
- .../npu/rockchip,rk3588-rknn-core.yaml        | 40 ++++++++++-
- .../boot/dts/rockchip/rk3576-rock-4d.dts      | 22 ++++++
- arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 70 ++++++++++++++++++-
- drivers/accel/rocket/rocket_core.c            | 25 +++----
- drivers/accel/rocket/rocket_core.h            | 13 +---
- drivers/accel/rocket/rocket_device.c          | 11 +--
- drivers/accel/rocket/rocket_device.h          |  6 +-
- drivers/accel/rocket/rocket_drv.c             | 52 ++++++++++++--
- drivers/accel/rocket/rocket_job.c             | 45 ++++++++----
- drivers/accel/rocket/rocket_registers.h       | 32 +++++++++
- include/uapi/drm/rocket_accel.h               | 43 ++++++++++++
- 12 files changed, 329 insertions(+), 56 deletions(-)
-
-
-base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
 -- 
-2.43.0
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
 
