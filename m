@@ -2,117 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5F3606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E16606A6A6
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Vc3lA/6h;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=FHduV5Tc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=40HSjW8q;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=cpHEi8hI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=z+py48lalXA1WDHXuBsD9SSl+W/lJz5GxTkb9bOKUJA=; b=Vc3lA/6hA0EuwYEd5zf5k+WtHH
-	Woeu4Ua0Uvx9Y8DhYGRENTfQbxYi7G8tDe+IA9ze8Yc8nSc8BOlYeK1SfNE5ypJOUfO3JANxTRosa
-	uuMJhhumzFVSJPv39jZw2mhGazWBrZdnU1A68pQHLkDu3CrArkvSUVFBybXxLFiKRBSDDfgVFQ6C4
-	432g8qat+5/ao8HaUdFB1a3P/mTIaD+bHcAREpYeJpe/mHDrVljB4m3kk5gZkaoPktyn8jMHW4UHD
-	x6hFrxkaCuvB4QTsr/zRgeb+5VInspk8833UKjyNwStYy/idk7TngljDqaDKGR5ZBevoeMq7FvWY9
-	FVSkwN4w==;
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=fnds1nB0cIupqib3I+md1sT/0uWOulwds2MgFsk3VZM=; b=40HSjW8quKAUEd
+	zFv603pGeW7VFUKxkF0l0luXUMnwgzC0ku/2CeelYcuq9cg7kclVyELpaWBSRGjoplLkiaQjAARFy
+	nPjEBrywgTd7TLZOniECt4nYQSsPzP8VIdQ82iK6PJPbmRAbWEY31tuG/J/679AsiJwaCLZgWsBdE
+	eczuoDlPziOjmsBlXRQcG6kx4RjfNagFc5NTLxyTM6lLgh5WO/XQhTvpTc3rSuYUF+XWh+eAqQb/r
+	R9QtaoDIYo6Ehi7P3B7T5ZZO6g/x35/6KKhAXjw5taRr1/hC21d1O+hBjQQWPRdgISN7A37Op+Z/G
+	i91R8+TnnDoV5/CKIbkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxsP-00000007q0v-0Ceu;
-	Tue, 24 Nov 2026 21:16:33 +0000
-Received: from mail-qk1-x736.google.com ([2607:f8b0:4864:20::736])
+	id 1xVxsq-00000007qCa-1ljy;
+	Tue, 24 Nov 2026 21:17:00 +0000
+Received: from mail-centralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c111::5] helo=DM1PR04CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxsJ-00000007pye-0o7c
+	id 1xVxsn-00000007qBH-2te3
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:16:28 +0000
-Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-94961bfe1a0so330793885a.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:16:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795554986; x=1796159786; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=z+py48lalXA1WDHXuBsD9SSl+W/lJz5GxTkb9bOKUJA=;
-        b=FHduV5TcdCw14UwgHAtmtSksLKol0o3kmolTOqs0O3dGBcrZH3nK/SEtrpOJd3vz/I
-         +I9of88JdswLJ8d85UiSzIfoN8tT34MXpo+VR4rVxsASmOcArd6YUhIAHWyqYu/56Dzy
-         J0+ggQg6dORCMmgpg0IkhU/GRgtUaBzI2xReX4mr1bwShYGLdKYMYr24nlg3PkXlvGT2
-         WEhqFfKdb2enwl51eaKw4Gi8pyWLPPyvKQC94bh8PxKXGGgzA4xFQJjUbkU1st5OPWeR
-         RDytsBLwj7Fx5SHr7Gn8EyVl89N6n4tx2ThpsBqgtvjcHbgFLs67eOalJ7dvBH7jyJsf
-         NpQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795554986; x=1796159786;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=z+py48lalXA1WDHXuBsD9SSl+W/lJz5GxTkb9bOKUJA=;
-        b=gVv7EjjZIM5bnNWkfaKruJxy6OFWhaA9h/d3KVRBwHAVJp66Vskf5WKYXxjBsJ9PMI
-         kdFCSaanECFHVngYEvgmlWrU4bF65yMA+IO0iyec6dl3xMGx8lTJFFFAHfeTelLr8uVF
-         ZcfIZ9J3ieW5kgbBkDnPseFYAg2OUgGoCgC8aLxF0ISAViPSrLyth0WIiIcLHBuddBMg
-         +fR/DKhtWdkO2jzHeS721QXP1DhWfPdCfqmnwVKjQsxJwDX29QbLOyD9sw4rQIKJdEkO
-         95TJiC2RqaGiBXN+Da71GfYo+lO2E33CY0FRLkc/fogVbKi3nO5BqLxNDqpVFTSw7aMa
-         bUww==
-X-Forwarded-Encrypted: i=1; AL+hErFKAQX1GL1XrN6h70SdSSEOZ5+nBy2UDqnzUgVo79FRO7cm612ZmiiSeRXc19ztLX+WkVPFsd02ZizYg4HXzNhs@lists.infradead.org
-X-Gm-Message-State: APuU4Z89QKGWMnpsL6Vd/7F3yPKhpGreobHXgHGQSgV4617b/8D867nq
-	I3YNFmqcxwoXRIoB1QCV4P2Z68BMIrtsj265BD0VU5rmckh8ykySQ3UA3d7g29TV5X0=
-X-Gm-Gg: AZFdTZesI5srKzzycUHPY0VsMF0A8yC2/HzV0mqrfTGMwHrSqg+DWZWr9iIV1TD0cCx
-	8tr4tH/Ca4onX4iOP6JAEDtw73cPvqBj3oU7adU3bgJShNmyDl7StLpKtS/gRzRl0paF4BsiGjy
-	KhWI25VI7eNE8z2HoaAsnRNu9/FoOKZ/8e8dZwo9r4rxl5t171yrvbNsqnr2TH3UGoQF/Sul2+K
-	KE/nHNUjqv3ZrM07ai3k+6PDKOSL+sAD0vSOpRKhEfLc5bvRqlsDBYII71F71rUvV3o8tplE78/
-	5tP49DeHCi0icbq/Rr/C1bgGsYBXUnB9vV+J0HwzFbr9MYhBC2hKWqsV8gGde5LmdeGd8fWRbJ9
-	M+AsVqAGms6DMOh1LtXJ7OjYeeE/y7A9l/5ouAChi+Q6OjHhq1RkcpimuNeoEzOXFULvClu8iZw
-	b833+KQnbSvFcVOkHCcgy2q02R6NYdeLnDm9j2qGeeZrTwxFYmBSdsROM4YL4FoYFLu6HYjKyXo
-	rrrQrJ+arFKX1s+EH78Od2ZBROxoGIScs8OiS0P1SYUOfO8FvFgwgO4FdGuOAY+T53OzHEjuOqE
-	zvW2DnuUqTuvVys6YGwZIva26K+6vQaml9Efo3T9Tsd4qUIqIekRep4=
-X-Received: by 2002:a05:620a:4714:b0:949:60f3:1cdc with SMTP id af79cd13be357-949ba8260e7mr3044605585a.10.1795554985695;
-        Tue, 24 Nov 2026 13:16:25 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-949ca846322sm960970785a.34.2026.11.24.13.16.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 13:16:25 -0800 (PST)
-Message-ID: <952785d9eeadbd0f5d448a264ec0438a71f8d8bd.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 10/17] media: rockchip: rga: add rga_core structure
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
-	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
- Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
- <lgs201920130244@gmail.com>
-Date: Tue, 24 Nov 2026 16:16:24 -0500
-In-Reply-To: <20260916-spu-rga3multicore-v2-10-23aa2cb74e61@pengutronix.de>
-References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
-	 <20260916-spu-rga3multicore-v2-10-23aa2cb74e61@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-LUk+buoFZ9npV6snsjJ6"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	Tue, 24 Nov 2026 21:16:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EfoCu+aXa3CW5WzSOP4V/JZ8VkdYIJPb4q7+gqZIkNaAtqYe+uAyzD4eQv1FsJewdiiOMcIkQtgqxrTpmVJPjkHRRvthdYliHuS8Y8aNCN/nTeEFp8jqVrroqZODTEVDoWYbHO1LeJdwIMm9kp52wEc7gKV8GcigGhZHuZPSOk/cEWrQ3dUGUB9oZonj1uX/hTuL260X2869DcSYU8aUyKSR5Lp7wMFEZSNHCopbx3LskogxRiDN1OQKmRC8Dk3GcOcYqFnVmaCqy1hr3Iu69loqGIZwSLwpSOvXZDtWuJjY4e5CvFJ4ajRWeDuPCUpebNtp/ZlAjqQjAZdgshURyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fnds1nB0cIupqib3I+md1sT/0uWOulwds2MgFsk3VZM=;
+ b=uV2Oyr6YlFAYFZ0wgbK79KaVG6HDgkkVuTT1Zft9SEUhZMvH5vCDEZE4YViLUpjNf8W1ahqXCMKIMKK267c8CyQ9YErFigdL482949VXdBS7YjG8NSqqBMGEx1UbAkDs4BwXpV0zPI8RHUEI9ri0odisPm51RK1ou/h2WRbAh5R9lTs2A1r1kJ3pk0ETviQwe2MbiNi8E3d0zoXJZ1SbZ3P9QlNFd+rzwWnnsnESxC6FrIWYToYZ/8r6XjUlg7AVn3JpE0+7mpUJ7NiQIWevqN1E4iBIXCfVcwwmpYzlHjFLSS8w3tExKicScy+F2CWiCoMXz7OqmAbzBTFieoZQvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fnds1nB0cIupqib3I+md1sT/0uWOulwds2MgFsk3VZM=;
+ b=cpHEi8hI0iJjqa0iQbr0ggdJvD1GpTFBjwMsCMLZ4NIPNN+ZB0AwFRdLn3U6rrRH/zY4GqMvWRWvhlOGE0nh2VDuXFm5NFmvMjAAEgW731ByN9yseacu+0lxekxR80aSkT8uC9glFn73ikULdv5pG5ZESqc2eAXXscdrigPcJD8vfqbNCE1eatJ4azLms+ZGhnzE6J5wsuIVMWo3E594uD7r+qYYLM36VYgfLEirIQPGbYp5FM6BzOxibo/uywvt5hpYayB2ho2qXuQwaNKQncR3JsFC6zSqQ/PrJnO7/pfq4FLQ2hQOLd282to9RkOL6+7GgQqJCAAGUxi+4bp6Wg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB5390.namprd12.prod.outlook.com (2603:10b6:5:389::15)
+ by LV9PR12MB9784.namprd12.prod.outlook.com (2603:10b6:408:2ed::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 21:12:23 +0000
+Received: from DM4PR12MB5390.namprd12.prod.outlook.com
+ ([fe80::2815:c27e:a0a:2720]) by DM4PR12MB5390.namprd12.prod.outlook.com
+ ([fe80::2815:c27e:a0a:2720%3]) with mapi id 15.21.0662.001; Tue, 24 Nov 2026
+ 21:12:23 +0000
+From: Nathan Chen <nathanc@nvidia.com>
+To: linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Oliver Upton <oupton@kernel.org>,
+	Marc Zyngier <maz@kernel.org>,
+	Tom Matthias <tmatthias@nvidia.com>,
+	Shameer Kolothum Thodi <skolothumtho@nvidia.com>,
+	Jason Gunthorpe <jgg@nvidia.com>,
+	Julian Miller <julianmiller@nvidia.com>
+Subject: [RFC PATCH 2/6] KVM: arm64: nv: Pick the shadow S2 MMU to recycle with a clock
+Date: Tue, 24 Nov 2026 13:12:14 -0800
+Message-ID: <20261124211218.2751086-3-nathanc@nvidia.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261124211218.2751086-1-nathanc@nvidia.com>
+References: <20261124211218.2751086-1-nathanc@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MW4P223CA0016.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:303:80::21) To DM4PR12MB5390.namprd12.prod.outlook.com
+ (2603:10b6:5:389::15)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5390:EE_|LV9PR12MB9784:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0637e69-c6f2-4e93-5d95-08df4a6fa231
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|23010399003|1800799024|261028144727099003|10067099003|11063799006|260925021311599003|260925021911599003|260925022911599003|56012099006|261021121427099003|261022105027099003|261026140227099003|261021123027099003|261009223027099003|261102123227099003|261026121527099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: J+mxGp76IsBB+/YMm6e+tPhjYJED80CaQ8tOKL6OJA7qR+T6LWXRveQ4UoZsamhR7DH0a73hOcr56/tlTH1Z1qI8LS/92plXiNlAqpDvSguebjxMrscG/aA0DLLKdQtf0zGAbqYtRdvKpS3TyGmOOd3cDbGsjVnlznT/KJbIQZ2KqE58J6F3GV98yzRifDKNacb7XAgADmHC90bGEgrUnV8dsHcPeZO4ViL4JltpEV/iFnA07+h2TTz4adBV7HiGyIrtm/vNoBiGzEcyZPEDraDUqIHA0jqBprlPSXWsv64Pi+5OzEBR/v/snWfsBKIThKEVQ+oTdo/0z4u9T9BSE3ZUx/S24J9Ns0rdTvIODFcni0DPCuym3IGG09aRaTOedkX9Jw+ATz7UTey6SD8fXzlNFhBz2f8po6vXpc3yKJkllfRTrW9GMuXhNGUA/FPSDwg3RTUvbLSqlpLFx6a/X6KECBqt1uYkI3ESjPx7JvVLqZsC1BZtqZlllsEbBJttdnv8iNBkiYUdm6rRaRltw2tGQlInh6p6XA0L+kcsOj8aGDSbBXlg0WKJNehZMxS8IcVkAf7Bte5db2uW9SKnClYuhszE2MOzylR3HjEfCgBRqbVtkzjGZsuwcPxhAM1uFjuGQvtn89MkL6Ptr1bg1R5rbLMXsO0hKn/Qbz3MltA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5390.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(23010399003)(1800799024)(261028144727099003)(10067099003)(11063799006)(260925021311599003)(260925021911599003)(260925022911599003)(56012099006)(261021121427099003)(261022105027099003)(261026140227099003)(261021123027099003)(261009223027099003)(261102123227099003)(261026121527099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1SWNoST2ugwyfJWhgi6nyYoS0H3ujn1jj1ynH0AhTXhAZG1DlRL4xLFnLFDI?=
+ =?us-ascii?Q?2BbkemAWch/KymDgiqHRECiUVeDouqMh/mImqHYPD8Prtt56yHEAP7XxJFq5?=
+ =?us-ascii?Q?X7gKvn1X37+izSVMw5rnqDE8ZYx2Z/NtEgc0IP9k/+7Lqi/Px/Tpw1tq3XAB?=
+ =?us-ascii?Q?m2XXMS841owQe/PuVut3bHjUDJX/ica/qQsaA/T19x+0u3ol/+9hE5S53KqI?=
+ =?us-ascii?Q?+mrMQZ2W44cR8dtlgnUf12Ezm2S8VwNh0ZefzxSRBRxwoxze1xOSuxrE763I?=
+ =?us-ascii?Q?x6MwNG/sdRqCjLGPtHuuCWJZKfMUuKYIwD+f+J577V0FYCMo9BG4CrYHx04Q?=
+ =?us-ascii?Q?G9LA1mM5HL2X5GYSYzEFG9jYHoqmp4rtHKu8Zbo92GbM4H2UDI1qQydZ5a1j?=
+ =?us-ascii?Q?5znQfPZHMba2XgQ+BIL8nSWQUGaYKBPHmnrZY3Ih0D03OUKpEuBkTt8FBJZL?=
+ =?us-ascii?Q?cV6xfGLioD1R8NDRe7Nj7Nh9Bv2yVqL5lUBswzUDlYU88mdaARPFN8WS66Ii?=
+ =?us-ascii?Q?kAF2QWF7TM6zO85AjKvcBGM1Ly5S0/cqVWRPabsuK7rUsOqaStV798XBrVul?=
+ =?us-ascii?Q?iptctJmDX6mjqoD9UjWDIIuBmUx5i1jEQim3IDkNwfeVLnUhbxQON2vP+5nj?=
+ =?us-ascii?Q?3FuT+wus4oGsM9ZUzIFIk3kg//8JKJrLEhvhrPrwulOCgKcKEG8fCya2sRR7?=
+ =?us-ascii?Q?g4rmPP33Qg/Ze0S/TaOhODF8P2+yv+rHe4BW0Z0y3Q097QRIOyV3/ZvxCvQe?=
+ =?us-ascii?Q?YxUMlIoBZEuTUEGF5TbYPQ2//mddE3j6gMKO7uN+GlD/z8CX6Y2ufKDHKd8p?=
+ =?us-ascii?Q?YI2bDdO+bEzY1V4K39KoqO+bcy3ddtZODxbll0euVdbN6ej98LJtJqp/c8Qj?=
+ =?us-ascii?Q?8EVgEAcllQycLEtRHe/OodoOJJyFXe38OBlfP4jlTtvGhGtH8spPsk8Ngcff?=
+ =?us-ascii?Q?ZMJVixPpcNqF0jjjrKFOElK0Y43093JB64pQc9dHmRHsxvwcv85sNBt3wgJh?=
+ =?us-ascii?Q?tUToiDmdowtlNhb9nvGqyUrolZstHw3xPGjELQyBQtZOrRJC9Kku4ts09lu6?=
+ =?us-ascii?Q?zA3imYRH/sFUdOqDnVDk3c/aBlDtkYdX5z+CYH1waGKnkajI/Moi8pADeTZ3?=
+ =?us-ascii?Q?Y0Kif7y4fRi0G2B+FHH7AhhQCvm1J4FhjH0Rq2rptqnB5EQ9mocNHaN+FtP3?=
+ =?us-ascii?Q?Sv/qbQIQ76vD5EvQ9jTUu993OQQ3k7N1WVASE5A6gzV7AAnmhxfxE52xkVfR?=
+ =?us-ascii?Q?Fc1K2vW17v+63uQ2PCPRB6AyTtdrL/F5iYAZh0lADW4q3Cz5CeRdNZBlt+du?=
+ =?us-ascii?Q?KwtzqCsJgWCmHyWz97HJqpCPBpIKbZ2HJHrQuKgh9HuxZ249vuXRLlpz3pv0?=
+ =?us-ascii?Q?5uZ+K6BvUKGy9sSl4OcyN0gng+QGAWIsxgUC3xNOfgzHt/l//gyALzGsO4Lm?=
+ =?us-ascii?Q?AJ7rMD66jc5iB6XAp6kvtENS2VpqfJS+iEk1oSRtSwShR58p1E77qCzpZlsN?=
+ =?us-ascii?Q?MuTkFxm1woMo7A1xWBRE2lWXqaVx5uJxlBPZhhqauTlurSboKITdY0WmdoK9?=
+ =?us-ascii?Q?1FVW1li9LQSl20nbjV3V6iK6740oCc8nU8t8uEjtFlLVh3xIhYsbC4kjGf8x?=
+ =?us-ascii?Q?GjSPhkAkiRQ9boCY6uPR28Y69MBdHmKhCDasuASzrmP0sZmO75mEmRQpNYS3?=
+ =?us-ascii?Q?XeyhW+JZT1fHiX+F+M9ehfJaqlR1lWjOFGrlJla6AW7NI52LE1LbuuBadTFz?=
+ =?us-ascii?Q?H2oRw5EiDg=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0637e69-c6f2-4e93-5d95-08df4a6fa231
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5390.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 21:12:23.4618
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EFZhwJiOyv0nLR3E/NnZtZkX0ICBXaTQC9Zwun9Zo/H6XaaS8vDhvRbRpUw1cLaUi/GOSriLE80q0i+EAd+yqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV9PR12MB9784
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_131627_321807_A1F3E36B 
-X-CRM114-Status: GOOD (  23.03  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_131657_735886_A5CC8C93 
+X-CRM114-Status: GOOD (  21.80  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,639 +149,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-LUk+buoFZ9npV6snsjJ6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On a lookup miss, get_s2_mmu_nested() recycles the first free MMU after
+the last one it picked. That MMU may hold the shadow stage-2 of a nested
+VM that is still running and about to be loaded again, while the pool
+has MMUs nobody has used in a long time, such as those of torn down
+nested VMs. Recycling a live MMU throws away its shadow tables and
+makes its nested VM fault them all back in.
 
-Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
-=A9crit=C2=A0:
-> Add a rga_core structure to separate the core specific data from the
-> m2m device. This is done in preparation for multi-core support, where
-> multiple identical cores are exposed as a single m2m device to the
-> user-space.
->=20
-> Allocation related calls are explicitly done on the first core, as the
-> scheduling decisions will be made on demand after the buffers have been
-> allocated and filled.
->=20
-> In preparation of storing the rockchip_rga struct on a dedicated master
-> platform device, the rga_core struct is allocated on it's own and only a
-> pointer is saved in the rockchip_rga struct.
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
->=20
+Track use with an 'accessed' flag, set whenever a vcpu takes a reference
+on the MMU, and pick the victim with a clock (second chance):
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+- A free MMU that is invalid, or wasn't used since the search last went
+  past it, is recycled straight away.
 
-> ---
-> v2:
-> - fixed NULL pointer dereference of devm_kzalloc (pointed out by Sashiko
->   and Nicolas)
-> - removed unintended whitespace deletion
-> ---
->  drivers/media/platform/rockchip/rga/rga-buf.c |   4 +-
->  drivers/media/platform/rockchip/rga/rga-hw.c  |  32 ++++----
->  drivers/media/platform/rockchip/rga/rga.c     | 105 +++++++++++++++-----=
-------
->  drivers/media/platform/rockchip/rga/rga.h     |  38 ++++++----
->  drivers/media/platform/rockchip/rga/rga3-hw.c |  24 +++---
->  5 files changed, 110 insertions(+), 93 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga-buf.c b/drivers/medi=
-a/platform/rockchip/rga/rga-buf.c
-> index 3f7c3c68e0cb8..47a8d5a4500a3 100644
-> --- a/drivers/media/platform/rockchip/rga/rga-buf.c
-> +++ b/drivers/media/platform/rockchip/rga/rga-buf.c
-> @@ -93,7 +93,7 @@ static int rga_buf_init(struct vb2_buffer *vb)
->  =09n_desc =3D DIV_ROUND_UP(size, PAGE_SIZE);
-> =20
->  =09rbuf->n_desc =3D n_desc;
-> -=09rbuf->dma_desc =3D dma_alloc_coherent(rga->dev,
-> +=09rbuf->dma_desc =3D dma_alloc_coherent(rga->cores[0]->dev,
->  =09=09=09=09=09    rbuf->n_desc * sizeof(*rbuf->dma_desc),
->  =09=09=09=09=09    &rbuf->dma_desc_pa, GFP_KERNEL);
->  =09if (!rbuf->dma_desc)
-> @@ -191,7 +191,7 @@ static void rga_buf_cleanup(struct vb2_buffer *vb)
->  =09if (!rga_has_internal_iommu(rga))
->  =09=09return;
-> =20
-> -=09dma_free_coherent(rga->dev, rbuf->n_desc * sizeof(*rbuf->dma_desc),
-> +=09dma_free_coherent(rga->cores[0]->dev, rbuf->n_desc * sizeof(*rbuf->dm=
-a_desc),
->  =09=09=09  rbuf->dma_desc, rbuf->dma_desc_pa);
->  }
-> =20
-> diff --git a/drivers/media/platform/rockchip/rga/rga-hw.c b/drivers/media=
-/platform/rockchip/rga/rga-hw.c
-> index 190104f3b2954..9a5da4e1716ca 100644
-> --- a/drivers/media/platform/rockchip/rga/rga-hw.c
-> +++ b/drivers/media/platform/rockchip/rga/rga-hw.c
-> @@ -417,10 +417,10 @@ static void rga_cmd_set_mode(struct rga_ctx *ctx)
->  =09dest[(RGA_MODE_CTRL - RGA_MODE_BASE_REG) >> 2] =3D mode.val;
->  }
-> =20
-> -static void rga_cmd_set(struct rga_ctx *ctx,
-> +static void rga_cmd_set(struct rga_core *core,
->  =09=09=09struct rga_vb_buffer *src, struct rga_vb_buffer *dst)
->  {
-> -=09struct rockchip_rga *rga =3D ctx->rga;
-> +=09struct rga_ctx *ctx =3D core->curr;
-> =20
->  =09rga_cmd_set_src_addr(ctx, src->dma_desc_pa);
->  =09/*
-> @@ -434,10 +434,10 @@ static void rga_cmd_set(struct rga_ctx *ctx,
->  =09rga_cmd_set_src_info(ctx, &src->dma_addrs);
->  =09rga_cmd_set_dst_info(ctx, &dst->dma_addrs);
-> =20
-> -=09rga_write(rga, RGA_CMD_BASE, ctx->cmdbuf_phy);
-> +=09rga_write(core, RGA_CMD_BASE, ctx->cmdbuf_phy);
-> =20
->  =09/* sync CMD buf for RGA */
-> -=09dma_sync_single_for_device(rga->dev, ctx->cmdbuf_phy,
-> +=09dma_sync_single_for_device(core->rga->cores[0]->dev, ctx->cmdbuf_phy,
->  =09=09=09=09   PAGE_SIZE, DMA_BIDIRECTIONAL);
->  }
-> =20
-> @@ -447,36 +447,34 @@ static void rga_hw_setup_cmdbuf(struct rga_ctx *ctx=
-)
->  =09rga_cmd_set_trans_info(ctx);
->  }
-> =20
-> -static void rga_hw_start(struct rockchip_rga *rga,
-> +static void rga_hw_start(struct rga_core *core,
->  =09=09=09 struct rga_vb_buffer *src,  struct rga_vb_buffer *dst)
->  {
-> -=09struct rga_ctx *ctx =3D rga->curr;
-> -
-> -=09rga_cmd_set(ctx, src, dst);
-> +=09rga_cmd_set(core, src, dst);
-> =20
-> -=09rga_write(rga, RGA_SYS_CTRL, 0x00);
-> +=09rga_write(core, RGA_SYS_CTRL, 0x00);
-> =20
-> -=09rga_write(rga, RGA_SYS_CTRL, 0x22);
-> +=09rga_write(core, RGA_SYS_CTRL, 0x22);
-> =20
-> -=09rga_write(rga, RGA_INT, 0x600);
-> +=09rga_write(core, RGA_INT, 0x600);
-> =20
-> -=09rga_write(rga, RGA_CMD_CTRL, 0x1);
-> +=09rga_write(core, RGA_CMD_CTRL, 0x1);
->  }
-> =20
-> -static bool rga_handle_irq(struct rockchip_rga *rga)
-> +static bool rga_handle_irq(struct rga_core *core)
->  {
->  =09int intr;
-> =20
-> -=09intr =3D rga_read(rga, RGA_INT) & 0xf;
-> +=09intr =3D rga_read(core, RGA_INT) & 0xf;
-> =20
-> -=09rga_mod(rga, RGA_INT, intr << 4, 0xf << 4);
-> +=09rga_mod(core, RGA_INT, intr << 4, 0xf << 4);
-> =20
->  =09return intr & RGA_INT_COMMAND_FINISHED;
->  }
-> =20
-> -static struct rockchip_rga_version rga_get_version(struct rockchip_rga *=
-rga)
-> +static struct rockchip_rga_version rga_get_version(struct rga_core *core=
-)
->  {
-> -=09u32 version =3D rga_read(rga, RGA_VERSION_INFO);
-> +=09u32 version =3D rga_read(core, RGA_VERSION_INFO);
-> =20
->  =09return (struct rockchip_rga_version) {
->  =09=09.major =3D (version >> 24) & 0xFF,
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
-atform/rockchip/rga/rga.c
-> index 2107d0f4a1659..bcfc19d29af74 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -11,6 +11,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_platform.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/reset.h>
->  #include <linux/sched.h>
-> @@ -35,11 +36,12 @@ static void device_run(void *prv)
->  {
->  =09struct rga_ctx *ctx =3D prv;
->  =09struct rockchip_rga *rga =3D ctx->rga;
-> +=09struct rga_core *core =3D rga->cores[0];
->  =09struct vb2_v4l2_buffer *src, *dst;
->  =09unsigned long flags;
->  =09int ret;
-> =20
-> -=09ret =3D pm_runtime_resume_and_get(rga->dev);
-> +=09ret =3D pm_runtime_resume_and_get(core->dev);
->  =09if (ret < 0) {
->  =09=09v4l2_m2m_buf_done_and_job_finish(rga->m2m_dev, ctx->fh.m2m_ctx,
->  =09=09=09=09=09=09 VB2_BUF_STATE_ERROR);
-> @@ -54,27 +56,28 @@ static void device_run(void *prv)
->  =09}
->  =09spin_unlock_irqrestore(&rga->ctrl_lock, flags);
-> =20
-> -=09rga->curr =3D ctx;
-> +=09core->curr =3D ctx;
-> =20
->  =09src =3D v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
->  =09src->sequence =3D ctx->osequence++;
-> =20
->  =09dst =3D v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
-> =20
-> -=09rga->hw->start(rga, vb_to_rga(src), vb_to_rga(dst));
-> +=09rga->hw->start(core, vb_to_rga(src), vb_to_rga(dst));
->  }
-> =20
->  static irqreturn_t rga_isr(int irq, void *prv)
->  {
-> -=09struct rockchip_rga *rga =3D prv;
-> +=09struct rga_core *core =3D prv;
-> +=09struct rockchip_rga *rga =3D core->rga;
-> =20
-> -=09if (rga->hw->handle_irq(rga)) {
-> +=09if (rga->hw->handle_irq(core)) {
->  =09=09struct vb2_v4l2_buffer *src, *dst;
-> -=09=09struct rga_ctx *ctx =3D rga->curr;
-> +=09=09struct rga_ctx *ctx =3D core->curr;
-> =20
->  =09=09WARN_ON(!ctx);
-> =20
-> -=09=09rga->curr =3D NULL;
-> +=09=09core->curr =3D NULL;
-> =20
->  =09=09src =3D v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
->  =09=09dst =3D v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
-> @@ -90,7 +93,7 @@ static irqreturn_t rga_isr(int irq, void *prv)
->  =09=09v4l2_m2m_buf_done(dst, VB2_BUF_STATE_DONE);
->  =09=09v4l2_m2m_job_finish(rga->m2m_dev, ctx->fh.m2m_ctx);
-> =20
-> -=09=09pm_runtime_put_autosuspend(rga->dev);
-> +=09=09pm_runtime_put_autosuspend(core->dev);
->  =09}
-> =20
->  =09return IRQ_HANDLED;
-> @@ -118,7 +121,7 @@ queue_init(void *priv, struct vb2_queue *src_vq, stru=
-ct vb2_queue *dst_vq)
->  =09src_vq->buf_struct_size =3D sizeof(struct rga_vb_buffer);
->  =09src_vq->timestamp_flags =3D V4L2_BUF_FLAG_TIMESTAMP_COPY;
->  =09src_vq->lock =3D &ctx->rga->mutex;
-> -=09src_vq->dev =3D ctx->rga->v4l2_dev.dev;
-> +=09src_vq->dev =3D ctx->rga->cores[0]->dev;
-> =20
->  =09ret =3D vb2_queue_init(src_vq);
->  =09if (ret)
-> @@ -136,7 +139,7 @@ queue_init(void *priv, struct vb2_queue *src_vq, stru=
-ct vb2_queue *dst_vq)
->  =09dst_vq->buf_struct_size =3D sizeof(struct rga_vb_buffer);
->  =09dst_vq->timestamp_flags =3D V4L2_BUF_FLAG_TIMESTAMP_COPY;
->  =09dst_vq->lock =3D &ctx->rga->mutex;
-> -=09dst_vq->dev =3D ctx->rga->v4l2_dev.dev;
-> +=09dst_vq->dev =3D ctx->rga->cores[0]->dev;
-> =20
->  =09return vb2_queue_init(dst_vq);
->  }
-> @@ -275,7 +278,7 @@ static int rga_open(struct file *file)
->  =09=09return -ENOMEM;
-> =20
->  =09/* Create CMD buffer */
-> -=09ctx->cmdbuf_virt =3D dma_alloc_attrs(rga->dev, rga->hw->cmdbuf_size,
-> +=09ctx->cmdbuf_virt =3D dma_alloc_attrs(rga->cores[0]->dev, rga->hw->cmd=
-buf_size,
->  =09=09=09=09=09   &ctx->cmdbuf_phy, GFP_KERNEL,
->  =09=09=09=09=09   DMA_ATTR_WRITE_COMBINE);
->  =09if (!ctx->cmdbuf_virt) {
-> @@ -322,7 +325,7 @@ static int rga_open(struct file *file)
->  unlock_mutex:
->  =09mutex_unlock(&rga->mutex);
->  rel_cmdbuf:
-> -=09dma_free_attrs(rga->dev, rga->hw->cmdbuf_size, ctx->cmdbuf_virt,
-> +=09dma_free_attrs(rga->cores[0]->dev, rga->hw->cmdbuf_size, ctx->cmdbuf_=
-virt,
->  =09=09       ctx->cmdbuf_phy, DMA_ATTR_WRITE_COMBINE);
->  rel_ctx:
->  =09kfree(ctx);
-> @@ -342,7 +345,7 @@ static int rga_release(struct file *file)
->  =09v4l2_fh_del(&ctx->fh, file);
->  =09v4l2_fh_exit(&ctx->fh);
-> =20
-> -=09dma_free_attrs(rga->dev, rga->hw->cmdbuf_size, ctx->cmdbuf_virt,
-> +=09dma_free_attrs(rga->cores[0]->dev, rga->hw->cmdbuf_size, ctx->cmdbuf_=
-virt,
->  =09=09       ctx->cmdbuf_phy, DMA_ATTR_WRITE_COMBINE);
-> =20
->  =09kfree(ctx);
-> @@ -689,26 +692,26 @@ static const struct video_device rga_videodev =3D {
->  =09.device_caps =3D V4L2_CAP_VIDEO_M2M_MPLANE | V4L2_CAP_STREAMING,
->  };
-> =20
-> -static int rga_parse_dt(struct rockchip_rga *rga)
-> +static int rga_parse_dt(struct rga_core *core)
->  {
->  =09struct reset_control *core_rst, *axi_rst, *ahb_rst;
->  =09int ret;
-> =20
-> -=09core_rst =3D devm_reset_control_get(rga->dev, "core");
-> +=09core_rst =3D devm_reset_control_get(core->dev, "core");
->  =09if (IS_ERR(core_rst)) {
-> -=09=09dev_err(rga->dev, "failed to get core reset controller\n");
-> +=09=09dev_err(core->dev, "failed to get core reset controller\n");
->  =09=09return PTR_ERR(core_rst);
->  =09}
-> =20
-> -=09axi_rst =3D devm_reset_control_get(rga->dev, "axi");
-> +=09axi_rst =3D devm_reset_control_get(core->dev, "axi");
->  =09if (IS_ERR(axi_rst)) {
-> -=09=09dev_err(rga->dev, "failed to get axi reset controller\n");
-> +=09=09dev_err(core->dev, "failed to get axi reset controller\n");
->  =09=09return PTR_ERR(axi_rst);
->  =09}
-> =20
-> -=09ahb_rst =3D devm_reset_control_get(rga->dev, "ahb");
-> +=09ahb_rst =3D devm_reset_control_get(core->dev, "ahb");
->  =09if (IS_ERR(ahb_rst)) {
-> -=09=09dev_err(rga->dev, "failed to get ahb reset controller\n");
-> +=09=09dev_err(core->dev, "failed to get ahb reset controller\n");
->  =09=09return PTR_ERR(ahb_rst);
->  =09}
-> =20
-> @@ -724,12 +727,12 @@ static int rga_parse_dt(struct rockchip_rga *rga)
->  =09udelay(1);
->  =09reset_control_deassert(ahb_rst);
-> =20
-> -=09ret =3D devm_clk_bulk_get_all(rga->dev, &rga->clks);
-> +=09ret =3D devm_clk_bulk_get_all(core->dev, &core->clks);
->  =09if (ret < 0) {
-> -=09=09dev_err(rga->dev, "failed to get clocks\n");
-> +=09=09dev_err(core->dev, "failed to get clocks\n");
->  =09=09return ret;
->  =09}
-> -=09rga->num_clks =3D ret;
-> +=09core->num_clks =3D ret;
-> =20
->  =09return 0;
->  }
-> @@ -780,6 +783,7 @@ static int rga_disable_multicore(struct device *dev)
->  static int rga_probe(struct platform_device *pdev)
->  {
->  =09struct rockchip_rga *rga;
-> +=09struct rga_core *core;
->  =09struct video_device *vfd;
->  =09int ret =3D 0;
->  =09int irq;
-> @@ -791,7 +795,7 @@ static int rga_probe(struct platform_device *pdev)
->  =09if (ret)
->  =09=09return ret;
-> =20
-> -=09rga =3D devm_kzalloc(&pdev->dev, sizeof(*rga), GFP_KERNEL);
-> +=09rga =3D devm_kzalloc(&pdev->dev, sizeof(*rga) + 1 * sizeof(*rga->core=
-s), GFP_KERNEL);
->  =09if (!rga)
->  =09=09return -ENOMEM;
-> =20
-> @@ -799,38 +803,46 @@ static int rga_probe(struct platform_device *pdev)
->  =09if (!rga->hw)
->  =09=09return dev_err_probe(&pdev->dev, -ENODEV, "failed to get match dat=
-a\n");
-> =20
-> -=09rga->dev =3D &pdev->dev;
->  =09spin_lock_init(&rga->ctrl_lock);
->  =09mutex_init(&rga->mutex);
-> =20
-> -=09ret =3D rga_parse_dt(rga);
-> +=09core =3D devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
-> +=09if (!core)
-> +=09=09return -ENOMEM;
-> +
-> +=09core->rga =3D rga;
-> +=09core->dev =3D &pdev->dev;
-> +
-> +=09rga->cores[0] =3D core;
-> +
-> +=09ret =3D rga_parse_dt(core);
->  =09if (ret)
->  =09=09return dev_err_probe(&pdev->dev, ret, "Unable to parse OF data\n")=
-;
-> =20
-> -=09ret =3D devm_pm_runtime_enable(rga->dev);
-> +=09ret =3D devm_pm_runtime_enable(core->dev);
->  =09if (ret)
->  =09=09return ret;
-> =20
-> -=09pm_runtime_set_autosuspend_delay(rga->dev, 50);
-> -=09pm_runtime_use_autosuspend(rga->dev);
-> +=09pm_runtime_set_autosuspend_delay(core->dev, 50);
-> +=09pm_runtime_use_autosuspend(core->dev);
-> =20
-> -=09rga->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> -=09if (IS_ERR(rga->regs))
-> -=09=09return PTR_ERR(rga->regs);
-> +=09core->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> +=09if (IS_ERR(core->regs))
-> +=09=09return PTR_ERR(core->regs);
-> =20
->  =09irq =3D platform_get_irq(pdev, 0);
->  =09if (irq < 0)
->  =09=09return irq;
-> =20
-> -=09ret =3D devm_request_irq(rga->dev, irq, rga_isr,
-> +=09ret =3D devm_request_irq(core->dev, irq, rga_isr,
->  =09=09=09       rga_has_internal_iommu(rga) ? 0 : IRQF_SHARED,
-> -=09=09=09       dev_name(rga->dev), rga);
-> +=09=09=09       dev_name(core->dev), core);
->  =09if (ret < 0)
-> -=09=09return dev_err_probe(rga->dev, ret, "failed to request irq\n");
-> +=09=09return dev_err_probe(core->dev, ret, "failed to request irq\n");
-> =20
-> -=09ret =3D dma_set_mask_and_coherent(rga->dev, DMA_BIT_MASK(32));
-> +=09ret =3D dma_set_mask_and_coherent(core->dev, DMA_BIT_MASK(32));
->  =09if (ret)
-> -=09=09dev_err_probe(rga->dev, ret, "32-bit DMA not supported");
-> +=09=09dev_err_probe(core->dev, ret, "32-bit DMA not supported");
-> =20
->  =09ret =3D v4l2_device_register(&pdev->dev, &rga->v4l2_dev);
->  =09if (ret)
-> @@ -848,7 +860,7 @@ static int rga_probe(struct platform_device *pdev)
->  =09video_set_drvdata(vfd, rga);
->  =09rga->vfd =3D vfd;
-> =20
-> -=09platform_set_drvdata(pdev, rga);
-> +=09platform_set_drvdata(pdev, core);
->  =09rga->m2m_dev =3D v4l2_m2m_init(&rga_m2m_ops);
->  =09if (IS_ERR(rga->m2m_dev)) {
->  =09=09v4l2_err(&rga->v4l2_dev, "Failed to init mem2mem device\n");
-> @@ -856,16 +868,16 @@ static int rga_probe(struct platform_device *pdev)
->  =09=09goto rel_vdev;
->  =09}
-> =20
-> -=09ret =3D pm_runtime_resume_and_get(rga->dev);
-> +=09ret =3D pm_runtime_resume_and_get(core->dev);
->  =09if (ret < 0)
->  =09=09goto rel_m2m;
-> =20
-> -=09rga->version =3D rga->hw->get_version(rga);
-> +=09rga->version =3D rga->hw->get_version(core);
-> =20
->  =09v4l2_info(&rga->v4l2_dev, "HW Version: 0x%02x.%02x\n",
->  =09=09  rga->version.major, rga->version.minor);
-> =20
-> -=09pm_runtime_put(rga->dev);
-> +=09pm_runtime_put(core->dev);
-> =20
->  =09ret =3D video_register_device(vfd, VFL_TYPE_VIDEO, -1);
->  =09if (ret) {
-> @@ -890,7 +902,8 @@ static int rga_probe(struct platform_device *pdev)
-> =20
->  static void rga_remove(struct platform_device *pdev)
->  {
-> -=09struct rockchip_rga *rga =3D platform_get_drvdata(pdev);
-> +=09struct rga_core *core =3D platform_get_drvdata(pdev);
-> +=09struct rockchip_rga *rga =3D core->rga;
-> =20
->  =09v4l2_info(&rga->v4l2_dev, "Removing\n");
-> =20
-> @@ -901,18 +914,18 @@ static void rga_remove(struct platform_device *pdev=
-)
-> =20
->  static int __maybe_unused rga_runtime_suspend(struct device *dev)
->  {
-> -=09struct rockchip_rga *rga =3D dev_get_drvdata(dev);
-> +=09struct rga_core *core =3D dev_get_drvdata(dev);
-> =20
-> -=09clk_bulk_disable_unprepare(rga->num_clks, rga->clks);
-> +=09clk_bulk_disable_unprepare(core->num_clks, core->clks);
-> =20
->  =09return 0;
->  }
-> =20
->  static int __maybe_unused rga_runtime_resume(struct device *dev)
->  {
-> -=09struct rockchip_rga *rga =3D dev_get_drvdata(dev);
-> +=09struct rga_core *core =3D dev_get_drvdata(dev);
-> =20
-> -=09return clk_bulk_prepare_enable(rga->num_clks, rga->clks);
-> +=09return clk_bulk_prepare_enable(core->num_clks, core->clks);
->  }
-> =20
->  static const struct dev_pm_ops rga_pm =3D {
-> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/pl=
-atform/rockchip/rga/rga.h
-> index 0e854cdf739f4..94e14c2a2ba6e 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.h
-> +++ b/drivers/media/platform/rockchip/rga/rga.h
-> @@ -36,6 +36,16 @@ struct rockchip_rga_version {
->  =09u32 minor;
->  };
-> =20
-> +struct rga_core {
-> +=09struct device *dev;
-> +=09void __iomem *regs;
-> +=09struct clk_bulk_data *clks;
-> +=09int num_clks;
-> +
-> +=09struct rockchip_rga *rga;
-> +=09struct rga_ctx *curr;
-> +};
-> +
->  struct rga_ctx {
->  =09struct v4l2_fh fh;
->  =09struct rockchip_rga *rga;
-> @@ -70,10 +80,6 @@ struct rockchip_rga {
->  =09struct v4l2_m2m_dev *m2m_dev;
->  =09struct video_device *vfd;
-> =20
-> -=09struct device *dev;
-> -=09void __iomem *regs;
-> -=09struct clk_bulk_data *clks;
-> -=09int num_clks;
->  =09struct rockchip_rga_version version;
-> =20
->  =09/* vfd lock */
-> @@ -81,9 +87,9 @@ struct rockchip_rga {
->  =09/* ctrl parm lock */
->  =09spinlock_t ctrl_lock;
-> =20
-> -=09struct rga_ctx *curr;
-> -
->  =09const struct rga_hw *hw;
-> +
-> +=09struct rga_core *cores[];
->  };
-> =20
->  struct rga_addrs {
-> @@ -119,22 +125,22 @@ int rga_check_scaling(const struct rga_hw *hw, cons=
-t struct v4l2_rect *crop_in,
->  extern const struct vb2_ops rga_qops;
-> =20
->  /* RGA Hardware */
-> -static inline void rga_write(struct rockchip_rga *rga, u32 reg, u32 valu=
-e)
-> +static inline void rga_write(struct rga_core *core, u32 reg, u32 value)
->  {
-> -=09writel(value, rga->regs + reg);
-> +=09writel(value, core->regs + reg);
->  };
-> =20
-> -static inline u32 rga_read(struct rockchip_rga *rga, u32 reg)
-> +static inline u32 rga_read(struct rga_core *core, u32 reg)
->  {
-> -=09return readl(rga->regs + reg);
-> +=09return readl(core->regs + reg);
->  };
-> =20
-> -static inline void rga_mod(struct rockchip_rga *rga, u32 reg, u32 val, u=
-32 mask)
-> +static inline void rga_mod(struct rga_core *core, u32 reg, u32 val, u32 =
-mask)
->  {
-> -=09u32 temp =3D rga_read(rga, reg) & ~(mask);
-> +=09u32 temp =3D rga_read(core, reg) & ~(mask);
-> =20
->  =09temp |=3D val & mask;
-> -=09rga_write(rga, reg, temp);
-> +=09rga_write(core, reg, temp);
->  };
-> =20
->  #define RGA_FEATURE_FLIP=09BIT(0)
-> @@ -155,10 +161,10 @@ struct rga_hw {
->  =09 * Requires that the cmdbuf is already zeroed.
->  =09 */
->  =09void (*setup_cmdbuf)(struct rga_ctx *ctx);
-> -=09void (*start)(struct rockchip_rga *rga,
-> +=09void (*start)(struct rga_core *core,
->  =09=09      struct rga_vb_buffer *src, struct rga_vb_buffer *dst);
-> -=09bool (*handle_irq)(struct rockchip_rga *rga);
-> -=09struct rockchip_rga_version (*get_version)(struct rockchip_rga *rga);
-> +=09bool (*handle_irq)(struct rga_core *core);
-> +=09struct rockchip_rga_version (*get_version)(struct rga_core *core);
->  =09void *(*adjust_and_map_format)(struct rga_ctx *ctx,
->  =09=09=09=09       struct v4l2_pix_format_mplane *format,
->  =09=09=09=09       bool is_output);
-> diff --git a/drivers/media/platform/rockchip/rga/rga3-hw.c b/drivers/medi=
-a/platform/rockchip/rga/rga3-hw.c
-> index a80dd7609ccfe..745760d830a61 100644
-> --- a/drivers/media/platform/rockchip/rga/rga3-hw.c
-> +++ b/drivers/media/platform/rockchip/rga/rga3-hw.c
-> @@ -266,42 +266,42 @@ static void rga3_hw_setup_cmdbuf(struct rga_ctx *ct=
-x)
->  =09rga3_cmd_set_wr_format(ctx);
->  }
-> =20
-> -static void rga3_hw_start(struct rockchip_rga *rga,
-> +static void rga3_hw_start(struct rga_core *core,
->  =09=09=09  struct rga_vb_buffer *src, struct rga_vb_buffer *dst)
->  {
-> -=09struct rga_ctx *ctx =3D rga->curr;
-> +=09struct rga_ctx *ctx =3D core->curr;
-> =20
->  =09rga3_cmd_set_win0_addr(ctx, &src->dma_addrs);
->  =09rga3_cmd_set_wr_addr(ctx, &dst->dma_addrs);
-> =20
-> -=09rga_write(rga, RGA3_CMD_ADDR, ctx->cmdbuf_phy);
-> +=09rga_write(core, RGA3_CMD_ADDR, ctx->cmdbuf_phy);
-> =20
->  =09/* sync CMD buf for RGA */
-> -=09dma_sync_single_for_device(rga->dev, ctx->cmdbuf_phy,
-> +=09dma_sync_single_for_device(core->rga->cores[0]->dev, ctx->cmdbuf_phy,
->  =09=09=09=09   PAGE_SIZE, DMA_BIDIRECTIONAL);
-> =20
->  =09/* set to master mode and start the conversion */
-> -=09rga_write(rga, RGA3_SYS_CTRL,
-> +=09rga_write(core, RGA3_SYS_CTRL,
->  =09=09  FIELD_PREP(RGA3_CMD_MODE, RGA3_CMD_MODE_MASTER));
-> -=09rga_write(rga, RGA3_INT_EN, FIELD_PREP(RGA3_INT_FRM_DONE, 1));
-> -=09rga_write(rga, RGA3_CMD_CTRL,
-> +=09rga_write(core, RGA3_INT_EN, FIELD_PREP(RGA3_INT_FRM_DONE, 1));
-> +=09rga_write(core, RGA3_CMD_CTRL,
->  =09=09  FIELD_PREP(RGA3_CMD_LINE_START_PULSE, 1));
->  }
-> =20
-> -static bool rga3_handle_irq(struct rockchip_rga *rga)
-> +static bool rga3_handle_irq(struct rga_core *core)
->  {
->  =09u32 intr;
-> =20
-> -=09intr =3D rga_read(rga, RGA3_INT_RAW);
-> +=09intr =3D rga_read(core, RGA3_INT_RAW);
->  =09/* clear all interrupts */
-> -=09rga_write(rga, RGA3_INT_CLR, intr);
-> +=09rga_write(core, RGA3_INT_CLR, intr);
-> =20
->  =09return FIELD_GET(RGA3_INT_FRM_DONE, intr);
->  }
-> =20
-> -static struct rockchip_rga_version rga3_get_version(struct rockchip_rga =
-*rga)
-> +static struct rockchip_rga_version rga3_get_version(struct rga_core *cor=
-e)
->  {
-> -=09u32 version =3D rga_read(rga, RGA3_VERSION_NUM);
-> +=09u32 version =3D rga_read(core, RGA3_VERSION_NUM);
-> =20
->  =09return (struct rockchip_rga_version) {
->  =09=09.major =3D FIELD_GET(RGA3_VERSION_NUM_MAJOR, version),
+- Other free MMUs have their flag cleared as the search goes past them.
 
---=-LUk+buoFZ9npV6snsjJ6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+- If every free MMU was used since the last pass, the first one found
+  is recycled, as before.
 
------BEGIN PGP SIGNATURE-----
+Signed-off-by: Nathan Chen <nathanc@nvidia.com>
+---
+ arch/arm64/include/asm/kvm_host.h |  3 +++
+ arch/arm64/kvm/nested.c           | 30 +++++++++++++++++++++++++-----
+ 2 files changed, 28 insertions(+), 5 deletions(-)
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawX+qAAKCRDZQZRRKWBy
-9APYAQC3+Ba2e3KtuxOauTBOpSWrSeYxNct2Q4M+PoM0wC0eMwD6Ay0rXE0bWpIU
-060zMHc66CKgKzTFatFjSJkmmuvdAAI=
-=WTa0
------END PGP SIGNATURE-----
+diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+index ff5073b13338..c7133999296f 100644
+--- a/arch/arm64/include/asm/kvm_host.h
++++ b/arch/arm64/include/asm/kvm_host.h
+@@ -325,6 +325,9 @@ struct kvm_s2_mmu {
+ 	/* Index in the S2 MMU array, only valid for a shadow S2 */
+ 	u16	s2_mmu_idx;
+ 
++	/* Used since the victim search last went past it, under mmu_lock */
++	bool	accessed;
++
+ 	/*
+ 	 *  0: Nobody is currently using this, check vttbr for validity
+ 	 * >0: Somebody is actively using this.
+diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+index 7d78efee5296..44dc6780fe6f 100644
+--- a/arch/arm64/kvm/nested.c
++++ b/arch/arm64/kvm/nested.c
+@@ -842,7 +842,7 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
+ {
+ 	struct kvm *kvm = vcpu->kvm;
+ 	struct kvm_s2_mmu *s2_mmu;
+-	int i;
++	int i, victim = -1;
+ 
+ 	lockdep_assert_held_write(&vcpu->kvm->mmu_lock);
+ 
+@@ -854,19 +854,38 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
+ 	 * Make sure we don't always search from the same point, or we
+ 	 * will always reuse a potentially active context, leaving
+ 	 * free contexts unused.
++	 *
++	 * Pick the victim with a clock: a free MMU that is invalid, or
++	 * hasn't been used since the search last went past it (such as
++	 * one left behind by a torn down guest), is recycled straight
++	 * away. Other free MMUs lose their accessed bit and get a second
++	 * chance. If every free MMU was used since the last pass, the
++	 * first one found is recycled.
+ 	 */
+ 	for (i = kvm->arch.nested_mmus_next;
+ 	     i < (kvm->arch.nested_mmus_size + kvm->arch.nested_mmus_next);
+ 	     i++) {
+-		s2_mmu = kvm->arch.nested_mmus[i % kvm->arch.nested_mmus_size];
++		struct kvm_s2_mmu *mmu;
++
++		mmu = kvm->arch.nested_mmus[i % kvm->arch.nested_mmus_size];
++		if (atomic_read(&mmu->refcnt))
++			continue;
+ 
+-		if (atomic_read(&s2_mmu->refcnt) == 0)
++		if (!kvm_s2_mmu_valid(mmu) || !mmu->accessed) {
++			victim = i;
+ 			break;
++		}
++
++		if (victim < 0)
++			victim = i;
++
++		mmu->accessed = false;
+ 	}
+-	BUG_ON(atomic_read(&s2_mmu->refcnt)); /* We have struct MMUs to spare */
++	BUG_ON(victim < 0); /* We have struct MMUs to spare */
++	s2_mmu = kvm->arch.nested_mmus[victim % kvm->arch.nested_mmus_size];
+ 
+ 	/* Set the scene for the next search */
+-	kvm->arch.nested_mmus_next = (i + 1) % kvm->arch.nested_mmus_size;
++	kvm->arch.nested_mmus_next = (victim + 1) % kvm->arch.nested_mmus_size;
+ 
+ 	/* Make sure we don't forget to do the laundry */
+ 	if (kvm_s2_mmu_valid(s2_mmu))
+@@ -886,6 +905,7 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
+ 
+ out:
+ 	atomic_inc(&s2_mmu->refcnt);
++	s2_mmu->accessed = true;
+ 
+ 	/*
+ 	 * Set the vCPU request to perform an unmap, even if the pending unmap
+-- 
+2.43.0
 
---=-LUk+buoFZ9npV6snsjJ6--
 
