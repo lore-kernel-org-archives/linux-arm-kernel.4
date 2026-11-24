@@ -2,118 +2,155 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B98606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 22:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB045606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 22:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XNEOgJxb;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=bTzFFxst
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U7haNkQx;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nOABFOKt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
+	From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=a+lCQh9rFeHZpRcts8xKmbAzUymCGM5+mzuki638UuI=; b=XNEOgJxbFLs4NtP+0cIqPBDz0R
-	vwMtse85NH9RNL8Qbew5Ug4VqTu0MzfKF7mrjDo4TrI6rt85REtqNGOHjt+hepqDmbH48rPKDhdkk
-	LrPsClaNn5XhTA+0vP7M7xzkWrg4WToiq87BPetp6XAQxpmBgmrfGbSwuqusHyhd3UomHxZzB9gOr
-	KXVA5QqYVmAnkKKOkwl/Pu9wAjkMA56AO8PuDBfYk1Dew7SeCtnp65jltGWxeVXIBqiab5mCBMV40
-	nlF6ut/p7RpdrqQqKbZRmldqi5mDYwD8/k5HcVU8LPrX6u8hFVYvTiDxmDygdpjsMjBZ25PgxNycl
-	8dzEhDXw==;
+	bh=jFcGsqmfmZRkt05qBK9du4hRMwTvxalV5t9KfsrqdEM=; b=U7haNkQxO0DIx0PIkyGfaN0Pt/
+	RXu8x4XD3BWG+yXq+r1DbRapuW5Arca3IQmkKeMwuN1urj5eN2NrqYBn85J2iToxQj3kX3JSOBgXA
+	NuzXyqCO6MrwbL4TDi7lfqo6qJpAIeYHg94RTWCdPUcifqxUKLai1Xpos2qI76sxlJmBl6pBK45ME
+	A2QHbYyAjJZDx9A7MQaLG9tWm/77mmE6hvSjXX92DJiocWqDRzolX2RGdtfJhJn7dHHJcUmk0gOOC
+	O5cxB0sTa1i2pWDVwFt3jjPmWWR5TEw66+9Wiek5U8suRK6spvOrNIjE3uP8twkK40nn9mj4FuQ7j
+	3htS+V8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyl0-00000007y8D-2EZD;
-	Tue, 24 Nov 2026 22:12:58 +0000
-Received: from mail-qk1-x735.google.com ([2607:f8b0:4864:20::735])
+	id 1xVylb-00000007yHm-3E5u;
+	Tue, 24 Nov 2026 22:13:35 +0000
+Received: from mail-yx1-xb129.google.com ([2607:f8b0:4864:20::b129])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVykx-00000007y7E-3Ct0
+	id 1xVylZ-00000007yH4-2vZf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 22:12:57 +0000
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-930c0f9c1b1so531325785a.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 14:12:55 -0800 (PST)
+	Tue, 24 Nov 2026 22:13:35 +0000
+Received: by mail-yx1-xb129.google.com with SMTP id 956f58d0204a3-67da69e7c31so5461761d50.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 14:13:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795558374; x=1796163174; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=a+lCQh9rFeHZpRcts8xKmbAzUymCGM5+mzuki638UuI=;
-        b=bTzFFxstmHjzwtWXdBamAdqf64YYVE4MZitfOfd89ertqEr5jtEjBpXTUvpExk4iPu
-         pUuDStSaL0tzn1j8tH72HtCymrdRqx1zVQkbABi+QsuhzEF0xD+w/MtyUoid+xibJxO2
-         ffPYEty7kkciO0y39V67R4Z7HwuljhKh3stZFayBdT+9q77lCPjO5gQqaCuPUWMvvjA6
-         iakM82XNE5Q8wmMZ4v4uKMY5lhtaQAQUMcZdQaQJDIvncmnMV8NykIZvM8xZNnFmSAdQ
-         KMJrALwoVX5aHHdjfpTdI2VhEMNQAWyW01kiKD9MSrKGK1oI5wtg3P8JeBQJvSVoWD60
-         9oBA==
+        d=gmail.com; s=20260707; t=1795558412; x=1796163212; darn=lists.infradead.org;
+        h=content-type:in-reply-to:autocrypt:from:content-language:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=jFcGsqmfmZRkt05qBK9du4hRMwTvxalV5t9KfsrqdEM=;
+        b=nOABFOKtwpbLtnW9DyQXIW0yIegfnpuXlj/7/8GfQZLUXJLVSuPrGcIYiPK32RDiez
+         nZJfmgXOdoGmSMzhPbb4dKq4SDGhbmxBIZ0ppNbXVR/CEgyywpYUTK/aR/xcESyDO8sV
+         jRRZZr+76Pj34nql0xLVma6L89Ik7zL9wa1FZV/yxSYlKw1RXfD+S92RmDLVTBCsByh4
+         PLecI24HMrjqspwnnpB2eW5ejr6+T9D20c7+PA22L/fJ2dbpp51rzEZhkmPs0CPymM+S
+         pNy/8JS4waAR0Xn9qvjw6CN3hyDdg4KmEoRVNu9/tlJ31b8UnlrqaI3jXNn/KlaDB9VI
+         0a0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795558374; x=1796163174;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20260707; t=1795558412; x=1796163212;
+        h=content-type:in-reply-to:autocrypt:from:content-language:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=a+lCQh9rFeHZpRcts8xKmbAzUymCGM5+mzuki638UuI=;
-        b=QMUi4DTdoZcLp68H0w1oVZZPWCWL7LTa7M4ad18/Geelj4PJYZBzTQZovFVOZptBlN
-         ZnnrFJmLFE0N7u4BK/wZnX7Dl9hAVwiW/Ghw6vFFP71JEtGz2gAbXECsRfGKu0XXlygr
-         q88s78QMpv+mYwmnZr1EZaSCqWF4G1H4ZakaPDE27/cMTUy7Nk8scjBn+DShuuwR6I/r
-         boU4Q3c/ixKEe3HuxGjkeEiWADEMkVUzgqArWNUuKPWxUUPRrv5+jzFIpVV4as4gGQlA
-         jsjWRg85u+jdl61gYi19/MDPFpCofvabCTz/LrV4aa3ZCzr3w+KY4QTc6E0KwfiHBXEr
-         BFKg==
-X-Forwarded-Encrypted: i=1; AL+hErEy4Y+4s7mEKOweV3zMCeTG9lKPkO9Ohp4aqHlDWOqh8Sswob5ruPtlu4a2xP2pWQaz1A97W/+hn5idH3soh0j6@lists.infradead.org
-X-Gm-Message-State: APuU4Z8hCk8rj07ezPeznSv3QJLeSEOtKBU3T29FIIJTLP1Kz+SiW76z
-	ljKfJ8iBk5XpueXr6651bUFjjXrc5X0a2TcLuvw4CFBrh4AVi8o7mbrlZ3gqTmjHCxw=
-X-Gm-Gg: AZFdTZckrT5e+xRJaeNZACcxKokePFXxIg0NvGELN+rn4xIIrA/gcM/gbS7pyWWE7Ku
-	8PEAu5pHk0PEAomuA3W6xU6tXdb7my6U+e0+bw7oDsG8BnFaORs9mE+aiGAqDKGHar4Hr3hmce8
-	nanIv9ePrKL0/8+bdE4z+WEK9aLS6KqF9jxSP22tkTDXitS7JOMqA3mvo5ulvQ8ELa2YOIyDNZ0
-	pGmS/yz045LoiUtrYPcQslFtx5mv5ZTIRqhwGIJ/m71C9cFOMANarhlRZBYmFc03uxpoJr/KgzT
-	xu6JoHkg1llQDdG1V1RQDuGobs5VKYK7ThHvDSaDc+hQQVn80aAQbqnRfZXEH8iDgeLOqHfFlm6
-	CDvrtWk6ZdJxsuli4QEw/DB1CT/c2sPy2S42LasOwjlRCv6IByEHaAwc62klPWkWjaxGAEBJECM
-	Xmw4bQMr1je5SMN4EYGAnrLuQ21sNY2KAV7leMeuG0kISPByv/iBetZJiZu8i+xqiJqZ6SzZmBv
-	3QBKuSd95a+UPgNcZSnWBFmZIsvW2wpHeLzpFGkUJLTfI0POiQd0meZTTWrTzYwsn9QJq5qFAXn
-	cjebUj76qZylMsAMuDk5zJXdkv3Dfy7NU/RsQ1k+J/YsWtSUYSYI1Ptt5iyTPF2fbL3D4OXLr4E
-	m
-X-Received: by 2002:a05:620a:7087:b0:93f:633b:ee1f with SMTP id af79cd13be357-949ba9c6b95mr3002134585a.28.1795558374358;
-        Tue, 24 Nov 2026 14:12:54 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb3bec3dsm1148251585a.23.2026.11.24.14.12.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 14:12:53 -0800 (PST)
-Message-ID: <16ae904e41539059dbe1649551c1c903295690b3.camel@ndufresne.ca>
-Subject: Re: [PATCH v3 04/17] media: v4l2-ctrls: validate av1 tile info
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sofus Forstreuter <sofus.c@icloud.com>, Sven Peter <sven@kernel.org>, 
- Janne Grunau
-	 <j@jannau.net>, Neal Gompa <neal@gompa.dev>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
-	 <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Daniel Almeida
-	 <daniel.almeida@collabora.com>, Xiaoyong Lu <xiaoyong.lu@mediatek.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Date: Tue, 24 Nov 2026 17:12:51 -0500
-In-Reply-To: <20261020-avd-v3-4-85cbaa2125d8@icloud.com>
-References: <20261020-avd-v3-0-85cbaa2125d8@icloud.com>
-	 <20261020-avd-v3-4-85cbaa2125d8@icloud.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-TfGKB/izRKTkKjOJIU01"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        bh=jFcGsqmfmZRkt05qBK9du4hRMwTvxalV5t9KfsrqdEM=;
+        b=0n3KZoSrsLYLrQV8rmebY9Lo8jua6duitNbWzUkg4P5YZ/DvU74pkyuWBY3AbcGFbO
+         Og//d/kLWqBGGf4TnEGH9137HKW5OffdmYO7I2e2dX7CtqWEEAiHJihjVXpVSZKe6Sw5
+         /KkcKwzsBrByQ0uuD4PYwmT83HCKsquJbnMcqvSUFrbXy+3JVB1sheqXnjSRAaQeKFW6
+         L+a3f8IKgaw2t4cw58+HNfzl3nz4fw262XW+oNBE6Ch4H3VpGLN1uYpYCmknMb6KI33s
+         IO0BUrR337u8E4gSUcGlYuaAjRUmm7w2RB7BRIMC2nOPnr0pZJ7lQ+ti3MvvXZvBTjCA
+         1bww==
+X-Forwarded-Encrypted: i=1; AL+hErH6sFsGLXaCYMH9jYUd5b7W9ZtuESjmRvpazp9jGAKzaslpOo/ygBW+TCS+htMzGllbQTswDI49f+DUs9C0kbz5@lists.infradead.org
+X-Gm-Message-State: APuU4Z/4jIvIbyrTExoKXe1hIPY14u3xtrI/80kCQpjIOrjfHES89lem
+	VeBgo2z0aqwaLMqxTUprw2zYsWbevu5Lri9/Ov5tc+MyX+ys7wG/ixbp
+X-Gm-Gg: AZFdTZfeBsSbOYoz82sIx4rsnotFu5XUN7jz904RTzmfCI7U3b4X5FINaSPiM26+yVP
+	B/eetM7MTjHiBbTxdcOMqigpwdbkY9/RjZQIbg6boocEJYeBXiBHEmv20ejBmnQQ+XjF/3g3sl5
+	8wbzjZWbrzye6LlQ/T4hzgEyULTsoim2VSe1+q//UQYstJGsCQUCSFCW9F5sWPRWzmfuofrrlsx
+	T84ZRRL5lWZ1eWbGeqMY9ePZGidBBL5eIFc5yGNE3RIT5a3WWsJCpwbB+s1sP5CSnRWiptalfSW
+	j73cVgTrOxyHF5WwD9KflO1tWQ0wXXjTWs51GtDSJ2AgmwyGFN28g0AhU9CA8QQVYqbY/MZttn/
+	NNHk4s2HSHWqPtulUrSXaQa8G/fusZ2ewVj4pULoGjm79meC9LdKRoVeYuxE58QHuaMZ9S6rsSr
+	1l8gVIH0j4h2AwL+i5p7yExGoD6U0fXVVv7z9QzYGfw4pitvNng3dAjeYMBNZ1W2HWStT55XpP3
+	VBbJwiAU8oJMkIfkoeT7uaqfZAvSX5QQK0XxFwQNtmsX5pRQg09aXE6R3x2aWDPDu97X4uP0XZ3
+	uwprZBM5qP2Mt6WCWszQqso7OyGeaMIknA==
+X-Received: by 2002:a53:ac90:0:b0:67d:c14c:9f8e with SMTP id 956f58d0204a3-67df4410ca0mr6821449d50.32.1795558411857;
+        Tue, 24 Nov 2026 14:13:31 -0800 (PST)
+Received: from [10.138.10.6] ([149.102.242.31])
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-67df30e4407sm7857086d50.0.2026.11.24.14.13.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2026 14:13:30 -0800 (PST)
+Message-ID: <834c266a-eb07-4427-b1fa-5c6508a5ce32@gmail.com>
+Date: Tue, 24 Nov 2026 17:13:15 -0500
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 3/4] arm64: defconfig: update the Qualcomm Crypto
+ Engine entry
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>,
+ Stanimir Varbanov <svarbanov@mm-sol.com>,
+ Eneas U de Queiroz <cotequeiroz@gmail.com>,
+ Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
+ Eric Biggers <ebiggers@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>
+Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, brgl@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261120-qce-fix-self-tests-v12-0-b5a2a44bc5ae@oss.qualcomm.com>
+ <20261120-qce-fix-self-tests-v12-3-b5a2a44bc5ae@oss.qualcomm.com>
+ <9faa6fce-594f-4556-b5ab-6aa73330da8d@kernel.org>
+Content-Language: en-US
+From: Demi Marie Obenour <demiobenour@gmail.com>
+Autocrypt: addr=demiobenour@gmail.com; keydata=
+ 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
+ +MYSfkEjBz0E8CLOcAw7JIwAaeBT
+In-Reply-To: <9faa6fce-594f-4556-b5ab-6aa73330da8d@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------HRJ667nozFI7pDuLiKLXtKsh"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_141255_818646_3D90D063 
-X-CRM114-Status: GOOD (  19.57  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_141333_769097_10B3A66A 
+X-CRM114-Status: GOOD (  15.11  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,104 +161,146 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-TfGKB/izRKTkKjOJIU01
-Content-Type: text/plain; charset="UTF-8"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------HRJ667nozFI7pDuLiKLXtKsh
+Content-Type: multipart/mixed; boundary="------------lc9NsThzkDEG0rUbHzJI36Wt";
+ protected-headers="v1"; hp="clear"
+Message-ID: <834c266a-eb07-4427-b1fa-5c6508a5ce32@gmail.com>
+Date: Tue, 24 Nov 2026 17:13:15 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 3/4] arm64: defconfig: update the Qualcomm Crypto
+ Engine entry
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>,
+ Stanimir Varbanov <svarbanov@mm-sol.com>,
+ Eneas U de Queiroz <cotequeiroz@gmail.com>,
+ Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
+ Eric Biggers <ebiggers@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Russell King
+ <linux@armlinux.org.uk>, Abel Vesa <abelvesa@kernel.org>
+Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, brgl@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261120-qce-fix-self-tests-v12-0-b5a2a44bc5ae@oss.qualcomm.com>
+ <20261120-qce-fix-self-tests-v12-3-b5a2a44bc5ae@oss.qualcomm.com>
+ <9faa6fce-594f-4556-b5ab-6aa73330da8d@kernel.org>
+Content-Language: en-US
+From: Demi Marie Obenour <demiobenour@gmail.com>
+Autocrypt: addr=demiobenour@gmail.com; keydata=
+ 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
+ +MYSfkEjBz0E8CLOcAw7JIwAaeBT
+In-Reply-To: <9faa6fce-594f-4556-b5ab-6aa73330da8d@kernel.org>
+
+--------------lc9NsThzkDEG0rUbHzJI36Wt
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Le mardi 20 octobre 2026 =C3=A0 11:37 +0200, Sofus Forstreuter a =C3=A9crit=
-=C2=A0:
-> Many drivers use tile_cols and/or tile_rows, so make sure they are
-> valid.
+On 11/21/26 7:22 AM, Krzysztof Kozlowski wrote:
+> On 20/11/2026 20:34, Bartosz Golaszewski wrote:
+>> Most Qualcomm SoCs contain the QCE hardware offloader. The crypto driv=
+er
+>> for this IP is being split into a smaller core stub that doesn't regis=
+ter
+>> the crypto algorithms on its own AND an auxiliary driver than handles
 >=20
-> Increase V4L2_AV1_MAX_TILE_COUNT to MAX_TILE_COLS * MAX_TILE_ROWS
+> This part is fine...
 >=20
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Signed-off-by: Sofus Forstreuter <sofus.c@icloud.com>
-> ---
->  drivers/media/v4l2-core/v4l2-ctrls-core.c | 15 +++++++++++++++
->  include/uapi/linux/v4l2-controls.h        |  2 +-
->  2 files changed, 16 insertions(+), 1 deletion(-)
+>> the crypto part. Update the arm64 defconfig to only build the core par=
+t
+>> by default and leave the choice of building the crypto part to the use=
+r.
 >=20
-> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4=
-l2-core/v4l2-ctrls-core.c
-> index 661a3a25da52..922cf74c4eb8 100644
-> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> @@ -800,10 +800,25 @@ static int validate_av1_film_grain(struct v4l2_ctrl=
-_av1_film_grain *fg)
->  =09return 0;
->  }
-> =20
-> +static int validate_av1_tile_info(struct v4l2_av1_tile_info *ti)
-> +{
-> +=09if (ti->tile_cols > V4L2_AV1_MAX_TILE_COLS ||
-> +=09    ti->tile_rows > V4L2_AV1_MAX_TILE_ROWS)
-> +=09=09return -EINVAL;
-> +
-> +=09if (ti->context_update_tile_id >=3D ti->tile_cols * ti->tile_rows)
-> +=09=09return -EINVAL;
+> but here you miss answer why. We do want the proper driver, not only th=
+e
+> stub, no?
+>=20
+> Best regards,
+> Krzysztof
 
-Make sure to update std_init_compound() so that the default passes the chec=
-k
-please.
+Most users don't want to use the Qualcomm Crypto Engine.  It is
+significantly slower than the CPU, its driver has a history of bugs,
+and operations that don't meet certain fairly arbitrary constraints
+fall back to software anyway.  However, most users _do_ want to allow
+the interconnect to power down, which is what the stub driver does.
+--=20
+Sincerely,
+Demi Marie Obenour (she/her/hers)
 
-> +
-> +=09return 0;
-> +}
-> +
->  static int validate_av1_frame(struct v4l2_ctrl_av1_frame *f)
->  {
->  =09int ret =3D 0;
-> =20
-> +=09ret =3D validate_av1_tile_info(&f->tile_info);
-> +=09if (ret)
-> +=09=09return ret;
->  =09ret =3D validate_av1_quantization(&f->quantization);
->  =09if (ret)
->  =09=09return ret;
-> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2=
--controls.h
-> index d17e41d51d2e..abdfa102a77b 100644
-> --- a/include/uapi/linux/v4l2-controls.h
-> +++ b/include/uapi/linux/v4l2-controls.h
-> @@ -2939,7 +2939,7 @@ struct v4l2_ctrl_vp9_compressed_hdr {
->  #define V4L2_AV1_MAX_NUM_PLANES=09=093
->  #define V4L2_AV1_MAX_TILE_COLS=09=0964
->  #define V4L2_AV1_MAX_TILE_ROWS=09=0964
-> -#define V4L2_AV1_MAX_TILE_COUNT=09=09512
-> +#define V4L2_AV1_MAX_TILE_COUNT=09=094096
+--------------lc9NsThzkDEG0rUbHzJI36Wt--
 
-Hmm, added Daniel in CC, no idea how we ended up with 512 here. This will
-increase MTK insance size, but the communication with the firmware seems
-dynamic.
-
-Hantro is limited to 128 and properly reject anything above. So in all, sho=
-uld
-be fine, unless there is a problem with MTK firmware, which which case I'd
-suggest to program the original limit in there. Also added Xiaoyong in CC.
-
-> =20
->  #define V4L2_AV1_SEQUENCE_FLAG_STILL_PICTURE=09=09  0x00000001
->  #define V4L2_AV1_SEQUENCE_FLAG_USE_128X128_SUPERBLOCK=09  0x00000002
-
---=-TfGKB/izRKTkKjOJIU01
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+--------------HRJ667nozFI7pDuLiKLXtKsh
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawYL4wAKCRDZQZRRKWBy
-9AqIAQD/Po4bqlGbwwvzn3azk4B+6lvUS+G/w/qpKmt706DCrgEA7eZ3FFzsMcQl
-GNrZH0OYicvPvO4L1n4kg3NLn/HwGgg=
-=kmno
+iQIzBAEBCgAdFiEEopQtqVJW1aeuo9/sszaHOrMp8lMFAmsGDAYACgkQszaHOrMp
+8lNsng/+NMmecEwic70Ntrxi+PaLjYhERE/2Y0pncM9FfvCEV88uvNtEmnzf5s03
+qwbguuFGvVa3220G3VvmAWRtz5ai/nL4yZzT28GuBmD5WyMgrbpHJ+/ovO6Mzrc7
+y3uA/joBKmD3/Mornqp6id/EN15XlHnRZTO7cYZBELp+VJhdMGnQ3pu1Iiq4GhBx
+bdcLrTAJvkUG2DPvozkBz+xOmsnTsGmljviZD37JimbQ9NRh/pxHO+5HzJNEqNen
+3ee/o1i7BN9ThwxKyOSUWVrVdxhep0StfCc83+ickZIVtC3cR54zy7FToQlsKIRJ
+VioxblgFtBTI7i0JgGo2VaCWSR2sy6w0twJSeb+6fyQYOPcjRyoOvqEBzOeysvPc
+LD+pqC94Tvbka4UPtBZXMuX574qkrfy4ELlGcqtdGF3rGqvTMlZSuR9Z3Wr4607v
+j1yibCVtrkWhl1QWHh7PhITv73Lxy3ZHOj084OL5CQhREGE+xlqSGqnzs9nKlhoM
+sZ3f4IbI9yu05BdRt7+k+k6XjuiAd6LosIIzgSFqROoi1M8SlGtuhCWCF6j4i7vc
+tQUP1SMlNvblhXonfqD3OH9fuR2epqGn6QgpRmvgB81utzhjwt6U+rzi3+iX/HO+
+siMLhb/S1P7Qrd1Me4R0a79ixD2BUt2uTtlO/jqMw9N9q8wc2bY=
+=O1EQ
 -----END PGP SIGNATURE-----
 
---=-TfGKB/izRKTkKjOJIU01--
+--------------HRJ667nozFI7pDuLiKLXtKsh--
 
