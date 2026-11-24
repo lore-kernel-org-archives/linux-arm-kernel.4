@@ -2,92 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629F7606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E565606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=abLfEiPY;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=N/Sbg+Ag;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=rEqzJam3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o2VrOapV;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=WHotxxso;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=PpFLp6ZM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
 	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=; b=abLfEiPYMaxSq/
-	OK/V+tCkjkqMIKifW42Eu26TOah0tYZOOvjGhOoOzuVJ+QzJ+KUeVOMmOLgxzXlOhYN8ClDbmj2WW
-	7cx9tLTn/OlBZyXP5s6x/eUFZAZVV4nWXd16JRcIaumDii3sHCOQymYouIzxrAMgbVVm7+iS47k5a
-	glAIYLGDIduLWogy5EHVxZGf8xPjvKB9WxssjUv5ln3+u8RHf/j+Pcz/aJyVHf5ClYg0pZxsmt5PM
-	qr2E5d1djX1uTTnDZNEllgyieur2rwGG/JUbwZ4SnXFlHJN4XHnpz4xP2mYU8RP5JvzCi2Fvto1Uv
-	ILvA8D7QqA+a976uM92A==;
+	List-Owner; bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=; b=o2VrOapVucNYQE
+	8957mS9OlasHyzlYOzOYq10Src84V0bXol+iVNISsKDMXzzInhANclT+xqxvtSUdQbNWEsmYt+Hjx
+	MGeicUfUFPmRG1PfJghGaYFZ6gSxQEsUAnw0A/pGYuZBV3mfexBHxOtCScKdpLKd2DTel3ZH5KzZ7
+	OtHBgXEx/6C0lCZlbw+09m4a8wi5Iz/FGbBsYy+RTG6yzYcR0wmqRrWjDbwUYivWBUlzuuSzy6+wg
+	oZfbR5IuksKY7EX7WnFCQLLr4KKkQ6TTZqvv2PdyXM0w2E2mfogCby0axnmvh7rk90EHSTtIJca9E
+	/Vz2IMvqjqUOpnGc/0JQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrqG-00000006oaz-37H9;
-	Tue, 24 Nov 2026 14:49:56 +0000
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.174])
+	id 1xVsR7-00000006tS4-0OLx;
+	Tue, 24 Nov 2026 15:28:01 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrqE-00000006oaG-24kW
+	id 1xVsR1-00000006tRU-1vXx
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:49:56 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795531782; cv=none;
+	Tue, 24 Nov 2026 15:28:00 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795534069; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=dAhxvXSmiBKKgb+45n/Xo2CovjgV+ziY2NGUH39PRAgbojolpm7QAV9J8iH/VHI8lp
-    vRQjzKyGLa2sIaZey9c0yGyB86RaeoiILF7Re6bXPZ9r457LeN58qeC0oYIXiInA1tWK
-    wC1SogVCryh4BhTlQQkfHf4sukwTlp71AdScyOS8P8tvO3Zdv60Xm0owzxKAajk95vS+
-    1H88tKpRM2nZWmXxZZqfpSTMyoHavCSlba2yAvAgW2PT7Jlv12GjYzDJu1ICrT1q3asc
-    tY+O3qeRpm0wAmjsCMNWoXtq+XOfvMAmp1Wv/aQrh2bfEOTEr7D6ydZ3tZz+Z+VO4pal
-    DzOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795531782;
+    b=ZOdacTezD0/O1W8pWgGGy3eS+6bUkGPBr3WXwIkf/Uo3ue55cxbtyUnn0eAB5jFYW8
+    4m7kfhwGw/tPfp6BTHByjdH4SzMgyMXJ4QP/eLhBM8g1mSQLOVBwEeOoWWiTZWcd6XPj
+    qm9qD9E56JyE5v4mUHvuTqh6hONosle/8fRe8YrIxADLZhaB/i3ouJjAN5dQ6K+y+93u
+    NiOeIRpLldwX5q0Nql4uhWNeOX9nnZMTp3b0Rb+sMuprOD2ic9HjmtSPqWbrHO0Wi55d
+    ioPA+P0KDLg/EAQME5rNFLtRiVyVNsaAv32eq9x4PeMajpbUPhT9FEaa7zP4rlfUHdmo
+    kn6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795534069;
     s=strato-dkim-0002; d=strato.com;
     h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
     From:Subject:Sender;
-    bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=;
-    b=jDg6AFH5LjmDFwA4NGvBKA+q1U2abd7DnIAXarOnPKt7NHqW+u/64lLSPANxGEK1VX
-    UpMFbnaTSDvwECqOU8JxNnZfAyfigX5xloUNUjjX69QrTLs8ok2VvcSbFMYPXupUbpRn
-    vVB8CS4yEw0nRRfApHPN3v4Dwp8aH1yX/fF+q8eLff20QD5QHlZoGz+S4RxhJIWcHxka
-    DiW9fuiMcVIlIc24jRTJKYRvgoB/ADzjRKpm4/5oUuJ+YW+7cI+Lc5QejG54yRAe0ZZv
-    27raNlVGmN84OLBA7xnYyFZv1bd+6YoeJ6Wn7ufmWq/c8+KXOxeRUeiFlQlmPHIYC8K+
-    AUew==
+    bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=;
+    b=DzOJdFExQ63HcAPaB5bp+F6rlFv20cAjKPGXiTfD3ARPuLTFO8jxpFwlSJZaWJIVS6
+    m3/aVAzoMGk+cb/s4DRe2uQXAHAi7sV81QuhX5dsk82IWIxkiD8ntWoAHWdOfJmLX99I
+    vO3aF0X8VF5A5zzs/MwPSIM9ZfYiiInqOyvh8+TZAuEz9vZbLnoPQ3niI0lkhQ10ZYG3
+    9aTKQ0xZzJIL1LNVwg5LQa8dZHQjXHqCzeW1DA0BthvG+Q7XqOVTVUgofJjE/GJuVUIv
+    nvhWN931wYMWxqUA8dqBMPOpBMaFwUe1zbDOs9oV0ybZsfXQ71Vz0oaZCrP2qvzi7MPT
+    KtDA==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
-X-RZG-CLASS-ID: mo03
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795531782;
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795534069;
     s=strato-dkim-0002; d=goldelico.com;
     h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
     From:Subject:Sender;
-    bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=;
-    b=N/Sbg+AgTWDdgJw51hIAma9sfrPivzPQegGl0vLQWGYBbSJBkXVyCYLRhqlEGcEufy
-    H98CuNQgZYNZfAe2KHqkqHpECe+3AZIcmqimC5b41g5+tKVdPt94+sSLa8eovoCto+gt
-    qPCFhGR3RNfKym/3WUmZdDaWaFmCZCpAvGgsNLYsfpgTfAzVv/waGUU/bKxFZk95KV2C
-    eLjkSQubqHFQYmqbo/aa778gQfHpVRX5Qtygka3J0ZSXfkOPfsfGIzPYJfKz/o80Zzw4
-    ETIwQfDUD+zvvsLFLU9o7Uu+oXflG7NsGgK5tYNnHPOL3oMmJ23me4MzkUkB3gDTXrW9
-    u9Ng==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795531782;
+    bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=;
+    b=WHotxxso2lz+TYmIbQErxcF/C0jaH5fk+rAzl09i1EJ6wcRKkm6Rp70aAoaN6b6nji
+    UdyCX+9DHv4snG435rBPWmHUTzNVtgQB3lLKwO7AezmXNY0Jv7KQlDh6+m4Xo3du70js
+    20jBe/Q2Ry0MDGVPYiOwowvnxZnxSxlbf9Mqohd3eWcb4SXJQH9qAWcKzU2jT7fZE9F3
+    qrHZtuWxBLw4/CTqb2mfzlQNR6HktXKQW8oFO4XEldybnDjjsiJMMRWuXaqm7KwftVKf
+    IRzlHlSoj2LbePLwzmHToIsZj3yGACdQ/Fd/dJXa8kf9J1hM2nB5RJpIU90YoD0YxRcu
+    lOHg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795534069;
     s=strato-dkim-0003; d=goldelico.com;
     h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
     From:Subject:Sender;
-    bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=;
-    b=rEqzJam3Vr3+e5NVXTNgGbpD3iSTySLuY2je+ZcXhqTyuDaiFHrTZ0UsGJGRH23Yco
-    oJ8CIE1fjolz78Sq9xBQ==
+    bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=;
+    b=PpFLp6ZMiP3xDVaWjY4phl3aiPj4zX8gQ/xc9v/XvwYLJ173GZ65l0e91P3FhNaxTc
+    sdF6rCGB33CQHIoNxyCw==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVWUgMvoVkTTR2P7jtjQyY2AeEP/F"
 Received: from smtpclient.apple
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AOEne3fT
+    with ESMTPSA id Qb56a22AOFRl3rJ
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 15:49:40 +0100 (CET)
+    Tue, 24 Nov 2026 16:27:47 +0100 (CET)
 Content-Type: text/plain;
-	charset=us-ascii
+	charset=utf-8
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.11\))
-Subject: Re: [PATCH v2 08/20] dt-bindings: mfd: twl4030: Document 64-cycle PWM
+Subject: Re: [PATCH v2 00/20] ARM: omap3: pandora: Modernize audio and
+ backlight to use Device Tree to finally remove pdata-quirks
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20261124-neon-noble-seagull-df2d40@quoll>
-Date: Tue, 24 Nov 2026 15:49:09 +0100
+In-Reply-To: <20261124151318.GA536798-robh@kernel.org>
+Date: Tue, 24 Nov 2026 16:27:16 +0100
 Cc: Linus Walleij <linus.walleij@linaro.org>,
  Bartosz Golaszewski <brgl@kernel.org>,
- Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
  Lee Jones <lee@kernel.org>,
@@ -128,15 +128,14 @@ Cc: Linus Walleij <linus.walleij@linaro.org>,
  letux-kernel@openphoenux.org,
  kernel@pyra-handheld.com
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <B1F1FE54-9C85-4708-AB24-D621582F555D@goldelico.com>
+Message-Id: <1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
- <8e0c47487add0fa1bc0dad9b1bceef5ebf8071d4.1795505160.git.hns@goldelico.com>
- <20261124-neon-noble-seagull-df2d40@quoll>
-To: Krzysztof Kozlowski <krzk@kernel.org>
+ <20261124151318.GA536798-robh@kernel.org>
+To: Rob Herring <robh@kernel.org>
 X-Mailer: Apple Mail (2.3826.700.81.1.11)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_064954_945479_4C78E9C2 
-X-CRM114-Status: GOOD (  29.16  )
+X-CRM114-CacheID: sfid-20261124_072756_807909_227D830A 
+X-CRM114-Status: GOOD (  32.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -148,111 +147,231 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Krzysztof,
 
-> Am 24.11.2026 um 15:40 schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+
+> Am 24.11.2026 um 16:13 schrieb Rob Herring <robh@kernel.org>:
 >=20
-> On Tue, Nov 24, 2026 at 08:25:48AM +0100, H. Nikolaus Schaller wrote:
->> Document the optional ti,twl4030-pwm-frame-64 property for the
->> TWL4030 PWM controller. It selects the 64-clock-cycle frame instead
->> of the default 128-cycle frame, doubling the output frequency and
->> reducing duty-cycle resolution.
+> On Tue, Nov 24, 2026 at 08:25:40AM +0100, H. Nikolaus Schaller wrote:
+>> PATCH V2 2026-11-24 08:26:00:
+>> Changes in V2:
+>> The series has been reworked and expanded from 16 to 20 patches,
+>> addressing review feedback and issues identified during hardware =
+testing.
 >>=20
->> The selection is explicit because the driver does not know the PWM
->> input clock rate and cannot derive the hardware frame length from a
->> consumer-requested period. The shorter frame can reduce PWM LOW
->> intervals during startup mode detection of LED drivers such as the
->> TI TPS61160/61.
+>> Audio and power management:
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+>> * Replace the TWL4030 REGEN regulator implementation with an optional
+>>  GPIO and a fixed regulator described in Device Tree.
+>> * Extend the existing PCM1754 codec driver to support the PCM1773
+>>  instead of introducing a separate codec driver.
+>> * Add power supply and power-down GPIO support to the codec driver.
+>> * Improve error handling, resource management and power sequencing
+>>  in the codec and sound card drivers.
+>> * Update the sound card and codec bindings and Device Tree nodes.
 >>=20
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
+>> PWM and backlight:
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> * Add optional 64-cycle frame support to the TWL4030 PWM driver.
+>> * Add an optional enable guard period to the generic pwm-backlight
+>>  driver to prevent the TPS61161 from inadvertently entering
+>>  EasyScale mode.
+>> * Adjust the Pandora PWM backlight configuration accordingly.
+>> * Remove the obsolete CONFIG_BACKLIGHT_PANDORA option from
+>>  omap2plus_defconfig.
 >>=20
->> Notes:
->>    Changes against V1:
->>    - Revised commit message to focus on the binding and the reason
->>      for explicit 64-cycle frame selection.
->>    - Commit-message review assisted by ChatGPT.
+>> Device Tree and general cleanup:
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+>> * Correct and validate the affected Device Tree bindings.
+>> * Reorder the series so that bindings and supporting drivers
+>>  precede their Device Tree users.
+>> * Improve commit messages and fix coding style issues.
+>> * Clarify the original authorship and take responsibility for
+>>  contributions previously signed off under a pseudonym.
 >>=20
->> Documentation/devicetree/bindings/mfd/ti,twl.yaml | 9 +++++++++
->> 1 file changed, 9 insertions(+)
+>> Review feedback addressed:
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+>> * Mark Brown suggested representing TWL4030 REGEN as a GPIO rather
+>>  than a regulator and reviewed the original standalone PCM1773
+>>  driver, which has been replaced by extending the PCM1754 driver.
+>> * Krzysztof Kozlowski requested corrections to the Device Tree
+>>  bindings, proper schema validation, improved commit messages and
+>>  clarification of the original contributor's authorship.
+>> * Andreas Kemnade suggested handling the TPS61161 initialization
+>>  in the backlight layer. V2 implements this through a generic
+>>  pwm-backlight enable guard period. His comments on clock modeling
+>>  and patch bisectability were also considered.
+>> * Daniel Thompson provided Reviewed-by for the original removal
+>>  of the Pandora backlight driver.
+>> * Issues identified by Sashiko and Rob Herring's automated DT
+>> validation were reviewed and addressed as applicable.
 >>=20
->> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml =
-b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
->> index 9cc3e4721612e..f458f0d80f2cd 100644
->> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
->> @@ -396,6 +396,15 @@ properties:
->>       '#pwm-cells':
->>         const: 2
+>> Many thanks to everyone who reviewed V1.
 >>=20
->> +      ti,twl4030-pwm-frame-64:
+>> Validation and testing:
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> * Based on Linux v7.4-rc4.
+>> * All 20 patches checked with checkpatch.pl.
+>> * Remaining checkpatch warnings and intentional deviations have
+>>  been reviewed. In particular, ENOTSUPP must be retained in the
+>>  GPIO set_config callback because gpiolib handles it differently
+>>  from EOPNOTSUPP.
+>> * dt_binding_check and dtbs_check passed for all five affected
+>>  Device Tree bindings.
+>> * The complete series has been successfully built and tested on
+>>  real OpenPandora hardware.
+>> * LCD operation, PWM backlight brightness control including
+>>  brightness zero and power-down, and audio playback through the
+>>  internal speakers and headset have been verified.
+>> * Audio capture was not tested.
+>>=20
+>> PATCH V1 2026-07-11 08:02:02:
+>> This series modernizes the OpenPandora handheld support by converting =
+the=20
+>> sound subsystem and backlight control to proper platform drivers and =
+Device=20
+>> Tree definitions.
+>>=20
+>> The primary goal is the complete removal of =
+omap3_pandora_legacy_init()=20
+>> and the elimination of the last remaining user of =
+machine_is_omap3_pandora().
+>>=20
+>> History and Context
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> The necessity of this cleanup was highlighted in several recent =
+discussions:
+>>=20
+>> 1. Tony Lindgren noted that machine_is_omap3_pandora() checks never =
+succeed=20
+>>   on Device Tree-booted machines, leaving the audio subsystem =
+functionally=20
+>>   broken since the DT conversion years ago:
+>>   https://marc.info/?l=3Dalsa-devel&m=3D165632351319716&w=3D2
+>>=20
+>> 2. Ethan Nelson-Moore submitted a patch to replace the macro with DT=20=
+
+>>   compatibility checks (accepted as commit 45efb8fbdae3 in v7.2-rc1):
+>>   https://marc.info/?l=3Dlinux-omap&m=3D177841578110704&w=3D2
+>>=20
+>> 3. Sascha Hauer pointed out that the entire omap3pandora driver =
+fundamentally=20
+>>   depended on this broken machine ID check:
+>>   https://marc.info/?l=3Dlinux-omap&m=3D178048982272252&w=3D2
+>>=20
+>> Design Choices and Implementation
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> Based on these discussions and a long-standing and working =
+out-of-tree solution,
+>> we initially attempted a migration to generic frameworks like =
+simple-audio-card=20
+>> or audio-graph-card. However, the hardware routing peculiarities of =
+the=20
+>> OpenPandora introduced too many functional gaps. Replacing =
+omap3pandora.c=20
+>> entirely with pure DT definitions proved unfeasible.=20
+>>=20
+>> Therefore, we opted to base a new proposal on the out-of-tree rewrite =
+of
+>> the old-style sound board file kernel driver =
+(sound/soc/ti/omap3pandora.c)
+>> into a proper platform driver that cleanly fetches its resources from =
+the
+>> Device Tree, while adding specific handling for the twl4030-regen =
+output
+>> and adapting the pandora device tree files.
+>>=20
+>> Series Structure
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> * Patches 01=E2=80=9306 (Preparation): Move highly specific legacy =
+code to its proper=20
+>>  infrastructure (TWL4030 regulator regeneration and codec handling).
+>> * Patch 07-08 (New Driver): Introduce a dedicated platform driver for =
+the=20
+>>  PCM1773 audio DAC.
+>> * Patches 09-14 (Audio Core): Rewrite the omap3pandora ASoC fabric =
+driver=20
+>>  and update the respective Device Tree nodes.
+>> * Patches 14=E2=80=9315 (Backlight): Remove the custom, legacy =
+Pandora backlight driver,
+>>  convert it to generic Device Tree nodes
+>> * Patch 16: (Cleanup) safely delete the obsolete =
+omap3_pandora_legacy_init().
+>>=20
+>> Notes & Testing
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> * Testing: This series has been tested on real OpenPandora hardware.
+>>=20
+>> Credits
+>> =3D=3D=3D=3D=3D=3D=3D
+>> This work is a collaborative effort by multiple authors over several =
+years:
+>> * Grond <grond66@riseup.net>
+>> * Stefan Leichter <sle85276@gmx.de>
+>> * H. Nikolaus Schaller <hns@goldelico.com>
+>>=20
+>>=20
+>> H. Nikolaus Schaller (17):
+>>  dt-bindings: gpio: twl4030: Document REGEN GPIO
+>>  gpio: twl4030: Support REGEN GPIO
+>>  ASoC: twl4030: Allow APLL rate selection through set_sysclk()
+>>  dt-bindings: sound: pcm1754: Describe PCM1773
+>>  ASoC: codecs: pcm1754: Add PCM1773 support
+>>  dt-bindings: sound: Document OpenPandora sound card
+>>  dt-bindings: mfd: twl4030: Document 64-cycle PWM
+>>  pwm: twl: Support 64-cycle PWM frame
+>>  dt-bindings: backlight: pwm: Document enable guard
+>>  backlight: pwm: Support enable guard period
+>>  drm/panel: td043mtea1: Attach DT backlight
+>>  ARM: dts: omap3pandora: Disable unused DMA channels
+>>  ARM: dts: omap3-pandora: Model LCD power enable dependencies
+>>  ARM: dts: omap3pandora: Describe PCM1773
+>>  ARM: dts: omap3pandora: Switch backlight to PWM
+>>  backlight: Remove legacy Pandora driver
+>>  ARM: OMAP2+: Remove Pandora platform-data quirks
+>>=20
+>> Stefan Leichter (3):
+>>  ASoC: ti: omap3pandora: Convert sound card to DT
+>>  ARM: dts: omap3pandora: Enable audio interfaces
+>>  ARM: dts: omap3pandora: Describe sound card
 >=20
-> Drop twl4030. Properties are not model specific, but should be =
-re-usable
-> among all of devices from that vendor (when applicable).
+> Which of the 7 maintainers do you expect to take this series?
 
-Ok.
+Well, as a contributor for a specific device one is not regularily =
+thinking
+in maintainers work split but about a series to get a device fixed. =
+Which is
+obviously orthogonal.
 
->=20
->> +        type: boolean
->> +        description:
->> +          TWL4030 only; not supported by TWL6030 PWM.
->=20
-> Don't repeat constraints in free form text. Implement proper dt-schema
-> for this.
+I didn't even recognize that this involves 7 maintainers.
 
-Ok.
+Maybe an extension of checkpatch (which already looks into the =
+MAINTAINER
+list) could help here?
 
->=20
->> +          Select the short 64-clock-cycle PWM frame instead of the
->> +          default 128-cycle frame, doubling the PWM frequency. =
-Required
->> +          for dimming inputs requiring short PWM low intervals =
-during
->> +          startup mode detection (e.g. TI TPS61160/61).
->=20
-> I don't get how TPS is related here, but if you mention other specific
-> device then I wonder - why isn't this deducible from the compatible? =
-Or
-> you mean that PWM consumers might need it, depending on  the consumer?
+> Surely=20
+> this can be broken up into smaller series?
 
-The TPS61160 is an LED boost driver used for the panel backlight of
-the OpenPandora.
+Yes it (we?) can. It is just a question how to do it and properly =
+describe
+the dependencies to avoid bisectability problems and avoid that the =
+final
+goal is lost.
 
-Besides being capable of PWM for the backlight intensity the TPS also
-can undestand some 1-wire data protocol. It switches to that mode if
-the common PWM/1-wire input follows a specific timing sequence.
-
-Since we can't reprogram the PWM output connected in the OpenPandora
-to speak this protocol, we have to make sure that the TPS chip never
-enters this mode accidentially.
-
-This feature is part of it.
-
-And since the TPS is not described in the device tree and can not have
-its own driver (because there is PWM and not the protocol) there is no
-compatible to base this on.
-
-Yes, I agree in combination with the comments from Mark that we should
-split the series and better describe this background.
-
->=20
-> But isn't this then dynamic choice - depending on PWM frequency the
-> consumer wants?
->=20
-> Best regards,
-> Krzysztof
-
-I'll collect feedbacks over some days and come up with multiple
-series as suggested by Mark.
+I'll wait a little if there are other comments on individual patches and
+then start working on the split.
 
 BR and thanks,
-Nikolaus=
+Nikolaus
+
 
