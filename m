@@ -2,67 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DB4606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 10:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF71F606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ffna9aV+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lYRtUeJj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AmV/pwXh;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=mHAjw4tY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CD1+BsfXviNOBTgjoME+T6ZfemLBj36tB/SHsRAzkTg=; b=Ffna9aV+nYbJg25jRrWFBoBvPl
-	y16GDXTYNp+okaiIwojXczMBg5/m07/2dRjeUjnATpndRtaxpCFyOykEqoACM3u6VOYjayKmO83SJ
-	CMkPOZARRt3juhYAg+p1g96CwSTOwuOluPmvahcBUHQuFzuXokyGPPwHrPKN2Y93EdlciQ/5CmF3L
-	nRbjK5lht6nqpaPJNx3FNht0O6/+29x3w68BWy79pVIemOfPqeumY4zDlPvgEB4Xq6CrrbWhuURaj
-	+ASskwx/e3eS5+/Yi3O2VcM5tOyjEEYjdvNQvZP97oHsJ2qEbiYp9d5R9kk/dTC9PV8/maKXsvLnc
-	hOcBCBzQ==;
+	bh=KAvHK6j0hREgOFUkVu/pGTkn7fy5PDfJjXV7BZ0L4ak=; b=AmV/pwXhS9j5WCfwsteteAi1Rx
+	dNgEq6gE38knJYa8RB3v1sGZ9Jg9BdR+opE+E5Hm/IgF2VDmE1hU9tlynabPx3M6KoBITUYw9tZTe
+	3OG8oRy0C587OlumcVFMWP767Lmbo8+qtzBAAXL2g4QFoFn2ikRe04e3BNGIrIM2tripnb/bPx05k
+	6a8qpJIehO+y4yImJeYP2qWsGzTZKnOa+5L1SPXfU/HW2Vy2dkhAfWzW1t7iCkl+gnMFVU5B0KxXg
+	6++XLhYpFYamRA7fXkdM2Uyqdr+NSktwV/GpUVrSmntb8FbQ42KfTSBucJ08al/wCUXrX9X93n2ts
+	tyOySBPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoDf-00000006HOg-10IL;
-	Tue, 24 Nov 2026 10:57:51 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVoI3-00000006HgA-3Nsv;
+	Tue, 24 Nov 2026 11:02:26 +0000
+Received: from out-24.mta0.migadu.com ([2001:41d0:1004:224b::18] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoDd-00000006HNz-33u6
+	id 1xVoI1-00000006Hfc-0sYH
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 10:57:49 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 778BE43D62;
-	Tue, 24 Nov 2026 10:57:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44A6C1F01570;
-	Tue, 24 Nov 2026 10:57:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795517868;
-	bh=CD1+BsfXviNOBTgjoME+T6ZfemLBj36tB/SHsRAzkTg=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=lYRtUeJj7MdN89+2/w7nlvHajXR8f0kw6Vuz7SLCW+utbIqoNTx9k2r0F/dO5/UKN
-	 lQqjhsXXgPxkG3vDSj18705imI3JOR4/wA1bMHC7fAE2VCaA+OQ1NZsb5dcsrKXi2K
-	 yulNE/vd7P/aYRAAhPUG26Tj9M8EUoo4rhmFtZMsQcr3QvqExdLOjtxMx8GH0bypkV
-	 O0g/J12wS5KvkIO8HeHWDsIx3fEXyA8USJKlwRaa6FWPQtkOysxKabgZxvU843ZrmJ
-	 f5xYxamrVnLVnI4dO6p/lyndVrehHYheWNVxrf6varNujVu3y+9p1fM++XswpnOCi2
-	 YXmQXTvbYVvRw==
-Subject: Re: [PATCH net-next v2 2/2] net: stmmac: dwmac-motorcomm: support
- Wake-on-LAN from S5
-From: netdev-bot+sashiko@kernel.org
-To: magnusleatti@kernelriot.com
-Cc: me@ziyao.cc, maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- g.nespolino@gmail.com, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Tue, 24 Nov 2026 10:57:46 +0000
-Message-ID: <179551786682.3135.159994678754691253@kernel.org>
-In-Reply-To: <20261120102754.778283-3-magnusleatti@kernelriot.com>
-References: <20261120102754.778283-3-magnusleatti@kernelriot.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Tue, 24 Nov 2026 11:02:22 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=YQOhx28BDze68y36zy90w+D/2RW09RYxRy95T7kvqVE=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795518138; v=1; x=1796122938;
+ b=mHAjw4tYzSAbLJMfkcEYcq0YIf63aj6uOu6qCOkBwPC9lFDTox4JZQHX+hqk/29Qy48Ta4AE
+ 0zsD0hoswVQYR/4upBbAsovAW+PpPOlVCjGJs5pNJR8Mh18Y0wTATB4fnlphyx7P24tdcpzC7BG
+ 8UvW+9cJhuO/KG1gieRzi5LY=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id e2ce8471a6143467;
+	Tue, 24 Nov 2026 11:02:18 +0000
+X-Mizu-Trace-ID: e2ce8471a6143467
+X-Migadu-Flow: FLOW_OUT
+From: Fuad Tabba <fuad.tabba@linux.dev>
+To: Marc Zyngier <maz@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>
+Cc: Oliver Upton <oupton@kernel.org>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Steven Price <steven.price@arm.com>,
+	Peter Collingbourne <peter@pcc.me.uk>,
+	Cornelia Huck <cohuck@redhat.com>,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Fuad Tabba <tabba@google.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] KVM: arm64: Set PG_mte_tagged before copying MTE tags from userspace
+Date: Tue, 24 Nov 2026 11:02:13 +0000
+Message-ID: <20261124110213.587871-1-fuad.tabba@linux.dev>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_030221_423337_6534F8A6 
+X-CRM114-Status: GOOD (  19.86  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,194 +81,124 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issue(s) to consider.
+KVM_ARM_MTE_COPY_TAGS takes PG_mte_lock on a page's first tagging, and
+sets PG_mte_tagged only after copying the tags in from userspace.
+However, that copy faults on the same page if the VMM passes a PROT_MTE
+mapping of the page as the tags buffer. The fault then spins forever in
+mte_sync_tags(), waiting for PG_mte_tagged to be set.
 
-Critical: 0 · High: 0 · Medium: 2 · Low: 1
+Call sanitise_mte_tags() before the copy, so that PG_mte_tagged is
+already set if the copy faults. The ioctl calls it holding a reference
+on the page rather than kvm->mmu_lock, and either keeps the page from
+being freed. A racing vCPU fault or __set_ptes() then finds the page
+tagged and doesn't touch its tags. The guest and the VMM can read
+cleared tags from the page until the copy finishes.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Fixes: d77e59a8fccde ("arm64: mte: Lock a page for MTE tag initialisation")
+Reported-by: Catalin Marinas <catalin.marinas@arm.com>
+Closes: https://lore.kernel.org/all/auPCV6VdMEz4uZkK@arm.com/
+Cc: stable@vger.kernel.org
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+---
 
-- [Medium] In drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c,
-  motorcomm_shutdown() arms S5 Wake-on-LAN even when the eFuse holds no…
-- [Medium] motorcomm_shutdown() makes its wake decision under rtnl (lines
-  379-382), then drops rtnl before stmmac_dvr_remove() ->…
-- [Low] motorcomm_shutdown() calls motorcomm_reset() (line 391) and then
-  immediately reads, modifies and writes WOL_CTRL (lines 394-396), with…
+Notes:
+    Based on kvmarm/fixes (012e4bc01e339), which has the MTE fixes this
+    patch depends on.
+    
+    I didn't go with Catalin's suggestion of a copy_from_user() into a
+    local buffer, since there's no helper that writes tags held in the
+    ioctl's one-tag-per-byte format from a kernel buffer to a page.
 
---
+ arch/arm64/include/asm/kvm_mmu.h |  1 +
+ arch/arm64/kvm/guest.c           | 18 ++++--------------
+ arch/arm64/kvm/mmu.c             |  7 +++----
+ 3 files changed, 8 insertions(+), 18 deletions(-)
 
-net: stmmac: dwmac-motorcomm: support Wake-on-LAN from S5
+diff --git a/arch/arm64/include/asm/kvm_mmu.h b/arch/arm64/include/asm/kvm_mmu.h
+index 32392abf2e21c..d0f66426f139f 100644
+--- a/arch/arm64/include/asm/kvm_mmu.h
++++ b/arch/arm64/include/asm/kvm_mmu.h
+@@ -196,6 +196,7 @@ int kvm_phys_addr_ioremap(struct kvm *kvm, phys_addr_t guest_ipa,
+ 
+ int kvm_handle_guest_sea(struct kvm_vcpu *vcpu);
+ int kvm_handle_guest_abort(struct kvm_vcpu *vcpu);
++void sanitise_mte_tags(struct kvm *kvm, kvm_pfn_t pfn, unsigned long size);
+ 
+ phys_addr_t kvm_mmu_get_httbr(void);
+ phys_addr_t kvm_get_idmap_vector(void);
+diff --git a/arch/arm64/kvm/guest.c b/arch/arm64/kvm/guest.c
+index b7d36c2abfdf9..82911d1287611 100644
+--- a/arch/arm64/kvm/guest.c
++++ b/arch/arm64/kvm/guest.c
+@@ -24,6 +24,7 @@
+ #include <asm/fpsimd.h>
+ #include <asm/kvm.h>
+ #include <asm/kvm_emulate.h>
++#include <asm/kvm_mmu.h>
+ #include <asm/kvm_nested.h>
+ #include <asm/sigcontext.h>
+ 
+@@ -1057,27 +1058,16 @@ int kvm_vm_ioctl_mte_copy_tags(struct kvm *kvm,
+ 			kvm_release_page_clean(page);
+ 		} else {
+ 			/*
+-			 * Only locking to serialise with a concurrent
+-			 * __set_ptes() in the VMM but still overriding the
+-			 * tags. A hugetlb folio is marked tagged as a whole,
+-			 * so its first tagging clears every page.
++			 * The user copy can fault on this page, and that fault
++			 * spins until PG_mte_tagged is set, so set it first.
+ 			 */
+-			if (folio_test_hugetlb(folio)) {
+-				if (folio_try_hugetlb_mte_tagging(folio))
+-					mte_clear_folio_tags(folio);
+-			} else {
+-				try_page_mte_tagging(page);
+-			}
++			sanitise_mte_tags(kvm, page_to_pfn(page), PAGE_SIZE);
+ 			num_tags = mte_copy_tags_from_user(maddr, tags,
+ 							MTE_GRANULES_PER_PAGE);
+ 
+ 			/* uaccess failed, don't leave stale tags */
+ 			if (num_tags != MTE_GRANULES_PER_PAGE)
+ 				mte_clear_page_tags(maddr);
+-			if (folio_test_hugetlb(folio))
+-				folio_set_hugetlb_mte_tagged(folio);
+-			else
+-				set_page_mte_tagged(page);
+ 
+ 			kvm_release_page_dirty(page);
+ 		}
+diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+index a0d4981ebb998..9365d83a646d7 100644
+--- a/arch/arm64/kvm/mmu.c
++++ b/arch/arm64/kvm/mmu.c
+@@ -1598,11 +1598,10 @@ static int get_vma_page_shift(struct vm_area_struct *vma)
+  * able to see the page's tags and therefore they must be initialised first. If
+  * PG_mte_tagged is set, tags have already been initialised.
+  *
+- * Must be called with kvm->mmu_lock held to ensure the memory remains mapped
+- * while the tags are zeroed.
++ * The caller must hold kvm->mmu_lock or a reference on the page, so that the
++ * page isn't freed while the tags are zeroed.
+  */
+-static void sanitise_mte_tags(struct kvm *kvm, kvm_pfn_t pfn,
+-			      unsigned long size)
++void sanitise_mte_tags(struct kvm *kvm, kvm_pfn_t pfn, unsigned long size)
+ {
+ 	unsigned long i, nr_pages = size >> PAGE_SHIFT;
+ 	struct page *page = pfn_to_page(pfn);
 
-This adds a dedicated .shutdown callback to the Motorcomm YT6801 glue
-driver. On power-off with magic packet WoL enabled, it removes the stmmac
-device, then resets the chip so that it re-arms OOB WoL from its eFuse MAC.
-After that it sets WOL_CTRL_PKT_EN, enables PME and puts the device into
-D3hot.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c
-> index 63ce2301a0f69..34abbdb645ecb 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c
-
-[ ... ]
-
-> @@ -363,6 +367,38 @@ static void motorcomm_remove(struct pci_dev *pdev)
->  	stmmac_dvr_remove(&pdev->dev);
->  }
->  
-> +static void motorcomm_shutdown(struct pci_dev *pdev)
-> +{
-> +	struct net_device *ndev = dev_get_drvdata(&pdev->dev);
-> +	struct stmmac_priv *spriv = netdev_priv(ndev);
-> +	struct dwmac_motorcomm_priv *priv = spriv->plat->bsp_priv;
-> +	bool wake;
-> +	u32 reg;
-> +
-> +	/* Userspace is still running and may close the interface */
-> +	rtnl_lock();
-> +	wake = system_state == SYSTEM_POWER_OFF && netif_running(ndev) &&
-> +	       (spriv->wolopts & WAKE_MAGIC) && device_may_wakeup(&pdev->dev);
-> +	rtnl_unlock();
-> +
-> +	/* The netdev is unregistered after this. priv and its mapping stay. */
-> +	stmmac_dvr_remove(&pdev->dev);
-
-[Severity: Medium]
-Can wake become stale between rtnl_unlock() and stmmac_dvr_remove()?
-
-The comment above says userspace is still running, and device_shutdown()
-does not freeze tasks. Once rtnl is dropped, another CPU can take it and
-run "ip link set down" (dev_close()) or "ethtool -s ethX wol d":
-
-phylink_ethtool_set_wol()
-  stmmac_mac_wol_set()
-    device_set_wakeup_enable(priv->device, !!wolopts);
-    ...
-    priv->wolopts = wolopts;
-
-Writes to the power/wakeup sysfs attribute don't take rtnl at all.
-
-In each of these cases wake still holds the earlier value of true. The code
-below would then still reset the chip, set WOL_CTRL_PKT_EN and call
-pci_wake_from_d3(pdev, true).
-
-Could the machine then power on from a magic packet after WoL was turned
-off or the interface was taken down? That seems to go against this part of
-the commit message:
-
-  - Magic packets only. "wol u", reboot, kexec and interface down stop
-    at the remove.
-
-Would it help to call netif_device_detach() under rtnl before unlocking, or
-to check the wakeup settings again after the netdev is unregistered?
-
-> +
-> +	if (!wake)
-> +		return;
-> +
-> +	/* Reset re-enables OOB WoL; left alone, chip arms itself (eFuse MAC) */
-> +	motorcomm_reset(priv);
-
-[Severity: Medium]
-What happens here on boards whose eFuse holds no MAC address?
-
-motorcomm_probe() already handles that case by falling back to a random
-address:
-
-drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c:motorcomm_probe() {
-    ...
-	ret = motorcomm_efuse_read_mac(&pdev->dev, priv, res.mac);
-	if (ret == -ENOENT) {
-		dev_warn(&pdev->dev, "eFuse contains no valid MAC address\n");
-		dev_warn(&pdev->dev, "fallback to random MAC address\n");
-
-		eth_random_addr(res.mac);
-    ...
-}
-
-That result isn't stored anywhere, and the wake decision in
-motorcomm_shutdown() doesn't check for it.
-
-The commit message says that after this reset the chip loads the eFuse
-address into the first MAC filter and wakes only on that address. With an
-empty eFuse there is no address to load.
-
-Wake is still armed, and ethtool still reports "Wake-on: g". A magic packet
-sent to the netdev's address can't match, because that address is random
-and changes on every boot. The user gets no warning.
-
-Should the shutdown path skip arming, or at least warn, when probe fell
-back to a random MAC?
-
-The commit message also says:
-
-  - It wakes on the eFuse address, not the software one. Same as r8169.
-
-That is only true when the eFuse is programmed. rtl_shutdown() writes the
-reported permanent address back into the receive filter before arming:
-
-drivers/net/ethernet/realtek/r8169_main.c:rtl_shutdown() {
-    ...
-	/* Restore original MAC address */
-	rtl_rar_set(tp, tp->dev->perm_addr);
-
-	if (system_state == SYSTEM_POWER_OFF && !tp->dash_enabled)
-		pci_prepare_to_sleep(pdev);
-}
-
-So r8169 always wakes on the address it reports as permanent, including a
-random fallback. Could the r8169 comparison be qualified?
-
-> +
-> +	/* The reset has cleared it. Without it the chip does not wake. */
-> +	reg = readl(priv->base + WOL_CTRL);
-> +	reg |= WOL_CTRL_PKT_EN;
-> +	writel(reg, priv->base + WOL_CTRL);
-
-[Severity: Low]
-Is it safe to change WOL_CTRL immediately after motorcomm_reset(), with no
-delay?
-
-motorcomm_probe() does the same reset and then waits:
-
-	motorcomm_reset(priv);
-
-	/*
-	 * After system reset, the eFuse controller needs time to load
-	 * its internal data. Without this delay, eFuse reads return
-	 * all zeros, causing MAC address detection to fail.
-	 */
-	usleep_range(2000, 5000);
-
-The commit message also says the chip keeps changing its own state for
-about 2-3 s after the reset.
-
-On some boards that post-reset load might write WOL_CTRL, for example
-through an eFuse patch entry. Could it then overwrite WOL_CTRL_PKT_EN, so
-the device powers off with packet wake disabled?
-
-The 5 of 5 result shows this works on the board that was tested. Even so,
-should this path use the same post-reset delay as probe, or read the
-register back after writing it?
-
-> +
-> +	pci_wake_from_d3(pdev, true);
-> +	pci_set_power_state(pdev, PCI_D3hot);
-> +}
-
-[ ... ]
-
+base-commit: 012e4bc01e339a65dc7c59181b5efb33b171d12c
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120102754.778283-1-magnusleatti%40kernelriot.com
+2.47.3
+
 
