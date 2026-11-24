@@ -2,119 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6FA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA75606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=onUyOWnB;
-	dkim=pass (2048-bit key, unprotected) header.d=fastmail.com header.i=@fastmail.com header.a=rsa-sha256 header.s=fm3 header.b=LTwn8sI/;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=VOQFLsvb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iAVQPQVW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PQYQDj/+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=l5HWvAdbteddFFTaYe5iMeBI4K69O1UpafXxfUHxKDo=; b=onUyOWnB/A/zp69wHXi3JgVIz4
-	EOMVS76JQPoRWlinSkSdpIHGiLm9GCBmaFGTtSdnmfOIQQV6CZq7WKwNKXEKZgE7HrQsUkH/frX/3
-	u0Nd+zouoc3GPfAOAkqma+3Pw67o+t8auVCa2K88r+K0X/vDUQqhgdrW/ecRaCjW7mttjvolsC7LT
-	ErxqMdstvH3BbeFdlW5/UmBL9Wp5n/I6sGnFo86Urq/903wcZicHZY6VqtIwGVDYHZMijhUyM25l5
-	n0+oH3cJhiMJnSkULqcbgjh4ue4A20xNSZQOmbr0jf54HGWe2kEocZdm9ttbrrgzr4iIajsSrVgxT
-	Pd6SuP2w==;
+	bh=DgGrkzJmFZWQtPibLYb2wzpNsiS5IONW5wJ5P8ZexXg=; b=iAVQPQVWLb3nSl4UbhzaZIl0kD
+	x9ahoYtCmLlmLU3lm46BZp5KJnVlIJUCcvu7qhilTm9zEQMMmpUN6ZHlHOmQnyN9NjGDY6Z3L3QUz
+	hL+YpMpnsQ8UaTUWDERLD34NAJ0SPLPAiB55BqbyAVue+t8dZY+fvzn42aiSRMUdMhqLXXxe2167s
+	MbLGlJ1pkU8kfuWBKLc51tIxpYHS6XB+C3lJsxWegGmZnDbiUMH9HK8/JpKUZUZAU8trjUt5yV1/M
+	LXtkEClvYqB+v/7ZA8pOX9J/uvRDFAOwWQBtV7UjYNmnWe3+p30O1kvsFqNx2HbYzyZaN0hH0YKZW
+	PNbgphxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVvqD-00000007ZFG-0OUz;
-	Tue, 24 Nov 2026 19:06:09 +0000
-Received: from fout-a6-smtp.messagingengine.com ([103.168.172.149])
+	id 1xVvrT-00000007ZOY-1d4L;
+	Tue, 24 Nov 2026 19:07:27 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVvq5-00000007ZDc-0ORq
+	id 1xVvrS-00000007ZOK-0Rhc
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:06:02 +0000
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfout.phl.internal (Postfix) with ESMTP id BDE84EC0607
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 14:05:57 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Tue, 24 Nov 2026 14:05:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.com; h=
-	cc:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=fm3; t=1795547157; x=1795633557; bh=l5HWvAdbteddFFTaYe5iM
-	eBI4K69O1UpafXxfUHxKDo=; b=LTwn8sI/EXwgiEBxzHJlfPafvpdABc5S8o0MC
-	e0Hyqo/i+Qyc44R/V1MaIRxJlZgE2zvu5t6N49Wl2MXZ5Zc1YoWsVoraHme5WZic
-	I7ZXhsBaB3q24NvTou36lP3u+2SAXUaLfw0kN2zNXOMBGPxceEYBmso/MNdiTbqf
-	mXSKwiZJTriqeh3YBVUzSlofbsKcF/az9AwASFFmLI7h/XtnuBBwpn9/BkGXKK3Q
-	cKuIKAxevr7huFL+c67ts5BCdNYPnQorDBVffOH0quUZEIBOoqKnXuldJUkHLG4f
-	Rt1jHU6NOTEmguqhQqeBci5U4yD8r+2KViyKWEjUamZ3kYXAQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-	1795547157; x=1795633557; bh=l5HWvAdbteddFFTaYe5iMeBI4K69O1UpafX
-	xfUHxKDo=; b=VOQFLsvb2L/iWxAWQ2ItYi2TqTXQb+S6L2f8nGHdNW1kplHlxog
-	Yfr0F9EQdU1JWX+HYx7yWAuMSBOGuNLiOUV/thRFu2zovlqAzqpo2C0XcPTK9gN+
-	XPn41pHC+X/bt9DV+jQNvRikCqg5fQEiLUrlEcPafPb+Lzlhc+9LMUOcdraily//
-	4tCJepp5QmyDVDAF0tK3sE9OX7ltx8SYMnd5dNYHKzD1RwtnP8j6RaLQn9cRzSXn
-	1g8pX/+Pw/7ZVAolUI0lCQNcxRyjXjEWSZBwOBmrLwhIHscG3kH5/YqzmZZo8QTY
-	0ckfQhPCP24bj0pQkYYFsYydPaq8OpHS3TQ==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=fastmail.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795547157; d=fastmail.com;
-	mf=PGJhcmFudEBmYXN0bWFpbC5jb20+;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm3:rsa-sha256:LUMrUhRwAcsSJPoL2+lpdo3Rzt1Y7aOGOpMFjRXtd5G1Syj
-	75mGOzii+3LSI5geyG+62wrECS7iDo4FNKi+jbUVRvSTe4HmnuiVy1CVqBMEGOka
-	Y0cuwio1AV8csrQPNy+T5qgCIW8AlbYhDKgfS986dMnYMFYuGRvvmfgcU+gugukt
-	ywVqd803dgPR6Y7IDA+0wB8Omo3liKJVfyX5vh6j7PWMyV/p547WgPEm74fV+Xwu
-	Nq7pYdCzIG4NLVe6VYhbyi7cEcjiL+STezO45na4nHATDraOJcfKawQTQYHEshZo
-	UIVoMG0RxXDXx55n7tC99Wc4SSoJrq7mgMxzJJA==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=9;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	message-id,mime-version,subject,to;
-Message-Instance: m=1; h=sha256:aUiUWa/LPAy/w+qjc1ZBk8coGBB9ccAsxK/LG3RDTak=:Kn1fNPjTECSVUwdX2gQH1Ss0mfOa3spfmrMa3HT0hOI=;
-X-ME-Sender: <xms:FeAFa3Y7W0P3GVAAf-Q8nVU2cxOZ539lS6h3fABX1u7tLPsQXu3xZg>
-    <xme:FeAFa_WuCM5BwbYC91EqBuGW64k_e--Y-fr3Cn3OI-MMCaJbWIN9Hi1sKWu0fRQ9T
-    zAcgP3botd39WBaNke2qSOAu92xjUt_HrnDi6kJhX8paQZ7eYM>
-X-ME-Received: <xmr:FeAFa1jk95xj769_Q7H-irdf6uuGx2c8PdrQrfxC70rmZG5WuhkbN4Rx>
-X-ME-Proxy-Cause: dmFkZTGqoSm+JEsSMyskpHQmeWD+Nm5bmhoCsG8pT8fQLuM9Ju4YoAwUT0ToiqVhmRSyCa
-    vSjDWaxDytj5eiI7p0wy+/AurvJcqrEy8bzhm0wAfHgrWKozIVKJgBiYo2JHmz7KXydIRC
-    bc9BBbIYHXlm7X0ugmVtNaN+7/HAoJWrxfeZu0MyusSAgpCzWe901ILNd3X2eynA8jnSRq
-    +m1AwTUzDlzDIF4zRAehZ5A2y/guYn7E6vXNc1fxsFLlADIhbSFafEEgvz6s9zRyavNJn4
-    +Wx77C3uXdOHZM+MmA9GVKre7yG2fFJB+aaR8FuqmVV+9cZre8eEDda3D5o0FZdZ93DBXa
-    Lfps5pgF9VlKLxhBEui/q1Ciy14ylaKjPk/k8r2Ji+8N6rTL+sg9tcQ8uvYddq1bFtrfFK
-    2DeGsrz3dHWMm7f/OTNyQ1KFCV7DNYNf3RF+ZAV9uVigLPDrWVtvXhM8AjRCcS5IMmr7it
-    4PfTCPaOE9Fa4xqFrwkD7umajikYmU2c2MzDsx70DP4aNL21ShJygDUTPNg+NZJq+oeyZO
-    DaQ+n9ANgJprZO+mvFOjgg+sBKTaSby7uqk297y3L05yJ2cK9GU11Y+LK/CG6khuY+Nxd8
-    4jW71Svt0ePsbEbDMFIDMnP3iWH5TSWOUfJijat7yemdTgwZXYdUavGYn2FQ
-X-ME-Proxy: <xmx:FeAFa9uKRFXTzrZxIb6b7_bFUR9J_aeiZASAvrM5rtjkBXoeT5PSWg>
-    <xmx:FeAFa-47lxchOh-nFQAyc2ZdWg91FPkjNe8H75y3vhrOvYEsX06qSA>
-    <xmx:FeAFaxPIkXKlhyuFy5vT6FYmM9wICeT5Rt-0ZEPBJlsngXu2pnK_ig>
-    <xmx:FeAFa0sRzROJfUMXFAoO02txCoW4b-KViLr3FL4MOrEaEMxbs9A4aA>
-    <xmx:FeAFa3aQJ_G5eKKMpvelD6cm69bhZ8k2O-e3Wp0LXm10exBpJlsecR_X>
-Feedback-ID: i9dce4b48:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 24 Nov 2026 14:05:56 -0500 (EST)
-From: Baran Tuna <barant@fastmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH] soc: mediatek: mtk-svs: Use %pe to print PTR_ERR()
-Date: Tue, 24 Nov 2026 22:05:42 +0300
-Message-ID: <9448408e0bd0f37a05d458f0c8ae69ec848cdf71.1795546605.git.barant@fastmail.com>
-X-Mailer: git-send-email 2.53.0
+	Tue, 24 Nov 2026 19:07:26 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2EECF60EFB;
+	Tue, 24 Nov 2026 19:07:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BC441F000C4;
+	Tue, 24 Nov 2026 19:07:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795547244;
+	bh=DgGrkzJmFZWQtPibLYb2wzpNsiS5IONW5wJ5P8ZexXg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=PQYQDj/+4pQgYpzPl6xOnSmGkgNxV/ryCOcW3JEXxVs5ZN3SHvDylHc2wwiJoN8Hv
+	 F8D+SFd0uaLbceiilkOyWJestNHyUE/dZWwWmKWNM4H5/QSvlSblwHps021N4vFUIg
+	 2pyOk1/C5NTYJn/bNjK2MGgsCrEVI1xgoTsDgEKqwiTgTGLuk631LED18sAJpXYnzW
+	 SO3C1zHYQu5jtXgCdPd/WZ2JGRksHn1SAWmj1vuiPUpLzOxlN7Jv3rcHENQYVLC3EB
+	 Mt60YFutqCZDXGjfHqDfKK9VezTnOE2gFuDzSPBxEusXsaigCyewh9ASX4evMj2Y6i
+	 56wEP0wJP89nA==
+Subject: Re: [PATCH net v3] net: stmmac: preserve RX checksum capability when
+ offload is disabled
+From: netdev-bot+sashiko@kernel.org
+To: james.hilliard1@gmail.com
+Cc: netdev@vger.kernel.org, maxime.chevallier@bootlin.com,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, peppe.cavallaro@st.com, wens@kernel.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-sunxi@lists.linux.dev
+Date: Tue, 24 Nov 2026 19:07:22 +0000
+Message-ID: <179554724297.3135.12604093728631257002@kernel.org>
+In-Reply-To: <20261120-submit-stmmac-rx-checksum-capability-v1-v3-1-e9e1fd85f380@gmail.com>
+References: <20261120-submit-stmmac-rx-checksum-capability-v1-v3-1-e9e1fd85f380@gmail.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_110601_487244_2FC1734C 
-X-CRM114-Status: UNSURE (   8.94  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,78 +74,244 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use the %pe format specifier to print error pointers symbolically
-instead of printing PTR_ERR() as a number.
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-Found by scripts/coccinelle/misc/ptr_err_to_pe.cocci.
+Critical: 0 · High: 0 · Medium: 2 · Low: 1
 
-Signed-off-by: Baran Tuna <barant@fastmail.com>
----
- Compile-tested only.
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
- drivers/soc/mediatek/mtk-svs.c | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+- [Medium] When RXCSUM is wanted but the MAC never accepts the IPC
+  enable, the reset-time reconcile goes through ndo_set_features.
+- [Medium] Toggling RX checksum offload on a running interface
+  (stmmac_set_features() -> stmmac_set_rx_csum()) flips the MAC IPC bit…
+- [Low] The patch changes the stmmac_ops::rx_ipc contract in hwif.h to
+  "Configure RX checksum offload and return whether the checker is…
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 0f37b3aadaa2..385c4aef9e91 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -594,8 +594,8 @@ static int svs_sync_bank_volts_from_opp(struct svs_bank *svsb)
- 						 svsb->opp_dfreq[i],
- 						 true);
- 		if (IS_ERR(opp)) {
--			dev_err(svsb->dev, "cannot find freq = %u (%ld)\n",
--				svsb->opp_dfreq[i], PTR_ERR(opp));
-+			dev_err(svsb->dev, "cannot find freq = %u (%pe)\n",
-+				svsb->opp_dfreq[i], opp);
- 			return PTR_ERR(opp);
- 		}
- 
-@@ -833,9 +833,8 @@ static int svs_status_debug_show(struct seq_file *m, void *v)
- 		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
- 						 svsb->opp_dfreq[i], true);
- 		if (IS_ERR(opp)) {
--			seq_printf(m, "%s: cannot find freq = %u (%ld)\n",
--				   svsb->name, svsb->opp_dfreq[i],
--				   PTR_ERR(opp));
-+			seq_printf(m, "%s: cannot find freq = %u (%pe)\n",
-+				   svsb->name, svsb->opp_dfreq[i], opp);
- 			return PTR_ERR(opp);
- 		}
- 
-@@ -1840,8 +1839,8 @@ static int svs_bank_resource_setup(struct svs_platform *svsp)
- 		for (i = 0, freq = ULONG_MAX; i < bdata->opp_count; i++, freq--) {
- 			opp = dev_pm_opp_find_freq_floor(svsb->opp_dev, &freq);
- 			if (IS_ERR(opp)) {
--				dev_err(svsb->dev, "cannot find freq = %ld\n",
--					PTR_ERR(opp));
-+				dev_err(svsb->dev, "cannot find freq = %pe\n",
-+					opp);
- 				return PTR_ERR(opp);
- 			}
- 
-@@ -1864,8 +1863,8 @@ static int svs_get_efuse_data(struct svs_platform *svsp,
- 
- 	cell = nvmem_cell_get(svsp->dev, nvmem_cell_name);
- 	if (IS_ERR(cell)) {
--		dev_err(svsp->dev, "no \"%s\"? %ld\n",
--			nvmem_cell_name, PTR_ERR(cell));
-+		dev_err(svsp->dev, "no \"%s\"? %pe\n",
-+			nvmem_cell_name, cell);
- 		return PTR_ERR(cell);
- 	}
- 
+--
 
-base-commit: 8d7fe9885c62fc9a95bf55d9db244d9672a8aadc
+net: stmmac: preserve RX checksum capability when offload is disabled
+
+This patch keeps the detected RX COE type when the IPC bit reads back as
+clear, and adds an enable argument to the rx_ipc callback. If an enable
+fails, it masks NETIF_F_RXCSUM in feature negotiation until the next MAC
+reset. It also splits stmmac_hw_setup() so open and resume can reconcile
+RX checksum features before RX is started.
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> index 2ece7ba9dd73b..d7dd6c5d95d47 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
+> @@ -699,7 +699,7 @@ static void sun8i_dwmac_get_umac_addr(struct mac_device_info *hw,
+>  }
+>  
+>  /* caution this function must return non 0 to work */
+> -static int sun8i_dwmac_rx_ipc_enable(struct mac_device_info *hw)
+> +static int sun8i_dwmac_rx_ipc_enable(struct mac_device_info *hw, bool enable)
+>  {
+>  	void __iomem *ioaddr = hw->pcsr;
+>  	u32 v;
+
+[Severity: Low]
+
+The new rx_ipc comment in hwif.h says the callback should "Configure RX
+checksum offload and return whether the checker is enabled". The body
+here still ignores the new enable argument:
+
+sun8i_dwmac_rx_ipc_enable() {
+	...
+	v = readl(ioaddr + EMAC_RX_CTL0);
+	v |= EMAC_RX_DO_CRC;
+	writel(v, ioaddr + EMAC_RX_CTL0);
+
+	return 1;
+}
+
+On sun8i, running ethtool -K rx off on a running interface goes through:
+
+stmmac_set_features()
+  stmmac_set_rx_csum(priv, 0)
+    stmmac_rx_ipc(priv, priv->hw, false)
+      sun8i_dwmac_rx_ipc_enable(hw, false)
+
+That call sets EMAC_RX_DO_CRC and reports the checker as enabled. The RX
+path won't mark packets verified, because hw->rx_csum is 0. However, the
+hardware checker stays on.
+
+Should this clear EMAC_RX_DO_CRC when enable is false, so the requested
+setting actually reaches this MAC as the commit message describes? The
+notes below the --- defer the sun8i changes to a separate net-next series,
+and that series isn't in this tree.
+
+[ ... ]
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index f256244ce0d11..88abac5afa0a3 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -3727,25 +3727,51 @@ static bool stmmac_tso_channel_permitted(struct stmmac_priv *priv,
+>  	return !(priv->dma_conf.tx_queue[chan].tbs & STMMAC_TBS_AVAIL);
+>  }
+>  
+> +static int stmmac_set_rx_csum(struct stmmac_priv *priv, unsigned int rx_csum)
+> +{
+> +	int ret;
+> +
+> +	if (!rx_csum) {
+> +		WRITE_ONCE(priv->hw->rx_csum, 0);
+> +		stmmac_rx_ipc(priv, priv->hw, false);
+> +		return 0;
+> +	}
+> +
+> +	ret = stmmac_rx_ipc(priv, priv->hw, true);
+> +	if (ret <= 0) {
+> +		WRITE_ONCE(priv->hw->rx_csum, 0);
+> +		priv->rx_csum_failed = true;
+> +		return ret ?: -EIO;
+> +	}
+> +
+> +	WRITE_ONCE(priv->hw->rx_csum, rx_csum);
+> +	return 0;
+> +}
+
+[Severity: Medium]
+
+Does this fully handle the running interface case? stmmac_set_features()
+calls this under RTNL only, while RX DMA and NAPI keep running. Nothing
+quiesces or drains the RX ring around the IPC toggle.
+
+On enable, once the readback succeeds and rx_csum is published, the next
+stmmac_rx() poll takes a single snapshot:
+
+	int coe = READ_ONCE(priv->hw->rx_csum);
+
+That snapshot is then applied to descriptors that were written back
+while IPC was still off. Those descriptors don't carry csum_none. For
+example, dwmac4_wrback_get_rx_status() only sets csum_none on
+RDES1_IP_HDR_ERROR or RDES1_IP_PAYLOAD_ERROR. RDES1_IP_CSUM_BYPASSED
+only increments a counter. So stmmac_rx() reaches:
+
+		if (unlikely(!coe) || !stmmac_has_ip_ethertype(skb) ||
+		    (status & csum_none))
+			skb_checksum_none_assert(skb);
+		else
+			skb->ip_summed = CHECKSUM_UNNECESSARY;
+
+Can this mark frames that the checker never examined as
+CHECKSUM_UNNECESSARY?
+
+On disable, a poll that already cached a non-zero coe keeps marking
+frames as verified after IPC is cleared, up to the NAPI budget.
+stmmac_dispatch_skb_zc() has the same per-call snapshot.
+
+On Type-1 COE cores, enh_desc_get_rx_frame_len() subtracts 2 bytes based
+on the current software coe, not on the IPC state when the frame
+arrived. stmmac_rx_buf1_len() and stmmac_rx_buf2_len() also re-read
+rx_csum for each descriptor. Could frames in flight across a toggle end
+up with lengths that are off by 2 bytes?
+
+The commit message says:
+
+  Check the result of an enable before allowing RX to mark packets
+  CHECKSUM_UNNECESSARY, including when the checker is first enabled on a
+  running interface.
+
+A similar window existed before this patch. It was wider, because
+rx_csum was published before IPC was written. The patch only orders the
+register write against the flag update.
+
+Would RX or NAPI need to be quiesced around the toggle for the statement
+above to hold?
+
+> +
+> +/* Recheck the wanted features if this reset clears or uncovers a failure. */
+> +static bool stmmac_init_rx_csum(struct net_device *dev)
+> +{
+> +	struct stmmac_priv *priv = netdev_priv(dev);
+> +	bool was_failed = priv->rx_csum_failed;
+> +	unsigned int rx_csum;
+> +
+> +	priv->rx_csum_failed = false;
+> +	rx_csum = dev->features & NETIF_F_RXCSUM ? priv->plat->rx_coe : 0;
+> +	if (stmmac_set_rx_csum(priv, rx_csum))
+> +		netdev_warn(dev, "RX IPC Checksum Offload disabled\n");
+> +
+> +	return was_failed || priv->rx_csum_failed;
+> +}
+
+[Severity: Medium]
+
+What happens on later resets if the MAC never accepts the IPC enable
+while NETIF_F_RXCSUM stays in wanted_features?
+
+On the first open:
+
+__stmmac_open()
+  stmmac_init_rx_csum()
+    stmmac_set_rx_csum(priv, rx_coe) fails, rx_csum_failed = true
+  netdev_update_features()
+    stmmac_fix_features() masks NETIF_F_RXCSUM out of dev->features
+
+On the next open, MTU reopen or resume:
+
+__stmmac_open() or stmmac_resume()
+  stmmac_init_rx_csum()
+    rx_csum_failed = false
+    rx_csum is taken from dev->features, which no longer has RXCSUM
+    stmmac_set_rx_csum(priv, 0) succeeds
+    returns true because was_failed was set
+  netdev_update_features()
+    stmmac_fix_features() no longer masks NETIF_F_RXCSUM
+    stmmac_set_features() with RXCSUM on, netif_running() is true
+      stmmac_set_rx_csum(priv, rx_coe) fails again, returns -EIO
+    __netdev_update_features() logs "set_features() failed (-5) ..."
+    and returns -1, so netdev_features_change() fires
+
+netif_running() is true here because __LINK_STATE_START is set before
+ndo_open, and stmmac_resume() only gets this far when the interface is
+running.
+
+Is it intended that every later open, MTU reopen and resume prints this
+core netdev_err and sends a NETDEV_FEAT_CHANGE notification? The
+driver's own "RX IPC Checksum Offload disabled" warning is not printed
+again on those resets.
+
+There is a related problem in stmmac_set_features() when a live enable
+fails:
+
+	if (running && rx_csum != priv->hw->rx_csum) {
+		ret = stmmac_set_rx_csum(priv, rx_csum);
+		if (ret)
+			return ret;
+	}
+
+This returns before hw_vlan_en is updated and before
+stmmac_set_hw_vlan_mode() is called, so the core rejects the whole
+request. With a command like "ethtool -K eth0 rx on rxvlan off", is the
+VLAN stripping change dropped for that request?
+
+The commit message says:
+
+  This leaves unrelated changes, such as VLAN stripping, available even
+  when RXCSUM is still requested.
+
+The v3 notes also say "Keep a failed enable from blocking unrelated
+feature changes". That only seems to hold for later requests, not for
+the request in which the enable fails.
+
+[ ... ]
+
 -- 
-2.53.0
-
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120-submit-stmmac-rx-checksum-capability-v1-v3-1-e9e1fd85f380%40gmail.com
 
