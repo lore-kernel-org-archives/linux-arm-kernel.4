@@ -2,13 +2,13 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7ECA60A5BE5
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A9E606B3CD
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0NqiHVe5;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=dk3wlHUr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=YbDEV8rc;
-	dkim=neutral header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=Olm/BN28
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0nSosaQX;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=mkKCS5Po;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=Q/GgECb/;
+	dkim=neutral header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=CFkLt1iY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -16,84 +16,84 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=p0BaxKrIdE2HsN3Ja7HpWqJ+iLOyCo7/lryZMOk9Zds=; b=0NqiHVe5HFGzqnO6ti54PILMnc
-	scmcZAhEoopYu2CrJLx1/DkQRezemHX1lZUUw5V++7cOIHOsae11fM7bZLqd8HnJH2DIEhEJ1qmvI
-	19SelUkr1tYd/fIUjjhXoodmu/WtcOZl2QPirLeYe+rakdUOJFTxYIqcst8Zfh9TEnSEDmghhoF8C
-	qmyjLR6R/VqvRipDvBvietGP0Y4m/vu22je7Gy2XB/1f/6jLkBwjQSzqtBVlfu2+wGituJAeRme5Z
-	qSsH/xmm33ff91uiy2iZ6dJQISl+5QX2N8B/v2Ip/TZ68hauQu1faCuLC3av1WwFf1lZbIiOnzoCy
-	jbab1u4w==;
+	bh=Ot92D5MoHTIRkYUwhd3d4KUBwDJQHCkfAJL/CWKuxWM=; b=0nSosaQXEi7KIuin4Bn68UFMFV
+	fsfnTLYv2kN2FIutEkTlVDw6SFwEkPfEN+Lu4zvWCHF7vcEY8XUpqHcKm0FRgF8kgfVj87AcD3Z3a
+	WZSGAhtFH2o/mnYG7EQF9XTUUa/1TiO5xRqZgA7+c4OmM91T/MKg1H72hLmCPQs+qiWrJcIX51uz9
+	ICN/HP9p4wC4YLV9esx+KXXhTD36fKMo/OYqQGXIvJ4NjPqx78iDLf36G3MIzhz8WRhpX/If0iul3
+	/vlKwB7L+AYUxjtcNK4TS9OYzILJLWQ0nuLgI/h2+dVQdJxyhj0VapgvOnsoeZU3keZ0Cx8nWhjrO
+	MoBinbJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvW-00000005jQY-3xud;
+	id 1xVkvW-00000005jQI-30K0;
 	Tue, 24 Nov 2026 07:26:54 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvR-00000005jLw-1Kxm
+	id 1xVkvP-00000005jLs-3Wqr
 	for linux-arm-kernel@bombadil.infradead.org;
 	Tue, 24 Nov 2026 07:26:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
 	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Sender:Reply-To:Content-ID:Content-Description;
-	bh=p0BaxKrIdE2HsN3Ja7HpWqJ+iLOyCo7/lryZMOk9Zds=; b=dk3wlHUrftL1zF7XtiYApJqQjc
-	SYX8rj4zNQDuaDPCgPAcOzXHtfjsv/9oXEq9UZYRkiAyFWqG/R82NyWjyD68pB/UbOMRRuSnPNaxA
-	rC/UD9RtkIsJXT8fT3rkdUvk7SZJW+bmYxgrS7gk0JnrY9bUJq4Rat2ULZwdr/qaoLWRqsbl4QIm9
-	Dnu5l35R2hNCLLM6J1SjggFYMJgtNNhUp0CblLzOofFlxJA9XsmNwcn+pbYhnI7BQZE+wfiF6vGGS
-	5Toc9lwhXDzX36NxvMrMUXdoB61T3s+/SZ3Yc77RswU+8oZNnixBPI5eJZ7YoSrgHIHWuslrWgBnd
-	86okZHtQ==;
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124])
+	bh=Ot92D5MoHTIRkYUwhd3d4KUBwDJQHCkfAJL/CWKuxWM=; b=mkKCS5PoOaGCiEpTSESFMyR9eZ
+	2JG9Ff+tsao25b/4+4SrT1euJe7Dcu2rIiD8cah9E5pd2lDSaORJMBdNEwMoSgb1xsIzjyGlny8cl
+	msl2kwe7gSGaU/gJqa5r8LmK9rEaIFzLvvJwdyN0t4+kRKgb/GAJGVSbdlI/XwtNnJtUBhA4urvRp
+	jCU45kPDAXx+8/G/lZVOuFinshX10Li5c5zZBKedWBkzwMQs4gn1+vesxhZlisVmRtySPBPjrifUE
+	pqCD1viulXoZB0Jum2A78gIpG1NtTPjoUAwLzTQIfY8IPzEHLx3Fh71SM0oLfgkPkSzWhMTA/rJGG
+	E6PVmvZQ==;
+Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.123])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvL-00000003skC-1BwQ
+	id 1xVkvL-00000003skH-1NxN
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:26:47 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505180; cv=none;
+	Tue, 24 Nov 2026 07:26:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505184; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=ja65IwRzIVuZrf8aqvZo56OV98volCTNfpCwSFGwBevGqS/C1Okjxx1PWTnKnDI6fp
-    iiq9sfjHOmWCMWxpa4KzuLivtUlXiA2wwat1E8Qd7ZhOfDCHAi+M+XAxUUm6jqxs34SJ
-    EbKBtcZzN2HOXXyHOXcqZbZ+0aPCa7JRK9/ZDXz9/QistcP6aZjz0BahEgIUtRoI0gru
-    DO2LC1IIRKBA/c1lyzmcw7mLaab+zXUruW1QNTKMxQXs28vsHeOxoIyAugV+zOSquJbm
-    qJ+0gzMngSlqZhLNbqNmB1VgvMrfPRTbjCW9J3SoYSoeKejW6vl91GK64o++k+CBa0QG
-    txyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505180;
+    b=CJIxscNam66olrJ/AaAQZ1O8YhFitO9TT2ljpy/sXfZPTch1cD3AfFf0WxYSUCqZnU
+    FwN+sHXQOQ51N4RGNsycAYnvcdAogg1jJhZE7gvCk8AIYRhJLFLA06llegG9glbElZFU
+    kA4kLU9Bp/f2DXo0GqV+NezWyx4AX+/mQpYUYbphFshKjKzsPP0COsHi2zzcIJmyXvrm
+    J64SGwFyzpfUSzElQ4xVxcT7KlCVQrTbVxxd+TIoydCFYx53bG7T+5hWQfPXRLdQaSkK
+    c1c0mLX4yBrJK4gmQBV7XT/UZzAFVRK+s17ELnNQyTOQRpuuY6xrLfB4M3XwZoCJZXEO
+    7UUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505184;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=p0BaxKrIdE2HsN3Ja7HpWqJ+iLOyCo7/lryZMOk9Zds=;
-    b=XgUBwUy6LIIqFF6wAnUHq25OFOXMWQmaee/3/s7/f2K1ZUhU4NN4iiy5OeZhY/PmwX
-    39tQ9JQsxPLu87AnWJLfY9DbbaOxUyGj2fAimvZMIDjB1TJ58jACPLn4PDRti+iFBKg9
-    fLwOprUhux0F8BsRcgiRIPeQnWAQVMm/gqgk0VoVwZrxKhLuFbTc00WdsCdM5p+53hOx
-    uOkaz/rZYjlXGHgAqdMsKwIRsah3tH4DftxHgH/1/tIpedZ+4qh/KlsGW4gVbLm3bux3
-    qM0g+4i+M7clDbNHSi3/xfaubDJ+lRQ/zzP/WEicBdmv+SO1I9hC5GiVUpwsHqV3UWbp
-    b7Rw==
+    bh=Ot92D5MoHTIRkYUwhd3d4KUBwDJQHCkfAJL/CWKuxWM=;
+    b=TWyW/tNPVK7vlrSnoxT9nHuoDx3GcJqgrFSGaRG4JiDqaEElUPUgeTiYWWNTfSzwq0
+    LB5NFY2KBpXB3UPF4KFsNgplrfM3MvwrR9Va+zLQCsRTQeOS8lFhJY9gv+/zkJjZfmJp
+    7xwKAXwLMpUcLCrt/HD232+H85GEnAVLn0t7qWAZkJD0Gjbn4C1QQjh4iQp7p64FP0eX
+    ZfvnOfl8amPyseK/7XOZB6rI2w4/9Eg/G60M3Smg84HMdwbrhRoPcYLNDi3si3m/niFl
+    EFrv4iK9XU9OuB4ASeZj3ECo/HYuzjytgW0ZURUOEL6MiCywB/JHGAf2cM67OkTAdOIw
+    zoLw==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
 X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505180;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505184;
     s=strato-dkim-0002; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=p0BaxKrIdE2HsN3Ja7HpWqJ+iLOyCo7/lryZMOk9Zds=;
-    b=YbDEV8rcyaTTlGpwGfQuyX/feHNLVh+J6kA/vwaGBq/BvoXHmxYQj+S84EIapvLyU/
-    vVUL28BDukDSTc/RXfc9KkWlB/Oc8oK9Zj6CjeoJoERQ26Ut5B9RXMoj+i5R86tXY0R8
-    Gts46ZXE4vlQHZ8fg2Z/8ojKlx1/qIQ/SlMPZucq52TIfq0wJe3jf+VcDt+fNs4UiH2Z
-    CHT09CfLYZt86nFRWet/Y5yLlupfJ9mt5O7YrKuE0JlU6P5ViJfUsQ4x9ted6VsibpqQ
-    bF8DFK7zqY7oYk/BFWejqk9NyEvgrg8Rvj/HM+3hEW73w5JvJVMbjxKiMvH7Ci7caBNE
-    s+Jg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505180;
+    bh=Ot92D5MoHTIRkYUwhd3d4KUBwDJQHCkfAJL/CWKuxWM=;
+    b=Q/GgECb/Jt9opnm8iAGQaiyDog/+KIMozneFyCYr8WoHhAf/+AZIeyMV80fa54u9oq
+    FJDrTOMKu2NXfHHnrMAhhIw4JEGIbqgMlC9+MW018vtupk/D0LQrGMytl999FODByxmB
+    hP7T6jMGgOgB1UwGA1DS3UkVBEgKG9FPARVCzdDvJZx43KGKT4gQVDiDS3bHrA3cyvzf
+    ChKZYvQucBpupLmoxLuU9zROQlXF01Fm7Q5ewjeQZJBv/yF4L1lvVen0a7wtFrBkmHEh
+    6uuz9lV80o4S5loxyJGtklOFSHOs89u81AKJ0P/sHLr3uGNQzRnLmfSVT1aPD/j0kbjq
+    LMSQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505184;
     s=strato-dkim-0003; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=p0BaxKrIdE2HsN3Ja7HpWqJ+iLOyCo7/lryZMOk9Zds=;
-    b=Olm/BN28nL/1yF/2F+ZTN3ts71zWndwr67/ibW8r8/KA/vFCzj+lwNY6zsGcFaUqpd
-    bf5PUgwH7G9s2d/cplBA==
+    bh=Ot92D5MoHTIRkYUwhd3d4KUBwDJQHCkfAJL/CWKuxWM=;
+    b=CFkLt1iYWD0LCR2302eGIJe2rOj81bNZlfQjh7vrmBTgCorrItqEi3AM0UfGsUqDNi
+    YNcEW0Lvuy0Z3qgW/kAQ==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
 Received: from iMac.fritz.box
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7QJ1HS
+    with ESMTPSA id Qb56a22AO7QN1HW
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:19 +0100 (CET)
+    Tue, 24 Nov 2026 08:26:23 +0100 (CET)
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -137,11 +137,10 @@ Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
 	linux-fbdev@vger.kernel.org,
 	letux-kernel@openphoenux.org,
 	kernel@pyra-handheld.com,
-	"H. Nikolaus Schaller" <hns@goldelico.com>,
-	Grond <grond66@riseup.net>
-Subject: [PATCH v2 14/20] ARM: dts: omap3-pandora: Model LCD power enable dependencies
-Date: Tue, 24 Nov 2026 08:25:54 +0100
-Message-ID: <0c0bc2049bad3e236bab5fd86b8cd0b11fd56d11.1795505160.git.hns@goldelico.com>
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 18/20] ARM: dts: omap3pandora: Switch backlight to PWM
+Date: Tue, 24 Nov 2026 08:25:58 +0100
+Message-ID: <40321eb9223453f39536092d7095d3eff9901188.1795505160.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
@@ -150,8 +149,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_072643_322647_6DFEC904 
-X-CRM114-Status: GOOD (  20.13  )
+X-CRM114-CacheID: sfid-20261124_072643_296784_563F243C 
+X-CRM114-Status: GOOD (  14.46  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -170,136 +169,78 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The OpenPandora LCD power supply differs between mainboard revisions.
+Replace the legacy Pandora backlight platform device with a
+pwm-backlight device-tree node using TWL4030 PWM0.
 
-On revision 5a, LCD_5V is derived from the shared 5V supply and
-switched by circuitry controlled through VAUX1. Both VAUX1 and the
-REGEN-controlled 5V supply must therefore be enabled for the LCD.
-On revision 6d, LCD_5V is generated independently from the battery
-supply, with its enable input controlled through VAUX1.
+Use the 64-cycle PWM frame and retain the experimentally determined
+brightness table. Request full duty for a 10 ms startup guard before
+normal PWM dimming begins. The TWL4030 64-cycle encoding limits the
+actual duty to approximately 62/64, retaining short low intervals
+during the TPS61161 mode-detection window.
 
-Both revisions must use the same device tree. There is no
-software-readable board revision identifier that allows the bootloader
-or kernel to distinguish them. Nor is manual selection of a board-
-specific DTB practical: the revision is not externally visible, and
-users would have to open their devices and inspect the mainboard to
-find out which revision they own. The original Pandora platform code
-also supported both revisions without such a configuration choice.
-Preserve that property in the device tree conversion.
-
-Model the enable dependencies as a fixed-regulator chain:
-
-    LCD -> lcd_5v -> aux_5v -> vaux1
-
-This enables both required controls on revision 5a, while also working
-on revision 6d. It does not describe the physical supply topology:
-VAUX1 is not the electrical input of the shared 5V regulator, so
-other aux_5v consumers, including audio and USB, also enable VAUX1.
-
-A fixed regulator can express only one vin-supply dependency, whereas
-the LCD requires two independent power controls. No suitable existing
-DT representation was found that expresses both dependencies without
-this artificial relationship. Use the chain as a pragmatic solution
-with the existing regulator framework and a common DTB.
-
-Unlike the old platform configuration, the shared 5V rail and USB host
-VBUS are no longer forced always on; the regulator consumers manage
-their enable state. Keep USB host VBUS enabled at boot.
-
-The sound card node is introduced in patch 17, which must reference
-aux_5v for its amp-supply property.
-
-The 5 ms startup delay originates from the older Pandora kernel and
-was originally an estimate.
-
-Suggested-by: Grond <grond66@riseup.net>
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
 
 Notes:
     Changes against V1:
-    - Historical origin: 55b8da9ea16f (Grond, 2021-12-30),
-      which described REGEN and the original 5 ms startup estimate.
-      The revised DT models logical power-enable dependencies for both
-      Pandora board revisions; it does not describe physical supply topology.
-      The original contributor is credited with Suggested-by rather than
-      an unverified current DCO sign-off.
-      Code and commit-message review assisted by ChatGPT.
+    - Describe the 10 ms full-duty request and the actual TWL4030 output.
+    - Brightness levels remain unchanged; duty is capped by the TWL4030
+      PWM provider in 64-cycle mode (patch 09), not by patch 11.
+    - Code and commit-message review assisted by ChatGPT.
 
- .../dts/ti/omap/omap3-pandora-common.dtsi     | 34 ++++++++++++++++---
- 1 file changed, 29 insertions(+), 5 deletions(-)
+ .../dts/ti/omap/omap3-pandora-common.dtsi     | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-index 2097ec15c6513..f25fc4f8ad042 100644
+index a5633d93547a3..6bdfbd80b9fcd 100644
 --- a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
 +++ b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-@@ -31,6 +31,28 @@ hfclk_26m: oscillator {
- 		clock-frequency = <26000000>;
+@@ -53,6 +53,25 @@ lcd_5v: fixed-regulator-lcd-5v {
+ 		vin-supply = <&aux_5v>; /* logical enable dependency */
  	};
  
-+	/* Shared 5V rail for headphone amplifier, early LCD and USB */
-+	aux_5v: fixed-regulator-5v {
-+		compatible = "regulator-fixed"; /* TPS61029DRC */
-+		regulator-name = "aux_5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		startup-delay-us = <5000>;
-+		enable-active-high;
-+		gpio = <&twl_gpio 20 GPIO_ACTIVE_HIGH>; /* REGEN */
-+		vin-supply = <&vaux1>; /* logical enable dependency */
-+	};
-+
-+	/* LCD_5V: switched shared 5V on rev 5a, separate supply on rev 6d */
-+	lcd_5v: fixed-regulator-lcd-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "lcd_5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		startup-delay-us = <5000>;
-+		vin-supply = <&aux_5v>; /* logical enable dependency */
++	backlight: pwm-backlight {
++		compatible = "pwm-backlight";
++		pwms = <&twl_pwm 0 1922710>;
++		/*
++		 * TPS61161 analog dimming window: duty must stay above
++		 * ~20-25 % (below that the regulator drops out, LED off)
++		 * and the startup waveform must avoid long low intervals
++		 * that could trigger EasyScale detection. The enable guard
++		 * requests full duty; TWL4030 limits it to about 62/64.
++		 * These levels were determined experimentally.
++		 */
++		brightness-levels = <
++			  0 24 30 36 42 49 58 68 80 94 110 129 255
++		>;
++		default-brightness-level = <11>;
++		/* TPS61161: cover startup mode-detection window (10 ms) */
++		pwm-enable-guard-period-us = <10000>;
 +	};
 +
  	tv: connector {
  		compatible = "connector-analog-tv";
  		label = "tv";
-@@ -212,15 +234,13 @@ hsusb2_phy: hsusb2-phy-pins {
- 		#phy-cells = <0>;
- 	};
- 
--	/* HS USB Host VBUS supply
--	 * disabling this regulator causes current leakage, and LCD flicker
--	 * on earlier (CC) board revisions, so keep it always on */
-+	/* HS USB Host VBUS supply */
- 	usb_host_5v: fixed-regulator-usb_host_5v {
-+		vin-supply = <&aux_5v>;
- 		compatible = "regulator-fixed";
- 		regulator-name = "usb_host_5v";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
--		regulator-always-on;
- 		regulator-boot-on;
- 		enable-active-high;
- 		gpio = <&gpio6 4 GPIO_ACTIVE_HIGH>;	/* GPIO_164 */
-@@ -673,7 +693,7 @@ lcd: lcd@1 {
- 
- 		label = "lcd";
- 		reset-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;	/* GPIO_157 */
--		vcc-supply = <&vaux1>;
-+		vcc-supply = <&lcd_5v>;
- 
- 		port {
- 			lcd_in: endpoint {
-@@ -711,6 +731,10 @@ &mcbsp2 {
+@@ -505,6 +524,10 @@ MATRIX_KEY(7, 4, KEY_LEFTBRACE )
+ 	 >;
  };
  
- /* bluetooth */
-+&twl_gpio {
-+	ti,use-regen;
++&twl_pwm {
++	ti,twl4030-pwm-frame-64;
 +};
 +
- &mcbsp3 {
- };
+ /* backup battery charger */
+ &charger {
+ 	ti,bb-uvolt = <3200000>;
+@@ -737,6 +760,8 @@ lcd: lcd@1 {
+ 		reset-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;	/* GPIO_157 */
+ 		vcc-supply = <&lcd_5v>;
  
++		backlight = <&backlight>;
++
+ 		port {
+ 			lcd_in: endpoint {
+ 				remote-endpoint = <&dpi_out>;
 -- 
 2.56.0
 
