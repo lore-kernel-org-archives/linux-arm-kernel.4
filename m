@@ -2,77 +2,139 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15860606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BEA5606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4tymkZVc;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=UURWRjVw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JJAV+rck;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=MKebHGsW;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=F0hIcRQX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CIIxCHmaf4fxrIyFS/BRlR2dhrRZVanUxs4tziQTo54=; b=4tymkZVcZUjWxU
-	4l55AlwmUHyFFSumM5s4GIBpIP771AMPBHWLL0cIUHrlUbbeYCSrGGHbrbCnYkPOxZmluvIICcxLH
-	i55O+iczYSln3PM0/0Ve6mxk5qwVMZymBI2tZkcEoIcpnta3DHAADhUqomcFX/wf/tERTLtumnzxm
-	sl/h6Q1lx+64Z6FXf5itXhisJWOH+8o7HpiJHPEK/QFtffHpWqwwNyXt64rE73IfAglILWFTM3+E/
-	feNQKROQyiuE+5Ost/tkppJNQ7lnFmM+/jMD/SmJ0R/tHV22W1+bkfIfKILbh+14RdkZk33E1Sxme
-	Gi/trlWRmn+P88N7HwpQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ICzF0au7+zioXlv3o0PbRF5DUQ/dlcDYCA/hi2iZWyw=; b=JJAV+rck2ehvPBkChqhgR0Cj+D
+	ar4ckJsLLcxc2XB5UpA3Q1h8JA/PihZankv8A9jAUEWmRBj0cQwvWrSMjNy5UYY+MfZPP9CBZEKz5
+	NJYel0RLD+CtL3c5ccm2vI1VBE/CGn7vCvvbkLiUcKSYyDtc8Utsc9m1fos/+6eJ4vE/zAnwFxPHu
+	YOUoeYIu2Vh7u4FHcy95lhbs/o+TG28yT01beBfMCz7uJrVa88sUWhLkerZichaQq3Nme8cHPksYc
+	lJo9j83CpAY6rIOcD9GrgwZ2Q8WV9YAGsj9SMfvExykeO5SrHEz1sEuCXiSVx68G60lERcZJlV1o2
+	inrY0k6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlpL-00000005se0-0Izl;
-	Tue, 24 Nov 2026 08:24:35 +0000
-Received: from mail-m1602365392.xmail.ntesmail.com ([160.236.53.92])
+	id 1xVkwf-00000005jul-1X9L;
+	Tue, 24 Nov 2026 07:28:05 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.178])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlpF-00000005scg-2qL5;
-	Tue, 24 Nov 2026 08:24:33 +0000
-Received: from [127.0.0.1] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 55cb96efc;
-	Tue, 24 Nov 2026 16:24:16 +0800 (GMT+08:00)
-Message-ID: <c89271be-85f9-41ba-9c19-c78743d212c8@rock-chips.com>
-Date: Tue, 24 Nov 2026 16:24:12 +0800
+	id 1xVkvK-00000005jLU-1L5b
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 07:26:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505187; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=rXj33N5EJ4/upzUon20XjUHjbHzTZ3mB6sBsvZ29crnhq+XAfy2Vs3zfQSYIz4wKnt
+    aKRXOFKeXasshGdtI6dL1r6kgTYMkzgnAfO4ZbPmvygrBZ6SHafK+2BMn8QfG3l0oMab
+    zGGk8ItCc1+OgXgOlQpexihuebvGvpyyfa+kgw/aSFy51k8obYTsN1cyBuio2VbsalW3
+    96B+CSNQe1wOIXpASqc3fGtIg42K6cZUm3VpTWTITrPAgSCumCjK3EMiNbp1tCTQN8pF
+    CJGTFcS0Zyx3dxobXRGliCrGdHBcLJQHYmvjjblpbaXPSUaeotXcj7ixXVbgL9uB90l+
+    +tFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505187;
+    s=strato-dkim-0002; d=strato.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=ICzF0au7+zioXlv3o0PbRF5DUQ/dlcDYCA/hi2iZWyw=;
+    b=R1sYPNk2RbpZLsD1g1R/2AmEX+lVCiWOXHvSH3dzhEzQOQoSttK0g/d+8S5GaVsiWg
+    PH7QSruXpem6A3hE0yOL98HN02UXSYgg3dwbZZxdfOQfHNd7GJ/syDceCDfIfvU9cfIp
+    lTcLqisSWJB2TJBdXxUhg/aWQyC7i6Xx7glfCtor9sck6PB4+fG2SNHaUxa1Jdj2AO82
+    +b1SnFMam8geQsQ28kyw4tdVVRg671/i+I5KIJtVDrBnbegbjZLT+W+5N3MVzoh3UWb+
+    hjEZweu1YYcLnioRN/vicIgL4ToNy7ph6k76iKUmmGUaUE4rdO2B53OOUQ7vqkzv1zwN
+    lEsQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505187;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=ICzF0au7+zioXlv3o0PbRF5DUQ/dlcDYCA/hi2iZWyw=;
+    b=MKebHGsWd20CynMJtycAL1CWMMQPC3Q5ewZInE+iEP7mTgQQRANqLUPhQ87ysiK/wb
+    DWY1sAg3VnGxml//nMgu/4z7YuEvfQaNRh+iVnKUeYckB4jPdENVapR8u4gbgeR6oayk
+    87bKBsUtqf+exCs3W7Fg0O+AxrY/4cHYWrowvsYUvA8DD8GYeZcYZaASHAEcpBf2BcNh
+    5+guMcwsXHojJyrVe2hgVr7QOZHeGaRN5x1KQQBO6f91CBx6WfA8CsFo6HivbYDs0d9G
+    5OFRkQMmq1Tv4Q4J48jIpxn1r0woB7l9RwElIPP5HI7G55SDjf8hRfaARuiHQohbek6i
+    EzsA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505187;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=ICzF0au7+zioXlv3o0PbRF5DUQ/dlcDYCA/hi2iZWyw=;
+    b=F0hIcRQXfQdsW0YptLj7KSz7SCIza97TyYei6EsyAYtpiSSO8ZlJTtukC77omi6Nyk
+    GMElw1yx0A6UY5wuXeBQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 55.6.3 AUTH)
+    with ESMTPSA id Qb56a22AO7QQ1HY
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 24 Nov 2026 08:26:26 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>
+Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	kernel@pyra-handheld.com,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 20/20] ARM: OMAP2+: Remove Pandora platform-data quirks
+Date: Tue, 24 Nov 2026 08:26:00 +0100
+Message-ID: <1cb5bd7216b334e8c4eff21ff3463deeb6109595.1795505160.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
+References: <cover.1795505160.git.hns@goldelico.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] drm/bridge: add glue driver for T-Head TH1520 DW
- MIPI DSI
-To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
- <andyshrk@163.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-riscv@lists.infradead.org, Icneowy Zheng <uwu@icenowy.me>,
- Han Gao <gaohan@iscas.ac.cn>
-References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa20ca7d7d303a7kunmc11de194cd4c3b
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDSkpOVkgdHx1PSkseQkpJTlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=UURWRjVwdo+3l2AULyocD6fSNflb4NLvemODSt3E0BkJ4SDNYTRbIrvF97HUU4K2rtd/SDBnXtHZ+9biRxmmr2VYZUHyx1vjJo4sQNiVBRKlCiF1JgNn+It/uQ2dEKWkUHaT+/LN1vLB/a+9UefWRH0gS3pOe07esi2EjWKgg4A=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=CIIxCHmaf4fxrIyFS/BRlR2dhrRZVanUxs4tziQTo54=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_002430_361884_AB786EE7 
-X-CRM114-Status: GOOD (  17.92  )
+X-CRM114-CacheID: sfid-20261123_232650_646311_B293009A 
+X-CRM114-Status: GOOD (  14.79  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,73 +146,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Icenowy,
+The Pandora backlight is now described in the device tree and driven by
+pwm-backlight. The sound card also uses device-tree descriptions for its
+codec and amplifier GPIOs instead of legacy GPIO lookup tables.
 
-On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
-> T-Head TH1520 contains a DesignWare MIPI DSI host controller paired with
-> an internal DesignWare PHY, as a similar design (but with a different
-> PHY) with the Rockchip DW MIPI DSI.
-> 
-> The functionality to write to the PHY is shared between these two
-> implementations of DW MIPI DSI, so it's extracted from the Rockchip
-> driver to the common code. (The same sequence could be seen in the
-> HiSilicon Kirin DRM driver, but that one hasn't been converted to common
-> DW MIPI DSI.)
-> 
-> Tested on a Lichee Console 4A (with a Mingjun MJ070BI30IA2 panel) with
-> further pending DT patches.
-> 
-> One question remains: I have to copy the extra lane bandwidth headroom
-> from the Rockchip driver, otherwise the Mingjun panel cannot keep sync
-> to the display signal; from my testing, changing the hardcoded
-> PHY_STOP_WAIT_TIME from 0x20 to 0x2 (which is written by the vendor
-> driver) can also make this panel to work w/o the extra headroom. I want
-> some advice on whether to keep the extra headroom or changing the common
-> code to make the PHY_STOP_WAIT_TIME parameter adjustable.
-> 
+Remove omap3_pandora_legacy_init(), its backlight platform device and
+audio GPIO lookup table, and the associated board compatibility entries.
+These platform-data quirks are no longer needed.
 
-Does the DesignWare PHY databook describe about PHY_STOP_WAIT_TIME?
-  
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> ---
-> Changes in v3:
-> - Fixed a remaining `syscon` in the DT binding.
-> - Link to v2: https://patch.msgid.link/20261119-th1520-dw-mipi-dsi-v2-0-9ab5f9808f87@iscas.ac.cn
-> 
-> Changes in v2:
-> - Changed `syscon` to `thead,vo-syscon` in the DT binding.
-> - Dropped the patch moving common PHY write routine to dw-mipi-dsi
->   common code.
-> - Fixed a few problems pointed out by Sashiko in v1.
-> - Link to v1: https://patch.msgid.link/20261030-th1520-dw-mipi-dsi-v1-0-753f34fd304f@iscas.ac.cn
-> 
-> ---
-> Icenowy Zheng (2):
->       dt-bindings: display: bridge: document TH1520 MIPI DSI controller
->       drm/bridge: add TH1520 DesignWare MIPI DSI host controller
-> 
->  .../display/bridge/thead,th1520-dw-mipi-dsi.yaml   | 103 ++++
->  drivers/gpu/drm/bridge/Kconfig                     |  12 +
->  drivers/gpu/drm/bridge/Makefile                    |   1 +
->  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c        | 570 +++++++++++++++++++++
->  4 files changed, 686 insertions(+)
-> ---
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-> change-id: 20261030-th1520-dw-mipi-dsi-580d5b2792f9
-> 
-> Best regards,
-> --  
-> Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+---
 
+Notes:
+    Changes against V1:
+    - Andreas Kemnade raised bisectability and intermediate driver
+      availability concerns for the V1 pdata-quirks removal.
+    - Correct the legacy backlight name and explain removal of both backlight platform data and audio GPIO lookup tables.
+    - Commit-message review assisted by ChatGPT.
+
+ arch/arm/mach-omap2/pdata-quirks.c | 23 -----------------------
+ 1 file changed, 23 deletions(-)
+
+diff --git a/arch/arm/mach-omap2/pdata-quirks.c b/arch/arm/mach-omap2/pdata-quirks.c
+index b947bacf23a37..aca7097a692ed 100644
+--- a/arch/arm/mach-omap2/pdata-quirks.c
++++ b/arch/arm/mach-omap2/pdata-quirks.c
+@@ -268,27 +268,6 @@ static void __init omap3_logicpd_torpedo_init(void)
+ 	omap3_gpio126_127_129();
+ }
+ 
+-/* omap3pandora legacy devices */
+-
+-static struct platform_device pandora_backlight = {
+-	.name	= "pandora-backlight",
+-	.id	= -1,
+-};
+-
+-static struct gpiod_lookup_table pandora_soc_audio_gpios = {
+-	.dev_id = "soc-audio",
+-	.table = {
+-		GPIO_LOOKUP("gpio-112-127", 6, "dac", GPIO_ACTIVE_HIGH),
+-		GPIO_LOOKUP("gpio-0-15", 14, "amp", GPIO_ACTIVE_HIGH),
+-		{ }
+-	},
+-};
+-
+-static void __init omap3_pandora_legacy_init(void)
+-{
+-	platform_device_register(&pandora_backlight);
+-	gpiod_add_lookup_table(&pandora_soc_audio_gpios);
+-}
+ #endif /* CONFIG_ARCH_OMAP3 */
+ 
+ #ifdef CONFIG_SOC_DRA7XX
+@@ -514,8 +493,6 @@ static struct pdata_init pdata_quirks[] __initdata = {
+ 	{ "ti,omap3-evm-37xx", omap3_evm_legacy_init, },
+ 	{ "ti,am3517-evm", am3517_evm_legacy_init, },
+ 	{ "technexion,omap3-tao3530", omap3_tao3530_legacy_init, },
+-	{ "openpandora,omap3-pandora-600mhz", omap3_pandora_legacy_init, },
+-	{ "openpandora,omap3-pandora-1ghz", omap3_pandora_legacy_init, },
+ #endif
+ 	{ /* sentinel */ },
+ };
 -- 
-Best, 
-Chaoyi
+2.56.0
+
 
