@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2DD606A698
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0920606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ls612ikZ;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=CnVIU7Rp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OUDvMmnP;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=He2vuy3f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
@@ -14,47 +14,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jurOvTIfwj1DacQ6hf2SxDRcWNzzHaqnF8zsmGxt5CA=; b=Ls612ikZ/iotOVh9JrvbnW02Zo
-	SY/Uanrx3IFc2UEPM/bztec2YtvDrU2JZ/U0Gb6Owh00FNA8x1S1NrQPDyJll5QcAqLE2kTFxuUl8
-	HFUe0EULc40+2w0S3vicG2TB969zxw9CaghfT3LcGAomPfQXVH7NQT5zoM7KBonVEXl62aml6CvNL
-	6sAxZb31GOJpkSzegeVkWpLO6FheDX+tyECMRSBDUy8aPeB4kVVcjsBUneVHZ1Lx/oUGrhFC6mpXO
-	sNv31aVdHQGy8xDeUKh3erHkDm+Y2OLcQ6xOuazpPeHsl9/lq9uKhp7udGwpQTSaGtP6l7FKIGZf/
-	Of0D9t8g==;
+	bh=sh/yI+sWbH6dtghnDfs/QpQY6r3isBUMf3UMX0hh+Dg=; b=OUDvMmnP0YOzg8QUOhwL+5s0QO
+	1jR4GNseOzJRH+w8yiwtEjl9vHG4O5S+k5AgVVrX4/HPZD4fXouv1lJaHOmhakNKtOrSptUxJJYT5
+	3OSVd6jFeuDzdWj47NEUAvur7GFTGTbsYBGQenU4rvQFtYqvgGVzB/9V17hHzvLlLGdZuQ3/myO7/
+	7pNXeETb1S583qNTpbZxrJEcdgqldLIJSDaHkgcC9PyqSq3qwYkLdhYoVdJZFB9fEAgk9Tf1l7x14
+	2DQIT025bWzTDQAk73EBYICgecjxlcASPa9sryqCxPM6lzKmRbAcSQo5/vBIwdviBfvjoQqLoHj3X
+	DZlna5xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwBl-00000007aXz-20Br;
-	Tue, 24 Nov 2026 19:28:25 +0000
+	id 1xVwDc-00000007aq8-3XVY;
+	Tue, 24 Nov 2026 19:30:20 +0000
 Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwBh-00000007aXR-1bug;
-	Tue, 24 Nov 2026 19:28:22 +0000
+	id 1xVwDY-00000007apT-36WO;
+	Tue, 24 Nov 2026 19:30:17 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jwyQYjV0Qb6l37j9AKqWTsLQZgVtahR8zYzZRFu/4y6gUklOBbMwt9uMzTQgjgmq4kBapIbgCXI5N3MQNZF1u4c8IUwaUjd7lbqOZiWlouFpujqhENxIwj7vUcGSsM9N8RrO1FUMeW4ictB3R0GAhMccKkZ80kEXqaBbPAGCY/glT7QrDxp3uI0oP8CC/CAMzfh97jY12iJCk69q2NyHT6pFwc0wHHtFBTFxDx5qhLlDh8BS2OBgv0jc31MIrW0F9zLiEfy0P2fSKIAWdoOF6MG9YoYGfsVzcbGnq5h9cAo1e/AK2FnhSPHkoZJ21rs10UJRPaF2jIa8x5/jgmE6VQ==
+ b=pDzNRSg8Jdb9TdK4o7jP1tpZGf/k62it0NiCpWcqdoT9KYe8xA0q6FSPFytxLxMch3Ov4o3nBvvdo4lscnDzgiOsZVBrjPACLqXa0ZHv2wGNSdYrQ9ftKa6B/rdTIvnAjFMYmS8QKOzNhdy2QecqOlJi5TnKtFZAPVjMW1Ccvdzn7MBZRIDjcJ7k7SEFBWPPtv7MIkocnye1eMSgp+4JW8ZCkcJ23p9CZZN1fJgJmRMRKeFeTM9OCPKrnkv6aNM3F1Qaph7ASrDebDaIaqAyNB1N5k2vLugTG5cY5HyEsFaktG8WrvPent1BV22kW3i3Um1HXpQa+h7VTWrqsE/LqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jurOvTIfwj1DacQ6hf2SxDRcWNzzHaqnF8zsmGxt5CA=;
- b=WW4So7nsYlIToMzyfUQLMQai+/qcvrWFS4a6Jcinimfux6s8zr4zjkuI93CE7sxJtEaTvjtd5TtkZb0j/91+Nm7+qQhlJptNqTyTzanQ1THXNaMv+oROZCiemyEyrEaun8ULGvmkMzaSNk8Z7sSC6nD48ztgjuTG5yaZAjQAZyTRyoNlIxf49GzZ0apHjr+acjmSq1jg9pWqA5egCnuklHhft+qZ64yh4yRLmGthpsqj9hiDQB2woaOit5q2FEvdDKYMKN/uHuWvM3wmhB0Ax5G+mFG2Dhqc8gKHIeWB4MppvZHB8FTfsZA95wz/QCvB67xVnluSf3++KE390j6eAw==
+ bh=sh/yI+sWbH6dtghnDfs/QpQY6r3isBUMf3UMX0hh+Dg=;
+ b=mldKX7zCNm8IL3Gr5OBACRo9ZHsAhW+PBypaqsKcYO8OsCsWOIVuPSxciPOQMMfylIkEptXEcJfYHlbEuhoJ2WNGj5F1amULn/zmdYdfi6RLJgsE2MAuSNqBDBWdxXKk26VGoGy3mMDYh7lw3qSVu2iQOqVJlGwpSE+k8uNf7AkMxikwU0h0kVD+l03l8sStonYc9GRi8/D7hGBMYpepFIg40CH0znw3DYbv+inqwwhW5CbcAZY5dK9t4YAtblDEQ7z/tLTkEBDoQNYIRUMazoaUrV0t4SxPo93+xTEtCbjL6lHOc+3TIu8v87EJdxvjbGo/yp2LPxfu2PBUkJnyVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
  dkim=pass header.d=oss.nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
  s=selector1-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jurOvTIfwj1DacQ6hf2SxDRcWNzzHaqnF8zsmGxt5CA=;
- b=CnVIU7Rp3dgQiQmqeFSrwOWx3yhWRqcwoie9bo6GfLEvisI6OyU7hp3g5RUxG0LmsQieS5FairlWvVTVKI77HxOgqHOi5xUEN7LPIVUdqYB3cKKCkSC+u+bFfUW3Wblfg3JvIqRmlKMPL6QBaEPP0DOiZkJpcpBGE9TZKqN2nhqlDAZxs52HMcL620KwB/ZxL80OmtzBDhU6oxrnMADZZYZMRSCgmSrYdK+XEP645ryWHw6HJYWnjLr/3uTY24u2mUBdyawOvvLYtgctscBtT7Kaas4FuSxVjWzevAo+1ySWx91vWjRGhyrgmj51u4049C3qwEib+N3VBStL8szPdA==
+ bh=sh/yI+sWbH6dtghnDfs/QpQY6r3isBUMf3UMX0hh+Dg=;
+ b=He2vuy3fc/6353vmsUoqdS5thfaLhqPw/Zx5duwpMDh3s861X6NSbHiAWUbU2QDOg7pMKZpg1iWNvbYVdvyexxyI5KEAMMS8t3YNVGBXdx2L2T6VkGKy8nBuV5mm6GMvHDv3zkL2vzN/jH2K/Ljo5UYoa9x0ALXQ8xLTmOfM4wm4csRWDXZ3aoTVlP4MK1FvfdNNhGVaTPuAUVULxDKMucmhfqxC5TRgKmtXIS+I3IJatVn4UIPnqRGQIRTX0QHwCsKXUMh6pCo1ndA6bB4aeHGerb9wIaKDKUeteIp9PIWKRfjSJ7HIOnF6s9mUECdAwegB7+zCDSBtb10/U2LtvQ==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=oss.nxp.com;
 Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
  by DB9PR04MB8430.eurprd04.prod.outlook.com (2603:10a6:10:24f::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 19:28:14 +0000
+ 2026 19:30:13 +0000
 Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
  ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
  ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Tue, 24 Nov 2026
- 19:28:14 +0000
-Date: Tue, 24 Nov 2026 14:28:07 -0500
+ 19:30:12 +0000
+Date: Tue, 24 Nov 2026 14:30:02 -0500
 From: Frank Li <Frank.li@oss.nxp.com>
 To: Andrea della Porta <andrea.porta@suse.com>
 Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
@@ -73,72 +73,72 @@ Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
 	Robin Murphy <robin.murphy@arm.com>,
 	linux-rpi-kernel@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 03/28] dmaengine: bcm2835: Add NO_WAIT_RESP,
- DMA_WIDE_SOURCE and DMA_WIDE_DEST flag
-Message-ID: <awXlR5RAVl8XMVxA@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v3 04/28] dmaengine: bcm2835: Support dma flags for
+ multi-beat burst
+Message-ID: <awXluqyLWzdl_Ade@lizhi-Precision-Tower-5810>
 References: <20261123145728.29082-1-andrea.porta@suse.com>
- <20261123145728.29082-4-andrea.porta@suse.com>
+ <20261123145728.29082-5-andrea.porta@suse.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261123145728.29082-4-andrea.porta@suse.com>
-X-ClientProxiedBy: CPBP307CA0017.DNKP307.PROD.OUTLOOK.COM
- (2603:10a6:380:2::13) To MI3PR04MB12438.eurprd04.prod.outlook.com
+In-Reply-To: <20261123145728.29082-5-andrea.porta@suse.com>
+X-ClientProxiedBy: PH0PR07CA0109.namprd07.prod.outlook.com
+ (2603:10b6:510:4::24) To MI3PR04MB12438.eurprd04.prod.outlook.com
  (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DB9PR04MB8430:EE_
-X-MS-Office365-Filtering-Correlation-Id: 129b296b-68b8-4fb6-fd77-08df4a6115bb
+X-MS-Office365-Filtering-Correlation-Id: 9c96695f-d66b-4a22-6cb5-08df4a615bf9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|19092799006|23010399003|18002099003|22082099003|261009223027099003|261021133027099003|261021130227099003|261021123027099003|261021121427099003|261021135927099003|261026130827099003|261026140227099003|261102123227099003|261022105027099003|261026121527099003|261022115727099003|261026135527099003|261022113327099003|261022075727099003|261028144727099003|56012099006|4143699003|10067099003|11063799006;
-X-Microsoft-Antispam-Message-Info: KOY4EIxQxgm2IjfbiWBTJbX5CzHeD0tOQq+1SuBHZ5MNAjiBt7XRxR/W7Qkmt2xoUvTiRLFeLF1P996QfLcfybtSiVYUhC8FuOcoKrAvPhsQUcgON7NrCB4fZ5ulyySlQ5UgEDrEQClQ1xdmWybtAthCliURsab+ENhFnMYBXP+WFmZW7qSi0d7kIEcU5w2akv+dlT6M784tHns0UO+ta6m6kCJoqrQZjPNodYuX+fDqe3qU49+WF5D81mD+nSezZAtXcMDI/feA41QVxqAqYKExNpqZP/XJ8Ce1YvmpSp3GnWSMg0pzNJmDFDOs9DnM2azzp8SajvNfwiV5+o6J1s+eaxivDfl5FQgqMGbYgengCxq5mtMLBKsz+w9zluutRBETeRefAPExuG3BkQe4gIeZx2eODwB2WUl53tfcOX2tLHM75PXv5+Ld+KMewEm5apXXabsq87m84mK6rdgFxDmGeMI5ZTgsjxub3UFPH7RyE++2hqKiYt/Qe+p1+uP+vZgwDG9doPpZjBhd2ayiYLs95PCydwVc05eqmuVGl2lC+dlLyCg9VlNAzkl9JjlhaePfHz0mfP6GVBs/4FLLpWAQe0Bank1ufpuGKv9NGfqKnJp8Oxz460W9lo5umLEscwJuoIOnrNsrvbI6OFy43wA7/q/RGrxuDQ1Kj/P/AFM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(19092799006)(23010399003)(18002099003)(22082099003)(261009223027099003)(261021133027099003)(261021130227099003)(261021123027099003)(261021121427099003)(261021135927099003)(261026130827099003)(261026140227099003)(261102123227099003)(261022105027099003)(261026121527099003)(261022115727099003)(261026135527099003)(261022113327099003)(261022075727099003)(261028144727099003)(56012099006)(4143699003)(10067099003)(11063799006);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|19092799006|23010399003|18002099003|22082099003|261009223027099003|261021123027099003|261021121427099003|261026140227099003|261102123227099003|261022105027099003|261026121527099003|261028144727099003|56012099006|4143699003|10067099003|11063799006;
+X-Microsoft-Antispam-Message-Info: BcGpdFIciV19MmG24ZbmynGDxNJf9wHAW1KILhn7IoWVbT9sHR0dJF1mTz5CgbH/38kBXISMxCoOoUiKO7aBDe40K0pzqEh8/cpeoKNocJO8VMbZ0NqIZdh0VOxCdDlFRVb/wAfZqrDjHtMPkaN/JVolJubjW9p58IqLWIBuJO++Z0w75Ds8SVYhnTWN4isoBuBL0nTr39holcBwDQjuArAQYRi8AtE8N0P3UpGPESR6dS+EmdyIOXwaTQgya1JqJuPERL8kgrSWonmbC2AdQKz0udPta0iUMPWbSJzFNgaLtRqAWNpRFbQ5xHSDkL7f5mmAA8ZX4P4BNOp1YeL7JZHzzYELi74HxJOj3AYF7o8vUYLq5RDBZekxjoraH/RhvFul6Cud7ixGdhsKdDJ1KLrbXy3LG8kafXnT++MojT5Eb6wCB9JgUHNA1/18BLZ+CyKT4zFOvbotenAyw1oDKYdCBltvK1jQMPQd8VXD34oupWuZlTfB3QHf0B+pufbV7K6yOckcUkkgCZMUXGFZmnY0MHuP59NLsNVDsNb1dVOt3mSvO/vUily2+DQi3tjShvwIuNTtBFAugQ+TCCWQw/juLRaRKUpusLSr+MCXMcdbX2SipNXelHY8RIEgkCp5o8a1y08e5aHmO+MCVbxkrMZToOZt2M4Pe69TT8ebvPc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(19092799006)(23010399003)(18002099003)(22082099003)(261009223027099003)(261021123027099003)(261021121427099003)(261026140227099003)(261102123227099003)(261022105027099003)(261026121527099003)(261028144727099003)(56012099006)(4143699003)(10067099003)(11063799006);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?z3SkXdNZnQ6duPdPhtSi5dAnM8rbio8O/tAAp6WHESJHhkSoFFdfdCdfc0zF?=
- =?us-ascii?Q?z7N3foDuuIjeWaVDvVmDtP4mwxjDk6z8TQWXCMuQOqb8Aya9oIPNpw4BfQ3l?=
- =?us-ascii?Q?NPkmcIvM/gCmEd7EitxsImeE17sIOYI+rb09xY+Hg8uo/QNiG7t/vytux7s1?=
- =?us-ascii?Q?N9CWCKUg/DSnlMLnabMWCW4vqp2h5Aw4xkWhS7XZRXGWrP40g8/UajU42g+D?=
- =?us-ascii?Q?N68FwHntZRltTP+5/vG6ou9I2uVdMhceYcQUO/xA+4MKdw3FsLQPU12uWRaH?=
- =?us-ascii?Q?wLaR7IeN/oWYUZky8YLaFpOlH3u706T+UaMSfVrVRhQ9C9jfrFnQLHoYV7e7?=
- =?us-ascii?Q?XTVGXfXwDpgKsf/jnukqSmWkK7wzA2lA3ldvE3dZ7hR8ahPEDWK3Qy1Hp7FA?=
- =?us-ascii?Q?kJNMqir5e+/IG1cN3aHIkStRU0YCxMTp8MueKV6vCO/iZ4Tuc3lhmn53CcmT?=
- =?us-ascii?Q?zSDuC8e0I6c436R/mn8WNzWGBSuTZ9iKx8+1VUWBM2IYSGytowYHTS2FmRBM?=
- =?us-ascii?Q?HprwwowcMgQJ9TQru5sBU6nV/XCULIjZn6sbOYjnNosXz1cLC2CGmZyDgW0X?=
- =?us-ascii?Q?7uKluP9JiE4x8za/gFOHUyGLIeY0VlR3owXEuwcASS/ocSGYF1BQRWcO1ThX?=
- =?us-ascii?Q?lrQq3uWHlZctI2F45/gQVjICg39DiZ/wUnNb9j6l2Jaypk8iltICpdQMyL5M?=
- =?us-ascii?Q?LjETwTQlcYf9IOKBuNlJ0KXfCyEoGAfqWeaf2CCfw0q2Q/YVU+pLtOaIm7FQ?=
- =?us-ascii?Q?aPpYcYYSnY7ninWaUJmKmZOytMoKAOdmr7BCpoNSItl0aHArLxQaYQhIVtgV?=
- =?us-ascii?Q?IG/bgayiIwLPp8ZAxp+y50gP13/Zr6UkjjCzHUGQC7sd67ViKPAIvRaCO93K?=
- =?us-ascii?Q?05KDUQQLZ5WydL7O4o7sGjfPZAnEJW83+/DFTL1kYgRE78HTRlIBoA5Gj0+J?=
- =?us-ascii?Q?Kjvs6WTZaxf3RsAsF2h+iEjovEN0t4LlaHezyj8r2ZjAfJS1YgybjsYqsgzv?=
- =?us-ascii?Q?KFGHf/6D5K+kyPvooeJvSwG6b+v3xgSL3iCMw69I14j8Eu+EAmUNILLoLEXm?=
- =?us-ascii?Q?EQ5qWT9uo41MPYsYFHM/r0QPbkWb4bBhOX8QVk3E7HoXUT6vHxL2vj4iiLSO?=
- =?us-ascii?Q?+HjlpKRNLwUJRrDBJBCOFHqzaMnnOQN1E7j10vew38xgr9bJU8Vn1IyNsqN/?=
- =?us-ascii?Q?85iyx/V9rxezdm4dPT7KLEhAjcupn9Tw/acAJMx0gQjL0Y2xzxExxKyz1lYp?=
- =?us-ascii?Q?Cnjrm09oXJZKcP2HdFl9lKtVhc3DBHYCs4PdvZTdxwKCq+F8y3fipT44dw08?=
- =?us-ascii?Q?3TJ6g2ZKkKYEiFwWpTiHH5EPdt4S77+5XYH/mveeMfkPqw3Aef696zv1ZzTa?=
- =?us-ascii?Q?oygPCb8BUncau/O5kMbBItsE1EWqpLVPcXXN8G0kXQjdkKe0Tmxr9vFxJGRL?=
- =?us-ascii?Q?IMZUpYejA7bv/9+yfxl0IPcgGhFYLs2tui7/coWRJt7xIGLSrC+7KK7k6g9/?=
- =?us-ascii?Q?OptVZeRx2QaAvEufOfxCr6xhLhOtPGOKTp24eu5NbA4Ij2hvTfjQRRh274q2?=
- =?us-ascii?Q?WiJPHMWYMD/nIPJnkUpeUl9OrKn/uh2H41ZFnh2dVAFbSaSjAVj6uSDnT8JE?=
- =?us-ascii?Q?cER1DCFHy071sfQslWknJLcSZpTA3s7Qd8HiIpGKrkHiaeek+0Vh2/gwY3sz?=
- =?us-ascii?Q?uw9iQOeCZiEe+Zykh11cvjCkMws0iM32EiPKerYKUIh/rioE8P0rysdab1FK?=
- =?us-ascii?Q?yzT60hOyY9IwcSbciqRa0MluE0kBz089zEMvL6lY55RFFRvq7kYw?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hLSRnYRupNdNQdpFujYFNVyr1W6KmEFqzidhU4ehszm23fGiAIei7/eVLV5v?=
+ =?us-ascii?Q?Heb/1VFSvNn9xq2phO/1k8oM2I1rFrDgYq7oi2q/Zv8CBGXWtDN0tOKjJ81G?=
+ =?us-ascii?Q?T7X/4iFhFBFn3gZ4+KawGWX6gZpXe8l2i7b/izaYDauclQ2o0dvL3tkAYBre?=
+ =?us-ascii?Q?hcfYbU9seKisuB8SGTIpS0IN3WJ9u6NzQj3F7p67wWPHoRUwP7HKuDYVjUFn?=
+ =?us-ascii?Q?NQxSxIj6TJl3Unppwwda05bhxK4WBeElME9k85pyeD42iFSmJaKslI+vHG3Q?=
+ =?us-ascii?Q?UDuaFK2qVcbHqt27mV2P+TZmH+by6pp76PXlbJOPKJ8vFCMPVArNVfWmAsUh?=
+ =?us-ascii?Q?TQeC7igx16fX4s/aoYu33OOX7bBjhgOcy5kEeBicFD7qGkN2DM/BNCCPbG8M?=
+ =?us-ascii?Q?Agfxzri6gRv0fFdgOZt5pLFTqthjHNFIZ+1c/qb3DTrP8q4Ep0CovVdapuiU?=
+ =?us-ascii?Q?JxXFkPJtdK1xCWOyt7gKe9GaF2V1ye3WmtunJaxu3lJMIlBhON91QB7FPzLK?=
+ =?us-ascii?Q?uZVcOS+U2SErr1SMkmPrMFnzmmdiTxaECBrFy5dNlzgYAN0l79la73Jx/zkw?=
+ =?us-ascii?Q?W2Rul06Z5fVrfOk8nQlID3RN4EDd5eQMAbGE0ikpCGPxOxZLLIqViejE6W70?=
+ =?us-ascii?Q?/R/dYtueYEtegeKZukzbz+patCAaNdWOcj4BcZzyU0jVP/a9C9jyjZguscBu?=
+ =?us-ascii?Q?AUHuhpURZLqlhYTas5glO9RPMARo0lSnN68UtwlPpqBsrZ7r0OZ/eEgYZB5e?=
+ =?us-ascii?Q?9tS8aOwh53DDYFcCSN6HzyEYFCVt2slMY9Puif0+BC0oXKFO3//s3IaW11yH?=
+ =?us-ascii?Q?1onrDDBMJa0Ad7jX5OB60hWTlusBdsI6ut82s/7GwoUoKr89x1Hl7cZ71+Yu?=
+ =?us-ascii?Q?8aWWY6HLsiXsbR6XXb7p4PqVNImov9QMiIlnsFXEM7gnYA+t1ZehcnEljkBM?=
+ =?us-ascii?Q?dFN2tR+PApzUYLzRb3m4oq9wb7an8jMhdd34XjDG4DMEPO9rx0pWlOGto+Gy?=
+ =?us-ascii?Q?oJvWihuc2gtsdYA6m9JLRoDRv0m6gv2Qpa2zk5tllqC8/Zbl4qEbyqVoGMdE?=
+ =?us-ascii?Q?mPsboNvt9ZgBO04PL2CEmU0qrJwUTz+lsgBkr7rH/CfeWY/SrGMCVQVKqRv0?=
+ =?us-ascii?Q?6jooF8mZKGoNZ2Vv6LehcTd2ykLpJmpLPnlc4mEhEdcNbdXq2jQRYrYh0NRO?=
+ =?us-ascii?Q?Ao3ZpgmNuXvZAOVdjIbNAGrHOnFP/rTJGcIgf/NXvBPNl79sZiYqPNC1JtGu?=
+ =?us-ascii?Q?z8uIe156BhEdvBYE3AdOOMUfPyEs/F+GFsrkMwxMeBq8A7Rb54NbdD/Qh8aP?=
+ =?us-ascii?Q?TRbFt/3KaKPTT3hD+tVruaA1OKfiUnL+IfqDh3McvMUB5auzeVIbDdJ9yvcG?=
+ =?us-ascii?Q?l8DNrVLfedYzMz3ou0IIosppeIqUYSxLpTL0SiMMkSXCRfHg+dNPMsGp65w1?=
+ =?us-ascii?Q?MDwPcnLb5fRsEvG9XDd70MSVILCNoitV/SFhoMD99ySEP0twKEiXIu6hWDmE?=
+ =?us-ascii?Q?jM0FKIO1tcPvSgY5c7vrnbS79TT0XOYIXK4dvnr/0lMENNrRL6rKn8gxDNRu?=
+ =?us-ascii?Q?BrKZ3O/DwWQoIV9KhqrWGrOAro5BbspVE5O4cAP6irESS8QYOkBDiX+3s9uY?=
+ =?us-ascii?Q?ubI0r7i+FjEbkoYCkX6DNeZR5C3yHhmvcE48h5H2/la8Jetsdcxu7KzqqyMx?=
+ =?us-ascii?Q?fNXhnKJWuAT6UtcCiJEz052+7UK7WqrJQ3h6Vxd9/nUuIPMFZhtXx7gMSIvQ?=
+ =?us-ascii?Q?p8RfgwiOqjH90nkp2/ClJgNWpq0fUNHHW9aBfty4+gf4aVyvvIqQ?=
 X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 129b296b-68b8-4fb6-fd77-08df4a6115bb
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c96695f-d66b-4a22-6cb5-08df4a615bf9
 X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:28:14.7481
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:30:12.6121
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6KQvXLzEznOVrnEaVixblbC4wGpYtDuy16z8yC1nYaahKsyZdNFO/SGKGlMMQB8AlhmSFba30EK59+Mz3s+kogww3PAJ5xBLvr8DAZxyDdlzb29uklJIxnclAxOgIQXu
+X-MS-Exchange-CrossTenant-UserPrincipalName: mCEgE9UUjVIenIDHpW0mgziWT60Yd1oE2ReCC4XOYgt8Cna0U/ogm5EcsgJJZ6nUVI+wEWVS0NLpNXOHC7a7pPrHcquenywF58AJCeIFkng/IfWHACfURfxSzf2JHqrj
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8430
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_112821_449724_B2AE158A 
-X-CRM114-Status: GOOD (  20.90  )
+X-CRM114-CacheID: sfid-20261124_113016_804577_DAF02916 
+X-CRM114-Status: GOOD (  14.07  )
 X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -157,88 +157,30 @@ X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 03:56:41PM +0100, Andrea della Porta wrote:
-> From: Phil Elwell <phil@raspberrypi.com>
+On Mon, Nov 23, 2026 at 03:56:42PM +0100, Andrea della Porta wrote:
+> From: Dom Cobley <popcornmix@gmail.com>
 >
-> Use bit 27 of the dreq value (the second cell of the DT DMA descriptor)
-> to request that the WAIT_RESP bit is not set.
->
-> Use (reserved) bits 24 and 25 of the dreq value
-> (the second cell of the DT DMA descriptor) to request
-> that wide source reads or wide dest writes are required
+> Add a control bit to enable a multi-beat burst on a DMA.
+> This improves DMA performance and is required for HDMI audio.
 >
 > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
-> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> Co-developed-by: Andrea della Porta <andrea.porta@suse.com>
 > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 > ---
->  drivers/dma/bcm2835-dma.c | 25 +++++++++++++++++++++----
->  1 file changed, 21 insertions(+), 4 deletions(-)
+>  drivers/dma/bcm2835-dma.c | 16 ++++++++++++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
 >
 > diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> index 690f5ba1c439..118ba2f71dc8 100644
+> index 118ba2f71dc8..063e1b2aabe3 100644
 > --- a/drivers/dma/bcm2835-dma.c
 > +++ b/drivers/dma/bcm2835-dma.c
-> @@ -145,6 +145,21 @@ struct bcm2835_desc {
->  #define BCM2835_DMA_WAIT(x)	(((x) & 31) << 21) /* add DMA-wait cycles */
->  #define BCM2835_DMA_NO_WIDE_BURSTS BIT(26) /* no 2 beat write bursts */
->
-> +/* A fake bit to request that the driver doesn't set the WAIT_RESP bit. */
-> +#define BCM2835_DMA_NO_WAIT_RESP BIT(27)
-> +#define WAIT_RESP(x) (((x) & BCM2835_DMA_NO_WAIT_RESP) ? \
-> +		      0 : BCM2835_DMA_WAIT_RESP)
-> +
+> @@ -137,6 +137,7 @@ struct bcm2835_desc {
+>  #define BCM2835_DMA_S_DREQ	BIT(10) /* enable SREQ for source */
+>  #define BCM2835_DMA_S_IGNORE	BIT(11) /* ignore source reads - read 0 */
+>  #define BCM2835_DMA_BURST_LENGTH(x) (((x) & 15) << 12)
+> +#define BCM2835_DMA_GET_BURST_LENGTH(x) (((x) >> 12) & 15)
 
-why need recorder these information at in hardware control block if it
-is reserved by hardware?
+Use FIELD_GET()
 
 Frank
 
-> +/* A fake bit to request that the driver requires wide reads */
-> +#define BCM2835_DMA_WIDE_SOURCE BIT(24)
-> +#define WIDE_SOURCE(x) (((x) & BCM2835_DMA_WIDE_SOURCE) ? \
-> +		      BCM2835_DMA_S_WIDTH : 0)
-> +
-> +/* A fake bit to request that the driver requires wide writes */
-> +#define BCM2835_DMA_WIDE_DEST BIT(25)
-> +#define WIDE_DEST(x) (((x) & BCM2835_DMA_WIDE_DEST) ? \
-> +		      BCM2835_DMA_D_WIDTH : 0)
-> +
->  /* debug register bits */
->  #define BCM2835_DMA_DEBUG_LAST_NOT_SET_ERR	BIT(0)
->  #define BCM2835_DMA_DEBUG_FIFO_ERR		BIT(1)
-> @@ -605,8 +620,9 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
->  {
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	struct bcm2835_desc *d;
-> -	u32 info = BCM2835_DMA_D_INC | BCM2835_DMA_S_INC;
-> -	u32 extra = BCM2835_DMA_INT_EN | BCM2835_DMA_WAIT_RESP;
-> +	u32 info = BCM2835_DMA_D_INC | BCM2835_DMA_S_INC |
-> +		   WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) | WIDE_DEST(c->dreq);
-> +	u32 extra = BCM2835_DMA_INT_EN;
->  	size_t max_len = bcm2835_dma_max_frame_length(c);
->  	size_t frames;
->
-> @@ -636,7 +652,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	struct bcm2835_desc *d;
->  	dma_addr_t src = 0, dst = 0;
-> -	u32 info = BCM2835_DMA_WAIT_RESP;
-> +	u32 info = WAIT_RESP(c->dreq) |
-> +		   WIDE_SOURCE(c->dreq) | WIDE_DEST(c->dreq);
->  	u32 extra = BCM2835_DMA_INT_EN;
->  	size_t frames;
->
-> @@ -688,7 +705,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
->  	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
->  	struct bcm2835_desc *d;
->  	dma_addr_t src, dst;
-> -	u32 info = BCM2835_DMA_WAIT_RESP;
-> +	u32 info = WAIT_RESP(c->dreq) | WIDE_SOURCE(c->dreq) | WIDE_DEST(c->dreq);
->  	u32 extra = 0;
->  	size_t max_len = bcm2835_dma_max_frame_length(c);
->  	size_t frames;
-> --
-> 2.51.0
->
 
