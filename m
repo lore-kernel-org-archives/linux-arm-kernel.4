@@ -2,175 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29651606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46084606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:40:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FxwZV+8E;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=t6QZHWyB;
-	dkim=pass header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=2F5ECXx5;
-	dkim=neutral header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=V5mKWLC2;
-	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=OLVgPb3g
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wio4fkNg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+lTcW2tHFQB1C3Nlj5p7HmcW5Co2wEM9UlQh+yZacDY=; b=FxwZV+8E8ZrABH
-	tfi20CLdstCjtCnvHuwHi+aMLSsWlG/z+zX8hjK4IrC6dP5Qw0GPXrim6DU9WcMOi73jfxybEDFgS
-	w2aZI6wgPTrfGAb58GeURi0om34T+KIV0BOuGzLrKHi5KqIbvxrozM4HQKa8fpcQc8kfZ6bBD1Ioy
-	qEL2kZgE61c6Pg3WewJaPPlElxaKct0rUOTARfWnPquSQ4ZRNW/Xe0Ej8RD3JnCjZBvI4SmbaoWlb
-	Y+XJQXcX/METfLz8JllGZHMJaljopReqSsFiItJZWZ3zQxUegDAEuhytx+kN+HNhwbpdhEkGhc0MO
-	FKhfJE38HT7cn3isAmoA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nNq6TWbysgOa1vqC3EQFS0jj416q5gx+MqMAuTR/X8A=; b=wio4fkNgwnIzDlvfY7VgaEWjmO
+	206EBA6Us5MfO5zsLJ9C4HZT9mCE24o/b9cT/eXZ1y1XVmQ7wfvDU+SyQwuhjm56SK/lZkbSZMfeL
+	m6VpipQ7cDN75JEdf6H6gEwbuMF3+ZQKp6ZpFlAMUy1Rb7oGxeiiLX02SpvrZJdDXV6Bi6pwSWBHZ
+	JkX02r2NqmDtfEM+BX8JEnWayn8qkxCqy+G+cZN6ywQQHBXJcZwiDNNA1vlUorL19Z7K9N2qANr6w
+	8QtLlq/WomtTeAGw316QaxZQW5ni0DjHKpEpPP948UbGI+0mF8mk/DRGKSw+8TdTpiTNVqYjrjzfL
+	gQNJiY/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlPg-00000005pqX-1QOn;
-	Tue, 24 Nov 2026 07:58:04 +0000
-Received: from smtp-out1.suse.de ([195.135.223.130])
+	id 1xVm4C-00000005vvU-3Qt3;
+	Tue, 24 Nov 2026 08:39:56 +0000
+Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlPa-00000005pnk-44jK
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:58:02 +0000
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id CA2AE222A0;
-	Tue, 24 Nov 2026 07:57:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1795507077; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=+lTcW2tHFQB1C3Nlj5p7HmcW5Co2wEM9UlQh+yZacDY=;
-	b=t6QZHWyB+uwrXEMViAOb3jw8v3rFzTwiexBazr/M9jtcQfKL16akSjckIaiPR5aVv1MlZN
-	hreHc7aqXFqryIQDW3XPrFCViGtUMYRSRQ+ZEygQtsmE8otNstFX4UUluGO0QiQNiBJGlu
-	B4pls7m8ILY/4H2Vu+P1QtX42dk+Wns=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1795507077;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=+lTcW2tHFQB1C3Nlj5p7HmcW5Co2wEM9UlQh+yZacDY=;
-	b=2F5ECXx5Gt5cRFJ2/teE9NeAGYBh8u07py1GiJQYxbA9bcZ4O1RUmRuL3vrN5Eol3fsoNz
-	y6nGiypRf5a1A1AA==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=V5mKWLC2;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=OLVgPb3g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1795507076; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=+lTcW2tHFQB1C3Nlj5p7HmcW5Co2wEM9UlQh+yZacDY=;
-	b=V5mKWLC2LKBl7WBvuGIYdTJ8l+f2lZ7B66HdbCZS72OAF+qFWuhpeVaYpHR31luoizoZP7
-	XqD4b5xE6qjLwDUpUE7bg84QWh2cpk7WX0l/FUGpG7IYPPKd/O5aWKw5nqyVDf0Q7QrrFW
-	x3UQbgfkryFqF+Cy6a2ljl+AdRhrKGo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1795507076;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=+lTcW2tHFQB1C3Nlj5p7HmcW5Co2wEM9UlQh+yZacDY=;
-	b=OLVgPb3g3TEsd2zNnGv6r47ADixoKiJap6uGDCDRVug5SHA+7W3Vajse22lzZMFXhaKM5J
-	O2ZWnNNbC0f3nFBQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3DF9F1339F;
-	Tue, 24 Nov 2026 07:57:56 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id Xh+vB4RDBWs3bAAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Tue, 24 Nov 2026 07:57:56 +0000
-Message-ID: <19cd5949-05dc-4107-bd2b-d8ad1e2332eb@suse.de>
-Date: Tue, 24 Nov 2026 08:57:55 +0100
+	id 1xVm49-00000005vuL-3xeJ;
+	Tue, 24 Nov 2026 08:39:56 +0000
+Received: from edelgard.fodlan.icenowy.me (unknown [120.85.97.139])
+	by APP-01 (Coremail) with SMTP id qwCowADnDfhFTQVrj+mUAQ--.9372S2;
+	Tue, 24 Nov 2026 16:39:34 +0800 (CST)
+Message-ID: <6fd9adfbb46959316ea18581513e21a71732df80.camel@iscas.ac.cn>
+Subject: Re: [PATCH v3 0/2] drm/bridge: add glue driver for T-Head TH1520 DW
+ MIPI DSI
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart	 <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Sandy
+ Huang <hjc@rock-chips.com>, Heiko =?ISO-8859-1?Q?St=FCbner?=	
+ <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
+ dri-devel@lists.freedesktop.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-riscv@lists.infradead.org, Han
+ Gao <gaohan@iscas.ac.cn>
+Date: Tue, 24 Nov 2026 16:39:33 +0800
+In-Reply-To: <c89271be-85f9-41ba-9c19-c78743d212c8@rock-chips.com>
+References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
+	 <c89271be-85f9-41ba-9c19-c78743d212c8@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT v3 2/5] drm/fb-dma-helper: Add
- drm_fb_dma_get_gem_clipped_addr()
-To: Chen-Yu Tsai <wenst@chromium.org>, Liu Ying <victor.liu@nxp.com>,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Lucas Stach <l.stach@pengutronix.de>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20261124074041.115251-1-wenst@chromium.org>
- <20261124074041.115251-3-wenst@chromium.org>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20261124074041.115251-3-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-13.50 / 50.00];
-	SUSE_INTERNAL_BYPASS(-9.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
-	MX_GOOD(-0.01)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.linux.dev,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,suse.com:url,suse.de:email,suse.de:dkim,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -13.50
-X-Spam-Level: 
-X-Rspamd-Queue-Id: CA2AE222A0
+X-CM-TRANSID: qwCowADnDfhFTQVrj+mUAQ--.9372S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxXw4fCr1rGry5Xw4DtF47Arb_yoW5Xr43pa
+	17GFy3AFWDJrn2gF97tw1rXFW5Xws5JFyvgrW5tw1fZws8Wa4xXF9Fkrs8WFy8Xr1fuF12
+	vF40g34fWrnFvaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_KF4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvE
+	x4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCTnIWIevJa
+	73UjIFyTuYvjxUVuWlDUUUU
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_235759_345103_26D6C6E7 
-X-CRM114-Status: GOOD (  26.29  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_003954_754184_0AC25ECF 
+X-CRM114-Status: GOOD (  23.88  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -181,134 +91,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi
+=E5=9C=A8 2026-11-24=E4=BA=8C=E7=9A=84 16:24 +0800=EF=BC=8CChaoyi Chen=E5=
+=86=99=E9=81=93=EF=BC=9A
+> Hi Icenowy,
+>=20
+> On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
+> > T-Head TH1520 contains a DesignWare MIPI DSI host controller paired wit=
+h
+> > an internal DesignWare PHY, as a similar design (but with a different
+> > PHY) with the Rockchip DW MIPI DSI.
+> >=20
+> > The functionality to write to the PHY is shared between these two
+> > implementations of DW MIPI DSI, so it's extracted from the Rockchip
+> > driver to the common code. (The same sequence could be seen in the
+> > HiSilicon Kirin DRM driver, but that one hasn't been converted to commo=
+n
+> > DW MIPI DSI.)
+> >=20
+> > Tested on a Lichee Console 4A (with a Mingjun MJ070BI30IA2 panel) with
+> > further pending DT patches.
+> >=20
+> > One question remains: I have to copy the extra lane bandwidth headroom
+> > from the Rockchip driver, otherwise the Mingjun panel cannot keep sync
+> > to the display signal; from my testing, changing the hardcoded
+> > PHY_STOP_WAIT_TIME from 0x20 to 0x2 (which is written by the vendor
+> > driver) can also make this panel to work w/o the extra headroom. I want
+> > some advice on whether to keep the extra headroom or changing the commo=
+n
+> > code to make the PHY_STOP_WAIT_TIME parameter adjustable.
+> >=20
+>=20
+> Does the DesignWare PHY databook describe about PHY_STOP_WAIT_TIME?
 
-Am 24.11.26 um 08:39 schrieb Chen-Yu Tsai:
-> drm_fb_dma_get_gem_addr() returns the DMA address to the "unclipped"
-> framebuffer. However some display drivers want the "clipped" framebuffer
-> instead, as they are also using the clipped coordinates to program the
-> hardware.
->
-> Some of these drivers are open-coding drm_fb_dma_get_gem_addr() with
-> the source coordinates replaced, while others have been incorrectly
-> converted to using drm_fb_dma_get_gem_addr(), which would end up
-> causing incorrect parts of the framebuffer to be displayed if it were
-> somehow clipped.
->
-> Add drm_fb_dma_get_gem_clipped_addr(), a "clipped" version of
-> drm_fb_dma_get_gem_addr() for these drivers to use.
->
-> Cc: <stable@vger.kernel.org> # dependency for next patch
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
-> Changes since v1:
-> - Use new drm_framebuffer_get_block_offset() helper
-> ---
->   drivers/gpu/drm/drm_fb_dma_helper.c | 37 +++++++++++++++++++++++++----
->   include/drm/drm_fb_dma_helper.h     |  4 ++++
->   2 files changed, 37 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_fb_dma_helper.c b/drivers/gpu/drm/drm_fb_dma_helper.c
-> index ab0f37d8a5ff..0aaf4926db4e 100644
-> --- a/drivers/gpu/drm/drm_fb_dma_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_dma_helper.c
-> @@ -60,15 +60,16 @@ struct drm_gem_dma_object *drm_fb_dma_get_gem_obj(struct drm_framebuffer *fb,
->   EXPORT_SYMBOL_GPL(drm_fb_dma_get_gem_obj);
->   
->   /**
-> - * drm_fb_dma_get_gem_addr() - Get DMA (bus) address for framebuffer, for pixel
-> - * formats where values are grouped in blocks this will get you the beginning of
-> - * the block
-> + * drm_fb_dma_get_gem_addr() - Get DMA (bus) address for unclipped framebuffer,
-> + * for pixel formats where values are grouped in blocks this will get you the
-> + * beginning of the block
->    * @fb: The framebuffer
->    * @state: Which state of drm plane
->    * @plane: Which plane
-> - * Return the DMA GEM address for given framebuffer.
->    *
->    * This function will usually be called from the PLANE callback functions.
-> + *
-> + * Return: GEM DMA address for given framebuffer, unclipped.
->    */
->   dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
->   				   struct drm_plane_state *state,
-> @@ -86,6 +87,34 @@ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
->   }
->   EXPORT_SYMBOL_GPL(drm_fb_dma_get_gem_addr);
->   
-> +/**
-> + * drm_fb_dma_get_gem_clipped_addr() - Get DMA (bus) address for clipped
-> + * framebuffer, for pixel formats where values are grouped in blocks this
-> + * will get you the beginning of the block
-> + * @fb: The framebuffer
-> + * @state: Which state of drm plane
-> + * @plane: Which plane
-> + *
-> + * This function will usually be called from the PLANE callback functions.
+Unfortunately I don't have the databook for this specific PHY, and I don't
+know whether this field is a PHY-specific value.
 
-You should mention what clipping means in this context. It's not obvious 
-what it's clipping against. Or maybe point to other docs that explain it.
+Thanks,
+Icenowy
 
-> + *
-> + * Return: GEM DMA address for given framebuffer, clipped.
-> + */
-> +dma_addr_t drm_fb_dma_get_gem_clipped_addr(struct drm_framebuffer *fb,
-> +					   struct drm_plane_state *state,
-> +					   unsigned int plane)
-> +{
-> +	struct drm_gem_dma_object *obj;
-> +
-> +	obj = drm_fb_dma_get_gem_obj(fb, plane);
-> +	if (!obj)
-> +		return 0;
-> +
-> +	return obj->dma_addr + drm_framebuffer_get_block_offset(fb, plane,
-> +								state->src.x1 >> 16,
-> +								state->src.y1 >> 16);
-
-I had to look several times to spot the difference to the regular 
-helper. In any case
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> +}
-> +EXPORT_SYMBOL_GPL(drm_fb_dma_get_gem_clipped_addr);
-> +
->   /**
->    * drm_fb_dma_sync_non_coherent - Sync GEM object to non-coherent backing
->    *	memory
-> diff --git a/include/drm/drm_fb_dma_helper.h b/include/drm/drm_fb_dma_helper.h
-> index c950732c6d36..b2a0bd7ef9d0 100644
-> --- a/include/drm/drm_fb_dma_helper.h
-> +++ b/include/drm/drm_fb_dma_helper.h
-> @@ -17,6 +17,10 @@ dma_addr_t drm_fb_dma_get_gem_addr(struct drm_framebuffer *fb,
->   				   struct drm_plane_state *state,
->   				   unsigned int plane);
->   
-> +dma_addr_t drm_fb_dma_get_gem_clipped_addr(struct drm_framebuffer *fb,
-> +					   struct drm_plane_state *state,
-> +					   unsigned int plane);
-> +
->   void drm_fb_dma_sync_non_coherent(struct drm_device *drm,
->   				  struct drm_plane_state *old_state,
->   				  struct drm_plane_state *state);
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
-
+>  =20
+> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > ---
+> > Changes in v3:
+> > - Fixed a remaining `syscon` in the DT binding.
+> > - Link to v2: https://patch.msgid.link/20261119-th1520-dw-mipi-dsi-v2-0=
+-9ab5f9808f87@iscas.ac.cn
+> >=20
+> > Changes in v2:
+> > - Changed `syscon` to `thead,vo-syscon` in the DT binding.
+> > - Dropped the patch moving common PHY write routine to dw-mipi-dsi
+> >   common code.
+> > - Fixed a few problems pointed out by Sashiko in v1.
+> > - Link to v1: https://patch.msgid.link/20261030-th1520-dw-mipi-dsi-v1-0=
+-753f34fd304f@iscas.ac.cn
+> >=20
+> > ---
+> > Icenowy Zheng (2):
+> >       dt-bindings: display: bridge: document TH1520 MIPI DSI controller
+> >       drm/bridge: add TH1520 DesignWare MIPI DSI host controller
+> >=20
+> >  .../display/bridge/thead,th1520-dw-mipi-dsi.yaml   | 103 ++++
+> >  drivers/gpu/drm/bridge/Kconfig                     |  12 +
+> >  drivers/gpu/drm/bridge/Makefile                    |   1 +
+> >  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c        | 570 +++++++++++++=
+++++++++
+> >  4 files changed, 686 insertions(+)
+> > ---
+> > base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+> > change-id: 20261030-th1520-dw-mipi-dsi-580d5b2792f9
+> >=20
+> > Best regards,
+> > -- =20
+> > Icenowy Zheng <zhengxingda@iscas.ac.cn>
 
 
