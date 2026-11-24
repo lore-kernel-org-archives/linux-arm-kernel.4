@@ -2,119 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8AF606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EA3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QxotGlwN;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=gAXpA0I2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d71Y6X2k;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=b5kBUnXH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=; b=QxotGlwNV8R5CM
-	gjOu/iX92ayb5p5WAeukTcoKFh+47kFBXSK5rXo+JFikrMQdRV5VRUiyhctE2HY0JrpXksgotiYy6
-	CrNUwtbrE8lD3vCNox43oYE5+qyOmWw9ra07p4XUCtLRkJ1Z2ZM7aQ7KSz5OEoTQnzT2EjDWpjlR+
-	EiwHJOFNLq94tF/V43bJMtuh0cmGVHz+uM+W2zY6H5VlIgSCUHxYusBCHbVpSgh+HP0BlS80Pqawo
-	pKQ37dBzBhuk2suJoLhVHqAfCSB1WsTuGwT3OT+K6y4rDZwVA5v/XUQGC8jDPJ3DlOojg+j3NSB7q
-	HQ1fkpDc6vn/SON73s/A==;
+	Content-Type:Message-Id:MIME-Version:To:Date:Subject:From:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=kiEAIP0mjXJa5pvO5e7uzCe9UhB5DscoluNEuSVp2zc=; b=d71Y6X2k7/E3Y8j+2z0swz8YDA
+	6PwWh1Wb4okV6VU5q7sc7+bM9Mebuco3eDjgdLxdGlWVbsNJOYSfvY05K1Yjpc9s6kJ29HEqgIqnO
+	RhbCP32iAyq4v2ed2+gicNcNcBnJ6q0A/TfYKwMOfhy87HQr5BpHHgC193mwVidi7+omP0MTsqM6N
+	Ji3IGua7uZx9Ho8YYIBIpajAI6F44daeJ7sCKB+OhP3CS0HlVvl7sS4FjRmNTW9ewNPliGknIFqhs
+	UFhmJSF+NKIaSTFvBG/UAP8SyeZM6W0oIAGu5lDXdmC8SaqCTI+OAVVGDY5CoDK0ZBoDuRslq+GUE
+	RtlmyEUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyDz-00000007tKd-1Pyr;
-	Tue, 24 Nov 2026 21:38:51 +0000
-Received: from mail-yw1-x112e.google.com ([2607:f8b0:4864:20::112e])
+	id 1xVy8X-00000007sNw-2Uqj;
+	Tue, 24 Nov 2026 21:33:13 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyDv-00000007tIX-3sn5
+	id 1xVy8U-00000007sNb-3QzQ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:38:48 +0000
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-8b0ca1ebc8bso44335197b3.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:38:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795556327; cv=none;
-        d=google.com; s=arc-20260327;
-        b=qkahp+PGIk4RgbYDJR1N/fkZ9CN5sTyTwVyw/HdC2kw/MWn4PR10JUyxeaiCsgUkqv
-         aSAtwepVBbvfRhrMDIyRyTvWzz8FtAyQYZYr1IUJSos51/aD/kf0rOfVRQW+SWRJsl0D
-         1J41nxZtHcVrNwf3OSx0cZBef5JVxSNIMFqFj8szNc6l8XdVmW6vbx5zZNy9a+pQJUCd
-         nzjC04p069FYMeiQzbAB9g1mKOW7n0SNXsgdrIxhZNTgl60hXCFX6AWklyAQzXZ88Ipv
-         rhYIznlGGdLXDPCf4m5mLZk7QeFSuK6wu5hFwO/2Ci3G1kO6l01z8UOATgXozSn5SeQd
-         gj2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=;
-        fh=G4ttreu1XbDxGp98NhTn52u7jGVfLG0EkzDXFLH5irE=;
-        b=V+9+V8Pgeh3dl0mRcJMGCjfkrOzxrUFzvnL3tyt1vjmhAYFigcVaPM+sqR0qSqJ7qr
-         DmSH5wRSYzXnM5TYF0WjPNtRBN0OhucnVWDkgwHiL+LVxFNP8QfIBqKG4NBAJW+hfLEw
-         PIghG/hOS5gt+rRLmB66buQzw7g6sjvWl6kphCcM4JfEXeghz5eZ8YQPSdmmenbBumeC
-         mYmP7iF9ERsq+Nh6ONw6eJpnOppXR2GWYLqvdk6HveW0+gJdH4IInkze1PfHD/Nomzqk
-         2KnUYeHUZN9J/9XNLI16lfuXDsYGAYybAeMH5Api2s/4CTFxgWzu1lYqEsqFm/Ygv2rN
-         PWPw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1795556327; x=1796161127; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=;
-        b=gAXpA0I2AaIOFL+9uv8+txjCVC4OfgsECIwIl5xNYB+YjQal0Fdznyh3i/QbGDA0Uv
-         79cTAsc28aNHCGX361pGFc9OJZxTi+L545SctYl+PnQlrqHklLaBKlpJEYAIPCxN/0Rp
-         49q1brAYT9k8A/NQhWJYaBcc1XcP2KctdQ/1GJcQilPpjZib76UVz+ghojDuMueaNshD
-         s4ylws7PGz0Y/AXzkRFFIB++iutTZdvcy1t8ar+q8/XWJOHm1ic2JEuim9zYgzAUlzEi
-         JA0lwL6z0kVyTTlG+JK09ZCLAnpscnJSaS6Y53kiVTnpSo0eSst0FNoSTDJd4r/wkVHE
-         P6Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795556327; x=1796161127;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=;
-        b=B/aZcIWj2KRV0irFSt/aoV8aSpOQE5o6ZgeOglcOQigCQErAskexUE12QbFC0fCONo
-         vDqFzfWFvfkm3XwxVtcwhCO1wC1PzE9fGvMUz/7Oue35uR7ElKF59Qa6vKl1TjTf7vj1
-         iR+EHpw31LpE+lP7WTNYoFahekigrBEz4bX97bru/vhB/7ay1OJzepKTKOzaUTy+cgn8
-         MIAI7toUb9dUPesz9Cy7ZwmTkJ+LUItyLV5FBJWrfkIm2N7c4rZIwh5kAkYnMLHCOx3w
-         sruidkIzyJ4LbDzvFvSlB6SjV5vpUkH/jMc/pP9qMbv3UP2qytfOkqrpbET6sDQiOaCJ
-         +aTw==
-X-Forwarded-Encrypted: i=1; AL+hErG91PtklMKwP/R1HC/TDrJjgCpwAAZsphtF0z2s7DEWPinkTPwlGsp4XVSipWygFk3+cXZOOSwgjoihuTykc+AT@lists.infradead.org
-X-Gm-Message-State: APuU4Z9coC0avl+x6pZt7kkFo5bhroEjyhdeQDcqpIigfOl79aA3gfwC
-	J+ZptWpqMKOhKnKVvIjSiPCUTLqPto4W2k0V7iadFojqFt0GxbOQqJ7NNzYlwpLHA/jTUI2z8hp
-	BY4i2CgONXKI/MK4j/kWKJNGtYPHWCBc=
-X-Gm-Gg: AZFdTZdh7Bu7Ta/xCyf48P80jBkJKHN0bQmAh4OxVZdf2EFQTF4xPr5Irk7D3UVQrBi
-	GhO56OgBL/swI5EeJE3IBNK9TXnHZOWnA0gGKwC4am6i2BIK/pVY7SSm3WuQ7QHRM6xdteaY4Kw
-	Ryq/WikMv5wxmeZYe53xrCGSy8VSDdKl+C0+n5BDja9MoZHHZhGNxgupCv07EPkYi4BgEPK0Mrc
-	Ombwz27hjcgYejx/+x2luPLBnx4eEBMKWnDM2j4s/HedFfGX0ab9aVxwE4TXgV1o4VE3s2rzjul
-	zfPCWXI9szIA71t4PVbE+WU4aonflj21i2txJtgYN7z3TujFPbG54SVa2ztw9JDFvik8nTJdK/y
-	TJkx5mrlUdNvIi6K1QQ85OR7mzxypbslGZAbA7sCY2wJ93CqhkqPb830GvSH2j26nc+smww==
-X-Received: by 2002:a05:690c:a89:b0:8b4:c1ef:db88 with SMTP id
- 00721157ae682-8b5204dc558mr63502567b3.40.1795556326911; Tue, 24 Nov 2026
- 13:38:46 -0800 (PST)
+	Tue, 24 Nov 2026 21:33:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1795555988;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kiEAIP0mjXJa5pvO5e7uzCe9UhB5DscoluNEuSVp2zc=;
+	b=b5kBUnXHLVkWZr+A6PZUp+jrQ4CCG0N1fbvBo6Z/n+zSHNWvYR2VfsgJlW9NxIxoOcHJXk
+	GwVN/VG/e9TdMJa6mVy0ExhB9q+0qruAgI8uAjs8Cf04uKD1srrj7XWr559+HhilRruZmr
+	XTE0SnffI23aMcDuH+3fDGIVJxpC5P4=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-66-E-s1A6BUPhCDAN_FyNoKSw-1; Tue,
+ 24 Nov 2026 21:33:04 +0000
+X-MC-Unique: E-s1A6BUPhCDAN_FyNoKSw-1
+X-Mimecast-MFC-AGG-ID: E-s1A6BUPhCDAN_FyNoKSw_1795555983
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 025151955F17;
+	Tue, 24 Nov 2026 21:33:03 +0000 (UTC)
+Received: from [172.20.61.209] (unknown [10.30.45.12])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 646C618011E8;
+	Tue, 24 Nov 2026 21:33:02 +0000 (UTC)
+From: cki-project@redhat.com
+Subject: =?utf-8?b?4pyF?= PASS (MISSED 4 of 54): Test report for for-kernelci
+ (7.4.0-rc1, upstream-arm-next, bb60ce2c)
+Date: Tue, 24 Nov 2026 21:33:02 -0000
+To: catalin.marinas@arm.com, will@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-4-tanure@linux.com>
- <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
-In-Reply-To: <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 24 Nov 2026 22:38:36 +0100
-X-Gm-Features: Aa3M54pH5ipmAt51OQad9aGPrJTAjEJ236HllU0tqVNlknXoe88HjErnJUF6ArA
-Message-ID: <CAFBinCD+JwU4mdgE54r0_XT8K5eMt2rjKQ9+3Pnt9V2nviH-fw@mail.gmail.com>
-Subject: Re: [PATCH v8 3/4] arm64: dts: amlogic: t7: add the ethernet controller
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, iav@iav.lv
-Content-Type: text/plain; charset="UTF-8"
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+Message-Id: <42883.126112416330400621@us-mta-66.us.mimecast.lan>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: nK9PyJfbFe_LA3jKCNaA_VgDAVoqJy82KEZFgOqroIg_1795555983
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_133847_974642_8E92043C 
-X-CRM114-Status: GOOD (  10.13  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_133311_004153_C55579CE 
+X-CRM114-Status: UNSURE (   7.23  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,25 +84,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 10:37=E2=80=AFPM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> On Sat, Nov 21, 2026 at 10:31=E2=80=AFPM Lucas Tanure <tanure@linux.com> =
-wrote:
-> [...]
-> > +                               int_mdio: mdio@1 {
-> > +                                       reg =3D <1>;
-> > +                                       #address-cells =3D <1>;
-> > +                                       #size-cells =3D <0>;
-> > +                                       status =3D "disabled";
-> Lucas, Igor (+Cc) has taken a closer look at the MDIO mux, see [0]
-Sorry, I forgot to Cc him :-(
-Now he's actually looped in
+Hi, we tested your kernel and here are the results:
+
+    Overall result: PASSED
+             Merge: OK
+           Compile: OK
+              Test: OK
+
+Tested-by: CKI Project <cki-project@redhat.com>
+
+Kernel information:
+    Commit message: arm64: mm: Don't defer the barriers when installing a f=
+ixmap entry
+
+You can find all the details about the test run at
+    https://datawarehouse.cki-project.org/kcidb/checkouts/redhat:3109618873
+
+One or more kernel tests failed:
+    We also see the following known issues which are not related to your ch=
+anges:
+        Issue: [upstream] Hardware - Firmware test suite - auto-waive failu=
+res
+            URL: https://gitlab.com/cki-project/infrastructure/-/issues/779
+            Affected tests:
+                Hardware - Firmware test suite [aarch64]
+        Issue: selinux-policy: serge-testsuite: Client ioctl BINDER_WRITE_R=
+EAD error: Invalid argument
+            URL: https://lore.kernel.org/selinux/CAAUqJDt1pXQ2KVBvMoMiDrzz8=
+ishonqhQ0nnQLEppot4nmv9Bw@mail.gmail.com/T/
+            Affected tests:
+                selinux-policy: serge-testsuite [aarch64]
+
+
+Tests that were not ran because of internal issues:
+    /distribution/command [aarch64]
+    Reboot test [aarch64]
+    stress: stress-ng - cpu-cache [aarch64]
+    stress: stress-ng - memory [aarch64]
+
+
+If you find a failure unrelated to your changes, please ask the test mainta=
+iner to review it.
+This will prevent the failures from being incorrectly reported in the futur=
+e.
+
+Please reply to this email if you have any questions about the tests that w=
+e
+ran or if you have any suggestions on how to make future tests more effecti=
+ve.
+
+        ,-.   ,-.
+       ( C ) ( K )  Continuous
+        `-',-.`-'   Kernel
+          ( I )     Integration
+           `-'
+___________________________________________________________________________=
+___
+
 
