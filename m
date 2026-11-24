@@ -2,77 +2,142 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072AF606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629F7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dKHLmelN;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BZKayue7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=abLfEiPY;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=N/Sbg+Ag;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=rEqzJam3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=1UXh4PQJOR3VknqTlOD7G3LYkfB1ZlA2WQOnvCIXzSk=; b=dKHLmelNiIt1dzNS/m9VxRthB8
-	BCXWgYp0JlgEJmPq7MEUeRRJJZo9tlRpb9AMkH6HFvTXHZuUkPM9dqOpSLLUf6p0qLqr6yBRSFaId
-	y2IkoIzT95Z7KTgiwMxy4aJ7LvZYVDYg7QRasLosDRaJs4jHW5h/AoaFBp/T2XcPZ5cy/057vcWl7
-	Ygn120aQcvBb3QEET3tZRNvoczKslBYNPHfh8AE6PwprUoS7PPGmkIpLVMHiVX4w8KCQ7kG7z395J
-	nxCby0/h0O4MFz6DC6nylhgf4QIBlxf7HalbErmWFtT3fjLklYnIHvVy8Qsz4wlwffo2qbtUKfnSb
-	d43cBX0g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=; b=abLfEiPYMaxSq/
+	OK/V+tCkjkqMIKifW42Eu26TOah0tYZOOvjGhOoOzuVJ+QzJ+KUeVOMmOLgxzXlOhYN8ClDbmj2WW
+	7cx9tLTn/OlBZyXP5s6x/eUFZAZVV4nWXd16JRcIaumDii3sHCOQymYouIzxrAMgbVVm7+iS47k5a
+	glAIYLGDIduLWogy5EHVxZGf8xPjvKB9WxssjUv5ln3+u8RHf/j+Pcz/aJyVHf5ClYg0pZxsmt5PM
+	qr2E5d1djX1uTTnDZNEllgyieur2rwGG/JUbwZ4SnXFlHJN4XHnpz4xP2mYU8RP5JvzCi2Fvto1Uv
+	ILvA8D7QqA+a976uM92A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsP7-00000006t1M-3EmW;
-	Tue, 24 Nov 2026 15:25:57 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVrqG-00000006oaz-37H9;
+	Tue, 24 Nov 2026 14:49:56 +0000
+Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.174])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsP3-00000006szp-1Emi;
-	Tue, 24 Nov 2026 15:25:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF5CA443FA;
-	Tue, 24 Nov 2026 15:25:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12CC31F000C6;
-	Tue, 24 Nov 2026 15:25:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795533952;
-	bh=1UXh4PQJOR3VknqTlOD7G3LYkfB1ZlA2WQOnvCIXzSk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=BZKayue7T+OsylZjV79b6R0ytIW756sZrlscpck2YyZhapT9Gi9uxQD2TAqTTjgK1
-	 Ny12Sm0RAzgn+HtgnA1nCyeqansp2lHh7ivIj/Ix1qFbH4HuVOa8qCEjIyvtoi9D6R
-	 +jHmiVlbd0ZMEtoLUPptwix0CB+DWa1XVAy1+YYY895ci0d7bJUu/p9MbsNhjGaGh1
-	 rfdPKCuFn+l+eN4jST+wJuMHZLweG6N0w74drNJ6WDvCm0j+qp/odn0AgQomKQb69w
-	 XBI0ZPyD+v+OEE7bdKKZ7xDxe6TzGo/x9t8gCGRgnlp50DOQffqNVxBveg3UN2VOyB
-	 +YF0ajNdmMBkw==
-From: Pratyush Yadav <pratyush@kernel.org>
-To: "David Matlack" <dmatlack@google.com>
-Cc: "Pratyush Yadav" <pratyush@kernel.org>,  "Tarun Sahu"
- <tarunsahu@google.com>,  "Pasha Tatashin" <pasha.tatashin@soleen.com>,
-  "Mike Rapoport" <rppt@kernel.org>,  <robin.murphy@arm.com>,
-  <maz@kernel.org>,  <will@kernel.org>,  "Alexander Graf"
- <graf@amazon.com>,  <seanjc@google.com>,  <jgg@nvidia.com>,
-  <loganodell@google.com>,  <arnd@arndb.de>,  <dwmw2@infradead.org>,
-  <baolu.lu@linux.intel.com>,  "Bjorn Helgaas" <bhelgaas@google.com>,
-  <oupton@kernel.org>,  <alex@shazbot.org>,  <gle.com@google.com>,
-  <pbonzini@redhat.com>,  "Andrew Morton" <akpm@linux-foundation.org>,
-  <kevin.tian@intel.com>,  <joro@8bytes.org>,  <kvmarm@lists.linux.dev>,
-  <linux-pci@vger.kernel.org>,  <kexec@lists.infradead.org>,
-  <kvm@vger.kernel.org>,  <iommu@lists.linux.dev>,
-  <linux-arm-kernel@lists.infradead.org>,  <skhawaja@google.com>,
-  <sagis@google.com>,  <linux-arch@vger.kernel.org>,  <linux-mm@kvack.org>,
-  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI
- compatibility
-In-Reply-To: <DN2RQ7LGX224.3W3PSQ2PBHTJZ@google.com> (David Matlack's message
-	of "Mon, 23 Nov 2026 09:32:17 -0800")
-References: <20261110050202.529473-1-tarunsahu@google.com>
-	<20261110050202.529473-6-tarunsahu@google.com>
-	<2vxzse0rzjdn.fsf@kernel.org> <DN2RQ7LGX224.3W3PSQ2PBHTJZ@google.com>
-Date: Tue, 24 Nov 2026 15:25:44 +0000
-Message-ID: <2vxz33sqz1xj.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	id 1xVrqE-00000006oaG-24kW
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 14:49:56 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795531782; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=dAhxvXSmiBKKgb+45n/Xo2CovjgV+ziY2NGUH39PRAgbojolpm7QAV9J8iH/VHI8lp
+    vRQjzKyGLa2sIaZey9c0yGyB86RaeoiILF7Re6bXPZ9r457LeN58qeC0oYIXiInA1tWK
+    wC1SogVCryh4BhTlQQkfHf4sukwTlp71AdScyOS8P8tvO3Zdv60Xm0owzxKAajk95vS+
+    1H88tKpRM2nZWmXxZZqfpSTMyoHavCSlba2yAvAgW2PT7Jlv12GjYzDJu1ICrT1q3asc
+    tY+O3qeRpm0wAmjsCMNWoXtq+XOfvMAmp1Wv/aQrh2bfEOTEr7D6ydZ3tZz+Z+VO4pal
+    DzOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795531782;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=;
+    b=jDg6AFH5LjmDFwA4NGvBKA+q1U2abd7DnIAXarOnPKt7NHqW+u/64lLSPANxGEK1VX
+    UpMFbnaTSDvwECqOU8JxNnZfAyfigX5xloUNUjjX69QrTLs8ok2VvcSbFMYPXupUbpRn
+    vVB8CS4yEw0nRRfApHPN3v4Dwp8aH1yX/fF+q8eLff20QD5QHlZoGz+S4RxhJIWcHxka
+    DiW9fuiMcVIlIc24jRTJKYRvgoB/ADzjRKpm4/5oUuJ+YW+7cI+Lc5QejG54yRAe0ZZv
+    27raNlVGmN84OLBA7xnYyFZv1bd+6YoeJ6Wn7ufmWq/c8+KXOxeRUeiFlQlmPHIYC8K+
+    AUew==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo03
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795531782;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=;
+    b=N/Sbg+AgTWDdgJw51hIAma9sfrPivzPQegGl0vLQWGYBbSJBkXVyCYLRhqlEGcEufy
+    H98CuNQgZYNZfAe2KHqkqHpECe+3AZIcmqimC5b41g5+tKVdPt94+sSLa8eovoCto+gt
+    qPCFhGR3RNfKym/3WUmZdDaWaFmCZCpAvGgsNLYsfpgTfAzVv/waGUU/bKxFZk95KV2C
+    eLjkSQubqHFQYmqbo/aa778gQfHpVRX5Qtygka3J0ZSXfkOPfsfGIzPYJfKz/o80Zzw4
+    ETIwQfDUD+zvvsLFLU9o7Uu+oXflG7NsGgK5tYNnHPOL3oMmJ23me4MzkUkB3gDTXrW9
+    u9Ng==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795531782;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=3wfW5PkmzSCGbjSgS4KH5aOe5wq8mU4dYCUNEge9nhY=;
+    b=rEqzJam3Vr3+e5NVXTNgGbpD3iSTySLuY2je+ZcXhqTyuDaiFHrTZ0UsGJGRH23Yco
+    oJ8CIE1fjolz78Sq9xBQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVWUgMvoVkTTR2P7jtjQyY2AeEP/F"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 55.6.3 AUTH)
+    with ESMTPSA id Qb56a22AOEne3fT
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Tue, 24 Nov 2026 15:49:40 +0100 (CET)
+Content-Type: text/plain;
+	charset=us-ascii
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.11\))
+Subject: Re: [PATCH v2 08/20] dt-bindings: mfd: twl4030: Document 64-cycle PWM
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20261124-neon-noble-seagull-df2d40@quoll>
+Date: Tue, 24 Nov 2026 15:49:09 +0100
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Lee Jones <lee@kernel.org>,
+ Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Pavel Machek <pavel@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Andreas Kemnade <andreas@kemnade.info>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>,
+ Tony Lindgren <tony@atomide.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Helge Deller <deller@gmx.de>,
+ Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>,
+ Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+ Jarkko Nikula <jarkko.nikula@bitmer.com>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org,
+ linux-sound@vger.kernel.org,
+ linux-omap@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-pwm@vger.kernel.org,
+ linux-fbdev@vger.kernel.org,
+ letux-kernel@openphoenux.org,
+ kernel@pyra-handheld.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B1F1FE54-9C85-4708-AB24-D621582F555D@goldelico.com>
+References: <cover.1795505160.git.hns@goldelico.com>
+ <8e0c47487add0fa1bc0dad9b1bceef5ebf8071d4.1795505160.git.hns@goldelico.com>
+ <20261124-neon-noble-seagull-df2d40@quoll>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: Apple Mail (2.3826.700.81.1.11)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_064954_945479_4C78E9C2 
+X-CRM114-Status: GOOD (  29.16  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,120 +148,111 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23 2026, David Matlack wrote:
+Hi Krzysztof,
 
-> On Mon Nov 23, 2026 at 6:56 AM PST, Pratyush Yadav wrote:
-> [...]
->
->> When we have all this available, I don't see the point in
->> differentiating between optional and required features at the ABI level.
->> At the ABI level, all that matters is what the incoming kernel
->> understands. If the incoming kernel does not understand a specific
->> field, the outgoing kernel should just not use it. There's no point.
->> Best case, it gets ignored.
->
-> I pretty strongly disagree.
->
-> An optional feature is one that the next kernel does not need to
-> understand to correctly restore the object. A required feature is one
-> that the next kernel must understand to correctly restore the object.
-> Optional features can be enabled without any compatibility concerns.
-> Required features must be enabled carefully (IMO via uAPI) to avoid
-> breaking Live Update.
->
-> I agree it's a good idea for the outgoing kernel to check that the next
-> kernel supports all of the required features it is using, so the Live
-> Update can be stopped before the kexec. But that doesn't remove the
-> need for the distinction. The next kernel still has to decide what to
-> do when it sees a feature bit it doesn't understand, e.g. because no
-> spec was provided, the spec was wrong, or we kexec'd into a different
-> kernel than planned. Without the distinction it can only:
->
->  A. Treat all features as optional, which risks misinterpreting state
->     and corrupting memory if the previous kernel did not properly
->     validate the next kernel's capabilities.
+> Am 24.11.2026 um 15:40 schrieb Krzysztof Kozlowski <krzk@kernel.org>:
+>=20
+> On Tue, Nov 24, 2026 at 08:25:48AM +0100, H. Nikolaus Schaller wrote:
+>> Document the optional ti,twl4030-pwm-frame-64 property for the
+>> TWL4030 PWM controller. It selects the 64-clock-cycle frame instead
+>> of the default 128-cycle frame, doubling the output frequency and
+>> reducing duty-cycle resolution.
+>>=20
+>> The selection is explicit because the driver does not know the PWM
+>> input clock rate and cannot derive the hardware frame length from a
+>> consumer-requested period. The shorter frame can reduce PWM LOW
+>> intervals during startup mode detection of LED drivers such as the
+>> TI TPS61160/61.
+>>=20
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> ---
+>>=20
+>> Notes:
+>>    Changes against V1:
+>>    - Revised commit message to focus on the binding and the reason
+>>      for explicit 64-cycle frame selection.
+>>    - Commit-message review assisted by ChatGPT.
+>>=20
+>> Documentation/devicetree/bindings/mfd/ti,twl.yaml | 9 +++++++++
+>> 1 file changed, 9 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml =
+b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+>> index 9cc3e4721612e..f458f0d80f2cd 100644
+>> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+>> @@ -396,6 +396,15 @@ properties:
+>>       '#pwm-cells':
+>>         const: 2
+>>=20
+>> +      ti,twl4030-pwm-frame-64:
+>=20
+> Drop twl4030. Properties are not model specific, but should be =
+re-usable
+> among all of devices from that vendor (when applicable).
 
-Right, that's a bad idea.
+Ok.
 
->
->  B. Treat all features as required, which means no new feature can be
->     enabled until every kernel it might Live Update to (including
->     rollback targets) understands it, even when those kernels could
->     safely ignore it.
+>=20
+>> +        type: boolean
+>> +        description:
+>> +          TWL4030 only; not supported by TWL6030 PWM.
+>=20
+> Don't repeat constraints in free form text. Implement proper dt-schema
+> for this.
 
-I think this is what we should do.
+Ok.
 
-Why do all kernels need to understand a new feature?
+>=20
+>> +          Select the short 64-clock-cycle PWM frame instead of the
+>> +          default 128-cycle frame, doubling the PWM frequency. =
+Required
+>> +          for dimming inputs requiring short PWM low intervals =
+during
+>> +          startup mode detection (e.g. TI TPS61160/61).
+>=20
+> I don't get how TPS is related here, but if you mention other specific
+> device then I wonder - why isn't this deducible from the compatible? =
+Or
+> you mean that PWM consumers might need it, depending on  the consumer?
 
-If a kernel can safely parse an object without ever looking at an
-optional feature, why set it in the first place? The outgoing kernel
-already knows its target can't understand it.
+The TPS61160 is an LED boost driver used for the panel backlight of
+the OpenPandora.
 
-So say you add a new optional feature in kernel X+1. For a rollback, the
-kernel X+1 knows it is going to X which doesn't understand the feature.
-It should just not use it in the payload, which means it never activates
-the bit for that feature. All the feature bits X sees are the ones it
-understand, and everything goes smoothly.
+Besides being capable of PWM for the backlight intensity the TPS also
+can undestand some 1-wire data protocol. It switches to that mode if
+the common PWM/1-wire input follows a specific timing sequence.
 
-And to be clear, I'm saying that the feature bits in the ABI header
-should be set dynamically based on what is used in the payload. The
-feature bits in the spec are static. They say what the target kernel
-understands. The feature bits in the payload are dynamic. They say what
-features are actually used.
+Since we can't reprogram the PWM output connected in the OpenPandora
+to speak this protocol, we have to make sure that the TPS chip never
+enters this mode accidentially.
 
->
-> Neither of those is a good outcome.
->
->> The semantics of required or optional then become "can I describe this
->> object with the capabilities I can use?". If the answer is yes,
->> serialization succeeds, if the answer is no, serialization fails. So
->> with this, KHO_MAP_F_MULTI_INDEX or KHO_MAP_F_DYN_DEPTH are indeed
->> optional. All memfds can be described without these, they just will be
->> less efficient.
->
-> I think this is a different meaning of "optional". Whether the outgoing
-> kernel can choose not to use a feature is a decision for the serializer.
-> Whether the next kernel can safely ignore a feature's data is a property
-> of the ABI. KHO_MAP_F_MULTI_INDEX is optional in the first sense, but
-> required in the second: a kernel that doesn't understand it will
-> misinterpret the map. The header needs to convey the second.
+This feature is part of it.
 
-Right, which is why a payload handed to an old kernel should never set
-KHO_MAP_F_MULTI_INDEX. Even if you have a property that is truly
-optional and ignoring it will still make things work fine, why would you
-want to set it in the first place? You know it will be ignored, so just
-don't use it.
+And since the TPS is not described in the device tree and can not have
+its own driver (because there is PWM and not the protocol) there is no
+compatible to base this on.
 
->
-> So I see the spec and required bits as complementary: the spec lets the
-> outgoing kernel avoid features the next kernel doesn't support and fail
-> before kexec, and required bits let the next kernel fail safely if that
-> check was skipped or wrong.
+Yes, I agree in combination with the comments from Mark that we should
+split the series and better describe this background.
 
-I see a marginal benefit in setting the optional bits by adding a tiny
-bit more safety. But even then, it only hides the real problem. The
-previous kernel should not be skipping its checks in the first place. If
-you're lucky, it might only end up using an optional feature and you
-might be able to ignore it. But if the checks don't happen or are
-broken, you'd be just as likely to be unlucky and the previous kernel
-might use a required feature if it skips the spec checks.
+>=20
+> But isn't this then dynamic choice - depending on PWM frequency the
+> consumer wants?
+>=20
+> Best regards,
+> Krzysztof
 
-I don't think it buys us any functionality. It just hides the problem in
-some lucky cases.
+I'll collect feedbacks over some days and come up with multiple
+series as suggested by Mark.
 
-In fact, we could even add a "strict" mode in the future, where the
-outgoing kernel refuses KHO if the spec to the incoming kernel is not
-provided.
-
--- 
-Regards,
-Pratyush Yadav
+BR and thanks,
+Nikolaus=
 
