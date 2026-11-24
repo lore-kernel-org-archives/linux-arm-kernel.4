@@ -2,102 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396AE606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E885F606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=odfVeSI4;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=LdtMYsNQ;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=Ljh9v4ta
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tr4y6usl;
+	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=NppwvFCY;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=V/rBblsh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=USuWAzJaEpO2tz+1HoJhHN3oMTp4mj4DRvQNdSwIcO4=; b=odfVeSI4sX9WBQ
-	0CqQYpSFGa1qnFhTu1gpTwGcoOTKY1qGkOAaQ8ot3ciNJrtT7/hCfnMEehGDoiqmuu3DjC9KxCeTV
-	hacYAtyIvOK7I925G9wkD2YVypIO/eNBLegWDE2WcivocXIEW4oqxHE74o/zYUnxhTyl/MoVYfuLs
-	ll8H02P4HHIFAt+6B7KELC9akpr5+6pN+FxMITg9Ha9/UNsTTZb8b7rqJ3VaLLFIoM8kzD+ud+2Ls
-	scH2JFaqRrHI3kt7oDn3XEwwKNc34jsAmIRyT6lp7gEbemGn5/NzLsiL3AiuXpz/3UUwe5IGJYHIt
-	71+o5UhrpSGXrsW/0NnA==;
+	List-Owner; bh=VD4BWCGipe5qWKwF707+XsXhVfaZ7v1dKr7weApmtKY=; b=Tr4y6usl3RWp0G
+	IJSwmciPimvhcvf8Yp4RXHYSZT9uM4nt0K4jPy3vqiypZY+8Mor13EMHgh1nZZ2e7TEPMvlVOWuBz
+	gWHSg0j4dg0k/CLtiuwqk5twiCilkv17gLOILRG+k8uHNre4AT3jZYNwRloqloaSuklW6ZAODHJSA
+	IokyVDZKSNvaSEEnbk9lTP4HPIeI3PG4T4mmw8vSNQTCeDUE8xkNQPI1nIJMhXsq9RAnlB90FMAmy
+	4x0KKic6RQ6it9ScPBMlnFTDlUxocX+VKqlyPSxTmY09LmS/ZKlIMma72xO5x0VovwMVVQ/r/8uZf
+	j9LDxQZVTWZKbd2ZOOHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVe0M-00000005EYu-3aq5;
-	Tue, 24 Nov 2026 00:03:26 +0000
-Received: from fout-a3-smtp.messagingengine.com ([103.168.172.146])
+	id 1xVe06-00000005ERo-0CSj;
+	Tue, 24 Nov 2026 00:03:14 +0000
+Received: from fhigh-a8-smtp.messagingengine.com ([103.168.172.159])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVe08-00000005ERx-0Wyt
+	id 1xVdzx-00000005ELr-1UaG
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 00:03:21 +0000
+	Tue, 24 Nov 2026 00:03:03 +0000
 Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.phl.internal (Postfix) with ESMTP id 5D3AAEC0B29
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:03:11 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Mon, 23 Nov 2026 19:03:11 -0500
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 94E91140032F
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:03:00 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-04.internal (MEProxy); Mon, 23 Nov 2026 19:03:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
 	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
 	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1795478591; x=
-	1795564991; bh=USuWAzJaEpO2tz+1HoJhHN3oMTp4mj4DRvQNdSwIcO4=; b=L
-	dtMYsNQbwH8Nkl1fRe9g5vEPo+dzzj22szDLZ+R0CirgUqkaMjPqNCw6FCHkma+S
-	fVDjmX/zAnFHD2YohdywiC/pGkDB92sbdjyFAIW3db07HpfamVXY0d+5Od7yyDzg
-	RwCVgRKq0bMqGkNXmvJLFVGPeNh541IVEOFbvfBxn7dGcWFMUOSHucndBKHx0C2z
-	HS+DoCpigubadb8OCTZdEyFTHMb96o1TbbpHru/dyWXJ8L9GBJaoe3tRIRJaUjc+
-	33+B8RbZAYEAnKaVcdHvvrv33mS0Pv9TMJJdOwS8u5FORIKUMvfJKcGKIHIdB+Sq
-	I26d+7CneduB1eEah8V6w==
+	:reply-to:subject:subject:to:to; s=fm2; t=1795478580; x=
+	1795564980; bh=VD4BWCGipe5qWKwF707+XsXhVfaZ7v1dKr7weApmtKY=; b=N
+	ppwvFCYm7sdTwCgX4DAvKMG0VWkKr+TuAxy52BQ5zDe6igfV3vhHebsWjPNOITd2
+	BLCNqUir4uc04IXDhkK2FW1MxcFS+Zv0tCJJS2DVieYlMJcEfXJ3k65LEoTCIW+D
+	zpfKa07C6PEGiG5WzdXDk63q6a5rTBIRWu8pjqeLF96kLg7my95m1UoFs4uBp2Yp
+	CQd2gSJ0SzxIWGmA+5lNM2ICfdjMIxLOQF5DWx1xKuKizuyHv7FmUkw2pJHzxwSv
+	9LaX0wjQQaLcff3nkCx/NfR0uXc02dcHoLbdWSEs46dKXPWk2HPYC5hmcQnU+Luj
+	bRlYOnzjimPIZXQt857TA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1795478591; x=1795564991; bh=U
-	SuWAzJaEpO2tz+1HoJhHN3oMTp4mj4DRvQNdSwIcO4=; b=Ljh9v4taklrAs/W46
-	wFCVboPispzxoyEgq7LKfK+RYzECWjVfb9rWaRcP42w/ebgqx3ZavIQLSEz1aaH9
-	LAtYhC6CttEtZVGcHxMk5Wh6e6qoNJLAZw5So9Dm7V7OFBRR5oRkSm9IrMFHGviV
-	Mh3dtdxqPeVm2trJ+TqsoH6MXcdyn+O0WQrS7tsTC0oiL1kio7IUDz1oBXE70OVl
-	fk1dsJN1+WPBKMJXzs64OFmoulhqpp7keMlq8UtY54TMzDy1fDTxe0fU1z2CyBjy
-	QZqnqXKBgYt7m+uJi913GlJ9/43NT3EqpXPaGq0wbk4vY09RiBPf6hZyQHDG0lNL
-	tUEZw==
+	:x-me-sender:x-sasl-enc; s=fm3; t=1795478580; x=1795564980; bh=V
+	D4BWCGipe5qWKwF707+XsXhVfaZ7v1dKr7weApmtKY=; b=V/rBblshAaHnPs465
+	yWiIIhgNjYtBtJ6NdUbMAlP4crVhT9dGaopc/lg/uXGUFjfTi3bnurrf/e4L0pgO
+	Nhi+Nr2Xr7doTnVTblh3XS5WLaQjdhE0OdUeM6uE7Hd4wk0ZbrLvYQYHTTeKl+fP
+	Qc75vnB302y+8JirRfLIJgkuYj2LZdzmSK6uM+Vm9/FLAU3auAdhWf2YG+BTzZl8
+	3oLPIIA+1JcLyFmaAcGzvYCtA484SydL4jXoUFxG8CarI+qeAYEExja5UAcj7rf1
+	xq6Nsi4Kx3Ap78k7VV9t3nf+dBC5SKgVTJMraBUy0PMbI3GBJTf1TM4PgQ87Oo7A
+	CK4iw==
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795478591; d=gahingwoo.com;
+DKIM2-Signature: i=1; m=1; t=1795478580; d=gahingwoo.com;
 	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
 	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:CfFNeFQUWjak1PPVI9x/pgbduyYR0lAgvkl9AizB8s1JvYs
-	ICwKDuWk6Jtp1VIPHSSszASdKFoUuy/o0zofuc2tK8etTYY0K8KKP6RdBGx/1ZI4
-	/DjdFFnXBNXEOSJhfky0BSPXWJLIEYoyugYTGYXb5moJPW4Z3hcdJbSlGxmAVrop
-	Y+HTj/PGfBIf+nIUGDie+5qP27nxYjmFWmXdqiKLnfhpxXtCP7aXJxz2T+x9JKB3
-	nMiYKkSjyFdXeT7RcAKcje8g9QlCtTgasBmRwkjU9MMQNK20ZKDk2v2ziTNxAxnc
-	pwjw/ZE22Q2adPjwCt6Say4e2rpgtUQr8IUIcvA==;
+	s=fm2:rsa-sha256:XjLFhPnFrxy+L7vQrocan9LeFE1RWSHNq+0YXvTNxc4FrwQ
+	Hmmyrwq45FyyRuPkfb4NW1GWxhnuI/LtnjDMxTOpY48AcK6rqIjnu1Di5cAGINup
+	tfm3vsk+5po21oTanY+x2VSwUq5dIiqeSWyoXKV58S0A1Am9aPmVXiAHgEVySj3r
+	1h4rVurZhYEeF+g6styjcxOXe8rUpxSSdRY5Mgbw+okSmt5sKvyeKoRGTRckv8WO
+	fN74uvx5aWZYggQi1ohFwfcMX6BhfrT1yAxn4e4Hngmc4iN1MfbrdWaFgcrljNKM
+	YeJwaEyIWPnt8dkktrfVHhkw3iSk5IgJmRkdToQ==;
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=mi-m=1; hc=11;
 	hn=cc,content-transfer-encoding,date,feedback-id,from,
 	in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:NK/ol6VMFS1g2Tzz3DCQUhee2qCzx73EgnI/mJceXhY=:3qmchG7VMWiyCnFksjWyxYLSQ2dl7VXMaogtUEZ2IfI=;
-X-ME-Sender: <xms:PtQEa9xszRmRJSNo59v5vLuXttDEOby3M1_B-6Z_sSECV1JodHaEGQ>
-    <xme:PtQEa3rphU3zGDLWEZF2xH-hzsp2N7KoImLGvUEeRHm2YyVnYgpquv6gebJn8cLSQ
-    DpnPZ_r1bdSUQEP7_f0xEgwLZNov8X6eHNTyzYZNKa0SiHDMO261Wi4hw>
-X-ME-Received: <xmr:PtQEay6GGfa5c1kTbWWt54W6-kDI3JDm-YiSo4oSgH5VSXINmP55QNl_L4e1wJw1B9CndyeJ>
-X-ME-Proxy-Cause: dmFkZTGKP0BuMVQ3da0kgk8xyu0FeulfFYiNwWsz1ncbbHTgCdKnIzqgtj8HE+Sx3Bdzzv
-    UHBTv71EZVKpqeV9rxm1MIvNJL9AXj7xVBZmLE1eixpLLqayua7NAs8x5H0q1ciBofCLjp
-    NMw7pEcY/WV52tz2iQPP0EmzGBLCISFgjTntJipgTFdXESJrU8iFlgEO+fAeoHXz2DOy1e
-    bT9+yAkscfEZkaph3J6yRPtOAvFwXcm30bt4RskxY+A7l9M33XtIkcUJBggauJtB7ILkPB
-    +nBCHuNp7bm2KuVS9+xfSl6UrUwwTUWs+yOcGSXlxnTMCiUc7Ag4WRGv2u8Gu/NL3Fomis
-    yLr39kE1PWGjDQd33GTFoTtzq2wmTHyhxKUsr8devUTd7LcN+GMULeP2KDZhj0G005d7Bf
-    n8Geo3w0RCm9ICHjIElOtacNN6kjyG6V6VPqD4CygQfFUt0Zet7Em9+FK/i96HU9UAYsyq
-    HVebR8R5p8ISWcsSTN0NQUzg4wbM2OKbNi+4KwONMmewyCwsTj1chqllyeWOQxAPIAF2Hq
-    NsMfdeX7XSc2wa4eBKcn9gF55DR1FT3pUeoMUnS4rG5YSu6ObUgD6LjLJk60RRTJC+avhq
-    6QzdjsJnHRNeIe81zAkVO5MXpLRxjFzWXrIzsSOIP9YStbEbf/AiIwINRkSA
-X-ME-Proxy: <xmx:PtQEa5gwc5tukPH4sEtwiG6FSDKGvDbC48qX1c7bUqGNqpMTplPuGQ>
-    <xmx:PtQEa43SDBmAc1vvgLzwNoNfsh6Qh_Gfr2NTQHfVK3OXHXr2QvghJQ>
-    <xmx:PtQEa3UgxGElwsw36dFsTy2jtN8RFn8t8yTbE5Z-2Obcvy3rH-LHgQ>
-    <xmx:PtQEa92nbkEgP-5SEfnU_Cm3M52tQpH1AD56pEgjUUWbl4QioGJ8XA>
-    <xmx:P9QEa7d2sbQlK88AzG3B5D2EBciDrxQeRSO2TFoz7WeIvx-gb_f2qKSh>
+Message-Instance: m=1; h=sha256:kaiCEA07RQCWzB8KxAasko9Dk1TMgVxTSuOFiYg/uxA=:ZEvZEH0+c8eqFaJpuEOivncm7QGl8npRw6BTOkXsk+A=;
+X-ME-Sender: <xms:NNQEa2phHLniJzXM5T53DXhLlyOOa6Kk6GYqGX-Lv24lQjYh5Slr_A>
+    <xme:NNQEa_Cdw6gqJ4L2bIWFId1xZYgotNQjthHxYACp-Ed4_y_wDxvlj4TCKbw8tN3Bd
+    4e9gaq8uF8zlTLRvwPpyJwYct3SbqzBjPRKVxmlJO3ksVLAA8pvXa9t>
+X-ME-Received: <xmr:NNQEa2xgSfA1uNEhVw2MsHPSIv7aP8muq5yntSymHrCH1jMsBLlu52oAZySM54DjAWbIv3l7>
+X-ME-Proxy-Cause: dmFkZTFUS31biL804kuGKZfG7Kl9vRZw2I6s1jSqisW9juGEOKIQI3caaZPmnYzTy1IeRs
+    ZIjQyo9EsvQ+pFAb6a2GwGsCkpfm64Cpbysmsva7SlxXIZEws7ZWSeirQ+gtHAb3dvMCn3
+    jN4Yhede77PyJGzU7k4gLFy4PEqreRe+vthzIbDwJPJS6DmEG3WzVwlJ/3mgZsdy/V2+nR
+    tHMjB+HVJArNHdEBrN4tHBv8COLXwrJMgjFYZQqNTaNm34kaQv9FLGr3mFGqI7QkPkKvi3
+    O1F5LYuA/j1anXPgXaQLGV7EQ8gZEI2g6oeOWT5ykgLUjRwdgxxnnGXmYni8bqw3vYMoDo
+    bQRj4mGBX5IrAwjWQ8i8uZKH4ylV+fIAcEE+fYxeyQ19UsQuaaBUWnwfgXVk4kUR2Lpl1/
+    TVOtvHA2xxtoWj/JU2FSXaxntSwIDgmhyiS428yHMed46sJ6eiGooBcKwluksu1ubC+j5V
+    yqVeGTz2ruEks/MdPT3yXgRK62i6N6O7bSydUJYzkiWJHLWxI+jpKxtgSP4jRNaAx++eVK
+    wNnLViiKctjCWfDxDPrZxUBQKMDqBAPmb6b2PYA94sZ7nNoiIbuIqUZHJBaLarUNNdMHer
+    9Jcle4+rUYdJujuTHYnhynQnU6kFfgIFB775VaC+CoHx8KgwSkdCc4GL9Ndw
+X-ME-Proxy: <xmx:NNQEa_7QDhV-Iwvu8xszU_XdvzdGDmkoX-8lxZbgA8UYVs8Ln9jQIg>
+    <xmx:NNQEa_vBcwTdtHQhtRTS5sJJ5BwxviJBz0zXnpE_kDQMGpPhq0bhrQ>
+    <xmx:NNQEa0vmHDW_Luc4IozHEqlp2MsZ5GcsbuFq9kpCBMNRWqudfKwF0Q>
+    <xmx:NNQEa_snQfWGOol5ib_7dj-10G3BrNME3TwyF40diBSkDI0ox0en2Q>
+    <xmx:NNQEayX83LhfYGHgx3At9CAtSExj3a3G9rFQtqClM48U3I5nZzAvMn9D>
 Feedback-ID: i7a5e4b5f:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Nov 2026 19:03:02 -0500 (EST)
+ 23 Nov 2026 19:02:51 -0500 (EST)
 From: Jiaxing Hu <gahing@gahingwoo.com>
 To: tomeu@tomeuvizoso.net,
 	heiko@sntech.de,
@@ -130,9 +130,9 @@ Cc: ddrake@baylibre.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v18 7/8] arm64: dts: rockchip: add NPU (RKNN) nodes to rk3576
-Date: Tue, 24 Nov 2026 13:01:42 +1300
-Message-ID: <f1d20ec832e10a80dc813aa10697632e8024a685.1795478392.git.gahing@gahingwoo.com>
+Subject: [PATCH v18 6/8] accel/rocket: add RK3576 NPU (RKNN) support
+Date: Tue, 24 Nov 2026 13:01:41 +1300
+Message-ID: <c57db6883bb9c977f65d34569f1ed9cb5405bdda.1795478392.git.gahing@gahingwoo.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1795478392.git.gahing@gahingwoo.com>
 References: <cover.1795478392.git.gahing@gahingwoo.com>
@@ -140,8 +140,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_160314_498828_198E8DCB 
-X-CRM114-Status: GOOD (  10.56  )
+X-CRM114-CacheID: sfid-20261123_160301_467807_176DBCE9 
+X-CRM114-Status: GOOD (  20.30  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -160,108 +160,203 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the two NPU cores and their IOMMUs, disabled by default. Core 0 is
-in PD_NPU0, core 1 in PD_NPU1. Label PD_NPU so that boards can give it
-the NPU supply.
+Add the RK3576 NPU. Its PC_TASK_CON has a 16-bit task number, with
+pp_en, count_clear and last_layer_clear at BIT16, BIT17 and BIT18, as
+Chaoyi Chen confirmed:
 
-Set CLK_RKNN_DSU0 to 594 MHz. Nothing scales the NPU clock or voltage in
-mainline, and the boot rate of 786 MHz at the boot voltage of 750 mV is
-outside the vendor OPP table and gives wrong results; that table runs
-up to 600 MHz at 725 mV.
+  https://lore.kernel.org/all/4f300b78-d96d-4d98-8819-dc292b0c9b97@rock-chips.com/
+
+Add it to rocket_registers.h as TASK_CON_RK3576, generated from Mesa's
+registers.xml, and use it on the RK3576. Count the cores in rocket_drv.c
+against the match table, not only the RK3588 compatible.
 
 Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 70 +++++++++++++++++++++++-
- 1 file changed, 69 insertions(+), 1 deletion(-)
+ drivers/accel/rocket/rocket_device.c    |  9 +------
+ drivers/accel/rocket/rocket_device.h    |  2 +-
+ drivers/accel/rocket/rocket_drv.c       | 16 ++++++++++++-
+ drivers/accel/rocket/rocket_job.c       | 15 ++++++++----
+ drivers/accel/rocket/rocket_registers.h | 32 +++++++++++++++++++++++++
+ include/uapi/drm/rocket_accel.h         |  2 ++
+ 6 files changed, 62 insertions(+), 14 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 7828736bf9ac..6ff95066d470 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1131,7 +1131,7 @@ power: power-controller {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
+diff --git a/drivers/accel/rocket/rocket_device.c b/drivers/accel/rocket/rocket_device.c
+index 3bceeb2cbedb..3243cb5093ff 100644
+--- a/drivers/accel/rocket/rocket_device.c
++++ b/drivers/accel/rocket/rocket_device.c
+@@ -6,19 +6,16 @@
+ #include <linux/clk.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/platform_device.h>
+-#include <linux/of.h>
  
--				power-domain@RK3576_PD_NPU {
-+				pd_npu: power-domain@RK3576_PD_NPU {
- 					reg = <RK3576_PD_NPU>;
- 					#power-domain-cells = <1>;
- 					#address-cells = <1>;
-@@ -1350,6 +1350,74 @@ power-domain@RK3576_PD_VO1 {
- 			};
- 		};
+ #include "rocket_device.h"
  
-+		rknn_core_0: npu@27700000 {
-+			compatible = "rockchip,rk3576-rknn-core";
-+			reg = <0x0 0x27700000 0x0 0x1000>,
-+			      <0x0 0x27701000 0x0 0x1000>,
-+			      <0x0 0x27703000 0x0 0x1000>;
-+			reg-names = "pc", "cna", "core";
-+			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru ACLK_RKNN0>, <&cru HCLK_RKNN_ROOT>,
-+				 <&cru CLK_RKNN_DSU0>, <&cru PCLK_NPUTOP_ROOT>,
-+				 <&cru ACLK_RKNN_CBUF>, <&cru HCLK_RKNN_CBUF>;
-+			clock-names = "aclk", "hclk", "npu", "pclk",
-+				      "aclk_cbuf", "hclk_cbuf";
-+			assigned-clocks = <&cru CLK_RKNN_DSU0>;
-+			assigned-clock-rates = <594000000>;
-+			resets = <&cru SRST_A_RKNN0>;
-+			reset-names = "srst_a";
-+			power-domains = <&power RK3576_PD_NPU0>;
-+			iommus = <&rknn_mmu_0>;
-+			status = "disabled";
-+		};
+ struct rocket_device *rocket_device_init(struct platform_device *pdev,
+ 					 const struct drm_driver *rocket_drm_driver,
+-					 u32 hw_version)
++					 unsigned int num_cores, u32 hw_version)
+ {
+ 	struct device *dev = &pdev->dev;
+-	struct device_node *core_node;
+ 	struct rocket_device *rdev;
+ 	struct drm_device *ddev;
+-	unsigned int num_cores = 0;
+ 	int err;
+ 
+ 	rdev = devm_drm_dev_alloc(dev, rocket_drm_driver, struct rocket_device, ddev);
+@@ -29,10 +26,6 @@ struct rocket_device *rocket_device_init(struct platform_device *pdev,
+ 	dev_set_drvdata(dev, rdev);
+ 	rdev->hw_version = hw_version;
+ 
+-	for_each_compatible_node(core_node, NULL, "rockchip,rk3588-rknn-core")
+-		if (of_device_is_available(core_node))
+-			num_cores++;
+-
+ 	rdev->max_cores = num_cores;
+ 
+ 	rdev->cores = devm_kzalloc_objs(dev, *rdev->cores, num_cores);
+diff --git a/drivers/accel/rocket/rocket_device.h b/drivers/accel/rocket/rocket_device.h
+index 40cabae538bc..b8571750c34b 100644
+--- a/drivers/accel/rocket/rocket_device.h
++++ b/drivers/accel/rocket/rocket_device.h
+@@ -27,7 +27,7 @@ struct rocket_device {
+ 
+ struct rocket_device *rocket_device_init(struct platform_device *pdev,
+ 					 const struct drm_driver *rocket_drm_driver,
+-					 u32 hw_version);
++					 unsigned int num_cores, u32 hw_version);
+ void rocket_device_fini(struct rocket_device *rdev);
+ #define to_rocket_device(drm_dev) \
+ 	((struct rocket_device *)(container_of((drm_dev), struct rocket_device, ddev)))
+diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/rocket_drv.c
+index 8aa431db5968..da196474a9eb 100644
+--- a/drivers/accel/rocket/rocket_drv.c
++++ b/drivers/accel/rocket/rocket_drv.c
+@@ -195,6 +195,18 @@ static int rocket_core_hw_index(struct device *dev)
+ 	return -ENODEV;
+ }
+ 
++static unsigned int rocket_count_cores(struct device *dev)
++{
++	struct device_node *np;
++	unsigned int num_cores = 0;
 +
-+		rknn_mmu_0: iommu@27702000 {
-+			compatible = "rockchip,rk3576-npu-iommu", "rockchip,rk3568-iommu";
-+			reg = <0x0 0x27702000 0x0 0x100>,
-+			      <0x0 0x27702100 0x0 0x100>;
-+			interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru ACLK_RKNN0>, <&cru HCLK_RKNN_ROOT>,
-+				 <&cru ACLK_RKNN_CBUF>, <&cru HCLK_RKNN_CBUF>;
-+			clock-names = "aclk", "iface", "aclk_cbuf", "hclk_cbuf";
-+			#iommu-cells = <0>;
-+			power-domains = <&power RK3576_PD_NPU0>;
-+			status = "disabled";
-+		};
++	for_each_matching_node(np, dev->driver->of_match_table)
++		if (of_device_is_available(np))
++			num_cores++;
 +
-+		rknn_core_1: npu@27708000 {
-+			compatible = "rockchip,rk3576-rknn-core";
-+			reg = <0x0 0x27708000 0x0 0x1000>,
-+			      <0x0 0x27709000 0x0 0x1000>,
-+			      <0x0 0x2770b000 0x0 0x1000>;
-+			reg-names = "pc", "cna", "core";
-+			interrupts = <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru ACLK_RKNN1>, <&cru HCLK_RKNN_ROOT>,
-+				 <&cru CLK_RKNN_DSU0>, <&cru PCLK_NPUTOP_ROOT>,
-+				 <&cru ACLK_RKNN_CBUF>, <&cru HCLK_RKNN_CBUF>;
-+			clock-names = "aclk", "hclk", "npu", "pclk",
-+				      "aclk_cbuf", "hclk_cbuf";
-+			assigned-clocks = <&cru CLK_RKNN_DSU0>;
-+			assigned-clock-rates = <594000000>;
-+			resets = <&cru SRST_A_RKNN1>;
-+			reset-names = "srst_a";
-+			power-domains = <&power RK3576_PD_NPU1>;
-+			iommus = <&rknn_mmu_1>;
-+			status = "disabled";
-+		};
++	return num_cores;
++}
 +
-+		rknn_mmu_1: iommu@2770a000 {
-+			compatible = "rockchip,rk3576-npu-iommu", "rockchip,rk3568-iommu";
-+			reg = <0x0 0x2770a000 0x0 0x100>,
-+			      <0x0 0x2770a100 0x0 0x100>;
-+			interrupts = <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru ACLK_RKNN1>, <&cru HCLK_RKNN_ROOT>,
-+				 <&cru ACLK_RKNN_CBUF>, <&cru HCLK_RKNN_CBUF>;
-+			clock-names = "aclk", "iface", "aclk_cbuf", "hclk_cbuf";
-+			#iommu-cells = <0>;
-+			power-domains = <&power RK3576_PD_NPU1>;
-+			status = "disabled";
-+		};
+ static int rocket_probe(struct platform_device *pdev)
+ {
+ 	u32 hw_version = (uintptr_t)device_get_match_data(&pdev->dev);
+@@ -212,7 +224,8 @@ static int rocket_probe(struct platform_device *pdev)
+ 		rdev_group = devres_open_group(&drm_dev->dev, NULL, GFP_KERNEL);
+ 		if (!rdev_group)
+ 			return -ENOMEM;
+-		rdev = rocket_device_init(drm_dev, &rocket_drm_driver, hw_version);
++		rdev = rocket_device_init(drm_dev, &rocket_drm_driver,
++					  rocket_count_cores(&pdev->dev), hw_version);
+ 		if (IS_ERR(rdev)) {
+ 			int err = PTR_ERR(rdev);
+ 
+@@ -274,6 +287,7 @@ static void rocket_remove(struct platform_device *pdev)
+ 
+ static const struct of_device_id dt_match[] = {
+ 	{ .compatible = "rockchip,rk3588-rknn-core", .data = (void *)DRM_ROCKET_HW_RK3588 },
++	{ .compatible = "rockchip,rk3576-rknn-core", .data = (void *)DRM_ROCKET_HW_RK3576 },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, dt_match);
+diff --git a/drivers/accel/rocket/rocket_job.c b/drivers/accel/rocket/rocket_job.c
+index eed443c8406d..f6cb7685731a 100644
+--- a/drivers/accel/rocket/rocket_job.c
++++ b/drivers/accel/rocket/rocket_job.c
+@@ -166,10 +166,17 @@ static void rocket_job_hw_submit(struct rocket_core *core, struct rocket_job *jo
+ 	rocket_pc_writel(core, INTERRUPT_MASK, PC_INTERRUPT_MASK_DPU_0 | PC_INTERRUPT_MASK_DPU_1);
+ 	rocket_pc_writel(core, INTERRUPT_CLEAR, PC_INTERRUPT_CLEAR_DPU_0 | PC_INTERRUPT_CLEAR_DPU_1);
+ 
+-	rocket_pc_writel(core, TASK_CON, PC_TASK_CON_RESERVED_0(1) |
+-					 PC_TASK_CON_TASK_COUNT_CLEAR(1) |
+-					 PC_TASK_CON_TASK_NUMBER(1) |
+-					 PC_TASK_CON_TASK_PP_EN(1));
++	if (core->rdev->hw_version == DRM_ROCKET_HW_RK3576)
++		rocket_pc_writel(core, TASK_CON_RK3576,
++				 PC_TASK_CON_RK3576_LAST_LAYER_CLEAR(1) |
++				 PC_TASK_CON_RK3576_TASK_COUNT_CLEAR(1) |
++				 PC_TASK_CON_RK3576_TASK_PP_EN(1) |
++				 PC_TASK_CON_RK3576_TASK_NUMBER(1));
++	else
++		rocket_pc_writel(core, TASK_CON, PC_TASK_CON_RESERVED_0(1) |
++						 PC_TASK_CON_TASK_COUNT_CLEAR(1) |
++						 PC_TASK_CON_TASK_NUMBER(1) |
++						 PC_TASK_CON_TASK_PP_EN(1));
+ 
+ 	rocket_pc_writel(core, TASK_DMA_BASE_ADDR, PC_TASK_DMA_BASE_ADDR_DMA_BASE_ADDR(0x0));
+ 
+diff --git a/drivers/accel/rocket/rocket_registers.h b/drivers/accel/rocket/rocket_registers.h
+index 9aef614c3470..efcbb00d2aa5 100644
+--- a/drivers/accel/rocket/rocket_registers.h
++++ b/drivers/accel/rocket/rocket_registers.h
+@@ -195,6 +195,38 @@ static inline uint32_t PC_TASK_CON_TASK_NUMBER(uint32_t val)
+ 	return ((val) << PC_TASK_CON_TASK_NUMBER__SHIFT) & PC_TASK_CON_TASK_NUMBER__MASK;
+ }
+ 
++#define REG_PC_TASK_CON_RK3576					0x00000030
++#define PC_TASK_CON_RK3576_RESERVED_0__MASK			0xfff80000
++#define PC_TASK_CON_RK3576_RESERVED_0__SHIFT			19
++static inline uint32_t PC_TASK_CON_RK3576_RESERVED_0(uint32_t val)
++{
++	return ((val) << PC_TASK_CON_RK3576_RESERVED_0__SHIFT) & PC_TASK_CON_RK3576_RESERVED_0__MASK;
++}
++#define PC_TASK_CON_RK3576_LAST_LAYER_CLEAR__MASK		0x00040000
++#define PC_TASK_CON_RK3576_LAST_LAYER_CLEAR__SHIFT		18
++static inline uint32_t PC_TASK_CON_RK3576_LAST_LAYER_CLEAR(uint32_t val)
++{
++	return ((val) << PC_TASK_CON_RK3576_LAST_LAYER_CLEAR__SHIFT) & PC_TASK_CON_RK3576_LAST_LAYER_CLEAR__MASK;
++}
++#define PC_TASK_CON_RK3576_TASK_COUNT_CLEAR__MASK		0x00020000
++#define PC_TASK_CON_RK3576_TASK_COUNT_CLEAR__SHIFT		17
++static inline uint32_t PC_TASK_CON_RK3576_TASK_COUNT_CLEAR(uint32_t val)
++{
++	return ((val) << PC_TASK_CON_RK3576_TASK_COUNT_CLEAR__SHIFT) & PC_TASK_CON_RK3576_TASK_COUNT_CLEAR__MASK;
++}
++#define PC_TASK_CON_RK3576_TASK_PP_EN__MASK			0x00010000
++#define PC_TASK_CON_RK3576_TASK_PP_EN__SHIFT			16
++static inline uint32_t PC_TASK_CON_RK3576_TASK_PP_EN(uint32_t val)
++{
++	return ((val) << PC_TASK_CON_RK3576_TASK_PP_EN__SHIFT) & PC_TASK_CON_RK3576_TASK_PP_EN__MASK;
++}
++#define PC_TASK_CON_RK3576_TASK_NUMBER__MASK			0x0000ffff
++#define PC_TASK_CON_RK3576_TASK_NUMBER__SHIFT			0
++static inline uint32_t PC_TASK_CON_RK3576_TASK_NUMBER(uint32_t val)
++{
++	return ((val) << PC_TASK_CON_RK3576_TASK_NUMBER__SHIFT) & PC_TASK_CON_RK3576_TASK_NUMBER__MASK;
++}
 +
- 		gpu: gpu@27800000 {
- 			compatible = "rockchip,rk3576-mali", "arm,mali-bifrost";
- 			reg = <0x0 0x27800000 0x0 0x20000>;
+ #define REG_PC_TASK_DMA_BASE_ADDR				0x00000034
+ #define PC_TASK_DMA_BASE_ADDR_DMA_BASE_ADDR__MASK		0xfffffff0
+ #define PC_TASK_DMA_BASE_ADDR_DMA_BASE_ADDR__SHIFT		4
+diff --git a/include/uapi/drm/rocket_accel.h b/include/uapi/drm/rocket_accel.h
+index c9271e469231..d1102b30f25a 100644
+--- a/include/uapi/drm/rocket_accel.h
++++ b/include/uapi/drm/rocket_accel.h
+@@ -199,11 +199,13 @@ enum drm_rocket_param {
+ /**
+  * enum drm_rocket_hw_version - the NPU, for DRM_ROCKET_PARAM_HW_VERSION
+  * @DRM_ROCKET_HW_RK3588: the NPU of the RK3588.
++ * @DRM_ROCKET_HW_RK3576: the NPU of the RK3576.
+  *
+  * 0 is not used.
+  */
+ enum drm_rocket_hw_version {
+ 	DRM_ROCKET_HW_RK3588 = 1,
++	DRM_ROCKET_HW_RK3576 = 2,
+ };
+ 
+ /**
 -- 
 2.43.0
 
