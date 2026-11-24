@@ -2,13 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCF3606CED8
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A8B606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Pw8e5nUt;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=JynnR6l+;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=sjoeRwWy;
-	dkim=neutral header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=ARc606Vv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lvlq2CK1;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=okPRrsYt;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=Jo1I4q7Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -16,84 +15,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=adbm0DzSO3mJYHLc7cJuWzX3GDM1m8RObj3Et4x+Weo=; b=Pw8e5nUtdNBaIVow4HGn0mDZ/K
-	Bq1BKGjr/uzXP42Cgg6xWKOuzNmhCE8bhzPmNJ7LJ3FHlhyxqsiLGjtT1L0+SqQPTDKVFl7IDpx8X
-	E2oxRrB2TDZ2aZ9vHlaiP1Ws9EWz4Ywq5OcejpoZvJrQBH426Ameub0uIlFiJZK/Za1Sp2hkEc0aG
-	OtOzRGBoNDRFQg8x2OiESjHYn8ZxPxX/bIWgPcXDrVm+j54BNT+uKgVS2lLwuUJsJSfLfLumdH5i1
-	KedCXp/0UctRJROuelKLpx1ix3V+IgLm9ERyBgX7jEkyslnKy4QRVSPcGqfSzK7f3OZgl+7tFzVek
-	Ydcaz8Ig==;
+	bh=2BvTOQLxMfY709F9WzRxgyIMCfwQfGC0EhnVtClwW74=; b=Lvlq2CK108KdtqWSPl522VrZb6
+	QjB0a04YVXAojz7MMEfsNKU2NY6/mWvPXMP1SEk9v+Ap7rwg1kIIypQYjkp0o/aaWmej0tEgRU0E/
+	rzhwefB6KIsQ/y6+Sp4aPbuxH12+ZgEU30lpvMfFx/hS7PISMpGk9PmgcGFC6ksFjWEfgyWvgECo2
+	JgDFzRDzuAlPrfPXgAWCWhi+Do3NRRwbdv3FUNmNX74+b8DseEzo0YKVhPcDTPlNZlaTwBX8AcX+F
+	GuL4cafyac3tuasR9wboJkyTvKE8PWzVfUXGzdp/L/+bVaF2pIPJz/0DGTAfG7gmRc5Sm5sIyiY40
+	87slhq9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvX-00000005jR0-1Q4Y;
-	Tue, 24 Nov 2026 07:26:55 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVkwf-00000005jvh-3slk;
+	Tue, 24 Nov 2026 07:28:05 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.176])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvP-00000005jLt-3d6U
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 07:26:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=adbm0DzSO3mJYHLc7cJuWzX3GDM1m8RObj3Et4x+Weo=; b=JynnR6l+fNn63W7PCKA2HCF7Rv
-	gCyl0v61tf9bR2RYWPBGRA2G/BQ6rE7SCXFteXu5HbFNubGiGDDca/HLIQZuKa2LJIARIczdtZgIj
-	jrgHdxpNhkMaKl9DKBVF8sY2BjabAOyVl0I4624gLHgHPy2t6LrUx9qhVnrzz1z9DIewkTioijOGx
-	kF5kHQJ5HRIIx0SIdsNBnn4oAjcMNKfT7b28U/OqwigT+FT/4rAsorMg0yqglYRWshi1ELmF158rR
-	itlmc2UJv2xqWbMDqQG6LO4YpPOOOPKokMS1HEpIhU0Nthlh4DjqaWWzid8lzmfgNafRsQcI7B7dg
-	uLrugSKA==;
-Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.179])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvL-00000003skF-0hpP
+	id 1xVkvK-00000005jKz-3V2s
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:26:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505182; cv=none;
+	Tue, 24 Nov 2026 07:26:55 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505177; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=DucnJM3AhZn6SkPAKsBpAX/bZCQstTVhXrdEvPqOwpS9ZRbh3Asw/scuKJGQjQXJuH
-    2rPil4Z2fSYZOI4WqrEijyipqAcsBjKxWmEQaUb7wQbt+j2II4z/LxfnLAyyIOikDDFm
-    5knubW7nL99GXTD1wUztNm8bTWBnA9wlEXTSjJBHz1OuWQDhU9lyCeqchYggGYsiNQlH
-    xVycQ94hs1JEcGFku7l7JT5yNc5T+58EXKJXLevQFKXOIiXUJ5roT3kesdCvMif8YvPu
-    EMl663kbocbzH0BDL6jS71HKIxh6I0bFYMGiyEtcZx2RhjM/TCAc2hasdmYlkFfpuATY
-    PHTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505182;
+    b=VXTMjt3g0e11IQFi8lbpnM90kxR8fJPktDpb0lzIhymeW2BaAz/gNLbSt5o9rbKImh
+    N4vLoM7bgxdkRJ48KtCRqdmb2qSGVQ7WVLAs5f1fvjd4b4esb5rGekxJB1OnvSnp5jdG
+    Z89PkrKOjdcJLFvesWXGCwBBv32S3qSBn6V4z7NkoFMmMSeYMLoLkOg3YwWqwZ2rPzFY
+    +6SQz+0iLO5z+KhW6GdFa/2Bb0MxmXzKEwXlBQJ0fxdI0zbDtr/we66me6iARxSH04ZY
+    i3w8qSG4/aV18ul+nou3zFDq+7b3AfWz+Dq/LKfWW/3xIihFKq1Tm46FaKBWMzg74zkw
+    vt7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505177;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=adbm0DzSO3mJYHLc7cJuWzX3GDM1m8RObj3Et4x+Weo=;
-    b=XLQmyxQZsnUAqqRpeSuYpwVbaEf64X5pXFVaRiss2CULJpGSBoXU8qSMPRmJegY54n
-    jonOh9PyL31mWIv65ljH2Sfn+pXIMdBjmwAstqTGrdaYJ24sqjMMPM6q0ZN4hyWkiKU2
-    yX7qPJLM+l2j60cXesRVda9ZPB3T10yZ5QDdqhfy7OO6kr5nvOektqQZTOun6s8CmYPs
-    q+03hOkIiVMJUCV06N/xrJMni7v+Pa8UM0RW715XZwcbsoXl6Oly4B+Nl/VPp7vIVslA
-    AfpYlFPdgz0hA5I3FrherlNYWbN3T07vk8rayzhaLganKYwN5E4DX7Qf1FkHyh0cDiqV
-    uYdQ==
+    bh=2BvTOQLxMfY709F9WzRxgyIMCfwQfGC0EhnVtClwW74=;
+    b=k6h1H7uHmzk5j6a6wxfaPJQ50FX+NSAAQxYB+0y4nSmRFjj4vLiF4D7Z8PToSi6AzR
+    2LzG1rDW+ic7vPbSs8tVDNZ9kC7ifE54G3neo+1IC5edM0cTxHrA65QntNdi19H1G43g
+    Ljg4D+QZXsdYHAx8JHJ6g72vFl1ekicKajYR2lq/UG2cGjE0ma3N1iFN7WFbmufgklTL
+    UOqff6ImXMiB4A8t28TctVNeK7oxGKI5sChI8BybWz7aKsaj0q+0ktIZzlM+rZ8GyYMp
+    sRowlkNnA0P3hOMm0q0kGbhKgZw31CdjDmXthm09T2oawuhYZ0sAICRdr2hou/HZX6FJ
+    5ZJA==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
 X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505182;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505177;
     s=strato-dkim-0002; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=adbm0DzSO3mJYHLc7cJuWzX3GDM1m8RObj3Et4x+Weo=;
-    b=sjoeRwWy32ESLe/xZiz6JbxIHsZoP/Aae7i5NH+rygVjLYpOSOjHofkXLNTcD5NvNr
-    i87/Ddf5vp+8IO0rq+XPx/vkBqC7cBenAxJh7ZTxuIYsbZBj1BMbz84Wy0LUNmZIUzWr
-    b8fsNHQFLSzm6aRT42UIwjG9IT1TyvJ0PDlnjVGPCkqtUGhXVTQBF2H8r/yok6flZQJQ
-    TshtUeiB59W3A9C0hTLXBx+h5QJLUre2diVjl6PgpiCg/1y6qDyC+WKUOzASrn/Tg3S+
-    nu7HPSuwzIYDVpERe0CPiFdtDtkCQuK4m9YwPRzmQ2MFWIHqxa0d8Rp3wdT6n461DoOW
-    hCig==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505182;
+    bh=2BvTOQLxMfY709F9WzRxgyIMCfwQfGC0EhnVtClwW74=;
+    b=okPRrsYtuLzyS1CA5INIv9j+2KYUBs9UvpOeH2Mg+Z/ZOxMXhfQO0ljwX3JR/Z6Xt+
+    xBwrRNwoX7daHnTNXaa+qRB/8KSR2o1Iuc5G8HoYvvhu4ngCFhpxjmcgnUaOo3C9D6Fj
+    iQNkkv5lkvHu9ostpp6y3F58W6BRN3drQc9dIRhjjh/+UJVOnUz91v5afyRyQahoOAjf
+    mdyc/s9hL0pTUHGZuS5LoA1ARQK0iz8zS+IWuu2dexYlJ91tfSkxngCRVLAJJBbxMeKP
+    Pby7aSEGbrAUtt8pGodsFuSGRkgIFQl53sYwCFjD7xwIREMk+BIM9yjaWhV3hlwomlyY
+    OAKA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505177;
     s=strato-dkim-0003; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=adbm0DzSO3mJYHLc7cJuWzX3GDM1m8RObj3Et4x+Weo=;
-    b=ARc606VvAJi/E1vAOJ//WCiLmxlauC8TnSvthekUEYyNZNIdEuFvL/I1iU8Kalv1It
-    3bIsatUM5Xm7yF8wYFCA==
+    bh=2BvTOQLxMfY709F9WzRxgyIMCfwQfGC0EhnVtClwW74=;
+    b=Jo1I4q7Y9aa80sCc0gqgfLwreoVBRZH14hynKI1rAZcFTcTQIF4olaGpCI1SNad9eO
+    BLgsvKySXrCp4SkBnJDg==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
 Received: from iMac.fritz.box
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7QL1HU
+    with ESMTPSA id Qb56a22AO7QG1HP
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:21 +0100 (CET)
+    Tue, 24 Nov 2026 08:26:16 +0100 (CET)
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -137,11 +121,10 @@ Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
 	linux-fbdev@vger.kernel.org,
 	letux-kernel@openphoenux.org,
 	kernel@pyra-handheld.com,
-	"H. Nikolaus Schaller" <hns@goldelico.com>,
-	Grond <grond66@riseup.net>
-Subject: [PATCH v2 16/20] ARM: dts: omap3pandora: Describe PCM1773
-Date: Tue, 24 Nov 2026 08:25:56 +0100
-Message-ID: <770a015f333c1927fccee2663eb76a7de923dffb.1795505160.git.hns@goldelico.com>
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 11/20] backlight: pwm: Support enable guard period
+Date: Tue, 24 Nov 2026 08:25:51 +0100
+Message-ID: <54477b4e31e35af14677172088f94770ca5b9755.1795505160.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
@@ -150,9 +133,9 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_072643_211891_BF3500C1 
-X-CRM114-Status: GOOD (  12.92  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261123_232650_685220_168C6EF0 
+X-CRM114-Status: GOOD (  25.97  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -170,41 +153,151 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Describe the PCM1773 playback DAC in the common OpenPandora device tree.
-The DAC is supplied by VSIM and enabled through GPIO118. This allows
-the PCM1773 codec driver to bind without platform-data registration.
+Some LED drivers distinguish PWM dimming from a one-wire control
+mode during a startup detection window. For example, TI TPS61160/61
+use the duration of low intervals on CTRL to detect EasyScale.
+An initial guard interval can keep the waveform suitable for PWM
+mode detection before normal dimming begins.
 
-Suggested-by: Grond <grond66@riseup.net>
+Add support for a new device tree property
+"pwm-enable-guard-period-us". If set, the driver applies a full
+duty cycle (duty_cycle == period) for the given duration whenever
+the previous PWM state was disabled or had zero duty cycle.
+This covers the
+requirements of such devices generically, without introducing a
+chip specific backlight driver.
+
+The requested full duty need not produce an exact constant-high
+output on hardware with limited duty-cycle resolution. The board
+must ensure the resulting waveform meets the LED driver timing.
+
+Suggested-by: Andreas Kemnade <andreas@kemnade.info>
+Link: https://patchwork.kernel.org/project/linux-omap/patch/f897f695c0e1e128d7ebb41be8dfdce4d634f552.1783749722.git.hns@goldelico.com/#27124981
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
 
 Notes:
     Changes against V1:
-    - Historical origin: 13b32c8cd102 (Grond, 2021-12-15).
-    - The current DTS node has been reviewed for the PCM1773 binding and GPIO/supply properties.
+    - Andreas Kemnade proposed placing the TPS61161 PWM-mode
+      initialization in backlight support rather than in the PWM
+      controller. The enable guard is the generic V2 implementation.
+    - Add pwm-enable-guard-period-us support to pwm-backlight.
+    - Request full duty during the startup guard when the previously
+      cached PWM state was disabled or had zero duty cycle.
+    - Check the return value of the guard PWM update, while leaving
+      the normal pwm_apply_might_sleep() handling as in upstream.
+    - Retain the hardware-tested guard implementation from the working
+      series; do not incorporate the later review changes to power-on
+      ordering, guard triggering, duty limiting or rollback handling.
+    - Clarify that requesting full duty does not guarantee constant
+      HIGH on every PWM provider; actual waveform depends on hardware.
+    - Keep the existing Suggested-by attribution.
     - Code and commit-message review assisted by ChatGPT.
 
- arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/video/backlight/pwm_bl.c | 37 +++++++++++++++++++++++++++++++-
+ include/linux/pwm_backlight.h    |  1 +
+ 2 files changed, 37 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-index 2a5e8ba5714da..6e349f7ae6936 100644
---- a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-@@ -64,6 +64,13 @@ tv_connector_in: endpoint {
- 		};
- 	};
+diff --git a/drivers/video/backlight/pwm_bl.c b/drivers/video/backlight/pwm_bl.c
+index 3ad71ee3657af..1d0a463710926 100644
+--- a/drivers/video/backlight/pwm_bl.c
++++ b/drivers/video/backlight/pwm_bl.c
+@@ -7,6 +7,7 @@
  
-+	dac: pcm1773-codec {
-+		compatible = "ti,pcm1773";
-+		vcc-supply = <&vsim>;
-+		enable-gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>; /* GPIO 118 */
-+		status = "okay";
-+	};
+ #include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
++#include <linux/minmax.h>
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+ #include <linux/init.h>
+@@ -18,6 +19,9 @@
+ #include <linux/regulator/consumer.h>
+ #include <linux/slab.h>
+ 
++/* extra time added above enable_guard_period_us for usleep_range() */
++#define PWM_BL_GUARD_SLACK_US	2000
 +
- 	gpio-leds {
+ struct pwm_bl_data {
+ 	struct pwm_device	*pwm;
+ 	struct device		*dev;
+@@ -26,6 +30,7 @@ struct pwm_bl_data {
+ 	bool			enabled;
+ 	struct regulator	*power_supply;
+ 	struct gpio_desc	*enable_gpio;
++	unsigned int		enable_guard_period_us;
+ 	unsigned int		scale;
+ 	unsigned int		post_pwm_on_delay;
+ 	unsigned int		pwm_off_delay;
+@@ -93,11 +98,39 @@ static int pwm_backlight_update_status(struct backlight_device *bl)
+ 	struct pwm_bl_data *pb = bl_get_data(bl);
+ 	int brightness = backlight_get_brightness(bl);
+ 	struct pwm_state state;
++	int ret;
  
- 		compatible = "gpio-leds";
+ 	if (pb->notify)
+ 		brightness = pb->notify(pb->dev, brightness);
+ 
+ 	if (brightness > 0) {
++		pwm_get_state(pb->pwm, &state);
++
++		/*
++		 * Some LED drivers detect a one-wire control mode during
++		 * a startup window (e.g. TI TPS61160/TPS61161, using
++		 * the duration of low intervals on CTRL). Request full
++		 * duty for the guard interval before normal dimming.
++		 * The PWM provider may approximate full duty.
++		 *
++		 * Apply the guard if the previous PWM state was disabled
++		 * or had zero duty cycle.
++		 */
++		if (pb->enable_guard_period_us &&
++		    (!state.enabled || !state.duty_cycle)) {
++			struct pwm_state guard = state;
++
++			guard.duty_cycle = guard.period;
++			guard.enabled = true;
++			ret = pwm_apply_might_sleep(pb->pwm, &guard);
++			if (ret)
++				return ret;
++
++			usleep_range(pb->enable_guard_period_us,
++				     pb->enable_guard_period_us +
++				     PWM_BL_GUARD_SLACK_US);
++		}
++
+ 		pwm_get_state(pb->pwm, &state);
+ 		state.duty_cycle = compute_duty_cycle(pb, brightness, &state);
+ 		state.enabled = true;
+@@ -239,7 +272,8 @@ static int pwm_backlight_parse_dt(struct device *dev,
+ 	of_property_read_u32(node, "post-pwm-on-delay-ms",
+ 			     &data->post_pwm_on_delay);
+ 	of_property_read_u32(node, "pwm-off-delay-ms", &data->pwm_off_delay);
+-
++	of_property_read_u32(node, "pwm-enable-guard-period-us",
++			     &data->enable_guard_period_us);
+ 	/*
+ 	 * Determine the number of brightness levels, if this property is not
+ 	 * set a default table of brightness levels will be used.
+@@ -467,6 +501,7 @@ static int pwm_backlight_probe(struct platform_device *pdev)
+ 		goto err_alloc;
+ 	}
+ 
++	pb->enable_guard_period_us = data->enable_guard_period_us;
+ 	pb->notify = data->notify;
+ 	pb->notify_after = data->notify_after;
+ 	pb->exit = data->exit;
+diff --git a/include/linux/pwm_backlight.h b/include/linux/pwm_backlight.h
+index 0bf80e98d5b40..35cf19b1e9768 100644
+--- a/include/linux/pwm_backlight.h
++++ b/include/linux/pwm_backlight.h
+@@ -13,6 +13,7 @@ struct platform_pwm_backlight_data {
+ 	unsigned int lth_brightness;
+ 	unsigned int pwm_period_ns;
+ 	unsigned int *levels;
++	unsigned int enable_guard_period_us;
+ 	unsigned int post_pwm_on_delay;
+ 	unsigned int pwm_off_delay;
+ 	int (*init)(struct device *dev);
 -- 
 2.56.0
 
