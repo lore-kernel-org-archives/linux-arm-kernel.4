@@ -2,111 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46D8606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74384606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ndc2bxZd;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=V4+fbZCh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m6aVUudM;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=dFRLgPqp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dzlULNiaNZ0xXGdWA1rlfP/03H+C6Hi4qgErNRy8s+Y=; b=ndc2bxZdeNkagw
-	3K7VKCl6dqVh46tkBJKUPFBVax0aRiMNYMjze8J7EXeXPSO2McGfwr7FA+7l8J0cAHvOnS3GZHgdc
-	rFCBNqAA3ngAsEFrDi2nDCyzKu8QSJ1SKe39dFlH8ZbB6FkVvOzOaMHql0G3c01Kbxq5Rc9s0f5W5
-	5Zf+d2Gr3IMZHO0DMUkJNka4WwYxGRp+smWGRgYEqvuBn33YPecAQ6w5zy62O5VieYhCE+eKS2zuw
-	yPpvUlNS/AIBNJIdjlyzHSqyHSdd0fW5P43wicE1P+YaOcSt3ELt4QnT6oriVt12zmJ7asuotLCdL
-	dZLcarwalqvf+gIoEmhg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=XD3y0uRelfjcM8wuzE5PStYzhtdNUf4TcgUCbGZyLAw=; b=m6aVUudMt4ya87y/ZCzXeKjfGH
+	+FBGXmIKd5OUfhzY5N8pf/w54dt5O34f7E1kBOe0oe76fiZfnpg7e3oDqxGPYNcM3RuL6fW7xFt6L
+	Goa8T5jBZRvLb+O65z9rbtGLqActZCY92IXMp3I42ZvmvgdzpU2GDULe0PfyX208CMaMXtRK/McK1
+	SfbsmLJR85rfAm8bvoiSvj3jRTX1a4wAjq7+qj63yBk2WJXGQBoOUs9N4kOfqjCPTR1vP96VQlKYn
+	zZdYvMGio2K4o481PnqLpdNPJ2SGil7PFKLYdoCHupljCOYxOV+ILQBvkiAljKVkj59BQ2ooGqQqJ
+	sxsnJEoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmvO-000000064Kd-3PDb;
-	Tue, 24 Nov 2026 09:34:54 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1xVmzb-000000064oN-14vi;
+	Tue, 24 Nov 2026 09:39:16 +0000
+Received: from out-63.mta0.migadu.com ([2001:41d0:1004:224b::3f] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmvJ-000000064J9-0msL
+	id 1xVmzX-000000064nd-2rc9
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 09:34:52 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a35ac4475dso31386215e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 01:34:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795512887; x=1796117687; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=dzlULNiaNZ0xXGdWA1rlfP/03H+C6Hi4qgErNRy8s+Y=;
-        b=V4+fbZCheX2z5I3W25EK8Er6liSVQUOfH17v0kdzl5bqjbU62qVCr+ymiHv54ZN0yE
-         gBBa693XOqmnIW0t0rtIdDDEkMOIi1iW36Tq3sUhmyhoRB90RC9S+szFS8EA9oBtsDwj
-         dF0qAgVxhzspJA0bZfgcIQMD9Io+iV6lCztslliu+4qINHNLA5ugkZ/2kdL58AodGMi0
-         uiGe4f6zcpSdTqlRA1LmE11izGi/Nw7UJrVqMY0XuHKspRi6sb0T81HqRtReM4bFMfMs
-         7uqAhqQCYOXOMp458pwzMxqwp8FI6Ar76/9a+tTJAJx7lkuHze+vnmbHV4y6pwzegXyj
-         apAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795512887; x=1796117687;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=dzlULNiaNZ0xXGdWA1rlfP/03H+C6Hi4qgErNRy8s+Y=;
-        b=NiV9S/AguCOSujYj5CzpBd9GH8jd8QFsCJqwxWaaL6rm5dwHmmikwKFC3HvgcqXb0i
-         I8T9ql2/12IpFihEJ/JwlMt+Wf7W/yuC+CUMgDsvvvk4akmtbIv9rXL5xbEjCTtXzNTV
-         sk/iSg24X+00pb0nLQeeG/SJi72I+S0c6mf8HC5JZTteJDEVQJAlebuLgBDw3Ia11hMn
-         EtwsWK87oXjY4UNIRNhJu6ElL7oAfAWJ9rnJjNHGQHpYCXqEd8lV6kSNBscbOp2IyUDg
-         yHvEPHg0Oi3jIR5AQ1byxrDp9W6mIKrjt5by/Cp4md54J6PDyvS+yS38YyC1c5961Byh
-         VMHA==
-X-Forwarded-Encrypted: i=1; AL+hErFTlnRRppUgUy9IsGqu0alrqT0yDwrJ46SGSOLAIGGBNXDd3gkGH53KwFHnOgC1ia2sULS3y2pTtSBobGJho0ak@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hQGRZ6OTwjpSjR8tpijdYQ/24+uUmZkTef6yK9zv2ytcMlK1G
-	mdMdql/kBxsiSNSVJw8SA6G/rp0mgAOVE6YyMIgh6mMEUNe6weAQVJO4uOk54ifLbnBoeyUtE7n
-	RV2hOsvc=
-X-Gm-Gg: AZFdTZfmoHP1JijmTmnyVHxcIOtlZfHczG6H4smsE3tWhgfv+JDkZ9FZ4kBuPq4+LOp
-	7UANwaKK81dm3RHRrqayms2tAZd0Jkv5JyDmF6QJ3BzrVR65eWZofYY7+mLfIW1+R5zOINy2Yv3
-	UUk5lDhQCYcY2WFqeK1SoLyYTccDYfFUdEhbKsaCmvj3nu/8ZO0oM531YryWHP9jjYVKEf+Ks7n
-	KXQDEY7mtX6/x/hq1EncYv/+jDl7hEYUALI1778lBFjqO7qrokj9k+bDJQqQRi4z6lFfARxPhfm
-	ElqfDzmtxGUeLuRfSmpGkg6kbQ6TpXvMx0BJ8L7f4WEvrCC6sc6pTfmxyCObe/Cc6EkAzzLbyTh
-	znlA5TyPc0VGPaBXboAv3PDcew01py2jP7K1xgWuXMQh2RlizsmGCGL5tYJ2AsXOnlDA4stTSRz
-	1Hs8k5j7PRS5OeddxQvFZzWM1YqnnAXGVYBRekXo9kUP6QDp/5ZBS4/AFQbQ5JvgHdTI0ejuqjN
-	KDbhsiVR+ep1ukELE5MvfS8hMd50kI7sI5TW2BIDdZ1mcua1k+WANxGUcj2m+VNpaF45JFoljNC
-	SjvXHswRJOPruLN+RdbmBNIcZ0/KMXuLr46LLHDHLMrRwYk/TLkD4k2cDVwbo3HZ/3ccrPuVh/M
-	bww==
-X-Received: by 2002:a05:600c:5251:b0:4a1:f8cb:7d70 with SMTP id 5b1f17b1804b1-4bb8881e837mr267264845e9.24.1795512886893;
-        Tue, 24 Nov 2026 01:34:46 -0800 (PST)
-Received: from ?IPV6:2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183? ([2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110c50sm26488815f8f.37.2026.11.24.01.34.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 01:34:46 -0800 (PST)
-Message-ID: <57582334-45ef-421c-a460-314f5b5ece74@baylibre.com>
-Date: Tue, 24 Nov 2026 09:34:44 +0000
+	Tue, 24 Nov 2026 09:39:13 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=ilOuyRk+MAIQHiCii2Y/pLuL3MbXC2Pov4MVI4OLeCc=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795513148; v=1; x=1796117948;
+ b=dFRLgPqp2gvd/lPwyD6upPTWenfEtnRhjxh6jkzy6cAxszUjCZ0t//KZ9eJVizZV2tsrA/hc
+ 0Y7Kd6HQ0uz+6PNXd+PG+OMKhMYWstRcgcisdQ0UhiuPyJ345MrAQzEFNKJC4B+PQssw1vt2PqZ
+ 42i2+vu1/l0tkOU+nTXPJJ8E=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 16723c96a8da4ecf;
+	Tue, 24 Nov 2026 09:39:08 +0000
+X-Mizu-Trace-ID: 16723c96a8da4ecf
+X-Migadu-Flow: FLOW_OUT
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5c00d7ac49dso16191e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 01:39:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGIxtPssG/Dn/MmVJFKE8fhtgaCExMcYWbVC1NwUnBzgo9enJlKzZx6SZMbWRfqw+pfAMSd6GPRtrAVoAk/FUfa@lists.infradead.org
+X-Gm-Message-State: APuU4Z9CpCCT6lBomOD9QVPdF00zdHEhIMwj+5HnJQzByJvvlRfvjS2S
+	FSW2/ywVRhKHOCwYormCxd+I8BAHw9bjMV2BSE/p/FKEa2DuVyxEKJeXoWNKbDylK15Ndiv/MUN
+	xsX+Rp1BaxGhb6BMOoQHpKls2XBDSDM/bkj48Kuee
+X-Received: by 2002:a05:6512:3502:b0:5c1:488e:a067 with SMTP id
+ 2adb3069b0e04-5c200ba538amr329242e87.16.1795513147393; Tue, 24 Nov 2026
+ 01:39:07 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v18 4/8] accel/rocket: take the core clocks and resets
- from the devicetree
-To: Jiaxing Hu <gahing@gahingwoo.com>, tomeu@tomeuvizoso.net,
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
- p.zabel@pengutronix.de, ogabbay@kernel.org, zhangqing@rock-chips.com
-Cc: royalnet026@gmail.com, sidong.yang@furiosa.ai,
- ulf.hansson@oss.qualcomm.com, abel.vesa@oss.qualcomm.com,
- sebastian.reichel@collabora.com, chaoyi.chen@rock-chips.com,
- shawn.lin@rock-chips.com, finley.xiao@rock-chips.com,
- diederik@cknow-tech.com, alchark@flipper.net, leonard@lausen.nl,
- vlwwwwww@gmail.com, jeff.hugo@oss.qualcomm.com,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1795478392.git.gahing@gahingwoo.com>
- <82329b6681958350294846c830598ebde29b874a.1795478392.git.gahing@gahingwoo.com>
-Content-Language: en-US
-From: Daniel Drake <ddrake@baylibre.com>
-In-Reply-To: <82329b6681958350294846c830598ebde29b874a.1795478392.git.gahing@gahingwoo.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20261123192457.8700-1-maz@kernel.org> <20261123192457.8700-4-maz@kernel.org>
+In-Reply-To: <20261123192457.8700-4-maz@kernel.org>
+From: Fuad Tabba <fuad.tabba@linux.dev>
+Date: Tue, 24 Nov 2026 09:38:00 +0000
+X-Gmail-Original-Message-ID: <CA+EHjTynhBzhjrFzd514Sycib=1rmh7JqYp0xSPVBvurk6Sm-A@mail.gmail.com>
+X-Gm-Features: Aa3M54oJsiX7PUIr0O3Es9w-Trkkm26FAlvtAIKuj1DU-Bg32tEzMiolqN2nYfU
+Message-ID: <CA+EHjTynhBzhjrFzd514Sycib=1rmh7JqYp0xSPVBvurk6Sm-A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] KVM: arm64: Drop open-coded GIC idreg sanitisation
+To: Marc Zyngier <maz@kernel.org>
+Cc: kvmarm@lists.linux.dev, kvm@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Steffen Eiden <seiden@linux.ibm.com>, 
+	Joey Gouly <joey.gouly@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Oliver Upton <oupton@kernel.org>, Zenghui Yu <yuzenghui@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_013449_264231_9E02E4D8 
-X-CRM114-Status: UNSURE (   8.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261124_013911_859577_B7CF4AA5 
+X-CRM114-Status: GOOD (  16.91  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,26 +81,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 24/11/2026 00:01, Jiaxing Hu wrote:
-> The RK3576 NPU core has six clocks and one reset, the RK3588 core four
-> clocks and two resets. Take all clocks and resets the core node lists
-> instead of naming and counting them per SoC; the binding defines them
-> and dtbs_check enforces it. The driver only uses them all together.
-> 
-> On the RK3588 the resets are now deasserted in devicetree order, srst_a
-> then srst_h; before it was the reverse.
-> 
-> Suggested-by: Daniel Drake <ddrake@baylibre.com>
-> Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
+Hi Marc,
 
-Reviewed-by: Daniel Drake <ddrake@baylibre.com>
+On Mon, 23 Nov 2026 19:24:57 +0000, Marc Zyngier <maz@kernel.org> wrote:
+[...]
+> diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
+[...]
+> @@ -5874,51 +5874,6 @@ static int kvm_vm_finalize_sys_regs(struct kvm *kvm)
+[...]
+> -                 * On GICv5 hardware that supports FEAT_GCIE_LEGACY we can run
+> -                 * both GICv3- and GICv5-based guests. Therefore, we initially
+> -                 * present both ID_AA64PFR0.GIC and ID_AA64PFR2.GCIE as IMP to
+> -                 * reflect that userspace can create EITHER a vGICv3 or a
+> -                 * vGICv5. This is an architecturally invalid combination, of
+> -                 * course. Once an in-kernel GIC is created, the sysreg state is
+> -                 * updated to reflect the actual, valid configuration.
 
+nit: This comment is the only place that explains why, on a
+FEAT_GCIE_LEGACY host, a VM's ID registers can show both GIC and GCIE
+as IMP before the VM first runs. sanitise_id_aa64pfr0_el1() and
+sanitise_id_aa64pfr2_el1() still set both at reset. Is it worth having
+a short version of it next to the tables patch 2 adds?
+
+[...]
+> diff --git a/arch/arm64/kvm/vgic/vgic-init.c b/arch/arm64/kvm/vgic/vgic-init.c
+[...]
+> @@ -180,7 +180,7 @@ int kvm_vgic_create(struct kvm *kvm, u32 type)
+>           * We've now created the GIC. Update the system register state
+>           * to accurately reflect what we've created.
+>           */
+> -        kvm_vgic_finalize_idregs(kvm);
+> +        kvm_idregs_enforce_dependencies(kvm);
+
+This now also applies the S1P[IO]E dependencies when the vGIC is
+created, at a point where userspace can still write the ID registers.
+Was that intended? If this clears S1PIE or S1POE, the first KVM_RUN
+doesn't restore it, so the final ID_AA64MMFR3_EL1 can change with the
+order in which userspace writes the ID registers and creates the vGIC.
+If that's the intent, should it say so in the commit message?
+
+Cheers,
+/fuad
 
