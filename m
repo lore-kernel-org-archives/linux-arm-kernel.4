@@ -2,119 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D107606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2993A606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 22:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xKV0tkRb;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=uSVOfbd8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HpLC8wje;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=UzCx1RMk;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=I0XeA/aU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=aa7YPfOROhEx6JieLJ3TSEkUZ7Fh13WAPekCnuIIbKA=; b=xKV0tkRbwt/mq4fd6cLGNW28a4
-	/1II4a2iPo4zRidtMavYjqZG4/YqLQRN8RceGnMEJ91oQZ+L7oaLayRpJT6NXZOI44OuqRD/VyrrK
-	hjRW6/hsvzFrn0qTB9LLXJtvmjIKw1Hjia6WlYwCson5mZco2/GacQCXhGD6vv+jsfP9gwouKAmeO
-	vaQnXm/Yw9TjtslD6g2ZXsyZU6BWHZyaJu7Guur1OwiR3ZnZUSJ2FQeO0fNgVdstoxzL2C4Ya5fAa
-	/17lCi3I53BdWGGyJ0vInapc6P9sE20d32gRfHAeg0gajnpXB4MxPOXRfSESywCEJE6iT/+F5geZD
-	x/EdO9MQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=KlFzMLz14WgpPVwdqGiJVEqdnpE7naQqAvTjh6Xp/Ec=; b=HpLC8wje0cidoc
+	jcVwSW2EJrzd4LjcInypgIvn695xO4doMEE0uxtTN4eCO40rUxQhs9npb2LE9c57G0Jj7DZColqQp
+	dYonv3GcBMlwUqY6kJRHIbKhwA21rh1C/U8PWktGHgDH7TLydpNuErXCatfni4xOy7ryLeCmHWfoc
+	xa2GuJhZI17Xd1OKehTiD2ZpMfjbhWVRa6CQz/oRWZbREEozP4lGYXA1o1E8Bk4kAEDEdY+J6aY2H
+	31n8e2eGyZCJ/IEyZGDBY9zjx8PWErl5HgLqTuCr3yu2XDPrXEWZfYUCZR+RUpLq1XrJMficnCkcl
+	BO/CgduCpDdUGS2r/muA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyWn-00000007x31-0GON;
-	Tue, 24 Nov 2026 21:58:17 +0000
-Received: from mail-qt1-x82f.google.com ([2607:f8b0:4864:20::82f])
+	id 1xVyc3-00000007xM4-3DwR;
+	Tue, 24 Nov 2026 22:03:43 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyWj-00000007x28-2m1O
+	id 1xVyc1-00000007xLh-06rE
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:58:14 +0000
-Received: by mail-qt1-x82f.google.com with SMTP id d75a77b69052e-55c38cdd5b7so30997981cf.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:58:13 -0800 (PST)
+	Tue, 24 Nov 2026 22:03:42 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AOIXG9M1767021
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:03:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KlFzMLz14WgpPVwdqGiJVEqdnpE7naQqAvTjh6Xp/Ec=; b=UzCx1RMkov5Kem7U
+	3BzzQH68AKZijy5TeHM45Zd/N6KcX9LUEKYzYubhOhv5wO5L8EYA8VhXVZAy9bRK
+	U7S429y+LtcbwtmMALeRdB6zov3FZU44zqKWkoZe/zrpB7s+nR8EtVNZi3B/mzHD
+	VucNGJrx9nKSiBBmC5hYB9vj2+MPO8aJuCe1bZFfjrUQkXbzIPTX231AZZnrMii1
+	d6MvIfU7vo3FWCYnLSGc7PEyuxe4YDynr1Mfe4vK5joclgfEGFzKEzGQZJy7mlUn
+	ffTLXufMfLbOCXV6/T87PIKBe/SfI47+EA+Z/xj+JP8JjuuEuRt74Ry24EAOmEgJ
+	Dc8GVw==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5egs9792-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:03:36 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-341eff9e381so7913220eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 14:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795557492; x=1796162292; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=aa7YPfOROhEx6JieLJ3TSEkUZ7Fh13WAPekCnuIIbKA=;
-        b=uSVOfbd8fEMBBKkS+6ZWxL5BoR3TIKSGBZjMo3Wr+PLbWhGjlxNtQ2Eqk2D/jGA0RX
-         jCuPLpaKX4wqtJiBd9+ouPF+0XAXI1p8CyXfCxVyLyaRWNoOd2t8eO8BZjk/9Rte5cAS
-         BO88L0/3zW/LEeh3aAvxHpfjYi/IidYcjGnuIMWSGdXgduAsK2M+0tj7PLPu/wtlNjQY
-         RPoh7ss4BT7fmGyOravTRdDKyeeSQsONi53iqp+twFnIFC6DaoHHjEwydHbgEolmBBtf
-         1li/Z2PhxRcNCb95SD6iJsP7XyULasF6m7cGoTRzZGJ/FFErwh3aRxv/YNd/9liUMq6L
-         bjXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795557492; x=1796162292;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=oss.qualcomm.com; s=google; t=1795557815; x=1796162615; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=aa7YPfOROhEx6JieLJ3TSEkUZ7Fh13WAPekCnuIIbKA=;
-        b=eFjv8a4+0nm1PHE0etl2VqTaTAxKLDNYuJNJhIZZXfExYAT+A7C6dV7kLOdcrCH2L1
-         AmrRIchQAorIUfcuRWPJBRgNBq8qyb1wTQggmPnUSYUZW6d3gI0ofSRIu7DZ+6/shYJJ
-         2z6N/lyb7SlbdHGiu5RFxJ3KvS3uZ3nTRKkiibJb6+dDlVk6c/3ZRql9n3BzovBBOz7m
-         TAcR1tUea5m/xmlS8UQg7RLTu4X/Y/emTESJfGQAp5Yhfh62Pb/3sz2mrlyELnyiSWx0
-         Wie6iAuUgzs944nD9jWzh+zk/hqJ9p0s9KPtSxLjex2sN7sGA/oxT8JgyDnITBJP5+05
-         WLog==
-X-Forwarded-Encrypted: i=1; AL+hErHuMMEs4NXKL3RpmDygCTk2Ek+OIUYMROF3IQCjrXdhvojXcIUy+GxFWYRHh6c81rPtG1m+XejS0ZZhAsBmQW6L@lists.infradead.org
-X-Gm-Message-State: APuU4Z/KI32QxoewT5/ZORJvkIP9GAGyB1H/RswYU0HEck8L2CA7Ij/h
-	2w8A/B8MCoi2vRuu/tNFHKLfP1JJpNcSrQKyAH1qaNRqjVccJP7/eztxt/eHdhgfUIx0F86YRDu
-	kV30k
-X-Gm-Gg: AZFdTZfXsWGgn22NCqTiTsbcQo80qZf0tSscEyZ2MEUZ2Y4NN0MAQjBE6UHz1TNvYCI
-	HYwtka3bTd7aNy6lItSkr4kHHmVWJjE2uKmC8TlteEkiw9FnTMhI4WRURVCLUASfNlJutrF+nTy
-	ZLMaeeJ3ZjtTL1uddXH8QyjNd511cnuCS9LTKYFKOUMRQ98iMbeASF+2JHSU8QDrv8J4sycNnNV
-	mw8MLOkvtdUFCxS01Ovx+I/7qoyd9x65eC374Lif9Vd7+zXsvEjdPGSHjYxYMjh/MbbPaBE+mFF
-	5RxHgdlT+i30pYUfJtgJXvjZAXvnA/g1hH42O3Ca8hskUqGwA+a04T9N6mTsmw5gIWt2ksNIRm4
-	EwcVvSsCW/qbbTIu6GF319GNu3XRI3MnmvhpCUSRusHQR54kA5A/qBHpJmYVvnqtvGFUA2E8g17
-	YJxS2pDforKoszYTjONf09FjGTBj92F+oRQ+cZZwaPALNSH7D87kR4g/ZdakJnvBI7cwMfFV9M1
-	ypNdDLFfUsZaMfICbFzhmvFOmXb+879blMpoWuRq4JgEzJePKN0YVJikdClEdRkASteZI0ZK8G3
-	+AcsJOVzv9yMI3WAoqG8EXC3WVpL0VpjzfXmX5oHGwsX9k/8yZtTx2DjUEPDhbR5nwr4XVl0oie
-	Z
-X-Received: by 2002:ac8:5e53:0:b0:536:699d:9a22 with SMTP id d75a77b69052e-55d76aa8754mr292073611cf.57.1795557492035;
-        Tue, 24 Nov 2026 13:58:12 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-921349f2186sm148298976d6.29.2026.11.24.13.58.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 13:58:11 -0800 (PST)
-Message-ID: <79df445f3906ef7147137d991e0fd14f7815d22c.camel@ndufresne.ca>
-Subject: Re: [PATCH v3 03/17] media: v4l2: Add Apple interchange pixel
- formats
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sofus Forstreuter <sofus.c@icloud.com>, Sven Peter <sven@kernel.org>, 
- Janne Grunau
-	 <j@jannau.net>, Neal Gompa <neal@gompa.dev>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
-	 <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Date: Tue, 24 Nov 2026 16:58:10 -0500
-In-Reply-To: <20261020-avd-v3-3-85cbaa2125d8@icloud.com>
-References: <20261020-avd-v3-0-85cbaa2125d8@icloud.com>
-	 <20261020-avd-v3-3-85cbaa2125d8@icloud.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-0opacj9JZF7JzicRk9mL"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        bh=KlFzMLz14WgpPVwdqGiJVEqdnpE7naQqAvTjh6Xp/Ec=;
+        b=I0XeA/aUWU0QuIiEjPbqko26aKtoHOOJhTMQ9bihN2m8fh1jLolfp0zTDcn4Vp8N4+
+         NzMOhxZ5eHRCAzQUmCEheIF/qkT8gq05u5Ul8gTSsKo3W2VcPd855k6wKn88y3su0L62
+         b5IgonQkYN5emOPh5OaRiX5tGUkw9SPXBiwJRZwK2H/wbps4dBtPoVJtB0WJjdKkdiWc
+         L3j6t9yG0UxVCCYGjDTMNJhWrXgs3vSTocVn9cupfMZqcCFKdMV/InvToMt08Sxe0DQo
+         1D5NNvazhJBjkLgD4Rv1ZnBoUkmNA9JQrQWvykTtx8cI3cRg3vVY6Bt3aOuoqYOixiBO
+         jMBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795557815; x=1796162615;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=KlFzMLz14WgpPVwdqGiJVEqdnpE7naQqAvTjh6Xp/Ec=;
+        b=H4fGkbpjMskf1gSz5EC9+M3clewnJcEJbg/tgfZIM9IMwCoBlevIQuXIStOb6nphU/
+         cDAiwQl7cNs0IRalKXqgip2Gw0NUnp1tZlBT24jCSgzdnvQ1No8PmLf5A2aF8AhvHEyL
+         NustkAeKw05RdjC/P0aqlecuOsYOgXkr+jhqCKXCa5S3Zy2/vWROvd9Qkv8eptfuoH5r
+         lbavfYAs1lycYppgv1cmySvUd0lOixGx4FSvswqjgVxh4kPuUaIR6O49waV7fC12CuMl
+         hggj8QhwpNa+7Eoh3AmBwGLWeqOSdfv5lH0akjhj4c8ta/PTTwankOvivFp/0p0EeW4t
+         3DRw==
+X-Forwarded-Encrypted: i=1; AL+hErGjYIu6/bp+yw1s4FgJihUrqXD4/dgvutcJUxmxVbxr58a29Z4kzsSs4Dl5SIFMWrI3N4jEkR2TwKoCC9S3TqBE@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Auta1k7heXbf6M+338iO86JdrQRvhus5xSoa92PrvBe7mezHu
+	0LUK9ina+/hssaYKLgv+vS+j5HrfWo9+4ZXSNm/0iabDtrcwE3LADZTFk2SRPYu+S66k1hDjGER
+	9yejwWO1d824FduN040CPnUHJFOisXavaoUP/7YZp4cKDqzMY76q6EftQhFQk9M4mRMXvXCCZyJ
+	t+dA==
+X-Gm-Gg: AZFdTZdGdHz2AZIhb6Ysk3ZoDojHY9PgNpgWGNcPm/E/9NBbN/QVIjtqn0qzjxPZ1pE
+	TJkxFgxRcfZVVKc4SbYg0Rh7oqenfSoS5FpwR8JQ0IvvK/YEdz+guQvPdcj0GLkHfC2k4aoQ/DK
+	McFw3+WQgDHd0cBp4oYtGPuUC/uYhMzZnE/AQKKXDVxnsTxOnzAzgppFKotAF0QRnzF/tybApUb
+	Mqqwh1r3miQgDhGJrZzRy+juo9VqsrUxGO5F6hZpT+er2t7obe5H7ggNRfSH3Pl1szWDRIB7bur
+	9BNGsjiTLh+zfkdwpOTlAiIrNftJBGyuZF3qaN550O5VXZ+DMAfdgqmivkauoxe2Wo1iuE5vwNW
+	JaXyIr8Hj+vkZB0Da2m2rouCpnbq8KhwhMqcIEtYGPJ9n92SthQpe2wdR+ylfYZMGVM9g29KGt4
+	uQXvLqloRll8gaw9FLbhfPhynCzSL2/CR7/0Ll+Q==
+X-Received: by 2002:a05:7022:b056:20b0:160:a80f:3ed2 with SMTP id a92af1059eb24-1b5568652e2mr16315797c88.10.1795557814814;
+        Tue, 24 Nov 2026 14:03:34 -0800 (PST)
+X-Received: by 2002:a05:7022:b056:20b0:160:a80f:3ed2 with SMTP id a92af1059eb24-1b5568652e2mr16315759c88.10.1795557814237;
+        Tue, 24 Nov 2026 14:03:34 -0800 (PST)
+Received: from [10.71.45.247] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5566c3052sm37196527c88.1.2026.11.24.14.03.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2026 14:03:33 -0800 (PST)
+Message-ID: <d8d31484-03d8-469f-9e1c-521f38393699@oss.qualcomm.com>
+Date: Tue, 24 Nov 2026 14:03:33 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v5] net: stmmac: dwxgmac2: enable L2 split header
+ support
+To: netdev-bot+sashiko@kernel.org
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+        edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lorenzo.bianconi@oss.qualcomm.com,
+        hongmei.xu@oss.qualcomm.com, abhishek.chauhan@oss.qualcomm.com,
+        sarosh.hasan@oss.qualcomm.com
+References: <20261120005243.3724402-1-sagar.cheluvegowda@oss.qualcomm.com>
+ <179548403438.3135.1804854034587814346@kernel.org>
+Content-Language: en-US
+From: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
+In-Reply-To: <179548403438.3135.1804854034587814346@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDA4NiBTYWx0ZWRfXyhgTmBtm22bh
+ mkv7XCeHGCu4SI8yBWY5VCJVuTD3asX59z2Wlpi9xJ4wfJ00L43EhqBrpZFzyCIscVat1rCh1dw
+ qt6NaEz/kI0TeHG9QfzehQf1eR4DicaOyEC/Xkh9L2b89iHGTBFPGci33XqOwxMMYrOVitHlFxG
+ KbDhDb4b+uwxKcwjUpVZBQ216lzBpd7INYWZ14JeLikh8JtOtvkV9x2lRvt1/La+wVXTrFyD2GD
+ VLP1eJYO8o8bolGS220RmmgNPK5iPp3xI9GUuWSKZtz6RuzsNFysA+C+NEsX7hX+ZP+rZ+Auwm1
+ UdEMKHpXvYAVacIY4mpzTXjTQejOayJtI2FnTi2TID2tNcADKtIQLLK/8WdX1z0MPDnD0/ba6fr
+ SZ1KHaguxbb+MYbmRzwbLc6zQrdDOkbeZsrcuPiOUEWOloCbtZOKH6LwVGevN87K7xnelpThFPH
+ DNUSOULMvfsKr+Szlbg==
+X-Proofpoint-GUID: YidHhlx9vED5OoyX7TTD_h3E8xxYYLTX
+X-Proofpoint-ORIG-GUID: YidHhlx9vED5OoyX7TTD_h3E8xxYYLTX
+X-Authority-Analysis: v=2.4 cv=Zt54uN7G c=1 sm=1 tr=0 ts=6b0609b9 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=VwQbUJbxAAAA:8 a=RiAz6U-1Kj1GQVlvL0gA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDA4NiBTYWx0ZWRfX/9N4el3mx/y/
+ 2p5c3208D5mkmAQeZV+1kif8GjjIi6qVGmbJJdYj37u4+m4esZeRhYQ5UgbzoLS4sPA1iXn6G99
+ RroCDHGsztkLv9jJl6LckVVDLMeLduk=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-24_05,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0
+ suspectscore=0 spamscore=0 phishscore=0 impostorscore=0 bulkscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611240086
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_135813_737011_057CA770 
-X-CRM114-Status: GOOD (  16.19  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_140341_187771_D5B06CF4 
+X-CRM114-Status: GOOD (  37.06  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,149 +159,129 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-0opacj9JZF7JzicRk9mL
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Le mardi 20 octobre 2026 =C3=A0 11:37 +0200, Sofus Forstreuter a =C3=A9crit=
-=C2=A0:
-> Apple Interchange is a compressed and tiled format modifier.
->=20
-> Its intended use is for sharing buffers between hardware blocks (GPU,
-> display controller, video codecs) on Apple platforms.
->=20
-> Add it to the v4l2_format_info table to help with calculating sizes.
->=20
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Signed-off-by: Sofus Forstreuter <sofus.c@icloud.com>
-> ---
->  drivers/media/v4l2-core/v4l2-common.c | 7 +++++++
->  drivers/media/v4l2-core/v4l2-ioctl.c  | 6 ++++++
->  include/uapi/linux/videodev2.h        | 8 ++++++++
->  3 files changed, 21 insertions(+)
->=20
-> diff --git a/drivers/media/v4l2-core/v4l2-common.c b/drivers/media/v4l2-c=
-ore/v4l2-common.c
-> index 43ef12d073a3..896c07d93032 100644
-> --- a/drivers/media/v4l2-core/v4l2-common.c
-> +++ b/drivers/media/v4l2-core/v4l2-common.c
-> @@ -336,6 +336,13 @@ const struct v4l2_format_info *v4l2_format_info(u32 =
-format)
->  =09=09{ .format =3D V4L2_PIX_FMT_GREY,    .pixel_enc =3D V4L2_PIXEL_ENC_=
-YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 1, 0, 0, 0 }, .bpp_d=
-iv =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
->  =09=09{ .format =3D V4L2_PIX_FMT_Y12,     .pixel_enc =3D V4L2_PIXEL_ENC_=
-YUV, .mem_planes =3D 1, .comp_planes =3D 1, .bpp =3D { 2, 0, 0, 0 }, .bpp_d=
-iv =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> =20
-> +=09=09{ .format =3D V4L2_PIX_FMT_APPLE_AX12, .pixel_enc =3D V4L2_PIXEL_E=
-NC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 1, 2, 0, 0 }, .bp=
-p_div =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
-> +=09=09{ .format =3D V4L2_PIX_FMT_APPLE_AX16, .pixel_enc =3D V4L2_PIXEL_E=
-NC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 1, 2, 0, 0 }, .bp=
-p_div =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
-> +=09=09{ .format =3D V4L2_PIX_FMT_APPLE_AX24, .pixel_enc =3D V4L2_PIXEL_E=
-NC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 1, 2, 0, 0 }, .bp=
-p_div =3D { 1, 1, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +=09=09{ .format =3D V4L2_PIX_FMT_APPLE_AX03, .pixel_enc =3D V4L2_PIXEL_E=
-NC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .b=
-pp_div =3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
-> +=09=09{ .format =3D V4L2_PIX_FMT_APPLE_AX23, .pixel_enc =3D V4L2_PIXEL_E=
-NC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .b=
-pp_div =3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 1 },
-> +=09=09{ .format =3D V4L2_PIX_FMT_APPLE_AX43, .pixel_enc =3D V4L2_PIXEL_E=
-NC_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .b=
-pp_div =3D { 4, 4, 1, 1 }, .hdiv =3D 1, .vdiv =3D 1 },
-> +
->  =09=09/* Tiled YUV formats */
->  =09=09{ .format =3D V4L2_PIX_FMT_NV12_4L4, .pixel_enc =3D V4L2_PIXEL_ENC=
-_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 1, 2, 0, 0 }, .bpp_=
-div =3D { 1, 1, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2 },
->  =09=09{ .format =3D V4L2_PIX_FMT_NV15_4L4, .pixel_enc =3D V4L2_PIXEL_ENC=
-_YUV, .mem_planes =3D 1, .comp_planes =3D 2, .bpp =3D { 5, 10, 0, 0 }, .bpp=
-_div =3D { 4, 4, 1, 1 }, .hdiv =3D 2, .vdiv =3D 2,
-> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-co=
-re/v4l2-ioctl.c
-> index 1f2519ffeb2b..e40e2ebac241 100644
-> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> @@ -1561,6 +1561,12 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *=
-fmt)
->  =09=09case V4L2_PIX_FMT_PISP_COMP2_GBRG: descr =3D "PiSP 8b GBGB/RGRG mo=
-de2 compr"; break;
->  =09=09case V4L2_PIX_FMT_PISP_COMP2_BGGR: descr =3D "PiSP 8b BGBG/GRGR mo=
-de2 compr"; break;
->  =09=09case V4L2_PIX_FMT_PISP_COMP2_MONO: descr =3D "PiSP 8b monochrome m=
-ode2 compr"; break;
-> +=09=09case V4L2_PIX_FMT_APPLE_AX12:=09descr =3D "Apple Interchange NV12"=
-; break;
-> +=09=09case V4L2_PIX_FMT_APPLE_AX16:=09descr =3D "Apple Interchange NV16"=
-; break;
-> +=09=09case V4L2_PIX_FMT_APPLE_AX24:=09descr =3D "Apple Interchange NV24"=
-; break;
-> +=09=09case V4L2_PIX_FMT_APPLE_AX03:=09descr =3D "Apple Interchange P030"=
-; break;
-> +=09=09case V4L2_PIX_FMT_APPLE_AX23:=09descr =3D "Apple Interchange P230"=
-; break;
-> +=09=09case V4L2_PIX_FMT_APPLE_AX43:=09descr =3D "Apple Interchange P430"=
-; break;
->  =09=09default:
->  =09=09=09if (fmt->description[0])
->  =09=09=09=09return;
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev=
-2.h
-> index 5472e433ed06..f218f4fb26a4 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -842,6 +842,14 @@ struct v4l2_pix_format {
->  #define V4L2_PIX_FMT_PISP_COMP2_BGGR=09v4l2_fourcc('P', 'C', '2', 'B') /=
-* PiSP 8-bit mode 2 compressed BGGR bayer */
->  #define V4L2_PIX_FMT_PISP_COMP2_MONO=09v4l2_fourcc('P', 'C', '2', 'M') /=
-* PiSP 8-bit mode 2 compressed monochrome */
-> =20
-> +/* Apple Interchange, compressed and tiled formats */
-> +#define V4L2_PIX_FMT_APPLE_AX12=09v4l2_fourcc('A', 'X', '1', '2') /* App=
-le Interchange NV12 */
-> +#define V4L2_PIX_FMT_APPLE_AX16=09v4l2_fourcc('A', 'X', '1', '6') /* App=
-le Interchange NV16 */
-> +#define V4L2_PIX_FMT_APPLE_AX24=09v4l2_fourcc('A', 'X', '2', '4') /* App=
-le Interchange NV24 */
-> +#define V4L2_PIX_FMT_APPLE_AX03=09v4l2_fourcc('A', 'X', '0', '3') /* App=
-le Interchange P030 */
-> +#define V4L2_PIX_FMT_APPLE_AX23=09v4l2_fourcc('A', 'X', '2', '3') /* App=
-le Interchange P230 */
-> +#define V4L2_PIX_FMT_APPLE_AX43=09v4l2_fourcc('A', 'X', '4', '3') /* App=
-le Interchange P430 */
+On 11/23/2026 5:33 PM, netdev-bot+sashiko@kernel.org wrote:
+> [Severity: Low]
+> This isn't a bug, but should the commit message say that SPLM = L2OFST
+> moves the split point for all split header traffic, and not only for the
+> tagged or non-IP packets it talks about?
+>
+> Untagged and VLAN stripped IPv4/IPv6 TCP/UDP frames were previously split
+> at the L3/L4 header boundary. With L2OFST they would be split right after
+> the EtherType. Commit d10f1a4e44c3 describes the same change for dwmac4.
+>
+> stmmac_hw_setup() turns this on by default for every sph_capable XGMAC2
+> with RX checksum offload enabled. stmmac_rx() would then build the skb head
+> from the 14/18 byte MAC header only. The IP/L4 headers would have to be
+> pulled from the buffer 2 page fragment.
+>
+> Could the commit message state that this changes the RX layout for IP
+> traffic on existing XGMAC2 users, and ideally include some throughput
+> numbers?
+>
+Agreed. In v6 I will state in the commit message that SPLM = L2OFST
+splits every packet after the L2 header, including untagged IP
+packets, which were split at the L3/L4 boundary before. I will also
+add throughput numbers.
 
-These needs to be in Documentation/userspace-api/media/v4l/pixfmt-reserved.=
-rst
+> [Severity: Medium]
+> In hwif.c, the XGMAC2 entry and the XLGMAC entry both use
+> .desc = &dwxgmac210_desc_ops. So this parsing change applies to every
+> existing split header user, including XLGMAC, which never gets
+> config_l2_split.
+>
+> |[ ... ] |
+> Is this fixing an existing RX corruption bug inside a feature patch? If so,
+> could it go in a separate patch with a Fixes: tag so that stable picks it
+> up? The v5 changelog says the fix wording was removed on purpose. If the
+> old behaviour can't actually be reached, could the commit message say the
+> change is a no-op for existing configurations?
 
-Nicolas
+Agreed. I will send the FD/LD change as a separate fix to net and post
+v6 on top of it.
 
-> +
->  /* Renesas RZ/V2H CRU packed formats. 64-bit units with contiguous pixel=
-s */
->  #define V4L2_PIX_FMT_RAW_CRU10=09v4l2_fourcc('C', 'R', '1', '0')
->  #define V4L2_PIX_FMT_RAW_CRU12=09v4l2_fourcc('C', 'R', '1', '2')
+> There is also the L2T branch further down. On XLGMAC, SPLM/SAVE_EN are
+> never set, yet non-IP last descriptors with L2T != 0 now take HL from
+> RDES2[9:2] >> 2. Are those bits guaranteed to be zero for frames XLGMAC
+> never split? "The callback is not implemented for XLGMAC" in the commit
+> message makes it sound as if XLGMAC is unaffected.
 
---=-0opacj9JZF7JzicRk9mL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+The databook description of RDES2 HL says: "If header length is zero,
+it implies that the MAC did not identify and split the header and both
+Buffer 1 and Buffer 2 are used for storing the packet". So for frames
+the MAC did not split, HL is zero and hlen stays 0, as it does today.
+I will make the commit message clearer that the XLGMAC MAC
+configuration is not changed, but the descriptor parsing is shared.
 
------BEGIN PGP SIGNATURE-----
+> [Severity: Medium]
+> Is RDES2[9:0] the right layout here for non-IP frames?
+>
+Yes. The databook table "Header Length Availability in RDES2"
+(Table 13-28) says:
+  FD=0, LD=1: HL not available
+  FD=1, LD=0: HL is [9:0]
+  FD=1, LD=1: IP packets, HL is [9:0]
+              Non-IP packets, HL is [9:2]
+The RDES2[1:0] AV status bits are only defined together with L34T,
+which is only valid on the last descriptor. So the FD=1/LD=0 branch
+follows the table, and I will keep it as is. dwmac4 uses a different
+descriptor layout, so it is not a reference here.
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawYIcgAKCRDZQZRRKWBy
-9LYlAP9eNt64YAYVi+3tdmO2eVOgxAxX3MBInpvFBV83Km5LlQEAva1+LKSeuhBa
-0jv5NXY7twZmCiEmTXSCAQrzfD7RsA8=
-=Z59I
------END PGP SIGNATURE-----
+> [Severity: Medium]
+> What happens here to non-IP frames whose L2 type is 0?
+>
+> XGMAC_RDES3_L2T is GENMASK(19, 16), the same bits as XGMAC_RDES3_ET_LT, so
+> this check really means "L2 type != 0". In the LT encoding, 0 seems to be a
+> valid type: an IEEE 802.3 length encapsulated frame (LLC/SNAP, for example
+> STP BPDUs).
+>
+> Suppose the MAC splits such a frame at the L2 offset with SPLM = L2OFST and
+> SAVE_EN set. Then *len stays 0, and stmmac_rx_buf1_len() skips this branch:
+>
+> 	if (priv->sph_active && hlen) {
+> 		priv->xstats.rx_split_hdr_pkt_n++;
+> 		return hlen;
+> 	}
+>
+> It returns min(dma_buf_sz, plen) instead, and stmmac_rx_buf2_len() returns
+> 0. Wouldn't the skb then contain the split header followed by stale
+> page_pool data from buffer 1, with the real payload in buffer 2 dropped?
+>
+> If HL is always 0 for frames the hardware doesn't split, could the L2T
+> check be dropped so that RDES2[9:2] is read for every non-IP FD=1/LD=1
+> descriptor? That would match the databook table cited in the commit
+> message.
 
---=-0opacj9JZF7JzicRk9mL--
+Agreed, this is a bug in this patch. L2T = 0 is an IEEE 802.3 length
+packet (e.g. STP BPDUs), and with SPLM = L2OFST the MAC splits it like
+any other packet, but hlen stays 0. As HL is zero for frames the MAC
+did not split, I will drop the L2T check in v6 and read RDES2[9:2] for
+all non-IP packets, and remove the now unused XGMAC_RDES3_L2T define.
+
+> [Severity: High]
+> This is a pre-existing issue that this patch didn't introduce, but the
+> patch builds on it. When RX checksum offload is turned off,
+> stmmac_set_features() now also calls
+> stmmac_config_l2_split(priv, priv->hw, false). However, priv->sph_active
+> is never cleared. It is only assigned at probe and in stmmac_xdp.c.
+
+Right, this is pre-existing and also affects the other split header
+capable cores, as stmmac_rx_buf1_len() keys off priv->sph_active while
+the hardware state follows sph_en. I will look at it separately and
+send a fix to net, as it is independent of this patch.
+
+pw-bot: cr
+
+Regards,
+Sagar
+
+
 
