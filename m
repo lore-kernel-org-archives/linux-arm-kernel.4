@@ -2,73 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369B1606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF48F606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gB6swKVa;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=lsmJm5pU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KP1uHGQP;
+	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=K9xeBwDE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
+	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kagbCpv1QEtmm+QT0IKoz1HubJ8iePC5aHt6FNXFlZ0=; b=gB6swKVapFfzMq
-	cTxucX5lZFMQhp43ZriSIDJwT+reJTjPPcEK1RJhv2vgYdJyf2nGWz1GWRICMnwSDQC4Do0usW1uI
-	Pn5ybbKUEh5krWuZEP9T+V06KEcto+1wLzN0V0Aa0nfYKWRrp8NaC+1hWxgMpaG4ain7iS4qRKKtY
-	XQbp99qQndUY54TfhUfSQsIzqRftuDy268Y9rsKmsRvn5BH8M1jvUU7uzjTwnZLIhUYFB2ylF59Lq
-	SeLKTD4rZfXkQO6txdoNoA5YAD5UZ3j8GfvuGc3svpBE446SLK7+oYHKrOh0QTXrxmjZjPx49MFSJ
-	/zQD+BYql46RcY8KaCfw==;
+	List-Owner; bh=Hwn+KozTjqbKLEcXpvaSk85eL6QS1Y+pGx+rClS7K7k=; b=KP1uHGQPf1Vuau
+	YxA1UFjWc58w0YQDMH/wz3Qm/iXmw+Inkw/Nqo/dxg4h1XGdqbBitgPjnE/Pu0JVZsn+oIHw3LNui
+	FzDObfgRbeW9cw5n60gojrnfEGJZORVZgLdeDKKoSVtVVoDKokUTUKoK6uOR5sSHXoW1vFTbEGM68
+	0rUPukdjoLEOvBqUod3HzP4fvMklxrrMDMZs14GtY9c4VpCaDPuVEcQ+toJYR/bOpMUDPNcperWQL
+	ZnIpVWN3RxQBz5fqCDead0MODXE2exyZjnAe8CmNtVWqzUZiK9FwwTVEzlae5Zajdm1ieC8t62qN9
+	FsMZeNGM0Ddiw5+9Cr1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuuD-00000007SU2-1CzH;
-	Tue, 24 Nov 2026 18:06:13 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuuA-00000007STY-3kpy
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 18:06:12 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B4BF0497;
-	Tue, 24 Nov 2026 10:06:06 -0800 (PST)
-Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9D8BD3F86C;
-	Tue, 24 Nov 2026 10:06:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795543569; bh=NZoB2/gQBelnDkcKG2o810x2RG3gJOlJVfE8j9DhwZE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lsmJm5pUvXw5zs6ZQXJH7igNWStTyPpD3nzfAq5AtIy5J8p2J1iXcK0YKa+eBD28s
-	 E3Bk4Ks6sAeUHkiPBMGwU5Rz4fBeXlu31neTMri1+KVSJiMV+j9F5PUBd81mgRqUYv
-	 VlMyutM0mTuozmAp/io0096/63A6y/zc86AExrto=
-From: Leonardo Bras <leo.bras@arm.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Leonardo Bras <leo.bras@arm.com>,
-	kvmarm@lists.linux.dev,
-	kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Oliver Upton <oupton@kernel.org>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Dan Carpenter <dan@pereq.eu>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
-Date: Tue, 24 Nov 2026 18:06:02 +0000
-Message-ID: <awXSCgN4JLLKXErv@LeoBrasDK>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <864id6yyjy.wl-maz@kernel.org>
-References: <20261123182312.4842-1-maz@kernel.org> <awW5QKqGZAqw1ru9@LeoBrasDK> <864id6yyjy.wl-maz@kernel.org>
+	id 1xVssv-000000070xL-1GiO;
+	Tue, 24 Nov 2026 15:56:45 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVsqj-00000006yYP-3C24;
+	Tue, 24 Nov 2026 15:54:31 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261124155427euoutp0216c8c779138caa0a985af1805797e4f6~rBi1Flxhc0430504305euoutp02N;
+	Tue, 24 Nov 2026 15:54:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261124155427euoutp0216c8c779138caa0a985af1805797e4f6~rBi1Flxhc0430504305euoutp02N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1795535668;
+	bh=Hwn+KozTjqbKLEcXpvaSk85eL6QS1Y+pGx+rClS7K7k=;
+	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
+	b=K9xeBwDEqowx4qW2j7Kt07frwW/eklfERs4HcCh8UOGPPrbk55JlGUsN7qB32a9VP
+	 EJ9xf+QMGT+v1mKc/iDBIQ9izwv4eXuYQzkXgNSLjqqMlz7VaVIzrSlRsjvCVrmJVe
+	 CXUp6nYfAREZExmAM1jSI7yHW7CVBJLUBF1lsK6w=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f~rBi0p4yan0067000670eucas1p1i;
+	Tue, 24 Nov 2026 15:54:27 +0000 (GMT)
+Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
+	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20261124155425eusmtip181296fb98900453b0e6688616dc8f751~rBiy5MXny3070630706eusmtip1j;
+	Tue, 24 Nov 2026 15:54:25 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+Date: Tue, 24 Nov 2026 16:52:51 +0100
+Subject: [PATCH v8 15/18] soc: starfive: Add jh7110-vout-subsystem driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261124-jh7110-clean-send-v8-15-de92635dd857@samsung.com>
+In-Reply-To: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,  Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Robert Foss
+	<rfoss@kernel.org>,  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>,  Luca Ceresoli
+	<luca.ceresoli@bootlin.com>,  Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,  Philipp Zabel
+	<p.zabel@pengutronix.de>,  Emil Renner Berthing <kernel@esmil.dk>,  Hal Feng
+	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>,  Paul
+	Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Dominique
+	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>,  David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Yakir Yang
+	<kuankuan.y@gmail.com>,  Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,  Michal Wilczynski
+	<m.wilczynski@samsung.com>,  Conor Dooley <conor@kernel.org>, William Qiu
+	<william.qiu@starfivetech.com>,  Xingyu Wu <xingyu.wu@starfivetech.com>,
+	Sandy Huang <hjc@rock-chips.com>,  Manivannan Sadhasivam <mani@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,  Marek
+	Szyprowski <m.szyprowski@samsung.com>,  Maud Spierings
+	<maud_spierings@murena.io>,  Graham Markall <hello@big-grey.co.uk>,  Icenowy
+	Zheng <zhengxingda@iscas.ac.cn>,  Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	Joshua Peisach <jpeisach@ubuntu.com>,  =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>,  Cristian Ciocaltea
+	<cristian.ciocaltea@collabora.com>,  Byron Stanoszek <gandalf@winds.org>,
+	Owen O'Hehir <oo.hehir@gmail.com>,  Conor Dooley
+	<conor.dooley@microchip.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5686;
+	i=m.wilczynski@samsung.com; h=from:subject:message-id;
+	bh=1hgfOIYoTQ5Ija5HE+RRppVXAzt2wlD596t2L8iUqQI=;
+	b=owGbwMvMwCGWumv6zndzRCIZT6slMWSzbhbd+Pe+s122SniLcsnCDOfEdtWsJgnL0qTqm0tE5
+	W+Zdat2lLIwiHEwyIopspzdGG0k+Y/hafnxx79g5rAygQxh4OIUgIlEajEyLJz9U7Jeq/PLqpKT
+	ko178/7u4Praf3/jW+0dLwxl63f7ODD8Uz/THpvOZBESsDO3+vDWp5oSApkHrjg9XhgwL8Xe2Po
+	oOwA=
+X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
+	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
+X-CMS-MailID: 20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f
+X-EPHeader: CA
+X-CMS-RootMailID: 20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f
+References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+	<CGME20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f@eucas1p1.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_100611_021736_8DA12FED 
-X-CRM114-Status: GOOD (  43.91  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_075430_125260_FA25B889 
+X-CRM114-Status: GOOD (  24.32  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,132 +123,152 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 04:38:41PM +0000, Marc Zyngier wrote:
-> On Tue, 24 Nov 2026 16:20:16 +0000,
-> Leonardo Bras <leo.bras@arm.com> wrote:
-> > 
-> > On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
-> > > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
-> > > that describe a base granule size smaller than the host's page size,
-> > > we take the resulting size at face value and feed it to the S2 unmapping
-> > > code. Which legitimately screams about something not being page-aligned.
-> > > 
-> > > The architecture allows us to drop the TLBI on the floor, as we don't
-> > > support a S2 granule size smaller than the host's page size. But it turns
-> > > out that doing so is proving pretty hard (we call compute_tlb_inval_range
-> > > from a number of places, none of which is amenable to an early out).
-> > > 
-> > > Instead, detect the annoying case, and pretend that we don't have a TTL
-> > > hint at all, leaving the size upgrade mechanism to take place and use
-> > > the largest possible size for the guest's S2 granule size.
-> > > 
-> > > This will still allow nonsensical stuff to get through, such as a 4kB
-> > > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
-> > > on a 16kB page size host, but that's not worse than doing nothing, and
-> > > the host code won't get shouty.
-> > > 
-> > > Reported-by: Dan Carpenter <dan@pereq.eu>
-> > > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
-> > > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> > > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > > Cc: stable@vger.kernel.org
-> > > ---
-> > > 
-> > > Notes:
-> > >     Reposting this as a first class patch, as I'd like to plug that one
-> > >     as early as possible (and Dan has plenty of other patches in flight...)
-> > > 
-> > >  arch/arm64/kvm/nested.c | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> > > index 78d5b18dbd2d6..36e4e83badf0a 100644
-> > > --- a/arch/arm64/kvm/nested.c
-> > > +++ b/arch/arm64/kvm/nested.c
-> > > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
-> > >  	 */
-> > >  	max_size = __ttl_to_size(ttl);
-> > >  
-> > > +	/*
-> > > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> > > +	 * possible invalidation. Don't try this at home, kids!
-> > > +	 */
-> > > +	if (max_size < PAGE_SIZE)
-> > > +		max_size = 0;
-> > > +
-> > >  	if (!max_size) {
-> > >  		/* Compute the maximum extent of the invalidation */
-> > >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> > > -- 
-> > > 2.47.3
-> > > 
-> > 
-> > Hey Marc,
-> > 
-> > I think the changes make sense, although rounding up to PAGE_SIZE also 
-> > looks a valid solution in my unexperienced viewpoint.
-> 
-> No, it isn't the same thing. Taker the example I have given, where the
-> host is 16k, the guest 64k, and the invalidation 4k. If you round
-> things up to 16k, you're still not invalidating anything that is
-> consistent with the *minimum page size* for the guest. Anything larger
-> is a multiple of both the host and guest page sizes, and therefore
-> always correct.
+Nothing in the video output subsystem can reach its own registers until
+the NoC display bus clock and reset are up and PD_VOUT is powered, and
+those are shared by every device in the region. Leaving them to whichever
+consumer probes first works by accident and stops working as soon as the
+probe order changes.
 
-Ah, right!
-In this case, could we not invalidate the largest page size supported 
-(64k)?
+Add a driver for the subsystem node that takes the bus clock and reset,
+holds a runtime PM reference so genpd keeps PD_VOUT powered, and then
+populates its children. All three are released only once the last child
+is gone.
 
-IIUC:
-- To have max_size between 0 and PAGE_SIZE means it's either 4k or 16k, 
-  so invalidating the 64k should be enough?
+Tested-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Tested-by: Byron Stanoszek <gandalf@winds.org>
+Tested-by: Owen O'Hehir <oo.hehir@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+---
+ drivers/soc/starfive/Kconfig                 | 16 ++++++
+ drivers/soc/starfive/Makefile                |  1 +
+ drivers/soc/starfive/jh7110-vout-subsystem.c | 82 ++++++++++++++++++++++++++++
+ 3 files changed, 99 insertions(+)
+
+diff --git a/drivers/soc/starfive/Kconfig b/drivers/soc/starfive/Kconfig
+index e19994a212d4af49eaed595bab6fecc19677b2b3..d57480c42f2b6b06142b591e6ccef4909aced978 100644
+--- a/drivers/soc/starfive/Kconfig
++++ b/drivers/soc/starfive/Kconfig
+@@ -21,4 +21,20 @@ config SOC_STARFIVE_JH7110_HDMI_SUBSYSTEM
+ 	  for the "PHY" and the "controller", which have their own clocks
+ 	  and roles but share the register space.
  
-- max_size=0 from __ttl_to_size() means largest blocksize supported by 
-  stage2 in current TG. 
++config SOC_STARFIVE_JH7110_VOUT_SUBSYSTEM
++	tristate "StarFive JH7110 video output subsystem driver"
++	depends on ARCH_STARFIVE || COMPILE_TEST
++	depends on OF
++	select PM
++	help
++	  This option enables the parent driver for the StarFive JH7110
++	  video output subsystem, which the documentation calls dom_vout_top.
++
++	  The subsystem covers the DC8200 display controller, the HDMI
++	  transmitter, the video output clock generator and the video output
++	  system controller. They share one NoC port whose clock and reset
++	  gate access to the whole register region, and the region sits in
++	  the PD_VOUT power domain. This driver owns those resources and
++	  holds them for as long as any of its children exist.
++
+ endmenu
+diff --git a/drivers/soc/starfive/Makefile b/drivers/soc/starfive/Makefile
+index 36fbb6f984986e4794ffb2c6c1485b6644efc4eb..3b8b8a6847f9021920a9af7296c49e1c45114c34 100644
+--- a/drivers/soc/starfive/Makefile
++++ b/drivers/soc/starfive/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-y += socinfo/
+ obj-$(CONFIG_SOC_STARFIVE_JH7110_HDMI_SUBSYSTEM) += jh7110-hdmi-subsystem.o
++obj-$(CONFIG_SOC_STARFIVE_JH7110_VOUT_SUBSYSTEM) += jh7110-vout-subsystem.o
+diff --git a/drivers/soc/starfive/jh7110-vout-subsystem.c b/drivers/soc/starfive/jh7110-vout-subsystem.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..af632692e2139d9d07edd478a299b170ad1b7104
+--- /dev/null
++++ b/drivers/soc/starfive/jh7110-vout-subsystem.c
+@@ -0,0 +1,82 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Driver for the StarFive JH7110 video output subsystem
++ *
++ * Copyright (c) 2025 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * The display hardware sits behind a single NoC port whose clock and reset
++ * gate access to every register in the region, inside the PD_VOUT power
++ * domain. Nothing below this node can reach its own registers until all three
++ * are up, so bring them up here and hold them for as long as any child device
++ * exists, rather than leaving them to whichever consumer happens to probe
++ * first.
++ */
++
++#include <linux/clk.h>
++#include <linux/module.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
++#include <linux/reset.h>
++
++static void jh7110_vout_subsys_pm_put(void *data)
++{
++	pm_runtime_put_sync(data);
++}
++
++static int jh7110_vout_subsys_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct reset_control *bus_rst;
++	struct clk *bus_clk;
++	int ret;
++
++	/*
++	 * Take a runtime PM reference for the lifetime of this device. genpd
++	 * only keeps PD_VOUT powered while something actually holds it, and
++	 * an unclocked or unpowered access to this region wedges the bus.
++	 */
++	ret = devm_pm_runtime_enable(dev);
++	if (ret)
++		return ret;
++
++	ret = pm_runtime_resume_and_get(dev);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to power on PD_VOUT\n");
++
++	ret = devm_add_action_or_reset(dev, jh7110_vout_subsys_pm_put, dev);
++	if (ret)
++		return ret;
++
++	bus_clk = devm_clk_get_enabled(dev, NULL);
++	if (IS_ERR(bus_clk))
++		return dev_err_probe(dev, PTR_ERR(bus_clk),
++				     "Failed to enable NoC bus clock\n");
++
++	bus_rst = devm_reset_control_get_exclusive_deasserted(dev, NULL);
++	if (IS_ERR(bus_rst))
++		return dev_err_probe(dev, PTR_ERR(bus_rst),
++				     "Failed to deassert NoC bus reset\n");
++
++	return devm_of_platform_populate(dev);
++}
++
++static const struct of_device_id jh7110_vout_subsys_of_match[] = {
++	{ .compatible = "starfive,jh7110-vout-subsystem", },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, jh7110_vout_subsys_of_match);
++
++static struct platform_driver jh7110_vout_subsys_driver = {
++	.probe = jh7110_vout_subsys_probe,
++	.driver = {
++		.name = "jh7110-vout-subsystem",
++		.of_match_table = jh7110_vout_subsys_of_match,
++	},
++};
++module_platform_driver(jh7110_vout_subsys_driver);
++
++MODULE_AUTHOR("Michal Wilczynski <m.wilczynski@samsung.com>");
++MODULE_DESCRIPTION("StarFive JH7110 video output subsystem driver");
++MODULE_LICENSE("GPL");
 
-The two above are opposite ends, no? Like, the first is "this is too small 
-for us to invalidate, let's pick something bigger", and the other one is 
-"we want to invalidate the largest supported block".
+-- 
+2.34.1
 
-Is it really ok to put them in the same bucket?
-
-> 
-> > 
-> > I am curious if there is any particular reason not to merge that with the 
-> > test below, such as:
-> > 
-> > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> > index 78d5b18dbd2d6..36e4e83badf0a 100644
-> > --- a/arch/arm64/kvm/nested.c
-> > +++ b/arch/arm64/kvm/nested.c
-> > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
-> >  	 */
-> >  	max_size = __ttl_to_size(ttl);
-> >  
-> > +	/*
-> > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> > +	 * possible invalidation. Don't try this at home, kids!
-> > +	 */
-> > +	if (max_size < PAGE_SIZE) {
-> > - 	if (!max_size) {
-> >  		/* Compute the maximum extent of the invalidation */
-> >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> > --
-> > 
-> > Given max_size is unsigned (>=0), and it will be changed again in the 
-> > switch case below, I was not able to understand the need to make it zero 
-> > first.
-> 
-> There is more than one way to write similar things, and what I wrote
-> made the most sense to me.
-> 
-> I want to single out this particular corner case, which is not the
-> much more general case if "max_size is 0 because there is no TTL
-> information". Lumping these two things together makes it, IMO,
-> pointlessly hard to reason about the various cases.
-
-Ah, I see it now, makes much more sense to have it that way.
-
-Thanks!
-Leo
 
