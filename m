@@ -2,144 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902CA606A684
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B216606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EIgRvyMn;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=lJPu6rW7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ORvzrZMR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Yn/l+G+X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=zaef8mz71ctWnLNnuos221O8qcYMWVjUMciwRjPURmc=; b=EIgRvyMn/d1dRutCFs8T71OmFI
-	oOkZROeTGtplPd5IzDC+bqfhYxGU0QRwum/ea4fxrsTNCCIbLlpKdEL43gUnxWSySb0r0ZyM0/LrD
-	a6NOUfYU0gPUo4jRM/u9AY+ySTFZetXDwjsuSIYlW01sXB5ZqgisLJWlsbm9ebMfwMkwMb12iGcCg
-	HjnO1KDNx3OWY0zI7Jgpi5slT1HjyikaR6y7U+oXu77jGbXIjpgL/Lt7ltoCOAqYaYliacuIIudSm
-	pB7BhPkfY6zXeZsVOA6fqi++r5+IVovI3mq6WZ60ZJTHrdIlqIeKtG+CpMFfP9KCIREawVCXJ/LIm
-	qKmLevpQ==;
+	bh=YxnkC+H0WyqL4UcCcv5HjKqJ5O4y9emPPKJptv760hc=; b=ORvzrZMR2voSdnsWTzsyill7z6
+	4f5898Gwq+hkDio+OE2ubn5D8uTRHjhD1MA7h9O4PBkg/u8DjAsEECk5ATFeUKhtEkx23WANsbHMS
+	NE27abZQDxwwOAoEdZB0foNzgl9HiTmaDx1f/Jq9okyPmQsxgMKLhre2l4PTGWqA4Lsg0M5CDT/O7
+	hx2KhbktOESGEfqfTv05aOxtGdLTkUa0Nj7P8Smdvq39ECi/dPX0Drm6f26WEd2iheq1y2VsfWKzy
+	XivmMW6UZbVGjUx7SPeWPysVMRMDDaP6eVizaNJvScvdyEDz5GZIEeQbpA6DqbV0ANUk1p9s5F+vM
+	ebLR6dPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwN4-00000007bpu-2Duw;
-	Tue, 24 Nov 2026 19:40:06 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xVwSL-00000007c9c-3Izh;
+	Tue, 24 Nov 2026 19:45:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwN0-00000007bop-2VFy;
-	Tue, 24 Nov 2026 19:40:03 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FDHSlbXlBC8prej9il+MbH+LicRjtLs9k5T/Pdyp5v93bonesgdSqvswwcrbXKRQMrJSrdiDoUf1PYeEW6e0lpxXSfKw/GDSRuZwUWz62GIkFzKSbh6cEXI/plBifjbwOv6RvLncxzT1sIeZFLG5sIe00cSybdFANXVDkWl8rbcSp+A8uK9gJ6HGIOvx912lixdEFNH2SDv0YVXwIcR0p5/rAOMfkQSHNmu4G2v74hftWjPcJ5rttoh5H2DjPE6A8HbBYbNs7vpUhO6TWMOqzYzBhoCq1ozbZoA+o1of0eRg3z37xYTpiJ0e0u1/LIA83GWDaEtplomeROLL8hqZsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zaef8mz71ctWnLNnuos221O8qcYMWVjUMciwRjPURmc=;
- b=AzHZx5zg1fG2hWUlMvv6OAaALSPylTxcNcwjJwtIGRVPXbB6kt5AdR69VpzsOv4XTBSIenBO1G8yB97tVl4F8P+I9qksVgtDfgvav6/mdBugirDAVGoE63O8vwRB4cHA516IDea4OWhKURg0eTpV/f0PpyhEvMLrFA4v221tPiLgS5p+8HE6bMQsnrgLIltmzMKUGwhaadcJvhLKVBafO53uqBDVytmjHIzAPOkkNwGChAH1sNP/0UXxSb33GGZ1gfxTN3w9u+JCFnBx+7X8I9jCTecTHpxK1/x56Wp9shPYPgtF/iYT5xCrCo9DBOJNlqUxksh1obSPIn3WwrRt2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zaef8mz71ctWnLNnuos221O8qcYMWVjUMciwRjPURmc=;
- b=lJPu6rW7FeK+yjFfwdyKM/IUaePrsRBiNLoye3wfIZPPbaMmwja+9WxbtMD+XNg+0cwjpcooLqVS0gye2LX5gBXCirEbxhsHY7/2ZHYXAkXGlGTQ9p+fOl3It8KDG/JsMgjSBQiI/66iYG/61AFwoaFlE4vdaYDRdBpodu5WKS+0THfEYWUr3U3B2hh0LlNCqHOasIy1g9lj66cVrPqI1Je8RY/eAdm1D4sxuW3pb6X45sxSBaqUTw/+jhgHiqKX8oATwOD+hq7834iurwtl4Btk19z2bM7M+Cmy0zyZ5NoeAnu/eDMH4SCQ5E/M22u2lC2XDwua5EXeSHRehKl9LA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by ZR6PR04MB759890.eurprd04.prod.outlook.com (2603:10a6:910:db::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Tue, 24 Nov
- 2026 19:39:56 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Tue, 24 Nov 2026
- 19:39:56 +0000
-Date: Tue, 24 Nov 2026 14:39:46 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dom Cobley <popcornmix@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 07/28] dmaengine: bcm2835: Support common
- dma-channel-mask
-Message-ID: <awXoAqQhSWa95FH9@lizhi-Precision-Tower-5810>
-References: <20261123145728.29082-1-andrea.porta@suse.com>
- <20261123145728.29082-8-andrea.porta@suse.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261123145728.29082-8-andrea.porta@suse.com>
-X-ClientProxiedBy: PH7PR03CA0028.namprd03.prod.outlook.com
- (2603:10b6:510:339::18) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xVwSK-00000007c9W-3pHv
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 19:45:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5AF4F42E4A;
+	Tue, 24 Nov 2026 19:45:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D9C81F000C0;
+	Tue, 24 Nov 2026 19:45:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795549532;
+	bh=YxnkC+H0WyqL4UcCcv5HjKqJ5O4y9emPPKJptv760hc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Yn/l+G+XwG6rnIr7gMg63Q/wt9fpkcsxai1AKo/AIZ6U5qrXSvVBszTWQi/D1nkr6
+	 mKmw+HUszIT+CHB/DuzwKgYNByZNvK+BMQzUgDz+0/dyvYt/aaP7yJD45tZLR5xdZz
+	 2MKVFBKpf1EteIKmBf7wAI36O98sFgf3Oj/SyXI0quMfea7ruoC51FEJZiA1mfooLo
+	 9eTLMfj/d8XbP4dbRoyKVQXqAWCUp/QWpy6XqjpPTTI+ey1P37+bmYoZ1beZ8wTdpK
+	 dOComrq2+g9ZhWhVmHaWbVjLrmbXkUtdJefn/0kogerOoJk2we8cmm2+w3+q9V608q
+	 RGxmHDzjeexRQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xVwSI-00000002l5B-0U4K;
+	Tue, 24 Nov 2026 19:45:30 +0000
+Date: Tue, 24 Nov 2026 19:45:29 +0000
+Message-ID: <861p8aypwm.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Leonardo Bras <leo.bras@arm.com>
+Cc: kvmarm@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Dan Carpenter <dan@pereq.eu>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
+In-Reply-To: <awXSCgN4JLLKXErv@LeoBrasDK>
+References: <20261123182312.4842-1-maz@kernel.org>
+	<awW5QKqGZAqw1ru9@LeoBrasDK>
+	<864id6yyjy.wl-maz@kernel.org>
+	<awXSCgN4JLLKXErv@LeoBrasDK>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|ZR6PR04MB759890:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e17fe7c-aa45-4b25-52f3-08df4a62b81e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|376014|7416014|19092799006|1800799024|11063799006|56012099006|10067099003|261026121527099003|4143699003|261026140227099003|261021121427099003|261028144727099003|261022105027099003|261102123227099003|261021123027099003|18002099003|22082099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: 95iLH501GGIjfiK+KMJqbVrsti7A5KXx7SnXEFNWgWgfXyFbtnD4/WI8IIuXVrw19vxHEsBWD7vLusr09lbLpIIY5khbnInT3HXdGcVf1SdtTf03dchUg1e40duDEwQilVJR0XbXQ9StdjoezQ7q58h6iWg6ZR1RHfYh9yKI2mKXCDx+UXuKp3Z5ifLcLAdwjGOkB9Sz4k3fkFReNfIsO9riL6Y8yWS9dZXyp1pRDpTPucVxPfe7Gc8O+hQIV3PwoZYpKhap5kg7dj1T5LGxBhPDmw6l8H7RBkBn4xpc0+JX7fZYN71PsRZTpU6eU/9C4AWrhfrFMIE5EDqZUSHhyb31yUqeLaXTfxBRbqBYgev7Oja6RWYpSkVLfInMZxHUozeEzzpNc5COzStdEqau7cunKxfvEUlWN9ThoQ7KNSBFeMh8axeJh8furOMGn5b2hAvoK4a2NlNvC7feMcfvZumzkUXZP9TbaDJnM41fXEoLPk/Ke57vcwWm3Uws1z0uYXXxhzIfN5acLeXaNYGkaPHvYGERaGL3Q8hesYa9s8JsEfqgunhXBiHR8g8BitCtptw7CG8hkElEUEFqZbuJWaxf8Zibt11Np1fd5OqShIS5GGYnpYl8qpLQHSEY34txcsuPy4gE/m7IeuBkcgqojtje222BbA5ZrsndT6/U2YM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(376014)(7416014)(19092799006)(1800799024)(11063799006)(56012099006)(10067099003)(261026121527099003)(4143699003)(261026140227099003)(261021121427099003)(261028144727099003)(261022105027099003)(261102123227099003)(261021123027099003)(18002099003)(22082099003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q68B8ag1oeoQWvhxf8HaAkBSsqDHWTL7W0jEye77GOl/pfSLG3hb4OyLHqR7?=
- =?us-ascii?Q?6T+OXHfo3M+4/JEYlTYY8NLMAWbEnR8rIkzK3xpGxp0EaSxbNvDk4lYUM/sV?=
- =?us-ascii?Q?ueo+Mga2cDm9Rem8he2SzqK3qfMF10WmLFpz5TRhJ2tsZdHHbdIq5XmzdEly?=
- =?us-ascii?Q?/zgjr5/NMBqqoD71o2gvKwltbhSkWyyDhT2nW+U0rUDCDXj6Jh0MM7FlOT7G?=
- =?us-ascii?Q?N8TdpFTDVwTlJRZSOclhvXPJ2X3N0OVsTWXcwBC88AsNe8MeOLyvlvW4/shm?=
- =?us-ascii?Q?SriIWLK65IpXlF0JaKt9Z4FCW3Mzzf9G2WGJn+5nRjXc6OIn4frLmoR5OKtQ?=
- =?us-ascii?Q?nWanGP/YMKM0h5KWjQHuPHSurXY4vafJ3BqOBeJ0QUFsd1IweVcVfmTbiWsL?=
- =?us-ascii?Q?iDLuTmzXbU/fRfG4NRaixB7cMVaT5tw1CJklerUmJowXvyZPyoJvUchL1HKh?=
- =?us-ascii?Q?BtueBa4cmYrL/1DZbETEFKLa99Px1o08GJ9a/qxE6KgkXL9cd+48D3GyXN/N?=
- =?us-ascii?Q?PfHCdb2zzP8yC6iUpwclmISLAGLdWDV3FoxUtE5VtOIKHjuXYgGXmcZaKTj4?=
- =?us-ascii?Q?LJPfmb/65nngWCptvLxeN3TW79hdP0tQnYBvqwYyyPGSfFg92LnKUgEW3A8c?=
- =?us-ascii?Q?2AVPt+aA7jhiqSEFIOdFJCsWJ/thr+Zjx4hAN/rrgAA8Jmsf5h2FxRc/jch+?=
- =?us-ascii?Q?9oE0sHMSlMpBCOTMELD62aSdXry6mcjLMTXgopqjkamQuDp0VZC3npyDJdha?=
- =?us-ascii?Q?7Et2v5Q2Qtc3FLL/DgCW2IUnBkxWqR3AQdEh1qwK1Zhq91ntYk0l0cfkAmxD?=
- =?us-ascii?Q?jx+XZifEb3dw/pjVt3QvS1JKAjaLZ/vuavwnXrM5CJr6zNkK6sJ/Oo89f0k1?=
- =?us-ascii?Q?7o3J5Rk9/R5XCr4IVuGd4mPhDydBt9RYzdWucyAuuuBqfZGo843v7LFPi3/3?=
- =?us-ascii?Q?ie9bnIuDxhgqjONRhew4wgegnvM4TcVcxtVLGfPlDy3Hgr9G0k47Cs18zPG7?=
- =?us-ascii?Q?qITa3zOQSPt1hVGS9NzZWsyZnl3G6q9lsxpmGNtyWTom6PmhR85RKK2kZ9bS?=
- =?us-ascii?Q?TtTkcu8cIBzRuNdoHMk1dYusVDPVA3o0wJhsgW3+s7yIIz//LqNwsOAOJhoH?=
- =?us-ascii?Q?2hscQ57adia+hciGo6/n4iUSMVpcXiDsXKu7gIzwBNEGNOXuDDLoRBryXCJK?=
- =?us-ascii?Q?5Rj1SJRyYON041aCUiIsss46NlzzSLWED6NBd5daMPlTe6Hoy7rJ+46PDaQp?=
- =?us-ascii?Q?+wvlfCdwtLJddq5odkhTKxYW/xTfECoyGqVOqeuGx7nV3WQ2bHups/Cy55KU?=
- =?us-ascii?Q?/VWsg6slP/ayBxtcMsIkbR0TQXgqEzmEFNFLQJRbbgzB6zHjpAPl0Rq5qCXg?=
- =?us-ascii?Q?HnEP/9UK/2tfa6+FgXgNYfTtBcLb8Heia6bL5k7bXBSzi8OXFsr11tN4Czta?=
- =?us-ascii?Q?Y2o64LdCPlbu2fRSgOcLdQzKx8GRYhKqiUwtc+zNqCF50ng2JIcUXpUzbA7p?=
- =?us-ascii?Q?pQlt6cTLKcq4HHDwnSuk6h5U1MxbEi60zlwzTLBVNvg548yrWN/iCFHmP2/E?=
- =?us-ascii?Q?yzGSUHyIWbQE5K04wrtKauS4jWD8XyV34w0kcIUD6U/t5gbakr3Eu2Plvp+B?=
- =?us-ascii?Q?50AVgfxeW8WupEl+YzYcSES0c2HsaOOHBELIyMF1Zu1hGOhmk7HmmFbQJeSu?=
- =?us-ascii?Q?2lCf4bSF2B5DwDmtJQoN+2EMGFTzTSdxqi/qaJLZTswG+7/AthDnoHgTgylH?=
- =?us-ascii?Q?uB3aKfn3z0nO0PuB4+GRtslbsaZ1Vi6VK1W+zfPQHB8as1ln5T4T?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e17fe7c-aa45-4b25-52f3-08df4a62b81e
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:39:56.6851
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DLtTuZnukIcDfY1scIdpqPs9XjE1x3NMZCeQT7f/tNlRkFaKMrfhh8NEMoWFNZN+HeQG3n6OlZg1I2CcSyUPnrDIrehgfYhnYe3Lrm83jYXmq2s75Pup0323IkxXj6iP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR6PR04MB759890
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_114002_643678_5FD81CCE 
-X-CRM114-Status: GOOD (  20.79  )
-X-Spam-Score: 0.0 (/)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: leo.bras@arm.com, kvmarm@lists.linux.dev, kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, seiden@linux.ibm.com, joey.gouly@arm.com, suzuki.poulose@arm.com, oupton@kernel.org, yuzenghui@huawei.com, fuad.tabba@linux.dev, dan@pereq.eu, stable@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -150,60 +91,139 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 03:56:45PM +0100, Andrea della Porta wrote:
-> Nowadays there is a generic property for dma-channel-mask in the DMA
-> controller binding. So prefer this one instead of the old vendor specific
-> one. Print a warning in case the old one is used. Btw use the result of
-> of_property_read_u32() as return code in error case.
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  drivers/dma/bcm2835-dma.c | 19 +++++++++++++------
->  1 file changed, 13 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> index 51e3a40dbaec..1087157fb242 100644
-> --- a/drivers/dma/bcm2835-dma.c
-> +++ b/drivers/dma/bcm2835-dma.c
-> @@ -991,12 +991,19 @@ static int bcm2835_dma_probe(struct platform_device *pdev)
->  	}
->
->  	/* Request DMA channel mask from device tree */
-> -	if (of_property_read_u32(pdev->dev.of_node,
-> -				 "brcm,dma-channel-mask",
-> -				 &chans_available)) {
-> -		dev_err(&pdev->dev, "Failed to get channel mask\n");
-> -		rc = -EINVAL;
-> -		goto err_no_dma;
-> +	rc = of_property_read_u32(pdev->dev.of_node, "dma-channel-mask",
-> +				  &chans_available);
-> +
-> +	if (rc) {
-> +		/* Try deprecated property */
-> +		if (of_property_read_u32(pdev->dev.of_node,
-> +					 "brcm,dma-channel-mask",
-> +					 &chans_available)) {
-> +			dev_err(&pdev->dev, "Failed to get channel mask\n");
-> +			goto err_no_dma;
-> +		}
-> +
-> +		dev_warn(&pdev->dev, "Please update DT blob\n");
+On Tue, 24 Nov 2026 18:06:02 +0000,
+Leonardo Bras <leo.bras@arm.com> wrote:
+> 
+> On Tue, Nov 24, 2026 at 04:38:41PM +0000, Marc Zyngier wrote:
+> > On Tue, 24 Nov 2026 16:20:16 +0000,
+> > Leonardo Bras <leo.bras@arm.com> wrote:
+> > > 
+> > > On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
+> > > > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
+> > > > that describe a base granule size smaller than the host's page size,
+> > > > we take the resulting size at face value and feed it to the S2 unmapping
+> > > > code. Which legitimately screams about something not being page-aligned.
+> > > > 
+> > > > The architecture allows us to drop the TLBI on the floor, as we don't
+> > > > support a S2 granule size smaller than the host's page size. But it turns
+> > > > out that doing so is proving pretty hard (we call compute_tlb_inval_range
+> > > > from a number of places, none of which is amenable to an early out).
+> > > > 
+> > > > Instead, detect the annoying case, and pretend that we don't have a TTL
+> > > > hint at all, leaving the size upgrade mechanism to take place and use
+> > > > the largest possible size for the guest's S2 granule size.
+> > > > 
+> > > > This will still allow nonsensical stuff to get through, such as a 4kB
+> > > > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
+> > > > on a 16kB page size host, but that's not worse than doing nothing, and
+> > > > the host code won't get shouty.
+> > > > 
+> > > > Reported-by: Dan Carpenter <dan@pereq.eu>
+> > > > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
+> > > > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
+> > > > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > > > Cc: stable@vger.kernel.org
+> > > > ---
+> > > > 
+> > > > Notes:
+> > > >     Reposting this as a first class patch, as I'd like to plug that one
+> > > >     as early as possible (and Dan has plenty of other patches in flight...)
+> > > > 
+> > > >  arch/arm64/kvm/nested.c | 7 +++++++
+> > > >  1 file changed, 7 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+> > > > index 78d5b18dbd2d6..36e4e83badf0a 100644
+> > > > --- a/arch/arm64/kvm/nested.c
+> > > > +++ b/arch/arm64/kvm/nested.c
+> > > > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
+> > > >  	 */
+> > > >  	max_size = __ttl_to_size(ttl);
+> > > >  
+> > > > +	/*
+> > > > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
+> > > > +	 * possible invalidation. Don't try this at home, kids!
+> > > > +	 */
+> > > > +	if (max_size < PAGE_SIZE)
+> > > > +		max_size = 0;
+> > > > +
+> > > >  	if (!max_size) {
+> > > >  		/* Compute the maximum extent of the invalidation */
+> > > >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
+> > > > -- 
+> > > > 2.47.3
+> > > > 
+> > > 
+> > > Hey Marc,
+> > > 
+> > > I think the changes make sense, although rounding up to PAGE_SIZE also 
+> > > looks a valid solution in my unexperienced viewpoint.
+> > 
+> > No, it isn't the same thing. Taker the example I have given, where the
+> > host is 16k, the guest 64k, and the invalidation 4k. If you round
+> > things up to 16k, you're still not invalidating anything that is
+> > consistent with the *minimum page size* for the guest. Anything larger
+> > is a multiple of both the host and guest page sizes, and therefore
+> > always correct.
+> 
+> Ah, right!
+> In this case, could we not invalidate the largest page size supported 
+> (64k)?
 
-"Please update DT by replace brcm,dma-channel-mask with dma-channel-mask\n"
+Because that's not what the absence of TTL means.
 
-Frank
->  	}
->
->  	/* get irqs for each channel that we support */
-> --
-> 2.51.0
->
+> 
+> IIUC:
+> - To have max_size between 0 and PAGE_SIZE means it's either 4k or 16k, 
+>   so invalidating the 64k should be enough?
+
+No.
+
+>  
+> - max_size=0 from __ttl_to_size() means largest blocksize supported by 
+>   stage2 in current TG.
+
+Yes.
+
+> 
+> The two above are opposite ends, no? Like, the first is "this is too small 
+> for us to invalidate, let's pick something bigger", and the other one is 
+> "we want to invalidate the largest supported block".
+> 
+> Is it really ok to put them in the same bucket?
+
+That's the *only* thing you can do, short of not invalidating anything
+at all. The commit message alreayd explains the IMPDEF choice that is
+made, and why it is made. Let me explain it again:
+
+- An invalid TTL allows us to ignore the TLBI altogether. No ifs, no
+  buts. This is definitely an invalid TTL.
+
+- However, by the time we reach this code, we are committed to perform
+  an invalidation, and we can't backtrack (doing so would be really
+  ugly).
+
+- Our next port of call is to still perform an invalidation with
+  something reasonable. Since the TTL is invalid, only the IPA tells
+  us anything. And for any IPA without any range information, the only
+  sane thing to do is to invalidate the largest possible size.
+
+You could refine this a bit more, but frankly this is not worth it. We
+are already allowing a broken guest to do some invalidations, but
+there is no need to go out of our way to do anything more.
+
+The end.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
