@@ -2,118 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B0A606A69E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6257606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cUFG9VgR;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=VflUSknz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OIEyCNym;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Xr19gCZv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=K75pxNkSXMitBetgHqOhrCWvaHGIRkdfbpsqksN5qNE=; b=cUFG9VgRKpAjVOAsZAv+E3HfdZ
-	bw2iqhFaYyKaAddjGqT2E+aUpWof9i8FqWv1i/IldJHMYJoWt52snx2dQSB0S6YzPXrEdcYSkFtti
-	Bx/Z9vGMlWBFLGAbnUX4Xtw3EhNJrscFbjYR7bCzJNo5EAaAi2UOALVyopPnKG8bRsynRXP+Clzuc
-	BrK/RIIP7LjSGUpHUoi70VJ2pIa5RI3Z8Lk7q+jA/fYWOIlRzLGvTFF39U0d/YuA8yusfSRtUTYOa
-	zMK/y8jIO3QUvJCz5zp5zB4bv6GIaMJYPNyYz8slGE/1bNViMXDivLi/G/KSOoazXJH/pvukeQ5bm
-	LvULXfYQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=CkjGtSF/XBh/ScHlNzqScP6mcsPlf2tswFWRNIgKHr8=; b=OIEyCNymVKXGIW
+	ezloiNYV7G7x+C6R//US/czUtQLAz22vIGtvmshKTbyEMBiURTiMoOMp7CyYx0QnJdvvXa6elTgVW
+	HZmHotUFvE/XGYDFMrMOdBmey+C4L2jsNuKYiT+vcQCPpxCPkE27jETx4f5F6lzz/0tJx1Roz+Yfj
+	xQlJoUYLEgksGtLJ0OrvaxOXPnS1UPGgmC8zD2hOaTkNMBdQ0x/HN2mjCTDNiJQ9G3Kx68rtwM4tZ
+	OERKqGM7vA8sXdJVXh7CmsQrXgm8n2BiuGFNf4Ue3uZrpLULQve8HVvFkvqJ+GkjRCKm+vD3Jw4mK
+	Jbs0HS9vzt7j/+LLSuuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyJ0-00000007uBo-3dN6;
-	Tue, 24 Nov 2026 21:44:02 +0000
-Received: from mail-qk1-x72c.google.com ([2607:f8b0:4864:20::72c])
+	id 1xVyMf-00000007ucG-2EDF;
+	Tue, 24 Nov 2026 21:47:49 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyIy-00000007uAj-1F77
+	id 1xVyMd-00000007ubv-1H0J
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:44:01 +0000
-Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-9495f083657so559045885a.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:43:59 -0800 (PST)
+	Tue, 24 Nov 2026 21:47:48 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-490d59c3edaso3438050f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:47:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795556865; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PSx2aiu0TCHTRyr0+WbIBu3k+6fCbW4FE2aNUSOEWW7ytVv9T2c0470KUejkUQpfqn
+         f8ZDkD8BMMtraYfP5HX7vf2eKzdpAua4FIv8nyBQNDySSBUmCLGs9PDZajgRejeOamUq
+         uawCzz63tTKyb7LHCnQmndsnlalz8HnNBHeYlv4MD9Nw46F7Ne4c/vo+5XfBjeMU8krE
+         EtEWN492ko0BkCchZxdZRwDGXexpsPukaeB2zjlHJj8IloLc07i9gGA5pOxgzUQCMY6v
+         v/yQirpGvIX5m+225yyK/iJgBcrg3+BpfAIcND6RpiyYnkEzov3RVrzFXomA+r/8xU9X
+         HmIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=CkjGtSF/XBh/ScHlNzqScP6mcsPlf2tswFWRNIgKHr8=;
+        fh=KM8TGU2qbpbn/enVzGPjECa2YVKwc7YhgoTvz1vVTWo=;
+        b=OEwoHCl93vm4m1L4LYjB1zTqFUqgejaARo1D4JFkzFk/NPjZUN1AL/2MXOW1/r/sGu
+         robCNwyyCPkylrYjVfFhDQrd9MJtDVuMknza2DJpZJbuPTOt9rO2cPtQWGZZIg96Lvr1
+         aAPmYh8mQtA9hR/J/5cIFiM4VqnTpFudLlcUJbEAmgUiDJ/Bzke6o/gn/T09n3B/W1Yy
+         QQCyoeZat6ClB52w96AsLiB0hNAJf3f2eU1fcawHivlGCO/Rryt6V70J3vg4PT297Ruc
+         rSaw/PCORrW0+oep2RPatcXWkO/Lr5OOYfeZHQt3VoAPkjzf5rEc29GhHxFHCdADzhLe
+         FMGQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795556639; x=1796161439; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+        d=google.com; s=20260707; t=1795556865; x=1796161665; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=K75pxNkSXMitBetgHqOhrCWvaHGIRkdfbpsqksN5qNE=;
-        b=VflUSknzQ8VZ7/00n2WlNeaRjlPV5vE5sCv28r4wzuzl3G4qCKSZmoxkYnorsRzhLE
-         oJTVEMk6d62qSsig5oTaDtapEinG7Kff0jNEI5kzaZ2g7uLRBHCRUgP/19P6lzAuRThc
-         uQrLL0yiXET27YeyWumjGvDlgL+RvgptVwiiwSjVe8J49nJTcu7zYy26eIcqM4igrKsv
-         BqWLLeg5KJjKjd5t63O6mebWSS5JZ0mbMzPYKOY86x1p7MR5VzgUMeX6vOBJG9D5Uz9a
-         RI+ZOjlhYvcNGuurPDWkrvckSCJJth5DyIcTM7ARVZcPqNNob/KQg4o7B9JUnFdedI5l
-         5DHw==
+        bh=CkjGtSF/XBh/ScHlNzqScP6mcsPlf2tswFWRNIgKHr8=;
+        b=Xr19gCZv7H5zbawgskFDVC1XBZjipgLl4NA3kvD5aWhgZB8PcCRuj8VLN3JDRmbsEI
+         5tmAYhsWBkL/OIq491+xK7q042ZE544hes12gJtjl4Xpw7cqIGJXJKhnmp8hqzmZJus2
+         hFc/XOfcfImkv4cDlRL3Pwc7iX4LUuYwWj00rxX7H2bzJJquWsDT8kOFUwiUAGG1KYUX
+         O/w1hYKZwTbLMbgufMhFLaHQuXYt2yWJ0BCw/QujeKeeDMsIFaF7zNmYP8v2y01/Ijgj
+         YgW7W3372px7UvnbYEwYoEK1n3MijPOlU7g9hmr8EgV9qDkHRbinLSeYTtt8uxXna0hQ
+         avkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795556639; x=1796161439;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20260707; t=1795556865; x=1796161665;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=K75pxNkSXMitBetgHqOhrCWvaHGIRkdfbpsqksN5qNE=;
-        b=iG6Mlql9Xp2dy/mxStZNNINcgn7lJAouX3HWulqA5cICeVKBarzzqjmTtKqVYIye2F
-         VOumSQD/Zbt0cPqD3qvX38XXPGC4g+SVQHNyY9UHjygo37zsrabfOVuI+5kLaeUfhhMH
-         40u8yje5+lMjD27hPCFQjEiGrU7hGpPXloU4lArBIkWCs55rm1yCP1WijcJ2Tir7oOnX
-         WSBQuIGacVGbrk4chTAcicRhU8NzCkEBTeLZoEMwqxUSmxKVyAZdS1SRWaE9iiI9OTF7
-         5283jcZp92m+qcRNtJxWPdLfzPSYkZuhE62sO3+m3Dp/MZLVoENeYLzTTQma5/HfiegV
-         55Uw==
-X-Forwarded-Encrypted: i=1; AL+hErFZrxrRulx+CZMkT2XCeQLD9TYmnS6N+oMZDh/GChNY9r9KGsso+UR3OZ5nhb5cYC2koidu2C40hLBM4Ntg+hzN@lists.infradead.org
-X-Gm-Message-State: APuU4Z+JD1Lmgp3cS1AvRbKHUKLIOeMO060cj7ZpXPAtxGYBw+DuCL7p
-	ZNSzp6TzeA9jFdaV7E119qqsC++BSs1SO7aZNqYFeslEc8fUyZOMExOhO+RSsSthFRU=
-X-Gm-Gg: AZFdTZfWOVsftHfzhy/SgoXkGS9giptEU5EnIjVIqe8cPkYcw1lF8/DPLo7zNrB+b0V
-	Mubsc1QpohrwQAob2DoYEVtDTICDaMsdOcVb7GI4/w1vch9WhCyyUmJ4xv7X80dIYmAqewcBrzg
-	7LG/NduQtjDGBSIaoCdbPnfR6vLIFU1Zv4ditPRhWyeh7H84bO+zgc0nDBu4wigvDieP6zWUhZT
-	ygqfZzVxlypSDzzaX4GN2SYEEFVTnG77ARJ7QSJZSbRjcuA32ldgJloOkcHjpj1OvmRPJhIxvHG
-	WoYeyFJy8hEGwQSEHn44gMJMBc/lvzgYvMrS7/dOSUpmtjNhlZcUhDYJZ115o8YKMwCV+TtF0XF
-	K9QIUBqDVYvxd6x48hn/uWZ4tjHNIgFulPRIWuKLMqHG590xrRPbnNfSm5p/zlQDYHVobGrz/EH
-	qBgJc6KcRRcZ2wN6FQqa6U3RrJsQrMf0dNAOsICV2QUCmXNH+dbUeU3K6nT0z87a05PM0J/sk1Y
-	LluYXOLtJfX9A6+WzFC4t+1H/ww/BrR2i2EBGH+FF8o8XZ7AZb7VbvgVETwydNmexePUqZ+EJWq
-	ZLYFXnQs18eBn7GfppTYS3fIQt6qHko5TztftI3TmKOywuMRPuIVDjA=
-X-Received: by 2002:a05:620a:2708:b0:93e:7944:b869 with SMTP id af79cd13be357-949bab1dacfmr2718566385a.42.1795556638916;
-        Tue, 24 Nov 2026 13:43:58 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-949c555faf9sm1038617585a.0.2026.11.24.13.43.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 13:43:58 -0800 (PST)
-Message-ID: <e2efd3238a5adaf41af0c6edf9c32e2705f683b7.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 15/17] media: rockchip: rga: bind all cores to the
- master
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
-	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
- Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
- <lgs201920130244@gmail.com>
-Date: Tue, 24 Nov 2026 16:43:57 -0500
-In-Reply-To: <20260916-spu-rga3multicore-v2-15-23aa2cb74e61@pengutronix.de>
-References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
-	 <20260916-spu-rga3multicore-v2-15-23aa2cb74e61@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-S18NZIspGqx/2Sw1fM9/"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        bh=CkjGtSF/XBh/ScHlNzqScP6mcsPlf2tswFWRNIgKHr8=;
+        b=z8Rz+9RjegTMHVHJuSaVlxTt/beG2Nb5CSLNVoLwlPmzmRnZxrpx8DDZWytqbYq862
+         hVMJJ3NLPxM5GoqNflQS4f0XJF1K2yvz+9jJdr13sYnrf4K3jZkSymg3KHmHjadV34d7
+         dA5WUm3vctu+gpN2nIrZkOiToKz/Dn0KCinuSIUTftUigDXQrcEahjf/k6kqrNpkwDLh
+         MglkSFi5NTgFLZ0zJuVsXF9lOQZzA3NFVcuicF6LW2py5VkjSjUCQwBK7ZGXDbEgmf95
+         vgTvXcyRGUIrlmODyKDk1vjm/ZmEEs4f5TfD8qVv4zTqsHxqFLfQk+K7O9xYNoxytO3s
+         ohqA==
+X-Gm-Message-State: APuU4Z8oevSZndbUm3diEzOyXSGl1r6Qfz7y2u3hlCvp2FttG8BDsaxx
+	DIw5WPzL5E10jqqSM8gEc6GpgcolO0Vp2GQOP9UFQ4fEmAa1191e+v6zJFP/hyTLsB3XlAaL4ZH
+	pBkWocHhT/L0xoAGHghYNO/F55GMxMmO1rOwCVWAfxHgzTy9hUzfGyUCbsY4=
+X-Gm-Gg: AZFdTZevZIrIX8I8uV3GtztKVyDLY406GpesjmmjSIcUjez81gTf1KAqAc8mZzfZ7R3
+	EOvC7m1k9iac2ic0OvuOdsM+0mBqUr24hXdoPs+CCIZNHg3vbikb+fzk1PUOmu0tMlLzynXzWBx
+	3iNGdtRRwDr0RwH3xbLpaRPbyTWGKQhHPiA52gFviovZCJ8C0NYNV4TinnD/FK+FmPJ1mTlsn8+
+	Lq8PZjuBx2H9ChaOgvtqrpp2DMUsFz3k4K8b920dvzgJxeMxoamo6kLYP3Sh/2rOykUufhSZFzP
+	gmgetvuQkloxsrK8sc9bDV5q9HQ3mqgLz8oQK80U+Xv24Ej2mTAL5upxry1nL4CrQuUIQjw5a8a
+	Ai0ZLn1HRg8qh4+sVUDmJ555c71Xh1CFb53KltHS1tag78bUin+PPKhMK+wv/BID7f7E/7PDQnq
+	koqBIUsEJBr/TXsQuT3EhC/H6gBg5ZgNGfRSdhro01O0Z98kQSwWK7rM4rIj7Sc7EexrqC3H4L0
+	yA93LL4NWTwyCCg5uowNUKu2/x9E9gVlK2wbtdh/ctMWYD8VEz6Ul6EKEs=
+X-Received: by 2002:a05:6000:29c6:b0:4a6:56b1:cfc9 with SMTP id
+ ffacd0b85a97d-4abb41f4e0cmr23142225f8f.22.1795556864515; Tue, 24 Nov 2026
+ 13:47:44 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <20261119165825.1793558-5-ardb+git@google.com> <20261119165825.1793558-8-ardb+git@google.com>
+In-Reply-To: <20261119165825.1793558-8-ardb+git@google.com>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Tue, 24 Nov 2026 13:47:33 -0800
+X-Gm-Features: Aa3M54qz_ym5p2hDyyP1dQDy7v1-svAa8d-5YysA1FoV1m-LmPt9GwicKEi_khM
+Message-ID: <CAKwvOdnB80ExY27A5Pu=tgwNGpJ0LFLm=hCgca9f=XFALmdJGA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: module: Revert separate init PLT and init
+ ftrace trampoline
+To: Ard Biesheuvel <ardb+git@google.com>
+Cc: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
+	will@kernel.org, Ard Biesheuvel <ardb@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Josh Poimboeuf <jpoimboe@kernel.org>, panfan@qti.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_134400_714685_24C8E4A2 
-X-CRM114-Status: GOOD (  28.66  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_134747_492119_EBF355EA 
+X-CRM114-Status: GOOD (  34.42  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,167 +120,416 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-S18NZIspGqx/2Sw1fM9/
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, Nov 19, 2026 at 8:58=E2=80=AFAM Ard Biesheuvel <ardb+git@google.com=
+> wrote:
+>
+> From: Ard Biesheuvel <ardb@kernel.org>
+>
+> This reverts commit a7ed7b9d0ebb ("arm64: ftrace: fix unreachable PLT for
 
-Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
-=A9crit=C2=A0:
-> Bind all core components to the master component. Previously only the
-> first core has been added to the master device to avoid creating
-> multiple video devices. As the video device creation has been moved to
-> the master component, it allows us to bind all cores without creating
-> additional video devices.
->=20
-> We expect that all cores to report the same version number, as we only
-> add cores with the same compatible value. This is important, as  we
-> setup the command buffer before actually scheduling the work to a
-> specific core. Therefore adjusting command buffers depending on the
-> version register only works when all cores have the same value.
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
->=20
+cc the author of a7ed7b9d0ebb
+
+Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+
+> ftrace_caller in init_module with CONFIG_DYNAMIC_FTRACE") and commit
+> 24af6c4e4e0f ("arm64: module: split core and init PLT sections").
+>
+> Now that executable init sections are kept in the core text region, all
+> branch instructions that may need a PLT entry, as well as all ftrace
+> callsites, live in the core text region, and so a single PLT section and
+> a single ftrace trampoline suffice.
+>
+> This also means that branches to symbols defined in another section of
+> the same module no longer need a PLT slot, as all executable sections are
+> within direct branching range of each other. So only reserve PLT slots
+> for branches to external symbols, i.e., SHN_UNDEF symbols as before
+> 24af6c4e4e0f, but also SHN_LIVEPATCH symbols (and other reserved section
+> indexes), as these are resolved against vmlinux or other modules.
+>
+> On arm64 allmodconfig (10604 modules, disregarding modules with 'test' or
+> 'torture' in their name), this drops 2126 reserved but never used PLT
+> slots for intra-module branches (about 25 KB in total).
+>
+> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 > ---
-> v2:
-> - Fail (instead of warn) on a multi-core version mismatch
-> - Also decrease the num_cores when unbinding a core
->   (https://sashiko.dev/#/patchset/20260606-spu-rga3multicore-v1-0-3ec2b15=
-675f7%40pengutronix.de?part=3D13)
-> - move rga->cores at the end of core_bind here
->   (previously done while moving code to rga_core_probe)
-> ---
->  drivers/media/platform/rockchip/rga/rga.c | 36 +++++++++++++++++++++----=
-------
->  drivers/media/platform/rockchip/rga/rga.h |  1 +
->  2 files changed, 26 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
-atform/rockchip/rga/rga.c
-> index 39fcb5623095b..5348fcc03c525 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -746,23 +746,33 @@ static int rga_core_bind(struct device *dev, struct=
- device *master, void *data)
->  {
->  =09struct rockchip_rga *rga =3D data;
->  =09struct rga_core *core =3D dev_get_drvdata(dev);
-> +=09struct rockchip_rga_version version;
->  =09int ret =3D 0;
-> =20
->  =09core->rga =3D rga;
-> =20
-> -=09rga->cores[0] =3D core;
+>  arch/arm64/include/asm/module.h     | 11 +--
+>  arch/arm64/include/asm/module.lds.h |  2 -
+>  arch/arm64/kernel/ftrace.c          | 13 +--
+>  arch/arm64/kernel/module-plts.c     | 98 +++++++-------------
+>  arch/arm64/kernel/module.c          | 13 +--
+>  5 files changed, 40 insertions(+), 97 deletions(-)
+>
+> diff --git a/arch/arm64/include/asm/module.h b/arch/arm64/include/asm/mod=
+ule.h
+> index fb9b88eebeb1..9d34f915d59b 100644
+> --- a/arch/arm64/include/asm/module.h
+> +++ b/arch/arm64/include/asm/module.h
+> @@ -7,24 +7,17 @@
+>
+>  #include <asm-generic/module.h>
+>
+> -struct mod_plt_sec {
+> +struct mod_arch_specific {
+>         int                     plt_shndx;
+>         int                     plt_num_entries;
+>         int                     plt_max_entries;
+> -};
 > -
->  =09ret =3D pm_runtime_resume_and_get(core->dev);
->  =09if (ret < 0)
->  =09=09return ret;
-> =20
-> -=09rga->version =3D rga->hw->get_version(core);
-> +=09version =3D rga->hw->get_version(core);
-> =20
->  =09v4l2_info(&rga->v4l2_dev, "HW Version: 0x%02x.%02x\n",
->  =09=09  rga->version.major, rga->version.minor);
-
-Use version here, instead of rga->version.
-
-> =20
-> +=09if (rga->num_cores) {
-> +=09=09/* we are not the first core, expect that we have the same version=
- */
-> +=09=09if (rga->version.major !=3D version.major || rga->version.minor !=
-=3D version.minor) {
-> +=09=09=09v4l2_err(&rga->v4l2_dev, "Detected multi-core setup with differ=
-ent core versions!\n");
-
-pm_runtime_put() is skipped, maybe some more cleanup? I know this should no=
-t
-happen in practice.
-
-Mostly from Sashiko here,
-Nicolas
-
-> +=09=09=09return -ENODEV;
-> +=09=09}
-> +=09} else
-> +=09=09rga->version =3D version;
-> +
->  =09pm_runtime_put(core->dev);
-> =20
-> +=09rga->cores[rga->num_cores++] =3D core;
-> +
->  =09return 0;
->  }
-> =20
-> @@ -770,6 +780,18 @@ static void rga_core_unbind(struct device *dev, stru=
-ct device *master,
->  =09=09=09    void *data)
->  {
->  =09struct rga_core *core =3D dev_get_drvdata(dev);
-> +=09struct rockchip_rga *rga =3D core->rga;
-> +=09u8 i;
-> +
-> +=09/* Remove our core from the list */
-> +=09for (i =3D 0; i < rga->num_cores; i++) {
-> +=09=09if (rga->cores[i] !=3D core)
-> +=09=09=09continue;
-> +
-> +=09=09rga->cores[i] =3D rga->cores[rga->num_cores - 1];
-> +=09=09rga->num_cores--;
-> +=09=09break;
-> +=09}
-> =20
->  =09core->rga =3D NULL;
->  }
-> @@ -992,14 +1014,6 @@ static int rga_probe(struct platform_device *pdev)
->  =09=09component_match_add_release(dev, &match, component_release_of,
->  =09=09=09=09=09    component_compare_of, core_node);
->  =09=09num_cores++;
-> -
-> -=09=09/*
-> -=09=09 * As multi core is not implemented yet,
-> -=09=09 * break out of the loop to only have one core per rockchip_rga st=
-ruct.
-> -=09=09 * Also put the node, which otherwise would've been done by the lo=
-op iteration.
-> -=09=09 */
-> -=09=09of_node_put(core_node);
-> -=09=09break;
->  =09}
-> =20
->  =09rga =3D devm_kzalloc(dev, sizeof(*rga) + num_cores * sizeof(*rga->cor=
-es), GFP_KERNEL);
-> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/pl=
-atform/rockchip/rga/rga.h
-> index 94e14c2a2ba6e..522021c3e0249 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.h
-> +++ b/drivers/media/platform/rockchip/rga/rga.h
-> @@ -89,6 +89,7 @@ struct rockchip_rga {
-> =20
->  =09const struct rga_hw *hw;
-> =20
-> +=09u8 num_cores;
->  =09struct rga_core *cores[];
+> -struct mod_arch_specific {
+> -       struct mod_plt_sec      core;
+> -       struct mod_plt_sec      init;
+>
+>         /* for CONFIG_DYNAMIC_FTRACE */
+>         struct plt_entry        *ftrace_trampolines;
+> -       struct plt_entry        *init_ftrace_trampolines;
 >  };
-> =20
+>
+>  u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
+> -                         void *loc, const Elf64_Rela *rela,
+> -                         Elf64_Sym *sym);
+> +                         const Elf64_Rela *rela, Elf64_Sym *sym);
+>
+>  u64 module_emit_veneer_for_adrp(struct module *mod, Elf64_Shdr *sechdrs,
+>                                 void *loc, u64 val);
+> diff --git a/arch/arm64/include/asm/module.lds.h b/arch/arm64/include/asm=
+/module.lds.h
+> index 603f92a8a73e..983e768203a1 100644
+> --- a/arch/arm64/include/asm/module.lds.h
+> +++ b/arch/arm64/include/asm/module.lds.h
+> @@ -1,8 +1,6 @@
+>  SECTIONS {
+>         .plt 0 : { BYTE(0) }
+> -       .init.plt 0 : { BYTE(0) }
+>         .text.ftrace_trampoline 0 : { BYTE(0) }
+> -       .init.text.ftrace_trampoline 0 : { BYTE(0) }
+>
+>  #ifdef CONFIG_UNWIND_TABLES
+>         /*
+> diff --git a/arch/arm64/kernel/ftrace.c b/arch/arm64/kernel/ftrace.c
+> index e1a3c0b3a051..389675690293 100644
+> --- a/arch/arm64/kernel/ftrace.c
+> +++ b/arch/arm64/kernel/ftrace.c
+> @@ -258,17 +258,10 @@ int ftrace_update_ftrace_func(ftrace_func_t func)
+>         return ftrace_modify_code(pc, 0, new, false);
+>  }
+>
+> -static struct plt_entry *get_ftrace_plt(struct module *mod, unsigned lon=
+g addr)
+> +static struct plt_entry *get_ftrace_plt(struct module *mod)
+>  {
+>  #ifdef CONFIG_MODULES
+> -       struct plt_entry *plt =3D NULL;
+> -
+> -       if (within_module_mem_type(addr, mod, MOD_INIT_TEXT))
+> -               plt =3D mod->arch.init_ftrace_trampolines;
+> -       else if (within_module_mem_type(addr, mod, MOD_TEXT))
+> -               plt =3D mod->arch.ftrace_trampolines;
+> -       else
+> -               return NULL;
+> +       struct plt_entry *plt =3D mod->arch.ftrace_trampolines;
+>
+>         return &plt[FTRACE_PLT_IDX];
+>  #else
+> @@ -339,7 +332,7 @@ static bool ftrace_find_callable_addr(struct dyn_ftra=
+ce *rec,
+>         if (WARN_ON(!mod))
+>                 return false;
+>
+> -       plt =3D get_ftrace_plt(mod, pc);
+> +       plt =3D get_ftrace_plt(mod);
+>         if (!plt) {
+>                 pr_err("ftrace: no module PLT for %ps\n", (void *)*addr);
+>                 return false;
+> diff --git a/arch/arm64/kernel/module-plts.c b/arch/arm64/kernel/module-p=
+lts.c
+> index 7afd370da9f4..0a0257b6a5e8 100644
+> --- a/arch/arm64/kernel/module-plts.c
+> +++ b/arch/arm64/kernel/module-plts.c
+> @@ -67,11 +67,9 @@ static bool plt_entries_equal(const struct plt_entry *=
+a,
+>  }
+>
+>  u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
+> -                         void *loc, const Elf64_Rela *rela,
+> -                         Elf64_Sym *sym)
+> +                         const Elf64_Rela *rela, Elf64_Sym *sym)
+>  {
+> -       struct mod_plt_sec *pltsec =3D !within_module_init((unsigned long=
+)loc, mod) ?
+> -                                               &mod->arch.core : &mod->a=
+rch.init;
+> +       struct mod_arch_specific *pltsec =3D &mod->arch;
+>         struct plt_entry *plt =3D (struct plt_entry *)sechdrs[pltsec->plt=
+_shndx].sh_addr;
+>         int i =3D pltsec->plt_num_entries;
+>         int j =3D i - 1;
+> @@ -101,8 +99,7 @@ u64 module_emit_plt_entry(struct module *mod, Elf64_Sh=
+dr *sechdrs,
+>  u64 module_emit_veneer_for_adrp(struct module *mod, Elf64_Shdr *sechdrs,
+>                                 void *loc, u64 val)
+>  {
+> -       struct mod_plt_sec *pltsec =3D !within_module_init((unsigned long=
+)loc, mod) ?
+> -                                               &mod->arch.core : &mod->a=
+rch.init;
+> +       struct mod_arch_specific *pltsec =3D &mod->arch;
+>         struct plt_entry *plt =3D (struct plt_entry *)sechdrs[pltsec->plt=
+_shndx].sh_addr;
+>         int i =3D pltsec->plt_num_entries++;
+>         u32 br;
+> @@ -154,8 +151,21 @@ static bool duplicate_rel(const Elf64_Rela *rela, in=
+t num)
+>         return num > 0 && cmp_rela(rela + num, rela + num - 1) =3D=3D 0;
+>  }
+>
+> +/*
+> + * We only have to consider branch targets that resolve to symbols that =
+are
+> + * not defined in the module itself. This is not simply a heuristic, it =
+is a
+> + * fundamental limitation, since the PLT itself is part of the module's =
+core
+> + * text region, and needs to be within 128 MB as well, so the module's c=
+ode can
+> + * never grow beyond that limit. Note that SHN_LIVEPATCH symbols are res=
+olved
+> + * against vmlinux or other modules, so these need to be taken into acco=
+unt.
+> + */
+> +static bool branch_target_is_external(const Elf64_Sym *s)
+> +{
+> +       return s->st_shndx =3D=3D SHN_UNDEF || s->st_shndx >=3D SHN_LORES=
+ERVE;
+> +}
+> +
+>  static unsigned int count_plts(Elf64_Sym *syms, Elf64_Rela *rela, int nu=
+m,
+> -                              Elf64_Word dstidx, Elf_Shdr *dstsec)
+> +                              Elf_Shdr *dstsec)
+>  {
+>         unsigned int ret =3D 0;
+>         Elf64_Sym *s;
+> @@ -167,19 +177,8 @@ static unsigned int count_plts(Elf64_Sym *syms, Elf6=
+4_Rela *rela, int num,
+>                 switch (ELF64_R_TYPE(rela[i].r_info)) {
+>                 case R_AARCH64_JUMP26:
+>                 case R_AARCH64_CALL26:
+> -                       /*
+> -                        * We only have to consider branch targets that r=
+esolve
+> -                        * to symbols that are defined in a different sec=
+tion.
+> -                        * This is not simply a heuristic, it is a fundam=
+ental
+> -                        * limitation, since there is no guaranteed way t=
+o emit
+> -                        * PLT entries sufficiently close to the branch i=
+f the
+> -                        * section size exceeds the range of a branch
+> -                        * instruction. So ignore relocations against def=
+ined
+> -                        * symbols if they live in the same section as th=
+e
+> -                        * relocation target.
+> -                        */
+>                         s =3D syms + ELF64_R_SYM(rela[i].r_info);
+> -                       if (s->st_shndx =3D=3D dstidx)
+> +                       if (!branch_target_is_external(s))
+>                                 break;
+>
+>                         /*
+> @@ -246,13 +245,11 @@ static unsigned int count_plts(Elf64_Sym *syms, Elf=
+64_Rela *rela, int num,
+>         return ret;
+>  }
+>
+> -static bool branch_rela_needs_plt(Elf64_Sym *syms, Elf64_Rela *rela,
+> -                                 Elf64_Word dstidx)
+> +static bool branch_rela_needs_plt(Elf64_Sym *syms, Elf64_Rela *rela)
+>  {
+> -
+>         Elf64_Sym *s =3D syms + ELF64_R_SYM(rela->r_info);
+>
+> -       if (s->st_shndx =3D=3D dstidx)
+> +       if (!branch_target_is_external(s))
+>                 return false;
+>
+>         return ELF64_R_TYPE(rela->r_info) =3D=3D R_AARCH64_JUMP26 ||
+> @@ -261,14 +258,14 @@ static bool branch_rela_needs_plt(Elf64_Sym *syms, =
+Elf64_Rela *rela,
+>
+>  /* Group branch PLT relas at the front end of the array. */
+>  static int partition_branch_plt_relas(Elf64_Sym *syms, Elf64_Rela *rela,
+> -                                     int numrels, Elf64_Word dstidx)
+> +                                     int numrels)
+>  {
+>         int i =3D 0, j =3D numrels - 1;
+>
+>         while (i < j) {
+> -               if (branch_rela_needs_plt(syms, &rela[i], dstidx))
+> +               if (branch_rela_needs_plt(syms, &rela[i]))
+>                         i++;
+> -               else if (branch_rela_needs_plt(syms, &rela[j], dstidx))
+> +               else if (branch_rela_needs_plt(syms, &rela[j]))
+>                         swap(rela[i], rela[j]);
+>                 else
+>                         j--;
+> @@ -280,10 +277,9 @@ static int partition_branch_plt_relas(Elf64_Sym *sym=
+s, Elf64_Rela *rela,
+>  int module_frob_arch_sections(Elf_Ehdr *ehdr, Elf_Shdr *sechdrs,
+>                               char *secstrings, struct module *mod)
+>  {
+> -       unsigned long core_plts =3D 0;
+> -       unsigned long init_plts =3D 0;
+> +       unsigned long plts =3D 0;
+>         Elf64_Sym *syms =3D NULL;
+> -       Elf_Shdr *pltsec, *tramp =3D NULL, *init_tramp =3D NULL;
+> +       Elf_Shdr *pltsec, *tramp =3D NULL;
+>         int i;
+>
+>         /*
+> @@ -292,21 +288,16 @@ int module_frob_arch_sections(Elf_Ehdr *ehdr, Elf_S=
+hdr *sechdrs,
+>          */
+>         for (i =3D 0; i < ehdr->e_shnum; i++) {
+>                 if (!strcmp(secstrings + sechdrs[i].sh_name, ".plt"))
+> -                       mod->arch.core.plt_shndx =3D i;
+> -               else if (!strcmp(secstrings + sechdrs[i].sh_name, ".init.=
+plt"))
+> -                       mod->arch.init.plt_shndx =3D i;
+> +                       mod->arch.plt_shndx =3D i;
+>                 else if (!strcmp(secstrings + sechdrs[i].sh_name,
+>                                  ".text.ftrace_trampoline"))
+>                         tramp =3D sechdrs + i;
+> -               else if (!strcmp(secstrings + sechdrs[i].sh_name,
+> -                                ".init.text.ftrace_trampoline"))
+> -                       init_tramp =3D sechdrs + i;
+>                 else if (sechdrs[i].sh_type =3D=3D SHT_SYMTAB)
+>                         syms =3D (Elf64_Sym *)sechdrs[i].sh_addr;
+>         }
+>
+> -       if (!mod->arch.core.plt_shndx || !mod->arch.init.plt_shndx) {
+> -               pr_err("%s: module PLT section(s) missing\n", mod->name);
+> +       if (!mod->arch.plt_shndx) {
+> +               pr_err("%s: module PLT section missing\n", mod->name);
+>                 return -ENOEXEC;
+>         }
+>         if (!syms) {
+> @@ -330,34 +321,20 @@ int module_frob_arch_sections(Elf_Ehdr *ehdr, Elf_S=
+hdr *sechdrs,
+>                  * sort branch relocations requiring a PLT by type, symbo=
+l index
+>                  * and addend
+>                  */
+> -               nents =3D partition_branch_plt_relas(syms, rels, numrels,
+> -                                                  sechdrs[i].sh_info);
+> +               nents =3D partition_branch_plt_relas(syms, rels, numrels)=
+;
+>                 if (nents)
+>                         sort(rels, nents, sizeof(Elf64_Rela), cmp_rela, N=
+ULL);
+>
+> -               if (!module_init_layout_section(secstrings + dstsec->sh_n=
+ame))
+> -                       core_plts +=3D count_plts(syms, rels, numrels,
+> -                                               sechdrs[i].sh_info, dstse=
+c);
+> -               else
+> -                       init_plts +=3D count_plts(syms, rels, numrels,
+> -                                               sechdrs[i].sh_info, dstse=
+c);
+> +               plts +=3D count_plts(syms, rels, numrels, dstsec);
+>         }
+>
+> -       pltsec =3D sechdrs + mod->arch.core.plt_shndx;
+> -       pltsec->sh_type =3D SHT_NOBITS;
+> -       pltsec->sh_flags =3D SHF_EXECINSTR | SHF_ALLOC;
+> -       pltsec->sh_addralign =3D L1_CACHE_BYTES;
+> -       pltsec->sh_size =3D (core_plts  + 1) * sizeof(struct plt_entry);
+> -       mod->arch.core.plt_num_entries =3D 0;
+> -       mod->arch.core.plt_max_entries =3D core_plts;
+> -
+> -       pltsec =3D sechdrs + mod->arch.init.plt_shndx;
+> +       pltsec =3D sechdrs + mod->arch.plt_shndx;
+>         pltsec->sh_type =3D SHT_NOBITS;
+>         pltsec->sh_flags =3D SHF_EXECINSTR | SHF_ALLOC;
+>         pltsec->sh_addralign =3D L1_CACHE_BYTES;
+> -       pltsec->sh_size =3D (init_plts + 1) * sizeof(struct plt_entry);
+> -       mod->arch.init.plt_num_entries =3D 0;
+> -       mod->arch.init.plt_max_entries =3D init_plts;
+> +       pltsec->sh_size =3D (plts + 1) * sizeof(struct plt_entry);
+> +       mod->arch.plt_num_entries =3D 0;
+> +       mod->arch.plt_max_entries =3D plts;
+>
+>         if (tramp) {
+>                 tramp->sh_type =3D SHT_NOBITS;
+> @@ -366,12 +343,5 @@ int module_frob_arch_sections(Elf_Ehdr *ehdr, Elf_Sh=
+dr *sechdrs,
+>                 tramp->sh_size =3D NR_FTRACE_PLTS * sizeof(struct plt_ent=
+ry);
+>         }
+>
+> -       if (init_tramp) {
+> -               init_tramp->sh_type =3D SHT_NOBITS;
+> -               init_tramp->sh_flags =3D SHF_EXECINSTR | SHF_ALLOC;
+> -               init_tramp->sh_addralign =3D __alignof__(struct plt_entry=
+);
+> -               init_tramp->sh_size =3D NR_FTRACE_PLTS * sizeof(struct pl=
+t_entry);
+> -       }
+> -
+>         return 0;
+>  }
+> diff --git a/arch/arm64/kernel/module.c b/arch/arm64/kernel/module.c
+> index 39e7a50733a9..e0cbd499e4a9 100644
+> --- a/arch/arm64/kernel/module.c
+> +++ b/arch/arm64/kernel/module.c
+> @@ -450,7 +450,7 @@ int apply_relocate_add(Elf64_Shdr *sechdrs,
+>                         ovf =3D reloc_insn_imm(RELOC_OP_PREL, loc, val, 2=
+, 26,
+>                                              AARCH64_INSN_IMM_26, me);
+>                         if (ovf =3D=3D -ERANGE) {
+> -                               val =3D module_emit_plt_entry(me, sechdrs=
+, loc, &rel[i], sym);
+> +                               val =3D module_emit_plt_entry(me, sechdrs=
+, &rel[i], sym);
+>                                 if (!val)
+>                                         return -ENOEXEC;
+>                                 ovf =3D reloc_insn_imm(RELOC_OP_PREL, loc=
+, val, 2,
+> @@ -499,17 +499,6 @@ static int module_init_ftrace_plt(const Elf_Ehdr *hd=
+r,
+>         __init_plt(&plts[FTRACE_PLT_IDX], FTRACE_ADDR);
+>
+>         mod->arch.ftrace_trampolines =3D plts;
+> -
+> -       s =3D find_section(hdr, sechdrs, ".init.text.ftrace_trampoline");
+> -       if (!s)
+> -               return -ENOEXEC;
+> -
+> -       plts =3D (void *)s->sh_addr;
+> -
+> -       __init_plt(&plts[FTRACE_PLT_IDX], FTRACE_ADDR);
+> -
+> -       mod->arch.init_ftrace_trampolines =3D plts;
+> -
+>  #endif
+>         return 0;
+>  }
+> --
+> 2.56.1.708.g77570a6a1d-goog
+>
 
---=-S18NZIspGqx/2Sw1fM9/
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawYFHQAKCRDZQZRRKWBy
-9JrdAQCUIkDVrw3+EoP8Ue1222LowADVIPyRvbxq5uVXsnQwsgEAjWrOYaUn7LBp
-yWr81kHaqm0ymKihIGhaG7/fRJBbxAw=
-=0Uj+
------END PGP SIGNATURE-----
-
---=-S18NZIspGqx/2Sw1fM9/--
+--=20
+Thanks,
+~Nick Desaulniers
 
