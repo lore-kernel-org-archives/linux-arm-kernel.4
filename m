@@ -2,93 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9118E606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA71606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qhhf7bSI;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=g+54x+pL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z596vIxY;
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=aXkA4WFD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:Subject:From:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=MMIveEgZcxzjxz6ZQiv/+4zr63avK8Y8JIemnxMuPEU=; b=Qhhf7bSIX+mKy4EqLo/85yLvBk
-	gS+h0F0GQVyZozS9iX4HJhwRHF63KpV4QtDmeD8CXbZB2wU2m2bvvy5Evq1M5hU6QZL1gnK+sVedU
-	csblz+8BuLBIkdh4ucboxPYiVXO8UO8tKzfqf91JnxnXW7QaCcX9egKT3ZJ74ZHj5LL2rtIJ11XsW
-	GlYnTwhMI2PDZDJgCWz6zRH5JWZUH7O5LbvVhXX4PBPjUdMBR0L0sOY5NwkUJ+OPiUVH3q8Rx/XSP
-	a5lhVqaJrz9VyrqI9yezALe1ju9xDOkAb+F4QF2xS5oStGYelRThW97QtniiAmfdLQDIJNUiEU0sh
-	JkmwGoAQ==;
+	bh=fRTclcQOyoE1yIED3kMV3TzEfAMgQeOZTxHIJQv6ZGc=; b=z596vIxY+xWo7cftTNiPaStJpA
+	Tfh5dW0/ARmasNbLxsANML9SEGQ1DJR54Z0ZDagS51oIXMMABaA56abozdOMX+tWrCfH4B1ny0Rel
+	f1a4v9q2lKXeK6TDhWCNPr+1hTSY+1NYI2gLp9iFfZK3wCZbp48sufXoA/i16QrolV8dy3Wx8E9X0
+	CskQ7H5YLjWVkC47/fd4XtdaVJ6F/LaccmAqwFqUGe4OB6NUHWqC4Mqz9FLew7FuUCuxVCsmc/yZK
+	vgEX/dk3kzyHwUh6O4dkBaPzWwmHa6IADxsiF/wpJ5JF/Mnxg8viZPe6EfDjdAyDRzm5EqCqUpJzR
+	+fYFd0MA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuAI-00000007KBz-2vDY;
-	Tue, 24 Nov 2026 17:18:46 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xVuCv-00000007KXS-3myG;
+	Tue, 24 Nov 2026 17:21:29 +0000
+Received: from mout.web.de ([212.227.17.12])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuAF-00000007KAL-1Ogr
+	id 1xVuCt-00000007KWm-0o6E
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:18:45 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 43DEBC2C65F;
-	Tue, 24 Nov 2026 17:18:47 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9B4E7601E1;
-	Tue, 24 Nov 2026 17:18:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8F64211E69AC2;
-	Tue, 24 Nov 2026 18:18:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795540717; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=MMIveEgZcxzjxz6ZQiv/+4zr63avK8Y8JIemnxMuPEU=;
-	b=g+54x+pLU5Kc2m40alhMaVRIENF1mgYNwpY79Wr/hIkUVfH+6KcxX042P/N7vI3ZCrXQqX
-	cYHmmzcrNhi+W0dZqmqEUgBvYr9/fuq5j+inrTYwA6DcNo09xgx1XmHjalE/+PCrBWJEyZ
-	j5DKjgo4ZSJIql7gm2ZokKvKKEEZm0HeKhDDWDX9AHr1r0fubD5FZibQ0tt9dVmRYPd9Jf
-	jFDN2GIIN+I0MPPul+TJs7I/VKkQ89JfMGb3h5uQSCmY0enkaucsyfdDToglMov2VdE3Iq
-	r+2Mu+QbFeLnZ/WHPeTkSIOMEyWaW8fraPv+FHvSYkSfVPjk5f23Gs9RqtwDng==
-From: Benjamin Robin <benjamin.robin@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yuti Amonkar <yamonkar@cadence.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Andrew Davis <afd@ti.com>,
- Vinod Koul <vkoul@kernel.org>, Chintan Vankar <c-vankar@ti.com>,
- Abhash Kumar Jha <a-kumar2@ti.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Thomas Richard <thomas.richard@bootlin.com>,
- Swapnil Jakhade <sjakhade@cadence.com>,
- Siddharth Vadapalli <s-vadapalli@ti.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH 4/4] phy: cadence-torrent: rewrite Torrent PHY driver
-Date: Tue, 24 Nov 2026 18:18:24 +0100
-Message-ID: <22sq13shQmSOkQPF53jaXw@bootlin.com>
-In-Reply-To: <20261121-artichoke-sturgeon-of-karma-a7c4e5@quoll>
-References: <20261120-phy-cadence-torrent-ng-v1-0-da2db7125cd7@bootlin.com>
- <20261120-phy-cadence-torrent-ng-v1-4-da2db7125cd7@bootlin.com>
- <20261121-artichoke-sturgeon-of-karma-a7c4e5@quoll>
+	Tue, 24 Nov 2026 17:21:28 +0000
+DKIM2-Signature: i=1; m=1; t=1795540882;
+ mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=web.de;
+ s=s29768273:rsa-sha256:SIOoIDRGtxkD6j9QaivQxd9xX4AY
+   wxpadGXiCC/0T1kJZb2817c5bacjLI1h7QcLOZL+oiz1j246odq4Hr2A4ox9a5tsPfv4vGWxcdJ
+   vN8l0VE1tY56JIJRiyo2Xk1XXFJlg6Vk2ujQMzd2MqPw0U0ThCO2m6/ldluFFn0X65j0/nFiGAv
+   TiqPorThgGOWJIB4h0eyDc7PC6Mtbv0In2qsb3tt0kmPKDHBngpDPBt5PSphv/K5jzwnued+aSC
+   SvyqhMkhKLGnPPZAjYFpIORyb/eVGcKCXuVOhKqk6x1063zXdgeJfZCYtzNhITJ8CVQau+6D7Rz
+   4j8xxrIuQm7fcg==;
+Message-Instance: m=1;
+ h=sha256:
+   ZuWOG0QlwUdKqr1K2FSMphk24t6gYKxq8pFy2cnVNgc=:
+   S3L5BugI304oP36yaUvwqJOgjxe9BuaeVibyMO5JKGA=,
+  sha512:
+   cbA1Pob1rG6wXvFF9l0Rv+/EBwsjS1mSSIvixZk2rz5MUOyhC6leP4lchzGF/KxEx5quED7tnRao3uXw01WGDg==:
+   GhB1Bn6TSNWNUElEfvAlBMHDs0JLtC0bHA95+6UfjuNOquSiLe9d1M5WrcH379Y7A4OFafwVaxXg7YAuecb+Ig==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1795540813; x=1796145613; i=markus.elfring@web.de;
+	bh=fRTclcQOyoE1yIED3kMV3TzEfAMgQeOZTxHIJQv6ZGc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:From:Subject:
+	 Cc:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=aXkA4WFD3CnEe7PUgerZjT/zRYko85iCx3LVy7dVi8EhXOAk+U5rovU1rNYlp8tH
+	 upRJvH1cgBRGtilb6Secr0yQSpL7Wrrcj61pwJAl8hh2GhJiyYJvzss1xlwdOFNRe
+	 A0tP1Dc8cHpuk22fCFOtnOevvvVjFPwLsiTjxsBq2ZVMOkIRdnH3t1e26c0Grxxbg
+	 JUf8QmgRR5M1GJyIkjZEzxo8/06FbfCPRX6JWEbhNHanoOXvr5BZlhscRfxEt13Sw
+	 PV8UvFbtWhmAcSw6ZDXBbRxCjvEUTFKkVIUMGtMLKN4PltJCHwT54OSmsENzT/T1Z
+	 UN09lW1TZed3gy7U/A==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1M6pUK-1xbySo3Mek-005Ifj; Tue, 24
+ Nov 2026 18:20:12 +0100
+Message-ID: <780975ed-825f-4f9b-8ac2-67664a7a2a2f@web.de>
+Date: Tue, 24 Nov 2026 18:19:54 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+To: linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Arnd Bergmann <arnd@arndb.de>, bui duc phuc <phucduc.bui@gmail.com>,
+ Chen-Yu Tsai <wens@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Hans de Goede <hdegoede@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Joe Damato <joe@dama.to>,
+ Julia Lawall <julia.lawall@inria.fr>, Li Youhong <liyouhong@kylinos.cn>,
+ Maxime Ripard <maxime.ripard@free-electrons.com>,
+ Paolo Abeni <pabeni@redhat.com>, Samuel Holland <samuel@sholland.org>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] net: allwinner: Use devm_clk_get_enabled() in emac_probe()
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+ Florian Fainelli <f.fainelli@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Last-TLS-Session-Version: TLSv1.3
+X-Provags-ID: V03:K1:wgTR1CtRXdlu59WOwlrECY/OtOvc3Nu7RDZ6g7iCOsSwB7ncoGY
+ KX7R818cs6AXHUvl7GjuBHzMaIxnsnzC8WZLE0bNht3mhdgl3W2Wm/7gC84paLDAuKenrpD
+ BKeeY/9/e5oIULQaAWnHwcptk0mnzmoXQ4Yn0KUpMc+JIWILuBrm1oEr+IyDmbS92hu84iH
+ C9BP/zjv06LUPDgaHOqOw==
+UI-OutboundReport: notjunk:1;M01:P0:xywDQUE8IVI=;8eSaYlx3y/FS1U5kyndmYRiQkM8 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_091844_117628_C8E64D9F 
-X-CRM114-Status: GOOD (  30.13  )
+X-CRM114-CacheID: sfid-20261124_092127_601846_CFE879D5 
+X-CRM114-Status: GOOD (  11.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,92 +108,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Saturday, November 21, 2026 at 5:16=E2=80=AFPM, Krzysztof Kozlowski wrot=
-e:
-> On Fri, Nov 20, 2026 at 01:55:52PM +0100, Benjamin Robin wrote:
-> > The Cadence Torrent PHY (sd0801) is a multi-protocol SerDes used in
-> > several SoCs, among them the Texas Instruments J72xx family. Its
-> > programming depends on many parameters: the selected protocol (each
-> > associated PLL has to be set to a different frequency), the DisplayPort
-> > bit rate, the reference clock frequency, whether spread-spectrum
-> > clocking (SSC) is enabled, the number of lanes, and the PHY revision
-> > and technology (process node).
-> >=20
-> > The current phy-cadence-torrent driver hard-codes, for every supported
-> > configuration, the set of register values to program. Because this
-> > configuration space is large, adding a new board or a new combination
-> > of standards requires duplicating dozens of opaque register values,
-> > which is inflexible and hard to maintain.
-> >=20
-> > This new driver version computes the register values instead:
-> >=20
-> >   - registers that depend on the reference clock frequency or on a PLL
-> >     frequency are computed at run time, from the reference clock
-> >     obtained through the clock framework and from the PLL frequency
-> >     derived from the selected standard;
-> >   - the other registers, which only depend on the standard type, the
-> >     PHY revision and the technology, are handled by one function per
-> >     register, using an internal table selected through a
-> >     standard/revision/technology key.
-> >=20
-> > The PHY revision and technology are detected automatically from the
-> > PHY identification registers, and the DisplayPort link initialization
-> > and rate reconfiguration have been rewritten.
-> >=20
-> > Compared with the existing driver, this rewrite provides:
->=20
-> 10k lines patch!
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Tue, 24 Nov 2026 17:56:11 +0100
 
-I was expecting this kind of feedback, which is why the cover letter says:
+* Reuse existing functionality from devm_clk_get_enabled() instead of
+  keeping duplicate source code.
 
-  Because this is a complete rewrite, the diff is large and not well
-  suited to a line-by-line review. The rewritten driver can be fetched
-  from the phy-cadence-torrent branch at https://github.com/benjarobin/linux
+* Delete a clk_disable_unprepare() call on an error handling path
+  and in the implementation of the function =E2=80=9Cemac_remove=E2=80=9D.
 
-To give more context: the new driver was written from scratch, in a new
-empty file, although a very small part of the old driver was copied over.
-I initially considered adding the new driver to staging, but after internal
-discussion we decided against it.
+* Omit the label =E2=80=9Cout_clk_disable_unprepare=E2=80=9D.
 
->=20
-> No, instead improve the driver instead of doing bunch of significant
-> changes like:
->=20
-> > -#define MAX_NUM_LANES		4
-> > +#define MAX_NUM_LANES		8
+This issue was detected by using the Coccinelle software.
 
-Regarding incremental changes: I could try to build a series of smaller
-steps from the old driver towards the new one. That comes at an
-additional "cost", since intermediate patches would fix functions or
-how there are called, that a later patch then removes or replaces.
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/net/ethernet/allwinner/sun4i-emac.c | 13 ++-----------
+ 1 file changed, 2 insertions(+), 11 deletions(-)
 
-However, even with such a series, the core transformation remains: one
-patch replacing all the tables with per-register functions computing the
-values. That patch alone removes roughly 3k lines and adds 2.5k lines,
-which cannot really be split further.
-
-So, I am going to try to create an incremental series: many "small" patches
-converging towards the new implementation, with one unavoidable large patch.
-
-With this additional context, could you confirm whether you would
-prefer the series split into smaller patches?
-
->=20
-> This is absolutely unreviewable.
-
-
+diff --git a/drivers/net/ethernet/allwinner/sun4i-emac.c b/drivers/net/eth=
+ernet/allwinner/sun4i-emac.c
+index d7ee42b2c197..c075356cf6cc 100644
+=2D-- a/drivers/net/ethernet/allwinner/sun4i-emac.c
++++ b/drivers/net/ethernet/allwinner/sun4i-emac.c
+@@ -1001,22 +1001,16 @@ static int emac_probe(struct platform_device *pdev=
+)
+ 	if (emac_configure_dma(db))
+ 		netdev_info(ndev, "configure dma failed. disable dma.\n");
+=20
+-	db->clk =3D devm_clk_get(&pdev->dev, NULL);
++	db->clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(db->clk)) {
+ 		ret =3D PTR_ERR(db->clk);
+ 		goto out_dispose_mapping;
+ 	}
+=20
+-	ret =3D clk_prepare_enable(db->clk);
+-	if (ret) {
+-		dev_err(&pdev->dev, "Error couldn't enable clock (%d)\n", ret);
+-		goto out_dispose_mapping;
+-	}
+-
+ 	ret =3D sunxi_sram_claim(&pdev->dev);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "Error couldn't map SRAM to device\n");
+-		goto out_clk_disable_unprepare;
++		goto out_dispose_mapping;
+ 	}
+=20
+ 	db->phy_node =3D of_parse_phandle(np, "phy-handle", 0);
+@@ -1065,8 +1059,6 @@ static int emac_probe(struct platform_device *pdev)
+ out_release_sram:
+ 	of_node_put(db->phy_node);
+ 	sunxi_sram_release(&pdev->dev);
+-out_clk_disable_unprepare:
+-	clk_disable_unprepare(db->clk);
+ out_dispose_mapping:
+ 	irq_dispose_mapping(ndev->irq);
+ 	dma_release_channel(db->rx_chan);
+@@ -1093,7 +1085,6 @@ static void emac_remove(struct platform_device *pdev=
+)
+ 	unregister_netdev(ndev);
+ 	of_node_put(db->phy_node);
+ 	sunxi_sram_release(&pdev->dev);
+-	clk_disable_unprepare(db->clk);
+ 	irq_dispose_mapping(ndev->irq);
+ 	iounmap(db->membase);
+ 	free_netdev(ndev);
 =2D-=20
-Benjamin Robin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
+2.56.1
 
 
