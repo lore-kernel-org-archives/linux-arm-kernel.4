@@ -2,10 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77086606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 06:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7D4606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 06:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=07zyPJuH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qn04HprF;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=bZAnhFj9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -13,103 +14,94 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EC1SwcRnB3qHtnUS6OrmTOLXoja38qTpuQD344gSjAk=; b=07zyPJuHEl+jJQha8rnGstV0gP
-	DPKRYvAnrLA8pKyoGxJzoHPde1+g3Cpx8xH8WCzD43wre6xLs8EYfOCechgImaJqZFkuSjG/FB9kU
-	1mXcOYqH5BwV7qKDyi/cGQDEUes57cttoKj4DMOa/P3ogA7Z+jBYmnKZiAWqVQFvgK9c/nf8wkukY
-	W8Pu3jWwejdQs22vUPf3hAxe+RpcswO7Og7FjzBb36LXbzrGKdUAtfMTu73V0AvQildmWYKc/dcpj
-	ZHFi/jPlGTmmnoTmDjc9cbBeTyt4GTra7D5m1HQrHLq917JYDghAPajCUYC5ukWg30a5vZ9vdYxkr
-	kGq3M8Ew==;
+	bh=k13cl8AnOgXOYxh9rMCZd+VqMKK57TsIjB6ASgYtOw4=; b=qn04HprFTl5jx6Sp9znrXs8NLv
+	qwiB0xEhbgKa2QjWHqY8p5s1uRc6QF1dx5TGNB7T7g3GawmTHAUdJH4D9pt0K2c7JpZlGkE/xQaIh
+	pOVMQi2xyc1wFYQq0d9Tq2PSbNGtPO6ssemaHEChtbcLQF/g2hIX3o1TNYnWjr/cZup31djVCiOpU
+	5WQ43gWTOINYkW859v949UlS+SHFd5/uCPU9d6n2VTE7en3yxEe0juxCZXslPO7zWxSGWIOkrfB3Y
+	gb51VOOVvuB6d61/2DuFWkL7us9hqhXAawbJOHMhEHzZfK3TpwYqDPjpkSLUQLfDltFgw7PKr618O
+	DyF//BHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVjqT-00000005dwg-2hkF;
-	Tue, 24 Nov 2026 06:17:37 +0000
-Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1xVjz6-00000005eUk-19BS;
+	Tue, 24 Nov 2026 06:26:33 +0000
+Received: from mail-dy1-x132f.google.com ([2607:f8b0:4864:20::132f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVjqQ-00000005dwA-24M6
+	id 1xVjz2-00000005eU3-19pO
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 06:17:36 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iDzo75pPBOQVifFr52WvuspjAFBYKZh+IYyjppbs6+DVjg45Y7B6BenQkupjeYHtQybXFWtP5sOLS0azAd9zFfEsNHn11N1bnXYDhHwnNcCMZ91KWJK6p5/dRduXWzZjc+AFkyy4q8taWXlURWvS9uhgIWHQtgIAZ54L2zihq1H1c1BpwN/bqh1C/aGxdERohU8qisEo3NazkuCSDbbwC4/JKUIeCUyiLkzItSvB62yBo2GAHP4spysRoaKOPY2zrVevty6Aah74T5mrW2CahvJPDHmPxm39pjkaB+saBedLpnw/TfDR61oprAjtuI8r/2X0AT7Yn60BBFDoBbb4lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EC1SwcRnB3qHtnUS6OrmTOLXoja38qTpuQD344gSjAk=;
- b=dIR2zvYFokA51Vu6JdWRNFpvT+8cYdsFP1aztlDIYOIeEPrAjuFzdao5hQYqYsi4+DlWQyONhTRs36GY4JXGz/U3texcYwPzhgGoTkH+tI08a/t75drHEhuAE3M8R7LgTOMzspuEwam+z5PtZLHpOzMK51mbMqKkfzJfFCfKZ5+eh5Lvkbfn4T9MZwrRsJhh+CTyAPpx6rY+Fz51hXRaE+DDEObAJkXaQkZpzKK4S2Rt5KULooi9pMFguUgITjyct3g18Vs3IsG+23Jhd7LZa9gZ0xaGinNdwOZhZElkfpAPyZ+gIGXl2n8gweQgg8DFfVMGRwwKn+skDiSBpHihFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from OS7PR01CA0045.jpnprd01.prod.outlook.com (2603:1096:604:257::20)
- by PUZPR06MB6171.apcprd06.prod.outlook.com (2603:1096:301:11e::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
- 2026 06:17:22 +0000
-Received: from OSA0EPF000000C9.apcprd02.prod.outlook.com
- (2603:1096:604:257:cafe::15) by OS7PR01CA0045.outlook.office365.com
- (2603:1096:604:257::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
- 24 Nov 2026 06:17:22 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C9.mail.protection.outlook.com (10.167.240.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 06:17:22 +0000
-Received: from cix (unknown [172.16.64.42])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 30991427EFD7;
-	Tue, 24 Nov 2026 14:17:21 +0800 (CST)
-Date: Tue, 24 Nov 2026 14:17:20 +0800
-From: Cunyuan Liu <cunyuan.liu@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: boris.brezillon@collabora.com, steven.price@arm.com,
-	liviu.dudau@arm.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, gary.yang@cixtech.com, fugang.duan@cixtech.com,
-	daniel.almeida@collabora.com, aliceryhl@google.com,
-	p.zabel@pengutronix.de, daniel@fooishbar.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	robin.wang@cixtech.com
-Subject: Re: [PATCH v3 3/7] dt-bindings: gpu: arm,mali-valhall-csf: Add
- system-cache policies
-Message-ID: <awUr8JIE8GTgxwL4@cix>
-References: <20261119123850.2994625-1-cunyuan.liu@cixtech.com>
- <20261119123850.2994625-4-cunyuan.liu@cixtech.com>
- <20261122-greedy-cuddly-hog-06c4ac@quoll>
+	Tue, 24 Nov 2026 06:26:29 +0000
+Received: by mail-dy1-x132f.google.com with SMTP id 5a478bee46e88-36a315ed211so5196778eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 22:26:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795501587; x=1796106387; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=k13cl8AnOgXOYxh9rMCZd+VqMKK57TsIjB6ASgYtOw4=;
+        b=bZAnhFj9D2naQZFjNvuE6o0Mimt4M4gbKcArGMcn/l7ssqJcSt0ELPdy/PIZIz9Dmv
+         qNax6T07Q3W6Kb8BIa9tmcrOAB92R46SD8JBDSCl79XpOsaXzUHYwq2MJpx5Z2wk9QqJ
+         IEw5RJuokDWQwFsGlBSKnEhiztnwm4dPwTee7n6hEsw4x4gg3Q241zkxj7WGcaIDlG8/
+         eSTDUrPvyEaypnKR9LkU0j8IK2gwRa+Z6fbpKnhJ+QEtUdurmGHTgVnvVxwVZWtFeQ4g
+         Q4mnbLCHMetWtVacgr6fZbKU9aG5e6ig0cnovZB61t72qybTrwgr8YIvFupKdyBwcLQW
+         Sjvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795501587; x=1796106387;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=k13cl8AnOgXOYxh9rMCZd+VqMKK57TsIjB6ASgYtOw4=;
+        b=pbANvCfF4pJd25sLcFz9Pm6rhKNyib/8/m0ZluSY5NaK4GXsfRkw8Q5tkwAHmsz0Z4
+         gqr9VotKmnK0CDJD9rfMO5odiBZjfRfYKFzev9xg29YfQI99on/JMQn5QJTtQjfJE3gH
+         Fp+nDcds1Ha8pWpraXQ+17pkNvGKx01la/ZYIDMHMTR5AmXR1tTAL1GEk4GMlvzkIHyJ
+         aLdC02zVxIDKE7CMfVv4E5zKIPofPWm28nHhb4D7/zkj2ZEsZcbd9epcVsEFEUpaXite
+         DIWo5QoqJ0Dk746wn/37xctlFIVqmea2gvQIy6Zj/NCTjSwz1Uw69LLw51alp8ar39IN
+         ZcfA==
+X-Forwarded-Encrypted: i=1; AL+hErHi189ZLyctRpboH4uLmijH7XkKIfDdt8r34pNZcnafTKVbgoaBbrmW3ktuNCHquoG6RVG4uwlcRWAvBWTUXlSF@lists.infradead.org
+X-Gm-Message-State: APuU4Z9QfyhfTg16wofE4Q7ZMCTgHnWubGKsF5FyECEwIvrMPY9Etf2s
+	BZioXwZwja1ITagNP4THXeezUbPUMsbyD7nmwF+Bzjfwame12+G3wpu9
+X-Gm-Gg: AZFdTZehXRjuXjlWVNfQrbGNOMNZaJT2PY3utpFhunA+TvSZ6TOc7iIz4k7Gs7e7wBa
+	8zfLhfQy2MAHWrPQAZAXS//7L+o+TTMirBatu0z/3PZHyouMFZVz8XS+3b9ASJ7Uc6hOC+f8MkR
+	RAf2J/+qQ4SfO1DsZpfn936vaBjFtx+398awhSc/bl6TUQK78pNjwIloCGfYtbeAllrBi4CByYE
+	95obNzStI1UlDsD4HecVaJy/Dk1CnQbl06GGV847XXB7MKzvoSjuhCV9wU5kOMK+wipDetaj8EY
+	y9xXm/6Xqi1RvWx4gbhtnRoFJy0tUa2+svDQg3bsIhpDoaRdm9p2NV8Wb1YgdRl5KrVtdQFmRCg
+	OJL8matdnqmE4r4z+ShTc6oUzqU/y6+71VIOPHkNyxz5Kx8XQT7vGz83HsR8HGALAKY3GghFvUz
+	StYRaHg29tZAnoU3xRJZxIg9gojVjjpoX/Miyyr2+lWKPiOC1MAvnzc2rAMsfmc8glzLT4nL0uQ
+	u7S/mApji8FJznwCibkW8E8luEdUSIxSWy+4BMDLJw4o3kG6MbTXs0btEoRYDHmvTlA+d3bIkAT
+	LyPYQb9O4lTewaxZfSqgKjIfKnDmRIv3YYX5UFyVFNPQmuC9OVns4Nu+2nytBJbtaeZfygeZ
+X-Received: by 2002:a05:693c:880c:20b0:386:ab85:a011 with SMTP id 5a478bee46e88-386ab85a718mr6427409eec.27.1795501586545;
+        Mon, 23 Nov 2026 22:26:26 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:ee3b:b892:771b:3bc7])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385646633d0sm72739389eec.3.2026.11.23.22.26.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 22:26:25 -0800 (PST)
+Date: Mon, 23 Nov 2026 22:26:22 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Alexander Letuchiy <asalde.le1@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
+	Mattijs Korpershoek <mkorpershoek@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org, 
+	linux-input@vger.kernel.org, phone-devel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v3 4/7] dt-bindings: input: mediatek,mt6779-keypad: Add
+ compatible for MT6895
+Message-ID: <awUuAzGu3ZoADKyB@google.com>
+References: <20261123-initial-mt6895-v3-0-95c46597e63d@gmail.com>
+ <20261123-initial-mt6895-v3-4-95c46597e63d@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261122-greedy-cuddly-hog-06c4ac@quoll>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C9:EE_|PUZPR06MB6171:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3589386-f308-4dd4-a37c-08df49f299e2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|82310400026|23010399003|36860700016|261009223027099003|6133799003|18002099003|22082099003|3023799007|261028144727099003|261022105027099003|261102123227099003|261026140227099003|261021121427099003|10067099003|56012099006|4143699003;
-X-Microsoft-Antispam-Message-Info: Y+leva9Kz6CeEVTixEYppxAgAl6EAsvL/h3l8UlbmR/H+yKOktYkKCdbOK8TDoonWz9VMzhJCP+azL94x2MK5X52UAFg+bCTQ4ioRazhtbwqRQSF/zKzpxhXImEv8kgP3n6MDqgj0B/I6oGTxHY9bQYbsuni34l1ytBiOHpHGiLhmbWiM0LV/yexOw49AEoKpNwWGY/o76nkfU7O9MY+JB48ssdU+hYcR4cstIR6q+saNBWlgdvhYPt1vuV2T2zY/wqecpM1Icjk+U5dHNZxq9Xcl1hubJRmrGN2HvCsS1LQW1brs6LIjiV7HUz4XKc838MbB+CJcAotfqqoGVfgDq92QjY0wukZgRcdAqHjW5xlIYt5Zw7D31/h34YVgwQV6wLEaWHmZkKylMbIkmq7HvAtgTnEHAPE5I5GRMCtYfFUTS3yD39Pmkf23zMMzux6yrevlwS9Le0ctLz7PwDn85MbAdlxO6mDeX+fYeM9OFkm0RYiF4ja8hxNE18IuBcQt5mzOPOoHW++yyb2MIZ+ODN1jjIcOIfnsqqkzPXcVFHJf6T+OiFZOAk5N0xbygat1tUQLMzBMtWpCIKAD+xpYN1Bskx09aV5T6/3hD44FCumXsG0w6ZoVKfft2VPhuRvUnTWlpctMQ8ypyWdKbcwp1id+oGbLQY4aNsy2OiTRSNIc4G9g4Bchb+CD6OOnvMxyR40HYH7h4axMRFm+QZymg==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(82310400026)(23010399003)(36860700016)(261009223027099003)(6133799003)(18002099003)(22082099003)(3023799007)(261028144727099003)(261022105027099003)(261102123227099003)(261026140227099003)(261021121427099003)(10067099003)(56012099006)(4143699003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: IL0Gfrf+Jsz2oDqhODFYXdUSRsoTBXMvreGJrUUVuKju4Zmrz7lwQqtgEE3ERM1upQmhLGn+lYmtc04i7I86TsMr8WgpHM8E4/FHXlqL691MuqQ0m1d3m/zI933LTm/npPv/k0JgGU5ZnRsYZ7FJ8wGwDJRNEOTKNC97V4m/wu9xIzMw0oU9QhJxlpuqJcMiK1Poc1Li9MzbSKcTnq4feN7hNyDs1/1ri1LdqgMx6VpkFumtCfdy+9MxlcjXbUxMUespsnPP42xFEWoh+RogLJU6i5lykG3LOUTC8Dy6zDgTfKdOReyqX3tM1chjAbubr5H53D9WfOjk5TX+hEQyOX19ndYoRP9fYaickeHh/r0rXZbkG60itbtujgy3OK9tZJPgj81NQq4KikfrNdW6gqd2fb8x0OHNlsW47ZCIRzWvpcoQNXlJ/PcxB+lw7A7o
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 06:17:22.0515
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3589386-f308-4dd4-a37c-08df49f299e2
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000C9.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB6171
+In-Reply-To: <20261123-initial-mt6895-v3-4-95c46597e63d@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_221734_536812_64CD3D18 
-X-CRM114-Status: GOOD (  19.42  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261123_222628_310374_A5A0B41C 
+X-CRM114-Status: GOOD (  11.76  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,72 +112,26 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Krzysztof,
-
-On 2026-11-22 17:58:56 +0100, Krzysztof Kozlowski wrote:
-> On Thu, Nov 19, 2026 at 08:38:46PM +0800, Cunyuan Liu wrote:
-> > Describe system-cache allocation policies for Mali GPUs with SYSC_ALLOC
-> > registers. The policy depends on how the GPU is integrated with the rest
-> > of the system and belongs in DT rather than a platform table in the driver.
+On Mon, Nov 23, 2026 at 02:18:37PM +0300, Alexander Letuchiy wrote:
+> Add a compatible string for the keypad of the MediaTek MT6895 (Dimensity
+> 8000/8100) SoC. Its registers are the same as on MT6779, so it works
+> with the existing driver through the mediatek,mt6779-keypad fallback.
 > 
-> Explain why.
-> 
-> 
-> > [...]
-> > +  arm,sysc-alloc:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +    minItems: 1
-> > +    maxItems: 32
-> > +    items:
-> > +      items:
-> > +        - description: GPU internal source ID
-> > +          minimum: 0
-> > +          maximum: 31
-> > +        - description: Read allocation policy
-> > +          enum: [0, 2, 3, 4, 5]
-> > +        - description: Write allocation policy
-> > +          enum: [0, 2, 3, 4, 5]
-> > +    description:
-> > +      System-cache allocation policies for GPU architecture 11.0.3 and later.
-> > +      Each entry contains a source ID, a read policy and a write policy.
-> > +      Source IDs must be unique. Reserved source IDs and access directions
-> > +      not supported by the GPU must use zero policies. Policy values are
-> > +      0 for L2 allocation, 2 for never allocate, 3 for always allocate,
-> > +      4 for partial allocation and 5 for L2 partial allocation. When present,
-> > +      all source policies start at zero and the listed entries override them.
-> > +      Omitted sources therefore use L2 allocation. If absent, the register
-> > +      defaults are preserved.
-> 
-> Looks like integration specific, so implied by the compatible.
->
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Reviewed-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
 
-SYSC_ALLOC is a standard Mali GPU feature (architecture 11.0.3 and
-later), not a Sky1-specific register, so other SoCs integrating these
-GPUs may also need different allocation policies depending on their
-system cache integration.
+Applied, thank you.
 
-On CIX Sky1, devices on the MMHUB bus (such as the display controller)
-cannot access the system-level cache. Buffers shared between the GPU and
-MMHUB devices therefore require specific SYSC_ALLOC policies, otherwise
-the GPU display output is corrupted.
-
-In v2, these policies were in the driver via panthor_soc_data, similar
-to the MediaTek mt8196 asn_hash table. I moved them to DT in v3 and
-split them into this patch following Liviu's and Daniel's review on v2
-so we could discuss the representation here.
-
-Krzysztof, Liviu, Daniel: should I drop arm,sysc-alloc from DT and
-derive the policies from "cix,sky1-mali" in the driver, or keep a
-DT property?
-
-
-Best regards,
-Cunyuan
+-- 
+Dmitry
 
