@@ -2,60 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9514C606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2478E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:43:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AudTq4vr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RJrJFn1+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kF0btHY5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eoMhw/tW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UGhK0QrMPxXRtKp897cYCLvU5E9xWo/VhywbzffDG+s=; b=AudTq4vrR+UuY5
-	RrFFSo9gRKOsXjBS4QaxNtgepBoErXiVJ02GRk5yUhiNV6fUbNq+iF78sNIJQzSMzyGtQ8RIPnUGE
-	Hx9hIsI4YjfB0T6qW+zF3OEjqVcs+Mi2bd6k/odR4rt+63slSH+eebgAt/B67MxH4yhVW936StILC
-	WDjZOSxbNHw47bozTiHBGJEMhQzbEFDgnU/rj6o8Cfp7r+MYjxV4VDBP6M24dUWPd6V/EA6yZvXVf
-	ZB+yiSpBoXUgTzEAUtlMCDBbjgylZ1lhxziij4ZVjUPWOW6yxkjfWQaMZ+om9eLyoeVYEm/dIJNHE
-	3M2YdiXM65ogGAsynvTg==;
+	List-Owner; bh=mfpjH9KpwxPrA+Oi91DwWUdIC56DE2cYNwDMsjTlZiI=; b=kF0btHY5/s8anp
+	35BOqXQtdeRv/XTXrkAFu06tHZbj25RlQOSuc1GDdqC6z/yYXU3Qq5nVFdAoxaciGa9sRQ/vQtaO2
+	FLC1INBJsXqow2uXAVcSsFrlc4jh9PsHZcYpoyF/LovfEEKicJGS2RRssZ92h/QN670OGtbBQ45Pe
+	Uv7qmc0DwubBqgMQZSqBPRw6UAhrgpZqG7EKmVnVmz4pc0dJzQej6hNHD7qY48X4bugniMdXmZDG7
+	CnFZx6AtKj1zCK2ufCmtL80C3mQEyySjzaYtHUHNPJEzekvPsYqZ5r05PkpvqGrV4pJlYAdBCvH5w
+	j8Xx4NAdTVAtT1iocdNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsfc-00000006vqb-3uwh;
-	Tue, 24 Nov 2026 15:43:00 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVsfz-00000006w3B-0qbD;
+	Tue, 24 Nov 2026 15:43:23 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsfR-00000006vkh-2AVJ;
-	Tue, 24 Nov 2026 15:42:49 +0000
+	id 1xVsfY-00000006vn1-2EDf;
+	Tue, 24 Nov 2026 15:42:56 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E27E745B6D;
-	Tue, 24 Nov 2026 15:42:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B6C21F000CF;
-	Tue, 24 Nov 2026 15:42:45 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E445561179;
+	Tue, 24 Nov 2026 15:42:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70BB71F000F4;
+	Tue, 24 Nov 2026 15:42:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795534968;
-	bh=UGhK0QrMPxXRtKp897cYCLvU5E9xWo/VhywbzffDG+s=;
+	s=k20260515; t=1795534975;
+	bh=mfpjH9KpwxPrA+Oi91DwWUdIC56DE2cYNwDMsjTlZiI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=RJrJFn1+wsU7egRz4Z9X+g5EGIWLaISk6BJUuTwrVvFQIjWrQDowVAkWPbX3MpfpJ
-	 m3Nul+MRsN0uhDQeZhJ1E2XU97wQwiIJcSJoOf/9bsMKaaUI8t9wJeBGkXixzKyZuu
-	 15rHeLpR+K9C72QiTGb+AT5Pk61TUgqD/Fi56MmKmoXzMd7x/uCG2VaOUAMKbnj3/M
-	 AH17Y4yOW8Qubssr2sZs0vQsYaDdIp3NursiIFY6Smgb1XD4dmaJFu7xKsd7mhv3nw
-	 bSJseYYylvAtXv6XxSPrzlEfmmItLJQSl6gpVY4E5GVuLTNfJRhTX3lWQEn1w5fb7O
-	 9C+datB35uDGg==
-Message-ID: <35262943-a161-4e31-b213-5c3d51b81f90@kernel.org>
-Date: Tue, 24 Nov 2026 16:42:44 +0100
+	b=eoMhw/tWIbiYIixQOPA5r2xHZHp/IQ6bwuX/WZr0Nss6gJjf17M+5Htj30xW1qizh
+	 kpgPY/7nKMVpanaEXhwfRGyL78b1lF5uY8Y6lZHt3gHYgcqJvx/rNOk3+IRzMsv/pu
+	 VA+9j9ICtrqgtJztVNG3pcdjxoqXPoc3ANt0m08a6OE1KoV632Q+lhumNVuahHckp9
+	 ATwne40LY2eg/tYTL4Ef46i7intOiTSUEKT7iX1ejf9P0A8Ou8zjJIxcFtSQaNZa/P
+	 rFcjwZCZO8ng7c7mi22S1hnFMKl7x916sX7C5+S3afR05qTZ2hKgHXYTxoU/hU1Ago
+	 dlT8/Eal4W5IQ==
+Message-ID: <9cfa6ce8-55cb-4b3d-9035-efc5de44adaf@kernel.org>
+Date: Tue, 24 Nov 2026 16:42:51 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: pwm: rockchip: add RK3506 and RK3576 PWM
-To: ZhuXiangyu <1194781887@qq.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20261121065936.1125919-1-1194781887@qq.com>
- <tencent_85AFCE164FAAD1CCAB95DC7CD804CA9BB309@qq.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: rockchip,rk3506-cru: Add SAI
+ MCLK output gate IDs
+To: Xiangyu Zhu <1194781887@qq.com>, Heiko Stuebner <heiko@sntech.de>,
+ Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1795363509.git.1194781887@qq.com>
+ <tencent_93FC4A7191B1BAC63C4DE9C2674660AA7905@qq.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,7 +103,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <tencent_85AFCE164FAAD1CCAB95DC7CD804CA9BB309@qq.com>
+In-Reply-To: <tencent_93FC4A7191B1BAC63C4DE9C2674660AA7905@qq.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -122,15 +124,14 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 21/11/2026 07:59, ZhuXiangyu wrote:
-> Document the PWM v4 controllers found on RK3506 and RK3576. They use
-> the pwm/pclk clocks and may additionally provide the osc and rc
-> clocks used by the extended features.
+On 22/11/2026 17:24, Xiangyu Zhu wrote:
+> Add clock IDs for the four SAI MCLK output-to-IO gates of the RK3506.
+> SAI0 and SAI1 are controlled by bits in the PMU GRF, SAI2 and SAI3 by
+> bits in the system GRF.
 > 
-> Signed-off-by: ZhuXiangyu <1194781887@qq.com>
+> Signed-off-by: Xiangyu Zhu <1194781887@qq.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-rockchip.yaml | 54 +++++++++++++++----
->  1 file changed, 45 insertions(+), 9 deletions(-)
+>  include/dt-bindings/clock/rockchip,rk3506-cru.h | 4 ++++
 
 I will mark everything you as changes requested. This is all half
 broken, b4 review cannot even fetch for review.
