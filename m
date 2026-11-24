@@ -2,119 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01917606A685
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:36:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFC2606A69E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uds9g57A;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=lpUFG6fY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HQYwIwmV;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=CGmKgua4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=PjbL4Wa8IiosODxBRnpJBDdjeGxS7zFTOO9eh2kHpB8=; b=uds9g57AMDpHc2YUVvW1GOgi6w
-	PaiLadk4Nopbv5KsgCwHWYpB15NzXXio0Y03NOrhMGiSWIw2XqMvoo9kItq0hKU16FJcyhVoKlzKX
-	UKxEGy6Vfl714+b6lyx2S8eMBNJxviG1aYKhGOYZZDs73xQ+PXUH0/vndAhxjWZ22shrcRJPgPw9Y
-	FEsrctN03284E+3osjwzbqeBPqNryS1JJki5RjJXDyKMtLSgD+4P9ldbmnkkyCktfyDDGUc7N9+bV
-	Zk4aU3h9iNbDuoz2Dutdy9UKhwDvoJeCzOnpEllNJgx55jE0lhvdRp1h9bOm7JJeJXsisSRZ9W4xV
-	70+NMk5Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Fg3L3deHSkuexlMXiL0IKxngCsihbg1MRnR96egwqJQ=; b=HQYwIwmV6ctkiD
+	+ovUPsr/D8Lavsra0SFSjqJ5dMRO/XmWMvaubGaPnkVG4fPXLu4E0GntWenB5uI5T3ByqnGQq0U7m
+	DHmqF7sMhTB9jGcRZPV6RzHWFYZLuTmVQjzDnGB1pqHRLH9P6Q12l0NCfCpNef+2MxsluuLRqWaWu
+	j6vMzb0p9kZxldeQqy5wNwnOreaKDFd9DrZ9+7HG39a81/0CSlIYC6Pv042/UtHtHSiRQAa+4ZvVw
+	XHFv2l621YAV3ZCqJr0ArR0JiPfC2PevAzlcu+k5OVyb1AOg38BIoo5sfiIL00J537vQn8cfbloF5
+	QLrytSWCXVkgOPyesTNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyBH-00000007srF-1ri8;
-	Tue, 24 Nov 2026 21:36:03 +0000
-Received: from mail-qv1-xf2d.google.com ([2607:f8b0:4864:20::f2d])
+	id 1xVyDc-00000007t8O-1A8W;
+	Tue, 24 Nov 2026 21:38:28 +0000
+Received: from mail-yw1-x1135.google.com ([2607:f8b0:4864:20::1135])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyBD-00000007spy-2PYO
+	id 1xVyCo-00000007t3k-3Dg8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:36:01 +0000
-Received: by mail-qv1-xf2d.google.com with SMTP id 6a1803df08f44-921318b2eb8so65337236d6.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:35:59 -0800 (PST)
+	Tue, 24 Nov 2026 21:38:27 +0000
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-8b4d6981c67so32460127b3.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:37:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795556257; cv=none;
+        d=google.com; s=arc-20260327;
+        b=n7F4nYJP/eWNsMY2EI1zFZcVgQT2aQNkx5QiJrvMznnUx+bGm6VDNhsEKp2j3p5r00
+         hm/i3zv1DZhPT2gs9b2ZFKJE5INkbhJjV15r6CseRnPmzZlinfdMbZt482fVYB0E+sdb
+         RZ5xwz/WJue9KIOpMTl/sR6TcrAwFApidkPbNcVe5bj0sao/BPVRlebscBxzLE+yt74E
+         2yU2TETHhGqoBk7kr/hZ1FyzeyKj2VWHo5ovzmnijtktfGphQwtLG1+pX2fxadTDZP5e
+         G9r5f3IpE9bIBtxB5bx4kaOh2WmbsGj/B80vUMlpc5Z+zYqaqiESGCx600jYHJ4sjSFi
+         Q7+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Fg3L3deHSkuexlMXiL0IKxngCsihbg1MRnR96egwqJQ=;
+        fh=at8q51vn9T0kFWh+5cKJ9WbDjWcl1Oc3Ep8inuEtBoE=;
+        b=ry03heJaoF69aAxbrrf9uDR8gSyyIovPrh5y8wanPTjrw1Du1q7fDT3DnCUVnJaTIo
+         NcdGCVKDP6TgGd4T3ZQTJDXPlFqhkXGkWfehYvJqeF+Kiol3UnB4svl7gATZd0V6Hc/h
+         1Ir4NOgZ3UlCEd/dvajw88ew38vexfTmgQGBBLCHc8jrfZbLA0PGRHRAwIt973PSxO33
+         yHw2pTTFnmT5NqZvBTU4OE0ww0w4/o89LxSw519utAcVzumeSxG5yiZgXcPxiNf2RHbt
+         LT7gtB4BVvKPEFjqR1U5hEBLxPufPBUaG8xu6fY2gD9lg5ouANbU5R3KsjF1Zwrll10f
+         a4Lw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795556158; x=1796160958; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+        d=googlemail.com; s=20260707; t=1795556257; x=1796161057; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=PjbL4Wa8IiosODxBRnpJBDdjeGxS7zFTOO9eh2kHpB8=;
-        b=lpUFG6fYGPR04rc/mX3v+sYiJNax2ih6UaoVwcqdLOSF2e+f/52TMLX4mBES8jBc/6
-         ec650jIUNeGjUj8pMFA99J0nZCVS3vvBsbp9IW7FwtjN/dUkDVZF7Eb92o+mWmBCTaca
-         mG3mDNKH3FKXwgWPuWoEfZMpz9wkxJNCRLLrQCWUpooMXrVPGpAKh0vrhgR/jWuWjVeR
-         0gFogE/PMeMF3SWTFCH5Px86OSx5lKPxE2mnpk6gmVDFkbWkQ2mg5VQjo78W94pFDnaX
-         VdC3PBs+NONVxhwGpLlboYPYW/YidRJB4BDDJYX5n6N9xsPITUuOFH4Ij2iMwCVmb6tl
-         XADw==
+        bh=Fg3L3deHSkuexlMXiL0IKxngCsihbg1MRnR96egwqJQ=;
+        b=CGmKgua4FbjSBNNRh13wFz0G6q9czD5S2SuRzLHI2o6bZ/IrOsRRzHyRzqSBbbT0/I
+         uZchhsx5fPTGmaSb3IFOWBsNSSIw6YmZToEgtWnonMmwNSakzGFHtzrjhvwg9KzwoL9H
+         QzMDLM4Ow+PX6jrLG50u7upGFy7TY89HAeS8UK2wTEnxOBAxnmv2Ka3GB3nhipJrf6J2
+         +g082BK1vLXsM8p0b2EICZz6ZOK194vU3GefuJ2z8JSm7I67mer0uktM074iTAefalJY
+         4B0udoYr9KsusssldfpjwV0faUxqAL2FX618jZTswK0zF9xalpImrUpGSm0C9lMIUIX2
+         Ygxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795556158; x=1796160958;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20260707; t=1795556257; x=1796161057;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=PjbL4Wa8IiosODxBRnpJBDdjeGxS7zFTOO9eh2kHpB8=;
-        b=lo5h5IvpPQq1hHFC4w3ZQ3G/HTnqoy0Vo/8c+l26FKx0fwocEEwp3d+IhzZoSdKQ79
-         5R3pF+6Qq8VYk/5tGit5BkCIl8ysbvGotW1m5c8FWOzYN90fWXoxyOxe4rPJa7XgMDfS
-         RtrZey+FfZ2GiK9GO7BmHTpaLJeqCBPmKPJe8dDsVDwUr0b/k4uAYxMEmJC8uiiaG1wK
-         vWFDFHW/tHbcOIX3UaU0YAnT4SI9G/XwhfcL06hi/ZRsS+r6G6GKs/+xZPFGTrlshDNE
-         UW8aSIyTralArPzq2o5lrSyC2GdH6/uPUUumYrlbqAauYTUXznUH/ZcsNELTBtYrWSgy
-         9bMA==
-X-Forwarded-Encrypted: i=1; AL+hErGatgjvFXbQIztJ+QoUHExLWa6rpvN3jkCL0f8lPZwLRG8J7dF0wfTOZJcsj00cEE6r9yaoYc0dIE5WBtz5Ce8A@lists.infradead.org
-X-Gm-Message-State: APuU4Z810GJ0NrvyD9uU+ahQfNmdZj7qh+Asy6Z4wR5/PaK9+RwbOqiu
-	/CPChFqNjiYA9rImUMNzqbVuIU5Xys4orVwLriUop04z+6eyA3eHw9qQGcHh7+Me2Ic=
-X-Gm-Gg: AZFdTZdXWTzhA3YgcAyukSITV41oIZbDXAaNrUZSGT4RzwhmYf9NeW/V7wKpYSl4Kf4
-	81kISNXwwrrKbTOeWKutwPHd9yLxw/EWqD4MJlLL6F335HZtcqfDhQVTRJDKpuQC0K5B1VMT3A9
-	zNT1Be/luO5bneHg/2bmX9Gdei5crTwjHMjDtYvB2EdFjDGJe19OkMqhpZs1t+CY3IIBmZEtYqY
-	ZxinplZtyvEiQuEtuVFHDyzhpkORy/jtnJO5Pbek3IJnlw6hyoqngWC/6vSgP3LDuvP8GJG4HzT
-	+ittgIlRmcpU3709Mz1G2FXY/SQwhLeLDFEJQ9X5ByekNTPa15RsRAGPxSUJjfBpGpObzKSRkJD
-	XJg+FuAdieYQYPqB4gXLxreJETW/zs6e7tzjfUYmXGN25wobIhkk3bDFO11I+Zl37dCWJJHtc1L
-	7kkYYx8ZiBe8QNlbeuyBG7byTHxvNV6mSO8WD8mSQcEOVbaqtRY0/XsrLvoBZG6WFKPbA4+Sa8b
-	Vsj1106nXA1BtYZJeCakGdl7AmUCEc7R7yWSEhgY4uygfTXVxBI+Y4V6Mn6+5ekAKZ3OBKWOqZI
-	eaBjsFpq8S5kOZnPKe4RBgSKPNf7mRRrIfV/iFNkiqpVNQnz3gjtlQaE8xDjcsqU0iFcAx5bjK8
-	r
-X-Received: by 2002:a05:6214:5348:b0:921:2215:5ca0 with SMTP id 6a1803df08f44-92134a3a1bdmr287245606d6.14.1795556158160;
-        Tue, 24 Nov 2026 13:35:58 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-92134a1d948sm144137676d6.40.2026.11.24.13.35.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 13:35:57 -0800 (PST)
-Message-ID: <ad0545e9caf7ea1e0f4804f7b461f0747fb9b129.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 13/17] media: rockchip: rga: move core initialization
- from bind to probe
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
-	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
- Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
- <lgs201920130244@gmail.com>
-Date: Tue, 24 Nov 2026 16:35:56 -0500
-In-Reply-To: <20260916-spu-rga3multicore-v2-13-23aa2cb74e61@pengutronix.de>
-References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
-	 <20260916-spu-rga3multicore-v2-13-23aa2cb74e61@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-1LAzSwIaGZzBAdtbh8uL"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        bh=Fg3L3deHSkuexlMXiL0IKxngCsihbg1MRnR96egwqJQ=;
+        b=grMEMZssqNwO6fl35rilr0dSnGFvEjIOkVfNpxkjWOtM+IWXo3raQO6V1vI5WmXDOj
+         XqVEOjFnErxZRnCzBCm77SwWqBGLP/hHtX437v/+64Wn8qeC3Gp0fhF4/si4F+h55BK8
+         IJLpFm5nCVU7ETHS72ysUT2iOBLN4Eti5Lvd0XEtMYz1N4lXqRleRiSG3tKKfBJRmUhR
+         IEcy9ZZDbg0sLgePLjAF1y7fK9XVPs6vd6CoQSsfNEHXloxlTsNxTRq6mfDiIhTI4xxX
+         gfGAQNFyPt2tp/C0pbjUPSjUwIneg4MJZAz8xIE+rEsJyshBDOzOcZwCsaZTgoBN1veY
+         cDFA==
+X-Forwarded-Encrypted: i=1; AL+hErE4DGaUfZYLZ5RgQHAHKuIXnNDgreBmpTUxXvI5qgOumFscCW8XmmsaUWJOJVg+glxKuzFkh9aFRpyLj+zVPp8t@lists.infradead.org
+X-Gm-Message-State: APuU4Z8F7OhuPFhXZNL6jEeewtByW8H83YaJ0i/HFeMYFN3lDPDkwdAn
+	0j7/G3adWdFuE/R13mt2tRXGi/BayOD2dOe9+UMBsSzjavdjtitsGKpMkQPlC9Rym1Tg7GnWu1l
+	EzarBKQAumTyFndxgX3b3gDViZZa4pYao/zRt
+X-Gm-Gg: AZFdTZc+hN4L3nLIX/7+Yd38fSu8iwIt3KAjKUTMFZqYuZ4CobjmgFvKgVOT8gEuUze
+	7xWsiWLZA9sMVqDXlszU8O5H+H8PgDs8L+D7GxQL9/Q+q4IxhJgkBRH89KpXD3zZ8hNxNUafbsB
+	odWikSjj4ce1sJsVzxOEfYmTmoNa8Q3n7hwYs/E80XHKkBaa3R1mvf/IKqqMcTNsJPyv+yqlfwG
+	Z/o5Df9Z1Ye6C36Bzr00cDHCQ+61q9xfnREzqRnxrX9jSrl/jX6u6QrnJUm73qUOip+jIXDPLog
+	fJj/gXzXgieQ7PVDqgtTNr43wAaxtKJr4XSQfhRsJtFCAxEXJ8JbAkG0b6RBDU8GXxkJpCyTeMM
+	4pjNm0wI+M2RUrOV5wA6LI/2gBUmY7LM5K4zjcesnSb4IVdQ5ajOyExjZNnsQsGgpCNoLig==
+X-Received: by 2002:a05:690c:3749:b0:8b4:d6de:975a with SMTP id
+ 00721157ae682-8b520442f78mr75631547b3.17.1795556257259; Tue, 24 Nov 2026
+ 13:37:37 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-4-tanure@linux.com>
+In-Reply-To: <20261121213102.143130-4-tanure@linux.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 24 Nov 2026 22:37:26 +0100
+X-Gm-Features: Aa3M54raaw5cpHc_7i460xpAtUuQL2U6TjCh0nslZW-bSHKd5TU4q_42SX4Pzaw
+Message-ID: <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
+Subject: Re: [PATCH v8 3/4] arm64: dts: amlogic: t7: add the ethernet controller
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
+	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_133559_640505_9192DB14 
-X-CRM114-Status: GOOD (  24.72  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_133738_832033_4439F58B 
+X-CRM114-Status: UNSURE (   9.60  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,210 +125,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-1LAzSwIaGZzBAdtbh8uL
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Sat, Nov 21, 2026 at 10:31=E2=80=AFPM Lucas Tanure <tanure@linux.com> wr=
+ote:
+[...]
+> +                               int_mdio: mdio@1 {
+> +                                       reg =3D <1>;
+> +                                       #address-cells =3D <1>;
+> +                                       #size-cells =3D <0>;
+> +                                       status =3D "disabled";
+Lucas, Igor (+Cc) has taken a closer look at the MDIO mux, see [0]
+What he's saying is that (in my own words):
+- status =3D "disabled" is unnecessary
+- if you had problems without status =3D "disabled": Igor's patch should
+fix it, can you please test it?
 
-Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
-=A9crit=C2=A0:
-> Move the core initialization from the core binding function to the core
-> probing function. This better matches the actual sequence, where the
-> core probe initializes most things and the bind function just binds the
-> core to the actual rga struct from the master device.
->=20
-> As the probe has no rockchip_rga struct, it has to get the
-> rga_hw struct from the of match data to determine if the given core has
-> an iommu.
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
 
-I don't think sashiko report is that much relevant, but please have a look.
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
->=20
-> ---
-> v2
-> - indirectly fixed component_add error path not using goto err_put_clk
->   by using devres version for pm (pointed out by Sashiko and Nicolas)
-> - reordered commit for a better diff
-> - Avoid NULL pointer deref when interrupt fires on an unbound core
-> ---
->  drivers/media/platform/rockchip/rga/rga.c | 97 ++++++++++++++++++-------=
-------
->  1 file changed, 55 insertions(+), 42 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
-atform/rockchip/rga/rga.c
-> index 37ccac5b406a4..fa34b93b1b7a5 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -72,6 +72,10 @@ static irqreturn_t rga_isr(int irq, void *prv)
->  =09struct rga_core *core =3D prv;
->  =09struct rockchip_rga *rga =3D core->rga;
-> =20
-> +=09/* ignore interrupt on an unbound core */
-> +=09if (!rga)
-> +=09=09return IRQ_HANDLED;
-> +
->  =09if (rga->hw->handle_irq(core)) {
->  =09=09struct vb2_v4l2_buffer *src, *dst;
->  =09=09struct rga_ctx *ctx =3D core->curr;
-> @@ -740,55 +744,16 @@ static int rga_parse_dt(struct rga_core *core)
-> =20
->  static int rga_core_bind(struct device *dev, struct device *master, void=
- *data)
->  {
-> -=09struct platform_device *pdev =3D to_platform_device(dev);
->  =09struct rockchip_rga *rga =3D data;
-> -=09struct rga_core *core;
-> +=09struct rga_core *core =3D dev_get_drvdata(dev);
->  =09struct video_device *vfd;
->  =09int ret =3D 0;
-> -=09int irq;
-> -
-> -=09if (!pdev->dev.of_node)
-> -=09=09return -ENODEV;
-> -
-> -=09core =3D devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
-> -=09if (!core)
-> -=09=09return -ENOMEM;
-> =20
->  =09core->rga =3D rga;
-> -=09core->dev =3D &pdev->dev;
-> =20
->  =09rga->cores[0] =3D core;
-> =20
-> -=09ret =3D rga_parse_dt(core);
-> -=09if (ret)
-> -=09=09return dev_err_probe(&pdev->dev, ret, "Unable to parse OF data\n")=
-;
-> -
-> -=09ret =3D devm_pm_runtime_enable(core->dev);
-> -=09if (ret)
-> -=09=09return ret;
-> -
-> -=09pm_runtime_set_autosuspend_delay(core->dev, 50);
-> -=09pm_runtime_use_autosuspend(core->dev);
-> -
-> -=09core->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> -=09if (IS_ERR(core->regs))
-> -=09=09return PTR_ERR(core->regs);
-> -
-> -=09irq =3D platform_get_irq(pdev, 0);
-> -=09if (irq < 0)
-> -=09=09return irq;
-> -
-> -=09ret =3D devm_request_irq(core->dev, irq, rga_isr,
-> -=09=09=09       rga_has_internal_iommu(rga) ? 0 : IRQF_SHARED,
-> -=09=09=09       dev_name(core->dev), core);
-> -=09if (ret < 0)
-> -=09=09return dev_err_probe(core->dev, ret, "failed to request irq\n");
-> -
-> -=09ret =3D dma_set_mask_and_coherent(core->dev, DMA_BIT_MASK(32));
-> -=09if (ret)
-> -=09=09dev_err_probe(core->dev, ret, "32-bit DMA not supported");
-> -
-> -=09ret =3D v4l2_device_register(&pdev->dev, &rga->v4l2_dev);
-> +=09ret =3D v4l2_device_register(dev, &rga->v4l2_dev);
->  =09if (ret)
->  =09=09return ret;
->  =09vfd =3D video_device_alloc();
-> @@ -804,7 +769,6 @@ static int rga_core_bind(struct device *dev, struct d=
-evice *master, void *data)
->  =09video_set_drvdata(vfd, rga);
->  =09rga->vfd =3D vfd;
-> =20
-> -=09platform_set_drvdata(pdev, core);
->  =09rga->m2m_dev =3D v4l2_m2m_init(&rga_m2m_ops);
->  =09if (IS_ERR(rga->m2m_dev)) {
->  =09=09v4l2_err(&rga->v4l2_dev, "Failed to init mem2mem device\n");
-> @@ -855,6 +819,8 @@ static void rga_core_unbind(struct device *dev, struc=
-t device *master,
->  =09v4l2_m2m_release(rga->m2m_dev);
->  =09video_unregister_device(rga->vfd);
->  =09v4l2_device_unregister(&rga->v4l2_dev);
-> +
-> +=09core->rga =3D NULL;
->  }
-> =20
->  static const struct component_ops rga_core_ops =3D {
-> @@ -864,7 +830,54 @@ static const struct component_ops rga_core_ops =3D {
-> =20
->  static int rga_core_probe(struct platform_device *pdev)
->  {
-> +=09struct rga_core *core;
-> +=09const struct rga_hw *hw;
->  =09int ret =3D 0;
-> +=09int irq;
-> +
-> +=09if (!pdev->dev.of_node)
-> +=09=09return -ENODEV;
-> +
-> +=09hw =3D of_device_get_match_data(&pdev->dev);
-> +=09if (!hw)
-> +=09=09return dev_err_probe(&pdev->dev, -ENODEV, "failed to get match dat=
-a\n");
-> +
-> +=09core =3D devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
-> +=09if (!core)
-> +=09=09return -ENOMEM;
-> +
-> +=09core->dev =3D &pdev->dev;
-> +
-> +=09ret =3D rga_parse_dt(core);
-> +=09if (ret)
-> +=09=09return dev_err_probe(&pdev->dev, ret, "Unable to parse OF data\n")=
-;
-> +
-> +=09ret =3D devm_pm_runtime_enable(core->dev);
-> +=09if (ret)
-> +=09=09return ret;
-> +
-> +=09pm_runtime_set_autosuspend_delay(core->dev, 50);
-> +=09pm_runtime_use_autosuspend(core->dev);
-> +
-> +=09core->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> +=09if (IS_ERR(core->regs))
-> +=09=09return PTR_ERR(core->regs);
-> +
-> +=09irq =3D platform_get_irq(pdev, 0);
-> +=09if (irq < 0)
-> +=09=09return irq;
-> +
-> +=09ret =3D devm_request_irq(core->dev, irq, rga_isr,
-> +=09=09=09       hw->has_internal_iommu ? 0 : IRQF_SHARED,
-> +=09=09=09       dev_name(core->dev), core);
-> +=09if (ret < 0)
-> +=09=09return dev_err_probe(core->dev, ret, "failed to request irq\n");
-> +
-> +=09ret =3D dma_set_mask_and_coherent(core->dev, DMA_BIT_MASK(32));
-> +=09if (ret)
-> +=09=09dev_err_probe(core->dev, ret, "32-bit DMA not supported");
-> +
-> +=09platform_set_drvdata(pdev, core);
-> =20
->  =09ret =3D component_add(&pdev->dev, &rga_core_ops);
->  =09if (ret < 0)
-
---=-1LAzSwIaGZzBAdtbh8uL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawYDPAAKCRDZQZRRKWBy
-9C8BAP96KhNnPyp6c7icyZBmiQPklgkS45OBuWgpKtV74WtG4gEAg0B6t6w8Hkn9
-CttDJvFiRAACUl3ielwZ52l2M0lO7Q4=
-=YPtw
------END PGP SIGNATURE-----
-
---=-1LAzSwIaGZzBAdtbh8uL--
+[0] https://lore.kernel.org/linux-amlogic/20261124-re-martin-g12a-mux-t7@ia=
+v.lv/T/#m240f885979c7c3a84af26ee8b60d38f3092f0c0a
 
