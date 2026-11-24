@@ -2,52 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C24760A2615
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5FA606A682
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v30N7jid;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=AFr73xP1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cXEJWbE9;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=AkywgZpa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=F9PEm3E3dhfjQZ4FnxQMSFkLvBepq/7L9pJ8C30uiDA=; b=v30N7jidXo/O1y
-	+h8Us4WjBdIyyyoji79G6+jtgV6VaJyhk1VW9NVuREzTPxAUdzwKrgQ5ANivSOm8aihjvJT6EYGFA
-	DfJFN8496BIeTcoABErHb5NRIpFoWbe9X8Y19hmt6hDi3WwCZfBNezYVXVGAp3WEb4NGiqxPVIsoA
-	OKghYyaJOIP0aJ4u2qKTYy2zJO/m+dz9wisIrIp1ao1GFwrEOrQN1cvg2UUlkyKqPMDzRUyvPS3FX
-	VQB3cPu1muYNDsKE0n6CYXKn0WZ0FguJCxyGdNku67DXlPJXwDfHP0Sp7PsyuPMiQscaVctBhEFZr
-	iqwEFMjnjKNlm9dVWjGw==;
+	List-Owner; bh=4cstgabnzyvQWcjW9OtSnLla0UEfMsg39zv/uimwWEw=; b=cXEJWbE9cE9nJO
+	tgGjy4JVc8bUAjgCsr4vL14wZuUcC6vuk5ap6sNCvi4eglfU66xXHnsWTUJEHDm0cy8XHwiotvjno
+	AI/n/uPozuBmSEprRGIGtojZZ7uECWvj71tGrdHu/HGTWeh6M+j6MZz6P/lQuOGLDJ2rYV1xqOlg/
+	SeRrCpPrwWk8cQkzY19BfiCwg52DqZ6KdM3+Tc7stfRt7UaAiQhwhF1RISqg1o2HgTVczYvSz+9Mk
+	Wnqst9E/a8hCk3X6PWjCpqRdIL1s0o77k9Okdfsxj0APlZHjG9PkXJugRyt6lVIAtdkKUheBXqrB1
+	RTbvdlAHABti4BtRnVIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu0C-00000007GJf-1nRr;
+	id 1xVu0C-00000007GJU-1BDE;
 	Tue, 24 Nov 2026 17:08:20 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu04-00000007GEX-2HZp
+	id 1xVu01-00000007GDC-2xD9
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:08:13 +0000
+	Tue, 24 Nov 2026 17:08:11 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D108C16F3;
-	Tue, 24 Nov 2026 09:08:08 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BED5016F2;
+	Tue, 24 Nov 2026 09:08:05 -0800 (PST)
 Received: from e126453.arm.com (e126453.arm.com [10.33.8.63])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF9643F763;
-	Tue, 24 Nov 2026 09:08:08 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E206C3F763;
+	Tue, 24 Nov 2026 09:08:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795540091; bh=HUPy0c7hnVrU+qgLf2/taQXs9ERsoi8bd5b8Iydh0/A=;
+	t=1795540088; bh=YFPFNBXhBD1CXPeK2Wq6Z/VUC4VhFtphR7lzgA1Ui78=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=AFr73xP1y+YmGEl4eszUGof8TjhaYln0PzlNlw88Y/eMYtYsHWMxlbRagcWvJ4o7A
-	 wfmF7HOk8BlZztoFj/awT/9eYc5gT7fWlC449+j3OD3LQbu3WvLygFJ7Fi2j7Zx5xz
-	 TN8V1p8OGr9ZBMa9JEQyApGDkRtkMOR+R4dYSyEs=
+	b=AkywgZpapMGlKcqTq7iIcGD1bBfvTJ6KlTcC6ZdIc3Ksi7SfxSTnzkZISTGYvJh26
+	 phJfE5CVO0p6Zrs/4P9IoWgqLxoU61Y99JWlniUmqcwObJvAcvohBNcVt12ehGVkel
+	 +6tMNvOIrgHB314jZwXXuaTOEQ7jQCsmM0/dLilc=
 From: Anthony McGivern <anthony.mcgivern@arm.com>
-Date: Tue, 24 Nov 2026 17:07:31 +0000
-Subject: [PATCH 03/24] media: uapi: Add a control ID base for Mali-C720 ISP
+Date: Tue, 24 Nov 2026 17:07:30 +0000
+Subject: [PATCH 02/24] dt-bindings: media: Add bindings for Arm Mali-C720
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-b4-initial-upstream-candidate-v1-3-0cb9bde1bd30@arm.com>
+Message-Id: <20261124-b4-initial-upstream-candidate-v1-2-0cb9bde1bd30@arm.com>
 References: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
 In-Reply-To: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
 To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
@@ -65,16 +65,16 @@ Cc: Anthony McGivern <anthony.mcgivern@arm.com>,
  Conor Dooley <conor+dt@kernel.org>, 
  Anthony McGivern <Anthony.McGivern@arm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540078; l=967;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540078; l=3423;
  i=Anthony.McGivern@arm.com; s=20261124; h=from:subject:message-id;
- bh=NElWMMW6II80wAFXo1MelDSNnk+Ga3q5z1hRRwz4j4A=;
- b=dubFCSWes0DnD96YyrkpM+F5ceDQba+2KiDXCNrI6wX/vcCSfKcqoaREG0Ki1pwnqXkVQ0o32
- 9RwNDrCytNvAITyLbNN6wkiMgPAKBy8EFrCxHw2HMUvyF2WE4v58QfT
+ bh=sgdFsuZ6uHTYokOroU8tJBLGEB1eDQ8iHNdg9OA06Fc=;
+ b=PVdqOPaygsmysE/+LcUJtccmw6tfTlTpGOLFVyuW32hdKZizA+axQxuy6aDGiTr/O+2erHFLQ
+ B+7mvbv4Sj0D0twl7cLkFf7lFZmC13M0MUqX3Kmp+vj/+POqjql6Ikf
 X-Developer-Key: i=Anthony.McGivern@arm.com; a=ed25519;
  pk=cvw1HHVRuWpdkn55JpnRyCO2oGBkBWaBXcc2S3CmHTU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_090812_642905_946C6BE1 
-X-CRM114-Status: GOOD (  10.26  )
+X-CRM114-CacheID: sfid-20261124_090809_856230_7FF5177B 
+X-CRM114-Status: GOOD (  12.01  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,31 +96,154 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Anthony McGivern <Anthony.McGivern@arm.com>
 
-Add the base definition for custom controls exposed by
-the Mali-C720 ISP driver.
+Add the device tree binding for the Arm Mali-C720 Image Signal
+Processor.
 
 Signed-off-by: Anthony McGivern <Anthony.McGivern@arm.com>
 ---
- include/uapi/linux/v4l2-controls.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/media/arm,mali-c720.yaml   | 134 +++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
 
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index d17e41d51d2ec1ccb9e8ceb3ccc89ebc4381a4cd..3fdc01200c8c3a41644e32ac12bfeddf330afe1a 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -255,6 +255,12 @@ enum v4l2_colorfx {
-  */
- #define V4L2_CID_USER_IT6625_BASE		(V4L2_CID_USER_BASE + 0x1250)
- 
-+/*
-+ * The base for the Arm Mali-C720 ISP driver controls.
-+ * We reserve 16 controls for this driver.
-+ */
-+#define V4L2_CID_USER_MALI_C720_BASE		(V4L2_CID_USER_BASE + 0x1260)
+diff --git a/Documentation/devicetree/bindings/media/arm,mali-c720.yaml b/Documentation/devicetree/bindings/media/arm,mali-c720.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..3bd261bcefbe371b7b4610afdde8e556b2a2ae22
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/arm,mali-c720.yaml
+@@ -0,0 +1,134 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/arm,mali-c720.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- /* MPEG-class control IDs */
- /* The MPEG controls are applicable to all codec controls
-  * and the 'MPEG' part of the define is historical */
++title: ARM Mali-C720 Image Signal Processor
++
++maintainers:
++  - Anthony McGivern <anthony.mcgivern@arm.com>
++
++properties:
++  compatible:
++    const: arm,mali-c720
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: ISP main interrupt
++      - description: ISP fault interrupt
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: isp
++      - const: fault
++
++  iommus:
++    minItems: 1
++    maxItems: 3
++
++  clocks:
++    items:
++      - description: ISP main processing clock
++
++  clock-names:
++    items:
++      - const: vclk
++
++  resets:
++    items:
++      - description: ISP main processing clock domain reset
++
++  reset-names:
++    items:
++      - const: reset
++
++  memory-region:
++    maxItems: 1
++    description: Reserved memory pool for ISP DMA allocations.
++
++  power-domains:
++    description: Power domain containing the ISP.
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    description: Parallel video input ports.
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port 0
++
++        properties:
++          reg:
++            const: 0
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port 1
++
++        properties:
++          reg:
++            const: 1
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port 2
++
++        properties:
++          reg:
++            const: 2
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port 3
++
++        properties:
++          reg:
++            const: 3
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    mali_c720: isp@400000 {
++      compatible = "arm,mali-c720";
++      reg = <0x400000 0x200000>;
++      clocks = <&clk 0>;
++      clock-names = "vclk";
++      resets = <&resets 0>;
++      reset-names = "reset";
++      memory-region = <&isp_reserved>;
++      interrupts = <0>;
++      interrupt-names = "isp";
++      power-domains = <&power 0>;
++
++      ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port@0 {
++          reg = <0>;
++          isp_in: endpoint {
++            remote-endpoint = <&csi2_rx_out>;
++          };
++        };
++      };
++    };
++...
 
 -- 
 2.55.0
