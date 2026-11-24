@@ -2,147 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A83606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC39606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p9v10vOr;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Asf5qw0h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dmAdus9/;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=kIFlonZS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KvJFu8m8aDGTqEnUAA7yuvFMMj/rjLlhcr7uNiD2V7s=; b=p9v10vOrXxE+UlAnocE7dU75Kg
-	QNjNVPxcKDUQWvmThqD9PqiBGxKR9nq2BNCQgvzCLOOV/k5EdSnWkL/syPXSmQrJvXcUXsmt+se1a
-	upQnHNidrAmIv2sItDsUQJgoWaReGdH8qOepHPwo4/3t6WtOec1k/soVBO1rv24fD8ajBChXZTq5+
-	+zk2PfrRzkI7fa6HYg0OAPWvtjdHnfpl7ucpd2KeySwZ1jJeo1Kzx+KxaR6pmBmG3ayNXQJzPYv7W
-	NUDcZqAuugWzzdGksZd6vX8bEzgDFT0e7NtyKnVjzlG99LII7WhFbcCTvw7NRrmfdr/TV3xe3DnNC
-	zZh8D1+A==;
+	bh=cMYYBh43HY5xutvnzofxwE95gQWfanq+WzepalGdUdE=; b=dmAdus9/d1FkqoOEDkMWEDPRHg
+	pelt8tnYbCv7MH2z35ERt+/jIgKN30kmbrXYyEONLoptO1I07DBU0wiFUcqolVO3AG17YQgzu7FiB
+	x1HjQYHK60J8AiMbE3A5MjvXmB0F9/PFmi/RHB6e3LdTBrjd4JD7sqCG9yE8zfTjurcMDB81+8LeT
+	2E5TROq+CjpAEbgi451O6314XbPM6MWd+dFoQAVS8+m2hNnV7rGzIQJa4P/CO4us6ZQrXKwVy5AVy
+	H+gbbIjjEjLfjY3W//BM34v90q/Q7mBNaYAKKJluu7qQykFZnkDBZk0eUCvcGQzsmiILwtHsna5pg
+	Wf6MbysA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoJx-00000006I33-33UR;
-	Tue, 24 Nov 2026 11:04:21 +0000
-Received: from mail-westusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c001::5] helo=BYAPR05CU005.outbound.protection.outlook.com)
+	id 1xVoKp-00000006I9C-4BAY;
+	Tue, 24 Nov 2026 11:05:16 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoJu-00000006I2j-07Yy
+	id 1xVoKk-00000006I8Y-2hdx
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:04:21 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BBCsyPJFwrpfhScnK712o1n/co5ijmkP8vSDC7Vl5OU839YOq+lz1IZlEZF5OPtITW4hhu15pBbEZUkKvu0zKDRVyqy2Sy3jPAPnYNYSkk6LGWECnFiY/myk4n7ioP7rwKh9r4viovbz4a74Ui62IeK8sucDNEpJykr9D/WjvTA8Xs1Ndo+/z8G4mCMTe0q7oIB0ubOE9meWi8yu3nbEFGzBFF3B/EbLd9op8qBDmN3c4AU9ourQKNX69Lz6xYbqmonYpk+NHC3dSTHUbecqWs2EODn2XL+cj2+ka0JaPw8U8Mfnqsb+wm8nKyGXpgrXgmZc4er+O+RSNEIx+wVnUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KvJFu8m8aDGTqEnUAA7yuvFMMj/rjLlhcr7uNiD2V7s=;
- b=HeZYd+uTuPWjP0y386HQZfYsfsC2AlXfyl+1pfddfZ34K45RQ9OP8WA1EuZVO3gfSFdyDWxAN/eW8Xlt3mrgENuCEBzsfrfPUWcA1Z/c7GRlVdhuvrOhCQsrcx12ctDSJD/UVI8y5vIo2Heb/sgk4HrAU/RYJbyBkpBeyjM8T1ucuVddFk2R1xqN/7q/0t/6GJCGh6+J7T/WZ/IyQFq4jckl2A7nWvGQRtD0zGN3A9isvxaCIHk3B1Doc6Bo1prRy7l0g/70F/eToPjO+GTv8bB2e6XnK/mspStboMHwlxs19UHPMIk2BnYZ8PfhJgOmxC5+YFQWW+jd0jqvz23npQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KvJFu8m8aDGTqEnUAA7yuvFMMj/rjLlhcr7uNiD2V7s=;
- b=Asf5qw0h/c/C0DnyHOIzbnjNiPrer3H3OdP+XkAifpGF5SnLJ9UtaEfRHyOqrQlZCwPgpCyr+ylXwtXPpuZw6tkDuSW6BiHu4aojEXPSXWvRWmfagulo/Bp76Icoh/ajOoEtzl3Jln8xm8Gw4k0ijOZCLLXNvxrcVcKnWj4iZNI=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CY1PR12MB9559.namprd12.prod.outlook.com (2603:10b6:930:fd::14)
- by BY5PR12MB4258.namprd12.prod.outlook.com (2603:10b6:a03:20d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 24 Nov
- 2026 11:04:08 +0000
-Received: from CY1PR12MB9559.namprd12.prod.outlook.com
- ([fe80::1761:23a3:6ab5:fbb8]) by CY1PR12MB9559.namprd12.prod.outlook.com
- ([fe80::1761:23a3:6ab5:fbb8%7]) with mapi id 15.21.0639.010; Tue, 24 Nov 2026
- 11:04:08 +0000
-Message-ID: <42949fe9-b336-40e7-8a8e-43f6d24da9bc@amd.com>
-Date: Tue, 24 Nov 2026 16:33:59 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 14/16] iio: adc: xilinx-xadc: Split driver into core
- and platform files
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Conall O'Griofa <conall.ogriofa@amd.com>, linux-iio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- git@amd.com, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
- <20261110050201.1850399-15-dileepkumar.nagavarapu@amd.com>
- <avNGcpcemoeE3J7O@ashevche-desk.local>
-Content-Language: en-US
-From: "Nagavarapu, Dileep Kumar" <dnagavar@amd.com>
-In-Reply-To: <avNGcpcemoeE3J7O@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0118.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d0::11) To CY1PR12MB9559.namprd12.prod.outlook.com
- (2603:10b6:930:fd::14)
+	Tue, 24 Nov 2026 11:05:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795518310; x=1827054310;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Of+dCjox0s9BBeFJuiYkmvAKAj13vw6zap47XQbk6Oo=;
+  b=kIFlonZSgM4/72v39DA+gSAhGW8JDIJvVTafxBRe4y/ut0FR5ukriyRV
+   i0Hu0U3+s3vekG7pVUh7mmSznZ1DuXsDhAtMr/+ZB+VeQLtqM+/Kfmted
+   YEugnSJ6HFQ8USGnWIWLd8jrKAl0NjydEpHcD7qyK+PzOLua8jxmdE0Qv
+   j1y6zg6Asy05qCCr/svs2r4rHWV7tgaFssv8ZUI9ijl8j98Y3ObRDjW1+
+   4kqYrjm1IqKcQQsejV8l94GU1TMMXyGhO8w1YJB2plOnWhaVmn8wppuhf
+   TykY4PekDYl7XTwyx4p0XOD1Yb3Rk7J+hwFOFBsokpmHzcmoTiUfs2Chd
+   w==;
+X-CSE-ConnectionGUID: RdIhBla4TTmUq7KP99ZVFQ==
+X-CSE-MsgGUID: RG/anjkeS4Gk78FY/ubCuQ==
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
+   d="scan'208";a="234021366"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Nov 2026 04:05:09 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 24 Nov 2026 04:05:09 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 24 Nov 2026 04:05:06 -0700
+Date: Tue, 24 Nov 2026 12:05:05 +0100
+From: Daniel Machon <daniel.machon@microchip.com>
+To: <netdev-bot+sashiko@kernel.org>
+CC: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@kernel.org>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <Steen.Hegelund@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, <richardcochran@gmail.com>,
+	<linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<robert.marko@sartura.hr>, <horatiu.vultur@microchip.com>,
+	<jensemil.schulzostergaard@microchip.com>, <horms@kernel.org>
+Subject: Re: [PATCH net-next v3 5/9] net: sparx5/lan969x: size the FDMA
+ buffers from the port MTUs
+Message-ID: <20261124110505.66k7x7qluhxcnm62@DEN-DL-M70577>
+References: <20261120-sparx5-mtu-change-v3-5-55c272fe1acc@microchip.com>
+ <179544589573.3135.16010204842375196022@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY1PR12MB9559:EE_|BY5PR12MB4258:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9bc6a67-5b0f-4fbc-d673-08df4a1aa90e
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|261022075727099003|261021123027099003|56012099006|4143699003|11063799006|261026140227099003|261021121427099003|10067099003|261028144727099003|261102123227099003|261022105027099003|261009223027099003|22082099003|18002099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: xKxsgAu4DglU5UZu7qZSBKzw38Q5hY9haPegJOHkTQwVeiBDch3k/ntv6H/Ybt5PJuIDnQnF/h6gEun31ySPXurz4J3N7TBtnVeAE7puSs2xjIsfNYMXzI4eOPhPpaHNt2S1j3TTr6wl4BO38GJsWX13Z6WeCg6XPdVlDNzKObBtwAhkyARD6X9WwJdooOvU+gBDUczMd5Aw5lBPK2AGvR2D13HdNSt5ajSd3r7x/UGG09s+j/ZUSBML27auJ9pTf4CNC4tzt/IA3Ut+ACjUtLhB5M34eVTmnhlvbOz7Lul5yLTswXtu3QDwF41edrxyV6BN593DFd4ctNitciQxPQ97dtWxSHURmlKgxnJGTewY6+8QA/eFFEKCX/tfUV2F+c/PEa0L8EXBRJvz42/u8dFRCm7ArnU1j4hy8If56J4qVbNXxQhMMTPaEMSFcmkY6NnytTOXtkju12ATMJY6tmvQeVd4HJ62TNN1/HenCppuym0r1Ikiap0sSEPKwMixeEIExmgHHILimWrrVsitaQ1ORzTMQSKFb2ucgUZdYr/6GY1HUO5wRY3Jx3S+vbKwNwRGYCj0SvbNmNEOEwaLCFViKlJ5ZSirOtdr6HH4vxpH3l7hFYpG6JCjltMmYfRyOt1djf+kbnap0pULpZwFDjxK/0lNxzwP6pVxavOY9tY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY1PR12MB9559.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(261022075727099003)(261021123027099003)(56012099006)(4143699003)(11063799006)(261026140227099003)(261021121427099003)(10067099003)(261028144727099003)(261102123227099003)(261022105027099003)(261009223027099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0ppN2ZpeW1zUjFtWWhHck1EM1VFc21aamxhM2lrU0cyNEwwQVcrVmxtTjdM?=
- =?utf-8?B?KzlDSm5JRlhPL1gxL01ERnppYityeXNVYnZScGk4NEcwRmRra01MaW50bytW?=
- =?utf-8?B?Z1ZUbk5sU1pzNFRtclkzMmc4ZDJ5MEZXZTNpMUhSNWZoZXJWV3JDZllKZGZk?=
- =?utf-8?B?akVtaWY3cnkzVUFJaW9IK2dHbEhTUVZ3aXVEc2tOSnJ5MnZveEViWHJCTmZB?=
- =?utf-8?B?c3FWdDU4SVhxd2lBZzlTZDByVUFTRHcrdVprQjNkdFd5NHk2ZnNVLzhkeWZh?=
- =?utf-8?B?RDByUk5lTVpoeFkwUzUzV3QrdHhzK290TkVTL2YwajVXOXhMOWNMVWw1bW1a?=
- =?utf-8?B?N3k4Rldldzl3cTNKbU81UDZSWnp6U0pvR0VOTU14T1Bac0RROWJqWDB4YVZF?=
- =?utf-8?B?UlJ5dUN5dk1LY1QraUk4UitFQnlxWEY5NnRiamNWUFFOWUFrbXFvWDk4QkFD?=
- =?utf-8?B?a0VIbmFmNWFoc3VjdmhITENxdlROckFwQmRBK1h5dXhjM2JySkx4M2hFK0VX?=
- =?utf-8?B?OE54NitYUlU2Q2dIYUVNMzVibTl3QWVyQlBQN0JYbjlpZWdSVHdHOWJ1VUg3?=
- =?utf-8?B?emgvTno2aGpzekdMSVhBbjlseWdaaDIvVXByalpZdm90SWZNTzFSQ0hVTURC?=
- =?utf-8?B?ejVSWkUrVHlwZ2dVcFJVU2VQcENkTXMzeHIyRjB1anZrT1Y3TTlNVHlBR05N?=
- =?utf-8?B?a2N2ZTFtOVdaYW5yTHlVTzgwVEVkaVY4QVZTb0VKVHluN1prVzJlTSs5U2cy?=
- =?utf-8?B?cXV4dDJILzJ1aW8rOW01R1BYS0lNczkxaWNOdG50K3NnWjlsQmQwbVFEdTBa?=
- =?utf-8?B?emNqekpoZUJhYzBPa3V4Y1RhWEhiQjBXMnllbHJEV3FCWWR0S2FFNHpVZHBO?=
- =?utf-8?B?Qy9JbHpXWlZQUmt6SFBTVFhUdmFMMzd2WFpoS1huTkdLRnRLc0ZReFZQM1Z4?=
- =?utf-8?B?T01nTGJuVWdETFFnRjdNVGRLTXNuenQ3RGMyY0U2RHhqZWtMaDd3Tm1SMGpv?=
- =?utf-8?B?MEtHcTFKM2NjUk9SRU1ObmVXaEROV1dKTGxtQ3piSHA1alFMZGIxd3pZRzU5?=
- =?utf-8?B?VzVHbGNobXl0cHNDN0phYU5Jd255MU8rMUxHbU5mQXRDcGFQVUZabmVidXln?=
- =?utf-8?B?TjFYeC9jaVFSeVFnc1Z4QThCdXhmRmo3VUR1MHVZRG5YWG1SMGp5M3QxTHM4?=
- =?utf-8?B?azZ5RHU3THBxYzZkQXpVL3djN0FoN2MxRys2eXBVcFdnSmQ3TkRYMExNaUov?=
- =?utf-8?B?OEQwQjZtMlRsYVJuR1JiTkxGUVNYVEFUczlTKzdRK3VkZG1pMzd3aS80N1JN?=
- =?utf-8?B?L0w5b3IzbGRvR0RtNmo5VVozcnd3RS9CSk5GK0NOT25DbFczMDlqNktjNFRa?=
- =?utf-8?B?RnJhZE1Wd1owYUVqbjlMK1NHRHVjTTVycGczZmRraDRMUDhKUjNneW1Wdjlx?=
- =?utf-8?B?R2xmS0NBQ2grNzF5UnRWd3hSN2VmQk4vRE5SRGsyYzR4QjRvWktRSTVqUzk1?=
- =?utf-8?B?cHpBTlkwaEZaQTFqMlg0dVl4SURONkc4TEZiZCszQUVKRUh0amc4d0NKV3Ni?=
- =?utf-8?B?NkpQY2hucHAyZDdTOVd4SHJyL2N4TVpaMklITmRGQUMxcVBJY203aU9IbTlm?=
- =?utf-8?B?Mjlud29sZVJxWWttb1N1UDVTZDBxQTVHM1dJU2lyb0J3OThvM21LRWhROHpR?=
- =?utf-8?B?aFptbzRxVTZ6M0FPTjhXdDROYjhJZ3hIR3hpWHdTYXBhVHZrUThyeWVvQXJw?=
- =?utf-8?B?L0JYK2FPb2c1YTNoc2hGQitWYVU0SDh3V2VGdDlHbU1Pa2I1bG00anFmRnZ0?=
- =?utf-8?B?SVludU40TkdUeTRYUGZXNk1DZmZic3I4aUtmRjhnOHBXQTh1dzFHdk1PdWVZ?=
- =?utf-8?B?V1NQVW9NZ25wY2hsYTIxekJwSjA2bTR5ZUVzSEErdkRKT2JRcE1qZGdIeHo4?=
- =?utf-8?B?dGdCcmd0cWt3UGJuL0Y0cFZuamtFWUoxNzJkV3BkODEzNTV2RXNhUnVvcmE4?=
- =?utf-8?B?Z2JjQlR1QUI0aGE1L3Z4VldNNVQrcythWjllQkxTTGhkcWRoaXh6S2RtVmxL?=
- =?utf-8?B?VHNTaTcwcm9rVXpxaGFUNzk5NmtRSDBUR2JRL1hpWEx2aFJ5Ti9qOEFSd1h3?=
- =?utf-8?B?U3pyWk16dDhoaGc3UUREdFFLSCtWWWRGeEd2S1R5TjZXR2E3cnVqUXJJQjVU?=
- =?utf-8?B?NjBNMWZtcUltT3JCZzQrTEE3Q05RMHJ2SWxwT1hSa3VqeTBIV2QraFBBQ0k4?=
- =?utf-8?B?Nkh5Nk15QUVPUnh6WUFraUp6MkdEVUF3cDRlcktiZms5bVhiY0pRNXJMdktL?=
- =?utf-8?B?dFdHOWsyQUhvUkxiRGtVWUw0TGg1djU0NlRyVm5QTkRsUFNldmNGUT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9bc6a67-5b0f-4fbc-d673-08df4a1aa90e
-X-MS-Exchange-CrossTenant-AuthSource: CY1PR12MB9559.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 11:04:07.9168
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: h1ggpwRXkWINtrIwXoYISPIbKu9fOSdGO4hJxPRTg7A0IJ3RZnyPsu3YaU4UFJTWIbnJvUnEL30NppUsffVTFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4258
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <179544589573.3135.16010204842375196022@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_030418_127288_5398BD91 
-X-CRM114-Status: GOOD (  18.80  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_030510_750065_9B7622E1 
+X-CRM114-Status: GOOD (  43.65  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,82 +91,179 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Andy,
-
-On 11/10/2026 9:59 PM, Andy Shevchenko wrote:
-> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue(s) to consider.
 > 
+> Critical: 0 (1) � High: 1 � Medium: 0 � Low: 0
 > 
-> On Tue, Nov 10, 2026 at 10:31:59AM +0530, Dileep Kumar Nagavarapu wrote:
->> Split the xilinx-xadc-core.c into separate core and platform specific
->> files to prepare for I2C interface support.
->>
->> xilinx-xadc-core.c is reorganized as follows:
->> xilinx-xadc-core.c:
->>    - Platform-independent IIO/ADC operations
->>    - Channel definitions and management
->>    - Buffer and trigger management
->>    - Device tree parsing
->>
->> xilinx-xadc-platform.c:
->>    - ZYNQ platform (FIFO-based) register access and interrupt handling
->>    - AXI platform (memory-mapped) register access and interrupt handling
->>    - Platform-specific setup and configuration
->>    - Platform device probe function
->>
->> Update Kconfig to introduce XILINX_XADC_CORE as a helper module selected
->> by XILINX_XADC and update Makefile to build the split modules:
->>    - xilinx-xadc-common.o (core + events)
->>    - xilinx-xadc-platform.o (platform-specific)
->>
->> Reorganize the code with no behavioral changes.
->>
->> Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
->> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
->> Signed-off-by: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
->> ---
->>   drivers/iio/adc/Kconfig                       |   8 +-
->>   drivers/iio/adc/Makefile                      |   5 +-
->>   drivers/iio/adc/xilinx-xadc-core.c            | 690 +--------------
->>   drivers/iio/adc/xilinx-xadc-events.c          |   1 +
->>   ...inx-xadc-core.c => xilinx-xadc-platform.c} | 818 +-----------------
->>   drivers/iio/adc/xilinx-xadc.h                 |  27 +
->>   6 files changed, 72 insertions(+), 1477 deletions(-)
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwork
+> know by including "pw-bot: cr" as a separate line at the end of your reply
+> (one such reply per series is enough).
 > 
-> This is weird statistics... I think it's a bug in Git. What it did, it copies
-> -core.c twice and uses statistics on each file after that without duplicating
-> the *original* amount of lines.
+> - [High] net: sparx5: UAF of two-step PTP skb on TX drop in
+>   sparx5_port_xmit_impl()
 > 
-
-I generated the patches using the following command: "git format-patch \
-    -M \
-    -C10% \
-    --histogram \
-    --base=origin/togreg \
-    --cover-letter \
-    --subject-prefix="PATCH v5" \
-    origin/togreg..HEAD"
-
-If I remove the 10% similarity threshold from the command, 
-xilinx-xadc-platform.c is no longer detected as a copy of the original 
-xilinx-xadc-core.c, which is not the expected output.
-Is there a better command or approach that would allow Git to recognize 
-xilinx-xadc-platform.c as being split from the original file while also 
-producing meaningful diff statistics?
-
+> Pre-existing issues:
+> - [Critical] Use-after-free and double free of two-step PTP skbs on the
+>   Sparx5 TX drop path.
+> 
 > --
-> With Best Regards,
-> Andy Shevchenko
+> 
+> net: sparx5/lan969x: size the FDMA buffers from the port MTUs
+> 
+> This commit sizes the Sparx5 and lan969x FDMA buffers from the largest port
+> MTU plus the Ethernet header, FCS, IFH and two VLAN tags, rather than a
+> fixed single page. On Sparx5 the RX and TX DB size is that length rounded
+> up to 128 bytes, and sparx5_fdma_xmit() now drops frames that do not fit.
+> On lan969x the page_pool page order is derived from the max frame size.
+> 
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+> > index 537c945409bba..b92d249777f0b 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+> 
+> [ ... ]
+> 
+> > @@ -224,6 +223,10 @@ int sparx5_fdma_xmit(struct sparx5 *sparx5, u32 *ifh, struct sk_buff *skb,
+> >  	struct fdma *fdma = &tx->fdma;
+> >  	void *virt_addr;
+> >  
+> > +	/* Drop frames that do not fit in the TX buffers */
+> > +	if (unlikely(IFH_LEN * 4 + skb->len + ETH_FCS_LEN > fdma->db_size))
+> > +		return -EMSGSIZE;
+> > +
+> 
+> [Severity: High]
+> This is a pre-existing problem in sparx5_port_xmit_impl(), but the
+> new -EMSGSIZE return makes it much easier to hit. What happens to a
+> two-step PTP skb that fails here?
+> 
+> sparx5_port_xmit_impl() calls sparx5_ptp_txtstamp_request() before
+> ops->fdma_xmit(). For two-step PTP, that puts the skb on
+> port->tx_skbs with skb_queue_tail() without taking an extra
+> reference. It also increments sparx5->ptp_skbs and port->ts_id.
+> 
+> If fdma_xmit() then returns anything other than -EBUSY, the code
+> jumps to the drop label, which only calls dev_kfree_skb_any(skb).
+> Only the busy label calls sparx5_ptp_txtstamp_release(port, skb). The
+> freed skb is therefore still linked on port->tx_skbs.
+> 
+> Later walks of port->tx_skbs happen in
+> sparx5_ptp_txtstamp_old_release(), in the sparx5 and lan969x PTP IRQ
+> handlers, and in sparx5_ptp_deinit(). These read SPARX5_SKB_CB() from
+> freed memory, call __skb_unlink() through stale list pointers, and
+> call dev_kfree_skb_any() on the same skb again. Isn't that a
+> use-after-free and a double free?
+> 
+> sparx5->ptp_skbs is also never decremented for these skbs. After
+> SPARX5_MAX_PTP_ID such drops, sparx5_ptp_txtstamp_request() returns
+> -EBUSY forever, and two-step TX timestamping on the switch stalls.
+> 
+> Before this patch the Sparx5 TX DB was PAGE_SIZE. The drop path could
+> only be reached through the -EINVAL ring-full return here, or through
+> the -ENOMEM DMA mapping failure in lan969x_fdma_xmit(). With the
+> default MTU of 1500, db_size is now
+> ALIGN(1518 + 36 + 8, 128) = 1664. Any two-step frame with skb->len
+> above 1624 now takes the drop path every time.
+> 
+> Such frames can still reach a 1500 MTU port, for example through tc
+> mirred or bpf_redirect from a device with a larger MTU. They can also
+> arrive when the MTU is lowered while larger skbs are already queued,
+> which becomes possible later in this series.
+> 
+> The commit message relies on this drop path. Should the drop label in
+> sparx5_port_xmit_impl() release two-step PTP skbs the same way the
+> busy label does? Or would you rather check the length before
+> sparx5_ptp_txtstamp_request() is called?
 
-Thanks,
-Dileep
+This is pre-existing. The drop path already misses the PTP release before this
+series, e.g when the TX ring is full, so the handling of the PTP tx_skbs is
+broken regardless of this check. I have two WIP patchsets for lan966x and
+sparx5/lan969x that will rework the PTP tx_skb handling. These will be submitted
+in the near future.
 
+> 
+> [Severity: Critical]
+> This is a pre-existing issue, but this new return gives a second,
+> deterministic way to hit it. What happens to a two-step PTP skb that gets
+> -EMSGSIZE here?
+> 
+> By this point, sparx5_port_xmit_impl()->sparx5_ptp_txtstamp_request() has
+> already put the skb on port->tx_skbs without taking a reference:
+> 
+> sparx5_ptp.c:sparx5_ptp_txtstamp_request() {
+>     ...
+> 	skb_queue_tail(&port->tx_skbs, skb);
+> 	SPARX5_SKB_CB(skb)->ts_id = port->ts_id;
+> 	SPARX5_SKB_CB(skb)->jiffies = jiffies;
+> 
+> 	sparx5->ptp_skbs++;
+> 	port->ts_id++;
+>     ...
+> }
+> 
+> Back in sparx5_port_xmit_impl(), only -EBUSY goes through
+> sparx5_ptp_txtstamp_release(). Any other negative return frees the skb
+> while it is still on the list:
+> 
+> sparx5_packet.c:sparx5_port_xmit_impl() {
+>     ...
+> 	if (ret == -EBUSY)
+> 		goto busy;
+> 	if (ret < 0)
+> 		goto drop;
+>     ...
+> drop:
+> 	stats->tx_dropped++;
+> 	sparx5->tx.dropped++;
+> 	dev_kfree_skb_any(skb);
+> 	return NETDEV_TX_OK;
+> busy:
+> 	if (skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP &&
+> 	    SPARX5_SKB_CB(skb)->rew_op == IFH_REW_OP_TWO_STEP_PTP)
+> 		sparx5_ptp_txtstamp_release(port, skb);
+> 	return NETDEV_TX_BUSY;
+> }
+> 
+> The next two-step request then walks the list in
+> sparx5_ptp_txtstamp_old_release():
+> 
+> 	skb_queue_walk_safe(&port->tx_skbs, skb, skb_tmp) {
+> 		if time_after(SPARX5_SKB_CB(skb)->jiffies + SPARX5_PTP_TIMEOUT,
+> 			      jiffies)
+> 			break;
+> 
+> 		__skb_unlink(skb, &port->tx_skbs);
+> 		dev_kfree_skb_any(skb);
+> 
+> Does this read the cb of the freed skb and then free it again? The TX
+> timestamp IRQ handler can also find the stale entry. ptp_skbs and ts_id
+> also stay incremented, so can the PTP ID pool run out?
+> 
+> This path could already be reached through the -EINVAL return when the
+> next TX DB is not done, i.e. when the TX ring is full.
+> 
+> With this patch and the default MTU of 1500, db_size goes from 4096 to
+> ALIGN(1518 + 36 + 8, 128) = 1664. A two-step timestamped frame longer
+> than 1624 bytes used to be sent, but now it always takes the drop path.
+> Such frames can still reach a 1500 MTU port, for example through tc
+> mirred or bpf_redirect from a device with a larger MTU.
+> 
+> The commit message says it will "make sparx5_fdma_xmit() drop frames that
+> do not fit", so it depends on this drop path. Should the drop label in
+> sparx5_port_xmit_impl() call sparx5_ptp_txtstamp_release() for two-step
+> PTP skbs, the same way the busy label does? sparx5_port_xmit_impl() is
+> still unchanged at the end of the series.
+> 
+> -- 
+> Sashiko AI review � https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120-sparx5-mtu-change-v3-0-55c272fe1acc%40microchip.com
 
