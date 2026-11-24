@@ -2,103 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042C4606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E28606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UvhA8WVR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Gr2PEFt6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QhPHu+vL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jkO62I/N
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fkcXNh2S892P26zeb4v8GatV81GnIFMuUNe4sWAuvks=; b=UvhA8WVR4EOA6AKYULDPdUgl3K
-	CbNyfYRJ6cL/AsCHMgLTHfQFCyHzbKWgh+X50tenFpGT0Lbd5CT2+SIE1zbbLeWLS2Y+fpjZWslyM
-	n0WXaAZQJ16YQBSdZBpfPpW0htwc5e0Hw+qpRKHGf4LRhheLr0ddAGyRTCwhOwO1AVzRsHXl/vqXA
-	odbiOqj++GQbplFnmXpwru7eDyTN8H+FlSoMoTEAa8pm8vE4ApPkmafxJH+15TagweayBVmYRTm29
-	pOaek25I6fhqn1IGYNAARygaiCo1hp0dlAMT7igyM6s4Ja0Kn7I4jzUmJwAlCemtl6wmlHAB7qUHe
-	w/UDcl5w==;
+	bh=uh6VIcmUihTJZpbQIAs5Uul2q/clKDFIcJydo+fPY/c=; b=QhPHu+vLtZihd3WEUeH57uuVT5
+	TpIwHgb9itLlO5v732sO7aIuhtKppLz/bKCAPL+UrPfqZeAs08bwHV0hC7qRO1Y5wqqe4br5Xdz7n
+	IJ0tSXIJvDkarbIiW19T3t/VtGzR2o6bLKbqXhHy4uUxNOpx5uZlPR9qtU1dbvpooVrsm06zyu9Bo
+	Z2t9t17b+01uiW0bR4f22WGZ/08Yv3nIGbEBAGfOm0GlOKjayDQJ8K7noTe+QQNjwFAHefk1e/E/Z
+	fwDOpMRvv7QpKzXJvG7a2GftDGBPg4qlMuqUEpxrH4vR6u01/Y7S6bvc6IAMluy/gp7bHGT+13epX
+	8nSgNmtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVpyP-00000006Y7u-01g7;
-	Tue, 24 Nov 2026 12:50:13 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVpI1-00000006Teb-2jmF;
+	Tue, 24 Nov 2026 12:06:25 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVpyN-00000006Y7m-2vsu
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 12:50:11 +0000
+	id 1xVpHa-00000006TUT-2zIA;
+	Tue, 24 Nov 2026 12:06:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3F27D43821;
-	Tue, 24 Nov 2026 12:50:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80B391F000C0;
-	Tue, 24 Nov 2026 12:50:10 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 786E24042D;
+	Tue, 24 Nov 2026 12:05:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3816E1F000EF;
+	Tue, 24 Nov 2026 12:05:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795524610;
-	bh=fkcXNh2S892P26zeb4v8GatV81GnIFMuUNe4sWAuvks=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=Gr2PEFt6Nif4bgQBkTr20iv52muiiKwwK0cRcdA2K0e825bGiSD/zpBb8TnonFISy
-	 fxqG4PZIaD/LsMIx6VJ2b9q82i6NAso2o9l3lcff2wZgZkU/fYbcM/T1MqnYuWA5Tg
-	 3OeTKCka90kyPatC5NxqPl3gda+lX38e3x5q9Xv9FcQFwO5Hm6v6qeV1eyZY8VMU3F
-	 31mirC74x45EEyhE3MU0Q/la2PlvYX/UX1LzUgFtaIRv/t1AIgC+BMlOFtbXOH4PID
-	 x2aHnvY+gDaxfJFp3TjoCIPM2cpf8Lj3JiVjlcrTrKDx8/nQN8aFOKLv7UkpNWOquZ
-	 swhINiwhDxj8w==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVpyK-00000002Zmv-16Az;
-	Tue, 24 Nov 2026 12:50:08 +0000
-Date: Tue, 24 Nov 2026 12:50:07 +0000
-Message-ID: <868q2iz94w.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Justin He <Justin.He@arm.com>
-Cc: Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey
- Gouly <Joey.Gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki
- Poulose <Suzuki.Poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin
- Marinas <Catalin.Marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark
- Rutland <Mark.Rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Sean
- Christopherson <seanjc@google.com>,
-	Shuah Khan <shuah@kernel.org>,
-	Sascha
- Bischoff <Sascha.Bischoff@arm.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	"kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-	Lorenzo
- Stoakes <ljs@kernel.org>, Dan Carpenter <dan@pereq.eu>
-Subject: Re: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before first run
-In-Reply-To: <AS2PR08MB978600ED2150F773D3E1631DF7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-References: <20261123150917.2679600-1-justin.he@arm.com>
-	<20261123150917.2679600-2-justin.he@arm.com>
-	<86eccbzcqh.wl-maz@kernel.org>
-	<AS2PR08MB978600ED2150F773D3E1631DF7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20260515; t=1795521958;
+	bh=uh6VIcmUihTJZpbQIAs5Uul2q/clKDFIcJydo+fPY/c=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=jkO62I/NkOgxLczWDu+s+u6Vg9w+FOcmx9E0LT9FVUmdYwqbuW/6XfqM+4cTjlWwl
+	 /DMR3U9M0WVJK3k/DpZDuAx2HptQYdiZ0ZZDmguKe/3xuiUTRJh6eVaf5Yl2sFVgWl
+	 LNHeEJBu5kuf6e9G4GVSbWI3s4PYuA1Qb7uel+lYx+J1Lk1c/7JWeOgSl0GO048IMr
+	 NUb0Qn4jJ143ter8OZhYaZflZEnDxnS1JXD4xU5mJhGcV9zApiWZ77+s60/9Pw32b/
+	 +6KYSeua4GbIi5RqKV8iblvGZJAyFacFUsQJLLDUIB+qiB7xZK+Xk6j9UTksJL7VFq
+	 FW4U0YiQ1OUqw==
+Subject: Re: [PATCH v2] net: dsa: mt7530: disable the power rails on setup failure
+From: netdev-bot+sashiko@kernel.org
+To: wanghr2026@mail.zgclab.edu.cn
+Cc: chester.a.unal@arinc9.com, daniel@makrotopia.org, andrew@lunn.ch,
+ olteanv@gmail.com, davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org,
+ pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Tue, 24 Nov 2026 12:05:56 +0000
+Message-ID: <179552195677.3135.2679930645626053258@kernel.org>
+In-Reply-To: <179543215348.11880.18316180385674365789@mail.zgclab.edu.cn>
+References: <179543215348.11880.18316180385674365789@mail.zgclab.edu.cn>
+X-sashiko-severity: High
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: Justin.He@arm.com, oupton@kernel.org, fuad.tabba@linux.dev, Joey.Gouly@arm.com, seiden@linux.ibm.com, Suzuki.Poulose@arm.com, yuzenghui@huawei.com, Catalin.Marinas@arm.com, will@kernel.org, Mark.Rutland@arm.com, pbonzini@redhat.com, seanjc@google.com, shuah@kernel.org, Sascha.Bischoff@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, kvm@vger.kernel.org, linux-kselftest@vger.kernel.org, ljs@kernel.org, dan@pereq.eu
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,78 +71,179 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Adding Dan to this loop, as I reckon something else is amiss.
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-On Tue, 24 Nov 2026 01:39:23 +0000,
-Justin He <Justin.He@arm.com> wrote:
-> 
-> Hi, Marc
-> 
-> > -----Original Message-----
-> [...]
-> > > KVM_PRE_FAULT_MEMORY calls vcpu_load() as soon as
-> > KVM_ARM_VCPU_INIT has
-> > > completed. On arm64, however, kvm->arch.sysreg_masks, the trap
-> > > configuration, vncr_tlb and nested vGIC state are only set up on the
-> > > first KVM_RUN in kvm_arch_vcpu_run_pid_change().
-> > 
-> > I think I'm going to queue a patch disabling prefaulting immediately,
-> > and then we can fix this crap.
-> > 
-> Fine with me. I'll rebase on top of it and have v2 re-enable
-> pre-faulting together with the load/put change.
+Critical: 0 · High: 1 · Medium: 0 · Low: 2
 
-Don't worry about that. I can fix that myself when applying the
-patches.
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
+- [High] The commit message says moving mt7530_setup_gpio() after the FDB
+  flush means "the gpiochip is not left registered when the rails are…
+- [Low] The patch fixes a runtime bug: regulators stay enabled on
+  mt7530_setup()/mt753x_setup() failure, enable_count grows on each…
+- [Low] The new power-down helper mt7530_disable_pwrs() drops core_pwr
+  and io_pwr without first asserting the chip reset.
 
-> > > Since kvm_running_vcpu can now be set without VHE state on the CPU, use
-> > > host_ctxt->__hyp_running_vcpu in VHE enter_vmid_context() (matching
-> > > nVHE)
-> > 
-> > Can you clarify under which circumstances we end-up on the TLB
-> > invalidation path? Simply faulting things in should not result in
-> > invalidation. Unless we end-up with MMU notifiers firing?
-> > 
-> I found this by code inspection, not from a failure. A TLBI from a stage-2
-> BBM or an MMU notifier can hit this path during pre-faulting, but before
-> the first run hw_mmu is canonical, so it makes no difference. As Lorenzo
-> said, I'll drop this hunk.
+--
 
-vcpu->arch.hw_mmu being the canonical one before the first run doesn't
-hold anymore, since a7602ea542d4e ("KVM: arm64: nv: Initialize hw_mmu
-to NULL for nested vCPUs"), as userspace can configure things for an
-L2, before first run, and bad things happen otherwise.
+net: dsa: mt7530: disable the power rails on setup failure
 
-But the observation remains: if an MMU notifier occurs for any reason
-while pre-faulting (likely a concurrent reclaim), we get the "not
-quite loaded" vcpu in enter_vmid_context(). If vcpu->arch.hw_mmu is a
-valid (non-null) pointer, then we will restore whatever is in that
-structure when reaching exit_vmid_context(), and that's not what is
-intended.
+This patch moves the MT7530 core/io regulator disable out of
+mt7530_remove(). The rails are now disabled in mt753x_teardown() and on
+the mt7530_setup()/mt753x_setup() error paths. It also moves
+mt7530_setup_gpio() after the FDB flush in mt7530_setup().
 
-So I think we need that sort of exclusion. Either we track what is
-actually properly loaded (using __hyp_running_vcpu as you did before,
-or by checking whether the vcpu is in a valid state).
+> Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
 
-I think we have a somewhat similar breakage with 5651590be08a6 ("KVM:
-arm64: Load the vcpu in KVM_SET_VCPU_EVENTS"): as vcpu_load() now
-becomes sensitive to vcpu_has_run_once() being true, we can't tell
-anything of the state that is going to be evaluated by the event
-injection helper.
+[Severity: Low]
 
-We could prevent the non-running injection in KVM_SET_VCPU_EVENTS, but
-that's also a change in the API...
+This fixes a regulator core WARN and an unbalanced regulator_disable() in
+mt7530_remove(), but there is no Fixes: tag.
 
-	M.
+git blame shows that the regulator_enable() calls in mt7530_setup(), with
+their bare return ret error paths, come from:
+
+ddda1ac116c8 ("net: dsa: mt7530: support the 7530 switch on the Mediatek MT7621 SoC")
+
+That commit restructured code first added in:
+
+b8f126a8d543 ("net-next: dsa: add dsa support for Mediatek MT7530 switch")
+
+Should one of these be added as a Fixes: tag? The recent fix to the same
+regulator handling, c2cdef41e0b4 ("net: dsa: mt7530: fix NULL dereference
+on unbind of MT7531 and MT7621"), carries one.
+
+> diff --git a/drivers/net/dsa/mt7530.c b/drivers/net/dsa/mt7530.c
+> index d5a199293f78a..5bbeed0491c45 100644
+> --- a/drivers/net/dsa/mt7530.c
+> +++ b/drivers/net/dsa/mt7530.c
+> @@ -2376,6 +2376,16 @@ mt7530_setup_mdio(struct mt7530_priv *priv)
+>  	return ret;
+>  }
+>  
+> +static void
+> +mt7530_disable_pwrs(struct mt7530_priv *priv)
+> +{
+> +	if (priv->id != ID_MT7530)
+> +		return;
+> +
+> +	regulator_disable(priv->core_pwr);
+> +	regulator_disable(priv->io_pwr);
+> +}
+
+[Severity: Low]
+
+Should reset be asserted here before the rails are dropped?
+
+mt7530_probe() requests the reset GPIO with GPIOD_OUT_LOW, so reset is
+asserted while the chip is unpowered. mt7530_setup() then pulses reset and
+leaves it deasserted:
+
+	gpiod_set_value_cansleep(priv->reset, 0);
+	usleep_range(5000, 5100);
+	gpiod_set_value_cansleep(priv->reset, 1);
+
+Every new caller of mt7530_disable_pwrs() cuts io_pwr and core_pwr with
+reset still deasserted. That covers the err_disable_pwrs labels in
+mt7530_setup() after the reset pulse, the mt753x_setup() error paths, and
+mt753x_teardown().
+
+The SoC then keeps driving the inactive level into the RESET pad of a chip
+whose IO rail is off, and this repeats on every -EPROBE_DEFER re-probe.
+The MCM path also never calls reset_control_assert() before power-off.
+
+The v2 notes say this was left out because it matches the old
+mt7530_remove() ordering. However, this patch adds several new power-down
+points. Would asserting reset first, then disabling io_pwr and core_pwr,
+better mirror the power-up sequence?
+
+[ ... ]
+
+> @@ -3205,11 +3228,11 @@ mt753x_setup(struct dsa_switch *ds)
+>  
+>  	ret = mt7530_setup_irq(priv);
+>  	if (ret)
+> -		return ret;
+> +		goto err_disable_pwrs;
+>  
+>  	ret = mt7530_setup_mdio(priv);
+>  	if (ret)
+> -		return ret;
+> +		goto err_disable_pwrs;
+
+[Severity: High]
+
+The commit message says:
+
+  Move mt7530_setup_gpio() after the FDB flush so the gpiochip is not left
+  registered when the rails are dropped.
+
+and the v2 notes say "no failure path leaves the gpiochip registered after
+the rails are disabled". Does that hold on these paths?
+
+mt7530_setup_gpio() is now the last step of mt7530_setup(), so the reorder
+only covers the FDB flush failure. When mt7530_setup_irq() fails here, for
+example with -EPROBE_DEFER from of_irq_get(), the gpiochip is already
+registered through devm:
+
+mt7530_setup_gpio() {
+    ...
+    return devm_gpiochip_add_data(dev, gc, priv);
+}
+
+err_disable_pwrs then calls mt7530_disable_pwrs() while the gpiochip is
+still registered. The commit message calls -EPROBE_DEFER the common case.
+
+On the mt7530_setup_mdio() failure path, mt7530_setup_irq() has also
+already registered the regmap IRQ chip and its threaded handler:
+
+	ret = devm_regmap_add_irq_chip_fwnode(dev, dev_fwnode(dev),
+					      priv->regmap, irq,
+					      IRQF_ONESHOT,
+					      0, &mt7530_regmap_irq_chip,
+					      &irq_data);
+
+The new mt7530_disable_pwrs() call in mt753x_teardown() has the same
+problem. DSA calls teardown from the teardown label in dsa_switch_setup()
+when tag protocol or user MDIO bus setup fails. It also runs on any tree
+teardown, through:
+
+dsa_tree_teardown()->dsa_tree_teardown_switches()->dsa_switch_teardown()
+
+In all of these cases three resources stay registered while the rails are
+cut: the gpiochip, the regmap IRQ chip, and the internal MDIO bus from
+devm_of_mdiobus_register(). Their lifetime is tied to device bind, not to
+DSA setup/teardown.
+
+In a multi-switch tree, unbinding another switch tears this switch down
+while it stays bound. The registered-but-unpowered state then lasts for as
+long as this switch stays bound. Before this patch the rails stayed on in
+these cases.
+
+Can a gpiochip consumer (mt7530_gpio_get(), mt7530_gpio_set() and the
+direction callbacks), the regmap-irq threaded handler, or a PHY on the MDIO
+bus then issue regmap/MDIO accesses to an unpowered chip?
+
+Would this need explicit unregistration in teardown and on these error
+paths, using non-devm registration or the devm_*_release helpers, instead
+of the reorder? If not, could the commit message and the v2 notes be
+corrected?
+
+[ ... ]
 
 -- 
-Without deviation from the norm, progress is not possible.
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/179543215348.11880.18316180385674365789%40mail.zgclab.edu.cn
 
