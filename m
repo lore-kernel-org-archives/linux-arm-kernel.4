@@ -2,119 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A3F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDF3606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:22:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aKbLkoUN;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=lfZFMJbS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d+7LxR2+;
+	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=XZmHQMze
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qWc2HfKuFPV2b6DSx9GtSUsihb4iBjVr4X6XL1Go0is=; b=aKbLkoUNfToJ+N
-	YvtJ3ibIzSPavQIN9iDkmSGyqjRDjP35dhLhbvRLhz260vNEatNx/yH4qNYU9l92dYXecmicE+z/u
-	nk6QwARkuPAc74VsBr2/RnSbRFYtEnw2pJ8mflrwtf4agyZQ8JS3rBETsBVCCVS2YVWV5IaUjIite
-	PB5EwYOqwfSmRM1N9Bw2QCBDqgEEeCIOMsvzHPbY2LHLQzIKF5PdwwMI1+HiLb1HFCWMMp2ozlTlj
-	IhO71nGQL6+w1+MxPWOKBls9iNSvM8TXMhtO5Y6HGUUHw2PM6myDJHSFUTLDew4l0jaHplIlFJdaQ
-	MUVFMJyyFq6ENQ0fSQzQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xOFozaMwmo1idqMUiXc1D2U6cKaVfmPBvQCvoagkPaw=; b=d+7LxR2+Idg4vBHBToLbOd+xFk
+	SuoYKWioYTxMNBlMTzesgYjeXpw8cYs/Xn0kEG+5amtz97PvMsG9gamFFyYNIRqXdRK4HvzCb6iFn
+	ro9wxKxF+xCDeoLpcls8xmAS/PZt/20ksGo9JiN+4KAUpE66R3tdq5astsdEr2E8Hq5OUiQF8D3a3
+	xnRlhkftorohjAyL6BxBufyp220YhW9Htc6U4YkiadLL3zVzhfhWdkf+2ZdOMzJINXMaYloNrXm5M
+	D3oCZJ7Tml1DHDbxvJQjVQDzP0WryRjQqsr0akmMej+Au0mqPenfcU6yDVTs2BqvFJwoQJhmQzDku
+	BEzcoZEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqTA-00000006cwI-4BJV;
-	Tue, 24 Nov 2026 13:22:01 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1xVqMD-00000006aRd-1YDg;
+	Tue, 24 Nov 2026 13:14:49 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqT6-00000006cva-3Y0N
+	id 1xVqMA-00000006aQP-43qk
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 13:21:59 +0000
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-4ac109a8a12so2624567f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 05:21:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795526512; cv=none;
-        d=google.com; s=arc-20260327;
-        b=VSVxuwcRRVD/G0FnqTYGAVQddXThCjCsc8S8vhOIyqKAVF7CjxXMuIGLppiuxlC8/6
-         xrMqfWRKY7pSR9NkJWE27VE6SdR7YIZiJVLm7bIWraamcllcqajqwiDRKVq0pXQR8qWg
-         vXuFqJreuPI5svuk9LcZjlLv/u60RZtwRofqKc+AOS5Ek6+U2NUrK5GF2/FcEpbOtDp3
-         aiZd+Q0eppOKTgfbNEK8gvsO4SyscTNY6+79KykQ2Cbv0w3X/GrvsjBB9PvD57fJZ1kl
-         2LaxfAN+kgIffKDTLzYwoiJI9oZVj6tpb3yKPLpQIu/Hkhb4YRSi28rbezGWkaV9rCHb
-         KDUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=qWc2HfKuFPV2b6DSx9GtSUsihb4iBjVr4X6XL1Go0is=;
-        fh=qshWn7nui2qeM5Bs4khklGgBpKmr7IKSzQdx/6UyRRA=;
-        b=OguJ72lU5nK67ZT+6pftG7ItUl1RTsYLSS3bnzG9wlwS+oRqvizQk7+ZjfZIVDgrLZ
-         10CmIHwvehk/h974++rb2f+7rMpA6oiP84mkPiJS3f19KEod4DxwgT3RPhHTduGC1133
-         yNBbIjEzVJTLu89P9pMC09bV07RuQng51OEnRjBBpfMq896hSpZE91a7UFbPRVLZdeF7
-         WdEjWpTI3hUpxaPjSTZ9JoZBHfmtBZM+WsHF7c9+xScKFm4jzzmrb+i+DHvJ35Tf+uMA
-         b1bjTZfxirBYXInvdU1bupO+5j54NkVuUWXvhquDOoMfaNY+jvqmSLYT/ykpyXFYnlIg
-         u8Wg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795526512; x=1796131312; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=qWc2HfKuFPV2b6DSx9GtSUsihb4iBjVr4X6XL1Go0is=;
-        b=lfZFMJbSOnJYp1SR7vQX6+IOGT28P7iiZDGhTIxgMdEckXnMJJC98Gj8kM4YYKYOrs
-         hpnVYn4jwlN+zCpYS8T+mbjzR6GjcwuOLqyAK1w96TqvmIYRe7GeYK8LusuhF7y30fHM
-         44Be7ud/Lvg8Oad7ITlT9jEriiBzP50eVLEJz2cXjxKC0eLiYju9LDzusAyPMsbiW4v3
-         XmKnGDwqdROMC2sY1KJ5LBiwZ3JpOFXw2noTu1SBVtPbXMs/3jkBkDhGStdauEnJw9Gs
-         zrocyvKjn+OVRlvsLqf9icTRQjc2mxSzCWavixMeroZ4GEc9e7wWAsYkG7zNVZF6rGmO
-         TUWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795526512; x=1796131312;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=qWc2HfKuFPV2b6DSx9GtSUsihb4iBjVr4X6XL1Go0is=;
-        b=USqrHwXTaT8qyDR9rK55GyfgitMzvBeCevNG/77Mtra13Ig1F9RCouJmrldRt/DAWB
-         Zk/O9L/cPLR81Gx7wTd/E1YZ7rAdjWaitWFe0FtJAcAqZyjrmTMyxxPY0uJvd3GgoN2s
-         z+he73HHoC6MpXkmMsd+qzPRm7Nu5E0FWdjLrbgsWGcm7nLjQ0dfwmm+xrzW7HGVXHzT
-         DQgoE+bs9tgNAdKpEbI1QuCZdTa66RL622BJVxjhTU4DLbQBjJP0KmF44ZOy6fqEMrBn
-         TieWr69RYd9bjcMMkW+Egc+pV+8cvoDKVVta79eukydzBFG41RvRcMQhyTXxkU7moKgf
-         Q9Rg==
-X-Forwarded-Encrypted: i=1; AL+hErEQG5pGs5sAa4GK0TQsFb7qtlTf5nINiokzNUeLQfHcS6FHl0prfJgJw8s4dRDQwjLnxZfUvo03E91JeToOO1Oo@lists.infradead.org
-X-Gm-Message-State: APuU4Z8jZpAkamX7D9GiQvSRO7QLwRWv2Rj+wnQyBt/U50wXm7NSorhr
-	YFiW4Vk7TamcMxYDwpp2GK8qQxGDQRSSBkKzM3SdnHyx6TPTTS2XFNruB3WMpn9m54A8g9/e67M
-	jSf+CeJJnK2uSonuTXyzPtYHWkx4jbV0=
-X-Gm-Gg: AZFdTZdA8Tf73LrELdiCvqxEjTesQgsE/uxlIyYMwbRL6FsKBCJsiaxoM3lwApxIt+J
-	grPuiipSiEEVc+75FhLL47fdZp9spgorW8yXq83OrgmKdFObJwpTJgD90D8rPfPa0f7/h0IngqM
-	PUKFfhGjh06y1Eq3jjxQbmxYY6T7ZylwCiUUy4fb81UHWdgehyfwj8Z7jZYEM0cWnKy1gpM0bUy
-	lT7sYHuGQdRpbdFbk/r5/p0g70t5+wuBkpWq6+egO8/13qymaj9SBtLhUzA6V8FiAaXKAqbCw97
-	GyiOyv/NakNSrSfQ4ug0YXokEQqGzyeTOLyX8k6hk9CdR9lNkxbwHOcBSvSWxg/KsX3sCWcBtJ5
-	94xgFomrv3ll9q0aXDprErA2iKZZo6T1UrO4rhr/glKSdQxOuOCBsOjNAma2rt6yYIpx/84MNN5
-	lCJNhm7piQVfjNpLrxlt+Aw+5Glb7TdT3xP+wwe9EFpj8nckgn3kGD8afLdjDEsBYpATEjsyTCA
-	u+jfII=
-X-Received: by 2002:a05:6000:41c9:b0:48d:fdd0:6ce8 with SMTP id
- ffacd0b85a97d-4abaab633bcmr28636444f8f.3.1795526512489; Tue, 24 Nov 2026
- 05:21:52 -0800 (PST)
+	Tue, 24 Nov 2026 13:14:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xzjfulqIggLf4vO1TFwCzlbqZ1Gio2+h0MzXxOG7f6guBKFXcyMoRUH3PF11xweYFfw+SDC8SAxDTtMiHCovlsOIQ51mEmtC4FkGuNMfujhVKfLnN++E4Dh91zY4G2Mua91jEay6ohV1TYiCfjhl1fkSJ3dKYYB3DJlKxpmO2o/WUF5aehks4NWOrW36P53waVMU/b34XOK1x7fbFSLXd2s3nLFd5+0iKanOPO58Tnaf/mPLuJIkF0Gv2C7jk0K/WThxkfGB3F2sLfPfX8C5crtGvNeh/922czr3tj+Ae/aKurJfIna9nYbNzrgGyws30/mAVBENwbJec46c+GCEbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xOFozaMwmo1idqMUiXc1D2U6cKaVfmPBvQCvoagkPaw=;
+ b=eq3EXyncYX//Ow2eMgH8qkJHO3ttiJWd7RDcLNWAvPL5M6SmxZcTMIINENxO8G56/L2h7LOITJk3DzgVrOhr14Tdtyc6PgQINYe8kbcetr69eb5WpSYVHln1Df22s60y7ShwQI6MSI0AbgwAdsek2P/TlA+QCrQqVJIHTnaeGGhz5SwBqFU18Rbh8EXNDa4DC2b9pgZLfsxvC/6maqLjF/DGd4bma2nIV83Ci57E+SCtlv6ofJ0JSLkfShoqi7cdOfoh5X0hKZ2FrYuyeorhSTZhBjrLkwdCQjf8X1GF99kh3CCVvhKV4mG9Wu1ttBwWz5CA4nFfd5E0Gq6DJ8j++g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xOFozaMwmo1idqMUiXc1D2U6cKaVfmPBvQCvoagkPaw=;
+ b=XZmHQMzeeagFqgiUmT1L4aC1dOtainJ2jV0AM9qeEkZad01A40eMZeVVwhN1wa1wenPdxsmm3Z9LA5HAw5oV7gZu3JkCmTh1KApK0rtF6tBlsApN6M3SlUF2lgCRhEr2usIXi+zBUEurQ+opLhTvXakO+nDBdb6DfEoex0GZmwWYFJy51MOV+zVa4kUXrAqDECFombGbeFauS/iKqesiWyp/c/t8dPT6iL28qag1TDBf8UhIYqbAm9MaEiBZYHR7ErbUljOXrVCOPamYrq+wHow1S80I2XAk1OgvIckQTfris7AZrsKeR1eccUcxYCio8JZTfluJjncJuowYOHMHxA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4472.eurprd04.prod.outlook.com (2603:10a6:20b:23::20)
+ by BR2PR04MB325065.eurprd04.prod.outlook.com (2603:10a6:2c8:7::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
+ 2026 13:14:39 +0000
+Received: from AM6PR04MB4472.eurprd04.prod.outlook.com
+ ([fe80::aed9:e8b9:c352:9ba0]) by AM6PR04MB4472.eurprd04.prod.outlook.com
+ ([fe80::aed9:e8b9:c352:9ba0%6]) with mapi id 15.21.0639.010; Tue, 24 Nov 2026
+ 13:14:39 +0000
+From: Stefan Ghetu <stefan.ghetu@nxp.com>
+To: linux-pci@vger.kernel.org
+Cc: imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sahil Malhotra <sahil.malhotra@nxp.com>,
+	Stefan Ghetu <stefan.ghetu@nxp.com>
+Subject: [PATCH] PCI: imx6: Fix kernel oops on user-mode external aborts
+Date: Tue, 24 Nov 2026 15:14:32 +0200
+Message-ID: <20261124131432.695946-1-stefan.ghetu@nxp.com>
+X-Mailer: git-send-email 2.53.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR4P281CA0138.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b8::12) To AM6PR04MB4472.eurprd04.prod.outlook.com
+ (2603:10a6:20b:23::20)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261119185016.1789843-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <179546436704.3135.12593345717335656860@kernel.org>
-In-Reply-To: <179546436704.3135.12593345717335656860@kernel.org>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 24 Nov 2026 13:21:26 +0000
-X-Gm-Features: Aa3M54qYvwnStTQeBsV6jkU4pnj89Z8PUCLhVvQ2lAGOs1SaKPKt9ljNLbIFBQo
-Message-ID: <CA+V-a8s722YOUnoErKDEiMd2KsZT5E5wkTvjJ1Zbeji1UPiSRg@mail.gmail.com>
-Subject: Re: [PATCH net-next] net: stmmac: Advertise TX checksum offload only
- when supported
-To: netdev-bot+sashiko@kernel.org
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net, 
-	edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
-	prabhakar.csengg+renesas@gmail.com, biju.das.jz@bp.renesas.com, 
-	fabrizio.castro.jz@renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4472:EE_|BR2PR04MB325065:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9abc2366-ff2a-418b-7556-08df4a2ce4c4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|23010399003|1800799024|19092799006|10067099003|11063799006|56012099006|261022075727099003|261022105027099003|261021123027099003|261021121427099003|261026121527099003|261026140227099003|261028144727099003|261102123227099003|261009223027099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: P5lKTQh7udyduEObFtgvGqfTvI1V/omho2eHbptgj1PN0kgeVkHv9fjmAPZR95VlHXUtG8epLeSmlMOol8AptYo5xoqyJvrszXcrL+/meqKEOb6RHI59U8uE+IcTL4B+G+QexBU1OoaqXr7MLoRoT9oS8VPa0ruee9AbUnweExjQqUgiu9qu+U6BiTIQQt62ibTlO3AWlgoD91x2bVkms3FA9t9ys74o80aWtRKvPg4vpSZMto0oCnkRcZ+ywG185oV5lWoaB0ts9GdxaHPK2GsPMp9T5gvjHNuEOIrG8TNbjnaDPReeHd31MgE8GKQeSferiB9QJ5cGCm5ooNG4WqfHVjYx9WTmxYJzLvW6pOEWN0szsp9BZhRxVpwHy95wgShTRvaXQFMtC/Wh11Ux+ILXGTyBlpMlS+0waRU/l7ctKtPr41TSESMW6JxM/SomFqSli7Sa9HWXbr1a+F348xGr9VUUwtffgtoT5Skf7kzAZNKbN76rf0hHGZSTgSHnN/nJ5NAiwNebH/k0KZUKwMacCPIdFecMUEGpqZ1tCEq5hAml0hcMdiXQkJih0TZJXP8S8jQwVtoVsZWmgtT9Z/zuId9bxjgUBqMiCu0GQS5Naja1uhDks9YtAUkN0Tf5a1bsBetZGKNaVrJd17MqxWhmHrfeXvraE2wmQ+87sHo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4472.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(23010399003)(1800799024)(19092799006)(10067099003)(11063799006)(56012099006)(261022075727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261026121527099003)(261026140227099003)(261028144727099003)(261102123227099003)(261009223027099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Xwpyi0Js9UTX4uMxoVxLnTUHQZCvUQWOreeU4azQCUFEgl9Vl+CxkhyzOQoG?=
+ =?us-ascii?Q?WuD4rTSCrAy7fkuw3KLSjVWuIntZ2bQbFp7zkL/hLAqHn3PnLqC2areRtlzU?=
+ =?us-ascii?Q?714K3b6zqllL6WPYfySxcbQur676UFEddLQgI7O2nwrKk4gqjBY/IKA6HPWP?=
+ =?us-ascii?Q?Ob8IgdV8V7H/9Puo5DrBVjWbJ4nBrsQ87cgxLbvhzWbzb3/rjoe89hd0PslY?=
+ =?us-ascii?Q?ws0y/ENdHI8kpcR7COWzzHLkqebHteP713BGHRrIkLCY6zZPMF1dLbZocxfC?=
+ =?us-ascii?Q?NqHeVm3RuG5PljlbKsUO6orBtT2f634+bZApTqrUDNTIrPRT8zADFAWVFS+j?=
+ =?us-ascii?Q?C5lZzK+nus80roM6JPUz5lC0lRHp24w8MvAjqzCe0u/RgFERcA80jrlYaw0N?=
+ =?us-ascii?Q?ALKItPJgbIMot/LrkjwBGzt1amACcKG76y+eta64lK12LqykgpLktUieAmSP?=
+ =?us-ascii?Q?7g7Rq+hhbGf6MJIV6V6DAw+DdJoCrKetUNaC+dgKS0b3h9R3S94Mm1AqraTv?=
+ =?us-ascii?Q?NHdrWvM4iv1g8aMuGo80f9JzwCIeWRuPNOZssJK9kqq1lYYuXAaGIvTxNger?=
+ =?us-ascii?Q?0pxxgVyYO7T3PBuFRllT3pZE6zw7OLmjOPPPamvM28OFEYzWhjJBn6sSfuAe?=
+ =?us-ascii?Q?fhz4blNKPmfsVpEXVNy5jJ9M/O7cP3FHg5b7jNic0kuFLtYN/noGlbP02U48?=
+ =?us-ascii?Q?f7Gr+0eeRY2OjwSmwOeKkv2HgWYanWB5/GVQ70Hxk1p/VOlGkRMRbu1Fc+mk?=
+ =?us-ascii?Q?DeV/TiLbvj++nLleuGAiAUeF1JiBDuK18EzAs4DRkUnP42SUMjRK+JSuU35t?=
+ =?us-ascii?Q?gLpU0oGAOOdNIWlKQIva7BYTf8Di6h9lCo1vnOV1IkQ1bwe4keOhJAakOmru?=
+ =?us-ascii?Q?i5LWUenwcfyO1qIMXYR1JeF0onj1XxlcynV0zV8mPbBNNt03KUCQSaT0U+4l?=
+ =?us-ascii?Q?XOfCkYfAg4kMyTlddd9pi8Bumw4Qc9TK955nXetBRlGeTsai6I26Rl/GLMHX?=
+ =?us-ascii?Q?8UBuGP3ZRUDQ9ix+iGLa+Ir9ETcJhcguQx3+d4dk9cpqzlFMGwa6qOcjrKlK?=
+ =?us-ascii?Q?Jx/1DmX+IfvVhS1nqh3sXDKB+sVT6EYZ7pY3/sJ5X1tovq849LUJJtFprOn+?=
+ =?us-ascii?Q?RTmwM6ELMK+jTY1ObqxQKjqxQhEIa/v3LAn42h0Th71WXD5RdTOw/x6oMGwJ?=
+ =?us-ascii?Q?rgETnd1P4b2JIBzHKTPUWc4F+u/hq76oPiQHK3JRJGrlckUJ4nnXF0Sxctq9?=
+ =?us-ascii?Q?fVOOTNgskbzLmEkgrl7FfjPiqogwiBZO+v7E2lxm+IX6lH7a/doQnbNLf+Vh?=
+ =?us-ascii?Q?ycLl3RJz5o7Q0vx9m6ck9ws9PfWp8eo9uRcHB/XWNR5Qo6lknpbxJ+pd96PJ?=
+ =?us-ascii?Q?hpYUs1CnpSha5nHayP1B3P9Z+b35ngguuHn9/Aj+QutaLbnT0K+6/1ssrYZw?=
+ =?us-ascii?Q?BBGl3Vfnk+AwkH3ZTP81+FnMdOwWpkaJIjKUEF+FRNm12cJadwOK9OQUiePk?=
+ =?us-ascii?Q?nH/Ia1W7qaOm9clZ5mns0B9SkZQb4DXNIxgioLbttgTv895+zl7054wVrVB6?=
+ =?us-ascii?Q?hydBHixgbQEC1xQaw/1H3C+1AA43j9/1YHQaS12ZWyzbSqxkoHtSRQ0B9sG2?=
+ =?us-ascii?Q?v0GY1Vd4S/3I1oiifILPpqEDX+go4fzddAH7IHsPr9GuldBhdp33j33KnGwb?=
+ =?us-ascii?Q?dG8kiLcvdfRTVdo61VC1rCTpFWhSaAmEbJ+aWsukR5pL8LxiDnstLb0EUmtf?=
+ =?us-ascii?Q?zlRqBHCPWQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9abc2366-ff2a-418b-7556-08df4a2ce4c4
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4472.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 13:14:38.9800
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TDqy8yfpz7eM51pCK+43XUYNVKcNsbNU4fk4gQy+QMEPpuTU035sF56Pv8Pjhw7C0T8Ufy8PgLfFmAiOyHLJ2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR2PR04MB325065
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_052157_667576_84D7B8B0 
-X-CRM114-Status: GOOD (  38.99  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_051447_029580_93712EC8 
+X-CRM114-Status: GOOD (  17.15  )
+X-Spam-Score: -1.1 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,171 +147,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 8:06=E2=80=AFPM <netdev-bot+sashiko@kernel.org> wro=
-te:
->
-> Thank you for your contribution! Sashiko AI review found 2 potential
-> issue(s) to consider.
->
-> Critical: 0 =C2=B7 High: 0 =C2=B7 Medium: 1 =C2=B7 Low: 1
->
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwor=
-k
-> know by including "pw-bot: cr" as a separate line at the end of your repl=
-y
-> (one such reply per series is enough).
->
-> - [Medium] The new advertisement gate in __stmmac_dvr_probe() trusts
->   plat->tx_coe.
-> - [Low] The commit message presents this as a bug fix ('This can cause
->   DSA user ports to inherit checksum offload through vlan_features=E2=80=
-=A6
->
-> --
->
-> net: stmmac: Advertise TX checksum offload only when supported
->
-> With this patch, __stmmac_dvr_probe() adds NETIF_F_IP_CSUM and
-> NETIF_F_IPV6_CSUM to hw_features only when plat->tx_coe is set.
-> Previously they were always advertised. The goal is to stop DSA user
-> ports from inheriting TX checksum offload through vlan_features when the
-> conduit can't do it, for example in threshold DMA mode.
->
-> > The driver unconditionally advertises TX checksum offload, even when
-> > the hardware capability check disables it, such as when threshold DMA
-> > mode is selected. This can cause DSA user ports to inherit checksum
-> > offload through vlan_features despite the conduit not supporting it.
->
-> [Severity: Low]
-> This reads as a bug fix, but there's no Fixes: tag, and the message
-> doesn't say what actually breaks. Is this meant for net or net-next?
->
-> Before this patch the conduit's own dev->features was already correct.
-> stmmac_fix_features() removes the TX checksum bits:
->
-> stmmac_fix_features() {
->     ...
->         if (!priv->plat->tx_coe)
->                 features &=3D ~NETIF_F_CSUM_MASK;
->     ...
-> }
->
-> So only hw_features and vlan_features were wrong.
->
-> For header-tagged DSA traffic, validate_xmit_skb()->skb_csum_hwoffload_he=
-lp()
-> on the conduit already falls back to software checksums. Also,
-> stmmac_features_check() drops CSUM for non-IP ethertypes. In that case
-> the only effect looks like wrong feature reporting.
->
-> Wrong L4 checksums on the wire would come from trailer taggers that rely
-> on the conduit (tag_trailer, tag_xrs700x). Is that the case this patch
-> fixes, and could the message say so?
->
-> There is also a change users can see in ethtool when tx_coe is false.
-> tx-checksumming on the stmmac netdev now shows "off [fixed]" instead of
-> "off [requested on]". Should the message mention that as well?
->
-I'll update the commit message with a fixes tag and send a v2 for net.
+From: Richard Zhu <hongxing.zhu@nxp.com>
 
-Cheers,
-Prabhakar
+When a user-space process (e.g., memtool) accesses an OP-TEE protected
+memory region, the SoC raises an external abort (FSR code 8). The
+imx6q_pcie_abort_handler() registered for this fault code attempts to
+decode the faulting instruction by directly dereferencing the saved PC:
 
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/driver=
-s/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > index f256244ce0d11..8cb1e3b4030e2 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> > @@ -8224,8 +8224,9 @@ static int __stmmac_dvr_probe(struct device *devi=
-ce,
-> >       ndev->xdp_metadata_ops =3D &stmmac_xdp_metadata_ops;
-> >       ndev->xsk_tx_metadata_ops =3D &stmmac_xsk_tx_metadata_ops;
-> >
-> > -     ndev->hw_features =3D NETIF_F_SG | NETIF_F_IP_CSUM | NETIF_F_IPV6=
-_CSUM |
-> > -                         NETIF_F_RXCSUM;
-> > +     ndev->hw_features =3D NETIF_F_SG | NETIF_F_RXCSUM;
-> > +     if (priv->plat->tx_coe)
-> > +             ndev->hw_features |=3D NETIF_F_IP_CSUM | NETIF_F_IPV6_CSU=
-M;
->
-> [Severity: Medium]
-> On cores without the DMA HW feature register, does plat->tx_coe reflect
-> threshold DMA mode by the time this check runs?
->
-> The threshold-mode override is applied only inside the hw_cap_support
-> branch of stmmac_hw_init():
->
-> stmmac_hw_init() {
->     ...
->         if (priv->hw_cap_support) {
->                 ...
->                 /* TXCOE doesn't work in thresh DMA mode */
->                 if (priv->plat->force_thresh_dma_mode)
->                         priv->plat->tx_coe =3D false;
->                 else
->                         priv->plat->tx_coe =3D priv->dma_cap.tx_coe;
->                 ...
->         } else {
->                 dev_info(priv->device, "No HW DMA feature register suppor=
-ted\n");
->         }
->     ...
-> }
->
-> Older GMACs such as 3.40a don't have this register. There,
-> dwmac1000_get_hw_feature() reads 0 and returns -EOPNOTSUPP, so the else
-> branch runs and tx_coe keeps the value the platform set.
->
-> For "snps,dwmac-3.40a", stmmac_probe_config_dt() sets that value
-> statically:
->
->         if (of_device_is_compatible(np, "snps,dwmac-3.40a")) {
->                 ...
->                 plat->tx_coe =3D true;
->
-> It reads "snps,force_thresh_dma_mode" for any compatible. Nothing makes
-> the two settings agree.
->
-> If both are set, stmmac_dma_operation_mode() checks force_thresh_dma_mode
-> first:
->
->         if (priv->plat->force_thresh_dma_mode) {
->                 rxmode =3D tc;
->         } else if (priv->plat->force_sf_dma_mode || priv->plat->tx_coe) {
->
-> The TX channels are then programmed in threshold mode with tx_threshold[]=
-,
-> while tx_coe stays true.
->
-> In that setup the new check still adds NETIF_F_IP_CSUM and
-> NETIF_F_IPV6_CSUM to hw_features, features and vlan_features. That is the
-> DSA case the commit message describes. stmmac_fix_features() keeps the
-> bits because it also checks only tx_coe. stmmac_xmit() then requests HW
-> checksum insertion for CHECKSUM_PARTIAL skbs.
->
-> The driver comment says TX COE doesn't work in threshold mode. If the
-> hardware really skips it, won't those frames go out with only the
-> pseudo-header partial checksum?
->
-> No in-tree DT seems to combine dwmac-3.40a with
-> snps,force_thresh_dma_mode (spear3xx.dtsi uses 3.40a without it). This
-> may not be reachable with current in-tree users.
->
-> Would it fix this to move the force_thresh_dma_mode check that clears
-> tx_coe out of the hw_cap_support branch?
->
-> --
-> Sashiko AI review =C2=B7 https://netdev-ai.bots.linux.dev/sashiko/#/patch=
-set/20261119185016.1789843-1-prabhakar.mahadev-lad.rj%40bp.renesas.com
+    unsigned long instr = *(unsigned long *)pc;
+
+However, for user-mode aborts, the PC points to user-space memory. This
+unchecked dereference from kernel mode triggers a secondary domain fault,
+which is not hooked by any handler. The fault then escalates to an
+"Internal error: Oops" and crashes the kernel:
+
+    Unhandled fault: page domain fault (0x01b) at 0x006e3316
+    Internal error: : 1b [#1] SMP ARM
+    CPU: 0 UID: 0 PID: 1415 Comm: memtool
+    PC is at imx6q_pcie_abort_handler+0x4/0x7c
+    LR is at do_DataAbort+0x3c/0xb0
+
+The abort handler was designed only for kernel-mode PCIe configuration or
+I/O space accesses and never hardened for user-mode faults.
+
+Fix this by:
+
+1. Checking if the abort occurred in user mode and returning early to let
+   the normal fault path deliver SIGBUS to the faulting task (as already
+   specified in the hook_fault_code() registration).
+
+2. Using get_kernel_nofault() to safely read the instruction for
+   kernel-mode aborts, preventing recursive faults if the kernel PC is
+   invalid.
+
+This ensures user-mode aborts are handled gracefully without crashing the
+kernel, while preserving the existing fixup behavior for legitimate
+kernel-mode PCIe access faults.
+
+Fixes: 415b6185c541 ("PCI: imx6: Fix config read timeout handling")
+Signed-off-by: Sahil Malhotra <sahil.malhotra@nxp.com>
+Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+Signed-off-by: Stefan Ghetu <stefan.ghetu@nxp.com>
+---
+ drivers/pci/controller/dwc/pci-imx6.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+index 0377d72b54ea6..9a9cc35f6559f 100644
+--- a/drivers/pci/controller/dwc/pci-imx6.c
++++ b/drivers/pci/controller/dwc/pci-imx6.c
+@@ -669,8 +669,24 @@ static int imx6q_pcie_abort_handler(unsigned long addr,
+ 		unsigned int fsr, struct pt_regs *regs)
+ {
+ 	unsigned long pc = instruction_pointer(regs);
+-	unsigned long instr = *(unsigned long *)pc;
+-	int reg = (instr >> 12) & 15;
++	unsigned long instr;
++	int reg;
++
++	/*
++	 * This handler is only for kernel-mode PCIe config/IO space accesses.
++	 * User-mode aborts must be handled by the normal fault path, which will
++	 * deliver SIGBUS to the faulting task. Dereferencing a user-mode PC
++	 * from kernel context triggers a secondary fault that escalates to an
++	 * unhandled kernel oops.
++	 */
++	if (user_mode(regs))
++		return 1;
++
++	/* Safely read the faulting instruction to prevent recursive faults */
++	if (get_kernel_nofault(instr, (unsigned long *)pc))
++		return 1;
++
++	reg = (instr >> 12) & 15;
+ 
+ 	/*
+ 	 * If the instruction being executed was a read,
+-- 
+2.53.0
+
 
