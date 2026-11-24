@@ -2,142 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB15606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21D37606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eGLFWn2x;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=dh1FqUWd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tJRvVqjq;
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=Qz27+WXT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=UXPZzRd65PuUqkEnfaUg4mJbz5uQiXFHRvy/e7CdfDM=; b=eGLFWn2xLDFn+P0PXGsPnW3Ldk
-	CQWMrMT6fKNTIsIKMnEo4RlAmw2QzsHhh8F/fnMpykrVj45DIMIZXzk8fGM0qxX+2kcGwmhamJCB4
-	Ts/P+hlKGK+GhHtIAuuBrY031cHWB+ArmN9paFbq5p7IeYCZk3TVjom2FXyT0NGBVFRSC8WkEJmO1
-	pSSLT5TfB1WeKCrMimHNRqVJ9/dJqLeUh86WtWyXStBAM0myQqA14ebxr4ImC8T49EqL+FsJ9Bigh
-	jC71SBgT20NzJPeuqRDy96dTIJb9IGohdlDQqCL8RDozaML54SYcVOccpTLKnInGbvwQri+uO8iXt
-	dHTFeCdQ==;
+	bh=58e55Dq73HKDPI7jbSEGjDb83KloozrgTme0p4JRxec=; b=tJRvVqjqzNXcxRLHushUlFQAFY
+	Hx0f5YDcrtX3nJ/7hh6HSxB5LA1uls5ikQu4y9J3u22KlNUs8yZvBmD789yaz3O7jMIsE3gveuZJL
+	UMVoEhq0i3UoM5EBy97LMm4tDcdK92b9NQDab5xXdzMDZQbZAoXphx9rJQexWa1n7HgAilHgQuaRl
+	pfNeiiFL5wulnzNx+9kLdoE0WJMVaorndaC4OOM2xOjbdKxPgNQMNFPvgqji0gQ+GJRiooYn9Ya0p
+	tdrm2yYv/e/6+b+3m4lpNxuTRgKb8HguavmTqdprm7kj4T2+U0sVNIQHR6+94q5MqzMeN/zlkpOc7
+	goI/2fDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxoU-00000007oe9-3fHE;
-	Tue, 24 Nov 2026 21:12:30 +0000
-Received: from mail-eastus2azlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c110::3] helo=BN8PR05CU002.outbound.protection.outlook.com)
+	id 1xVxou-00000007olR-26L8;
+	Tue, 24 Nov 2026 21:12:56 +0000
+Received: from mail-qk1-x72e.google.com ([2607:f8b0:4864:20::72e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxoR-00000007odB-0pBa
+	id 1xVxoq-00000007oji-45qv
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:12:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WdjtER6TREl1pXNdAC3qcy3ERxYJeYu/na9g5rgXaM5k90UNglWPstTUl+qmMkl0oqnCG6OU6zqe6gE7ZKrYPunLEiUWtT8fuqo6B+VJj6lVXjereYbt+O8+WyMDtuHaOzkGBrAexF8q4oNw2OMiz2QkFXAZ102O6XNbOhJTE9JLDznaE/2SLyP57vu38F3Bt1oRuAM41d0F/5G285mJ0mNOoHFO4tPTt6WNvzCyab9Tw3NeNHeH9yDsE5dtCRRoYLaAkVFkBn3U0b9NPnQmBx2M0lHa8jQVBjNTvQCUUiIfUSEliUFP4l39RhsMQASM7OItq0niMffl6rNVWE13pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UXPZzRd65PuUqkEnfaUg4mJbz5uQiXFHRvy/e7CdfDM=;
- b=V1Z0w5Lw5xTP0+9vYTEusi5SIkmFkLPO59du5fdjA460FgkkLG3dySmCOTP8S2iahyCL0qVMt/yVPSoTx5UOfln/zShPapMLA2X9LOdzQGMwpwslrZmes4WNvoWX646/QZVRGbRxm8ZY3e/5ovSXp01KUiF+JGtQCINZiVIyAH+2BGoQc1rr3MXbXABZ4m+3lbdxx0dLqVs+rVUKs5fjJz5W6+lJLiZmoCjHnplD1B7RhVTCMpJEp1h0VgMbZs3XzGuezZA8jpB9shETjW7G1keaLV0/emcymGU0GRl6xfsb5eVKp2/tKh5T/Qghv+pKM5MufGYZ37GHWjRSbWrr2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UXPZzRd65PuUqkEnfaUg4mJbz5uQiXFHRvy/e7CdfDM=;
- b=dh1FqUWd6kRVYhLU7YhrLMwHhRVu153sKRBUYET6dpyZJM2B3LGtdZMaQ8iLSUQ2KQYCe5clZBOMQuMNr+rVi675sB4f7sjyr77P9iqyUxnE0dpHkZ2QHQHsaf+vIW7yxIkSuoXpk6WegMxC4NVCcqbUzJ7RUWthRmHYPA5ZXRuFY1h1ZmAkqvAhRinfFVeXGSVkpkMHnilbbFEfdGVFK/CRPZxSo2sQa60lcHWWqKSgZYVLzshcPGuxOQ5DtH39dufmn/fFMMPjt/HdEBXwnlY014/mHhNGcYfZLCGmpoOXEyOTUOilIAM7ZET5ud94IyFKr78gsC+oF0WVhcPPUQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB5390.namprd12.prod.outlook.com (2603:10b6:5:389::15)
- by IA4PR12MB015138.namprd12.prod.outlook.com (2603:10b6:207:12a::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
- 2026 21:12:20 +0000
-Received: from DM4PR12MB5390.namprd12.prod.outlook.com
- ([fe80::2815:c27e:a0a:2720]) by DM4PR12MB5390.namprd12.prod.outlook.com
- ([fe80::2815:c27e:a0a:2720%3]) with mapi id 15.21.0662.001; Tue, 24 Nov 2026
- 21:12:20 +0000
-From: Nathan Chen <nathanc@nvidia.com>
-To: linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Oliver Upton <oupton@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Tom Matthias <tmatthias@nvidia.com>,
-	Shameer Kolothum Thodi <skolothumtho@nvidia.com>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Julian Miller <julianmiller@nvidia.com>
-Subject: [RFC PATCH 0/6] KVM: arm64: nv: Grow the shadow S2 MMU pool on demand
-Date: Tue, 24 Nov 2026 13:12:12 -0800
-Message-ID: <20261124211218.2751086-1-nathanc@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MW4PR02CA0005.namprd02.prod.outlook.com
- (2603:10b6:303:16d::14) To DM4PR12MB5390.namprd12.prod.outlook.com
- (2603:10b6:5:389::15)
+	Tue, 24 Nov 2026 21:12:55 +0000
+Received: by mail-qk1-x72e.google.com with SMTP id af79cd13be357-93f2f2edb19so432776185a.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:12:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795554772; x=1796159572; darn=lists.infradead.org;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=58e55Dq73HKDPI7jbSEGjDb83KloozrgTme0p4JRxec=;
+        b=Qz27+WXTdJfFwAj7OO0YQrFHC+633OAlfxZS6inw3pPeqtJnnCzsg/p1ycGU4pgAWB
+         YnswqyXsz/MhWTey1XcyRYEzs9aNnyygx2Z87jRbzQ4eB+tbPTAtkUC4Mg9tN4W0Blot
+         jj69s/JgjVLxQJNJTvCeQaMguz5rNUoJO8birdgFTanXSmVSMz5NDAkKGCs3KQs2SKLx
+         2fHHI0MASGUEJzWkFPfg5KWEibmeR0+Fb3wwIpxkeqklBK3dEzfmvPjCmKOMjtal56Xf
+         i5VKtSj9l7rr5ETaeZd+YNVOqnYOiFcuO9X5Y8Abq5YGa3YeUHYgZ3186viCMfoS22Qx
+         zNtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795554772; x=1796159572;
+        h=mime-version:user-agent:content-type:autocrypt:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=58e55Dq73HKDPI7jbSEGjDb83KloozrgTme0p4JRxec=;
+        b=QAfQulwjS6rQzYCYNkRuh7hqwRKFE31VAsNe3REy4DQpnUCsMF5SV9gH0uACWfFlTt
+         gj1+6e6P+MpYrouw5S1E5tYpKXf+QT+gEpkpuZibI1JexwyJQ9mq3qdHHZGBpG2kNRAK
+         R5llyno2Fa1SiY/ohO0gfJHeJF/Lx36soI4YbKqFDYNCWlCRcS0OfBYcUHrhBTJm3qLe
+         Iqv0vVRe5xVX4ZXF4Xblr0sp5N6teHkM3evWsLlOOnW3tjpFF7/m7ktWa3yUfQqYesSf
+         7yNvT84cr0j5gXFsKULWpOJRNKUzyJNWG6lWa3dVJ5F64a6Muk+WydKYY643G7z4AwKY
+         bQJA==
+X-Forwarded-Encrypted: i=1; AL+hErHW3l3ySHTQKoAv8fzyyBMg13aGyPNuy6LX4vIlpOUQ7Ta/GjENRrdK6cb37PPHKpeMGPAB3CKgcIRjqDdIrmCX@lists.infradead.org
+X-Gm-Message-State: APuU4Z/R25Z6ayOahFJ89zPPX5EwavqGBGAUPdAnhy5hZPs4sEPdLSlJ
+	GtGXMNFOQKxq3VMoiMWHfrScgmMOXIZA2jEgh2XLDnlOLx4hZ2SVRcCsXlFJLUW/HBI=
+X-Gm-Gg: AZFdTZczP/d+EVwYGCzppn6xKy/4vH7NBdyaMhkTpn0VughFU+oSw33gJKZ8le4/rET
+	CoSWuAthC6oTuLFfMaqEHiqQs6AbncSROdWTEFqV6aey1wWVwFGq0sq61Uf5GJOb7YCiaiybc++
+	jrygXnqfH9PzLtCFH99IxjjxD9tUK8EiV4rzw+D0kQmNgJqnPYCkkXvySxWbUYqyQdf9FTZDmcB
+	b9E4k4RORgGCju6av3d59Pxx4oJtEjbxB9oBJaJO1fPCfFbHctTTZViuqdCZ2GHvp1VQXtNRpyZ
+	JGpFjJRV8U7TY4p++FhocsRWLlg3wBqf8gB8eMDMqll7f5/uomjW09HUgK4nDZHsRiFdaI2e6U3
+	NxADb4a38BpR+VTR4h+mFLe9/jsbTatxl2ooFtJstGRl7HJ8J+Pnkt+Y5duURw2TMqlzs2ac3Ee
+	h0Si498/CMfbXkGIxYsG+ZoupfNWs+iKYnhDLaZP4JaJ+9/ln5+Ioe6D6i/RlkyRKLFEz7pJbwI
+	uJs1MW+WjkCxjVMs0QXG5T85OH0L4v7sqxBxlv3u3fL+bn/6Lr8uqqgiCIWpVKBUdS5sTFtz5Hm
+	/6MI7MOaygumHxFGp4Ws554z5wuhDWnrJY0t+sKQumXl4IXXaAQxFBc=
+X-Received: by 2002:a05:620a:f11:b0:93e:5016:e3a6 with SMTP id af79cd13be357-949ba9c6e0bmr3182280585a.26.1795554771717;
+        Tue, 24 Nov 2026 13:12:51 -0800 (PST)
+Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb0315f4sm1131851185a.3.2026.11.24.13.12.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 13:12:51 -0800 (PST)
+Message-ID: <332bab94048c257f816b616cede22dbde20a0d9e.camel@ndufresne.ca>
+Subject: Re: [PATCH v2 07/17] media: v4l2-mem2mem: support running multiple
+ jobs in parallel
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
+	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
+	 <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
+ Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
+ <lgs201920130244@gmail.com>
+Date: Tue, 24 Nov 2026 16:12:49 -0500
+In-Reply-To: <20260916-spu-rga3multicore-v2-7-23aa2cb74e61@pengutronix.de>
+References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
+	 <20260916-spu-rga3multicore-v2-7-23aa2cb74e61@pengutronix.de>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-BgQ9A5uHRmZ+BgHmEpOW"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5390:EE_|IA4PR12MB015138:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71479670-d0fb-4a96-16d1-08df4a6fa022
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|376014|23010399003|1800799024|10067099003|261022105027099003|11063799006|5023799004|56012099006|261021121427099003|261022075727099003|261021123027099003|261026121527099003|261028144727099003|261026140227099003|261102123227099003|261009223027099003|18002099003;
-X-Microsoft-Antispam-Message-Info: bvCA3/x3qy0L8SsCgt0QDH6YFYAZKwkBXA8j68gkdmUE8b9xqgqP2b4HpBxq271n4/nGBWePsigH2HXqeaCs/1DlsF1Pt8DTDUEqyHuDyRqFuntbFqupfk4kfsjLesxLvmykT5DnBTqPn6GHjecjQlnP1ctjzTwxLPXmfimrR6tzwd/rIjMo7k+0O68KT460zTXKgncT4uVBjdOIYoGHKQw+wp65+JyBxAKg6GIkA1Fmtm2PZsHDi+Ls/BUjZsYgjBqDKa55dy0o/Y8taSRpcLUOCH3tEimCoVlVHsS5O3TJKk6ScctYFU5A8kEczuYr8gA9tkZK3+R+hV5gdmMIve/7sLoMmKDuU/CXcLHMm77fXx0PwUk4rPAMsVHtQ+4g/2HTBAXXxYkKhQEPoYuN5yTPOj8Sfyqeo0RaXifU6xehEUoIOiyWseXvq/dmmNlx6nGr3cxxzUiN4kUjGogYk/wThxlTow2YKnfispyFtysUUqnjMtSo7er8HXFcU9oKFgDk6ImbgX0U4URDFZgaldssX/WQWWrBZ0f1m3QoZxO1x+sibim4DB3arOfO66tKs0lM/i7ZtxFh77MIUFWhQKTrl4OQT5CNOsSsTyo7kOvdWUmL0DQEMVALblsdeC2rUPoT2Ar+GTkK0CQFtQ3YAGpdJRnDrqlKaaD1YoL/yWM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5390.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(23010399003)(1800799024)(10067099003)(261022105027099003)(11063799006)(5023799004)(56012099006)(261021121427099003)(261022075727099003)(261021123027099003)(261026121527099003)(261028144727099003)(261026140227099003)(261102123227099003)(261009223027099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?r/S/aYxTJXskIe9cHupK2I9UVU1mt96ouRZkR2FVL8B4d+IvdiXIJN5eOlPM?=
- =?us-ascii?Q?rNySz4s8+F96pAEC4fQ7U65eF6DVZAqsrr57pN98+w/4xA/DFmKbT66Dear+?=
- =?us-ascii?Q?N8amn+KQgG16hoZS3n3zE4lQQVVF33+zrBwNWuSQEPjc3Ivtu5OICMr9iWwj?=
- =?us-ascii?Q?VH6DeYTJWzrwKIKDwWSr32rQo6PYlsHBjYFT2iefej0p1IL5IRNvg2g1fLwD?=
- =?us-ascii?Q?QfMQLA8stZH4wFJkF03IIWCDtsivqg046AxVcYuWFsw1tJxOq8ZfbLBSFk6E?=
- =?us-ascii?Q?TrUWALKNEq+Ac8YgwippePJ64O3dzH/bzRa8VZr5yF88ynH+Fgn+USyZQRzG?=
- =?us-ascii?Q?j1+6jWLlCtMxrYj0uUCUqlE05p8JWmvgKdFyLXzpJG6Uf3tXOTBX3+mggfLa?=
- =?us-ascii?Q?wuKZE21jOKjFnsTw/MRqMlQyc/EnqIdqa9L2Jpux+EctlYfLvPsCGzKcpjX/?=
- =?us-ascii?Q?bgPMTl2XvCn7ktrQJeRrEBcHSD9rFbOjJO477XtrUHPHRshrs4RTdECIb+/z?=
- =?us-ascii?Q?OQDliKp651PWKgzycEP/V08SMfMgbGFA4olPAyajjTT216p7bWIV65KEjCjb?=
- =?us-ascii?Q?y5nZaWCKdZmHhy6yYh9V41KDqTU0k7yhksbtrctoBesJXjvPv8m2g0xUDhPG?=
- =?us-ascii?Q?RwzCgjUvDajDBJ2TkZsrGNcc/BRUu7rNmr+htHzj6xygmmyXCSfqaxGN3VEk?=
- =?us-ascii?Q?bcs7SWeUaFISaAB0uQnifj67T0iGEoDOSfBMmX89sfpXp5OjM44CfOLw+89t?=
- =?us-ascii?Q?/FOju3PgAaQQX+sp1Fy3tuZquerttFqnB2PjTC4WV9PyX2REwzqOykj76qYi?=
- =?us-ascii?Q?2c7p2QDBmqWuctluPPsfufIUvrYuUq90AoO4FXS7NSzTWoDIQ9O0OwOLzfOl?=
- =?us-ascii?Q?gyvxo6qEddZKuO9H3kwBkBMkqHRNrDwN8Nr8g1i2MNm4EN58MMAWpHryAJT0?=
- =?us-ascii?Q?OLYDO/zk0BlB/aA+/22+4/8Adt5PYWDSyuDYxiMTVGWM6UKtPq20fMH3jkf3?=
- =?us-ascii?Q?4DDGrX+BmHWU/GRUijpaYpuBAIupdWLX9qvcoln9wrAb1T+mLvlcYiKaVUOk?=
- =?us-ascii?Q?GPezvowSWkoQU9Ncd9WLZUACcSsDm1BxhyibtMP0DlEXrclV+q1yCUkmh/s4?=
- =?us-ascii?Q?V61IKexKKG+uMuxk3CR8OfUObeseZBMWFll0XyJeaLGA8bt1C0+fKFNUPeEj?=
- =?us-ascii?Q?H+ibLlzsCbXZmu/z15ypwT6bRzK1MBf2WHfxFmctY59gQgWioCNuvJH+Pdbb?=
- =?us-ascii?Q?09uBpDuCsfdDQyffBg5sG7+96K+c1M7IeT/Pw4LJ8hmLMnf7flq2GWtUWNqk?=
- =?us-ascii?Q?B2KoSovPDitMEUwBxx3GasqKgu1aI1/BtZQNaBZb9CAJFFLRUQewUpGVyJPX?=
- =?us-ascii?Q?U1NMXOJLI5e3DOXtOKi/MF0RLuZ/rCG7tUNgVvH+eQdhnyV9o+V+tPvsqeTZ?=
- =?us-ascii?Q?ZV29420t2HvKxzZO3g+SxQ+tS6d4XydtouQlaxHf6UoqXrMdDqHwCNAfxswo?=
- =?us-ascii?Q?ts/4syswCri32bTAUGnlBj4Xr0r0rqFxS0ZSk5sBTcd6KAl3eEW9W65mvzIT?=
- =?us-ascii?Q?9nJTga8McyOBdOay3HP/DgzpXy3SSM8pqZK6O+L+RbNb6hCEujWk5AiLuiD/?=
- =?us-ascii?Q?uVzJdktA/TPRdbnNubwil5HOIUS8ahPwP3vZcxRRhKlBljNQ9sUzlS/60Csk?=
- =?us-ascii?Q?nVwfRU3qb/TR5z3t0J8vONCDJksc8uJnd99PXuLFG1JFu8NhBRpe4e9I3M7x?=
- =?us-ascii?Q?BgyMMhV18A=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71479670-d0fb-4a96-16d1-08df4a6fa022
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5390.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 21:12:20.0119
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k+HwaMA3KBI5RPOAVkTp6L74BnHMT9MXnoQFp2jcjlk0ND7wIsXaldfaa8q4N5OxqCIXrvPargv0aNJnfl/YSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB015138
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_131227_253222_4CF6B22F 
-X-CRM114-Status: GOOD (  15.31  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_131253_042655_2698C968 
+X-CRM114-Status: GOOD (  37.34  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,100 +124,240 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A nested-capable VM gets 2 shadow stage-2 MMUs per vcpu. Once the guest
-hypervisor runs more nested VMs than that, nearly every nested context
-switch recycles a live MMU and spikes host CPU usage.
+--=-BgQ9A5uHRmZ+BgHmEpOW
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This series lets KVM grow the shadow MMU pool on demand when the pool
-is too small, up to a host-wide VMID budget. It also parks grown MMUs
-on a guest TLBI ALLE1 and when a guest range invalidation leaves them
-empty, in order to return unused capacity.
+Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
+=A9crit=C2=A0:
+> Add support for running multiple jobs in parallel for SoCs containing
+> multiple identical devices. An example is the Rockchip RK3588 SoC,
+> which contains two identical RGA3 devices. Therefore it is desirable to
+> have the kernel schedule the work across all available devices and only
+> expose one video device to the userspace.
+>=20
+> To avoid queueing too many parallel jobs, the
+> v4l2_m2m_set_max_parallel_jobs method is added. It allows a driver
+> to set the number of parallel jobs and avoids calling device_run when
+> the given number of jobs is already running. This is set to 1 by default
+> to prevent parallel job runs. Drivers with the need and support for
+> scheduling jobs can adjust this value accordingly.
+>=20
+> Note that this change doesn't allow a context to be used multiple times
+> in parallel. So a single stream won't be able to utilize multiple devices
+> at once, but N streams can utilize up to N devices. This is caused by the
+> fact that a context is not added multiple times to the job_list and also
+> holds the job_flags to distinguish if it's currently running.
+>=20
+> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
+>=20
+> ---
+> v2
+> - split out the removal of the curr_ctx member
+> - add EXPORT_SYMBOL to v4l2_m2m_set_max_parallel_jobs
+>   (indirectly pointed out by Detlev)
+> - document v4l2_m2m_get_curr_priv being incompatible with parallel jobs
+> - add documentation comment for the added function
+> - rework v4l2_m2m_suspend to avoid potential errors due to looping
+>   outside of a spinlock over the list
+>   (https://sashiko.dev/#/patchset/20260606-spu-rga3multicore-v1-0-3ec2b15=
+675f7%40pengutronix.de?part=3D5)
+> ---
+>  drivers/media/v4l2-core/v4l2-mem2mem.c | 51 ++++++++++++++++++++++++++--=
+------
+>  include/media/v4l2-mem2mem.h           | 18 ++++++++++++
+>  2 files changed, 58 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/media/v4l2-core/v4l2-mem2mem.c b/drivers/media/v4l2-=
+core/v4l2-mem2mem.c
+> index 60cca94195166..f1b6255984087 100644
+> --- a/drivers/media/v4l2-core/v4l2-mem2mem.c
+> +++ b/drivers/media/v4l2-core/v4l2-mem2mem.c
+> @@ -88,6 +88,7 @@ static const char * const m2m_entity_name[] =3D {
+>   * @job_spinlock:=09protects job_queue
+>   * @job_work:=09=09worker to run queued jobs.
+>   * @job_queue_flags:=09flags of the queue status, %QUEUE_PAUSED.
+> + * @max_parallel_jobs:=09max job_queue instances number marked as runnin=
+g
+>   * @m2m_ops:=09=09driver callbacks
+>   * @kref:=09=09device reference count
+>   */
+> @@ -106,6 +107,7 @@ struct v4l2_m2m_dev {
+>  =09spinlock_t=09=09job_spinlock;
+>  =09struct work_struct=09job_work;
+>  =09unsigned long=09=09job_queue_flags;
+> +=09u32=09=09=09max_parallel_jobs;
+> =20
+>  =09const struct v4l2_m2m_ops *m2m_ops;
+> =20
+> @@ -121,6 +123,13 @@ static struct v4l2_m2m_queue_ctx *get_queue_ctx(stru=
+ct v4l2_m2m_ctx *m2m_ctx,
+>  =09=09return &m2m_ctx->cap_q_ctx;
+>  }
+> =20
+> +void v4l2_m2m_set_max_parallel_jobs(struct v4l2_m2m_dev *m2m_dev,
+> +=09=09=09=09    u32 max_parallel_jobs)
+> +{
+> +=09m2m_dev->max_parallel_jobs =3D max_parallel_jobs;
+> +}
+> +EXPORT_SYMBOL(v4l2_m2m_set_max_parallel_jobs);
+> +
+>  struct vb2_queue *v4l2_m2m_get_vq(struct v4l2_m2m_ctx *m2m_ctx,
+>  =09=09=09=09       enum v4l2_buf_type type)
+>  {
+> @@ -256,7 +265,9 @@ EXPORT_SYMBOL(v4l2_m2m_get_curr_priv);
+>  static void v4l2_m2m_try_run(struct v4l2_m2m_dev *m2m_dev)
+>  {
+>  =09unsigned long flags;
+> -=09struct v4l2_m2m_ctx *chosen_ctx;
+> +=09struct v4l2_m2m_ctx *chosen_ctx =3D NULL;
+> +=09struct v4l2_m2m_ctx *ctx;
+> +=09u32 running_jobs =3D 0;
+> =20
+>  =09spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
 
-Testing on a 16-bit VMID, 4K pages host with 64-vCPU L1 and idle
-2-vCPU Firecracker L2s:
+Here sashiko seems right, you want o loop back over this locking block unti=
+l you
+reached the maximum of jobs, or there is no more pending context. Right now=
+, we
+risk starvation.
 
-- Ramping to 300 L2s grew the pool 128 -> 192 -> 256 -> 320, with no
-  host CPU usage spike observed and no VMID TLB flushes.
+Nicolas
 
-- Dropping to 20 L2s and forcing an ALLE1 (an L1 VMID rollover from
-  churning ~66K VMs) parked all grown MMUs and returned the budget.
-  Ramping back to 300 reactivated them without allocating, with no
-  host CPU usage spike observed.
+>  =09if (list_empty(&m2m_dev->job_queue)) {
+> @@ -271,10 +282,22 @@ static void v4l2_m2m_try_run(struct v4l2_m2m_dev *m=
+2m_dev)
+>  =09=09return;
+>  =09}
+> =20
+> -=09chosen_ctx =3D list_first_entry(&m2m_dev->job_queue, struct v4l2_m2m_=
+ctx, queue);
+> -=09if (chosen_ctx->job_flags & TRANS_RUNNING) {
+> +=09list_for_each_entry(ctx, &m2m_dev->job_queue, queue) {
+> +=09=09if (!(ctx->job_flags & TRANS_RUNNING)) {
+> +=09=09=09chosen_ctx =3D ctx;
+> +=09=09=09break;
+> +=09=09}
+> +
+> +=09=09running_jobs++;
+> +=09}
+> +=09if (running_jobs >=3D m2m_dev->max_parallel_jobs) {
+>  =09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
+> -=09=09dprintk("Another instance is running, won't run now\n");
+> +=09=09dprintk("Maximum number of parallel jobs reached\n");
+> +=09=09return;
+> +=09}
+> +=09if (!chosen_ctx) {
+> +=09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
+> +=09=09dprintk("All jobs already running\n");
+>  =09=09return;
+>  =09}
+> =20
+> @@ -549,19 +572,24 @@ EXPORT_SYMBOL(v4l2_m2m_buf_done_and_job_finish);
+>  void v4l2_m2m_suspend(struct v4l2_m2m_dev *m2m_dev)
+>  {
+>  =09unsigned long flags;
+> -=09struct v4l2_m2m_ctx *curr_ctx;
+> =20
+>  =09spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
+>  =09m2m_dev->job_queue_flags |=3D QUEUE_PAUSED;
+> -=09if (list_empty(&m2m_dev->job_queue)) {
+> +
+> +=09while (!list_empty(&m2m_dev->job_queue)) {
+> +=09=09/* Running jobs are always at the start of the queue */
+> +=09=09struct v4l2_m2m_ctx *first_ctx =3D
+> +=09=09=09list_first_entry(&m2m_dev->job_queue,
+> +=09=09=09=09=09 struct v4l2_m2m_ctx, queue);
+> +
+> +=09=09if (!(first_ctx->job_flags & TRANS_RUNNING))
+> +=09=09=09break;
+> +
+>  =09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
+> -=09=09return;
+> +=09=09wait_event(first_ctx->finished, !(first_ctx->job_flags & TRANS_RUN=
+NING));
+> +=09=09spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
+>  =09}
+> -
+> -=09curr_ctx =3D list_first_entry(&m2m_dev->job_queue, struct v4l2_m2m_ct=
+x, queue);
+>  =09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
+> -
+> -=09wait_event(curr_ctx->finished, !(curr_ctx->job_flags & TRANS_RUNNING)=
+);
+>  }
+>  EXPORT_SYMBOL(v4l2_m2m_suspend);
+> =20
+> @@ -1205,6 +1233,7 @@ struct v4l2_m2m_dev *v4l2_m2m_init(const struct v4l=
+2_m2m_ops *m2m_ops)
+>  =09spin_lock_init(&m2m_dev->job_spinlock);
+>  =09INIT_WORK(&m2m_dev->job_work, v4l2_m2m_device_run_work);
+>  =09kref_init(&m2m_dev->kref);
+> +=09m2m_dev->max_parallel_jobs =3D 1;
+> =20
+>  =09return m2m_dev;
+>  }
+> diff --git a/include/media/v4l2-mem2mem.h b/include/media/v4l2-mem2mem.h
+> index 31de25d792b98..37ffd33b653f2 100644
+> --- a/include/media/v4l2-mem2mem.h
+> +++ b/include/media/v4l2-mem2mem.h
+> @@ -144,6 +144,10 @@ struct v4l2_m2m_buffer {
+>   * v4l2_m2m_get_curr_priv() - return driver private data for the current=
+ly
+>   * running instance or NULL if no instance is running
+>   *
+> + * It is incompatible with using parallel instances enabled by calling
+> + * v4l2_m2m_set_max_parallel_jobs(), as it is undefined which private da=
+ta of
+> + * the parallel running instances is returned.
+> + *
+>   * @m2m_dev: opaque pointer to the internal data to handle M2M context
+>   */
+>  void *v4l2_m2m_get_curr_priv(struct v4l2_m2m_dev *m2m_dev);
+> @@ -594,6 +598,20 @@ static inline void v4l2_m2m_set_dst_buffered(struct =
+v4l2_m2m_ctx *m2m_ctx,
+>  =09m2m_ctx->cap_q_ctx.buffered =3D buffered;
+>  }
+> =20
+> +/**
+> + * v4l2_m2m_set_max_parallel_jobs() - adjust the limit of the maximum nu=
+mber of
+> + * jobs being run in parallel.
+> + *
+> + * By default only one job is allowed to be run at any time. A driver wi=
+th
+> + * multiple cores can call this function to (dynamically) adjust this li=
+mit
+> + * based on the underlying hardware capabilities.
+> + *
+> + * @m2m_dev: opaque pointer to the internal data to handle M2M context
+> + * @max_parallel_jobs: maximum number of jobs to queue in parallel
+> + */
+> +void v4l2_m2m_set_max_parallel_jobs(struct v4l2_m2m_dev *m2m_dev,
+> +=09=09=09=09    u32 max_parallel_jobs);
+> +
+>  /**
+>   * v4l2_m2m_ctx_release() - release m2m context
+>   *
 
-- VM teardown returned the budget, with no warnings in dmesg.
+--=-BgQ9A5uHRmZ+BgHmEpOW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-Testing with 14 L2s on a 4-vCPU L1 with 6 L2 guests powered off or
-rebooted:
+-----BEGIN PGP SIGNATURE-----
 
-- Firecracker unmaps guest memory before exiting, and L1 issues a TLBI
-  RIPAS2E1IS over all of the L2's memory, leaving its shadow MMU empty.
-  Patch 6 parked 5 of the 6 MMUs, and the remaining L2 had an MMU from
-  the initial pool which should never be parked. This is reclaim on
-  range invalidation, not on L2 shutdown, as a range invalidation
-  doesn't necessarily mean the nested VM is gone.
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawX90QAKCRDZQZRRKWBy
+9IPZAP43AmMPiX21oO0Gu+MatDhXA80g92HvFv70p0QcgSsjTwEA96BLtiIAzKie
+Pw4t5V8CQ31Qy/RwTTLccjd4pKQIowc=
+=RgJF
+-----END PGP SIGNATURE-----
 
-Known limitations:
-
-- ALLE1 parking can't tell live idle nested VMs from dead ones. After
-  an ALLE1, the remaining L2s found their MMUs parked, and each of
-  their vcpus recycled an initial MMU that was empty but still valid,
-  doing a whole-IPA unmap. Serialised on mmu_lock, these made L1 spike
-  host CPU usage for a brief period. Skipping the unmap of an
-  already empty victim would avoid this, but changes the recycle path
-  and is left out of this RFC.
-
-- On SIGTERM or SIGKILL, L1 issues no TLBI naming the L2's VMID, while
-  it runs or as it is torn down. The leftover MMUs are then only parked
-  on an ALLE1, which a Linux guest hypervisor only issues on its own
-  VMID rollover.
-
-For SIGTERM and SIGKILL, an alternative I prototyped is a periodic scan
-that parks grown MMUs no vcpu used since the previous scan. With a 10s
-period, it returned a dead nested VM's budget without taking
-MMUs from live idle ones.
-However, the scan has to unmap what it parks: after dropping from 300 to
-20 L2s, MMU mapping took some time and could delay the vcpus of a busy
-L1.
-
-Is parking on ALLE1 and range invalidation good enough to start with,
-or would you prefer a periodic scan or another signal for nested VMs
-whose VMM is killed?
-
-This series was developed with AI assistance (Anthropic Claude, through
-Cursor). It was used for design trade-offs, testing, and adversarial
-review of feedback received. I ran the tests on hardware, have reviewed
-every change, and take full DCO responsibility for the series.
-
-A branch can be found here with the series applied: 
-https://github.com/NathanChenNVIDIA/linux/tree/rfc_alle1_nested_s2_mmu_pool_dynamic_budgeted_kvmarmnext
-
-Nathan Chen (6):
-  KVM: arm64: nv: Allocate shadow S2 MMUs in blocks
-  KVM: arm64: nv: Pick the shadow S2 MMU to recycle with a clock
-  KVM: arm64: Add kvm_arm_vmid_nr_usable()
-  KVM: arm64: nv: Grow the shadow S2 MMU pool on demand
-  KVM: arm64: nv: Park grown MMUs on ALLE1 and reactivate them on demand
-  KVM: arm64: nv: Park shadow S2 MMUs emptied by a guest range
-    invalidation
-
- arch/arm64/include/asm/kvm_host.h   |  25 +-
- arch/arm64/include/asm/kvm_nested.h |   2 +
- arch/arm64/kvm/nested.c             | 350 ++++++++++++++++++++++++----
- arch/arm64/kvm/sys_regs.c           |   9 +
- arch/arm64/kvm/vmid.c               |  12 +
- 5 files changed, 356 insertions(+), 42 deletions(-)
-
-
-base-commit: 263a8db21f7321d74a9258d17151b295290b5dea
--- 
-2.43.0
-
+--=-BgQ9A5uHRmZ+BgHmEpOW--
 
