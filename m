@@ -2,74 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAC9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1A50606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H/3q1s00;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f9WnWcZb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OS2EMmv6;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=H5MXMBDM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=8IQP6+LjELPqxZ68IqsA0UX7HOkypEPSY/Xrk/5T/nw=; b=H/3q1s004kxSPZ
-	KqxfntT9qh4yVQRfSJqYVMGThVuKKt6LKyvXyoTTQ3QRIckcO5nSs7J+ETu49wL+lVFAhX72osp+i
-	UvCf6ZEywwCnBOvoShyUP4vHxqhQG/uGMEa0bn3w3ETiiQTb+NJ9i6bHmsFm1l3fyFiV1LfNxkVl7
-	Mh4Mhk0AmSc6CI6JTvwAbjihmbUEwUM9m/SYa47C3ZZYntHXziInr6w6njJkgKmCfIpf5D7tJpw3P
-	njDYUhsmrx8fbOuZrqICETsu/QzgL8pESi5V1Avl9YpZ9SyKcAWXJCnkWi4RJIBuaMqMjqYonmNik
-	WEQjRRjwYxPVSobKlHWQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=SSz1UkrPYOtP7qjRzAhNmZAnsxclw+c33mPfbQ/t5hM=; b=OS2EMmv6HIVdpLmI1geTaHXk66
+	0ybBwkFxd5rorZd7uB+FjScmokBj7Kb4j+qQEaO7wqdCR1KRoldOWCdq/MHt3KNNFi5JyYItDoISm
+	L8lhyjZNrtqmtK2zynumcoYuFf54GZHkzuqD2WuX19xxpmnPbq0z+b5UlMn/Ng3bOurdxLWte3UrO
+	hr5cO5lZmgy8HkS9hXjq0xjxUYvamWHwXQer4faNXlPw6KrHTQYtKdlOJ2g5S/EVi4bDnbUEjap3O
+	ssTW5kYvT1wfXdzr6XIaQ1mIjkz0AdL+fT41Rc93Z0IRtN4bVDT0tWLkgUMD1BavPrnMTZyONMQJa
+	YbMuADBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVpPX-00000006UOX-1jdc;
-	Tue, 24 Nov 2026 12:14:11 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVpPV-00000006UNn-0uXy
+	id 1xVoli-00000006Mes-3hoQ;
+	Tue, 24 Nov 2026 11:33:02 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVolf-00000006MeL-03hz
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 12:14:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1289161CD7;
-	Tue, 24 Nov 2026 12:14:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5FDF1F000C0;
-	Tue, 24 Nov 2026 12:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795522447;
-	bh=8IQP6+LjELPqxZ68IqsA0UX7HOkypEPSY/Xrk/5T/nw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=f9WnWcZbBrsgVuT2da2zP3kNYit6klaRV5TI+XxfWFoSsIhQ1EBtkBZiBgEOar2lh
-	 ZFYNRFZKSnkHJHKp8N2sU4EoxCfJSkKKSUS3GEzbYgUHBTLhEUgoSBwDFmmBJBeRG5
-	 Dq16ZQnxyS/bpCu3tRojTUCHju0XhAHiQmFBEQ6z3gGX5gWMy4ujfnD9VAbKANLCCk
-	 lUH9wLII+m+tDN04/j+bNc26yBrjajxiB43+gpL2ZEoGRFC0y/asicaB58r+nKt1pC
-	 CDNpI/fQ9G3VJ7kFvFpF1wiSh+zJCDfQzpk74d6yHGBboXOZo+Zl8UDTH72fHZIb1H
-	 Nk/x7W4Nkr2Bg==
-From: Mark Brown <broonie@kernel.org>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Andrei Simion <andrei.simion@microchip.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, phucduc.bui@gmail.com
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261116042633.497423-1-phucduc.bui@gmail.com>
-References: <20261116042633.497423-1-phucduc.bui@gmail.com>
-Subject: Re: [PATCH v2 0/2] ASoC: atmel-classd: Improve clock and probe
- handling
-Message-Id: <179546158517.25092.4588094985508101442.b4-ty@b4>
-Date: Mon, 23 Nov 2026 19:19:45 +0000
+	Tue, 24 Nov 2026 11:33:00 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6785C339;
+	Tue, 24 Nov 2026 03:32:55 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5906B3F86F;
+	Tue, 24 Nov 2026 03:32:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795519978; bh=v3Pi6dD8yf3tjc5InZwV+u8P5LclNlEmMiAiF4I5Szk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H5MXMBDMJKVCFIyGahPkkVnBRk2zGUz5hPAU1GIsup9V1bpYv2c/A7RVEs05X4yR5
+	 UHBKcGMJ/KeicUdin1Q4DVsFxIbV39gmdD3c9YRrru+iuVV9tAv9/9jegJT1JdBnxt
+	 tOLjTds56EIfwL8EX+LGaPXSAno4XavXzNqROgUA=
+Date: Tue, 24 Nov 2026 11:32:53 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: will@kernel.org, mark.rutland@arm.com, maz@kernel.org,
+	oupton@kernel.org, joey.gouly@arm.com, suzuki.poulose@arm.com,
+	yuzenghui@huawei.com, anshuman.khandual@arm.com, tabba@google.com,
+	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: Use symbolic constants for the ccmp NZCV
+ immediates
+Message-ID: <awV15Rv-caDclC9K@arm.com>
+References: <20261009072147.474952-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1451; i=broonie@kernel.org;
- h=from:subject:message-id; bh=ep+Dg/OTQrrUr8QHP2WNK+T2zk1oiHyVdSjj6q25MnA=;
- b=kA0DAAoWL+9zsLPQOIkByyZiAGsFf4uhXarYbXiGRbip4BWJMIqpXkDRQfpd54xbKFGQgBRxs
- Ih1BAAWCgAdFiEEXmoL6X9066wOwaGGL+9zsLPQOIkFAmsFf4sACgkQL+9zsLPQOIkWnAD/Vwzy
- y8n7QHpROhnHy2c8hLDwTST7uqDKK3jD7/Ie+MABAJGoKEX3xMh7l3q589T3XJXUsmCB2CRpi8Z
- AX4CRQJQK
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261009072147.474952-1-fuad.tabba@linux.dev>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_033259_177637_8D6D2469 
+X-CRM114-Status: GOOD (  10.91  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,54 +72,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 16 Nov 2026 11:26:31 +0700, phucduc.bui@gmail.com wrote:
-> ASoC: atmel-classd: Improve clock and probe handling
-> 
-> From: bui duc phuc <phucduc.bui@gmail.com>
-> 
-> Hi all,
-> 
-> This series simplifies probe error handling and fixes the
-> peripheral clock lifecycle management in the Atmel CLASSD driver.
-> 
-> [...]
+On Fri, Oct 09, 2026 at 08:21:47AM +0100, Fuad Tabba wrote:
+> diff --git a/arch/arm64/include/asm/ptrace.h b/arch/arm64/include/asm/ptrace.h
+> index f7dc5fb9427d6..15c381ef7d2c2 100644
+> --- a/arch/arm64/include/asm/ptrace.h
+> +++ b/arch/arm64/include/asm/ptrace.h
+> @@ -30,6 +30,10 @@
+>  #define PSR_MODE_THREAD_BIT	(1 << 0)
+>  #define PSR_IL_BIT		(1 << 20)
+>  
+> +/* CCMP NZCV immediates that make the named condition hold */
+> +#define CCMP_NZCV_EQ		(PSR_Z_BIT >> 28)
+> +#define CCMP_NZCV_LT		(PSR_N_BIT >> 28)
+> +
+>  /* AArch32-specific ptrace requests */
+>  #define COMPAT_PTRACE_GETREGS		12
+>  #define COMPAT_PTRACE_SETREGS		13
 
-Applied to
+One nit: I'd place the definitions above (or below) the
+ARM64_S390_COMMON block, the generated s390 header shouldn't need them.
+Otherwise it greatly improves clarity.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
-
-Thanks!
-
-[1/2] ASoC: atmel-classd: Simplify probe error handling
-      https://git.kernel.org/broonie/sound/c/94531f24f5b4
-[2/2] ASoC: atmel-classd: Enable pclk during probe
-      https://git.kernel.org/broonie/sound/c/76f1c241d10c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Reviewed-by: Catalin Marinas <catalin.marinas@arm.com>
 
