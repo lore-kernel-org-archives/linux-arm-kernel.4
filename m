@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C19606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E96E606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fWfbcw1J;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=L3Niw39x;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=+hiMkp7w
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hP4eOREu;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=DooFdn+J;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=MdT95aIP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -15,69 +15,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=i8cGKfwirIdnWIRedml65mOcQqDHKaJXaOcj56+0XVs=; b=fWfbcw1J8VQSlv+iaIB3jSlt9K
-	XInekW487kih8MS/HbJGohj42yq7a8FBNJQdZbtAhe0k/swhVnq/MIUXFVxMGwZHmWN5uPSWfmRAo
-	NbURFq6smchLiy2mjZeBgj95L0oZ4YUuLLZ9CZjdnqQbmarUENYAb7gXw7hR8UUH5XIou9/YzbjNk
-	s2KtHs8FCrmENuVE10iDjdQh1IieAtf3weguc9W92fwAds/RdVVdDrnpm0+ZdMhogJ0benHbld0HB
-	VuE25gpuHpTa7Lk5ABjmwQiQ80WRhAQMzS5V2ZGrGJjZBSGI0xQ4Ie83A5/6t3mLyrnHwaI19AuDJ
-	JafoN4gw==;
+	bh=SYzNkPbYvQQo7yNPwmd0sAr6WiPJx3HhprPOKza6D0E=; b=hP4eOREu6YlOQ9w+0xWXYn2Ihs
+	gb22pxApp/wT7QEggbzKQuyNX1+5WhDI9muq3PTMQldQakX1KlFm8BVfERnwdNAcpV1knBdlKRmOc
+	ginxmp3FYOl9+YQbJg54cNOoQ6ePfyvYj/hbITmRbO+fdorPLW5vQnmTa8UGfV5T6op3DdT/bOsoL
+	VFD24xQ6FvZVe/b+vvVLWf+gv8B3WSsD2XzWaBgk71SaOpXfuAaWAvCrlz/iH+p4EnQkj7pN3s4Lx
+	rGATtGorL3Ucuryh68G2MB5kXNpVxlWiriDddsF1Si984M3g4aVCWl1/eQxRL9cmrP2gstCGbdnjz
+	fBL2tC7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkwg-00000005jws-1zmZ;
+	id 1xVkwg-00000005jwS-0ub3;
 	Tue, 24 Nov 2026 07:28:06 +0000
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.121])
+Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.120])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvK-00000005jKt-3T4Y
+	id 1xVkvK-00000005jKv-20bu
 	for linux-arm-kernel@lists.infradead.org;
 	Tue, 24 Nov 2026 07:26:56 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505176; cv=none;
+ARC-Seal: i=1; a=rsa-sha256; t=1795505175; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=B63WbdFNGCmMJ5fYDIKq4qliWQMpsYyvtu5yuJjR/4bKsyO2CxLncFaEsehECM38on
-    fDKossw+8Twl1iOf6e4Bv+iDGCL5pa3g/UDfGFskNeF85A9vDTVozzw3ByfmsAxctM/y
-    U7XrE8geitJEfY4kjSAgK4XqyU42Gphhk87EOVysT+O7+RUC3fw4orcfwz+56d6UMRSW
-    7IgI1zKwbIIEhpl/GGt3rSjBqP0Km1pL1IE/YrrGYv1ioAJL7GvTJpMw4DYyA3TktcGF
-    4tI74GmwPwqOtlS5jVaGg895zt4V+AycadOqaH3UWIFHfmKmdf0E7sQIPlOFRVAWCu7U
-    JBzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505176;
+    b=r0KnS64e12yAb+xUpv+VE1bMSfFh7RCI5+8eLK7Ve9lRovPaJAS/f7zj7uytKAQyOX
+    vzRC5YOcB8jFm0pNL2BbccotYIlb/7pCWNuiEm/V3qmAfe2epG+0MVPIq97wxkXTxqsB
+    sRUHvblqeQV13PLg1qK2T/uCs/3sh87CRoIC/8/wqfcaXPWR4OcStrZul01JqD4Erfek
+    Q6Vf+pmtHjuv0IFi/BqIpXLmYjeWPNoChpFkOD1ZrmyQV64SV6FpW2yU6kj6AIwVahlu
+    YUgdLAOXkWvnw2TBB4paLtZgNQcZ23TjzGJ1I/If/F/3CBOAeE5sdk+h0QSL1XpyW5Dg
+    Z5UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505175;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=i8cGKfwirIdnWIRedml65mOcQqDHKaJXaOcj56+0XVs=;
-    b=kDlL9Ci3SozMRDpsS1YdbRkyz9AJkqyOKi0XnLxcP/nnUWCYuKrHNXv71/BGDKX9Fc
-    BASCDdmk+pF2cfjNNSIT0Vq5Zu/G4VNkXBn9K6OL8FMisElM4uzKzO5wt5nuUjENW6OL
-    G2df8pCLe0MxiHt+lxRXLC1fm7lCY9QFKdqszDE1Jc+sH2Y7Y7n/Zsg3AK5AcZZg5Q1g
-    K+yabSsSrUjB2CXmioP1ckGJnlKJ0bpTz8+T1CLOLOgb/Fl9S2bzcbFh7fAg7gkqAV5X
-    goh6HkydDA60J8IYW5JrbAPXwUeE5ZuUaA0Pxf/QFfRaLupsTr8cYjFNfVPg1ICPVUgV
-    pEaQ==
+    bh=SYzNkPbYvQQo7yNPwmd0sAr6WiPJx3HhprPOKza6D0E=;
+    b=h5GS00KwcU+BciHtVw8Jl00OvbV0yN6RfwfJoaihtQBerZkmag2OWJwsQgjdJorUuF
+    AljB512gCHD4NJZ0uV0NW3O2/F2Wzqs4IEobLAitFaGp1WZGrfmH0A+qShfIax6TNYOb
+    Plz8gPJZ7cdBzKlEdI5tQbk0smsL+1E+Y2sWylDE3kqK8w61RFrhA9Au77eT6oY924MU
+    OCHf+TYs6a6kxtNWQjY1F/DkmPbh6nazErTKLrrqOmUOCovZJmv2HDx3yFN7wjhPT5DV
+    5xq8JAajr3fJ1FrWfQbNUTax2u6+af6wtU0UX5ifuDucfQaVDVepWeW8NCNlhAvupd+F
+    PMGA==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
 X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505176;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505175;
     s=strato-dkim-0002; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=i8cGKfwirIdnWIRedml65mOcQqDHKaJXaOcj56+0XVs=;
-    b=L3Niw39x7Hs+bBaEq67DxNoePKZ+gmp8oE//dLuWEpXD3a7+mO/IzBJybpSimE/0AA
-    dHPHZH4kZGsy0OWerw/PEaz0M3oH1S3DTTpcXLbvE1RQMbA87sgG9N90+Q6KiGIiZBzT
-    rXeg6lrfpwldN5a3ze6YwHUSfqnoqT+55SAtl+1FFZeoko3c6WtQHyJgEaDr94JEn07C
-    TJ+T8l02VgpGzHfLyoa81zGf0IshdTXI5DROAcJ2xB7psWfjCHPpzpuuTaRsFQCzRvTN
-    4xj07ZJ1n0z9co9ajwlufo6x9ueGLALmXQN+xlkWNB62z2Tfi9JKhgppvm5vYo47R+8Z
-    QuGQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505176;
+    bh=SYzNkPbYvQQo7yNPwmd0sAr6WiPJx3HhprPOKza6D0E=;
+    b=DooFdn+J7KPbRBYljAmwRxtO1M4emcMxxFR1+IbA+RWkDOQJhuCSoOf51sXjMer+So
+    wVY8YYFIp3v6O39pvL6k2pWRBAdAfxdJLBwQFEnezmLo6CAUHwDk/G/wFgCE88vJZGRT
+    0Tu9tDk5x5knsRXevVPCUYRto2GSjt0xeeS/ohR7jFjNouUsLSP7BJIsiAULQ+bsaIUp
+    qCi9Sp/kXpsISyb8+eJ4Gwr2ZMlg5qbmCnfF0BKpTL96vNBpwIzIFFehi4UOyalStqxP
+    HFrvlo2xHwRBL+C8HK5+qVxGkxBmchj1MA5XCPklEWEOL4iuFO2PRM4ne0LdqNgSHOik
+    rPKA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505175;
     s=strato-dkim-0003; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=i8cGKfwirIdnWIRedml65mOcQqDHKaJXaOcj56+0XVs=;
-    b=+hiMkp7wubEabCTvcsLKLCOYaH2Cak+kIHtjH9k93zcQKYGvyW/kKAIQOAzxPmbm8W
-    f/WrhVZ9g1ZQfjj2BzDA==
+    bh=SYzNkPbYvQQo7yNPwmd0sAr6WiPJx3HhprPOKza6D0E=;
+    b=MdT95aIPcuSsAoSwcMsQ+0GOQUJyL2EwGrEVn/GrwZXBnkvhrKdakAsq+UYMUCyUMF
+    KeDj6oktc3cd87BX8bAA==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
 Received: from iMac.fritz.box
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7QF1HM
+    with ESMTPSA id Qb56a22AO7QE1HL
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:15 +0100 (CET)
+    Tue, 24 Nov 2026 08:26:14 +0100 (CET)
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -122,9 +122,9 @@ Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
 	letux-kernel@openphoenux.org,
 	kernel@pyra-handheld.com,
 	"H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v2 10/20] dt-bindings: backlight: pwm: Document enable guard
-Date: Tue, 24 Nov 2026 08:25:50 +0100
-Message-ID: <9279d3995ae4f81c19afeaa07b32204f16611ac8.1795505160.git.hns@goldelico.com>
+Subject: [PATCH v2 09/20] pwm: twl: Support 64-cycle PWM frame
+Date: Tue, 24 Nov 2026 08:25:49 +0100
+Message-ID: <59fa3a5ee1a0d0bf13c85c08160c5acdaa95b7a4.1795505160.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
@@ -133,8 +133,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_232650_705857_C982B9F6 
-X-CRM114-Status: GOOD (  14.29  )
+X-CRM114-CacheID: sfid-20261123_232650_680831_1F81579F 
+X-CRM114-Status: GOOD (  23.09  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -153,61 +153,117 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for a new device tree property
-"pwm-enable-guard-period-us". If set, the driver applies a full
-duty cycle (duty_cycle == period) for the given duration whenever
-the PWM was disabled or had zero duty cycle (e.g. power-up, resume,
-brightness 0). This covers the
-requirements of such devices generically, without introducing a
-chip specific backlight driver.
+Implement the ti,twl4030-pwm-frame-64 device tree option in
+the TWL4030 PWM driver. When enabled, program bit 7 of PWMx_ON to
+select a 64-clock-cycle frame and clamp the OFF counter to 63.
+
+The shorter frame doubles the output frequency at the expense of
+duty-cycle resolution. With ON = 1 and OFF = 63, a full-duty request
+is approximated rather than producing a constant HIGH level; the
+remaining LOW interval is short enough for the intended LED driver
+startup mode detection.
+
+Keep the existing 128-cycle behaviour when the property is absent.
+As before, the driver does not implement arbitrary consumer-requested
+PWM periods.
 
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
 
 Notes:
     Changes against V1:
-    - Describe the guard trigger using the PWM state actually tested
-      by the implementation (disabled or zero duty cycle).
-    - Remove the requirement that a disabled provider report zero duty-cycle.
-    - Remove the redundant uint32 $ref for the standard -us suffix
-      after dt_binding_check reported a schema error.
-    - Binding semantics and code-consistency review assisted by ChatGPT;
-      clarify that full duty is requested, not guaranteed at the output.
+    - Add optional selection of the TWL4030 64-cycle PWM frame through
+      ti,twl4030-pwm-frame-64; retain the default 128-cycle mode.
+    - Set the frame-selection bit in PWMx_ON and limit the OFF counter
+      to 63 in 64-cycle mode, including for full-duty requests.
+    - Retain the duty-cycle calculation and register encoding of the
+      hardware-tested working series rather than the later review
+      proposal using ON = OFF = 1 for full duty.
+    - Document that ON = 1, OFF = 63 does not produce constant HIGH;
+      the resulting short LOW intervals are relevant for TPS61160/61.
+    - Revised commit message to distinguish driver implementation
+      from the preceding binding documentation.
+    - PWM encoding and commit-message review assisted by ChatGPT.
 
- .../leds/backlight/pwm-backlight.yaml         | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/pwm/pwm-twl.c | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
-index b71f6454a4ac2..9172f14bfb76f 100644
---- a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
-@@ -49,6 +49,26 @@ properties:
-       having to list out every possible value in the brightness-level array.
-     $ref: /schemas/types.yaml#/definitions/uint32
+diff --git a/drivers/pwm/pwm-twl.c b/drivers/pwm/pwm-twl.c
+index 99c1caf4f19c8..70567d5805f43 100644
+--- a/drivers/pwm/pwm-twl.c
++++ b/drivers/pwm/pwm-twl.c
+@@ -25,6 +25,9 @@
+ #define TWL4030_GPBR1_REG	0x0c
+ #define TWL4030_PMBR1_REG	0x0d
  
-+  pwm-enable-guard-period-us:
-+    description: >
-+      Duration in microseconds for which the PWM consumer requests
-+      full duty (duty_cycle == period) before applying the requested
-+      brightness. The guard is issued if the previous PWM state was
-+      disabled or had zero duty cycle, e.g. after power-up or resume.
++/* Bit 7 of the PWMx_ON register selects the short (64 cycles) frame */
++#define TWL4030_PWM_ON_FRAME_64	BIT(7)
 +
-+      This can allow LED drivers with startup mode detection to settle
-+      before normal PWM dimming begins. For example, TI TPS61160/61
-+      distinguish PWM dimming from EasyScale by the duration of low
-+      intervals on CTRL during an initial detection window. The guard
-+      duration must cover that window according to the LED driver
-+      datasheet.
+ /* GPBR1 register bits */
+ #define TWL4030_PWMXCLK_ENABLE	(1 << 0)
+ #define TWL4030_PWMX_ENABLE	(1 << 2)
+@@ -49,6 +52,7 @@ struct twl_pwm_chip {
+ 	struct mutex mutex;
+ 	u8 twl6030_toggle3;
+ 	u8 twl4030_pwm_mux;
++	bool twl4030_frame_64;
+ };
+ 
+ static inline struct twl_pwm_chip *to_twl(struct pwm_chip *chip)
+@@ -56,13 +60,35 @@ static inline struct twl_pwm_chip *to_twl(struct pwm_chip *chip)
+ 	return pwmchip_get_drvdata(chip);
+ }
+ 
++/*
++ * Note: this hardware (and driver) does not honor arbitrary periods.
++ * Only the duty ratio is implemented; the frame length is either
++ * 128 clock cycles (default) or - if selected through device tree -
++ * 64 clock cycles. Consumers requiring an accurate period must verify
++ * the actually provided period.
++ */
+ static int twl_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+ 			  u64 duty_ns, u64 period_ns)
+ {
++	struct twl_pwm_chip *twl = to_twl(chip);
+ 	int duty_cycle = DIV64_U64_ROUND_UP(duty_ns * TWL_PWM_MAX, period_ns) + 1;
++	bool frame_64 = twl_class_is_4030() && twl->twl4030_frame_64;
+ 	u8 pwm_config[2] = { 1, 0 };
+ 	int base, ret;
+ 
++	if (frame_64)
++		pwm_config[0] |= TWL4030_PWM_ON_FRAME_64;
 +
-+      The PWM provider may approximate full duty if the hardware
-+      cannot represent it exactly. The board must ensure that the
-+      resulting waveform meets the LED driver startup requirements
-+      and that the input has a defined inactive state while off.
-+    default: 0
++	/*
++	 * In the 64-cycle frame the OFF counter wraps at 64. A requested
++	 * duty_cycle of 64 (full duty) would therefore wrap to a constant
++	 * high output. Saturate to the largest value that still produces
++	 * a low pulse (OFF = 63, approximately 62/64 high) instead.
++	 * This also applies to full-duty requests from PWM consumers.
++	 */
++	if (frame_64 && duty_cycle > TWL_PWM_MAX)
++		duty_cycle = TWL_PWM_MAX;
 +
- dependencies:
-   default-brightness-level: [brightness-levels]
-   num-interpolated-steps: [brightness-levels]
+ 	/*
+ 	 * To configure the duty period:
+ 	 * On-cycle is set to 1 (the minimum allowed value)
+@@ -353,6 +379,17 @@ static int twl_pwm_probe(struct platform_device *pdev)
+ 	else
+ 		chip->ops = &twl6030_pwm_ops;
+ 
++	/*
++	 * Optional short PWM frame (64 instead of 128 clock cycles).
++	 * Doubles the output frequency; useful for LED dimming
++	 * inputs requiring short low intervals during startup
++	 * mode detection (e.g. TI TPS61160/61).
++	 */
++	twl->twl4030_frame_64 =
++		twl_class_is_4030() &&
++		device_property_read_bool(&pdev->dev,
++					  "ti,twl4030-pwm-frame-64");
++
+ 	mutex_init(&twl->mutex);
+ 
+ 	return devm_pwmchip_add(&pdev->dev, chip);
 -- 
 2.56.0
 
