@@ -2,73 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6762D606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCA5606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:25:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YlHeXwUK;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=BoyObo1z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Nlhj3B+8;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IQzbiJRR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NrmR7f4NWvJtaGShihv5Oaav7f9YUTikEYvCAM/Zj8A=; b=YlHeXwUKBax9XQ
-	2wNLjZMkr3sMflGvYxifpALLstIvb6ZjBPA3Rj5VkZN9094NexDfOhAX0bspxu3ggeBctl+pxRl6E
-	W6iXtloPruFACeU/TP63HoiQpGioKkuWPl4Zapjq/6CIlrSH6wowd8DilwLRlPv8/Axj2gijIK7MO
-	54s1i7Axwup0LjLgy2ercGQjnrB6P9OahxEwOS39HJqcvz/6zD1QXDrW7IbMlpbwYuXLpAe6ggp3X
-	eoXkAGmyHJxWJcHgp49Ym4vCM0u0UiefK4obnl5/ryJDNXE/hqpIZxZo27P38iqZT3St8YiYeH81c
-	PeHBlSD+7mKxqqqALggQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nzFWxb9EM1aBm69mxNmKrGLCe/kN+fOhobHOhwqxJug=; b=Nlhj3B+8oxrDNevM+E9G2zTeHK
+	8N8x0njL4XXI1c00sc1UW4FGxUE8G9PQWce7JCHeL03v+iU365KIUJ16CmIhekKeUhTwyo2o3wj5L
+	L7FaHfprVOdTnmz/FZJEwjZFuyjidC/miU6qmlVvSUBUAcj6XnV4+mIMuGdr/9kf9x/aOPZREqZQ3
+	MIdF4oI+C+E8zxwjCmCdFhDOeIj7/tSetPq+wpmuWhoUxlGzf/IazspyN8NcppwctPCCv52L5Y17v
+	2KuaNBEcbWaQd9QFggE0D8KlHlJmPAsM1hFt3FhSK/sz6hGw+dir2CpiqpfRHu58ez4YHGx7Y2XUm
+	62vHL4vA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrRm-00000006jew-1qsf;
-	Tue, 24 Nov 2026 14:24:38 +0000
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	id 1xVqlB-00000006ekm-2pqX;
+	Tue, 24 Nov 2026 13:40:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrRk-00000006jeB-1t3f
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:24:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=NrmR7f4NWvJtaGShihv5Oaav7f9YUTikEYvCAM/Zj8A=; t=1795530276; x=1796739876; 
-	b=BoyObo1zkWaNSD8VRAuIf32Gg3XKuv8hqZnk0TuF7aIUbMHmDO2e3pVP3VweYCjigkVpIs1C/7M
-	QttEfxN2DOzj/hiR7KBTKqKWYBRIqE0v55NLi2rNzSKTP23AZU6Dy1v644cpTnb08QxZQ8UmqyXet
-	Q4Yq6majcUQ91m9bDLTtL4zi/+ys8q92Z/Hmakiuy9nWo2XnPCE5M/w0B4rIbqZEtm1dluzDWaE7D
-	DtZvlz93+LtLORp8oFIK7gUvFIsDbHp4REDj222ZGWoNf3sjaf0wrLw/wHlHutzedO1Nn4bQMDNgj
-	rLuqgvYoxVr94HR2jmJ1oOMeNr5OhGOsnthg==;
-Date: Tue, 24 Nov 2026 15:23:49 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong
- <neil.armstrong@linaro.org>, Dmitry Baryshkov <lumag@kernel.org>, Robert
- Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Christoph Niedermaier
- <cniedermaier@dh-electronics.com>, Marek Vasut <marex@nabladev.com>, Maxime
- Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>
-Subject: Re: [PATCH 0/2] drm/bridge: tc358762: fix reset handling
-Message-ID: <20261124152349.6a1b6826@kemnade.info>
-In-Reply-To: <7a94fa5a-ddfc-449e-b014-387d8e868e97@ideasonboard.com>
-References: <20261124-tc3-reset-v1-0-a5d27fe4b5de@kemnade.info>
-	<7a94fa5a-ddfc-449e-b014-387d8e868e97@ideasonboard.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	id 1xVql7-00000006ej3-3laz;
+	Tue, 24 Nov 2026 13:40:33 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 34F3141AD2;
+	Tue, 24 Nov 2026 13:40:33 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795527633;
+	b=zgEo+fL0Q3aqdVW68IzFQB73cC2DNjQxkFKIMQ69SYuyaqn5K+/jjdPElZJb0csjahqO
+	 HqQJyGHtGwnh/XHj7ukGgvJHozbH6zB1XjfGTIzJ8JFlwrRHPy9ZqOpQFJzjYo7SgT+Fm
+	 Ju/2OL7vQ3BcRTEK+j1Wi/Lsst2c5EeyCP6GY08IIMSIT/cng5Fgilrzn70mhqWPn2eWS
+	 DeSwzFs7Vs/MkCLP/rEU9MzHmBZJGeFjCRX4DbIK4kf9DviuQpd51ObmFkB2El1K7hJGr
+	 BSd/B5Wktz+URN3qewDy7qB32p6U99cqufGCT49gVk1vvZPWdi3OAXupYMepRB+2Jaw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795527633;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=nzFWxb9EM1aBm69mxNmKrGLCe/kN+fOhobHOhwqxJug=;
+	b=Zjw5sovYicyrdntzPYqbFUmYF0OFGxFDnJ3/PTwHGRezk/PAttwjEvSHe4S/QE0yihKM
+	 cxEw0wAQK98taYEOduaz0Rk2BWitOoBmXp2Z65le3F9VSN9jJPxtvhY3MDK7fxRK8GFOW
+	 mUdKlhDFphqX44xTn/g8TJPaV/EDMHvlndxVjWR/VAkhWXlskK1lVoK2zGRinv6DCEQjs
+	 bGo+aDnZa7UQqxt4Vz7WA3LrouIulIq7tD6cUfNs53pSir0DBbE8hmuS7ibQVAa9OgZEV
+	 nB02xIllkm0D+arHi7i/hjeQxQoQcbPMgKebYcglv3eiznd69OY9NnSpiVwC1rbmygQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id E5AEC1F000D0;
+	Tue, 24 Nov 2026 13:40:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795527633;
+	bh=nzFWxb9EM1aBm69mxNmKrGLCe/kN+fOhobHOhwqxJug=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=IQzbiJRRK7qyKdQ3oGuG0+e4Alpy1TEE4X6RCtRz7vDH4DiwQKuVT1Iim4Ta248hf
+	 YTvhmXgLV5xKmmMVOg226oUt1My5sOCJJHNuzWlsI4NzOdfnvaox8ayugnT9/sE0Zz
+	 rFo7+CZA4UEP6VKM7e+U3XOhjpflhR9xblwQVphfIXhT9j1EcAGFLpT9ribIr0V3/1
+	 L5HConGX7zMwQmiw8k25BgceuuR9K1GN/Azi4lWAEkMO87ZUJjNB2tBZxmRDPo6E2C
+	 vgRQubzNCner6CFpxK0rOcgIyM4G5xEzlTHA/LrzT5q/5CHLIjPMOOe8ODIxdMnD0f
+	 6U/GJlg5xNWdA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 77BB84CA5F;
+	Tue, 24 Nov 2026 13:40:21 +0000 (UTC)
+From: Sergei Khomenkov via B4 Relay <devnull+shomenkow.gmail.com@kernel.org>
+Date: Tue, 24 Nov 2026 16:40:18 +0300
+Subject: [PATCH v3 2/3] media: verisilicon: program the JPEG encoder stream
+ limit in 64-bit words
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261124-hantro-buflimit-v3-2-780903970ca0@gmail.com>
+References: <20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com>
+In-Reply-To: <20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Hans Verkuil <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Chen-Yu Tsai <wenst@chromium.org>, 
+ Hugues Fruchet <hugues.fruchet@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795527620; l=3597;
+ i=shomenkow@gmail.com; s=20261104; h=from:subject:message-id;
+ bh=biQGrB6UYPvhg65jUpDgSfn1YhBxiYA0k15PHlCqCLk=;
+ b=P5pNeXlKk5cfoFc6oXQ0j5mBRlqXJJwCmuZ2j/huGy6S5VX16cLw9qmvdyeaWZf4mr/NJV6lN
+ V8/NCe6s+/ICjb9cvrhYg3ULwwHNjWcpWWCHX+0sSk4Vq+DaDS7Cm4L
+X-Developer-Key: i=shomenkow@gmail.com; a=ed25519;
+ pk=FwuHDVe7aiISDMLmQEcMC+RflEIJ6kEp/ekwznWXmI8=
+X-Endpoint-Received: by B4 Relay for shomenkow@gmail.com/20261104 with
+ auth_id=1409
+X-Original-From: Sergei Khomenkov <shomenkow@gmail.com>
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_062436_499713_AAA51218 
-X-CRM114-Status: GOOD (  25.10  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,57 +117,87 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: shomenkow@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 15:44:40 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+From: Sergei Khomenkov <shomenkow@gmail.com>
 
-> Hi,
-> 
-> On 24/11/2026 13:54, Andreas Kemnade wrote:
-> > The bridge driver desserts reset after disable and asserts that
-> > upon enbale. That requires users to workaround that by declaring
-> > the reset gpio wrongfully active high. As an interim solution,
-> > ignore polarity, until things have settled to fix it afterwards.
-> > That will break setups with an additional inverter in the signal
-> > patch but those should be uncommon, at least not seen in in-tree
-> > devicetrees. Fix polarity in the one device tree actually declaring
-> > a reset line. That patch has to go in after the bridge fix.
-> > 
-> > The issue came to sight during experiments with reset lines on the
-> > Epson Moverio BT-200.  
-> Indeed, the driver has it the wrong way... But what is the way to fix 
-> this? Fixing it will always break the backward compatibility with dtbs.
-> 
-> Is it worth it? Or is it easier to just adjust the bindings doc to 
-> mention about it, and add a note to the driver that the gpio is set the 
-> wrong way "on purpose".
-> 
-I am a bit wondering whether to use the reset-gpio driver as aux device,
-and then we would need correct dts. There are two chips sharing a single
-reset line, so I have to deal with shared gpios. It seems not to work
-that well directly. But first I try to have things working with well-defined
-boot state.
-That reset-gpio stuff was invented exactly for that case, see commit
-cee544a40e4426040946e685988b1489f13e6600.
+H1_REG_STR_BUF_LIMIT counts 64-bit words, but the driver writes the room
+left in the CAPTURE plane in bytes. A stream that does not fit, such as
+a quality 100 frame of noise in a default-sized buffer, is then written
+past the end of the plane, up to eight times its size.
 
-> Or, if this is to be merged, I think the code around the 
-> gpiod_set_raw_value_cansleep calls should have a comment to highlight 
-> why it's calling raw funcs and what the plan is.
-> 
-Yes, the comment should be there.
-Sashiko suggested to add an entry to 
-of_gpio_try_fixup_polarity()
+Write the limit in 64-bit words, rounded down to whole 64-byte bursts:
+the encoder finishes a burst it has started, so an unrounded limit lets
+it write up to 56 bytes past it. rockchip_vpu2_jpeg_enc_set_buffers()
+has the same bug with VEPU_REG_STR_BUF_LIMIT, which
+rockchip_vpu2_jpeg_enc_done() reads back as a bit count; give the VEPU2
+the same limit.
 
-to have fixups.
+Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
+Cc: stable@vger.kernel.org
+Assisted-by: Claude:claude-opus-5-5
+Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
+---
+Found with an LLM coding assistant while porting mainline Linux to a
+Rockchip RK3026 board; the assistant also drafted this change. Tested
+on that board (its H1 is Rockchip's VEPU1): overflowing frames now
+stop at the programmed limit without writing past the plane (a canary
+after the plane stays intact), and frames that fit are byte for byte
+the same as before. Not tested on other SoCs, including the STM32MP25,
+which shares the H1 code. The VEPU2 change is not tested: there is no
+VEPU2 on the RK3026.
 
-Regards,
-Andreas
+Rockchip's MPP programs VEPU_REG_STR_BUF_LIMIT the same way ("limit >>=
+3; limit &= ~7" in hal_h264e_vepu2_v2.c). Patch 1 stops the encoder
+only in the VEPU1 interrupt handler; the VEPU2 and STM32MP25 handlers do
+not: if those encoders pause on a full buffer as the RK3026 H1 does, the
+next job may time out.
+---
+ drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c        | 4 +++-
+ drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c | 4 +++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c b/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
+index 86cc1a07026f..cbf0e3d034f6 100644
+--- a/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
++++ b/drivers/media/platform/verisilicon/hantro_h1_jpeg_enc.c
+@@ -55,7 +55,9 @@ static void hantro_h1_jpeg_enc_set_buffers(struct hantro_dev *vpu,
+ 	vepu_write_relaxed(vpu, vb2_dma_contig_plane_dma_addr(dst_buf, 0) +
+ 				ctx->vpu_dst_fmt->header_size,
+ 			   H1_REG_ADDR_OUTPUT_STREAM);
+-	vepu_write_relaxed(vpu, size_left, H1_REG_STR_BUF_LIMIT);
++	/* In 64-bit words; the encoder finishes a started 64-byte burst. */
++	vepu_write_relaxed(vpu, round_down(size_left, 64) / 8,
++			   H1_REG_STR_BUF_LIMIT);
+ 
+ 	if (pix_fmt->num_planes == 1) {
+ 		src[0] = vb2_dma_contig_plane_dma_addr(src_buf, 0);
+diff --git a/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c b/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
+index 61621b1be8a2..ab976c762239 100644
+--- a/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
++++ b/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
+@@ -82,7 +82,9 @@ static void rockchip_vpu2_jpeg_enc_set_buffers(struct hantro_dev *vpu,
+ 	vepu_write_relaxed(vpu, vb2_dma_contig_plane_dma_addr(dst_buf, 0) +
+ 				ctx->vpu_dst_fmt->header_size,
+ 			   VEPU_REG_ADDR_OUTPUT_STREAM);
+-	vepu_write_relaxed(vpu, size_left, VEPU_REG_STR_BUF_LIMIT);
++	/* In 64-bit words, in whole 64-byte bursts as on the H1. */
++	vepu_write_relaxed(vpu, round_down(size_left, 64) / 8,
++			   VEPU_REG_STR_BUF_LIMIT);
+ 
+ 	if (pix_fmt->num_planes == 1) {
+ 		src[0] = vb2_dma_contig_plane_dma_addr(src_buf, 0);
+
+-- 
+2.53.0
+
+
 
