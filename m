@@ -2,87 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23629606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECE0606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e9vHse01;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=X0QNvToG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MKFU3z6W;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=CQOEjDJF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Z3NWK5cLOijzuItkhwXkwNPbHwJin1fTuYBbbki6ORI=; b=e9vHse01+LbRwrAoApqUajSQot
-	ExOqrwHyn08TcVsjTJVVWKdAJNZ7qXW/yXb0jEbYmoPEweIiI8GAJfLJtr2uMUjy0sXoBlBe2RgbF
-	BU8AjXSlwOUZTpR663PrQwumExKbB30T6q9inTrFrwDiVY3lif5RpVJ8I0HLSBiKRrB3JD/m8ewHY
-	0Z9+BykXUOy/9wPDadDVjrsaFaFJc+Ob8XMcPd/KMykVYu76BRashHz4wkkLdDCGlk5sQ8Pg1ml8O
-	Uh4lEqfG4s5O6zQ8OAsu4tyJtC59U34p+BWChKdu8fXw/VgcgWACycPmohfxk8xi4D4q3Um4ovREb
-	wVeKlcUg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=T0+FN9ywWvVROMEqK02xBV1d8KjqVByNFP3Q93iSrfc=; b=MKFU3z6WHgTYFx
+	/2eFFNTKqyL8gvKqgIWKRWV3AoCuqzjRbpBtWkuRG2CJv6SGueMwMURXDKfOdKUULL8PHOhwrUl6h
+	9UhUU29CzULsf0gFs08yhg9azWTUPnU4rvxo09+m81f3XLXKcx4uUfJwlRKGXLa/ps/0vb0wikOOM
+	9xFXmo0/BGKKctYsp2XqU22ofXCgXeOGcLNumIoZAZvP9gH77MTGbAgGf+QXyXa9cMpKa4/arSxeR
+	nVaYl+bWJ1Z5wbHHuEJ/Zv3H55Ne0tKDo6qXmKatHiVYBIBgBzHkoN0tfJ9NCIWIV3qnM0IZG/82o
+	bTkYTBU8j/UWA4ARevlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqHh-00000006a3W-1dlw;
-	Tue, 24 Nov 2026 13:10:09 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVqKN-00000006aHQ-3U7Y;
+	Tue, 24 Nov 2026 13:12:55 +0000
+Received: from canpmsgout11.his.huawei.com ([113.46.200.226])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqHg-00000006a3J-2Bvf
+	id 1xVqKJ-00000006aH4-3zoQ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 13:10:08 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9B39B61B4D;
-	Tue, 24 Nov 2026 13:10:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0D851F000C0;
-	Tue, 24 Nov 2026 13:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795525807;
-	bh=Z3NWK5cLOijzuItkhwXkwNPbHwJin1fTuYBbbki6ORI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=X0QNvToGXtckZFbW+UoARbViFoCfBnXhVDDwI1XkbcWrUksYFrngLCyTtTIWGQpsk
-	 0BQnnXr6ZkOsAVYrbETr1rus/d1lTaP5rV+4gAwivLWSscyewP5X2zeBtjJWtjJkCo
-	 FEDWLwCynU6pD7wQDBtu2QsYMNcuhvEdFh2IoosoP1mG9SqZUTiyH7ceumcWZVEpCI
-	 7reSYgJq/P13bLyt9pTNx356QSA2Hjw60m3NJgdg3425aNSw7qRTpifjo0d0GJszaz
-	 dDyvlyeq62OUngXQI0oG2S80VBVIFeVItu6x3L+iG3u//4Od2x1r6JxbVsNIOZjKZO
-	 mmqLk4B5CutYA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xVqHc-00000002aNR-3azu;
-	Tue, 24 Nov 2026 13:10:04 +0000
-Date: Tue, 24 Nov 2026 13:10:04 +0000
-Message-ID: <867bi2z87n.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Colton Lewis <coltonlewis@google.com>
-Cc: Oliver Upton <oupton@kernel.org>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Wei-Lin Chang <weilin.chang@arm.com>,
-	Dan Carpenter <dan@pereq.eu>,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	kvm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] KVM: arm64: nv: Discard undersized TTL hints in compute_tlb_inval_range()
-In-Reply-To: <20261123232647.3733149-2-coltonlewis@google.com>
-References: <20261123232647.3733149-1-coltonlewis@google.com>
-	<20261123232647.3733149-2-coltonlewis@google.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Tue, 24 Nov 2026 13:12:54 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=T0+FN9ywWvVROMEqK02xBV1d8KjqVByNFP3Q93iSrfc=;
+	b=CQOEjDJF2t7bB2d+Aururz0E2/Lz4tcxQC1mpcTUuICM0DzXlHGq4eY40qoQX5nfqo6TUh3Y2
+	yUxkxDbIP82+w/weDYT1tGLv8pFRNCeJRr2lX6DEE6awZ4vJPSGjrUC8vHhYlmKiQvdd1Q9Oh0f
+	D8DznjF5WWCqeq/pd5icb0k=
+Received: from mail.maildlp.com (unknown [172.19.163.200])
+	by canpmsgout11.his.huawei.com (SkyGuard) with ESMTPS id 4jYjs71MTrzKm4B;
+	Tue, 24 Nov 2026 21:12:27 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 5D04B4055B;
+	Tue, 24 Nov 2026 21:12:45 +0800 (CST)
+Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 24 Nov
+ 2026 21:12:44 +0800
+Message-ID: <ef004b87-db3c-4d34-a061-f2b3034c553d@huawei.com>
+Date: Tue, 24 Nov 2026 21:12:43 +0800
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: coltonlewis@google.com, oupton@kernel.org, joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, fuad.tabba@linux.dev, seiden@linux.ibm.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, weilin.chang@arm.com, dan@pereq.eu, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, kvm@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 5/9] fs/resctrl: Allow mba_MBps with assignable MBM
+ counters
+To: Ben Horgan <ben.horgan@arm.com>, <tony.luck@intel.com>,
+	<reinette.chatre@intel.com>, <Dave.Martin@arm.com>, <james.morse@arm.com>,
+	<babu.moger@amd.com>, <corbet@lwn.net>, <skhan@linuxfoundation.org>,
+	<rdunlap@infradead.org>, <tglx@kernel.org>, <mingo@redhat.com>,
+	<bp@alien8.de>, <dave.hansen@linux.intel.com>, <hpa@zytor.com>,
+	<fenghuay@nvidia.com>, <tan.shaopeng@fujitsu.com>, <quic_jiles@quicinc.com>,
+	<x86@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20261112131255.4043381-1-ruanjinjie@huawei.com>
+ <20261112131255.4043381-6-ruanjinjie@huawei.com>
+ <1defc561-e7bc-4864-90ad-6aa3fb6be7da@arm.com>
+ <e814cf3a-61ee-466e-ae2b-6abf8db16dc0@huawei.com>
+ <ba518021-4098-48cb-b59f-a07cf7a418da@arm.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <ba518021-4098-48cb-b59f-a07cf7a418da@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_051252_725950_BA5433B3 
+X-CRM114-Status: GOOD (  44.46  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,43 +85,312 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 23 Nov 2026 23:26:46 +0000,
-Colton Lewis <coltonlewis@google.com> wrote:
-> 
-> When an L1 guest issues TLBI IPAS2E1 with a non-zero TTL hint,
-> compute_tlb_inval_range() takes it at face value. If the hinted size is
-> smaller than the actual mapping (for example, a 4kB L3 hint on a 2MB
-> block), kvm_pgtable_stage2_unmap() clears the entire block while
-> kvm_remove_guest_s2_mappings() leaves its stale tracking entry behind in
-> guest_s2_mappings. On 16kB or 64kB hosts, a 4kB hint also triggers
-> WARN_ON(size & ~PAGE_MASK) in kvm_stage2_unmap_range().
-> 
-> A TTL hint smaller than PAGE_SIZE or the mapped entry is wrong. Check
-> it against PAGE_SIZE, the shadow stage-2 leaf size, and the guest block
-> size encoded in KVM_NV_GUEST_MAP_SZ. If it is too small, ignore the hint
-> and fall through to the unhinted invalidation path.
-> 
-> When falling back to the maximum mapping extent with stage-2 disabled,
-> size it from PAGE_SIZE rather than VTCR_EL2.TG0 so 1:1 shadow blocks are
-> still covered.
-> 
-> Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> Signed-off-by: Colton Lewis <coltonlewis@google.com>
 
-What's the advantage doing all this dance over the patch proposed at
-[1]?
 
-	M.
+在 2026/11/24 19:44, Ben Horgan 写道:
+> Hi Jinjie,
 
-[1] https://lore.kernel.org/all/20261123182312.4842-1-maz@kernel.org/
+Hi Ben,
 
--- 
-Without deviation from the norm, progress is not possible.
+> 
+> On 18/11/2026 03:52, Jinjie Ruan wrote:
+>>
+>>
+>> 在 2026/11/17 19:37, Ben Horgan 写道:
+>>> Hi Jinjie,
+>>
+>> Hi Ben,
+>>
+>>>
+>>> On 12/11/2026 13:12, Jinjie Ruan wrote:
+>>>> The controller needs a counter for the event selected by mba_MBps_event
+>>>> in every monitoring group, so mba_MBps is refused when MBM counters are
+>>>> assignable. On MPAM a group's monitor is assigned from a fixed pool
+>>>> when the group is created, and users can otherwise only pick a
+>>>> percentage of a maximum that firmware does not report.
+>>>>
+>>>> Allow the controller when the architecture has a fixed assignment mode
+>>>> and assigns counters when a group is created. Keep mbm_assign_on_mkdir
+>>>> enabled while the controller is in use, restore its previous value
+>>>> when the controller is disabled, and refuse to unassign the
+>>>> controller's counter meanwhile.
+>>>
+>>> I'm afraid there has been some miscommunication here. What I was trying
+>>> to suggest is that MPAM could when using the software controller use the
+>>> default mbm_assign_mode as is used in intel systems. All the counters
+>>> are allocated up front and there is one of each supported type per
+>>> monitor group. Using mbm_assign_on_mkdir doesn't always give you
+>>
+>> In this case, it is unnecessary to restrict that mbm_assign_on_mkdir
+>> cannot be disabled during the soft controller is enabled
+>>
+>>> guaranteed assigned counters as you point out in your
+>>> patch "arm_mpam: resctrl: Use the domain's counter ID". I haven't
+>>
+>> Yes, that patch is addressing the related issues.
+>>
+>>> thought through all the abi consideration but it seems plausible, what
+>>> do you think?
+>>
+>> I like the "default mbm_assign_mode" idea which I think achieved through
+>> the closid and rmid trimming discussed earlier, while
+>> mbm_assign_on_mkdir is only a best-effort.
+>>
+>> I have a few questions as below:
+>>
+>> 1、Should report MPAM as the default mode only during the mba_MBps
+>> mounting?
+> 
+> I'm not completely sure but it does seem that if we are going to the trouble of adding support for
+> 'default' mode then we should make it more generally available.
+
+However, the default mode may trim the closid and rmid, but in the
+absence of mounting MBps, users may require more control groups and
+monitoring groups?
+
+> 
+>>
+>> In this way, when remount without "MBps", the default behavior can be
+>> restored instead of permanently trimming the number of control groups
+>> and monitoring groups based on the hardware's mbw counter count.
+>>
+>> 2、 Should the resctrl files remains unchanged in the ABI?
+> 
+> Yes. We don't want to change the ABI.
+
+OK.
+
+> 
+>>
+>> mbm_assign_mode is displayed as [default], and the semantics of
+>> assignments/available is still "not enabled".
+>>
+>> And update the document about the changes in the mode and
+>> num_closids/num_rmids caused by the MBps mount option.
+>>
+>> Whether num_mbm_cntrs should still be displayed during the default period?
+> 
+> Any cntrs and assign are only part of the mbm_event mode rather than default mode.
+
+OK. Will not display them for default mode.
+
+>>
+>> Whether mpam allocates the monitor during group creation or lazily when
+>> the first read occurs?
+>>
+>> Perhaps we only need to align with the default behavior of resctrl and
+>> x86 default mode?
+> 
+> We should match existing x86 resctrl where possible.
+
+I agree.
+
+> 
+> I'd like to understand how important it is to have the mba_MBps feature on MPAM platforms. Do you
+> have a real platform with sufficient memory bandwidth monitors for the default mode to be useful and
+
+Yes, We have multiple genuine servers which support MPAM. Our current
+mainstream hardware supports 256, and the next generation may support
+512 MBM counters, should this be sufficient for the default mode usage?
+
+> that users want the software controller on?
+
+This is the customer's pain point and real service requirement. The
+memory specifications of the machines in the customer's equipment room
+are inconsistent, and services may be scheduled on different machines.
+
+Currently, the percentage needs to be converted and configured based on
+the machine specifications. The customer hopes that the absolute value
+can be used to improve usability.
+
+For our machines, the software controller can support a smaller control
+granularity than the percentage, and the control error can be reduced
+through feedback adjustment.
+
+Best regards,
+Jinjie
+
+> 
+> Thanks,
+> 
+> Ben
+> 
+>>
+>> Best regards,
+>> Jinjie
+>>
+>>>
+>>> Thanks,
+>>>
+>>> Ben
+>>>
+>>>>
+>>>> Only MPAM has this mode; other systems keep the previous behavior.
+>>>>
+>>>> Suggested-by: Ben Horgan <ben.horgan@arm.com>
+>>>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>>>> ---
+>>>>  Documentation/filesystems/resctrl.rst |  7 +++++--
+>>>>  fs/resctrl/monitor.c                  | 25 ++++++++++++++++++++++
+>>>>  fs/resctrl/rdtgroup.c                 | 30 +++++++++++++++++++++------
+>>>>  3 files changed, 54 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
+>>>> index b52795e03303..d70aec6f7096 100644
+>>>> --- a/Documentation/filesystems/resctrl.rst
+>>>> +++ b/Documentation/filesystems/resctrl.rst
+>>>> @@ -471,7 +471,8 @@ with the following files:
+>>>>  	Determines if a counter will automatically be assigned to an RMID, MBM event
+>>>>  	pair when its associated monitor group is created via mkdir. Enabled by default
+>>>>  	on boot, also when switched from "default" mode to "mbm_event" counter assignment
+>>>> -	mode. Users can disable this capability by writing to the interface.
+>>>> +	mode. Users can disable this capability by writing to the interface. While the
+>>>> +	MBA software controller is enabled, auto assignment cannot be disabled.
+>>>>  
+>>>>  	"0":
+>>>>  		Auto assignment is disabled.
+>>>> @@ -704,7 +705,9 @@ When monitoring is enabled all MON groups may also contain:
+>>>>  	   mbm_total_bytes:0=e;1=e
+>>>>  	   mbm_local_bytes:0=e;1=e
+>>>>  
+>>>> -	Assignments can be modified by writing to the interface.
+>>>> +	Assignments can be modified by writing to the interface. While the
+>>>> +	MBA software controller is enabled, the counter of the event the
+>>>> +	controller uses cannot be unassigned.
+>>>>  
+>>>>  	Examples:
+>>>>  
+>>>> diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
+>>>> index 8f3b8c3e3010..5a67c8089615 100644
+>>>> --- a/fs/resctrl/monitor.c
+>>>> +++ b/fs/resctrl/monitor.c
+>>>> @@ -1210,6 +1210,12 @@ ssize_t resctrl_mbm_assign_on_mkdir_write(struct kernfs_open_file *of, char *buf
+>>>>  		goto out_unlock;
+>>>>  	}
+>>>>  
+>>>> +	if (!value && is_mba_sc(NULL)) {
+>>>> +		rdt_last_cmd_puts("mbm_assign_on_mkdir is required by the software controller\n");
+>>>> +		ret = -EBUSY;
+>>>> +		goto out_unlock;
+>>>> +	}
+>>>> +
+>>>>  	r->mon.mbm_assign_on_mkdir = value;
+>>>>  
+>>>>  out_unlock:
+>>>> @@ -1776,6 +1782,19 @@ static struct mon_evt *mbm_get_mon_event_by_name(struct rdt_resource *r, char *n
+>>>>  	return NULL;
+>>>>  }
+>>>>  
+>>>> +/*
+>>>> + * Return the event the MBA software controller uses as its input for @rdtgrp.
+>>>> + * A monitor group has no event of its own: its bandwidth is summed into the
+>>>> + * parent control group, which is the group with the mba_MBps_event setting.
+>>>> + */
+>>>> +static enum resctrl_event_id rdtgrp_mba_mbps_event(struct rdtgroup *rdtgrp)
+>>>> +{
+>>>> +	if (rdtgrp->type == RDTMON_GROUP)
+>>>> +		return rdtgrp->mon.parent->mba_mbps_event;
+>>>> +
+>>>> +	return rdtgrp->mba_mbps_event;
+>>>> +}
+>>>> +
+>>>>  static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *d,
+>>>>  					struct rdtgroup *rdtgrp, struct mon_evt *mevt)
+>>>>  {
+>>>> @@ -1789,6 +1808,12 @@ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *
+>>>>  		ret = rdtgroup_assign_cntr_event(d, rdtgrp, mevt);
+>>>>  		break;
+>>>>  	case '_':
+>>>> +		if (is_mba_sc(NULL) &&
+>>>> +		    mevt->evtid == rdtgrp_mba_mbps_event(rdtgrp)) {
+>>>> +			rdt_last_cmd_puts("Counter is in use by the software controller\n");
+>>>> +			ret = -EBUSY;
+>>>> +			break;
+>>>> +		}
+>>>>  		rdtgroup_unassign_cntr_event(d, rdtgrp, mevt);
+>>>>  		break;
+>>>>  	default:
+>>>> diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
+>>>> index b32831871f70..518d89b0c67d 100644
+>>>> --- a/fs/resctrl/rdtgroup.c
+>>>> +++ b/fs/resctrl/rdtgroup.c
+>>>> @@ -2610,10 +2610,9 @@ static void mba_sc_domain_destroy(struct rdt_resource *r,
+>>>>   * The MBA software controller is supported only if MBM is supported and MBA is
+>>>>   * in linear scale, and the MBM monitor scope is the same as MBA control scope.
+>>>>   *
+>>>> - * The software controller cannot be supported when the MBM counters are
+>>>> - * assignable.  There is no guarantee that MBM counters are assigned to the
+>>>> - * event backing the software controller in all monitoring domains of all
+>>>> - * monitoring groups.
+>>>> + * The controller needs a counter for its event in every monitoring group.
+>>>> + * With assignable counters that requires a fixed assignment mode, with
+>>>> + * counters assigned automatically while the controller is in use.
+>>>>   */
+>>>>  static bool supports_mba_mbps(void)
+>>>>  {
+>>>> @@ -2623,9 +2622,13 @@ static bool supports_mba_mbps(void)
+>>>>  	return (resctrl_is_mbm_enabled() &&
+>>>>  		r->alloc_capable && is_mba_linear() &&
+>>>>  		r->ctrl_scope == rmbm->mon_scope &&
+>>>> -		!rmbm->mon.mbm_cntr_assignable);
+>>>> +		(!rmbm->mon.mbm_cntr_assignable ||
+>>>> +		 rmbm->mon.mbm_cntr_assign_fixed));
+>>>>  }
+>>>>  
+>>>> +/* mbm_assign_on_mkdir before the software controller forced it on. */
+>>>> +static bool mba_sc_saved_assign_on_mkdir;
+>>>> +
+>>>>  /*
+>>>>   * Enable or disable the MBA software controller
+>>>>   * which helps user specify bandwidth in MBps.
+>>>> @@ -2633,6 +2636,7 @@ static bool supports_mba_mbps(void)
+>>>>  static int set_mba_sc(bool mba_sc)
+>>>>  {
+>>>>  	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_MBA);
+>>>> +	struct rdt_resource *rmbm = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+>>>>  	u32 num_closid = resctrl_arch_get_num_closid(r);
+>>>>  	struct rdt_ctrl_domain *d;
+>>>>  	unsigned long fflags;
+>>>> @@ -2643,6 +2647,20 @@ static int set_mba_sc(bool mba_sc)
+>>>>  
+>>>>  	r->membw.mba_sc = mba_sc;
+>>>>  
+>>>> +	/*
+>>>> +	 * The controller needs its event counted in every monitoring group:
+>>>> +	 * force automatic assignment on, and restore the user's setting when
+>>>> +	 * the controller is disabled.
+>>>> +	 */
+>>>> +	if (rmbm->mon.mbm_cntr_assignable) {
+>>>> +		if (mba_sc) {
+>>>> +			mba_sc_saved_assign_on_mkdir = rmbm->mon.mbm_assign_on_mkdir;
+>>>> +			rmbm->mon.mbm_assign_on_mkdir = true;
+>>>> +		} else {
+>>>> +			rmbm->mon.mbm_assign_on_mkdir = mba_sc_saved_assign_on_mkdir;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>>  	rdtgroup_default.mba_mbps_event = mba_mbps_default_event;
+>>>>  
+>>>>  	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
+>>>> @@ -3352,7 +3370,7 @@ static int rdt_parse_param(struct fs_context *fc, struct fs_parameter *param)
+>>>>  		ctx->enable_cdpl2 = true;
+>>>>  		return 0;
+>>>>  	case Opt_mba_mbps:
+>>>> -		msg = "mba_MBps requires MBM (mbm_event mode not supported) and linear scale MBA at L3 scope";
+>>>> +		msg = "mba_MBps requires MBM and linear scale MBA at L3 scope";
+>>>>  		if (!supports_mba_mbps())
+>>>>  			return invalfc(fc, msg);
+>>>>  		ctx->enable_mba_mbps = true;
+>>>
+>>
+> 
+
 
