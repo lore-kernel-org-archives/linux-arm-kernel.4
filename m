@@ -2,118 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76AC606A69F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77848606A6AE
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2132UDeE;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=HkLqXH/e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HGs1zNjF;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=H/DImiL7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=OT57QIIbgw1mNoCmc4Nd4ViyD4coW8RXoU/BWL17AVc=; b=2132UDeEuhexfkwiQeLYS7rPa5
-	pI+dnrBJQqidBlZ2D2otgmrUm+LarD2NLxoYKnRdHifHKwYsjEJhSsbadiskwcZ3STFCzBPnZBKa3
-	IT68ct+k3xt0SzfHd5ERz5L42s2XSKr17u318bfKRrwIMKQYiApns4Sgvb/bNKv7hKP7yo9bbrI/Z
-	wr/w0Byc+xUltVtTad6pm8g/6VsYf2rqT8bzOFhM6nFBqEZYylK5RFfxzI3rjMNzhZOlRQ8hzjHAw
-	WjKfnsC70FLUvrjj6WMfypim/wpSc9+squU+FxfEGGji60kcRzT5JPaQ22Tts5myYigmhH5ijqwN6
-	x7+9EiOA==;
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=KitYZdpkNdKXmUM6/HLExXMDYSDQIBBH5MGAvVJEnLY=; b=HGs1zNjFqzDCic
+	P8zQZzn8w2qbUeg7zlFZ87jHLOth72bTDvP3oFKS/f57NKG5OjokTSPBGzheFBVuG1F3eFhKjBeJp
+	Z9dSm45+mAgi+3Ec/8R5wC4i6gld5CT6tPBGjoZzdJX/bG5TbO3c1+bjz2VVTWFXXByGas/Jtl1mY
+	uu0L5eqIgj/wdtF5C6+/bxJhtUKvdRFzi5/LHqi8Hrm9UYgOD/SOsiqtpBF7qtiln9NDJhnSuhV3C
+	dRcrCsyW/uMytzXQx0F/iAvJoICs8oO7GvV29XpBfmnFU9jcn/oJeAB/+zr2iSXhbqnNxUb7Pk3jl
+	aXhhzATX72TNkTimpYYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxXk-00000007nRF-0GsP;
-	Tue, 24 Nov 2026 20:55:12 +0000
-Received: from mail-qk1-x72e.google.com ([2607:f8b0:4864:20::72e])
+	id 1xVxtM-00000007qNg-2eBK;
+	Tue, 24 Nov 2026 21:17:33 +0000
+Received: from mail-centralusazon11011064.outbound.protection.outlook.com ([52.101.62.64] helo=DM5PR21CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxXg-00000007nQF-4BE7
+	id 1xVxtK-00000007qMc-2phc
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 20:55:10 +0000
-Received: by mail-qk1-x72e.google.com with SMTP id af79cd13be357-93f269e335eso590766685a.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 12:55:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795553707; x=1796158507; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=OT57QIIbgw1mNoCmc4Nd4ViyD4coW8RXoU/BWL17AVc=;
-        b=HkLqXH/ehrCHR9Atl6qVMsxHso148+POAwCjzQV+K2ADCbD9qHcS0K0wUMXHnXqs37
-         6slsHekOixQi0p0vaqUdxhKq/UYuTXpLGaeSdUGbxXrdkUSOf3gNQHWHM6tyr2LwnguI
-         Go1sVPl0OvsmDaMLM34NooXE1sFNShjmAXcfmyhzsaw+0ziCsDtTUQMRanDbw2am4Nby
-         L7TGXmEw/VCEPeQ3940b2rBvMfy/vtabGEUYhnQGkqWeum+5pf6Ci3soARN1yo0Re0EH
-         1G1eSqZ+hpyEHWiyQUEvBLId/69D4LfvXlHP34roiYzvRcPnYNWqQiTIyAMGf9Jqr6Tx
-         nyRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795553707; x=1796158507;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=OT57QIIbgw1mNoCmc4Nd4ViyD4coW8RXoU/BWL17AVc=;
-        b=ynziK8y7YDh8Mu92huf8b8dAt1XqGu5Yyjo5WMXNC5pSpwi1vUqpd01Ha1xt3F95iX
-         5z5NRTNjVzAUsYp2YefA1Wrtkc7LhSyBr3y7GfG8LOxFCglUw2ytRMXREoglK8f7S+Hd
-         H2QqWR67354ZCWzxP0nt9m9+q1vYaycMneAF7ADYoNtVm+Pgomi2DZb7fq7vKk7sA1Io
-         5+DKNi4fJ/GtSTASWTvS1HXh/OeIQ8z+lonSLWPYD2TolpLJAvroj/hFw+lrDfwzD6io
-         aqzue0YLqMnU01hi46Ua/Et28V6knl2aRmM13gJNyXW5gcGfpSS4j0ErSPKo+0JFz3YS
-         vr7Q==
-X-Forwarded-Encrypted: i=1; AL+hErFSrz6hBGIB4yrTskbst0fW79uAgm4mJ8zZhWz29b5+ZUp21dQbxypYfmvDXt3/EbUxpc3KynJnUYibcjgZACKc@lists.infradead.org
-X-Gm-Message-State: APuU4Z99NTXRkc6lVImMB1KUDTST/5H/tqCdGgWkFcQM8/D6WrU6lDSB
-	CoVkP+Z8T4uhLQ7nifWC34PJktmkDPSLwXN+ZJ4SiT7qYmj7xIJS+ProNFoD32//ndk=
-X-Gm-Gg: AZFdTZcasn8Knjqr/jhc255z/hjipxNDbWeKG/ITQqC59mSJp6R+me4LiLx4u85SSwm
-	D5DQWvaVCDCLi7um9uJ36DsVV3zJmpCfe62wfO/MDYyX4pRq8EJ3HhQ7KnboYUGKZtOCTyxEg7b
-	Fjkxfm4eU6aJdvO4q7cAA9ajF8YoE0A1r8paUPs8a+4MxPM+Olq+Fg7MR5ZkdI4Zg5oz/0Oands
-	gnEZ8uFcd+l8bdZzS9OYCqanNECflRW/l7EHXKR9L/Gfe5TVwcVOvKqv759gdYJDHerFn+C7qmw
-	N+MyRMvBLmZOTjM7+SGSQUmVOebO/v17A4fvYgjK+7lqrR8poHnHdE7bYJ09i/z7TKHaL9fUJ/T
-	ddCyEefku2dM94glrZs337B0cNDAm3+FHH9pOVekiYt4ceTtGZijOCdEq/9u+MKC+sYxWHxHyO+
-	FhHTbz+8Edgcz6aCTTmEp+GX1Jz5V47JnOTXJowwHXguJlW6JQYsfeAeTYAwFZ2UYAftY/J7Dpf
-	A4NpttW9QjI3Apv4yxrjPwatmvNGgoDyTIAANy+8R1cFTQToLmrhuFco/IIpG3JZEum2ro4Hhaz
-	AE33Vmt1sCid/Bgr3bxGDptAVQXeZNTpGvboYtTL39aRYxZR6VQSCVY=
-X-Received: by 2002:a05:620a:6f02:b0:93b:bc51:b40 with SMTP id af79cd13be357-949ba84ac50mr2649854985a.2.1795553707568;
-        Tue, 24 Nov 2026 12:55:07 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb40ea12sm1141447585a.35.2026.11.24.12.55.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 12:55:06 -0800 (PST)
-Message-ID: <82a6933335048ca8f9969481cde8340dac19ccb1.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 06/17] media: v4l2-mem2mem: drop curr_ctx member from
- v4l2_m2m_dev struct
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
-	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
- Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
- <lgs201920130244@gmail.com>
-Date: Tue, 24 Nov 2026 15:55:05 -0500
-In-Reply-To: <20260916-spu-rga3multicore-v2-6-23aa2cb74e61@pengutronix.de>
-References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
-	 <20260916-spu-rga3multicore-v2-6-23aa2cb74e61@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-qDFQbRP8sfMUezyW9fo/"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	Tue, 24 Nov 2026 21:17:32 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H5QS2DgPwH8goe/l7eUlMFt/LpYoWRC+PK51542IHOqJHbpjH93lwbKD5N754nfBmD+kWDgzyHn0D5pS6XFGdrbI6ECeJohOWjjccfMPPUWcGPhLEnB7uuVkMTJ5/cYnHJkSVxMl6MyDKzmxNquM/3c7Mi9nIf0fp3a9yqbE+EkJjCu5RhY2MJzTLbLGN+crYTrIHEuBML2xxHvyBUmXf0mJA+0p8f6TcPbxHcUz3isaxx7fL14iwPJWTLUFWizU6fTfqWujZPa8xmJfmh9p+6tWma0cDrkucyV9IIXJaaBsgHL+YsS3Wf9dAAYaZrz/9Us9G0oG2Dq7Xq/MyXqR0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KitYZdpkNdKXmUM6/HLExXMDYSDQIBBH5MGAvVJEnLY=;
+ b=W+2u59qEV1+KwS1gqfJgLO5PG3Rt6IWh2aR/FByCxDLjMaC8P2YMLpony+So4W31Zu9xjb01oo9g12nJ8dLX0X6ewpjI89dHUVloepUFEy2U6xNhtRBmRJ7JH33GvJ0UNN8StvtZIfC/B49uB/i5WpktpZ/EIOvNSiblZ0lLpNYhFu6WPvqqa78YsWd+gdvYMhCULZb88LvLBtEk6EfVf0CN49ieSejG5HrEtJFm1o+rQ8GfhAQWdS+euMonTLiS4PYP7q3zHA2hCysHz0MqUjiNZ0YyO5239JCOEz0SwZuZHyJokO2HoquGf8MA2B1D9Ts8YRQsCkVWMXWbWM8lPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KitYZdpkNdKXmUM6/HLExXMDYSDQIBBH5MGAvVJEnLY=;
+ b=H/DImiL7UilWv5HV6zDE2Q/8M3BcmbBgwTUHfQU2c0KY/VnEjKsoDl9FHpACegamqG+szIyAWCCIgpXhCWOvKEJFjxnBdf1BzjYwn+Nc54LaZ2ZFM1wGF5QJtxJIb7qlfhVTMpRYnNe1lBwYGKsLLnAHWH9TO3Y+7nkTiypGXlLJEloRfe9QXg/ehei42RDG2pQNnCFDKyDMrOhP3XFXT1brRMXamEgKwgRxY1N2bio29oh3qm9cT/kKDudUOa58Wwz+tFn+9g/CYND4unXkF1VcSi/MNdoYX+Papf49qdzEXZUuTfHB5x/aP4dhbL0hYNQb+KlnhlS8LjPyXiNIeQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB5390.namprd12.prod.outlook.com (2603:10b6:5:389::15)
+ by LV9PR12MB9784.namprd12.prod.outlook.com (2603:10b6:408:2ed::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 21:12:22 +0000
+Received: from DM4PR12MB5390.namprd12.prod.outlook.com
+ ([fe80::2815:c27e:a0a:2720]) by DM4PR12MB5390.namprd12.prod.outlook.com
+ ([fe80::2815:c27e:a0a:2720%3]) with mapi id 15.21.0662.001; Tue, 24 Nov 2026
+ 21:12:21 +0000
+From: Nathan Chen <nathanc@nvidia.com>
+To: linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Oliver Upton <oupton@kernel.org>,
+	Marc Zyngier <maz@kernel.org>,
+	Tom Matthias <tmatthias@nvidia.com>,
+	Shameer Kolothum Thodi <skolothumtho@nvidia.com>,
+	Jason Gunthorpe <jgg@nvidia.com>,
+	Julian Miller <julianmiller@nvidia.com>
+Subject: [RFC PATCH 1/6] KVM: arm64: nv: Allocate shadow S2 MMUs in blocks
+Date: Tue, 24 Nov 2026 13:12:13 -0800
+Message-ID: <20261124211218.2751086-2-nathanc@nvidia.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261124211218.2751086-1-nathanc@nvidia.com>
+References: <20261124211218.2751086-1-nathanc@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MW4PR02CA0009.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::20) To DM4PR12MB5390.namprd12.prod.outlook.com
+ (2603:10b6:5:389::15)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5390:EE_|LV9PR12MB9784:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf215416-50c4-40f2-3403-08df4a6fa136
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|23010399003|1800799024|10067099003|11063799006|56012099006|261021121427099003|261022075727099003|261021123027099003|261009223027099003|261102123227099003|261026121527099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: VD8+lmkT5t1m+/n/qDGew2idPcUl/vzV+eaUCGUQ8AgwThbf781cPJpceukg8PaNJupPnY1sgxKys6pibNrWAVevPPwwGQLS0nhs95BNKUW+H0iNZ5UnXLoyazXBWqseEtaCZZWOaqKXCLnRIgEM1VJ6gjrAqs3v97+9bx6mnkwKLq2tsOKrUNTk3hHv9lQXztGBq+X1IQ3TlJ2Ps4hNiP2bByEsUJBAS4UfuYA+qzqIiAGB1mtvZxDSDSYh9Yuq9/2QwPg6R2FN4p8WdMnGBP4YHRjDwfCyXqyBJMco5xSH99TGThwIfQVgmQjrnlRH8kcCvpwZvmMnRSOaRglLnew3HTHTtWOCaxjdFSJZxkCZOAvwBr2UuSmIY6SV7D9VFG+Z5bbE3T9cQ2U9QTHgVneNx6HYVm7TkSHLz8Y/A/7RWuiCa1B9Z694GYczRoUyCpdvEagajoOM0aHkFP9S+mOVBTe5HXLZstvB8jJ4EibgMegAqoTB08eXvF8I4XlO6YPL3tss7Ribi2MW0l+hYnNGG3h7qgDSEwF5EEK47o6ps9cuw0vQPCqtGjY6fjiUfs/IRM6/UKns9ifkyuQkko7hRQW3pGt9WZKQrrAXgx9kZvXkpsk+r00rmc8lzBR/F6fWHppIP191DRPpultNyjKfZVuuc85H/ya1VNCLGvc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5390.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(23010399003)(1800799024)(10067099003)(11063799006)(56012099006)(261021121427099003)(261022075727099003)(261021123027099003)(261009223027099003)(261102123227099003)(261026121527099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DHYYlSwvmlOMqKwyIWvVMG2kamWtdVJLQTboyny9Yuf4+u2/Nc//ooXX0LQS?=
+ =?us-ascii?Q?bDfLxUSPqaatxyjkOJdlznrw8ohKl88LHlSHsFYQeH7CWI77Jhu7OF8EwcFu?=
+ =?us-ascii?Q?LbmoMIF0KGeR7mzqU500Um+XJF3ryxzU5jktN0sT5mxlYKpkE4TFC9yOMZSM?=
+ =?us-ascii?Q?5agzczKo3mADPxvQ64AbpQAMii4sTQo0oJ5ooQBh3mFshe2Jto3t6URGqdTX?=
+ =?us-ascii?Q?g7XSSzLHltF7O/TYYnd7LTwGM3KELA9vAlXzEtfiH49UHe8MfO/pNO/w0Z1h?=
+ =?us-ascii?Q?qBIJ1Ba8ss88fkPmPll7B8UQbxgIa9+VekRkz1XZuWrV84SFrRstSSAKhAcC?=
+ =?us-ascii?Q?gNhLo6OfOIMs7IGsE1YhkQ0bVGJGhVYE8BVT2euHxrrn8v4DRpNfdjrfkuWg?=
+ =?us-ascii?Q?bxFr+IdElXvtNN0OED5DobCoT99a97YW7F4ja1LVTfFbXMIifoYtacdh2pro?=
+ =?us-ascii?Q?J2GpCL10PBGgsDo4k7I99O/nCc1+0kOYWXdTWXXt22ZsZo44PCkBd5f8m029?=
+ =?us-ascii?Q?eYlKPlqR68qw5amlDP5aVBpwi/oZnyjCPgaQgfa8T2XTsuhPJRItedaXDmN7?=
+ =?us-ascii?Q?Sg7rpfhFz6wMZ5S5jdw9IeUbRq3geQK1z78RfuKXAQ4+TEraB84ofdB9nDtX?=
+ =?us-ascii?Q?/msFV6atvkUhOj7esAZ8mvOcewmloqBWRc9iuQf7mYkYO9FED+2PhZ3MWOP9?=
+ =?us-ascii?Q?0xOe3ZVskI5I+OcieSpFsR87oigo22jufyAAe41ej6lJabbcQ5EvRdgF7D3M?=
+ =?us-ascii?Q?0lOe1EsBshTn0If/G3jp78tHgc+AMSUImz4eDWO9l8wkYxaGxEx2N7Z+afIG?=
+ =?us-ascii?Q?BkaF6f4Ah3xdATx/VIhVifCNjPn0RkbjvXoKDKiguOumz8knlbsVkTxZjIQK?=
+ =?us-ascii?Q?ymq/YLJfPIANkrb4618++uLVa9VeQvQmQxUh8O6WJkJzxym9OpO9kGDu5QRA?=
+ =?us-ascii?Q?Lv86kZib6ZttVwchWVss/UFEVgooC6d1tbB8Jdjqti7fX2erFsZX6gSdC3F4?=
+ =?us-ascii?Q?2fVXrjHVvAEnpsz2/ypIEH2C8QEbOOyqc5EnrxFCnd5kw5a8fxZn+hUIFJUJ?=
+ =?us-ascii?Q?EyhhrDoozWHn5FDrkyTWsqdMPu4+ANu7zAvswEa1rRTORaurgPhnRLZFriCh?=
+ =?us-ascii?Q?eHcNO3j6FOZyYjj1i+ey+40aUuF+sWLZjQbQHW0KW2Mvigs1mDKfv3Oxcsrv?=
+ =?us-ascii?Q?hf7mJ0aGutunEJJisMwlIS3IOZiQJFhAMHz9oZ/cH7WOQxRej22H9WXamXYI?=
+ =?us-ascii?Q?mOQMAnWjxqrIlClSjM6iqvRmOK4R4HCJtQm4UaeLlwkzZ37G3tJCWNHjNtmi?=
+ =?us-ascii?Q?JUitFsgpfWv45A6tv+SGMun8GRzCBAInhcEZWCN1I4TYya2XGhkR86ps2JpJ?=
+ =?us-ascii?Q?FBURXdshtiniRxMBQMP0D5a/oGAdnH2cLHL/ECuWFz3xNfR39SM9B6m8p2JB?=
+ =?us-ascii?Q?r1Egy+L8dpeuWdJ52XvA78nsi8TJbeSTPSQpZEO3r7bBQqPK/4xsXDMGNmIq?=
+ =?us-ascii?Q?kM8OE//pg1gYdmjdhtWkB/owamx51+25ep8tzccraaJx6psL/SgwXxAzBcRG?=
+ =?us-ascii?Q?7fNvnMfQC+Zjw6i0zziRWplUppPM+tBAOUZsSoXf1v9g0lSmpE68Ovq2s9LZ?=
+ =?us-ascii?Q?uk5BmsrQSBfgXJLt2IIQ5DkWW6f520ggjgS6Ds8fP0a1LvcR2/5EqGE1OdcU?=
+ =?us-ascii?Q?adHSHzdBwbrM0wKtsuInHb2KfZU4G1Wbr7ctdNpWW0fXbLdPMAV/ezldFIZd?=
+ =?us-ascii?Q?qxY8SYIRdg=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf215416-50c4-40f2-3403-08df4a6fa136
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5390.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 21:12:21.7631
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X5XOAoZ9xs/TtVmHK/ogN6KePYIgwGF9J4+2fUH6JNYB7vNwiSFVFq8afkGGKpWd7Ex+JovFTngU5ZLKYGoWKw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV9PR12MB9784
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_125509_055535_E766393F 
-X-CRM114-Status: GOOD (  27.59  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_131730_723826_2C476578 
+X-CRM114-Status: GOOD (  19.76  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,218 +149,176 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-qDFQbRP8sfMUezyW9fo/
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Shadow S2 MMUs are allocated S2_MMU_PER_VCPU at a time at vcpu init,
+and kvm_destroy_nested() frees them by walking the pointer table with
+that stride, as it assumes every allocation has the same size.
 
-Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
-=A9crit=C2=A0:
-> Drop the curr_ctx member from the v4l2_m2m_dev struct in preparation of
-> adding support for running multiple jobs in parallel.
->=20
-> The curr_ctx member of a v4l2_m2m_dev was used to track the
-> currently running context. But the currently running context will always
-> be at the top of the job_queue. As the TRANS_RUNNING flag can be used to
-> check if the queue head is already running, the curr_ctx member can be
-> completely dropped.
->=20
-> By eliminating the struct member the code is mostly agnostic whenever
-> only one job is running at a time or multiple run at the same time. The
-> main exception is the v4l2_m2m_get_curr_priv function, which is by it's
-> design incompatible with running multiple jobs in parallel.
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
->=20
-> ---
-> v2:
-> - split curr_ctx removal into a separate commit
-> - add WARN_ON to _v4l2_m2m_job_finish to prevent mismatching context to
->   device (and an unused m2m_dev argument)
-> - rewrite v4l2_m2m_get_curr_priv to get private data inside the spinlock
->   (https://sashiko.dev/#/patchset/20260606-spu-rga3multicore-v1-0-3ec2b15=
-675f7%40pengutronix.de?part=3D5)
-> ---
->  drivers/media/v4l2-core/v4l2-mem2mem.c | 61 ++++++++++++++++++----------=
-------
->  1 file changed, 33 insertions(+), 28 deletions(-)
->=20
-> diff --git a/drivers/media/v4l2-core/v4l2-mem2mem.c b/drivers/media/v4l2-=
-core/v4l2-mem2mem.c
-> index a65cbb124cfe0..60cca94195166 100644
-> --- a/drivers/media/v4l2-core/v4l2-mem2mem.c
-> +++ b/drivers/media/v4l2-core/v4l2-mem2mem.c
-> @@ -84,7 +84,6 @@ static const char * const m2m_entity_name[] =3D {
->   *=09=09=09v4l2_m2m_unregister_media_controller().
->   * @intf_devnode:=09&struct media_intf devnode pointer with the interfac=
-e
->   *=09=09=09with controls the M2M device.
-> - * @curr_ctx:=09=09currently running instance
->   * @job_queue:=09=09instances queued to run
->   * @job_spinlock:=09protects job_queue
->   * @job_work:=09=09worker to run queued jobs.
-> @@ -93,7 +92,6 @@ static const char * const m2m_entity_name[] =3D {
->   * @kref:=09=09device reference count
->   */
->  struct v4l2_m2m_dev {
-> -=09struct v4l2_m2m_ctx=09*curr_ctx;
->  #ifdef CONFIG_MEDIA_CONTROLLER
->  =09struct media_entity=09*source;
->  =09struct media_pad=09source_pad;
-> @@ -232,8 +230,14 @@ void *v4l2_m2m_get_curr_priv(struct v4l2_m2m_dev *m2=
-m_dev)
->  =09void *ret =3D NULL;
-> =20
->  =09spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
-> -=09if (m2m_dev->curr_ctx)
-> -=09=09ret =3D m2m_dev->curr_ctx->priv;
-> +=09if (!list_empty(&m2m_dev->job_queue)) {
-> +=09=09struct v4l2_m2m_ctx *first_ctx =3D
-> +=09=09=09list_first_entry(&m2m_dev->job_queue,
-> +=09=09=09=09=09 struct v4l2_m2m_ctx, queue);
-> +
-> +=09=09if (first_ctx->job_flags & TRANS_RUNNING)
-> +=09=09=09ret =3D first_ctx->priv;
-> +=09}
->  =09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
-> =20
->  =09return ret;
-> @@ -252,14 +256,9 @@ EXPORT_SYMBOL(v4l2_m2m_get_curr_priv);
->  static void v4l2_m2m_try_run(struct v4l2_m2m_dev *m2m_dev)
->  {
->  =09unsigned long flags;
-> +=09struct v4l2_m2m_ctx *chosen_ctx;
-> =20
->  =09spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
-> -=09if (NULL !=3D m2m_dev->curr_ctx) {
-> -=09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
-> -=09=09dprintk("Another instance is running, won't run now\n");
-> -=09=09return;
-> -=09}
-> -
->  =09if (list_empty(&m2m_dev->job_queue)) {
->  =09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
->  =09=09dprintk("No job pending\n");
-> @@ -272,13 +271,18 @@ static void v4l2_m2m_try_run(struct v4l2_m2m_dev *m=
-2m_dev)
->  =09=09return;
->  =09}
-> =20
-> -=09m2m_dev->curr_ctx =3D list_first_entry(&m2m_dev->job_queue,
-> -=09=09=09=09   struct v4l2_m2m_ctx, queue);
-> -=09m2m_dev->curr_ctx->job_flags |=3D TRANS_RUNNING;
-> +=09chosen_ctx =3D list_first_entry(&m2m_dev->job_queue, struct v4l2_m2m_=
-ctx, queue);
-> +=09if (chosen_ctx->job_flags & TRANS_RUNNING) {
-> +=09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
-> +=09=09dprintk("Another instance is running, won't run now\n");
-> +=09=09return;
-> +=09}
-> +
-> +=09chosen_ctx->job_flags |=3D TRANS_RUNNING;
->  =09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
-> =20
-> -=09dprintk("Running job on m2m_ctx: %p\n", m2m_dev->curr_ctx);
-> -=09m2m_dev->m2m_ops->device_run(m2m_dev->curr_ctx->priv);
-> +=09dprintk("Running job on m2m_ctx: %p\n", chosen_ctx);
-> +=09m2m_dev->m2m_ops->device_run(chosen_ctx->priv);
->  }
-> =20
->  /*
-> @@ -469,15 +473,16 @@ static void v4l2_m2m_schedule_next_job(struct v4l2_=
-m2m_dev *m2m_dev,
->  static bool _v4l2_m2m_job_finish(struct v4l2_m2m_dev *m2m_dev,
->  =09=09=09=09 struct v4l2_m2m_ctx *m2m_ctx)
->  {
-> -=09if (!m2m_dev->curr_ctx || m2m_dev->curr_ctx !=3D m2m_ctx) {
-> +=09if (!m2m_ctx || !(m2m_ctx->job_flags & TRANS_RUNNING)) {
->  =09=09dprintk("Called by an instance not currently running\n");
->  =09=09return false;
->  =09}
-> =20
-> -=09list_del(&m2m_dev->curr_ctx->queue);
-> -=09m2m_dev->curr_ctx->job_flags &=3D ~(TRANS_QUEUED | TRANS_RUNNING);
-> -=09wake_up(&m2m_dev->curr_ctx->finished);
-> -=09m2m_dev->curr_ctx =3D NULL;
-> +=09WARN_ON(m2m_dev !=3D m2m_ctx->m2m_dev);
-> +
-> +=09list_del(&m2m_ctx->queue);
-> +=09m2m_ctx->job_flags &=3D ~(TRANS_QUEUED | TRANS_RUNNING);
-> +=09wake_up(&m2m_ctx->finished);
->  =09return true;
->  }
-> =20
-> @@ -548,12 +553,15 @@ void v4l2_m2m_suspend(struct v4l2_m2m_dev *m2m_dev)
-> =20
->  =09spin_lock_irqsave(&m2m_dev->job_spinlock, flags);
->  =09m2m_dev->job_queue_flags |=3D QUEUE_PAUSED;
-> -=09curr_ctx =3D m2m_dev->curr_ctx;
-> +=09if (list_empty(&m2m_dev->job_queue)) {
-> +=09=09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
-> +=09=09return;
-> +=09}
-> +
-> +=09curr_ctx =3D list_first_entry(&m2m_dev->job_queue, struct v4l2_m2m_ct=
-x, queue);
->  =09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags);
-> =20
-> -=09if (curr_ctx)
-> -=09=09wait_event(curr_ctx->finished,
-> -=09=09=09   !(curr_ctx->job_flags & TRANS_RUNNING));
-> +=09wait_event(curr_ctx->finished, !(curr_ctx->job_flags & TRANS_RUNNING)=
-);
->  }
->  EXPORT_SYMBOL(v4l2_m2m_suspend);
-> =20
-> @@ -896,10 +904,8 @@ int v4l2_m2m_streamoff(struct file *file, struct v4l=
-2_m2m_ctx *m2m_ctx,
->  =09q_ctx->num_rdy =3D 0;
->  =09spin_unlock_irqrestore(&q_ctx->rdy_spinlock, flags);
-> =20
-> -=09if (m2m_dev->curr_ctx =3D=3D m2m_ctx) {
-> -=09=09m2m_dev->curr_ctx =3D NULL;
-> +=09if (m2m_ctx->job_flags & TRANS_RUNNING)
->  =09=09wake_up(&m2m_ctx->finished);
+Allocate them through a helper that adds a block of any size to the
+pool, and track the blocks on a list that kvm_destroy_nested() frees,
+so that the pool can later grow by blocks of a different size.
 
-Sashiko report that wake_up() is unreachable, that job_flags have been clea=
-r
-previously.
+The ptdump files of the new MMUs are created once they are published
+in the table, rather than before.
 
-If that is correct, its not a big issue:
+No functional change otherwise.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Signed-off-by: Nathan Chen <nathanc@nvidia.com>
+---
+ arch/arm64/include/asm/kvm_host.h |  4 +-
+ arch/arm64/kvm/nested.c           | 84 ++++++++++++++++++++-----------
+ 2 files changed, 57 insertions(+), 31 deletions(-)
 
-> -=09}
->  =09spin_unlock_irqrestore(&m2m_dev->job_spinlock, flags_job);
-> =20
->  =09return 0;
-> @@ -1194,7 +1200,6 @@ struct v4l2_m2m_dev *v4l2_m2m_init(const struct v4l=
-2_m2m_ops *m2m_ops)
->  =09if (!m2m_dev)
->  =09=09return ERR_PTR(-ENOMEM);
-> =20
-> -=09m2m_dev->curr_ctx =3D NULL;
->  =09m2m_dev->m2m_ops =3D m2m_ops;
->  =09INIT_LIST_HEAD(&m2m_dev->job_queue);
->  =09spin_lock_init(&m2m_dev->job_spinlock);
+diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+index 97332ffcb130..ff5073b13338 100644
+--- a/arch/arm64/include/asm/kvm_host.h
++++ b/arch/arm64/include/asm/kvm_host.h
+@@ -430,10 +430,12 @@ struct kvm_arch {
+ 
+ 	/*
+ 	 * Stage 2 paging state for VMs with nested S2 using a virtual
+-	 * VMID.
++	 * VMID. The MMUs are allocated in blocks tracked on
++	 * nested_mmu_blocks.
+ 	 */
+ 	struct kvm_s2_mmu **nested_mmus;
+ 	size_t nested_mmus_size;
++	struct list_head nested_mmu_blocks;
+ 	int nested_mmus_next;
+ 
+ 	/*
+diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+index 4d83281a7a28..7d78efee5296 100644
+--- a/arch/arm64/kvm/nested.c
++++ b/arch/arm64/kvm/nested.c
+@@ -47,8 +47,14 @@ struct vncr_tlb {
+ #define S2_MMU_PER_VCPU		2
+ #define S2_MMU_PER_VM		(KVM_MAX_VCPUS * S2_MMU_PER_VCPU)
+ 
++struct nested_s2_mmu_block {
++	struct list_head	list;
++	struct kvm_s2_mmu	mmus[];
++};
++
+ int kvm_init_nested(struct kvm *kvm)
+ {
++	INIT_LIST_HEAD(&kvm->arch.nested_mmu_blocks);
+ 	kvm->arch.nested_mmus = kvmalloc_objs(struct kvm_s2_mmu *,
+ 					      S2_MMU_PER_VM,
+ 					      GFP_KERNEL_ACCOUNT);
+@@ -61,8 +67,10 @@ int kvm_init_nested(struct kvm *kvm)
+ 
+ void kvm_destroy_nested(struct kvm *kvm)
+ {
+-	for (int i = 0; i < kvm->arch.nested_mmus_size; i+= S2_MMU_PER_VCPU)
+-		kvfree(kvm->arch.nested_mmus[i]);
++	struct nested_s2_mmu_block *blk, *tmp;
++
++	list_for_each_entry_safe(blk, tmp, &kvm->arch.nested_mmu_blocks, list)
++		kvfree(blk);
+ 
+ 	kvm->arch.nested_mmus_size = 0;
+ 	kvfree(kvm->arch.nested_mmus);
+@@ -83,6 +91,49 @@ static int init_nested_s2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu)
+ 	return kvm_init_stage2_mmu(kvm, mmu, kvm_get_pa_bits(kvm));
+ }
+ 
++/* Add a block of @nr shadow S2 MMUs to the pool */
++static int kvm_nested_add_s2_mmus(struct kvm *kvm, int nr)
++{
++	size_t size = kvm->arch.nested_mmus_size;
++	struct nested_s2_mmu_block *blk;
++	int i, ret = 0;
++
++	lockdep_assert_held(&kvm->arch.config_lock);
++
++	blk = kvzalloc_flex(*blk, mmus, nr, GFP_KERNEL_ACCOUNT);
++	if (!blk)
++		return -ENOMEM;
++
++	for (i = 0; i < nr; i++) {
++		ret = init_nested_s2_mmu(kvm, &blk->mmus[i]);
++		if (ret)
++			goto out_free;
++
++		blk->mmus[i].s2_mmu_idx = size + i;
++	}
++
++	scoped_guard(write_lock, &kvm->mmu_lock) {
++		for (i = 0; i < nr; i++)
++			kvm->arch.nested_mmus[size + i] = &blk->mmus[i];
++
++		kvm->arch.nested_mmus_size = size + nr;
++	}
++
++	list_add(&blk->list, &kvm->arch.nested_mmu_blocks);
++
++	for (i = 0; i < nr; i++)
++		kvm_nested_s2_ptdump_create_debugfs(&blk->mmus[i], size + i);
++
++	return 0;
++
++out_free:
++	while (i--)
++		kvm_free_stage2_pgd(&blk->mmus[i]);
++
++	kvfree(blk);
++	return ret;
++}
++
+ int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
+ {
+ 	struct kvm *kvm = vcpu->kvm;
+@@ -104,40 +155,13 @@ int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
+ 	num_mmus = atomic_read(&kvm->online_vcpus) * S2_MMU_PER_VCPU;
+ 
+ 	if (num_mmus > kvm->arch.nested_mmus_size) {
+-		struct kvm_s2_mmu *tmp;
+-		int i, ret = 0;
+-
+-		tmp = kvzalloc_objs(*tmp, S2_MMU_PER_VCPU, GFP_KERNEL_ACCOUNT);
+-		if (!tmp)
+-			ret = -ENOMEM;
+-
+-		for (i = 0; !ret && i < S2_MMU_PER_VCPU; i++) {
+-			ret = init_nested_s2_mmu(kvm, &tmp[i]);
+-			if (ret)
+-				break;
+-		}
++		int ret = kvm_nested_add_s2_mmus(kvm, S2_MMU_PER_VCPU);
+ 
+ 		if (ret) {
+-			while (--i >= 0)
+-				kvm_free_stage2_pgd(&tmp[i]);
+-
+-			kvfree(tmp);
+ 			free_page((unsigned long)vcpu->arch.ctxt.vncr_array);
+ 			vcpu->arch.ctxt.vncr_array = NULL;
+ 			return ret;
+ 		}
+-
+-		for (i = 0; i < S2_MMU_PER_VCPU; i++)
+-			kvm_nested_s2_ptdump_create_debugfs(&tmp[i], i + kvm->arch.nested_mmus_size);
+-
+-		guard(write_lock)(&kvm->mmu_lock);
+-
+-		for (i = 0; i < S2_MMU_PER_VCPU; i++) {
+-			tmp[i].s2_mmu_idx = i + kvm->arch.nested_mmus_size;
+-			kvm->arch.nested_mmus[i + kvm->arch.nested_mmus_size] = &tmp[i];
+-		}
+-
+-		kvm->arch.nested_mmus_size += S2_MMU_PER_VCPU;
+ 	}
+ 
+ 	return 0;
+-- 
+2.43.0
 
---=-qDFQbRP8sfMUezyW9fo/
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawX5qQAKCRDZQZRRKWBy
-9AHWAQCmqcFAQMkugv7AJiaX/VEcrfFOq0yeQoHoehSg1I0udQEAkDiuFPHBWI6B
-ZlpYRZjVAmYDkdC/FdAGAE99MAig2ww=
-=f+mj
------END PGP SIGNATURE-----
-
---=-qDFQbRP8sfMUezyW9fo/--
 
