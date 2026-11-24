@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F026606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEBC606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MJd4DL77;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=PkabxTiQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=29El6k8P;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=TTWwuFj+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fZ1h0HkG7jwB0lWLgmteOif9NgtPED9Fuko8fv+xwgw=; b=MJd4DL77Pox3ze
-	5bKUbyqU5uKR4do9TVwabsdjrNReP/FsO1b0ZPY3gVMn3rrpVG22Slh/S3FJEqWtfwASZy42GHftl
-	NcTzfXd6WQ0+KPyK/0QKsnRXkk7GEVOmg+es1Z1jiQ3BObt+TaMNdHBa/JMvUj8eXl/1BhmzztB7a
-	5PtK9f6vq7nSdv2ttcLQfKQbg0EhdBH5bu8jbtqkrIEYZ9bBQD0hJ94BmyYh5D/fdJJkFYwHoePY7
-	t032ukJ0pMt7DBkv+PQhNiH3H3vEeOTa3RQdo17orqSwBFtQekZASrt8Gbe9r65FmtxtDCua70KS5
-	cSBFaCISS7AnldLF3WOw==;
+	List-Owner; bh=eWbFh76Fzp3vsUtaf5eN36rvn3HAFYVRfz4/Y37MxKU=; b=29El6k8P1LZriJ
+	hMPr3/mApZY/aeGy3ihP56rxiZ10xQXlUmhTODGZ8xRpGw/ZKeHvcNU2YU0+Y9xCGu+jTJ6m3n7F3
+	Nf4C1WUkpr0E6OVWcfKcDhNHxLdeNMUiffACsoMKug84R0lZttUmFjPY4Qo2Hd0exWIRXuFzlmrfC
+	uP/Z6/sphPOxQxempLf0y49crlz1M1uBamG0+b936WMJkJgxBz7tBj8K98s9DQ7C03si/JFHQafiq
+	qp6tuW/RIiKmVbTJ58+jSEJHf04mFh32qjScG4zzfA8YHqc8zdNLRnTxlDUnXmhIAs4vRsOzQbMJg
+	icy6XOtFtICuDyhJraPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwYq-00000007eMo-1nSr;
-	Tue, 24 Nov 2026 19:52:16 +0000
+	id 1xVwb7-00000007fcL-2vYL;
+	Tue, 24 Nov 2026 19:54:37 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwYF-00000007e2O-26me
+	id 1xVwYo-00000007eIZ-0ce7
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:51:40 +0000
+	Tue, 24 Nov 2026 19:52:16 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1E916339;
-	Tue, 24 Nov 2026 11:51:36 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5640A16F3;
+	Tue, 24 Nov 2026 11:52:10 -0800 (PST)
 Received: from pluto.guest.local (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 28A523F763;
-	Tue, 24 Nov 2026 11:51:35 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 729B43F763;
+	Tue, 24 Nov 2026 11:52:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795549899; bh=jSF2zeAAQQvSDbORs5UUpxEQKgHEtUUDKgytXKp4+1g=;
+	t=1795549933; bh=vTgMjoGaq/mlVeRsFQhvbLOseNHjfhfpn7Qg5Jms+rE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PkabxTiQ6p4Qjbn7QqLDXMJOiI8gPPYZ7k5+c/s8OQ0WSvt+0KERAX96e1zRFFFvW
-	 XFyjJ1jq0In0m4SOeEUamX0tLq1IfLmEZ3CFwiJrmGaqXmB1d7SLZSoJxjd2mouapZ
-	 Rlt5vRQdEEC6W4ED2AWLYNGoiy4mP6AZ45OZcWPc=
+	b=TTWwuFj+FM53kPZmQ5rhQ6s+XQ4WKzVxJ0BrmBehig048jxGi2PtXOYIZK6+WmOHv
+	 FgyIzz9t03kFNJqLZd9dbd9joI5uUNnK0CecOyjaSyBJFkE8eo1AFICQ/B8I9mFtht
+	 KlLJYL1+gTBJy9BcfkrFYI7JZrLl7gxJIA+obAGE=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -65,9 +65,9 @@ Cc: sudeep.holla@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
 	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v17 24/34] firmware: arm_scmi: Add common per-protocol debugfs support
-Date: Tue, 24 Nov 2026 19:48:30 +0000
-Message-ID: <20261124194841.1147072-25-cristian.marussi@arm.com>
+Subject: [PATCH v17 32/34] [RFC] Documentation: Add SCMI System Telemetry documentation
+Date: Tue, 24 Nov 2026 19:48:38 +0000
+Message-ID: <20261124194841.1147072-33-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261124194841.1147072-1-cristian.marussi@arm.com>
 References: <20261124194841.1147072-1-cristian.marussi@arm.com>
@@ -75,8 +75,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_115139_623682_3D96F32B 
-X-CRM114-Status: GOOD (  22.02  )
+X-CRM114-CacheID: sfid-20261124_115214_519830_0BED342A 
+X-CRM114-Status: GOOD (  27.90  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,237 +96,625 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow interested SCMI protocols to register their own specific debugfs
-entries under a common per-instance and per-protocol subtree rooted
-at /sys/kernel/debug/scmi/<N>/protocols/<PROTO_ID>/
+Document ARM SCMI Telemetry IOCTLs interface.
 
-Expose a helper to enable protocol initialization code to get access to
-such per-protocol/per-instance dentries in order to be able to install
-their own dedicated debugfs entries.
-
-Per-protocol debugfs support is configurable and default off.
-
+Co-developed-by: Philip Radford <philip.radford@arm.com>
+Signed-off-by: Philip Radford <philip.radford@arm.com>
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
-v16 --> v17
- - fix leak and NULL deref on exit path
-v15 --> v16
- - cleanup protocol dbg root after devres group closure
-v14 --> v15
- - fix debugfs_remove_recursive call-site...was too early
-v8 --> v9
- - avoid NULL deref on DBG cleanup path
-v5 --> v6
- - bail out of dentry_get helper when SCMI debug susbsytem failed to init
- - remove stale SCMI protocol operations
- - add a preoper clean up of debugfs when protocol init fails
----
- drivers/firmware/arm_scmi/Kconfig     | 14 +++++++++
- drivers/firmware/arm_scmi/common.h    |  2 ++
- drivers/firmware/arm_scmi/driver.c    | 41 ++++++++++++++++++++++++++-
- drivers/firmware/arm_scmi/protocols.h |  6 ++++
- 4 files changed, 62 insertions(+), 1 deletion(-)
+ Documentation/userspace-api/index.rst |   1 +
+ Documentation/userspace-api/stlm.rst  | 590 ++++++++++++++++++++++++++
+ 2 files changed, 591 insertions(+)
+ create mode 100644 Documentation/userspace-api/stlm.rst
 
-diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
-index 783c24a20e29..f506c4d1d96a 100644
---- a/drivers/firmware/arm_scmi/Kconfig
-+++ b/drivers/firmware/arm_scmi/Kconfig
-@@ -69,6 +69,20 @@ config ARM_SCMI_DEBUG_COUNTERS
- 	  such useful debug counters. This can be helpful for debugging and
- 	  SCMI monitoring.
+diff --git a/Documentation/userspace-api/index.rst b/Documentation/userspace-api/index.rst
+index a68b1bea57a8..22daa7ebf78e 100644
+--- a/Documentation/userspace-api/index.rst
++++ b/Documentation/userspace-api/index.rst
+@@ -54,6 +54,7 @@ Devices and I/O
+    dcdbas
+    vduse
+    isapnp
++   stlm
  
-+config ARM_SCMI_DEBUG_PROTOCOLS
-+	bool "Enable SCMI protocols debug"
-+	select ARM_SCMI_NEED_DEBUGFS
-+	depends on DEBUG_FS
-+	default n
-+	help
-+	  Enables per-protocol specific debug features, where available.
-+	  When provided, such per-protocol debugfs entries are grouped
-+	  inside a common a subtree named by the protocol number and rooted
-+	  under a per-instance 'protocols' directory.
+ Everything else
+ ===============
+diff --git a/Documentation/userspace-api/stlm.rst b/Documentation/userspace-api/stlm.rst
+new file mode 100644
+index 000000000000..c2151c20c734
+--- /dev/null
++++ b/Documentation/userspace-api/stlm.rst
+@@ -0,0 +1,590 @@
++.. SPDX-License-Identifier: GPL-2.0
 +
-+	  Such per-protocol entries subtree structure is freely defined
-+	  within the related protocol code.
++=======================================
++STLM - ARM SCMI Telemetry Userspace API
++=======================================
 +
- config ARM_SCMI_QUIRKS
- 	bool "Enable SCMI Quirks framework"
- 	depends on JUMP_LABEL || COMPILE_TEST
-diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
-index cdd6f887fae7..ed1623da6563 100644
---- a/drivers/firmware/arm_scmi/common.h
-+++ b/drivers/firmware/arm_scmi/common.h
-@@ -307,6 +307,7 @@ enum debug_counters {
- /**
-  * struct scmi_debug_info  - Debug common info
-  * @top_dentry: A reference to the top debugfs dentry
-+ * @protos: A reference to the top debugfs protocols subdirectory
-  * @name: Name of this SCMI instance
-  * @type: Type of this SCMI instance
-  * @is_atomic: Flag to state if the transport of this instance is atomic
-@@ -314,6 +315,7 @@ enum debug_counters {
-  */
- struct scmi_debug_info {
- 	struct dentry *top_dentry;
-+	struct dentry *protos;
- 	const char *name;
- 	const char *type;
- 	bool is_atomic;
-diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-index 54d9780b7e87..9dd7becb9b1b 100644
---- a/drivers/firmware/arm_scmi/driver.c
-+++ b/drivers/firmware/arm_scmi/driver.c
-@@ -19,6 +19,7 @@
- #include <linux/acpi.h>
- #include <linux/bitmap.h>
- #include <linux/cleanup.h>
-+#include <linux/dcache.h>
- #include <linux/debugfs.h>
- #include <linux/device.h>
- #include <linux/export.h>
-@@ -101,6 +102,8 @@ struct scmi_xfers_info {
-  *			has completed.
-  * @ph: An embedded protocol handle that will be passed down to protocol
-  *	initialization code to identify this instance.
-+ * @dbg: An optional reference to this protocol top debugfs directory; it will
-+ *	 be automatically recursively removed on protocol de-initialization.
-  *
-  * Each protocol is initialized independently once for each SCMI platform in
-  * which is defined by fwnode and implemented by the SCMI server fw.
-@@ -114,6 +117,7 @@ struct scmi_protocol_instance {
- 	unsigned int			version;
- 	unsigned int			negotiated_version;
- 	struct scmi_protocol_handle	ph;
-+	struct dentry			*dbg;
- };
- 
- #define ph_to_pi(h)	container_of(h, struct scmi_protocol_instance, ph)
-@@ -2154,6 +2158,25 @@ static void scmi_common_fastchannel_db_ring(struct scmi_fc_db_info *db)
- 		SCMI_PROTO_FC_RING_DB(64);
- }
- 
-+static struct dentry *
-+scmi_debugfs_proto_dentry_get(const struct scmi_protocol_handle *ph)
-+{
-+	struct scmi_protocol_instance *pi = ph_to_pi(ph);
-+	struct scmi_info *info = handle_to_scmi_info(pi->handle);
++.. contents::
 +
-+	if (!IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_PROTOCOLS) || !info->dbg)
-+		return ERR_PTR(-ENODEV);
++Overview
++========
 +
-+	if (!pi->dbg) {
-+		char proto_dir[8];
++ARM SCMI is a System and Configuration Management protocol, based on a
++client-server model, that defines a number of messages that allows a
++client/agent like Linux to discover, configure and make use of services
++provided by the server/platform firmware.
 +
-+		snprintf(proto_dir, 8, "0x%02X", pi->proto->id);
-+		pi->dbg = debugfs_create_dir(proto_dir, info->dbg->protos);
++SCMI v4.0 [1] introduced support for System Telemetry, through which an
++agent can dynamically enumerate, configure and collect Telemetry Data
++Events (DE) exposed by the platform.
++
++The SCMI System Telemetry driver exposes one or more dedicated devices,
++named as tlm_<N>, grouped under /dev/scmi/, one for each discovered SCMI
++instance.
++
++An IOCTL based interface is defined in order to enumerate, configure and
++read telemetry data, as succinctly described in the following.
++
++For more details on the uAPI, please see include/uapi/linux/scmi.h
++
++Resources Enumeration
++=====================
++
++ - SCMI_TLM_GET_ABI_INFO: Gather ABI versioning detail and basic SCMI
++   Telemetry features like number of resources and supported features.
++
++ - SCMI_TLM_GET_INTRVS: Enumerate available update intervals.
++
++ - SCMI_TLM_GET_DE_INFO: Retrieve DataEvent description.
++
++ - SCMI_TLM_GET_DE_LIST: Retrieve the list of all the existent DataEvent
++   descriptors.
++
++ - SCMI_TLM_GET_GRP_LIST: Gather a list of descriptors for all defined Groups.
++
++ - SCMI_TLM_GET_GRP_INFO: Gather information for a specific Group.
++
++ - SCMI_TLM_GET_GRP_DESC: Gather detailed group composition information for
++   the specified Group.
++
++ - SCMI_TLM_GET_UUID_LIST: Gather a list of descriptors for all the SCMI
++   Telemetry UUIDs defined on this system.
++
++Enumerating DataEvents
++======================
++
++SCMI_TLM_GET_DE_LIST returns the DataEvent descriptors exposed by the
++Telemetery instance. Users can size the request from
++SCMI_TLM_GET_ABI_INFO.num_des or by issuing a zero-sized batch query.
++
++Example
++-------
++
++.. code-block:: c
++
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_abi_info abi = {};
++		struct scmi_tlm_batch batch = {};
++		struct scmi_tlm_de_info *des;
++		int fd, ret, i;
++
++		fd = open("/dev/scmi/tlm_0", O_RDONLY | O_CLOEXEC);
++		if (fd < 0)
++			return fd;
++
++		abi.size = sizeof(abi);
++		ret = ioctl(fd, SCMI_TLM_GET_ABI_INFO, &abi);
++		if (ret) {
++			close(fd);
++			return ret;
++		}
++
++		if (!abi.num_des) {
++			close(fd);
++			return ret;
++		}
++
++		des = calloc(abi.num_des, sizeof(*des));
++		if (!des) {
++			close(fd);
++			return -ENOMEM;
++		}
++
++		batch.num_items = abi.num_des;
++		batch.item_sz = sizeof(*des);
++		batch.items = (unsigned long)des;
++
++		ret = ioctl(fd, SCMI_TLM_GET_DE_LIST, &batch);
++		if (ret) {
++			free(des);
++			close(fd);
++			return ret;
++		}
++
++		for (i = 0; i < batch.num_items; i++) {
++			printf("0x%08x: %.*s size:%u type:%u unit:%u", des[i].id, 16,
++				des[i].name, des[i].data_sz, des[i].type, des[i].unit);
++
++			if (des[i].flags & SCMI_TLM_DEINFO_GROUP)
++				printf("group:%u", des[i].grp_id);
++
++			printf("\n");
++		}
++
++		return 0;
 +	}
 +
-+	return pi->dbg;
-+}
++Enumerating Groups
++==================
 +
- static const struct scmi_proto_helpers_ops helpers_ops = {
- 	.extended_name_get = scmi_common_extended_name_get,
- 	.get_max_msg_size = scmi_common_get_max_msg_size,
-@@ -2164,6 +2187,7 @@ static const struct scmi_proto_helpers_ops helpers_ops = {
- 	.protocol_msg_check = scmi_protocol_msg_check,
- 	.fastchannel_init = scmi_common_fastchannel_init,
- 	.fastchannel_db_ring = scmi_common_fastchannel_db_ring,
-+	.debugfs_proto_dentry_get = scmi_debugfs_proto_dentry_get,
- };
- 
- /**
-@@ -2314,6 +2338,7 @@ scmi_alloc_init_protocol_instance(struct scmi_info *info,
- {
- 	const struct scmi_handle *handle = &info->handle;
- 	struct scmi_protocol_instance *pi;
-+	struct dentry *dbg = NULL;
- 	int ret = -ENOMEM;
- 	void *gid;
- 
-@@ -2345,7 +2370,7 @@ scmi_alloc_init_protocol_instance(struct scmi_info *info,
- 	/* proto->init is assured NON NULL by scmi_protocol_register */
- 	ret = pi->proto->instance_init(&pi->ph);
- 	if (ret)
--		goto clean;
-+		goto clean_dbg;
- 
- 	ret = idr_alloc(&info->protocols, pi, proto->id, proto->id + 1,
- 			GFP_KERNEL);
-@@ -2374,8 +2399,12 @@ scmi_alloc_init_protocol_instance(struct scmi_info *info,
- deinit:
- 	if (pi->proto->instance_deinit)
- 		pi->proto->instance_deinit(&pi->ph);
-+clean_dbg:
-+	dbg = pi->dbg;
- clean:
- 	devres_release_group(handle->dev, gid);
-+	/* Protocol debugfs de-allocation MUST run after devres group release */
-+	debugfs_remove_recursive(dbg);
- 	return ERR_PTR(ret);
- }
- 
-@@ -2453,6 +2482,7 @@ void scmi_protocol_release(const struct scmi_handle *handle, u8 protocol_id)
- 
- 	if (refcount_dec_and_test(&pi->users)) {
- 		const struct scmi_protocol *proto = pi->proto;
-+		struct dentry *dbg = pi->dbg;
- 		void *gid = pi->gid;
- 
- 		if (pi->proto->events)
-@@ -2464,6 +2494,12 @@ void scmi_protocol_release(const struct scmi_handle *handle, u8 protocol_id)
- 		idr_remove(&info->protocols, protocol_id);
- 
- 		devres_release_group(handle->dev, gid);
-+		/*
-+		 * Remove per-protocol top dir only after protocol release in
-+		 * order to allow any protocol specific cleanup on the pi->dbg
-+		 * subtree.
-+		 */
-+		debugfs_remove_recursive(dbg);
- 		scmi_protocol_put(proto);
- 		dev_dbg(handle->dev, "De-Initialized protocol: 0x%X\n",
- 			protocol_id);
-@@ -3218,6 +3254,9 @@ static struct scmi_debug_info *scmi_debugfs_common_setup(struct scmi_info *info)
- 	if (IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_COUNTERS))
- 		scmi_debugfs_counters_setup(dbg, trans);
- 
-+	if (IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_PROTOCOLS))
-+		dbg->protos = debugfs_create_dir("protocols", top_dentry);
++SCMI_TLM_GET_GRP_LIST returns the groups exposed by the Telemetry Instance.
++Group descriptors report; the group ID, the number of DEs in the group, and
++the number of update intervals supported by the group.
 +
- 	dbg->top_dentry = top_dentry;
- 
- 	if (devm_add_action_or_reset(info->dev,
-diff --git a/drivers/firmware/arm_scmi/protocols.h b/drivers/firmware/arm_scmi/protocols.h
-index 1aa3ee1fb2b0..c39ef77770d1 100644
---- a/drivers/firmware/arm_scmi/protocols.h
-+++ b/drivers/firmware/arm_scmi/protocols.h
-@@ -11,6 +11,7 @@
- 
- #include <linux/bitfield.h>
- #include <linux/completion.h>
-+#include <linux/debugfs.h>
- #include <linux/device.h>
- #include <linux/errno.h>
- #include <linux/kernel.h>
-@@ -292,6 +293,9 @@ struct scmi_fc_info {
-  *		      gathering FC descriptions from the SCMI platform server.
-  * @fastchannel_db_ring: A common helper to ring a FC doorbell.
-  * @get_max_msg_size: A common helper to get the maximum message size.
-+ * @debugfs_proto_dentry_get: A common helper to get a per-protocol debugfs top
-+ *			      directory to use as a root. It will be
-+ *			      recursively removed on protocol de-initialization.
-  */
- struct scmi_proto_helpers_ops {
- 	int (*extended_name_get)(const struct scmi_protocol_handle *ph,
-@@ -315,6 +319,8 @@ struct scmi_proto_helpers_ops {
- 				 u32 *rate_limit);
- 	void (*fastchannel_db_ring)(struct scmi_fc_db_info *db);
- 	int (*get_max_msg_size)(const struct scmi_protocol_handle *ph);
-+	struct dentry *(*debugfs_proto_dentry_get)
-+		(const struct scmi_protocol_handle *ph);
- };
- 
- /**
++SCMI_TLM_GET_GRP_DESC can then be used to retrieve the DE IDs of a specific
++group.
++
++Example
++-------
++
++.. code-block:: c
++
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_abi_info abi = {};
++		struct scmi_tlm_batch batch = {};
++		struct scmi_tlm_grp_info *groups;
++		int fd, ret, i;
++
++		fd = open("/dev/scmi/tlm_0", O_RDONLY | O_CLOEXEC);
++		if (fd < 0)
++			return fd;
++
++		abi.size = sizeof(abi);
++		ret = ioctl(fd, SCMI_TLM_GET_ABI_INFO, &abi);
++
++		if (ret){
++			free(groups);
++			close(fd);
++			return ret;
++		}
++
++		if (!abi.num_groups) {
++			ret = 0;
++			free(groups);
++			close(fd);
++			return ret;
++		}
++
++		groups = calloc(abi.num_groups, sizeof(*groups));
++		if (!groups) {
++			ret = -ENOMEM;
++			free(groups);
++			close(fd);
++		}
++
++		batch.num_items = abi.num_groups;
++		batch.item_sz = sizeof(*groups);
++		batch.items = (unsigned long)groups;
++
++		ret = ioctl(fd, SCMI_TLM_GET_GRP_LIST, &batch);
++		if (ret) {
++			free(groups);
++			close(fd);
++			return ret;
++		}
++
++		for (i = 0; i < batch.num_items; i++) {
++			struct scmi_tlm_grp_desc desc = {};
++			__u32 *de_ids;
++			int j;
++
++			printf("group:%u des:%u intervals:%u\n", groups[i].grp_id,
++				groups[i].num_des, groups[i].num_intervals);
++
++			if (!groups[i].num_des)
++				continue;
++
++			de_ids = calloc(groups[i].num_des, sizeof(*de_ids));
++			if (!de_ids) {
++				ret = -ENOMEM;
++				free(groups);
++				close(fd);
++				return de_ids;
++			}
++
++			desc.grp_id = groups[i].grp_id;
++			desc.num_des = groups[i].num_des;
++			desc.composing_des = (unsigned long)de_ids;
++
++			ret = ioctl(fd, SCMI_TLM_GET_GRP_DESC, &desc);
++			if (ret) {
++				free(de_ids);
++				free(groups);
++				close(fd);
++				return ret;
++			}
++
++			printf("DataEvents:");
++			for (j = 0; j < desc.num_des; j++)
++				printf(" 0x%08x", de_ids[j]);
++			printf("\n");
++
++			free(de_ids);
++		}
++
++		free(groups);
++		close(fd);
++		return 0;
++	}
++
++Enumerating Update Intervals
++============================
++
++SCMI_TLM_GET_INTRVS returns the update intervals supported by the Telemetry
++instance. Userspace can size the request from SCMI_TLM_GET_ABI_INFO.num_intervals
++or by sending a zero-sized query.
++
++The returned intervals may be discrete values, or a range described as
++low/high/step when SCMI_TLM_INTERV_DISCRETE is not  set.
++
++Example
++-------
++
++.. code-block:: c
++
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_abi_info abi = {};
++		struct scmi_tlm_intervals ivs = {};
++		struct scmi_tlm_update_interval *intervals;
++		int fd, ret, i;
++
++		fd = open("/dev/scmi/tlm_0", O_RDONLY | O_CLOEXEC);
++		if (fd < 0)
++			return fd;
++
++		abi.size = sizeof(abi);
++		ret = ioctl(fd, SCMI_TLM_GET_ABI_INFO, &abi);
++		if (ret)
++			goto out_fd;
++
++		if (!abi.num_intervals)
++			goto out_fd;
++
++		intervals = calloc(abi.num_intervals, sizeof(*intervals));
++		if (!intervals) {
++			ret = -ENOMEM;
++			goto out_fd;
++		}
++
++		ivs.num_intervals = abi.num_intervals;
++		ivs.intervals = (unsigned long)intervals;
++
++		ret = ioctl(fd, SCMI_TLM_GET_INTRVS, &ivs);
++		if (ret)
++			goto out_free;
++
++		if (ivs.flags & SCMI_TLM_INTERV_DISCRETE) {
++			for (i = 0; i < ivs.num_intervals; i++)
++				printf("interval[%d]: %u * 10^%d seconds\n", i,
++					intervals[i].secs, intervals[i].exp);
++		} else if (ivs.num_intervals >= 3) {
++			printf("low: %u * 10^%d seconds\n",
++				intervals[SCMI_TLM_UPDATE_INTVL_SEGMENT_LOW].secs,
++				intervals[SCMI_TLM_UPDATE_INTVL_SEGMENT_LOW].exp);
++			printf("high: %u * 10^%d seconds\n",
++				intervals[SCMI_TLM_UPDATE_INTVL_SEGMENT_HIGH].secs,
++				intervals[SCMI_TLM_UPDATE_INTVL_SEGMENT_HIGH].exp);
++			printf("step: %u * 10^%d seconds\n",
++				intervals[SCMI_TLM_UPDATE_INTVL_SEGMENT_STEP].secs,
++				intervals[SCMI_TLM_UPDATE_INTVL_SEGMENT_STEP].exp);
++			}
++	out_free:
++		free(intervals);
++	out_fd:
++		close(fd);
++
++		return ret ? 1 : 0;
++	}
++
++Telemetry Instance Configuration
++================================
++
++SCMI_TLM_GET_CFG returns the current Telemetry configuration. SCMI_TLM_SET_CFG
++updates the enabled state and active update interval for the whole Telemetry
++instance.
++
++The update interval is described as 'secs * 10 ^ exp' seconds. Userspace
++should choose an interval reported by SCMI_TLM_GET_INTRVS.
++
++Example
++-------
++
++.. code-block:: c
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_config old_cfg = {};
++		struct scmi_tlm_config new_cfg = {};
++		int fd, ret;
++
++		fd = open("/dev/scmi/tlm_0", O_RDWR | O_CLOEXEC);
++		if (fd < 0)
++			return fd;
++
++		ret = ioctl(fd, SCMI_TLM_GET_CFG, &old_cfg);
++		if (ret) {
++			close(fd);
++			return ret;
++		}
++
++		printf("enabled:%u timestamps:%u interval:%u * 10^%d seconds\n",
++			old_cfg.enable, old_cfg.t_enable,
++			old_cfg.active.secs, old_cfg.active.exp);
++
++		new_cfg.enable = 1;
++		new_cfg.t_enable = old_cfg.t_enable;
++
++		new_cfg.active.secs = 400;
++		new_cfg.active.exp = -3;
++
++		ret = ioctl(fd, SCMI_TLM_SET_CFG, &new_cfg);
++		if (ret) {
++			close(fd);
++			return ret;
++		}
++
++		close(fd)
++
++		return 0;
++	}
++
++Group Configuration
++-------------------
++
++If group configuration is supported, the same ioctls can operate on a group
++by setting SCMI_TLM_CONFIG_GROUP in flags and setting grp_id to a group ID
++discovered with SCMI_TLM_GET_GRP_LIST.
++
++Configuring DataEvents
++======================
++
++SCMI_TLM_GET_DE_CFG returns the configuration of one or more DataEvents.
++SCMI_TLM_SET_DE_CFG updates the enabled state and timestamp state of one or
++more DataEvents.
++
++Both ioctls use struct scmi_tlm_batch with items pointing to an array of
++struct scmi_tlm_de_config. Each entry must contain the DataEvent ID in id.
++Valid IDs can be discovered with SCMI_TLM_GET_DE_LIST.
++
++When a DataEvent is enabled, SCMI_TLM_GET_DE_CFG also reports the SHMTI sid
++and offset where the DataEvent can be found in the shared memory TDCF data,
++together with the UUID associated with that DataEvent.
++
++Note that in the example below, the cfgs[n].id numbers would normally come
++from SCMI_TLM_GET_DE_LIST.
++
++Example
++-------
++
++.. code-block:: c
++
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_de_config cfgs[2] = {};
++		struct scmi_tlm_batch batch = {};
++		int fd, ret, i;
++
++		fd = open("/dev/scmi/tlm_0", O_RDWR | O_CLOEXEC);
++		if (fd < 0)
++			return fd;
++
++		cfgs[0].id = 0x00000001;
++		cfgs[1].id = 0x00000002;
++
++		batch.num_items = 2;
++		batch.item_sz = sizeof(cfgs[0]);
++		batch.items = (unsigned long)cfgs;
++
++		ret = ioctl(fd, SCMI_TLM_GET_DE_CFG, &batch);
++		if (ret) {
++			close(fd);
++			return ret;
++		}
++
++		for (i = 0; i < batch.num_items; i++) {
++			printf("DE 0x%08x: enabled:%u timestamps:%u\n",
++				cfgs[i].id, cfgs[i].enable, cfgs[i].t_enable);
++		}
++
++		for (i = 0; i < batch.num_items; i++) {
++			cfgs[i].enable = 1;
++			cfgs[i].e_enable = 1;
++		}
++
++		ret = ioctl(fd, SCMI_TLM_SET_DE_CFG, &batch);
++		if (ret) {
++			close(fd);
++			return ret;
++		}
++
++		ret = ioctl(fd, SCMI_TLM_GET_DE_CFG, &batch);
++		if (ret) {
++			close(fd);
++			return ret;
++		}
++
++		for (i = 0; i < batch.num_items; i++) {
++			printf("DE 0x%08x: enabled:%u timestamps:%u sid:%u offset:%u\n",
++				cfgs[i].id, cfgs[i].enable, cfgs[i].t_enable,
++				cfgs[i].sid, cfgs[i].offset);
++		}
++
++		close(fd);
++		return 0;
++	}
++
++Further Configuration
++=====================
++
++ - SCMI_TLM_RESET: Reset the whole Telemetry configuration server side.
++
++ - SCMI_TLM_EVENT_SUBSCRIBE: Subscribe/unsubscribe to a Telemetry event.
++   Lets userspace ask the kernel to notify it when a generation event happens
++   by siganling the eventfd provided.
++
++Event Notification
++------------------
++
++Example
++-------
++
++ - Subscribe to the Telemetry generation event and wait for a notification
++   through an eventfd. Event support is optional so this example checks
++   SCMI_TLM_ABI_FEAT_EVENT.
++
++.. code-block:: c
++
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_abi_info abi = {};
++		struct scmi_tlm_event evt = {};
++		eventfd_t count;
++		int fd, efd, ret;
++
++		fd = open("/dev/scmi/tlm_0", O_RDWR | O_CLOEXEC);
++		if (fd < 0)
++			return fd;
++
++		abi.size = sizeof(abi);
++		evt.type = SCMI_TLM_EVT_GENERATION;
++
++		ret = ioctl(fd, SCMI_TLM_GET_ABI_INFO, &abi);
++		if (ret)
++			return ret;
++
++		if (!(abi.abi_features & SCMI_TLM_ABI_FEAT_EVENT)) {
++			close(fd);
++			return -EOPNOTSUPP;
++		}
++
++		efd = eventfd(0, EFD_CLOEXEC);
++		if (efd < 0)
++			return efd;
++
++		evt.efd = efd;
++		ret = ioctl(fd, SCMI_TLM_EVENT_SUBSCRIBE, &evt);
++		if (ret)
++			return ret;
++
++		struct pollfd pfd = {
++			.fd = efd,
++			.events = POLLIN,
++		};
++
++		while (1) {
++			ret = poll(&pfd, 1, -1);
++			if (ret < 0)
++				break;
++
++			if (pfd.revents & POLLIN) {
++				ret = eventfd_read(efd, &count);
++				if (ret)
++					break;
++
++				printf("telelmetry generation changed: %llu\n",
++					(unsigned long long)count);
++			}
++		}
++
++		/* Re-issue returned cookie to remove subscription */
++		if (evt.cookie)
++			ioctl(fd, SCMI_TLM_EVENT_SUBSCRIBE, &evt);
++
++		close(efd);
++		close(fd);
++
++		return 0;
++	}
++
++Data Collection
++===============
++
++ - SCMI_TLM_DE_READ: Report the last updated sample for the specified
++   DataEvent.
++
++ - SCMI_TLM_BULK_READ: Report the last samples for all the currently enabled
++   DataEvents.
++
++ - SCMI_TLM_BATCH_READ: Report the last samples for the DataEvents IDs
++   specified within the samples input params.
++
++ - SCMI_TLM_SINGLE_READ: Trigger an immediate platform-side DataEvent
++   update and report the collected samples.
++
++Memory Mapped Raw Access
++------------------------
++
++ - SCMI_TLM_GET_SHMTI_LIST: Gather a list of open file descriptors, one for
++   each SHMTI memory area defined for this instance, that can be used to
++   memory-map such areas in the calling process address space so as to be
++   able to directly access the SCMI Telemetry SHMTI areas shared by the
++   platform firmware, and parse the TDCF format.
++   The SCMI Telemetry TDCF format is defined in the specification at [1].
++
++
++Example
++-------
++
++.. code-block:: c
++
++	int main(int argc, char **argv)
++	{
++		struct scmi_tlm_de_config des_cfg = {};
++		struct scmi_tlm_config cfg = {};
++		struct scmi_tlm_de_sample samples[3] = {};
++		struct scmi_tlm_data_read data = {};
++		int fd, ret;
++
++		fd = open("/dev/scmi/tlm_0", O_RDWR);
++		if (fd < 0)
++			return fd;
++
++		/* Enable ALL Data Events with timestamps*/
++		des_cfg.enable = 1;
++		des_cfg.t_enable = 1;
++		ret = ioctl(fd, SCMI_TLM_SET_ALL_CFG, &des_cfg);
++		if (ret)
++			return ret;
++
++		/* Enable Telemetry as a whole, set a 400ms update interval */
++		cfg.enable = 1;
++		cfg.active.secs = 400;
++		cfg.active.exp = -3;
++
++		ret = ioctl(fd, SCMI_TLM_SET_CFG, &cfg);
++		if (ret)
++			return ret;
++
++		/* Read a selection of DEs */
++		samples[0].id = 0xA001;
++		samples[1].id = 0x0002;
++		samples[2].id = 0x1010;
++		data.num_samples = 3;
++		data.samples = (unsigned long)samples;
++
++		ret = ioctl(fd, SCMI_TLM_BATCH_READ, &data);
++		if (ret)
++			return ret;
++
++		for (int i = 0; i < 3; i++)
++			fprintf(stdout, "%llu: 0x%08X -> %llu\n",
++					samples[i].tstamp, samples[i].id, samples[i].val);
++
++		return 0;
++	}
++
++References
++==========
++[1]: https://developer.arm.com/documentation/den0056/latest/
 -- 
 2.54.0
 
