@@ -2,97 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A1A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8FB606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AIHk7vGM;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=Q1lGulrP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yTbt8eEo;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nP7mN4Hx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8FUjrlp8DFnqvbeuktq9OdqLZ8OjRBLAv8DgXJswiD8=; b=AIHk7vGMYJuPhC+rjeHiiHgt6T
-	+dew8mZOlChg4z7RPUKg6llFTaTO7XjD96Lpk5PSoeBE8mkULDNKfODpyOO5u7mUI6ddw7dsMR4sI
-	L2PCmTZ845QRcyuqe0Q/WdHsbTud7c3wLtR4MKZ59GWwq4ga7CtoLF3cv7zxlQdd6Tiez26ZRqtl0
-	4grVbXPqdDkuL3+XEIALZtYCWkZP1FMIdyjEPXqAZX4rkT335ofi3lXKp4acOS1iNR9XxEcTcgEM5
-	770STN07UfBKEYsD5bkbTywyDy5VNJcUrT96Mp2B9ZGhKj2kezL05XkdaUYcPYWvOMwZ0DEarxK3w
-	CPdxeJhg==;
+	bh=g+tEAauVDFwo0LFqluBw/XabLtSrlP/ZHi6sb+R8lbE=; b=yTbt8eEohpMEcYfRiUKCZU0iZt
+	TddFfmtX0CSbwnykeLsWRD8coOOkebpRNyhq14fIaUopFoF2PiZXxbFVHjn2nkzDX4yPadscJlFYS
+	OJQAC4EhSo0PiOvLwN8tA0DlL3cV8bbj+G18BXg+Vs9495NQyj0ef6vOSCNNTtBJ9NO4rXP6dkSS4
+	8kzEquUC86VReyTiB0Fq5knpRX+CioXZQl2HXpYvVZ68+B0tM8Vw3WHUfUgKaFAq0yOfE1Sy8rXsq
+	tWe92O16l5hSqM5gMZlvkj1tFeYKKQ+U2UTlEN1KI/FC15ja7Zv4dr5yghRV0Nvkb7PC9TnKi05HW
+	0apHq2pg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmEa-00000005xRR-4Bku;
-	Tue, 24 Nov 2026 08:50:41 +0000
-Received: from mout.web.de ([212.227.17.11])
+	id 1xVmFG-00000005xY5-0ZTW;
+	Tue, 24 Nov 2026 08:51:22 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmEX-00000005xQb-3PyT
+	id 1xVmFB-00000005xWi-2c7p
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:50:39 +0000
-DKIM2-Signature: i=1; m=1; t=1795510234;
- mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
- rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
- d=web.de;
- s=s29768273:rsa-sha256:HSRD44kbSJuv2rHO+p9eqybHlfVN
-   x46I7M0JWtnd7PEKoGEyQE8+Gfj68+pbvckHj/eujSbrj1UqEDuiwcNGc1fbQwuiRxatIIlTl49
-   E+Pbje4mrUus3+lpHc/4M/ACFQL15ush1J9lHrktFdDdjhhWFz8vA/yk2WA2k3l67x3BIDnSxA4
-   OzzQSlHeDxtrx1WottNnzX/7SFVna4yrTl/VWBgtNnPinio0KQiuMVkRuBz4Tya1WSv4l2hNSi5
-   +YHyHfD/PMcoHFicd5Mfogxp+aZ3YERzvBr3DgwG1HFNQkk1AYjoumdDGwbn1ON/tRQG+aGNFYS
-   ig4wIqNQ+dHCPQ==;
-Message-Instance: m=1;
- h=sha256:
-   nXGs1zQsJJwgkdled81yj9qqtmd5cno+mSGErXddBqY=:
-   xGcNkp1X4+UKP+X1hw4V/NvPLrgZ/zlkILAoya5XiMc=,
-  sha512:
-   fx5udn1NW2Man9Q5VLL6McAlheU9voLykmgV3eLQplc2aMdfu3R0htxqu+onmsa0DgpGQXRq4N+Y/UbHsVd5eQ==:
-   O8Hs5/G8xTiFKeuO2du6ttZFdf8wgOS1wEMK1QNhPP7ClwAorx4ULRmCn0b9F21HGfPyNB5VfMnIV0uoPzP/wg==;
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1795510215; x=1796115015; i=markus.elfring@web.de;
-	bh=8FUjrlp8DFnqvbeuktq9OdqLZ8OjRBLAv8DgXJswiD8=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
-	 Subject:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=Q1lGulrPo5ot5LRDXpCtTLR2YiAxN81I7ykY/YvlJVuuhElwvD9LavU7rc+fzXHO
-	 UDKb0D5W8K8dFzqOKBV0quYqfOJfNYMHf/Y3gHb7FtOeePisyoKXcTIXiZK+qs0mz
-	 L71IlLNtc5c7nWIVuhhx5F+2EPtwLRoTDgPHYqpUbFA0ESXOuFF2GAXlJnZKW2etg
-	 wZv0MZWigCaDrdJcEm1EdnKhpszyb9ApH+lMNJxxyVWFj652wKnWikF646Y1wzuxj
-	 516ww2+vFr0tNHjTmtb7ebmmuuDl64ofrVsfHiW62SY/MipPg26+cUcnHijU2QKv3
-	 90v+72PNruhbaO4S5Q==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1Ma0Tu-1xzSAk2caq-00WfUs; Tue, 24
- Nov 2026 09:50:14 +0100
-Message-ID: <de6c1040-c4d1-4703-9932-b3b668801c72@web.de>
-Date: Tue, 24 Nov 2026 09:50:11 +0100
+	Tue, 24 Nov 2026 08:51:20 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-4a34ffd3e39so2269084f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:51:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795510275; x=1796115075; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=g+tEAauVDFwo0LFqluBw/XabLtSrlP/ZHi6sb+R8lbE=;
+        b=nP7mN4HxRdpqHSxFUSnPkIYvLpTEP4x/kBVaSHR1gB92U1bIAoFwtn7QWbFE8Xoti4
+         +XFhKGtQfV09aXCQ0NevzpXrEHGnpQIk0rBdDuIfdAvcOiK5JM8g1LBr0Y0JdyD3uFGf
+         2lVy5vBieGDPqwU0GyQVKldnkjgjXDpYYvFRLYFFwMAXafWVzBYHwlmot19rY/l6Ik3m
+         nkJsAf4NBK687zd7iYSyexrejGilhdKVF3P1hg7bFRBPvJy8WF9Wy+J5/LqbzB6602io
+         ib+zvPdYQKjn9+9yd+aKEcy3tqzfVHx3+75XVyt0/lCDdz57fJCt5dcBqdW24WS83qAS
+         hRIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795510275; x=1796115075;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=g+tEAauVDFwo0LFqluBw/XabLtSrlP/ZHi6sb+R8lbE=;
+        b=XItMdQ899Jzys4OyUwNd65/idsyOvr1yKO694IU/D1diNL5EZw2kicLNfZGaP+Aeeg
+         TfYlU5x69LExPToRWTfTWjL7GDxaA/h2ea7/THBs37P/cS5XAarMbwXysLbvGRdYBQkv
+         zya4IqMAbRqgGOlIJQCSL7IK/zpc1CtGBiIBu8IxSWdrNHTuzxAhfcL/h4JDYbb9Fw8i
+         jZ0NY/StOMPmHznhDRvLsYmUkBDeIOfRLZD2fZkHNbQYV1N4AtZlHEEoDJiZ6jQFEkX/
+         Zipfm0OPel/TMrxzL4oXEoyRynv8+iG0fkLi8Giocn1JK9i4F50rcLDosWN9zsdTF6+h
+         B9OQ==
+X-Forwarded-Encrypted: i=1; AL+hErHVG7l/tDe/rWAHuSbx2nUPnZnQwpHQh/SxezaM4a9o+JVp28bK9yub3Ikusu7wXXSsatprtdDOSPTLP1UKWMde@lists.infradead.org
+X-Gm-Message-State: APuU4Z/zRZbPY1zZ7r4STFALodKYo0lM4K37rOpVdA9klcPLboOPed0l
+	dX/J+ge84BIJEf2XXF3Hu2SCaXD8Eu2+m73BS26gLXTYc+3EcTMsRixf
+X-Gm-Gg: AZFdTZe+isZQqGVkLnfUAngk1ipx40cAp6J1y+LibyQkN09l8Bn2riUcB0cjB2wsrad
+	8aj1NNKfLJUfaAvzcf5I1FwSYZPPrtVlRZQHm0XTghN6gQzwu5PUzcvaJ0K4DjpWwmXlxLaqJK0
+	D0lERdUoNC8DJ44o4EMbK02ROlHlu1cr13kvJWYmEfnlnr4qxAm6Chm1dqRtd+F2cWMBkmwBk7i
+	yHSRFhO0GJneg+aCrUd8gQ6JG2iPME7HxH+deljBqSStvUns32KhW+EXzKjgeVm51UDeSf1QXZ4
+	bZOMZaXsCTiBmbpM3YE3oNVSCg4k3ryzBceg2xmNfThC5MdoxniFn7RKAMd2oMpkh7/cPkv2KST
+	S21xSH/QmPA+BSY40jHvR+CYOcodQ+ocXZJkJCUn3tbaGt5jdVDHzrZk+I27TE9y/++2qEyaIGf
+	4HLmypMuvQAX1IeBaMsnFufUDYQdYI4JqtzFXgqI9cAkAWGwlfz8hK5VM/BmI+SwQmFGW8OmcXu
+	GXFkUCTWnJAbaeZKQFdZx3i/Fp+60jkdXvXWqMJ2aC5l31nOWEfEEKL9KbYd6A8Znku+nPOrPQA
+	hLqaUlplgbnBcuj81Qx0H5+9
+X-Received: by 2002:a05:6000:29d2:b0:4aa:1100:72a4 with SMTP id ffacd0b85a97d-4abb400af07mr18504917f8f.34.1795510274996;
+        Tue, 24 Nov 2026 00:51:14 -0800 (PST)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ad644140b5sm23692999f8f.17.2026.11.24.00.51.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 00:51:14 -0800 (PST)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Hans de Goede <hansg@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] Input: goodix - sync the irq controller while starting firmware
+Date: Tue, 24 Nov 2026 09:46:22 +0100
+Message-ID: <20261124085058.128173-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Sebastian Reichel <sre@kernel.org>
-Content-Language: en-GB, de-DE
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
- Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] power: reset: at91: Use devm_clk_get_enabled() in three probe
- functions
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:8jfZFG8Qt71bmrU3G0lLnAGH8HQ2x4GTqqjfWrY4amw+KI3OIXE
- 4uM23s8/9J6jlSRqPa6vjU0I9q/gAe5JmeP9gxBjD74l5TYAIK2pvdvMMz++QTjE2BKYET6
- hHG8mZ6uZVh1zhoQyjURLZDG8TulFQMn/n9m0TRMzvd4r+0jLAAu7bbdg3She2rcJIah8Ct
- eyPLyfLtKTfF2aYnc6VHA==
-UI-OutboundReport: notjunk:1;M01:P0:5qpJgtpu8Kw=;Eaaog7QxJmjVnGmhnhhUZkGjlNX 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 X4rKBBIlSmFx5SSYamiUqNeWJpw2cA=
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_005038_227343_8CB3CF7F 
-X-CRM114-Status: GOOD (  12.17  )
+X-CRM114-CacheID: sfid-20261124_005117_714634_AA60DF75 
+X-CRM114-Status: GOOD (  17.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,223 +103,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Tue, 24 Nov 2026 09:23:44 +0100
+On the Lenovo Tab E7 (TB-7104F), which has a Goodix GT-912 touch screen,
+the touch screen fails to come online after loading firmware, printing
+the error "Error reading 1 bytes from 0x8041: -6".
 
-* Reuse existing functionality from devm_clk_get_enabled() instead of
-  keeping duplicate source code.
+Comparing the upstream code with the Android stock sources, the existing
+call to goodix_int_sync should be moved between the upload of the firmware
+and the watchdog restart. With this change the touchscreen is correctly
+detected and working.
 
-* Delete a clk_disable_unprepare() call on error handling paths
-  and in the implementation of three remove functions.
+Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+---
+Relevant bit of the stock source driver at [1].
 
-* Omit the label =E2=80=9Cclk_disable=E2=80=9D.
+Credits for noticing the issue and finding its cause go to matemiller992
+on the postmarketOS forums, I cannot provide tags as he wants to stay
+anonymous.
 
-This issue was detected by using the Coccinelle software.
+Patch tested on the Lenovo Tab E7 (TB-7104F).
 
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/power/reset/at91-poweroff.c      | 20 +++----------------
- drivers/power/reset/at91-reset.c         | 17 +++-------------
- drivers/power/reset/at91-sama5d2_shdwc.c | 25 +++++-------------------
- 3 files changed, 11 insertions(+), 51 deletions(-)
+Changes in v2:
+- Instead of adding a second call to goodix_int_sync, move the existing
+  one;
+- Simplify the access to the necessary arguments/parameters.
 
-diff --git a/drivers/power/reset/at91-poweroff.c b/drivers/power/reset/at9=
-1-poweroff.c
-index 7bc779055cf3..ffbaba309917 100644
-=2D-- a/drivers/power/reset/at91-poweroff.c
-+++ b/drivers/power/reset/at91-poweroff.c
-@@ -159,16 +159,10 @@ static int at91_poweroff_probe(struct platform_devic=
-e *pdev)
- 	if (IS_ERR(at91_shdwc.shdwc_base))
- 		return PTR_ERR(at91_shdwc.shdwc_base);
-=20
--	at91_shdwc.sclk =3D devm_clk_get(&pdev->dev, NULL);
-+	at91_shdwc.sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(at91_shdwc.sclk))
- 		return PTR_ERR(at91_shdwc.sclk);
-=20
--	ret =3D clk_prepare_enable(at91_shdwc.sclk);
--	if (ret) {
--		dev_err(&pdev->dev, "Could not enable slow clock\n");
--		return ret;
--	}
--
- 	at91_wakeup_status(pdev);
-=20
- 	if (pdev->dev.of_node)
-@@ -179,10 +173,8 @@ static int at91_poweroff_probe(struct platform_device=
- *pdev)
- 		at91_shdwc.mpddrc_base =3D of_iomap(np, 0);
- 		of_node_put(np);
-=20
--		if (!at91_shdwc.mpddrc_base) {
--			ret =3D -ENOMEM;
--			goto clk_disable;
--		}
-+		if (!at91_shdwc.mpddrc_base)
-+			return -ENOMEM;
-=20
- 		ddr_type =3D readl(at91_shdwc.mpddrc_base + AT91_DDRSDRC_MDR) &
- 				 AT91_DDRSDRC_MD;
-@@ -196,10 +188,6 @@ static int at91_poweroff_probe(struct platform_device=
- *pdev)
- 	pm_power_off =3D at91_poweroff;
-=20
+v1: [2]
+
+[1] https://github.com/lscorcia/linux-lenovo-tb7104f/blob/2dad69c9f28611ac6d3db2f1ee11b480a60d83ee/kernel-4.4/drivers/input/touchscreen/mediatek/gt912_p98996/gt9xx_driver.c#L1529
+[2] https://lore.kernel.org/linux-mediatek/20261020122712.526797-1-l.scorcia@gmail.com/
+
+ drivers/input/touchscreen/goodix_fwupload.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/input/touchscreen/goodix_fwupload.c b/drivers/input/touchscreen/goodix_fwupload.c
+index 888da7538c06..642a632d363c 100644
+--- a/drivers/input/touchscreen/goodix_fwupload.c
++++ b/drivers/input/touchscreen/goodix_fwupload.c
+@@ -153,8 +153,9 @@ static int goodix_enter_upload_mode(struct i2c_client *client)
  	return 0;
--
--clk_disable:
--	clk_disable_unprepare(at91_shdwc.sclk);
--	return ret;
  }
-=20
- static void at91_poweroff_remove(struct platform_device *pdev)
-@@ -209,8 +197,6 @@ static void at91_poweroff_remove(struct platform_devic=
-e *pdev)
-=20
- 	if (at91_shdwc.mpddrc_base)
- 		iounmap(at91_shdwc.mpddrc_base);
+ 
+-static int goodix_start_firmware(struct i2c_client *client)
++static int goodix_start_firmware(struct goodix_ts_data *ts)
+ {
++	struct i2c_client *client = ts->client;
+ 	int error;
+ 	u8 val;
+ 
+@@ -168,6 +169,10 @@ static int goodix_start_firmware(struct i2c_client *client)
+ 	if (error)
+ 		return error;
+ 
++	error = goodix_int_sync(ts);
++	if (error)
++		return error;
++
+ 	error = goodix_i2c_read(client, GOODIX_REG_SW_WDT, &val, 1);
+ 	if (error)
+ 		return error;
+@@ -249,11 +254,7 @@ static int goodix_firmware_upload(struct goodix_ts_data *ts)
+ 	if (error)
+ 		return error;
+ 
+-	error = goodix_start_firmware(ts->client);
+-	if (error)
+-		return error;
 -
--	clk_disable_unprepare(at91_shdwc.sclk);
- }
-=20
- static const struct of_device_id at91_poweroff_of_match[] =3D {
-diff --git a/drivers/power/reset/at91-reset.c b/drivers/power/reset/at91-r=
-eset.c
-index a9ad43217f48..bcf77a5162f1 100644
-=2D-- a/drivers/power/reset/at91-reset.c
-+++ b/drivers/power/reset/at91-reset.c
-@@ -374,21 +374,15 @@ static int at91_reset_probe(struct platform_device *=
-pdev)
- 	reset->nb.notifier_call =3D at91_reset;
- 	reset->nb.priority =3D 192;
-=20
--	reset->sclk =3D devm_clk_get(&pdev->dev, NULL);
-+	reset->sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(reset->sclk))
- 		return PTR_ERR(reset->sclk);
-=20
--	ret =3D clk_prepare_enable(reset->sclk);
--	if (ret) {
--		dev_err(&pdev->dev, "Could not enable slow clock\n");
--		return ret;
--	}
--
- 	platform_set_drvdata(pdev, reset);
-=20
- 	ret =3D at91_rcdev_init(reset, pdev);
- 	if (ret)
--		goto disable_clk;
-+		return ret;
-=20
- 	if (of_device_is_compatible(pdev->dev.of_node, "microchip,sam9x60-rstc")=
-) {
- 		u32 val =3D readl(reset->rstc_base + AT91_RSTC_MR);
-@@ -399,7 +393,7 @@ static int at91_reset_probe(struct platform_device *pd=
-ev)
-=20
- 	ret =3D register_restart_handler(&reset->nb);
- 	if (ret)
--		goto disable_clk;
-+		return ret;
-=20
- 	ret =3D device_create_file(&pdev->dev, &dev_attr_power_on_reason);
- 	if (ret) {
-@@ -410,10 +404,6 @@ static int at91_reset_probe(struct platform_device *p=
-dev)
- 	dev_info(&pdev->dev, "Starting after %s\n", at91_reset_reason(reset));
-=20
- 	return 0;
--
--disable_clk:
--	clk_disable_unprepare(reset->sclk);
--	return ret;
- }
-=20
- static void at91_reset_remove(struct platform_device *pdev)
-@@ -421,7 +411,6 @@ static void at91_reset_remove(struct platform_device *=
-pdev)
- 	struct at91_reset *reset =3D platform_get_drvdata(pdev);
-=20
- 	unregister_restart_handler(&reset->nb);
--	clk_disable_unprepare(reset->sclk);
- }
-=20
- static struct platform_driver at91_reset_driver =3D {
-diff --git a/drivers/power/reset/at91-sama5d2_shdwc.c b/drivers/power/rese=
-t/at91-sama5d2_shdwc.c
-index 589599cca076..cab94ef5a8a0 100644
-=2D-- a/drivers/power/reset/at91-sama5d2_shdwc.c
-+++ b/drivers/power/reset/at91-sama5d2_shdwc.c
-@@ -357,33 +357,23 @@ static int at91_shdwc_probe(struct platform_device *=
-pdev)
- 	match =3D of_match_node(at91_shdwc_of_match, pdev->dev.of_node);
- 	at91_shdwc->rcfg =3D match->data;
-=20
--	at91_shdwc->sclk =3D devm_clk_get(&pdev->dev, NULL);
-+	at91_shdwc->sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
- 	if (IS_ERR(at91_shdwc->sclk))
- 		return PTR_ERR(at91_shdwc->sclk);
-=20
--	ret =3D clk_prepare_enable(at91_shdwc->sclk);
--	if (ret) {
--		dev_err(&pdev->dev, "Could not enable slow clock\n");
--		return ret;
--	}
--
- 	at91_wakeup_status(pdev);
-=20
- 	at91_shdwc_dt_configure(pdev);
-=20
- 	np =3D of_find_matching_node(NULL, at91_pmc_ids);
--	if (!np) {
--		ret =3D -ENODEV;
--		goto clk_disable;
--	}
-+	if (!np)
-+		return -ENODEV;
-=20
- 	at91_shdwc->pmc_base =3D of_iomap(np, 0);
- 	of_node_put(np);
-=20
--	if (!at91_shdwc->pmc_base) {
--		ret =3D -ENOMEM;
--		goto clk_disable;
--	}
-+	if (!at91_shdwc->pmc_base)
-+		return -ENOMEM;
-=20
- 	if (at91_shdwc->rcfg->ddrc.type_mask) {
- 		np =3D of_find_compatible_node(NULL, NULL,
-@@ -417,9 +407,6 @@ static int at91_shdwc_probe(struct platform_device *pd=
-ev)
-=20
- unmap:
- 	iounmap(at91_shdwc->pmc_base);
--clk_disable:
--	clk_disable_unprepare(at91_shdwc->sclk);
--
- 	return ret;
- }
-=20
-@@ -437,8 +424,6 @@ static void at91_shdwc_remove(struct platform_device *=
-pdev)
- 	if (shdw->mpddrc_base)
- 		iounmap(shdw->mpddrc_base);
- 	iounmap(shdw->pmc_base);
--
--	clk_disable_unprepare(shdw->sclk);
- }
-=20
- static struct platform_driver at91_shdwc_driver =3D {
-=2D-=20
-2.56.1
+-	error = goodix_int_sync(ts);
++	error = goodix_start_firmware(ts);
+ 	if (error)
+ 		return error;
+ 
+-- 
+2.43.0
 
 
