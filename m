@@ -2,157 +2,163 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981BD606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19BA606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xp3IzRdX;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=FW8K7K5T;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=o/UP7hL3;
-	dkim=neutral header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=JRxdd0JJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HbIPuwzS;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=ULTvYK51;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=ULTvYK51
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=X1Fgh93jXfxGvJnocoZmU6fsG4UnK9XyHwZdxd2c24c=; b=Xp3IzRdX/gz6xkd/5zaHEXrRa6
-	AglIat3HbpHdbic3eqxStrJjlUrbPJr0vu+iwEQv70/JelMo7beM4bHahlHFFLS0rwOFl/bm+qvBG
-	ErASosEN6scQ8uYQNnxhFpfLWfGF7vMQ6aklhkLbv+eNSRcvOzIKebyS59D6rsdyak1x9m0ArSqFF
-	xADxjnS/cjyA3gbGVR1VzXH+6e6VIa8J18HTFpA0UsO2D5htBjgreEivbsabAo1ri0Cs+e5p7t74w
-	Ti7g3f2WXRCtUh8zRW4LtBe0LUFFeFAhUuK6U7CnsXwKvQqAW+q4dnGL6AmCaxbHyiCXDXVP15Nn/
-	zwj+DAuw==;
+	bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=; b=HbIPuwzSia23qL4Zc38lyKM129
+	jSyf0s3lqAXUaX522ClNGmZDWPmBYifxFP/KU67g5eClfuP9N79jspKluiaoaIzX/cMhXct84ztLk
+	ZaKhGQqV3OadYSvlE2ODB2berls/Pl7mmZ4GZPKTSsGAwOhJtWFlICDbXePj0ZNQ3yGnntdmcUcVf
+	E8JAYHCMch5NyglnPsZooTll7cz+9i3AVxPTNofTu5LvSpU21aHlZ0lYBzohXEfwx0sMCxqYjmEow
+	rqyaYGumgyt139DV2+0qElnVilNzYpiPNGcrrQJRO9eo/qBP09eh4jw5TmbAT8VxxRLEi6UNb0Ng6
+	FGUl0OQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvX-00000005jQg-0VVd;
-	Tue, 24 Nov 2026 07:26:55 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVlf8-00000005rLf-2XL3;
+	Tue, 24 Nov 2026 08:14:02 +0000
+Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvP-00000005jLv-3iis
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 07:26:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=X1Fgh93jXfxGvJnocoZmU6fsG4UnK9XyHwZdxd2c24c=; b=FW8K7K5TLL1Qyjt083/29NTuKq
-	OeFjc1ME0msj0D9ETx6Gfp478rAHtVB7+LDhnq7P4fxxGSJ7KwjNxBxTrxhf0AE0wAmFVWJqNr4iW
-	hPx2xSR86u3eiZXZV83SiCSYrHNeR/dE2r/javaA5bQ4qD9J/whsjlO/jhhmU9NuZ/l3IXbTEO+83
-	JqCZXEDUZLIWBZR/qr5TPSNKKjCkP2u2aZz2F6+8zyI00X79UxtV26owybmYhulUuur7Asdb5Ov+9
-	Brr4T3WlBWa5L6/8n5T0EMg+NrAiYmR9jlg65OnzVKM3kk+tCVLSL2xw5rVHeJyRVU6CsyqPaK/gI
-	+MjXqHgA==;
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvL-00000003skE-0PUK
+	id 1xVlf5-00000005rLJ-0TcE
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:26:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505171; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=GjWxrkmCYDXAfLMjsPA/p8QJY52B8DjK4yc4H4mzSPwQBWFg06pX2Wwi6SKMuA4YsE
-    qtRT0tnNd5FTldJFS3cKzrVsM18OGXlfC9dHSudJPCK2tEYeGhjdwCgGT2bpUIxunAU8
-    p+HQmHVPBWGS03fg0H/kRugb8kkd8zuVypITIEMq/bRnADk1oBPOlHkyJ5mdNchXz5r5
-    ri3/oWDaMO2VidJzFqMX7XnNKUmtGBjeJ+4yD3nddvxI1qLdmYeZN1thFZWQl+2OpdMP
-    BmtWJ3lyWB82W8Tdl/5f4H4RTiaHSogcI8p2gYXkGNFCTqhyBdeh/3oZLOzT62qEV8Vf
-    /rKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505171;
-    s=strato-dkim-0002; d=strato.com;
-    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=X1Fgh93jXfxGvJnocoZmU6fsG4UnK9XyHwZdxd2c24c=;
-    b=GM9GwC+LsPqlWwQxhhlyf+ehOMf0piJaMZkgGvIcp4KEl3jtVvg1bHHguAUR0PmnbH
-    62aWw4SUiAPbkmnqpFa6c6S/gTWOV9cGz54+pXfJtmUz2NiW1+pBZLSOnLvbKCn53tFl
-    3c/UJvzdz2wZ9dkUq8fQZ6lUpfr7BqerUS8paZDXF2GstHEg0/i2uRKSehqQ8qvB2lia
-    dy5VAaW3MqsQeQC6PSfVB0z8gxyvk2EPXhYF1bv09GzzmQ/r4rTioy+5LALyems5/NpV
-    qp713bf6dnzW1xdI6wX/X7+tyzsdDy4M0rd8JVggWDGOMB3UDONIY9nB0dWIB609alcA
-    WR6g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505171;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=X1Fgh93jXfxGvJnocoZmU6fsG4UnK9XyHwZdxd2c24c=;
-    b=o/UP7hL3NzaU7gQLSRdq7yGmqge1k31pF/TmN72zhLxfAMLLpKPESJdlztFvivTKMf
-    Tv61dgV0gH7Jv21X00ZLF2Ocm8agjM+hQ/zKYuba5FK+bos0NCajmwsYsCnz02tEm5UC
-    UDWwllOP+cwQP3Nt6LYlhj1nUKGrks1sJ/WcMSe76iIIQ5bny8q0kHVw1U5QUoUjoliv
-    QjCjdoZMXKt/nccvSfhMsZRX44FC4oWw47hIVLkef89fUbpm0BOAVVmdGq/Vcht0dTEB
-    T5FxgaR+Outaapaxdq4WaKz0OtiAFb+sD5dluJuSeNGbmsaORNmAXwjh2m34BFkpPU0f
-    mqSg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505171;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=X1Fgh93jXfxGvJnocoZmU6fsG4UnK9XyHwZdxd2c24c=;
-    b=JRxdd0JJ566NaO4dPGKkkX/ja5QYjFA7XdbUl1wdj628OqdzJFp02YvkbRfrOwZjCb
-    SEfJ+0DrWswxl52YO3Ag==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7Q91HG
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:09 +0100 (CET)
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-	Jarkko Nikula <jarkko.nikula@bitmer.com>
-Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	linux-fbdev@vger.kernel.org,
-	letux-kernel@openphoenux.org,
-	kernel@pyra-handheld.com,
-	"H. Nikolaus Schaller" <hns@goldelico.com>,
-	Grond <grond66@riseup.net>
-Subject: [PATCH v2 05/20] ASoC: codecs: pcm1754: Add PCM1773 support
-Date: Tue, 24 Nov 2026 08:25:45 +0100
-Message-ID: <7e12ac0772314b256a253314a24b9d0ad50ba5f3.1795505160.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
+	Tue, 24 Nov 2026 08:14:01 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=pOGjaq4HOA3/qQ3cnCtVLybUYD3UVJ8zZKS/T0sPcusSkKy48KzBoZ8WGp5aUM5lfsBUG3z0/ieYzbnf/w5RzYyqOTliGaZfXzpsSBe8egF0OFb6Zug1dsV6l0S+zuxX4ukeQH0nVQXx22EoM4H2L/tphrqkswG+R7ikeIkfYpvZkifon9z7hY5zGZHHm0bgUU2s7H1kp1lF/Qr1QqfqxhV8PFztY5nZuBYX4EJx1PDP5e6+DeeSwBlKhl10ck0BQ/ktXkKlebOQd0etOrrjbPn4l92K3UwGXzRZEzZzYuxDNyTwlQ3LX87cQbe/l+yyW2e7R6KFwVR2k+DPmHIDfw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
+ b=gwIqLfh1O1trvwO9z4JC3pfrQp4EIR2nlUJiKEQ1B9H7xez0WtTM3BfKQ8vshyhzabAMimBzh//WevfMUOOaPnprAjAsvA7qVySPOmm/gCgXUNbyQbtNndvtOtiiMQc7EcBoHs7gLHG/PCCWD7CaisD32IsNc+2lO/IGOK4o/KO5S7Sms4cDUoxMRS+mVtgYpo/wvpIQVeikeuXtyUPfoT8ymVxOIZwlvZepEY8OGiV6+U9p5MQbaTMuScPsRaFIbmzmDv/4d5E2Gh5oI6ut4MZbaL/RRLfMzZo/brD5TFlki8oKiyghPAXDpV/wjfFUH/B9LRB6vjM/RLWh3UETdQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=linux.alibaba.com smtp.mailfrom=arm.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
+ dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
+ b=ULTvYK51fe4Y3ek/F/eGMzIIDOJUmVM/WdAQ4dHY4PWe2wlYiBTMulKDc2jMIRfdWQ97bjVeQywBPrhIsxlB7HZrAmHw1x89QMy2eQgfnVJTAHsAO62LnmuhPI5X6737F+sWlYKDEviCuxSfkMFuXKbDr3erNOgW6Fq8ppAgZqU=
+Received: from DU7P250CA0021.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:54f::10)
+ by GVXPR08MB10787.eurprd08.prod.outlook.com (2603:10a6:150:150::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
+ 2026 08:13:44 +0000
+Received: from DB1PEPF000509E9.eurprd03.prod.outlook.com
+ (2603:10a6:10:54f:cafe::a8) by DU7P250CA0021.outlook.office365.com
+ (2603:10a6:10:54f::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.6 via Frontend Transport; Tue, 24
+ Nov 2026 08:13:44 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ DB1PEPF000509E9.mail.protection.outlook.com (10.167.242.59) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.5
+ via Frontend Transport; Tue, 24 Nov 2026 08:13:43 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HoOUkFfMy94lTtv1eOM1wTHLZkJodCb+eSPWBiLeCMu7r/HgjVxTDoZre2RE46fUIEb7Feh75OQXPhCz5aOlZOuDvNbzf4a/HgQgh/vGD9NJC2k/5MCa3sOBwHKjtxUSNLF//5TbBJtUgwkCVVXhgiwx+VjX2LemaqaVxHOnm/xMMW8G4+7fneAMZDWNsrDsOmbejlLpFf9AZz5LeN6TKwzDjHwPIvIup7GL6yhWmM4OKJEHNg0nDDnd+9w3sLuuCzt9Laz4KdguYGWDbF0FySOaBhJyZ5BnlbsaI0blrt6jSV8n8WZ/9f64hRjtNdQpvpIpTEsCdcHtuE3BgZNFQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
+ b=mJsLq6B3BfiJZbb6xX3zAQeAlvqAz/DqUfUwHJK4P4SNfDwaXzgZbb7L26ABpGNI0eAoe7xw0cpDFAu7sjWO7ZRQezkNx6dUcT6hbeQFnEg7iT75MFJBhVRD08UDFDIbDa+2O0WeAJt9dv3GjrAh8QfpKxmTqIZRzA2AccV8sitqJGRaI2GQVeWNHnnzlDNlamDF91YzqPg1Y27XTl427EUdgQ28DgoNfYSqQxED2wqDYWNlzCVms37S96fOUu5+N9wOGJ1Ey92iNH02LpTvn6Lo3HXJmzdmyDlbV7AsqPl3JX0nh6PrOFp2GjyJcg9zFYkJJpWV1mGa8WxunZU0bA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
+ b=ULTvYK51fe4Y3ek/F/eGMzIIDOJUmVM/WdAQ4dHY4PWe2wlYiBTMulKDc2jMIRfdWQ97bjVeQywBPrhIsxlB7HZrAmHw1x89QMy2eQgfnVJTAHsAO62LnmuhPI5X6737F+sWlYKDEviCuxSfkMFuXKbDr3erNOgW6Fq8ppAgZqU=
+Received: from AS2PR08MB9786.eurprd08.prod.outlook.com (2603:10a6:20b:605::22)
+ by PAVPR08MB9532.eurprd08.prod.outlook.com (2603:10a6:102:312::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 08:13:00 +0000
+Received: from AS2PR08MB9786.eurprd08.prod.outlook.com
+ ([fe80::d721:dfdb:2f83:155]) by AS2PR08MB9786.eurprd08.prod.outlook.com
+ ([fe80::d721:dfdb:2f83:155%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 08:12:59 +0000
+From: Justin He <Justin.He@arm.com>
+To: Yao Yuan <yaoyuan@linux.alibaba.com>
+CC: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, Fuad
+ Tabba <fuad.tabba@linux.dev>, Joey Gouly <Joey.Gouly@arm.com>, Steffen Eiden
+	<seiden@linux.ibm.com>, Suzuki Poulose <Suzuki.Poulose@arm.com>, Zenghui Yu
+	<yuzenghui@huawei.com>, Catalin Marinas <Catalin.Marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Mark Rutland <Mark.Rutland@arm.com>, Paolo Bonzini
+	<pbonzini@redhat.com>, Sean Christopherson <seanjc@google.com>, Shuah Khan
+	<shuah@kernel.org>, Sascha Bischoff <Sascha.Bischoff@arm.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
+	<kvmarm@lists.linux.dev>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>
+Subject: RE: [PATCH 3/3] KVM: selftests: arm64: Test KVM_PRE_FAULT_MEMORY
+ before first KVM_RUN
+Thread-Topic: [PATCH 3/3] KVM: selftests: arm64: Test KVM_PRE_FAULT_MEMORY
+ before first KVM_RUN
+Thread-Index: AQHde1zMDs/Q2stDPkmFlaiiFOxCN7c8z3MAgAAP9EA=
+Date: Tue, 24 Nov 2026 08:12:59 +0000
+Message-ID: <AS2PR08MB97864B308EA8B8528C915E71F7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
+References: <20261123150917.2679600-1-justin.he@arm.com>
+ <20261123150917.2679600-4-justin.he@arm.com>
+ <6gdla4edbwa6e2s36libskrg5h3glxq3tdl7blthke42sbuqb7@tpczgelv4vud>
+In-Reply-To: <6gdla4edbwa6e2s36libskrg5h3glxq3tdl7blthke42sbuqb7@tpczgelv4vud>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: AS2PR08MB9786:EE_|PAVPR08MB9532:EE_|DB1PEPF000509E9:EE_|GVXPR08MB10787:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc736694-008b-49ca-667b-08df4a02db1a
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|7416014|6133799003|22082099003|18002099003|11063799006|56012099006|261009223027099003|261021123027099003|4143699003|261022105027099003|261102123227099003|261026121527099003|261028144727099003|261026140227099003|261021121427099003|261022075727099003|38070700021|10067099003;
+X-Microsoft-Antispam-Message-Info-Original: AX1HtReWUdlZcdnO+CMnqysIMYU1xT1G+hmVq0uv0B7KcLC0LZIVZmWFSsMVB2k6M2ssd98zgo3fWKrMzl8lMeJtH/0M7TyLKhELE2PfgYgurgpmtAQu2gIBct983bZSD2Csi1kRG24JgBullG7JHhGDci8Yb8gE2LrlhC5VuzmNewyRwGsxFyj8p52ZqrzWXl2Euh/pqgmiwxnZTrdn+tOtuk0HZvWQBkTh4W6bBUTjzVHk50FnclIDbtEgPWOLIa8+keHiawGH9/LRt9SadpfkjKxw2/7JH8en3ua846oCQb/gLp0UuWIapyRTl4fn7UUMNI3+x4aQRZkItjQ7F1dCYu4iZRh/RKtSAJVvocD1YjaH4gU3ObPkegjZk1rXewth5Fh9VFMgyqGocxnp5OpgbbcSgOnxY9ESIR0kgqQUzzcaS7tO2bmC9rAf3jJej4xhnXJ8EVWW3OswZpv+bwNeO/golaY1zvfOS5kJSKykF5ITSI2WeBFqelDCH6Cwf7unhSRXxIIy1Ecgy28vxcOiuvcv+e4lMrFW0mzHN7ElrKMPr0vdPZr9/MzarSqQXHEg7/IX7KIlCxgTizSN6r1VQZXVLcwViqHbwtHs8D55O8pORJDBgvmT2fLUSSYHp7jY3rgvr6+LA3IZQTAC1nI19U5IcTN5452PbOjoGuVjypYml3kjE8DNWTpurGBK0LcUvMux1MXHFGhS+7+b+dDWm+IrvWaWxCbTws90jH8=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR08MB9786.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(7416014)(6133799003)(22082099003)(18002099003)(11063799006)(56012099006)(261009223027099003)(261021123027099003)(4143699003)(261022105027099003)(261102123227099003)(261026121527099003)(261028144727099003)(261026140227099003)(261021121427099003)(261022075727099003)(38070700021)(10067099003);DIR:OUT;SFP:1101;
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="us-ascii"
+X-Exchange-RoutingPolicyChecked: M8w5XoAvbCgZqXlLlN8xuX2LOOzCUC+ZwZdTSidU/mlZyIud66IbvHJkHWoOuWAA1RpFPqKhyU94+UpK2YXbhbQYuwubvxZL3jl+dLiTRML0wKr7arOCZOWU9Mp/st+0MRYFqOrTpeCHIyeWcyYXmBNIWZiEnUCzs9bX6S7lEe1WuwG8U8sUurv6MHMzs7PU3tpRp0AJBp4oVqF1e3Jw0gCmVqv66+T0nufn8hSpMIdEZHNE3lCypgTmDKppNPzaem2ja83kpnOOvjV/SGX5/7gWvdAldOc1pEM8Mt1Z0mmU7REvjd9qMYolS1YT8RD3y+zNav6Wjp9AErEk2dvAVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR08MB9532
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB1PEPF000509E9.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 73dbc1b7-6f28-4c6f-8746-08df4a02c0fc
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|23010399003|14060799003|35042699022|36860700016|6133799003|18002099003|261009223027099003|22082099003|261021123027099003|261021121427099003|261022105027099003|261022075727099003|261026140227099003|261026121527099003|261028144727099003|56012099006|4143699003|10067099003|261102123227099003|11063799006;
+X-Microsoft-Antispam-Message-Info: MAmWPjgPCyNsAxtWjyZOdah6ck8OpZyO2j6VvhCXaMoHbd2Z/KhU0H1GXuf3tvJJ/dqkHFe37K1n7tJAjUmrTqW0JgjaiWSJJv+zzxnnHuy5zbx7ML5ZkUXkF1OXpo2rQ0DtzmzVvP8BziAQsq6Dkyn75riMa0C0MM4d8drCi//J7m5mVKyK0mFYvtlDoTkRiJaD4rNKhUifFZlwBVHAYd5Zc4PwuaAVj0b3VH71pCUKg6bs9WZ5/a1dCuwtnKnmX5+GfTv+NUkAPu9oEPvp5w9KfGvz6Ve0Zg5f/2RCI2bpGVrJIM3lhSFHC9xv7sAel0MkrDNJLCzy9DSkxwUXH3r81kd/INzj58UfUfsznW+/9Ll8c7qWS0bQurKwirgRlec5Mn97gj6L9kuY00DMetY6jc/1M2Cupxhu+jbI6aefTHi8ucdt57x0zzOwXA3cFJvyppMmL4rQfCNUrg/O8QQGbK8fyh7OmCJvugDZgFmyA0qsEIR7Bw0apV9Lyf+++/SVLr/ZLJVBg4jVugzvJtSrW+15O9h8e3r7Ad+bhOfsbj3/yPjO0TTVI2fvQdlPJKBehRQ6BqwVP51hHFBippNieGQwNYsOYeD41mM1DXxLIVjBmWDUqNYHPNaj4hB2IIXPI9Lj46TJpOmXJcnFtw1YiTy4UrOrsIXimvuUD7Uv0v2vSNKLmzVEhxXRObV9frXsSxJWcBwGmqJlOgxBNw==
+X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(23010399003)(14060799003)(35042699022)(36860700016)(6133799003)(18002099003)(261009223027099003)(22082099003)(261021123027099003)(261021121427099003)(261022105027099003)(261022075727099003)(261026140227099003)(261026121527099003)(261028144727099003)(56012099006)(4143699003)(10067099003)(261102123227099003)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: Cip4GZA5M42L44/xcxV02lLPlup+OXePszWFJmgRKvXKbAi+c6wQpRX/vQUJuAp+zHJw0LXYYUP/H13WMlexoaKfXrd5pYYeRyhU+wu7GN0Q0x/uByr8pqgJX6u1iTvTqE2POMdPWNwnlbRhjFEjO+AaRP6vvzlaZ1kQwvIu26WH1T9DAkxLaAYRvj50974ZyCxsAeq4nKhtsJ1VmKhQt4hluBstz+oMO7UH6gWSlvL79aSKcaQpi9PFdR5ONoqiLG3zcR/zx6YjXkvzuGtrzV1A9M0vg0WB4VcPpyLpjPWLBlV8fSQynFbgsrgSXedr7ZC4HuOWcsqRHibSphcFJ8FDTh3giDtBwvMHhhHusTXk6jKCRwDVH5E0A4NhTuRTXXqaQBi+a+eejGNx+qm4VGCssxYsKYdstOTW+5cW9aaV6DCuAX4A+v4fpX2CHjsu
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 08:13:43.5161
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc736694-008b-49ca-667b-08df4a02db1a
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509E9.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR08MB10787
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_072643_161192_175B9E53 
-X-CRM114-Status: GOOD (  24.71  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261124_001359_211855_91AB05DE 
+X-CRM114-Status: GOOD (  25.14  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,269 +169,182 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Extend the PCM1754 codec driver to support the related PCM1773 DAC.
-Select the DAI name, supported formats and sample rate limits per
-variant. Handle the different FMT pin polarity and an optional format
-GPIO, avoiding GPIO writes when the format pin is not controlled by the
-driver. Add an optional enable GPIO for the PCM1773 power-down input,
-controlled by a DAPM supply event to enable the DAC after power-up and
-disable it before power-down.
+Hi Yao,
 
-Keep the DAI operations instance-specific so that different variants
-cannot overwrite each other's selectable formats.
+> -----Original Message-----
+[...]
+>=20
+> > Without EL2, cover immediate_exit on the first KVM_RUN, retrying after =
+a
+> > failed first KVM_RUN, and pre-faulting while the vCPU moves from the
+> > main thread to a worker thread for its first run and back to the main
+> > thread for its second run. The two threads are pinned to different CPUs
+> > when at least two are available.
+>=20
+> I suggest to list them for better readability e.g:
+>=20
+> Test cases for w/o EL2:
+> 1. Immediate_exit on the first KVM_RUN
+> 2. Retrying pre-fault after a failed first KVM_RUN.
+> 3. Pre-faulting while moving the vCPU between 2 threads.
+> (more details of 3 can be given in code implementation there)
+>=20
+Will do in v2.
 
-Suggested-by: Grond <grond66@riseup.net>
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
+> > With EL2, additionally cover an EL2 vCPU with ID_AA64MMFR4_EL1.NV_frac
+> > cleared to 0 and HCR_EL2.NV=3D1 at EL1h (the NULL vncr_tlb reproducer),=
+ an
+> > EL2 vCPU with a vEL1 context and asymmetric HCR_EL2.IMO/FMO staged
+> before
+> > the first run, and the same thread handoff. An unfixed kernel reports
+> > the staged context case only as a WARN in the kernel log; the test
+> > itself still passes.
+> >
+> > Signed-off-by: Jia He <justin.he@arm.com>
+> > ---
+> >  .../kvm/arm64/nv_pre_fault_memory_test.c      | 335 ++++++++++++++++--
+> >  1 file changed, 298 insertions(+), 37 deletions(-)
+> >
+> > diff --git a/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test=
+.c
+> b/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
+> > index 09c1db303856..6dbcf3b0ef13 100644
+> > --- a/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
+> > +++ b/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
+>=20
+> ...
+>=20
+> > +
+> > +/*
+> > + * Pre-fault before the first KVM_RUN with ID_AA64MMFR4_EL1.NV_frac =
+=3D=3D
+> 0
+> > + * (no vncr_tlb) and HCR_EL2.NV=3D1 at EL1h.
+> > + */
+> > +static void test_pre_first_run_no_nv2(void)
+>=20
+> This may not necessary per Marc's comment on patch 2 ?
+>=20
+I'd like to keep it. It is the reproducer for the NULL vncr_tlb
+dereference that patch 1 fixes, not a test for patch 2. With patch 2
+dropped, it becomes the regression test for patch 1. I'll add that to
+the comment.
 
-Notes:
-    Changes against V1:
-    - The standalone PCM1773 driver reviewed by Mark Brown in V1 was
-      abandoned. His comments concerned error handling, comment style
-      and the distinction between memory and wire sample formats.
-      V2 extends the existing PCM1754 driver instead.
-    - Keep the per-instance DAI operations and variant-specific format
-      handling described explicitly in the commit message.
-    - Original PCM1773 implementation: bdcb6cad6be3 (Grond,
-      2021-12-15, original commit timezone -0800). The present patch
-      adapts that work to the existing upstream PCM1754 driver.
-    - Suggested-by acknowledges the historical contribution without
-      asserting a new DCO sign-off from Grond.
-    - Code and commit-message review assisted by ChatGPT.
+> > +{
+> > +	struct kvm_vcpu *vcpu;
+> > +	struct kvm_vm *vm;
+> > +	u64 val;
+> > +
+> > +	pr_info("Testing pre-first-run pre-fault with NV_frac=3D0 and
+> HCR_EL2.NV=3D1\n");
+> > +	vm =3D setup_test_vm(true, false, guest_el1_touch_and_done, &vcpu);
+> > +
+> > +	/* Copy the EL2 S1 configuration into the EL1 sysregs for vEL1. */
+> > +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_SCTLR_EL1),
+> > +		     vcpu_get_reg(vcpu,
+> KVM_ARM64_SYS_REG(SYS_SCTLR_EL2)));
+> > +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_TCR_EL1),
+> > +		     vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_TCR_EL2)));
+>=20
+> ...
+>=20
+> > +
+> > +static void *first_run_worker(void *arg)
+> > +{
+> > +	struct handoff_args *h =3D arg;
+> > +
+> > +	maybe_pin_self_to_cpu(h->cpu);
+> > +	pre_fault(h->vcpu, TEST_MEM_GPA + SZ_1M, TEST_MEM_SIZE -
+> SZ_1M);
+> > +
+> > +	vcpu_run(h->vcpu);
+> > +	expect_ucall_sync(h->vcpu, 1);
+> > +	return NULL;
+> > +}
+> > +
+> > +/*
+> > + * Pre-fault in the main thread, run the vCPU for the first time in a =
+worker
+>=20
+> Minor: the pre-fault happens in worker thead yet, see first_run_worker().
+>=20
+Right, both threads pre-fault. I'll fix the comment.
 
- sound/soc/codecs/pcm1754.c | 122 +++++++++++++++++++++++++++++--------
- 1 file changed, 97 insertions(+), 25 deletions(-)
+> > + * thread, then pre-fault and run it again in the main thread. This ch=
+anges
+> > + * vcpu->pid both before and after the first run. If at least two CPUs=
+ are
+> > + * available, the two threads are pinned to different CPUs.
+> > + */
+> > +static void test_thread_handoff(bool has_el2)
+> > +{
+> > +	struct handoff_args h =3D { .cpu =3D -1 };
+> > +	struct kvm_vcpu *vcpu;
+> > +	struct kvm_vm *vm;
+> > +	cpu_set_t allowed;
+> > +	int cpu, cpu0 =3D -1;
+> > +	pthread_t thr;
+> > +
+> > +	pr_info("Testing pre-fault across a thread handoff (%s vCPU)\n",
+> > +		has_el2 ? "EL2" : "EL1");
+> > +
+> > +	CPU_ZERO(&allowed);
+> > +	kvm_pthread_getaffinity(pthread_self(), &allowed);
+> > +	for (cpu =3D 0; cpu < CPU_SETSIZE; cpu++) {
+> > +		if (!CPU_ISSET(cpu, &allowed))
+> > +			continue;
+> > +		if (cpu0 < 0) {
+> > +			cpu0 =3D cpu;
+> > +		} else {
+> > +			h.cpu =3D cpu;
+> > +			break;
+> > +		}
+> > +	}
+> > +	if (h.cpu < 0)
+> > +		pr_info("Only one CPU available, not testing CPU
+> migration\n");
+> > +
+> > +	maybe_pin_self_to_cpu(cpu0);
+> > +	vm =3D setup_test_vm(has_el2, false,
+> > +			   has_el2 ? guest_code : guest_el1_code, &vcpu);
+> > +	pre_fault(vcpu, TEST_MEM_GPA, SZ_1M);
+> > +
+> > +	h.vcpu =3D vcpu;
+> > +	kvm_pthread_create(&thr, NULL, first_run_worker, &h);
+> > +	kvm_pthread_join(thr, NULL);
+> > +
+> > +	pre_fault(vcpu, TEST_MEM_GPA, TEST_MEM_SIZE);
+> > +	vcpu_run(vcpu);
+> > +	expect_ucall_done(vcpu);
+> > +
+> > +	kvm_pthread_setaffinity(pthread_self(), &allowed);
+> > +
+> > +	kvm_vm_free(vm);
+> > +}
+> > +
+> > +static void test_pre_first_run_el1(void)
+> > +{
+> > +	int feature =3D KVM_ARM_VCPU_SVE;
+> > +	struct kvm_vcpu *vcpu;
+> > +	struct kvm_vm *vm;
+> > +	int ret;
+> > +
+> > +	pr_info("Testing pre-first-run pre-fault with immediate_exit\n");
+>                                              ^^^^
+> The vcpu->run->immediate_exit =3D 1 happens afte the pre_fault, thus
+> s/with/then/ looks more accurate here if this is the desired behavior.
+>=20
+Yes, will fix.
 
-diff --git a/sound/soc/codecs/pcm1754.c b/sound/soc/codecs/pcm1754.c
-index 3d0708b7566c7..f2e16a25d1891 100644
---- a/sound/soc/codecs/pcm1754.c
-+++ b/sound/soc/codecs/pcm1754.c
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2025 Stefan Kerkmann <s.kerkmann@pengutronix.de>
-  */
- 
-+#include <linux/delay.h>
- #include <linux/gpio/consumer.h>
- #include <linux/module.h>
- #include <linux/regulator/consumer.h>
-@@ -13,10 +14,35 @@
- #include <sound/pcm_params.h>
- #include <sound/soc.h>
- 
-+struct pcm1754_variant {
-+	const char *dai_name;
-+	unsigned int rate_min;
-+	unsigned int rate_max;
-+	u64 selectable_formats;
-+};
-+
- struct pcm1754_priv {
- 	unsigned int format;
- 	struct gpio_desc *gpiod_mute;
- 	struct gpio_desc *gpiod_format;
-+	struct gpio_desc *gpiod_enable;
-+	const struct pcm1754_variant *variant;
-+};
-+
-+static const struct pcm1754_variant pcm1754_variant = {
-+	.dai_name = "pcm1754",
-+	.rate_min = 5000,
-+	.rate_max = 200000,
-+	.selectable_formats = SND_SOC_POSSIBLE_DAIFMT_I2S |
-+			      SND_SOC_POSSIBLE_DAIFMT_RIGHT_J,
-+};
-+
-+static const struct pcm1754_variant pcm1773_variant = {
-+	.dai_name = "pcm1773",
-+	.rate_min = 8000,
-+	.rate_max = 48000,
-+	.selectable_formats = SND_SOC_POSSIBLE_DAIFMT_I2S |
-+			      SND_SOC_POSSIBLE_DAIFMT_LEFT_J,
- };
- 
- static int pcm1754_set_dai_fmt(struct snd_soc_dai *codec_dai,
-@@ -40,31 +66,29 @@ static int pcm1754_hw_params(struct snd_pcm_substream *substream,
- 
- 	switch (priv->format & SND_SOC_DAIFMT_FORMAT_MASK) {
- 	case SND_SOC_DAIFMT_RIGHT_J:
--		switch (params_width(params)) {
--		case 16:
--			format = 1;
--			break;
--		default:
-+		if (priv->variant != &pcm1754_variant ||
-+		    params_width(params) != 16)
- 			return -EINVAL;
--		}
-+		format = 1;
-+		break;
-+	case SND_SOC_DAIFMT_LEFT_J:
-+		if (priv->variant != &pcm1773_variant ||
-+		    (params_width(params) != 16 && params_width(params) != 24))
-+			return -EINVAL;
-+		format = 0;
- 		break;
- 	case SND_SOC_DAIFMT_I2S:
--		switch (params_width(params)) {
--		case 16:
--			fallthrough;
--		case 24:
--			format = 0;
--			break;
--		default:
-+		if (params_width(params) != 16 && params_width(params) != 24)
- 			return -EINVAL;
--		}
-+		format = priv->variant == &pcm1773_variant ? 1 : 0;
- 		break;
- 	default:
- 		dev_err(component->dev, "Invalid DAI format\n");
- 		return -EINVAL;
- 	}
- 
--	gpiod_set_value_cansleep(priv->gpiod_format, format);
-+	if (priv->gpiod_format)
-+		gpiod_set_value_cansleep(priv->gpiod_format, format);
- 
- 	return 0;
- }
-@@ -73,23 +97,41 @@ static int pcm1754_mute_stream(struct snd_soc_dai *dai, int mute, int stream)
- {
- 	struct pcm1754_priv *priv = snd_soc_component_get_drvdata(dai->component);
- 
--	gpiod_set_value_cansleep(priv->gpiod_mute, mute);
-+	if (priv->gpiod_mute)
-+		gpiod_set_value_cansleep(priv->gpiod_mute, mute);
- 
- 	return 0;
- }
- 
--static const u64 pcm1754_selectable_formats =
--	SND_SOC_POSSIBLE_DAIFMT_I2S	|
--	SND_SOC_POSSIBLE_DAIFMT_RIGHT_J;
--
- static const struct snd_soc_dai_ops pcm1754_dai_ops = {
- 	.set_fmt = pcm1754_set_dai_fmt,
- 	.hw_params = pcm1754_hw_params,
- 	.mute_stream = pcm1754_mute_stream,
--	.auto_selectable_formats = &pcm1754_selectable_formats,
--	.num_auto_selectable_formats = 1,
- };
- 
-+static int pcm1754_enable_event(struct snd_soc_dapm_widget *w,
-+				struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-+	struct pcm1754_priv *priv = snd_soc_component_get_drvdata(component);
-+
-+	if (!priv->gpiod_enable)
-+		return 0;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		usleep_range(1000, 2000);
-+		gpiod_set_value_cansleep(priv->gpiod_enable, 1);
-+		break;
-+	case SND_SOC_DAPM_PRE_PMD:
-+		gpiod_set_value_cansleep(priv->gpiod_enable, 0);
-+		usleep_range(1000, 2000);
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct snd_soc_dai_driver pcm1754_dai = {
- 	.name = "pcm1754",
- 	.playback = {
-@@ -106,6 +148,9 @@ static const struct snd_soc_dai_driver pcm1754_dai = {
- 
- static const struct snd_soc_dapm_widget pcm1754_dapm_widgets[] = {
- 	SND_SOC_DAPM_REGULATOR_SUPPLY("VCC", 0, 0),
-+	SND_SOC_DAPM_SUPPLY("Enable", SND_SOC_NOPM, 0, 0,
-+			    pcm1754_enable_event,
-+			    SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
- 
- 	SND_SOC_DAPM_DAC("DAC1", "Channel 1 Playback", SND_SOC_NOPM, 0, 0),
- 	SND_SOC_DAPM_DAC("DAC2", "Channel 2 Playback", SND_SOC_NOPM, 0, 0),
-@@ -118,8 +163,9 @@ static const struct snd_soc_dapm_route pcm1754_dapm_routes[] = {
- 	{ "DAC1", NULL, "Playback" },
- 	{ "DAC2", NULL, "Playback" },
- 
--	{ "DAC1", NULL, "VCC" },
--	{ "DAC2", NULL, "VCC" },
-+	{ "DAC1", NULL, "Enable" },
-+	{ "DAC2", NULL, "Enable" },
-+	{ "Enable", NULL, "VCC" },
- 
- 	{ "VOUTL", NULL, "DAC1" },
- 	{ "VOUTR", NULL, "DAC2" },
-@@ -137,8 +183,14 @@ static int pcm1754_probe(struct platform_device *pdev)
- 	struct pcm1754_priv *priv;
- 	struct device *dev = &pdev->dev;
- 	struct snd_soc_dai_driver *dai_drv;
-+	struct snd_soc_dai_ops *dai_ops;
-+	const struct pcm1754_variant *variant;
- 	int ret;
- 
-+	variant = device_get_match_data(dev);
-+	if (!variant)
-+		return -ENODEV;
-+
- 	dai_drv = devm_kmemdup(dev, &pcm1754_dai, sizeof(*dai_drv), GFP_KERNEL);
- 	if (!dai_drv)
- 		return -ENOMEM;
-@@ -147,6 +199,8 @@ static int pcm1754_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	priv->variant = variant;
-+
- 	priv->gpiod_mute = devm_gpiod_get_optional(dev, "mute", GPIOD_OUT_HIGH);
- 	if (IS_ERR(priv->gpiod_mute))
- 		return dev_err_probe(dev, PTR_ERR(priv->gpiod_mute),
-@@ -157,6 +211,23 @@ static int pcm1754_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(priv->gpiod_format),
- 					 "failed to get format gpio");
- 
-+	priv->gpiod_enable = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(priv->gpiod_enable))
-+		return dev_err_probe(dev, PTR_ERR(priv->gpiod_enable),
-+				     "failed to get enable gpio");
-+
-+	dai_ops = devm_kmemdup(dev, &pcm1754_dai_ops,
-+			       sizeof(*dai_ops), GFP_KERNEL);
-+	if (!dai_ops)
-+		return -ENOMEM;
-+
-+	dai_ops->auto_selectable_formats = &variant->selectable_formats;
-+	dai_ops->num_auto_selectable_formats = 1;
-+	dai_drv->ops = dai_ops;
-+	dai_drv->name = variant->dai_name;
-+	dai_drv->playback.rate_min = variant->rate_min;
-+	dai_drv->playback.rate_max = variant->rate_max;
-+
- 	dev_set_drvdata(dev, priv);
- 
- 	ret = devm_snd_soc_register_component(
-@@ -169,7 +240,8 @@ static int pcm1754_probe(struct platform_device *pdev)
- 
- #ifdef CONFIG_OF
- static const struct of_device_id pcm1754_of_match[] = {
--	{ .compatible = "ti,pcm1754" },
-+	{ .compatible = "ti,pcm1754", .data = &pcm1754_variant },
-+	{ .compatible = "ti,pcm1773", .data = &pcm1773_variant },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, pcm1754_of_match);
--- 
-2.56.0
+Thanks,
+Jia He (Justin)
 
 
