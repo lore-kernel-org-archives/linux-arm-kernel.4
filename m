@@ -2,72 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231B5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 22:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EEEB606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 22:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3NkkptCm;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=o2vpPnrm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w6FLaLdP;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=v7Fy4vJH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=WkLgW+c6Vs03pawnWwBT2nJkyF8m6BmAQ32Lw7TCuco=; b=3NkkptCmCZymrIsBBz75cZUPmO
-	a+IhQK2N8KbS1o+4aAR/3OrzT1ptZykeQXe1COB814Ff/GcfDt1/lR4Jy0KzR2FvCnsw0RI73vFTV
-	teDdUxWK2FKgzOZcAHGVS7jjH9M8XWPWu7U0tAATs0ZjLPnqHPuDkFfLJlMC55eZX5rE05kvvO0tc
-	70vn6fLz0WyAotfeKiC9ZiSvR3idcFuwxAfYJb+6sXylhHRszxWKxrpdFkJyC3EKydqi68wEy+qHP
-	8mW52tN3MddQlFYeEN61Yhmx8Mla+FqEytJxAdKjyYXmPtLApjLBBamAZzlLcfiePHzbf/3/eiVqB
-	EBSXcAcg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=tUCMqiOrGj4FihXgRmpoFzlOGU9HSbmXuDtn2DKC7dE=; b=w6FLaLdP0DAqFb
+	Qbd/ecVK51dpGAsvBJvQNngmjRBEElWA6y/8ZeUZOpSgZwmg8ECeAMfVFgWmuH5eT9j43KGaLLrAx
+	hr195lWT9urGjRoRJxrTo9XRc8K5Xp0rcZwXFcqnAgdt4139Ael647xNR5tV5GN0USMZUyUQ4v+uk
+	wBX4rbPGswz+uUldiX43JmPixcSrsgYsGFbfNyw7nWikXVbY+IqAwRnDofV2gmtjnM9Ujr36jjB+v
+	+N9DsgafpG423ct4VbOz6gdrjn5+VfpIXKh3nytDtfuP4bgcQtWYjk5nUI+tA+lvqOM3BDLziCONw
+	gTnRbIOKWVvd40HPIOOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVz0k-00000007zi2-3UNq;
-	Tue, 24 Nov 2026 22:29:14 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xVzDJ-000000080qq-1lQY;
+	Tue, 24 Nov 2026 22:42:13 +0000
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVz0j-00000007zhu-0acj
+	id 1xVzDF-000000080qC-2VO4
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 22:29:13 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CFB6260627;
-	Tue, 24 Nov 2026 22:29:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02D111F000C4;
-	Tue, 24 Nov 2026 22:29:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795559351;
-	bh=WkLgW+c6Vs03pawnWwBT2nJkyF8m6BmAQ32Lw7TCuco=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=o2vpPnrmCxtOS8P4HVMlKGd/mwISEMkCQRNhDBmEksIcnnp4Ig8q/vKSsvXIk1N92
-	 gq2c8oMJW97kGIf8vTTNEC55YbRTgmE7EsPpgpY71ZmAA5mN8Im31aoxF+g+0Xa31D
-	 ZMUIEhm/KJpYM3iJNv1PGvI3m00mxPUsr0hb4bqC1xgPIj9rETcK42HhQD3QgK15JB
-	 l5WF86ZE2CQA6vbKe/1b5JS5s+x8Mx4l0NjHrFs1PJxyJPr0D6K5RAacpwY8hJvI/X
-	 XD/wFKxYwcO9mEch31+86IlVIegcSheoZKzm0XYpj+SApYC3/dKZp+64j9frnHmoq2
-	 UTnxdnXBiZKLw==
-Date: Tue, 24 Nov 2026 14:29:09 -0800
-From: Oliver Upton <oupton@kernel.org>
-To: Nathan Chen <nathanc@nvidia.com>
-Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>, Fuad Tabba <fuad.tabba@linux.dev>,
-	Marc Zyngier <maz@kernel.org>, Tom Matthias <tmatthias@nvidia.com>,
-	Shameer Kolothum Thodi <skolothumtho@nvidia.com>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Julian Miller <julianmiller@nvidia.com>
-Subject: Re: [RFC PATCH 0/6] KVM: arm64: nv: Grow the shadow S2 MMU pool on
- demand
-Message-ID: <awYPtXVeY1NYeTla@kernel.org>
-References: <20261124211218.2751086-1-nathanc@nvidia.com>
+	Tue, 24 Nov 2026 22:42:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description;
+	bh=tUCMqiOrGj4FihXgRmpoFzlOGU9HSbmXuDtn2DKC7dE=; t=1795560129; x=1796769729; 
+	b=v7Fy4vJH3WriJTFP5OPVb/6moKQbG3G6938aKnYVMgnxp4KY1m2yguHsxiuo/C5h+cLXCbbC9uk
+	l5Wl05bW8RvSr2tMoRz8Irzv/1lBwiUZKbqIGpUgwY69pALfpKyC6aUzYLB5VfhQZ7Lri6QmK0vnr
+	h+WbLz19e0f3uSVORwACpkUOZTJ/ePHxqJ91knbfKKRob2R6Oq6hjADN4AEVihhLgFsyTRsKGWLwf
+	27qY5DwlUofz+nTBfBWmBFCwSyCjUJTghtyNPZfCgDj1b87DGQumaCFAnptq2/3HWLcSGdao2yzdM
+	rid/BwoWME7ZCZNfUlLy45OtgRZacf/BARsw==;
+Date: Tue, 24 Nov 2026 23:41:43 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones
+ <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, Jingoo Han
+ <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Aaro Koskinen
+ <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
+ <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Russell King
+ <linux@armlinux.org.uk>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Uwe =?UTF-8?B?S2xl?=
+ =?UTF-8?B?aW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Helge Deller
+ <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+ <tiwai@suse.com>, Peter Ujfalusi <peter.ujfalusi@gmail.com>, Jarkko Nikula
+ <jarkko.nikula@bitmer.com>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, linux-sound@vger.kernel.org,
+ linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Subject: Re: [PATCH v2 00/20] ARM: omap3: pandora: Modernize audio and
+ backlight to use Device Tree to finally remove pdata-quirks
+Message-ID: <20261124234143.4f099646@kemnade.info>
+In-Reply-To: <1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
+References: <cover.1795505160.git.hns@goldelico.com>
+	<20261124151318.GA536798-robh@kernel.org>
+	<1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261124211218.2751086-1-nathanc@nvidia.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_144209_641893_DCB08B6A 
+X-CRM114-Status: GOOD (  15.92  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,53 +88,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Nathan,
+On Tue, 24 Nov 2026 16:27:16 +0100
+"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
 
-On Tue, Nov 24, 2026 at 01:12:12PM -0800, Nathan Chen wrote:
-> A nested-capable VM gets 2 shadow stage-2 MMUs per vcpu. Once the guest
-> hypervisor runs more nested VMs than that, nearly every nested context
-> switch recycles a live MMU and spikes host CPU usage.
+> > Surely 
+> > this can be broken up into smaller series?  
 > 
-> This series lets KVM grow the shadow MMU pool on demand when the pool
-> is too small, up to a host-wide VMID budget. It also parks grown MMUs
-> on a guest TLBI ALLE1 and when a guest range invalidation leaves them
-> empty, in order to return unused capacity.
+> Yes it (we?) can. It is just a question how to do it and properly describe
+> the dependencies to avoid bisectability problems and avoid that the final
+> goal is lost.
+> 
+I think it is indeed tricky, and probably induces delays.
+You can point to the pandora_bl driver  resp the pandora sound card to show the
+final goal. 
 
-Thanks for taking a look at the problem. There's no argument that we
-need to do something, the existing MMU allocation policy was good enough
-for doing nested development and would get replaced eventually.
+If I understand it correctly,  you have
 
-With that said, I feel rather strongly that we should not invest further
-in the MMU array because it is quite inflexible. On top of that we need
-an actual eviction policy that selects cold MMUs as victims instead of
-the current round robin approach. I don't think you need to do anything
-special on the invalidation side with a good eviction policy.
+1. preparations/extensions for using the standard pwm backlight.
+2. REGEN stuff to wire up the power supply. 
+3. dts changes to wire up backlight and its power supply. 
+4. sound: quirks in twl4030 codec
+5. sound: dt conversion of the sound card.
+6. dts changes to wire up sound card and its power supply
+7. machine quirk cleanup
 
-I think this is what we need:
+So what brings it all together: the power supply requirments,
+so both backlight and sound depend on 2.
 
- - A VM-wide hashtable for storing stage-2 MMUs, keyed off of
-   {VTCR_EL2, VTTBR_EL2, HCR_EL2.VM} to align with how we handle TLB
-   match at stage-2. The hashtable can be dimensioned based on a
-   configurable VM limit for shadow stage-2 MMUs.
+Maybe it is an idea to split this into a set of
 
- - A state tracking mechanism for victim selection. An LRU list seems
-   like a reasonable starting point.
+One patchset for
+7a. machine quirk conditionally depending on available compatible
+2.
+1.
+3.
+Each can go into their individual trees.
+3. might to in the next release cycle after 7a, 2. 1.
 
- - RCU replacement of the evicted MMU. I need to think about it a bit
-   more but you should be able to reuse the PGD in the new MMU context
-   as well since we know that no vCPU holds a reference on the victim.
-   That ought to be the goal anyway.
+A second patchset sent after 3 is in -next, containg
+4.
+5.
+6.
 
-That should allow us to dynamically allocate MMUs while also improving
-upon the current behavior for constrained MMU allocations.
+A third:
+7b: remove quirk + pandora_bl
 
-Thanks,
-Oliver
+Regards,
+Andreas
 
