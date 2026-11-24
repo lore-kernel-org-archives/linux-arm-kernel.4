@@ -2,144 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD38606A686
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8008606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S/axHaB6;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=I9GzgUiq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sa82YkyS;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ke7n9tdz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:To:From:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cRxv9YhZaJJP2/c0rugwOhvWLqO2hf34ZvOcJWVVPzg=; b=S/axHaB6kpQjdn3ukGZSSrV5B/
-	S2BdMfFT9MYmsSI56Z99KRCS5NBC+sbc1D3/O6TyQdoGIGgUubr8yEvlHLv9tO1J2Bo1qsflnm5Ld
-	iv2oUwhPeIzrzqLh31FIJds1Y9tjqDourRkc/esYaxHSWB3LKH3gs5lSAHDbN1f+SQUO1Okqzg0SX
-	bxIh29yOkViohnEwZ8a9M4UNEcjY9ZU35OG9cNmo8dmZ+qgzqEaGy4XL/ZviQBxkoxjE06JhPYym/
-	o/cTHpXK4np9RzwnvLVwPRJBEnXMF2dEtAsG9IUhRIZffq6bUHJpUzM705bRXzPB0OjRcmmqu+SjS
-	2JNZxSqQ==;
+	bh=Jb7UacLdyzgROEM6VeFj8C1lCP+Li5b9218DpdLXBEc=; b=sa82YkySCOoPtXfYfyjY3IukVn
+	wko4N5pAoovYqn7mLRkUZwYSmMlmqO2ZEbY1pgKE9OvIJ18g2zfflIhUOoEta+w5Qj3nGBYQjaEHB
+	obTIXO55KT2h1XwqZQ48/Dr3Dg3QiDLnlZuu7OgPeef96SXS8kDJrj9xANljm+2gx+jEma9IYBczE
+	BAyp/BG0cwHOVd245TeaoGda4OHwle0aNO6er5b1AEetIyNSIpAkRZTiYAvF1ZM4/Qc8VtlRoZlLk
+	Pm53NTdAx6l/Ylfzx9cWhXAObWzR+T2AjdH2MHrP0oMR6mLyiwqzox65lUzzzPQ1z3efrlVoxDcLi
+	lyh6XLCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwU1-00000007cLS-0wMs;
-	Tue, 24 Nov 2026 19:47:17 +0000
-Received: from mail-westeuropeazon11011046.outbound.protection.outlook.com ([52.101.70.46] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xVwUJ-00000007cRA-11te;
+	Tue, 24 Nov 2026 19:47:35 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwTx-00000007cKx-3kSw;
-	Tue, 24 Nov 2026 19:47:15 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=psUkD45Gblqw3R5uuPmx/xYGOXm4mJXMppzNlzVVNKb6Fso6mDpxNa7nNJoCesc3GxPRHyGNHd7fFQfQvb6REZJt/nHx1qsRXsIN0N64aBzP9xQNvKp4qFfTVp6exN9jfiqX0zIQs07gc/17PbIa0mCYQGS9eZHeeQPQyehtaWzSvaW1x3hfFFCON79xe2f5ziiSVhogdQKcoxYBE5KAF4uqx8EKhc2Q8Pwz2DDHsc+qObpIaARReJ4Uw0DfiQHDAa0OXr9bEfqE2EQvswrL6m4ctPrBz+sBkukwd1vJBw9CPTHvAQ06ZTBW4gQby1fPgTwGCJb/pX3+WbTIHgDN0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cRxv9YhZaJJP2/c0rugwOhvWLqO2hf34ZvOcJWVVPzg=;
- b=V8axjCcdSCzX/nQDYaHHBJkKQlmtg2U/00unhGecpcFaTX3/Uss/SZH6ST2dq/UEPdwIcngDr110LS8L/KXi06hiJ6HUPbecjSjLQWquKgHMXhWr5TtJzt1r7JeKJO0VOpOT7xNBGykVUYOE66G84UJvDkSPAayl2mu2R3JALiMohZq8It/BXT7FiGzjp9FdCm6CUvU578YalCxR5hrBrUSQ4Q7BoCKwmzIwrLlAnnrhP06zjn7PQ5SONl+PCNljGbfM59bUfXoKWD48IgG2baVG9W+zwVeRt1KGxIbtbjyuif3wprqpEMEUGaQAtgy06BHSD017xdZN84Enygj9Hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cRxv9YhZaJJP2/c0rugwOhvWLqO2hf34ZvOcJWVVPzg=;
- b=I9GzgUiqdqUUVV7QloY4/T6SjxG+AULh/f289XlSFjx7O6FHkfd6xHz5FBU6Wd/w+nWkAxJ5QyQQlKRbMPMqFCW8BPtAUIYWi3MJnjXg1VpL16E1gnZbk+K6p/5zhJ95ptwOd+9TVpgFTZdHcpP9S+ZYwdKijM69G4ZJTH+9K8QhqpyTtmSpL6MwXwcEXxjpzYWDGYHtpvQA+MxkGefZhhufitDC03AsGopsInJTjY8Y0P3yYbJBvun1G4mYVeFrsc06nbuzqUru43iVHw8cd8isDqCXVbQDlA1HVT8f3V+CimU/k3332ABA+1aBuDVRaTgsoTFO8ZXXb3lfJdh06g==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by PA3PPFF2AAB1E98.eurprd04.prod.outlook.com (2603:10a6:108:1::b5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Tue, 24 Nov
- 2026 19:47:09 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Tue, 24 Nov 2026
- 19:47:09 +0000
-Date: Tue, 24 Nov 2026 14:46:58 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dom Cobley <popcornmix@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 10/28] dmaengine: bcm2835: make address increment
- platform independent
-Message-ID: <awXpsh-ZbSqbotIm@lizhi-Precision-Tower-5810>
-References: <20261123145728.29082-1-andrea.porta@suse.com>
- <20261123145728.29082-11-andrea.porta@suse.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261123145728.29082-11-andrea.porta@suse.com>
-X-ClientProxiedBy: PH8P221CA0055.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:349::8) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xVwU8-00000007cOA-26q1
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 19:47:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A8AEB60EEF;
+	Tue, 24 Nov 2026 19:47:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C7AD1F000F4;
+	Tue, 24 Nov 2026 19:47:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795549643;
+	bh=Jb7UacLdyzgROEM6VeFj8C1lCP+Li5b9218DpdLXBEc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Ke7n9tdzmh78RWE/vlZb+cPXV5Am6Cyy+xNXTKld/9H1PgV1OOgytyfroznoOcaiz
+	 nreVQuF0SWmYrfhJ3eVZNIJa71/TNc9hrEixvhfrsI3qLPFOh6JC7PWGrrL73MTtSV
+	 +ZJBzOWmlP1u4KZRdE51Pb+VMqC819ECQWn1y1epSk+lFb0S6wNy8uUC5yNKkLVMHT
+	 eh/3SIUa04c/LLl12Qk7FpZkE7l9m68H4k7FJrz66o3uMcWH8I1+1DQyqWTsXw43CE
+	 foH82+lKPsNhh2cRvQi/eREsWrIBtQh1NqNB30D/1ixITP/pCOc/hH7bYz3u5DJUj0
+	 0rGC7knzTYlxw==
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 5ACE81980047;
+	Tue, 24 Nov 2026 14:47:18 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Tue, 24 Nov 2026 14:47:20 -0500
+X-ME-Sender: <xms:xekFa0cmu2gUb8M5YJxYK7s8sCMxYvibiLGG3W40q2-VN4Jo4GW3rQ>
+    <xme:xekFa0kA-upSFROVy9-3OKa8CkNOj4J6kTWdtM83VLNK7MiQthhOT7d4LN-CWau0B
+    JTPv8jjkWJvO7mxy0beNkQOwY59hgK9IImgBIE6hbL98n4O7CS34UmW2w>
+X-ME-Received: <xmr:xekFaxhua7X7NHCCrwHeXtuMWatqn1SAQaW-Wiv026GNNERfs8Fi3kmtsdI>
+X-ME-Proxy-Cause: dmFkZTF8mK3hTCRd90aqnSvOpCd4gzquwbaRY1ybcFkVdEZH36HujOrk/L6VV6Y1vtNMHJ
+    6VVt7i5u8kMpzFTrCKxhljVCQ0KWilRMz8P/2EHJr4WvH0fuZpYQC7sK293mDxYM5fCpxr
+    1T3W9hf6dB8LZqtzE4IkJAYo0VMIBVV8zOeHK0H62E2wvN3S7anHOZYKNhLPFJ87IUM61S
+    qHy4D0IvnCfOjgesgxbhRacdN4oSj4TucPlCavxmzsp4Gkj0PCKNRZJx/kx70DdCFDXw+q
+    7xJwCo/wVwK7Yl9cyU5U0q9sKTnCGo1ZKourJqEYJheN6vPystHS9LyDe6Aaf2u3+CwkI8
+    K0JxkNkTYnrafKZ/rTj/3+9Cp9lcsGjXEwFv/7cqddgUQW1JxEbcN2FXocQC6sokP77iTz
+    4rFrL77wxX12ppPWSMVZwxp19CXJ0zfLguT3cdPHVkfzezIu+smY5OQy4cfTbZFhJai4jB
+    qioc+3L14it17ZZqJ4ZF6Bnn419bRnXUI5OLbowlPINKMA4fFjOlriEYMVbgvrEMVmIGoe
+    G0Me4uLkDxVpzwekgnG0s9azudRcd/8aoyRo2FA7cagRqEdCXxQUA4Z/C5Q2BrbWG+Nvx/
+    +OoIzYgvtUzHpR22FRjEmXOcLWgi+Kvv0g9Kvv04EWtoKGWbRjR5HU7A/p7Q
+X-ME-Proxy: <xmx:xekFa9EGI9L4ahECNeOKy9PLeZNJLwtB0SeRXNELsui-ZeELFs6Fnw>
+    <xmx:xekFa4zOf4H4XkBgNVEFRyaEqZGefgnS87-IiO3iXpUh-wAp0q-6TQ>
+    <xmx:xekFa8ptG5LFDO8P2LynCZIsBDBtiu_gC354pp1S3Bi3FyMHFmG2dA>
+    <xmx:xekFa7dIQ7vp6XFCWc-hwYoO9-kQslgtqXxz4YU-ZIH-o1qvT7-nJA>
+    <xmx:xekFaygRgIctcxYKCfXNpWhmSCYbso94vTf0CMNuc6xBx11D26g_Z-wE>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 24 Nov 2026 14:47:17 -0500 (EST)
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	James Morse <james.morse@arm.com>
+Subject: [PATCH 2/2] firmware: arm_sdei_nmi: Send the backtrace IPI to CPUs with SDEI masked
+Date: Tue, 24 Nov 2026 19:47:05 +0000
+Message-ID: <20261124194707.1030653-3-kas@kernel.org>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20261124194707.1030653-1-kas@kernel.org>
+References: <20261124194707.1030653-1-kas@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PA3PPFF2AAB1E98:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2abc0ce6-895f-40d5-0860-08df4a63b9f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|1800799024|23010399003|6133799003|22082099003|18002099003|10067099003|4143699003|11063799006|56012099006|261102123227099003|261028144727099003|261022105027099003|261022075727099003|261026140227099003|261021121427099003|261021123027099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: Sqyce2dtzprkek595XiQYArdHI/YQLr0yTGGNQqwLa1mvE5iImnCArTCnJNlhikbgxDSpxP6Q76ix80tMkDqegg06isOP/qikQdrYVUEMxUyTJLoub4WKXHM9cRihVfv6QTTi9u/jXhQ9a+N4aSFU6kJusHoTg2lQRVvHH37Y/f20iwI6Qaccdyoo4Jo0B4PTk9APt6IkIux/LSL5/8KtUyHshHog76ubhAh6HZgoIG4Mqn+wYPQ/CMcKvmQQhb9dwPK5PdMTFD8mMebyiHtlIeytU7dYxMmn748EV70vWTzzV+LssGT7PA6R+p+ZPE0mu8E/soogrmHMgjo4Yt0nIUoOprn+lzYV68m5y/uPeKehv/HENkqdjWfZRdYveVZAXvdkNA8RnD7ODDZ8AdjlLZ4y9IDLLbqk07hxZkQ9fbBP5JmZ/5xRBOqaJ3UtosIfTBAYSp2tVSSwr1RXeM4TrWRmoACVGyN7gHe5kVLJXrKeRSoc1UYk8W3Rr1csiwQFyGyCW0MxskyMpeTB5CkU8ji4lNhK5Dw//WkwJOi2+PD6uDUblR/+Cg3Hv0YVOcnaB9J0hCmy6ceKb/2c0iQR1t8TvSaJuww5QF8uIfpI3dWT1leZ54PSC1wFGoipwayr3HovQeGP0eVGqrbsvP77zFYigSzAB4Egyd8S4SOF/k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(1800799024)(23010399003)(6133799003)(22082099003)(18002099003)(10067099003)(4143699003)(11063799006)(56012099006)(261102123227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261026140227099003)(261021121427099003)(261021123027099003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xHabr9eiceTzN6f5wtBfVCI0pBwspA6A40XD0+1Smbcu1zqJhA/VYrgm2tFt?=
- =?us-ascii?Q?v6ErIDAP/SaeLwAZ872jALtrNQo46uH1ggeZRNK5eQFSeCgtvnnC8JXEkgQc?=
- =?us-ascii?Q?UpcGtlJhGpdxTglpQKeAXca+DA6o8rQoWR0/ppsALftFYFDfyShlUQ2w9oFX?=
- =?us-ascii?Q?ZZV/JMBZ4FMZtbrKDoJw8Z5ftUv9SgwB7kNSuinMzLx3kl73StRKEF3waECw?=
- =?us-ascii?Q?HdmCHEkpthLVFRFLREeBH28dhog3ySLz7P9wtvY5V+VNFgpHLfaAcfcmMkGf?=
- =?us-ascii?Q?1U0lNPvJhytvRSD3YVNcyaV4PU0sK1y1CtVnkRroPTKoJWa49lS8rEui0DdX?=
- =?us-ascii?Q?i6yuBhXO513Qig1rdA0amhU+DSDFoBCsRDaVH0QgVVwkfa2/PXqvh1IefiwF?=
- =?us-ascii?Q?kSnC+l7TBHZDMShj3rEYp4vLzt4hfNigX2Mei7BwCbeAmGQwfoQ4BolrntIf?=
- =?us-ascii?Q?DL8hoxXalgtbzQJ4gU29MgfToKuo18pW3y4gnc6UnjfXUA46foQfwtyd+3Cy?=
- =?us-ascii?Q?0mvMH2V4bGK0Gc+S3LfOTb9DcPIcKNUrrrSmmVvc1w4ExAbnYjAzf/0/+rk1?=
- =?us-ascii?Q?Zq3yNsvARaODkm42l9Brqc16ACur0O3aIwe8ydFUdsN/0OcIjkIFmctYSgz+?=
- =?us-ascii?Q?xuU8Ke7oVuURpU9LCao0ygg8vo2bnjfL2O66C4VfO2qPZ9HMcZHoWW1Vgvug?=
- =?us-ascii?Q?lz9HnwMjtApitpBBkAFImT6XeO0Cv1HKAvorL4F6iUOaRGVWvgViTcJnHr+P?=
- =?us-ascii?Q?fNtKU5MDxvz6OiQF5Bmg3ikpOdpDLWmlohuCCTpPXAA9fYy0xZc50GUHJojI?=
- =?us-ascii?Q?RG31wv5xz39ZYalwCZJQS7mtsIJkniwRKH5Soe4EJQ6t+vivA8iZMmzZx23Z?=
- =?us-ascii?Q?hMab0srsBCWXmxFnhyOk21XquXjAiMQ/ivhykHcnLEfeAbOdysVMeaEBqVk/?=
- =?us-ascii?Q?JYxRMdTv8TDXCsqXlYO8FAbQyks8cdmicdNc+T6X5P2uizPFvrHx78CVPM/E?=
- =?us-ascii?Q?nKZFNyRFoTwGpzvmwlXr2zW27Y4HCh7mGV34ZGjTD5Ryqc7kJeSCSaQN8Nv9?=
- =?us-ascii?Q?dzfZLL/sC8XdShx2ZEUzkyaiXZ9Cntwg69WUesGUVkp8BvGHQMc3DPwG14FT?=
- =?us-ascii?Q?PgHOT/WTb2A7lgl8r/8qGL5pAbF8emBQWx8rwVm4mgDkvdmcdIOrGuNMroHM?=
- =?us-ascii?Q?faeQTjIn3Q09PmYxXZnZN61I/GAeS9o473rBlu5Q2ywQIi1l0Vnf6l1nqIqu?=
- =?us-ascii?Q?2vqaIt5Jd3r2l2S1io0qAIgLkBBBFzCTPZawkhnpml1j7mx0qRFFhIxbfgau?=
- =?us-ascii?Q?kLE42OqLQySoSd5ttJXBgk7rLa+pY5O7mL/Lvr4I+LSn4ZbN8KJtJ02jYK0m?=
- =?us-ascii?Q?6ZrVed+NVEP3zWQ6Us2e4X1wKaNU/GBqSVWcRvEYN5LCHGu6tdNmN0L6Xcc9?=
- =?us-ascii?Q?uB1S2ru0lBqwStKe9iISg6uOuywjzJKLWWENDCAY64IJ3RQ7DlITQ4ke8Fxy?=
- =?us-ascii?Q?rd8jJNg50BDtEDq2fcb0pLuphEw2rHMavMQt/3wgiQYkXuSFBj/Wg49PoBtw?=
- =?us-ascii?Q?MM7CYkzrEbF5WFxnOejWuItRcr4qB8J6EY3/sTr9DIlvext8avbRRwnhqGE3?=
- =?us-ascii?Q?/TmYfEYNhmxZABvSH68SVYnVwGhomM3lMrQxFIbXGrAueuVekuBkoWZaqJsR?=
- =?us-ascii?Q?7C+cZcOo3Xx+kjHxlxui5k+1oqcsWZk4Xf2YpX/alv977bWumMr8orjIpIW0?=
- =?us-ascii?Q?x7eEHv5eg0CbJQrRABUGw7fxCr7PNQnLERwG+c95NmXUqOrG8US9?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2abc0ce6-895f-40d5-0860-08df4a63b9f9
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:47:09.2908
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T18Ee6L1kSyZXXkIwnSq10use+KFTjdRMaeNfmGBbDn8/SP2ES+7vtkTzaptL/kOar+BLCwtl2Fo2Jjne8YtKPgCL5SaOOc8M1LY5580xU0n11cIAdVh7kY3K4Pohc6H
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA3PPFF2AAB1E98
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_114713_966619_57D66389 
-X-CRM114-Status: GOOD (  23.72  )
-X-Spam-Score: -1.9 (-)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,87 +94,114 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: "Kiryl Shutsemau \(Meta\)" <kas@kernel.org>, Yin Fengwei <fengwei_yin@linux.alibaba.com>, kernel-team@meta.com, Vladimir Murzin <vladimir.murzin@arm.com>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, Cong Wang <cwang@multikernel.io>, Liao Chang <liaochang1@huawei.com>, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, Ashok Raj <ashok.raj@oss.qualcomm.com>, linux-arm-kernel@lists.infradead.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, Pengjie Zhang <zhangpengjie2@huawei.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 03:56:48PM +0100, Andrea della Porta wrote:
-> Actually the criteria to increment source & destination address isn't
-> based on platform specific bits. It's just the DMA transfer direction which
-> is translated into the info bits. So introduce two new helper functions
-> and get the rid of these platform specifics.
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  drivers/dma/bcm2835-dma.c | 28 ++++++++++++++++++++++------
->  1 file changed, 22 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-> index 77b3e2f58ac5..6180a2737e07 100644
-> --- a/drivers/dma/bcm2835-dma.c
-> +++ b/drivers/dma/bcm2835-dma.c
-> @@ -273,6 +273,24 @@ static u32 bcm2835_dma_prepare_cb_extra(struct bcm2835_chan *c,
->  	return result;
->  }
->
-> +static inline bool need_src_incr(enum dma_transfer_direction direction)
-> +{
-> +	return direction != DMA_DEV_TO_MEM;
-> +}
-> +
-> +static inline bool need_dst_incr(enum dma_transfer_direction direction)
-> +{
-> +	switch (direction) {
-> +	case DMA_MEM_TO_MEM:
-> +	case DMA_DEV_TO_MEM:
-> +		return true;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return false;
-> +}
-> +
+sdei_event_signal() refuses a CPU that has SDEI masked. An NMI
+backtrace then gets nothing from such a CPU and, after 10 seconds,
+reports it as not responding.
 
-This is not 100% correct. there are case DMA_DEV_TO_DEV, and some peripheral
-FIFO is a range of MMIO space, not fixed address.
+The CPU is in a power-down idle state or going offline, and the regular
+backtrace IPI wakes it. Send that IPI to the CPUs SDEI refused; every
+other CPU still gets event 0.
 
-Frank
+A stop needs nothing extra: smp_send_stop() has sent its IPIs before it
+signals SDEI, and a CPU still online after that is reported as not
+stopped.
 
->  static void bcm2835_dma_free_cb_chain(struct bcm2835_desc *desc)
->  {
->  	size_t i;
-> @@ -338,10 +356,8 @@ static void bcm2835_dma_create_cb_set_length(struct bcm2835_chan *chan,
->   * @cyclic:         it is a cyclic transfer
->   * @info:           the default info bits to apply per controlblock
->   * @frames:         number of controlblocks to allocate
-> - * @src:            the src address to assign (if the S_INC bit is set
-> - *                  in @info, then it gets incremented)
-> - * @dst:            the dst address to assign (if the D_INC bit is set
-> - *                  in @info, then it gets incremented)
-> + * @src:            the src address to assign
-> + * @dst:            the dst address to assign
->   * @buf_len:        the full buffer length (may also be 0)
->   * @period_len:     the period length when to apply @finalextrainfo
->   *                  in addition to the last transfer
-> @@ -413,9 +429,9 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
->  			d->cb_list[frame - 1].cb->next = cb_entry->paddr;
->
->  		/* update src and dst and length */
-> -		if (src && (info & BCM2835_DMA_S_INC))
-> +		if (src && need_src_incr(direction))
->  			src += control_block->length;
-> -		if (dst && (info & BCM2835_DMA_D_INC))
-> +		if (dst && need_dst_incr(direction))
->  			dst += control_block->length;
->
->  		/* Length of total transfer */
-> --
-> 2.51.0
->
+Fixes: 0c2c56598cc1 ("drivers/firmware: add SDEI cross-CPU NMI service for arm64")
+Cc: stable@vger.kernel.org
+Signed-off-by: Kiryl Shutsemau (Meta) <kas@kernel.org>
+---
+ arch/arm64/include/asm/nmi.h    |  7 +++++++
+ arch/arm64/kernel/smp.c         |  2 +-
+ drivers/firmware/arm_sdei_nmi.c | 21 ++++++++++++++++++---
+ 3 files changed, 26 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/include/asm/nmi.h b/arch/arm64/include/asm/nmi.h
+index 2e8974ff8d63..447d681a5475 100644
+--- a/arch/arm64/include/asm/nmi.h
++++ b/arch/arm64/include/asm/nmi.h
+@@ -45,4 +45,11 @@ static inline void sdei_nmi_stop_cpus(const cpumask_t *mask) { }
+  */
+ void __noreturn arm64_nmi_cpu_stop(struct pt_regs *regs, bool die_on_crash);
+ 
++/*
++ * Send the regular backtrace IPI (an NMI with pseudo-NMI) to @mask. The
++ * SDEI provider uses it for the CPUs it cannot signal. Defined in
++ * arch/arm64/kernel/smp.c.
++ */
++void arm64_backtrace_ipi(cpumask_t *mask);
++
+ #endif /* __ASM_NMI_H */
+diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+index 014b163ce658..8369a4cd3e32 100644
+--- a/arch/arm64/kernel/smp.c
++++ b/arch/arm64/kernel/smp.c
+@@ -946,7 +946,7 @@ static void arm64_send_ipi(const cpumask_t *mask, unsigned int nr)
+ 			__ipi_send_single(get_ipi_desc(cpu, nr), cpu);
+ }
+ 
+-static void arm64_backtrace_ipi(cpumask_t *mask)
++void arm64_backtrace_ipi(cpumask_t *mask)
+ {
+ 	arm64_send_ipi(mask, IPI_CPU_BACKTRACE);
+ }
+diff --git a/drivers/firmware/arm_sdei_nmi.c b/drivers/firmware/arm_sdei_nmi.c
+index edea68ef881e..b8ebb97caf18 100644
+--- a/drivers/firmware/arm_sdei_nmi.c
++++ b/drivers/firmware/arm_sdei_nmi.c
+@@ -124,7 +124,7 @@ static int sdei_nmi_handler(u32 event, struct pt_regs *regs, void *arg)
+ }
+ NOKPROBE_SYMBOL(sdei_nmi_handler);
+ 
+-static void sdei_nmi_fire(unsigned int target_cpu)
++static int sdei_nmi_fire(unsigned int target_cpu)
+ {
+ 	int err = sdei_event_signal(SDEI_NMI_EVENT, target_cpu);
+ 
+@@ -133,8 +133,13 @@ static void sdei_nmi_fire(unsigned int target_cpu)
+ 		pr_warn("SDEI_EVENT_SIGNAL to CPU %u failed: %d\n",
+ 			target_cpu, err);
+ 	}
++
++	return err;
+ }
+ 
++/* CPUs to IPI instead; nmi_trigger_cpumask_backtrace() serialises its users */
++static cpumask_t sdei_nmi_ipi_mask;
++
+ /*
+  * Raise callback for nmi_trigger_cpumask_backtrace(): signal event 0
+  * at every CPU still pending in @mask. The framework excludes the local
+@@ -151,8 +156,18 @@ static void sdei_nmi_raise_backtrace(cpumask_t *mask)
+ 	 */
+ 	dsb(ishst);
+ 
+-	for_each_cpu(cpu, mask)
+-		sdei_nmi_fire(cpu);
++	cpumask_clear(&sdei_nmi_ipi_mask);
++	for_each_cpu(cpu, mask) {
++		if (sdei_nmi_fire(cpu) == -EAGAIN)
++			cpumask_set_cpu(cpu, &sdei_nmi_ipi_mask);
++	}
++
++	/*
++	 * A CPU with SDEI masked is in a power-down idle state or going
++	 * offline. The IPI wakes it and it reports like any other.
++	 */
++	if (!cpumask_empty(&sdei_nmi_ipi_mask))
++		arm64_backtrace_ipi(&sdei_nmi_ipi_mask);
+ }
+ 
+ /*
+-- 
+2.54.0
+
 
