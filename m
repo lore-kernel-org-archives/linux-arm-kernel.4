@@ -2,91 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65033606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECCD606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GxOToWjG;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jeLjHV1j
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lhmqNF/1;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=WRxd5AtB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=I0mp7A61esK3VrRBd+nFXF5BVs7NKqG01QIp73dC2D0=; b=GxOToWjGsHMQ6AGXfCbKwB7ElL
-	NNF05I8pv+0pWGMVrjnWpZKHiDLPA6Gmk5qDO84iv+phH1GrmPfUFkHcPoWG19z3G6tsf8eVnKR/1
-	28DfbVek6ERhcI9XuVwVTSvIz9KC99e9E1JS+70/TS9egGrvoGRUl64SsJYuqz0FcXFhUQb2ZJ65D
-	w5XKgnGvROkKt+bs2CgdTqVHkN14tW7NfecpgGV+EJul4U3Aga0xjg8MDr+pG108k3FJZXkBOU3N2
-	GM78ilnLWWOB9UBLk45YGK3xMzjZjyp8Yer2SgLnTnxaJgOtrH5SKROI2nsb3Zkte0fcIBLftgi0B
-	SiOT748Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AVBjQGBWsRhbqtXGph3xAHQAvMR6+/rx3lfHXKGz6Zg=; b=lhmqNF/1Oj52j0
+	kniN8a3K7SeaK34bNCjm19cQu8E//XKRBNIyEPbIvJzkgawr6N3sSwnb5HKy4817/raz76S6ro2BJ
+	NtH8lpWQrl+RT1yQBX9ef2O7gvlMn36L0KSc3AS34cSELheSXmEyy1ABXRr3WmWMB8mZXwIGvUcUQ
+	ZaIWSoiUPCQzLmSj3VX2zbod8+OAsxslmWiZ6VuXw0OU/92lvrvdz86a5b3jq76kF90x5KEKthznf
+	t4oNmVDxHAFCSO85vqTgMOiKvAKBdWmC+lTvpht7fe+ugmoBSMIISWe6HRSsf5jltXKhGCENbYAQx
+	uVJpDWLaaYEEUVSM0Fqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhey-00000005Ttn-0XxX;
-	Tue, 24 Nov 2026 03:57:36 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVi8c-00000005XLA-3Mxq;
+	Tue, 24 Nov 2026 04:28:14 +0000
+Received: from sender-op-o15.zoho.eu ([136.143.169.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhej-00000005TnL-24T7
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 03:57:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id AEAFA6193D;
-	Tue, 24 Nov 2026 03:57:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A54F1F000D4;
-	Tue, 24 Nov 2026 03:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795492639;
-	bh=I0mp7A61esK3VrRBd+nFXF5BVs7NKqG01QIp73dC2D0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=jeLjHV1j+0TpVU9Hk9tvCDsB72vEt9R80xfmbQ28wipdFEcuw6wQbvCmRZBIyNRw5
-	 VjXgLsKhqp9HdWjZkm2fnw266bar7hbn3O6AmxR5GAchqwTS8coNXKDdhmQCK7fmsX
-	 RMAOb6oPASFHBdDKsAM+LPOzPVnQv4fq/vyIAndrCq6ElK7KYlTeOPUtDjwdv0cuMA
-	 ddT0isU7gLNybgIWxe2KLs67EAeXaGl991V9GBvvPIBQR4LuP2prMbjv6oXhcOcdPI
-	 HSd78mtysn1gzSGQ++YEoyBQkrvxx7YmijwiB5IEtAdHiK4gLdy5EKA/+qrpu/pE4n
-	 xIpvvc1TnmASA==
-X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
-From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacob Pan <jacob.pan@linux.microsoft.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>,
-	Will Deacon <will@kernel.org>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	iommu@lists.linux.dev,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 02/13] virt: coco: tsm: Remove the device from lookup
- before PCI teardown
-In-Reply-To: <av1JFH8W63T37bK6@yilunxu-OptiPlex-7050>
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-3-aneesh.kumar@kernel.org>
- <av1JFH8W63T37bK6@yilunxu-OptiPlex-7050>
-Date: Tue, 24 Nov 2026 09:27:04 +0530
-Message-ID: <yq5a33sqdgq7.fsf@kernel.org>
+	id 1xVi8a-00000005XJb-2vqo;
+	Tue, 24 Nov 2026 04:28:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795494470; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=Mmyzwk889ELTgYQyLnf7ie8jjy9zwLTbLgJUa00RTIdusRvaHZj1ccqBPasAkbiyjUa9VIrpbuFklkJ9G1KEb1jeRkMrJ1gWmcJaZtYJ8j35N6XevM9UOYKc8ekSYa1Erue/sC2eb6pZaFf9BKPK+9rWICR4M2eQUgQ3kWUqeHc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1795494470; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=AVBjQGBWsRhbqtXGph3xAHQAvMR6+/rx3lfHXKGz6Zg=; 
+	b=OU5/CiF5ZMGIYB2eLtEyBzkaWMWoftJ4jOayra0YFQDBAchPdhcFEPfxm7uI28dMW2Lavt0SmsD6oYFipSajAc0xvySgBflekGUI9A6xYhi+QwjI72thT58RwzW6f1YlcbWOIGxmj+1cJSJDdb7/EaQ7dnq9IHIql1dJxYAegTo=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=WRxd5AtB7K/QZ5HA6TcTMeRxMrm9lkOu0AXdJVXxL5ufL41Or+X2EvopnuyJUto0wHFJKv3eHDqp2s6Bk26W2sbMaXCwtff+iP04gp2YV4sSi1DDWeJHJjB2xCEyzNAGbFEQ4VSdGxXrEFnZeQnUCR5J1RUx0Rn6mbVp+7fuxfs=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=AVBjQGBWsRhbqtXGph3xAHQAvMR6+/rx3lfHXKGz6Zg=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 1795494469281732.244746746565;
+	Tue, 24 Nov 2026 05:27:49 +0100 (CET)
+Date: Tue, 24 Nov 2026 06:27:47 +0200
+From: Igor Velkov <iav@iav.lv>
+To: netdev-bot+sashiko@kernel.org
+Cc: iav@iav.lv, andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, tglx@kernel.org, linux-pm@vger.kernel.org, maxime.chevallier@bootlin.com, lukas@wunner.de, rafael.j.wysocki@intel.com, wei.fang@nxp.com, niklas.soderlund@ragnatech.se, paul@pbarker.dev, florian.fainelli@broadcom.com, opendmb@gmail.com, Thangaraj.S@microchip.com, shenwei.wang@nxp.com, Haoning.CHENG@cn.bosch.com, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v8 5/5] net: phy: postpone PHY interrupts during sleep with MAC-managed PM
+Message-ID: <179549408717.90858.144565102470528@iav.lv>
+In-Reply-To: <179548270352.3135.4334710117066284426@kernel.org>
+References: <20261123-b4-phylib-mac-pm-irq-v3-v8-5-e9f706e79614@iav.lv> <179548270352.3135.4334710117066284426@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_202813_020039_F615BB16 
+X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,141 +68,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xu Yilun <yilun.xu@linux.intel.com> writes:
+> in some topologies the replay here can still reach the MDIO bus before
+> the MAC has resumed.
 
-> On Mon, Nov 16, 2026 at 01:49:24PM +0530, Aneesh Kumar K.V (Arm) wrote:
->> PCI connect looks up a TSM by ID under pci_tsm_rwsem. Previously,
->> pci_tsm_unregister() released that lock after tearing down PCI state
->> while the TSM was still in the class lookup. A racing connect could then
->> attach a new PCI context that the teardown would never see.
->> 
->> Remove the device from the class lookup first, then take the PCI write
->> lock to drain in-flight operations and destroy their contexts. Drop the
->> device reference only after PCI teardown completes.
->> 
->> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
->> Cc: Alexey Kardashevskiy <aik@amd.com>
->> Cc: Jason Gunthorpe <jgg@ziepe.ca>
->> Cc: Lukas Wunner <lukas@wunner.de>
->> Cc: linux-coco@lists.linux.dev
->> Fixes: 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link Encryption")
->> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
->> ---
->>  drivers/virt/coco/tsm-core.c | 20 +++++++++++++-------
->>  1 file changed, 13 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
->> index 03894c5663f1..57db3f14cf46 100644
->> --- a/drivers/virt/coco/tsm-core.c
->> +++ b/drivers/virt/coco/tsm-core.c
->> @@ -56,23 +56,22 @@ static struct tsm_dev *alloc_tsm_dev(struct device *parent)
->>  	return no_free_ptr(tsm_dev);
->>  }
->>  
->> -static struct tsm_dev *tsm_register_pci_or_reset(struct tsm_dev *tsm_dev,
->> -						 struct pci_tsm_ops *pci_ops)
->> +static int __tsm_register(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
->>  {
->>  	int rc;
->>  
->>  	tsm_dev->pci_ops = pci_ops;
->>  	rc = pci_tsm_register(tsm_dev);
->>  	if (rc) {
->> +		tsm_dev->pci_ops = NULL;
->
-> Previous comment shows this can't solve any racing connect problem.
-> And with your next patch, the racing connect is solved. So I think
-> remove it.
->
+Yes, the commit message describes it; the patch moves this access
+later, not earlier.
 
+> Can this abort every suspend for a Broadcom BCM54210E behind stmmac with
+> PHY Wake-on-LAN on a level-triggered line?
 
-I don't follow. This only undoes the changes made before
-pci_tsm_register() on the error path.
+That is the level-triggered case the commit message describes: the PHY
+driver has to restrict its interrupt to Wake-on-LAN in its suspend
+callback. I have no such hardware; bcm54xx_suspend() is for a separate
+patch.
 
->
->>  		dev_err(tsm_dev->dev.parent,
->>  			"PCI/TSM registration failure: %d\n", rc);
->> -		device_unregister(&tsm_dev->dev);
->> -		return ERR_PTR(rc);
->> +		return rc;
->>  	}
->>  
->>  	/* Notify TSM userspace that PCI/TSM operations are now possible */
->>  	kobject_uevent(&tsm_dev->dev.kobj, KOBJ_CHANGE);
->> -	return tsm_dev;
->> +	return 0;
->
-> I really don't think we need this wrapper. In next patch we move uevent
-> out, so this wrapper is just:
->
-> 	tsm_dev->pci_ops = pci_ops;
-> 	pci_tsm_register();
->
-> Open code it, as Alexey and I suggest before. All kinds of xxx_tsm_register()
-> are really confusing.
->
+> Could the check fall back to irqd_is_wakeup_set() for nested-thread
+> lines?
 
-I do that in the next patch, after moving the kobject_uevent() call out
-of the helper.
-
->
->>  }
->>  
->>  struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
->> @@ -96,15 +95,22 @@ struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
->>  	if (rc)
->>  		return ERR_PTR(rc);
->>  
->> -	return tsm_register_pci_or_reset(no_free_ptr(tsm_dev), pci_ops);
->> +	rc = __tsm_register(tsm_dev, pci_ops);
->> +	if (rc) {
->> +		device_del(dev);
->> +		return ERR_PTR(rc);
->> +	}
->> +	return no_free_ptr(tsm_dev);
->
-> I think none of the above changes belongs to this patch. They don't
-> solve any problem mentioned in the changelog.
->
-> They belong to the next patch.
->
-
-
-We are replacing device_unregister() with device_del() followed by
-put_device(), so the error path should follow the same pattern.
-
->
->>  }
->>  EXPORT_SYMBOL_GPL(tsm_register);
->>  
->>  void tsm_unregister(struct tsm_dev *tsm_dev)
->>  {
->> +	/* Remove the class lookup first. */
->> +	device_del(&tsm_dev->dev);
->>  	if (tsm_dev->pci_ops)
->
-> The patch 1 rejects NULL pci_ops, so is this check still needed? Can we
-> remove this check in your Patch 1?
->
-
-
-Sure, I will remove the check in the next revision.
-
->
->>  		pci_tsm_unregister(tsm_dev);
->> -	device_unregister(&tsm_dev->dev);
->> +	put_device(&tsm_dev->dev);
->>  }
->>  EXPORT_SYMBOL_GPL(tsm_unregister);
->>  
-
--aneesh
+The cover letter lists these lines as not covered. Enabling one in the
+noirq phase is not safe: enable_irq() goes through chip_bus_sync_unlock(),
+which on regmap-irq writes the mask over I2C or SPI while the bus
+controller may already be suspended.
 
