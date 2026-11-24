@@ -2,137 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D745606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF6B606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n7gf1YYO;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=Ce/swp8J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PT66otCK;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=KiSU1s0E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=O7m23VpeyyFGtHVQ0SDxRDbQjLNhp4OyIKa+PT9Wo+A=; b=n7gf1YYOnAhphq2CimHiwW6meF
-	rv8Wdu08U3b6KMsabDna4KHtK8IAfLgmeLgjht7XxQPsYDshPO+chUocHthm9jcPT78NAKye/xPx8
-	nc2m28DIzdpjwdSIbwR198aL8ofwrRWUTD9n8x67eAZDQzKUJcis84SJOJ025Q64knS1/dx0D7EuD
-	rfkP3/yGo2rr2dO8RyPVS8NZ0z/jp0R+FjopJ2D95S9KqODttjgxZZ8ym7WTV3dbGpS07XtSjcTUa
-	hRUtzGs13/EkMIx3kXFtlnu3yLJQUcxZv1xyNeKCS8angrc0TicDha3E3rPOODCzpIYwCV7ZsB9W/
-	FgcNgfXg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3o5GKOHC/f7YDGjWodZFo/bOjUuvywEOFfsWjvIURik=; b=PT66otCKZau2hg
+	Q9yLg+m72ZyiTfTbIXqgyEHkLTGs/I0eCLhC/ehCOcFTrIf99TuUH/R7lUkssNNmhgqM8KOCLCK+c
+	kF16jthBKZXdolB4noYSN952cFrwX0lQGz11ToYxa1HvijcslJLPYJm5oa9ge9df2+X5MNayixtoT
+	vSYVSNrU8XBRLSE2zST50W+nBZg+UjDfDHVWhZClUIx0dAQXFJJyeqRmw4tHo9aZFygOCTx4nDarj
+	3LcetVgN3n+8/4+plOacwnLo2qSjn3B36WdZqR0p6v+MhJ2DSgCCqpzcCFO6+kXPY++M6V57ZebSn
+	iP81tdGo3bastdLh3J/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm83-00000005wZq-3SfH;
-	Tue, 24 Nov 2026 08:43:55 +0000
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
+	id 1xVm8Y-00000005whH-0nQY;
+	Tue, 24 Nov 2026 08:44:26 +0000
+Received: from mail-m3274.qiye.163.com ([220.197.32.74])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm81-00000005wYS-1Wpf
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:43:54 +0000
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AO352Q81412829;
-	Tue, 24 Nov 2026 08:43:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pp1; bh=O7m23VpeyyFGtHVQ0SDxRDbQjLNhp4
-	OyIKa+PT9Wo+A=; b=Ce/swp8Jey/TeeaXBEZHjhd3Pn93Ab/qw0pPj0tNGQP33A
-	zSE9CQFwrz8qlGB0l49GgybkyYeX1fk7YbTrooq78QG80VLmVKuL9Ak4RDomyeFg
-	1nRd/6T4/F0d23KEu7qq1E59Sc5ydzvDVZ1fevsCdMLpebGiT6bhmVB61INM6Oqc
-	2VENEAmq5cLlDO9bBxiUkiFH4NWRyUBG0AP5dILT+K7q+jK0jdG51p0JE/6AFkDd
-	jlUxeHkttM3VbezbuAiTDVu8lf+xgKVcRGYdGY7rwq5ISJC4TCR5cgwh5ZJan2eC
-	8LXMPoVlkqJlrgonEIDDZHJqxPLPivwRGzIXpuHQ==
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34fa6vb0-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Tue, 24 Nov 2026 08:43:24 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AO2nX6g2087387;
-	Tue, 24 Nov 2026 08:43:24 GMT
-Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j3p0vj1r5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Nov 2026 08:43:23 +0000 (GMT)
-Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com [10.20.54.104])
-	by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AO8hJ8Y42926434
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 24 Nov 2026 08:43:20 GMT
-Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id CBB2B20043;
-	Tue, 24 Nov 2026 08:43:19 +0000 (GMT)
-Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 6C42C2004D;
-	Tue, 24 Nov 2026 08:43:19 +0000 (GMT)
-Received: from osiris (unknown [9.68.29.29])
-	by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Tue, 24 Nov 2026 08:43:19 +0000 (GMT)
-Date: Tue, 24 Nov 2026 09:43:18 +0100
-From: Steffen Eiden <seiden@linux.ibm.com>
-To: Janosch Frank <frankja@linux.ibm.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
-        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Zenghui Yu <yuzenghui@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Andreas Grapentin <gra@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@linux.ibm.com>,
-        Claudio Imbrenda <imbrenda@linux.ibm.com>,
-        David Hildenbrand <david@kernel.org>,
-        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
-        Alexander Gordeev <agordeev@linux.ibm.com>,
-        Sven Schnelle <svens@linux.ibm.com>,
-        Friedrich Welter <fritz@linux.ibm.com>,
-        Gautam Gala <ggala@linux.ibm.com>,
-        Hariharan Mari <hari55@linux.ibm.com>,
-        Hendrik Brueckner <brueckner@linux.ibm.com>,
-        Nico Boehr <nrb@linux.ibm.com>,
-        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>,
-        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org
-Subject: Re: [PATCH v3 23/23] s390: Report AEF features to sysfs
-Message-ID: <20261124084318.23381-A-seiden@linux.ibm.com>
-References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
- <20261106-sysreg-v3-23-75e95980fb10@linux.ibm.com>
- <01631f5a-9140-4dcb-a91b-5c431b384be6@linux.ibm.com>
+	id 1xVm8P-00000005wdl-2tF7;
+	Tue, 24 Nov 2026 08:44:21 +0000
+Received: from [127.0.0.1] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 55cc84df9;
+	Tue, 24 Nov 2026 16:44:12 +0800 (GMT+08:00)
+Message-ID: <a797b2da-ea60-4b81-8fbf-e027afc89cc6@rock-chips.com>
+Date: Tue, 24 Nov 2026 16:44:08 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <01631f5a-9140-4dcb-a91b-5c431b384be6@linux.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDAzMyBTYWx0ZWRfX7AwKlo5hrmga
- OCLxVqCWWWZO3kcworetiGUy2WV/dgmYumQCiq6Ol5EFqHg85k8E03qj8ZKkW6ZhomFEtjg5uuO
- mrI7BZ6tIMKOXCXIfY63r7ngsdsXowyOHTrdkExWZicD1Xe/wULSID9bvyvjOlXKaBMzFdt+Je5
- rcpYNU1ES9EMG8xennhRF5KNoOlkIcu0+HnSImKLgzpnNIqRjizZjHTzXLSQJaNoOT3TQzOWJ8Z
- 4XSmIhTRxPDbaD2akN/OQ58hnoar2LBUVOgfnqirlmwckzIp6aHPbMAm/kyPpOhuYRCp96FLWIY
- IaxLFB99pcLPO1q5wuNYFccmLTHHZ/iUbsM06Oqsacmm78u94YFXyhgHty7DfR/6Nu/vjTELHjo
- RK6s613cErTVTFcYyEe1DpKQHigT/XJgFzZw4lSvPCHQPRRwod0HiUblfl4nCnNkkFFe4NgRUY/
- yQOdQX3a5KMogTqz0wA==
-X-Proofpoint-ORIG-GUID: 6GJrjQx_l6DWOdMijtAWCgD_iYEspNos
-X-Authority-Analysis: v=2.4 cv=U6QHnuru c=1 sm=1 tr=0 ts=6b054e2d cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VnNF1IyMAAAA:8
- a=VwQbUJbxAAAA:8 a=bireLN_HoqkOtvrXVMMA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-GUID: 6GJrjQx_l6DWOdMijtAWCgD_iYEspNos
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDAzMyBTYWx0ZWRfXy5gfI4849inq
- e38ktmrAupucEPACzQtQFb06U77tqcFk/56FOIc5DRH1KOr3jmkqX1DHis5Rk5GcfYJfIant25k
- ZghX6D0s8lzz/DQ5oKO1FMjINkFmuyA=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-24_01,2026-11-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 spamscore=0 impostorscore=0
- clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 phishscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611240033
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] drm/bridge: add TH1520 DesignWare MIPI DSI host
+ controller
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
+ <andyshrk@163.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-riscv@lists.infradead.org, Han Gao <gaohan@iscas.ac.cn>
+References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
+ <20261124-th1520-dw-mipi-dsi-v3-2-ffcf2d87971b@iscas.ac.cn>
+ <af27260f-1911-47bb-8fe2-8eaa8bec31b0@rock-chips.com>
+ <561b5dc1b3a87ebc78f2357d253df4676395fb10.camel@iscas.ac.cn>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <561b5dc1b3a87ebc78f2357d253df4676395fb10.camel@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa20cba18a103a7kunm6bf4055ecd9ecd
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGUtIVh9MHxkaThgYS0kdTVYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUJCSU
+	5LVUpLS1VKQktCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=KiSU1s0EZ9KLCJQu6nw9dDe2DvvbXGp7ViKi5ZWPxWjVQUJlHixIgT9LEmYWiGVNpxlrSWk74CK2wqbjjs+phiZFCZSSZSnsmbAexYguA/zthzViEwImPghq/k0S+UitYLfLGWlnoiUaoQM7mKFEbTDawxKBpoaUSpJ/UyOYwYM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=3o5GKOHC/f7YDGjWodZFo/bOjUuvywEOFfsWjvIURik=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_004353_452992_A44F5196 
-X-CRM114-Status: GOOD (  29.68  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261124_004419_668541_EFD9853B 
+X-CRM114-Status: GOOD (  15.30  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,81 +86,360 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 02:04:12PM +0100, Janosch Frank wrote:
-> On 11/6/26 5:07 PM, Steffen Eiden wrote:
-> > Display various information about the Arm execution Facility (AEF) to
-> > userspace. The files are located in /sys/firmware/aef/. Show if the
-> > feature is available and usable for the host, which formats are
-> > available, and how many arm vCPUS per guest are supported by the
-> > machine. Additionally, provide the raw binary output of QAAF fc1 (Query
-> > Model Capabilities) in the file qmc and fc2 (Initial
-> > System-Registers-Save Area) in the file save_area.
-> > 
-> > Co-developed-by: Janosch Frank <frankja@linux.ibm.com>
-> > Signed-off-by: Janosch Frank <frankja@linux.ibm.com>
-> > Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
-> > Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
-> > Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
-> > ---
-> >   Documentation/ABI/testing/sysfs-firmware-aef |  70 +++++++++++++++++
-> >   arch/s390/kernel/aef.c                       | 113 +++++++++++++++++++++++++++
-> >   2 files changed, 183 insertions(+)
-> > 
-> > diff --git a/Documentation/ABI/testing/sysfs-firmware-aef b/Documentation/ABI/testing/sysfs-firmware-aef
-> > new file mode 100644
-> > index 000000000000..6ccd8491a017
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-firmware-aef
-> 
-> [...]
-> 
-> > +
-> > +What:		/sys/firmware/aef/query/sae_avail
-> > +KernelVersion:	7.5
-> > +Contact:	linux-s390@vger.kernel.org
-> > +Description:	Read-only, decimal boolean. Reports 1 if the machine
-> > +		provides the SAE instruction.
-> > +
-> > +What:		/sys/firmware/aef/query/ptff_avail
-> > +KernelVersion:	7.5
-> > +Contact:	linux-s390@vger.kernel.org
-> > +Description:	Read-only, decimal boolean. Reports 1 if the PTFF
-> > +		instruction supports the QAGTO and QAGPT subfunctions.
-> > +
-> > +What:		/sys/firmware/aef/query/edat2_avail
-> > +KernelVersion:	7.5
-> > +Contact:	linux-s390@vger.kernel.org
-> > +Description:	Read-only, decimal boolean. Reports 1 if the EDAT-2
-> > +		facility is available.
-> 
-> I don't think we need any of the three files above.
-> sae should be reported as a feature in /proc/cpuinfo, same as sief2.
-> 
-> edat2 is facility 78 in the same file.
-> 
-> PTFF-QAF is unprivileged.
+Hi Icenowy,
 
-OK, I can remove those. Primarily, I added them for convenience. I'll
-add those to the Documentation (I'll create one soonish)
-
+On 11/24/2026 4:34 PM, Icenowy Zheng wrote:
+> 在 2026-11-24二的 16:29 +0800，Chaoyi Chen写道：
+>> Hi Icenowy,
+>>
+>> On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
+>>> The T-Head TH1520 SoC contains a Synopsys DesignWare MIPI DSI host
+>>> controller with an internal DesignWare MIPI D-PHY.
+>>>
+>>> Add a glue driver configuring clocks and PHY parameters for it.
+>>>
+>>> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+>>> ---
+>>>  drivers/gpu/drm/bridge/Kconfig              |  12 +
+>>>  drivers/gpu/drm/bridge/Makefile             |   1 +
+>>>  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c | 570 ++++++++++++++++++++++++++++
+>>>  3 files changed, 583 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+>>> index c7da6b02d7b6b..f8987e8946fbb 100644
+>>> --- a/drivers/gpu/drm/bridge/Kconfig
+>>> +++ b/drivers/gpu/drm/bridge/Kconfig
+>>> @@ -372,6 +372,18 @@ config DRM_THEAD_TH1520_DW_HDMI
+>>>  	  Choose this to enable support for the internal HDMI bridge found
+>>>  	  on the T-Head TH1520 SoC.
+>>>  
+>>> +config DRM_THEAD_TH1520_DW_MIPI_DSI
+>>> +	tristate "T-Head TH1520 DesignWare MIPI DSI bridge"
+>>> +	depends on OF
+>>> +	depends on COMMON_CLK
+>>> +	depends on ARCH_THEAD || COMPILE_TEST
+>>> +	select DRM_DW_MIPI_DSI
+>>> +	select GENERIC_PHY_MIPI_DPHY
+>>> +	select MFD_SYSCON
+>>> +	help
+>>> +	  Choose this to enable support for the internal MIPI DSI bridge
+>>> +	  found on the T-Head TH1520 SoC.
+>>> +
+>>>  config DRM_TOSHIBA_TC358762
+>>>  	tristate "TC358762 DSI/DPI bridge"
+>>>  	depends on OF
+>>> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
+>>> index 15cc821d85b7e..5af871ba5ce77 100644
+>>> --- a/drivers/gpu/drm/bridge/Makefile
+>>> +++ b/drivers/gpu/drm/bridge/Makefile
+>>> @@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_SII9234) += sii9234.o
+>>>  obj-$(CONFIG_DRM_SIMPLE_BRIDGE) += simple-bridge.o
+>>>  obj-$(CONFIG_DRM_SOLOMON_SSD2825) += ssd2825.o
+>>>  obj-$(CONFIG_DRM_THEAD_TH1520_DW_HDMI) += th1520-dw-hdmi.o
+>>> +obj-$(CONFIG_DRM_THEAD_TH1520_DW_MIPI_DSI) += th1520-dw-mipi-dsi.o
+>>>  obj-$(CONFIG_DRM_THINE_THC63LVD1024) += thc63lvd1024.o
+>>>  obj-$(CONFIG_DRM_TOSHIBA_TC358762) += tc358762.o
+>>>  obj-$(CONFIG_DRM_TOSHIBA_TC358764) += tc358764.o
+>>> diff --git a/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
+>>> new file mode 100644
+>>> index 0000000000000..8e866b70aec88
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
+>>> @@ -0,0 +1,570 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+>>> + *
+>>> + * Author:
+>>> + *   Icenowy Zheng <zhengxingda@iscas.ac.cn>
+>>> + *
+>>> + * Based on dw_mipi_dsi-stm.c, which is:
+>>> + *   Copyright (C) STMicroelectronics SA 2017
+>>> + *
+>>> + * Based on dw-mipi-dsi-rockchip.c, which is:
+>>> + *   Copyright (C) Rockchip Electronics Co., Ltd.
+>>> + *
+>>> + * Based on vendor kernel phy-dw-mipi-dphy.c, which is:
+>>> + *   Copyright (C) Alibaba Group Holding Limited.
+>>> + */
+>>> +
+>>> +#include <linux/bitfield.h>
+>>> +#include <linux/clk.h>
+>>> +#include <linux/kernel.h>
+>>> +#include <linux/mfd/syscon.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/phy/phy.h>
+>>> +#include <linux/phy/phy-mipi-dphy.h>
+>>> +#include <linux/platform_device.h>
+>>> +#include <linux/regmap.h>
+>>> +#include <linux/regulator/consumer.h>
+>>> +
+>>> +#include <video/mipi_display.h>
+>>> +
+>>> +#include <drm/bridge/dw_mipi_dsi.h>
+>>> +#include <drm/drm_mipi_dsi.h>
+>>> +
+>>> +/* DSI controller registers for DPHY access */
+>>> +
+>>> +#define DSI_PHY_TST_CTRL0		0xb4
+>>> +#define PHY_TESTCLK			BIT(1)
+>>> +#define PHY_UNTESTCLK			0
+>>> +#define PHY_TESTCLR			BIT(0)
+>>> +#define PHY_UNTESTCLR			0
+>>> +
+>>> +#define DSI_PHY_TST_CTRL1		0xb8
+>>> +#define PHY_TESTEN			BIT(16)
+>>> +#define PHY_UNTESTEN			0
+>>> +#define PHY_TESTDOUT(n)			(((n) & 0xff) << 8)
+>>> +#define PHY_TESTDIN(n)			(((n) & 0xff) << 0)
+>>> +
+>>> +/* DPHY registers */
+>>> +
+>>> +#define PLL_DELAY_LP_TX_START_LP11	0x02
+>>> +#define TXDINDLYTIME_9_2		GENMASK(7,  0)
+>>> +
+>>> +#define PLL_FSM_CNTRL			0x03
+>>> +
+>>> +#define PLL_PROP_CHARGE_PUMP_CTRL	0x0e
+>>> +#define PLL_PROP_CNTRL			GENMASK(5,  0)
+>>> +
+>>> +#define PLL_INT_CHARGE_PUMP_CTRL	0x0f
+>>> +#define PLL_INT_CNTRL			GENMASK(5,  0)
+>>> +
+>>> +#define PLL_VCO_CTRL			0x12
+>>> +#define PLL_VCO_CNTRL_OVR_EN		BIT(6)
+>>> +#define PLL_VCO_CNTRL_OVR		GENMASK(5,  0)
+>>> +
+>>> +#define PLL_GMP_CTRL_DIGITAL_TEST	0x13
+>>> +#define PLL_TESTLOCK			BIT(7)
+>>> +#define PLL_GMP_CNTRL			GENMASK(5,  4)
+>>> +#define TSTPLLDIG			GENMASK(3,  1)
+>>> +#define TSTPLLDIG_LOCK			(0x0 << 1)
+>>> +#define TSTPLLDIG_REFCLK		(0x1 << 1)
+>>> +#define TSTPLLDIG_FBCLK			(0x2 << 1)
+>>> +#define TSTPLLDIG_INT_CLKIN		(0x3 << 1)
+>>> +#define TSTPLLDIG_LOCK_FROM_DETECTOR	(0x4 << 1)
+>>> +#define TSTPLLDIG_OUTPUT		(0x5 << 1)
+>>> +#define TSTPLLDIG_BUF_VCOCLK		(0x6 << 1)
+>>> +#define TSTPLLDIG_UPDATEPLL		(0x7 << 1)
+>>> +
+>>> +#define PLL_N_DIV_FSM_SIG		0x17
+>>> +#define PLL_N_OVR			GENMASK(3,  0)
+>>> +
+>>> +#define PLL_M_DIV			0x18
+>>> +#define PLL_M_OVR_4_0			GENMASK(4,  0)
+>>> +#define PLL_M_OVR_9_5			GENMASK(4,  0)
+>>> +
+>>> +#define PLL_N_AND_M_DIV_CTRL		0x19
+>>> +#define PLL_M_OVR_EN			BIT(5)
+>>> +#define PLL_N_OVR_EN			BIT(4)
+>>> +
+>>> +#define PLL_CHARGE_PUMP_BIAS_CTRL	0x1c
+>>> +#define PLL_CPBIAS_CNTRL		GENMASK(6,  0)
+>>> +
+>>> +#define PLL_ANALOG_PROGRAM_CONTROL	0x1f
+>>> +#define PLL_MPLL_PROG_5_0		GENMASK(5,  0)
+>>> +#define PLL_MPLL_PROG_11_6		GENMASK(5,  0)
+>>> +#define PLL_MPLL_PROG_16_12		GENMASK(4,  0)
+>>> +
+>>> +#define HS_FREQ_RANGE_OF_OPERATION	0x44
+>>> +#define HSFREQRANGE_OVR_EN		BIT(7)
+>>> +#define HSFREQRANGE_OVR			GENMASK(6,  0)
+>>> +#define HSFREQRANGE			HSFREQRANGE_OVR
+>>> +
+>>> +#define PG_LP_BIAS_LANE0		0x4a
+>>> +#define PRG_ON_LANE0			BIT(6)
+>>> +
+>>> +#define SR_FSM_OVR_CNTRL		0xa0
+>>> +#define SR_DDL_LOOP_CONF		0xa3
+>>> +
+>>> +/* syscon registers */
+>>> +
+>>> +#define MIPIDSI0_SYSREG			0x8
+>>> +#define MIPIDSI1_SYSREG			0xc
+>>> +#define MIPIDSI_HSFREQRANGE		GENMASK(9,  3)
+>>> +#define MIPIDSI_CFGCLKFREQRANGE		GENMASK(15, 10)
+>>> +#define MIPIDSI_CFGCLKFREQRANGE_DEF	(0x1c << 10)
+>>> +
+>>> +struct pll_hsfreqrange {
+>>> +	unsigned int max_mbps;
+>>> +	u8 hsfreqrange;
+>>> +};
+>>> +
+>>> +static const struct pll_hsfreqrange hsfreqrange_table[] = {
+>>> +	{ 80,  0x00 },
+>>> +	{ 90,  0x10 },
+>>> +	{ 100, 0x20 },
+>>> +	{ 110, 0x30 },
+>>> +	{ 120, 0x01 },
+>>> +	{ 130, 0x11 },
+>>> +	{ 140, 0x21 },
+>>> +	{ 150, 0x31 },
+>>> +	{ 160, 0x02 },
+>>> +	{ 170, 0x12 },
+>>> +	{ 180, 0x22 },
+>>> +	{ 190, 0x32 },
+>>> +	{ 205, 0x03 },
+>>> +	{ 220, 0x13 },
+>>> +	{ 235, 0x23 },
+>>> +	{ 250, 0x33 },
+>>> +	{ 275, 0x04 },
+>>> +	{ 300, 0x14 },
+>>> +	{ 325, 0x25 },
+>>> +	{ 350, 0x35 },
+>>> +	{ 400, 0x05 },
+>>> +	{ 450, 0x16 },
+>>> +	{ 500, 0x26 },
+>>> +	{ 550, 0x37 },
+>>> +	{ 600, 0x07 },
+>>> +	{ 650, 0x18 },
+>>> +	{ 700, 0x28 },
+>>> +	{ 750, 0x39 },
+>>> +	{ 800, 0x09 },
+>>> +	{ 850, 0x19 },
+>>> +	{ 900, 0x29 },
+>>> +	{ 950, 0x3A },
+>>> +	{ 1000, 0x0A },
+>>> +	{ 1050, 0x1A },
+>>> +	{ 1100, 0x2A },
+>>> +	{ 1150, 0x3B },
+>>> +	{ 1200, 0x0B },
+>>> +	{ 1250, 0x1B },
+>>> +	{ 1300, 0x2B },
+>>> +	{ 1350, 0x3C },
+>>> +	{ 1400, 0x0C },
+>>> +	{ 1450, 0x1C },
+>>> +	{ 1500, 0x2C },
+>>> +	{ 1550, 0x3D },
+>>> +	{ 1600, 0x0D },
+>>> +	{ 1650, 0x1D },
+>>> +	{ 1700, 0x2E },
+>>> +	{ 1750, 0x3E },
+>>> +	{ 1800, 0x0E },
+>>> +	{ 1850, 0x1E },
+>>> +	{ 1900, 0x2F },
+>>> +	{ 1950, 0x3F },
+>>> +	{ 2000, 0x0F },
+>>> +	{ 2050, 0x40 },
+>>> +	{ 2100, 0x41 },
+>>> +	{ 2150, 0x42 },
+>>> +	{ 2200, 0x43 },
+>>> +	{ 2250, 0x44 },
+>>> +	{ 2300, 0x45 },
+>>> +	{ 2350, 0x46 },
+>>> +	{ 2400, 0x47 },
+>>> +	{ 2450, 0x48 },
+>>> +	{ 2500, 0x49 },
+>>> +};
+>>> +
+>>> +struct hstt {
+>>> +	unsigned int max_mbps;
+>>> +	struct dw_mipi_dsi_dphy_timing timing;
+>>> +};
+>>> +
+>>> +#define HSTT(_max_mbps, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)	\
+>>> +{					\
+>>> +	.max_mbps = _max_mbps,		\
+>>> +	.timing = {			\
+>>> +		.clk_lp2hs = _c_lp2hs,	\
+>>> +		.clk_hs2lp = _c_hs2lp,	\
+>>> +		.data_lp2hs = _d_lp2hs,	\
+>>> +		.data_hs2lp = _d_hs2lp,	\
+>>> +	}				\
+>>> +}
+>>> +
+>>> +static struct hstt hstt_table[] = {
+>>> +	HSTT(80, 21, 17, 15, 10),
+>>> +	HSTT(90, 23, 17, 16, 10),
+>>> +	HSTT(100, 22, 17, 16, 10),
+>>> +	HSTT(110, 25, 18, 17, 11),
+>>> +	HSTT(120, 26, 20, 18, 11),
+>>> +	HSTT(130, 27, 19, 19, 11),
+>>> +	HSTT(140, 27, 19, 19, 11),
+>>> +	HSTT(150, 28, 20, 20, 12),
+>>> +	HSTT(160, 30, 21, 22, 13),
+>>> +	HSTT(170, 30, 21, 23, 13),
+>>> +	HSTT(180, 31, 21, 23, 13),
+>>> +	HSTT(190, 32, 22, 24, 13),
+>>> +	HSTT(205, 35, 22, 25, 13),
+>>> +	HSTT(220, 37, 26, 27, 15),
+>>> +	HSTT(235, 38, 28, 27, 16),
+>>> +	HSTT(250, 41, 29, 30, 17),
+>>> +	HSTT(275, 43, 29, 32, 18),
+>>> +	HSTT(300, 45, 32, 35, 19),
+>>> +	HSTT(325, 48, 33, 36, 18),
+>>> +	HSTT(350, 51, 35, 40, 20),
+>>> +	HSTT(400, 59, 37, 44, 21),
+>>> +	HSTT(450, 65, 40, 49, 23),
+>>> +	HSTT(500, 71, 41, 54, 24),
+>>> +	HSTT(550, 77, 44, 57, 26),
+>>> +	HSTT(600, 82, 46, 64, 27),
+>>> +	HSTT(650, 87, 48, 67, 28),
+>>> +	HSTT(700, 94, 52, 71, 29),
+>>> +	HSTT(750, 99, 52, 75, 31),
+>>> +	HSTT(800, 105, 55, 82, 32),
+>>> +	HSTT(850, 110, 58, 85, 32),
+>>> +	HSTT(900, 115, 58, 88, 35),
+>>> +	HSTT(950, 120, 62, 93, 36),
+>>> +	HSTT(1000, 128, 63, 99, 38),
+>>> +	HSTT(1050, 132, 65, 102, 38),
+>>> +	HSTT(1100, 138, 67, 106, 39),
+>>> +	HSTT(1150, 146, 69, 112, 42),
+>>> +	HSTT(1200, 151, 71, 117, 43),
+>>> +	HSTT(1250, 153, 74, 120, 45),
+>>> +	HSTT(1300, 160, 73, 124, 46),
+>>> +	HSTT(1350, 165, 76, 130, 47),
+>>> +	HSTT(1400, 172, 78, 134, 49),
+>>> +	HSTT(1450, 177, 80, 138, 49),
+>>> +	HSTT(1500, 183, 81, 143, 52),
+>>> +	HSTT(1550, 191, 84, 147, 52),
+>>> +	HSTT(1600, 194, 85, 152, 52),
+>>> +	HSTT(1650, 201, 86, 155, 53),
+>>> +	HSTT(1700, 208, 88, 161, 53),
+>>> +	HSTT(1750, 212, 89, 165, 53),
+>>> +	HSTT(1800, 220, 90, 171, 54),
+>>> +	HSTT(1850, 223, 92, 175, 54),
+>>> +	HSTT(1900, 231, 91, 180, 55),
+>>> +	HSTT(1950, 236, 95, 185, 56),
+>>> +	HSTT(2000, 243, 97, 190, 56),
+>>> +	HSTT(2050, 248, 99, 194, 58),
+>>> +	HSTT(2100, 252, 100, 199, 59),
+>>> +	HSTT(2150, 259, 102, 204, 61),
+>>> +	HSTT(2200, 266, 105, 210, 62),
+>>> +	HSTT(2250, 269, 109, 213, 63),
+>>> +	HSTT(2300, 272, 109, 217, 65),
+>>> +	HSTT(2350, 281, 112, 225, 66),
+>>> +	HSTT(2400, 283, 115, 226, 66),
+>>> +	HSTT(2450, 282, 115, 226, 67),
+>>> +	HSTT(2500, 281, 118, 227, 67),
+>>> +};
+>>> +
+>>
+>> Where do these data come from?
 > 
-> Also, if aef is the requirement for the directory to exist, why would saef
-> not be enabled?
->
+> This is part of the vendor DPHY driver, see [1].
+> 
+> Thanks,
+> Icenowy
+> 
+> [1]
+> https://github.com/revyos/th1520-linux-kernel/blob/th1520-lts/drivers/phy/synopsys/phy-dw-mipi-dphy.c#L185
 
-You are right. I'll drop the three files.
+This looks consistent with imx93-mipi-dsi.c, but the TH1520 does not
+use the same TSMC 16nm process as the IMX93. As far as I know, they
+are usually different. 
 
-I am thinking about always providing the aef directory. And just not
-calling qaaf in the !aef case. Then userspace does not have to test if
-the file exists and guess if the file does not exists because the kernel
-does not support it or the HW. Or is this a non-issue?
+Could you confirm this from the DesignWare PHY databook?
 
-	Steffen
+-- 
+Best, 
+Chaoyi
 
