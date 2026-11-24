@@ -2,82 +2,165 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C610E606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2A4606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IuGArLOp;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Q89+Bx1d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XCV3+jq7;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=HB4TBHYL;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=cP+QMTBv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=23A2BUHFe6VM/AwKx+Mlw+Ey/1Aj8HnIQKPlokLPThU=; b=IuGArLOpV5EIa7
-	ljEh7viRt/BFXe1I5lbJwRZslvSJdZrl/7WYkGEboyyszpiESIXFiXbInfU46TLj58RnBsvLJMCO8
-	RyXExZOOfPgUTSnT61fV4lPXFIzVFc151aYb3/MYtnsYUQ+Rnh8JzBTJAq7Q0lc2Fz7eFj5IYTaZy
-	qy9XzETNTQRqkJUCcTlz2Ycaw5/9ccEa4hj6oMoNmAiKXh8wUX3pya2tCYsVxL6WXo6eG5YhpGKtv
-	34mJvUxYVHDnNWp3W72YdpLJcQfkeAYBJZIpr9BFdPr+PBxZsPGk9vEGpbeQLeqYMNHwmI2NbW2tI
-	eD/NM6fykrKNEOxwnEjw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
+	From:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=iOk5q+z3t+gH5BFuZnM8gF4oMYS6RiydYksgAOOMLSM=; b=XCV3+jq7eEGVLve53mgl/OaFLP
+	Lsr7HX6lUJYaIiu/1vtPUFAygGSnsrjLE79ygnd0NttGmbCZSiwIpZxj+ORkZx0Bwr33CnoDjVJmZ
+	DCAyl8loTBsdVmKbdTWAmDQX0SDsQR17NP0WBpsTE9skas0odG3l32T5IcD3oTiAXNFfjhesxMP5Z
+	x0O5VIQBdMF7viDBpd27SyBOmOOPa9MrCRwtyWIgsNjCYdqB12uWIojwmhdb+KdeD/tqp2oFzRRYZ
+	cg8r/aLdEFSYFblOPtD1UAjqe77ZAlLT112tt6hRe0RBSan53qlla2TxnSoMWOpo6rHVDwJRFyi0U
+	sSiaLZxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtlp-00000007DiK-0yVE;
-	Tue, 24 Nov 2026 16:53:29 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xVtmi-00000007E9e-0Ik8;
+	Tue, 24 Nov 2026 16:54:24 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtlD-00000007DQ5-3omb
+	id 1xVtmH-00000007Dzu-343D
+	for linux-arm-kernel@bombadil.infradead.org;
+	Tue, 24 Nov 2026 16:53:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Transfer-Encoding
+	:Content-Type:In-Reply-To:References:Cc:To:Subject:From:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=iOk5q+z3t+gH5BFuZnM8gF4oMYS6RiydYksgAOOMLSM=; b=HB4TBHYLsnD88MGl11ALTQgql/
+	i0WhI4/jEAauVUxGFztL/4pBNlYj42XXATEcwDMqdCs/qMszcfr/c7Ngj1GJ2RC6bAGmQsnZ/ZGUp
+	5pX2CbDsI8W3tnWAMc2+tB07tQ0L4YoZjJX3aoMpwyTA/I96xsi+iKrIxh/2i1ubJP7tibqKVIyL7
+	5GtwH3AVYyrp0LJNSsczdXHBz25Ueg5rxjsQK/PHCZZt3lCCC4ut+TpvcUnQOrL9bj1FBRTbXWgAB
+	UFJ307OM+dpwEujgVB9ihHvW3gwk1E5wPXcuKpsbZWelkMgdRNidOLmAkSVzA/XkSHX5PGPgbl3jD
+	0CGERgzA==;
+Received: from mail-westcentralusazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c112::7] helo=CY3PR05CU001.outbound.protection.outlook.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVtmB-00000004N52-2vxb
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:52:56 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 482F81A1747;
-	Tue, 24 Nov 2026 16:52:50 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 145B7601E1;
-	Tue, 24 Nov 2026 16:52:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2773511E69A92;
-	Tue, 24 Nov 2026 17:52:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795539168; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=23A2BUHFe6VM/AwKx+Mlw+Ey/1Aj8HnIQKPlokLPThU=;
-	b=Q89+Bx1dKfy6o0XbZ1DlKpum+JP7/pbKVmb9zHWssO0BWeE+AkB4iUYy5CeZor7+Nl2QXd
-	Msj1dmVBTxWbhw5t4LlO/2+E1lu8hLFtDYOhDJxL9WmHa4efStWNuJ+6TP6Jq2NfygLK6k
-	8+m8vElm2Ed9pvjtZ7DFzAszzjIYEioFdpRAlM8qUoDko0zb+PWr4jMWWOQ4VMTkZYQnP0
-	UMgQRzh8nrL2PPTiQQrAtj0AbVhNikqKrsF6HekXdRMu1LGVBvYX83g1d43vtATUKJMcSq
-	hKDgdQYFH4qFrF5nch39LPU+1rf3SsxF99GKFasUzXgD5vDFd2yp3zP9WJSbaA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Tue, 24 Nov 2026 17:51:34 +0100
-Subject: [PATCH v13 09/10] clk: nuvoton: ma35d1: Fix CCAP muxes bus width
+	Tue, 24 Nov 2026 16:53:56 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HCPrdgomcWqxp8zNYiEjdxruq8zdWpRPUmjKxl5IN5wasnfgYkAOwNj1VsTuJY9fLvN4kTfcrqfXZE5hHMY5fVfnolfQUAM336Ii/DuIRbB1gUoTQPVQcHGVmiN6uqV+ciV88dHtQ4m/Uv1xR1Ro35KaJuL83FHQ9+YlEEeG7oDd6BfSDefJCM+GHXITvW/V7k7ji7LQo3aaH2/yqBkODKuVH5FYepzbmw7C9U/RBf5CqysfT6o+l2o0WjHFa8kknPkvvsSo5Hk93A2wG6eg6rnnc0EHyNYZ2M9NkCq/MZ/aZANDh3RZSk3VroLvzwixVFQVJQHD379ZrT3t4JRZ6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iOk5q+z3t+gH5BFuZnM8gF4oMYS6RiydYksgAOOMLSM=;
+ b=ZLjIUnDUBRb07wcRvBW2JAkozh3L+yZkpfVRVJmOq1onMBJV+K4bm2/LHDAfmoep98piS7+oVUDM3nA02F3sQjdf8iNG+OH+tV/bZybRO7CTIWR6lSY2LszC9ZbPvyyMjpqkcx4YVbCbh6pyslY4On4aWlhrX5M9+HxXZtiC9hZAO4SnlEQVpocdWf7X2mpxd+nPcQ2ZiLOyLAOPG9YbGb1ueajYkw1QwPPl9g0anw1iD4cU76DO2J+L9mqvkKwI42PyUYiTV9W4WP3soR7+WzvCM8pO8XCCjhHFSLXY3kG5FlfAsr9eiQQ0ERYXF2jrtTQrnl7nP8LzBcXgA6K1TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iOk5q+z3t+gH5BFuZnM8gF4oMYS6RiydYksgAOOMLSM=;
+ b=cP+QMTBv/6mNI2Aq/ykLJZmyJROj2ejn8uN8H+s8J0PTtoNydnIFxthQ1FoNTZId4gxMrNRsiHPM0IHsjWKfUwHeSv7HOjZXdYrhyu5dpBEEJMcH/210aXepmBAJqHQTdmjhK7NXU1D6v7vJCJveRc8CV0lN8QbpaaTgvPUl380=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CY1PR12MB9559.namprd12.prod.outlook.com (2603:10b6:930:fd::14)
+ by CY1PR12MB9626.namprd12.prod.outlook.com (2603:10b6:930:106::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Tue, 24 Nov
+ 2026 16:53:36 +0000
+Received: from CY1PR12MB9559.namprd12.prod.outlook.com
+ ([fe80::1761:23a3:6ab5:fbb8]) by CY1PR12MB9559.namprd12.prod.outlook.com
+ ([fe80::1761:23a3:6ab5:fbb8%7]) with mapi id 15.21.0639.010; Tue, 24 Nov 2026
+ 16:53:36 +0000
+Message-ID: <f7273b47-0835-4afb-9e45-ddf729f05b8e@amd.com>
+Date: Tue, 24 Nov 2026 22:23:29 +0530
+User-Agent: Mozilla Thunderbird
+From: "Nagavarapu, Dileep Kumar" <dnagavar@amd.com>
+Subject: Re: [PATCH v5 14/16] iio: adc: xilinx-xadc: Split driver into core
+ and platform files
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Conall O'Griofa <conall.ogriofa@amd.com>, linux-iio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ git@amd.com, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
+ <20261110050201.1850399-15-dileepkumar.nagavarapu@amd.com>
+ <avNGcpcemoeE3J7O@ashevche-desk.local>
+ <42949fe9-b336-40e7-8a8e-43f6d24da9bc@amd.com>
+ <awVzDqxuwsOjoFCi@ashevche-desk.local>
+Content-Language: en-US
+In-Reply-To: <awVzDqxuwsOjoFCi@ashevche-desk.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0029.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::11) To CY1PR12MB9559.namprd12.prod.outlook.com
+ (2603:10b6:930:fd::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-perso-ma35d1-upstream-clk-v13-9-c920f4a9f0ce@bootlin.com>
-References: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
-In-Reply-To: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
-To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
- Arnd Bergmann <arnd@arndb.de>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Steam Lin <STLin2@winbond.com>, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
- stable@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY1PR12MB9559:EE_|CY1PR12MB9626:EE_
+X-MS-Office365-Filtering-Correlation-Id: d67845e5-539d-489f-55ac-08df4a4b7b4b
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|4143699003|261022105027099003|261026140227099003|261022075727099003|11063799006|56012099006|261021121427099003|10067099003|261102123227099003|261021123027099003|261009223027099003|261028144727099003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: VSsrgWtflf+Ad38mKbi6mJBGaDef7nL6JdxfB6TCijLKjaAPCBOmglDuXi77+z4b7AKLMZe51kWYxi/fCDehi49CVgUgquU696IBpCma+HSZ89bnEcDMSpVovi9ZNRvQSK+90Zqkduzx1xFoWxzZ/sKZ0IwWu+BxBAxlR688f5/DseEQayGY8emHina7trTSknPedhlFVoN/fQofmLhM8rO89zwWEZl4gecrWJIy4AjWzFwlqnDSw6x8DdNXAZJIly3eWEtxN5YIoGbrpGSCGUPHxioLA6vsCEriqZ/sxi6CNEJ9QsQLBgiLbfpRuYZwM2eUdFo9ddnTMRKI9ayp2wR9slS0kPipsHrhPfTn2QliF7etgMZBjH73veXXXfGglmW6vIIODJjWsGMUIuQqGm5N7hlGYnF6wjnKIpseU4UsDcvRe+FsMiF0h1tEuT7oIFUdwwrez4LFz2UH8ukDSUzuW2col1YysPiqI3fcxGJIdWM/pRHYuCna+PdcUY0cafknY5t8BkyoNs6aXptH9wlOH276vA+XUEmBGBMu9RZ6i6ywNzTrJhV0ggK2QlUO17ThJnfuPypAb72sAQY5vbuwVElDe3/d++UW6noe5XXip7I9DXA7QYZ4UpKZAUnNzA+ckFHUVysW7xav+ze/nQcsP5BCbKaUES7+KLHTW1o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY1PR12MB9559.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(4143699003)(261022105027099003)(261026140227099003)(261022075727099003)(11063799006)(56012099006)(261021121427099003)(10067099003)(261102123227099003)(261021123027099003)(261009223027099003)(261028144727099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1UyaWRQUDhVaTBXMTdubE9nYkI2RlNRWDNETFptdDVUZzdSTE5vZnBDb0xy?=
+ =?utf-8?B?bVI2UkQwUHkrUDhWWHcyaHJ3aERDMFpUWjFGQ21MdE9Rbkx4c0MrcDFhTThQ?=
+ =?utf-8?B?Z283RW14cG44NFk2L3pYLzFKWkYxMjROM00zRExxS1FDcFpxK216RTdJakIv?=
+ =?utf-8?B?SEtvTFBhcXNtYnJ5aXR5SzlBK0cwQ2hXTjc1STVlcFN5ODNoOU5DQkNSVmNq?=
+ =?utf-8?B?QnpFWEZsbDYvY21ESXJReDVQam83QndCZWpON3YrTTVFRitJbjNPVVRUdWNm?=
+ =?utf-8?B?Q3IxbTczWTRNdVk4eUN5MFFOY1J6cEVIRmt0d2pTaUNSSDhieC8xNlpRQTZI?=
+ =?utf-8?B?THQyL1h2UE5jMHJ1bmxLd1cweDBWTHV0NllvWDZ3dkh4bHRnOW5DN2l4M1hl?=
+ =?utf-8?B?YmdZRVVrUy9Sb1c0eHVIQUt0QUs2THBOWUgyR3lMNVBuYWtLMHZqV1htOG92?=
+ =?utf-8?B?Zy9BbmV2R3BvdTNlKzVwbm5yOThrU21NcCtLcXd0ODl5RGQxa0V3YUVFb3B6?=
+ =?utf-8?B?VmdYS2l3NW8zdDRhUnV2Y1M4U2xIeGpjMDVOa1VtZXRFMGRBNkgvT3owNXNK?=
+ =?utf-8?B?ODczNTVaZUczWWY2WFpQSGVmaWs5UW5FMWczdEp2OXZBeWRLd01KcG1XZ3oy?=
+ =?utf-8?B?SU12dmo5WXMxTHRHUThpTnZ6RmRpcnVSaXMzbXdrSXlqcUp4dWNzSlVpY0hr?=
+ =?utf-8?B?Rk1ENDF1QXAyUGJSK0dwdUJlSVVDUXhKdGlvZVJDeG85bEliNCtlQlhaQUwr?=
+ =?utf-8?B?ZFZpRlpMaThOQ2Y1VVRGMHdhNkZQTWJxbWtLSzI4OU5kSTBvbkVrRkNxcmkz?=
+ =?utf-8?B?VXdOKy8zM01oWTlROUlFc0luejFtVXMxTCtPSVI4V0NreTZ0TVA1WnpCUHd6?=
+ =?utf-8?B?dUZocHA1Y2xzOHRkTEd2ZjRpN3gxVS9NaGozSGV3aThUY01mRWZ0b25mZTNl?=
+ =?utf-8?B?ZU9qUXp6NzFpQmkzNStsOUlnTWJvNjFUYVdwWGI4VmRzUmZpVHhOZEVoU21T?=
+ =?utf-8?B?N1JabWx6MUcvZ0prU2pmeWprSkFWZlNSZXZxbEtiK200amNaaHJMekNlNkRN?=
+ =?utf-8?B?MVh4b0tPTDBRT1BsWnM3M3lzcFd3cVdhMG95dFNic1hNaWRCVnpsWmtnZkJx?=
+ =?utf-8?B?eUd6c2NaS2pzZVRPY1cyQzQwL3dmVll4T3h6UkpOQ3dIaHB1b2pLbnVXMWFS?=
+ =?utf-8?B?Z1hRRnpvTU1ySEc0V3M1Y1k2ckZaNFVtaytKVTAxUUdBcXFzZUxkeGdWSElM?=
+ =?utf-8?B?aWJEVUlLRGo4bUl2eGxadGRGVkUzRENWYlZJMnZ4T1ZEVG9IOXBYampBeUFw?=
+ =?utf-8?B?VE1DZ2tOUTZsRTZaUGNSTlZoVTBNc01GVTUzK1NnbDdZZTAzSThPckg3Nnlu?=
+ =?utf-8?B?WGsrMHVzSHVWbnNjOUpwNXFsdGdhOHVqNEtCOE5ZejJpb01DWWMxcSs2eS83?=
+ =?utf-8?B?a3hNRjhycjJFTVhOQWdVd1AraGJZazlIVS9iVXBGckkzNFNuQVFJWkFHRm5t?=
+ =?utf-8?B?YWZ6QnJrUndTNExla25BL3lxU09Vak5HakVQeXF4WG5tWnlyZTdhOVVYeGtR?=
+ =?utf-8?B?SHZUVjVVaDNXUjNhYnlleEx4MnRyaHE1UnpwQlJxZnhQWUc1NjBkY2JNcktP?=
+ =?utf-8?B?V1lnckhRVHovR2t4YUQ4NDVKS1FKRWRWRVlvMDBoRTRmWlgvVTRUYXg4RFpM?=
+ =?utf-8?B?WFhNNTNWdGRISTBnQkpRWVppcjkydDc0Z3VsNDUzdWRTTFFGeWptMFQ4OFZi?=
+ =?utf-8?B?d1pKSXU4Q1pXZXJUQVZacWNOaXBlbUJMZk02V3E0SFpOeUY4RGY0ZjhYZ3pU?=
+ =?utf-8?B?dVJydk5uV05TSEloV1NRd1VWM3FqUC9GUXpuR2Vnc0phZy90QjYxZ2lVYStW?=
+ =?utf-8?B?R2xGNGxyMDl3KytOQ2gxQys5cUpvQTNTbjd4amwzR3NqM3NSOWo2UU9DaUV2?=
+ =?utf-8?B?R3haMVR4WVVJRFhyc3dtSUZQSERLL1o0dk56MC9RL0dMSno2b1lzUXViTFZz?=
+ =?utf-8?B?c0ZIOUQxdjVmQVdzVnM0cTJGVks0RkhTSmY1T1RyTzhrRU9JQzdvek5WL2hG?=
+ =?utf-8?B?M2lSKzJMZnFSTDNCOFllU1FYWU5hbnN6T2pOMytUZjZoMnp2aUx1VWI4YUpM?=
+ =?utf-8?B?WkVsb2RCZmQ4YXlDd2twMi9rcDY4UkhzSEJJSUFLTGZBU1RsbG5wZUhJMENS?=
+ =?utf-8?B?TXQ0anlnS2NIOFA3dTFGUjI3K3VxVTdHWFc0UnZYNnhxMkdQOW5UamVLRytm?=
+ =?utf-8?B?ZkpTdkRRbmRWNDdpRFVLSWRiemRLZ0wyL0NBcnkzZDBPUG1yU2dUZW41Smxx?=
+ =?utf-8?Q?2RgAmZLltlf2EdSiTB?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d67845e5-539d-489f-55ac-08df4a4b7b4b
+X-MS-Exchange-CrossTenant-AuthSource: CY1PR12MB9559.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 16:53:36.6912
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h364Rl0b8toisIpNwFpDRCkjrsSLroorKjdjCsFpjNR37SqXyYCMqwGwSlvGol2Ak3MP/XWwRM6TJTHTi3GvyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9626
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_085252_850243_EC7C5F1B 
-X-CRM114-Status: GOOD (  12.08  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_165354_378551_B5DB2E68 
+X-CRM114-Status: GOOD (  24.91  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,47 +171,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Both CCAP muxes are registered with a single bit bus width which is
-obviously wrong since there are 4 possible parents. Fix the mux field
-width.
 
-Fixes: 691521a367cf ("clk: nuvoton: Add clock driver for ma35d1 clock controller")
-Cc: stable@vger.kernel.org
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/clk/nuvoton/clk-ma35d1.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/nuvoton/clk-ma35d1.c b/drivers/clk/nuvoton/clk-ma35d1.c
-index 06bbd63f2ccf..82a4aadeff6b 100644
---- a/drivers/clk/nuvoton/clk-ma35d1.c
-+++ b/drivers/clk/nuvoton/clk-ma35d1.c
-@@ -427,13 +427,13 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
- 	hws[EMAC1_GATE] = ma35d1_clk_gate(dev, "emac1_gate", "epll_div2",
- 					  clk_base + REG_CLK_SYSCLK0, 28);
- 
--	hws[CCAP0_MUX] = ma35d1_clk_mux(dev, "ccap0_mux", clk_base + REG_CLK_CLKSEL0, 12, 1, hws,
-+	hws[CCAP0_MUX] = ma35d1_clk_mux(dev, "ccap0_mux", clk_base + REG_CLK_CLKSEL0, 12, 2, hws,
- 					ccap_parent_idx, ARRAY_SIZE(ccap_parent_idx));
- 	hws[CCAP0_DIV] = ma35d1_clk_divider(dev, "ccap0_div", "ccap0_mux",
- 					    clk_base + REG_CLK_CLKDIV1, 8, 4);
- 	hws[CCAP0_GATE] = ma35d1_clk_gate(dev, "ccap0_gate", "ccap0_div",
- 					  clk_base + REG_CLK_SYSCLK0, 29);
--	hws[CCAP1_MUX] = ma35d1_clk_mux(dev, "ccap1_mux", clk_base + REG_CLK_CLKSEL0, 14, 1, hws,
-+	hws[CCAP1_MUX] = ma35d1_clk_mux(dev, "ccap1_mux", clk_base + REG_CLK_CLKSEL0, 14, 2, hws,
- 					ccap_parent_idx, ARRAY_SIZE(ccap_parent_idx));
- 	hws[CCAP1_DIV] = ma35d1_clk_divider(dev, "ccap1_div", "ccap1_mux",
- 					    clk_base + REG_CLK_CLKDIV1,
+On 11/24/2026 4:50 PM, Andy Shevchenko wrote:
+> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+> 
+> 
+> On Tue, Nov 24, 2026 at 04:33:59PM +0530, Nagavarapu, Dileep Kumar wrote:
+>> On 11/10/2026 9:59 PM, Andy Shevchenko wrote:
+>>> On Tue, Nov 10, 2026 at 10:31:59AM +0530, Dileep Kumar Nagavarapu wrote:
+> 
+> ...
+> 
+>>>> ---
+>>>>    drivers/iio/adc/Kconfig                       |   8 +-
+>>>>    drivers/iio/adc/Makefile                      |   5 +-
+>>>>    drivers/iio/adc/xilinx-xadc-core.c            | 690 +--------------
+>>>>    drivers/iio/adc/xilinx-xadc-events.c          |   1 +
+>>>>    ...inx-xadc-core.c => xilinx-xadc-platform.c} | 818 +-----------------
+>>>>    drivers/iio/adc/xilinx-xadc.h                 |  27 +
+>>>>    6 files changed, 72 insertions(+), 1477 deletions(-)
+>>>
+>>> This is weird statistics... I think it's a bug in Git. What it did, it copies
+>>> -core.c twice and uses statistics on each file after that without duplicating
+>>> the *original* amount of lines.
+>>
+>> I generated the patches using the following command: "git format-patch \
+>>     -M \
+>>     -C10% \
+>>     --histogram \
+>>     --base=origin/togreg \
+>>     --cover-letter \
+> 
+>>     --subject-prefix="PATCH v5" \
+> 
+> Hint: You can use -v5 instead of the above long parameter.
+> 
+>>     origin/togreg..HEAD"
+>>
 
--- 
-2.56.0
+>> If I remove the 10% similarity threshold from the command,
+> 
+> 10% is way too low threshold!
+> 
+
+Is it OK to use `-M -C --histogram` (default thresholds) instead? With
+it, xilinx-xadc-platform.c is shown as a new file with all lines as
+additions rather than as a copy of xilinx-xadc-core.c. The statistics
+then look like this:
+
+  drivers/iio/adc/Kconfig                |   8 +-
+  drivers/iio/adc/Makefile               |   5 +-
+  drivers/iio/adc/xilinx-xadc-core.c     | 688 +------------------------
+  drivers/iio/adc/xilinx-xadc-events.c   |   1 +
+  drivers/iio/adc/xilinx-xadc-platform.c | 677 ++++++++++++++++++++++++
+  drivers/iio/adc/xilinx-xadc.h          |  28 +
+  6 files changed, 733 insertions(+), 674 deletions(-)
+
+Are these statistics OK?
+
+
+>> xilinx-xadc-platform.c is no longer detected as a copy of the original
+>> xilinx-xadc-core.c, which is not the expected output.
+>> Is there a better command or approach that would allow Git to recognize
+>> xilinx-xadc-platform.c as being split from the original file while also
+>> producing meaningful diff statistics?
+> 
+> But it's not a full copy. Have you tried to apply the patch from the mailing
+> list and see if `git am` correctly recognises the split?
+> 
+
+Yes. I applied the v5 series from the mailing list with `git am`
+and all patches applied without errors
+
+> 
+> --
+> With Best Regards,
+> Andy Shevchenko
 
 
