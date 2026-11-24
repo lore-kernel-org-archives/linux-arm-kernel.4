@@ -2,103 +2,137 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401F2606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D745606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZTqo6cx1;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=i6kA3afv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n7gf1YYO;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=Ce/swp8J
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=miq8lHAk9j+ldEOiiht4iRcOG6aLFpZt8I9oVYIzhag=; b=ZTqo6cx14cZiBw
-	m+22mbwwZPs6Mhe5qnbLLNCxcVlsRAjCmP+YlAlW0RlT9Sw/vGA2iTUBpDe4+AXu4tbM0VKAlL6NA
-	MMb8ZPfPnTPy9+z8eV3ozJkPgGs3hB0PUmClPh2Hk9EWcdbrIrhS0KezMz/drDVi2J+KsOAjaaXtM
-	Uc/4Rnszhtl0i3sfkHQmREhmFxqS20jC+zu4q8J8j5j+jsfLjNQusr9IoP3I8SSGsrij73eVVvOr4
-	rPrMgvjg1Q8SzUOMwt/LkVmEZWDSQJBw3IoFo10acoVSB1YHEUD1yfGJOmF4rgVpUo0wT2SN2NiQ3
-	0ZMQ/7zL+gXE7KH35iBw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=O7m23VpeyyFGtHVQ0SDxRDbQjLNhp4OyIKa+PT9Wo+A=; b=n7gf1YYOnAhphq2CimHiwW6meF
+	rv8Wdu08U3b6KMsabDna4KHtK8IAfLgmeLgjht7XxQPsYDshPO+chUocHthm9jcPT78NAKye/xPx8
+	nc2m28DIzdpjwdSIbwR198aL8ofwrRWUTD9n8x67eAZDQzKUJcis84SJOJ025Q64knS1/dx0D7EuD
+	rfkP3/yGo2rr2dO8RyPVS8NZ0z/jp0R+FjopJ2D95S9KqODttjgxZZ8ym7WTV3dbGpS07XtSjcTUa
+	hRUtzGs13/EkMIx3kXFtlnu3yLJQUcxZv1xyNeKCS8angrc0TicDha3E3rPOODCzpIYwCV7ZsB9W/
+	FgcNgfXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm6C-00000005wMl-2TqV;
-	Tue, 24 Nov 2026 08:42:00 +0000
-Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
+	id 1xVm83-00000005wZq-3SfH;
+	Tue, 24 Nov 2026 08:43:55 +0000
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVm68-00000005wMD-2KGj
+	id 1xVm81-00000005wYS-1Wpf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:41:58 +0000
-Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3b439e37813so1895015a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:41:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795509715; x=1796114515; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=miq8lHAk9j+ldEOiiht4iRcOG6aLFpZt8I9oVYIzhag=;
-        b=i6kA3afvzmgc5hWz810FGHS4/apn2ChCjRmlODN6/ZZWiwqOvSp6ruosqihTz5xA7I
-         D2bi5NlbsszB8A36Il/KaPTuLiDOCuwVihozf0JViEg1Y4C7dgIdJovjBEOx/M90qXdv
-         c+gtfWroSLJKGUA5MqXtfqz2kuVc4P+ob0PH1sfECiS+26w2zhVAl1UVAzYgzVE+e26a
-         FppZB8uU1AEbB8RrAmDN1YdChx0V19L2GfQ9lxYcI4kq9DtCTMQ+4uNe7HLLDLLGikmn
-         l2u6Qms5lJd1A37SuHO+Z96q/+n9pZXB9Lfxtn2DBAZCPQ42GEnjVKjQBECea91PdOIl
-         QH8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795509715; x=1796114515;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=miq8lHAk9j+ldEOiiht4iRcOG6aLFpZt8I9oVYIzhag=;
-        b=ZnA/6khm/2fMjFJ51uRza43qFE5D7azCIEYIUc0YGXT2rePAZZL2M+vItbsi0MnAI4
-         Oex0WoC58wDRRsVBPz+qsJ7gNNrv9l4++Nh31HBleqOAoP96ZgmYwTVI/mR5S5RFqp/l
-         Xbi7Q6a2ExXvYoo1g228ClEcXHkQyxy/K1cdWavOemrw4TdWXSZbxJTd+g66N2Ormwif
-         6xzjsW2StVTxa06N9NgFT85th9ioUjcOViCHS5rVUaeqaqkhMTVO981RA70DYs3v8nb+
-         IRauqAb2k+aMMNDarEGQ+fAvvs73MgNADG6ezNz1lDygl/eNGIL9qXqbIoCEXUnHksL/
-         gkoA==
-X-Forwarded-Encrypted: i=1; AL+hErGimhOkika5Rxcy9J0YLffXBcEUrfvHgl3ahMFg0YUlCDLUgCnVgEtFFmIIdCcVewi2jt6PiJFVp3MWGmbPyovz@lists.infradead.org
-X-Gm-Message-State: APuU4Z+B6zjjDVGR4u7saVBro2Ry1hfzDPDpP6d9yE2czD+Nd3y+myGD
-	hOHaHMBaYdN+zzfpuneGlKO9GWsRVwO8TACJS8z3mGluRnaFCO8x4ZcV
-X-Gm-Gg: AZFdTZcB418uc3J3Zh0t1ehu7MGxo+E9+twij1YTMEfLbAIWwcZ00VDBir7LuJ3u7mR
-	trtXSCn1+0GQSKJKDi/YAKUiRr8bRmyTK04nSswoSgbqKAyesMlLNgvkD5HUBg4Hi1/lhki2/GP
-	7ozQY+Pcn9bWlfTY3vEwnwNjmVuF557anGGNSlS2ajqLIjdqn9Nl12ESXQ5j3TIuqsp1bqBHLR8
-	fVoRnCdLceFjLeGkozSZReZWX25IOcCh10L+ezz2tUqeQP1l3oa/NxS75ReTPyjrCltYmHoSA7d
-	nhAU54cg04tiFKkP2ZirWsY3VuYJ2DXZTky+FmlK+upRoN1nOeoWXIhllqXadulOkUACkTFNuzU
-	st3YNBriL0l9/Xwrbh+9KFyL3ZsSlAT096Sny+P2BRnqHjvB/UcBmYCPBGYHMAY/tm3zKloFZho
-	rpQE+E25djnYLifCYvI4gkBE+w3H6B6s0LA+tv/vv4mBS3mRljAbs0DM44NWkcz1RSlcJoyLGQu
-	Nrap6XkdK4pcCaRJ9A8SoqLPcPJ+r6RQS0fTNX8OGNH/z/5cy1JMtuIT1XSREViUcVhv94sFTav
-	fMH3DWZTlIi8K6fCPxdqlUYf5031jXkIHI7jut4P0YMd3kt5CToPE3YhVxsBG4LfmfZD9PJygLm
-	xSyCZdQ==
-X-Received: by 2002:a17:90b:1644:b0:3ac:c98e:345e with SMTP id 98e67ed59e1d1-3b41caef685mr10503851a91.45.1795509715146;
-        Tue, 24 Nov 2026 00:41:55 -0800 (PST)
-Received: from [172.19.1.42] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b405d135e9sm24432973a91.4.2026.11.24.00.41.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 00:41:54 -0800 (PST)
-Message-ID: <c88fd429-025a-406d-ad80-ec464db7d1cd@gmail.com>
-Date: Tue, 24 Nov 2026 16:41:51 +0800
+	Tue, 24 Nov 2026 08:43:54 +0000
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AO352Q81412829;
+	Tue, 24 Nov 2026 08:43:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=O7m23VpeyyFGtHVQ0SDxRDbQjLNhp4
+	OyIKa+PT9Wo+A=; b=Ce/swp8Jey/TeeaXBEZHjhd3Pn93Ab/qw0pPj0tNGQP33A
+	zSE9CQFwrz8qlGB0l49GgybkyYeX1fk7YbTrooq78QG80VLmVKuL9Ak4RDomyeFg
+	1nRd/6T4/F0d23KEu7qq1E59Sc5ydzvDVZ1fevsCdMLpebGiT6bhmVB61INM6Oqc
+	2VENEAmq5cLlDO9bBxiUkiFH4NWRyUBG0AP5dILT+K7q+jK0jdG51p0JE/6AFkDd
+	jlUxeHkttM3VbezbuAiTDVu8lf+xgKVcRGYdGY7rwq5ISJC4TCR5cgwh5ZJan2eC
+	8LXMPoVlkqJlrgonEIDDZHJqxPLPivwRGzIXpuHQ==
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34fa6vb0-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 24 Nov 2026 08:43:24 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AO2nX6g2087387;
+	Tue, 24 Nov 2026 08:43:24 GMT
+Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4j3p0vj1r5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Nov 2026 08:43:23 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com [10.20.54.104])
+	by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6AO8hJ8Y42926434
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 24 Nov 2026 08:43:20 GMT
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id CBB2B20043;
+	Tue, 24 Nov 2026 08:43:19 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6C42C2004D;
+	Tue, 24 Nov 2026 08:43:19 +0000 (GMT)
+Received: from osiris (unknown [9.68.29.29])
+	by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Tue, 24 Nov 2026 08:43:19 +0000 (GMT)
+Date: Tue, 24 Nov 2026 09:43:18 +0100
+From: Steffen Eiden <seiden@linux.ibm.com>
+To: Janosch Frank <frankja@linux.ibm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+        Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Andreas Grapentin <gra@linux.ibm.com>,
+        Christian Borntraeger <borntraeger@linux.ibm.com>,
+        Claudio Imbrenda <imbrenda@linux.ibm.com>,
+        David Hildenbrand <david@kernel.org>,
+        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Sven Schnelle <svens@linux.ibm.com>,
+        Friedrich Welter <fritz@linux.ibm.com>,
+        Gautam Gala <ggala@linux.ibm.com>,
+        Hariharan Mari <hari55@linux.ibm.com>,
+        Hendrik Brueckner <brueckner@linux.ibm.com>,
+        Nico Boehr <nrb@linux.ibm.com>,
+        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>,
+        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+        linux-s390@vger.kernel.org
+Subject: Re: [PATCH v3 23/23] s390: Report AEF features to sysfs
+Message-ID: <20261124084318.23381-A-seiden@linux.ibm.com>
+References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
+ <20261106-sysreg-v3-23-75e95980fb10@linux.ibm.com>
+ <01631f5a-9140-4dcb-a91b-5c431b384be6@linux.ibm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] iio: adc: Add Nuvoton MA35D1 EADC driver
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- chernyakin.victor.j@outlook.com, cwweng@nuvoton.com
-References: <20261117082832.1551574-1-cwweng.linux@gmail.com>
- <20261117082832.1551574-4-cwweng.linux@gmail.com>
- <20261122030647.70b41b61@jic23-hlaptop>
-Content-Language: en-US
-From: Chi-Wen Weng <cwweng.linux@gmail.com>
-In-Reply-To: <20261122030647.70b41b61@jic23-hlaptop>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <01631f5a-9140-4dcb-a91b-5c431b384be6@linux.ibm.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDAzMyBTYWx0ZWRfX7AwKlo5hrmga
+ OCLxVqCWWWZO3kcworetiGUy2WV/dgmYumQCiq6Ol5EFqHg85k8E03qj8ZKkW6ZhomFEtjg5uuO
+ mrI7BZ6tIMKOXCXIfY63r7ngsdsXowyOHTrdkExWZicD1Xe/wULSID9bvyvjOlXKaBMzFdt+Je5
+ rcpYNU1ES9EMG8xennhRF5KNoOlkIcu0+HnSImKLgzpnNIqRjizZjHTzXLSQJaNoOT3TQzOWJ8Z
+ 4XSmIhTRxPDbaD2akN/OQ58hnoar2LBUVOgfnqirlmwckzIp6aHPbMAm/kyPpOhuYRCp96FLWIY
+ IaxLFB99pcLPO1q5wuNYFccmLTHHZ/iUbsM06Oqsacmm78u94YFXyhgHty7DfR/6Nu/vjTELHjo
+ RK6s613cErTVTFcYyEe1DpKQHigT/XJgFzZw4lSvPCHQPRRwod0HiUblfl4nCnNkkFFe4NgRUY/
+ yQOdQX3a5KMogTqz0wA==
+X-Proofpoint-ORIG-GUID: 6GJrjQx_l6DWOdMijtAWCgD_iYEspNos
+X-Authority-Analysis: v=2.4 cv=U6QHnuru c=1 sm=1 tr=0 ts=6b054e2d cx=c_pps
+ a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VnNF1IyMAAAA:8
+ a=VwQbUJbxAAAA:8 a=bireLN_HoqkOtvrXVMMA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: 6GJrjQx_l6DWOdMijtAWCgD_iYEspNos
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDAzMyBTYWx0ZWRfXy5gfI4849inq
+ e38ktmrAupucEPACzQtQFb06U77tqcFk/56FOIc5DRH1KOr3jmkqX1DHis5Rk5GcfYJfIant25k
+ ZghX6D0s8lzz/DQ5oKO1FMjINkFmuyA=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-24_01,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 impostorscore=0
+ clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 phishscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611240033
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_004156_599849_D354B038 
-X-CRM114-Status: GOOD (  22.75  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_004353_452992_A44F5196 
+X-CRM114-Status: GOOD (  29.68  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,70 +143,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, Nov 22, 2026 at 03:06:47AM +0000, Jonathan Cameron wrote:
- > > +	/*
- > > +	 * pollfunc->irq is not initialized until the pollfunc is first
- > > +	 * attached to a trigger, so only suspend and resume triggering
- > > +	 * while the buffer is enabled.
- > > +	 */
- >
- > True enough but isn't it also guarded by if indio_dev->pollfunc
- > inside the iio_device_suspend_triggering()?
- >
- > I think in the case you are avoiding it is a noop anyway.
- >
- > disable_irq() nests fine so it shouldn't even matter if anyone turned
- > it on yet.
+On Mon, Nov 23, 2026 at 02:04:12PM +0100, Janosch Frank wrote:
+> On 11/6/26 5:07 PM, Steffen Eiden wrote:
+> > Display various information about the Arm execution Facility (AEF) to
+> > userspace. The files are located in /sys/firmware/aef/. Show if the
+> > feature is available and usable for the host, which formats are
+> > available, and how many arm vCPUS per guest are supported by the
+> > machine. Additionally, provide the raw binary output of QAAF fc1 (Query
+> > Model Capabilities) in the file qmc and fc2 (Initial
+> > System-Registers-Save Area) in the file save_area.
+> > 
+> > Co-developed-by: Janosch Frank <frankja@linux.ibm.com>
+> > Signed-off-by: Janosch Frank <frankja@linux.ibm.com>
+> > Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+> > Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
+> > Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
+> > ---
+> >   Documentation/ABI/testing/sysfs-firmware-aef |  70 +++++++++++++++++
+> >   arch/s390/kernel/aef.c                       | 113 +++++++++++++++++++++++++++
+> >   2 files changed, 183 insertions(+)
+> > 
+> > diff --git a/Documentation/ABI/testing/sysfs-firmware-aef b/Documentation/ABI/testing/sysfs-firmware-aef
+> > new file mode 100644
+> > index 000000000000..6ccd8491a017
+> > --- /dev/null
+> > +++ b/Documentation/ABI/testing/sysfs-firmware-aef
+> 
+> [...]
+> 
+> > +
+> > +What:		/sys/firmware/aef/query/sae_avail
+> > +KernelVersion:	7.5
+> > +Contact:	linux-s390@vger.kernel.org
+> > +Description:	Read-only, decimal boolean. Reports 1 if the machine
+> > +		provides the SAE instruction.
+> > +
+> > +What:		/sys/firmware/aef/query/ptff_avail
+> > +KernelVersion:	7.5
+> > +Contact:	linux-s390@vger.kernel.org
+> > +Description:	Read-only, decimal boolean. Reports 1 if the PTFF
+> > +		instruction supports the QAGTO and QAGPT subfunctions.
+> > +
+> > +What:		/sys/firmware/aef/query/edat2_avail
+> > +KernelVersion:	7.5
+> > +Contact:	linux-s390@vger.kernel.org
+> > +Description:	Read-only, decimal boolean. Reports 1 if the EDAT-2
+> > +		facility is available.
+> 
+> I don't think we need any of the three files above.
+> sae should be reported as a feature in /proc/cpuinfo, same as sief2.
+> 
+> edat2 is facility 78 in the same file.
+> 
+> PTFF-QAF is unprivileged.
 
-I checked this again on v7.4-rc4 (b6a9fa34ce41).
+OK, I can remove those. Primarily, I added them for convenience. I'll
+add those to the Documentation (I'll create one soonish)
 
-iio_alloc_pollfunc() uses kmalloc_obj() without initializing pf->irq, 
-while iio_triggered_buffer_setup_ext() allocates the pollfunc before the 
-buffer is enabled.
+> 
+> Also, if aef is the requirement for the directory to exist, why would saef
+> not be enabled?
+>
 
-The PM helpers check whether pollfunc is non-NULL and pf->irq > 0. If 
-the uninitialized IRQ value happens to be positive, disable_irq() could 
-be called with an invalid or unrelated IRQ number.
+You are right. I'll drop the three files.
 
-This is why I added the iio_buffer_enabled() check for the 
-inactive-buffer case.
+I am thinking about always providing the aef directory. And just not
+calling qaaf in the !aef case. Then userspace does not have to test if
+the file exists and guess if the file does not exists because the kernel
+does not support it or the HW. Or is this a non-issue?
 
- > > +	if (!iio_buffer_enabled(indio_dev))
- > > +		return 0;
- >
- > As above, I'm missing why we need to protect the call
- > to resume_triggering. The pollfunc can't change between
- > suspend and resume so there is either one there or not
- > in both cases and the guards inside that call should take care
- > of the rest. If I'm missing something we should look to
- > fix it in those calls!
-
-Agreed. The same uninitialized IRQ concern applies to the resume helper.
-
-I also noticed that iio_trigger_attach_poll_func() does not clear 
-pf->irq on its error paths. If request_threaded_irq() or 
-set_trigger_state() fails, pf->irq can retain a stale positive IRQ 
-number after the resources have been released. The normal detach path 
-explicitly resets it to 0.
-
-The error propagation from iio_trigger_get_irq() was fixed by 
-dff701806ab6, but these two IRQ state issues remain in v7.4-rc4.
-
-Would it make sense to initialize pf->irq to 0 in iio_alloc_pollfunc() 
-and clear it on the attach error paths?
-
-I agree that fixing this in the IIO core would be preferable to relying 
-on driver-specific checks. I haven't reproduced an IRQ failure at 
-runtime; these findings are based on source inspection.
-
-Thanks,
-Chi-Wen
+	Steffen
 
