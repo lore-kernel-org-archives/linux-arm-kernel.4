@@ -2,101 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E244606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36E3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JxUY790c;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DKK/f/pb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EDZxOiUf;
+	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=ZFKqow3A;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=g2IaOFE3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:Subject:References:Cc:To:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=x6zdHjHGVwvVlbnZegdR/xLT/lgEN20BGxlK4KRKp5E=; b=JxUY790cTDHxdl
-	dTl0+93CK/AnGOyS9mqCIK6MBJxv+jpUwBBLhdgxxHhbKBt3F845wQlYWlWhjaPJShSWYkKdxarEc
-	lAvbAUJRyUqrezDrpS6e0yjO1CGfZy1z8A0gwHWCm+iS8q8vqjp9f7yNqfZ57gNGwmiiyMzryt1+c
-	d6CHctzEwXzldexBun2asVtSDaih4rWKCTlQsdvh2pYxlgoQB+N7GpyzaDgQYbPQQeS6h5bFCZSIM
-	cad6AlWQq9IhmH2YwsFLKV0qS6NvwU9P25nUvBSXsZA7+7zBrZgSLrqsLHfLzqafxtAkIsIebwvFY
-	1Si9Kt9mvTJXVrtJ30Fw==;
+	List-Owner; bh=JL3Qgy6Zdu9V5GN8HWvkTl1Wq1sYl2OXZMXf1JcFhGo=; b=EDZxOiUfpr5D/f
+	4V/umjoZu3fLWD8derKtgkWjlbenaeUFIWxLdsLukmcClXludgYD8MZh4DajmWIQj8aS7n5wQg8Ik
+	WP0deBAk1/0aVJZjblt/wGs0f5gQ8iweUoCH6APtbnrp4N56fKt9qzTRn+pip+D+pnA9JhY9/6bF7
+	KxujfW26OTYrwvKbYJ9GZ3UVl9X1xgsCJ+OayFJOOMqIgHt/3D4TlJdKoQSqQKFUH/AsDdKcqFctg
+	L6oseMbLteyzQ3wlf5MECmBLzO0Ss9UGjoRv9bIyZYoMJuVHV40rykJDmIfvuWwsewnOHGTCx616/
+	TdNldjqFZgauTzb9+uxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVeRl-00000005GV4-1Aq1;
-	Tue, 24 Nov 2026 00:31:45 +0000
-Received: from mail-oo2-x02.google.com ([2607:f8b0:4864:31::2])
+	id 1xVdzP-00000005Dxc-0Xdk;
+	Tue, 24 Nov 2026 00:02:27 +0000
+Received: from fhigh-a8-smtp.messagingengine.com ([103.168.172.159])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVeRh-00000005GUE-1xIZ
+	id 1xVdzG-00000005DtH-0lYJ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 00:31:43 +0000
-Received: by mail-oo2-x02.google.com with SMTP id 46e09a7af769-862a00144f1so839834a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:31:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795480300; x=1796085100; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:subject:references:cc:to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=x6zdHjHGVwvVlbnZegdR/xLT/lgEN20BGxlK4KRKp5E=;
-        b=DKK/f/pbFbiQPV3bACGyl8jev0lDGavf2G7lcp8g9ua8Io3TfT6YKdIAm96d0ZrsHH
-         GqhM4JxpHZAEjiQYWipjYPobjB7GhyL7SE/iIs/6NtWI4Lgx4Lx0nHVqaUn97B+7dMhn
-         9LbJkrrpfwsUou/xu7ym4sgzmZ97eQ6G6kgoDCoCs2yuzXdx8cWFGSJouiG9vdzBHVWX
-         pAq3BHb1yqH2AYSczzEIbcKWbA00CRGbthyucPa5LHaZmpy3g1txYiOkGvMioKTocp/g
-         9hsX/tYhMe/0xV7cOj6IcMmcq1Aql6ob4h+n+57H52urVC9uEILkllfBf7wUBFv9q5Dd
-         /FCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795480300; x=1796085100;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:subject:references:cc:to:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=x6zdHjHGVwvVlbnZegdR/xLT/lgEN20BGxlK4KRKp5E=;
-        b=N2QLAAZRH5rrX/wgcVwIIDwQTLdfMw9Cm2nn4c+rVc/GohnfjDQx7alkwkmDlEBIV4
-         vGckVtMkOxN/ZEXNYvQY18sDS95sxY63nMn0gcA4dV+3DEQg9An8kULR98MpFYfCIRs+
-         cMUcQy7kdCYNX8uG7Xx3vyR9fZWLXYdyB5KAc837iPkeAEtPsKDK90KihZJB5QVUfrpo
-         mwGn7mDrtr/s833DW969m4EEZ8aRZtNCyYwqsfMIf6YmsGcVRECNxv5npCF6dQZ7m9i/
-         o+98twyp2Bj+TRMUDN/QfwDjsppNUGjaMl3mB6B6xoy17mNfic+qOh56CNtfkNkcBNjx
-         JJjg==
-X-Forwarded-Encrypted: i=1; AL+hErHTkg9dbcGRth1E2E1DXbdDQuUPqL/6ZOJAECb4k+efZFK3sislH2DFPT+3fEy0MlYrF8gfQIVR5y8rys+csC22@lists.infradead.org
-X-Gm-Message-State: APuU4Z9junLEpAexNlm+SRTiWts2S0nsDHYQbweRy4mNsbtR7l7ShdEk
-	rG/y7QRP8PYo5HOX0iPHcsfqKHr7Pqn6va1teGZGxIOuHXAh2agKFTUl
-X-Gm-Gg: AZFdTZeytEgQdlgK7Tw1Dy500naAwy28ylmJIaKWMQd6u7zJI5cxdkiT2fQZo9hB+lp
-	l4KFOdweMu5yfvuHxFeWXRqOHaHOCnsccraZojiTbepO9RvcjlIbKYYj18Md5SXlbRqzJjbrnDF
-	QOwZ4wfdDY/YeV//saupy3nkRyoN3++F9gJILhQGmeOsHuBq3Ovh9+E0+F8sl2ivj9lZAWErYZ9
-	1akhKXa8j7Qjrxe4DW9kkmnlIWytNm3yyFIUFdUkVf51ipt8Ys0h2HrGL+ypfvqbKoCbu83aEIY
-	pQKf5yzn5ittPpp58IksNuRShCj+fTEJ0EtaSnRhSzKpaO2lAozxJxBnyMVFiqvB92ehjlFghyw
-	Ov8QAwUT8N7Ce9Agf4Je5dJiMD4ekp+XWOZ+Snl9oCQSnhrWAQqeuYFaV5sXvdxYDkUkDlwOq1+
-	WRHU2hkZxRviryPzlLgk5I/eKWN+VGdANOxR+qhkiq9la3piT0hcHmuTWiJ99PkScst7o6bqkyx
-	EXxpPoZMLLfNcWjAZzAqFkHhp2SEY0TC9pLePCtEMYekxK4Kr/mmdbCL7F13tihHzsH+Fd3m91W
-	xm/W98d/XZdId0KUo5Yef+ea2eq/YWXuKdyGuzmGNAv4ww==
-X-Received: by 2002:a05:6830:43a0:b0:81c:a6c8:8a65 with SMTP id 46e09a7af769-8631593740fmr14730091a34.25.1795480300341;
-        Mon, 23 Nov 2026 16:31:40 -0800 (PST)
-Received: from ?IPV6:2600:8804:5716:d800::d500? ([2600:8804:5716:d800::d500])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-8631670c44dsm9477750a34.0.2026.11.23.16.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Nov 2026 16:31:39 -0800 (PST)
-Message-ID: <fe208c0c-cea4-4e56-8283-e242ac1cd2ae@gmail.com>
-Date: Mon, 23 Nov 2026 18:31:36 -0600
+	Tue, 24 Nov 2026 00:02:25 +0000
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id ECEE11400392
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:02:16 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-11.internal (MEProxy); Mon, 23 Nov 2026 19:02:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1795478536; x=
+	1795564936; bh=JL3Qgy6Zdu9V5GN8HWvkTl1Wq1sYl2OXZMXf1JcFhGo=; b=Z
+	FKqow3AO/RPA2d6U0v60HnuCsT6mJQv6h9SgGEGOTg4/tetQuhYXCeItn82qnCMx
+	8xrSqUgXiEPpW32Em1lud9QD/Sd4xyO/aJl96h/0DVC8XuaA5VtvmiXG06djhS9O
+	51o0l2h2Ixt5M+uWZvJhuqR2cCzu5jRdX2T8ZckKdK3auy+cPepI4puebhrSQ1zr
+	Dkofgpzq0X1F4mJRbjhelY4ToR2xiQki9mzKzgIOv3PWGeDCKK0NtaMiInq+66eN
+	Bo7hDatiupC0NtI7v5nH2/O/rIWQr9neBe9dTpiTPB6ICcHT19cYX31MWlGa8hN5
+	SwkLGoasTailIMd29S+CQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm3; t=1795478536; x=1795564936; bh=J
+	L3Qgy6Zdu9V5GN8HWvkTl1Wq1sYl2OXZMXf1JcFhGo=; b=g2IaOFE3ABFa8U0PB
+	ctXwvD2URDVaTqo5Ryn/Z7ePXj/1Iw2dobgx/yUWHmQ/KyH2uKcLBpYn7i5z+rUN
+	zqWyazHalAR7Vtq73O9vJqA1ZkK43z+KhSXNWqYYFlxeNa2U9V2yTT6tZkRWA7wQ
+	EFHp0wa5B9jBscfYP5B1qK9hwWt2Eh+1NVBds1Koys76FlBr+Qo2d633c5Z87wx5
+	d8dXTe9ARGGvt4Zd+AyZPZA8Nt9HuEJqEqFV3JBpxxWLbW3847zY2QNrQEmrE5zp
+	0p+EIGxJ12RpsnUzqJU8GfWvl8KTiy6ODE4TvtR9E5kVIN7HV2SGw+1+xK1//Emf
+	6xLBA==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=gahingwoo.com a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1795478536; d=gahingwoo.com;
+	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:Oluqnpl5RL/Djo+IMurOqIV4PufS98zkbxN9h+dwiDT3koW
+	aJv0KxOpuHqFlQx5bEqtUa5HPPMKAFhADKmU9ctlHV7eew4NCV3fVzfLPENaAU3e
+	7HQXsOg/cV2uCUQg+wV4lLw8+WL1yatPoeJySwf8FHSRy/zc9R5TFlUoCjcKa2ig
+	Ik8N14FNVBfJM9L646q8lTvuIKihCATOeeb5AML/rVDLVdWy5ORximkPaxYK8ewZ
+	xDgavM+rmaZO7tRjilz72MXM6PQYfNQs9yH91GSobaf7bvsOw72WXdNz/xfA311Y
+	A6s2XU1u1VDZtEMJjaNm/fa2F0RR7WbAd85T6vQ==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=11;
+	hn=cc,content-transfer-encoding,date,feedback-id,from,
+	in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:jiVJd3R6hdy1hOaQm+GRtS/51voX6k7EnP0kvg7Pe5E=:ANkstA5lYKTOgLdpX3zjs2D2gIDyAH3ceoRvnlM8StI=;
+X-ME-Sender: <xms:CNQEa0QU7nxzDePsyr8i3xmbbF2mw0BTLTz1rauGUn9evoliHXYBZQ>
+    <xme:CNQEa8KgtFxzU4Vh8AB9FVycAB_21RCNerJ5Mov0pRfxRaYwfJhD55MfQXLxHwOsf
+    N1yoaF2T3N_NhyFZOOebenvnd5afuWg5iMpg4sXC8YBU1vfWU2emmCy>
+X-ME-Received: <xmr:CNQEa9Y_CMwvJS2Dwc6tlby5OQOLikjLl1j1_86j54kg_RUhkyP0Ttm2_G7qWLgu_Dqj9w3r>
+X-ME-Proxy-Cause: dmFkZTGEhlIT9xPRA8308BbHtqEEwMB/QskSvZlBy2+jFJwvtvfCirBVTmQimOCxW6z0/I
+    N3fQ54j2uzkfIPiLqru0ODAgPBYDp/gZpGlhkMMOs9hof9ZG9GEOWdivyiuw2bnIONku0f
+    WjmY8ul15onHL4eXgbBkYGjVGEM6SHV1iLYZaKVJkdDH3DHIqCHks7YrVY+mw1lm/Lplg4
+    vSpMyj3j9q6sOZaTJVZd7ureJCnCjHJkmaDoA65nKLS/dXaLRNB8dxmmJokxzDm7a1gLZe
+    vv+kmS5leROp3LsXetZXye6uoB1rh5Trh3ziYwSHciSyu7VL/LnTqx4QcFZ369FhHiPhX6
+    7qMgCUUgRTYvnSceX6g8TlNjrvseGChimQ2uL5/UPnolD9ExtQx90gU5jyLWx+p3EDQlT4
+    UDArTfpc/8Z5L6LrFf6GVl6VPvZVPOoVG9Ef+PjEsOTZrxzQn41TuJgMsxtwgpN9tica3k
+    /bM28FMyvcoIjOtpkDXjDdu+DDK8CLsohz94hhBnXq5e9Is699FOHYUZLZiwL5ZxgG5Spo
+    9ZWuC4ZluNyOzq9If9HUZ/+5+TfGiMQoR3WAdtp/G8jauX4kI+4GYW/kLVIWh1Q9d2pDzC
+    JGmZPMPrhqxFo9TXatBlDsIJ7gyWPgwoJhGO1q+Q9SRgBO4qclrJxac8MNNg
+X-ME-Proxy: <xmx:CNQEayAtxQOnJk6XgF2DU0tPHIoWvGW2Ms5epOyl-KGWRiPKpKQqiw>
+    <xmx:CNQEa3WIN-rUiySS5myOFEKopLwsvTWvBUy0BV3ScBCFoCcjzUiPGA>
+    <xmx:CNQEaz0EQrI-v8c62I9ve8TAhE1ha1U37j-NiW68ffEfvEPhOi7nFQ>
+    <xmx:CNQEawVUDg6r2Af-WMgS1kSMJ1nLokV_3ElVm8PctJSwCVO3Z1nuUQ>
+    <xmx:CNQEa_Eve3L4R8gm5f2Sj2bW2NUBo-6MWorniFLENug8K8BMWuGRyWrM>
+Feedback-ID: i7a5e4b5f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 23 Nov 2026 19:02:07 -0500 (EST)
+From: Jiaxing Hu <gahing@gahingwoo.com>
+To: tomeu@tomeuvizoso.net,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	joro@8bytes.org,
+	will@kernel.org,
+	robin.murphy@arm.com,
+	p.zabel@pengutronix.de,
+	ogabbay@kernel.org,
+	zhangqing@rock-chips.com
+Cc: ddrake@baylibre.com,
+	royalnet026@gmail.com,
+	sidong.yang@furiosa.ai,
+	ulf.hansson@oss.qualcomm.com,
+	abel.vesa@oss.qualcomm.com,
+	sebastian.reichel@collabora.com,
+	chaoyi.chen@rock-chips.com,
+	shawn.lin@rock-chips.com,
+	finley.xiao@rock-chips.com,
+	diederik@cknow-tech.com,
+	alchark@flipper.net,
+	leonard@lausen.nl,
+	vlwwwwww@gmail.com,
+	jeff.hugo@oss.qualcomm.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
+	iommu@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v18 2/8] dt-bindings: npu: rockchip: add rockchip,rk3576-rknn-core
+Date: Tue, 24 Nov 2026 13:01:37 +1300
+Message-ID: <eea37bd2f486b5855b314014d2e4c3049c666bb0.1795478392.git.gahing@gahingwoo.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1795478392.git.gahing@gahingwoo.com>
+References: <cover.1795478392.git.gahing@gahingwoo.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: zi-hao.huang@mediatek.com
-Cc: airlied@gmail.com, angelogioacchino.delregno@collabora.com,
- chunkuang.hu@kernel.org, ck.hu@mediatek.com,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- matthias.bgg@gmail.com, p.zabel@pengutronix.de, shaoming.chen@mediatek.com,
- simona@ffwll.ch
-References: <20261119033634.1844084-1-zi-hao.huang@mediatek.com>
-Subject: Re: [PATCH v2] drm/mediatek: dsi: Don't let a signal cut the IRQ wait
- short
-Content-Language: en-US
-From: Ryan Brue <ryanbrue.dev@gmail.com>
-In-Reply-To: <20261119033634.1844084-1-zi-hao.huang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_163141_513064_39F098F3 
-X-CRM114-Status: GOOD (  10.07  )
+X-CRM114-CacheID: sfid-20261123_160222_253507_1CE10958 
+X-CRM114-Status: GOOD (  10.22  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,44 +153,107 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 11:36:34AM +0800, Zi-Hao Huang wrote:
- > I'm not sure the trigger is specific to our downstream driver.
+The RK3576 uses the same NPU block as the RK3588. Each of its two cores
+has six clocks (aclk_cbuf and hclk_cbuf on top of the RK3588's four), one
+reset and no sram-supply. Describe each SoC in allOf; the RK3588 still
+requires sram-supply.
 
-I hit the same lockup on MT8173 (Amazon Fire HD 10 2017) with the 
-upstream driver. v7.4-rc4, whose only DSI change is "drm/mediatek: dsi: 
-force command mode in mtk_dsi_poweron()" from the mediatek tree, and the 
-mainline NT51021 panel driver, which also sets prepare_prev_first and 
-sends display off and enter sleep from .unprepare.
+Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+ .../npu/rockchip,rk3588-rknn-core.yaml        | 40 ++++++++++++++++++-
+ 1 file changed, 38 insertions(+), 2 deletions(-)
 
-The trigger for me was suspend under Plasma. logind's PrepareForSleep 
-makes KWin turn the display off, and the session is frozen while KWin's 
-commit is still in the panel's unprepare. The freezer's fake signal ends 
-the interruptible wait with -ERESTARTSYS, mtk_dsi_host_send_cmd() takes 
-that for success, and the late CMD_DONE lands in mtk_dsi_irq()'s 
-DSI_BUSY loop. After the watchdog reset, MT8173's last-PC latch showed 
-CPU0 at mtk_dsi_irq+0x84, the DSI_INTSTA read in that loop.
+diff --git a/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml b/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
+index caca2a4903cd..2eb9337819e6 100644
+--- a/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
++++ b/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
+@@ -21,6 +21,7 @@ properties:
+ 
+   compatible:
+     enum:
++      - rockchip,rk3576-rknn-core
+       - rockchip,rk3588-rknn-core
+ 
+   reg:
+@@ -33,14 +34,18 @@ properties:
+       - const: core # Main NPU core processing unit registers
+ 
+   clocks:
+-    maxItems: 4
++    minItems: 4
++    maxItems: 6
+ 
+   clock-names:
++    minItems: 4
+     items:
+       - const: aclk
+       - const: hclk
+       - const: npu
+       - const: pclk
++      - const: aclk_cbuf
++      - const: hclk_cbuf
+ 
+   interrupts:
+     maxItems: 1
+@@ -54,9 +59,11 @@ properties:
+     maxItems: 1
+ 
+   resets:
++    minItems: 1
+     maxItems: 2
+ 
+   reset-names:
++    minItems: 1
+     items:
+       - const: srst_a
+       - const: srst_h
+@@ -75,7 +82,36 @@ required:
+   - resets
+   - reset-names
+   - npu-supply
+-  - sram-supply
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: rockchip,rk3588-rknn-core
++    then:
++      properties:
++        clocks:
++          maxItems: 4
++        clock-names:
++          maxItems: 4
++        resets:
++          minItems: 2
++        reset-names:
++          minItems: 2
++      required:
++        - sram-supply
++    else:
++      properties:
++        clocks:
++          minItems: 6
++        clock-names:
++          minItems: 6
++        resets:
++          maxItems: 1
++        reset-names:
++          maxItems: 1
++        sram-supply: false
+ 
+ additionalProperties: false
+ 
+-- 
+2.43.0
 
-With only mediatek-drm.ko changed, suspending through logind with a GPU 
-benchmark running: without the patch 5 of 6 suspends reset the board 
-(about one in three without the load); with this v2, 0 of 10, with no 
-DSI IRQ or vblank timeouts, and the panel's power-down still takes 270ms.
-
-The wake_up() hunk matters. With only the wait changed, every command 
-waited out its 2s timeout and the panel's power-down took 10.4s.
-
-Tested-by: Ryan Brue <ryanbrue.dev@gmail.com> # MT8173, NT51021
-
-I actually had a similar fix ready to go, and found your patch, so thank 
-you :)
-
-Best regards,
-Ryan Brue
 
