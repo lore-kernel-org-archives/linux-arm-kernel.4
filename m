@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87696606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:54:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D631D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 13:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ABUQbsR/;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=nndDHg3l
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GsCL96Y5;
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=KsInIEYl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,53 +14,94 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=MIkTVr4RcMW6zywCfrJZui4jF3ihGLOv2lESiFwO/2g=; b=ABUQbsR/9CrWraN+qk/BZ1C+f/
-	AN/SNKiJ9Ns/Em9GYsVByrTkvwJcHWO7r6QFKfpSnvlqOnGfQTTtlZbw23rUJXkYdDd52aQ7SwgCH
-	a3Uzq0M4A9zXEOpKXSwXp25vXEJ+NVVWFAZUgOVBZteHF/DP1mtih2mPh5S99rMA5iaJtvIiMWU56
-	8lENS85EC5k8tJys2OC2ALKTSXg/g/dok1nAumPygVOeBPjLLva1eTQD4cMLoaSmDciZQPWhkRZaj
-	wU8ZVzjhLrKEsZKABuXnsXoQbsa4uAv7410LcmmpNcQzvfqz1Z+qxINy/wXdJZ2qbT10KUiRuK7ax
-	WKFQNz6A==;
+	bh=jEatzr2wcCwXaEmVaXwZZOqjiW5YqebF/1TV72BGKDU=; b=GsCL96Y5hCpX469asvWBkv6dHd
+	gd2tqT96qq6Af9x4O+Tf6/3acFsbAJG88Gr1swRGTm+44HoOwj+0oIcuVb+3XkWHZ9cUNjc7mY9Nk
+	MYB48wUKb9DmF/PnTc5BgMI9rt2E/C+apIkkXwrLjrqUBRU01wrQcaMgJa9hd472Bb0rljqK1DWon
+	F8PCCWLj8s5gqnw36udikV8wPmkuc2p0GpJGy8A2l5Ez65BLFW312B9L0x/IiD/bD3BTR2PbD+rfh
+	4C84Wi/2CPJvhbA7eXqRLtzyE1MWlHXlP647FAXycGTyINW/SFaXAO9J8xnH8+nmfqdZntBSGnsCP
+	fpqbCYKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqxw-00000006gt3-1vCr;
-	Tue, 24 Nov 2026 13:53:48 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqxt-00000006gsi-0sHw
+	id 1xVqyb-00000006gwv-2RcP;
+	Tue, 24 Nov 2026 13:54:29 +0000
+Received: from mail-qt1-x831.google.com ([2607:f8b0:4864:20::831])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVqyY-00000006gwL-24Nq
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 13:53:46 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 27C3E339;
-	Tue, 24 Nov 2026 05:53:39 -0800 (PST)
-Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AE6213F763;
-	Tue, 24 Nov 2026 05:53:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795528422; bh=+APSVgCGhYAgoDVaz3XyVGIzx7Jm+ECnvgl+Mo3ccbw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nndDHg3lTtR63L3UJR/QPaZ1wafVNDpQBCCZ+cFzjl1lRrB7pNlrxCK3t2fyafFkt
-	 0/1iW09TNYzVrXfe88pK0leeZh6RmvKXyxAbsp1/DFld5IZ7Cbf3CXC7/KuhEEPeqa
-	 GHttcEwpGz7XbYz+SVSOE/BCApFxVLy7aaxqOCBs=
-Date: Tue, 24 Nov 2026 13:53:27 +0000
-From: Wei-Lin Chang <weilin.chang@arm.com>
-To: Marc Zyngier <maz@kernel.org>, kvmarm@lists.linux.dev, 
-	kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: Steffen Eiden <seiden@linux.ibm.com>, Joey Gouly <joey.gouly@arm.com>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Oliver Upton <oupton@kernel.org>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Fuad Tabba <fuad.tabba@linux.dev>, Dan Carpenter <dan@pereq.eu>, 
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
-Message-ID: <abrygylfbe47jhkufe3hl5wpdawazeno554ovwijwvh43hzpab@uqxszjzp63jc>
-References: <20261123182312.4842-1-maz@kernel.org>
+	Tue, 24 Nov 2026 13:54:27 +0000
+Received: by mail-qt1-x831.google.com with SMTP id d75a77b69052e-53639b8903bso55636841cf.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 05:54:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1795528465; x=1796133265; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=jEatzr2wcCwXaEmVaXwZZOqjiW5YqebF/1TV72BGKDU=;
+        b=KsInIEYleigJ7Wwc2mtKSaauh/dTjNSR/rq3zXCc3waBFyZzyLIiKGEc+3SPCF3R+B
+         C3/L4Fj3HVuxPbc40sOuchhPntij17DsuPl8rSH7WtweTtexgMhLsT2Y+0i2qaNoAzbt
+         y2i/1pyi8L5bgf5U4ZtXB0fqKnfh3/0ThU9k5AmMYF7mDtSmK4SwheKXLxmgdz0b6NtV
+         T3CKmlqFS0YsPZCWj+C909Pz6pJAH1JETwjiQEw6QsKbXm+AVx5T2MKCgFnFYmXthPfp
+         +6JGHEGtRqaFwQ2PCEYWFZVr8wtPlHRVcIaGbatI5xFyp6iLUZsoZXOdbBC82wKkkviJ
+         5YjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795528465; x=1796133265;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=jEatzr2wcCwXaEmVaXwZZOqjiW5YqebF/1TV72BGKDU=;
+        b=rsL2wp5fhZ9nIc5ALfdhZt9WUyP2akAYpSyugggTAFKEHlu28mOvhRWNgzOCxHT2QM
+         yrzOORdDQf754y8vOPFbjcJiGzUrv6R0hYIYmUGcj4KVBWOCU/d0wa/sRMiRRsm42YHY
+         Tubl7dKNLqY+m+f4dwArWpQpQ/uZyPocl4CsA6pk2wMjxMdBh/hh4OtDVHw2XWqWH2kT
+         xe5U7L5HaQLu1DJpM+6GeJcjMqoU48opRtd6vudOaA+qcK1L45WnfXYE4TDiFsQZBRef
+         scc4lPggQORuWYaaGFSlKTtqdgOf4qE2SmzghrAd3885Av25QszNz/JcCUqrUoIlbbPY
+         M2eA==
+X-Gm-Message-State: APuU4Z8Ux4EUj/OMHbuxTlGQPuRKlIxNroEK2vFYFOycWv4Y91Y3uUuZ
+	tijUwjL6MrpC1qHushgU+QEBAQrgF0qHIxe4EjLEAIsOjzs5wBY5S6P3DjyxAXuoy3k=
+X-Gm-Gg: AZFdTZe2VQGRTjIPZbMJAda3H2CO1cAOxvpcEkJ+r1cNioRU8wybV9gWuJAKHvjx+Dj
+	EhoNsTXDV/G0+8toG8NSp1CrzhkE2ANlaFaICSt9vtjeBSX6peC3MnMf6rbo0oqHumA+6ftG5JQ
+	NowLdxP1zsD2S9xg3gGNcT8CV87hvOpcZMCSwuFLxs3ryMOqgm/c8d7FiXWTZAm8a3PHyq6WQgg
+	euipfP1r8m5itEhQh/T+GLPRbRby1ZlB75U6LnTh14JVlf4NePDab98MccAX+HkRwv3tBoM1YH8
+	91z3Vy+aCfe5AmJ9aHQyNN+Ugm9rrejdFd3wcbIOOBODo8W4ikJB7Js/NXo6k+llW5X+vYGUCeB
+	UQcUJ7TFCyftg5bJrM/ZOgOhXuy+KsX1UGhJtNKEJgPPYEux+LKT/+GgiNyDd71+/HHu6fImXcB
+	8ZkLYE7CBjIT4aJw4hA/wYclWIpvVToP072xysHL8kMnaunKZdrtAwwlO/ZGxG8/BVGgMTRFzV2
+	Vb12YFIqK/o7fXaPjFkWdP+H6HXW5fgDsBdHuTpSIJzXu0adCjsXgnAkHbCbyvvNv7Nd2WaNpxR
+	I+4CUg==
+X-Received: by 2002:ac8:5a42:0:b0:55d:3669:e04a with SMTP id d75a77b69052e-55d76a30b0dmr258015381cf.23.1795528465232;
+        Tue, 24 Nov 2026 05:54:25 -0800 (PST)
+Received: from ziepe.ca ([142.177.118.84])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55d788ae02fsm125554721cf.29.2026.11.24.05.54.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 05:54:24 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1xVqyW-00000000QaE-10f3;
+	Tue, 24 Nov 2026 09:54:24 -0400
+Date: Tue, 24 Nov 2026 09:54:24 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Anshuman Khandual <anshuman.khandual@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
+	will@kernel.org, Ryan Roberts <ryan.roberts@arm.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Stoakes <ljs@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	David Hildenbrand <david@kernel.org>,
+	Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-mm@kvack.org
+Subject: Re: [PATCH V3 00/14] arm64/mm: Enable 128 bit page table entries
+Message-ID: <20261124135424.GL9566@ziepe.ca>
+References: <20261117070613.1183243-1-anshuman.khandual@arm.com>
+ <20261120190525.GC1133597@ziepe.ca>
+ <aqcypbxidjbmjhuiujg2krseuy7v4lofrlq3upl4s7yjiq6bh2@3s4jqisdrkgd>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261123182312.4842-1-maz@kernel.org>
+In-Reply-To: <aqcypbxidjbmjhuiujg2krseuy7v4lofrlq3upl4s7yjiq6bh2@3s4jqisdrkgd>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_055345_313078_B25C4F9F 
-X-CRM114-Status: GOOD (  24.99  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_055426_542365_41343F6D 
+X-CRM114-Status: GOOD (  20.36  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,70 +112,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
-> Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
-> that describe a base granule size smaller than the host's page size,
-> we take the resulting size at face value and feed it to the S2 unmapping
-> code. Which legitimately screams about something not being page-aligned.
+On Tue, Nov 24, 2026 at 09:29:27AM +0530, Anshuman Khandual wrote:
+> On Fri, Nov 20, 2026 at 03:05:25PM -0400, Jason Gunthorpe wrote:
+> > On Tue, Nov 17, 2026 at 12:35:59PM +0530, Anshuman Khandual wrote:
+> > > FEAT_D128 is a new arm architecture feature adding support for VMSAv9-128
+> > > translation system. FEAT_D128 is an optional feature from ARMV9.3 onwards.
+> > > arm64 platforms with FEAT_D128 enabled will now have two different memory
+> > > translation systems i.e VMSAv8-64 and VMSAv9-128.
+> > 
+> > Please don't forget to update arm_smmu_sva_supported()
 > 
-> The architecture allows us to drop the TLBI on the floor, as we don't
-> support a S2 granule size smaller than the host's page size. But it turns
-> out that doing so is proving pretty hard (we call compute_tlb_inval_range
-> from a number of places, none of which is amenable to an early out).
+> Sure, thanks for the pointer.
 > 
-> Instead, detect the annoying case, and pretend that we don't have a TTL
-> hint at all, leaving the size upgrade mechanism to take place and use
-> the largest possible size for the guest's S2 granule size.
+> Fow now will disable SVA with CONFIG_ARM_D128 enabled but later it can
+> be enabled back with SMMU_IDR5.D128 feature. I will probably fold back
+> the following change in the series.
 > 
-> This will still allow nonsensical stuff to get through, such as a 4kB
-> level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
-> on a 16kB page size host, but that's not worse than doing nothing, and
-> the host code won't get shouty.
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+> @@ -205,6 +205,9 @@ bool arm_smmu_sva_supported(struct arm_smmu_device *smmu)
+>         unsigned long asid_bits;
+>         u32 feat_mask = ARM_SMMU_FEAT_COHERENCY;
 > 
-> Reported-by: Dan Carpenter <dan@pereq.eu>
-> Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
-> Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> Cc: stable@vger.kernel.org
+> +       if (IS_ENABLED(CONFIG_ARM64_D128))
+> +               return false;
 
-Reviewed-by: Wei-Lin Chang <weilin.chang@arm.com>
+That seems wrong if the arch code is enabling this based on a CPU IDR.
 
-> ---
-> 
-> Notes:
->     Reposting this as a first class patch, as I'd like to plug that one
->     as early as possible (and Dan has plenty of other patches in flight...)
-> 
->  arch/arm64/kvm/nested.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> index 78d5b18dbd2d6..36e4e83badf0a 100644
-> --- a/arch/arm64/kvm/nested.c
-> +++ b/arch/arm64/kvm/nested.c
-> @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
->  	 */
->  	max_size = __ttl_to_size(ttl);
->  
-> +	/*
-> +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> +	 * possible invalidation. Don't try this at home, kids!
-> +	 */
-> +	if (max_size < PAGE_SIZE)
-> +		max_size = 0;
-> +
->  	if (!max_size) {
->  		/* Compute the maximum extent of the invalidation */
->  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> -- 
-> 2.47.3
-> 
+I would expect distro kernels to enable this kconfig unconditionally,
+so this will break SVA for everyone.
+
+Jason
 
