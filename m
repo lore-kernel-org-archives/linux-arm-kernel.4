@@ -2,83 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EB7606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643EE606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:53:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3h41Y+i1;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=1tEEQ00E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wsraKVhN;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hMTnc3+r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kFZC9tucpVhNJbgeqCn+d/WcROzjtP2rv0y3T4mg1tY=; b=3h41Y+i1U7o/Go
-	U4WONPJ6jXv+oREM9UVKrABvFrtfmvxlrN54+DXSOQybPZd9Vio0je5PLs6BWvS3b9CD9EMZe5C5t
-	1yu2aw7HRAGLzghzTttEyPUHZGSAyuDpaJiTTeZmoB6jCD1Q1EJEBPpRKUXAqboMSXdi6Fjnz4dbS
-	fbK7IPNTnl4HyUDVgnEbU7GWMxAhAEWpyveQ/WG0/+t4HmpbtpZYWT5aHKbAN49E4GJ0lQflvWP7F
-	tWLoij1aRRYhKoMwQ/LLHRU5NK+QD/QzoUo7KNRumfBjRC2WuGBBTxz9Z31AYaHjcFmGRdDtts9YW
-	Yx5aNYnmLVDMb4Lb5cBA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=jzSg+OoRedY79JWCBKXLvmzN+Y99cAtJiasdC/afqxQ=; b=wsraKVhNiob7gIpFIBXa0KBTqC
+	OqukCWBtgKkmQhBirh1XfF2pCGQKMzw9onceOycqKUHo+fcLurW/68O36y9r/4nBCpyCdoRl9CeU9
+	qf3qkhM+byfZS5mlnDfdmzJBfeGSi/WaxwTPUf84kFOW7+q5ymUyF2INnOIylm9OjBSGpani4/PTl
+	o7bGhCCtHjSHzv1DhTXqoQy0k8wiJDRBKu3Klyde7Srs2GrSEXZ+vSzdmK7yu728yH4X/VaPkOlkU
+	CB3/MVarRQ/NC9uzLhyBH4uYOeHtombjpT+pGBZ1bWPD4mw73ijZn4DjB45wpyhj/77MyNvPpNDM8
+	V4fWYP2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtlF-00000007DQz-0UNm;
-	Tue, 24 Nov 2026 16:52:53 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xVtlp-00000007Di5-0IIJ;
+	Tue, 24 Nov 2026 16:53:29 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtl4-00000007DMX-2CZG
+	id 1xVtlG-00000007DSl-2z8C
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:52:48 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 0404F4E41723;
-	Tue, 24 Nov 2026 16:52:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CB771601E1;
-	Tue, 24 Nov 2026 16:52:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4DBAF11E69A91;
-	Tue, 24 Nov 2026 17:52:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795539159; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=kFZC9tucpVhNJbgeqCn+d/WcROzjtP2rv0y3T4mg1tY=;
-	b=1tEEQ00E8wAWGx1Rb1aP6SoNqj7b5DEy+Gj0nJWH2y5Xn7pkSBHe5fRGD8wok7yFJSunLG
-	95MGVHIfbAT0VvBeTYz88IurZ6/TNWxfVBhANt9xzukZui5T+Uy5hgBRxf/EnhIi/oAic3
-	B7kicFMbGlvNI/d69rwLymS/GWdgtsYyP6FTp0w7Jq9kVVgv02MQ8+iWMuwcNMh7G56tma
-	Iv+Oi3eTQMlCcUyOBkgkQWVU+Ta+a/DnTr3b1iY9KrCR6TbNhzUispaoU7fL/gNMEsZahd
-	g02LByqRKcz6cRBbcFSyiji6Xb8RjQ8+wpPjGxTom2Wd0WMbCNPMd3U00yUIpQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Tue, 24 Nov 2026 17:51:32 +0100
-Subject: [PATCH v13 07/10] clk: Create
- devm_clk_hw_register_fixed_rate_parent_hw()
+	Tue, 24 Nov 2026 16:52:54 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D8DC7627AF;
+	Tue, 24 Nov 2026 16:52:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B5BF1F000C0;
+	Tue, 24 Nov 2026 16:52:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795539173;
+	bh=jzSg+OoRedY79JWCBKXLvmzN+Y99cAtJiasdC/afqxQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=hMTnc3+rZ+l2kEtF8tVKs04jAuXdhO5+bCJ1GrJ+uNW1naPu0E6MCnQHAas3yy3AB
+	 KI5McAlyQUiZHjezgFWKJe0FLfRVX3p8ch/gGZGyd6pbot7vCn8iCneifyKFCO/XkX
+	 ctIc2quPW8iHoeefQAOryS+Roo2CSn1Csf1m0qLst7WTInldhZAlGIYmgOhpaIbs1R
+	 XRSIkak7u9NtXXNGUSaD11rt5sL25OBl4NWUE9G5OdStlCIS72Xtb7k5MIw4Z+sw0U
+	 lZfBCOKOBrD80xQEnZNfPrsryie+DTQVh5g9EGlmjjA5rZdkRmwT9Ag6hUjcpEB2AB
+	 F5kpx9WbY6zvg==
+Date: Tue, 24 Nov 2026 16:52:43 +0000
+From: Mark Brown <broonie@kernel.org>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: Rob Herring <robh@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Subject: Re: [PATCH v2 00/20] ARM: omap3: pandora: Modernize audio and
+ backlight to use Device Tree to finally remove pdata-quirks
+Message-ID: <9ac986b9-3e16-4f40-b528-ac2d09051c8e@sirena.org.uk>
+Mail-Followup-To: "H. Nikolaus Schaller" <hns@goldelico.com>,
+	Rob Herring <robh@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+References: <cover.1795505160.git.hns@goldelico.com>
+ <20261124151318.GA536798-robh@kernel.org>
+ <1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-perso-ma35d1-upstream-clk-v13-7-c920f4a9f0ce@bootlin.com>
-References: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
-In-Reply-To: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
-To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
- Arnd Bergmann <arnd@arndb.de>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Steam Lin <STLin2@winbond.com>, linux-arm-kernel@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
- Jerome Brunet <jbrunet@baylibre.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_085245_855022_4ED7F303 
-X-CRM114-Status: GOOD (  12.30  )
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NC8MlJRbbzgMG+mt"
+Content-Disposition: inline
+In-Reply-To: <1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
+X-Cookie: Real Users never use the Help key.
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,54 +128,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-clk-provider.h exposes many different helpers to help registering
-clocks. Most of them expose both a 'basic' variant and their 'devm_'
-extension (with just the last parameter of the inner function call
-becoming true instead of false). Do the same with:
 
-     clk_hw_register_fixed_rate_parent_hw() by creating
-devm_clk_hw_register_fixed_rate_parent_hw().
+--NC8MlJRbbzgMG+mt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- include/linux/clk-provider.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+On Tue, Nov 24, 2026 at 04:27:16PM +0100, H. Nikolaus Schaller wrote:
 
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index a355d1ee5189..c2b80cb3ab0b 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -458,6 +458,19 @@ struct clk *clk_register_fixed_rate(struct device *dev, const char *name,
- 					     fixed_rate)		      \
- 	__clk_hw_register_fixed_rate((dev), NULL, (name), NULL, (parent_hw),  \
- 				     NULL, (flags), (fixed_rate), 0, 0, false)
-+/**
-+ * devm_clk_hw_register_fixed_rate_parent_hw - register fixed-rate clock with
-+ * the clock framework
-+ * @dev: device that is registering this clock
-+ * @name: name of this clock
-+ * @parent_hw: pointer to parent clk
-+ * @flags: framework-specific flags
-+ * @fixed_rate: non-adjustable clock rate
-+ */
-+#define devm_clk_hw_register_fixed_rate_parent_hw(dev, name, parent_hw, flags, \
-+						  fixed_rate)		       \
-+	__clk_hw_register_fixed_rate((dev), NULL, (name), NULL, (parent_hw),   \
-+				     NULL, (flags), (fixed_rate), 0, 0, true)
- /**
-  * clk_hw_register_fixed_rate_parent_data - register fixed-rate clock with
-  * the clock framework
+> > Which of the 7 maintainers do you expect to take this series?
 
--- 
-2.56.0
+> Well, as a contributor for a specific device one is not regularily thinki=
+ng
+> in maintainers work split but about a series to get a device fixed. Which=
+ is
+> obviously orthogonal.
 
+> I didn't even recognize that this involves 7 maintainers.
+
+> Maybe an extension of checkpatch (which already looks into the MAINTAINER
+> list) could help here?
+
+The very large CC list you've got here really ought to have been a
+warning sign here, and all the bits in submitting-patches.rst about
+splitting patches apply to serieses as much as to individual patches.
+Note that sometimes extensive cross subsystem interactions are the right=20
+thing to do since there are actually overlaps in what's being done, a
+blanket rule will never cover everything.
+
+> > Surely=20
+> > this can be broken up into smaller series?
+
+> Yes it (we?) can. It is just a question how to do it and properly describe
+> the dependencies to avoid bisectability problems and avoid that the final
+> goal is lost.
+
+If your multiple serieses can't be applied without each other then hold
+off on the dependencies until the earlier things have been applied.  It
+is not managable to track a large stack of interdependencies.
+
+--NC8MlJRbbzgMG+mt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmsFwNoACgkQJNaLcl1U
+h9CuDQf7BqGPuSppsd0kIdO6roCbvvnIt8FJPXqT6iunVWr1caWiAciqqwXpVOK9
+qLWHb4F/3O6N62eHJFGLNrx0XuolhWQl6CXFnS7y7n+ciuXZq4m7NvMPbbcwvqp0
+P1bHhyEKmQnEVdmbHLO6RNW8j5ALFuU8FOE4ZM/BwqjHgjxjmxJMi7zncNArxaZE
+gaqO2PG4Fs016MxBfMwdsOXvwpZXyAXMkIuXZx2otPF0jl/PX0OIm6tbKUnauPWk
+tS8osgVdQFxe73tHon7Xr9rgckK2ZdjGwAhT2jeHNxtJKNIcoo/yPTPH2sD6TlgQ
+ffEg/5BFXW+kwMEiVEnAOBL0CqtcJg==
+=YERm
+-----END PGP SIGNATURE-----
+
+--NC8MlJRbbzgMG+mt--
 
