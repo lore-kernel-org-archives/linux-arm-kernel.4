@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D47A606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55372606A326
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xf+Lj4FZ;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=CsX2K4gr;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=HCJfdnxH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sWZZOlVY;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=FPCCTua1;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=+jAyDf5q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -15,69 +15,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Srv8rcHLAJAs2t2TPg31VwudISEwEVC5eUbPY+Dzbd8=; b=Xf+Lj4FZNH9drfdoOyldtoWiKP
-	eaQcK2bRgW8bQ4EaP57mgk9KyDlWsmMd635MhlKinO/6kkGGgL/bTLLYcfxLlJ51HgWkHH5PpQnWl
-	4SyQTLcFZxAPgmv22BKR6A7zHBkeDz18kmWKxxznfQTxKIxj0c/4mT8j6xOPs+tVfpp5x76rJFrM9
-	+Itdxpx+0MPbYt+qY6mMOfrOgqaXVer+8M5HjUkoVQEBRfvewg6WXicCwRj/qqGp6vaYfp0EFv7ZD
-	2WpH//zhdtpc2doSJXPe71+yjfhSYcEcR7fX8KAG+YUPazH99O2KBr7JcNCE6i7qwRgRyldxD1fGF
-	dUN2byvg==;
+	bh=fsG/cb1SFdTpwbZba5DZbm5tdFhUsr4K7XbXBN0VQ1M=; b=sWZZOlVYXmhTpCLEskhezSRrQ6
+	fF3BTixNIs3oC81pWHzbXEAWfVbJVPXiIr4XzX3uW8nPrMo7Gc6c/WmIG5ZVwqiHOaATia8w6ysVn
+	h9t3LbtAGd/LyHk+7mMHLjYtBNYlXHCKnmoDeFBO/6drvk9owL4obNi4J3sGaaZjdWyC1K9ySQQrb
+	NMiZP3RH1Q3EjmWD3jmRup2sRBco+OBVhoNnf7F1CUBNA/FYPB3vd8s3SrQ8kWA+5c5chA9ZCYwrI
+	5IXLf1m2k5dzUCDt3q9SJYXAcmWgHV6359UvkydykDTUU4BcLRG4ifKxY+OeByZLggg+OI4yyDZjy
+	SEvaXLHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkwf-00000005jv9-2PGR;
-	Tue, 24 Nov 2026 07:28:05 +0000
-Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.223])
+	id 1xVkwZ-00000005jt2-2J2x;
+	Tue, 24 Nov 2026 07:28:01 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.121])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvK-00000005jL0-2iu1
+	id 1xVkvK-00000005jKs-1Jvl
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:26:54 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505179; cv=none;
+	Tue, 24 Nov 2026 07:26:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505174; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=igMAIfZCNbOFtvleGfJ7d6euUGYeaasdKaSNtk906Xmg6DnoVK8CT2RRQq1pwUqQT1
-    Ii0yBCtNovhvvZgCB27T6gIWeVoeTBvRSZYb87t6G2E5bU5RjIu7b3pnyIWroCiifEdF
-    WPNS+kC0Vdj/urkhtkSSWxICD8hle/oVjkQQ2OFuqyNk0uO1PJS/zzAd6Pkr6PRIbiZ0
-    roSkvoHttMe4brhcac4QyNkZ73Dkna/Nzr7bFyiDWaYASGHkPUqxmFTLlSOkigzL8i93
-    zMPmos4+CFFYzLWf4nxvxGhPqSzq4uX1ru/5trTm20HpuF/9occD2GCnCSYuLNQDQ5Q/
-    5ehA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505179;
+    b=aVMZq2aA4paRGrZre+BQk8rtHFWnjoo4xmk/6fYITawlv0xsl6JZQi75t8Jpgg2qr/
+    RSgVv22lumOuXEF40OB70aivTjdZfyV2KeHSXsSIg1g+cwf4iin5vlU98XY7uzsfl5A8
+    5sok5uQjHQeqdNt5uMok5/a5znFV4W8EbUhcGf6bxgTVgr4LCiJjsvhIP6xLqO9VwRAl
+    LQoK+NrC3d8s+nzA3MFdeRA1klEyA3bOSaxTvS382peFQDXYE7jp1I6QnTNddHsioZPg
+    /t+KpdZirzoTjhw1zGRfjKD6QZShXTwsQAC++nU2JjjJfpSy7nem5+hE1vK0B/RiImv4
+    a7lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505174;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=Srv8rcHLAJAs2t2TPg31VwudISEwEVC5eUbPY+Dzbd8=;
-    b=OQi+Fmmo8/mwUjPKJ5A1C5D8cPcMDjTUOgrkLz+vEHk7fxwSadXLReLrRSdh/WvJZb
-    BQbx5T+7BELdQdtWf8qQeYeqtA9WslsMmD3ETJx0y+0ihjjfRosvff5RMNRs1Ksysxhj
-    B1lFvu/hdQ0B1roa9SPqpeRMzXHmbgAVIGmBizQkdSr3o8lrEgCWQVU9bTC2KjNwaxvl
-    8kC3fLDQosZLqfhrDrSvxgHKAhIqT/CPLbl+ghaVZX1CRuTcJRaUgwH8YyMdTrJEyyyQ
-    g5oBVs8HstfCJ32CL/u4J3mqJGSun8Ec28q1OqB1L941Yd7oXpYLVXtxQylNmwZv3MD3
-    MNMA==
+    bh=fsG/cb1SFdTpwbZba5DZbm5tdFhUsr4K7XbXBN0VQ1M=;
+    b=OtneZ4Kh3qegj5LZQX0tayQiuJbGJM5fQQ7igI0k9doE++Yld/Ya3EBzjsRdJ8iFRo
+    1ZN+L+CdugYLdoz2OAsaP966f/k52X1//9kPZLgwCG/dMmW3mMfYRudQboI1OCb4C1R+
+    aanyyc9aEFTMGIHba8RVTOiILU3ia2RVqlEYDecH9TP0NUnhav8ikoRQN0NfhJ62FR3M
+    mmy9MeTvUEWaVurDqt+ecIaXvb7ripkdUGa4e05H2wu6gJK1i6Pn/hflISf/kxGMj/Jw
+    JpCMR7tNLNmq3m5U6iC6yLGxY1pZkZ71ENlLopR9ixdb/H6HsPDeXYTLYv05KpGLOiqr
+    /9oQ==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
 X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505179;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505174;
     s=strato-dkim-0002; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=Srv8rcHLAJAs2t2TPg31VwudISEwEVC5eUbPY+Dzbd8=;
-    b=CsX2K4grDtkfuKJe2SA8EN89igEnflyJckHzpcWLl8RHR/zlFByYVZN9fg2aELr6Qr
-    vIoucQDn1n88sL2kQc3oGFZi2/sQUwdp//V+Xo6fhdZxcSmHU/Lz4keNZ9wHCfLQWHxl
-    zY+PxssjDK0+EZfY4dV5zW8/hb0hJB8kCVbH0Ro19Pt+TaQU4fdE4h7zBDfhow4R4IVO
-    /BgbVNogmrGlUqjb7JC0OT4lbjbfg3lXcWJnydg++W/FJv6KZQSvttTz5eGI/4DEyg1o
-    PAC7IPne25idIVSPJrxO0epmNHtp+dFg8RBZR6i9Y0dGqPnpchHTu15hKdqUBe3/GkgK
-    6qUw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505179;
+    bh=fsG/cb1SFdTpwbZba5DZbm5tdFhUsr4K7XbXBN0VQ1M=;
+    b=FPCCTua1pAXZDyqEk/kKrOuUKTpay15WdzNHD/NNA024Sg7+XLJj6JDbzo7nBDljco
+    WAMu3NSaIusKwP+JgSX11ssYgy+CDoy/fpKE77mxCLWybSRzZjHHVjd/OKEXOF0Ew/2S
+    9l0bODVNwPGGHvljs/NxVVKAsceEAaBpEGOqWCa9ifqJHzStVLanAfMxEmjIArHnEDCJ
+    jnjnPataADNPp7HZJsLDaP03ZwJM/eOvdtkGxe9qzHG2YZiG+2Ko1LDkRe5axxJx9Eh7
+    Op+etpep+A63cZPcZbT5TKwswpY1/ch9NlXtJLowA5xUFkebL+j4r7aTGbX5pswDztqQ
+    u1FA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505174;
     s=strato-dkim-0003; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=Srv8rcHLAJAs2t2TPg31VwudISEwEVC5eUbPY+Dzbd8=;
-    b=HCJfdnxH8wx/8C22xbS1CYyR4LwXme0uWeKGZSBqhaX2w7o+WupFIIPdyUuZ0CtqmQ
-    1KEzNusC0g7xsOK0X3DA==
+    bh=fsG/cb1SFdTpwbZba5DZbm5tdFhUsr4K7XbXBN0VQ1M=;
+    b=+jAyDf5qshztbVQMVLZQymw6VyPta0x1nuBSoiAg4Gq+Ha5Wyhml76un2wv/8PU/d/
+    Lk57Kl+Y5y2nbYYrM+DQ==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
 Received: from iMac.fritz.box
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7QI1HR
+    with ESMTPSA id Qb56a22AO7QD1HK
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:18 +0100 (CET)
+    Tue, 24 Nov 2026 08:26:13 +0100 (CET)
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -121,11 +121,10 @@ Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
 	linux-fbdev@vger.kernel.org,
 	letux-kernel@openphoenux.org,
 	kernel@pyra-handheld.com,
-	"H. Nikolaus Schaller" <hns@goldelico.com>,
-	Grond <grond66@riseup.net>
-Subject: [PATCH v2 13/20] ARM: dts: omap3pandora: Disable unused DMA channels
-Date: Tue, 24 Nov 2026 08:25:53 +0100
-Message-ID: <9c47a735aeb0d1a5795119af0e9b8ae2bdcbad2e.1795505160.git.hns@goldelico.com>
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 08/20] dt-bindings: mfd: twl4030: Document 64-cycle PWM
+Date: Tue, 24 Nov 2026 08:25:48 +0100
+Message-ID: <8e0c47487add0fa1bc0dad9b1bceef5ebf8071d4.1795505160.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
@@ -134,8 +133,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_232650_684512_A27AD8F9 
-X-CRM114-Status: GOOD (  14.94  )
+X-CRM114-CacheID: sfid-20261123_232642_633434_5C435368 
+X-CRM114-Status: GOOD (  12.87  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -154,59 +153,49 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On the OpenPandora, only McSPI1 (spi0) is actually used. Because the device
-tree defaults in arch/arm/boot/dts/omap3.dtsi leave all of the mcspi
-interfaces enabled, the DMA channels which the device tree assigns to them
-cannot be used for anything else. This is a problem because OMAP3's sDMA
-controller can only have 32 DMA channels configured at any one time.
+Document the optional ti,twl4030-pwm-frame-64 property for the
+TWL4030 PWM controller. It selects the 64-clock-cycle frame instead
+of the default 128-cycle frame, doubling the output frequency and
+reducing duty-cycle resolution.
 
-This can exhaust available sDMA channels and prevent McBSP audio
-transfers from being allocated.
+The selection is explicit because the driver does not know the PWM
+input clock rate and cannot derive the hardware frame length from a
+consumer-requested period. The shorter frame can reduce PWM LOW
+intervals during startup mode detection of LED drivers such as the
+TI TPS61160/61.
 
-Disable unused McSPI2, McSPI3 and McSPI4 in the Pandora device tree.
-
-Suggested-by: Grond <grond66@riseup.net>
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
 
 Notes:
     Changes against V1:
-    - Historical origin: 24727d33755e (Grond, 2021-12-08).
-      The original contributor is credited with Suggested-by rather than
-      an unverified current DCO sign-off.
-      Commit-message and provenance review assisted by ChatGPT; code unchanged.
+    - Revised commit message to focus on the binding and the reason
+      for explicit 64-cycle frame selection.
+    - Commit-message review assisted by ChatGPT.
 
- .../boot/dts/ti/omap/omap3-pandora-common.dtsi  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ Documentation/devicetree/bindings/mfd/ti,twl.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-index 06c5b23589991..2097ec15c6513 100644
---- a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
-@@ -685,6 +685,23 @@ lcd_in: endpoint {
+diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+index 9cc3e4721612e..f458f0d80f2cd 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+@@ -396,6 +396,15 @@ properties:
+       '#pwm-cells':
+         const: 2
  
- };
- 
-+/*
-+ * Only mcspi1 is used on the pandora, the others do not surface on the board
-+ * due to pinmux configuration. disable the unused ones so that they do not
-+ * consume DMA channels
-+ */
-+&mcspi2 {
-+	status = "disabled";
-+};
++      ti,twl4030-pwm-frame-64:
++        type: boolean
++        description:
++          TWL4030 only; not supported by TWL6030 PWM.
++          Select the short 64-clock-cycle PWM frame instead of the
++          default 128-cycle frame, doubling the PWM frequency. Required
++          for dimming inputs requiring short PWM low intervals during
++          startup mode detection (e.g. TI TPS61160/61).
 +
-+&mcspi3 {
-+	status = "disabled";
-+};
-+
-+&mcspi4 {
-+	status = "disabled";
-+};
-+
- /* n/a - used as GPIOs */
- &mcbsp1 {
- };
+     required:
+       - compatible
+       - '#pwm-cells'
 -- 
 2.56.0
 
