@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D6C606A6B0
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B303F606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3z9G0F8j;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=dHecZnux
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2dC1BXfi;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=NLiD/a5y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DvfoQdX5TAh9acAbfEpdCjhrYNF1g8HYHnrBWffEvp8=; b=3z9G0F8jYAcv+2
-	/liFgP1/Cw8t7zbQlq5beY9zhQH/1A/B87Ou6ECMsw0MCxqPgYiGKsh61lNXpyJh3mHEu4g2MuQ/I
-	K6D19+Q+mhDpE2YtFpeqUkO2GGBY4mADjqPclOBOaREXG+EmgIa7C3FSP+0OKYNB3ljPJDx398LxT
-	oJy0m3kbii/p7bxBVsW5Wr0fRIz87idKUCn1ReJVIcPR32xGpF7U3AeQkNPYO7pR2b1/NDbUgwIpH
-	8N0qU6MqFykfa2I84oViN2Cj5TfAR0chJPnvaZLiN0S4oPFo4258+3H1eDxnu3Yi9GXE6DMulxSKL
-	Jmvs8Wq8W/W5dCod2Tgg==;
+	List-Owner; bh=2zvkBTFpnDd9m5FrX1ALPeQh+KOreXEr0/JLN0qggqg=; b=2dC1BXfiuJPhsH
+	ln+V7xbKUDo/IJutvRFKalgC1SFS+Wk/JPPMxLxnCRHzEC42r2fqVMWMMKzcxihqLKXE+Wd+59Iua
+	VCWREOIuJfl0/u032SJmaolqZOZVBae7jX927NJuQH75fn65zIQi0oVqxmHEIpwORncH/n0FFORWZ
+	V9uLGhqw2byeHO/gTY/kzPWlltSKJCU7QMfjQUmHA5XzHwCepzqc14y94QYSzrU1lV9PuA7aeN/fo
+	4wfvTH69j9u0HyebxZsbNEUCd2KnFxKIqwPDQipLfPk6MEPvljHWNVAGASXWomkam5+0luLxhUH6P
+	OSVIpFQR0Gg32GBOLacA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrDL-00000006iSS-0hGL;
-	Tue, 24 Nov 2026 14:09:43 +0000
-Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xVrGJ-00000006inA-2KGw;
+	Tue, 24 Nov 2026 14:12:47 +0000
+Received: from mail-westeuropeazon11011023.outbound.protection.outlook.com ([52.101.70.23] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrDH-00000006iRl-3eXh
+	id 1xVrGG-00000006ime-3DCI
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:09:41 +0000
+	Tue, 24 Nov 2026 14:12:46 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YSj0WvZoIDToDfYaeJhmZXKGmsQmy42kt3KaAusVSC7yxGF2jpZW8lOZZjkVvg258ZeiV2Qrh1qGFUxgHSc8YpWU9fecSBFQTpxhe+8qBFDzlxGWHv8TGDGnVTKhouAQ/q/aBkVYxV2mOYZ6oQtMN8Op+X6sJxXBZD2JqHcozZ7ETFTVaWQessg4xmwIPvQcw9lHzZKpl+PcEpVUH+O5OyPvoKy/ScRwCJIPKLrtwLVQai8SF9lfSGTOFQyMGiEfpNSUcrSflw9uGGiwfLDtbFnLiLDQEmCD181vVCoH8o91PKrsubNPl3xHaaRiVE9DGHBs/JbmSyH3cn615iAhuQ==
+ b=PAxQCX8LqfcHRjIutxx/wVGqvR4eOi5l/3FHU8wF82FGnsE+YDLzGdfZWN0vlorJ3nT5XCVqycaTo0Of4WNJW6UECdyxewmKnokUXzySUPuCvxn+IUQ7ImWRlVycpjkemPAlRUfBLsEMcUtrb00/v43TRiaD88dLgKWApY+bRlkih6bI/SFuMJKFlr+PcR9+ShIceX9CrE9SQfy0mcLRHWhcQ0ZngOfqvxrO/JwP3FQBndFn9jGP/envi3LAC+/5mvsRos/E5/CIizgfhd/3coD0PTc0KYryCzFhNbHyDQk+uSfkY4psgUcJSBpoGBxaijtg4mw1GHWNRnaNui20tQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DvfoQdX5TAh9acAbfEpdCjhrYNF1g8HYHnrBWffEvp8=;
- b=m7pKOgFncJ9hVH/QljhUtyQBMJE38csc/W0LSY1mXU1hnyc71kSB8+fjuvezNv+72CNVl15kLx080ABmoEdYORz5UIdbs2zTi6rlvpZ6ZOn3os7bg11uCK082JqNpy5VBzEZzvv5Nm49cHhwYkPD/AY0uzVJ5/BgbFVLIyQLidp8ImlQzqulDJM9MV6SrPI1Kbds3TqX1AAsENG6VDjoXrmfnHCaw89pAk3xdtk9oZFBIT0haFSNdHKh10wiLQzhlCM02PzTAe8pk9CSnygVpi1W4vGoIVgIaDtT7KMSpQjUJOsmBdUG5dzlr4IXwnX3Bf8IAxRx0bDkS0O5tKYPFA==
+ bh=2zvkBTFpnDd9m5FrX1ALPeQh+KOreXEr0/JLN0qggqg=;
+ b=WzN0+pZ1Z+49U0hC4ZwMV/LzOX2UqkMu8JxFe7PZE+LhK/6Iy3MVIJG2NHLGP7W1SJJxVn+RopJb/kcaIOWu1Xhm/F57Easb7C8SrI2EtDZGo2i5KwwA63GW6es4eUUX37XuzrxyhXjgAbz/B56DZla2si3yEivCz/fB+PMhmlB9XCoP8v720kIVBAO8g6zviNb3Q/+IMg1IVOCNiqVdLGxNTX6VWcXHf/Hl/0AFiyQf75iuXIeMg4nmL8ABIf7S0K+JnM944D/UHnL9J//VobDp6SG0CJ2V7Cd9bJt3EEA55NNRzRFXn7psjnMgKTwYNLNGHp/81teml1Ot7xPF1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=amarulasolutions.com
- smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
- header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+ 164.130.1.60) smtp.rcpttodomain=nabladev.com smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DvfoQdX5TAh9acAbfEpdCjhrYNF1g8HYHnrBWffEvp8=;
- b=dHecZnuxs8oNjA31B729cK3dcF0kkDkPQN1IIKG2SjNrULGKk01W7hrKzeOJh9GQzEOFfoVDJccqozq+0BFNk9SOGjvvGuJGhP1FsNTzW/Dgq1FHLdx1jjcFw+r6D7Y+bn6aoILYjmHPCFeuGQ5tbDeIIfyiaA04FCkElp7B8E0uK9MGsf0AqkzsXFxp/+LhwdY1NvknVkNxrd7Z1Dvv9TNhwXMpDLg9zj+1cm6lHnYipF0qJ44XgYg+jaF4nCNUfDR7H63ymjt//LU9IxZnx/rzvg5aYDSTedzWEFYxb4YaCafwup/KUICt+pbKiikuq41VzU+JtgQblV2OxbaplQ==
-Received: from DUZP191CA0010.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4f9::27)
- by AMBPR10MB422559.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:6ed::19) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=2zvkBTFpnDd9m5FrX1ALPeQh+KOreXEr0/JLN0qggqg=;
+ b=NLiD/a5yFEzFPBkNiOW4IpKN3wKnrUUWhQmA3Nb8vjpckxtQxQXwDKoVmlt66hAzkgqOjh6Ojc1uAiOwUdHAE7CuyaqCqZJKZFglMihofluxwpqxfJDSwPLuhStcR0RBsxWryVvh8D38rQbVY55J+qk6GvkDJ8Wlykxfmp9WTzkTtyk1y5o1XmMi4yZRmb1S9fQdj1z9D0Lta1gEJJAGrwOxOaAFEkwJbbuv6eTZNWWcpM/pK0pm2oQFOznC/ECoiVpCmIGUpPN5YRw7IwmB1EsoeUDBPODMQ5KOyJ6hQLydoKNub3la+IccNPkBBVy4UFrjTbvjpjui1uPKYyfjKQ==
+Received: from DUZPR01CA0154.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bd::24) by AMBPR10MB9707.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:76c::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
- 2026 14:09:32 +0000
-Received: from DU2PEPF00028D04.eurprd03.prod.outlook.com
- (2603:10a6:10:4f9:cafe::a7) by DUZP191CA0010.outlook.office365.com
- (2603:10a6:10:4f9::27) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 14:12:40 +0000
+Received: from DU2PEPF00028D05.eurprd03.prod.outlook.com
+ (2603:10a6:10:4bd:cafe::99) by DUZPR01CA0154.outlook.office365.com
+ (2603:10a6:10:4bd::24) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Tue, 24
- Nov 2026 14:09:32 +0000
+ Nov 2026 14:12:39 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
  is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
  header.d=none;dmarc=fail action=none header.from=foss.st.com;
@@ -61,62 +61,62 @@ Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
  designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
  client-ip=164.130.1.60; helo=smtpO365.st.com;
 Received: from smtpO365.st.com (164.130.1.60) by
- DU2PEPF00028D04.mail.protection.outlook.com (10.167.242.164) with Microsoft
+ DU2PEPF00028D05.mail.protection.outlook.com (10.167.242.165) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Tue, 24 Nov 2026 14:09:32 +0000
+ 15.21.639.5 via Frontend Transport; Tue, 24 Nov 2026 14:12:39 +0000
 Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
  (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 24 Nov
- 2026 15:10:18 +0100
+ 2026 15:13:44 +0100
 Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
  (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 24 Nov
- 2026 15:09:12 +0100
-Message-ID: <f3025431-c426-4c7a-b196-ae09aeb617a0@foss.st.com>
-Date: Tue, 24 Nov 2026 15:09:11 +0100
+ 2026 15:12:38 +0100
+Message-ID: <f8c6d70e-e9d2-443f-8e6f-1459a9bf5aaa@foss.st.com>
+Date: Tue, 24 Nov 2026 15:12:37 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: st: add firmware reserved memory to Engicam
- MicroGEA-STM32MP257
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-CC: <linux-amarula@amarulasolutions.com>, <michael@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+Subject: Re: [PATCH] arm64: dts: st: Move Bluetooth to USART2 on STM32MP23xx
+ DHCOS SoM
+To: Marek Vasut <marex@nabladev.com>, <linux-arm-kernel@lists.infradead.org>
+CC: Christoph Niedermaier <cniedermaier@dh-electronics.com>, Conor Dooley
+	<conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Maxime
+ Coquelin" <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
+	<devicetree@vger.kernel.org>, <kernel@dh-electronics.com>,
 	<linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>
-References: <20261028105807.2567225-1-dario.binacchi@amarulasolutions.com>
+References: <20261026125201.76716-1-marex@nabladev.com>
 Content-Language: en-US
 From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20261028105807.2567225-1-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20261026125201.76716-1-marex@nabladev.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
  (10.75.128.133)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF00028D04:EE_|AMBPR10MB422559:EE_
-X-MS-Office365-Filtering-Correlation-Id: 47e1b695-9623-4582-2bde-08df4a348fdc
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D05:EE_|AMBPR10MB9707:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9a3512e5-bb4c-4b9b-8596-08df4a34ffb0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|82310400026|36860700016|10067099003|56012099006|11063799006|261026121527099003|261021135927099003|261021121427099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: ZbyFuaE3z9mrCtj52TnjUyzNODjq3dPh4tIUGgNsEJYy86wqCt1DCOhc87ZaXoVMp7A67zPMh/y/EWFNal1o5BItP+KfAxMQD0Jq+WcuAZQDZlqxXa8aOkh8Kvo3dpTlO5GvrKIUeEKspRdb1pzZtAKbWSkr90ly4K6iSh47L6AWHJkx527Fyht1yp5sZg+OZicxeyin5FrSUTp8sAWQMebRO+4dG+tPpizr/V7Kuy5VxOHFFtzvi/gMscdBszJcjd87SAN7cr0TQRdAOfL3IybYdHO4qKRJMEDB+Iv8sygTkJhXXjnlkfcvmkkm9H2iEjHd9sNgblbHba8wjJ4sDEg6mz2veiMBdnDOU1TLb/ljVZD5J93cMHzCBjK8ZkRVcxhvGKC/5XPIHT1YcvQK/mlpa24HPTeV5x3qEmsc7LYEwJb71sYZBL4tq8KFzTerbgKPeNzRRc4MHjSCSuvkgQeHdpenCotmYpv5FK/DxdMKmGs2sFtgFIjFU6YSEem/ynNftCXJJPm6OTi1VQXH+5n25QV1GdJIoELGMFHmHJAro9H0eVTAfF86KLcslDqy81tk4Z4qw0jF9UXRYs1gstskjd4rbEP6aqy9kzbeLlR2y4LJzsSM11ylWCbrswiTtXl7rbQcPc9AKfhM1YOHKwVvF05KoT7r5ZptTTT8URHXqvDA0Qwjjnfe3O9HLmBNbV8RWZdLt3+r/0pEQwoigA==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(82310400026)(36860700016)(10067099003)(56012099006)(11063799006)(261026121527099003)(261021135927099003)(261021121427099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|36860700016|376014|7416014|1800799024|82310400026|3023799007|261021123027099003|10067099003|11063799006|56012099006|261026140227099003|261021135927099003|261021121427099003|261022105027099003|261009223027099003|261026121527099003|261102123227099003|261028144727099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: s8n8mwzWgeZUcU3kO8+uuHxGQCNj077jCn0RdxuPUkK/6Kd+bMa5BrDSMv3GUsDN1Y/NKtCjoWKE1Qmap6QHyOLRYIeoemmXIOR/LMe8xAUu0WCgFv4GqJDuSwNie94JAvMiU0s9eXRNP9yM23+9pdPVTkigWpCmHZXsk66t4fwvO26zEHlWxs0QgaUUtdz0AMRPHiC0iYytkFaEclGWEjmXeLveUMdFtdlNvFPKpSnSX6L7bpEpSuFpXcs8dBgobY/ToSX/nYLNIjUlM3eYGeNC/mFgGn4moxyV2gcV7qpR+JqwkObLCLK0pywiKFhnm73QFuCEEn7pu9Yd763+ChuuUwO+RAvtGDObxGKF4AEq/1tj4GHdDYqrB33DILQzd2OLFmjIbxu4Do4OL2+z7aTKVkXyCzweU74zWJydGPD/ApA5+BBGRzGDtTpWaivF49d8EbqmL1Nvx4YHLt8qePWQl8QjtLlEqYwKvIyIz45hDtQbpaWSVYBIoBRqmT9xYKBAKxqyZlsSHQnJwwvMRA8og4+aOEL96GV+r4ahE/LhOPsqLkyWHNKv4t2LhxxTW3BEoknAO0orMwCmI+hdb1Ml/Y8rTI+PjLJXsd7UTzQW36UjcQZPyKKFPSsMVszD8z0VFVMogXfp1YQ1X/R9W20Ko5AF1rUwcdHyDMuV3pzUva3+2qSgP1oJTSjPUQVuXlSDUdZt1xOKi7NFs/ZrCw==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(36860700016)(376014)(7416014)(1800799024)(82310400026)(3023799007)(261021123027099003)(10067099003)(11063799006)(56012099006)(261026140227099003)(261021135927099003)(261021121427099003)(261022105027099003)(261009223027099003)(261026121527099003)(261102123227099003)(261028144727099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: UIweNWCt4vSxo5GbkkKo0rNxOHgrpDr0rUNYv2Uv0liz1W4hCkUJpgSN9mZPNAhxLrT+kAh2WqF9ZUk5ei2smlhvSL48W5YFBnnO2TiIIda6VrFG6i7FyWlCGR7gztOlqDGewFI0EdQ+xpe/RD4iCmWtFqR0O4NEw66XRqdKBtYRMXcVZSdxJ/nuYmPP2ml0/4JjxLBQv0CHqTc5fWTl89HPuY+I0nieksHUS9e72E9rtankmhF499lVmt1XXYV/xwZaUTukDCh/4IdnxPFAGULFRazQ44vSa/IfWzvvYB108d9woAmO05sFFzkVCSwWAIzdiXYUEqYsL1y73SBX7xFJFd7Oq4n34JFBlQ64j4pBJGUxTBl6Y39/+LrEd2HoGMBUlsIUSf2KFlJ4lHt/j6gDgAFyCM+AwrZhyyQAT4amUPnP0UWqdEVrloirCZqN
+X-MS-Exchange-AntiSpam-MessageData-0: TEWKbNUtIq4ubGbMmKKgCCejQ3gb69AJS+H26bYSCpF+xy+o9MkP5c1f+iaVBqu1FfD5LmF5snangT7TnXtBkubCM6wqE10FRXyZKE7GxVhMVAAydYq3b6NHRPrQDXIDAvL+DfLGbv7q338fp/2sn+4IR90Kzvdk2Jp+45VzNz+twdg2Tw+tUupuIzEtT78uEC3cnjrY4KkVguzMjQ1vlbhGGxcCv7ExG5vz/YiUEDcyPArFe8YgUFSQ/PC0UgbIN70plXqEOjqTeC325HnAghoCEo5y3xjW6P/4EkOoodx6+j3ajW8gQlpoVOREcKdnx3TEPY2GHcXj/ZGDUW2Alkl3J6FmmUK0174E/MIzxGgxWjbS8KqM1na7Y/nSc65xpEkWHv+LRiAnQx+C9h6Vk97KbC4YnYZdIa2XCrOMY1sp/ERd04WBjRVmRFiHB+ZM
 X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:09:32.0587
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:12:39.6718
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47e1b695-9623-4582-2bde-08df4a348fdc
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a3512e5-bb4c-4b9b-8596-08df4a34ffb0
 X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028D04.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028D05.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR10MB422559
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR10MB9707
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_060940_304884_FD9F70AB 
-X-CRM114-Status: GOOD (  14.63  )
+X-CRM114-CacheID: sfid-20261124_061244_832165_7EA02912 
+X-CRM114-Status: GOOD (  15.72  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -136,55 +136,71 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Dario
+Hi Marek
 
-On 10/28/26 11:57, Dario Binacchi wrote:
-> The first 64 MiB of the DDR are used by the secure firmware (TF-M,
-> Cortex-M33 firmware, BL31 and OP-TEE) and are protected by the RISAF
-> firewall. Without a reserved-memory node Linux allocates pages there,
-> and the first access triggers an IAC exception and an OP-TEE panic:
+On 10/26/26 13:51, Marek Vasut wrote:
+> The Bluetooth chip is connected to USART2 on STM32MP23xx DHCOS SoM,
+> adjust the DT to match the schematic.
 > 
->    E/TC:0   stm32_iac_itr:197 IAC exception ID: 137
->    Faulty address (IADDR0): 0x80000060
->    E/TC:0   Panic at core/drivers/firewall/stm32_iac.c:212 <stm32_iac_itr>
-> 
-> Reserve the region, as done for the stm32mp257f-ev1 board.
-> 
-> Fixes: c5ce8d7bcc78 ("arm64: dts: st: support Engicam MicroGEA-STM32MP257 SoM")
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> 
+> Fixes: 6642d6a47901 ("arm64: dts: st: Add support for DH electronics STM32MP23xx/STM32MP25xx DHCOS SoM and Breakout Board and DHSBC")
+> Signed-off-by: Marek Vasut <marex@nabladev.com>
 > ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>   .../arm64/boot/dts/st/stm32mp23xx-dhcos-som.dtsi | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
 > 
->   .../boot/dts/st/stm32mp257-engicam-microgea.dtsi     | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
-> index 5b4287e86def..6cd64587ecdc 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
-> +++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
-> @@ -19,6 +19,18 @@ memory@80000000 {
->   		device_type = "memory";
->   		reg = <0x0 0x80000000 0x0 0x80000000>;
->   	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		fw@80000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x80000000 0x0 0x4000000>;
-> +			no-map;
-> +		};
-> +	};
+> diff --git a/arch/arm64/boot/dts/st/stm32mp23xx-dhcos-som.dtsi b/arch/arm64/boot/dts/st/stm32mp23xx-dhcos-som.dtsi
+> index ffdcceb2fa237..5d4624c3200ad 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp23xx-dhcos-som.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp23xx-dhcos-som.dtsi
+> @@ -24,7 +24,6 @@ &rv3032 {
+>   	interrupts-extended = <&gpiod 10 IRQ_TYPE_EDGE_FALLING>;
 >   };
 >   
->   &scmi_regu {
-> ---
-> base-commit: 65ba8f34ec886ec72b2c07ddc8cf3d815c32869d
-> branch: stm32mp257-engicam-microgea-fw-reserved-memory
-> 
+> -/* Bluetooth */
+>   &usart1 {
+>   	pinctrl-names = "default", "sleep", "idle";
+>   	pinctrl-0 = <&usart1_pins_a>;
+> @@ -32,15 +31,9 @@ &usart1 {
+>   	pinctrl-2 = <&usart1_idle_pins_a>;
+>   	uart-has-rtscts;
+>   	status = "okay";
+> -
+> -	bluetooth {
+> -		compatible = "infineon,cyw55572-bt";
+> -		brcm,requires-autobaud-mode;
+> -		max-speed = <3000000>;
+> -		shutdown-gpios = <&ioexp 2 GPIO_ACTIVE_HIGH>;
+> -	};
+>   };
+>   
+> +/* Bluetooth */
+>   &usart2 {
+>   	pinctrl-names = "default", "sleep", "idle";
+>   	pinctrl-0 = <&usart2_pins_b>;
+> @@ -48,4 +41,11 @@ &usart2 {
+>   	pinctrl-2 = <&usart2_idle_pins_b>;
+>   	uart-has-rtscts;
+>   	status = "okay";
+> +
+> +	bluetooth {
+> +		compatible = "infineon,cyw55572-bt";
+> +		brcm,requires-autobaud-mode;
+> +		max-speed = <3000000>;
+> +		shutdown-gpios = <&ioexp 2 GPIO_ACTIVE_HIGH>;
+> +	};
+>   };
 
 Applied on stm32-fixes.
 
