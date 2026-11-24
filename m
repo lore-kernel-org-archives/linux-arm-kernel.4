@@ -2,108 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483A0606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79052606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mfgbDFap;
-	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=QTAegHl3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bNYGMTmC;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=XiRUSJh5;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=lLrpdG3Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
-	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KiI8d4cKVeyNsxfRDWA6gviPifCD35OJXPxKhstld7E=; b=mfgbDFapjHG47I
-	CnHQCfGkEtDB/HMeWzCqU8f/BYIRfo7rv+IBwGhjpy1Lz42c1tQudPV5k15cwwj9s0+yLDDUzQLzF
-	kAIX/lHgvPAhI2KDqZSD2HcFavIt9JofoshYfGdpWfQpO02jtkCqz7BHAVYoOlp9PgcyDXKCybs4E
-	qyXR+gxK0avfUc80DC/p5kmnQeQz6uqAvpL+6XgeqMQlriLkYZ3tmLFeINqHW5U5ffhmqbg8A7/Ze
-	H6nNKBDyopH8YrQP4yrLmXY5dwPjo5WY3PRZicbj4yaLyvDPtkOLnCSde2P95k3qFdrzJrA5GcgAl
-	AX/1+EBKrzH1AZhL6IyQ==;
+	List-Owner; bh=53M/jNU7gvao9zbUz+MPtUuoMg3rbooohKcY2RF1rFE=; b=bNYGMTmCzF/APZ
+	DvG6FbF6iLk4YmXGQOIkqF+vHUoHxBF6dyeo07ZnW+kPeU/vbqERVc7pxETEmWUal4KDMN0gSvfEI
+	Q/4eL3ZD3VMicNDDd0iA6yRhx/Y3MTxfkXez2grqknVDi9VwRH9+sWwwXF4gaSEOMMajByrp/Ddkh
+	3HGRNf8xiSulqt+nJRiCrCUcesxio1JrU4pbsP+bxcUJQFhddP7umoT1zwqAuJrr8iIJXjRitVVbU
+	q3vyevI1onwNYvsMcdKAVWuu4UApqPzVMGL5V+r0Qqzx9iojTrVvxE3/4g047DpTLC3iSA+WI9Xhe
+	RN0n+WRqsfimpcydbecw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVssU-000000070Ue-18bU;
-	Tue, 24 Nov 2026 15:56:18 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1xVtdN-00000007A9j-3nZC;
+	Tue, 24 Nov 2026 16:44:45 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsqf-00000006yUS-3xUW;
-	Tue, 24 Nov 2026 15:54:30 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261124155423euoutp02eec8ad6e3011de31a32a1c9604515160~rBixZJ2hW0431604316euoutp02U;
-	Tue, 24 Nov 2026 15:54:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261124155423euoutp02eec8ad6e3011de31a32a1c9604515160~rBixZJ2hW0431604316euoutp02U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1795535664;
-	bh=KiI8d4cKVeyNsxfRDWA6gviPifCD35OJXPxKhstld7E=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=QTAegHl3FbYGn9eL/Lg1jImVCWu9mFd1UxcXNY0kUEUeBNQlUzd7EatI58loj1Udu
-	 I3mVDXnn0yQ1pHQEGnbpak/2ekbH5lIhY6+mE2iJi8PupOf39Mes7AXC+w8oZ6eorA
-	 O5vhLCMnYb7SJLXZZaMg9CqVwYDyAyTxaBL+yuSE=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261124155423eucas1p2dc9d18f8a847d77c60615bc7f37ed657~rBixArJQT0856008560eucas1p2G;
-	Tue, 24 Nov 2026 15:54:23 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261124155421eusmtip1da8a2deb01b07769b105bf7000d86256~rBivWoOMY2656326563eusmtip1R;
-	Tue, 24 Nov 2026 15:54:21 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Tue, 24 Nov 2026 16:52:49 +0100
-Subject: [PATCH v8 13/18] drm/bridge: inno-hdmi: Make the supported HDMI
- version selectable
+	id 1xVtdM-00000007A6Q-1ZkQ
+	for linux-arm-kernel@bombadil.infradead.org;
+	Tue, 24 Nov 2026 16:44:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description;
+	bh=53M/jNU7gvao9zbUz+MPtUuoMg3rbooohKcY2RF1rFE=; b=XiRUSJh5PcwBqX/pYYAmlnEZ9V
+	9cwtvHlYMIXgRWwNukncbnKjNGNigtcnUq6b51Nn5h3XKahSFP+MqQBqj/+sB2U8ZiGq6EXPfgRD9
+	HAU41b+BpnOhaD1YtRO2b4RRBz9y+LbfBZXMzv+w2PmOJkB6g4JNfLl6fPUJtY0PpVfj3i6j3uk9J
+	Fk3QDAu/OWZQaIw/agbqN+kdccnhxE+fb7Fcr0zClmddqwUNOmAYB9omAq7avLZu7YjuW2qxUwzN0
+	fUsQ2BVldCIMSpJfjoEozE0s1D2U1KM64KX6N7j6mQnwLd8lvD/PJs9SAg6vzT78El0I3nQGXkqrC
+	uOL49kbQ==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVtdD-00000009CiF-3yK9
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 16:44:43 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 49AACC2C65F;
+	Tue, 24 Nov 2026 16:44:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BA401601E1;
+	Tue, 24 Nov 2026 16:44:27 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D5BD011E69A74;
+	Tue, 24 Nov 2026 17:44:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795538666; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=53M/jNU7gvao9zbUz+MPtUuoMg3rbooohKcY2RF1rFE=;
+	b=lLrpdG3YSYonKsqjZ0nA4v/luC/lUV71hkWM0DMSi1Ut0YO3tpa3cvoqynxNCaoMzUu59p
+	XibZaxK6u94QFBrZOu94Dvi2gNXxAZ4gTtAVdvriNTG/55I7Pqy1NrDfxCX+WIkOSzmX6f
+	ScdRBDRkFB7dYJU4SutHy0rRYSABMxX8JeyMNWwId/jrOufL/rdbuszoslllhDDBeFxah0
+	ZbLayFiNzZNjTcJKomgKeB4uwH+D559Jt4Goj5tjp6oHx0Y3MClE/5WbPg02Q5FyuPpb0N
+	lL8Q+pAeGEjfDpE3g7RH0OhB3qY+KGGoRzjTfr4Mv136UL3b1tigVv4EOix67Q==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Jacky Huang <ychuang3@nuvoton.com>,  Shan-Chun Hung
+ <schung@nuvoton.com>,  Michael Turquette <mturquette@baylibre.com>,
+  Stephen Boyd <sboyd@kernel.org>,  Richard Cochran
+ <richardcochran@gmail.com>,  Arnd Bergmann <arnd@arndb.de>,  Brian Masney
+ <bmasney+clk@redhat.com>,  Jerome Brunet <jbrunet+clk@baylibre.com>,  Rob
+ Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  Andrew Jeffery
+ <andrew@codeconstruct.com.au>,  Avi Fishman <avifishman70@gmail.com>,
+  Tomer Maimon <tmaimon77@gmail.com>,  Tali Perry <tali.perry1@gmail.com>,
+  Patrick Venture <venture@google.com>,  Nancy Yuen <yuenn@google.com>,
+  Benjamin Fair <benjaminfair@google.com>,  Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>,  Steam Lin <STLin2@winbond.com>,
+  linux-arm-kernel@lists.infradead.org,  linux-clk@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  Krzysztof Kozlowski <krzk@kernel.org>,
+  devicetree@vger.kernel.org,  openbmc@lists.ozlabs.org,
+  stable@vger.kernel.org
+Subject: Re: [PATCH v12 02/10] clk: nuvoton: ma35d1: Use clk_hw pointers as
+ mux parents
+In-Reply-To: <179519171774.3795820.3637822831411003847.b4-review@b4> (Jerome
+	Brunet's message of "Fri, 20 Nov 2026 17:21:57 +0100")
+References: <20261118-perso-ma35d1-upstream-clk-v12-0-bee2c8dad4e1@bootlin.com>
+	<20261118-perso-ma35d1-upstream-clk-v12-2-bee2c8dad4e1@bootlin.com>
+	<179519171774.3795820.3637822831411003847.b4-review@b4>
+User-Agent: mu4e 1.12.12; emacs 30.2
+Date: Tue, 24 Nov 2026 17:44:16 +0100
+Message-ID: <87y0aiqivz.fsf@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-jh7110-clean-send-v8-13-de92635dd857@samsung.com>
-In-Reply-To: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,  Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Robert Foss
-	<rfoss@kernel.org>,  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>,  Luca Ceresoli
-	<luca.ceresoli@bootlin.com>,  Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,  Philipp Zabel
-	<p.zabel@pengutronix.de>,  Emil Renner Berthing <kernel@esmil.dk>,  Hal Feng
-	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>,  Paul
-	Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Dominique
-	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>,  David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Yakir Yang
-	<kuankuan.y@gmail.com>,  Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,  Michal Wilczynski
-	<m.wilczynski@samsung.com>,  Conor Dooley <conor@kernel.org>, William Qiu
-	<william.qiu@starfivetech.com>,  Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Sandy Huang <hjc@rock-chips.com>,  Manivannan Sadhasivam <mani@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,  Marek
-	Szyprowski <m.szyprowski@samsung.com>,  Maud Spierings
-	<maud_spierings@murena.io>,  Graham Markall <hello@big-grey.co.uk>,  Icenowy
-	Zheng <zhengxingda@iscas.ac.cn>,  Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	Joshua Peisach <jpeisach@ubuntu.com>,  =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>,  Cristian Ciocaltea
-	<cristian.ciocaltea@collabora.com>,  Owen O'Hehir <oo.hehir@gmail.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2279;
-	i=m.wilczynski@samsung.com; h=from:subject:message-id;
-	bh=E63qKCoHeBTDbROc0mY6FZDQcS54lq6G9OYzSsmEdo8=;
-	b=owGbwMvMwCGWumv6zndzRCIZT6slMWSzbhb1r9sSXftMnUMz7l37B+t/fyt3Jk8vVxMPlQpbe
-	53p9RfujlIWBjEOBlkxRZazG6ONJP8xPC0//vgXzBxWJpAhDFycAjCRJXcZ/nCba9k2n58fsbBB
-	WtjBhu2h6N7/R5o+7Pl6eaqb9l4/YyVGhiPSPtn/i2xe3eA4Ki903ObuCmXHpB8bN5Ts+Rft9KL
-	blRcA
-X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
-	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
-X-CMS-MailID: 20261124155423eucas1p2dc9d18f8a847d77c60615bc7f37ed657
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261124155423eucas1p2dc9d18f8a847d77c60615bc7f37ed657
-X-EPHeader: CA
-X-CMS-RootMailID: 20261124155423eucas1p2dc9d18f8a847d77c60615bc7f37ed657
-References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
-	<CGME20261124155423eucas1p2dc9d18f8a847d77c60615bc7f37ed657@eucas1p2.samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_075426_332015_815AA351 
-X-CRM114-Status: GOOD (  14.78  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261124_164436_047660_C91EEF47 
+X-CRM114-Status: UNSURE (   9.07  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,67 +109,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-inno_hdmi_probe() advertises HDMI 1.2 for every integration, which caps
-the TMDS character rate at 165 MHz. That matches the Rockchip variants,
-whose PHY configuration tables stop at 165 MHz, but not every SoC that
-uses this controller: the StarFive JH7110 supports HDMI 1.4b and drives
-pixel clocks up to 297 MHz for 3840x2160 and 4096x2160 at 30 Hz.
+Hi Jerome,
 
-Add a plat_data field for the supported version and keep HDMI 1.2 when
-it is left unset, so the Rockchip integrations are unchanged.
+>>  static struct clk_hw *ma35d1_clk_mux(struct device *dev, const char *na=
+me,
+>>  				     void __iomem *reg, u8 shift, u8 width,
+>> -				     const struct clk_parent_data *pdata,
+>> -				     int num_pdata)
+>> +				     struct clk_hw **hws,
+>> +				     const int *parent_idx, int num_parents)
+>>  {
+>> -	return clk_hw_register_mux_parent_data(dev, name, pdata, num_pdata,
+>> -					       CLK_SET_RATE_NO_REPARENT, reg, shift,
+>> -					       width, 0, &ma35d1_lock);
+>> +	const struct clk_hw *parent_hws[MA35D1_MUX_MAX_PARENTS] =3D {};
+>
+>
+> It works but a little check to make sure we do not overflow the table here
+> would be nice.
 
-Tested-by: Owen O'Hehir <oo.hehir@gmail.com>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- drivers/gpu/drm/bridge/inno-hdmi.c | 3 ++-
- include/drm/bridge/inno_hdmi.h     | 3 +++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+That's maybe a bit more future-proof so I'll add it, but at the moment
+I believe this is almost dead code since every caller passes a static
+ARRAY_SIZE(). But not a blocker for me, will be added to v13.
 
-diff --git a/drivers/gpu/drm/bridge/inno-hdmi.c b/drivers/gpu/drm/bridge/inno-hdmi.c
-index 19add900bf728ca7dcdd1b3605d3fbcb2e879db4..8b9850637dcc677bbba61b4a93a3db6c0dcd020c 100644
---- a/drivers/gpu/drm/bridge/inno-hdmi.c
-+++ b/drivers/gpu/drm/bridge/inno-hdmi.c
-@@ -1169,7 +1169,8 @@ struct inno_hdmi *inno_hdmi_probe(struct platform_device *pdev,
- 	hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
- 	hdmi->bridge.vendor = "Inno";
- 	hdmi->bridge.product = "Inno HDMI";
--	hdmi->bridge.supported_hdmi_ver = HDMI_VERSION_1_2;
-+	hdmi->bridge.supported_hdmi_ver = plat_data->supported_hdmi_ver ?:
-+					  HDMI_VERSION_1_2;
- 
- 	hdmi->bridge.ddc = inno_hdmi_i2c_adapter(hdmi);
- 	if (IS_ERR(hdmi->bridge.ddc))
-diff --git a/include/drm/bridge/inno_hdmi.h b/include/drm/bridge/inno_hdmi.h
-index cc5099d05f641eef5de91ed5becde7337c04b013..89a38f26091eda1ef7818fea9d1d9c99e4ae019e 100644
---- a/include/drm/bridge/inno_hdmi.h
-+++ b/include/drm/bridge/inno_hdmi.h
-@@ -6,6 +6,7 @@
- #ifndef __INNO_HDMI__
- #define __INNO_HDMI__
- 
-+#include <linux/hdmi.h>
- #include <linux/types.h>
- 
- #include <drm/drm_modes.h>
-@@ -34,6 +35,8 @@ struct inno_hdmi_plat_data {
- 	struct inno_hdmi_phy_config *default_phy_config;
- 	/* Clock the register interface from the TMDS clock, not the system clock. */
- 	bool reg_clk_source_tmds;
-+	/* HDMI version the integration supports; HDMI 1.2 if left unset. */
-+	enum hdmi_version supported_hdmi_ver;
- };
- 
- struct inno_hdmi *inno_hdmi_bind(struct platform_device *pdev,
-
--- 
-2.34.1
-
+Thanks,
+Miqu=C3=A8l
 
