@@ -2,163 +2,164 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19BA606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9571B606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:05:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HbIPuwzS;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=ULTvYK51;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=ULTvYK51
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0UrgixHZ;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=d2OPOlRv;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=HIRva3yZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=; b=HbIPuwzSia23qL4Zc38lyKM129
-	jSyf0s3lqAXUaX522ClNGmZDWPmBYifxFP/KU67g5eClfuP9N79jspKluiaoaIzX/cMhXct84ztLk
-	ZaKhGQqV3OadYSvlE2ODB2berls/Pl7mmZ4GZPKTSsGAwOhJtWFlICDbXePj0ZNQ3yGnntdmcUcVf
-	E8JAYHCMch5NyglnPsZooTll7cz+9i3AVxPTNofTu5LvSpU21aHlZ0lYBzohXEfwx0sMCxqYjmEow
-	rqyaYGumgyt139DV2+0qElnVilNzYpiPNGcrrQJRO9eo/qBP09eh4jw5TmbAT8VxxRLEi6UNb0Ng6
-	FGUl0OQg==;
+	bh=xhoLzvSdgCRdRzB82i9PymJ0nI+RzUMdCmK32Pdr6Ho=; b=0UrgixHZCF5pJIFEY+oqdp44tA
+	Qrx4wuYhR52tImXzoHpyf9bz0/yqA2JslpVZGV8IUbZhSrTeTafFhvYQw2UnGzd3sdJBgGCUqrtLc
+	ZQynDTuNVFLFTX/WZs/BLRbzQ5mA2XRp3KmqvU35REbLVxaAZ+RexbnNJbO/MPTsZ6chyPw6EKApj
+	zKdJoxqzpd25ACvoBjVEI4CuKeRYw+UnpUPdRYPcHJi5F9rYJ00xrh/iWSM/ooopbRzPWtUeZbTvX
+	7b+OZNNAcAeqpuAm4/dlLSSLXvf0r607s8G7q0B6oiWZcYdhA5GeeChhU0IlV7P98Vy8Ny9V9JLKu
+	yBBPxJJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlf8-00000005rLf-2XL3;
-	Tue, 24 Nov 2026 08:14:02 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1xVmSU-000000060iV-0Xot;
+	Tue, 24 Nov 2026 09:05:02 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlf5-00000005rLJ-0TcE
+	id 1xVmSQ-000000060hj-3aI6
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:14:01 +0000
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=pOGjaq4HOA3/qQ3cnCtVLybUYD3UVJ8zZKS/T0sPcusSkKy48KzBoZ8WGp5aUM5lfsBUG3z0/ieYzbnf/w5RzYyqOTliGaZfXzpsSBe8egF0OFb6Zug1dsV6l0S+zuxX4ukeQH0nVQXx22EoM4H2L/tphrqkswG+R7ikeIkfYpvZkifon9z7hY5zGZHHm0bgUU2s7H1kp1lF/Qr1QqfqxhV8PFztY5nZuBYX4EJx1PDP5e6+DeeSwBlKhl10ck0BQ/ktXkKlebOQd0etOrrjbPn4l92K3UwGXzRZEzZzYuxDNyTwlQ3LX87cQbe/l+yyW2e7R6KFwVR2k+DPmHIDfw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
- b=gwIqLfh1O1trvwO9z4JC3pfrQp4EIR2nlUJiKEQ1B9H7xez0WtTM3BfKQ8vshyhzabAMimBzh//WevfMUOOaPnprAjAsvA7qVySPOmm/gCgXUNbyQbtNndvtOtiiMQc7EcBoHs7gLHG/PCCWD7CaisD32IsNc+2lO/IGOK4o/KO5S7Sms4cDUoxMRS+mVtgYpo/wvpIQVeikeuXtyUPfoT8ymVxOIZwlvZepEY8OGiV6+U9p5MQbaTMuScPsRaFIbmzmDv/4d5E2Gh5oI6ut4MZbaL/RRLfMzZo/brD5TFlki8oKiyghPAXDpV/wjfFUH/B9LRB6vjM/RLWh3UETdQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=linux.alibaba.com smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
- b=ULTvYK51fe4Y3ek/F/eGMzIIDOJUmVM/WdAQ4dHY4PWe2wlYiBTMulKDc2jMIRfdWQ97bjVeQywBPrhIsxlB7HZrAmHw1x89QMy2eQgfnVJTAHsAO62LnmuhPI5X6737F+sWlYKDEviCuxSfkMFuXKbDr3erNOgW6Fq8ppAgZqU=
-Received: from DU7P250CA0021.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:54f::10)
- by GVXPR08MB10787.eurprd08.prod.outlook.com (2603:10a6:150:150::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 08:13:44 +0000
-Received: from DB1PEPF000509E9.eurprd03.prod.outlook.com
- (2603:10a6:10:54f:cafe::a8) by DU7P250CA0021.outlook.office365.com
- (2603:10a6:10:54f::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.6 via Frontend Transport; Tue, 24
- Nov 2026 08:13:44 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- DB1PEPF000509E9.mail.protection.outlook.com (10.167.242.59) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.5
- via Frontend Transport; Tue, 24 Nov 2026 08:13:43 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HoOUkFfMy94lTtv1eOM1wTHLZkJodCb+eSPWBiLeCMu7r/HgjVxTDoZre2RE46fUIEb7Feh75OQXPhCz5aOlZOuDvNbzf4a/HgQgh/vGD9NJC2k/5MCa3sOBwHKjtxUSNLF//5TbBJtUgwkCVVXhgiwx+VjX2LemaqaVxHOnm/xMMW8G4+7fneAMZDWNsrDsOmbejlLpFf9AZz5LeN6TKwzDjHwPIvIup7GL6yhWmM4OKJEHNg0nDDnd+9w3sLuuCzt9Laz4KdguYGWDbF0FySOaBhJyZ5BnlbsaI0blrt6jSV8n8WZ/9f64hRjtNdQpvpIpTEsCdcHtuE3BgZNFQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
- b=mJsLq6B3BfiJZbb6xX3zAQeAlvqAz/DqUfUwHJK4P4SNfDwaXzgZbb7L26ABpGNI0eAoe7xw0cpDFAu7sjWO7ZRQezkNx6dUcT6hbeQFnEg7iT75MFJBhVRD08UDFDIbDa+2O0WeAJt9dv3GjrAh8QfpKxmTqIZRzA2AccV8sitqJGRaI2GQVeWNHnnzlDNlamDF91YzqPg1Y27XTl427EUdgQ28DgoNfYSqQxED2wqDYWNlzCVms37S96fOUu5+N9wOGJ1Ey92iNH02LpTvn6Lo3HXJmzdmyDlbV7AsqPl3JX0nh6PrOFp2GjyJcg9zFYkJJpWV1mGa8WxunZU0bA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qz/Gy0kGZ3xNNuVlmOOkcX3nwfAD+QZVVlSBXV4mxxY=;
- b=ULTvYK51fe4Y3ek/F/eGMzIIDOJUmVM/WdAQ4dHY4PWe2wlYiBTMulKDc2jMIRfdWQ97bjVeQywBPrhIsxlB7HZrAmHw1x89QMy2eQgfnVJTAHsAO62LnmuhPI5X6737F+sWlYKDEviCuxSfkMFuXKbDr3erNOgW6Fq8ppAgZqU=
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com (2603:10a6:20b:605::22)
- by PAVPR08MB9532.eurprd08.prod.outlook.com (2603:10a6:102:312::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
- 2026 08:13:00 +0000
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155]) by AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 08:12:59 +0000
-From: Justin He <Justin.He@arm.com>
-To: Yao Yuan <yaoyuan@linux.alibaba.com>
-CC: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, Fuad
- Tabba <fuad.tabba@linux.dev>, Joey Gouly <Joey.Gouly@arm.com>, Steffen Eiden
-	<seiden@linux.ibm.com>, Suzuki Poulose <Suzuki.Poulose@arm.com>, Zenghui Yu
-	<yuzenghui@huawei.com>, Catalin Marinas <Catalin.Marinas@arm.com>, Will
- Deacon <will@kernel.org>, Mark Rutland <Mark.Rutland@arm.com>, Paolo Bonzini
-	<pbonzini@redhat.com>, Sean Christopherson <seanjc@google.com>, Shuah Khan
-	<shuah@kernel.org>, Sascha Bischoff <Sascha.Bischoff@arm.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>
-Subject: RE: [PATCH 3/3] KVM: selftests: arm64: Test KVM_PRE_FAULT_MEMORY
- before first KVM_RUN
-Thread-Topic: [PATCH 3/3] KVM: selftests: arm64: Test KVM_PRE_FAULT_MEMORY
- before first KVM_RUN
-Thread-Index: AQHde1zMDs/Q2stDPkmFlaiiFOxCN7c8z3MAgAAP9EA=
-Date: Tue, 24 Nov 2026 08:12:59 +0000
-Message-ID: <AS2PR08MB97864B308EA8B8528C915E71F7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-References: <20261123150917.2679600-1-justin.he@arm.com>
- <20261123150917.2679600-4-justin.he@arm.com>
- <6gdla4edbwa6e2s36libskrg5h3glxq3tdl7blthke42sbuqb7@tpczgelv4vud>
-In-Reply-To: <6gdla4edbwa6e2s36libskrg5h3glxq3tdl7blthke42sbuqb7@tpczgelv4vud>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: AS2PR08MB9786:EE_|PAVPR08MB9532:EE_|DB1PEPF000509E9:EE_|GVXPR08MB10787:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc736694-008b-49ca-667b-08df4a02db1a
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|7416014|6133799003|22082099003|18002099003|11063799006|56012099006|261009223027099003|261021123027099003|4143699003|261022105027099003|261102123227099003|261026121527099003|261028144727099003|261026140227099003|261021121427099003|261022075727099003|38070700021|10067099003;
-X-Microsoft-Antispam-Message-Info-Original: AX1HtReWUdlZcdnO+CMnqysIMYU1xT1G+hmVq0uv0B7KcLC0LZIVZmWFSsMVB2k6M2ssd98zgo3fWKrMzl8lMeJtH/0M7TyLKhELE2PfgYgurgpmtAQu2gIBct983bZSD2Csi1kRG24JgBullG7JHhGDci8Yb8gE2LrlhC5VuzmNewyRwGsxFyj8p52ZqrzWXl2Euh/pqgmiwxnZTrdn+tOtuk0HZvWQBkTh4W6bBUTjzVHk50FnclIDbtEgPWOLIa8+keHiawGH9/LRt9SadpfkjKxw2/7JH8en3ua846oCQb/gLp0UuWIapyRTl4fn7UUMNI3+x4aQRZkItjQ7F1dCYu4iZRh/RKtSAJVvocD1YjaH4gU3ObPkegjZk1rXewth5Fh9VFMgyqGocxnp5OpgbbcSgOnxY9ESIR0kgqQUzzcaS7tO2bmC9rAf3jJej4xhnXJ8EVWW3OswZpv+bwNeO/golaY1zvfOS5kJSKykF5ITSI2WeBFqelDCH6Cwf7unhSRXxIIy1Ecgy28vxcOiuvcv+e4lMrFW0mzHN7ElrKMPr0vdPZr9/MzarSqQXHEg7/IX7KIlCxgTizSN6r1VQZXVLcwViqHbwtHs8D55O8pORJDBgvmT2fLUSSYHp7jY3rgvr6+LA3IZQTAC1nI19U5IcTN5452PbOjoGuVjypYml3kjE8DNWTpurGBK0LcUvMux1MXHFGhS+7+b+dDWm+IrvWaWxCbTws90jH8=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR08MB9786.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(7416014)(6133799003)(22082099003)(18002099003)(11063799006)(56012099006)(261009223027099003)(261021123027099003)(4143699003)(261022105027099003)(261102123227099003)(261026121527099003)(261028144727099003)(261026140227099003)(261021121427099003)(261022075727099003)(38070700021)(10067099003);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	Tue, 24 Nov 2026 09:05:00 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AO83efm197008
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 09:04:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=xhoLzvSdgCRdRzB82i9PymJ0
+	nI+RzUMdCmK32Pdr6Ho=; b=d2OPOlRvfISVk7J6Wumi6zrZaA3PIkLQKXZwGaUG
+	MbxzPORarotTEVHKI9q/7zAQVuy5UMOPIvtI+osYwYXhzTrVn9Qj90ZXvDahgTk5
+	UVdXwPMaIIq3kn+rdE+38PUCNI0WevjLptazGn7FaT0YaKhVQ0WdJxeQngjAumu0
+	N4Kd2PRVleyW8wZ6EoGhdR+A3tyY/PJpXB37FXia0ReP+c0cqoHjIaOM0sVL1y6U
+	osuJce3d/MvXnISyo7klEX6dU1CIF1KATAgyaoQrn+c4yi4AMh6xnHppnx2ZPh/J
+	f/Ini72giDWQDVsJC79jVr9GeusNXELzoUPG6GONTbzUNA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j4ukrasxq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 09:04:57 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-93909014c85so802692485a.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 01:04:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795511097; x=1796115897; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=xhoLzvSdgCRdRzB82i9PymJ0nI+RzUMdCmK32Pdr6Ho=;
+        b=HIRva3yZcFlUM3V14bSSI5I1SoPfViZBt4kfcR67nMs9e4qQrjNrSSrF4MFmPUedzH
+         Dv/Jv9TpxzNj4/UYVtZcUDi4aVTKlggAhDIoSLWXVzJGTg3JBcJs1ZmiSS174wZEeWui
+         EdRkEj4gma6npx8YzkJLspbtCw4oHABJn2EMXGKmZkA1Nb6+jZa6/wdjYt++mRObdFgJ
+         XufnLaZde9mbNL+Fr7EA15Axs29tdW9cA+Ofn7d6eVLUz53pmiJBdcWeRBROBrHnUGX2
+         k/K0r5e4ZtXavy8pSF7etpKV/pvxx3ajf6lL8+t3Xs+rlSe+3C6dqu0QshdtunvGgEsY
+         hRjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795511097; x=1796115897;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xhoLzvSdgCRdRzB82i9PymJ0nI+RzUMdCmK32Pdr6Ho=;
+        b=r2cu0LRPGAvGUicMa986Rgl514K2tXbt7ORZRIl6eBFMNGo22OMkd2DGDopjX/9KHy
+         JqR8rMuUUHMKOzBakAQ8B0Xqt8J+VlvRhv1OtdbY3/d6fF+ayrbCz63uF5AwymW7iZFT
+         z6VPZAHLogUiDBIQdCIfKP1ahlU7GMjacX0cb92qwSs41W30fgyS4bEaArnoQjaU1g19
+         DByYmrPR7PpRjCYLYGkq39qCHfwmsa97p9JPzYDF+a0EUkU+p8czpNtP8dszPIBCu3uf
+         3boIkdefn9bJFfDHNgph0rs6z7a1SK4LjlCKkRY7RIfws2200VPZ+ugOrEvq1QfUQ2Wq
+         CCVQ==
+X-Forwarded-Encrypted: i=1; AL+hErEqMuDbyn64Jvj3qmYX/UWehZ9DTyHNtQrHiG0mcsCeQFQ+3IjDUi0J0ANW1ODqV7tKREl9TsdWWdQiAPwMPfBw@lists.infradead.org
+X-Gm-Message-State: APuU4Z87JiG+2tdfsxIO9rXJE0sdo/j/91AMHgoTbpqXWnFy0xabT0hG
+	+h/ZYstC9k0WKA+bihVek8UohwswDzt7n/uoKkb1UAeqTckBnFmLOUDK46WqBsf55IMUy85//MI
+	/xUxe0e6P49uQrrFl0PofUl7y9/k1Sb4nXp2NBIkwLqJvG+kBaV0qEHdM2oF9q9olgTLR5+hkwX
+	nFNA==
+X-Gm-Gg: AZFdTZeuAhCCIwY8bcDZKjbOme2Mwm56SFJxNT3Bn6Bnv8K+b7OxgNWaEgeL4ftgqu/
+	0Z8RouaZmYrcswk5nu6MoSCy2EOGZCXZLphFe5kDX4TTY/H33/C7ewdmUasw/O4CmC9R/msWnmc
+	XE3dl6euVj07GT0KVtXms+8mBHsHA4+su92PuiJ/S7e0dK3J5riBuVIT5cs222mKrgh7Mo2MzGl
+	ZbPxSfkKAXtf2+Y+BsRWNsmsjz9+KLX+cCp+zrSRTyJWVG9dNp/0YFezf/L8ijUi/FQnb+Oru4+
+	Fva9GeNMy7GCKoDTW0QaiN79AAePO7IMsm91bqiO8tRjSykXTpe4Im3v9JSwQfPOsAEHIUV0cOM
+	1p+lPwfRjgNOl+I68u7suDlS/iUqo257mK3el127xwwjRuRSDOF1Ed/jmUG4ndNc=
+X-Received: by 2002:a05:620a:6c18:b0:949:6841:2ba2 with SMTP id af79cd13be357-949ba96e544mr2446121285a.22.1795511096532;
+        Tue, 24 Nov 2026 01:04:56 -0800 (PST)
+X-Received: by 2002:a05:620a:6c18:b0:949:6841:2ba2 with SMTP id af79cd13be357-949ba96e544mr2446115485a.22.1795511095866;
+        Tue, 24 Nov 2026 01:04:55 -0800 (PST)
+Received: from localhost ([188.152.73.83])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb9067a0e6sm180427535e9.4.2026.11.24.01.04.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 01:04:54 -0800 (PST)
+Date: Tue, 24 Nov 2026 10:04:53 +0100
+From: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Jesper Dangaard Brouer <hawk@kernel.org>,
+        John Fastabend <john.fastabend@gmail.com>,
+        Stanislav Fomichev <sdf@fomichev.me>,
+        Jose Abreu <Jose.Abreu@synopsys.com>,
+        Ong Boon Leong <boon.leong.ong@intel.com>,
+        Simon Horman <horms@kernel.org>, Andrii Nakryiko <andrii@kernel.org>,
+        Eduard Zingerman <eddyz87@gmail.com>,
+        Kumar Kartikeya Dwivedi <memxor@gmail.com>,
+        Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
+        Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
+        Emil Tsalapatis <emil@etsalapatis.com>,
+        Ihor Solodrai <ihor.solodrai@linux.dev>, peilinhe2020@163.com,
+        Peilin He <he.peilin@zte.com.cn>, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
+Subject: Re: [PATCH net-next v12 1/4] net: xdp: add
+ __xdp_build_skb_from_buff() helper
+Message-ID: <awVTNSYCD-_5gE4D@lore-desk>
+References: <20261121-stmmac-rx-mb-v12-0-3ae2f3bce174@oss.qualcomm.com>
+ <20261121-stmmac-rx-mb-v12-1-3ae2f3bce174@oss.qualcomm.com>
+ <9997f4e9-9453-4511-af3e-4be664a09281@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: M8w5XoAvbCgZqXlLlN8xuX2LOOzCUC+ZwZdTSidU/mlZyIud66IbvHJkHWoOuWAA1RpFPqKhyU94+UpK2YXbhbQYuwubvxZL3jl+dLiTRML0wKr7arOCZOWU9Mp/st+0MRYFqOrTpeCHIyeWcyYXmBNIWZiEnUCzs9bX6S7lEe1WuwG8U8sUurv6MHMzs7PU3tpRp0AJBp4oVqF1e3Jw0gCmVqv66+T0nufn8hSpMIdEZHNE3lCypgTmDKppNPzaem2ja83kpnOOvjV/SGX5/7gWvdAldOc1pEM8Mt1Z0mmU7REvjd9qMYolS1YT8RD3y+zNav6Wjp9AErEk2dvAVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR08MB9532
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB1PEPF000509E9.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 73dbc1b7-6f28-4c6f-8746-08df4a02c0fc
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|23010399003|14060799003|35042699022|36860700016|6133799003|18002099003|261009223027099003|22082099003|261021123027099003|261021121427099003|261022105027099003|261022075727099003|261026140227099003|261026121527099003|261028144727099003|56012099006|4143699003|10067099003|261102123227099003|11063799006;
-X-Microsoft-Antispam-Message-Info: MAmWPjgPCyNsAxtWjyZOdah6ck8OpZyO2j6VvhCXaMoHbd2Z/KhU0H1GXuf3tvJJ/dqkHFe37K1n7tJAjUmrTqW0JgjaiWSJJv+zzxnnHuy5zbx7ML5ZkUXkF1OXpo2rQ0DtzmzVvP8BziAQsq6Dkyn75riMa0C0MM4d8drCi//J7m5mVKyK0mFYvtlDoTkRiJaD4rNKhUifFZlwBVHAYd5Zc4PwuaAVj0b3VH71pCUKg6bs9WZ5/a1dCuwtnKnmX5+GfTv+NUkAPu9oEPvp5w9KfGvz6Ve0Zg5f/2RCI2bpGVrJIM3lhSFHC9xv7sAel0MkrDNJLCzy9DSkxwUXH3r81kd/INzj58UfUfsznW+/9Ll8c7qWS0bQurKwirgRlec5Mn97gj6L9kuY00DMetY6jc/1M2Cupxhu+jbI6aefTHi8ucdt57x0zzOwXA3cFJvyppMmL4rQfCNUrg/O8QQGbK8fyh7OmCJvugDZgFmyA0qsEIR7Bw0apV9Lyf+++/SVLr/ZLJVBg4jVugzvJtSrW+15O9h8e3r7Ad+bhOfsbj3/yPjO0TTVI2fvQdlPJKBehRQ6BqwVP51hHFBippNieGQwNYsOYeD41mM1DXxLIVjBmWDUqNYHPNaj4hB2IIXPI9Lj46TJpOmXJcnFtw1YiTy4UrOrsIXimvuUD7Uv0v2vSNKLmzVEhxXRObV9frXsSxJWcBwGmqJlOgxBNw==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(23010399003)(14060799003)(35042699022)(36860700016)(6133799003)(18002099003)(261009223027099003)(22082099003)(261021123027099003)(261021121427099003)(261022105027099003)(261022075727099003)(261026140227099003)(261026121527099003)(261028144727099003)(56012099006)(4143699003)(10067099003)(261102123227099003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Cip4GZA5M42L44/xcxV02lLPlup+OXePszWFJmgRKvXKbAi+c6wQpRX/vQUJuAp+zHJw0LXYYUP/H13WMlexoaKfXrd5pYYeRyhU+wu7GN0Q0x/uByr8pqgJX6u1iTvTqE2POMdPWNwnlbRhjFEjO+AaRP6vvzlaZ1kQwvIu26WH1T9DAkxLaAYRvj50974ZyCxsAeq4nKhtsJ1VmKhQt4hluBstz+oMO7UH6gWSlvL79aSKcaQpi9PFdR5ONoqiLG3zcR/zx6YjXkvzuGtrzV1A9M0vg0WB4VcPpyLpjPWLBlV8fSQynFbgsrgSXedr7ZC4HuOWcsqRHibSphcFJ8FDTh3giDtBwvMHhhHusTXk6jKCRwDVH5E0A4NhTuRTXXqaQBi+a+eejGNx+qm4VGCssxYsKYdstOTW+5cW9aaV6DCuAX4A+v4fpX2CHjsu
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 08:13:43.5161
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc736694-008b-49ca-667b-08df4a02db1a
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509E9.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR08MB10787
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4rmTEbZeDTuovlI+"
+Content-Disposition: inline
+In-Reply-To: <9997f4e9-9453-4511-af3e-4be664a09281@bootlin.com>
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDAzNCBTYWx0ZWRfX5OzENG8f5DHl
+ Jxy5jci1Afk9ehyj21WMfjTFWsDw73rEPVRIN3JedVrY+wjR+ZGJ0OoyqLnplHDv1ko15jAfwUO
+ Q1XcJkB6cxxhENPbaY32qkIakGsB0H0=
+X-Proofpoint-ORIG-GUID: -l7wu7AADER_dnI5J8HaBplApSSLwjj5
+X-Authority-Analysis: v=2.4 cv=M+rYuCws c=1 sm=1 tr=0 ts=6b055339 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=mlS0om9xteqVCAF/aDpb2g==:17
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=VwQbUJbxAAAA:8
+ a=Byx-y9mGAAAA:8 a=wBYCl_nSamdfdyxXmbgA:9 a=CjuIK1q_8ugA:10
+ a=NyyH46NNO2n4llnjC44A:9 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDAzNCBTYWx0ZWRfX2U6hEjGeF60L
+ VUPG73YOpTVmoeJE3QqRrHER6p2z2b0Qf5EKRk8CZnom+B0eSqUJAQ0P7I/iPubqZgEK6XGVlnR
+ wKYm6nFKc90Djh54RQkP1D1+nTYQCVQoizFyj34MR9DC9f0XEqO6YbvQi4CtZgyG41b8kUFIWis
+ GMSa999X0BKAj2SNnEBwnfVX/7xXnJUy5exB6WKNOIFIC3Cw9Pm4zxzUf3BEnd/Cz4HzvyLOFAs
+ NVRXhdZLGWSN1lwzaPCLmqt5MHw6BLphhv2Po6KlK1fz3MUwsuYxQnUqTVrQs/ZVnFMTZkD0fD1
+ W0WkZWyIf4ykaRbDwMymNdBnaFBK92Tzn/GGelPVu4/UYBRoViwzbsvLYjTNiE1SQCcBYsD0u7c
+ USuToWKwixY0nam9HlPmumtFDgsxh3noqu1N2UpQozpCUylACkUae9arUa0ZwajJIoljRKh767X
+ najLAGK8dLS/AJsPIyA==
+X-Proofpoint-GUID: -l7wu7AADER_dnI5J8HaBplApSSLwjj5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-24_01,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0 adultscore=0
+ clxscore=1015 lowpriorityscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611240034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_001359_211855_91AB05DE 
-X-CRM114-Status: GOOD (  25.14  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_010458_895557_F2C507FB 
+X-CRM114-Status: GOOD (  27.97  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -169,182 +170,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Yao,
+--4rmTEbZeDTuovlI+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-[...]
+> Hi Lorenzo,
 >=20
-> > Without EL2, cover immediate_exit on the first KVM_RUN, retrying after =
-a
-> > failed first KVM_RUN, and pre-faulting while the vCPU moves from the
-> > main thread to a worker thread for its first run and back to the main
-> > thread for its second run. The two threads are pinned to different CPUs
-> > when at least two are available.
+> On 11/21/26 18:28, Lorenzo Bianconi wrote:
+> > xdp_build_skb_from_buff() always calls eth_type_trans() on the skb it
+> > builds, which pulls the Ethernet header and advances skb->data. Drivers
+> > that still need to process the L2 header before protocol parsing
+> > therefore cannot use the helper.
+> >=20
+> > stmmac is such a driver: its software VLAN path (stmmac_rx_vlan()) reads
+> > the VLAN tag at skb->data and shifts the MAC addresses over it, so it h=
+as
+> > to run before eth_type_trans().
+> >=20
+> > Split the implementation into __xdp_build_skb_from_buff(), which builds
+> > the skb (including the recycle mark, the Rx queue index and the frags
+> > info) but leaves skb->dev, skb->protocol, skb->pkt_type and the mac
+> > header unset, so the caller must initialize them, usually by calling
+> > eth_type_trans(). Make xdp_build_skb_from_buff() a static inline wrapper
+> > that still calls eth_type_trans() as before, preserving the behavior of
+> > existing in-tree users. A follow-up patch will let stmmac use it.
 >=20
-> I suggest to list them for better readability e.g:
+> I've been questionning why we even do that in stmmac in the first place
+> actually. This pretends to offload, but it's just to deal with the tag
+> in the driver instead of later down the road.
 >=20
-> Test cases for w/o EL2:
-> 1. Immediate_exit on the first KVM_RUN
-> 2. Retrying pre-fault after a failed first KVM_RUN.
-> 3. Pre-faulting while moving the vCPU between 2 threads.
-> (more details of 3 can be given in code implementation there)
+> The original idea was for GRO back when it didn't handle vlan tags, but
+> this isn't necessary anymore.
 >=20
-Will do in v2.
+> There was a series in-flight to remove stmmac_rx_vlan altogether, but it
+> seems to have stalled [1]:
+>=20
+> [1]: https://lore.kernel.org/all/20260914150612.9798-3-peilinhe2020@163.c=
+om/
+>=20
+> Peilin He, do you have any plans to continue this ? If not, it may be good
+> to pick this up instead of working around this.
 
-> > With EL2, additionally cover an EL2 vCPU with ID_AA64MMFR4_EL1.NV_frac
-> > cleared to 0 and HCR_EL2.NV=3D1 at EL1h (the NULL vncr_tlb reproducer),=
- an
-> > EL2 vCPU with a vEL1 context and asymmetric HCR_EL2.IMO/FMO staged
-> before
-> > the first run, and the same thread handoff. An unfixed kernel reports
-> > the staged context case only as a WARN in the kernel log; the test
-> > itself still passes.
-> >
-> > Signed-off-by: Jia He <justin.he@arm.com>
-> > ---
-> >  .../kvm/arm64/nv_pre_fault_memory_test.c      | 335 ++++++++++++++++--
-> >  1 file changed, 298 insertions(+), 37 deletions(-)
-> >
-> > diff --git a/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test=
-.c
-> b/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
-> > index 09c1db303856..6dbcf3b0ef13 100644
-> > --- a/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
-> > +++ b/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
->=20
-> ...
->=20
-> > +
-> > +/*
-> > + * Pre-fault before the first KVM_RUN with ID_AA64MMFR4_EL1.NV_frac =
-=3D=3D
-> 0
-> > + * (no vncr_tlb) and HCR_EL2.NV=3D1 at EL1h.
-> > + */
-> > +static void test_pre_first_run_no_nv2(void)
->=20
-> This may not necessary per Marc's comment on patch 2 ?
->=20
-I'd like to keep it. It is the reproducer for the NULL vncr_tlb
-dereference that patch 1 fixes, not a test for patch 2. With patch 2
-dropped, it becomes the regression test for patch 1. I'll add that to
-the comment.
+I am fine to rebase my series on top of that one or pick the required patch.
 
-> > +{
-> > +	struct kvm_vcpu *vcpu;
-> > +	struct kvm_vm *vm;
-> > +	u64 val;
-> > +
-> > +	pr_info("Testing pre-first-run pre-fault with NV_frac=3D0 and
-> HCR_EL2.NV=3D1\n");
-> > +	vm =3D setup_test_vm(true, false, guest_el1_touch_and_done, &vcpu);
-> > +
-> > +	/* Copy the EL2 S1 configuration into the EL1 sysregs for vEL1. */
-> > +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_SCTLR_EL1),
-> > +		     vcpu_get_reg(vcpu,
-> KVM_ARM64_SYS_REG(SYS_SCTLR_EL2)));
-> > +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_TCR_EL1),
-> > +		     vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_TCR_EL2)));
->=20
-> ...
->=20
-> > +
-> > +static void *first_run_worker(void *arg)
-> > +{
-> > +	struct handoff_args *h =3D arg;
-> > +
-> > +	maybe_pin_self_to_cpu(h->cpu);
-> > +	pre_fault(h->vcpu, TEST_MEM_GPA + SZ_1M, TEST_MEM_SIZE -
-> SZ_1M);
-> > +
-> > +	vcpu_run(h->vcpu);
-> > +	expect_ucall_sync(h->vcpu, 1);
-> > +	return NULL;
-> > +}
-> > +
-> > +/*
-> > + * Pre-fault in the main thread, run the vCPU for the first time in a =
-worker
->=20
-> Minor: the pre-fault happens in worker thead yet, see first_run_worker().
->=20
-Right, both threads pre-fault. I'll fix the comment.
+Regards,
+Lorenzo
 
-> > + * thread, then pre-fault and run it again in the main thread. This ch=
-anges
-> > + * vcpu->pid both before and after the first run. If at least two CPUs=
- are
-> > + * available, the two threads are pinned to different CPUs.
-> > + */
-> > +static void test_thread_handoff(bool has_el2)
-> > +{
-> > +	struct handoff_args h =3D { .cpu =3D -1 };
-> > +	struct kvm_vcpu *vcpu;
-> > +	struct kvm_vm *vm;
-> > +	cpu_set_t allowed;
-> > +	int cpu, cpu0 =3D -1;
-> > +	pthread_t thr;
-> > +
-> > +	pr_info("Testing pre-fault across a thread handoff (%s vCPU)\n",
-> > +		has_el2 ? "EL2" : "EL1");
-> > +
-> > +	CPU_ZERO(&allowed);
-> > +	kvm_pthread_getaffinity(pthread_self(), &allowed);
-> > +	for (cpu =3D 0; cpu < CPU_SETSIZE; cpu++) {
-> > +		if (!CPU_ISSET(cpu, &allowed))
-> > +			continue;
-> > +		if (cpu0 < 0) {
-> > +			cpu0 =3D cpu;
-> > +		} else {
-> > +			h.cpu =3D cpu;
-> > +			break;
-> > +		}
-> > +	}
-> > +	if (h.cpu < 0)
-> > +		pr_info("Only one CPU available, not testing CPU
-> migration\n");
-> > +
-> > +	maybe_pin_self_to_cpu(cpu0);
-> > +	vm =3D setup_test_vm(has_el2, false,
-> > +			   has_el2 ? guest_code : guest_el1_code, &vcpu);
-> > +	pre_fault(vcpu, TEST_MEM_GPA, SZ_1M);
-> > +
-> > +	h.vcpu =3D vcpu;
-> > +	kvm_pthread_create(&thr, NULL, first_run_worker, &h);
-> > +	kvm_pthread_join(thr, NULL);
-> > +
-> > +	pre_fault(vcpu, TEST_MEM_GPA, TEST_MEM_SIZE);
-> > +	vcpu_run(vcpu);
-> > +	expect_ucall_done(vcpu);
-> > +
-> > +	kvm_pthread_setaffinity(pthread_self(), &allowed);
-> > +
-> > +	kvm_vm_free(vm);
-> > +}
-> > +
-> > +static void test_pre_first_run_el1(void)
-> > +{
-> > +	int feature =3D KVM_ARM_VCPU_SVE;
-> > +	struct kvm_vcpu *vcpu;
-> > +	struct kvm_vm *vm;
-> > +	int ret;
-> > +
-> > +	pr_info("Testing pre-first-run pre-fault with immediate_exit\n");
->                                              ^^^^
-> The vcpu->run->immediate_exit =3D 1 happens afte the pre_fault, thus
-> s/with/then/ looks more accurate here if this is the desired behavior.
 >=20
-Yes, will fix.
+> Maxime
+>=20
 
-Thanks,
-Jia He (Justin)
+--4rmTEbZeDTuovlI+
+Content-Type: application/pgp-signature; name=signature.asc
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCawVTNQAKCRA6cBh0uS2t
+rHPZAQCKAGP+HxkZclzwJBS529Ya17YdjUFEqrcVdO8FnqTQYAD/WTWY/zFW4UQM
+meWv9CThxP6DrZ3uuHCcz2TqrxwnlwE=
+=40vj
+-----END PGP SIGNATURE-----
+
+--4rmTEbZeDTuovlI+--
 
