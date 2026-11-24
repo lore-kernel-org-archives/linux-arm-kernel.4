@@ -2,103 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4084606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701B5606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:57:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QhFIhzIs;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=GoER1X1/;
-	dkim=pass (1024-bit key, unprotected) header.d=goodmis.org header.i=@goodmis.org header.a=rsa-sha256 header.s=dkim1 header.b=IKsjSGKG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3+EUJYpF;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=C49+SZq1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cgbskdNiwv1foCu8NskiI0D1syGORGzYIPtRO06UAuE=; b=QhFIhzIsEwzFrC
-	ZMyflGbHXqVp+FyqAjFm+geBsezoqZ9yH008DGKOT44TI6EXsN9o3hAPoR4jbLHqpvAi+ymR0qbCg
-	XRfPYibwWhyd+9ZiZbTwh9/4Mj+8vJywqoshUP9MkgpWIdfi5OP1be6HgW7wu/VvM5VabVFz5ZBAY
-	xv0AHwWmA4AhjdGjD6DCF4JMhWUoRVRZCqQRuF8nWjLHi253grS5hPZSdvwMbEZ7Q6X0v5gceyVSO
-	pyCPQiHuZxW5F2khuWEkca2mgfazhWzAWgWHMSOgGv+mFyrqxrrG6euEUK1IiIV/Qd4Mm6l3xxt7o
-	nkMi7uBf/pysARPsLiCA==;
+	List-Owner; bh=RAV1IdK9ll2YiAow1763lmAOyMd2ZFB8VR3ExdHkkYo=; b=3+EUJYpFvUTx5N
+	Rn4NPMvZD8mow2Kv8UcnPD+OwZ6Jk4nyKNzGfAaWilWEOzXptwpsFwvrPBPITBaVnD6gQA1TMruAK
+	5QDdtZOsZWIkVo32zS1vA2mac9d/e4THrwsyz+IkTxBNshpe3/MCFFSbVG+fM/D/7ouj8LS3Hm04v
+	jFboOv3cxOARxgsBkKkAhpZkSBeD5QpCu+IWj1Bj9au4JzeL+3XRguYuj/ikdN7D1atvCvrrHqV1W
+	IjH4/pkhzZqord0vqaHBQzBPCFmGFl+1a6650rJOdY1oNx1JBHyDK4OX0uuTMUiZ6OJeK7qt8CXCg
+	NgvzkT+8E51g2nr1sXTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuRz-00000007OME-0FtH;
-	Tue, 24 Nov 2026 17:37:03 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuRx-00000007OLT-1o7P
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 17:37:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=cgbskdNiwv1foCu8NskiI0D1syGORGzYIPtRO06UAuE=; b=GoER1X1/vzL4dsORC2OkquCtsw
-	X5ryjQcPgavlnNEzqtzRyniMLTC2bsmqSckV9nrRXrnwQjYv8gf33joCHkXCBvQT8RQ9zJQ/I9aUJ
-	Rc3DdkLp9I4GHOBn2t2Iby97fvBLulbkuGwd6VYTnmChVckb/l1oQijLWuz/HDtsa0Hp3nqE+tsnQ
-	7b4cGXo+j4WX1V/6tTdvPffJirfRjBLKjYGdQxIsBn7OOqUE3QJiD3wlQA1arBSS8DTpdHRWjopE6
-	zZQgan5+Rzqjed+9C9EEQwBA7WJyZXkmC+brWTMrvUlCObfpSWAbjOS2keHImZmCC8LUOn/EhH1Su
-	v7z70TzA==;
-Received: from smtprelay0017.hostedemail.com ([216.40.44.17] helo=relay.hostedemail.com)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuRs-00000004Q8T-2X8x
+	id 1xVu16-00000007Gzb-25tZ;
+	Tue, 24 Nov 2026 17:09:16 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVu0i-00000007GhH-2Mm8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:37:00 +0000
-Received: from omf08.hostedemail.com (lb01a-stub [10.200.18.249])
-	by unirelay04.hostedemail.com (Postfix) with ESMTP id 98CE81A0C2A;
-	Tue, 24 Nov 2026 17:36:48 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by omf08.hostedemail.com (Postfix) with ESMTPA id 5C8E520025;
-	Tue, 24 Nov 2026 17:36:40 +0000 (UTC)
-Date: Tue, 24 Nov 2026 12:36:38 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Karl Mehltretter <kmehltretter@gmail.com>
-Cc: Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner
- <tglx@kernel.org>, Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Ingo Molnar <mingo@redhat.com>, Andy
- Lutomirski <luto@kernel.org>, Frederic Weisbecker <frederic@kernel.org>,
- "Paul E. McKenney" <paulmck@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Waiman Long <longman@redhat.com>, Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann
- <dietmar.eggemann@arm.com>, Ben Segall <bsegall@google.com>, Mel Gorman
- <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>, K Prateek
- Nayak <kprateek.nayak@amd.com>, Hongyan Xia <hongyan.xia@transsion.com>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, Andrew Morton
- <akpm@linux-foundation.org>, Nathan Chancellor <nathan@kernel.org>, Nick
- Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
- Justin Stitt <justinstitt@google.com>,
- linux-arm-kernel@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev, linux-doc@vger.kernel.org,
- llvm@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 03/13] sched: Split preempt-count bookkeeping
- from raw updates
-Message-ID: <20261124123638.0a4e795f@gandalf.local.home>
-In-Reply-To: <20261028033127.82193-4-kmehltretter@gmail.com>
-References: <20261028033127.82193-1-kmehltretter@gmail.com>
-	<20261028033127.82193-4-kmehltretter@gmail.com>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	Tue, 24 Nov 2026 17:08:53 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D13D1BB2;
+	Tue, 24 Nov 2026 09:08:49 -0800 (PST)
+Received: from e126453.arm.com (e126453.arm.com [10.33.8.63])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 438F23F763;
+	Tue, 24 Nov 2026 09:08:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795540132; bh=yx3ouZnaG/jM4uhFqZLSd7F4g0A9hh6nuGcAOMTuPQI=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=C49+SZq1SFdpgp4Fs2nAb3jXRDvZb0T+IqUoF1yOVLZtRKQRKyZzOB8MNpPSYFPgo
+	 YxFMecsNO00cEDTV/UxrS8YwKQhOskhy4F8AsJ4Qi/e97k2KPrYXXtZWSvCgU5LKBB
+	 iBfLFXuD53qfdeevkOhNdHbAoeolUBg9+TkXxcr0=
+From: Anthony McGivern <anthony.mcgivern@arm.com>
+Date: Tue, 24 Nov 2026 17:07:44 +0000
+Subject: [PATCH 16/24] media: uapi: Add Mali-C720 statistics meta format
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Stat-Signature: o7t4gho3twp1pjm483fepzra6sqea1zo
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
-X-Rspamd-Server: rspamout07
-X-Rspamd-Queue-Id: 5C8E520025
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX19jjJfeX0Pq5rKkc5XDNag2YF12GXEJJ0c=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goodmis.org; h=date:from:to:cc:subject:message-id:in-reply-to:references:mime-version:content-type:content-transfer-encoding; s=dkim1; bh=cgbskdNiwv1foCu8NskiI0D1syGORGzYIPtRO06UAuE=; b=IKsjSGKGP88SZhny+HOXUAncmF19+0BUUDc0u5l131xdPNIc+2cg03+qSMi4x6VuvPafyYRbcZOODK7TaUD++oAq/LMHs2D0SKg5emJipMmethrJ58TkI4h8EoUxZ0NZ8yxGtlukmRBcEXebp911C1pjPZXIb3/Pn1vcULBVoBE=
-X-HE-Tag: 1795541800-76208
-X-HE-Meta: U2FsdGVkX1//0KdiMOWlABzDJ67uxFLp67YDmtynpCt6dGXlAXSOGXfWHH0NQNs4J18yoejLLirzKE6G+vDscomrddt0UbSWq2IScO0sdUJn1oCI575V2BTFdRhwUotSimZAihEXlFEgu3xlutyREHxNwcNEBrwolkeD0shXWG2W2MBsl/ucTPI5lO1Iea1l0g38kDuJ8CQrWgVl5qMnbwe4rUtj4gpUSI2wgRhN2vevOwdKbe4O6wS7u77F+Iug+Lna94xG+7dS6JKnxC5hF52AwE7bilNEZN4y7ubYvJ6DOkX3WMV2o5HCvaD6l7VtjteZjoPT6dth7kBCDU7R1W5RCOmwKVa0
+Message-Id: <20261124-b4-initial-upstream-candidate-v1-16-0cb9bde1bd30@arm.com>
+References: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
+In-Reply-To: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
+To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Anthony McGivern <anthony.mcgivern@arm.com>, 
+ Vincenzo Frascino <vincenzo.frascino@arm.com>, 
+ Nayden Kanchev <nayden.kanchev@arm.com>, 
+ Konstantin Babin <konstantin.babin@arm.com>, 
+ Linus Walleij <linusw@kernel.org>, jacopo.mondi@ideasonboard.com, 
+ kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
+ dan.scally@ideasonboard.com, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Anthony McGivern <Anthony.McGivern@arm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540079; l=2171;
+ i=Anthony.McGivern@arm.com; s=20261124; h=from:subject:message-id;
+ bh=j6Gm/dnMdks3celwDJxd0CeZ6Ie4FbVKuf8nwrJybFA=;
+ b=Qju6e7NDF6TAeyEqUJEqnP9OhhIpF1T43gtYIba2J8Tl3wUcgO6ZLYLmU5p57GYnY3LJtn5FC
+ B6t7Dablh7ND1SO0KwaSl2jjhUCM4JuiXzocOS+TsZt95XdD/pwKeDh
+X-Developer-Key: i=Anthony.McGivern@arm.com; a=ed25519;
+ pk=cvw1HHVRuWpdkn55JpnRyCO2oGBkBWaBXcc2S3CmHTU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_173657_520348_32EB20A2 
-X-CRM114-Status: GOOD (  21.31  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261124_090852_704843_D1A40B70 
+X-CRM114-Status: GOOD (  10.78  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,127 +86,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 28 Oct 2026 04:31:17 +0100
-Karl Mehltretter <kmehltretter@gmail.com> wrote:
+From: Anthony McGivern <Anthony.McGivern@arm.com>
 
-> diff --git a/include/linux/irqentry_hardirq.h b/include/linux/irqentry_hardirq.h
-> new file mode 100644
-> index 0000000000000..1937fc972e846
-> --- /dev/null
-> +++ b/include/linux/irqentry_hardirq.h
-> @@ -0,0 +1,81 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef __LINUX_IRQENTRY_HARDIRQ_H
-> +#define __LINUX_IRQENTRY_HARDIRQ_H
-> +
-> +#include <linux/preempt.h>
-> +
-> +struct irqentry_hardirq_cookie {
-> +#if defined(CONFIG_DEBUG_PREEMPT) && \
-> +	!defined(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS)
-> +	bool applied;
-> +#endif
-> +};
-> +
-> +static __always_inline bool
-> +irqentry_hardirq_count_applied(struct irqentry_hardirq_cookie cookie)
-> +{
-> +#if defined(CONFIG_DEBUG_PREEMPT) && \
-> +	!defined(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS)
-> +	return cookie.applied;
-> +#else
-> +	return true;
-> +#endif
-> +}
-> +
-> +static __always_inline bool irqentry_hardirq_count_valid(void)
-> +{
-> +#ifdef CONFIG_DEBUG_PREEMPT
-> +	/*
-> +	 * Without separate reschedule bits, preempt_count() excludes any
-> +	 * shared reschedule bit. A negative result therefore denotes an
-> +	 * existing underflow.
-> +	 */
-> +	if (!IS_ENABLED(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS) &&
-> +	    preempt_count() < 0)
-> +		return false;
-> +#endif
-> +	return true;
-> +}
-> +
-> +#if defined(CONFIG_DEBUG_PREEMPT) && \
-> +	!defined(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS)
-> +struct irqentry_hardirq_cookie noinstr
-> +__irqentry_hardirq_count_start_slow(void);
-> +#endif
-> +
-> +/*
-> + * Attempt the non-instrumentable part of a staged hardirq-count addition and
-> + * record whether it was applied. The returned cookie must be passed to the
-> + * matching irqentry_hardirq_count_finish() and subtraction preparation. A
-> + * rejected cookie attempts deferred reporting and suppresses post-add
-> + * bookkeeping and the matching subtraction regardless of warning
-> + * suppression.
-> + */
-> +static __always_inline struct irqentry_hardirq_cookie
-> +irqentry_hardirq_count_start(void)
-> +{
-> +	struct irqentry_hardirq_cookie cookie = { };
-> +
-> +#if defined(CONFIG_DEBUG_PREEMPT) && \
-> +	!defined(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS)
-> +	cookie.applied = true;
-> +	/* DEBUG_LOCKS_WARN_ON() permits the addition during an oops. */
-> +	if (unlikely(!irqentry_hardirq_count_valid()))
-> +		return __irqentry_hardirq_count_start_slow();
-> +#endif
-> +	__preempt_count_add(HARDIRQ_OFFSET);
-> +
-> +	return cookie;
-> +}
-> +
+Add a new meta format for the Mali-C720 ISP's 3A statistics along
+with a format description.
 
-BTW, the above would look so much better and be much easier to maintain if
-you just made stubs when not needed:
+Signed-off-by: Anthony McGivern <Anthony.McGivern@arm.com>
+---
+ drivers/media/v4l2-core/v4l2-ioctl.c | 1 +
+ include/uapi/linux/videodev2.h       | 3 +++
+ 2 files changed, 4 insertions(+)
 
-#if defined(CONFIG_DEBUG_PREEMPT) && !defined(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS)
+diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+index 17ba1ae707355a134047de646f61fcc2d1512d4c..657adc0f4550e50aafc8855de524eb2e7c6297cb 100644
+--- a/drivers/media/v4l2-core/v4l2-ioctl.c
++++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+@@ -1471,6 +1471,7 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+ 	case V4L2_META_FMT_C3ISP_STATS:		descr = "Amlogic C3 ISP Statistics"; break;
+ 	case V4L2_META_FMT_MALI_C55_PARAMS:	descr = "ARM Mali-C55 ISP Parameters"; break;
+ 	case V4L2_META_FMT_MALI_C55_STATS:	descr = "ARM Mali-C55 ISP 3A Statistics"; break;
++	case V4L2_META_FMT_MALI_C720_STATS:	descr = "ARM Mali-C720 ISP 3A Statistics"; break;
+ 	case V4L2_META_FMT_RPPX1_PARAMS:	descr = "Dreamchip RPP-X1 ISP Parameters"; break;
+ 	case V4L2_META_FMT_RPPX1_STATS:	descr = "Dreamchip RPP-X1 ISP Statistics"; break;
+ 	case V4L2_PIX_FMT_NV12_8L128:	descr = "NV12 (8x128 Linear)"; break;
+diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+index 5373dba640fae3d19247ab1c74ba336e05dc0fe0..a59f6642ce3d120c28f395f72653137831ef09b6 100644
+--- a/include/uapi/linux/videodev2.h
++++ b/include/uapi/linux/videodev2.h
+@@ -889,6 +889,9 @@ struct v4l2_pix_format {
+ #define V4L2_META_FMT_MALI_C55_PARAMS	v4l2_fourcc('C', '5', '5', 'P') /* ARM Mali-C55 Parameters */
+ #define V4L2_META_FMT_MALI_C55_STATS	v4l2_fourcc('C', '5', '5', 'S') /* ARM Mali-C55 3A Statistics */
+ 
++/* Vendor specific - used for Arm Mali-C720 ISP */
++#define V4L2_META_FMT_MALI_C720_STATS	v4l2_fourcc('C', '7', '2', 'S') /* ARM Mali-C720 3A Statistics */
++
+ /* Vendor specific - used for Dreamchip RPP-X1 ISP */
+ #define V4L2_META_FMT_RPPX1_PARAMS	v4l2_fourcc('D', 'R', '1', 'P') /* Dreamchip RPP-X1 Parameters */
+ #define V4L2_META_FMT_RPPX1_STATS	v4l2_fourcc('D', 'R', '1', 'S') /* Dreamchip RPP-X1 Statistics */
 
-struct irqentry_hardirq_cookie {
-	bool applied;
-};
+-- 
+2.55.0
 
-static __always_inline bool
-irqentry_hardirq_count_applied(struct irqentry_hardirq_cookie cookie)
-{
-	return cookie.applied;
-}
-
-static __always_inline bool irqentry_hardirq_count_valid(void)
-{
-	/*
-	 * Without separate reschedule bits, preempt_count() excludes any
-	 * shared reschedule bit. A negative result therefore denotes an
-	 * existing underflow.
-	 */
-	return preempt_count >= 0;
-}
-
-#else /* !CONFIG_DEBUG_PREEMPT || CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS
-struct irqentry_hardirq_cookie {
-};
-static __always_inline bool
-irqentry_hardirq_count_applied(struct irqentry_hardirq_cookie cookie)
-{
-	return true;
-}
-static __always_inline bool irqentry_hardirq_count_valid(void)
-{
-	return true;
-}
-#endif /* defined(CONFIG_DEBUG_PREEMPT) && !defined(CONFIG_HAS_SEPARATE_PREEMPT_RESCHED_BITS) */
-
--- Steve
 
