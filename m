@@ -2,85 +2,187 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B0A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06CA3606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NmurjQ0e
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XFs+akxt;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=GngcgJfq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cxg+fax2SVzr7BNRQUhDBiHBF2LpI92EISCVBMuEcGU=; b=NmurjQ0ebrqVd/
-	B4lIec8e9jcLOyhxwOv7lAkUCwtH8Y2EIZUbg2xYPOmcE5Ei5XbL2N+DEDOwXjdeicUx5R5+MvV9q
-	u0Fsbi9iS8dZapeWk4tYP6e7jvAtnTn35CrLVCP8KWm9mCV+3cDRdBS5B3V6qQqDvV8WZfnCr7U7N
-	IgYOXCTXGrdFDw+em8HQvMmcsdc9xyaMte7lELKaXkaO9YAMf0eF4QkFUvLx1k1lwebhEDVpLboUq
-	yy+cqcEDocR1s25mMasSByEjY8rUEE2ujW8dfeKUJoa1Dk9fZC2bzkiDjyqUwVrKzRCsNU+3MizX0
-	SDbAvkYQSBqm/v0UIEAg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=BBGp9R/w6prPYCHS1CKL3m/lcRbXIVJNzDRD9/ip5i8=; b=XFs+akxtyf64oK8fhXKpMiwtgS
+	mlMOWXzs0QDGB/dkqk1NnZsuLfg/mUxvzQmQcVX7AzR/zX1/esiUyiiiQg2U87cVMKF/2uRXQFXo0
+	qdXD8A1s78GVxePDPYkJbKRIPe9CB4FBi4iJzUZcsJ1c6q2rD/WP2/gNA2q/43a3VMJkH6pC8Y1PK
+	sdFQO1iAlXwqpaexfVkS8Mmxets37NE238l5juyM1SseS8JY34p7Io4UIfs6gngWlg7lbO9j+yGQy
+	BomRIsqJEW+eaENVmFp7ZKe8mVgU9vkNjdUKHftmJJUxztg9TDHETHsxzCrZIXdmYXgI4o9YcL3gJ
+	dWnKWWHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlOY-00000005pCa-0SNG;
-	Tue, 24 Nov 2026 07:56:54 +0000
-Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
+	id 1xVkwi-00000005k1b-3zXY;
+	Tue, 24 Nov 2026 07:28:08 +0000
+Received: from mail-westcentralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c112::5] helo=CY7PR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlOC-00000005oxq-1vtK;
-	Tue, 24 Nov 2026 07:56:41 +0000
-Received: from edelgard.fodlan.icenowy.me (unknown [120.85.97.139])
-	by APP-01 (Coremail) with SMTP id qwCowABHbfcVQwVrAUaUAQ--.8758S4;
-	Tue, 24 Nov 2026 15:56:08 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Date: Tue, 24 Nov 2026 15:56:03 +0800
-Subject: [PATCH v3 2/2] drm/bridge: add TH1520 DesignWare MIPI DSI host
- controller
+	id 1xVkvc-00000005jVE-2Anm
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 07:27:02 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mhKxvfH/wLHiI3Fv0K19J7HGCPLqqFJv9NoEg7aixUiRfRv6OOYmj7zBmyw4ruNs08VUXADZw6/QCzeyivawaZVJBNnr1knjho+vKLSsk2RDj+4v15AlSeaWhKXJJh3k5Mr1EK1gphiL4BvuW/cmmlSJ9CGOZx+HIymqk7MUGvdI33SIen9JOV5VZnVbmtoSYkiG3wdMJKztbjdJSupHHU2/mUtKzIsIG/9ynyH2ydpxylBJCgHi+SJKxfGn3xgtofMdGpQ9bJkTsM/tuwnf2qOowNHXIIQCQtNUEbclP48J38qm0pZplFIXOjGJxr623gaytA0O7uwLKym7BQhtBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BBGp9R/w6prPYCHS1CKL3m/lcRbXIVJNzDRD9/ip5i8=;
+ b=G7KG9eCtHQ1k0k6EOjWd/+sb3jBzUhiUAAEbUwU3bAlu5Hu15rjnS4bFB4ycIzjgSopvgGGQ6+l1wRVkBt0O5wH7zJ62jA7o4aN8MApp9hpjExSiMG26oSP2V/5+71DjeWg9h0R5Fq9fTadC95274aSuBRHo9mPgRCXmxUN7uUZ4sEC2uXiEk257KTztPTpiTNbRVzzMEZsUjBWXMqsYYMtHqqKZVHR4xHOCdedd9e1rSVrc6233MUJk/47Dktb6rsyVzEs9VEp+eLJ8ibUXw63KP2yzXTgDxtspHZ3ym3bjkyPabpLpGjsEcu4k+8orRglIWftEu2iGdsRtv2SzjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BBGp9R/w6prPYCHS1CKL3m/lcRbXIVJNzDRD9/ip5i8=;
+ b=GngcgJfqAR7iIejl1aBwOKSW5EeyiKza1gAJbPyIPiGFP7PpdrY1rRsp6uaoAjJCnfprRh6SS+mJXBC7IPwqP9pwMiPvPeDVsRAjfz0eO1UsOjjqYLLLgWMEt8BfOscpLg2DfRlwqxe15eLW6XKXV16omoSTuGymsSj2FdI1u5U=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS5PR12MB052986.namprd12.prod.outlook.com (2603:10b6:8:47e::11)
+ by SJ5PPF4D350AC80.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::993) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Tue, 24 Nov
+ 2026 07:26:54 +0000
+Received: from DS5PR12MB052986.namprd12.prod.outlook.com
+ ([fe80::4e51:5777:a687:af48]) by DS5PR12MB052986.namprd12.prod.outlook.com
+ ([fe80::4e51:5777:a687:af48%3]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 07:26:54 +0000
+Message-ID: <b234e6d1-0171-4d42-9d98-2babdb98ce61@amd.com>
+Date: Tue, 24 Nov 2026 08:26:49 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] i2c: i2c-xiic: fix waiting/clearing while atomic
+To: Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
+ Thilo Zirnstein <thi.zirnstein@gmail.com>
+Cc: andi.shyti@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20261123085351.3415122-2-thi.zirnstein@gmail.com>
+ <20261123085351.3415122-4-thi.zirnstein@gmail.com>
+ <CAKfKVtFDez0kDJp0Kx4WbJ4BwqV8-0hb6eeRNjQ8YDFm917_UA@mail.gmail.com>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ mpwx1d8=
+In-Reply-To: <CAKfKVtFDez0kDJp0Kx4WbJ4BwqV8-0hb6eeRNjQ8YDFm917_UA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY3PR05CA0005.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::10) To DS5PR12MB052986.namprd12.prod.outlook.com
+ (2603:10b6:8:47e::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-th1520-dw-mipi-dsi-v3-2-ffcf2d87971b@iscas.ac.cn>
-References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
-In-Reply-To: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andyshrk@163.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, 
- Icneowy Zheng <uwu@icenowy.me>, Han Gao <gaohan@iscas.ac.cn>, 
- Icenowy Zheng <zhengxingda@iscas.ac.cn>
-X-Mailer: b4 0.15.0
-X-CM-TRANSID: qwCowABHbfcVQwVrAUaUAQ--.8758S4
-X-Coremail-Antispam: 1UD129KBjvAXoW3CryxCryxKFyfWFyUtw43Jrb_yoW8Ar48Zo
-	WfWFn3Jw1rWw1fA39Ykr1fWFyUXrsru347W3s8Zr48CrnxWasxJry5tw4SvrW3Wr18Kry8
-	Z3ZIvrZxJ3yYkFyUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UjIYCTnIWjp_UUUO47AC8VAFwI0_Wr0E3s1l1xkIjI8I6I8E6xAIw20EY4v20xva
-	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l82xGYIkIc2x26280x7IE14v26r15M28IrcIa0x
-	kI8VCY1x0267AKxVW5JVCq3wA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84AC
-	jcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4UJVWxJr
-	1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0D
-	M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjx
-	v20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1l
-	F7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2
-	IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-	6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17
-	CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF
-	0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMI
-	IF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVF
-	xhVjvjDU0xZFpf9x0pRHKZLUUUUU=
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS5PR12MB052986:EE_|SJ5PPF4D350AC80:EE_
+X-MS-Office365-Filtering-Correlation-Id: a71eb711-7de0-47bb-4ddb-08df49fc5080
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|6133799003|18002099003|22082099003|11063799006|56012099006|261022105027099003|4143699003|261028144727099003|261021121427099003|261026140227099003|261102123227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: KaDC4XEkloqINCIkkDdLZlwmCbBvaW6ImJ+T79+//vkc0aJgJeBiapuI+72kwaiVU6y1VrMDXpU58s522d1FoAyEWc8fX3GiXKhpaZFNc1QKtygl/Ad2jX3UpWdkU/ugR8XOY1EG3s2xgmXaEfv5B/F4pgupXbT9hjAdjJBXCmGlBYfPlikyKRLOZEFwJBQcb1SZBolDbAmuQarYC3B9UemlHBgzhsnV8e8Be0XArL83KHofxRtWg+Oj5KXBxwIXMXE3l9Afdgjrc08omD1N1WY2257XpIGwXuLcmC0w9VX2UV58I3A9Y50qQoyixc0GFpVCQj5jrbGmi18VpfpEW5pYj0L6zqD6vz5oPg8b4GrRCQPkp7tgnNHZ3WpZZo9ns++aKksGn1y0UaERxo9vL82OfHxDSn2/w/Z9lZRbXjAioT83e1f57HikGiKMg4P0fx99VNm+nxJWOhoYyY3EIas8F2lKEriKbo9mrNvtHF9rqcVeTiBzxSRmW6aR86GcwXOWCJxGEcMUsEapA6fXb+SOEIVDuRwmAnwolJOFm3L8BIODT50J8aYe2Z1wkKF2Cm2CGdI/HOehin0QiQwZgaPiWuen9lUbe1VVSQMgZUpMoo7ik5mhy7aC9ZhPXGoc+VHiTrVBr38V4fPUxAEpF9YRXbDKWLPrOC3IK4aA+jY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS5PR12MB052986.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(261022105027099003)(4143699003)(261028144727099003)(261021121427099003)(261026140227099003)(261102123227099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDF6bTZqR2tCRUtLRW92NFE3Q21PZG8ydlY4WTVXUWZldFpTSlRmTlFrRGpR?=
+ =?utf-8?B?bGwrYVRESGRQWjBXcldLMFczWlUzazRna05TcEQzMVFuTitCVDZqUThFbDRN?=
+ =?utf-8?B?ZG0zeFpKQ1dlcklVVlpoMWpjREtXczErdVR2NTU1Tnk4QjMwc3U1Y0txVHZ3?=
+ =?utf-8?B?aHZPRnlxd3pibG42MnI1UjFmZDFxTE9RYUc5M3J6aVVRL2crQVl0cDlMUzBy?=
+ =?utf-8?B?NVR4VGZib0x3bUJRaGdJY2h1emhrRXVzUHlxZ1ZyMmhGKy8xRmFBY1dhL25m?=
+ =?utf-8?B?YkE5bjFrM2JqMkpoSGJJZEpOVWFrSXRQMWNXcVh3aW14WkxKNkdmVTBNUkFE?=
+ =?utf-8?B?Tzd0b0NvU3VQR20xQ2ZKVTQyQzBOVTk3ZHhzOGlLSk1TZFFjUHdycUdaU0VY?=
+ =?utf-8?B?MW1RQUdlTG8yUldGRU44b0NMVVRlVHlzZVV3NG91a2grZlI0TG8zdnRXZVJL?=
+ =?utf-8?B?dW0yZHkxVFNpMW9zVDNVUWZrT0pxZUdqT2diU2RraGRldzdwZkh5OXZhZEV6?=
+ =?utf-8?B?VUhCdmxGZmF4SUwyQmF5OEVRTHJUQksxM1NjMzRFVW1rZitQSWtwSEdmZnJT?=
+ =?utf-8?B?bjUvV282MUJ1YmNWSjREanoyZ3hQZE9sdU02SmN5OTR6Y1JaS09oaDRlcXFP?=
+ =?utf-8?B?dlorV2FZUlJNUjIwd0FCZDBaUUNrSUhPYVV3WGZ2bGVKak5NTHdmcWpEOVd3?=
+ =?utf-8?B?SnNmYnBmT0VYSE9BQnAvZ3VONW43RTIrL3pvdzg3N21ZT1lWZ3pHMFR4VDFX?=
+ =?utf-8?B?aGJ6bUZmRHlBU3p4ZVBiUmJ5dmJyQmV1U283VmZwRzdKdEoydThMd0NXSGRk?=
+ =?utf-8?B?NWh4RlhwUWZLN1paVURFVWFnTkkyWVBORnZkQlFkWFRNdXpsa29MM2poU2x0?=
+ =?utf-8?B?VXZ4dXp2aXJqMXNZcndTNU1mS2pqck9uaU9ISVBqb3FZSUw0eW5OSE84MHdv?=
+ =?utf-8?B?Z3Q5cjFXS3FpN1hSKy9NZnNicXA2T1RJUzU5Q3cwMGJpZXRJdVBYV2k1dHNi?=
+ =?utf-8?B?L2JJTVZlSEMrSjg5SlUzaUNDcnN6RWpNaUs4N2xHeXNRSTBseVUwQTZ5amlh?=
+ =?utf-8?B?OU11Qyt6RGY2SUFTYjBOdWMydDFSa2pIYm9ZSkRlVEZKaUZHWm80RS8yYmsy?=
+ =?utf-8?B?bklmREphMW9WcXNKajR2OUFSazllYk1XTjFpZ2h3SW5CaUduYVp1SVFkZm9Y?=
+ =?utf-8?B?V2hYQkpxWGVHNnQ0V00yblpSQTBSQ2NMdTVzQlZLUHFXN0NSMXh0VzgyMnhs?=
+ =?utf-8?B?Z2JlVCttTGVseHptT2hxUm5Jb0FpSUdVWXBDWE5tY0FjcExUWXRueEkxM0ta?=
+ =?utf-8?B?elJuQkdzakcvTUZnOFJOdWQyeTlOY1M5Q3kvYUk2YVNRZUNIVTg5bXEranFB?=
+ =?utf-8?B?Umt6OVBGbXArLytRZjJ3ME1tNmc5NVI4aUhiVThmOElTb1pILy9VL3cxTjdP?=
+ =?utf-8?B?OFFlQ2F2RVhLa2Q2N2RLT0wrN0pRbGw2TWpPSXR1OUp5TWluTHhKYXFVZzc5?=
+ =?utf-8?B?T0oySUpEV2c1WEszVjhiTVZSZFJYOE8rQXZrMkxCZ0tsS2FIYTkyc2xIdVhD?=
+ =?utf-8?B?TTN1RkVRK0FUQnhQSzdkd0gvUlY1WVkzTUwzWEdveENpNzBpOE1KWU5JZTM4?=
+ =?utf-8?B?c2ZBSVo3Uk4xQ1N5Z05sdFYzZkszbjUxTXpLUU5vRzdWY2g0WWFOcnl5NHN0?=
+ =?utf-8?B?UXowYVRzOUkyN1dKbVp4b3ZxWU54Szh5QzlTMjQvTXp1czFKTjNiU2dyaDhP?=
+ =?utf-8?B?UDBQQTVNWVdRNllKNTgvcmh3ZVFMcEk2bFRrOGRLSjBLeHFmZWxUWVQ2OUtl?=
+ =?utf-8?B?TWdHWFZhS1ZUVXg0L0lscjRCUmN2cnRiTWdPWDlkaks5eGFsMmNwRFFtdU5x?=
+ =?utf-8?B?S3h0SWJyNmJod3h5NFlEN0tvaW9Qdmp2ZWd5T0psTVJpWWN0WEp0NWFZdUdT?=
+ =?utf-8?B?cm9LUW9yZVB5emw3VThlR2hETWxJUHdUbmZjR0ZaM0FtVWpwMVVDUzB0NW95?=
+ =?utf-8?B?WFZzeXF5YXE3bDliU0VCeStzem1pLzJnbEp4SUY2ZlMrNGd1bmFySlh3cDNw?=
+ =?utf-8?B?b0xXejRnaVI4TklHNFdpR1NBbzNEL0NVM1JVaGdmb2EzbmRrZjZheENzeHhH?=
+ =?utf-8?B?eVNlUTdUWmdjeEx3am0wUEc3QWowb1RCeXpvUjJsdXpoSE9UNG5mOUtpSklZ?=
+ =?utf-8?B?cWdBTCtzN25EZmlPQitRdlJnVEp2RUVVb3luQUxWL1hmd1JGOUxPbFFxckV4?=
+ =?utf-8?B?NTY5R1JFRjQzRVhLZ0JqWm1CQU03Q1ZZYjV5cUFqb0xSalNsMFdPU0plWC9p?=
+ =?utf-8?B?WkJHZnlCODBMdWxtYmdiZ1FUOGcrNkFPaFBhUlMvV3RHbnozaXIrZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a71eb711-7de0-47bb-4ddb-08df49fc5080
+X-MS-Exchange-CrossTenant-AuthSource: DS5PR12MB052986.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 07:26:54.2012
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d7DiAMlkTBi5UMbkFLNPbMR++PU1K4RnqKPY8dnYdU3tQTgU7h5GnF6letlIplzc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF4D350AC80
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_235636_533962_95FA5113 
-X-CRM114-Status: GOOD (  21.90  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261123_232700_598967_5EF701DD 
+X-CRM114-Status: UNSURE (   7.11  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,638 +193,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The T-Head TH1520 SoC contains a Synopsys DesignWare MIPI DSI host
-controller with an internal DesignWare MIPI D-PHY.
 
-Add a glue driver configuring clocks and PHY parameters for it.
 
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
----
- drivers/gpu/drm/bridge/Kconfig              |  12 +
- drivers/gpu/drm/bridge/Makefile             |   1 +
- drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c | 570 ++++++++++++++++++++++++++++
- 3 files changed, 583 insertions(+)
+On 11/23/26 20:06, Shubhrajyoti Datta wrote:
+> On Mon, Nov 23, 2026 at 2:25 PM Thilo Zirnstein <thi.zirnstein@gmail.com> wrote:
+>>
+>> Use non jiffies based waiting functions,
+>> if in atomic context.
+>>
+>> Suggested-by: Andi Shyti <andi.shyti@kernel.org>
+>> Signed-off-by: Thilo Zirnstein <thi.zirnstein@gmail.com>
+>> ---
+> Reviewed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index c7da6b02d7b6b..f8987e8946fbb 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -372,6 +372,18 @@ config DRM_THEAD_TH1520_DW_HDMI
- 	  Choose this to enable support for the internal HDMI bridge found
- 	  on the T-Head TH1520 SoC.
- 
-+config DRM_THEAD_TH1520_DW_MIPI_DSI
-+	tristate "T-Head TH1520 DesignWare MIPI DSI bridge"
-+	depends on OF
-+	depends on COMMON_CLK
-+	depends on ARCH_THEAD || COMPILE_TEST
-+	select DRM_DW_MIPI_DSI
-+	select GENERIC_PHY_MIPI_DPHY
-+	select MFD_SYSCON
-+	help
-+	  Choose this to enable support for the internal MIPI DSI bridge
-+	  found on the T-Head TH1520 SoC.
-+
- config DRM_TOSHIBA_TC358762
- 	tristate "TC358762 DSI/DPI bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 15cc821d85b7e..5af871ba5ce77 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_SII9234) += sii9234.o
- obj-$(CONFIG_DRM_SIMPLE_BRIDGE) += simple-bridge.o
- obj-$(CONFIG_DRM_SOLOMON_SSD2825) += ssd2825.o
- obj-$(CONFIG_DRM_THEAD_TH1520_DW_HDMI) += th1520-dw-hdmi.o
-+obj-$(CONFIG_DRM_THEAD_TH1520_DW_MIPI_DSI) += th1520-dw-mipi-dsi.o
- obj-$(CONFIG_DRM_THINE_THC63LVD1024) += thc63lvd1024.o
- obj-$(CONFIG_DRM_TOSHIBA_TC358762) += tc358762.o
- obj-$(CONFIG_DRM_TOSHIBA_TC358764) += tc358764.o
-diff --git a/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
-new file mode 100644
-index 0000000000000..8e866b70aec88
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
-@@ -0,0 +1,570 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
-+ *
-+ * Author:
-+ *   Icenowy Zheng <zhengxingda@iscas.ac.cn>
-+ *
-+ * Based on dw_mipi_dsi-stm.c, which is:
-+ *   Copyright (C) STMicroelectronics SA 2017
-+ *
-+ * Based on dw-mipi-dsi-rockchip.c, which is:
-+ *   Copyright (C) Rockchip Electronics Co., Ltd.
-+ *
-+ * Based on vendor kernel phy-dw-mipi-dphy.c, which is:
-+ *   Copyright (C) Alibaba Group Holding Limited.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/phy/phy-mipi-dphy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/bridge/dw_mipi_dsi.h>
-+#include <drm/drm_mipi_dsi.h>
-+
-+/* DSI controller registers for DPHY access */
-+
-+#define DSI_PHY_TST_CTRL0		0xb4
-+#define PHY_TESTCLK			BIT(1)
-+#define PHY_UNTESTCLK			0
-+#define PHY_TESTCLR			BIT(0)
-+#define PHY_UNTESTCLR			0
-+
-+#define DSI_PHY_TST_CTRL1		0xb8
-+#define PHY_TESTEN			BIT(16)
-+#define PHY_UNTESTEN			0
-+#define PHY_TESTDOUT(n)			(((n) & 0xff) << 8)
-+#define PHY_TESTDIN(n)			(((n) & 0xff) << 0)
-+
-+/* DPHY registers */
-+
-+#define PLL_DELAY_LP_TX_START_LP11	0x02
-+#define TXDINDLYTIME_9_2		GENMASK(7,  0)
-+
-+#define PLL_FSM_CNTRL			0x03
-+
-+#define PLL_PROP_CHARGE_PUMP_CTRL	0x0e
-+#define PLL_PROP_CNTRL			GENMASK(5,  0)
-+
-+#define PLL_INT_CHARGE_PUMP_CTRL	0x0f
-+#define PLL_INT_CNTRL			GENMASK(5,  0)
-+
-+#define PLL_VCO_CTRL			0x12
-+#define PLL_VCO_CNTRL_OVR_EN		BIT(6)
-+#define PLL_VCO_CNTRL_OVR		GENMASK(5,  0)
-+
-+#define PLL_GMP_CTRL_DIGITAL_TEST	0x13
-+#define PLL_TESTLOCK			BIT(7)
-+#define PLL_GMP_CNTRL			GENMASK(5,  4)
-+#define TSTPLLDIG			GENMASK(3,  1)
-+#define TSTPLLDIG_LOCK			(0x0 << 1)
-+#define TSTPLLDIG_REFCLK		(0x1 << 1)
-+#define TSTPLLDIG_FBCLK			(0x2 << 1)
-+#define TSTPLLDIG_INT_CLKIN		(0x3 << 1)
-+#define TSTPLLDIG_LOCK_FROM_DETECTOR	(0x4 << 1)
-+#define TSTPLLDIG_OUTPUT		(0x5 << 1)
-+#define TSTPLLDIG_BUF_VCOCLK		(0x6 << 1)
-+#define TSTPLLDIG_UPDATEPLL		(0x7 << 1)
-+
-+#define PLL_N_DIV_FSM_SIG		0x17
-+#define PLL_N_OVR			GENMASK(3,  0)
-+
-+#define PLL_M_DIV			0x18
-+#define PLL_M_OVR_4_0			GENMASK(4,  0)
-+#define PLL_M_OVR_9_5			GENMASK(4,  0)
-+
-+#define PLL_N_AND_M_DIV_CTRL		0x19
-+#define PLL_M_OVR_EN			BIT(5)
-+#define PLL_N_OVR_EN			BIT(4)
-+
-+#define PLL_CHARGE_PUMP_BIAS_CTRL	0x1c
-+#define PLL_CPBIAS_CNTRL		GENMASK(6,  0)
-+
-+#define PLL_ANALOG_PROGRAM_CONTROL	0x1f
-+#define PLL_MPLL_PROG_5_0		GENMASK(5,  0)
-+#define PLL_MPLL_PROG_11_6		GENMASK(5,  0)
-+#define PLL_MPLL_PROG_16_12		GENMASK(4,  0)
-+
-+#define HS_FREQ_RANGE_OF_OPERATION	0x44
-+#define HSFREQRANGE_OVR_EN		BIT(7)
-+#define HSFREQRANGE_OVR			GENMASK(6,  0)
-+#define HSFREQRANGE			HSFREQRANGE_OVR
-+
-+#define PG_LP_BIAS_LANE0		0x4a
-+#define PRG_ON_LANE0			BIT(6)
-+
-+#define SR_FSM_OVR_CNTRL		0xa0
-+#define SR_DDL_LOOP_CONF		0xa3
-+
-+/* syscon registers */
-+
-+#define MIPIDSI0_SYSREG			0x8
-+#define MIPIDSI1_SYSREG			0xc
-+#define MIPIDSI_HSFREQRANGE		GENMASK(9,  3)
-+#define MIPIDSI_CFGCLKFREQRANGE		GENMASK(15, 10)
-+#define MIPIDSI_CFGCLKFREQRANGE_DEF	(0x1c << 10)
-+
-+struct pll_hsfreqrange {
-+	unsigned int max_mbps;
-+	u8 hsfreqrange;
-+};
-+
-+static const struct pll_hsfreqrange hsfreqrange_table[] = {
-+	{ 80,  0x00 },
-+	{ 90,  0x10 },
-+	{ 100, 0x20 },
-+	{ 110, 0x30 },
-+	{ 120, 0x01 },
-+	{ 130, 0x11 },
-+	{ 140, 0x21 },
-+	{ 150, 0x31 },
-+	{ 160, 0x02 },
-+	{ 170, 0x12 },
-+	{ 180, 0x22 },
-+	{ 190, 0x32 },
-+	{ 205, 0x03 },
-+	{ 220, 0x13 },
-+	{ 235, 0x23 },
-+	{ 250, 0x33 },
-+	{ 275, 0x04 },
-+	{ 300, 0x14 },
-+	{ 325, 0x25 },
-+	{ 350, 0x35 },
-+	{ 400, 0x05 },
-+	{ 450, 0x16 },
-+	{ 500, 0x26 },
-+	{ 550, 0x37 },
-+	{ 600, 0x07 },
-+	{ 650, 0x18 },
-+	{ 700, 0x28 },
-+	{ 750, 0x39 },
-+	{ 800, 0x09 },
-+	{ 850, 0x19 },
-+	{ 900, 0x29 },
-+	{ 950, 0x3A },
-+	{ 1000, 0x0A },
-+	{ 1050, 0x1A },
-+	{ 1100, 0x2A },
-+	{ 1150, 0x3B },
-+	{ 1200, 0x0B },
-+	{ 1250, 0x1B },
-+	{ 1300, 0x2B },
-+	{ 1350, 0x3C },
-+	{ 1400, 0x0C },
-+	{ 1450, 0x1C },
-+	{ 1500, 0x2C },
-+	{ 1550, 0x3D },
-+	{ 1600, 0x0D },
-+	{ 1650, 0x1D },
-+	{ 1700, 0x2E },
-+	{ 1750, 0x3E },
-+	{ 1800, 0x0E },
-+	{ 1850, 0x1E },
-+	{ 1900, 0x2F },
-+	{ 1950, 0x3F },
-+	{ 2000, 0x0F },
-+	{ 2050, 0x40 },
-+	{ 2100, 0x41 },
-+	{ 2150, 0x42 },
-+	{ 2200, 0x43 },
-+	{ 2250, 0x44 },
-+	{ 2300, 0x45 },
-+	{ 2350, 0x46 },
-+	{ 2400, 0x47 },
-+	{ 2450, 0x48 },
-+	{ 2500, 0x49 },
-+};
-+
-+struct hstt {
-+	unsigned int max_mbps;
-+	struct dw_mipi_dsi_dphy_timing timing;
-+};
-+
-+#define HSTT(_max_mbps, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)	\
-+{					\
-+	.max_mbps = _max_mbps,		\
-+	.timing = {			\
-+		.clk_lp2hs = _c_lp2hs,	\
-+		.clk_hs2lp = _c_hs2lp,	\
-+		.data_lp2hs = _d_lp2hs,	\
-+		.data_hs2lp = _d_hs2lp,	\
-+	}				\
-+}
-+
-+static struct hstt hstt_table[] = {
-+	HSTT(80, 21, 17, 15, 10),
-+	HSTT(90, 23, 17, 16, 10),
-+	HSTT(100, 22, 17, 16, 10),
-+	HSTT(110, 25, 18, 17, 11),
-+	HSTT(120, 26, 20, 18, 11),
-+	HSTT(130, 27, 19, 19, 11),
-+	HSTT(140, 27, 19, 19, 11),
-+	HSTT(150, 28, 20, 20, 12),
-+	HSTT(160, 30, 21, 22, 13),
-+	HSTT(170, 30, 21, 23, 13),
-+	HSTT(180, 31, 21, 23, 13),
-+	HSTT(190, 32, 22, 24, 13),
-+	HSTT(205, 35, 22, 25, 13),
-+	HSTT(220, 37, 26, 27, 15),
-+	HSTT(235, 38, 28, 27, 16),
-+	HSTT(250, 41, 29, 30, 17),
-+	HSTT(275, 43, 29, 32, 18),
-+	HSTT(300, 45, 32, 35, 19),
-+	HSTT(325, 48, 33, 36, 18),
-+	HSTT(350, 51, 35, 40, 20),
-+	HSTT(400, 59, 37, 44, 21),
-+	HSTT(450, 65, 40, 49, 23),
-+	HSTT(500, 71, 41, 54, 24),
-+	HSTT(550, 77, 44, 57, 26),
-+	HSTT(600, 82, 46, 64, 27),
-+	HSTT(650, 87, 48, 67, 28),
-+	HSTT(700, 94, 52, 71, 29),
-+	HSTT(750, 99, 52, 75, 31),
-+	HSTT(800, 105, 55, 82, 32),
-+	HSTT(850, 110, 58, 85, 32),
-+	HSTT(900, 115, 58, 88, 35),
-+	HSTT(950, 120, 62, 93, 36),
-+	HSTT(1000, 128, 63, 99, 38),
-+	HSTT(1050, 132, 65, 102, 38),
-+	HSTT(1100, 138, 67, 106, 39),
-+	HSTT(1150, 146, 69, 112, 42),
-+	HSTT(1200, 151, 71, 117, 43),
-+	HSTT(1250, 153, 74, 120, 45),
-+	HSTT(1300, 160, 73, 124, 46),
-+	HSTT(1350, 165, 76, 130, 47),
-+	HSTT(1400, 172, 78, 134, 49),
-+	HSTT(1450, 177, 80, 138, 49),
-+	HSTT(1500, 183, 81, 143, 52),
-+	HSTT(1550, 191, 84, 147, 52),
-+	HSTT(1600, 194, 85, 152, 52),
-+	HSTT(1650, 201, 86, 155, 53),
-+	HSTT(1700, 208, 88, 161, 53),
-+	HSTT(1750, 212, 89, 165, 53),
-+	HSTT(1800, 220, 90, 171, 54),
-+	HSTT(1850, 223, 92, 175, 54),
-+	HSTT(1900, 231, 91, 180, 55),
-+	HSTT(1950, 236, 95, 185, 56),
-+	HSTT(2000, 243, 97, 190, 56),
-+	HSTT(2050, 248, 99, 194, 58),
-+	HSTT(2100, 252, 100, 199, 59),
-+	HSTT(2150, 259, 102, 204, 61),
-+	HSTT(2200, 266, 105, 210, 62),
-+	HSTT(2250, 269, 109, 213, 63),
-+	HSTT(2300, 272, 109, 217, 65),
-+	HSTT(2350, 281, 112, 225, 66),
-+	HSTT(2400, 283, 115, 226, 66),
-+	HSTT(2450, 282, 115, 226, 67),
-+	HSTT(2500, 281, 118, 227, 67),
-+};
-+
-+struct dsi_chip_data {
-+	u64 reg;
-+
-+	u32 sysreg;
-+};
-+
-+struct th1520_dw_mipi_dsi {
-+	struct device *dev;
-+
-+	struct dw_mipi_dsi *dmd;
-+	struct dw_mipi_dsi_plat_data pdata;
-+	const struct dsi_chip_data *cdata;
-+
-+	void __iomem *base;
-+	struct regmap *syscon;
-+	struct clk *clk_pix;
-+	struct clk *clk_ref;
-+	struct clk *clk_cfg;
-+
-+	unsigned int lane_mbps;
-+	u8 hsfreqrange;
-+};
-+
-+static inline void dsi_write(struct th1520_dw_mipi_dsi *dsi, u32 reg, u32 val)
-+{
-+	writel(val, dsi->base + reg);
-+}
-+
-+static void dw_mipi_dsi_phy_write(struct th1520_dw_mipi_dsi *dsi, u8 test_code, u8 test_data)
-+{
-+	/*
-+	 * With the falling edge on TESTCLK, the TESTDIN[7:0] signal content
-+	 * is latched internally as the current test code. Test data is
-+	 * programmed internally by rising edge on TESTCLK.
-+	 */
-+	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_TESTCLK | PHY_UNTESTCLR);
-+
-+	dsi_write(dsi, DSI_PHY_TST_CTRL1, PHY_TESTEN | PHY_TESTDOUT(0) |
-+					  PHY_TESTDIN(test_code));
-+
-+	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_UNTESTCLK | PHY_UNTESTCLR);
-+
-+	dsi_write(dsi, DSI_PHY_TST_CTRL1, PHY_UNTESTEN | PHY_TESTDOUT(0) |
-+					  PHY_TESTDIN(test_data));
-+
-+	dsi_write(dsi, DSI_PHY_TST_CTRL0, PHY_TESTCLK | PHY_UNTESTCLR);
-+}
-+
-+static int dsi_phy_init(void *priv_data)
-+{
-+	struct th1520_dw_mipi_dsi *dsi = priv_data;
-+	u32 val;
-+
-+	val = FIELD_PREP(MIPIDSI_HSFREQRANGE, dsi->hsfreqrange) |
-+	      MIPIDSI_CFGCLKFREQRANGE_DEF;
-+
-+	regmap_update_bits(dsi->syscon, dsi->cdata->sysreg,
-+			   MIPIDSI_HSFREQRANGE | MIPIDSI_CFGCLKFREQRANGE, val);
-+
-+	/* disable slew rate calibration */
-+	dw_mipi_dsi_phy_write(dsi, SR_DDL_LOOP_CONF, 0);
-+	dw_mipi_dsi_phy_write(dsi, SR_FSM_OVR_CNTRL, 1);
-+
-+	/* configure prg_on_lane0 */
-+	dw_mipi_dsi_phy_write(dsi, PG_LP_BIAS_LANE0, PRG_ON_LANE0);
-+
-+	/* configure PLL charge pump */
-+	if (dsi->lane_mbps >= 1150)
-+		dw_mipi_dsi_phy_write(dsi, PLL_PROP_CHARGE_PUMP_CTRL, 0xE);
-+	else
-+		dw_mipi_dsi_phy_write(dsi, PLL_PROP_CHARGE_PUMP_CTRL, 0x8);
-+	dw_mipi_dsi_phy_write(dsi, PLL_CHARGE_PUMP_BIAS_CTRL, 0x10);
-+
-+	return 0;
-+}
-+
-+static void dsi_phy_power_on(void *priv_data)
-+{
-+	struct th1520_dw_mipi_dsi *dsi = priv_data;
-+
-+	clk_prepare_enable(dsi->clk_pix);
-+}
-+
-+static void dsi_phy_power_off(void *priv_data)
-+{
-+	struct th1520_dw_mipi_dsi *dsi = priv_data;
-+
-+	clk_disable_unprepare(dsi->clk_pix);
-+}
-+
-+static unsigned int
-+calculate_lane_mbps(const struct drm_display_mode *mode,
-+		    unsigned long mode_flags,
-+		    u32 lanes, u32 format)
-+{
-+	int bpp = mipi_dsi_pixel_format_to_bpp(format);
-+	union phy_configure_opts phy_opts;
-+
-+	/*
-+	 * FIXME: the extra bandwidth headroom logic mimics what the Rockchip
-+	 * driver does, and test shows that it's necessary for the hardware
-+	 * to work with the mainline dw-mipi-dsi common code.
-+	 */
-+	phy_mipi_dphy_get_default_config(mode->clock * 1000UL * 10 / 8,
-+					 bpp, lanes,
-+					 &phy_opts.mipi_dphy);
-+
-+	return DIV_ROUND_UP(phy_opts.mipi_dphy.hs_clk_rate, USEC_PER_SEC);
-+}
-+
-+static int
-+dsi_get_lane_mbps(void *priv_data, const struct drm_display_mode *mode,
-+		  unsigned long mode_flags, u32 lanes, u32 format,
-+		  unsigned int *lane_mbps)
-+{
-+	struct th1520_dw_mipi_dsi *dsi = priv_data;
-+	int i;
-+
-+	*lane_mbps = calculate_lane_mbps(mode, mode_flags, lanes, format);
-+
-+	for (i = 0; i < ARRAY_SIZE(hsfreqrange_table); i++)
-+		if (*lane_mbps <= hsfreqrange_table[i].max_mbps)
-+			break;
-+
-+	if (i == ARRAY_SIZE(hsfreqrange_table))
-+		return -EINVAL;
-+
-+	*lane_mbps = hsfreqrange_table[i].max_mbps;
-+	dsi->lane_mbps = *lane_mbps;
-+	dsi->hsfreqrange = hsfreqrange_table[i].hsfreqrange;
-+
-+	return 0;
-+}
-+
-+static int
-+dsi_phy_get_timing(void *priv_data, unsigned int lane_mbps,
-+		   struct dw_mipi_dsi_dphy_timing *timing)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(hstt_table); i++)
-+		if (lane_mbps <= hstt_table[i].max_mbps)
-+			break;
-+
-+	if (i == ARRAY_SIZE(hstt_table))
-+		return -EINVAL;
-+
-+	*timing = hstt_table[i].timing;
-+
-+	return 0;
-+}
-+
-+static const struct dw_mipi_dsi_phy_ops th1520_dw_mipi_dsi_phy_ops = {
-+	.init = dsi_phy_init,
-+	.power_on = dsi_phy_power_on,
-+	.power_off = dsi_phy_power_off,
-+	.get_lane_mbps = dsi_get_lane_mbps,
-+	.get_timing = dsi_phy_get_timing,
-+};
-+
-+static enum drm_mode_status
-+dsi_mode_valid(void *priv_data, const struct drm_display_mode *mode,
-+	       unsigned long mode_flags, u32 lanes, u32 format)
-+{
-+	unsigned int lane_mbps, max_mbps;
-+
-+	lane_mbps = calculate_lane_mbps(mode, mode_flags, lanes, format);
-+	max_mbps = hsfreqrange_table[ARRAY_SIZE(hsfreqrange_table) - 1].max_mbps;
-+
-+	if (lane_mbps > max_mbps)
-+		return MODE_NOCLOCK;
-+
-+	return MODE_OK;
-+}
-+
-+static struct dsi_chip_data th1520_chip_data[] = {
-+	{
-+		.reg = 0xffef500000,
-+		.sysreg = MIPIDSI0_SYSREG,
-+
-+		/*
-+		 * TODO: The user manual shows a mux register for DSI0 but the
-+		 * vendor driver doesn't touch it either.
-+		 */
-+	},
-+	{
-+		.reg = 0xffef510000,
-+		.sysreg = MIPIDSI1_SYSREG,
-+	},
-+	{ /* sentinel */ },
-+};
-+
-+static int th1520_dw_mipi_dsi_probe(struct platform_device *pdev)
-+{
-+	const struct dsi_chip_data *cdata;
-+	struct device *dev = &pdev->dev;
-+	struct th1520_dw_mipi_dsi *dsi;
-+	struct resource *res;
-+	int i, ret;
-+
-+	dsi = devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
-+	if (!dsi)
-+		return -ENOMEM;
-+
-+	dsi->dev = dev;
-+
-+	dsi->syscon = syscon_regmap_lookup_by_phandle(dev->of_node, "thead,vo-syscon");
-+	if (IS_ERR(dsi->syscon)) {
-+		ret = PTR_ERR(dsi->syscon);
-+		dev_err_probe(dev, ret, "Unable to get VO system controller regmap\n");
-+		return ret;
-+	}
-+
-+	dsi->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(dsi->base)) {
-+		ret = PTR_ERR(dsi->base);
-+		dev_err_probe(dev, ret, "Unable to get DSI registers\n");
-+		return ret;
-+	}
-+
-+	cdata = of_device_get_match_data(dev);
-+	i = 0;
-+	while (cdata[i].reg) {
-+		if (cdata[i].reg == res->start) {
-+			dsi->cdata = &cdata[i];
-+			break;
-+		}
-+
-+		i++;
-+	}
-+
-+	if (!dsi->cdata) {
-+		dev_err(dev, "Failed to find chip data for this controller\n");
-+		return -EINVAL;
-+	}
-+
-+	dsi->clk_ref = devm_clk_get_enabled(dev, "ref");
-+	if (IS_ERR(dsi->clk_ref)) {
-+		ret = PTR_ERR(dsi->clk_ref);
-+		dev_err_probe(dev, ret, "Unable to get PHY reference clock\n");
-+		return ret;
-+	}
-+
-+	dsi->clk_cfg = devm_clk_get_enabled(dev, "phy_cfg");
-+	if (IS_ERR(dsi->clk_cfg)) {
-+		ret = PTR_ERR(dsi->clk_cfg);
-+		dev_err_probe(dev, ret, "Unable to get PHY configuration clock\n");
-+		return ret;
-+	}
-+
-+	dsi->clk_pix = devm_clk_get(dev, "pixel");
-+	if (IS_ERR(dsi->clk_pix)) {
-+		ret = PTR_ERR(dsi->clk_pix);
-+		dev_err_probe(dev, ret, "Unable to get PHY pixel clock\n");
-+		return ret;
-+	}
-+
-+	dsi->pdata.base = dsi->base;
-+	dsi->pdata.priv_data = dsi;
-+	dsi->pdata.max_data_lanes = 4;
-+	dsi->pdata.phy_ops = &th1520_dw_mipi_dsi_phy_ops;
-+	dsi->pdata.mode_valid = dsi_mode_valid;
-+
-+	platform_set_drvdata(pdev, dsi);
-+
-+	dsi->dmd = dw_mipi_dsi_probe(pdev, &dsi->pdata);
-+	if (IS_ERR(dsi->dmd)) {
-+		ret = PTR_ERR(dsi->dmd);
-+		dev_err_probe(dev, ret, "Failed to initialize mipi dsi host\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void th1520_dw_mipi_dsi_remove(struct platform_device *pdev)
-+{
-+	struct th1520_dw_mipi_dsi *dsi = platform_get_drvdata(pdev);
-+
-+	dw_mipi_dsi_remove(dsi->dmd);
-+}
-+
-+static const struct of_device_id th1520_dw_mipi_dsi_dt_ids[] = {
-+	{ .compatible = "thead,th1520-dw-mipi-dsi", .data = &th1520_chip_data },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, th1520_dw_mipi_dsi_dt_ids);
-+
-+static struct platform_driver th1520_dw_mipi_dsi_driver = {
-+	.probe		= th1520_dw_mipi_dsi_probe,
-+	.remove		= th1520_dw_mipi_dsi_remove,
-+	.driver		= {
-+		.of_match_table = th1520_dw_mipi_dsi_dt_ids,
-+		.name	= "th1520-dw-mipi-dsi",
-+	},
-+};
-+
-+module_platform_driver(th1520_dw_mipi_dsi_driver);
-+
-+MODULE_AUTHOR("Icenowy Zheng <zhengxingda@iscas.ac.cn>");
-+MODULE_DESCRIPTION("T-Head TH1520 MIPI DSI host controller driver");
-+MODULE_LICENSE("GPL");
+Acked-by: Michal Simek <michal.simek@amd.com>
 
--- 
-2.56.0
-
+Thanks,
+Michal
 
