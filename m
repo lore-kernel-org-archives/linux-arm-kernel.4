@@ -2,51 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D1A606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A00E606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A1PVl0y7;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=E68nrYvj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZUx7vLD3;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=s2aC84r4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=x+9F4maA1q/9rHQs+iBe3+sg9AgMZGn1PVrFHNoUf/0=; b=A1PVl0y7P0i0d4
-	GcfMdXiq0Q/+1gHqDUTpwptc2wPeq9b2z7WZRYrfPJG3JvhXMGrqn3qkeNyLKA8CcRoG+DE16gJLn
-	Iy1S0GCtYPcc9rXt2wfqqhzkbuUE3WWKQrDxRffw8yjWjx3ClMJIBcn4aiHv5TL3N99dju71xUJ2k
-	xG9WcpFC7BzZnzhnjifgZDlzgdWp2q+QgV2b61mAFeZ5h2g8avfko9d6hAZ6T3zdA8rGT4+mg+KaP
-	LXRI4jdDIOrzUxF9IaQXwOQFBy3YZ5NxZRt85e4qZF4fcKrC3HNKCE3LUlUFZ7oEQn1KqBm41ElhD
-	oZ+8eUstF14QmHglbc1w==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=0Y95CVSolsT2eGxG3UukQw1bCthTI5uoGuBQNKMmygQ=; b=ZUx7vLD3gYNT0Ip6S/Nc8/oQip
+	BjNB091pBFeVw1BOvcS7vI3InveC0Z+RDrkjS1TK0hpLzFHsg8WVei6IOzxAF0nutSq6M/8egcVN2
+	jGwITvvCGe0Ok9oGFCfNmuJCGNCDyYAuV8jt0xokhY47HiHXWEaKgjDZAWeEhp1z7UasvU+IyX6YX
+	SPNW/CCzWWeS8YNn4V3U+Fh3aJ8/DyDIQvFCZLjTGTiyJGkd51LwUajizwgmMMVx4jDw0i3PXnVrU
+	sxtOGzIHP0SpAMV5M96N4N1oCVKBa9pRWkTOTDEu9AVEHybXk6SScH+3qtPX9rxNIGuSxi2nHJG2t
+	AKgDVbBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp77-00000006Qyo-2122;
+	id 1xVp77-00000006Qyt-2RSc;
 	Tue, 24 Nov 2026 11:55:09 +0000
 Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp6h-00000006QrN-21IF
+	id 1xVp6h-00000006QrO-3VXX
 	for linux-arm-kernel@lists.infradead.org;
 	Tue, 24 Nov 2026 11:54:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=x+9F4maA1q/9rHQs+iBe3+sg9AgMZGn1PVrFHNoUf/0=; t=1795521283; x=1796730883; 
-	b=E68nrYvjx7gF3lOdvbWWUTsZFyQ+2AwWAFXbenTpJqx6NoW0P2LC5cEDLt3XZIhY4eX87UKe5Ji
-	5pfFOP8tNQKahJvYSKcpuRJr0vwKq2mngAnPVWqX12MLVNhiryybImwq6YqRKJskZPoHSFgK3zg7o
-	Q3rg70M+eqBZA8s8d42BrYUgyYx7jlAtxBRA+3cw/dwFjlAxsiAO3C6NRLtrxcrimDhMtqJ5dcyiW
-	55UW4w0FMN7CZuw3fJIxZIhanVqlkhqv+37+7kkmMkAT/lGBK56QcNGmYm3RvkroAgDeuGRAdzhtt
-	zeoSPHQrzdW419bAm5d+hYGtrAsuvsABRDJg==;
+	d=kemnade.info; s=20220719; h=Cc:To:Subject:From:Reply-To:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=0Y95CVSolsT2eGxG3UukQw1bCthTI5uoGuBQNKMmygQ=; t=1795521283; x=1796730883; 
+	b=s2aC84r4CM74zALkWUP9bQhRqznKzr17FgLPexuRSWeUoRKdbFXP7ZHSn/UuCJ/L316Yw7CfAPy
+	c887tv3jpyH2hb88dWfCv+QW2OzdnMlXV0yj4uIFSIuifV9z0j9GqAMLKOMBuS25maPoT7v/qIdxb
+	Us4FUuGzo986teb3V716lF+RI3EfvRKdh2mWz45Gd5gfgu6MOp2SX9jhmGX2RqDAskpDlahe9EGLs
+	Zoj7KgORqcrvQnAmF/bKP8vejhvGqFLemwocXFEv3iCKqg1mSrJm/T/85Sr88yqXwhYMGzh6W5nCF
+	JxFDfWZrNuDuh8F2srHwTHD7vDtPadRzmUdw==;
 From: Andreas Kemnade <andreas@kemnade.info>
-Date: Tue, 24 Nov 2026 12:54:17 +0100
-Subject: [PATCH 1/2] drm/bridge: tc358762: fix reset gpio handling
+Subject: [PATCH 0/2] drm/bridge: tc358762: fix reset handling
+Date: Tue, 24 Nov 2026 12:54:16 +0100
+Message-Id: <20261124-tc3-reset-v1-0-a5d27fe4b5de@kemnade.info>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-tc3-reset-v1-1-a5d27fe4b5de@kemnade.info>
-References: <20261124-tc3-reset-v1-0-a5d27fe4b5de@kemnade.info>
-In-Reply-To: <20261124-tc3-reset-v1-0-a5d27fe4b5de@kemnade.info>
+X-B4-Tracking: v=1; b=H4sIAOl6BWsC/yXMQQqDMBBG4avIrA10EgnqVcRFjX/b6UIlE6Ug3
+ t1olx883k6KKFBqi50iNlGZpwwuCwqf5/SGkTGb7MN6ZluZFJyJUCQDX6PhIbB3NeV+iXjJ735
+ 1/d+6Dl+EdA3oOE4KrFXFbQAAAA==
+X-Change-ID: 20261124-tc3-reset-e68e91bc1638
 To: Neil Armstrong <neil.armstrong@linaro.org>, 
  Dmitry Baryshkov <lumag@kernel.org>, Robert Foss <rfoss@kernel.org>, 
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
@@ -67,25 +70,25 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Andreas Kemnade <andreas@kemnade.info>
 X-Mailer: b4 0.17-dev-1b309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1371; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=azMO7qXFLB3Oq7I2Js+X2prmA8P3ATtPHmA5Y0XVp/k=;
- b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBrBXryiHJRHKABncWLjlr5+3ieC2M8gm72Ymtau
- w7e0sQqIg+JAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCawV68gAKCRCEYUX6QCjc
- 8YveD/9S/xOQE4ZQuQZwrguRBpV2LhlOu6ZaUFh9gSoMOJiupQolDPS95A8A7jBhnuOC3GKGIPQ
- EqFfsFw3PFu5KYaCZRN1TcvgIUhPzOgzwAB+b6esnBw6gKvsAzqI3xoeisJOj0ytlIdoS0oyX+y
- YHL5v+RMzHnyXje2w+mqs4MQrOFwjGTcOeDqXLtvVsLaxgJesimEodvsakHuEIe9sUgPFMrzHBb
- Ov/9HUvpPJlRrhp3hWf5JfzFwzTBPHqVgnXp0jUeRiuG9hRZK9Ns14XgJ1O0H3ay1H6KJ1vm1xC
- RMp25iIckdOjHqMlnMwI6+1eX9EwgHIRvJg/nZZVcIzDZOIWlZLVAZG+Xxx3PqTA8dwpVVhBn9E
- j8tdRWtZDqMVH6FBADh/4tEHIZnsqV6uPwiq/1gBjOzit1h6gwDuM6kE0Z9PMEABj379b7MxIir
- 0mQQ6Pmql9drcRRKEv1+GSfBCggTEp8hFVINDDvPj38prXwKy/HB55JYh7ZwoHKEg9k/ydnrlYj
- ECqMKcoWMzBm4lWidRZ+ILw70XvcYW5fDCM8rO6ihZ6shPyw91Acyd4Ppz9X1BNu1HN8Ndd5+/3
- T4X9n83ZU9t8xvz0a5dXiLAX+lttTkW3cH8aK4wZqo+FHrHzd7U7QEeJZDIobDgbASGLl2/iygi
- KPwxrj8MPDw8CYw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1333; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=95cBuEgKomvG0irQdxNTBuaiupy4Qd3iS5bglnLUJhs=;
+ b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBrBXruLghhWGCP2n4Puk1XpXU37hzRrYl2i1OZw
+ kUEEF+1+8CJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCawV67gAKCRCEYUX6QCjc
+ 8WRxD/9XWVI6846UBss/bGrlWSl5D3+8GAd9mXpfozjJcnq0eVwaSoDae/UUQFbDwUM0dZksnXI
+ EWH2IIi+7vAWkAH/BkbyEX6uNx4Q70vuox+t+oLc5LpgBZiu90qZ4jCb6C0dtJJyqHm8/KvOxJo
+ VzJm7Jh0maBv55xM1LQB7yuYYn2tuRqDPpeGQj1XL+zpZASxekjwjYW8EMunYTfiL1Oy8MeAfhu
+ tgZ9k2IXoECcAikVBat1s0y20gxji1MdSybvuHJcJP8G6FpzHBeSkBwct1CvSm10R3OaIm1VOyF
+ hKcRCWcjTAuKNyvRt3nJsjnzPpmLH3OGVtv1bfDeKta+lnc58nHHCT9GH+cPdR+G6bcDuKkYHs2
+ ZScR8QRbDPHzMD1bnInUBt+61b30L4HfBm1UUrK+PFiZizUdrqwNYbH9LZfLad5gqsEpZComJ8h
+ C0tmBRd6LSabeG62iuKXqGnbOgITA2MTTrUQRYdg+ooyHOdyVQ0IS8VrNYDMS/xsRpS/0+p5UKB
+ YWIOx84WDDFMZhalwukyMQcUXzDYdW5aO1ScrzfAcK2pXgh66WlUzcClrXKUvUePGQS2TroxxDA
+ QBD6NAYaGyJNQD++WTj/7jentSzQg0yxHmPkaRYm5m5dyNvztBEd+0Mzqiy1cJ30v+ZiJZ4cW1f
+ WgNtWEqE9yA+RNA==
 X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
  fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_035443_843903_8DB1B11A 
-X-CRM114-Status: GOOD (  11.61  )
+X-CRM114-CacheID: sfid-20261124_035443_892093_901F1851 
+X-CRM114-Status: GOOD (  10.27  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,49 +100,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Reset gpio is asserted when the chip should be active, deasserted when
-the chip is enabled. That is the wrong way. Apparently users are working
-around this by using GPIO_ACTIVE_HIGH to compensate for that bug but that
-is not correcly describing the hardware. Ignore GPIO polarity for now
-to ease transition hoping that nobody has an inverter in the signal path.
+The bridge driver desserts reset after disable and asserts that 
+upon enbale. That requires users to workaround that by declaring
+the reset gpio wrongfully active high. As an interim solution,
+ignore polarity, until things have settled to fix it afterwards.
+That will break setups with an additional inverter in the signal
+patch but those should be uncommon, at least not seen in in-tree
+devicetrees. Fix polarity in the one device tree actually declaring
+a reset line. That patch has to go in after the bridge fix.
+
+The issue came to sight during experiments with reset lines on the
+Epson Moverio BT-200.
+
+The devicetree change is only compile tested.
 
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- drivers/gpu/drm/bridge/tc358762.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Andreas Kemnade (2):
+      drm/bridge: tc358762: fix reset gpio handling
+      ARM: dts: st: stm32mp15xx-dhsom: fix bridge reset polarity
 
-diff --git a/drivers/gpu/drm/bridge/tc358762.c b/drivers/gpu/drm/bridge/tc358762.c
-index 76564d5e4f69f..404420c7b517e 100644
---- a/drivers/gpu/drm/bridge/tc358762.c
-+++ b/drivers/gpu/drm/bridge/tc358762.c
-@@ -164,7 +164,7 @@ static void tc358762_post_disable(struct drm_bridge *bridge,
- 	ctx->pre_enabled = false;
- 
- 	if (ctx->reset_gpio)
--		gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+		gpiod_set_raw_value_cansleep(ctx->reset_gpio, 0);
- 
- 	ret = regulator_disable(ctx->regulator);
- 	if (ret < 0)
-@@ -182,7 +182,7 @@ static void tc358762_pre_enable(struct drm_bridge *bridge,
- 		dev_err(ctx->dev, "error enabling regulators (%d)\n", ret);
- 
- 	if (ctx->reset_gpio) {
--		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		gpiod_set_raw_value_cansleep(ctx->reset_gpio, 1);
- 		usleep_range(5000, 10000);
- 	}
- 
+ .../arm/boot/dts/st/stm32mp15xx-dhsom-overlay-panel-dsi-rpi7inch.dtsi | 2 +-
+ drivers/gpu/drm/bridge/tc358762.c                                     | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+---
+base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
+base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+change-id: 20261124-tc3-reset-e68e91bc1638
 
--- 
-2.47.3
+Best regards,
+--  
+Andreas Kemnade <andreas@kemnade.info>
 
 
