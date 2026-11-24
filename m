@@ -2,95 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2CD606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CDD606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=np9HmO9B;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YPf2do13
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DQXXCW04;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=pQ0nXaTV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NmzeHjQpwb8xr6UOoWnMTNzzDHjAarvzlglxmIf5kC8=; b=np9HmO9BfsM/UH
-	kN0eGEj4O1Bh4VouzuCW9fwJWgM4CzBSmTpYItVZtpOtJXTUmMfYFlxXKFeoCEeUSf1hbTgsKAi3J
-	gg8XESBH1rQQGqhe3NHd1sRZiAN2+PTo8fedLrXzY0zgCNJUEnZRcTtLKTbxc1Ch99gngNxd3Bvzv
-	KiXryEvJnNVDlfL6VRyMq5rtm2J1yFP9AdEoJyErUiJxOL6I7vhBiqZEYTkq5378Z5x8OJXSiEcC/
-	w3709Y82boH0rVkL1BlFwcoQLWOeUl36arJbW18SfhVvvBnP+ixz1pXzgNAY2Kml+mC3q2FOX/4Bu
-	KtxcRsahgIlKuHiDd63A==;
+	List-Owner; bh=asbWuIn9ePuDPZMHSTApP9g/ewv2TUXo/89WnF//TCg=; b=DQXXCW04LL15T2
+	ItCzrM8dtZPEfArvSz1C7OHO9hpy2neLevGTdyqA3HG81psfCvIk+s35FPhI9gB1TAJF0VUpgl66P
+	cn3vyIrFjKG2OEW/mA4Mo5Bi5jYJwVSOPHTv3amsdwY8qgKjmDtIOWCftMD56GjAB0/8EIhThQUYy
+	BVsWniKaMkdfUhpwtAJJ3ZCXtRjnfpIsE2qFXY5D8W+7MamtCNtX35eJXsHuEM4P4L5LL6VEIonxD
+	Q8T9r7MTTRZ9uBv7WGgaaKCqDYJAWSiYoF6U+vYVrvyxWooPnaICGb+hxA5RNAi2WCRTx8VbghHS9
+	P/QkGMgaspaToq2/pSoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrop-00000006oKj-2MoZ;
-	Tue, 24 Nov 2026 14:48:27 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVs13-00000006ptQ-02rJ;
+	Tue, 24 Nov 2026 15:01:05 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVron-00000006oKL-2gi3
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:48:25 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E0BD941780;
-	Tue, 24 Nov 2026 14:48:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3C2A1F000CF;
-	Tue, 24 Nov 2026 14:48:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795531704;
-	bh=NmzeHjQpwb8xr6UOoWnMTNzzDHjAarvzlglxmIf5kC8=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=YPf2do13UJY/NFUdq6FHPxFG8KZoWIt2yCsrXBO2YGch4P96BCx+vrisjtTER57tA
-	 J4z4KxtgbX0OKi/41M5AqCZF7w99rrwZVkDQB1mHeXCv5a+SrnexPld9IOSVBXImU/
-	 fCC6I2KpmISBjjyMgs3pdTMEMPZqWNueh3SpSfFgMCBfsmOJLHLW+ERUIjCLzj5rhs
-	 /exN9lHQkb2ARVCNNWvJLebtQ3b7rlLXt/RnIJ39/8IF7I+EX9WKq21IcT91/vOEkD
-	 i07N6sSUja/WQO9HwFz+oIWETeIyOePxlUIjeRY7csqWeug+aJeZD9yCE+AkSTUZ3o
-	 xExZtPvui9egQ==
+	id 1xVs10-00000006psd-2lre;
+	Tue, 24 Nov 2026 15:01:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795532460;
+	bh=dJcc5I0Ky/5T2QAptsnn0SzrB5NzoLMHaxiGnakhfhc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pQ0nXaTVwLs9PqqU6CwULXvJgEIqxRyY5bxvW5uexTE19pWE+hs+oH0u+3jukYvE9
+	 y0RiUNk/bwYIkXTnHDceGFq6aIG3JnXjEQq5rEedFvSGZjxUcFFcLA5+xWhKG7epWR
+	 qJLqxwsM9GYg9ZtH7cMqOvV3Z9od6sWkRCszde6pNbSSG/lngu/Fq5abAGKsFyZn/D
+	 WrQFyIUZCLRCFlhW9InQy5vEfRgd/MIhHhirkWQeuRJRHThwYc5GAajSaEHCEFX+OU
+	 cEXN+KgSbk/KVER94bTmr227lVs7lsLPh1T4v74ZsYxB8iBJcQhpxg1TQYcCXPrlQX
+	 AO3PveeJUDSQw==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A22CE17E09ED;
+	Tue, 24 Nov 2026 16:00:59 +0100 (CET)
+Message-ID: <14a4f698-8739-45c6-8904-496ac61e73c9@collabora.com>
+Date: Tue, 24 Nov 2026 16:00:59 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 33/46] drm/mediatek: Add support for Display Controller
+ exDMA component
+To: Daniel Stone <daniel@fooishbar.org>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+ simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, justin.yeh@mediatek.com,
+ jason-jh.lin@mediatek.com, kernel@collabora.com
+References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
+ <20260714114414.184512-34-angelogioacchino.delregno@collabora.com>
+ <CAPj87rO9saEC34+5NiYK8xyZiNytrVgOcszoY5uc7BpL=M4WTg@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAPj87rO9saEC34+5NiYK8xyZiNytrVgOcszoY5uc7BpL=M4WTg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 07/20] ASoC: ti: omap3pandora: Convert sound card to
- DT
-From: Mark Brown <broonie@kernel.org>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
- Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
- Jarkko Nikula <jarkko.nikula@bitmer.com>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-omap@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, letux-kernel@openphoenux.org, 
- kernel@pyra-handheld.com, Stefan Leichter <sle85276@gmx.de>, 
- Grond <grond66@riseup.net>
-In-Reply-To: <57d9a8b26bd2282deb9188d6913976cfee41aee9.1795505160.git.hns@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
- <57d9a8b26bd2282deb9188d6913976cfee41aee9.1795505160.git.hns@goldelico.com>
-Date: Tue, 24 Nov 2026 14:48:03 +0000
-Message-Id: <179553168323.264265.7045861860225672057.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=473; i=broonie@kernel.org;
- h=from:subject:message-id; bh=O+rxne3vfbE84eTyYkF7T4fTftOwK7+9DZzNOJ+HZzk=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJZFy8x+dXb7LL+HKf1wXKuIz81p8++sCJJKZWD9TSn0
- rfClbtrOkpZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCRdY4M/8ytHs5iDcsvmLh0
- YcYOxydMZY4LfGfsfGA/c+r3NWGXPDcxMpy59iWt6P6TdwapdvPZb+UIJU1sidvM9fdryqElzQm
- KN/gB
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_070102_901496_D87C0A89 
+X-CRM114-Status: GOOD (  27.45  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,23 +82,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Convert the OpenPandora ASoC machine driver to bind through a Device
-> Tree sound-card node instead of creating a platform device from board-
-> specific setup code. Describe the CPU and codec DAIs and audio routes
-> through DT, including the external PCM1773 playback DAC.
+On 11/24/26 15:28, Daniel Stone wrote:
+> Hi,
+> 
+> On Tue, 14 Jul 2026 at 12:45, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>> +void mtk_exdma_layer_config(struct device *dev, unsigned int idx,
+>> +                                struct mtk_plane_state *state,
+>> +                                struct cmdq_pkt *cmdq_pkt)
+>> +{
+>> +       struct mtk_disp_exdma *priv = dev_get_drvdata(dev);
+>> +       struct mtk_plane_pending_state *pending = &state->pending;
+>> +       const struct drm_format_info *fmt_info = drm_format_info(pending->format);
+>> +       const u32 blend_mode = mtk_ovl_get_blend_mode(state, MTK_OVL_SUPPORT_BLEND_MODES);
+>> +       const bool csc_enable = (fmt_info) ? fmt_info->is_yuv : false;
+>> +       u32 val;
+>> +
+>> +       if (!pending->enable || pending->height == 0 || pending->width == 0 ||
+>> +           pending->x > OVL_EXDMA_MAX_SIZE || pending->y > OVL_EXDMA_MAX_SIZE) {
+> 
+> Definitely don't do this please. If exdma is asked to do something it
+> can't (and I'm assuming that these last two checks are intended to be
+> on w/h rather than x/y?), then you need to reject that in
+> atomic_check. Getting here with pending->enable == true and then not
+> enabling it, is not OK.
+> 
 
-> +	DAILINK_COMP_ARRAY(COMP_CODEC("pcm1773-codec", "pcm1773")),
+That was done because mediatek-drm isn't in the best shape, and atomic_check is too
+late for this check... adding support for those components is done on top of a big
+restructuring, which still is not complete, as the entire mediatek-drm driver can,
+and needs to, improve quite a bit.
 
-You've added the external CODEC but not updated the Kconfig dependencies
-for that.
+(P.S.: yes the check was to be done on w/h)
 
--- 
-Mark Brown <broonie@kernel.org>
+That said, I think at this point the best I can do, without going for continuing
+the entire restructuring here (I have no time for that right now, sorry) is to
+duplicate this check in .atomic_check(), so that when the entire thing will be
+ready, the right thing is already there waiting for the additional check to be
+simply removed.
+
+I have to recheck if there's anything "fast" I can do to make this completely
+right without double checks, but I'm afraid I can't.
+
+> Relatedly, most of mtk_plane_pending_state should be deleted as
+> duplicative of drm_plane_state and it would be great to see a patch
+> series very soon to clean that up.
+
+Again, I agree mediatek-drm needs a rather big cleanup.
+
+Lately, upstream has been a bit slow in reviewing etc for many reasons, which is
+why this series has been there for months now (though things are getting unblocked
+lately at least for this specific series, so that's good).
+
+Anyway - let me see what I can do, but I can't make *big* promises - the only thing
+I can say is that further *big* cleanups/restructuring is something I can do in the
+next iteration (after the partial restructuring that is done in this series gets
+merged, but definitely not in this series) whenever I can find some time to.
+
+I'm all for making things perfect, but I only have two hands, unfortunately :-(
+
+> It's been that way for the last 10
+> years, with seemingly no discussion ever of why it exists (my guess is
+> that it's a holdover from pre-atomic code), but no reason to
+> perpetuate the badness.
+
+It's there because the mediatek-drm codebase still nowadays has lots of technical
+debt, and because there is this GCE//CMDQ programming that adds up to make things
+slightly more complicated.
+
+> 
+> Same comment applies for the blender.
+
+Noted.
+
+Cheers,
+Angelo
 
