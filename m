@@ -2,143 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03B7606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:05:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDD3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FhtsqKeC;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=g78qi7dm;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=b3NjsCJW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mOEU6blj;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LTQHz82v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kD1GNiqGMLXsLwN0Ufm7bvf0nYrTqG7Gyun272V+FBQ=; b=FhtsqKeC9SS8FY
-	PK+qwf1BFKPFedref3ABsTETZQ9+CTctkaqbG9fNf0zGlqTQPHOs8JLAnQMtTktE/rCCepg9lFXfi
-	YM8s6y2G7wek+XN9MXOWeH+Y6Y0ObKd5FiYD3QijOQ3E1RMkGpTyfzRUkikQwihaTempRtYff3OIq
-	N0KDZYcB4J5h6n/Ji1UqlXkEoNQQVfUUY+QgdRiGeS3zjZQMuZSeVqM1HaneSO4IoFhM3Y71eFcoG
-	HmFzeu2KJBSUlYZzFiogiCB2d2kl+NG0s9xSwUUAU9fYevhFQzBqMBBZIKR49+pjRan6dn4gwd9ZM
-	p6+6YtKzcaOOnmf5Fr9g==;
+	List-Owner; bh=wq60eIxGFtR5MCIfyvCnDnihf6Q7VyfR4aAjbX1daU8=; b=mOEU6blj1vURHu
+	BXEAZ1U+mfGJz6VJVNcGCWZYkdYFZ84qykGjldnLu76LNtH++tKnne92Jm+qX2gIMO20yfTxr5Nlv
+	mQhRPdzzbFbYxxwVCc2c+9uNEoAyvXPySGqodjWv4PnzpetGyA8Cwo2difpBext9G2mwfUJHoSQpx
+	PY/4VU9bA/VpY7Ww5bZE2l34m5xWCzqBh+qejxodx8FvwAznmhuGx27rRSjm50KxNbMJPF6x5qwTf
+	hsry902ha7MVmNTs+yNbX6ZaIwZB4jmD1QngS3sgVXtdcQZCkEGI6DOCwnDqr/P6Pzhd8YaHQR9I7
+	YEe7XJHPVCmK6fuB38mA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrwj-00000006pQK-3vQ1;
-	Tue, 24 Nov 2026 14:56:37 +0000
-Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.179])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrwe-00000006pPy-0NXU
+	id 1xVs8H-00000006qdb-0Aup;
+	Tue, 24 Nov 2026 15:08:33 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVs8E-00000006qd9-0hS7
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:56:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795532163; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=mXrrTdkIxFBikSs2buuExLGImnsss5asFyDblSFa7hvcQpzrTygM97Mmtkp/+JfIIg
-    lPtNgIbXi6iNJHfbxDM2tGPrvNob4kg59IUcaqNoHOxEcaGJovd+Q8ah6gRwS+tjATHR
-    J3F6sQwarR0yWNKI82jo+GLPppvMqdXu3NTffBIO0m6vpZPYB4PqyAsib2GMmAmcvCLc
-    /YfumcPpcPU5K/fwK7kcsCPn1eyLGpwLn/iKFuWjsd2TcglmHak2Re0ijjZWIridB/am
-    yBxH+fc0vGn7iidGwE47kY6yo86pOua8y4isPOgWFuw8s5XQmO8ZOBSxkoO9SHuOVeu3
-    8ByA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795532163;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=kD1GNiqGMLXsLwN0Ufm7bvf0nYrTqG7Gyun272V+FBQ=;
-    b=ZM5w3Jfk9ANqD0Ti5o+IA0ULSYlRb9etAC/UedIyafx7XEVA5d2Vwgy8rW+f/KRMLu
-    U6lew/Roh2InlnuduzLJoGupp9DeJs790mJ9rThUGdLHQbibdwVVD0QTBjrJYbweBCSK
-    /TJzULbiP+IItbBhNwoDjFrHC5uqXyyZcfV9qui8rmpN729XZShEg9RCC3EyhVXk727V
-    vQvVbkoIKSXWnAx4WSTrcjlilWu9Ztpsqict22NaYpsnUCtCXOMf11Ua+SwUBi1c0JfC
-    CO662K5J6akvKzdRJzdzqupOl+qc11DOuudWqIElvQOXxWeND+vX4xpLcFTAwJH3rfbB
-    0Qkw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795532163;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=kD1GNiqGMLXsLwN0Ufm7bvf0nYrTqG7Gyun272V+FBQ=;
-    b=g78qi7dmmOKb50cPH/PtIvPHRVAKJ5YEB0z6uIoMX4OFugwvpdjjpdIVAGsex5nEf2
-    +WpReOFlNGHjZgArPnEtlF0u8GuMMd//SD2AwxcVCQkb6Yhf2izb2FvgJX4HQrg7LPKZ
-    vg0h91GAJ5dM40C2WYH/fzAlpMKyaz2pye7aSMZz1PrhDPOz5jncJCkb535i2oDzZKg1
-    Co+6i1vMtP1U+lmZBJUZqEbJ+VZPje5+thfAkN6GhlxiOpoWh04i91Svi4+SElcEmBmk
-    1MACSgbbn3Fh23YAbr3ZKxF072Fkqt8FHodVGyN14Hf5WYNCFv0gKSuTBJb2nrsDYC5P
-    /X+A==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795532163;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=kD1GNiqGMLXsLwN0Ufm7bvf0nYrTqG7Gyun272V+FBQ=;
-    b=b3NjsCJWVhfoMdjRGQC49ub7BeVSemOzYBPiCh/kZv/VLtpY/Mk0kV8s8RDbMvlWrA
-    HZJa8lp54imBSto8izBg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVWUgMvoVkTTR2P7jtjQyY2AeEP/F"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AOEu13hT
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 24 Nov 2026 15:56:01 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	Tue, 24 Nov 2026 15:08:31 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A4C4339;
+	Tue, 24 Nov 2026 07:08:26 -0800 (PST)
+Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD8013F763;
+	Tue, 24 Nov 2026 07:08:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795532909; bh=iRlHeZwlJBUmCWo6yrgiKKtkerHyE2dksVsYRvvTjXs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LTQHz82v2MMhRZa2+kkNDv3Dm80KyUhpVlFfWiQhnEiLCftSAmOBBSjtRCK7bheBA
+	 Me1w2DvhHEPrwKhkI0Px3LCTTKLeMh36O60GtvpxUHI5mXMHEeIPP8T2g7MVKnevA3
+	 r6CSDoDpkzlGFnZ9KJYr+ap3IP7r/ghNKtx5Sj+8=
+Message-ID: <090662ee-0d8d-48b5-83f2-8a4d225bef08@arm.com>
+Date: Tue, 24 Nov 2026 15:08:25 +0000
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.11\))
-Subject: Re: [PATCH v2 07/20] ASoC: ti: omap3pandora: Convert sound card to DT
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <179553168323.264265.7045861860225672057.b4-review@b4>
-Date: Tue, 24 Nov 2026 15:55:30 +0100
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>,
- Daniel Thompson <danielt@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>,
- Pavel Machek <pavel@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Andreas Kemnade <andreas@kemnade.info>,
- Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>,
- Tony Lindgren <tony@atomide.com>,
- Russell King <linux@armlinux.org.uk>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Helge Deller <deller@gmx.de>,
- Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>,
- Jarkko Nikula <jarkko.nikula@bitmer.com>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org,
- linux-sound@vger.kernel.org,
- linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-pwm@vger.kernel.org,
- linux-fbdev@vger.kernel.org,
- letux-kernel@openphoenux.org,
- kernel@pyra-handheld.com,
- Stefan Leichter <sle85276@gmx.de>,
- Grond <grond66@riseup.net>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 1/2] KVM: arm64: CCA: Add support for configuring
+ the Realm MEC policy
+To: Kohei Enju <enju.kohei@fujitsu.com>, Paolo Bonzini <pbonzini@redhat.com>,
+ Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+ Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
+ Steffen Eiden <seiden@linux.ibm.com>, Steven Price <steven.price@arm.com>,
+ Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>
+Cc: kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+ cgroups@vger.kernel.org
+References: <20261112-mm-v1-mec-v2-0-0d1dd260a588@fujitsu.com>
+ <20261112-mm-v1-mec-v2-1-0d1dd260a588@fujitsu.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20261112-mm-v1-mec-v2-1-0d1dd260a588@fujitsu.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <F6716339-FDD9-4F23-B4BB-9C99A13C8875@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
- <57d9a8b26bd2282deb9188d6913976cfee41aee9.1795505160.git.hns@goldelico.com>
- <179553168323.264265.7045861860225672057.b4-review@b4>
-To: Mark Brown <broonie@kernel.org>
-X-Mailer: Apple Mail (2.3826.700.81.1.11)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_065632_393391_D3463A17 
-X-CRM114-Status: GOOD (  11.93  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_070830_314852_B1A137E0 
+X-CRM114-Status: GOOD (  31.29  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,30 +78,284 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-> Am 24.11.2026 um 15:48 schrieb Mark Brown <broonie@kernel.org>:
+On 12/11/2026 03:36, Kohei Enju wrote:
+> Introduce the KVM_ARM_VM_RMI_CTRL device attribute group to allow
+> userspace to configure Realm VM parameters before the Realm is created
+> using KVM_SET_DEVICE_ATTR.
 > 
->> Convert the OpenPandora ASoC machine driver to bind through a Device
->> Tree sound-card node instead of creating a platform device from board-
->> specific setup code. Describe the CPU and codec DAIs and audio routes
->> through DT, including the external PCM1773 playback DAC.
+> Currently, KVM_ARM_VM_RMI_CTRL_MEC_POLICY is the only supported
+> attribute. Its value can be KVM_ARM_VM_RMI_MEC_POLICY_SHARED or
+> KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE. Reject the private policy if the
+> platform does not support private MECs.
 > 
->> + DAILINK_COMP_ARRAY(COMP_CODEC("pcm1773-codec", "pcm1773")),
+> If userspace does not explicitly configure the MEC policy,
+> KVM_ARM_VM_RMI_MEC_POLICY_SHARED is used by default.
 > 
-> You've added the external CODEC but not updated the Kconfig dependencies
-> for that.
+> Signed-off-by: Kohei Enju <enju.kohei@fujitsu.com>
+> ---
+>   Documentation/virt/kvm/devices/vm.rst   | 25 +++++++++++++++
+>   arch/arm64/include/asm/kvm_rmi.h        |  5 +++
+>   arch/arm64/include/uapi/asm/kvm.h       |  4 +++
+>   arch/arm64/kvm/arm.c                    |  4 +++
+>   arch/arm64/kvm/rmi.c                    | 57 +++++++++++++++++++++++++++++++++
+>   drivers/firmware/arm_rmm/rmi.c          |  6 ++++
+>   include/linux/arm-rmi-cmds.h            |  1 +
+>   tools/arch/arm64/include/uapi/asm/kvm.h |  4 +++
+>   8 files changed, 106 insertions(+)
+> 
+> diff --git a/Documentation/virt/kvm/devices/vm.rst b/Documentation/virt/kvm/devices/vm.rst
+> index 78e63eb9994e..b0bd30750aa1 100644
+> --- a/Documentation/virt/kvm/devices/vm.rst
+> +++ b/Documentation/virt/kvm/devices/vm.rst
+> @@ -418,3 +418,28 @@ will reject attempts to define a filter for any portion of these ranges:
+>           0x8000_0000 0x8000_FFFF
+>           0xC000_0000 0xC000_FFFF
+>           =========== ===============
+> +
+> +7. GROUP: KVM_ARM_VM_RMI_CTRL
+> +=============================
+> +
+> +:Architectures: arm64
+> +
+> +7.1. ATTRIBUTE: KVM_ARM_VM_RMI_CTRL_MEC_POLICY (w/o)
+> +----------------------------------------------------
+> +
+> +:Parameters: Pointer to a ``__u8`` value
+> +
+> +:Returns:
+> +
+> +  =========  ===========================================================
+> +  ENXIO      The VM is not a Realm VM
+> +  EBUSY      The Realm has already been created
+> +  EINVAL     Invalid MEC policy value
+> +  EOPNOTSUPP Private MEC policy is not supported by the platform
+> +  EFAULT     The value could not be copied from userspace
+> +  =========  ===========================================================
+> +
+> +Configures the MEC policy for a Realm VM before the Realm is created. The value
+> +must be either ``KVM_ARM_VM_RMI_MEC_POLICY_SHARED`` or
+> +``KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE``. If userspace does not explicitly set the
+> +MEC policy, ``KVM_ARM_VM_RMI_MEC_POLICY_SHARED`` is used by default.
+> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
+> index 3933f8d834b8..08c1f6d0671d 100644
+> --- a/arch/arm64/include/asm/kvm_rmi.h
+> +++ b/arch/arm64/include/asm/kvm_rmi.h
+> @@ -59,6 +59,7 @@ enum realm_state {
+>    * @state: The lifetime state machine for the realm
+>    * @ia_bits: Number of valid Input Address bits in the IPA
+>    * @stage2_unmapped: The Realm stage-2 mappings have been removed
+> + * @mec_policy: MEC policy for the Realm VM
+>    */
+>   struct realm {
+>   	void *rd;
+> @@ -73,6 +74,7 @@ struct realm {
+>   	enum realm_state state;
+>   	unsigned int ia_bits;
+>   	bool stage2_unmapped;
+> +	unsigned int mec_policy;
+>   };
+>   
+>   /**
+> @@ -109,9 +111,12 @@ int kvm_realm_teardown_stage2(struct kvm *kvm);
+>   void kvm_destroy_rec(struct kvm_vcpu *vcpu);
+>   
+>   struct kvm_arm_rmi_populate;
+> +struct kvm_device_attr;
+>   
+>   int kvm_arm_rmi_populate(struct kvm *kvm,
+>   			 struct kvm_arm_rmi_populate *arg);
+> +int kvm_vm_rmi_has_attr(struct kvm *kvm, struct kvm_device_attr *attr);
+> +int kvm_vm_rmi_set_attr(struct kvm *kvm, struct kvm_device_attr *attr);
+>   
+>   enum kvm_gfn_range_filter;
+>   
+> diff --git a/arch/arm64/include/uapi/asm/kvm.h b/arch/arm64/include/uapi/asm/kvm.h
+> index 65ee09bd1463..aa1e6fe6192e 100644
+> --- a/arch/arm64/include/uapi/asm/kvm.h
+> +++ b/arch/arm64/include/uapi/asm/kvm.h
+> @@ -403,6 +403,10 @@ enum {
+>   /* Device Control API on vm fd */
+>   #define KVM_ARM_VM_SMCCC_CTRL		0
+>   #define   KVM_ARM_VM_SMCCC_FILTER	0
+> +#define KVM_ARM_VM_RMI_CTRL		1
+> +#define   KVM_ARM_VM_RMI_CTRL_MEC_POLICY	0
+> +#define     KVM_ARM_VM_RMI_MEC_POLICY_SHARED	0
+> +#define     KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE	1
+>   
+>   /* Device Control API: ARM VGIC */
+>   #define KVM_DEV_ARM_VGIC_GRP_ADDR	0
+> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+> index 8e94f1bff830..be676c13e219 100644
+> --- a/arch/arm64/kvm/arm.c
+> +++ b/arch/arm64/kvm/arm.c
+> @@ -2329,6 +2329,8 @@ static int kvm_vm_has_attr(struct kvm *kvm, struct kvm_device_attr *attr)
+>   	switch (attr->group) {
+>   	case KVM_ARM_VM_SMCCC_CTRL:
+>   		return kvm_vm_smccc_has_attr(kvm, attr);
+> +	case KVM_ARM_VM_RMI_CTRL:
+> +		return kvm_vm_rmi_has_attr(kvm, attr);
+>   	default:
+>   		return -ENXIO;
+>   	}
+> @@ -2339,6 +2341,8 @@ static int kvm_vm_set_attr(struct kvm *kvm, struct kvm_device_attr *attr)
+>   	switch (attr->group) {
+>   	case KVM_ARM_VM_SMCCC_CTRL:
+>   		return kvm_vm_smccc_set_attr(kvm, attr);
+> +	case KVM_ARM_VM_RMI_CTRL:
+> +		return kvm_vm_rmi_set_attr(kvm, attr);
+>   	default:
+>   		return -ENXIO;
+>   	}
+> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
+> index 0d254fb80cde..01ac8d4fec7c 100644
+> --- a/arch/arm64/kvm/rmi.c
+> +++ b/arch/arm64/kvm/rmi.c
+> @@ -7,6 +7,7 @@
+>   #include <linux/arm-rmi-cmds.h>
+>   #include <linux/kvm_host.h>
+>   #include <linux/overflow.h>
+> +#include <linux/uaccess.h>
+>   
+>   #include <asm/daifflags.h>
+>   #include <asm/kvm_emulate.h>
+> @@ -586,6 +587,9 @@ static int realm_create_rd(struct kvm *kvm)
+>   		params->flags0 |= RMI_REALM_PARAM_FLAG_PMU;
+>   	}
+>   
+> +	params->flags0 |= FIELD_PREP(RMI_REALM_PARAM_FLAG_MEC_POLICY_MASK,
+> +				    realm->mec_policy);
+> +
+>   	r = realm_init_sve_param(kvm, params);
+>   	if (r)
+>   		goto out_undelegate_tables;
+> @@ -1481,6 +1485,57 @@ int kvm_arm_rmi_populate(struct kvm *kvm,
+>   	return ret;
+>   }
+>   
+> +static int kvm_vm_rmi_set_mec_policy(struct kvm *kvm, u8 policy)
+> +{
+> +	guard(mutex)(&kvm->arch.config_lock);
+> +
+> +	if (!kvm_vm_is_realm(kvm))
+> +		return -ENXIO;
+> +
+> +	if (kvm_realm_state(kvm) != REALM_STATE_NONE)
+> +		return -EBUSY;
+> +
+> +	if (policy != KVM_ARM_VM_RMI_MEC_POLICY_SHARED &&
+> +	    policy != KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE)
+> +		return -EINVAL;
+> +
+> +	if (policy == KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE &&
+> +	    rmi_mec_count() == 0)
+> +		return -EOPNOTSUPP;
+> +
+> +	kvm->arch.realm.mec_policy = policy;
+> +	return 0;
+> +}
+> +
+> +int kvm_vm_rmi_has_attr(struct kvm *kvm, struct kvm_device_attr *attr)
+> +{
+> +	if (!kvm_vm_is_realm(kvm))
+> +		return -ENXIO;
+> +
+> +	switch (attr->attr) {
+> +	case KVM_ARM_VM_RMI_CTRL_MEC_POLICY:
 
-Yes, I remember it was discussed but slipped through.
+minor nit: Could we reject this if the rmi_mec_count() == 0 ?
+Default policy is "shared" mec, as long as it is documented, this
+would work only on a system that supports Private MEC.
 
-BR and thanks,
-Nikolaus
+
+Suzuki
+
+
+> +		return 0;
+> +	default:
+> +		return -ENXIO;
+> +	}
+> +}
+> +
+> +int kvm_vm_rmi_set_attr(struct kvm *kvm, struct kvm_device_attr *attr)
+> +{
+> +	void __user *uaddr = (void __user *)attr->addr;
+> +	u8 policy;
+> +
+> +	switch (attr->attr) {
+> +	case KVM_ARM_VM_RMI_CTRL_MEC_POLICY:
+> +		if (copy_from_user(&policy, uaddr, sizeof(policy)))
+> +			return -EFAULT;
+> +
+> +		return kvm_vm_rmi_set_mec_policy(kvm, policy);
+> +	default:
+> +		return -ENXIO;
+> +	}
+> +}
+> +
+>   static int kvm_create_rec(struct kvm_vcpu *vcpu)
+>   {
+>   	struct user_pt_regs *vcpu_regs = &vcpu->arch.ctxt.regs;
+> @@ -1695,6 +1750,8 @@ int kvm_init_realm(struct kvm *kvm)
+>   {
+>   	struct realm *realm = &kvm->arch.realm;
+>   
+> +	realm->mec_policy = KVM_ARM_VM_RMI_MEC_POLICY_SHARED;
+> +
+>   	realm->sro = kmalloc_obj(*realm->sro);
+>   	if (!realm->sro)
+>   		return -ENOMEM;
+> diff --git a/drivers/firmware/arm_rmm/rmi.c b/drivers/firmware/arm_rmm/rmi.c
+> index 77255a90e0a6..27edf060d2d9 100644
+> --- a/drivers/firmware/arm_rmm/rmi.c
+> +++ b/drivers/firmware/arm_rmm/rmi.c
+> @@ -793,6 +793,12 @@ unsigned long rmi_feat_reg(unsigned int index)
+>   }
+>   EXPORT_SYMBOL_GPL(rmi_feat_reg);
+>   
+> +u64 rmi_mec_count(void)
+> +{
+> +	return u64_get_bits(rmi_feat_reg(4), RMI_FEATURE_REGISTER_4_MEC_COUNT);
+> +}
+> +EXPORT_SYMBOL_GPL(rmi_mec_count);
+> +
+>   static int rmi_rmm_config_set(unsigned long cfg_ptr)
+>   {
+>   	struct arm_smccc_1_2_regs regs = {
+> diff --git a/include/linux/arm-rmi-cmds.h b/include/linux/arm-rmi-cmds.h
+> index c13e8775898e..530136ccb791 100644
+> --- a/include/linux/arm-rmi-cmds.h
+> +++ b/include/linux/arm-rmi-cmds.h
+> @@ -68,6 +68,7 @@ static __always_inline void rmi_smccc_invoke_once(struct arm_smccc_1_2_regs *reg
+>   }
+>   
+>   unsigned long rmi_feat_reg(unsigned int index);
+> +u64 rmi_mec_count(void);
+>   
+>   int rmi_delegate_range(phys_addr_t phys, unsigned long size,
+>   		       phys_addr_t *out_phys);
+> diff --git a/tools/arch/arm64/include/uapi/asm/kvm.h b/tools/arch/arm64/include/uapi/asm/kvm.h
+> index 65ee09bd1463..aa1e6fe6192e 100644
+> --- a/tools/arch/arm64/include/uapi/asm/kvm.h
+> +++ b/tools/arch/arm64/include/uapi/asm/kvm.h
+> @@ -403,6 +403,10 @@ enum {
+>   /* Device Control API on vm fd */
+>   #define KVM_ARM_VM_SMCCC_CTRL		0
+>   #define   KVM_ARM_VM_SMCCC_FILTER	0
+> +#define KVM_ARM_VM_RMI_CTRL		1
+> +#define   KVM_ARM_VM_RMI_CTRL_MEC_POLICY	0
+> +#define     KVM_ARM_VM_RMI_MEC_POLICY_SHARED	0
+> +#define     KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE	1
+>   
+>   /* Device Control API: ARM VGIC */
+>   #define KVM_DEV_ARM_VGIC_GRP_ADDR	0
+> 
 
 
