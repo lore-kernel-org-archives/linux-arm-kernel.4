@@ -2,76 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CDD606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 256DB606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DQXXCW04;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=pQ0nXaTV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=onD2lf6y;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WKgC/2zw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=asbWuIn9ePuDPZMHSTApP9g/ewv2TUXo/89WnF//TCg=; b=DQXXCW04LL15T2
-	ItCzrM8dtZPEfArvSz1C7OHO9hpy2neLevGTdyqA3HG81psfCvIk+s35FPhI9gB1TAJF0VUpgl66P
-	cn3vyIrFjKG2OEW/mA4Mo5Bi5jYJwVSOPHTv3amsdwY8qgKjmDtIOWCftMD56GjAB0/8EIhThQUYy
-	BVsWniKaMkdfUhpwtAJJ3ZCXtRjnfpIsE2qFXY5D8W+7MamtCNtX35eJXsHuEM4P4L5LL6VEIonxD
-	Q8T9r7MTTRZ9uBv7WGgaaKCqDYJAWSiYoF6U+vYVrvyxWooPnaICGb+hxA5RNAi2WCRTx8VbghHS9
-	P/QkGMgaspaToq2/pSoA==;
+	List-Owner; bh=ALc2DSxAFB+z144gug25dVUdNIFgyfJHT2bWTlh/b4s=; b=onD2lf6yCSlUFo
+	AAQt6jcvaj0dXJGTCH3lxI7LZjvMk6Sed+2w86AqJiIBlUQIrfHwZ07vyMxttWqBB5A1hO1SitCwz
+	TyduvV17ZKAOHKBGuysn+0ozNqhDqT8eaRwBocU1qpxGLV/oBlAB3rRlo1ZMSbWfkI7v8Wr5VWItT
+	qgkLxOSFEiOep/xfZfTu6dts8Xx1ZDBOsaHbbNS0qYlpc1Fp7Emi6px+dJa5FrgkxEXAu4u1lYbBy
+	GCAiWyv76LJ48XatYR65oQe+eNSBWLCk6XO8e6C80ZGaPOxXB09roHegQ/UYGSbuGcjudCUg1578l
+	gWqq+UgcsWc/3G/w0VbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVs13-00000006ptQ-02rJ;
-	Tue, 24 Nov 2026 15:01:05 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xVs1h-00000006q09-0r0E;
+	Tue, 24 Nov 2026 15:01:45 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVs10-00000006psd-2lre;
-	Tue, 24 Nov 2026 15:01:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795532460;
-	bh=dJcc5I0Ky/5T2QAptsnn0SzrB5NzoLMHaxiGnakhfhc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pQ0nXaTVwLs9PqqU6CwULXvJgEIqxRyY5bxvW5uexTE19pWE+hs+oH0u+3jukYvE9
-	 y0RiUNk/bwYIkXTnHDceGFq6aIG3JnXjEQq5rEedFvSGZjxUcFFcLA5+xWhKG7epWR
-	 qJLqxwsM9GYg9ZtH7cMqOvV3Z9od6sWkRCszde6pNbSSG/lngu/Fq5abAGKsFyZn/D
-	 WrQFyIUZCLRCFlhW9InQy5vEfRgd/MIhHhirkWQeuRJRHThwYc5GAajSaEHCEFX+OU
-	 cEXN+KgSbk/KVER94bTmr227lVs7lsLPh1T4v74ZsYxB8iBJcQhpxg1TQYcCXPrlQX
-	 AO3PveeJUDSQw==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A22CE17E09ED;
-	Tue, 24 Nov 2026 16:00:59 +0100 (CET)
-Message-ID: <14a4f698-8739-45c6-8904-496ac61e73c9@collabora.com>
-Date: Tue, 24 Nov 2026 16:00:59 +0100
+	id 1xVs1C-00000006pvZ-0c4k
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 15:01:16 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 86D02626DA;
+	Tue, 24 Nov 2026 15:01:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C37C1F000C0;
+	Tue, 24 Nov 2026 15:01:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795532472;
+	bh=ALc2DSxAFB+z144gug25dVUdNIFgyfJHT2bWTlh/b4s=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=WKgC/2zwvSt19KsvTJXu8aQJUBgDyOIuyGUhlsrxDAuqCGK07+txYoMPSRQU+MYaU
+	 Bx2GLzgIaicrMPRK4n4alQd8CPiB6syQHwPET5d51kXC+QesvZhLuGmbE6a6/0xQ+a
+	 AMSrC3WJCVHaOIt/Yg3VlVpw8LJSXLirZoivpXKEpioId6vqpXYBoan+bCm/Ah1T6h
+	 gV2xoZdBhdgN5Lj38bbsz/nkW4fCmY8EQNR08Jj1M/oPAnvATexR1t4domcGpKyPXT
+	 63m+gofKlMf+NCoUr1HQoBTynqy2kqNg4Fo/RclWtC/nID+f0YXsSorMIDLGC/hrQX
+	 1JBZROg+MVclQ==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 33/46] drm/mediatek: Add support for Display Controller
- exDMA component
-To: Daniel Stone <daniel@fooishbar.org>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
- simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, justin.yeh@mediatek.com,
- jason-jh.lin@mediatek.com, kernel@collabora.com
-References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com>
- <20260714114414.184512-34-angelogioacchino.delregno@collabora.com>
- <CAPj87rO9saEC34+5NiYK8xyZiNytrVgOcszoY5uc7BpL=M4WTg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAPj87rO9saEC34+5NiYK8xyZiNytrVgOcszoY5uc7BpL=M4WTg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_070102_901496_D87C0A89 
-X-CRM114-Status: GOOD (  27.45  )
-X-Spam-Score: -2.1 (--)
+Subject: Re: [PATCH v4 8/8] dt-bindings: stm32: use reference manual names
+ for ETR and STM bus clocks
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261106-ups_mp25_clk_update-v4-8-9e32b817c38d@foss.st.com>
+References: <20261106-ups_mp25_clk_update-v4-0-9e32b817c38d@foss.st.com>
+ <20261106-ups_mp25_clk_update-v4-8-9e32b817c38d@foss.st.com>
+Date: Tue, 24 Nov 2026 16:01:04 +0100
+Message-Id: <179553246414.44164.14668877546162285849.b4-review@b4>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=879; i=krzk@kernel.org;
+ h=from:subject:message-id; bh=Yd2whfFIQx6CU36G85U2V6q320n+Sz6amBmurjhQT/k=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBrBaaxP87ZTEqSoh3W7nf0iHw+pu6YaAtHs9Luo
+ lq9h05GcICJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCawWmsQAKCRDBN2bmhouD
+ 17ngD/9fzXC1ZLELcRUz7qArItuZfK+8D+sGamj9pWSLmVADrrqB+2I54M6TyFncO9gRmBSwEIQ
+ uHEqqEkbcry7oJA/jfNBhc/7hERh/8eoXmmfkcn0Yg3CUGZ3qTM3HlRTGLt7KBTkLLCNpqNfSfU
+ 5VJzulQZgHHSES5UsIAN+DDEq6GjR/lCdmt2bPBeG7XuUQLc7rXfuH19l76uWzeYfJHY6c887Ox
+ AyEJQW1TiDiLjnrZcGVUzzOqHAAN93nDobM8Mn0btIe3gOwDq68tLXUdgliiZtYZoE7B2jje2tA
+ nqZ3jDbKG2ZyXiDQeZ02TDp4bB9pTNevNB0pMazrDRN8P79fDMDBN1hDKi0xC8cjDIoQamr0JG3
+ txFpPl70oRpC1Hlf+Kr7fBOQGcwExYboTB1LaA8qV6kq3eEPgxkxK0JQLhR8CmPkJJchAZHUKBM
+ uBF8zeETSLwyfvLF8uCoDWvpKBUcG27/TqJE3Jq+UjjOob7grPXHGM6uFqrdWMMUvbOb1lmWXw0
+ F0Spae5/dbd/2ZEEmwbvL+/NIq4njlX9SK7HkvvrgDREwZZybjJWEvXNyK7XXyocN2HQcwZZgmq
+ CgURutamNq3s8MP+xepvmGO9r96L9oiw9sNc7QaRtGulZTOwI6u285s9V7mCznF6rnikX+g4YfJ
+ PzX6rrbLDmfNiOw==
+X-Developer-Key: i=krzk@kernel.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,87 +91,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/24/26 15:28, Daniel Stone wrote:
-> Hi,
+> The bus clocks of the STM and of the ETR are identified by CK_BUS_STM500,
+> CK_SCMI_STM500 and CK_SCMI_ETR. Now that their kernel clocks are
+> described as CK_KER_STM and CK_KER_ETR, and as the RCC bus clock of the
+> ETR is already CK_BUS_ETR, these names are confusing. They also differ
+> from the reference manual and from the STM32MP21 binding, which uses
+> CK_BUS_STM, CK_SCMI_BUS_ETR and CK_SCMI_BUS_STM for the same clocks.
 > 
-> On Tue, 14 Jul 2026 at 12:45, AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->> +void mtk_exdma_layer_config(struct device *dev, unsigned int idx,
->> +                                struct mtk_plane_state *state,
->> +                                struct cmdq_pkt *cmdq_pkt)
->> +{
->> +       struct mtk_disp_exdma *priv = dev_get_drvdata(dev);
->> +       struct mtk_plane_pending_state *pending = &state->pending;
->> +       const struct drm_format_info *fmt_info = drm_format_info(pending->format);
->> +       const u32 blend_mode = mtk_ovl_get_blend_mode(state, MTK_OVL_SUPPORT_BLEND_MODES);
->> +       const bool csc_enable = (fmt_info) ? fmt_info->is_yuv : false;
->> +       u32 val;
->> +
->> +       if (!pending->enable || pending->height == 0 || pending->width == 0 ||
->> +           pending->x > OVL_EXDMA_MAX_SIZE || pending->y > OVL_EXDMA_MAX_SIZE) {
+> Use CK_BUS_STM, CK_SCMI_BUS_ETR and CK_SCMI_BUS_STM, with unchanged
+> values, and keep the old names as deprecated aliases so that the
+> existing users are not affected.
 > 
-> Definitely don't do this please. If exdma is asked to do something it
-> can't (and I'm assuming that these last two checks are intended to be
-> on w/h rather than x/y?), then you need to reject that in
-> atomic_check. Getting here with pending->enable == true and then not
-> enabling it, is not OK.
-> 
+> No functional change.
 
-That was done because mediatek-drm isn't in the best shape, and atomic_check is too
-late for this check... adding support for those components is done on top of a big
-restructuring, which still is not complete, as the entire mediatek-drm driver can,
-and needs to, improve quite a bit.
+That's ABI break, so clearly not true. Users of this ABI - this header -
+did compile before, now they don't.
 
-(P.S.: yes the check was to be done on w/h)
+ABI impact must be explicit in commit msg.
 
-That said, I think at this point the best I can do, without going for continuing
-the entire restructuring here (I have no time for that right now, sorry) is to
-duplicate this check in .atomic_check(), so that when the entire thing will be
-ready, the right thing is already there waiting for the additional check to be
-simply removed.
+Best regards,
+Krzysztof
 
-I have to recheck if there's anything "fast" I can do to make this completely
-right without double checks, but I'm afraid I can't.
-
-> Relatedly, most of mtk_plane_pending_state should be deleted as
-> duplicative of drm_plane_state and it would be great to see a patch
-> series very soon to clean that up.
-
-Again, I agree mediatek-drm needs a rather big cleanup.
-
-Lately, upstream has been a bit slow in reviewing etc for many reasons, which is
-why this series has been there for months now (though things are getting unblocked
-lately at least for this specific series, so that's good).
-
-Anyway - let me see what I can do, but I can't make *big* promises - the only thing
-I can say is that further *big* cleanups/restructuring is something I can do in the
-next iteration (after the partial restructuring that is done in this series gets
-merged, but definitely not in this series) whenever I can find some time to.
-
-I'm all for making things perfect, but I only have two hands, unfortunately :-(
-
-> It's been that way for the last 10
-> years, with seemingly no discussion ever of why it exists (my guess is
-> that it's a holdover from pre-atomic code), but no reason to
-> perpetuate the badness.
-
-It's there because the mediatek-drm codebase still nowadays has lots of technical
-debt, and because there is this GCE//CMDQ programming that adds up to make things
-slightly more complicated.
-
-> 
-> Same comment applies for the blender.
-
-Noted.
-
-Cheers,
-Angelo
+-- 
+Krzysztof Kozlowski <krzk@kernel.org>
 
