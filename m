@@ -2,143 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646F7606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66125606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PyDnousL;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=KWYoeD4i
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ctBswWiD;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=UH4V2wyH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3QDeZ2E6JVSmOjpVLTizsdvzMIuExQwZ3bWcUhyvNFY=; b=PyDnousL/H6HoK
-	xuv3XYQg2qi0pcA02NTxENH8OuNiDV6WxqBHylj4VrUgwrayjewnTugBjSkIbeTX2dytNxsJXL5Ha
-	tw9BVeijy1wpE0e0MfsnInFSI/SJpghWdlH1QCkGzJ2EYTX9Z6A9taBh9cuWyqQVwuNizNxAVfTk0
-	w1KbgwbGT1/0rQ7sqJYSxiXuiDOiwktiHKfgfygSINohWolSx91iBB6oZ+18KWyOH2GKAaXOA3866
-	wBltPcXkpXMUxG3ziu0kJ3lpnefKzRQZFQPMOmGknmHmpAhORHKfC3BpTlmiQzDNh8hpUsCbpaUdZ
-	jY3jJN4wB8qp0fb+hsFg==;
+	List-Owner; bh=EyFMTQbYNXt8dGq0u9x5OdRcIBtDlZceK8vRvToLcLg=; b=ctBswWiDMr+BWx
+	TIOsRUv+x78SmnT6HCdHIHr+L/Cfu04XaFLDYkgi40iS1OG2+9Ferve2a0JTrPsN+1N5sf1aweHD4
+	GtS4lLkWi6Bo0EtAShRYaJ+sYOzKwUdgfugukQWZxwFbhE9BPJ6ZRUN2r9Lfq+di4awKDyhfXwfcc
+	+OY4YOoX13QHN6W0q31KkOOexb7luavO6Dhe3NOMn4Z711XiSBkq/K6Wru7lEhEdjErPlQjzgkWEI
+	pkzVym91EC7XcYWtpvJj2+FrF8rBr8Df4O/2zyWVWOJa6orMXc21fhSuBqwfw1NoXIDaY1OpqZVZv
+	t+bi2qkxt1A4cuxAnwjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxpI-00000007ow4-3s5b;
-	Tue, 24 Nov 2026 21:13:20 +0000
-Received: from mail-northcentralusazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c105::1] helo=CH1PR05CU001.outbound.protection.outlook.com)
+	id 1xVxpy-00000007pKx-43Fr;
+	Tue, 24 Nov 2026 21:14:02 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxp9-00000007orE-2inc
+	id 1xVxpu-00000007pIu-3HWh
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:13:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NIdija6vEA8UO9mGRHtZG7pUsn611lun5Qhn1wh6YL5ki6kOXP+5JU+IR9oTQdvsKDCz6AzKm8+HKw2kkQrmUDyIQFP4o1MZ4H7ALGxTZ883wOaUM0EVBjpCoaIWgCsXg9befEK0MD4DkfxQf2H4MKp7hVdUIdlajI0/erT1x6Db551D79mqC3Zke4wAxaRy8HuwN2/79WWAv6ipUC7hmwqkowawbqzHunBkRSbyKf9KuboiSRel4Bvn6hhVW/Mwg3NSg5Vow7TvEuyxiBRoZxlG6s2Tpxt1u6+2cwRXOHiP91qSsCeNQHbvD7tYSoPtpmQHUNQ06pqzOAQ2sxvaEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3QDeZ2E6JVSmOjpVLTizsdvzMIuExQwZ3bWcUhyvNFY=;
- b=vTJP53PLUVn1rJY7MpkIJeacjnzOh6UU9FMCEwH42Y/NJFfSadL/Lise/XcyriCDh2TM8yOAtwXd3Mgo3Dh7+GulD6mXojeYmWqCA8jbgjeAsO/3uiFkfue9nlda/NrItiklDKidhzl2+4v81Gl4m9snXjZ7EpEzMYiCrh8XuouMM1KddW5IOBNqLL5lXtPjB5pWl2ojdU3+Wq12/JAx8sFiJXyH3W41IU92dobP9V7GCTOdIeL7McFQ428jLHqYJl9cLTlMjf7NY2EhHulF3lKTWqD/ebmhMoa6SYtONQehCY0RxhO5S1pPzzEz7ssEGp4d9ZwaEqBJAYf+yhsLpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3QDeZ2E6JVSmOjpVLTizsdvzMIuExQwZ3bWcUhyvNFY=;
- b=KWYoeD4id3aGTpy/zY46nHVah0P8rve+y9ka2Aa8TDXLU2M0IvzqlO51xstgFYRasxGIhDolkZClWxXEqFL8my9Fv0pOOqT4uQI7jsSIPt3hRc7Jx/VOOQvyi8wbCO8iPeCFDCEtnM0ihLCC0aDdbk08j/fVk+xAglPMS0zAE+P87f8fb7snphOnsrr7JqmrF7b/xCeldNOO6WKjCEuBtEmO3TnNowDsKZvrbMPTt5XOAkoR08ejwB9wLuAuDawPElYv3qA9VWlrTkEM2H1X5agjhGTDkne7cTtekYNG3yfumnIFxV8CbIAJ76udVM9NcIBFhFkCEJ2mYN7pesLW+A==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB5390.namprd12.prod.outlook.com (2603:10b6:5:389::15)
- by LV9PR12MB9784.namprd12.prod.outlook.com (2603:10b6:408:2ed::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
- 2026 21:12:27 +0000
-Received: from DM4PR12MB5390.namprd12.prod.outlook.com
- ([fe80::2815:c27e:a0a:2720]) by DM4PR12MB5390.namprd12.prod.outlook.com
- ([fe80::2815:c27e:a0a:2720%3]) with mapi id 15.21.0662.001; Tue, 24 Nov 2026
- 21:12:27 +0000
-From: Nathan Chen <nathanc@nvidia.com>
-To: linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Oliver Upton <oupton@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Tom Matthias <tmatthias@nvidia.com>,
-	Shameer Kolothum Thodi <skolothumtho@nvidia.com>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Julian Miller <julianmiller@nvidia.com>
-Subject: [RFC PATCH 4/6] KVM: arm64: nv: Grow the shadow S2 MMU pool on demand
-Date: Tue, 24 Nov 2026 13:12:16 -0800
-Message-ID: <20261124211218.2751086-5-nathanc@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261124211218.2751086-1-nathanc@nvidia.com>
-References: <20261124211218.2751086-1-nathanc@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MW4PR02CA0007.namprd02.prod.outlook.com
- (2603:10b6:303:16d::33) To DM4PR12MB5390.namprd12.prod.outlook.com
- (2603:10b6:5:389::15)
+	Tue, 24 Nov 2026 21:14:02 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-48e09aa5264so2882930f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:13:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795554837; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HtOUYnz8E1IQ+7CmrDz2rS/USeYV2j0A0ijEQTaSqUDZeq1MzOAfaOC+f5VERggR/M
+         AOQdOC37w4JO6YU97RedsKd+X3u1GPxzrTPV9YDxrisEO1lJ9YC0oquwVCq8kVYdReC9
+         E/jSCSVdqKr/e4qlfDDMh0YzeCdsVda04AfjV0xZSLz+P/b0Fqrf5c1y2vM+EI5Agv2X
+         bVzo3uPFdSx0nXegXHPGbFTO9HOqHKAIuSKCRc1R3pOx54+1MEPgN0hRI56ZY5bR7P9D
+         RaVLyXKddjFwmtw2BBfvBnoFaeitYBG2Pke6NgPp0ZSuOye80JsGvBdKs/kmB9VvPSRX
+         B/0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=EyFMTQbYNXt8dGq0u9x5OdRcIBtDlZceK8vRvToLcLg=;
+        fh=1NFl5RIO70N9/Oj9VyELsiXmAPxYdYxD9QawMrmiCEc=;
+        b=L9g0s1QdXNNeRtgHq/Tnt6A5zxGn936TmBbF+PJyGWhVjBIw16oGZA3P0ifBkhbMJq
+         CckswGW31+xNaOr/NOOiLeBOmStGYisaUsj/F2hnQ/Ua85GS1eA7MbCQrh66lS9ktUQZ
+         BGpAKcR7S/mgG3zrO/mXld3gVyHqF2dB2GVJHC/9QFOZnxiox07GOqlydS0oxlOEy4Fg
+         qcrXRIZMa4Tw3VwyPtgWc4263RjMWcbfBCJv7MUuHYJyuqhSyzFCKz/egf9x/4q/s3Dt
+         H1rxYqTMv/uo4VIIh4+V4nzFfxxbsxXndGWIkqajPeva17vcFpW8SJ3AGSJcjHXgyHr2
+         DVAw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795554837; x=1796159637; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=EyFMTQbYNXt8dGq0u9x5OdRcIBtDlZceK8vRvToLcLg=;
+        b=UH4V2wyHUXjJt/RETV+uh7EDEFaYzW/OKKB7qCim67v8qIepl0kvH3KXD8+jrDQb/Y
+         +8wtF/dxIkZWk3SG5B74oSEk6OiPn0BM5BN5hq63Np112r07egAt9m+QwC0DZGg4oa1e
+         ACqN3qtMpSCZbidBgwvFYSC8W0MAu+KtJtK3s7L8lomrqMOUVtkCRF9mqSJXG6/jRqDM
+         0E/QmMjbd8MqO9iI1WVA0jKA0STJbTMV7X4D7NymipgQfo2aRr+hOh447xpk6xhMMu3e
+         K0SEtxRgZWkVjCSJSjWMe8s8iwOlpSFyFnbAPHXyV67GDrIZOH6XJc4CPcicyMI2LDxa
+         oe3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795554837; x=1796159637;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=EyFMTQbYNXt8dGq0u9x5OdRcIBtDlZceK8vRvToLcLg=;
+        b=Yp5ECV9N/d526RbucArQvX4alKEfv7fec+9WC2bCVfTxdcP6W5HL2/eC050XzA9gk2
+         QqBgXePK3lfX2zd3DygCM7c3IIrGP9uiftupJb8GRs93kMOKOyFbML5UAXEMDefoNZZN
+         snwHxFY6b7qf2is1FIjPA7JgNR1o7im8hbHC2dfjBr6rdya9gXXY55cDZd2nDjdlO6PG
+         jxgNEt/2IZz8Hl54ZHevbg2ngrtKMfD4QufZB3YZvLBKQKUFM6kqcGroh7ayk/hebS9N
+         UcCN8TqKodVefhVeSJeGFqpt52ejQkX3UsJpz/gGC+URvoj10QLmo2124NgvpO0f4Sa3
+         PV1Q==
+X-Forwarded-Encrypted: i=1; AL+hErHYqkeH4+mMf3L1uBhYQyKyn8665MnsQ5fQb9QjYOUOE26pquEv5t2Kn06A0ilpb2qCLwRv8rEK754dc8dKHjyA@lists.infradead.org
+X-Gm-Message-State: APuU4Z933oB+z8k5ai37bLkSdePjN1kUzNNlUfcJMppSJBrM3hpHobOw
+	AGOJFahRyflFOly951TbXho7Ivzo0SDZbr8GxoSzkwJAS1cb+JLEtZOfIOGpkN4gLIvWW/k8UdL
+	12AbxPteuD051cGZ/DakGMrsRFh41cQdgTnme2IKL
+X-Gm-Gg: AZFdTZfzhMST+GPjnJFTeu7g1Nbzi6l9299LGxglfYePO1N2zrMurnKnOG3yb4la/oJ
+	UropPR3RaHds1mXup/QWmJLKo6fOsz01Tgoy0a8lZuqndVCCUW88zUz6NrYzF4AAuAvUtPKwg9q
+	MOXzVPpxFfLR4cUOeDSiWudriTwqm7DjsB+Mvbjtn+TaIVh1aS7RkIWcWurYsXwIZnn+czdd7ds
+	wAC3rExZzAUJCrSGzZggManueN+t7TpFxF82DrxQKGx9TU98rXACXKU8fa4fG93hlMe9MGmxTmV
+	0sM7TXRndbDClfKpd1y8z8cp9yciueyJSKVMZQoANZB53nJPc8hovyTokiUHyUNJPCU9lvAzxoC
+	Qlgl/Udn0adP3zibdJ5PC/boqQCwxPCVEMvK+XjVE/98eF1wa4hqqcaG5MKwOIN/6lHvIGKb3mN
+	kwzU1qKdTttUoTo3xlc4W29J9gZemIqbgdayebtDIiPIh5Qc3MuubEg0/1fpdDxIjpgYTedaWC7
+	ryYmB4bcFrGZlGzFnHr+V0sgy0IDqjx/oi/CQ==
+X-Received: by 2002:a05:6000:4704:b0:4a9:760f:183a with SMTP id
+ ffacd0b85a97d-4abb400aef0mr31827315f8f.32.1795554836268; Tue, 24 Nov 2026
+ 13:13:56 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5390:EE_|LV9PR12MB9784:EE_
-X-MS-Office365-Filtering-Correlation-Id: ea3b35aa-af62-419d-64c8-08df4a6fa457
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|23010399003|1800799024|261028144727099003|261022113327099003|10067099003|11063799006|5023799004|56012099006|261021121427099003|261022115727099003|261022105027099003|261021133027099003|261026140227099003|261021130227099003|261022075727099003|261021123027099003|261009223027099003|261026135527099003|261102123227099003|261026130827099003|261021135927099003|261026121527099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: YP3sXyhZj6DHO2IWf41YHYV3RSMb7BIw5KdeJm6lHkpXw5yDGl2R7Pz14SyFQIe/MoQrvRIXiQELmx/Z43TIUO9KiblwiH/XizFumEBEqaSAiJJ0Z0KAqwD12j8WVS830cbGXM2ItJqGjFjwOWHzYOLPW0MiTl/8BqtzPVafS9A9jVx9ARJhugkIY/t5r08PC1MDQesDTDMigE++uj/UCDRpyCksrriL1zphRm7+ob5rxcH2fuBIxHdfXGixWI/ES3h2/IvUWln9Zh4/JG7dGudZlzaX2skCBG7ywhNvGJ7wUQVGUrpP7R5EHTxDALNI0h3FiUsz24Zh4/QsyCyCFPM6o4wVnC7c2PPbgmJ6eH/9rtmNOBOZCZ2M8wn2llCAO+IDoeAbnpxWx2GzQA027OOgRiomuGZZKbnDHL3GLIM77zwgQrnFMtBwKeeaBdKPtzac4zHYGo3J+eTRQAgYBdGiQJjoTiZRgxl6c5z1aGLwZLx6ZDIoc4dvdQYDTHJEx70Ti/1eXYXyUCe0tEk1p9c7WmxRSVISSNWmAzqYndWOfd6AFgjNyexhglKBfQ2zl24OOhSOjzfEY3thGRaTJwnN8w/KqpTON7jzyYsMp/J/yL7MLlL1qA8Y9CuYviHU9FjMWEShUG1zYr/qkV9krBCJJEOWAeN3fYWhebZ8hc0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5390.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(23010399003)(1800799024)(261028144727099003)(261022113327099003)(10067099003)(11063799006)(5023799004)(56012099006)(261021121427099003)(261022115727099003)(261022105027099003)(261021133027099003)(261026140227099003)(261021130227099003)(261022075727099003)(261021123027099003)(261009223027099003)(261026135527099003)(261102123227099003)(261026130827099003)(261021135927099003)(261026121527099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jdVh1p8Vfpc3KpOSwnx9UC30Tbv7aVNC/DqvTCiUf+ILoSyboJazt3d52cMX?=
- =?us-ascii?Q?XwCRBLNem17WXmz2sMtdbScCWbs12uEeXZ7sFdgj4XrTutmEsZw3q1b+sv/P?=
- =?us-ascii?Q?9RkWxm3aF9Z1wdhEFOS4g+Ln6A+L9KydcnxRd+TeppBWfNiiX+3eM/lAN0g3?=
- =?us-ascii?Q?X/ud/+hg+X7cRdiOZRIBFCXzMYzM30GCSmxDa50ZXWAj2yBtMHVGIg2T6gGJ?=
- =?us-ascii?Q?Wj4F1GQZ/H0wpKQxTIuRSuv6VFOjYHxgt/trX3hrXGxTzbTdlAdT7jvJ8ok8?=
- =?us-ascii?Q?4KZxwcY02E2EuSB2RBFgpQH0UaOoyIKre3R6IB0i0Hy0f83biSbDs+u2kXAa?=
- =?us-ascii?Q?v5eU/yOcE/xW0+csCjqeiIqvZ20cblwkpbCx9wShAyfY9Ai8lhSV9aa9xP3m?=
- =?us-ascii?Q?k9WBAV2BUf631x9pm0Bu6vMLbJb0kQbCo7qbmC2/3AFk272ZP8fLJm2e91hR?=
- =?us-ascii?Q?PVkfThx+xn3Eb7RJ7qZLgvVVSyS7a/BK2o1av3c38FXLb9zHbXrXAr0+3Ewk?=
- =?us-ascii?Q?5+D1wxMK7IcC+q+8QMIuFs3MhdwTDzidx2iaJgT4X9IVqhzMwn5rXdZj9STj?=
- =?us-ascii?Q?ewbn7A9j1FM0vU8nQTgSK7gAZcQI83o3r5FDOPoVF79Y4KuPdZiJBMp5nMNh?=
- =?us-ascii?Q?q7LPM52GS1wW/FiYiS567pSWFdO2gptVG4fp34+q4iITga6ECwSIt8bVEWog?=
- =?us-ascii?Q?dDkUVrR6w7PzjqUMn4g3UEDP8ljA/hUNePIDYzCt4eP75ofg/Emcwnq43qNm?=
- =?us-ascii?Q?P7dyf4B4aSn0S6YqX3kcHu+qUyBHuGo1QeCaKHYd5EkK6xhlESC/DoDiKd4F?=
- =?us-ascii?Q?hLOotmU0nxRzA6HQww/H6lDUBdCVblbC/VMeLFdugpj16ydafrk3YXiN+L8z?=
- =?us-ascii?Q?pvbNBhQQCCtKT/5z2WLZMukPnjhdXrccurOfE6jKq+xo+SZfFjMj8oqIyj45?=
- =?us-ascii?Q?HRtXTSxV/fqYO737iJyaWuLxxt9PsR68b0d5stscSqF7PbYnfAEArM5F4ErP?=
- =?us-ascii?Q?sh5PtjrGiYNMs7LjAv2ghFdyRZ70X+nw+9aGQaouPoiDwmlrBHnJ8BMs33kN?=
- =?us-ascii?Q?sc0QV81aW1lB1yi9Z7bPxwll/77pQoC0B0CRsd7sdbL/aESHPrhLjR3oUuRl?=
- =?us-ascii?Q?Oj6jq5YTqAZrvA4gppEkcyzE9j4lff8x/O6v2/+JL8hvR/fd3Wwxm53iU+sI?=
- =?us-ascii?Q?adRJNZxIDrQ7hV/T0tkQ6z53aYAG3Pgf+E5gsTSlZsWBBLHU1TuMmrncM/KE?=
- =?us-ascii?Q?fQSiWfTHMKLe46b6R2n7uay+QaWlDGe4L9HRjgVjcIsij9PMg4z8jss+tUJS?=
- =?us-ascii?Q?Hmq1CgWzlQNyPbDi9Uy4BPmcWT28c6ptX2za2mPkGO9uv+mja8B1ERSyLx45?=
- =?us-ascii?Q?6BC4dc2FlCOIbmSr3WjQ/ufDZ1ujh7533eqatfnrTefmwFgr0wyadLZTEkRM?=
- =?us-ascii?Q?XJaGPGfFLvZbtWAO7YNkbQFRYBElgLDU8ijclKqqhfJYlnuPNHaEaOTKLx4N?=
- =?us-ascii?Q?GCAfTZBZNjF1QXfpPduPjcixxQAqAQ34/RNpdDtjVeSnTcT+R+ZacB4V+GlT?=
- =?us-ascii?Q?dhVqvldiOfbT8kRKLsjp02zWybdz/S86KffWhrODzmJMbAkTpGhhtvdy9c7B?=
- =?us-ascii?Q?B2q1VAV3iPl4bBQWmrEeH2Vc4dwles5R3z+1ADUXPsXD9+eLPUkMOKo77que?=
- =?us-ascii?Q?4WQNFmogJC2yI1w8ihh32Fbr0wiQVqg1rmAEXj2uIkRCKptaMy8Dsat7B6r9?=
- =?us-ascii?Q?JhRUy/wu1w=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea3b35aa-af62-419d-64c8-08df4a6fa457
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5390.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 21:12:27.1342
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oDoOOMYusr32MUf7SuIJOsB15JOVF2BUdIW8sRUK+i/88TxCx2iEtORV1eXlLT94C1gpx5uFr4B4OIg/VQtJlg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV9PR12MB9784
+References: <20261119165825.1793558-5-ardb+git@google.com> <20261119165825.1793558-7-ardb+git@google.com>
+ <CAKwvOd=21QJOrdVa7OrL9i27f5nJLsMzim=xpFgg2oiX3BK=0Q@mail.gmail.com> <085f76bc-709c-4ea6-8daf-3ee78de56fac@app.fastmail.com>
+In-Reply-To: <085f76bc-709c-4ea6-8daf-3ee78de56fac@app.fastmail.com>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Tue, 24 Nov 2026 13:13:45 -0800
+X-Gm-Features: Aa3M54p2RDSTaS6g6iWQrSQ_1efsKFwMv3DNJ_kvgahhbAkyVdzFLZ4Iz46XfpM
+Message-ID: <CAKwvOd=TE0kseZoJRaJwc8wrzxpjJkMMKZH=oFz_ugHS4O6-vg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: Re-enable kernel BTI for compatible linkers
+To: Ard Biesheuvel <ardb@kernel.org>
+Cc: Ard Biesheuvel <ardb+git@google.com>, linux-arm-kernel@lists.infradead.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Mark Brown <broonie@kernel.org>, Josh Poimboeuf <jpoimboe@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_131311_700860_82E5B303 
-X-CRM114-Status: GOOD (  27.58  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_131359_371822_C5C71712 
+X-CRM114-Status: GOOD (  32.01  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,341 +121,123 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-28.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A nested-capable VM gets online_vcpus * S2_MMU_PER_VCPU shadow stage-2
-MMUs, with S2_MMU_PER_VCPU currently hardcoded to 2. When the guest
-hypervisor runs more than that number of concurrent nested VMs,
-get_s2_mmu_nested() recycles live MMUs on nearly every nested context
-switch, tearing down and rebuilding shadow stage-2 tables and issuing
-VMID TLB invalidations each time. This causes a sharp spike in host CPU
-usage.
+On Thu, Nov 19, 2026 at 3:38=E2=80=AFPM Ard Biesheuvel <ardb@kernel.org> wr=
+ote:
+>
+>
+>
+> On Fri, 20 Nov 2026, at 00:22, Nick Desaulniers wrote:
+> > On Thu, Nov 19, 2026 at 8:58=E2=80=AFAM Ard Biesheuvel <ardb+git@google=
+.com> wrote:
+> >>
+> >> From: Ard Biesheuvel <ardb@kernel.org>
+> >>
+> >> The compiler is permitted to omit BTI landing pads from static functio=
+ns
+> >> that never have their address taken, but are only called directly, eve=
+n
+> >> if those calls originate from other code sections. This causes problem=
+s
+> >> for calls from .init.text into .text if those sections are placed far
+> >> apart, as veneers involving indirect calls will be used in that case.
+> >>
+> >> Now that .text and .init.text are combined, this can no longer happen,
+> >> and so we can re-enable kernel mode BTI under two conditions:
+> >>
+> >> - live patch is disabled - it also needs BTI landings pads on function=
+s
+> >>   with static linkage inside vmlinux that were never exported (and
+> >>   therefore never had their address taken)
+> >>
+> >> - landings pads are emitted even in pathological cases where the size =
+of
+> >>   vmlinux's .text segment exceeds the range of a direct branch, and th=
+e
+> >>   linker needs to emit landing pads at the callee end so that the
+> >>   veneers can call them without causing a BTI fault.
+> >>
+> >> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+> >> ---
+> >>  arch/arm64/Kconfig | 17 +++++++++++------
+> >>  1 file changed, 11 insertions(+), 6 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+> >> index 1075bc661833..f0fb2d7ff130 100644
+> >> --- a/arch/arm64/Kconfig
+> >> +++ b/arch/arm64/Kconfig
+> >> @@ -2202,18 +2202,23 @@ config ARM64_BTI
+> >>           BTI, such binaries can still run, but you get no additional
+> >>           enforcement of branch destinations.
+> >>
+> >> +config LD_HAS_BTI_STUBS
+> >> +       # A linker may need to insert a veneer when a call to a functi=
+on with
+> >> +       # static linkage in the same compilation unit but in a differe=
+nt
+> >> +       # section is out of range for a direct branch instruction. Suc=
+h a
+> >> +       # veneer performs an indirect call, and thus requires a landin=
+g pad
+> >> +       # under BTI, which the static function may lack. Only recent l=
+inkers
+> >> +       # are guaranteed to emit those landing pads correctly in all c=
+ases.
+> >> +       def_bool (LD_IS_BFD && LD_VERSION >=3D 24200) || \
 
-Keep S2_MMU_PER_VCPU as the initial allocation, and grow the VM's pool
-when the guest's working set outgrows it. To keep growth from exhausting
-the VMID space, grown MMUs are counted across all VMs on the host and
-limited to half of what kvm_arm_vmid_nr_usable() returns.
+IIUC, it looks like BFD 2.41 was the first release to contain the two
+commits cited from your sourceware link below.
 
-If an allocation fails, growth stops for good, so that a VM at its
-memory limit doesn't retry on every recycle.
+https://sourceware.org/git?p=3Dbinutils-gdb.git;a=3Dcommit;h=3D15b4f66b0a9a=
+3be6caf1898d22a13c39e662006f
+https://sourceware.org/git?p=3Dbinutils-gdb.git;a=3Dcommit;h=3D5834f36d93ca=
+bf1a8bcc7dd7654141aed3d296bc
 
-The nested_mmus pointer table is reallocated when full. Only the table
-moves, not the MMUs, so cached hw_mmu pointers stay valid.
+$ cd binutils-gdb
+$ git describe --contains "15b4f66b0a9a3be6caf1898d22a13c39e662006f"
+binutils-2_41~1223
+$ git describe --contains 5834f36d93cabf1a8bcc7dd7654141aed3d296bc
+binutils-2_41~1222
 
-Signed-off-by: Nathan Chen <nathanc@nvidia.com>
----
- arch/arm64/include/asm/kvm_host.h |   8 +-
- arch/arm64/kvm/nested.c           | 153 +++++++++++++++++++++++++++---
- 2 files changed, 148 insertions(+), 13 deletions(-)
+So you might be able to relax that version check to be 24100 rather than 24=
+200.
 
-diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-index 6ae86bc96600..9307b86285a5 100644
---- a/arch/arm64/include/asm/kvm_host.h
-+++ b/arch/arm64/include/asm/kvm_host.h
-@@ -62,6 +62,7 @@
- #define KVM_REQ_MAP_L1_VNCR_EL2		KVM_ARCH_REQ(10)
- #define KVM_REQ_VGIC_PROCESS_UPDATE	KVM_ARCH_REQ(11)
- #define KVM_REQ_RELOAD_GICv5		KVM_ARCH_REQ(12)
-+#define KVM_REQ_NESTED_S2_GROW		KVM_ARCH_REQ(13)
- 
- /* Bit indices for kvm_arch::flags */
- enum {
-@@ -434,12 +435,17 @@ struct kvm_arch {
- 	/*
- 	 * Stage 2 paging state for VMs with nested S2 using a virtual
- 	 * VMID. The MMUs are allocated in blocks tracked on
--	 * nested_mmu_blocks.
-+	 * nested_mmu_blocks, and the pool grows on demand.
- 	 */
- 	struct kvm_s2_mmu **nested_mmus;
- 	size_t nested_mmus_size;
-+	size_t nested_mmus_capacity;
- 	struct list_head nested_mmu_blocks;
-+	/* Grown MMUs, counted in the host budget, under mmu_lock */
-+	unsigned int nested_mmus_grown;
- 	int nested_mmus_next;
-+	bool nested_mmus_grow;
-+	bool nested_mmus_no_grow;
- 
- 	/*
- 	 * Serializes guest s2 tracking trees access when the mmu_lock
-diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-index 44dc6780fe6f..d530a37716be 100644
---- a/arch/arm64/kvm/nested.c
-+++ b/arch/arm64/kvm/nested.c
-@@ -39,14 +39,58 @@ struct vncr_tlb {
- };
- 
- /*
-- * Ratio of live shadow S2 MMU per vcpu. This is a trade-off between
-- * memory usage and potential number of different sets of S2 PTs in
-- * the guests. Running out of S2 MMUs only affects performance (we
-- * will invalidate them more often).
-+ * Initial ratio of shadow S2 MMU per vcpu. When a vcpu has to recycle an
-+ * MMU that is still in concurrent use, the VM's pool, which all its vcpus
-+ * share, grows by one MMU per vcpu within the host-wide budget below.
-+ * The pool then follows the number of different sets of S2 PTs the guest
-+ * uses at the same time.
-  */
- #define S2_MMU_PER_VCPU		2
- #define S2_MMU_PER_VM		(KVM_MAX_VCPUS * S2_MMU_PER_VCPU)
- 
-+/* The MMU index is kept in the low bits of a tracked nested IPA */
-+#define S2_MMU_MAX_PER_VM	SZ_4K
-+
-+/*
-+ * Each shadow S2 MMU that runs takes a host VMID, and VMIDs are shared
-+ * by all VMs on the host. Running out of them causes a rollover, which
-+ * invalidates the TLBs for every VM. MMUs added beyond the initial
-+ * S2_MMU_PER_VCPU are therefore counted host-wide and limited to half
-+ * of the VMIDs the allocator can hand out. Hosts with 8-bit VMIDs don't
-+ * have enough to spare, so they never grow.
-+ */
-+static atomic_t nested_s2_mmus_grown;
-+
-+static int nested_s2_mmus_budget(void)
-+{
-+	if (kvm_arm_vmid_bits <= 8)
-+		return 0;
-+
-+	return kvm_arm_vmid_nr_usable() / 2;
-+}
-+
-+/* Lockless hint, checked on recycle before asking for a grow */
-+static bool nested_s2_mmus_budget_left(void)
-+{
-+	return atomic_read(&nested_s2_mmus_grown) < nested_s2_mmus_budget();
-+}
-+
-+/* Take up to @nr MMUs from the budget, returning how many were taken */
-+static int nested_s2_mmus_budget_take(int nr)
-+{
-+	int budget = nested_s2_mmus_budget();
-+	int old = atomic_read(&nested_s2_mmus_grown);
-+	int take;
-+
-+	do {
-+		take = min(nr, budget - old);
-+		if (take <= 0)
-+			return 0;
-+	} while (!atomic_try_cmpxchg(&nested_s2_mmus_grown, &old, old + take));
-+
-+	return take;
-+}
-+
- struct nested_s2_mmu_block {
- 	struct list_head	list;
- 	struct kvm_s2_mmu	mmus[];
-@@ -55,10 +99,12 @@ struct nested_s2_mmu_block {
- int kvm_init_nested(struct kvm *kvm)
- {
- 	INIT_LIST_HEAD(&kvm->arch.nested_mmu_blocks);
-+	kvm->arch.nested_mmus_capacity = S2_MMU_PER_VM;
- 	kvm->arch.nested_mmus = kvmalloc_objs(struct kvm_s2_mmu *,
--					      S2_MMU_PER_VM,
-+					      kvm->arch.nested_mmus_capacity,
- 					      GFP_KERNEL_ACCOUNT);
- 	kvm->arch.nested_mmus_size = 0;
-+	kvm->arch.nested_mmus_no_grow = !nested_s2_mmus_budget();
- 	atomic_set(&kvm->arch.vncr_tlb_count, 0);
- 	spin_lock_init(&kvm->arch.guest_s2_tracking_lock);
- 
-@@ -72,6 +118,8 @@ void kvm_destroy_nested(struct kvm *kvm)
- 	list_for_each_entry_safe(blk, tmp, &kvm->arch.nested_mmu_blocks, list)
- 		kvfree(blk);
- 
-+	atomic_sub(kvm->arch.nested_mmus_grown, &nested_s2_mmus_grown);
-+	kvm->arch.nested_mmus_grown = 0;
- 	kvm->arch.nested_mmus_size = 0;
- 	kvfree(kvm->arch.nested_mmus);
- }
-@@ -91,16 +139,25 @@ static int init_nested_s2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu)
- 	return kvm_init_stage2_mmu(kvm, mmu, kvm_get_pa_bits(kvm));
- }
- 
--/* Add a block of @nr shadow S2 MMUs to the pool */
--static int kvm_nested_add_s2_mmus(struct kvm *kvm, int nr)
-+/*
-+ * Add a block of @nr shadow S2 MMUs to the pool, reallocating the
-+ * pointer table if it is full. Only the table moves, never the MMUs, so
-+ * cached hw_mmu pointers stay valid. Runtime walkers of the table hold
-+ * mmu_lock, and kvm_arch_flush_shadow_all() only runs once no vcpu can
-+ * enter the guest, so it can't race with a grow.
-+ */
-+static int kvm_nested_add_s2_mmus(struct kvm *kvm, int nr, bool grow)
- {
-+	gfp_t gfp = GFP_KERNEL_ACCOUNT | (grow ? __GFP_NORETRY : 0);
- 	size_t size = kvm->arch.nested_mmus_size;
-+	size_t cap = kvm->arch.nested_mmus_capacity;
-+	struct kvm_s2_mmu **table = NULL;
- 	struct nested_s2_mmu_block *blk;
- 	int i, ret = 0;
- 
- 	lockdep_assert_held(&kvm->arch.config_lock);
- 
--	blk = kvzalloc_flex(*blk, mmus, nr, GFP_KERNEL_ACCOUNT);
-+	blk = kvzalloc_flex(*blk, mmus, nr, gfp);
- 	if (!blk)
- 		return -ENOMEM;
- 
-@@ -112,14 +169,36 @@ static int kvm_nested_add_s2_mmus(struct kvm *kvm, int nr)
- 		blk->mmus[i].s2_mmu_idx = size + i;
- 	}
- 
-+	if (size + nr > cap) {
-+		cap = max(cap * 2, size + nr);
-+		table = kvmalloc_objs(struct kvm_s2_mmu *, cap, gfp);
-+		if (!table) {
-+			ret = -ENOMEM;
-+			goto out_free;
-+		}
-+	}
-+
- 	scoped_guard(write_lock, &kvm->mmu_lock) {
-+		if (table) {
-+			memcpy(table, kvm->arch.nested_mmus,
-+			       size_mul(size, sizeof(*table)));
-+			swap(kvm->arch.nested_mmus, table);
-+			kvm->arch.nested_mmus_capacity = cap;
-+		}
-+
- 		for (i = 0; i < nr; i++)
- 			kvm->arch.nested_mmus[size + i] = &blk->mmus[i];
- 
- 		kvm->arch.nested_mmus_size = size + nr;
-+		if (grow)
-+			kvm->arch.nested_mmus_grown += nr;
-+
-+		/* Hand out the new, unused MMUs before recycling live ones */
-+		kvm->arch.nested_mmus_next = size;
- 	}
- 
- 	list_add(&blk->list, &kvm->arch.nested_mmu_blocks);
-+	kvfree(table);
- 
- 	for (i = 0; i < nr; i++)
- 		kvm_nested_s2_ptdump_create_debugfs(&blk->mmus[i], size + i);
-@@ -134,6 +213,42 @@ static int kvm_nested_add_s2_mmus(struct kvm *kvm, int nr)
- 	return ret;
- }
- 
-+/*
-+ * A vcpu had to recycle a shadow S2 MMU in concurrent use. The request
-+ * is per vcpu, but the pool belongs to the VM: grow it by one MMU per
-+ * vcpu, within the budget and S2_MMU_MAX_PER_VM. If the budget is used
-+ * up, the pool keeps recycling until another VM's destruction returns
-+ * some. Stop growing for good if an allocation fails, so that a VM at
-+ * its memory limit doesn't retry on every recycle.
-+ */
-+static void kvm_nested_s2_grow(struct kvm *kvm)
-+{
-+	int nr, add;
-+
-+	guard(mutex)(&kvm->arch.config_lock);
-+
-+	/* Other vcpus may have asked too, before a grow or a failure */
-+	if (!READ_ONCE(kvm->arch.nested_mmus_grow) ||
-+	    READ_ONCE(kvm->arch.nested_mmus_no_grow))
-+		return;
-+
-+	nr = nested_s2_mmus_budget_take(atomic_read(&kvm->online_vcpus));
-+	if (!nr) {
-+		WRITE_ONCE(kvm->arch.nested_mmus_grow, false);
-+		return;
-+	}
-+
-+	add = min_t(int, nr, S2_MMU_MAX_PER_VM - kvm->arch.nested_mmus_size);
-+	if (add && kvm_nested_add_s2_mmus(kvm, add, true)) {
-+		WRITE_ONCE(kvm->arch.nested_mmus_no_grow, true);
-+		add = 0;
-+	}
-+	WRITE_ONCE(kvm->arch.nested_mmus_grow, false);
-+
-+	if (nr - add)
-+		atomic_sub(nr - add, &nested_s2_mmus_grown);
-+}
-+
- int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
- {
- 	struct kvm *kvm = vcpu->kvm;
-@@ -155,7 +270,7 @@ int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
- 	num_mmus = atomic_read(&kvm->online_vcpus) * S2_MMU_PER_VCPU;
- 
- 	if (num_mmus > kvm->arch.nested_mmus_size) {
--		int ret = kvm_nested_add_s2_mmus(kvm, S2_MMU_PER_VCPU);
-+		int ret = kvm_nested_add_s2_mmus(kvm, S2_MMU_PER_VCPU, false);
- 
- 		if (ret) {
- 			free_page((unsigned long)vcpu->arch.ctxt.vncr_array);
-@@ -842,6 +957,7 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
- {
- 	struct kvm *kvm = vcpu->kvm;
- 	struct kvm_s2_mmu *s2_mmu;
-+	bool in_use = true;
- 	int i, victim = -1;
- 
- 	lockdep_assert_held_write(&vcpu->kvm->mmu_lock);
-@@ -859,8 +975,8 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
- 	 * hasn't been used since the search last went past it (such as
- 	 * one left behind by a torn down guest), is recycled straight
- 	 * away. Other free MMUs lose their accessed bit and get a second
--	 * chance. If every free MMU was used since the last pass, the
--	 * first one found is recycled.
-+	 * chance. If every free MMU was used since the last pass, they
-+	 * are all in concurrent use and the pool is too small.
- 	 */
- 	for (i = kvm->arch.nested_mmus_next;
- 	     i < (kvm->arch.nested_mmus_size + kvm->arch.nested_mmus_next);
-@@ -873,6 +989,7 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
- 
- 		if (!kvm_s2_mmu_valid(mmu) || !mmu->accessed) {
- 			victim = i;
-+			in_use = false;
- 			break;
- 		}
- 
-@@ -891,6 +1008,14 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
- 	if (kvm_s2_mmu_valid(s2_mmu))
- 		s2_mmu->pending_unmap = true;
- 
-+	/* Every free MMU is in concurrent use: the pool is too small */
-+	if (in_use && !READ_ONCE(kvm->arch.nested_mmus_no_grow) &&
-+	    kvm->arch.nested_mmus_size < S2_MMU_MAX_PER_VM &&
-+	    nested_s2_mmus_budget_left()) {
-+		WRITE_ONCE(kvm->arch.nested_mmus_grow, true);
-+		kvm_make_request(KVM_REQ_NESTED_S2_GROW, vcpu);
-+	}
-+
- 	/*
- 	 * The virtual VMID (modulo CnP) will be used as a key when matching
- 	 * an existing kvm_s2_mmu.
-@@ -924,7 +1049,8 @@ static struct kvm_s2_mmu *get_s2_mmu_nested(struct kvm_vcpu *vcpu)
- static void tag_s2_mapping_mmu(struct kvm_guest_s2_mapping *mapping,
- 			       struct kvm_s2_mmu *mmu)
- {
--	BUILD_BUG_ON(S2_MMU_PER_VM > SZ_4K);
-+	BUILD_BUG_ON(S2_MMU_PER_VM > S2_MMU_MAX_PER_VM);
-+	BUILD_BUG_ON(S2_MMU_MAX_PER_VM - 1 > S2_MMU_IDX_MASK);
- 	mapping->nested.start &= ~S2_MMU_IDX_MASK;
- 	mapping->nested.start |= mmu->s2_mmu_idx;
- }
-@@ -2210,6 +2336,9 @@ void check_nested_vcpu_requests(struct kvm_vcpu *vcpu)
- 		write_unlock(&vcpu->kvm->mmu_lock);
- 	}
- 
-+	if (kvm_check_request(KVM_REQ_NESTED_S2_GROW, vcpu))
-+		kvm_nested_s2_grow(vcpu->kvm);
-+
- 	if (kvm_check_request(KVM_REQ_MAP_L1_VNCR_EL2, vcpu))
- 		kvm_map_l1_vncr(vcpu);
- 
--- 
-2.43.0
+Unless there's another relevant issue?
 
+LLD version check looks good.
+
+Maybe other potentially useful trailers:
+
+Link: https://github.com/ARM-software/abi-aa/issues/196
+Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D106671
+
+> >> +                (LD_IS_LLD && LLD_VERSION >=3D 200000)
+> >
+> > A bit of a rock fetching quest (sorry), but it would make it easier
+> > for reviewers to verify these version checks if you had git trailers
+> > linking to commits (or bug reports) for these linkers with the
+> > relevant fix.  I don't think that necessitates a v2, if the
+> > maintainers you're expecting to pick up this series are kind enough to
+> > manually re-add them (unless b4 can pick up `Link:` trailers like
+> > that).
+> >
+>
+> Fair point.
+>
+> Link: https://sourceware.org/bugzilla/show_bug.cgi?id=3D30076
+> Link: https://github.com/llvm/llvm-project/pull/108989
+>
+>
+
+
+--=20
+Thanks,
+~Nick Desaulniers
 
