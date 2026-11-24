@@ -2,159 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C17606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 01:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FF0606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ock5mT6Y;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=MojHjn0H;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=MojHjn0H
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r6t7x8w9;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=t6cAU+2B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+OfxTU0F9WhDQCF8cCpgV3eT66r30xdLJnuaQvm36lA=; b=ock5mT6Yi+eOJNmcNfiKf6qTBl
-	UUCCm1T1jeMIXCPPJU3EfzymVIJokVZ2O0yaFxKSYXVtqyejB6WHzpy9Go8Ev7Ot7JgLx3usLiehV
-	zDXC1ziJ6ceKnAdm54i8UCNGCjYu81dLjvjm3sAM9jwcPgOPLAQNSLG3hQ7tv76bzBAzmnS+hFmKt
-	1jGMaE/TRKQPG1ZBmISFQTFNZniZ7Bdo7u0QmR7jZtPyS/1zHV2him82nNMe/KMCj5ECS4dBqnsYM
-	SWC9BtMD4lpbqr+hICwgS4auBGcTlCRR7lj/Vbl184Sijd8vDcZ/Si2XKhEfqOWBvwkmlTatlXIJQ
-	idgdT2PA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=18r5tD9y2ALIX7X7Kv9k6QsRP9npRMqolTYhIPTl4so=; b=r6t7x8w9rmCtIN
+	jmhUVzXNOQlbLxmHtmwXglpBaPTB+0eAqhwO82wzEGdztccRidZ9tEbIvNTbG5PpH8e9kPGZIkR5Z
+	ISViI6L3bSTLqnwVDRXsKI7cVx7UsEsx/8gkG6S5Dozp7NwiwYWjpOOCPpdYmnqSZCNOj7oR7PJEg
+	rxF0yNJS0YcnAgK4vBZsxjAv/eMEMoPnQsn8a8SUyaghvtSntIX93IfLy0o4VB8xmvVH8dEMn5Y3a
+	1IpLIh/nDRU27UA74BKpuPOxNyEAC3UWQZCt6Y5cqHVK/Oo454KWxy8Ur8j1hksi6F2To3WGCqJ+b
+	EW8I6hhtM+CCVq/GloWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfZD-00000005L2a-1uOb;
-	Tue, 24 Nov 2026 01:43:33 +0000
-Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xVgI2-00000005Md2-3GFi;
+	Tue, 24 Nov 2026 02:29:50 +0000
+Received: from out-98.mta0.migadu.com ([2001:41d0:1004:224b::62] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfZ9-00000005L11-1gL1
+	id 1xVgHz-00000005Mcd-0liJ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 01:43:29 +0000
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=jdhB3eSRNeEOajlEnRoeOBFP9cVWZ9vLt5nVNkTPo6WcHCMPlxQNeWl/Tbd5AVT3NSDiyau+FNyELR0x6WfmmgqZheW4Fyevu/WGM4vukg9Lp9FCZ7iJOalUoegnTjfkiUzIKZQaNySsjUZ+kR2ArZ2H0IcDDqzT8KYESNTRfURb5RhPjDRpSo56lDZx+Tzu7aFcxKlhgMHpov2I079NECoX5PulsurG/XmzEE4GYQLHuA5nTJtlwSvZxHzXqOx4q3DEiMckirJzcHKWMXZsQxKX3fNWxDsyko9cbfSX7wF4twgBsd/IUX8r6+dgyGf0UJjuFjJcuakWtp4PAGdYoA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+OfxTU0F9WhDQCF8cCpgV3eT66r30xdLJnuaQvm36lA=;
- b=Yco0D1JRZjahY877dFkvfmQnz3SIzMvk5sEEelEiRMf+4G5bsu3c6PHJElJBuT5ocoyZd7F7CjFIIG74GkIVs9BA3YhWv9oi036l7/wDSYSmY5JkUsRrd0z71L1uw80mVE4KVSJ40Q46RwWwjGacD22wgTzzTZMBKgSCyfM+ZgI+ueSPEOfzBvlfOid0SEvjbJ63n7zXDKCvi89h/a0a6hl9CHr/p+9PX+OziKk0nuKcC+jheckuzSMfpktmwx3BADJy0me7H7NCQzmhpPNAaeJP2Q+j/4j3JmqMBehBro7Wg7cHC/aH4XhQSRtTi7vwzKzpS6Gkv9ppuIPQxrDrOg==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=kernel.org smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+OfxTU0F9WhDQCF8cCpgV3eT66r30xdLJnuaQvm36lA=;
- b=MojHjn0HIavRUofodc8xSWnoZNo3MWfFxHkfA2ChD5YGSps2pIQ0o6XAuOiep0FCuE/P4parxtV54DKFVzGj+Zv1K0UKb1bbUgz9qs7zLyUHG3o685z8luTfqx/IxqHUgJiueWHk+OGkm354KJ7BczuAjRyOWbK9/+VICKZTQPg=
-Received: from OS6P279CA0008.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:30::9) by
- DU0PR08MB8495.eurprd08.prod.outlook.com (2603:10a6:10:404::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.14; Tue, 24 Nov 2026 01:43:17 +0000
-Received: from CPH1EPF0000051A.eurprd04.prod.outlook.com
- (2603:10a6:e10:30:cafe::51) by OS6P279CA0008.outlook.office365.com
- (2603:10a6:e10:30::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
- 24 Nov 2026 01:43:17 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- CPH1EPF0000051A.mail.protection.outlook.com (10.167.241.229) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.3
- via Frontend Transport; Tue, 24 Nov 2026 01:43:16 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YHPp30NgrwSHNOeZzWVZdw3EH2fEAp4ogcg37rxZ5rPpKet5BbLn+A2CF9sjc2pLHvhKft4JvTCMpsSwHGlDHFD3H1/K74RhvvZs1VCD7SWRX6wAmWILTWJK64zz8o7IBoHP5PZm1sbDLOEUYzRyfs5evkChytouivzzMepuz3n+gfgCfXAWl+RTMTMUyZDBHsMoWKbWTiyuRBGJ5L2X0AMS1C/67Oe5r3CZWNZ1AZt1d1HISs1sqkmW2fp+t0G6zYU5X8dABLS6zOskADd5deC9+Fc0pnvwXU5DXzje7p1hGUUFFPjWEpRs3O2xLUJBXns5d7PnpFt+NdEuT3/pRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+OfxTU0F9WhDQCF8cCpgV3eT66r30xdLJnuaQvm36lA=;
- b=brHhjBbui6ei2DsH+sehJps9eO5yH2U0VIuCLA11IFospEKO5f2PpegS585HzoswS3e1EOY2Ybt1AO8a3dDj7zOxO7ctXtCNCkFtqbWrruH0eYl0JsAqBPJLu7kdg+UkaDCuonRZh/oXIylM59X2vXPzxgLAQPOHrvqBrQQnch541vULLn6dRN4H8QknuennoSsXnGnUz45lsJgU103I/55Sp0nfCqH4WkQ0CH7g/RZlSTSmJCM5sP1A0OuvaPKPTkdaMeYx2kh3AgQbj7kmqKjtwQbsENMS4w2txW3vkv5vqnJeWAXprL79YHSnE8ENmhkHlxeRM0KN2HjoJ7Nliw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+OfxTU0F9WhDQCF8cCpgV3eT66r30xdLJnuaQvm36lA=;
- b=MojHjn0HIavRUofodc8xSWnoZNo3MWfFxHkfA2ChD5YGSps2pIQ0o6XAuOiep0FCuE/P4parxtV54DKFVzGj+Zv1K0UKb1bbUgz9qs7zLyUHG3o685z8luTfqx/IxqHUgJiueWHk+OGkm354KJ7BczuAjRyOWbK9/+VICKZTQPg=
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com (2603:10a6:20b:605::22)
- by AS8PR08MB9072.eurprd08.prod.outlook.com (2603:10a6:20b:5c0::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
- 2026 01:42:42 +0000
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155]) by AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 01:42:42 +0000
-From: Justin He <Justin.He@arm.com>
-To: Marc Zyngier <maz@kernel.org>
-CC: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>, Joey
- Gouly <Joey.Gouly@arm.com>, Steffen Eiden <seiden@linux.ibm.com>, Suzuki
- Poulose <Suzuki.Poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, Catalin
- Marinas <Catalin.Marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
- Rutland <Mark.Rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>, Sean
- Christopherson <seanjc@google.com>, Shuah Khan <shuah@kernel.org>, Sascha
- Bischoff <Sascha.Bischoff@arm.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>
-Subject: RE: [PATCH 2/3] KVM: arm64: nv: Don't request or attempt L1 VNCR
- mapping without vncr_tlb
-Thread-Topic: [PATCH 2/3] KVM: arm64: nv: Don't request or attempt L1 VNCR
- mapping without vncr_tlb
-Thread-Index: AQHde1zGBYkDnXd0PECWl1ojk9sLurc767UAgACG5SA=
-Date: Tue, 24 Nov 2026 01:42:42 +0000
-Message-ID: <AS2PR08MB97860AD10162A11B52229A44F7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-References: <20261123150917.2679600-1-justin.he@arm.com>
-	<20261123150917.2679600-3-justin.he@arm.com> <86cxrvzbyn.wl-maz@kernel.org>
-In-Reply-To: <86cxrvzbyn.wl-maz@kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: AS2PR08MB9786:EE_|AS8PR08MB9072:EE_|CPH1EPF0000051A:EE_|DU0PR08MB8495:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8bfcce44-5bfa-447b-abee-08df49cc4f84
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|38070700021|261102123227099003|10067099003|261021123027099003|56012099006|11063799006|4143699003|261026121527099003|261021121427099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info-Original: J/KH1gyCY4Wq1sPtv/rIgXOCGCSNWhcT06frMypuoZEAykR55AkseoE1gZ+AYotJmPVCQX/BE317TcxG1rPOAomdRaQWxFxGTNed23ZaiLSQQ2L35BHclmMmeVma2ACAHNo2mmkEfUnSCehOi/3Ob526hUvcv6xhqwQZg0irIdrKTDbn0y5G6rPRUxh/hAM6QPFhzRdCkljwVEHSTrxOC7yooPkjZimJU6512tTrJ7LkDhwYi4tezbZ6LgNsAZIB8B7PC6OwH6EmUDG5wO50ube+O753ymbBFg6aA2dBo88+vp5/IVmGJQPRt73pDFfpUmWUFAZEY4xvcpMO6NgyTcyiv9ZfYl701CmmhA9VzwJkXB7wmS1r6Fw+0zxtdOWJ6YO9b3OOY2Bfq928BQ490CBnKp8bMj+8ZEF3OBVY8ZQI39ygqzitK6XpP7kx3k8qTARRRYktpF5VgbUU+8KQhiGYNSMk+ukqPCRqU752WzaFTJ9k30KjB5YkrK0qkFUXoFa048F2XJbas+GSU3V1eBbAsEvmqpaYasghxmFhb2vw/Odlp4k8veSw5LajcGGZqbHCUx5hHQMZf8JX326G1xTILW2eABsx+HTj2AlO5w1Zx33K7sPoWhhewGd5ugJ4hUBFtBIrFJuGDRPGij9mDlOCk4g4d8872T1WmR8+VObWRq7Lqh/VUAQQLnKz2pqOVnqqxTD0PwPP2Dd86yfARB1yTVbrGOBPXJBs1j26yrg=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR08MB9786.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(38070700021)(261102123227099003)(10067099003)(261021123027099003)(56012099006)(11063799006)(4143699003)(261026121527099003)(261021121427099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	Tue, 24 Nov 2026 02:29:49 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=bKdavHn4Gjkl6Bx3sYPvnFvwvriR5ITOlurhR8mBhXw=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795487381; v=1; x=1796092181;
+ b=t6cAU+2Bv3v1WcGrFVBGWgpe8IFNzbhM2ln3PsfgIirTnzYYZFzT2Zqzyt+Rku3+xT7EKtmH
+ OvViD/l6cknN8+M4I46IYyN8V50z4iUVGVd2EmagOWuRL6HyyBtwUfHSFoNsbn1/QvyUuHvCfL0
+ 9heleEeqkkj80GZqvmXAtp3o=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 42d52afc46ba6af1;
+	Tue, 24 Nov 2026 02:29:40 +0000
+X-Mizu-Trace-ID: 42d52afc46ba6af1
+X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain;
+	charset=utf-8
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: VtJNyp8iYa6lZsKwfHLPblufKmv23HZ6BFf1+7fo5SdLKBj8FVNFwdoWXqLhIPugbcF6n5Q/T1xfVEQgZQXf+fjqjEYXeGXjAW/Kx2ty4Om/fHPVwFqwmR8eHzAqXglyUBWNXEBl5YpPey3GX5Hko+GbIDqSSlEwUt4XFKCgUFJ1NxKYvAiWWB6q8o2zeR+OfwReqxLF21xdzstjgHYLfX7jVOgitXMBlGJ0WguxVztQ1zIlHIxl2MTtg1o87+2Pm9ZgSIczxIerOKRiLQornspVnPrUugua/i5gb9WjXeiAVm16D5eYuDG/fY+L2aGM7ryo4Al/AYHu9FO1ahwaww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9072
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: CPH1EPF0000051A.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: c2a35d7f-d287-4fb8-a425-08df49cc3b46
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|14060799003|35042699022|7416014|23010399003|36860700016|82310400026|10067099003|4143699003|11063799006|261021121427099003|56012099006|261021123027099003|261102123227099003|261026121527099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 4nILW1SRTbS8Opwu8SK2cZp0x1Ly15Qtledfu/l4Eh8a29uUnoso8K+YaLe7Qcvo7KjwwZVrbvicERJqx0lXCiGfcPEB4/9Qfy7+ZbOV5QC6BA09aEbS/PelMaHNH/sDRk2KgkPKkwLy6C5wzPpWL5FQ07V0cIiZMgT4KGRugResfuTeBGrGBe7jb/U+VwcUAphszbsahqGnTFmLX6xp1BffDzYKbeK8/hUV255dOpBz6NDNwLAubDSZEPNfVcQqxd9prWWnm4JCgTmQIOiHD/4b7KCWZdMZrdVcflphAqT20ydrwBEpS+Yj22wgW6O+75mWnPoZIAMBy2y5UcRAOd5m9tGG49OZcMkgDqhOuQazwxI6ApPxDCXNIX3fy2oxyr7C4BuV8gBbuWVB8V9iwV6naYO9+WCTx4jeVXbZB2n9qtWou7OTojOh9V48pK7miPBNMXLIcvf3mAVMZy0Te2dF+ErMxv6AW88Y6klxl1OFMTg4P0ZDw8fRXwb2OyX6NgzErZZ5CjUnpP2ltUB3zC6ZawXDNOyad0ETtvNI5Uzvc3WmzTdcHxGWaSHd+QgelhoH8NGTSsRme0guUH2q4iTY6ewPxc/asKRGhFcA79kOlfGgFwVu5BHuFLwd+dvFUWQ/PTqtZiNRv4IBZCQ9PvfwP8bKhXA4TxTj8BCoy92uswmhI77U+ugKazRROs7yxd23F49lKEg8Jn9LFYfeuw==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(14060799003)(35042699022)(7416014)(23010399003)(36860700016)(82310400026)(10067099003)(4143699003)(11063799006)(261021121427099003)(56012099006)(261021123027099003)(261102123227099003)(261026121527099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: mk/Wyh8duP0ixz6Wsbx/E9Vzg4hMgFEezA/5szG8q9A27nPEM3Ju6a/lAm4Ri5Ieh5c6h0khLDCwtPjc0ZHDbqNMGk9Cupbg95j2m0jDU+TcCwoJRxSA26UqqwD2xN+sIChQUb6DQaWMYreulPH2oVt+7KYPDmUWlcHLWnnfWplj1EzY1sjTHDEO0q4cv5oIX5p4WQqYk0ysoZfOxLyO8Rfw12VByNm6vAEgKIWplWC/B1Qshz45KF4z+9sb8AsGNb9JteUcHEeUdclGIMuQuxslGKh72w4w5bAy8/PJHNnW0p7tRvihmincQ31Zi4OcIhKwhkxWpINjk1niPbRYlNbwNoOYvWxPl4ZGCdCAqpUnU8MK/nhI/2yuByhlClxlYCsW1toB6yzGQgElCkpEDm2tMd3u4hIHgH+vp3tW7kECVYMGF/yS07m45vrbtsoW
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 01:43:16.4698
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bfcce44-5bfa-447b-abee-08df49cc4f84
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: CPH1EPF0000051A.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8495
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
+Subject: Re: [PATCH v3 04/19] hugetlb_vmemmap: Use try_update_vmemmap_pte to
+ update in-use PTEs
+From: Muchun Song <muchun.song@linux.dev>
+In-Reply-To: <CADrL8HUstWR2pajfYYzRqL7HziVfzZAXJas6MqJkK6pVxSzXEg@mail.gmail.com>
+Date: Tue, 24 Nov 2026 10:29:22 +0800
+Cc: Muchun Song <muchun.song@linux.dev>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>,
+ Nikos Nikoleris <nikos.nikoleris@arm.com>,
+ Linu Cherian <linu.cherian@arm.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ David Hildenbrand <david@kernel.org>,
+ Ryan Roberts <ryan.roberts@arm.com>,
+ Nanyong Sun <sunnanyong@huawei.com>,
+ Yu Zhao <yuzhao@google.com>,
+ Frank van der Linden <fvdl@google.com>,
+ David Rientjes <rientjes@google.com>,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-mm@kvack.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4A195604-B83B-4608-B32E-5F6CC85AE96F@linux.dev>
+References: <20261122184453.2668189-1-jthoughton@google.com>
+ <20261122184453.2668189-5-jthoughton@google.com>
+ <4508589C-2E30-4DAB-9465-73121835D0D8@linux.dev>
+ <CADrL8HUstWR2pajfYYzRqL7HziVfzZAXJas6MqJkK6pVxSzXEg@mail.gmail.com>
+To: James Houghton <jthoughton@google.com>
+X-Mailer: Apple Mail (2.3901.200.71.1.16)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_174328_276836_A06B2507 
-X-CRM114-Status: GOOD (  26.86  )
+X-CRM114-CacheID: sfid-20261123_182948_201864_B1E2083C 
+X-CRM114-Status: GOOD (  33.75  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -169,78 +93,299 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
 
-> -----Original Message-----
-[...]
-> On Mon, 23 Nov 2026 15:09:16 +0000,
-> Jia He <justin.he@arm.com> wrote:
-> >
-> > vcpu->arch.vncr_tlb is only allocated when ID_AA64MMFR4_EL1.NV_frac
-> > advertises FEAT_NV2. When NV_frac is cleared to 0 (or E2H0 is selected)=
-,
-> > vncr_tlb is NULL for the lifetime of the vCPU.
-> >
-> > Don't set KVM_REQ_MAP_L1_VNCR_EL2 in kvm_vcpu_load_hw_mmu()
-> when
-> > vncr_tlb is NULL. The only other place that sets this request is
-> > kvm_translate_vncr(), which only runs on a FEAT_NV2 VNCR abort. Warn
-> and
-> > return early in kvm_map_l1_vncr() if vt is NULL before disabling
-> > preemption and taking kvm->mmu_lock.
-> >
-> > Signed-off-by: Jia He <justin.he@arm.com>
-> > ---
-> >  arch/arm64/kvm/nested.c | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> > index 4d83281a7a28..2f52c128f3a7 100644
-> > --- a/arch/arm64/kvm/nested.c
-> > +++ b/arch/arm64/kvm/nested.c
-> > @@ -979,7 +979,8 @@ void kvm_vcpu_load_hw_mmu(struct kvm_vcpu
-> *vcpu)
-> >  				vcpu->arch.hw_mmu =3D
-> get_s2_mmu_nested(vcpu);
-> >  		}
-> >
-> > -		if (__vcpu_sys_reg(vcpu, HCR_EL2) & HCR_EL2_NV)
-> > +		if (vcpu->arch.vncr_tlb &&
-> > +		    (__vcpu_sys_reg(vcpu, HCR_EL2) & HCR_EL2_NV))
-> >  			kvm_make_request(KVM_REQ_MAP_L1_VNCR_EL2,
-> vcpu);
+> On Nov 24, 2026, at 04:48, James Houghton <jthoughton@google.com> =
+wrote:
 >=20
-> How do we even get here? Now that you have short-circuited the vcpu
-> state loading, I can't see how this code is reachable before we've
-> actually initialised the relevant state.
+> On Sun, Nov 22, 2026 at 9:47=E2=80=AFPM Muchun Song =
+<muchun.song@linux.dev> wrote:
+>>=20
+>>=20
+>>=20
+>>> On Nov 23, 2026, at 02:44, James Houghton <jthoughton@google.com> =
+wrote:
+>>>=20
+>>> set_pte_at() cannot be used to replace in-use vmemmap PTEs on arm64, =
+so
+>>> replace it with a more specific routine, try_update_vmemmap_pte().
+>>>=20
+>>> try_update_vmemmap_pte() is used for modifying page table entries =
+such
+>>> that there is a guarantee that no fault will be taken.
+>>>=20
+>>> For the generic implementation, please note one difference: =
+set_pte()
+>>> does not invoke page_table_check_ptes_set(), but set_pte_at(), the =
+call
+>>> we are about to replace, does. However, this is a functional no-op
+>>> because page_table_check_ptes_set() does nothing for init_mm PTEs, =
+which
+>>> vmemmap PTEs are.
+>>>=20
+>>> Signed-off-by: James Houghton <jthoughton@google.com>
+>>> ---
+>>> arch/loongarch/include/asm/pgtable.h |  2 ++
+>>> arch/riscv/include/asm/pgtable.h     |  2 ++
+>>> arch/x86/include/asm/pgtable.h       |  2 ++
+>>> include/linux/pgtable.h              | 22 +++++++++++++++++++
+>>> mm/hugetlb_vmemmap.c                 | 32 =
++++++++++++++++++++++++-----
+>>> 5 files changed, 55 insertions(+), 5 deletions(-)
+>>>=20
+>>> diff --git a/arch/loongarch/include/asm/pgtable.h =
+b/arch/loongarch/include/asm/pgtable.h
+>>> index f87603135131..123eda3f6035 100644
+>>> --- a/arch/loongarch/include/asm/pgtable.h
+>>> +++ b/arch/loongarch/include/asm/pgtable.h
+>>> @@ -633,6 +633,8 @@ static inline long pmd_protnone(pmd_t pmd)
+>>> #define pmd_leaf(pmd)         ((pmd_val(pmd) & _PAGE_HUGE) !=3D 0)
+>>> #define pud_leaf(pud)         ((pud_val(pud) & _PAGE_HUGE) !=3D 0)
+>>>=20
+>>> +#define ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
+>>> +
+>>> /*
+>>> * We provide our own get_unmapped area to cope with the virtual =
+aliasing
+>>> * constraints placed on us by the cache architecture.
+>>> diff --git a/arch/riscv/include/asm/pgtable.h =
+b/arch/riscv/include/asm/pgtable.h
+>>> index 2ebd5fa5adc5..c8d05bc12cc8 100644
+>>> --- a/arch/riscv/include/asm/pgtable.h
+>>> +++ b/arch/riscv/include/asm/pgtable.h
+>>> @@ -1172,6 +1172,8 @@ static inline pud_t pud_modify(pud_t pud, =
+pgprot_t newprot)
+>>>=20
+>>> #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
+>>>=20
+>>> +#define ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
+>>> +
+>>> /*
+>>> * Encode/decode swap entries and swap PTEs. Swap PTEs are all PTEs =
+that
+>>> * are !pte_none() && !pte_present().
+>>> diff --git a/arch/x86/include/asm/pgtable.h =
+b/arch/x86/include/asm/pgtable.h
+>>> index 000fc6c1ca37..271cdc61de3a 100644
+>>> --- a/arch/x86/include/asm/pgtable.h
+>>> +++ b/arch/x86/include/asm/pgtable.h
+>>> @@ -1372,6 +1372,8 @@ static inline pmd_t pmdp_establish(struct =
+vm_area_struct *vma,
+>>> }
+>>> #endif
+>>>=20
+>>> +#define ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
+>>> +
+>>> #ifdef CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD
+>>> static inline pud_t pudp_establish(struct vm_area_struct *vma,
+>>>              unsigned long address, pud_t *pudp, pud_t pud)
+>>> diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
+>>> index bc1353f03b08..ab33df268955 100644
+>>> --- a/include/linux/pgtable.h
+>>> +++ b/include/linux/pgtable.h
+>>> @@ -458,6 +458,28 @@ static inline void set_ptes(struct mm_struct =
+*mm, unsigned long addr,
+>>> #endif
+>>> #define set_pte_at(mm, addr, ptep, pte) set_ptes(mm, addr, ptep, =
+pte, 1)
+>>>=20
+>>> +#ifdef ARCH_WANTS_GENERIC_POPULATE_VMEMMAP_PTE
+>>=20
+>> Why not ARCH_WANTS_VMEMMAP_UPDATE_PTE? Then x86, loogarch and RISC-V =
+do not need define
+>> this macro in their ptable.h.
 >=20
-> What am I missing?
+> You're basically asking to make this opt-out instead of opt-in, right?
+
+Yes, exactly.
+
 >=20
-> >  	}
-> >  }
-> > @@ -1761,6 +1762,9 @@ static void kvm_map_l1_vncr(struct kvm_vcpu
-> *vcpu)
-> >  	struct vncr_tlb *vt =3D vcpu->arch.vncr_tlb;
-> >  	pgprot_t prot;
-> >
-> > +	if (WARN_ON_ONCE(!vt))
-> > +		return;
-> > +
->=20
-> I don't think we want this. Either the code is rock solid, and the
-> warning pointless, or we have terrible problems, and I really want to
-> see the kernel exploding, specially given that NV is still an
-> experimental feature.
->=20
-Agreed. I'll drop this patch in v2. Patch 2/3 was only meant as a defensive=
- check,
-and patch 1/3 should be sufficient.
+> I like making the different architectures explicitly opt in to the
+> generic implementation; it forces any new architecture to decide if
+> the generic implementation is correct for them. But I don't feel
+> strongly.
+
+We already have an opt-in config: ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP.
+It already forces new architectures to pay attention to it.
 
 Thanks,
-Jia He (Justin)
+Muchun
+
+>=20
+> I'll switch it to opt-out in v4 unless you or someone else tells me =
+otherwise.
+>=20
+>>=20
+>>> +/*
+>>> + * try_update_vmemmap_pte - Remap PTEs used by the vmemmap.
+>>> + * @addr: Base address of the remapped PTE.
+>>> + * @ptep: Page table pointer to be overwritten.
+>>> + * @pte: Page table entry to write.
+>>> + *
+>>> + * This function is only to be used to update PTEs that map the =
+vmemmap. The
+>>> + * only valid transitions supported by this function are: =
+leaf-level
+>>> + * (PAGE_SIZE), valid-to-valid. The pfn and prot bits may be =
+changed.
+>>> + *
+>>> + * Implementations of this function must ensure that, while the =
+update is taking
+>>> + * place, CPUs will not fault on the remapped virtual address.
+>>> + */
+>>> +static inline int try_update_vmemmap_pte(unsigned long addr, pte_t =
+*ptep,
+>>> +                                      pte_t pte)
+>>=20
+>> Please rename it to vmemmap_update_pte, all HVO-related helpers will =
+be prefixed
+>> with vmemmap.
+>=20
+> Okay, will do.
+>=20
+>>=20
+>> Again, I still recommend having this function return void. That will =
+make the
+>> overall code simpler. If we actually run into related issues in the =
+future, we
+>> can add support for it then. I don't want to introduce unnecessary =
+code
+>> maintenance now.
+>=20
+> Thanks. I will just point back to my reply from v2[1]. I hope Catalin
+> or Will have thoughts on this.
+>=20
+> [1] =
+https://lore.kernel.org/linux-mm/CADrL8HWNaurYHGnpvC9qwr6bVU74YhhucCuhoVYc=
+vqmSX+R6+Q@mail.gmail.com/
+>=20
+>>=20
+>> Thanks,
+>> Muchun
+>>=20
+>>> +{
+>>> +     set_pte(ptep, pte);
+>>> +     return 0;
+>>> +}
+>>> +#endif
+>>> +
+>>> #ifndef __HAVE_ARCH_PTEP_SET_ACCESS_FLAGS
+>>> extern int ptep_set_access_flags(struct vm_area_struct *vma,
+>>>                               unsigned long address, pte_t *ptep,
+>>> diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
+>>> index 2e9cf8d39c89..b4d0311bcc4a 100644
+>>> --- a/mm/hugetlb_vmemmap.c
+>>> +++ b/mm/hugetlb_vmemmap.c
+>>> @@ -218,15 +218,19 @@ static int alloc_vmemmap_page_list(struct =
+list_head *head,
+>>>      return -ENOMEM;
+>>> }
+>>>=20
+>>> +/*
+>>> + * Copy @src into the first page on @vmemmap_pages and return it. =
+The page is
+>>> + * left on the list; the caller must remove it only once it has =
+successfully
+>>> + * been installed in the vmemmap.
+>>> + */
+>>> static struct page *vmemmap_dup_page_from_list(const struct page =
+*src,
+>>>              struct list_head *vmemmap_pages)
+>>> {
+>>>      struct page *dst =3D list_first_entry(vmemmap_pages, struct =
+page, lru);
+>>>=20
+>>> -     list_del(&dst->lru);
+>>>      copy_page(page_address(dst), page_address(src));
+>>>=20
+>>> -     /* Ensure updates to @dst page are visible before =
+set_pte_at(). */
+>>> +     /* Ensure updates to @dst page are visible before =
+try_update_vmemmap_pte(). */
+>>>      smp_wmb();
+>>>=20
+>>>      return dst;
+>>> @@ -248,6 +252,8 @@ static int vmemmap_optimize_pte(pte_t *pte, =
+unsigned long addr,
+>>>      const struct page *page =3D (const struct page *)addr;
+>>>      const struct folio *folio =3D page_folio(page);
+>>>      struct page *src =3D pte_page(ptep_get(pte)), *dst;
+>>> +     bool dup =3D false;
+>>> +     int ret;
+>>>=20
+>>>      if (likely(vmemmap_optimizable_pfn(page_to_pfn(page), =
+folio_order(folio)))) {
+>>>              dst =3D folio_vmemmap_shared_tail_page(folio);
+>>> @@ -255,16 +261,27 @@ static int vmemmap_optimize_pte(pte_t *pte, =
+unsigned long addr,
+>>>                      return -ENOMEM;
+>>>      } else {
+>>>              dst =3D vmemmap_dup_page_from_list(src, =
+walk->vmemmap_pages);
+>>> +             dup =3D true;
+>>>      }
+>>>=20
+>>> -     list_add(&src->lru, walk->vmemmap_pages);
+>>>      /*
+>>>       * Map the shared tail page writable intentionally. A lockless =
+get that
+>>>       * read a non-zero refcount before the remap can still do its =
+cmpxchg
+>>>       * after it. The refcount is zero, so the cmpxchg fails and =
+leaves the
+>>>       * page unchanged.
+>>>       */
+>>> -     set_pte_at(&init_mm, addr, pte, mk_pte(dst, PAGE_KERNEL));
+>>> +     ret =3D try_update_vmemmap_pte(addr, pte, mk_pte(dst, =
+PAGE_KERNEL));
+>>> +     if (ret)
+>>> +             return ret;
+>>> +
+>>> +     /*
+>>> +      * We successfully overwrote the vmemmap PTE, so the page that =
+was just
+>>> +      * unmapped can be freed, and if we mapped a duplicated page, =
+remove it
+>>> +      * from the list so that it doesn't get freed later.
+>>> +      */
+>>> +     if (dup)
+>>> +             list_del(&dst->lru);
+>>> +     list_add(&src->lru, walk->vmemmap_pages);
+>>>=20
+>>>      return 0;
+>>> }
+>>> @@ -275,6 +292,7 @@ static int vmemmap_restore_pte(pte_t *pte, =
+unsigned long addr,
+>>>      const struct page *page =3D (const struct page *)addr;
+>>>      const struct folio *folio =3D page_folio(page);
+>>>      struct page *src =3D pte_page(ptep_get(pte)), *dst, *tail;
+>>> +     int ret;
+>>>=20
+>>>      if (unlikely(!vmemmap_optimizable_pfn(page_to_pfn(page), =
+folio_order(folio))))
+>>>              return 0;
+>>> @@ -291,7 +309,11 @@ static int vmemmap_restore_pte(pte_t *pte, =
+unsigned long addr,
+>>>              return 0;
+>>>=20
+>>>      dst =3D vmemmap_dup_page_from_list(src, walk->vmemmap_pages);
+>>> -     set_pte_at(&init_mm, addr, pte, mk_pte(dst, PAGE_KERNEL));
+>>> +     ret =3D try_update_vmemmap_pte(addr, pte, mk_pte(dst, =
+PAGE_KERNEL));
+>>> +     if (ret)
+>>> +             return ret;
+>>> +
+>>> +     list_del(&dst->lru);
+>>>=20
+>>>      return 0;
+>>> }
+>>> --
+>>> 2.56.1.809.ga0b61035b5-goog
+
+
 
