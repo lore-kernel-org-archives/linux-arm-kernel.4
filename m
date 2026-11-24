@@ -2,67 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04C4606A6BA
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DD0606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zLxSSbiV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=genQOJjw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tz3ec7Iy;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ZzzyARYY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bJMzVzbCZ/eXll3kanPweMPP8+MueKszbQ0YDiOQAlU=; b=zLxSSbiVeiueDI14AadNe89ZC7
-	uQHuD9/FK54kJGCFZ1RptUDSxVl2CmFzL3YfiEMROl3WdxGYCdqifPHRyiu1d3ZFnikf9BGQKqKl9
-	h8pKXoioUCiyXAO/OG5EEVvitMdZXcZJGfAT9VtDTVnbSPGAenAXLcx9ZqeLqEykouktCaZ7Uie2h
-	ZkvXuPubAzxKE12saTQyPLcSWLO+JRQnj0ex7Fjw7COHUQ5F4FZ7DlNwiaOJhDDDiGh8amXsaqE9K
-	uBUnddvejKN9WbiOfuNiqZ5HiC870nRMlWwYRhzextO8HJJBKeRAJPRWxXTSh5EzTibcXCxbGJuJ0
-	BSVb4Iiw==;
+	bh=lp2V1CD3UzTfS8SfEqnuM0AkFNXDFtv8aXVUJV8xgrM=; b=tz3ec7IydaoKni75bnpplNwhGj
+	X3zH/ojozVcbdR7+ldUsbC7SaX5I1jpqWHkQXoupRINtKglT7aE+rMnoz2tv20y6UdWkkGXwFuF42
+	OBOZwPZ1W12FGvtrM2+czL1X6at9YAfKbhPC7jLP198G+LFpzWERojSUT/foCx0vbsOIw8HKTeMCa
+	AAuo3UCPjfHmaWjlkLq1teHwB4WLL4xlJugYMfP/8WIy4WOALkyaDuLdBW95ppnGe30YUPxoup/Lp
+	GUZVXTP7RgFdFelCKYPzk73lVv6WQ2E0YKNaiH0rXOoRy/IclhhVnWMhwPPALvSPBj/8HMYn+kfH0
+	gwc88New==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVv6l-00000007Tyt-0Prn;
-	Tue, 24 Nov 2026 18:19:11 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVvA3-00000007UHG-3Jrn;
+	Tue, 24 Nov 2026 18:22:35 +0000
+Received: from mail-dl1-x122e.google.com ([2607:f8b0:4864:20::122e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVv6j-00000007TyL-40x7
+	id 1xVv9z-00000007UGV-00Bn
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 18:19:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6A15B41F3D
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 18:19:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 445D81F000C4
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 18:19:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795544349;
-	bh=bJMzVzbCZ/eXll3kanPweMPP8+MueKszbQ0YDiOQAlU=;
-	h=From:Date:Subject:To:Cc;
-	b=genQOJjwG62bqWdH29OiuvPTf9cF4IqLi+YPa8EnEf6hBIxUBsbclOl+2BOv7APlw
-	 Az0ruV1e1d1mogOug1I+38yiZLcXQXfLft+jtDsNZB+RcHW73Io6mzm2QjzZaPrC0u
-	 l5miwqJ66D4c241D0dDLIvcoomgnDCCZVtcmmZx3sB4aSLt5mgPNKLtfOG3ypAMdUp
-	 kdqOznHHcyuxijSWHNYPzTcczb/aqjYccUmjrEKQMs4AhEXznN1m6U2lNO/0f8lkEJ
-	 mb6cjY0tkT2aLXosgfZNeJ08yOZAbNPTP0QA58ij0G++WoBSp/RLiK6RYEjbDMnFw2
-	 vA7/B8fFSb60A==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5c148d4dbfbso4598920e87.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 10:19:09 -0800 (PST)
-X-Gm-Message-State: APuU4Z9T+TwnqrJ1GieYd4wN/soxosljiUPDvN8OCjy22wy5MCN5ogX8
-	Yy2kdiMBHFuK0fZI6JfpDWXMMZdV9Jv9HAoLCFASuYxOvc2h1Rw9f3behifN3c1ZJ5wxr5ewV4A
-	9MQrRuubNo47KZQD71Y0w01qx0rlUhlo=
-X-Received: by 2002:a05:6512:3ca5:b0:5bf:c239:71ad with SMTP id
- 2adb3069b0e04-5c1bc802154mr5508244e87.38.1795544348044; Tue, 24 Nov 2026
- 10:19:08 -0800 (PST)
+	Tue, 24 Nov 2026 18:22:34 +0000
+Received: by mail-dl1-x122e.google.com with SMTP id a92af1059eb24-1b5786e099cso2825276c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 10:22:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795544550; x=1796149350; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=lp2V1CD3UzTfS8SfEqnuM0AkFNXDFtv8aXVUJV8xgrM=;
+        b=ZzzyARYYl6ppFv2mSKgwhSxPvM/7Us20eqAW1Y5bfAgAGxlUZ5tSTs1INFCFg/7MiI
+         aqOGU3l7ypHgZcGPwe0T88siE+H5KESxB4pgcxU2UXQbjiHrQLLBL5xz9bpfBpLZvWyT
+         rFA+B/tgWYVf0L67j6gwFdHn14nXs3KfE0zwKei4CdbirZyN8UYJTp9DqzVUfZzlYucl
+         VW1UwIZz3DSWbUF/OlaYufuhesGimJ3ewX2zB7Hsv+GWDq/SaTa10oX2dltys02AqoyI
+         svHpwij45E5f+jwIE6Luwk+PkR6NGTR20cPFMBf5zDBffsW/Z1oDf2OL72BGqSM8X8f2
+         zZ8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795544550; x=1796149350;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=lp2V1CD3UzTfS8SfEqnuM0AkFNXDFtv8aXVUJV8xgrM=;
+        b=1jrlJcXFOzFFQkG3ACv+suhRJbabb+GYADHzjd5kctq+LJykVkfyA+vBeRpnX8VtEB
+         0L+d60akBUFbWUfkVX+V9yI9/xUm6OKzv2rh+XTwO0lkHipMsnOuA99eok0cDX4k10zs
+         cQtFs93veuR2MlkMUEAEGLvQvcLfJ5qIOyvfIA+PQ8+bFKexrUuRWNXaECRthmxEw1b4
+         dCBwki5FfYrrii86doFfBNE/jF/OymFin2+QAukFTSf10sR/SD269QW/h06uNoO2Fz4Q
+         jO2WIS8x/iLxEQ9TgBbXO/9sM89vTt+HKfLFF495K/2/oG6waCbQW3blXuIdoqfwZ7Em
+         DjEQ==
+X-Forwarded-Encrypted: i=1; AL+hErHeV7ngRiNPEmKLjmK2YdIR9tUGYJYfjc8Ivs8gFUznqGB185vh6yoLrcJsG9iAGoqLSiLJPhAgYweNewft4yfD@lists.infradead.org
+X-Gm-Message-State: APuU4Z/CpHfQZhh3346JxvHU7bu4L1m/b1jG/uwgMyBNBtohxNmZdvGp
+	Py+61GtkAlUIjxZLUQqqjoFXi5jci5nEyPKTUVZ4GNw9GiQ4jGeYGIiG7PRtQLRN
+X-Gm-Gg: AZFdTZfYA6KwJB+X5s0UT/qS+cygt7oDAFzfVzvd9jZylB/3hstPONpjK964PEl2+Qd
+	dF97Xco85aO4CSEFSjqCizOu06p4dkXFW8J5nfcQUgKisoFT1U6FuOYod++RuxGTIrbnrzG8oe3
+	oPSMVbYM/sm5h2Fmk7AxwL3rnm+x1J2zD5/xIVQWYW+SGaX5/gMS2GOz4r8tmZWJUHvaDDnZWh9
+	DQJAX4I2vROB00b7XgEvl15VEm7AmoUjSJAQps3VBGDF1ydvwEteKBFmXSzj0y6W0lfk/oRJKLS
+	d4mUQAOGBVmWRvMeYZn0g/a5EAuai9YgBNzKfyhq92gxw2oTir8Bi/1i1sKiL6MIcwHl34Dngb1
+	xoYOHQNtfqB1zru0d2twkoJ0TBVS5xnfnh0KW6QS6rwKfe/CUFNTvA8sUZ7otQS1K8yRGkP4lzG
+	PofXhAWL/+L/IhWzH528ifrTSB2qokAmwOHaGswIiYeuUmSIU3YskbeKyCcArrErj++mCAxpW/X
+	bEFs2Otfu4Sw4JNQF5OWW7ToihjqAZHkbM1uvjwZpuSeaxM2Z/WRchyPriPb9yGJFGwrfLhZq7g
+	KtTSrazXLHoIUjVZ4VZFDOz3UYkPydkoOFljek1EaCPxSNRGmfZsdvwsU4gvVgzs0TXKbJ1WBcQ
+	XIEzmQysCbL2qKlMDEQ==
+X-Received: by 2002:a05:7022:3a83:b0:184:992:c9ec with SMTP id a92af1059eb24-1b55693aaabmr20326331c88.38.1795544549929;
+        Tue, 24 Nov 2026 10:22:29 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:ee3b:b892:771b:3bc7])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5567ff27bsm40472836c88.6.2026.11.24.10.22.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 10:22:27 -0800 (PST)
+Date: Tue, 24 Nov 2026 10:22:24 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: linux-mediatek@lists.infradead.org, Hans de Goede <hansg@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] Input: goodix - sync the irq controller while
+ starting firmware
+Message-ID: <awXV3Y080rMLw_VO@google.com>
+References: <20261124085058.128173-1-l.scorcia@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 24 Nov 2026 19:18:55 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkAjWe12teziGE3-81R0tpO47USD6_pLMMrJ4_DXSOa9g@mail.gmail.com>
-X-Gm-Features: Aa3M54pIgl57JFg90kutrTDazmVajLRDQYbXRH0F1nZdWP8ta1PJg9pzX_V5wZA
-Message-ID: <CAD++jLkAjWe12teziGE3-81R0tpO47USD6_pLMMrJ4_DXSOa9g@mail.gmail.com>
-Subject: [GIT PULL] Ux500 Powerdomain DTS changes for v7.5
-To: soc@lists.linux.dev
-Cc: Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261124085058.128173-1-l.scorcia@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_102233_138292_292BAF03 
+X-CRM114-Status: GOOD (  12.59  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,65 +105,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi SoC maintainers,
+On Tue, Nov 24, 2026 at 09:46:22AM +0100, Luca Leonardo Scorcia wrote:
+> On the Lenovo Tab E7 (TB-7104F), which has a Goodix GT-912 touch screen,
+> the touch screen fails to come online after loading firmware, printing
+> the error "Error reading 1 bytes from 0x8041: -6".
+> 
+> Comparing the upstream code with the Android stock sources, the existing
+> call to goodix_int_sync should be moved between the upload of the firmware
+> and the watchdog restart. With this change the touchscreen is correctly
+> detected and working.
+> 
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 
-these are the power domain changes for Ux500 for this kernel cycle.
+Applied, thank you.
 
-I'm especially happy about this one because it pays of a huge piece
-of technical debt as we started doing things wrong in ~2010-2011
-and then have tried to back out of it for 15 years. Related changes
-to powerdomains, mfd, regulators, clocks, (also bindings) etc etc
-are merged into each respective subtree.
-
-I also have a large set of DT fixes that I might send for this kernel
-as well, on top of these.
-
-Please pull it in!
-
-Yours,
-Linus Walleij
-
-The following changes since commit 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4:
-
-  Linux 7.4-rc1 (2026-11-01 13:26:31 -0800)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git
-tags/ux500-pd-v7.5
-
-for you to fetch changes up to ce2efbd2e360243deaf4b2a7502714da1a50d06d:
-
-  ARM: dts: ux500: Remove DB8500 EPOD regulators (2026-11-22 10:23:53 +0100)
-
-----------------------------------------------------------------
-Ux500 Power Domain changes for kernel cycle v7.5:
-
-- Required bindings changes have been merged to respective
-  subtree.
-
-- Rename the powerdomain node according to standard.
-
-- Add the actual power domains to each applicable peripheral.
-
-- Remove the DB8500 EPOD (electronic power domain) regulators.
-  This is an old technical debt due to power domains being
-  implemented as "some sort of regulators" in 2010 or so.
-
-----------------------------------------------------------------
-Linus Walleij (3):
-      ARM: dts: ux500: Rename power domains node
-      ARM: dts: ux500: Add power domains
-      ARM: dts: ux500: Remove DB8500 EPOD regulators
-
- arch/arm/boot/dts/st/ste-dbx5x0.dtsi | 156 ++++++++++++-----------------------
- 1 file changed, 53 insertions(+), 103 deletions(-)
+-- 
+Dmitry
 
