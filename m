@@ -2,100 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B961A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC21D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3frwz4Wv;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=HFTBPk7f
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jPdqYM5x;
+	dkim=pass (2048-bit key, unprotected) header.d=web.de header.i=markus.elfring@web.de header.a=rsa-sha256 header.s=s29768273 header.b=X1h8FHwf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:Subject:From:To:MIME-Version:Date:Message-ID:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uWITfgyRJ+DT3n8YFgueon79iakRaQERwgzzXSP2YYo=; b=3frwz4WvecxAVOdtHKETmpNkE9
-	IrSSF6eD78G9DGWYcf/hSXhA8hKhiyaDWY6vX1bZtkAekVPawFLleQj8bMRiCxHNx1en11waLY1ma
-	FqP/3LjGPSb+x786CC+OamGb73Scj/vFukVvC4YSqD0a3GMvj9iF1Vsp22XeEhQxzqi1EuKI4TuWR
-	RRA2uPRw42eelJJMkSM5dzteRyoQEtC98e+6N/SZ/5OprfR1/OSc8is0DYxT69xP0uuNhhcjSpODu
-	b/88/OpWmy2jlXe88j02TuEqKiXpL3yNcOi1OKI0hlIVI8IQ17qvwDo3WOBaREep5hF1bPObLgpQw
-	oz5lsNZg==;
+	bh=KkucrrMGhNWaZWvXJ19J79HJANRtIXVtP9s7lZdVBZ0=; b=jPdqYM5xUt82AuGhLFBBF2LEbq
+	aoyPz/bD3uzMSD6nQ1KsI3v/OH9/Ryyq9a3hkNI2xAHAzWCJ8pldVBlrolLsuJfzp0FKY6olOmQ41
+	sjkIZLvGr4Qs7ESzyeWBPw+/uBmlTIZgaHws8OtDyP7AG9U9iY6K67HnM+tTVYVcIU0YyAHieebe1
+	Z+TaRQO5Wylbs/FlkijGNau8FaNgDMg7g3AtHTmdzgm8PkwTfturUrfjO2S3r+3BDb7KiG44sJ8qr
+	ASe64fDFTcCc3tyGm6pLQXsnrph3ZrvoKHiSKxfiBCt3XrhiNe3MGwAsql9R/BnvsVfCBfkY4cNd8
+	xPKl7Z4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkaq-00000005iFX-48M3;
-	Tue, 24 Nov 2026 07:05:32 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xVkpM-00000005imK-3D9m;
+	Tue, 24 Nov 2026 07:20:33 +0000
+Received: from mout.web.de ([212.227.17.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkao-00000005iED-3thS
+	id 1xVkpI-00000005il1-45XC
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:05:32 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso29195365e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 23:05:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795503929; x=1796108729; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=uWITfgyRJ+DT3n8YFgueon79iakRaQERwgzzXSP2YYo=;
-        b=HFTBPk7fc8IEIK0HDXoqCBxoacKGWlDXZSkLkSVluZILOUCjkbOJAjKQPjZEE1UTab
-         KJYUefDbnfa3y2pVrbbmTVBFUq6dsDZuhzvKSZYHaeXgb1SPDArbg7V9QkzpUHwBFbwG
-         6mubIDIqjM1EEdoU7xV9CpnR0gGyDQWAq4yxnz4dLGb3/79vmPXvyrh2hwqCvmUJ0PUO
-         i6i2q6rdmk7230QnwnYEdtJNB08Whd83qRLvHcqFBhFpwkUPLiudWHC9ui4fu0WG5X/+
-         m9wKIjiRXmkvx9ZyZEB/5J64tRiINut7XqmXtfdlOpzaapa6CuKAKA4kPWdIbraBEJ1p
-         jHeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795503929; x=1796108729;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=uWITfgyRJ+DT3n8YFgueon79iakRaQERwgzzXSP2YYo=;
-        b=J+whdN40vFgmbX/4uejXD3TLIDx7pgzBDYMzDbtHkG92D5l+ZNToWd8feJqFBJuoQi
-         UlH+B6vYL84w4Gv142C/z8C0qUcf/A+8+ECROFsjyHqLI2bLeUTwKe5Q3TMaR8Bya3Zs
-         MAiyZ7pJktx+7JbUrg2LUmRwM/rbn+zHrIVL7kNRrJ+rztdTyRrJW/+xIJ+YC4slRGDJ
-         zOqN7TiO60sRRFZn3TFyMhNbN7t4GOkzTyyFbJmsB+w37T85YPswnpBRUo2lhvLpOLBb
-         rLS/L/SJUjmLejnLKcPpvOQcumkUMfE9oRbFnWs9DRenD0jYVPr/wiPi+gvoOxNkSM4x
-         K+HQ==
-X-Forwarded-Encrypted: i=1; AL+hErEDUShbtmlXD6Bda7YiuuRwJT+IUefC9vSwz2rw5uU5HdYf3dzNxx94Ca5FesVvLICwPhmkc70gj5CK2F5T9w4C@lists.infradead.org
-X-Gm-Message-State: APuU4Z9t8fxMXEMtdL8kgBP2FxSntlv8OKPHzMc14vtSZV5/GFBPk5uJ
-	tzzgDtuwkLg0jlf/Hl7QjPD980L8xVkG++accEBK7i5eWP84RWtaXb5sPCHh+WOsc0c=
-X-Gm-Gg: AZFdTZeW3rK96CIqtyHwGE9/zFUvfPceVdoJkPkoUdrzPhK9WRXjX9fhJ0vhtjFTpke
-	f8LWCJTL+pJrh3qzS1cNO/yR+19hLDvp3YSjvmVGeahN265UkHp4bLpTP54iyTevSEwOb1F2pKG
-	wz1B0hmyZoW3A4s2VlTAFJmgSDlYDtmkRgmBhgdL4IKsS3hdPF5OrQLF13meCawbLyMzHxlt2Ic
-	HANMfb8tS8hl3w4x13zABON64ywaTYiKq3Tm9lnksOb6arMVWwSsg2FQVPMKGo83a8WW1VwryRz
-	9FhQauJmUgEfXrprP0sf3oLJvG3UqM3w+tCTZGCkr/X1ftLJ3SpK98/y9ibaIyCQX4FgbQfaDFm
-	cKeGAT9MiwRZZ39F4UdORbTwPOJ1wue/XhVBJpKCldn+OXEDERH6XVoPA3qZPSXIX7qEmZOl7ek
-	cyuWjr913VqEcQxtNOMjJ8qkHpRy027D6kGTo+e0XyVPwpQCD0waJVPvej/0UMPnuBd1FRBx1Ra
-	bBNwIJyx5my6P5pxv9Hvj/N6XPnOinaby+pg8myDFv8yaO18ik460PXqW6AX7lt7QLL/Dg9+lw4
-	tTyoM/WujCziE3TyZFV9HD8xjrUhShEXNDA=
-X-Received: by 2002:a05:600c:3b9e:b0:4a1:cf60:dcc3 with SMTP id 5b1f17b1804b1-4bb88820687mr324067185e9.29.1795503928774;
-        Mon, 23 Nov 2026 23:05:28 -0800 (PST)
-Received: from localhost ([2a02:8071:6e30:8500:1d24:d58d:2b65:c291])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb8526cbd0sm541592115e9.0.2026.11.23.23.05.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2026 23:05:28 -0800 (PST)
-Date: Tue, 24 Nov 2026 08:05:26 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: filipp.dunsky@gmail.com
-Cc: Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] hwrng: Add Cortina Systems CS7542 TRNG driver
-Message-ID: <awU2-KjkZB7WvqfX@monoceros>
-References: <20261123-b4-cs7542-trng-v1-0-92d9ffcee531@gmail.com>
- <20261123-b4-cs7542-trng-v1-2-92d9ffcee531@gmail.com>
+	Tue, 24 Nov 2026 07:20:31 +0000
+DKIM2-Signature: i=1; m=1; t=1795504826;
+ mf=PE1hcmt1cy5FbGZyaW5nQHdlYi5kZT4=;
+ rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+ d=web.de;
+ s=s29768273:rsa-sha256:YbZOEOPoNyV9gLJyIlq+D7QNShCX
+   Xl1X5p71pfNJbbi+kLeP6RPnutAoYiNHiXk/oplNehn6QcjlGIjk0m6RIUX52gYN+ihoqDnpA69
+   Vz/csZ/b+uMZr2ZnTux/ACBsGmrzppuHM9CJJ7O9MUGAYPK3gY1bmxPHOadKpwd0wy5q7iTw1fD
+   qpO2OdMrvKvj/hQx6V1xBCmawRfA4Ishe/cqQISnILZi6KHgEG3KAEAUrxrkNz/EVmQWN9amZC5
+   umCF9J894mKV9DhfweByCtiqIXyafogDQgGVTJFLM56yQi+bXgkoPVBuQt5qC9PY/pQPtB97hOt
+   Wkygc1g3wTICyg==;
+Message-Instance: m=1;
+ h=sha256:
+   DdZlVpehT64f0d8IdwhV/aXNE1YZ99rKOhhFrLNAfUo=:
+   /D2s6nZJY45tqinpPXC3SLDJfDgpNRYsTifkJPYsgKA=,
+  sha512:
+   0l9PEeqI7qTg/j3To6afVCfEY0/6o8ylNJEQ4uktAdwXqPRW7ZWxrXoyox0c4w3t9cNyVzxkMgYzRr5wJ6fDTQ==:
+   QfQGqiKu1UjvkyC626c4AEiqAkqxJtiOiSn4OVjlhbZ7hsJ8zRrwL4xQKV4Cv5afFOtPS6F85qlA+xXRypngIg==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1795504826; x=1796109626; i=markus.elfring@web.de;
+	bh=KkucrrMGhNWaZWvXJ19J79HJANRtIXVtP9s7lZdVBZ0=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:From:Subject:
+	 Cc:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=X1h8FHwfdKP1NIYZo1A3759DCaQ1LkTtOsp+uPNLepm2hjdIaVYVo4XFq4AQY51h
+	 44THzZI3SDvvw5sUkp6UJILRnbLvaMdMfE7chcTdRHzdeVM3WGtK1Wkm4ZudDyTQS
+	 OUZgOl+PqZnxSb7Aukpk9Js+49BH0jyyjCXMtqnaeKXSnVDBGllfM8Ov2tvroqEEW
+	 hVd6itjeuBHSjgnZPci7fKvbUVlt+C+cSYp59ZaQiAy1UUmf1t3MaGjyRNZ5M59mp
+	 QB51tkbXQkfdr5cF4s9TVnUPlflJLaq1rAgOGl/HBOfsC5scs5rUcJts1IO/FDLeP
+	 fBJfx0M7A5AoSOL0BQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1N79RG-1yb03K0oPc-017v8M; Tue, 24
+ Nov 2026 08:20:26 +0100
+Message-ID: <d16d0991-d1d7-4828-8e05-8d8826cbb222@web.de>
+Date: Tue, 24 Nov 2026 08:20:10 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mtdygncuvh4wucsf"
-Content-Disposition: inline
-In-Reply-To: <20261123-b4-cs7542-trng-v1-2-92d9ffcee531@gmail.com>
+User-Agent: Mozilla Thunderbird
+To: linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Arnd Bergmann <arnd@arndb.de>, Boris Brezillon <bbrezillon@kernel.org>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Johan Hovold <johan@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: [PATCH] rtc: at91sam9: Use devm_clk_get_enabled() in at91_rtc_probe()
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+ Florian Fainelli <f.fainelli@gmail.com>, Frank Li <Frank.Li@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:s603HhO5lWZhxUYLN9rLCOdh4gax4InudVezWexFsE5hq50LgPd
+ pJ1yQjp8CeVW682Mwc04vsEwoThCOuQeE1Rw+PXddeOapfNRz5mmcxZDw11ZsV4RCjoIyEE
+ eOdFiTfuAn7hRoXlciOj3SESrlz7b+pgeEM6iz7/NS37w1ybT5yeSXuIks1Qsmes/MuVhr+
+ 7xREQFUMOqc8rqUGQM9Ew==
+UI-OutboundReport: notjunk:1;M01:P0:i8BbCHjvpzE=;lsELVmmQqbv6ZQGCivQDptJsXqs 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 ECZKLwAHqlrEdAdbfA==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_230530_994094_8470DB36 
-X-CRM114-Status: UNSURE (   9.83  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261123_232029_504735_83476EA4 
+X-CRM114-Status: GOOD (  11.88  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,57 +102,110 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Tue, 24 Nov 2026 08:01:48 +0100
 
---mtdygncuvh4wucsf
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH 2/3] hwrng: Add Cortina Systems CS7542 TRNG driver
-MIME-Version: 1.0
+* Reuse existing functionality from devm_clk_get_enabled() instead of
+  keeping duplicate source code.
 
-Hello,
+* Delete a clk_disable_unprepare() call on an error handling path
+  and in the implementation of the function =E2=80=9Cat91_rtc_remove=E2=80=
+=9D.
 
-On Mon, Nov 23, 2026 at 09:41:35PM +0300, Fil Dunsky via B4 Relay wrote:
-> +#include <linux/bits.h>
-> +#include <linux/hw_random.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/mod_devicetable.h>
+* Omit the label =E2=80=9Cerr_clk=E2=80=9D.
 
-Don't add <linux/mod_devicetable.h>. of_device_id is already provided by
-<linux/platform_device.h> with less overhead and build dependencies.
+This issue was detected by using the Coccinelle software.
 
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +#include <linux/string.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+=2D--
+ drivers/rtc/rtc-at91sam9.c | 26 +++++---------------------
+ 1 file changed, 5 insertions(+), 21 deletions(-)
 
-Best regards
-Uwe
+diff --git a/drivers/rtc/rtc-at91sam9.c b/drivers/rtc/rtc-at91sam9.c
+index cbd2f1a6c54a..6628335d6f46 100644
+=2D-- a/drivers/rtc/rtc-at91sam9.c
++++ b/drivers/rtc/rtc-at91sam9.c
+@@ -375,21 +375,14 @@ static int at91_rtc_probe(struct platform_device *pd=
+ev)
+ 		return -ENOMEM;
+ 	}
+=20
+-	rtc->sclk =3D devm_clk_get(&pdev->dev, NULL);
++	rtc->sclk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(rtc->sclk))
+ 		return PTR_ERR(rtc->sclk);
+=20
+-	ret =3D clk_prepare_enable(rtc->sclk);
+-	if (ret) {
+-		dev_err(&pdev->dev, "Could not enable slow clock\n");
+-		return ret;
+-	}
+-
+ 	sclk_rate =3D clk_get_rate(rtc->sclk);
+ 	if (!sclk_rate || sclk_rate > AT91_RTT_RTPRES) {
+ 		dev_err(&pdev->dev, "Invalid slow clock rate\n");
+-		ret =3D -EINVAL;
+-		goto err_clk;
++		return -EINVAL;
+ 	}
+=20
+ 	mr =3D rtt_readl(rtc, MR);
+@@ -405,10 +398,8 @@ static int at91_rtc_probe(struct platform_device *pde=
+v)
+ 	rtt_writel(rtc, MR, mr);
+=20
+ 	rtc->rtcdev =3D devm_rtc_allocate_device(&pdev->dev);
+-	if (IS_ERR(rtc->rtcdev)) {
+-		ret =3D PTR_ERR(rtc->rtcdev);
+-		goto err_clk;
+-	}
++	if (IS_ERR(rtc->rtcdev))
++		return PTR_ERR(rtc->rtcdev);
+=20
+ 	rtc->rtcdev->ops =3D &at91_rtc_ops;
+ 	rtc->rtcdev->range_max =3D U32_MAX;
+@@ -419,7 +410,7 @@ static int at91_rtc_probe(struct platform_device *pdev=
+)
+ 			       dev_name(&rtc->rtcdev->dev), rtc);
+ 	if (ret) {
+ 		dev_dbg(&pdev->dev, "can't share IRQ %d?\n", rtc->irq);
+-		goto err_clk;
++		return ret;
+ 	}
+=20
+ 	/* NOTE:  sam9260 rev A silicon has a ROM bug which resets the
+@@ -433,11 +424,6 @@ static int at91_rtc_probe(struct platform_device *pde=
+v)
+ 			 dev_name(&rtc->rtcdev->dev));
+=20
+ 	return devm_rtc_register_device(rtc->rtcdev);
+-
+-err_clk:
+-	clk_disable_unprepare(rtc->sclk);
+-
+-	return ret;
+ }
+=20
+ /*
+@@ -450,8 +436,6 @@ static void at91_rtc_remove(struct platform_device *pd=
+ev)
+=20
+ 	/* disable all interrupts */
+ 	rtt_writel(rtc, MR, mr & ~(AT91_RTT_ALMIEN | AT91_RTT_RTTINCIEN));
+-
+-	clk_disable_unprepare(rtc->sclk);
+ }
+=20
+ static void at91_rtc_shutdown(struct platform_device *pdev)
+=2D-=20
+2.56.1
 
---mtdygncuvh4wucsf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmsFNzMACgkQj4D7WH0S
-/k4RvAgAkmX1z3ggD4bQYR5QDbQBtW/xgm40V3vJbHo8sFlOzs9OnglLP+iPjhHu
-WKQBnpxjsqZITO8X1LvclAujKd6LAR/OEzTxOML37xIoq2uBbct6r4uBVug8dmzk
-0TZf3jIxobXh6AuI2klxHcrpbIkEKAJgKFnJNJnRnS2pjQnmue649DpG/SF2PgAm
-tIIPrcfWA1AyLg82sa98l6cfBXT/Cj1+457Y+hc7mN9Vs6T+gLTj9cRd+VHY6cW5
-FqY3RUG/SNcyRVT4K6C6iR6RS2S41VNXYMCkhMXLIxu7ERVkC/tz2juaeFdUr1Zp
-bBg0EPgOCTpcZl2EyaSSblW1G3fqCw==
-=IJHG
------END PGP SIGNATURE-----
-
---mtdygncuvh4wucsf--
 
