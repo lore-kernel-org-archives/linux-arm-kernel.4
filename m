@@ -2,90 +2,127 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A2D606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 05:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985AE606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 05:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lAlDV5s/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bMuZ/82I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O9xT3rPh;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=O+5ecGrL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6hEHnZ4sfgUflRbEhxUh0CD0ylQZFIJ15GBUvc4I5mw=; b=lAlDV5s/BFZF+gzI4QAfdm/C8c
-	+TX2IsEVkP7fJ8mxrtmnnzH1/7PVf1NYV8NS5a2+DO8Oglk5aiyQOdSSO0psOu0siUracLrtHdNXQ
-	UaIN9Hn26IBM1xif29OIiCVuWXtB3t0Teex3PQGxcEPkNF4AVCtv4C5O6x3K1DtYjll6HkT1Xfz+2
-	crOymG8dBNRE8RruWlhIHJRL/5qEXXJA2POnXgFxMM8KHrYtN2oWtAGKNlF5a6tEhcIaVgfM8SnQd
-	EQKmQ8cEwO7yP5520W0WUey2wMVkaDZeyiAASIqzSrLeSFCmVl1semIIS3bA5MtqAj30ydv1XlZbr
-	eC1RhTpg==;
+	bh=GnVF9/oyvYxcSrZqGwepuUYe09zzYIK9UbOsHmO0TQk=; b=O9xT3rPhO2gU6yZR7qz3rvM3YV
+	XSiunCdWILkCUT6fwfqvt3XV1wQrCTUue3D0U11i4CGs6ASXURapyKYBlslYGbI0PoiXcbGpnO4+x
+	YlZCchWHkD5tXOBeJKSEoQeCoFUEoUnr7foPUDb0zSMF9QBmXMSb9dlkPiiRen8jL2/LRqxNSbxA8
+	vItDqV5Fjz3bxisctLRd5Mw+r6MEmU90WCGMoLccMzdDCXXLEzKOWh3Yq2KalwaZMkGh2RIDJrkag
+	l/wZWXHmCGAINvooJN3PIr/U/NAU8Z5g3AGcnRmwqEuvSNyjs8FKGWiagbEtP1yTP8/+SC/HAgxGG
+	HrSJ+sqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVj3O-00000005bi8-3Tcx;
-	Tue, 24 Nov 2026 05:26:54 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVj6w-00000005c2H-1L0u;
+	Tue, 24 Nov 2026 05:30:34 +0000
+Received: from mail-westusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c001::5] helo=BYAPR05CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVj3M-00000005bhv-1014
+	id 1xVj6l-00000005c0w-2Phw
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 05:26:52 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9D345409DC;
-	Tue, 24 Nov 2026 05:26:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC0C21F000C4;
-	Tue, 24 Nov 2026 05:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795498011;
-	bh=6hEHnZ4sfgUflRbEhxUh0CD0ylQZFIJ15GBUvc4I5mw=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=bMuZ/82I+vs+8NKsF31D7nQhBoDtC/vh+MdJDEQFc6RfLu9u4tc1iXSnh9tQUIt1R
-	 7B4aBvaDLvXRLuiTN1J7kRllSEWDL5FAyMso3WrOUo3yd+gxajeQWfNT+SPnw1JR85
-	 nBowKBVgT76oli9zpQaDZRhbQAs8+j2FbwhIxOTktb7YTs9tvpPqUQff1wyBXBTqZX
-	 UWpTbmZiOBunZB6QKAj5MxB+n26rmgEzueQlO0KVhXTYiGVNLPvsfiB8Qz9ab3ckww
-	 3NiPz4iKGto4wg14EG/cvFr3KsGIznEulrKB1dyBb+9p9Y/pw05d9hw5P8rcLwFQCN
-	 Ocw7AG9iUNzXQ==
-X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
-From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: Alexey Kardashevskiy <aik@amd.com>, linux-coco@lists.linux.dev
-Cc: Alex Williamson <alex@shazbot.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacob Pan <jacob.pan@linux.microsoft.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>,
-	Will Deacon <will@kernel.org>,
-	Xu Yilun <yilun.xu@linux.intel.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	iommu@lists.linux.dev,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org, patches@lists.linux.dev
-Subject: Re: [PATCH v9 00/13] iommufd: TSM-backed virtual IOMMUs for
- confidential guests
-In-Reply-To: <3573001a-24b8-49f3-97c8-7a414c88deb4@amd.com>
-References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <3573001a-24b8-49f3-97c8-7a414c88deb4@amd.com>
-Date: Tue, 24 Nov 2026 10:56:40 +0530
-Message-ID: <yq5ah5h6by0f.fsf@kernel.org>
+	Tue, 24 Nov 2026 05:30:32 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QkcZ+NJxVs6s44rqZlOKbQhHAtOaKgGRlqRMwXCJEt3CIbCUKjMIYs4BSQFXDdg8hYSd9HzhQYeDSB9te2y7vptl4fXfcMrxV9mq9s51Vu2EUYL+OHyJJ3pfmGqginTyr8MiHxbSwEKhuR5twY6I+tE43P5cKDG4c8cru3KEV5cnjOI7zEaM4sJH2a0bDy/Yz7q9tH/gG5PJVKLjGVjPESnsIC92ccl7IiCxGoRRAVdSkrDHEl1iApFgOLNuMZvXD/DU9I3k/tXg2kXlv/YlqETWI6Q/naPbefCPfjDUGu+wRNws5zC1YQl/yyiMe4LFLHqH1GeesHgRnHwDTKcFXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GnVF9/oyvYxcSrZqGwepuUYe09zzYIK9UbOsHmO0TQk=;
+ b=EUP4zDAZzllC+5v6lDk8jtRE4ArvSuZomiFGvDqMs+yCbEuCmAHEosEhIxdoEzceyYzx0ebUgMtaFkI9gBsFdkypbeO/SAe6MsYsdH0v+9bjkT2mEqOxpTRikbtyx3pMl1k3mgov7t8CPYGcBVGo2gIOZ6sZUvynQyrAHsUaEhfVxuf7TTtW1l1e1OvQF2+9IkonZlxksxhH5msJWh/kGFYKdV/veRwN2vp+XDMZ3hz+bNs+XOR4WDiJP7Q7/xO/ctgVbPYZqKhMBDt+6Mue/BKDGlSD+DDdPnOscyETOcKt4lDSJbL7CP8V07Q36hA764ScSp6hJF2aehh8EvGdaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=lists.linux.dev smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GnVF9/oyvYxcSrZqGwepuUYe09zzYIK9UbOsHmO0TQk=;
+ b=O+5ecGrLarHROtBc8Q9j4xKsQCQaSjhDYqzYjr69SQhZQUWm8y5Ggu6dOkOSFrlH3vTKQvIxGnYiiFhuLjH0J+ZZE49WzYjCilGb/AFxxPy5hOtATiDXhfsAb2hEybJ5S6qKTtqPiSGFj/z2KaGE4CcJwACHW38xSprpODRM/0X5IicTIWLKeOeOoqNDY1/q8L3tWuEltw2ZOlYkcUU+AIHnnBQPBaVeB+gaDwDImk95yGbVZXNdV64mnKjliF5qcMv/uJWPZcDK9e/4rCZCBNsMyyADeF5HV1575QNSTS8yzP5o7aq9H6KtGYeDzrC0bJddvfAKPPWMn8QXJLopsw==
+Received: from DM6PR05CA0041.namprd05.prod.outlook.com (2603:10b6:5:335::10)
+ by DS5PPF5FAA0E762.namprd12.prod.outlook.com (2603:10b6:f:fc00::651) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 05:30:12 +0000
+Received: from DS4PEPF000001C3.namprd21.prod.outlook.com
+ (2603:10b6:5:335:cafe::77) by DM6PR05CA0041.outlook.office365.com
+ (2603:10b6:5:335::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.6 via Frontend Transport; Tue, 24
+ Nov 2026 05:30:12 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 216.228.117.161) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DS4PEPF000001C3.mail.protection.outlook.com (10.167.23.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.0 via Frontend Transport; Tue, 24 Nov 2026 05:30:11 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
+ 2026 21:29:56 -0800
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 23 Nov
+ 2026 21:29:56 -0800
+Received: from nvidia.com (10.127.8.14) by mail.nvidia.com (10.129.68.9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57 via Frontend
+ Transport; Mon, 23 Nov 2026 21:29:54 -0800
+Date: Mon, 23 Nov 2026 21:29:52 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+CC: <iommu@lists.linux.dev>, "Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Jean-Philippe Brucker <jpb@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Robin Murphy <robin.murphy@arm.com>,
+	Will Deacon <will@kernel.org>, David Matlack <dmatlack@google.com>, "John
+ Garry" <john.garry@arm.com>, Pasha Tatashin <pasha.tatashin@soleen.com>,
+	<patches@lists.linux.dev>, Pranjal Shrivastava <praan@google.com>, "Samiullah
+ Khawaja" <skhawaja@google.com>, Mostafa Saleh <smostafa@google.com>
+Subject: Re: [PATCH v3 05/13] iommupt/kunit: Skip test configs without
+ supported features
+Message-ID: <awUg0O0WQUBcuUvC@nvidia.com>
+References: <0-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
+ <5-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <5-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PEPF000001C3:EE_|DS5PPF5FAA0E762:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32ddf42d-090f-4d4b-6609-08df49ec02e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|82310400026|23010399003|36860700016|22082099003|18002099003|56012099006|11063799006|5023799004|4143699003|261009223027099003|261102123227099003|261026121527099003|261022075727099003|261026140227099003|261022105027099003|261021123027099003|261021121427099003|261021135927099003|10067099003|261028144727099003;
+X-Microsoft-Antispam-Message-Info: PD5ISDiQoFLLHzo4KlbJM2dkHLBbcslIaKm48MSpYixmIqetL7p55bF6twea4j5sbZPvHMXK/G226Ff7E84ImKaIUUCLTB5wGdCRj9RrVuz2MyiGUzJWPCaeOBaccsHKG1pi0etOQw/E15DFblRPY9UYbWxZ8lQ7Rkhy7x6cCLdsbCNTO8uu6piskuhitgfs2k4bhI5hxt1eaMzY8zEon2g9z4rHK2R0vHkD2a15tF4YUulfveABsqsXttwTBcqLAagzpwv4lOzNgFgOsWun5jU5DIaSMz2HK7lyVoXl+bfanAMM7iG3zOcKIer9Q4CYe725jpI8yI9nE+neHFY85OI/XminoOYeI4s4HFPHbmwC8nnG4qSd2TEwBdgE8ubZHwP+WyYqAz9HTqXRT1t8Ofg8CIR40/24kXADhtCvNMwrXm6RTovrYcQ5wqTOhgCxbTIB/WE7C8+D9Ky/co/lUmJj4uFemo3Z/gSWwa87foO0heD1GSNeHJ+whXMjSn8wqyv1QCgMM1QM3Q0sNCQMSaMCKzrZ1BA5+q9D86dIyLB3124E1WS3dW1dJXQX6miDyiYCfeSLaQD10cN0LeD1az60b1mMrhAWMV7Jrmvqgf8oDhUEmUumiD+ZXWasM6wig9hQiX445zEjBLpG8K3zv6yA6c2MpGVcjmaKSQlsQ9LYqCphJjZoTZ/iDDL1TcXikRqFvw1lBn3NaKHVt7GIOQ==
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(82310400026)(23010399003)(36860700016)(22082099003)(18002099003)(56012099006)(11063799006)(5023799004)(4143699003)(261009223027099003)(261102123227099003)(261026121527099003)(261022075727099003)(261026140227099003)(261022105027099003)(261021123027099003)(261021121427099003)(261021135927099003)(10067099003)(261028144727099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: iD9fBs5Tqp5Q/r8KVxu+4mcWayhfpS74hqDIG5EXU3bM8N3Y5WLNQDQZXKPJBxZHUjQffR1Ouz/hR8UFuo2xZNW+XJeZqjY+Wyd0zt/QpegDIM2VX9wvgmvNfpKcnx6ChVsi4M2JMK0W5yWdEZNR3pbM94wdDEkysP0Gr5EcccBBLoGYrrYJPm3YsggJI19Bpc2WgpZB6aCcjkMLwXcURyPAo8yxnyz1SHs3hJV6Rfg0UJmIuztD71GwqjDk6t5Rc3L93nWoA1N587x6wAwg/NGncjtcSR4kbvqKKWF2mrwY0JVPCgRKf7quWa6UTbdqjDLyKdAqkLAk3Bx4NxrkDFMzUVoMFI2r9/4BYD6lmnyQnHdKguDSFwgnui0ZG/gUogWX1ENSt5SdwLzAFpx8fqgLRDTV8Ak6CNBLpbei73u5dVEnvNA0O+/Rc2FpHc+e
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 05:30:11.8074
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32ddf42d-090f-4d4b-6609-08df49ec02e3
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS4PEPF000001C3.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF5FAA0E762
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_213023_631190_F3E76E1C 
+X-CRM114-Status: GOOD (  32.38  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,66 +133,183 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Alexey Kardashevskiy <aik@amd.com> writes:
+On Sun, Nov 15, 2026 at 07:30:35PM -0400, Jason Gunthorpe wrote:
+> Some of the tests configs can test features we don't currently enable,
+> like TTBR1 on ARMv8. Instead of blowing up, skip the test. When
+> CONFIG_DEBUG_GENERIC_PT is set all features are force enabled during
+> the build so everything can be tested. That is the normal mode for the
+> kunit.py runner.
+> 
+> Reviewed-by: Pranjal Shrivastava <praan@google.com>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/iommu/generic_pt/kunit_iommu.h | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/iommu/generic_pt/kunit_iommu.h b/drivers/iommu/generic_pt/kunit_iommu.h
+> index 79d7f9c8e7868f..558e161eacb05f 100644
+> --- a/drivers/iommu/generic_pt/kunit_iommu.h
+> +++ b/drivers/iommu/generic_pt/kunit_iommu.h
+> @@ -134,6 +134,16 @@ static int pt_kunit_priv_init(struct kunit *test, struct kunit_iommu_priv *priv)
+>  
+>  #ifdef kunit_fmt_cfgs
+>  	priv->cfg = kunit_fmt_cfgs[((uintptr_t)test->param_value) - 1];
+> +	/*
+> +	 * Without CONFIG_DEBUG_GENERIC_PT only the format's compiled-in
+> +	 * PT_SUPPORTED_FEATURES are available, so cfgs requesting bits outside
+> +	 * that set cannot be tested.
+> +	 */
+> +	if (priv->cfg.common.features & ~KUNIT_PT_SUPPORTED_FEATURES)
+> +		kunit_skip(
+> +			test,
+> +			"cfg requires features not built into this format (enable CONFIG_DEBUG_GENERIC_PT)");
 
-> On 16/11/26 19:19, Aneesh Kumar K.V (Arm) wrote:
->> This series adds IOMMUFD and PCI/TSM infrastructure for assigning PCI
->> devices to confidential guests. A TEE Security Manager (TSM) can provide a
->> virtual IOMMU (vIOMMU), and an IOMMUFD vDEVICE object represents a physical
->> device within that virtual IOMMU.
->> 
->> The series adds a common framework for operations on vDEVICE objects and
->> updates lifetime management to keep the VM and device-security resources
->> available while those objects are in use.
->> 
->> The Arm CCA backend is provided in a separate series, together with
->> operations for TEE Device Interface Security Protocol (TDISP) state changes
->> and access to cached device-attestation objects.
->> 
->> The full series, including the Arm CCA backend, is available at:
->
-> nah, it is not :(
->
->> 
->>    https://git.gitlab.arm.com/linux-arm/linux-cca.git cca/topics/7.4/tdisp-host-rc3
+The patch looks fine.
 
+But I tried iommu_pt_kunit_test on Grace with CONFIG_PAGE_SIZE_64KB
+and got this assertion:
 
-Can you use https://git.gitlab.arm.com/linux-arm/linux-cca.git cca/topics/7.4/cca-da-integration-v1
+------------------------------------------------------------
+ KTAP version 1
+ 1..6
+     KTAP version 1
+     # Subtest: amdv1_mock_iommu_test
+     # module: kunit_iommu_mock
+     1..7
+         KTAP version 1
+         # Subtest: test_increase_level
+         ok 1 amdv1_mock_cfg_0
+         ok 2 amdv1_mock_cfg_1 # SKIP max_vasz_lg2 fits in starting level, no growth possible
+     # test_increase_level: pass:1 fail:0 skip:1 total:2
+     ok 1 test_increase_level
+         KTAP version 1
+         # Subtest: test_map_simple
+         ok 1 amdv1_mock_cfg_0
+         ok 2 amdv1_mock_cfg_1
+     # test_map_simple: pass:2 fail:0 skip:0 total:2
+     ok 2 test_map_simple
+         KTAP version 1
+         # Subtest: test_map_table_to_oa
+     # test_map_table_to_oa: Test should be marked slow (runtime: 4.997639265s)
+     # test_map_table_to_oa: ASSERTION FAILED at drivers/iommu/generic_pt/fmt/../kunit_iommu_pt.h:473
+                   Expected priv->orig_nr_secondary_pagetable == global_node_page_state(NR_SECONDARY_PAGETABLE), but
+                       priv->orig_nr_secondary_pagetable == 157 (0x9d)
+                       global_node_page_state(NR_SECONDARY_PAGETABLE) == 174 (0xae)
+     # test_map_table_to_oa: test aborted during cleanup. continuing without cleaning up
+ [...and all other tests continued but all failed...]
+------------------------------------------------------------
 
+I asked AI to fix the issue, and it came up with a patch (attached).
+I wonder if it makes sense to you.
 
->> 
->> Notes:
->> * Codex was used to assist with commit message formatting and code
->>    rearrangement.
->> 
+Nicolin
 
- [ ... 148 lines skipped ... ] 
+From c7e0332ce5c2854e4ff23ac7cb024ad837d11986 Mon Sep 17 00:00:00 2001
+From: Nicolin Chen <nicolinc@nvidia.com>
+Date: Tue, 24 Nov 2026 04:41:11 +0000
+Subject: [PATCH] iommupt/kunit: Include per-CPU deltas in the leak check
 
->>   include/linux/tsm.h                           |  41 +-
->>   include/uapi/linux/iommufd.h                  |  36 +-
->>   25 files changed, 880 insertions(+), 462 deletions(-)
->> 
->> 
->> base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
->
-> This is v7.4-rc3.
->
->> prerequisite-patch-id: 121492d71cc22b2adbfdedd668868c5a449ad764
->> prerequisite-patch-id: ed31fd728f0adba3d60dcd6f3bae8da1a2193bcc
->
-> What are these two? Cannot find them any tree... I really want try this all but also trying to eliminate guessing...
->
+The leak check reads NR_SECONDARY_PAGETABLE with global_node_page_state().
+That only returns the global counter. Each CPU also keeps a small delta of
+page updates that is folded into the global counter only after it exceeds
+a threshold. So the value can be off by a few pages without any leak.
 
-Those prerequisite patches are from this series:
+On an arm64 KVM guest with 64 KiB pages, test_map_simple frees every page
+but still sees 5 extra pages. The assertion fails in the exit callback and
+aborts the cleanup. Then the dummy device stays registered, and every later
+test case fails to init with -EBUSY.
 
-https://lore.kernel.org/all/20261116075420.76205-1-aneesh.kumar@kernel.org
+Add pt_kunit_nr_secondary_pagetable(). It adds the per-CPU deltas of every
+node to the global counter. Use it for both the initial and the final read.
+The result is still a best-effort snapshot, because a concurrent fold can
+move a delta from a CPU to the global counter between the two reads.
 
--aneesh
+Also change the assertion into an expectation. A mismatch still fails the
+test case, but the exit callback now finishes its cleanup. So a mismatch no
+longer breaks the test cases that run after it.
+
+Fixes: bc5233c0904e ("iommupt: Add a kunit test for the IOMMU implementation")
+Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
+---
+ drivers/iommu/generic_pt/kunit_iommu.h    |  2 +-
+ drivers/iommu/generic_pt/kunit_iommu_pt.h | 29 +++++++++++++++++++----
+ 2 files changed, 26 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/iommu/generic_pt/kunit_iommu.h b/drivers/iommu/generic_pt/kunit_iommu.h
+index 558e161eacb05..3c098be0d8f3f 100644
+--- a/drivers/iommu/generic_pt/kunit_iommu.h
++++ b/drivers/iommu/generic_pt/kunit_iommu.h
+@@ -84,7 +84,7 @@ struct kunit_iommu_priv {
+ 	unsigned int largest_pgsz_lg2;
+ 	pt_oaddr_t test_oa;
+ 	pt_vaddr_t safe_pgsize_bitmap;
+-	unsigned long orig_nr_secondary_pagetable;
++	long orig_nr_secondary_pagetable;
+ 
+ };
+ PT_IOMMU_CHECK_DOMAIN(struct kunit_iommu_priv, fmt_table.iommu, domain);
+diff --git a/drivers/iommu/generic_pt/kunit_iommu_pt.h b/drivers/iommu/generic_pt/kunit_iommu_pt.h
+index 9fc71db74234d..29b882dd5b0ed 100644
+--- a/drivers/iommu/generic_pt/kunit_iommu_pt.h
++++ b/drivers/iommu/generic_pt/kunit_iommu_pt.h
+@@ -438,6 +438,28 @@ static struct kunit_case iommu_test_cases[] = {
+ 	{},
+ };
+ 
++/*
++ * global_node_page_state() only reads the global counter. Each CPU also keeps
++ * a small delta that might not be folded into the global counter yet. Add the
++ * deltas of every CPU on every node to get a closer count. This is still just
++ * a best-effort snapshot. A concurrent fold can move a delta between the reads.
++ */
++static long pt_kunit_nr_secondary_pagetable(void)
++{
++	const enum node_stat_item item = NR_SECONDARY_PAGETABLE;
++	long nr = atomic_long_read(&vm_node_stat[item]);
++	int nid, cpu;
++
++	for_each_online_node(nid) {
++		struct per_cpu_nodestat __percpu *stats =
++			NODE_DATA(nid)->per_cpu_nodestats;
++
++		for_each_online_cpu(cpu)
++			nr += per_cpu_ptr(stats, cpu)->vm_node_stat_diff[item];
++	}
++	return nr;
++}
++
+ static int pt_kunit_iommu_init(struct kunit *test)
+ {
+ 	struct kunit_iommu_priv *priv;
+@@ -447,8 +469,7 @@ static int pt_kunit_iommu_init(struct kunit *test)
+ 	if (!priv)
+ 		return -ENOMEM;
+ 
+-	priv->orig_nr_secondary_pagetable =
+-		global_node_page_state(NR_SECONDARY_PAGETABLE);
++	priv->orig_nr_secondary_pagetable = pt_kunit_nr_secondary_pagetable();
+ 	ret = pt_kunit_priv_init(test, priv);
+ 	if (ret) {
+ 		kunit_kfree(test, priv);
+@@ -470,8 +491,8 @@ static void pt_kunit_iommu_exit(struct kunit *test)
+ 	 * Look for memory leaks, assumes kunit is running isolated and nothing
+ 	 * else is using secondary page tables.
+ 	 */
+-	KUNIT_ASSERT_EQ(test, priv->orig_nr_secondary_pagetable,
+-			global_node_page_state(NR_SECONDARY_PAGETABLE));
++	KUNIT_EXPECT_EQ(test, priv->orig_nr_secondary_pagetable,
++			pt_kunit_nr_secondary_pagetable());
+ 	kunit_kfree(test, test->priv);
+ }
+ 
+-- 
+2.43.0
 
