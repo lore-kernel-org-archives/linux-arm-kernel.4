@@ -2,161 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A54B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E7F606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dfiHV3Ul;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=OSZwMIBe;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=OSZwMIBe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ipY3HZTO;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=VpXUiT/j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=XurDSaJFDtCL0Qtr6rT+mbuFXOvKqZ1PTXEZTYAGNgw=; b=dfiHV3UlmjvRs62FQ5NmZLNcco
-	84UlfgJwVMpyDE6GlTnSycPdi0+IK9LYal7ShiIWXIPmALIeR6oJwvs5UHA1AhsE9rh6bs5vVbnmk
-	QsZnKcK4JNYJ5PBsmfcVz5UBHm24iahuZ2NYHyXE3duj9sgnOCFXHwx13GpKj7F8ttMcYs+mtqlbD
-	GvxDhKDU4QdEG5/fZ7kaZXZNEES/Lt7A8Nrc+2DcHNvi7PbwkDg7m8iquga3ImdZx+J+tqgyOxAp1
-	OcEhGhIs50vW1xXWVAoJywIVF1ugZXDHdsRTcCPnJb1DIMDW7VHSwGZcRNLHYOuD2d4vaQeaZ+zJm
-	QHq2Cysw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=O3FlsByaFaxp+/zhfhE9AvQlMkAjbHT2mmcY3mRyRnk=; b=ipY3HZTOcsFplF
+	yFEreZfq2MiiRH9V6/QvXYgGwDb/J+e4/u5VZnWjFi7tnYjMCoHUNScB9rxVw3v3Elk6UEftblgHo
+	FHs4OVhEQMOOsSoFOfsC2vdaRLthNGnNdPrO3FB8fru3b9SmsyQMyH5YALkDk+pzMLDXHv5uMNdGV
+	UY6qp9EIxY55t2jFD/5YmCKVNYF9FowRdH027Q++/7adsnt0kupxjLJL6bgvPyrrfGi0HZy4Nk097
+	sdyT+FxpjgyLcjAlgLkLg1spC2EyCkLjFJf6bwTVSncUqYxtSszGDGR+sN1MzP7nX1DoWcO55ClS2
+	VDBLo0PUPilUQqBlMX3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmUh-00000006137-41Nr;
-	Tue, 24 Nov 2026 09:07:20 +0000
-Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	id 1xVmZn-000000061N7-02XG;
+	Tue, 24 Nov 2026 09:12:35 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmUf-0000000612k-3EJy
+	id 1xVmZk-000000061M9-1YQD
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 09:07:19 +0000
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=Up5r8MPyodWiPYH7t6ndh/CWhGwtm5DcCSe8n7ZXWsiz/ogmEwqunM2rxkUOA6gD6GXxfdf9O/6xi8+4lXz+/GWNhbQDiUenVLlAxnRue+q2yKsPPLBnWRLtaZp+ha/1ASxhJtzBs62xpF5K5lcmUls3bC/+l24Qb0iNRC4TP96M/x/4ve5QiGFozs8RfNAGyrRwN1WvqyTEgwqANAhAgOp3IFwU8gNlc3ttmkc8e4AcoTOe0XyB3mAxSuSTqzIUHsqVI0+MOTVtIfzUOiCXqPVDQ9RaaTXdGUDRl0VcQ73RBNXKyUYjFWPuXuD6SR2sZKoRv2jhU64we46BQggwmg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XurDSaJFDtCL0Qtr6rT+mbuFXOvKqZ1PTXEZTYAGNgw=;
- b=wRNWsZx+N/k+xv15/pNiNp/WGuoN3EftpXI/jGULwBvNCzcTDHHdti1sb0o0Ry8HWCBxmIr8Hp9C9YHA+IlgBQbSAek3CWuM8M8tMDA1vccD6QDws495+Q79WKOC399M59RInTqMW8ouL5iWqSeh+4U4gPWJ+VFQx1odTkeFWnNw8qsOOOSLCqLyAq2A/IYI60uaQ2Az2MQJKOO6MyDVgKG+nXU2OguY+MKGTL/ljdUQKT2SlfRJNm1qQaVq/JAm6L864P4xzY6JMjejUHF6TwDKTgw/RzxSczL6zVsiX1DLk4ab33vJu9wCzXrZ17IEx+4iwUsAZgrnkbCTpYgjcw==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=kernel.org smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XurDSaJFDtCL0Qtr6rT+mbuFXOvKqZ1PTXEZTYAGNgw=;
- b=OSZwMIBegRNzJH2SPGT02U9Nql68EXgnmu95HzWH0Ygapo5rXw1hp3d/ox4VdfYgc+m10qUNkVJwGQY01lUvkh+XNuTK9izAmJwlHW/k/P/kn7Tcza0G1yQviPIM9DZ/YudsKDDubLg827cjclbT3VoR9sipwXpzn/UH4uvemDQ=
-Received: from FR2P281CA0052.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:93::15)
- by AS1PR08MB7513.eurprd08.prod.outlook.com (2603:10a6:20b:480::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Tue, 24 Nov
- 2026 09:07:12 +0000
-Received: from MI3PEPF00008494.eurprd03.prod.outlook.com
- (2603:10a6:d10:93:cafe::6f) by FR2P281CA0052.outlook.office365.com
- (2603:10a6:d10:93::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Tue, 24
- Nov 2026 09:07:12 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- MI3PEPF00008494.mail.protection.outlook.com (10.167.240.155) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.5
- via Frontend Transport; Tue, 24 Nov 2026 09:07:11 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gIo1OEwCfHW7E1nVsQXjlfPva4lJMN5y5F5Wv5w08a9Tv2kNl16UnFOWTNNLVD72phWTQRJWh69bTsB4/CH94OG3rJ8dNVV5LZUhDFkgm6e7nmoHrbLHe9XpcWtuj/Kk+q/Q8y6N9efj7lEl7+RCtOll+wE6g7ShbSuhLOl2vcx1T542YSax4ZUJU95OBvbMqnTRSHR8eVuaqC+0hsQ4brkII/m6Lb/ObfWtG5wd/ry5YzVk6p69aMsNo2xxkw0IULLTwZpT0rU9ezuZhZJe/L6GdwDp9wl/vZp+0PreI/0EJdeqk3Ir8wcgj9Gi40mlHSR4jWzrr39KXn03I7JWDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XurDSaJFDtCL0Qtr6rT+mbuFXOvKqZ1PTXEZTYAGNgw=;
- b=ofldfQcIrm4vUaljro+T9bNwOmPqn93olNgXKdGX0fTWchluoBItjr/Uy4TpVm2v0R1JTSGiSrqb/3RreFk26Xs1nIMG+ULUadcaxezeTZkHQMLaHt+GHI6d/XSyuW+g60D0h61sO1pDR2XiH49VXpZEOCHn7Io2aETfYxG1PWkQjvVcQJcVVpA32GEXqMh0OUToDUucDezCNcwp5VWnaxNDiA9ZlE0Tp+4mOLnKxBdPUPai680i53v94cWyS6g+Qv2AR2/ht8jK/CeRg7USyKblyXwwqvbIQOsdeqBcPiHn7GX5HSs6sWwkWATSbJf+qtaBas2NlsvtxoqvH3KfVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XurDSaJFDtCL0Qtr6rT+mbuFXOvKqZ1PTXEZTYAGNgw=;
- b=OSZwMIBegRNzJH2SPGT02U9Nql68EXgnmu95HzWH0Ygapo5rXw1hp3d/ox4VdfYgc+m10qUNkVJwGQY01lUvkh+XNuTK9izAmJwlHW/k/P/kn7Tcza0G1yQviPIM9DZ/YudsKDDubLg827cjclbT3VoR9sipwXpzn/UH4uvemDQ=
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com (2603:10a6:20b:605::22)
- by DU2PR08MB10087.eurprd08.prod.outlook.com (2603:10a6:10:491::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
- 2026 09:06:33 +0000
-Received: from AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155]) by AS2PR08MB9786.eurprd08.prod.outlook.com
- ([fe80::d721:dfdb:2f83:155%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 09:06:32 +0000
-From: Justin He <Justin.He@arm.com>
-To: Marc Zyngier <maz@kernel.org>
-CC: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>, Joey
- Gouly <Joey.Gouly@arm.com>, Steffen Eiden <seiden@linux.ibm.com>, Suzuki
- Poulose <Suzuki.Poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, Catalin
- Marinas <Catalin.Marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
- Rutland <Mark.Rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>, Sean
- Christopherson <seanjc@google.com>, Shuah Khan <shuah@kernel.org>, Sascha
- Bischoff <Sascha.Bischoff@arm.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
-	<kvmarm@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>, Lorenzo
- Stoakes <ljs@kernel.org>
-Subject: RE: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before
- first run
-Thread-Topic: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before
- first run
-Thread-Index: AQHde1zAtBC9mmT//0CTNvJgc0eqU7c75woAgAEFy5A=
-Date: Tue, 24 Nov 2026 09:06:32 +0000
-Message-ID: <AS2PR08MB97865A914C46DA0CE54F9197F7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
-References: <20261123150917.2679600-1-justin.he@arm.com>
-	<20261123150917.2679600-2-justin.he@arm.com> <86eccbzcqh.wl-maz@kernel.org>
-In-Reply-To: <86eccbzcqh.wl-maz@kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: AS2PR08MB9786:EE_|DU2PR08MB10087:EE_|MI3PEPF00008494:EE_|AS1PR08MB7513:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40ceeec9-9739-4df4-3271-08df4a0a5365
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|7416014|1800799024|376014|366016|38070700021|261102123227099003|261022075727099003|261021121427099003|11063799006|4143699003|56012099006|10067099003|261009223027099003|18002099003|6133799003|22082099003;
-X-Microsoft-Antispam-Message-Info-Original: UzFAFwxzkAgeZZU1L/ra8lx5Vii4oLpQ6mXOlR2gbpkRiqWt31mDZ8Mb4QGD6H6Nmiea/P2DGyhYL5DegH0nMAGTfhhnwyeH9aX79hi8wwRrb2cO0ljwuo9Yxr+9ACS0BkuE/U+wQTQGjFq6GcothEj527kHL6ZHzW+ZoYQX14Gjjkjtr3rl0eGHvl2qKi6XyBJIDhRjDGh3G4jXC0zCSSlSeuS0tV3vdjKtYdpfAZS1BEF77kReRZBQt2Lg2lRNaMbtONABCo2j5PMUwH1feI+eopokaseFdgoFydsASU77X6TYEJeSVY8ICiJaJ7qvLjjjTO3BfXtPMC+RCf/VIrcRJ5TUTRYctd07cx9L8LjBIYyX/2pL9grek/ZtxyeKmQAo68IzXALa3NKwFGOn4MM2KlDpqVOScu/yFunyKrtWGO0h5tqqJQcH9x4c2UJpJBCAFsJSjaVzxvWkXt4e3J9fczfCG9+beeozbBVNRbhL/OpItUxddl4Jw7WMGehYggt/ZMfb5KgJwt//+SNmVOy+7oRhniz4MH3CLJcD8R8BcVm9UyPni1DKyj8n+4M7nJXB6u10L3elcrsIXaZLGF+cD/CeoRd1aW6oM+4958qJ8gOZZ+bFTLKYPcNRn7Cexcnv7hH1S0NpKOg3CPTF5jscZuMbghb8g+Dea2ICTer/LGi7Mj4Bz3xxutKlu1LmAa5aRC0c2jnkaEoMCbh7x6gglRm49g1EstscDr2OfUE=
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR08MB9786.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(1800799024)(376014)(366016)(38070700021)(261102123227099003)(261022075727099003)(261021121427099003)(11063799006)(4143699003)(56012099006)(10067099003)(261009223027099003)(18002099003)(6133799003)(22082099003);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	Tue, 24 Nov 2026 09:12:34 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id F02821A17B5;
+	Tue, 24 Nov 2026 09:12:30 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C6976601E1;
+	Tue, 24 Nov 2026 09:12:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1A6AC11E684FB;
+	Tue, 24 Nov 2026 10:12:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795511549; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=O3FlsByaFaxp+/zhfhE9AvQlMkAjbHT2mmcY3mRyRnk=;
+	b=VpXUiT/jktqRSQXuDH6sQbg6irOkH+DCmmwzTlSxn2F4uN2KE68HK8ubFpJIGhMUtroJoS
+	76er0YaIPvGFqYQpRYODPZQX2UlUIMt27K8XlBCOGr9E+HTAxFMrZyLVKnCJ+9WB08RE24
+	mwfSAfYetNQnc0CRquLDAu7iVzWzn9rBQ8XnYY8ANgdMitv5oKk+oEwm2uJ+V7vUDK5sWT
+	C4TpqAsRsAtWlH2PhSEs79MUVIeFqlTzM/pVX4CcgwUKdOIqzLu22CWfVSFesJ7HaVBlRv
+	OSZ2kZVszKU4p4IphjYEsqPpNPwkjua+yN0d30byQp0wy+5ddSEz78tGq3I2wQ==
+From: "Richard Genoud (TI)" <richard.genoud@bootlin.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Udit Kumar <u-kumar1@ti.com>,
+	Abhash Kumar <a-kumar2@ti.com>,
+	Beleswar Padhi <b-padhi@ti.com>,
+	Thomas Richard <thomas.richard@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Richard Genoud <richard.genoud@bootlin.com>
+Subject: [PATCH v7 2/6] remoteproc: k3: skip mapping firewalled lpm-metadata memory region
+Date: Tue, 24 Nov 2026 10:12:17 +0100
+Message-ID: <20261124091221.2593576-3-richard.genoud@bootlin.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261124091221.2593576-1-richard.genoud@bootlin.com>
+References: <20261124091221.2593576-1-richard.genoud@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: eJ0d/5obHVqNPHQCBvshMMxGV7c9PjZe1a7UJ0emd30qCNUPvaUDEMuPp3R0cF98RryvLRNEeqXhpel+1g54A4KJsaItvaWGpPfI8x1MJOPpP2W6HYeHNk0xa+PUtQHtCkojXZUNHPSP0p4RzdsXSkIw8tCq5mlfdhYuBcXbpior7J1x9zAKeK384IkELuVJs+r72sQU/ZVYtCZgyBntkzKwtf6bOA7h3u9DqFcELFd+UtF+6/GjLQzVN/ghAVrC/JD+HK/wK+YxDMudGtBiF6ZN0s/Ve5+UQSq8YlIFyPca6WndKgDu7CKZW/QBtmmICM0bOVaqMm+GYLi52RrB9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR08MB10087
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: MI3PEPF00008494.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 17466ea9-a3c2-4be8-8fb0-08df4a0a3c21
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|35042699022|36860700016|82310400026|1800799024|14060799003|23010399003|7416014|22082099003|6133799003|261102123227099003|18002099003|261022075727099003|11063799006|261021121427099003|4143699003|261009223027099003|10067099003|56012099006;
-X-Microsoft-Antispam-Message-Info: VUv/K3wckuqezWgRebR2iSdTTLuYxnRkGgTiKEmaKTWSX8/bouLKJg5sLlibZkObRz9xULIfkCHd2TXqT9vDs5hWpsTGT0FbdWrkMOlvQ2RgLo41ZZfKgo/6hlNXXzrlGExMvtxdrxWf6QckZeoQpIt0cylUrR9EmoRR7YKVbIV9K5xYeIRyXko4n3uW4ANDSolEg5+RAKxePHzgj/qX9Wv8/ibs3jwRqdyeFyXOsBctBji6fvp1F2Tu/JAQBFUQQZfM5Gf7YvKBK2jvK0H1ZAWiOdZt7NyXK81EhPM1R2G5bPxGe70EirTacO1zkqENcZC8BAubRbOLQHoigwOAgPD58q+4Dmj2dFOp2tx2DECC9zAD21KU7ZlvDw2U3Tu9+Krh0+CzyzQwZ4auwG6mpbRqTkLTPsgGbSY6amTR5G+Poy60eVyjAhz8hWLuDBa5k6XW+FMao0b050Fa4/Qfp56NcmFtcEfFZT9VuyFAR3D3ijeOy7eBKXF7bPGwFQZLTdRBMC3PPjR2XNYJD/afw8SKJWziuu7eGgx75qGye/HewL3FG5/ZMRX+AEHGGKikviFTsZkoj+Fe8pfCNA3k2gb7sHFytVwie/vPGbnn3EKTaDvEW1xjrKt2ZobGwPLPJVLzAc7lP7CuboT7WksEQWtKoADo3rE67elLj1b9n1TYm+xF7297JKDmJwYphmfH8lWVVJabzbeKx1xRO8nePA==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(35042699022)(36860700016)(82310400026)(1800799024)(14060799003)(23010399003)(7416014)(22082099003)(6133799003)(261102123227099003)(18002099003)(261022075727099003)(11063799006)(261021121427099003)(4143699003)(261009223027099003)(10067099003)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: a/v9oePaAxpAh/xEIhbnQrQGjhjFXDRtCGEp9C/eMWkZIVtiwTwQhwrSoe1OidoyyWQPRok0trgY8wT81d5eIVptqWVFxt9DA1UOhel8GZzIE2i+RFpnz2DbgKq5nIaHlEpvjxhmlZNahUbQbDOVJGlToOA9g88TYLe0cY+k69aJDcjfCS3yjMmLc9jmbCrbGqdUOzmnsk6L3M7GOB6GJ5v0misyq45ntGURtCAQ0ICfDk0I2kt6SJ0rypJek9lUC2WKE1WK71caHv9t4UO/Rk5jMBkBgqD9JymsCDi/ZxP0W6+OaEZ+8nxC6IWgqa9AnlDRrgHapflQcn7fZKO0hu51eC0yvDRH0iBuWCB8YkSZa4QwCHLJTHhq+1EsNxZN5M6siSEPIjt8Cjq1D3HuAgpbBwUlb+CZQ4HtUin5oJ2MthnMxwFYkhCw0rOCZNuk
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 09:07:11.7473
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40ceeec9-9739-4df4-3271-08df4a0a5365
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF00008494.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR08MB7513
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_010717_809877_60316B9E 
-X-CRM114-Status: GOOD (  13.65  )
+X-CRM114-CacheID: sfid-20261124_011232_543464_E6169828 
+X-CRM114-Status: GOOD (  15.14  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -168,39 +86,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The region lpm-metadata is firewalled by TIFS on Jacinto devices, so it
+should not be mapped to prevent speculative access crashes
 
+Just skip this memory region during initialization.
 
-> -----Original Message-----
-[...]
-> On Mon, 23 Nov 2026 15:09:15 +0000,
-> Jia He <justin.he@arm.com> wrote:
-> >
-> > KVM_PRE_FAULT_MEMORY calls vcpu_load() as soon as
-> KVM_ARM_VCPU_INIT has
-> > completed. On arm64, however, kvm->arch.sysreg_masks, the trap
-> > configuration, vncr_tlb and nested vGIC state are only set up on the
-> > first KVM_RUN in kvm_arch_vcpu_run_pid_change().
->=20
-> I think I'm going to queue a patch disabling prefaulting immediately,
-> and then we can fix this crap.
+Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
+---
+ drivers/remoteproc/ti_k3_common.c | 36 +++++++++++++++++++++----------
+ 1 file changed, 25 insertions(+), 11 deletions(-)
 
-I can still reproduce the same vncr_tlb NULL dereference with prefaulting
-disabled. On kvmarm/fixes, commit 5651590be08a ("KVM: arm64: Load the vcpu
-in KVM_SET_VCPU_EVENTS") added a vcpu_load() call to KVM_SET_VCPU_EVENTS.
-A single KVM_SET_VCPU_EVENTS with an all-zero struct kvm_vcpu_events,
-issued before the first KVM_RUN, is enough to trigger it.
-For v2, I'll build on your patch and use vcpu_has_run_once() to gate the
-arch load/put paths for both ioctls.
-
-___=A0
-Best Regards,
-Jia He (Justin)
-
+diff --git a/drivers/remoteproc/ti_k3_common.c b/drivers/remoteproc/ti_k3_common.c
+index f79ccb57a372..5b7881263b8c 100644
+--- a/drivers/remoteproc/ti_k3_common.c
++++ b/drivers/remoteproc/ti_k3_common.c
+@@ -464,7 +464,7 @@ int k3_reserved_mem_init(struct k3_rproc *kproc)
+ 	struct device *dev = kproc->dev;
+ 	struct device_node *np = dev->of_node;
+ 	int num_rmems;
+-	int ret, i;
++	int ret, i, j;
+ 
+ 	num_rmems = of_reserved_mem_region_count(np);
+ 	if (num_rmems < 0) {
+@@ -494,30 +494,44 @@ int k3_reserved_mem_init(struct k3_rproc *kproc)
+ 		return -ENOMEM;
+ 
+ 	/* use remaining reserved memory regions for static carveouts */
+-	for (i = 0; i < num_rmems; i++) {
++	for (j = 0, i = 0; i < num_rmems; i++) {
+ 		struct resource res;
++		const char *region_name;
+ 
+ 		ret = of_reserved_mem_region_to_resource(np, i + 1, &res);
+ 		if (ret)
+ 			return ret;
+ 
+-		kproc->rmem[i].bus_addr = res.start;
++		ret = of_property_read_string_index(np, "memory-region-names",
++						    i + 1, &region_name);
++		/*
++		 * lpm-metadata is a firewalled region accessible only by TIFS.
++		 * Skip mapping it to avoid speculative access crashes.
++		 */
++		if (!ret && !strcmp(region_name, "lpm-metadata")) {
++			dev_dbg(dev, "Skipping firewalled memory region %s %pR\n",
++				region_name, &res);
++			continue;
++		}
++
++		kproc->rmem[j].bus_addr = res.start;
+ 		/* 64-bit address regions currently not supported */
+-		kproc->rmem[i].dev_addr = (u32)res.start;
+-		kproc->rmem[i].size = resource_size(&res);
+-		kproc->rmem[i].cpu_addr = devm_ioremap_resource_wc(dev, &res);
+-		if (IS_ERR(kproc->rmem[i].cpu_addr)) {
++		kproc->rmem[j].dev_addr = (u32)res.start;
++		kproc->rmem[j].size = resource_size(&res);
++		kproc->rmem[j].cpu_addr = devm_ioremap_resource_wc(dev, &res);
++		if (IS_ERR(kproc->rmem[j].cpu_addr)) {
+ 			dev_err(dev, "failed to map reserved memory#%d at %pR\n",
+ 				i + 1, &res);
+ 			return -ENOMEM;
+ 		}
+ 
+ 		dev_dbg(dev, "reserved memory%d: bus addr %pa size 0x%zx va %p da 0x%x\n",
+-			i + 1, &kproc->rmem[i].bus_addr,
+-			kproc->rmem[i].size, kproc->rmem[i].cpu_addr,
+-			kproc->rmem[i].dev_addr);
++			j + 1, &kproc->rmem[j].bus_addr,
++			kproc->rmem[j].size, kproc->rmem[j].cpu_addr,
++			kproc->rmem[j].dev_addr);
++		j++;
+ 	}
+-	kproc->num_rmems = num_rmems;
++	kproc->num_rmems = j;
+ 
+ 	return 0;
+ }
 
