@@ -2,77 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC35C606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3276606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Na5psNDh;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=1CAJSnG1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HELo9NWF;
+	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=qWX2bgYw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
+	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=c1HOxMuYKuoArDY4hj9EKVaYu4WN3Ht8vy7fCi0dpLY=; b=Na5psNDhV9lV94
-	d6WFYsnrFdo54fE2UE7HWlV9ECHLyx/P8oCE8JCmJSsQaTq8gLLLyL4s2f7HrG4xALFLNpXrvIE+t
-	Ju15ghpM+gnUWK+kTv8bsZ59TdWkF0iEh+3iAZgfXLSfxcR1rdrH0f6e1WLKHR+LKPwoORWtpdVV6
-	Mcp13tvx2ttSCZ04k0JLxwDw0T8CFh50ZAzDh8pemJNUavAQxc9yVnk9CSmDNfDFAXUE0LiM+Aprc
-	JH5tabnpFXotr2LA4ZKu1RKAmhjIK1COJzQSaBaad+r5aCyUelKPYeLIyc//zHVjdrVGl9lBInWwd
-	WSTiPv2eFjp/i9pSfn0g==;
+	List-Owner; bh=5CJANeA2ON+YlQW2j7eJ1/GHr+S6g6Lga9FVar8L/40=; b=HELo9NWFq7gHP6
+	xwHi3SS1nnKYRwLO6LA5q+MBuE3D36zyDMm2wOlLtu6M2/YNB7bU7dO7/HGKHQ67t//EqZEztJvR1
+	Ll5CVetJvsCB8OancSJP2FCb6++LM6kh4waZ7L+1OnMv+ltaN8Cb/p4ldjKJBnsJ8b1iFZr+bjTgQ
+	yBtnyzxJAhJt1MY8jbQLLt+KEOvAKyIaTJ5e5x30SeEGQDONpL/Wsi0ZFEmg83QCQdugIT/c00BVb
+	82FGimJEj7iJBHlv8LmJEcEYiw+24Kl2fcB7ZfeDPmadA/aL8uxVIBrUealhwkFI+6h0kzXSYnI06
+	/7v3LPmmRsOz0WFlaS4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtwH-00000007FoF-452n;
-	Tue, 24 Nov 2026 17:04:17 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xVssL-000000070K5-06xF;
+	Tue, 24 Nov 2026 15:56:09 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtwF-00000007Fnt-3rH4
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:04:17 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id DB5EE4E41760;
-	Tue, 24 Nov 2026 17:04:13 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 97204601E1;
-	Tue, 24 Nov 2026 17:04:13 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BF96611E69AA1;
-	Tue, 24 Nov 2026 18:04:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795539848; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=c1HOxMuYKuoArDY4hj9EKVaYu4WN3Ht8vy7fCi0dpLY=;
-	b=1CAJSnG1PbsB6IH51R2E8isIa0FWlUatgjcLmzqB3rrZJuInxCWjyuqoIP+vbipsVvjL9y
-	Myh5tOCC3d8LiYptOqAkh/NtGAJ6IzNGWdFf5EByfpA3FrqnCKvXWmBT7J3XO44NLQq4yn
-	4RyRsMyARRYfFC7nVlGmOVM2sMe07oHLBwmAjm5wywTSbVLtwAmwXwMaxXNFdb9n7akzbY
-	6sJHrA+0GVBzd37/XFmEmaXGT4kSO4mFOW90HUO2RDem85ZJNNf6fOgZaQKxHcc431s7p0
-	DSiFDl9T3/rT+S5x6fTNO4PpEWgR0BbIPRYh6lTaqhIBDDYJB0L5UXQvjCyeAA==
-Message-ID: <7ff51c46-7c56-49a7-b51b-468c1df82755@bootlin.com>
-Date: Tue, 24 Nov 2026 18:04:02 +0100
+	id 1xVsqc-00000006yPB-04q8;
+	Tue, 24 Nov 2026 15:54:26 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261124155420euoutp02ed0ecbaab92d1c1cf87102c5dc34c838~rBit0TbQu0431004310euoutp02Z;
+	Tue, 24 Nov 2026 15:54:20 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261124155420euoutp02ed0ecbaab92d1c1cf87102c5dc34c838~rBit0TbQu0431004310euoutp02Z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1795535660;
+	bh=5CJANeA2ON+YlQW2j7eJ1/GHr+S6g6Lga9FVar8L/40=;
+	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
+	b=qWX2bgYw2t+0Nqlg6Vnkcux4xnPMv/lYfTLNK3NDN0nKRYZAYMh78BetiPcK7yBtd
+	 hn4o5g4rX5zGF+HKrY1RDJEde5mrGzrMr6ga4x8FLAtNk93UoiacMPRQTAgpcel30f
+	 3RkeLXaBY+eIcIBs5opNjLEQPpwwp/EhNqQ1lOfU=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20261124155419eucas1p1be4546e9ca9aa75f3f98c9a63d7e8ae6~rBithxDoI0891008910eucas1p1X;
+	Tue, 24 Nov 2026 15:54:19 +0000 (GMT)
+Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
+	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20261124155418eusmtip1a63961ed3150b3c24dc76d254ccce2ed~rBir2paU90146501465eusmtip1e;
+	Tue, 24 Nov 2026 15:54:17 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+Date: Tue, 24 Nov 2026 16:52:47 +0100
+Subject: [PATCH v8 11/18] drm/bridge: inno-hdmi: Make the PHY configuration
+ table optional
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 2/2] net: stmmac: dwmac-motorcomm: support
- Wake-on-LAN from S5
-To: Magnus Leatti <magnusleatti@kernelriot.com>, Yao Zi <me@ziyao.cc>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Nespolino <g.nespolino@gmail.com>, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261120102754.778283-1-magnusleatti@kernelriot.com>
- <20261120102754.778283-3-magnusleatti@kernelriot.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20261120102754.778283-3-magnusleatti@kernelriot.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Message-Id: <20261124-jh7110-clean-send-v8-11-de92635dd857@samsung.com>
+In-Reply-To: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,  Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Robert Foss
+	<rfoss@kernel.org>,  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>,  Luca Ceresoli
+	<luca.ceresoli@bootlin.com>,  Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,  Philipp Zabel
+	<p.zabel@pengutronix.de>,  Emil Renner Berthing <kernel@esmil.dk>,  Hal Feng
+	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>,  Paul
+	Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Dominique
+	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>,  David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Yakir Yang
+	<kuankuan.y@gmail.com>,  Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>,  Michal Wilczynski
+	<m.wilczynski@samsung.com>,  Conor Dooley <conor@kernel.org>, William Qiu
+	<william.qiu@starfivetech.com>,  Xingyu Wu <xingyu.wu@starfivetech.com>,
+	Sandy Huang <hjc@rock-chips.com>,  Manivannan Sadhasivam <mani@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,  Marek
+	Szyprowski <m.szyprowski@samsung.com>,  Maud Spierings
+	<maud_spierings@murena.io>,  Graham Markall <hello@big-grey.co.uk>,  Icenowy
+	Zheng <zhengxingda@iscas.ac.cn>,  Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	Joshua Peisach <jpeisach@ubuntu.com>,  =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>,  Cristian Ciocaltea
+	<cristian.ciocaltea@collabora.com>,  Byron Stanoszek <gandalf@winds.org>,
+	Owen O'Hehir <oo.hehir@gmail.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3000;
+	i=m.wilczynski@samsung.com; h=from:subject:message-id;
+	bh=/L2+KcjssdSwNg9HKRbt0chlmto0vxPs1WCA0fQ47cM=;
+	b=owGbwMvMwCGWumv6zndzRCIZT6slMWSzbhZVZo7bGTuncVHhR/bFtvafl5zyFOyb4h4p/r/st
+	pzQwb6fHaUsDGIcDLJiiixnN0YbSf5jeFp+/PEvmDmsTCBDGLg4BWAiU1Yy/Pe5MnWd77MT5Yuy
+	wuK2OCf2R7FIyIbMOlWTeqHoPT97VgQjQ/PbjrUTjuUe9lpaffSn4Rah5K/ncpZ7+dhtfprLfvS
+	AJSsA
+X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
+	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
+X-CMS-MailID: 20261124155419eucas1p1be4546e9ca9aa75f3f98c9a63d7e8ae6
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261124155419eucas1p1be4546e9ca9aa75f3f98c9a63d7e8ae6
+X-EPHeader: CA
+X-CMS-RootMailID: 20261124155419eucas1p1be4546e9ca9aa75f3f98c9a63d7e8ae6
+References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+	<CGME20261124155419eucas1p1be4546e9ca9aa75f3f98c9a63d7e8ae6@eucas1p1.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_090416_132388_6B339F49 
-X-CRM114-Status: GOOD (  29.01  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_075423_045787_D6AC3F14 
+X-CRM114-Status: GOOD (  15.44  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,127 +115,92 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The pre-emphasis and drive-strength values in inno_hdmi_phy_config, and
+the registers they are written to, belong to the PHY integrated into the
+controller. A platform whose PHY is a separate device has neither, and
+its own .mode_valid already validates the pixel clock against the real
+PHY, so the table only bounds the generic check.
 
+Let such a platform omit the table: skip the table-driven pre-emphasis
+and drive-strength writes in the power-up path and the table lookup in
+.mode_valid when it is absent. Platforms that supply one are unaffected.
 
-On 11/20/26 11:27, Magnus Leatti wrote:
-> "wol g" is accepted, but the chip sleeps right through magic packets
-> in S5: motorcomm_init() turns OOB WoL off and nothing turns it back on
-> at power-off.
-> 
-> Turns out the chip can just arm itself. Hit it with a reset, OOB WoL
-> comes right back on, and about 2-3 s later it has the PHY up, receiver
-> running, the eFuse address loaded into the first MAC filter, and PMT
-> ready for magic packets. Timed that from userspace without a driver
-> bound.
-> 
-> So on a power-off with "wol g": remove, reset, set WOL_CTRL_PKT_EN
-> again because the reset clears it, enable PME, D3hot.
-> 
-> Notes:
-> 
->  - It wakes on the eFuse address, not the software one. Same as r8169.
->  - Magic packets only. "wol u", reboot, kexec and interface down stop
->    at the remove.
->  - Hibernation that powers off through .shutdown arms too, and resume
->    copes without a reset. Tried twice: woke on the packet, link back.
->  - After a power loss (cable out and back in, BIOS set to stay off) it
->    won't wake until the next clean shutdown. The vendor driver does
->    the same, so that's the hardware.
-> 
-> With this the box wakes on a magic packet to the eFuse address, 5 of
-> 5. Without it, 0 of 3.
-> 
-> Suggested-by: Yao Zi <me@ziyao.cc>
-> Signed-off-by: Magnus Leatti <magnusleatti@kernelriot.com>
+Tested-by: Byron Stanoszek <gandalf@winds.org>
+Tested-by: Owen O'Hehir <oo.hehir@gmail.com>
+Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+---
+ drivers/gpu/drm/bridge/inno-hdmi.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-My PCI-fu isn't that great, but LGTM. I would have liked to test, but
-my motorcomm PCIe card let out the magic smoke yesterday :(
+diff --git a/drivers/gpu/drm/bridge/inno-hdmi.c b/drivers/gpu/drm/bridge/inno-hdmi.c
+index 0932ec47f151b531f63e7c42c715a6ae7fe252fd..19cea14d142667f7f4534db8fbcf7806f2f37943 100644
+--- a/drivers/gpu/drm/bridge/inno-hdmi.c
++++ b/drivers/gpu/drm/bridge/inno-hdmi.c
+@@ -533,8 +533,14 @@ static void inno_hdmi_power_up(struct inno_hdmi *hdmi,
+ 			       unsigned long mpixelclock)
+ {
+ 	struct inno_hdmi_phy_config *phy_config;
+-	int ret = inno_hdmi_find_phy_config(hdmi, mpixelclock);
++	int ret;
++
++	inno_hdmi_sys_power(hdmi, false);
++
++	if (!hdmi->plat_data->phy_configs)
++		goto out;
+ 
++	ret = inno_hdmi_find_phy_config(hdmi, mpixelclock);
+ 	if (ret < 0) {
+ 		phy_config = hdmi->plat_data->default_phy_config;
+ 		DRM_DEV_ERROR(hdmi->dev,
+@@ -544,8 +550,6 @@ static void inno_hdmi_power_up(struct inno_hdmi *hdmi,
+ 		phy_config = &hdmi->plat_data->phy_configs[ret];
+ 	}
+ 
+-	inno_hdmi_sys_power(hdmi, false);
+-
+ 	hdmi_writeb(hdmi, HDMI_PHY_PRE_EMPHASIS, phy_config->pre_emphasis);
+ 	hdmi_writeb(hdmi, HDMI_PHY_DRIVER, phy_config->voltage_level_control);
+ 	hdmi_writeb(hdmi, HDMI_PHY_SYS_CTL, 0x15);
+@@ -555,6 +559,7 @@ static void inno_hdmi_power_up(struct inno_hdmi *hdmi,
+ 	hdmi_writeb(hdmi, HDMI_PHY_SYNC, 0x00);
+ 	hdmi_writeb(hdmi, HDMI_PHY_SYNC, 0x01);
+ 
++out:
+ 	inno_hdmi_sys_power(hdmi, true);
+ };
+ 
+@@ -831,7 +836,8 @@ static enum drm_mode_status inno_hdmi_bridge_mode_valid(struct drm_bridge *bridg
+ 	if (mpixelclk < HDMI_TMDS_CHAR_RATE_MIN_HZ)
+ 		return MODE_CLOCK_LOW;
+ 
+-	if (inno_hdmi_find_phy_config(hdmi, mpixelclk) < 0)
++	if (hdmi->plat_data->phy_configs &&
++	    inno_hdmi_find_phy_config(hdmi, mpixelclk) < 0)
+ 		return MODE_CLOCK_HIGH;
+ 
+ 	if (plat_ops && plat_ops->mode_valid) {
+@@ -1108,11 +1114,6 @@ struct inno_hdmi *inno_hdmi_probe(struct platform_device *pdev,
+ 	int irq;
+ 	int ret;
+ 
+-	if (!plat_data->phy_configs || !plat_data->default_phy_config) {
+-		dev_err(dev, "Missing platform PHY ops\n");
+-		return ERR_PTR(-ENODEV);
+-	}
+-
+ 	hdmi = devm_drm_bridge_alloc(dev, struct inno_hdmi, bridge, &inno_hdmi_bridge_funcs);
+ 	if (IS_ERR(hdmi))
+ 		return ERR_CAST(hdmi);
 
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-
-Maxime
-
-> ---
->  .../ethernet/stmicro/stmmac/dwmac-motorcomm.c | 38 ++++++++++++++++++-
->  1 file changed, 37 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c
-> index 63ce2301a0f6..34abbdb645ec 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-motorcomm.c
-> @@ -12,6 +12,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/pci.h>
-> +#include <linux/rtnetlink.h>
->  #include <linux/slab.h>
->  #include <linux/stmmac.h>
->  
-> @@ -27,6 +28,9 @@
->  #define EPHY_CTRL				0x1004
->  /* Clearing this bit asserts resets for internal MDIO bus and PHY */
->  #define  EPHY_MDIO_PHY_RESET			BIT(0)
-> +#define WOL_CTRL				0x100c
-> +/* Magic and remote wake-up packet enable */
-> +#define  WOL_CTRL_PKT_EN			BIT(1)
->  #define OOB_WOL_CTRL				0x1010
->  #define  OOB_WOL_CTRL_DIS			BIT(0)
->  #define MGMT_INT_CTRL0				0x1100
-> @@ -363,6 +367,38 @@ static void motorcomm_remove(struct pci_dev *pdev)
->  	stmmac_dvr_remove(&pdev->dev);
->  }
->  
-> +static void motorcomm_shutdown(struct pci_dev *pdev)
-> +{
-> +	struct net_device *ndev = dev_get_drvdata(&pdev->dev);
-> +	struct stmmac_priv *spriv = netdev_priv(ndev);
-> +	struct dwmac_motorcomm_priv *priv = spriv->plat->bsp_priv;
-> +	bool wake;
-> +	u32 reg;
-> +
-> +	/* Userspace is still running and may close the interface */
-> +	rtnl_lock();
-> +	wake = system_state == SYSTEM_POWER_OFF && netif_running(ndev) &&
-> +	       (spriv->wolopts & WAKE_MAGIC) && device_may_wakeup(&pdev->dev);
-> +	rtnl_unlock();
-> +
-> +	/* The netdev is unregistered after this. priv and its mapping stay. */
-> +	stmmac_dvr_remove(&pdev->dev);
-> +
-> +	if (!wake)
-> +		return;
-> +
-> +	/* Reset re-enables OOB WoL; left alone, chip arms itself (eFuse MAC) */
-> +	motorcomm_reset(priv);
-> +
-> +	/* The reset has cleared it. Without it the chip does not wake. */
-> +	reg = readl(priv->base + WOL_CTRL);
-> +	reg |= WOL_CTRL_PKT_EN;
-> +	writel(reg, priv->base + WOL_CTRL);
-> +
-> +	pci_wake_from_d3(pdev, true);
-> +	pci_set_power_state(pdev, PCI_D3hot);
-> +}
-> +
->  static const struct pci_device_id dwmac_motorcomm_pci_id_table[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_MOTORCOMM, 0x6801) },
->  	{ },
-> @@ -374,7 +410,7 @@ static struct pci_driver dwmac_motorcomm_pci_driver = {
->  	.id_table = dwmac_motorcomm_pci_id_table,
->  	.probe = motorcomm_probe,
->  	.remove = motorcomm_remove,
-> -	.shutdown = motorcomm_remove,
-> +	.shutdown = motorcomm_shutdown,
->  	.driver = {
->  		.pm = &stmmac_simple_pm_ops,
->  	},
+-- 
+2.34.1
 
 
