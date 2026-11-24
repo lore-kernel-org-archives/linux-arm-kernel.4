@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25E8606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA43D606A32A
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z4uXD/7h;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f1vLsymr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r2YsWyRH;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=d7dIyhwk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=II/o9tTTM11RKRY6fRgPyzKbooch+DLO5SDsdDjeAcA=; b=z4uXD/7hFUEkox4MH73ZGxgP9e
-	aUiVRCHl2pb6SuHgJ9muRtiD+xlSVoEk4wMPQZePgGcvHmJTLfDCynLEFKbRAKYEU08UJYItpu4gB
-	ijDIOZXwzIRfwkdESNiRngZ2xa66i/OB8PsVI8OugB++at6K60VZO1IEXj2IFQgtZPOz5pZoXi/bU
-	1fdSzAHqluIInnEy/OTD2YRXtB8273B/cyFGKbA6IQ495H0dDXMzKt02BkSspdUGf5YcC8OJTkrm0
-	kTI+0XQb39/p2iSz8hFa9eH8/raV6ecK6bJJzZmtKBHn+KSBybrynSW15nWzFEkrywavUQu8z/IJv
-	DSTCDCeA==;
+	bh=olZSQhqxi5oFAbp6dAe+Uvx1GfO/ClNgDYNsbDwwxSI=; b=r2YsWyRHqaue66lt+q3gpOaKbJ
+	XB9aaQoEyF6zTZySEF1nTocxX/6IP9kI3TZgfn+16t5PDlkz303qCr6YOlfqw2r43CwO+WXbbdj+r
+	plYShZEKIGRNQSaCPU1uaA3ieh5QeFz0gOswgOmY1Q8/d6rDwJVaroQOl2rYrUtpE4HYF/QwN6bf/
+	b1ulsKHf4EyGUbFUBWEVRosw5FWnTw3b5KCZAwhv4y/vN6roPZla3vSPzwM+CdgV49+ItN4vDXf5s
+	DrpnRyPyIdorSdfI3XJtwjHrz8HMGbpXkJ84hzLLsznwVNbw2lt2btM3cEuPdJk+f7MxmXOpD/dIp
+	Q5UUqqhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoyu-00000006ORf-3kZZ;
-	Tue, 24 Nov 2026 11:46:40 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVoyv-00000006OSB-12Bp;
+	Tue, 24 Nov 2026 11:46:41 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoyG-00000006O2x-2gXd
+	id 1xVoyJ-00000006O5A-0FL1
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:46:00 +0000
+	Tue, 24 Nov 2026 11:46:03 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 67C9145904;
-	Tue, 24 Nov 2026 11:46:00 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 719F361D27;
+	Tue, 24 Nov 2026 11:46:02 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795520760;
-	b=Mne4yy04b32S040IdbHGDqbX0wS4qugDkNKZHXC+vBSoHXBWeUjgE7bLQ2YQNsxG63OI
-	 nXAO5TICuB2k7KWkmlE4Po2VO1CCV8o0SmJkkvmtKyOlj3/Q+QscKfS2UCQfIrwnlNpRM
-	 NcAR+RVjzAHRb5ZbHAd+iUEK5hep9okp3mbaAMUgOzMbHl1fot/RkWw3jHzmrBeilNR5f
-	 fcIl4s7lhMibJWJXzOERLeGSeSVOecnDo5bXd2sNeOYQThcwDyaUeTMPW3Z1rt6XxZ3qM
-	 SFvhHcX8vX3IppBH/JH6IOmp6+g90PNzvEVd0S7TnQH1siL7tWG8+Tz+T81EPdzyTSQ==
+	t=1795520762;
+	b=O4iRO1IOftWZrbBiYyMTUWieCG2utW78QSJKWBwtATQINVsPBUI+w3W0ExrbYINtWhV2
+	 V/by23n7aA2oXzY4P+2Poes07UHJxF56K6xn5g8ISPv02fcwbdie0NqL5RWhVe2BjlDYk
+	 KmaXy5DB46lw04I7oNy97REvga3HmxgzcsOXGSml7kjqvIQsSeGH2HKpH1aHkX3KpCAi5
+	 W7XosN59f1SMt/1uluffKKHFGCPoPYMejgq60sr1EEI1vsUippyWLN1+sKUFbYKkM35uX
+	 3tLb4U4V2cl8zHBUcAKgLJUgPlUEZaUX/QVkmrDAcak3Pj/kMlsXSSPpll3RkGuXmoA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795520760;
+	c=relaxed/relaxed; t=1795520762;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=II/o9tTTM11RKRY6fRgPyzKbooch+DLO5SDsdDjeAcA=;
-	b=ZXSY4gBXLYF0W8CKhK1a8eR2NBz5GCO/wXMZ+J1Kt+R4nxWz8kkh6SUd40pieRC5HPwX
-	 TN4iMkuUeuHt8PNvr35Ne1buFqeozgGROWxO2pkFwhR5Mh3gmfxF3tOjv75dWZ4b9UJT/
-	 L9eE8p/hzUYTyNpa8Azb2RgGdbSW/toePOyJyJ4Umkt2mQk0HBC4ZTN2yvz1shU5L1dd7
-	 sCIZfsFgPTlH2GzOtWpqys65Pg9JBPV5Y+Czp9cTjiaYGtASJl9qmNu/cDV5vahthFYuy
-	 Fs54bAgXyt95qzCqfhIhLwcFbYXeq/O0ucElqULcg5xR2Z0XfpERD88pvxig/6kTY3g==
+	bh=olZSQhqxi5oFAbp6dAe+Uvx1GfO/ClNgDYNsbDwwxSI=;
+	b=pbxHUzfI3rlF0G/4HUOr7q9mQG5vE3hZ+WbdD/Pzl660HIJhrmIlOlef/dCTOD+fo9uP
+	 LWM4mW4s5aafzyrqYrgIMcJ7oNiTghpNiamHMJ79/AbxmWZFDZKiskYJJFIL8xaPfMc3e
+	 vm/TUXycUc3fJ3FwRQWH7oMBKd3oH5/oCMRMzn7p/FkSphLPhkcmsgWHp0DTWnf7v/chl
+	 Ao53MAbmoz2PyyAQ6nFqU+FVk8z04b1BGfqJNMbUTugWVEqm2/fw+zo1NgRHYIaa1qPnB
+	 XV+ExS9laVJPgz234eoKyyn9x4hrQ+js1AzlbLlUWoyIxoANkjVPLRuF1PW+2lCf9yg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 643C71F000CF;
+	by smtp.kernel.org (Postfix) with ESMTPS id A123F1F0156C;
 	Tue, 24 Nov 2026 11:45:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795520760;
-	bh=II/o9tTTM11RKRY6fRgPyzKbooch+DLO5SDsdDjeAcA=;
+	s=k20260515; t=1795520762;
+	bh=olZSQhqxi5oFAbp6dAe+Uvx1GfO/ClNgDYNsbDwwxSI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=f1vLsymrO1wRxr6zpJVfXenkOUJoVHzRBMHPNvvMdndlhsUz1Ys6znhv5InXRzAzq
-	 nM1XTcRVsKvn1GZxBT9ZokNl9FCv16JtEg1mmFjqTVldFp442phU5Q/i1L6NButG6Z
-	 BSn+9wGKZnoFq4VBVsbJ4kvOOTKqgO2tBjR05ZQa01Bmy/M/6Fjx7532EOLbAePuw9
-	 oL+C9Dq3pfHJ4t8LIetG3KhZJ2ssKnIW/GFrZgpwVC/vzzAvsELDkigAj1eFtFvK5M
-	 II8Ba5DTUtiDRJ0iRIvqZQtz0mqLNPg2KOyqKa4PSZDANvv93XdlKSNciyc+pbGr1C
-	 4Pm8rFZq/D40A==
+	b=d7dIyhwkXdif+FNKbcsQG3c86bbv29DDJfo5iyF9LYghAUovaRiqItV701USRUeW/
+	 OJ2MbUXKOVebLNg+4W4/vnC1lzlti5/RLRVaUkBRWdOfyFYjfVgBvtfVYUQUGErnMa
+	 GuLydd97uB9zF/MADEK86kNQ12r7CRqweuhgfm4YxQz6IPWRxfNKOJeXH4/fHEI3KS
+	 bNh55N2BXeMVREb/9UdEeZob5zkj7c+EuWpxg4qRs824FhD/rsAJEt9gCBvVyjXaRz
+	 T8YCwpG5gWepf5vXWr01626x5AokLDnKTL1EpH3aRJytkHzaC+8p6NPy/ALHEhwOFw
+	 R8VrJriiUy2OA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 2E31D4CA17;
+	by lkml.kernel.org (Postfix) with ESMTP id 642684CA1F;
 	Tue, 24 Nov 2026 11:45:28 +0000 (UTC)
 From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
-Date: Tue, 24 Nov 2026 17:15:14 +0530
-Subject: [PATCH v13 12/20] dmaengine: ti: k3-udma: pin owning module while
- glue clients hold a udma_dev
+Date: Tue, 24 Nov 2026 17:15:16 +0530
+Subject: [PATCH v13 14/20] dt-bindings: dma: ti: Add K3 BCDMA V2
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-dma-upstream-v13-v13-12-bd4251fdc6d4@ti.com>
+Message-Id: <20261124-dma-upstream-v13-v13-14-bd4251fdc6d4@ti.com>
 References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
 In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
 To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -90,13 +89,14 @@ To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520724; l=3775;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520724; l=10154;
  i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
- bh=O2aPL26t+gNCqmeRgaGGYW+iqPg35NIXwOL2Jd6bS/s=;
- b=BN9Bh4wpa8J6x5TiTjGYx81QWGdU93XOjA2I9YUzlvnaHw41OLEzgVAAVUhF5zxDL70dJ4PsO
- ijxngSrU0N6BqyHBCJgigZCY+KEjyMSTWld7EyeSUplcrsfXASjeoM6
+ bh=jVCUluK1cvGd7oocLuHoN95f+XBuGyRTXDLHcUnGO2k=;
+ b=ZCdWDXMVzbACPsecPjM+mr7V53a2UqeySruHgNfERSjm/0eoCq6KvqEIBdbKDsSHcO3SIlFiP
+ EwU1KA1abeJDmIARclyDL6wrjFVPBTjv3gdjZTPLXh58H3N1JlDFa40
 X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
  pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
 X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
@@ -124,105 +124,233 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 
-k3_udma_glue clients obtain a struct udma_dev pointer via
-of_xudma_dev_get() and keep using it afterwards (e.g. through function
-pointers like ud->psil_pair) well beyond the call that returned it.
-This bypasses the dmaengine core's own try_module_get() protection,
-leaving no guard against the k3-udma driver module being unloaded
-while a glue client still holds a live reference.
+New binding document for Texas Instruments K3 Block Copy DMA (BCDMA) V2.
 
-Set ud->ddev.owner so the module can be identified, take a reference
-on it in of_xudma_dev_get() with try_module_get(), and add
-xudma_dev_put() to release it. Update k3_udma_glue_release_tx_chn()
-and k3_udma_glue_release_rx_chn() to call xudma_dev_put() when
-releasing their channels.
+BCDMA V2 is introduced as part of AM62L.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 ---
- drivers/dma/ti/k3-udma-glue.c    |  5 +++++
- drivers/dma/ti/k3-udma-private.c | 16 ++++++++++++++++
- drivers/dma/ti/k3-udma.c         |  1 +
- drivers/dma/ti/k3-udma.h         |  1 +
- 4 files changed, 23 insertions(+)
+ .../bindings/dma/ti/ti,am62l-dmss-bcdma.yaml       | 211 +++++++++++++++++++++
+ 1 file changed, 211 insertions(+)
 
-diff --git a/drivers/dma/ti/k3-udma-glue.c b/drivers/dma/ti/k3-udma-glue.c
-index f10f61a40f914..34b282d9a727a 100644
---- a/drivers/dma/ti/k3-udma-glue.c
-+++ b/drivers/dma/ti/k3-udma-glue.c
-@@ -466,6 +466,9 @@ void k3_udma_glue_release_tx_chn(struct k3_udma_glue_tx_channel *tx_chn)
- 		device_unregister(&tx_chn->common.chan_dev);
- 		tx_chn->common.chan_dev.parent = NULL;
- 	}
+diff --git a/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
+new file mode 100644
+index 0000000000000..76184485ebcba
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
+@@ -0,0 +1,211 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2026 Texas Instruments Incorporated
++# Author: Sai Sree Kartheek Adivi <s-adivi@ti.com>
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/ti/ti,am62l-dmss-bcdma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	if (!IS_ERR_OR_NULL(tx_chn->common.udmax))
-+		xudma_dev_put(tx_chn->common.udmax);
- }
- EXPORT_SYMBOL_GPL(k3_udma_glue_release_tx_chn);
- 
-@@ -1258,6 +1261,8 @@ void k3_udma_glue_release_rx_chn(struct k3_udma_glue_rx_channel *rx_chn)
- 		device_unregister(&rx_chn->common.chan_dev);
- 		rx_chn->common.chan_dev.parent = NULL;
- 	}
++title: Texas Instruments K3 DMSS BCDMA V2
 +
-+	xudma_dev_put(rx_chn->common.udmax);
- }
- EXPORT_SYMBOL_GPL(k3_udma_glue_release_rx_chn);
- 
-diff --git a/drivers/dma/ti/k3-udma-private.c b/drivers/dma/ti/k3-udma-private.c
-index 44c097fff5ee6..d2501e074bcfb 100644
---- a/drivers/dma/ti/k3-udma-private.c
-+++ b/drivers/dma/ti/k3-udma-private.c
-@@ -54,10 +54,26 @@ struct udma_dev *of_xudma_dev_get(struct device_node *np, const char *property)
- 		return ERR_PTR(-EPROBE_DEFER);
- 	}
- 
-+	/*
-+	 * Callers keep using ud (via function pointers stored in it, e.g.
-+	 * ud->psil_pair) after this call returns, bypassing the dmaengine
-+	 * core's own try_module_get() protection. Pin the owning driver's
-+	 * module here so it can't be unloaded out from under a live glue
-+	 * client; xudma_dev_put() releases it.
-+	 */
-+	if (!try_module_get(ud->ddev.owner))
-+		return ERR_PTR(-ENODEV);
++maintainers:
++  - Sai Sree Kartheek Adivi <s-adivi@ti.com>
 +
- 	return ud;
- }
- EXPORT_SYMBOL(of_xudma_dev_get);
- 
-+void xudma_dev_put(struct udma_dev *ud)
-+{
-+	module_put(ud->ddev.owner);
-+}
-+EXPORT_SYMBOL(xudma_dev_put);
++description:
++  The BCDMA V2 is intended to perform similar functions as the TR
++  mode channels of K3 UDMA-P.
++  BCDMA V2 includes block copy channels and Split channels.
 +
- struct device *xudma_get_device(struct udma_dev *ud)
- {
- 	return ud->dev;
-diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-index 8a8e2b5e0f473..1df869ecab2cb 100644
---- a/drivers/dma/ti/k3-udma.c
-+++ b/drivers/dma/ti/k3-udma.c
-@@ -2693,6 +2693,7 @@ static int udma_probe(struct platform_device *pdev)
- 	}
- 
- 	ud->ddev.dev = dev;
-+	ud->ddev.owner = THIS_MODULE;
- 	ud->dev = dev;
- 	ud->psil_base = ud->match_data->psil_base;
- 
-diff --git a/drivers/dma/ti/k3-udma.h b/drivers/dma/ti/k3-udma.h
-index 4dd597ef435b8..65243c9ad1346 100644
---- a/drivers/dma/ti/k3-udma.h
-+++ b/drivers/dma/ti/k3-udma.h
-@@ -656,6 +656,7 @@ int xudma_navss_psil_unpair(struct udma_dev *ud, u32 src_thread,
- 			    u32 dst_thread);
- 
- struct udma_dev *of_xudma_dev_get(struct device_node *np, const char *property);
-+void xudma_dev_put(struct udma_dev *ud);
- struct device *xudma_get_device(struct udma_dev *ud);
- struct k3_ringacc *xudma_get_ringacc(struct udma_dev *ud);
- u32 xudma_dev_get_psil_base(struct udma_dev *ud);
++  Block copy channels mainly used for memory to memory transfers, but with
++  optional triggers a block copy channel can service peripherals by accessing
++  directly to memory mapped registers or area.
++
++  Split channels can be used to service PSI-L based peripherals.
++  The peripherals can be PSI-L native or legacy, non PSI-L native peripherals
++  with PDMAs. PDMA is tasked to act as a bridge between the PSI-L fabric and the
++  legacy peripheral.
++
++allOf:
++  - $ref: /schemas/dma/dma-controller.yaml#
++
++properties:
++  compatible:
++    const: ti,am62l-dmss-bcdma
++
++  reg:
++    items:
++      - description: BCDMA Control & Status Registers region
++      - description: Block Copy Channel Realtime Registers region
++      - description: Channel Realtime Registers region
++      - description: Ring Realtime Registers region
++
++  reg-names:
++    items:
++      - const: gcfg
++      - const: bchanrt
++      - const: chanrt
++      - const: ringrt
++
++  "#dma-cells":
++    const: 4
++    description: |
++      cell 1: Trigger type for the channel
++        0 - disable / no trigger
++        1 - internal channel event
++        2 - external signal
++        3 - timer manager event
++
++      cell 2: parameter for the trigger:
++        if cell 1 is 0 (disable / no trigger):
++          Unused, ignored
++        if cell 1 is 1 (internal channel event):
++          channel number whose TR event should trigger the current channel.
++        if cell 1 is 2 or 3 (external signal or timer manager event):
++          index of global interfaces that come into the DMA.
++
++          Please refer to the device documentation for global interface indexes.
++
++      cell 3: Channel ID for the peripheral
++        This is the mapped_channel_id assigned to the peripheral in the PSI-L
++        endpoint map. For XYMF peripherals (SPI, CRC32) each chip-select/FIFO
++        has a distinct channel ID; use the channel ID for the specific
++        direction and chip-select being requested. Use 0 for triggered
++        block-copy channels (cell 1 != 0).
++
++        Please refer to the device documentation for the channel map.
++
++      cell 4: ASEL value for the channel
++
++  interrupts:
++    maxItems: 75
++    description:
++      Interrupts for DMA channels.
++
++  interrupt-names:
++    minItems: 75
++    maxItems: 75
++    items:
++      pattern: "^chan([0-9]|1[0-3]|1[6-9]|2[0-9]|3[0-9]|4[0-7]|4[89]|5[0-3]|6[4-8]|8[01]|12[89]|13[0-9]|14[0-3])$"
++    description:
++      The name of the interrupt corresponding to the DMA channel.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - "#dma-cells"
++  - interrupts
++  - interrupt-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    dma-controller@485c4000 {
++        compatible = "ti,am62l-dmss-bcdma";
++        reg = <0x485c4000 0x4000>,
++              <0x48880000 0x10000>,
++              <0x48800000 0x80000>,
++              <0x47000000 0x200000>;
++        reg-names = "gcfg", "bchanrt", "chanrt", "ringrt";
++
++        #dma-cells = <4>;
++
++        interrupts = <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 332 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 333 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 389 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 482 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 482 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 519 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 522 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 528 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "chan0", "chan1", "chan2", "chan3", "chan4",
++                          "chan5", "chan6", "chan7", "chan8", "chan9",
++                          "chan10", "chan11", "chan12", "chan13",
++                          "chan16", "chan17", "chan18", "chan19",
++                          "chan20", "chan21", "chan22", "chan23",
++                          "chan24", "chan25", "chan26", "chan27",
++                          "chan28", "chan29", "chan30", "chan31",
++                          "chan32", "chan33", "chan34", "chan35",
++                          "chan36", "chan37", "chan38", "chan39",
++                          "chan40", "chan41", "chan42", "chan43",
++                          "chan44", "chan45", "chan46", "chan47",
++                          "chan48", "chan49", "chan50", "chan51",
++                          "chan52", "chan53", "chan64", "chan65",
++                          "chan66", "chan80", "chan81", "chan67",
++                          "chan68", "chan128", "chan129", "chan130",
++                          "chan131", "chan132", "chan133", "chan134",
++                          "chan135", "chan136", "chan137", "chan138",
++                          "chan139", "chan140", "chan141", "chan142",
++                          "chan143";
++    };
 
 -- 
 2.55.0
