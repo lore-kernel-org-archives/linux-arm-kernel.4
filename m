@@ -2,69 +2,136 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90168606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB05606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G8dNehu2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QXPlAhNs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aqeHRgAu;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=UJLwSqDG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JHie8fWAj6A2BHLBsAbT3FIVRK6/99JunGJpILvdj+8=; b=G8dNehu2K9xTwm
-	X/DNHoMUH1+waN7gAxuy+OyFt7kvno3kaphKw2OOasgIcFfX8UGB61yqCw3DXs0gSI9wWN/xbE8u1
-	0kwgq6n7rfjtyG0zrMZj8yVZpaWc/2iMSKQTGW7gt0XLzTkyQ+f+iOGgScGxzGvTZgYzVVwNytCOi
-	k5PwCKaftWw+3ae053CJFcSYphixC03Cu+clnQo72f28RK//f+AkHVcZhwrms/RcQz5jW29PlDCC6
-	enVnGcFoTCkpTOHl6TVxk18cGuvAg0X1tFNvBFsDHywZhzi1iOGDQ5Og6myc3TfH0i5Ppt9yWgBIB
-	bGBsWo2bKiQM/vAPrnlg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=LVf1Cqyp+O0DBMSNNUmPS5W8azN+XeJChO3ZvfQITRg=; b=aqeHRgAurdr1l7dXTVSPvpC6aA
+	WNSdXWyIAAdLDqqGizBl+FQt1OCRAr8YBGOiTFD/I2FTDTQmo33uSpFqoKS85WJNSnbSqOuT+sAx+
+	kyhvCM+hv5vmGF+qBDQnJUdLmE9bRpN1RQ3VwZFDJAU0Fl5+JiRpSytdUXV1ObdwfSbQjTBdehZ7x
+	wFfuiEoB5Du55kpenDSQq/baYrnHtb9LIOtTm7jKpHMMRH7LVDFkkHWoleerPcwRmAqrH8bcyOvsy
+	guH0qziJOTcMBrL+xZFANjeILQS3fWgHFKKG1ynQJQKwZUY8TfWUFRGQf3gJrk3cnK/+Fimfm1T1X
+	8fT88Sqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrdv-00000006miY-3znj;
-	Tue, 24 Nov 2026 14:37:13 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVqmW-00000006fWa-0GRF;
+	Tue, 24 Nov 2026 13:42:00 +0000
+Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrdu-00000006miC-0XKI
+	id 1xVqmJ-00000006fPc-1ta4
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:37:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2251761F1E;
-	Tue, 24 Nov 2026 14:37:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3DEB1F000C6;
-	Tue, 24 Nov 2026 14:37:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795531028;
-	bh=JHie8fWAj6A2BHLBsAbT3FIVRK6/99JunGJpILvdj+8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=QXPlAhNsEiSSNiRdS5i2OhxZ6sNUb9bPkzdxMrxP7oHG7I3MyYWoxYB6anTCZ76w8
-	 kgtKEkpHYcgL0c/sIIcQwnLDMDwPq1agxxmEr/+nXjGiecD3uzbLtn8jn/b2iFTATD
-	 sJRVFQNnz7jp8eGDqvlxKSsAQqQ7Mf3DkS9ZWTOCzXSBIRGjX8dyMECSSpDje9p0eE
-	 WJ8oc8DIEd66H+hIIBI/sVcd4DYWshpLZ+1yNKgQsNGQyHGx8RTC0e/zDv5oVu3d+k
-	 MLd4qPzBbUge0piJI6CeORLAhDn5dCC9LR/ME/NTDY/dOirN0Q3bwEK33DQcGgDi5Y
-	 BwZt68rj7jYGg==
-From: Mark Brown <broonie@kernel.org>
-To: Linus Walleij <linusw@kernel.org>, linux-spi@vger.kernel.org, 
- Luo Yifan <luoyifan@cmss.chinamobile.com>
-Cc: linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20261117020646.20111-1-luoyifan@cmss.chinamobile.com>
-References: <20261117020646.20111-1-luoyifan@cmss.chinamobile.com>
-Subject: Re: [PATCH] spi: orion: handle clock failures on runtime resume
-Message-Id: <179552765811.264265.12160006862599570767.b4-ty@b4>
-Date: Tue, 24 Nov 2026 13:40:58 +0000
+	Tue, 24 Nov 2026 13:41:49 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IgzNeyZ94oarS7sj0ADTO/WwI6lluDtH5/XwwP5IJ24t+G6dsic1DeskoKpzjLKKQVdZhEOaqpGr7q4WJZ0tp4xZ7+V3kFF0MOFBMWnrJ7qaopLRyzC6DkWjq5NwKcjcRS/UK70T21QbCe3MRLJZ7Vj8R/ALWVGUFnP7JsxHMy7t9btypmwjOFLXBEODZR66VBEO+n+G3XUV+/TeCZQQq2IT14jkpg/Ti3kupTKi8V8OhtCGyERAJytczJ65Du7lWNnPY4aOBvbHRbpuQkn487DV9Zm7TmIdaZ8V9aQ7TtdkPHVcvFsx2c1VCqohEWOlnRDbyjJJlqDEa2b3slYHtg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LVf1Cqyp+O0DBMSNNUmPS5W8azN+XeJChO3ZvfQITRg=;
+ b=WtM9otUS6wcVRfsgFe0NOkQgoJTB3A/qj0IF1OkS1SBZcGYhz1Uv3vZSGdh8ndyNJIUWo3O8bntGMMN85oKt9vKLXvsbyTF3IelQkuFDkCtJNpMc9xsdeX0aIrUZEyHEK4d+ZTdeYc2M0wFHAaMQteQKttsgpghZVGzVqarHoZ7oaaZD45TeNBWoa6EC3bPpo8IEPSYldMpMOmz7F6ind4K395jUBCRHI7W/hZAoN4uRR537fFS+ivwY6yJMdHqJ4kw0RDlxvYus+HVec9F0eUFejuPfs9z/kXgiNA6GsgnIYCxyjzTUkTlEFmwTSf5M811bXoF2ZZ3qr03ItlK5UQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LVf1Cqyp+O0DBMSNNUmPS5W8azN+XeJChO3ZvfQITRg=;
+ b=UJLwSqDGdIfJ1S9nVWKTghMv6sviCiH75wr44U9/KlMeGx8iEtM7inSSp7fqrknugvJA957KshgtM3Ogjoq/TGntBGLsFZwIze+x/NcDyqtbJpSX2mu+58jDRiprwtphRochjblSrpv5Sq4L5L0Or0VIMnZRLS7bH9VpZi60IaE89HMtfouzK8JkaCTItAhjvPmoXMviIZD4rfQFX3Iw6yfifxJdlbQ63FStx09/tzwIuYPNxCGIuGKoeYlU7dY4JWmr6qoWHESJqI0jFEJ/xHHntlCm1D2bzmX82lBG5grjApLvTZro4jp7znfSPx+09BOTW9wUOZxwHY933hRGPA==
+Received: from MI1P293CA0003.ITAP293.PROD.OUTLOOK.COM (2603:10a6:290:2::19) by
+ DB9PR10MB5737.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:2ec::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.4; Tue, 24 Nov 2026 13:41:38 +0000
+Received: from MI3PEPF00008557.eurprd05.prod.outlook.com
+ (2603:10a6:290:2:cafe::9e) by MI1P293CA0003.outlook.office365.com
+ (2603:10a6:290:2::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
+ 24 Nov 2026 13:41:37 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ MI3PEPF00008557.mail.protection.outlook.com (10.167.240.11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 13:41:37 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 24 Nov
+ 2026 14:42:25 +0100
+Received: from localhost (10.48.87.14) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 24 Nov
+ 2026 14:41:36 +0100
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Subject: [PATCH v4 0/5] clk: stm32: Add the STM32MP2 SYSCFG LTDC pixel
+ clock mux
+Date: Tue, 24 Nov 2026 14:41:06 +0100
+Message-ID: <20261124-ups_mp25_clk_syscfg-v4-0-894d95dffec4@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1113; i=broonie@kernel.org;
- h=from:subject:message-id; bh=xpScwKVrQjm4gon7V/Z3meCGOFMtuSLdbczoP8wZZkE=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLJZFwqaOaQkakyZe/Dw2+ZFF+bGs7WlXNyalmA+Q9Pnl
- cEO99dXO0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjAR5R8Mf3gDWwL27tq13M+5
- LPTyofXnrujc8fbYVe5WLycb9SFh6xOGfxZy5c/39fE/ctiy6b5k0C61F0e/GLTPa752L2LFom0
- GRxgA
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-B4-Tracking: v=1; b=H4sIAPKTBWsC/43NTQrCMBCG4atI1kaSyU8bV95DpMQ0bYPWlIwWR
+ Xp3U3Gh6MLl+8E8cyfoU/BI1os7SX4MGOIph1wuiOvsqfU01LkJMNCcM0EvA1b9AKpyx0OFN3R
+ NS7WVAJIrLQUn+XJIvgnXp7rd5e4CnmO6PZ+MfF5fHmc/vZFTRrUuSjCuBsPspomIKzyvXOzJL
+ I7whwKzAlIps9+X3hXfinhXyt+KyIoRqvaF4VY6/6lM0/QA4Dl0AEQBAAA=
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>, Brian Masney
+	<masneyb@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795527696; l=5923;
+ i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
+ bh=Lir5ezBE/4p2YGeagHSXmYnnq3mWLsfYNnAuN2fs2rU=;
+ b=HamOjYNEoILGJBb78s0mvnFaIy8YhdmTwr1SSE80BXty//bqqlnIdXj3vURAJT4+fu/p3YrM3
+ AzzbHZbIsb7B7rVc4Jnm2mPw69tV4ulexmRdf/4lccigNfxtBnFvkVr
+X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
+ pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PEPF00008557:EE_|DB9PR10MB5737:EE_
+X-MS-Office365-Filtering-Correlation-Id: fca49aca-bdb1-42ae-9c68-08df4a30a9ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|36860700016|82310400026|261028144727099003|10067099003|260925021311599003|11063799006|56012099006|261021121427099003|260925022911599003|260925021911599003|261021123027099003|261022105027099003|261009223027099003|261009221227099003|261022075727099003|261026140227099003|261026121527099003|261102123227099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: XiL47z52X0fANRgE6Xb8wDX37eQRd9CTBNsTDFOZERl0ThLVnc8CSx+5AxtClYRxRR0YpqhLnYXGngnoQrP4QGljy1K4hJWkSYUSzsqiFb71w1O9ps5R/Oil0SlyRyl8ftI6ZRMNPDk0oHHxNkVpYxQBnhkw+g7xdsxC8jBCaA/AcQJkmVCBMyGXOzmiRZFFpv4Me2qlhzcFPYi9AYqYRi7VUCH2s0E/Q4OxYv+1NV9gpoIMO2YUWSJADquB+7yiMxCa8nL8IaQCa9JCnsKgivRqcSupA8hquxVP0pWkp5RhTgvOSmRX2pJ+IwcQ3qV7mkkgE2BeCV0ouaQ94AudJPXndHgYULcvP427FALLEE9bKbY41kAzjQip20l6DP1FhWV4F5f+zxTGe8pd6Qzs3su0vUl76+ZE8Jtxbvpc5izCJRm1iVUOEejMIzacj7rZvLE50RGJ/I5PQ4qqweY8trtiWuRN+2DD8QZ/QTnTjIGobEkWjJsfecSuICCn2SDMDsZnl9dJcQWcVnRfT/Rm69BT1T64Xj/cclYpvMv+mgnkMGxgdPlDHERdnGHUUre7SRp0hpMDNQMXV9uaUkc5WYZuJHW9zPuprb+jSzUCthasFTzc3wZ2o12SlRCKWAXY6x9XiOzkc1L2nHJGtPjEDdnUq2s9kvtrS8clWMVb0PE=
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(36860700016)(82310400026)(261028144727099003)(10067099003)(260925021311599003)(11063799006)(56012099006)(261021121427099003)(260925022911599003)(260925021911599003)(261021123027099003)(261022105027099003)(261009223027099003)(261009221227099003)(261022075727099003)(261026140227099003)(261026121527099003)(261102123227099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: EncDgB1i56AOYwaEJoAbCuMGEkPx6QF7bEXn3sWnvuLT2vk+t4RjVsvbqxGZ34VSP1mxE2fxB9XeHZD6lmWyEEMEWUBaaU7EALoKx+ss811Dlhqt0blhVmSVPNIBc68sXV2IUekZosSVwQf9N+iJc2LMXTORTTprhCXh1GYEeALjERedZxAfRGBlLIaMslAYuYzudSSyApQ8qXhwCWLkzQq7aWGLXHAYih62DYvX4hxOCba3IMChFE5PSkFgqehJmtlq90Ff8HrMKCv81hyKbsBXvP4MgfwxP3ct7g8earXF7FXkUwG76bYt+udvnGCb8GbAVpxJyt4b4BLqfC1PgPXZ+ZSr6Rqx1dscN3ECI+ubMsYH7zsQVc/qPM4Xm2jMeFOvqROZw5cUEGszmK7VLja8NJQRyIYsS+LurcxshI7qUTqrG9oetREkpRVxDR5H
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 13:41:37.4803
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fca49aca-bdb1-42ae-9c68-08df4a30a9ac
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF00008557.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB5737
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_054147_658092_179ECF11 
+X-CRM114-Status: GOOD (  22.70  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,43 +142,125 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 17 Nov 2026 10:06:46 +0800, Luo Yifan wrote:
-> spi: orion: handle clock failures on runtime resume
+On STM32MP23x and STM32MP25x, the LTDC pixel clock is selected in the
+SYSCFG DISPLAYCLKCR register among the LTDC kernel clock (RGB output),
+the LVDS PHY pixel clock (reset value) and the DSI PHY byte lane clock.
+The SYSCFG node is already described as the provider of this clock, used
+as the LTDC "ref" clock, but no driver registers it, so the RGB output
+can't be used.
 
-Applied to
+This series adds a clock driver for this mux. It is based on the RFC
+sent by Dario [1] and on the driver delivered in the ST downstream
+kernel.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.5
+The SYSCFG node remains the clock provider ('#clock-cells = <0>'), and
+the inputs of the mux are described by its "clocks" property. They are
+only described on STM32MP235 and STM32MP255, which have the LVDS and the
+DSI and whose LTDC uses this clock, with new SoC specific SYSCFG
+compatibles. As the SYSCFG node is bound to the STM32MP2 SYSCFG driver,
+the clock driver is an auxiliary driver, whose device is created by the
+SYSCFG driver. The LTDC "ref" clock is left unchanged.
 
-Thanks!
+As the SYSCFG node is a syscon, the syscon core attaches its first
+clock to the SYSCFG regmap, i.e. the LTDC kernel clock on STM32MP235 and
+STM32MP255: this clock is kept prepared, with its parents, and enabled
+around each register access. The SYSCFG registers don't need it, but
+this has no functional impact. The LTDC kernel clock is listed first as
+it is always provided by the RCC, while the LVDS may be disabled, which
+would defer all the SYSCFG users.
 
-[1/1] spi: orion: handle clock failures on runtime resume
-      https://git.kernel.org/broonie/spi/c/b6f9117472ca
+v3 avoided this by registering the SYSCFG regmap from the SYSCFG
+driver, but the syscon users could create it before, all the more as
+fw_devlink defers the SYSCFG probe until its clocks are available. As
+doing it reliably would require an early initcall, this patch is
+dropped. Please let me know if you would prefer this approach.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Changes compared to the RFC [1]:
+- parents described by clocks/clock-names instead of global names
+- auxiliary device created on STM32MP23x too
+- SoC devicetrees updated, Engicam board patches dropped
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+[1] https://lore.kernel.org/all/20261028135915.2665857-1-dario.binacchi@amarulasolutions.com/
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+Changes in v4:
+- Describe the mux inputs only on STM32MP235 and STM32MP255, whose LTDC
+  uses the SYSCFG clock, and make them fixed for each compatible instead
+  of a variable minItems list (Krzysztof): add the "st,stm32mp235-syscfg"
+  and "st,stm32mp255-syscfg" compatibles, the family ones being shared
+  with the SoCs which don't have this mux
+- dt-bindings: arm: stm32: drop Krzysztof's Reviewed-by from v3, as the
+  binding changed substantially (minItems removed, SoC-specific
+  compatibles added); it needs a new review
+- Drop "soc: st: stm32mp2-syscfg: register the syscon regmap": the
+  syscon users could create the SYSCFG regmap before the SYSCFG driver
+  probes, and the regmap was leaked or left registered on errors
+  (Sashiko). The syscon core thus attaches the LTDC kernel clock to the
+  SYSCFG regmap, see above
+- soc: st: stm32mp2-syscfg: add my missing Signed-off-by to the patch
+  from Dario (Sashiko)
+- Link to v3: https://lore.kernel.org/r/20261118-ups_mp25_clk_syscfg-v3-0-935de791a4ce@foss.st.com
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Changes in v3:
+- Drop the clock-controller sub-node, its binding and the dt-bindings
+  header: describe the mux inputs in the SYSCFG node, which remains the
+  clock provider with '#clock-cells = <0>' (Krzysztof, Conor)
+- Keep '#clock-cells' in the SoC devicetrees and the SYSCFG node as LTDC
+  "ref" clock, not to break the existing users (Krzysztof)
+- Make the clock driver an auxiliary driver, whose device is created by
+  the STM32MP2 SYSCFG driver (RFC patch 3/4 from Dario)
+- New patch: create the SYSCFG regmap in the STM32MP2 SYSCFG driver, so
+  that the syscon core doesn't attach the LTDC kernel clock to it
+- clk driver: depend on SOC_STM32MP2 || COMPILE_TEST, check the
+  regmap_read() return value, drop the redundant CLK_SET_RATE_NO_REPARENT
+  flag, fix the copyright year and the order of the local variables
+  (Brian). The of_get_parent() change doesn't apply anymore, the driver
+  using the SYSCFG node directly
+- clk driver: drop <linux/mod_devicetable.h> (Uwe)
+- Link to v2: https://lore.kernel.org/r/20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com
 
-Thanks,
-Mark
+Changes in v2:
+- Deprecate the '#clock-cells' property of the SYSCFG node and remove it
+  from the SoC devicetrees, the clock-controller sub-node being the only
+  provider of the LTDC pixel clock (Sashiko)
+- Explain why the mux needs a sub-node: its inputs can't be described by
+  the "clocks" property of the SYSCFG node, which is a syscon (Sashiko)
+- Link to v1: https://lore.kernel.org/r/20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com
+
+---
+Dario Binacchi (1):
+      soc: st: stm32mp2-syscfg: register the clock device
+
+Gabriel Fernandez (4):
+      dt-bindings: arm: stm32: Add clock inputs to STM32MP2 SYSCFG
+      clk: stm32: Add STM32MP25 SYSCFG clock driver
+      arm64: dts: st: add LTDC pixel clock mux inputs on stm32mp23
+      arm64: dts: st: add LTDC pixel clock mux inputs on stm32mp25
+
+ .../bindings/arm/stm32/st,stm32-syscon.yaml        |  40 ++++++-
+ arch/arm64/boot/dts/st/stm32mp235.dtsi             |   6 +
+ arch/arm64/boot/dts/st/stm32mp255.dtsi             |   8 +-
+ drivers/clk/stm32/Kconfig                          |  13 +++
+ drivers/clk/stm32/Makefile                         |   1 +
+ drivers/clk/stm32/clk-stm32mp25-syscfg.c           | 127 +++++++++++++++++++++
+ drivers/soc/st/Kconfig                             |   1 +
+ drivers/soc/st/stm32mp2-syscfg.c                   |  14 ++-
+ 8 files changed, 207 insertions(+), 3 deletions(-)
+---
+base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
+change-id: 20261103-ups_mp25_clk_syscfg-6a4224156431
+
+Best regards,
+-- 
+Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
 
