@@ -2,119 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB581606A693
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D518606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3mv9L1pL;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=YEWzoWfa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HwgsVFDZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=InJ53J6q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/lbzr5VuUouDiq69BqZ6eFV3fJrAmKd5QRsGlHOj7D4=; b=3mv9L1pLhhkYiT
-	aO3dyZlu2o3fzs0rL2EkbuCC8woF/ZZHY5Q+hRyrrrOw1aRLi79uWNbZR3IVZQqUcS6XNEe5adG1w
-	mleFc1omsotP1dkukPDSnknzVsgaduJifPpNDpIRIDUiN8UyNc9Wtc+Kif2v6KaMd07iDGxSvsMjO
-	mJgP8RxBYsXXrFmycvF/MkmVNOARD7MYZuts4/DrHSl8NoveKUYy/APOUT7J+orOjE//BwigPCS0q
-	WsbzhQvpP9MdQDDkTUlrs1IXCtAtFO9ViZUIOoaeNSQfG9ip6uenQ4lpybB5UQ+eIsZ11+fGHGYF5
-	nmf0kkE18sPeMczYQ2cA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PRfJE8GxHxVJ2EQC9BwBA4K3kl6PgE402eg5bYUwmUw=; b=HwgsVFDZLdHKnjOBauE0J+SVZA
+	ERD9DATLCjXRvIEaivxNQ+fYsMaCn7eNhreNMSCA0249oGsaBBmhQBLYNobayzHnrwsZT88UYDf6C
+	ZW2+hIznyta7ZxQU0xG1zrBISZ0eOQK81hcya2zOp54EXqjdW6n7g8akWLEXsn5GmjCVV1UVUostG
+	tLVqtT31n0XdJV+r51sKx8TX6B7Bj4RXoY6+ITB0/qCPtHDev427CKS+661VpxI97KmM4hG5L6/6w
+	qQbe2TwcKv5I3Xt1g33NY0WBApyG3GCf5Xia6WWJOlIp6aMZgsIExnj4zTM+pOaFJJZaZU/UHbvhP
+	c8ga/y8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxQ2-00000007lNM-45Ye;
-	Tue, 24 Nov 2026 20:47:14 +0000
-Received: from mail-yw1-x1133.google.com ([2607:f8b0:4864:20::1133])
+	id 1xVxQL-00000007lWd-1zti;
+	Tue, 24 Nov 2026 20:47:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxQ0-00000007lMB-1NFi
+	id 1xVxQK-00000007lVw-19a7
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 20:47:14 +0000
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-8b3402105b9so35588097b3.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 12:47:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795553231; cv=none;
-        d=google.com; s=arc-20260327;
-        b=iKo24yOs6K1jr8Qpp0J1jpQpKkYkuXrmpD7aYmZkgxpPC7wiaOWbFOCzbCrfYN0U5+
-         pPfmObQqT6IUDBXbwRIUoFPPW5AvfpZQxQISamhifSefACTCn/DK71m/grK/kQX005Ah
-         fH+yHAYE4ZvF3XQrWoHYmyhBP86wR/ddXmaTPYuWErxAYu5gjA+Jzxx7bs0IETneIKUm
-         i29rvZjSBLcUSTZ+usG2QMQXpELrNDQLW9zvQ7OgzAldqnfvevTGJeAD+WQ7uYoRB7Eo
-         P2FKWKjeJV7yaSxEUmj40M+MJ/qcx4a75SrzFzju5AdJPjFeqhAWCFySp11ZUk7gcTTo
-         6ymw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=/lbzr5VuUouDiq69BqZ6eFV3fJrAmKd5QRsGlHOj7D4=;
-        fh=+43IUYsQEA42Lhz48LVGHkWz+tRDYFDiOIaSuiQH2wE=;
-        b=h+eEJ7ZISLGBRk+LKZ0KIW7Nnah8x05TeS+JSfbPgRv2gaY0RBafcG3XIXnHbM3Pec
-         Mp8+q1QJodgAiLzxxNQrmGDXxTFtXui80j8U3+YlrfM9S05pMHbJQ6jkQcQZFAH+m5GB
-         s/0O5OX+wRkLRggCgSjK+32Vc5SSsMG5XgG8ZqL2yZjoQ+WdbjtXF5ktVZQiV8WfRJ+9
-         CkA2KhMtitUshcdLZsUGw+sjLKWqpvo9E2yQnzBln4CafPC2yte/q3tI8sU+iU3NjDxr
-         D/PEJrrhQ6jjt6Vn9MoLfaIB77XwydU5hTopGRp3W3GqFYoReCMX0NGlhnZ6QT2g5O4X
-         PYfQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1795553231; x=1796158031; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=/lbzr5VuUouDiq69BqZ6eFV3fJrAmKd5QRsGlHOj7D4=;
-        b=YEWzoWfa5m8lkp4l71xUanG9dbC5YpDv42AqDfqC1vJu03ZTI4P76HYMaLznxF3dWc
-         7AGggwdwMjgVP06LnT6UqgXykt8MzlqFDw1REqueHOmeV4UeFPDLCeZSbIquDe8P1of+
-         f7n0ZFdTZz7r2iS9jeM4Ln+gMbvVvOcD/XX4zh0vKOQlghFtv6c2nJ+GmXuhqkssc1O5
-         NyeMkeE0Cpox/1sqtEpYe7OoE6jQrk+oMC2BeP8bdYrqr97OxlHb2DTrXXl2BrNPQzQZ
-         gKeJhiPZS8JVT/L1jAbfpVIDBCy2wHl3wpwuVg2mcYi6phXJO86MSj3r78RN1j/3L92D
-         lMrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795553231; x=1796158031;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=/lbzr5VuUouDiq69BqZ6eFV3fJrAmKd5QRsGlHOj7D4=;
-        b=M9GluILtTdSLoIIzVipTJ/3qEqlr1i6rL8ja8KDWBGDUGduzPtwqUnYnpM0i1bh4B9
-         qxDAzSWmRa58dBj/pDtIxpOZxWzN/fX5cdRdM+mDeuV69DG22PmHosFZqKIh2eDLRXJg
-         +TnQ64SSqlETemepe2faqSR86aNRj9fOvkyZddv3D0kmmtqZ9bDEpog5d1t3gfxhva3a
-         sTTHIigF4lxafKQ8cKYYYMb8vE/K2lGufT68YnT9A68F5xw4oxblvtsAH5/CHXkQzs3q
-         2yPRu7sV1LQs+vhQXLNqQXJeLVil/8cUkCFDOAYDWOQAGWW9scWPU1azbf3hEbj8WdBY
-         0KCA==
-X-Forwarded-Encrypted: i=1; AL+hErH1EpEMYIWsH14qIzvmNfBSuWg4IEZ4z/WmZ6pbi3dtG2L1ni+5z1FJx0BdZ1ShnUe8SPouk6rf5agjb8tG2MD9@lists.infradead.org
-X-Gm-Message-State: APuU4Z/CB2ZoB1K8b1D0+fvEuMMKtEeKLULb3WyaZUxxENf++8q0eRsY
-	Q+gE4w+cUZxoMqoS50vaxyub4/M3ktPyfsREnGrYZAt4WRUVsF/cfMYHWv/GwT5i7gkTTDotJDZ
-	DDNju977QOw3D8b8OJABG5l+/yFnX0Q4=
-X-Gm-Gg: AZFdTZcNLnwwFJzExZ/S2bnqm20351/MtlfLV024CCPz8DBmX7gURHKvo1w3xZq3ay1
-	IABdhQ80iKXuKqaOMqNmYzkuy0+Lfgx0MQVBtnZ5dmWycZ2Yg3tDS0AmBAs076YyIbv6Vd0OQeE
-	yx879AFOi9h15I5m6zxHGyruPdgmEDUFRvThi9wHQl/dIP18hTegM8kCtL7Ol+J6ReNp8F8Ug8G
-	Ixqs8EvEUcLovlRdOAxV7i5/QHD8scs6t8IRHO6LIfl4sKBzKBuylJ0onbnLYU5W9lH36e2T2oH
-	KW7N+pEQDrP/ptxXLiGk28tjoR76GOSwchYhedW/5fGYKDruNd3wijXpxjqSKZqewx+BgRs6zyR
-	6i09v/1OeT5uDzeqKd31tSNZg0lOmk/8wbvpoFm+5TCMvLrU2P4W48zbtsJ1sv3mbYAmJFA==
-X-Received: by 2002:a05:690c:6c8d:b0:8b3:2d65:2c72 with SMTP id
- 00721157ae682-8b52047a894mr61098007b3.42.1795553231171; Tue, 24 Nov 2026
- 12:47:11 -0800 (PST)
+	Tue, 24 Nov 2026 20:47:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B0BED439F2;
+	Tue, 24 Nov 2026 20:47:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56DB61F000CF;
+	Tue, 24 Nov 2026 20:47:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795553251;
+	bh=PRfJE8GxHxVJ2EQC9BwBA4K3kl6PgE402eg5bYUwmUw=;
+	h=From:Subject:Date:To:Cc;
+	b=InJ53J6qQfLulBuU25OUMAr8+UfWNKTRm1VH+e/FX8P6lKyqWEXaJI041fLRXXfQm
+	 L2Ws/RySDXQL0k49k8+bP+afb/QEISxqmX2UBI/RMBNDH/aJ309/AK+rt4wkXrj90Q
+	 GEvHev6xLj7eIP/QYstU8MWIrELQ4uYmnYqkTGFc8m47saJBsLKqr1zFxRjLtZSRpy
+	 VrpWpsSuQP7KpKX06i/r7e6pCgPSCndYMGFSr4BYD9TyhWMEEj2v6ivB6hV3cpGhJW
+	 KVn4RY2fZ14QqiBA9/OmaZ4Dk/Uyd59/jXZp+JvAILS6fDVIxrqfma7WQHSGChklsv
+	 qy5wLB49ER7og==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH v2 0/9] arm64: dts: marvell: DT warning fixes
+Date: Tue, 24 Nov 2026 14:46:33 -0600
+Message-Id: <20261124-dtbs-marvell-v2-0-663009a769da@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-5-tanure@linux.com>
-In-Reply-To: <20261121213102.143130-5-tanure@linux.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 24 Nov 2026 21:47:00 +0100
-X-Gm-Features: Aa3M54piMjiC5eZa2JiYOkn7APdjKphVw0p4pBUTRqSLCMVNRfh1PWCBswFg3JY
-Message-ID: <CAFBinCDVe5njTaO9xN-snXRQGKHDpsber4hi9P+Fq5SD2jMUEw@mail.gmail.com>
-Subject: Re: [PATCH v8 4/4] arm64: dts: amlogic: t7: khadas-vim4: enable the
- ethernet port
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_124712_862349_2323132A 
-X-CRM114-Status: GOOD (  13.95  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNQQ7CIBREr9L8tZhCjUVX3sN0QeHTopWaTyWah
+ rsLde3sXjLzZoWA5DDAuVqBMLrgZp9B7CrQo/IDMmcyg6jFkecws/SBPRRFnCbWKBRcS6UPrYE
+ 8eRJa99501+7H4dXfUC/FURqjC8tMn+0v8tL7o46c1ezUyFZKZW0+utyRPE77mQboUkpfy+sTH
+ bsAAAA=
+X-Change-ID: 20261111-dtbs-marvell-3ae21c8ac47d
+To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Cc: mfd@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,31 +74,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 21, 2026 at 10:31=E2=80=AFPM Lucas Tanure <tanure@linux.com> wr=
-ote:
->
-> The board carries a Realtek RTL8211F gigabit PHY on the external
-> management bus, connected to the MAC over RGMII. Its address pins
-> strap it to 1; it also answers on 0, the RTL8211F broadcast address,
-> so the vendor tree lists 0.
->
-> Enable the controller and the management bus multiplexer, hand the
-> controller the ethernet pins and point it at the PHY. RGMII needs a
-> delay on each of its two clocks. The board traces add none, so the PHY
-> adds both, which is what rgmii-id asks of it.
->
-> The PHY interrupt is on GPIOH_6, so link changes are reported, not
-> polled. The reset is an RC network on the board, not a SoC pin: no
-> reset line.
->
-> Signed-off-by: Lucas Tanure <tanure@linux.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Another batch of DT schema warning fixes for Marvell platforms. This
+fixes most of the remaining warnings on Marvell platforms.
+
+It's best if the whole series is taken together.
+
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes in v2:
+- Update the system controller compatible strings to avoid using the old
+  legacy ones. 
+- Drop patch dropping 'phy-supply'.
+- New patch to rework ac5-98dx25xx 'behind-32bit-controller@7f000000' 
+  bus.
+- Link to v1: https://patch.msgid.link/20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org
+
+---
+Rob Herring (Arm) (9):
+      dt-bindings: mfd: Add Marvell AP806/CP110 system controller schema
+      arm64: dts: marvell: Add AP806/CP110 syscon compatibles
+      arm64: dts: marvell: Drop SPI max frequency
+      arm64: dts: marvell: armada-8040: Fix node names
+      arm64: dts: marvell: Fix w25q32 compatible strings
+      arm64: dts: marvell: Drop unused USB 'phy-names'
+      arm64: dts: marvell: cn9131-cf-solidwan: Drop st,m41t80 reset-gpios
+      arm64: dts: marvell: armada-3720-gl-mv1000: Add switch fixed-link
+      arm64: dts: marvell: ac5-98dx25xx: Rework 'behind-32bit-controller' bus
+
+ .../mfd/marvell,ap806-cp110-system-controller.yaml |  59 ++++++++++++
+ arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi      | 101 +++++++++------------
+ .../boot/dts/marvell/armada-3720-gl-mv1000.dts     |   6 ++
+ .../dts/marvell/armada-8040-clearfog-gt-8k.dts     |   4 +-
+ arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi |   2 +-
+ .../boot/dts/marvell/armada-8040-puzzle-m801.dts   |  10 +-
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi      |   6 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi      |   6 +-
+ arch/arm64/boot/dts/marvell/cn9130-crb-A.dts       |   2 -
+ arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi     |   2 -
+ arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts |   1 -
+ .../boot/dts/marvell/cn9131-db-comexpress.dtsi     |   4 +-
+ 12 files changed, 127 insertions(+), 76 deletions(-)
+---
+base-commit: 3191063649dbf7c0d0b768e1f3655e4c5fc6edb5
+change-id: 20261111-dtbs-marvell-3ae21c8ac47d
+
+Best regards,
+--  
+Rob Herring (Arm) <robh@kernel.org>
+
 
