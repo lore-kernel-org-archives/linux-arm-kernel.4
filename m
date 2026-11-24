@@ -2,66 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295A0606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F354606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f+sRgx2D;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=ewmwo10n
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BqyZxkL7;
+	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Vj8u7L60
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nA83iQvRyaruX6IzmNJzRwewMB28MahrmR9i6SAS/Ug=; b=f+sRgx2Dqq95uUl3Hpdcam48rT
-	5HD1u9cG6Vf5Yujd9xqJV3BFMJbXY1+Y0KT2ABPOfAqUc9GDluXtX195QaVkLa26eUyeLM9GxX8a1
-	XsdCn2tAR+R9/YmCZwIkKzVFeBNTIaEXOWULtN2DkGweFZs/PLnSHwRBvzuazIQFaJDG1JIUXv9Hw
-	MXr+IZd57SBq0Jqy4Xrxrof4IjtlclCtvBpiaDBquDF3Hxj9sq64lx8YYNdU2LQ032nKwZ+7ljPX1
-	0ak3tWEtrmY6Ly7svYeWKsu49D9000ji4uebnykh3PV31nIQcSXmcOR07p+GMliTP7KQm7XV8E3/L
-	5ICaiSYg==;
+	bh=iXPJfQL37+lFuWrPBpgG/yJPGWXB8XjhyfXUrG6mrgA=; b=BqyZxkL7TZD9qMLNxzQaRojeFC
+	AjJ2k5Y226JwXFTizySiSLiPGVxym604lZrlrjI2LNM8WSwHxL9JDOmPIhwdayJKSSF6IIlSwoqFa
+	X2nOIeZ1sMJVbvpn/AIrNaYTGlvOIQST0WMs2/BlrvE1338Dbs5xc4mmvgiIm2jxOZoF5B0QSYFf0
+	dSNShgJkT82wTsliM6Fx0iMbQOx6q27wOz0GGJxXlJi9Qo7fB8oAb93dUvCQtQKGSHtfFRsSGABe+
+	bbdWuHes8v2qre0TUYN8HMCzZ0FDuPYOabf4NaBpQCS4BMcKCF1x3R/j2plLH2gG4wQkErxi/7i71
+	wAQnf5GA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhgy-00000005UR7-3ocZ;
-	Tue, 24 Nov 2026 03:59:40 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhgw-00000005UPe-1bsd
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 03:59:40 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 47E90339;
-	Mon, 23 Nov 2026 19:59:28 -0800 (PST)
-Received: from localhost (a085714.arm.com [10.164.19.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6F05E3F86F;
-	Mon, 23 Nov 2026 19:59:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795492771; bh=Lplv50F+7kFs92k3xJrhQB0vZA6BC/BFMbC8nKa3qaQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ewmwo10nvaWDPRnZDHJF9g3hyp3eiP7ZSNUjF5yJL2oz5MplNK0k3yrgpsLUJPBZd
-	 u/CaRD4d9th4lGwA8M5d5PnIHZnbmrPM++yc1Ayr91UPjwRP9zP87WOp/sKrTulWT+
-	 3X3krAWS93i/6rmQ6DyblMNt4p/Ta/Cr0B0jlPEs=
-Date: Tue, 24 Nov 2026 09:29:27 +0530
-From: Anshuman Khandual <anshuman.khandual@arm.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
-	will@kernel.org, Ryan Roberts <ryan.roberts@arm.com>, 
-	Mark Rutland <mark.rutland@arm.com>, Lorenzo Stoakes <ljs@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>, 
-	Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org, linux-mm@kvack.org
-Subject: Re: [PATCH V3 00/14] arm64/mm: Enable 128 bit page table entries
-Message-ID: <aqcypbxidjbmjhuiujg2krseuy7v4lofrlq3upl4s7yjiq6bh2@3s4jqisdrkgd>
-References: <20261117070613.1183243-1-anshuman.khandual@arm.com>
- <20261120190525.GC1133597@ziepe.ca>
+	id 1xVhSR-00000005Snk-1xZb;
+	Tue, 24 Nov 2026 03:44:39 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVhSO-00000005Sn7-1lJq;
+	Tue, 24 Nov 2026 03:44:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795491873;
+	bh=nMy8A8dspKyD4GQcj7I09F4uoZ54ej+K/KIoy3ZgamU=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=Vj8u7L60X2/fSBAqE7B8mTW5UwhE4nXuBjHrS8KCtkpKKcbMtxLHf4wtXLUaVvID4
+	 pL2YYg6FYFXWqafhzHVqx3wEoROA0OzKyGXOexhXeT1YfB9BK9+x06jILxkqXEzFok
+	 NYEbNoCeVMkFwW6aoqdiurnfGZ2A2sYgnjha9qYs72W13Io8qqFJoQdAT+P5LRB7WT
+	 XpiNaevNeVpLmZ0TOCcr5FYzIlxd1B0n5rjfvKvCEhsCkQyyrTh+Qs86hBhkqX27+f
+	 //D06V3rLOEYC21jgh9OzfR8iP32p6RmMLO64ixjChwNE5t+xBtF1vLm2vYH/zP/Zx
+	 aDBhywIK6GAog==
+Received: from [100.64.0.214] (unknown [100.64.0.214])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6D4F517E0CD7;
+	Tue, 24 Nov 2026 04:44:32 +0100 (CET)
+Message-ID: <1e59911003612aa645607efcd502c010f1972a5e.camel@collabora.com>
+Subject: Re: [PATCH v7 2/3] media: verisilicon: AV1: Fix luma size
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	p.zabel@pengutronix.de, mchehab@kernel.org, heiko@sntech.de,
+ hverkuil@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Date: Mon, 23 Nov 2026 22:44:31 -0500
+In-Reply-To: <3dfe5ae59107fa77075676fc226ac818bc2700f9.camel@collabora.com>
+References: <20261120143135.71134-1-benjamin.gaignard@collabora.com>
+		 <20261120143135.71134-3-benjamin.gaignard@collabora.com>
+	 <3dfe5ae59107fa77075676fc226ac818bc2700f9.camel@collabora.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-VHcejEzEPR4GHlk6YEht"
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261120190525.GC1133597@ziepe.ca>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_195938_544224_BE68E860 
-X-CRM114-Status: GOOD (  14.04  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261123_194437_368417_58643E96 
+X-CRM114-Status: GOOD (  15.59  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,39 +91,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 20, 2026 at 03:05:25PM -0400, Jason Gunthorpe wrote:
-> On Tue, Nov 17, 2026 at 12:35:59PM +0530, Anshuman Khandual wrote:
-> > FEAT_D128 is a new arm architecture feature adding support for VMSAv9-128
-> > translation system. FEAT_D128 is an optional feature from ARMV9.3 onwards.
-> > arm64 platforms with FEAT_D128 enabled will now have two different memory
-> > translation systems i.e VMSAv8-64 and VMSAv9-128.
-> 
-> Please don't forget to update arm_smmu_sva_supported()
+--=-VHcejEzEPR4GHlk6YEht
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sure, thanks for the pointer.
+Since you need a v8 ...
 
-Fow now will disable SVA with CONFIG_ARM_D128 enabled but later it can
-be enabled back with SMMU_IDR5.D128 feature. I will probably fold back
-the following change in the series.
+Le lundi 23 novembre 2026 =C3=A0 22:30 -0500, Nicolas Dufresne a =C3=A9crit=
+=C2=A0:
+> Le vendredi 20 novembre 2026 =C3=A0 15:31 +0100, Benjamin Gaignard a =C3=
+=A9crit=C2=A0:
+> > Use the values computed by v4l2 helpers to get luma size.
+> > Unlile before this will also take care of padding.
 
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
-@@ -205,6 +205,9 @@ bool arm_smmu_sva_supported(struct arm_smmu_device *smmu)
-        unsigned long asid_bits;
-        u32 feat_mask = ARM_SMMU_FEAT_COHERENCY;
+    Unlike
 
-+       if (IS_ENABLED(CONFIG_ARM64_D128))
-+               return false;
-+
-        if (vabits_actual == 52) {
-                /* We don't support LPA2 */
-                if (PAGE_SIZE != SZ_64K)
+> >=20
+> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> > Fixes: 727a400686a2c ("media: verisilicon: Add Rockchip AV1 decoder")
+
+Fixes goes before Signed-off-by, does this need to be cc to stable?
+
+>=20
+> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+>=20
+> > ---
+> >  drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_=
+dec.c b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+> > index 5da59104a966..5e0cd5268f22 100644
+> > --- a/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+> > +++ b/drivers/media/platform/verisilicon/rockchip_vpu981_hw_av1_dec.c
+> > @@ -221,7 +221,7 @@ static void rockchip_vpu981_av1_dec_clean_refs(stru=
+ct hantro_ctx *ctx)
+> > =20
+> >  static size_t rockchip_vpu981_av1_dec_luma_size(struct hantro_ctx *ctx=
+)
+> >  {
+> > -=09return ctx->dst_fmt.width * ctx->dst_fmt.height * ctx->bit_depth / =
+8;
+> > +=09return ctx->ref_fmt.plane_fmt[0].bytesperline * ctx->ref_fmt.height=
+;
+> >  }
+> > =20
+> >  static size_t rockchip_vpu981_av1_dec_chroma_size(struct hantro_ctx *c=
+tx)
+
+--=-VHcejEzEPR4GHlk6YEht
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawUIHwAKCRDZQZRRKWBy
+9AgzAQCYcZQsQXxWhzBG+rQkqaUoWlXfLw76Ec7suNYc7L3DYgD/WVROKXt7doP/
+gd9qyH1wa0gnWIXTtyOoUMoj8l+1TQY=
+=hkrb
+-----END PGP SIGNATURE-----
+
+--=-VHcejEzEPR4GHlk6YEht--
 
