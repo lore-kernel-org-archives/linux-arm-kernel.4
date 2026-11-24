@@ -2,79 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8AD606A33C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6236E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B/fYyo5O;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=kysLkPoq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N7Yrp+K4;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=C+JbvLTx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UAVsxfMz3/e69OooPsZPrKI++x1O0xtoJW4/SbuMi5o=; b=B/fYyo5OrWyfPe
-	tmzYCfNTELJwN8MGMK5d/ti5A48GGKe/GOSg2lhwgp4uy/+BtpyVyNu0W+6Izlc1GuaTpkY/a8nJS
-	abVKAjGUvSFpcOMuhtBYuWfReCPczJtkoG2VnL3inqgIJOFwL+Eu+yttNqNSdG6D56Hw6R8zVDuDR
-	aQHZsFj7H9ilkQFRYDQuB8+E9xXTQkltx+aJ515HDPJZKOEFbDm6pckQv6tr3duk5YaK1sgJknemj
-	sm6awEdw1Ev/dSjXwqyy2ow2Z8n9B5d9z5v2CXHrbT9bJ/HcnP//KFgT4qy4j4w+DCuhwCPzeuVtD
-	iZcsVpiA07Ns9feISu9Q==;
+	List-Owner; bh=OUngm4girPZ/UgXDY4tToZ5+MVYoWJUTU2VlTrOevjQ=; b=N7Yrp+K4ihfpEi
+	3jASZtb30282a2eL3FlNSXhA9qo3rmsxlVdScfSm428cjigdd1WGHZNYPZxj87m6r1xGeZTikUNUS
+	vfDE0bviXnMAq3oHj/sgHtpO+mkZnJMClrsChKmxcAONP/mKNkkZo2BUI41FXaAKTdmQC6hUkWalh
+	fgKAm67uUsUpXTnxPdO1jW3yXAjbmlLvptLIet3VpG0twHSfPPwQ0FIGTViS3CwZmf6tCo+XgxYfG
+	rs78Mr744NDSwD7PkRiNEGgnVT8cnO6RNs5rdA4g1lKmClxb7TZf3/0okPiyHbds+Iqxb3+bzJpvh
+	l6MsnclnW0PC4tcRBz4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmaD-000000061V6-2b21;
-	Tue, 24 Nov 2026 09:13:01 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xVmbn-0000000621P-1x3V;
+	Tue, 24 Nov 2026 09:14:39 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmZp-000000061O5-1NW1
+	id 1xVmbj-0000000620n-1t97
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 09:12:39 +0000
+	Tue, 24 Nov 2026 09:14:37 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id D291B1A17A9;
-	Tue, 24 Nov 2026 09:12:35 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 668B7C4CBEA;
+	Tue, 24 Nov 2026 09:14:40 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9F9F8601E1;
-	Tue, 24 Nov 2026 09:12:35 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 28E0F11E6A790;
-	Tue, 24 Nov 2026 10:12:32 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 085D3601E1;
+	Tue, 24 Nov 2026 09:14:33 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1FC9111E68DFE;
+	Tue, 24 Nov 2026 10:14:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795511553; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=UAVsxfMz3/e69OooPsZPrKI++x1O0xtoJW4/SbuMi5o=;
-	b=kysLkPoqYoyohxCfqRl0TJqCIOaMxHqZwk51RgQgexqGvOg+FWHM1oAXGyFpxolVWxvrNg
-	wCeqitqKvaoRWRg/UL5jqk5M6prF+qiLt/lpxQizwaP/RrDTjWDbNQhGm253tsHVj5UpZz
-	L+y7iFnOT/F2LlXhd0L+PqVdZQ/vzJT/NQuVmyrWewIJZnTGQjtgJPC15DuzCAsHtVBVya
-	afssUN12BY4QmF/6Zvxikm1u6pnSEEVlwg0tOs1Whm4MyJtB1NqzG5XU4zoWlo1q4u7nOU
-	tDUi6mzkUATUkmqIN49tRP5jEIN6lmsjsvTz7PY2oxstz6POq7u1JXbkycHS8w==
-From: "Richard Genoud (TI)" <richard.genoud@bootlin.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Udit Kumar <u-kumar1@ti.com>,
-	Abhash Kumar <a-kumar2@ti.com>,
-	Beleswar Padhi <b-padhi@ti.com>,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Richard Genoud <richard.genoud@bootlin.com>
-Subject: [PATCH v7 4/6] arm64: dts: ti: k3-j721s2-ti-ipc-firmware: Reserve memory for LPM metadata
-Date: Tue, 24 Nov 2026 10:12:19 +0100
-Message-ID: <20261124091221.2593576-5-richard.genoud@bootlin.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261124091221.2593576-1-richard.genoud@bootlin.com>
-References: <20261124091221.2593576-1-richard.genoud@bootlin.com>
+	t=1795511671; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=OUngm4girPZ/UgXDY4tToZ5+MVYoWJUTU2VlTrOevjQ=;
+	b=C+JbvLTxACFgmMXVP5wvlu1mwmVIZQveH3j3i0LGBpo78jGydRRVv3Hmp9utJB7uXLQ+s2
+	Qgc5XZZ5u4jbrc0G5lH6mvUGyLCWErr9KbVrLnD/rFathee8+APWG7fT/gWcoOAtKt4pEi
+	FML1o06sWvxWlFeUgrvifnT+nWxVxZ2DsliSkVbaKQNQUe7VomPqbvjei8feQ37mEkrslC
+	Vq4FDCp2vHaWKuAHDHa2+/LubEr0dc7UHiWE9BOsuuihGpxseeqihOXgLJVrRPOZygT24e
+	aXmUyEfacOCvvtChysMgxDNGTI4uFRujoUZ73JU+QXBSQdp9cRgCFYPzhftReA==
+Message-ID: <cc3580f8-9a45-487f-ac86-84e0f1c3e8b4@bootlin.com>
+Date: Tue, 24 Nov 2026 10:14:13 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v12 1/4] net: xdp: add
+ __xdp_build_skb_from_buff() helper
+To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ Jesper Dangaard Brouer <hawk@kernel.org>,
+ John Fastabend <john.fastabend@gmail.com>,
+ Stanislav Fomichev <sdf@fomichev.me>, Jose Abreu <Jose.Abreu@synopsys.com>,
+ Ong Boon Leong <boon.leong.ong@intel.com>, Simon Horman <horms@kernel.org>,
+ Andrii Nakryiko <andrii@kernel.org>, Eduard Zingerman <eddyz87@gmail.com>,
+ Kumar Kartikeya Dwivedi <memxor@gmail.com>,
+ Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
+ Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
+ Emil Tsalapatis <emil@etsalapatis.com>,
+ Ihor Solodrai <ihor.solodrai@linux.dev>, peilinhe2020@163.com,
+ Peilin He <he.peilin@zte.com.cn>, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
+References: <20261121-stmmac-rx-mb-v12-0-3ae2f3bce174@oss.qualcomm.com>
+ <20261121-stmmac-rx-mb-v12-1-3ae2f3bce174@oss.qualcomm.com>
+ <9997f4e9-9453-4511-af3e-4be664a09281@bootlin.com>
+ <awVTNSYCD-_5gE4D@lore-desk>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <awVTNSYCD-_5gE4D@lore-desk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_011237_537232_A94EBBCB 
-X-CRM114-Status: GOOD (  13.33  )
+X-CRM114-CacheID: sfid-20261124_011435_762592_8318803A 
+X-CRM114-Status: GOOD (  14.59  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,77 +95,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Declare a carveout memory region to store LPM metadata on J721S2.
+Hi,
 
-For Jacinto devices, this memory region is needed for saving ATF context
-and the certificate information of ATF and OPTEE and DM image. This LPM
-metadata area is firewalled to be accessed only by TIFS.
+On 11/24/26 10:04, Lorenzo Bianconi wrote:
+>> Hi Lorenzo,
+>>
+>> On 11/21/26 18:28, Lorenzo Bianconi wrote:
+>>> xdp_build_skb_from_buff() always calls eth_type_trans() on the skb it
+>>> builds, which pulls the Ethernet header and advances skb->data. Drivers
+>>> that still need to process the L2 header before protocol parsing
+>>> therefore cannot use the helper.
+>>>
+>>> stmmac is such a driver: its software VLAN path (stmmac_rx_vlan()) reads
+>>> the VLAN tag at skb->data and shifts the MAC addresses over it, so it has
+>>> to run before eth_type_trans().
+>>>
+>>> Split the implementation into __xdp_build_skb_from_buff(), which builds
+>>> the skb (including the recycle mark, the Rx queue index and the frags
+>>> info) but leaves skb->dev, skb->protocol, skb->pkt_type and the mac
+>>> header unset, so the caller must initialize them, usually by calling
+>>> eth_type_trans(). Make xdp_build_skb_from_buff() a static inline wrapper
+>>> that still calls eth_type_trans() as before, preserving the behavior of
+>>> existing in-tree users. A follow-up patch will let stmmac use it.
+>>
+>> I've been questionning why we even do that in stmmac in the first place
+>> actually. This pretends to offload, but it's just to deal with the tag
+>> in the driver instead of later down the road.
+>>
+>> The original idea was for GRO back when it didn't handle vlan tags, but
+>> this isn't necessary anymore.
+>>
+>> There was a series in-flight to remove stmmac_rx_vlan altogether, but it
+>> seems to have stalled [1]:
+>>
+>> [1]: https://lore.kernel.org/all/20260914150612.9798-3-peilinhe2020@163.com/
+>>
+>> Peilin He, do you have any plans to continue this ? If not, it may be good
+>> to pick this up instead of working around this.
+> 
+> I am fine to rebase my series on top of that one or pick the required patch.
 
-U-Boot R5 SPL/TIFS will use this area to save and restore:
-- ATF context
-- ATF certificate information
-- OPTEE certificate information
-- DM image (which has been copied in memory at boot time by U-Boot
-  R5-SPL)
+There's been no activity on this since september, I think you can pick this
+one up and have Peilin He in CC + Author then, your multi-buff XDP has been
+going on for long enough, let's not block it further.
 
-At resume, U-Boot R5 SPL is executed and detects that the board is
-resuming (with a flag set in the PMIC), then it:
-- brings out of retention the DDR
-- retrieves the LPM memory region from DTS
-- authenticates certificates from LPM memory region and applies firewalls
-- asks TIFS to restore TFA and its own minimal context
-- starts TFA on remote proc
-- loads back DM image from memory and jumps to DM
+Maxime
 
-https://software-dl.ti.com/tisci/esd/latest/2_tisci_msgs/pm/lpm.html#lpm-msg-lpm-save-addr
-
-As this is used by U-Boot SPL, bootph-pre-ram is added.
-
-NB: This memory region is not part of DM memory (which is not retained
-at suspend)
-
-Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
-Signed-off-by: Richard Genoud (TI) <richard.genoud@bootlin.com>
----
- .../arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-index 5253d028da09..6e52c0821fcf 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-@@ -6,6 +6,12 @@
-  */
- 
- &reserved_memory {
-+	lpm_memory_region: memory@9e500000 {
-+		reg = <0x00 0x9e500000 0x00 0x300000>;
-+		no-map;
-+		bootph-pre-ram;
-+	};
-+
- 	mcu_r5fss0_core1_dma_memory_region: memory@a1000000 {
- 		compatible = "shared-dma-pool";
- 		reg = <0x00 0xa1000000 0x00 0x100000>;
-@@ -189,8 +195,10 @@ &mcu_r5fss0 {
- &mcu_r5fss0_core0 {
- 	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
- 	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
--			<&mcu_r5fss0_core0_memory_region>;
--	memory-region-names = "dma", "firmware";
-+			<&mcu_r5fss0_core0_memory_region>,
-+			<&lpm_memory_region>;
-+	memory-region-names = "dma", "firmware", "lpm-metadata";
-+	bootph-pre-ram;
- 	status = "okay";
- };
- 
 
