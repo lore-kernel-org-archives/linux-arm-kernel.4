@@ -2,74 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF71F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DDFD606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AmV/pwXh;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=mHAjw4tY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yKVfg4lF;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=0I1njFRf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=KAvHK6j0hREgOFUkVu/pGTkn7fy5PDfJjXV7BZ0L4ak=; b=AmV/pwXhS9j5WCfwsteteAi1Rx
-	dNgEq6gE38knJYa8RB3v1sGZ9Jg9BdR+opE+E5Hm/IgF2VDmE1hU9tlynabPx3M6KoBITUYw9tZTe
-	3OG8oRy0C587OlumcVFMWP767Lmbo8+qtzBAAXL2g4QFoFn2ikRe04e3BNGIrIM2tripnb/bPx05k
-	6a8qpJIehO+y4yImJeYP2qWsGzTZKnOa+5L1SPXfU/HW2Vy2dkhAfWzW1t7iCkl+gnMFVU5B0KxXg
-	6++XLhYpFYamRA7fXkdM2Uyqdr+NSktwV/GpUVrSmntb8FbQ42KfTSBucJ08al/wCUXrX9X93n2ts
-	tyOySBPA==;
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=mkjJrkqN7PSqt35Slo7/CrqzZ7y1RXzaSbB1kKd5fBw=; b=yKVfg4lFR+KRDz
+	Km+zZoIpHBC/mAcKUXOdTa3YfY4RZCpb6df41YMrPRstlCryDa17riBGs2uKU6Z9nNIRu1yuS5z8o
+	EHu9WBWBOL+DX9up5XdpFL4XawTjfV00J+OijQt6+/YrlAQkzFWxy85uoaAwYi5jw9NcOBjtxEOzl
+	6yIKSpiu9oVqV/HJztX0hiGTmaE7DwCv+kVCMlRN2gwu0LneXiqYGCiRKpoe/tb8FYIcl9Jb6Q0gP
+	FaLB0IBAVuQzgf47toG0/MYdjVAnQwynouyCmosaKKwRrlz4DdJ8AlJQHT1UyoUtziHH/Go75qXh1
+	wx1CM+AnCN6jL1ilGZjg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoI3-00000006HgA-3Nsv;
-	Tue, 24 Nov 2026 11:02:26 +0000
-Received: from out-24.mta0.migadu.com ([2001:41d0:1004:224b::18] helo=mta0.migadu.com)
+	id 1xVoIh-00000006Hpy-2Kcr;
+	Tue, 24 Nov 2026 11:03:03 +0000
+Received: from mail-vs1-xe2f.google.com ([2607:f8b0:4864:20::e2f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoI1-00000006Hfc-0sYH
+	id 1xVoId-00000006HpJ-2bEv
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:02:22 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=YQOhx28BDze68y36zy90w+D/2RW09RYxRy95T7kvqVE=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795518138; v=1; x=1796122938;
- b=mHAjw4tYzSAbLJMfkcEYcq0YIf63aj6uOu6qCOkBwPC9lFDTox4JZQHX+hqk/29Qy48Ta4AE
- 0zsD0hoswVQYR/4upBbAsovAW+PpPOlVCjGJs5pNJR8Mh18Y0wTATB4fnlphyx7P24tdcpzC7BG
- 8UvW+9cJhuO/KG1gieRzi5LY=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id e2ce8471a6143467;
-	Tue, 24 Nov 2026 11:02:18 +0000
-X-Mizu-Trace-ID: e2ce8471a6143467
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>
-Cc: Oliver Upton <oupton@kernel.org>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Steven Price <steven.price@arm.com>,
-	Peter Collingbourne <peter@pcc.me.uk>,
-	Cornelia Huck <cohuck@redhat.com>,
+	Tue, 24 Nov 2026 11:03:02 +0000
+Received: by mail-vs1-xe2f.google.com with SMTP id ada2fe7eead31-7d2dc1ac787so1325007137.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 03:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795518178; x=1796122978; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=mkjJrkqN7PSqt35Slo7/CrqzZ7y1RXzaSbB1kKd5fBw=;
+        b=0I1njFRfsk1ewwSaNYsplWQ6eY51BfCJemQGjy9Kihs/gmliXJdtZxB7Xr0iuVSH4v
+         3LhjZTudL1OKQA8hdeqUxPTgOIJbkwAOXU3kvVbbwnhib7iik88Qh18Ns33xhAvHlCcX
+         iz/5jysAvp0DIS0JJX82XULO37g/A/2VEeNBTR3ZAHlTD3sXebBVya5gMNv1bsZIIQ5j
+         xkxZ9h1luQlTD4bvfzgWW4Px3BG0N499wbBGzBStWx7Iw4kXr5x1Y2+LPrnYW/gVhnpo
+         BrvkS6VHwdQc1eiAKBb3x0XSw1NKsNq5iDRwOZrTbhukkPvl414lp5edmHyGMHS23EQ6
+         dZOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795518178; x=1796122978;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=mkjJrkqN7PSqt35Slo7/CrqzZ7y1RXzaSbB1kKd5fBw=;
+        b=2FG5uFeczWOuj6b0IFywIIw5lq/xyH+JEHc8+PkuOGSO7XbTBLH6IL/lBRAH2bomP7
+         U2GHz92VlSIv+JBp/bEWUtF4KCKy7srJk6joKdpnlHRqbDLs9lUH1jcqiFXNGCaBfwyE
+         t9WKvqxbFLuZKR02pKNP1znkaQKs8MP4ePAau5itKKE4oZh2OdwohVJAqDpsoSL1etMA
+         +tcazf6aXt8x9LXkCGdj0MXv+SFzui7tDaeZ9Z7xTM5ww4/Yg67KTDTyxmPPNHC/unzi
+         dF/OBFlGmwpx6Lx4pUQQeLcsPL5kaj5fu57hwl7XsgzE/DBoEzY9PzZTTu9Y5UxJAyqQ
+         z8oQ==
+X-Forwarded-Encrypted: i=1; AL+hErGyXsIdCGH+0PKHnBEEk5uDFGzZwoLgbeCmj4rzUOuMj7Xvks+RNQK87vmf8ecqM8wY0cyEi5mgovh2QvlG7aIJ@lists.infradead.org
+X-Gm-Message-State: APuU4Z8H12nOnRvRng1e9cUuLmN/LQ1i+b+KCklF/5DvFEAjggCFQKzp
+	nYAHv2E0AItxp6JMsjj0seoq6CM953Zis0NJcf6RjC7JVIy5zR1l1mmn
+X-Gm-Gg: AZFdTZe8g8h0rgpOXF/wSAH/frHAn/CDeG9AQ9qrCDNPuVePQNIR65e2QBVRHpx/GPU
+	q9EQppF0eIr+/qnFWrdAJDK2GWIdTjqFsMxodyvs+CGfQK3B5N6H8Hxpr7AH/vTH5i6RUCYxyH0
+	SSAUkSP89Xv/dUxHcnnu/ZyfR6/pKL39N18j8rmuN84qGrYK2prPJTduAu5fiK7k6Yov3z5H4ye
+	S9FV3p3d/jRb6oNR5sRZiEg2eoKTYcIJK4sbZj0XZr+Gqvr3LoHgAgD4B1KpocezVYpkSrqZHyH
+	iBx0sK22QvoRQP0z+bKfIgdxmLj+T2DMVaIJBcI/1YlIhLQD4R+WJbWRk+RjysAavudwlEn1X6l
+	DEAdK1OOM3pTEKX2XMp1zQja5E4S/idVqvn8tyjuo15NB2gzzJgRRH+7h+umPLeQahRRNvtenfa
+	Gb8TZ9jvitCz45kaddKt3DSdQ3pt6efOTl1sXkIzFeo5vcPHxq1pKHNNtU+vnwuM5lPrz7Y0gA0
+	8xPhbViapV7LHCDpW57LhYxgxX9DIHvYrzSnIIR5dGaVnuiQByV3Uwe+sOlhfcPzj/jIR0GtXZS
+	xDXgYJ9RSMoYw0suasV17DlGuAfRlCcr+eBcK36AH4DBvLmmMy9HbXdIxSnRY4yjrBj6Go5jadp
+	kSvGjveKC92uzqTiBA5dk1UZC8iDcfyPCPeXNkDSetydN5Gwq
+X-Received: by 2002:a05:6102:54a8:b0:7d6:56d3:f179 with SMTP id ada2fe7eead31-7d72b361a74mr6083753137.5.1795518177851;
+        Tue, 24 Nov 2026 03:02:57 -0800 (PST)
+Received: from localhost.localdomain ([2804:1b2:aa42:30d0:da53:c2d8:5b4f:38c1])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-7d6e8265e55sm14978477137.11.2026.11.24.03.02.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 03:02:57 -0800 (PST)
+From: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+To: Enzo Adriano <enzo.adriano.code@gmail.com>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
+	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	Fuad Tabba <tabba@google.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] KVM: arm64: Set PG_mte_tagged before copying MTE tags from userspace
-Date: Tue, 24 Nov 2026 11:02:13 +0000
-Message-ID: <20261124110213.587871-1-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Pablo Mazzini <pmazzini@gmail.com>,
+	Alexander Sverdlin <alex@sverdlin.org>,
+	Jun Yan <jerrysteve1101@gmail.com>,
+	Lukas Schmid <lukas.schmid@netcube.li>
+Subject: Re: [PATCH v5 2/3] arm64: dts: allwinner: add A733 SoC description
+Date: Tue, 24 Nov 2026 08:02:31 -0300
+Message-ID: <20261124110231.15528-1-vinicius.eduardo.pedrosa@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261121-a733-cubie-a7s-dt-v5-2@gmail.com>
+References: <20261121-a733-cubie-a7s-dt-v5-0@gmail.com> <20261121-a733-cubie-a7s-dt-v5-2@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_030221_423337_6534F8A6 
-X-CRM114-Status: GOOD (  19.86  )
+X-CRM114-CacheID: sfid-20261124_030259_704498_81A5726E 
+X-CRM114-Status: UNSURE (   8.77  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,124 +119,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-KVM_ARM_MTE_COPY_TAGS takes PG_mte_lock on a page's first tagging, and
-sets PG_mte_tagged only after copying the tags in from userspace.
-However, that copy faults on the same page if the VMM passes a PROT_MTE
-mapping of the page as the tags buffer. The fault then spins forever in
-mte_sync_tags(), waiting for PG_mte_tagged to be set.
+Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Radxa Cubie A7Z V1.11
 
-Call sanitise_mte_tags() before the copy, so that PG_mte_tagged is
-already set if the copy faults. The ioctl calls it holding a reference
-on the page rather than kvm->mmu_lock, and either keeps the page from
-being freed. A racing vCPU fault or __set_ptes() then finds the page
-tagged and doesn't touch its tags. The guest and the VMM can read
-cleared tags from the page until the copy finishes.
+I tested this dtsi with my A7Z board DT on a v7.4-rc1 lab kernel with
+some of the posted dependencies and a local pinctrl fix, not the full
+list from the cover letter.
 
-Fixes: d77e59a8fccde ("arm64: mte: Lock a page for MTE tag initialisation")
-Reported-by: Catalin Marinas <catalin.marinas@arm.com>
-Closes: https://lore.kernel.org/all/auPCV6VdMEz4uZkK@arm.com/
-Cc: stable@vger.kernel.org
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
+All eight CPUs came up, both A55 and A76 PMUs registered, the PPI
+partitions were recognized and sysfs shows one cluster. MMC0 ran at
+3.3 V and 50 MHz, and a read of its first partition matched the
+reference SHA-256. Two card-detect hotplug cycles worked with
+GPIO_PULL_UP and the local EINT-mux fix.
 
-Notes:
-    Based on kvmarm/fixes (012e4bc01e339), which has the MTE fixes this
-    patch depends on.
-    
-    I didn't go with Catalin's suggestion of a copy_from_user() into a
-    local buffer, since there's no helper that writes tags held in the
-    ioctl's one-tag-per-byte format from a kernel buffer to a page.
+I haven't tested the new I2C0 PG8/PG9 pins, PMU counting, EL2
+interrupts, ITS/MSI or the A7S board DTS.
 
- arch/arm64/include/asm/kvm_mmu.h |  1 +
- arch/arm64/kvm/guest.c           | 18 ++++--------------
- arch/arm64/kvm/mmu.c             |  7 +++----
- 3 files changed, 8 insertions(+), 18 deletions(-)
-
-diff --git a/arch/arm64/include/asm/kvm_mmu.h b/arch/arm64/include/asm/kvm_mmu.h
-index 32392abf2e21c..d0f66426f139f 100644
---- a/arch/arm64/include/asm/kvm_mmu.h
-+++ b/arch/arm64/include/asm/kvm_mmu.h
-@@ -196,6 +196,7 @@ int kvm_phys_addr_ioremap(struct kvm *kvm, phys_addr_t guest_ipa,
- 
- int kvm_handle_guest_sea(struct kvm_vcpu *vcpu);
- int kvm_handle_guest_abort(struct kvm_vcpu *vcpu);
-+void sanitise_mte_tags(struct kvm *kvm, kvm_pfn_t pfn, unsigned long size);
- 
- phys_addr_t kvm_mmu_get_httbr(void);
- phys_addr_t kvm_get_idmap_vector(void);
-diff --git a/arch/arm64/kvm/guest.c b/arch/arm64/kvm/guest.c
-index b7d36c2abfdf9..82911d1287611 100644
---- a/arch/arm64/kvm/guest.c
-+++ b/arch/arm64/kvm/guest.c
-@@ -24,6 +24,7 @@
- #include <asm/fpsimd.h>
- #include <asm/kvm.h>
- #include <asm/kvm_emulate.h>
-+#include <asm/kvm_mmu.h>
- #include <asm/kvm_nested.h>
- #include <asm/sigcontext.h>
- 
-@@ -1057,27 +1058,16 @@ int kvm_vm_ioctl_mte_copy_tags(struct kvm *kvm,
- 			kvm_release_page_clean(page);
- 		} else {
- 			/*
--			 * Only locking to serialise with a concurrent
--			 * __set_ptes() in the VMM but still overriding the
--			 * tags. A hugetlb folio is marked tagged as a whole,
--			 * so its first tagging clears every page.
-+			 * The user copy can fault on this page, and that fault
-+			 * spins until PG_mte_tagged is set, so set it first.
- 			 */
--			if (folio_test_hugetlb(folio)) {
--				if (folio_try_hugetlb_mte_tagging(folio))
--					mte_clear_folio_tags(folio);
--			} else {
--				try_page_mte_tagging(page);
--			}
-+			sanitise_mte_tags(kvm, page_to_pfn(page), PAGE_SIZE);
- 			num_tags = mte_copy_tags_from_user(maddr, tags,
- 							MTE_GRANULES_PER_PAGE);
- 
- 			/* uaccess failed, don't leave stale tags */
- 			if (num_tags != MTE_GRANULES_PER_PAGE)
- 				mte_clear_page_tags(maddr);
--			if (folio_test_hugetlb(folio))
--				folio_set_hugetlb_mte_tagged(folio);
--			else
--				set_page_mte_tagged(page);
- 
- 			kvm_release_page_dirty(page);
- 		}
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index a0d4981ebb998..9365d83a646d7 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -1598,11 +1598,10 @@ static int get_vma_page_shift(struct vm_area_struct *vma)
-  * able to see the page's tags and therefore they must be initialised first. If
-  * PG_mte_tagged is set, tags have already been initialised.
-  *
-- * Must be called with kvm->mmu_lock held to ensure the memory remains mapped
-- * while the tags are zeroed.
-+ * The caller must hold kvm->mmu_lock or a reference on the page, so that the
-+ * page isn't freed while the tags are zeroed.
-  */
--static void sanitise_mte_tags(struct kvm *kvm, kvm_pfn_t pfn,
--			      unsigned long size)
-+void sanitise_mte_tags(struct kvm *kvm, kvm_pfn_t pfn, unsigned long size)
- {
- 	unsigned long i, nr_pages = size >> PAGE_SHIFT;
- 	struct page *page = pfn_to_page(pfn);
-
-base-commit: 012e4bc01e339a65dc7c59181b5efb33b171d12c
--- 
-2.47.3
-
+Thanks,
+Vinicius
 
