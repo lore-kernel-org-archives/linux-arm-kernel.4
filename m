@@ -2,70 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57405606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63E2606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oqE/8FyN;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Q3hqHcR6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QfTe9qJI;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Jq1bhgdJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ISLuAv+WyTAin19m+4GFCxS3knd9KXbnCR1jZVMEmIk=; b=oqE/8FyNx79T6Eo6vQn+TJWjCj
-	4NlUVxwP2frJEXRfcojLAMfcEhcFfzNoIntSswzL+JYSDAMCWILLrDoxT9H3Oy/Fb42JdtFL6l/3A
-	kiMACYNNu93bDMHTHVX/AJpwWpegv0wiw3mRQf8OiFO7kP5svujZYEAs6exP7z/gj8Ay8Pb4tANx0
-	b8IsPfebsiiYpwD1x2/qj/Usk/oQl9zZp35o2wJAaFhR7HiW8eUZaal0MCs5d+OCeAv3vtUIWjKM+
-	j6ksPanA4C0q0ynlzWu3tZ144r5NtrVFEodgtoxpxAs3z+yP6usfkwyogGoh5P4c8DUPMY8iSz+i+
-	+L74jz7w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=XULPdpOXhZWcxF+6fl42iXhP5a4/0BDAv6XyxShQgu8=; b=QfTe9qJIvAtIX9
+	Hoiuuc5gk+q0ym8+XpslHjplVTWmHSA8yXyTa5R7QCfaoMvoadfigtIvc1EiTNfv8g+FKqAGBVrnL
+	FhpvzBjUizCownre1/ghpAomIwl0zNS20P2KugHxylVF9FYrQQlWIS03SzmpdL7Jl6WspfDyjrFWi
+	7nzQhP8zUzqCehjVhltI79VvGBJHjyppEO1Amh8AN6JqBfFB4+frskBvsZtMC30ZMkMcegzGz6tJG
+	19K5Al2YhjQ0zy70JHABik5x0YLBu31YEYa+AZFGiHRiTOK1UKZSL1xV94stVR8XuBxmgk5wPwUCl
+	mqs1YyHAjqEEJmgoDb6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuEf-00000007KqL-2rdN;
-	Tue, 24 Nov 2026 17:23:17 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVtlF-00000007DRg-22It;
+	Tue, 24 Nov 2026 16:52:53 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuEZ-00000007KnG-0oBc
+	id 1xVtl9-00000007DNx-0Vcq
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:23:11 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 89218618B5;
-	Tue, 24 Nov 2026 17:23:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5869D1F000CA;
-	Tue, 24 Nov 2026 17:23:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795540990;
-	bh=ISLuAv+WyTAin19m+4GFCxS3knd9KXbnCR1jZVMEmIk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Q3hqHcR6IyvIp3CIR96l6pe8MvRJ3w0NF8ApqhHrGE5UhwGDcSCGwCPTwfhhV/DUn
-	 cycehnC4syzJ5mQmbeQkV58eWYwLaK/bb2aU5siZBLS+qPiyEboe9O4tXe29PGjViE
-	 yVSpXf5NEOGWEB4Tf5JIPNBzsGB/0Ai564nTTb4DoLO2HprRIb3TrUEFDe5ks6Q5D6
-	 QVSjYu/XiMzGTQ31qeoa96QytvhqZgKqFPEqOTvAve95oyvpE2zIrPHyM8qurkaCFh
-	 umTXf2tiIA/CQzLCtUNK1NRmuDUDVUOHzFNPg1b7+sINbpues4iksrmE8TEDclplbg
-	 ++ZFYLW4FcLiw==
-Date: Tue, 24 Nov 2026 18:23:04 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Sascha Bischoff <sascha.bischoff@arm.com>,
-	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
-	Radu Rendec <radu@rendec.net>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/14] irqchip/gic-v5: Retain the L2 IST when mapping
- times out
-Message-ID: <awXH-Is5s6eqx8mT@red-moon>
-References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
- <20261118-host_gicv5_fixes-v3-4-13c1859e8aa3@arm.com>
- <CA+EHjTzPFjUOXCiccswH2xGvbiqgXPbSihov7MA0WuXn-SmrEg@mail.gmail.com>
+	Tue, 24 Nov 2026 16:52:49 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 1008CC2C678;
+	Tue, 24 Nov 2026 16:52:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8A372601E1;
+	Tue, 24 Nov 2026 16:52:45 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 86E5C11E6998A;
+	Tue, 24 Nov 2026 17:52:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795539163; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=XULPdpOXhZWcxF+6fl42iXhP5a4/0BDAv6XyxShQgu8=;
+	b=Jq1bhgdJ1xgjbe6h02/W9/1SiXR1ZGEWUP2U+1XCsr7NPP8siG9u9opAAEmq4XoJXvXk3d
+	jOFtA/y4yh8eDsm5puLKee09wiVvEZUuB85bbk1cOaexmGj+wk1riKnlPEYpS0bK7ApInn
+	DTZSDKlllFOYbawBZjDMWdLvexco4lj+y/UuK0uHLT1298TNtOkwVi64pIjnRO2cUD6d06
+	erAoMdpog0azAQBwGsSLHBxfW+CoU9PKG+SIRAF3OjW1DAI3qSTd+WPeo6w/dIP04rNXRT
+	8dglv/C7PffBCM1dz2m1N4d3ELz+TJdVyDmR5NuUSbEG2gdhuvfYabvp6Hovtg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Tue, 24 Nov 2026 17:51:33 +0100
+Subject: [PATCH v13 08/10] clk: nuvoton: ma35d1: Reparent SYSPLL correctly
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+EHjTzPFjUOXCiccswH2xGvbiqgXPbSihov7MA0WuXn-SmrEg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261124-perso-ma35d1-upstream-clk-v13-8-c920f4a9f0ce@bootlin.com>
+References: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
+In-Reply-To: <20261124-perso-ma35d1-upstream-clk-v13-0-c920f4a9f0ce@bootlin.com>
+To: Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>, 
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>, 
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Steam Lin <STLin2@winbond.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_085247_320182_52DBE5A2 
+X-CRM114-Status: GOOD (  14.92  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,56 +88,71 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 12:00:15PM +0000, Fuad Tabba wrote:
-> Hi Sascha,
-> 
-> On Wed, 18 Nov 2026 17:35:33 +0000, Sascha Bischoff
-> <sascha.bischoff@arm.com> wrote:
-> [...]
-> > diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
-> [...]
-> > @@ -217,6 +217,10 @@ int gicv5_irs_iste_alloc(const u32 lpi)
-> >          if (FIELD_GET(GICV5_ISTL1E_VALID, le64_to_cpu(l1ist[index])))
-> >                  return 0;
-> >
-> > +        /* A previous map timed out; do not overwrite its pending L1 entry. */
-> > +        if (READ_ONCE(l1ist[index]))
-> > +                return -EBUSY;
-> 
-> Sashiko's review [1] didn't go on the list, in case you missed it.
-> Sashiko found that l1ist[index] is read twice, and that on a
-> non-coherent IRS a map completing after the timeout leaves a stale
-> copy of the L1 entry in the cache for later allocations. Invalidating
-> the entry before it's first read would fix the latter. Invalidating it
-> on the timeout path wouldn't, since a later read can refill the line
-> before the map completes.
-> 
-> With those fixed:
-> Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
-> 
-> Cheers,
-> /fuad
-> 
-> [1] https://sashiko.dev/#/patchset/20261118-host_gicv5_fixes-v3-0-13c1859e8aa3%40arm.com
+The clock tree is still incorrect. SYSPLL is derived from HXT_GATE, very
+much like CAPLL, DDRPLL, VPLL, APLL and EPLL. SYSPLL has a fixed
+frequency, but if HXT gets gated, SYSPLL stops running.
 
-Hi Sascha,
+Reparent SYSPLL under HXT_GATE to properly define the clock tree
+topology. After this change, the frequencies are identical, but the
+clock tree looks (again) much closer to the reality.
 
-I am taking some time to revamp the current approach because as a fix
-it is getting complicated and there are corner cases that I don't think
-are fully covered.
+Since the TRM does not explicitly shows that HIRC and LIRC are
+internally sourced from HXT and LXT, respectively, I haven't reparented
+them (even though that was tempting). This can be done later anyway.
 
-I suggest we drop this patch from this series for now so that it does
-not hold off the other patches that I believe are ready to be merged
-with very minor tweaks.
+Fixes: 691521a367cf ("clk: nuvoton: Add clock driver for ma35d1 clock controller")
+Cc: stable@vger.kernel.org
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ drivers/clk/nuvoton/clk-ma35d1.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-Thanks,
-Lorenzo
+diff --git a/drivers/clk/nuvoton/clk-ma35d1.c b/drivers/clk/nuvoton/clk-ma35d1.c
+index 69a97aafa80d..06bbd63f2ccf 100644
+--- a/drivers/clk/nuvoton/clk-ma35d1.c
++++ b/drivers/clk/nuvoton/clk-ma35d1.c
+@@ -139,6 +139,12 @@ static const struct clk_div_table eadc_div_table[] = {
+ 	{13, 28}, {14, 30}, {15, 32}, {0, 0},
+ };
+ 
++static struct clk_hw *ma35d1_clk_fixed_parent_hw(struct device *dev, const char *name, int rate,
++						 const struct clk_hw *parent_hw)
++{
++	return devm_clk_hw_register_fixed_rate_parent_hw(dev, name, parent_hw, 0, rate);
++}
++
+ static struct clk_hw *ma35d1_clk_fixed(struct device *dev, const char *name, int rate)
+ {
+ 	return devm_clk_hw_register_fixed_rate(dev, name, NULL, 0, rate);
+@@ -288,6 +294,9 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
+ 
+ 	hws[HXT_GATE] = ma35d1_clk_gate_parent_data(dev, "hxt_gate", hxtg_parent_data,
+ 						    clk_base + REG_CLK_PWRCTL, 0);
++	if (IS_ERR(hws[HXT_GATE]))
++		return PTR_ERR(hws[HXT_GATE]);
++
+ 	hws[LXT_GATE] = ma35d1_clk_gate_parent_data(dev, "lxt_gate", lxtg_parent_data,
+ 						    clk_base + REG_CLK_PWRCTL, 1);
+ 	hws[HIRC] = ma35d1_clk_fixed(dev, "hirc", 12000000);
+@@ -299,7 +308,7 @@ static int ma35d1_clocks_probe(struct platform_device *pdev)
+ 
+ 	hws[CAPLL] = ma35d1_reg_clk_pll(dev, CAPLL, pllmode[0], "capll",
+ 					hws[HXT_GATE], clk_base + REG_CLK_PLL0CTL0);
+-	hws[SYSPLL] = ma35d1_clk_fixed(dev, "syspll", 180000000);
++	hws[SYSPLL] = ma35d1_clk_fixed_parent_hw(dev, "syspll", 180000000, hws[HXT_GATE]);
+ 	hws[DDRPLL] = ma35d1_reg_clk_pll(dev, DDRPLL, pllmode[1], "ddrpll",
+ 					hws[HXT_GATE], clk_base + REG_CLK_PLL2CTL0);
+ 	hws[APLL] = ma35d1_reg_clk_pll(dev, APLL, pllmode[2], "apll",
+
+-- 
+2.56.0
+
 
