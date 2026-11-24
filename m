@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80AEA606A682
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C057606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iH77KBgF;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=aR5LjR9Q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aJz5HbYp;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=RK0MlFpG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=o2e17lgClUL6FnN4PkSNyg+0+A+ZWeJi0pzpu2mZ/90=; b=iH77KBgF0iiGvf
-	F9C9NHamizoQcggIi/ZRk65nNFAyHl3j+qRUrrCIEQZ1wMb1N9HnP6phsW3yM+WQicA0LrJJ6+/R3
-	5jn9to4WoyK/oK+q32PI+0CPRlua6PF7+TVSlqXqanqma2T9bNwkUNi/Lyg7lzqTVOu14+EyJm47Q
-	rLeCxDV583Xsrfie1sjS+i5iz3cLN+8qeJcztCQPpFQXlNsRh7BHUy6KiR5JkvD2rBw0pGC+VSy8S
-	ydQF+yitMkCqrEppI4jTcWYiruAM6bLMrBIgD1HJWJLR1m56NE26lO4nUeD/zKRcRJ/M7hW2nJ3OS
-	GlwreOLzQxyF9Cf+IBNA==;
+	List-Owner; bh=orTBgcPWSFDONL+DOqOHORQnJCSoIGVHZ3M80sTXWHQ=; b=aJz5HbYp1xwrX0
+	s1bE7w41IW08IdUBgSLbv4+bFPt3yORySZc8qBzqFxss/RgC8lUHMtWOYu4U/AVmdo6cYDJ+bjtjn
+	ON5N5/Qo2ryZ7dka46UJuDvYQMrwjqQu3vw4weS0VFw4h5djKrjqeXF8lLL9yB9m+bm9RDw678z8T
+	zDumtECH2VHYV7bZxnKOSNSmS3gp4Bv0z3YUH6HnAPnjZFbZjYT/vHEdEt81nnQiDg50xAzbGVzwz
+	Of/fLeq6ny1KHiaBVlx2yvH8xBYsJcd29Hvbi4kEjXeIE6kyoxer6JcFujXPbynbevvPVA/eLJGZ4
+	3cwnEz9xUF1QMXcTY6mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwYo-00000007eIl-0XUA;
+	id 1xVwYo-00000007eIb-0248;
 	Tue, 24 Nov 2026 19:52:14 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwXt-00000007dkp-20TY
+	id 1xVwXk-00000007daT-3IFQ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:51:18 +0000
+	Tue, 24 Nov 2026 19:51:10 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C9A8316F3;
-	Tue, 24 Nov 2026 11:51:13 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 642DE339;
+	Tue, 24 Nov 2026 11:51:05 -0800 (PST)
 Received: from pluto.guest.local (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B9AC33F763;
-	Tue, 24 Nov 2026 11:51:12 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6A0E33F763;
+	Tue, 24 Nov 2026 11:51:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795549876; bh=BryguWDhx6sj/MVWpMUomWhwh0S4a+pxPzh6d2NC51o=;
+	t=1795549868; bh=xiStcxP+9MP9dLfzlSwKwRQemonDgee+9pCFRr2f5VY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aR5LjR9QEkODftp+RK+jYZAPajQIb4Gbr2IxXz7AoZpdA2uwISrYwa/WFC6X2JW20
-	 lIKn5Gu9jzHSYvgN0sDJTfpa+PzFxZ57UpjJbpeBYQ1ZNae0BA1eaCoY7Que0FViiC
-	 sYGBsRtWDWR6guKtWPKYpKttBzW5HD59RhphflO4=
+	b=RK0MlFpGFWrxagl4Ib4W7kVf2wk4wPHe4qUz2xsGGIzuVb/6bdVND/HHvGDKYY4f4
+	 Tj7yen2pY0XIVtbvHH1jOXtpqis/t2miY768svrx2moaYFynsZVSN64+gDDSnOQItB
+	 G2Gx4/5XN5rRIOmQy3Qzji0ANwlopvGQ+ilfDn8I=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -65,9 +65,9 @@ Cc: sudeep.holla@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
 	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v17 19/34] firmware: arm_scmi: Add Telemetry global configuration support
-Date: Tue, 24 Nov 2026 19:48:25 +0000
-Message-ID: <20261124194841.1147072-20-cristian.marussi@arm.com>
+Subject: [PATCH v17 17/34] firmware: arm_scmi: Add Telemetry TDCF parsing for UUID lines
+Date: Tue, 24 Nov 2026 19:48:23 +0000
+Message-ID: <20261124194841.1147072-18-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261124194841.1147072-1-cristian.marussi@arm.com>
 References: <20261124194841.1147072-1-cristian.marussi@arm.com>
@@ -75,8 +75,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_115117_592334_47899F73 
-X-CRM114-Status: GOOD (  13.14  )
+X-CRM114-CacheID: sfid-20261124_115108_917361_C2A59F26 
+X-CRM114-Status: GOOD (  25.42  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -96,151 +96,470 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support to configure Telemetry globally by setting its enabled state
-and the requested update interval.
+Add support to parse, track and link TDCF UUID lines to the related
+discovered DataEvents.
+
+Maintain also a central list of discovered UUID lines.
 
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
 v16 --> v17
- - avoid collection name clashes
- - rename update_interval_ms to ename update_interval
+ - removed unused node+_lst
 v15 --> v16
- - fix mode check logic
+ - WARN_ON invalid UUID line
+ - uuid array drop counted_by
+v14 --> v15
+ - use proper casting in tlm_collect
+ - use snapshots to collect UUIDs during full scans
+ - stop tracking UUIDs lines singularly..it's useless
+ - use UUIDs line hashing for lookup
+ - clarified UUID/DE binding are permanent
+ - fixed WARN_ON invocation on missing active_uuid
+v13 --> v14
+ - split out of previous single patch implementing parse SHMTI routines
 ---
- drivers/firmware/arm_scmi/telemetry.c | 69 +++++++++++++++++++++++++++
- include/linux/scmi_protocol.h         | 15 ++++++
- 2 files changed, 84 insertions(+)
+ drivers/firmware/arm_scmi/telemetry.c | 281 +++++++++++++++++++++++++-
+ include/linux/scmi_protocol.h         |   2 +
+ 2 files changed, 280 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
-index 140ff1072b99..6e5564c36a2d 100644
+index 414765f46c77..fe63e7f5d145 100644
 --- a/drivers/firmware/arm_scmi/telemetry.c
 +++ b/drivers/firmware/arm_scmi/telemetry.c
-@@ -3087,12 +3087,81 @@ static int scmi_telemetry_state_set(const struct scmi_protocol_handle *ph,
- 					    de, sid, offset, uuid);
+@@ -13,11 +13,14 @@
+ #include <linux/device.h>
+ #include <linux/err.h>
+ #include <linux/hash.h>
++#include <linux/hashtable.h>
++#include <linux/jhash.h>
+ #include <linux/io.h>
+ #include <linux/limits.h>
+ #include <linux/minmax.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
++#include <linux/rcupdate.h>
+ #include <linux/refcount.h>
+ #include <linux/sizes.h>
+ #include <linux/slab.h>
+@@ -172,6 +175,10 @@ struct tsline {
+ 	__le32 ts_high;
+ };
+ 
++struct uuid_line {
++	__be32 dwords[SCMI_TLM_DE_IMPL_NUM_DWORDS];
++};
++
+ #define LINE_DATA_GET_RAW(f)				\
+ ({							\
+ 	typeof(f) _f = (f);				\
+@@ -270,6 +277,7 @@ struct payload {
+ 		struct line l;
+ 		struct tsline tsl;
+ 		struct blk_tsline blk_tsl;
++		struct uuid_line uuid_l;
+ 	};
+ };
+ 
+@@ -398,9 +406,7 @@ struct telemetry_block_ts {
+ #define to_blkts(l)	container_of(l, struct telemetry_block_ts, line)
+ 
+ struct telemetry_uuid {
+-	u32 key;
+ 	struct hlist_node node_ht;
+-	struct hlist_node node_lst;
+ 	uuid_t uuid;
+ };
+ 
+@@ -458,6 +464,12 @@ struct telemetry_info {
+ 	bool streaming_mode;
+ 	unsigned int num_shmti;
+ 	unsigned int num_des_tstamp;
++#define SCMI_UUID_DB_THRESH	3
++	/* Protect uuids_len */
++	struct mutex uuids_mtx;
++	unsigned int uuids_len;
++#define SCMI_UUID_HASH_SZ	5
++	DECLARE_HASHTABLE(uuids_ht, SCMI_UUID_HASH_SZ);
+ 	/* Mutex to protect des_enabled_mtx */
+ 	struct mutex des_enabled_mtx;
+ 	atomic_t des_enabled[ENA_MAX];
+@@ -466,6 +478,7 @@ struct telemetry_info {
+ 	struct telemetry_shmti *shmti;
+ 	struct telemetry_de *tdes;
+ 	struct xarray xa_des;
++	struct telemetry_uuid *primary_uuid;
+ 	/* Mutex to protect access to @free_des */
+ 	struct mutex free_mtx;
+ 	struct list_head free_des;
+@@ -489,6 +502,9 @@ static inline struct tdcf *snap_tdcf(struct shmti_snap *s);
+ static int scmi_telemetry_shmti_scan(struct telemetry_info *ti,
+ 				     unsigned int shmti_id, enum scan_mode mode);
+ 
++static inline void scmi_telemetry_uuid_link(struct telemetry_de *tde,
++					    struct telemetry_uuid *uuid);
++
+ static inline
+ struct mutex *lock_for_payld(struct mutex *locks, unsigned long offset)
+ {
+@@ -613,8 +629,10 @@ static int scmi_telemetry_tde_register(struct telemetry_info *ti,
+ 		goto err;
+ 
+ 	/* Add to FastChannels list */
+-	if (tde->de.fc_support)
++	if (tde->de.fc_support) {
++		scmi_telemetry_uuid_link(tde, ti->primary_uuid);
+ 		list_add(&tde->item, &ti->fcs_des);
++	}
+ 
+ 	/* ... and in the general array */
+ 	rinfo->des[rinfo->num_des] = &tde->de;
+@@ -1563,6 +1581,17 @@ static void scmi_telemetry_blkts_unlink(struct telemetry_de *tde)
+ 	trace_scmi_tlm_access(tde->de.info->id, "BLKTS_UNLINK", 0, 0);
  }
  
-+static int
-+scmi_telemetry_collection_configure(const struct scmi_protocol_handle *ph,
-+				    unsigned int res_id, const bool *enable,
-+				    const unsigned int *update_interval,
-+				    const enum scmi_telemetry_collection *mode)
++static void scmi_telemetry_uuid_unlink(struct telemetry_de *tde)
 +{
-+	enum scmi_telemetry_collection *current_mode, next_mode;
-+	struct telemetry_info *ti = ph->get_priv(ph);
-+	struct scmi_msg_telemetry_config_set *msg;
-+	bool tlm_enable, *current_state, is_group;
-+	unsigned int *active_update_interval;
-+	struct scmi_xfer *t;
-+	__le32 interval;
-+	u32 control;
++	/* Acquiring order is: tde -> line */
++	lockdep_assert_held(&tde->mtx);
++	if (!tde->uuid)
++		return;
++
++	tde->uuid = NULL;
++	trace_scmi_tlm_access(tde->de.info->id, "UUID_UNLINK", 0, 0);
++}
++
+ static void scmi_telemetry_de_unlink(struct scmi_telemetry_de *de)
+ {
+ 	struct telemetry_de *tde = to_tde(de);
+@@ -1571,6 +1600,7 @@ static void scmi_telemetry_de_unlink(struct scmi_telemetry_de *de)
+ 
+ 	/* Unlink all related lines triggering their deallocation */
+ 	scmi_telemetry_blkts_unlink(tde);
++	scmi_telemetry_uuid_unlink(tde);
+ }
+ 
+ static struct telemetry_line *
+@@ -1641,6 +1671,154 @@ scmi_telemetry_blkts_get_or_create(struct telemetry_shmti *shmti,
+ 	return scmi_telemetry_blkts_create(shmti, offset);
+ }
+ 
++static int scmi_telemetry_uuids_update(struct telemetry_info *ti,
++				       struct telemetry_uuid *uuid)
++{
++	uuid_t **cur_uuids;
++
++	/* Resize array if needed ... */
++	if (ti->info.num_uuids + SCMI_UUID_DB_THRESH >= ti->uuids_len) {
++		uuid_t **new_uuids, **old_uuids;
++		unsigned int new_len = ti->uuids_len * 2;
++
++		new_uuids = kzalloc_objs(*new_uuids, new_len);
++		if (!new_uuids)
++			return -ENOMEM;
++
++		old_uuids = rcu_dereference_protected(ti->info.uuids,
++						      lockdep_is_held(&ti->uuids_mtx));
++		/* Copy/move old allocated UUIDs */
++		for (int i = 0; i < ti->info.num_uuids; i++)
++			new_uuids[i] = old_uuids[i];
++
++		/* Expose new UUID pointer */
++		rcu_assign_pointer(ti->info.uuids, new_uuids);
++		ti->uuids_len = new_len;
++
++		kfree_rcu_mightsleep(old_uuids);
++	}
++
++	/* Store new UUID reference into the globally accessible UUIDS */
++	cur_uuids = rcu_dereference_protected(ti->info.uuids,
++					      lockdep_is_held(&ti->uuids_mtx));
++	cur_uuids[ti->info.num_uuids] = &uuid->uuid;
++	rcu_assign_pointer(ti->info.uuids, cur_uuids);
++	/* Update UUIDs count */
++	smp_store_release(&ti->info.num_uuids, ti->info.num_uuids + 1);
++
++	return 0;
++}
++
++static int scmi_telemetry_uuid_register(struct telemetry_info *ti, u32 key,
++					struct telemetry_uuid *uuid)
++{
 +	int ret;
 +
-+	/* Stall concurrent configuration request */
-+	guard(mutex)(&ti->config_mtx);
++	lockdep_assert_held(&ti->uuids_mtx);
 +
-+	if (mode && (*mode != SCMI_TLM_COLLECTION_ONDEMAND))
-+		return -EOPNOTSUPP;
-+
-+	is_group = res_id != SCMI_TLM_GRP_INVALID;
-+	if (is_group)
-+		return -EOPNOTSUPP;
-+
-+	active_update_interval = &ti->info.active_update_interval;
-+	current_mode = &ti->info.current_mode;
-+	current_state = &ti->info.enabled;
-+
-+	if (!enable && !update_interval && (!mode || *mode == *current_mode))
-+		return 0;
-+
-+	ret = ph->xops->xfer_get_init(ph, TELEMETRY_CONFIG_SET,
-+				      sizeof(*msg), 0, &t);
++	ret = scmi_telemetry_uuids_update(ti, uuid);
 +	if (ret)
 +		return ret;
 +
-+	if (!update_interval)
-+		interval = cpu_to_le32(*active_update_interval);
-+	else
-+		interval = cpu_to_le32(*update_interval);
++	/* Register by key for easy lookup */
++	hash_add(ti->uuids_ht, &uuid->node_ht, key);
 +
-+	tlm_enable = enable ? *enable : *current_state;
-+	next_mode = mode ? *mode : *current_mode;
++	trace_scmi_tlm_collect(0, key, 0, "SHMTI_NEW_UUID");
 +
-+	msg = t->tx.buf;
-+	msg->group_identifier = cpu_to_le32(res_id);
-+	control = tlm_enable ? TELEMETRY_ENABLE : 0;
-+	control |= !is_group ? TELEMETRY_SET_SELECTOR_ALL : TELEMETRY_SET_SELECTOR_GROUP;
-+	control |= TELEMETRY_MODE_SET(next_mode);
-+	msg->control = cpu_to_le32(control);
-+	msg->sampling_rate = interval;
-+	ret = ph->xops->do_xfer(ph, t);
-+	if (!ret) {
-+		*current_mode = next_mode;
-+		*current_state = tlm_enable;
-+		ti->streaming_mode =
-+			*current_mode == SCMI_TLM_COLLECTION_NOTIFICATION;
-+		if (update_interval)
-+			*active_update_interval = le32_to_cpu(interval);
-+	}
-+
-+	ph->xops->xfer_put(ph, t);
-+
-+	return ret;
++	return 0;
 +}
 +
- static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
- 	.info_get = scmi_telemetry_info_get,
- 	.de_lookup = scmi_telemetry_de_lookup,
- 	.res_get = scmi_telemetry_resources_get,
- 	.state_get = scmi_telemetry_state_get,
- 	.state_set = scmi_telemetry_state_set,
-+	.collection_configure = scmi_telemetry_collection_configure,
- };
- 
++static struct telemetry_uuid *
++scmi_telemetry_uuid_create(struct telemetry_info *ti, __be32 *dwords)
++{
++	u32 key;
++	int ret;
++
++	lockdep_assert_held(&ti->uuids_mtx);
++
++	struct telemetry_uuid *uuid __free(kfree) = kzalloc_obj(*uuid);
++	if (!uuid)
++		return NULL;
++
++	/*
++	 * Fetch BigEndian in-memory UUID fields as per SCMIv4.0
++	 * specification 3.12.2.2
++	 */
++	import_uuid(&uuid->uuid, (__force const __u8 *)dwords);
++	key = jhash2((__force const u32 *)dwords, SCMI_TLM_DE_IMPL_NUM_DWORDS, 1);
++	ret = scmi_telemetry_uuid_register(ti, key, uuid);
++	if (ret)
++		return NULL;
++
++	return no_free_ptr(uuid);
++}
++
++static struct telemetry_uuid *
++scmi_telemetry_uuid_lookup(struct telemetry_info *ti, __be32 *dwords)
++{
++	struct telemetry_uuid *uuid;
++	u32 key;
++
++	lockdep_assert_held(&ti->uuids_mtx);
++
++	key = jhash2((__force const u32 *)dwords, SCMI_TLM_DE_IMPL_NUM_DWORDS, 1);
++	hash_for_each_possible(ti->uuids_ht, uuid, node_ht, key)
++		if (!memcmp(&uuid->uuid, dwords, sizeof(uuid->uuid)))
++			return uuid;
++
++	return NULL;
++}
++
++static struct telemetry_uuid *
++scmi_telemetry_uuid_get_or_create(struct telemetry_info *ti, __be32 *dwords)
++{
++	struct telemetry_uuid *uuid;
++
++	guard(mutex)(&ti->uuids_mtx);
++
++	uuid = scmi_telemetry_uuid_lookup(ti, dwords);
++	if (uuid)
++		return uuid;
++
++	return scmi_telemetry_uuid_create(ti, dwords);
++}
++
++/**
++ * scmi_telemetry_tdcf_uuid_parse  - A UUID line parser
++ *
++ * @ti: A reference to the telemetry_info descriptor
++ * @uuid_payld: UUID payld line to process
++ * @snap: A reference to the working SHMTI snapshot that will be processed
++ * @active_uuid: Input/output reference to keep track of the last uuid found
++ *
++ * Note that by the SCMI v4.0 Telemetry specification the associations between
++ * DEs and UUIDs, both primary and secondary, are permanent across the same
++ * session (boot): once discovered they cannot change.
++ *
++ * Moreover, since the current UUID line could be malformed due to garbage in
++ * the TDCF, in such a case we warn/log and bailout BUT we don't throw away
++ * the currently active_uuid (if any) since the current malformed line could
++ * be bogus and never intended to be a UUID line.
++ */
++static void scmi_telemetry_tdcf_uuid_parse(struct telemetry_info *ti,
++					   struct payload *uuid_payld,
++					   struct shmti_snap *snap,
++					   struct telemetry_uuid **active_uuid)
++{
++	__be32 *dwords = uuid_payld->uuid_l.dwords;
++	u32 meta = PAYLD_META_RAW(uuid_payld);
++
++	if (WARN_ON(UUID_INVALID_RAW(meta))) {
++		trace_scmi_tlm_access(0, "UUID_INVALID",
++				      snap->magic, snap->magic);
++		return;
++	}
++
++	*active_uuid = scmi_telemetry_uuid_get_or_create(ti, dwords);
++
++	WARN_ON(!*active_uuid);
++}
++
  /**
+  * scmi_telemetry_tdcf_blkts_parse  - A BLK_TS line parser
+  *
+@@ -1762,6 +1940,18 @@ static inline void scmi_telemetry_blkts_link(struct telemetry_de *tde,
+ 	trace_scmi_tlm_access(tde->de.info->id, "BLKTS_LINK", 0, 0);
+ }
+ 
++static inline void scmi_telemetry_uuid_link(struct telemetry_de *tde,
++					    struct telemetry_uuid *uuid)
++{
++	lockdep_assert_held(&tde->mtx);
++	if (tde->uuid)
++		return;
++
++	/* Update UUID association */
++	tde->uuid = uuid;
++	trace_scmi_tlm_access(tde->de.info->id, "UUID_LINK", 0, 0);
++}
++
+ /**
+  * scmi_telemetry_tdcf_data_parse  - TDCF DataLine parsing
+  * @ti: A reference to the telemetry info descriptor
+@@ -1895,6 +2085,9 @@ static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
+ 			tde->de.info->ts_rate = tde->bts->last_rate;
+ 	}
+ 
++	/* Link the active UUID or the primary, it's unlinked on disable */
++	scmi_telemetry_uuid_link(tde, active_uuid ?: ti->primary_uuid);
++
+ 	/*
+ 	 * Parse data words ... only for the sake of updating TDE cache,
+ 	 * any error is logged but ignored.
+@@ -1961,6 +2154,9 @@ static int scmi_telemetry_tdcf_line_parse(struct telemetry_info *ti,
+ 	case TDCF_BLK_TS_LINE:
+ 		scmi_telemetry_tdcf_blkts_parse(ti, payld, snap, active_bts);
+ 		break;
++	case TDCF_UUID_LINE:
++		scmi_telemetry_tdcf_uuid_parse(ti, payld, snap, active_uuid);
++		break;
+ 	default:
+ 		trace_scmi_tlm_access(PAYLD_ID_RAW(payld), "TDCF_LINE_UNKNOWN", 0, 0);
+ 		break;
+@@ -2258,6 +2454,7 @@ static int scmi_telemetry_resources_alloc(struct telemetry_info *ti)
+ 	}
+ 
+ 	INIT_LIST_HEAD(&ti->fcs_des);
++	hash_init(ti->uuids_ht);
+ 
+ 	ti->shmti = no_free_ptr(shmtis);
+ 	ti->info.shmtis = no_free_ptr(shmtis_info);
+@@ -2305,10 +2502,42 @@ static void scmi_telemetry_resources_free(struct telemetry_info *ti)
+ 	dev_dbg(ti->ph->dev, "SCMI Telemetry resources freed for instance\n");
+ }
+ 
++static void scmi_telemetry_uuids_cleanup(struct telemetry_info *ti)
++{
++	uuid_t **cur_uuids;
++
++	/* Drop reference to UUID lines kept in the growable array */
++	scoped_guard(mutex, &ti->uuids_mtx) {
++		int num_uuids;
++
++		/* Ensure looking up an updated counter */
++		num_uuids = smp_load_acquire(&ti->info.num_uuids);
++		/* Ensure zeroing is visible */
++		smp_store_release(&ti->info.num_uuids, 0);
++		/* Inhibit further accesses to cur_uuids */
++		cur_uuids = rcu_replace_pointer(ti->info.uuids, NULL,
++						lockdep_is_held(&ti->uuids_mtx));
++		synchronize_rcu();
++
++		for (int i = 0; i < num_uuids; i++) {
++			struct telemetry_uuid *uuid;
++
++			uuid = to_uuid_from_uuid_t(cur_uuids[i]);
++			hash_del(&uuid->node_ht);
++			kfree(uuid);
++
++			trace_scmi_tlm_access(0, "DROP_LINE", TDCF_UUID_LINE, 0);
++		}
++	}
++
++	kfree_rcu_mightsleep(cur_uuids);
++}
++
+ static void scmi_telemetry_instance_cleanup(void *arg)
+ {
+ 	struct telemetry_info *ti = arg;
+ 
++	scmi_telemetry_uuids_cleanup(ti);
+ 	scmi_telemetry_resources_free(ti);
+ }
+ 
+@@ -2379,6 +2608,23 @@ scmi_telemetry_resources_enumerate(struct telemetry_info *ti)
+ 	return ti->rinfo;
+ }
+ 
++static int scmi_telemetry_primary_uuid_init(struct telemetry_info *ti)
++{
++	__be32 *dwords = (__be32 *)&ti->info.base.primary_revision.b;
++	struct telemetry_uuid *uuid;
++
++	uuid = scmi_telemetry_uuid_get_or_create(ti, dwords);
++	if (!uuid) {
++		dev_err(ti->ph->dev, "Failed to register Primary UUID\n");
++		return -ENOMEM;
++	}
++
++	/* Ensure Primary UUID association is visible */
++	smp_store_release(&ti->primary_uuid, uuid);
++
++	return 0;
++}
++
+ /**
+  * scmi_telemetry_instance_init  - Instance initializer
+  * @ti: A reference to the telemetry info descriptor for this instance
+@@ -2394,12 +2640,41 @@ scmi_telemetry_resources_enumerate(struct telemetry_info *ti)
+  */
+ static int scmi_telemetry_instance_init(struct telemetry_info *ti)
+ {
++	unsigned int uuids_len;
++	uuid_t **cur_uuids;
+ 	int ret;
+ 
+ 	ret = scmi_telemetry_resources_alloc(ti);
+ 	if (ret)
+ 		return ret;
+ 
++	/*
++	 * Always allocate at least one slot for the primary and anyway at
++	 * least enough to avoid immediate resizing, assuring uuids_len
++	 * always greater or equal to one.
++	 */
++	uuids_len = max(ti->num_shmti * 2, SCMI_UUID_DB_THRESH + 1);
++	cur_uuids = kzalloc_objs(*cur_uuids, uuids_len);
++	if (!cur_uuids) {
++		scmi_telemetry_resources_free(ti);
++		return -ENOMEM;
++	}
++
++	mutex_init(&ti->uuids_mtx);
++	/* Expose new UUID pointer */
++	scoped_guard(mutex, &ti->uuids_mtx) {
++		rcu_assign_pointer(ti->info.uuids, cur_uuids);
++		ti->uuids_len = uuids_len;
++	}
++
++	/* Initialize the first UUIDs in the global list with the primary */
++	ret = scmi_telemetry_primary_uuid_init(ti);
++	if (ret) {
++		scmi_telemetry_uuids_cleanup(ti);
++		scmi_telemetry_resources_free(ti);
++		return ret;
++	}
++
+ 	atomic_set(&ti->des_enabled[ENA_STATE], 0);
+ 	atomic_set(&ti->des_enabled[ENA_TSTAMP], 0);
+ 	mutex_init(&ti->des_enabled_mtx);
 diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
-index ad116978ed47..ba240c8595a8 100644
+index 4a765a529ebf..b828cbc1eb21 100644
 --- a/include/linux/scmi_protocol.h
 +++ b/include/linux/scmi_protocol.h
-@@ -888,6 +888,12 @@ enum scmi_telemetry_compo_type {
- #define SCMI_TLM_BUILD_UPDATE_INTERVAL(s, e)				    \
- 	(FIELD_PREP(GENMASK(20, 5), (s)) | FIELD_PREP(GENMASK(4, 0), (e) & GENMASK(4, 0)))
- 
-+enum scmi_telemetry_collection {
-+	SCMI_TLM_COLLECTION_ONDEMAND,
-+	SCMI_TLM_COLLECTION_NOTIFICATION,
-+	SCMI_TLM_COLLECTION_SINGLE_READ,
-+};
-+
- #define SCMI_TLM_GRP_INVALID	0xFFFFFFFF
- 
- struct scmi_telemetry_intervals {
-@@ -959,6 +965,8 @@ struct scmi_telemetry_info {
+@@ -957,6 +957,8 @@ struct scmi_telemetry_info {
+ 	unsigned int active_update_interval;
+ 	struct scmi_telemetry_intervals *intervals;
  	struct scmi_telemetry_shmti_info **shmtis;
- 	unsigned int num_uuids;
- 	uuid_t * __rcu *uuids;
-+	bool enabled;
-+	enum scmi_telemetry_collection current_mode;
- };
- 
- /**
-@@ -972,6 +980,9 @@ struct scmi_telemetry_info {
-  *	       cumulative state of all DEs. Global group state can be looked-up
-  *	       directly from @scmi_telemetry_info via @info_get.
-  * @state_set: enable/disable the specific DE or GROUP with or without timestamps.
-+ * @collection_configure: choose a sampling rate and enable SHMTI/FC sampling
-+ *			  for on demand collection via @de_data_read or async
-+ *			  notificatioins for all the enabled DEs.
-  */
- struct scmi_telemetry_proto_ops {
- 	const struct scmi_telemetry_info *(*info_get)
-@@ -987,6 +998,10 @@ struct scmi_telemetry_proto_ops {
- 			 bool is_group, u32 id, const bool *enable,
- 			 const bool *tstamp, u32 *sid, u32 *offset,
- 			 uuid_t *uuid);
-+	int (*collection_configure)(const struct scmi_protocol_handle *ph,
-+				    unsigned int res_id, const bool *enable,
-+				    const unsigned int *update_interval,
-+				    const enum scmi_telemetry_collection *mode);
++	unsigned int num_uuids;
++	uuid_t * __rcu *uuids;
  };
  
  /**
