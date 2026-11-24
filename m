@@ -2,126 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACA5606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C38F606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wTUNHmyG;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=MPQoeOCa;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=YXsRLXET
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D1vXpHCn;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=fceMWERi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=; b=wTUNHmyG4+Razo
-	Si070UThpLFGlG4cf54psJHWUJ1XZhYbSAc92trluda+48k+vqvu+T+wAx5u9/8TDHIvG/QJZ070u
-	a3OLGjDq8j8lp0fbeCqUvrqyIqGNKGrlRteV7c/vvmG2I+P6KrNIisgA81Isgrp359f/6bRUJ4HRy
-	wpswCJdVLHAJWwHTTLzZ3GUY9MesRDMpcVUbSErowjaaPF5JJ64yxABaFQpVzQGAoCpzzYKX26a6f
-	zz7pcDldqqqZjUvU+vwq9zgixPg/YcHMa6vIsRv5K4NKYQScOxXqzYQkQuPvT44sgxkwTX8VBIQN1
-	B+eeRaXMY55N0p6glOgQ==;
+	List-Owner; bh=cRMT7+DNC3zJ3ZAIBaunCOcEFiu2z3/L8DzLcGanCPY=; b=D1vXpHCn4WWZ8i
+	vlbRJILLU0jwDGUEu/TDwlsdiX+7bZah6oU7DUO2Qozt0F2hIJx2jHEFT0S+1CCAyX6hftpIDRq+M
+	hT6+eayFEHUe4U/NvK5O9IUH2vnYeejO++ddflj7lNyNple9JcRZ/zZ3FkeNUQd+IuafsOrANFLsM
+	ArChn7+ceQMtYTGa+wRkhZcPHeWmLXsgHNJKvi8MfX5T5Ws7UQBr3q7whRlVRYCbIRH3PPclKdN8v
+	GF6xDTgq5Mm2+EUcHP2v0vqQ3qTUoyBaV1dOueTcQ399b3vW0hgLmpTMngs8nwC7jFLDM/pQar/ja
+	ZWaoS8cmLd26gRD37yAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuOf-00000007NMW-060g;
-	Tue, 24 Nov 2026 17:33:37 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xVuIO-00000007LoQ-2Ca7;
+	Tue, 24 Nov 2026 17:27:08 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuOE-00000007NAy-1wNL
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 17:33:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=; b=MPQoeOCah+creJWWmM+JiwziYo
-	SM9/vBrl0mpBv9cbhdlQBvvdaKjiCVQSPd3gyEhV+t3iTtbp7Y1KvJSIQ88CRN4yQANgo/vRBAMRL
-	8bURiqmFjWyCDbK2JtiggP/GVPm/m8Mf6/aZWUeuzDmlnVgtB79SQIr5m9OS/wrR//i52ePKGjRe+
-	8B2aomhKf1k/ArtFkvbwVXT/7b7gVxEt0RNCf43bVtR2h0WVC4wjaxFvfngbXYDJPeYz3Vwy6tL1X
-	aJA+n/pmEcfVsZl+Z1uzb7ui/tPeWJYliLApHwvENixvh4h6REnzL/U9/KIHm/dzbmf1iiqwPMX6P
-	nSMMwyAw==;
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuO9-00000004PjQ-3m9m
+	id 1xVuHU-00000007Lbf-0ID2
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:33:09 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so62556585e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 09:33:05 -0800 (PST)
+	Tue, 24 Nov 2026 17:26:16 +0000
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-c4395d31228so818006566b.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 09:26:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795541170; cv=none;
+        d=google.com; s=arc-20260327;
+        b=AzoS9mvTfxYqtfcsdWvGEmKH2Uv4f4iE4/NmggUfkFh0420OmiEHbhGXctLeZv8GNc
+         7wiSzir/C9nicvdKxRQm/rLsLo2Whivya1Iip4lNiKn2n7Ro9Mplrk/nHY6Y1Wfu1uBd
+         BdZ9Ta030nLbNq4yBbnFqpAJV2AlT+37w+FCnpYxgoxd+OyLTI/IdyYIwW64qNdgk05U
+         O16+mFoCzWwkJiAD7kOpluylEHPTsQBuyYL7hbVJPYfWnwv4nvzyp9lo3DJfbVySANp0
+         zh1byATwW6MZzVCs5KO5Xg6JahZmi/0eJICCFc1UT1xgkiOZvxLKGz1eio40C3kQzmvn
+         F7kQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=cRMT7+DNC3zJ3ZAIBaunCOcEFiu2z3/L8DzLcGanCPY=;
+        fh=Lih+RQLvCW/aw08hYk4qMD5rvz421NIvWTlmLR0ttBg=;
+        b=m74k+dTlNAmtKGSfIEZxWOMp724UqPcbDMhmHTAGZckKQdyv2khvDKU635rWOARr6a
+         Z9pDPtYSf0210t+87pomXa0WPYNwwTKur8f8NQxsDUNDMNcNB/lG39Pwj4ZyQE1cWCum
+         mFRTyBMckkHzIj9nNOV0Zy5kebKQhX4PmSyUo/Dz4tLFxLMycpGEWMqzvD2EeOLx8YP/
+         T1rNPlpFPiU/81xcWTza/ME06OOwegS2Y3B/22bV6P+SXdh1qNbPVAMjejZSyzKcOTWz
+         jAWdEjzyAVd88nnBCqgg7RUrOTLKrssQmEZNtjXC1g5DdErZj2kG/7axKN8C6z07Zk+D
+         6yHg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1795541584; x=1796146384; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=;
-        b=YXsRLXETB2J8CdEyb/CBU9Ua9u4RObSst8QzwbljdpPtBWH3LUZ8LhTVVDus/Kjb9b
-         BqD3QYlIpLJrfdyocMa37LBrN0Na1RqLHq6ElQGi8SpQWYdgufRMOI+gVxzA8Z3Pojkn
-         +poMg2FfBbFsuu1s6ANOb+IClPaAuROPN9ZiUk9ulzWf7ODF4CTcUjzmqdAypqWhlMcp
-         9+NidNp17lF3B+PkrZMxwLRmEf+aTWWcxH62/SJCWfJBG6DYKmcbea/x+gstACYDHvhp
-         R23zcW4+IGOaliaBK9XXM1PyTe5mz7GH7xvQeTFemUQvj4kcME2sCz27BIlC62BZzK+9
-         9Q2Q==
+        d=google.com; s=20260707; t=1795541170; x=1796145970; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=cRMT7+DNC3zJ3ZAIBaunCOcEFiu2z3/L8DzLcGanCPY=;
+        b=fceMWERipmeneKRwWotAkt8aNixPVnhIoMqudrapfZ5PKBjmAMWJ/v65naSxhKGeDv
+         Tb8UB+6FW77qPCC1WqfKhy2fgAbixpBgd6pwLH+6dkIaUVWUgIgxym7e1evhW1GbVaHu
+         /glccEMFyO9gwDab/cFfXDWLyQkoQsVMXY58X5ImuBAszX/IS/jMlnPAEduhtwqkZgXF
+         AdR8NyhK+/W2heoouMcZysi6IEtHoYqua/2Z6bn0B2GKkSAo5B2vmyBcUm93Rwk7CaBo
+         l+mIEmGxI9K4kqa1IlMh0fTzSWzOKzZ+9pVdnq5GjFAdOr6/vQHVKEsHLbmHEfeZCOQ7
+         AdIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795541584; x=1796146384;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=;
-        b=fW5nnkQk1NTpp3xfv/TRhuZWu/WCKIDEFYpzjxSvICSD+dakOSaB2hON08kf7VpUo1
-         1AI5Rr4ojuqJES5022SYu5v5tmnrU9FbQ9oZPxmc3y7UfSSmNSPlfHj/xuTUsY+RZaly
-         0Y9Gaz3D2j6wy/7fEauvMZAUD+8Nj/bh1gyo0ozUHWJLosy0v2BbBOUinJk2bZQqDtz/
-         +NE4dXoSjujBUQ+DoQcSqObB4jIDM1Atm86wkJp45pudU2F7++f5xY3658/d13R/Nm4o
-         XRUOqNQNDYcFgIJTzY54dLDJese7zh3wtdcpbUflQpXcbJIpQ0A1IfSoVNi7ZefreyAn
-         ciKA==
-X-Forwarded-Encrypted: i=1; AL+hErHo+nnzdzdiNqkNJuIPetpckC57gOzEJPhCT+vb5CBjDUNhvBR7gkfuPdRJSShkT0UBJzrAyzG+bDFzpR5jexcB@lists.infradead.org
-X-Gm-Message-State: APuU4Z+gAYe3hUFK0P5xPhQqiPRuhVpKpJGSgYUG0x7WImSiHmDTYdgT
-	mKYQ7Sqrll0v0bmuHAbkmYCixfptLNhIsL9nIxO4xzIsVyoKcK6AF+BFP9Cd0VZApIY=
-X-Gm-Gg: AZFdTZeh0gAi2K8df/77hv3BngnenuvXVTaus5MHNS1v6PAPWXix0ZuaBwv0i7afPj7
-	oxQ0I+VMVtesAWoWWonA5v+7WoGsBZV8l3HSTJTOIkqQgpaxeh5S1QaMzQy41XE2HhGFIXIF+yF
-	UioIZtgM3QUhJQAWt6LIZUFMHBam1tX7xcxH47ULko98HWimMV2gyOF3Z5+SbGvweu8dMSXwZ4e
-	RMg8IEFV6HS1y2Y6usfsse35frJ0TcCK63lmpsTRTG5lEKNXtA8YgovkCnLlN1to6ODjHVv9k9e
-	z/yADKPHNeB+JV5Pi65paHcFnEU+L0C9GX6wDBxW9wm9T2fI7EYsmPk8dJncAyKnGo9VcoSxFyi
-	0uXypa4Pq8kjO2Oy3gdYUF1vhSsCqnLGTcvlTqTbsBFdZ0lHzYwT2CBnoCkwvbfn75m6WMCnmPd
-	Da47Vc0Wf7A9YcgsSMgsTJ5mpO39bASki/XzkiJR4I6fMsld1ai74Oq902vegQZ0GRY/QrVo93S
-	Es5RiUE0or4oOAks9sfyLMKt43WG9ASn3CHqK3OkkhUDenMf+dCjMPSWo0MqlkwdzeutJo14+Dl
-	sRmGtAaqgKtAFU+lzisLe4wjHSA=
-X-Received: by 2002:a05:600c:5303:b0:4ba:4928:8aec with SMTP id 5b1f17b1804b1-4bb88807d7cmr297420805e9.9.1795541583997;
-        Tue, 24 Nov 2026 09:33:03 -0800 (PST)
-Received: from localhost ([82.192.120.76])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b09bsm832341115e9.4.2026.11.24.09.33.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 09:33:03 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	florian.fainelli@broadcom.com,
-	rjui@broadcom.com,
-	sbranden@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: naush@raspberrypi.com,
-	svarbanov@suse.de,
-	gary@garyguo.net,
-	linux@roeck-us.net,
-	linux-hwmon@vger.kernel.org,
-	krzysztof.kozlowski@oss.qualcomm.com,
-	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v13 3/3] pwm: rp1: Register auxiliary device for the fan tachometer
-Date: Tue, 24 Nov 2026 18:36:57 +0100
-Message-ID: <20261124173658.31030-4-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20261124173658.31030-1-andrea.porta@suse.com>
-References: <20261124173658.31030-1-andrea.porta@suse.com>
+        d=1e100.net; s=20260707; t=1795541170; x=1796145970;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cRMT7+DNC3zJ3ZAIBaunCOcEFiu2z3/L8DzLcGanCPY=;
+        b=ezy615vr+1qjiI/jSXccFtcBXMyLlSgr0Ucv3kLo+LC3eGZ3yexG5rS6eSWyM/u0Oj
+         21Sky+Hi6GdNeAwpBceyAygQwr14IqbRweKm6uCKbmBjfb+Ygf6daMsMzhV4auYBbnV5
+         puBCC59G6K6dci7LYNrvkV1u/TVElBxgGPN4m4N7csBS/5+eVkcR8LcREJBLbknCQ0u1
+         3bT9O055y0++7W2AneLrd2aQTl+nVK2iRv8NML4x0xukEt8OR0j9GMAIJ1CqS6eZaPyE
+         Y6emmBGLvp60z1p++UiQbxnimkV7Pe7RRTS/MjITpQ9GLeG66OdD5rspKzj/At1ESog8
+         kUKg==
+X-Forwarded-Encrypted: i=1; AL+hErFmyRzswRPPFNz1Q/3mJE0IViWODDZDsJqvxdJ+0cdhpG7yiG17S87nVC/F2qGLUPzhNYc6/lfy5kFX7JPY8lxt@lists.infradead.org
+X-Gm-Message-State: APuU4Z+3uRybotdDeILxiMgw3gNswUYIcsdMEkDDEuOHM3wpgt480oLR
+	eoj/pJ0SH6HXqZ98ILrHxJHRYGq9rCNJtaikjsB89qPV6cW32UdzzScmJz5qOiDJXPvLF6Ihddz
+	EKdYIbrSa0UNxTFiKD4am76a16Jh5buSYY3krPtRa
+X-Gm-Gg: AZFdTZctRU1JGitNbrxzGLmyJ6lYNTjut3CQXl2s85wTLiOKKMOhPW1bZzZKdyyWKMF
+	nP9GrqZv7mNg1pT0oLIz3R/eELk6p8Jy1sfJG4i9dO00x0nAK6P3WxsLGB2kpiPtizbq2hUPYwD
+	arLWRxk0wZZTivJ3SXUt3zClfqe6G3tVcdYCz8kYxk2/CE/bllv84LYx6tFXjT5GJrE/8l/UMBb
+	WQ4rb0wMZTLjrH8D0TFpMmP5aS14hiGHXdaoWADKYQ/EMQLIyBAcRca7IJwOe5NGfwCxSHadTY6
+	18P94Jf7BfQG02uby0E3fpNwGNX1VT4p91MckpuWJYFhhNNYbshOtYvqYzwfaxjjSJHaxoiRE4A
+	yNzDbz4wNY0ztbqnptxzi02F1cjkxKq2oxk3HKztFCGXn+2qzv0G9i679DTw77j+F0z6JMRzToc
+	9jGBITEo9ifp40hMlTgI9fQBNdig95dupZtP+//LOfDCMEJeaxroU=
+X-Received: by 2002:a17:906:7d6:b0:c29:63f2:99bb with SMTP id
+ a640c23a62f3a-c513aafb466mr1015135366b.47.1795541169501; Tue, 24 Nov 2026
+ 09:26:09 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261122184453.2668189-1-jthoughton@google.com>
+ <20261122184453.2668189-12-jthoughton@google.com> <ED44F18E-E7FF-4B53-9B5B-3201F1100154@linux.dev>
+In-Reply-To: <ED44F18E-E7FF-4B53-9B5B-3201F1100154@linux.dev>
+From: James Houghton <jthoughton@google.com>
+Date: Tue, 24 Nov 2026 12:25:31 -0500
+X-Gm-Features: Aa3M54rJ_84SrZFS6bq7z7BArP-3coKMEdNs8lreDoBfSY-QuNyAX93ofCaakaQ
+Message-ID: <CADrL8HUGN9xX6mdFOCxrgD=v6-AUSxX0_5c5fuW705SFm6Sv7A@mail.gmail.com>
+Subject: Re: [PATCH v3 11/19] arm64/mm: Align vmemmap to maximal folio size
+To: Muchun Song <muchun.song@linux.dev>
+Cc: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Oscar Salvador <osalvador@suse.de>, Andrew Morton <akpm@linux-foundation.org>, 
+	Kefeng Wang <wangkefeng.wang@huawei.com>, Nikos Nikoleris <nikos.nikoleris@arm.com>, 
+	Linu Cherian <linu.cherian@arm.com>, Mark Rutland <mark.rutland@arm.com>, 
+	David Hildenbrand <david@kernel.org>, Ryan Roberts <ryan.roberts@arm.com>, 
+	Nanyong Sun <sunnanyong@huawei.com>, Yu Zhao <yuzhao@google.com>, 
+	Frank van der Linden <fvdl@google.com>, David Rientjes <rientjes@google.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_173305_941237_9A1C5F4B 
-X-CRM114-Status: GOOD (  35.19  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261124_092614_890244_8E2F5C44 
+X-CRM114-Status: GOOD (  19.34  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,196 +125,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On the Raspberry Pi 5, the firmware running on the RP1 Cortex-M core
-measures the fan tachometer pulses and periodically writes the computed
-RPM value into the phase register of PWM channel 2, inside the RP1 PWM
-controller register block.
+On Sun, Nov 22, 2026 at 10:22=E2=80=AFPM Muchun Song <muchun.song@linux.dev=
+> wrote:
+> > #include <asm/boot.h>
+> > @@ -92,11 +93,22 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit;
+> >  * in the virtual address space.
+> >  */
+> > #if ARM64_MEMSTART_SHIFT < SECTION_SIZE_BITS
+> > -#define ARM64_MEMSTART_ALIGN (1UL << SECTION_SIZE_BITS)
+> > +#define ARM64_MEMSTART_BASE_ALIGN    (1UL << SECTION_SIZE_BITS)
+> > #else
+> > -#define ARM64_MEMSTART_ALIGN (1UL << ARM64_MEMSTART_SHIFT)
+> > +#define ARM64_MEMSTART_BASE_ALIGN    (1UL << ARM64_MEMSTART_SHIFT)
+> > #endif
+> >
+> > +/*
+> > + * With CONFIG_VMEMMAP_OPTIMIZATION, compound_head() masks the address=
+ of a
+> > + * tail page to find its head, so the head struct page of every folio =
+must be
+> > + * naturally aligned to the folio's vmemmap size. The vmemmap is offse=
+t by
+> > + * memstart_addr, so memstart_addr must be aligned to the largest foli=
+o size.
+> > + */
+> > +#define ARM64_VMEMMAP_OPT_ALIGN                                       =
+       \
+> > +     PFN_PHYS(MAX_FOLIO_VMEMMAP_ALIGN / sizeof(struct page))
+> > +#define ARM64_MEMSTART_ALIGN                                         \
+> > +     max_t(phys_addr_t, ARM64_MEMSTART_BASE_ALIGN, ARM64_VMEMMAP_OPT_A=
+LIGN)
+> > +
+> > static void __init arch_reserve_crashkernel(void)
+> > {
+> >       unsigned long long crash_base, crash_size, cma_size =3D 0;
+> > @@ -218,6 +230,8 @@ void __init arm64_memblock_init(void)
+> >       /*
+> >        * Select a suitable value for the base of physical memory.
+> >        */
+> > +     BUILD_BUG_ON(MAX_FOLIO_VMEMMAP_ALIGN &&
+> > +                  !IS_ALIGNED(VMEMMAP_START, MAX_FOLIO_VMEMMAP_ALIGN))=
+;
+>
+> We already have a sanity check in spares_init(). Doesn't it work? If we r=
+eally
+> need a check here, I think we should use compound_info_has_mask() for the=
+ guard
+> instead of MAX_FOLIO_VMEMMAP_ALIGN.
 
-The Linux PWM framework has no abstraction to report such a value, and
-the reading belongs to the hwmon subsystem. Following the auxiliary bus
-model, let the PWM driver instantiate a "fan" auxiliary device
-(pwm_rp1.fan.<id>) to which the hwmon driver can bind, without needing
-any additional DT node.
+The check in sparse_init() is only a VM_WARN_ON_ONCE(), which only
+fires if CONFIG_DEBUG_VM=3Dy. And hitting it doesn't prevent folios from
+being vmemmap-optimized.
 
-The way the tachometer value is obtained (the register is shared with
-the channel phase control) is an implementation detail of the PWM
-driver, so provide rp1_pwm_read_tachometer(), exported in the 'RP1_PWM'
-symbol namespace, for the auxiliary driver to use, as documented in
-Documentation/driver-api/auxiliary_bus.rst.
+So I think we might as well have a BUILD_BUG_ON here, in case the
+vmemmap base address changes in the future for some reason, for any
+config.
 
-The auxiliary device is destroyed first in .remove(), so that the hwmon
-driver is unbound before the PWM controller resources are released.
-
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- MAINTAINERS                               |  1 +
- drivers/pwm/Kconfig                       |  5 +++
- drivers/pwm/pwm-rp1.c                     | 49 +++++++++++++++++++++++
- include/soc/bcm2835/raspberrypi-pwm-rp1.h | 12 ++++++
- 4 files changed, 67 insertions(+)
- create mode 100644 include/soc/bcm2835/raspberrypi-pwm-rp1.h
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5c7b280a2bdb..26f8520c02ee 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23382,6 +23382,7 @@ L:	linux-pwm@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
- F:	drivers/pwm/pwm-rp1.c
-+F:	include/soc/bcm2835/raspberrypi-pwm-rp1.h
- 
- RC-CORE / LIRC FRAMEWORK
- M:	Sean Young <sean@mess.org>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 523789e82355..7b271a16a483 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -641,9 +641,14 @@ config PWM_RASPBERRYPI_RP1
- 	tristate "RP1 PWM support"
- 	depends on MISC_RP1 || COMPILE_TEST
- 	depends on HAS_IOMEM
-+	select AUXILIARY_BUS
- 	help
- 	  PWM framework driver for Raspberry Pi RP1 controller.
- 
-+	  The driver also registers an auxiliary device that allows the
-+	  companion hwmon driver (SENSORS_RP1_FAN) to report the fan speed
-+	  measured by the RP1 firmware.
-+
- config PWM_SAMSUNG
- 	tristate "Samsung PWM support"
- 	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
-diff --git a/drivers/pwm/pwm-rp1.c b/drivers/pwm/pwm-rp1.c
-index 69ce0db4e9aa..f7443b9f9fa1 100644
---- a/drivers/pwm/pwm-rp1.c
-+++ b/drivers/pwm/pwm-rp1.c
-@@ -38,6 +38,7 @@
-  *   channel. As a result, phase control will be ignored for now.
-  */
- 
-+#include <linux/auxiliary_bus.h>
- #include <linux/bitfield.h>
- #include <linux/bits.h>
- #include <linux/clk.h>
-@@ -49,6 +50,7 @@
- #include <linux/pwm.h>
- #include <linux/units.h>
- #include <linux/spinlock.h>
-+#include <soc/bcm2835/raspberrypi-pwm-rp1.h>
- 
- #define RP1_PWM_GLB_CTRL			0x000
- #define RP1_PWM_GLB_CTRL_CHANNEL_ENABLE(chan)	BIT(chan)
-@@ -79,12 +81,16 @@ enum rp1_pwm_ctrl_mode {
- 
- #define RP1_PWM_NUM_PWMS			4
- 
-+/* Channel whose phase register is used by the firmware to report the fan RPM */
-+#define RP1_PWM_FAN_TACH_CHAN			2
-+
- struct rp1_pwm {
- 	void __iomem *base;
- 	struct clk *clk;
- 	unsigned long clk_rate;
- 	bool clk_enabled;
- 	spinlock_t lock; /* sync for RP1_PWM_GLB_CTRL RMW access */
-+	struct auxiliary_device *fan_adev;
- };
- 
- struct rp1_pwm_waveform {
-@@ -286,6 +292,32 @@ static const struct pwm_ops rp1_pwm_ops = {
- 	.write_waveform = rp1_pwm_write_waveform,
- };
- 
-+/**
-+ * rp1_pwm_read_tachometer() - read the fan speed reported by the RP1 firmware
-+ * @adev: the "fan" auxiliary device registered by this driver
-+ * @rpm: where to store the fan speed, in RPM
-+ *
-+ * Meant to be called only by the driver bound to the auxiliary device
-+ * created by rp1_pwm_probe(), which carries the controller private data as
-+ * platform data. The auxiliary device is unregistered before the PWM
-+ * controller resources are released, so that data is guaranteed to be
-+ * valid for as long as the auxiliary driver is bound.
-+ *
-+ * Return: 0 on success, negative errno otherwise.
-+ */
-+int rp1_pwm_read_tachometer(struct auxiliary_device *adev, u32 *rpm)
-+{
-+	struct rp1_pwm *rp1 = dev_get_platdata(&adev->dev);
-+
-+	if (!rp1->clk_enabled)
-+		return -EBUSY;
-+
-+	*rpm = readl(rp1->base + RP1_PWM_PHASE(RP1_PWM_FAN_TACH_CHAN));
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(rp1_pwm_read_tachometer, "RP1_PWM");
-+
- static int rp1_pwm_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -347,8 +379,23 @@ static int rp1_pwm_probe(struct platform_device *pdev)
- 		goto err_disable_clk;
- 	}
- 
-+	/*
-+	 * The fan tachometer is exposed to the hwmon subsystem through an
-+	 * auxiliary device. The chip id is unique, so it is used to avoid
-+	 * name clashes if more than one RP1 PWM controller is enabled.
-+	 */
-+	rp1->fan_adev = auxiliary_device_create(dev, KBUILD_MODNAME, "fan",
-+						rp1, chip->id);
-+	if (!rp1->fan_adev) {
-+		ret = dev_err_probe(dev, -ENODEV,
-+				    "Failed to register fan auxiliary device\n");
-+		goto err_remove_chip;
-+	}
-+
- 	return 0;
- 
-+err_remove_chip:
-+	pwmchip_remove(chip);
- err_disable_clk:
- 	clk_disable_unprepare(rp1->clk);
- 
-@@ -360,6 +407,8 @@ static void rp1_pwm_remove(struct platform_device *pdev)
- 	struct pwm_chip *chip = platform_get_drvdata(pdev);
- 	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
- 
-+	/* Unbind the fan driver before tearing down the PWM controller */
-+	auxiliary_device_destroy(rp1->fan_adev);
- 	pwmchip_remove(chip);
- 
- 	if (rp1->clk_enabled) {
-diff --git a/include/soc/bcm2835/raspberrypi-pwm-rp1.h b/include/soc/bcm2835/raspberrypi-pwm-rp1.h
-new file mode 100644
-index 000000000000..290a052480bc
---- /dev/null
-+++ b/include/soc/bcm2835/raspberrypi-pwm-rp1.h
-@@ -0,0 +1,12 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef __SOC_RASPBERRY_PWM_RP1_H__
-+#define __SOC_RASPBERRY_PWM_RP1_H__
-+
-+#include <linux/types.h>
-+
-+struct auxiliary_device;
-+
-+int rp1_pwm_read_tachometer(struct auxiliary_device *adev, u32 *rpm);
-+
-+#endif /* __SOC_RASPBERRY_PWM_RP1_H__ */
--- 
-2.51.0
-
+I've switched MAX_FOLIO_VMEMMAP_ALIGN to compound_info_has_mask() in v4, th=
+anks!
 
