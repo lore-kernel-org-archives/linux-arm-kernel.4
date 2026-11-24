@@ -2,87 +2,144 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA984606A684
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD38606A686
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 19:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O9Uve6C3;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gID+J2N4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S/axHaB6;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=I9GzgUiq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5J01ZOJdhCMA8zsKrJKkfRkGLE9elsf3RiNcT7zsnao=; b=O9Uve6C3nnP508fMEaZg76juzQ
-	fwkiTfHpfyBlY0JtuMbMVHWW5STdC0HOquhWrrEReJMIZTR/c91UBEjQ7HOGanR2GUXr6ESsZI5v7
-	JHsqLgawcrgbiCM9aNezY4KtMgjmfBle1szZ0lEbTrxDEQF7cajDIEVMxTA5crCKsnz7AjkzvVNRa
-	dcF3zUIVyfYc8qxZohPjIDnDd0kGPToZ8zpV6K4yv448XpxImQNDF7mgiLUkxNPHSg/EgToLPbsus
-	axYujqtvRvD0mnZDMs5FGcUSih9glgslwsOabQu5ciMRf2wfGMHXeeLekw7RL80tUkeCq+i5cWTCj
-	hLel9BUg==;
+	bh=cRxv9YhZaJJP2/c0rugwOhvWLqO2hf34ZvOcJWVVPzg=; b=S/axHaB6kpQjdn3ukGZSSrV5B/
+	S2BdMfFT9MYmsSI56Z99KRCS5NBC+sbc1D3/O6TyQdoGIGgUubr8yEvlHLv9tO1J2Bo1qsflnm5Ld
+	iv2oUwhPeIzrzqLh31FIJds1Y9tjqDourRkc/esYaxHSWB3LKH3gs5lSAHDbN1f+SQUO1Okqzg0SX
+	bxIh29yOkViohnEwZ8a9M4UNEcjY9ZU35OG9cNmo8dmZ+qgzqEaGy4XL/ZviQBxkoxjE06JhPYym/
+	o/cTHpXK4np9RzwnvLVwPRJBEnXMF2dEtAsG9IUhRIZffq6bUHJpUzM705bRXzPB0OjRcmmqu+SjS
+	2JNZxSqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwU1-00000007cLd-1LAZ;
+	id 1xVwU1-00000007cLS-0wMs;
 	Tue, 24 Nov 2026 19:47:17 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from mail-westeuropeazon11011046.outbound.protection.outlook.com ([52.101.70.46] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwTz-00000007cLK-2fFW
-	for linux-arm-kernel@lists.infradead.org;
+	id 1xVwTx-00000007cKx-3kSw;
 	Tue, 24 Nov 2026 19:47:15 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6615745C5A;
-	Tue, 24 Nov 2026 19:47:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B03F1F000CA;
-	Tue, 24 Nov 2026 19:47:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795549635;
-	bh=5J01ZOJdhCMA8zsKrJKkfRkGLE9elsf3RiNcT7zsnao=;
-	h=From:To:Cc:Subject:Date;
-	b=gID+J2N4pc96FAGoaAdH9GNoyuk7pm/dJ+Pd1dLjC5UYwrf/2XXaiSDqR5Euswhj0
-	 sJMCCPYvAXOJnPSpjddWI5vircAM4cpLXkdv7zMBKq7YtZYBsXLWu2Yk+tjyMe3dDx
-	 9xyzRKC5yaHN5ndp6zBFA2eGmxq/46X0asFrabrgupkiuu5/Ad4SqNuuysY15OWCJM
-	 Ja/MTu/+pURvovmn6BkUeyiAxihKX7G+i69Uzw+7txSYWS12eL9RhqD//BMsAjbVih
-	 hFeqCiTIYatN5sEE0bCjcu+JpmSfIUjOt58uPkIu2oQe8XoJfE7tx01fgzPeCTMb7c
-	 rLyTWF0N2uqEg==
-Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
-	by mailfauth.ams.internal (Postfix) with ESMTP id 4AF0E1980047;
-	Tue, 24 Nov 2026 14:47:10 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-11.internal (MEProxy); Tue, 24 Nov 2026 14:47:11 -0500
-X-ME-Sender: <xms:vekFazy-q0gutZ7ux0FCvcouxXRxAsHD34FNLCUkK1fuewqtUaqS5Q>
-    <xme:vekFayNFPbrDfoDWNGpBn2pKSD_E5S8LbKakNnZYjiRXw19kBMBVyeCxLM8EdpnsX
-    528oHUr8lqcvU_uwceoVN_NHgO0YO_dsaWuLI_dcdXenzg8-lnCvSIK>
-X-ME-Received: <xmr:vekFayY0ZyDCUQZvCIkdB952g1vLWtuV1YXbqfih5Zldm3T5QriCgJ7f3Bo>
-X-ME-Proxy-Cause: dmFkZTGUX4TdwkcU+s5tAMz9Yp1WUvFjhlftEjNS8e63BxeNN7yQom4qhi+EDz7Y31fNHS
-    VqelmG4hXUQhSnQKx90mkPkGjS/Ib/iBqwLxCgM1q+hZMnhrdSgkjdm4UEMT8GOdDxt5Z2
-    7Lg6Eb6MKboetZY01n/Hk7uozefc7YF5hljgdbmJ4lbazD83XBGpus63VsFuzXmhXDEeZ9
-    JWdTxiLjrWHBiUq8/dP/MzCYgBCjoEn2Rtgli+x14FjTF6SI5r8vv/15/QJ2H+QpE5X9kd
-    KRGhRx/BN1j26Et6RkG3SYm5hSAJA2HNDEMsr+bFOEgSNncmefC1a7U8PQb8pOch7ngxf1
-    TH5RdbbWHADsYXTPBUS4gRfpDxngpqbMNQVrK10l35jqedfF0BB3QCysPDTKOO7eHI8ovf
-    idn9dNdDLs7YY0EsnDjgUqIuacUiQfqhXDbUqRKeddn0k6LE0OkDP8c6CcUePcjGVVRjT/
-    1Dmk2gxT42KUoHNP1lF3WlEPPJO2yyF4hmflWKq95hRtJPQKIxeQMfyuF851GWnjKdDT3g
-    SbqvGWAO4miVaJC22MxZHaamB1zkVFgWEyLguUH9HRyTjYn5kFnPMv2mqcyEbUK3OcfO9u
-    MgL7kHeZdsm22wy1cjhaB+lVWVcBx4HC9CC7zBZD36CdiZb8YqTljRRpgwMA
-X-ME-Proxy: <xmx:vekFa0qQibBd5Yjy5EDY4qwQUHYEh8Jewoz4q7BmzAD7BnOD_BdArQ>
-    <xmx:vekFa_zfywy1OGE3qkkRXlIpISdYaw86n2DSZjwWwdES5ay66R-Wkw>
-    <xmx:vekFa8KdLB_QyPLQGQzZnGGV-levXzamS0cBt16XgEABqKCVqSewpQ>
-    <xmx:vekFax7A3zle1yCe6-c7eXVhSt3HY3FhBsf6HN1wJIdeck5M5QzF8g>
-    <xmx:vekFa6wPi6anooP1ZJHrXVg7yqmH00bZr8TksT7umWyBWjJFjNPxOnes>
-Feedback-ID: i10464835:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 24 Nov 2026 14:47:09 -0500 (EST)
-From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	James Morse <james.morse@arm.com>
-Subject: [PATCH 0/2] firmware: arm_sdei: Fix NMI backtrace lockups on idle CPUs
-Date: Tue, 24 Nov 2026 19:47:03 +0000
-Message-ID: <20261124194707.1030653-1-kas@kernel.org>
-X-Mailer: git-send-email 2.54.0
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=psUkD45Gblqw3R5uuPmx/xYGOXm4mJXMppzNlzVVNKb6Fso6mDpxNa7nNJoCesc3GxPRHyGNHd7fFQfQvb6REZJt/nHx1qsRXsIN0N64aBzP9xQNvKp4qFfTVp6exN9jfiqX0zIQs07gc/17PbIa0mCYQGS9eZHeeQPQyehtaWzSvaW1x3hfFFCON79xe2f5ziiSVhogdQKcoxYBE5KAF4uqx8EKhc2Q8Pwz2DDHsc+qObpIaARReJ4Uw0DfiQHDAa0OXr9bEfqE2EQvswrL6m4ctPrBz+sBkukwd1vJBw9CPTHvAQ06ZTBW4gQby1fPgTwGCJb/pX3+WbTIHgDN0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cRxv9YhZaJJP2/c0rugwOhvWLqO2hf34ZvOcJWVVPzg=;
+ b=V8axjCcdSCzX/nQDYaHHBJkKQlmtg2U/00unhGecpcFaTX3/Uss/SZH6ST2dq/UEPdwIcngDr110LS8L/KXi06hiJ6HUPbecjSjLQWquKgHMXhWr5TtJzt1r7JeKJO0VOpOT7xNBGykVUYOE66G84UJvDkSPAayl2mu2R3JALiMohZq8It/BXT7FiGzjp9FdCm6CUvU578YalCxR5hrBrUSQ4Q7BoCKwmzIwrLlAnnrhP06zjn7PQ5SONl+PCNljGbfM59bUfXoKWD48IgG2baVG9W+zwVeRt1KGxIbtbjyuif3wprqpEMEUGaQAtgy06BHSD017xdZN84Enygj9Hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cRxv9YhZaJJP2/c0rugwOhvWLqO2hf34ZvOcJWVVPzg=;
+ b=I9GzgUiqdqUUVV7QloY4/T6SjxG+AULh/f289XlSFjx7O6FHkfd6xHz5FBU6Wd/w+nWkAxJ5QyQQlKRbMPMqFCW8BPtAUIYWi3MJnjXg1VpL16E1gnZbk+K6p/5zhJ95ptwOd+9TVpgFTZdHcpP9S+ZYwdKijM69G4ZJTH+9K8QhqpyTtmSpL6MwXwcEXxjpzYWDGYHtpvQA+MxkGefZhhufitDC03AsGopsInJTjY8Y0P3yYbJBvun1G4mYVeFrsc06nbuzqUru43iVHw8cd8isDqCXVbQDlA1HVT8f3V+CimU/k3332ABA+1aBuDVRaTgsoTFO8ZXXb3lfJdh06g==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by PA3PPFF2AAB1E98.eurprd04.prod.outlook.com (2603:10a6:108:1::b5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Tue, 24 Nov
+ 2026 19:47:09 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Tue, 24 Nov 2026
+ 19:47:09 +0000
+Date: Tue, 24 Nov 2026 14:46:58 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dom Cobley <popcornmix@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 10/28] dmaengine: bcm2835: make address increment
+ platform independent
+Message-ID: <awXpsh-ZbSqbotIm@lizhi-Precision-Tower-5810>
+References: <20261123145728.29082-1-andrea.porta@suse.com>
+ <20261123145728.29082-11-andrea.porta@suse.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123145728.29082-11-andrea.porta@suse.com>
+X-ClientProxiedBy: PH8P221CA0055.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:349::8) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PA3PPFF2AAB1E98:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2abc0ce6-895f-40d5-0860-08df4a63b9f9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|1800799024|23010399003|6133799003|22082099003|18002099003|10067099003|4143699003|11063799006|56012099006|261102123227099003|261028144727099003|261022105027099003|261022075727099003|261026140227099003|261021121427099003|261021123027099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: Sqyce2dtzprkek595XiQYArdHI/YQLr0yTGGNQqwLa1mvE5iImnCArTCnJNlhikbgxDSpxP6Q76ix80tMkDqegg06isOP/qikQdrYVUEMxUyTJLoub4WKXHM9cRihVfv6QTTi9u/jXhQ9a+N4aSFU6kJusHoTg2lQRVvHH37Y/f20iwI6Qaccdyoo4Jo0B4PTk9APt6IkIux/LSL5/8KtUyHshHog76ubhAh6HZgoIG4Mqn+wYPQ/CMcKvmQQhb9dwPK5PdMTFD8mMebyiHtlIeytU7dYxMmn748EV70vWTzzV+LssGT7PA6R+p+ZPE0mu8E/soogrmHMgjo4Yt0nIUoOprn+lzYV68m5y/uPeKehv/HENkqdjWfZRdYveVZAXvdkNA8RnD7ODDZ8AdjlLZ4y9IDLLbqk07hxZkQ9fbBP5JmZ/5xRBOqaJ3UtosIfTBAYSp2tVSSwr1RXeM4TrWRmoACVGyN7gHe5kVLJXrKeRSoc1UYk8W3Rr1csiwQFyGyCW0MxskyMpeTB5CkU8ji4lNhK5Dw//WkwJOi2+PD6uDUblR/+Cg3Hv0YVOcnaB9J0hCmy6ceKb/2c0iQR1t8TvSaJuww5QF8uIfpI3dWT1leZ54PSC1wFGoipwayr3HovQeGP0eVGqrbsvP77zFYigSzAB4Egyd8S4SOF/k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(1800799024)(23010399003)(6133799003)(22082099003)(18002099003)(10067099003)(4143699003)(11063799006)(56012099006)(261102123227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261026140227099003)(261021121427099003)(261021123027099003)(261009223027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xHabr9eiceTzN6f5wtBfVCI0pBwspA6A40XD0+1Smbcu1zqJhA/VYrgm2tFt?=
+ =?us-ascii?Q?v6ErIDAP/SaeLwAZ872jALtrNQo46uH1ggeZRNK5eQFSeCgtvnnC8JXEkgQc?=
+ =?us-ascii?Q?UpcGtlJhGpdxTglpQKeAXca+DA6o8rQoWR0/ppsALftFYFDfyShlUQ2w9oFX?=
+ =?us-ascii?Q?ZZV/JMBZ4FMZtbrKDoJw8Z5ftUv9SgwB7kNSuinMzLx3kl73StRKEF3waECw?=
+ =?us-ascii?Q?HdmCHEkpthLVFRFLREeBH28dhog3ySLz7P9wtvY5V+VNFgpHLfaAcfcmMkGf?=
+ =?us-ascii?Q?1U0lNPvJhytvRSD3YVNcyaV4PU0sK1y1CtVnkRroPTKoJWa49lS8rEui0DdX?=
+ =?us-ascii?Q?i6yuBhXO513Qig1rdA0amhU+DSDFoBCsRDaVH0QgVVwkfa2/PXqvh1IefiwF?=
+ =?us-ascii?Q?kSnC+l7TBHZDMShj3rEYp4vLzt4hfNigX2Mei7BwCbeAmGQwfoQ4BolrntIf?=
+ =?us-ascii?Q?DL8hoxXalgtbzQJ4gU29MgfToKuo18pW3y4gnc6UnjfXUA46foQfwtyd+3Cy?=
+ =?us-ascii?Q?0mvMH2V4bGK0Gc+S3LfOTb9DcPIcKNUrrrSmmVvc1w4ExAbnYjAzf/0/+rk1?=
+ =?us-ascii?Q?Zq3yNsvARaODkm42l9Brqc16ACur0O3aIwe8ydFUdsN/0OcIjkIFmctYSgz+?=
+ =?us-ascii?Q?xuU8Ke7oVuURpU9LCao0ygg8vo2bnjfL2O66C4VfO2qPZ9HMcZHoWW1Vgvug?=
+ =?us-ascii?Q?lz9HnwMjtApitpBBkAFImT6XeO0Cv1HKAvorL4F6iUOaRGVWvgViTcJnHr+P?=
+ =?us-ascii?Q?fNtKU5MDxvz6OiQF5Bmg3ikpOdpDLWmlohuCCTpPXAA9fYy0xZc50GUHJojI?=
+ =?us-ascii?Q?RG31wv5xz39ZYalwCZJQS7mtsIJkniwRKH5Soe4EJQ6t+vivA8iZMmzZx23Z?=
+ =?us-ascii?Q?hMab0srsBCWXmxFnhyOk21XquXjAiMQ/ivhykHcnLEfeAbOdysVMeaEBqVk/?=
+ =?us-ascii?Q?JYxRMdTv8TDXCsqXlYO8FAbQyks8cdmicdNc+T6X5P2uizPFvrHx78CVPM/E?=
+ =?us-ascii?Q?nKZFNyRFoTwGpzvmwlXr2zW27Y4HCh7mGV34ZGjTD5Ryqc7kJeSCSaQN8Nv9?=
+ =?us-ascii?Q?dzfZLL/sC8XdShx2ZEUzkyaiXZ9Cntwg69WUesGUVkp8BvGHQMc3DPwG14FT?=
+ =?us-ascii?Q?PgHOT/WTb2A7lgl8r/8qGL5pAbF8emBQWx8rwVm4mgDkvdmcdIOrGuNMroHM?=
+ =?us-ascii?Q?faeQTjIn3Q09PmYxXZnZN61I/GAeS9o473rBlu5Q2ywQIi1l0Vnf6l1nqIqu?=
+ =?us-ascii?Q?2vqaIt5Jd3r2l2S1io0qAIgLkBBBFzCTPZawkhnpml1j7mx0qRFFhIxbfgau?=
+ =?us-ascii?Q?kLE42OqLQySoSd5ttJXBgk7rLa+pY5O7mL/Lvr4I+LSn4ZbN8KJtJ02jYK0m?=
+ =?us-ascii?Q?6ZrVed+NVEP3zWQ6Us2e4X1wKaNU/GBqSVWcRvEYN5LCHGu6tdNmN0L6Xcc9?=
+ =?us-ascii?Q?uB1S2ru0lBqwStKe9iISg6uOuywjzJKLWWENDCAY64IJ3RQ7DlITQ4ke8Fxy?=
+ =?us-ascii?Q?rd8jJNg50BDtEDq2fcb0pLuphEw2rHMavMQt/3wgiQYkXuSFBj/Wg49PoBtw?=
+ =?us-ascii?Q?MM7CYkzrEbF5WFxnOejWuItRcr4qB8J6EY3/sTr9DIlvext8avbRRwnhqGE3?=
+ =?us-ascii?Q?/TmYfEYNhmxZABvSH68SVYnVwGhomM3lMrQxFIbXGrAueuVekuBkoWZaqJsR?=
+ =?us-ascii?Q?7C+cZcOo3Xx+kjHxlxui5k+1oqcsWZk4Xf2YpX/alv977bWumMr8orjIpIW0?=
+ =?us-ascii?Q?x7eEHv5eg0CbJQrRABUGw7fxCr7PNQnLERwG+c95NmXUqOrG8US9?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2abc0ce6-895f-40d5-0860-08df4a63b9f9
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:47:09.2908
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T18Ee6L1kSyZXXkIwnSq10use+KFTjdRMaeNfmGBbDn8/SP2ES+7vtkTzaptL/kOar+BLCwtl2Fo2Jjne8YtKPgCL5SaOOc8M1LY5580xU0n11cIAdVh7kY3K4Pohc6H
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA3PPFF2AAB1E98
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_114713_966619_57D66389 
+X-CRM114-Status: GOOD (  23.72  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,55 +149,87 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: "Kiryl Shutsemau \(Meta\)" <kas@kernel.org>, Yin Fengwei <fengwei_yin@linux.alibaba.com>, kernel-team@meta.com, Vladimir Murzin <vladimir.murzin@arm.com>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, Cong Wang <cwang@multikernel.io>, Liao Chang <liaochang1@huawei.com>, Doug Anderson <dianders@chromium.org>, linux-kernel@vger.kernel.org, Ashok Raj <ashok.raj@oss.qualcomm.com>, linux-arm-kernel@lists.infradead.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, Pengjie Zhang <zhangpengjie2@huawei.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The SDEI NMI backtrace signals event 0 to every other CPU, including the
-ones in a power-down idle state, where the kernel has SDEI masked. TF-A
-acknowledges the SGI behind event 0 on a masked PE and never ends it,
-and the PE takes no Non-secure interrupt again. Jinjie hit it on a
-384-CPU HIP12, where one sysrq-l locked up the machine.
+On Mon, Nov 23, 2026 at 03:56:48PM +0100, Andrea della Porta wrote:
+> Actually the criteria to increment source & destination address isn't
+> based on platform specific bits. It's just the DMA transfer direction which
+> is translated into the info bits. So introduce two new helper functions
+> and get the rid of these platform specifics.
+>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  drivers/dma/bcm2835-dma.c | 28 ++++++++++++++++++++++------
+>  1 file changed, 22 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
+> index 77b3e2f58ac5..6180a2737e07 100644
+> --- a/drivers/dma/bcm2835-dma.c
+> +++ b/drivers/dma/bcm2835-dma.c
+> @@ -273,6 +273,24 @@ static u32 bcm2835_dma_prepare_cb_extra(struct bcm2835_chan *c,
+>  	return result;
+>  }
+>
+> +static inline bool need_src_incr(enum dma_transfer_direction direction)
+> +{
+> +	return direction != DMA_DEV_TO_MEM;
+> +}
+> +
+> +static inline bool need_dst_incr(enum dma_transfer_direction direction)
+> +{
+> +	switch (direction) {
+> +	case DMA_MEM_TO_MEM:
+> +	case DMA_DEV_TO_MEM:
+> +		return true;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return false;
+> +}
+> +
 
-Patch 1 keeps event 0 away from masked PEs. Patch 2 sends the regular
-backtrace IPI to the CPUs that SDEI refused, which wakes them.
+This is not 100% correct. there are case DMA_DEV_TO_DEV, and some peripheral
+FIFO is a range of MMIO space, not fixed address.
 
-TF-A v2.13 and later refuse to signal a masked PE, but a PE that masks
-right after the check still takes the SGI. The TF-A fix is under review:
+Frank
 
-  https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/55414
-
-Tested under QEMU TCG with TF-A built without that check, 4 CPUs. One
-CPU masks and unmasks SDEI in a loop, through cpu_pm, the mask calls and
-CPU hotplug, while another signals it; sysrq-l afterwards. Signalling
-with plain SMCs, as the kernel does now, wedges the target. With the
-series every run passed, lockdep included, and a panic in the middle of
-it completes.
-
-Jinjie ran an earlier version on HIP12 with the power-down state
-enabled: sysrq-l got 384/384 answers every run. The handshake has
-changed since; Jinjie, could you give this one a run as well?
-
-Kiryl Shutsemau (Meta) (2):
-  firmware: arm_sdei: Do not signal event 0 to a masked PE
-  firmware: arm_sdei_nmi: Send the backtrace IPI to CPUs with SDEI
-    masked
-
- arch/arm64/include/asm/nmi.h    |   7 ++
- arch/arm64/kernel/smp.c         |   2 +-
- drivers/firmware/arm_sdei.c     | 130 ++++++++++++++++++++++++++++++--
- drivers/firmware/arm_sdei_nmi.c |  30 ++++++--
- include/linux/arm_sdei.h        |   4 +-
- 5 files changed, 157 insertions(+), 16 deletions(-)
-
-
-base-commit: b6a9fa34ce4187cb69d3c588a4bbffc31ce5db8f
--- 
-2.54.0
-
+>  static void bcm2835_dma_free_cb_chain(struct bcm2835_desc *desc)
+>  {
+>  	size_t i;
+> @@ -338,10 +356,8 @@ static void bcm2835_dma_create_cb_set_length(struct bcm2835_chan *chan,
+>   * @cyclic:         it is a cyclic transfer
+>   * @info:           the default info bits to apply per controlblock
+>   * @frames:         number of controlblocks to allocate
+> - * @src:            the src address to assign (if the S_INC bit is set
+> - *                  in @info, then it gets incremented)
+> - * @dst:            the dst address to assign (if the D_INC bit is set
+> - *                  in @info, then it gets incremented)
+> + * @src:            the src address to assign
+> + * @dst:            the dst address to assign
+>   * @buf_len:        the full buffer length (may also be 0)
+>   * @period_len:     the period length when to apply @finalextrainfo
+>   *                  in addition to the last transfer
+> @@ -413,9 +429,9 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
+>  			d->cb_list[frame - 1].cb->next = cb_entry->paddr;
+>
+>  		/* update src and dst and length */
+> -		if (src && (info & BCM2835_DMA_S_INC))
+> +		if (src && need_src_incr(direction))
+>  			src += control_block->length;
+> -		if (dst && (info & BCM2835_DMA_D_INC))
+> +		if (dst && need_dst_incr(direction))
+>  			dst += control_block->length;
+>
+>  		/* Length of total transfer */
+> --
+> 2.51.0
+>
 
