@@ -2,67 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A92606A690
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D6C606A6B0
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qDTl4AvM;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=c7i3xfZK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3z9G0F8j;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=dHecZnux
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ISTbz4wvFFAt6bzo0qkX0pE8/CfrFExmmIE+Q/E+mRk=; b=qDTl4AvMsUNynj
-	EeQBeSW28aW5+BM9+n6FdOoJTu28E4Z9QtFMV8G0QtKJ1VNz1MlZihbDMJ7/Sx5K9R8ciiF4kb3fa
-	kYpbGSblGTgKaVqPJijHQuhOOrxAL1Rsk5Z09KBhNMDRedjKOJbT3X5O72ozjySrck4Wi5UrJSIHF
-	B+dzArVyDw0Ea2X/QgOf19Xa0yHDFCDGie8ppQ9kmrEMZKyJw2F+9IXrcxW/BWBAq+4YnGOHk1Vwa
-	1rYAlUSbXsGTs0l+3sHWt0IuDBMivrp1ZpK91UTCMiVkOqioeB3FKlxSGfLOp/3JOFxB4a6El+qqd
-	4Qp5xVZkg1l9PKZIEukg==;
+	List-Owner; bh=DvfoQdX5TAh9acAbfEpdCjhrYNF1g8HYHnrBWffEvp8=; b=3z9G0F8jYAcv+2
+	/liFgP1/Cw8t7zbQlq5beY9zhQH/1A/B87Ou6ECMsw0MCxqPgYiGKsh61lNXpyJh3mHEu4g2MuQ/I
+	K6D19+Q+mhDpE2YtFpeqUkO2GGBY4mADjqPclOBOaREXG+EmgIa7C3FSP+0OKYNB3ljPJDx398LxT
+	oJy0m3kbii/p7bxBVsW5Wr0fRIz87idKUCn1ReJVIcPR32xGpF7U3AeQkNPYO7pR2b1/NDbUgwIpH
+	8N0qU6MqFykfa2I84oViN2Cj5TfAR0chJPnvaZLiN0S4oPFo4258+3H1eDxnu3Yi9GXE6DMulxSKL
+	Jmvs8Wq8W/W5dCod2Tgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqDt-00000006ZaS-43pI;
-	Tue, 24 Nov 2026 13:06:13 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVqDr-00000006ZZx-0OL6
+	id 1xVrDL-00000006iSS-0hGL;
+	Tue, 24 Nov 2026 14:09:43 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVrDH-00000006iRl-3eXh
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 13:06:12 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 94475339;
-	Tue, 24 Nov 2026 05:06:04 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2F3AE3F86F;
-	Tue, 24 Nov 2026 05:06:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795525567; bh=KfcNb14BPbce/SMMQsbu3BnOADE88adplfkak0jlU4k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c7i3xfZKuhYWfmc8XuthD9SjMtI8KP5JiTYsk//7UKJ7SUqxhDPCOk1lCAF75Z4GJ
-	 F6spa/1VAV5pLsBL13FVJTxxgHFMSHzf9eWaP0yf4p4nxYEm45ENeCWFLOvjeBq4hL
-	 dJfNqW7ezncp/U9hLs4gCQQIFxuYEQwoAogbIbok=
-Message-ID: <09e172d0-3ef5-44ef-a966-7db3b8a4af9a@arm.com>
-Date: Tue, 24 Nov 2026 13:06:04 +0000
+	Tue, 24 Nov 2026 14:09:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YSj0WvZoIDToDfYaeJhmZXKGmsQmy42kt3KaAusVSC7yxGF2jpZW8lOZZjkVvg258ZeiV2Qrh1qGFUxgHSc8YpWU9fecSBFQTpxhe+8qBFDzlxGWHv8TGDGnVTKhouAQ/q/aBkVYxV2mOYZ6oQtMN8Op+X6sJxXBZD2JqHcozZ7ETFTVaWQessg4xmwIPvQcw9lHzZKpl+PcEpVUH+O5OyPvoKy/ScRwCJIPKLrtwLVQai8SF9lfSGTOFQyMGiEfpNSUcrSflw9uGGiwfLDtbFnLiLDQEmCD181vVCoH8o91PKrsubNPl3xHaaRiVE9DGHBs/JbmSyH3cn615iAhuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DvfoQdX5TAh9acAbfEpdCjhrYNF1g8HYHnrBWffEvp8=;
+ b=m7pKOgFncJ9hVH/QljhUtyQBMJE38csc/W0LSY1mXU1hnyc71kSB8+fjuvezNv+72CNVl15kLx080ABmoEdYORz5UIdbs2zTi6rlvpZ6ZOn3os7bg11uCK082JqNpy5VBzEZzvv5Nm49cHhwYkPD/AY0uzVJ5/BgbFVLIyQLidp8ImlQzqulDJM9MV6SrPI1Kbds3TqX1AAsENG6VDjoXrmfnHCaw89pAk3xdtk9oZFBIT0haFSNdHKh10wiLQzhlCM02PzTAe8pk9CSnygVpi1W4vGoIVgIaDtT7KMSpQjUJOsmBdUG5dzlr4IXwnX3Bf8IAxRx0bDkS0O5tKYPFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=amarulasolutions.com
+ smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DvfoQdX5TAh9acAbfEpdCjhrYNF1g8HYHnrBWffEvp8=;
+ b=dHecZnuxs8oNjA31B729cK3dcF0kkDkPQN1IIKG2SjNrULGKk01W7hrKzeOJh9GQzEOFfoVDJccqozq+0BFNk9SOGjvvGuJGhP1FsNTzW/Dgq1FHLdx1jjcFw+r6D7Y+bn6aoILYjmHPCFeuGQ5tbDeIIfyiaA04FCkElp7B8E0uK9MGsf0AqkzsXFxp/+LhwdY1NvknVkNxrd7Z1Dvv9TNhwXMpDLg9zj+1cm6lHnYipF0qJ44XgYg+jaF4nCNUfDR7H63ymjt//LU9IxZnx/rzvg5aYDSTedzWEFYxb4YaCafwup/KUICt+pbKiikuq41VzU+JtgQblV2OxbaplQ==
+Received: from DUZP191CA0010.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4f9::27)
+ by AMBPR10MB422559.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:6ed::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
+ 2026 14:09:32 +0000
+Received: from DU2PEPF00028D04.eurprd03.prod.outlook.com
+ (2603:10a6:10:4f9:cafe::a7) by DUZP191CA0010.outlook.office365.com
+ (2603:10a6:10:4f9::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Tue, 24
+ Nov 2026 14:09:32 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DU2PEPF00028D04.mail.protection.outlook.com (10.167.242.164) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Tue, 24 Nov 2026 14:09:32 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 24 Nov
+ 2026 15:10:18 +0100
+Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 24 Nov
+ 2026 15:09:12 +0100
+Message-ID: <f3025431-c426-4c7a-b196-ae09aeb617a0@foss.st.com>
+Date: Tue, 24 Nov 2026 15:09:11 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] coresight: perf: End AUX output when an event is
- throttled
-To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
- James Clark <james.clark@linaro.org>, Vlad Poenaru <vlad.wing@gmail.com>,
- Amir Ayupov <aaupov@fb.com>, Suyash Mahar <smahar@meta.com>,
- Song Liu <song@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261124-arm_cs_fix_throttling_oops-v1-1-3ad1dfad0159@arm.com>
+Subject: Re: [PATCH] arm64: dts: st: add firmware reserved memory to Engicam
+ MicroGEA-STM32MP257
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+CC: <linux-amarula@amarulasolutions.com>, <michael@amarulasolutions.com>,
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>
+References: <20261028105807.2567225-1-dario.binacchi@amarulasolutions.com>
 Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261124-arm_cs_fix_throttling_oops-v1-1-3ad1dfad0159@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20261028105807.2567225-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D04:EE_|AMBPR10MB422559:EE_
+X-MS-Office365-Filtering-Correlation-Id: 47e1b695-9623-4582-2bde-08df4a348fdc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|23010399003|82310400026|36860700016|10067099003|56012099006|11063799006|261026121527099003|261021135927099003|261021121427099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: ZbyFuaE3z9mrCtj52TnjUyzNODjq3dPh4tIUGgNsEJYy86wqCt1DCOhc87ZaXoVMp7A67zPMh/y/EWFNal1o5BItP+KfAxMQD0Jq+WcuAZQDZlqxXa8aOkh8Kvo3dpTlO5GvrKIUeEKspRdb1pzZtAKbWSkr90ly4K6iSh47L6AWHJkx527Fyht1yp5sZg+OZicxeyin5FrSUTp8sAWQMebRO+4dG+tPpizr/V7Kuy5VxOHFFtzvi/gMscdBszJcjd87SAN7cr0TQRdAOfL3IybYdHO4qKRJMEDB+Iv8sygTkJhXXjnlkfcvmkkm9H2iEjHd9sNgblbHba8wjJ4sDEg6mz2veiMBdnDOU1TLb/ljVZD5J93cMHzCBjK8ZkRVcxhvGKC/5XPIHT1YcvQK/mlpa24HPTeV5x3qEmsc7LYEwJb71sYZBL4tq8KFzTerbgKPeNzRRc4MHjSCSuvkgQeHdpenCotmYpv5FK/DxdMKmGs2sFtgFIjFU6YSEem/ynNftCXJJPm6OTi1VQXH+5n25QV1GdJIoELGMFHmHJAro9H0eVTAfF86KLcslDqy81tk4Z4qw0jF9UXRYs1gstskjd4rbEP6aqy9kzbeLlR2y4LJzsSM11ylWCbrswiTtXl7rbQcPc9AKfhM1YOHKwVvF05KoT7r5ZptTTT8URHXqvDA0Qwjjnfe3O9HLmBNbV8RWZdLt3+r/0pEQwoigA==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(82310400026)(36860700016)(10067099003)(56012099006)(11063799006)(261026121527099003)(261021135927099003)(261021121427099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: UIweNWCt4vSxo5GbkkKo0rNxOHgrpDr0rUNYv2Uv0liz1W4hCkUJpgSN9mZPNAhxLrT+kAh2WqF9ZUk5ei2smlhvSL48W5YFBnnO2TiIIda6VrFG6i7FyWlCGR7gztOlqDGewFI0EdQ+xpe/RD4iCmWtFqR0O4NEw66XRqdKBtYRMXcVZSdxJ/nuYmPP2ml0/4JjxLBQv0CHqTc5fWTl89HPuY+I0nieksHUS9e72E9rtankmhF499lVmt1XXYV/xwZaUTukDCh/4IdnxPFAGULFRazQ44vSa/IfWzvvYB108d9woAmO05sFFzkVCSwWAIzdiXYUEqYsL1y73SBX7xFJFd7Oq4n34JFBlQ64j4pBJGUxTBl6Y39/+LrEd2HoGMBUlsIUSf2KFlJ4lHt/j6gDgAFyCM+AwrZhyyQAT4amUPnP0UWqdEVrloirCZqN
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 14:09:32.0587
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47e1b695-9623-4582-2bde-08df4a348fdc
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028D04.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR10MB422559
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_050611_421330_4EFFC63D 
-X-CRM114-Status: GOOD (  29.17  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_060940_304884_FD9F70AB 
+X-CRM114-Status: GOOD (  14.63  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,145 +136,58 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 24/11/2026 12:00, Leo Yan wrote:
-> Perf throttles a group by calling each event's PMU stop callback with
-> flags set to zero. On a CPU with a trace path, ETM stops tracing and
-> leaves the AUX transaction open because PERF_EF_UPDATE is clear. When
-> perf unthrottles the event, perf_aux_output_begin() warns because
-> aux_nest is still set.
+Hi Dario
+
+On 10/28/26 11:57, Dario Binacchi wrote:
+> The first 64 MiB of the DDR are used by the secure firmware (TF-M,
+> Cortex-M33 firmware, BL31 and OP-TEE) and are protected by the RISAF
+> firewall. Without a reserved-memory node Linux allocates pages there,
+> and the first access triggers an IAC exception and an OP-TEE panic:
 > 
->    [  181.161897] ------------[ cut here ]------------
->    [  181.161906] WARNING: kernel/events/ring_buffer.c:415 at perf_aux_output_begin+0x1dc/0x1f0, CPU#0:2
->    [  181.234120] arm-scmi arm-scmi.1.auto: timed out in resp(caller: do_xfer+0x1a0/0x558)
->    [  181.234223] cpufreq: __target_index: Failed to change cpu frequency: -110
->    [  181.286675] Modules linked in: panfrost tda9950 hdlcd tda998x drm_shmem_helper drm_client_lib cect
->    [  181.314139] CPU: 0 UID: 0 PID: 352 Comm: perf Not tainted 7.1.0-rc1-00058-gdca922e019dd-dirty #11
->    [  181.323915] Hardware name: ARM LTD ARM Juno Development Platform/ARM Juno Development Platform, B5
->    [  181.334732] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->    [  181.341721] pc : perf_aux_output_begin+0x1dc/0x1f0
->    [  181.346547] lr : perf_aux_output_begin+0x9c/0x1f0
->    [  181.351280] sp : ffff800080003be0
->    [  181.354606] x29: ffff800080003be0 x28: ffff0008023fc000 x27: ffff4b45d287f000
->    [  181.361789] x26: ffff0009764787a8 x25: 0000000000000000 x24: ffff00080dc99710
->    [  181.368970] x23: ffffb4c334553000 x22: 0000000000000001 x21: ffff00080dc99710
->    [  181.376151] x20: ffff0009764787a8 x19: ffff000801cc6000 x18: 00000000ffffffff
->    [  181.383332] x17: 0000000000000000 x16: ffffb4c3a118c998 x15: 0000000000000000
->    [  181.390512] x14: 00003d0900000000 x13: 00000001ffff006e x12: 696765625f747570
->    [  181.397692] x11: ffffb4c3a52758d8 x10: 0000000000000108 x9 : ffffb4c3a117f620
->    [  181.404873] x8 : ffff800080003a58 x7 : ffff000808de4000 x6 : 00000000000fffff
->    [  181.412053] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
->    [  181.419232] x2 : 0000000000000007 x1 : 0000000000000000 x0 : 0000000000000007
->    [  181.426411] Call trace:
->    [  181.428868]  perf_aux_output_begin+0x1dc/0x1f0 (P)
->    [  181.433692]  etm_event_start+0xdc/0x290 [coresight]
->    [  181.438665]  perf_event_unthrottle+0x70/0xa8
->    [  181.442964]  perf_event_unthrottle_group+0x40/0x170
->    [  181.447871]  perf_adjust_freq_unthr_events+0x178/0x1a8
->    [  181.453038]  perf_adjust_freq_unthr_context+0x74/0xf8
->    [  181.458120]  perf_event_task_tick+0xa8/0x290
->    [  181.462418]  sched_tick+0x144/0x2c8
->    [  181.465937]  update_process_times+0xc0/0x198
+>    E/TC:0   stm32_iac_itr:197 IAC exception ID: 137
+>    Faulty address (IADDR0): 0x80000060
+>    E/TC:0   Panic at core/drivers/firewall/stm32_iac.c:212 <stm32_iac_itr>
 > 
-> End the AUX transaction with size zero on a throttling stop so
-> unthrottling can acquire a fresh handle. Collect trace data only when
-> PERF_EF_UPDATE is set.
+> Reserve the region, as done for the stm32mp257f-ev1 board.
 > 
-> Check AUX handle ownership before updating the buffer or ending AUX
-> output. Drop the post-update check because the full stop runs with
-> local IRQs disabled, which prevents the TRBE IRQ from closing the
-> handle during the stop.
+> Fixes: c5ce8d7bcc78 ("arm64: dts: st: support Engicam MicroGEA-STM32MP257 SoM")
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > 
-> This patch is limited to fixing the event throttling case. Other issues,
-> such as CPUs without a trace path and pending TRBE IRQs during sink
-> teardown, will be addressed by the following patch series [1][2].
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20260915-arm_cs_support_aux_sample-v1-6-35cf6f297d20@arm.com/
-> [2] https://lore.kernel.org/linux-arm-kernel/20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com/
-> 
-> Fixes: 9734e25fbf5a ("perf: Fix the throttle logic for a group")
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
 > ---
->   drivers/hwtracing/coresight/coresight-etm-perf.c | 34 +++++++-----------------
->   1 file changed, 10 insertions(+), 24 deletions(-)
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/drivers/hwtracing/coresight/coresight-etm-perf.c
-> index 909bfd5960331d44547a028fde336f7819488a1a..e506116723c4ed723d66bc721021718b5d176117 100644
-> --- a/drivers/hwtracing/coresight/coresight-etm-perf.c
-> +++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
-> @@ -698,7 +698,7 @@ static void etm_event_pause(struct coresight_path *path,
->   static void etm_event_stop(struct perf_event *event, int mode)
->   {
->   	int cpu = smp_processor_id();
-> -	unsigned long size;
-> +	unsigned long size = 0;
->   	struct coresight_device *source, *sink;
->   	struct etm_ctxt *ctxt = this_cpu_ptr(&etm_ctxt);
->   	struct perf_output_handle *handle = &ctxt->handle;
-> @@ -757,33 +757,19 @@ static void etm_event_stop(struct perf_event *event, int mode)
->   	 * handle due to lack of buffer space), we don't
->   	 * have to do anything here.
->   	 */
-> -	if (handle->event && (mode & PERF_EF_UPDATE)) {
-> -		if (WARN_ON_ONCE(handle->event != event))
-> -			return;
-> +	if (!handle->event || WARN_ON_ONCE(handle->event != event))
-> +		goto out;
->   
-> +	if (mode & PERF_EF_UPDATE) {
->   		/* update trace information */
-> -		if (!sink_ops(sink)->update_buffer)
-> -			return;
-> -
-> -		size = sink_ops(sink)->update_buffer(sink, handle,
-> -					      event_data->snk_config);
-> -		/*
-> -		 * Make sure the handle is still valid as the
-> -		 * sink could have closed it from an IRQ.
-> -		 * The sink driver must handle the race with
-> -		 * update_buffer() and IRQ. Thus either we
-> -		 * should get a valid handle and valid size
-> -		 * (which may be 0).
-> -		 *
-> -		 * But we should never get a non-zero size with
-> -		 * an invalid handle.
-> -		 */
-> -		if (READ_ONCE(handle->event))
-> -			perf_aux_output_end(handle, size);
-> -		else
-> -			WARN_ON(size);
-> +		if (sink_ops(sink)->update_buffer)
-> +			size = sink_ops(sink)->update_buffer(sink, handle,
-> +							     event_data->snk_config);
-
-Could we retain the READ_ONCE() check to handle the TRBE case here ? 
-This looks like introducing a regression. Something like :
-
-		if (!READ_ONCE(handle->event)) {
-			WARN_ON(size);
-			goto out;
-		}
-
-
->   	}
-
-
-Otherwise looks good to me
-
-Suzuki
-
-
->   
-> +	perf_aux_output_end(handle, size);
+>   .../boot/dts/st/stm32mp257-engicam-microgea.dtsi     | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+> index 5b4287e86def..6cd64587ecdc 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+> @@ -19,6 +19,18 @@ memory@80000000 {
+>   		device_type = "memory";
+>   		reg = <0x0 0x80000000 0x0 0x80000000>;
+>   	};
 > +
-> +out:
->   	/* Disabling the path make its elements available to other sessions */
->   	coresight_disable_path(path);
->   }
-> 
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		fw@80000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x0 0x80000000 0x0 0x4000000>;
+> +			no-map;
+> +		};
+> +	};
+>   };
+>   
+>   &scmi_regu {
 > ---
-> base-commit: 8e3ac058be1b613aeabcb7ce18c142e4603cc5dd
-> change-id: 20261124-arm_cs_fix_throttling_oops-140053eb0883
+> base-commit: 65ba8f34ec886ec72b2c07ddc8cf3d815c32869d
+> branch: stm32mp257-engicam-microgea-fw-reserved-memory
 > 
-> Best regards,
 
+Applied on stm32-fixes.
+
+regards
+Alex
 
