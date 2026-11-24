@@ -2,75 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267E1606A6A5
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19CB60A2622
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fJjfCFl6;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=oHS1j/OD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kY0fHnBD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dOWOdtzw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FaOzZeSEcsiEu7Danddjhvc2fvrZGUSlNkNLOC9h7EU=; b=fJjfCFl6kzvm0W
-	ir2VnmhCXpksFHpuHnMEamX32+25TuUKzV94EiNwUQjh8yzY6H+YWfpPPP9H2OP0WRO1cWTGB5dF7
-	RJxpK1QmGIkORX5q7q/bkfURWRuCDknb+W+czwaVPCu2sl9BAHwtN4aN3QCJ6RyghLSwhHiJv7WbK
-	f9z/4lVVu2Ij6OJYlz8G2HetXivpzSJD6meZP7e/u04ACvcnd9tFxNZuM3vLUjwPvklZ5woyTbtIb
-	AII3pRn4Dfg6VPCYJmhgeZJweBjVULJxpG2QwemqRuCpGlsRAXcJl/UL0p0GPm8PvHG1oOKcCDRYq
-	C9kwQpvhqwrm4KLapP8A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=t3cmjm6ZKBGdBGCrrmZWvBqUdIdOjziCKMAaVZISAks=; b=kY0fHnBD9qmccFVjiKGNk0kTFI
+	XWlQSuIoLcqZOoDJI9l7GOUQ9L2c2LSrh4NvKoGn9qxnuLHXjUDvnrUi5xU52MK4kzGodt8z8ttyK
+	mClbTF+AGNtqwe9WMKVTRPawH1xrDt1R1m8ExmkRMohASltOn1+MOGOJqS2DICtN0BHvkNZu3XPt0
+	JBB4dqrE36/gK/8GhSEsRmCBMKQDnAoUXlBrLdLKImXjFeLJ85qx9qQv0yRcOGH5mwDZYcMDIqJZN
+	zZPQ4MKyNZhmm1s4VO1yBT67JUA+yv5DSnXwbhYsrUg5kDY1KwEjVoI3ucZPi9PEZj41HIQgUj8rj
+	D/16wjfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoy0-00000006Nr4-1fG5;
+	id 1xVoy0-00000006NrZ-2SER;
 	Tue, 24 Nov 2026 11:45:44 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoxo-00000006NnU-366i
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVoxu-00000006Npi-3qJN
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:45:35 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36740339;
-	Tue, 24 Nov 2026 03:45:27 -0800 (PST)
-Received: from [10.0.136.47] (LRYFGMQP07.cambridge.arm.com [10.0.136.47])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8C7EC3F86F;
-	Tue, 24 Nov 2026 03:45:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795520730; bh=okJBaBQeKqLQjanlOT9Hdjoxc/5u+umivG32ad9P2p0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oHS1j/ODs9XrlcrwFcErJAuiUASAVqGdlM5jJ0TrHu5LO/ecVQpI92au9My9i5YB4
-	 IsEgPf5Eg2D9VfrdTht5Jho7YM+cHWoKdHuykVuNBYuauGW6ByyOMfILaILRHgrzmk
-	 HHo8zI77+KVFXie7ld9oLUNxjfzFuhYGbQQR91gM=
-Message-ID: <3d88c31d-04cc-49e4-b30a-3ece06908da6@arm.com>
-Date: Tue, 24 Nov 2026 11:45:27 +0000
+	Tue, 24 Nov 2026 11:45:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5F06661D27;
+	Tue, 24 Nov 2026 11:45:38 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795520737;
+	b=ZZdO5zxEefZoFMCgi0q+TcNabVTNZWnVfM9HggMDsDry/+oP8UJDXAP/klX4HyWevVBF
+	 xijFhIPq9jxRYFiLJOkrAgywntWFRevWAMl7xCTO2aGtSLKrqR4IY+Ex+aAQOcVZqRHx0
+	 hLNnZErh3jm4JgCqD7u5mSsQ4leDa2EIqbW3qUDDYRYk/NmXv+gt72IKNiuU3nN9RXSy6
+	 b4lCYDNi4q720ZhBMsSqRIjTnwxf0Ls2otUoIMQS8zUEa8YWbSBLuYahRgmxamzgmj/ah
+	 5DRCSAmsUqR8iciZBTlmAqhrT+GbWf1gW0nPyo5XrzBTgDisqZOy4+L2etbdsMM/9rA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795520737;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=t3cmjm6ZKBGdBGCrrmZWvBqUdIdOjziCKMAaVZISAks=;
+	b=pCZNy/6JecNEx9dQ+/C32Jei6BgIK0tLSoadl6KEcrruGGnfjin8AN/f5pcWEGkkfNAt
+	 HtQNZBlpc1HElrgnYCqxePF2zhVI4NdL5u1b+McbH13ixyar9+dSi3y5d6zlAWcKOMlbL
+	 U5EJZ6D3QIyMWJZDEUwTgicf5Jh/2kN2qnMzs4j/FcJw0nyKx+QzbQJdAvaxi48NnN64X
+	 BxCHFZxlvvXr3UAEgTp2Fq1kvOjGXgrREsO/sKIr5QTahs6Rv7MR8O67r0I2dAcNYv/zr
+	 BmRlkAnRf/l+TsxV6mZR7NgxZeSogWPRBuSIkRYQK/I5q+k03rKdlyBW+iI3fiBhDPw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 7D7761F000D2;
+	Tue, 24 Nov 2026 11:45:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795520737;
+	bh=t3cmjm6ZKBGdBGCrrmZWvBqUdIdOjziCKMAaVZISAks=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=dOWOdtzwJNHKVUuR6gBux8a+f/zOmJ08xVZagAcZDuaKXX1oWHSS+uI1t5vzf3VcW
+	 DPoWRRjSXAjwWEj866oylPf85AvL4jOCXO1WT4JjJOTXv9DwmocBDnKIY5JYdAbBEj
+	 9wM+CZswxeqIt+dIC5Zgllj72IpSXt2+FYq9R3V6b9ui5DW0P/Xbt885CGoDOtrwra
+	 f08h70cLzOQvv+aryaEvQkibRoiuH5QMBasa1MKC7KEkaSC77k95m6D6Vfq1OGQMxc
+	 pXlbUFeD+oH1MVvx/1P1+2zbO6eBAvsmlJifFuMxkSCLGLAxj8TVizuVvORsECmt3o
+	 AcEEUiEj0fCnQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 0B3BF4C9EF;
+	Tue, 24 Nov 2026 11:45:27 +0000 (UTC)
+From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
+Date: Tue, 24 Nov 2026 17:15:04 +0530
+Subject: [PATCH v13 02/20] dmaengine: ti: k3-udma: move macros to header
+ file
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: mm: Don't defer the barriers when installing a
- fixmap entry
-To: Kevin Brodsky <kevin.brodsky@arm.com>, Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, Ard Biesheuvel <ardb@kernel.org>,
- Yang Shi <yang@os.amperecomputing.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20261120121638.194154-1-fuad.tabba@linux.dev>
- <20261120121638.194154-4-fuad.tabba@linux.dev>
- <6782b5ee-3dfe-4076-a79c-fbeb2c2ac7da@arm.com>
- <CA+EHjTziXrRdR+guikKbj93Az96T+AMx_=0sVeyWG5C4fwaaTg@mail.gmail.com>
- <5b0a26ee-30b0-4a79-9cca-9848dc9d65c5@arm.com>
- <f543aea2-3a21-44ce-bb44-c84bd66b0a76@arm.com>
- <74b99755-bc3d-4cad-9678-c2de740fe20a@arm.com>
- <f9a42849-fe8f-4a96-81a1-ab58193b222d@arm.com>
-From: Ryan Roberts <ryan.roberts@arm.com>
-Content-Language: en-GB
-In-Reply-To: <f9a42849-fe8f-4a96-81a1-ab58193b222d@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_034532_856235_B18370AD 
-X-CRM114-Status: GOOD (  19.89  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261124-dma-upstream-v13-v13-2-bd4251fdc6d4@ti.com>
+References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520723; l=6609;
+ i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
+ bh=wdK85aolL4pp1GnSwri9uT5/1wDE9wR2Akcq7nvUHH0=;
+ b=vTe35zwNZ//Sr8dgdYP5y2BmY3SQdA9/ctz2DDKPaMhr7sLdM8d32DAIZWR7CnpdFoZzAy5Jr
+ GMQgHUj+WemAR1UTUjl2RM0BYWId0hC2E+5X/T0JROM3yElX/xXKRbJ
+X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
+ pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
+X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
+ auth_id=1627
+X-Original-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,91 +113,199 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: s-adivi@ti.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 24/11/2026 08:22, Kevin Brodsky wrote:
-> On 23/11/2026 19:54, Ryan Roberts wrote:
->> On 23/11/2026 13:08, Kevin Brodsky wrote:
->>> On 23/11/2026 11:36, Ryan Roberts wrote:
->>>>>>> @@ -127,7 +127,9 @@ void __set_fixmap(enum fixed_addresses idx,
->>>>>>>          ptep = fixmap_pte(addr);
->>>>>>>
->>>>>>>          if (pgprot_val(flags)) {
->>>>>>> -                __set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
->>>>>>> +                /* The slot must be usable on return, even in lazy MMU mode. */
->>>>>>> +                __set_pte_nosync(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
->>>>>>> +                emit_pte_barriers();
->>>>>> I wonder if it would be clearer to wrap __set_ptes():
->>>>>>
->>>>>> lazy_mmu_mode_pause()
->>>>>> __set_ptes()
->>>>>> lazy_mmu_mode_resume()
->>>>> That would work. However, there's the stable backport. 6.18 has the
->>>>> bug, but lazy_mmu_mode_pause() was added in 7.0, so 6.18.y would need
->>>>> its own patch. This patch applies to 6.18 unchanged.
->>>>>
->>>>> I'm happy with either, or with a followup patch in the same series.
->>>> I'd personally prefer to use pause/resume since it's makes it very clear what's
->>>> going on and avoids the layer violation. Perhaps your approach as the back
->>>> portable one, then pause/resume as follow up (along with ptep_try_set() tidy
->>>> up)? Others might think differently though...
->>> Using pause/resume does work, but it is a bigger hammer than necessary.
->>> If other features make use of lazy MMU mode, then we may end up paying
->>> extra cost by leaving/re-entering the mode.
->>>
->>> For instance, with page table hardening [1], using the pause/resume
->>> approach means 4 extra ISBs:
->>> - 1 when pause() leaves lazy MMU mode: restoring default kpkeys context
->>> - 2 in __set_pte(): switching to page table update kpkeys context, and
->>> then back to default
->>> - 1 when resume() enters lazy MMU mode: entering page table update
->>> kpkeys context
->>>
->>> An explicit __set_pte_nosync() + emit_pte_barriers() achieves exactly
->>> what we're after (immediately visible PTE update) and doesn't disrupt
->>> lazy MMU mode - we don't unnecessarily set TIF_LAZY_MMU_PENDING. 
->> It's so ugly to spill this stuff everywhere though.
->>
->> How about a nested lazy mmu section?
->>
->> lazy_mmu_mode_enable()
->> __set_ptes()
->> lazy_mmu_mode_disable()
->>
->> If it's nested the enable() is essentially nop, and the disable is a flush,
->> which emits the barriers. If it's the first enable, we still set
->> TIF_LAZY_MMU_PENDING though...
-> 
-> Yes that's essentially the same as the explicit call to
-> arch_flush_lazy_mmu_mode() I mentioned below. IMHO that looks pretty
-> obfuscated though - the casual reader will wonder why we're creating a
-> lazy MMU section for setting just one PTE. If we go down this route, I'd
-> argue the explicit call to arch_flush_lazy_mmu_mode() is clearer (and
-> our implementation is safe to call even outside of a lazy MMU section).
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 
-OK let's just leave it as Faud has done it then. I don't have a strong opinion.
+Move macros defined in k3-udma.c to k3-udma.h for better separation and
+reuse.
 
-> 
-> - Kevin
-> 
->>> An alternative approach that addresses your point about layer violation
->>> is to call arch_flush_lazy_mmu_mode() and leave the __set_pte() call
->>> unchanged. This is slightly slower as we still end up setting/clearing
->>> the TIF flag in that case. Not sure this is worth it - ultimately we
->>> have to be mindful of what lazy MMU mode is doing to ensure this code is
->>> correct. I'm happy with the current approach.
->>>
->>> Reviewed-by: Kevin Brodsky <kevin.brodsky@arm.com>
->>>
->>> - Kevin
->>>
->>> [1] https://lore.kernel.org/r/20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ drivers/dma/ti/k3-udma.c | 62 -----------------------------------------------
+ drivers/dma/ti/k3-udma.h | 63 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 63 insertions(+), 62 deletions(-)
+
+diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+index 6f3f0467fd5e0..086ecacc08cf2 100644
+--- a/drivers/dma/ti/k3-udma.c
++++ b/drivers/dma/ti/k3-udma.c
+@@ -39,21 +39,6 @@ struct udma_static_tr {
+ 	u16 bstcnt; /* RPSTR1 */
+ };
+ 
+-#define K3_UDMA_MAX_RFLOWS		1024
+-#define K3_UDMA_DEFAULT_RING_SIZE	16
+-
+-/* How SRC/DST tag should be updated by UDMA in the descriptor's Word 3 */
+-#define UDMA_RFLOW_SRCTAG_NONE		0
+-#define UDMA_RFLOW_SRCTAG_CFG_TAG	1
+-#define UDMA_RFLOW_SRCTAG_FLOW_ID	2
+-#define UDMA_RFLOW_SRCTAG_SRC_TAG	4
+-
+-#define UDMA_RFLOW_DSTTAG_NONE		0
+-#define UDMA_RFLOW_DSTTAG_CFG_TAG	1
+-#define UDMA_RFLOW_DSTTAG_FLOW_ID	2
+-#define UDMA_RFLOW_DSTTAG_DST_TAG_LO	4
+-#define UDMA_RFLOW_DSTTAG_DST_TAG_HI	5
+-
+ struct udma_chan;
+ 
+ enum k3_dma_type {
+@@ -118,15 +103,6 @@ struct udma_oes_offsets {
+ 	u32 pktdma_rchan_flow;
+ };
+ 
+-#define UDMA_FLAG_PDMA_ACC32		BIT(0)
+-#define UDMA_FLAG_PDMA_BURST		BIT(1)
+-#define UDMA_FLAG_TDTYPE		BIT(2)
+-#define UDMA_FLAG_BURST_SIZE		BIT(3)
+-#define UDMA_FLAGS_J7_CLASS		(UDMA_FLAG_PDMA_ACC32 | \
+-					 UDMA_FLAG_PDMA_BURST | \
+-					 UDMA_FLAG_TDTYPE | \
+-					 UDMA_FLAG_BURST_SIZE)
+-
+ struct udma_match_data {
+ 	enum k3_dma_type type;
+ 	u32 psil_base;
+@@ -1837,38 +1813,6 @@ static int udma_alloc_rx_resources(struct udma_chan *uc)
+ 	return ret;
+ }
+ 
+-#define TISCI_BCDMA_BCHAN_VALID_PARAMS (			\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_EXTENDED_CH_TYPE_VALID)
+-
+-#define TISCI_BCDMA_TCHAN_VALID_PARAMS (			\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_SUPR_TDPKT_VALID)
+-
+-#define TISCI_BCDMA_RCHAN_VALID_PARAMS (			\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID)
+-
+-#define TISCI_UDMA_TCHAN_VALID_PARAMS (				\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_FILT_EINFO_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_FILT_PSWORDS_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CHAN_TYPE_VALID |		\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_SUPR_TDPKT_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_FETCH_SIZE_VALID |		\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CQ_QNUM_VALID |		\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_ATYPE_VALID)
+-
+-#define TISCI_UDMA_RCHAN_VALID_PARAMS (				\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_FETCH_SIZE_VALID |		\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CQ_QNUM_VALID |		\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CHAN_TYPE_VALID |		\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_IGNORE_SHORT_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_IGNORE_LONG_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_FLOWID_START_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_FLOWID_CNT_VALID |	\
+-	TI_SCI_MSG_VALUE_RM_UDMAP_CH_ATYPE_VALID)
+-
+ static int udma_tisci_m2m_channel_config(struct udma_chan *uc)
+ {
+ 	struct udma_dev *ud = uc->ud;
+@@ -5381,12 +5325,6 @@ static enum dmaengine_alignment udma_get_copy_align(struct udma_dev *ud)
+ 	}
+ }
+ 
+-#define TI_UDMAC_BUSWIDTHS	(BIT(DMA_SLAVE_BUSWIDTH_1_BYTE) | \
+-				 BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) | \
+-				 BIT(DMA_SLAVE_BUSWIDTH_3_BYTES) | \
+-				 BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) | \
+-				 BIT(DMA_SLAVE_BUSWIDTH_8_BYTES))
+-
+ static int udma_probe(struct platform_device *pdev)
+ {
+ 	struct device_node *navss_node = pdev->dev.parent->of_node;
+diff --git a/drivers/dma/ti/k3-udma.h b/drivers/dma/ti/k3-udma.h
+index 9062a237cd167..750720cd06911 100644
+--- a/drivers/dma/ti/k3-udma.h
++++ b/drivers/dma/ti/k3-udma.h
+@@ -97,6 +97,69 @@
+ /* Address Space Select */
+ #define K3_ADDRESS_ASEL_SHIFT		48
+ 
++#define K3_UDMA_MAX_RFLOWS		1024
++#define K3_UDMA_DEFAULT_RING_SIZE	16
++
++/* How SRC/DST tag should be updated by UDMA in the descriptor's Word 3 */
++#define UDMA_RFLOW_SRCTAG_NONE		0
++#define UDMA_RFLOW_SRCTAG_CFG_TAG	1
++#define UDMA_RFLOW_SRCTAG_FLOW_ID	2
++#define UDMA_RFLOW_SRCTAG_SRC_TAG	4
++
++#define UDMA_RFLOW_DSTTAG_NONE		0
++#define UDMA_RFLOW_DSTTAG_CFG_TAG	1
++#define UDMA_RFLOW_DSTTAG_FLOW_ID	2
++#define UDMA_RFLOW_DSTTAG_DST_TAG_LO	4
++#define UDMA_RFLOW_DSTTAG_DST_TAG_HI	5
++
++#define UDMA_FLAG_PDMA_ACC32		BIT(0)
++#define UDMA_FLAG_PDMA_BURST		BIT(1)
++#define UDMA_FLAG_TDTYPE		BIT(2)
++#define UDMA_FLAG_BURST_SIZE		BIT(3)
++#define UDMA_FLAGS_J7_CLASS		(UDMA_FLAG_PDMA_ACC32 | \
++					 UDMA_FLAG_PDMA_BURST | \
++					 UDMA_FLAG_TDTYPE | \
++					 UDMA_FLAG_BURST_SIZE)
++
++#define TI_UDMAC_BUSWIDTHS	(BIT(DMA_SLAVE_BUSWIDTH_1_BYTE) | \
++				 BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) | \
++				 BIT(DMA_SLAVE_BUSWIDTH_3_BYTES) | \
++				 BIT(DMA_SLAVE_BUSWIDTH_4_BYTES) | \
++				 BIT(DMA_SLAVE_BUSWIDTH_8_BYTES))
++
++/* TI_SCI Params */
++#define TISCI_BCDMA_BCHAN_VALID_PARAMS (			\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_EXTENDED_CH_TYPE_VALID)
++
++#define TISCI_BCDMA_TCHAN_VALID_PARAMS (			\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_SUPR_TDPKT_VALID)
++
++#define TISCI_BCDMA_RCHAN_VALID_PARAMS (			\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID)
++
++#define TISCI_UDMA_TCHAN_VALID_PARAMS (				\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_FILT_EINFO_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_FILT_PSWORDS_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CHAN_TYPE_VALID |		\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_SUPR_TDPKT_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_FETCH_SIZE_VALID |		\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CQ_QNUM_VALID |		\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_ATYPE_VALID)
++
++#define TISCI_UDMA_RCHAN_VALID_PARAMS (				\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_PAUSE_ON_ERR_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_FETCH_SIZE_VALID |		\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CQ_QNUM_VALID |		\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_CHAN_TYPE_VALID |		\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_IGNORE_SHORT_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_IGNORE_LONG_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_FLOWID_START_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_RX_FLOWID_CNT_VALID |	\
++	TI_SCI_MSG_VALUE_RM_UDMAP_CH_ATYPE_VALID)
++
+ struct udma_dev;
+ struct udma_tchan;
+ struct udma_rchan;
+
+-- 
+2.55.0
+
 
 
