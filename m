@@ -2,147 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F19606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B634D606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 00:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rsP/2uG4;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm2 header.b=LqPFM7mM;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=MeLfp4qW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mXsFOp2D;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Isdm3+S6;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=WMXbgI12
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PAtsEURMjw6BMx3O8gA1fyA7I7ZNfExjOJqh5VnpOJg=; b=rsP/2uG4d3doSV
-	6pVeWRu1gZV6tsOyQnUIxuTBsH/0dDlF43fp25f9azu/nb4m+qGuJfuvS9Pt4SvmEAFWP92ULF4y6
-	mFjTSnIuQLEIY5N7WzOwhdRER9lTTSnTMx+lnkIbKfZPUYw8F5HAzcFsoq7J/f4+n9K51Rfqi1+U1
-	QlUEaHLdbVW3aWJ864/gqKm8w+IvzMTCMC7ktx/R2zZ2tEjacAifMpFzOqvXIuIFwNyBLkVtoZW/X
-	UMoOVC9miGlj5/oTKDID+KPYfHqRom/NeLHpgLSu7l/Is9UYgfXkRuw4UVe4ISbolVbCop4K4bnpq
-	e9++M/eFa3/YlTNsKzEg==;
+	List-Owner; bh=mg80NlqNhInEEXsJ4+/dKojyRD9aqcsf2dfBNL3KfVs=; b=mXsFOp2Ddgk0Qo
+	s+hlUxqFfXkpsMWr3TOV+G5H0p/TE52AUtSLsCa1Ec3+01pYmtObLUbc/F/6LHDYhx7jCdWix1x33
+	YmRGu8jIV4KY0AWPqzG4a91McGD1HiVKvllGssKkpIz/EGWaVH7Xa/ZTeG45jaO7GofORff7AcRV8
+	cHE9lBz8zbbyeE2FnS3KEz/iQwwPBlf7kDBJPPSjpmQupFq6cSIUDrCibfCiLOYDA1lD07q8ZcwLp
+	0uBFUH9alYQRxcv8fE7RwMbHvaEklFS094IuV88xjfdQrSRh15+SG9h7SGo0ihN+zIzAB8tBmDinA
+	zSxFzZk5SfBmRMDMRaCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVe0P-00000005EaP-46KB;
-	Tue, 24 Nov 2026 00:03:31 +0000
-Received: from fhigh-a8-smtp.messagingengine.com ([103.168.172.159])
+	id 1xVe1R-00000005EzC-0oQR;
+	Tue, 24 Nov 2026 00:04:33 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVe0J-00000005EWU-1P5P
+	id 1xVe1G-00000005EvB-2hOo
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 00:03:26 +0000
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 86C3C140039C
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 19:03:22 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-04.internal (MEProxy); Mon, 23 Nov 2026 19:03:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1795478601; x=
-	1795565001; bh=PAtsEURMjw6BMx3O8gA1fyA7I7ZNfExjOJqh5VnpOJg=; b=L
-	qPFM7mMPil54tq78/Jd716sHwg7RwguLNAEGWU7uMM3cP+oa852l00DPW512c992
-	l3KLI5hWIA2keF9wrnHOH44SfbQ/DF+IsiaPgtd9wVJk56SLUPJ+ewHvG+OPTTfN
-	cgdKC91hfDy0OYCKlNhkclYnNzbYrHvjoRitALYt2WNGRduADer35oWsySCWts2+
-	PxnBy9sNYUhaq8P7+sYq5Brzb5CVB78P+5mb3cVlRzuwhPErrYSmCkdVz4t25Mkz
-	/4lQUMm8GizkCmcDwy35uI9iCpc05f4wYtIuERYHx+/Rmp8rMhPtYmLsyMwE9ThU
-	LAkMYEtGgc4LHxzE8/dXw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1795478601; x=1795565001; bh=P
-	AtsEURMjw6BMx3O8gA1fyA7I7ZNfExjOJqh5VnpOJg=; b=MeLfp4qWPzPIBJLHc
-	fvrGICUQsgTwFQvsKP4tFcZKQLqwTEUCUxA3iNHs8GihxZ27B2jZPBYJEx0uci8T
-	C8TsEic6fwdRVx+eUEVWLgtRPvAYUV4Cbl4YpczwItKcIwTrxwhNjnKX9nqs6RKT
-	gtWj8uavBJcv++XU+br9iKu8iFvGfZZIzW6ymjP/UOXN5u73WSmdxHExiOjNXVXl
-	AJjcQxq90VZn0a3xhIB8a3I/EGxlNMpAvkNBDMvzf13eF3nJ70btcAnv6dHvEc4Y
-	aT7dXN/jXtg0LCKUT07iJ9Q/bDEX5IXxD78ZDclrDWqMOTGJQZu3KXAoAkgGY95H
-	1Ricw==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795478601; d=gahingwoo.com;
-	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:nlaIXxvQNZn9a0oXaLhX/m2Ns0r0yH48AihYZBQxmiGuOiT
-	iH8o3aZ+RaK0fLd44WBT/3JFhCwWakXxwyi+I+IsQeofZZHa4TpITILZqutyT0nc
-	76jVVFafMOnrgDALmNvoEPjXeEnIJ3wPWtU/RX7Wh+PB7hhgP8p7dyqAsolVq3NS
-	zqUAL+j5jxzG5GEaWs0nFOBmZwb6sHxSgadfbIG1DUPR+ZmlhbcFh2sQAxShajtZ
-	JgXUjwxOC8A2CuGx0FhmET9GiGnzKJzFXUpepUJPDYfFdavQS+yvhec/oHlsEbPj
-	XtNJ73BWFAmuhYn9/u9Emjoe7tjAsQDemZriLLg==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=11;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:C1BWLQcnSytZepq4fTMqH2u1iaoudV1OrEuQTXPxCxI=:75ct8d2NEqNy8dcL0uqvryMqIsqJanWM8NlkNmCp4FM=;
-X-ME-Sender: <xms:SdQEa-sIeKyLAuqXySBonp3mPo5W-yYxD9H2Yap2i-QpPv0ygCY62w>
-    <xme:SdQEa0tvnOUEJ-OcoUYOXRapDxUTmlv44FJnLcWcc21weubyfhGm3G1ZYmVWZXqR5
-    D6xUtRTVCwAEdfQBz9jDtk53-AHBD0cl465bKSZz_ybLnHWiw_5VFXQ>
-X-ME-Received: <xmr:SdQEa_F_XEC4OTo-W7frqgaExL9vSfuVFgcnc8h-bdzbk8L774n-e5HISmI6u_EnFURzrrHl>
-X-ME-Proxy-Cause: dmFkZTEIvCBAqgUEloIsFZ3FkPJniX+pdPbA8lwmlIZBO9hGOTGGz/x2Hl+7nFbV5nyvKp
-    t925nNRn8DutQCQinVZPr73dXFznYxFvXbL116jqCZ/GfyonUZh/Db8T2FiyXrfT2tvgmY
-    iobzatdB+GcoyC0jM5VyW//zQbbnDI1hKnSbxsDcxkUlD4xzycqbxXM6vvDpB+AvPZI9PO
-    U/XSWb9pjObA40eWatkEvdJBkQEqjCEU+A4urP116L3cv2N0DBt76GIBJcBDbwZQhbIQjC
-    SOwjlJv+Q9QIaSqFf9Kz25pG8hZtrsSllc9yq5WXEJr9X0qGFNbX1Y7L6XZjelykM9Ldlj
-    QmYfQnu0oE0th0KiUcGx0BpMkjJLthd3bKUwFDw4YTV0EKGlUjFGl7tgyMnt+y+zTjDfMn
-    A5hn9D1CuCrMq63UC4P99nXpZOxG970N7X220xsTvy0qEZVNUEzFBwLxXq6z/ptaQdLiK/
-    5ajJg4DLERCe4jjGrZU50SAnnJv15ESTpkwVwTBKOZ57IUR2lClbNgO4PB97kdYHOcVIYI
-    vf0Oy+mmADrxqqMTl7osFUtXo4LyLrTomfvYSe6UEARwkvgzImWLUKXmg3FhO4wovXTLNi
-    Yd0svLJbtcBfeaZEUYGDbhnTPHzxtURDZto106cvXxQCV5eSz03oHModg6qQ
-X-ME-Proxy: <xmx:SdQEa3KRuUEyLxuR93E9SV1LN2Afhyae9W7rL4bR-1BH50iDrkH9Lw>
-    <xmx:SdQEa_Yl73dEbwPGkPLddSp9eFvYSOAtvmkfy5OMPGiv9SfFxLgQlQ>
-    <xmx:SdQEa8rlnUnM0ayQtCzAukRelyoXbPY_-L2Sv3wPuyz9phY9w_Pygw>
-    <xmx:SdQEa_HTdRppX0ht58zEsMip-7Po_arXDr5VrqTkylbdCl8rl3Q3dw>
-    <xmx:SdQEa3ojmRkqc_OHowVk7JwlBn0DV7gOfg64nfTP7pvvp2y0vgl7jhSb>
-Feedback-ID: i7a5e4b5f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Nov 2026 19:03:13 -0500 (EST)
-From: Jiaxing Hu <gahing@gahingwoo.com>
-To: tomeu@tomeuvizoso.net,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	p.zabel@pengutronix.de,
-	ogabbay@kernel.org,
-	zhangqing@rock-chips.com
-Cc: ddrake@baylibre.com,
-	royalnet026@gmail.com,
-	sidong.yang@furiosa.ai,
-	ulf.hansson@oss.qualcomm.com,
-	abel.vesa@oss.qualcomm.com,
-	sebastian.reichel@collabora.com,
-	chaoyi.chen@rock-chips.com,
-	shawn.lin@rock-chips.com,
-	finley.xiao@rock-chips.com,
-	diederik@cknow-tech.com,
-	alchark@flipper.net,
-	leonard@lausen.nl,
-	vlwwwwww@gmail.com,
-	jeff.hugo@oss.qualcomm.com,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v18 8/8] arm64: dts: rockchip: enable the NPU on rk3576-rock-4d
-Date: Tue, 24 Nov 2026 13:01:43 +1300
-Message-ID: <0bcd73278a4c7a0cb2e1b8bdb9aba306355384cb.1795478392.git.gahing@gahingwoo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1795478392.git.gahing@gahingwoo.com>
-References: <cover.1795478392.git.gahing@gahingwoo.com>
+	Tue, 24 Nov 2026 00:04:26 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ANLH8T03503150
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:04:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=mg80NlqNhIn
+	EEXsJ4+/dKojyRD9aqcsf2dfBNL3KfVs=; b=Isdm3+S6dwSMvWxl6cJiPxQDHYc
+	TTBkduGearKIXJFdEyftR2lH0dlFfflobdBqpo6hDwArreDSnh/ZxyTGnIF86bZK
+	Q9kMCK/nJ5oH00mm4+4KNjoNnRnn0KNQnekv3uxaxrPDKFSh8SOGl/uUrqQga4wL
+	sjy7FvR4lMLkh92tF8ac4Dwv/Qn9DsFoGToNny1oFYm7UHCSGGdND1q7hd5R+5ci
+	IhEBWUYXy0qvXqvu3IiqxmktPr9PHnLs5qqHpdO7S/qkecQcvVNeiUa7cU9lAUGB
+	p2a2+UDFXTJ/pH5fHscaWQcdkaB3RunPiFJWevgRLwm+gDc2CQgDOOm0Tpw==
+Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j4u9ns0sm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:04:21 +0000 (GMT)
+Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-3869865a304so2413984eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 16:04:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1795478661; x=1796083461; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=mg80NlqNhInEEXsJ4+/dKojyRD9aqcsf2dfBNL3KfVs=;
+        b=WMXbgI126XypfnsPFvALNr+XNGNChocJ9mFwnAm3OH6yJ/H623u6P28u8GPZxWnDv0
+         tRYV1huvje+g1ZBpYf43vJipaEn5wrfth+o6PHtm1fkz8NCxXMaY/QQzCPlxSj5b/FGP
+         LebsOWkfNRX8CxFVF89IPuNRGV1ykBA04BLb+W/4dZvBaj49vueeUyGQCWZYNyxVPOSR
+         6nBo4A73csYrcw1NSt9tAhyE7KYZzmpyf8RsO1agMp0BjtYzJs7+b9ySjDdid7LZmJT/
+         0YuP2yo1ceyWg0sNwcy/+GYWI9IHll8qp34zNxCUB35YvvA7O0vbpgp9Bg9VeGbU+d/W
+         m2Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795478661; x=1796083461;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=mg80NlqNhInEEXsJ4+/dKojyRD9aqcsf2dfBNL3KfVs=;
+        b=f4+zdwyrVtZgnzkoYn23eKUj1TzNtDqU9lArmv2EC7ghA2MvrlmHBxGNPDvCZOYQSR
+         FoYNVGb2BuVmLgzpFA39JjM1eukVxjf7v4YoO4kfbIsnwYfbG+6WfrHp2U3Ok/6cTb30
+         b1a3R+3KhWt2C9e5P0vNaj1N2LxDT9u/bB6f4ZdHFuKTpgT+LGXiqnzaYw48UtxQcv0G
+         mqLmjBTEke+JL7a5cGzVLlujPuOqDdBayEY+7hCd2oKqF/PO88mcNo6PcPsZx4LdHDwO
+         n59P8sQa09uezh8YocTmLBZez5h2A7LIe27MXFDJMezNSSH2x1BPSyfkRq5++97y9uRJ
+         HHcQ==
+X-Forwarded-Encrypted: i=1; AL+hErG4V3FZAqdnrLP5FW+Otjawz9pElhgLpckHqRvHsHfhbGz9fzlL6Fe6P9nDBdjHw4TPD7mcTxbEWqdtYxOmbx1P@lists.infradead.org
+X-Gm-Message-State: APuU4Z/F/EpciupInXedm+lqE/6G/qOYbYWrhX5zGjw0U5KM2qV+NVos
+	YykEwPkO1ufbdupximOPVj40H2jk1prkSP7ubqG6icfQXdP8JEDjLphNubE72RcAfKBV4YrEjjC
+	y7DEmRvDOoEDuWZJjlTRgRH6X601FRsE6pkzeSi0h6SjFl1mLM01J+Yi//Yz38vdmEmd2D+hwKC
+	4j6w==
+X-Gm-Gg: AZFdTZdUWDOG/nJKJ3CqH1LstNdnuJzme4dJ5oNM6mS3baQ8cGLVfqzzPbJ6E4WkGv9
+	tinHuvCMv0/oJp5FRL4GG23f6D/efJiC4Cp46GnYZjX62p/cNLne+Bi1fKJs3CjsRAuWsmH+Ze3
+	XXYtUzSS3EzNebHgLLGRTmxi0V4ivGi06z6QoYbwTiJNbM9CAh6naOZBSfUPqSwYJMByBfwJZ4j
+	x/Qt6n40cKCaNd1p5jv0F7FxXTtmZjTr9Y4oIqMV8b417airi2Rb7segVrn6JbDlwtHiOQtmHPl
+	9eLFTStPMCAmUpT87joVuFD/6Sq0S0eBq73LZxVFu6i+0Ti4Lx1JjbChI7D0hU8xEhxSpxcnxJj
+	zHWwDP7173RzbB4xJNVDyIM9rHCRCQLEBjODL21EYMP+Z4jWcBLhFL0Bno131SjctXAXIDllPFT
+	99nb9R92XXczm48F7L8f+syGNHQHXjZ67hY08=
+X-Received: by 2002:a05:7300:824b:b0:386:9c6a:3e87 with SMTP id 5a478bee46e88-3869c6a3f0fmr9650566eec.15.1795478660223;
+        Mon, 23 Nov 2026 16:04:20 -0800 (PST)
+X-Received: by 2002:a05:7300:824b:b0:386:9c6a:3e87 with SMTP id 5a478bee46e88-3869c6a3f0fmr9650534eec.15.1795478659631;
+        Mon, 23 Nov 2026 16:04:19 -0800 (PST)
+Received: from hu-scheluve-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-385666e7f59sm41662125eec.6.2026.11.23.16.04.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 16:04:19 -0800 (PST)
+From: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
+To: j.raczynski@samsung.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+        edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, cs0617.lee@samsung.com,
+        k.domagalski@samsung.com, k.tegowski@samsung.com,
+        abhishek.chauhan@oss.qualcomm.com, lorenzo.bianconi@oss.qualcomm.com,
+        sarosh.hasan@oss.qualcomm.com, hongmei.xu@oss.qualcomm.com,
+        sagar.cheluvegowda@oss.qualcomm.com
+Subject: [PATCH net-next v2 2/3] net/stmmac/dwxgmac: Extend MTL/DMA support to 16 queues
+Date: Mon, 23 Nov 2026 16:04:14 -0800
+Message-Id: <20261124000415.4067701-3-sagar.cheluvegowda@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261124000415.4067701-1-sagar.cheluvegowda@oss.qualcomm.com>
+References: <20261124000415.4067701-1-sagar.cheluvegowda@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTIzMDA5NSBTYWx0ZWRfX3HZSUHCe1jFC
+ CN6Kf+HHSgIBVaoyJ44qBy8AL166tYoEAxKU12pt3xLlawYySA6HmMVDRFl4jGFGwNKQHnYKvg+
+ UHRLYUQ00VCvMhIQKjJ8M8TkwwGajP0Dim6/oBviPujsXVR0uweWmDgJNLf74STMvADjJCrHjKK
+ /jXTyP5uxv2/AmxLC6qBQWwKybiyaIaprtEbDK08y3Yt8RJj9RQVFPzIvGAahQ5yukSOrwzMftj
+ j0TqUTrGYhr8MPaNW2smbp5TkvH9xtzM1BzTmafp37zcaHtMxK0Pu+IB7JzoiH3pnjn7crteXVD
+ T8neSTv/qRYJqckwC8adH7KYIx6WkU+IOTlGuj3LRojQhTIyNMyF/y+NtpqcXeVChhpZnXbTS/g
+ uJFsByBGEJApV4Q8RIHqRjLMqOtHOB55FqdbUFdJeF1p268Jmn/ALQPDOmJr1FSjmIl4CHwqM5S
+ JamFDVZ5tEKn/7MnmIQ==
+X-Proofpoint-GUID: LO5qOPj-eNuwn3y2Ig-3xDt1RP4T4a_h
+X-Authority-Analysis: v=2.4 cv=f4ndl+yM c=1 sm=1 tr=0 ts=6b04d485 cx=c_pps
+ a=cFYjgdjTJScbgFmBucgdfQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=hD80L64hAAAA:8
+ a=EUspDBNiAAAA:8 a=Hi6WPrPG3QlE4bLLXg4A:9 a=scEy_gLbYbu1JhEsrz4S:22
+X-Proofpoint-ORIG-GUID: LO5qOPj-eNuwn3y2Ig-3xDt1RP4T4a_h
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTIzMDA5NSBTYWx0ZWRfX7jolcbcXdo+N
+ Vt6WT6CZVH1nQjQJS29sjs90pHkCyFh8HKlJM0Z37J9iJNVrgy7c0RiObMZyUTsR9PqPI9Z5rfp
+ hsNgVL0oTwcXbyX1tS3qZGxSNcU0RzY=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-23_05,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611230095
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_160325_511694_C574F7A7 
-X-CRM114-Status: GOOD (  10.02  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_160422_803069_C795CCF9 
+X-CRM114-Status: GOOD (  17.15  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,67 +152,86 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable both NPU cores and their IOMMUs, and make vdd_npu_s0 the supply
-of the NPU power domain. The rail is switched with the domain by commit
-b1bff9ced657 ("pmdomain: rockchip: manage the RK3576 NPU domain supply")
-in the pmdomain tree; without it nothing holds the rail and it is turned
-off as unused.
+From: Jakub Raczynski <j.raczynski@samsung.com>
 
-npu-supply is set because the binding requires it; no driver uses it.
+New datasheets for XGMAC (3.20a and 3.40a, depending on product)
+support up to 16 MTL/DMA queues. Before we increase max amount
+through macro, prepare dwxgmac functions to handle that.
 
-Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
+The only caller, stmmac_rx_queue_dma_chan_map(), walks the queues
+below rx_queues_to_use, which the devicetree parser limits to
+MTL_MAX_RX_QUEUES. A queue above 15 is therefore a driver bug, not
+bad input. v2 reported it with netdev_err() through hw->priv_data,
+but that back-pointer was only added by v2 1/3, which this series
+replaces, and a log line from a void callback does not stop the
+caller from carrying on. Use WARN_ON() instead: it needs no
+net_device and its backtrace points at the caller.
+
+Co-developed-by: Chang-Sub Lee <cs0617.lee@samsung.com>
+Signed-off-by: Chang-Sub Lee <cs0617.lee@samsung.com>
+Signed-off-by: Jakub Raczynski <j.raczynski@samsung.com>
+Co-developed-by: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
+Signed-off-by: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
 ---
- .../boot/dts/rockchip/rk3576-rock-4d.dts      | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ .../net/ethernet/stmicro/stmmac/dwxgmac2.h    |  2 ++
+ .../ethernet/stmicro/stmmac/dwxgmac2_core.c   | 21 +++++++++++++++++--
+ 2 files changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-index f068794e48d4..72b251d396fe 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-rock-4d.dts
-@@ -722,6 +722,10 @@ &pcie0 {
- 	status = "okay";
- };
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
+index 77a54792893b..5b83fe07c1e4 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
++++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
+@@ -257,6 +257,8 @@
+ #define XGMAC_MTL_INT_STATUS		0x00001020
+ #define XGMAC_MTL_RXQ_DMA_MAP0		0x00001030
+ #define XGMAC_MTL_RXQ_DMA_MAP1		0x00001034
++#define XGMAC_MTL_RXQ_DMA_MAP2		0x00001038
++#define XGMAC_MTL_RXQ_DMA_MAP3		0x0000103c
+ #define XGMAC_QxMDMACH(x)		GENMASK((x) * 8 + 7, (x) * 8)
+ #define XGMAC_QxMDMACH_SHIFT(x)		((x) * 8)
+ #define XGMAC_QDDMACH			BIT(7)
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+index e50c0f4c482d..8aa69647a207 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
+@@ -259,9 +259,26 @@ static void dwxgmac2_map_mtl_to_dma(struct mac_device_info *hw, u32 queue,
+ 	void __iomem *ioaddr = hw->pcsr;
+ 	u32 value, reg;
  
-+&pd_npu {
-+	domain-supply = <&vdd_npu_s0>;
-+};
-+
- &pinctrl {
- 	hdmi {
- 		hdmi_tx_on_h: hdmi-tx-on-h {
-@@ -779,6 +783,24 @@ wifi_en_h: wifi-en-h {
- 	};
- };
+-	reg = (queue < 4) ? XGMAC_MTL_RXQ_DMA_MAP0 : XGMAC_MTL_RXQ_DMA_MAP1;
+-	if (queue >= 4)
++	switch (queue) {
++	case 0 ... 3:
++		reg = XGMAC_MTL_RXQ_DMA_MAP0;
++		break;
++	case 4 ... 7:
++		reg = XGMAC_MTL_RXQ_DMA_MAP1;
+ 		queue -= 4;
++		break;
++	case 8 ... 11:
++		reg = XGMAC_MTL_RXQ_DMA_MAP2;
++		queue -= 8;
++		break;
++	case 12 ... 15:
++		reg = XGMAC_MTL_RXQ_DMA_MAP3;
++		queue -= 12;
++		break;
++	default:
++		WARN_ON(1);
++		return;
++	}
  
-+&rknn_core_0 {
-+	npu-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_0 {
-+	status = "okay";
-+};
-+
-+&rknn_core_1 {
-+	npu-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_1 {
-+	status = "okay";
-+};
-+
- &sai6 {
- 	status = "okay";
- };
+ 	value = readl(ioaddr + reg);
+ 	value &= ~XGMAC_QxMDMACH(queue);
 -- 
-2.43.0
+2.34.1
 
 
