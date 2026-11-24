@@ -2,70 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94875606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 10:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5998D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 10:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kUKU2Ynl;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=IyJGpSNW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YK7h5Mpq;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=e5DycNuL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4A9LDC1Pxq66xRXpAnFLlD4joyJvsEB7ommipyTBSAU=; b=kUKU2YnlU+DaBQ
-	kBV2mBTOIPfAL3QjPLTxOYQsjVqVvEVoY7Ri69iY1OiT+d15/AVuWo9UwXcsA/tG9ETs8QfiCNTBS
-	mP179fUvFls8wTSpCzxmEI7JntUqsTZaggs8eJQIFzRY4MgmYh7aKtiDxGjq2urVaK7GY31bi1LQW
-	oqksUV5x6oFkF/F9hbVOHTiGlf43B7FrcfSK4hjjXZXTe7WR1dyQUW11AsrMzk0Hd9mncZBGMg/ud
-	WlvhqdmoGJFBSorLcCLa93hlaIhlZW6G9W+6w7TeHD5E8cNioFNc75EZvQZc3PnQTn+EUEiAZSqqw
-	ITNF0bFiaL/Ur+2E7AvQ==;
+	List-Owner; bh=imyZFS08/kI8TMFYUNmHJ21/sEomX2lbtjI8H1u7w74=; b=YK7h5MpqEwcH0r
+	2MN45fcl0I+Zo5Nof2hdjXpDbaCJoMUvvu7/JaaY9CFDchGqin9Vx0DGSnLPZaBSkECmfMwkLh2DK
+	V4L8kPLhnATH4B02zY30QN1r8dT0JowzP0iNy7vqqQX7dIC9yWcZhIxdwA77eOYfuwuLqpU0Ql3G/
+	j5ldfALCJNtz6dg3tXDuVqq8t8LWlLhF8OqOUyGJ5yIskKIJcPUFujvHe3YSnGYx4iAZVybs/Zb/M
+	DEm5HqznHr2P5Jc4OwGe+ZP3aBZHAoGhebZ5R6O82HTu4zkjgeKssKndfR8YsNE5fsgNXcjveWA4g
+	w5lc60SKX6D0eGboyMlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVnk4-00000006Dgd-2wZj;
-	Tue, 24 Nov 2026 10:27:16 +0000
-Received: from sender5-pp-f112.zoho.com ([165.173.182.112])
+	id 1xVmrg-000000063up-0pyw;
+	Tue, 24 Nov 2026 09:31:04 +0000
+Received: from mx.nabladev.com ([178.251.229.89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVnk2-00000006DfU-0BTt;
-	Tue, 24 Nov 2026 10:27:15 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795516019; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=LfGiEdx8OjnCNigbjAA6/zn9RrTArJj2FDRUGgWVO5SPcAiahJmVxLsT627D3JaA8Igbqlk1yUjNWE7FultU3Bvjuzb7lmQFjH8Bltsder65QyePUvW12kIwQ2gD1J7Pm48uyCA6+GZGsGYkMcPrpWoVFDd0ThBLB7EqbRVig3A=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1795516019; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4A9LDC1Pxq66xRXpAnFLlD4joyJvsEB7ommipyTBSAU=; 
-	b=hPUujiE2ZP/ar4Z+UH5dqbDAOlu/PhBGp4xXAHQrjoOBPy0SqOKalskGYGBEDYLsnNLScobmFoTbeo1JD79xvbDAopeATWwr6kp+lgmkpB1lpo0xT+4lVe0wGqPJpDgkcgxjvN7idRhNZj7JKbfRXEYW6FhUTRxndJMcaQgIrzY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
-	dmarc=pass header.from=<michael.riesch@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=IyJGpSNWB3Iy/ksv11xA0oHwGVyuEQzfVI+XPmi/aAJVMDKWAB3iuYQoMCoSwuI+OLtzXFjzqdUyIVoOUcKK8Ty899HJoO+qLXSiJ3Vusk85kW5XO6Xrtp9piULRsfRNBmr0mlJSrkVMRm7FRDOK/PvBotijXBWkz1DcEKOVRPo=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=4A9LDC1Pxq66xRXpAnFLlD4joyJvsEB7ommipyTBSAU=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1795515987257765.0607790829777;
-	Tue, 24 Nov 2026 02:26:27 -0800 (PST)
-Message-ID: <35884259-b669-46ed-a9e9-59cbfab926e1@collabora.com>
-Date: Tue, 24 Nov 2026 11:26:23 +0100
+	id 1xVmrd-000000063uO-1r9P
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 09:31:02 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1D01B10D89A;
+	Tue, 24 Nov 2026 10:30:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1795512652;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=imyZFS08/kI8TMFYUNmHJ21/sEomX2lbtjI8H1u7w74=;
+	b=e5DycNuLi9zgkTT8fyyvQKpKBxIJ7O6F9LCKyKKF+K5pL1AeJH6S4Uvl6VWKi/Rf2TN9J3
+	RfNo3q0PfD6biAHbrXIVXAB01hFUjQ1P5AOedFxNB8clAIzuRYl9H4pNoVTVy9gq2+Spjn
+	rwgRJNTabNzLX+xx/V6YefwQq1fxAGqcAceY/HRb2K5o2BIox7hRUccM0385M7CN2Yogfv
+	R/ztALu/KSsGevhng+Gp3iHQvyCMpMTzB5M52gjzHTU/UukFv0bVH8zsO0E9MSDNLsqjJK
+	KLjHJ7qhLsIDtyEzc2cu0zLGKLsowBP5KGzN4K94FzXKIt7ls8092u5CyOhvBA==
+Date: Tue, 24 Nov 2026 10:30:47 +0100
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukma@nabladev.com>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Shawn Guo
+ <shawnguo@kernel.org>, Guenter Roeck <linux@roeck-us.net>, Daniel Baluta
+ <daniel.baluta@nxp.com>, Jonathan Cameron
+ <jonathan.cameron@oss.qualcomm.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] arm64: dts: imx8mm: Add Cloos CBASE support
+Message-ID: <20261124103047.5dc56f82@wsk>
+In-Reply-To: <awR-Al7YQMSSqt5J@SMW015318>
+References: <20261120094211.1742416-1-lukma@nabladev.com>
+	<20261120094211.1742416-3-lukma@nabladev.com>
+	<awR-Al7YQMSSqt5J@SMW015318>
+Organization: Nabla
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] media: rockchip: rkcif: Filter enumerated formats
- by media bus code
-To: Faizel K B <faizel.kb@gmail.com>,
- Mehdi Djait <mehdi.djait@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, libcamera-devel@lists.libcamera.org,
- Robert Mader <robert.mader@collabora.com>
-References: <20261118203134.315591-1-faizel.kb@gmail.com>
- <20261118203134.315591-2-faizel.kb@gmail.com>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <20261118203134.315591-2-faizel.kb@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_022714_183750_E4C26B9A 
-X-CRM114-Status: GOOD (  19.89  )
+X-CRM114-CacheID: sfid-20261124_013101_706221_44022C4E 
+X-CRM114-Status: GOOD (  25.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,70 +79,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Faizel,
+Hi Frank,
 
-Thanks for your patch.
-
-On 11/18/26 21:31, Faizel K B wrote:
-> VIDIOC_ENUM_FMT ignores the mbus_code field and returns all formats,
-> although the video devices set V4L2_CAP_IO_MC. Return only the formats
-> that match the requested media bus code. The DVP output formats have no
-> media bus code, so they are still all returned.
+> On Fri, Nov 20, 2026 at 10:42:11AM +0100, Lukasz Majewski wrote:
+> > Add support for CBASE board, which incorporates the TQMa8MQML
+> > module.
+> >
+> > Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
+> > ---
+> > Changes for v2:
+> > - Fix the DTS according to the sashiko bot review
+> > (gemini/gemini-4-argon) Changes for v3:
+> > - None
+> > Changes for v4:
+> > - Use hex values for switch reg property
+> > - Change subject and commit message according to community feedback
+> > ---
+> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+> >  .../arm64/boot/dts/freescale/imx8mm-cbase.dts | 581
+> > ++++++++++++++++++ 2 files changed, 582 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > b/arch/arm64/boot/dts/freescale/Makefile index
+> > a80cccf34eb5..c14e5ae2e4a0 100644 ---
+> > a/arch/arm64/boot/dts/freescale/Makefile +++
+> > b/arch/arm64/boot/dts/freescale/Makefile @@ -121,6 +121,7 @@
+> > dtb-$(CONFIG_ARCH_MXC) += imx8dxl-hummingboard-telematics.dtb
+> > dtb-$(CONFIG_ARCH_MXC) += imx8dxp-tqma8xdp-mba8xx.dtb
+> > dtb-$(CONFIG_ARCH_MXC) += imx8dxp-tqma8xdps-mb-smarc-2.dtb
+> > dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-cbase.dtb
+> >
+> >  imx8mm-data-modul-edm-sbc-overlay-cm4-dtbs := \
+> >  	imx8mm-data-modul-edm-sbc.dtb \
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+> > b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts new file mode
+> > 100644 index 000000000000..fdfa2ef9a065
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+> > @@ -0,0 +1,581 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2022 Fabio Estevam <festevam@denx.de>
+> > + * Copyright 2026 Lukasz Majewski <lukma@nabladev.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +  
+> ...
+> > +
+> > +/* SPI-NOR memory is not mounted on the used SoM */
+> > +/delete-node/ &flash0;  
 > 
-> Otherwise userspace can pick a pixel format that doesn't match the
-> media bus format, and then interprets the captured data in the wrong
-> format.
+> Use status = disabled.
+
+As pointed out earlier - the 
+
++&flexspi {
++	status = "disabled";
++};
+
+is disabled.
+
+So we do not enable the FLEXSPI subsystem and also clearly indicate
+that the flash0 is NOT mounted (and will not be as we don't use it at
+this project).
+
+Is this OK? Or shall I do something more?
+
 > 
-> Signed-off-by: Faizel K B <faizel.kb@gmail.com>
+> Frank
+> 
+> > --
+> > 2.39.5
+> >
+> >  
 
-Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
 
+
+-- 
 Best regards,
-Michael
 
-> ---
->  .../platform/rockchip/rkcif/rkcif-stream.c     | 18 ++++++++++++++----
->  1 file changed, 14 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-stream.c b/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
-> index 3130d420ad55..b117ba57bc75 100644
-> --- a/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
-> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
-> @@ -395,13 +395,23 @@ static int rkcif_stream_enum_formats(struct file *file, void *priv,
->  				     struct v4l2_fmtdesc *f)
->  {
->  	struct rkcif_stream *stream = video_drvdata(file);
-> +	const struct rkcif_output_fmt *fmt;
-> +	unsigned int i, n = 0;
->  
-> -	if (f->index >= stream->out_fmts_num)
-> -		return -EINVAL;
-> +	for (i = 0; i < stream->out_fmts_num; i++) {
-> +		fmt = &stream->out_fmts[i];
->  
-> -	f->pixelformat = stream->out_fmts[f->index].fourcc;
-> +		if (f->mbus_code && fmt->mbus_code &&
-> +		    fmt->mbus_code != f->mbus_code)
-> +			continue;
->  
-> -	return 0;
-> +		if (n++ == f->index) {
-> +			f->pixelformat = fmt->fourcc;
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	return -EINVAL;
->  }
->  
->  static int rkcif_stream_enum_framesizes(struct file *file, void *fh,
+Lukasz Majewski
 
+--
+Nabla Software Engineering GmbH
+HRB 40522 Augsburg
+Phone: +49 821 45592596
+E-Mail: office@nabladev.com
+Managing Director : Stefano Babic
 
