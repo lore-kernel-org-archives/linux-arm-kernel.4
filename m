@@ -2,68 +2,162 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F5D606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 01:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7639E606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 01:40:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YnoSbNOj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XtLSd9Px
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YLQhiw/4;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=RYdI/Geh;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=RYdI/Geh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=d7m7HVJOhtX+DCuQTIUO8zHvldU1qVZx8CQyQENA6bs=; b=YnoSbNOj2jMGi7U55Zjj97gMjo
-	IA+SjRx1UJcQeLDXJ7PANMpxro8kESQ19eTEcWzjWLjpY18JQPdpNKu+I9p8BFBWiX4g1K8WPGnAy
-	r2Q1cfJWvRVgK6VSPRQD+VnADKM4mte3lmwNnMZxlHmsxbU0wwThzQPNGDMZ+9vK/VBIrB8reybyv
-	6/eqwbjRWNfpVcq/1eecxMNrysDuzT8Z4Moa1fufNvpbe0uIFjvc4/y2+d6PtGVBucZCPeacxb8Ma
-	RGTY3eMCyj4oSM5T7s4V3lbFQuBy+AIf8G9y6lWEE+MdSiNBOF/ABE558t8E2XCqgm1szN1t6iWtm
-	2GFYn5NQ==;
+	bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=; b=YLQhiw/44OkEQNpgNN5z4J5ht4
+	YO5o7kmkG6tldpdYpwcHnG+BrMNPtI8oePFqh6fqd65g4EOWzWYAGFnuW52lUHFlyS6CP9lF4qfV0
+	JfNNPq2FPZDIXIpIhOBTL+yrYn/dzVhy6swVL0MZwxOlrxGvScpEANAARTgUm6Wr4RTtc/4rzYs/N
+	uFyXOXmN6Z//FdK49/tjwqpUNEMJJn/SdeGpAKU+hZkc61pbuB54J7kAEdiqaDxwzXAfg+AAXBDp2
+	+65C+1vDNLBDf5eDAFJn0N2HnP/alDiubSqwgAw/yfXZ9fLE7S06agypntC07VPygReEa0EwUTzIi
+	B1jPWoYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfPy-00000005KSt-0rMa;
-	Tue, 24 Nov 2026 01:33:58 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xVfWA-00000005Kip-3UOQ;
+	Tue, 24 Nov 2026 01:40:23 +0000
+Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVfPw-00000005KSn-3WRu
+	id 1xVfW6-00000005Khr-42x8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 01:33:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3D195411C8;
-	Tue, 24 Nov 2026 01:33:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF2171F000C4;
-	Tue, 24 Nov 2026 01:33:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795484035;
-	bh=d7m7HVJOhtX+DCuQTIUO8zHvldU1qVZx8CQyQENA6bs=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=XtLSd9Px4vWbCSo09M0U76E+DUQaqKzAAHg2tpv9Rx7hzkKKE/NFzjaUdGD+YwvAQ
-	 44IZ1l+F8JeP8VMeYHcy8F2V+kDYrw6tLxfwv2SmELNBy0FgJn4/VvkFyVe/SIQj/L
-	 YPX0RNMyNg16UeeqpJnTqAYWUgpPsgr95ZgGk0ssr/ZEabPNgiL+l778DpCpebiu2/
-	 czrC0AQh+ExzpWqZjK5IUKnj8EJyPJ+nw3sbtXQrj7X4+1QTlpuZWysjth8rYgkvRX
-	 4eY/KTqaozy1i62oArfuFuVQsU7Wn2SyjRjTePQDRKAOAJNh6YhunqDldcgTUDq1+p
-	 Ovtk4qs60al2w==
-Subject: Re: [PATCH net-next v5] net: stmmac: dwxgmac2: enable L2 split header support
-From: netdev-bot+sashiko@kernel.org
-To: sagar.cheluvegowda@oss.qualcomm.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, lorenzo.bianconi@oss.qualcomm.com,
- hongmei.xu@oss.qualcomm.com, abhishek.chauhan@oss.qualcomm.com,
- sarosh.hasan@oss.qualcomm.com
-Date: Tue, 24 Nov 2026 01:33:54 +0000
-Message-ID: <179548403438.3135.1804854034587814346@kernel.org>
-In-Reply-To: <20261120005243.3724402-1-sagar.cheluvegowda@oss.qualcomm.com>
-References: <20261120005243.3724402-1-sagar.cheluvegowda@oss.qualcomm.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Tue, 24 Nov 2026 01:40:21 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=suuH2BTJdUYMJPZxmAYwX13kVv3DtC71v4eA2m9b69wSOGNyZIzQAW+AMReaYGboZZpX0YoeK0RgxdfM+w7U7HDG5B9aCjdhLPLDzsWPsKBHxQWX7l6jaVoXH4cHEKHM1//b5iP74EpTK2m40Y/FXw6EXZqmivlPh6uBAmHhVaoWtPfMZMvDuAjpi9NNDdBxX6u0nwzNCQGHZwWhU9caP0uy0co15gUxzc9FxyIJpr3nznwTmNHvuj9gfylGpp9JjN0mN539XwCSLgCQEAQBteVC/G7VF0rhJcy2hmXiCJU+NctdRn62yeFZqzmyyseiqcOnzuSje+ay2b3ehOvSzw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
+ b=Yb3PtaiTw9uclnyd/8e8lXAZ5yl0JGJGtM91R6MTmbeeD9fLEB+9r9J3SDptvDuJASoig0SR26tcZwQDYr/IbSsVls+2wQ/8pngyNdVM/meUz9CCM8NavqtESx7cdtEVH69F7FcbKJa2EIaXD4xGUIE5kA5XUHOtMt1bNYuY2OF1B+2zVb+2eWNukYdRFaz+HmPPD4hDzcuBbJ6HZvE54ZcPvLyNdiUk8KanYTE3lg8VsQ0MtrRrp5SeEeA7oJ/JUJk1DK6j2khiDpYRza2lk8xIjuIdW6KJdUwD1yoIQp43pjU7A0U2p3XOxSGWMpqqY69b/o2xzNJtB87FxK6gzQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=kernel.org smtp.mailfrom=arm.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
+ (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
+ b=RYdI/GehypcaT5PJft7gWw4b/lkpMAbZXIjFLakZsc0xKSaEf48BldUJ2WF44SmDQBRuQA0DQlFdFMvw1KN2ZvSJ6CscJ9GIKPgZwViNGQZDsRKz8UDLFLoSMi1cipzM07T4POHU7/X50bwu9Nx01Gvddjl8vQ/PEkpS6B4szIw=
+Received: from GVZP280CA0035.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:26f::12)
+ by GV2PR08MB11417.eurprd08.prod.outlook.com (2603:10a6:150:2c9::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
+ 2026 01:39:58 +0000
+Received: from WA1PEPF000099D1.eurprd04.prod.outlook.com
+ (2603:10a6:150:26f:cafe::7f) by GVZP280CA0035.outlook.office365.com
+ (2603:10a6:150:26f::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
+ 24 Nov 2026 01:39:58 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ WA1PEPF000099D1.mail.protection.outlook.com (10.167.242.25) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.3
+ via Frontend Transport; Tue, 24 Nov 2026 01:39:57 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dvCU6h7hJnlUKZtwKP5T28bhllsJtOHwX/sB5+azIdq4PjF0W7lQKq6AISKVguUfAG7gOfzvJLSf+794snyjBuJBWkp1TTQZ+fv0wXtqrA/didpeUjxYm+ZHjzzIu0INXZenFETo6ETnwzjsoIrpleXgkCoTJASy3+mVKpupEJhJpxnVIkqQpdLJkqBqp24iWix57ZcWarZnXekCiWDsyw43F6/7j1HP1ssJ/v2L/YnruL7l1XkMz9mKYep58CNFvFpIZ6T5I72XpNa6/6RdY8vRqGBbAQhEdnPrCXzkKFhAQUIATL6zxHisRUk9BuaxY1bLpGzX3AMDzr/HgdMZFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
+ b=PRAgagQ2yZ1kids1Rmat6sKb41kN67EosMpAEvAb5TMPg0LmmNMQQ6zzjIk8r67eAIIqgdqFyUhjsdWzUybPZhnKPBwoF08+/ef4KjseaaB+zw6ArD/FBSlE8NREbW6PHOLb7rmkV1HcuUriMWEtMVna1sv2DicpehU/c5lcwU0Wz65I4e7IimoirUFOS/Qu4yo6ZVO7Lfos4UwFVsNHnxujR7YeWRfdMIRJnyRvOANp3qzVqQMp8vgohaIa33eFdsdDsGcn8+UnhdlQ69sKJN6LuERBlc8fiuH9JfSyzD59O3bbXUPIQUD78B0IxZDqO2FssKXbXRH5oPLDHRmtVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hRikMfhAOmk0wUY2+5TZW18vRffuRbN3w8hN7IBFVz8=;
+ b=RYdI/GehypcaT5PJft7gWw4b/lkpMAbZXIjFLakZsc0xKSaEf48BldUJ2WF44SmDQBRuQA0DQlFdFMvw1KN2ZvSJ6CscJ9GIKPgZwViNGQZDsRKz8UDLFLoSMi1cipzM07T4POHU7/X50bwu9Nx01Gvddjl8vQ/PEkpS6B4szIw=
+Received: from AS2PR08MB9786.eurprd08.prod.outlook.com (2603:10a6:20b:605::22)
+ by AS8PR08MB9072.eurprd08.prod.outlook.com (2603:10a6:20b:5c0::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 01:39:23 +0000
+Received: from AS2PR08MB9786.eurprd08.prod.outlook.com
+ ([fe80::d721:dfdb:2f83:155]) by AS2PR08MB9786.eurprd08.prod.outlook.com
+ ([fe80::d721:dfdb:2f83:155%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 01:39:23 +0000
+From: Justin He <Justin.He@arm.com>
+To: Marc Zyngier <maz@kernel.org>
+CC: Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>, Joey
+ Gouly <Joey.Gouly@arm.com>, Steffen Eiden <seiden@linux.ibm.com>, Suzuki
+ Poulose <Suzuki.Poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, Catalin
+ Marinas <Catalin.Marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
+ Rutland <Mark.Rutland@arm.com>, Paolo Bonzini <pbonzini@redhat.com>, Sean
+ Christopherson <seanjc@google.com>, Shuah Khan <shuah@kernel.org>, Sascha
+ Bischoff <Sascha.Bischoff@arm.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "kvmarm@lists.linux.dev"
+	<kvmarm@lists.linux.dev>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>, Lorenzo
+ Stoakes <ljs@kernel.org>
+Subject: RE: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before
+ first run
+Thread-Topic: [PATCH 1/3] KVM: arm64: Don't load hardware vCPU state before
+ first run
+Thread-Index: AQHde1zAtBC9mmT//0CTNvJgc0eqU7c75woAgACKa9A=
+Date: Tue, 24 Nov 2026 01:39:23 +0000
+Message-ID: <AS2PR08MB978600ED2150F773D3E1631DF7442@AS2PR08MB9786.eurprd08.prod.outlook.com>
+References: <20261123150917.2679600-1-justin.he@arm.com>
+	<20261123150917.2679600-2-justin.he@arm.com> <86eccbzcqh.wl-maz@kernel.org>
+In-Reply-To: <86eccbzcqh.wl-maz@kernel.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: AS2PR08MB9786:EE_|AS8PR08MB9072:EE_|WA1PEPF000099D1:EE_|GV2PR08MB11417:EE_
+X-MS-Office365-Filtering-Correlation-Id: f47065bf-5900-4cb4-573b-08df49cbd91d
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|38070700021|261102123227099003|10067099003|56012099006|11063799006|4143699003|261022105027099003|261026140227099003|261028144727099003|261026121527099003|261022075727099003|261021135927099003|261021121427099003|22082099003|6133799003|18002099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info-Original: mpEPE/ItsBQaAmIKLsQ94WCoOXzytY6tIn/5H8Lmw7PqC0wh4URgcJKfal0YxZ6bstkkWnLAoYIKzUXxOehMeQsNyfql0709+0fmnE/ALkglDmpwm0Lc4lgovaKvo2Kqz2Rtw+Q2sQfAil+C06H5xce28arreNJuEetZO5TAif9cHW8Cv0B+UNhtAvLjeB6VLDKnW1YP++wMuTywvwKtMAnV862jbdYs/kjjikovkaNL9CJ2cTepctgA6plgktyAsGmPHtEvb5q6NBSMLjDmDVlxg0qodLxjL2KWyFgkds2FPtEzBPwxidllqWk/+W3AZax5ZR23V/6isVwgF76Gf3Ke6CKMRYK0yXZWyoX60e+3gdzhda9j+5C5Oa0xTUwJLeXBvHtqoywV5GDOZou4puStNArJYFBhDXV+pqU5KtJgJhigQ0gx5Rzc/VqCWKs2cjEKfPRCShCz5KJ6MThx/m/HVU6VtiPWomcKiueJ77XWN2NeQaZEo/LI8y3Dgr9KOt7gakun6rLr6cYxr7uvGlGYnMpjnJ71IfXtreASBECnSDeDjTLIl8E6vtvH42AryRKxi5XpZbJg6HQEUie7Najfhp147wn52l7luxrm/+YCRcgvQKnQxtl1WRcouNEONskdiKrpKNHhMsuLGJhFF09YyvLriwdYE/8jjpMD/N6xONVDqB8lSJ9F/PGLAIhKKFE5B6Cm0DlOpkFTLgZlm9SmwRQZS5BiJb4Km4bk1Yk=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS2PR08MB9786.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(38070700021)(261102123227099003)(10067099003)(56012099006)(11063799006)(4143699003)(261022105027099003)(261026140227099003)(261028144727099003)(261026121527099003)(261022075727099003)(261021135927099003)(261021121427099003)(22082099003)(6133799003)(18002099003)(261009223027099003);DIR:OUT;SFP:1101;
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: RE/b39+J0Kqd1rNsM6c1cNC0mCS3rceupCU0UFq3XB6bqEXQCdekDrisFEB7Rl6SnTsCks6hYAB5vMDbJRrTs4+ZRMkpofEOCAm4cgH53Z5sNDrqtdhCdBw9UOMLY95sye768vSTBxCCMS63CvWTrtUjxBdGjdYwTHgFu1xTZFes4Vi5RiYx90i/wVe9TbHZ5YJzTbxQEshhRvA+zYus1/c2IyVoDNHlNNnaKA4izj95NRjA1chXWwzHlQhgQkXfCtwkKHUTLF67WDm8Z4icLlCkHzSmGY55vFk25dHeZwJ3MLxts9xhW0GKIgPmEEpiDoI2+Rog8bFTXepTSgxd6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB9072
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: WA1PEPF000099D1.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 3bb031df-dca3-4bd3-e855-08df49cbc483
+X-Microsoft-Antispam: BCL:0;ARA:13230040|35042699022|23010399003|14060799003|36860700016|82310400026|1800799024|376014|7416014|261102123227099003|261026121527099003|261022075727099003|261022105027099003|261026140227099003|261028144727099003|261021121427099003|261021135927099003|10067099003|11063799006|4143699003|56012099006|261009223027099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: BGCUzdwhvL4GXIMz1Eq2J5Zbph8zAQxXzsrJ0LeH3iCFxpCFXx/4IGoof4pIUvOXSmdiK96/gOQgUWM6zY300N6wawdUnSXAYQKcIkeff9Z+wuXGGp/PnQDtSTjT3DQOavG725000VNfXbddTHX8jnsmwYcfiRbX8MRBjXQ3UtySGZ5TSGnprzGxhtAap7JeqlzS3bdJiX9XZlw8LM0XJ4CZCShTLovyzhxlhDEfceoeEn7sW0ZE3PVVr8vEJSKWNhjCHeZ43loj2wfbZm5/EWx2+R4pRWnFRsf6WaIY/VKWO5AzbrHVLV4Sui8PQgH7qWXxtymajVLwWVSbS99vz5VdghWrHqGlIcksuKhmO4XOWIGiKGUTdif4Q35Wou0MmANxG9YQUTWM9iGMXLjkzP9Su8x4QwYN/454t14/CU5sTAAYR9vXy2P1k/y2Vg/ry+ku/C3+DXuGo3OJkMnMyDPHJheDCCLZalvcX62S/eaVXDAwJX/HaQ55gq3SUklCLnj0urAANt/ZIzFHd2RiZDzN4n99mgJQVoaaTE8omucFlCCnnmuFyzpqChsPWyHwKMdCO7bT+9VWKfP4XMzlaLizuLo4wZhttSze2mZpJ5Ju00kd/AH6mKyOFsGGBKEUg9n896hyMtVq96ZFxMk7vPlpCfP/lcyUimfSXh0E5KLeRgzm90wVlkHgwSib06QkhLwUJqZOTisUP0u0QUSfRA==
+X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(35042699022)(23010399003)(14060799003)(36860700016)(82310400026)(1800799024)(376014)(7416014)(261102123227099003)(261026121527099003)(261022075727099003)(261022105027099003)(261026140227099003)(261028144727099003)(261021121427099003)(261021135927099003)(10067099003)(11063799006)(4143699003)(56012099006)(261009223027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: E+GOguSOWPGziyHLMOkQ7K+2oKW6OWqlAx+zig2VjT15N488oSWcvEjw20UWE2u/VTQeiWA/BfgwhCgEUkC3T6kZjVZg+xIRD65MsW/6PmyFZH1t/Sg92jY4lj89mQIHs0Ygr1kP5Ltgpn410r7jhRic159jTBKid2/z28k1FQ6t61ouoiRff5Ni51iII1ENVW+72EXTZn5XxOtb4E0IfLcH5ZAvdfKnpLyJNI8I3MiVzwjg8We1nOndlQk17SVg6v5JYnTw2zXmfF6e8dQPIDujaKDu/MwXcl+mkTBX0LhqNYUaiByg+y9UEo9Dcj1MCq4s50fdlRYD4dOPAymwsyGuPCRvyopekptB2hpcYOzzhD/yNXnxU1ViMdEnDB5kvFXaynANsw6675b9tG5LkLFgzUORqHuyA8B48LIqu/DNfq+Gsnlxedpm3rWV+ZiK
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 01:39:57.7839
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f47065bf-5900-4cb4-573b-08df49cbd91d
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource: WA1PEPF000099D1.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB11417
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261123_174019_403988_033B77AA 
+X-CRM114-Status: GOOD (  22.68  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,246 +168,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 4 potential
-issue(s) to consider.
+Hi, Marc
 
-Critical: 0 · High: 0 (1) · Medium: 3 · Low: 1
+> -----Original Message-----
+[...]
+> > KVM_PRE_FAULT_MEMORY calls vcpu_load() as soon as
+> KVM_ARM_VCPU_INIT has
+> > completed. On arm64, however, kvm->arch.sysreg_masks, the trap
+> > configuration, vncr_tlb and nested vGIC state are only set up on the
+> > first KVM_RUN in kvm_arch_vcpu_run_pid_change().
+>=20
+> I think I'm going to queue a patch disabling prefaulting immediately,
+> and then we can fix this crap.
+>=20
+Fine with me. I'll rebase on top of it and have v2 re-enable
+pre-faulting together with the load/put change.
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+> >
+> > Running the full vcpu_load() path before then reads unsanitised guest
+> > sysregs and touches uninitialised nested state: get_s2_mmu_nested()
+> > populates nested_mmus[] from raw VTTBR_EL2/VTCR_EL2/HCR_EL2 values,
+> FGT
+> > and HCRX_EL2 are written before kvm_calculate_traps() has run, and
+> > kvm_vgic_load() can enter vgic_v3_load_nested() early. In particular, i=
+f
+> > userspace creates an EL2 vCPU with ID_AA64MMFR4_EL1.NV_frac cleared
+> to 0
+> > (so vncr_tlb is never allocated), sets HCR_EL2.NV=3D1 and an EL1 PSTATE=
+,
+> > and calls KVM_PRE_FAULT_MEMORY, kvm_vcpu_load_hw_mmu() queues
+> > KVM_REQ_MAP_L1_VNCR_EL2. The next KVM_RUN then dereferences a
+> NULL
+> > vncr_tlb in kvm_map_l1_vncr() with preemption disabled and kvm-
+> >mmu_lock
+> > held for read:
+> >
+> >   [   73.636014] Unable to handle kernel NULL pointer dereference at vi=
+rtual
+> address 0000000000000078
+> >   [   73.801972] pc : kvm_map_l1_vncr+0x48/0x2d0
+> >   [   73.884820] Call trace:
+> >   [   73.887253]  kvm_map_l1_vncr+0x48/0x2d0 (P)
+> >   [   73.891422]  check_nested_vcpu_requests+0xb8/0x168
+> >   [   73.896200]  check_vcpu_requests+0x2a0/0x428
+> >   [   73.900458]  kvm_arch_vcpu_ioctl_run+0x2d8/0x6d8
+> >   [   73.905062]  kvm_vcpu_ioctl+0x388/0xaf0
+> >
+> > KVM_PRE_FAULT_MEMORY still needs generic vcpu_load() to set
+> > kvm_running_vcpu for dirty-ring tracking in mark_page_dirty_in_slot(),
+> > but kvm_arch_vcpu_pre_fault_memory() only walks and populates
+> > &kvm->arch.mmu and does not use any hardware vCPU state. Skip the arch
+> > vcpu_load()/vcpu_put() callbacks until vcpu_has_run_once() is true. In
+> > KVM_RUN, vcpu->pid is set under vcpu->mutex right after
+> > kvm_arch_vcpu_run_pid_change() succeeds and before
+> > kvm_arch_vcpu_ioctl_run() calls vcpu_load().
+> >
+> > Since kvm_running_vcpu can now be set without VHE state on the CPU, use
+> > host_ctxt->__hyp_running_vcpu in VHE enter_vmid_context() (matching
+> > nVHE)
+>=20
+> Can you clarify under which circumstances we end-up on the TLB
+> invalidation path? Simply faulting things in should not result in
+> invalidation. Unless we end-up with MMU notifiers firing?
+>=20
+I found this by code inspection, not from a failure. A TLBI from a stage-2
+BBM or an MMU notifier can hit this path during pre-faulting, but before
+the first run hw_mmu is canonical, so it makes no difference. As Lorenzo
+said, I'll drop this hunk.
 
-- [Medium] The rewrite of dwxgmac2_get_rx_header_len() in
-  drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c is shared by…
-- [Medium] In dwxgmac2_get_rx_header_len()
-  (drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c), the header…
-- [Medium] The new dwxgmac2_get_rx_header_len() reads the header length
-  in two different ways under the same SPLM=L2OFST + SAVE_EN…
-- [Low] dwxgmac2_config_l2_split()
-  (drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c) sets SPLM =…
+> > and check vcpu_has_run_once() in vgic_maintenance_handler().
+>=20
+> I have similar questions here. It isn't obvious how you end-up getting
+> a VGIC MI if you don't run and don't load the state on the CPU.
+I can't construct a case either. It was defensive, so I'll drop it.
 
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but the patch
-  extends it.
-
---
-
-net: stmmac: dwxgmac2: enable L2 split header support
-
-This adds a config_l2_split MAC callback and implements it for XGMAC2. On
-enable it selects split at the L2 header offset, enables Split AV in
-XGMAC_EXT_CFG1 and clears VPRE in XGMAC_EXT_CFG0. The callback is called
-from stmmac_hw_setup(), stmmac_set_features() and stmmac_xdp_open() on split
-header capable cores, and dwxgmac2_get_rx_header_len() is reworked to look
-at FD/LD when reading the header length.
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> index 09194b9d8322e..58d7433e8b17c 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c
-> @@ -1412,6 +1412,25 @@ static int dwxgmac2_config_l4_filter(struct mac_device_info *hw, u32 filter_no,
->  	return 0;
->  }
->  
-> +static void dwxgmac2_config_l2_split(struct mac_device_info *hw, bool en)
-> +{
-> +	void __iomem *ioaddr = hw->pcsr;
-> +	u32 value;
-> +
-> +	/* L2 split is not supported for packets with variable preamble */
-> +	if (en) {
-> +		value = readl(ioaddr + XGMAC_EXT_CFG0);
-> +		value &= ~XGMAC_EXT_CFG0_VPRE;
-> +		writel(value, ioaddr + XGMAC_EXT_CFG0);
-> +	}
-> +
-> +	value = readl(ioaddr + XGMAC_EXT_CFG1);
-> +	value &= ~(XGMAC_CONFIG1_SPLM_MASK | XGMAC_CONFIG1_SAVE_EN);
-> +	if (en)
-> +		value |= XGMAC_CONFIG1_SPLM(1) | XGMAC_CONFIG1_SAVE_EN;
-
-[Severity: Low]
-This isn't a bug, but should the commit message say that SPLM = L2OFST
-moves the split point for all split header traffic, and not only for the
-tagged or non-IP packets it talks about?
-
-Untagged and VLAN stripped IPv4/IPv6 TCP/UDP frames were previously split
-at the L3/L4 header boundary. With L2OFST they would be split right after
-the EtherType. Commit d10f1a4e44c3 describes the same change for dwmac4.
-
-stmmac_hw_setup() turns this on by default for every sph_capable XGMAC2
-with RX checksum offload enabled. stmmac_rx() would then build the skb head
-from the 14/18 byte MAC header only. The IP/L4 headers would have to be
-pulled from the buffer 2 page fragment.
-
-Could the commit message state that this changes the RX layout for IP
-traffic on existing XGMAC2 users, and ideally include some throughput
-numbers?
-
-> +	writel(value, ioaddr + XGMAC_EXT_CFG1);
-> +}
-> +
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
-> index 6719ac6e395bc..b28aa39f99472 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
-> @@ -292,8 +292,22 @@ static int dwxgmac2_get_rx_hash(struct dma_desc *p, u32 *hash,
->  
->  static void dwxgmac2_get_rx_header_len(struct dma_desc *p, unsigned int *len)
->  {
-> -	if (le32_to_cpu(p->des3) & XGMAC_RDES3_L34T)
-> +	u32 rdes3 = le32_to_cpu(p->des3);
-> +
-> +	/* HL is only defined on the first descriptor */
-> +	if (!(rdes3 & XGMAC_RDES3_FD))
-> +		return;
-> +
-> +	/* when FD=1 and LD=0, HL is RDES2[9:0] */
-> +	if (!(rdes3 & XGMAC_RDES3_LD)) {
-> +		*len = le32_to_cpu(p->des2) & XGMAC_RDES2_HL;
-> +		return;
-> +	}
-
-[Severity: Medium]
-In hwif.c, the XGMAC2 entry and the XLGMAC entry both use
-.desc = &dwxgmac210_desc_ops. So this parsing change applies to every
-existing split header user, including XLGMAC, which never gets
-config_l2_split.
-
-If the databook statement in the commit message is right and L34T is only
-valid on the last descriptor, then on FD=1/LD=0 descriptors the old code
-tested an undefined field:
-
-	if (le32_to_cpu(p->des3) & XGMAC_RDES3_L34T)
-		*len = le32_to_cpu(p->des2) & XGMAC_RDES2_HL;
-
-If L34T reads 0 there, hlen stays 0. stmmac_rx_buf1_len() then returns
-dma_buf_sz for a header buffer that holds only HL valid bytes, so the skb
-head would carry stale page data.
-
-A remote peer can produce multi-descriptor split frames.
-XGMAC_CORE_INIT_RX sets GPSLCE with GPSL = XGMAC_JUMBO_LEN (16368) whatever
-the MTU, while dma_buf_sz is 1536 at MTU 1500.
-
-Is this fixing an existing RX corruption bug inside a feature patch? If so,
-could it go in a separate patch with a Fixes: tag so that stable picks it
-up? The v5 changelog says the fix wording was removed on purpose. If the
-old behaviour can't actually be reached, could the commit message say the
-change is a no-op for existing configurations?
-
-There is also the L2T branch further down. On XLGMAC, SPLM/SAVE_EN are
-never set, yet non-IP last descriptors with L2T != 0 now take HL from
-RDES2[9:2] >> 2. Are those bits guaranteed to be zero for frames XLGMAC
-never split? "The callback is not implemented for XLGMAC" in the commit
-message makes it sound as if XLGMAC is unaffected.
-
-[Severity: Medium]
-Is RDES2[9:0] the right layout here for non-IP frames?
-
-This branch reads HL from RDES2[9:0] for every packet, although the packet
-type isn't known on an FD=1/LD=0 descriptor. The FD=1/LD=1 non-IP branch
-below uses (RDES2 & GENMASK(9, 2)) >> 2, because RDES2[1:0] carry AV
-status.
-
-The MAC may also write AV status into RDES2[1:0] of the first descriptor
-for non-IP split frames. In that case a multi-descriptor non-IP/AV frame
-would get HL read as roughly 4x the real value plus the status bits.
-stmmac_rx_buf1_len() would return an oversized header length, and
-stmmac_rx_buf2_len() would be off by the same amount.
-
-For comparison, dwmac4_enable_sph() uses the same
-GMAC_CONFIG1_SPLM(1) | GMAC_CONFIG1_SAVE_EN setup, and
-dwmac4_get_rx_header_len() always reads RDES2[9:0]. Does the XGMAC
-databook really make the HL bit layout depend on descriptor position?
-
-> +
-> +	if (rdes3 & XGMAC_RDES3_L34T)
->  		*len = le32_to_cpu(p->des2) & XGMAC_RDES2_HL;
-> +	else if (rdes3 & XGMAC_RDES3_L2T)
-> +		*len = (le32_to_cpu(p->des2) & XGMAC_RDES2_NONIPHL) >> 2;
-
-[Severity: Medium]
-What happens here to non-IP frames whose L2 type is 0?
-
-XGMAC_RDES3_L2T is GENMASK(19, 16), the same bits as XGMAC_RDES3_ET_LT, so
-this check really means "L2 type != 0". In the LT encoding, 0 seems to be a
-valid type: an IEEE 802.3 length encapsulated frame (LLC/SNAP, for example
-STP BPDUs).
-
-Suppose the MAC splits such a frame at the L2 offset with SPLM = L2OFST and
-SAVE_EN set. Then *len stays 0, and stmmac_rx_buf1_len() skips this branch:
-
-	if (priv->sph_active && hlen) {
-		priv->xstats.rx_split_hdr_pkt_n++;
-		return hlen;
-	}
-
-It returns min(dma_buf_sz, plen) instead, and stmmac_rx_buf2_len() returns
-0. Wouldn't the skb then contain the split header followed by stale
-page_pool data from buffer 1, with the real payload in buffer 2 dropped?
-
-If HL is always 0 for frames the hardware doesn't split, could the L2T
-check be dropped so that RDES2[9:2] is read for every non-IP FD=1/LD=1
-descriptor? That would match the databook table cited in the commit
-message.
-
->  }
-
-[ ... ]
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index f256244ce0d11..0c333d14be4d2 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-
-[ ... ]
-
-> @@ -6467,6 +6469,7 @@ static int stmmac_set_features(struct net_device *netdev,
->  		bool sph_en = (priv->hw->rx_csum > 0) && priv->sph_active;
->  		u8 chan;
->  
-> +		stmmac_config_l2_split(priv, priv->hw, sph_en);
->  		for (chan = 0; chan < priv->plat->rx_queues_to_use; chan++)
->  			stmmac_enable_sph(priv, priv->ioaddr, sph_en, chan);
->  	}
-
-[Severity: High]
-This is a pre-existing issue that this patch didn't introduce, but the
-patch builds on it. When RX checksum offload is turned off,
-stmmac_set_features() now also calls
-stmmac_config_l2_split(priv, priv->hw, false). However, priv->sph_active
-is never cleared. It is only assigned at probe and in stmmac_xdp.c.
-
-stmmac_init_rx_buffers() and stmmac_rx_refill() keep buffer 2 programmed
-through stmmac_rx_check_buf2_cap(). With split header off, the DMA fills
-buffer 1 and then buffer 2 of each descriptor. Meanwhile
-stmmac_rx_buf1_len() still does this for every non-first descriptor:
-
-	if (priv->sph_active && len)
-		return 0;
-
-Take a frame larger than 2 * dma_buf_sz, for example more than 3072 bytes
-at MTU 1500. XGMAC accepts it, since XGMAC_CORE_INIT_RX sets GPSL = 16368.
-Wouldn't the buffer 1 data of the second descriptor be dropped, and
-stmmac_rx_buf2_len() return plen - len from a buffer 2 the DMA never
-wrote?
-
-After something like 'ethtool -K ethX rx off', that would hand stale or
-uninitialized page_pool memory to the stack. Should sph_active, or the RX
-length accounting, follow sph_en here?
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120005243.3724402-1-sagar.cheluvegowda%40oss.qualcomm.com
+Thanks,
+Jia He (Justin)
 
