@@ -2,114 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EEF6606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 06:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C8D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 06:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hM5htMY4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jLCi7Etn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bgDbZiCK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=iJ2NeUROqKIM1qkArGoQxaXUmesQVvge98lKAIja628=; b=hM5htMY4l0FDYF6hHDiRX53PZ2
-	O9xvgA2qonicRuWWH2JEgu5pZ1UrtWXnEYx5i/KXeooaCeLIlIBOIIin9KgcvwIu8sSHrAfVmoGE+
-	C0eDxQFyE98dijjwP00i7e3hvjjs6wwNfYPDCIxNdhd2tGKEGiW6Pk+o3eEWk2rOoXcoNO2psSQcV
-	jgo6TRaqvaJqOfvlkA9XDb22GwAo5tVFtCKJqnc8fyK15LMmMQ4d9pZ7qoG/wiNhK0NwuCKPjkXr3
-	dQDKgh0aN7nK+RLt/In8h3x3YOl/Caype6L/Mazsrm1zKzc+bJNUoBF7rkpKjEeAkjluLZKFJh/2U
-	NO7+79ag==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=D0iXW4cQ6r7peoDFl+A6eW97uV9tAAL0MLqDFk+woko=; b=jLCi7EtniS+3jc
+	xn/Eds/87JcuQ85KKvxiQB0acBot2KwvcXnTLconW8U28+ZTIRvJKXZ3FBcUrstq6twywVxrDCdOn
+	ndFKIdMzQ+DmcsY7Ggx1rcp5OUdq9PWI8MvPx41AR4JTs5GJ1hBp0Tr12DZNK+6dEbDdnCfkawzkm
+	DYOXKFlxeTvmxuWwF4Shw2CynhNU9beVUC0YwxroAVj875KWrfpclI2MF4/VChWxAHhyjAkBMYGFs
+	JX0QxrQprPLyZStwlML6Sw5EDiMXy72QNCbR0ObhtwUyRn69rYRZQ5Cx+IJ4vUGp4q6y3SMQUM1MK
+	i0tvsFFK2ntLQ5BM6LIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVjtg-00000005eAZ-1YHD;
-	Tue, 24 Nov 2026 06:20:56 +0000
-Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1xVkDV-00000005fLw-0FPn;
+	Tue, 24 Nov 2026 06:41:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVjtd-00000005eAF-3rg6
+	id 1xVkDT-00000005fLT-0I6E
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 06:20:55 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ikkxp3ME74nPMIN0yL+sf8xKXjKuFANgA+lLp9iOS9Kd1gzs83rFiXkH0YX/dARS5xHiufS+QLaFioN+HvpbeAx6rbrKFFB7FpXOf14lvEmXTjwevy8EKh6bP+PnmzSaPfwRwWxnvVJMOZcJgJytDITDaxzr/0pd31RZzMJ5dvKpw6ukxm8niQxYC/eMRQfzGKrM1JKONzdcFGp5gKMxg/C4sjZhFZhhXx4Ki+ZzDpUxuXWyMmp16YQyU4+aSs/XnzlIe4eSeBTIZzKHGRjXhH4Boa3/naRehd8CUBcF4TRWVdPizcXujnh5DVVVTY6t2pw0t5Ta/g15w7U1ZlYrHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iJ2NeUROqKIM1qkArGoQxaXUmesQVvge98lKAIja628=;
- b=bwKstWJvSPfKwVMeFFvlGE5DAX5+I7LSJFOe5z1kdoe+Woi6SRoM7X3BbGJA9kV+zkvTzvAOI4F5abQwL2YculR+rNmZHjV/Y0m9rRGdaGzuhTo+m5RxDwKUfaz9Lb3HfW8G0wvAV7M6GLMX2lENtH7Vop1chI3kw4J4+NdlwegLczdOCsK+EDZBAq67tsBwjJw+ep7gdFVupMYka+HnZOLXD3qxlRs9h6dO0VZPhzpT98Z4wou2k5d8wwj6LKOFoY94QmmRH/HSnB2FkaDJKUO5xxA7RCjF0XNraer++9wHU+WUZazweK1MgBxGUk7aUUC13EHtUjkt1MdaX9WNjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI3PR03CA0014.apcprd03.prod.outlook.com (2603:1096:4:297::15)
- by SEZPR06MB5342.apcprd06.prod.outlook.com (2603:1096:101:7e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
- 2026 06:20:47 +0000
-Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
- (2603:1096:4:297:cafe::2b) by SI3PR03CA0014.outlook.office365.com
- (2603:1096:4:297::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.5 via Frontend Transport; Tue, 24
- Nov 2026 06:20:47 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 06:20:46 +0000
-Received: from cix (unknown [172.16.64.42])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 0347C427EFC6;
-	Tue, 24 Nov 2026 14:20:45 +0800 (CST)
-Date: Tue, 24 Nov 2026 14:20:43 +0800
-From: Cunyuan Liu <cunyuan.liu@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: boris.brezillon@collabora.com, steven.price@arm.com,
-	liviu.dudau@arm.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, gary.yang@cixtech.com, fugang.duan@cixtech.com,
-	daniel.almeida@collabora.com, aliceryhl@google.com,
-	p.zabel@pengutronix.de, daniel@fooishbar.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	robin.wang@cixtech.com
-Subject: Re: [PATCH v3 5/7] dt-bindings: gpu: Add CIX Sky1 Mali support
-Message-ID: <awUsu8VCu9HdzSLe@cix>
-References: <20261119123850.2994625-1-cunyuan.liu@cixtech.com>
- <20261119123850.2994625-6-cunyuan.liu@cixtech.com>
- <20261122-efficient-lobster-of-foundation-abd517@quoll>
+	Tue, 24 Nov 2026 06:41:23 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 3F0B96190E;
+	Tue, 24 Nov 2026 06:41:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E44C1F0089E;
+	Tue, 24 Nov 2026 06:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795502481;
+	bh=D0iXW4cQ6r7peoDFl+A6eW97uV9tAAL0MLqDFk+woko=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=bgDbZiCK/ZKa00WDXAUWPS269+6R3R6rqkH5S5llCEDGPFKXb8jKhdFa3mtRisUaS
+	 xm4Zizp87kzhzeGM0c0e6XH40AM+2D8kEO9kV6NmYO/tci25Q/pcgIcAMRpOgfih5W
+	 as1tjQOmdNjeuBK9cCQN83Gz7fSxk8mtcdJHGKhOucahc89TT4kb97anUOPAakrN9d
+	 0VFVZzMQNzKS4XBUECUYYEGCGuP0lF64vN1f4pEFbc9wD3gSaRfiOHje6QG9WkKo9L
+	 TWMd/MdfDGfQduJXbBm6NoPbgtLjkKYP71mbqfxX8iFJs3lWw4v10g/TvSur5eVRPs
+	 Mn/k+UFhMS3Hw==
+Message-ID: <7bce0280-704e-42ce-ba65-d3ab369bc20c@kernel.org>
+Date: Tue, 24 Nov 2026 07:41:14 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261122-efficient-lobster-of-foundation-abd517@quoll>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|SEZPR06MB5342:EE_
-X-MS-Office365-Filtering-Correlation-Id: b9b6f106-91fc-4ddd-cbac-08df49f313c6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|7416014|376014|36860700016|23010399003|1800799024|18002099003|22082099003|56012099006|4143699003|261028144727099003|261026140227099003|261022105027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: dKSOuN17JmoKfTBpdyzCTMPcf6s1k6oZmK1428VjX5ZKTOjVI08pFUgRXTmfEsRmsaO7jZEzSBkd6h+ALxXD6sLsAimaImyDI9AJ6ylgX+5pTIULRCip6EDAPpa3+NDLC363QWP6cZkXJ0UOGt6kMOJqjC3bQ6N0CN4t46yIoYR7dwYAxiAvQyjq+1vPutxNembZ1zC+esUwgKCA8B7jMXgdZddKl5SzrjvbSKno4zXO1fGzLeNiVjoORatz2AsICJHF9ytf6DtzyEfc0KSFcX35VDrAc1krlrXrmXwTIDU9ytb2fxSVEm4tcyHRKM+VhWAhpz0g/RjNmwkJ+Q+4E5ZSt42qKaEXiAOykbrhs6jkbGT/yP7vV03ZKi433O185hEUODcFxZQodjkkWgDG+Pw4104gqCBjP6Vwgb+3g+dgbNXynhfjY0sq05OFeEzTSWQykdMjzosnaI85ZLEybXKvAjJVRXhEZovAz3NUhiNowOJpGWROL4MGxH0izawTlxPKJ4ZjdAtLbE0rEs1jpZoem95Sk9PH9PqlaTpCOIi5tmLxEDNNfZ/YzynLfZHXBtytjSE43IusluTP4adob5+anQnlORaHph2HO8lPd4A/bQdzVST2MB64P8qzFdAvQjKJnPKVZOGU+WVL5v6Aoa4FsclDHn3e1aTbUdzD1qI86NBKWm58D57H3oEsUvU/xuSqv+F4JklYDnGXq3RNRQ==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700016)(23010399003)(1800799024)(18002099003)(22082099003)(56012099006)(4143699003)(261028144727099003)(261026140227099003)(261022105027099003)(10067099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Eivp4tG8gbPEfbi0Rf21LjkQ73w6fpg82OT+xj83CNWxb8bbonoY8LQJYW057RI/Zz35NamkF+gyLrgA1j9GotPF2wZD4mE+WlPQGnMCUtIcWFYdzOPZeC6MPqzhqR7iEPMvphCLNez8euZKpEqycfZj0zK3i1tIYhID76s3L9t2eJDOekcMMdPJH+kWnUvdWJUauWBAnWACOM5ZIVbcwlifwHIdYDYyCglIxVTfFsjNKeeAGD0FaHiE092vnk5B0GVoElPH4Kt6HFLd59xB4OsDFHQeWz9AXGFoH/rcu/9hKQAv+eZt3lGKhLCLLP2Xa11YrnKSeuM1UmL63yOXAyOslpbMR7GR08aQufjjSNe57stjjQKvr9rJNf2/ViHZ7stfeY2cziLilWQdRci535emmDYua1kdIHHHspB48dsg0awOEXvZ8KyVVv7ahykP
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 06:20:46.5732
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9b6f106-91fc-4ddd-cbac-08df49f313c6
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG1PEPF000082E8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5342
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_222053_965859_7A9A892C 
-X-CRM114-Status: UNSURE (   8.83  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/5] dt-bindings: soc: Add Cortina Systems CS7542
+ global control block
+To: filipp.dunsky@gmail.com, Linus Walleij <linusw@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-gpio@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261123-cs7542-syscon-v3-0-f1c07a1703f8@gmail.com>
+ <20261123-cs7542-syscon-v3-1-f1c07a1703f8@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20261123-cs7542-syscon-v3-1-f1c07a1703f8@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,28 +118,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Krzysztof,
+On 23/11/2026 21:54, Fil Dunsky via B4 Relay wrote:
+> From: Fil Dunsky <filipp.dunsky@gmail.com>
+> 
+> Describe the shared global register block and its strap-selected APB,
+> CPU and AXI clocks. A pinctrl child will share the syscon regmap. Keep
+> clock IDs in the order used by the previous out-of-tree CS75xx clock
+> provider.
+> 
+> AI assistance: Codex prepared this change from the existing OpenWrt port
+> and GPL vendor sources.
+> 
+> Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 
-On 2026-11-22 18:01:46 +0100, Krzysztof Kozlowski wrote:
-> So what changed here exactly that you decided to drop review? I run b4
-> diff and there is no relevant difference.
-
-Sorry for not noting this in the changelog. Compared to v2, I added
-"arm,sysc-alloc" to the required list and example for "cix,sky1-mali",
-so I dropped Conor's Acked-by out of caution (I noted this in the
-cover letter, not in this patch's changelog).
-
-If we decide in patch 3/7 to drop the "arm,sysc-alloc" DT property,
-this patch will match v2 again and I will restore Conor's Acked-by in
-the next version.
+I commented at v1 10 hours after it was posted and now I see v3.
+Dropping from patchwork, so this won't cut the queue.
 
 Best regards,
-Cunyuan
+Krzysztof
 
