@@ -2,100 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCF0606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:50:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15ABA606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C7LcwtSq;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=OnSyYFSB;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=mTqCDhbQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MKqVlPG1;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=XsHPv4wR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wMv8ZWUVXzq+zwbayp1J26VPh+dF0lx+vlAOD4N7gYo=; b=C7LcwtSqqncuEmKCSO7igAHPc7
-	UuKvfyyjhHQzaJEi4bqixtF9ugtD2Z2iMdu1ZZLdELmen9wWkgCAIA60maGIFN4+05chu9e2Qx5qG
-	x0r7n0P8zCn8uCtciHpSvRrR+1yDwncCkoS3PYQjzdYtUok3miWQIn2W7WNqZ3/6iu8ktjrZgOtg2
-	A6AWK/Ti5AQB4BASp+w+KFuVS0D8+lPnsgTt9FQaZ4rIbHZkBIKwvr8uPhrwgio1rZGXVYJOekVCG
-	5NjX1Y6cKonfarr2zmYEw9siW8VMC4z4wVAZnUeeeoNtLSddeLz3eXX4gLE9uxPY3jjUBjN2/s4VR
-	yXobIDEQ==;
+	bh=xUNyxepBbFqbxj/zwUONmjhAUEyk5osQzRo/USZMoIE=; b=MKqVlPG1aTvPa7ZdoR/wOhCKi7
+	Pzs/mHz7u4ur4QXfRCscZ3awNl0HZMkOAxMS/OglnH+HBrhYuRLF9X8q4XkmYF1iNMlrP45x1k8ZI
+	cqpPrvdvyYg12ubAUDubA48jA67kD7e9PXbvLnc0tvLH+Yu64sgx91JVCSx4dyOnuFw4o9wWEL9mw
+	Bqv8Qc1yTdjk36dA/qT0l/k5pY8XzCBcy9h4dmHZQ+N7YpsGsU9D0QHI4XF2hsYYH6U+TS/UlDuOf
+	QUIImPGdxGI5uWBDAhZxMS61Y3i4XRZfAJsScwSKoGFhJq0WxWtg1JrZezoy7caIf5pbcOxMVSu+H
+	BHsA2Jzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVte4-00000007AiH-2FbW;
-	Tue, 24 Nov 2026 16:45:28 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xVtie-00000007Cps-3IsY;
+	Tue, 24 Nov 2026 16:50:12 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdx-00000007AfX-0Dui
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 16:45:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
-	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=wMv8ZWUVXzq+zwbayp1J26VPh+dF0lx+vlAOD4N7gYo=; b=OnSyYFSBJ+B0UdhbYTrcPBA3u0
-	ZV8DOAPbLoD2dM0808BTSSEbsCeOqSzIdr2/e+sI4G/hRb6hSzix+7gJghnPtNnxHJPcssStBkmHA
-	w8T6o8iqfwB9q1UBFqjUFmBSgeaz+Dc5vSaqldkxaEZsM5w0tO/1PF0r2Sxo6K3Oy/V2zHtzqUaO4
-	DNsgavXY8Qj5mNykLZmRWZ1v+sRXLyRY/35RvyDwK7gWfCET3l/B6Omj2oa/Y8sNiy3ZWRA9o9yzH
-	my6oyME4mXEGVNzdgVx6mChjalq1IieBZFXf3O4FzOI4XzFyscohsQ0JSbre4zsf9eRwIZpkWXL0/
-	v4u11Nzg==;
-Received: from mail-wm1-x347.google.com ([2a00:1450:4864:20::347])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdq-00000009Db4-1fOO
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:45:19 +0000
-Received: by mail-wm1-x347.google.com with SMTP id 5b1f17b1804b1-4bb8ae35aeaso39747275e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 08:45:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795538711; x=1796143511; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=wMv8ZWUVXzq+zwbayp1J26VPh+dF0lx+vlAOD4N7gYo=;
-        b=mTqCDhbQ/5Y9W8yFhR69Uzaq9/QivqHl3bD+b8MLUrSu4jkP7aV5pVRo3/MyRT6b2R
-         EBIefWuhvWA4hd9qQ6Z5o4DnLEcu/+HXLi9+LdEdXfpsCTxaY8i989RIObyJdE3sieJs
-         gVkYwWDft00KGp9Jqfu7Bv5ElRBVr02KXSGNOht4Tm9W2u7gFXnlIyIssf3iSXjnfjM/
-         HqHEfAMWy3e/FMOfyz3mXkfKeMtQ85fTIlPhbQahzbZKHtqDiLW5E9fuTBYFmYPBuvRk
-         SNFY+25+rzBZOY+Nco74dAGQ7HTRDTuzvtZfzr3hL7XwlFh3jzTsO7/WHKA/TcfUn34k
-         jgFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795538711; x=1796143511;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=wMv8ZWUVXzq+zwbayp1J26VPh+dF0lx+vlAOD4N7gYo=;
-        b=MoOF/YQuzCMg9BiRoaiF8SZMzSkntiBlAVjM7IlXV+qEQBBC68Cbjp0pnPOQRwk/W/
-         d90A9GsA8YjK0P71/jq5P/Jwtigep0GYIyvAS8uUG/jQ6eu5vOLFj4TAUwb1ErBPbDhd
-         0jmXmSaUZLnDHw1pNgUwDaYT376xhM9tYAaBWstOUGFvcFpEkshTTURwaceQyUDHQIel
-         xYOfTsjNiMnuCRkbrHW0tMYsCt6BhlJUppA/BcPXpXx92Ok6d0419uS9/mqL+7hnqBgu
-         YOFyOxIq/Ca2gq4oR3YX7PabYKlL8pmxUEZiL/MKER8D3In6D1IGijKQp1uEwmWdI3Lp
-         hfug==
-X-Gm-Message-State: APuU4Z81YH7nyYWTNnOcaAkPCrvaDUcrpoXcq+Ue1hWKIPHUZ8ac/zl/
-	u6o8rUK0zb+yEIs0aGNkrvQ1Tb3zhisvS42Si/H6YZ4hEfvg2/VsyOOIdoMDVWbxJP1//7kYIZu
-	E1yAsqZqvCaLWEdV1iXuNPQ==
-X-Received: from wmcn22.prod.google.com ([2002:a05:600c:c0d6:b0:4a1:f1e1:c6d6])
- (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:64c8:b0:4bb:6848:d433 with SMTP id 5b1f17b1804b1-4bb8881d141mr302032595e9.26.1795538711112;
- Tue, 24 Nov 2026 08:45:11 -0800 (PST)
-Date: Tue, 24 Nov 2026 16:44:42 +0000
-In-Reply-To: <20261124164446.2371939-1-vdonnefort@google.com>
-X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261124164446.2371939-1-vdonnefort@google.com>
-X-Mailer: git-send-email 2.56.1.809.ga0b61035b5-goog
-Message-ID: <20261124164446.2371939-2-vdonnefort@google.com>
-Subject: [PATCH v2 1/5] drivers/virt: pkvm: Make pkvm_init_hyp_services() __init
-From: Vincent Donnefort <vdonnefort@google.com>
-To: catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel-team@android.com, fuad.tabba@linux.dev, 
-	Vincent Donnefort <vdonnefort@google.com>
+	id 1xVtia-00000007Co2-1qnZ;
+	Tue, 24 Nov 2026 16:50:11 +0000
+Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
+	(Authenticated sender: pza@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 4D1282004B4;
+	Tue, 24 Nov 2026 17:50:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795539000;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xUNyxepBbFqbxj/zwUONmjhAUEyk5osQzRo/USZMoIE=;
+	b=XsHPv4wROfnoOR/Al1PfP2g38rWs2d8VdHYo97JJQEXtxJQT+N9uvgkIodiO5oNj6sh83H
+	U5QGh7npHqJdM274F9Au9Ot4fma0AqtAjry/jfArpCu5LZpvK4yjAgSPwBAKpJszDhx7ZI
+	tq5nHwrqNUdqOwdNWEVIUuhV3kq2Yrx/8m8yi9bF+kC8dw7PkngMPQVPp5sivJI2Nyl4zM
+	qVMPEaynFWz55N4R5TfNj6mSgRJ9UcPlZtRdhkKOHNQD0mKVEbX3rwZU+lbngYVw+E1pa4
+	2EV2Tyy+r9dmljp1UlOabvuzrcsb6Q9G1yh0bvxK8BG/O2RNSZJzfWwvU0NjHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1795539000;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xUNyxepBbFqbxj/zwUONmjhAUEyk5osQzRo/USZMoIE=;
+	b=eW1vTA85NWp23HDiCbP0J1mb8m2Lel19Xv6D6ekUqtuU14YSbb7sY2dCrVbSRh0fdPIv7f
+	+nrr/ExGSsjMy1JF2Aniv8cXiMu459RvZ4QIn1De9svO5dufohaA1URv6JumlbUbCDUSPP
+	9hZ8+yfy+6TmMjbhOSVemV7fQ9oNToBaeUqKrdj5eLellXEq6hi5vT/glZ7FyrI2Vtn+/A
+	eej/RP8YybOZVrzMW65gCW5zL2Ssiq7iHbO04cjLtQCwEIBcVZCOdRLfQccTgA3M6U5u5J
+	5e68zrfEtPiskFTK0W2zVcQXP6dDkdbf1Bwuel+0uHhiYXXUO6twQXeKJMoIpg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795539000; a=rsa-sha256;
+	cv=none;
+	b=ahaXNxWTVb8qE7MA4+PnYkPbav+7Cg387gT7Qa6bu+zvF+t9SX2c2Dj5+Luv1cf/iKBoD2
+	hWVdVGUb7F14T0oXeuXuDBAWzelX0ZF1NZ8ibFgFXgIcfIyNXFPvu9JPfhbw3IpEcPRsNG
+	G9zEPanTyaBMjVX8h1HuyLFmIVQQFJIYSh1mKuemLyRfvEbjEcgnDUB4wWyzUd6HYJGphe
+	uRamHNbrRkKGZBMIOKKS15Ay8c9n1rq2NPKX0ww1oHM9F/EM4TwO/gIeIp6Bas+BRH+wPX
+	38Mk1oJN8UZ/vHpsFKSxqy22y9fGJ31oky6YZG6f12ajstjuTCywOtPA4tYkQA==
+Message-ID: <831aebd692fc5ddbbd1cf57f1aad3bcc0d3f30d2.camel@pengutronix.de>
+Subject: Re: [PATCH v8 16/18] drm/bridge: starfive: Add JH7110 HDMI
+ controller driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Michal Wilczynski <m.wilczynski@samsung.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart	 <Laurent.pinchart@ideasonboard.com>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>,  Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Emil Renner
+ Berthing	 <kernel@esmil.dk>, Hal Feng <hal.feng@starfivetech.com>, Heiko
+ Stuebner	 <heiko@sntech.de>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt
+	 <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti	
+ <alex@ghiti.fr>, Dominique Belhachemi <db@domibel.de>, Andy Yan
+ <andyshrk@163.com>,  David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Yakir Yang <kuankuan.y@gmail.com>,  Dmitry Baryshkov
+ <dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>,
+ William Qiu	 <william.qiu@starfivetech.com>, Xingyu Wu
+ <xingyu.wu@starfivetech.com>,  Sandy Huang <hjc@rock-chips.com>, Manivannan
+ Sadhasivam <mani@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, Marek
+ Szyprowski <m.szyprowski@samsung.com>, Maud Spierings
+ <maud_spierings@murena.io>, Graham Markall	 <hello@big-grey.co.uk>, Icenowy
+ Zheng <zhengxingda@iscas.ac.cn>, Chaoyi Chen	 <chaoyi.chen@rock-chips.com>,
+ Joshua Peisach <jpeisach@ubuntu.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=	
+ <u.kleine-koenig@baylibre.com>, Cristian Ciocaltea	
+ <cristian.ciocaltea@collabora.com>, Byron Stanoszek <gandalf@winds.org>, 
+ Owen O'Hehir <oo.hehir@gmail.com>
+Date: Tue, 24 Nov 2026 17:50:00 +0100
+In-Reply-To: <20261124-jh7110-clean-send-v8-16-de92635dd857@samsung.com>
+References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+		<CGME20261124155429eucas1p1015c7cd9beec294fefdcd6900dd407f6@eucas1p1.samsung.com>
+	 <20261124-jh7110-clean-send-v8-16-de92635dd857@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_164514_475913_EE60E3E3 
-X-CRM114-Status: GOOD (  11.45  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261124_085008_912953_8B7060A4 
+X-CRM114-Status: GOOD (  16.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,47 +121,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-pkvm_init_hyp_services() is only called from kvm_init_hyp_services(),
-which is already marked __init. Mark pkvm_init_hyp_services() as __init
-too.
+On Di, 2026-11-24 at 16:52 +0100, Michal Wilczynski wrote:
+> Add the HDMI controller (bridge) driver for the StarFive JH7110.
+>=20
+[...]
+>=20
+> Tested-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> Tested-by: Byron Stanoszek <gandalf@winds.org>
+> Tested-by: Owen O'Hehir <oo.hehir@gmail.com>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  drivers/gpu/drm/bridge/Kconfig            |  11 ++
+>  drivers/gpu/drm/bridge/Makefile           |   1 +
+>  drivers/gpu/drm/bridge/jh7110-inno-hdmi.c | 297 ++++++++++++++++++++++++=
+++++++
+>  3 files changed, 309 insertions(+)
+>=20
+[...]
+> diff --git a/drivers/gpu/drm/bridge/jh7110-inno-hdmi.c b/drivers/gpu/drm/=
+bridge/jh7110-inno-hdmi.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a0283f83ddc93e3e6c9e9192b=
+73dca9a63f9d9ab
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/jh7110-inno-hdmi.c
+> @@ -0,0 +1,297 @@
+[...]
+> +
+> +struct stf_inno_hdmi_controller {
+> +	struct clk_bulk_data clks[CLK_CTRL_NUM];
+> +	struct reset_control *tx_rst;
 
-Tested-by: Fuad Tabba <fuad.tabba@linux.dev>
-Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
-Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
----
- drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+tx_rst is never used outside of starfive_inno_hdmi_controller_probe(),
+it could be a local variable.
 
-diff --git a/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c b/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c
-index 26fe9c3f22e3..e7d7cedf7f6f 100644
---- a/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c
-+++ b/drivers/virt/coco/pkvm-guest/arm-pkvm-guest.c
-@@ -9,6 +9,7 @@
- 
- #include <linux/arm-smccc.h>
- #include <linux/array_size.h>
-+#include <linux/init.h>
- #include <linux/io.h>
- #include <linux/mem_encrypt.h>
- #include <linux/mm.h>
-@@ -96,7 +97,7 @@ static int mmio_guard_ioremap_hook(phys_addr_t phys, size_t size,
- 	return 0;
- }
- 
--void pkvm_init_hyp_services(void)
-+void __init pkvm_init_hyp_services(void)
- {
- 	int i;
- 	struct arm_smccc_res res;
--- 
-2.56.1.809.ga0b61035b5-goog
+> +	struct phy *phy;
+> +	bool enabled;
+> +};
+> +
+[...]
+> +static void stf_inno_hdmi_rst_assert(void *data)
+> +{
+> +	reset_control_assert(data);
+> +}
+> +
+> +static int starfive_inno_hdmi_controller_probe(struct platform_device *p=
+dev)
+> +{
+[...]
+> +	ctrl->tx_rst =3D devm_reset_control_get_exclusive(dev, NULL);
+> +	if (IS_ERR(ctrl->tx_rst))
+> +		return dev_err_probe(dev, PTR_ERR(ctrl->tx_rst), "failed to get tx res=
+et\n");
+> +
+[...]
+> +
+> +	ret =3D reset_control_deassert(ctrl->tx_rst);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D devm_add_action_or_reset(dev, stf_inno_hdmi_rst_assert,
+> +				       ctrl->tx_rst);
+> +	if (ret)
+> +		return ret;
 
+This looks like it could be simplified with
+devm_reset_control_get_exclusive_deasserted().
+
+regards
+Philipp
 
