@@ -2,71 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5848606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75D8606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=phjaAw96;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=eag0CYGK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vhC/cuIj;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=IrwXkcVp;
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.a=rsa-sha256 header.s=dkim header.b=lbD+qonp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AbNOtxb6yhEp3NM4ZeDlzdv7ARvX7bbvk32I0ZeT7Qw=; b=phjaAw96woN1gX
-	X6xJfmAdlQ8m8nh4HLNfzsqhK+1idgIQcxXURzjhaClqMGfSEnnU9GlXLeDt7yNj1Lcwh8SACql5h
-	WT8ikeLgBpmIAMROqiBrLOvHDqoLiY0F3HS+HsrwBJRmCkCpkYQSb/MdGwJbU03ITn/bIlffvSWSb
-	A+F6PUUCnrWzWqm+yJ1REmY5K5jTvyEFG6j1krum49aBHTaDC6wPJp4MfcfmeUnjdpEkel1S7xQvg
-	aeADJU8CfBO9TLujjvdA3p932pJ5gY/OtPxg4alZG6PIW49SrOv3pQBfZy4MUwWPVpU3MELW8ayHb
-	+CilHxaM6TrVC3COxm2A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=LdIr81XQUw7VpYnpXqxz41gzN6tB2DzbyylB1vVqhYc=; b=vhC/cuIj2uqRKxohVK1auW5v8U
+	olYGR4+3frqD+jGdvaQAD6pT8S2OpSWl96WQBcW1e8FMCyvw3ySRl6IXxXwZ8fer8fvRKx7P5DUth
+	yT1+pf1Nuk7nDrTKv8Quvx0zF6sJTiuUGZwYeO4649NgSyb/uHGhtJHY8UXrDi63x1WNcM4AZWk2y
+	KcF94pM3z9XCYz+F6tECYMrcQA/WjFArHjjUExZqBdkrW59HqmvYl+kNKFXEhORiNj5GJxV0wU3BV
+	5kHdA0TXK8B0ESk1QdwNX1x8DDMUk2fHgpKSR31S5p/Y3FE1kG6JCY/B8BeASu8vBC1Nowm3JBesZ
+	DBfZcJ9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVgIG-00000005MgO-2f0R;
-	Tue, 24 Nov 2026 02:30:04 +0000
-Received: from canpmsgout01.his.huawei.com ([113.46.200.216])
+	id 1xVgP0-00000005NZP-0glB;
+	Tue, 24 Nov 2026 02:37:02 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVgI3-00000005Mcu-2BIf
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 02:29:54 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=AbNOtxb6yhEp3NM4ZeDlzdv7ARvX7bbvk32I0ZeT7Qw=;
-	b=eag0CYGKsqr8Eqkd2bLe63eEBSbtoqozwT2OiQTnCAApFgkVrt+e2Jv/UbssZwsl71JQZYM73
-	AcK5FJ6TdWe1R2DtWUiWejBAJq5iRvjhroZw6SlK/0rSvDXcQcK91Kt7MdUUobEUahpy1OFoQA+
-	LGl73fSpIS6pbTSGrJCA5cA=
-Received: from mail.maildlp.com (unknown [172.19.162.140])
-	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4jYRZf3DxBz1T4Fd;
-	Tue, 24 Nov 2026 10:28:58 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 534DF20333;
-	Tue, 24 Nov 2026 10:29:46 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 24 Nov
- 2026 10:29:45 +0800
-Message-ID: <ad1c15be-a8ae-48b6-9fbe-786d069a4db0@huawei.com>
-Date: Tue, 24 Nov 2026 10:29:44 +0800
+	id 1xVgOs-00000005NX1-2cTw;
+	Tue, 24 Nov 2026 02:36:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=LdIr81XQUw7VpYnpXqxz41gzN6tB2DzbyylB1vVqhYc=; b=IrwXkcVpRLcJKdRcd88hV87xfH
+	gH55kJazyEOQe1CWM3lg95S20qpGD+rglFl77ttKZX/iYyMd1AeVjWq1D6N+hZAwJbkujG5vJvzBA
+	ZwhahtJqk9RnGQgboFv/VMrApzGRwqEfEkbA+qQ6c8YagcbNdN8sIgLcoLqhhMBwXEM7z+qb40e5a
+	TGoIDO1Jt+YOF1120gIxrTXpeVs6P5EyZqGnoi4PvG/i3z6kEpnhfgyNces340O7Vg4mgn0Sci94I
+	UmDpss8rS13Ws3JYJscOmdAl+jMpGRkLA+zx5VJ+BHffQ5k3h1kkfQshWryKnFI8FS6mOsO212zHS
+	zliyGRpQ==;
+Received: from rtits2.realtek.com ([211.75.126.72] helo=rtits2.realtek.com.tw)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVgOl-00000003lpE-0mIH;
+	Tue, 24 Nov 2026 02:36:52 +0000
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6AO2Zxh162160552, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1795487759; bh=LdIr81XQUw7VpYnpXqxz41gzN6tB2DzbyylB1vVqhYc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:Content-Type;
+	b=lbD+qonpKwf4hNFEzBDp7YnUzczQl2uWMc8DYVPRDfuwHm7AvmJq9lgzCFqhH32OH
+	 FPqLm8TGuBbs4TodGJ3arHFJnCLJjcFHhc3XT3FnSOZwzew6y9V2mL/nMWXWSizcFH
+	 rmPx+I7r4KDk6rcaRncMhSMmqm5fIrkkviIrEvfpigKsQOImBUMOxzTLlMNq15BgVT
+	 mNJv1OGwbxjpzXvyUhS1zoyzNg8FzVcwCXSudMMhEiFHekbuaM+OF0vBbPIWqbbvMm
+	 AH8MgSPEZttH21qM3DsGndO242Vpqzji5yMCGYdSNgwAIcIUbSWlBz3EgRHyya/6F8
+	 pd85+sdJJ0KjQ==
+Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
+	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 6AO2Zxh162160552
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 24 Nov 2026 10:35:59 +0800
+Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 24 Nov 2026 10:35:59 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 24 Nov 2026 10:35:59 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
+ (10.21.1.56) with Microsoft SMTP Server id 15.2.2562.56 via Frontend
+ Transport; Tue, 24 Nov 2026 10:35:59 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
+	<cy.huang@realtek.com>, <stanley_chang@realtek.com>,
+	<eleanor.lin@realtek.com>
+Subject: [PATCH v17 5/9] clk: realtek: Add support for mux clock
+Date: Tue, 24 Nov 2026 10:35:53 +0800
+Message-ID: <20261124023558.4088635-6-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20261124023558.4088635-1-eleanor.lin@realtek.com>
+References: <20261124023558.4088635-1-eleanor.lin@realtek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm_mpam: resctrl: Use the domain's counter ID
-To: Ben Horgan <ben.horgan@arm.com>, <james.morse@arm.com>,
-	<reinette.chatre@intel.com>, <fenghuay@nvidia.com>, <will@kernel.org>,
-	<jic23@kernel.org>, <gshan@redhat.com>, <tan.shaopeng@jp.fujitsu.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20261118125417.671859-1-ruanjinjie@huawei.com>
- <b0cd49ed-65ad-4a6d-9845-0ee9060a478d@arm.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <b0cd49ed-65ad-4a6d-9845-0ee9060a478d@arm.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- kwepemk200008.china.huawei.com (7.202.194.74)
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_182952_876809_48A4322A 
-X-CRM114-Status: GOOD (  29.66  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261124_023649_517612_8BDD012D 
+X-CRM114-Status: GOOD (  16.90  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,244 +102,141 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Cheng-Yu Lee <cylee12@realtek.com>
 
+Add a simple regmap-based clk_ops implementation for Realtek mux clocks.
 
-在 2026/11/24 4:21, Ben Horgan 写道:
-> Hi Jinjie,
+The implementation supports parent selection and rate determination through
+regmap-backed register access.
 
-Hi Ben,
+Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
+Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+---
+Changes in v17:
+- None.
+---
+ drivers/clk/realtek/Makefile         |  1 +
+ drivers/clk/realtek/clk-regmap-mux.c | 40 ++++++++++++++++++++++++++
+ drivers/clk/realtek/clk-regmap-mux.h | 42 ++++++++++++++++++++++++++++
+ 3 files changed, 83 insertions(+)
+ create mode 100644 drivers/clk/realtek/clk-regmap-mux.c
+ create mode 100644 drivers/clk/realtek/clk-regmap-mux.h
 
-> 
-> On 18/11/2026 12:54, Jinjie Ruan wrote:
->> resctrl assigns MBM counters per domain: mbm_L3_assignments takes a
->> domain ID, a group can have a counter in one domain and none in
->> another, and resctrl_arch_cntr_read() and resctrl_arch_reset_cntr()
->> are given the counter to use.
->>
->> The driver ignores that counter and looks the monitor up in
->> mbwu_idx_to_mon[], indexed by CLOSID and RMID.
->> resctrl_arch_config_cntr() fills that array without looking at the
->> domain, so each group has one monitor for the whole resource.
->> Whichever assignment is written last selects the monitor the group
->> reads in every domain.
->>
->> For example, with the counter ID each group uses for mbm_total_bytes
->> on each domain and "_" for none:
->>
->>                                 domain 0         domain 1
->>   mount, mkdir g1               default=0 g1=1   default=0 g1=1
->>   unassign both on domain 1     default=0 g1=1   default=_ g1=_
->>   assign g1 on domain 1         default=0 g1=1   default=_ g1=0
->>
->> g1 is assigned the lowest free counter on domain 1, counter 0. That
->> assignment is the last one written for g1, so it selects the monitor
->> g1 reads in every domain. On domain 0, g1 uses counter 1, but reads
->> the monitor of counter 0:
->>
->>                       counter whose monitor is read on domain 0
->>                       default      g1
->>   expected            0            1
->>   actual              0            0
->>
->> That is the default group's monitor.
->>
->> Translate the counter ID with assigned_counters[], which maps a counter
->> ID to a monitor of the class and is valid in every domain.
->>
->> mbwu_idx_to_mon[] is left alone: resctrl_arch_config_cntr() still fills
->> it, but the read and reset paths no longer consult it, and a future
->> default mbm_assign_mode may use the array, so removing it can be
->> considered separately. Unassigning a counter now resets its monitor,
->> where before the lookup made the reset a no-op; the monitor is reset
->> again when the counter is next assigned.
->>
->> Fixes: a5ff6ef2d73e ("arm_mpam: resctrl: Add resctrl_arch_cntr_read() & resctrl_arch_reset_cntr()")
->> Suggested-by: Ben Horgan <ben.horgan@arm.com>
->> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
->> Cc: <stable@vger.kernel.org>
->> ---
->> v3:
->> - Keep mbwu_idx_to_mon[] and remove the cleanup. (Ben)
->> - Split out as a mpam seperate patch.
->> - Remove unnessary stable version.
->> - v2: https://lore.kernel.org/all/20261113083506.4129060-2-ruanjinjie@huawei.com/
->> ---
->>  drivers/resctrl/mpam_resctrl.c | 50 ++++++++++++++++++++++++++++------
->>  1 file changed, 42 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
->> index 8e9d5c68c2c1..0d290962ef62 100644
->> --- a/drivers/resctrl/mpam_resctrl.c
->> +++ b/drivers/resctrl/mpam_resctrl.c
->> @@ -463,6 +463,15 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
->>  	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
->>  }
->>  
->> +/* The monitor resctrl's counter @cntr_id uses for @cdp_type. */
->> +static int mon_for_cntr(struct mpam_resctrl_mon *mon, int cntr_id,
->> +			enum resctrl_conf_type cdp_type)
-> 
-> I think we can drop the comment but improve a bit on the naming. How about calling this helper mon_idx_from_cntr_id()?
-> 
-
-It's good to have self-explanatory function names; and this name matches
-the function's purpose.
-
->> +{
->> +	u32 idx = resctrl_get_config_index(cntr_id, cdp_type);
->> +
->> +	return mon->assigned_counters[idx];
->> +}
->> +
->>  static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
->>  		      enum mpam_device_features mon_type,
->>  		      int mon_idx,
->> @@ -558,7 +567,7 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
->>  
->>  /* MBWU counters when in ABMC mode */
->>  int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
->> -			   u32 closid, u32 rmid, int mon_idx,
->> +			   u32 closid, u32 rmid, int cntr_id,
->>  			   enum resctrl_event_id eventid, u64 *val)
->>  {
->>  	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
->> @@ -574,8 +583,30 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
->>  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
->>  	mon_comp = l3_dom->mon_comp[eventid];
->>  
->> -	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
->> -				 USE_PRE_ALLOCATED, closid, rmid, val);
->> +	/* A counter ID maps to one monitor per CDP configuration. */
->> +	if (cdp_enabled) {
->> +		u64 code_val = 0, data_val = 0;
->> +		int err;
->> +
->> +		err = __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
->> +				 mon_for_cntr(mon, cntr_id, CDP_CODE),
->> +				 CDP_CODE, closid, rmid, &code_val);
->> +		if (err)
->> +			return err;
->> +
->> +		err = __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
->> +				 mon_for_cntr(mon, cntr_id, CDP_DATA),
->> +				 CDP_DATA, closid, rmid, &data_val);
->> +		if (err)
->> +			return err;
->> +
->> +		*val = code_val + data_val;
->> +		return 0;
->> +	}
->> +
->> +	return __read_mon(mon, mon_comp, mpam_feat_msmon_mbwu,
->> +			  mon_for_cntr(mon, cntr_id, CDP_NONE),
->> +			  CDP_NONE, closid, rmid, val);
->>  }
->>  
->>  static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
->> @@ -603,13 +634,16 @@ static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon
->>  }
->>  
->>  static void reset_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
->> -			       int mon_idx, u32 closid, u32 rmid)
->> +			       int cntr_id, u32 closid, u32 rmid)
-> 
-> This leaves us with reset_mon_cdp_safe() which uses counter id and
-> read_mon_cdp_safe() which uses monitor index. Having these two similarly
-
-Yes, now these two functions, the mon_index/cntr_id parameter, have
-diverged.
-
-> named handlers not follow the same pattern is confusing. It seems best
-> if they support both. How about something like the below for
-> read_mon_cdp_safe() and the same pattern for reset_mon_cdp_safe()?
-
-I agree with this change. The function signatures will be more consistent.
-
-Best regards,
-Jinjie
-
-> 
->  static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
-> -                            enum mpam_device_features mon_type,
-> +                            enum mpam_device_features mon_type, bool is_cntr,
->                              int mon_idx, u32 closid, u32 rmid, u64 *val)
->  {
->         if (cdp_enabled) {
-> +               int code_idx = mon_idx, data_idx = mon_idx;
->                 u64 code_val = 0, data_val = 0;
->                 int err;
-> 
-> -               err = __read_mon(mon, mon_comp, mon_type, mon_idx,
-> +               if (is_cntr) {
-> +                       code_idx = mon_idx_from_cntr_id(mon_idx, CDP_CODE);
-> +                       data_idx = mon_idx_from_cntr_id(mon_idx, CDP_DATA);
-> +               }
-> +
-> +               err = __read_mon(mon, mon_comp, mon_type, code_idx,
->                                  CDP_CODE, closid, rmid, &code_val);
->                 if (err)
->                         return err;
-> 
-> -               err = __read_mon(mon, mon_comp, mon_type, mon_idx,
-> +               err = __read_mon(mon, mon_comp, mon_type, data_idx,
->                                  CDP_DATA, closid, rmid, &data_val);
->                 if (err)
->                         return err;
-> @@ -506,6 +520,9 @@ static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component
->                 return 0;
->         }
-> 
-> +       if (is_cntr)
-> +               mon_idx = mon_idx_from_cntr_id(mon_idx, CDP_NONE);
-> +
->         return __read_mon(mon, mon_comp, mon_type, mon_idx,
->                           CDP_NONE, closid, rmid, val);
->  }
-> @@ -537,13 +554,13 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
-> 
->         mon_type = mpam_feat_msmon_csu;
-> 
-> -       return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx,
-> +       return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx, false,
->                                  closid, rmid, val);
->  }
-> 
-> Thanks,
-> 
-> Ben
-> 
->>  {
->>  	if (cdp_enabled) {
->> -		__reset_mon(mon, mon_comp, mon_idx, CDP_CODE, closid, rmid);
->> -		__reset_mon(mon, mon_comp, mon_idx, CDP_DATA, closid, rmid);
->> +		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_CODE),
->> +			    CDP_CODE, closid, rmid);
->> +		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_DATA),
->> +			    CDP_DATA, closid, rmid);
->>  	} else {
->> -		__reset_mon(mon, mon_comp, mon_idx, CDP_NONE, closid, rmid);
->> +		__reset_mon(mon, mon_comp, mon_for_cntr(mon, cntr_id, CDP_NONE),
->> +			    CDP_NONE, closid, rmid);
->>  	}
->>  }
->>  
->> @@ -631,7 +665,7 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
->>  	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
->>  	mon_comp = l3_dom->mon_comp[eventid];
->>  
->> -	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
->> +	reset_mon_cdp_safe(mon, mon_comp, cntr_id, closid, rmid);
->>  }
->>  
->>  /*
-> 
+diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
+index 9397d677f52d..4be39e2dd5b4 100644
+--- a/drivers/clk/realtek/Makefile
++++ b/drivers/clk/realtek/Makefile
+@@ -3,5 +3,6 @@ obj-$(CONFIG_RTK_CLK_COMMON) += clk-rtk.o
+ 
+ clk-rtk-y += clk-rtk-common.o
+ clk-rtk-y += clk-regmap-gate.o
++clk-rtk-y += clk-regmap-mux.o
+ clk-rtk-y += clk-regmap-pll.o
+ clk-rtk-y += freq_table.o
+diff --git a/drivers/clk/realtek/clk-regmap-mux.c b/drivers/clk/realtek/clk-regmap-mux.c
+new file mode 100644
+index 000000000000..ba86f314bb5e
+--- /dev/null
++++ b/drivers/clk/realtek/clk-regmap-mux.c
+@@ -0,0 +1,40 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2017-2026 Realtek Semiconductor Corporation
++ * Author: Cheng-Yu Lee <cylee12@realtek.com>
++ */
++
++#include <linux/clk-provider.h>
++#include <linux/export.h>
++#include <linux/regmap.h>
++#include "clk-regmap-mux.h"
++
++static u8 rtk_clk_regmap_mux_get_parent(struct clk_hw *hw)
++{
++	struct rtk_clk_regmap_mux *clkm = to_rtk_clk_regmap_mux(hw);
++	u32 val;
++	int ret;
++
++	ret = regmap_read(clkm->clkr.regmap, clkm->mux_ofs, &val);
++	if (ret)
++		return 0xff;
++
++	val = (val >> clkm->shift) & clkm->mask;
++
++	return val;
++}
++
++static int rtk_clk_regmap_mux_set_parent(struct clk_hw *hw, u8 index)
++{
++	struct rtk_clk_regmap_mux *clkm = to_rtk_clk_regmap_mux(hw);
++
++	return regmap_update_bits(clkm->clkr.regmap, clkm->mux_ofs,
++				  clkm->mask << clkm->shift, (u32)index << clkm->shift);
++}
++
++const struct clk_ops rtk_clk_regmap_mux_ops = {
++	.set_parent = rtk_clk_regmap_mux_set_parent,
++	.get_parent = rtk_clk_regmap_mux_get_parent,
++	.determine_rate = __clk_mux_determine_rate,
++};
++EXPORT_SYMBOL_NS_GPL(rtk_clk_regmap_mux_ops, "CLK_REALTEK");
+diff --git a/drivers/clk/realtek/clk-regmap-mux.h b/drivers/clk/realtek/clk-regmap-mux.h
+new file mode 100644
+index 000000000000..1d86a7f42efd
+--- /dev/null
++++ b/drivers/clk/realtek/clk-regmap-mux.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2017-2026 Realtek Semiconductor Corporation
++ * Author: Cheng-Yu Lee <cylee12@realtek.com>
++ */
++
++#ifndef __CLK_REALTEK_CLK_REGMAP_MUX_H
++#define __CLK_REALTEK_CLK_REGMAP_MUX_H
++
++#include "clk-rtk-common.h"
++
++struct rtk_clk_regmap_mux {
++	struct rtk_clk_regmap clkr;
++	unsigned int mux_ofs;
++	unsigned int mask;
++	unsigned int shift;
++};
++
++#define __rtk_clk_regmap_mux_hw(_p) __rtk_clk_regmap_hw(&(_p)->clkr)
++
++#define __RTK_CLK_REGMAP_MUX_HW(_name, _parents, _ops, _flags, _ofs, _sft, _mask) \
++struct rtk_clk_regmap_mux _name = { \
++	.clkr.hw.init = CLK_HW_INIT_PARENTS_HW(#_name, _parents, _ops, _flags), \
++	.mux_ofs = _ofs, \
++	.shift = _sft, \
++	.mask = _mask, \
++}
++
++#define RTK_CLK_REGMAP_MUX_HW(_name, _parents, _flags, _ofs, _sft, _mask) \
++	__RTK_CLK_REGMAP_MUX_HW(_name, _parents, &rtk_clk_regmap_mux_ops, _flags, _ofs, \
++				_sft, _mask)
++
++static inline struct rtk_clk_regmap_mux *to_rtk_clk_regmap_mux(struct clk_hw *hw)
++{
++	struct rtk_clk_regmap *clkr = to_rtk_clk_regmap(hw);
++
++	return container_of(clkr, struct rtk_clk_regmap_mux, clkr);
++}
++
++extern const struct clk_ops rtk_clk_regmap_mux_ops;
++
++#endif /* __CLK_REALTEK_CLK_REGMAP_MUX_H */
+-- 
+2.43.0
 
 
