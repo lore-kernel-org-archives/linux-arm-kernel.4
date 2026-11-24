@@ -2,61 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21412606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9692606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JC94F3+N;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E8DQrljj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2stLlFOv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=klNlh1sd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=z4Y9dHJ0ZeVPS9YGhg84jRxvoO3miOq2kd20onnIAEU=; b=JC94F3+NFuabiN
-	/lXmkAuPkOTV1UmT7/8TOG8K4GWYD1znthPAoS6cyR8IitwVwGePBeHj2lbYgN/2UUdaU1WsI0QH4
-	dqGktQc5TySl4ZD7uShvIWbZQw9QfTPJbrpdRoKP2TFpWScLxxcXO/1FmB3BVfrO6P1kkX+YFJyiS
-	/h8loky5380gyQ7aKwZmmfUFEmGnx26gKjvZzynG9yg6OeXES9w2EoABLxCQhntCj8BG7HqzNjUwu
-	oPDfpc0omXWukr004k2WaaQto+oIV2p2CMa5isTUq0/YAFGe1XkuS6c4Jy4R6JCDARzniS06UtmAn
-	NNZxj82K1tnK9F3oQHhg==;
+	List-Owner; bh=HAmhaTwlq0ql9vpEfF30JAvsIWV3GCSiNAxons2m7lE=; b=2stLlFOvpzVEWF
+	BGbcZBKaNMwbOMVwa+8vScI/FqU/Oru2CO7fNnxYeDG6gk/7tDP4AM3kzSX3pUlxqyjnT4qCjrayt
+	cMhOywIm2BjQOLGfQgzkfzhQDPtsOltLKMowLyWsSNOQin3ktzE0IA9fippbDIyXyr4zu0XR1a7KH
+	Au/B6Lblj8x6WvLX5TIuOhCdEZLKTiiHZNSWwt2sGXhfkShwyroiwiif9LApQARn53S19uO/cQbx0
+	i5zoCWe+o8xQlFvGv5K6QEtfF5a5MTV67EsHMXEtBRmOndgH3zf6J4RrRiugna/1AzbMlesXbFYwQ
+	7MlFqYqCD6LhW6WYcZsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp5q-00000006Qfw-1nfH;
-	Tue, 24 Nov 2026 11:53:50 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVp6f-00000006QrH-3PST;
+	Tue, 24 Nov 2026 11:54:42 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp5o-00000006QfX-3mPG;
-	Tue, 24 Nov 2026 11:53:48 +0000
+	id 1xVp6e-00000006QrA-12xD
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 11:54:40 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E247562014;
-	Tue, 24 Nov 2026 11:53:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A25F31F000E1;
-	Tue, 24 Nov 2026 11:53:43 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id AC840412AF;
+	Tue, 24 Nov 2026 11:54:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9A321F000D2;
+	Tue, 24 Nov 2026 11:54:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795521227;
-	bh=z4Y9dHJ0ZeVPS9YGhg84jRxvoO3miOq2kd20onnIAEU=;
+	s=k20260515; t=1795521279;
+	bh=HAmhaTwlq0ql9vpEfF30JAvsIWV3GCSiNAxons2m7lE=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=E8DQrljjt6Y9V0W0q/3UmGz40Z4NfF+SczkB2scmuxWSZFHr1krz0MSJ5KODrEWLo
-	 s57LDSJqhEW+j1UYqHwNiw6c60ijJQH0vnoCjE7UIj+5Sz6kvr5xsslxfgA0Odws7U
-	 T1Vv9fSnwkC53ovBZLJcHGARkwJyKpXBmyBigbFk5JZ5mBeb5OVbXqeAiqg5LUMby4
-	 g7Xhm1igbfmpkS98mQARr4kvnrQ1Kan/W8hChUnGGRLlA8sIIbdIXxhCMLCRwKxyCx
-	 94dgRARP5KhmeTRLAEiKDOB/W1COxoGKp08b+m/EiHrY1m/Sn17WIEaRMkULhGD0gk
-	 HYpYa79TsSZHQ==
+	b=klNlh1sdr91oxUGKW9agsfOzeuWO6an+iHiQdLW3AI0IpE0482b+mUMmEy4k0dZeh
+	 2HIJmzpgS8IlGlE104nDfQycIN2ucAQCHK5yqWpFoJdAB5Nhzexvhe2P/YJr0W+fnC
+	 59y+dJSjUTIKv8eJ4Lx+eoCL8sqt25dhjg1lYzYeytGtcrD5geuOvC2UWZfJsfewFT
+	 YPkUfcx2UOvqiNkIE6ijkELonEnRCPGtksMq1+rRRy68XJ6Ef0OSDc0qx68jl7bNrD
+	 bgXWNNBQl65CxQWnbAcc1M+U7dBKWRaNW0YaFFJUFTekUWjpW+uS5Ai4Vtas73rnKh
+	 rrKERPyHvpUMw==
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Niklas Cassel <cassel@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261109184948.477095-1-robh@kernel.org>
-References: <20261109184948.477095-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: PCI: rockchip-dw: Allow endpoint supply
-Message-Id: <179552122328.34281.17286958680139728283.b4-ty@b4>
-Date: Tue, 24 Nov 2026 12:53:43 +0100
+To: frank.li@oss.nxp.com, jingoohan1@gmail.com, l.stach@pengutronix.de, 
+ lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+ bhelgaas@google.com, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+ festevam@gmail.com, hongxing.zhu@oss.nxp.com
+Cc: linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Richard Zhu <hongxing.zhu@nxp.com>
+In-Reply-To: <20261109022139.3226052-1-hongxing.zhu@oss.nxp.com>
+References: <20261109022139.3226052-1-hongxing.zhu@oss.nxp.com>
+Subject: Re: [PATCH v2] PCI: imx6: Enable L1SS support when supports_clkreq
+ is true
+Message-Id: <179552127457.34411.18338691732347833133.b4-ty@b4>
+Date: Tue, 24 Nov 2026 12:54:34 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -80,14 +80,24 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Mon, 09 Nov 2026 12:49:47 -0600, Rob Herring (Arm) wrote:
-> Rockchip PCIe endpoint DTs describe the 3.3V PCIe regulator with
-> vpcie3v3-supply.
+On Mon, 09 Nov 2026 10:21:39 +0800, hongxing.zhu@oss.nxp.com wrote:
+> Enable L1SS for the i.MX6 PCIe controller when the `supports_clkreq` flag
+> is set. This ensures that the PCIe endpoint can enter low-power states
+> efficiently when the link is not in use.
+> 
+> The commit a00bba406b5a ("PCI: dwc: Advertise L1 PM Substates only if
+> driver requests it") clears L1SS capabilities by default. However, the
+> i.MX PCIe controller supports L1SS as indicated by the settings in the L1SS
+> capabilities register. By setting `dw_pcie.l1ss_support` to true when
+> `supports_clkreq` is true, enable proper utilization of L1SS for i.MX6 PCIe
+> configurations.
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: PCI: rockchip-dw: Allow endpoint supply
-      commit: c72d9039a00dd28ce9f99ba73112c68ca0462b35
+[1/1] PCI: imx6: Enable L1SS support when supports_clkreq is true
+      commit: adf478a1cc9985ca1e7143fc185f2a4c59da7a30
 
 Best regards,
 -- 
