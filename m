@@ -2,79 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84904606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:05:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369B1606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qDwmLlSj;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=bUl4I4qK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gB6swKVa;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=lsmJm5pU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Cl1G/Mg3MLListnA7EQNEKCHeIDoZedVmpyUo6+IOEs=; b=qDwmLlSjR1zbdr
-	4sRSJpdV7AeScCnXDv+BLX+40ZC27516JrTuDwG3SSHVVJKaXJpMMcQHSgs5LXRl35O1yU+DTIaw1
-	t3spSfdmjyysIlKSHomPjhXs4buWTdWMXLxJKHyjJT0EQYK/1UcTcPCeSTUBJclxJOmaMk6cufc2s
-	pb4tG0vJYAF1XbX9WbBfURIwAu7yFIdZRa5diG4wzG1eaE7MFpNBOUJ3im5hriL0AupoSdQAtXP6T
-	XGFwsyNWIu+1jNmxymnPH1+E7+t29eQZTqj+7YGTTD7Zl/ILoNt9WSRT6QxsVjqVJINKa0DMPzNSI
-	VdWeNuquw35BRwW/Pe1Q==;
+	List-Owner; bh=kagbCpv1QEtmm+QT0IKoz1HubJ8iePC5aHt6FNXFlZ0=; b=gB6swKVapFfzMq
+	cTxucX5lZFMQhp43ZriSIDJwT+reJTjPPcEK1RJhv2vgYdJyf2nGWz1GWRICMnwSDQC4Do0usW1uI
+	Pn5ybbKUEh5krWuZEP9T+V06KEcto+1wLzN0V0Aa0nfYKWRrp8NaC+1hWxgMpaG4ain7iS4qRKKtY
+	XQbp99qQndUY54TfhUfSQsIzqRftuDy268Y9rsKmsRvn5BH8M1jvUU7uzjTwnZLIhUYFB2ylF59Lq
+	SeLKTD4rZfXkQO6txdoNoA5YAD5UZ3j8GfvuGc3svpBE446SLK7+oYHKrOh0QTXrxmjZjPx49MFSJ
+	/zQD+BYql46RcY8KaCfw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu3L-00000007I9q-2KpG;
-	Tue, 24 Nov 2026 17:11:35 +0000
+	id 1xVuuD-00000007SU2-1CzH;
+	Tue, 24 Nov 2026 18:06:13 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVu17-00000007H0D-0onR
+	id 1xVuuA-00000007STY-3kpy
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:09:33 +0000
+	Tue, 24 Nov 2026 18:06:12 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 853BE1C0A;
-	Tue, 24 Nov 2026 09:09:13 -0800 (PST)
-Received: from e126453.arm.com (e126453.arm.com [10.33.8.63])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AB2293F763;
-	Tue, 24 Nov 2026 09:09:13 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B4BF0497;
+	Tue, 24 Nov 2026 10:06:06 -0800 (PST)
+Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9D8BD3F86C;
+	Tue, 24 Nov 2026 10:06:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795540156; bh=lla7fRQ9ubK7UCYFc/yUdmuI1cGz4l0bT3PTGoiJq8Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=bUl4I4qKXOYiT9kAy1gWLDQMyRJ7tr9Pea5q/SHd2Z9f+k82Gg8O8nf+mrLr5btDt
-	 8Dn1sJa7A+AoLpCEOhDAuYV0mrRup52O3sXH/vqKOyH78OJ3IKm1LznLmLJihbS1as
-	 x7ZqgF7LoIQ1hvRuyP5P0hMKj2yjOeICHyT53I+k=
-From: Anthony McGivern <anthony.mcgivern@arm.com>
-Date: Tue, 24 Nov 2026 17:07:52 +0000
-Subject: [PATCH 24/24] MAINTAINERS: Add entry for mali-c720 driver
+	t=1795543569; bh=NZoB2/gQBelnDkcKG2o810x2RG3gJOlJVfE8j9DhwZE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=lsmJm5pUvXw5zs6ZQXJH7igNWStTyPpD3nzfAq5AtIy5J8p2J1iXcK0YKa+eBD28s
+	 E3Bk4Ks6sAeUHkiPBMGwU5Rz4fBeXlu31neTMri1+KVSJiMV+j9F5PUBd81mgRqUYv
+	 VlMyutM0mTuozmAp/io0096/63A6y/zc86AExrto=
+From: Leonardo Bras <leo.bras@arm.com>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Leonardo Bras <leo.bras@arm.com>,
+	kvmarm@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Dan Carpenter <dan@pereq.eu>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
+Date: Tue, 24 Nov 2026 18:06:02 +0000
+Message-ID: <awXSCgN4JLLKXErv@LeoBrasDK>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <864id6yyjy.wl-maz@kernel.org>
+References: <20261123182312.4842-1-maz@kernel.org> <awW5QKqGZAqw1ru9@LeoBrasDK> <864id6yyjy.wl-maz@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-b4-initial-upstream-candidate-v1-24-0cb9bde1bd30@arm.com>
-References: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
-In-Reply-To: <20261124-b4-initial-upstream-candidate-v1-0-0cb9bde1bd30@arm.com>
-To: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: Anthony McGivern <anthony.mcgivern@arm.com>, 
- Vincenzo Frascino <vincenzo.frascino@arm.com>, 
- Nayden Kanchev <nayden.kanchev@arm.com>, 
- Konstantin Babin <konstantin.babin@arm.com>, 
- Linus Walleij <linusw@kernel.org>, jacopo.mondi@ideasonboard.com, 
- kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
- dan.scally@ideasonboard.com, Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Anthony McGivern <Anthony.McGivern@arm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540079; l=1300;
- i=Anthony.McGivern@arm.com; s=20261124; h=from:subject:message-id;
- bh=gwm371NAmKOxnRaNds+4uLTJHOtoy/2+DHC1Mr7k2p0=;
- b=0lxdEHwrHw6DY4UHEjB2QJgO30puD9OOmiAT670llLbXbop41rljqaJ837TpWYy9toenI2ywU
- lAiUM4gWQFCDLv5Cw+QYqdD7X8wekGZMCyn7nHpnd0oOWQSCJJVoUYT
-X-Developer-Key: i=Anthony.McGivern@arm.com; a=ed25519;
- pk=cvw1HHVRuWpdkn55JpnRyCO2oGBkBWaBXcc2S3CmHTU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_090917_355046_8A78AAF6 
-X-CRM114-Status: GOOD (  10.06  )
+X-CRM114-CacheID: sfid-20261124_100611_021736_8DA12FED 
+X-CRM114-Status: GOOD (  43.91  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,42 +87,132 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Anthony McGivern <Anthony.McGivern@arm.com>
+On Tue, Nov 24, 2026 at 04:38:41PM +0000, Marc Zyngier wrote:
+> On Tue, 24 Nov 2026 16:20:16 +0000,
+> Leonardo Bras <leo.bras@arm.com> wrote:
+> > 
+> > On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
+> > > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
+> > > that describe a base granule size smaller than the host's page size,
+> > > we take the resulting size at face value and feed it to the S2 unmapping
+> > > code. Which legitimately screams about something not being page-aligned.
+> > > 
+> > > The architecture allows us to drop the TLBI on the floor, as we don't
+> > > support a S2 granule size smaller than the host's page size. But it turns
+> > > out that doing so is proving pretty hard (we call compute_tlb_inval_range
+> > > from a number of places, none of which is amenable to an early out).
+> > > 
+> > > Instead, detect the annoying case, and pretend that we don't have a TTL
+> > > hint at all, leaving the size upgrade mechanism to take place and use
+> > > the largest possible size for the guest's S2 granule size.
+> > > 
+> > > This will still allow nonsensical stuff to get through, such as a 4kB
+> > > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
+> > > on a 16kB page size host, but that's not worse than doing nothing, and
+> > > the host code won't get shouty.
+> > > 
+> > > Reported-by: Dan Carpenter <dan@pereq.eu>
+> > > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
+> > > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
+> > > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > > Cc: stable@vger.kernel.org
+> > > ---
+> > > 
+> > > Notes:
+> > >     Reposting this as a first class patch, as I'd like to plug that one
+> > >     as early as possible (and Dan has plenty of other patches in flight...)
+> > > 
+> > >  arch/arm64/kvm/nested.c | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+> > > index 78d5b18dbd2d6..36e4e83badf0a 100644
+> > > --- a/arch/arm64/kvm/nested.c
+> > > +++ b/arch/arm64/kvm/nested.c
+> > > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
+> > >  	 */
+> > >  	max_size = __ttl_to_size(ttl);
+> > >  
+> > > +	/*
+> > > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
+> > > +	 * possible invalidation. Don't try this at home, kids!
+> > > +	 */
+> > > +	if (max_size < PAGE_SIZE)
+> > > +		max_size = 0;
+> > > +
+> > >  	if (!max_size) {
+> > >  		/* Compute the maximum extent of the invalidation */
+> > >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
+> > > -- 
+> > > 2.47.3
+> > > 
+> > 
+> > Hey Marc,
+> > 
+> > I think the changes make sense, although rounding up to PAGE_SIZE also 
+> > looks a valid solution in my unexperienced viewpoint.
+> 
+> No, it isn't the same thing. Taker the example I have given, where the
+> host is 16k, the guest 64k, and the invalidation 4k. If you round
+> things up to 16k, you're still not invalidating anything that is
+> consistent with the *minimum page size* for the guest. Anything larger
+> is a multiple of both the host and guest page sizes, and therefore
+> always correct.
 
-Add a MAINTAINERS entry for the mali-c720 driver and its associated
-documentation.
+Ah, right!
+In this case, could we not invalidate the largest page size supported 
+(64k)?
 
-Signed-off-by: Anthony McGivern <Anthony.McGivern@arm.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 44540a1eb2b8088f9da95a9b6f83b4bf05188ee1..1bf854fb64fb7fcfef50d956350df05da3b2df75 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2392,6 +2392,19 @@ F:	Documentation/userspace-api/media/v4l/metafmt-arm-mali-c55.rst
- F:	drivers/media/platform/arm/mali-c55/
- F:	include/uapi/linux/media/arm/mali-c55-config.h
+IIUC:
+- To have max_size between 0 and PAGE_SIZE means it's either 4k or 16k, 
+  so invalidating the 64k should be enough?
  
-+ARM MALI-C720 ISP DRIVER
-+M:	Anthony McGivern <anthony.mcgivern@arm.com>
-+M:	Vincenzo Frascino <vincenzo.frascino@arm.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/admin-guide/media/mali-c720-graph.dot
-+F:	Documentation/admin-guide/media/mali-c720.rst
-+F:	Documentation/devicetree/bindings/media/arm,mali-c720.yaml
-+F:	Documentation/userspace-api/media/drivers/mali-c720.rst
-+F:	Documentation/userspace-api/media/v4l/metafmt-arm-mali-c720.rst
-+F:	drivers/media/platform/arm/mali-c720/
-+F:	include/uapi/linux/media/arm/mali-c720-config.h
-+
- ARM MALI PANTHOR DRM DRIVER
- M:	Boris Brezillon <boris.brezillon@collabora.com>
- M:	Steven Price <steven.price@arm.com>
+- max_size=0 from __ttl_to_size() means largest blocksize supported by 
+  stage2 in current TG. 
 
--- 
-2.55.0
+The two above are opposite ends, no? Like, the first is "this is too small 
+for us to invalidate, let's pick something bigger", and the other one is 
+"we want to invalidate the largest supported block".
 
+Is it really ok to put them in the same bucket?
+
+> 
+> > 
+> > I am curious if there is any particular reason not to merge that with the 
+> > test below, such as:
+> > 
+> > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+> > index 78d5b18dbd2d6..36e4e83badf0a 100644
+> > --- a/arch/arm64/kvm/nested.c
+> > +++ b/arch/arm64/kvm/nested.c
+> > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
+> >  	 */
+> >  	max_size = __ttl_to_size(ttl);
+> >  
+> > +	/*
+> > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
+> > +	 * possible invalidation. Don't try this at home, kids!
+> > +	 */
+> > +	if (max_size < PAGE_SIZE) {
+> > - 	if (!max_size) {
+> >  		/* Compute the maximum extent of the invalidation */
+> >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
+> > --
+> > 
+> > Given max_size is unsigned (>=0), and it will be changed again in the 
+> > switch case below, I was not able to understand the need to make it zero 
+> > first.
+> 
+> There is more than one way to write similar things, and what I wrote
+> made the most sense to me.
+> 
+> I want to single out this particular corner case, which is not the
+> much more general case if "max_size is 0 because there is no TTL
+> information". Lumping these two things together makes it, IMO,
+> pointlessly hard to reason about the various cases.
+
+Ah, I see it now, makes much more sense to have it that way.
+
+Thanks!
+Leo
 
