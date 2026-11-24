@@ -2,82 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34560606A691
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367AC606A68B
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z3irH+cf;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=CNxO132C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Py8Og4pf;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=Zi31FqE9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Kg8eWBI9m2iDNmFaG/WS++U63jvSnwVF4E3kBOsrLfI=; b=z3irH+cfKk/g0V
-	u7tB4LXXXCJwf4FXX2MEo/EuOcB9kLAJCVoMEVhNhqxvbk4hKPi/37Y/omBZ1uUkow6nd2W6qmNXn
-	s1GjvjZb/OTOArKCFi1c0bnS5Ew3aQRGmOl5lvtiMP0MsGPZLEU1z0QQJxH8Wzfbl8242B/pyaCU7
-	HJuRygrWhL2Ae3rZdf7pvppJn4gqar6xMBN+0/eCwA4d+7s3g8yI9UrK8beYJedV1KCFm7YglphSg
-	PWfip0xNJsmP/etfUaeck0fcakprbbfXt31d8qRJze+fzQTo8jUXy1sLlhbRgRbMvXqH009YPozRa
-	ssjKIAHzly33Q2kv3BXQ==;
+	List-Owner; bh=CdUdyJ+8j1hb94uckgP1slGM98Pz+Lnjg+RuI+nwn9I=; b=Py8Og4pfz3EjGJ
+	aEXWr7qyiSFZfiZG1qMa9lvfni5D8s/da5ntWyl3WUnLjAkxwWF15c7wGULUastL55s+sTLCzlBbz
+	VDsCTsob1veA/dJAooK2cAmRrL6wydAkyTMm6W0eBRCVv4nSf3H/3n/tKJvq8Q7HHENYj5nsvkbPS
+	6zC24URAE4aGOpK49qHXVGQAeHNJb9Css71oxzx00KssshNlp9ANpi8GwPWKkBw/7U2G01V6FqAiO
+	UcPfXUh6dJagA/MX2CwZA565DpdSsSyS84YgqBpYDkMnYU8OrD3iXD0gECBN2RKtxfw3f97f/Oje1
+	8odi8TdkqmndiEf0oP8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwYn-00000007eIQ-3pCT;
-	Tue, 24 Nov 2026 19:52:13 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVwXg-00000007dVI-1ika
+	id 1xVxqn-00000007pTv-0hiu;
+	Tue, 24 Nov 2026 21:14:53 +0000
+Received: from mail-yx1-xb136.google.com ([2607:f8b0:4864:20::b136])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVxqk-00000007pS7-3tJm
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 19:51:06 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE3CC497;
-	Tue, 24 Nov 2026 11:51:00 -0800 (PST)
-Received: from pluto.guest.local (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 220D13F763;
-	Tue, 24 Nov 2026 11:50:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795549863; bh=tQEYU1qUXpELBGFDmQO86exYN1aZaSo/r5Mey0JUx1M=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CNxO132CJB7C/m1VGMjolu8EW5fZ+tn1OT0uIlIg5IUa3+r6OFqUNU4T5QhnE7KaX
-	 6k9PoYt26G5vTigLrZajdEbLHaTpMqWm0REON42lxeZqWlBhD9B1SRU0GPrNyjZeN1
-	 Zk8abraz7ovlnB9aEo4vBB0e61ijjDmDlai0isXc=
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	arm-scmi@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: sudeep.holla@kernel.org,
-	james.quinlan@broadcom.com,
-	f.fainelli@gmail.com,
-	vincent.guittot@linaro.org,
-	etienne.carriere@st.com,
-	peng.fan@oss.nxp.com,
-	michal.simek@amd.com,
-	d-gole@ti.com,
-	jonathan.cameron@oss.qualcomm.com,
-	elif.topuz@arm.com,
-	lukasz.luba@arm.com,
-	philip.radford@arm.com,
-	david@kernel.org,
-	souvik.chakravarty@arm.com,
-	leitao@kernel.org,
-	kas@kernel.org,
-	puranjay@kernel.org,
-	usama.arif@linux.dev,
-	kernel-team@meta.com,
-	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v17 16/34] firmware: arm_scmi: Add Telemetry TDCF parsing for BLK_TS lines
-Date: Tue, 24 Nov 2026 19:48:22 +0000
-Message-ID: <20261124194841.1147072-17-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261124194841.1147072-1-cristian.marussi@arm.com>
-References: <20261124194841.1147072-1-cristian.marussi@arm.com>
+	Tue, 24 Nov 2026 21:14:52 +0000
+Received: by mail-yx1-xb136.google.com with SMTP id 956f58d0204a3-67bee1f693bso4037178d50.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:14:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795554889; cv=none;
+        d=google.com; s=arc-20260327;
+        b=s43cs/N/nTjuRdMEZVeEz8GmBs2hVsidmQzgyVcpK12Rvsd6d1AKDvUpnYLemWIKFt
+         1pM3888apnC7aMONNOiomsW3AkX0Dt1E024Eyru165UqPXlzP8l6Ikp9qGHwVkFBLS4m
+         N+X2UxSuWN0R/b/6iywEPh463f8gXTdmWf3SgBDPx8LVHnz7JIYsVirUL+6NUe3MiDss
+         sY0XD0tsb2q0kwbGHvczuzsgVcwfWhCXIcAuYO3pwpIWIfipvWJN+ujAn4JIEqDsYLO5
+         Pnj8G0SwOMwDABPTEqk0DHeP5NmxZ8L8RQwAfPwmRD25WzfV9d77S/8kKcX3i+WdYqDA
+         ByTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=CdUdyJ+8j1hb94uckgP1slGM98Pz+Lnjg+RuI+nwn9I=;
+        fh=wHZE6URHjPpRQq8Q6+XwN0Bdjz12zqNbz9FWIxw27rI=;
+        b=c6XDccGZhSfKAMGW7+l3mY+etHRK1kMcXGL2aCSNsncljdh6Sa6o0GH8y4TicHsusb
+         tZmySFPvIi4O6VyRFmBbPu6bFj9ZyM/aTU7gYQgnKlF9b3/F6BEA/an3fmMnX2O12Fop
+         V/TsrORzHq2+MZ7UbGSyzu/6D8RVIr74A0m4+k5cATOtTABO4yzWL0StCdZweCV7DpcL
+         sNPyGQg2ekkcYvggVTZGXVqBtoy1JxgwpJsjmW2MFcquc6A3I97hK00psnFGIPtaTjCO
+         VKUrZ2DPeJHiq9nU8R+exRShyTpEG7q7+NQymJ+1uH+iUP2rd0BOUvyqpotxOUEb5iWs
+         e/yQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20260707; t=1795554889; x=1796159689; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=CdUdyJ+8j1hb94uckgP1slGM98Pz+Lnjg+RuI+nwn9I=;
+        b=Zi31FqE9OEctwkEU7K4UImOdirAGjTjm1+RM8pw9gLrWa78hKJ87TI9v3Ai10++Cct
+         zsFGVUUqFJmACeqw9X36X2/oGKes3W8kS2KnvumpjbiGxG+1+HO9hkJQanJUBatv3hEb
+         SF3tj6dK0eRHsLhrv7TsZQCkA8IJ0UL9Rz/k3esW17sAbutb9MbCiHpKACcGh0d91m09
+         g1bIg4bYR+Ze7jwrFH73PE3Rh5Wpo1XKZmScQ8+iCwocEYBkhNIk3b24N2pFQwtxcwhe
+         eQc0tcE68os/kZ0BRFJtTXDG214UFF9pfsn3vJYlKchqscIGx/dZHLuRj4BwEw0IH4JO
+         Xlmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795554889; x=1796159689;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=CdUdyJ+8j1hb94uckgP1slGM98Pz+Lnjg+RuI+nwn9I=;
+        b=QmODjuyrsCYc9mMpymd6OdRV93eifLfFqouJAGAOjSl/qs19JcdUDLvIrYmIZPujTV
+         oQMGpOPixLf/DFqdI4vUp77JHNwDlwP1tMsCv7kLcYJQ1tBX/F3YsJp5cBX1idFitvTk
+         pBhtOor9NYLvpZdt4RsGi8tVthhibZiImUHvRzjSS3cXILnCSqjDpl4HfLVno87o1iKW
+         lu4Fy1ATZJCM3phX/IT3SS323amWl+ZAh7xk83Y+G2OalCy7qNvBowKDdxP+OieTJEjc
+         GIxZhdFvDpxXJWtiKv6EQyLPnhoNWoaxW+2gPXUbrdr5zSkMpkyZkvjMVSTkocB1Qxlt
+         xTFw==
+X-Forwarded-Encrypted: i=1; AL+hErFdcc5lc3Rev7zpTaMVRzi2ZAMDkFcaCz6hgQGY1mwT5x02PZYXBRuPUk6mRiFXgBPEtq8ka6gAaS1V8/adL14F@lists.infradead.org
+X-Gm-Message-State: APuU4Z/nby+ICiHffd6SoHBBHYGyGbeV15hIqwjbjr24ixzZungI+m34
+	tQK4yg/LgwY0oduU0hdNEPteGpCz/XI41th+jdiRd1OyKq3nQp973KetD6vKp8BIfRnkXuD0P0z
+	ppuIR96vtlKJrSkhfESxFAZLYWBlSJ+w=
+X-Gm-Gg: AZFdTZcpVerLQq39lC7JLnUPsWt4NSAqh3iKch/iR0o/AczbZEEBesCIYQk8sQC7z5V
+	WtkAjQfeNMJL5sUR6hmB9789dYap4MGFEZfcjmWDAO4WPyW3//OZWH9k1XnRV9Pg8+4Y6bAwwE6
+	LJbn4kDcDmcS7KMAbAxBYoqqIN/LtADjsDvzwztsP/rHz3XSpzmg/wm+aHEEfII0dSHjQUeiqeq
+	TAKE1vY7CiqS2g8IbgZjxMT6Jsic/lFwd3LxZkuVc1Q7HJIv/if6f5eOH1JEeQWRzk4YX+6IjJi
+	Np+nUnFjj74XYxOTEuo2MCrfNDJs9+q66af14hMzL6yd8UT5eERZ7T7Tg35K+DUWG2X8JQt/DOc
+	dniGySYnfnMYaNr864X0+/O0zjIslBdahuXYL1JwXoc/GfHqvmqT8AgCQB4J83J61jZxzeQ==
+X-Received: by 2002:a05:690e:4090:b0:67d:a5bf:ac89 with SMTP id
+ 956f58d0204a3-67df42b4d7dmr8236792d50.10.1795554889394; Tue, 24 Nov 2026
+ 13:14:49 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261018-audin-v5-0-4b8cc13a1b22@baylibre.com>
+ <20261018-audin-v5-1-4b8cc13a1b22@baylibre.com> <CAFBinCC+-N8LvoXZwMhoxjOzXgoYUfDKCcvmD7Uuph5=hTSg7g@mail.gmail.com>
+ <71ede0e6-7f8f-4594-ae56-5be10f9159a3@baylibre.com>
+In-Reply-To: <71ede0e6-7f8f-4594-ae56-5be10f9159a3@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 24 Nov 2026 22:14:38 +0100
+X-Gm-Features: Aa3M54rEVwCpdz6_8gjaGQEhKA7ZqL-_05evb2pOjFxPbafFazCrzB2je-Od50w
+Message-ID: <CAFBinCCd==1Vf7jMCHP0VuWTNa7A5FvRfPYdk2zUaZ8eR54Z+A@mail.gmail.com>
+Subject: Re: [PATCH v5 1/7] ASoC: dt-bindings: add amlogic,gxbb-audin
+To: Valerio Setti <vsetti@baylibre.com>, xianwei.zhao@amlogic.com
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_115105_053873_3B0FFEE8 
-X-CRM114-Status: GOOD (  27.01  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_131451_002802_7069A6D0 
+X-CRM114-Status: GOOD (  38.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,550 +125,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support to parse, track and link TDCF BLK_TS lines to the related
-discovered DataEvents.
+Hi Valerio,
 
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
-v16 --> v17
- - check TDE TS type, update from last_rate
-v15 --> v16
- - WARN_ON(BLK_TS_INVALID) but keep active_bts valid
- - invalidate TDE cache on blkts_unlin
- - cleanup stale lines on shmti cleanup
-v14 --> v15
- - use proper cast on tlm_collect
- - use snapshots to track and collect BLK_TS during full scan bulk reads
- - fix too early invocation xa_destroy(xa_lines)
-v13 --> v14
- - split out of previous single patch implementing parse SHMTI routines
----
- drivers/firmware/arm_scmi/telemetry.c | 352 +++++++++++++++++++++++++-
- 1 file changed, 344 insertions(+), 8 deletions(-)
++Cc Xianwei Zhao, I would appreciate it if you could take some time to
+help us clarify the questions below (or refer us to a colleague).
 
-diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
-index ba4ba1d2c00c..414765f46c77 100644
---- a/drivers/firmware/arm_scmi/telemetry.c
-+++ b/drivers/firmware/arm_scmi/telemetry.c
-@@ -12,6 +12,7 @@
- #include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/err.h>
-+#include <linux/hash.h>
- #include <linux/io.h>
- #include <linux/limits.h>
- #include <linux/minmax.h>
-@@ -159,6 +160,11 @@ struct line {
- 	__le32 data_high;
- };
- 
-+struct blk_tsline {
-+	__le32 ts_low;
-+	__le32 ts_high;
-+};
-+
- struct tsline {
- 	__le32 data_low;
- 	__le32 data_high;
-@@ -263,6 +269,7 @@ struct payload {
- 	union {
- 		struct line l;
- 		struct tsline tsl;
-+		struct blk_tsline blk_tsl;
- 	};
- };
- 
-@@ -470,6 +477,10 @@ struct telemetry_info {
- 	struct scmi_telemetry_res_info *(*res_get)(struct telemetry_info *ti);
- };
- 
-+static void __scmi_telemetry_line_put(struct telemetry_line *line);
-+
-+static void scmi_telemetry_de_unlink(struct scmi_telemetry_de *de);
-+
- static struct scmi_telemetry_res_info *
- __scmi_telemetry_resources_get(struct telemetry_info *ti);
- 
-@@ -478,6 +489,12 @@ static inline struct tdcf *snap_tdcf(struct shmti_snap *s);
- static int scmi_telemetry_shmti_scan(struct telemetry_info *ti,
- 				     unsigned int shmti_id, enum scan_mode mode);
- 
-+static inline
-+struct mutex *lock_for_payld(struct mutex *locks, unsigned long offset)
-+{
-+	return &locks[hash_long(offset, PAYLD_HASH_BITS)];
-+}
-+
- static inline void
- scmi_telemetry_de_state_update(struct telemetry_info *ti, enum de_state state,
- 			       bool *current_state, const bool next_state)
-@@ -613,6 +630,14 @@ static int scmi_telemetry_tde_register(struct telemetry_info *ti,
- 	return ret;
- }
- 
-+static inline void scmi_telemetry_tde_cache_invalidate(struct telemetry_de *tde)
-+{
-+	lockdep_assert_held(&tde->mtx);
-+
-+	/* Invalidate cache */
-+	tde->last_magic = TDCF_BAD_END_SEQ;
-+}
-+
- static inline bool
- scmi_telemetry_tde_cache_stale(struct telemetry_de *tde, const u32 magic)
- {
-@@ -960,16 +985,24 @@ static int iter_de_descr_process_response(const struct scmi_protocol_handle *ph,
- 	return 0;
- }
- 
--static void scmi_telemetry_tdes_cleanup(struct telemetry_info *ti)
-+static void scmi_telemetry_tdes_cleanup(void *arg)
- {
-+	struct telemetry_info *ti = arg;
- 	struct scmi_telemetry_de *de;
- 	unsigned long idx;
- 
-+	/*
-+	 * Unlinking all the BLK_TS/UUID lines related to a DE triggers also
-+	 * the deallocation of such lines when the embedded refcount hits zero.
-+	 * Note that the UUID lines are also referenced and refcounted by the
-+	 * global UUID RCU array, so they won't be deallocated here.
-+	 */
- 	xa_for_each(&ti->xa_des, idx, de) {
- 		struct telemetry_de *tde = to_tde(de);
- 
- 		guard(mutex)(&tde->mtx);
- 
-+		scmi_telemetry_de_unlink(&tde->de);
- 		scmi_telemetry_free_tde_put(ti, tde);
- 	}
- }
-@@ -1280,16 +1313,29 @@ static int scmi_telemetry_shmti_list(const struct scmi_protocol_handle *ph,
- 	return 0;
- }
- 
-+static void scmi_telemetry_shmti_lines_cleanup(struct telemetry_shmti *shmti)
-+{
-+	struct telemetry_line *line;
-+	unsigned long idx;
-+
-+	guard(mutex)(&shmti->lines_mtx);
-+	/* Drop all remaining currently unbound lines and their containers */
-+	xa_for_each(&shmti->xa_lines, idx, line)
-+		__scmi_telemetry_line_put(line);
-+
-+	xa_destroy(&shmti->xa_lines);
-+}
-+
- static void scmi_telemetry_shmti_cleanup(void *arg)
- {
- 	struct telemetry_shmti *shmti = arg;
- 
-+	scmi_telemetry_shmti_lines_cleanup(shmti);
-+
- 	cleanup_srcu_struct(&shmti->srcu);
- 
- 	kvfree(shmti->snaps[0]);
- 	kvfree(shmti->snaps[1]);
--
--	xa_destroy(&shmti->xa_lines);
- }
- 
- static int scmi_telemetry_shmti_init(struct device *dev,
-@@ -1351,7 +1397,7 @@ static int scmi_telemetry_enumerate_shmti(struct telemetry_info *ti)
- 	/* Expose the fully initialized SHMTI infos */
- 	smp_store_release(&ti->info.base.num_shmtis, ti->num_shmti);
- 
--	return 0;
-+	return devm_add_action_or_reset(ph->dev, scmi_telemetry_tdes_cleanup, ti);
- }
- 
- static const struct scmi_telemetry_info *
-@@ -1413,11 +1459,242 @@ scmi_telemetry_payld_offset_safe_calc(struct telemetry_shmti *shmti, u32 offs)
- }
- 
- static u64
--scmi_telemetry_blkts_read(u32 magic, struct telemetry_de *tde)
-+scmi_telemetry_blkts_read(u32 magic, struct telemetry_de *tde,
-+			  struct payload *bts_payld, struct shmti_snap *snap)
- {
-+	struct telemetry_block_ts *bts;
-+
-+	/* Acquiring order is: tde -> line */
- 	lockdep_assert_held(&tde->mtx);
-+	if (WARN_ON(!tde->bts || (!bts_payld && !snap)))
-+		return 0;
- 
--	return 0;
-+	bts = tde->bts;
-+	guard(mutex)(&bts->line.mtx);
-+
-+	if (bts->line.last_magic == magic)
-+		return bts->last_ts;
-+
-+	/* Unless specified otherwise, use the snapshot BLK_TS paylod */
-+	if (!bts_payld) {
-+		void *base = snap_tdcf(snap);
-+
-+		bts_payld = base + bts->line.offset;
-+	}
-+
-+	/* Note that the bts->last_rate can change ONLY on creation */
-+	bts->last_ts = BLK_TS_STAMP_RAW(&bts_payld->blk_tsl);
-+	bts->line.last_magic = magic;
-+
-+	return bts->last_ts;
-+}
-+
-+static void
-+scmi_telemetry_blkts_update_snap(struct telemetry_info *ti,
-+				 struct telemetry_block_ts *bts,
-+				 struct payload *bts_payld, u32 magic)
-+{
-+	guard(mutex)(&bts->line.mtx);
-+	if (bts->line.last_magic != magic) {
-+		bts->last_ts = BLK_TS_STAMP_RAW(&bts_payld->blk_tsl);
-+		bts->last_rate = BLK_TS_RATE_RAW(bts_payld);
-+		/* BLK_TS clock rate value can change ONLY here on creation */
-+		if (!bts->last_rate)
-+			bts->last_rate = ti->default_blk_ts_rate;
-+		bts->line.last_magic = magic;
-+
-+		trace_scmi_tlm_access(0, "BLK_TS_UPDATE", magic, 0);
-+	}
-+}
-+
-+static inline void scmi_telemetry_line_free(struct telemetry_line *line)
-+{
-+	void *blob;
-+
-+	switch (line->type) {
-+	case TDCF_BLK_TS_LINE:
-+		blob = to_blkts(line);
-+		kfree(blob);
-+		break;
-+	default:
-+		WARN_ON(1);
-+		break;
-+	}
-+}
-+
-+static void __scmi_telemetry_line_put(struct telemetry_line *line)
-+{
-+	lockdep_assert_held(&line->shmti->lines_mtx);
-+
-+	mutex_lock(&line->mtx);
-+	if (refcount_dec_and_test(&line->users)) {
-+		xa_erase(&line->shmti->xa_lines, line->offset);
-+
-+		/* Unlock and free the containing structure: blkts or uuid */
-+		mutex_unlock(&line->mtx);
-+
-+		trace_scmi_tlm_access(0, "DROP_LINE", line->type, line->last_magic);
-+		scmi_telemetry_line_free(line);
-+
-+		return;
-+	}
-+	mutex_unlock(&line->mtx);
-+}
-+
-+static void scmi_telemetry_line_put(struct telemetry_line *line)
-+{
-+	/* Acquiring coarse grain first ... */
-+	guard(mutex)(&line->shmti->lines_mtx);
-+	__scmi_telemetry_line_put(line);
-+}
-+
-+static void scmi_telemetry_blkts_unlink(struct telemetry_de *tde)
-+{
-+	/* Acquiring order is: tde -> line */
-+	lockdep_assert_held(&tde->mtx);
-+	if (!tde->bts)
-+		return;
-+
-+	scmi_telemetry_line_put(&tde->bts->line);
-+
-+	scmi_telemetry_tde_cache_invalidate(tde);
-+	tde->bts = NULL;
-+
-+	trace_scmi_tlm_access(tde->de.info->id, "BLKTS_UNLINK", 0, 0);
-+}
-+
-+static void scmi_telemetry_de_unlink(struct scmi_telemetry_de *de)
-+{
-+	struct telemetry_de *tde = to_tde(de);
-+
-+	lockdep_assert_held(&tde->mtx);
-+
-+	/* Unlink all related lines triggering their deallocation */
-+	scmi_telemetry_blkts_unlink(tde);
-+}
-+
-+static struct telemetry_line *
-+scmi_telemetry_line_get(struct telemetry_shmti *shmti, unsigned long offset)
-+{
-+	struct telemetry_line *line;
-+
-+	/* Acquiring coarse grain first ... */
-+	guard(mutex)(&shmti->lines_mtx);
-+	line = xa_load(&shmti->xa_lines, offset);
-+	if (!line)
-+		return NULL;
-+
-+	guard(mutex)(&line->mtx);
-+	refcount_inc(&line->users);
-+
-+	return line;
-+}
-+
-+static int
-+scmi_telemetry_line_init(struct telemetry_shmti *shmti, struct telemetry_line *line,
-+			 unsigned long offset, enum tdcf_line_types type)
-+{
-+	line->type = type;
-+	refcount_set(&line->users, 1);
-+	line->offset = offset;
-+	line->shmti = shmti;
-+	mutex_init(&line->mtx);
-+
-+	guard(mutex)(&shmti->lines_mtx);
-+	return xa_insert(&shmti->xa_lines, offset, line, GFP_KERNEL);
-+}
-+
-+static struct telemetry_block_ts *
-+scmi_telemetry_blkts_create(struct telemetry_shmti *shmti, unsigned long offset)
-+{
-+	struct telemetry_block_ts *bts;
-+	int ret;
-+
-+	bts = kzalloc_obj(*bts);
-+	if (!bts)
-+		return NULL;
-+
-+	ret = scmi_telemetry_line_init(shmti, &bts->line, offset, TDCF_BLK_TS_LINE);
-+	if (ret) {
-+		kfree(bts);
-+		return NULL;
-+	}
-+
-+	trace_scmi_tlm_collect(0, shmti->info.sid, offset, "SHMTI_NEW_BLKTS");
-+
-+	return bts;
-+}
-+
-+static struct telemetry_block_ts *
-+scmi_telemetry_blkts_get_or_create(struct telemetry_shmti *shmti,
-+				   unsigned long offset)
-+{
-+	struct telemetry_line *line;
-+
-+	/* Avoid races on line creation for this payld */
-+	guard(mutex)(lock_for_payld(shmti->payld_locks, offset));
-+
-+	line = scmi_telemetry_line_get(shmti, offset);
-+	if (line)
-+		return to_blkts(line);
-+
-+	return scmi_telemetry_blkts_create(shmti, offset);
-+}
-+
-+/**
-+ * scmi_telemetry_tdcf_blkts_parse  - A BLK_TS line parser
-+ *
-+ * @ti: A reference to the telemetry_info descriptor
-+ * @bts_payld: TDCF payld line to process
-+ * @snap: A reference to the working SHMTI snapshot that will be processed
-+ * @active_bts: Input/output reference to keep track of the last blk_ts found
-+ *
-+ * Process a valid TDCF BLK_TS line and, after having looked up or created a
-+ * blk_ts descriptor, update the related data and return it as the currently
-+ * active blk_ts, given that it is effectively the last found during this
-+ * scan.
-+ *
-+ * Note that the current BLK_TS line could be malformed due to garbage in
-+ * the TDCF: in such a case we warn/log and bailout BUT we don't throw away
-+ * the currently active_bts (if any) since the current malformed line could
-+ * be bogus and never intended to be a BLK_TS line.
-+ */
-+static void scmi_telemetry_tdcf_blkts_parse(struct telemetry_info *ti,
-+					    struct payload *bts_payld,
-+					    struct shmti_snap *snap,
-+					    struct telemetry_block_ts **active_bts)
-+{
-+	struct telemetry_block_ts *bts, *previous = *active_bts;
-+	struct telemetry_shmti *shmti = snap->shmti;
-+	u32 meta = PAYLD_META_RAW(bts_payld);
-+	unsigned long offset;
-+
-+	/* Check for spec compliance. */
-+	if (WARN_ON(BLK_TS_INVALID_RAW(meta))) {
-+		trace_scmi_tlm_access(0, "BLK_TS_INVALID", 0, meta);
-+		return;
-+	}
-+
-+	offset = TDCF_OFFS(snap->base, bts_payld);
-+	/* A BLK_TS descriptor MUST be returned: it is found or it is created */
-+	bts = scmi_telemetry_blkts_get_or_create(shmti, offset);
-+	/*
-+	 * On error processing the new BLK_TS bailout taking care to clear
-+	 * the previous last active BLK_TS to avoid mistakenly binding to the
-+	 * next data lines.
-+	 */
-+	if (WARN_ON(!bts))
-+		goto out;
-+
-+	/* Update the descriptor with the lastest TS */
-+	scmi_telemetry_blkts_update_snap(ti, bts, bts_payld, snap->magic);
-+
-+out:
-+	/* Drop one refcount on the previous active since we found a new one */
-+	if (previous)
-+		scmi_telemetry_line_put(&previous->line);
-+
-+	*active_bts = bts;
- }
- 
- static inline int
-@@ -1436,7 +1713,8 @@ scmi_telemetry_line_data_parse(struct telemetry_de *tde, struct shmti_snap *snap
- 		*tstamp = 0;
- 		if (USE_BLK_TS_RAW(meta)) {
- 			/* Read out the actual BLK_TS */
--			*tstamp = scmi_telemetry_blkts_read(magic, tde);
-+			*tstamp = scmi_telemetry_blkts_read(magic, tde,
-+							    bts_payld, snap);
- 		} else if (LINE_TS_VALID_RAW(meta)) {
- 			/*
- 			 * Note that LINE_TS_VALID implies HAS_LINE_EXT and that
-@@ -1464,6 +1742,26 @@ scmi_telemetry_line_data_parse(struct telemetry_de *tde, struct shmti_snap *snap
- 	return 0;
- }
- 
-+static inline void scmi_telemetry_blkts_link(struct telemetry_de *tde,
-+					     struct telemetry_block_ts *bts)
-+{
-+	/* Acquiring order is: tde -> line */
-+	lockdep_assert_held(&tde->mtx);
-+
-+	/* Unlink old stale BTS if existent */
-+	scmi_telemetry_blkts_unlink(tde);
-+
-+	guard(mutex)(&bts->line.mtx);
-+	refcount_inc(&bts->line.users);
-+
-+	/* Update TS clock rate if provided by the BLK_TS */
-+	if (bts->last_rate)
-+		tde->de.info->ts_rate = bts->last_rate;
-+
-+	tde->bts = bts;
-+	trace_scmi_tlm_access(tde->de.info->id, "BLKTS_LINK", 0, 0);
-+}
-+
- /**
-  * scmi_telemetry_tdcf_data_parse  - TDCF DataLine parsing
-  * @ti: A reference to the telemetry info descriptor
-@@ -1508,11 +1806,19 @@ static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
- {
- 	struct telemetry_shmti *shmti = snap->shmti;
- 	struct device *dev = ti->ph->dev;
-+	u32 meta = PAYLD_META_RAW(payld);
-+	bool use_blk_ts = USE_BLK_TS_RAW(meta);
- 	struct telemetry_de *tde;
- 	u64 val, tstamp = 0;
- 	u32 de_id;
- 
- 	de_id = PAYLD_ID_RAW(payld);
-+	/* Discard malformed lines...a preceding BLK_TS must exist */
-+	if (use_blk_ts && !active_bts) {
-+		trace_scmi_tlm_access(de_id, "BAD_USE_BLK_TS", 0, 0);
-+		return;
-+	}
-+
- 	/* Is this DE ID known ? */
- 	tde = scmi_telemetry_tde_lookup(ti, de_id);
- 	if (!tde) {
-@@ -1522,6 +1828,11 @@ static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
- 
- 	guard(mutex)(&tde->mtx);
- 
-+	if (use_blk_ts && !IS_TDE_TS_BLK(tde)) {
-+		trace_scmi_tlm_access(de_id, "BAD_BLK_TS_TYPE", 0, 0);
-+		return;
-+	}
-+
- 	if (tde->de.fc_support) {
- 		dev_err(dev, "Found FastChannel DE while parsing a SHMTI.\n");
- 		trace_scmi_tlm_access(de_id, "DE_INVALID_FC_ON_SHMTI", 0, 0);
-@@ -1571,6 +1882,19 @@ static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
- 	if (!scmi_telemetry_tde_cache_stale(tde, snap->magic))
- 		return;
- 
-+	/*
-+	 * Link the related BTS when needed, it's unlinked on disable.
-+	 * Note that each DEs timestamp types is statically defined and
-+	 * enumerated once for all at init: a Data line cannot suddenly
-+	 * 'migrate' to a different timestamp type.
-+	 */
-+	if (use_blk_ts) {
-+		if (BLK_TS_CHANGED(tde, shmti, active_bts->line.offset))
-+			scmi_telemetry_blkts_link(tde, active_bts);
-+		else if (tde->bts->last_rate != tde->de.info->ts_rate)
-+			tde->de.info->ts_rate = tde->bts->last_rate;
-+	}
-+
- 	/*
- 	 * Parse data words ... only for the sake of updating TDE cache,
- 	 * any error is logged but ignored.
-@@ -1634,6 +1958,9 @@ static int scmi_telemetry_tdcf_line_parse(struct telemetry_info *ti,
- 		scmi_telemetry_tdcf_data_parse(ti, payld, snap, mode,
- 					       *active_bts, *active_uuid);
- 		break;
-+	case TDCF_BLK_TS_LINE:
-+		scmi_telemetry_tdcf_blkts_parse(ti, payld, snap, active_bts);
-+		break;
- 	default:
- 		trace_scmi_tlm_access(PAYLD_ID_RAW(payld), "TDCF_LINE_UNKNOWN", 0, 0);
- 		break;
-@@ -1777,6 +2104,15 @@ scmi_telemetry_shmti_refresh(struct telemetry_shmti *shmti, int *idx)
- 	return work;
- }
- 
-+static inline void
-+scmi_telemetry_reset_active_lines(struct telemetry_block_ts **active_bts)
-+{
-+	if (*active_bts) {
-+		scmi_telemetry_line_put(&(*active_bts)->line);
-+		*active_bts = NULL;
-+	}
-+}
-+
- /**
-  * scmi_telemetry_shmti_scan  - Full SHMTI scan
-  * @ti: A reference to the telemetry info descriptor
-@@ -1844,6 +2180,7 @@ static int scmi_telemetry_shmti_scan(struct telemetry_info *ti,
- 		qwords -= used_qwords;
- 	}
- 
-+	scmi_telemetry_reset_active_lines(&active_bts);
- 	srcu_read_unlock(&shmti->srcu, idx);
- 
- 	if (ret)
-@@ -1953,7 +2290,6 @@ static void scmi_telemetry_resources_free(struct telemetry_info *ti)
- 	/* Ensure rinfo is no more accessible upfront */
- 	smp_store_release(&ti->rinfo, NULL);
- 
--	scmi_telemetry_tdes_cleanup(ti);
- 	xa_destroy(&ti->xa_des);
- 
- 	kfree(ti->info.shmtis);
--- 
-2.54.0
+On Mon, Nov 16, 2026 at 11:24=E2=80=AFPM Valerio Setti <vsetti@baylibre.com=
+> wrote:
+>
+> Hi Martin
+>
+>  >> +properties:
+>  >> +  compatible:
+>  >> +    oneOf:
+>  >> +      - const: amlogic,gxbb-audin
+>  >> +      - items:
+>  >> +          - const: amlogic,gxl-audin
+>  >> +          - const: amlogic,gxbb-audin
+>  >  From what I can tell it's even amlogic,meson8-audin compatible.
+>  > Although I didn't have the time to test in on hardware yet.
+>  >
+>
+> Thanks for catching it!
+> Any testing is more than welcome. I don't have that board at home and,
+> based on my quick search, it seems not super easy to find one these days.
+>
+>  > [...]
+>  >> +    audio-controller@a000 {
+>  >> +      compatible =3D "amlogic,gxbb-audin";
+>  >> +      reg =3D <0xa000 0x148>;
+>  > I believe the audin registers are 0x300 wide.
+>  > Both, GXL datasheet [0] page 43 and GXM datasheet [1] page 48 claim
+>  > that the register area is 0x100 wide.
+>  > The last documented register with AUDIN_ prefix is AUDIN_FIFO2_PIO_RDH
+>  > =3D 0xb8. The datasheet [0] (page 395) lists register numbers divided =
+by
+>  > 4, so to get the actual address in the memory map we need to multiply
+>  > it by 4, which gives 0x2e0.
+>  > The 32-bit SoC vendor kernel [2] has a header that states: #define
+>  > AUDIN_ADDR_END 0x28bf (same as in datasheet, we need to multiply this
+>  > by 4).
+>
+> I know that the register layout in these SoC is a bit messy, so let me
+> explain how I got to the 0x148 that I wrote above.
+>
+> When working at this driver I used the S095 and S905X manuals that I
+> found online, but based on the link you shared for the S912, I would say
+> it's the same when it comes to AUDIN.
+>
+> Using [0] as reference, the highest register being mentioned in the
+> AUDIN chapter is AUD_RESAMPLE_STATUS whose offset is 0x304 (i.e. 0xc1 *
+> 4). However I noticed that before that there are a lot of registers
+> whose name doesn't start with AUDIN_, but rather with AUDOUT_, PCMOUT_,
+> PCMIN_.
+> The first contiguous block of AUDIN_ stops at AUDIN_FIFO_INT which is
+> 0x148 (=3D 0x52 * 4). The other AUDIN_ block you mentioned is between
+> AUDIN_FIFO0_PIO_STS (at 0x2c0) and AUDIN_FIFO2_PIO_RDH (at 0x2e0).
+Your approach is logical. And I have no way of proving my theory.
+So the question for someone with access to better documentation or the
+actual hardware description is:
+- how big is the AUDIN IP block register space?
+- what inputs are routed to the AUDIN IP block that neither Valerio
+nor I identified so far (one reset line, one clock input, one
+interrupt)?
 
+>  > I'm bringing this up because dt-bindings are supposed to be complete.
+>  > So even if the driver doesn't use a resource yet we're supposed to
+>  > still describe it.
+>
+> I perfectly agree with this, but at the same time I thought that
+> including registers which potentially do not belong to AUDIN was
+> dangerous in the other direction, i.e. we cover a too large area that
+> will be hard to use in the future if/when we want to use it and we
+> realize it's really not part of AUDIN.
+My concern is actually that the AUDIN hardware block spans 0x300 (or
+close to it) and we'll find out later that there's a bit that we need
+to toggle which is outside of the 0x148 area covered already.
+Even worse: what if we put another register area after AUDIN and then
+find out that this theoretical bit sits in the second register area.
+
+
+Best regards,
+Martin
 
