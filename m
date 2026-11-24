@@ -2,108 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB4A606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874D6606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aD0YAYOA;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NIjntsdD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=smEtin2q;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=jTUatixS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=b8ZLLnYaqHLGaBzaZoD6higfVTAqlS3NyUpOKVoiu/Q=; b=aD0YAYOAYRB7U9JhcARW79q38V
-	FqhEKsK46sP4r5BnRJmssZbBnmGXDyF8/7UG5mRKwIoWPJojeWphF6YBRHgc/XU1g17my686FitzV
-	0JZYXlIZAEpY64OrSiJSVSpqIISK8OUjfTjAxgaV+Ukh3WuPTFy8WTitCNFaPHTiqbX6SQqf4dQxV
-	DdFeok4FzoOO6g4YWIh9P5wn/dF14Leax4BpkuKiJ4u0yjEg4U64igT0MX3fL507x56zCRjHwanMR
-	r+c3hsvtz6wN0gGytSi7CFlMKirzZdgkoyCWsK6ZaIKt/AWcBCFbuTH7jenvvX4PRGIRJcMCn2Dpd
-	DS2Ftj/A==;
+	bh=QB3iU+E6oyxQS/JyhDVo0yHo/2d1Hsj9txbeC2yWP8g=; b=smEtin2qGMIxyBrEAo/MXhp7G5
+	0uXdjAqsG2P4YZnfxvF6aX5pljIj/zKITgHb/8iB8A7YUm1Itz9dPQkkKO7xPzN+w2OUOkWkigONz
+	BJCi5jUTZ6FApUyrdu7hWWVbQX1E986TtLzRktWQuCcLw3R4ApKcedyJ9Ti72i6nXyjrHh04rj9HO
+	NkZjfRAfETR11dDooZRXo18dsmueq9tprsx8TpTvNBTdOC8JcGPVbnQKjJQJoEByMh6NcPr9nbgXT
+	nnGlxAF22m4nTN3I5+Q26tgZvvlwR4qpG14Qj0C1L72WOVMmW08X3CdzDXbpr4wk8pBB8tBG7qdv0
+	bKmujYng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuEU-00000007Km0-2JfW;
-	Tue, 24 Nov 2026 17:23:06 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xVuEf-00000007Kqf-3Hnl;
+	Tue, 24 Nov 2026 17:23:17 +0000
+Received: from mgamail.intel.com ([198.175.65.19])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuEO-00000007Kjv-2qV2
+	id 1xVuEb-00000007KoB-0UCl
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:23:00 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D9F1443B15;
-	Tue, 24 Nov 2026 17:22:59 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795540979;
-	b=SPfhxD7kDzjKdbnESFF1zgHGnR9A8TZCY/D5u0faWuADKb+n4otJ9GC7twSbGf6qNjrz
-	 SZt8u2dELYKa129seNz32Fg8TVEYrpc++wDv81DkLKLFBPZvX8WzsNPo4d76mfpH1OxjZ
-	 k73rT0DnuSKRWX3IWwyR9Hg527eRgbW6PNne6jxs+/++OFvBr4NtYvqXLHhKxmZRP6xRO
-	 nlnsiBjfGsKHmeWzpn1Gccv30Js/BRQO0JlaT3UiQz85KB3hA0dpnYPdHxo/klDk2nyPL
-	 8u2p/U2W79ykESb82Rw7mOO0+Xf/AaSaTHaeO9PLLQaAa6IAkWjRtenpi+/ggzlyWxQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795540979;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=b8ZLLnYaqHLGaBzaZoD6higfVTAqlS3NyUpOKVoiu/Q=;
-	b=VdH+CTsgLGTxZxhX8gTqAmzOQKw/gZkQMsDYVR6Tpf8ENiPDTKS14C0C6CuEHs650p+W
-	 WK4XGpUaIpGFepIhVVvTlOjs9mT43AnbeRHVylRouuqARwW3E1de9fp/f2OIaI1+DpoR3
-	 HQpPXifX8sycyxabwSlVHEXUAbPlAh4RM7sdHDH2dsV8wvcklc8b73iU1vuZt7sxEIrhy
-	 zXCeSyKO0AIezzCZDOZifQDHqoLrj+uV7qIOhVHGrRdyOOIoXaJwKLQIiXHVm6QOc6NN/
-	 HflXjN8by8KjHVlfv1iEwcmRS3yZ+TKgar5Mw0Gt2TchfyIwypVGG1ZeVwZlgNODXLA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 774301F000C4;
-	Tue, 24 Nov 2026 17:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795540979;
-	bh=b8ZLLnYaqHLGaBzaZoD6higfVTAqlS3NyUpOKVoiu/Q=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=NIjntsdDG/Snd2rrZiIOGvftQVgvfDAjkWKKCbLwS2J6udDPvvUZAalBLjBbiEKjR
-	 zsdX0K9si0H9rSJ4ki5giVxoIv0p3k9P3Za+ppka2gGz1lfgNSPBxlsFLk3Mx3sj2K
-	 QBnoKE2ieEbmFZq0btVajMF4bjHr9rjBnsCIk19O6j/vHUKdxrWMba242tjnLvoZra
-	 +zDzpyLeQpwo3ywkW4O5m085eufBe1QJ9wxpKOYkaPMw/nnswg1VhcGWeBw6hs4pT1
-	 FxmpyFQAOrHcTK7QZiczU+Yq0JsSfIvqVcFkCH3Z8iim4C6yX6Bcfp1hyCiMQS/faO
-	 seLufbq6FMiIA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id CF3424CAFE;
-	Tue, 24 Nov 2026 17:22:51 +0000 (UTC)
-From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
-Date: Tue, 24 Nov 2026 22:52:40 +0530
-Subject: [PATCH v2] arm64: dts: ti: k3-am625-sk-common: Add TPIC2810 LED
- expander support
+	Tue, 24 Nov 2026 17:23:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1795540993; x=1827076993;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wpVMG93aHYjeK4cRmMuTJVoZTPgP747FjeTd/hCPVTE=;
+  b=jTUatixS0b0FKDuIifuAZ7aQdOy8up1OrGgD/qZ9m/eu3SbGWMjLAd43
+   ZESq+jl8yeZXaTEIzTHY/EcP8/RxcNxXE/W7mbeldlCHjWa8ClwDP7L8a
+   unr8WTkP/fPx4t0z1uZbx35M21k7GXF/Ypq547NfB0takR3zeW5BEUTBk
+   0OLUorekV+PvtDcz1e41XGik9w12wmVd/0K8CSMpcEoXUXeTjmdMHmdq8
+   NQCLYv03NRHY97og/P4zLKyLrCBOg6NcRr0sj+QqaP64VkafXl91/lCYe
+   3rd+8SSjjt0BBmYphka1TbS8mVdfDRxtcLFJcfy/CPVjBY2dGI5o7T5xF
+   g==;
+X-CSE-ConnectionGUID: yjB4z3alTUK4GCvbyaX6wQ==
+X-CSE-MsgGUID: gBBPjyxYQ4momxi+hjKBuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4447381"
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
+   d="scan'208";a="4447381"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2026 09:05:23 -0800
+X-CSE-ConnectionGUID: gVewJTBkQdmaPuvBAvZOCQ==
+X-CSE-MsgGUID: FfvISExHSDqpLos8PF/+mA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
+   d="scan'208";a="12029816"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.125])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2026 09:05:19 -0800
+Date: Tue, 24 Nov 2026 19:05:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Nagavarapu, Dileep Kumar" <dnagavar@amd.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Conall O'Griofa <conall.ogriofa@amd.com>, linux-iio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	git@amd.com, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: Re: [PATCH v5 14/16] iio: adc: xilinx-xadc: Split driver into core
+ and platform files
+Message-ID: <awXDzR6tSPHh64SZ@ashevche-desk.local>
+References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
+ <20261110050201.1850399-15-dileepkumar.nagavarapu@amd.com>
+ <avNGcpcemoeE3J7O@ashevche-desk.local>
+ <42949fe9-b336-40e7-8a8e-43f6d24da9bc@amd.com>
+ <awVzDqxuwsOjoFCi@ashevche-desk.local>
+ <f7273b47-0835-4afb-9e45-ddf729f05b8e@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261124-am62x-tpic2810-v2-1-91115ba8e2dd@ti.com>
-X-B4-Tracking: v=1; b=H4sIAN/HBWsC/3XMQQ7CIBCF4as0s3ZMmSqiK+9hugBK7SxaGiCkp
- uHuYvcu/5e8b4foArsIj2aH4DJH9ksNOjVgJ728HfJQG6glKQRdUM+SNkwrW1KixatWxplBGq0
- k1NMa3MjbAb762hPH5MPn8LP4rX+pLFAgmftozU3qznbPxGfrZ+hLKV8nbhlFqQAAAA==
-X-Change-ID: 20261124-am62x-tpic2810-5a8bebd6ba86
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sebin Francis <sebin.francis@ti.com>, 
- Sai Sree Kartheek Adivi <s-adivi@ti.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795540969; l=4368;
- i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
- bh=ehVtq9ntD1a3UcuBE08CQeJf9PzsTkL2oMpSs6MAAtc=;
- b=tBbLfdDuHaobWR9sYvDmPJd8Y0sruMmEsKnGSRj8AH65Ihz+nauwVaoUUMNTGZFUQQ9JIYtpa
- tpTkypliMtoBqF47rJgMoM2WVdVm6nxrVC1vaP7NCsByHSaOXW5a29G
-X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
- pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
-X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
- auth_id=1627
-X-Original-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f7273b47-0835-4afb-9e45-ddf729f05b8e@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_092313_274066_A7B234EF 
+X-CRM114-Status: GOOD (  27.61  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,177 +96,91 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: s-adivi@ti.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+On Tue, Nov 24, 2026 at 10:23:29PM +0530, Nagavarapu, Dileep Kumar wrote:
+> On 11/24/2026 4:50 PM, Andy Shevchenko wrote:
+> > On Tue, Nov 24, 2026 at 04:33:59PM +0530, Nagavarapu, Dileep Kumar wrote:
+> > > On 11/10/2026 9:59 PM, Andy Shevchenko wrote:
+> > > > On Tue, Nov 10, 2026 at 10:31:59AM +0530, Dileep Kumar Nagavarapu wrote:
 
-The AM625 SK and AM62x SIP SK EVMs both have a TPIC2810 I2C GPIO
-expander at address 0x60 on WKUP_I2C0, driving 8 user LEDs. Describe it
-in the shared k3-am625-sk-common.dtsi, mirroring the AM642 SK support:
+...
 
-- add the WKUP_I2C0 pinmux
-- enable wkup_i2c0 with the TPIC2810 node
-- add a gpio-leds node for the 8 outputs
+> > > > > ---
+> > > > >    drivers/iio/adc/Kconfig                       |   8 +-
+> > > > >    drivers/iio/adc/Makefile                      |   5 +-
+> > > > >    drivers/iio/adc/xilinx-xadc-core.c            | 690 +--------------
+> > > > >    drivers/iio/adc/xilinx-xadc-events.c          |   1 +
+> > > > >    ...inx-xadc-core.c => xilinx-xadc-platform.c} | 818 +-----------------
+> > > > >    drivers/iio/adc/xilinx-xadc.h                 |  27 +
+> > > > >    6 files changed, 72 insertions(+), 1477 deletions(-)
+> > > > 
+> > > > This is weird statistics... I think it's a bug in Git. What it did, it copies
+> > > > -core.c twice and uses statistics on each file after that without duplicating
+> > > > the *original* amount of lines.
+> > > 
+> > > I generated the patches using the following command: "git format-patch \
+> > >     -M \
+> > >     -C10% \
+> > >     --histogram \
+> > >     --base=origin/togreg \
+> > >     --cover-letter \
+> > 
+> > >     --subject-prefix="PATCH v5" \
+> > 
+> > Hint: You can use -v5 instead of the above long parameter.
+> > 
+> > >     origin/togreg..HEAD"
+> > > 
+> 
+> > > If I remove the 10% similarity threshold from the command,
+> > 
+> > 10% is way too low threshold!
+> 
+> Is it OK to use `-M -C --histogram` (default thresholds) instead?
 
-CONFIG_GPIO_TPIC2810 is already enabled in the arm64 defconfig.
+Yes.
 
-Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
----
-Changes in v2:
-- Fix dt-check-style warnings: move led-controller before opp-table,
-  reorder properties, fix alignment
-- Pinmux alignment/line-length warning left as is, to match the existing
-  style of the file
-- Link to v1: https://serenity.dal.design.ti.com/lore/linux-patch-review/20261124-am62x-tpic2810-v1-1-2b9fcb76a3c3@ti.com
+> With it, xilinx-xadc-platform.c is shown as a new file with all lines as
+> additions rather than as a copy of xilinx-xadc-core.c. The statistics
+> then look like this:
+> 
+>  drivers/iio/adc/Kconfig                |   8 +-
+>  drivers/iio/adc/Makefile               |   5 +-
+>  drivers/iio/adc/xilinx-xadc-core.c     | 688 +------------------------
+>  drivers/iio/adc/xilinx-xadc-events.c   |   1 +
+>  drivers/iio/adc/xilinx-xadc-platform.c | 677 ++++++++++++++++++++++++
+>  drivers/iio/adc/xilinx-xadc.h          |  28 +
+>  6 files changed, 733 insertions(+), 674 deletions(-)
+> 
+> Are these statistics OK?
 
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-To: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-To: Tero Kristo <kristo@kernel.org>
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
----
- arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi | 94 ++++++++++++++++++++++++++
- 1 file changed, 94 insertions(+)
+Yes.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
-index 8e07d2c2e62fd..2d2b82b0de8ad 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
-@@ -8,6 +8,74 @@
- #include "k3-am62x-sk-common.dtsi"
- 
- / {
-+	led-controller {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <1>;
-+			gpios = <&exp2 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <2>;
-+			gpios = <&exp2 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-2 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <3>;
-+			gpios = <&exp2 2 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-3 {
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <4>;
-+			gpios = <&exp2 3 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-4 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <5>;
-+			gpios = <&exp2 4 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-5 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <6>;
-+			gpios = <&exp2 5 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-6 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <7>;
-+			gpios = <&exp2 6 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+
-+		led-7 {
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			function-enumerator = <8>;
-+			gpios = <&exp2 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
- 	opp-table {
- 		/* Add 1.4GHz OPP for am625-sk board. Requires VDD_CORE to be at 0.85V */
- 		opp-1400000000 {
-@@ -160,6 +228,15 @@ AM62X_IOPAD(0x01d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
- 	};
- };
- 
-+&mcu_pmx0 {
-+	tpic_pins_default: tpic-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_MCU_IOPAD(0x004c, PIN_INPUT, 0) /* (B9) WKUP_I2C0_SCL */
-+			AM62X_MCU_IOPAD(0x0050, PIN_INPUT, 0) /* (A9) WKUP_I2C0_SDA */
-+		>;
-+	};
-+};
-+
- &main_gpio0 {
- 	bootph-all;
- };
-@@ -196,6 +273,23 @@ exp1: gpio@22 {
- 	};
- };
- 
-+&wkup_i2c0 {
-+	clock-frequency = <400000>;
-+	pinctrl-0 = <&tpic_pins_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	exp2: gpio@60 {
-+		compatible = "ti,tpic2810";
-+		reg = <0x60>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "LED0", "LED1", "LED2", "LED3",
-+				  "LED4", "LED5", "LED6", "LED7";
-+	};
-+};
-+
- &sdhci0 {
- 	bootph-all;
- 	non-removable;
+> > > xilinx-xadc-platform.c is no longer detected as a copy of the original
+> > > xilinx-xadc-core.c, which is not the expected output.
+> > > Is there a better command or approach that would allow Git to recognize
+> > > xilinx-xadc-platform.c as being split from the original file while also
+> > > producing meaningful diff statistics?
+> > 
+> > But it's not a full copy. Have you tried to apply the patch from the mailing
+> > list and see if `git am` correctly recognises the split?
+> 
+> Yes. I applied the v5 series from the mailing list with `git am`
+> and all patches applied without errors
 
----
-base-commit: 566085204d669ed4bd0d8d230b10f94f963e2481
-change-id: 20261124-am62x-tpic2810-5a8bebd6ba86
+So, then it seems like a Git bug as I pointed earlier, and hence it's fine
+to use 10% threshold in _this_ case.
 
-Best regards,
---  
-Sai Sree Kartheek Adivi <s-adivi@ti.com>
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
