@@ -2,147 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C576A606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635D0606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GNVO8P3x;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=UQbkwpeb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NWund0hB;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=PkRezWk3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2hYgJTGOVG3PmfpKBaoS4qDAQowoVvAH2GzSLtrNeFo=; b=GNVO8P3xgBlnHv
-	W/6FbR4y/9jpxiT1Aahe/G7UJHXnlu0ZA0fQnAiGnZ1ZK1dLMJ3I0RFkRCw46y5hjv3t81GLaaePz
-	3Mvd7vfiK+7/ycaJWGlK2nb+K5n7yraVHOATP6CcQFr5m1cLkBeXxy5CYHOx0WduEydh5ZrLi5n/Z
-	NTO86ktJVZEGDKZBwNisomfwpl4DkFKrFrdBUbH0IKmR+gmswlxIqrB7tqq5ZK1cw9OECVltBuRt9
-	WHBuWQGQfaOpcKmvh+1ERkZHT3KjoQXwnFtC3HP6pF6Uu/zTYu5s8TF4VTZJzZT+Ym8FXep4k9OHv
-	CKn4AQHzNxx6+EvsFjhw==;
+	List-Owner; bh=4+V4dSRGnzJ/VnBrav+/YZ8i/rQ7LsI9He/HzxOZObo=; b=NWund0hBYO0+4l
+	vhxQFVFr4k8BeiBaACmLROU2bDv2XnpUvqgee+oV6E+7ikbWKV+7Y8DIK4FvSnm5+VbZZVCOF4+Qk
+	pnn9aDR742NZgX7ksXfOsB4j6tZMRLuhhVqdgXT6mh+01Zgh07hlc+q2GwXQ2mzsG+8yOm+8FvtEI
+	0o4anJtGCBNS7JicQt6/EiQYo9JS+YVF/C9bD11dboaECfFPXyio0UDjMcyvetHKD4hCKdR7ugUS2
+	bmycIY38WdZH1ZrVdmzJDGtJWtSWcIsC8pCwhaKxQkGFeDoxQAVyyN6KAq/UBxXgNRFNIKJ8TBMpF
+	IJ2VkRhEhNN93eqBL5xA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVi31-00000005Wgn-2wik;
-	Tue, 24 Nov 2026 04:22:27 +0000
-Received: from omta036.useast.a.cloudfilter.net ([44.202.169.35])
+	id 1xVi89-00000005X9C-13P5;
+	Tue, 24 Nov 2026 04:27:45 +0000
+Received: from sender-op-o15.zoho.eu ([136.143.169.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVi2x-00000005Wew-1p4G
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 04:22:26 +0000
-Received: from eig-obgw-5004b.ext.cloudfilter.net ([10.0.29.208])
-	by cmsmtp with ESMTPS
-	id VdVnxxzFj4vCDVi2wxGiFq; Tue, 24 Nov 2026 04:22:22 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id Vi2uxWgR4uJrPVi2uxfh4v; Tue, 24 Nov 2026 04:22:21 +0000
-X-Authority-Analysis: v=2.4 cv=WLZ/XmsR c=1 sm=1 tr=0 ts=6b0510fd
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=VwQbUJbxAAAA:8
- a=pGLkceISAAAA:8 a=AbtGE6NwjiPdwgDzpaUA:9 a=QEXdDO2ut3YA:10
- a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
-	List-Archive; bh=2hYgJTGOVG3PmfpKBaoS4qDAQowoVvAH2GzSLtrNeFo=; b=UQbkwpebRpfS
-	Cr9b0kn5ydmVBmPyDTOfkX/qVTUwlgi4KeeFpytXRw5D51YTduzNuJIFjVkcK00jrcfmK5z0xA49d
-	uK0mO6trUmCGNL73SZgU57j4BBZHVST4vmhZDbHPUuLMTXsiiquXO2kRXF162qXB3dzpQ+ajErjUe
-	LWoR29tGYZ65OATHiYJ63x9h6w3zdyJ2pPSEDv4Cd1mVtfh4QIb0LgZnwC9DRJtWMAfxy1ry7kzJ1
-	+LkDZYhQRfEGQGo87wClVhmNekB7IUWd6rbfhd5+OtNRfpSYC8uT1Xd/cSgWnc6wJQjKRyJwXmmWa
-	JzRpZlOzZqCEa2NpGkYhPw==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:44576)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xVi2u-00000000cfP-0pyg;
-	Tue, 24 Nov 2026 09:52:20 +0530
-Message-ID: <f1e825ef-f81d-4ed5-bd18-a04ad210f112@roeck-us.net>
-Date: Mon, 23 Nov 2026 20:22:18 -0800
+	id 1xVi82-00000005X8P-17YD;
+	Tue, 24 Nov 2026 04:27:43 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795494420; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=ENDkdvJleOPV+g1ulm2XPp2ajq+wL1ROaBUYZl4g/bYpinUNhffVai3/Sz964Hu0Y1JOrX8F8aeS8SJwRuGD9wem48XXslivjnw7KXU3n6aXcCnVbS8ePywwUovcJABvlZGqMOs8Emxia6bLiKig28e3xO0K9CrTg8LpcJRcJuA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1795494420; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4+V4dSRGnzJ/VnBrav+/YZ8i/rQ7LsI9He/HzxOZObo=; 
+	b=fgFrYNl+nSlzp555z1gIy4JU5efaLRkASiLhr9bRV1aTzgfaf6fpd1SWR6Q7EZXKNldbxEa3p+4z6T5BHczCba5vBONaSksS2V/vT9Xcm97oTeizAyFc7Bmw2eDStBGuNyBxCyotbYWWIqcAn9GZQ7ZKkSY98UAWgWXXC5xSyrs=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=PkRezWk39gKolyjHUxOIqzxoT9JZB1u2/1ecP74wq/KyGJ2t6sGkwZqAi527j6KumLib5Ftm0ySYy2+St6+DWpZ0fxLWz9nkbOxgs7vMD6/D5dtwK79ucHl4WT1/SPmOdxWxfnClUGnTem6iOlEc8c/wfg+4D0xB9hQO22/I/5g=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=4+V4dSRGnzJ/VnBrav+/YZ8i/rQ7LsI9He/HzxOZObo=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 1795494419197698.9156739315267;
+	Tue, 24 Nov 2026 05:26:59 +0100 (CET)
+Date: Tue, 24 Nov 2026 06:26:57 +0200
+From: Igor Velkov <iav@iav.lv>
+To: netdev-bot+sashiko@kernel.org
+Cc: iav@iav.lv, andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, tglx@kernel.org, linux-pm@vger.kernel.org, maxime.chevallier@bootlin.com, lukas@wunner.de, rafael.j.wysocki@intel.com, wei.fang@nxp.com, niklas.soderlund@ragnatech.se, paul@pbarker.dev, florian.fainelli@broadcom.com, opendmb@gmail.com, Thangaraj.S@microchip.com, shenwei.wang@nxp.com, Haoning.CHENG@cn.bosch.com, netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v8 2/5] net: phy: fix three paths that unbalance a postponed PHY interrupt line
+Message-ID: <179549408687.90849.139754794817286@iav.lv>
+In-Reply-To: <179548269886.3135.1487195148841555901@kernel.org>
+References: <20261123-b4-phylib-mac-pm-irq-v3-v8-2-e9f706e79614@iav.lv> <179548269886.3135.1487195148841555901@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] watchdog: histb: Add HiSilicon STB watchdog driver
-To: David Yang <mmyangfl@gmail.com>, linux-watchdog@vger.kernel.org
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20261124012755.328774-1-mmyangfl@gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20261124012755.328774-1-mmyangfl@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xVi2u-00000000cfP-0pyg
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:44576
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 1
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfLWQuAakCB5CkqRzNwf3Myn37KzOdFkamQzxX/MBktpBBs2cLC8OeCis4r4+v9plwmlAdMBNVKjs42kvFD0lqNcGyIj1/kcsH8pqZR+4h2cxBszkRsjw
- Attk+G57TYoPaRYgj+7inpZYfKtIqu37Lp3UYlS/pdNQAEs9LSWJ4+62b3hn7wYgWSNAqgaiRCAPTwbdKbu7Ha4dFZNzW8J30sfBcM6Yy119bfB1VyvILgk5
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_202225_680848_7A2758F1 
-X-CRM114-Status: UNSURE (   7.86  )
+X-CRM114-CacheID: sfid-20261123_202741_206487_20E45ADA 
+X-CRM114-Status: UNSURE (   9.16  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -0.1 (/)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,45 +68,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/23/26 17:27, David Yang wrote:
-> The watchdog integrated on HiSilicon STB SoCs reuses the register layout
-> of sp805, but deviates from the standard sp805 in several ways that make
-> the existing sp805 driver unusable on these SoCs. Add a dedicated
-> platform driver to handle these SoC-specific semantics natively without
-> regressing generic SP805 users.
-> 
-> v2:
->   - fix issues reported by sashiko
+> Can a stale irq_rerun here turn a stuck line into an interrupt storm?
 
-Please spell those out in future revisions.
+Yes, this is the first of the three cases the commit message leaves
+open, and it lasts until this PHY resumes. Closing it needs to know
+whether this PHY's disable still counts in the line's depth, and phylib
+has no interface for that.
 
-Thanks,
-Guenter
+> Should this check use phydev->irq_rerun_line rather than phydev->irq?
 
-> v1: https://lore.kernel.org/r/20261122065549.3265519-1-mmyangfl@gmail.com
-> 
-> David Yang (4):
->    dt-bindings: watchdog: hisilicon,histb-wdt: Add HiSilicon STB watchdog
->    watchdog: histb: Add HiSilicon STB watchdog driver
->    arm64: dts: hisilicon: hi3798cv200: Add watchdog node
->    MAINTAINERS: Add HiSilicon STB drivers entry
-> 
->   .../watchdog/hisilicon,histb-wdt.yaml         |  56 ++++
->   MAINTAINERS                                   |   8 +
->   .../arm64/boot/dts/hisilicon/hi3798cv200.dtsi |   8 +
->   drivers/watchdog/Kconfig                      |   8 +
->   drivers/watchdog/Makefile                     |   1 +
->   drivers/watchdog/histb_wdt.c                  | 305 ++++++++++++++++++
->   6 files changed, 386 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/watchdog/hisilicon,histb-wdt.yaml
->   create mode 100644 drivers/watchdog/histb_wdt.c
-> 
+Agreed, it should match phy_request_interrupt(). I will fix it in the
+next version or in a follow-up.
 
+> Is this PHY's disable still counted in the line's depth when this
+> enable_irq() runs?
+
+This is the case the cover letter lists as not covered: another user
+requests the line before this PHY does. That the enable can also cancel
+the other user's disable_irq() is missing; I will add it to the commit
+message.
 
