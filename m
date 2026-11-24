@@ -2,72 +2,140 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDD3606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61FA3606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mOEU6blj;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LTQHz82v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PxdKvhv1;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=YvymbGkZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wq60eIxGFtR5MCIfyvCnDnihf6Q7VyfR4aAjbX1daU8=; b=mOEU6blj1vURHu
-	BXEAZ1U+mfGJz6VJVNcGCWZYkdYFZ84qykGjldnLu76LNtH++tKnne92Jm+qX2gIMO20yfTxr5Nlv
-	mQhRPdzzbFbYxxwVCc2c+9uNEoAyvXPySGqodjWv4PnzpetGyA8Cwo2difpBext9G2mwfUJHoSQpx
-	PY/4VU9bA/VpY7Ww5bZE2l34m5xWCzqBh+qejxodx8FvwAznmhuGx27rRSjm50KxNbMJPF6x5qwTf
-	hsry902ha7MVmNTs+yNbX6ZaIwZB4jmD1QngS3sgVXtdcQZCkEGI6DOCwnDqr/P6Pzhd8YaHQR9I7
-	YEe7XJHPVCmK6fuB38mA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=//Ui4esF1Voj9IyBK6IL/pQOihG6TXNtfV1kLTKEK3I=; b=PxdKvhv1TSffsKzFjfz4ecg+t8
+	mYUO32LobG1ucc8XyVibmyitKoyVgry7ATbczpeat405XD3qincQVimqyT+lUwf4puv67ZNKbhqIZ
+	flyxjWfcdPs8ZKlpBFqyWLAP3zrPYN3gFGtWtZFBWNeQboJceY8yTZFEfOTuIo526XW8scVMzkVZR
+	QmeX3DUePe8l50DTklhF8cpO7o09w4EnTg5QqnvqyZUqjuHSSlLGA07YGrXjQKQEo1eK14ix6STG4
+	542vxHlgnm4Fysq5YjT6CgGHWhp0Bp2MCWga0NPo2njE3D0SI32ULpq7q7Em2pBsi2hjB0z3KU8J/
+	HEKtJ89A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVs8H-00000006qdb-0Aup;
-	Tue, 24 Nov 2026 15:08:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVs8E-00000006qd9-0hS7
+	id 1xVs8h-00000006qi9-2X2O;
+	Tue, 24 Nov 2026 15:08:59 +0000
+Received: from mail-westusazlp170120002.outbound.protection.outlook.com ([2a01:111:f403:c001::2] helo=SJ2PR03CU001.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVs8e-00000006qhQ-1Wfl
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 15:08:31 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5A4C4339;
-	Tue, 24 Nov 2026 07:08:26 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD8013F763;
-	Tue, 24 Nov 2026 07:08:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795532909; bh=iRlHeZwlJBUmCWo6yrgiKKtkerHyE2dksVsYRvvTjXs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LTQHz82v2MMhRZa2+kkNDv3Dm80KyUhpVlFfWiQhnEiLCftSAmOBBSjtRCK7bheBA
-	 Me1w2DvhHEPrwKhkI0Px3LCTTKLeMh36O60GtvpxUHI5mXMHEeIPP8T2g7MVKnevA3
-	 r6CSDoDpkzlGFnZ9KJYr+ap3IP7r/ghNKtx5Sj+8=
-Message-ID: <090662ee-0d8d-48b5-83f2-8a4d225bef08@arm.com>
-Date: Tue, 24 Nov 2026 15:08:25 +0000
+	Tue, 24 Nov 2026 15:08:57 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZXtNq+Bhimer0mfkysmjs5Bsz2bLAc1EP+28773a7o5jucEyoEvPGsoEm8JHB2N3ZNgq05i7SGAYKxsWPV/K3mRifDqjR/v8c/x17+UTr4DiQ+kC4HK7QhIkrKHHbD/iFB0q0juSrEaxYFOkBLVzuzA7OOHidtzVDgEp6OXltfMgk6mdT8mAGHnHkPsx07XjodEBV36id2blkvvp91ZNeRjVvxYdoQ2mTm5EWFV07J3EJ3wALFi0FWq+v8Wh7uGFizJ1B63v17qaheCy2EVKfdIesliSuEXbRjlp5xjMVdVboseY5n/AWwcwMP8Mo4yRvLhJGm2AbbxFrhpY2iSSSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=//Ui4esF1Voj9IyBK6IL/pQOihG6TXNtfV1kLTKEK3I=;
+ b=gsQXeynOZTsu3NWAm0+lunTxgdmNeqCseSAFgUxmZeafufwfeaaDdShaqzu0X2Hk8/9wVPcIgZdLk6JiLPRdyKdnl3NqyBK1JO/kXwvN7/3D1GSbChUzS5f8PbocHeGWhNlJu6xMcRmYDPIBSBDIQ4v8iSBeRO1tpjMnUaZV2IyeQsTZC9C/qWI5nv2gLQdfoPmOGNJlVeNkreKLjsVcdRIl+k+H5KuNlOrIRb9X5cnv8oiiiMKdua+C4ovnzDKs63UpGBcu/y3elclrdLWTNq/r+YnIK/cvtMWO5KRYcAknvixBtH50QzPJfIROr/STSfjtqzeKt68TC3AsRkUEXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=//Ui4esF1Voj9IyBK6IL/pQOihG6TXNtfV1kLTKEK3I=;
+ b=YvymbGkZ2Mh/WvZ27BZNPLjE9DfCi+D4UHa+FG6godD+zvkHIO0+hUgKGRDtkakXOQpWOE360JvXOPwTIsRuc8jhtCRyBtVlyGalqmHuWoBcyogAdTyVxy6hDI/EggwOlK2oCm73MJ7SyKrBL1cds3+PEVZvrkYc7bP2YVuqtWgy2GdNjfCys6XEwFqA7oVlxHnFQ55eCD24zdZAf+M1/DcjGo24tUH/FRbQniHfbGQskqEleKW++MFqG1y4kBUASDd+2xS+Gf7uxfqkHJHMSHO7uf3nAZM3eH6oIhjAltXUIPdo83dqdu9tJ8trC9ohGeZBtxrD04dvnMAJ30p9OA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CHBPR12MB731189.namprd12.prod.outlook.com
+ (2603:10b6:610:33d::12) by PH7PR12MB5711.namprd12.prod.outlook.com
+ (2603:10b6:510:1e2::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Tue, 24 Nov
+ 2026 15:08:45 +0000
+Received: from CHBPR12MB731189.namprd12.prod.outlook.com
+ ([fe80::b0e5:123d:fe06:e10d]) by CHBPR12MB731189.namprd12.prod.outlook.com
+ ([fe80::b0e5:123d:fe06:e10d%6]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 15:08:44 +0000
+Date: Tue, 24 Nov 2026 11:08:43 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Nicolin Chen <nicolinc@nvidia.com>
+Cc: iommu@lists.linux.dev, "Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Jean-Philippe Brucker <jpb@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>,
+	David Matlack <dmatlack@google.com>,
+	John Garry <john.garry@arm.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>, patches@lists.linux.dev,
+	Pranjal Shrivastava <praan@google.com>,
+	Samiullah Khawaja <skhawaja@google.com>,
+	Mostafa Saleh <smostafa@google.com>
+Subject: Re: [PATCH v3 05/13] iommupt/kunit: Skip test configs without
+ supported features
+Message-ID: <20261124150843.GC8680@nvidia.com>
+References: <0-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
+ <5-v3-97feb2edfbab+748d0a-iommupt_armv8_jgg@nvidia.com>
+ <awUg0O0WQUBcuUvC@nvidia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <awUg0O0WQUBcuUvC@nvidia.com>
+X-ClientProxiedBy: YT4PR01CA0195.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:ad::17) To CHBPR12MB731189.namprd12.prod.outlook.com
+ (2603:10b6:610:33d::12)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 1/2] KVM: arm64: CCA: Add support for configuring
- the Realm MEC policy
-To: Kohei Enju <enju.kohei@fujitsu.com>, Paolo Bonzini <pbonzini@redhat.com>,
- Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
- Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
- Steffen Eiden <seiden@linux.ibm.com>, Steven Price <steven.price@arm.com>,
- Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Cc: kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
- cgroups@vger.kernel.org
-References: <20261112-mm-v1-mec-v2-0-0d1dd260a588@fujitsu.com>
- <20261112-mm-v1-mec-v2-1-0d1dd260a588@fujitsu.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261112-mm-v1-mec-v2-1-0d1dd260a588@fujitsu.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CHBPR12MB731189:EE_|PH7PR12MB5711:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3d23114-96c9-4089-6269-08df4a3cd4e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|366016|261021135927099003|10067099003|5023799004|4143699003|11063799006|56012099006|261021123027099003|261102123227099003|261021121427099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: imE1cL6nhehvZoDE9WHLuNzt4eXbCO5cU3GlVzB+xmcfGrv/AQaxgZHFkGNZk3hjvgBC5LYhefe2/IXNzpBQ2j3gu9snI40H4gs+4ZmApxnzy2s/0OoqiLPUYbnc4hab9Mtqu/UV87IQg3b+5unWXhniArpkZZr15vFxuoCHlwxHZGzpZMBSoX9W7gnPJTknhKcBlO0ULcrhD2vw3Hei77pHrMzHHgo5SM/VC9EECjWTvIHiaevwz6l4IEaBLsUwGcbt3PW0Ok+bbJApnCRdX0hKNLFzmq3d95hKkhkOxFRSZEmdbx/Eh97pjwfsIRqULG+QnxMOCESKiK7IuVxUTFI8WnJhaLu8MrU0gvfSUlg41ADoZDdDMx+6Lr8zmanghK62rJ5E00+Fsv+mOAQLyzraF1GvSjU9p1dXdeu7LLwf0dRV4fJowSLtqaK0ZUBwBpzB78xW5T2WF4D7pEo8vtqTgUBJ08Azvzb7RLNfWuTvmI0VF2YApcMTzma8wQXoBw/Fx5rKSAQPmVFYFSNKgPzY7B5IgCpJiPG5VmvYQrzak/K2CvE3HubkYDJMW940QIsVdgizO9uldgNKx8HWIfLwNrsybEWIRBG6ipIkoptbDGxX6zMRsb88QDY0gatun4ZSq57pqeLfeQWwTHTF9Cv1MRT3KskpDc2V2t4avpc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CHBPR12MB731189.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(366016)(261021135927099003)(10067099003)(5023799004)(4143699003)(11063799006)(56012099006)(261021123027099003)(261102123227099003)(261021121427099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PpvzhZ1tPrab6AqCVc9D+WH66EmGbh50wGaZs8JhCU8lYSWX9wamwjZlPjnt?=
+ =?us-ascii?Q?uIe1piJW+VPjZdcIXNbqAXNWFvsucx4XxZWZpTKpYadTY1/gB+qoX9p7yeKP?=
+ =?us-ascii?Q?Y9ihhUg1kjvp8Tqawbo0JJnvIFAgJdJ7AxFLuq8xgNRTvhc9IanYyIrme+P+?=
+ =?us-ascii?Q?idMM/p50MqIibdMtqDCvssA3zR870xCIiqk5/nV0ocP6DUd522+BJR9hNNb7?=
+ =?us-ascii?Q?dMESos4Flzy8/P8JSGExpr7u++ftpdAKwv0H1rSG3mMyqXVVoKwmK1zbjGdm?=
+ =?us-ascii?Q?M5vE8n8jt1gVK8mbmKAmuTMJsP0AR56iouxnMkRyhy3f73o21vQbR7FjB2hI?=
+ =?us-ascii?Q?CcZPUA1kHSR/gYr5PdEi5bbARtHDgZ9mNCgsRmrXx9zRNU04/xtOIlensTJd?=
+ =?us-ascii?Q?VExWkrt/FdHAPNAMiXcXPY4GPPsKsliPNp3ZzSkBnnD320K/w6bsCG8KJXbv?=
+ =?us-ascii?Q?RdBzcnoanRxvcen4ZD7nWaiu4n1t+eRDF3qa0aJtl3Y41i5GMhtHoZKf4F26?=
+ =?us-ascii?Q?vqRRk33T0ArBA+pgwSiE0ZRMMZoFNqbUqaSyvrVq1Oydvw4+7iGBW33ATIny?=
+ =?us-ascii?Q?FoTTcf/TnbVJlqRn9iRx2du5HLFYGnr4SMVTSRAjAeavwSOh19f00bcIs59K?=
+ =?us-ascii?Q?vuGz+fcSy6v8Cq3ggtYMKIhgln3ZYgTu6QDmYbBA1EpnPzaZ0TLBMuuFSOKy?=
+ =?us-ascii?Q?7k8aIyS2N+5Cku8PMQIwImckP+iThCDnDpz2879onkT4ZFa+4DWgJaLU6f1/?=
+ =?us-ascii?Q?O8mcJ5SYjvpQ4TheILgRC/sMnni8s9asG3+HWRW8nCmadhuw7zrk/+fJr1R7?=
+ =?us-ascii?Q?bkVIga4idKUi+Ez5hgZOUlz6G2HBjSQFmdTug1Z7WCbbFsSLHhln6b+5zfrD?=
+ =?us-ascii?Q?IkEuyOL+fpBBZQ+v9sEX0+ZgzKiAg8HSIj4J6BHBQahPAPgRVvGcWamNYpjF?=
+ =?us-ascii?Q?zXija+kNmf6JlkrsVDaUJKvjuCEE4cNd0OmnUlPXPRrWEdRTH21QlZR0ONr/?=
+ =?us-ascii?Q?H4bWg2URNzMFFGb4zCp6wbVaINCLQC0bDMKtWhyCWy1CBljYkT+0AtkGptZb?=
+ =?us-ascii?Q?yKbzpFewKJlTau+SJ49w4LWVDZm8d7S/0341Pm92sCOHqmuISFQ7iFHXN01x?=
+ =?us-ascii?Q?IZY1ZNT9rI6yKsDysxw4UF7l/fnYIz6aOxkXe03c1UQmnFRiysl/lZx9dV+f?=
+ =?us-ascii?Q?f9xY8J+1850d9Fcie3cJ/zDIRIK6qY7wH05iCOzvvMM2HzIQ14pmcy6kioAG?=
+ =?us-ascii?Q?ZPYBAO/mYlqPEkVWfK+Z1x7+rMmK1AjU3oCuOLAXVW6f+yHsuOS/4egT7OXw?=
+ =?us-ascii?Q?Gxqugb8VvHIgFtrLXNVeL/jV+2Y8agULu+/MpWclsC28Ac02y8dAPJWHtOp9?=
+ =?us-ascii?Q?B2cONLJAmz175DGAU8RnSA2TimZb/KRAQPeFO3RDnVjt38gHFuucIhXQ/iro?=
+ =?us-ascii?Q?JCL87N4y6jV+tvCoItK5kzVNbmVqgxuaUlN0QAH6ffb6iHtfgUAqo6tmqMrN?=
+ =?us-ascii?Q?W74FB6JWBeoRdSCRfKrGD3p2kM/kyVDNWosEyU68OO2y/xsSBs2xw7eZNER7?=
+ =?us-ascii?Q?FvpqGkJn9x0nSuPuR9RFWD4cGU3AE+6IcgmcyfVXmteR5qC7d//4yFm6Ig3X?=
+ =?us-ascii?Q?neCmL3+luQaaUEOL/gtwzZhhnIo8/7ArPKEC5eRXkW3l3vubazG5LcW0xRzg?=
+ =?us-ascii?Q?Vfs9Hof8KYL0kNuL1ZEBiEat7bu/gBcvTuvKaSDrvZ0ezCIk?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3d23114-96c9-4089-6269-08df4a3cd4e3
+X-MS-Exchange-CrossTenant-AuthSource: CHBPR12MB731189.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 15:08:44.1101
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8OHujypUyTuiEd7SFgzpX3k7T6nZ2Cs41iV4onAJmrgnMcpduk4qfQZJyzkgXuTf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5711
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_070830_314852_B1A137E0 
-X-CRM114-Status: GOOD (  31.29  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_070856_402542_1B944CF0 
+X-CRM114-Status: UNSURE (   8.09  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,284 +146,23 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 12/11/2026 03:36, Kohei Enju wrote:
-> Introduce the KVM_ARM_VM_RMI_CTRL device attribute group to allow
-> userspace to configure Realm VM parameters before the Realm is created
-> using KVM_SET_DEVICE_ATTR.
-> 
-> Currently, KVM_ARM_VM_RMI_CTRL_MEC_POLICY is the only supported
-> attribute. Its value can be KVM_ARM_VM_RMI_MEC_POLICY_SHARED or
-> KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE. Reject the private policy if the
-> platform does not support private MECs.
-> 
-> If userspace does not explicitly configure the MEC policy,
-> KVM_ARM_VM_RMI_MEC_POLICY_SHARED is used by default.
-> 
-> Signed-off-by: Kohei Enju <enju.kohei@fujitsu.com>
-> ---
->   Documentation/virt/kvm/devices/vm.rst   | 25 +++++++++++++++
->   arch/arm64/include/asm/kvm_rmi.h        |  5 +++
->   arch/arm64/include/uapi/asm/kvm.h       |  4 +++
->   arch/arm64/kvm/arm.c                    |  4 +++
->   arch/arm64/kvm/rmi.c                    | 57 +++++++++++++++++++++++++++++++++
->   drivers/firmware/arm_rmm/rmi.c          |  6 ++++
->   include/linux/arm-rmi-cmds.h            |  1 +
->   tools/arch/arm64/include/uapi/asm/kvm.h |  4 +++
->   8 files changed, 106 insertions(+)
-> 
-> diff --git a/Documentation/virt/kvm/devices/vm.rst b/Documentation/virt/kvm/devices/vm.rst
-> index 78e63eb9994e..b0bd30750aa1 100644
-> --- a/Documentation/virt/kvm/devices/vm.rst
-> +++ b/Documentation/virt/kvm/devices/vm.rst
-> @@ -418,3 +418,28 @@ will reject attempts to define a filter for any portion of these ranges:
->           0x8000_0000 0x8000_FFFF
->           0xC000_0000 0xC000_FFFF
->           =========== ===============
-> +
-> +7. GROUP: KVM_ARM_VM_RMI_CTRL
-> +=============================
-> +
-> +:Architectures: arm64
-> +
-> +7.1. ATTRIBUTE: KVM_ARM_VM_RMI_CTRL_MEC_POLICY (w/o)
-> +----------------------------------------------------
-> +
-> +:Parameters: Pointer to a ``__u8`` value
-> +
-> +:Returns:
-> +
-> +  =========  ===========================================================
-> +  ENXIO      The VM is not a Realm VM
-> +  EBUSY      The Realm has already been created
-> +  EINVAL     Invalid MEC policy value
-> +  EOPNOTSUPP Private MEC policy is not supported by the platform
-> +  EFAULT     The value could not be copied from userspace
-> +  =========  ===========================================================
-> +
-> +Configures the MEC policy for a Realm VM before the Realm is created. The value
-> +must be either ``KVM_ARM_VM_RMI_MEC_POLICY_SHARED`` or
-> +``KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE``. If userspace does not explicitly set the
-> +MEC policy, ``KVM_ARM_VM_RMI_MEC_POLICY_SHARED`` is used by default.
-> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
-> index 3933f8d834b8..08c1f6d0671d 100644
-> --- a/arch/arm64/include/asm/kvm_rmi.h
-> +++ b/arch/arm64/include/asm/kvm_rmi.h
-> @@ -59,6 +59,7 @@ enum realm_state {
->    * @state: The lifetime state machine for the realm
->    * @ia_bits: Number of valid Input Address bits in the IPA
->    * @stage2_unmapped: The Realm stage-2 mappings have been removed
-> + * @mec_policy: MEC policy for the Realm VM
->    */
->   struct realm {
->   	void *rd;
-> @@ -73,6 +74,7 @@ struct realm {
->   	enum realm_state state;
->   	unsigned int ia_bits;
->   	bool stage2_unmapped;
-> +	unsigned int mec_policy;
->   };
->   
->   /**
-> @@ -109,9 +111,12 @@ int kvm_realm_teardown_stage2(struct kvm *kvm);
->   void kvm_destroy_rec(struct kvm_vcpu *vcpu);
->   
->   struct kvm_arm_rmi_populate;
-> +struct kvm_device_attr;
->   
->   int kvm_arm_rmi_populate(struct kvm *kvm,
->   			 struct kvm_arm_rmi_populate *arg);
-> +int kvm_vm_rmi_has_attr(struct kvm *kvm, struct kvm_device_attr *attr);
-> +int kvm_vm_rmi_set_attr(struct kvm *kvm, struct kvm_device_attr *attr);
->   
->   enum kvm_gfn_range_filter;
->   
-> diff --git a/arch/arm64/include/uapi/asm/kvm.h b/arch/arm64/include/uapi/asm/kvm.h
-> index 65ee09bd1463..aa1e6fe6192e 100644
-> --- a/arch/arm64/include/uapi/asm/kvm.h
-> +++ b/arch/arm64/include/uapi/asm/kvm.h
-> @@ -403,6 +403,10 @@ enum {
->   /* Device Control API on vm fd */
->   #define KVM_ARM_VM_SMCCC_CTRL		0
->   #define   KVM_ARM_VM_SMCCC_FILTER	0
-> +#define KVM_ARM_VM_RMI_CTRL		1
-> +#define   KVM_ARM_VM_RMI_CTRL_MEC_POLICY	0
-> +#define     KVM_ARM_VM_RMI_MEC_POLICY_SHARED	0
-> +#define     KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE	1
->   
->   /* Device Control API: ARM VGIC */
->   #define KVM_DEV_ARM_VGIC_GRP_ADDR	0
-> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> index 8e94f1bff830..be676c13e219 100644
-> --- a/arch/arm64/kvm/arm.c
-> +++ b/arch/arm64/kvm/arm.c
-> @@ -2329,6 +2329,8 @@ static int kvm_vm_has_attr(struct kvm *kvm, struct kvm_device_attr *attr)
->   	switch (attr->group) {
->   	case KVM_ARM_VM_SMCCC_CTRL:
->   		return kvm_vm_smccc_has_attr(kvm, attr);
-> +	case KVM_ARM_VM_RMI_CTRL:
-> +		return kvm_vm_rmi_has_attr(kvm, attr);
->   	default:
->   		return -ENXIO;
->   	}
-> @@ -2339,6 +2341,8 @@ static int kvm_vm_set_attr(struct kvm *kvm, struct kvm_device_attr *attr)
->   	switch (attr->group) {
->   	case KVM_ARM_VM_SMCCC_CTRL:
->   		return kvm_vm_smccc_set_attr(kvm, attr);
-> +	case KVM_ARM_VM_RMI_CTRL:
-> +		return kvm_vm_rmi_set_attr(kvm, attr);
->   	default:
->   		return -ENXIO;
->   	}
-> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
-> index 0d254fb80cde..01ac8d4fec7c 100644
-> --- a/arch/arm64/kvm/rmi.c
-> +++ b/arch/arm64/kvm/rmi.c
-> @@ -7,6 +7,7 @@
->   #include <linux/arm-rmi-cmds.h>
->   #include <linux/kvm_host.h>
->   #include <linux/overflow.h>
-> +#include <linux/uaccess.h>
->   
->   #include <asm/daifflags.h>
->   #include <asm/kvm_emulate.h>
-> @@ -586,6 +587,9 @@ static int realm_create_rd(struct kvm *kvm)
->   		params->flags0 |= RMI_REALM_PARAM_FLAG_PMU;
->   	}
->   
-> +	params->flags0 |= FIELD_PREP(RMI_REALM_PARAM_FLAG_MEC_POLICY_MASK,
-> +				    realm->mec_policy);
-> +
->   	r = realm_init_sve_param(kvm, params);
->   	if (r)
->   		goto out_undelegate_tables;
-> @@ -1481,6 +1485,57 @@ int kvm_arm_rmi_populate(struct kvm *kvm,
->   	return ret;
->   }
->   
-> +static int kvm_vm_rmi_set_mec_policy(struct kvm *kvm, u8 policy)
-> +{
-> +	guard(mutex)(&kvm->arch.config_lock);
-> +
-> +	if (!kvm_vm_is_realm(kvm))
-> +		return -ENXIO;
-> +
-> +	if (kvm_realm_state(kvm) != REALM_STATE_NONE)
-> +		return -EBUSY;
-> +
-> +	if (policy != KVM_ARM_VM_RMI_MEC_POLICY_SHARED &&
-> +	    policy != KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE)
-> +		return -EINVAL;
-> +
-> +	if (policy == KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE &&
-> +	    rmi_mec_count() == 0)
-> +		return -EOPNOTSUPP;
-> +
-> +	kvm->arch.realm.mec_policy = policy;
-> +	return 0;
-> +}
-> +
-> +int kvm_vm_rmi_has_attr(struct kvm *kvm, struct kvm_device_attr *attr)
-> +{
-> +	if (!kvm_vm_is_realm(kvm))
-> +		return -ENXIO;
-> +
-> +	switch (attr->attr) {
-> +	case KVM_ARM_VM_RMI_CTRL_MEC_POLICY:
+On Mon, Nov 23, 2026 at 09:29:52PM -0800, Nicolin Chen wrote:
 
-minor nit: Could we reject this if the rmi_mec_count() == 0 ?
-Default policy is "shared" mec, as long as it is documented, this
-would work only on a system that supports Private MEC.
+> The leak check reads NR_SECONDARY_PAGETABLE with global_node_page_state().
+> That only returns the global counter. Each CPU also keeps a small delta of
+> page updates that is folded into the global counter only after it exceeds
+> a threshold. So the value can be off by a few pages without any leak.
 
+There is a patch already in my tree to deal with this, this test only
+works when you use the kunit runner
 
-Suzuki
-
-
-> +		return 0;
-> +	default:
-> +		return -ENXIO;
-> +	}
-> +}
-> +
-> +int kvm_vm_rmi_set_attr(struct kvm *kvm, struct kvm_device_attr *attr)
-> +{
-> +	void __user *uaddr = (void __user *)attr->addr;
-> +	u8 policy;
-> +
-> +	switch (attr->attr) {
-> +	case KVM_ARM_VM_RMI_CTRL_MEC_POLICY:
-> +		if (copy_from_user(&policy, uaddr, sizeof(policy)))
-> +			return -EFAULT;
-> +
-> +		return kvm_vm_rmi_set_mec_policy(kvm, policy);
-> +	default:
-> +		return -ENXIO;
-> +	}
-> +}
-> +
->   static int kvm_create_rec(struct kvm_vcpu *vcpu)
->   {
->   	struct user_pt_regs *vcpu_regs = &vcpu->arch.ctxt.regs;
-> @@ -1695,6 +1750,8 @@ int kvm_init_realm(struct kvm *kvm)
->   {
->   	struct realm *realm = &kvm->arch.realm;
->   
-> +	realm->mec_policy = KVM_ARM_VM_RMI_MEC_POLICY_SHARED;
-> +
->   	realm->sro = kmalloc_obj(*realm->sro);
->   	if (!realm->sro)
->   		return -ENOMEM;
-> diff --git a/drivers/firmware/arm_rmm/rmi.c b/drivers/firmware/arm_rmm/rmi.c
-> index 77255a90e0a6..27edf060d2d9 100644
-> --- a/drivers/firmware/arm_rmm/rmi.c
-> +++ b/drivers/firmware/arm_rmm/rmi.c
-> @@ -793,6 +793,12 @@ unsigned long rmi_feat_reg(unsigned int index)
->   }
->   EXPORT_SYMBOL_GPL(rmi_feat_reg);
->   
-> +u64 rmi_mec_count(void)
-> +{
-> +	return u64_get_bits(rmi_feat_reg(4), RMI_FEATURE_REGISTER_4_MEC_COUNT);
-> +}
-> +EXPORT_SYMBOL_GPL(rmi_mec_count);
-> +
->   static int rmi_rmm_config_set(unsigned long cfg_ptr)
->   {
->   	struct arm_smccc_1_2_regs regs = {
-> diff --git a/include/linux/arm-rmi-cmds.h b/include/linux/arm-rmi-cmds.h
-> index c13e8775898e..530136ccb791 100644
-> --- a/include/linux/arm-rmi-cmds.h
-> +++ b/include/linux/arm-rmi-cmds.h
-> @@ -68,6 +68,7 @@ static __always_inline void rmi_smccc_invoke_once(struct arm_smccc_1_2_regs *reg
->   }
->   
->   unsigned long rmi_feat_reg(unsigned int index);
-> +u64 rmi_mec_count(void);
->   
->   int rmi_delegate_range(phys_addr_t phys, unsigned long size,
->   		       phys_addr_t *out_phys);
-> diff --git a/tools/arch/arm64/include/uapi/asm/kvm.h b/tools/arch/arm64/include/uapi/asm/kvm.h
-> index 65ee09bd1463..aa1e6fe6192e 100644
-> --- a/tools/arch/arm64/include/uapi/asm/kvm.h
-> +++ b/tools/arch/arm64/include/uapi/asm/kvm.h
-> @@ -403,6 +403,10 @@ enum {
->   /* Device Control API on vm fd */
->   #define KVM_ARM_VM_SMCCC_CTRL		0
->   #define   KVM_ARM_VM_SMCCC_FILTER	0
-> +#define KVM_ARM_VM_RMI_CTRL		1
-> +#define   KVM_ARM_VM_RMI_CTRL_MEC_POLICY	0
-> +#define     KVM_ARM_VM_RMI_MEC_POLICY_SHARED	0
-> +#define     KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE	1
->   
->   /* Device Control API: ARM VGIC */
->   #define KVM_DEV_ARM_VGIC_GRP_ADDR	0
-> 
-
+Thanks,
+Jason
 
