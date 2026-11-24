@@ -2,119 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D588606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4568D606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 20:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2GfyppEp;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=iqVqhHVF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d43equ2E;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sIotvm5o
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=RvU1ESTYysczxCSetKI0TL55rpMf6chQXLmsCQQ9a7E=; b=2GfyppEp7QMXqtqDmOmS90PNxE
-	QixuJdqO0mAM5HCFxMdACzVUkV1wTrEVYD0ctauh89+0qLUm4mIjn2ktpEIOeZOPC9IpNv+1CZX/f
-	8dOj3szD23HeLd8xTPTZjbklefaazN05XpL19/vGbMuuwvh0GNRIGaI8EWbIimKcr5lhdDwnTLsLQ
-	IMjgySGNkFJTz6TMrxmIYXMQtWVcFj8LC6aBNg+4hIgmp+s0F0F5wJ+TrePlylVjtcPGRWz77L8nv
-	iUvC8RBra8vHTyEXI68pJi3qZL0rOHEoO+DTW/FSuS3e3WoPXSVCKiL4NjsIAKMv8bGU3FriFy4hy
-	DumgOl4Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zHQArU5+8YrrsMC04rgV10DYKpSzcQP+GuriGqIefiY=; b=d43equ2EcJ6zpt
+	khQUvWTOO3emn+peTKpT4UMLuEGaFNeTrbAXwUj53RXK7krJEpijMQCzOLfosuspeyPgiHi+ZUyYb
+	6lmTPhOTcdXYzBECGl7F5Z7VHW8AaIV6R3Wz0hcopeu+6+UEaLhnTypS8glwHW+QnFkVyiGyj9h1e
+	PQgZXRXB3yfcIrmTFK2fKQ5vTvJaZf2sj+4nSu6qog29TLczqbguB4oRJbwobc2+cXX/ssqOrpuzL
+	7/bA20jSDaXmBdKCbuKwUy5NbMGw6WJqaRjVINfGuYI6Rcat0fqd+hJAiMc/H8EFZJAbKHTrhyF/d
+	1SK/FNzUgLTj0LWoOBsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxUV-00000007n3m-1mCE;
-	Tue, 24 Nov 2026 20:51:51 +0000
-Received: from mail-qt1-x834.google.com ([2607:f8b0:4864:20::834])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxUR-00000007n2h-3BAZ
+	id 1xVwYp-00000007eMA-483b;
+	Tue, 24 Nov 2026 19:52:15 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVwYB-00000007dzp-1vmn
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 20:51:49 +0000
-Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-55d6deecef6so50254111cf.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 12:51:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795553506; x=1796158306; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=RvU1ESTYysczxCSetKI0TL55rpMf6chQXLmsCQQ9a7E=;
-        b=iqVqhHVFdb3+12owJtCfydsYyoECMDKgV0iaD9GdQDh48Wy56QaEgqPxBymOKqdqKf
-         8HMI3GtEFf1jyCnxTdefpKEuJHwWBRC9bs4DIwo0O3xZYwzOAsRL8HUZ3OgIY+pOSIn5
-         72osiXHFgZ1aTqM8Xvx9bTZzaTy0yKCxbKtTEiLVQc5OKODxfhgY/c6lockegVtkJ/w5
-         O4rcVhDZqt+aMXknn0ttAxUuNHsT7DiV07zZwqcpLz12dcwBbV10w8VTmultQ1HN23P+
-         n/JrB8tfrpAoVPR8t1NFs6CMf9FsaXRnoRRLtgWPEMDAnx3XxMxxs7KMhGvWoTv0zx4v
-         Ig6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795553506; x=1796158306;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=RvU1ESTYysczxCSetKI0TL55rpMf6chQXLmsCQQ9a7E=;
-        b=uKx16cCGXBPBM1f3T9JrF2fdsrFoZAmKpgwh/vcF6zjPazScdF+7buvUzTT01eUhFy
-         5wOaT/adhtI1Wyq2oWOAy1NXTz0iuGfXRDa0fAElWtW03vVI2Co/h8nxmQK1waTCJs6W
-         sIy4yOD/N3s/T8aCk5FqXMYQB08AJuaDEGS2SH6SOR4SB1PbMfVulXlgp+1DmRTAdvvP
-         q8IXgIzpuIrM1a0NqkOVXCKR9eW4N337F4Lg5pcP5/Y4UCzqtGDCJwQDij7x+Wg4Wg1l
-         oA04OjbmlDndvOoXozfLcyAqYHjGmRW+o1exk3ztB0tB8CF19oT4XP7gic3oBhlI5sUN
-         IUzQ==
-X-Forwarded-Encrypted: i=1; AL+hErFZ+4F3tCJ2KucmB8DJ1GXPRDwGCXtC8NWs1bgNXtHhNC0xUKOH4TMLkA4vzCO8gsE3oeJjSSwgw6PTgQdpPLEU@lists.infradead.org
-X-Gm-Message-State: APuU4Z9bQdiqPMmNkzSDSIYmj0NfoR/smPD91da7uXtV7wGyqNT1UKSe
-	U5/2bDNO5W4qrYSWIyg7n+fyuvLbmDc8OAhMPvRNXx8aIlupFjA7k63wNJBugaABXlQ=
-X-Gm-Gg: AZFdTZdAeeLfJJvzw8t1Yf1V0ULtX672vvmbW3EYuyYaykLFgewRn3l71KjWsXG1US9
-	UlZOwSkDcI0LJVGmstHh4vipHOrpiG5MfkzcL36yVLEM5DacbpSo8RokHSnBurIauZJ9JcVVK/D
-	qGh0yM2ZE3j3Rtyyx+kMILrrv6jmpB41ujJhB97dvFtnqLyDiJAqs7nc8PxhW1qLCm4WsnIJF1O
-	acB8H6NVtRv5eXq+mLT8YBeQoadiU1cHNdkjHAheI8YeJecxwt7oB6sgofG8yjKDvbHN1opu65i
-	0XkY11ZRqSjHiNwxdM0VczzUUwT41Bs1X3dht02+MaxbuUmztfoKdEjCY6qTaslZgGMtuXJlMjj
-	DhprX1Etvx1Nn6PCQ2YPFcqXzRxsxfVcuq3Ijrobd20X/gJJYHIXSrITKjE176+fURw7Vdo1vXb
-	mfHqJ0vMLghSJLzqF+Hx/OjFfiG/toRuZIvHTUlnl5RVl5yPYIRd6kPTzPM77jGJLyqdB+obEEK
-	2WWN6E/vdS7EVYd2kj18PO0iHoxrRJBKiVxHi46ymdtpGDdGwBNZ770JyjIjOLoPBLMRZ1HwK76
-	Gjj9wJlVS0wormXmSo98heIB8QmfdHA3af3+MUlABsF/6LQSlW8Ad6UtLJvuryo6dLLyfcVUeiR
-	q
-X-Received: by 2002:a05:622a:613:b0:55d:3254:6253 with SMTP id d75a77b69052e-55d76a518bamr289760521cf.42.1795553506144;
-        Tue, 24 Nov 2026 12:51:46 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-92134796288sm142427246d6.6.2026.11.24.12.51.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 12:51:45 -0800 (PST)
-Message-ID: <89a387a88aff111fde71f00474776d1462b3594b.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 05/17] media: rockchip: rga: use devres version of
- pm_runtime_enable
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
-	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
- Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
- <lgs201920130244@gmail.com>
-Date: Tue, 24 Nov 2026 15:51:44 -0500
-In-Reply-To: <20260916-spu-rga3multicore-v2-5-23aa2cb74e61@pengutronix.de>
-References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
-	 <20260916-spu-rga3multicore-v2-5-23aa2cb74e61@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-+FFLPuXOIBC694qENGcJ"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	Tue, 24 Nov 2026 19:51:36 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EB0A716F3;
+	Tue, 24 Nov 2026 11:51:31 -0800 (PST)
+Received: from pluto.guest.local (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E6D4D3F763;
+	Tue, 24 Nov 2026 11:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795549894; bh=UTTDVQsIfnDCYfh79QIOFkJU/xtZ/+rCNzuC10SDm8M=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=sIotvm5oSSxtLKKfKCabWLDl4V4OEO3FqeMhuVQpTvNDbgSNTX6bxsNZS1C3ZfJgO
+	 iY0LHp1SlW9U0IeJdLhlBIr+sFcso8TymtoPCyL+/WNb32+nA3eNkPgSSf/bw3X6kT
+	 uRiz2yTEyTA6rYm05tLuPMZQbk5NLLk4xpwLp5A0=
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: sudeep.holla@kernel.org,
+	james.quinlan@broadcom.com,
+	f.fainelli@gmail.com,
+	vincent.guittot@linaro.org,
+	etienne.carriere@st.com,
+	peng.fan@oss.nxp.com,
+	michal.simek@amd.com,
+	d-gole@ti.com,
+	jonathan.cameron@oss.qualcomm.com,
+	elif.topuz@arm.com,
+	lukasz.luba@arm.com,
+	philip.radford@arm.com,
+	david@kernel.org,
+	souvik.chakravarty@arm.com,
+	leitao@kernel.org,
+	kas@kernel.org,
+	puranjay@kernel.org,
+	usama.arif@linux.dev,
+	kernel-team@meta.com,
+	Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v17 23/34] firmware: arm_scmi: Refactor protocol allocation
+Date: Tue, 24 Nov 2026 19:48:29 +0000
+Message-ID: <20261124194841.1147072-24-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20261124194841.1147072-1-cristian.marussi@arm.com>
+References: <20261124194841.1147072-1-cristian.marussi@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_125147_818804_D80EFFA4 
-X-CRM114-Status: GOOD (  20.29  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_115135_622252_8E5CF220 
+X-CRM114-Status: GOOD (  13.84  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,135 +88,142 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-+FFLPuXOIBC694qENGcJ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Simplify protocol initialization and finalization using cleanup handlers.
+Relocate the protocol put operations out of the setup and cleanup code so
+as to be executed strictly after the protocol devres groups have been
+fully released.
 
-Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
-=A9crit=C2=A0:
-> Use the devres version of pm_runtime_enable named
-> devm_pm_runtime_enable to ease up the cleanup handling. Also it avoids
-> having a mixed cleanup order due to the following
-> devm_platform_ioremap_resource being cleaned up anyways after the probe
-> function has returned.
->=20
-> This also changes some dev_err calls to dev_err_probe for convenient
-> returning. This may not print these messages in the error case, as
-> dev_err_probe may handle them differently based on the error (e.g.
-> ENOMEM won't be printed).
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
->=20
-> ---
-> v2
-> - added
-> ---
->  drivers/media/platform/rockchip/rga/rga.c | 34 +++++++++++--------------=
-------
->  1 file changed, 12 insertions(+), 22 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
-atform/rockchip/rga/rga.c
-> index 8c03422d669cf..d7f0712177b70 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -797,37 +797,31 @@ static int rga_probe(struct platform_device *pdev)
->  =09if (ret)
->  =09=09return dev_err_probe(&pdev->dev, ret, "Unable to parse OF data\n")=
-;
-> =20
-> -=09pm_runtime_enable(rga->dev);
-> +=09ret =3D devm_pm_runtime_enable(rga->dev);
-> +=09if (ret)
-> +=09=09return ret;
-> =20
->  =09rga->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> -=09if (IS_ERR(rga->regs)) {
-> -=09=09ret =3D PTR_ERR(rga->regs);
-> -=09=09goto err_put_clk;
-> -=09}
-> +=09if (IS_ERR(rga->regs))
-> +=09=09return PTR_ERR(rga->regs);
-> =20
->  =09irq =3D platform_get_irq(pdev, 0);
-> -=09if (irq < 0) {
-> -=09=09ret =3D irq;
-> -=09=09goto err_put_clk;
-> -=09}
-> +=09if (irq < 0)
-> +=09=09return irq;
-> =20
->  =09ret =3D devm_request_irq(rga->dev, irq, rga_isr,
->  =09=09=09       rga_has_internal_iommu(rga) ? 0 : IRQF_SHARED,
->  =09=09=09       dev_name(rga->dev), rga);
-> -=09if (ret < 0) {
-> -=09=09dev_err(rga->dev, "failed to request irq\n");
-> -=09=09goto err_put_clk;
-> -=09}
-> +=09if (ret < 0)
-> +=09=09return dev_err_probe(rga->dev, ret, "failed to request irq\n");
-> =20
->  =09ret =3D dma_set_mask_and_coherent(rga->dev, DMA_BIT_MASK(32));
-> -=09if (ret) {
-> -=09=09dev_err(rga->dev, "32-bit DMA not supported");
-> -=09=09goto err_put_clk;
-> -=09}
-> +=09if (ret)
-> +=09=09dev_err_probe(rga->dev, ret, "32-bit DMA not supported");
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+ drivers/firmware/arm_scmi/driver.c | 53 +++++++++++++-----------------
+ 1 file changed, 22 insertions(+), 31 deletions(-)
 
-Did you mean ?
-=09=09return dev_err_probe(rga->dev, ret, "32-bit DMA not
-supported");
+diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+index 123050335969..54d9780b7e87 100644
+--- a/drivers/firmware/arm_scmi/driver.c
++++ b/drivers/firmware/arm_scmi/driver.c
+@@ -2306,24 +2306,21 @@ static void scmi_protocol_version_initialize(struct device *dev,
+  *
+  * Context: Assumes to be called with @protocols_mtx already acquired.
+  * Return: A reference to a freshly allocated and initialized protocol instance
+- *	   or ERR_PTR on failure. On failure the @proto reference is at first
+- *	   put using @scmi_protocol_put() before releasing all the devres group.
++ *	   or ERR_PTR on failure.
+  */
+ static struct scmi_protocol_instance *
+ scmi_alloc_init_protocol_instance(struct scmi_info *info,
+ 				  const struct scmi_protocol *proto)
+ {
++	const struct scmi_handle *handle = &info->handle;
++	struct scmi_protocol_instance *pi;
+ 	int ret = -ENOMEM;
+ 	void *gid;
+-	struct scmi_protocol_instance *pi;
+-	const struct scmi_handle *handle = &info->handle;
+ 
+ 	/* Protocol specific devres group */
+ 	gid = devres_open_group(handle->dev, NULL, GFP_KERNEL);
+-	if (!gid) {
+-		scmi_protocol_put(proto);
+-		goto out;
+-	}
++	if (!gid)
++		return ERR_PTR(ret);
+ 
+ 	pi = devm_kzalloc_obj(handle->dev, *pi);
+ 	if (!pi)
+@@ -2378,10 +2375,7 @@ scmi_alloc_init_protocol_instance(struct scmi_info *info,
+ 	if (pi->proto->instance_deinit)
+ 		pi->proto->instance_deinit(&pi->ph);
+ clean:
+-	/* Take care to put the protocol module's owner before releasing all */
+-	scmi_protocol_put(proto);
+ 	devres_release_group(handle->dev, gid);
+-out:
+ 	return ERR_PTR(ret);
+ }
+ 
+@@ -2401,25 +2395,25 @@ scmi_alloc_init_protocol_instance(struct scmi_info *info,
+ static struct scmi_protocol_instance * __must_check
+ scmi_get_protocol_instance(const struct scmi_handle *handle, u8 protocol_id)
+ {
+-	struct scmi_protocol_instance *pi;
+ 	struct scmi_info *info = handle_to_scmi_info(handle);
++	struct scmi_protocol_instance *pi;
++	const struct scmi_protocol *proto;
+ 
+-	mutex_lock(&info->protocols_mtx);
++	guard(mutex)(&info->protocols_mtx);
+ 	pi = idr_find(&info->protocols, protocol_id);
+-
+ 	if (pi) {
+ 		refcount_inc(&pi->users);
+-	} else {
+-		const struct scmi_protocol *proto;
+-
+-		/* Fails if protocol not registered on bus */
+-		proto = scmi_protocol_get(protocol_id, &info->version);
+-		if (proto)
+-			pi = scmi_alloc_init_protocol_instance(info, proto);
+-		else
+-			pi = ERR_PTR(-EPROBE_DEFER);
++		return pi;
+ 	}
+-	mutex_unlock(&info->protocols_mtx);
++
++	/* Fails if protocol not registered on bus */
++	proto = scmi_protocol_get(protocol_id, &info->version);
++	if (!proto)
++		return ERR_PTR(-EPROBE_DEFER);
++
++	pi = scmi_alloc_init_protocol_instance(info, proto);
++	if (IS_ERR(pi))
++		scmi_protocol_put(proto);
+ 
+ 	return pi;
+ }
+@@ -2452,12 +2446,13 @@ void scmi_protocol_release(const struct scmi_handle *handle, u8 protocol_id)
+ 	struct scmi_info *info = handle_to_scmi_info(handle);
+ 	struct scmi_protocol_instance *pi;
+ 
+-	mutex_lock(&info->protocols_mtx);
++	guard(mutex)(&info->protocols_mtx);
+ 	pi = idr_find(&info->protocols, protocol_id);
+ 	if (WARN_ON(!pi))
+-		goto out;
++		return;
+ 
+ 	if (refcount_dec_and_test(&pi->users)) {
++		const struct scmi_protocol *proto = pi->proto;
+ 		void *gid = pi->gid;
+ 
+ 		if (pi->proto->events)
+@@ -2468,15 +2463,11 @@ void scmi_protocol_release(const struct scmi_handle *handle, u8 protocol_id)
+ 
+ 		idr_remove(&info->protocols, protocol_id);
+ 
+-		scmi_protocol_put(pi->proto);
+-
+ 		devres_release_group(handle->dev, gid);
++		scmi_protocol_put(proto);
+ 		dev_dbg(handle->dev, "De-Initialized protocol: 0x%X\n",
+ 			protocol_id);
+ 	}
+-
+-out:
+-	mutex_unlock(&info->protocols_mtx);
+ }
+ 
+ void scmi_setup_protocol_implemented(const struct scmi_protocol_handle *ph,
+-- 
+2.54.0
 
-With this fixed:
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
-> =20
->  =09ret =3D v4l2_device_register(&pdev->dev, &rga->v4l2_dev);
->  =09if (ret)
-> -=09=09goto err_put_clk;
-> +=09=09return ret;
->  =09vfd =3D video_device_alloc();
->  =09if (!vfd) {
->  =09=09v4l2_err(&rga->v4l2_dev, "Failed to allocate video device\n");
-> @@ -877,8 +871,6 @@ static int rga_probe(struct platform_device *pdev)
->  =09video_device_release(vfd);
->  unreg_v4l2_dev:
->  =09v4l2_device_unregister(&rga->v4l2_dev);
-> -err_put_clk:
-> -=09pm_runtime_disable(rga->dev);
-> =20
->  =09return ret;
->  }
-> @@ -892,8 +884,6 @@ static void rga_remove(struct platform_device *pdev)
->  =09v4l2_m2m_release(rga->m2m_dev);
->  =09video_unregister_device(rga->vfd);
->  =09v4l2_device_unregister(&rga->v4l2_dev);
-> -
-> -=09pm_runtime_disable(rga->dev);
->  }
-> =20
->  static int __maybe_unused rga_runtime_suspend(struct device *dev)
-
---=-+FFLPuXOIBC694qENGcJ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawX44AAKCRDZQZRRKWBy
-9FD0AP4s49BNgvZ0n2v4ASohGrNveTzQ0wXrIkR5ZrY0fdkokQEAwD1oRUFwpDXl
-d3x9ZgE+KkJELoR8Uvzc7O0MwUniOAQ=
-=goRl
------END PGP SIGNATURE-----
-
---=-+FFLPuXOIBC694qENGcJ--
 
