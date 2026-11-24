@@ -2,116 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57969606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82A5606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OKDLNRaG;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=v8N5SCaM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KAiz2nV0;
+	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=xN2BOoF8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bw6nyEiSIkuUi2FfPQWVcCbleSg58qLNpgEdKu/3YUI=; b=OKDLNRaGEat5gH
-	PH4jDx+YclxCkVbzV8v5KMwBYjntIdPIF7ShlDRMSJP4kD8+60PiS95pnso0Dr2JHISKy9fLd8DJY
-	NiOuOolUNf9ghja19786+6qakaWRvoP3/iZT8WA85EwdOewwQovYPE+KvSI67/OtVw9bnVQ6qiGit
-	bN+kb29FyXiI4XtkCoVfz42+T2Nry1llqxuJwR8B2eBhGWpcio2AoWoEw2sgO1FQmlw4f6tu5PyyS
-	/0CI1PjnNMN9K0XpJHOz71UGPxShCHzEYPh9ES99+GHZLCpCgMZztxSlZKRvmKzoZHHNs2G+zGhM9
-	ztCbr7t9EKUgilpVMJ8Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=q62QOHedAQhHbKYeJiS/KWEztBtvhrPpU7h9U/jgrEU=; b=KAiz2nV0ahqey19ylt6EjtTCTM
+	9JHmOllXbsoOFElJletYIUik8kumAuiSU7rSZZV6hOmeoR7lhUR5H41RLkCEQ+a6aboE0Usq3UWC7
+	uu8NdNBlG73TjYOPXUP/tR1wu3oB6WgrIHhLNEa6cGRTMKWl7usIb0pMkie9hgQFaR1U/CVeWMfRH
+	VdSF9g05k6G4rW/SyV1nd+RTOTfRA9DsAHQPa5bUekfTW0FFg/1wZNXOqt+j8hEkWHCaxPy4UProW
+	LGsT1QsMJxkZXtfpai1WCi9OfJY4bpj9jmT0uVxuKzYR+NssLs6Iw98YiIW+rWPUbkmM7Auwox+vw
+	jKXH0oNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlYK-00000005qYg-34zT;
-	Tue, 24 Nov 2026 08:07:00 +0000
-Received: from mail-vk1-xa2c.google.com ([2607:f8b0:4864:20::a2c])
+	id 1xVlE6-00000005o9K-3M4C;
+	Tue, 24 Nov 2026 07:46:06 +0000
+Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVlYH-00000005qXM-2oI3
+	id 1xVlE2-00000005o8d-3U9c
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 08:06:59 +0000
-Received: by mail-vk1-xa2c.google.com with SMTP id 71dfb90a1353d-5eadadf23e5so3092832e0c.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 00:06:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795507616; cv=none;
-        d=google.com; s=arc-20260327;
-        b=rAgO2e7C1Q+eO4rSKD/mTKmR0WSgoo/CY+hz+MZPfQtHluHi5pDF8LMgJ2PVgPWJCl
-         TE+bjidMeK3eAF6PhMB6ZvLxFgr7rSlVf0OK7m4j7T93liHnHTT6YwSgKvlB4lcPl+e7
-         IpCwTAN3DGpxPWs7eIDeDp2ke5bwqCbbljghKHPp3rwD6jfT6FNG6IQ7jKCZ6J9YAg7Q
-         SRRfnRgL25h8zmKCvVNAumM17YcaQOlU7t/p9l3xUMP5N5FZqikx4ruwHmA1XI0VXYuI
-         bVRY/PZ2bOC88RoFv9V+mbp7PyM/1cXpBr1hHZGFiq6fXUG3+oW9MW69jv+p8My6uqj2
-         jgaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=bw6nyEiSIkuUi2FfPQWVcCbleSg58qLNpgEdKu/3YUI=;
-        fh=Mo8q6OoRQKmcFKbHHHyHqloMocjzmZQ/cQtJwCfZ228=;
-        b=MExtLW9r6MRkuRmSJ6hFteQC5WVOCxlDIQEyoyPfTqcm6V30AktlsLhuAI/O9p9DS7
-         4ch1p6QW/RyVEHkSXsX+UFtR9sM5BBsNlD0YYm9gAU3h3O3ORXqZpe5aGNXqMKQLtI6o
-         8K8fL0SNOyLJOGKtkuvk8HQbHCmQ0W+1aJj5a5xt/yubvrFgSgbfAU4Xle4ACvBvzFlF
-         PM0lgzRcFcHhPNYPm4wY719Yx7SO7E51+S9D0R/F5pXFuczkT4a23GHQ9ukf7vvltCqI
-         cQ6EomdAjn4juV9BHi4G3APEiW9lERiHmX6y1fEJMWd22PJ+coISwId5x8QteUph1+s/
-         B2JQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795507616; x=1796112416; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=bw6nyEiSIkuUi2FfPQWVcCbleSg58qLNpgEdKu/3YUI=;
-        b=v8N5SCaMOEdV5ChBiHzp+XfMOLIBp9sKcyjp28ZBWPq3RzmOumI3dqWOCTkywI7ke7
-         qKGtHfYSy4I7IFA+tdA5gdPgF9/RE5tDMPfYYOz5TFyGUTtDnNlbOh/zi4s/3tkWVQPI
-         eR6+Wx/dKypSswEdn2mDZtKnQDY7NDosNqWiVUw/ZPJPsjSMlVW2HEaf60aKweya3uqy
-         yYPRMp1kEvR4K+RbMDxquww59o7SCi1Tj0WcAa1z5Ac1ePiLToAdms/EnSAzS1TIfEXP
-         dcxqn1kIqhsmMO+1/JlngkPXSm8wg/HG9HsggOkHNzm0Js7k3SdJ4/sh6uX+RxYbdD3y
-         vQgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795507616; x=1796112416;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=bw6nyEiSIkuUi2FfPQWVcCbleSg58qLNpgEdKu/3YUI=;
-        b=pM7M1yRsxov4ipVJKoqVHr21FK6Zw7dAmjodZZvNx2wPxoIIJmWrNXkBMcOyjL21cG
-         P6GV6YRfHnijBEkhvV1AMC39l2GJ/uzj+WJEMqn1Gg+6iA/PQ4IsbXlxOrycdwjQUdMn
-         hcxxZltjyvJttNrF4Bo/bMHZ7X4IIWcZi8TCh+VOcZ4ao1SQEeAg81fMKNHGvqUZpK8Z
-         jK7hyd4sXz3J4GwO59ZYG9XZ+12zVPJdRb+JVC6YuGNDUqnKauj9c6swuWgD0MPuZ2bY
-         02fRBvJYz1WZZ3eXibO+xyeqbxUs3zmnzNakJZrAhbQbaw+AHcjYNqm1X7qORdD6Xka8
-         E2qg==
-X-Forwarded-Encrypted: i=1; AL+hErFEfdCBEDewBe9XO7RXv5mNvAf/pSRtreQY64i3FrzK4i8SvewJi/0FEIj/OpQGH4QHE32/bDmRp144eJdOvVrQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z8tvxrP9+cRkWB/BJfHKp0OhNVezzotMTjV473MOCEK7k3Laj1c
-	cPyJKLlB7wdWc0T+jcK7zwyCYpdS77P5K6LeeyDOJXH48a9V4pc6Icqs/qcJJleCE4LakmhA9MV
-	IEz8CPmiRBwtyV12zFl1cVNnkztW3ocI=
-X-Gm-Gg: AZFdTZfWMOao+3gbl6wK4Gb8+Xe+sIhGHmIzo7hVLjepPxL557eixKo2e2XBaGsV8Sh
-	pPE1ik2TfW1/E4zEMI1YLGqOk+6hd2d72ZTXFsyLPV+9UufmDxXMAJIhU/R+nUvQ/kL4G2kJYaS
-	LgnYE5XVIHXzcCvDboG7bG+o31oETMnv9Jps1jYZGkE1qH1zlEZ1JdJ0fmKD0RU2GlRtvy3ft2J
-	BBkFStJKrRbxbRgm/X35nbTMMtyy/l5RWbgpfGa+XitF58kU4NAsiZ81hJaH5ZwmocgBrSWlsk1
-	KMS2p1RWLqnMIvG3O377WDnzQx3jgccACh6twGr1pmhJExO7xscPvm/7He8Uiwn93mxRuDKePHK
-	8xLDG0XkcyohUbLB8nxcaqsGcK/2PysQy938HraXRivFZOEY89vVJVJUrH4UDYmqkzZLlgebmnc
-	cEkcSiKzE0mSV/wHw=
-X-Received: by 2002:a05:6122:130a:b0:5e9:721c:72a8 with SMTP id
- 71dfb90a1353d-5ee8ad0f9ebmr7298180e0c.0.1795507616075; Tue, 24 Nov 2026
- 00:06:56 -0800 (PST)
+	Tue, 24 Nov 2026 07:46:05 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=q62QOHedAQhHbKYeJiS/KWEztBtvhrPpU7h9U/jgrEU=;
+	b=xN2BOoF8010HfI+FQt+sZsAiBWOtOp9IDCTj+HXveF9QngPnRpBLh2369fTtJsq8msrUdFoDI
+	YTl66tEU3lc2heg1KoXc2qZjyJTnSDxV0owa8Ig2UhaUaxlpOoDsgxyF/mYpTTARv6Wayo/cDK1
+	9uaR1U5Q6aTIKAbBjlTk3w4=
+Received: from mail.maildlp.com (unknown [172.19.162.223])
+	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jYZbS2HGyz12LGX;
+	Tue, 24 Nov 2026 15:45:08 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id 19C6440575;
+	Tue, 24 Nov 2026 15:45:57 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 24 Nov
+ 2026 15:45:56 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
+	<fenghuay@nvidia.com>, <jic23@kernel.org>, <will@kernel.org>,
+	<tan.shaopeng@jp.fujitsu.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH v4] arm_mpam: resctrl: Use the domain's counter ID
+Date: Tue, 24 Nov 2026 15:45:52 +0800
+Message-ID: <20261124074552.1701376-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123235154.315460-1-gahing@gahingwoo.com>
-In-Reply-To: <20261123235154.315460-1-gahing@gahingwoo.com>
-From: Anton Sovetov <anton.sovetov@gmail.com>
-Date: Tue, 24 Nov 2026 11:06:45 +0300
-X-Gm-Features: Aa3M54rUMtJHW-VAq-3nFFJeEzc6wZ6Xr6IR4ySmynSenaDrr1lXVW8oN5BrzrI
-Message-ID: <CANLiQWot44KOq8A8dQGt0JNoX=BvH2T+HryMEV05qC6iLydidA@mail.gmail.com>
-Subject: Re: [PATCH] iommu/rockchip: Disable paging on banks that still page
- before a force reset
-To: Jiaxing Hu <gahing@gahingwoo.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, heiko@sntech.de, 
-	tomeu@tomeuvizoso.net, ddrake@baylibre.com, sidong.yang@furiosa.ai, 
-	chaoyi.chen@rock-chips.com, iommu@lists.linux.dev, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_000657_763216_6EBD564B 
-X-CRM114-Status: GOOD (  33.74  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261123_234603_613041_86B83BB5 
+X-CRM114-Status: GOOD (  18.95  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,206 +76,196 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thanks, that description matches the end state I see, so it is worth tellin=
-g you
-where it does and does not fit my board.
+resctrl assigns MBM counters per domain: mbm_L3_assignments takes a
+domain ID, a group can have a counter in one domain and none in
+another, and resctrl_arch_cntr_read() and resctrl_arch_reset_cntr()
+are given the counter to use.
 
-Mine is an RK3566 with a single bank. The MMU node is 0x40 bytes of
-registers and
-the driver ends up with num_mmu =3D 1, so two banks cannot disagree. I took=
- the
-nearest analogue of your fix that exists for a single bank, the one in the
-Android tree: acknowledge a latched page fault with CMD_PAGE_FAULT_DONE bef=
-ore
-sending CMD_ENABLE_STALL, because a bank sitting in PAGE_FAULT_ACTIVE with =
-no
-stall ignores the stall command and the poll times out.
+The driver ignores that counter and looks the monitor up in
+mbwu_idx_to_mon[], indexed by CLOSID and RMID.
+resctrl_arch_config_cntr() fills that array without looking at the
+domain, so each group has one monitor for the whole resource.
+Whichever assignment is written last selects the monitor the group
+reads in every domain.
 
-Measured on 6.18.24, twenty separate processes, five runs each, IOMMU mode:
+For example, with the counter ID each group uses for mbm_total_bytes
+on each domain and "_" for none:
 
-- before: 3 ok, 4 wrong output, 18 timeouts (the failures are sticky, only =
-a
-  reboot clears them);
-- with the stale-fault ack: 2 ok, 0 wrong, 18 timeouts.
+                                domain 0         domain 1
+  mount, mkdir g1               default=0 g1=1   default=0 g1=1
+  unassign both on domain 1     default=0 g1=1   default=_ g1=_
+  assign g1 on domain 1         default=0 g1=1   default=_ g1=0
 
-No change, and more useful: dmesg has no "Enable stall request timed out" a=
-nd no
-"Disable paging request timed out" line at all. So on my board the
-re-enable path
-is never the one that fails.
+g1 is assigned the lowest free counter on domain 1, counter 0. That
+assignment is the last one written for g1, so it selects the monitor
+g1 reads in every domain. On domain 0, g1 uses counter 1, but reads
+the monitor of counter 0:
 
-What I see instead, at the first failure: the job is submitted, the
-kick registers
-hold what the driver wrote, and the core never runs it. INT_RAW_STATUS read=
-s
-0x10000 while the required mask is 0x300, task counter 0. The MMU is health=
-y at
-that moment, paging enabled, no fault pending. Later failures sometimes lea=
-ve a
-fault in the register, but the first one has none.
+                      counter whose monitor is read on domain 0
+                      default      g1
+  expected            0            1
+  actual              0            0
 
-Two questions if you have the logs at hand:
+That is the default group's monitor.
 
-- on your RK3576, does the hang start the same way, with a job that never
-  executes, or does the MMU re-enable failure come first?
-- do you ever see bit 0x10000 in the NPU's INT_RAW_STATUS on a hung
-job? I cannot
-  find what that bit is in the RK3566 register map, and the driver does not=
- mask
-  it in, so it never raises an interrupt.
+Translate the counter ID with assigned_counters[], which maps a counter
+ID to a monitor of the class and is valid in every domain.
 
-For the record, the other three things I ruled out by measurement on the sa=
-me
-board, in case one of them is what your patch really fixes: TLB staleness (=
-full
-ZAP_CACHE and a domain detach/attach before every kick), cache coherency fo=
-r the
-task and regcmd buffers, and the iova width (limiting the dma mask to 30 bi=
-ts).
-None of them moved the failure rate.
+mbwu_idx_to_mon[] is left alone: resctrl_arch_config_cntr() still fills
+it, but the read and reset paths no longer consult it, and a future
+default mbm_assign_mode may use the array, so removing it can be
+considered separately. Unassigning a counter now resets its monitor,
+where before the lookup made the reset a no-op; the monitor is reset
+again when the counter is next assigned.
 
-=D0=B2=D1=82, 24 =D0=BD=D0=BE=D1=8F=D0=B1. 2026=E2=80=AF=D0=B3. =D0=B2 02:5=
-2, Jiaxing Hu <gahing@gahingwoo.com>:
->
-> After an RK3576 NPU job timeout resets the core, the banks of its IOMMU
-> can be left in different states: bank 0 is still paging while bank 1
-> has been reset.
->
-> In this state the existing stall and paging helpers do nothing, so the
-> force reset that follows fails as well. The IOMMU can then no longer be
-> enabled, and the NPU stops working.
->
-> When the banks disagree, stop paging on the banks that still page
-> first, then run the existing sequence.
->
-> Tested on a ROCK 4D with repeated forced job timeouts. Without this
-> patch, one in every 2 to 10 timeouts was not recovered from; with it,
-> 20 out of 20 recovered.
->
-> Fixes: cd6438c5f844 ("iommu/rockchip: Reconstruct to support multi slaves=
-")
-> Signed-off-by: Jiaxing Hu <gahing@gahingwoo.com>
-> ---
-> Not tested on the RK3588.
->
-> LLM-assisted.
->
->  drivers/iommu/rockchip-iommu.c | 61 ++++++++++++++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
->
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iomm=
-u.c
-> index 1fa3110b142a..5eabefb0ad14 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -507,6 +507,64 @@ static int rk_iommu_disable_paging(struct rk_iommu *=
-iommu)
->         return ret;
->  }
->
-> +/*
-> + * The helpers above only act when every bank agrees. After a reset of t=
-he
-> + * master, one bank can still be paging; stop it bank by bank.
-> + */
-> +static void rk_iommu_quiesce_paging_banks(struct rk_iommu *iommu)
-> +{
-> +       int i, ret;
-> +       u32 status;
-> +
-> +       for (i =3D 0; i < iommu->num_mmu; i++) {
-> +               void __iomem *base =3D iommu->bases[i];
-> +
-> +               if (!(rk_iommu_read(base, RK_MMU_STATUS) & RK_MMU_STATUS_=
-PAGING_ENABLED))
-> +                       continue;
-> +
-> +               dev_warn_ratelimited(iommu->dev, "bank %d still paging, s=
-tatus %#08x; disabling it\n",
-> +                                    i, rk_iommu_read(base, RK_MMU_STATUS=
-));
-> +
-> +               if (rk_iommu_read(base, RK_MMU_STATUS) & RK_MMU_STATUS_PA=
-GE_FAULT_ACTIVE)
-> +                       writel(RK_MMU_CMD_PAGE_FAULT_DONE, base + RK_MMU_=
-COMMAND);
-> +
-> +               rk_iommu_base_command(base, RK_MMU_CMD_ENABLE_STALL);
-> +               ret =3D readl_poll_timeout(base + RK_MMU_STATUS, status,
-> +                                        status & RK_MMU_STATUS_STALL_ACT=
-IVE,
-> +                                        RK_MMU_POLL_PERIOD_US, RK_MMU_PO=
-LL_TIMEOUT_US);
-> +               if (ret)
-> +                       dev_err(iommu->dev, "bank %d: stall timed out, st=
-atus %#08x\n",
-> +                               i, status);
-> +
-> +               rk_iommu_base_command(base, RK_MMU_CMD_DISABLE_PAGING);
-> +               ret =3D readl_poll_timeout(base + RK_MMU_STATUS, status,
-> +                                        !(status & RK_MMU_STATUS_PAGING_=
-ENABLED),
-> +                                        RK_MMU_POLL_PERIOD_US, RK_MMU_PO=
-LL_TIMEOUT_US);
-> +               if (ret)
-> +                       dev_err(iommu->dev, "bank %d: disable paging time=
-d out, status %#08x\n",
-> +                               i, status);
-> +
-> +               rk_iommu_base_command(base, RK_MMU_CMD_DISABLE_STALL);
-> +               ret =3D readl_poll_timeout(base + RK_MMU_STATUS, status,
-> +                                        !(status & RK_MMU_STATUS_STALL_A=
-CTIVE),
-> +                                        RK_MMU_POLL_PERIOD_US, RK_MMU_PO=
-LL_TIMEOUT_US);
-> +               if (ret)
-> +                       dev_err(iommu->dev, "bank %d: disable stall timed=
- out, status %#08x\n",
-> +                               i, status);
-> +       }
-> +}
-> +
-> +static bool rk_iommu_banks_disagree_on_paging(struct rk_iommu *iommu)
-> +{
-> +       int i, n =3D 0;
-> +
-> +       for (i =3D 0; i < iommu->num_mmu; i++)
-> +               n +=3D !!(rk_iommu_read(iommu->bases[i], RK_MMU_STATUS) &
-> +                       RK_MMU_STATUS_PAGING_ENABLED);
-> +
-> +       return n && n !=3D iommu->num_mmu;
-> +}
-> +
->  static int rk_iommu_force_reset(struct rk_iommu *iommu)
->  {
->         int ret, i;
-> @@ -947,6 +1005,9 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
->         if (ret)
->                 return ret;
->
-> +       if (rk_iommu_banks_disagree_on_paging(iommu))
-> +               rk_iommu_quiesce_paging_banks(iommu);
-> +
->         ret =3D rk_iommu_enable_stall(iommu);
->         if (ret)
->                 goto out_disable_clocks;
->
-> base-commit: 909ef7a9a30fa139e69e555e3606680f5cca7726
-> --
-> 2.43.0
->
+Fixes: a5ff6ef2d73e ("arm_mpam: resctrl: Add resctrl_arch_cntr_read() & resctrl_arch_reset_cntr()")
+Suggested-by: Ben Horgan <ben.horgan@arm.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: <stable@vger.kernel.org>
+---
+v4:
+- Rename: mon_for_cntr() -> mon_idx_from_cntr_id(), and drop the comment. (Ben)
+- Add is_cntr parameter to make read_mon_cdp_safe() and
+  reset_mon_cdp_safe() the same pattern. (Ben)
+- v3: https://lore.kernel.org/all/20261118125417.671859-1-ruanjinjie@huawei.com/
+v3:
+- Keep mbwu_idx_to_mon[] and remove the cleanup. (Ben)
+- Split out as a mpam seperate patch.
+- Remove unnessary stable version.
+- v2: https://lore.kernel.org/all/20261113083506.4129060-2-ruanjinjie@huawei.com/
+---
+ drivers/resctrl/mpam_resctrl.c | 49 ++++++++++++++++++++++++++--------
+ 1 file changed, 38 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index 8e9d5c68c2c1..a81adb1b1bfc 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -463,6 +463,14 @@ void resctrl_arch_mon_ctx_free(struct rdt_resource *r,
+ 	resctrl_arch_mon_ctx_free_no_wait(evtid, mon_idx);
+ }
+ 
++static int mon_idx_from_cntr_id(struct mpam_resctrl_mon *mon, int cntr_id,
++			enum resctrl_conf_type cdp_type)
++{
++	u32 idx = resctrl_get_config_index(cntr_id, cdp_type);
++
++	return mon->assigned_counters[idx];
++}
++
+ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+ 		      enum mpam_device_features mon_type,
+ 		      int mon_idx,
+@@ -500,19 +508,25 @@ static int __read_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_c
+ }
+ 
+ static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+-			     enum mpam_device_features mon_type,
++			     enum mpam_device_features mon_type, bool is_cntr,
+ 			     int mon_idx, u32 closid, u32 rmid, u64 *val)
+ {
+ 	if (cdp_enabled) {
++		int code_idx = mon_idx, data_idx = mon_idx;
+ 		u64 code_val = 0, data_val = 0;
+ 		int err;
+ 
+-		err = __read_mon(mon, mon_comp, mon_type, mon_idx,
++		if (is_cntr) {
++			code_idx = mon_idx_from_cntr_id(mon, mon_idx, CDP_CODE);
++			data_idx = mon_idx_from_cntr_id(mon, mon_idx, CDP_DATA);
++		}
++
++		err = __read_mon(mon, mon_comp, mon_type, code_idx,
+ 				 CDP_CODE, closid, rmid, &code_val);
+ 		if (err)
+ 			return err;
+ 
+-		err = __read_mon(mon, mon_comp, mon_type, mon_idx,
++		err = __read_mon(mon, mon_comp, mon_type, data_idx,
+ 				 CDP_DATA, closid, rmid, &data_val);
+ 		if (err)
+ 			return err;
+@@ -521,6 +535,9 @@ static int read_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component
+ 		return 0;
+ 	}
+ 
++	if (is_cntr)
++		mon_idx = mon_idx_from_cntr_id(mon, mon_idx, CDP_NONE);
++
+ 	return __read_mon(mon, mon_comp, mon_type, mon_idx,
+ 			  CDP_NONE, closid, rmid, val);
+ }
+@@ -552,13 +569,13 @@ int resctrl_arch_rmid_read(struct rdt_resource *r, struct rdt_domain_hdr *hdr,
+ 
+ 	mon_type = mpam_feat_msmon_csu;
+ 
+-	return read_mon_cdp_safe(mon, mon_comp, mon_type, mon_idx,
++	return read_mon_cdp_safe(mon, mon_comp, mon_type, false, mon_idx,
+ 				 closid, rmid, val);
+ }
+ 
+ /* MBWU counters when in ABMC mode */
+ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+-			   u32 closid, u32 rmid, int mon_idx,
++			   u32 closid, u32 rmid, int cntr_id,
+ 			   enum resctrl_event_id eventid, u64 *val)
+ {
+ 	struct mpam_resctrl_mon *mon = &mpam_resctrl_counters[eventid];
+@@ -574,8 +591,8 @@ int resctrl_arch_cntr_read(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
+ 	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+ 	mon_comp = l3_dom->mon_comp[eventid];
+ 
+-	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu,
+-				 USE_PRE_ALLOCATED, closid, rmid, val);
++	return read_mon_cdp_safe(mon, mon_comp, mpam_feat_msmon_mbwu, true,
++				 cntr_id, closid, rmid, val);
+ }
+ 
+ static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+@@ -603,12 +620,22 @@ static void __reset_mon(struct mpam_resctrl_mon *mon, struct mpam_component *mon
+ }
+ 
+ static void reset_mon_cdp_safe(struct mpam_resctrl_mon *mon, struct mpam_component *mon_comp,
+-			       int mon_idx, u32 closid, u32 rmid)
++			       bool is_cntr, int mon_idx, u32 closid, u32 rmid)
+ {
+ 	if (cdp_enabled) {
+-		__reset_mon(mon, mon_comp, mon_idx, CDP_CODE, closid, rmid);
+-		__reset_mon(mon, mon_comp, mon_idx, CDP_DATA, closid, rmid);
++		int code_idx = mon_idx, data_idx = mon_idx;
++
++		if (is_cntr) {
++			code_idx = mon_idx_from_cntr_id(mon, mon_idx, CDP_CODE);
++			data_idx = mon_idx_from_cntr_id(mon, mon_idx, CDP_DATA);
++		}
++
++		__reset_mon(mon, mon_comp, code_idx, CDP_CODE, closid, rmid);
++		__reset_mon(mon, mon_comp, data_idx, CDP_DATA, closid, rmid);
+ 	} else {
++		if (is_cntr)
++			mon_idx = mon_idx_from_cntr_id(mon, mon_idx, CDP_NONE);
++
+ 		__reset_mon(mon, mon_comp, mon_idx, CDP_NONE, closid, rmid);
+ 	}
+ }
+@@ -631,7 +658,7 @@ void resctrl_arch_reset_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *d
+ 	l3_dom = container_of(d, struct mpam_resctrl_dom, resctrl_mon_dom);
+ 	mon_comp = l3_dom->mon_comp[eventid];
+ 
+-	reset_mon_cdp_safe(mon, mon_comp, USE_PRE_ALLOCATED, closid, rmid);
++	reset_mon_cdp_safe(mon, mon_comp, true, cntr_id, closid, rmid);
+ }
+ 
+ /*
+-- 
+2.34.1
 
---=20
-With respect,
-Anton Sovetov (co-Founder and CEO of 3d-club LLC")
-https://3d-club.ru                        tel:+7 (999) 246-78-36
 
