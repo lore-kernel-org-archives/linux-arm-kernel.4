@@ -2,115 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07A9606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF83606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3ESR3JWy;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lRSOelAP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f90HW3g4;
+	dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.a=rsa-sha256 header.s=google header.b=mMQuqSN7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=JhX6GJToIPCSWTgKM33kXD6qd9kkvSZE3MFHQwmpZfQ=; b=3ESR3JWyOTaUTiuE1nTZ5XgRa5
-	xxFznk1IicdgElyOxYylZ2Vw7KTTT8wQZlZmD576fbWqtGh/ZzDmXfVbgrt4/zLCaH6a5mtLDuE5l
-	0d6IjqupsO6rqgVhbdx0N+HDyt53m6REuz2mWsy7SHZGSDDH6BiqTx/SdxiExacyj52Bu4DtGw6W+
-	jcpOR6aCyyf/R+6vr5OyYruUr5sZ+8G70ofRnOKfN6ZjjUzBmOAwHEAtkAnvm2C2+S9K3kp2er7T1
-	2w28rA0Wz7fV2SBQ/cK0qT19I9w/d/GU5nPjaVncyRqKXQhwne7AD2KyDZ91gORh5Fuu5AHf27g/0
-	jkjN61XQ==;
+	bh=RUxbFCgX/qZgkllCLWhh1DGi6P1IWH5bzGO/fNRQRnI=; b=f90HW3g4I8VMzzSyVJKDmx21QW
+	kIW9kbqzbIXMPkr+CFgpGQNDlTdXzLmOxMqtuW4KKoGvCNHFaGmDdnUjPgW/wOamen3pYN2rzZyOg
+	1wqoIC4TxJ5YmzjJ/+Grpo+RpJ/kU3xfHSKxSIWhNBtkQ7dLcIOPd2aFFP7XYm4QspywXCw/Wfl+t
+	cOH+iV8oAAfJOJ9NM6sPv1BeJK+0HpCIzh6Mzs1TgO3J66csE2gHKvTwj3Z8ICEVPVx+nDaxkb2iT
+	iwynNL3n9O9kNQqk0o+Dpn5KvdgByR/mUFwpC7krgWGY1WvT7bz3U92FmaBNAXg5eBUiy76h+aoG4
+	G6ZQKNcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVql3-00000006eha-28mW;
-	Tue, 24 Nov 2026 13:40:29 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVrad-00000006lkk-1LXg;
+	Tue, 24 Nov 2026 14:33:47 +0000
+Received: from mail-pj1-x102d.google.com ([2607:f8b0:4864:20::102d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVql1-00000006ehK-3TVG;
-	Tue, 24 Nov 2026 13:40:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 470BA60EE8;
-	Tue, 24 Nov 2026 13:40:27 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795527626;
-	b=IKwLydFBd7+Kj9nc6xiATlMRJrZCdG01xvBYZCV4eFlxGCJ8Uj4A1NORVTrzfE8NBVE6
-	 6f12hBXGX82pTRAmDx89ZNy/dT1PwXZcIzTVq6kdrKjxBijwbPuOccrtzt4D+5jj67K4l
-	 ed2pkDTaAIS+XG+YoRERXa89HvBKqK/Njuiz4TLYLZgr9BhBgRkC7R1+AZe0a71pwMrjr
-	 yCrUaaIWvvRJ7k6dfnPsiTBmeVAW2GtGnc2cr/SxYEgyZwqk9mtLYGAs12giQzzZbusrj
-	 SCYCvFoCM0jpGBfGnsIUoDMdxhi83n/ebSJFZNqBXhy2vT9WUCeB+9TZC9I+nQFVayg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795527626;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=JhX6GJToIPCSWTgKM33kXD6qd9kkvSZE3MFHQwmpZfQ=;
-	b=Ghu9iPaA7s7D5t2xbwuTpiXrH2Fqu1VGyTV5sgzAAH+DXHD+Ht+xc/Emi0OkXQyjB8to
-	 q3eTcRJIp2eYvLEhLcmhI32GqjzL55fg3SpnR3y1lDiM4m3lf3FG5n0wuLivQmVejtmqP
-	 foDfA3e0jsHClAjJuOi8hIhMAnhoeS4hrgXrfXEvR1ZdBhd+cTQtoPhRzN2TbJoS9aPCh
-	 kcocjavUZwvldnAHlDJK0xyC/bI+WmtG+XTb10ThIrfxjjT5Z7UcRP3oclYKNnKOInoR4
-	 iFWx6H+tsqE/E0r/0NU4qD7rfrqO6KtS9YhHiXynz8a78eXKOir+xF96ZMC8o+r1SUw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A76581F000C0;
-	Tue, 24 Nov 2026 13:40:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795527626;
-	bh=JhX6GJToIPCSWTgKM33kXD6qd9kkvSZE3MFHQwmpZfQ=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=lRSOelAPN1fpJMrE92QGIFiQwGPIaaPyds/gGKQYpQhUqKatfXGEcPXwrlnMURK5M
-	 8cuy89KILRT9cUvgPHMTux8oRcgPmaKoPbhLAaz8w4M8MIyAeGc8c9ta13DBy7P85X
-	 l0gQtBAKxAnKkgO9n0tKKqsfy4aacLPQT2ZO4VMCKz8ABK4QOAySCiDqWLcmvAbKla
-	 UayrDaxVvpcgtj6IHE4vtyY2PuwZpSysXv0Y8UEnF7dx5ELk/gk0zHOTiiY6Zcctl/
-	 hcUEUugtHzIx76OLM267L+mSFoqtD1kDHBethUjWaHYymuZ+BDCdT8iWeqhqKB/b+1
-	 noGPwSFcLlo4Q==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3861A4CA5B;
-	Tue, 24 Nov 2026 13:40:21 +0000 (UTC)
-From: Sergei Khomenkov via B4 Relay <devnull+shomenkow.gmail.com@kernel.org>
-Subject: [PATCH v3 0/3] media: verisilicon: fix JPEG encoder writes past
- the CAPTURE buffer
-Date: Tue, 24 Nov 2026 16:40:16 +0300
-Message-Id: <20261124-hantro-buflimit-v3-0-780903970ca0@gmail.com>
+	id 1xVraX-00000006lf7-1lMO
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 14:33:46 +0000
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-3b3a914e4c8so2448764a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 06:33:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795530820; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HcqAig3lF6RpMlIGUTS5mPUuJ/0gj5S6R7J2eMAD+nO65A8tMlSc6xLQTRDjtvNGmV
+         6Ej00rrWu3gKk4D9Z8XjWD7FruvuCvXueue2iR0IdqSNeQcfZ1ul8EDPu+hrR7JxnL86
+         cnccB0JEDkyK/3HKm7lDuq7dCq+s61tydJiY96y8a+OUfc3b4p47nXROIW/rlHh3iTTb
+         jvxfknlzCf15GoEyOT9A5dV0Bx0PR2sEWuACcxeCY0z4E+DRIUN59X1HXmz96cWza40B
+         RIPIQ4EpHTSgVQjeaPVCxJe7QSmn43y6XE5ri+vaf496vjMUTIZfC03tlfS8KL1dYxEZ
+         0Xjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=RUxbFCgX/qZgkllCLWhh1DGi6P1IWH5bzGO/fNRQRnI=;
+        fh=ddDCl1ePM6qkS5Ya/kKsRxdrZF2pZBjefmwmL9arot4=;
+        b=iUjyww3+97o3ZccKPz0H67xnUYoer1WWE+JgEZ8aDv9Xgeo9L87nZaymwzA4UcLfNz
+         mW04yhn6zEgdDFZlqRwZRqpN8uf/pgFJEJxfFhEMyz9eHnLizzstc7ydiOY9Du3uGId1
+         4thskVbTr9jJYqftzLauxqb2Lln3d7nS1evUJVyK9KyD/qoEsLA74/rLLng+bU2YJyQg
+         WgUyNdXtW7Bzu3uNa6PUdIO2loB0XkxYnMLy5eybVjxHR9BftGkuf12Dr/GqTunIqykB
+         Kg+KXidZlXXGRc4xzqc36H1IFjNhxuZovMzoMs+kR1+uvhGb5MQYOkTBEi7jnVJhd0qz
+         JsIw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fooishbar.org; s=google; t=1795530820; x=1796135620; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=RUxbFCgX/qZgkllCLWhh1DGi6P1IWH5bzGO/fNRQRnI=;
+        b=mMQuqSN70izrpDThpR/xN9G3phfFqgpqbgIBm903iNKu0M7qb0OpzppB8jfI0f+O45
+         KmyeijsocxsQkS5LEAyvCAa0zvgo9sd4I5M8wrBpwafcojK2KY102wmnkihOb8QdOIzs
+         PFLdYjWXW70NMWvDOxoM/8DBCheSihPs+3SzQ7Ad/UJ2wAOLaJrc1rrQIH0zvEVtzfgB
+         Z+lJYSOkbrMv8Zt69vUSnBuBTMNmcwJODBGMMnM8zEmtkmK1XSkV7zhX8ekM/5cdo4CH
+         PVIPOMMY6/Gp7zbtqPjbLlAolHLqcZ14+ahwoL5jE+01zhCpw2u8J0ViExYYX9732RA7
+         3ixw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795530820; x=1796135620;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=RUxbFCgX/qZgkllCLWhh1DGi6P1IWH5bzGO/fNRQRnI=;
+        b=GqlyK8f0W1Chnzsm/9/aDbJm8xTc8+rXBxawA6/C1Iq00WnOnRmeahV+jYlfXfOVp1
+         dO2juyUVyxY0ABOa76ldDAUIlUOU2RUeZNsT23PgJau59panCDTJBitycX1D7hlUEGOs
+         8qK+1SHe5uYeP/FSOLnd7qmbpchNkndzjZt+am+kOA1bSKgZuAPXp3Ts0ibQkJVv6C1H
+         C8QQEX7K0+wQYOb64WqQmw92e9LVN7AtXcc96PWSx/vuyYNeICAknfcmouHhV1twRoAY
+         kocPuEGZUZnuv/y2JqpX4WDY+uAqUh+CKM2P+fcby7FB1ZrtKw5GVrNuLrdbnILndWkk
+         hWaQ==
+X-Forwarded-Encrypted: i=1; AL+hErFuDwp1uMrUcujAJ0ddQBYOEkIeZetFCqmauTQBz6ikQaF2UUq0I5nbzAaSOFRbf8a2b2AtHJr0F/CX3p4vAmu+@lists.infradead.org
+X-Gm-Message-State: APuU4Z/pALnT3LInC1ytMTugJuVdJX0hX+b8Rfv+DZvsZUgUzSc0LwVh
+	C18SPpNr7ULEV1PywL+5SQm+e513kFFdgIHrCdWZDs+8MnTTskrNOXZR9rPwg2CVkk+qN8TT34f
+	4AegX8ATLLzOOh4n5SYgK6bg/oQbSPqFt5FU8FS5ZGQ==
+X-Gm-Gg: AZFdTZd0YyAEhDvi8BoP9VGUFhITiUq7wQuDjkS5Kp0TY0hEL0xWC/MOjW7oPpdPHRk
+	CNRWEHJI68J/zkMqnJLz19/1pps4I8wBEziGncSMek3L546+ymo2l7+dkJkcecBFB4kyBT97GYO
+	cGkRsYrJtOLudpvx9rDtlkRFX1mT8hGMnYSAQ/lwnKPxRGnqw259Cd7hN4RGFlU/KhakfNCwoEZ
+	P09XMjOqlQ5jPsFq+k6ZIY31FIrFzBFCPR/DDPVb/5LaSXAXcrarg0gpao5icZ7XSfYvdhP6mEr
+	wRY8wPuUjFL56cbW06FObOhQuejWHpXM4KWmK/39lGgPUp+MHO7ZJd0Yl+PzZdonkTlwI0gg9Zo
+	QBGXrDrBWFS4nc4HPPtKNtVKatrEyo+fT+g==
+X-Received: by 2002:a17:90b:2f8c:b0:3a2:b16d:928b with SMTP id
+ 98e67ed59e1d1-3b41c95aec8mr12847695a91.46.1795530820492; Tue, 24 Nov 2026
+ 06:33:40 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WNwQqDMBAFf0VybsomYjQ99T9KDxo3uqCmJDa0i
- P/eKBQEj/Ng5i0soCcM7JYtzGOkQG5KkF8yZvp66pBTm5hJkEoIUDyNs3e8eduBRpo5FAVWIHW
- DMmfJenm09NmLj2finsLs/Hc/iGJb/y19akXBgVtoKmVQCVTq3o01DVfjRra1ojz4As6+3Hxbl
- hpatNqao7+u6w/R2YDI7gAAAA==
-X-Change-ID: 20261106-hantro-buflimit-055e8029be23
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Hans Verkuil <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Chen-Yu Tsai <wenst@chromium.org>, 
- Hugues Fruchet <hugues.fruchet@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795527620; l=3845;
- i=shomenkow@gmail.com; s=20261104; h=from:subject:message-id;
- bh=CS9Hh2KOnLAmmovBFtvM/OChuActMNOyzEIbmU8KbTc=;
- b=y17AVohcoo/KohpGkVwr+Ely6dXWd6I4yYSnnuzNlvSkAMEJvfHGiBx1esxZ7X04A3R7vSKwQ
- 3i8ptxwqT4MAbW5cmI5aHdACqvfkRQ5iPFh1yaZPPIAp6l2S+5UkOJs
-X-Developer-Key: i=shomenkow@gmail.com; a=ed25519;
- pk=FwuHDVe7aiISDMLmQEcMC+RflEIJ6kEp/ekwznWXmI8=
-X-Endpoint-Received: by B4 Relay for shomenkow@gmail.com/20261104 with
- auth_id=1409
-X-Original-From: Sergei Khomenkov <shomenkow@gmail.com>
+References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com> <20260714114414.184512-32-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260714114414.184512-32-angelogioacchino.delregno@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Tue, 24 Nov 2026 14:33:29 +0000
+X-Gm-Features: Aa3M54oxOcYmQorjTkd5D-GkJnjfCGVao0VGN1bH7KpMt9eEOWMLLFoUmIq_rhA
+Message-ID: <CAPj87rMW6c0BMELjn70vsc+mkMxegDbSgQC-8BEDGspFyxzW2Q@mail.gmail.com>
+Subject: Re: [PATCH v2 31/46] drm/mediatek: Add support for Display Layer
+ Blender component
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	justin.yeh@mediatek.com, jason-jh.lin@mediatek.com, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_063344_568091_C198349F 
+X-CRM114-Status: GOOD (  11.08  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,91 +121,45 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: shomenkow@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The H1 and VEPU2 JPEG encoders are given their stream buffer limit in
-bytes, but the register counts 64-bit words, so a stream that does not
-fit the CAPTURE buffer is written past its end, up to eight times the
-buffer size. A quality 100 frame of noise does not fit the default
-sizeimage, and userspace can also set a smaller one.
+Hi Angelo,
 
-Patch 1 stops the encoder in the VEPU1 interrupt handler after a
-buffer-full interrupt, which leaves it paused. Patch 2 programs the
-limit in 64-bit words, rounded down to whole 64-byte bursts, on the H1
-and on the VEPU2. Patch 3 makes the smallest CAPTURE sizeimage of the
-JPEG encoders the 624-byte header plus one burst, set in the variant
-format data.
+On Tue, 14 Jul 2026 at 12:46, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+> +#define DISP_REG_OVL_BLD_L0_CLR                        0x20c
+> +#  define OVL_BLD_BGCLR_BLACK                  0xff000000
+> +#  define OVL_BLD_BGCLR_RED                    0xffff0000
 
-Testing, on an RK3026 (its H1 is Rockchip's VEPU1) only: without the
-series the encoder wrote 230 KB past a default-sized 640x480 buffer and
-1.6 MB past a 1920x1088 one. With it, 17 overflowing frames, four of
-them queued back to back, stopped at the programmed limit without
-writing past the plane and came back with the ERROR flag, one interrupt
-each and no timeout; the jobs after them completed, and frames that fit
-are byte for byte the same as before. A sizeimage of 1 or 600 now reads
-back 688. v4l2-compliance 1.30.1 on the encoder node shows no new
-failures.
+We probably don't need a #define for every ARGB8888 colour tbh. :)
 
-I cannot test the VEPU2 or the STM32MP25 VENC. The VEPU2 gets patches 2
-and 3, but its interrupt handler is unchanged; Nicolas offered to test
-the VEPU2 part of patch 2. The STM32MP25 VENC runs the H1 code of patch
-2 and gets patch 3, but not the stop of patch 1.
+> +void mtk_blender_config(struct mtk_ddp_comp *comp, unsigned int w,
+> +                            unsigned int h, unsigned int vrefresh,
+> +                            unsigned int bpc, struct cmdq_pkt *cmdq_pkt)
+> +{
+> +       struct mtk_disp_blender *priv = dev_get_drvdata(comp->dev);
+> +       u32 val;
+> +
+> +       /* Set ROI for this Blender */
+> +       val = ((h & GENMASK(15, 0)) << 16) | (w & GENMASK(15, 0));
+> +       writel(val, priv->regs + DISP_REG_OVL_BLD_ROI_SIZE);
+> +
+> +       /*
+> +        * Set both background color and constant layer color to Opaque Black
+> +        * (ARGB) for eventual Alpha Blending to be effective
+> +        */
+> +       writel(OVL_BLD_BGCLR_BLACK, priv->regs + DISP_REG_OVL_BLD_BGCLR_CLR);
+> +       writel(OVL_BLD_BGCLR_BLACK, priv->regs + DISP_REG_OVL_BLD_L0_CLR);
 
-The bugs were found and the patches drafted with an LLM coding
-assistant while porting mainline Linux to an RK3026 board.
+Would you believe that this does not in fact need to be black, as it's
+been configurable since 4c684596cde4?
 
----
-Changes in v3:
-- Move the LLM and test notes below the --- line and add an
-  Assisted-by: tag (Nicolas).
-- 1/3: add Nicolas's Reviewed-by.
-- 2/3: program the VEPU2 JPEG encoder's limit in 64-bit words as well;
-  Nicolas offered to test it. Subject says "JPEG encoder", not "H1".
-- 3/3: move the header + 64 floor out of hantro_try_fmt() into a new
-  min_size field of struct hantro_fmt, set in the JPEG encoder formats
-  of the Rockchip and STM32MP25 variants (Nicolas).
-- Rebase on media next aa0f4c41d487.
-- Link to v2: https://lore.kernel.org/all/20261110-hantro-buflimit-v2-0-ff7790def9fc@gmail.com/
-
-Changes in v2:
-- Trim the commit messages and code comments (Nicolas).
-- 1/3: clear only the enable bit of H1_REG_ENC_CTRL instead of writing
-  0 to the register, and add a rate-limited warning per fault bit, as
-  hantro_g2_irq() does; add the H1_REG_INTERRUPT_* fault bits (Nicolas).
-- 3/3: keep max(): it is a floor of header + one burst, the 64-byte
-  rounding is on the stream limit in 2/3 (Nicolas).
-- Move the test numbers from the commit messages to this cover letter.
-- Link to v1: https://lore.kernel.org/r/20261109-hantro-buflimit-v1-0-f0b86ce61e66@gmail.com
-
----
-Sergei Khomenkov (3):
-      media: verisilicon: stop the VEPU1 JPEG encoder after an unfinished frame
-      media: verisilicon: program the JPEG encoder stream limit in 64-bit words
-      media: verisilicon: leave room for the JPEG header and one stream burst
-
- drivers/media/platform/verisilicon/hantro.h           |  2 ++
- .../media/platform/verisilicon/hantro_h1_jpeg_enc.c   |  4 +++-
- drivers/media/platform/verisilicon/hantro_h1_regs.h   |  4 ++++
- drivers/media/platform/verisilicon/hantro_v4l2.c      |  3 +++
- .../platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c  |  4 +++-
- drivers/media/platform/verisilicon/rockchip_vpu_hw.c  | 19 +++++++++++++++++++
- drivers/media/platform/verisilicon/stm32mp25_vpu_hw.c |  1 +
- 7 files changed, 35 insertions(+), 2 deletions(-)
----
-base-commit: aa0f4c41d4870a18e65772a1817af16427200371
-change-id: 20261106-hantro-buflimit-055e8029be23
-
-Best regards,
--- 
-Sergei Khomenkov <shomenkow@gmail.com>
-
-
+Cheers,
+Daniel
 
