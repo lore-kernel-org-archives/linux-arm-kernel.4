@@ -2,80 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58604606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F80D606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P4tu8sIH;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=b2XnfQjR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VzRQdkl3;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=pNXYbyjt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gnvsu0TDZ5slNtZXuUskfju+pk2M78SPgeweXv/OO6g=; b=P4tu8sIHvM36Gv
-	J9gg1HJsovpyKbE6gZgmufivehCCSNYIayRPHkQMKBaMa02qLrITgtoVAaS1+JgDpPo/T67b2sxp4
-	8WX4fgFA/yzL+8ZChDIMZiawkwTT7Vvn/HZ5RfY+COX1N96saxY4MS3fgDxz3DUyVaI8jPviO2w+G
-	RLuxOmyBIo1Ys1D0W/9X/FBXOmc7s3vkkLKs0cON+F9o4Tc8iF4H+DbpyrmhlvYYixYTctlRKMWOo
-	44t6BT1yoEC2pgWdUoQNKfjjM3NxnHa2hrDctE2CWPVjPPsnWqG+TYdqgu54ixdC0ZdHJtMvknJCj
-	YOJaOVWMYLKEkTmYtUbA==;
+	List-Owner; bh=Kz0XauTGdOgnd6tw9kPNk/ldh50fDY3LEXEPBQT0ngw=; b=VzRQdkl3GwCdao
+	RIIxg9c3ei9z4j0D23Y4V03f4EYJoyByRrUFmx5Fxbv5BwzhyE8Pd8NL5LPmWhML66bVWlt62KoYw
+	Y/miyops4iZJokzDzBG0ePbqQZ4XST2l3AP8Ut26BHpvdFFvJ5csezmBMIQ4x/mng9xFRCFNwaHfG
+	WI0uYqK4yGUv5O6dGaPu7zym09nKzbVA0osCKflRfvbP2PmZAMcm1UsVNzPBk75+5+Sj/V4N1Smdh
+	vjkQDO4ZGADQO9wF6jBMPwtebgp9SZxlbYImONZmZ8+YfGd/LaQSZ1qefG3FzVDI8PELvSk6/bldR
+	DsGcljSdmJ43R5z/heOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxtd-00000007qVg-1dkn;
-	Tue, 24 Nov 2026 21:17:49 +0000
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	id 1xVxxU-00000007r7G-2OcG;
+	Tue, 24 Nov 2026 21:21:48 +0000
+Received: from mail-yw1-x112a.google.com ([2607:f8b0:4864:20::112a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVxta-00000007qRz-2g3a
+	id 1xVxxR-00000007r6Z-0Udc
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:17:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=gnvsu0TDZ5slNtZXuUskfju+pk2M78SPgeweXv/OO6g=; t=1795555066; x=1796764666; 
-	b=b2XnfQjR00rON0XregzHvv79SnD6De4eaOu4S0I4pLtfKuZufIAldmCfzhiRqPPytjLVp5yoUbG
-	GNry0is2kamxY7BoKaORmi3FOeJ7fGEWq8DUDvL7VcOhnpmcWW89bLbXn6UeWFk+pF2cB8y8wjeIZ
-	jYb4X0tnIA0QsjXaZGdXfkrUnmm+GqW5FsLT63cM9kuov52pdg8Ee0hdA5BBy0mpd9zdaCXAfZJRL
-	JeqJIwKKUX2QvT+PvASOs2/4nU+p5XDmXCr/zmnJeqcx3YVahtDkA9BAVUrn0jJqUEMEtUvLtbzvA
-	TjHy9cxjS4rRcj2WDPyplwWT7mOeWVXu6ixQ==;
-Date: Tue, 24 Nov 2026 22:16:10 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones
- <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, Jingoo Han
- <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Aaro Koskinen
- <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, Roger Quadros
- <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Russell King
- <linux@armlinux.org.uk>, Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Uwe =?UTF-8?B?S2xl?=
- =?UTF-8?B?aW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Helge Deller
- <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Peter Ujfalusi <peter.ujfalusi@gmail.com>, Jarkko Nikula
- <jarkko.nikula@bitmer.com>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pwm@vger.kernel.org, linux-fbdev@vger.kernel.org,
- letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Subject: Re: [PATCH v2 20/20] ARM: OMAP2+: Remove Pandora platform-data
- quirks
-Message-ID: <20261124221610.2938d62f@kemnade.info>
-In-Reply-To: <1cb5bd7216b334e8c4eff21ff3463deeb6109595.1795505160.git.hns@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
-	<1cb5bd7216b334e8c4eff21ff3463deeb6109595.1795505160.git.hns@goldelico.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	Tue, 24 Nov 2026 21:21:46 +0000
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-8b2d14968c9so47918097b3.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:21:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795555304; cv=none;
+        d=google.com; s=arc-20260327;
+        b=XNZ3wEpzzzNxVa3SeeM25+5bXqt6vh7CTGzHYa6FHv6sUI6+7dqhzPhc0gZ3mDZJYI
+         uQkT2XsVcvVZanBz+rVTWFrluLEv0Lt630gKUiu3s9UYBg8HDUPsomwY2DmEmMTycYiw
+         IGB/Sz7fk1k2Lo7PIVu+EOQuO2TTU3C+qTYVqDdzxTBmJIx96Rycksbr6Fi/Ir05URfg
+         mkkO/k3uwu/1JNzqFQs1RGPPuICBCh2evKg3WUaWQPxFBZ4brWF8owB2wbfv/cgpekW8
+         nrjVZuPeZUIjVUttldI06l24CH5cNiypKQd/ZTh4Ihsguxp9YETebT0Z5PCJhHs8bolt
+         5xmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Kz0XauTGdOgnd6tw9kPNk/ldh50fDY3LEXEPBQT0ngw=;
+        fh=quaA9KkdAfXiOo+hZXXGcrVQPM2h6SRIZicC7IQWZNY=;
+        b=RcBwr87oJYke1PQSXQJ8x49uOdxhBFhWAcvJd+4VNgXknUZqaCbls40qEn6koC6ohN
+         CJ1dsbq0O56fk1Jz1UN0QtgqRwzh1BFFoozZaNYYxwkBEw56XuOhqxVbu+JLsbwpmjfZ
+         WY9sBsBAIfCvYs3zuGhhLdoQI8r2u4aB8fDvR9nJ1mt8+Wv0Us2T5YnSHCtgzc2NG1rN
+         DJ/5suSrrlCOGidRglRQELi4nFGELGklCh5rrT4i3RuatYsi0lcUMPvV6Ijepn8eSwyt
+         +ZyX7KV9SHKupzGFfEOjC8Io/VxmRVH3NNB0mE2vet1JFiiB1KtcmKm5JSu9gU7t0MBr
+         Ey8g==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20260707; t=1795555304; x=1796160104; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Kz0XauTGdOgnd6tw9kPNk/ldh50fDY3LEXEPBQT0ngw=;
+        b=pNXYbyjtKqLDELiwgdz1Rmi1CbE9r9tUAVMt0CU4BSXP/0GLUnFXWpUIK8jpumsalP
+         yWcRPazpjzRgvssf2hqb7O5oZy2WQCigtAVnkw6GSgQehzju7d4p6al1EeuOMxB80BC6
+         3Yq3eMkf2JdIcklStbxdniOPgW55QzBgyMOy3sXqmgaZQPQDAHXxjUPc12gU8WgOGx5g
+         vXFvNZVqIU9dP53XKFBYs9GxmVaATjX6gEFKIUdy/WPrZbZKxI3YjBPoSICn4u92IHle
+         34fF8o4gggMxH4qi/8r0k2K8cdD8IDURuVHe2nfHEWzi5BRN5deQaPDAByW+LBCwtEQg
+         SnSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795555304; x=1796160104;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Kz0XauTGdOgnd6tw9kPNk/ldh50fDY3LEXEPBQT0ngw=;
+        b=bweTV6QyjzL49WmnVOgGM9T8s9d+L41Mf9pft0V9RjCs/NtgCdcx28xgnUWFnuniRr
+         QBlErWuVXB+O9uxd8YTkVrTZ4MJ7GgX8uxeuBiWPiSHEa8etTGniyHiuyyk4jXkMJW6s
+         mL7mSYZSFeScakIg2T7xjk1qEo9zhBFZcfDRFxaPkEVyEtx8hwzPhtUBn1PUkaJpJ+bb
+         BA0Ohd93mUpWFL8f2FL5ps2WjdNkvlHnd9UmzHu1wMBAN5v51RadwfkfPha1ikCycogZ
+         m4jAFIbPOyxJC6j4q5TgtqQsSQ6FZwlG+aSaa+5XJ3TgC+OBrExduFyJMDlJxZpe0uCJ
+         2gmw==
+X-Forwarded-Encrypted: i=1; AL+hErGoyqlMCdRik//pI6C7EBksK3UmvFalgJaq3oaXmSHCJqSkbinobhxtkZnsXpeBcFq/jXBG70kkOpq0xhLcdK4i@lists.infradead.org
+X-Gm-Message-State: APuU4Z/i51phEqJVJmW5GX8Oz5rVY2ERCZ9auCcs1nDzh/ddvszBIWeu
+	AxcwGzcgHFOJYLAR/yEkCM9H5X9lIPQQmKXW8gSBrp4tlzU1imUXkt2QOcYoDBiO57ioWA30lRh
+	KaWnCC06quVa7Ue1Aiy5e3sVCYx2Qwh3JMet4
+X-Gm-Gg: AZFdTZeVlvjPePA8mt6PKJblPVI5XaOv6dQVRanIaHWZCBXq6MUpHllMTEVD5QRmr5Y
+	UAFg7QTwKr7KalK9uveaMRjloAQCuu/ySsATbOn8dEhUf+tXSD9SD2RjIuoXLgBq4iXsTzgpBqK
+	YzjzfvmYMzIXkaAbGROZKGt3mr8Cpo8WcURoudgYbNEZMSYbd+bfqy2p2XH0ARYbcUAv46Qhadf
+	V8xXHFboDju1qQJqjKcu3AgKBeb93TeTnI17Q7GIbapEaeraIObNxDW7Tp/nI8y1TEBm5yUoVNz
+	9RwVL/zFrU+aaE2TofIYNnPR8nHV7Ie5UQto+k+5hJKjsy5rr+AUj2/NGbYT4v2hEIJqeGakUtQ
+	QeFbj6Dlx/O5iVKpop1TQtG7SIpo4wclTN97W+9wb3NTv7EgA6dG4pZlS21JwSAMbaNxn1Q==
+X-Received: by 2002:a05:690c:6213:b0:8b4:dd2b:10dd with SMTP id
+ 00721157ae682-8b52050f0demr45322637b3.64.1795555303828; Tue, 24 Nov 2026
+ 13:21:43 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20261018-audin-v5-0-4b8cc13a1b22@baylibre.com>
+ <20261018-audin-v5-6-4b8cc13a1b22@baylibre.com> <CAFBinCA12FvOi=9gB1xj3MDvNWstx1N4TtyyrrndJ_JT5eLX=Q@mail.gmail.com>
+ <0949591a-63cb-4bb3-a7de-cf59ddbaafb7@baylibre.com>
+In-Reply-To: <0949591a-63cb-4bb3-a7de-cf59ddbaafb7@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 24 Nov 2026 22:21:33 +0100
+X-Gm-Features: Aa3M54qIikBwR4PI-ZQunVxuxoqfwLNl1dfjIK5NjVa_KqUN1kcswl51cnQYi_s
+Message-ID: <CAFBinCAjFb7yS4VQp+BqLw2dG61To+iU4aiBvaVE9B9bWe=oUQ@mail.gmail.com>
+Subject: Re: [PATCH v5 6/7] ASoC: meson: gx-card: add support for audin FIFO
+To: Valerio Setti <vsetti@baylibre.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_131746_686752_E04B5FE9 
-X-CRM114-Status: GOOD (  22.54  )
+X-CRM114-CacheID: sfid-20261124_132145_164555_2EDD3554 
+X-CRM114-Status: GOOD (  17.70  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,90 +124,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 08:26:00 +0100
-"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
+On Tue, Nov 17, 2026 at 12:06=E2=80=AFAM Valerio Setti <vsetti@baylibre.com=
+> wrote:
+>
+> On 11/15/26 10:28 PM, Martin Blumenstingl wrote:
+> > On Sun, Oct 18, 2026 at 12:18=E2=80=AFPM Valerio Setti <vsetti@baylibre=
+.com> wrote:
+> > [...]
+> >> +       if (gx_card_cpu_identify(dai_link->cpus, DT_PREFIX "gxbb-audin=
+", "FIFO"))
+> >> +               return meson_card_set_fe_link(card, dai_link, np, fals=
+e);
+> > I suggest using the "audin" prefix. AIU / audin seem close enough on
+> > all supported SoCs that we don't need a SoC generation prefix  in
+> > there to handle this differently.
+>
+> Do you mean using "meson,audin" instead of "meson,gxbb-audin" for the
+> compatible?
+> If so I'm not sure this is allowed nowadays. As far as I understood
+> "meson,aiu" is a sort of legacy naming. 'writing-binidings.rst' says
+>
+>    "DO use a SoC-specific compatible for all SoC devices [...]"
+Let me use an example as I realize that I wasn't very clear:
+  compatible =3D "amlogic,gxbb-audin", "amlogic,audin";
+Does fulfill the criteria (as far as I understand it).
+What doesn't work is "amlogic,audin" alone.
 
-> The Pandora backlight is now described in the device tree and driven by
-> pwm-backlight. The sound card also uses device-tree descriptions for its
-> codec and amplifier GPIOs instead of legacy GPIO lookup tables.
-> 
-> Remove omap3_pandora_legacy_init(), its backlight platform device and
-> audio GPIO lookup table, and the associated board compatibility entries.
-> These platform-data quirks are no longer needed.
-> 
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
-> 
-> Notes:
->     Changes against V1:
->     - Andreas Kemnade raised bisectability and intermediate driver
->       availability concerns for the V1 pdata-quirks removal.
->     - Correct the legacy backlight name and explain removal of both backlight platform data and audio GPIO lookup tables.
->     - Commit-message review assisted by ChatGPT.
-> 
->  arch/arm/mach-omap2/pdata-quirks.c | 23 -----------------------
->  1 file changed, 23 deletions(-)
-> 
-> diff --git a/arch/arm/mach-omap2/pdata-quirks.c b/arch/arm/mach-omap2/pdata-quirks.c
-> index b947bacf23a37..aca7097a692ed 100644
-> --- a/arch/arm/mach-omap2/pdata-quirks.c
-> +++ b/arch/arm/mach-omap2/pdata-quirks.c
-> @@ -268,27 +268,6 @@ static void __init omap3_logicpd_torpedo_init(void)
->  	omap3_gpio126_127_129();
->  }
->  
-> -/* omap3pandora legacy devices */
-> -
-> -static struct platform_device pandora_backlight = {
-> -	.name	= "pandora-backlight",
-> -	.id	= -1,
-> -};
-> -
-> -static struct gpiod_lookup_table pandora_soc_audio_gpios = {
-> -	.dev_id = "soc-audio",
-> -	.table = {
-> -		GPIO_LOOKUP("gpio-112-127", 6, "dac", GPIO_ACTIVE_HIGH),
-> -		GPIO_LOOKUP("gpio-0-15", 14, "amp", GPIO_ACTIVE_HIGH),
-> -		{ }
-> -	},
-> -};
-> -
-> -static void __init omap3_pandora_legacy_init(void)
-> -{
+The GXL example then would be:
+  compatible =3D "amlogic,gxl-audin", "amlogic,gxbb-audin", "amlogic,audin"=
+;
 
-maybe ask here for pwm-backlight node? Then this all can be untangled a bit.
-so something like if (of_find_compatible_node(NULL, NULL,"pwm-backlight"))
+And for Meson8/8b (sorry, I didn't get around to testing) I would then use:
+  compatible =3D "amlogic,meson8-audin", "amlogic,audin";
+  compatible =3D "amlogic,meson8b-audin", "amlogic,meson8-audin", "amlogic,=
+audin";
 
-if that node is available do not register that device.
-Such a change can go in as soon as we have consensous that pwm-backlight
-is the way to go.
 
-After all is in, in a final cleanup step, remove the pandora_bl and
-the quirk.
-
-> -	platform_device_register(&pandora_backlight);
-> -	gpiod_add_lookup_table(&pandora_soc_audio_gpios);
-> -}
->  #endif /* CONFIG_ARCH_OMAP3 */
->  
->  #ifdef CONFIG_SOC_DRA7XX
-> @@ -514,8 +493,6 @@ static struct pdata_init pdata_quirks[] __initdata = {
->  	{ "ti,omap3-evm-37xx", omap3_evm_legacy_init, },
->  	{ "ti,am3517-evm", am3517_evm_legacy_init, },
->  	{ "technexion,omap3-tao3530", omap3_tao3530_legacy_init, },
-> -	{ "openpandora,omap3-pandora-600mhz", omap3_pandora_legacy_init, },
-> -	{ "openpandora,omap3-pandora-1ghz", omap3_pandora_legacy_init, },
->  #endif
->  	{ /* sentinel */ },
->  };
-Regards,
-Andreas
+Best regards,
+Martin
 
