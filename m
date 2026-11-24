@@ -2,85 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC39606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1694D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dmAdus9/;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=kIFlonZS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RF/CdBHB;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Ll8gehkX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=cMYYBh43HY5xutvnzofxwE95gQWfanq+WzepalGdUdE=; b=dmAdus9/d1FkqoOEDkMWEDPRHg
-	pelt8tnYbCv7MH2z35ERt+/jIgKN30kmbrXYyEONLoptO1I07DBU0wiFUcqolVO3AG17YQgzu7FiB
-	x1HjQYHK60J8AiMbE3A5MjvXmB0F9/PFmi/RHB6e3LdTBrjd4JD7sqCG9yE8zfTjurcMDB81+8LeT
-	2E5TROq+CjpAEbgi451O6314XbPM6MWd+dFoQAVS8+m2hNnV7rGzIQJa4P/CO4us6ZQrXKwVy5AVy
-	H+gbbIjjEjLfjY3W//BM34v90q/Q7mBNaYAKKJluu7qQykFZnkDBZk0eUCvcGQzsmiILwtHsna5pg
-	Wf6MbysA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gLeqhE3IjCWF0jBSGCa8QFfucZOwBTvWp/RJIhCMdKw=; b=RF/CdBHBc6jsuM
+	1uibhCFFYTyX90UlDEBVwXK+01xen1NQuqd9z9dQwo97XhgAAgxZfi8dC6+5YJz1bSBi7j4NMx5dw
+	4r28QYxqSPPyj59cIMT4SCldbPqyFDYD3TAW3sUE5hclF+1t6yOTv7ELI3U4U0JoVOIVIneoZ+KyO
+	WXgSiR3cnb/d4muo09FjnxYX+bU5W63Su5z9m/6QrYM2xVzg72Ueo/PLDzdxA3OmSBAB/ccLvATC7
+	rwCgv/wD7X3veaXfiG48OghQPrQovpiO8f3K01Dm35skbMTlWgokZDvskDtOeW5LgOGPc9wbIcpDp
+	RiCEID59fOD2jrzVdEZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoKp-00000006I9C-4BAY;
-	Tue, 24 Nov 2026 11:05:16 +0000
-Received: from esa.microchip.iphmx.com ([68.232.154.123])
+	id 1xVoM9-00000006IJ2-1h1j;
+	Tue, 24 Nov 2026 11:06:38 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoKk-00000006I8Y-2hdx
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:05:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1795518310; x=1827054310;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Of+dCjox0s9BBeFJuiYkmvAKAj13vw6zap47XQbk6Oo=;
-  b=kIFlonZSgM4/72v39DA+gSAhGW8JDIJvVTafxBRe4y/ut0FR5ukriyRV
-   i0Hu0U3+s3vekG7pVUh7mmSznZ1DuXsDhAtMr/+ZB+VeQLtqM+/Kfmted
-   YEugnSJ6HFQ8USGnWIWLd8jrKAl0NjydEpHcD7qyK+PzOLua8jxmdE0Qv
-   j1y6zg6Asy05qCCr/svs2r4rHWV7tgaFssv8ZUI9ijl8j98Y3ObRDjW1+
-   4kqYrjm1IqKcQQsejV8l94GU1TMMXyGhO8w1YJB2plOnWhaVmn8wppuhf
-   TykY4PekDYl7XTwyx4p0XOD1Yb3Rk7J+hwFOFBsokpmHzcmoTiUfs2Chd
-   w==;
-X-CSE-ConnectionGUID: RdIhBla4TTmUq7KP99ZVFQ==
-X-CSE-MsgGUID: RG/anjkeS4Gk78FY/ubCuQ==
-X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
-   d="scan'208";a="234021366"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Nov 2026 04:05:09 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 24 Nov 2026 04:05:09 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 24 Nov 2026 04:05:06 -0700
-Date: Tue, 24 Nov 2026 12:05:05 +0100
-From: Daniel Machon <daniel.machon@microchip.com>
-To: <netdev-bot+sashiko@kernel.org>
-CC: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@kernel.org>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <Steen.Hegelund@microchip.com>,
-	<UNGLinuxDriver@microchip.com>, <richardcochran@gmail.com>,
-	<linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<robert.marko@sartura.hr>, <horatiu.vultur@microchip.com>,
-	<jensemil.schulzostergaard@microchip.com>, <horms@kernel.org>
-Subject: Re: [PATCH net-next v3 5/9] net: sparx5/lan969x: size the FDMA
- buffers from the port MTUs
-Message-ID: <20261124110505.66k7x7qluhxcnm62@DEN-DL-M70577>
-References: <20261120-sparx5-mtu-change-v3-5-55c272fe1acc@microchip.com>
- <179544589573.3135.16010204842375196022@kernel.org>
+	id 1xVoM6-00000006IIM-1IHK;
+	Tue, 24 Nov 2026 11:06:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795518389;
+	bh=TTFGIJjPz1husjeNRaaCxxGeA1hw8TRijgsgTglhZgQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ll8gehkXU3J0waBF64H0aeHsOAswyjIa+rRVWjrk4GUtXeni+O9uS4VB3PdVFLFfE
+	 cIUyKqHQAL1s35+Uog8fIZ9Nd16LLEZz6wqH2u54XoL2+VGw4jXfsrXDPWii74CS4U
+	 DBVOAEYvy9p5iYyKqXDrfx2vDdv5Do67lzyDBiRUXEZ5M1eT2cS9tqMnUqtBjkmOg2
+	 PPpZJPEA312b5EubHSiVLCapTco7YADU0o1IiKslDwDgjpUbk6z6+UPqW0SzNOcSe/
+	 YtRC9vFGSuWkPBcazfqO9bVH2/xJ8q4vCNLCuoG8LyU9gNTZA5ciRjRkUfqO4/UePn
+	 0zDXBRiBFml7w==
+Received: from [100.64.1.21] (unknown [100.64.1.21])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2B08217E00E8;
+	Tue, 24 Nov 2026 12:06:29 +0100 (CET)
+Message-ID: <67738c52-3f49-4f26-9638-9536b0fba09e@collabora.com>
+Date: Tue, 24 Nov 2026 12:06:28 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <179544589573.3135.16010204842375196022@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: mt8167: Add DRM nodes for
+ primary display path
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+ linux-mediatek@lists.infradead.org
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
+ Jitao shi <jitao.shi@mediatek.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Roman Vivchar <rva333@protonmail.com>
+References: <20261123085840.8687-1-l.scorcia@gmail.com>
+ <20261123085840.8687-3-l.scorcia@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20261123085840.8687-3-l.scorcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_030510_750065_9B7622E1 
-X-CRM114-Status: GOOD (  43.65  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261124_030634_519085_A1340180 
+X-CRM114-Status: GOOD (  21.51  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,179 +85,383 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue(s) to consider.
+On 11/23/26 09:57, Luca Leonardo Scorcia wrote:
+> Add all the DRM nodes required to get DSI and DPI0 to work on MT8167 SoC.
 > 
-> Critical: 0 (1) � High: 1 � Medium: 0 � Low: 0
+> The primary display pipeline is defined using an OF graph identical to the
+> fixed fallback implemented in driver code to maintain compatibility with
+> existing boards. Its block sequence is as follows:
 > 
-> If you believe none of the issues are legitimate, please reply to each
-> issue of Medium severity or higher and explain why the AI is wrong.
-> If any of them are legitimate and you plan to respin, please let patchwork
-> know by including "pw-bot: cr" as a separate line at the end of your reply
-> (one such reply per series is enough).
+> OVL -> COLOR -> CCORR -> AAL -> GAMMA -> DITHER -> RDMA0 -> DSI
 > 
-> - [High] net: sparx5: UAF of two-step PTP skb on TX drop in
->   sparx5_port_xmit_impl()
+> If a board wants to use the DPI0 display output the last connection should
+> be overridden in the board DTS. As far as I know however there are no
+> devices using the DPI0 display output.
 > 
-> Pre-existing issues:
-> - [Critical] Use-after-free and double free of two-step PTP skbs on the
->   Sparx5 TX drop path.
-> 
-> --
-> 
-> net: sparx5/lan969x: size the FDMA buffers from the port MTUs
-> 
-> This commit sizes the Sparx5 and lan969x FDMA buffers from the largest port
-> MTU plus the Ethernet header, FCS, IFH and two VLAN tags, rather than a
-> fixed single page. On Sparx5 the RX and TX DB size is that length rounded
-> up to 128 bytes, and sparx5_fdma_xmit() now drops frames that do not fit.
-> On lan969x the page_pool page order is derived from the max frame size.
-> 
-> > diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
-> > index 537c945409bba..b92d249777f0b 100644
-> > --- a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
-> > +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
-> 
-> [ ... ]
-> 
-> > @@ -224,6 +223,10 @@ int sparx5_fdma_xmit(struct sparx5 *sparx5, u32 *ifh, struct sk_buff *skb,
-> >  	struct fdma *fdma = &tx->fdma;
-> >  	void *virt_addr;
-> >  
-> > +	/* Drop frames that do not fit in the TX buffers */
-> > +	if (unlikely(IFH_LEN * 4 + skb->len + ETH_FCS_LEN > fdma->db_size))
-> > +		return -EMSGSIZE;
-> > +
-> 
-> [Severity: High]
-> This is a pre-existing problem in sparx5_port_xmit_impl(), but the
-> new -EMSGSIZE return makes it much easier to hit. What happens to a
-> two-step PTP skb that fails here?
-> 
-> sparx5_port_xmit_impl() calls sparx5_ptp_txtstamp_request() before
-> ops->fdma_xmit(). For two-step PTP, that puts the skb on
-> port->tx_skbs with skb_queue_tail() without taking an extra
-> reference. It also increments sparx5->ptp_skbs and port->ts_id.
-> 
-> If fdma_xmit() then returns anything other than -EBUSY, the code
-> jumps to the drop label, which only calls dev_kfree_skb_any(skb).
-> Only the busy label calls sparx5_ptp_txtstamp_release(port, skb). The
-> freed skb is therefore still linked on port->tx_skbs.
-> 
-> Later walks of port->tx_skbs happen in
-> sparx5_ptp_txtstamp_old_release(), in the sparx5 and lan969x PTP IRQ
-> handlers, and in sparx5_ptp_deinit(). These read SPARX5_SKB_CB() from
-> freed memory, call __skb_unlink() through stale list pointers, and
-> call dev_kfree_skb_any() on the same skb again. Isn't that a
-> use-after-free and a double free?
-> 
-> sparx5->ptp_skbs is also never decremented for these skbs. After
-> SPARX5_MAX_PTP_ID such drops, sparx5_ptp_txtstamp_request() returns
-> -EBUSY forever, and two-step TX timestamping on the switch stalls.
-> 
-> Before this patch the Sparx5 TX DB was PAGE_SIZE. The drop path could
-> only be reached through the -EINVAL ring-full return here, or through
-> the -ENOMEM DMA mapping failure in lan969x_fdma_xmit(). With the
-> default MTU of 1500, db_size is now
-> ALIGN(1518 + 36 + 8, 128) = 1664. Any two-step frame with skb->len
-> above 1624 now takes the drop path every time.
-> 
-> Such frames can still reach a 1500 MTU port, for example through tc
-> mirred or bpf_redirect from a device with a larger MTU. They can also
-> arrive when the MTU is lowered while larger skbs are already queued,
-> which becomes possible later in this series.
-> 
-> The commit message relies on this drop path. Should the drop label in
-> sparx5_port_xmit_impl() release two-step PTP skbs the same way the
-> busy label does? Or would you rather check the length before
-> sparx5_ptp_txtstamp_request() is called?
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 
-This is pre-existing. The drop path already misses the PTP release before this
-series, e.g when the TX ring is full, so the handling of the PTP tx_skbs is
-broken regardless of this check. I have two WIP patchsets for lan966x and
-sparx5/lan969x that will rework the PTP tx_skb handling. These will be submitted
-in the near future.
+Luca, (Cc Krzysztof)
 
+My brain got looped around the aliases mess - but I have eventually found a good
+solution to... the aliases thing, which doesn't imply adding a bunch of MMIOs in
+mediatek-drm nor in mmsys.
+
+This solution, though, needs a decent devicetree with a proper description of the
+hardware - which is not what you're providing here (and it's not really your fault)
+
+I know I asked you to just drop the aliases, and I'm truly sorry for
+   1. Wasting your time here, though only a few minutes, still wasted
+   2. Asking you to redo this in a different way
+
+Getting to point 2...
+
+Of course, on all MediaTek SoCs, all of the Display Controller components are
+effectively embedded in their own hardware subsystem - and this does effectively
+include legacy chips - along with MT8167.
+
+The right thing to do here is something I should've asked you to do on v1, and
+that is describing the display controller Sub-IPs exactly as such: so those should
+be children (read: subnodes) of mmsys.
+
+This is also because there's no way to use any of the display controller components
+if the display controller itself is not powered up (and I can go on with a billion
+other reasons but I have no time right now, so sorry again).
+
+Please, move the display controller children to the display controller node.
+
+Cheers,
+Angelo
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8167.dtsi | 297 +++++++++++++++++++++++
+>   1 file changed, 297 insertions(+)
 > 
-> [Severity: Critical]
-> This is a pre-existing issue, but this new return gives a second,
-> deterministic way to hit it. What happens to a two-step PTP skb that gets
-> -EMSGSIZE here?
-> 
-> By this point, sparx5_port_xmit_impl()->sparx5_ptp_txtstamp_request() has
-> already put the skb on port->tx_skbs without taking a reference:
-> 
-> sparx5_ptp.c:sparx5_ptp_txtstamp_request() {
->     ...
-> 	skb_queue_tail(&port->tx_skbs, skb);
-> 	SPARX5_SKB_CB(skb)->ts_id = port->ts_id;
-> 	SPARX5_SKB_CB(skb)->jiffies = jiffies;
-> 
-> 	sparx5->ptp_skbs++;
-> 	port->ts_id++;
->     ...
-> }
-> 
-> Back in sparx5_port_xmit_impl(), only -EBUSY goes through
-> sparx5_ptp_txtstamp_release(). Any other negative return frees the skb
-> while it is still on the list:
-> 
-> sparx5_packet.c:sparx5_port_xmit_impl() {
->     ...
-> 	if (ret == -EBUSY)
-> 		goto busy;
-> 	if (ret < 0)
-> 		goto drop;
->     ...
-> drop:
-> 	stats->tx_dropped++;
-> 	sparx5->tx.dropped++;
-> 	dev_kfree_skb_any(skb);
-> 	return NETDEV_TX_OK;
-> busy:
-> 	if (skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP &&
-> 	    SPARX5_SKB_CB(skb)->rew_op == IFH_REW_OP_TWO_STEP_PTP)
-> 		sparx5_ptp_txtstamp_release(port, skb);
-> 	return NETDEV_TX_BUSY;
-> }
-> 
-> The next two-step request then walks the list in
-> sparx5_ptp_txtstamp_old_release():
-> 
-> 	skb_queue_walk_safe(&port->tx_skbs, skb, skb_tmp) {
-> 		if time_after(SPARX5_SKB_CB(skb)->jiffies + SPARX5_PTP_TIMEOUT,
-> 			      jiffies)
-> 			break;
-> 
-> 		__skb_unlink(skb, &port->tx_skbs);
-> 		dev_kfree_skb_any(skb);
-> 
-> Does this read the cb of the freed skb and then free it again? The TX
-> timestamp IRQ handler can also find the stale entry. ptp_skbs and ts_id
-> also stay incremented, so can the PTP ID pool run out?
-> 
-> This path could already be reached through the -EINVAL return when the
-> next TX DB is not done, i.e. when the TX ring is full.
-> 
-> With this patch and the default MTU of 1500, db_size goes from 4096 to
-> ALIGN(1518 + 36 + 8, 128) = 1664. A two-step timestamped frame longer
-> than 1624 bytes used to be sent, but now it always takes the drop path.
-> Such frames can still reach a 1500 MTU port, for example through tc
-> mirred or bpf_redirect from a device with a larger MTU.
-> 
-> The commit message says it will "make sparx5_fdma_xmit() drop frames that
-> do not fit", so it depends on this drop path. Should the drop label in
-> sparx5_port_xmit_impl() call sparx5_ptp_txtstamp_release() for two-step
-> PTP skbs, the same way the busy label does? sparx5_port_xmit_impl() is
-> still unchanged at the end of the series.
-> 
-> -- 
-> Sashiko AI review � https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120-sparx5-mtu-change-v3-0-55c272fe1acc%40microchip.com
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> index 27cf32d7ae35..a7818fd92edc 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
+> @@ -120,10 +120,297 @@ iommu: m4u@10203000 {
+>   			#iommu-cells = <1>;
+>   		};
+>   
+> +		disp_pwm: pwm@1100f000 {
+> +			compatible = "mediatek,mt8167-disp-pwm", "mediatek,mt8173-disp-pwm";
+> +			reg = <0 0x1100f000 0 0x1000>;
+> +			clocks = <&topckgen CLK_TOP_PWM_MM>, <&mmsys CLK_MM_DISP_PWM_MM>;
+> +			clock-names = "main", "mm";
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +			#pwm-cells = <2>;
+> +			status = "disabled";
+> +		};
+> +
+>   		mmsys: syscon@14000000 {
+>   			compatible = "mediatek,mt8167-mmsys", "syscon";
+>   			reg = <0 0x14000000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			port {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				mmsys_main: endpoint@0 {
+> +					reg = <0>;
+> +					remote-endpoint = <&ovl0_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		ovl0: ovl@14007000 {
+> +			compatible = "mediatek,mt8167-disp-ovl";
+> +			reg = <0 0x14007000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_OVL0>;
+> +			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_LOW>;
+> +			iommus = <&iommu M4U_PORT_DISP_OVL0>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					ovl0_in: endpoint {
+> +						remote-endpoint = <&mmsys_main>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					ovl0_out: endpoint {
+> +						remote-endpoint = <&color_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		rdma0: rdma@14009000 {
+> +			compatible = "mediatek,mt8167-disp-rdma", "mediatek,mt2701-disp-rdma";
+> +			reg = <0 0x14009000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
+> +			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
+> +			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					rdma0_in: endpoint {
+> +						remote-endpoint = <&dither_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					rdma0_out: endpoint {
+> +						remote-endpoint = <&dsi_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		wdma: wdma@1400b000 {
+> +			compatible = "mediatek,mt8167-disp-wdma", "mediatek,mt8173-disp-wdma";
+> +			reg = <0 0x1400b000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_WDMA>;
+> +			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_LOW>;
+> +			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +		};
+> +
+> +		color: color@1400c000 {
+> +			compatible = "mediatek,mt8167-disp-color";
+> +			reg = <0 0x1400c000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_COLOR>;
+> +			interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					color_in: endpoint {
+> +						remote-endpoint = <&ovl0_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					color_out: endpoint {
+> +						remote-endpoint = <&ccorr_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		ccorr: ccorr@1400d000 {
+> +			compatible = "mediatek,mt8167-disp-ccorr", "mediatek,mt8183-disp-ccorr";
+> +			reg = <0 0x1400d000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_CCORR>;
+> +			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					ccorr_in: endpoint {
+> +						remote-endpoint = <&color_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					ccorr_out: endpoint {
+> +						remote-endpoint = <&aal_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		aal: aal@1400e000 {
+> +			compatible = "mediatek,mt8167-disp-aal", "mediatek,mt8173-disp-aal";
+> +			reg = <0 0x1400e000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_AAL>;
+> +			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					aal_in: endpoint {
+> +						remote-endpoint = <&ccorr_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					aal_out: endpoint {
+> +						remote-endpoint = <&gamma_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		gamma: gamma@1400f000 {
+> +			compatible = "mediatek,mt8167-disp-gamma", "mediatek,mt8173-disp-gamma";
+> +			reg = <0 0x1400f000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_GAMMA>;
+> +			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					gamma_in: endpoint {
+> +						remote-endpoint = <&aal_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					gamma_out: endpoint {
+> +						remote-endpoint = <&dither_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		dither: dither@14010000 {
+> +			compatible = "mediatek,mt8167-disp-dither", "mediatek,mt8183-disp-dither";
+> +			reg = <0 0x14010000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DISP_DITHER>;
+> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					dither_in: endpoint {
+> +						remote-endpoint = <&gamma_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					dither_out: endpoint {
+> +						remote-endpoint = <&rdma0_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		dsi: dsi@14012000 {
+> +			compatible = "mediatek,mt8167-dsi";
+> +			reg = <0 0x14012000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DSI_ENGINE>, <&mmsys CLK_MM_DSI_DIGITAL>,
+> +				 <&mipi_tx>;
+> +			clock-names = "engine", "digital", "hs";
+> +			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>;
+> +			phys = <&mipi_tx>;
+> +			phy-names = "dphy";
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +			status = "disabled";
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					dsi_in: endpoint {
+> +						remote-endpoint = <&rdma0_out>;
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					dsi_out: endpoint { };
+> +				};
+> +			};
+> +		};
+> +
+> +		dpi0: dpi@14013000 {
+> +			compatible = "mediatek,mt8167-dpi";
+> +			reg = <0 0x14013000 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_DPI0_PXL>, <&mmsys CLK_MM_DPI0_ENGINE>,
+> +				 <&apmixedsys CLK_APMIXED_LVDSPLL>;
+> +			clock-names = "pixel", "engine", "pll";
+> +			interrupts = <GIC_SPI 172 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +					dpi0_in: endpoint { };
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +					dpi0_out: endpoint { };
+> +				};
+> +			};
+> +		};
+> +
+> +		mutex: mutex@14015000 {
+> +			compatible = "mediatek,mt8167-disp-mutex";
+> +			reg = <0 0x14015000 0 0x1000>;
+> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+>   		};
+>   
+>   		larb0: larb@14016000 {
+> @@ -145,6 +432,16 @@ smi_common: smi@14017000 {
+>   			power-domains = <&spm MT8167_POWER_DOMAIN_MM>;
+>   		};
+>   
+> +		mipi_tx: dsi-phy@14018000 {
+> +			compatible = "mediatek,mt8167-mipi-tx", "mediatek,mt2701-mipi-tx";
+> +			reg = <0 0x14018000 0 0x90>;
+> +			clocks = <&topckgen CLK_TOP_MIPI_26M_DBG>;
+> +			clock-output-names = "mipi_tx0_pll";
+> +			#clock-cells = <0>;
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>   		imgsys: syscon@15000000 {
+>   			compatible = "mediatek,mt8167-imgsys", "syscon";
+>   			reg = <0 0x15000000 0 0x1000>;
+
 
