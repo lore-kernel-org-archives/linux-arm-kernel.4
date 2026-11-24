@@ -2,140 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E565606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C560606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 15:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o2VrOapV;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=WHotxxso;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=PpFLp6ZM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jkfBhbmw;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=d0mq2ifd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=; b=o2VrOapVucNYQE
-	8957mS9OlasHyzlYOzOYq10Src84V0bXol+iVNISsKDMXzzInhANclT+xqxvtSUdQbNWEsmYt+Hjx
-	MGeicUfUFPmRG1PfJghGaYFZ6gSxQEsUAnw0A/pGYuZBV3mfexBHxOtCScKdpLKd2DTel3ZH5KzZ7
-	OtHBgXEx/6C0lCZlbw+09m4a8wi5Iz/FGbBsYy+RTG6yzYcR0wmqRrWjDbwUYivWBUlzuuSzy6+wg
-	oZfbR5IuksKY7EX7WnFCQLLr4KKkQ6TTZqvv2PdyXM0w2E2mfogCby0axnmvh7rk90EHSTtIJca9E
-	/Vz2IMvqjqUOpnGc/0JQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=zvW5z7zfahFNFXi+Ssaf7DpYERKkjJt0YrEyUHja2pk=; b=jkfBhbmwE9GNxIQTzfNseF36QH
+	1I347DptXoun8sbioYIaSNNyUBDesJf0OQKhFTrT10wJ8Y10hV0bfEbZaDYW+NT7IWgp0cwzL0dkI
+	pSVs228gdG0iA1T1QcPJ2cRvb8Dh6saZ8wedd36PjhROS2RbYyIIGVmFo3umgiRylxHPLb8Cxi5R9
+	6zuDJiRKzoBodWoz5aF9+QBPVknBjOdnIYGzYwm0du8+SxyAah0DfMVevg9D7FcX/GNTwcw2PmR/k
+	Aux5uW79owYVRJb7GVJq25jYi9qReYunytF9/m5RZbthKrWIpgOPjZLAP1f+XSmmcT3Hqm5UeMEEG
+	2Uq/+d4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsR7-00000006tS4-0OLx;
-	Tue, 24 Nov 2026 15:28:01 +0000
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.123])
+	id 1xVsS3-00000006tg6-36rD;
+	Tue, 24 Nov 2026 15:28:59 +0000
+Received: from out-88.mta1.migadu.com ([95.215.58.88] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsR1-00000006tRU-1vXx
+	id 1xVsRv-00000006tcb-2pTP
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 15:28:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795534069; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=ZOdacTezD0/O1W8pWgGGy3eS+6bUkGPBr3WXwIkf/Uo3ue55cxbtyUnn0eAB5jFYW8
-    4m7kfhwGw/tPfp6BTHByjdH4SzMgyMXJ4QP/eLhBM8g1mSQLOVBwEeOoWWiTZWcd6XPj
-    qm9qD9E56JyE5v4mUHvuTqh6hONosle/8fRe8YrIxADLZhaB/i3ouJjAN5dQ6K+y+93u
-    NiOeIRpLldwX5q0Nql4uhWNeOX9nnZMTp3b0Rb+sMuprOD2ic9HjmtSPqWbrHO0Wi55d
-    ioPA+P0KDLg/EAQME5rNFLtRiVyVNsaAv32eq9x4PeMajpbUPhT9FEaa7zP4rlfUHdmo
-    kn6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795534069;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=;
-    b=DzOJdFExQ63HcAPaB5bp+F6rlFv20cAjKPGXiTfD3ARPuLTFO8jxpFwlSJZaWJIVS6
-    m3/aVAzoMGk+cb/s4DRe2uQXAHAi7sV81QuhX5dsk82IWIxkiD8ntWoAHWdOfJmLX99I
-    vO3aF0X8VF5A5zzs/MwPSIM9ZfYiiInqOyvh8+TZAuEz9vZbLnoPQ3niI0lkhQ10ZYG3
-    9aTKQ0xZzJIL1LNVwg5LQa8dZHQjXHqCzeW1DA0BthvG+Q7XqOVTVUgofJjE/GJuVUIv
-    nvhWN931wYMWxqUA8dqBMPOpBMaFwUe1zbDOs9oV0ybZsfXQ71Vz0oaZCrP2qvzi7MPT
-    KtDA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo04
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795534069;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=;
-    b=WHotxxso2lz+TYmIbQErxcF/C0jaH5fk+rAzl09i1EJ6wcRKkm6Rp70aAoaN6b6nji
-    UdyCX+9DHv4snG435rBPWmHUTzNVtgQB3lLKwO7AezmXNY0Jv7KQlDh6+m4Xo3du70js
-    20jBe/Q2Ry0MDGVPYiOwowvnxZnxSxlbf9Mqohd3eWcb4SXJQH9qAWcKzU2jT7fZE9F3
-    qrHZtuWxBLw4/CTqb2mfzlQNR6HktXKQW8oFO4XEldybnDjjsiJMMRWuXaqm7KwftVKf
-    IRzlHlSoj2LbePLwzmHToIsZj3yGACdQ/Fd/dJXa8kf9J1hM2nB5RJpIU90YoD0YxRcu
-    lOHg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795534069;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=Do5FkKgMlCI/D8/8uPVacdPZ+m4QTTZgla0npUPWih8=;
-    b=PpFLp6ZMiP3xDVaWjY4phl3aiPj4zX8gQ/xc9v/XvwYLJ173GZ65l0e91P3FhNaxTc
-    sdF6rCGB33CQHIoNxyCw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVWUgMvoVkTTR2P7jtjQyY2AeEP/F"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AOFRl3rJ
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 24 Nov 2026 16:27:47 +0100 (CET)
-Content-Type: text/plain;
-	charset=utf-8
+	Tue, 24 Nov 2026 15:28:59 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=ZlYt6RHKpSvMzdObJH/W7hyfD0aXwfhI08mgyRDFJwI=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795534127; v=1; x=1796138927;
+ b=d0mq2ifdwgOzELx//KYvKqpaXDNKPkX2hHMvm4EqLp0Az/cpGtwZhiRT5cBPnnDm/q+rVOPK
+ ovh08k+sTEIFg48rlg6mJU7IP+PftV0euAKT4peQ5qVK0crUbM3Ey1SH+2FEbYrQQ4VjedcZAqJ
+ Bo47N7miGpkFj3wc56t3n1yE=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by mta10.migadu.com with ESMTPS id 1820b8d53bebf8b1;
+	Tue, 24 Nov 2026 15:28:46 +0000
+X-Mizu-Trace-ID: 1820b8d53bebf8b1
+X-Migadu-Flow: FLOW_OUT
+From: Usama Arif <usama.arif@linux.dev>
+To: maz@kernel.org,
+	oupton@kernel.org,
+	fuad.tabba@linux.dev,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	riel@surriel.com,
+	shakeel.butt@linux.dev,
+	kernel-team@meta.com,
+	rkeilty@meta.com,
+	atish.patra@linux.dev,
+	dgreid@meta.com
+Cc: Usama Arif <usama.arif@linux.dev>
+Subject: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+Date: Tue, 24 Nov 2026 07:28:42 -0800
+Message-ID: <20261124152842.2634495-1-usama.arif@linux.dev>
+X-Mailer: git-send-email 2.53.1
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.11\))
-Subject: Re: [PATCH v2 00/20] ARM: omap3: pandora: Modernize audio and
- backlight to use Device Tree to finally remove pdata-quirks
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20261124151318.GA536798-robh@kernel.org>
-Date: Tue, 24 Nov 2026 16:27:16 +0100
-Cc: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>,
- Daniel Thompson <danielt@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>,
- Pavel Machek <pavel@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Andreas Kemnade <andreas@kemnade.info>,
- Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>,
- Tony Lindgren <tony@atomide.com>,
- Russell King <linux@armlinux.org.uk>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Helge Deller <deller@gmx.de>,
- Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>,
- Jarkko Nikula <jarkko.nikula@bitmer.com>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org,
- linux-sound@vger.kernel.org,
- linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-pwm@vger.kernel.org,
- linux-fbdev@vger.kernel.org,
- letux-kernel@openphoenux.org,
- kernel@pyra-handheld.com
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
- <20261124151318.GA536798-robh@kernel.org>
-To: Rob Herring <robh@kernel.org>
-X-Mailer: Apple Mail (2.3826.700.81.1.11)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_072756_807909_227D830A 
-X-CRM114-Status: GOOD (  32.60  )
+X-CRM114-CacheID: sfid-20261124_072852_227508_37D77C6F 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -147,231 +85,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+When a stage-2 fault may need new page tables, KVM first tops up the
+vCPU's page cache: if it holds fewer pages than the fault might need, it
+is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
+40. Unused pages stay in the cache until the vCPU is destroyed.
 
+With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
+used. Stage-2 has at most three levels and the root is preallocated, so
+a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
+As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
+table pages to map all of its memory, while its four vCPU caches get
+filled with 160.
 
-> Am 24.11.2026 um 16:13 schrieb Rob Herring <robh@kernel.org>:
->=20
-> On Tue, Nov 24, 2026 at 08:25:40AM +0100, H. Nikolaus Schaller wrote:
->> PATCH V2 2026-11-24 08:26:00:
->> Changes in V2:
->> The series has been reworked and expanded from 16 to 20 patches,
->> addressing review feedback and issues identified during hardware =
-testing.
->>=20
->> Audio and power management:
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
->> * Replace the TWL4030 REGEN regulator implementation with an optional
->>  GPIO and a fixed regulator described in Device Tree.
->> * Extend the existing PCM1754 codec driver to support the PCM1773
->>  instead of introducing a separate codec driver.
->> * Add power supply and power-down GPIO support to the codec driver.
->> * Improve error handling, resource management and power sequencing
->>  in the codec and sound card drivers.
->> * Update the sound card and codec bindings and Device Tree nodes.
->>=20
->> PWM and backlight:
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> * Add optional 64-cycle frame support to the TWL4030 PWM driver.
->> * Add an optional enable guard period to the generic pwm-backlight
->>  driver to prevent the TPS61161 from inadvertently entering
->>  EasyScale mode.
->> * Adjust the Pandora PWM backlight configuration accordingly.
->> * Remove the obsolete CONFIG_BACKLIGHT_PANDORA option from
->>  omap2plus_defconfig.
->>=20
->> Device Tree and general cleanup:
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D
->> * Correct and validate the affected Device Tree bindings.
->> * Reorder the series so that bindings and supporting drivers
->>  precede their Device Tree users.
->> * Improve commit messages and fix coding style issues.
->> * Clarify the original authorship and take responsibility for
->>  contributions previously signed off under a pseudonym.
->>=20
->> Review feedback addressed:
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
->> * Mark Brown suggested representing TWL4030 REGEN as a GPIO rather
->>  than a regulator and reviewed the original standalone PCM1773
->>  driver, which has been replaced by extending the PCM1754 driver.
->> * Krzysztof Kozlowski requested corrections to the Device Tree
->>  bindings, proper schema validation, improved commit messages and
->>  clarification of the original contributor's authorship.
->> * Andreas Kemnade suggested handling the TPS61161 initialization
->>  in the backlight layer. V2 implements this through a generic
->>  pwm-backlight enable guard period. His comments on clock modeling
->>  and patch bisectability were also considered.
->> * Daniel Thompson provided Reviewed-by for the original removal
->>  of the Pandora backlight driver.
->> * Issues identified by Sashiko and Rob Herring's automated DT
->> validation were reviewed and addressed as applicable.
->>=20
->> Many thanks to everyone who reviewed V1.
->>=20
->> Validation and testing:
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> * Based on Linux v7.4-rc4.
->> * All 20 patches checked with checkpatch.pl.
->> * Remaining checkpatch warnings and intentional deviations have
->>  been reviewed. In particular, ENOTSUPP must be retained in the
->>  GPIO set_config callback because gpiolib handles it differently
->>  from EOPNOTSUPP.
->> * dt_binding_check and dtbs_check passed for all five affected
->>  Device Tree bindings.
->> * The complete series has been successfully built and tested on
->>  real OpenPandora hardware.
->> * LCD operation, PWM backlight brightness control including
->>  brightness zero and power-down, and audio playback through the
->>  internal speakers and headset have been verified.
->> * Audio capture was not tested.
->>=20
->> PATCH V1 2026-07-11 08:02:02:
->> This series modernizes the OpenPandora handheld support by converting =
-the=20
->> sound subsystem and backlight control to proper platform drivers and =
-Device=20
->> Tree definitions.
->>=20
->> The primary goal is the complete removal of =
-omap3_pandora_legacy_init()=20
->> and the elimination of the last remaining user of =
-machine_is_omap3_pandora().
->>=20
->> History and Context
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> The necessity of this cleanup was highlighted in several recent =
-discussions:
->>=20
->> 1. Tony Lindgren noted that machine_is_omap3_pandora() checks never =
-succeed=20
->>   on Device Tree-booted machines, leaving the audio subsystem =
-functionally=20
->>   broken since the DT conversion years ago:
->>   https://marc.info/?l=3Dalsa-devel&m=3D165632351319716&w=3D2
->>=20
->> 2. Ethan Nelson-Moore submitted a patch to replace the macro with DT=20=
+On a production host with 64 KiB pages running 101 VMs with four vCPUs
+each, the caches were still 86% full. The memory used:
 
->>   compatibility checks (accepted as commit 45efb8fbdae3 in v7.2-rc1):
->>   https://marc.info/?l=3Dlinux-omap&m=3D177841578110704&w=3D2
->>=20
->> 3. Sascha Hauer pointed out that the entire omap3pandora driver =
-fundamentally=20
->>   depended on this broken machine ID check:
->>   https://marc.info/?l=3Dlinux-omap&m=3D178048982272252&w=3D2
->>=20
->> Design Choices and Implementation
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> Based on these discussions and a long-standing and working =
-out-of-tree solution,
->> we initially attempted a migration to generic frameworks like =
-simple-audio-card=20
->> or audio-graph-card. However, the hardware routing peculiarities of =
-the=20
->> OpenPandora introduced too many functional gaps. Replacing =
-omap3pandora.c=20
->> entirely with pure DT definitions proved unfeasible.=20
->>=20
->> Therefore, we opted to base a new proposal on the out-of-tree rewrite =
-of
->> the old-style sound board file kernel driver =
-(sound/soc/ti/omap3pandora.c)
->> into a proper platform driver that cleanly fetches its resources from =
-the
->> Device Tree, while adding specific handling for the twl4030-regen =
-output
->> and adapting the pandora device tree files.
->>=20
->> Series Structure
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> * Patches 01=E2=80=9306 (Preparation): Move highly specific legacy =
-code to its proper=20
->>  infrastructure (TWL4030 regulator regeneration and codec handling).
->> * Patch 07-08 (New Driver): Introduce a dedicated platform driver for =
-the=20
->>  PCM1773 audio DAC.
->> * Patches 09-14 (Audio Core): Rewrite the omap3pandora ASoC fabric =
-driver=20
->>  and update the respective Device Tree nodes.
->> * Patches 14=E2=80=9315 (Backlight): Remove the custom, legacy =
-Pandora backlight driver,
->>  convert it to generic Device Tree nodes
->> * Patch 16: (Cleanup) safely delete the obsolete =
-omap3_pandora_legacy_init().
->>=20
->> Notes & Testing
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->> * Testing: This series has been tested on real OpenPandora hardware.
->>=20
->> Credits
->> =3D=3D=3D=3D=3D=3D=3D
->> This work is a collaborative effort by multiple authors over several =
-years:
->> * Grond <grond66@riseup.net>
->> * Stefan Leichter <sle85276@gmx.de>
->> * H. Nikolaus Schaller <hns@goldelico.com>
->>=20
->>=20
->> H. Nikolaus Schaller (17):
->>  dt-bindings: gpio: twl4030: Document REGEN GPIO
->>  gpio: twl4030: Support REGEN GPIO
->>  ASoC: twl4030: Allow APLL rate selection through set_sysclk()
->>  dt-bindings: sound: pcm1754: Describe PCM1773
->>  ASoC: codecs: pcm1754: Add PCM1773 support
->>  dt-bindings: sound: Document OpenPandora sound card
->>  dt-bindings: mfd: twl4030: Document 64-cycle PWM
->>  pwm: twl: Support 64-cycle PWM frame
->>  dt-bindings: backlight: pwm: Document enable guard
->>  backlight: pwm: Support enable guard period
->>  drm/panel: td043mtea1: Attach DT backlight
->>  ARM: dts: omap3pandora: Disable unused DMA channels
->>  ARM: dts: omap3-pandora: Model LCD power enable dependencies
->>  ARM: dts: omap3pandora: Describe PCM1773
->>  ARM: dts: omap3pandora: Switch backlight to PWM
->>  backlight: Remove legacy Pandora driver
->>  ARM: OMAP2+: Remove Pandora platform-data quirks
->>=20
->> Stefan Leichter (3):
->>  ASoC: ti: omap3pandora: Convert sound card to DT
->>  ARM: dts: omap3pandora: Enable audio interfaces
->>  ARM: dts: omap3pandora: Describe sound card
->=20
-> Which of the 7 maintainers do you expect to take this series?
+                        before      after
+  per-vCPU capacity     2.5 MB     512 KB
+  all 404 vCPUs         869 MB     <= 202 MB
 
-Well, as a contributor for a specific device one is not regularily =
-thinking
-in maintainers work split but about a series to get a device fixed. =
-Which is
-obviously orthogonal.
+Let's lower the capacity to 8 with 64 KiB pages, In the production
+usecase above, it frees at least 667 MB. That still covers the two-page
+minimum and leaves room for several table allocations per refill. 4 KB
+and 16 KB pages keep 40.
 
-I didn't even recognize that this involves 7 maintainers.
+The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
+but it is topped up before every page it maps, so 8 is sufficient there
+as well. The pKVM hypervisor memcache and the eager split cache don't
+use this capacity.
 
-Maybe an extension of checkpatch (which already looks into the =
-MAINTAINER
-list) could help here?
+Signed-off-by: Usama Arif <usama.arif@linux.dev>
+---
+ arch/arm64/include/asm/kvm_types.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> Surely=20
-> this can be broken up into smaller series?
-
-Yes it (we?) can. It is just a question how to do it and properly =
-describe
-the dependencies to avoid bisectability problems and avoid that the =
-final
-goal is lost.
-
-I'll wait a little if there are other comments on individual patches and
-then start working on the split.
-
-BR and thanks,
-Nikolaus
+diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
+index 9a126b9e2d7c99..28568da9ea4a7b 100644
+--- a/arch/arm64/include/asm/kvm_types.h
++++ b/arch/arm64/include/asm/kvm_types.h
+@@ -2,7 +2,12 @@
+ #ifndef _ASM_ARM64_KVM_TYPES_H
+ #define _ASM_ARM64_KVM_TYPES_H
+ 
++/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
++#ifdef CONFIG_ARM64_64K_PAGES
++#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
++#else
+ #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
++#endif
+ 
+ #endif /* _ASM_ARM64_KVM_TYPES_H */
+ 
+-- 
+2.53.1-Meta
 
 
