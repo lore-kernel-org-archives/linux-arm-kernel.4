@@ -2,89 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6236E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 559DA606A698
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 09:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N7Yrp+K4;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=C+JbvLTx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G0RSKh3s
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=OUngm4girPZ/UgXDY4tToZ5+MVYoWJUTU2VlTrOevjQ=; b=N7Yrp+K4ihfpEi
-	3jASZtb30282a2eL3FlNSXhA9qo3rmsxlVdScfSm428cjigdd1WGHZNYPZxj87m6r1xGeZTikUNUS
-	vfDE0bviXnMAq3oHj/sgHtpO+mkZnJMClrsChKmxcAONP/mKNkkZo2BUI41FXaAKTdmQC6hUkWalh
-	fgKAm67uUsUpXTnxPdO1jW3yXAjbmlLvptLIet3VpG0twHSfPPwQ0FIGTViS3CwZmf6tCo+XgxYfG
-	rs78Mr744NDSwD7PkRiNEGgnVT8cnO6RNs5rdA4g1lKmClxb7TZf3/0okPiyHbds+Iqxb3+bzJpvh
-	l6MsnclnW0PC4tcRBz4A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=1H1wpHbSbPbMYx2mEnVfR6ZvY8ilc9Su8kjOB4ezHPU=; b=G0RSKh3s/p7y1DXm0LVhcNQOv8
+	sihqTt/b962oCy/BOBfLcI8noSLoz75ELi6F7VrDY2YSCau8+Me1JpW9n0t6kJeBd//VjVWMXYYv9
+	wMZf7Vfcy0SFS+qgE/nsINLNtCa1LPkPDqMZELcTHwTsji03RSjvpRXnSoEf8CyQ+kFbK2rIARrSS
+	k3BGndTBKLCbFEUAWE+NnydR7ywcX/5p3b0UkvC8AKKJpp3+Wbl/dvV7J++JYSMW5pkDNwizR67En
+	mZ0WfA0feBWgDTjjQzwpI6cKQjjOxFjHLB5fHCKav/HgtPzvs2hD/q6RVP0jWe6EZZJAllrbcELmP
+	u4/HKCmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmbn-0000000621P-1x3V;
-	Tue, 24 Nov 2026 09:14:39 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xVmey-000000062ET-3pO9;
+	Tue, 24 Nov 2026 09:17:56 +0000
+Received: from smtp21.cstnet.cn ([159.226.251.21] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVmbj-0000000620n-1t97
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 09:14:37 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 668B7C4CBEA;
-	Tue, 24 Nov 2026 09:14:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 085D3601E1;
-	Tue, 24 Nov 2026 09:14:33 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1FC9111E68DFE;
-	Tue, 24 Nov 2026 10:14:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795511671; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=OUngm4girPZ/UgXDY4tToZ5+MVYoWJUTU2VlTrOevjQ=;
-	b=C+JbvLTxACFgmMXVP5wvlu1mwmVIZQveH3j3i0LGBpo78jGydRRVv3Hmp9utJB7uXLQ+s2
-	Qgc5XZZ5u4jbrc0G5lH6mvUGyLCWErr9KbVrLnD/rFathee8+APWG7fT/gWcoOAtKt4pEi
-	FML1o06sWvxWlFeUgrvifnT+nWxVxZ2DsliSkVbaKQNQUe7VomPqbvjei8feQ37mEkrslC
-	Vq4FDCp2vHaWKuAHDHa2+/LubEr0dc7UHiWE9BOsuuihGpxseeqihOXgLJVrRPOZygT24e
-	aXmUyEfacOCvvtChysMgxDNGTI4uFRujoUZ73JU+QXBSQdp9cRgCFYPzhftReA==
-Message-ID: <cc3580f8-9a45-487f-ac86-84e0f1c3e8b4@bootlin.com>
-Date: Tue, 24 Nov 2026 10:14:13 +0100
+	id 1xVmev-000000062Do-2LB0;
+	Tue, 24 Nov 2026 09:17:55 +0000
+Received: from edelgard.fodlan.icenowy.me (unknown [120.85.97.139])
+	by APP-01 (Coremail) with SMTP id qwCowACn0fsrVgVrsHWVAQ--.4130S2;
+	Tue, 24 Nov 2026 17:17:32 +0800 (CST)
+Message-ID: <ae0e7aeba38d7b7c2eb6cc526917b75e05c748cd.camel@iscas.ac.cn>
+Subject: Re: [PATCH v3 2/2] drm/bridge: add TH1520 DesignWare MIPI DSI host
+ controller
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
+ Pinchart	 <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Sandy
+ Huang <hjc@rock-chips.com>, Heiko =?ISO-8859-1?Q?St=FCbner?=	
+ <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
+ dri-devel@lists.freedesktop.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-riscv@lists.infradead.org, Han
+ Gao <gaohan@iscas.ac.cn>
+Date: Tue, 24 Nov 2026 17:17:31 +0800
+In-Reply-To: <a797b2da-ea60-4b81-8fbf-e027afc89cc6@rock-chips.com>
+References: <20261124-th1520-dw-mipi-dsi-v3-0-ffcf2d87971b@iscas.ac.cn>
+	 <20261124-th1520-dw-mipi-dsi-v3-2-ffcf2d87971b@iscas.ac.cn>
+	 <af27260f-1911-47bb-8fe2-8eaa8bec31b0@rock-chips.com>
+	 <561b5dc1b3a87ebc78f2357d253df4676395fb10.camel@iscas.ac.cn>
+	 <a797b2da-ea60-4b81-8fbf-e027afc89cc6@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v12 1/4] net: xdp: add
- __xdp_build_skb_from_buff() helper
-To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>,
- Stanislav Fomichev <sdf@fomichev.me>, Jose Abreu <Jose.Abreu@synopsys.com>,
- Ong Boon Leong <boon.leong.ong@intel.com>, Simon Horman <horms@kernel.org>,
- Andrii Nakryiko <andrii@kernel.org>, Eduard Zingerman <eddyz87@gmail.com>,
- Kumar Kartikeya Dwivedi <memxor@gmail.com>,
- Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
- Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
- Emil Tsalapatis <emil@etsalapatis.com>,
- Ihor Solodrai <ihor.solodrai@linux.dev>, peilinhe2020@163.com,
- Peilin He <he.peilin@zte.com.cn>, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
-References: <20261121-stmmac-rx-mb-v12-0-3ae2f3bce174@oss.qualcomm.com>
- <20261121-stmmac-rx-mb-v12-1-3ae2f3bce174@oss.qualcomm.com>
- <9997f4e9-9453-4511-af3e-4be664a09281@bootlin.com>
- <awVTNSYCD-_5gE4D@lore-desk>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <awVTNSYCD-_5gE4D@lore-desk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-CM-TRANSID: qwCowACn0fsrVgVrsHWVAQ--.4130S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3uw15tF1fuw17tw4rXr4ktFb_yoWkZr47pr
+	1UAF4UtFW5AFnrGwnavas8trnxta15tr13Ww1xGr48tF9YvrnrGr1kZr15GFy8Zr4rXFyY
+	v3WDW3WfK34SyrDanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvlb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26rWY6Fy7MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
+	z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvj
+	DU0xZFpf9x07b-KsbUUUUU=
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_011435_762592_8318803A 
-X-CRM114-Status: GOOD (  14.59  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_011754_224641_78641E0E 
+X-CRM114-Status: GOOD (  28.93  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,58 +94,380 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+=E5=9C=A8 2026-11-24=E4=BA=8C=E7=9A=84 16:44 +0800=EF=BC=8CChaoyi Chen=E5=
+=86=99=E9=81=93=EF=BC=9A
+> Hi Icenowy,
+>=20
+> On 11/24/2026 4:34 PM, Icenowy Zheng wrote:
+> > =E5=9C=A8 2026-11-24=E4=BA=8C=E7=9A=84 16:29 +0800=EF=BC=8CChaoyi Chen=
+=E5=86=99=E9=81=93=EF=BC=9A
+> > > Hi Icenowy,
+> > >=20
+> > > On 11/24/2026 3:56 PM, Icenowy Zheng wrote:
+> > > > The T-Head TH1520 SoC contains a Synopsys DesignWare MIPI DSI host
+> > > > controller with an internal DesignWare MIPI D-PHY.
+> > > >=20
+> > > > Add a glue driver configuring clocks and PHY parameters for it.
+> > > >=20
+> > > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > > > ---
+> > > >  drivers/gpu/drm/bridge/Kconfig              |  12 +
+> > > >  drivers/gpu/drm/bridge/Makefile             |   1 +
+> > > >  drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c | 570 ++++++++++++++++=
+++++++++++++
+> > > >  3 files changed, 583 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridg=
+e/Kconfig
+> > > > index c7da6b02d7b6b..f8987e8946fbb 100644
+> > > > --- a/drivers/gpu/drm/bridge/Kconfig
+> > > > +++ b/drivers/gpu/drm/bridge/Kconfig
+> > > > @@ -372,6 +372,18 @@ config DRM_THEAD_TH1520_DW_HDMI
+> > > >  	  Choose this to enable support for the internal HDMI bridge foun=
+d
+> > > >  	  on the T-Head TH1520 SoC.
+> > > > =20
+> > > > +config DRM_THEAD_TH1520_DW_MIPI_DSI
+> > > > +	tristate "T-Head TH1520 DesignWare MIPI DSI bridge"
+> > > > +	depends on OF
+> > > > +	depends on COMMON_CLK
+> > > > +	depends on ARCH_THEAD || COMPILE_TEST
+> > > > +	select DRM_DW_MIPI_DSI
+> > > > +	select GENERIC_PHY_MIPI_DPHY
+> > > > +	select MFD_SYSCON
+> > > > +	help
+> > > > +	  Choose this to enable support for the internal MIPI DSI bridge
+> > > > +	  found on the T-Head TH1520 SoC.
+> > > > +
+> > > >  config DRM_TOSHIBA_TC358762
+> > > >  	tristate "TC358762 DSI/DPI bridge"
+> > > >  	depends on OF
+> > > > diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/brid=
+ge/Makefile
+> > > > index 15cc821d85b7e..5af871ba5ce77 100644
+> > > > --- a/drivers/gpu/drm/bridge/Makefile
+> > > > +++ b/drivers/gpu/drm/bridge/Makefile
+> > > > @@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_SII9234) +=3D sii9234.o
+> > > >  obj-$(CONFIG_DRM_SIMPLE_BRIDGE) +=3D simple-bridge.o
+> > > >  obj-$(CONFIG_DRM_SOLOMON_SSD2825) +=3D ssd2825.o
+> > > >  obj-$(CONFIG_DRM_THEAD_TH1520_DW_HDMI) +=3D th1520-dw-hdmi.o
+> > > > +obj-$(CONFIG_DRM_THEAD_TH1520_DW_MIPI_DSI) +=3D th1520-dw-mipi-dsi=
+.o
+> > > >  obj-$(CONFIG_DRM_THINE_THC63LVD1024) +=3D thc63lvd1024.o
+> > > >  obj-$(CONFIG_DRM_TOSHIBA_TC358762) +=3D tc358762.o
+> > > >  obj-$(CONFIG_DRM_TOSHIBA_TC358764) +=3D tc358764.o
+> > > > diff --git a/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c b/drivers/=
+gpu/drm/bridge/th1520-dw-mipi-dsi.c
+> > > > new file mode 100644
+> > > > index 0000000000000..8e866b70aec88
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/bridge/th1520-dw-mipi-dsi.c
+> > > > @@ -0,0 +1,570 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * Copyright (C) 2026 Institute of Software, Chinese Academy of Sc=
+iences (ISCAS)
+> > > > + *
+> > > > + * Author:
+> > > > + *   Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> > > > + *
+> > > > + * Based on dw_mipi_dsi-stm.c, which is:
+> > > > + *   Copyright (C) STMicroelectronics SA 2017
+> > > > + *
+> > > > + * Based on dw-mipi-dsi-rockchip.c, which is:
+> > > > + *   Copyright (C) Rockchip Electronics Co., Ltd.
+> > > > + *
+> > > > + * Based on vendor kernel phy-dw-mipi-dphy.c, which is:
+> > > > + *   Copyright (C) Alibaba Group Holding Limited.
+> > > > + */
+> > > > +
+> > > > +#include <linux/bitfield.h>
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/kernel.h>
+> > > > +#include <linux/mfd/syscon.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/phy/phy.h>
+> > > > +#include <linux/phy/phy-mipi-dphy.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/regmap.h>
+> > > > +#include <linux/regulator/consumer.h>
+> > > > +
+> > > > +#include <video/mipi_display.h>
+> > > > +
+> > > > +#include <drm/bridge/dw_mipi_dsi.h>
+> > > > +#include <drm/drm_mipi_dsi.h>
+> > > > +
+> > > > +/* DSI controller registers for DPHY access */
+> > > > +
+> > > > +#define DSI_PHY_TST_CTRL0		0xb4
+> > > > +#define PHY_TESTCLK			BIT(1)
+> > > > +#define PHY_UNTESTCLK			0
+> > > > +#define PHY_TESTCLR			BIT(0)
+> > > > +#define PHY_UNTESTCLR			0
+> > > > +
+> > > > +#define DSI_PHY_TST_CTRL1		0xb8
+> > > > +#define PHY_TESTEN			BIT(16)
+> > > > +#define PHY_UNTESTEN			0
+> > > > +#define PHY_TESTDOUT(n)			(((n) & 0xff) << 8)
+> > > > +#define PHY_TESTDIN(n)			(((n) & 0xff) << 0)
+> > > > +
+> > > > +/* DPHY registers */
+> > > > +
+> > > > +#define PLL_DELAY_LP_TX_START_LP11	0x02
+> > > > +#define TXDINDLYTIME_9_2		GENMASK(7,  0)
+> > > > +
+> > > > +#define PLL_FSM_CNTRL			0x03
+> > > > +
+> > > > +#define PLL_PROP_CHARGE_PUMP_CTRL	0x0e
+> > > > +#define PLL_PROP_CNTRL			GENMASK(5,  0)
+> > > > +
+> > > > +#define PLL_INT_CHARGE_PUMP_CTRL	0x0f
+> > > > +#define PLL_INT_CNTRL			GENMASK(5,  0)
+> > > > +
+> > > > +#define PLL_VCO_CTRL			0x12
+> > > > +#define PLL_VCO_CNTRL_OVR_EN		BIT(6)
+> > > > +#define PLL_VCO_CNTRL_OVR		GENMASK(5,  0)
+> > > > +
+> > > > +#define PLL_GMP_CTRL_DIGITAL_TEST	0x13
+> > > > +#define PLL_TESTLOCK			BIT(7)
+> > > > +#define PLL_GMP_CNTRL			GENMASK(5,  4)
+> > > > +#define TSTPLLDIG			GENMASK(3,  1)
+> > > > +#define TSTPLLDIG_LOCK			(0x0 << 1)
+> > > > +#define TSTPLLDIG_REFCLK		(0x1 << 1)
+> > > > +#define TSTPLLDIG_FBCLK			(0x2 << 1)
+> > > > +#define TSTPLLDIG_INT_CLKIN		(0x3 << 1)
+> > > > +#define TSTPLLDIG_LOCK_FROM_DETECTOR	(0x4 << 1)
+> > > > +#define TSTPLLDIG_OUTPUT		(0x5 << 1)
+> > > > +#define TSTPLLDIG_BUF_VCOCLK		(0x6 << 1)
+> > > > +#define TSTPLLDIG_UPDATEPLL		(0x7 << 1)
+> > > > +
+> > > > +#define PLL_N_DIV_FSM_SIG		0x17
+> > > > +#define PLL_N_OVR			GENMASK(3,  0)
+> > > > +
+> > > > +#define PLL_M_DIV			0x18
+> > > > +#define PLL_M_OVR_4_0			GENMASK(4,  0)
+> > > > +#define PLL_M_OVR_9_5			GENMASK(4,  0)
+> > > > +
+> > > > +#define PLL_N_AND_M_DIV_CTRL		0x19
+> > > > +#define PLL_M_OVR_EN			BIT(5)
+> > > > +#define PLL_N_OVR_EN			BIT(4)
+> > > > +
+> > > > +#define PLL_CHARGE_PUMP_BIAS_CTRL	0x1c
+> > > > +#define PLL_CPBIAS_CNTRL		GENMASK(6,  0)
+> > > > +
+> > > > +#define PLL_ANALOG_PROGRAM_CONTROL	0x1f
+> > > > +#define PLL_MPLL_PROG_5_0		GENMASK(5,  0)
+> > > > +#define PLL_MPLL_PROG_11_6		GENMASK(5,  0)
+> > > > +#define PLL_MPLL_PROG_16_12		GENMASK(4,  0)
+> > > > +
+> > > > +#define HS_FREQ_RANGE_OF_OPERATION	0x44
+> > > > +#define HSFREQRANGE_OVR_EN		BIT(7)
+> > > > +#define HSFREQRANGE_OVR			GENMASK(6,  0)
+> > > > +#define HSFREQRANGE			HSFREQRANGE_OVR
+> > > > +
+> > > > +#define PG_LP_BIAS_LANE0		0x4a
+> > > > +#define PRG_ON_LANE0			BIT(6)
+> > > > +
+> > > > +#define SR_FSM_OVR_CNTRL		0xa0
+> > > > +#define SR_DDL_LOOP_CONF		0xa3
+> > > > +
+> > > > +/* syscon registers */
+> > > > +
+> > > > +#define MIPIDSI0_SYSREG			0x8
+> > > > +#define MIPIDSI1_SYSREG			0xc
+> > > > +#define MIPIDSI_HSFREQRANGE		GENMASK(9,  3)
+> > > > +#define MIPIDSI_CFGCLKFREQRANGE		GENMASK(15, 10)
+> > > > +#define MIPIDSI_CFGCLKFREQRANGE_DEF	(0x1c << 10)
+> > > > +
+> > > > +struct pll_hsfreqrange {
+> > > > +	unsigned int max_mbps;
+> > > > +	u8 hsfreqrange;
+> > > > +};
+> > > > +
+> > > > +static const struct pll_hsfreqrange hsfreqrange_table[] =3D {
+> > > > +	{ 80,  0x00 },
+> > > > +	{ 90,  0x10 },
+> > > > +	{ 100, 0x20 },
+> > > > +	{ 110, 0x30 },
+> > > > +	{ 120, 0x01 },
+> > > > +	{ 130, 0x11 },
+> > > > +	{ 140, 0x21 },
+> > > > +	{ 150, 0x31 },
+> > > > +	{ 160, 0x02 },
+> > > > +	{ 170, 0x12 },
+> > > > +	{ 180, 0x22 },
+> > > > +	{ 190, 0x32 },
+> > > > +	{ 205, 0x03 },
+> > > > +	{ 220, 0x13 },
+> > > > +	{ 235, 0x23 },
+> > > > +	{ 250, 0x33 },
+> > > > +	{ 275, 0x04 },
+> > > > +	{ 300, 0x14 },
+> > > > +	{ 325, 0x25 },
+> > > > +	{ 350, 0x35 },
+> > > > +	{ 400, 0x05 },
+> > > > +	{ 450, 0x16 },
+> > > > +	{ 500, 0x26 },
+> > > > +	{ 550, 0x37 },
+> > > > +	{ 600, 0x07 },
+> > > > +	{ 650, 0x18 },
+> > > > +	{ 700, 0x28 },
+> > > > +	{ 750, 0x39 },
+> > > > +	{ 800, 0x09 },
+> > > > +	{ 850, 0x19 },
+> > > > +	{ 900, 0x29 },
+> > > > +	{ 950, 0x3A },
+> > > > +	{ 1000, 0x0A },
+> > > > +	{ 1050, 0x1A },
+> > > > +	{ 1100, 0x2A },
+> > > > +	{ 1150, 0x3B },
+> > > > +	{ 1200, 0x0B },
+> > > > +	{ 1250, 0x1B },
+> > > > +	{ 1300, 0x2B },
+> > > > +	{ 1350, 0x3C },
+> > > > +	{ 1400, 0x0C },
+> > > > +	{ 1450, 0x1C },
+> > > > +	{ 1500, 0x2C },
+> > > > +	{ 1550, 0x3D },
+> > > > +	{ 1600, 0x0D },
+> > > > +	{ 1650, 0x1D },
+> > > > +	{ 1700, 0x2E },
+> > > > +	{ 1750, 0x3E },
+> > > > +	{ 1800, 0x0E },
+> > > > +	{ 1850, 0x1E },
+> > > > +	{ 1900, 0x2F },
+> > > > +	{ 1950, 0x3F },
+> > > > +	{ 2000, 0x0F },
+> > > > +	{ 2050, 0x40 },
+> > > > +	{ 2100, 0x41 },
+> > > > +	{ 2150, 0x42 },
+> > > > +	{ 2200, 0x43 },
+> > > > +	{ 2250, 0x44 },
+> > > > +	{ 2300, 0x45 },
+> > > > +	{ 2350, 0x46 },
+> > > > +	{ 2400, 0x47 },
+> > > > +	{ 2450, 0x48 },
+> > > > +	{ 2500, 0x49 },
+> > > > +};
+> > > > +
+> > > > +struct hstt {
+> > > > +	unsigned int max_mbps;
+> > > > +	struct dw_mipi_dsi_dphy_timing timing;
+> > > > +};
+> > > > +
+> > > > +#define HSTT(_max_mbps, _c_lp2hs, _c_hs2lp, _d_lp2hs, _d_hs2lp)	\
+> > > > +{					\
+> > > > +	.max_mbps =3D _max_mbps,		\
+> > > > +	.timing =3D {			\
+> > > > +		.clk_lp2hs =3D _c_lp2hs,	\
+> > > > +		.clk_hs2lp =3D _c_hs2lp,	\
+> > > > +		.data_lp2hs =3D _d_lp2hs,	\
+> > > > +		.data_hs2lp =3D _d_hs2lp,	\
+> > > > +	}				\
+> > > > +}
+> > > > +
+> > > > +static struct hstt hstt_table[] =3D {
+> > > > +	HSTT(80, 21, 17, 15, 10),
+> > > > +	HSTT(90, 23, 17, 16, 10),
+> > > > +	HSTT(100, 22, 17, 16, 10),
+> > > > +	HSTT(110, 25, 18, 17, 11),
+> > > > +	HSTT(120, 26, 20, 18, 11),
+> > > > +	HSTT(130, 27, 19, 19, 11),
+> > > > +	HSTT(140, 27, 19, 19, 11),
+> > > > +	HSTT(150, 28, 20, 20, 12),
+> > > > +	HSTT(160, 30, 21, 22, 13),
+> > > > +	HSTT(170, 30, 21, 23, 13),
+> > > > +	HSTT(180, 31, 21, 23, 13),
+> > > > +	HSTT(190, 32, 22, 24, 13),
+> > > > +	HSTT(205, 35, 22, 25, 13),
+> > > > +	HSTT(220, 37, 26, 27, 15),
+> > > > +	HSTT(235, 38, 28, 27, 16),
+> > > > +	HSTT(250, 41, 29, 30, 17),
+> > > > +	HSTT(275, 43, 29, 32, 18),
+> > > > +	HSTT(300, 45, 32, 35, 19),
+> > > > +	HSTT(325, 48, 33, 36, 18),
+> > > > +	HSTT(350, 51, 35, 40, 20),
+> > > > +	HSTT(400, 59, 37, 44, 21),
+> > > > +	HSTT(450, 65, 40, 49, 23),
+> > > > +	HSTT(500, 71, 41, 54, 24),
+> > > > +	HSTT(550, 77, 44, 57, 26),
+> > > > +	HSTT(600, 82, 46, 64, 27),
+> > > > +	HSTT(650, 87, 48, 67, 28),
+> > > > +	HSTT(700, 94, 52, 71, 29),
+> > > > +	HSTT(750, 99, 52, 75, 31),
+> > > > +	HSTT(800, 105, 55, 82, 32),
+> > > > +	HSTT(850, 110, 58, 85, 32),
+> > > > +	HSTT(900, 115, 58, 88, 35),
+> > > > +	HSTT(950, 120, 62, 93, 36),
+> > > > +	HSTT(1000, 128, 63, 99, 38),
+> > > > +	HSTT(1050, 132, 65, 102, 38),
+> > > > +	HSTT(1100, 138, 67, 106, 39),
+> > > > +	HSTT(1150, 146, 69, 112, 42),
+> > > > +	HSTT(1200, 151, 71, 117, 43),
+> > > > +	HSTT(1250, 153, 74, 120, 45),
+> > > > +	HSTT(1300, 160, 73, 124, 46),
+> > > > +	HSTT(1350, 165, 76, 130, 47),
+> > > > +	HSTT(1400, 172, 78, 134, 49),
+> > > > +	HSTT(1450, 177, 80, 138, 49),
+> > > > +	HSTT(1500, 183, 81, 143, 52),
+> > > > +	HSTT(1550, 191, 84, 147, 52),
+> > > > +	HSTT(1600, 194, 85, 152, 52),
+> > > > +	HSTT(1650, 201, 86, 155, 53),
+> > > > +	HSTT(1700, 208, 88, 161, 53),
+> > > > +	HSTT(1750, 212, 89, 165, 53),
+> > > > +	HSTT(1800, 220, 90, 171, 54),
+> > > > +	HSTT(1850, 223, 92, 175, 54),
+> > > > +	HSTT(1900, 231, 91, 180, 55),
+> > > > +	HSTT(1950, 236, 95, 185, 56),
+> > > > +	HSTT(2000, 243, 97, 190, 56),
+> > > > +	HSTT(2050, 248, 99, 194, 58),
+> > > > +	HSTT(2100, 252, 100, 199, 59),
+> > > > +	HSTT(2150, 259, 102, 204, 61),
+> > > > +	HSTT(2200, 266, 105, 210, 62),
+> > > > +	HSTT(2250, 269, 109, 213, 63),
+> > > > +	HSTT(2300, 272, 109, 217, 65),
+> > > > +	HSTT(2350, 281, 112, 225, 66),
+> > > > +	HSTT(2400, 283, 115, 226, 66),
+> > > > +	HSTT(2450, 282, 115, 226, 67),
+> > > > +	HSTT(2500, 281, 118, 227, 67),
+> > > > +};
+> > > > +
+> > >=20
+> > > Where do these data come from?
+> >=20
+> > This is part of the vendor DPHY driver, see [1].
+> >=20
+> > Thanks,
+> > Icenowy
+> >=20
+> > [1]
+> > https://github.com/revyos/th1520-linux-kernel/blob/th1520-lts/drivers/p=
+hy/synopsys/phy-dw-mipi-dphy.c#L185
+>=20
+> This looks consistent with imx93-mipi-dsi.c, but the TH1520 does not
+> use the same TSMC 16nm process as the IMX93. As far as I know, they
+> are usually different.=20
 
-On 11/24/26 10:04, Lorenzo Bianconi wrote:
->> Hi Lorenzo,
->>
->> On 11/21/26 18:28, Lorenzo Bianconi wrote:
->>> xdp_build_skb_from_buff() always calls eth_type_trans() on the skb it
->>> builds, which pulls the Ethernet header and advances skb->data. Drivers
->>> that still need to process the L2 header before protocol parsing
->>> therefore cannot use the helper.
->>>
->>> stmmac is such a driver: its software VLAN path (stmmac_rx_vlan()) reads
->>> the VLAN tag at skb->data and shifts the MAC addresses over it, so it has
->>> to run before eth_type_trans().
->>>
->>> Split the implementation into __xdp_build_skb_from_buff(), which builds
->>> the skb (including the recycle mark, the Rx queue index and the frags
->>> info) but leaves skb->dev, skb->protocol, skb->pkt_type and the mac
->>> header unset, so the caller must initialize them, usually by calling
->>> eth_type_trans(). Make xdp_build_skb_from_buff() a static inline wrapper
->>> that still calls eth_type_trans() as before, preserving the behavior of
->>> existing in-tree users. A follow-up patch will let stmmac use it.
->>
->> I've been questionning why we even do that in stmmac in the first place
->> actually. This pretends to offload, but it's just to deal with the tag
->> in the driver instead of later down the road.
->>
->> The original idea was for GRO back when it didn't handle vlan tags, but
->> this isn't necessary anymore.
->>
->> There was a series in-flight to remove stmmac_rx_vlan altogether, but it
->> seems to have stalled [1]:
->>
->> [1]: https://lore.kernel.org/all/20260914150612.9798-3-peilinhe2020@163.com/
->>
->> Peilin He, do you have any plans to continue this ? If not, it may be good
->> to pick this up instead of working around this.
-> 
-> I am fine to rebase my series on top of that one or pick the required patch.
+Interestingly the hsfreqrange table seems to match IMX93 too. The vendor D-
+PHY driver also calculates PLL parameters (and the ranges also match
+IMX93), but they're written nowhere so this piece of code isn't replicated
+in my driver.
 
-There's been no activity on this since september, I think you can pick this
-one up and have Peilin He in CC + Author then, your multi-buff XDP has been
-going on for long enough, let's not block it further.
+It's quite possible that this is just a different revision of the same PHY,
+considering the relationship of TSMC 16nm and 12nm.
 
-Maxime
+Thanks,
+Icenowy
+
+>=20
+> Could you confirm this from the DesignWare PHY databook?
 
 
