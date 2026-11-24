@@ -2,68 +2,157 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E103606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A2C60A6F51
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JV9T2HAy;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=Xgestkcp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ng04uH5G;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=SYGpVkah;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=EiH3gmjF;
+	dkim=neutral header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=mQl7hvDm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6QXAXo10l0TvFvhpv3tVGjIuXn4/S262Qsw7qAFYFbM=; b=JV9T2HAyOmIY1Cf3H3Vq8p1xd4
-	wqh79Crwm7ByfX40k4aKIXgI3LwBxGwgIaw8Yl+3gPSadhPIDQY97n7Yrg63RxwiSlu9s6Q4ui7jZ
-	TFguRR3ya/J3Lxi1MfqDl9tXRiTBb3wEmvPPeJSNRZTm+roFTUbn/pbmUw2BI10G3Nq3iftyPTVMc
-	DGEX+/ReKYGrIgVZAXwF99nLhTWfmbuS9KHQYSX1G7sO9Up0nGKwvY5+LAZHV947ZCibXjBq/2ARW
-	tA+E0EKb2k+erguL+3jCmrgpQjFlg49CTXN74UJNP1oxa1k055dUjPC7NC1cnXZ8E49uxiMhSscXH
-	xLn5ddfg==;
+	bh=kFVKZWJnvTpv0CaRCWkf/scaJhz42VxpUYUALwApW74=; b=ng04uH5GC5uFwvufHRQ0vUEr3G
+	xU1Fh8cN12rh25qss2jzujPMp1/OwEEZDmKiW7682uS9/KFXRsjuofGnNHsaBCDBq1XphdTkl4Pbt
+	TTb3gOR3er4ahZr+KjwGLcXH4XgGETlyZvEhCpbmVrFc5Wnkrn1EPqdwk4pLCpGH2X2PHs9KyCYvg
+	02wKbnvVvpHF8yQS4ohPR+VLjg7aHnw8KX/OD2eYLwTmWWparlBW8sB+abVEV1cW4b0Qv1MMQR7+v
+	hQAty7F2mQCAAnE96B0LmW3idLOKLrNXqlfTqcgixOpUB4Xw1cFhifdUsKGdMdraQAcBpAmFq0d7C
+	Yy2fEHcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkhF-00000005iQr-2Nup;
-	Tue, 24 Nov 2026 07:12:09 +0000
-Received: from out30-131.freemail.mail.aliyun.com ([115.124.30.131])
+	id 1xVkvU-00000005jPq-2Cae;
+	Tue, 24 Nov 2026 07:26:52 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkhC-00000005iQS-2y8e
+	id 1xVkvP-00000005jLu-3iJJ
+	for linux-arm-kernel@bombadil.infradead.org;
+	Tue, 24 Nov 2026 07:26:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=kFVKZWJnvTpv0CaRCWkf/scaJhz42VxpUYUALwApW74=; b=SYGpVkah+Z5gUG7Cq0IlIXAeUT
+	ab9br4AA8j2418RXCEPJFaJj/+HweIz1i2NaNLQaCLnDrbXLZHFNiuBL5mGzo1ED2Xx6Xw7dJyrY/
+	r4H1br0Ufhg0AzmGFTNEJP0Q0+J0bmEnjkpL1VlGnLvy2OGVVkKHBCf589cbD5av/styaPBLdAUv5
+	sWYPtPUQP5v7O34zuUNOH5n1/3t8wus+X8Tr+ZR72isBn2vcb/wVmxQa4AbZnxCSQwTYhReYtZ2cq
+	hLJUkTJSerZhr+wpoMAL0CyIzc1ayEDUK1f+GKlddyEEJc3M5zqT2Tn8mre8Braai+zjf/3HhRinu
+	5yR5K9mA==;
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.178])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVkvL-00000003skD-12vI
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:12:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1795504318; h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	bh=6QXAXo10l0TvFvhpv3tVGjIuXn4/S262Qsw7qAFYFbM=;
-	b=XgestkcpHiDAz4+AfyKoGKA0vNwMyxG9SJIP26tQp/fHx+B+NB5VYj5KDd7EFl+e5Sk9QJWiVfd3d/zEl02D+WqA0895MelrmVCUJyFh9KpmIIlB/I/DXfLrR7nPM9OqjkSHcwJLvjs6w125mdJkz2T/KtCZWVDtJTUT+GPuQ2M=
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R431e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033032089153;MF=yaoyuan@linux.alibaba.com;NM=1;PH=DS;RN=20;SR=0;TI=SMTPD_---0XFNklbI_1795504317;
-Received: from localhost(mailfrom:yaoyuan@linux.alibaba.com fp:SMTPD_---0XFNklbI_1795504317 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Tue, 24 Nov 2026 15:11:57 +0800
-Date: Tue, 24 Nov 2026 15:11:56 +0800
-From: Yao Yuan <yaoyuan@linux.alibaba.com>
-To: Jia He <justin.he@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
-	Steffen Eiden <seiden@linux.ibm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Paolo Bonzini <pbonzini@redhat.com>, Sean Christopherson <seanjc@google.com>, 
-	Shuah Khan <shuah@kernel.org>, Sascha Bischoff <Sascha.Bischoff@arm.com>, 
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	kvm@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 3/3] KVM: selftests: arm64: Test KVM_PRE_FAULT_MEMORY
- before first KVM_RUN
-Message-ID: <6gdla4edbwa6e2s36libskrg5h3glxq3tdl7blthke42sbuqb7@tpczgelv4vud>
-References: <20261123150917.2679600-1-justin.he@arm.com>
- <20261123150917.2679600-4-justin.he@arm.com>
+	Tue, 24 Nov 2026 07:26:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505183; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Z7xiYhSoH/3M3dxzPNQd829mpciJtOxysyasKAgIeGN/0NoMZayD4xO8Px7ueuwXpK
+    id4fvevS/hx6O+u8jz3mxUKGLmqp9wmMivQfPdr4ZINlrd3rU+nijIQHZmB0fJ1qd7vv
+    627DklFjMNkXSmvShdeDwDHg/naU4sevFcxlFgz7IQ6pjYWv7KHuWXjdkQ+Npv2a1OJP
+    lCn5vuyZ84Y7Q2JEnOYxikBgjgMlON2/1ooZRBdJmmkekxoVfdHVNzNRxP6R31eD8QeS
+    joLnofLRk4JAVhY1r+7UzV0dOvbb983RBMDOimDER9JySvkoZd4h8p/RxBWZIj4RSXju
+    5BkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505183;
+    s=strato-dkim-0002; d=strato.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=kFVKZWJnvTpv0CaRCWkf/scaJhz42VxpUYUALwApW74=;
+    b=Meqqz7QDgIGR03VTCBRmFfkc/OTi2JI15h2Jsk68jL0kbTQgB8V0Bh6vPGIAJoxQ8Q
+    efcIBWpN9hBY8B4YFLeEWM1VnL4zMZjFiZC5asgSxvYB6JiXefVr0RNSVSvnF2Oqu19c
+    BlUYBmRNR8nDiZyk9CenuuCRpJp209UAoJD1ugrlBWaQ95zgt1B8wVNlLfj6ObbXKX+e
+    nmN7PZhTdlB0b50VZ34/m/o8cnbmtaE2E0dzek3EVbQVouHyYDMUPOfZ5CH2JJwkP/y5
+    /DplD8MVhKjPC9mzl5uo2tA43O51VSg5x+ENcKHp9LUWiSwZ+0IQvjbUwHo2Awi8fBMh
+    JNoA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505183;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=kFVKZWJnvTpv0CaRCWkf/scaJhz42VxpUYUALwApW74=;
+    b=EiH3gmjFx9O9zE7ceCRcHfLIrQo4joTC1DAbmIRwKZcJQ1hSrF4zlRlhnxBIlqgFr2
+    o8b9eTW43QKFNb59rA5r3feLIrSXEzhKlpruNsvXka1Qx/M8UQN+NHEW/odAkXNKb6ql
+    qNFyHouiXXt4bUhpMqlhn9LU/NSwnWCIlblJFCqL2yQfYAGn8kTNyzRPbPa8DsuB4JC+
+    GCA0VsqewoIdwfgM8eza8xwKzEz+0zD47dL1azWBjV+8+jVH3ibF4fcqpJuJTTqLutgx
+    6V7J36/S2OpddBcdpFLH6rEZ8po+DBCFafKBMHmf2ut5iAQmioDam/y5rcgh3ZsB1cKZ
+    2v3g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505183;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=kFVKZWJnvTpv0CaRCWkf/scaJhz42VxpUYUALwApW74=;
+    b=mQl7hvDmB5McIZME11BEoDVNqoi0wfRn8QnKlUYBJexRm39G5BkDGqbfVnM2ZUNunR
+    /dThEVIVeGg5rkSXSUAw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 55.6.3 AUTH)
+    with ESMTPSA id Qb56a22AO7QM1HV
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Tue, 24 Nov 2026 08:26:22 +0100 (CET)
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Tony Lindgren <tony@atomide.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jarkko Nikula <jarkko.nikula@bitmer.com>
+Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	letux-kernel@openphoenux.org,
+	kernel@pyra-handheld.com,
+	Stefan Leichter <sle85276@gmx.de>,
+	"H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: [PATCH v2 17/20] ARM: dts: omap3pandora: Describe sound card
+Date: Tue, 24 Nov 2026 08:25:57 +0100
+Message-ID: <0269f30c3f766431c0c20a36fd6e2b2dce1b3f2f.1795505160.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
+References: <cover.1795505160.git.hns@goldelico.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261123150917.2679600-4-justin.he@arm.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_231207_803093_2F31737E 
-X-CRM114-Status: GOOD (  28.26  )
-X-Spam-Score: -15.6 (---------------)
+X-CRM114-CacheID: sfid-20261124_072643_241785_7D79652E 
+X-CRM114-Status: GOOD (  14.26  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,215 +163,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,HK_RANDOM_FROM,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNPARSEABLE_RELAY,USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 23, 2026 at 03:09:17PM +0800, Jia He wrote:
-> Extend nv_pre_fault_memory_test to exercise KVM_PRE_FAULT_MEMORY before
-> the first KVM_RUN.
->
+From: Stefan Leichter <sle85276@gmx.de>
 
-Hi Jia He,
+Describe the OpenPandora sound card and its connections to the external
+PCM1773 playback DAC and TWL4030 capture codec in the device tree.
 
-> Without EL2, cover immediate_exit on the first KVM_RUN, retrying after a
-> failed first KVM_RUN, and pre-faulting while the vCPU moves from the
-> main thread to a worker thread for its first run and back to the main
-> thread for its second run. The two threads are pinned to different CPUs
-> when at least two are available.
+Provide the amplifier GPIO and power supply, the DAPM widgets and
+routing, and the McBSP audio links needed by the DT-based sound card
+driver.
 
-I suggest to list them for better readability e.g:
+Signed-off-by: Stefan Leichter <sle85276@gmx.de>
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+---
 
-Test cases for w/o EL2:
-1. Immediate_exit on the first KVM_RUN
-2. Retrying pre-fault after a failed first KVM_RUN.
-3. Pre-faulting while moving the vCPU between 2 threads.
-(more details of 3 can be given in code implementation there)
+Notes:
+    Changes against V1:
+    - Historical origin: 570cb6f3073f (Stefan Leichter, 2020-06-29).
+    - The original history also contains a Signed-off-by from Grond; this has not been carried forward without renewed confirmation.
+    - The sound-card routing, codec phandles and amplifier supply have been reviewed in the V2 series.
+    - Code and commit-message review assisted by ChatGPT.
 
-> With EL2, additionally cover an EL2 vCPU with ID_AA64MMFR4_EL1.NV_frac
-> cleared to 0 and HCR_EL2.NV=1 at EL1h (the NULL vncr_tlb reproducer), an
-> EL2 vCPU with a vEL1 context and asymmetric HCR_EL2.IMO/FMO staged before
-> the first run, and the same thread handoff. An unfixed kernel reports
-> the staged context case only as a WARN in the kernel log; the test
-> itself still passes.
->
-> Signed-off-by: Jia He <justin.he@arm.com>
-> ---
->  .../kvm/arm64/nv_pre_fault_memory_test.c      | 335 ++++++++++++++++--
->  1 file changed, 298 insertions(+), 37 deletions(-)
->
-> diff --git a/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c b/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
-> index 09c1db303856..6dbcf3b0ef13 100644
-> --- a/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
-> +++ b/tools/testing/selftests/kvm/arm64/nv_pre_fault_memory_test.c
+ .../dts/ti/omap/omap3-pandora-common.dtsi     | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-...
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
+index 6e349f7ae6936..a5633d93547a3 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3-pandora-common.dtsi
+@@ -69,6 +69,41 @@ dac: pcm1773-codec {
+ 		vcc-supply = <&vsim>;
+ 		enable-gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>; /* GPIO 118 */
+ 		status = "okay";
++		#sound-dai-cells = <0>;
++	};
++
++	sound: sound {
++		compatible = "openpandora,omap3pandora-sound";
++		status = "okay";
++
++		label = "OpenPandora";
++
++		amp-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
++		amp-supply = <&aux_5v>;
++
++		widgets =
++			"Line", "Line Out",
++			"Line", "Line In",
++			"Headphone", "Headphone Jack",
++			"Microphone", "Mic (internal)",
++			"Microphone", "Mic (external)";
++
++		routing =
++			"DAC1", "APLL Enable",
++			"DAC2", "APLL Enable",
++			"Headphone Amplifier", "VOUTL",
++			"Headphone Amplifier", "VOUTR",
++			"Line Out", "VOUTL",
++			"Line Out", "VOUTR",
++			"Headphone Jack", "Headphone Amplifier",
++			"AUXL", "Line In",
++			"AUXR", "Line In",
++			"MAINMIC", "Mic (internal)",
++			"Mic (internal)", "Mic Bias 1",
++			"SUBMIC", "Mic (external)",
++			"Mic (external)", "Mic Bias 2";
++
++		sound-dai = <&mcbsp2>, <&dac>;
+ 	};
+ 
+ 	gpio-leds {
+@@ -736,6 +771,9 @@ &mcbsp1 {
+ /* audio DAC */
+ &mcbsp2 {
+ 	status = "okay";
++	#sound-dai-cells = <0>;
++	clocks = <&mcbsp2_fck>, <&mcbsp2_ick>;
++	clock-names = "fck", "ick";
+ };
+ 
+ /* bluetooth */
+-- 
+2.56.0
 
-> +
-> +/*
-> + * Pre-fault before the first KVM_RUN with ID_AA64MMFR4_EL1.NV_frac == 0
-> + * (no vncr_tlb) and HCR_EL2.NV=1 at EL1h.
-> + */
-> +static void test_pre_first_run_no_nv2(void)
-
-This may not necessary per Marc's comment on patch 2 ?
-
-> +{
-> +	struct kvm_vcpu *vcpu;
-> +	struct kvm_vm *vm;
-> +	u64 val;
-> +
-> +	pr_info("Testing pre-first-run pre-fault with NV_frac=0 and HCR_EL2.NV=1\n");
-> +	vm = setup_test_vm(true, false, guest_el1_touch_and_done, &vcpu);
-> +
-> +	/* Copy the EL2 S1 configuration into the EL1 sysregs for vEL1. */
-> +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_SCTLR_EL1),
-> +		     vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_SCTLR_EL2)));
-> +	vcpu_set_reg(vcpu, KVM_ARM64_SYS_REG(SYS_TCR_EL1),
-> +		     vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_TCR_EL2)));
-
-...
-
-> +
-> +static void *first_run_worker(void *arg)
-> +{
-> +	struct handoff_args *h = arg;
-> +
-> +	maybe_pin_self_to_cpu(h->cpu);
-> +	pre_fault(h->vcpu, TEST_MEM_GPA + SZ_1M, TEST_MEM_SIZE - SZ_1M);
-> +
-> +	vcpu_run(h->vcpu);
-> +	expect_ucall_sync(h->vcpu, 1);
-> +	return NULL;
-> +}
-> +
-> +/*
-> + * Pre-fault in the main thread, run the vCPU for the first time in a worker
-
-Minor: the pre-fault happens in worker thead yet, see first_run_worker().
-
-> + * thread, then pre-fault and run it again in the main thread. This changes
-> + * vcpu->pid both before and after the first run. If at least two CPUs are
-> + * available, the two threads are pinned to different CPUs.
-> + */
-> +static void test_thread_handoff(bool has_el2)
-> +{
-> +	struct handoff_args h = { .cpu = -1 };
-> +	struct kvm_vcpu *vcpu;
-> +	struct kvm_vm *vm;
-> +	cpu_set_t allowed;
-> +	int cpu, cpu0 = -1;
-> +	pthread_t thr;
-> +
-> +	pr_info("Testing pre-fault across a thread handoff (%s vCPU)\n",
-> +		has_el2 ? "EL2" : "EL1");
-> +
-> +	CPU_ZERO(&allowed);
-> +	kvm_pthread_getaffinity(pthread_self(), &allowed);
-> +	for (cpu = 0; cpu < CPU_SETSIZE; cpu++) {
-> +		if (!CPU_ISSET(cpu, &allowed))
-> +			continue;
-> +		if (cpu0 < 0) {
-> +			cpu0 = cpu;
-> +		} else {
-> +			h.cpu = cpu;
-> +			break;
-> +		}
-> +	}
-> +	if (h.cpu < 0)
-> +		pr_info("Only one CPU available, not testing CPU migration\n");
-> +
-> +	maybe_pin_self_to_cpu(cpu0);
-> +	vm = setup_test_vm(has_el2, false,
-> +			   has_el2 ? guest_code : guest_el1_code, &vcpu);
-> +	pre_fault(vcpu, TEST_MEM_GPA, SZ_1M);
-> +
-> +	h.vcpu = vcpu;
-> +	kvm_pthread_create(&thr, NULL, first_run_worker, &h);
-> +	kvm_pthread_join(thr, NULL);
-> +
-> +	pre_fault(vcpu, TEST_MEM_GPA, TEST_MEM_SIZE);
-> +	vcpu_run(vcpu);
-> +	expect_ucall_done(vcpu);
-> +
-> +	kvm_pthread_setaffinity(pthread_self(), &allowed);
-> +
-> +	kvm_vm_free(vm);
-> +}
-> +
-> +static void test_pre_first_run_el1(void)
-> +{
-> +	int feature = KVM_ARM_VCPU_SVE;
-> +	struct kvm_vcpu *vcpu;
-> +	struct kvm_vm *vm;
-> +	int ret;
-> +
-> +	pr_info("Testing pre-first-run pre-fault with immediate_exit\n");
-                                             ^^^^
-The vcpu->run->immediate_exit = 1 happens afte the pre_fault, thus
-s/with/then/ looks more accurate here if this is the desired behavior.
-
-> +	vm = setup_test_vm(false, false, guest_el1_touch_and_done, &vcpu);
-> +	pre_fault(vcpu, TEST_MEM_GPA, vm->page_size);
-> +
-> +	vcpu->run->immediate_exit = 1;
-> +	ret = __vcpu_run(vcpu);
-> +	TEST_ASSERT(ret == -1 && errno == EINTR,
-> +		    "Expected -EINTR on immediate_exit, got ret=%d errno=%d",
-> +		    ret, errno);
-> +	vcpu->run->immediate_exit = 0;
-> +
-> +	pre_fault(vcpu, TEST_MEM_GPA, TEST_MEM_SIZE);
-> +	vcpu_run(vcpu);
-> +	expect_ucall_done(vcpu);
-> +	kvm_vm_free(vm);
-> +
-> +	if (!kvm_check_cap(KVM_CAP_ARM_SVE)) {
-> +		pr_info("SVE not supported, skipping failed first KVM_RUN test\n");
-> +		return;
->  	}
->
-> +	pr_info("Testing pre-fault after a failed first KVM_RUN\n");
-> +	vm = setup_test_vm(false, true, guest_el1_touch_and_done, &vcpu);
-> +	pre_fault(vcpu, TEST_MEM_GPA, vm->page_size);
-> +
-> +	ret = __vcpu_run(vcpu);
-> +	TEST_ASSERT(ret == -1 && errno == EPERM,
-> +		    "Expected -EPERM before SVE finalisation, got ret=%d errno=%d",
-> +		    ret, errno);
-> +
-> +	pre_fault(vcpu, TEST_MEM_GPA + vm->page_size, vm->page_size);
-> +	vcpu_ioctl(vcpu, KVM_ARM_VCPU_FINALIZE, &feature);
-> +	vcpu_run(vcpu);
-> +	expect_ucall_done(vcpu);
->  	kvm_vm_free(vm);
-> +}
-> +
-> +int main(void)
-> +{
-> +	TEST_REQUIRE(kvm_check_cap(KVM_CAP_PRE_FAULT_MEMORY));
-> +
-> +	test_pre_first_run_el1();
-> +	test_thread_handoff(false);
-> +
-> +	if (!test_supports_el2()) {
-> +		pr_info("EL2 not supported, skipping nested tests\n");
-> +		return 0;
-> +	}
-> +
-> +	test_nested_post_run_pre_fault();
-> +	test_pre_first_run_no_nv2();
-> +	test_pre_first_run_nested_ctxt();
-> +	test_thread_handoff(true);
-> +
->  	return 0;
->  }
-> --
-> 2.34.1
->
 
