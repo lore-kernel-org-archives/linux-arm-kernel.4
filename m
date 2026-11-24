@@ -2,109 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF48F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8274606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 18:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KP1uHGQP;
-	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=K9xeBwDE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eRz9hm0I;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=g4LEOWFw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
-	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Hwn+KozTjqbKLEcXpvaSk85eL6QS1Y+pGx+rClS7K7k=; b=KP1uHGQPf1Vuau
-	YxA1UFjWc58w0YQDMH/wz3Qm/iXmw+Inkw/Nqo/dxg4h1XGdqbBitgPjnE/Pu0JVZsn+oIHw3LNui
-	FzDObfgRbeW9cw5n60gojrnfEGJZORVZgLdeDKKoSVtVVoDKokUTUKoK6uOR5sSHXoW1vFTbEGM68
-	0rUPukdjoLEOvBqUod3HzP4fvMklxrrMDMZs14GtY9c4VpCaDPuVEcQ+toJYR/bOpMUDPNcperWQL
-	ZnIpVWN3RxQBz5fqCDead0MODXE2exyZjnAe8CmNtVWqzUZiK9FwwTVEzlae5Zajdm1ieC8t62qN9
-	FsMZeNGM0Ddiw5+9Cr1A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=muXEpXsp4+0/5ZU311gJqIbUHfTI/heB2h0v87pFpis=; b=eRz9hm0I1RJKl+4+ApLfnAtg3r
+	pVOvZviKqDyzCDpLdWWXR0V0QofJyPBcqNBPHX6NtVFMWzQa+ufmPVJjzDVpkMcEIo8Uz4pkGRRWF
+	9teG6VYlB9WWIjf6pJlvhSx1chksiaM8xfUP+53iVhoPTIusEl5DkvQNgzlx/+FCp7HFMA8Oxi6LT
+	lAQy/v6CR0DNYwWlthr1alAFq83Tw0Tkl/E936bZvzYLtLIerzaRHxDijyu9s07/4ym5DTPNv0uii
+	VzBuJJwhZ0//xPQCWOmSBfBnm3PtDDpu0L+gG3vvqOqsqCcxBlq6zACLAHtkgvhM9jJbAGGOqXNaS
+	H/LZZLBQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVssv-000000070xL-1GiO;
-	Tue, 24 Nov 2026 15:56:45 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1xVv02-00000007Sxh-0xtL;
+	Tue, 24 Nov 2026 18:12:14 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVsqj-00000006yYP-3C24;
-	Tue, 24 Nov 2026 15:54:31 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261124155427euoutp0216c8c779138caa0a985af1805797e4f6~rBi1Flxhc0430504305euoutp02N;
-	Tue, 24 Nov 2026 15:54:27 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261124155427euoutp0216c8c779138caa0a985af1805797e4f6~rBi1Flxhc0430504305euoutp02N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1795535668;
-	bh=Hwn+KozTjqbKLEcXpvaSk85eL6QS1Y+pGx+rClS7K7k=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=K9xeBwDEqowx4qW2j7Kt07frwW/eklfERs4HcCh8UOGPPrbk55JlGUsN7qB32a9VP
-	 EJ9xf+QMGT+v1mKc/iDBIQ9izwv4eXuYQzkXgNSLjqqMlz7VaVIzrSlRsjvCVrmJVe
-	 CXUp6nYfAREZExmAM1jSI7yHW7CVBJLUBF1lsK6w=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f~rBi0p4yan0067000670eucas1p1i;
-	Tue, 24 Nov 2026 15:54:27 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261124155425eusmtip181296fb98900453b0e6688616dc8f751~rBiy5MXny3070630706eusmtip1j;
-	Tue, 24 Nov 2026 15:54:25 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Tue, 24 Nov 2026 16:52:51 +0100
-Subject: [PATCH v8 15/18] soc: starfive: Add jh7110-vout-subsystem driver
+	id 1xVv00-00000007SxI-0wFP
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 18:12:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6232F62877;
+	Tue, 24 Nov 2026 18:12:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03DEE1F000CA;
+	Tue, 24 Nov 2026 18:12:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795543931;
+	bh=muXEpXsp4+0/5ZU311gJqIbUHfTI/heB2h0v87pFpis=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=g4LEOWFwgOkrXKXBtr09ASaitr5vcomBZoZYTSIvgOMK7bUwbW7eo8ejkH1ZZjWqQ
+	 efsI9Iet39G6cQlY6qS5yCiSC3mA6I/84gCYY0IVeWFtdS0zJwekLmLCK+j9zx2FBF
+	 jMih0WhgTOPWBe2dXMMIGdUdfGJudwvB71KEYBX7e6QfKD08fPPn2hVlOfD+ykfnCb
+	 7H0/f+cgOX0L8KV3A7XNyzIFpq+R/Ideo9DPOVyUov8m0KkZBypm6FRi4ETPB0teb2
+	 ARLke+0/GBCne0F16Mt41UCPsinAnCav3B7qGYNEAXS6V6rqqqyuNj8OskVwmMQB1l
+	 WeNz43A7YxzZg==
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 38074198004A;
+	Tue, 24 Nov 2026 13:12:04 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-04.internal (MEProxy); Tue, 24 Nov 2026 13:12:08 -0500
+X-ME-Sender: <xms:c9MFa3bXPFJ3lfsLvjJCW-RqWkHQ57YNcCTlcDaLqdvzyhV9CBmLuw>
+    <xme:c9MFa3PlX5XrQOAd0pvbvMUcOdWFqMpEm95RjzHZY5ihfJKrLscKJYciLvp8BPklf
+    deUf4p9dveQwFvjme45dkufHKBgLOBnv_s-8fBaKYjaxbr84ug6Uwk>
+X-ME-Received: <xmr:c9MFa4hERqhzd2NpktFPdCRsmzQAsN-ynRbj7QwnwqIbunpXaNOzATwbK_E>
+X-ME-Proxy-Cause: dmFkZTEyEExkyyzfsHqUGry0fExPW1Jtpw47hOuK4Sgt4e32Tg9LBhxhuZTFmlGZzvoHLI
+    ft0i5+sUAdxlFAmeDTZdeLPHhKHrQM4i8bv6qY+IHtbhUEl0JNpvDo/Xeta34r2bs4YDyp
+    9Hl338CGNsKgKGvO/4rnRQgEnyYUgAttqm3SR9G5mF44b8PtEf0MEQjpB8Wp8TdbseAZ+a
+    TZwF8ZNcWJ+uXDdfzZQBbkjKzMKqO+/uWAM7KPKZXIBkua0uzBKw0SrU0Cao0E2r8SZlEF
+    ZvhwS+hyZGx6p3Uk6HyN1wct1IS8Zt1RiTmYxC2rG6rWqWKdD+IuUEbVN4v1oEurMCZnfo
+    X/uQKffndMmhBtVBiMt8Fpza3T2I/3kPEyEADJpUMTo4E88rsPMyuATUIrKUGqghlLDs/h
+    meSbcbcd3XfmjrZRuYT/9mGmEwoBXtUFM3G8vceUWoFNcfXkHrtK5qA80HOo/I0SuWiuWV
+    uhWQWHO/gTLvWEAoNi9gOfserNsvIXU5Num5Hry8pvZ1/+kXzmkM4eMj+sJ9Ez2ClI6qv9
+    lZfR02qK8vm03rQNjzvsjGDa4MlyH1hWzy0Uspd/Eyhci1vjwYsxd33B2zMolFOrlt0c73
+    CXLENQ/Ck6OUqDoKMGMccfPQEzkU7S2UdKfkG/z9qqFWDZP97ZnAtKgduJ5w
+X-ME-Proxy: <xmx:c9MFazeKZlZIxVPU74r1W8cehUXAUudom71-94Jq2YGjvpAEhTKE5g>
+    <xmx:c9MFa9wkvxNFAInbwfCaTHKSeKTUV3NcdzINoDyCxkNiLh4DMimgzA>
+    <xmx:c9MFa4ZKN13cFtpZGO26zex9eig0O4BQDa_oYdJVQpiLgj-OOOR5Ag>
+    <xmx:c9MFaxpPexxjim9yYsc8Pxnm3k2tygWqWQjBx0LrTdR95eKn4CgB-A>
+    <xmx:c9MFa8EBUwCi5suBDA0spCrkswB-ikT8tsixUIBrvh8YyTCYDZL4Opt0>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 24 Nov 2026 13:12:02 -0500 (EST)
+Date: Tue, 24 Nov 2026 18:12:01 +0000
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org, 
+	james.morse@arm.com, rppt@kernel.org, arnd@arndb.de, kmehltretter@gmail.com, 
+	dapeng1.mi@linux.intel.com, elver@google.com, enelsonmoore@gmail.com, bp@alien8.de, 
+	jlayton@kernel.org, catalin.marinas@arm.com, sean@starlabs.systems, will@kernel.org, 
+	jonathan.cameron@oss.qualcomm.com, tzungbi@kernel.org, steven.price@arm.com, chenhuacai@kernel.org, 
+	tzimmermann@suse.de, wenst@chromium.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, vladimir.murzin@arm.com
+Subject: Re: [PATCH] arm64: sdei: add sdei_nmi.disabled= to keep the GIC NMI
+ path reachable
+Message-ID: <awXQtcWmqf7c_49B@shutemov.name>
+References: <20261123033222.1067923-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261124-jh7110-clean-send-v8-15-de92635dd857@samsung.com>
-In-Reply-To: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,  Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Robert Foss
-	<rfoss@kernel.org>,  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>,  Luca Ceresoli
-	<luca.ceresoli@bootlin.com>,  Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,  Philipp Zabel
-	<p.zabel@pengutronix.de>,  Emil Renner Berthing <kernel@esmil.dk>,  Hal Feng
-	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>,  Paul
-	Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Dominique
-	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>,  David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Yakir Yang
-	<kuankuan.y@gmail.com>,  Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,  Michal Wilczynski
-	<m.wilczynski@samsung.com>,  Conor Dooley <conor@kernel.org>, William Qiu
-	<william.qiu@starfivetech.com>,  Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Sandy Huang <hjc@rock-chips.com>,  Manivannan Sadhasivam <mani@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,  Marek
-	Szyprowski <m.szyprowski@samsung.com>,  Maud Spierings
-	<maud_spierings@murena.io>,  Graham Markall <hello@big-grey.co.uk>,  Icenowy
-	Zheng <zhengxingda@iscas.ac.cn>,  Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	Joshua Peisach <jpeisach@ubuntu.com>,  =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>,  Cristian Ciocaltea
-	<cristian.ciocaltea@collabora.com>,  Byron Stanoszek <gandalf@winds.org>,
-	Owen O'Hehir <oo.hehir@gmail.com>,  Conor Dooley
-	<conor.dooley@microchip.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5686;
-	i=m.wilczynski@samsung.com; h=from:subject:message-id;
-	bh=1hgfOIYoTQ5Ija5HE+RRppVXAzt2wlD596t2L8iUqQI=;
-	b=owGbwMvMwCGWumv6zndzRCIZT6slMWSzbhbd+Pe+s122SniLcsnCDOfEdtWsJgnL0qTqm0tE5
-	W+Zdat2lLIwiHEwyIopspzdGG0k+Y/hafnxx79g5rAygQxh4OIUgIlEajEyLJz9U7Jeq/PLqpKT
-	ko178/7u4Praf3/jW+0dLwxl63f7ODD8Uz/THpvOZBESsDO3+vDWp5oSApkHrjg9XhgwL8Xe2Po
-	oOwA=
-X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
-	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
-X-CMS-MailID: 20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f
-X-EPHeader: CA
-X-CMS-RootMailID: 20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f
-References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
-	<CGME20261124155427eucas1p1d7984cd7c12532c271826fd19820a55f@eucas1p1.samsung.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_075430_125260_FA25B889 
-X-CRM114-Status: GOOD (  24.32  )
-X-Spam-Score: -2.8 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123033222.1067923-1-ruanjinjie@huawei.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,160 +100,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Nothing in the video output subsystem can reach its own registers until
-the NoC display bus clock and reset are up and PD_VOUT is powered, and
-those are shared by every device in the region. Leaving them to whichever
-consumer probes first works by accident and stops working as soon as the
-probe order changes.
+On Mon, Nov 23, 2026 at 11:32:22AM +0800, Jinjie Ruan wrote:
+> While the SDEI cross-CPU NMI is active it claims every cross-CPU
+> backtrace, so on a platform whose firmware exposes SDEI event 0
+> the irqchip NMI path can never be used.  There is no way to opt out.
+> 
+> Add a boot parameter "sdei_nmi.disabled".
+> 
+> With sdei_nmi.disabled=1, the SDEI NMI stays registered and simply
+> declines every request, so arch_trigger_cpumask_backtrace() falls
+> through to its IPI path and smp_send_stop() skips its SDEI rung.
 
-Add a driver for the subsystem node that takes the bus clock and reset,
-holds a runtime PM reference so genpd keeps PD_VOUT powered, and then
-populates its children. All three are released only once the last child
-is gone.
+Why keep event 0 registered and enabled when the switch is on?
 
-Tested-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Tested-by: Byron Stanoszek <gandalf@winds.org>
-Tested-by: Owen O'Hehir <oo.hehir@gmail.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- drivers/soc/starfive/Kconfig                 | 16 ++++++
- drivers/soc/starfive/Makefile                |  1 +
- drivers/soc/starfive/jh7110-vout-subsystem.c | 82 ++++++++++++++++++++++++++++
- 3 files changed, 99 insertions(+)
+If sdei_nmi_init() returns before sdei_event_register(),
+sdei_nmi_available stays false and both hooks already decline.
 
-diff --git a/drivers/soc/starfive/Kconfig b/drivers/soc/starfive/Kconfig
-index e19994a212d4af49eaed595bab6fecc19677b2b3..d57480c42f2b6b06142b591e6ccef4909aced978 100644
---- a/drivers/soc/starfive/Kconfig
-+++ b/drivers/soc/starfive/Kconfig
-@@ -21,4 +21,20 @@ config SOC_STARFIVE_JH7110_HDMI_SUBSYSTEM
- 	  for the "PHY" and the "controller", which have their own clocks
- 	  and roles but share the register space.
- 
-+config SOC_STARFIVE_JH7110_VOUT_SUBSYSTEM
-+	tristate "StarFive JH7110 video output subsystem driver"
-+	depends on ARCH_STARFIVE || COMPILE_TEST
-+	depends on OF
-+	select PM
-+	help
-+	  This option enables the parent driver for the StarFive JH7110
-+	  video output subsystem, which the documentation calls dom_vout_top.
-+
-+	  The subsystem covers the DC8200 display controller, the HDMI
-+	  transmitter, the video output clock generator and the video output
-+	  system controller. They share one NoC port whose clock and reset
-+	  gate access to the whole register region, and the region sits in
-+	  the PD_VOUT power domain. This driver owns those resources and
-+	  holds them for as long as any of its children exist.
-+
- endmenu
-diff --git a/drivers/soc/starfive/Makefile b/drivers/soc/starfive/Makefile
-index 36fbb6f984986e4794ffb2c6c1485b6644efc4eb..3b8b8a6847f9021920a9af7296c49e1c45114c34 100644
---- a/drivers/soc/starfive/Makefile
-+++ b/drivers/soc/starfive/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-y += socinfo/
- obj-$(CONFIG_SOC_STARFIVE_JH7110_HDMI_SUBSYSTEM) += jh7110-hdmi-subsystem.o
-+obj-$(CONFIG_SOC_STARFIVE_JH7110_VOUT_SUBSYSTEM) += jh7110-vout-subsystem.o
-diff --git a/drivers/soc/starfive/jh7110-vout-subsystem.c b/drivers/soc/starfive/jh7110-vout-subsystem.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..af632692e2139d9d07edd478a299b170ad1b7104
---- /dev/null
-+++ b/drivers/soc/starfive/jh7110-vout-subsystem.c
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the StarFive JH7110 video output subsystem
-+ *
-+ * Copyright (c) 2025 Samsung Electronics Co., Ltd.
-+ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
-+ *
-+ * The display hardware sits behind a single NoC port whose clock and reset
-+ * gate access to every register in the region, inside the PD_VOUT power
-+ * domain. Nothing below this node can reach its own registers until all three
-+ * are up, so bring them up here and hold them for as long as any child device
-+ * exists, rather than leaving them to whichever consumer happens to probe
-+ * first.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/reset.h>
-+
-+static void jh7110_vout_subsys_pm_put(void *data)
-+{
-+	pm_runtime_put_sync(data);
-+}
-+
-+static int jh7110_vout_subsys_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct reset_control *bus_rst;
-+	struct clk *bus_clk;
-+	int ret;
-+
-+	/*
-+	 * Take a runtime PM reference for the lifetime of this device. genpd
-+	 * only keeps PD_VOUT powered while something actually holds it, and
-+	 * an unclocked or unpowered access to this region wedges the bus.
-+	 */
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = pm_runtime_resume_and_get(dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to power on PD_VOUT\n");
-+
-+	ret = devm_add_action_or_reset(dev, jh7110_vout_subsys_pm_put, dev);
-+	if (ret)
-+		return ret;
-+
-+	bus_clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(bus_clk))
-+		return dev_err_probe(dev, PTR_ERR(bus_clk),
-+				     "Failed to enable NoC bus clock\n");
-+
-+	bus_rst = devm_reset_control_get_exclusive_deasserted(dev, NULL);
-+	if (IS_ERR(bus_rst))
-+		return dev_err_probe(dev, PTR_ERR(bus_rst),
-+				     "Failed to deassert NoC bus reset\n");
-+
-+	return devm_of_platform_populate(dev);
-+}
-+
-+static const struct of_device_id jh7110_vout_subsys_of_match[] = {
-+	{ .compatible = "starfive,jh7110-vout-subsystem", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, jh7110_vout_subsys_of_match);
-+
-+static struct platform_driver jh7110_vout_subsys_driver = {
-+	.probe = jh7110_vout_subsys_probe,
-+	.driver = {
-+		.name = "jh7110-vout-subsystem",
-+		.of_match_table = jh7110_vout_subsys_of_match,
-+	},
-+};
-+module_platform_driver(jh7110_vout_subsys_driver);
-+
-+MODULE_AUTHOR("Michal Wilczynski <m.wilczynski@samsung.com>");
-+MODULE_DESCRIPTION("StarFive JH7110 video output subsystem driver");
-+MODULE_LICENSE("GPL");
+Then the flag is read only at init and can be __initdata. None of the
+other hunks are needed. The check in sdei_nmi_stop_cpus() is not
+reachable anyway: smp_send_stop() calls it only after sdei_nmi_active().
 
--- 
-2.34.1
-
+--
+  Kiryl Shutsemau / Kirill A. Shutemov
 
