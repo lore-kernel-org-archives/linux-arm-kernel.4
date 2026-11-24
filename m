@@ -2,111 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A52606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B049A606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 11:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZqFMc+I9;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=fSxSx+L2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RTS2xUVZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=e0zksxXp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vnwt3Hg75Jqhq/RX3EnfxRob7Sm62Nv/9HL8t2YUaCw=; b=ZqFMc+I9CcDWiF
-	YKBCBU1XTSHQK/FmdbjX3GQ4fmQu8m4lIqICbQYk2b1TlIW5d5mCYY2v6z+2mKUgcDUFuDpOVAiMZ
-	xtUvF9SXWd7BBx9Ejqjv7iR7GE7xXBwawDGcjUb2aNoOpaxEwNO6RnvG8spMgawyDWz0Uu7m1u9CT
-	tNKe49bxwxFCSn73ABaG01oWtfS+oipFN3Tpino2JxHPdVZRjkfN52XgZyt5xGWZxfVaw7D/89Eb5
-	t92lWJqoDxDyJuCgTK2W3q3dHjSZvOz0Wd23lbdjmIgBmBhRcjf7gfUWkHG+hxzNazQd8pMycB4cX
-	q+AYjr1j6Ktf5Fhga1BQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Ots3WAFDPR2PYg+mjIwzB9jpyCmnpV1ZAB8Z4JBu2L8=; b=RTS2xUVZHu9/6OjFT9ntbnzSJP
+	4tE5pJP/vNkJ06NvlUjMz4q+XKkw5+a5FCKMLzdezo/bUmlV/zxM5B0tZEXZ3zJFnksMrJYfTG2XY
+	3It8Wx5GAdmYB2K+QBQ4msvvTL0K7mWnmfTn+yxoqJlNrO3/Io0qIYG6BkSe3yCy+HT9I1wRsmNsL
+	MLuNrxpHxgO1ATkiejp77wI8rJcOGsgFUl8FSAcgmdRYtSKtqG0axiEOwwi6V9y4UnyCxugVlUEju
+	1UGTitWYxCtqmZjkpojnZkp+9atDfSAon3ioYocKo8Wdpz0Md4sM6/lOdng+8k7+Hj56aiGlEZwmR
+	ku8l+iTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp7r-00000006RGY-3r4i;
-	Tue, 24 Nov 2026 11:55:55 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1xVoyq-00000006OMW-0kc5;
+	Tue, 24 Nov 2026 11:46:36 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVp7k-00000006RDH-2dLL
+	id 1xVoy4-00000006NvL-0t5a
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:55:50 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-48dfc0421d9so4196394f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 03:55:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795521346; x=1796126146; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=vnwt3Hg75Jqhq/RX3EnfxRob7Sm62Nv/9HL8t2YUaCw=;
-        b=fSxSx+L2wMbO3E5gkpTlZAhROlihqaMemJR2MBGP/xKl/F25PHdcjAbeBx1i75nwVc
-         NIfL6jyb1pc6Fy18IIkcgO9KSCS96PP+/inmmGkfTJM0FVkmUzcO15+/V9b92PjkIPl8
-         0BjoqB2WEqjEvngimq46wCOOhNSA3Su+Ct41iKtFfO4G5fj4eRB/F+t22gFQGFAXCwln
-         akdBxVFz62j/VVMh60gpB0+4n7NXrzguP1S4RlmAPilEcZMOC4K8rJdsvAde05UQqDRK
-         sioJKmovMhYcgXHNc/Ho6qdcQkg240XbNT4PhC/WBtaB5un/Ew7j2joTfR3Y4IN0pcwk
-         aE5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795521346; x=1796126146;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=vnwt3Hg75Jqhq/RX3EnfxRob7Sm62Nv/9HL8t2YUaCw=;
-        b=CRhRWP2dGld/C9krY0yXLK9P5CY4m6HL+3F78f/q/uYzMMTO/6PiOl/pBJt4x/+HX4
-         tcsMxkAzKgcoh5tz83ROn/VVBU6t1aZLjUSZZmdPVE4ukoHGOe0Vwmg9HS9Jm6e1ASAU
-         fQS/kbjjoGdkE74KNcagZaKE3hvcmEcn2QVUWjZdLUyre7vlVz2Vp6JzRnHgDLkJSOe4
-         gu+0aTehETHMCgoVdri3ZZJmKvdBZX6pon4RZ9fcKJuPINaxcRKQOzDROCuSPe4HmhGR
-         W9N7o6CUUZ2NPVwNb0klQitrdqZ3bpqBug9lYU2327TosRBUvwZgI4Zij87nR6InGVA5
-         qlUA==
-X-Forwarded-Encrypted: i=1; AL+hErG2kz9b5jHkl2e/S56K83631aErfJYVxahmkE4twKaCu3jsRwmdknoofoFeLmE+NnUhJy/NWZIwSUBWQzYaxc+2@lists.infradead.org
-X-Gm-Message-State: APuU4Z+E0PtWxelLtNRMhECVUJbjQHVZ/1SyPOsi6w3K14VUWA2iK/dL
-	Q2O38cTqgFSNppJLpOrK49G5DoLjo2nl0/tEFuBns9H+k8cDqj7HPkKNoe7uJTOTR1I=
-X-Gm-Gg: AZFdTZfIlKjvNFZ1GhP7+Dl0kq+Q4d5wjSs/934WJncGj8KlofrymxGzFBUch/agaf9
-	p1W781lJWxxwGTcSMGEvGpy5UDOnWyHLAFTGcz2FYAd5QZY3itp7+sJRMraSj/7RrRIa4acymlV
-	3xEryXlMUESJtTSS/0kC7Fqy0ejYqoM34hjA6ra0l2OA3x+3Lz3UDNeaHgspB90s9QNlVfOFhf7
-	4WFudM+zXZLwnO+QNPIYvuFFyjBlMHROYrqRWSQmGDEQGBwpYa6lCHHnrUguq+joR13zt6h83jr
-	d53nXoT/kC0RVl//CdUv19p/rV9CeagcOTjAsDm80QS8XlFF+Q9bcnDhyeTEP9rHr1KqPbBRGHu
-	Ll0G9Q0aRR/wewjUb8BxdjCnmBW0wRZHXrSfttB0D929p9Pel0VIvAetXV77EYeyDqMu9mBK6Wj
-	VDtjl/hPrVfwITBNzKDLNuFCuTUTkbimICAslfCvKtWvxF08KuH0ejQRqKtyBovZ2Nvq4+R1m5+
-	dyHb6Nyj7QUI8QUHMVEmsM+g1GqviL20IkxLHrPSoiDG7xsdGwYelXa4p4B4IheFk6B48y8XhP0
-	ZfbrKX0bvnxgJcWmTu6ldEjl2ZeglqTjyVnqMvEih16fgUbiZw5431ZBglv/lAZj7SBiMxPy5dV
-	hvJcdfpPNA/b0gpLs2m4z4kY=
-X-Received: by 2002:a05:6000:428a:b0:4a9:dcdb:2e11 with SMTP id ffacd0b85a97d-4abb8406ea4mr29382891f8f.41.1795521346404;
-        Tue, 24 Nov 2026 03:55:46 -0800 (PST)
-Received: from ?IPV6:2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183? ([2001:8a0:d6cd:9000:86f4:4e71:9fc8:3183])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6b110d56sm26566053f8f.40.2026.11.24.03.55.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 03:55:45 -0800 (PST)
-Message-ID: <bc4234bb-8901-4d0f-bbf9-66f9715c11a9@baylibre.com>
-Date: Tue, 24 Nov 2026 11:55:43 +0000
+	Tue, 24 Nov 2026 11:45:48 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 993C56025A;
+	Tue, 24 Nov 2026 11:45:47 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795520747;
+	b=Oold0Sxq7Ud0IZHMV8lZNaNBmmHS310TqdDuf/8Tkoc/M6tbe6xVZsf/fWfDShyFmvI6
+	 CHCGeFgVkyq6GRMKzffq7nn6zhryxxHgcbUDarno9rRH8My1x44p5UhpkKmmlB8a/lwkq
+	 FKPurIRC32sXN9sbgmAdXLCYcmY+sFedyYqXOZpspWS/REe/akn6ydGMz1GQ6SdpA6YiK
+	 3MWlOJacxWgofVhrGRxre7O2NaEa7xOe2D9lBYW1olLwyo0Mahv+w/Xw05idoENtgOqgh
+	 kF2UvLTmDniKf6fd4VvZJX9h/A9xg1za7Kp3x49C7zzqdma9egQMZgcv1KlN5mglh2A==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795520747;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=Ots3WAFDPR2PYg+mjIwzB9jpyCmnpV1ZAB8Z4JBu2L8=;
+	b=OB58gbjWJ9BG5IPm0NYxXTFdYR858AaUcu+yE/MEYYlbIKL6apk3FwGBuTieRKP+ul87
+	 c5LIl73myk9X4IrsrwKc6sly4Y9xVMpni1kXhnurrvJdiwDgeCKxTTWs4bLYd7bXwOKEm
+	 jXcQf94E4Y6LaDcPfumGFA7te51KoyiaMlA8rhA7N8gET85Ggy3xu6V1ILrIdoX9K5LWe
+	 QS87VhOqiBaLpPNgTEsqbNAz2TxqUjNDy3aYF0EoiyzPk9ELnqkxVWl2BiINDUT2zPPfu
+	 OxB4TETqjLxRj9d4gclObvvBUKC9Ic0fQ+O4K4FEVVjgFcG/3ht8Nopx58Gz9LI2QLQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 952221F000D3;
+	Tue, 24 Nov 2026 11:45:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795520747;
+	bh=Ots3WAFDPR2PYg+mjIwzB9jpyCmnpV1ZAB8Z4JBu2L8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=e0zksxXpJOPwkjxsQEorcZAvvbK6FBu2ER4NCfS9GNjqHRlTjAWvK9JbMkqNfBFbx
+	 n3xAvAG1x3TeSqn59TAzm3bI/PONmnlWhy+FjAH0JVl8O8oHrnVcV2/2PYBBAi+gye
+	 /1yMw31QDeaBQWuD+kfg5Dm0OQbOtJqC3UKfJkGu+uEOSQmuxcRP2Fgxltm06bmEnq
+	 bte2dZ9CNgYuKoIDAusNPImFpV1Esf2p/Up0dUbMGoMju+0QgDCIyAEN5lduTAnA06
+	 jSYXexQZ903NEqcf3/xMyRLJxSeDmPvbD9cGdGuiViKdHsnzoR31Sl5PdIR6pE1uPG
+	 409ZNhohOWQ1w==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 99A8F4CA03;
+	Tue, 24 Nov 2026 11:45:27 +0000 (UTC)
+From: Sai Sree Kartheek Adivi via B4 Relay <devnull+s-adivi.ti.com@kernel.org>
+Date: Tue, 24 Nov 2026 17:15:09 +0530
+Subject: [PATCH v13 07/20] dmaengine: ti: k3-udma: Add variant-specific
+ function pointers to udma_dev
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v18 8/8] arm64: dts: rockchip: enable the NPU on
- rk3576-rock-4d
-To: Jiaxing Hu <gahing@gahingwoo.com>, tomeu@tomeuvizoso.net,
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
- p.zabel@pengutronix.de, ogabbay@kernel.org, zhangqing@rock-chips.com
-Cc: royalnet026@gmail.com, sidong.yang@furiosa.ai,
- ulf.hansson@oss.qualcomm.com, abel.vesa@oss.qualcomm.com,
- sebastian.reichel@collabora.com, chaoyi.chen@rock-chips.com,
- shawn.lin@rock-chips.com, finley.xiao@rock-chips.com,
- diederik@cknow-tech.com, alchark@flipper.net, leonard@lausen.nl,
- vlwwwwww@gmail.com, jeff.hugo@oss.qualcomm.com,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- iommu@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1795478392.git.gahing@gahingwoo.com>
- <0bcd73278a4c7a0cb2e1b8bdb9aba306355384cb.1795478392.git.gahing@gahingwoo.com>
-Content-Language: en-US
-From: Daniel Drake <ddrake@baylibre.com>
-In-Reply-To: <0bcd73278a4c7a0cb2e1b8bdb9aba306355384cb.1795478392.git.gahing@gahingwoo.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261124-dma-upstream-v13-v13-7-bd4251fdc6d4@ti.com>
+References: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+In-Reply-To: <20261124-dma-upstream-v13-v13-0-bd4251fdc6d4@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Vinod Koul <vkoul@kernel.org>, 
+ Frank Li <Frank.Li@kernel.org>, Peter Ujfalusi <peter.ujfalusi@ti.com>, 
+ Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ sebin.francis@ti.com, Sai Sree Kartheek Adivi <s-adivi@ti.com>, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795520723; l=10558;
+ i=s-adivi@ti.com; s=20261124; h=from:subject:message-id;
+ bh=4M8T7KkPXsvWkJD69g3DX42CQArerjghpVbY6qtdGd4=;
+ b=RAFS4XmRc0vojszchHsL5bVx5o7VZTz9ERaO3bRssmW9kwE3KMDrCUhpv/7auXxMlpVav3eSn
+ Bju7zI3uCrVDiAAAmQ9/ucCZ6SOC9pwcu1fSnFFe9fg6zvqhFJbyCRq
+X-Developer-Key: i=s-adivi@ti.com; a=ed25519;
+ pk=EtOwVxmXDuYMgw3DqFtPDBpf8ZvbO89w1fJm4w5yPI8=
+X-Endpoint-Received: by B4 Relay for s-adivi@ti.com/20261124 with
+ auth_id=1627
+X-Original-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_035548_692531_E3617AF7 
-X-CRM114-Status: UNSURE (   9.21  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,27 +113,319 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: s-adivi@ti.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 24/11/2026 00:01, Jiaxing Hu wrote:
-> The rail is switched with the domain by commit
-> b1bff9ced657 ("pmdomain: rockchip: manage the RK3576 NPU domain supply")
-> in the pmdomain tree; without it nothing holds the rail and it is turned
-> off as unused.
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 
-You can omit this part of the commit message. The dependency is stated
-in the cover letter, and domain-supply is standard enough that it
-doesn't need specific documentation.
-> npu-supply is set because the binding requires it; no driver uses it.
+Introduce function pointers in the udma_dev structure to allow
+variant-specific implementations for certain operations.
+This prepares the driver for supporting multiple K3 UDMA variants,
+such as UDMA v2, with minimal code duplication.
 
-So why does the binding even exist? Is it because it will be needed for
-implementing voltage scaling in future?
+No functional changes intended in this commit.
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ drivers/dma/ti/k3-udma-private.c | 10 ++++--
+ drivers/dma/ti/k3-udma.c         | 66 ++++++++++++++++++++++------------------
+ drivers/dma/ti/k3-udma.h         | 12 ++++++++
+ 3 files changed, 57 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/dma/ti/k3-udma-private.c b/drivers/dma/ti/k3-udma-private.c
+index 624360423ef17..44c097fff5ee6 100644
+--- a/drivers/dma/ti/k3-udma-private.c
++++ b/drivers/dma/ti/k3-udma-private.c
+@@ -8,13 +8,19 @@
+ 
+ int xudma_navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread)
+ {
+-	return navss_psil_pair(ud, src_thread, dst_thread);
++	if (ud->psil_pair)
++		return ud->psil_pair(ud, src_thread, dst_thread);
++
++	return 0;
+ }
+ EXPORT_SYMBOL(xudma_navss_psil_pair);
+ 
+ int xudma_navss_psil_unpair(struct udma_dev *ud, u32 src_thread, u32 dst_thread)
+ {
+-	return navss_psil_unpair(ud, src_thread, dst_thread);
++	if (ud->psil_unpair)
++		return ud->psil_unpair(ud, src_thread, dst_thread);
++
++	return 0;
+ }
+ EXPORT_SYMBOL(xudma_navss_psil_unpair);
+ 
+diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+index 2fba734616272..fbcf976d7a668 100644
+--- a/drivers/dma/ti/k3-udma.c
++++ b/drivers/dma/ti/k3-udma.c
+@@ -40,7 +40,7 @@ static const char * const mmr_names[] = {
+ 	[MMR_TCHANRT] = "tchanrt",
+ };
+ 
+-static int navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread)
++int navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread)
+ {
+ 	struct udma_tisci_rm *tisci_rm = &ud->tisci_rm;
+ 
+@@ -50,8 +50,8 @@ static int navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread)
+ 					      src_thread, dst_thread);
+ }
+ 
+-static int navss_psil_unpair(struct udma_dev *ud, u32 src_thread,
+-			     u32 dst_thread)
++int navss_psil_unpair(struct udma_dev *ud, u32 src_thread,
++		      u32 dst_thread)
+ {
+ 	struct udma_tisci_rm *tisci_rm = &ud->tisci_rm;
+ 
+@@ -329,7 +329,7 @@ static int udma_start(struct udma_chan *uc)
+ 	}
+ 
+ 	/* Make sure that we clear the teardown bit, if it is set */
+-	udma_reset_chan(uc, false);
++	uc->ud->reset_chan(uc, false);
+ 
+ 	/* Push descriptors before we start the channel */
+ 	udma_start_desc(uc);
+@@ -521,8 +521,8 @@ static void udma_check_tx_completion(struct work_struct *work)
+ 		if (uc->desc) {
+ 			struct udma_desc *d = uc->desc;
+ 
+-			udma_decrement_byte_counters(uc, d->residue);
+-			udma_start(uc);
++			uc->ud->decrement_byte_counters(uc, d->residue);
++			uc->ud->start(uc);
+ 			vchan_cookie_complete(&d->vd);
+ 			break;
+ 		}
+@@ -554,7 +554,7 @@ static irqreturn_t udma_ring_irq_handler(int irq, void *data)
+ 		}
+ 
+ 		if (!uc->desc)
+-			udma_start(uc);
++			uc->ud->start(uc);
+ 
+ 		goto out;
+ 	}
+@@ -576,8 +576,8 @@ static irqreturn_t udma_ring_irq_handler(int irq, void *data)
+ 				vchan_cyclic_callback(&d->vd);
+ 			} else {
+ 				if (udma_is_desc_really_done(uc, d)) {
+-					udma_decrement_byte_counters(uc, d->residue);
+-					udma_start(uc);
++					uc->ud->decrement_byte_counters(uc, d->residue);
++					uc->ud->start(uc);
+ 					vchan_cookie_complete(&d->vd);
+ 				} else {
+ 					schedule_delayed_work(&uc->tx_drain.work,
+@@ -612,8 +612,8 @@ static irqreturn_t udma_udma_irq_handler(int irq, void *data)
+ 			vchan_cyclic_callback(&d->vd);
+ 		} else {
+ 			/* TODO: figure out the real amount of data */
+-			udma_decrement_byte_counters(uc, d->residue);
+-			udma_start(uc);
++			uc->ud->decrement_byte_counters(uc, d->residue);
++			uc->ud->start(uc);
+ 			vchan_cookie_complete(&d->vd);
+ 		}
+ 	}
+@@ -1654,7 +1654,7 @@ static int udma_alloc_chan_resources(struct dma_chan *chan)
+ 
+ 	if (udma_is_chan_running(uc)) {
+ 		dev_warn(ud->dev, "chan%d: is running!\n", uc->id);
+-		udma_reset_chan(uc, false);
++		ud->reset_chan(uc, false);
+ 		if (udma_is_chan_running(uc)) {
+ 			dev_err(ud->dev, "chan%d: won't stop!\n", uc->id);
+ 			ret = -EBUSY;
+@@ -1663,7 +1663,7 @@ static int udma_alloc_chan_resources(struct dma_chan *chan)
+ 	}
+ 
+ 	/* PSI-L pairing */
+-	ret = navss_psil_pair(ud, uc->config.src_thread, uc->config.dst_thread);
++	ret = ud->psil_pair(ud, uc->config.src_thread, uc->config.dst_thread);
+ 	if (ret) {
+ 		dev_err(ud->dev, "PSI-L pairing failed: 0x%04x -> 0x%04x\n",
+ 			uc->config.src_thread, uc->config.dst_thread);
+@@ -1718,7 +1718,7 @@ static int udma_alloc_chan_resources(struct dma_chan *chan)
+ 	uc->irq_num_ring = 0;
+ 	uc->irq_num_udma = 0;
+ err_psi_free:
+-	navss_psil_unpair(ud, uc->config.src_thread, uc->config.dst_thread);
++	ud->psil_unpair(ud, uc->config.src_thread, uc->config.dst_thread);
+ 	uc->psil_paired = false;
+ err_res_free:
+ 	udma_free_tx_resources(uc);
+@@ -1821,7 +1821,7 @@ static int bcdma_alloc_chan_resources(struct dma_chan *chan)
+ 
+ 	if (udma_is_chan_running(uc)) {
+ 		dev_warn(ud->dev, "chan%d: is running!\n", uc->id);
+-		udma_reset_chan(uc, false);
++		ud->reset_chan(uc, false);
+ 		if (udma_is_chan_running(uc)) {
+ 			dev_err(ud->dev, "chan%d: won't stop!\n", uc->id);
+ 			ret = -EBUSY;
+@@ -1849,8 +1849,8 @@ static int bcdma_alloc_chan_resources(struct dma_chan *chan)
+ 		uc->use_dma_pool = true;
+ 	} else if (uc->config.dir != DMA_MEM_TO_MEM) {
+ 		/* PSI-L pairing */
+-		ret = navss_psil_pair(ud, uc->config.src_thread,
+-				      uc->config.dst_thread);
++		ret = ud->psil_pair(ud, uc->config.src_thread,
++				    uc->config.dst_thread);
+ 		if (ret) {
+ 			dev_err(ud->dev,
+ 				"PSI-L pairing failed: 0x%04x -> 0x%04x\n",
+@@ -1910,8 +1910,8 @@ static int bcdma_alloc_chan_resources(struct dma_chan *chan)
+ 	uc->irq_num_udma = 0;
+ err_psi_free:
+ 	if (uc->psil_paired)
+-		navss_psil_unpair(ud, uc->config.src_thread,
+-				  uc->config.dst_thread);
++		ud->psil_unpair(ud, uc->config.src_thread,
++				uc->config.dst_thread);
+ 	uc->psil_paired = false;
+ err_res_free:
+ 	bcdma_free_bchan_resources(uc);
+@@ -2014,7 +2014,7 @@ static int pktdma_alloc_chan_resources(struct dma_chan *chan)
+ 
+ 	if (udma_is_chan_running(uc)) {
+ 		dev_warn(ud->dev, "chan%d: is running!\n", uc->id);
+-		udma_reset_chan(uc, false);
++		ud->reset_chan(uc, false);
+ 		if (udma_is_chan_running(uc)) {
+ 			dev_err(ud->dev, "chan%d: won't stop!\n", uc->id);
+ 			ret = -EBUSY;
+@@ -2037,7 +2037,7 @@ static int pktdma_alloc_chan_resources(struct dma_chan *chan)
+ 	uc->use_dma_pool = true;
+ 
+ 	/* PSI-L pairing */
+-	ret = navss_psil_pair(ud, uc->config.src_thread, uc->config.dst_thread);
++	ret = ud->psil_pair(ud, uc->config.src_thread, uc->config.dst_thread);
+ 	if (ret) {
+ 		dev_err(ud->dev, "PSI-L pairing failed: 0x%04x -> 0x%04x\n",
+ 			uc->config.src_thread, uc->config.dst_thread);
+@@ -2083,7 +2083,7 @@ static int pktdma_alloc_chan_resources(struct dma_chan *chan)
+ err_irq_free:
+ 	uc->irq_num_ring = 0;
+ err_psi_free:
+-	navss_psil_unpair(ud, uc->config.src_thread, uc->config.dst_thread);
++	ud->psil_unpair(ud, uc->config.src_thread, uc->config.dst_thread);
+ 	uc->psil_paired = false;
+ err_res_free:
+ 	udma_free_tx_resources(uc);
+@@ -2123,7 +2123,7 @@ static void udma_issue_pending(struct dma_chan *chan)
+ 		 */
+ 		if (!(uc->state == UDMA_CHAN_IS_TERMINATING &&
+ 		      udma_is_chan_running(uc)))
+-			udma_start(uc);
++			uc->ud->start(uc);
+ 	}
+ 
+ 	spin_unlock_irqrestore(&uc->vc.lock, flags);
+@@ -2265,7 +2265,7 @@ static int udma_terminate_all(struct dma_chan *chan)
+ 	spin_lock_irqsave(&uc->vc.lock, flags);
+ 
+ 	if (udma_is_chan_running(uc))
+-		udma_stop(uc);
++		uc->ud->stop(uc);
+ 
+ 	if (uc->desc) {
+ 		uc->terminated_desc = uc->desc;
+@@ -2297,11 +2297,11 @@ static void udma_synchronize(struct dma_chan *chan)
+ 			dev_warn(uc->ud->dev, "chan%d teardown timeout!\n",
+ 				 uc->id);
+ 			udma_dump_chan_stdata(uc);
+-			udma_reset_chan(uc, true);
++			uc->ud->reset_chan(uc, true);
+ 		}
+ 	}
+ 
+-	udma_reset_chan(uc, false);
++	uc->ud->reset_chan(uc, false);
+ 	if (udma_is_chan_running(uc))
+ 		dev_warn(uc->ud->dev, "chan%d refused to stop!\n", uc->id);
+ 
+@@ -2355,7 +2355,7 @@ static void udma_free_chan_resources(struct dma_chan *chan)
+ 
+ 	udma_terminate_all(chan);
+ 	if (uc->terminated_desc) {
+-		udma_reset_chan(uc, false);
++		ud->reset_chan(uc, false);
+ 		udma_reset_rings(uc);
+ 	}
+ 
+@@ -2374,8 +2374,8 @@ static void udma_free_chan_resources(struct dma_chan *chan)
+ 
+ 	/* Release PSI-L pairing */
+ 	if (uc->psil_paired) {
+-		navss_psil_unpair(ud, uc->config.src_thread,
+-				  uc->config.dst_thread);
++		ud->psil_unpair(ud, uc->config.src_thread,
++				uc->config.dst_thread);
+ 		uc->psil_paired = false;
+ 	}
+ 
+@@ -3677,6 +3677,14 @@ static int udma_probe(struct platform_device *pdev)
+ 		ud->soc_data = soc->data;
+ 	}
+ 
++	// Setup function pointers
++	ud->start = udma_start;
++	ud->stop = udma_stop;
++	ud->reset_chan = udma_reset_chan;
++	ud->decrement_byte_counters = udma_decrement_byte_counters;
++	ud->psil_pair = navss_psil_pair;
++	ud->psil_unpair = navss_psil_unpair;
++
+ 	ret = udma_get_mmrs(pdev, ud);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/dma/ti/k3-udma.h b/drivers/dma/ti/k3-udma.h
+index 1777f0e1f085e..59170714f53cc 100644
+--- a/drivers/dma/ti/k3-udma.h
++++ b/drivers/dma/ti/k3-udma.h
+@@ -349,6 +349,15 @@ struct udma_dev {
+ 	u32 psil_base;
+ 	u32 atype;
+ 	u32 asel;
++
++	int (*start)(struct udma_chan *uc);
++	int (*stop)(struct udma_chan *uc);
++	int (*reset_chan)(struct udma_chan *uc, bool hard);
++	void (*decrement_byte_counters)(struct udma_chan *uc, u32 val);
++	int (*psil_pair)(struct udma_dev *ud, u32 src_thread,
++			 u32 dst_thread);
++	int (*psil_unpair)(struct udma_dev *ud, u32 src_thread,
++			   u32 dst_thread);
+ };
+ 
+ struct udma_desc {
+@@ -586,6 +595,9 @@ int udma_push_to_ring(struct udma_chan *uc, int idx);
+ int udma_pop_from_ring(struct udma_chan *uc, dma_addr_t *addr);
+ void udma_reset_rings(struct udma_chan *uc);
+ 
++int navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread);
++int navss_psil_unpair(struct udma_dev *ud, u32 src_thread, u32 dst_thread);
++
+ /* Direct access to UDMA low lever resources for the glue layer */
+ int xudma_navss_psil_pair(struct udma_dev *ud, u32 src_thread, u32 dst_thread);
+ int xudma_navss_psil_unpair(struct udma_dev *ud, u32 src_thread,
+
+-- 
+2.55.0
+
 
 
