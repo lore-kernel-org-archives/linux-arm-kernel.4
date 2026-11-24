@@ -2,118 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E980606A688
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8AF606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=393QLrcV;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20260707.gappssmtp.com header.i=@ndufresne-ca.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=PWLLp7S4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QxotGlwN;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=gAXpA0I2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=XvU8I+vB/hnkSYqyvTC9KODVvqvC++EcA5WWKHIkmy4=; b=393QLrcVi2yOwDWI1qhTjAqWnL
-	BOEtVjluDCcwFZ3/qA6Hp1Xzwpnnv0SlzWVLzBf4BLLWD24syhts6JY61m6Z02UvI1wN9RtRjHhHg
-	p5krRtl8uxJgLEB+Ul8kmdJjlKd5WkaV5yosQ9iAulh1EDDHYVXu32nrCY3d3h99anCfKsZ9sRdPR
-	u9ltKz08HYZBMwlLeHQBBpqilgenH/15GncQs7ciVbuQaI3ZuY0pC+0A+VKe0+1YYYnR3mQjfRKPR
-	spcK+rXxSaG0birggEaKQiLIst9JGsl8BQz59lPm3PRPfMgjKoZv7BaID5KEiZPDZdhxVJUXTr3WM
-	q+rnKXqQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=; b=QxotGlwNV8R5CM
+	gjOu/iX92ayb5p5WAeukTcoKFh+47kFBXSK5rXo+JFikrMQdRV5VRUiyhctE2HY0JrpXksgotiYy6
+	CrNUwtbrE8lD3vCNox43oYE5+qyOmWw9ra07p4XUCtLRkJ1Z2ZM7aQ7KSz5OEoTQnzT2EjDWpjlR+
+	EiwHJOFNLq94tF/V43bJMtuh0cmGVHz+uM+W2zY6H5VlIgSCUHxYusBCHbVpSgh+HP0BlS80Pqawo
+	pKQ37dBzBhuk2suJoLhVHqAfCSB1WsTuGwT3OT+K6y4rDZwVA5v/XUQGC8jDPJ3DlOojg+j3NSB7q
+	HQ1fkpDc6vn/SON73s/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyDq-00000007tFR-06IL;
-	Tue, 24 Nov 2026 21:38:42 +0000
-Received: from mail-qk1-x735.google.com ([2607:f8b0:4864:20::735])
+	id 1xVyDz-00000007tKd-1Pyr;
+	Tue, 24 Nov 2026 21:38:51 +0000
+Received: from mail-yw1-x112e.google.com ([2607:f8b0:4864:20::112e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVyDJ-00000007t5T-0oXO
+	id 1xVyDv-00000007tIX-3sn5
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 21:38:29 +0000
-Received: by mail-qk1-x735.google.com with SMTP id af79cd13be357-93f22a8515eso439971185a.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:38:08 -0800 (PST)
+	Tue, 24 Nov 2026 21:38:48 +0000
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-8b0ca1ebc8bso44335197b3.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:38:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795556327; cv=none;
+        d=google.com; s=arc-20260327;
+        b=qkahp+PGIk4RgbYDJR1N/fkZ9CN5sTyTwVyw/HdC2kw/MWn4PR10JUyxeaiCsgUkqv
+         aSAtwepVBbvfRhrMDIyRyTvWzz8FtAyQYZYr1IUJSos51/aD/kf0rOfVRQW+SWRJsl0D
+         1J41nxZtHcVrNwf3OSx0cZBef5JVxSNIMFqFj8szNc6l8XdVmW6vbx5zZNy9a+pQJUCd
+         nzjC04p069FYMeiQzbAB9g1mKOW7n0SNXsgdrIxhZNTgl60hXCFX6AWklyAQzXZ88Ipv
+         rhYIznlGGdLXDPCf4m5mLZk7QeFSuK6wu5hFwO/2Ci3G1kO6l01z8UOATgXozSn5SeQd
+         gj2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=;
+        fh=G4ttreu1XbDxGp98NhTn52u7jGVfLG0EkzDXFLH5irE=;
+        b=V+9+V8Pgeh3dl0mRcJMGCjfkrOzxrUFzvnL3tyt1vjmhAYFigcVaPM+sqR0qSqJ7qr
+         DmSH5wRSYzXnM5TYF0WjPNtRBN0OhucnVWDkgwHiL+LVxFNP8QfIBqKG4NBAJW+hfLEw
+         PIghG/hOS5gt+rRLmB66buQzw7g6sjvWl6kphCcM4JfEXeghz5eZ8YQPSdmmenbBumeC
+         mYmP7iF9ERsq+Nh6ONw6eJpnOppXR2GWYLqvdk6HveW0+gJdH4IInkze1PfHD/Nomzqk
+         2KnUYeHUZN9J/9XNLI16lfuXDsYGAYybAeMH5Api2s/4CTFxgWzu1lYqEsqFm/Ygv2rN
+         PWPw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20260707.gappssmtp.com; s=20260707; t=1795556288; x=1796161088; darn=lists.infradead.org;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+        d=googlemail.com; s=20260707; t=1795556327; x=1796161127; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=XvU8I+vB/hnkSYqyvTC9KODVvqvC++EcA5WWKHIkmy4=;
-        b=PWLLp7S4jf3Ac8oxvJeks905cxZ3/nsfan97XhrdYTsKc5h5MZAnSuR7T1lUkpC3CZ
-         Qflo3z361VLot/tObGtKKAhG1raJyqSV2ffRjNSFFYvDaMBWDLEtvzaic4JKCLr+JjEq
-         oE9XxCfbgsyJvfDcipLhrvtRvKSnE6qfy2IBMakyxPWfDl4YQjjv3Q0u+wQRuBzWzswc
-         RWIwZXVQ+LF1T4RK2sXE78S14EhyyPacj2fupdDtOwmkc0J2JzTT6Kb1lkHdz+vDDF75
-         Obs9hODwsqiXDsiyUmaVjIH1fxcueAaPIBs4CAZ5kJNT2xtMLY80RUhCiDbQt1Gehso8
-         CjGg==
+        bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=;
+        b=gAXpA0I2AaIOFL+9uv8+txjCVC4OfgsECIwIl5xNYB+YjQal0Fdznyh3i/QbGDA0Uv
+         79cTAsc28aNHCGX361pGFc9OJZxTi+L545SctYl+PnQlrqHklLaBKlpJEYAIPCxN/0Rp
+         49q1brAYT9k8A/NQhWJYaBcc1XcP2KctdQ/1GJcQilPpjZib76UVz+ghojDuMueaNshD
+         s4ylws7PGz0Y/AXzkRFFIB++iutTZdvcy1t8ar+q8/XWJOHm1ic2JEuim9zYgzAUlzEi
+         JA0lwL6z0kVyTTlG+JK09ZCLAnpscnJSaS6Y53kiVTnpSo0eSst0FNoSTDJd4r/wkVHE
+         P6Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795556288; x=1796161088;
-        h=mime-version:user-agent:content-type:autocrypt:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+        d=1e100.net; s=20260707; t=1795556327; x=1796161127;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=XvU8I+vB/hnkSYqyvTC9KODVvqvC++EcA5WWKHIkmy4=;
-        b=JzVL7PNKDZ3ZVZCgPtLw3Uru6LmVmo791T5IYIbwNO6vpF8TwDwT0GUa2JBPgMzox9
-         kYNHUI2TPlvFY4EQIxb0EvzsFEK4egrhG+u1jIIZwkCp+EptGRFpE4vL/fif2ONPfGvZ
-         2OyVqIPXZ3IJUy7B0M+569+1aLsn327ddxv+YHg8lf9Jh5zzB0WRvB9rVjgacjeJzWWJ
-         yXouFkTodfJFwe5om0ZCnOW+VLE4Smz6v3VGYiwaIMly1r9Ro+ztoee1nAK/n74+CKyW
-         fTMqsAHllWbI/slXXuANfqUAj7PmNCmQHU04j7cARurQ4T0MFPgzQV6JxLMUmD4HKGuo
-         Ic6A==
-X-Forwarded-Encrypted: i=1; AL+hErHFjkweLYVQE3Jcc0RxJzyqwAJFNp2h84I3dM/vO+F5N28Y1WYXE7eBMAIeBfDWcjz/7KXPfbhVD7Abyakv7XUT@lists.infradead.org
-X-Gm-Message-State: APuU4Z+H+4pB71sEY6JkhXIjJpVEDoPtff5deAlaBzzf1vHM1x7LCvPk
-	h/UNdBcuH+p7mCg8TmsV8kAHqrSOp406rvPlYNoR+MPp8aKGpzmzLU5wj9YRcB+VNso=
-X-Gm-Gg: AZFdTZfqdISJKxVpyRjavAI7rZeSxWHS8dBLFhosUG51gc1Xx0YhXZROdAfXaV35t88
-	u51Ho2LEXpDQ4/1D2Ti8lrXI+tds24/xn8o8kgSsVh/b2rByOW0KKWGTb1mzP06sLtyGSk5tpsK
-	iLQF1ACz4B8iIdySBJfp+519gROtmzLsK3PkYDVDx1sdLrp2DZN3Se9O8F+abFWF+btNu4IT+4m
-	2fVT9+Sm5l1JM2NuIIDuEElpG8BrLQa+4TGVlRBTBXBxoQ2Vd/phks7SU/Wzkfn01DBAmJWAPKR
-	a840Xa0nRfifFYll3jR1cUYG5boap6WrNufVfVrJAWGGC8M8FPvXZGUzWmqraBJUc5MOjs+Umb+
-	Z3VFaco4nwbsmFrqRx55SFCwZEhwnWIxTUemBuxob2QiL/qZACpej4flCVcsmWGh0EBaVWWcs8Y
-	jdag+r/0UBYQiCeEP/3ENr6HYwpwV6G8Sg+KWMdzCOgauw0sF7pFfsGRABZgzGH4C9kLfmrkQG0
-	+yXAT8sIDMg2lfsa7eEvwM/WMA3ZrXURYIeEEQBn8YegroWc+GUvOqxzJ3UHD9+QJWqTNmCaVPP
-	eAKXJP/aScqQIegrCrGxOSPkk4JkdiXnBsbXQJE8AJlEuAwKt/bWHZI=
-X-Received: by 2002:a05:620a:2988:b0:93e:c12c:f11f with SMTP id af79cd13be357-949bab3a1edmr2796314185a.75.1795556287741;
-        Tue, 24 Nov 2026 13:38:07 -0800 (PST)
-Received: from ?IPv6:2606:6d00:11:8ec9::c41? ([2606:6d00:11:8ec9::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-949bb4481c2sm1133265885a.43.2026.11.24.13.38.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 13:38:07 -0800 (PST)
-Message-ID: <5282c61813191d778e724ea27e0b81c554ccc945.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 14/17] media: rockchip: rga: move video device to the
- master
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
-	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Philipp Zabel
-	 <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kernel@pengutronix.de, Detlev Casanova <detlev.casanova@collabora.com>, 
- Michael Tretter <m.tretter@pengutronix.de>, Guangshuo Li
- <lgs201920130244@gmail.com>
-Date: Tue, 24 Nov 2026 16:38:06 -0500
-In-Reply-To: <20260916-spu-rga3multicore-v2-14-23aa2cb74e61@pengutronix.de>
-References: <20260916-spu-rga3multicore-v2-0-23aa2cb74e61@pengutronix.de>
-	 <20260916-spu-rga3multicore-v2-14-23aa2cb74e61@pengutronix.de>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-0uIQZovRXgZxDGcSLoFT"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+        bh=+yhNDtVkGsB34hsrY/DrTfudZWn+Znetsqsket55Xcc=;
+        b=B/aZcIWj2KRV0irFSt/aoV8aSpOQE5o6ZgeOglcOQigCQErAskexUE12QbFC0fCONo
+         vDqFzfWFvfkm3XwxVtcwhCO1wC1PzE9fGvMUz/7Oue35uR7ElKF59Qa6vKl1TjTf7vj1
+         iR+EHpw31LpE+lP7WTNYoFahekigrBEz4bX97bru/vhB/7ay1OJzepKTKOzaUTy+cgn8
+         MIAI7toUb9dUPesz9Cy7ZwmTkJ+LUItyLV5FBJWrfkIm2N7c4rZIwh5kAkYnMLHCOx3w
+         sruidkIzyJ4LbDzvFvSlB6SjV5vpUkH/jMc/pP9qMbv3UP2qytfOkqrpbET6sDQiOaCJ
+         +aTw==
+X-Forwarded-Encrypted: i=1; AL+hErG91PtklMKwP/R1HC/TDrJjgCpwAAZsphtF0z2s7DEWPinkTPwlGsp4XVSipWygFk3+cXZOOSwgjoihuTykc+AT@lists.infradead.org
+X-Gm-Message-State: APuU4Z9coC0avl+x6pZt7kkFo5bhroEjyhdeQDcqpIigfOl79aA3gfwC
+	J+ZptWpqMKOhKnKVvIjSiPCUTLqPto4W2k0V7iadFojqFt0GxbOQqJ7NNzYlwpLHA/jTUI2z8hp
+	BY4i2CgONXKI/MK4j/kWKJNGtYPHWCBc=
+X-Gm-Gg: AZFdTZdh7Bu7Ta/xCyf48P80jBkJKHN0bQmAh4OxVZdf2EFQTF4xPr5Irk7D3UVQrBi
+	GhO56OgBL/swI5EeJE3IBNK9TXnHZOWnA0gGKwC4am6i2BIK/pVY7SSm3WuQ7QHRM6xdteaY4Kw
+	Ryq/WikMv5wxmeZYe53xrCGSy8VSDdKl+C0+n5BDja9MoZHHZhGNxgupCv07EPkYi4BgEPK0Mrc
+	Ombwz27hjcgYejx/+x2luPLBnx4eEBMKWnDM2j4s/HedFfGX0ab9aVxwE4TXgV1o4VE3s2rzjul
+	zfPCWXI9szIA71t4PVbE+WU4aonflj21i2txJtgYN7z3TujFPbG54SVa2ztw9JDFvik8nTJdK/y
+	TJkx5mrlUdNvIi6K1QQ85OR7mzxypbslGZAbA7sCY2wJ93CqhkqPb830GvSH2j26nc+smww==
+X-Received: by 2002:a05:690c:a89:b0:8b4:c1ef:db88 with SMTP id
+ 00721157ae682-8b5204dc558mr63502567b3.40.1795556326911; Tue, 24 Nov 2026
+ 13:38:46 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <20261121213102.143130-1-tanure@linux.com> <20261121213102.143130-4-tanure@linux.com>
+ <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
+In-Reply-To: <CAFBinCAzSgCGfXb_Q3FuwEmPAEiHSxzVR_ceyqMNp+LEZ18u1g@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 24 Nov 2026 22:38:36 +0100
+X-Gm-Features: Aa3M54pH5ipmAt51OQad9aGPrJTAjEJ236HllU0tqVNlknXoe88HjErnJUF6ArA
+Message-ID: <CAFBinCD+JwU4mdgE54r0_XT8K5eMt2rjKQ9+3Pnt9V2nviH-fw@mail.gmail.com>
+Subject: Re: [PATCH v8 3/4] arm64: dts: amlogic: t7: add the ethernet controller
+To: Lucas Tanure <tanure@linux.com>
+Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
+	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, iav@iav.lv
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_133809_264187_52181BA3 
-X-CRM114-Status: GOOD (  29.35  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261124_133847_974642_8E92043C 
+X-CRM114-Status: GOOD (  10.13  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,239 +125,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-0uIQZovRXgZxDGcSLoFT
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le mercredi 16 septembre 2026 =C3=A0 17:09 +0200, Sven P=C3=BCschel a =C3=
-=A9crit=C2=A0:
-> Move the video device allocation and registration to the master
-> component bind function in preparation for binding multiple cores
-> to the master. Moving it to the master bind function allows to
-> only register the v4l2 device when all cores have been successfully
-> bound to the master device. This also causes the video device to be
-> bound against the master platform device instead of a specific core.
->=20
-> As v4l2_device_register sets the drvdata (if it hasn't been set) to it's
-> v4l2_device struct pointer, v4l2_device_unregister also zeroes it if the
-> drvdata matches this pointer. This creates a problem, as the driver
-> allocates it's main rockchip_rga struct during probe and sets it as it's
-> drvdata. As the v4l2_device struct is the first element of the
-> rockchip_rga struct, it has the same pointer than the rockchip_rga
-> struct. Therefore v4l2_device_unregister incorrectly assumes that it has
-> set the drvdata and clears it. This causes problems, as unbinding a
-> core will unbind the master component, but not remove it. Therefore when
-> adding the core again, the master component will be bound again and
-> tries to access an NULL pointer.
->=20
-> As the rga core binding expects the rockchip_rga struct to be fully
-> initialized, bind the cores as the last step of the rga master bind.
-> This also avoids a potential isr to hit just between the core bind and
-> the actual initialization of the m2m device.
->=20
-> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
->=20
-> ---
-> v2
-> - unbind components in the error handling of rga bind
->   (https://sashiko.dev/#/patchset/20260606-spu-rga3multicore-v1-0-3ec2b15=
-675f7%40pengutronix.de?part=3D11)
-> - Bind cores at the end, as they expect a fully initialized rga struct
->   (https://sashiko.dev/#/patchset/20260606-spu-rga3multicore-v1-0-3ec2b15=
-675f7%40pengutronix.de?part=3D11)
-> - Fix v4l2_device_unregister clearing the drvdata set on probe
-> ---
->  drivers/media/platform/rockchip/rga/rga.c | 109 ++++++++++++++++--------=
-------
->  1 file changed, 58 insertions(+), 51 deletions(-)
->=20
-> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/pl=
-atform/rockchip/rga/rga.c
-> index fa34b93b1b7a5..39fcb5623095b 100644
-> --- a/drivers/media/platform/rockchip/rga/rga.c
-> +++ b/drivers/media/platform/rockchip/rga/rga.c
-> @@ -746,39 +746,15 @@ static int rga_core_bind(struct device *dev, struct=
- device *master, void *data)
->  {
->  =09struct rockchip_rga *rga =3D data;
->  =09struct rga_core *core =3D dev_get_drvdata(dev);
-> -=09struct video_device *vfd;
->  =09int ret =3D 0;
-> =20
->  =09core->rga =3D rga;
-> =20
->  =09rga->cores[0] =3D core;
-> =20
-> -=09ret =3D v4l2_device_register(dev, &rga->v4l2_dev);
-> -=09if (ret)
-> -=09=09return ret;
-> -=09vfd =3D video_device_alloc();
-> -=09if (!vfd) {
-> -=09=09v4l2_err(&rga->v4l2_dev, "Failed to allocate video device\n");
-> -=09=09ret =3D -ENOMEM;
-> -=09=09goto unreg_v4l2_dev;
-> -=09}
-> -=09*vfd =3D rga_videodev;
-> -=09vfd->lock =3D &rga->mutex;
-> -=09vfd->v4l2_dev =3D &rga->v4l2_dev;
-> -
-> -=09video_set_drvdata(vfd, rga);
-> -=09rga->vfd =3D vfd;
-> -
-> -=09rga->m2m_dev =3D v4l2_m2m_init(&rga_m2m_ops);
-> -=09if (IS_ERR(rga->m2m_dev)) {
-> -=09=09v4l2_err(&rga->v4l2_dev, "Failed to init mem2mem device\n");
-> -=09=09ret =3D PTR_ERR(rga->m2m_dev);
-> -=09=09goto rel_vdev;
-> -=09}
-> -
->  =09ret =3D pm_runtime_resume_and_get(core->dev);
->  =09if (ret < 0)
-> -=09=09goto rel_m2m;
-> +=09=09return ret;
-> =20
->  =09rga->version =3D rga->hw->get_version(core);
-> =20
-> @@ -787,38 +763,13 @@ static int rga_core_bind(struct device *dev, struct=
- device *master, void *data)
-> =20
->  =09pm_runtime_put(core->dev);
-> =20
-> -=09ret =3D video_register_device(vfd, VFL_TYPE_VIDEO, -1);
-> -=09if (ret) {
-> -=09=09v4l2_err(&rga->v4l2_dev, "Failed to register video device\n");
-> -=09=09goto rel_m2m;
-> -=09}
-> -
-> -=09v4l2_info(&rga->v4l2_dev, "Registered %s as /dev/%s\n",
-> -=09=09  vfd->name, video_device_node_name(vfd));
-> -
->  =09return 0;
-> -
-> -rel_m2m:
-> -=09v4l2_m2m_release(rga->m2m_dev);
-> -rel_vdev:
-> -=09video_device_release(vfd);
-> -unreg_v4l2_dev:
-> -=09v4l2_device_unregister(&rga->v4l2_dev);
-> -
-> -=09return ret;
->  }
-> =20
->  static void rga_core_unbind(struct device *dev, struct device *master,
->  =09=09=09    void *data)
->  {
->  =09struct rga_core *core =3D dev_get_drvdata(dev);
-> -=09struct rockchip_rga *rga =3D core->rga;
-> -
-> -=09v4l2_info(&rga->v4l2_dev, "Removing\n");
-> -
-> -=09v4l2_m2m_release(rga->m2m_dev);
-> -=09video_unregister_device(rga->vfd);
-> -=09v4l2_device_unregister(&rga->v4l2_dev);
-> =20
->  =09core->rga =3D NULL;
->  }
-> @@ -944,20 +895,76 @@ static struct platform_driver rga_core_pdrv =3D {
->  static int rga_bind(struct device *dev)
->  {
->  =09struct rockchip_rga *rga =3D dev_get_drvdata(dev);
-> +=09struct video_device *vfd;
->  =09int ret;
-> =20
-> +=09ret =3D v4l2_device_register(dev, &rga->v4l2_dev);
-> +=09if (ret)
-> +=09=09return ret;
-> +=09vfd =3D video_device_alloc();
-> +=09if (!vfd) {
-> +=09=09v4l2_err(&rga->v4l2_dev, "Failed to allocate video device\n");
-> +=09=09ret =3D -ENOMEM;
-> +=09=09goto unreg_v4l2_dev;
-> +=09}
-> +=09*vfd =3D rga_videodev;
-> +=09vfd->lock =3D &rga->mutex;
-> +=09vfd->v4l2_dev =3D &rga->v4l2_dev;
-> +
-> +=09video_set_drvdata(vfd, rga);
-> +=09rga->vfd =3D vfd;
-> +
-> +=09rga->m2m_dev =3D v4l2_m2m_init(&rga_m2m_ops);
-> +=09if (IS_ERR(rga->m2m_dev)) {
-> +=09=09v4l2_err(&rga->v4l2_dev, "Failed to init mem2mem device\n");
-> +=09=09ret =3D PTR_ERR(rga->m2m_dev);
-> +=09=09goto rel_vdev;
-> +=09}
-> +
-> +=09ret =3D video_register_device(vfd, VFL_TYPE_VIDEO, -1);
-
-Shouldn't this be kept last like it was before?
-
-> +=09if (ret) {
-> +=09=09v4l2_err(&rga->v4l2_dev, "Failed to register video device\n");
-> +=09=09goto rel_m2m;
-> +=09}
-> +
->  =09ret =3D component_bind_all(dev, rga);
->  =09if (ret) {
->  =09=09dev_err(dev, "component bind failed\n");
-> -=09=09return ret;
-> +=09=09goto rel_m2m;
->  =09}
-> =20
-> +=09v4l2_info(&rga->v4l2_dev, "Registered %s as /dev/%s\n",
-> +=09=09  vfd->name, video_device_node_name(vfd));
-> +
->  =09return 0;
-> +
-> +rel_m2m:
-> +=09v4l2_m2m_release(rga->m2m_dev);
-> +rel_vdev:
-> +=09video_device_release(vfd);
-> +unreg_v4l2_dev:
-> +=09v4l2_device_unregister(&rga->v4l2_dev);
-> +=09dev_set_drvdata(dev, rga);
-> +=09return ret;
->  }
-> =20
->  static void rga_unbind(struct device *dev)
->  {
-> +=09struct rockchip_rga *rga =3D dev_get_drvdata(dev);
-> +
-> +=09v4l2_info(&rga->v4l2_dev, "Removing\n");
-> +
->  =09component_unbind_all(dev, NULL);
-> +
-> +=09v4l2_m2m_release(rga->m2m_dev);
-> +=09video_unregister_device(rga->vfd);
-> +=09v4l2_device_unregister(&rga->v4l2_dev);
-> +=09/*
-> +=09 * As &rga->v4l2_dev =3D=3D rga, v4l2_device_unregister (incorrectly)
-> +=09 * clears the drvdata. Therefore just set it again
-> +=09 * (ensuring it's correct regardless of the struct member position)
-> +=09 */
-> +=09dev_set_drvdata(dev, rga);
->  }
-> =20
->  struct component_master_ops rga_master_ops =3D {
-
---=-0uIQZovRXgZxDGcSLoFT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCawYDvgAKCRDZQZRRKWBy
-9GqGAP4q+QYBtXorY2V20/Fjjuwd/k9H1RlDAJC1g2YbcNegfwD+N43LeKqeaQ/8
-2zEP9Za6fbSKXjaFDf0/ir5zRkms4gs=
-=wsLc
------END PGP SIGNATURE-----
-
---=-0uIQZovRXgZxDGcSLoFT--
+On Tue, Nov 24, 2026 at 10:37=E2=80=AFPM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> On Sat, Nov 21, 2026 at 10:31=E2=80=AFPM Lucas Tanure <tanure@linux.com> =
+wrote:
+> [...]
+> > +                               int_mdio: mdio@1 {
+> > +                                       reg =3D <1>;
+> > +                                       #address-cells =3D <1>;
+> > +                                       #size-cells =3D <0>;
+> > +                                       status =3D "disabled";
+> Lucas, Igor (+Cc) has taken a closer look at the MDIO mux, see [0]
+Sorry, I forgot to Cc him :-(
+Now he's actually looped in
 
