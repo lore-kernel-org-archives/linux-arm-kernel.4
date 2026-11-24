@@ -2,138 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0405F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 10:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B12160A2611
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 10:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TAP4TH/R;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=U54QDspb;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=ZomSebAG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a0gXRExX;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=CVxxf0ge
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:CC:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xtnMeRk0k0X/YY378KWkQdBLEz1neR4yAcGqKsNa8lo=; b=TAP4TH/Rj+JNVHh4aYdU4wB13Q
-	d3ftsvmG/OG6tGdv2BzhxBDXQMPxuFj0GiEkV88eZs4abZ0d4GSpra5d21ScpRl0ohFNo353oOqg6
-	5OesKlFE48m61S7wuE/AjTl9TSo5jXG9s4XMKr6johM+7VaVGI4BRpnKKnSPHrxXGQAHPae4pwBu9
-	WQmJRtopY2x2dzKWd2D59J6d4onrJIYyD/yvIkTbwtukbExBm0N95/wE5t+buw/xZNqxuIIhI4I+r
-	pfmKs9O0qpMoYcmDlZksMM6wLqjPp7sRDS5TdOasnwuY4vgKwvDkaBNlwZgJ1A4ZCiEAiOy1Ev4CA
-	UDZdcHTg==;
+	bh=bdUTdf9dDgBjwg07WL55Ogde5gI6LPVoDQfRnrqmUtk=; b=a0gXRExXTw1zqG9DEx4+Kht5uF
+	SsgindhjNDe/P7711Yjb7Ct0mp+P4tu6t7/7PWy0sv8nG23j0/felQ2GheWQkhygEJKW0JZFcfcb1
+	DbaMiHVIyAT1VFxh/LT6QmMX+8FbyaLtNTWz9Ww1Jg1KWEO7mx7pBjdB19ftqSfJr0XxZifXS5MjC
+	LgoIfCawra8jmbNHlTvA/owPQuYwNVeVNPn7BeNxHPQSMq1g0LYBZnrUZMnJa3oL3lN1qOwLlZnuD
+	M1LUS9vE4bC3qibrUG5OziJoEqZi5csX1gukDGGJI6SrityF+mKEkgV8tWDI4k7uEvYBVhxblWRJD
+	YG2X7jYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoA9-00000006H47-20x0;
-	Tue, 24 Nov 2026 10:54:13 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xVoDD-00000006HLJ-0BvT;
+	Tue, 24 Nov 2026 10:57:23 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoA7-00000006H3X-3pRw
+	id 1xVoD9-00000006HKw-1jkx
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 10:54:13 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AO8V10q4129094
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 10:54:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=xtnMeRk0k0X/YY378KWkQdBLEz1neR4yAcG
-	qKsNa8lo=; b=U54QDspbURrXSFvwLCDnst4SWJrgGzcewuAFI+pXYnHplW/6MFC
-	a7u2D6vIyX1jn6NTv02kFtu5ljRnqAXMfnx3A+E/SnK+z6VsYLkFXsbr/wxUFAim
-	WBy5B43P47xCERB6OkVo7WGc85ImIibAjESElACLlJ6iUwT4ARZDVdBPDRDsFQwb
-	gZTrIofwsI2m8jEuGNr4UGIR3htH/sHmIYk85YiwCvuL1w9CXX3F1FadoMqJMxUh
-	iPLdlu9fmu/UZaIQpndXY1mm/+9ypiTFGJ+vkDHvrlDbQ/H0gr40U9e1FLsuy/np
-	ZU2NVlmp/wycRwq4DmFOwMSJO6geEo3i1GA==
-Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j4yyt2ab6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 10:54:11 +0000 (GMT)
-Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-1b3b45597c7so5304010c88.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 02:54:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795517650; x=1796122450; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=xtnMeRk0k0X/YY378KWkQdBLEz1neR4yAcGqKsNa8lo=;
-        b=ZomSebAGwYosTKAcR7LHAyTqzZAFu8wBredwm0+yMcAURyjImauSdsXOVAwmBxAYRw
-         3y5lgVKcQbg6kgLpA7/9a/A7gWCUCp5XTDk6+yTZ28x2p0mMyU7tsqgM5MNPGoVGhj2s
-         kuI4TZe0mh5nhJMBgEuFe762h8Ha+eIBrp2Pl256Md8Nz9i+GC6x8giFB0JwYcupvuo9
-         rTJSWaVPN+30NqjrtXU0Rbourdlr7kgFcGAVvq5i0Ew8XVF86WAPOyzENlD784q6y2js
-         U21ukkcTikziQrckubNWM6GAm2n9yMTSpDTFZnYHslm5dI0oih0E6iXsMkyxDXqaCL7b
-         jUfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795517650; x=1796122450;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=xtnMeRk0k0X/YY378KWkQdBLEz1neR4yAcGqKsNa8lo=;
-        b=nJhFNLA+m2BwrGtJTIESeGewJGcH2HNtCrVX4a+ktnLVTWnM/A3660HSMIbM7O6PfF
-         5j0UfSLvyErjf3OfQiNR/8gJWJr29VqFNQDTt7hdQPN10XaNuCT2lwkW6vIYHsDbya22
-         Iy6ZCrUbgAXPeCUPII6uel4FIBp4UrTwNqrEjRgKJAP8UtZ7wt1JKzHPdthfgeHHF4Zo
-         Ps/aIE3wsk1IKdClB/SEeO7HM0L0HmqY/RQF86EZTclRlQyT49lW00Bbcl034YWxVASq
-         XD94CqXfQoft6svNwWgi1J57U2fgnb0X8E8Aooc7xaU+rXxxRW9FV6v3F59r5yFYE89k
-         u+1w==
-X-Gm-Message-State: APuU4Z9zne30ssXRjqn86EOfVukJK29xlnwXi5eDMAp21qD5+xZr2E/b
-	OUFX7/OQfDwqZLTtqvYksDyGfLKvBpRgiQpEbAnrMA+fpecOWMz7AU602CWfEZNh8iFYImhpRXu
-	Ml56+R3VnqfHQ5sJXN6zXZ3EqehD5cwO7IL+XQUGljz2zhG7lkmgYOPhPd3fHXRbwWu7BTX1DUj
-	IQzQ==
-X-Gm-Gg: AZFdTZePIrEZgDHkJj6YBCEAlQjFpjXEl66wRvi0pDu7vRpLhRbZiSLWPOBIdl4Ww7a
-	JmCD0QEfx7GEahDYiPfYxN+IgCpIJPRwFkho/wczT+JKSm28EKyYte0D1sfA7UlIEFuj5rPhTRC
-	+oDLgqYzlXo2CH4qhzxz82swndQrPxwlef4Bzl+njgQaYktyaMko98sJnbcg9mo67KDtR9QaMtt
-	FQTxY3FE7u70+2V9xpIHgMA6rgohbzn/NM2afdZVpMV1ErMNduS6b8YDPRQivKMSfJFnEBohC8h
-	N9ZWGJTeoZcISwU5QwfYTDP4KRhN+rJxVNG1GtO/KDUaopblN98WIWjnAIiU9VPpQVhgT19Jhbo
-	JwYRwZwbae7+okebWnA6+TvQnKkE5ESacwzAFfct/cgQYERf0ArSuy61ic4vUKN6MbzuEPC1Na2
-	sCrRNgiD9PUMZxQkJMM/6oYgS5gp8LV61biJ6w2WNB/TxzThnZfEn27vs=
-X-Received: by 2002:a05:701b:2313:b0:151:5d01:9316 with SMTP id a92af1059eb24-1b5568b0f32mr15389023c88.23.1795517650498;
-        Tue, 24 Nov 2026 02:54:10 -0800 (PST)
-X-Received: by 2002:a05:701b:2313:b0:151:5d01:9316 with SMTP id a92af1059eb24-1b5568b0f32mr15389004c88.23.1795517650083;
-        Tue, 24 Nov 2026 02:54:10 -0800 (PST)
-Received: from hu-ymg-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b556847fdasm39083831c88.13.2026.11.24.02.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 02:54:09 -0800 (PST)
-From: Yadu M G <yadu.mg@oss.qualcomm.com>
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: iommu: Add Seca SMMU compatible
-Date: Tue, 24 Nov 2026 16:24:04 +0530
-Message-ID: <27f6e560a71f770078ef26137207905870c6ce58.1795517644.git.yadu.mg@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+	Tue, 24 Nov 2026 10:57:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1795517839; x=1827053839;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=l071rGFlMII7tXc4PoX3isJvA0LZxydeqW53eKRfYjU=;
+  b=CVxxf0geB8Zt9B4Hlh66MfOVGkFzAg35exQ4xtmkt5q1zhOgw2DHknET
+   BTGRIcpIAwzp2W3ifRkDlx33xghDmMhzmMT9VKFxlKiPZBkST9r0UVjj6
+   3OwiuXnl5z9nky7OVoe9uGKWth4pi+9XCYT6wbvs62qYEh6UcESI2Pe/V
+   5P1rrrI8rwLAxqEFXnkLt/OAHaGHvnm+cAATjOOwGvekCc+hdpZQK5jUf
+   DFTNviuDYMVJHhsPoZ74Q7pQ+5RIuY6wl22Kc3+3ZnBnZzxWuw/YOGxAB
+   L8cip1j54sfpMf/+IWzcdd8qrSqcXwsaioOyBs2QoqStlKocVKlc8vClR
+   A==;
+X-CSE-ConnectionGUID: hXAbyUf2Tf2cH5n/PB8PbA==
+X-CSE-MsgGUID: TskSu2hHRfiYPfY7zteBXg==
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
+   d="scan'208";a="67206544"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Nov 2026 03:57:18 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 24 Nov 2026 03:57:17 -0700
+Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 24 Nov 2026 03:57:14 -0700
+Date: Tue, 24 Nov 2026 11:57:14 +0100
+From: Daniel Machon <daniel.machon@microchip.com>
+To: <netdev-bot+sashiko@kernel.org>
+CC: <andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@kernel.org>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <Steen.Hegelund@microchip.com>,
+	<UNGLinuxDriver@microchip.com>, <richardcochran@gmail.com>,
+	<linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<robert.marko@sartura.hr>, <horatiu.vultur@microchip.com>,
+	<jensemil.schulzostergaard@microchip.com>, <horms@kernel.org>
+Subject: Re: [PATCH net-next v3 2/9] net: sparx5/lan969x: free the FDMA
+ buffers on init errors and deinit
+Message-ID: <20261124105714.fi22ofd5ll56kjj4@DEN-DL-M70577>
+References: <20261120-sparx5-mtu-change-v3-2-55c272fe1acc@microchip.com>
+ <179544589378.3135.12983025959243801234@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDA0MiBTYWx0ZWRfXxVXLsJZJckgk
- SDIGIdSJ9w7LKD9k64igyMLq8S1cx96FWbKsh6PqSKZExOeO5NPe5zV6OjWNYRhZjUWnsRrsKtI
- BKto9At0Q0F79d4jmcsjZFwJA8D76ME=
-X-Proofpoint-GUID: WYArQ7H3A7WSpG41Z9Q9Zz8pD5XZLTse
-X-Proofpoint-ORIG-GUID: WYArQ7H3A7WSpG41Z9Q9Zz8pD5XZLTse
-X-Authority-Analysis: v=2.4 cv=W9OtxhWk c=1 sm=1 tr=0 ts=6b056cd3 cx=c_pps
- a=JYo30EpNSr/tUYqK9jHPoA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8
- a=lHObh2IfMKzVuqTG74EA:9 a=Fk4IpSoW4aLDllm1B1p-:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDA0MiBTYWx0ZWRfX8H1x0cujBMBt
- CBoEib+YntsUsL1p6aOsMoeU78JTOuR7w5Hq+45/FY29ciUQ1q/u93WR/T/4Qeyr+uBTUNyCtcH
- z5NtqhX9IQMrN4KV+tZ6sFrHajXg1aFRTaHSGA+FpgCLT6Ynj//nfDMkDKdxMfHkfaTm6zIuCYm
- 0B4M3jUs6V12+Dm8ZoOw8G+5zh3WFw0IlgD0viVHToR1UJEiOCCEswVu6rSU0GNI1JuMhdawAzq
- 1ByawPxq5yKyGt9gdKGa7gS6iWgvdQFToTeOndwIS5LbYwKjvy+RpDbVccX32xOV5cIZuMVra5T
- HnPZkH8FX5M70LHdfyAWRPZgA3jLNONzkWqI7YIf4Leyu6ziDnFgOuEvneRmp/bCpXflBo6fVMv
- gqEsGuIMseyXZ5S6zgKlnENGuvY7FzZ41h5jfh0nwGIAeoFCzpmeHWRBdnrblOHqKqQ+Vr5NR3s
- OkYh9W1owHXX8waTfhA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-24_01,2026-11-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 bulkscore=0 adultscore=0 clxscore=1011 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611240042
+In-Reply-To: <179544589378.3135.12983025959243801234@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_025411_957170_63359524 
-X-CRM114-Status: GOOD (  13.51  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261124_025719_645180_C7C02FF5 
+X-CRM114-Status: GOOD (  49.18  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,47 +91,242 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add qcom,seca-smmu-500 compatible string for the SMMU instances
-in Qualcomm Seca SoC.
+> Thank you for your contribution! Sashiko AI review found 2 potential
+> issue(s) to consider.
+> 
+> Critical: 0 · High: 0 (1) · Medium: 1 · Low: 1
+> 
+> If you believe none of the issues are legitimate, please reply to each
+> issue of Medium severity or higher and explain why the AI is wrong.
+> If any of them are legitimate and you plan to respin, please let patchwork
+> know by including "pw-bot: cr" as a separate line at the end of your reply
+> (one such reply per series is enough).
+> 
+> - [Medium] At this commit, lan969x_fdma_rx_get_frame()
+>   (drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c) reads…
+> - [Low] This patch fixes several real bugs but has no Fixes: tag: -
+>   Sparx5 RX skbs leak on every deinit, and the RX DCBs leak when TX…
+> 
+> Pre-existing issues:
+> - [High] This problem wasn't introduced by this patch, but both NAPI
+>   pollers ignore fdma_dcb_add() failures when re-arming consumed RX…
+> 
+> --
+> 
+> net: sparx5/lan969x: free the FDMA buffers on init errors and deinit
+> 
+> This patch adds sparx5_fdma_rx_free(), lan969x_fdma_rx_free() and
+> lan969x_fdma_tx_free(), and calls them on the init error paths and on
+> deinit, so the RX skbs/pages, page_pool, DCBs and in-flight TX buffers
+> are released. It also checks the fdma_dcbs_init() return value for RX.
+> It stores the mapped TX length in struct sparx5_tx_buf instead of reading
+> it from the skb.
+> 
+> > diff --git a/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c b/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
+> > index fd532c89f9110..5f96910df5383 100644
+> > --- a/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
+> > +++ b/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
+> > @@ -67,13 +67,13 @@ static void lan969x_fdma_tx_clear_buf(struct sparx5 *sparx5, int weight)
+> >  		if (!fdma_db_is_done(fdma_db_get(fdma, i, 0)))
+> >  			continue;
+> >
+> > -		db->dev->stats.tx_bytes += db->skb->len;
+> > +		db->dev->stats.tx_bytes += db->len;
+> >  		db->dev->stats.tx_packets++;
+> >  		sparx5->tx.packets++;
+> >
+> >  		dma_unmap_single(sparx5->dev,
+> >  				 db->dma_addr,
+> > -				 db->skb->len,
+> > +				 db->len,
+> >  				 DMA_TO_DEVICE);
+> 
+> [Severity: Low]
+> Should this patch carry Fixes: tags?
+> 
+> Before this change, lan969x_fdma_tx_clear_buf() read db->skb->len for
+> two-step PTP skbs in the normal TX completion path. Those skbs stay on
+> port->tx_skbs, and lan969x_ptp_irq_handler() can free them before NAPI
+> reaps the TX descriptor:
+> 
+> lan969x_ptp_irq_handler() {
+>     ...
+> 			__skb_unlink(skb, &port->tx_skbs);
+> 			skb_match = skb;
+>     ...
+> 		dev_kfree_skb_any(skb_match);
+>     ...
+> }
+> 
+> The PTP timeout purge can free them the same way. That makes the old read
+> a use-after-free, and dma_unmap_single() could be given the wrong size.
+> 
+> The commit message explains the switch to db->len. It doesn't say that
+> this fixes a use-after-free at runtime, and the subject only mentions init
+> errors and deinit.
+> 
+> The other fixes here also have no Fixes: reference:
+> 
+> - the Sparx5 RX skb leak on deinit
+> - the lan969x page_pool, TX DCB, tx->dbs and in-flight skb leaks
+> - the put of never-allocated pages after a partial RX fill
+> 
+> Without the tags, stable trees that ship lan969x FDMA probably won't pick
+> up the use-after-free fix. Would it make sense to split the lan969x and
+> Sparx5 fixes, since they go back to different commits, and tag each one?
+> 
+> > @@ -90,12 +90,26 @@ static void lan969x_fdma_free_pages(struct sparx5_rx *rx)
+> >  	struct fdma *fdma = &rx->fdma;
+> >
+> >  	for (int i = 0; i < fdma->n_dcbs; ++i) {
+> > -		for (int j = 0; j < fdma->n_dbs; ++j)
+> > +		for (int j = 0; j < fdma->n_dbs; ++j) {
+> > +			if (!rx->page[i][j])
+> > +				continue;
+> > +
+> >  			page_pool_put_full_page(rx->page_pool,
+> >  						rx->page[i][j], false);
+> > +			rx->page[i][j] = NULL;
+> > +		}
+> >  	}
+> >  }
+> 
+> [Severity: Medium]
+> Can this still put a page the driver no longer owns?
+> 
+> At this commit, lan969x_fdma_rx_get_frame() reads the slot but never
+> clears it:
+> 
+> lan969x_fdma_rx_get_frame() {
+>     ...
+> 	page = rx->page[fdma->dcb_index][fdma->db_index];
+> 
+> 	sparx5_ifh_parse(sparx5, page_address(page), &fi);
+>     ...
+> }
+> 
+> The page then goes to the stack through build_skb() and
+> skb_mark_for_recycle(), or back to the pool through
+> page_pool_recycle_direct().
+> 
+> The slot is only overwritten when lan969x_fdma_rx_dataptr_cb() succeeds:
+> 
+> 	page = page_pool_dev_alloc_pages(rx->page_pool);
+> 	if (unlikely(!page))
+> 		return -ENOMEM;
+> 
+> 	rx->page[dcb][db] = page;
+> 
+> lan969x_fdma_napi_poll() ignores the fdma_dcb_add() return value during
+> refill. So if that allocation fails, the slot keeps pointing at the
+> consumed page.
+> 
+> On teardown, lan969x_fdma_deinit()->lan969x_fdma_rx_free()->
+> lan969x_fdma_free_pages() sees a non-NULL slot, and the new NULL check
+> doesn't skip it. Wouldn't page_pool_put_full_page() then put that page a
+> second time?
+> 
+> The Sparx5 half of this patch clears rx->skb[][] in
+> sparx5_fdma_rx_get_frame(), but lan969x gets no matching change. The NULL
+> check therefore can't tell owned slots from stale ones.
+> 
+> This looks to be fixed later in the series by "net: sparx5/lan969x: add
+> support for resizing the FDMA buffers". That patch adds
+> rx->page[fdma->dcb_index][fdma->db_index] = NULL in
+> lan969x_fdma_rx_get_frame(). Could that change move into this patch so
+> the commit works on its own?
 
-Signed-off-by: Yadu M G <yadu.mg@oss.qualcomm.com>
----
-The Seca SoC device tree using this compatible will be posted as a
-separate series.
+This needs a failed RX refill first, which is the pre-existing refill issue
+flagged on this patch, where the lan969x RX ring already stalls.  It is also
+only reachable on deinit. Also, the issue go away with patch 6.
 
-This series was prepared with help from an AI coding assistant
-(Claude). It assisted with review on the device tree, bindings and
-driver (formatting and alignment fixes), rewording commit messages,
-and running the validation steps (checkpatch, dt_binding_check,
-dtbs_check and W=1 builds). All changes were reviewed and tested on the
-Seca Ride board.
----
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 6748351c7812..6700d3151783 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -59,6 +59,7 @@ properties:
-               - qcom,sdx55-smmu-500
-               - qcom,sdx65-smmu-500
-               - qcom,sdx75-smmu-500
-+              - qcom,seca-smmu-500
-               - qcom,shikra-smmu-500
-               - qcom,sm6115-smmu-500
-               - qcom,sm6125-smmu-500
-
-base-commit: 3191063649dbf7c0d0b768e1f3655e4c5fc6edb5
--- 
-2.43.0
-
+> 
+> [ ... ]
+> 
+> > @@ -172,14 +186,18 @@ static int lan969x_fdma_rx_alloc(struct sparx5 *sparx5)
+> >  		return PTR_ERR(rx->page_pool);
+> >
+> >  	err = fdma_alloc_coherent(sparx5->dev, fdma);
+> > -	if (err)
+> > +	if (err) {
+> > +		page_pool_destroy(rx->page_pool);
+> >  		return err;
+> > +	}
+> >
+> > -	fdma_dcbs_init(fdma,
+> > -		       FDMA_DCB_INFO_DATAL(fdma->db_size),
+> > -		       FDMA_DCB_STATUS_INTR);
+> > +	err = fdma_dcbs_init(fdma,
+> > +			     FDMA_DCB_INFO_DATAL(fdma->db_size),
+> > +			     FDMA_DCB_STATUS_INTR);
+> > +	if (err)
+> > +		lan969x_fdma_rx_free(sparx5);
+> >
+> > -	return 0;
+> > +	return err;
+> >  }
+> 
+> [Severity: High]
+> This isn't a bug introduced by this patch, but the same RX buffer
+> allocation failure is now handled at init and is still ignored at runtime.
+> Can RX stall for good when the NAPI refill fails?
+> 
+> Both pollers ignore the fdma_dcb_add() return value when they re-arm
+> consumed RX DCBs:
+> 
+> lan969x_fdma_napi_poll() {
+>     ...
+> 		fdma_dcb_add(fdma,
+> 			     old_dcb,
+> 			     FDMA_DCB_INFO_DATAL(fdma->db_size),
+> 			     FDMA_DCB_STATUS_INTR);
+>     ...
+> }
+> 
+> sparx5_fdma_napi_callback() {
+>     ...
+> 		fdma_dcb_add(fdma, fdma->dcb_index,
+> 			     FDMA_DCB_INFO_DATAL(fdma->db_size),
+> 			     FDMA_DCB_STATUS_INTR);
+>     ...
+> }
+> 
+> In fdma_api.c, __fdma_db_add() writes the status, with DONE cleared,
+> before it calls the dataptr callback:
+> 
+> 	db->status = cpu_to_le64(status);
+> 
+> 	err = cb(fdma, dcb_idx, db_idx, &dataptr);
+> 	if (unlikely(err))
+> 		return err;
+> 
+> The callback can fail in two places:
+> 
+> - __netdev_alloc_skb(..., GFP_ATOMIC) in sparx5_fdma_rx_dataptr_cb()
+> - page_pool_dev_alloc_pages() in lan969x_fdma_rx_dataptr_cb()
+> 
+> When it fails, __fdma_dcb_add() returns early. dcb->nextptr/info are not
+> written, the previous DCB is not linked to it, and fdma->last_dcb stays
+> the same. The next successful refill links last_dcb to the following DCB,
+> so the hardware chain skips the failed one.
+> 
+> The software index fdma->dcb_index still walks the ring in order. Once it
+> wraps to the failed DCB, db 0 has DONE clear and the hardware never fills
+> it. After that, fdma_has_frames() (lan969x) and fdma_db_is_done() in
+> sparx5_fdma_rx_get_frame() return false on every poll.
+> 
+> Wouldn't FDMA extraction to the CPU then stop until the driver is
+> reloaded? This is still the case at the end of the series.
+> 
+> Generated by Claude Code Patch Reviewer
+> 
+> -- 
+> Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120-sparx5-mtu-change-v3-0-55c272fe1acc%40microchip.com
 
