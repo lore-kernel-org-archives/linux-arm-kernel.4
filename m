@@ -2,68 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE03606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38D2606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 12:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kjCKohHO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k0kVkh8d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=koFL54Nr;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=eJuqpyR4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FgfkXvgrc7uLZ8CZZkTM/Ni360utD6hlAVDSp6eqokk=; b=kjCKohHOwyU0bqM+5yYjndJm/T
-	odBuFuRWch8hSCUSA/A1JcmkMARiNTmL5USvqVzSAPkacjoHz9f49wb+mYf9tBBxhkx2svrcLA0MG
-	YrmKWrCqS8hLF2v9xmtZBbhj7fWZrC2ubVYzyTmGrIJjOxu7lhjR7WuC6y5TBFpgoxjyiBr1cmH7a
-	9TE22dclxQ+PjozUxeXqSfn7orGX6ZjmbRMRIcYhwzAwkCk0CBW4BGb7+hZOTYfvGZNGPrAFajx3j
-	ERYRMfJKZsJJFGWMgh0XBglW2cJxjKBMEcCgv+Iqr4+i/uRXF+SmCyC7mquvMuaSyNpFSGNURJaYb
-	btUG3nPQ==;
+	bh=5AW2nipPEcXSmS9V+T3J/dS9piHtleVZliKtt/7SoWY=; b=koFL54Nr0nUfxFBg91y7Jdsp7P
+	x53SR6AtSQEFD4T4N1BID5NgkLlB7oGp/M9q6IARmb+UvpfyFVokwD8uRuU44LWaFX4xOeARPTVJK
+	5Trkqn+y7B0AgzZsDRsRnUgJBQwBShjKxhNb37APuxy0J20RurVuu1DquzSqHL0w5ss2pTtao1VSr
+	DW9Ub+CthdplQQ6SrPHfR4n6Wj8Jt1UiQHWVF4Mqxh2BoBweMMGWI5oefByXvY/X0SeJFU/gIg9m0
+	djBwXmImjIDkMwNxliJWAZmSAi4mf3Uv9vDcW15FrJmfmSzSMFabn7PbyidUuvcdK4j8Cn5UywEF2
+	r9FRyDbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoVt-00000006JJx-2Qke;
-	Tue, 24 Nov 2026 11:16:41 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVoVe-00000006JHY-03u3
+	id 1xVpCq-00000006Rsm-3ijG;
+	Tue, 24 Nov 2026 12:01:08 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVpCW-00000006Rp9-2yTf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 11:16:26 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7669B621A7;
-	Tue, 24 Nov 2026 11:16:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E39731F000C0;
-	Tue, 24 Nov 2026 11:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795518985;
-	bh=FgfkXvgrc7uLZ8CZZkTM/Ni360utD6hlAVDSp6eqokk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=k0kVkh8dZcS/xPqg16cgv3QP+uZzFSq2766UJlz1RxFDRIymeZXSFErQy7uhrfZLR
-	 VT/mwGl14pTgUJ4A2BYosFih2psoKYXILqbhLHy3Z390QCcdA3nBrjR9dS2bjgbNSw
-	 R6UUBCbAWaZ93WvZQMXK4Wg32x85Fxzzy9tQ1IRodkJmsbOX1wukPze5ZNE8sW1osT
-	 10thy26lELO1nJlPytAKtP9Yncw0tVEmA+YdXSHdh8W7Rbk0Lawy4tmEikl0t28srd
-	 Ip2tZEhVDWIHrBuIeH6jcifwLxkIVK12H4G6o9Pwam0UA46I3Bj8uSNn6d7VN3xF15
-	 +nTqmbvqvsKjg==
-Subject: Re: [PATCH net-next v4 5/5] net: stmmac: dwmac-sun8i: Register the
- MDIO mux in the MDIO setup
-From: netdev-bot+sashiko@kernel.org
-To: aiyengar1990@gmail.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, wens@kernel.org,
- jernej.skrabec@gmail.com, samuel@sholland.org, p.zabel@pengutronix.de,
- linux@armlinux.org.uk, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org
-Date: Tue, 24 Nov 2026 11:16:23 +0000
-Message-ID: <179551898345.3135.1078888477341036847@kernel.org>
-In-Reply-To: <20261120-sun8i-emac-mux-uaf-v4-5-57eba8915f25@gmail.com>
-References: <20261120-sun8i-emac-mux-uaf-v4-5-57eba8915f25@gmail.com>
-X-sashiko-severity: Low
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Tue, 24 Nov 2026 12:00:46 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17FC4339;
+	Tue, 24 Nov 2026 04:00:39 -0800 (PST)
+Received: from e132581.arm.com (unknown [10.2.196.114])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 62A853F86F;
+	Tue, 24 Nov 2026 04:00:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795521642; bh=hUx5iWGPxemOHLjtDseDN4hRI9gZTNF4o/86bVlCibE=;
+	h=From:Date:Subject:To:Cc:From;
+	b=eJuqpyR455142Sz/EpRwc+sVwehwmL2eNwg1JCAkkxha1cvwUWphVSWlo3xs2m+jP
+	 UwqcImt+sbaxy4GWwLxkwJGqxHvUZBdhiOpJDTUraLFmO+Dg4xV6O6RNvEPCNhsiYo
+	 EAmLwS0eHHNrwpRh3AdwHc8g6xAQkheXE+SgCL+k=
+From: Leo Yan <leo.yan@arm.com>
+Date: Tue, 24 Nov 2026 12:00:25 +0000
+Subject: [PATCH] coresight: perf: End AUX output when an event is throttled
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261124-arm_cs_fix_throttling_oops-v1-1-3ad1dfad0159@arm.com>
+X-B4-Tracking: v=1; b=H4sIAFh8BWsC/x3MSQqAMAxA0atI1hbaOiBeRaQ4RA1oK0kRQby7x
+ eWDz39AkAkF2uwBxouEgk8weQbTNvgVFc3JYLWtjbGlGvhwk7iFbhc3DjHu5FcXwinKlFpXBY6
+ 6aQpIg5MxZf+869/3A2noptVsAAAA
+X-Change-ID: 20261124-arm_cs_fix_throttling_oops-140053eb0883
+To: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>, 
+ Vlad Poenaru <vlad.wing@gmail.com>, Amir Ayupov <aaupov@fb.com>, 
+ Suyash Mahar <smahar@meta.com>, Song Liu <song@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Leo Yan <leo.yan@arm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795521640; l=5856;
+ i=leo.yan@arm.com; s=20250604; h=from:subject:message-id;
+ bh=hUx5iWGPxemOHLjtDseDN4hRI9gZTNF4o/86bVlCibE=;
+ b=GXZh30aCOivjBHKOKp57f9FmHnXlJXGBNgeR3eySWnljlJTaZT7KdRlI771cjTUVnG+qH8xAu
+ +lFUlrLLn2tBE+yumLSuHaDHrhN76u3rI+PTR/FVaclklazufkDCRaC
+X-Developer-Key: i=leo.yan@arm.com; a=ed25519;
+ pk=k4BaDbvkCXzBFA7Nw184KHGP5thju8lKqJYIrOWxDhI=
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_040044_845237_8DDB9FAF 
+X-CRM114-Status: GOOD (  19.10  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,153 +81,137 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found more severe
-issue(s) in other patches of this series. This mail is only an FYI, in case
-you want to address the nit picks below when you respin.
+Perf throttles a group by calling each event's PMU stop callback with
+flags set to zero. On a CPU with a trace path, ETM stops tracing and
+leaves the AUX transaction open because PERF_EF_UPDATE is clear. When
+perf unthrottles the event, perf_aux_output_begin() warns because
+aux_nest is still set.
 
-Low priority / nit picks for your consideration:
+  [  181.161897] ------------[ cut here ]------------
+  [  181.161906] WARNING: kernel/events/ring_buffer.c:415 at perf_aux_output_begin+0x1dc/0x1f0, CPU#0:2
+  [  181.234120] arm-scmi arm-scmi.1.auto: timed out in resp(caller: do_xfer+0x1a0/0x558)
+  [  181.234223] cpufreq: __target_index: Failed to change cpu frequency: -110
+  [  181.286675] Modules linked in: panfrost tda9950 hdlcd tda998x drm_shmem_helper drm_client_lib cect
+  [  181.314139] CPU: 0 UID: 0 PID: 352 Comm: perf Not tainted 7.1.0-rc1-00058-gdca922e019dd-dirty #11
+  [  181.323915] Hardware name: ARM LTD ARM Juno Development Platform/ARM Juno Development Platform, B5
+  [  181.334732] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+  [  181.341721] pc : perf_aux_output_begin+0x1dc/0x1f0
+  [  181.346547] lr : perf_aux_output_begin+0x9c/0x1f0
+  [  181.351280] sp : ffff800080003be0
+  [  181.354606] x29: ffff800080003be0 x28: ffff0008023fc000 x27: ffff4b45d287f000
+  [  181.361789] x26: ffff0009764787a8 x25: 0000000000000000 x24: ffff00080dc99710
+  [  181.368970] x23: ffffb4c334553000 x22: 0000000000000001 x21: ffff00080dc99710
+  [  181.376151] x20: ffff0009764787a8 x19: ffff000801cc6000 x18: 00000000ffffffff
+  [  181.383332] x17: 0000000000000000 x16: ffffb4c3a118c998 x15: 0000000000000000
+  [  181.390512] x14: 00003d0900000000 x13: 00000001ffff006e x12: 696765625f747570
+  [  181.397692] x11: ffffb4c3a52758d8 x10: 0000000000000108 x9 : ffffb4c3a117f620
+  [  181.404873] x8 : ffff800080003a58 x7 : ffff000808de4000 x6 : 00000000000fffff
+  [  181.412053] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
+  [  181.419232] x2 : 0000000000000007 x1 : 0000000000000000 x0 : 0000000000000007
+  [  181.426411] Call trace:
+  [  181.428868]  perf_aux_output_begin+0x1dc/0x1f0 (P)
+  [  181.433692]  etm_event_start+0xdc/0x290 [coresight]
+  [  181.438665]  perf_event_unthrottle+0x70/0xa8
+  [  181.442964]  perf_event_unthrottle_group+0x40/0x170
+  [  181.447871]  perf_adjust_freq_unthr_events+0x178/0x1a8
+  [  181.453038]  perf_adjust_freq_unthr_context+0x74/0xf8
+  [  181.458120]  perf_event_task_tick+0xa8/0x290
+  [  181.462418]  sched_tick+0x144/0x2c8
+  [  181.465937]  update_process_times+0xc0/0x198
 
-- [Low] The commit fixes two user-visible bugs but has no Fixes: tag and
-  no Cc: stable.
-- [Low] The mux children (and the PHYs on them) are now torn down after
-  the EMAC has been put back into reset.
+End the AUX transaction with size zero on a throttling stop so
+unthrottling can acquire a fresh handle. Collect trace data only when
+PERF_EF_UPDATE is set.
 
---
+Check AUX handle ownership before updating the buffer or ending AUX
+output. Drop the post-update check because the full stop runs with
+local IRQs disabled, which prevents the TRBE IRQ from closing the
+handle during the stop.
 
-net: stmmac: dwmac-sun8i: Register the MDIO mux in the MDIO setup
+This patch is limited to fixing the event throttling case. Other issues,
+such as CPUs without a trace path and pending TRBE IRQs during sink
+teardown, will be addressed by the following patch series [1][2].
 
-This patch moves registration of the sun8i MDIO mux out of
-sun8i_dwmac_probe(), where it ran after stmmac_pltfr_probe() returned,
-and into the new plat->mdio_init() hook. The mux now exists before
-register_netdev(). Teardown moves from sun8i_dwmac_remove() into
-plat->mdio_exit(), which runs after unregister_netdev().
+[1] https://lore.kernel.org/linux-arm-kernel/20260915-arm_cs_support_aux_sample-v1-6-35cf6f297d20@arm.com/
+[2] https://lore.kernel.org/linux-arm-kernel/20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com/
 
-> On remove, the mux goes away before
-> unregister_netdev(), and unbinding with the link up oopses in
-> phy_stop().
->
-> Register and unregister the mux through the new mdio_init() and
-> mdio_exit() hooks.
->
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Fixes: 9734e25fbf5a ("perf: Fix the throttle logic for a group")
+Signed-off-by: Leo Yan <leo.yan@arm.com>
+---
+ drivers/hwtracing/coresight/coresight-etm-perf.c | 34 +++++++-----------------
+ 1 file changed, 10 insertions(+), 24 deletions(-)
 
-[Severity: Low]
-The message describes two user-visible bugs: an early open that cannot
-find the PHY, and an oops on unbind. There is no Fixes: tag and no
-Cc: stable. Should these tags be added so the fix is picked up for
-backporting?
+diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/drivers/hwtracing/coresight/coresight-etm-perf.c
+index 909bfd5960331d44547a028fde336f7819488a1a..e506116723c4ed723d66bc721021718b5d176117 100644
+--- a/drivers/hwtracing/coresight/coresight-etm-perf.c
++++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
+@@ -698,7 +698,7 @@ static void etm_event_pause(struct coresight_path *path,
+ static void etm_event_stop(struct perf_event *event, int mode)
+ {
+ 	int cpu = smp_processor_id();
+-	unsigned long size;
++	unsigned long size = 0;
+ 	struct coresight_device *source, *sink;
+ 	struct etm_ctxt *ctxt = this_cpu_ptr(&etm_ctxt);
+ 	struct perf_output_handle *handle = &ctxt->handle;
+@@ -757,33 +757,19 @@ static void etm_event_stop(struct perf_event *event, int mode)
+ 	 * handle due to lack of buffer space), we don't
+ 	 * have to do anything here.
+ 	 */
+-	if (handle->event && (mode & PERF_EF_UPDATE)) {
+-		if (WARN_ON_ONCE(handle->event != event))
+-			return;
++	if (!handle->event || WARN_ON_ONCE(handle->event != event))
++		goto out;
+ 
++	if (mode & PERF_EF_UPDATE) {
+ 		/* update trace information */
+-		if (!sink_ops(sink)->update_buffer)
+-			return;
+-
+-		size = sink_ops(sink)->update_buffer(sink, handle,
+-					      event_data->snk_config);
+-		/*
+-		 * Make sure the handle is still valid as the
+-		 * sink could have closed it from an IRQ.
+-		 * The sink driver must handle the race with
+-		 * update_buffer() and IRQ. Thus either we
+-		 * should get a valid handle and valid size
+-		 * (which may be 0).
+-		 *
+-		 * But we should never get a non-zero size with
+-		 * an invalid handle.
+-		 */
+-		if (READ_ONCE(handle->event))
+-			perf_aux_output_end(handle, size);
+-		else
+-			WARN_ON(size);
++		if (sink_ops(sink)->update_buffer)
++			size = sink_ops(sink)->update_buffer(sink, handle,
++							     event_data->snk_config);
+ 	}
+ 
++	perf_aux_output_end(handle, size);
++
++out:
+ 	/* Disabling the path make its elements available to other sessions */
+ 	coresight_disable_path(path);
+ }
 
-The probe-side logic ("The mux must be registered after parent MDIO so
-after stmmac_dvr_probe()") seems to come from commit 634db83b8265
-("net: stmmac: dwmac-sun8i: Handle integrated/external MDIOs").
+---
+base-commit: 8e3ac058be1b613aeabcb7ce18c142e4603cc5dd
+change-id: 20261124-arm_cs_fix_throttling_oops-140053eb0883
 
-The remove-side ordering seems to come from commit 529254216773. That is
-the ordering where sun8i_dwmac_remove() calls mdio_mux_uninit() before
-stmmac_pltfr_remove().
-
-A backport would also need the earlier patch "net: stmmac: Add MDIO init
-and exit platform hooks". The message says "the new mdio_init() and
-mdio_exit() hooks" but does not name that patch. Could the dependency be
-named explicitly?
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> index 4acfda235394d..0ec25ae0b77ef 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-
-[ ... ]
-
-> @@ -941,6 +940,13 @@ static int sun8i_dwmac_register_mdio_mux(struct stmmac_priv *priv)
->  	return ret;
->  }
->  
-> +static void sun8i_dwmac_unregister_mdio_mux(struct stmmac_priv *priv)
-> +{
-> +	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
-> +
-> +	mdio_mux_uninit(gmac->mux_handle);
-> +}
-> +
-
-[ ... ]
-
-> @@ -1269,9 +1251,6 @@ static void sun8i_dwmac_remove(struct platform_device *pdev)
->  	struct stmmac_priv *priv = netdev_priv(ndev);
->  	struct sunxi_priv_data *gmac = priv->plat->bsp_priv;
->  
-> -	if (gmac->variant->soc_has_internal_phy)
-> -		mdio_mux_uninit(gmac->mux_handle);
-> -
->  	stmmac_pltfr_remove(pdev);
-
-[Severity: Low]
-With this change, stmmac_mdio_unregister() calls mdio_mux_uninit()
-through plat->mdio_exit(). In stmmac_dvr_remove() that call comes after
-the EMAC resets are asserted:
-
-drivers/net/ethernet/stmicro/stmmac/stmmac_main.c:stmmac_dvr_remove() {
-    ...
-	phylink_destroy(priv->phylink);
-	if (priv->plat->stmmac_rst)
-		reset_control_assert(priv->plat->stmmac_rst);
-	reset_control_assert(priv->plat->stmmac_ahb_rst);
-
-	stmmac_pcs_clean(ndev);
-	stmmac_mdio_unregister(ndev);
-    ...
-}
-
-Before this patch, sun8i_dwmac_remove() tore down the mux children while
-the EMAC was still out of reset. On H3/H5, sunxi-h3-h5.dtsi supplies the
-stmmaceth reset, so plat->stmmac_rst is non-NULL there.
-
-Could MDIO accesses made while the PHYs behind the mux are being removed
-now reach an EMAC held in reset? This happens with CONFIG_PHYLIB_LEDS
-and a PHY driver that implements led_brightness_set. The path looks like
-this:
-
-stmmac_mdio_unregister()
-  sun8i_dwmac_unregister_mdio_mux()
-    mdio_mux_uninit()
-      mdiobus_unregister(child)
-        phy_remove()
-          phy_leds_unregister()
-            led_classdev_unregister()      /* LED_OFF */
-              drv->led_brightness_set()
-                mdio_mux_write()
-                  mdio_mux_syscon_switch_fn()
-                  pb->mii_bus->write()     /* stmmac MDIO write */
-
-If the target child is not the one currently selected,
-mdio_mux_syscon_switch_fn() also does more work against the block in
-reset. It rewrites the syscon EPHY select bits, toggles internal EPHY
-power, and calls sun8i_dwmac_reset(priv->ioaddr).
-
-It is not verified what the hardware returns for reads from a block in
-reset. If it returns 0, the MII busy-bit poll and the soft-reset poll
-would pass at once and the PHY write would be dropped silently. The PHY
-LED could then stay in its previous state after unbind.
-
-The practical impact looks limited:
-
-The only in-tree H3/H5 board with PHY LED nodes is
-sun50i-h5-orangepi-pc2.dts. It uses an RTL8211E, and that realtek driver
-entry has no led_brightness_set.
-
-Other glue drivers already have the same reset-before-mdio_unregister
-ordering for PHYs that sit directly on the stmmac bus.
-
-sun8i_dwmac_exit() and sun8i_dwmac_unset_syscon() still reconcile EPHY
-power and syscon afterwards.
-
+Best regards,
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261120-sun8i-emac-mux-uaf-v4-0-57eba8915f25%40gmail.com
+Leo Yan <leo.yan@arm.com>
+
 
