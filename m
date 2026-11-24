@@ -2,71 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1FD606A6B4
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD112606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 21:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cwNexj/P;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=Xg0gjWbS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IIuYrURl;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=az39PJXe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2ZZ0i6HlDHdHe4CdRACxk5+gA57bus4KuijYTBcB6nE=; b=cwNexj/PpIzzre
-	RSzQlauiI6gPHsftJz9QalibIDoK45Rtq7zFIBLXF+v5pOsegFaFVO3YARbDqLPgYdmVb/uDDiPan
-	r6OBsr1UpjCWG7ttuF361PoTkJDoBLk77xDhT1b0bTNrpXu6atqko6AO0ZSgx3KIsGXE3u+6sLMUk
-	iYWHQa1Dleo8di8HFbTr64AaKXkdmSAmgHgS8XTtjMHfAS2KhzFmSCumVMldyCGxhmml/1GBf8ADj
-	vQinQIXqDQtG3piR9B3kGY36HbLzhjm2EmGYKV+hLFiw6i+60/6xv0+s7yAZ+7MiL4Sb5D3ScdMN8
-	uxlBj/1JFeAuI28kHusg==;
+	List-Owner; bh=JM9ysjSB6I4rFtLJdz+KqPCwsdK5iSF6mh6/I4gQwhU=; b=IIuYrURlbL+DU9
+	Iaa4VCn4xYbmfz0sSxif6PHCKxe9p+VYkkbh/3ss6NQLft3kw92DY0wCvyErEa0K04WgJxUJiVjuS
+	bwa/6XtVcIqP21FiHxQGRxTXnNVr0gXmjFCA6wxMNlp0Ptm4ETihgu3cu4XXaMdbBYBkaDDU+9YJE
+	S42qTRAvFn3J4xeqVvWvKWF55Uno4fxk94TeqiCNM71XPhEyDe2cEprXV9AuWw3rIEMCYjW9zFLHi
+	GvWNAaPUmxmjl9d8s+UBfCtZWZAxAAahU1L5+3leW4oRpABFJoPJMKGdMEyTYWkpihXqJkPQEBDDo
+	qMKTr7mCBj6pz2N85MUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVy6L-00000007s3p-02Iu;
-	Tue, 24 Nov 2026 21:30:57 +0000
-Received: from sender-op-o15.zoho.eu ([136.143.169.15])
+	id 1xVy9w-00000007sd3-3xkb;
+	Tue, 24 Nov 2026 21:34:40 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVy6H-00000007s1n-2Pa7;
-	Tue, 24 Nov 2026 21:30:55 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795555829; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=gFavRAac8duItiIcuykCC4U61BDDEiC8fP2KB+VUJuuLNRtEiTFH5vHKze6UuNxk3eOL63Wwbetql5b1pbTeENhh9U4bNVFQyggwysLatnKMx6S/2OEVimaIEE1ZHCEHkTvQUnVO28gfLVl6sdEYg5J/NXn5wjqjpd3QqbsmfjI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1795555829; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=2ZZ0i6HlDHdHe4CdRACxk5+gA57bus4KuijYTBcB6nE=; 
-	b=iDo5Tt4apH7dCuqFXUmkAkaL2RlWPK4dG6HvucfGlm3ZZB0yL607G7RFH8Qy3trdPw/dNa5IBzNPbcYthVo+cyLef86+BBPiz9LEHx6CSPGc83xV1qKZZExECgFSSykQdQ9gSDNJztSnyJvuccg5jbomyzle2QhdzX1ugMH6krM=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: a=rsa-sha256; b=Xg0gjWbSOrN3ih4nu1jb8196N6p51fu/BEXKP8u/Rt9ERiF00e1NNOkZCidAxfVQj1WAd+XEnTNTIhf7J0q2Hb1rwIfo/7ZtxrJo2l8QG6CU64eep+f5yKCQTTofb+0GcULk/4UpgZehAdaGO9pFh0FJZZR41XaDUwZewmqxGFw=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=2ZZ0i6HlDHdHe4CdRACxk5+gA57bus4KuijYTBcB6nE=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zoho.eu with SMTPS id 1795555827111698.0393064779806;
-	Tue, 24 Nov 2026 22:30:27 +0100 (CET)
-Date: Tue, 24 Nov 2026 23:30:25 +0200
-From: Igor Velkov <iav@iav.lv>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Lucas Tanure <tanure@linux.com>,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- iav@iav.lv
-Subject: Re: [PATCH net v2] net: mdio: mux-meson-g12a: keep the MAC data path when switching MDIO
-Message-ID: <20261124-re-martin-g12a-mux-t7@iav.lv>
-In-Reply-To: <CAFBinCALe-8oB5Mwpyx-B_7dKJ-WZcMCjycHv=xH+JasRBOaPw@mail.gmail.com>
-References: <20261117-g12a-mux-data-path-v2-1-fc56db5973af@iav.lv>
- <CAFBinCALe-8oB5Mwpyx-B_7dKJ-WZcMCjycHv=xH+JasRBOaPw@mail.gmail.com>
+	id 1xVy9t-00000007sc0-2UXb
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 24 Nov 2026 21:34:39 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-48e46e449e8so3258245f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 13:34:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795556075; cv=none;
+        d=google.com; s=arc-20260327;
+        b=OA6dGP57/xzU3koKYWPBtNPTGvLWUZfR2ClR4qEzwvQ90z8sWvFaMzptZq7CjepM+S
+         0HwYtmH0rReyXOPtKylvZe/pcSMVgjS6QfQkOgzExlk/TPBQ+jCEUVJaM8KTRF7StQt7
+         pxbBa+6sisUsAKSx1BFnkB4AkgB9lQ4SwCLYMjMyG9n0pupS8sZGlTsXDvtyqLoXXoxq
+         EUOJy87dz9HM/WrSYWOOZHzxSvppe04O3AA7qlowadsKgtvWqix658waoScJ1odQi14S
+         iaIvd3fhPKvklwNmBHsX71UyNR8GFo6aqeTz7nFgM0wNwFC5FMyjK3+QpFayPGtJ5Yhx
+         FUug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=JM9ysjSB6I4rFtLJdz+KqPCwsdK5iSF6mh6/I4gQwhU=;
+        fh=o9EryvUtRwJZC5hUFIN5TElzCTUdKCAyY17tDBBrASQ=;
+        b=b6Yz2PjhIi9RFARM0eB09uFP3p0+zeDr37iGwsrhHa/cDATDLy6zV08MkUjkL27syT
+         IalDPFim3jlP0svGx53D+e2duEnYZWBtfOHPnoqretA3VAAyHrPTkSUUkp/AUDun91AX
+         Z6cFFoC0KcK+vkpoTiaOwrtXTRzaBBiKYyGeL7vCywoX9iNua9WyRp6TfJo+YaZbVHI5
+         qEE5wLV8JwFXDdd//NmTtQNY6jI8W5kYEFmEZjQavtAxU8682X5HrkfmDefdJRshKlJt
+         +Ce2Aw9Bjf9ZgksFmU1s+IbnrzkYEdZevm/LEBP5X6ezzZX37chhjfEsB3rMtAd427BM
+         D+Vg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795556075; x=1796160875; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=JM9ysjSB6I4rFtLJdz+KqPCwsdK5iSF6mh6/I4gQwhU=;
+        b=az39PJXe2BWeV+bwL0r2hGuX0i6MZbB9DwD05GzEWpa0F8Y9qycOtwwrQfbf7G49Ft
+         AUP/J+I3AnmmEJ6Oq4YNBLbpeWLTDObl/LOPveL+wdG6qVvS8WT583lAwX+1aPz+DdN3
+         pJZeMzZ/iIWA0cNHM7raLgEcxiTB3bA2vs8UzpZbVJz2sG0SeOI9G7XfpqKQefKVqktP
+         zycYvY01AfPd60zq+W6uh0L6EsRtBmWBTRGgXf/4VDdlP0BBSTZiRc4Uhs3jzuaZ6Cv4
+         rA1E0/C3VsPifRusKN7nfRUQsZ1+DnthNFljhiQo1HGL1lJwUS1Xj5SN0zyznV0iiy6O
+         /fwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795556075; x=1796160875;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=JM9ysjSB6I4rFtLJdz+KqPCwsdK5iSF6mh6/I4gQwhU=;
+        b=sqbLUzWA1OKXzg8sTWzf8uoGuR7yiSG7/bu3vSeYmlJ47sgfuGBQqymygJ8ukr3ReF
+         XFTCTj//Fg8DzdZmvoPn/git0uf9JEKVl4JqRq0SVVoyt0hVKfaEfw5mI6oIV6cTMCib
+         9CauWMOWUNoGqKfZT+iDcQApbNtjV5sGydV0EIKOzTFPhj3ivQ/Gv0o38Yg+JlULrBrX
+         FTJ3pZShOGfT8RUs2YbCz84R8U4mOaUWYCUViTiUEt+zav4GytuvAUR2nmVw67iSEzVA
+         MVtYkLehBTWqVe6mrz/4O0si88LaMDbdVeqW4ROOK9TK/6VzCvHC0GxLWmyfRnXxPKco
+         87uA==
+X-Gm-Message-State: APuU4Z85jO61s09vlQB8AsDGRoHzYq24DjSZORtRJYE10ChVPv66OIe4
+	PxSKRxiPleDYcVoHfDZhhj3llEjjGcn7ziEwkjYzf+KALmgIzuNBVQLSp1f0OE4rwrUmdQMkSHM
+	xxYAQlijfu8LPLAT1ToPRUgMXHFq7LmVFjTKLmK9X
+X-Gm-Gg: AZFdTZfN0TpSmyXvFM6I68VIHRsWN91OFJ/6Lvk2JI3kDd9ALQLElbiEDA2l8luPUwW
+	W3z6jXojSqmB5Jmp4XbdySvQohpJ7sTNnwW+45t40/glzjJyvOpVmVLAIwsGY2mHFRNezwx+gpZ
+	43gzNXTB6PvGitGdV6ddywQ9iaMx7/ylyMQJO6OzlzLrS80OoZAMJxT+nEIiQ9InNxdzDk0OKAC
+	mh/2xmDYC+OV+ciz+ddxNuMGoaXi0fGYlWtsTrC7YnCdEiNg+8IC8rlBJ/P8l/ccyDkUkHu8r3b
+	I3j8J2njAU7V6eiyXjWM+ZW+VxMb5auRAbCgOwdnLhR5CiPFjjHqLIy9AhmMvREQPjORIheYssd
+	mKpWCadHfrEiDcRQ9oVljRKwGhOEG2nygr3piBGinuFACfLPUts9lBY2K0OMd4ok2L+8oWsgeVH
+	bUmDNIKI34HVmrsRynOUnLb2HNVQ145Rf61OyWdaK3TAWJQp/6PzR1UxXc7EG6ukvFN9Gl13kEm
+	aenMtQ3Ims1NdIY7XkIG3tpEO+kmtM8lFSYiw==
+X-Received: by 2002:a5d:5f42:0:b0:4a3:8b21:51c1 with SMTP id
+ ffacd0b85a97d-4abb9de7e00mr31966438f8f.53.1795556075130; Tue, 24 Nov 2026
+ 13:34:35 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+References: <20261119165825.1793558-5-ardb+git@google.com> <20261119165825.1793558-7-ardb+git@google.com>
+In-Reply-To: <20261119165825.1793558-7-ardb+git@google.com>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Tue, 24 Nov 2026 13:34:24 -0800
+X-Gm-Features: Aa3M54p2Urof8ODavBAwbeoqCfIEQBvqotg8Xr0UbH-8_2IQTFBIFEvoHhfBKvE
+Message-ID: <CAKwvOdkU0PuUp-AT57SOPJtSbsJXz-YR6TOh4LcMn9hVTcSYPA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: Re-enable kernel BTI for compatible linkers
+To: Ard Biesheuvel <ardb+git@google.com>
+Cc: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
+	will@kernel.org, Ard Biesheuvel <ardb@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Josh Poimboeuf <jpoimboe@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_133053_899173_B221A122 
-X-CRM114-Status: GOOD (  13.96  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_133437_667226_EDCD1C0B 
+X-CRM114-Status: GOOD (  11.25  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,40 +119,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Martin,
+On Thu, Nov 19, 2026 at 8:58=E2=80=AFAM Ard Biesheuvel <ardb+git@google.com=
+> wrote:
+>
+> From: Ard Biesheuvel <ardb@kernel.org>
+>
+> The compiler is permitted to omit BTI landing pads from static functions
+> that never have their address taken, but are only called directly, even
+> if those calls originate from other code sections. This causes problems
+> for calls from .init.text into .text if those sections are placed far
+> apart, as veneers involving indirect calls will be used in that case.
+>
+> Now that .text and .init.text are combined,
 
-On Tue, Nov 24, 2026 at 9:50 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> I have just reviewed Lucas patch [0] which adds Ethernet support for the T7 SoC.
-> He kept the internal MDIO mux path disabled by default, so boards
-> using it will have to enable it.
-> Have you tested that approach as well? If not: it would be great if
-> you could investigate the pros/cons of your approach vs. Lucas'
-> approach.
+in modules
 
-Not on hardware. By the code it works: mdio-mux registers only the
-available child buses, and the g12a driver writes CNTL2 only from
-switch_fn. With int_mdio disabled the internal bus never exists, so
-CNTL2 only ever gets the external setting.
+> this can no longer happen,
 
-But that avoids the bug rather than fixes it. The MDIO source and the
-data path are separate CNTL2 bits; the driver switched them together.
-Disabling int_mdio only keeps that path from running, and only on
-boards whose DT does it. The G12A/G12B/SM1/S4/C3 dtsi enable int_mdio,
-and ten boards use the internal PHY relying on that. Changing the
-default touches all of them, and existing DTBs keep the bug.
-
-The driver change removes the coupling: the data path follows the PHY
-the MAC attaches, with any DTB. For a new SoC like T7, int_mdio
-disabled in the dtsi is ordinary DT practice, and the two combine. If
-one has to pick, the driver change: it fixes the cause.
-
-Igor
+--=20
+Thanks,
+~Nick Desaulniers
 
