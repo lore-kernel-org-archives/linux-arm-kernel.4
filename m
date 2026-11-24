@@ -2,83 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F82F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8159606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 02:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3PtXdVW8;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=iYxLxCy3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EdxRmBW5;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=bHWyROK/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=I6rKiuxs3a0MpULM5n+IvwORKN/28E+DHpxd239HqJY=; b=3PtXdVW8l6CjKe
-	8Vy4Z3JGBe7R2/Z6ZQDHuDNiatXDClbLhPtfSvwkrz2cuETV5FFfApb2GG/rXEkqRyYmoveDMchqA
-	np8U0I3UF7bpQK+2ZWgZn9RDjo6PLyzU65o3avpPNW2RT3aNRVf8VKQuOfIuoYA83VjthlFICXArL
-	2lPGSkx6uhFa0D+fEhoQgjr69tLmAN/A09EG85fhxAdYA1mxPvz1GC+ka0jGiIBe5IxSs7DvT/Cvk
-	97dHw4oqFtJyYAmQ/ssP8rB+2KE8FH0oTDdrC4Egy3qlwvZZEdjUpCOH1C20n6haykdOdHLkFK/Ao
-	h3PYw3tYyYcfX/R2Ck0Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=RQQttVqr/R7iBy6MzhUoFsIhHj8TNdW/zBA3gjiLRU0=; b=EdxRmBW5mtOeQ0ZVpbAzMVACUf
+	JXLQZcrvGFW7elwb20JtvG3HdN6cMSySrmQRNwpLS4CAl93WnmR8kOkzuRjglRoEBxBlNeOHWnF9c
+	9pUo/sC6iK3cq57Kfx7GuxWBYQ6ajJiy9XQC6WqkGaKdZK80dQAEOjv1lEmmOTWUjdMzyvoe08CNb
+	VBqveFptcIBPrpzszaIJTCV6Zn4slvldaT/lnwTkHHy32ZlPnXF/VERnf/MDyc5zCgmuI4B6sR1cw
+	PMUlyQ85HfbaTEV3J4Ii7RB7VTHg7+2xYBs0q6CjRlIC+S9M9VfOjWjzJ6Y2HGHh2nDVk56Wg9C1k
+	l1Paec2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVgJk-00000005Mr8-4ABR;
-	Tue, 24 Nov 2026 02:31:36 +0000
-Received: from out-131.mta0.migadu.com ([2001:41d0:1004:224b::83] helo=mta0.migadu.com)
+	id 1xVgLp-00000005NAV-21S2;
+	Tue, 24 Nov 2026 02:33:45 +0000
+Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVgJg-00000005Mpp-19IQ
+	id 1xVgLj-00000005N9T-10Ka
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 02:31:35 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=2EfP7VkiOHBjYmA3RrR9cYpETF6cn3Mh2yOE+dyeiAs=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795487487; v=1; x=1796092287;
- b=iYxLxCy3t2iEF08iafMovc2K4VHY8fKBUZ7VF8edFul8A80rRelpSlaztFb9LX9t+/62a9Nq
- 94Xq8OZUeH02HKres8yGNe60O5Igqrgxs6tTXYcoTpYutO88nTPfX4xWYR5DdC23eX5hdbPtaN/
- gtRZSjnF6p15ThHeievvt49g=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 3d25bf20d01f7445;
-	Tue, 24 Nov 2026 02:31:27 +0000
-X-Mizu-Trace-ID: 3d25bf20d01f7445
-X-Migadu-Flow: FLOW_OUT
-Content-Type: text/plain;
-	charset=utf-8
+	Tue, 24 Nov 2026 02:33:44 +0000
+Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-cde7e8abf9cso1121144a12.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 23 Nov 2026 18:33:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795487618; x=1796092418; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=RQQttVqr/R7iBy6MzhUoFsIhHj8TNdW/zBA3gjiLRU0=;
+        b=bHWyROK/G8l9pjj5Ynj46N4hW2aMyMSK9z8YdN0S82YPC/qK2ZTOqHkW6pXyuVRtrC
+         nHFTKN3Ba7CAIIt+2v7MjXlRJxrofc6u1/Te8SjrVlCvngf3tYgpfmOzrLhOMnK1Uikn
+         5+0YZk99f2Ui2goptk7Gix46tLbiv2H/7hEk3ntgLXLdZA/QvZnPL1DBp4NEa4qeBqVR
+         v9nX9aWd4fBR96IjVnrzWC8W53ImyhDUCSzz9bLwiY/LQioL8liC5MBAhH9N/AVSl6xD
+         znzFqvbo4no8Q0VTTdqLfj2PvS7crfNetRwofiUobDcjWjjIyojmeNIvqs5A0jeo1WeH
+         jDhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795487618; x=1796092418;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=RQQttVqr/R7iBy6MzhUoFsIhHj8TNdW/zBA3gjiLRU0=;
+        b=2ASnuaSVzLDOAcKLTW6+YQ26XMwp1sN0w1zmmK7w/onvR0+8r3VImwvImqymxbgPYI
+         HNQklAG4QOa5gZrCzj7Ld3W8p6I/m7QAjv+SoFrvN+dw2GehcgYb/YMH5plrTzk5aWoo
+         Cv78o69KpcF7E0E8EHvjmDENATfFZw8lgV2LJ9YTf3b+pSjmFnbGqysAtoWnctFhnbys
+         dAtI5CVk9lRsPAKs07yCOeGtqK236tvO2B6XcVMsvO/mnoCE3cHkIBA3tK7AQk8IDsWX
+         9vEuRAUC5tGyF+iEmshCLf64H2UdZXL4mGcDK4U5o/d5Up/1Vp3nrZJZgCkvUZOGYWRb
+         dRBw==
+X-Forwarded-Encrypted: i=1; AL+hErH/G1kyRxeeFAbmqI2dOTwBz3GqqY/jj4L8v5qP6zDW1WW35FOZwrN4jZWvymqo21hH6zcDpM+nuTg+k8NfQK4W@lists.infradead.org
+X-Gm-Message-State: APuU4Z9Kj18F6+NzgTymbtzgU2msHRc8FOmiqSukbX049YIZN81lF6Ji
+	+MJNO9fOW1O/ky61177dVPhZwed8geAYHtku2oJDSGnNWw4aBY/f3HiP
+X-Gm-Gg: AZFdTZcqiiXCY9PKtYdBD2ABqubooQd5NbhgIdfdtFjXOmRgZ04NgDkppNvKltNUzp4
+	hBxQyCXb+QGlxkUNm6Y+5rzt0l8DlBlSZ2sp+oNpQCfrT/lwKrGW2g837CF49yLV3+MTTBaD6Vn
+	whyzT2oVEij1esoNdbi3oPntZp+U0wSHpM+qvF1ixMJ17vXZk1CZB5yv+arKCVw7aKuI+l0EGUl
+	GpIwpp/NT+aSvAOi024JaZUZGe1LJB+cA3LPNijL891Q87hQ/bpvgmWxbFF+xKK+/ERJK9Rj2Vv
+	803xQVSVOTh7PysSJFgbHBvPN5hQtBn29Be5X3SYlyuop+uEogkymMQZUPlU5Z5QVkbldbAV8OD
+	ZqDMo7Ba4bQ+zHhlyn6EHAcja0GJiLAg+XUBfIz4CIJiaDfphaANAjcNyhfCIRT2jpS2QeArb7T
+	29S6ZW+ZpInoQew4aFVVUKBd3qhOqH0ozjtCgMqI7/qpJZEElKd7x3xdpw9EMroj5Iu4kwkgmpJ
+	GJc2lTkBFmriwmgTGAeMFLxKkoktqRSlzWLYoIV1FnNXb1QD6nXNdwS0WRT2aXRX9zGO7BvyOWB
+	qYK3fQUscPOFCfo37vlnJH3uy7Y3ZIVkW2uZXwmqOSCoPZ91pIUx
+X-Received: by 2002:a17:90b:1644:b0:3ad:47ce:3876 with SMTP id 98e67ed59e1d1-3b41c9a9cf7mr11736514a91.61.1795487617893;
+        Mon, 23 Nov 2026 18:33:37 -0800 (PST)
+Received: from fedora.lan ([172.219.65.15])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cde797af60dsm4709056a12.29.2026.11.23.18.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2026 18:33:37 -0800 (PST)
+From: artem122novak@gmail.com
+To: linux@armlinux.org.uk,
+	florian.fainelli@broadcom.com
+Cc: ray.jui@broadcom.com,
+	scott.branden@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Artem Novak <artem122novak@gmail.com>
+Subject: [PATCH] ARM: bcm2835: make RPCSEC_GSS_KRB5 modular
+Date: Mon, 23 Nov 2026 20:33:35 -0600
+Message-ID: <20261124023335.170889-1-artem122novak@gmail.com>
+X-Mailer: git-send-email 2.56.1
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
-Subject: Re: [PATCH v3 05/19] hugetlb_vmemmap: Allow architectures to
- dynamically disallow HVO
-From: Muchun Song <muchun.song@linux.dev>
-In-Reply-To: <CADrL8HXemwtmL_URg-WNOzdw1YCVxP3HVxX67yd=pLRGAuFyVA@mail.gmail.com>
-Date: Tue, 24 Nov 2026 10:31:12 +0800
-Cc: Muchun Song <muchun.song@linux.dev>,
- Will Deacon <will@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Oscar Salvador <osalvador@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>,
- Kefeng Wang <wangkefeng.wang@huawei.com>,
- Nikos Nikoleris <nikos.nikoleris@arm.com>,
- Linu Cherian <linu.cherian@arm.com>,
- Mark Rutland <mark.rutland@arm.com>,
- David Hildenbrand <david@kernel.org>,
- Ryan Roberts <ryan.roberts@arm.com>,
- Nanyong Sun <sunnanyong@huawei.com>,
- Yu Zhao <yuzhao@google.com>,
- Frank van der Linden <fvdl@google.com>,
- David Rientjes <rientjes@google.com>,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-mm@kvack.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B1DC7C6D-7E3F-415B-A0D7-3F355499AB78@linux.dev>
-References: <20261122184453.2668189-1-jthoughton@google.com>
- <20261122184453.2668189-6-jthoughton@google.com>
- <C1CC6F31-4F75-41D8-89D8-CE43465FBB6C@linux.dev>
- <CADrL8HXemwtmL_URg-WNOzdw1YCVxP3HVxX67yd=pLRGAuFyVA@mail.gmail.com>
-To: James Houghton <jthoughton@google.com>
-X-Mailer: Apple Mail (2.3901.200.71.1.16)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_183133_411998_79049F27 
-X-CRM114-Status: GOOD (  20.30  )
+X-CRM114-CacheID: sfid-20261123_183339_273236_3DDE7281 
+X-CRM114-Status: UNSURE (   9.21  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,152 +104,38 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Artem Novak <artem122novak@gmail.com>
 
+Enable RPCSEC_GSS Kerberos authentication as a loadable module in
+the BCM2835 defconfig.
 
-> On Nov 24, 2026, at 04:31, James Houghton <jthoughton@google.com> =
-wrote:
->=20
-> On Sun, Nov 22, 2026 at 10:01=E2=80=AFPM Muchun Song =
-<muchun.song@linux.dev> wrote:
->>=20
->>=20
->>=20
->>> On Nov 23, 2026, at 02:44, James Houghton <jthoughton@google.com> =
-wrote:
->>>=20
->>> For arm64, only some platforms support HVO. Add an arch hook,
->>> arch_support_vmemmap_remap(), to prevent HVO from taking effect if =
-the
->>> architecture lacks support. The hook is not HugeTLB-specific, so it =
-can
->>> also be used by other users of in-place vmemmap remapping (e.g. =
-FS-DAX).
->>>=20
->>> Check it in hugetlb_vmemmap_optimizable_size(), so that hstates are =
-not
->>> reported or treated as optimizable (e.g. by report_hugepages() and =
-the
->>> HugeTLB allocation and freeing paths) when the architecture does not
->>> support HVO.
->>>=20
->>> It may be the case that arch_support_vmemmap_remap() returns false =
-at
->>> first but eventually returns true. This is the case on arm64, where
->>> support depends on a system-wide CPU capability that is not yet =
-known
->>> when bootmem hugepages are allocated. Such architectures cannot =
-pre-HVO
->>> bootmem hugepages, so they must disable the section-based vmemmap
->>> optimization in their vmemmap population path with
->>> section_vmemmap_optimization_disable(). Their bootmem hugepages are =
-then
->>> optimized when they are gathered instead.
->>>=20
->>> Signed-off-by: James Houghton <jthoughton@google.com>
->>> ---
->>> include/linux/pgtable.h | 15 +++++++++++++++
->>> mm/hugetlb_vmemmap.h    |  2 ++
->>> 2 files changed, 17 insertions(+)
->>>=20
->>> diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
->>> index ab33df268955..8cf44120e2ed 100644
->>> --- a/include/linux/pgtable.h
->>> +++ b/include/linux/pgtable.h
->>> @@ -480,6 +480,21 @@ static inline int =
-try_update_vmemmap_pte(unsigned long addr, pte_t *ptep,
->>> }
->>> #endif
->>>=20
->>> +#ifndef arch_support_vmemmap_remap
->>=20
->> We usually add a 's' to 'support'. Like arch_supports_vmemmap_remap.
->=20
-> Oh yeah, I'll fix that. Thanks, Muchun!
->=20
->>=20
->>> +/*
->>> + * arch_support_vmemmap_remap - Whether in-use vmemmap mappings may =
-be remapped.
->>> + *
->>> + * Vmemmap optimizations, such as the HugeTLB vmemmap optimization =
-(HVO),
->>> + * remap vmemmap page table entries while they are in use. =
-Architectures that
->>> + * can only do this on some systems may override this hook. It may =
-return false
->>=20
->> "Some systems" is not clear for me, How about rewrite this sentence =
-with:
->>=20
->>  May override this hook based on architecture-specific runtime =
-conditions.
->>=20
->>> + * early during boot and true later, once system-wide features are =
-known.
->>=20
->> I think the description should be general, so the last sentence I =
-think should
->> be removed.
->=20
-> I think it's important to clarify that the return value can transition
-> from false to true, but not from true to false.
->=20
-> Okay how about this:
->   * Vmemmap optimizations, such as the HugeTLB vmemmap optimization =
-(HVO),
->   * remap vmemmap page table entries while they are in use. =
-Architectures that
->   * can only do this under certain runtime conditions may override
->   * this hook. It may return false early during boot and true later. =
-Once
->   * it becomes true, it must not start returning false.
->=20
-> What do you think?
+This allows the SunRPC GSS authentication framework and Kerberos
+5 support to be loaded when needed, rather than being built into
+the kernel.
 
-LGTM. Thanks.
+Signed-off-by: Artem Novak <artem122novak@gmail.com>
+---
+ arch/arm/configs/bcm2835_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
->=20
-> Thanks!
->=20
->=20
->>=20
->> Thanks,
->> Muchun
->>=20
->>> + */
->>> +static inline bool arch_support_vmemmap_remap(void)
->>> +{
->>> +     return IS_ENABLED(CONFIG_VMEMMAP_OPTIMIZATION);
->>> +}
->>> +#endif
->>> +
->>> #ifndef __HAVE_ARCH_PTEP_SET_ACCESS_FLAGS
->>> extern int ptep_set_access_flags(struct vm_area_struct *vma,
->>>                               unsigned long address, pte_t *ptep,
->>> diff --git a/mm/hugetlb_vmemmap.h b/mm/hugetlb_vmemmap.h
->>> index 8b28063d78cc..440477288d19 100644
->>> --- a/mm/hugetlb_vmemmap.h
->>> +++ b/mm/hugetlb_vmemmap.h
->>> @@ -48,6 +48,8 @@ static inline unsigned int =
-hugetlb_vmemmap_optimizable_size(const struct hstate
->>>=20
->>>      if (!is_power_of_2(sizeof(struct page)))
->>>              return 0;
->>> +     if (!arch_support_vmemmap_remap())
->>> +             return 0;
->>>      return size > 0 ? size : 0;
->>> }
->>> #else
->>> --
->>> 2.56.1.809.ga0b61035b5-goog
-
+diff --git a/arch/arm/configs/bcm2835_defconfig b/arch/arm/configs/bcm2835_defconfig
+index b469ecc36cf5..a8ae699e337b 100644
+--- a/arch/arm/configs/bcm2835_defconfig
++++ b/arch/arm/configs/bcm2835_defconfig
+@@ -187,3 +187,4 @@ CONFIG_STACK_TRACER=y
+ CONFIG_SCHED_TRACER=y
+ CONFIG_STRICT_DEVMEM=y
+ CONFIG_TEST_KSTRTOX=y
++CONFIG_RPCSEC_GSS_KRB5=m
+-- 
+2.56.1
 
 
