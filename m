@@ -2,78 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8247606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28808606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:48:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eyZRmC/P;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R20lcf1K
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w4cEzkPu;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=GcKCNvvA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Yjaryd27oxhS3uqOySH/viuHpeO0W7Au9OnQvtXAiiQ=; b=eyZRmC/PjODLjpAgaKcWEtnLIg
-	4/8R9F05VgrtnQXicsWaldZtaUdj6+tE1Zqjcy9l9cvlqx/A/avHMMdw885eXV1sgr6hg1JQZN4kV
-	pX4vr4EWoOojwwyHeuuPth8aaBWPumD+RzHzKzYUHuEyHemZJeiP4pdrxGgIlACkBVhSskjFXFPTS
-	Y70d3OUHjHHCS1SolKvtaNteiDxLbSXG7wlW5+97cYG6xTB3y1hVuQ8dYVvTkCS3OBdcWLnW8OZLF
-	PtdPYC9PQVDnaCANKAQPRF8YPvg7mLk6PAJHg6LvzXifxef3UCn5M3qyxbI6Ndvls8zpT5YaRLChv
-	3MgOJpnw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=FYJm9x+OWSdMBIDridiKIbeBfBRYzDVI7qRaGyHUVus=; b=w4cEzkPu6xWCr2
+	j4sjXIx2Nz0MDjCHVn4ywpOIOfG5xqPIGZU3ssST+ItTNhvI94oN1z8Xc8+QeE7hBtOVB46Cu00ey
+	7qx/VG/pfM8MpxxryqDFmM6bN3IxM/+ZcJ8ekQTENNlL+mHsSW2cl4E6QtlVM2iDWBymmTh78pw5f
+	pJIuqXkmd5pPj1EygQ2oZuas6u/+Bpg4RcH7IzfJs1aHr9BunR60CspGyBoBO1Glr4bbkBvxd7Zpa
+	vapbiP1yun9s1O6IiMZQ0N3pFJARGqTE7Qwz0dQhkaTUxcT71gl6kkqBy5pI2t57/RjpU7J+vioBr
+	SnmEHfnkxf8sbe68+26A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtfR-00000007BOA-49Ka;
-	Tue, 24 Nov 2026 16:46:53 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xVtgN-00000007Bcm-1Ym6;
+	Tue, 24 Nov 2026 16:47:51 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtfL-00000007BM7-3ufX
+	id 1xVtgK-00000007Bab-38mk
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:46:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 31A4F627CA
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:46:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA001F000D8
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:46:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795538806;
-	bh=Yjaryd27oxhS3uqOySH/viuHpeO0W7Au9OnQvtXAiiQ=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=R20lcf1KAHZseBnOOhfMkowzGb7DpQKNtesAmo3s/ojEwXRJC28823762+veBSRmX
-	 Hfhy1oOnDosrQVAXL4mCFkuXh+apDNIE3SV7D7/fEkM2THNY0lpbdRWMuKrUVaerNl
-	 zTG16zTd/spHpAsPcnNT9mhJmNk/Es7eTllQNapipI6Qd8b1Tx5bExHapb7aUhZwwn
-	 AiTdHq4nEjTU6Y2llGcEFWvaLdcrXgEwrf464KlsvjortOnq4Aew94U39gnE0wSkTl
-	 Sro4rrpJwmGOd1Z0mEsaJa/dylRwtWYrDuiulHqqPMo73Hu49mMad6R7zB681Sdr9j
-	 6+CJ8zxubkfrw==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3adfed9a887so43190851fa.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 08:46:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEYQIZera3f/VH9vJxio6hAkK/H8oRysoRny/Ek7WXEyUPqr7+rU++jMGkMh4WNeWb5tiLnR4mjKH6+GtxLyaqo@lists.infradead.org
-X-Gm-Message-State: APuU4Z/2beszSatKF4DQidzuaR6JplncS9uN+x8fJmvnhU9/2uujaCop
-	hoZcGfbgh405gwBqXCgnru7mukPREGtG4pzke0uSFVyhyF3OnGTC5ACwGlur9FyNPbG5vwrLNNh
-	ju0rGy/OW+UTrG2fSjWwLl5WGPCTcgNE=
-X-Received: by 2002:a05:651c:54f:b0:3ab:4a7c:7a65 with SMTP id
- 38308e7fff4ca-3ae7f7cd8d2mr40665631fa.0.1795538805127; Tue, 24 Nov 2026
- 08:46:45 -0800 (PST)
+	Tue, 24 Nov 2026 16:47:50 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DY2M/GZLM31d4Tf5Dt7NlrRotKRxVxAXt/5cULpMYYN4N9og6MAYNdQyh2/Q0Mo0fLlOmZHKWUtD0+iecZYoanjdcu+uEp24NuhRfOgXFcObuKlrwFrBGzJKZEmGXctXBGJvowKufuFLG/VFxfz3jrIPCQ7mZJL/c4/TCdfE6f7HKM1PmkTpOQHu1xsqfncI9d3MWtD7e9nkxqetefFznEmBfdDeNsx8SsA/XXpio0q7pbAH/vPJ5odWWNJ7n0zwZObjFVlXHf/JqCy/v+7597SNx0laLXnecu/g/HLcJmihbn0b7gHS2kG1FcJC0pwCJjPA2P8s5z7wzIshxwYI5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FYJm9x+OWSdMBIDridiKIbeBfBRYzDVI7qRaGyHUVus=;
+ b=NO0jMDRYjPVjuUwK99qznTXPx79qTrZVh924EJDwKA2DYKlWbEgRH/BOo3jEZV1AX03ebrO1Iz875rrRjsPti4uMeHNZbkCnMAYmXtYczBOzX9S4q/PhRSfjW1m0QvPseYRIXPhRYHRX4OE8iqrDwoU7RKvbx4KzQNKsjUBHnHQRT3y5grNG4MkwJVV8xBPxViM7syWp1Fq/y7VpPCfnEWmbkqQEf7EhqFv2/DkqtArIhkje0nV9pi55LQAWQb7fv6KHwWqFzz7vBlKxoI2GA5oGxs85AGXjs8BIqvCpouJF5/OnXKelZotwvAp/mncHdWV3f7Na0O+rz4CMx6PkuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FYJm9x+OWSdMBIDridiKIbeBfBRYzDVI7qRaGyHUVus=;
+ b=GcKCNvvAZEdQQfzBNj3ER5cMhIN5a3riMZAv/OhwIbPVC8wuWxV4dqi9oSvPTTPR/uLGLxXjzFXn19vBAsjdNR69MyRleBGmZ9Q6YsY5jxInNXZCMWrvktflp/u9V0iKj+4CwcHUAW7mHh0CCALSXpGhn3GLto4zQ80ocQ1AmrMas2O90/gw4accSOFQwu4KNseue/Js35Oe1y/i6vQXuXaViQ2T67WQq/FDpYhoSRJglM7uWBHL7djdJPB07Np8EQ8laUq2b9tyvj9yT83NdnoYsVxggJQaSNyHfQLlY+pwKIr/inZDLJ8VOJtLuGN6C1KfdtdsF6X052TBkNPxHA==
+Received: from VI1PR04CA0048.eurprd04.prod.outlook.com (2603:10a6:802:2::19)
+ by MI3PR10MB9897.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:290:77::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
+ 2026 16:47:41 +0000
+Received: from ZR1PEPF0000E6B6.eurprd07.prod.outlook.com
+ (2603:10a6:802:2:cafe::8d) by VI1PR04CA0048.outlook.office365.com
+ (2603:10a6:802:2::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.14 via Frontend Transport; Tue,
+ 24 Nov 2026 16:47:40 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ ZR1PEPF0000E6B6.mail.protection.outlook.com (10.167.241.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.3 via Frontend Transport; Tue, 24 Nov 2026 16:47:40 +0000
+Received: from STKDAG1NODE1.st.com (10.75.128.132) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 24 Nov
+ 2026 17:48:45 +0100
+Received: from localhost (10.48.87.93) by STKDAG1NODE1.st.com (10.75.128.132)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 24 Nov
+ 2026 17:47:40 +0100
+From: Patrice Chotard <patrice.chotard@foss.st.com>
+Date: Tue, 24 Nov 2026 17:47:35 +0100
+Subject: [PATCH v6 02/10] dt-bindings: arm: stm32: allow TAMP nvram child
+ node for syscon
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261121-a733-cubie-a7s-dt-v5-0@gmail.com> <20261121-a733-cubie-a7s-dt-v5-2@gmail.com>
-In-Reply-To: <20261121-a733-cubie-a7s-dt-v5-2@gmail.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Wed, 25 Nov 2026 00:46:32 +0800
-X-Gmail-Original-Message-ID: <CAGb2v640hK3TYkg=h1Uyu4g497+tNTLB10ytanT2cg8KTo1CJQ@mail.gmail.com>
-X-Gm-Features: Aa3M54ofXX9uKf5nGvU7EWiKfn4kNgd22MIxm2y-Mzkn1AEQVUvT2v_OH_Oaj1Q
-Message-ID: <CAGb2v640hK3TYkg=h1Uyu4g497+tNTLB10ytanT2cg8KTo1CJQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] arm64: dts: allwinner: add A733 SoC description
-To: Enzo Adriano <enzo.adriano.code@gmail.com>
-Cc: andre.przywara@arm.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
-	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>, 
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>, Alexander Sverdlin <alex@sverdlin.org>, 
-	Jun Yan <jerrysteve1101@gmail.com>, Lukas Schmid <lukas.schmid@netcube.li>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261124-upstream_nvram_reworked-v6-2-ea0cfccc20b0@foss.st.com>
+References: <20261124-upstream_nvram_reworked-v6-0-ea0cfccc20b0@foss.st.com>
+In-Reply-To: <20261124-upstream_nvram_reworked-v6-0-ea0cfccc20b0@foss.st.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>, Srinivas Kandagatla
+	<srini@kernel.org>, Russell King <linux@armlinux.org.uk>
+CC: Simeon Marijon <simeon.marijon@foss.st.com>,
+	<linux-stm32@st-md-mailman.stormreply.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Patrice Chotard <patrice.chotard@foss.st.com>
+X-Mailer: b4 0.16.0
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE1.st.com
+ (10.75.128.132)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZR1PEPF0000E6B6:EE_|MI3PR10MB9897:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f2e6c58-47df-455e-83d8-08df4a4aa788
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|36860700016|1800799024|7416014|23010399003|82310400026|261009223027099003|10067099003|11063799006|56012099006|261021123027099003|261026121527099003|261022105027099003|261021121427099003|261026140227099003|261102123227099003|261028144727099003|22082099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: 3LMQAuF8tyst4fMydSCsWvYFGPR5Cbja/7IRZWV2RnrJJyxsf9HfRWtT/ax9RUa4yKDDpysvUuv1hFoeIPkT2BUJz10XHIFe+K62wOFjZf0QMaBGqOSiRVRHo8pArxgkESGUbrXBYJ07KOaB9gNk2NoQ7MG25EHv1H17Fz7xbGlw/ZQwFCeVtjtriSfJF+YMUPs4ZoLhCqsomHeAXmREUeAAejao8zX2EZl2OEQLwqtursOc0P3cQe+rv5eDL3au8g/5yIBaYfPrl1JK7prli3M6BVH3iWJ5ZrazKGSoALytqoX4h0GpTYVAl7lERc7Df4rJXd0kbgj+i81lZFx0h9lRDHDzSI7CMoG9LEq9LRl+Io2xOCb0Pg+Og9+zq6YnfZP9rPjyrX+EcKW2AFGYyls4DJpagKhKyLdKYBE7T399IGlR4UKRL8kP8x6VklIrurHyVFXZrRdpflP07x8E0yfPpOyE3ziUC6wM7D97PPgK+eU8BGuCugyCtVRhkVHWJmGiENJzxgln7Eiqug+QFTzqCsQhOmkbx5ikdONo2IwkW8bQgXu1mVaJ4KvJ0ycAe6Rt4dNmfK+JxyLfam8WGwDKMt8KglhKcZ4ip323uFovoq9v3psGrTdijq22AGUA03Z9LdOrts/cnpyOyq3KSPNxiTsb9B35KwvLXUflCZEUGycRSemcflr7NZFswndNX4bFKWSby2dB3ke89HAInQ==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700016)(1800799024)(7416014)(23010399003)(82310400026)(261009223027099003)(10067099003)(11063799006)(56012099006)(261021123027099003)(261026121527099003)(261022105027099003)(261021121427099003)(261026140227099003)(261102123227099003)(261028144727099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: cyGHtM+XHBGgZD8uGtqJVAN9HlKAFVW9t+Pv4Szs8zGR9mnC7Irp48ll3/Rw5W903bTScpae8LTpapdEeBE/OkiHbK9znmUzdTkaeN+egP58qZOlbgo7XGObvm0Ux5Ot5LTwpXN65li2nVJsyfP2Z2zH2G7EeHkF29mPzwVgOgepC3rYtuRV4YImH8Lc7PA99fm9J5u+hMjmxWuhDRxE4TVj45lDYVxi+pkCWg9Qt/cJYioo9wr4jswL1OFE4eI4Ea5Y/DDf+cE1D5P/oXs6NolZQeM8Jh1A0337Bkhcyt4d4lxcNvxxPQM1OIt/dKJFdIQUl6Htg/9BO1/00GDbyNvEaM8t24IyHGaB88iDRGklSTv5Y4xQzIfzB1EUhZVYOeOpC/eXv9iqN40f5ss+CExt59vwAyit5lPm2USkEDKKW0t/jJGSY1cGTd1ylkNb
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 16:47:40.8429
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f2e6c58-47df-455e-83d8-08df4a4aa788
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: ZR1PEPF0000E6B6.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI3PR10MB9897
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_084748_831155_D6B583A2 
+X-CRM114-Status: UNSURE (   9.67  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,75 +130,116 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 1:42=E2=80=AFAM Enzo Adriano
-<enzo.adriano.code@gmail.com> wrote:
->
-> Provide the SoC description needed by the initial Cubie A7S DTS for its
-> console, PMIC, EEPROM and microSD. Describe the CPUs, PSCI, architectural
-> timers, GIC, RTC, main and always-on clock/reset and pin controllers.
-> Include the main and R-domain UART/I2C instances and MMC0-2 with their
-> pin groups. Use mux 6 for I2C0 on PG8/PG9, as in Radxa's BSP pinctrl
-> driver and its Cubie A7S device tree.
->
-> The GIC maintenance PPI 9 and ARMv8.2 EL2 virtual-timer PPI 12 follow
-> the A733 User Manual v1.00, section 12.2.3. The GICD/GICR/ITS windows
-> and noncoherent attributes follow Andre Przywara's public A733
-> reference and the A523 precedent. The CPUX interconnect diagram in
-> section 5.1.2 supports noncoherency as an integration inference. The
-> ITS stays disabled pending its clock/reset and MSI integration.
->
-> Describe the single DynamIQ unit and shared L3 shown in section 5.1.2
-> (figure 5-1). The big and little DVFS groups can be described by their
-> clocks, OPP tables and supplies. Partition PPI 7 (section 12.2.3,
-> table 12-1) between the Cortex-A55 and Cortex-A76 PMUs so each probes
-> its own core type. Defer capacity-dmips-mhz until it is measured on A733.
->
-> Link: https://gist.githubusercontent.com/apritzel/60fd7379b9560a15b8b3529=
-86b69d39f/raw/efd9cdf8f26ba5b0c7e138f093af44a1cf322469/sun60i-a733.dts
-> Link: https://github.com/radxa/allwinner-bsp/blob/2045a3ca2a01f088c0314dc=
-924bda59d154e363e/drivers/pinctrl/pinctrl-sun60iw2.c#L1591-L1610
-> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
-> ---
->
-> v4 -> v5: Rename osc to hosc and add the I2C0 PG8/PG9 group. Keep the
-> one-cluster CPU map and the two PMU partitions.
->
-> Untested on v5: physical CPU/cache topology, PMU counting, EL2
-> interrupt delivery and ITS/MSI.
->
->  .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 663 ++++++++++++++++++
->  1 file changed, 663 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun60i-a733.dtsi
-> new file mode 100644
-> index 000000000000..8a258f16751e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
-> @@ -0,0 +1,663 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +
-> +#include <dt-bindings/clock/sun6i-rtc.h>
+The STM32 TAMP node (compatible "st,stm32-tamp", "syscon", "simple-mfd")
+exposes its backup registers through an nvram child node described by
+nvmem/st,stm32-tamp-nvram.yaml. That requires the TAMP node to carry
+"#address-cells", "#size-cells", "ranges" and an "nvram@..." child.
 
-This one goes after the clock/allwinner,sun60i-* ones.
+st,stm32-syscon.yaml uses "additionalProperties: false" and disallowed
+these properties for the TAMP variant, so wiring the nvram provider into
+the DTSI made "make dtbs_check" fail on every STM32MP TAMP node:
 
-> +#include <dt-bindings/clock/allwinner,sun60i-a733-ccu.h>
-> +#include <dt-bindings/clock/allwinner,sun60i-a733-r-ccu.h>
+  tamp@46010000 (st,stm32-tamp): 'nvram@46010100', 'ranges' do not match
+  any of the regexes: '^phy@2[48]00$', '^pinctrl-[0-9]+$'
 
-Here.
+Allow the addressing properties and the nvram child, gated on the
+st,stm32-tamp compatible so the other syscon variants stay strict.
+"#size-cells" may be 1 or 2: the STM32MP21 soc bus uses two size cells
+while the other STM32MP SoCs use one.
 
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/reset/allwinner,sun60i-a733-ccu.h>
-> +#include <dt-bindings/reset/allwinner,sun60i-a733-r-ccu.h>
+Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+---
+ .../bindings/arm/stm32/st,stm32-syscon.yaml        | 43 ++++++++++++++++++++--
+ 1 file changed, 40 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+index a559f8b03b84..70266070c57b 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
++++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
+@@ -43,13 +43,19 @@ properties:
+     const: 1
+ 
+   "#size-cells":
+-    const: 1
++    enum: [1, 2]
++
++  ranges: true
+ 
+ patternProperties:
+   "^phy@2[48]00$":
+     type: object
+     $ref: /schemas/phy/st,stm32-usb2phy.yaml
+ 
++  "^nvram@[0-9a-f]+$":
++    type: object
++    $ref: /schemas/nvmem/st,stm32-tamp-nvram.yaml
++
+ required:
+   - compatible
+   - reg
+@@ -76,6 +82,9 @@ allOf:
+               - st,stm32mp23-syscfg
+               - st,stm32mp25-syscfg
+     then:
++      properties:
++        "#size-cells":
++          const: 1
+       required:
+         - "#address-cells"
+         - "#clock-cells"
+@@ -84,11 +93,39 @@ allOf:
+         - phy@2800
+     else:
+       properties:
+-        '#address-cells': false
+         '#clock-cells': false
+-        '#size-cells': false
+         phy@2400: false
+         phy@2800: false
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: st,stm32-tamp
++    then:
++      properties:
++        "#size-cells":
++          enum: [1, 2]
++    else:
++      properties:
++        ranges: false
++      patternProperties:
++        "^nvram@[0-9a-f]+$": false
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - st,stm32-tamp
++              - st,stm32mp23-syscfg
++              - st,stm32mp25-syscfg
++    then:
++      required:
++        - "#address-cells"
++        - "#size-cells"
++    else:
++      properties:
++        '#address-cells': false
++        '#size-cells': false
+ 
+ additionalProperties: false
+ 
+
+-- 
+2.43.0
+
 
