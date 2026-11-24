@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4474A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 04:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013C7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 05:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hGmNb/y+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TacI6VBy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uAum3C+J;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Sf4jeTTU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=TOPyh86e0J/wqM6iyFTSqLXbZQLp2s74/uc/F4v5k2k=; b=hGmNb/y+6+cACJUAwxnIDYvzD9
-	ZJ7U3sU0gkL/CD7zgfFWDpM+oPGQeW21QDrMtj8LBi4CkGW3DIQxxztGGonMFVAqqqUQv7WaTdYRL
-	6CF6mNIHwpCBwvJjgWsLCX4tEjyifRH9PeBrCS/R464tHNMMj5MEiLl90sWX4uPCcCGPR90pNiaTz
-	zCH9hwJxreDUp5Il35gUH6a3hGrysxTuZ/8LZiItycAZRco/sfwBBRM02B1WIqiPXR/esqVQmJgb4
-	WDhdvhWBsG38rUU/MEXOJmgXAS0NevfWucjJHxOAG8PT44rC6l6jgM3MJ54fCBYVSFmEi18LA0t48
-	5sHUeieQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=GCQiR5Lx2UKMEtsK+gSKSdJH4PY2fbRO9XAcb5R+0z8=; b=uAum3C+J/UHq/6
+	7YNLVl8LDac7nj6q9oJiQ9Gf5eN3tYDiFVGDUIts/3MqO2hpYtzXAv500SeBaawy7Tj51Mkos5Rib
+	mw7OYIOGs598BKK+W721rLAT7gJ8VYRqEwFQEtejWLkiM18fk3vAEWsHlwGlyIecn4y2fDEpyVPuQ
+	A4t31WMNeihKXNt2fOjjKufVnfGkp+Eh/ci/9egTAKeqS7SjYhl3ynS0kzkhPv7B4RMV6PBQQm0O3
+	EmqL33aLDc+E9ovNIBfn/A8Zb/819oQkbeIhRjJFXhVAP4pUgnl0iRJypLuCxTwH75cu0ozz+RkZQ
+	EonekA/QV0uB8tTUCx7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhtO-00000005VGU-2ii5;
-	Tue, 24 Nov 2026 04:12:30 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xViiQ-00000005aMP-1Jjo;
+	Tue, 24 Nov 2026 05:05:14 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVhtN-00000005VGM-0wdW
+	id 1xViiO-00000005aM9-0lFw
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 04:12:29 +0000
+	Tue, 24 Nov 2026 05:05:12 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6E4F46116F;
-	Tue, 24 Nov 2026 04:12:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F6F1F000D4;
-	Tue, 24 Nov 2026 04:12:15 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 99DE44082B;
+	Tue, 24 Nov 2026 05:05:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E35D1F000C4;
+	Tue, 24 Nov 2026 05:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795493548;
-	bh=TOPyh86e0J/wqM6iyFTSqLXbZQLp2s74/uc/F4v5k2k=;
+	s=k20260515; t=1795496710;
+	bh=GCQiR5Lx2UKMEtsK+gSKSdJH4PY2fbRO9XAcb5R+0z8=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=TacI6VByHmOlrNMYSCRpaldILoRzjvB7MBWa7eaMuyWG/LfquQTS7/HAwYu9490pe
-	 XQ2F8WyNFlP6ZRGn3e6cLQsHNlim7ClGQmqalBH5tr2THZ2VixKCIswPPTBu+Ezszn
-	 gMMUpSrPneTOQh4Ad8nB4h/DPqDEewrvZ8CBE0c0CFM1aPs7BSu0j77dIR9LrU1I6E
-	 NwO7weBpkdOlqKdKe7Q0BdLDX1hJflxxZT/NzzdL9ixUyP/DKAXhYiR0OJWrX1u2sq
-	 Gdj9K9g33VNSw8R1+0e5cJecESdB63deRy19Ht+5ShIxR6iGfgeVcjEZVujvuZB75J
-	 LFDjnVJuqj/Gg==
+	b=Sf4jeTTUeyNECnDrWH/zHQwCweqyr3ICg/XJr7Dn7sQUhHdZSBrQSD52eyo6OmH0Q
+	 zU8gOnX247GPxo4ufgj/OAOJ3DoOsgjDn3NaJ1x3hgmutbUe9OpgE/loVkCo79kJxR
+	 oRohNM3MgCe0WDqEpWRyv1fw3lRIHaMTei8SLBUsVYDEYEzjNDq10xh+T1xQ/nzrLg
+	 tI3D+xn/LzxZQ6MvVEHtySmqi/Zejda2tFa6wKh82wHIoDZ2wN/DlM4JuRjYn5fp3M
+	 baPqje+9fvFyJGEsSLy0k2u6v7W42SrhJUxFg2/zy9paZ5C6Ektd1wsCp1zwiH30CK
+	 H2nILDRrxSQqQ==
 X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
 From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: Jacob Pan <jacob.pan@linux.microsoft.com>
-Cc: linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>,
+To: Baolu Lu <baolu.lu@linux.intel.com>, linux-coco@lists.linux.dev
+Cc: baolu.lu@linux.intel.com, Alex Williamson <alex@shazbot.org>,
 	Alexey Kardashevskiy <aik@amd.com>,
 	Bjorn Helgaas <bhelgaas@google.com>,
 	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
 	Jason Gunthorpe <jgg@ziepe.ca>,
 	Joerg Roedel <joro@8bytes.org>,
 	Jonathan Cameron <jic23@kernel.org>,
@@ -75,19 +75,19 @@ Cc: linux-coco@lists.linux.dev, Alex Williamson <alex@shazbot.org>,
 	Jonathan Cameron <jonathan.cameron@huawei.com>,
 	Tom Lendacky <thomas.lendacky@amd.com>, kvm@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org, patches@lists.linux.dev,
-	jacob.pan@linux.microsoft.com
-Subject: Re: [PATCH v9 09/13] iommufd/viommu: Select vIOMMU operations
- before allocation
-In-Reply-To: <20261120094207.00002e89@linux.microsoft.com>
+	linux-tegra@vger.kernel.org, patches@lists.linux.dev
+Subject: Re: [PATCH v9 10/13] iommufd/viommu: Allow PCI TSM backends to
+ provide vIOMMU operations
+In-Reply-To: <2d8af908-4dd5-43a9-b618-d1ee4189f6ba@linux.intel.com>
 References: <20261116081935.85372-1-aneesh.kumar@kernel.org>
- <20261116081935.85372-10-aneesh.kumar@kernel.org>
- <20261120094207.00002e89@linux.microsoft.com>
-Date: Tue, 24 Nov 2026 09:42:12 +0530
-Message-ID: <yq5atsl6c1gj.fsf@kernel.org>
+ <20261116081935.85372-11-aneesh.kumar@kernel.org>
+ <2d8af908-4dd5-43a9-b618-d1ee4189f6ba@linux.intel.com>
+Date: Tue, 24 Nov 2026 10:34:58 +0530
+Message-ID: <yq5ao6bebz0l.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,56 +98,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Jacob Pan <jacob.pan@linux.microsoft.com> writes:
+Baolu Lu <baolu.lu@linux.intel.com> writes:
 
-> Hi Aneesh,
+> On 11/16/2026 4:19 PM, Aneesh Kumar K.V (Arm) wrote:
+>> In confidential-computing configurations, a vIOMMU may be implemented by
+>> a TSM driver rather than by the physical IOMMU driver. Such an
+>> implementation also needs the TSM identity when creating and validating
+>> vdevices.
+>>=20
+>> Allow VIOMMU_ALLOC to first query the TSM associated with the target PCI
+>> device for vIOMMU operations. Fall back to the physical IOMMU driver
+>> when the TSM does not provide operations for the requested vIOMMU type.
+>>=20
+>> Resolve the PCI TSM association under pci_tsm_rwsem, take a TSM device
+>> reference, and pin the module providing the operations. Store the TSM
+>> device in the vIOMMU. Release the device reference and module pin on
+>> allocation failure, fallback to the physical IOMMU driver, or vIOMMU
+>> destruction. Drop the device reference before releasing the module pin,
+>> since the final put may call into the backend module.
+>>=20
+>> The device reference preserves the TSM allocation. Backends providing
+>> vIOMMU operations must not unregister their TSM while the module is pinn=
+ed,
+>> since the reference does not prevent backend resource teardown.
+>>=20
+>> Cc: Jason Gunthorpe<jgg@ziepe.ca>
+>> Cc: Kevin Tian<kevin.tian@intel.com>
+>> Cc: Joerg Roedel<joro@8bytes.org>
+>> Cc: Will Deacon<will@kernel.org>
+>> Cc: Robin Murphy<robin.murphy@arm.com>
+>> Cc: Bjorn Helgaas<bhelgaas@google.com>
+>> Cc: Alexey Kardashevskiy<aik@amd.com>
+>> Cc: Lukas Wunner<lukas@wunner.de>
+>> Cc: Xu Yilun<yilun.xu@linux.intel.com>
+>> Cc:iommu@lists.linux.dev
+>> Cc:linux-pci@vger.kernel.org
+>> Signed-off-by: Aneesh Kumar K.V (Arm)<aneesh.kumar@kernel.org>
+>> ---
+>>   drivers/iommu/iommufd/viommu.c | 35 +++++++++++++++++++++++++++-----
+>>   drivers/pci/tsm/core.c         | 22 ++++++++++++++++++++
+>>   drivers/virt/coco/tsm-core.c   | 37 ++++++++++++++++++++++++++++++++++
+>>   include/linux/iommufd.h        |  2 ++
+>>   include/linux/pci-tsm.h        | 24 ++++++++++++++++++++++
+>>   include/linux/tsm.h            | 25 +++++++++++++++++++++++
+>>   6 files changed, 140 insertions(+), 5 deletions(-)
 >
-> On Mon, 16 Nov 2026 13:49:31 +0530
-> "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org> wrote:
->
->> Physical IOMMU drivers currently provide the vIOMMU size and
->> initialization callbacks through iommu_ops. The initialization
->> callback then selects and installs the corresponding
->> iommufd_viommu_ops.
->> 
->> Add iommu_ops::get_viommu_ops() to select the operations from the
->> physical device and requested vIOMMU type before allocation. Move the
->> size and initialization callbacks into iommufd_viommu_ops. The core
->> can then validate the selected operations, allocate the driver
->> structure, initialize it, and install the operations.
-> The patch title is slightly misleading since it does not change the
-> order between setting viommu_ops and allocation. IMHO, it is more like:
-> "Move vIOMMU ops selection into the core"
+> This change spans both PCI/TSM and IOMMUFD. Could it be split into
+> separate patches for each subsystem=E2=80=94for example, one adding the T=
+SM
+> lookup interface and another updating IOMMUFD to use it?
 >
 
-previously we did
-	ops = iommu_dev->ops;
-	viommu_size = ops->get_viommu_size(idev->dev, cmd->type);
-	viommu = (struct iommufd_viommu *)_iommufd_object_alloc_ucmd(
-		ucmd, viommu_size, IOMMUFD_OBJ_VIOMMU);
-	rc = ops->viommu_init(viommu, hwpt_paging->common.domain,
-			      user_data.len ? &user_data : NULL);
-	if (rc)
-
-and viommu_ini did things like
-		viommu->ops = &arm_vsmmu_ops;
-
-With this patch it becomes
-	ops = iommu_dev->ops->get_viommu_ops(idev->dev, cmd->type);
-	viommu_size = ops->get_viommu_size(idev->dev, cmd->type);
-	viommu = (struct iommufd_viommu *)_iommufd_object_alloc_ucmd(
-		ucmd, viommu_size, IOMMUFD_OBJ_VIOMMU);
-	rc = ops->viommu_init(viommu, idev->dev,
-
-
-That is, we now select the vIOMMU ops before allocation.
+Sure, I'll split it into separate patches.
 
 -aneesh
 
