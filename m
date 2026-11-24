@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0736606A327
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84CCB606A326
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 07:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4wOVgvj9;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=AOeNipam;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=7SG8wQ+y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3oOuxVuU;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=Y6g743+R;
+	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=DrtAx6L9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -15,69 +15,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=67aLzPuaMmDFfWDyNoWW5TsjU4yXJ/VPq9hnhXSFy/w=; b=4wOVgvj9CW4W23OpvA9J1qibvH
-	S2VNe5xOZmVA1qCUp/vUARg03q+HTcNofBqv+hXCMW2u85JgwYpVqjYzHC6GABrREINpZG4v1o7JE
-	IlxogaLri4w/Fyo+xPxWtfcAn0LH2RfY+9ca7tz1202E/VqZ/0WKadk5byeIXTOGaeno7bJcGasbS
-	EXoO79ZOxDyEcSkePTAnjHdOwujy6wrGtqztn4ftwDvoLWs6gocnRXOFE+7UF1al4/clHwAakQCAm
-	D/o0WdcpExKaJBHDFBXqGXuOOHDOWqBcztHOoS7ONL8W9qKnEoja3ly/W8zUobcTSQgaJD0isrNlK
-	OFMGgyRw==;
+	bh=a8tT1IHZ/9bnUeOSg8CevW7PO23hEqXdhqumUHaN6cc=; b=3oOuxVuUtq6j7jJblXPVB3Fe82
+	PZ8AhEdfKJacBU6y8qVjUrKoXmutSM45MllbxgT6dgBO4aaC83wxB87NbPaHZwxQDQPpQkDK71NHH
+	17s+k8G1x/AQrgbSNqWTM2afA6L9WfsAhOROK78FxlZ80YB4/J3sH30TJYTe8PEGOAw8yy7XnXba+
+	m77eIdeJhjV22zfhuwZAVy6F2qWwpp5wUgnhrdK5ookcfvEmC46WYiVkoi6tB5mtrRWnN/9GauFmq
+	S0FNQoAAJAkNjPHya4OfRsKCa/iPGC/Qe8wGtqGDP1UWAHARR9rYnr9zmhq5T6DzRdwSze556u6L3
+	TrfT4CRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkwi-00000005k09-0wiv;
-	Tue, 24 Nov 2026 07:28:08 +0000
-Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.104])
+	id 1xVkwj-00000005k2K-1Q5w;
+	Tue, 24 Nov 2026 07:28:09 +0000
+Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.223])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvT-00000005jL4-0XVJ
+	id 1xVkvK-00000005jKq-1JtF
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:26:58 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795505167; cv=none;
+	Tue, 24 Nov 2026 07:26:55 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1795505178; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=RkMBEtRV76ezBsZ3HhSHbzoHzbBEvZGpa18c+YXemkGc6KKy+4UQeIH2wUBQY9trPL
-    xMmvVvcY2r1W9RSJvoDyW5lCetbr5gRjlX0Ao/JwK+q4mL8lcAzKp8jXhmJjeMULJyEO
-    6Dv1MlLzkGGvpIqWmIEURgGI4OKzjwy1k+cJ7m0Nm2sxxnkaGL4RqXSqlyu0UTHBLgLF
-    Fiofc/HoiTQP/EpX9tQA6ZkyvJGL0SjHqNuQLkVsWyQIvc6G9u3a9vU/5mCSjFirlkUs
-    SiaVj5WWcobAJqWGAMe4jEeZ2nqYjbZNSymw47EIYhOu2F7Uk0c2IkMhQvDbRNONBiLV
-    hHUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505167;
+    b=q6SJfTzfqprZYrgKsjzLeq49n1EwhAQRgizro9+K5esUxEOx0G43J5fyVJ5d9BjQnr
+    RtP4FrUlFS5Kimgyvq9sASavJlKP3ItH0Crb+UNdsLeIcqeuwuz+dNR5BWchGCIJwVJt
+    2qfGlbSJyGqUcRTshIbAtswZ/xTq6Ub1atO0IlVQbvV+OsJzg08jrIE0gVLgzZcv0ZUS
+    B3YhCi6mywVGyOufXBSz+FGbOK4pBgnEZs8So3Isy6rANvBezYtxrLZCpZrYqF90odJ/
+    v5ax3EqL32kd+ornB3YB4wFDRE/7ZAgSLeWgUvd7i4olQqlpNZ/YF2IufiIE4QbUqhLE
+    yitA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505178;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=67aLzPuaMmDFfWDyNoWW5TsjU4yXJ/VPq9hnhXSFy/w=;
-    b=g5nAowB9p9JGk50H8nmJpjiJztoCjdrDUdQ4QTXrj4ohV4N0Oowp7MSJsg8lOSB0AM
-    1PBa0EphO7qORhxzcyiq1jsqnper93a4hwXrVdgLKpY+uN6B3d1FY1AIzCnm8M7CNuRN
-    /Xckh6RbUcDiq0/KkSVVRT5nfGa3oWJ2ED5piusqMudYBJhoer8AyXgiQKQ/i8tGKL9w
-    RI373Mk10wKRHLlio7YSNnYfFijwAjORtTzxyaZDcwCKVs5RxiRsGrkesinopA7ctZZy
-    /wQjM7bMzfTcgKGWggIxvd9vHN5f0oD64x4o6/OyZepCl29RQYsaT/tdb7mF2OLVu10S
-    1FpQ==
+    bh=a8tT1IHZ/9bnUeOSg8CevW7PO23hEqXdhqumUHaN6cc=;
+    b=KtSl0BSqZ2gateMzLu96RLyWf4L8ofQVX5jOnYmYvAL6NIjmCFqClRmRSHBREH9Bkd
+    MzJ0Gz1PY9Vw6SxMklGR3ROyfIWMoW31FpfT/5r7hRuqz/2uBt/sENDOYteKuOdTD1Dm
+    TOxL+X2uhbJAqInCfpC09WlC7ZDnNFH73XWf5VNfpHZi0K9vtTFKhKYnv5GAn2WMSNHG
+    0SoI6CNliRDF6M+QCEay2lJ3am+3Oc/BZBvK6uwi6DSV637xxdwXMAMLga22DS8T+rPD
+    Idealv/wxhM5yR4leRSGCf/1TUowCsxHkLe+ABy3acDccaKFQNNZ0C4NXvZzU3YutXu2
+    Gb3g==
 ARC-Authentication-Results: i=1; strato.com;
     arc=none;
     dkim=none
-X-RZG-CLASS-ID: mo03
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505167;
+X-RZG-CLASS-ID: mo04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795505178;
     s=strato-dkim-0002; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=67aLzPuaMmDFfWDyNoWW5TsjU4yXJ/VPq9hnhXSFy/w=;
-    b=AOeNipamJ3BL9FZyoAF5T+AR3h9v2fQizmfp/dNC6lrP/haFiVTMtwzn5uDMthpb8y
-    5+q8Khz7igyxMZgCSI4mmwDSlI4de3t9yPghojSiLd8/6VbsgZcMvbe3v0L99DD1QN1G
-    VFY40cEwKAk4iENu4ZfNYRWrfgCspK9v2o6Ebj1mtIoiehr8pttqi3H3lbTm0vTV67j+
-    Q2dBmRaYgWMMGyx7pSfQBGcUgMvbvPKbb0rkOcAlk6BxXIzOeP8EQuXpcqr5An//WANh
-    w2optfo94JRCSzeh7O4bT3Rs8dyiHtIyWctUaSMEddGGBkf6p3npBMVqU1rIXIzw7XUa
-    LHng==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505167;
+    bh=a8tT1IHZ/9bnUeOSg8CevW7PO23hEqXdhqumUHaN6cc=;
+    b=Y6g743+R6atTH1Bs99pXFNWSa3562WXL2uIoA5xO0x2FhxF+zGf+zgObT2TImNfsNT
+    P+4pUKqcVZT/c0Fcg2/jc7aFGTW4MsN8IVQiLG3DzGuIf0MkWilyCo3d6+SxPEN6sN2X
+    MCjOkcVqU3KlE9yzhmqcxHTfbmqTpGbsmf4bEtOORCgYq0iy36UInElx/BY7Nt7w5vZX
+    h2fUwXjFnA0sZi62m04+/6Sf/z8UiHbLOwHY+zXNsnwF2K0LYJgcfUjiUDU0ZBvE4MTI
+    6dmETfoI1D/c+cyg27opmzOwWU0th2mSSWJ8F0Wp9X3sDJobxlFng4YLRQnzpk5OWjMM
+    Rb3g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795505178;
     s=strato-dkim-0003; d=goldelico.com;
     h=References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=67aLzPuaMmDFfWDyNoWW5TsjU4yXJ/VPq9hnhXSFy/w=;
-    b=7SG8wQ+ykXZjieAA/6BXSEfGAuFRUlotUxnogLT/+FWGwFG37+fbBHOoEEbuw4jYb9
-    AJwCWO62V9p2NKot56Ag==
+    bh=a8tT1IHZ/9bnUeOSg8CevW7PO23hEqXdhqumUHaN6cc=;
+    b=DrtAx6L9aiM0luEU9dC+6uFoApLVFOJ1cxmTwwLyvyImtCtpXJfWFsN2OfWyoGGSg7
+    atmRqGZWjRV0QGxqGnCw==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVTQoM6kVxzKyrKzkpjcAwdDfiN49"
 Received: from iMac.fritz.box
     by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AO7Q61HD
+    with ESMTPSA id Qb56a22AO7QH1HQ
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
 	(Client did not present a certificate);
-    Tue, 24 Nov 2026 08:26:06 +0100 (CET)
+    Tue, 24 Nov 2026 08:26:17 +0100 (CET)
 From: "H. Nikolaus Schaller" <hns@goldelico.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -122,9 +122,9 @@ Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
 	letux-kernel@openphoenux.org,
 	kernel@pyra-handheld.com,
 	"H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v2 02/20] gpio: twl4030: Support REGEN GPIO
-Date: Tue, 24 Nov 2026 08:25:42 +0100
-Message-ID: <5fe8b5155067e0b1fc9b34c53e3b89a40e53234c.1795505160.git.hns@goldelico.com>
+Subject: [PATCH v2 12/20] drm/panel: td043mtea1: Attach DT backlight
+Date: Tue, 24 Nov 2026 08:25:52 +0100
+Message-ID: <163581590b662ebc7a12ccac3cc191b9a3ed4240.1795505160.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <cover.1795505160.git.hns@goldelico.com>
 References: <cover.1795505160.git.hns@goldelico.com>
@@ -133,8 +133,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset="us-ascii"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_232651_595127_460D4420 
-X-CRM114-Status: GOOD (  29.79  )
+X-CRM114-CacheID: sfid-20261123_232650_684842_FA60231F 
+X-CRM114-Status: GOOD (  12.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -153,353 +153,36 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow the TWL4030 GPIO controller to expose REGEN as an additional,
-output-only GPIO when enabled by the ti,use-regen device tree property.
-
-Unlike the ordinary GPIO lines, REGEN is controlled through the TWL4030
-power-management registers. Keep it optional so that existing users of
-the GPIO controller retain their GPIO numbering and behaviour.
+Connect the TPO TD043MTEA1 DRM panel to its backlight described in
+Device Tree by calling drm_panel_of_backlight() during probe. Without
+this association, the panel does not control the DT backlight.
 
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
 
 Notes:
     Changes against V1:
-    - Follow Mark Brown's V1 review of the regulator implementation:
-      REGEN is a control signal, not a voltage regulator.
-    - Clarify that REGEN is controlled by power-management registers and
-      does not require enabling the GPIO module.
-    - Use WARN_ON_ONCE(true) for the impossible GPIO offset and clarify
-      that LED and REGEN outputs cannot be inputs.
-    - Expand the commit message to describe the opt-in output-only GPIO.
-    - Reject unavailable LED offsets when only REGEN extends ngpio;
-      do not report a successful GPIO request for reserved lines.
-    - Address checkpatch style findings (braces, wrapping and alignment).
-    - Ignore the checkpatch recommendation to use EOPNOTSUPP instead of
-      ENOTSUPP in the GPIO set_config callback. Gpiolib treats ENOTSUPP
-      as an unsupported optional configuration; EOPNOTSUPP propagates
-      as an error and prevents fixed-regulator GPIO setup on Pandora.
-    - Code and commit-message review assisted by ChatGPT.
+    - Explain the DT backlight lookup performed by drm_panel_of_backlight().
+      Commit-message review assisted by ChatGPT; code unchanged.
 
- drivers/gpio/gpio-twl4030.c | 185 ++++++++++++++++++++++++++++++++----
- include/linux/mfd/twl.h     |   3 +
- 2 files changed, 169 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/panel/panel-tpo-td043mtea1.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpio/gpio-twl4030.c b/drivers/gpio/gpio-twl4030.c
-index 3e06ef9e22336..30ac6f7e0e56a 100644
---- a/drivers/gpio/gpio-twl4030.c
-+++ b/drivers/gpio/gpio-twl4030.c
-@@ -37,6 +37,20 @@
-  * There are also two LED pins used sometimes as output-only GPIOs.
-  */
- 
-+#define TWL4030_GPIO_LED_A		TWL4030_GPIO_MAX
-+#define TWL4030_GPIO_LED_B		(TWL4030_GPIO_MAX + 1)
-+#define TWL4030_GPIO_REGEN		(TWL4030_GPIO_MAX + 2)
-+
-+/* PM_RECEIVER: REGEN_DEV_GRP */
-+#define TWL4030_REGEN_DEV_GRP		0x7f
-+#define TWL4030_REGEN_DEV_GRP_P1	BIT(5)
-+#define TWL4030_REGEN_DEV_GRP_P2	BIT(6)
-+#define TWL4030_REGEN_DEV_GRP_P3	BIT(7)
-+
-+/* POWERPM_RECEIVER: DC/DC_GLOBAL_CFG */
-+#define TWL4030_DC_DC_GLOBAL_CFG	0x06
-+#define TWL4030_REGEN_PU_DISABLE	BIT(5)
-+
- /* genirq interfaces are not available to modules */
- #ifdef MODULE
- #define is_module()	true
-@@ -136,6 +150,79 @@ static int twl4030_led_set_value(int led, int value)
- 				TWL4030_LED_LEDEN_REG);
- }
- 
-+static int twl4030_regen_get(void)
-+{
-+	u8 value;
-+	int ret;
-+
-+	ret = twl_i2c_read_u8(TWL_MODULE_PM_RECEIVER, &value,
-+			      TWL4030_REGEN_DEV_GRP);
-+	if (ret < 0)
-+		return ret;
-+
-+	return !!(value & TWL4030_REGEN_DEV_GRP_P1);
-+}
-+
-+static int twl4030_regen_set(int value)
-+{
-+	u8 reg;
-+	int ret;
-+
-+	ret = twl_i2c_read_u8(TWL_MODULE_PM_RECEIVER, &reg,
-+			      TWL4030_REGEN_DEV_GRP);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (value)
-+		reg |= TWL4030_REGEN_DEV_GRP_P1;
-+	else
-+		reg &= ~(TWL4030_REGEN_DEV_GRP_P1 |
-+			 TWL4030_REGEN_DEV_GRP_P2 |
-+			 TWL4030_REGEN_DEV_GRP_P3);
-+
-+	return twl_i2c_write_u8(TWL_MODULE_PM_RECEIVER, reg,
-+				TWL4030_REGEN_DEV_GRP);
-+}
-+
-+static int twl4030_regen_set_pullup(bool enable)
-+{
-+	u8 value;
-+	int ret;
-+
-+	ret = twl_i2c_read_u8(TWL_MODULE_PM_RECEIVER, &value,
-+			      TWL4030_DC_DC_GLOBAL_CFG);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (enable)
-+		value &= ~TWL4030_REGEN_PU_DISABLE;
-+	else
-+		value |= TWL4030_REGEN_PU_DISABLE;
-+
-+	return twl_i2c_write_u8(TWL_MODULE_PM_RECEIVER, value,
-+				TWL4030_DC_DC_GLOBAL_CFG);
-+}
-+
-+static int twl4030_set_config(struct gpio_chip *chip,
-+			      unsigned int offset, unsigned long config)
-+{
-+	unsigned int param;
-+
-+	if (offset != TWL4030_GPIO_REGEN)
-+		return -ENOTSUPP;
-+
-+	param = pinconf_to_config_param(config);
-+
-+	switch (param) {
-+	case PIN_CONFIG_BIAS_PULL_UP:
-+		return twl4030_regen_set_pullup(true);
-+	case PIN_CONFIG_BIAS_DISABLE:
-+		return twl4030_regen_set_pullup(false);
-+	default:
-+		return -ENOTSUPP;
-+	}
-+}
-+
- static int twl4030_set_gpio_direction(int gpio, int is_input)
- {
- 	u8 d_bnk = gpio >> 3;
-@@ -144,6 +231,9 @@ static int twl4030_set_gpio_direction(int gpio, int is_input)
- 	u8 base = REG_GPIODATADIR1 + d_bnk;
- 	int ret = 0;
- 
-+	if (gpio >= TWL4030_GPIO_MAX)
-+		return -EINVAL;
-+
- 	ret = gpio_twl4030_read(base);
- 	if (ret >= 0) {
- 		if (is_input)
-@@ -211,8 +301,16 @@ static int twl_request(struct gpio_chip *chip, unsigned offset)
- 
- 	mutex_lock(&priv->mutex);
- 
-+	/*
-+	 * REGEN is controlled through the power-management registers
-+	 * and does not require enabling the GPIO module.
-+	 */
-+	if (offset == TWL4030_GPIO_REGEN)
-+		goto done;
-+
- 	/* Support the two LED outputs as output-only GPIOs. */
--	if (offset >= TWL4030_GPIO_MAX) {
-+	if (offset >= TWL4030_GPIO_LED_A &&
-+	    offset <= TWL4030_GPIO_LED_B) {
- 		u8	ledclr_mask = LEDEN_LEDAON | LEDEN_LEDAEXT
- 				| LEDEN_LEDAPWM | LEDEN_PWM_LENGTHA;
- 		u8	reg = TWL4030_PWMAON_REG;
-@@ -249,6 +347,15 @@ static int twl_request(struct gpio_chip *chip, unsigned offset)
- 		goto done;
+diff --git a/drivers/gpu/drm/panel/panel-tpo-td043mtea1.c b/drivers/gpu/drm/panel/panel-tpo-td043mtea1.c
+index b18af526b54c5..cb2fa393591c8 100644
+--- a/drivers/gpu/drm/panel/panel-tpo-td043mtea1.c
++++ b/drivers/gpu/drm/panel/panel-tpo-td043mtea1.c
+@@ -450,6 +450,10 @@ static int td043mtea1_probe(struct spi_device *spi)
+ 		return ret;
  	}
  
-+	/*
-+	 * Offsets 18/19 are reserved for the optional LEDs.  If the LEDs
-+	 * aren't enabled, they must not be treated as LED GPIOs.
-+	 */
-+	if (offset >= TWL4030_GPIO_MAX) {
-+		status = -EINVAL;
-+		goto done;
-+	}
-+
- 	/* on first use, turn GPIO module "on" */
- 	if (!priv->usage_count) {
- 		struct twl4030_gpio_platform_data *pdata;
-@@ -277,8 +384,18 @@ static void twl_free(struct gpio_chip *chip, unsigned offset)
- 	struct gpio_twl4030_priv *priv = gpiochip_get_data(chip);
- 
- 	mutex_lock(&priv->mutex);
-+	if (offset == TWL4030_GPIO_REGEN)
-+		goto out;
-+
-+	if (offset >= TWL4030_GPIO_LED_A &&
-+	    offset <= TWL4030_GPIO_LED_B) {
-+		WARN_ON_ONCE(twl4030_led_set_value(offset -
-+				TWL4030_GPIO_LED_A, 1));
-+		goto out;
-+	}
-+
- 	if (offset >= TWL4030_GPIO_MAX) {
--		WARN_ON_ONCE(twl4030_led_set_value(offset - TWL4030_GPIO_MAX, 1));
-+		WARN_ON_ONCE(true);
- 		goto out;
- 	}
- 
-@@ -301,7 +418,7 @@ static int twl_direction_in(struct gpio_chip *chip, unsigned offset)
- 	if (offset < TWL4030_GPIO_MAX)
- 		ret = twl4030_set_gpio_direction(offset, 1);
- 	else
--		ret = -EINVAL;	/* LED outputs can't be set as input */
-+		ret = -EINVAL; /* LED and REGEN outputs cannot be inputs */
- 
- 	if (!ret)
- 		priv->direction &= ~BIT(offset);
-@@ -323,10 +440,14 @@ static int twl_get(struct gpio_chip *chip, unsigned offset)
- 		goto out;
- 	}
- 
--	if (priv->direction & BIT(offset))
-+	if (offset == TWL4030_GPIO_REGEN)
-+		status = twl4030_regen_get();
-+	else if (priv->direction & BIT(offset))
- 		status = priv->out_state & BIT(offset);
--	else
-+	else if (offset < TWL4030_GPIO_MAX)
- 		status = twl4030_get_gpio_datain(offset);
-+	else
-+		status = -EINVAL;
- 
- 	ret = (status < 0) ? status : !!status;
- out:
-@@ -342,13 +463,20 @@ static int twl_set(struct gpio_chip *chip, unsigned int offset, int value)
- 	mutex_lock(&priv->mutex);
- 	if (offset < TWL4030_GPIO_MAX)
- 		ret = twl4030_set_gpio_dataout(offset, value);
-+	else if (offset >= TWL4030_GPIO_LED_A &&
-+		 offset <= TWL4030_GPIO_LED_B)
-+		ret = twl4030_led_set_value(offset - TWL4030_GPIO_LED_A, value);
-+	else if (offset == TWL4030_GPIO_REGEN)
-+		ret = twl4030_regen_set(value);
- 	else
--		ret = twl4030_led_set_value(offset - TWL4030_GPIO_MAX, value);
-+		ret = -EINVAL;
- 
--	if (value)
--		priv->out_state |= BIT(offset);
--	else
--		priv->out_state &= ~BIT(offset);
-+	if (!ret) {
-+		if (value)
-+			priv->out_state |= BIT(offset);
-+		else
-+			priv->out_state &= ~BIT(offset);
-+	}
- 
- 	mutex_unlock(&priv->mutex);
- 
-@@ -361,21 +489,29 @@ static int twl_direction_out(struct gpio_chip *chip, unsigned offset, int value)
- 	int ret = 0;
- 
- 	mutex_lock(&priv->mutex);
-+
- 	if (offset < TWL4030_GPIO_MAX) {
- 		ret = twl4030_set_gpio_direction(offset, 0);
--		if (ret) {
--			mutex_unlock(&priv->mutex);
--			return ret;
--		}
-+		if (ret)
-+			goto out;
-+	} else if (offset == TWL4030_GPIO_REGEN) {
-+		/* REGEN is an output-only signal. */
-+	} else if (offset >= TWL4030_GPIO_LED_A &&
-+		   offset <= TWL4030_GPIO_LED_B) {
-+		/* LED GPIOs are output-only. */
-+	} else {
-+		ret = -EINVAL;
-+		goto out;
- 	}
- 
--	/*
--	 *  LED gpios i.e. offset >= TWL4030_GPIO_MAX are always output
--	 */
--
- 	priv->direction |= BIT(offset);
-+
-+out:
- 	mutex_unlock(&priv->mutex);
- 
++	ret = drm_panel_of_backlight(&lcd->panel);
 +	if (ret)
 +		return ret;
 +
- 	return twl_set(chip, offset, value);
- }
- 
-@@ -395,7 +531,14 @@ static int twl_get_direction(struct gpio_chip *chip, unsigned offset)
- 			mutex_unlock(&priv->mutex);
- 			return ret;
- 		}
-+	} else if (offset == TWL4030_GPIO_REGEN ||
-+		   (offset >= TWL4030_GPIO_LED_A &&
-+		    offset <= TWL4030_GPIO_LED_B)) {
-+		ret = GPIO_LINE_DIRECTION_OUT;
-+	} else {
-+		ret = -EINVAL;
- 	}
-+
- 	mutex_unlock(&priv->mutex);
- 
- 	return ret;
-@@ -420,6 +563,7 @@ static const struct gpio_chip template_chip = {
- 	.get_direction		= twl_get_direction,
- 	.get			= twl_get,
- 	.set			= twl_set,
-+	.set_config		= twl4030_set_config,
- 	.to_irq			= twl_to_irq,
- 	.can_sleep		= true,
- };
-@@ -478,6 +622,7 @@ static struct twl4030_gpio_platform_data *of_gpio_twl4030(struct device *dev)
- 
- 	omap_twl_info->use_leds = of_property_read_bool(dev->of_node,
- 			"ti,use-leds");
-+	omap_twl_info->use_regen = of_property_read_bool(dev->of_node, "ti,use-regen");
- 
- 	of_property_read_u32(dev->of_node, "ti,debounce",
- 			     &omap_twl_info->debounce);
-@@ -567,7 +712,9 @@ static int gpio_twl4030_probe(struct platform_device *pdev)
- 	 * is (still) clear if use_leds is set.
- 	 */
- 	if (pdata->use_leds)
--		priv->gpio_chip.ngpio += 2;
-+		priv->gpio_chip.ngpio = TWL4030_GPIO_LED_B + 1;
-+	if (pdata->use_regen)
-+		priv->gpio_chip.ngpio = TWL4030_GPIO_REGEN + 1;
- 
- 	ret = devm_gpiochip_add_data(&pdev->dev, &priv->gpio_chip, priv);
+ 	ret = sysfs_create_group(&spi->dev.kobj, &td043mtea1_attr_group);
  	if (ret < 0) {
-diff --git a/include/linux/mfd/twl.h b/include/linux/mfd/twl.h
-index 238d9dcefc358..9cceb4fe6c12e 100644
---- a/include/linux/mfd/twl.h
-+++ b/include/linux/mfd/twl.h
-@@ -560,6 +560,9 @@ struct twl4030_gpio_platform_data {
- 	/* package the two LED signals as output-only GPIOs? */
- 	bool		use_leds;
- 
-+	/* Expose the REGEN signal as an output-only GPIO. */
-+	bool		use_regen;
-+
- 	/* gpio-n should control VMMC(n+1) if BIT(n) in mmc_cd is set */
- 	u8		mmc_cd;
- 
+ 		dev_err(&spi->dev, "failed to create sysfs files\n");
 -- 
 2.56.0
 
