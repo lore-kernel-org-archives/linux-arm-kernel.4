@@ -2,103 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79052606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25A2606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bNYGMTmC;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=XiRUSJh5;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=lLrpdG3Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jWgbn2i8;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HT1/YGw1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=53M/jNU7gvao9zbUz+MPtUuoMg3rbooohKcY2RF1rFE=; b=bNYGMTmCzF/APZ
-	DvG6FbF6iLk4YmXGQOIkqF+vHUoHxBF6dyeo07ZnW+kPeU/vbqERVc7pxETEmWUal4KDMN0gSvfEI
-	Q/4eL3ZD3VMicNDDd0iA6yRhx/Y3MTxfkXez2grqknVDi9VwRH9+sWwwXF4gaSEOMMajByrp/Ddkh
-	3HGRNf8xiSulqt+nJRiCrCUcesxio1JrU4pbsP+bxcUJQFhddP7umoT1zwqAuJrr8iIJXjRitVVbU
-	q3vyevI1onwNYvsMcdKAVWuu4UApqPzVMGL5V+r0Qqzx9iojTrVvxE3/4g047DpTLC3iSA+WI9Xhe
-	RN0n+WRqsfimpcydbecw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=62rquUBvOVvyiVKieMKcgUO9ltoC8VqQS3BayNI9r78=; b=jWgbn2i84kglA1WcPEoto+sNmB
+	tzZL5HIUeRAPcdNSPp+hqz1Fh13029vgIIdTvD5AKQj7cKmP8eysXVIe8a2vrg5A/x956P5cfBbOK
+	gPn0hFCKutuhElcj/73j4UTJQ2Yp1mpA1yvquN3ptxpSUYdu6Egh/mdwopyYWMIJ7WQKqxJ9v6/Xc
+	5lDTdRzsMW9zjW+aopK5HeXSgxcU3E7G62vL1IjqYtivKEeRkPRXhM+e3Xy4khB5T3rid6Oz5MZvl
+	cRMmYtf9vzksTkLH0yaGlDU8a5Gx0Djc84fl+OBWOkXnCqZ6pd0eUnAginFfpz4P5YTgL/5h3JCoO
+	fBAj9Gog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdN-00000007A9j-3nZC;
-	Tue, 24 Nov 2026 16:44:45 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xVtdi-00000007AVx-1prA;
+	Tue, 24 Nov 2026 16:45:06 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdM-00000007A6Q-1ZkQ
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 24 Nov 2026 16:44:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=53M/jNU7gvao9zbUz+MPtUuoMg3rbooohKcY2RF1rFE=; b=XiRUSJh5PcwBqX/pYYAmlnEZ9V
-	9cwtvHlYMIXgRWwNukncbnKjNGNigtcnUq6b51Nn5h3XKahSFP+MqQBqj/+sB2U8ZiGq6EXPfgRD9
-	HAU41b+BpnOhaD1YtRO2b4RRBz9y+LbfBZXMzv+w2PmOJkB6g4JNfLl6fPUJtY0PpVfj3i6j3uk9J
-	Fk3QDAu/OWZQaIw/agbqN+kdccnhxE+fb7Fcr0zClmddqwUNOmAYB9omAq7avLZu7YjuW2qxUwzN0
-	fUsQ2BVldCIMSpJfjoEozE0s1D2U1KM64KX6N7j6mQnwLd8lvD/PJs9SAg6vzT78El0I3nQGXkqrC
-	uOL49kbQ==;
-Received: from smtpout-04.galae.net ([185.171.202.116])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtdD-00000009CiF-3yK9
+	id 1xVtdb-00000007APA-3aVY
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:44:43 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 49AACC2C65F;
-	Tue, 24 Nov 2026 16:44:35 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BA401601E1;
-	Tue, 24 Nov 2026 16:44:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D5BD011E69A74;
-	Tue, 24 Nov 2026 17:44:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795538666; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=53M/jNU7gvao9zbUz+MPtUuoMg3rbooohKcY2RF1rFE=;
-	b=lLrpdG3YSYonKsqjZ0nA4v/luC/lUV71hkWM0DMSi1Ut0YO3tpa3cvoqynxNCaoMzUu59p
-	XibZaxK6u94QFBrZOu94Dvi2gNXxAZ4gTtAVdvriNTG/55I7Pqy1NrDfxCX+WIkOSzmX6f
-	ScdRBDRkFB7dYJU4SutHy0rRYSABMxX8JeyMNWwId/jrOufL/rdbuszoslllhDDBeFxah0
-	ZbLayFiNzZNjTcJKomgKeB4uwH+D559Jt4Goj5tjp6oHx0Y3MClE/5WbPg02Q5FyuPpb0N
-	lL8Q+pAeGEjfDpE3g7RH0OhB3qY+KGGoRzjTfr4Mv136UL3b1tigVv4EOix67Q==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jacky Huang <ychuang3@nuvoton.com>,  Shan-Chun Hung
- <schung@nuvoton.com>,  Michael Turquette <mturquette@baylibre.com>,
-  Stephen Boyd <sboyd@kernel.org>,  Richard Cochran
- <richardcochran@gmail.com>,  Arnd Bergmann <arnd@arndb.de>,  Brian Masney
- <bmasney+clk@redhat.com>,  Jerome Brunet <jbrunet+clk@baylibre.com>,  Rob
- Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>,  Andrew Jeffery
- <andrew@codeconstruct.com.au>,  Avi Fishman <avifishman70@gmail.com>,
-  Tomer Maimon <tmaimon77@gmail.com>,  Tali Perry <tali.perry1@gmail.com>,
-  Patrick Venture <venture@google.com>,  Nancy Yuen <yuenn@google.com>,
-  Benjamin Fair <benjaminfair@google.com>,  Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  Steam Lin <STLin2@winbond.com>,
-  linux-arm-kernel@lists.infradead.org,  linux-clk@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  Krzysztof Kozlowski <krzk@kernel.org>,
-  devicetree@vger.kernel.org,  openbmc@lists.ozlabs.org,
-  stable@vger.kernel.org
-Subject: Re: [PATCH v12 02/10] clk: nuvoton: ma35d1: Use clk_hw pointers as
- mux parents
-In-Reply-To: <179519171774.3795820.3637822831411003847.b4-review@b4> (Jerome
-	Brunet's message of "Fri, 20 Nov 2026 17:21:57 +0100")
-References: <20261118-perso-ma35d1-upstream-clk-v12-0-bee2c8dad4e1@bootlin.com>
-	<20261118-perso-ma35d1-upstream-clk-v12-2-bee2c8dad4e1@bootlin.com>
-	<179519171774.3795820.3637822831411003847.b4-review@b4>
-User-Agent: mu4e 1.12.12; emacs 30.2
-Date: Tue, 24 Nov 2026 17:44:16 +0100
-Message-ID: <87y0aiqivz.fsf@bootlin.com>
+	Tue, 24 Nov 2026 16:44:59 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8352444E75
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:44:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46CD71F000E1
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:44:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795538699;
+	bh=62rquUBvOVvyiVKieMKcgUO9ltoC8VqQS3BayNI9r78=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=HT1/YGw13Dv+iFvg8OAdS0pdI96Vn5LQHK6b0IPxIgdQ2mADdN8a60bD8ORpPmlCK
+	 sYjbRnWmX3nMsfStBlMQ/B3y5whRvGe2EKBVwbJ5ic1ZYy98gYotUTa+s/yZxoWgMg
+	 1KaW2ArbiDHBM7bJCTQF5A2sqJdFlTJLhZEIhJgw6TWfb6TDFsS3fkk+r2+W74Hz4w
+	 /dsI6ulH7LbwYALPeqdmauGEHVqnbwX0DeytLlXWmo/YgGyjTX3qbiOfL6hUK7seFn
+	 xXpCd1feqAYqvSFD2hB1tjiYV6a8roxoO7KnCiWFKtJ4GTfGeFBEQBCIj0y7Wy3jEL
+	 8z0wjhfM9ia8w==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3ae25dcbd81so41281671fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 08:44:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErG4awREigZF04GvQbOmioyGUqvTJnnJzaKzo4oE1qLjiCK3j/gNtrgxdKquOSS+vszH+DsyPGBdKZdoAJRfeN+G@lists.infradead.org
+X-Gm-Message-State: APuU4Z9t3aepXw5RjDqEii38h9zeSAgeITqnqM5rY+hh7Ebs09Gbd3Ia
+	evmP6S6n/68cqfws4V5kDseQVx3wUcKadGhcqZpE0xse4YGVk/NLpkgif0C5b5Hz7/5vRugcdm+
+	ZN/pQA1lo7wavOgZuUs+jEyhFGgw29NU=
+X-Received: by 2002:a2e:a807:0:b0:3ae:7ef0:6b69 with SMTP id
+ 38308e7fff4ca-3ae7fa11df0mr42946551fa.12.1795538697678; Tue, 24 Nov 2026
+ 08:44:57 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20261121-a733-cubie-a7s-dt-v5-0@gmail.com> <20261121-a733-cubie-a7s-dt-v5-2@gmail.com>
+In-Reply-To: <20261121-a733-cubie-a7s-dt-v5-2@gmail.com>
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Wed, 25 Nov 2026 00:44:44 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64c5oirvfq7R3a1CWQCydfOOipcRD7dhSFAb=zczRdTHw@mail.gmail.com>
+X-Gm-Features: Aa3M54qViXTA9PWqHy7JAagF_gxHMQbq3GygFoih888wxMeSNrx03SeafMdIrGc
+Message-ID: <CAGb2v64c5oirvfq7R3a1CWQCydfOOipcRD7dhSFAb=zczRdTHw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] arm64: dts: allwinner: add A733 SoC description
+To: Enzo Adriano <enzo.adriano.code@gmail.com>
+Cc: andre.przywara@arm.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, Junhui Liu <junhui.liu@pigmoral.tech>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Pablo Mazzini <pmazzini@gmail.com>, 
+	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>, Alexander Sverdlin <alex@sverdlin.org>, 
+	Jun Yan <jerrysteve1101@gmail.com>, Lukas Schmid <lukas.schmid@netcube.li>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_164436_047660_C91EEF47 
-X-CRM114-Status: UNSURE (   9.07  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,37 +83,84 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jerome,
-
->>  static struct clk_hw *ma35d1_clk_mux(struct device *dev, const char *na=
-me,
->>  				     void __iomem *reg, u8 shift, u8 width,
->> -				     const struct clk_parent_data *pdata,
->> -				     int num_pdata)
->> +				     struct clk_hw **hws,
->> +				     const int *parent_idx, int num_parents)
->>  {
->> -	return clk_hw_register_mux_parent_data(dev, name, pdata, num_pdata,
->> -					       CLK_SET_RATE_NO_REPARENT, reg, shift,
->> -					       width, 0, &ma35d1_lock);
->> +	const struct clk_hw *parent_hws[MA35D1_MUX_MAX_PARENTS] =3D {};
+On Tue, Nov 24, 2026 at 1:42=E2=80=AFAM Enzo Adriano
+<enzo.adriano.code@gmail.com> wrote:
 >
+> Provide the SoC description needed by the initial Cubie A7S DTS for its
+> console, PMIC, EEPROM and microSD. Describe the CPUs, PSCI, architectural
+> timers, GIC, RTC, main and always-on clock/reset and pin controllers.
+> Include the main and R-domain UART/I2C instances and MMC0-2 with their
+
+> pin groups. Use mux 6 for I2C0 on PG8/PG9, as in Radxa's BSP pinctrl
+> driver and its Cubie A7S device tree.
+
+This should be evident from the schematic itself (the pins are used for
+I2C). And then the datasheet would tell you which mux value it is.
+
+Just saying, trust the datasheet and schematic a little more than the BSP.
+And one really should write the device tree based on the schematic. The
+BSP is there in case something doesn't work, to look for existing quirks
+or workarounds.
+
+> The GIC maintenance PPI 9 and ARMv8.2 EL2 virtual-timer PPI 12 follow
+> the A733 User Manual v1.00, section 12.2.3. The GICD/GICR/ITS windows
+> and noncoherent attributes follow Andre Przywara's public A733
+> reference and the A523 precedent. The CPUX interconnect diagram in
+> section 5.1.2 supports noncoherency as an integration inference. The
+> ITS stays disabled pending its clock/reset and MSI integration.
 >
-> It works but a little check to make sure we do not overflow the table here
-> would be nice.
+> Describe the single DynamIQ unit and shared L3 shown in section 5.1.2
+> (figure 5-1). The big and little DVFS groups can be described by their
+> clocks, OPP tables and supplies. Partition PPI 7 (section 12.2.3,
+> table 12-1) between the Cortex-A55 and Cortex-A76 PMUs so each probes
+> its own core type. Defer capacity-dmips-mhz until it is measured on A733.
+>
+> Link: https://gist.githubusercontent.com/apritzel/60fd7379b9560a15b8b3529=
+86b69d39f/raw/efd9cdf8f26ba5b0c7e138f093af44a1cf322469/sun60i-a733.dts
+> Link: https://github.com/radxa/allwinner-bsp/blob/2045a3ca2a01f088c0314dc=
+924bda59d154e363e/drivers/pinctrl/pinctrl-sun60iw2.c#L1591-L1610
+> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+> ---
+>
+> v4 -> v5: Rename osc to hosc and add the I2C0 PG8/PG9 group. Keep the
+> one-cluster CPU map and the two PMU partitions.
+>
+> Untested on v5: physical CPU/cache topology, PMU counting, EL2
+> interrupt delivery and ITS/MSI.
 
-That's maybe a bit more future-proof so I'll add it, but at the moment
-I believe this is almost dead code since every caller passes a static
-ARRAY_SIZE(). But not a blocker for me, will be added to v13.
+Someone please test the PMU.
 
-Thanks,
-Miqu=C3=A8l
+>  .../arm64/boot/dts/allwinner/sun60i-a733.dtsi | 663 ++++++++++++++++++
+>  1 file changed, 663 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi b/arch/arm64/=
+boot/dts/allwinner/sun60i-a733.dtsi
+> new file mode 100644
+> index 000000000000..8a258f16751e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun60i-a733.dtsi
+> @@ -0,0 +1,663 @@
+
+[...]
+
+> +               uart0: serial@2500000 {
+> +                       compatible =3D "allwinner,sun60i-a733-uart",
+> +                                    "snps,dw-apb-uart";
+
+We can't merge this because the bindings haven't been merged. And they seem
+to still be going through a lot of churn?
+
+
+ChenYu
 
