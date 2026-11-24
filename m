@@ -2,147 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87D2606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78442606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 16:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xn3qNWBH;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=PYiMLYh+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AGeS0ZCd;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WFI2GO4f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
-	From:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=lWcttLjKGdCCJ6xgq0ctD1iWvbtlIYhf1zx+oCS2Q9w=; b=Xn3qNWBHzNfww8EZzgA8Z3orRX
-	e7oSKJT7k0q+4c1Q8Xz9LanHJRFrh/Q4c0CWasf1xeM4oPpNfITDDrEi769Gjs0To8Vj+P/DaRrrx
-	eZc4e0ok0hM60djN3kyMelzuda9T9FVpSSx+/Bn+8lMs0fRDLsBU8GonWTsdpTRXjrps0gw+NUQRA
-	ZvjZTypbfhCOmZvTP4O+akrQEZUZf6yYTJn+W/JdHdQ7qERKXis+kI2DbykobA6gZk+s9nsClzPnn
-	zw+RG6OvkG3A0SZl/jhQT65QR1JEXheaU5DP1fhHr7j4UE6CCBfa8KlCkJK3bsVzmK65HfwNBRjEA
-	dujP/Ztg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Pbb0lUo4dfFedZvgM3ZKbqsv5rUYDPqVpOgYx3sCIio=; b=AGeS0ZCdVa3ap0
+	kqYiO8yg3p5xB4K3ME2CgQyf090qi3Ct0xOEfFKZ3qgQX5+KkxMzDt0H97dCr5e22DdLRJvNDXc7g
+	7lfr+/1Hq36s+7NVYuHTm2nr7Ea8GfwhID+h99chmZdo2gHSquMIO1fTQFrheg7+xDfFDXjZqU794
+	fjE4pNHt9B0H2oQsq7vXPkv8tts+7yBSDL1To7ohH64K+QOpokPEZ56O2nEQqpRmmJuwDbgCtbN3G
+	UL+1QHIjdpZjRM8FQbwXlP00cUbmeuB6UsXLzY5khXmYSBUTtO7BOt12s4rZ6tQOIK/wNuJKRbZw9
+	BHhgzYHm50l4oCeyiX9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtnb-00000007EQE-1wzt;
-	Tue, 24 Nov 2026 16:55:19 +0000
-Received: from mail-westcentralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c112::5] helo=CY7PR03CU001.outbound.protection.outlook.com)
+	id 1xVsfG-00000006vg4-1z5a;
+	Tue, 24 Nov 2026 15:42:38 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVtnY-00000007EPI-3bgM
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 16:55:18 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KKkTvyYkNMV0ST8WpG+ObezxW6CnDdsZGg6odytCY42Dnrs1iNTtamWJGc84ofLx6VQAA1cIuJ+kqoIFK9GDr5MZCOHudATVKgYGzZcE0qE4ud1YrEb+9avhxtJIMjBaHKs/lj3bleG2TH8ufTdKDszdYy6tE2v+Xj/FlGO0kDSgeen1e4Xotf7c3kPbRW01739lSiVrwWx1RJuhjMqgLD+R4gvZZbX9nAObJRbC0mLBq3zu1Kl0heDuDg086jBhe1rTAU61/MA08fHA+iHdWdtPbF06uvpw2IsiEwMvuj2IcHLJrNyNLp/DxvjoVy1oUgUhhahUmVqkN3SxJbHsOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lWcttLjKGdCCJ6xgq0ctD1iWvbtlIYhf1zx+oCS2Q9w=;
- b=vpkdlmO/nZmOk4KXkBWlkL2sSI5Q5PP+g5gqe7NQxSkEMeEScj9GEvRFpsMbZb0PBbN643Rco54Ew6rxOfvjr01EZpHGWc4izr142NPNr04JIymFAEwNywv5H9/tRtvgf+nF8cLWV83V0aTvO/ooaRj9ItOOxP0k3AkuIR4w2bYhP0TMJdk5WG7uK+lswhDYCTEfJPg4Yizmm+EI+0Uqw3wkE9z6vWrloBIiNwhs5E5mdRG/wRVyRywa289O09Y/B0iO/GWoE1STvfDu3YGsSpldDIHacsP65km/uvEZ0PO5bzPrGmdknlQ9sxnAXhRFUCOqWwdv7M3JM2ZPXlKmyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lWcttLjKGdCCJ6xgq0ctD1iWvbtlIYhf1zx+oCS2Q9w=;
- b=PYiMLYh+3r/caSunYiwjx15A+iKI017yAPdfjf/M0CH+TcTbRqWi6LNtYWPspIZtJPCO3SUuLmgR9P/A2+mW4gJj94rMocKOWjKV8a9B1WDVkU9IfMwSlUhOjE55Ok2FOm4IH52AGmYRYApi0oNGbv9xFZbAhIByaIIcUvc+FvY=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CY1PR12MB9559.namprd12.prod.outlook.com (2603:10b6:930:fd::14)
- by CY1PR12MB9626.namprd12.prod.outlook.com (2603:10b6:930:106::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Tue, 24 Nov
- 2026 16:55:07 +0000
-Received: from CY1PR12MB9559.namprd12.prod.outlook.com
- ([fe80::1761:23a3:6ab5:fbb8]) by CY1PR12MB9559.namprd12.prod.outlook.com
- ([fe80::1761:23a3:6ab5:fbb8%7]) with mapi id 15.21.0639.010; Tue, 24 Nov 2026
- 16:55:07 +0000
-Message-ID: <c3a7df9c-e337-47ac-9a6d-6bb81177affa@amd.com>
-Date: Tue, 24 Nov 2026 22:24:59 +0530
-User-Agent: Mozilla Thunderbird
-From: "Nagavarapu, Dileep Kumar" <dnagavar@amd.com>
-Subject: Re: [PATCH v5 12/16] iio: adc: xilinx-xadc: Refine Zynq read/write
- error handling on timeout/interrupt
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Conall O'Griofa <conall.ogriofa@amd.com>, linux-iio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- git@amd.com, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
- <20261110050201.1850399-13-dileepkumar.nagavarapu@amd.com>
- <avNEpH6KGJkeI7dX@ashevche-desk.local>
-Content-Language: en-US
-In-Reply-To: <avNEpH6KGJkeI7dX@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0024.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:b8::10) To CY1PR12MB9559.namprd12.prod.outlook.com
- (2603:10b6:930:fd::14)
+	id 1xVsfF-00000006vfT-0i7i;
+	Tue, 24 Nov 2026 15:42:37 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9504661121;
+	Tue, 24 Nov 2026 15:42:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 311951F000D0;
+	Tue, 24 Nov 2026 15:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795534956;
+	bh=Pbb0lUo4dfFedZvgM3ZKbqsv5rUYDPqVpOgYx3sCIio=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=WFI2GO4fI7cf0Fet9UCV/8MIavKwD6ePmgMl79GdOwUC6zL1sCmIshpZnJ7UXtYjm
+	 RYaOIRm62h6e0iwz3BGtnC7BJ30o3MUbK9yMRWivJf6r3CaYOLXckG7sYjTsJzr3xe
+	 Nv+mHmi4SK13lTBFQKXdZOQCEQSguEvu/EAkIZQIQIQptyx+nE+x1ch90s1yh3MOnT
+	 TkR+bWk23k0TmPYiXi20lFnIbOS/vJ1LOo4JbcMSvDPuhpE+pX6wwI6orp2W3Rvac0
+	 Zc45Lu1aOxmx37sc+v4GlYtGyiKg287C1aqhUanhXlqBUtwRxvd8IE6ZO11qygSPor
+	 ftLYdEFdfXE8Q==
+Message-ID: <3443494f-f04c-46c7-9e61-5143f05da404@kernel.org>
+Date: Tue, 24 Nov 2026 16:42:28 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY1PR12MB9559:EE_|CY1PR12MB9626:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8941f3d0-2501-42b7-c484-08df4a4bb16c
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|4143699003|261022105027099003|261026140227099003|11063799006|56012099006|261021121427099003|10067099003|261102123227099003|261009223027099003|261028144727099003|261026121527099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: QqKNfV/4pMYe56537dtogGhirx9ci+EEQKxJUmPXnrJu2rdu3aHWNGMe1vOkVJ+0YA6qLfW23Zq4hTiprW0Syapdf+c7S59auUzB/qVai6KYdSRIftqORXPKOxm06kF37LavKVl6oeMm8F0YX7s/Ae8s5+i5ljHfchWPdbxhnnwBf92FqJaHOmdyqeqJwl7umX6HWnUZ8WfkuOPI5GtWZ6yWOxhK/l2cj9Eg1teFbPTFZfhebdzk1TiDVBhohf27l1+fLqTTO35vLveeUO7fWwF3uYYbMrchIx3CqUiPSE553yaDoEswLw9/qIaM2VJo/HVOnctwQ1gYo6MwOL2zSc3PDwicKjNFG/4WPkYhk0IkkltclK9I6q6n6q52FFG7aUzZAfyazh21CgEEcl6McrQqgBNk0yKy6mz5ohsb3bXIZitOmQpPdebb0j+BINAk/pbCdky2Ovyxs3EUtjIk3wX5be8GtzrBfCjZzE+8YJM0EXIM3IG9I3Zm+UOQjwjPwJVcIXiaptNFje1JcmGligpfRyMhgRMOxAUjrus7eohnJ4F7Lb+kIktBwFgI4U2WP8RKgPzFqO4eM9kypXY0ahrCU044J8ACMrYkIyvdLMshwOTJRBxnYbWqm1uevjciPWSQqIaRrmISrXgwuqebk3v4h5rQWZD2y/agyleu4nY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY1PR12MB9559.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(4143699003)(261022105027099003)(261026140227099003)(11063799006)(56012099006)(261021121427099003)(10067099003)(261102123227099003)(261009223027099003)(261028144727099003)(261026121527099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?amx5TUY0UmpwdUR6dHE2YWxlYzlqbFlYTDdIeVVNL21xKzNpajVUSXFLOFdl?=
- =?utf-8?B?bUVsejQzSWMwUkYzb09vU3BGdzJ6MTVoUHZtVEJtRVVFT09ydFoyWkNuMlVs?=
- =?utf-8?B?NnVQL000UmVURVozc3ZocUljbG5kOHNjYlFmeUoxQVVndkdrSzhxTGh1T1A4?=
- =?utf-8?B?UUh5VXByalkrbVBUS2ZybHliKzcyVGlaMWkrZysxOVc4UUpHSGdzZlNMYlVI?=
- =?utf-8?B?NDlhQ0RvQ3lhSnFUOWprSGxPZDRreitmc1ZmSzNTdWJja0FLbUQvL1kyT21I?=
- =?utf-8?B?RUpjNXdBbHZOSWFxRVhZUWdNM1hHZko1QVlTWTlvZlBVMXgyUjZYempJcXNw?=
- =?utf-8?B?dWpNdytBa0VscHJSakxVUzlqaGJWT0Z3MDJuaTQvWkdqZDRnOTFuR2Y3eGFO?=
- =?utf-8?B?VjY5UENYdGlidmtIWkJoWEV5ZkdoSDVaUmpZRmN2cTNXcjBWQmhjRkw4bFhU?=
- =?utf-8?B?YkpKZGNmQzNuWlowWFpiOUhLakFheTJyMHBOTXo3M0ZlY0tnOFQ0UEZqM0Vn?=
- =?utf-8?B?MGdPVnVZOU4zcXQ4TW5hVHN2c2pkMStwUVZ2b210d3RvT1FzcVRiRCtzVU5I?=
- =?utf-8?B?RXl1MmdkMmxkd1lQVFY5SnpnRVV0Y09Ib2gyZWZTZTVHc3NIWDNtQXJuT056?=
- =?utf-8?B?aFQ5NXIyWU5GOUVnU3hwSDhFempOYXMwajZOYk9ZeFF6Rnk3aVYyR0N0WkhE?=
- =?utf-8?B?T0hhWTVNSm0rUFVzM3F1c0dqS1JRK3JVVjhyWFB0dlFETU9NcG84SkpmdXFU?=
- =?utf-8?B?VW12MmoyKzFJSW5MVVhEcXdPSEtZVm9PRUF1RHdnY2RhUkZyWWhyQlRpWEhC?=
- =?utf-8?B?YjF2Z1RoU01ueENHNlUyMVhKbmJGYjNrRGp1VUV6WXkwS1hZQm4rQ0ZoMURJ?=
- =?utf-8?B?UU5LOFRHSUltQnB4QjRhSG93UXg0VnN6VUJhUVV5Y1lQajVUSFNjajJHNlFW?=
- =?utf-8?B?Y2hlaWl3dkV5b1cwZnNYbFJzaWsxYUlPaHdSM01qWTRGVVBLQnNRZ2RaaTVq?=
- =?utf-8?B?NDZpZFhGNEFPMS9XcFJ1L0dPZk9XczVDazJaWEV0ZGxmQ0pZajZLVVE3Z2Rv?=
- =?utf-8?B?NnlZUkxUQUM0bnY5YTFnbkRFQVZ3cVlhWjltL3JQdzJTaEQ2UXBjd3Rwd2tx?=
- =?utf-8?B?NEZIWjNFRHV0TjFNdytRRXU2dS93Sk9sRVVCSGFjQVJBS0dCK2Z5bHp2OVNa?=
- =?utf-8?B?aVJUaVR0SUZCQ2xHM2ttN2Y1Qm9hd0ZYbmk3VU1tWTNGSUpLVHI2Z3BjcExw?=
- =?utf-8?B?Y2p2TW9XcWsxS2YxdnlkZXdxdnJBeW5XZjVRUXB6cUdFZXJNeEwrR0N3b0hq?=
- =?utf-8?B?Z0dDVk0rVWtnMzBLUG5iT2V0VnBlNXpuRWdZcDVLM0VPbGlZUm1RQjFERmhv?=
- =?utf-8?B?cDUraUFvQXk4Z2t2ekorcWRlM3M5aXlWV2JpUGtHSnBaU2xNODNkQW9HWHNT?=
- =?utf-8?B?TFIyMndjSWxhNzU0azFWbUZESDcvSFhnWnROY1hESjFLZTVhU3VhbEhGa241?=
- =?utf-8?B?M3l4WWZiaHhYcElpUlRTQ1JIcWJqN3pQd1lpejJMTVNLeHk3K1BCN2gzYnBG?=
- =?utf-8?B?RmovVnhFRUpTZ09adXdqVTIyTlV0d1ZwdndDTUFVZGtiaW94bGFZQjN6SUtH?=
- =?utf-8?B?ZFdLZXRQclM1TVFRMmszLzhaRXB6eUJYYS9kdWhlN1duVnFPODBVbitENS9p?=
- =?utf-8?B?dDVGeG9ROWJTR09VUkRCUzZFWi9FUzRzR2gwZ2prbXFZNno2ZWxWa1lqQ0dD?=
- =?utf-8?B?aTJScm9PdUYvb1hMT05OY2tTS20xdUYwM3pORGZuVUpnRlBjcEJXMHN6bm4v?=
- =?utf-8?B?RlZNaUFmck1lVXpNZGczQk1GbFlhZFNLZ3A4RXVrb2Q3eTdPTjJqZ0RmUzFQ?=
- =?utf-8?B?ZWRvaEt4WVBGaFB5K1lmRUF2cmhLaE9GN0k1SlEzTDNvWGFMZndzL3hwVDY5?=
- =?utf-8?B?bEhkeTNNOTZBQzd2ek9hekwwRE1Cd3hJS0wyem53RW93NStrNXptY0NqUzdu?=
- =?utf-8?B?U2Nha0V1YlRQN1VUdDlsUUR1MkJlSi9ibXBYZ2pER0RsRHhGaW8rRWJoS1VW?=
- =?utf-8?B?QUc4S0FCdnVwTUY1b0RwcFZ3cjFOV1NCdGpkRHBjRHhvbVhwU0pTdXI1d0lK?=
- =?utf-8?B?Zk8zUnY0cDNuMDF5a2FXZnZPanZBcXBmcDhBQU41UWo1ME0zdFZkUjRHTzdh?=
- =?utf-8?B?Rm5jNnlCWk5ESmFDL1RvMW5vL2MvNmNkQWppMFRVTnlPa2F4OFdtTjVqQThE?=
- =?utf-8?B?Q2ZxNUZ2RVU1N0U5YXkwbXA0Y2ZXRmtHOEtmWmJyZTNLWW5qWDBEUjRlNXJQ?=
- =?utf-8?Q?UqUHXxZFJIETxD9fFY?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8941f3d0-2501-42b7-c484-08df4a4bb16c
-X-MS-Exchange-CrossTenant-AuthSource: CY1PR12MB9559.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 16:55:07.3310
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pxtYZwKhx53v3Uo4JUqaczhJC82EbZFIOF+ZkMQm0qiLU8nKRNCzu4SjLttZUKGSVj7UU+YhT1zPgodmbkK/fA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9626
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_085516_958021_1FF1F1A1 
-X-CRM114-Status: GOOD (  18.35  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: thermal: rockchip: add RK3506 TSADC
+To: ZhuXiangyu <1194781887@qq.com>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20261121063330.1094548-1-1194781887@qq.com>
+ <tencent_362D76566799132999F95C09AC34775D0D0A@qq.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <tencent_362D76566799132999F95C09AC34775D0D0A@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,73 +115,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On 21/11/2026 07:33, ZhuXiangyu wrote:
+> Document the RK3506 TSADC, which uses the TSADCV13 register layout
+> and requires the TSEN clock in addition to the controller and APB
+> clocks. Like the other newer Rockchip TSADCs it needs the GRF to
+> enable the sensor analog front-end.
+> 
+> Signed-off-by: ZhuXiangyu <1194781887@qq.com>
+> ---
 
+I will mark everything you as changes requested. This is all half
+broken, b4 review cannot even fetch for review.
 
-On 11/10/2026 9:51 PM, Andy Shevchenko wrote:
-> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
-> 
-> 
-> On Tue, Nov 10, 2026 at 10:31:57AM +0530, Dileep Kumar Nagavarapu wrote:
->> Refine the error codes returned from the wait, the same way in both
->> xadc_zynq_write_adc_reg() and xadc_zynq_read_adc_reg(): a timeout
->> (ret == 0) now returns -ETIMEDOUT instead of the previous -EIO,
->> giving a more precise errno for this condition. An interrupted wait
->> (ret < 0) now propagates that error to the caller instead of being
->> silently treated as success.
->>
->> xadc_zynq_write_adc_reg() waits on xadc->completion after issuing the
->> Zynq DRP write command, then drains the response word from
->> XADC_ZYNQ_REG_DFIFO. The DFIFO read already ran unconditionally after
->> the wait, regardless of outcome.
-> 
-> ...
-> 
->>        ret = wait_for_completion_interruptible_timeout(&xadc->completion, HZ);
->> -     if (ret == 0)
->> -             ret = -EIO;
->> -     else
->> -             ret = 0;
->>
->>        xadc_read_reg(xadc, XADC_ZYNQ_REG_DFIFO, &tmp);
->>
->> -     return ret;
->> +     if (ret == 0)
->> +             return -ETIMEDOUT;
->> +
->> +     if (ret < 0)
->> +             return ret;
-> 
-> First check for generic errors, then for exclusive conditions ( == 0).
-> 
->> +     return 0;
-> 
-> ...
-> 
->>        ret = wait_for_completion_interruptible_timeout(&xadc->completion, HZ);
->>        if (ret == 0)
->> -             ret = -EIO;
->> +             return -ETIMEDOUT;
->> +
->>        if (ret < 0)
->>                return ret;
-> 
-> Ditto.
-> 
+If you keep sending such poor submissions with that speed, I will be
+moving everything from you to /dev/null.
 
-This patch does not fix any behavioural issue; it only changes the
-error codes. Sashiko suggested adding a Fixes tag. Is it OK to ignore
-this comment, or do you have any other suggestions?
-
-> --
-> With Best Regards,
-> Andy Shevchenko
-
+Best regards,
+Krzysztof
 
