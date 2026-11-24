@@ -2,141 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B37D606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9AAB606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 14:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dkhYKdqr;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=B/N3NlED;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=Gm8rV/jN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e1VHdQVZ;
+	dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.a=rsa-sha256 header.s=google header.b=amdxvHwO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wjMPCLTKXUXSTgUWJyqY8hYDFtiorHpsk/A6fPEGtNY=; b=dkhYKdqrYJ4L29
-	6cyMpsXTQI3LbqEmeHbF68KF1mrictjiqywLcdMGn17D3KZggCiRq0ba55Ddaj9Squ1nS0hghgX19
-	T8lhgvf/vbAo1foP2or3RD8XY8ertERFetcTrJ1ccC4zu4P0xGXqt/j5MSpaaeYi7cpsC++srjjQf
-	PbEqcAn3gYWDfvCFxzUiiS49SOpnkajOAfZdOyW+kSrGSLbwhU2I9yG2Hx9Y2+PgGiCnRiyhG6Nz5
-	rIsQjGdqFU4KV5qqoBgWSwXH6gg1owZpE4igR+GO5kU7GmVExzO9e4Uv3OlU6W/I1ogEAZIJ32icG
-	CBQE3tXQv/tfACZlFNtw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=mQ2JTBOODXVLExMT4lau5wcd1i8TygMCNsmKX6gW1YI=; b=e1VHdQVZ0zM5kL7TibXw2xLSY2
+	QgUBYd8fqg2w9uEyVYuvvZt6O0ZG1Zwpqimm4w6jsPyqhlxVaVLtgpEexcyW1ldNcuepVjv1FSl2v
+	3WQoCfUOE8tXdQMXSPXJ09eNV82D3uJxbYnnI+Zvu1ZpLTaBQkH2FvnBxTZ1+K17lVYxiAnkEijeV
+	8hvy0FRHMQ7VZIYbUbmzHsZ3hHgYUcFOz9CvKgQtesZTdhWZSbRlhAPQDm/bZOBKZRwHp8FOHSiEX
+	wS/q3rU4YI6A83RLMtNTVVXtn59NsDZkM6y4tqp+yuHZiPKu8lc0OKkBmYvKzPy9sS4XXdgklWdyd
+	sp3mQTNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrkI-00000006nM3-1lfM;
-	Tue, 24 Nov 2026 14:43:46 +0000
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.175])
+	id 1xVrVg-00000006kMU-289B;
+	Tue, 24 Nov 2026 14:28:40 +0000
+Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVrk4-00000006nEr-3lZ3
+	id 1xVrVd-00000006kKg-14c6
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 14:43:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795531380; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=eFqapcrDkZWfDBugJ2ET555mbIpYEVehoLLZJ30Ke6V2BQb54yMB8BEb1EfkYX2G/D
-    jxlhSJa5/Ru5wvdhGJ/DDnTAwcQH3PJEDoRPYfDJoINKWc2FBkp35BIX0mnlH0jr6e8C
-    bEw30vBjZ5sIdRoavYNO6vGYsMkI4OhB7P0G5xXiiD37kxALzXphG+jZ3ZFFsufL70W7
-    vKLkFNSKX9JqgJ4rNBaOD2SHMFY3Efi8PTyK8tBmDIBrAK/wzTb5pW3Mm3SAz2WIVtQy
-    xL41sPIMIv8f2OJ6WxHRTn3JQzJRPS2wrfGI5o8ProndNqI7qvrs2ZP7UPmR+RubEvPN
-    pjXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795531380;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=wjMPCLTKXUXSTgUWJyqY8hYDFtiorHpsk/A6fPEGtNY=;
-    b=p7JAC0yyxvb9gDCsU9uNwfI25ok9wg9d0T9WxRcfuVEvA1PqHWzKpWAy9rQCexD/NY
-    jUs8I7Xam22lqpZSyUBFji+V1wtuvOuKYg9RJiuQw6r8o8R2/8KLEr9+Wkn6oy2N196Q
-    hvbGBsjcEka7kxkNgAKhEcZrwzqP8I1ELgrR4jwSnnmzB73cli21CEnowkhk+XeH1ho8
-    6SPHU5hGt4dgMfA6pJPREP2m+iTjgHXeo52qxGVgo/IwhAJHFSw40MgKA1IkYw2H2eu1
-    +gURGDhEzGottigCv8sP1UG6fLhgq6Ftt79D/xophmwwg7Dz3f6nFldeCbgilLJ6ZzQs
-    37Qw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo03
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795531380;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=wjMPCLTKXUXSTgUWJyqY8hYDFtiorHpsk/A6fPEGtNY=;
-    b=B/N3NlED62XC53fS3dKlDLGNW+EUx5t5aIC+129AcWVLZgIEvrGsJu8Z/aR5UEgaBQ
-    CGKHh8DOLMSIVtBDm2/JMmhaMT0nTcRTR6lX3ZUsGRjLArp+IFERM8p96rSY5ExI7+4B
-    ROUg9knka+ouN9OUVROEWSMTwpo+0UVg2CtKhCfEqfl5y0uDUn7856HpOa6wr+rhvRaM
-    g6EOP/0ytoBEgOeptjIoi7FL0xswmBfQbJKWiJJ2AOE5kFHdMxEMcuzfTe+kOyet+dN4
-    djVOU6mZQzaC8N7sm+PttNjRvqCEuRJOuKv50ppSxF51gRqnlXgc3BpJaXK7zR0AaRAJ
-    O7nA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795531379;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=wjMPCLTKXUXSTgUWJyqY8hYDFtiorHpsk/A6fPEGtNY=;
-    b=Gm8rV/jN7XY6sL30KeLRzBRmXQeucYP6KypPWqMDt63TNw2QRayySpECkE6kSlHjtq
-    BvCB4jEKrBRkjmFDpEAQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrV3poLlciNVWUgMvoVkTTR2P7jtjQyY2AeEP/F"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AOEgw3dW
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 24 Nov 2026 15:42:58 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	Tue, 24 Nov 2026 14:28:39 +0000
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-2f046b0adc0so24313515ad.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 06:28:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795530516; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cZnESxtAfqFC0poAbBP4d0WW+EohBhjbIm+GbxBNApTBnXrod8vy5/nrQPr6RYYn2/
+         rdVvFv0euiowu2eB+/vPLmqHH6nVAYtpeaDbb0ZivfRntgopeIn23mWTYHKi0IoMLdjK
+         AtVuB8e94z3t25WXf28NWTFtqms7MDJoupCsUogzjuAkJBGRanEYD98tKeNB972IxWqn
+         KbG/DrYRab5DV4c0Mdqtlys8TiU8+sCsG8b/gmF8uw88kL8cQnZdoFyH9flY7qF1/5EG
+         iSDShT+3PEFXA1oodapjuZ79LqUSVsb5Q0sQjfovINQUfFfNz5HCb+rkyvaUvxqNfgg8
+         Xq1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=mQ2JTBOODXVLExMT4lau5wcd1i8TygMCNsmKX6gW1YI=;
+        fh=dseezxVj31t8qCzu3jEX7LIi8r6HvkvYxh+akAmji3g=;
+        b=YBKY28fwyMhd2BIM30x+6tQ0JCTt2NIE9iJ/3DkZbg8JUhcT/+sS0YXbwDCTVn/MOo
+         nEf7KPlhXjUFoETmMHyDoA06s2/QY2dhUdI2C+CQxEQPTmm3VWCu1BDq0nnPAfrWWO+Z
+         VoYg+BO02zGDTFOesa4w8iQpAHulaNYsX55OR3Bf6q90HY8ObrYUI7pS+ojHLgchpCp+
+         BT6nbc5sxxv1xm4bVDadZIDW1w0ZmaBC64vnfvD81woy1QA43PyYCj2kEwp6MpfR7EyD
+         XxWya/tkOxwit+/w0OvJhz8pRdECSCGGactmKnx2Fkzf8iCA0qIJRlb4SCuZQCAFFIMP
+         0QKg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fooishbar.org; s=google; t=1795530516; x=1796135316; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=mQ2JTBOODXVLExMT4lau5wcd1i8TygMCNsmKX6gW1YI=;
+        b=amdxvHwOdJ6Wtdd7BieupzjKPwH1MzlPF2LCB4nOHgD3g/FMlsO9LEb3ZgMfRYqfPO
+         +E+PjHhgZ5BoOS/1/aRvDivy+KU0J/ilF2eplTa78ei1+fgVEHyytMW7bHDvCAwDjIhe
+         X+HUzhy3vQEWXyFmmqU0xaOnWFjNHUNwEacc2lKSAvtq2uCpV3Y+TvpnFE4FuwPGN12R
+         JZJHRdK8C5tVImA72G73QSQUyXUkRkcMgOH91XDajYcAKVjtH11CrJzxe2gPxzxV5ya5
+         htHGXz9hDeycxsIEYS/xsvWeK9E6TgGQ9KbDj2ur/4Zi6Hbha1riHrQQm0ON8VqKY6fS
+         WpYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795530516; x=1796135316;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=mQ2JTBOODXVLExMT4lau5wcd1i8TygMCNsmKX6gW1YI=;
+        b=09OMU6ESj1Jcy+lFp1YFLaKb6XB6CIWA4pBR1Dsoc1OW6CJU7pRpaQw3ryWgGY+vik
+         R53B942HwGrS682AsqVTc3zWv+QdEGpU8PlEedudA+lyUkY6yhuUPNNReDHIXHPV86t/
+         30f7Pj2Lqag28NGvuhzei1cR8L2H9Uspq4Rkba1IVeUIP4JbaDqKdIe6XymfRKOyOkV9
+         Pb5+EsdHDd1LRdGgc8HoYKdkHpYiP07189vFe4DPf8RKW7PM6gRjR24WRUIcrq4619K6
+         BLpNHt+3VeOTNpFScmd+5Dkvfzrhwh3MLYMSCUWvZtKYyGoO5w8Jm0S76K1qn28TALki
+         Xhlg==
+X-Forwarded-Encrypted: i=1; AL+hErGq7QrhtNOFB21CFF2jbIU834mIudnAEFv89DxNmxk8hbpPLSd5Yx0sC6xXwFKncjyC5SOQQsfOzA4gvczAOX5h@lists.infradead.org
+X-Gm-Message-State: APuU4Z+6x5oMyZD+xGQT690V4SfYvnnjycdtE44hBl4cR1zfochq9QLf
+	HWKivnepAi+Rt132EzduHw3tQBHI80npmz1OOpkSQ4T804yJhyvtJRyEZKaMbxSEKEPSDDY+FKj
+	hRhVCuTCafqY+IbpqkcUZ6kgWwLMxaAaZOY+BQviucg==
+X-Gm-Gg: AZFdTZfxWRzsfg5Ng4OC6h2BsZE/KU7xIq3iDduVx1W3E7Xd12YOn0R088L8lP8ogIe
+	0jbHlDM+epPpX+TH+BXc74J8oU6GV4uldGoXzXDSJyjMVXGd/Ve7Ii45LyVz4tZ3fCyMsNaS5Jw
+	PB0+HU9owqaOYXJxYJpQXIGto0kL/8/ou1UePG+P6ZsYLq+AArbjn9ZuPHucmeEXWJ20JNYrINL
+	7ZJDe+oYcjjwrJRezgkT7AID1WkcBfNVcppm09n7WsRT0xi/q3P1ZZMfMvrJSpKdJW4unYehBi3
+	Vz5pQRjnFHEIpY+f8xq7daiGfqSIMqx2gwyZCAbAzjgzOcPN+ZB94oS8seKtRRefFDl80s7MCnT
+	OFHNhGkkGXY0uuhQ3h1Ty2v8094mjWPRB3g==
+X-Received: by 2002:a17:903:19cb:b0:2e9:9a19:c5b with SMTP id
+ d9443c01a7336-2f03f16d710mr139233565ad.47.1795530515765; Tue, 24 Nov 2026
+ 06:28:35 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.11\))
-Subject: Re: [PATCH v2 06/20] dt-bindings: sound: Document OpenPandora sound
- card
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <179552715646.40567.8345105080206889175.robh@kernel.org>
-Date: Tue, 24 Nov 2026 15:42:27 +0100
-Cc: Andreas Kemnade <andreas@kemnade.info>,
- Mark Brown <broonie@kernel.org>,
- =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Tony Lindgren <tony@atomide.com>,
- Pavel Machek <pavel@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>,
- linux-sound@vger.kernel.org,
- Takashi Iwai <tiwai@suse.com>,
- Jaroslav Kysela <perex@perex.cz>,
- linux-omap@vger.kernel.org,
- linux-gpio@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- linux-pwm@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>,
- linux-arm-kernel@lists.infradead.org,
- linux-fbdev@vger.kernel.org,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Daniel Thompson <danielt@kernel.org>,
- Jarkko Nikula <jarkko.nikula@bitmer.com>,
- Roger Quadros <rogerq@kernel.org>,
- David Airlie <airlied@gmail.com>,
- devicetree@vger.kernel.org,
- Jingoo Han <jingoohan1@gmail.com>,
- letux-kernel@openphoenux.org,
- Bartosz Golaszewski <brgl@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- kernel@pyra-handheld.com,
- Helge Deller <deller@gmx.de>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DC45A20D-18E7-4D8F-A6F4-9F51FE2022BD@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
- <5c6f7deca16f70f1f19cb40c57d70e30068d6000.1795505160.git.hns@goldelico.com>
- <179552715646.40567.8345105080206889175.robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-X-Mailer: Apple Mail (2.3826.700.81.1.11)
+MIME-Version: 1.0
+References: <20260714114414.184512-1-angelogioacchino.delregno@collabora.com> <20260714114414.184512-34-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20260714114414.184512-34-angelogioacchino.delregno@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Tue, 24 Nov 2026 14:28:23 +0000
+X-Gm-Features: Aa3M54rrDo3X7VrfTe9b69h24tjA9EEIAxDaPhgJEX5YWMApMtqcKA6bBO6NIJU
+Message-ID: <CAPj87rO9saEC34+5NiYK8xyZiNytrVgOcszoY5uc7BpL=M4WTg@mail.gmail.com>
+Subject: Re: [PATCH v2 33/46] drm/mediatek: Add support for Display Controller
+ exDMA component
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	justin.yeh@mediatek.com, jason-jh.lin@mediatek.com, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_064333_796608_FE941AF7 
-X-CRM114-Status: GOOD (  19.77  )
+X-CRM114-CacheID: sfid-20261124_062837_306342_0F736BA6 
+X-CRM114-Status: GOOD (  14.65  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -148,228 +122,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Rob,
+Hi,
 
-> Am 24.11.2026 um 14:35 schrieb Rob Herring (Arm) <robh@kernel.org>:
->=20
->=20
-> On Tue, 24 Nov 2026 08:25:46 +0100, H. Nikolaus Schaller wrote:
->> The OpenPandora audio subsystem describes the routing links between =
-the
->> OMAP3 McBSP interface, the external PCM1773 DAC, and the TWL4030 =
-audio
->> codec, alongside amplifiers and power supplies.
->>=20
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->>=20
->> Notes:
->>    Changes against V1:
->>    - Address Krzysztof Kozlowski's V1 request to run the documented
->>      DT schema checks and fix the errors reported by Rob Herring's
->>      automated DT validation.
->>    - Update the binding example and schema during DT consistency =
-review.
->>    - Binding and commit-message review assisted by ChatGPT.
->>=20
->> .../sound/openpandora,omap3pandora-sound.yaml | 95 =
-+++++++++++++++++++
->> 1 file changed, 95 insertions(+)
->> create mode 100644 =
-Documentation/devicetree/bindings/sound/openpandora,omap3pandora-sound.yam=
-l
->>=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> =
-Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.example.d=
-tb: sound@7702000 (qcom,apq8016-sbc-sndcard): =
-primary-dai-link:cpu:sound-dai: [[4294967295],[0]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/qcom,apq8016-sbc-sndcard.yaml
-> =
-Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.example.d=
-tb: sound@7702000 (qcom,apq8016-sbc-sndcard): =
-quaternary-dai-link:cpu:sound-dai: [[4294967295],[3]] has more than 1 =
-item
-> from schema $id: =
-http://devicetree.org/schemas/sound/qcom,apq8016-sbc-sndcard.yaml
-> =
-Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.example.d=
-tb: sound@7702000 (qcom,apq8016-sbc-sndcard): =
-tertiary-dai-link:cpu:sound-dai: [[4294967295],[2]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/qcom,apq8016-sbc-sndcard.yaml
-> =
-Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.example.d=
-tb: sound@7702000 (qcom,msm8916-qdsp6-sndcard): =
-mm1-dai-link:cpu:sound-dai: [[4294967295],[0]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/qcom,apq8016-sbc-sndcard.yaml
-> =
-Documentation/devicetree/bindings/sound/qcom,apq8016-sbc-sndcard.example.d=
-tb: sound@7702000 (qcom,msm8916-qdsp6-sndcard): =
-primary-dai-link:cpu:sound-dai: [[4294967295],[16]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/qcom,apq8016-sbc-sndcard.yaml
-> Documentation/devicetree/bindings/sound/samsung,snow.example.dtb: =
-sound (google,snow-audio-max98095): codec:sound-dai: =
-[[4294967295],[0],[4294967295]] has more than 2 items
-> from schema $id: http://devicetree.org/schemas/sound/samsung,snow.yaml
-> Documentation/devicetree/bindings/sound/samsung,snow.example.dtb: =
-sound (google,snow-audio-max98095): cpu:sound-dai: [[4294967295],[0]] =
-has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/samsung,snow.yaml
-> Documentation/devicetree/bindings/sound/fsl,qmc-audio.example.dtb: =
-sound (simple-audio-card): simple-audio-card,dai-link@0:cpu:sound-dai: =
-[[1],[16]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/fsl,qmc-audio.example.dtb: =
-sound (simple-audio-card): simple-audio-card,dai-link@1:cpu:sound-dai: =
-[[1],[17]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/fsl,qmc-audio.example.dtb: =
-sound (simple-audio-card): simple-audio-card,dai-link@2:cpu:sound-dai: =
-[[1],[18]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> =
-Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.example.dtb=
-: sound (mediatek,mt8173-rt5650): codec-capture:sound-dai: =
-[[4294967295],[1]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/mediatek,mt8173-rt5650.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,cpu:sound-dai: [[4294967295],[0]] =
-has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,cpu@0:sound-dai: =
-[[4294967295],[0]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,cpu@1:sound-dai: =
-[[4294967295],[1]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@0:cpu:sound-dai: =
-[[4294967295],[0]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@1:codec:sound-dai: =
-[[4294967295],[0]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@1:cpu-0:sound-dai: =
-[[4294967295],[1]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@1:cpu-1:sound-dai: =
-[[4294967295],[2]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@1:cpu-2:sound-dai: =
-[[4294967295],[3]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@1:cpu-3:sound-dai: =
-[[4294967295],[4]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@2:codec:sound-dai: =
-[[4294967295],[1]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound =
-(simple-audio-card): simple-audio-card,dai-link@2:cpu:sound-dai: =
-[[4294967295],[5]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/simple-card.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): hdmi-dai-link:cpu:sound-dai: =
-[[4294967295],[20]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): mm1-dai-link:cpu:sound-dai: =
-[[4294967295],[0]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): mm2-dai-link:cpu:sound-dai: =
-[[4294967295],[1]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): mm3-dai-link:cpu:sound-dai: =
-[[4294967295],[2]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): usb-dai-link:cpu:sound-dai: =
-[[4294967295],[136]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): va-dai-link:cpu:sound-dai: =
-[[4294967295],[110]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> Documentation/devicetree/bindings/sound/qcom,sm8250.example.dtb: sound =
-(qcom,qrb5165-rb5-sndcard): wsa-dai-link:cpu:sound-dai: =
-[[4294967295],[105]] has more than 1 item
-> from schema $id: http://devicetree.org/schemas/sound/qcom,sm8250.yaml
-> =
-Documentation/devicetree/bindings/sound/google,sc7180-trogdor.example.dtb:=
- sound (google,sc7180-trogdor): dai-link@0:cpu:sound-dai: =
-[[4294967295],[0]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/google,sc7180-trogdor.yaml
-> =
-Documentation/devicetree/bindings/sound/google,sc7180-trogdor.example.dtb:=
- sound (google,sc7180-trogdor): dai-link@1:cpu:sound-dai: =
-[[4294967295],[1]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/google,sc7180-trogdor.yaml
-> =
-Documentation/devicetree/bindings/sound/google,sc7180-trogdor.example.dtb:=
- sound (google,sc7180-trogdor): dai-link@2:cpu:sound-dai: =
-[[4294967295],[0]] has more than 1 item
-> from schema $id: =
-http://devicetree.org/schemas/sound/google,sc7180-trogdor.yaml
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See =
-https://patchwork.kernel.org/project/devicetree/patch/5c6f7deca16f70f1f19c=
-b40c57d70e30068d6000.1795505160.git.hns@goldelico.com
->=20
-> The base for the series is generally the latest rc1. A different =
-dependency
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up =
-to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. =
-Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up =
-checking
-> your schema. However, it must be unset to test all examples with your =
-schema.
+On Tue, 14 Jul 2026 at 12:45, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+> +void mtk_exdma_layer_config(struct device *dev, unsigned int idx,
+> +                                struct mtk_plane_state *state,
+> +                                struct cmdq_pkt *cmdq_pkt)
+> +{
+> +       struct mtk_disp_exdma *priv = dev_get_drvdata(dev);
+> +       struct mtk_plane_pending_state *pending = &state->pending;
+> +       const struct drm_format_info *fmt_info = drm_format_info(pending->format);
+> +       const u32 blend_mode = mtk_ovl_get_blend_mode(state, MTK_OVL_SUPPORT_BLEND_MODES);
+> +       const bool csc_enable = (fmt_info) ? fmt_info->is_yuv : false;
+> +       u32 val;
+> +
+> +       if (!pending->enable || pending->height == 0 || pending->width == 0 ||
+> +           pending->x > OVL_EXDMA_MAX_SIZE || pending->y > OVL_EXDMA_MAX_SIZE) {
 
-To no unset the file list was the mistake and why I haven't seen these =
-reports.
+Definitely don't do this please. If exdma is asked to do something it
+can't (and I'm assuming that these last two checks are intended to be
+on w/h rather than x/y?), then you need to reject that in
+atomic_check. Getting here with pending->enable == true and then not
+enabling it, is not OK.
 
-BR and thanks,
-Nikolaus
+Relatedly, most of mtk_plane_pending_state should be deleted as
+duplicative of drm_plane_state and it would be great to see a patch
+series very soon to clean that up. It's been that way for the last 10
+years, with seemingly no discussion ever of why it exists (my guess is
+that it's a holdover from pre-atomic code), but no reason to
+perpetuate the badness.
 
->=20
+Same comment applies for the blender.
 
+Cheers,
+Daniel
 
