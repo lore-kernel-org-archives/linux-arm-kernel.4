@@ -2,187 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06CA3606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:02:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB318606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 08:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XFs+akxt;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=GngcgJfq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PzHiJXs1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fXMTKtGL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BBGp9R/w6prPYCHS1CKL3m/lcRbXIVJNzDRD9/ip5i8=; b=XFs+akxtyf64oK8fhXKpMiwtgS
-	mlMOWXzs0QDGB/dkqk1NnZsuLfg/mUxvzQmQcVX7AzR/zX1/esiUyiiiQg2U87cVMKF/2uRXQFXo0
-	qdXD8A1s78GVxePDPYkJbKRIPe9CB4FBi4iJzUZcsJ1c6q2rD/WP2/gNA2q/43a3VMJkH6pC8Y1PK
-	sdFQO1iAlXwqpaexfVkS8Mmxets37NE238l5juyM1SseS8JY34p7Io4UIfs6gngWlg7lbO9j+yGQy
-	BomRIsqJEW+eaENVmFp7ZKe8mVgU9vkNjdUKHftmJJUxztg9TDHETHsxzCrZIXdmYXgI4o9YcL3gJ
-	dWnKWWHA==;
+	bh=+pKXu3qkgJSPLozlW00PL8TqTAeUCLEtzNRMzovbU6c=; b=PzHiJXs1j5IQqozV2542sscmOk
+	r+gapNq9aq/yxrP8GmvqDZ88d8Ts9IpADrFKPTb6CGjpe0YIzeTTHsqUx3mWmtKEa95q58r6w4QTh
+	Ab7CP6ZSe9i1oXr8ikAuV8ErZGUJ0IlRDobjAPd+eEDrAYRa4x+hHQmeyp/ES3MFv08UGVt4d+KIJ
+	ZgpMuOwezME8FG4L/WhbZXdrFiXdRcVpMhwblb7tm1jCkbmEyGdsY7qtvJRQN+8H+Wpj6CnwHAS1w
+	5SmonGPsofsQd/kxoOxJDBqzNsU9OtBguwQFt6iK8+Df+xlO82MpOb3N748Prs43WuNrzZudwIvoQ
+	CeceLpdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkwi-00000005k1b-3zXY;
-	Tue, 24 Nov 2026 07:28:08 +0000
-Received: from mail-westcentralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c112::5] helo=CY7PR03CU001.outbound.protection.outlook.com)
+	id 1xVlTk-00000005q80-3nAm;
+	Tue, 24 Nov 2026 08:02:16 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVkvc-00000005jVE-2Anm
+	id 1xVlTj-00000005q7l-46TN
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 07:27:02 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mhKxvfH/wLHiI3Fv0K19J7HGCPLqqFJv9NoEg7aixUiRfRv6OOYmj7zBmyw4ruNs08VUXADZw6/QCzeyivawaZVJBNnr1knjho+vKLSsk2RDj+4v15AlSeaWhKXJJh3k5Mr1EK1gphiL4BvuW/cmmlSJ9CGOZx+HIymqk7MUGvdI33SIen9JOV5VZnVbmtoSYkiG3wdMJKztbjdJSupHHU2/mUtKzIsIG/9ynyH2ydpxylBJCgHi+SJKxfGn3xgtofMdGpQ9bJkTsM/tuwnf2qOowNHXIIQCQtNUEbclP48J38qm0pZplFIXOjGJxr623gaytA0O7uwLKym7BQhtBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BBGp9R/w6prPYCHS1CKL3m/lcRbXIVJNzDRD9/ip5i8=;
- b=G7KG9eCtHQ1k0k6EOjWd/+sb3jBzUhiUAAEbUwU3bAlu5Hu15rjnS4bFB4ycIzjgSopvgGGQ6+l1wRVkBt0O5wH7zJ62jA7o4aN8MApp9hpjExSiMG26oSP2V/5+71DjeWg9h0R5Fq9fTadC95274aSuBRHo9mPgRCXmxUN7uUZ4sEC2uXiEk257KTztPTpiTNbRVzzMEZsUjBWXMqsYYMtHqqKZVHR4xHOCdedd9e1rSVrc6233MUJk/47Dktb6rsyVzEs9VEp+eLJ8ibUXw63KP2yzXTgDxtspHZ3ym3bjkyPabpLpGjsEcu4k+8orRglIWftEu2iGdsRtv2SzjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BBGp9R/w6prPYCHS1CKL3m/lcRbXIVJNzDRD9/ip5i8=;
- b=GngcgJfqAR7iIejl1aBwOKSW5EeyiKza1gAJbPyIPiGFP7PpdrY1rRsp6uaoAjJCnfprRh6SS+mJXBC7IPwqP9pwMiPvPeDVsRAjfz0eO1UsOjjqYLLLgWMEt8BfOscpLg2DfRlwqxe15eLW6XKXV16omoSTuGymsSj2FdI1u5U=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS5PR12MB052986.namprd12.prod.outlook.com (2603:10b6:8:47e::11)
- by SJ5PPF4D350AC80.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::993) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Tue, 24 Nov
- 2026 07:26:54 +0000
-Received: from DS5PR12MB052986.namprd12.prod.outlook.com
- ([fe80::4e51:5777:a687:af48]) by DS5PR12MB052986.namprd12.prod.outlook.com
- ([fe80::4e51:5777:a687:af48%3]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 07:26:54 +0000
-Message-ID: <b234e6d1-0171-4d42-9d98-2babdb98ce61@amd.com>
-Date: Tue, 24 Nov 2026 08:26:49 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] i2c: i2c-xiic: fix waiting/clearing while atomic
-To: Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
- Thilo Zirnstein <thi.zirnstein@gmail.com>
-Cc: andi.shyti@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20261123085351.3415122-2-thi.zirnstein@gmail.com>
- <20261123085351.3415122-4-thi.zirnstein@gmail.com>
- <CAKfKVtFDez0kDJp0Kx4WbJ4BwqV8-0hb6eeRNjQ8YDFm917_UA@mail.gmail.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <CAKfKVtFDez0kDJp0Kx4WbJ4BwqV8-0hb6eeRNjQ8YDFm917_UA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+	Tue, 24 Nov 2026 08:02:16 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4EBB74116F;
+	Tue, 24 Nov 2026 08:02:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFDA41F000C0;
+	Tue, 24 Nov 2026 08:02:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795507334;
+	bh=+pKXu3qkgJSPLozlW00PL8TqTAeUCLEtzNRMzovbU6c=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=fXMTKtGLNHeemfUWTOrZ53U0gq5PMgpFosjoZDra4ZDVlRXrcCfAOWlJ26RXadcWF
+	 26QoawHDjPyR0sYYJ4kD5wa+k8f8Zjvqce6ieocTLZlm6ag1kE3uLgMFL4UpIOUVRy
+	 GftvWGWABuBaXVL3OQYLiMlMKBHH9K6AnTKOruEH8eKkKCEOfEb7WjWNCvn2imBVXk
+	 MMFwVDJH2/d2c/baEABqtfxDV+Xt8SuHPxbMRAb4Ajbd/blAwS4YL8kzgkLKldinrB
+	 8iTUxHzNhBhUrtQOU205fMBjj3KhaHl2/mf2uxdhOr/vaY7bcdzFEWxpnhp+uiKsnm
+	 qXi4DNMmKhTNA==
+Subject: Re: [PATCH net] net: stmmac: retry a failed RX refill from a timer
+From: netdev-bot+sashiko@kernel.org
+To: Anandu.Padinhare@electrifex.com
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
+ daniel@iogearbox.net, hawk@kernel.org, john.fastabend@gmail.com,
+ sdf@fomichev.me, cfsworks@gmail.com, rmk+kernel@armlinux.org.uk,
+ david.wu@rock-chips.com, stable@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org
+Date: Tue, 24 Nov 2026 08:02:12 +0000
+Message-ID: <179550733234.3135.14826070962327647886@kernel.org>
+In-Reply-To: <MA0PR01MB921746F36D90C7080287ACC9FD782@MA0PR01MB9217.INDPRD01.PROD.OUTLOOK.COM>
+References: <MA0PR01MB921746F36D90C7080287ACC9FD782@MA0PR01MB9217.INDPRD01.PROD.OUTLOOK.COM>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR05CA0005.namprd05.prod.outlook.com
- (2603:10b6:a03:254::10) To DS5PR12MB052986.namprd12.prod.outlook.com
- (2603:10b6:8:47e::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS5PR12MB052986:EE_|SJ5PPF4D350AC80:EE_
-X-MS-Office365-Filtering-Correlation-Id: a71eb711-7de0-47bb-4ddb-08df49fc5080
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|1800799024|6133799003|18002099003|22082099003|11063799006|56012099006|261022105027099003|4143699003|261028144727099003|261021121427099003|261026140227099003|261102123227099003|10067099003;
-X-Microsoft-Antispam-Message-Info: KaDC4XEkloqINCIkkDdLZlwmCbBvaW6ImJ+T79+//vkc0aJgJeBiapuI+72kwaiVU6y1VrMDXpU58s522d1FoAyEWc8fX3GiXKhpaZFNc1QKtygl/Ad2jX3UpWdkU/ugR8XOY1EG3s2xgmXaEfv5B/F4pgupXbT9hjAdjJBXCmGlBYfPlikyKRLOZEFwJBQcb1SZBolDbAmuQarYC3B9UemlHBgzhsnV8e8Be0XArL83KHofxRtWg+Oj5KXBxwIXMXE3l9Afdgjrc08omD1N1WY2257XpIGwXuLcmC0w9VX2UV58I3A9Y50qQoyixc0GFpVCQj5jrbGmi18VpfpEW5pYj0L6zqD6vz5oPg8b4GrRCQPkp7tgnNHZ3WpZZo9ns++aKksGn1y0UaERxo9vL82OfHxDSn2/w/Z9lZRbXjAioT83e1f57HikGiKMg4P0fx99VNm+nxJWOhoYyY3EIas8F2lKEriKbo9mrNvtHF9rqcVeTiBzxSRmW6aR86GcwXOWCJxGEcMUsEapA6fXb+SOEIVDuRwmAnwolJOFm3L8BIODT50J8aYe2Z1wkKF2Cm2CGdI/HOehin0QiQwZgaPiWuen9lUbe1VVSQMgZUpMoo7ik5mhy7aC9ZhPXGoc+VHiTrVBr38V4fPUxAEpF9YRXbDKWLPrOC3IK4aA+jY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS5PR12MB052986.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(261022105027099003)(4143699003)(261028144727099003)(261021121427099003)(261026140227099003)(261102123227099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDF6bTZqR2tCRUtLRW92NFE3Q21PZG8ydlY4WTVXUWZldFpTSlRmTlFrRGpR?=
- =?utf-8?B?bGwrYVRESGRQWjBXcldLMFczWlUzazRna05TcEQzMVFuTitCVDZqUThFbDRN?=
- =?utf-8?B?ZG0zeFpKQ1dlcklVVlpoMWpjREtXczErdVR2NTU1Tnk4QjMwc3U1Y0txVHZ3?=
- =?utf-8?B?aHZPRnlxd3pibG42MnI1UjFmZDFxTE9RYUc5M3J6aVVRL2crQVl0cDlMUzBy?=
- =?utf-8?B?NVR4VGZib0x3bUJRaGdJY2h1emhrRXVzUHlxZ1ZyMmhGKy8xRmFBY1dhL25m?=
- =?utf-8?B?YkE5bjFrM2JqMkpoSGJJZEpOVWFrSXRQMWNXcVh3aW14WkxKNkdmVTBNUkFE?=
- =?utf-8?B?Tzd0b0NvU3VQR20xQ2ZKVTQyQzBOVTk3ZHhzOGlLSk1TZFFjUHdycUdaU0VY?=
- =?utf-8?B?MW1RQUdlTG8yUldGRU44b0NMVVRlVHlzZVV3NG91a2grZlI0TG8zdnRXZVJL?=
- =?utf-8?B?dW0yZHkxVFNpMW9zVDNVUWZrT0pxZUdqT2diU2RraGRldzdwZkh5OXZhZEV6?=
- =?utf-8?B?VUhCdmxGZmF4SUwyQmF5OEVRTHJUQksxM1NjMzRFVW1rZitQSWtwSEdmZnJT?=
- =?utf-8?B?bjUvV282MUJ1YmNWSjREanoyZ3hQZE9sdU02SmN5OTR6Y1JaS09oaDRlcXFP?=
- =?utf-8?B?dlorV2FZUlJNUjIwd0FCZDBaUUNrSUhPYVV3WGZ2bGVKak5NTHdmcWpEOVd3?=
- =?utf-8?B?SnNmYnBmT0VYSE9BQnAvZ3VONW43RTIrL3pvdzg3N21ZT1lWZ3pHMFR4VDFX?=
- =?utf-8?B?aGJ6bUZmRHlBU3p4ZVBiUmJ5dmJyQmV1U283VmZwRzdKdEoydThMd0NXSGRk?=
- =?utf-8?B?NWh4RlhwUWZLN1paVURFVWFnTkkyWVBORnZkQlFkWFRNdXpsa29MM2poU2x0?=
- =?utf-8?B?VXZ4dXp2aXJqMXNZcndTNU1mS2pqck9uaU9ISVBqb3FZSUw0eW5OSE84MHdv?=
- =?utf-8?B?Z3Q5cjFXS3FpN1hSKy9NZnNicXA2T1RJUzU5Q3cwMGJpZXRJdVBYV2k1dHNi?=
- =?utf-8?B?L2JJTVZlSEMrSjg5SlUzaUNDcnN6RWpNaUs4N2xHeXNRSTBseVUwQTZ5amlh?=
- =?utf-8?B?OU11Qyt6RGY2SUFTYjBOdWMydDFSa2pIYm9ZSkRlVEZKaUZHWm80RS8yYmsy?=
- =?utf-8?B?bklmREphMW9WcXNKajR2OUFSazllYk1XTjFpZ2h3SW5CaUduYVp1SVFkZm9Y?=
- =?utf-8?B?V2hYQkpxWGVHNnQ0V00yblpSQTBSQ2NMdTVzQlZLUHFXN0NSMXh0VzgyMnhs?=
- =?utf-8?B?Z2JlVCttTGVseHptT2hxUm5Jb0FpSUdVWXBDWE5tY0FjcExUWXRueEkxM0ta?=
- =?utf-8?B?elJuQkdzakcvTUZnOFJOdWQyeTlOY1M5Q3kvYUk2YVNRZUNIVTg5bXEranFB?=
- =?utf-8?B?Umt6OVBGbXArLytRZjJ3ME1tNmc5NVI4aUhiVThmOElTb1pILy9VL3cxTjdP?=
- =?utf-8?B?OFFlQ2F2RVhLa2Q2N2RLT0wrN0pRbGw2TWpPSXR1OUp5TWluTHhKYXFVZzc5?=
- =?utf-8?B?T0oySUpEV2c1WEszVjhiTVZSZFJYOE8rQXZrMkxCZ0tsS2FIYTkyc2xIdVhD?=
- =?utf-8?B?TTN1RkVRK0FUQnhQSzdkd0gvUlY1WVkzTUwzWEdveENpNzBpOE1KWU5JZTM4?=
- =?utf-8?B?c2ZBSVo3Uk4xQ1N5Z05sdFYzZkszbjUxTXpLUU5vRzdWY2g0WWFOcnl5NHN0?=
- =?utf-8?B?UXowYVRzOUkyN1dKbVp4b3ZxWU54Szh5QzlTMjQvTXp1czFKTjNiU2dyaDhP?=
- =?utf-8?B?UDBQQTVNWVdRNllKNTgvcmh3ZVFMcEk2bFRrOGRLSjBLeHFmZWxUWVQ2OUtl?=
- =?utf-8?B?TWdHWFZhS1ZUVXg0L0lscjRCUmN2cnRiTWdPWDlkaks5eGFsMmNwRFFtdU5x?=
- =?utf-8?B?S3h0SWJyNmJod3h5NFlEN0tvaW9Qdmp2ZWd5T0psTVJpWWN0WEp0NWFZdUdT?=
- =?utf-8?B?cm9LUW9yZVB5emw3VThlR2hETWxJUHdUbmZjR0ZaM0FtVWpwMVVDUzB0NW95?=
- =?utf-8?B?WFZzeXF5YXE3bDliU0VCeStzem1pLzJnbEp4SUY2ZlMrNGd1bmFySlh3cDNw?=
- =?utf-8?B?b0xXejRnaVI4TklHNFdpR1NBbzNEL0NVM1JVaGdmb2EzbmRrZjZheENzeHhH?=
- =?utf-8?B?eVNlUTdUWmdjeEx3am0wUEc3QWowb1RCeXpvUjJsdXpoSE9UNG5mOUtpSklZ?=
- =?utf-8?B?cWdBTCtzN25EZmlPQitRdlJnVEp2RUVVb3luQUxWL1hmd1JGOUxPbFFxckV4?=
- =?utf-8?B?NTY5R1JFRjQzRVhLZ0JqWm1CQU03Q1ZZYjV5cUFqb0xSalNsMFdPU0plWC9p?=
- =?utf-8?B?WkJHZnlCODBMdWxtYmdiZ1FUOGcrNkFPaFBhUlMvV3RHbnozaXIrZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a71eb711-7de0-47bb-4ddb-08df49fc5080
-X-MS-Exchange-CrossTenant-AuthSource: DS5PR12MB052986.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 07:26:54.2012
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d7DiAMlkTBi5UMbkFLNPbMR++PU1K4RnqKPY8dnYdU3tQTgU7h5GnF6letlIplzc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF4D350AC80
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261123_232700_598967_5EF701DD 
-X-CRM114-Status: UNSURE (   7.11  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -193,29 +74,270 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
 
+Critical: 0 · High: 0 (2) · Medium: 1 · Low: 1
 
-On 11/23/26 20:06, Shubhrajyoti Datta wrote:
-> On Mon, Nov 23, 2026 at 2:25 PM Thilo Zirnstein <thi.zirnstein@gmail.com> wrote:
->>
->> Use non jiffies based waiting functions,
->> if in atomic context.
->>
->> Suggested-by: Andi Shyti <andi.shyti@kernel.org>
->> Signed-off-by: Thilo Zirnstein <thi.zirnstein@gmail.com>
->> ---
-> Reviewed-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Acked-by: Michal Simek <michal.simek@amd.com>
+- [Medium] net: stmmac: stmmac_rx() runs receive loop before
+  stmmac_rx_refill() on retry
+- [Low] The new block comment above stmmac_rx_refill_needed()
+  (stmmac_main.c lines 268-271) says: "The RX DMA suspends without an…
 
-Thanks,
-Michal
+Pre-existing issues:
+- [High] Suspend/resume while an RX refill is failing hands unpopulated
+  and stale descriptors back to the DMA.
+- [High] stmmac_setup_tc_block_cb() can leave a channel's DMA RX
+  interrupt masked, which stalls RX on that channel.
+
+--
+
+net: stmmac: retry a failed RX refill from a timer
+
+This commit adds a per-channel timer to stmmac. When a poll leaves at most
+STMMAC_RX_REFILL_THRESH slots with the DMA, the timer schedules RX NAPI
+10 ms later, so a refill that failed in page_pool is retried without
+waiting for an RX interrupt. The timer is cancelled after rx_napi is
+disabled, and stmmac_enable_all_queues() re-arms it if the ring is still
+short of buffers.
+
+Link: https://lore.kernel.org/netdev/20260331195927.3353cc6d@kernel.org/
+Link: https://lore.kernel.org/netdev/20260402174049.0ac088cc@kernel.org/
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index a685ce4638f61..ad9873aaf2dba 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+
+[ ... ]
+
+> @@ -263,6 +265,32 @@ static void stmmac_verify_args(void)
+>  		pr_warn("stmmac: module parameter 'flow_ctrl' is obsolete - please remove from your module configuration\n");
+>  }
+>  
+> +/* The RX DMA suspends without an interrupt once it has used all its buffers,
+> + * so a refill that failed for lack of memory would never be retried. Retry it
+> + * from a timer when few slots are left with the DMA.
+> + */
+
+[Severity: Low]
+This isn't a bug, but is the first sentence of this comment accurate for
+dwmac4?
+
+In dwmac4_dma.h, DMA_CHAN_INTR_ABNORMAL includes DMA_CHAN_INTR_ENA_RBU.
+That macro is part of DMA_CHAN_INTR_DEFAULT_MASK, which is written to
+DMA_CHAN_INTR_ENA. dwmac4_dma_interrupt() then gets the RBU status but
+only counts it:
+
+	if (unlikely(intr_status & DMA_CHAN_STATUS_RBU))
+		x->rx_buf_unav_irq++;
+
+The sentence is true for dwxgmac2, where XGMAC_DMA_INT_DEFAULT_EN has no
+RBUE, and for dwmac1000. The commit message also says the RBU interrupt
+"is not enabled on every core and kernel version".
+
+Could the comment say that RBU is not enabled on every core, or is not
+used to drive the refill, rather than that there is no interrupt?
+
+> +static bool stmmac_rx_refill_needed(struct stmmac_priv *priv, u32 queue)
+> +{
+> +	struct stmmac_rx_queue *rx_q = &priv->dma_conf.rx_queue[queue];
+> +
+> +	return CIRC_SPACE(rx_q->cur_rx, rx_q->dirty_rx,
+> +			  priv->dma_conf.dma_rx_size) < STMMAC_RX_REFILL_THRESH;
+> +}
+
+[ ... ]
+
+> @@ -328,8 +360,17 @@ static void stmmac_enable_all_queues(struct stmmac_priv *priv)
+>  			continue;
+>  		}
+>  
+> -		if (queue < rx_queues_cnt)
+> +		if (queue < rx_queues_cnt) {
+> +			/* Disabling the queues cancelled any pending refill
+> +			 * retry, but the ring may have been kept as it was.
+> +			 * Check it while no poll can run.
+> +			 */
+> +			bool refill = stmmac_rx_refill_needed(priv, queue);
+
+[Severity: High]
+This is a pre-existing issue, but does the "ring may have been kept as it
+was" case also need to cover stmmac_resume() after a failed refill?
+
+When stmmac_rx_refill() stops at a page_pool allocation failure, the
+slots in [dirty_rx, cur_rx) keep buf->page == NULL. The DMA write-back
+has already overwritten their buffer address words (RDES0/RDES1 on
+dwmac4).
+
+If the system suspends at that point, stmmac_suspend() leaves the ring as
+it is, and resume does:
+
+stmmac_resume()
+  stmmac_reset_queues_param()
+    stmmac_reset_rx_queue()
+      rx_q->cur_rx = 0;
+      rx_q->dirty_rx = 0;
+  stmmac_clear_descriptors()
+    stmmac_clear_rx_descriptors()
+      stmmac_init_rx_desc()
+        dwmac4_rd_init_rx_desc()
+          dwmac4_set_rx_owner(p, disable_rx_ic);
+  stmmac_hw_setup()
+    stmmac_init_dma_engine()
+      stmmac_set_queue_rx_tail_ptr(priv, rx_q, chan,
+                                   rx_q->buf_alloc_num);
+  stmmac_enable_all_queues()
+
+Nothing in this sequence rewrites the buffer addresses from buf_pool.
+Every descriptor gets the OWN bit, and the tail pointer gives the whole
+ring to the DMA.
+
+Could the DMA then write received frames to addresses taken from old
+write-back data? Those may be garbage, or the stale DMA address of a page
+already returned to the stack or page_pool.
+
+When stmmac_rx() later reaches such a slot, it would call
+dma_sync_single_for_cpu() on a stale buf->addr and page_address() on a
+NULL buf->page, and pass the result to xdp_prepare_buff() and
+napi_build_skb().
+
+The new check here does not see this case. Resume has just set cur_rx
+and dirty_rx to the same value, so stmmac_rx_refill_needed() returns
+false and no retry is armed.
+
+Even if a retry were armed, stmmac_rx_dirty() would return 0, so
+stmmac_rx_refill() would not fill the NULL slots before the DMA uses
+them.
+
+> +
+>  			napi_enable(&ch->rx_napi);
+> +			if (refill)
+> +				stmmac_rx_refill_timer_arm(ch);
+> +		}
+
+[Severity: High]
+This is a pre-existing issue, but can stmmac_setup_tc_block_cb() leave the
+channel's DMA RX interrupt masked? The new re-arm logic does not cover
+that case.
+
+Consider this sequence:
+
+CPU1 (RX interrupt and NAPI)
+stmmac_napi_check()
+  stmmac_disable_dma_irq(priv, priv->ioaddr, chan, 1, 0);
+  __napi_schedule()
+stmmac_napi_poll_rx()
+  work_done == budget, so the IRQ re-enable is skipped
+
+CPU2 (CAP_NET_ADMIN adds a tc u32 or flower offload rule)
+stmmac_setup_tc_block_cb()
+  __stmmac_disable_all_queues()
+    napi_disable()    <- sets NAPI_STATE_DISABLE
+
+Then __napi_poll() in net/core/dev.c does this:
+
+	if (unlikely(napi_disable_pending(n))) {
+		napi_complete(n);
+		return work;
+	}
+
+The core completes NAPI itself and napi_disable() returns. The only place
+the RX IRQ is re-enabled, in stmmac_napi_poll_rx(), never runs:
+
+	if (work_done < budget && napi_complete_done(napi, work_done)) {
+		...
+		stmmac_enable_dma_irq(priv, priv->ioaddr, chan, 1, 0);
+
+stmmac_enable_all_queues() then calls napi_enable(). It arms the refill
+timer only when stmmac_rx_refill_needed() is true, which is usually not
+the case because stmmac_rx() has refilled the ring.
+
+The open, resume and XDP setup paths call stmmac_enable_all_dma_irq() or
+schedule a poll. stmmac_setup_tc_block_cb() does neither.
+
+On dwmac4, the RBU interrupt recovers the channel once the ring fills.
+dwxgmac2 also uses dwmac510_tc_ops, but RBUE is not in
+XGMAC_DMA_INT_DEFAULT_EN.
+
+With per-channel MSI, or with RX-only traffic, would the dwxgmac2 channel
+stay dead until the interface is reopened?
+
+Would scheduling rx_napi after napi_enable() in this path fix both this
+stall and the refill case?
+
+[ ... ]
+
+> @@ -6164,6 +6205,8 @@ static int stmmac_napi_poll_rx(struct napi_struct *napi, int budget)
+>  	u64_stats_update_end(&rxq_stats->napi_syncp);
+>  
+>  	work_done = stmmac_rx(priv, budget, chan);
+> +	if (unlikely(stmmac_rx_refill_needed(priv, chan)))
+> +		stmmac_rx_refill_timer_arm(ch);
+>  	if (work_done < budget && napi_complete_done(napi, work_done)) {
+>  		unsigned long flags;
+>  
+
+[Severity: Medium]
+Once memory is available again, does the retry poll deliver the frame
+that is already waiting in the ring?
+
+When the ring has run completely dry, stmmac_rx() stops on the last
+descriptor the DMA completed, at rx_q->cur_rx. It stops there because
+the next entry equals rx_q->dirty_rx:
+
+	next_entry = STMMAC_NEXT_ENTRY(rx_q->cur_rx,
+				       priv->dma_conf.dma_rx_size);
+	if (unlikely(next_entry == rx_q->dirty_rx))
+		break;
+
+The refill only runs after the receive loop, at the end of stmmac_rx().
+The timer-driven poll that finally succeeds then does this:
+
+stmmac_rx_refill_timer()
+  napi_schedule(&ch->rx_napi)
+stmmac_napi_poll_rx()
+  stmmac_rx()
+    receive loop breaks at once on next_entry == rx_q->dirty_rx,
+    count == 0
+    stmmac_rx_refill()    <- succeeds, dirty_rx catches up to cur_rx
+  stmmac_rx_refill_needed()    <- false, timer not re-armed
+  napi_complete_done(napi, 0)
+
+The DMA wrote the descriptor at cur_rx before it suspended, and it
+resumes at the entry after it. It will not raise another RX interrupt
+for that descriptor, and nothing else schedules a poll.
+
+So the frame stays in the ring until another packet arrives on that
+queue. If the frame spans several descriptors, the same applies to its
+last segment, with the partial skb kept in rx_q->state.skb. On a quiet
+queue that can take a long time, and this is the recovery path the
+patch adds.
+
+There is a smaller effect while allocations keep failing. Every 10 ms
+retry calls stmmac_rx_status() again on the same descriptor at cur_rx
+before it breaks. Any per-frame counters that call updates in
+priv->xstats are counted again on each retry.
+
+Could stmmac_rx() go back through the receive loop when the refill has
+made room? Or could stmmac_napi_poll_rx() schedule another poll when
+the refill advanced dirty_rx? Another option would be to refill before
+the receive loop when the ring is full. Which of these fits the ring
+accounting from commit 0bb05e6adfa9 best?
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/MA0PR01MB921746F36D90C7080287ACC9FD782%40MA0PR01MB9217.INDPRD01.PROD.OUTLOOK.COM
 
