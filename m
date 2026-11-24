@@ -2,110 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51980606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACA5606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 24 Nov 2026 17:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OI7EptVD;
-	dkim=pass (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=v92uKoHn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wTUNHmyG;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=MPQoeOCa;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=YXsRLXET
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Cerw/Z7KIbXX4bOl2Vw1MF/BZKr852ZbBEpPnDE+6mw=; b=OI7EptVDjZHvX+
-	sXqpodVXL5lVc/5qRFTvl4ycfvv2XsjaktdCAciJHrWzVy6tsI8ncip8NQ/1tDVoomGdpm2Cj5tmm
-	adBf3J9tpTwf4F7sUK17rlDRytohbGK18IJzfGsDFoQeZdTVgDE3m6Nc6Ur5enuKTDmE5L+GANPQH
-	GthTCA/lUoRpux+RxZZ3w6HBNRry5Z0Sci2v79eUZav8Mz/g/mpwqLhw7EuCvGTYhYwYjGHCYPnMr
-	z7VkunZTajsWk0hOQbQqESizL2Swj4SWAUxwSTmub1/BwiNO9dPYfklgBc8Cpip4fJNJfr6IMfKvI
-	K/gjvZ92oo1UVbq6enaA==;
+	List-Owner; bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=; b=wTUNHmyG4+Razo
+	Si070UThpLFGlG4cf54psJHWUJ1XZhYbSAc92trluda+48k+vqvu+T+wAx5u9/8TDHIvG/QJZ070u
+	a3OLGjDq8j8lp0fbeCqUvrqyIqGNKGrlRteV7c/vvmG2I+P6KrNIisgA81Isgrp359f/6bRUJ4HRy
+	wpswCJdVLHAJWwHTTLzZ3GUY9MesRDMpcVUbSErowjaaPF5JJ64yxABaFQpVzQGAoCpzzYKX26a6f
+	zz7pcDldqqqZjUvU+vwq9zgixPg/YcHMa6vIsRv5K4NKYQScOxXqzYQkQuPvT44sgxkwTX8VBIQN1
+	B+eeRaXMY55N0p6glOgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuQj-00000007O3r-3NtH;
-	Tue, 24 Nov 2026 17:35:45 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1xVuOf-00000007NMW-060g;
+	Tue, 24 Nov 2026 17:33:37 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xVuQf-00000007O2A-2jb0
+	id 1xVuOE-00000007NAy-1wNL
+	for linux-arm-kernel@bombadil.infradead.org;
+	Tue, 24 Nov 2026 17:33:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=; b=MPQoeOCah+creJWWmM+JiwziYo
+	SM9/vBrl0mpBv9cbhdlQBvvdaKjiCVQSPd3gyEhV+t3iTtbp7Y1KvJSIQ88CRN4yQANgo/vRBAMRL
+	8bURiqmFjWyCDbK2JtiggP/GVPm/m8Mf6/aZWUeuzDmlnVgtB79SQIr5m9OS/wrR//i52ePKGjRe+
+	8B2aomhKf1k/ArtFkvbwVXT/7b7gVxEt0RNCf43bVtR2h0WVC4wjaxFvfngbXYDJPeYz3Vwy6tL1X
+	aJA+n/pmEcfVsZl+Z1uzb7ui/tPeWJYliLApHwvENixvh4h6REnzL/U9/KIHm/dzbmf1iiqwPMX6P
+	nSMMwyAw==;
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xVuO9-00000004PjQ-3m9m
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 24 Nov 2026 17:35:43 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-4ac08f4a0b2so3435858f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 09:35:40 -0800 (PST)
+	Tue, 24 Nov 2026 17:33:09 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so62556585e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 09:33:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795541739; x=1796146539; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Cerw/Z7KIbXX4bOl2Vw1MF/BZKr852ZbBEpPnDE+6mw=;
-        b=v92uKoHn3TF8Xa6V5xERann88NqL/fPNlHSoCQrEuEPcugBFCALRx/dWuRg2xyMZLv
-         lvwHpGVbyCLimxgyct8su1nmIGmsuTV/gx+pt7gDww9zAVOdMWmI8aFWNpVP+KC9Wgjm
-         TDNK6RbraG6tcDS89Ao4Ss7t3c9IrHGx5uTLT4uQspUdN/RXze+vUGY/WMESNlrWPhBP
-         VYOileGHETjAhkhEIX2dBYJOiIBrBl45gr5mqvF/GTVPcmBmQuk2XoCynbWnZrF4oIrb
-         hh6VtBMLme0oaDbKtXp47gA98G1o/n6grFhtJ+3D3gM3vw94E9ftB5X2jxa1rpbZlw8t
-         yD1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795541739; x=1796146539;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=suse.com; s=google; t=1795541584; x=1796146384; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Cerw/Z7KIbXX4bOl2Vw1MF/BZKr852ZbBEpPnDE+6mw=;
-        b=rx35dJH7hYOB0F1gGd8AQByDUdB1JzZDWAVUswxvEOqgdmer4yYUzgZrsn4BpyWw5U
-         8zr+yWGLXFLhqchpozW1v/4xELYfkMbdFSW0SZfE310xCpoe8GnW4A6XHKomgn95PWOv
-         jdmFr09jLD4QqUqRKA/jYtyzbKmNQWRBVkDePmJ2CTRcllwAHFBoRAVQscZhDDCu1GzF
-         LhPiXHjUxStw2VjXNGVsKiIkgvk1mbmb6jKphgyXW+MEnlykVHGQWAf0JS1ifyNOY41U
-         AKaQvBz2ia/bLEeeWSwW4YxiPYbifRu0JuVxcfRTpYT+yiXQ4A5GUlIwoF9xOZCCMEPY
-         aOvw==
-X-Forwarded-Encrypted: i=1; AL+hErGsPmHkoSQJRjlNua47UvqB0kOhU2oR/DT2nnrLu59ImLC2QIAmN1rbiN2F50ApHeQ74/16Xnr8+7yrPbMY5/0r@lists.infradead.org
-X-Gm-Message-State: APuU4Z9nxIxcgIL3DDxo1d1WBrkwWYHM8JcHYRJwXJlxWVItk3knidQM
-	5RVCGyJhL/ciR7G491xeFrtph9VlPopRPWluj0lJPKFwF0XjSe5xoWMsssAwzgotaZk=
-X-Gm-Gg: AZFdTZdMAFYyCGepjFj0gQAPL9mX768deBVYRAqYEi0rf8BfAhDrEPd6YNR+lEB2VXK
-	3Ss3FV0z0Cb6hvJlcQTnu73lFie+yZc7+nbJ3hqkxhr5J5rEcpm+b2VNaFWcNWgIucwFTdGPmZW
-	Tb/AhtOuyiBUkjIahbwtj2BJcL4UdpU7aPFf35x/brYXLgMmDco9mTp9naSxzD8jYm99JCs5Taq
-	O21fWyu60CNaFJULCbgJESUj38PmatEPeMfhIuyq0XHlgDfFzYBpVRZHpNvL4Xo2WrR+BlsIfAP
-	8LX05pKPoGOHrZvE7+rCuCR8zMBxieFl7IcyW3htyYyKSbnitlr9TA1SkRiWDqFnFbSsanNB3ST
-	VAx/21zlcvHHE3Zxg35x82LriIqwhaK2HtPvsunFmOYFOlLqKCq6fOFS9vh+gNPcZ9Ulwah7dcT
-	vK5kN8JV/YBjq3EHPfFk7wy3b9u7lscBCligDkLQ1RycwgwnjYtdHXoGy+RbGfcxp++Z4pjpJuh
-	sLDftrDq0sXSdq+OV8xu2f0ufUBHcFzD8MumeY4+MA6NgaEPIqTmZ8G3IZFwVgps74M79QCnfQ6
-	a1Ny2YM55thTWuzdNK6YehHNaqZuzsCUS2rKSrh/GzBzs4xtJE7gdYY=
-X-Received: by 2002:a05:6000:990:b0:493:ec0:861c with SMTP id ffacd0b85a97d-4abb0c5d53fmr28875984f8f.16.1795541739288;
-        Tue, 24 Nov 2026 09:35:39 -0800 (PST)
-Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6ae2dd55sm28453844f8f.30.2026.11.24.09.35.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 09:35:38 -0800 (PST)
-Message-ID: <fa4e19d5-2e66-4468-9860-19cd9f3ea8db@linaro.org>
-Date: Tue, 24 Nov 2026 17:35:37 +0000
+        bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=;
+        b=YXsRLXETB2J8CdEyb/CBU9Ua9u4RObSst8QzwbljdpPtBWH3LUZ8LhTVVDus/Kjb9b
+         BqD3QYlIpLJrfdyocMa37LBrN0Na1RqLHq6ElQGi8SpQWYdgufRMOI+gVxzA8Z3Pojkn
+         +poMg2FfBbFsuu1s6ANOb+IClPaAuROPN9ZiUk9ulzWf7ODF4CTcUjzmqdAypqWhlMcp
+         9+NidNp17lF3B+PkrZMxwLRmEf+aTWWcxH62/SJCWfJBG6DYKmcbea/x+gstACYDHvhp
+         R23zcW4+IGOaliaBK9XXM1PyTe5mz7GH7xvQeTFemUQvj4kcME2sCz27BIlC62BZzK+9
+         9Q2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795541584; x=1796146384;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=m2xibGYCW99ZvwUe/lKayob3iHv2iOk1v6WVsVu9rhE=;
+        b=fW5nnkQk1NTpp3xfv/TRhuZWu/WCKIDEFYpzjxSvICSD+dakOSaB2hON08kf7VpUo1
+         1AI5Rr4ojuqJES5022SYu5v5tmnrU9FbQ9oZPxmc3y7UfSSmNSPlfHj/xuTUsY+RZaly
+         0Y9Gaz3D2j6wy/7fEauvMZAUD+8Nj/bh1gyo0ozUHWJLosy0v2BbBOUinJk2bZQqDtz/
+         +NE4dXoSjujBUQ+DoQcSqObB4jIDM1Atm86wkJp45pudU2F7++f5xY3658/d13R/Nm4o
+         XRUOqNQNDYcFgIJTzY54dLDJese7zh3wtdcpbUflQpXcbJIpQ0A1IfSoVNi7ZefreyAn
+         ciKA==
+X-Forwarded-Encrypted: i=1; AL+hErHo+nnzdzdiNqkNJuIPetpckC57gOzEJPhCT+vb5CBjDUNhvBR7gkfuPdRJSShkT0UBJzrAyzG+bDFzpR5jexcB@lists.infradead.org
+X-Gm-Message-State: APuU4Z+gAYe3hUFK0P5xPhQqiPRuhVpKpJGSgYUG0x7WImSiHmDTYdgT
+	mKYQ7Sqrll0v0bmuHAbkmYCixfptLNhIsL9nIxO4xzIsVyoKcK6AF+BFP9Cd0VZApIY=
+X-Gm-Gg: AZFdTZeh0gAi2K8df/77hv3BngnenuvXVTaus5MHNS1v6PAPWXix0ZuaBwv0i7afPj7
+	oxQ0I+VMVtesAWoWWonA5v+7WoGsBZV8l3HSTJTOIkqQgpaxeh5S1QaMzQy41XE2HhGFIXIF+yF
+	UioIZtgM3QUhJQAWt6LIZUFMHBam1tX7xcxH47ULko98HWimMV2gyOF3Z5+SbGvweu8dMSXwZ4e
+	RMg8IEFV6HS1y2Y6usfsse35frJ0TcCK63lmpsTRTG5lEKNXtA8YgovkCnLlN1to6ODjHVv9k9e
+	z/yADKPHNeB+JV5Pi65paHcFnEU+L0C9GX6wDBxW9wm9T2fI7EYsmPk8dJncAyKnGo9VcoSxFyi
+	0uXypa4Pq8kjO2Oy3gdYUF1vhSsCqnLGTcvlTqTbsBFdZ0lHzYwT2CBnoCkwvbfn75m6WMCnmPd
+	Da47Vc0Wf7A9YcgsSMgsTJ5mpO39bASki/XzkiJR4I6fMsld1ai74Oq902vegQZ0GRY/QrVo93S
+	Es5RiUE0or4oOAks9sfyLMKt43WG9ASn3CHqK3OkkhUDenMf+dCjMPSWo0MqlkwdzeutJo14+Dl
+	sRmGtAaqgKtAFU+lzisLe4wjHSA=
+X-Received: by 2002:a05:600c:5303:b0:4ba:4928:8aec with SMTP id 5b1f17b1804b1-4bb88807d7cmr297420805e9.9.1795541583997;
+        Tue, 24 Nov 2026 09:33:03 -0800 (PST)
+Received: from localhost ([82.192.120.76])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb8538b09bsm832341115e9.4.2026.11.24.09.33.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 09:33:03 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	rjui@broadcom.com,
+	sbranden@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: naush@raspberrypi.com,
+	svarbanov@suse.de,
+	gary@garyguo.net,
+	linux@roeck-us.net,
+	linux-hwmon@vger.kernel.org,
+	krzysztof.kozlowski@oss.qualcomm.com,
+	Andrea della Porta <andrea.porta@suse.com>
+Subject: [PATCH v13 3/3] pwm: rp1: Register auxiliary device for the fan tachometer
+Date: Tue, 24 Nov 2026 18:36:57 +0100
+Message-ID: <20261124173658.31030-4-andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261124173658.31030-1-andrea.porta@suse.com>
+References: <20261124173658.31030-1-andrea.porta@suse.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/19] perf cs-etm: Per-thread mode fixes and snapshot
- wrap support
-To: Adrian Hunter <adrian.hunter@intel.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@arm.com>, Leo Yan <leo.yan@arm.com>,
- Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
- linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- Arnaldo Carvalho de Melo <acme@redhat.com>, linux-doc@vger.kernel.org,
- John Garry <john.garry@linux.dev>, Leo Yan <leo.yan@linux.dev>
-References: <20261105-james-cs-unformatted-per-thread-fix-v4-0-7759e0ce2449@linaro.org>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261105-james-cs-unformatted-per-thread-fix-v4-0-7759e0ce2449@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_093541_745939_1036C4E5 
-X-CRM114-Status: GOOD (  29.81  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_173305_941237_9A1C5F4B 
+X-CRM114-Status: GOOD (  35.19  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,133 +132,196 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On the Raspberry Pi 5, the firmware running on the RP1 Cortex-M core
+measures the fan tachometer pulses and periodically writes the computed
+RPM value into the phase register of PWM channel 2, inside the RP1 PWM
+controller register block.
 
+The Linux PWM framework has no abstraction to report such a value, and
+the reading belongs to the hwmon subsystem. Following the auxiliary bus
+model, let the PWM driver instantiate a "fan" auxiliary device
+(pwm_rp1.fan.<id>) to which the hwmon driver can bind, without needing
+any additional DT node.
 
-On 05/11/2026 11:44, James Clark wrote:
-> This series depends on:
-> https://lore.kernel.org/linux-perf-users/20261030-perf_cs_etm_fix_non_taken-v3-0-7629b52ab047@arm.com/
-> 
-> Fix a few issues with per-thread mode:
->    - On nVHE, everything looks like guest trace instead of host
->    - Tracing multiple threads didn't really work
-> 
-> After adding a tests for those, it turns out there were some snapshot
-> bugs not picked up by the other snapshot tests. That showed that the
-> different snapshot searches for Intel BTS and Arm SPE were inconsistent
-> and I think all tracers can benefit from using the same pointer fixup
-> logic, so that gets refactored into the common auxtrace.c. Then SPE can
-> just share the Intel BTS search as it was obviously copied from it
-> originally. IntelPT keeps the more advanced duplicate data search, but
-> in the future that could probably be made the common one and all tracers
-> would benefit from using it (except maybe BTS if it always has a very
-> small buffer, but I doubt the overhead of the duplicate search would be
-> an issue). For now this is more of a refactor rather than behavioral
-> change so don't do that yet.
-> 
-> Signed-off-by: James Clark <james.clark@linaro.org>
-> ---
-> Changes in v4:
-> - Change test snapshot size to 128K for 64K machines
-> - Put patchset depencency in cover letter text
-> - Link to v3: https://patch.msgid.link/20261102-james-cs-unformatted-per-thread-fix-v3-0-dbcb0c281b9b@linaro.org
-> 
-> Changes in v3:
-> - Keep the find_snapshot() callback instead of adding
->    snapshot_has_wrapped() and monotonic_snapshot_head boolean (Adrian)
-> - Add auxtrace_record__default_find_snapshot() for the simple search for
->    BTS and SPE (Adrian)
-> - Add auxtrace_record__snapshot_fixup() for any snapshot search
->    implementation to use to update the pointers (Adrian)
+The way the tachometer value is obtained (the register is shared with
+the channel phase control) is an implementation detail of the PWM
+driver, so provide rp1_pwm_read_tachometer(), exported in the 'RP1_PWM'
+symbol namespace, for the auxiliary driver to use, as documented in
+Documentation/driver-api/auxiliary_bus.rst.
 
-Hi Adrian,
+The auxiliary device is destroyed first in .remove(), so that the hwmon
+driver is unbound before the PWM controller resources are released.
 
-Did you get a chance to check these changes? Sorry it took a while to 
-send the V3 after your comments.
+Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+---
+ MAINTAINERS                               |  1 +
+ drivers/pwm/Kconfig                       |  5 +++
+ drivers/pwm/pwm-rp1.c                     | 49 +++++++++++++++++++++++
+ include/soc/bcm2835/raspberrypi-pwm-rp1.h | 12 ++++++
+ 4 files changed, 67 insertions(+)
+ create mode 100644 include/soc/bcm2835/raspberrypi-pwm-rp1.h
 
-Thanks
-James
-
-> - Reword UINT64_MAX timestamp comment (Leo)
-> - Fix disassembly test after rebasing onto exception sample fixes
-> - Only take 'perf_guest' into account if there is no PIDFMT_CTXTID2
-> - Improve decoding of old files by hard coding queue 0 for per-thread
-> - Link to v2: https://patch.msgid.link/20260821-james-cs-unformatted-per-thread-fix-v2-0-00c4fd0701b4@linaro.org
-> 
-> Changes in v2:
-> - Remove stale "may be reset to -1 in per-thread mode" comment
-> - Set CPU when queueing auxtrace fragments otherwise
->    auxtrace_queues__add_event() overwrites the queue's CPU
-> - Link to v1: https://patch.msgid.link/20260811-james-cs-unformatted-per-thread-fix-v1-0-90565318f5f8@linaro.org
-> 
-> ---
-> James Clark (19):
->        perf cs-etm: Fix nVHE per-thread decoding
->        perf cs-etm: Warn for invalid timestamp option
->        perf cs-etm: Turn on context packet timestamps in per-thread mode
->        perf cs-etm: Use per-CPU queues for per-thread mode
->        perf test: cs-etm: Increase window size in disassembly test
->        perf cs-etm: Don't drop previous target for kernel samples
->        perf python: Expose sample instruction length
->        perf cs-etm: Use instruction length in disassembly script
->        perf cs-etm: Increase default timestamp generation period
->        perf auxtrace: Turn Intel BTS snapshot search into a generic one
->        perf arm-spe: Use generic snapshot search
->        perf auxtrace: intel-pt: Use common snapshot pointer fixup
->        perf cs-etm: Queue partial AUX records
->        perf cs-etm: Don't print missing buffers in snapshot mode
->        perf auxtrace: cs-etm: Capture wrapped snapshots
->        perf test: Allow infinite named_thread loops
->        perf test: cs-etm: Add test for per-thread mode
->        perf test: cs-etm: Test multiple per-thread threads
->        perf test: cs-etm: Increase snapshot size
-> 
->   tools/perf/Documentation/perf-test.txt             |   2 +-
->   tools/perf/arch/arm/util/cs-etm.c                  |  34 ++++-
->   tools/perf/arch/arm64/util/arm-spe.c               | 147 +--------------------
->   tools/perf/arch/x86/util/intel-bts.c               | 115 +---------------
->   tools/perf/arch/x86/util/intel-pt.c                |  21 +--
->   tools/perf/python/arm-cs-trace-disasm.py           |  22 +--
->   tools/perf/python/perf.pyi                         |   1 +
->   .../perf/tests/shell/coresight/per-thread-multi.sh |  76 +++++++++++
->   tools/perf/tests/shell/coresight/per-thread.sh     |  48 +++++++
->   .../perf/tests/shell/coresight/raw_dump_stress.sh  |   5 -
->   .../shell/coresight/test_arm_coresight_disasm.sh   |   8 +-
->   tools/perf/tests/workloads/named_threads.c         |   7 +-
->   tools/perf/util/auxtrace.c                         | 145 +++++++++++++++++++-
->   tools/perf/util/auxtrace.h                         |  18 +++
->   tools/perf/util/cs-etm.c                           | 113 +++++++++++-----
->   tools/perf/util/python.c                           |   1 +
->   16 files changed, 420 insertions(+), 343 deletions(-)
-> ---
-> base-commit: 28ef93607ad52acc8f8be25199711153ba11a0c2
-> change-id: 20260605-james-cs-unformatted-per-thread-fix-50e723aa7f0e
-> prerequisite-message-id: <20261030-perf_cs_etm_fix_non_taken-v3-0-7629b52ab047@arm.com>
-> prerequisite-patch-id: 4ef889ad751e344ae47c1d75a2a2e6cb2eadf6e1
-> prerequisite-patch-id: 636b39730334cbc5a76642c070e704ffe178e7be
-> prerequisite-patch-id: fb58f6daebdf5a194f8aa56ccc4022f932a5a6e5
-> prerequisite-patch-id: d240c10c6824f8ae6c3f10a1da01226a957f05fb
-> prerequisite-patch-id: 17b291db261e32dcb0d6f1ab2ed0adb7e0411813
-> prerequisite-patch-id: 45ae1d523c9e5c8c573309f1dab107a598f3d4f8
-> prerequisite-patch-id: 39a3eb25b3a45f4481760c25fa270773bcfd94f5
-> prerequisite-patch-id: 5723a15636c2a28ec40eb6b5c9836d162e971786
-> prerequisite-patch-id: d18054b586fc38bc832ead185e8c1fbb0ce46f39
-> prerequisite-patch-id: 6735b192189d7945613458abce3da871cb79b35d
-> prerequisite-patch-id: 387cb2c6181bef8f45a8fb167e8ef86e4a54ff69
-> prerequisite-patch-id: 50243a8d1739141aa24aa371a8452d4d2d078a99
-> prerequisite-patch-id: 2ae6f1e7707ba0c71a0678331b02d738fb25cb3c
-> prerequisite-patch-id: 1fa0a90cfbc904c4429c1427409125ac44b27aed
-> 
-> Best regards,
-> --
-> James Clark <james.clark@linaro.org>
-> 
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5c7b280a2bdb..26f8520c02ee 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -23382,6 +23382,7 @@ L:	linux-pwm@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
+ F:	drivers/pwm/pwm-rp1.c
++F:	include/soc/bcm2835/raspberrypi-pwm-rp1.h
+ 
+ RC-CORE / LIRC FRAMEWORK
+ M:	Sean Young <sean@mess.org>
+diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+index 523789e82355..7b271a16a483 100644
+--- a/drivers/pwm/Kconfig
++++ b/drivers/pwm/Kconfig
+@@ -641,9 +641,14 @@ config PWM_RASPBERRYPI_RP1
+ 	tristate "RP1 PWM support"
+ 	depends on MISC_RP1 || COMPILE_TEST
+ 	depends on HAS_IOMEM
++	select AUXILIARY_BUS
+ 	help
+ 	  PWM framework driver for Raspberry Pi RP1 controller.
+ 
++	  The driver also registers an auxiliary device that allows the
++	  companion hwmon driver (SENSORS_RP1_FAN) to report the fan speed
++	  measured by the RP1 firmware.
++
+ config PWM_SAMSUNG
+ 	tristate "Samsung PWM support"
+ 	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
+diff --git a/drivers/pwm/pwm-rp1.c b/drivers/pwm/pwm-rp1.c
+index 69ce0db4e9aa..f7443b9f9fa1 100644
+--- a/drivers/pwm/pwm-rp1.c
++++ b/drivers/pwm/pwm-rp1.c
+@@ -38,6 +38,7 @@
+  *   channel. As a result, phase control will be ignored for now.
+  */
+ 
++#include <linux/auxiliary_bus.h>
+ #include <linux/bitfield.h>
+ #include <linux/bits.h>
+ #include <linux/clk.h>
+@@ -49,6 +50,7 @@
+ #include <linux/pwm.h>
+ #include <linux/units.h>
+ #include <linux/spinlock.h>
++#include <soc/bcm2835/raspberrypi-pwm-rp1.h>
+ 
+ #define RP1_PWM_GLB_CTRL			0x000
+ #define RP1_PWM_GLB_CTRL_CHANNEL_ENABLE(chan)	BIT(chan)
+@@ -79,12 +81,16 @@ enum rp1_pwm_ctrl_mode {
+ 
+ #define RP1_PWM_NUM_PWMS			4
+ 
++/* Channel whose phase register is used by the firmware to report the fan RPM */
++#define RP1_PWM_FAN_TACH_CHAN			2
++
+ struct rp1_pwm {
+ 	void __iomem *base;
+ 	struct clk *clk;
+ 	unsigned long clk_rate;
+ 	bool clk_enabled;
+ 	spinlock_t lock; /* sync for RP1_PWM_GLB_CTRL RMW access */
++	struct auxiliary_device *fan_adev;
+ };
+ 
+ struct rp1_pwm_waveform {
+@@ -286,6 +292,32 @@ static const struct pwm_ops rp1_pwm_ops = {
+ 	.write_waveform = rp1_pwm_write_waveform,
+ };
+ 
++/**
++ * rp1_pwm_read_tachometer() - read the fan speed reported by the RP1 firmware
++ * @adev: the "fan" auxiliary device registered by this driver
++ * @rpm: where to store the fan speed, in RPM
++ *
++ * Meant to be called only by the driver bound to the auxiliary device
++ * created by rp1_pwm_probe(), which carries the controller private data as
++ * platform data. The auxiliary device is unregistered before the PWM
++ * controller resources are released, so that data is guaranteed to be
++ * valid for as long as the auxiliary driver is bound.
++ *
++ * Return: 0 on success, negative errno otherwise.
++ */
++int rp1_pwm_read_tachometer(struct auxiliary_device *adev, u32 *rpm)
++{
++	struct rp1_pwm *rp1 = dev_get_platdata(&adev->dev);
++
++	if (!rp1->clk_enabled)
++		return -EBUSY;
++
++	*rpm = readl(rp1->base + RP1_PWM_PHASE(RP1_PWM_FAN_TACH_CHAN));
++
++	return 0;
++}
++EXPORT_SYMBOL_NS_GPL(rp1_pwm_read_tachometer, "RP1_PWM");
++
+ static int rp1_pwm_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -347,8 +379,23 @@ static int rp1_pwm_probe(struct platform_device *pdev)
+ 		goto err_disable_clk;
+ 	}
+ 
++	/*
++	 * The fan tachometer is exposed to the hwmon subsystem through an
++	 * auxiliary device. The chip id is unique, so it is used to avoid
++	 * name clashes if more than one RP1 PWM controller is enabled.
++	 */
++	rp1->fan_adev = auxiliary_device_create(dev, KBUILD_MODNAME, "fan",
++						rp1, chip->id);
++	if (!rp1->fan_adev) {
++		ret = dev_err_probe(dev, -ENODEV,
++				    "Failed to register fan auxiliary device\n");
++		goto err_remove_chip;
++	}
++
+ 	return 0;
+ 
++err_remove_chip:
++	pwmchip_remove(chip);
+ err_disable_clk:
+ 	clk_disable_unprepare(rp1->clk);
+ 
+@@ -360,6 +407,8 @@ static void rp1_pwm_remove(struct platform_device *pdev)
+ 	struct pwm_chip *chip = platform_get_drvdata(pdev);
+ 	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
+ 
++	/* Unbind the fan driver before tearing down the PWM controller */
++	auxiliary_device_destroy(rp1->fan_adev);
+ 	pwmchip_remove(chip);
+ 
+ 	if (rp1->clk_enabled) {
+diff --git a/include/soc/bcm2835/raspberrypi-pwm-rp1.h b/include/soc/bcm2835/raspberrypi-pwm-rp1.h
+new file mode 100644
+index 000000000000..290a052480bc
+--- /dev/null
++++ b/include/soc/bcm2835/raspberrypi-pwm-rp1.h
+@@ -0,0 +1,12 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++
++#ifndef __SOC_RASPBERRY_PWM_RP1_H__
++#define __SOC_RASPBERRY_PWM_RP1_H__
++
++#include <linux/types.h>
++
++struct auxiliary_device;
++
++int rp1_pwm_read_tachometer(struct auxiliary_device *adev, u32 *rpm);
++
++#endif /* __SOC_RASPBERRY_PWM_RP1_H__ */
+-- 
+2.51.0
 
 
