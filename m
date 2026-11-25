@@ -2,75 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8A6606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F56606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qZM6yOiI;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=H+0tWgFZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xYLGIsTc;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EivW0L61
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lztRdkoEfHXfPLjrWU6dsJpmXlIzrR9WYIGBZGJqNOI=; b=qZM6yOiIxpUyEC
-	oUW2Z2STcwSARUYVB6SdZbSMm+DcbFU4OyjHKwPVM1w7h14pW8uniuzJTAhB6nIkwp6dqObQl4pHi
-	f0yhIqp4/ndEMB9yrvK5nJOm+NP4KwVMdG5TmZbCjWBSUF5WOp1VGFeg2tObREHOZGUHWB1vvKJiT
-	f1W354yAvixltoXAjlrqPENGDkweUwCJtLHe4bvV3kI2yN9tuUhHIWbAJ9Vw56H0rTcxHQxjsXhSk
-	7fIhrWHqBCEj2Dx6uw4bPuZRlJ/yK9feS8u+6WB735Cd6dkSAgcl+3OHULL9cmoYaFBc7TGkMSCC+
-	1v8OVDAq/VNK5iIxCgdQ==;
+	List-Owner; bh=CffRpKjZWBIdmV8KBtWcyKWTbdLZZPBEyXOHv2Hi+wI=; b=xYLGIsTcEiXuaJ
+	Ld40w4S+4Uj2V7zXPzi02JlDqgT2SUJEhCEOQVMwassHp8WFDm6hgZ0HAcPLahDANbcnlXIYsW7PK
+	1qSbOI5y+FNf65PewoeNfVEEMjMel1mQE3HBB0j8RS/Y9W1xb8et05DtrBkAyzxHFe+IH9k6aUn0v
+	mT9ZljBVFWonCsAXddE34sv9FnM5hcI9Onbz/6nqGMQV99pUi29D9lvXmzOD3TmmVlEcZNEiUOm/j
+	sUveCWkxLi2RuODR0jZ5mJucvvz4Jq4GMrCCDzj/3nvmhSt9hNOtxJifHgNj+AF1q6y88Uo2y0w3r
+	v2urjOmEAiFvR4bJVcYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHzc-0000000B30M-0Ibq;
-	Wed, 25 Nov 2026 18:45:20 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHzF-0000000B2nA-1yJZ;
-	Wed, 25 Nov 2026 18:45:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795632295;
-	bh=/9vfGQcY27HGY4BnTzA1JyrGpZYrrGs5WU0br6myPH8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=H+0tWgFZHaXyTs0SeNGvu9d+37Lsgps8h+kvZ5ttWpoJww4ses4gXabpCnihydBLu
-	 Y7ffi4NKRTKrR3bx6ajJYvpqsI7lSN/KiWb+I8quemZnXuB5gzAMKGGGc3orXNgxWN
-	 rJaTfDFnR66FD1jKCkWTJz+Bzc3fVl36ZX892b7gUwScaoydzaIz3BoEjh+Rg5YMKK
-	 xFc6Gs/SGAguFwlnV49CLBfr2QSZWbTw18odj5x+1M/chtVIOK+tAQb+Pt6pw1mc23
-	 THZab79pYejPYq18ycRun7f9qUBh/Py+rwdrG6N/Z2IMevsWIVsQPdcDPG2LqwFes+
-	 RgIVQIfpy9c4Q==
-Received: from [192.168.0.15] (unknown [100.64.0.170])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BB30A17E10D0;
-	Wed, 25 Nov 2026 19:44:53 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Wed, 25 Nov 2026 13:33:25 -0500
-Subject: [PATCH v3 3/9] media: Add tgid and fd fields in v4l2_fh struct
+	id 1xWHgU-0000000B021-1uZh;
+	Wed, 25 Nov 2026 18:25:34 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHgQ-0000000B01E-1Iq6
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 18:25:32 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2453B339;
+	Wed, 25 Nov 2026 10:25:26 -0800 (PST)
+Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DDB23F632;
+	Wed, 25 Nov 2026 10:25:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795631129; bh=S3knkYPZy3TQVIujmwNlME+cfr9l2bAHL5wt5WJaEJo=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=EivW0L61HkBPUbKSFXxmUB49FJ1LDQ0/F2c0mxN6sykMcNyTJYKSs9OtmR3HwHvT0
+	 hx+U0N4UI7pKVA1Eur9PSl+lHxGmllUK7bbcsblWRQEVlLL5qO6WW342Q6CoDGTws7
+	 fPqHCNMiUjxdbSNkZago6SiMRu7I/Cuk6sea1dmc=
+From: Leonardo Bras <leo.bras@arm.com>
+To: Usama Arif <usama.arif@linux.dev>
+Cc: Leonardo Bras <leo.bras@arm.com>,
+	Lorenzo Stoakes <ljs@kernel.org>,
+	maz@kernel.org,
+	oupton@kernel.org,
+	fuad.tabba@linux.dev,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	riel@surriel.com,
+	shakeel.butt@linux.dev,
+	kernel-team@meta.com,
+	rkeilty@meta.com,
+	atish.patra@linux.dev,
+	dgreid@meta.com
+Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+Date: Wed, 25 Nov 2026 18:25:15 +0000
+Message-ID: <awcoCklLOKeuXPhh@LeoBrasDK>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
+References: <20261124152842.2634495-1-usama.arif@linux.dev> <awcXhk885lqDRAHy@LeoBrasDK> <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-v4l2-add-ftrace-v3-3-1d1db48372ed@collabora.com>
-References: <20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com>
-In-Reply-To: <20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com>
-To: Daniel Almeida <daniel.almeida@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
- Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: b4 0.15.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_104457_722785_BC1810FD 
-X-CRM114-Status: GOOD (  19.03  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_102530_762991_102CE2B4 
+X-CRM114-Status: GOOD (  37.52  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,106 +96,122 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These fields will be used in traces to help userspace tracing tools
-identify streams.
+On Wed, Nov 25, 2026 at 05:55:29PM +0000, Usama Arif wrote:
+> 
+> 
+> On 25/11/2026 09:14, Leonardo Bras wrote:
+> > On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
+> >> When a stage-2 fault may need new page tables, KVM first tops up the
+> >> vCPU's page cache: if it holds fewer pages than the fault might need, it
+> >> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
+> >> 40. Unused pages stay in the cache until the vCPU is destroyed.
+> >>
+> >> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
+> >> used. Stage-2 has at most three levels and the root is preallocated, so
+> >> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
+> >> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
+> >> table pages to map all of its memory, while its four vCPU caches get
+> >> filled with 160.
+> >>
+> >> On a production host with 64 KiB pages running 101 VMs with four vCPUs
+> >> each, the caches were still 86% full. The memory used:
+> >>
+> >>                         before      after
+> >>   per-vCPU capacity     2.5 MB     512 KB
+> >>   all 404 vCPUs         869 MB     <= 202 MB
+> >>
+> >> Let's lower the capacity to 8 with 64 KiB pages, In the production
+> >> usecase above, it frees at least 667 MB. That still covers the two-page
+> >> minimum and leaves room for several table allocations per refill. 4 KB
+> >> and 16 KB pages keep 40.
+> >>
+> >> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
+> >> but it is topped up before every page it maps, so 8 is sufficient there
+> >> as well. The pKVM hypervisor memcache and the eager split cache don't
+> >> use this capacity.
+> >>
+> >> Signed-off-by: Usama Arif <usama.arif@linux.dev>
+> >> ---
+> >>  arch/arm64/include/asm/kvm_types.h | 5 +++++
+> >>  1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
+> >> index 9a126b9e2d7c99..28568da9ea4a7b 100644
+> >> --- a/arch/arm64/include/asm/kvm_types.h
+> >> +++ b/arch/arm64/include/asm/kvm_types.h
+> >> @@ -2,7 +2,12 @@
+> >>  #ifndef _ASM_ARM64_KVM_TYPES_H
+> >>  #define _ASM_ARM64_KVM_TYPES_H
+> >>  
+> >> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
+> >> +#ifdef CONFIG_ARM64_64K_PAGES
+> >> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
+> >> +#else
+> >>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
+> >> +#endif
+> >>  
+> >>  #endif /* _ASM_ARM64_KVM_TYPES_H */
+> >>  
+> >> -- 
+> >> 2.53.1-Meta
+> >>
+> > 
+> > Hi Usama,
+> > 
+> 
+> Hello Leonardo,
+> 
+> > Have you tried to reproduce this issue in v7.4-rc1 or newer?
+> 
+> Yes. The patch is against kvmarm/next (v7.4-rc3), which includes
+> Lorenzo's pre-fault series, and I A/B tested it there.
+> 
+> On unpatched v7.4-rc3 with 64 KiB pages, a VM whose 16 vCPUs each fault
+> in one page needs a single stage-2 table page, yet the vCPU caches hold
+> 640 pages (40 MiB). With the patch they hold 127 pages.
+> 
+> > 
+> > IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
+> > skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
+> > improve that issue.
+> 
+> I don't think that part is new. __kvm_mmu_topup_memory_cache() has
+> returned early when mc->nobjs >= min since commit 6926f95accee ("KVM:
+> Move x86's MMU memory cache helpers to common KVM code"). Lorenzo's
+> commit d27acc152c62 ("KVM: arm64: Size the stage-2 memcache from the
+> fault MMU") takes min from s2fd->mmu instead of vcpu->arch.hw_mmu. For a
+> guest abort that is the same MMU, so nothing changes here.
+> 
+> With 64 KiB pages, min is kvm_mmu_cache_min_pages(), which is at most 2.
+> 
+> > 
+> > Although I can see that when it's below that minimum it fills the whole 
+> > capacity (40) of the cache.
+> > 
+> 
+> Right, and that is the problem. Skipping the top-up avoids refilling
+> the cache, but nothing ever drains it. A vCPU's first fault fills its
+> cache to 40. Each last-level table covers 512 MiB, so a guest needs very
+> few table pages, and most vCPUs never drop below min. The remaining
+> pages stay allocated until the vCPU is destroyed, which is why the
+> production caches were still 86% full.
+> 
+> The patch keeps the early return and only lowers how far a refill goes.
 
-The tgid field will keep the PID of the process that opened the video
-file.
-That is needed because trace calls can happen in IRQs, for which there is
-no current PID.
+Right,
 
-The fd field helps identify the context in case the same process opens the
-video device multiple times.
-Note that the fd field is set in the __video_do_ioctl() function.
-That is because the file descriptor has not been allocated yet when
-v4l2_open() is called.
+I took a look in the cache workings, and it does not seem to receive freed 
+pages back in. It gets filled by topup and used by map, so IIUC it is used 
+only to avoid failing an allocation during the mapping walk.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
----
- drivers/media/v4l2-core/v4l2-fh.c    |  1 +
- drivers/media/v4l2-core/v4l2-ioctl.c | 17 +++++++++++++++++
- include/media/v4l2-fh.h              |  4 ++++
- 3 files changed, 22 insertions(+)
+Maybe it could be the case to simplify this cache to have the capacity 
+about the same as the minimum (since it always topup before mapping) and 
+avoid the waste altogether.
 
-diff --git a/drivers/media/v4l2-core/v4l2-fh.c b/drivers/media/v4l2-core/v4l2-fh.c
-index b184bed8aca9..9c2ddd1c2137 100644
---- a/drivers/media/v4l2-core/v4l2-fh.c
-+++ b/drivers/media/v4l2-core/v4l2-fh.c
-@@ -37,6 +37,7 @@ void v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
- 	INIT_LIST_HEAD(&fh->available);
- 	INIT_LIST_HEAD(&fh->subscribed);
- 	fh->sequence = -1;
-+	fh->tgid = current->tgid;
- 	mutex_init(&fh->subscribe_lock);
- }
- EXPORT_SYMBOL_GPL(v4l2_fh_init);
-diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-index 17ba1ae70735..5d7fbaa1b41a 100644
---- a/drivers/media/v4l2-core/v4l2-ioctl.c
-+++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-@@ -9,6 +9,7 @@
-  */
+Maymbe having something like this should be enough?
  
- #include <linux/compat.h>
-+#include <linux/fdtable.h>
- #include <linux/mm.h>
- #include <linux/module.h>
- #include <linux/slab.h>
-@@ -3063,6 +3064,16 @@ void v4l_printk_ioctl(const char *prefix, unsigned int cmd)
- }
- EXPORT_SYMBOL(v4l_printk_ioctl);
- 
-+static int _file_iterate(const void *priv, struct file *filp, unsigned int fd)
-+{
-+	const struct file *fh_filp = priv;
-+
-+	if (fh_filp == filp)
-+		return fd;
-+
-+	return 0;
-+}
-+
- static long __video_do_ioctl(struct file *file,
- 		unsigned int cmd, void *arg)
- {
-@@ -3083,6 +3094,12 @@ static long __video_do_ioctl(struct file *file,
- 		return ret;
- 	}
- 
-+	if (unlikely(!vfh->fd)) {
-+		vfh->fd = iterate_fd(current->files, 0, _file_iterate, file);
-+		if (!vfh->fd)
-+			vfh->fd = -1;
-+	}
-+
- 	/*
- 	 * We need to serialize streamon/off/reqbufs with queueing new requests.
- 	 * These ioctls may trigger the cancellation of a streaming
-diff --git a/include/media/v4l2-fh.h b/include/media/v4l2-fh.h
-index aad4b3689d7e..080cb00e3867 100644
---- a/include/media/v4l2-fh.h
-+++ b/include/media/v4l2-fh.h
-@@ -28,6 +28,8 @@ struct v4l2_ctrl_handler;
-  * @vdev: pointer to &struct video_device
-  * @ctrl_handler: pointer to &struct v4l2_ctrl_handler
-  * @prio: priority of the file handler, as defined by &enum v4l2_priority
-+ * @tgid: process id that initialized the v4l2_fh
-+ * @fd: file descriptor associated to this v4l2_fh for the process id in tgid
-  *
-  * @wait: event' s wait queue
-  * @subscribe_lock: serialise changes to the subscribed list; guarantee that
-@@ -44,6 +46,8 @@ struct v4l2_fh {
- 	struct video_device	*vdev;
- 	struct v4l2_ctrl_handler *ctrl_handler;
- 	enum v4l2_priority	prio;
-+	u32			tgid;
-+	int			fd;
- 
- 	/* Events */
- 	wait_queue_head_t	wait;
+#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE (KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL)
 
--- 
-2.56.1
-
+Thanks!
+Leo
 
