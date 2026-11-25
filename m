@@ -2,53 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE4A606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D5A606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KZdjWyZM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fALh60s6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o2s8/ERf;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UXwCWIOS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
 	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=OQFkytMxe9WQx1OI+p45Evfg+nBuhBH5a9ePOSdvAXE=; b=KZdjWyZMiIGTx5
-	/CGttub4ftxv/8MVdPAfo0N+bvx7FZD4rN9hiaQkieVyoBLc9SLHTDKFuSvyP9gOiwHkFT7vYYy39
-	QtLZShDVi2z3t09vJ5MQcM9z25k55mgdxvF1Rk1RjyjYi+Pqkz3PG3UfGRT8LTWH4TzuPGX2SjZp+
-	P6luShwj7okGeuynHAfqWwzN176tusi8kDukGbL9jI+dvuBVcCKhaOmSXth4KEm9p17iKaVBob1bW
-	Q+8oFS+FQimFFVUvoKW90w7aVMkHhhDxYV1L9hOMcf/lTg7R1mq0LXttRvalXXvC4PQUAgYd9rgJn
-	A1s39iUlGRcSoDyY3nsA==;
+	List-Owner; bh=9vEVpcc+CMjPgfA3K0RKV7gMn4uccMUmcMiY9r1X7ek=; b=o2s8/ERfGzkUBD
+	aNEgdN+iFB9FLAbfxftm/OteYkIaijSqtrXVOhn8DqRPwuOAZ1Y7A8w1ZcAMMeY77CWQcKaLQNDBd
+	I0j8J+w/2a/tT5tV3bNHpsNQzdkN1s2YUSUfNlHddrwHQ0zsJl1oabCOmljsT7xBCMyNE+o7OGZaq
+	RW3vUV4XtDeSnxwieYfAJ7WX6UOp6Dj6ypEu3wY5jueYlqoyZb0gT+8rrkcctG+8eCG2Nu7elaO08
+	z0h9T0Z0jz+mGH7KBV+LpDZLeQZ9FHz+4gdQyS0QYT8uYio0mpYYnDTtG05YdiWWKtfE7/t4RPH5z
+	2e359sZG9ax9FKBxac7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9TE-00000009LA4-3n0M;
-	Wed, 25 Nov 2026 09:39:20 +0000
+	id 1xW9Tb-00000009LEp-0Amy;
+	Wed, 25 Nov 2026 09:39:43 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9TD-00000009L9h-2s9l
+	id 1xW9TZ-00000009LEK-30ni
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 09:39:19 +0000
+	Wed, 25 Nov 2026 09:39:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1FE6461F47;
-	Wed, 25 Nov 2026 09:39:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D68FF1F000CF;
-	Wed, 25 Nov 2026 09:39:17 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3070C61F47;
+	Wed, 25 Nov 2026 09:39:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F236C1F000C6;
+	Wed, 25 Nov 2026 09:39:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795599558;
-	bh=OQFkytMxe9WQx1OI+p45Evfg+nBuhBH5a9ePOSdvAXE=;
+	s=k20260515; t=1795599580;
+	bh=9vEVpcc+CMjPgfA3K0RKV7gMn4uccMUmcMiY9r1X7ek=;
 	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=fALh60s6DnSj7LVmmSRzARuLwXAu/kI6ZErhU/uUlOKB9DrRxHe8RM36SJTysC4PA
-	 FZK880n6hGiQ7gBEf4Jm6Y1hVOJ4dKwogg6h5BqkjXXv9EAKgf54E02uWuHmOjtmBu
-	 PXIp7u5oxD/dZ7nFgp6EIHtX7nIDrCMq72i7TiFjJK+q2EN97y6Mdk5rNcPV5GDIdY
-	 NDFhfkvT7u7HEmlhr22S4q4VXsR0wNV81h5PDOCeeBXvnR3+3AhY9V+mk9tB5Hj1n9
-	 X62mprilj7uFPpAR05qSG6yNYAaF+7YD5PxS1eZCqCIi7utP7n3o6b791f6aqbLMV3
-	 or55zmWbWyh8Q==
+	b=UXwCWIOS01qGj+UIsssVHI7bhbXNBlUz78diSCRTRB2X0+YFEwgSvXuGXCQ7f7uWj
+	 wSo4QsKsnEQl3CbR+ymgxRB7cQBer07myWtCJMjYl+DX/o2QIfVOGz7fpnHzO6KsFi
+	 ZZHbR19gM2cWLYBHUzTDBBM/QLmpf5AjJs5/3nIe+v22rpR/w6mcD48BMfaHV3oPUl
+	 UhjFZ1/blieuU77eC7AlOwCb8l0Bqu31W2BkUb+qumTBsz6PqoFfOt6SDsx0ZHXpld
+	 qa91Wp7YeKbow0kLLLYnS5Ygkn9joLA7r804Q24RjFks/VeZD0MYY2M3+U98WC78Qb
+	 NJkljj6AB03rw==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: Add Shenzhen Kickpi
- Digital Technology
+Subject: Re: [PATCH 2/4] dt-bindings: arm: sunxi: Add KickPi K5C
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Rajan Yadav <rajanyadav0307@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -60,11 +59,11 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Andre Przywara <andre.przywara@arm.com>, 
  Paul Kocialkowski <paulk@sys-base.io>, 
  Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20261120-k5c-dt-v1-v1-1-d9681df67bc0@gmail.com>
+In-Reply-To: <20261120-k5c-dt-v1-v1-2-d9681df67bc0@gmail.com>
 References: <20261120-k5c-dt-v1-v1-0-d9681df67bc0@gmail.com>
- <20261120-k5c-dt-v1-v1-1-d9681df67bc0@gmail.com>
-Date: Wed, 25 Nov 2026 10:39:15 +0100
-Message-Id: <179559955560.14607.15069373113329195417.b4-reply@b4>
+ <20261120-k5c-dt-v1-v1-2-d9681df67bc0@gmail.com>
+Date: Wed, 25 Nov 2026 10:39:37 +0100
+Message-Id: <179559957767.14607.11625854653378888.b4-reply@b4>
 X-Mailer: b4 0.17-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,20 +83,18 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 2026-11-20 01:22 -0600, Rajan Yadav wrote:
-> Shenzhen Kickpi Digital Technology Co., Ltd. makes single board
-> computers under the KickPi name, such as the KickPi K5C with an
-> Allwinner A133 SoC. Add a vendor prefix for them.
+> The KickPi K5C is a single board computer with an Allwinner A133 SoC,
+> 2 GB of DDR3 DRAM, eMMC, an SD card slot, Gigabit Ethernet, a Wi-Fi/BT
+> module, USB host ports and a USB-C OTG port.
 > 
-> The company name is the one KickPi uses on its documentation site
-> (doc.kickpi.com) and as the registered owner of the KICKPI trademark
-> (US registration 7747802); their e-mail and web domain is kickpi.com.
+> Add its compatible. Like the Teclast P80, it names the SoC as
+> allwinner,sun50i-a133.
 > 
 > Claude Code (Anthropic) drafted this change and its message; I
 > reviewed it and checked it with dt_binding_check.
 
-Drop, this goes to changelog.
+Drop
 
-Your patches fail to apply, thus not tested by automation. Dropping.
 
 Best regards,
 Krzysztof
