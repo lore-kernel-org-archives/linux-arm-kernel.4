@@ -2,88 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E93B606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C769606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:02:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NUfxzEtJ;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Xvj90NZO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Oj0VCOmv;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cryOxmxh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NSVFwobbVS+kCFYlT7jJw4a90W2mwlRdcZOgwxJZDjc=; b=NUfxzEtJ8NfytH
-	PWeiFiv8vmkECiy3jLpxkuY2mijYgn3v2wb002C0S6fXH1rOHA7RsvIulO/6i96e/mVekYx04Esfe
-	4IqFUNnO15ByFcDtr4AzXaj8NVqvdHnARzw9X6MQoZw299fQ2rnGZGvHs1kMOgQvtg7A9kvmm8L/z
-	FwFfobT9bxEI2evUT7AY1FEs44gf8PW+lvywu9rFAeUsAVBOABKjJE1Op4DbkeMp/tWKo1pMuk6o0
-	b7GsTqi0gaQqYW1HyXOtIwfeOhMvSdh6xI6Gi0LVuuARSzgMVgK39u3gqdzEVbuzq26MxMEPbV+ri
-	OwGflAgJOEYxsvBS9/GA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=mWutYmcI+akmXQxpptAbrI1MPXq/0LbtGQvDAhb+8lc=; b=Oj0VCOmvFmWzcpc6c5MVdLZomk
+	IWWyVWnGdPoQhyTj+67NquI4bLiUc1Rg0RLEe53U5iELJE2h2XmSy83l1lo5ecqXAsnO26dZUSa8b
+	BCSOkrbWLD3FR5XP9XhA5r3ZEKJ41zmLaPy0w+ZReOejstNREhiGURNGaZHG+1IrbGUSSkUEyd85+
+	dO9QCrpXHoj3O4WEBur4QTGxp1teGOLqkI2ztx8h5TofruTR1Szw2TVb83yesTyC1Tp5x0bFocdwJ
+	FGF1GSYPrFbQH2h3QqgFXuZTyoo6j7u4G/KDe1Wm2yqJaObZj0h59QXfAjE9EhVxsGCAhgTBLUWCI
+	8d7ISj5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH9D-0000000An3o-1F42;
-	Wed, 25 Nov 2026 17:51:11 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xWHSP-0000000AxoG-40ZO;
+	Wed, 25 Nov 2026 18:11:01 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH96-0000000An0W-33WP
+	id 1xWHSO-0000000Axo9-0XdD
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:51:06 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id F26471A17F6;
-	Wed, 25 Nov 2026 17:51:02 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C492460480;
-	Wed, 25 Nov 2026 17:51:02 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 16CA211E6B0C2;
-	Wed, 25 Nov 2026 18:50:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629060; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=NSVFwobbVS+kCFYlT7jJw4a90W2mwlRdcZOgwxJZDjc=;
-	b=Xvj90NZOjovPN9vPRfnQJgKIl11B7lHWDG49Iv3SgSbmjrbDkrm0XAVu4ewjF13Z4ohmwd
-	p8eUVPvzW2iczDIcAokJYiH5gsM1Ao4LEBK25MXa+kvI8U50G/qU9RLN3D2bUG7RUrE7IN
-	cFvxGGlknMApLv4rKMi/X9Sd/RFLBOaVaVOPeYcLBZ7xAbWbz1ENrrog7j0YWr/PhKgUHz
-	gzL2uvN/k+Z9kW2Wj5HNTQlnDpJrR3PKvKhEL7d0CQ73h/MhMWNuw140C74CokJAbsN4hr
-	IX/yDYIM9bXzzXyAT/okiQ9C6YpFF3AUDJy8n35c7tPxYYXPkMKSdH86rJ56hQ==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:16 +0100
-Subject: [PATCH v4 03/32] drm/display: hdmi-cec-notifier-helper: use drmm_
- prefix for drmm action
+	Wed, 25 Nov 2026 18:11:00 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id DE6C94645F
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:10:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 894CC1F00A19
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795630259;
+	bh=mWutYmcI+akmXQxpptAbrI1MPXq/0LbtGQvDAhb+8lc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=cryOxmxhtxlO1KGB/8E7JN8u0pgaKXd3JfHXEiXiM3jywuj6bBaW4BgKUhlY0vOn5
+	 IRXgAVvaQEst61cU10Xf9IbAPGIF63V0ngPxRuWlorWxW/PXrORyW7RMkd+6gnIj4I
+	 sNBHuTav0OQ+N1FYkaYGb6y+HMWlbi09hcM/yHFxVfOF1O8AAyvTQl74HE86bBvMe1
+	 nAPONnqT8P7FU65MTtfMdc5sgAR86zMi9+zJCrcug0m1cp3GT9Qme9gYiu/dp8nm1Z
+	 jvxQ/mOzqfZLn2XIk9nSCZlxNvF77m00LYYlD1MzR/STyzH+FDQA1zPn3MUzFUAuCj
+	 YmL0d19DIxg0g==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5c14f3dab66so5829641e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:10:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEPpByrUMQeHhtsvstru8Ctx+S41T9fjXRU2au1Gh/lFWMG+8YKug2HkU91A7CxxLFiAEAxZmZkRG2PtEYCBBfI@lists.infradead.org
+X-Gm-Message-State: APuU4Z/rwZmwmRZw3NFf7kvDWJRVshvsFNpteeIxOXbFUpf+R55JJUmH
+	CuFRWb10PNtpjR1w7iod3tCTwNTlbGfGozi/RqDnwKYHulk24Ri2MbQQw6LWzgnUe/MesVngokM
+	rHpDPUUF9Ytp3FvjSzrnZ+4GxAh+G5ZE=
+X-Received: by 2002:a05:6512:4018:b0:5c1:56f5:da02 with SMTP id
+ 2adb3069b0e04-5c1b79fc73emr5241671e87.1.1795630258316; Wed, 25 Nov 2026
+ 10:10:58 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-3-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095105_628297_6936D638 
-X-CRM114-Status: GOOD (  13.87  )
-X-Spam-Score: -2.1 (--)
+References: <20261111114225.3977243-1-ruanjinjie@huawei.com> <20261111114225.3977243-16-ruanjinjie@huawei.com>
+In-Reply-To: <20261111114225.3977243-16-ruanjinjie@huawei.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 25 Nov 2026 19:10:43 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkCmejeNE2dZASY0crxe-Q23QJ05fqvEvP69YuJrETYPw@mail.gmail.com>
+X-Gm-Features: Aa3M54oIDRMFXP1RpUMFXoUcM7tXj2uiaN-FyRQN7L3lknX3zpF2wKbegX-ttpU
+Message-ID: <CAD++jLkCmejeNE2dZASY0crxe-Q23QJ05fqvEvP69YuJrETYPw@mail.gmail.com>
+Subject: Re: [PATCH v21 15/15] selftests/arm64: Add ptrace single-step and
+ rseq syscall-exit tests
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,58 +76,32 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: mark.rutland@arm.com, kees@kernel.org, catalin.marinas@arm.com, oleg@redhat.com, linux-kselftest@vger.kernel.org, will@kernel.org, shuah@kernel.org, peterz@infradead.org, thuth@redhat.com, vladimir.murzin@arm.com, ryan.roberts@arm.com, anshuman.khandual@arm.com, kevin.brodsky@arm.com, broonie@kernel.org, mathieu.desnoyers@efficios.com, linux-arm-kernel@lists.infradead.org, wad@chromium.org, yeoreum.yun@arm.com, linux-kernel@vger.kernel.org, luto@amacapital.net, james.morse@arm.com, liqiang01@kylinos.cn
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For bridge hotplug drmm allocations are not suitable because a connector
-may have to be added and removed multiple times in the lifetime of a card.
+On Wed, Nov 11, 2026 at 12:43=E2=80=AFPM Jinjie Ruan <ruanjinjie@huawei.com=
+> wrote:
 
-In preparation to support hotpluggable HDMI bridges (and the
-drm_bridge_connector) we need a non-drmm variant of the CEC notifier
-(de)registration API, with an explicit unregister API.
+> Add tests for the arm64 syscall-exit and single-step behaviour fixed by
+> the following commits. Each test fails on a kernel without the fix it
+> covers and passes with it.
+(...)
+> Link: https://lore.kernel.org/all/20200710130702.30658-1-will@kernel.org/
+> Link: https://lore.kernel.org/all/20200524043827.GA33001@juliacomputing.c=
+om/
+> Link: https://lore.kernel.org/all/1eed6d69-d53d-9657-1fc9-c089be07f98c@li=
+naro.org/
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 
-To differentiate the new explicit unregister API from the existing drmm
-cleanup action, use the drmm_ prefix for the latter.
+This patch also looks like it should be sent in tandem with the other
+fix, patch 1/15.
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
----
-
-New patch in v3.
----
- drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.c b/drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.c
-index 31b8e4a93e24..47662bdc5d08 100644
---- a/drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_cec_notifier_helper.c
-@@ -25,7 +25,7 @@ static void drm_connector_hdmi_cec_notifier_phys_addr_set(struct drm_connector *
- 	cec_notifier_set_phys_addr(connector->cec.data, addr);
- }
- 
--static void drm_connector_hdmi_cec_notifier_unregister(struct drm_device *dev, void *res)
-+static void drmm_connector_hdmi_cec_notifier_unregister(struct drm_device *dev, void *res)
- {
- 	struct drm_connector *connector = res;
- 
-@@ -59,7 +59,7 @@ int drmm_connector_hdmi_cec_notifier_register(struct drm_connector *connector,
- 	mutex_unlock(&connector->cec.mutex);
- 
- 	return drmm_add_action_or_reset(connector->dev,
--					drm_connector_hdmi_cec_notifier_unregister,
-+					drmm_connector_hdmi_cec_notifier_unregister,
- 					connector);
- }
- EXPORT_SYMBOL(drmm_connector_hdmi_cec_notifier_register);
-
--- 
-2.56.1
-
+Yours,
+Linus Walleij
 
