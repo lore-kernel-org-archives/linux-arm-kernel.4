@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A89606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A01606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0cYaI6M;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JuoEWMoq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=shkw9mnQ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=O3gogIN8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=moswij1DxNlgtZ2psQp6vB5WbP0Zx8EDmr2Dk41oG4M=; b=h0cYaI6MYeqLSY
-	47FRSIbYON/w8IlGFbNdFx9HdvTd5ifcIeyCkOlQXS+3A3cSv0xITRK4+Vg26hwSEVQORKBfBMJ6R
-	z6amPHDl8Xk9yevkBJXMsSujFZpR+mXLwB7Wi5QxEB38wSS/F/247TnqNaB2fxe/XWZCJeqaxuZAO
-	fE9xtLgBJniO+49U+IbWW53cimhbev9M51cLJ2vXhwDeVCGByGOuKYwIXs0AKpE46TiBffJSDqU8j
-	2BZ5b9snBPYJx7LzubQgwQ2rp2LPGfut3uqZ0J+3vsPu3CQyIRxsoB9LuiOT6akvr8bV5QeZB7b/A
-	QoofQOVe2hkb+B+QezYw==;
+	List-Owner; bh=pHNoqtp6/IpvyophWtpnBoDa9f++9QWYTnZvFZM9okg=; b=shkw9mnQbNCvUI
+	6R6CC5qQMWYPjWsFDXyUfODOz6PU7T2IpH41AAfHms/faMz7zOsJ/dhlsQRXg+6BAVdtjg45RmnuO
+	v8Vh8SWwwwPv4zdr80j2w+m616vY6m3fjmWurcBINj4Rubv5f2ZBdyBOhd92UHqbxEr56/3SuAs1c
+	j7nRJMAZH/xAQM4j40x/8rJU1ep3Z+fWKUo/aXBAt02SOj0it7UX6Zwn/nPTdILyH22dKothdtQx7
+	aBp4Tg0oJvnurnX5ij6hiYyRqrGW4Fdn4gEGVBvK+YOC40PAucE23Wh74YUHcO2JIwclQ0FiYaQsS
+	P3FtJwVWu88i19A4s6ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJQb-0000000BFQK-1JC1;
-	Wed, 25 Nov 2026 20:17:17 +0000
-Received: from mail-oo2-x09.google.com ([2607:f8b0:4864:31::9])
+	id 1xWJQx-0000000BFbC-2ZiT;
+	Wed, 25 Nov 2026 20:17:40 +0000
+Received: from mail-oo2-x00.google.com ([2607:f8b0:4864:31::])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJPk-0000000BEtM-0QWn
+	id 1xWJPc-0000000BEmZ-1n0b
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:16:25 +0000
-Received: by mail-oo2-x09.google.com with SMTP id 006d021491bc7-71adbc33a72so1842138eaf.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:23 -0800 (PST)
+	Wed, 25 Nov 2026 20:16:18 +0000
+Received: by mail-oo2-x00.google.com with SMTP id 006d021491bc7-71b2566b798so598019eaf.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795637783; x=1796242583; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795637775; x=1796242575; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=moswij1DxNlgtZ2psQp6vB5WbP0Zx8EDmr2Dk41oG4M=;
-        b=JuoEWMoqRqN1CFp55JofRMtJUlb8LRzYKOnPsu59JsCDdizBc05vTTfYV8ivT9lY+H
-         aQBIOOJt8ERl3bBvsENc6VieoQAV+GXgi//bOJ3UGbia+3UtaxagmtiQm2hhVxmwWxXL
-         cuJt559q7w5AM244AghvCja/XoMZvgYxd1VBcDAvO91gpV0saZQDRn3iaUwjU138K0ny
-         ZoNdHMU7K/Q7Jt9uDnp4LHPjG5hp6hkF0OFddqh9+vKJEgfkdhRy5S/99CMPgCwTOHve
-         1a9hhq1a9yuk2G2hWCNOBKqD/nZ0ZV+fGBuiVsyvmBxa4xYFNi3qt09Yhf9R42ZT4Sug
-         lhzA==
+        bh=pHNoqtp6/IpvyophWtpnBoDa9f++9QWYTnZvFZM9okg=;
+        b=O3gogIN8wtVR4p2J9dvTRMttMAr7HddCV8T/NDmppMzkLyqB0SGhl4dchGNU5Pw6v7
+         rdi0mRn+FKdl5Hq9DoY2yVY6ms8sNR3fBArYU6Z5GE0luHYbqGJZVxUnIg336dJRvyh3
+         DkZYZubC0GedXp/R54LMBJmLa5HHIGVHyx5bTMt6WyU9jlNU+9dkZ3X4rNOv94DiggaC
+         86v4oUOJPd9ziZDGA+zazz/tBS6KrJ/1cMSdF84dXQrDzodrJR+S3rMZ9P5WnOBSzkEW
+         FYjIZljtqX/ZlCtvS31f/Fnt2TB5DcttTO6oOr/K2wV7aozZfnmWgkUKfNFDyrKCvFnB
+         6CtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795637783; x=1796242583;
+        d=1e100.net; s=20260707; t=1795637775; x=1796242575;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=moswij1DxNlgtZ2psQp6vB5WbP0Zx8EDmr2Dk41oG4M=;
-        b=O9WHPglqUx+zbLT85uE8XNtM+FqOdxUz231PA5veUpdic6DTaCSOqytI2ZU5r9STwT
-         do+ftqO+eXSvWyRuvUpFKScIEuXiIkzWQfneTx1OixyxhsPX0lHIQ/JPFx1nMhK9zWFv
-         HzHMHWCKibfZI2iuzxFzfA5sMmWgM2qUovAjElreHQfAwZfgN4Hm6zYsCM8K1RFbHUZK
-         uuvCQFviwgByBrtcpy3Sl4dgLNX8P6R94rB0Bq/eCtcDhpjcvavmslcyy//k44V7jGFb
-         DIbb0ud2p5ugqrY96zy64RdyCEdjQ3njwCeMxPeNzWyW9rFiMBiMB6t/FQ6qffNYSYcK
-         goTg==
-X-Forwarded-Encrypted: i=1; AL+hErGsIbFAbpYeiUQSzpuAwt/bmNj6uIqP2Sk0+gZp4k2S2t64o+Rk35Bp2/gqkrkihCfNcQ8HPHKVitOG/XgVPndH@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hS0ixzhjs0bVnq+/EoYHhFMOdZiWF10rFrsQPvLifUA4KQad3
-	md+ZLADh+ANRTsKS6aXqxa8BL/Q9RfZQg1nPgyAJd72lzIEPJqoI1lCL
-X-Gm-Gg: AZFdTZcg2OU611H0rOSjXsZJwHPot6Fag5rDz7dWablkaRhtDg9TqxQAYETyGPRLYSS
-	u9gl1f06Sh9AlR0NGG85acgLbViaZ/jGC5LEzgLhlLv58eaVvfO7UCPdgZVm3YLMryp+xURlq51
-	BtE+KQw7VXbcucVQUCZbE8QLgbXMz97PPHOGE7YxAGEAueeUP+GdoOFwTi8CqPuGx0DK3vIT039
-	jcdVLbihwGoeFC/r5OGy3lyd+Jyb0R2C6qtWr77yYAaHWE/hDsTFoza1iD0oaASPE6PQAe4R2/m
-	Hl/Pd28n1cTdxdf8Yq7Pn61mASDud5lqfIJQ+wY9xL6uDXiJCKu3/SsWrO1EiRBQj7rxyLV/WG3
-	KTV11huHa+hCSlrkhI9BfqUg2CxQHDmXMOS4Trn7PBbNmpZEa/hzEc9yR6ge1kaR1wBjR3caHdW
-	fiQE11D4ylp4WUfMo1f/wF2LtD7acVSVrR0MuR0V5DDJywZ/zz7nDlUc9Nmg/8FD5Rd+26q68B2
-	aBaHnjKir1GLvkGy0xS/sR4VZ4CTE4IZ9buhu3B2eYsz8THU8N2hkU+Meo4ZQ8Mlk9lWEMnySPP
-	VW046ckiJiJiepCyVRqmRKT18+AU/HUaPJ36a2DXCt3ArKZFdIJ6LkQz
-X-Received: by 2002:a05:6820:1c92:b0:71b:7929:cb54 with SMTP id 006d021491bc7-71b7929d44fmr3615961eaf.38.1795637783065;
-        Wed, 25 Nov 2026 12:16:23 -0800 (PST)
+        bh=pHNoqtp6/IpvyophWtpnBoDa9f++9QWYTnZvFZM9okg=;
+        b=uuRjc0YagDHzZpHGdLp4IRg5LbWLfbCITZBgqx/syKhka8FmoOo1lrAuk/C8qcpH4D
+         EwqWrhSYZRSut+RNDLRjURGCMOq9fjgrj15q8ONF9Mr8LghIvLzQJ3ntWoXYVizUrTtZ
+         lSQE9baZAkLwYgLC0zsyVCSlBisjbQjdPhb0lBPmJyGIC25dPv0x3b+DR1IghHl2Cj2y
+         hjJPhd3EGVJj93MtKQ/0qtx7Jrioi6jwxnGIduYKMA3CXzyEAbdhyP1ilBuDtmjjYhOZ
+         pJRGteF49v0nNqA9QUFWkHUvI3ofnCXyIXMv+lh5CVP+x7ql3HSRpxv3HC+oZ97QoQGJ
+         Lhqw==
+X-Forwarded-Encrypted: i=1; AL+hErEH92aQ9gQgcbhA8qQy1FOOoQToOd5O1TFHBhj9iOXi3oz6Nq5sdNYCFVSIhiH8Iv4/ucaFuIFOmBevX+FNUst2@lists.infradead.org
+X-Gm-Message-State: APuU4Z+B4L1Dp0Bo8R6GqwFuHvpns2MQTQohd1At8O66nQpmMYI7YrI+
+	Uh/RjYYFBy7YvgcjQmSAa72KoIdAr2pL4jh1gVK9UZjUghyJVWMrEej6
+X-Gm-Gg: AZFdTZcwDp0fUXHpKEqUurPuVX0ULa/lBHWW0ZBqahRIXyNiUefrf1kPwnITQGDdJZ+
+	0URrJjxNublBMmp0XtVIFvCvhggy46PvEMXDDurF+/ktp3QRw1n+pJtmlmS2C9Jg2rasY0p0rjK
+	tWLeJZWtLgXLXpHYvRKZauqJWANniCH2k4iup+JJNEIGqf566o1pfCHloF14tsJ5+/yrT04usSw
+	Q6xq5TgRy8vvZJGnICYb38zHe9nPMbrrdQoCALzfjvFC2POxpWYAy17lrRWVLKyp05F9XGLxtE3
+	BXcmsoBy6S3QtkAgSCSO4EFF3X+v3R+igLfnWpedTH1DtugJ+ybXqzQrscn8cY709nZVCCkhnhR
+	01gtVa7sF4vxYQZ5eNJqBfbQwTgGyFPTAWcymeoPrVtgVu+zvTph2NNEBQlExJPXuaeoS5nblAp
+	FHmI4VY/adnW1mpjn3eXeUBSus/2LZR/6CN2FakrWhHWi4XBd51zpB66ZY5KlaR6ZY0usrYTLkq
+	B4BB6ix3AdCMn4v+27rkkbM2qNaAWR5fb5Te/SZ77WuDLrZK/Y63RF61rrTQaPkA4YF/+XLuO1j
+	fEKwpzUEAsabo0YmBMp7CnxzSAoc7gNSIX1kesmAFq8nRVjOF6P0FL1T
+X-Received: by 2002:a05:6820:169e:b0:71b:79df:90c with SMTP id 006d021491bc7-71b79df0a27mr2553155eaf.79.1795637775644;
+        Wed, 25 Nov 2026 12:16:15 -0800 (PST)
 Received: from [192.168.0.98] ([50.26.120.197])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.20
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 12:16:22 -0800 (PST)
+        Wed, 25 Nov 2026 12:16:15 -0800 (PST)
 From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Wed, 25 Nov 2026 14:16:10 -0600
-Subject: [PATCH v2 7/9] media: mtk-mdp: Refuse a format change once buffers
- are allocated
+Date: Wed, 25 Nov 2026 14:16:07 -0600
+Subject: [PATCH v2 4/9] media: mtk-mdp: Round MT21C sources up to whole
+ tiles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-7-fdc047cf75a5@gmail.com>
+Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-4-fdc047cf75a5@gmail.com>
 References: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
 In-Reply-To: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
 To: Tiffany Lin <tiffany.lin@mediatek.com>, 
@@ -103,16 +103,16 @@ Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
  Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
  Ryan Brue <ryanbrue.dev@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=1974;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=1332;
  i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=ToIzGemh2HZYfPM+0fU+WVM5fBqJcWgALuaETYVwNso=;
- b=YyKMx+idzrYsHi5C/jJHDCr8A4+FV3/lteY93PlNVBFkvn2Yc532M5WpbprdE0h37qx239ObY
- NbKcfOxO94bBh6twJeOGkYBw44Fa9nxQDmOu8P83mq+1flUeTlwmTUz
+ bh=SML+TmgHSjoTNgMjQurRhuTtIXSo3udus0sid3UwpCI=;
+ b=O6W72FlbWN4LuV0iiRLk2CkaYM593a8j+vtxu/b4eIoC58xSpkFVNzhRcnOAn6Ev/MJIHE5Hl
+ IFgMC6jS43GCBp+hiHRxs7WXkGzOImAzk9Iax4nRoP1wVzh7g3/DYbS
 X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
  pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_121624_170367_CDB3D6B4 
-X-CRM114-Status: GOOD (  15.07  )
+X-CRM114-CacheID: sfid-20261125_121616_486739_BD77444C 
+X-CRM114-Status: GOOD (  14.28  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,54 +132,37 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VIDIOC_S_FMT stores the new format in the frame before it checks whether
-the queue is streaming, so a refused change still takes effect: a client
-switching a streaming CAPTURE queue from NV12M to YUV420M gets -EBUSY,
-and the next frame is set up for three planes in buffers that have two.
-And the check is for streaming only, so a format set after
-VIDIOC_REQBUFS can need more than the buffers already allocated.
+MT21C, the MT8173 decoder's output, is laid out in tiles of 16x32
+pixels, and the MDP firmware refuses a source of a size that is not a
+whole number of them: converting a 1280x720 picture fails with -EINVAL
+for every frame, while 1280x736, the decoder's own buffer size, works.
+The alignment was 16x16, so 720 lines passed the format check.
 
-Check first, and refuse once the queue has buffers, as vb2_is_busy()
-does for other drivers, logging it at debug level since any client can
-trigger it.
+Align MT21C to 16x32. mtk_mdp_bound_align_image() already rounds a size
+up to the alignment, so a source covers its picture, and the visible
+part is the crop rectangle.
 
 Fixes: c8eb2d7e8202 ("[media] media: Add Mediatek MDP Driver")
 Cc: stable@vger.kernel.org
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 ---
- drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c b/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-index e0627127430b..1be0f44fe1b2 100644
+index d2813890cceb..34d02de4453d 100644
 --- a/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
 +++ b/drivers/media/platform/mediatek/mdp/mtk_mdp_m2m.c
-@@ -698,6 +698,12 @@ static int mtk_mdp_m2m_s_fmt_mplane(struct file *file, void *fh,
+@@ -40,7 +40,7 @@ struct mtk_mdp_pix_limit {
  
- 	mtk_mdp_dbg(2, "[%d] type:%d", ctx->id, f->type);
- 
-+	vq = v4l2_m2m_get_vq(ctx->m2m_ctx, f->type);
-+	if (vb2_is_busy(vq)) {
-+		dev_dbg(&ctx->mdp_dev->pdev->dev, "queue %d busy\n", f->type);
-+		return -EBUSY;
-+	}
-+
- 	frame = mtk_mdp_ctx_get_frame(ctx, f->type);
- 	fmt = mtk_mdp_try_fmt_mplane(ctx, f);
- 	if (!fmt) {
-@@ -706,12 +712,6 @@ static int mtk_mdp_m2m_s_fmt_mplane(struct file *file, void *fh,
- 	}
- 	frame->fmt = fmt;
- 
--	vq = v4l2_m2m_get_vq(ctx->m2m_ctx, f->type);
--	if (vb2_is_streaming(vq)) {
--		dev_info(&ctx->mdp_dev->pdev->dev, "queue %d busy", f->type);
--		return -EBUSY;
--	}
--
- 	pix_mp = &f->fmt.pix_mp;
- 	for (i = 0; i < frame->fmt->num_planes; i++) {
- 		frame->payload[i] = pix_mp->plane_fmt[i].sizeimage;
+ static struct mtk_mdp_pix_align mtk_mdp_size_align = {
+ 	.org_w			= 16,
+-	.org_h			= 16,
++	.org_h			= 32,
+ 	.target_w		= 2,
+ 	.target_h		= 2,
+ };
 
 -- 
 2.56.1
