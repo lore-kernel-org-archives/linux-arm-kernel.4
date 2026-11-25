@@ -2,138 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4EC606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB56C606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4LD4HbS8;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=mrw8qz7V;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Yhb1PMKL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gqxLPsNR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BPZ3SN0M
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=FKKsaX0iLIihjEs0HiQH6IuZ/cox9XgvibcPxadi8NA=; b=4LD4HbS8lSUYcRLxYhsgQrMJQd
-	8sXvTqtAL75xWEpP40s5KjltWdbqjReJtJg2HrOeNku2WgkZoM9+/UFxBn0cP/6IkV4Wcbj9J7mM1
-	u9Hjy8LABJSU4WdjoBvgNvPdTwnCJlQuEgFXlotnpvjpM5auYWbe/YBTm2KPpALjKVYcjDcUTlU/U
-	98Fgip6hg7E0JxEytn5TKN1ItcyfWoDaDs1lvdfuywoAAiT54mv6358roUxinvPPE5e5IP8uXUnGF
-	YANkIJY5FlIP0rOIFp0VV0NJ8VW99RHFNhJRS9WHAzuCu1aCZD0OdRmsQxEZ+6b8HuaD/oypGz9lZ
-	zIgj5X5A==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=d1OT518H4ki16FAaDWhpo7G6vnPaZ/w9V0TjOKp530E=; b=gqxLPsNRkDmp/n
+	Tszbiyp7rIpZJ/MQdu8XypYiq9JJkryGXtTpwoCWEJXzjE0ivXLSXxw0wBc2aS8W6bxqmzxGZS9be
+	ob9ITlyRB1pPeThZnBW1BlAu2AkJkjlpJJc0n38HkDmxM+MJXOwQCAUK304bCWjHNEkNRn6PM5A9D
+	kXp5q0yQBfyFZ+CjRDJfRx2Rk4Q1GpyhFS4kSHYR9OQaglExlwzzFIKlnq5W3aZ64VzQTnk8NNge9
+	cav6SXeggwyJwIITpdpxRy+KkjyVuY6zmqD1Wzc2JhDFs1zZmxBZBkRhHs6Q9ecL5d0IJPjCoOE6F
+	Kwbg5jW2yl7Vm8EJJQfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDPM-0000000A3XT-0wbP;
-	Wed, 25 Nov 2026 13:51:36 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xWDQ5-0000000A3i6-1iQG;
+	Wed, 25 Nov 2026 13:52:21 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDPH-0000000A3Uj-3a8t
+	id 1xWDQ4-0000000A3hK-0MNI
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 13:51:33 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AP9mN9W555516
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:51:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=FKKsaX0iLIihjEs0HiQH6IuZ/cox9Xgvibc
-	Pxadi8NA=; b=mrw8qz7VJsviWHPggc/MnckouP9kLpy4wM3ID+zbWiqixOTp9nB
-	R6rYFdgJCd1Pu0BinrYzcN31/dtipILpujVSHGRhtAuJR7rBtdfDbStVM7y/04YT
-	Xix0uBww7/A4TP4BZ3kxIexEFYKm+9+3w/75QZIq57/GuH++L3ZkHgQKPUp5nfxT
-	VJ3OBYR+jVJ/vLPij9tNhMFkhQbMV3QUC2SN0Tg0ylUiKKR2u4UCOCgDtxKEPNqH
-	YOoa3rhzMxBFKo6qWAGwCn1qtxwxgT0Xg1py6LQE7h+6pvIPrcBA9SLo+VbhGAim
-	fyNsHdn8EykbBNalgqVaqhSKC8IdZI/WcPg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5vvns2wk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:51:30 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-cc7361c62b9so3662814a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 05:51:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795614689; x=1796219489; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=FKKsaX0iLIihjEs0HiQH6IuZ/cox9XgvibcPxadi8NA=;
-        b=Yhb1PMKLqe5oCRppGfwl8A3Y5/hxQm8WZPmEbgogMIx7kza3/G9+qntlkq4nN6Gy8b
-         QZpqbmMTGYwljn+9zXJj3bC0qnkg0qsYvm7oHBW95H2CdVpk8jt8/NHFJLDtDh+HKAdk
-         ARKxRFdHCJu/ZOMf0opsxNe3q8y49lruQK3h5zxt9GJWAwTBsT5t5gW4YZeECezLUarn
-         sNpdVLzElYkj1cNr5cM2y2qsJZHzHngB9EXSxVpOaD++HyNxj9GTGff9/QNWl6UYISf9
-         nP1dkDzktYi4TvpY7IiWRq56DP44gIN697f22WOcFdLKqbvilaXsibve+cvNQYESgu/m
-         dr3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795614689; x=1796219489;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=FKKsaX0iLIihjEs0HiQH6IuZ/cox9XgvibcPxadi8NA=;
-        b=OoMn9+dooHIrpjdH6gfP+LOfHLKcoSwEmIbOqVQnOr0Rr32XBNyheq6S/Vlh8SYqcv
-         uIMIj32XEggYgEq1JtJW+LFGEoB50BY+Agon3xSzIUWPdlBRH7PESqz1CI5jL56sbGFD
-         +9skWJb8RNSa8/TdSn6U/b8UjbW/tJtFs8ZRlFIvuW1CXF4GOe9jyeMH5Xqf45G+x1l5
-         LYi36bTz+7bo0DEFWCeVSLvjShjKGBBvzuRIWd4LKBqim4t7Du8dyDgUxY9akjUR21OB
-         xzRMsYUPHGf1dwTDd8faoCCu453o/ENueUjSH4LVM5fxNmjaTPp9rovhTZcCs+ojlyv1
-         /Ekg==
-X-Forwarded-Encrypted: i=1; AL+hErE7+xAQvLdd6eIAhGekDkephDlxljRkXbjGHdPd7yY/5xgC4lis4shWbgb01bbe5DO9qtevGP7Tc0FKdczaoQky@lists.infradead.org
-X-Gm-Message-State: APuU4Z+YNEZLZ5f2ukvghseZPCRwnnt+d24MtgUzc5MGenkXoz1Pd5eq
-	4I3b20tEbPQl7HWtS6zNOEH+5IEEBuUPYjow/XTTlP2zsdaHhiaV5iDOd6aFtQOR7rxQmPGbJYc
-	1vh8+rk0vymBoO8PO4EIWIlPMNA8h+OmtxL8gl7Nr9rjuTNNYgP3u4wjda7ombk1jdpM0rjeHdg
-	13OhmBzS66Hw==
-X-Gm-Gg: AZFdTZe7ScSE7rvUenI0vBc9TZSHRygra4v2GSV37YJR0LqQ9g4zthYqCGBVv00U7y/
-	DkI2hrk4SMeEPxIM7lfUq+U6d7eaUo+N6nd4Z7m/viB+alGssWA4tbZiM4fB4OG7YrBwUh3YvoK
-	3S6CO13zFmbDwrSmO41aP7efQAuLpkqQycZLFlunW6C56eGXqPw7aLf04V1ZzBnkOwl/YCMjrKl
-	aejdRWvDKQGfR9pPZg0jSaMP3Z+HXmsNprl34YP6uOZwR2Ckq6gjRGCjUwfQUq8N0p8HfusH/2L
-	VP22HDqZb0gkA1QlfNddLzwuee67GU+plaj77dw1+WKFtbrb4PpOxv/QHIFgidFhFuAeGPIQ76k
-	mtupkdKS9W+TZPmd+cegdChEHjW5kq2Tb6nUMkDsPlNFFPD8KkCo01b3NJK2vndRbFAaHVUl1ZO
-	lITzkIXoQ5DgC/fykq8nOnD84sCaABmspM63p8pgThX1WuW1wE1Ul3Pzzc9bSIPadu
-X-Received: by 2002:a17:90a:e705:b0:3b4:fa3:36de with SMTP id 98e67ed59e1d1-3b41c9750e2mr15507418a91.51.1795614688908;
-        Wed, 25 Nov 2026 05:51:28 -0800 (PST)
-X-Received: by 2002:a17:90a:e705:b0:3b4:fa3:36de with SMTP id 98e67ed59e1d1-3b41c9750e2mr15507383a91.51.1795614688084;
-        Wed, 25 Nov 2026 05:51:28 -0800 (PST)
-Received: from hu-sibis-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b41ad0b2c4sm27710815a91.4.2026.11.25.05.51.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 05:51:27 -0800 (PST)
-From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-To: will@kernel.org, robin.murphy@arm.com, m.szyprowski@samsung.com,
-        honghuan@amd.com
-Cc: joro@8bytes.org, prakash.gupta@oss.qualcomm.com, iommu@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, stable@vger.kernel.org
-Subject: [PATCH] Revert "iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper"
-Date: Wed, 25 Nov 2026 19:21:20 +0530
-Message-Id: <20261125135120.1126571-1-sibi.sankar@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	Wed, 25 Nov 2026 13:52:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 24AAE61F5A
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:52:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73BD31F000CF
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:52:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795614738;
+	bh=d1OT518H4ki16FAaDWhpo7G6vnPaZ/w9V0TjOKp530E=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=BPZ3SN0Mc7yfYD+EH1mBtJFptnm0a2EM4MlUxsZ1vmepJ0UzHsPu3S7Qrlm5cJsyC
+	 agcTerqVohBFSD1ywknuv+fFOLUEim9g4Gj5fefAjlOPLXiBmr9Qj3PNVYgnh3KxiK
+	 EA7GTFovKjx8jLqDsoDO18OHiC40biTwroqgRoWbyInvJbvxC3HyMIQE/ZNE+vqofD
+	 afS/XAvVL93bPUH7rUtImU3an32EIsvWAcsKAoarOwXbpbDvRSDtvI7yOYQiANuy/B
+	 NBzwvVSKeK6PSO0qmZwRDsvZ5Gl0XNcKgaz7WbRzxgSRVFkcRyZjxbhC3HuiNp+SwH
+	 HckkFb/HfC0uQ==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5bcdae234ecso8070632e87.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 05:52:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHskA3DvTM9aTA1EwfBmNxL9wG9IdSWeQW0AELYiWr99rnqPiGKCPtgQd56I9uuRIGihdLtqCP+qYcRXADCTq9E@lists.infradead.org
+X-Gm-Message-State: APuU4Z+GvDIgie9XcnQup91oS89UDZjqvfhs48yxE6ygelQAFUS2yK4L
+	UCluBFqE5YpyVTp0AG3RoyDSZvp/LozNFUsKIf88vfsbafGPsnmkQixst8BxBFk3JUxa1jQt0k5
+	o19FBa3kJRwZO0dzTVpM1cnt3QKtTWy4=
+X-Received: by 2002:a05:6512:114d:b0:5bf:b93e:89f0 with SMTP id
+ 2adb3069b0e04-5c1bc85f0c4mr4585226e87.62.1795614737267; Wed, 25 Nov 2026
+ 05:52:17 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA1NSBTYWx0ZWRfX/pmjJ/oiFF23
- 4BVHfuhtFvjzm+cqYv4hefvhnbI4JqgZ03fdZLQ6qbUgzTC9kr2QNJbkIVoIAW5JnwkJM3wyIhp
- QpSanH0xbfuYNg1AX5KMX3QM3JaD28Zqs+STjc6eJwbAyO8hEZXSfaN31PH5tdMQutNnLH6COL6
- 2Jd0bV59++zK4pbAKc/KI8Hh9DEODrC4RG+0N3eNMbgKR6fHEP0oV96I87Pj2SJw3w6iH6OmoqY
- Y5dMX9/sudWMcl/igeFQRg26l+NCDNf9mFS9UpPBUEjYlaucfNDxqMbwWzqdL8k8R1wrd1jD4v8
- lgcuWRb0NAfOjrP51HRMYPETZzVfNipP2OjunE7alREG3g/qUajuXxxot9QtqlStAul4cBZiZlR
- RzyopDBhV91/XmIVDhoXAa5vWdowM8QQidy+ucMgwlTshEelGUif1QoAirJBFWZwV5zdBwlOiwI
- zEy0qLc06wb0x3xhlRA==
-X-Proofpoint-ORIG-GUID: xgePC9VMiq-6RyOrj6nUt1cysmclen0N
-X-Proofpoint-GUID: xgePC9VMiq-6RyOrj6nUt1cysmclen0N
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA1NSBTYWx0ZWRfX9ADQLHSnZaDe
- 2a7v39+IcBJ/l7mwmGAisOAK/awdSd8rN+IMpsiKZBtc67WzF/lDqaSBCW4FjH8VGRjEL4eowZc
- aBjdEQxSHzQI4TRJmZplE23cvYHrh9w=
-X-Authority-Analysis: v=2.4 cv=R4mWitRX c=1 sm=1 tr=0 ts=6b06e7e2 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=cR5wH3shGYeZUv4u9kAA:9 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-25_03,2026-11-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
- impostorscore=0 spamscore=0 phishscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250055
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_055132_006615_10F25976 
-X-CRM114-Status: GOOD (  18.47  )
-X-Spam-Score: -2.8 (--)
+References: <20261110130157.112155-1-vinicius.eduardo.pedrosa@gmail.com>
+In-Reply-To: <20261110130157.112155-1-vinicius.eduardo.pedrosa@gmail.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Wed, 25 Nov 2026 14:52:05 +0100
+X-Gmail-Original-Message-ID: <CAD++jL=xA7eZUeb30xOnCZ8uRy0UE7q8h=8AA4p-tmiBf3Sb9g@mail.gmail.com>
+X-Gm-Features: Aa3M54rgkY6kl63K6RGx-SAGV9m-zKLuuASbiq7hoLrao3O7E8ZmBvChRlc02Pw
+Message-ID: <CAD++jL=xA7eZUeb30xOnCZ8uRy0UE7q8h=8AA4p-tmiBf3Sb9g@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: sunxi: a733: do not switch the mux to read IRQ lines
+To: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+Cc: linux-gpio@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>, 
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Enzo Adriano <enzo.adriano.code@gmail.com>, Pablo Mazzini <pmazzini@gmail.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -144,140 +81,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This reverts commit 1acce29926d93f3eba427696fe3da6451504dae2.
+On Tue, Nov 10, 2026 at 2:02=E2=80=AFPM Vinicius Pedrosa
+<vinicius.eduardo.pedrosa@gmail.com> wrote:
 
-Before this commit, dma_iova_destroy() unmapped through
-__iommu_dma_iova_unlink(..., free_iova=true), which set
-iotlb_gather.queued from cookie->fq_domain, skipped iommu_iotlb_sync()
-and freed the IOVA with the queued gather, exactly like
-__iommu_dma_unmap(). After it, dma_iova_destroy() calls
-dma_iova_unlink() and then dma_iova_free():
+> The A733 description sets irq_read_needs_mux. When a GPIO used as an
+> interrupt is read, sunxi_pinctrl_gpio_get() then switches the pin to
+> input and back to SUN4I_FUNC_IRQ, which is function 6. The A733
+> interrupt function is 14, so after the first read the pin is left on
+> function 6 and its interrupt no longer fires.
+>
+> On my board this breaks microSD card detection: the PF6
+> card-detect line is read at probe, and after that neither removal nor
+> insertion of the card is noticed.
+>
+> The A733 data register reports the pin level while the pin is muxed
+> to the interrupt function, so the switch is not needed. The A523 and
+> D1 descriptions do not set this flag either. Drop it.
+>
+> Fixes: 0535bfbfa97b ("pinctrl: sunxi: add support for the Allwinner A733"=
+)
+> Signed-off-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
 
-  - dma_iova_unlink() never marks its gather as queued and always calls
-    iommu_iotlb_sync() after iommu_unmap_fast().
-  - dma_iova_free() passes a NULL gather to iommu_dma_free_iova(), so
-    the IOVA goes straight back to the allocator through
-    free_iova_fast() and never through queue_iova().
+Patch applied for fixes, sorry for the delay.
 
-DMA-FQ domains therefore get strict invalidation on this path. That
-includes the block layer's blk_rq_dma_map() path, which NVMe uses for
-all data transfers, so iommu.strict=0 has no effect on NVMe I/O.
-
-hw/sw details: Qualcomm Glymur CRD: SMMUv3 with no RANGE_INV,
-	       4K pages; NVMe SSD on PCIe Gen5 x4
-
-Fio sequential read/write numbers:
-  Domain                          seq write    seq read
-  DMA (strict)                    2694 MiB/s   2693 MiB/s
-  DMA-FQ (lazy), flush queue      2707 MiB/s   2803 MiB/s
-    bypassed (this regression)
-  DMA-FQ (lazy), flush queue      10.6 GiB/s   11.9 GiB/s
-    used by dma_iova_destroy()
-
-Fixes: 1acce29926d9 ("iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper")
-Cc: stable@vger.kernel.org # v7.3+
-Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
----
- drivers/iommu/dma-iommu.c | 57 ++++++++++++++++++++++++---------------
- 1 file changed, 35 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index b66e83cfbc5f..e71a10e14c36 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -2101,20 +2101,10 @@ static void iommu_dma_iova_unlink_range_slow(struct device *dev,
- 		arch_sync_dma_flush();
- }
- 
--/**
-- * dma_iova_unlink - Unlink a range of IOVA space
-- * @dev: DMA device
-- * @state: IOVA state
-- * @offset: offset into the IOVA state to unlink
-- * @size: size of the buffer
-- * @dir: DMA direction
-- * @attrs: attributes of mapping properties
-- *
-- * Unlink a range of IOVA space for the given IOVA state.
-- */
--void dma_iova_unlink(struct device *dev, struct dma_iova_state *state,
--		size_t offset, size_t size, enum dma_data_direction dir,
--		unsigned long attrs)
-+static void __iommu_dma_iova_unlink(struct device *dev,
-+		struct dma_iova_state *state, size_t offset, size_t size,
-+		enum dma_data_direction dir, unsigned long attrs,
-+		bool free_iova)
- {
- 	struct iommu_domain *domain = iommu_get_dma_domain(dev);
- 	struct iommu_dma_cookie *cookie = domain->iova_cookie;
-@@ -2130,13 +2120,35 @@ void dma_iova_unlink(struct device *dev, struct dma_iova_state *state,
- 		iommu_dma_iova_unlink_range_slow(dev, addr, size, dir, attrs);
- 
- 	iommu_iotlb_gather_init(&iotlb_gather);
-+	iotlb_gather.queued = free_iova && READ_ONCE(cookie->fq_domain);
- 
- 	size = iova_align(iovad, size + iova_start_pad);
- 	addr -= iova_start_pad;
- 	unmapped = iommu_unmap_fast(domain, addr, size, &iotlb_gather);
- 	WARN_ON(unmapped != size);
- 
--	iommu_iotlb_sync(domain, &iotlb_gather);
-+	if (!iotlb_gather.queued)
-+		iommu_iotlb_sync(domain, &iotlb_gather);
-+	if (free_iova)
-+		iommu_dma_free_iova(domain, addr, size, &iotlb_gather);
-+}
-+
-+/**
-+ * dma_iova_unlink - Unlink a range of IOVA space
-+ * @dev: DMA device
-+ * @state: IOVA state
-+ * @offset: offset into the IOVA state to unlink
-+ * @size: size of the buffer
-+ * @dir: DMA direction
-+ * @attrs: attributes of mapping properties
-+ *
-+ * Unlink a range of IOVA space for the given IOVA state.
-+ */
-+void dma_iova_unlink(struct device *dev, struct dma_iova_state *state,
-+		size_t offset, size_t size, enum dma_data_direction dir,
-+		unsigned long attrs)
-+{
-+	 __iommu_dma_iova_unlink(dev, state, offset, size, dir, attrs, false);
- }
- EXPORT_SYMBOL_GPL(dma_iova_unlink);
- 
-@@ -2157,13 +2169,14 @@ void dma_iova_destroy(struct device *dev, struct dma_iova_state *state,
- 		unsigned long attrs)
- {
- 	if (mapped_len)
--		dma_iova_unlink(dev, state, 0, mapped_len, dir, attrs);
--
--	/*
--	 * We can be here if the first call to dma_iova_link() failed and
--	 * there is nothing to unlink, so let's be more clear.
--	 */
--	dma_iova_free(dev, state);
-+		__iommu_dma_iova_unlink(dev, state, 0, mapped_len, dir, attrs,
-+				true);
-+	else
-+		/*
-+		 * We can be here if first call to dma_iova_link() failed and
-+		 * there is nothing to unlink, so let's be more clear.
-+		 */
-+		dma_iova_free(dev, state);
- }
- EXPORT_SYMBOL_GPL(dma_iova_destroy);
- 
--- 
-2.34.1
-
+Yours,
+Linus Walleij
 
