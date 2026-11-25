@@ -2,87 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA692606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279A0606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DtDJ5l2R;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=btDetiEW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=smyrABQf;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UbWI4eZe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To
+	:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yzob3IjNhlkrELuFZotbKtg9maqB1cC/YQY8iPS0b0o=; b=DtDJ5l2RKyLYU8m6+31gf7jqi0
-	nMllfvz/oHoZRa8qsRb5AGy9nJZBVgqiSNkdywoXz2z9Fh1yQmhsL/LP7jZfoyBXgYOipy6w5shJ/
-	iOYpw85eiUbBHMKSpFesEP9wpc+jWJlj2M9pzVv0L8aGcla49NU2kB3rx0vtixkCn6pZHoLZiJvw7
-	o4COFE0OlMvfWLU1pOSJWCqbpBcLDy4ArtSYvzo1UgWOPVLGUU8m0qRIX73BUtueOP3bBf8KM69wx
-	9j+PbjhvKPOb9Oe0lBdnG3MNkd8cp1uEQeyeJq0DSzGTxnf31lJ55grDkzTGD6ouTZ5WdnLRpskMU
-	gEdBqqUQ==;
+	bh=Z0bHnKY18Sj6WcXxQyinu2JH9QaCsosfzwkAijHIYb4=; b=smyrABQfqEmt5S0EdLTVtM6SJi
+	qtypNLzwgyEeW3g7oWzoLTSDdLqQBsQsaa4ofqPkZaxx/18kTlzxUxPAhnA1LMWQJBYAUkuVlPvem
+	sfMtSbsD7mOXyLC22vn5dV1EdJjcPKCXWJgaHSkus0OT6Rx/BxVIBJHSc2OWwBHrCZDb9n4GSDiFO
+	A3Kaa5nDfcQ7ikrTf6CEtizMDOu3vBgJDAVPjRuaapQ4EXoKTbQhI/5NBKdQk6X98b5rzxdIg9NCR
+	a6I33XrE40c7B8XScDn+hdkNrv6zj6XPgre3k8JMrmVRdXg5rJ9zx+QVtQ8LALvorNyOnyZZaqtQh
+	1U4iv0ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWE0V-0000000AALj-2Y2U;
-	Wed, 25 Nov 2026 14:29:59 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWE0S-0000000AAL9-1UI0
+	id 1xWDYR-0000000A5KL-1dIq;
+	Wed, 25 Nov 2026 14:00:59 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWDYH-0000000A5If-34at
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:29:57 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BA6FD2F;
-	Wed, 25 Nov 2026 06:29:51 -0800 (PST)
-Received: from e143914.arm.com (e143914.arm.com [10.2.213.21])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BF7893F763;
-	Wed, 25 Nov 2026 06:29:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795616994; bh=irJ+SLW2diU+AhutWrsQkPmnPIapmN0EHmgj2AIri5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=btDetiEW6iagg1Fl4BzF0k9NBnwE7C9i2RYKjvc2M9/Nkk1H4Od9YD9FWkoDGmaKS
-	 2otJ3Vv1HcTLqwGA2kG3AzVGZ3yVGdT+UFEXcIh5+Hs/D7v4Z6f04gjeE61UswGTcQ
-	 Y4zU6Yjv/ZMaIHmSEfJY21N/cuT66qe2B3dQbn3o=
-Date: Wed, 25 Nov 2026 14:29:48 +0000
-From: Joey Gouly <joey.gouly@arm.com>
-To: Steffen Eiden <seiden@linux.ibm.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Andreas Grapentin <gra@linux.ibm.com>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	Janosch Frank <frankja@linux.ibm.com>,
-	Claudio Imbrenda <imbrenda@linux.ibm.com>,
-	David Hildenbrand <david@kernel.org>,
-	Heiko Carstens <hca@linux.ibm.com>,
-	Vasily Gorbik <gor@linux.ibm.com>,
-	Alexander Gordeev <agordeev@linux.ibm.com>,
-	Sven Schnelle <svens@linux.ibm.com>,
-	Friedrich Welter <fritz@linux.ibm.com>,
-	Gautam Gala <ggala@linux.ibm.com>,
-	Hariharan Mari <hari55@linux.ibm.com>,
-	Hendrik Brueckner <brueckner@linux.ibm.com>,
-	Nico Boehr <nrb@linux.ibm.com>,
-	Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
-	Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-	linux-s390@vger.kernel.org
-Subject: Re: [PATCH v3 02/23] KVM: arm64: Extract number of sys_reg_desc into
- a constant
-Message-ID: <awbw3NyDifa0WjhZ@e143914.arm.com>
-References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
- <20261106-sysreg-v3-2-75e95980fb10@linux.ibm.com>
+	Wed, 25 Nov 2026 14:00:49 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id E755B62859;
+	Wed, 25 Nov 2026 14:00:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3849A1F000D8;
+	Wed, 25 Nov 2026 14:00:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795615248;
+	bh=Z0bHnKY18Sj6WcXxQyinu2JH9QaCsosfzwkAijHIYb4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UbWI4eZeRteujIZd5MPk06V94cl1sNONzrM0toh6SKwb7AwYFjj8MtCdX3pZaD416
+	 R88GcU8SpSfviZfMXfm964s5ba1erNPxBTEXZbaDo6XworvzdEfUd3vYk24/L/qi+g
+	 TuZ7PM7WMT6rcWlOhGenYOvFvykt+W+OO7LJIApiWJIFsPmUqcmzMVWVv44ufA3rky
+	 tLYAmePdpmENS2V/EiZ/5oBd8ZMtDO1rjL8ppIoSpPIAipadH9QGe/ePaCldERRDOo
+	 nqAiz9axllYYwC/MU5rHKU0N7dFXDsnv3p6DgG8PEJqOWqv64KlKq7jY+tqOtp7jv6
+	 y5tIZ03Jfw3fA==
+Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 82BF71980047;
+	Wed, 25 Nov 2026 09:00:42 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-12.internal (MEProxy); Wed, 25 Nov 2026 09:00:45 -0500
+X-ME-Sender: <xms:CeoGa2sbyq-knPaAr3polUCbTbAfusbSEbQkIuv3RGnGMDeE4I0IpA>
+    <xme:CeoGa5XUKPcBCJPbEyYstOF2hF5CZuHf8u0_gDMsgSIBKBgaSp8f4AMl65r0kymk4
+    6IpJz6zjcIMAjwll9tB_wwZqtlLcCs9sI-2RPpw8cu5Pqt0zY_kZDLI>
+X-ME-Received: <xmr:CeoGa63VkcYmI44d81-pIkWLwEJV3_2mriNLyrNKXgF5TBl-s4g4hEvoXsA>
+X-ME-Proxy-Cause: dmFkZTE1O4eBS6dBEH9F3C68qqyjyJ1vnOzgFGQ7e1lDYlMXiP0Bqwgudxue3EzhshTdfZ
+    wxdOsHNh21Us4t2qr8NIs2D82OWq8GrNR1+ApgjQnugMMUoOefB61JIxFry+YnlrEEPH0k
+    1lulqQ/KbfKwP3+h1Eq7NvvIazNhJ+RPZPqAUo6W6yvezRDAuG1Y9F4WydegAGsGXmWudY
+    uU/N0qF8rm1u8E23C3PBv/eYYSy65rIJIibXjAFAeda30En8uHkgplstM2XZioKLBowZJu
+    OQY/fboU+VsjF9UxxOTbEw3f2yad/ggXJ3hOpEq6coiUonOsSwIgZaZ/EJfocaRDTuU9B2
+    bpLH5GD503xlV1pw+X3TwoVttniLzFa5tkg/BlSGvpUUmV95buRKk+ZEFQkeCc6gNdHDR9
+    cZknIrGoR1hZBn+WTQ4ax3Cm/YYmBNK6WUDb2wLj/L4AojiXVzVUGY9OlSme68dHnVCJPC
+    EBZDvP5pgx4DOZIu8Pcv3syC6zvvEJQ++fneb7YiYAACWex4c8LaUOQ8NOxhFFt+6aqcCQ
+    ara+dxH+3HxYKIl4QBtspz+zZnTvm4tdjBZMgMgZS92PFHfDbLm6/QNtlRk3cKCE/HMKfa
+    vRoeL7e0y6AjGDREEe0jC3Ar91Wm0pEXHArWXQP9hAdrsG4pq4nqvpDQTPig
+X-ME-Proxy: <xmx:CeoGayfGny5F21riOaLOveSjwn-EJAzPaJzk4-vqnbHv7Pj2nN2sfg>
+    <xmx:CuoGa_VqJrc_CqPIcNU_aqo4LWnmsfqTTBV008mUeuWEwrI1fvFrAA>
+    <xmx:CuoGaw86kLMVxJ-7NBMr55J-FMvV0cQxvHDDazJAmckz17uJpjue6A>
+    <xmx:CuoGa0ixiJ8Vgnu-6JNrddSNMUl08zogEhc0hAW983Iq7YrEfhFSpA>
+    <xmx:CuoGa9VZt9XGvySBLdrZn4-zvJMAa5b6m1fu_TiYaJjV86Zb5hFoyQGY>
+Feedback-ID: i10464835:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 25 Nov 2026 09:00:41 -0500 (EST)
+Date: Wed, 25 Nov 2026 14:00:40 +0000
+From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
+To: YinFengwei <fengwei_yin@linux.alibaba.com>
+Subject: Re: [PATCH 1/2] firmware: arm_sdei: Do not signal event 0 to a
+ masked PE
+Message-ID: <awblcOnI8JVhpmPK@shutemov.name>
+References: <20261124194707.1030653-1-kas@kernel.org>
+ <20261124194707.1030653-2-kas@kernel.org>
+ <awavUsKX4XLRMbUq@U-V2QX163P-2032.local>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261106-sysreg-v3-2-75e95980fb10@linux.ibm.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_062956_499827_E14BCF7F 
-X-CRM114-Status: GOOD (  26.25  )
-X-Spam-Score: -4.4 (----)
+In-Reply-To: <awavUsKX4XLRMbUq@U-V2QX163P-2032.local>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,155 +94,89 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, kernel-team@meta.com, Vladimir Murzin <vladimir.murzin@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, Jinjie Ruan <ruanjinjie@huawei.com>, Cong Wang <cwang@multikernel.io>, Liao Chang <liaochang1@huawei.com>, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, Ashok Raj <ashok.raj@oss.qualcomm.com>, James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org, Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Pengjie Zhang <zhangpengjie2@huawei.com>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 05:07:35PM +0100, Steffen Eiden wrote:
-> Define the constant `num_sys_reg_descs` which stores the number of
-> elements in the sys_reg_descs array. Replace all occurrences of
-> ARRAY_SIZE(sys_reg_descs) with the new constant.
+On Wed, Nov 25, 2026 at 05:50:10PM +0800, YinFengwei wrote:
+> Hi Kirill,
 > 
-> This refactoring eases the integration of handling system registers for
-> arm on s390. s390 needs code from the shared code to define the
-> sys_reg_descs. But also the shared code needs the definition of the
-> sys_reg_array and we cannot forward declare arrays and use their size
-> before it is properly defined. This patch solves this chicken or egg
-> problem. For the time being s390 cannot process the full arm64 defined
-> sys_reg_descs array.
-> 
-> No functional changes.
-> 
-> Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
-> Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
-> Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
+> On Tue, Nov 24, 2026 at 07:47:04PM +0000, Kiryl Shutsemau (Meta) wrote:
+> > The SDEI NMI backtrace signals event 0 to every other CPU, idle ones
+> <snip>
+> > +static void sdei_block_signal(void)
+> > +{
+> > +	struct sdei_pe *pe = this_cpu_ptr(&sdei_pe);
+> > +	unsigned long flags;
+> > +
+> > +	/*
+> > +	 * A panic from an SDEI event or a pseudo-NMI may have left the lock
+> > +	 * held by this CPU. The CPUs that could signal it are stopped by now.
+> > +	 */
+> > +	if (panic_on_this_cpu()) {
+> > +		WRITE_ONCE(pe->unmasked, false);
+> If the panic didn't take the lock, should lock be taken
+> just like "else" path?
 
-I see later in the series, the include of sys_regs.c into s390 is done
-before the s390 sys_reg_descs array is defined.
+If another CPU holds it at this point, that CPU was stopped in the
+middle of signalling this one, and it will never drop the lock. The
+panic would hang on it.
 
-Reviewed-by: Joey Gouly <joey.gouly@arm.com>
+If nobody holds it, there is nothing for it to keep out. This runs at
+the end of smp_send_stop(), after the other CPUs have been stopped. A
+sender stopped after it took the lock has either counted its signal,
+which sdei_wait_in_flight() waits for, or never sent one.
 
-Thanks,
-Joey
+Telling the two apart takes a trylock, and on failure we would go ahead
+without the lock anyway.
 
-> ---
->  arch/arm64/kvm/sys_regs.c | 26 ++++++++++++++------------
->  1 file changed, 14 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-> index 0f0b0495b710..2b28b929f9f3 100644
-> --- a/arch/arm64/kvm/sys_regs.c
-> +++ b/arch/arm64/kvm/sys_regs.c
-> @@ -3976,6 +3976,8 @@ static const struct sys_reg_desc sys_reg_descs[] = {
->  	EL2_REG(SP_EL2, NULL, reset_unknown, 0),
->  };
->  
-> +static const size_t num_sys_reg_descs = ARRAY_SIZE(sys_reg_descs);
-> +
->  static bool handle_at_s1e01(struct kvm_vcpu *vcpu, struct sys_reg_params *p,
->  			    const struct sys_reg_desc *r)
->  {
-> @@ -5187,7 +5189,7 @@ static bool emulate_sys_reg(struct kvm_vcpu *vcpu,
->  {
->  	const struct sys_reg_desc *r;
->  
-> -	r = find_reg(params, sys_reg_descs, ARRAY_SIZE(sys_reg_descs));
-> +	r = find_reg(params, sys_reg_descs, num_sys_reg_descs);
->  	if (likely(r)) {
->  		perform_access(vcpu, params, r);
->  		return true;
-> @@ -5205,7 +5207,7 @@ static const struct sys_reg_desc *idregs_debug_find(struct kvm *kvm, loff_t pos)
->  {
->  	unsigned long i, idreg_idx = 0;
->  
-> -	for (i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-> +	for (i = 0; i < num_sys_reg_descs; i++) {
->  		const struct sys_reg_desc *r = &sys_reg_descs[i];
->  
->  		if (!is_vm_ftr_id_reg(reg_to_encoding(r)))
-> @@ -5268,7 +5270,7 @@ static const struct sys_reg_desc *sr_resx_find(struct kvm *kvm, loff_t pos)
->  {
->  	unsigned long i, sr_idx = 0;
->  
-> -	for (i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-> +	for (i = 0; i < num_sys_reg_descs; i++) {
->  		const struct sys_reg_desc *r = &sys_reg_descs[i];
->  
->  		if (r->reg < __SANITISED_REG_START__)
-> @@ -5370,7 +5372,7 @@ void kvm_reset_sys_regs(struct kvm_vcpu *vcpu)
->  	struct kvm *kvm = vcpu->kvm;
->  	unsigned long i;
->  
-> -	for (i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-> +	for (i = 0; i < num_sys_reg_descs; i++) {
->  		const struct sys_reg_desc *r = &sys_reg_descs[i];
->  
->  		if (!r->reset)
-> @@ -5594,8 +5596,8 @@ int kvm_arm_sys_reg_get_reg(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg
->  	if ((reg->id & KVM_REG_ARM_COPROC_MASK) == KVM_REG_ARM_DEMUX)
->  		return demux_c15_get(vcpu, reg->id, uaddr);
->  
-> -	return kvm_sys_reg_get_user(vcpu, reg,
-> -				    sys_reg_descs, ARRAY_SIZE(sys_reg_descs));
-> +	return kvm_sys_reg_get_user(vcpu, reg, sys_reg_descs,
-> +				    num_sys_reg_descs);
->  }
->  
->  int kvm_sys_reg_set_user(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg,
-> @@ -5634,8 +5636,8 @@ int kvm_arm_sys_reg_set_reg(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg
->  	if ((reg->id & KVM_REG_ARM_COPROC_MASK) == KVM_REG_ARM_DEMUX)
->  		return demux_c15_set(vcpu, reg->id, uaddr);
->  
-> -	return kvm_sys_reg_set_user(vcpu, reg,
-> -				    sys_reg_descs, ARRAY_SIZE(sys_reg_descs));
-> +	return kvm_sys_reg_set_user(vcpu, reg, sys_reg_descs,
-> +				    num_sys_reg_descs);
->  }
->  
->  static unsigned int num_demux_regs(void)
-> @@ -5723,7 +5725,7 @@ static int walk_sys_regs(struct kvm_vcpu *vcpu, u64 __user *uind)
->  	int err;
->  
->  	i2 = sys_reg_descs;
-> -	end2 = sys_reg_descs + ARRAY_SIZE(sys_reg_descs);
-> +	end2 = sys_reg_descs + num_sys_reg_descs;
->  
->  	while (i2 != end2) {
->  		err = walk_one_sys_reg(vcpu, i2++, &uind, &total);
-> @@ -5772,7 +5774,7 @@ int kvm_vm_ioctl_get_reg_writable_masks(struct kvm *kvm, struct reg_mask_range *
->  	if (clear_user(masks, KVM_ARM_FEATURE_ID_RANGE_SIZE * sizeof(__u64)))
->  		return -EFAULT;
->  
-> -	for (int i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-> +	for (int i = 0; i < num_sys_reg_descs; i++) {
->  		const struct sys_reg_desc *reg = &sys_reg_descs[i];
->  		u32 encoding = reg_to_encoding(reg);
->  		u64 val;
-> @@ -5957,7 +5959,7 @@ int __init kvm_sys_reg_table_init(void)
->  	int ret = 0;
->  
->  	/* Make sure tables are unique and in order. */
-> -	valid &= check_sysreg_table(sys_reg_descs, ARRAY_SIZE(sys_reg_descs), true);
-> +	valid &= check_sysreg_table(sys_reg_descs, num_sys_reg_descs, true);
->  	valid &= check_sysreg_table(cp14_regs, ARRAY_SIZE(cp14_regs), false);
->  	valid &= check_sysreg_table(cp14_64_regs, ARRAY_SIZE(cp14_64_regs), false);
->  	valid &= check_sysreg_table(cp15_regs, ARRAY_SIZE(cp15_regs), false);
-> @@ -5980,7 +5982,7 @@ int __init kvm_sys_reg_table_init(void)
->  
->  	check_feature_map();
->  
-> -	for (i = 0; !ret && i < ARRAY_SIZE(sys_reg_descs); i++)
-> +	for (i = 0; !ret && i < num_sys_reg_descs; i++)
->  		ret = populate_sysreg_config(sys_reg_descs + i, i);
->  
->  	for (i = 0; !ret && i < ARRAY_SIZE(sys_insn_descs); i++)
-> 
-> -- 
-> 2.56.0
-> 
+> > +	} else {
+> > +		raw_spin_lock_irqsave(&pe->lock, flags);
+> > +		WRITE_ONCE(pe->unmasked, false);
+> > +		raw_spin_unlock_irqrestore(&pe->lock, flags);
+> > +	}
+> > +
+> > +	sdei_wait_in_flight(pe);
+> > +}
+> > +
+> >  static int sdei_pm_notifier(struct notifier_block *nb, unsigned long action,
+> >  			    void *data)
+> >  {
+> > +	struct sdei_pe *pe = this_cpu_ptr(&sdei_pe);
+> >  	int rv;
+> >  
+> >  	WARN_ON_ONCE(preemptible());
+> >  
+> >  	switch (action) {
+> >  	case CPU_PM_ENTER:
+> > +		/*
+> > +		 * Leave alone a PE that is masked already: before
+> > +		 * sdei_cpuhp_up(), or after sdei_cpuhp_down(), as cpuidle runs
+> > +		 * until CPU_OFF. CPU_PM_EXIT must not unmask it.
+> > +		 */
+> > +		if (!pe->unmasked)
+> I am wondering whether READ_ONCE() should be used here?
+
+No.
+
+We read the flag of this CPU, and only this CPU writes pe->unmasked.
+The notifier runs with IRQs off, so no store can race with this load.
+
+What can still interrupt it, a stop or a panic from an SDEI event or a
+pseudo-NMI, does not return here.
+
+READ_ONCE()/WRITE_ONCE() are for sdei_event_signal(), which reads the
+flag from another CPU.
+
+Left plain, KCSAN will report it if that ever changes. See item 5 under
+"Use of Plain C-Language Accesses" in
+tools/memory-model/Documentation/access-marking.txt.
+
+-- 
+  Kiryl Shutsemau / Kirill A. Shutemov
 
