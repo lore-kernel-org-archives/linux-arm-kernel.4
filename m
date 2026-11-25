@@ -2,55 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6F7606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24DD4606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:44:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lhdW1c4+;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=nmtyNYBk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hGnH+1ZM;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=gce3z7o/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=B0GAGZCB4wcz4EWht71Bhu3l8vS6nHzZaxGeRP6mJPA=; b=lhdW1c4+3VIfuKJzcrCkfNnY8t
-	Ce0I8iRvOfQyErceyCJ9Wvt7WVvXbt0GDvQTrSvfKHFxEDCTlWpD4j8la29Y1d9ThpsiTtjF0cyR9
-	CyY3ZfCsILSG9cm4zGELWKvYueOiPS80jNALabOlTqq/+RgzVvRuiPWph6YfEpJl4ESN3NaZnWvXu
-	DtOBNL2MevAQxW4eGTLu3ZfQxk9k8m9Nm53egeKixEesGE1rz7+p6gRtIWajnmVuuY9qrQ64Twzmp
-	tVI8LP2ezQJb1iAlcT2dsdGvBWlLx22pHbwXY94Q3sLpg0hUEEqcWMB7Tq9SEiqk5rtvw8XmmnSFF
-	fRfwVZIw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=gBqX6yAsAhkiQmaGSMtP1wrzGS5nrxUEsmCkAPx5BqQ=; b=hGnH+1ZMj8E1Et
+	cq4uO8ptSlIofcKrFZ4S1Akkm71LpPXnZ9172nXg56DzhbkQ15beoLtMJ5ZnX7ybaOmimxLsNbITh
+	NDLujoV507KFtlLBrnZ3IaT9dey9CdMVzZkPIUGCVfd1cuJ9ILFZ9nb1aYyYOQZlmLmoPnYIw+5LH
+	lfSgGQivGNfFqH2EOQzyH3LY/Y6fcfIb8yoeJKAJ37i9j/ilLKQqOlrmPrW56fm7y4a5LIk6CuxRL
+	MaqJsqEcIznF/gQb36erX6eed5bl+iS2ZJHm9HSadV457YJjDExwUGgNaA7UKwbVCveMZxqjs3Xl1
+	Jz2fTL7DsiuOHArRfHlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWCMH-00000009sJp-3mi6;
-	Wed, 25 Nov 2026 12:44:21 +0000
+	id 1xWCMb-00000009sPU-1lDC;
+	Wed, 25 Nov 2026 12:44:41 +0000
 Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWCMD-00000009sIK-3Xa8
+	id 1xWCMW-00000009sNg-2sOq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 12:44:19 +0000
+	Wed, 25 Nov 2026 12:44:37 +0000
 Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 8FEE64C936;
-	Wed, 25 Nov 2026 23:44:07 +1100 (AEDT)
+	by www.nmnhosting.com (Postfix) with ESMTP id EB2CE4C951;
+	Wed, 25 Nov 2026 23:44:28 +1100 (AEDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795610647;
+	t=1795610669;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=B0GAGZCB4wcz4EWht71Bhu3l8vS6nHzZaxGeRP6mJPA=;
-	b=nmtyNYBkFvc+wb09Oh/TGJs+Ek4VqEhtEtxptzrmjCOSD2qemtgAf4OMEqZhLVyhURzpv0
-	TlxmzqLjKp6XjmzWSCQQg2kw/8bZQUOCgtEx+5+8iDPAUdR0vSf38tLunaII2/Tumwe0pO
-	oe7Br24ZitijD7xDQWvOQ+7trLYJqhonBSgI4yWuEyOAzJxtiWu5BXAN37oj9ZLUJ5L8TF
-	jHjBmTmd6SMKLUXOL3EZILjhDK3HQa3OhMwXnW52fnczCdhaeJ6Cyh1gQTTFM3rnCb+nlg
-	Dxk9Osviesfs1DiBBDx9eZKegxLdei+R76+pki65y0oeY8wM1zL02Fv4nhWN8w==
-X-GPT-Reason: legitimate; the email is a technical software patch
-	submission for the Linux kernel, which is consistent with the sender's
-	domain (alastair@d-silva.org) and the technical content; the subject
-	line and body describe specific hardware support (OrangePi 4 Pro)
-	and include standard kernel mailing list conventions like "Depends-on" and
-	"Assisted-by"; the URLs provided point to lore.kernel.org, a legitimate
-	domain for kernel mailing list archives, and there are no signs
-	of phishing, urgency, or unsolicited marketing.
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gBqX6yAsAhkiQmaGSMtP1wrzGS5nrxUEsmCkAPx5BqQ=;
+	b=gce3z7o/vzOrqWUarJO2N9XYR2CfugtaYk28Foo1LHEWpKFUPKcUmYVQHjxnVpukeGMHtj
+	gPrSkEcgN39OZxEuIN3EokaMWDR4lRXucBqG1sdFlck2/hAJaxssdfA6y9o83kEC9HWuai
+	2VxlKoHSu2OvAXaVeHjnCg57Rm5gO5Hp6kLx3yuJ4nABID9Jx1wchxsUIs2d4WgkgH3RTa
+	83rtHJAI21yG0fjTSkvptD6CIE4vTTvq7XY4jmMjbKOQxBwbLnajSg1INjPCmqDPKXC8wc
+	r6XSYbb4rvIseHvQ85BB3uKeclE7Ykgg24AoY9/cLuSYZhPm+MjeguPB73uM/Q==
+X-GPT-Reason: This is a legitimate technical communication related
+	to software development and kernel patches. The message is classified
+	as personal/professional correspondence because the sender
+	(alastair@d-silva.org) matches the intended recipient (alastair@d-silva.org),
+	the subject line follows standard Linux kernel mailing list formatting
+	for a device tree patch, and there are no phishing indicators, malicious
+	links, or unsolicited marketing elements present.
 From: Alastair D'Silva <alastair@d-silva.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -68,16 +67,18 @@ Cc: Maxime Ripard <mripard@kernel.org>,
 	linux-i2c@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alastair D'Silva <alastair@d-silva.org>
-Subject: [PATCH 0/3] arm64: dts: allwinner: Add Xunlong OrangePi 4 Pro support
-Date: Wed, 25 Nov 2026 23:44:04 +1100
-Message-ID: <20261125124407.4098345-1-alastair@d-silva.org>
+Subject: [PATCH 3/3] arm64: dts: allwinner: Add Xunlong OrangePi 4 Pro board
+Date: Wed, 25 Nov 2026 23:44:07 +1100
+Message-ID: <20261125124407.4098345-4-alastair@d-silva.org>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261125124407.4098345-1-alastair@d-silva.org>
+References: <20261125124407.4098345-1-alastair@d-silva.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_044418_029279_460D2530 
-X-CRM114-Status: GOOD (  11.57  )
+X-CRM114-CacheID: sfid-20261125_044436_877407_B26B5116 
+X-CRM114-Status: GOOD (  14.05  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,60 +90,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add initial devicetree support for the Xunlong OrangePi 4 Pro board
-(Allwinner A733 / sun60i-a733).
+Add the initial devicetree for the Xunlong OrangePi 4 Pro board.
 
-This series enables the UART0 serial console, SD card (MMC0), and the
-AXP318W PMIC on R-I2C0. It also documents the allwinner,sun60i-a733-i2c
-compatible already used by sun60i-a733.dtsi so CHECK_DTBS=y passes
-cleanly. Audio, WiFi, USB, and Ethernet are omitted for follow-on
-series.
-
-Depends-on:
-- A733 CCU v7:
-  https://lore.kernel.org/r/20261112-a733-clk-v7-0-db7c5451ffa2@pigmoral.tech
-- A733 firmware clock v2:
-  https://lore.kernel.org/r/20261112-a733-fwclk-v2@gmail.com
-- A733 pinctrl v1:
-  https://lore.kernel.org/r/20260910133519.459011-1-andre.przywara@arm.com
-- A733 pinctrl IRQ-bank RESEND v3:
-  https://lore.kernel.org/r/20261124215048.42074-1-pmazzini@gmail.com
-- A733 pinctrl voltage-mode v3:
-  https://lore.kernel.org/r/20261109-a733-pinctrl-v3@gmail.com
-- AXP318W PMIC v8:
-  https://lore.kernel.org/r/20260910-axp318-regulator-v8-0-e906a61a7f3d@baylibre.com
-- A733 8250_dw UART v2:
-  https://lore.kernel.org/r/cover.1792439398.git.vinicius.eduardo.pedrosa@gmail.com
-- A733 SoC DTSI v5:
-  https://lore.kernel.org/r/20261121-a733-cubie-a7s-dt-v5-0@gmail.com
-
-Tested on OrangePi 4 Pro:
-- make dt_binding_check and make CHECK_DTBS=y pass with zero warnings.
-- Boots to /bin/sh over UART0 with RTC, pinctrl, PMUs, and earlycon.
-  (Note: ttyS0 hits the v7 pll-ref 22.15 MHz bug reported separately.)
+Enable UART0 console, SD card (MMC0), and the AXP318W PMIC on R-I2C0.
+Omit audio, WiFi, USB, and Ethernet for follow-on series.
 
 Assisted-by: LLM
-
-Alastair D'Silva (3):
-  dt-bindings: arm: sunxi: Add Xunlong OrangePi 4 Pro
-  dt-bindings: i2c: marvell,mv64xxx-i2c: Add Allwinner A733
-  arm64: dts: allwinner: Add Xunlong OrangePi 4 Pro board
-
- .../devicetree/bindings/arm/sunxi.yaml        |  5 ++
- .../bindings/i2c/marvell,mv64xxx-i2c.yaml     |  1 +
+Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+---
  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
  .../allwinner/sun60i-a733-orangepi-4-pro.dts  | 75 +++++++++++++++++++
- 4 files changed, 82 insertions(+)
+ 2 files changed, 76 insertions(+)
  create mode 100644 arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
 
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+index 38a2c539e794..db6ffa5f8b4f 100644
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -68,3 +68,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-h728-x96qpro+.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-avaota-a1.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-orangepi-4a.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7s.dtb
++dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-orangepi-4-pro.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
+new file mode 100644
+index 000000000000..b681e4458153
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-4-pro.dts
+@@ -0,0 +1,75 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
++/*
++ * Copyright (C) 2026 Alastair D'Silva <alastair@d-silva.org>
++ */
++
++/dts-v1/;
++
++#include "sun60i-a733.dtsi"
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++	model = "Xunlong OrangePi 4 Pro";
++	compatible = "xunlong,orangepi-4-pro", "allwinner,sun60i-a733";
++
++	aliases {
++		serial0 = &uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++};
++
++&hosc {
++	clock-frequency = <24000000>;
++};
++
++&mmc0 {
++	bus-width = <4>;
++	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
++	disable-wp;
++	no-1-8-v;
++	vmmc-supply = <&reg_dldo1>;
++	status = "okay";
++};
++
++&r_i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&r_i2c0_pl_pins>;
++	clock-frequency = <400000>;
++	status = "okay";
++
++	axp318w: pmic@36 {
++		compatible = "x-powers,axp318w";
++		reg = <0x36>;
++		interrupt-parent = <&nmi_intc>;
++		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#interrupt-cells = <1>;
++
++		regulators {
++			reg_dcdc2: dcdc2 {
++				regulator-name = "vdd-cpu";
++				regulator-min-microvolt = <500000>;
++				regulator-max-microvolt = <1400000>;
++				regulator-always-on;
++			};
++
++			reg_dldo1: dldo1 {
++				regulator-name = "vcc-sd";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pb_pins>;
++	status = "okay";
++};
 -- 
 2.53.0
 
