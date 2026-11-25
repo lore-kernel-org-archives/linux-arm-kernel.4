@@ -2,68 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA60606A6A9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4694606BF7F
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jlfAv8yv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bc+imLqm;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=MpcYAwBM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=W7QRm6YPXq+2eRW5JIlJ812mYrQ+Nse770zMOXPyx5c=; b=jlfAv8yvG7NdpDUrIMH86qRu1s
-	4c6HCWMCefl+5v/0DQA7nVyN8DNxJoIbGGrxtpQG86tSDXne7c9wxsI9OLg4zg+2IYwBh60vV0ebV
-	h6mv3+rcNt8KzV+BlQuGPu1uBWJ2WwkXcKqnbP4T5R5LUMqGm7rw8Or2JqrZWYSCm/BfgoV843nos
-	ecWaK43H98tnweZnKRDnfS57c8Pr9CQlYh94u6Ra2bA6QMc+3H0Al0UALsXPsJXrFPdtDAA9odVIQ
-	UzL5cYk6d5yEy01yYDBgRfIv9NLX30GjBTSTWqUarONalaGouop9z60rS/nERhaP2b3se+LiV/NWl
-	MX1HM4Ow==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=dD0T8dgSUguzAe93p9YMVxo+6FxHhXvK08KHlYhmqa4=; b=Bc+imLqmlaAonZ
+	/SlL4H54Foff78eam8LpnHVFXRraQyifnJDvhVU5uaDSR6WlGTne33RYXbHvn5YXTidG/nsfiokHb
+	ToA9MOJaUn3iUAAtMSCB0myVMEAkXul74SYNULY4LOGXkKsDdOQpJfn/lp9VcuSPwR1mEmdd5NQ6a
+	3jeG9gkl9sVtO90GBLm0UIILfa52rFjRD4gYfeOs8DMlNmgGR6US7Sds48Fji83cPEgjqRaXi7u+k
+	WtT61YB3okIsNCO8LBOHXgVOpQ+Vi33bI7S3uQv0toXpxjd0tAcpk7i+Kk/Cepago9vd3cUvHuVhd
+	qfEFe7mRGyy8mYxNkA5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF74-0000000AOlm-2ZWt;
+	id 1xWF74-0000000AOmC-3rsG;
 	Wed, 25 Nov 2026 15:40:50 +0000
-Received: from exchange.fintech.ru ([195.54.195.159])
+Received: from out-80.mta0.migadu.com ([2001:41d0:1004:224b::50] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF6S-0000000AOQZ-00FC;
-	Wed, 25 Nov 2026 15:40:14 +0000
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 25 Nov
- 2026 18:40:06 +0300
-Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 25 Nov
- 2026 18:40:06 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>
-CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
-	"Jernej Skrabec" <jernej.skrabec@gmail.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Damon Ding <damon.ding@rock-chips.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang
-	<hjc@rock-chips.com>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andyshrk@163.com>, Alexandre Marquet <tb@a-marquet.fr>, "Marek
- Szyprowski" <m.szyprowski@samsung.com>, <linux-rockchip@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
-Subject: [PATCH v2 0/3] drm: analogix_dp: Handle runtime resume failures
-Date: Wed, 25 Nov 2026 18:39:44 +0300
-Message-ID: <20261125153958.1349811-1-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.43.0
+	id 1xWF6T-0000000AOSF-1R0q
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 15:40:15 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=mvYtBRC2OxyaS9QiFUPVqxRONTSDvgDwLjJRSI4wiFw=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795621211; v=1; x=1796226011;
+ b=MpcYAwBMgb2H7Pe4FNA7hd/Sg44aTvWFUOeAYlCDzxN3HcodWx/ILDnRLRt3RFQbgREdenF4
+ HYl7rcIJfRfu3bqBXe9uDFTKW0gLyWWDkEM2CrxnVxijEw1rlBrByHNFQ8gp5gO3Zpu/gmiI5nI
+ RRYsu4IVEMG0wI/nXPJNV+z0=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id aa2ea6faef9e16eb;
+	Wed, 25 Nov 2026 15:40:10 +0000
+X-Mizu-Trace-ID: aa2ea6faef9e16eb
+X-Migadu-Flow: FLOW_OUT
+From: Fuad Tabba <fuad.tabba@linux.dev>
+To: Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Vincent Donnefort <vdonnefort@google.com>,
+	Fuad Tabba <tabba@google.com>,
+	kvm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 10/20] KVM: arm64: Advertise the GICv3 CPU interface to protected VMs on GICv5
+Date: Wed, 25 Nov 2026 15:39:01 +0000
+Message-ID: <20261125153911.106793-11-fuad.tabba@linux.dev>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261125153911.106793-1-fuad.tabba@linux.dev>
+References: <20261125153911.106793-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_074012_050377_8840CEEE 
+X-CRM114-CacheID: sfid-20261125_074014_053467_4BD70492 
 X-CRM114-Status: GOOD (  11.20  )
-X-Spam-Score: -1.9 (-)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,70 +80,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series addresses the unchecked return from phy_power_on() in
-analogix_dp_resume(). The driver currently continues controller
-initialization and reports a successful resume even if PHY power-on
-fails. Patch 3 checks platform power-on and PHY setup errors and returns
-them after unwinding the resources acquired by the resume attempt.
+A GICv5 host with FEAT_GCIE_LEGACY runs GICv3 guests, but its own
+ID_AA64PFR0_EL1.GIC is 0. KVM sets the field to IMP for non-protected
+VMs on such a host, but not for protected VMs, which read it from EL2's
+copy of the register. The next patch computes a protected vCPU's
+fine-grained traps from its ID registers, and with GIC at 0, EL2 would
+then inject an UNDEF for the guest's ICC_IGRPEN<n>_EL1 accesses.
 
-Propagating these errors safely requires two preparatory fixes. The
-bridge setup and AUX paths currently ignore runtime-resume failures and
-may still access hardware after a failed resume. Patch 1 checks resume
-in those paths and avoids retaining a PM usage reference when it fails.
+Set the field to IMP in EL2's copy as well. The vgic isn't probed yet
+when the copy is made, so test the capability the vgic itself tests.
 
-On Rockchip, the platform power_on() callback leaves pclk enabled if
-setting eDP mode fails. Patch 2 fixes this partial rollback, allowing
-patch 3 to return a platform power-on error without invoking power_off()
-after an unsuccessful power_on().
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+---
+ arch/arm64/kvm/arm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Patch 3 depends on patches 1 and 2 and on the Exynos pipe-clock conversion
-posted by Alexandre Marquet [1] (used in the development of this series),
-or Marek Szyprowski's alternative [2]. Both move the pipe clock to
-encoder enable/disable and remove the platform power callbacks.
-Neither Exynos patch is included in this three-patch series; only one
-of the two alternatives is required.
-
-Important note on pending work: patch 1 overlaps with the pending
-analog-init cleanups [3][4] and may require include-block adjustments when
-combined with [5][6]. The bridge-detect PM fix [7] is complementary to
-this series. Also, patch 3 is built on Pengpeng Hou's earlier
-proposal [8] and addresses the platform power-on and
-unbalanced-clock-cleanup concern raised in its review [9].
-
-AI assistance: Codex was used to analyse the error paths, help draft the
-changes and commit messages, and prepare this cover letter.
-
-[1] https://lore.kernel.org/all/20261027-drm-misc-next-manta-auxbus-v1-2-3a45c3cf531d@a-marquet.fr/
-[2] https://lore.kernel.org/all/20261119223843.3694307-1-m.szyprowski@samsung.com/
-[3] https://lore.kernel.org/all/20261120083302.3719465-1-m.szyprowski@samsung.com/
-[4] https://lore.kernel.org/all/20261111094845.1673-1-laixiangwu@cmss.chinamobile.com/
-[5] https://lore.kernel.org/all/20261113082305.541652-1-damon.ding@rock-chips.com/
-[6] https://lore.kernel.org/all/20261111164243.77775-2-blum@kernel.org/
-[7] https://lore.kernel.org/all/20261119103742.1161858-1-m.szyprowski@samsung.com/
-[8] https://lore.kernel.org/all/20260828091334.5793-1-pengpeng@iscas.ac.cn/
-[9] https://lore.kernel.org/all/20260828092624.9054B1F000E9@smtp.kernel.org/
-
-v1 -> v2: Use a better Fixes: tag in patch 3. Also, use goto-based error
-pathing instead in patch 2 to avoid repeating calls.
-
-Nikita Zhandarovich (3):
-  drm/bridge: analogix_dp: Check runtime resume before accessing
-    hardware
-  drm/rockchip: analogix_dp: Disable pclk if setting eDP mode fails
-  drm/bridge: analogix_dp: Propagate errors from runtime resume
-
- .../drm/bridge/analogix/analogix_dp_core.c    | 36 +++++++++++++++----
- .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 11 ++++--
- 2 files changed, 37 insertions(+), 10 deletions(-)
-
+diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+index 2753686982f0b..3b4bc646d894a 100644
+--- a/arch/arm64/kvm/arm.c
++++ b/arch/arm64/kvm/arm.c
+@@ -2819,6 +2819,12 @@ static u64 get_hyp_id_aa64pfr0_el1(void)
+ 	val |= FIELD_PREP(ID_AA64PFR0_EL1_CSV3,
+ 			  arm64_get_meltdown_state() == SPECTRE_UNAFFECTED);
+ 
++	/* A GICv5 host with legacy support gives its guests a GICv3. */
++	if (cpus_have_final_cap(ARM64_HAS_GICV5_LEGACY)) {
++		val &= ~ID_AA64PFR0_EL1_GIC;
++		val |= SYS_FIELD_PREP_ENUM(ID_AA64PFR0_EL1, GIC, IMP);
++	}
++
+ 	return val;
+ }
+ 
 -- 
-2.43.0
+2.47.3
 
 
