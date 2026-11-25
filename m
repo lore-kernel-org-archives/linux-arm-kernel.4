@@ -2,70 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93F2606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251F7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F7Bn61fx;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=mmw3a4X8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Be7/O1dk;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=ET4I9JGJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fJM+8VYiKunDlqrEgZNiUmhDi25LVlsUi9ngP7vcUpE=; b=F7Bn61fxDmL2j+
-	zbuKxrHladLXdu3hNhVzyosCV8PkwKVAQRAJd+fEmBm8l3IZ9gtWsHtoNfnlIDs3Rl47kumLzB9Eh
-	t4FVZ+DwtLGqwwt4vWXQBrzd/k74WrjQL70RG2zmsD+o7RLn8bHYlwXQRUJRyMbwd1Y4xHYKkVs8e
-	LKBZ2MiCjX/pYmIHbachyS2z56sx8MjuggbvBhEy1BMWHcHhiDEindQBgW3KVdrVxGn7m/sFatywO
-	Lli/ClrVZ9Aoccw0WL+GtwwDTyv/W9gKJWEQtv7c6kAlNbMVu5lOmVpRPJjEtB1nG1zGhECcHw9Zl
-	Igq55NWAjhXa+cWEb5FA==;
+	List-Owner; bh=0zUWahZr0YdCEVMjMfy4fsnGVmWimdEhGip8c1MJYpI=; b=Be7/O1dkqKFh9Z
+	mUfS6WQsG5TRZfbjJ51zlaWdWzfro8x/Tdpp8iKpujUCKLb9T1xKqK5QUhLMvRJWC0Ftu2rmnLVxu
+	d4GyhmMBtrUFN0TdYbi2D4tSdeQUinjWcSBk5J3FEThcwb7gc77eIvv6kmqjGhpF2vBFGAkyg7oC7
+	JjncL5kNISH7YHAS/5psUVmWuOHEcb+ZkPQkmX32kD0l4P1ZHzzQEGK8wGFJ0sVd+FWczCmaLZ/zD
+	Yl1K9rMpPC6CkXQf2we+2+cXhEyrRmpGe8+FdoEpI9j/Kv6kcxausp70lcJtLWH3HL1iOnR9nuTnd
+	24PUWa2gEDikOzxjjhmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDZR-0000000A5Uq-2IVh;
-	Wed, 25 Nov 2026 14:02:01 +0000
+	id 1xWDXW-0000000A5CN-49yE;
+	Wed, 25 Nov 2026 14:00:03 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDZP-0000000A5UM-2aUd
+	id 1xWDXT-0000000A5BK-3HSM
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:02:01 +0000
+	Wed, 25 Nov 2026 14:00:01 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17B431762;
-	Wed, 25 Nov 2026 06:01:55 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6FB841762;
+	Wed, 25 Nov 2026 05:59:55 -0800 (PST)
 Received: from [10.0.135.195] (M0PRX50XMG.cambridge.arm.com [10.0.135.195])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6AC373F86F;
-	Wed, 25 Nov 2026 06:01:56 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CE6103F86F;
+	Wed, 25 Nov 2026 05:59:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795615317; bh=QXNjIvjxmoOqxBNbeshCfrCK90NGNd17TBaU3oKqyns=;
+	t=1795615198; bh=bsLN2zzvymscrQHAuMrvXPUOAQSGsQuczkfJ5hFWo9s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mmw3a4X8n1OOB+tRfnOGaB0Pg8jLA6Gk5cgrgdSuF+upYhLmf8HbTTBkC1HK5WrnO
-	 0ve8KylB00bgcXt0fIjpUjrdRbVPVP3F22AZzFfO73g2FPIc6BKTmMUAKXV7bnmfWy
-	 Bu45MO8uOOdPoSRBFZJkdULlazwbMclnBIeYoiz4=
-Message-ID: <aa7d7e97-c0b1-42d4-b885-694195edf46e@arm.com>
-Date: Wed, 25 Nov 2026 14:01:55 +0000
+	b=ET4I9JGJD337mnXpzb5wfJxyJRF+o3Kb66rSUf3nGDH94OAu4LVIDmMUYQ8Djy9mU
+	 43V16/0lZ81btAF6WVLQKSCbwm8Ch3yP+fDWRJzktEaXM4axvXFK0YbQNPFdrfLnji
+	 r3QyQ2m03c8JtEB0lSS7/0eLJH+IijFcPUtHr/w8=
+Message-ID: <5170b051-769e-4822-bb92-3739530c5f2a@arm.com>
+Date: Wed, 25 Nov 2026 13:59:55 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/14] irqchip/gic-v5: Retain the ITT when device
- invalidation times out
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Subject: Re: [PATCH v3 04/14] irqchip/gic-v5: Retain the L2 IST when mapping
+ times out
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Fuad Tabba <fuad.tabba@linux.dev>
 Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
  Radu Rendec <radu@rendec.net>, Timothy Hayes <timothy.hayes@arm.com>,
  Catalin Marinas <catalin.marinas@arm.com>,
  Jonathan Cameron <jic23@kernel.org>,
  "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Fuad Tabba <fuad.tabba@linux.dev>
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
- <20261118-host_gicv5_fixes-v3-12-13c1859e8aa3@arm.com>
- <av7PQ4iniwWC9goF@red-moon>
+ <20261118-host_gicv5_fixes-v3-4-13c1859e8aa3@arm.com>
+ <CA+EHjTzPFjUOXCiccswH2xGvbiqgXPbSihov7MA0WuXn-SmrEg@mail.gmail.com>
+ <awXH-Is5s6eqx8mT@red-moon>
 Content-Language: en-GB
 From: Sascha Bischoff <sascha.bischoff@arm.com>
-In-Reply-To: <av7PQ4iniwWC9goF@red-moon>
+In-Reply-To: <awXH-Is5s6eqx8mT@red-moon>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_060159_776264_C0BA073E 
-X-CRM114-Status: GOOD (  17.90  )
+X-CRM114-CacheID: sfid-20261125_060000_061070_37BE04FD 
+X-CRM114-Status: GOOD (  20.10  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,74 +86,61 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 10:28, Lorenzo Pieralisi wrote:
-> On Wed, Nov 18, 2026 at 05:35:41PM +0000, Sascha Bischoff wrote:
->> Device registration publishes a DTE pointing to the new ITT before
->> invalidating the ITS device cache. If invalidation times out, clearing
->> the DTE in memory does not guarantee that the ITS has discarded a
->> cached reference to the ITT, and hence the hardware could still try
->> and access the memory. Freeing the ITT on that path can therefore
->> leave the ITS accessing memory that has been reallocated.
->>
->> Device teardown has the same problem: it frees the ITT even when the
->> invalidation issued after clearing the DTE fails to complete in the
->> specified timeout.
->>
->> Retain the ITT on either failure path. Continue returning the
->> invalidation error, and free the ITT during teardown only after
->> successful completion. This deliberately retains memory on hardware
->> failure because a timeout does not cancel the operation or establish
->> that cached references are gone.
->>
->> Fixes: 57d72196dfc85 ("irqchip/gic-v5: Add GICv5 ITS support")
->> Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
->> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
->> Link: https://lore.kernel.org/r/20261112145814.853424-1-fuad.tabba@linux.dev
->> ---
->>   drivers/irqchip/irq-gic-v5-its.c | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
->> index db13011ef6d93..cfa86aa68bf3c 100644
->> --- a/drivers/irqchip/irq-gic-v5-its.c
->> +++ b/drivers/irqchip/irq-gic-v5-its.c
->> @@ -540,8 +540,8 @@ static int gicv5_its_device_register(struct gicv5_its_chip_data *its,
->>   
->>   	ret = gicv5_its_device_cache_inv(its, its_dev);
->>   	if (ret) {
->> +		/* The ITS may still have a cached reference to the ITT. */
->>   		its_write_table_entry(its, dte, 0);
->> -		gicv5_its_free_itt(its_dev);
->>   		return ret;
->>   	}
->>   
->> @@ -570,7 +570,9 @@ static int gicv5_its_device_unregister(struct gicv5_its_chip_data *its,
->>   	its_write_table_entry(its, dte, 0);
->>   
->>   	ret = gicv5_its_device_cache_inv(its, its_dev);
->> -	gicv5_its_free_itt(its_dev);
->> +	/* Only release the ITT once the ITS has discarded its references. */
->> +	if (!ret)
->> +		gicv5_its_free_itt(its_dev);
-> 
-> 	if (ret)
-> 		return ret;
-> 	
-> 	gicv5_its_free_itt(its_dev);
-> 
-> 	return 0;
+Hi Lorenzo,
 
-Done, thanks! Definitely neater.
+On 24/11/2026 17:23, Lorenzo Pieralisi wrote:
+> On Thu, Nov 19, 2026 at 12:00:15PM +0000, Fuad Tabba wrote:
+>> Hi Sascha,
+>>
+>> On Wed, 18 Nov 2026 17:35:33 +0000, Sascha Bischoff
+>> <sascha.bischoff@arm.com> wrote:
+>> [...]
+>>> diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
+>> [...]
+>>> @@ -217,6 +217,10 @@ int gicv5_irs_iste_alloc(const u32 lpi)
+>>>           if (FIELD_GET(GICV5_ISTL1E_VALID, le64_to_cpu(l1ist[index])))
+>>>                   return 0;
+>>>
+>>> +        /* A previous map timed out; do not overwrite its pending L1 entry. */
+>>> +        if (READ_ONCE(l1ist[index]))
+>>> +                return -EBUSY;
+>>
+>> Sashiko's review [1] didn't go on the list, in case you missed it.
+>> Sashiko found that l1ist[index] is read twice, and that on a
+>> non-coherent IRS a map completing after the timeout leaves a stale
+>> copy of the L1 entry in the cache for later allocations. Invalidating
+>> the entry before it's first read would fix the latter. Invalidating it
+>> on the timeout path wouldn't, since a later read can refill the line
+>> before the map completes.
+>>
+>> With those fixed:
+>> Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
+>>
+>> Cheers,
+>> /fuad
+>>
+>> [1] https://sashiko.dev/#/patchset/20261118-host_gicv5_fixes-v3-0-13c1859e8aa3%40arm.com
+> 
+> Hi Sascha,
+> 
+> I am taking some time to revamp the current approach because as a fix
+> it is getting complicated and there are corner cases that I don't think
+> are fully covered.
+
+Yeah, this is a bit of an awkward one to get right.
 
 > 
-> Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> 
->>   
->>   	return ret;
->>   }
->>
->> -- 
->> 2.34.1
->>
+> I suggest we drop this patch from this series for now so that it does
+> not hold off the other patches that I believe are ready to be merged
+> with very minor tweaks.
 
+OK, noted. I've dropped this from the next version, so hopefully the 
+rest can be merged in.
+
+> 
+> Thanks,
+> Lorenzo
+
+Thanks,
+Sascha
 
