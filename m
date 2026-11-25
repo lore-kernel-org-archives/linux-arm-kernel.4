@@ -2,86 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA48606A33B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFB9606A688
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:18:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=spE85qhN;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=SQzrzX0U
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QEViF04+;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=cIKgCTqt;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=UB2twGM9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7SJhw7B5t++PSBvuJHvqSoJ7Oym3XNhYCd6XlJOAubg=; b=spE85qhN3KmWQBW67ZPTanaSIo
-	xS9GdXXFSbwRBUxEGCzZZ6sMlpDzFVlTGO6nJhAL+VC4HfSyCpa+SG9GkTXj7A4Fs7o9ycVIZlR2U
-	xG8spNc9ZaLY3VELCIInuJn7d9UHRgoZ383Fvy5B/cAKL0WvhVuPUycNAafhjqLhON2cfyCeyxr0J
-	F71x9Z6MK0m/FqN9CNHnpDQRBpm9sydivEyUCSKadq31IAmWM9xWuqet3G+PdumLDOoav+H7zGGiR
-	L0vqiT0WDksZRiKCEtr4unZCLl2g9hxwpS3G7e3X2JEXLIYDAcVOeQwu2enNAao+JvTVZz60+XYX4
-	uNzjPHSA==;
+	bh=opbvbiqLtMKnZidmW1akDPMoAVRaFGJF5QXg9EIzgwM=; b=QEViF04+CqQ+4s48E5lGE/pbdo
+	Lme7tYmhuhZYkvOIaYp8UC9N2uPRXF74CtX3pEj6QonaCqv1Px+/eTfCKMsBRCQ6tHJpLkTyjKpfY
+	oHHRuuDJhw5AE3XEij6rFk7g0aKDEQOHd3FUVXWRddqu0aIjsLervvjLSdE1gc4ZeqIcy+Fiv/+Ff
+	UfzINtw+WFcZSVpUZaBph88AzGq3kw3Jd+rAkF6D5QQ1Jvl7Xv6nEHI5DCF9ZJllGnH7+M/0X/1bl
+	kF/S5XRadI7l6Z3hJKeYMr6rTJuHpStDJEyNJqTDQpIchMbjjgKd1SV6r+S8L1kIqK/SvRALfmSB1
+	ekI50yEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6L7-00000008cAy-3Ndp;
-	Wed, 25 Nov 2026 06:18:45 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xW6L8-00000008cCS-1LXT;
+	Wed, 25 Nov 2026 06:18:46 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6J9-00000008YrG-3gbi;
-	Wed, 25 Nov 2026 06:16:53 +0000
-X-UUID: c5f0495ae89711f1afed4741b24580c9-20261124
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=7SJhw7B5t++PSBvuJHvqSoJ7Oym3XNhYCd6XlJOAubg=;
-	b=SQzrzX0Uik9rbZNLXQAL5V3p3lR6UNKCpU044IbfNz8VCEC1aBQo5aFaIesj0zUAV+l+tmf8K7TDzTmysXhW8/XAvlbA+3tx/a4O29/ihAUH7yLBZJzqxbVHLVWZE4XgHAwmOEQ2lfkx5IrXTTEzKOhpnsjHr+3yHn9y5QQxmDg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:7cccbfb4-23af-4e86-9d97-4d700acb22d1,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0318ac,CLOUDID:a2937e4e-207c-4400-a70f-7c2d09e2f912,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
-	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: c5f0495ae89711f1afed4741b24580c9-20261124
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1491695478; Tue, 24 Nov 2026 23:16:38 -0700
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 25 Nov 2026 14:16:35 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.56 via Frontend Transport; Wed, 25 Nov 2026 14:16:35 +0800
-From: Kyrie Wu <kyrie.wu@mediatek.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Bin Liu <bin.liu@mediatek.com>,
-	kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>, Hans Verkuil
-	<hverkuil@kernel.org>, irui wang <irui.wang@mediatek.com>, Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-CC: Kyrie Wu <kyrie.wu@mediatek.com>
-Subject: [PATCH v20 15/15] media: mediatek: jpeg: add jpeg smmu sid setting
-Date: Wed, 25 Nov 2026 14:16:18 +0800
-Message-ID: <20261125061618.2544386-16-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125061618.2544386-1-kyrie.wu@mediatek.com>
-References: <20261125061618.2544386-1-kyrie.wu@mediatek.com>
+	id 1xW6JM-00000008ZIo-2ucV
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 25 Nov 2026 06:16:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
+	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=opbvbiqLtMKnZidmW1akDPMoAVRaFGJF5QXg9EIzgwM=; b=cIKgCTqt0+8/2d+eB33LhSL751
+	7N9Pgd+Dxt4b1OSMoMaePu/Gx4hXn4egGPjB9GD/E+p6UaekRQTTrI1QdmT0Df5C9r0olMw19e5tI
+	NY77E5O9dUiJNGT5tiMnyY0uHfFYV57oGaCvSA5q4b0ySOg1YoFqKhidnFxVFzk9sYBa30ezthns4
+	6QciQRi3sjHgoo2LoPCJ+5dtCoMgq1sTb/Ng1fr5ZA8s/2ofgBbIv7QEmb8zeSRmgirXxouUfMjl0
+	ofCMLG5/G/PQ6hXfEKkWh9DyPjDgIaVutEx1JdJszu96EgfIDuq/LjiZXO7PosDqjL1Rblbjnft3R
+	ml3JTthg==;
+Received: from mail-ot1-x348.google.com ([2607:f8b0:4864:20::348])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW6JH-00000004u59-3gyp
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 06:16:55 +0000
+Received: by mail-ot1-x348.google.com with SMTP id 46e09a7af769-84c4dce8182so5913978a34.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795587405; x=1796192205; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=opbvbiqLtMKnZidmW1akDPMoAVRaFGJF5QXg9EIzgwM=;
+        b=UB2twGM9+9aYdAz+4xGwAYb3242naJ9l/qx/d4EYfCTx803BlF6B9c+reLew4pv56W
+         vS2HAvZU+ajqi3PEFIM5LaSy6P6tAJtGpmsimhIBthteFoeVCiSTYo/CpF5wKhejsaoF
+         01QgqtPVoq2OWwNNDyRfmV3jomDcW/njLzggCJmOXFYorg/60qlrdKBh862DXwdgqIzE
+         TBghw28hc1JaZP0g81kA34IBsx5I1d74p/QL4Aii4717TLphO1tbrc3pibRPfPNAv+d6
+         /Q/r8ruiJ7Rv/8B5YJUQQGXfTcCkngNRcRLPUskwOR/4eJ9v/Q2KW0f7nPiL0w3bCZJG
+         y5Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795587405; x=1796192205;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=opbvbiqLtMKnZidmW1akDPMoAVRaFGJF5QXg9EIzgwM=;
+        b=c3yVxXtXijq6Qqs6yiXdfgJF7TINlISFwWP0VAv23KuZ0Bp+bafPvfEswvEbp7t+lw
+         g/HOKHwK+94ePKaVc4G/p11M7enw+LhX2M2j2RIV6u6Awh5RzVGYwWQ5E5oprA13kdaA
+         nPu+WPgZW7g85oWPdKK6yvF/NmdD+1sCwA00CBVFp264rl+RZg3kNVX7A1rpxSOeOmZM
+         vjBg3RIRXd81dAqPc38yrqIqX4ePPvkEPMqEuRqoG6qDY1jkXYTo5G7CEf2+hwiYkCmO
+         9q1c9vidKXti6l+MmDTP4YKVJM0QLt7QMYUgvcRURxp+ulsaGEHEUIkfNxHmi1GrU+6L
+         EjIg==
+X-Forwarded-Encrypted: i=1; AL+hErGpT0N1RY9IzB8N6mY6vTQDM6/sa9+W9d0yPp7fBte5E9qjVZllyKoZFTN5O7uIPdn8F7T2EfL7S7m7HKcr56jo@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Fnz8JE3EfmZ5y/QiYZsXEIPYOjrB886syBa7M/IpLiji2mZ99
+	8yOt5UTEQfx71v5sVylnQZD4ICTTvGXTXqzZhYjVcNg1DzuUOx6S2r9lYXDLdELxx841ogCI5Ml
+	kU0nT70ymLA==
+X-Received: from oigu20-n1.prod.google.com ([2002:a05:6809:5d4:10b0:4f5:740:2bcf])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6808:319b:b0:4f5:eaac:5173
+ with SMTP id 5614622812f47-57a0b84fa3dmr15864618b6e.57.1795587405164; Tue, 24
+ Nov 2026 22:16:45 -0800 (PST)
+Date: Tue, 24 Nov 2026 22:15:17 -0800
+In-Reply-To: <20261125061523.1540234-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Mime-Version: 1.0
+References: <20261125061523.1540234-1-irogers@google.com>
+X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
+Message-ID: <20261125061523.1540234-25-irogers@google.com>
+Subject: [RFC PATCH v2 24/30] tools headers: Add linux/unwind_dwarf_cfi.h copy
+ from the kernel sources
+From: Ian Rogers <irogers@google.com>
+To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
+	linux-arch@vger.kernel.org
+Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org, 
+	mingo@redhat.com, tglx@kernel.org, bp@alien8.de, dave.hansen@linux.intel.com, 
+	x86@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
+	mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, pjw@kernel.org, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	linux-riscv@lists.infradead.org, acme@kernel.org, namhyung@kernel.org, 
+	linux-perf-users@vger.kernel.org, mhiramat@kernel.org, ast@kernel.org, 
+	daniel@iogearbox.net, andrii@kernel.org, bpf@vger.kernel.org, 
+	nathan@kernel.org, llvm@lists.linux.dev, nsc@kernel.org, 
+	linux-kbuild@vger.kernel.org, ojeda@kernel.org, 
+	rust-for-linux@vger.kernel.org, ardb@kernel.org, linux-efi@vger.kernel.org, 
+	maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, shuah@kernel.org, 
+	linux-kselftest@vger.kernel.org, indu.bhagat@oracle.com, jremus@linux.ibm.com, 
+	wnliu@google.com, dylanbhatch@google.com, Ian Rogers <irogers@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_221644_022898_9E765D12 
-X-CRM114-Status: GOOD (  19.90  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_061651_801670_3FBABDF4 
+X-CRM114-Status: GOOD (  24.12  )
+X-Spam-Score: -7.6 (-------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,274 +120,225 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Configure the JPEG decoder and encoder SMMU stream IDs through the
-dedicated MT8196 JPEG SMMU configuration syscon.
+Copy include/linux/unwind_dwarf_cfi.h to
+tools/include/linux/unwind_dwarf_cfi.h for host unwinding verification
+tools under tools/, and add it to tools/perf/check-headers.sh.
 
-Complete failure-prone SMMU initialization before reserving hw_index
-and publishing child pointers and register bases. Failed or deferred
-probes then leave parent bookkeeping unchanged.
-
-Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 29 +++++++++++++++++++
- .../platform/mediatek/jpeg/mtk_jpeg_core.h    | 15 ++++++++++
- .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 26 ++++++++++++++++-
- .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 26 ++++++++++++++++-
- 4 files changed, 94 insertions(+), 2 deletions(-)
+ tools/include/linux/unwind_dwarf_cfi.h | 181 +++++++++++++++++++++++++
+ tools/perf/check-headers.sh            |   1 +
+ 2 files changed, 182 insertions(+)
+ create mode 100644 tools/include/linux/unwind_dwarf_cfi.h
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 31a0fbc07..5d3242a1c 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -15,6 +15,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- #include <linux/slab.h>
- #include <linux/spinlock.h>
- #include <media/v4l2-event.h>
-@@ -1610,6 +1611,22 @@ static irqreturn_t mtk_jpeg_enc_done(struct mtk_jpeg_dev *jpeg)
- 	return IRQ_HANDLED;
- }
- 
-+static void mtk_jpeg_set_smmu_sid(struct regmap *smmu_regmap, unsigned int sid)
-+{
-+	if (sid == JPG_REG_GUSER_ID_DEC_SID)
-+		regmap_update_bits(smmu_regmap, JPEG_DEC_SMMU_SID,
-+				   JPG_REG_GUSER_ID_MASK <<
-+				   JPG_REG_DEC_GUSER_ID_SHIFT,
-+				   JPG_REG_GUSER_ID_DEC_SID <<
-+				   JPG_REG_DEC_GUSER_ID_SHIFT);
-+	else
-+		regmap_update_bits(smmu_regmap, JPEG_ENC_SMMU_SID,
-+				   JPG_REG_GUSER_ID_MASK <<
-+				   JPG_REG_ENC_GUSER_ID_SHIFT,
-+				   JPG_REG_GUSER_ID_ENC_SID <<
-+				   JPG_REG_ENC_GUSER_ID_SHIFT);
-+}
+diff --git a/tools/include/linux/unwind_dwarf_cfi.h b/tools/include/linux/unwind_dwarf_cfi.h
+new file mode 100644
+index 000000000000..3530794c8543
+--- /dev/null
++++ b/tools/include/linux/unwind_dwarf_cfi.h
+@@ -0,0 +1,181 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
++#ifndef _LINUX_UNWIND_DWARF_CFI_H
++#define _LINUX_UNWIND_DWARF_CFI_H
 +
- static void mtk_jpegenc_worker(struct work_struct *work)
- {
- 	struct mtk_jpegenc_comp_dev *comp_jpeg[MTK_JPEGENC_HW_MAX];
-@@ -1674,6 +1691,11 @@ retry_select:
- 	jpeg_dst_buf->frame_num = ctx->total_frame_num;
- 	ctx->total_frame_num++;
- 	mtk_jpeg_enc_reset(comp_jpeg[hw_id]->reg_base);
++#include <linux/types.h>
 +
-+	if (jpeg->variant->support_smmu && comp_jpeg[hw_id]->smmu_regmap)
-+		mtk_jpeg_set_smmu_sid(comp_jpeg[hw_id]->smmu_regmap,
-+				      JPG_REG_GUSER_ID_ENC_SID);
++/*
++ * Minimal DWARF Call Frame Information (CFI) unwinder subset.
++ *
++ * Evaluates a strictly bounded, non-Turing-complete subset of .eh_frame and
++ * .eh_frame_hdr tables matching SFrame's stack-unwinding state model (plus
++ * fixed-pattern DRAP stack-realignment and signal-frame expressions):
++ *  - Advances PC monotonically through a single FDE (no backward jumps)
++ *  - Tracks CFA = (SP | FP | scratch) + cfa_off or *(FP/SP + cfa_off)
++ *  - Tracks stack save offsets for SP, FP, and RA (ignoring callee-saved GPR
++ *    spills)
++ *  - Rejects general DWARF expressions, register-to-register rules on SP/FP/RA,
++ *    and DW_EH_PE_indirect FDE/table pointer encodings (skipping CIE
++ *    personality and LSDA fields without dereferencing).
++ */
 +
- 	mtk_jpeg_set_enc_dst(ctx,
- 			     comp_jpeg[hw_id]->reg_base,
- 			     &dst_buf->vb2_buf);
-@@ -1790,6 +1812,11 @@ retry_select:
- 
- 	spin_lock_irqsave(&comp_jpeg[hw_id]->hw_lock, flags);
- 	mtk_jpeg_dec_reset(comp_jpeg[hw_id]->reg_base);
++/* Hard safety bounds enforced on CIE/FDE lengths, offsets, and state stack */
++#define DWARF_CFI_MAX_CIE_LEN		128U
++#define DWARF_CFI_MAX_FDE_LEN		4096U
++#define DWARF_CFI_MAX_CIE_DELTA		(64U * 1024U * 1024U)
++#define DWARF_CFI_MAX_FDE_COUNT		(4U * 1024U * 1024U)
++#define DWARF_CFI_MAX_STATE_STACK	4U
 +
-+	if (jpeg->variant->support_smmu && comp_jpeg[hw_id]->smmu_regmap)
-+		mtk_jpeg_set_smmu_sid(comp_jpeg[hw_id]->smmu_regmap,
-+				      JPG_REG_GUSER_ID_DEC_SID);
++/**
++ * enum dwarf_cfi_base - Base register or addressing mode for computing the CFA
++ * @DWARF_CFI_BASE_UNDEFINED: CFA rule has not been established yet.
++ * @DWARF_CFI_BASE_SP: CFA = stack pointer + cfa_off.
++ * @DWARF_CFI_BASE_FP: CFA = frame pointer + cfa_off.
++ * @DWARF_CFI_BASE_FP_INDIRECT: DRAP stack realignment: CFA = *(FP + cfa_off).
++ * @DWARF_CFI_BASE_SP_INDIRECT: Signal trampoline frame: CFA = *(SP + cfa_off).
++ * @DWARF_CFI_BASE_REG: Transient prologue/epilogue scratch register:
++ *                      CFA = reg(cfa_reg) + cfa_off.
++ */
++enum dwarf_cfi_base {
++	DWARF_CFI_BASE_UNDEFINED = 0,
++	DWARF_CFI_BASE_SP,
++	DWARF_CFI_BASE_FP,
++	DWARF_CFI_BASE_FP_INDIRECT,
++	DWARF_CFI_BASE_SP_INDIRECT,
++	DWARF_CFI_BASE_REG,
++};
 +
- 	mtk_jpeg_dec_set_config(comp_jpeg[hw_id]->reg_base,
- 				jpeg->variant->support_34bit,
- 				&jpeg_src_buf->dec_param,
-@@ -1983,6 +2010,7 @@ static struct mtk_jpeg_variant mtk8196_jpegenc_drvdata = {
- 	.multi_core = true,
- 	.jpeg_worker = mtk_jpegenc_worker,
- 	.support_34bit = true,
-+	.support_smmu = true,
- };
- 
- static const struct mtk_jpeg_variant mtk8195_jpegdec_drvdata = {
-@@ -2010,6 +2038,7 @@ static const struct mtk_jpeg_variant mtk8196_jpegdec_drvdata = {
- 	.multi_core = true,
- 	.jpeg_worker = mtk_jpegdec_worker,
- 	.support_34bit = true,
-+	.support_smmu = true,
- };
- 
- static const struct of_device_id mtk_jpeg_match[] = {
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-index 148fd4175..186cd1862 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-@@ -11,6 +11,7 @@
- 
- #include <linux/clk.h>
- #include <linux/interrupt.h>
-+#include <linux/mfd/syscon.h>
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-device.h>
- #include <media/v4l2-fh.h>
-@@ -34,6 +35,14 @@
- 
- #define MTK_JPEG_MAX_EXIF_SIZE	(64 * 1024)
- 
-+#define JPEG_DEC_SMMU_SID				0
-+#define JPEG_ENC_SMMU_SID				0
-+#define JPG_REG_GUSER_ID_MASK			0x7
-+#define JPG_REG_GUSER_ID_DEC_SID		0x4
-+#define JPG_REG_GUSER_ID_ENC_SID		0x5
-+#define JPG_REG_DEC_GUSER_ID_SHIFT		8
-+#define JPG_REG_ENC_GUSER_ID_SHIFT		4
++/**
++ * enum dwarf_cfi_rule - Recovery rule for caller's SP, FP, or return address
++ * @DWARF_CFI_RULE_SAME: Register retains its value from the current frame
++ *                       (or defaults to CFA for SP).
++ * @DWARF_CFI_RULE_OFFSET: Saved on the stack at *(CFA + off).
++ * @DWARF_CFI_RULE_FP_OFFSET: Saved relative to FP at *(FP + off) (DRAP frame).
++ * @DWARF_CFI_RULE_SP_OFFSET: Saved relative to SP at *(SP + off) (sigframe).
++ * @DWARF_CFI_RULE_UNDEFINED: Explicitly undefined (DW_CFA_undefined); marks
++ *                            the bottom of a stack (e.g. _start or clone).
++ */
++enum dwarf_cfi_rule {
++	DWARF_CFI_RULE_SAME = 0,
++	DWARF_CFI_RULE_OFFSET,
++	DWARF_CFI_RULE_FP_OFFSET,
++	DWARF_CFI_RULE_SP_OFFSET,
++	DWARF_CFI_RULE_UNDEFINED,
++};
 +
- #define MTK_JPEG_ADDR_MASK GENMASK(1, 0)
- 
- /**
-@@ -65,6 +74,7 @@ enum mtk_jpeg_ctx_state {
-  * @multi_core:		mark jpeg hw is multi_core or not
-  * @jpeg_worker:		jpeg dec or enc worker
-  * @support_34bit:	flag to check support for 34-bit DMA address
-+ * @support_smmu:	flag to check if support smmu
-  */
- struct mtk_jpeg_variant {
- 	struct clk_bulk_data *clks;
-@@ -82,6 +92,7 @@ struct mtk_jpeg_variant {
- 	bool multi_core;
- 	void (*jpeg_worker)(struct work_struct *work);
- 	bool support_34bit;
-+	bool support_smmu;
- };
- 
- struct mtk_jpeg_src_buf {
-@@ -150,6 +161,7 @@ struct mtk_jpegdec_clk {
-  * @hw_param:		jpeg encode hw parameters
-  * @hw_state:		record hw state
-  * @hw_lock:		spinlock protecting the hw device resource
-+ * @smmu_regmap:	SMMU registers mapping
-  */
- struct mtk_jpegenc_comp_dev {
- 	struct device *dev;
-@@ -163,6 +175,7 @@ struct mtk_jpegenc_comp_dev {
- 	enum mtk_jpeg_hw_state hw_state;
- 	/* spinlock protecting the hw device resource */
- 	spinlock_t hw_lock;
-+	struct regmap *smmu_regmap;
- };
- 
- /**
-@@ -177,6 +190,7 @@ struct mtk_jpegenc_comp_dev {
-  * @hw_param:			jpeg decode hw parameters
-  * @hw_state:			record hw state
-  * @hw_lock:			spinlock protecting hw
-+ * @smmu_regmap:		SMMU registers mapping
-  */
- struct mtk_jpegdec_comp_dev {
- 	struct device *dev;
-@@ -190,6 +204,7 @@ struct mtk_jpegdec_comp_dev {
- 	enum mtk_jpeg_hw_state hw_state;
- 	/* spinlock protecting the hw device resource */
- 	spinlock_t hw_lock;
-+	struct regmap *smmu_regmap;
- };
- 
- /**
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-index 6b636ec63..508ed4ff5 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-@@ -613,6 +613,25 @@ static int mtk_jpegdec_hw_init_irq(struct mtk_jpegdec_comp_dev *dev)
- 	return 0;
- }
- 
-+static int mtk_jpegdec_smmu_init(struct mtk_jpegdec_comp_dev *dev)
-+{
-+	struct mtk_jpeg_dev *master_dev = dev->master_dev;
++/**
++ * struct dwarf_cfi_arch - Architecture DWARF register numbers and word size
++ * @ws: Target address/word size in bytes (4 or 8).
++ * @sp_reg: DWARF register number for the stack pointer.
++ * @fp_reg: DWARF register number for the frame pointer.
++ * @ra_reg: Default DWARF return-address column number.
++ */
++struct dwarf_cfi_arch {
++	u8 ws;
++	u8 sp_reg;
++	u8 fp_reg;
++	u8 ra_reg;
++};
 +
-+	if (!master_dev->variant->support_smmu)
-+		return 0;
++/**
++ * struct dwarf_cfi_row - Evaluated Minimal DWARF unwind state at a target PC
++ * @cfa_off: Byte offset added to the CFA base register before or as the CFA.
++ * @sp_off: Byte offset used to load the saved SP when @sp_rule is an offset.
++ * @fp_off: Byte offset used to load the saved FP when @fp_rule is an offset.
++ * @ra_off: Byte offset used to load the saved RA when @ra_rule is an offset.
++ * @cfa_base: CFA computation mode (&enum dwarf_cfi_base).
++ * @cfa_reg: DWARF register number when @cfa_base is %DWARF_CFI_BASE_REG.
++ * @sp_rule: Recovery rule for the stack pointer (&enum dwarf_cfi_rule;
++ *           %DWARF_CFI_RULE_SAME indicates caller SP equals CFA).
++ * @fp_rule: Recovery rule for the frame pointer (&enum dwarf_cfi_rule).
++ * @ra_rule: Recovery rule for the return address (&enum dwarf_cfi_rule).
++ * @signal: True if the CIE carries the 'S' signal/interrupt frame augmentation,
++ *          indicating that the saved PC points directly to the interrupted
++ *          instruction rather than after a call instruction.
++ * @ra_signed: True on AArch64 when DW_CFA_AARCH64_negate_ra_state indicates
++ *             that the saved return address carries a PAC signature.
++ */
++struct dwarf_cfi_row {
++	s32 cfa_off;
++	s32 sp_off;
++	s32 fp_off;
++	s32 ra_off;
++	u8 cfa_base;
++	u8 cfa_reg;
++	u8 sp_rule;
++	u8 fp_rule;
++	u8 ra_rule;
++	bool signal;
++	bool ra_signed;
++};
 +
-+	dev->smmu_regmap =
-+		syscon_regmap_lookup_by_phandle(dev->plat_dev->dev.of_node,
-+						"mediatek,smmu-config");
-+	if (IS_ERR(dev->smmu_regmap)) {
-+		return dev_err_probe(dev->dev, PTR_ERR(dev->smmu_regmap),
-+				     "mmap smmu_base failed(%pe)\n",
-+				     dev->smmu_regmap);
-+	}
++/**
++ * struct eh_frame_hdr_entry - Binary-search index entry for an FDE
++ * @start_off: Signed 32-bit offset from the table base (or entry field) to the
++ *             FDE's initial PC location.
++ * @fde_off: Signed 32-bit offset from the table base (or entry field) to the
++ *           start of the FDE record in .eh_frame.
++ */
++struct eh_frame_hdr_entry {
++	s32 start_off;
++	s32 fde_off;
++};
 +
-+	return 0;
-+}
++#ifdef CONFIG_UNWIND_DWARF_CFI
 +
- static int mtk_jpegdec_hw_probe(struct platform_device *pdev)
- {
- 	struct mtk_jpegdec_clk *jpegdec_clk;
-@@ -660,10 +679,15 @@ static int mtk_jpegdec_hw_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, ret,
- 				     "Failed to register JPEGDEC irq handler.\n");
- 
-+	dev->master_dev = master_dev;
++extern const u8 __start_eh_frame_hdr[];
++extern const u8 __stop_eh_frame_hdr[];
++extern const u8 __start_eh_frame[];
++extern const u8 __stop_eh_frame[];
 +
-+	ret = mtk_jpegdec_smmu_init(dev);
-+	if (ret)
-+		return ret;
++int dwarf_cfi_eval_fde_kmem(const u8 *fde, const u8 *eh_start,
++			    const u8 *eh_end, unsigned long pc,
++			    const struct dwarf_cfi_arch *arch,
++			    struct dwarf_cfi_row *out_row);
 +
- 	i = atomic_add_return(1, &master_dev->hw_index) - 1;
- 	master_dev->dec_hw_dev[i] = dev;
- 	master_dev->reg_decbase[i] = dev->reg_base;
--	dev->master_dev = master_dev;
- 
- 	platform_set_drvdata(pdev, dev);
- 	pm_runtime_enable(&pdev->dev);
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-index c2de272d7..8830480a4 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-@@ -338,6 +338,25 @@ static int mtk_jpegenc_hw_init_irq(struct mtk_jpegenc_comp_dev *dev)
- 	return 0;
- }
- 
-+static int mtk_jpegenc_smmu_init(struct mtk_jpegenc_comp_dev *dev)
-+{
-+	struct mtk_jpeg_dev *master_dev = dev->master_dev;
++int dwarf_cfi_unwind_eh_frame_hdr(const u8 *hdr, size_t hdr_size,
++				  const u8 *eh_start, const u8 *eh_end,
++				  unsigned long pc,
++				  const struct dwarf_cfi_arch *arch,
++				  struct dwarf_cfi_row *out_row);
 +
-+	if (!master_dev->variant->support_smmu)
-+		return 0;
++int dwarf_cfi_scan_eh_frame_kmem(const u8 *eh_start, size_t eh_size,
++				 const struct dwarf_cfi_arch *arch,
++				 unsigned long base_addr,
++				 struct eh_frame_hdr_entry *entries,
++				 unsigned int max_entries,
++				 unsigned int *out_count);
 +
-+	dev->smmu_regmap =
-+		syscon_regmap_lookup_by_phandle(dev->plat_dev->dev.of_node,
-+						"mediatek,smmu-config");
-+	if (IS_ERR(dev->smmu_regmap)) {
-+		return dev_err_probe(dev->dev, PTR_ERR(dev->smmu_regmap),
-+				     "mmap smmu_base failed(%pe)\n",
-+				     dev->smmu_regmap);
-+	}
++int dwarf_cfi_unwind_user_eh_frame_hdr(unsigned long hdr_uaddr,
++				       size_t hdr_size, unsigned long pc,
++				       const struct dwarf_cfi_arch *arch,
++				       struct dwarf_cfi_row *out_row);
 +
-+	return 0;
-+}
++#if defined(CONFIG_UNWINDER_DWARF_CFI) && defined(CONFIG_MODULES)
++/**
++ * struct mod_dwarf_cfi_index - Sorted FDE lookup table for a loadable module
++ * @num_fdes: Number of sorted FDE index entries in @entries.
++ * @eh_frame: Pointer to the module's in-memory SHF_ALLOC .eh_frame section;
++ *            also serves as the base address for @entries offsets.
++ * @eh_frame_size: Size in bytes of the module's .eh_frame section.
++ * @entries: Sorted binary-search table mapping PCs to module FDEs.
++ */
++struct mod_dwarf_cfi_index {
++	unsigned int num_fdes;
++	const u8 *eh_frame;
++	size_t eh_frame_size;
++	struct eh_frame_hdr_entry entries[] __counted_by(num_fdes);
++};
 +
- static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
- {
- 	struct mtk_jpegenc_clk *jpegenc_clk;
-@@ -383,10 +402,15 @@ static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	dev->master_dev = master_dev;
++struct mod_dwarf_cfi_index *dwarf_cfi_mod_alloc(const void *eh_frame,
++						size_t eh_frame_size,
++						const struct dwarf_cfi_arch *arch);
++void dwarf_cfi_mod_free_rcu(struct mod_dwarf_cfi_index *idx);
++int dwarf_cfi_mod_eval(const struct mod_dwarf_cfi_index *idx, unsigned long ip,
++		       const struct dwarf_cfi_arch *arch,
++		       struct dwarf_cfi_row *out_row);
++#endif
 +
-+	ret = mtk_jpegenc_smmu_init(dev);
-+	if (ret)
-+		return ret;
++#endif /* CONFIG_UNWIND_DWARF_CFI */
 +
- 	i = atomic_add_return(1, &master_dev->hw_index) - 1;
- 	master_dev->enc_hw_dev[i] = dev;
- 	master_dev->reg_encbase[i] = dev->reg_base;
--	dev->master_dev = master_dev;
- 
- 	platform_set_drvdata(pdev, dev);
- 	pm_runtime_enable(&pdev->dev);
++#endif /* _LINUX_UNWIND_DWARF_CFI_H */
+diff --git a/tools/perf/check-headers.sh b/tools/perf/check-headers.sh
+index 3e684c851a86..1b1bd04a6690 100755
+--- a/tools/perf/check-headers.sh
++++ b/tools/perf/check-headers.sh
+@@ -30,6 +30,7 @@ declare -a FILES=(
+   "include/linux/hash.h"
+   "include/linux/kmsan-checks.h"
+   "include/linux/list-sort.h"
++  "include/linux/unwind_dwarf_cfi.h"
+   "include/uapi/linux/hw_breakpoint.h"
+   "arch/x86/include/asm/cpufeatures.h"
+   "arch/x86/include/asm/inat_types.h"
 -- 
-2.51.0.windows.2
+2.56.1.831.g720f3f5937-goog
 
 
