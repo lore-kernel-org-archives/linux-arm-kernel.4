@@ -2,79 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11DA606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C31606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qXkIttyF;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=r0+ret2Z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wOs5y2qp;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=csCgOiTE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=F2Xkdeo0HzaNsNuC4QUMqleMrJpmw0zTyb8wkyKNlT0=; b=qXkIttyFow9M5VIl+RjU68U4sH
-	PSljn4LxEaADaAiEtkuCrY8o6B1OwNT0dbF5tJT/wDvYMZbESSTOiqxdlqptu/IvwBZyY8X3qiqCg
-	O90+0Wp9fh4gn8ivckkqYSTtyzByWuHYpqaB+BWiLtzVkMIWUcxiQCZ+TdQFl7GsykpPCJ/u8KI91
-	lyAvgIe/rZjJ4JkmdskKIY4HofFdD/k11CbxNN77zcP1eJ3STjsXeEjr64u4BGVl4l3S1gpxVJtni
-	LE2wK9sRJwX6hE7tRlp/dp8la9twUmhxgRQc2XUhZJCh7zZibfA0vq1Ksb5NpCZJFAOV+uP3g5Blg
-	XONTP1zA==;
+	bh=P8tTFRZKMoV9ILmjWhm/Qj+eqvtd5b4s7jrXn6M6sCA=; b=wOs5y2qpaSyJQpwV6ORrhCzMlk
+	CvL0Pg2j4XyB+bWJzNiK4gOF95eL8cjRcoO2Ew9rjpBVqA0QL+ER4rQCAODr8IP6/ZQ3Te88sf2R1
+	G4HqM+NJMxApw9aGaO1f2pz9Ijr24KvXL1brusBxN6swRDAPAaJ0PXwJxrzxmFX2WZH3mLTCSh/1a
+	KEwkKxmAMF02cYyZG+18LEl5aqXn5HYk6Px5Z6cxFxEatoh92KMpt1t4AN6GfM9F+tfGJk/smvyrN
+	p9c786JWuzZKKY9yx8KIXi/e2omuOAoliQAy+qYED2nOEnWvy4PL6yaE5GUYgzh2vR6VURwsSBHfP
+	9xyHUoSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9Ao-00000009G2h-2Jk7;
-	Wed, 25 Nov 2026 09:20:18 +0000
-Received: from out-211.mta0.migadu.com ([2001:41d0:1004:224b::d3] helo=mta0.migadu.com)
+	id 1xW9HX-00000009HQ6-1Ecv;
+	Wed, 25 Nov 2026 09:27:15 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9Ak-00000009G0w-1q0K
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 09:20:15 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=F2Xkdeo0HzaNsNuC4QUMqleMrJpmw0zTyb8wkyKNlT0=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795598411; v=1; x=1796203211;
- b=r0+ret2ZK34I0gp6OmEK+8JaS1QKb6GT/T3FIh8+7qAdHXXHlkBytlcOAqXBRURD1pPzqp9k
- JKS7XQ4jaq10tz/45qhu91FhKlm+FElCd0o/oN1pqIyD53LUSoL26Or5/w3HlD3NPENiqkstE+3
- F+m0qgLzvu8OGF/+mWNIdhdo=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 10ac3aeb4f81b3e6;
-	Wed, 25 Nov 2026 09:20:10 +0000
-X-Mizu-Trace-ID: 10ac3aeb4f81b3e6
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5c14bc5a743so33481e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 01:20:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHnGadRe5euppgvXW2NzzJYTkf75h5aPrBLARNY6tXLs5UVSjYAzlpS3cm5UYYHf3Y7IYKPoYRXfuDsgrFkSXkf@lists.infradead.org
-X-Gm-Message-State: APuU4Z/GznGJLhoR+iXBOXeWjcVznq0x6nj0Y/8fy2TkRgssNefCO+/8
-	DN5d48euJ9t14qbL+PB1bI69M8BRs80/6WxhJG0YRdeYUrjEQCpfUgvHTgatEOnvmMKBlD8lI5p
-	42k7zTWN7C19TTGCgOP0niT0vFnmI86M8Se9EY7Pp
-X-Received: by 2002:a05:6512:2249:b0:5c1:ac5e:ee43 with SMTP id
- 2adb3069b0e04-5c212394558mr484720e87.3.1795598408854; Wed, 25 Nov 2026
- 01:20:08 -0800 (PST)
+	id 1xW9HW-00000009HPx-3Rq5;
+	Wed, 25 Nov 2026 09:27:14 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 50B274465A;
+	Wed, 25 Nov 2026 09:27:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 157361F000C0;
+	Wed, 25 Nov 2026 09:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795598833;
+	bh=P8tTFRZKMoV9ILmjWhm/Qj+eqvtd5b4s7jrXn6M6sCA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=csCgOiTEhmqVdAe5KLvf/KId4CUz5vLa16QtG35bS9sZm1GXuijGnS/S3MO+RPaga
+	 fxNDCfQFBuxz11T1yQvd/M/+rjHNje5veEhF91UvmTAN+OXyL3lGglzKTrEE11TDps
+	 vUP9c4glv6izxOtNJth8c51S6+fW2srjzeSkLLw3GoJtq9UQtODO3dbnXqMcFF+bpR
+	 SQBx18Py/YdoKlJtVGC23SmLwKCbkP99fdXgXVy6jCqxESjHTV1RPwRSjkhlu0BqLU
+	 wbmXubAMzcyzq+hivj9Iy42i8hmN0J4cnrDUVlH7j0MoQGjf6vxkuqcUeC2w0hx8OJ
+	 CPaCPmi8NbQtg==
+Subject: Re: [PATCH net 3/5] net: dsa: mt7530: register the GPIO controller
+ last in setup
+From: netdev-bot+sashiko@kernel.org
+To: wanghr2026@mail.zgclab.edu.cn
+Cc: chester.a.unal@arinc9.com, daniel@makrotopia.org, andrew@lunn.ch,
+ olteanv@gmail.com, davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org,
+ pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Wed, 25 Nov 2026 09:27:12 +0000
+Message-ID: <179559883260.3135.17892460412824046133@kernel.org>
+In-Reply-To: <179550875790.4156.7464757884919680732@mail.zgclab.edu.cn>
+References: <179550875790.4156.7464757884919680732@mail.zgclab.edu.cn>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261102095656.2948964-1-fuad.tabba@linux.dev> <2576e9e5-395e-4842-aa83-e09494e97d4d@arm.com>
-In-Reply-To: <2576e9e5-395e-4842-aa83-e09494e97d4d@arm.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Wed, 25 Nov 2026 09:19:32 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTw1higCqZ5eY9_xsegh=C9W_=ba3VSE=8-wa-X-7_oG8w@mail.gmail.com>
-X-Gm-Features: Aa3M54rNelAy3rRx_aqH9o44IgmjZOttEw2zqBrwcOUYh3b1IB0PHZ2N_7TmlyA
-Message-ID: <CA+EHjTw1higCqZ5eY9_xsegh=C9W_=ba3VSE=8-wa-X-7_oG8w@mail.gmail.com>
-Subject: Re: [PATCH v5] KVM: arm64: Trap guest MPAM accesses whenever MPAM is implemented
-To: Ben Horgan <ben.horgan@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	James Morse <james.morse@arm.com>, Xi Ruoyao <xry111@xry111.site>, 
-	Mark Rutland <mark.rutland@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
-	Steffen Eiden <seiden@linux.ibm.com>, Gavin Shan <gshan@redhat.com>, 
-	Yuan Yao <yaoyuan@linux.alibaba.com>, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_012014_618662_E45BE30F 
-X-CRM114-Status: GOOD (  16.11  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,45 +74,71 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026 at 12:00, Ben Horgan <ben.horgan@arm.com> wrote:
->
-> Hi Fuad,
->
-> On 02/11/2026 09:56, Fuad Tabba wrote:
-> > finalise_el2_state() clears the EL2 MPAM traps on every CPU whose ID
-> > registers advertise MPAM once the arm64.nompam override is applied.
-> > KVM sets them again on guest entry only when ARM64_MPAM is set, a
-> > capability that also requires MPAM1_EL1.MPAMEN. Without EL3, only
-> > MPAM2_EL2.MPAMEN is writable, and the kernel never sets it, so
-> > ARM64_MPAM stays clear and so do the traps. A guest can then access
-> > MPAM0_EL1, MPAM1_EL1, MPAMSM_EL1 and MPAMIDR_EL1 while its
-> > ID_AA64PFR0_EL1.MPAM reads 0.
-> >
-> > Record two per-CPU flags at KVM's CPU init: whether MPAM is
-> > implemented as finalise_el2_state() tests it, and whether
-> > MPAMIDR_EL1.HAS_HCR is set (MPAMHCR_EL2 is UNDEFINED without it).
-> > Read ID_AA64PFR0_EL1, ID_AA64PFR1_EL1 and MPAMIDR_EL1 from cpu_data,
-> > which holds them with the overrides applied since commit 342e62ded77c6
-> > ("arm64: cpufeature: Read MPAMIDR_EL1 in __cpuinfo_store_cpu()"). Set
->
-> Ok as long as this patch isn't expected to be backported.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue(s) to consider.
 
-Nope. I didn't tag it as stable.
+Critical: 0 · High: 0 · Medium: 1 · Low: 0
 
-> > the traps from those flags. MPAMEN isn't part of any MPAM trap
-> > condition, so the traps take effect whether or not it is set.
-> >
-> > Fixes: 31ff96c38ea3 ("KVM: arm64: Fix missing traps of guest accesses to the MPAM registers")
-> > Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
->
->
-> Reviewed-by: Ben Horgan <ben.horgan@arm.com>
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Thanks!
-/fuad
+- [Medium] net: dsa: mt7530: mt7530_setup_gpio() still runs before
+  fallible setup steps
+
+--
+
+> diff --git a/drivers/net/dsa/mt7530.c b/drivers/net/dsa/mt7530.c
+> --- a/drivers/net/dsa/mt7530.c
+> +++ b/drivers/net/dsa/mt7530.c
+> @@ -2585,6 +2585,11 @@ mt7530_setup(struct dsa_switch *ds)
+>  		}
+>  	}
+>  
+> +	/* Flush the FDB table */
+> +	ret = mt7530_fdb_cmd(priv, MT7530_FDB_FLUSH, NULL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>  #ifdef CONFIG_GPIOLIB
+>  	if (of_property_read_bool(priv->dev->of_node, "gpio-controller")) {
+>  		ret = mt7530_setup_gpio(priv);
+
+[Severity: Medium]
+The commit message says this makes the GPIO controller visible only
+once every fallible step of setup has succeeded. However, mt7530_setup()
+is only the priv->info->sw_setup() callback. After it returns 0,
+mt753x_setup() still calls mt7530_setup_irq() and mt7530_setup_mdio().
+Both of those can fail, and mt7530_setup_irq() can also return
+-EPROBE_DEFER.
+
+If either of them fails, the gpio_chip that mt7530_setup_gpio()
+registered with devm_gpiochip_add_data() on priv->dev stays published.
+Once the next patch disables core_pwr and io_pwr on the failure path,
+consumers would be left poking MT7530_LED_GPIO_* registers on an
+unpowered switch. That is the situation this patch says it prevents.
+
+The same applies to teardown. The chip is tied to devres on priv->dev,
+not to the DSA setup/teardown cycle. Consider a multi-switch tree where
+a sibling switch fails or defers. mt753x_teardown() then disables the
+regulators without unbinding priv->dev, so the chip remains registered.
+The next dsa_tree_setup() attempt would run mt7530_setup_gpio() again
+and add a second controller.
+
+Should the GPIO registration move to the end of mt753x_setup(), after
+mt7530_setup_mdio(), with an explicit gpiochip_remove() in the error
+path and in mt753x_teardown()? Or would you rather register it from
+probe instead? Either way, the commit message should not claim it is
+the last fallible step as things stand.
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/179550875789.4156.361477684651496992%40mail.zgclab.edu.cn
 
