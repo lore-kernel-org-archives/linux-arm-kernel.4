@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C40A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778C0606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kamt2HxN;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RrPgJPGz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MGqGCLjA;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UCLFlDB9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,92 +14,90 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0+s9qCNUHrwBekWyNMr/g7a8rDlEXK2SoEZYGY3IV7U=; b=Kamt2HxNWbnZFPgChy+R3VU1UE
-	8789bsvC6tIECVz+6giY+Lz0LO3qfDq/O/8nrovkte5AVvlM9Eh5WqDXQNMkThUGRKhrN+e8xyHTT
-	QNm/WjLCMBa+Kd9qojNsOQaSKOWKukt/CwXVwMCz1IXD/1++l3OfkIui95L/A8TZXXdi/DaRQ/0Sg
-	sSfNmIfQkeKy9LsLKnxmO9SYlL4kkhumeRnf7hPnhGG2Uadu/0xFM0VNi2idCZhFWlfGSabhnZ+EY
-	VgwxFcpo4u0S6jAypWHq4gxo3jJtw5qqgowaYuIpgmQGM1+zc6U1JuMhRsCEolXy1K2Ho6VmTNIrp
-	O+3bPZyQ==;
+	bh=YRclfZYhhBxZP+A+j93wjj/C0PGTAw+1g6Nws5prpWE=; b=MGqGCLjAE3nGifEy3uXDdezsaU
+	HwfHW2Ky9DVPc/5y4pUjxSuozH8oCrZc+5j99zGF9HoqBfb42DjD7IpeH2FS/3ZIRqJRnk+eWaIZW
+	xrlDtCG+iSyah9pPa732ubD3PhKOR1mhDlLVr+Bz3wkA6iYwYBC88RboRs16JM4rul3LvL1XHcQxG
+	jJCS2NHKJmyzVmxdy1FuoHdHSwLrehTDvR2pDLC0yGkWtfm6AfN7jwqU4YikBUcB+zbeYMeUG6LBd
+	jgK2lp18PpPDw0+eovE5gx3U5ss6uXyXnKpg8n5elJ5FN8AlarC94zgX5aOmCG2vonfjF24t+Lnk3
+	ldX2CjFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWB7p-00000009cWm-4A7s;
-	Wed, 25 Nov 2026 11:25:22 +0000
-Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
+	id 1xWB9N-00000009dS2-18pl;
+	Wed, 25 Nov 2026 11:26:57 +0000
+Received: from mail-lj1-x22e.google.com ([2a00:1450:4864:20::22e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWB7g-00000009cLV-3nrF
+	id 1xWB9J-00000009dQu-2c6z
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:25:17 +0000
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-3ab30b3212aso44100141fa.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 03:25:11 -0800 (PST)
+	Wed, 25 Nov 2026 11:26:55 +0000
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-3ae1fd4252fso54468311fa.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 03:26:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795605910; x=1796210710; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795606011; x=1796210811; darn=lists.infradead.org;
         h=mime-version:content-transfer-encoding:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=0+s9qCNUHrwBekWyNMr/g7a8rDlEXK2SoEZYGY3IV7U=;
-        b=RrPgJPGz7smptmMgf+NxGeiRX2DfDNWp0K5y+yEFuDNZO5R1dG4G1GViWZebn9VaO8
-         OGLzS4Q3Pf3FeGY3vlyaTT7onL+hCeZuR6e4lwPKBS62UewQkeM3arCzcSVpwZPI7jA4
-         snWa2S+8cI/pHAcmkkDgca+JkRSm9SllBptHaCOh1XxqDeAxMbzCxAXUipKw5E/dl3GT
-         8lSJ3Rn6Ffxl2SzUUzYlSLGd1ud3On7E3lH5yVKBzLAnyQGTMt5WGOu5NyiBywuGCA2w
-         7EMMiUJ9+LlMB2SHOURX4+48P73mzxPplZ0SRdCfwYbcYXq3Jh5al9UOvhQ4FlbpnsmY
-         7qGA==
+        bh=YRclfZYhhBxZP+A+j93wjj/C0PGTAw+1g6Nws5prpWE=;
+        b=UCLFlDB9GCrY8c97W9N8FGuJIJ/K6YfBqNI/b/mr4Vx/rHZBqRb7Ht7IbfDPUVT4Ql
+         ReqFIixO4gs438L2T+iF/4da05Mt3ns9puhD0zGm/kXxkAUciJIoPMTZjaeKco1OF8xq
+         1WR6ZXNR/Xw7nm5+mVlxR2k+iITouz0sHrYW1AT2neO2pjuRjeA5ztOy8mGQ5XQ93RzB
+         1GodWKk8zK5BCVYQmt7f8fuwv7owOurKAT8w15rCXKIuYohPwtmwBKO9A7tWUiKNVFdJ
+         1GmQd9L6NRYT2mE2lp7/OxDgFZvCFU5L5ba5AbrTp+uMsqB6xE6Tz6xqtCdUnFuSpakO
+         iZqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795605910; x=1796210710;
+        d=1e100.net; s=20260707; t=1795606011; x=1796210811;
         h=mime-version:content-transfer-encoding:content-type:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=0+s9qCNUHrwBekWyNMr/g7a8rDlEXK2SoEZYGY3IV7U=;
-        b=l7kmLt75RVxfVRuoRxsniTje8kQeosi8T4HsZpUuZRWFza1Yb0/jIAC3WlG4Lhes9G
-         q8khsJCRoJVBuZXnZX9x8i13cGJniGpoI4POjTcVnL4v+xJFZfrjW/DeR0RuffXOkjBA
-         QBpvuOkUv+sNS8Nkde7TM8GPJbcpm79i5oPylaT6Rpn7p9efJpKodWfwbbS4KYR7jyX5
-         N71EdPsEVEzAoxYnhM1pdLCQtSNDsBvN4RhmRILLK7FW2iZixqIlNgc/j+5yyViMQdJg
-         3DyI74FgEOwOwb4JyBH3GeMCrPWcvlKWY8wIwr3AM9Tx/YJNAwL/T3KkciMGpu94QOSd
-         9F1g==
-X-Forwarded-Encrypted: i=1; AL+hErG/RFp4N0EsdlCTkeQVY3ansb8TIo+IyMUaytUtG9tXWOt1XOFs7HGV27WdqcuVMu/GjQjTsqcK0yl7NQ9XMjLP@lists.infradead.org
-X-Gm-Message-State: APuU4Z9H3Nor01tc/d6MWNMPACpuPiIH4u5Z/los7CDUVtKt1nq3ANKv
-	A8OJRmeQ3xp4s9x4w5vwxoBCT1Ha2Wec7FvKnfpoHEK4BXxYgTtSQmtq
-X-Gm-Gg: AZFdTZdkcBVZaHyZPcaWTrLjXMZCnLbNzF3VqshK6RFVme5Bd6dBKIxIMp9RcqV9Y5G
-	fHmbzDi1SPTpw/KT27uVi7QGUitT32x7qGDKvH33hrd+Kl1U9DGYl5WB2v7c+wASPFTomqnu9hi
-	C3QnowYGXzAR2PW6Lrj3LY9s1jqhOIwjTFZkVYMRO8L/Whd1mWCJlzYyQWo9G+Y8MAlHEwGFXNa
-	ZvQ9PkrPf7lylw65w1I1dKUrxnTy5xDG79/qA19sEkzgZW2NY7umvBv73g3AOXHaFblo+S3XK6l
-	VzW9IawSnJteWazX2AfKrpEtDsrRFJw2qelGSoKATP0p9JGwacgNmd/NekIM3tIMo5ucYj2C2ri
-	zbiIGOis6Evv20Xtu94ga6gti2Is7sc0HIubVqjANS6hKRyEXmOqrNcHnNHtCWD2Y89r1kXkgH2
-	AumHJ/cqd6TiIXdHhXJo8pw0kNXD0cI6uG9e1Q4g5UaI+c2A6AAPc9qBkkcHfe+HTwSXIv5SHp0
-	+O+EaKuL9XwNyNt7isPHqosLuM0WmD0nxdwup4kv+FAY+pAgExBwvYbCBY8ID6+0KOdi2u5sdm9
-	WW9w2/5C1QHu/orq2ejkpoKzKU21ooIdI18q9oLOyLqoekIMFlJtEKiHScMRp6VbIBkqGkWEFZu
-	c
-X-Received: by 2002:a05:651c:419a:b0:3ac:8a38:130e with SMTP id 38308e7fff4ca-3ae7fa692d5mr46457601fa.21.1795605909904;
-        Wed, 25 Nov 2026 03:25:09 -0800 (PST)
+        bh=YRclfZYhhBxZP+A+j93wjj/C0PGTAw+1g6Nws5prpWE=;
+        b=v9HAoq7KHOd731mKo7ht/MaoATfyD+OmWgI02ucdubpzqzPJlAGeYNxC9xwp8exeA6
+         rwxPZg6weCkAOLWO7WjUyfqd4y/kZBDbkBS/miWbsyID6X6twetWT7vjRaScmtx+Aful
+         969//9DXt/ZngrXP8YJe0+VmwiJeqvBU8ldBlCorUR0JimDYxu8z7gtqYObYy35jLMr9
+         NF5CWQ+2XxFWsaglSvcOkAUN46XtWJ6B2MD2RHjoOCvAk9J8sdWduEwN9NAs0BNwp6zJ
+         qNmRKqtfWIgVaJkLAo/dhIRMpFdRna9+lJl00z50I1yNm4oz52gXZiIAq6XnOd3OHwxX
+         1b/A==
+X-Forwarded-Encrypted: i=1; AL+hErE4p1qib9UETPr08YY6z/84BxGtHmQ2bQsCyXXXnFD4pdUkdCqmNZ+p/4YlLmn5+J9KtN5405DZIV5zihWratud@lists.infradead.org
+X-Gm-Message-State: APuU4Z864NkTbGMzs7HMlLEeShHs2Tf/NqL+wkf08hG80alVaAVt2++X
+	5BrM8pJK49Q9hEgEcoNmmhbcojwXfA6sSpYFHkXLK3pNgJVWULhBBl7w
+X-Gm-Gg: AZFdTZeiqvoFQIcGyFdwKvq0h181uFNVXCiL4KPd01Fyoi9UzUk7wL/kr0/r0Vkueq/
+	Dv7oczeQYkekZ8/Hgq12tSjDCoTLhXDPtQZGXWK9ob48kbYwuOQz0ZeIMMs0nfpVMTEgNdKLyxE
+	BITprTRi5GHOZPIPBIjbQ+9ZlMeT/vWhSPIGkAXN4UG5vXgJgmTNwuCpzHzdtEir8/8Xd7GX6Mn
+	0mvpeijQNxyoZs3HXS1mP7Jfq8Ca+pIOdcJvbVy0U9eUaNtQfqaLiO7QAoUYHKJ1Omm3MIKGbm6
+	iaABWSV4YdurOnDLJ95LBu03K28SRR5IJesC8+2dFzPvEb6x+h+DDrxCd7znjvSh4BNlSPXNRVs
+	xeBybBMsfpMPZqqYxCTV9NEcohl3Cc5iplsfjXDmL6ui+NHBpjUlnAcR30SibGobQIa5TVOEP+3
+	TXiTkD7BV5q8sbkwjRd+CrmZAUu5qoyzZAkuHg4jAGvdwoiXMRvT7oPBR10PKMUDuuI4I/9H2Zm
+	9V+HEpnU72ydd/f9upaIbbt0UuE+zUbkBcQjzkwvSyfJpyurKgAC6q9qEMtmCURYjeF1x0/H88Q
+	HnjTJZaxQsYJ3tYy28RLF1SCGUC9i9gvj0a4ccyqUPrKqioilzHn9M4=
+X-Received: by 2002:a05:651c:b28:b0:39c:624d:82b9 with SMTP id 38308e7fff4ca-3ae7f9a073amr54848531fa.4.1795606011279;
+        Wed, 25 Nov 2026 03:26:51 -0800 (PST)
 Received: from [127.0.1.1] (ip-024-180.users.dtel.ru. [91.210.24.180])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3ae804ee572sm45958281fa.10.2026.11.25.03.25.07
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3ae8044e3c4sm46556431fa.4.2026.11.25.03.26.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 03:25:08 -0800 (PST)
+        Wed, 25 Nov 2026 03:26:49 -0800 (PST)
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Hans Ulli Kroll <ulli.kroll@googlemail.com>,
- Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/3] net: cortina: Add CS7542 CPU network datapath
-Date: Wed, 25 Nov 2026 14:24:53 +0300
-Message-ID: <179560589359.3.5378747793444153378@gmail.com>
-In-Reply-To: <ef5dea6e69e0947489f4825540d0f77903960f78.camel@pengutronix.de>
-References: <20261125-b4-cs7542-ethernet-v2-0-d0ea3c6eb375@gmail.com>
- <20261125-b4-cs7542-ethernet-v2-2-d0ea3c6eb375@gmail.com>
- <ef5dea6e69e0947489f4825540d0f77903960f78.camel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] reset: Add Cortina Systems CS7542 global reset controller
+Date: Wed, 25 Nov 2026 14:26:28 +0300
+Message-ID: <179560598858.3.3579752078270188660@gmail.com>
+In-Reply-To: <3b8b8d154a841d80de20d31c32b2fb4faba11480.camel@pengutronix.de>
+References: <20261125-cs7542-syscon-v4-0-3337bb0d3b48@gmail.com>
+ <20261125-cs7542-syscon-v4-4-3337bb0d3b48@gmail.com>
+ <3b8b8d154a841d80de20d31c32b2fb4faba11480.camel@pengutronix.de>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_032513_025935_44D531AE 
-X-CRM114-Status: GOOD (  10.08  )
+X-CRM114-CacheID: sfid-20261125_032653_671155_63BBD27A 
+X-CRM114-Status: UNSURE (   7.08  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,22 +118,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Hi Philipp,
 
-Thanks for the review. I'll drop the RESET_CONTROLLER select and both
-status loops. The provider polls each of the seven reset bits on assert
-and deassert and propagates a timeout or register access error.
+Thanks. I've switched the allocation in cs7542_reset_probe() to
+devm_kzalloc_obj(dev, *rst) for the next revision.
 
-The individual asserts matter during teardown, when the hardware may
-still own DMA buffers. For example, if the QM assertion fails, bulk
-assert would release NI, FE, TM and SCH again and skip DMA and XRAM.
-I'll keep trying every line and leave successful assertions in place.
-Any error keeps the active DMA mappings pinned. On bring-up I can use
-reset_control_bulk_deassert() for the reverse order.
-
-The 100 us hold was a conservative delay I added during bring-up. I
-don't have a documented minimum for it. Cortina's BHR4 U-Boot toggles
-the global NI reset bit without a delay, but that sequence covers only
-NI. I'll test probe and rebind on the Almond+ with the delay removed.
-
-Thanks,
+Best regards,
 Fil
 
