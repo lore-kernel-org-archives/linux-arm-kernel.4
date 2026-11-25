@@ -2,85 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD05606A6A1
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3F7606A684
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EvEwdc+f;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=rjIba73h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dsVkM394;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=S7SWQWQG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fhMRTzkLSH5MxpIkUJMv2XmW944j+sfZQtVHooeXfNc=; b=EvEwdc+f3eHHEi
-	APTDhoKOwwn06d2XsD3cpHR4Td6gCulxdicliZG8RXUcT2NcvEMV4Qvye/zkSfYkzkX5AdZPhV4yy
-	PIkUKf+IS0Euujm2NGh7gzLUJ18DErNpTWD5gsTZP+lNg7+wO7VmOBK5TCBX2q4mH4oUt34Za/Vth
-	q1ZCLy38xIOs8qr0x0vaASbFXkEE41uTiNDWnrsBQ07rWaJRCtzwnEATMZ6VGs3As0W21It4nwYQK
-	1xJX0i7QbpT1wI46X+C1sUMv0KAye9L7F5ViEKlHxJ9jMyaDCaEScMiMmqfGi5wjO7wxrKz0T+ogF
-	uDTgRrIYGQh+C/1ZmRIg==;
+	List-Owner; bh=setiKsAawUfI5qZxIEr6a1N6sSJqLT6tqu5WlGOp0jo=; b=dsVkM394yIFMh0
+	N2AiDWjnIxjMKSnORuJE0tWkoCaprLBwn4297pF+D2lRZLOf530d6o7CzgEhEcD9uXxHdGzw9F8Gr
+	46gtDDaTap0ewHA7UTcN/o33YziQm3GJQpA1PZaOCOoEEvj5Qw70L5lNpiErVwz9vEGRXOVk2GZ2Y
+	nCgIGL8B2Rukj5cWwBRUryfXmlb/yrNxQn+t0fTpAMEui2J4/bM05gMW9TNTly0cFpsk45cONi3HO
+	lTgdr6XjpemWMhtwDNLD0pR/yonLx4vDanxv8fGFYkG5+mqnbtkFYXaGCkFUGq5R7KUunFONgbmAV
+	bXx8+JZLUcYSoGIn1UvA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAr-0000000AoMI-26QW;
-	Wed, 25 Nov 2026 17:52:53 +0000
+	id 1xWHJP-0000000Ausr-0hqX;
+	Wed, 25 Nov 2026 18:01:43 +0000
 Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH9m-0000000AnIC-3T1O
+	id 1xWHHU-0000000AuI0-0IEB
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:52:00 +0000
+	Wed, 25 Nov 2026 17:59:46 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 199CEC2B9C0;
-	Wed, 25 Nov 2026 17:51:53 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 8737AC2BB3C;
+	Wed, 25 Nov 2026 17:53:24 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 203C260480;
-	Wed, 25 Nov 2026 17:51:45 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C6C4E11E6B0CB;
-	Wed, 25 Nov 2026 18:51:36 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 8EF1160480;
+	Wed, 25 Nov 2026 17:53:16 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 402C111E6B0D1;
+	Wed, 25 Nov 2026 18:53:05 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629099; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629190; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=fhMRTzkLSH5MxpIkUJMv2XmW944j+sfZQtVHooeXfNc=;
-	b=rjIba73hZY4git7Vg/XhATFE76hCuXmQOIhpokw7phcPJkpu77IDcANyPWfhmWmpm/wwkw
-	7zbQD+YFwagsL7TNez3rOk+tOFWqoaCfJAx1uuqP216t7R8+f4CsYaufNaWbd4w2ksU6ls
-	o09e1p0lj1XUqz7LHURSpJFtq+Htd9sNCARv4WJwIT/kU4e9pb0KPG4o3J5r6pNSJh8k44
-	2smGQ9sg7zZrrVxSReD/fxJB3988w6XyQ0OTBaxpRuQWXI9S5DchsjnJOE9ylpGWH584fK
-	UT5SFyzDHqH0XSUkJ1oQK2DgBG1Vi5MEfWCZMTtyf4OYFjw9GBbwtUwG2zVYGg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:15 +0100
-Subject: [PATCH RFC 01/16] spi: spi-mem: Handle a corner case while
- sanitizing ops
+	bh=setiKsAawUfI5qZxIEr6a1N6sSJqLT6tqu5WlGOp0jo=;
+	b=S7SWQWQGsDNqMVWk/loTHnYutCsPERtqteJuE1IyQNjWRLrRb+y3aBrmuztWlyjGBoGRKF
+	EiuLx8ZkNKz0k2jB5Er80bY8ITJDyURXMBIhta/etELZ+HTjcP4yO1QkZyzA3o9yl1rrMA
+	w/RSmR7+iVv8ldU+vsxuIaV85Am0TuxujODuxKkG6iM8YjxjWRQcD+n+wnMZ9F30yfjTvB
+	Xy3e0dOgqKf5UUHfXSA1vf9USaV38Uxss86wdY/XoGFdIc7WTjfuSnMSBAfTe2HlNdXNS8
+	zW21Apble487DaxoOxwaFEt5XxbR9LYGMM0Ss1oBMlOSdKvvcRuNqGW4y14FNA==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 25 Nov 2026 18:50:33 +0100
+Subject: [PATCH v4 20/32] drm/bridge: add drm_bridge_get_next() and
+ supporting func
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-1-fd036402fd37@bootlin.com>
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
+Message-Id: <20261125-drm-bridge-hotplug-v4-20-822722850492@bootlin.com>
+References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
+ Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095149_084904_0A07D07E 
-X-CRM114-Status: GOOD (  12.27  )
+X-CRM114-CacheID: sfid-20261125_095944_634367_A3FC5622 
+X-CRM114-Status: GOOD (  20.71  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,72 +102,131 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Some mixed mode operations (such as 1S-xD-yD) will be flagged with
-op_is_dtr but will not enter the ODTR checks. As a result, the number of
-command bytes will never be checked.
+For bridge hotplug we need to successfully probe a card with an incomplete
+bridge chain, i.e. a chain whose last bridge currently in bridge_chain
+needs another bridge at its output. Such a card would have no connector,
+and be able to add one as soon as the following bridges are added up to the
+bridge that requires no further ones (like a panel or a connector_bridge).
 
-Reorganize a little bit this helper:
-- If the operation contains a DTR phase, sanitize it.
-- Then sanitize the op, should it be:
-  - ODTR (8D-8D-8D)
-  - anything else
+So we need a way to know whether the pipeline is complete in the hardware
+(all bridges probed), in order to complete it in software (attach all
+bridges not yet attached). Currently common DRM code has no way to know
+that.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Add drm_bridge_get_next() and a supporting get_next_bridge func so each
+bridge can expose its next bridge, and whether there's supposed to be one.
+
+A subsequent commit will use this function to detect whether the pipeline
+is complete in the hardware or not.
+
+Link: https://lore.kernel.org/r/20260624-vagabond-neon-gorilla-cd6487@houat
+Suggested-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
 ---
- drivers/spi/spi-mem.c | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-index 8047b7508c8d..c64e906ba919 100644
---- a/drivers/spi/spi-mem.c
-+++ b/drivers/spi/spi-mem.c
-@@ -170,6 +170,7 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
- 	struct spi_controller *ctlr = mem->spi->controller;
- 	bool op_is_dtr =
- 		op->cmd.dtr || op->addr.dtr || op->dummy.dtr || op->data.dtr;
-+	bool op_is_odtr = op->cmd.dtr && op->cmd.buswidth == 8;
+Changes in v3:
+- fix and improve kerneldoc
+
+New patch in v2, replacing the is_tail patch in v1
+---
+ drivers/gpu/drm/drm_bridge.c | 30 ++++++++++++++++++++++++++++++
+ include/drm/drm_bridge.h     | 25 +++++++++++++++++++++++++
+ 2 files changed, 55 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+index a50709ac8b06..e0e0dd7fc12b 100644
+--- a/drivers/gpu/drm/drm_bridge.c
++++ b/drivers/gpu/drm/drm_bridge.c
+@@ -720,6 +720,36 @@ void drm_bridge_detach(struct drm_bridge *bridge)
+ 	drm_bridge_put(bridge);
+ }
  
- 	if (op_is_dtr) {
- 		if (!spi_mem_controller_is_capable(ctlr, dtr) && !ctlr->dtr_caps)
-@@ -177,23 +178,22 @@ bool spi_mem_default_supports_op(struct spi_mem *mem,
- 
- 		if (op->data.swap16 && !spi_mem_controller_is_capable(ctlr, swap16))
- 			return false;
++/**
++ * drm_bridge_get_next - return the bridge at this bridge's output port
++ * @bridge: the bridge to query
++ *
++ * Return the next bridge, i.e. the bridge that is connected at the output
++ * port of @bridge. Unlike drm_bridge_get_next_bridge(), the next bridge
++ * might or not be in the encoder chain.
++ *
++ * Returns:
++ * * Pointer to a bridge connected to the output port of this bridge,
++ *   with refcount incremented; call drm_bridge_put() when done
++ * * ERR_PTR(-ENODEV): this bridge has an output port where a next bridge
++ *                     needs to be present for video output, but the next
++ *                     bridge is not currently available
++ * * NULL: this bridge does not have an output port where a next bridge
++ *         is expected
++ * * ERR_PTR(-ENOENT): the bridge does not implement the func
++ * * Another negative error returned by the bridge func
++ */
++struct drm_bridge *drm_bridge_get_next(struct drm_bridge *bridge)
++{
++	if (!(bridge->ops & DRM_BRIDGE_OP_GET_NEXT_BRIDGE)) {
++		drm_warn_once(bridge->dev, "get_next_bridge func not implemented!");
++		return ERR_PTR(-ENOENT);
 +	}
- 
--		/* Extra 8D-8D-8D limitations */
--		if (op->cmd.dtr && op->cmd.buswidth == 8) {
--			if (op->cmd.nbytes != 2)
--				return false;
--
--			if ((op->addr.nbytes % 2) ||
--			    (op->dummy.nbytes % 2) ||
--			    (op->data.nbytes % 2)) {
--				dev_err(&ctlr->dev,
--					"Even byte numbers not allowed in octal DTR operations\n");
--				return false;
--			}
--		}
--	} else {
-+	if (!op_is_odtr) {
- 		if (op->cmd.nbytes != 1)
- 			return false;
-+	} else {
-+		if (op->cmd.nbytes != 2)
-+			return false;
 +
-+		if ((op->addr.nbytes % 2) ||
-+		    (op->dummy.nbytes % 2) ||
-+		    (op->data.nbytes % 2)) {
-+			dev_err(&ctlr->dev,
-+				"Even byte numbers not allowed in octal DTR operations\n");
-+			return false;
-+		}
- 	}
++	return bridge->funcs->get_next_bridge(bridge);
++}
++EXPORT_SYMBOL(drm_bridge_get_next);
++
+ /**
+  * DOC: bridge operations
+  *
+diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+index d6ef020c4cc9..cfa0aff1de4f 100644
+--- a/include/drm/drm_bridge.h
++++ b/include/drm/drm_bridge.h
+@@ -62,6 +62,25 @@ enum drm_bridge_attach_flags {
+  * struct drm_bridge_funcs - drm_bridge control functions
+  */
+ struct drm_bridge_funcs {
++	/**
++	 * @get_next_bridge:
++	 *
++	 * Return a pointer to the bridge connected at the output port of
++	 * this bridge.
++	 *
++	 * Returns:
++	 * * Pointer to a bridge connected to the output port of this bridge,
++	 *   with refcount incremented; call drm_bridge_put() when done
++	 * * ERR_PTR(-ENODEV): this bridge has an output port where a next
++	 *                     bridge needs to be present for video output,
++	 *                     but the next bridge is not currently
++	 *                     available
++	 * * NULL: this bridge does not have an output port where a next
++	 *         bridge is expected (e.g. a panel)
++	 * * Another negative error returned by the bridge func
++	 */
++	struct drm_bridge *(*get_next_bridge)(struct drm_bridge *bridge);
++
+ 	/**
+ 	 * @attach:
+ 	 *
+@@ -1021,6 +1040,11 @@ enum drm_bridge_ops {
+ 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
+ 	 */
+ 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
++	/**
++	 * @DRM_BRIDGE_OP_GET_NEXT_BRIDGE: The bridge implements the
++	 * &drm_bridge_funcs->get_next_bridge callback.
++	 */
++	DRM_BRIDGE_OP_GET_NEXT_BRIDGE = BIT(11),
+ };
  
- 	if (op->data.ecc) {
+ /**
+@@ -1272,6 +1296,7 @@ void drm_bridge_remove(struct drm_bridge *bridge);
+ int drm_bridge_attach(struct drm_encoder *encoder, struct drm_bridge *bridge,
+ 		      struct drm_bridge *previous,
+ 		      enum drm_bridge_attach_flags flags);
++struct drm_bridge *drm_bridge_get_next(struct drm_bridge *bridge);
+ 
+ #ifdef CONFIG_OF
+ struct drm_bridge *of_drm_find_and_get_bridge(const struct device_node *np);
 
 -- 
-2.56.0
+2.56.1
 
 
