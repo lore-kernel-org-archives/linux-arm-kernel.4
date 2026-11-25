@@ -2,87 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DE7606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EF0606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vDojG2U/;
-	dkim=pass (1024-bit key, unprotected) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=FrrFA2jP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0M9aSVCQ;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=uRBgQTiG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=R9DdeCgVvQf1BTzKenSADVfDzktFGeM7OnwQ0+w2O48=; b=vDojG2U/jMoq+rMw/KkTXSrg5e
-	bY+AACRov8CIo7jJk0ypiPqODwqMI/HDbgC2M6iNf4hkIM+lNkhKP0N6G4wbfVVBI1nUf6Xx1OfbP
-	nQJ8JE3HQlVVwWA3XujknCX19YnoQtuR5goSTQ5WTlRwTp0bHzaa+YDuTHtXDHEciXXsLfEjMCJO6
-	C2zft/2XwLOF14rrRGrZV8cbGiFO6QM0yBKgl2Ne5AVCc7iM5DZgBZat5dNxWATSwUy8H75UDoJi8
-	FJzgEqC49ncKStX8v43KSKJpo06s+Mk6SAOcNXIfDWtYQLwrgaNAwfLzw9nWLdBiZHmtvj2rgVPWe
-	GOQLa/3g==;
+	bh=pvaif42UsfINSlAAimCpmndZRtT8DKtSjfaklfpubAU=; b=0M9aSVCQ31m8xePztGnODZuAzB
+	1BWNC449ShAgi1AKxjCUUfcdKhlrQrxKc+clNbGDhtGDn08freXVIf4X28xVrclxmm3uXa1/+kdNR
+	ccMCJHxInpuQ23SG9EmgLdZ0ewAlb86HhG7X5x6kjppeBiwup8C/k43CCqawGdPO/4xXKRAqWDrKg
+	Z1xL5kjrGo0vMPiFZshzg3SzCkgOvzg7y4KIS3cXJhQxKwJb7ss87exYGwHfiFa2P7M2M8Pmzhed1
+	64yy4yOrhrDU2o+ztJzEkl6mTtzFwz9+Xm1O6+Pbk3dydo0vzSlRNzPjOyQhNqOyR5dcYkbZEMrPE
+	XC5Foo9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW64w-00000008VrI-0aDc;
-	Wed, 25 Nov 2026 06:02:02 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1xW8Mr-000000094lJ-1LlR;
+	Wed, 25 Nov 2026 08:28:41 +0000
+Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW64h-00000008Vh5-38Tp;
-	Wed, 25 Nov 2026 06:01:50 +0000
-X-UUID: a9843cd8e89511f1acbe4559397dec65-20261124
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From; bh=R9DdeCgVvQf1BTzKenSADVfDzktFGeM7OnwQ0+w2O48=;
-	b=FrrFA2jPeu6ModyljulgCcg2bjiukAxo5rY8hSxK24EjCIA8hHifOYJNeO+9xpWlwHpXmzt0sMlLCVeDuQpA+xuZ9qktlilN9gKctZPNILeeTxQR/HXg+4/Tvrr+maGhkzr+c3FgcJxzXMvEsDGno9mO1LmCGPGfeZilB5R6aSU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:f8faf5ec-9fc7-48db-98b4-23413b8af32e,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0318ac,CLOUDID:87707e4e-207c-4400-a70f-7c2d09e2f912,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|136|836|865|888|898,TC:-5,Content:0|
-	15|50|99,EDM:-3|-100,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,CO
-	L:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: a9843cd8e89511f1acbe4559397dec65-20261124
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-	(envelope-from <echo.zhang@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1525661087; Tue, 24 Nov 2026 23:01:31 -0700
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 25 Nov 2026 14:01:06 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.56 via Frontend Transport; Wed, 25 Nov 2026 14:01:05 +0800
-From: Echo Zhang <echo.zhang@mediatek.com>
-To: Echo Zhang <echo.zhang@mediatek.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet
-	<jbrunet+clk@baylibre.com>, Nathan Chancellor <nathan@kernel.org>, Nick
- Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, MMDVFS Team
-	<linux-mediatek@lists.infradead.org>, <kyrie.wu@mediatek.com>,
-	<ming-fan.chen@mediatek.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>, <llvm@lists.linux.dev>
-Subject: [PATCH 6/7] soc: mediatek: mmdvfs: add read-only status debug
-Date: Wed, 25 Nov 2026 14:00:11 +0800
-Message-ID: <20261125060037.649659-7-echo.zhang@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125060037.649659-1-echo.zhang@mediatek.com>
-References: <20261125060037.649659-1-echo.zhang@mediatek.com>
+	id 1xW8Mn-000000094k8-2AxR
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 08:28:38 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TII+2Q4hlT9jSG7/281TkeDD2ItQo0ibMBaXElz2EblFvrwfjiCA5pqOc2QGlos0GOrhqe03ploWkcuDTHvylgjZetBxa2AxkQ6bSRqBVqNlQCKEDujwp78lUmDPvDubWKkYuOh5RLHqh+OcCD55VcQUm5cpb9vn8lVqqufaZGyZU1FevipWdV2A+0uKkW0cv6nMQf/+Fwd1ocISEN5x15S6XBLYLmKO1d1T8bfiFMy1OXTawkEkOo8KniEwvhYq11VxPpMjmdfh+Y3fW3/u9TZZc6aRjTmAUZKpbm3eqED83730+A01wH216UQw249xBJqb/K2sDgdSHN0jb0CyWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pvaif42UsfINSlAAimCpmndZRtT8DKtSjfaklfpubAU=;
+ b=VK9JKpTuN1w67mFdCtKAiar2KLPvhhsCGDZObriAfLZh+4ieJG4HvzZYH1GPeJLRj0w8x6NCoM4dp3OKtladg1sVik8YzomE15UeqrhqEhu3z0Z0aHMrSL30exspqQuCKoMMikL9nwYHY6pQ7Bf6M0JL5Y5BR3w8eI6z/bBrkBLXf2xcPsxTDhKhh1LjAiPjDnQECbnXg6xEHW3IdxBs86ljmTaH0IuoZByPkD/biM+KVmtuEr/Gzl2WsdaLY77IeRKsVut+xrlLIg3zIGjszJBtT+nsyR/m7tsvrAyfYwpVRy2wWGfuAa3STbdDezjvrwQK0vCW/0tx3zuQLs0qjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pvaif42UsfINSlAAimCpmndZRtT8DKtSjfaklfpubAU=;
+ b=uRBgQTiGKq+BrDj7AUiNa2KdA1rhNGStUVoAOQfohSxr5rlm5R+ObGdzU2cSr73omq94F9XRMWZf1me2zeUqc3EaNOh8Ttj7Pbd37Voi9vVcWKtlUN1whcttNzCSn1HsGWo+FalLeN/nGLxbzM4/X30G30+aMoiMZQP5wEMzfbKW0GvMFLk84S1GP+EfxkQP4JmsQz1vSaPbNDjkOHG7p63ZjB3JO77iisD6MHCoXBmmUp1ukmeU+K3fgyhK5PZarVHOvspFhmxOt1CrgoLZVAQpj5MjXTrOYJh06JirNuUCXbom5EQXHm/exbaTWwgexCOdsUD6bvghcZxfClSEYA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19) by BR2PR04MB728579.eurprd04.prod.outlook.com
+ (2603:10a6:2c8:3::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 08:28:31 +0000
+Received: from GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa]) by GV2PR04MB12318.eurprd04.prod.outlook.com
+ ([fe80::a498:2b5a:cbdb:d6fa%3]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
+ 08:28:31 +0000
+Date: Wed, 25 Nov 2026 10:28:26 +0200
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Denis Arefev <arefev@swemel.ru>
+Cc: Lucas Stach <l.stach@pengutronix.de>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, 
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org, stable@vger.kernel.org
+Subject: Re: [PATCH] drm: imx-dcss: Check return value of
+ drm_mode_config_helper_suspend()
+Message-ID: <awab8eI2696Nj1IR@vm>
+References: <20261119113031.36945-1-arefev@swemel.ru>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261119113031.36945-1-arefev@swemel.ru>
+X-ClientProxiedBy: AS9P309CA0004.EURP309.PROD.OUTLOOK.COM
+ (2603:10a6:20b:45d::14) To GV2PR04MB12318.eurprd04.prod.outlook.com
+ (2603:10a6:150:32b::19)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB12318:EE_|BR2PR04MB728579:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7176f908-ed7c-4e68-50ec-08df4ace1644
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|19092799006|376014|7416014|366016|261009223027099003|18002099003|22082099003|10067099003|11063799006|56012099006|261026140227099003|261026121527099003|261028144727099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: KlscykmmVa3sqwcj7A8QYuu3RKLSXl8Y329+46fSrfJuBHVF39sDUNAXGeKRSJRz1h6TLetowQO5EB5406XInCzvxtf7Hyvu/stVw11uaRqhf4Uj72hJzH51jO+VA6ig4f1+f7oNfcO78kZ5KEl3eIBCKbxm/KEwN3olamZcqZ6OscPgIgTIAcloRDd39P4iMArUSra3VIVUPAk+bWWCD4in6oX3JDasxJph5fDPERYDn5kfDKXzSxprlSsdXisKldrCjQDU5IxvTOMdHryia3blonyfj7Bmso7u+Tht3m3OChQ/vTI5DsyKtdM6kx5pYfFdt7eJ0wm9xQefoC186is6P4DyyfKzRGFP3pN0YC6UlTu33ulXsYa1JrOHf4yNZerEimFhg2dmhtkqX2yZ1EXszw0i4TaWE8pJqpOVgQ1giEm3mVXr7w98Aqst3vdHHy6K8GDvzX6JocvKegOf3ObFYtuIfmrNWvEU/8X0H08pUua5mNygKnTlh+RedUVnsE6L3QiloG2qUoTvd+euaDtrkCXxjNg26f/bjQW2TEeIU3gqM6yUh7PVa4QZ5gGQVwFpuSZc6QrGQ8jqC3VvOZ0G74yrUZlllCsM4R8SSmf1F5S8wULp9d/b5GhoMvImziKMvZe0lId1rBUP1WqXrdtX3lLOKkcSyZnv1reYhgw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB12318.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(19092799006)(376014)(7416014)(366016)(261009223027099003)(18002099003)(22082099003)(10067099003)(11063799006)(56012099006)(261026140227099003)(261026121527099003)(261028144727099003)(261022105027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4kzr4YwIvIN1L1V042dYNIEGzBtooGf6WS0e0WkNUerU0Ue5UGuVqkJcyPfv?=
+ =?us-ascii?Q?a0DH1834ox4NfzVeH/MZW0EOXvZoygaTtIWzC6Fr36FZClXqNuOwjOd8CAWx?=
+ =?us-ascii?Q?NOm9FrArubz17lVOw2cnBKQQqauhdobBjJln5hKLESwXSfz07Xr7vQIvXwyB?=
+ =?us-ascii?Q?GQF2OTwNjeXq2v0LucPY/w/KvrvJWDWaggiYODDfx9MiwEk90s0dpBlAMHLw?=
+ =?us-ascii?Q?lWmHfxOoISZCeKcYPDmXh7hvMJw3OFUvMG236/5dUlMtp4p6q9r1QL4JSKsQ?=
+ =?us-ascii?Q?pJIuK/SiRafUOrlCeuttw6k0aOF08kvqJSBPSWiOiwEYoyp0uLTM7UewUixT?=
+ =?us-ascii?Q?WH04qTIIdI851v+dOmpVtjUdNRonHv/8NsKuQJGbopkUxx4O5PldbXNb5e/+?=
+ =?us-ascii?Q?i1cWGWnVH4HIHsl63U7pimJnfa5mhHbF5SNVH0jC06weqbTCuDcemYevBhL8?=
+ =?us-ascii?Q?ENs+9r3yIku1ETsVlwgXVVUPtpFECDVUJYUgBtMLIOc6P7iR616dMQh15VSc?=
+ =?us-ascii?Q?1d7Ju/eqQvzBuMgNKZPXe/a+/9oL2MEppEN78qi9L4z3ytR/8jh2P1JQpUm2?=
+ =?us-ascii?Q?qA+9oU1xG1M+RRd3maMIDFeBVydLG5o96kh1iw+/52uphhBJJpyO1kWyeCkS?=
+ =?us-ascii?Q?AOZdvrUKuJsRkQHihXEBmYjP3CtIGX4atdxodV2nMrv11vMBx9XgiPOsgYcK?=
+ =?us-ascii?Q?/2xd7tJCax3kOinMA3kRWwiYMwA4rncHZionQywRZLCk0mdf/rpN6TbTw8yQ?=
+ =?us-ascii?Q?w3Qvc2XmbO+CX4RG8BqcbE1weQH2vzqB7JXjcEyWgW5HKJM0Xg2hDI0FIyC9?=
+ =?us-ascii?Q?EVnrt+1N/8AWQ6FoL1CqDnskp+mJCX3M4YiBuk9iXyJgIwpB+S9KU9UeIoK4?=
+ =?us-ascii?Q?iJd0U2ZAIE3kdCLxdPWovyb8dbtY3YbyG2h/csBW1edcZbUNuGxo9LbHX6Sz?=
+ =?us-ascii?Q?+/r1ljMjlTzYTaECXz9jWuZDPso1WCs/JlKM170JdA9wZMsaTYup2dOBRRxr?=
+ =?us-ascii?Q?2po7FkE/cTOF2iqdShYsahiNRmVxY9a4WZ2JxEWKY/wHQBkeN/IDqPKFxKrX?=
+ =?us-ascii?Q?zpaMlQGduA9qGSKMSsnMENW/26Am/AADunWF50GonH1eYzyTE7yoFd9Z5//a?=
+ =?us-ascii?Q?BFk82I1mWFJKIHf0iT/DkSyI6CZ84n+VSJHFMsI8uqTM2jb8ObD93mq9JunK?=
+ =?us-ascii?Q?e42cNdZg1+UySqCwZI6uwaOF63Yl4QymjDOE4Je/9Ye9MnUlPz+FC3oPmEx3?=
+ =?us-ascii?Q?2ItKn8nuyTZNN4NmiJVydg8CtPly58lc8buBULdbSF0k1MVjLQB0ITnlf9uF?=
+ =?us-ascii?Q?E8YX4iUTcGjPoZsbpACqnaxyNJ2yBiOhFh1D4CUJQMjL3Wf7HbKbtS1SaTAo?=
+ =?us-ascii?Q?6TjP3tKosrx2SSlRwO4kWPnra6W5ABTU5tCVQdn9LnGJToVl9CqBU4r54Pr4?=
+ =?us-ascii?Q?idinwhN6rFROtbKt0DuSSmyzWTgf87fizJ243z56kMOJBrLy23v7nXfkM9+I?=
+ =?us-ascii?Q?5Z8Fj0/lZJVhuQSHldNt+NLS57BTdKaCHYs+froo4Ndl0Y92rv4LoO67X2aI?=
+ =?us-ascii?Q?242nx+UU+i0NuuNvz3br02sTy1Xyz9BLoJ5WAFs5K2Fs3qqrUPZczTUKZoCA?=
+ =?us-ascii?Q?HZeM93mbhstZdRPvLNZNQM+E8mZLPY3879hirk5hAjq9A18ZlL+QcPBr9vbn?=
+ =?us-ascii?Q?7tyzBm9LBuqOaHff7Ih/hBNMkIUza/hLMokEs/IjgSUXwa4WxRiiPSf2IIpS?=
+ =?us-ascii?Q?5Xj7AEyvYZkR8l8QCbmvWsLg20SxICs=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7176f908-ed7c-4e68-50ec-08df4ace1644
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB12318.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 08:28:30.9401
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V4htefDhYutlaXoy4mHKKMjUc83qHuM+MnoKzB2vYvWCxPUtJbsJz1L1zAiwU72n/ve7t4iJIMRLPE0y7AjGkg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR2PR04MB728579
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_220147_878303_EF7E64D0 
-X-CRM114-Status: GOOD (  21.38  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_002837_558725_B3D15D2D 
+X-CRM114-Status: GOOD (  12.77  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,243 +144,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Expose MMDVFS topology and software power references through a read-only
-debugfs status file. Use seq_file so large topologies are not limited by
-a PAGE_SIZE module parameter buffer. Firmware shared memory and SRAM
-contents remain outside this diagnostic path.
+Hi Denis,
 
-Signed-off-by: Echo Zhang <echo.zhang@mediatek.com>
----
- drivers/soc/mediatek/mmdvfs/Makefile       |   1 +
- drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c | 200 +++++++++++++++++++++
- 2 files changed, 201 insertions(+)
- create mode 100644 drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c
+On Thu, Nov 19, 2026 at 02:30:29PM +0300, Denis Arefev wrote:
+> dcss_dev_suspend() ignores the return value of 
+> drm_mode_config_helper_suspend(). On failure that helper rolls back its
+> partial work (re-enables fbdev and polling) and leaves
+> mode_config.suspend_state unset, i.e. the DRM side is not suspended.
+> Continuing to suspend the context loader and disable the clocks then
+> leaves the device in an inconsistent state.
+> 
+> Check the return value and propagate the error to the PM core, as the
+> other DRM drivers calling this helper do.
+> 
+> Found by Linux Verification Center (linuxtesting.org) with SVACE.
+> 
+> Fixes: 9021c317b770 ("drm/imx: Add initial support for DCSS on iMX8MQ")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Denis Arefev <arefev@swemel.ru>
 
-diff --git a/drivers/soc/mediatek/mmdvfs/Makefile b/drivers/soc/mediatek/mmdvfs/Makefile
-index d02ebd63e6ae..3d780b29efe7 100644
---- a/drivers/soc/mediatek/mmdvfs/Makefile
-+++ b/drivers/soc/mediatek/mmdvfs/Makefile
-@@ -7,3 +7,4 @@ mtk-mmdvfs-y += mmdvfs-clk.o
- mtk-mmdvfs-y += mmdvfs-up.o
- mtk-mmdvfs-y += mmdvfs-vcp.o
- mtk-mmdvfs-$(CONFIG_MTK_MMDVFS_MT8196) += mmdvfs-mt8196.o
-+mtk-mmdvfs-$(CONFIG_DEBUG_FS) += mmdvfs-debug.o
-diff --git a/drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c b/drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c
-new file mode 100644
-index 000000000000..7d7324ff6577
---- /dev/null
-+++ b/drivers/soc/mediatek/mmdvfs/mmdvfs-debug.c
-@@ -0,0 +1,200 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/* Copyright (c) 2026 MediaTek Inc. */
-+
-+#include <linux/debugfs.h>
-+#include <linux/module.h>
-+#include <linux/seq_file.h>
-+
-+#include "mmdvfs-internal.h"
-+
-+static const char *mmdvfs_status_rc_name(u8 id)
-+{
-+	switch (id) {
-+	case MMDVFS_PWR_VCORE:
-+		return "VCORE";
-+	case MMDVFS_PWR_VMM:
-+		return "VMM";
-+	case MMDVFS_PWR_VDISP:
-+		return "VDISP";
-+	default:
-+		return "UNKNOWN";
-+	}
-+}
-+
-+static const char *mmdvfs_status_power_user_name(int id)
-+{
-+	static const char *const names[VCP_PWR_USR_NUM] = {
-+		[VCP_PWR_USR_MMDVFS_INIT] = "INIT",
-+		[VCP_PWR_USR_MMDVFS_VOTE] = "VOTE",
-+		[VCP_PWR_USR_MMDVFS_CCU] = "CCU",
-+		[VCP_PWR_USR_MMDVFS_RST] = "RST",
-+		[VCP_PWR_USR_MMQOS] = "MMQOS",
-+		[VCP_PWR_USR_CAM] = "CAM",
-+		[VCP_PWR_USR_IMG] = "IMG",
-+		[VCP_PWR_USR_PDA] = "PDA",
-+		[VCP_PWR_USR_SENIF] = "SENIF",
-+		[VCP_PWR_USR_VDEC] = "VDEC",
-+		[VCP_PWR_USR_VFMT] = "VFMT",
-+		[VCP_PWR_USR_SMI] = "SMI",
-+		[VCP_PWR_USR_DISP] = "DISP",
-+		[VCP_PWR_USR_MDP] = "MDP",
-+		[VCP_PWR_USR_MML] = "MML",
-+		[VCP_PWR_USR_VENC] = "VENC",
-+		[VCP_PWR_USR_JPEGDEC] = "JPEGDEC",
-+		[VCP_PWR_USR_JPEGENC] = "JPEGENC",
-+	};
-+
-+	return id >= 0 && (unsigned int)id < ARRAY_SIZE(names) && names[id] ?
-+		       names[id] :
-+		       "OTHER";
-+}
-+
-+static int mmdvfs_status_show(struct seq_file *s, void *unused)
-+{
-+	struct mmdvfs_device *mmdvfs = s->private;
-+	struct mmdvfs_data *data;
-+	int pwr_usage[VCP_PWR_USR_NUM] = {};
-+	int vcp_power = 0, active_power_users = 0, active_users = 0;
-+	int ret, rc_idx, mux_idx, user_idx, i;
-+
-+	if (!mmdvfs || !mmdvfs->data) {
-+		seq_puts(s, "ERROR: Device not ready\n");
-+		return 0;
-+	}
-+
-+	data = mmdvfs->data;
-+	seq_puts(s, "=== MMDVFS Status ===\n\n");
-+	seq_puts(s, "Version: ");
-+	switch (data->version) {
-+	case MMDVFS_VERSION_HWCCF_DVFS_VOTER:
-+		seq_puts(s, "HWCCF DVFS Voter\n");
-+		break;
-+	case MMDVFS_VERSION_NONE:
-+		seq_puts(s, "No hardware voter\n");
-+		break;
-+	default:
-+		seq_printf(s, "Unknown (%u)\n", data->version);
-+		break;
-+	}
-+	seq_printf(s, "Initialized: %s\n", data->init_done ? "yes" : "no");
-+	seq_printf(s, "Total: %u RCs, %u MUXes, %u Users\n", data->rc_num,
-+		   data->mux_num, data->user_num);
-+
-+	seq_puts(s, "\n--- Power Management ---\n");
-+	ret = mmdvfs_vcp_get_power_info(mmdvfs, &vcp_power, pwr_usage);
-+	if (ret)
-+		seq_printf(s, "VCP Power Refcount: unavailable (%d)\n", ret);
-+	else
-+		seq_printf(s, "VCP Power Refcount: %d\n", vcp_power);
-+	if (!ret) {
-+		for (i = 0; i < VCP_PWR_USR_NUM; i++)
-+			if (pwr_usage[i] > 0)
-+				active_power_users++;
-+		if (active_power_users) {
-+			seq_printf(s, "VCP Power Users (%d active):\n",
-+				   active_power_users);
-+			for (i = 0; i < VCP_PWR_USR_NUM; i++) {
-+				if (pwr_usage[i] > 0)
-+					seq_printf(s, "  [%2d] %s: %d\n", i,
-+						   mmdvfs_status_power_user_name(i),
-+						   pwr_usage[i]);
-+			}
-+		}
-+	}
-+
-+	seq_puts(s, "\n--- Active Users (level > 0) ---\n");
-+	for (user_idx = 0; user_idx < data->user_num; user_idx++) {
-+		struct mmdvfs_user *user = &data->user[user_idx];
-+		struct mmdvfs_mux *mux;
-+
-+		if (user->level == 0 || user->level == 0xff ||
-+		    user->mux >= data->mux_num)
-+			continue;
-+		mux = &data->mux[user->mux];
-+		if (mux->rc >= data->rc_num)
-+			continue;
-+		seq_printf(s, "User[%2u] %-20s RC=%s MUX=%s lvl=%u\n", user->id,
-+			   user->name ?: "(null)",
-+			   mmdvfs_status_rc_name(data->rc[mux->rc].id),
-+			   mux->name ?: "(null)", user->level);
-+		active_users++;
-+	}
-+	if (!active_users)
-+		seq_puts(s, "(No active users)\n");
-+	else
-+		seq_printf(s, "Total: %d active users\n", active_users);
-+
-+	seq_puts(s, "\n--- Resource Controllers ---\n");
-+	for (rc_idx = 0; rc_idx < data->rc_num; rc_idx++) {
-+		struct mmdvfs_rc *rc = &data->rc[rc_idx];
-+		int mux_count = 0;
-+		u8 freq_num = 0;
-+
-+		for (mux_idx = 0; mux_idx < data->mux_num; mux_idx++) {
-+			struct mmdvfs_mux *mux = &data->mux[mux_idx];
-+
-+			if (mux->rc != rc_idx)
-+				continue;
-+			mux_count++;
-+			if (!freq_num)
-+				freq_num = mux->freq_num;
-+		}
-+		seq_printf(s, "RC[%u] %s (freq_num=%u, muxes=%u)\n", rc->id,
-+			   mmdvfs_status_rc_name(rc->id), freq_num, mux_count);
-+
-+		for (mux_idx = 0; mux_idx < data->mux_num; mux_idx++) {
-+			struct mmdvfs_mux *mux = &data->mux[mux_idx];
-+			int user_count = 0;
-+
-+			if (mux->rc != rc_idx)
-+				continue;
-+			for (user_idx = 0; user_idx < data->user_num;
-+			     user_idx++)
-+				if (data->user[user_idx].mux == mux_idx)
-+					user_count++;
-+			seq_printf(s, "  +- MUX[%u] %s (users=%u)\n", mux->id,
-+				   mux->name ?: "(null)", user_count);
-+			for (user_idx = 0; user_idx < data->user_num;
-+			     user_idx++) {
-+				struct mmdvfs_user *user =
-+					&data->user[user_idx];
-+
-+				if (user->mux != mux_idx)
-+					continue;
-+				seq_printf(s,
-+					   "     |-- User[%2u] %s (level=%u)\n",
-+					   user->id, user->name ?: "(null)",
-+					   user->level);
-+			}
-+		}
-+		seq_puts(s, "\n");
-+	}
-+
-+	return 0;
-+}
-+
-+DEFINE_SHOW_ATTRIBUTE(mmdvfs_status);
-+
-+void mmdvfs_debug_init(struct mmdvfs_device *mmdvfs)
-+{
-+	struct dentry *dir, *file;
-+
-+	dir = debugfs_create_dir("mtk_mmdvfs", NULL);
-+	if (IS_ERR_OR_NULL(dir))
-+		return;
-+
-+	file = debugfs_create_file("status", 0444, dir, mmdvfs,
-+				   &mmdvfs_status_fops);
-+	if (IS_ERR_OR_NULL(file)) {
-+		debugfs_remove(dir);
-+		return;
-+	}
-+
-+	mmdvfs->debugfs_dir = dir;
-+}
-+
-+void mmdvfs_debug_exit(struct mmdvfs_device *mmdvfs)
-+{
-+	debugfs_remove_recursive(mmdvfs->debugfs_dir);
-+	mmdvfs->debugfs_dir = NULL;
-+}
+Reviewed-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+
 -- 
-2.45.2
-
+Thanks,
+Laurentiu
 
