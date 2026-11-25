@@ -2,71 +2,123 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75727606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8068F606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rH1gPjtk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=odh4ycun
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EqOxeO9M;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=oyDQ+Din
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:MIME-Version:References:In-Reply-To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SlEO7AG/xoBdanHyLcbNyPfkti5alnKG1VL7DPC5IJg=; b=rH1gPjtkED6MmHK35JkLy86Jmk
-	YDtHOp1RXmO8t5mpc/OtYb8M6z3Mwzn/tNXH3HE2//kv1NZExCDQDyRaTkohjOI7TMZnWtpUtVtRK
-	ODbLCn7TSNo+50LQ7gueA7QQvRZrWrn0VEVgM75pzjLyAGE4aoMgAo4CKUX+yiPxSmsLHOJ7wgsvy
-	GaRzSuU9mXKU1oAvGCFcv3iM3zSPCVcSmIWX3dLIdZ+B+ia88on6ns5CiIKf8x6p3X+g0+rcJ6Cum
-	mZmRaFh1xTWPgtzTGUsaC3JyPSXe5JRy9geLCcML3gjeqJkddLB9YmsF1HNapg7CCcc56VY4cNLMb
-	w/VNQ/5w==;
+	bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=; b=EqOxeO9MHJfzuEd7SpwolsQwth
+	vmjC1FmOdR1NCNZHxcgRPXF4sZxNb6TTGT3vNBUIWTWAdxkBnkRvZx3VMt/pYRhZZDl0Xr4CBEqCm
+	3oHiHYtAYgalSd4q3Z2o2H99Fngbo8Mgc+BDuMudvAdch53DawmXT7xpnnGhxSqocrZwdVY9BF3Cq
+	rd9cWkoXdArjlblTxJ2PdY5uDIGigHtqnnugRO8Cs0GB2gXPw7WYHQ6hFdUaVYh0TkDYMVOsuwN6J
+	BkB5pRVvgEPaAiADz7tDwVCObMDnHN+Wc3j06JTW0KbZfN/71ckKfwYO72B2tKempKuEqYH21ztux
+	H+ALPVFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0Zp-000000087yR-19GY;
-	Wed, 25 Nov 2026 00:09:33 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xW0aA-0000000884m-1jp8;
+	Wed, 25 Nov 2026 00:09:54 +0000
+Received: from mail-qv1-xf34.google.com ([2607:f8b0:4864:20::f34])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0Zj-000000087wl-22yG
+	id 1xW0Zy-0000000881C-3Haq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 00:09:27 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D24C14581C;
-	Wed, 25 Nov 2026 00:09:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F73F1F0089F;
-	Wed, 25 Nov 2026 00:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795565366;
-	bh=SlEO7AG/xoBdanHyLcbNyPfkti5alnKG1VL7DPC5IJg=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=odh4ycun0vP81AgfR+TAVVmdt5EvllvtLqYpb+NfquwNQah9O7DNKC+DrZqbNzLWY
-	 nzWOEVc4RwMqp3H0E16VEXQ/ceQ/EMow71rEIuDD9FoaHuH2pUQYFpF1Hu9cuRiBG9
-	 5xRtiZLAVY2d+US8Y5CjQ5YizjbhI1MJr4m72LYZrSAcQcpaEEcMfvmkqKX2W/ZoIf
-	 E7QvDPhz0FC22GOPPQF+1YNxvdOHEmz/oLZNaINrF90t1yEVn3dBGWVn9retJLEoZ1
-	 cNvXyxVq66QNFUMeU5JAtMgQfOhR1iHMMtIa6dVvapvAt5fNzCS0fNDlNqQdubObVV
-	 fBPB1RBuH8WXg==
-Subject: Re: [PATCH net-next v2 3/3] include/stmmac: Increase max DMA/MTL
- channel count from 8 to 16
-From: netdev-bot+sashiko@kernel.org
-To: sagar.cheluvegowda@oss.qualcomm.com
-Cc: j.raczynski@samsung.com, maxime.chevallier@bootlin.com,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, netdev@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, cs0617.lee@samsung.com,
- k.domagalski@samsung.com, k.tegowski@samsung.com,
- abhishek.chauhan@oss.qualcomm.com, lorenzo.bianconi@oss.qualcomm.com,
- sarosh.hasan@oss.qualcomm.com, hongmei.xu@oss.qualcomm.com
-Date: Wed, 25 Nov 2026 00:09:24 +0000
-Message-ID: <179556536493.3135.4615910736838398111@kernel.org>
-In-Reply-To: <20261124000415.4067701-4-sagar.cheluvegowda@oss.qualcomm.com>
-References: <20261124000415.4067701-4-sagar.cheluvegowda@oss.qualcomm.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Wed, 25 Nov 2026 00:09:44 +0000
+Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-921375f52b8so55279946d6.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:09:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795565380; cv=none;
+        d=google.com; s=arc-20260327;
+        b=GL5qy7/TJASTgtbR+AneM5GeHsYA4DcpZffvqQPYKMgNxTqROEt7J3CGCjJirIaQbs
+         wWQ2s0t4STmLFL9es0jhNk0Jgwz4fGxgO3zk0t1G1XshQk0VNnkWfjZDn84KsuVPqtx7
+         bJ6B0xm0Ie6rgRK0q8rhurMBxJaq08UJAURVsCgS4XnXIXWRoCnnNqtF7048d3dMfpRz
+         AxuLCCb35WrB4OGFnaGmLiTcjATjyoy0+PYYudKhukufYXuYwHm2kIaxXbHXEand/Aph
+         Ft7Te6yLG8wN4+Rv3kHwlgqBsN0aTt/PHunqBvBvq9wTc1ec3gAFO2FR5dAU2rDtO9Tf
+         LYRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:dkim-signature;
+        bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=;
+        fh=tXQgtosgt8Z7ePX7fRysOoFL9Y7hiodpvCc1mJBVN5I=;
+        b=C6NE4JUoabbvPswUg+/aRaxnQi2Fn5d39rcTJWEdmBhdaefetOeCnS5iZ9zzpHsZOI
+         ggKzRulH8/vIOK1V3MiZHkUa9vSALisbCvoEVWcnQmhT1QV8/qYvwsnYSAxodbN5HrDu
+         277iSx+57VxNrCpMsYK62LbWOlzHJa25urCNADL2xY4YlhZeKXACJnnClD7zxsr8mEh7
+         KFCiKXfd3jKwNQg77w06ZvkhApTxbrhRKTWRsVtZBBLyBzar1d/2IZkdW8LTqq7iwHYf
+         DazhLZGmuFbBQMklBlKw7/OIbprggmLCw+N0tMot1U8coOVVtUwFt08ZCy1XrzcYSgzL
+         RsGw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1795565380; x=1796170180; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:mime-version:references
+         :in-reply-to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=;
+        b=oyDQ+DinVaJ76D1WSgf2QeOMGav57wN0Om1T7UwIC3sQFimyJN9HV3jjQjow++Itwx
+         OqxcSP9EGSmSmijy7hGnYJOMNn/vMfPFQAboC9mjHwL+eAwqyRfldt2KnYcWfM4FhWVS
+         lrriz/NQexJklJlNcHF0+hf7pAJm6h0qpNRnLs4/T9+PcDzoX0vzeL4cFa9rQhXDMKvv
+         xyZXzX5x4HA+dkI395WP8ULUJhbKoYAKBvE8RQSTCGax2Zor7YlwA8oz6jOA3+kA8Fcf
+         ipE6FIbWEtFyeUGr/mDek3FzDFGqOCHz2DTs8Y7iIiTt74O826JrbXUFtHeMe8hSdw6X
+         Bdvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795565380; x=1796170180;
+        h=content-type:cc:to:subject:message-id:date:mime-version:references
+         :in-reply-to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=;
+        b=XaNzPU7sEyjk1H1YVWAAzZGWHdOTLk6vpodeMhfVk+p1BdVQtd1l2RFLDDyQ4Xy9AO
+         lEOCzu+R9uz5/bZ676zj44+7XnBL+/yKpneCu/wHrrqQbnRvGWirG+A6xoSY+Jqywylt
+         99CXmn2OU7hwh3KQC0/S/wMF4lohh84AIv+wmfvnm2QGB0EC9cMB5R40fsL6vhfkj0Kb
+         LWjRi4mudxNqjRkNFZDgttpuAPagABYZHEHT/wsJmQuB0MoTyisElWFs1LSd+SCJjBj+
+         yPlrg/27sN5fA137R7K6WFJCLx71QzkXHsOQYVbuSAQgCQSOaSB8alOsecuL1MtcVWrj
+         mXTQ==
+X-Forwarded-Encrypted: i=1; AL+hErHdAVvpu3+OI67NQfv2YS79hQ3pK8YDIU5OWUU87XSM7JYfnkKURxVgQEFTVDQbI52f1BCtDdgxaq08Hz4HfUGX@lists.infradead.org
+X-Gm-Message-State: APuU4Z+hIN9s8Sdht0ol9WWvoivqwoYAgzQ+N12VCBFBACzHVroFcZsM
+	QdbJLIXvj7hsxzXcS1+q2VbUJcPNGGEDiWF0W95DS9L88VMSukDKL/BDAyGs67CRrAnxJgQne4E
+	hJTvsy6yfUECLbu4YBWZtmPQ09muWUpNPK27m76p9
+X-Gm-Gg: AZFdTZdblK5LHDZacRcmK8gDMoyOM+ILgxhJ3H0jaUZHQkGCUvDvv42RSBtJRBl0iOL
+	+/gzsO550+CfeTlBVLNoBoXFgeV11aYh6GDfriTNDb7QVbL+WeSJIrIgNIc7byqw8XxuNFQTiui
+	lUkBNv+g41upjXaiGXvJ1qvFq/mn3lybxgaKwQX23STNSwk5S4iMMZrWjaWsg+ZNiMHU/017PqB
+	2Ugy/FlFIsbnMffjoMcd94rY2j3W/jRQaD6gywc/P78YOnslYHFZwAcm0fNr0QBvaTa071DUTMC
+	o1AyPbcUBNxhJxj/zLkea05kmDKaMolGkRpVlnul5H8wlmZzTBSeL8dBA2UFBQ9QDQuYGLuwfu5
+	C/udmiejZ1w9fMaKylIxY01Px5KFXWWi8jtfoSpo1ibiH6eFvo+nzwFgvNdO5ejoN5ZHa5pbh0F
+	zCiBNyiT/VWpemJWAMjlu2anI=
+X-Received: by 2002:a05:6214:3c9d:b0:91c:9316:f4e8 with SMTP id
+ 6a1803df08f44-92134baab8amr275174306d6.54.1795565379417; Tue, 24 Nov 2026
+ 16:09:39 -0800 (PST)
+Received: from 176938342045 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 24 Nov 2026 16:09:38 -0800
+From: Ackerley Tng <ackerleytng@google.com>
+In-Reply-To: <20261123104233.95710-10-steven.price@arm.com>
+References: <20261123104233.95710-1-steven.price@arm.com> <20261123104233.95710-10-steven.price@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Date: Tue, 24 Nov 2026 16:09:38 -0800
+X-Gm-Features: Aa3M54oNKjHnmwhcyDiHaoxz_zNMiDJBoB2YChnt0u_TPYjP0NAb6dZlL994CUs
+Message-ID: <CAEvNRgFQ5BXqU3KfPFT8bfZTW=RyvBw25z3GZtr3JA=Wv3Yqfw@mail.gmail.com>
+Subject: Re: [PATCH v4 09/11] KVM: arm64: CCA: Prevent memslot modifications
+ after Realm creation
+To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org, kvmarm@lists.linux.dev
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>, 
+	Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei <alexandru.elisei@arm.com>, 
+	Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev, 
+	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
+	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
+	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
+	Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kohei Enju <enju.kohei@fujitsu.com>
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_160942_848682_0090426C 
+X-CRM114-Status: GOOD (  30.47  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,244 +129,175 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 5 potential
-issue(s) to consider.
+Steven Price <steven.price@arm.com> writes:
 
-Critical: 0 · High: 0 · Medium: 3 · Low: 2
+> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>
+> Once the Realm is created, prevent changes to guest_memfd backed
+> memslots, which can provide private memory. Validate these changes
+> before KVM invalidates the old memslot, so a rejected deletion leaves
+> its stage-2 mappings intact. Realm stage-2 faults will also validate
+> the private memory backing in a later commit.
+>
+> Require Realm memslots to lie in the lower half of the IPA space, as the
+> upper, shared half aliases the lower, protected half.
+>
+> Define kvm_arch_has_private_mem() so generic KVM recognizes Realm VMs
+> as supporting private memory. Defining the macro also makes
+> gmem_in_place_conversion true for every arm64 VM, so guest_memfd
+> memslots are marked gmem-only even for non-Realm VMs. A well-formed
+> KVM_SET_MEMORY_ATTRIBUTES2 request on a non-Realm guest_memfd now
+> reaches the VM check and returns -EINVAL instead of -ENOTTY.
+>
+> Additionally, similar to pKVM, do not support dirty logging or
+> read-only memslots.
+>
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Imo this could be split into a few patches
 
-- [Medium] tc_setup_cbs() (stmmac_tc.c:343) checks the CBS queue only
-  against tx_queues_to_use.
-- [Medium] With up to 16 TX queues, tc_setup_dwmac510_mqprio()
-  (stmmac_tc.c:1456-1464) checks only that offset+count <=…
-- [Medium] dwxgmac2_tx_queue_prio() (dwxgmac2_core.c:140-155) handles
-  only TX queues/TCs 0..7.
-- [Low] net: stmmac: 3-bit queue mask truncation in
-  EST_SZ_CAP_HBFQ_MASK()
-- [Low] net: stmmac: signed shift overflow in dwxgmac2_rx_queue_enable()
-  for queue 15
+1. Add the constraints wrt realm memslots and being in the lower half of
+   the IPA space
+2. Defining arm's support for private mem
+3. Imposing rules on memslot changes
+4. Maybe some others, maybe I'm misunderstanding the patch
 
---
+> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Steven Price <steven.price@arm.com>
+>
+> ---
+> Changes since v3:
+> - Explain the arm64-wide in-place conversion effect and keep the
+>   general IPA limit comment.
+>
+> Changes since v1:
+> - Preserve private mappings if KVM invalidates a Realm guest_memfd
+>   slot before the prepare hook rejects its deletion.
+> ---
+>  arch/arm64/include/asm/kvm_host.h |  2 ++
+>  arch/arm64/kvm/mmu.c              | 37 ++++++++++++++++++++++++-------
+>  2 files changed, 31 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+> index 3ddeddfacd06..55673d08e3eb 100644
+> --- a/arch/arm64/include/asm/kvm_host.h
+> +++ b/arch/arm64/include/asm/kvm_host.h
+> @@ -1607,6 +1607,8 @@ struct kvm *kvm_arch_alloc_vm(void);
+>
+>  #define kvm_vm_is_realm(kvm)		((kvm)->arch.vm_flavor == VM_REALM)
+>
+> +#define kvm_arch_has_private_mem(kvm) kvm_vm_is_realm(kvm)
+> +
+>  #define kvm_has_mte(kvm)					\
+>  	(system_supports_mte() &&				\
+>  	 test_bit(KVM_ARCH_FLAG_MTE_ENABLED, &(kvm)->arch.flags))
+> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+> index 800333a345cd..9af5fe6d87f0 100644
+> --- a/arch/arm64/kvm/mmu.c
+> +++ b/arch/arm64/kvm/mmu.c
+> @@ -2861,17 +2861,32 @@ int kvm_arch_validate_memory_region(struct kvm *kvm,
+>  {
+>  	lockdep_assert_held(&kvm->slots_lock);
+>
+> -	if (kvm_vm_is_protected(kvm)) {
+> +	if (kvm_vm_is_protected(kvm) && new &&
+> +	    (new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)))
+> +		return -EPERM;
 
-include/stmmac: Increase max DMA/MTL channel count from 8 to 16
+gmem is already generically mutually exclusive with
+KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY, so before this change,
+pKVM is saying no to KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY for
+all memslots, gmem or not, so this check makes sense.
 
-This commit raises MTL_MAX_RX_QUEUES, MTL_MAX_TX_QUEUES and STMMAC_CH_MAX
-from 8 to 16 so that newer XGMAC hardware with up to 16 DMA/MTL queues can
-use all of them.
+> +
+> +	switch (kvm->arch.vm_flavor) {
+> +	case VM_PROTECTED_PKVM:
+>  		/* Cannot modify memslots once a pVM has run. */
+>  		if (pkvm_hyp_vm_is_created(kvm) &&
+> -		    (change == KVM_MR_DELETE || change == KVM_MR_MOVE)) {
+> +		    (change == KVM_MR_DELETE || change == KVM_MR_MOVE))
+>  			return -EPERM;
+> -		}
+> +		break;
 
-> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-> index 00be2df63d220..b91c8d069dc28 100644
-> --- a/include/linux/stmmac.h
-> +++ b/include/linux/stmmac.h
-> @@ -15,9 +15,9 @@
->  #include <linux/platform_device.h>
->  #include <linux/phylink.h>
->  
-> -#define MTL_MAX_RX_QUEUES	8
-> -#define MTL_MAX_TX_QUEUES	8
-> -#define STMMAC_CH_MAX		8
-> +#define MTL_MAX_RX_QUEUES	16
-> +#define MTL_MAX_TX_QUEUES	16
+Not sure why pKVM doesn't allow deleting a memslot after the vm is
+created, but this is no change from before this patch, the removal of {}
+here is mixed in with the other changes in this patch.
 
-[Severity: Low]
-Can stmmac_mac_enable_rx_queues() now evaluate a signed shift into the
-sign bit?
+> +	case VM_REALM:
+> +		/*
+> +		 * Once the Realm is created, we cannot modify any slots that
+> +		 * could be providing private memory. i.e., guest_memfd backed
+> +		 * slots.
+> +		 * TODO: Handle trusted device private memory slots
+> +		 */
+> +		if (!kvm_realm_is_created(kvm))
+> +			break;
+>
+> -		if (new &&
+> -		    new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)) {
+> +		if (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new))
+>  			return -EPERM;
+> -		}
+> +		break;
 
-Both dwxgmac2_rx_queue_enable() and dwxlgmac2_rx_queue_enable() in
-drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c do:
+Imo this should be written the same way as the pKVM branch for clarity,
+like
 
-	else if (mode == MTL_QUEUE_DCB)
-		value |= 0x2 << XGMAC_RXQEN_SHIFT(queue);
+if (kvm_realm_is_created() &&
+    (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new)))
+        return -EPERM;
 
-XGMAC_RXQEN_SHIFT(x) is defined as ((x) * 2). With MTL_MAX_RX_QUEUES
-at 16, rx_queues_to_use can be 16, and stmmac_mac_enable_rx_queues()
-then passes queue 15, giving 0x2 << 30. Since 0x2 is a plain int, this
-shifts a 1 into bit 31. That is undefined behaviour in C and can be
-flagged by CONFIG_UBSAN_SHIFT.
+but that aside,
 
-MTL_QUEUE_DCB is the default rx queue mode, so this would be hit on
-every interface bring-up through stmmac_hw_setup() on a 16-queue
-XGMAC/XLGMAC configuration.
+1. Why block creating memslots after realm is created?
 
-The register value most likely still comes out right with the kernel's
-compiler flags. Could these constants be made unsigned (0x2U, or
-FIELD_PREP() with XGMAC_RXQEN(queue)) as part of the preparatory
-changes before the limit is raised?
+Does ARM CCA have no way to add pages after a VM starts? This isn't
+blocked for TDX and SNP so I think this constraint seems unnecessary.
 
-[Severity: Low]
-Now that tx_queues_to_use can be larger than 8, does est_irq_status()
-still report the right queue on a head-of-line blocking event?
+2. Why block deleting memslots after realm is created?
 
-In drivers/net/ethernet/stmicro/stmmac/stmmac_est.c:est_irq_status(),
-the EST_HLBF handling does:
+This also seems like an artificial constraint, and it constrains the way
+the userspace VMM operates when stopping a VM, like the memslots can't
+be removed ever, the VM just has to be closed? (something like that)
 
-	value = readl(est_addr + EST_FRM_SZ_CAP);
-	hbfq = (value & EST_SZ_CAP_HBFQ_MASK(txqcnt)) >>
-		EST_SZ_CAP_HBFQ_SHIFT;
-
-txqcnt is priv->plat->tx_queues_to_use, passed down from
-stmmac_common_interrupt(). EST_SZ_CAP_HBFQ_MASK() in stmmac_est.h only
-knows about up to 8 queues:
-
-	(_val > 4 ? GENMASK(18, 16) :
-	 _val > 2 ? GENMASK(17, 16) :
-	 BIT(16));
-
-For txqcnt 9..16 the mask stays 3 bits wide and bit 19 is dropped.
-An HLBF event on queues 8..15 is then logged in the "EST: HLB(size)
-Queue %u" message as queue 0..7. That points the user at the wrong
-queue when debugging a taprio schedule.
-
-The impact is limited to the diagnostic message. Should
-EST_SZ_CAP_HBFQ_MASK() gain a _val > 8 ? GENMASK(19, 16) branch? Can
-you confirm the HBFQ field in EST_FRM_SZ_CAP really widens to 4 bits on
-the 16-queue XGMAC cores?
-
-[Severity: Medium]
-Now that tx_queues_to_use can be larger than 8, can tc_setup_cbs() program
-per-TC registers that do not exist on XGMAC?
-
-In drivers/net/ethernet/stmicro/stmmac/stmmac_tc.c:tc_setup_cbs(), the
-only bound on the CBS queue is:
-
-	/* Queue 0 is not AVB capable */
-	if (queue <= 0 || queue >= tx_queues_count)
-		return -EINVAL;
-
-The queue is then used directly as a traffic class index. dwxgmac2_qmode()
-does:
-
-	writel(0, ioaddr + XGMAC_MTL_TCx_ETS_CONTROL(channel));
-
-dwxgmac2_config_cbs() also writes XGMAC_MTL_TCx_SENDSLOPE(),
-XGMAC_MTL_TCx_QUANTUM_WEIGHT(), XGMAC_MTL_TCx_HICREDIT(),
-XGMAC_MTL_TCx_LOCREDIT() and XGMAC_MTL_TCx_ETS_CONTROL() using that same
-queue. XGMAC has at most XGMAC_MAX_TC (8) traffic classes, and
-dma_cap.numtc can be lower than that.
-
-At the same time, dwxgmac2_dma_tx_mode() puts the queue into a 3-bit
-field:
-
-	value |= FIELD_PREP(XGMAC_Q2TCMAP, channel);
-
-That means queue 9 is served by TC1. TC1's shaper is never touched, and
-the tc command still returns success.
-
-The path is:
-
-  tc qdisc replace ... cbs ... offload 1
-    stmmac_setup_tc()
-      tc_setup_cbs()
-        stmmac_dma_qmode() -> dwxgmac2_qmode()
-        stmmac_config_cbs() -> dwxgmac2_config_cbs()
-
-The earlier commit "net: stmmac: separate the TC count from the queue
-count on XGMAC" described this as writes to TC registers that do not
-exist. It bounded the resume replay in stmmac_configure_cbs() by
-stmmac_num_tc():
-
-	for (queue = 1; queue < num_tc; queue++) {
-
-However, tc_setup_cbs() is still bounded only by tx_queues_to_use. As a
-result, CBS state saved for queues >= num_tc is also silently not
-restored.
-
-Should tc_setup_cbs() reject queues >= stmmac_num_tc() as well?
-
-[Severity: Medium]
-With more than 8 TX queues, can dwxgmac3_fpe_map_preemption_class()
-silently truncate both the TC number and the preemption class?
-
-tc_setup_dwmac510_mqprio() only checks offset + count against
-tx_queues_to_use. It therefore accepts num_tc up to 16 and queue ranges
-that include queues 8..15. It then reaches this code in
-drivers/net/ethernet/stmicro/stmmac/stmmac_fpe.c:
-
-dwxgmac3_fpe_map_preemption_class() {
-    ...
-		for (u32 i = 0; i < count; i++) {
-			val = readl(priv->ioaddr + XGMAC_MTL_TXQ_OPMODE(offset + i));
-			writel(u32_replace_bits(val, tc, XGMAC_Q2TCMAP),
-			       priv->ioaddr + XGMAC_MTL_TXQ_OPMODE(offset + i));
-		}
-    ...
-}
-
-XGMAC_Q2TCMAP is GENMASK(10, 8), so TC 8..15 alias onto hardware
-TC 0..7.
-
-The preemption class is written with:
-
-	writel(u32_replace_bits(val, preemptible_txqs, FPE_MTL_PREEMPTION_CLASS),
-	       priv->ioaddr + XGMAC_MTL_FPE_CTRL_STS);
-
-FPE_MTL_PREEMPTION_CLASS is GENMASK(15, 8), so bits 8..15 of
-preemptible_txqs are dropped. For example, with num_tc 2, TC1 on queues
-8-15 and TC1 marked preemptible, preemptible_txqs is 0xFF00 and 0 is
-written to the field.
-
-When num_tc is 0, the default restore loop writes i, up to
-tx_queues_to_use - 1, into the same 3-bit XGMAC_Q2TCMAP field.
-
-No error is returned to the user in any of these cases. Should the
-mqprio/FPE path reject configurations that do not fit these register
-fields?
-
-[Severity: Medium]
-Does dwxgmac2_tx_queue_prio() handle queues 8 and above?
-
-drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c:dwxgmac2_tx_queue_prio() {
-    ...
-	reg = (queue < 4) ? XGMAC_TC_PRTY_MAP0 : XGMAC_TC_PRTY_MAP1;
-	if (queue >= 4)
-		queue -= 4;
-
-	value = readl(ioaddr + reg);
-	value &= ~XGMAC_PSTC(queue);
-	value |= (prio << XGMAC_PSTC_SHIFT(queue)) & XGMAC_PSTC(queue);
-    ...
-}
-
-For queues 8..15 the sub-index becomes 4..11. For queues 8..11, prio is a
-u32 shifted by 32..56 bits. For queues 12..15, XGMAC_PSTC() also expands
-to a GENMASK() past bit 63. Both are undefined behaviour.
-
-On x86-64, queues 12..15 end up overwriting the TC4..TC7 fields of
-XGMAC_TC_PRTY_MAP1.
-
-These calls can now be reached from tc_mqprio_config_queue_prio() and
-stmmac_reset_tc_mqprio(). Both loop over ARRAY_SIZE(tx_queues_cfg), which
-is now 16, and do:
-
-		if (i < priv->plat->tx_queues_to_use)
-			stmmac_tx_queue_prio(priv, priv->hw, prio, i);
-
-Neither loop is bounded by num_tc. By contrast, the boot-time
-stmmac_mac_config_tx_queues_prio() is bounded by stmmac_num_tc().
-
-The path is:
-
-  tc qdisc add ... mqprio ... hw 1 mode channel
-    tc_setup_dwmac510_mqprio()
-      tc_mqprio_config_queue_prio()
-        stmmac_tx_queue_prio() -> dwxgmac2_tx_queue_prio()
-
-Should these mqprio loops also be limited to stmmac_num_tc()?
-
-[ ... ]
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261124000415.4067701-1-sagar.cheluvegowda%40oss.qualcomm.com
+> +	default:
+> +		break;
+>  	}
+>
+>  	return 0;
+> @@ -2883,6 +2898,7 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
+>  				   enum kvm_mr_change change)
+>  {
+>  	hva_t hva, reg_end;
+> +	gfn_t ipa_limit;
+>  	int ret = 0;
+>
+>  	if (change != KVM_MR_CREATE && change != KVM_MR_MOVE &&
+> @@ -2891,9 +2907,14 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
+>
+>  	/*
+>  	 * Prevent userspace from creating a memory region outside of the IPA
+> -	 * space addressable by the KVM guest IPA space.
+> +	 * space addressable by the KVM guest IPA space. Realm shared IPAs alias
+> +	 * the corresponding private IPAs, so Realm memslots must reside entirely
+> +	 * in the lower half of that space.
+>  	 */
+> -	if ((new->base_gfn + new->npages) > (kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT))
+> +	ipa_limit = kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT;
+> +	if (kvm_vm_is_realm(kvm))
+> +		ipa_limit >>= 1;
+> +	if (new->base_gfn + new->npages > ipa_limit)
+>  		return -EFAULT;
+>
+>  	/*
+> --
+> 2.43.0
 
