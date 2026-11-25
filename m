@@ -2,87 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB04606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E60606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HfOPA/GE;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=OcOH5H7y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x3wZIQfz;
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=tCR2j2nI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AKIcUxt+msSiiJz1d9kZ/ecSgsFVs8DrJA/QJHIEgRo=; b=HfOPA/GEfE9Pj1
-	2EuzAWwYv4kQAu0QExOyrmGTiyj5S61BWKE9DcWwJFzgIk/DS9aq/6X1twS++Jjttt7n91NHPUIHY
-	m9kkOGrMri6YcOwTKoJ2p/3nMTvNdAsbMA92QjcnyrAqCLNGd4FbZNyws+8Inst5qNLwmAsunjjbT
-	i4rEUOzlbed4GWLWasXWCYeH/Rqsmhy7/rimGNbnC0xL96RAuP9f+FI05LEl6RuykDWktV3Eap0J7
-	8C2rg+ictWtKTAVPJjri//adAIBUw1Nj+AZiyDJyE2IXhi7JPUSC6GP/mN5AD+wmM0Y3P+lDYKR1b
-	94igfHRPVgffEsDLa+2w==;
+	List-Owner; bh=ogqpT8rvdF/Gm93BWuS1bNrXpPYIVQ5iqYHH/0ZaQ3I=; b=x3wZIQfzwp2c66
+	IJ4yekUe7pWWofsyOEzV4CSCwCj4hhyQ8tQg0VEoyd7Zq4PNtrecgUGwtt4PPin46yJpa4VPmH7pf
+	WnWPTqz4DIcBe43KmbcaPE2uMPee1gvl93tkAmzTbLfZfeIQuxLFK+KqMKzts0aI0HXtfR6ik4HcO
+	kU1KvPiwbI/QiX1mZtCPxJV9dgusowAuHUSg3ildzNnWJsz34NJUub8eHC6En7xPyZOu5UwfQvkAi
+	9mWYJP8b9/lZM67IIsjX9NbplkS4Fc0zVdq7lFascMv7YaLbNaoRv8QanKEA30xYPCWHQ8gC7sM0g
+	BZe+QwPs+ROp+ZDy5ntA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWIoA-0000000BAO7-14SW;
-	Wed, 25 Nov 2026 19:37:34 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1xWIoY-0000000BAf8-05DU;
+	Wed, 25 Nov 2026 19:37:58 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWIng-0000000B9zn-3sBP
+	id 1xWInp-0000000BA6V-0EJC
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 19:37:10 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-490d59c3edaso4231921f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:37:04 -0800 (PST)
+	Wed, 25 Nov 2026 19:37:17 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-4a9be758734so3931700f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:37:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1795635423; x=1796240223; darn=lists.infradead.org;
+        d=flipper.net; s=google; t=1795635431; x=1796240231; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=AKIcUxt+msSiiJz1d9kZ/ecSgsFVs8DrJA/QJHIEgRo=;
-        b=OcOH5H7y8W0TqbOGqSW+yqcrOnVKinhCcBqB5K3d223HKPJ5EfnmzVUUz+Eu7ez6UH
-         XgN2NuEzxtDtwLbNLqcczIXeCHCQ5citgiPP1nQ3IUmBD2ePjSJqunwye6qoW7f9dimZ
-         MviCAkh1aQPAVYbxxNEtKQqAbDX5GaXgp7cZxl5pd9fJt8oYZCt5Q44dqAiBEgS3eUb6
-         lsa3iZ/fLXdmSUuYx6JW7EWmSBqveLrc2tDXkCSke6nTNqSlE332GZBIP0mKhcE5QsPn
-         u8LZ8IulylL2G0WkqWuEbA+M6FiUS0URELZ7yZ5tja+R2yMTU2ihoCAJ1DMHxXKMMXWQ
-         SvJw==
+        bh=ogqpT8rvdF/Gm93BWuS1bNrXpPYIVQ5iqYHH/0ZaQ3I=;
+        b=tCR2j2nI1c8SbjiYs+TFuhEtkwq3vJv9wVABOhaPMir+tV40ZpmNBGxhyelJk4PqNO
+         YdqetuetLWYsXE1VHnmPS22deez7BU77nTCJHnkKxuzZam9ux/YfZVV9ItnRyPfBCHwP
+         DmMVzSqUtQDxE69YdSXDj3C0dN4VLuwPubigTjKjoLiM03G8dUTs5hkU0SvkR20MKgOz
+         J0Qt3RsDzsle32zUMHdLLQHX2K/I8LZiR652rixJAKiUdIy5xDjySsbr08WL1zmplQH6
+         CiNO+1KWvaRBzwnKvcANnHzGxbXYMQX5Hu5k9sTSCW0HlkTHNsBTip0cIADl5QQxMDRc
+         eIaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795635423; x=1796240223;
+        d=1e100.net; s=20260707; t=1795635431; x=1796240231;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=AKIcUxt+msSiiJz1d9kZ/ecSgsFVs8DrJA/QJHIEgRo=;
-        b=ISxLAUx0C2O16AQF8WoKywI0ISuSHgjGiGtZJ9HVPeo06SWvhRyq/XLUJgtYquxIRl
-         SL6PnSZoT1e4DJZmCr6/PsYNC2yexSTJ9nQq+lO7gHycbEAF4K1kkfr3j7qZPxPhpNyc
-         789aIMIk+8cs9yt979mMAQuX8dNZ2765qeCDsoUvK+LfevHP3NxBHyqnhe8SVwu6WX4t
-         K6fBEXoocwmnAaisE8woSSEz2o+oJlx6hfahOWIb6+33d/z7NjhFIik2OTTAAVLcBzMg
-         W8BfPsUNeSMhHXuhz/sViQdAw5Rntw1MPXHw6lavaJCWnufWTHSZZAOKfFQgybBiEqwa
-         AjVQ==
-X-Forwarded-Encrypted: i=1; AL+hErFkjomneI8B0bOUZk3p/t5grl3VaT+xhTBQN+Cm5u+K5ozvS2AclXQ6RrL3jpWmwkledweFKTqqhnHdy3aZIo6m@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Rnnw2AqEix/sFX6UOGQSwREasJbio3QG9miSOyrHYgySQnvS4
-	iFZwq0DG0tE0F4m0YuqfpBp+VwkMJt/6d/gQ+/5cYb7HqW7tTchxtI5+1YV71V4hiKk=
-X-Gm-Gg: AZFdTZdZSTe5/RkYecnzCk5ZJ6sssGqXieTYfCveroxkwtnXKZ82CjcVu4QEja4Y/jT
-	jMQI3PVq7Ndo0VzZJA7kRRqeXS5L8TKewrv5ZEHbTASqTcSy+TWGuIzqDcI8kuseSuFA0ULTdLv
-	OQLOp7qRQmmOpeZsX4tOZCBJiPBu3jKQMzcg7PxoEFV8PGEDA66xt8+jIpF70B/8y7JHYMwhT5Q
-	Eqsn512+1N2eIMQx+Pb1GP9F/4SDhEvdhHzlftiNSaMPDcqN4v2O/iKHMZFpLP6H+lwElgvkYCY
-	uX8hI39G0iS1B/nm0DRp/Vbj4ZWSJiIn2dXXGsbGX91qbXSv/te2O6MUX99w+rVbkHGzo50knPz
-	WDXg58Chur6j4r5Okjw0U2pIDd3fBPKCQSzgoPla8FQ5JHiOZwurLw3KX51K+zDwz51LGPJ+1B6
-	PK9Hkuo4R0HY6y/uJ1oahVb+KojGg+pfVuqGDB3D6Gy5ehFpsubGGCx6lPUF1v2JHNh8iPtgMwJ
-	nZFOcnRyCor3E+D/Q85qWPVncul7TPLttGzMiER2fAikb7sRtMzbvTwIMcSaghjP+NF1FUlHM3A
-	NMjCcjgKyh6hjixJunWn4lUwq5SApXE5sSiIrAnL2eoDLd+y3V7RZ/WbVNrZXq9j35xO81hdT4S
-	pRHU93WdWcA==
-X-Received: by 2002:a05:6000:4310:b0:4a9:6c58:178a with SMTP id ffacd0b85a97d-4aa55bfeb43mr44826785f8f.12.1795635422820;
-        Wed, 25 Nov 2026 11:37:02 -0800 (PST)
+        bh=ogqpT8rvdF/Gm93BWuS1bNrXpPYIVQ5iqYHH/0ZaQ3I=;
+        b=t+uM+D1sirNlYzStbEijvVcWihlOsAUZaj6cCsn2K2415ax9hKaz/nyV5Z+fp7trLp
+         imyxR0sBpzIPVxU3iBvcX2KvekMGyL8JN6zE7Vxd5L/bkAwljelbLoDibdvy6ovB8kbc
+         rMhtuch9QGdpjyJgknxDyOQ6RHYsA/14f9gZd+nEE1crXUjSujIWF9wmK9EW000nkZr/
+         M+M3OtpgwLlF9j+XUGWasAXEoqB3sGQ4MEHveDE5jChnXir1DVZigYfG/tjYPBr2gSsU
+         JF81NRUO4G73C6n/zYyPslUmNgjWGRSSkgVQ7Ru6j8dT6iB26kNGt7R4hnIsEc0UFtFf
+         37SQ==
+X-Forwarded-Encrypted: i=1; AL+hErHccAcheI+A2+fec9qJUI91m06/puspuhucd7/8nctN60Bz/NmMiykEBVN/LahlB4mQiM2Dj+Y4EsZCxhO6STRC@lists.infradead.org
+X-Gm-Message-State: APuU4Z8y1hGsy5bqAW1XdO7BpiOzOiCUitFgsas0mHlQuEmBrPei9ZXL
+	LV/RF+QyG632CQirKKVxDQYPtdAJNcHy2cTg3LzBRQGD0qbxqvY4y7SV6Rpn+yx1CYY=
+X-Gm-Gg: AZFdTZd0gtZc4pqnS3Ax0kcD6nTfQH5WLM7qlkLQK5+gASWnFMe8Hy+4HSt4FXojHZf
+	iOvg2CbWRnvdL9rsJZEsSFBOyxFbnDaX5uAEtrexr2K501/YdmlB9yZW3R65Xb66nC9UK+GhUR1
+	yESMXHRBGIa9mLtDI/MUPO8dJklSkw61+N8dUOEu/7E3PJvVbT44G3sK77HK7woAVUJaobCAOhd
+	AZNRdTb3VHsydVRubRf1tCZU22GhLj6N1Brw2hoBoa8dMiF3mO3LE1WvOLvGOIgBGsR+cjZDuzg
+	bKdofTxG/sf4iL/BKfNOt4BEb6WXJ3TQwzvUgslVGVtpU0qI/qZpjpY1M8WJclS3bRi3KKgNTOS
+	IlXgXBKkLlytritIUzZVUhKDLCMQ/OadrIyAogOcEj1rsHETVPU8NTLiKnPumDrHf0fR/L/IgXU
+	DdZWnHzqk0zd2jfO6DW2z8qdM45xA1j5v/KgkOo321lpdbmU0uDG3uZHa8HcpziogP247oJhPwk
+	2lGzr8JR8mst3UHiD0W2z5n5MrcrguChMvqsI+K6MWigpfIUh4123KWcp398JMb536iX2xFj8k2
+	2AA4ctdmMIGE2LvlgNGLjnsVnE0uafK13b1ow3P3YQqU0X73wjXI1npo7CO/t50sMz+p4hXp307
+	ZlPKRsFaf5PRbMVRhRlE9c9Zl02cUNkg=
+X-Received: by 2002:a5d:64c9:0:b0:4a7:69c3:94d5 with SMTP id ffacd0b85a97d-4abb0e469cfmr35425907f8f.28.1795635431246;
+        Wed, 25 Nov 2026 11:37:11 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6baa3882sm35614063f8f.49.2026.11.25.11.36.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6baa3882sm35614063f8f.49.2026.11.25.11.37.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 11:37:02 -0800 (PST)
+        Wed, 25 Nov 2026 11:37:11 -0800 (PST)
 From: Alexey Charkov <alchark@flipper.net>
-Date: Wed, 25 Nov 2026 23:36:40 +0400
-Subject: [PATCH v5 3/5] net: of_net: Derive MAC addresses from a unique
- device ID
+Date: Wed, 25 Nov 2026 23:36:42 +0400
+Subject: [PATCH v5 5/5] arm64: dts: rockchip: Derive GMAC MAC addresses
+ from OTP on RK3576
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-rk3576-otp-cpuid-mac-v5-3-b3125c9a5fc8@flipper.net>
+Message-Id: <20261125-rk3576-otp-cpuid-mac-v5-5-b3125c9a5fc8@flipper.net>
 References: <20261125-rk3576-otp-cpuid-mac-v5-0-b3125c9a5fc8@flipper.net>
 In-Reply-To: <20261125-rk3576-otp-cpuid-mac-v5-0-b3125c9a5fc8@flipper.net>
 To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -101,17 +101,17 @@ Cc: Ryan Leung <untilscour@protonmail.com>,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Alexey Charkov <alchark@flipper.net>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5556; i=alchark@flipper.net;
- h=from:subject:message-id; bh=+mHeuNbPVMSogKiUzepCmrFMa5pw6cOuPMEgrE/36/E=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWSzW5ztWZi1XclPvPDLBJ0+/qO+F6L3d00+eUdB54Cfa
- gzP75WLOyayMIhxMViKKbLM/bbEdqoR36xdHh5fYeawMoEMkRZpYAACFga+3MS8UiMdIz1TbUM9
- QyMdYx0jBi5OAZjqfh1Ghg++hzyqdq7hMnXJCz4VLL09wGPhuZsrLop3898tNlzWs53hr9zCG/d
- 6909ueLwulX3HAnNRJ5mwR7E5K1lfej+e9a3ciB8A
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2032; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=JAiuEnOZimha69/KVwMW0+w3glgeOUOuX9RVnjpc4yU=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWSzW5xrWM62Y/37+T53Hwe17wu9ny+vGuP4jmV57fU++
+ Va1cysKOiayMIhxMViKKbLM/bbEdqoR36xdHh5fYeawMoEMkRZpYAACFga+3MS8UiMdIz1TbUM9
+ QyMdYx0jBi5OAZjqqmWMDNfbjKIlv9QFCs1NZY+oPnLYv9+6Jm/iyitLZfmfTruxRZ3hf1DXm2i
+ hwzpxLP1yR8r+vf1r9+22xYz5F1fNV5wutjFDjwkA
 X-Developer-Key: i=alchark@flipper.net; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_113707_561807_0FECF136 
-X-CRM114-Status: GOOD (  26.47  )
+X-CRM114-CacheID: sfid-20261125_113713_152907_259897E6 
+X-CRM114-Status: GOOD (  13.63  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,170 +131,54 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Bootloaders on several platforms derive a stable MAC address from an
-identifier unique to the chip, such as a SoC serial number in OTP
-memory, so that boards without dedicated storage for an address still
-get a persistent one. They patch the result into the device tree they
-pass on, which leaves kernels started any other way, e.g. straight from
-the SPL in Falcon mode, with a random address changing on every boot.
+RK3576 boards without dedicated storage for a MAC address only get a
+stable one if the bootloader derives it from the CPU ID and patches it
+into the device tree, which not every boot flow does.
 
-Derive the address in of_get_mac_address() instead, as the last resort
-after any stored one, from a "unique-id" NVMEM cell. Doing it here
-rather than in individual drivers lets any controller with a device tree
-node use it, including PCIe ones. Pick the derivation by the compatible
-of the referenced cell, as the algorithms differ between vendors, and
-index the addresses by the device's "ethernetN" alias, which is how the
-bootloaders assign them to interfaces.
+Mark the CPU ID cell as such and reference it from both GMACs as their
+unique ID, so that the addresses can be derived from the device tree
+alone, whatever the bootloader. Each GMAC gets the address of its
+"ethernetN" alias, as with the bootloaders. Boards which store a MAC
+address of their own can reference it instead.
 
-Start with Rockchip, whose bootloaders hash the CPU ID as a lowercase
-hex string with SHA-256 and XOR the index into the last octet. Follow
-U-Boot's rockchip_setup_macaddr() exactly, so that both yield the same
-addresses.
+Note that the GMACs then depend on the OTP memory being accessible, as
+the thermal sensors already do for their trim values.
 
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
 Signed-off-by: Alexey Charkov <alchark@flipper.net>
 ---
- net/core/of_net.c | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 103 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/net/core/of_net.c b/net/core/of_net.c
-index 93ea425b9248..1f9858d2d444 100644
---- a/net/core/of_net.c
-+++ b/net/core/of_net.c
-@@ -4,7 +4,9 @@
-  *
-  * Initially copied out of arch/powerpc/kernel/prom_parse.c
-  */
-+#include <crypto/sha2.h>
- #include <linux/etherdevice.h>
-+#include <linux/hex.h>
- #include <linux/kernel.h>
- #include <linux/of_net.h>
- #include <linux/of_platform.h>
-@@ -97,6 +99,99 @@ int of_get_mac_address_nvmem(struct device_node *np, u8 *addr)
- }
- EXPORT_SYMBOL(of_get_mac_address_nvmem);
- 
-+#define ROCKCHIP_CPUID_LEN	16
-+
-+/*
-+ * Rockchip bootloaders hash the CPU ID as a lowercase hex string with SHA-256
-+ * and XOR the index into the last octet, see rockchip_setup_macaddr() in
-+ * U-Boot's arch/arm/mach-rockchip/board.c.
-+ */
-+static int of_mac_from_rockchip_cpuid(const u8 *id, size_t len, int index,
-+				      u8 *addr)
-+{
-+	char hex[ROCKCHIP_CPUID_LEN * 2];
-+	u8 digest[SHA256_DIGEST_SIZE];
-+
-+	if (len != ROCKCHIP_CPUID_LEN || index > U8_MAX)
-+		return -EINVAL;
-+
-+	bin2hex(hex, id, ROCKCHIP_CPUID_LEN);
-+	sha256(hex, sizeof(hex), digest);
-+
-+	memcpy(addr, digest, ETH_ALEN);
-+	addr[0] &= 0xfe;	/* clear the multicast bit */
-+	addr[0] |= 0x02;	/* set the locally administered bit */
-+	addr[5] ^= index;
-+
-+	return 0;
-+}
-+
-+struct of_mac_unique_id {
-+	const char *compatible;
-+	int (*derive)(const u8 *id, size_t len, int index, u8 *addr);
-+};
-+
-+/* Derivations by the compatible of the unique ID cell */
-+static const struct of_mac_unique_id of_mac_unique_ids[] = {
-+	{ "rockchip,cpuid", of_mac_from_rockchip_cpuid },
-+};
-+
-+/*
-+ * Derive a MAC address from a "unique-id" NVMEM cell the way the cell's
-+ * binding defines it, indexed by the "ethernetN" alias of the device, as that
-+ * is how bootloaders assign the derived addresses to interfaces.
-+ */
-+static int of_get_mac_address_unique_id(struct device_node *np, u8 *addr)
-+{
-+	const struct of_mac_unique_id *entry = NULL;
-+	struct of_phandle_args cell_spec;
-+	struct nvmem_cell *cell;
-+	int index, alias, ret, i;
-+	size_t len;
-+	u8 *id;
-+
-+	index = of_property_match_string(np, "nvmem-cell-names", "unique-id");
-+	if (index < 0)
-+		return -ENOENT;
-+
-+	ret = of_parse_phandle_with_optional_args(np, "nvmem-cells",
-+						  "#nvmem-cell-cells",
-+						  index, &cell_spec);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(of_mac_unique_ids); i++) {
-+		if (of_device_is_compatible(cell_spec.np,
-+					    of_mac_unique_ids[i].compatible)) {
-+			entry = &of_mac_unique_ids[i];
-+			break;
-+		}
-+	}
-+	of_node_put(cell_spec.np);
-+	if (!entry)
-+		return -EOPNOTSUPP;
-+
-+	alias = of_alias_get_id(np, "ethernet");
-+	if (alias < 0)
-+		return alias;
-+
-+	cell = of_nvmem_cell_get(np, "unique-id");
-+	if (IS_ERR(cell))
-+		return PTR_ERR(cell);
-+
-+	id = nvmem_cell_read(cell, &len);
-+	nvmem_cell_put(cell);
-+	if (IS_ERR(id))
-+		return PTR_ERR(id);
-+
-+	ret = entry->derive(id, len, alias, addr);
-+	kfree(id);
-+	if (ret)
-+		return ret;
-+
-+	return is_valid_ether_addr(addr) ? 0 : -EINVAL;
-+}
-+
- /**
-  * of_get_mac_address()
-  * @np:		Caller's Device Node
-@@ -108,7 +203,9 @@ EXPORT_SYMBOL(of_get_mac_address_nvmem);
-  * because that is the default address. If that isn't set, then the obsolete
-  * 'address' is checked, just in case we're using an old device tree. If any
-  * of the above isn't set, then try to get MAC address from nvmem cell named
-- * 'mac-address'.
-+ * 'mac-address'. As the last resort, derive one from an identifier unique to
-+ * the device in an nvmem cell named 'unique-id', if the way to do so is known
-+ * for that cell.
-  *
-  * Note that the 'address' property is supposed to contain a virtual address of
-  * the register set, but some DTS files have redefined that property to be the
-@@ -142,7 +239,11 @@ int of_get_mac_address(struct device_node *np, u8 *addr)
- 	if (!ret)
- 		return 0;
- 
--	return of_get_mac_address_nvmem(np, addr);
-+	ret = of_get_mac_address_nvmem(np, addr);
-+	if (!ret || ret == -EPROBE_DEFER)
-+		return ret;
-+
-+	return of_get_mac_address_unique_id(np, addr);
- }
- EXPORT_SYMBOL(of_get_mac_address);
- 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 2e83a73ddbb2..d14236c783b5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -2070,6 +2070,8 @@ gmac0: ethernet@2a220000 {
+ 			interrupts = <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq", "eth_wake_irq";
++			nvmem-cells = <&otp_id>;
++			nvmem-cell-names = "unique-id";
+ 			power-domains = <&power RK3576_PD_SDGMAC>;
+ 			resets = <&cru SRST_A_GMAC0>;
+ 			reset-names = "stmmaceth";
+@@ -2118,6 +2120,8 @@ gmac1: ethernet@2a230000 {
+ 			interrupts = <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq", "eth_wake_irq";
++			nvmem-cells = <&otp_id>;
++			nvmem-cell-names = "unique-id";
+ 			power-domains = <&power RK3576_PD_SDGMAC>;
+ 			resets = <&cru SRST_A_GMAC1>;
+ 			reset-names = "stmmaceth";
+@@ -2317,6 +2321,7 @@ otp_cpu_version: cpu-version@5 {
+ 					bits = <3 3>;
+ 				};
+ 				otp_id: id@a {
++					compatible = "rockchip,cpuid";
+ 					reg = <0x0a 0x10>;
+ 				};
+ 				cpub_leakage: cpub-leakage@1e {
 
 -- 
 2.56.0
