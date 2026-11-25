@@ -2,70 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC44606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0848D606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O8oylhP8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l5QwpmPm;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=YoK2Sune
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wKpzHZ7L2zAkn9UdAVy+8MnE4gMumt/s69X7gH2oLP4=; b=O8oylhP8mp2fZA0FN+plJ1VTLm
-	7vvmlkGhq0CEcNFiKZqwwSFBUf11BoM/66RRVI3twUk6QmnU3YzOREwA4kA8etGNmOdDhrHB8V2x/
-	ccrZMRNE+xzV+SowBykd/cIRRI8D7y4YMK9Tgt8sckFhFCJFq3fdF9wmSrMH994vyOO+oyGdaC6QD
-	a0P5kFLopEInSVoZ1IAR3Aa7iMPDLUJPAHjoy8BnvQBRUBWH2n2cevl5eIfYt9eEgVwNzShQLH/hw
-	RbSQENUm89zyTeOzDMT5a4LrKTB2oPKDsti7S9zfBm0sK59SQce/PCP65eHl2jbjBAybWaKxGNOCQ
-	NqGwBzhQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=GQcHSEGAH+oYjdGaXlzLkzPo+xt/SMiMMhadO3rs+ts=; b=l5QwpmPms/yY2N
+	7LIq/UarsRnL8WPBcrvULzAvXmcNa8+Zbb9F8Hi1wrr8GF3dbI7Dk0wQVssz6uwSs6DJdjhQ42ZMF
+	9+gkxZElfMl0i4nV75exX1ihrWq7LZ9/VLUnAekQbQ4PlO5PvBoD9CSpWRI18iOxqZ0m8/aEORs2n
+	xpr06jFi0irqMNZvjHqxytss7F4MZ9FFiUyCX87vLLDINRtp9KYh00a8RNqoaOqsHv9g2ARm3Jrlw
+	Rxe5kzpUfHYtuvK6NVafm6gjaAkX21I8My9+g0icIehlQ9jo6uegkz5M0lRNOHIJpDGyzvVWZ4Nnh
+	WhzpaIm/SrW5mljlQ3VQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBQc-00000009gal-1Au6;
-	Wed, 25 Nov 2026 11:44:46 +0000
-Received: from exchange.fintech.ru ([195.54.195.159])
+	id 1xWB6A-00000009bEK-0fLb;
+	Wed, 25 Nov 2026 11:23:38 +0000
+Received: from mail-m17235.xmail.ntesmail.com ([45.195.17.235])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBQ8-00000009gA2-1MrD;
-	Wed, 25 Nov 2026 11:44:17 +0000
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 25 Nov
- 2026 14:43:47 +0300
-Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 25 Nov
- 2026 14:43:46 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>
-CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
-	"Jernej Skrabec" <jernej.skrabec@gmail.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Damon Ding <damon.ding@rock-chips.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang
-	<hjc@rock-chips.com>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andyshrk@163.com>, Alexandre Marquet <tb@a-marquet.fr>, "Marek
- Szyprowski" <m.szyprowski@samsung.com>, <linux-rockchip@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
-Subject: [PATCH 3/3] drm/bridge: analogix_dp: Propagate errors from runtime resume
-Date: Wed, 25 Nov 2026 14:43:15 +0300
-Message-ID: <20261125114319.1089186-4-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125114319.1089186-1-n.zhandarovich@fintech.ru>
-References: <20261125114319.1089186-1-n.zhandarovich@fintech.ru>
+	id 1xWB4c-00000009Zw6-1nKD;
+	Wed, 25 Nov 2026 11:22:04 +0000
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 55f81602e;
+	Wed, 25 Nov 2026 19:21:58 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andyshrk@163.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v7 03/20] drm/bridge: analogix_dp: Use bridge->next_bridge instead of plat_data field
+Date: Wed, 25 Nov 2026 19:21:24 +0800
+Message-Id: <20261125112141.1434903-4-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261125112141.1434903-1-damon.ding@rock-chips.com>
+References: <20261125112141.1434903-1-damon.ding@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+X-HM-Tid: 0aa21270e49b03a8kunm17c23050775865
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZS0xKVhpLSkgYTBlPSB8dTFYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=YoK2SuneaiAI/W6MKXbul44N3PYNbCxtodAy21P1H7dhwNLLrSeYT9kwfAGd0A0wZ2jpbRmyikZu3nC1S2NtX9Cd+/F3uP1VTizWPONMek5QX8rTfPD1rmq58RqqYI3o45YlL1ld/7Vb5V/ywoGaFqh6TUE3CHjp575to4TMAoI=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=GQcHSEGAH+oYjdGaXlzLkzPo+xt/SMiMMhadO3rs+ts=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_034416_375166_2497114E 
-X-CRM114-Status: GOOD (  14.36  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261125_032202_722690_1F9755C9 
+X-CRM114-Status: GOOD (  22.89  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,82 +94,244 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Stop controller initialization when platform or PHY power-on fails and
-return the original error to the resume caller. Unwind the platform
-power callback only after it has completed successfully, then release
-the controller clock. Do not call phy_power_off() after a failed
-phy_power_on(), since no successful PHY power reference was acquired.
+The DRM bridge core provides a standard next_bridge field in struct
+drm_bridge for chaining downstream bridges. Use dp->bridge.next_bridge
+consistently inside the analogix_dp driver and drop the separate
+dp->plat_data->next_bridge field.
 
-Also stop and unwind platform power if setting the PHY mode fails.
+The next bridge is now resolved in analogix_dp_aux_done_probing(): a
+display mode bridge is created for the legacy display-timings on the
+Exynos platforms, while the remote endpoint bridge (panel or bridge)
+is looked up via of_drm_get_bridge_by_endpoint() otherwise. The
+obtained references are transferred to bridge->next_bridge, which the
+bridge core automatically puts at bridge destroy time.
 
-Fixes: 3424e3a4f844 ("drm: bridge: analogix/dp: split exynos dp driver to bridge directory")
-Fixes: 2c0883459ed6 ("drm/bridge: analogix_dp: Add support for phy configuration.")
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+Also select DRM_OF_DISPLAY_MODE_BRIDGE for DRM_ANALOGIX_DP and drop
+the now redundant select from the Exynos Kconfig, as the core now
+creates the display mode bridge itself.
+
+Suggested-by: Heiko Stuebner <heiko@sntech.de>
+Link: https://lore.kernel.org/all/5609825.iZASKD2KPV@diego/
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+
 ---
-Depends on patches 1 and 2 of this series, also on Alexandre Marquet's
-Exynos pipe-clock conversion [1], or Marek Szyprowski's equivalent [2].
-Without [1] or [2], propagating errors from old Exynos power_on() step
-may break AUX access.
 
-This is an updated version of the patch suggested by "Pengpeng Hou"
-<pengpeng@iscas.ac.cn> in [3]. It takes into account issues brought
-up by Sashiko, specifically, an issue of possible unbalanced clock
-disables. This patch was prepared using dependency [1].
+Changes in v4:
+- Add Tested-by tag.
 
-[1] https://lore.kernel.org/all/20261027-drm-misc-next-manta-auxbus-v1-2-3a45c3cf531d@a-marquet.fr/
-[2] https://lore.kernel.org/all/20261119223843.3694307-1-m.szyprowski@samsung.com/
-[3] https://lore.kernel.org/all/20260828091334.5793-1-pengpeng@iscas.ac.cn/
+Changes in v5:
+- Move this patch to the front of the patch series, as the
+  following patches rely on the dp->bridge.next_bridge field it
+  introduces.
+- Select DRM_OF_DISPLAY_MODE_BRIDGE for DRM_ANALOGIX_DP and drop the
+  redundant select from the Exynos Kconfig, to fix the undefined
+  reference build error. (kernel test robot)
+- Check the presence of the display-timings node with
+  of_get_child_by_name() instead of of_get_display_timings(), to
+  avoid leaking the allocated display timings. (Sashiko)
 
- .../drm/bridge/analogix/analogix_dp_core.c    | 23 +++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
+Changes in v6:
+- Add Tested-by tag.
+---
+ drivers/gpu/drm/bridge/analogix/Kconfig       |  1 +
+ .../drm/bridge/analogix/analogix_dp_core.c    | 50 +++++++++++--------
+ drivers/gpu/drm/exynos/Kconfig                |  1 -
+ drivers/gpu/drm/exynos/exynos_dp.c            | 15 +-----
+ include/drm/bridge/analogix_dp.h              |  1 -
+ 5 files changed, 30 insertions(+), 38 deletions(-)
 
+diff --git a/drivers/gpu/drm/bridge/analogix/Kconfig b/drivers/gpu/drm/bridge/analogix/Kconfig
+index 5672d83cb4a1..293d7b443163 100644
+--- a/drivers/gpu/drm/bridge/analogix/Kconfig
++++ b/drivers/gpu/drm/bridge/analogix/Kconfig
+@@ -33,6 +33,7 @@ config DRM_ANALOGIX_DP
+ 	depends on DRM
+ 	depends on OF
+ 	select DRM_DISPLAY_DP_AUX_BUS
++	select DRM_OF_DISPLAY_MODE_BRIDGE
+ 
+ config DRM_ANALOGIX_ANX7625
+ 	tristate "Analogix Anx7625 MIPI to DP interface support"
 diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 9d77c1d54a6d..3326b51aaeb5 100644
+index 50da43d64034..af7fc5afb8ec 100644
 --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
 +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1538,15 +1538,30 @@ int analogix_dp_resume(struct analogix_dp_device *dp)
- 		return ret;
+@@ -21,6 +21,7 @@
+ #include <linux/platform_device.h>
+ 
+ #include <drm/bridge/analogix_dp.h>
++#include <drm/bridge/of-display-mode-bridge.h>
+ #include <drm/display/drm_dp_aux_bus.h>
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+@@ -32,6 +33,8 @@
+ #include <drm/drm_print.h>
+ #include <drm/drm_probe_helper.h>
+ 
++#include <video/of_display_timing.h>
++
+ #include "analogix_dp_core.h"
+ #include "analogix_dp_reg.h"
+ 
+@@ -902,7 +905,7 @@ analogix_dp_bridge_detect(struct drm_bridge *bridge, struct drm_connector *conne
+ 	struct analogix_dp_device *dp = to_dp(bridge);
+ 	enum drm_connector_status status = connector_status_disconnected;
+ 
+-	if (dp->plat_data->next_bridge)
++	if (dp->bridge.next_bridge)
+ 		return connector_status_connected;
+ 
+ 	if (!analogix_dp_detect_hpd(dp))
+@@ -923,8 +926,8 @@ static int analogix_dp_bridge_attach(struct drm_bridge *bridge,
+ 		return -EINVAL;
  	}
  
--	if (dp->plat_data->power_on)
--		dp->plat_data->power_on(dp->plat_data);
-+	if (dp->plat_data->power_on) {
-+		ret = dp->plat_data->power_on(dp->plat_data);
-+		if (ret)
-+			goto err_disable_clk;
+-	if (dp->plat_data->next_bridge) {
+-		ret = drm_bridge_attach(dp->encoder, dp->plat_data->next_bridge, bridge,
++	if (dp->bridge.next_bridge) {
++		ret = drm_bridge_attach(dp->encoder, dp->bridge.next_bridge, bridge,
+ 					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+ 		if (ret) {
+ 			dev_err(dp->dev, "failed to attach following panel or bridge (%d)\n", ret);
+@@ -1636,37 +1639,40 @@ struct drm_dp_aux *analogix_dp_get_aux(struct analogix_dp_device *dp)
+ }
+ EXPORT_SYMBOL_GPL(analogix_dp_get_aux);
+ 
+-static void analogix_dp_put_bridge(void *data)
+-{
+-	drm_bridge_put(data);
+-}
+-
+ static int analogix_dp_aux_done_probing(struct drm_dp_aux *aux)
+ {
+ 	struct analogix_dp_device *dp = to_dp(aux);
+ 	struct analogix_dp_plat_data *plat_data = dp->plat_data;
++	struct drm_bridge *bridge = &dp->bridge, *next_bridge;
++	struct device_node *timings_np;
+ 	int port = plat_data->dev_type == EXYNOS_DP ? 0 : 1;
+-	int ret;
++
++	if (plat_data->dev_type == EXYNOS_DP) {
++		timings_np = of_get_child_by_name(dp->dev->of_node, "display-timings");
++		of_node_put(timings_np);
++		if (timings_np) {
++			next_bridge = devm_drm_of_display_mode_bridge(dp->dev,
++								      dp->dev->of_node,
++								      DRM_MODE_CONNECTOR_eDP);
++			if (IS_ERR(next_bridge))
++				return PTR_ERR(next_bridge);
++			bridge->next_bridge = drm_bridge_get(next_bridge);
++
++			return component_add(dp->dev, plat_data->ops);
++		}
 +	}
  
--	phy_set_mode(dp->phy, PHY_MODE_DP);
--	phy_power_on(dp->phy);
-+	ret = phy_set_mode(dp->phy, PHY_MODE_DP);
-+	if (ret)
-+		goto err_power_off;
-+
-+	ret = phy_power_on(dp->phy);
-+	if (ret)
-+		goto err_power_off;
+ 	/*
+ 	 * If of_drm_get_bridge_by_endpoint() returns -ENODEV, there may be no
+ 	 * valid panel or bridge nodes. The driver should go on for the
+ 	 * driver-free bridge or the DP mode applications.
+ 	 */
+-	plat_data->next_bridge = of_drm_get_bridge_by_endpoint(dp->dev->of_node,
+-							       port, 0);
+-	if (IS_ERR(plat_data->next_bridge)) {
+-		if (PTR_ERR(plat_data->next_bridge) == -ENODEV)
+-			plat_data->next_bridge = NULL;
++	bridge->next_bridge = of_drm_get_bridge_by_endpoint(dp->dev->of_node, port, 0);
++	if (IS_ERR(bridge->next_bridge)) {
++		if (PTR_ERR(bridge->next_bridge) == -ENODEV)
++			bridge->next_bridge = NULL;
+ 		else
+-			return PTR_ERR(plat_data->next_bridge);
+-	}
+-
+-	if (plat_data->next_bridge) {
+-		ret = devm_add_action_or_reset(dp->dev, analogix_dp_put_bridge,
+-					       plat_data->next_bridge);
+-		if (ret)
+-			return ret;
++			return PTR_ERR(bridge->next_bridge);
+ 	}
  
- 	analogix_dp_init_dp(dp);
+ 	return component_add(dp->dev, plat_data->ops);
+diff --git a/drivers/gpu/drm/exynos/Kconfig b/drivers/gpu/drm/exynos/Kconfig
+index a59131ae122c..d63db6c36eb3 100644
+--- a/drivers/gpu/drm/exynos/Kconfig
++++ b/drivers/gpu/drm/exynos/Kconfig
+@@ -74,7 +74,6 @@ config DRM_EXYNOS_DP
+ 	select DRM_BRIDGE_CONNECTOR
+ 	select DRM_DISPLAY_DP_HELPER
+ 	default DRM_EXYNOS
+-	select DRM_OF_DISPLAY_MODE_BRIDGE
+ 	select DRM_PANEL
+ 	help
+ 	  This enables support for DP device.
+diff --git a/drivers/gpu/drm/exynos/exynos_dp.c b/drivers/gpu/drm/exynos/exynos_dp.c
+index 4db7400c8a23..572e261e09da 100644
+--- a/drivers/gpu/drm/exynos/exynos_dp.c
++++ b/drivers/gpu/drm/exynos/exynos_dp.c
+@@ -14,12 +14,10 @@
+ #include <linux/of_graph.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
+-#include <video/of_display_timing.h>
+ #include <video/of_videomode.h>
+ #include <video/videomode.h>
  
- 	return 0;
-+
-+err_power_off:
-+	if (dp->plat_data->power_on && dp->plat_data->power_off)
-+		dp->plat_data->power_off(dp->plat_data);
-+err_disable_clk:
-+	clk_disable_unprepare(dp->clock);
-+	return ret;
+ #include <drm/bridge/analogix_dp.h>
+-#include <drm/bridge/of-display-mode-bridge.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_bridge.h>
+ #include <drm/drm_bridge_connector.h>
+@@ -160,14 +158,6 @@ static int exynos_dp_probe(struct platform_device *pdev)
+ 	 */
+ 	platform_set_drvdata(pdev, dp);
+ 
+-	if (of_get_display_timings(dev->of_node)) {
+-		dp->plat_data.next_bridge = devm_drm_of_display_mode_bridge(dp->dev,
+-									dp->dev->of_node,
+-									DRM_MODE_CONNECTOR_eDP);
+-		if (IS_ERR(dp->plat_data.next_bridge))
+-			return PTR_ERR(dp->plat_data.next_bridge);
+-	}
+-
+ 	/* The remote port can be either a panel or a bridge */
+ 	dp->plat_data.dev_type = EXYNOS_DP;
+ 	dp->plat_data.power_on = exynos_dp_poweron;
+@@ -178,10 +168,7 @@ static int exynos_dp_probe(struct platform_device *pdev)
+ 	if (IS_ERR(dp->adp))
+ 		return PTR_ERR(dp->adp);
+ 
+-	if (dp->plat_data.next_bridge)
+-		return component_add(&pdev->dev, &exynos_dp_ops);
+-	else
+-		return analogix_dp_finish_probe(dp->adp);
++	return analogix_dp_finish_probe(dp->adp);
  }
- EXPORT_SYMBOL_GPL(analogix_dp_resume);
  
+ static void exynos_dp_remove(struct platform_device *pdev)
+diff --git a/include/drm/bridge/analogix_dp.h b/include/drm/bridge/analogix_dp.h
+index e05ff4bd689c..7b5615ae0dc1 100644
+--- a/include/drm/bridge/analogix_dp.h
++++ b/include/drm/bridge/analogix_dp.h
+@@ -37,7 +37,6 @@ static inline bool analogix_dp_is_rockchip(enum analogix_dp_devtype type)
+ 
+ struct analogix_dp_plat_data {
+ 	enum analogix_dp_devtype dev_type;
+-	struct drm_bridge *next_bridge;
+ 	struct drm_encoder *encoder;
+ 	struct drm_connector *connector;
+ 	const struct component_ops *ops;
 -- 
-2.43.0
+2.34.1
 
 
