@@ -2,87 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC72606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C68B606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=srE01TbU;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=io0Xf+/y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZYVGHlnR;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=bYPkKVG2;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=ty4nHO3Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DXSGE8zndzbOvx0I1VcqKxrraBhjgygWU5lIu97CM3Q=; b=srE01TbUrYsQ7o
-	hlwqXIwVqs2ILTTpXZFz6Hw7FbB+ZeFHRNFvo7qLkJZcrppQKjYyAX4W7j9oiFwHvtXQGi1WOa2lL
-	iRxBW1mm6gr+6HRdHvk5V1uqa1XkXOJFFKcQcJrvyV14WYSZTxil2OxxaGIv7cBUVHHMayzWlY7Sh
-	IVqRWNapOPf8OW/yub8Kb7EVG6RYjtm507Zxy/auD5qxX7y9VR2MMsGJomfyUpOJlrenNCw6csBiB
-	/qHwqtCoYRfWGdzvU4tNOSowZgzYF1BMiZIart9m2dPGGxKrtl89qK2k7Dp/t6wGIyq8bJdTwX69U
-	CDyZ2rQmTywDOy8HW4Sw==;
+	List-Owner; bh=fFXM4VsY0RTQVbWn8ye8maJPr7lIP431CErzs/ruNGg=; b=ZYVGHlnRLPjtph
+	2sUJlLvhiy4Zu1NNdyyeKrOZa+/YIe9kPv7Ut5s2Bi36uO2UL7GDF7PqnNxIo2qoF77hBlOtkKrY6
+	swcjYtdq9y7l5E7dLyt+NPkf34eJTU1NNfIVmjNKApWr2caQ6jCjrLaa72NlWMJmT9c/xp3CtNYNZ
+	Q75al112B+2P6Wolm/PiVgsfuKwMlzefg/Batcn+aMw2fDzdZaTKNbtw1hODLw+R/7ErJBpDQWjy5
+	eAxzpjmVYtPRekL+HAF+RLxqYyKU6uAfCEF2kO6nDYgK9XRmPXrjzHT0edwOmiLNSCwyfDvi/N7g9
+	sCr8wqC/xX8GWxU1ddLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDI-0000000As0r-42i8;
-	Wed, 25 Nov 2026 17:55:24 +0000
-Received: from smtpout-04.galae.net ([185.171.202.116])
+	id 1xWHDq-0000000AsfM-2S6H;
+	Wed, 25 Nov 2026 17:55:58 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCW-0000000AqtV-0NKI
+	id 1xWHDb-0000000AsIb-3TtI
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 25 Nov 2026 17:55:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=fFXM4VsY0RTQVbWn8ye8maJPr7lIP431CErzs/ruNGg=; b=bYPkKVG2NmBb+Yv+6y2l+mwrlv
+	GU46R030840c4cNL3rLbIPhReXUIDhw1xniuY4A0Ec2ujaN9p2JimjW9FLRPoG1SuqnHlLBhHqBUq
+	zzNEvGlnw7qHve8UgzSH5OApeRes/kXD/hSKRw9vMvySgQthXaEGR7x6xty/G+I1by2geNpU3Rmic
+	aseIUS1NZYNPR3NZ8y21P+vDpdn77gmlGt6iEhzS8U7ARIcwHQuTWwuAVHYjLXVxEomxuIV1LnfKW
+	fydnlUTw7J4T+mQqu8weosljUu3T6s+zlmtCzK4n4ho1U/9edGIn5LZUG0QmpEJECfOlxHpg2HTtp
+	O1L+C5sw==;
+Received: from out-19.mta1.migadu.com ([95.215.58.19] helo=mta1.migadu.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHDW-00000005cYz-0FVQ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:54:52 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 3D2C3C6221E;
-	Wed, 25 Nov 2026 17:54:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 44C0760480;
-	Wed, 25 Nov 2026 17:54:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0015D11E6B0D5;
-	Wed, 25 Nov 2026 18:54:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629268; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=DXSGE8zndzbOvx0I1VcqKxrraBhjgygWU5lIu97CM3Q=;
-	b=io0Xf+/yoDo0TehiAHr/DSIC5GVPPwBKLeqyvcqJUW49v5lvs9coiM7UGM3KDE+qqvP8Mz
-	dwXkr39b0lN/yczChB+veVFx4DxrZFRnnhmb1HW6HSawcbmNtrnQfjYUWqE5TUAuL2Ab+A
-	QkbVOXM0jeWL9oC7NgHBxHzu/1N6rI7wHMelJYc5rsCh6f3OduTDXy3bUsWc29Dd8ivVjA
-	A+Zx5TiHnBHS0irFzB0FvZQDNtLP1t70hn0A6EXbe084EkcpbdAZx4l3Ra8oLCIaN7j9/c
-	Y9hnojQaGLyU/KQV2fTaGAqOUvt8IdQeFERZ4ZDrj3faFRzgVAYkZtmh8KfI2g==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:45 +0100
-Subject: [PATCH v4 32/32] drm/mxsfb/lcdif: enable bridge hotplug
+	Wed, 25 Nov 2026 17:55:42 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=NN4WGVbOnaTjrSCMn4KsfQluXPMA9ZIKbvqBw1KnXg0=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795629335; v=1; x=1796234135;
+ b=ty4nHO3YTMkCilwppIsWWTiBpDP/NWZdwrJq6CSGCK3KX66vVYz3q+IlV5X0foqKtuF4upRx
+ iXnvVBz9wy4kZJ0UivlMoHnOw2GCSov7iwzhlKPANH0XLIy4OvCMmsnmQmCb+vH/UT5jKgWHHv4
+ y8kQtKqybL2hu0B1mIfN53zY=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 8be7eac4ebc51b04;
+	Wed, 25 Nov 2026 17:55:31 +0000
+X-Mizu-Trace-ID: 8be7eac4ebc51b04
+X-Migadu-Flow: FLOW_OUT
+Message-ID: <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
+Date: Wed, 25 Nov 2026 17:55:29 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
+To: Leonardo Bras <leo.bras@arm.com>, Lorenzo Stoakes <ljs@kernel.org>
+Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
+ joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
+ yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org,
+ mark.rutland@arm.com, kvmarm@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com,
+ rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
+References: <20261124152842.2634495-1-usama.arif@linux.dev>
+ <awcXhk885lqDRAHy@LeoBrasDK>
+Content-Language: en-US
+From: Usama Arif <usama.arif@linux.dev>
+In-Reply-To: <awcXhk885lqDRAHy@LeoBrasDK>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-32-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
-X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095436_378748_04143DBF 
-X-CRM114-Status: GOOD (  18.34  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_175538_116523_CA75FC19 
+X-CRM114-Status: GOOD (  24.46  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,152 +92,123 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Switch to the new drm_hotplug_helper() to handle bridge hotplugging:
 
- * use the new drm_hotplug_helper to handle hotplug, including finding
-   the first bridge and attaching the bridge chain
- * use the connector add/remove callback to enable/disable HPD on
-   added/removed connectors
- * move drm_kms_helper_poll_init() before creating the drm_hotplug_helper
-   so that HPD polling is initialized before connectors can be hotplugged
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+On 25/11/2026 09:14, Leonardo Bras wrote:
+> On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
+>> When a stage-2 fault may need new page tables, KVM first tops up the
+>> vCPU's page cache: if it holds fewer pages than the fault might need, it
+>> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
+>> 40. Unused pages stay in the cache until the vCPU is destroyed.
+>>
+>> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
+>> used. Stage-2 has at most three levels and the root is preallocated, so
+>> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
+>> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
+>> table pages to map all of its memory, while its four vCPU caches get
+>> filled with 160.
+>>
+>> On a production host with 64 KiB pages running 101 VMs with four vCPUs
+>> each, the caches were still 86% full. The memory used:
+>>
+>>                         before      after
+>>   per-vCPU capacity     2.5 MB     512 KB
+>>   all 404 vCPUs         869 MB     <= 202 MB
+>>
+>> Let's lower the capacity to 8 with 64 KiB pages, In the production
+>> usecase above, it frees at least 667 MB. That still covers the two-page
+>> minimum and leaves room for several table allocations per refill. 4 KB
+>> and 16 KB pages keep 40.
+>>
+>> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
+>> but it is topped up before every page it maps, so 8 is sufficient there
+>> as well. The pKVM hypervisor memcache and the eager split cache don't
+>> use this capacity.
+>>
+>> Signed-off-by: Usama Arif <usama.arif@linux.dev>
+>> ---
+>>  arch/arm64/include/asm/kvm_types.h | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
+>> index 9a126b9e2d7c99..28568da9ea4a7b 100644
+>> --- a/arch/arm64/include/asm/kvm_types.h
+>> +++ b/arch/arm64/include/asm/kvm_types.h
+>> @@ -2,7 +2,12 @@
+>>  #ifndef _ASM_ARM64_KVM_TYPES_H
+>>  #define _ASM_ARM64_KVM_TYPES_H
+>>  
+>> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
+>> +#ifdef CONFIG_ARM64_64K_PAGES
+>> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
+>> +#else
+>>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
+>> +#endif
+>>  
+>>  #endif /* _ASM_ARM64_KVM_TYPES_H */
+>>  
+>> -- 
+>> 2.53.1-Meta
+>>
+> 
+> Hi Usama,
+> 
 
----
+Hello Leonardo,
 
-Changes in v4:
-- fix UAF when hot-plugged connectors implement HPD by using the new
-  per-connector HPD enable/disable API
+> Have you tried to reproduce this issue in v7.4-rc1 or newer?
 
-Changes in v3:
-- Adapt to the v3 version of the drm_hotplug_helper, which also handles HPD
+Yes. The patch is against kvmarm/next (v7.4-rc3), which includes
+Lorenzo's pre-fault series, and I A/B tested it there.
 
-Changes in v2:
-- Use the hotplug helper callback to enable HPD on the hotplugged connector
----
- drivers/gpu/drm/mxsfb/Kconfig     |  2 +-
- drivers/gpu/drm/mxsfb/lcdif_drv.c | 42 +++++++++++++++++++--------------------
- 2 files changed, 22 insertions(+), 22 deletions(-)
+On unpatched v7.4-rc3 with 64 KiB pages, a VM whose 16 vCPUs each fault
+in one page needs a single stage-2 table page, yet the vCPU caches hold
+640 pages (40 MiB). With the patch they hold 127 pages.
 
-diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
-index 31db7a824a93..ada9a9334ea4 100644
---- a/drivers/gpu/drm/mxsfb/Kconfig
-+++ b/drivers/gpu/drm/mxsfb/Kconfig
-@@ -34,7 +34,7 @@ config DRM_IMX_LCDIF
- 	select DRM_PANEL
- 	select DRM_PANEL_BRIDGE
- 	select DRM_DISPLAY_HELPER
--	select DRM_BRIDGE_CONNECTOR
-+	select DRM_HOTPLUG_HELPER
- 	help
- 	  Choose this option if you have an LCDIFv3 LCD controller.
- 	  Those devices are found in various i.MX SoC (i.MX8MP,
-diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-index 2be5a76e936f..591653b39310 100644
---- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
-+++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
-@@ -18,7 +18,7 @@
- #include <drm/clients/drm_client_setup.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
--#include <drm/drm_bridge_connector.h>
-+#include <drm/drm_hotplug_helper.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_encoder.h>
- #include <drm/drm_fbdev_dma.h>
-@@ -44,6 +44,19 @@ static const struct drm_mode_config_helper_funcs lcdif_mode_config_helpers = {
- 	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
- };
- 
-+static void lcdif_hotplug_event(enum drm_hotplug_helper_event event,
-+				struct drm_connector *connector)
-+{
-+	switch (event) {
-+	case DRM_HOTPLUG_HELPER_CONNECTOR_ADDED:
-+		drm_kms_helper_poll_enable_connector(connector);
-+	break;
-+	case DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING:
-+		drm_kms_helper_poll_disable_connector(connector);
-+		break;
-+	}
-+}
-+
- static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- {
- 	struct device *dev = lcdif->drm->dev;
-@@ -53,9 +66,8 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 		struct device_node *remote __free(device_node) =
- 			of_graph_get_remote_port_parent(ep);
- 		struct of_endpoint of_ep;
--		struct drm_bridge *bridge;
- 		struct drm_encoder *encoder;
--		struct drm_connector *connector;
-+		struct drm_hotplug_helper *hotplug_helper;
- 		int ret;
- 
- 		if (!of_device_is_available(remote))
-@@ -65,12 +77,6 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 		if (ret < 0)
- 			return dev_err_probe(dev, ret, "Failed to parse endpoint %pOF\n", ep);
- 
--		bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, of_ep.id);
--		if (IS_ERR(bridge))
--			return dev_err_probe(dev, PTR_ERR(bridge),
--					     "Failed to get bridge for endpoint%u\n",
--					     of_ep.id);
--
- 		encoder = drmm_plain_encoder_alloc(lcdif->drm, NULL,
- 						   DRM_MODE_ENCODER_NONE, NULL);
- 		if (IS_ERR(encoder))
-@@ -80,16 +86,10 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
- 
- 		encoder->possible_crtcs = drm_crtc_mask(&lcdif->crtc);
- 
--		ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
--		if (ret)
--			return dev_err_probe(dev, ret,
--					     "Failed to attach bridge for endpoint%u\n",
--					     of_ep.id);
--
--		connector = drm_bridge_connector_init(lcdif->drm, encoder);
--		if (IS_ERR(connector))
--			return dev_err_probe(dev, PTR_ERR(connector),
--					     "Failed to init bridge_connector for endpoint%u\n",
-+		hotplug_helper = drmm_hotplug_helper_init(encoder, lcdif_hotplug_event, ep);
-+		if (IS_ERR(hotplug_helper))
-+			return dev_err_probe(dev, PTR_ERR(hotplug_helper),
-+					     "Failed to init hotplug_helper for endpoint%u\n",
- 					     of_ep.id);
- 	}
- 
-@@ -176,6 +176,8 @@ static int lcdif_load(struct drm_device *drm)
- 	/* Start with vertical blanking interrupt reporting disabled. */
- 	drm_crtc_vblank_off(&lcdif->crtc);
- 
-+	drm_kms_helper_poll_init(drm);
-+
- 	ret = lcdif_attach_bridge(lcdif);
- 	if (ret)
- 		return ret;
-@@ -203,8 +205,6 @@ static int lcdif_load(struct drm_device *drm)
- 		return ret;
- 	}
- 
--	drm_kms_helper_poll_init(drm);
--
- 	drm_helper_hpd_irq_event(drm);
- 
- 	pm_runtime_enable(drm->dev);
+> 
+> IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
+> skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
+> improve that issue.
 
--- 
-2.56.1
+I don't think that part is new. __kvm_mmu_topup_memory_cache() has
+returned early when mc->nobjs >= min since commit 6926f95accee ("KVM:
+Move x86's MMU memory cache helpers to common KVM code"). Lorenzo's
+commit d27acc152c62 ("KVM: arm64: Size the stage-2 memcache from the
+fault MMU") takes min from s2fd->mmu instead of vcpu->arch.hw_mmu. For a
+guest abort that is the same MMU, so nothing changes here.
+
+With 64 KiB pages, min is kvm_mmu_cache_min_pages(), which is at most 2.
+
+> 
+> Although I can see that when it's below that minimum it fills the whole 
+> capacity (40) of the cache.
+> 
+
+Right, and that is the problem. Skipping the top-up avoids refilling
+the cache, but nothing ever drains it. A vCPU's first fault fills its
+cache to 40. Each last-level table covers 512 MiB, so a guest needs very
+few table pages, and most vCPUs never drop below min. The remaining
+pages stay allocated until the vCPU is destroyed, which is why the
+production caches were still 86% full.
+
+The patch keeps the early return and only lowers how far a refill goes.
+
+Thanks,
+Usama
+
+> In any case, Lorenzo, could you advise?
+> 
+> CC:Lorenzo Stoakes (ARM) (ljs@kernel.org) 
+> 
+> Thanks,
+> Leo
 
 
