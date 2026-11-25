@@ -2,142 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E702E606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5342606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eeBYGICI;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=goldelico.com header.i=@goldelico.com header.a=rsa-sha256 header.s=strato-dkim-0002 header.b=k/jEVpVv;
-	dkim=fail reason="signature verification failed" header.d=goldelico.com header.i=@goldelico.com header.a=ed25519-sha256 header.s=strato-dkim-0003 header.b=I+Y/BRNS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sixig2PC;
+	dkim=pass (2048-bit key) header.d=pereq.eu header.i=@pereq.eu header.a=rsa-sha256 header.s=google header.b=QPBV0M42
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1gk2zDY+qHFoLpfFOUqPZn9pkTFPLdiycG87z3EJLfY=; b=eeBYGICIU2C6RN
-	pNkf2sO04uzcNPZD7s9IWN+tl9QzKPbg1Zf+cqHf1+YGJiAjdmI6lCidr1EjFM7hcLoGL4OLmAsL4
-	agSf7UEAbF+qvOJEsejZWjSbNLTXzyRA7L1l5yfAWhPgeR8NQ6v5HOiKd9ZgJc0GnRFNM2bkJNtRY
-	lTX008m9lTH7RXEMbc2LqO+KlUSh7v27T5LuL8r8zX6C7giFwLi4Ml1EKgmUu9VHd4HblFVoyL+HE
-	tqTT6dpHMQiouyEtbLnIg7RsEFjAMN0c0au27LsLA+9a7KyqDPyORVI/8EncdIiumyst/FNNUWcio
-	sKn52eH41ap4i+Zc3hfg==;
+	List-Owner; bh=FprakhUf8NJ7i/pJUhVF+s5uu9taLAIMe4T8Serof+A=; b=sixig2PCaAPtJ8
+	m8mnZpY+58L3UlB/sbuesFyCaoDejf67kPZrG0ys8+/pKBQ7f+wGebdgcjqbg7IhdgNw9hV348wRt
+	3uqmAUKZgDlPuynvoHx5Ic3Nsay6CREZmOQ4kbCjrQYkTobVdwEBPrZtreLXxZl+3kocF0vRh+FNP
+	TSi6l/DKnsR447uo1LXbzQ+Id8OK030/MzcrUwVOCurAtpfXB/ALCake8NmJtVdiUiYGwPyfr2wgU
+	Ewo6XIgiUyf0/D4Gqn8dN0rGCLlnVsSg6yxsIykwYxV2gIqGikKDboYTVXBPj6RyS7nVEmw8mZ/7X
+	Uj57arXOOLScPBxT+B4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6j2-00000008jc6-3622;
-	Wed, 25 Nov 2026 06:43:28 +0000
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81])
+	id 1xW6vz-00000008lFb-1sUD;
+	Wed, 25 Nov 2026 06:56:51 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6j0-00000008jbN-1emi
+	id 1xW6vw-00000008lE9-1VWA
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:43:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1795588973; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=cTnbBPeGovHeLT6q6u9ZQyfIcEbHxmGIT0GrghPBSMc0a8wnvXLtuQfkzrUkZuOig+
-    mjlrb2X9BAMV6Niob3O8lWaPpn0e2SdWNdjNmOniwDiCZzqNRfWlUcROWNXaHY5Ve/NY
-    0VtyS2euhWucTcYnwTYon1YrmlfKfZqLYxa+qOPkv3sBr3ecSeQhrjCD2A5z9j+paM+0
-    rVWwnW9u+e0WtxWUhTDMffhkDAndZfl9WrnAH8ZAPV4eKb9fiwp9k208ODbrRSGsbdsg
-    j3/FNSbgbwldCxxsf4/oW8ZuSQ7/5LhlEuJLh16CY1sXuLGDgGTwZ6sZYN9iz1IICxLH
-    BmLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1795588973;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=1gk2zDY+qHFoLpfFOUqPZn9pkTFPLdiycG87z3EJLfY=;
-    b=VnsemKLEMl+3O0YMCi8sFARtWux1a17AXnxlzhRywNWKFcfap3DH7difiJlRoGytYh
-    0lOcJWFo7zxhNwp1yt3/yyQ6N4YsfMUGObwXOKvs4A5PTFMk0fIug+tCVkPz4A//bvId
-    jxdtI+t8tUjP1cM0OjQcUc+7LTkHs2scm9F9oIOZetWaErP1jEVAIELCzO4t4KbALYLi
-    Jw1E1xmzK3Oiz6FwxQ41LBe7+tDd3B01/ZH1FJL1A+y8qC+R7qsqDEMYTgrNAZPhKyf8
-    RLLci93fYIazcGHZ3aHRYdTRVHq/Ax90aMZHWEnskYt5wjVw9tE+H9/kWGZsWXKRGccY
-    5LLg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1795588973;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=1gk2zDY+qHFoLpfFOUqPZn9pkTFPLdiycG87z3EJLfY=;
-    b=k/jEVpVvLQkIML9nalg1JpMqB9CTqv/wAXr1zhqxzs/o7JG9ou3ERFGcSh+GlbUNZn
-    3tq85SddEbKil5B7cchZLZTrAwFexsBaMs9qsmh1iCRlQ1k6fHzxw0ptVxAI3mTDKdQL
-    4FxIaWJCkEHW4UASXFZnhxLqQn7CtpEwLzx6WyFXmsohzLa/KHGYS/rke0TQqo4/JxkA
-    jdfdPQTfKFoLe7ntolGx8485ObKLaY/+bpykLMy52JLbu3wYhBttQ1/RFXnt/tLR18T6
-    beJ+5cYvFYqR4grNQ3iFfE1hMjcMvNNuRfSugQ0WE2Fjb766Bf/tfXpjfxJEV5n02c70
-    dlsg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1795588973;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=1gk2zDY+qHFoLpfFOUqPZn9pkTFPLdiycG87z3EJLfY=;
-    b=I+Y/BRNSdG/pLdf5zxxzQco0G17o3kqUXrsy6r9rvniFtpueTu2DVpyc8o6OxvGsQI
-    iHXykzGIK8KtXwVBJmDw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9qVpwcQVkPW4I1HrS25oMlMiNMn5e/Npe6SVDIvzG+5uG4p/zkDZq"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 55.6.3 AUTH)
-    with ESMTPSA id Qb56a22AP6go5ny
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Wed, 25 Nov 2026 07:42:50 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	Wed, 25 Nov 2026 06:56:50 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-4ad6219f7d8so4674671f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:56:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pereq.eu; s=google; t=1795589806; x=1796194606; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=FprakhUf8NJ7i/pJUhVF+s5uu9taLAIMe4T8Serof+A=;
+        b=QPBV0M428H/451KvUtcFbSovP2ILeCIaxFUQS/IfL4HKxFXJS0C4KrXtEwkQxpucm3
+         S3xYx9oSF5UUyUiUymdZt1t9K8CDTTjCjnvKiu/513wRwMPrJawgq76NhHWkNRVuXtwx
+         vjJEgpjtpvO68LOLbN+nKQUtfLj18LA5beILN+pcnNmkiZ6kjWQluIGPzaF0xhShSyBI
+         +SJ9VfHx2MMNxIchZ+7TZ+FeUol5ig++cT6GPpLgKcdt2REIK6ZIdUMHrrcqcFpMC4U+
+         SS5TtWLSUll7es7rAn7c6kRrvWwakOGN5cy8/kjeAL6gMpcGEKtm9Dh8Xi8xdKoDUu5r
+         21Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795589806; x=1796194606;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=FprakhUf8NJ7i/pJUhVF+s5uu9taLAIMe4T8Serof+A=;
+        b=mXJfR9MEIw+HlEe6TUUpljr2dRr6H99UH+Z5Zk9uy6eKikTZCzWiyT9vGk+QBT2X6k
+         J5fPELieVNnCWh7wwr739rufTDN/5kjZcKgYtcXNgRypHAY2vCF+I+gErLzYn5p8gNjp
+         nITRG8oMGOAaoEAs6EWHOxmV+XxCS8x8IZ++hq9cjMRHvw5UnqHoCZ6adAEKrHENb5lp
+         v4NOBcQfuez7aA6mYK/ovZ8qg8IJ3fKg2ibWO7e5xGaatk3OD0nX1K4bPgn9corTz1wn
+         8Jfy6/55igGXoCnbY3hoqU5h+9b6Fqrwn9dYn2+sw9mHB5GHdcYqCdHS1E3HNgEcKfbi
+         CpFw==
+X-Forwarded-Encrypted: i=1; AL+hErEpjOLpnKWUx/4Ygg2uC4ErvZGrsqiWhUEs5vxhYD8sxlxr7ys8EX6eo2pT+8mMRCcg7PcV+yTjH4q5NA9QyIhE@lists.infradead.org
+X-Gm-Message-State: APuU4Z8GzkYjHe1hh3Dh8dLhh9izGxgcLynAkFF3h3FKKb+2tSQbH3Vl
+	jctVoULr11/SGomZaW+igFls8YQmHGfRi1RBoh+qKaI0417ZJLpLUHjANY6h9drVBXyj8qS8a2W
+	qitD4W1Q=
+X-Gm-Gg: AZFdTZdriJZarVyD9lR2oZ+l24KFwWTfkrp6Pg0CC/ctODOK3NzKzOG3mGrvF8Nyomw
+	gkvJdmCQmXRAmmTF8MTt/nqK4Ebk9fKh8jfdWbLYUKbN5FAk/g2vWAC466OLZvrl5Fa8jdhLBxc
+	Vi1xPaUQaUA9kPW8c9K256rNFiQ6MFPB7mxleftL7CJY2+iroKSEH/nV0HXHkq2alPRucZobfsC
+	e5AhJGTxY1XunVYJQBxJ2kP1lSkWGjxeM0VdtxXuAVt1ucu669l/7O1J8kU9ot7P3MMnlDtz8y5
+	v1lqleuy6Xyse4sywpiVd7pCL4fUdGXCpBuK/zUGVXl14aIyGL6LjxI0/wpybAOvXl42OoRjB4T
+	JS1cGMfACFe8skZH2WIQLzhobbxCpwJML9fiMoPGS2IzVdEpR+CnJcqzH2iUhMLHGfeCM2GliOX
+	31N8QPTcHSXsfRE5ZJji4EbNgZ0bQ5AVddNbib0wnJPivt67EbjKbVNTwdwJszL+ch5yjqD40KJ
+	KzQYLO/z0NoLvF5zlj9sup0wpm8oga5dlESPlmxiKU/o4NOUHLNIPtPX2dihvHNwqx97AsNo9iP
+	oZPoWqEnk5qDil9Fin0=
+X-Received: by 2002:adf:e014:0:10b0:4a6:b87:d799 with SMTP id ffacd0b85a97d-4abb400bb42mr23914238f8f.17.1795589806244;
+        Tue, 24 Nov 2026 22:56:46 -0800 (PST)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ad644140b5sm29125406f8f.17.2026.11.24.22.56.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 22:56:45 -0800 (PST)
+From: Dan Carpenter <dan@pereq.eu>
+Date: Wed, 25 Nov 2026 09:56:19 +0300
+Subject: [PATCH v2 4/8] KVM: arm64: nv: Discard nested SError in
+ kvm_reset_vcpu()
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.11\))
-Subject: Re: [Letux-kernel] [PATCH v2 00/20] ARM: omap3: pandora: Modernize
- audio and backlight to use Device Tree to finally remove pdata-quirks
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20261124234143.4f099646@kemnade.info>
-Date: Wed, 25 Nov 2026 07:42:19 +0100
-Cc: linux-fbdev@vger.kernel.org,
- Lee Jones <lee@kernel.org>,
- linux-pwm@vger.kernel.org,
- Tony Lindgren <tony@atomide.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- dri-devel@lists.freedesktop.org,
- Jaroslav Kysela <perex@perex.cz>,
- =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- David Airlie <airlied@gmail.com>,
- linux-leds@vger.kernel.org,
- Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Kevin Hilman <khilman@baylibre.com>,
- Helge Deller <deller@gmx.de>,
- Bartosz Golaszewski <brgl@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Peter Ujfalusi <peter.ujfalusi@gmail.com>,
- Daniel Thompson <danielt@kernel.org>,
- devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Pavel Machek <pavel@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Roger Quadros <rogerq@kernel.org>,
- linux-gpio@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
- linux-sound@vger.kernel.org,
- Takashi Iwai <tiwai@suse.com>,
- linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jingoo Han <jingoohan1@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- linux-kernel@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- kernel@pyra-handheld.com,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Jarkko Nikula <jarkko.nikula@bitmer.com>,
- Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <D4A9EE97-468E-4720-8D26-D3B008F8E762@goldelico.com>
-References: <cover.1795505160.git.hns@goldelico.com>
- <20261124151318.GA536798-robh@kernel.org>
- <1DCFB59E-E5EA-4470-997E-EAA4ED35D906@goldelico.com>
- <20261124234143.4f099646@kemnade.info>
-To: Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: Apple Mail (2.3826.700.81.1.11)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-double_exception-v2-4-224689d8a764@pereq.eu>
+References: <20261125-double_exception-v2-0-224689d8a764@pereq.eu>
+In-Reply-To: <20261125-double_exception-v2-0-224689d8a764@pereq.eu>
+To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
+ Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, 
+ Steffen Eiden <seiden@linux.ibm.com>, 
+ Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Zenghui Yu <yuzenghui@huawei.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, 
+ Christoffer Dall <c.dall@virtualopensystems.com>, 
+ Rusty Russell <rusty@rustcorp.com.au>, 
+ Marcelo Tosatti <mtosatti@redhat.com>, Sebastian Ott <sebott@redhat.com>, 
+ Eric Auger <eric.auger@redhat.com>, James Morse <james.morse@arm.com>, 
+ Paolo Bonzini <pbonzini@redhat.com>, 
+ Sean Christopherson <seanjc@google.com>, Shuah Khan <shuah@kernel.org>
+Cc: Karthik Bhargavan <karthik@pereq.eu>, 
+ =?utf-8?q?Cl=C3=A9ment_Blaudeau?= <clement@cryspen.com>, 
+ linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, 
+ Dan Carpenter <dan@pereq.eu>, linux-kernel@vger.kernel.org, 
+ kvm@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_224326_695682_83FDEBC4 
-X-CRM114-Status: GOOD (  20.94  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_225648_995628_AA121A30 
+X-CRM114-Status: GOOD (  10.95  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -148,73 +119,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Andreas,
+Vanilla KVM stores a pending SError in ->hcr_el2 but nested KVM stores
+it in the NESTED_SERROR_PENDING flag.  Clear the flag for nested
+SErrors when we reset the vcpu.
 
-> Am 24.11.2026 um 23:41 schrieb Andreas Kemnade <andreas@kemnade.info>:
->=20
-> On Tue, 24 Nov 2026 16:27:16 +0100
-> "H. Nikolaus Schaller" <hns@goldelico.com> wrote:
->=20
->>> Surely=20
->>> this can be broken up into smaller series? =20
->>=20
->> Yes it (we?) can. It is just a question how to do it and properly =
-describe
->> the dependencies to avoid bisectability problems and avoid that the =
-final
->> goal is lost.
->>=20
-> I think it is indeed tricky, and probably induces delays.
-> You can point to the pandora_bl driver  resp the pandora sound card to =
-show the
-> final goal.=20
->=20
-> If I understand it correctly,  you have
->=20
-> 1. preparations/extensions for using the standard pwm backlight.
-> 2. REGEN stuff to wire up the power supply.=20
-> 3. dts changes to wire up backlight and its power supply.=20
-> 4. sound: quirks in twl4030 codec
-> 5. sound: dt conversion of the sound card.
-> 6. dts changes to wire up sound card and its power supply
-> 7. machine quirk cleanup
+Fixes: 77ee70a07357 ("KVM: arm64: nv: Honor SError exception routing / masking")
+Cc: stable@vger.kernel.org
+Signed-off-by: Dan Carpenter <dan@pereq.eu>
+---
+v2: New patch.  I split it up like this to make backporting easier.
+---
+ arch/arm64/kvm/reset.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Basically yes.
+diff --git a/arch/arm64/kvm/reset.c b/arch/arm64/kvm/reset.c
+index a5d298d5ce61..d80b38b2ce6c 100644
+--- a/arch/arm64/kvm/reset.c
++++ b/arch/arm64/kvm/reset.c
+@@ -209,6 +209,7 @@ void kvm_reset_vcpu(struct kvm_vcpu *vcpu)
+ 
+ 	/* Discard a pending SError */
+ 	vcpu->arch.hcr_el2 &= ~HCR_EL2_VSE;
++	vcpu_clear_flag(vcpu, NESTED_SERROR_PENDING);
+ 
+ 	/*
+ 	 * Additional reset state handling that PSCI may have imposed on us.
 
->=20
-> So what brings it all together: the power supply requirments,
-> so both backlight and sound depend on 2.
->=20
-> Maybe it is an idea to split this into a set of
->=20
-> One patchset for
-> 7a. machine quirk conditionally depending on available compatible
-> 2.
-> 1.
-> 3.
-> Each can go into their individual trees.
-> 3. might to in the next release cycle after 7a, 2. 1.
->=20
-> A second patchset sent after 3 is in -next, containg
-> 4.
-> 5.
-> 6.
+-- 
+2.53.0
 
->=20
-> A third:
-> 7b: remove quirk + pandora_bl
-
-Yes, this is a good approach. I am currently checking if the =
-series-scheme
-can be simplified even more to help everybody.
-
-BR and thanks,
-Nikolaus=
 
