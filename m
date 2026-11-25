@@ -2,93 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDA3606A69C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB4A606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Cau1XMoi;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=NUWHpIRD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LgCgLNe+;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=a25X4E02
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=G2pU++T3tD+tmGyFtl1Nv5aGN0H0XWEVrsx+kHagZgU=; b=Cau1XMois7jB01ilK2Evs9flX9
-	skaC/ZOtYXepfiWMl4jyp6B2FoPzpi7877l0IIVNCCZKz13FGtaCXU9QoRWk9IYXWl3m5c4qH44zP
-	g0mDPjl7G3NjkeAmlY9NHOuzoVr6ez+MYRsGTCLI8SAul20C8jup2T4TcohI5XbhVTM/dmUMkJG1U
-	u5PA0QI13Dvx2+c6LpC+I+tpWTgitKROjK3D1BCAty/IoJDjZzo1uAdDQITICVobFqNZDfAlGkidl
-	IrA/OM0SWlSRCAGH/hjkCajDNBj0qlm9hTDEOPz15FNVNhVae59O1ltrjDEkjp76R7c+vUsmD3p2q
-	eeg/jqDA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=4/x7j50MQJx15iZQDZRl//Wy8YqZBKp5oVRm2ztPBoI=; b=LgCgLNe+D3P9dR
+	XokHC3+30LZln3D4MDFRIy9e0OC3xNRBg1u8yqctIAFpoQcD0Gvy38RksnR5dlkV5j9M2KuVjQfRf
+	MB0C3FEYbR/nERufDkPKKAGNdqRLpokJrw4zOOAf/5wOpqTo85Pxbe9zxiKiPbtS3EBbBjGo4EJxF
+	6wq67RYhOG5hRq52HrjdUOlGMBAaHphHy1c6LGufLjzUH+RJjni8AV8xg8z4uEP/7IOTbwY23x9AU
+	GJeRmBbl0iIViTmpbXtbI51JQGssvJynXzXkH8643uXbWcf01zvN4ngWsH78lrtOSJHswMzmQlWIW
+	jR0wtsLaaZf6tC6BzQzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW99b-00000009FgL-14jD;
-	Wed, 25 Nov 2026 09:19:09 +0000
-Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	id 1xW8N7-000000094qA-1q4v;
+	Wed, 25 Nov 2026 08:28:57 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW99X-00000009FeM-294y
+	id 1xW8N4-000000094nc-0vHx
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 09:19:01 +0000
-Received: from ptx.office.stw.pengutronix.de (ptx.office.stw.4.pengutronix.de [10.9.0.3])
-	(Authenticated sender: relay-from-ptx.office.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 03FE420227C;
-	Wed, 25 Nov 2026 10:18:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795598336;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=G2pU++T3tD+tmGyFtl1Nv5aGN0H0XWEVrsx+kHagZgU=;
-	b=NUWHpIRDlROu5QfbaYS1pqZe+7mb6TlYhitoJdVAN7dzZCNPqt0jciWNeFUpQaXN/mwR3V
-	PPv/UdupcQm2oQKDE9qxIWQNYr0G2eej8Hx01Gy+BwJaOBPXSAz5YUjjDrUD96zpdRXmYn
-	+cWlfjzVW4mWu0wIwpRlYNCrXdDOfHLA9Y+26zJC+po9IhcaUXgkvyYEyp/Uo1CoIxKpdy
-	7ZWCCqH/0+FW+g9SACka6JEA4hM8VOoeQheaF2m2SPeJKz/jTLKLzq2r9OVdT00Hdbe2Cs
-	cXgQRvZQh73G6O7nXbUtG02n1qeyceSSCP6aw+CCEhUyykK03KAtAEbb6Etqbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795598336;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=G2pU++T3tD+tmGyFtl1Nv5aGN0H0XWEVrsx+kHagZgU=;
-	b=WIQuXForrUxbZj1ZLOKtvyBrWvFaZPIIWR6RaXxWoiWy6dzgnZN/WHtyzDqs3xBL1WKNCf
-	2HDMD3dXkLIYwsbcE9Mrj8Ik1Ran+0siLnPbPZerIQ/w/XICJomT+nfQ54xRj7DgPB1hyO
-	szUdMjl72Tfnl3iOiQBBKeCdtAiYRoyGT9Hzlx/gdjzda85qkEX5LwVtgUHGvSC07KJR2w
-	P+o/poLQ15F68pnCKwqCMTgPVkhE/kAoaEpti3xhcFVvWzi+RDVm6VJwdhzls3adlI+f/q
-	dhvt8DLHfBVJ7u69ge6hg2b7zDcV2ktuetwamDuF9oz0rnPAL0wUn8Dr7Y+ESw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=relay-from-ptx.office.stw.pengutronix.de smtp.mailfrom=mfe@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795598336; a=rsa-sha256;
-	cv=none;
-	b=dlRC6oIgk4ou6lgyRk6gIrOaWT4JF6goh6lS+8gbaCvhiby05o6V8EvwZPKYMfCCBG6xsL
-	XUexA9XNQYyinMmQuM9vCkgGNPxM6yQO2TdxieDmSC51+ucvvAzzqXv0uuI+f9FnfpuTFd
-	fY0PpbYb13lKfkeG+MP7s24gCS7PZeDR3/290oPiq7VyLuzHuMNlldaWeJnFxHONlyG5Te
-	C9MXKRiQHD/1m6pNJkozWnE1axyXJ00IqShICWJbPX/NKj6vGJ/Zvq1yMFv/XgXRrXxIzW
-	mCspbzQ5JBXnskgJ39t4XZAqBD5RU5NTjHJDGOF4EUb5kpqOi0fSKnFWAFXlAg==
-Received: by ptx.office.stw.pengutronix.de (Postfix, from userid 1064)
-	id DC69E1BF4F2; Wed, 25 Nov 2026 10:18:55 +0100 (CET)
-Date: Wed, 25 Nov 2026 10:18:55 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Prasanth R <ragaprasanth@gmail.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	linux-rtc@vger.kernel.org, imx@lists.linux.dev, 
-	Support Opensource <support.opensource@diasemi.com>, Prasanth R <prasanth.r@lineo.co.jp>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.Li@nxp.com>, CL Wang <cl634@andestech.com>, 
-	linux-mips@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 01/12] rtc: snvs: clear the wake IRQ on unbind
-Message-ID: <mo4vj2higl2dmabkeslouimdgoeofqlkyjnngytv5wmub2h4w3@t2ayiiw4qaoz>
-References: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
- <20261125072026.2997493-2-prasanth.r@lineo.co.jp>
+	Wed, 25 Nov 2026 08:28:56 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 28188C2BB3B;
+	Wed, 25 Nov 2026 08:28:58 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 5A9EF60480;
+	Wed, 25 Nov 2026 08:28:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CBC2411E6993C;
+	Wed, 25 Nov 2026 09:28:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795595329; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=4/x7j50MQJx15iZQDZRl//Wy8YqZBKp5oVRm2ztPBoI=;
+	b=a25X4E02hlHdAZLeh5VeHxN6+rjmKkzW9i2wpZ/aAVuugJ3MhGFp/MhlILboBpFeQrLS6p
+	btaDqDM2H7xJlrfcz+RX7BjG78aD4/ETSqwQCSyqhGkrbhsHwEkozspZam4CAi6QNErfla
+	X4cZFjL4zk+R+7axwU3Lts82blj93HcjkzkiSEjLEnO8XGY6cNRu5eTaAvhT9TaGGAsCH6
+	EYOgRgkcR8ifvWMI22u/GwqXqhKoPjneZf8UAyjxbj9neMT5lNZwyFv5sqMrod0fIPcK23
+	tFEf+qgwfm2eO9AZ/3N8Hwxzz7t37W+uw5aQMybCXkIfmRgiNX5ApaBhMAAuyg==
+Message-ID: <e44876ec-4f91-4120-bbf3-3a1eb330a2dc@bootlin.com>
+Date: Wed, 25 Nov 2026 09:28:35 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261125072026.2997493-2-prasanth.r@lineo.co.jp>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4] net: stmmac: program the FSM timeout timer
+To: zhu xin <zxyan0222@gmail.com>
+Cc: netdev-bot+sashiko@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org,
+ pabeni@redhat.com, netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ rmk+kernel@armlinux.org.uk
+References: <20261118025528.2703790-1-zxyan0222@gmail.com>
+ <179520945915.3135.14304625182301747705@kernel.org>
+ <500079e9-e626-4e4b-9880-adeea0724338@bootlin.com>
+ <CAP7veT+EjJabWrvczNwcZQ16P_SyH_rAQkTz+nf1G+FjxMvgNw@mail.gmail.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <CAP7veT+EjJabWrvczNwcZQ16P_SyH_rAQkTz+nf1G+FjxMvgNw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_011900_074545_0F54F928 
-X-CRM114-Status: GOOD (  24.07  )
+X-CRM114-CacheID: sfid-20261125_002854_418826_A3584F1E 
+X-CRM114-Status: GOOD (  10.02  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,76 +82,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Prasanth,
 
-thanks for the patches, please see below.
 
-On 26-11-25 16:20, Prasanth R wrote:
-> From: Prasanth R <ragaprasanth@gmail.com>
-> 
-> The driver has no remove callback, so the wake IRQ set with
-> dev_pm_set_wake_irq() and the wakeup source enabled with
-> device_init_wakeup() are never released on unbind.
-> 
-> When the driver is bound again, dev_pm_set_wake_irq() finds the old
-> wake IRQ, warns "wake irq already initialized" and returns -EEXIST, so
-> the driver prints "failed to enable irq wake".
-> 
-> Use the device-managed variants so both are released on unbind.
-> 
-> Tested on an i.MX6Q SABRE-SD board by unbinding and binding the driver
-> through sysfs.
-> 
-> I used an AI assistant (Claude) to find this and write the change.
-> 
-> Fixes: e7afddb2b4d2 ("rtc: snvs: use dev_pm_set_wake_irq() to simplify code")
-> Signed-off-by: Prasanth R <prasanth.r@lineo.co.jp>
-> ---
->  drivers/rtc/rtc-snvs.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/rtc/rtc-snvs.c b/drivers/rtc/rtc-snvs.c
-> index d99a352d6..647952dcd 100644
-> --- a/drivers/rtc/rtc-snvs.c
-> +++ b/drivers/rtc/rtc-snvs.c
-> @@ -383,8 +383,11 @@ static int snvs_rtc_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> -	device_init_wakeup(&pdev->dev, true);
-> -	ret = dev_pm_set_wake_irq(&pdev->dev, data->irq);
-> +	ret = devm_device_init_wakeup(&pdev->dev);
-> +	if (ret)
-> +		dev_err(&pdev->dev, "failed to init wakeup, %d\n", ret);
+On 11/25/26 09:22, zhu xin wrote:
+> Hi Maxime,
 
-If there is an error you should return here. I would also suggest to at
-a proper failure handling for devm_device_init_wakeup() on all the other
-patches, albeit these drivers may not handle it today. Furthermore these
-days dev_err_probe() should be used during probe, so you have a pattern
-like:
-
-if (ret)
-	return dev_err_probe(&pdev->dev, ret, "failed to init wakeup\n");
-
-Regards,
-  Marco
-
-> +
-> +	ret = devm_pm_set_wake_irq(&pdev->dev, data->irq);
->  	if (ret)
->  		dev_err(&pdev->dev, "failed to enable irq wake\n");
->  
-> -- 
-> 2.43.0
+> Separately, I'd like your take on the hardcoded 1s timeout. At 10 Mb/s a
+> PAUSE frame with the maximum 0xffff quanta stalls the transmitter for
+> about 3.36s, longer than the ~1.048s NTMRMD programmed here. If the Tx
+> FSM is still timed during a flow-control stall, that would raise a
+> spurious FSM timeout and reset the interface. I don't have a 10 Mb/s
+> link locally to verify it, and the databook only hints at a large-mode
+> (LTMRMD) without being explicit. Would you prefer bumping the default to
+> 4s to be safe, or is 1s acceptable?
 > 
-> 
-> 
+
+Yup, this should do the trick. If I'm not mistaken, you'll add some
+better controls once you start upstreaming the glue for your XGMAC
+device, right ?
+
+Maxime
+
 
