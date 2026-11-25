@@ -2,85 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB13606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 13:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03181606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gDEbQMcf;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=F9/59kju
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mIe6tetk;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=QfD+DQTm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=0aBqMxJDgvMz7i6AIJn4XzKKfdX+IDbRJyfCRCeiBUk=; b=gDEbQMcfp6lVlaWIM+faqCiLNl
-	Bhzk1PrMkPAuHO1tW8IwICu5+MlM5izGGBQGL70HqFC15IRmZ9ILhFwqgbap8kO78zcQJNE9pnF7o
-	j2eqyV6TY9KQRy15umXlbN8J3woQvAoTLn+rBEEVwZfv5R9kNn65GfJu208kBZ3Xu6AVRL95VrMPw
-	r66NCJNAJq5pxte3wbD0Ni0JByNMhueY5FQQfRxgAgpw7o6EsNqrbbMJsl61gw74Nd1TnvLxHBiAF
-	vQN4ETI4ASbUIME7XPmI4DwOrSUpoAkrIxVg8CNR1EnXa37VQE6Ki6Jf0ru+N+s8bEr+/WyIAuIV2
-	k/E1adYw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=yxLNMcBe3vV28hJjFBumAOLh5rRTwo44KNq9HoVYs/8=; b=mIe6tetkVe7Mxf
+	vt1gcoXeDSZsZdagWmLPQ0XQMTqgebctRt3NH08ZdWEqt3pHOBPoR2H9QoqCgZ59iMfby7CBHISTF
+	t+3YVh0YbmRhYK99lKJPvlZWw8jLPK+FnB3NgbcTieQ3hOGlegJ8d5AgAuecWC+WZ9DgQG8DVgmWl
+	4qfRu2WeDMDldVxBkbpKrjUmQ9LArdJIT5BsXBA+5TyZFAJwp+KGMTBbmRKu2MgeBNGtU7byrJs6B
+	WYAAwQc7lMFWHe5Jiy1OAJoN49Xn6HuBXt7j1Z1dWOBxfiIHJ877gfUEj8zqVztiOojcRMBPYblHK
+	fL5nbWphZjyO/6cyEdTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDU8-0000000A4mY-1iyb;
-	Wed, 25 Nov 2026 13:56:32 +0000
-Received: from mgamail.intel.com ([198.175.65.9])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDU5-0000000A4m6-4AgL
+	id 1xWDYD-0000000A5Hh-1CXe;
+	Wed, 25 Nov 2026 14:00:45 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWDYA-0000000A5HF-2Iet
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 13:56:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795614990; x=1827150990;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q2j7sJN2VX0ocB6DN0v8l2ZUgx6RTf6tkLY8172U/34=;
-  b=F9/59kju4IJo9vVD1auri4BF468lqY5gUkBpckumDQ59KLbBFRaiaBDM
-   wab+A6G+X3MOE5WrexoWxlHNzQuuovoDhThT7aQmDxy4+uIAfmgTVdtmt
-   VcMCT2xgGnongV4ZTAtM1fC2TR5f9JVNZppunn1EWXqKEcvlM2UtWKN7s
-   CkCdX2hh3LOEyxY+TOVqN1cn9URZQTCCnBIQFRvc/jhyg5zuPB1FapvWQ
-   rGjs/c+EAKap3PYhRP8s3RTKQ2k8ednBkV836DwS3WOK9+cxLABfXz3+J
-   5nG/U4V+Y+yZ5Cjs4/1KGa0jdzu2VC2WBka/4jIIzP689cjkdnv7syqdR
-   A==;
-X-CSE-ConnectionGUID: XwroL8CGQ/6pur99q8tmAQ==
-X-CSE-MsgGUID: nR2/kT6lSxWRe2P7a/MsTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4372744"
-X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; 
-   d="scan'208";a="4372744"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2026 05:56:28 -0800
-X-CSE-ConnectionGUID: CkpgHFkZQ5eqf98NxGmH0w==
-X-CSE-MsgGUID: FiWqEJ7oSZ6BoW8opDBKgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; 
-   d="scan'208";a="11870000"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.73])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2026 05:56:24 -0800
-Date: Wed, 25 Nov 2026 15:56:22 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: Gerard Marull-Paretas <gerard@teslabs.com>, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com
-Subject: Re: [PATCH 0/2] iio: adc: stm32: describe the STM32H7 temperature
- sensor calibration
-Message-ID: <awbpBtAeQl4i-YVy@ashevche-desk.local>
-References: <20261124202220.23721-1-gerard@teslabs.com>
- <89f43760-01c7-43e8-9682-b7363ffc931f@foss.st.com>
+	Wed, 25 Nov 2026 14:00:43 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D5C71762;
+	Wed, 25 Nov 2026 06:00:38 -0800 (PST)
+Received: from [10.0.135.195] (M0PRX50XMG.cambridge.arm.com [10.0.135.195])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 08CA03F86F;
+	Wed, 25 Nov 2026 06:00:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795615241; bh=sQswOH8nnBcq6IUi9XPTJ5poHVCkOKm02pa3De59Umo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QfD+DQTmVMu+9++Zu8shOBSTyVOse0QwNCCMfKtuOINaICJYtdjQiKXHNH05UArvl
+	 eXKK+ciTNqJWNP2KHDZij5A1GvB7wX47fMUBnFsjnQV2IX0GlIVh5QD1yGw8ldk1N5
+	 pY08N+cPLnl6q5qznXW81o1rCmHBC7NPxwYlgVls=
+Message-ID: <a85c50c2-b313-4bb1-8338-95bd9fb9d4a5@arm.com>
+Date: Wed, 25 Nov 2026 14:00:38 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <89f43760-01c7-43e8-9682-b7363ffc931f@foss.st.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/14] irqchip/gic-v5: Retain the L2 IST when mapping
+ times out
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Marc Zyngier <maz@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>,
+ Timothy Hayes <timothy.hayes@arm.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jonathan Cameron <jic23@kernel.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
+ <20261118-host_gicv5_fixes-v3-4-13c1859e8aa3@arm.com>
+ <CA+EHjTzPFjUOXCiccswH2xGvbiqgXPbSihov7MA0WuXn-SmrEg@mail.gmail.com>
+Content-Language: en-GB
+From: Sascha Bischoff <sascha.bischoff@arm.com>
+In-Reply-To: <CA+EHjTzPFjUOXCiccswH2xGvbiqgXPbSihov7MA0WuXn-SmrEg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_055630_131059_7BAD6B1E 
-X-CRM114-Status: GOOD (  10.81  )
+X-CRM114-CacheID: sfid-20261125_060042_640514_5AABCCBD 
+X-CRM114-Status: GOOD (  14.47  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,30 +77,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 01:56:35PM +0100, Fabrice Gasnier wrote:
-> On 11/24/26 21:22, Gerard Marull-Paretas wrote:
+Hi Fuad,
 
-...
-
-> The DT is deprecated and are going to be removed [1].
+On 19/11/2026 12:00, Fuad Tabba wrote:
+> Hi Sascha,
 > 
-> [1] https://lore.kernel.org/linux-arm-kernel/2afd5f78-0174-4955-8c1b-be18aea3800b@app.fastmail.com/
+> On Wed, 18 Nov 2026 17:35:33 +0000, Sascha Bischoff
+> <sascha.bischoff@arm.com> wrote:
+> [...]
+>> diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
+> [...]
+>> @@ -217,6 +217,10 @@ int gicv5_irs_iste_alloc(const u32 lpi)
+>>           if (FIELD_GET(GICV5_ISTL1E_VALID, le64_to_cpu(l1ist[index])))
+>>                   return 0;
+>>
+>> +        /* A previous map timed out; do not overwrite its pending L1 entry. */
+>> +        if (READ_ONCE(l1ist[index]))
+>> +                return -EBUSY;
 > 
-> So I'm not sure the dt-bindings update is useful.
+> Sashiko's review [1] didn't go on the list, in case you missed it.
+> Sashiko found that l1ist[index] is read twice, and that on a
+> non-coherent IRS a map completing after the timeout leaves a stale
+> copy of the L1 entry in the cache for later allocations. Invalidating
+> the entry before it's first read would fix the latter. Invalidating it
+> on the timeout path wouldn't, since a later read can refill the line
+> before the map completes.
 
-But as long as the code supporting old DT is in kernel, the update needs to
-those versions, no?
+FWIW, I had missed this. Thanks for calling it out.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> 
+> With those fixed:
+> Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
+> 
+> Cheers,
+> /fuad
+> 
+> [1] https://sashiko.dev/#/patchset/20261118-host_gicv5_fixes-v3-0-13c1859e8aa3%40arm.com
 
-
+Thanks,
+Sascha
 
