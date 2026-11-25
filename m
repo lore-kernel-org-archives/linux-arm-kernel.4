@@ -2,75 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B99F606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC10606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=al2O8+Ds;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AccAoIpv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VwJbli+0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SERJ79tP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TWsUZ4Yx/ugCrzDX8uSHJCRajgVZgocX3xB6kXa9XWw=; b=al2O8+Ds7YmnG+
-	LuqnuIMHRRxLY2Q7RWprnFJjOeTCzRuShCEYbGTm+h69vC6odMijlLPeetY8N4R8aYqM9SgG05p56
-	i3y9cKR6qKd830+73tRx/ZoBNWRI1RrOzSMZd/pwz+c0iDdm/DBQ4rtbDK2BrGZjKCE1UvGkNJXoU
-	vXzjUlIiCNJsHZdqJYXu0jkiQ3L9qcyB8o6y8MY98EoJ6H6broXJOpIlOZ49noJarja7/+ST3lDNY
-	mjQWOTegVKXK6B5olCSfUOyrHO1FK/TSBQxJz+XbclZ7WgvK+nh7GDixIBwPGA2BXalvbGyWKwiOy
-	ekvdY2rY+lJnt29Sjvyg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=95k2Iy13yoDS+kywNlvIjNWyQBsXVtjAHDEMSkqvDoU=; b=VwJbli+0f3ohOORviwUF6NjJb3
+	vNPtNfFpd9KXtmaBgebi9GizIz5oln0Fg/JHgF1HU4ikD6RrdsKWRgapLeNRoAX2tmYh2OPzPLb7F
+	JvR5b4DvKJQPYHiktj+bJJb1Qa973KkuoMBB2GgFrSf51NocXZrbeBrpGNUM6Ph49J51semVrxpKd
+	1tXzjTm4i7tXIfLB1Xr39RjbXHb/WNfkHIqnSwDn6mkCCbVn484pZlugYTfQAxubOakT02VHZgn2y
+	5DyAS7GxGyUHZ0n0ZWCcN+fRkNnfymM7E54ov4tYqDbhOM21AXIlTrlewDdBDJJ/N04bgwghWFCFm
+	ahI4sQIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHpa-0000000B1C4-1dGQ;
-	Wed, 25 Nov 2026 18:34:58 +0000
+	id 1xWIep-0000000B8o7-3bvc;
+	Wed, 25 Nov 2026 19:27:56 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHpY-0000000B1BO-3e7b
+	id 1xWIeo-0000000B8nL-1WKx
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 18:34:56 +0000
+	Wed, 25 Nov 2026 19:27:54 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9E84F44F9C
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:34:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 240B11F000E1
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:34:56 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 22BEE418F3;
+	Wed, 25 Nov 2026 19:27:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02C231F000D0;
+	Wed, 25 Nov 2026 19:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795631696;
-	bh=TWsUZ4Yx/ugCrzDX8uSHJCRajgVZgocX3xB6kXa9XWw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=AccAoIpvu7+qzRklPC93AUQnIoHA9P4c6asbAvajc/yCDHHiq7yfcr/0QRdyTgXZI
-	 A2OjQon8kfLMRWiYcWm8rA782St9VLQJhdvuodRi4WUnfSiRqBmPibjwAzJMEZ2eJH
-	 wWDzp5Fpe7W6kJCLsjxBFGsOjugVcENSk/rjwTiRgmW97BDFjcQzL+T2p5R6kSEQXu
-	 ik3BgM9ATnL0YL427gGWegyLvBKlWAsWNIOkoJLZONkQ/Wnfx8IDVSkRUR2hXM6iwT
-	 xBugMWnFATHYbWXkw3UAU1SoMkNLa1icZP0HmyMLA1Dd33FQs2kOMogk008U1qqHWJ
-	 SSDzWrFG88vMg==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3adfc004920so58691931fa.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:34:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGfJTM3vYhU84cK+066VnQgB30Vb+yNYG7mxGh/0oz3CbkYqgZ/zcdSHfmXQ2fnaD8/ZiYNAIL7UxC8WtMCHyf/@lists.infradead.org
-X-Gm-Message-State: APuU4Z9rIHNhLdJa1WyTbJc+Rq+PpN6sAFkMzb3OO9xOpdYwwT+VPL3g
-	Mdu4aBGqgjyK2m/3pb3o/xGM6EbpO8BJzkwYcHCRlgrS8Ap+7FyPOUfbstxOnqLHhQH8v2RAslv
-	6D9Pn09NfMrbTM1Zv/bwM/s2xJEvojhA=
-X-Received: by 2002:a05:6512:85ca:20b0:5c1:5970:ae1f with SMTP id
- 2adb3069b0e04-5c1bc863452mr4167518e87.63.1795631694900; Wed, 25 Nov 2026
- 10:34:54 -0800 (PST)
+	s=k20260515; t=1795634873;
+	bh=95k2Iy13yoDS+kywNlvIjNWyQBsXVtjAHDEMSkqvDoU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=SERJ79tP5g07W+n5+0WnXnUcHiRFiBFuuSZo28ea7dfOo43kYMdg5p3xmCDbgK3dd
+	 jZacsV4RvnuJyhlaR4I5BqFlLwymQr08mJVYeL2jdg+4ACoOJKnnQwuOiDE4RmUNA3
+	 jBAa4l3CKhuAlI+5h7N8Gr6XXHeXVNK9HbIYaA4B0S726xQe7pz+M+QTACrrio1UbM
+	 vj+jaRw7Y/qBSHjdCGnh2eHVCNuMj1xpajQ13M37PD88gnPlNizqjiF3jTmT8KY3h7
+	 nC4/9icD2EIx58RZil9eM+oRsmrdO0WjW6/RDTOBhIOvcFNmKyBoydsoYQ2E4NSVNF
+	 iPzt/n/3512dw==
+From: netdev-bot+sinfo@kernel.org
+To: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ Jose.Abreu@synopsys.com, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, lorenzo.bianconi@oss.qualcomm.com,
+ hongmei.xu@oss.qualcomm.com, abhishek.chauhan@oss.qualcomm.com,
+ sarosh.hasan@oss.qualcomm.com
+Subject: Re: [PATCH net] net: stmmac: xgmac: fix RX split header length on
+ multi-descriptor frames
+Date: Wed, 25 Nov 2026 19:27:52 +0000
+Message-ID: <179563487252.3294.9801787654778788859@kernel.org>
+In-Reply-To: <20261125192531.1940982-1-sagar.cheluvegowda@oss.qualcomm.com>
+References: <20261125192531.1940982-1-sagar.cheluvegowda@oss.qualcomm.com>
+Auto-Submitted: auto-generated
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261119204748.2558209-1-lee@kernel.org> <20261119204748.2558209-4-lee@kernel.org>
-In-Reply-To: <20261119204748.2558209-4-lee@kernel.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 25 Nov 2026 19:34:43 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=uCDqb0XJSVdzzMDNrxXYxB9KgJKqEh61mjAKhusMmQw@mail.gmail.com>
-X-Gm-Features: Aa3M54qdnjbrThHpc_O_xCS8rqPK1pjBvtoIqC7wMcjPKsfTBJLGOdyvo3aqDng
-Message-ID: <CAD++jL=uCDqb0XJSVdzzMDNrxXYxB9KgJKqEh61mjAKhusMmQw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] pinctrl: mediatek: mt7981: Add missing entries to mt7981_ant_sel_funcs
-To: Lee Jones <lee@kernel.org>
-Cc: Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sam Shih <sam.shih@mediatek.com>, 
-	Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>, 
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,33 +76,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 9:48=E2=80=AFPM Lee Jones <lee@kernel.org> wrote:
+Hi!
 
-> mt7981_ant_sel_pins[] defines 14 pins (pins 14..25, 34, and 35), all of
-> which select ANT_SEL at function mux mode 6, but mt7981_ant_sel_funcs[]
-> only contains 12 entries.  When mtk_pinmux_set_mux() iterates over
-> grp->grp.npins (14), it reads two int elements past the end of
-> mt7981_ant_sel_funcs[].
->
-> Add the two missing mode 6 entries to mt7981_ant_sel_funcs[] so its
-> length matches mt7981_ant_sel_pins[].
->
-> Fixes: 6c83b2d94fcc ("pinctrl: add mt7981 pinctrl driver")
-> Closes: https://sashiko.dev/#/bug/linux-6233f285-1487-4d2d-afe3-d4ce3c445=
-054
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Lee Jones <lee@kernel.org>
+This is an automated message. This series looks like a fix, but its
+commit messages seem to be missing some information:
 
-Patch applied!
+ - Whether the issue was actually triggered, or is only theoretical
+   (e.g. found by LLM and not proven at runtime). If it was triggered
+   please include the symptoms, like the stack trace or kernel messages.
 
-Yours,
-Linus Walleij
+ - What hardware the change was tested on. For driver fixes please
+   mention the device (and if relevant firmware version) used for
+   testing, or say that the change was not tested on real hardware.
+
+Please do not repost the series just to address the above. Instead,
+reply to this email with the missing information, so that reviewers
+can take it into account.
+
+*IMPORTANT*: If you do repost (for other reasons) - please include
+the relevant info in the cover letter or commit messages.
+-- 
+The evaluation is done by an LLM so it may be wrong, if you think
+that is the case please reply and explain.
 
