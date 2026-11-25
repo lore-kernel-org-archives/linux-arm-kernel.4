@@ -2,114 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8417F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545DF606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TkgrVf/h;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=eEZ8Tw0E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rLxtWKtK;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=w2yQ698D
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=huaeUnA8VNpUuIejnx/kUAs+Y2K0T8LOpxzNwKLu1uU=; b=TkgrVf/htU42gY
-	tmNoOlsIeUXL8GlDcHsUyw9N0uhQI9ELJq5K4R6XRvFM5yLb6Xx3C2FyT3LXq9v6E2E0RGTAYh/H0
-	ic1s6+QWCsp/qfliiTyA2DdNf1CwgQDErgwAwzwjvW8xe53PJKxh+qoJicpzH03O1gSDiI0d/L4Vu
-	CblH0ZVgq0r2ElhdVDt3iZw5W0iwuj0Tqf9o6eEDd9Q4V448/UtonPJq9dkzDTZVncdsTtYr6u0kz
-	UWgws/VXIvyr4hL/BMHWgB1H0WwHASOwdXjIeHZWRaPwNoUvUkGrwtRYGM01GRDwQQ7ZyIEVzP3el
-	BcKtT7OV3l1vLexnehFg==;
+	List-Owner; bh=JVZec+P0ncDLVtLUbU8V9WfHdjX3mnAfmKUvh9J6NzY=; b=rLxtWKtKdRs6w9
+	6QfNBB9CM5fOkgNLurAP5+sxj6H/CGqMBTzKe1HRWvlci4A/bmvE1E7Nzw5Pd6DNbI6aJxinUHOzz
+	9G0fMzaBFIweRM0WvnzCjXUoiOM4C+DYlI55/qZ7y7Onmmvwpge2HBN9mRwptZGiSnx5XDgQVMVkA
+	zPUgqSlb2AXUVZanCo2YajMDY/tD8X2J7Q08WeoMjwzHRBPYkYLHQ1mVUN2GZ046TfJnRv0dmcPfd
+	t0iZiSFb31Wnefa+OSbOVi1iPq40BLLZWiMsoDPtkPmi7IMi4ASo4DO9zgCRc2atKZaMvK8zIWRyn
+	NwUQf6MH2bbQfCdOCBkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8hm-00000009AXD-1yFx;
-	Wed, 25 Nov 2026 08:50:18 +0000
-Received: from mail-qv1-xf34.google.com ([2607:f8b0:4864:20::f34])
+	id 1xW8jF-00000009Avl-0Dvk;
+	Wed, 25 Nov 2026 08:51:49 +0000
+Received: from mail-qv1-xf30.google.com ([2607:f8b0:4864:20::f30])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8hf-00000009AVl-2g13
+	id 1xW8jC-00000009Att-39KF
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:50:16 +0000
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-92134c4592dso49109666d6.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 00:50:11 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795596610; cv=none;
+	Wed, 25 Nov 2026 08:51:47 +0000
+Received: by mail-qv1-xf30.google.com with SMTP id 6a1803df08f44-92116a3ef3cso72385866d6.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 00:51:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795596705; cv=none;
         d=google.com; s=arc-20260327;
-        b=DZpujxPm9j0dL+tpxT7x15wZxO73Iabr1tDwisaCticizyE+cj/SAOtNUTvo5S9x3O
-         Io1UpViO1DwOcFQZfDy8MW0j2rscRGaQfVYfp2rz+RGwGpSyuCHLGQQ4+Jr6mw1GY+Xz
-         IPuV84KAh/7XA/RaTw4FI3W8su4FWZzHs8g5QLzhWl+ote7sHJIemErWFIuNj1J7Djvl
-         Sf26/8NG6bwoQPJhKDHYQ7T39SYPFsPGH3cLZpsa9zxVTKFB5UlaoGyOi2TE6yIcUZT/
-         E+iXuZxYUuYBPjQVV/EjDcwHutHWpTZKRg0mzgj5WYg/Mu726f+e2PVQ2cuKcVfGsrig
-         7Olw==
+        b=FFQjTlbvhKHcIx1d6NAIO2EtBA6zDFaGchDbgQkoKnhD4IOkLni4bAs0fs3TF7fxhc
+         9/QZT4JjWbBgrAMe1wYPXbqzvfngBXLEaBcugulE/GyM0WN35PHmp6CVMbYTfziqzykM
+         HUZLD7yoEh5OoourJGzAxOvP7BpJ2HAElN4pIjPjboTCxc4WIU6voJOaKiVo+3vTP0DV
+         kIzJhyBwr673qZVHqmPW6TZqF0Fn+BMwa2T4p518fJHiVgup0YHXQ1kh3XmVxzbIVNdj
+         lUtF5Ka0gh9vkYCANzYsc+36ls9TTq6+F1V1n8EWfH4Xz5pPO0Gy6ZfAAR+fYFX0Abbn
+         RlMw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=huaeUnA8VNpUuIejnx/kUAs+Y2K0T8LOpxzNwKLu1uU=;
-        fh=HTZoC8FiiYAdA8lhDdvC7d/KOC0ZoAFhpcIrzVK2tRc=;
-        b=sBFNi+TxJomUKw4uEhiIKHlyzmCQdryWfeuOzH+p0igfpFhJmJRfWjiVe/az0rT/T+
-         i1yA/1P4e4gBb0VUllqyytH3Ifhi0assU57b3pLqrEr5bSfuSZK1r9II62zTv+/VDxg7
-         mWfcXBTTvgRhZ3O7MICnJAD1uEu2Hnz7OQU910d1fsy1ryxj+XxPHNXIze+hheunSmHb
-         fsQPvSyf7P7ubM+mPsqMqDoCbzB/OkccahAdyX1r72q95Z717mlq9nD3fRPWmkBqbGGT
-         UmvD1nfzpGyVrxBxSUgPgAOfJCgj3fckGbudg8kQlAjypgnOhpxiYZjJSz/YWrYUZD0j
-         il7Q==;
+        bh=JVZec+P0ncDLVtLUbU8V9WfHdjX3mnAfmKUvh9J6NzY=;
+        fh=Y3ol2hoBwiUtyXAMkK0ZWpk3xvEXcSDfL3idco1me18=;
+        b=LtktKA6LNX+j7uMLRS3+6Tq59In4npk2Fnq/AzBAf0aZUtu3Ajkqi2y6Lsi2H+6Lv5
+         CabpJ/VZTE1dpwOG3lGEs8YQjQ4WsufIMmCFeyR8PDTsx3Xi5d+UtW7jXgCe+yLV/OX+
+         PPHjzLD9UGRTLlHjujfe8Bqd2azLXnl0iSDfYwhYdMpepkOOXV3TB92X3lKb7mTw2EkR
+         ZqXBAG1QoaSARe3vgitv8QLCMmAWMLztkm1cwcmM4bgnagrFKMrupdofYX4dTa5jfwvV
+         Az8SFuh10wQ/TVq8xAnmhn887jy/fXtmuC9FtfC+v8Zp1It/fFqyI+fXb1NJ0aF54Ewb
+         XMHw==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795596610; x=1796201410; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795596705; x=1796201505; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=huaeUnA8VNpUuIejnx/kUAs+Y2K0T8LOpxzNwKLu1uU=;
-        b=eEZ8Tw0EnrX1a9cfXKqP4d07WpZ1keNts5Nlf8Ekh3/hj8cc/yRiyRT1IqhoWnxd8G
-         O6WHr7ifpDzfbh4/5qalp2RI4lBOJNvXPGO4o4U+hDROH4wBKKNCq/HcMB7C3tn0FsxL
-         b3uBk4m3ZV7FeUExVug6gm9UFH5HY7LbRr8hfI8SzHyOcL39p6slEFgb2xtAaNiEpg12
-         nEbvSTE3SPeR6Xht4LVMulkgztW45fLsnUQaAuceMOeAFJRJt+RiD4Akcc3m3HUthFD4
-         e3AsS+juvMXsDqxmPo9FjbzPrve4xrRapfzlJUlzuau3OVQ9F7fGfqWWlaRLNEpdTh67
-         kugw==
+        bh=JVZec+P0ncDLVtLUbU8V9WfHdjX3mnAfmKUvh9J6NzY=;
+        b=w2yQ698DPMWwjW57IuhTLlnKgSxk307OOkaOgNJTFZoaoqDBchmA4atnXJvx8kMoi1
+         wwAEKdM6UeEO8HlepXzWMb8Ww7EP6WBQTYWyEbYbz/pay3LKwVbu0uz+K0/qH/OO7WMC
+         /VyH/CydV1QjoGCoMRuXDcaopPtsrzw7DB9E3NcP16tp5/UkgXxTxZrTz2CEYMHrALoa
+         UzcabapnY2zrpHIx4D5JFxTmJ36ULIefDSDwmaTMMH3lDRxX630erdB+NKfosDZUkH5C
+         tgRISNVBU758B/TGFdDSwzQV1fW1MIz7fwjeGhaTrKPpx3WV2vA4dnR/JBy8nL1UxaF1
+         P3+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795596610; x=1796201410;
+        d=1e100.net; s=20260707; t=1795596705; x=1796201505;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=huaeUnA8VNpUuIejnx/kUAs+Y2K0T8LOpxzNwKLu1uU=;
-        b=J8tyzc4iC3h6nprzOptme5oRvPA8UoNM/YeEMzwvF8n++9mA8MRgY4y+oPfVrz6Uzi
-         WfIH2+vKvL2WDvPB6RjeqZhvHSO39VlT/4UwKlC1ju7o44hCh/GmrW7rQxdnLx3bKkOU
-         OdGKm6sANSEYbVhLbyKXIORRa15wY9bMuRBNhqOFYEdSHWwyTY6xQcZH2/ItCe3iUEyW
-         iefwWwEzBdbuMc3Or5XhVMBIPv9fuKEyML2L09Wwx6/xBV6RD4SqQC7GHMZbLTt56TZz
-         fPlHev+eXY6CtUl8BImQpQr0DT5Uq14kY7gOn7W7goFnBemybJ6NtmHSGfX52f8lmyKO
-         dlfw==
-X-Forwarded-Encrypted: i=1; AL+hErG9ALvUQpRb4wcKy5zomZ6n4+2C4swQaVHAqFOgREPPd2elrTS7Pd+2cluiLF8RS4WWYGGmYLppYFlvBhahjcdo@lists.infradead.org
-X-Gm-Message-State: APuU4Z+264zw6rIVuMC8x9Rx9MJBTcS7ER+VuvCs6ZfX/yJri1qAAW9l
-	p9Rc+0iertAk7DAMWN/P0ZSOJt6TvhaWyNH+Tz4Wj+Fxx0zWs/7+ZLuhlBUeW/vwBk6DDkQ4GOr
-	JeJd3zZhC21bUbTelGsenni0iHeOfJpo=
-X-Gm-Gg: AZFdTZcmD3zvTDedw4l2PCV5BjSYjPdAfrigsYVEaEJnTB+Eqy1BmrKFFjaEzaXRovQ
-	1v96aod/sAsVab5mnY3j7wdPDZVi5JO2EMkFOEky8N3QX0vBXX4LPGaJkkzgSSp1yjfNnUk5MJu
-	7McRt8SPQN2USgDY1gRG4NSIniPqSh75Qm1t8KkQGkueKC2bZjdJkFPRsW7Eq6vHj09okUFp0yN
-	GX47gAeUf4q3C2ocYEWB/Rh8UPvrcGtlXHt9i7ORhrL7x6hOL8BEfytvwoPZ+k3PgnlJMQJ5hGQ
-	37Y78L7WFQvZsyj9b1PrGbkT+6YNAPCR92QAxve45ZVmL+6hRve5t9jAYlwn1ArVi7XKPHn/46A
-	ouG9U7rsPrTuJzFaKXi6PuUHaaQdqX0t/C+cEQv4j1neJPITo/NTi63XFScE=
-X-Received: by 2002:a05:6214:124c:b0:921:161a:b17e with SMTP id
- 6a1803df08f44-9213498856dmr319005746d6.3.1795596610191; Wed, 25 Nov 2026
- 00:50:10 -0800 (PST)
+        bh=JVZec+P0ncDLVtLUbU8V9WfHdjX3mnAfmKUvh9J6NzY=;
+        b=0HP/+WNQ1NAlteaCg3bMN5ZNUxbDI36vs5j0Q3962gIle6EajldNRwAziRB6RvU4k+
+         2D+/yFgKvkEOQA1G6uJdJeTdyBe9GoC+Yiw/+DYuC7vbfmG5MZIuko3ji2tUIMBFxOXF
+         FNi//JocUuI+YgoLayYvLYUwdQD8xpfIGGqKp+qmLnAiuZbtWCyDfi3lAlr9rSE5Y9lx
+         PStHKYbi+vS29ctEo+W9xIifGWYagFBC8DUHqf/klcq2wZSeyS5ZLBvQTfP+G7cvxQsw
+         J3pmADHcz5n3HvfYsUMVXa/Z79WWOgX9WgkPgck9XrsRx7svVitkKjh6go23tf1xjQz6
+         UjaQ==
+X-Forwarded-Encrypted: i=1; AL+hErEEKGavswOjkN8OiEatjBhsJNGxfHb053O0mO+rBHmBUKxhgwOzPiOlAUhgXmouVVRA7I6EXXetkLZN4MgWy5nD@lists.infradead.org
+X-Gm-Message-State: APuU4Z9SH3KhdaGBZvfBnvp62TFOU9TCiFnJRoryCOq/dOrQg/s7XLfm
+	mQGkmWGCTFyhnxGhERxtDAVzXpAK+J+iWr/oWck5d669JEQT/R4x6DWPxRs+eiZ/qVnY/HC0xrD
+	DLEvLcyZDEzh0g3RKLffeJsB0lcP7Nn0=
+X-Gm-Gg: AZFdTZcmQ8Wb4HT6mUQ0GVH0z6mICcLahWLSIvIR1WpubBO/QO9JP8zBXHQLRavWsyc
+	ePfX0ccg/Hyk6AgXN4VO1Hu3H8Q/OL+vG016iJWVh0y+iOM0w+a+9J97uNZD/OOp6oTu5Js2gmK
+	pjAohlkF+vv8d6UHrKss5lbm9RsuugJqBF8duE4WZlIJ0QY+/nxi6oEi/jbVBJLQOjxCysq/c16
+	eBiDyKyXzCz+uEWkazcUJexTn0SI5sqJrMb3R5F+9TvXF5cyWXtrfN0mhf31EM5FmbreN8+g6jo
+	0Ey6LMFXAUrGZ8KBVY0TaNVD4xnaMbIjG3GfnCj+fjTfkQOxYm4OBCtne3/lL5mbqR4/xZ0yOB1
+	KlAFSAqvbHDx9ZeqLbPsirTVKef59Sus3lJP0JA==
+X-Received: by 2002:a05:6214:c2b:b0:921:1e3c:efeb with SMTP id
+ 6a1803df08f44-9212e0d16a1mr304088126d6.18.1795596705319; Wed, 25 Nov 2026
+ 00:51:45 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <7732873.EvYhyI6sBW@fw-rgant> <20261125075716.2262174-1-zxyan0222@gmail.com>
- <d515df02-0cb7-4641-a6ed-d73f2220f5c5@bootlin.com>
-In-Reply-To: <d515df02-0cb7-4641-a6ed-d73f2220f5c5@bootlin.com>
+References: <20261118025528.2703790-1-zxyan0222@gmail.com> <179520945915.3135.14304625182301747705@kernel.org>
+ <500079e9-e626-4e4b-9880-adeea0724338@bootlin.com> <CAP7veT+EjJabWrvczNwcZQ16P_SyH_rAQkTz+nf1G+FjxMvgNw@mail.gmail.com>
+ <e44876ec-4f91-4120-bbf3-3a1eb330a2dc@bootlin.com>
+In-Reply-To: <e44876ec-4f91-4120-bbf3-3a1eb330a2dc@bootlin.com>
 From: zhu xin <zxyan0222@gmail.com>
-Date: Wed, 25 Nov 2026 16:49:58 +0800
-X-Gm-Features: Aa3M54qogCRfGRjMdhXVV7JZ70rq5pMVX6XB8mYHty8P7davZNgqCbSK2atTVWU
-Message-ID: <CAP7veTJnJEmqAr4pfzSwLPNHCFc=yuzzAbkeLEvAMjZf71-dcQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] net: stmmac: Fix the problem about interrupt storm
+Date: Wed, 25 Nov 2026 16:51:34 +0800
+X-Gm-Features: Aa3M54oVZ8QH8baEESvpsl4u2Q4IYlXKuxY1eSxFeiZgwZmn4Zh87ziubRwHQe8
+Message-ID: <CAP7veTLioytfJYQ-BDc4+CrRMrMMjprR32f0CzN_uL0TschNbw@mail.gmail.com>
+Subject: Re: [PATCH net-next v4] net: stmmac: program the FSM timeout timer
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: romain.gantois@bootlin.com, cathycai0714@gmail.com, avifishman70@gmail.com, 
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org, 
-	kuba@kernel.org, pabeni@redhat.com, alexandre.torgue@foss.st.com, 
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+Cc: netdev-bot+sashiko@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, 
+	netdev@vger.kernel.org, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	rmk+kernel@armlinux.org.uk
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_005015_103501_387BBDA1 
-X-CRM114-Status: GOOD (  32.18  )
+X-CRM114-CacheID: sfid-20261125_005146_798035_9C02E0F0 
+X-CRM114-Status: GOOD (  16.88  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -130,94 +132,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Hi Maxime,
 
-On Wed, Nov 25, 2026 at 4:10=E2=80=AFPM Maxime Chevallier
+On Wed, Nov 25, 2026 at 4:28=E2=80=AFPM Maxime Chevallier
 <maxime.chevallier@bootlin.com> wrote:
 >
-> Hi,
 >
-> On 11/25/26 08:57, Zxyan Zhu wrote:
-> > Hello Romain, Cathy, Avi,
-> >
-> > We hit exactly the interrupt-storm scenario you discussed, on a local b=
-oard
-> > running a PREEMPT_RT kernel, and I'd like to ask whether this series is
-> > still being worked on.
-> >
-> > Our setup and trigger:
-> > - stmmac with dwxgmac2 (xgmac) and dwmac4 (gmac) MACs, kernel 6.18.34+
-> >   with PREEMPT_RT and panic_on_rcu_stall.
-> > - Trigger: fault-injection of an uncorrectable MAC safety error, which
-> >   makes stmmac_global_err() schedule stmmac_reset_subtask(), i.e.
-> >   dev_close()/dev_open().
-> >
-> > Symptom:
-> > About 30 seconds after the injected error the board panics with an RCU
-> > stall (rcu_preempt detected stalls, rcuc starved).
-> >
-> > Root cause (confirmed on-board):
-> > - The main level-triggered IRQ storms at roughly 820k irqs/sec during t=
-he
-> >   reset window (irq count jumps from ~220k to ~23M in ~28s).
-> > - stmmac_interrupt() returns IRQ_HANDLED without clearing any status wh=
-ile
-> >   STMMAC_DOWN is set -- exactly the "unconditionally returning without
-> >   clearing any interrupt flags" behaviour you flagged as dangerous.
-> > - The level IRQ stays asserted -> infinite storm -> starves rcuc -> RCU
-> >   grace period never converges -> panic.
-> >
-> > This matches Romain's point: the unconditional early-return in the
-> > STMMAC_DOWN state is the actual storm source, not the TMOUTEN/safety
-> > watchdog.
 >
-> Taking a step back, I wonder if the right move is not to just get rid
-> of STMMAC_DOWN entirely.
+> On 11/25/26 09:22, zhu xin wrote:
+> > Hi Maxime,
 >
-> It seems to me that it does not protect stuff that much, reading the
-> different sites in the code where it's used... It just seems to cause
-> more problems than it solves. All of them work without STMMAC_DOWN
-> if I'm not mistaken.
+> > Separately, I'd like your take on the hardcoded 1s timeout. At 10 Mb/s =
+a
+> > PAUSE frame with the maximum 0xffff quanta stalls the transmitter for
+> > about 3.36s, longer than the ~1.048s NTMRMD programmed here. If the Tx
+> > FSM is still timed during a flow-control stall, that would raise a
+> > spurious FSM timeout and reset the interface. I don't have a 10 Mb/s
+> > link locally to verify it, and the databook only hints at a large-mode
+> > (LTMRMD) without being explicit. Would you prefer bumping the default t=
+o
+> > 4s to be safe, or is 1s acceptable?
+> >
 >
-> It's even misleading, as it's only set during a reset from the service
-> reset subtask, while most of the callsites seem to assume this really
-> means 'interface is down'.
->
-> I think this is the better lead to follow there.
+> Yup, this should do the trick. If I'm not mistaken, you'll add some
+> better controls once you start upstreaming the glue for your XGMAC
+> device, right ?
 
+Right, I'll use a 4s timeout for now, and add a per-platform timeout
+config along with the glue once that goes upstream.
 
-Thanks for the feedback. Agreed -- removing STMMAC_DOWN entirely is indeed
-a cleaner fix than the interrupt-masking approach.
-
-We'll try going in that direction, and report back if we make progress or
-run into questions.
-
-Best regards,
-Zxyan Zhu
-
+Thanks,
+Zxyan
 
 >
 > Maxime
->
-> >
-> > Fix we validated:
-> > disable_irq(priv->dev->irq) right after set_bit(STMMAC_DOWN, &priv->sta=
-te)
-> > in stmmac_reset_subtask(), before dev_close(). This masks the level IRQ
-> > during the synchronize_net() window.
-> >
-> > Results: irq count peaks at ~724 instead of ~23M.
-> >
-> > Questions:
-> > 1. Is anyone still working on this series, or should we revive Cathy's =
-RFC
-> >    with the evidence above?
-> > 2. Would a patch along the lines of "disable_irq around the STMMAC_DOWN
-> >    window" be acceptable, or do you prefer the more general approach yo=
-u
-> >    suggested -- wrapping the STMMAC_DOWN set/clear in a handler that al=
-so
-> >    disables all interrupts?
-> >
-> > Best regards,
-> > Zxyan Zhu
 >
 
