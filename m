@@ -2,77 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D87606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7929D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kWmRg7xa;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IaxxUP7L
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oY1srzev
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DSDBbrxDF7QE7mJ7cGh5psk8NDNsiMzdc0pE9t4TEt8=; b=kWmRg7xa0G2Ck+L9H4ezzcEYB2
-	J9wpqnG+FlxBPlEBoFMoOBSJzGOWOXL9jJl+EZYcSJcHEupCNaw/fAgfh03h1aEaKRfijgzuSDpYd
-	c0monacm0d82UHI1mQg7tN4JN13B9MLL70yKY3VpbfsF1YwFbFDv7qMu0oUTaZ/AkDm9SIJjTi6UX
-	6UUemt5UiWcLDNqpc1oY9bSVhDGcL5pM14Hmm7AvgLcO1xf3OKSJX4N78M+D5V00oBKv6UJDiJpS+
-	AnFEheb8fmjyewHWZWgBn3mvvpdFGTj/dg6v046zGwMInX5TesuhNovBvc/i8NM6C4j509EwEEAvm
-	n3S92yFA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=qhCwXvAyXM1RHsJVCIWLLXEAUGswl0Dh6+s1SkrTVk0=; b=oY1srzevsSBism
+	R6OlFHNvbwahAhWKncS9dbHqr9n32SEHyOqquaaMI0BH+7nDPaYwPaLRGxarVLYXTRBBRtNA33Zhq
+	eCbIa1KnhpZGD/yRqYPMqbpaoHp1/FVOA8HRIAGLCzXYbM2I7wKlEi427Iaj/GQ+JHLTpgXD78CrB
+	WqEDg1v5ExsAuzXkV+c6x7dYeJ/zahsGgl/KwLXYE8iZrwF56ihYQEMZfk2DXQRh5gKKtAFxmM02P
+	RP2hhi3u4zqZYFsDKdrbfzBY2vLICCbkDNbjm66YR9dneW7w8A44euUhEE2USutn7dVZDDxi5C7YV
+	zj2lOrL3zCnfK7yD9vHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEE2-0000000ADZN-2Vly;
-	Wed, 25 Nov 2026 14:43:58 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWEG8-0000000AE40-0dkL;
+	Wed, 25 Nov 2026 14:46:08 +0000
+Received: from mail-qk1-f172.google.com ([209.85.222.172])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEE0-0000000ADZ3-2P07;
-	Wed, 25 Nov 2026 14:43:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9802761140;
-	Wed, 25 Nov 2026 14:43:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F3521F000C6;
-	Wed, 25 Nov 2026 14:43:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795617835;
-	bh=DSDBbrxDF7QE7mJ7cGh5psk8NDNsiMzdc0pE9t4TEt8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=IaxxUP7LRnqywT22he7m+Fp7ezJgAfkpHSw5REph0tRYPRC/9tQDBnxNGaqFCUe0P
-	 HC4OCPR1FvefXZR0jreOarx1/ItxF0Kd5XwRm18+njWXI6kfrP7K+QHWF1l9XvxXHk
-	 Wb3T7KBp5sU8Uq3JjMSsDtDz2cQ1vDbxW6cRqzm0jkDQjr5S84bbH7Zbc/9r5XtFga
-	 tXPaD+SS8GZvYPYpD187DBOSIhZ28zt4gF80M0lT+Uc0vOeuoEM5ntTj2myprO+Uo6
-	 0KAYN/vccLRY3U4aBHQmotXHdObAadnDVOITnax/jMq8UASOsc7R09dQV9GiPujVaw
-	 zu/OOYjuPVOYA==
-From: Pratyush Yadav <pratyush@kernel.org>
-To: "David Matlack" <dmatlack@google.com>
-Cc: "Pratyush Yadav" <pratyush@kernel.org>,  "Tarun Sahu"
- <tarunsahu@google.com>,  "Pasha Tatashin" <pasha.tatashin@soleen.com>,
-  "Mike Rapoport" <rppt@kernel.org>,  <robin.murphy@arm.com>,
-  <maz@kernel.org>,  <will@kernel.org>,  "Alexander Graf"
- <graf@amazon.com>,  <seanjc@google.com>,  <jgg@nvidia.com>,
-  <loganodell@google.com>,  <arnd@arndb.de>,  <dwmw2@infradead.org>,
-  <baolu.lu@linux.intel.com>,  "Bjorn Helgaas" <bhelgaas@google.com>,
-  <oupton@kernel.org>,  <alex@shazbot.org>,  <gle.com@google.com>,
-  <pbonzini@redhat.com>,  "Andrew Morton" <akpm@linux-foundation.org>,
-  <kevin.tian@intel.com>,  <joro@8bytes.org>,  <kvmarm@lists.linux.dev>,
-  <linux-pci@vger.kernel.org>,  <kexec@lists.infradead.org>,
-  <kvm@vger.kernel.org>,  <iommu@lists.linux.dev>,
-  <linux-arm-kernel@lists.infradead.org>,  <skhawaja@google.com>,
-  <sagis@google.com>,  <linux-arch@vger.kernel.org>,  <linux-mm@kvack.org>,
-  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 03/19] kho, memfd_luo: Reference struct kho_vmalloc
- via serialized pointer
-In-Reply-To: <DN3VG4JCILOO.YN40XHHSWRPH@google.com> (David Matlack's message
-	of "Tue, 24 Nov 2026 16:39:52 -0800")
-References: <20261110050202.529473-1-tarunsahu@google.com>
-	<20261110050202.529473-4-tarunsahu@google.com>
-	<2vxz4idb1i2w.fsf@kernel.org> <DN3VG4JCILOO.YN40XHHSWRPH@google.com>
-Date: Wed, 25 Nov 2026 14:43:47 +0000
-Message-ID: <2vxzld6hx97g.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	id 1xWEG5-0000000AE3a-2gUt
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 14:46:07 +0000
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-949664ee41cso594879985a.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 06:46:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795617964; x=1796222764;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=qhCwXvAyXM1RHsJVCIWLLXEAUGswl0Dh6+s1SkrTVk0=;
+        b=TEWGQaYH2gtrD6b2dlEnRAztksTDimL3kmUnDYiXeIQiYbAFynD8MxvytTF8yp3suI
+         qlfvKPXrTzOOqOkE2yPd07c/eY3dro48owgHTew2DE1fs/s/keajdSJXmEEudPjGWYKD
+         bHDOi9OyjHosbCQeIckUdbw2ZAtpGRljvzS/rQl6IOWNIN304MRgGwEr4BXa4Ph4gLYp
+         Vy8ZrnmwbmBM0FMkBTTrUkRc1wi5rJJoZFqHuUD1MGgDGndWqpm6UW4Lc3w6di6WCkXK
+         OAdq6GBP3kuUy+CEVsKrYDGcSwWQqq5b/NapghE/yf5FyMph27KXluEs1d3gMaw5XjQu
+         hoig==
+X-Forwarded-Encrypted: i=1; AL+hErFICmWkcnkyr6OyR7bvFpdXB+Manru1K9YFLMS9ARmTNE9OZsdsA/uXVNMHGylCW80fsXgmcP8L26rWgQvsDnvY@lists.infradead.org
+X-Gm-Message-State: APuU4Z+NRnhwNlfiu+TBwtOqVjZpVoMDQ0pSjNMn/lSynoX5k8FcQI1q
+	N88aIZPtqPB2YqAxSG18gJxUeI99VhE/End6owFKN2Uo3nvUg04rRvZHY53bzXdd
+X-Gm-Gg: AZFdTZc9wjj+phPAlOoFmroPMq90Ie9CaBODRBTnSQghq4IzOrj9oa+x2mYDndf1bXn
+	8G4onQETdnz2179agbdRE/nuKLDEViDWdkkpPfFLIi85qw7YkEAqd8be8ybewCY1mTRdjU3sPMt
+	PS9Xs2A/i7KRJyUY1IHHQ2mD6WzMdpe+CoFEE1XpNm7dLjBbMpL8cxQEUtr6eQoqNbW3HDZ3gj4
+	cJj+tTzMJT/ansjkh+SMu1dZjKgMDC0M0qfT86Tp+Bk0hr0d5YMG1GbT5ougwmRfSOBoq0LZMTG
+	LdFvRkQlDliOOfKQ3zFMaTB+BAskOt6QGbjTdKXaGmPBbHLWrEtmABi6Gn0vJU5Y0PDQwkCKItK
+	MqwZuDKsH+MWf16QPlMC+wGmcRz8yiZtT24aQHCfsur5hFV+05rBgei7qqQFDKF3p9HUQ0pzU5Y
+	1RW/gz56D/HRu3ZuPj+UR6vb+YGrAFpZqJOpo3clpGePYah0+Cf04GfpWzZuiE2YUwPYMBrljqY
+	viIlPTrcRYhCDImAxALIOj69BADX7jkeg8/hSjvUQBNepc9Lq8vq5pRlGbNawPg6V/rJk6678/S
+	orPjDpViNaex1R90zwJbkJ8dziB9yIWDwzsK7jjnEHyD6ckHsepwF1VLrwiSLoyWzRI=
+X-Received: by 2002:a05:620a:450e:b0:949:5c62:e785 with SMTP id af79cd13be357-949ba9b7429mr3286343885a.21.1795617963931;
+        Wed, 25 Nov 2026 06:46:03 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-94a0c18267esm72114085a.4.2026.11.25.06.46.03
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2026 06:46:03 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-99e09f4c44bso1114735241.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 06:46:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEfyB8+gi5lAW6BZWCSfSDR016JO8msyDTFSu7wdXSmNr0NwiT9YCWqIe5MbM+O66m368FIRenzwyjVUSMf1uea@lists.infradead.org
+X-Received: by 2002:a05:6122:2192:b0:5ec:7589:f9e0 with SMTP id
+ 71dfb90a1353d-5ee8af4a3d9mr11210352e0c.11.1795617963345; Wed, 25 Nov 2026
+ 06:46:03 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <cover.1795029012.git.geert+renesas@glider.be> <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
+In-Reply-To: <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 25 Nov 2026 15:45:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX2BEAK27P0Da7Nei=DLaHgTdi=FiC5ZMhVegNuGwM5_Q@mail.gmail.com>
+X-Gm-Features: Aa3M54o5mrxb1PGlHbFHaQn6zx-fZm6HZYf4SleH1VTd0nBeXxZvXoTTF6NrZag
+Message-ID: <CAMuHMdX2BEAK27P0Da7Nei=DLaHgTdi=FiC5ZMhVegNuGwM5_Q@mail.gmail.com>
+Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping support
+To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, 
+	Ulf Hansson <ulfh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Vinod Koul <vkoul@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Paul Elder <paul.elder+renesas@ideasonboard.com>, 
+	Sudeep Holla <sudeep.holla@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>, 
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_064605_684771_223DBECF 
+X-CRM114-Status: GOOD (  21.09  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,87 +109,71 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24 2026, David Matlack wrote:
+Hi Cl=C3=A9ment,
 
-> On Fri Nov 20, 2026 at 10:19 AM PST, Pratyush Yadav wrote:
-> [...]
+On Thu, 19 Nov 2026 at 15:47, Cl=C3=A9ment Le Goffic <clegoffic@baylibre.co=
+m> wrote:
+> On 11/18/26 8:44 PM, Geert Uytterhoeven wrote:
+> > TL;DR:
+> >
+> >     Describe hardware in DT, and perform mapping to abstractions offere=
+d
+> >     by SCMI in Linux.
 >
->>> +static size_t memfd_luo_ser_size(void)
->>> +{
->>> +	return sizeof(struct memfd_luo_ser) + sizeof(struct kho_vmalloc);
->>> +}
->>> +
->>> +static struct memfd_luo_ser *memfd_luo_ser_init(void *mem)
->>> +{
->>> +	struct kho_vmalloc *kho_vmalloc = mem + sizeof(struct memfd_luo_ser);
->>> +	struct memfd_luo_ser *ser = mem;
->>> +
->>> +	KHOSER_STORE_PTR(ser->folios, kho_vmalloc);
->>> +	return ser;
->>> +}
->>> +
->>
->> Hmm, I am not a huge fan of this. This makes doing such allocations
->> quite annoying, and I reckon we will be seeing a fair bit of them in
->> many places.
->>
->> The key observation here is that most file handlers need to allocate a
->> bunch of preserved memory, but they usually can free it all at once. So
->> we can get away with a very simple allocator that hands out memory
->> linearly.
->>
->> I have sketched out some code for this, take a look at the patch below.
->> Note that it is only compile tested.
->>
->> Perhaps give it a try and see if it does the job better.
+> A question on the approach
+> An SCMI variant DT could mark the CPG and MDLC status =3D "reserved" and =
+point the consumers at arm,scmi, while the U-Boot IPL keeps the hardware DT=
+.
+
+In theory, yes.
+
+Status =3D "reserved" would work fine for a leaf device (e.g. a network
+interface), without further dependencies.
+
+For core components like the CPG and MDLC its different, as every single
+module on the SoCs makes use of them.
+
+> Since v4, the series assumes the SCMI ids are stable:
 >
-> I agree the manual packing in memfd_luo_ser_init() isn't great, but I'm
-> not sure we need an arena. This seems like something KHO slab support
-> will solve properly, and since kho_alloc_preserve() already takes a
-> size, KHO slab can be dropped in underneath it later without changing
-> any callers.
+> >   - Remove dependencies by making assumptions and dropping disputed
+> >     items, to move this series forward:
+> >       - Assume all SCMI IDs are stable.
+> If they are, why not using them in the DT directly?
 
-While it would be nice to have, I peeked at what we need for slab
-support and it sounds overkill. For one, a slab cache is for fixed size
-objects. So you'd need a bucket of slabs for different sizes, similar to
-what kmalloc() does. You probably don't want to preserve objects spread
-around in kmalloc's buckets, so you would need a set of buckets
-dedicated for LUO/KHO.
+Because:
+  1. They are not stable!
+     We only _assumed_ they are stable, so we could relax dependencies.
+     With that assumption, there is no longer a need for the (contented)
+     addition of scmi_get_base_info(), which would be needed to
+     distinguish among different firmware using e.g. different ID
+     spaces.
+     FTR, without scmi_get_base_info() we're at the same playing field
+     level as some other SoCs vendors that don't bump their version
+     numbers at all when making incompatible changes ;-)
 
-For another, slab cache is great when you are allocating and freeing a
-bunch of objects of varying sizes. But that isn't really the workload
-preservation has. Each preservation hook needs to allocate a handful of
-objects, and then hold them until unpreserve. This arena style allocator
-does the job pretty well.
+  2. That can't work for now, due to limitations/deficiencies of the
+     current SCMI firmware specification and/or firmware implementation.
 
-And finally, the object layout within a page/slab of the cache can
-change based on configs or kernel versions. See SLAB_RED_ZONE or KASAN
-for example. We would need to standardize the layout without
-compromising the non-KHO slab users. We can probably solve these
-problems, but I don't expect it to be easy.
+  3. Last but not least, they are not hardware description.
 
-So I wouldn't want to support slab until we have file handlers that
-churn through a lot of preserved objects.
+Gr{oetje,eeting}s,
 
->
-> Until then, maybe we should just allocate struct kho_vmalloc separately
-> with kho_alloc_preserve() and accept wasting a folio per object. For
-> memfd that's one extra page per preserved file.
+                        Geert
 
-Yeah, that is fine too I suppose, at least until we start to run into
-problems with the memory overhead. I think the arena style allocator is
-fairly straightforward and makes the memory savings easy so to me it
-sounds promising.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
--- 
-Regards,
-Pratyush Yadav
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
