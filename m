@@ -2,97 +2,211 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22AD606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73120606A6AD
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OwdLiDMu;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=f7jw6fUi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kN50JRQU;
+	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=QmqfKmQW;
+	dkim=pass (1024-bit key) header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=NX1AlQ8r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=t9I8cNuBP7ebVAP5Sxu6FvkQwNvgLeon4MVqc5DF214=; b=OwdLiDMuea4C5D2bjgMOguaBjv
-	yezKZK4ozeAOB8xF02AZd2ufYQVCJQaT2blykEVPitoqagccEUBCLm3j5gtroPIUP/pi57xnZVwQW
-	8UwxXdAR2PHVHqSG/cVxOvF+44zwOgjoXkdJZpzylEvcBoeoYmJw0ms2yF8sRVuR7jba48hgvQZa3
-	9FezBNOPhPnRXohDctIhOpwuM7H6VdtVUm5+obKxRGUOoFiE7y4BwpILPnzA0X75r3mmzS2wdPSvx
-	49L/Y59344QWRLVMcl5fbuUREGLYKwSb0Edb+RxXnRwpBS6YuQWwrKKr298u3GjTNnaXLJQHutiYq
-	PtdUuAlA==;
+	bh=g3COIQnjMJ4GcKxAOqie7gvN3r2Y85WLM/TFpmBap3Y=; b=kN50JRQU9aoqUUnQ7l/CWB3GgR
+	S8FNZqk7ruAWEkyj0XH+h6a3sM+t6FI8i0rg8R5QEriDFuZeEkYfuQuhZOERXPgDh4hZhHErGong5
+	80Cj4HBXcIrlqleNtqKo/TjPe8Xp2yhDMad8XMuxgyAoOgCOkdMBDuNf5WNLdDaxnOKcjkOgCdhuK
+	M0ELXXopGew57pk1KNalOMUzKaCwL2TWnUq3C1M7Ia1sHsETGfW2ybLBCifoMZDTTrlaFO8ChjNqg
+	cbSFxaKi1vk8I9TvvJCJHyWk69PEMyo5LvZ8OyHX/V1LU92XjdmlCMWvt/3dfNoZBMTLjUKjwJtZ/
+	vRf4F4wQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Il-00000008YgG-2WUw;
-	Wed, 25 Nov 2026 06:16:19 +0000
-Received: from mail-dy1-x1347.google.com ([2607:f8b0:4864:20::1347])
+	id 1xW752-00000008n6g-2rIj;
+	Wed, 25 Nov 2026 07:06:12 +0000
+Received: from mx0a-0002e601.pphosted.com ([148.163.150.75])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6IU-00000008YPx-2kJx
+	id 1xW74z-00000008n2i-3VV6
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:16:09 +0000
-Received: by mail-dy1-x1347.google.com with SMTP id 5a478bee46e88-33c35f5ca6cso7166401eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:01 -0800 (PST)
+	Wed, 25 Nov 2026 07:06:11 +0000
+Received: from pps.filterd (m0380145.ppops.net [127.0.0.1])
+	by m0380145.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 6AP6BBEw069451;
+	Wed, 25 Nov 2026 01:05:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-id:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	proofpoint-05-2026; bh=g3COIQnjMJ4GcKxAOqie7gvN3r2Y85WLM/TFpmBap
+	3Y=; b=QmqfKmQW0O2/Am5KJcOwr7qGj0qVub5NkqTbJwf6w5SNcWcuy1zBzspxi
+	UNd1SjZiZqemVEyYgjjb6U1nHz9oMhTiBxqLlGySzYCLvxLpvuujObqQ8XIlTWHJ
+	i0fH64s+9UMsdTOOa+71VD9lP+qdgYE8IrdwwnByfxwpenwjedbsDE5SIYhaY1oS
+	wc4c0m24lUwifDjQ6pY/Rn5cJT9mUCv921PePXIrv97b9uh6HOUNQzPBIRDQ4paQ
+	gW/J4e7DEF/A+LTkyT8glfk5J+zsoJ9a+zcCeEGo8aJirdMFARqUfFLF87jAE63R
+	xFoSYUUBU5lhq+pKmnLfusA860TKQ==
+Received: from bl2pr02cu003.outbound.protection.outlook.com (mail-eastusazon11011012.outbound.protection.outlook.com [52.101.52.12])
+	by m0380145.ppops.net (PPS) with ESMTPS id 4j5j1rtm2v-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 25 Nov 2026 01:05:33 -0600 (CST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LgQCXa3eFeI8IugXtQEitRABrptrSDuZqMrbvKzhzG+FeW8J7mbnQ0AloGViJ7ZbF8XzSk/KHVNPR9hutGy2ZAiqSWzDxG0IGPULh7LuzfZ6hLuBWrwufxeupVge4d1v5xXAkNRr0wm6D4fCe7MExaM6LA0f1c82yRwPzOxKXH/+3Ddd85vNU57i9i85ILkpvJhw7nkGhTlbl0ejs+sd9FPP2MgtFQrnkd8HOQ9g1M0FyYA4OcftdsUBJp+QGbaQQ9ZheeFF20vuhYxZiN6/g0hKJJkrbxHI6mX21pWOnZGkPU9EMgbsW8Lj6rfKp7GTu+F0Hz76/sDVkALroiK/8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g3COIQnjMJ4GcKxAOqie7gvN3r2Y85WLM/TFpmBap3Y=;
+ b=It/oSOY1wRPodSHWJHZD1Sxz5khrB0UCATbpp+ifaVU5FJaOm9iMdig+TafDl2adLTANvVU3fOfwRki+k/0hgaVjJPQRZ3LS7N/EeM7oSXXFe1EI/1thc1X9LD/nmK6b4t+R+nHVPtlZuemnbeMgarnW1IxJmMtJdNTieAHLakWsixkoR835lGecKS1PcIKougSs0wLyRcDSmibf/xi6QaB9mYMBpLaqp5HRl0LJDcs7FZv8dxzTLrR+mYZguCzRkvKJ7euwWPqubkS8KdTX2GMtoYxjgUZHiZejHctKwwvIIi4WHm0Gia2OsG9gEarGOQDn4ItcAz+Go2HrQsjE/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ti.com; dmarc=pass action=none header.from=ti.com; dkim=pass
+ header.d=ti.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795587361; x=1796192161; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=t9I8cNuBP7ebVAP5Sxu6FvkQwNvgLeon4MVqc5DF214=;
-        b=f7jw6fUiJO/wp9bqB/rLAWzzfN0Nx8ar8RKak5vORdqouyzW86Wpd0yZSFteCO5aC4
-         A34jNj1fggincF+dtUg8aMRnBcRWRAyJ1jIPZtT/oLIEQ66Lmraetl2IS3Eo2qbeYA+f
-         90tHu73XNpK4UlMcKCJF3kZeBJ8j0Ak0XeVXnTCJnJUnau7MPMywwFwtEYUUs9PDJiBM
-         IV7uQ8YYexZRFSKm48PJ8Q6WTvpQHoUw7nSfX+c5D0JTzEcq12DzwXu8+opfwQs2rPQH
-         YHKgsPToGWBub7H46iwgM10FqrCalOilWsq1d6GG0vWhssQkUF5tVUK6FJE2Ad2pKGAK
-         kx1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795587361; x=1796192161;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=t9I8cNuBP7ebVAP5Sxu6FvkQwNvgLeon4MVqc5DF214=;
-        b=qATjsZocdCX0FOC4+89tQggI/4WyCCMwsSrEOD3GurwROf5t2hDZ8pQ7DRUNHnq+O0
-         srvABa1+uiKu/vhReQaF4uKKLIMyLUa3YsHubb+uYUqjaTvzDzG/Z7jMMNTHqF4fBafP
-         CWPbMo/UidlI3HN//ufGM1EDlMMslw4GiM2rLIdWVb+vTrGLWoYXIvfR+mdfYiVLqtCV
-         Ykp7R9MAYLgeqr82aMXQLeMswU8ZaF5R7AASm263mGM5OCHKVtchQ9tE6AFPknHtXBO+
-         9IngLSoM4g9e2p000zkS5y4Q8t5kqejBX5sXsWE6cvz3CwbN+Wefp34LbMgBwdPfjc/Y
-         JDNw==
-X-Forwarded-Encrypted: i=1; AL+hErH043Y5VVb1JkRYx1ezCFdKtkmmIVeWRixaF7zmnjnpLkB9yg4pcTSsmlzXd3QajDCJC1TFjhwJkxgd7BHqTNNy@lists.infradead.org
-X-Gm-Message-State: APuU4Z8V9bIqedc1dokvhtgg/0WsmB0u8dxZxWzGkuHcL/IGE2A9d8az
-	05Eu6QoR+EUjgoxzQwipWhbUhZ7eAY2boGFGczPDjgHBVEwu5hKkjVyJbd45Oz7uV0tXJyLcfc0
-	jFscsvEPY2g==
-X-Received: from dlec1-n2.prod.google.com ([2002:a05:701b:4281:20b0:1ab:a092:67c3])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:701b:2083:10b0:164:4e36:f956
- with SMTP id a92af1059eb24-1b5568b47a4mr17852731c88.16.1795587360305; Tue, 24
- Nov 2026 22:16:00 -0800 (PST)
-Date: Tue, 24 Nov 2026 22:14:55 -0800
-In-Reply-To: <20261125061523.1540234-1-irogers@google.com>
+ d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g3COIQnjMJ4GcKxAOqie7gvN3r2Y85WLM/TFpmBap3Y=;
+ b=NX1AlQ8rxOz+j6OXOsQ6n7vNIboa/+knnMgsIxzr7kNyaJKBH6WqIky6kMkhFFGxFOZVFijN+kup8bYKXNnC/SzSPZlheUZOlK8Fa50iM5PmVuKGo66SAb7iN4V5pKhx1kfgHsSuNpencMaG3sBep4ZLwJq+XH9IhDtIxx8hVl0=
+Received: from SJ0PR10MB5565.namprd10.prod.outlook.com (2603:10b6:a03:3d2::19)
+ by MN2PR10MB4174.namprd10.prod.outlook.com (2603:10b6:208:1dd::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 07:05:31 +0000
+Received: from SJ0PR10MB5565.namprd10.prod.outlook.com
+ ([fe80::31c6:5383:712d:a1c5]) by SJ0PR10MB5565.namprd10.prod.outlook.com
+ ([fe80::31c6:5383:712d:a1c5%5]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
+ 07:05:30 +0000
+From: "Kochidanadu, Scaria" <s-kochidanadu@ti.com>
+To: "Kevin Hilman (TI)" <khilman@baylibre.com>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@kernel.org>, Ulf Hansson
+	<ulfh@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano
+	<daniel.lezcano@kernel.org>,
+        Christian Loehle <christian.loehle@arm.com>,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Clark Williams
+	<clrkwllms@kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>
+CC: Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-rt-devel@lists.linux.dev"
+	<linux-rt-devel@lists.linux.dev>
+Subject: Re: [EXTERNAL] [PATCH v2] cpuidle: psci: Allow domain idle states in
+ s2idle for all CPU idle states
+Thread-Topic: [EXTERNAL] [PATCH v2] cpuidle: psci: Allow domain idle states in
+ s2idle for all CPU idle states
+Thread-Index: AQHddu+cdndHDBO5xka/vMZf3gVP3rc+aNQA
+Date: Wed, 25 Nov 2026 07:05:30 +0000
+Message-ID: <3d3924f2-9fd0-4ca9-acc4-aa82bfb2f6e5@ti.com>
+References: <20261117-topic-lpm-psci-domain-callbacks-v2-1-744884105846@baylibre.com>
+In-Reply-To: <20261117-topic-lpm-psci-domain-callbacks-v2-1-744884105846@baylibre.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ti.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR10MB5565:EE_|MN2PR10MB4174:EE_
+x-ms-office365-filtering-correlation-id: c6505628-e832-424d-4ca7-08df4ac27db4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|23010399003|921020|38070700021|10067099003|5023799004|56012099006|261021130227099003|261021123027099003|261021121427099003|261021133027099003|261009223327099003|261009223027099003|261009221727099003|261009221227099003|261009220027099003|261021135927099003|261102123227099003|261022115727099003|261022113327099003|261022105027099003|261022075727099003|261028144727099003|261026135527099003|261026121527099003|261026140227099003|261026130827099003|22082099003|18002099003|6133799003|3023799007|4133799003;
+x-microsoft-antispam-message-info: pixJsr4p4LofHPBCjIIMi+xNmcVRSEmTLC+UyYMvXlgxQ2qzxORq+jDtoRForGw+rZ9dpkUfQ60PfC2Ov6cmLYVZ6ERvOAIHo5nkK/oSY8jZP9Dmlcvqn1CmsN4+Uz92reOFXbPnpXPS33nipiSXidFYzxXbqd1vn9+fh3UjCPG/Uz0ALzoLAbf4KcFFF+8qPbisVh6i9vJ6rDTfR70Z4DatEAO4VCltMDA20TPMPwsRUSbTFEHVZMvirOBDBj+J8Kp8W8OHWF+VIuCjkV1zmQ3pj5YPxJAm7O9ZUkv9W/yPwdeGhSeNFhLurSSU5lnhsA5SJXOwXXOdwWWkW1u3wYlhpbqqcaDLIw+MMRdOuYdnGLFb3sKc06OYFUggq9hXwpBHvldPayNgqBNVHne+CPLPbx9YfdoudeDULn7sz4eCUeoPne5MDxvx8++zk639rxWP58uUQc2MW4es4FwrmiLE3ayjWsvQsoircZMc89HF8DGsu1rNXuetonlZnlZVa6NeCCBo8ixqhcQXpVTnHM0kWnEhX1DWROHYwWwCV96j9L03E9g32ShzS9ktB4IETc8Wns9ulkRh11OWPNnaooEbilTWEGbo9mVQjNu4F9UZeoNduYrZVyvLGIwM20jaLZyWphgfGMA6Ptwrm+4792kjGZo5TUytUslXvWfmTRPmwkiAwubQECJWcd9UMeWi
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR10MB5565.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(921020)(38070700021)(10067099003)(5023799004)(56012099006)(261021130227099003)(261021123027099003)(261021121427099003)(261021133027099003)(261009223327099003)(261009223027099003)(261009221727099003)(261009221227099003)(261009220027099003)(261021135927099003)(261102123227099003)(261022115727099003)(261022113327099003)(261022105027099003)(261022075727099003)(261028144727099003)(261026135527099003)(261026121527099003)(261026140227099003)(261026130827099003)(22082099003)(18002099003)(6133799003)(3023799007)(4133799003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a0lvSUQrVEptRkVGR1lnQXZuSzU1WkxJZWpYNlREK1JZcXNOYkxpOWxtZmR5?=
+ =?utf-8?B?OCtFVXBKMGd6UmpwUHArckR2ZU9ZaGNrdis3T2ZZMmUvTFFZMXRJNk9uUE91?=
+ =?utf-8?B?SlNZdU8rVWpMNWlXU3AvN1JxQms5Z1JYemZnQnk5NnBRUkt4clRhWTZCWDI1?=
+ =?utf-8?B?ekN5czVJUEh1bVRFcXZYKzdKckxEZktEeGpkRXYvR0JJTTVMU0EzWmI0MFh2?=
+ =?utf-8?B?Z1dwSkpwUDUwNFdPbllKVjd5Qm4xRm8zMDY1SVlrKzN3WXNBK3hSTytkcmxr?=
+ =?utf-8?B?MVBrZ0kwa29sRHloaEpMZ09lTGJBbGN6SWJrelorZStRT3p3RUljOFcwMENz?=
+ =?utf-8?B?QmN5UmRZcUlXWi9FeWtRZUlrdmtvdEttTm9ueUhDY2FLcUFmTGl2RVhFaER5?=
+ =?utf-8?B?d3R6Qml1eDFxNEVyNDRaUFVobXlLdHpNc3diaW83Z0FSZE9IZ0RiZFY3NGVo?=
+ =?utf-8?B?aDk2ZHdmMDg5SnZtL2lKUDJ6NExZYXUyaHNsYXQzOUlsN0VKZWRSZ1FoNGtS?=
+ =?utf-8?B?cWtyQ0N4Wndzd2dUOXh4c2JjUGNZdFlLSzMvVjZlVERNRWxTc0xqTjZ1Y0NZ?=
+ =?utf-8?B?NHRzWXJZbThqeGl5YmZLMEE0SVJ2YUU0RFVtSXN2QlIweEdmODE0QzY2bHVl?=
+ =?utf-8?B?OVlXTWtSVzQxYWJ1MmcyV2ZUbUsxRytpT3VNbG5jNnRHcWY1M0MxK2pkRWVQ?=
+ =?utf-8?B?cDNtSU1UUlBtYkFaTFpieCtEMnIzam5BQkpnUndjM2JXRWthc20veFVITzMx?=
+ =?utf-8?B?cmZYNVBZa01zSGRYYlEzOUFCeGZWVFBZU1p1cDlsY1pVa2V5WUhVS2w1N1dy?=
+ =?utf-8?B?dGVVRVM5bzFHR0FKMVBoRXgzUHVFOHJydWtiY2t6Mkx6WGxyNUVvZTZ3czVq?=
+ =?utf-8?B?VEluZy9USm9raTlYdldocjdwaUlIYmh3dW9KNlpsUGJ2T25pVm5VRGQrNTFo?=
+ =?utf-8?B?bDJhOEhpUFMzYUdjd0xKRTJBWVFOWVhpcktlSm9LZTFCR0hUVndHZE10NVpM?=
+ =?utf-8?B?eTM5WThFMVA0di8yamo3RmtzQ09MOEtJUW83RnB2NlQ3S2VLcXM3Nk5mQWR4?=
+ =?utf-8?B?UWFvK3Exa2tqMGFiOU0weko1SDdnenBDN2hlODhXaU1PTWJPb1dUcWJPbENB?=
+ =?utf-8?B?VTRjcTNuNHloMENXSjlTRHhLUWorMmFadzdXaW1GTDkxZFRjVW5Xc2lic0xD?=
+ =?utf-8?B?ZkJpNWlTWEVLek9PeUZGM1Blc0lWMjJqME5EYlFqZ2dWQXFHcUpMdFFHdi9x?=
+ =?utf-8?B?Tmt2S1piQ1ZWTUdlQXIrOU5MUUsyM3REZjVDbWFidU1XZXBhWDNWaldjZC9D?=
+ =?utf-8?B?RSs2d3ZqZmNOV0JsbkZkSFNBWkNaamduWFlmQS8xc3JlUUEwcjJ2ZVhxSHMz?=
+ =?utf-8?B?Ukl5LytSa0hjYWFtSDhKS0xqZ1h4MU9LZi9ya0FOenlNeUwySWRtcUZQbytv?=
+ =?utf-8?B?L2tsYUE1MVVqdmwyMDdabGp3WXhkalR1TGJqTE00Y0Y1M3BvMGdCRTJmSW1E?=
+ =?utf-8?B?bXJ5K1VhL1Z3RFlxanpjMzFEMU9SK252M051czQvTURpSldRSVRTTW83SUlv?=
+ =?utf-8?B?aU4yNDJ4RFNUVUxjUEJtNkxaM0t3a0RGNVcya1lFOG9PL0lLci92VEJmYXZT?=
+ =?utf-8?B?MDVJaFJQYmFEVHpaLzMwUWZ4TzBCVllyTG5VajlOQ1ZOYzBrZWhaZ05GbVdY?=
+ =?utf-8?B?L29uUWhOQzhRc294L09JSzlmSjNEZHlMQ1BsNDNIQ1hjYXJnU2NCUHhUVGVY?=
+ =?utf-8?B?enlSMEkxS3oxWnpROEh3R1d4OGZJTFNQU1ZvT2wrYXZMT1NSNk5qamdXdy9x?=
+ =?utf-8?B?bGwvUldRdlc5WFAydUU3TVV5eFMvNEdUNUtjUVljbkVNL2V4UkR4Z2tKZXkr?=
+ =?utf-8?B?ZzBnS20wQTg3aCtMVUFRcEZNbThsc1VqbUg0RkZMdmo1OFppTVVxVGRBaytn?=
+ =?utf-8?B?N0tuWkJlMTV4M1hFckFicUEySlBRK1p6NURraUtRUEdqSVU2dG4rM0lEMDl3?=
+ =?utf-8?B?K0FkM1h2V0JFOUNrUy9jVTJoZm9TeGxEMDlnUi9ra1h0MjJDUHdtanNyRlpK?=
+ =?utf-8?B?SXhFb0J4RDN0SENneURWRENUV3FkYnl5Z1FqV1NvVys3MUlzTDNZQy91V2Fk?=
+ =?utf-8?B?cWdZejQxYStCMmdLTEVJdysvMGlJUnJ5N0pXWXRPQjlaaE1HRG95bkR1WXNV?=
+ =?utf-8?B?YnNpTTR2VXQycThmakpJcjFUTHBFM0tIdTlaUVNSRnFBclZzV21HVmU3cDdU?=
+ =?utf-8?B?cUh4dVAzbW9yVEIvNWx4aDI4QXlhdHBqZndXK1VIUWtBQkdrTEZTcE5ycS9t?=
+ =?utf-8?Q?2a66W+hy+FEVLkJRX8?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3A9BBD74201CCE43BF6FB64F0C681093@namprd10.prod.outlook.com>
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261125061523.1540234-1-irogers@google.com>
-X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
-Message-ID: <20261125061523.1540234-3-irogers@google.com>
-Subject: [RFC PATCH v2 02/30] unwind: Add KUnit tests for Minimal DWARF CFI interpreter
-From: Ian Rogers <irogers@google.com>
-To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
-	linux-arch@vger.kernel.org
-Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org, 
-	mingo@redhat.com, tglx@kernel.org, bp@alien8.de, dave.hansen@linux.intel.com, 
-	x86@kernel.org, catalin.marinas@arm.com, will@kernel.org, 
-	mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, pjw@kernel.org, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	linux-riscv@lists.infradead.org, acme@kernel.org, namhyung@kernel.org, 
-	linux-perf-users@vger.kernel.org, mhiramat@kernel.org, ast@kernel.org, 
-	daniel@iogearbox.net, andrii@kernel.org, bpf@vger.kernel.org, 
-	nathan@kernel.org, llvm@lists.linux.dev, nsc@kernel.org, 
-	linux-kbuild@vger.kernel.org, ojeda@kernel.org, 
-	rust-for-linux@vger.kernel.org, ardb@kernel.org, linux-efi@vger.kernel.org, 
-	maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, shuah@kernel.org, 
-	linux-kselftest@vger.kernel.org, indu.bhagat@oracle.com, jremus@linux.ibm.com, 
-	wnliu@google.com, dylanbhatch@google.com, Ian Rogers <irogers@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: SVNeWLGBoZvC06veDmYGIxUaNaWbqdCkZ4JK3PoIudjSG6osJqCzNn5LGHj6myBSlOsgA0GognGHK/5BDXwHF43yDDkrHmJTX/IrxWSQVrVozZDju4tgHl1G6s5TwTjQGymBnEvI0WFkfaGRZyiw+DXn/uZZhamUHp44alkepeNv8cimetbHUUPrFx7IZMeIixf1NX4dI5I5TozyLIiyXmvOz5q0Kuo2VXGSQ1WVBDihFq9pFa36ZHSI2e/H3fv9/1GTnQzag5D4JBWJy92YvIiTdLgJwakXPG+ILXeeoyj8c6Sp66URtUVjpAwOmZg/uAcdmny2GIJws/6ta7aKuA==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR10MB5565.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6505628-e832-424d-4ca7-08df4ac27db4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2026 07:05:30.1962
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kcKQdzCCHMiO7J5yWR1cEVbLPiETJiKe+uSZ9jUdlAD8aw1Ux0f8chCVnqvbf7XJRHHgTkSZX7rRV8iVV2ZJkQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR10MB4174
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDAyOCBTYWx0ZWRfX1IFllnXYo5/R
+ 8bXR2zhziv5/+LyekDpBEDuHO2iBEIIYU4Jgt8cGNKlCyUBiAmwp6zm3SsXxeLTTFwGcJ2l9ETw
+ wXK7VKoCEUDWcu07QTRnA6bGbCHp8mzzheTqx64iCkqhCZsYNyevz1ZD9BIz/m6vhTsra7VTsDB
+ f+4+fM2uD/t/B0rmoX9b0928n2fV9dOp2TVx2555A8JH4uK/l/iSub8qtXBpfSb0qmLiddy3Ix/
+ uykUTINJr+SK0M1sN1E/M1dMNzWW2oHSdIA7UwX04Uhldg1mSoS4isZKd07bLjEiBYaoAL5uDub
+ ZPkCBtGF+pIGwAiYASRu95ekn8NI74CjVaHvmMF4lXuSizbhMYZYHa/nzu4ZZ+5OdwfmuC/D3wy
+ bEuCOK6isEeJ5dsTTbfOVuh1zr4h3fAuWMT69+AcQce9iSAHk+r7/01UA8H2dDaxiPsyvcoYK/f
+ 6rtVafpEkVjp3m8jfXA==
+X-Proofpoint-GUID: lLXwMntBTR3om2Y4MDEnM6GlTQSKDCM0
+X-Proofpoint-ORIG-GUID: lLXwMntBTR3om2Y4MDEnM6GlTQSKDCM0
+X-Authority-Analysis: v=2.4 cv=K/+3jCWI c=1 sm=1 tr=0 ts=6b0688bd cx=c_pps
+ a=cRSuPULe8LMj8fTR+fkUeA==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=zJRp6_cAMcgA:10 a=AlMIdn_sM9wA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Z8NIEmU8O1QQgoT56wFK:22 a=gO1vWkAQAl3rybz1DQOp:22 a=RpNjiQI2AAAA:8
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=bC-a23v3AAAA:8 a=IpJZQVW2AAAA:8
+ a=sozttTNsAAAA:8 a=HgE2TJAPUa6lmHlp7pwA:9 a=QEXdDO2ut3YA:10
+ a=FO4_E8m0qiDe52t0p3_H:22 a=IawgGOuG5U0WyFbmm1f5:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDAyOCBTYWx0ZWRfXx4iftDUlPrmx
+ 9bZieMj/2j31eXdoQF6eCPoRYcgqFvl6NK6RQRSNxumgceEYywSQ+RMLFfqVvDjGoP3gPiNmf7f
+ /848oVjf4VY6XAI+A3bwewpiw+P9fW8=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-25_02,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 clxscore=1011 suspectscore=0 malwarescore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250028
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_221602_739572_1E20FE47 
-X-CRM114-Status: GOOD (  22.80  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261124_230609_898118_5F32C2DF 
+X-CRM114-Status: GOOD (  16.11  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,837 +217,151 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a built-in KUnit test suite (CONFIG_UNWIND_DWARF_CFI_KUNIT_TEST) in
-kernel/unwind/dwarf_cfi_kunit.c exercising the Minimal DWARF CFI
-interpreter across:
- - SP-based and FP-based stack frames and ignored callee-saved GPR spills
- - Shrink-wrapped DW_CFA_remember_state / DW_CFA_restore_state stacks
- - DRAP stack realignment and 64-bit / 32-bit vdso32 sigreturn frames
- - ARM64 PAC-RET (DW_CFA_AARCH64_negate_ra_state) and RISC-V leaf frames
- - Malformed bytecode, negative sdata4 range, and overflow rejections
- - Linear .eh_frame scanning (dwarf_cfi_scan_eh_frame_kmem()) and live
-   CALLER_ADDR0/1 and kernel stack walks
-
-Signed-off-by: Ian Rogers <irogers@google.com>
----
- arch/Kconfig                    |  10 +
- kernel/unwind/Makefile          |   1 +
- kernel/unwind/dwarf_cfi_kunit.c | 767 ++++++++++++++++++++++++++++++++
- 3 files changed, 778 insertions(+)
- create mode 100644 kernel/unwind/dwarf_cfi_kunit.c
-
-diff --git a/arch/Kconfig b/arch/Kconfig
-index 5ed64e6cc72e..03399120aa8f 100644
---- a/arch/Kconfig
-+++ b/arch/Kconfig
-@@ -506,6 +506,16 @@ config UNWIND_TABLES
- config UNWIND_DWARF_CFI
- 	bool
- 
-+config UNWIND_DWARF_CFI_KUNIT_TEST
-+	bool "KUnit tests for Minimal DWARF CFI unwinder" if !KUNIT_ALL_TESTS
-+	depends on KUNIT=y && UNWIND_DWARF_CFI
-+	default KUNIT_ALL_TESTS
-+	help
-+	  Builds KUnit tests for the Minimal DWARF Call Frame Information (CFI)
-+	  bytecode interpreter and stack unwinder.  Covers SP/FP-based frames,
-+	  callee-saved GPR opcode skipping, shrink-wrapped state stacks, DRAP
-+	  stack realignment, malformed bytecode rejections, and live walks.
-+
- config UNWIND_USER
- 	bool
- 
-diff --git a/kernel/unwind/Makefile b/kernel/unwind/Makefile
-index f772fc607985..73a1ccc2ad77 100644
---- a/kernel/unwind/Makefile
-+++ b/kernel/unwind/Makefile
-@@ -9,3 +9,4 @@ KCOV_INSTRUMENT_dwarf_cfi.o := n
- 
- obj-$(CONFIG_UNWIND_DWARF_CFI)		+= dwarf_cfi.o
- obj-$(CONFIG_UNWIND_USER)		+= user.o deferred.o
-+obj-$(CONFIG_UNWIND_DWARF_CFI_KUNIT_TEST) += dwarf_cfi_kunit.o
-diff --git a/kernel/unwind/dwarf_cfi_kunit.c b/kernel/unwind/dwarf_cfi_kunit.c
-new file mode 100644
-index 000000000000..5e8e0ff2ec36
---- /dev/null
-+++ b/kernel/unwind/dwarf_cfi_kunit.c
-@@ -0,0 +1,767 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * KUnit tests for Minimal DWARF Call Frame Information (CFI) unwinder.
-+ */
-+
-+#include <kunit/test.h>
-+#include <linux/ftrace.h>
-+#include <linux/kernel.h>
-+#include <linux/stacktrace.h>
-+#include <linux/unaligned.h>
-+#include <linux/unwind_dwarf_cfi.h>
-+
-+static __always_inline unsigned long record_here_ip(void)
-+{
-+	unsigned long ip;
-+
-+#if defined(__x86_64__)
-+	asm volatile("1: lea 1b(%%rip), %0" : "=r"(ip));
-+#elif defined(__aarch64__)
-+	asm volatile("1: adr %0, 1b" : "=r"(ip));
-+#elif defined(__riscv)
-+	asm volatile("1: auipc %0, 0" : "=r"(ip));
-+#else
-+	ip = _THIS_IP_;
-+#endif
-+	return ip;
-+}
-+
-+static const struct dwarf_cfi_arch test_x86_64_arch = {
-+	.ws	= 8,
-+	.sp_reg	= 7,	/* rsp */
-+	.fp_reg	= 6,	/* rbp */
-+	.ra_reg	= 16,	/* rip */
-+};
-+
-+static const struct dwarf_cfi_arch test_i386_arch = {
-+	.ws	= 4,
-+	.sp_reg	= 4,	/* esp */
-+	.fp_reg	= 5,	/* ebp */
-+	.ra_reg	= 8,	/* eip */
-+};
-+
-+static const struct dwarf_cfi_arch test_arm64_arch = {
-+	.ws	= 8,
-+	.sp_reg	= 31,	/* sp */
-+	.fp_reg	= 29,	/* x29 */
-+	.ra_reg	= 30,	/* x30 (lr) */
-+};
-+
-+static const struct dwarf_cfi_arch test_riscv64_arch = {
-+	.ws	= 8,
-+	.sp_reg	= 2,	/* sp (x2) */
-+	.fp_reg	= 8,	/* s0/fp (x8) */
-+	.ra_reg	= 1,	/* ra (x1) */
-+};
-+
-+/*
-+ * Helper to construct a compact [CIE | FDE] .eh_frame blob in kernel memory
-+ * with absptr encoding so tests can use arbitrary synthetic PCs.
-+ */
-+struct test_eh_blob {
-+	u8 buf[256];
-+	size_t fde_off;
-+	size_t total_len;
-+};
-+
-+static void build_arch_eh_blob(struct test_eh_blob *b,
-+			       const struct dwarf_cfi_arch *arch,
-+			       u8 code_align, u8 data_align_sleb,
-+			       const char *aug, u8 fde_enc,
-+			       const u8 *cie_insns, size_t cie_insns_len,
-+			       unsigned long init_pc, unsigned long pc_range,
-+			       const u8 *fde_insns, size_t fde_insns_len)
-+{
-+	u8 *p = b->buf;
-+	size_t cie_start = 0, cie_len_pos, fde_start, fde_len_pos;
-+
-+	memset(b, 0, sizeof(*b));
-+
-+	/* CIE */
-+	cie_len_pos = p - b->buf;
-+	p += 4;
-+	put_unaligned_le32(0, p);
-+	p += 4;
-+	*p++ = 1;
-+	memcpy(p, aug, strlen(aug) + 1);
-+	p += strlen(aug) + 1;
-+	*p++ = code_align;
-+	*p++ = data_align_sleb;
-+	*p++ = arch->ra_reg;
-+	if (aug[0] == 'z') {
-+		*p++ = 1;
-+		*p++ = fde_enc;
-+	}
-+	if (cie_insns_len) {
-+		memcpy(p, cie_insns, cie_insns_len);
-+		p += cie_insns_len;
-+	}
-+	while ((p - b->buf) & 3)
-+		*p++ = 0x00;
-+	put_unaligned_le32((u32)((p - b->buf) - cie_start - 4),
-+			   b->buf + cie_len_pos);
-+
-+	/* FDE */
-+	fde_start = p - b->buf;
-+	b->fde_off = fde_start;
-+	fde_len_pos = fde_start;
-+	p += 4;
-+	put_unaligned_le32((u32)((p - b->buf) - cie_start), p);
-+	p += 4;
-+	if ((fde_enc & 0x07) == 0x03 || (arch->ws == 4 && (fde_enc & 0x0f) == 0)) {
-+		put_unaligned_le32((u32)init_pc, p);
-+		p += 4;
-+		put_unaligned_le32((u32)pc_range, p);
-+		p += 4;
-+	} else {
-+		put_unaligned_le64(init_pc, p);
-+		p += 8;
-+		put_unaligned_le64(pc_range, p);
-+		p += 8;
-+	}
-+	if (aug[0] == 'z')
-+		*p++ = 0;
-+	if (fde_insns_len) {
-+		memcpy(p, fde_insns, fde_insns_len);
-+		p += fde_insns_len;
-+	}
-+	while ((p - b->buf) & 3)
-+		*p++ = 0x00;
-+	put_unaligned_le32((u32)((p - b->buf) - fde_start - 4),
-+			   b->buf + fde_len_pos);
-+
-+	b->total_len = p - b->buf;
-+}
-+
-+static void build_test_eh_blob(struct test_eh_blob *b, const char *aug,
-+			       u8 fde_enc, unsigned long init_pc,
-+			       unsigned long pc_range,
-+			       const u8 *fde_insns, size_t fde_insns_len)
-+{
-+	static const u8 x86_cie_insns[] = { 0x0c, 7, 8, 0x80 | 16, 1 };
-+
-+	build_arch_eh_blob(b, &test_x86_64_arch, /*code_align=*/1,
-+			   /*data_align_sleb=*/0x78, aug, fde_enc,
-+			   x86_cie_insns, sizeof(x86_cie_insns),
-+			   init_pc, pc_range, fde_insns, fde_insns_len);
-+}
-+
-+static void test_cfi_sp_and_ignored_gprs(struct kunit *test)
-+{
-+	/*
-+	 * Simulate a typical -fomit-frame-pointer function at 0x1000..0x1040:
-+	 *   +0..+1: push %r12 -> advance_loc 2, def_cfa_offset 16, offset r12 at cfa-16
-+	 *   +2..+2: push %rbx -> advance_loc 1, def_cfa_offset 24, offset rbx at cfa-24
-+	 *   +3..+6: sub $32, %rsp -> advance_loc 4, def_cfa_offset 56
-+	 *   +7:     GNU_args_size 16
-+	 */
-+	static const u8 insns[] = {
-+		0x40 | 2,		/* DW_CFA_advance_loc 2 -> 0x1002 */
-+		0x0e, 16,		/* DW_CFA_def_cfa_offset 16 */
-+		0x80 | 12, 2,		/* DW_CFA_offset r12, 2 (ignored) */
-+		0x40 | 1,		/* DW_CFA_advance_loc 1 -> 0x1003 */
-+		0x0e, 24,		/* DW_CFA_def_cfa_offset 24 */
-+		0x80 | 3, 3,		/* DW_CFA_offset rbx, 3 (ignored) */
-+		0x40 | 4,		/* DW_CFA_advance_loc 4 -> 0x1007 */
-+		0x0e, 56,		/* DW_CFA_def_cfa_offset 56 */
-+		0x2e, 16,		/* DW_CFA_GNU_args_size 16 (ignored) */
-+	};
-+	struct test_eh_blob blob;
-+	struct dwarf_cfi_row row;
-+
-+	build_test_eh_blob(&blob, "zR", 0x04 /* udata8 abs */, 0x1000, 0x40,
-+			   insns, sizeof(insns));
-+
-+	/* At entry (0x1000): CFA = rsp + 8, RA = cfa - 8, FP = same */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x1000,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_SP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 8);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_SAME);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.ra_off, -8);
-+
-+	/* Mid-prologue (0x1002): CFA = rsp + 16 */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x1002,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 16);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_SAME);
-+
-+	/* Body (0x1020): CFA = rsp + 56, r12/rbx spills ignored */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x1020,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_SP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 56);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_SAME);
-+
-+	/* Out-of-range PC (0x1040) returns -ENOENT */
-+	KUNIT_EXPECT_EQ(test, -ENOENT,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x1040,
-+						&test_x86_64_arch, &row));
-+}
-+
-+static void test_cfi_fp_and_remember_restore(struct kunit *test)
-+{
-+	/*
-+	 * Simulate an FP frame with a mid-function shrink-wrapped epilogue:
-+	 *   0x2001: def_cfa_offset 16, offset rbp at cfa-16
-+	 *   0x2004: def_cfa_register rbp
-+	 *   0x2010: remember_state; def_cfa rsp, 8; restore rbp (early ret)
-+	 *   0x2012: restore_state (cold tail still uses rbp frame)
-+	 */
-+	static const u8 insns[] = {
-+		0x40 | 1,		/* advance 1 -> 0x2001 */
-+		0x0e, 16,		/* def_cfa_offset 16 */
-+		0x80 | 6, 2,		/* offset rbp(6), cfa-16 */
-+		0x40 | 3,		/* advance 3 -> 0x2004 */
-+		0x0d, 6,		/* def_cfa_register rbp(6) */
-+		0x40 | 12,		/* advance 12 -> 0x2010 */
-+		0x0a,			/* DW_CFA_remember_state */
-+		0x0c, 7, 8,		/* def_cfa rsp(7), 8 */
-+		0xc0 | 6,		/* restore rbp(6) */
-+		0x40 | 2,		/* advance 2 -> 0x2012 */
-+		0x0b,			/* DW_CFA_restore_state */
-+	};
-+	struct test_eh_blob blob;
-+	struct dwarf_cfi_row row;
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x2000, 0x30, insns, sizeof(insns));
-+
-+	/* In body (0x2008): CFA = rbp + 16, FP = *(cfa - 16) */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2008,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_FP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 16);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, -16);
-+
-+	/* At early ret (0x2011): CFA = rsp + 8, FP restored to SAME */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2011,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_SP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 8);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_SAME);
-+
-+	/* After restore_state (0x2020): back to CFA = rbp + 16, FP at cfa-16 */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2020,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_FP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 16);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, -16);
-+}
-+
-+static void test_cfi_drap_realigned_frame(struct kunit *test)
-+{
-+	/*
-+	 * Simulate GCC x86-64 DRAP stack-realigned function (e.g. shrink_lruvec):
-+	 *   0x2805: def_cfa r10, 0
-+	 *   0x2810: DW_CFA_expression rbp(6), [DW_OP_breg6(0x76), 0]
-+	 *   0x281a: DW_CFA_def_cfa_expression [DW_OP_breg6(0x76), -40(0x58), DW_OP_deref(0x06)]
-+	 *           DW_CFA_expression r12(12), [DW_OP_breg6(0x76), -32(0x60)] (ignored)
-+	 */
-+	static const u8 insns[] = {
-+		0x40 | 5,			/* advance 5 -> 0x2805 */
-+		0x0c, 10, 0,			/* def_cfa r10(10), 0 */
-+		0x40 | 11,			/* advance 11 -> 0x2810 */
-+		0x10, 6, 2, 0x76, 0x00,		/* expression rbp: breg6 + 0 */
-+		0x40 | 10,			/* advance 10 -> 0x281a */
-+		0x0f, 3, 0x76, 0x58, 0x06,	/* def_cfa_expr: *(breg6 - 40) */
-+		0x10, 12, 2, 0x76, 0x60,	/* expression r12: ignored */
-+	};
-+	struct test_eh_blob blob;
-+	struct dwarf_cfi_row row;
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x2800, 0x40, insns, sizeof(insns));
-+
-+	/* Transient prologue at 0x2806: DWARF_CFI_BASE_REG (r10) */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2806,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_REG);
-+	KUNIT_EXPECT_EQ(test, row.cfa_reg, 10);
-+
-+	/* Function body at 0x2820: CFA = *(rbp - 40), FP = *(rbp + 0) */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2820,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_FP_INDIRECT);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, -40);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_FP_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, 0);
-+}
-+
-+static void test_cfi_sigreturn_frame(struct kunit *test)
-+{
-+	/*
-+	 * Matches glibc x86-64 __restore_rt ("zRS") FDE:
-+	 *   DW_CFA_def_cfa_expression [DW_OP_breg7 + 160, DW_OP_deref]
-+	 *   DW_CFA_expression r6 (rbp), [DW_OP_breg7 + 120]
-+	 *   DW_CFA_expression r7 (rsp), [DW_OP_breg7 + 160]
-+	 *   DW_CFA_expression r16 (rip), [DW_OP_breg7 + 168]
-+	 */
-+	static const u8 sig_insns[] = {
-+		0x0f, 4, 0x77, 0xa0, 0x01, 0x06,
-+		0x10, 6, 3, 0x77, 0xf8, 0x00,
-+		0x10, 7, 3, 0x77, 0xa0, 0x01,
-+		0x10, 16, 3, 0x77, 0xa8, 0x01,
-+	};
-+	/*
-+	 * Matches 32-bit x86 vdso32 __kernel_rt_sigreturn ("zRS", data_align=-4):
-+	 *   DW_CFA_def_cfa esp(4), 160 (&sigcontext)
-+	 *   DW_CFA_offset_extended_sf eip(8), -14 (+56)
-+	 *   DW_CFA_offset_extended_sf esp(4), -7  (+28)
-+	 *   DW_CFA_offset_extended_sf ebp(5), -6  (+24)
-+	 */
-+	static const u8 vdso32_cie[] = { 0x0c, 4, 4 };
-+	static const u8 vdso32_sig_insns[] = {
-+		0x0c, 4, 0xa0, 0x01,
-+		0x11, 8, 0x72,
-+		0x11, 4, 0x79,
-+		0x11, 5, 0x7a,
-+	};
-+	struct test_eh_blob blob;
-+	struct dwarf_cfi_row row;
-+
-+	build_test_eh_blob(&blob, "zRS", 0x04, 0x2c00, 0x10,
-+			   sig_insns, sizeof(sig_insns));
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2c01,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_TRUE(test, row.signal);
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_SP_INDIRECT);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 160);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_SP_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, 120);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_SP_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.ra_off, 168);
-+
-+	build_arch_eh_blob(&blob, &test_i386_arch, /*code_align=*/1,
-+			   /*data_align_sleb=*/0x7c, "zRS", /*fde_enc=*/0x03,
-+			   vdso32_cie, sizeof(vdso32_cie), /*init_pc=*/0x2d00,
-+			   /*pc_range=*/0x08, vdso32_sig_insns,
-+			   sizeof(vdso32_sig_insns));
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x2d00,
-+						&test_i386_arch, &row));
-+	KUNIT_EXPECT_TRUE(test, row.signal);
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_SP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 160);
-+	KUNIT_EXPECT_EQ(test, row.sp_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.sp_off, 28);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, 24);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.ra_off, 56);
-+}
-+
-+static void test_cfi_arm64_pac_and_riscv_leaf(struct kunit *test)
-+{
-+	/*
-+	 * AArch64 CIE: code_align=4, data_align=-8 (0x78), ra_reg=30,
-+	 * initial: DW_CFA_def_cfa sp(31), 0 (RA starts as SAME in x30).
-+	 * FDE at 0x4000..0x4020:
-+	 *   +4  (0x4004): paciasp -> DW_CFA_AARCH64_negate_ra_state (0x2d)
-+	 *   +8  (0x4008): stp x29,x30,[sp,#-32]! -> cfa=sp+32, x29@-32, x30@-24, x19@-16
-+	 *   +24 (0x4018): ldp x29,x30,[sp],#32   -> restore x19/x29/x30, cfa=sp+0
-+	 *   +28 (0x401c): autiasp -> DW_CFA_AARCH64_negate_ra_state (0x2d)
-+	 */
-+	static const u8 arm64_cie[] = { 0x0c, 31, 0 };
-+	static const u8 arm64_fde[] = {
-+		0x41, 0x2d,
-+		0x41, 0x0e, 32, 0x80 | 29, 4, 0x80 | 30, 3, 0x80 | 19, 2,
-+		0x44, 0xc0 | 19, 0xc0 | 29, 0xc0 | 30, 0x0e, 0,
-+		0x41, 0x2d,
-+	};
-+	/*
-+	 * RISC-V CIE: code_align=1, data_align=-4 (0x7c), ra_reg=1,
-+	 * initial: DW_CFA_def_cfa sp(2), 0 (RA starts as SAME in x1/ra).
-+	 * FDE at 0x5000..0x501a:
-+	 *   +2 (0x5002): c.addi16sp -16 -> cfa=sp+16
-+	 *   +6 (0x5006): sd s0, 0(sp); sd ra, 8(sp) -> s0(8)@-16, ra(1)@-8
-+	 */
-+	static const u8 rv_cie[] = { 0x0c, 2, 0 };
-+	static const u8 rv_fde[] = {
-+		0x42, 0x0e, 16,
-+		0x44, 0x80 | 8, 4, 0x80 | 1, 2,
-+	};
-+	struct test_eh_blob blob;
-+	struct dwarf_cfi_row row;
-+
-+	build_arch_eh_blob(&blob, &test_arm64_arch, /*code_align=*/4,
-+			   /*data_align_sleb=*/0x78, "zR", /*fde_enc=*/0x04,
-+			   arm64_cie, sizeof(arm64_cie), /*init_pc=*/0x4000,
-+			   /*pc_range=*/0x20, arm64_fde, sizeof(arm64_fde));
-+
-+	/* Entry leaf state at 0x4000: CFA=sp+0, RA=SAME (unsigned) */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x4000,
-+						&test_arm64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_base, DWARF_CFI_BASE_SP);
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 0);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_SAME);
-+	KUNIT_EXPECT_FALSE(test, row.ra_signed);
-+
-+	/* Body at 0x400c: CFA=sp+32, FP@cfa-32, RA@cfa-24 (PAC-signed) */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x400c,
-+						&test_arm64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 32);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, -32);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.ra_off, -24);
-+	KUNIT_EXPECT_TRUE(test, row.ra_signed);
-+
-+	/* Epilogue after autiasp at 0x401c: CFA=sp+0, RA=SAME (unsigned) */
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x401c,
-+						&test_arm64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 0);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_SAME);
-+	KUNIT_EXPECT_FALSE(test, row.ra_signed);
-+
-+	/* DW_CFA_AARCH64_negate_ra_state (0x2d) must be rejected on x86_64 */
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x400c,
-+						&test_x86_64_arch, &row));
-+
-+	/* RISC-V leaf + non-leaf prologue */
-+	build_arch_eh_blob(&blob, &test_riscv64_arch, /*code_align=*/1,
-+			   /*data_align_sleb=*/0x7c, "zR", /*fde_enc=*/0x04,
-+			   rv_cie, sizeof(rv_cie), /*init_pc=*/0x5000,
-+			   /*pc_range=*/0x1a, rv_fde, sizeof(rv_fde));
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x5000,
-+						&test_riscv64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 0);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_SAME);
-+
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x5008,
-+						&test_riscv64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, row.cfa_off, 16);
-+	KUNIT_EXPECT_EQ(test, row.fp_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.fp_off, -16);
-+	KUNIT_EXPECT_EQ(test, row.ra_rule, DWARF_CFI_RULE_OFFSET);
-+	KUNIT_EXPECT_EQ(test, row.ra_off, -8);
-+}
-+
-+static void test_cfi_security_rejections(struct kunit *test)
-+{
-+	/* 1. Arbitrary DW_CFA_def_cfa_expression must be rejected */
-+	static const u8 expr_insns[] = { 0x0f, 0x01, 0x57 };
-+	/* 2. Arbitrary DW_CFA_expression on RA (rip=16) must be rejected */
-+	static const u8 ra_expr_insns[] = { 0x10, 16, 2, 0x76, 0x00 };
-+	/* 3. Excessive remember_state nesting (> 4) must be rejected */
-+	static const u8 deep_state_insns[] = { 0x0a, 0x0a, 0x0a, 0x0a, 0x0a };
-+	/* 4. DW_CFA_set_loc must be rejected */
-+	static const u8 set_loc_insns[] = { 0x01, 0, 0, 0, 0, 0, 0, 0, 0 };
-+	/* 7. 5-byte SLEB128 outside s32 range (5th byte 0x08 / 0x77) must return -EOVERFLOW */
-+	static const u8 sleb_pos_ovf[] = { 0x13, 0x80, 0x80, 0x80, 0x80, 0x08 };
-+	static const u8 sleb_neg_ovf[] = { 0x13, 0x80, 0x80, 0x80, 0x80, 0x77 };
-+	/* 8. DW_CFA_def_cfa_offset after indirect CFA expression must return -EINVAL */
-+	static const u8 def_off_after_ind[] = { 0x0f, 3, 0x76, 0x58, 0x06, 0x0e, 16 };
-+	struct test_eh_blob blob;
-+	struct dwarf_cfi_row row;
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   expr_insns, sizeof(expr_insns));
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   ra_expr_insns, sizeof(ra_expr_insns));
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   deep_state_insns, sizeof(deep_state_insns));
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   set_loc_insns, sizeof(set_loc_insns));
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	/* 5. DW_EH_PE_indirect (0x80) in CIE 'R' encoding must be rejected */
-+	build_test_eh_blob(&blob, "zR", /*fde_enc=*/0x80 | 0x04,
-+			   /*init_pc=*/0x3000, /*pc_range=*/0x20,
-+			   /*fde_insns=*/NULL, /*fde_insns_len=*/0);
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	/* 6. Out-of-bounds FDE pointers (fde >= eh_end or fde < eh_start) must not underflow */
-+	build_test_eh_blob(&blob, "zR", /*fde_enc=*/0x04, /*init_pc=*/0x3000,
-+			   /*pc_range=*/0x20, /*fde_insns=*/NULL,
-+			   /*fde_insns_len=*/0);
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.total_len + 64, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.total_len, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   sleb_pos_ovf, sizeof(sleb_pos_ovf));
-+	KUNIT_EXPECT_EQ(test, -EOVERFLOW,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   sleb_neg_ovf, sizeof(sleb_neg_ovf));
-+	KUNIT_EXPECT_EQ(test, -EOVERFLOW,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	build_test_eh_blob(&blob, "zR", 0x04, 0x3000, 0x20,
-+			   def_off_after_ind, sizeof(def_off_after_ind));
-+	KUNIT_EXPECT_EQ(test, -EINVAL,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len, 0x3004,
-+						&test_x86_64_arch, &row));
-+
-+	/*
-+	 * 9. Slow-path DW_EH_PE_sdata4 (0x0b) FDE pc_range with bit 31 set
-+	 * (0xffffffe0) must be decoded unsigned rather than sign-extending to
-+	 * 0xffffffffffffffe0 on 64-bit platforms.
-+	 */
-+#ifdef CONFIG_64BIT
-+	build_test_eh_blob(&blob, "zR", /*fde_enc=*/0x0b,
-+			   /*init_pc=*/0x10, /*pc_range=*/0xffffffe0UL,
-+			   /*fde_insns=*/NULL, /*fde_insns_len=*/0);
-+	KUNIT_EXPECT_EQ(test, -ENOENT,
-+			dwarf_cfi_eval_fde_kmem(blob.buf + blob.fde_off, blob.buf,
-+						blob.buf + blob.total_len,
-+						0x100000000UL, &test_x86_64_arch,
-+						&row));
-+#endif
-+}
-+
-+static void test_cfi_scan_eh_frame(struct kunit *test)
-+{
-+	const struct dwarf_cfi_arch native_arch = {
-+		.ws	= sizeof(unsigned long),
-+		.sp_reg	= 7,
-+		.fp_reg	= 6,
-+		.ra_reg	= 16,
-+	};
-+	static const u8 cie_insns[] = { 0x0c, 7, sizeof(unsigned long) };
-+	struct test_eh_blob b1, b2;
-+	struct eh_frame_hdr_entry entries[2];
-+	u8 combined[512];
-+	unsigned long base;
-+	unsigned int count = 0;
-+	size_t fde2_len;
-+
-+	base = (unsigned long)combined;
-+	build_arch_eh_blob(&b1, &native_arch, /*code_align=*/1,
-+			   /*data_align_sleb=*/0x78, "zR", /*fde_enc=*/0x00,
-+			   cie_insns, sizeof(cie_insns), base + 0x100, 0x20,
-+			   /*fde_insns=*/NULL, /*fde_insns_len=*/0);
-+	build_arch_eh_blob(&b2, &native_arch, /*code_align=*/1,
-+			   /*data_align_sleb=*/0x78, "zR", /*fde_enc=*/0x00,
-+			   cie_insns, sizeof(cie_insns), base + 0x200, 0x30,
-+			   /*fde_insns=*/NULL, /*fde_insns_len=*/0);
-+
-+	memset(combined, 0, sizeof(combined));
-+	memcpy(combined, b1.buf, b1.total_len);
-+	fde2_len = b2.total_len - b2.fde_off;
-+	memcpy(combined + b1.total_len, b2.buf + b2.fde_off, fde2_len);
-+	/* Point second FDE's CIE_pointer back to the shared CIE at offset 0 */
-+	put_unaligned_le32((u32)(b1.total_len + 4), combined + b1.total_len + 4);
-+
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_scan_eh_frame_kmem(combined,
-+						     b1.total_len + fde2_len + 4,
-+						     &native_arch, base,
-+						     /*entries=*/NULL,
-+						     /*max_entries=*/0, &count));
-+	KUNIT_EXPECT_EQ(test, count, 2U);
-+
-+	KUNIT_EXPECT_EQ(test, -ENOSPC,
-+			dwarf_cfi_scan_eh_frame_kmem(combined,
-+						     b1.total_len + fde2_len + 4,
-+						     &native_arch, base, entries,
-+						     /*max_entries=*/1, &count));
-+
-+	KUNIT_ASSERT_EQ(test, 0,
-+			dwarf_cfi_scan_eh_frame_kmem(combined,
-+						     b1.total_len + fde2_len + 4,
-+						     &native_arch, base, entries,
-+						     ARRAY_SIZE(entries), &count));
-+	KUNIT_EXPECT_EQ(test, count, 2U);
-+	KUNIT_EXPECT_EQ(test, entries[0].start_off, 0x100);
-+	KUNIT_EXPECT_EQ(test, entries[0].fde_off, (s32)b1.fde_off);
-+	KUNIT_EXPECT_EQ(test, entries[1].start_off, 0x200);
-+	KUNIT_EXPECT_EQ(test, entries[1].fde_off, (s32)b1.total_len);
-+}
-+
-+#ifdef CONFIG_STACKTRACE
-+struct live_walk_ctx {
-+	unsigned long *entries;
-+	unsigned int size;
-+	unsigned long leaf_ip;
-+	unsigned long realign_ip;
-+	unsigned long mid_ip;
-+	unsigned long caller_ip;
-+	unsigned long caller_addr0;
-+	unsigned long caller_addr1;
-+};
-+
-+static noinline unsigned int unwind_test_leaf(struct live_walk_ctx *ctx)
-+{
-+	unsigned int nr;
-+
-+	nr = stack_trace_save(ctx->entries, ctx->size, /*skipnr=*/0);
-+	ctx->caller_addr0 = CALLER_ADDR0;
-+	ctx->caller_addr1 = CALLER_ADDR1;
-+	ctx->leaf_ip = record_here_ip();
-+	OPTIMIZER_HIDE_VAR(nr);
-+	return nr;
-+}
-+
-+static noinline unsigned int unwind_test_realigned(struct live_walk_ctx *ctx)
-+{
-+	/* Force dynamic stack realignment (DRAP) on 8-byte aligned kernel stack */
-+	u8 __aligned(64) aligned_buf[64];
-+	unsigned int nr;
-+
-+	aligned_buf[0] = (u8)ctx->size;
-+	asm volatile("" : "+m"(aligned_buf) :: "memory");
-+	nr = unwind_test_leaf(ctx);
-+	ctx->realign_ip = record_here_ip();
-+	OPTIMIZER_HIDE_VAR(nr);
-+	return nr;
-+}
-+
-+static noinline unsigned int unwind_test_mid(struct live_walk_ctx *ctx,
-+					     int depth)
-+{
-+	unsigned long local_buf[4];
-+	unsigned int nr;
-+
-+	local_buf[0] = depth;
-+	asm volatile("" : "+m"(local_buf) :: "memory");
-+	if (depth > 1)
-+		nr = unwind_test_mid(ctx, depth - 1);
-+	else
-+		nr = unwind_test_realigned(ctx);
-+	ctx->mid_ip = record_here_ip();
-+	OPTIMIZER_HIDE_VAR(nr);
-+	return nr;
-+}
-+
-+static inline bool ip_within(unsigned long ip, unsigned long ref_ip)
-+{
-+	return ip + 256 >= ref_ip && ip <= ref_ip + 256;
-+}
-+
-+static void test_live_kernel_stack_walk(struct kunit *test)
-+{
-+	unsigned long entries[32];
-+	struct live_walk_ctx ctx = {
-+		.entries = entries,
-+		.size = ARRAY_SIZE(entries),
-+	};
-+	unsigned int nr, i;
-+	int rel_nr;
-+	bool saw_leaf = false, saw_realign = false, saw_mid = false, saw_caller = false;
-+
-+	nr = unwind_test_mid(&ctx, /*depth=*/3);
-+	ctx.caller_ip = record_here_ip();
-+	KUNIT_ASSERT_GT(test, nr, 4U);
-+
-+	for (i = 0; i < nr; i++) {
-+		unsigned long sym_ip = entries[i];
-+
-+		if (ip_within(sym_ip, ctx.leaf_ip))
-+			saw_leaf = true;
-+		if (ip_within(sym_ip, ctx.realign_ip))
-+			saw_realign = true;
-+		if (ip_within(sym_ip, ctx.mid_ip))
-+			saw_mid = true;
-+		if (ip_within(sym_ip, ctx.caller_ip))
-+			saw_caller = true;
-+	}
-+
-+	KUNIT_EXPECT_TRUE(test, saw_leaf);
-+	KUNIT_EXPECT_TRUE(test, saw_realign);
-+	KUNIT_EXPECT_TRUE(test, saw_mid);
-+	KUNIT_EXPECT_TRUE(test, saw_caller);
-+	KUNIT_EXPECT_TRUE(test, ip_within(ctx.caller_addr0, ctx.realign_ip));
-+	if (ctx.caller_addr1)
-+		KUNIT_EXPECT_TRUE(test, ip_within(ctx.caller_addr1, ctx.mid_ip));
-+
-+	if (IS_ENABLED(CONFIG_HAVE_RELIABLE_STACKTRACE)) {
-+		rel_nr = stack_trace_save_tsk_reliable(current, entries,
-+						       ARRAY_SIZE(entries));
-+		KUNIT_EXPECT_GT(test, rel_nr, 0);
-+	}
-+}
-+#else
-+static void test_live_kernel_stack_walk(struct kunit *test)
-+{
-+	kunit_skip(test, "CONFIG_STACKTRACE disabled");
-+}
-+#endif /* CONFIG_STACKTRACE */
-+
-+static struct kunit_case dwarf_cfi_test_cases[] = {
-+	KUNIT_CASE(test_cfi_sp_and_ignored_gprs),
-+	KUNIT_CASE(test_cfi_fp_and_remember_restore),
-+	KUNIT_CASE(test_cfi_drap_realigned_frame),
-+	KUNIT_CASE(test_cfi_sigreturn_frame),
-+	KUNIT_CASE(test_cfi_arm64_pac_and_riscv_leaf),
-+	KUNIT_CASE(test_cfi_security_rejections),
-+	KUNIT_CASE(test_cfi_scan_eh_frame),
-+	KUNIT_CASE(test_live_kernel_stack_walk),
-+	{}
-+};
-+
-+static struct kunit_suite dwarf_cfi_test_suite = {
-+	.name = "unwind_dwarf_cfi",
-+	.test_cases = dwarf_cfi_test_cases,
-+};
-+
-+kunit_test_suites(&dwarf_cfi_test_suite);
-+
-+MODULE_DESCRIPTION("KUnit tests for Minimal DWARF CFI unwinder");
-+MODULE_LICENSE("GPL");
--- 
-2.56.1.831.g720f3f5937-goog
-
+T24gMTgvMTEvMjYgMDU6MjgsIEtldmluIEhpbG1hbiAoVEkpIHdyb3RlOg0KPiBDdXJyZW50bHks
+IG9ubHkgdGhlIGRlZXBlc3QgQ1BVIGlkbGUgc3RhdGUgaGFzIGl0cyAtPmVudGVyX3MyaWRsZSgp
+IA0KPiBjYWxsYmFjayBzZXQgdG8gdGhlIGRvbWFpbi1hd2FyZSANCj4gcHNjaV9lbnRlcl9zMmlk
+bGVfZG9tYWluX2lkbGVfc3RhdGUoKS4gVGhlIG90aGVyIENQVSBpZGxlIHN0YXRlcyB1c2UgDQo+
+IHBzY2lfZW50ZXJfaWRsZV9zdGF0ZSgpLCB3aGljaCBieXBhc3NlcyB0aGUgUE0gZG9tYWluIGVu
+dGlyZWx5LiBEdXJpbmcNCj4gWmpRY21RUllGcGZwdEJhbm5lclN0YXJ0DQo+IFRoaXMgbWVzc2Fn
+ZSB3YXMgc2VudCBmcm9tIG91dHNpZGUgb2YgVGV4YXMgSW5zdHJ1bWVudHMuDQo+IERvIG5vdCBj
+bGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3UgcmVjb2duaXplIHRoZSBz
+b3VyY2UgDQo+IG9mIHRoaXMgZW1haWwgYW5kIGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZS4NCj4g
+UmVwb3J0wqBTdXNwaWNpb3VzDQo+IDxodHRwczovL3VzLXBoaXNoYWxhcm0tZXd0LnByb29mcG9p
+bnQuY29tL0VXVC92MS9HM3ZLIXRaZHFYUmZQdGswN0N1WE10enVJOXRsNUV2dmlValQ2bVY0WUlX
+Y3AwdEFMNXJLc3A1RmQ0c2N0ZHpLTXBnUVJwOEc5WWJMM3dBbmQtMHJlWDUycGNFaF96Uk9WX0Na
+blFTRWxpaUg3NW1tblN2OVRxQXN4cEpxYTdieGZDMDBYSTI4JD4gDQo+DQo+IFpqUWNtUVJZRnBm
+cHRCYW5uZXJFbmQNCj4gQ3VycmVudGx5LCBvbmx5IHRoZSBkZWVwZXN0IENQVSBpZGxlIHN0YXRl
+IGhhcyBpdHMgLT5lbnRlcl9zMmlkbGUoKQ0KPiBjYWxsYmFjayBzZXQgdG8gdGhlIGRvbWFpbi1h
+d2FyZSBwc2NpX2VudGVyX3MyaWRsZV9kb21haW5faWRsZV9zdGF0ZSgpLg0KPiBUaGUgb3RoZXIg
+Q1BVIGlkbGUgc3RhdGVzIHVzZSBwc2NpX2VudGVyX2lkbGVfc3RhdGUoKSwgd2hpY2ggYnlwYXNz
+ZXMNCj4gdGhlIFBNIGRvbWFpbiBlbnRpcmVseS4NCj4NCj4gRHVyaW5nIHMyaWRsZSwgdGhlIENQ
+VSBpZGxlIHN0YXRlIGlzIHNlbGVjdGVkIGJ5IGZpbmRfZGVlcGVzdF9zdGF0ZSgpLA0KPiBjb25z
+dHJhaW5lZCBieSB0aGUgQ1BVIHdha2V1cCBsYXRlbmN5IFFvUyBsaW1pdC4gSWYgdGhhdCBsaW1p
+dCBleGNsdWRlcw0KPiB0aGUgZGVlcGVzdCBDUFUgaWRsZSBzdGF0ZSwgYSBzaGFsbG93ZXIgc3Rh
+dGUgaXMgc2VsZWN0ZWQsIGFuZCB0aGUgQ1BVDQo+IFBNIGRvbWFpbiBoaWVyYXJjaHkgaXMgbmV2
+ZXIgcG93ZXJlZCBvZmYuIEFzIGEgcmVzdWx0LCBubyBkb21haW4gaWRsZQ0KPiBzdGF0ZSBjYW4g
+YmUgZW50ZXJlZCwgZXZlbiBpZiBzb21lIG9mIHRoZW0gYXJlIHdpdGhpbiB0aGUgUW9TIGxpbWl0
+Lg0KPg0KPiBGaXggdGhpcyBieSBhc3NpZ25pbmcgdGhlIGRvbWFpbi1hd2FyZSAtPmVudGVyX3My
+aWRsZSgpIGNhbGxiYWNrIHRvIGFsbA0KPiBDUFUgaWRsZSBzdGF0ZXMsIGV4Y2VwdCBXRkkuIFRo
+aXMgaXMgc2FmZSBmb3IgczJpZGxlIGJlY2F1c2U6DQo+DQo+ICAgLSBUaGUgZ2VucGQgZ292ZXJu
+b3Igc2VsZWN0cyB0aGUgZG9tYWluIGlkbGUgc3RhdGUgaW4NCj4gICAgIGNwdV9zeXN0ZW1fcG93
+ZXJfZG93bl9vaygpLCB1c2luZyB0aGUgc2FtZSBDUFUgd2FrZXVwIGxhdGVuY3kgUW9TDQo+ICAg
+ICBsaW1pdCB0aGF0IGNvbnN0cmFpbnMgdGhlIENQVSBpZGxlIHN0YXRlIHNlbGVjdGlvbiwgb3Ig
+YSBzdHJpY3Rlcg0KPiAgICAgb25lIGlmIGEgZGV2aWNlIGluIHRoZSBkb21haW4gaGFzIGEgc3lz
+dGVtLXdpZGUgcmVzdW1lIGxhdGVuY3kNCj4gICAgIGNvbnN0cmFpbnQuDQo+DQo+ICAgLSBUaGVy
+ZSBpcyBubyBpZGxlIGR1cmF0aW9uIHByZWRpY3Rpb24gaW52b2x2ZWQgaW4gczJpZGxlLiBCb3Ro
+IHRoZQ0KPiAgICAgQ1BVIGlkbGUgc3RhdGUgYW5kIHRoZSBkb21haW4gaWRsZSBzdGF0ZSBhcmUg
+c2ltcGx5IHRoZSBkZWVwZXN0IG9uZXMNCj4gICAgIGFsbG93ZWQgYnkgdGhlIFFvUyBsaW1pdCwg
+c28gdGhlIGdlbnBkIGdvdmVybm9yIGNhbid0IG92ZXJyaWRlIGENCj4gICAgIGRlY2lzaW9uIG1h
+ZGUgYnkgdGhlIGNwdWlkbGUgZ292ZXJub3IuDQo+DQo+IFRoZSBkb21haW4gaWRsZSBzdGF0ZSdz
+IGFybSxwc2NpLXN1c3BlbmQtcGFyYW0gaXMgYSBjb21wb3NpdGUgc3RhdGUgdGhhdA0KPiBvdmVy
+cmlkZXMgdGhlIENQVSBpZGxlIHN0YXRlLCBzbyB0aGUgZXhpdCBsYXRlbmN5IG9mIHRoZSBkb21h
+aW4gaWRsZQ0KPiBzdGF0ZSBtdXN0IGFjY291bnQgZm9yIHRoZSBjb21wbGV0ZSBjb21wb3NpdGUg
+c3RhdGUuDQo+DQo+IFRoZSByZWd1bGFyIGlkbGUgcGF0aCBpcyBsZWZ0IHVuY2hhbmdlZCwgc28g
+b25seSB0aGUgZGVlcGVzdCBDUFUgaWRsZQ0KPiBzdGF0ZSBjYW4gdHJpZ2dlciB0aGUgc2VsZWN0
+aW9uIG9mIGEgZG9tYWluIGlkbGUgc3RhdGUsIGFzIHRoZSBkb21haW4NCj4gaWRsZSBzdGF0ZXMg
+YXJlIGFzc3VtZWQgdG8gYmUgZGVlcGVyIHRoYW4gdGhlIGRlZXBlc3QgQ1BVIGlkbGUgc3RhdGUu
+DQoNCklzIGl0IG5lY2Vzc2FyaWx5IHRydWUgdGhhdCBkb21haW4gaWRsZSBzdGF0ZXMgYXJlIGFs
+d2F5cyBkZWVwZXIgdGhhbiANCnRoZSBkZWVwZXN0IENQVSBpZGxlIHN0YXRlPw0KDQpDb3VsZCB3
+ZSBoYXZlIGEgc2NlbmFyaW8gd2hlcmUgYSBjbHVzdGVyIGlkbGUgc3RhdGUgaXMgc2hhbGxvd2Vy
+IHRoYW4gYSANCkNQVSBpZGxlIHN0YXRlLg0KDQpFLmcuIEEgQ1BVIHBvd2VyLWRvd24gaGF2aW5n
+IGhpZ2hlciBsYXRlbmN5IHRoYW4gYSBjbHVzdGVyIGlkbGUgc3RhdGUgDQpvbmx5IHBlcmZvcm1p
+bmcgY2xvY2stZ2F0aW5nLg0KV291bGQgc3VjaCBhIHN0YXRlcyBpbiB0aGUgRFQgdmlvbGF0ZSBh
+bnkgUE0tZG9tYWluIHJlcXVpcmVtZW50cz8NCg0KPiBFeHRlbmRpbmcgdGhpcyB0byB0aGUgc2hh
+bGxvd2VyIENQVSBpZGxlIHN0YXRlcyBpc24ndCBzYWZlLiBUaGUgY3B1aWRsZQ0KPiBnb3Zlcm5v
+ciBtYXkgc2VsZWN0IGEgc2hhbGxvd2VyIENQVSBpZGxlIHN0YXRlLCBiYXNlZCBvbiBpdHMgcHJl
+ZGljdGVkDQo+IGlkbGUgZHVyYXRpb24uIFRoZSBnZW5wZCBnb3Zlcm5vciBpc24ndCBhd2FyZSBv
+ZiB0aGF0LCBhcyBpdCBvbmx5DQo+IGNvbnNpZGVycyB0aGUgbmV4dCB0aW1lciBldmVudCwgc28g
+aXQgY291bGQgc2VsZWN0IGEgZG9tYWluIGlkbGUgc3RhdGUNCj4gdGhhdCBvdmVycmlkZXMgdGhl
+IHNoYWxsb3dlciBDUFUgaWRsZSBzdGF0ZSB3aXRoIGEgZGVlcGVyIGNvbXBvc2l0ZQ0KPiBzdGF0
+ZS4NCg0KVGhlIGNwdWlkbGUgYW5kIGdlbnBkIGdvdmVybm9yIHNlbGVjdCBhIGRvbWFpbiBzdGF0
+ZSBjb25zaWRlcmluZyB0aGUgDQpuZXh0IHRpbWVyIGV2ZW50IGFuZCBwcmVkaWN0ZWQgaWRsZSBk
+dXJhdGlvbi4NClRoaXMgZG9lcyBub3QgbmVjZXNzYXJpbHkgZ3VhcmFudGVlIHRoYXQgdGhlIGNv
+bXBvc2l0ZSBjbHVzdGVyIHN0YXRlIA0Kc2VsZWN0ZWQgaXMgY29tcGF0aWJsZSB3aXRoIHRoZSBD
+UFUgaWRsZSBzdGF0ZQ0KcmVxdWVzdGVkIGJ5IHRoZSBwYXJ0aWNpcGF0aW5nIENQVXMuIFNob3Vs
+ZCdudCB0aGUgZmlybXdhcmUgYWN0IGFzIHRoZSANCmZpbmFsIGFyYml0cmF0b3IsIHJlamVjdGlu
+ZyBjb21wb3NpdGUgc3RhdGVzDQp0aGF0IGFyZSBpbmNvbnNpc3RlbnQgd2l0aCB0aGUgb3ZlcmFs
+bCBzeXN0ZW0gc3RhdGU/DQoNClRodXMgSSBiZWxpZXZlIGRvbWFpbi1hd2FyZSBjYWxsYmFja3Mg
+Y291bGQgYWxzbyBiZSBlbmFibGVkIGZvciBzaGFsbG93IA0KQ1BVIHN0YXRlIGluIHRoZSByZWd1
+bGFyIGlkbGUgcGF0aC4NCg0KQmVzdCwgU2NhcmlhLg0KDQo+DQo+IFN1Z2dlc3RlZC1ieTogU2Nh
+cmlhIEtvY2hpZGFuYWR1IDxzLWtvY2hpZGFuYWR1QHRpLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTog
+S2V2aW4gSGlsbWFuIChUSSkgPGtoaWxtYW5AYmF5bGlicmUuY29tPg0KPiAtLS0NCj4gdjEgYXNz
+aWduZWQgdGhlIGRvbWFpbi1hd2FyZSBjYWxsYmFja3MgdG8gYWxsIENQVSBpZGxlIHN0YXRlcywg
+Zm9yIGJvdGgNCj4gdGhlIHJlZ3VsYXIgaWRsZSBwYXRoIGFuZCBzMmlkbGUuIEFzIHBvaW50ZWQg
+b3V0IGJ5IFVsZiwgdGhhdCBicmVha3MNCj4gdGhlIGN1cnJlbnQgY29udHJhY3Qgd2l0aCBnZW5w
+ZCBmb3IgdGhlIHJlZ3VsYXIgaWRsZSBwYXRoLCBzaW5jZSB0aGUNCj4gZ2VucGQgZ292ZXJub3Ig
+aXNuJ3QgYXdhcmUgb2YgdGhlIENQVSBpZGxlIHN0YXRlIHNlbGVjdGVkIGJ5IHRoZQ0KPiBjcHVp
+ZGxlIGdvdmVybm9yLg0KPg0KPiBBcyBkaXNjdXNzZWQgd2l0aCBVbGYgYXQgTFBDLCB0aGlzIHYy
+IHRha2VzIGFuIGluaXRpYWwgc3RlcCBieSBsaW1pdGluZw0KPiB0aGUgY2hhbmdlIHRvIHMyaWRs
+ZSwgd2hlcmUgYm90aCB0aGUgQ1BVIGlkbGUgc3RhdGUgYW5kIHRoZSBkb21haW4gaWRsZQ0KPiBz
+dGF0ZSBhcmUgc2VsZWN0ZWQgYmFzZWQgb25seSBvbiB0aGUgQ1BVIHdha2V1cCBsYXRlbmN5IFFv
+UyBsaW1pdC4NCj4NCj4gVGhpcyBwYWlycyB3ZWxsIHdpdGggTWF1bGlrJ3Mgc2VyaWVzIFsxXSBh
+ZGRpbmcgc3VwcG9ydCBmb3IgZG9tYWluIGlkbGUNCj4gc3RhdGVzIHRoYXQgYXJlIG9ubHkgYWxs
+b3dlZCBkdXJpbmcgc3lzdGVtIHN1c3BlbmQgKHN5c3RlbS1zdGF0ZSkuIEFsb25nDQo+IHdpdGgg
+dGhpcyBwYXRjaCwgcGxhdGZvcm1zIGNhbiBkZXNjcmliZSBzZXZlcmFsIHMyaWRsZS1vbmx5IGRv
+bWFpbiBpZGxlDQo+IHN0YXRlcywgYW5kIHNlbGVjdCBiZXR3ZWVuIHRoZW0gdmlhIHRoZSBDUFUg
+d2FrZXVwIGxhdGVuY3kgUW9TIGxpbWl0LA0KPiBldmVuIHdoZW4gdGhhdCBsaW1pdCBleGNsdWRl
+cyB0aGUgZGVlcGVzdCBDUFUgaWRsZSBzdGF0ZS4gVGhlcmUgaXMgbm8NCj4gYnVpbGQgb3IgcnVu
+dGltZSBkZXBlbmRlbmN5IGJldHdlZW4gdGhlIHR3byBzZXJpZXMgdGhvdWdoLg0KPg0KPiBbMV1o
+dHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDI2
+MTAwNS1zMmlkbGVfc3RhdGUtdjEtMC0zYzQwMmM2NmYzODhAb3NzLnF1YWxjb21tLmNvbV9fOyEh
+RzN2SyFWbWJXZ09sVFJYWE1IbkktQVlXZndkazh0YTRjazNUT0hNTFJ5WTZpN2N0cW5FT1VKSDlt
+Rks5dm5IX1RiRjV0bGJMb2I4UWE0YlJNNkZhSUdnJA0KPiAtLS0NCj4gQ2hhbmdlcyBpbiB2MjoN
+Cj4gLSBMaW1pdCB0aGUgY2hhbmdlIHRvIHMyaWRsZTsga2VlcCB0aGUgcmVndWxhciBpZGxlIHBh
+dGggdXNpbmcgdGhlDQo+ICAgIGRvbWFpbi1hd2FyZSBjYWxsYmFjayBvbmx5IGZvciB0aGUgZGVl
+cGVzdCBDUFUgaWRsZSBzdGF0ZSAoVWxmKQ0KPiAtIFJld29yZCBjb21taXQgbWVzc2FnZSwgZml4
+IGluY29ycmVjdCBjbGFpbSB0aGF0IG5vIG90aGVyIENQVSBpZGxlDQo+ICAgIHN0YXRlIGhhcyAt
+PmVudGVyX3MyaWRsZSgpIHNldA0KPiAtIExpbmsgdG8gdjE6aHR0cHM6Ly91cmxkZWZlbnNlLmNv
+bS92My9fX2h0dHBzOi8vcGF0Y2gubXNnaWQubGluay8yMDI2MDgzMS10b3BpYy1scG0tcHNjaS1k
+b21haW4tY2FsbGJhY2tzLXYxLTEtNGE0N2Q5NWM5Yzc5QGJheWxpYnJlLmNvbV9fOyEhRzN2SyFW
+bWJXZ09sVFJYWE1IbkktQVlXZndkazh0YTRjazNUT0hNTFJ5WTZpN2N0cW5FT1VKSDltRks5dm5I
+X1RiRjV0bGJMb2I4UWE0YlI0MVZKT2Z3JA0KPiAtLS0NCj4gICBkcml2ZXJzL2NwdWlkbGUvY3B1
+aWRsZS1wc2NpLmMgfCAyMSArKysrKysrKysrKysrKysrLS0tLS0NCj4gICAxIGZpbGUgY2hhbmdl
+ZCwgMTYgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkNCj4NCj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvY3B1aWRsZS9jcHVpZGxlLXBzY2kuYyBiL2RyaXZlcnMvY3B1aWRsZS9jcHVpZGxlLXBz
+Y2kuYw0KPiBpbmRleCAwMTg3ZDZhOTA5NmEuLjAxYTU3MTQ3OWU1YyAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9jcHVpZGxlL2NwdWlkbGUtcHNjaS5jDQo+ICsrKyBiL2RyaXZlcnMvY3B1aWRsZS9j
+cHVpZGxlLXBzY2kuYw0KPiBAQCAtMjUwLDYgKzI1MCw4IEBAIHN0YXRpYyBpbnQgcHNjaV9kdF9j
+cHVfaW5pdF90b3BvbG9neShzdHJ1Y3QgY3B1aWRsZV9kcml2ZXIgKmRydiwNCj4gICAJCQkJICAg
+ICBzdHJ1Y3QgcHNjaV9jcHVpZGxlX2RhdGEgKmRhdGEsDQo+ICAgCQkJCSAgICAgdW5zaWduZWQg
+aW50IHN0YXRlX2NvdW50LCBpbnQgY3B1KQ0KPiAgIHsNCj4gKwlpbnQgaTsNCj4gKw0KPiAgIAkv
+KiBDdXJyZW50bHkgbGltaXQgdGhlIGhpZXJhcmNoaWNhbCB0b3BvbG9neSB0byBiZSB1c2VkIGlu
+IE9TSSBtb2RlLiAqLw0KPiAgIAlpZiAoIXBzY2lfaGFzX29zaV9zdXBwb3J0KCkpDQo+ICAgCQly
+ZXR1cm4gMDsNCj4gQEAgLTI2MSwxMiArMjYzLDIxIEBAIHN0YXRpYyBpbnQgcHNjaV9kdF9jcHVf
+aW5pdF90b3BvbG9neShzdHJ1Y3QgY3B1aWRsZV9kcml2ZXIgKmRydiwNCj4gICAJcHNjaV9jcHVp
+ZGxlX3VzZV9zeXNjb3JlID0gdHJ1ZTsNCj4gICANCj4gICAJLyoNCj4gLQkgKiBVc2luZyB0aGUg
+ZGVlcGVzdCBzdGF0ZSBmb3IgdGhlIENQVSB0byB0cmlnZ2VyIGEgcG90ZW50aWFsIHNlbGVjdGlv
+bg0KPiAtCSAqIG9mIGEgc2hhcmVkIHN0YXRlIGZvciB0aGUgZG9tYWluLCBhc3N1bWVzIHRoZSBk
+b21haW4gc3RhdGVzIGFyZSBhbGwNCj4gLQkgKiBkZWVwZXIgc3RhdGVzLiBPbiBQUkVFTVBUX1JU
+IHRoZSBoaWVyYXJjaGljYWwgdG9wb2xvZ3kgaXMgbGltaXRlZCB0bw0KPiAtCSAqIHMycmFtIGFu
+ZCBzMmlkbGUuDQo+ICsJICogRm9yIHMyaWRsZSwgdXNlIHRoZSBkb21haW4tYXdhcmUgY2FsbGJh
+Y2sgZm9yIGFsbCBDUFUgaWRsZSBzdGF0ZXMNCj4gKwkgKiBleGNlcHQgV0ZJLiBUaGUgQ1BVIGlk
+bGUgc3RhdGUgaXMgc2VsZWN0ZWQgYnkgZmluZF9kZWVwZXN0X3N0YXRlKCkNCj4gKwkgKiBhbmQg
+dGhlIGRvbWFpbiBpZGxlIHN0YXRlIGJ5IHRoZSBnZW5wZCBnb3Zlcm5vciwgYm90aCBjb25zdHJh
+aW5lZA0KPiArCSAqIGJ5IHRoZSBzYW1lIENQVSB3YWtldXAgbGF0ZW5jeSBRb1MgbGltaXQuIEhl
+bmNlLCBpZiB0aGUgZGVlcGVzdCBDUFUNCj4gKwkgKiBpZGxlIHN0YXRlIGlzIGV4Y2x1ZGVkIGJ5
+IHRoZSBRb1MgbGltaXQsIHRoZSBkb21haW4gbWF5IHN0aWxsIGVudGVyDQo+ICsJICogYSBkb21h
+aW4gaWRsZSBzdGF0ZSB0aGF0IGZpdHMgdGhlIGxpbWl0Lg0KPiArCSAqDQo+ICsJICogRm9yIHRo
+ZSByZWd1bGFyIGlkbGUgcGF0aCwgb25seSB1c2UgdGhlIGRlZXBlc3QgQ1BVIGlkbGUgc3RhdGUg
+dG8NCj4gKwkgKiB0cmlnZ2VyIGEgcG90ZW50aWFsIHNlbGVjdGlvbiBvZiBhIHNoYXJlZCBzdGF0
+ZSBmb3IgdGhlIGRvbWFpbiwgYXMNCj4gKwkgKiB0aGUgZG9tYWluIHN0YXRlcyBhcmUgYXNzdW1l
+ZCB0byBiZSBkZWVwZXIgc3RhdGVzLiBPbiBQUkVFTVBUX1JUDQo+ICsJICogdGhlIGhpZXJhcmNo
+aWNhbCB0b3BvbG9neSBpcyBsaW1pdGVkIHRvIHMycmFtIGFuZCBzMmlkbGUuDQo+ICAgCSAqLw0K
+PiAtCWRydi0+c3RhdGVzW3N0YXRlX2NvdW50IC0gMV0uZW50ZXJfczJpZGxlID0gcHNjaV9lbnRl
+cl9zMmlkbGVfZG9tYWluX2lkbGVfc3RhdGU7DQo+ICsJZm9yIChpID0gMTsgaSA8IHN0YXRlX2Nv
+dW50OyBpKyspDQo+ICsJCWRydi0+c3RhdGVzW2ldLmVudGVyX3MyaWRsZSA9IHBzY2lfZW50ZXJf
+czJpZGxlX2RvbWFpbl9pZGxlX3N0YXRlOw0KPiArDQo+ICAgCWlmICghSVNfRU5BQkxFRChDT05G
+SUdfUFJFRU1QVF9SVCkpDQo+ICAgCQlkcnYtPnN0YXRlc1tzdGF0ZV9jb3VudCAtIDFdLmVudGVy
+ID0gcHNjaV9lbnRlcl9kb21haW5faWRsZV9zdGF0ZTsNCj4gICANCj4NCj4gLS0tDQo+IGJhc2Ut
+Y29tbWl0OiBiYzcxNDMxMjIxZjViYThiYjMzOTE4Mzk5NTUyNjM2ZTA1OWMyYzQ1DQo+IGNoYW5n
+ZS1pZDogMjAyNjA4MzEtdG9waWMtbHBtLXBzY2ktZG9tYWluLWNhbGxiYWNrcy1hOGFmMGNkN2Rm
+MzUNCj4NCj4gQmVzdCByZWdhcmRzLA0KPiAtLQ0KPiBLZXZpbiBIaWxtYW4gKFRJKSA8a2hpbG1h
+bkBiYXlsaWJyZS5jb20+DQo+DQoNCg==
 
