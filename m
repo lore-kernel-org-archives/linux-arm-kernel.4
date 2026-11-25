@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370BE606BF69
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30196606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I4mjr4hJ;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=nkFH+9kk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VbUfBjT2;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=AUAMMum8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wAhlDYr7g+bzBz0JT2eNMXKL3+lv9GNiMmHUUn7jo0g=; b=I4mjr4hJAoaPX9
-	/otdSbhMGLxJfxuswoeOnaW64njvdJzYcsJ9FWHbmuV9vJcE6dDuZYiqBdLlSeTolD5XBQGHvDuUa
-	w0W7v6MsPczM6E4kxTCMD7L8APm0tDXQRnT48wp+p4LOXvj9JvD0/hrw8Nt9w9e1aM+WkcTFyzdCk
-	/P12NtVKbhfukM3ps90vRgLWJ8x+uotU/McXI4xAKAp0quUvFrM5E08TtUtziKzkAdO95VCEB6h0B
-	fRP6FzE7cQDa/qw5E4WC3vGe+HiIMMnc5ys4qnUqzjGjTDnjZpyMKl6TaCQyrCtUodQX59A7JvSgi
-	CBB7//pu4CvYu7inMJgA==;
+	List-Owner; bh=HaDpLlZO77/PfdtGsOMSJUUh5Y4j+J367j2Kgogf+tM=; b=VbUfBjT2i9bGY1
+	5YyOPmDDQb2jUUEUn1ePoTGNNCmyabiRBxb2xgbaj01Fj5nVKydvvmml/z7cnA7Km4LuLxJI+ukOH
+	aeiovqdtN9VPht6sDD8EchKk/RfUQxoJO6buNnpk0KjEee2OxYopMJ8nHFTXjZz2ai9guir+h9haq
+	3Gm1MMmQrhJZPs5iTfC+QpYCdpbksrYks4hvf11R0NExX1b8WEPtaY5GxFIPgBw2/CNLfB04yH1Ik
+	UqtXYRqpskDTyYNlP+ezheagPz7Q7JniALNuM8qxL/QT/tRde73zqKpHqot4xgoZql5qe+pPrRDAB
+	B4adtI8/fK5JL/vzccrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF72-0000000AOjX-3B7u;
-	Wed, 25 Nov 2026 15:40:48 +0000
-Received: from out-80.mta1.migadu.com ([95.215.58.80] helo=mta1.migadu.com)
+	id 1xWF73-0000000AOkb-3Sc7;
+	Wed, 25 Nov 2026 15:40:50 +0000
+Received: from out-72.mta0.migadu.com ([2001:41d0:1004:224b::48] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF66-0000000AOGN-3VDb
+	id 1xWF6C-0000000AOIr-32Pq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 15:39:59 +0000
+	Wed, 25 Nov 2026 15:40:04 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=gmD2Hw6juO/YQxEfawmZ9o614lN2GWsdiorFlIDxyuo=;
+DKIM-Signature: a=rsa-sha256; bh=GlzUdZprJRkl9i8HWXT3FIkXmSaEpIUlQmDVtwXNSuM=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795621189; v=1; x=1796225989;
- b=nkFH+9kkP1LjqtFxXCIDcnAf9BsMv0vO5XFjQytFTY3K4VbDVLXthl37On/FIP3IxL8hlEXT
- sGBMeW1LJvG023TsdJXp7VMNrio01VJf7n9mbCCp6XzRBlIjrvky/oHWDUdsJW0mzq5qEIIquUY
- LnadGRtPePug/rRKEtmGrPkU=
+ t=1795621194; v=1; x=1796225994;
+ b=AUAMMum8C5V/yzYIzbsSmtIcur4UF37a2pxl5ZAI1XD42u3BoF1NRUXz1MGszxEzV3emLB8D
+ EZmliY6jPmUJ6iaXtAlr6XlH6uDFxB+s3rw1pPzQS1024DxwbA4fT54NysiqtzRCC3WN8UwwE/E
+ 58oCXFxred/kG27tpOTXM1mk=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id b15b9185e0e5c26b;
-	Wed, 25 Nov 2026 15:39:48 +0000
-X-Mizu-Trace-ID: b15b9185e0e5c26b
+Received: by smtp.migadu.com with ESMTPS id deebcfd6609d8edf;
+	Wed, 25 Nov 2026 15:39:54 +0000
+X-Mizu-Trace-ID: deebcfd6609d8edf
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Joey Gouly <joey.gouly@arm.com>,
 	Fuad Tabba <tabba@google.com>,
 	kvm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 06/20] KVM: arm64: Advertise ID_AA64ZFR0_EL1 to protected VMs
-Date: Wed, 25 Nov 2026 15:38:57 +0000
-Message-ID: <20261125153911.106793-7-fuad.tabba@linux.dev>
+Subject: [PATCH v2 09/20] KVM: arm64: Report an incomplete feature map with WARN_ON()
+Date: Wed, 25 Nov 2026 15:39:00 +0000
+Message-ID: <20261125153911.106793-10-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261125153911.106793-1-fuad.tabba@linux.dev>
 References: <20261125153911.106793-1-fuad.tabba@linux.dev>
@@ -67,8 +67,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_073951_395262_BCBD0664 
-X-CRM114-Status: GOOD (  11.97  )
+X-CRM114-CacheID: sfid-20261125_073957_901979_2BE3C1B8 
+X-CRM114-Status: UNSURE (   9.86  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,92 +89,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-EL2 builds a protected guest's ID registers from the host's sanitised
-values, most of them capped per field. It has no case for
-ID_AA64ZFR0_EL1, so the register reads as 0, and a protected guest with
-SVE wouldn't see any of the SVE extensions the CPUs implement.
+At init, check_feature_map() reports with kvm_err() any feature map
+that doesn't account for every bit of its register. The next patch
+builds config.c into nVHE hyp, which has no printk(), so the check
+would need an #ifdef to keep it out of hyp.
 
-Keep a copy of the host's sanitised ID_AA64ZFR0_EL1 at EL2, and
-advertise it when the guest has SVE, as KVM does for a non-protected
-guest. Cap each field at the highest value the sysreg file defines.
+Use WARN_ON() instead, which doesn't need printk().
 
-Tested-by: Vincent Donnefort <vdonnefort@google.com>
-Reviewed-by: Vincent Donnefort <vdonnefort@google.com>
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- arch/arm64/include/asm/kvm_hyp.h   |  1 +
- arch/arm64/kvm/arm.c               |  1 +
- arch/arm64/kvm/hyp/nvhe/sys_regs.c | 19 +++++++++++++++++++
- 3 files changed, 21 insertions(+)
+ arch/arm64/kvm/config.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/arch/arm64/include/asm/kvm_hyp.h b/arch/arm64/include/asm/kvm_hyp.h
-index 22601a4e36f4e..920c1d8d45b1a 100644
---- a/arch/arm64/include/asm/kvm_hyp.h
-+++ b/arch/arm64/include/asm/kvm_hyp.h
-@@ -144,6 +144,7 @@ void __noreturn __host_enter(struct kvm_cpu_context *host_ctxt);
- extern u64 kvm_nvhe_sym(id_aa64pfr0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64pfr1_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64pfr2_el1_sys_val);
-+extern u64 kvm_nvhe_sym(id_aa64zfr0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar1_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar2_el1_sys_val);
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index ec90a580e82a4..2753686982f0b 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -2827,6 +2827,7 @@ static void kvm_hyp_init_symbols(void)
- 	kvm_nvhe_sym(id_aa64pfr0_el1_sys_val) = get_hyp_id_aa64pfr0_el1();
- 	kvm_nvhe_sym(id_aa64pfr1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64PFR1_EL1);
- 	kvm_nvhe_sym(id_aa64pfr2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64PFR2_EL1);
-+	kvm_nvhe_sym(id_aa64zfr0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ZFR0_EL1);
- 	kvm_nvhe_sym(id_aa64isar0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR0_EL1);
- 	kvm_nvhe_sym(id_aa64isar1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR1_EL1);
- 	kvm_nvhe_sym(id_aa64isar2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR2_EL1);
-diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-index 3b468ef619ed2..352998a07512a 100644
---- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-+++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-@@ -23,6 +23,7 @@
- u64 id_aa64pfr0_el1_sys_val;
- u64 id_aa64pfr1_el1_sys_val;
- u64 id_aa64pfr2_el1_sys_val;
-+u64 id_aa64zfr0_el1_sys_val;
- u64 id_aa64isar0_el1_sys_val;
- u64 id_aa64isar1_el1_sys_val;
- u64 id_aa64isar2_el1_sys_val;
-@@ -123,6 +124,22 @@ static const struct pvm_ftr_bits pvmid_aa64pfr2[] = {
- 	FEAT_END
- };
+diff --git a/arch/arm64/kvm/config.c b/arch/arm64/kvm/config.c
+index c65cf1dd27330..eef5ca50fc382 100644
+--- a/arch/arm64/kvm/config.c
++++ b/arch/arm64/kvm/config.c
+@@ -1409,9 +1409,7 @@ static void __init check_feat_map(const struct reg_bits_to_feat_map *map,
+ 		if (!((map[i].flags & FORCE_RESx) && (map[i].bits & resx)))
+ 			mask |= map[i].bits;
  
-+static const struct pvm_ftr_bits pvmid_aa64zfr0[] = {
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, SVEver, SVE2p3, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, AES, AES2, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, EltPerm, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, BitPerm, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, BF16, EBF16, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, B16B16, B16MM, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, SHA3, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, SM4, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, I8MM, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, F16MM, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, F32MM, IMP, vm_has_sve),
-+	MAX_FEAT_FUNC(ID_AA64ZFR0_EL1, F64MM, IMP, vm_has_sve),
-+	FEAT_END
-+};
-+
- static const struct pvm_ftr_bits pvmid_aa64mmfr0[] = {
- 	MAX_FEAT_ENUM(ID_AA64MMFR0_EL1, PARANGE, 40),
- 	MAX_FEAT_ENUM(ID_AA64MMFR0_EL1, ASIDBITS, 16),
-@@ -242,6 +259,8 @@ static u64 pvm_calc_id_reg(const struct kvm_vcpu *vcpu, u32 id)
- 		return get_restricted_features(vcpu, id_aa64pfr1_el1_sys_val, pvmid_aa64pfr1);
- 	case SYS_ID_AA64PFR2_EL1:
- 		return get_restricted_features(vcpu, id_aa64pfr2_el1_sys_val, pvmid_aa64pfr2);
-+	case SYS_ID_AA64ZFR0_EL1:
-+		return get_restricted_features(vcpu, id_aa64zfr0_el1_sys_val, pvmid_aa64zfr0);
- 	case SYS_ID_AA64ISAR0_EL1:
- 		return id_aa64isar0_el1_sys_val;
- 	case SYS_ID_AA64ISAR1_EL1:
+-	if (mask != ~resx)
+-		kvm_err("Undefined %s behaviour, bits %016llx\n",
+-			str, mask ^ ~resx);
++	WARN_ON(mask != ~resx);
+ }
+ 
+ static u64 reg_feat_map_bits(const struct reg_bits_to_feat_map *map)
 -- 
 2.47.3
 
