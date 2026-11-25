@@ -2,139 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EAB1606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBE5606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CZDDYRDP;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=AzTa/8fQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qG9CKAQO;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xCyGvlms
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ptuC4hMhI0w5QKzAoAA6NtSUbJBDKDomDMRWXh6KJ7I=; b=CZDDYRDPwz8DN0KUUjvksYXVwc
-	HjYw8EnEJc8sWnWvUK7O/LRD4Qms3njHjs65M5IQy3gBndoECPz58IkwEi1XtdRdiNzisl7W4kNwk
-	PntFIV8yhtt3bVUYBuyv5Ps/Ve8USo5qF6scNJ6zgPlR6mg3C5Np7g1hOZ3q4xhon70y4RmCw4qEw
-	+Ujj6WHErTIx14H6WZu0vaVVSCnmnb51AqsU1bmHhBvPZAlO0DzwMtNaywJVDKEGiZ53yvwZ6F4/Z
-	yJcUF9bktTDvU4CgavHuEr6eKhLbaiSBN+arZzOnq0cb7cLMlzAUix45uwV8Uh73STDFIUzTMOTXj
-	XNyEU0Iw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=JHAmRX/r0jGQ38tK1sD0aSaAzLRfe9WNovc4CDTshWQ=; b=qG9CKAQOx/Pf5q
+	CGU2zN+KX50wIyuHZKFmiWKPWVradqNPinbQt87j8iNWucJ/4IhhgZs+Dr4ERzCmzv0pZO1JCYXGJ
+	9uZIb7tHF48j0uyC0FiUw2h0v+GjVnCU5/8KUwJrAe8QfzsdHxQC41YfhPMAyjijM4aSMjcFrkbBD
+	qzhRRcjHz9/Az0xaVFhEJ1PmlXCxRyNAWGzWA8aQjwokBnMYvYnxxPaECB8tkL0xkRh0xZN8baPxE
+	d0rW+QfyKURatpEtx+4HIKiIqkfz/eSNbECVw0S5QRvrOCqBUgtOJXT5EbHMa+WXqqcsTc51R/jLv
+	V2aH19aSeEG9lY4eg8Ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW3lS-00000008J5o-0nrh;
-	Wed, 25 Nov 2026 03:33:46 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
+	id 1xW4BY-00000008MVA-2WcW;
+	Wed, 25 Nov 2026 04:00:44 +0000
+Received: from mail-dl1-x1235.google.com ([2607:f8b0:4864:20::1235])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW3lP-00000008J4W-0rAJ
+	id 1xW4BK-00000008MSJ-0w3o
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 03:33:44 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MHii+b1bSRyIPCYNbuuhmBNBpJv1gNkILog+18IzuDfcn4CxJ4iUgqkkUh5Od51Rm/uybAPeUVc8r6dzl5nKZRoRIxxRejZ3sP5wpQeF7mDtFuM6yVcAkNJHgR1qPyAQLDwPhLoYfyzAeBhNpX+6FcIphgo4irB6X5S7TF9ZuxOqwqFAARsn5wTzsLwSmOPXZpfXZK46JRlmEDchAHNR4p14+NIU8q2PnKK6wFuRPUp/cHPp6mCS2RTXnJblGLunMviHAaYbYEHk/QmQ6pdpA3VTueblAuP6TZCTYyZgtTdjlAf2du0zkDWmUQrh+viaHIrqsoO0i1P1hoqDaR0Sdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ptuC4hMhI0w5QKzAoAA6NtSUbJBDKDomDMRWXh6KJ7I=;
- b=U8FPjsc8h/KRwSl3KE0AojDJnSLYI1/D0pexVmHzWYh08QlHzHvxq+jdi07Uwk7EVCeMKV/tXPkbLQNuKpzdEXBkguk9mLCsWweeijdDpACGeBEHoYWf6YiZVcAe6veOgbm2p11ZudcW95yhLIuypCFPGPIMb+5QAcoOkUyVVgWIUy7ht6bmXTk1VRgFKKOBlEiK6DFuUR3Pd9VGyGpRRU0VCCkyiGDySCg/ZkCDqrGAJWZvDqAx2St/Xu62F0BGSM9ZXX0/os4wjrdOKA0FqbPccfL9u9Y8itISSfSV46E2slfGCkrjqTF7y+EcnfRlxY4NRsNFY41jgN1S657FUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ptuC4hMhI0w5QKzAoAA6NtSUbJBDKDomDMRWXh6KJ7I=;
- b=AzTa/8fQ1Ezb07KN/nZ83uSaN6K8HcQ8RjMs+Cj16GId8B3+EYD7V3E6iX6zQKPztIh/Yeh0vtsE6V4XvMU7+f7SvzOHBw88A4d/crBsHl0QUDUpTjk15dYmKkCijC9hrt5QOw0PLOmEKf4KvbA7SVNV5sGQIIPq8oY/2QtIi0TmGBR2DOEhnGju4WZZ1iqVm5pQ/VpTTso85sxOdvMoMfJV9OQWLf9ER6pFbuZ6BCBYZDg1VnxRaDozVzZu1S4eq/0HCy6uOjGLDLpRRPAf9tADJFBU7ntWbdDkK4Sr8J0N7nEt3q54Dlz2Ybpw6TcsDsCKj2K1+id9oFLZu45ThQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB9422.eurprd04.prod.outlook.com (2603:10a6:102:2b4::21)
- by PA4PR04MB9486.eurprd04.prod.outlook.com (2603:10a6:102:2a3::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
- 2026 03:33:36 +0000
-Received: from PAXPR04MB9422.eurprd04.prod.outlook.com
- ([fe80::54e:28bf:aa85:d25d]) by PAXPR04MB9422.eurprd04.prod.outlook.com
- ([fe80::54e:28bf:aa85:d25d%3]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 03:33:36 +0000
-Date: Wed, 25 Nov 2026 11:30:24 +0800
-From: Xu Yang <xu.yang_2@oss.nxp.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Frank Li <Frank.Li@nxp.com>, Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
-	Peter Griffin <peter.griffin@linaro.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Tejas Narendra Joglekar <Tejas.Joglekar@synopsys.com>, "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
-	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Neal Gompa <neal@gompa.dev>, 
-	"asahi@lists.linux.dev" <asahi@lists.linux.dev>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 3/3] usb: dwc3: Allow glue drivers to override all
- dwc3_properties
-Message-ID: <btjhv5mgul7iim3fbf5pjl4zv4cjezq6sk5u3iq54yc7z4qgvt@6jphm2iqupl7>
-References: <cover.1795559405.git.Thinh.Nguyen@synopsys.com>
- <b0b118ce86d1046d73fdbe297117f993df38cf20.1795559405.git.Thinh.Nguyen@synopsys.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b0b118ce86d1046d73fdbe297117f993df38cf20.1795559405.git.Thinh.Nguyen@synopsys.com>
-X-ClientProxiedBy: SI2PR06CA0009.apcprd06.prod.outlook.com
- (2603:1096:4:186::17) To PAXPR04MB9422.eurprd04.prod.outlook.com
- (2603:10a6:102:2b4::21)
+	Wed, 25 Nov 2026 04:00:31 +0000
+Received: by mail-dl1-x1235.google.com with SMTP id a92af1059eb24-15ea896ddc8so8894419c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:00:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795579229; x=1796184029; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=JHAmRX/r0jGQ38tK1sD0aSaAzLRfe9WNovc4CDTshWQ=;
+        b=xCyGvlmsMKb+ur3HHdDYSGz9Nxpq2Pk7njAkcbpwhg9ryDm4kelRydl7ORC/g94Iyz
+         u9dAnu37/jXL73R2rux1pV2V2PwVr2f4k5hxlCgRPHtL+P+Ejk3oPqarPfm4dTI8Boui
+         T19DsqEYsEThQqhVOBiPm8Ph8F5rM4N8jNL+qin/oApnP0cer7DkVxHNQ2kz4fLKdhID
+         /q8hY36DH9pMdl3qmjexwZQK7QYeviuI7fql1eheN7g47I6VKaTo8btRFyTiLZxxKNF+
+         ZJh9X903+W0OClaRomMkj5RwU1hAlYuXx9x6F5tHbCljrBud3HGqVO3HreWBMOB0U9EZ
+         8P5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795579229; x=1796184029;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=JHAmRX/r0jGQ38tK1sD0aSaAzLRfe9WNovc4CDTshWQ=;
+        b=TnB+b3KJttP5fTOgUwPGOA8uQ9bNls9XDaZXHzc2mnEDBjZQm5Owl9WT4kfdRKe12V
+         Wt7wAAw+I9mJVicrzra2bydNLDp5P5MtwkpdyTqJ2NdZxYEkEOd12byQketfBM3Bo8du
+         OJXttKzmF8zCb5BYnMssg/Tl/fI7mi2HzZySSjQ4FNxYlz3BMwtwCi3JKdzLFOvb3FDT
+         /yc9EmeGMmSt1CiHSXkJRRlk2gALOsqltJJp5XwdhbjmOXRViZKAo3bIh3rqSr3PEgco
+         X+R3iQC/CgE3gpsJniUMdFvxMp3sl8dO+3+XFIv49fYBowx9GFaaloweK+46qZPdYv2R
+         HhVQ==
+X-Forwarded-Encrypted: i=1; AL+hErFSfigKxIIBo+XxmHD942UzsXwf56nyt5ksmEp7A9tu0EETRI8/OUvqel7LXFzuE0/WzdPTT6h7Kch8/9E5K12+@lists.infradead.org
+X-Gm-Message-State: APuU4Z+C5AKU6yz+DgRsMzPHWxSI7YGYlhK0LdJjg3tuMg3DOi9zZgu3
+	SQEEZhaNuF7NfQTy04Y/h/SGySPWPR9ABWaaeD53B5Sw7K9W5qCvYnka
+X-Gm-Gg: AZFdTZemLuyo2yXiOXynBGPsczeC1x6njSDAtSTC++XMy9W1Fv1J6pt02mkATgX5kb8
+	o7ZY6ff41pvJw1wUtCa5QXUxbNI+CIrimL4pbaIQWPRc57wfijlac3sKFVWwHdcqftMdwBhrlaV
+	gBZIdN/dhdCgcytgJEMOkVrd/blq67hb9MVS0R4ZWrO1r+wKsssYdOvduabBi7DRCGGerzl9QNK
+	a38ZCI3GA5cCYKp761GO6JxcixQ6vfAY9atex8UyiOkc8uVkW9T0g8RN48TQcI1CpQKq8ymGftI
+	4qnI6cnb5laIcjhg+z9dIQdTTeLXpFKfOJlvjWr8dr7dTkTIaTwObYxHnxi8y/m3snaxC0e/h4Z
+	QI4du8PqGGH4Bwgbq3k0t2uMDdwCqzrApwsXBaZODqxhTz4xSNMTC7rNI5Sbr8lLtRDZQtlICCv
+	2bHDqLH2Yg6o4nohxZI5IKj3Ds+9eLR3vQ7Kj1KWumnpTOwXRTjKw2mGXt937gL85k6lBrs9OnJ
+	irRNEuR9nJyv+hpoeasLaOpMxsnYh4+EYlh2wpSWalPrmzsVGAxiUgZ3VDTet/syvJPTFxIgt8W
+	NgCq3aFUt/78snbG9Q1tqTjN8H800ASXnUEuEUseKA==
+X-Received: by 2002:a05:7022:2218:b0:19a:20d3:a3d6 with SMTP id a92af1059eb24-1b57da14988mr6075197c88.1.1795579227824;
+        Tue, 24 Nov 2026 20:00:27 -0800 (PST)
+Received: from a1-free ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b55684c85fsm57094127c88.14.2026.11.24.20.00.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 20:00:27 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: linux-perf-users@vger.kernel.org,
+	Ingo Molnar <mingo@redhat.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>
+Cc: Ian Rogers <irogers@google.com>,
+	James Clark <james.clark@linaro.org>,
+	John Garry <john.garry@linux.dev>,
+	linux-arm-kernel@lists.infradead.org,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	linux-kernel@vger.kernel.org,
+	TAKANO Mitsuhiro <takano32@gmail.com>,
+	Will Deacon <will@kernel.org>,
+	Mike Leach <mike.leach@arm.com>,
+	Leo Yan <leo.yan@linux.dev>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>
+Subject: [PATCH v13 2/2] perf jevents: Fail the build on a key the tables may not carry
+Date: Wed, 25 Nov 2026 04:00:16 +0000
+Message-ID: <20261125040016.1675748-3-takano32@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261125040016.1675748-1-takano32@gmail.com>
+References: <20261125040016.1675748-1-takano32@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9422:EE_|PA4PR04MB9486:EE_
-X-MS-Office365-Filtering-Correlation-Id: 26f9399e-cb27-4c47-925a-08df4aa4e3ad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|1800799024|23010399003|7416014|376014|261022105027099003|261026121527099003|10067099003|261026140227099003|261028144727099003|261021123027099003|261102123227099003|261021121427099003|261009223027099003|3023799007|6133799003|18002099003|22082099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: f/hClE8vqcWv1BMg2r0BlwmS5JVSas4eQRmDY20NHxifvMHDujGYG1faxZrrVpdEnI22BeVp6w7wyOCVtAgC1nOfmWz/1yqr7pfnPZGdeFNHUnbhe7Ngb1FvL3+d+3kQx8LBvRkguYm4TnwRZXet/KFMPS7tlgRzcGVSxh8m9WuM6Qvas4poalJzygEaFagvqTD8EMp8b1fan843efjIweS/V+GMO0jcKP6nFiwCoNgfkpLZDBwtCo3DJdZra7UFs3v2QWUfrS1mndlubf0zGiids1T6v1vAqwHJ7pDNvYRxLfOHtj9Lx920+wwTrt3LMTGNkdEToM9amEuEP+tfi9iOag0JkzTR6TQknKQlOBG5BPxagL+365PPeDRgdpeyY/8ZsOIvathdgBAKESyaOSbxlDnY5CNY4QQw3grFy/1XvjT98IgC6CQAqQfZf9I2Vx9ldF6vb68Je22mWHgweNd+5yZm40tlBLZ3trR7F1bXo3DBjqqYGSc+0cpi/KTSbomaq9JagmnrMZ5cYybj1dGgehdGXq0ECbwbMfoYScNb61weVNdIiM7Oe9IhF21BDgNDwWU5DUn9CVbwXOKzkJc54unOBKN6PdwYLTlsk9B4p1Ti0LhicYzneV9VSiGDBLZj1YdCArID4AE6OeKUssy61b2PNNcbC9aR0+tWStE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9422.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(23010399003)(7416014)(376014)(261022105027099003)(261026121527099003)(10067099003)(261026140227099003)(261028144727099003)(261021123027099003)(261102123227099003)(261021121427099003)(261009223027099003)(3023799007)(6133799003)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RPb2V3ZQwcNUnQS+zpu8ffD2Pt9LyEokc0pRJOI4E1HTVXUmZ0+tatUDvtKB?=
- =?us-ascii?Q?yQJBCG5N+22G8HO5ORZMY7/7F2Q1PSsOo9pLKFvjVM8yHvH3XWKMV7akLM82?=
- =?us-ascii?Q?N28rr8HpvfCX6+ViLF3/L1JPYm9u4TYk+QpvtmbQHlr2TA2x4E+mIcSOv0j7?=
- =?us-ascii?Q?QHoEIgQJwmTBcVYU+G0w7aQEL7urSknVIM8zWWI+ZIATe1/jMZK3CVxr1C9+?=
- =?us-ascii?Q?AabqA3UmF62SV1LUxm637BwiASMpX8WIU7qspolcF41GDUG20bEk9wtA9LR1?=
- =?us-ascii?Q?frDuDtFEuck5+RZRLRAL2xI81R9t3bnVfXs7OEvOws30PQb7xUBb6UaLL9K5?=
- =?us-ascii?Q?85BPh+niB/mkHNN5wU3VOzx/fLD4gu+D+0l6Er0F0Cpx1pTWWqRLXcR2Veug?=
- =?us-ascii?Q?ZGcNjmXbuSAdR/NXbn48lf2gwl5F5Cq4LfOBvF2m5BYBv1nMO/iN8AjbPydr?=
- =?us-ascii?Q?LfxhFN19GKuDsXwIILtl9L4tx+1JgI2DtLMPKJHy5NO8GWNYOsjXJklaDtPq?=
- =?us-ascii?Q?6rwHyMFbPoI4w4qMhdBoY5VLwymiBNpwEunsviiw97OXh1Xzhf2MdW9DrUOf?=
- =?us-ascii?Q?DtAw/u1YzrVurp9CJZLNB69jYGfeq5JhlciPvUMQFLXIL8Uudm5l2yTwX572?=
- =?us-ascii?Q?wu948ftDpbg0rPluCZ/CCUf2y56n6oSnst+Cd7KGDYmfyEycvrbtLGxQy/FN?=
- =?us-ascii?Q?AUKMS6dPIzuLzzO3hSoE262SSAevO8d9Yww8QSnTJ6qPUhZSbsT3tOwZ8Zjc?=
- =?us-ascii?Q?KD/M0gnXlWDyMyiVKNfCSdRMik8C+rCvX8/4Qv3qIfVJIMKAKqP/yRDTv7mv?=
- =?us-ascii?Q?Z35L4yBUdvSnWLWIlWUGvEIfEVTLVJ+EPdbWu25IOMs9q5Wt9jBnHepLcje/?=
- =?us-ascii?Q?MC9kcGvIJuUHRMLB8YQqmgeA4nL54gGpJTbX2QWb1LXvBegL9bY0AXbibpHR?=
- =?us-ascii?Q?7DhN9j9ArwFBueIMMNYPGIFvNMDU7lYS6oXE3zQzJM1vDo2cc2ahawBP45uu?=
- =?us-ascii?Q?N+ui4e3M0fU6f72og1rQJ3Or5Hsor4Vnqq7crwonNQV67m55jYBNatcd171M?=
- =?us-ascii?Q?1HzmM6Mh3ugeome1MvEKBRynU8ODiYIKHjRphHO8OP8NrHulIIDOme4jOiz0?=
- =?us-ascii?Q?VLI/jc9hUeaj6wqcEXCBBYHs3Nfqaow0j3Rh51J5YO1c5FGLFiLr3HLXlNQ8?=
- =?us-ascii?Q?YYBTR4Y5YPLlopsIS4KNAktMx2Uv9x/KWGdKC9Mayg/ZcIko0/OSoQXBbJpN?=
- =?us-ascii?Q?AhTDHRkWWBW3CaeiS+dCfPZHz16Dg9e8VfQC8odgJXRG/U0TeLXE0/WMsZ43?=
- =?us-ascii?Q?U1rG/GN0oitXVPcU9wowDLem4IaLMVGKwKukBEppR02lwr2U4Mg5bxQYildP?=
- =?us-ascii?Q?1Q5VTeoy41/vJ15GiAJcEqMSU+Og30RQTK5/GHoUAyOLRiM3vac3oCYpch8L?=
- =?us-ascii?Q?0Qjs//nfWO8XBaILY3mCJhKh3m5s+feZkr1jerHAkku/38wwnzwgbyjsYVEE?=
- =?us-ascii?Q?TTirUeAvZmJmjPideWsvpdLj1zz27TmDxvo3rZIRPEy/MxJJT/amXOcRRYVo?=
- =?us-ascii?Q?jmRSfvGA/2jx+Go8ynjbBcDYt/oj7O4D9yuneAlWaIdtMn3rKUU3c0irbhXu?=
- =?us-ascii?Q?rlAy9LyZPdO2hrO1mTqtLk0oU1GsJkRck8K3kAcJKAPQUU2rVcoxpk93V0Vc?=
- =?us-ascii?Q?2oxzcBUcS1Q1WWgifkOq1nppSbTwQPgkjIxx9K4azaXZLwMSUkRjxoKHQBF0?=
- =?us-ascii?Q?sAGwsQnFgzMv2K0sbMhDzzvT578+6RdXCxV0OoD+Mi0zZ8rmVyOT?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26f9399e-cb27-4c47-925a-08df4aa4e3ad
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9422.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 03:33:36.7421
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A5BuOR+e5nkvIlCXoMdMUIOITgnpTUdnWhQROMW4fW44Xxms0aa1Wordr4uVfgiNXjgYbWZbO1Xc3Ul0/QJeY2XxW0lP6sNkXRZkTdgNsVSZNzH0AUeZZbURBGok+Xrt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9486
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_193343_409160_23EFF04E 
-X-CRM114-Status: GOOD (  24.18  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261124_200030_591513_E46AC3FC 
+X-CRM114-Status: GOOD (  22.41  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,240 +115,140 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 10:59:31PM +0000, Thinh Nguyen wrote:
-> struct dwc3_properties holds all glue-overridable properties, but glue
-> drivers can only set needs_full_reinit and gsbuscfg0_reqinfo.
-> 
-> Replace the properties value in struct dwc3_probe_data with a
-> fixup_properties() hook. The core calls it after reading the DT
-> properties, so glue drivers can set properties that DT does not
-> provide, or override DT values, including clearing them, to correct
-> broken SoC settings. Convert imx and ls1028a to the hook.
+jevents.py takes the fields it wants out of each JSON object by name and
+ignores the rest, so a key that is spelled differently is dropped without
+a word and the object is built without whatever that field held.
 
-Tested-by: Xu Yang <xu.yang_2@nxp.com> # dwc3-imx.c
+Compare the keys of each object with _valid_keys, the keys a table may
+carry, and fail on anything else.  The generator already names the file it
+was reading and the exception names the keys it did not expect, so the
+build stops with a message that says where to look.
 
-Thanks,
-Xu Yang
+A shell test, jevents_bad_key.sh, puts a key the tables may not carry
+into a table and checks that the generator fails and names the file and
+the key.
 
-> 
-> Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-> ---
->  drivers/usb/dwc3/core.c              | 18 +++++-------------
->  drivers/usb/dwc3/dwc3-apple.c        |  1 -
->  drivers/usb/dwc3/dwc3-generic-plat.c | 19 +++++++++++--------
->  drivers/usb/dwc3/dwc3-google.c       |  1 -
->  drivers/usb/dwc3/dwc3-imx.c          |  9 +++++++--
->  drivers/usb/dwc3/dwc3-qcom.c         |  1 -
->  drivers/usb/dwc3/glue.h              | 10 ++++------
->  7 files changed, 27 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 3b2b5fcc627a..369c9ce9f1dc 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1684,24 +1684,14 @@ static void dwc3_core_exit_mode(struct dwc3 *dwc)
->  	dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_DEVICE, true);
->  }
->  
-> -static void dwc3_get_software_properties(struct dwc3 *dwc,
-> -					 const struct dwc3_properties *properties)
-> +static void dwc3_get_software_properties(struct dwc3 *dwc)
->  {
->  	struct device *tmpdev;
->  	u16 gsbuscfg0_reqinfo;
->  	int ret;
->  
-> -	if (properties->needs_full_reinit)
-> -		dwc->needs_full_reinit = true;
-> -
->  	dwc->gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED;
->  
-> -	if (properties->gsbuscfg0_reqinfo !=
-> -	    DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED) {
-> -		dwc->gsbuscfg0_reqinfo = properties->gsbuscfg0_reqinfo;
-> -		return;
-> -	}
-> -
->  	/*
->  	 * Iterate over all parent nodes for finding swnode properties
->  	 * and non-DT (non-ABI) properties.
-> @@ -2310,7 +2300,10 @@ int dwc3_core_probe(const struct dwc3_probe_data *data)
->  	dwc->regs_size	= resource_size(&dwc_res);
->  
->  	dwc3_get_properties(dwc);
-> -	dwc3_get_software_properties(dwc, &data->properties);
-> +	dwc3_get_software_properties(dwc);
-> +
-> +	if (data->fixup_properties)
-> +		data->fixup_properties(dwc, &dwc->properties);
->  
->  	if (dwc->sysdev_is_parent)
->  		dwc->sysdev = dwc->dev->parent;
-> @@ -2470,7 +2463,6 @@ static int dwc3_probe(struct platform_device *pdev)
->  
->  	probe_data.dwc = dwc;
->  	probe_data.res = res;
-> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
->  
->  	return dwc3_core_probe(&probe_data);
->  }
-> diff --git a/drivers/usb/dwc3/dwc3-apple.c b/drivers/usb/dwc3/dwc3-apple.c
-> index 1f474a8bc59e..8289d22e5994 100644
-> --- a/drivers/usb/dwc3/dwc3-apple.c
-> +++ b/drivers/usb/dwc3/dwc3-apple.c
-> @@ -181,7 +181,6 @@ static int dwc3_apple_core_probe(struct dwc3_apple *appledwc)
->  	probe_data.res = appledwc->mmio_resource;
->  	probe_data.ignore_clocks_and_resets = true;
->  	probe_data.skip_core_init_mode = true;
-> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
->  
->  	ret = dwc3_core_probe(&probe_data);
->  	if (ret)
-> diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
-> index 3e90ddf25809..69a6acd84a0f 100644
-> --- a/drivers/usb/dwc3/dwc3-generic-plat.c
-> +++ b/drivers/usb/dwc3/dwc3-generic-plat.c
-> @@ -33,7 +33,8 @@ struct dwc3_generic {
->  
->  struct dwc3_generic_config {
->  	int (*init)(struct dwc3_generic *dwc3g);
-> -	struct dwc3_properties properties;
-> +	void (*fixup_properties)(struct dwc3 *dwc,
-> +				 struct dwc3_properties *props);
->  };
->  
->  #define to_dwc3_generic(d) container_of((d), struct dwc3_generic, dwc)
-> @@ -137,12 +138,10 @@ static int dwc3_generic_probe(struct platform_device *pdev)
->  	probe_data.ignore_clocks_and_resets = true;
->  
->  	plat_config = of_device_get_match_data(dev);
-> -	if (!plat_config) {
-> -		probe_data.properties = DWC3_DEFAULT_PROPERTIES;
-> +	if (!plat_config)
->  		goto core_probe;
-> -	}
->  
-> -	probe_data.properties = plat_config->properties;
-> +	probe_data.fixup_properties = plat_config->fixup_properties;
->  	if (plat_config->init) {
->  		ret = plat_config->init(dwc3g);
->  		if (ret)
-> @@ -220,16 +219,20 @@ static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
->  
->  static const struct dwc3_generic_config spacemit_k1_dwc3 = {
->  	.init = dwc3_spacemit_k1_init,
-> -	.properties = DWC3_DEFAULT_PROPERTIES,
->  };
->  
-> +static void dwc3_ls1028a_fixup_properties(struct dwc3 *dwc,
-> +					  struct dwc3_properties *props)
-> +{
-> +	props->gsbuscfg0_reqinfo = 0x2222;
-> +}
-> +
->  static const struct dwc3_generic_config fsl_ls1028_dwc3 = {
-> -	.properties.gsbuscfg0_reqinfo = 0x2222,
-> +	.fixup_properties = dwc3_ls1028a_fixup_properties,
->  };
->  
->  static const struct dwc3_generic_config eic7700_dwc3 =  {
->  	.init = dwc3_eic7700_init,
-> -	.properties = DWC3_DEFAULT_PROPERTIES,
->  };
->  
->  static const struct of_device_id dwc3_generic_of_match[] = {
-> diff --git a/drivers/usb/dwc3/dwc3-google.c b/drivers/usb/dwc3/dwc3-google.c
-> index 67eda7f0d528..213c03048aa0 100644
-> --- a/drivers/usb/dwc3/dwc3-google.c
-> +++ b/drivers/usb/dwc3/dwc3-google.c
-> @@ -440,7 +440,6 @@ static int dwc3_google_probe(struct platform_device *pdev)
->  	probe_data.dwc = &google->dwc;
->  	probe_data.res = res;
->  	probe_data.ignore_clocks_and_resets = true;
-> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
->  	ret = dwc3_core_probe(&probe_data);
->  	if (ret)  {
->  		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
-> diff --git a/drivers/usb/dwc3/dwc3-imx.c b/drivers/usb/dwc3/dwc3-imx.c
-> index 64da121a8f76..396d76311120 100644
-> --- a/drivers/usb/dwc3/dwc3-imx.c
-> +++ b/drivers/usb/dwc3/dwc3-imx.c
-> @@ -192,6 +192,12 @@ static const struct software_node dwc3_imx_swnode = {
->  	.properties = dwc3_imx_properties,
->  };
->  
-> +static void dwc3_imx_fixup_properties(struct dwc3 *dwc,
-> +				      struct dwc3_properties *props)
-> +{
-> +	props->needs_full_reinit = true;
-> +}
-> +
->  static int dwc3_imx_probe(struct platform_device *pdev)
->  {
->  	struct device		*dev = &pdev->dev;
-> @@ -265,8 +271,7 @@ static int dwc3_imx_probe(struct platform_device *pdev)
->  
->  	probe_data.res = res;
->  	probe_data.dwc = dwc;
-> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
-> -	probe_data.properties.needs_full_reinit = true;
-> +	probe_data.fixup_properties = dwc3_imx_fixup_properties;
->  
->  	ret = dwc3_core_probe(&probe_data);
->  	if (ret) {
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 5a68025ccea5..ef38308023aa 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -745,7 +745,6 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	probe_data.dwc = &qcom->dwc;
->  	probe_data.res = &res;
->  	probe_data.ignore_clocks_and_resets = true;
-> -	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
->  	ret = dwc3_core_probe(&probe_data);
->  	if (ret)  {
->  		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
-> diff --git a/drivers/usb/dwc3/glue.h b/drivers/usb/dwc3/glue.h
-> index b7ce196e84ea..e56fee68e4bc 100644
-> --- a/drivers/usb/dwc3/glue.h
-> +++ b/drivers/usb/dwc3/glue.h
-> @@ -9,10 +9,6 @@
->  #include <linux/types.h>
->  #include "core.h"
->  
-> -#define DWC3_DEFAULT_PROPERTIES ((struct dwc3_properties){		\
-> -	.gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED,	\
-> -	})
-> -
->  /**
->   * dwc3_probe_data: Initialization parameters passed to dwc3_core_probe()
->   * @dwc: Reference to dwc3 context structure
-> @@ -21,14 +17,16 @@
->   *		be ignored by the DWC3 core, as they are managed by the glue
->   * @skip_core_init_mode: Skip the final initialization of the target mode, as
->   *		it must be managed by the glue
-> - * @properties: dwc3 software manage properties
-> + * @fixup_properties: optional hook to set or override properties after
-> + *		the core reads them from DT
->   */
->  struct dwc3_probe_data {
->  	struct dwc3 *dwc;
->  	struct resource *res;
->  	bool ignore_clocks_and_resets;
->  	bool skip_core_init_mode;
-> -	struct dwc3_properties properties;
-> +	void (*fixup_properties)(struct dwc3 *dwc,
-> +				 struct dwc3_properties *props);
->  };
->  
->  /**
-> -- 
-> 2.53.0
+Written with Hermes Agent, an LLM assistant; the author reviewed it and
+ran the generator on every arch directory, with and without a key the
+tables may not carry.
+
+Reviewed-by: James Clark <james.clark@linaro.org>
+Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
+---
+ tools/perf/pmu-events/jevents.py          | 24 +++++++++++
+ tools/perf/tests/shell/jevents_bad_key.sh | 52 +++++++++++++++++++++++
+ 2 files changed, 76 insertions(+)
+ create mode 100755 tools/perf/tests/shell/jevents_bad_key.sh
+
+diff --git a/tools/perf/pmu-events/jevents.py b/tools/perf/pmu-events/jevents.py
+index 080e04b51b8c..1baeae76349f 100755
+--- a/tools/perf/pmu-events/jevents.py
++++ b/tools/perf/pmu-events/jevents.py
+@@ -63,6 +63,27 @@ _json_metric_attributes = [
+ # Attributes that are bools or enum int values, encoded as '0', '1',...
+ _json_enum_attributes = ['aggr_mode', 'deprecated', 'event_grouping', 'perpkg',
+                          'default_show_events']
++# Keys a table under arch/ may carry.  jevents.py takes the fields it wants by
++# name and drops the rest without a word, so a key that is spelled differently
++# is only visible as a field that went missing; a table carrying anything else
++# is an error.  The list holds the keys jevents.py reads, plus the ones the
++# tables carry and it does not read: Counter, CountersNumFixed and
++# CountersNumGeneric (read by nothing) and Experimental (read by metric.py).
++_valid_keys: Set[str] = {
++    'AggregationMode', 'AnyThread', 'ArchStdEvent', 'BriefDescription',
++    'Compat', 'ConfigCode', 'Counter', 'CounterMask',
++    'CountersNumFixed', 'CountersNumGeneric', 'Data_LA', 'DefaultMetricgroupName',
++    'DefaultShowEvents', 'Deprecated', 'EdgeDetect', 'EnAllCores',
++    'EnAllSlices', 'Errata', 'EventCode', 'EventidCode',
++    'EventName', 'Experimental', 'ExtSel', 'FCMask',
++    'Filter', 'Invert', 'LegacyCacheCode', 'LegacyConfigCode',
++    'MetricConstraint', 'MetricExpr', 'MetricGroup', 'MetricgroupNoGroup',
++    'MetricName', 'MetricThreshold', 'MSRIndex', 'MSRValue',
++    'NodeType', 'PEBS', 'PerPkg', 'PortMask',
++    'PublicDescription', 'RdWrMask', 'RetirementLatencyMax', 'RetirementLatencyMean',
++    'RetirementLatencyMin', 'SampleAfterValue', 'ScaleUnit', 'SliceId',
++    'ThreadMask', 'UMask', 'Unit',
++}
+ 
+ def file_name_to_table_name(prefix: str, parents: Sequence[str],
+                             dirname: str) -> str:
+@@ -196,6 +217,9 @@ class JsonEvent:
+   def __init__(self, jd: dict):
+     """Constructor passed the dictionary of parsed json values."""
+ 
++    if extra := set(jd) - _valid_keys:
++      raise ValueError(f'Unknown keys: {sorted(extra)}')
++
+     def llx(x: int) -> str:
+       """Convert an int to a string similar to a printf modifier of %#llx."""
+       return str(x) if x >= 0 and x < 10 else hex(x)
+diff --git a/tools/perf/tests/shell/jevents_bad_key.sh b/tools/perf/tests/shell/jevents_bad_key.sh
+new file mode 100755
+index 000000000000..6084205b5f4d
+--- /dev/null
++++ b/tools/perf/tests/shell/jevents_bad_key.sh
+@@ -0,0 +1,52 @@
++#!/bin/sh
++# SPDX-License-Identifier: GPL-2.0
++# Check jevents.py reports unknown keys as errors (no_mlock)
++#
++# A key that is spelled differently is dropped without a word, so jevents.py
++# compares the keys of each object in a table against the keys a table may
++# carry and fails on anything else.
++
++jevents=$(dirname "$0")/../../pmu-events/jevents.py
++python=${PYTHON:-python3}
++
++# An installed perf has the test but not the generator, and a python that is
++# not there or too old to run it is a skip, not a failure of the check.
++[ -r "${jevents}" ] || exit 2
++[ "$("${python}" -c 'import sys; print(sys.version_info >= (3, 9))' 2>/dev/null)" = True ] \
++  || exit 2
++
++tmp=$(mktemp -d) || exit 2
++trap 'rm -rf "${tmp}"' EXIT HUP INT TERM
++tables="${tmp}/arch/x86/model"
++mkdir -p "${tables}" "${tmp}/arch/common"
++printf '[]\n' > "${tmp}/arch/common/empty.json"
++printf 'Family-model,Version,Filename,EventType\nGenuineIntel-6-97,v1.0,model,core\n' \
++  > "${tmp}/arch/x86/mapfile.csv"
++printf '[{"EventName": "a", "NotAKey": "x"}]\n' > "${tables}/events.json"
++
++if "${python}" -B "${jevents}" x86 all "${tmp}/arch" \
++    "${tmp}/pmu-events.c" "${tmp}/pmu-events-string.c" \
++    > "${tmp}/out" 2> "${tmp}/err"; then
++  echo "jevents.py accepted a key it does not read" >&2
++  exit 1
++fi
++
++# The generator says which file it was reading, and the exception says which
++# key it did not expect.
++grep -qF -- "Exception processing" "${tmp}/out" || {
++  echo "jevents.py failed without naming the file" >&2
++  cat "${tmp}/out" "${tmp}/err" >&2
++  exit 1
++}
++grep -qF -- "${tables}/events.json" "${tmp}/out" || {
++  echo "jevents.py failed without naming the path" >&2
++  cat "${tmp}/out" "${tmp}/err" >&2
++  exit 1
++}
++grep -qF -- "NotAKey" "${tmp}/err" || {
++  echo "jevents.py failed without naming the key" >&2
++  cat "${tmp}/out" "${tmp}/err" >&2
++  exit 1
++}
++
++exit 0
+-- 
+2.53.0
+
 
