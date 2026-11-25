@@ -2,87 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50881606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48F3606A31E
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MK/9lVtw;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=CDg8zK4m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e+vo9+Sb;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=gnhYRruN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XcsPi3qvnIrsdxjh28gNxRodworsSCcyn+GNHNwrRhE=; b=MK/9lVtwae6jbS
-	kesIhRpT0+3hxjN4L96hPte2FdqfFR99z9oZ6Jun4JdApTVgjlCWcXlh4Y9av8t7whG4Ej5Z1JzBA
-	dChLqmrmvsamRSu55JbZrvpTwrmHFoCN+zTfW5mVgExhHmqvRdLg51W81HmX8FaHeN0HN6AOp7jXO
-	31Ol/MxjxFqWaUn7g6RL8FADztJ0k8pp+5Io1/S7+7LJ31LT4JejYpFoytLhrGpfM/qlIYECZBfXF
-	jy3szuL8hyiDSGIZJjSV7OxscCdOLOvKGWKzXHQ2syZbPtS7ExkX1Fu6S9KP/41Do+NfsNSTAu1Dv
-	bdvJsnh8dNnyJkioqX8w==;
+	List-Owner; bh=0/aFPQt49ikbeQUDeEJ95DjEIDG8hIXLsnOyjwQr970=; b=e+vo9+SbPtGScf
+	OniWYXFqwS8FEYp8ugcS5uDyoJIG7ZNDjmQlQJT9IBDajjmnyAVP/yAMLGNsd0efqZM7/BjHbtTTH
+	nLDWmixyKdvVBITjqtLhGKt4j8EhSdQh9pCGDtjosb8/hD01gX8bdAHrZDJoswAnZH6/xiHy7jfvZ
+	EssoijuvOb2xnG6vv6v6R3Ckp5DSxW1KJIeDxdVJzkVjGKnJChFRizbJP3yQ5HOLGe44Lox+yXGkT
+	anCf58YaQj8zCQCriYItosEjvkjGpEZ0ZSgslVQdPOew0/bpR9jW3teDACwBBbmHvpxYIi/ojUspN
+	zFbGWT6/v20+xS/THzgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDud-0000000A978-1330;
+	id 1xWDud-0000000A97K-1gKh;
 	Wed, 25 Nov 2026 14:23:55 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWDuS-0000000A91I-04FG
+	id 1xWDuT-0000000A91o-1Y8d
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:23:45 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-48e47347279so3530622f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 06:23:43 -0800 (PST)
+	Wed, 25 Nov 2026 14:23:47 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4bb85e07aadso72561405e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 06:23:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795616622; x=1796221422; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795616623; x=1796221423; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=XcsPi3qvnIrsdxjh28gNxRodworsSCcyn+GNHNwrRhE=;
-        b=CDg8zK4m2SZosehNzmlwHInCsLGWVCJ1yDzlkEGpe2fuYYCXVw7WeftUrsnkOZdbM2
-         dw9gQ7f70F3lvhu7QUgHPvHqtceRQOVW50aCfQJLpo8vDnIb+pzs/fxMCqosjCR82fJ/
-         e3fe0twrc10QWhSz670KlYFjPWUtrO2qY3Iovi01io2pSaaZJQKhy40ckChQHEgOwfLq
-         dqKjGxMDcCleOfBNHHK1kfPUdRrmtAKHcDkLgrRdEXk2T+nmhZYDk0hiVrjvFoz4qjGx
-         /wulo8JB6FONXwTbgZKtPv6qiGLqaQzrGY0vXIvGrdqngxBXN9U02AbDLBjnsdHGEPrR
-         bOFg==
+        bh=0/aFPQt49ikbeQUDeEJ95DjEIDG8hIXLsnOyjwQr970=;
+        b=gnhYRruNlj/aAGdizFhYwVVLn8niCaJx76in57rquQSAFtwTNxfZ9YVlqfNj5aL08q
+         +rCfbIobDvqLIp8DEQhVmENblJZzupdEO5dpACYusO1VejBXH9rm1TcPZWR1edjC+Wq9
+         b/hPTzOQUC5E83Ck8J758x4PrTd8GfOfkUavanNotu3K3WLAwE6b3XF7cNmc88Uz1JeG
+         eOtW6aRWJqgCVIvqQV5AS1MfNWM54hrHJVcT4nf5hzZrh87EnL6Qkei8dhLlc6oGPvbT
+         RmkH0g1Qt6qe1oZ9qu2EU0hJRQGVcO0EuHoRpXp36VBmH7A3Dle/y9g2I8I8jsJVcgLx
+         peBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795616622; x=1796221422;
+        d=1e100.net; s=20260707; t=1795616623; x=1796221423;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=XcsPi3qvnIrsdxjh28gNxRodworsSCcyn+GNHNwrRhE=;
-        b=eHrhbk70o1SJEsQNb+YX0/1H4SNBXLUctgefG/QPuzSJRu7KVTmSidwXiYm8r+hErB
-         vMLyLbFWK7yDOATtEvMio707UpULuklG9qOwfEdXQWE7mosntBT3B7lLkL6++QX3KPva
-         dL74H8NGGq73JH67sRfA7ZWOxHxka/463k7xRIocAoAXk7UNxPpMfmUvTyvrC6unLyj9
-         HwBxm1vPSoH4juwR3sMiExTFd3ADrnAtQLuPIYDMeBxhXe9QDgwtD/Hao87X6EVc3gVh
-         gR2smZohaBbxMvlNXAP+YpCFpHS3tlqgbPmdCKtXQp27PiqxHfyhLae2ISQ5KLEHy3Al
-         Fsow==
-X-Forwarded-Encrypted: i=1; AL+hErGLtqGKJvI7dehsCp6hWUS8puKBrCVGojof5eGNi5+Rua9YC+x3T/0ybg5mHKM5wdpjQfrSbp+2aqeFZX7k+7KT@lists.infradead.org
-X-Gm-Message-State: APuU4Z/cp89kyvv2b2IERm4N5JNst0Llu0z0DqraE7N2NNkRXzS13zaq
-	TWPjYHzAjYmz31SQ0WZo4g5cVp50Pbo6OMAr7nn0DUmn7CoAtFny00T7dg2lCBFOTXWy4hiRoYa
-	tftH7XzE=
-X-Gm-Gg: AZFdTZeNUimQl6LmEVONCTMCbRQjKmttA4szyYApDT6lMcbxcnxFskdA615hrhDCStm
-	1uHXaDdaOE5uA4neY4NQhLYxnk4GublCRrruPkpgONeTE02Vv36p/2wrwo0qKsjSyH6M2mlhIcD
-	oOdEHfhLVIW1wTmbpx/QL4ldL6wmsgVsS8E/YexWn2hlB+jENiSr/TkChWoozwL71kVcG1pYxha
-	Jnd8A+aD5NJ9Sq5i+dgbMQNg5SK2aR/ihXRqKmcVF0oJWnXssAN8vwjynKMB6n6Wb/Gz62Kxy9y
-	qMdIWTg3U88hw1uwlb3pqW2KPd6xqRLoMbBCazQ7ZPNBYZJp3XUUI8RcfAheD7ixSbK+iDTxqRZ
-	aUn0/W10wpQMFlb9leHcv1uOJME5H7EUk7kLYsbRNhU9DTDfVyiTbEguGwmd446ekGwHUu392kQ
-	yFUc/RlSdKjf+F1agcQ+K9G/JExYKBpiZS1nOY9f1iec92hEC9MOEQ3eum9VsmfeuKvoHqYSy9R
-	jbZrPfr0eOiqjy26dvwoLxnawp9ar0zU2UOWbFiPrG2/s2BqfKdjEcXJp++3b1JplJPvxWkU/g0
-	S9JD+HWW+nMscVmZJ4t+de5WsyLHDFC6dUHM1Rk4kzIHESyxXtOac4pEBPTJNXUsbvFiQyOhlHr
-	PckRSA/ynsSRkmv8ygQG7DQ==
-X-Received: by 2002:a5d:428b:0:b0:49d:78ad:a2ec with SMTP id ffacd0b85a97d-4abb47b1ba6mr27250862f8f.25.1795616622030;
-        Wed, 25 Nov 2026 06:23:42 -0800 (PST)
+        bh=0/aFPQt49ikbeQUDeEJ95DjEIDG8hIXLsnOyjwQr970=;
+        b=HOPENhqjcf+fdkTEo/zpUBdoMZqFwomPrC/FPzDsQebxmoNmzW3VFHTA7TqA16373M
+         gNPelopLHWPjKJvyz+WCv9uXwmN+MrmoBI+0U8fe/A+jeol4mY1R/ZOtN66msM5Ow2Hx
+         4D8VdijzLjE50cfzV+5TpmBXQ+cA8pvGDM8wSDEZiSxBqv27HAPnD9Hg+9V8g8qC18HE
+         iYQcgL7Ymg8qmN7kWvarDsGX8FSpqxkQb6gl3T1XiCD5M/r3i7c8fFT/TDV+y4xzl4oB
+         Dwo1KLcTRUP7jacOtFuqH2F6Btd7qbpUH+0XSOPYpauT9xinGi/ecZT6SxHA+YXAqhT6
+         5/fA==
+X-Forwarded-Encrypted: i=1; AL+hErEHrY4vAgyCr9g/cmBz9BvvczPdsxntGbAqWjYUm3c9AZtvyYRItdbUXNSbituSUzCr2n98z5D7aFqRHFhrXgzq@lists.infradead.org
+X-Gm-Message-State: APuU4Z+lMAK61wWMhLIXPTSBlgl3x43S2ADrzuennOr7BV02oSCn08Ju
+	6Fo2O5Vg9+POh9EqJG0dpMiNdEgv35YjR+9+Tqc0H/QfaP4WGDYrwvl1Ywhg2OwsYcg1w03VYD9
+	Q1PMPLAI=
+X-Gm-Gg: AZFdTZft0YwcoOvXW2UjN8DnD1Amnk0hvQ5pkaA/rwwPt6gjien1N1FomFGzcorMGv1
+	1EydGiy/CdY3Z9TYtod3HeoWXqqolUNZbAOHFgKOhhuJEOfQS2zQ+d/dgtpOBu8x7m0giDYo4pV
+	RSf2ZAq1ZLC9BfeV7x+U/lsNfJFq3zyxmO+6IdWX2EwrVA/NywVcxxVwtl/GJOyATfP4FzZ2S8t
+	S1kz06pc1Bov1ER6fFy3MRg7unr8XLJLBbI9mdiHu61rsnaVfhWyFgyFDed9Ay9oEpOt78PMdLP
+	FY8ArGmxLNhAxBET3E0oLhecVCql5f4syUdfFm/6c3cP3fz7maXoFMU4QdNmIxNSwcwl4NcVYEY
+	YbI1bLk4OiVlzLbGTNYOgHLq/BEICTSAYdhZqG45uxMGlI89HzKdZAzgt7NeH6GcJU1Wrz/T5QB
+	fxxQ5J1UTnqZVAI+RDFn4waFeKAaXRHsTIWEcnfhhBPDAQLJKgYy0ifZfBfY7HHsDj3ozuWA2YX
+	+h/3QstwTjNOwqOBPjk+Mp6TmgWtvZD8blo0+dHYJzwkBjfUsWqYNDhLufEsj3hs/w32Y1opiCv
+	6dFxGefc5To5TTqr+pGlU1ZKeV6c96OuFwoPeIbjAN0894xqUBWySbeyaqPR8Le55dLRe5jSgb/
+	ws4mW54/qd3Y7i4w1Ugiuzcg=
+X-Received: by 2002:a05:600c:3ba3:b0:4bb:6118:4c9a with SMTP id 5b1f17b1804b1-4bb88819940mr421222855e9.30.1795616623233;
+        Wed, 25 Nov 2026 06:23:43 -0800 (PST)
 Received: from [127.0.1.1] ([2a02:c7c:5e34:8000:720:5dc9:500c:65bb])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bc8ce06sm33638667f8f.47.2026.11.25.06.23.41
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab6bc8ce06sm33638667f8f.47.2026.11.25.06.23.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 06:23:41 -0800 (PST)
+        Wed, 25 Nov 2026 06:23:42 -0800 (PST)
 From: Alexey Klimov <alexey.klimov@linaro.org>
-Date: Wed, 25 Nov 2026 14:23:34 +0000
-Subject: [PATCH v2 2/5] iio: adc: exynos_adc: add ->read_value() callback
+Date: Wed, 25 Nov 2026 14:23:35 +0000
+Subject: [PATCH v2 3/5] iio: adc: exynos_adc: add Exynos850 support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-exynos850_adc-v2-2-26de1c6f1717@linaro.org>
+Message-Id: <20261125-exynos850_adc-v2-3-26de1c6f1717@linaro.org>
 References: <20261125-exynos850_adc-v2-0-26de1c6f1717@linaro.org>
 In-Reply-To: <20261125-exynos850_adc-v2-0-26de1c6f1717@linaro.org>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -99,8 +99,8 @@ Cc: Sam Protsenko <semen.protsenko@linaro.org>,
  linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
 X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_062344_111508_D118B981 
-X-CRM114-Status: GOOD (  15.53  )
+X-CRM114-CacheID: sfid-20261125_062345_435149_B7722245 
+X-CRM114-Status: GOOD (  13.09  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,110 +120,94 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The ADC data register offset differs between SoCs. In preparation for
-adding Exynos850 support, abstract reading the conversion result into a
-->read_value() callback in struct exynos_adc_data.
+The Exynos850 ADC controller located inside the CMGP block differs from
+other Exynos ADC controllers, mainly in its register layout.
+Specifically, the data register sits at offset 0x08.
 
-Add exynos_adc_v1_read_value() for the existing SoCs and use it from the
-interrupt handler. No functional change intended.
+Add the exynos850_adc_data struct that describes Exynos850 ADC ops.
+It also requires its own hardware initialization and exit routines.
+Add them as well.
 
 Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
- drivers/iio/adc/exynos_adc.c | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+ drivers/iio/adc/exynos_adc.c | 50 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
 diff --git a/drivers/iio/adc/exynos_adc.c b/drivers/iio/adc/exynos_adc.c
-index c1a0061b16ca..a1124a418f29 100644
+index a1124a418f29..3e9b5d28b922 100644
 --- a/drivers/iio/adc/exynos_adc.c
 +++ b/drivers/iio/adc/exynos_adc.c
-@@ -133,6 +133,7 @@ struct exynos_adc_data {
- 	void (*exit_hw)(struct exynos_adc *info);
- 	void (*clear_irq)(struct exynos_adc *info);
- 	void (*start_conv)(struct exynos_adc *info, unsigned long addr);
-+	u32 (*read_value)(struct exynos_adc *info);
+@@ -46,6 +46,8 @@
+ #define ADC_V2_INT_ST(x)	((x) + 0x14)
+ #define ADC_V2_VER(x)		((x) + 0x20)
+ 
++#define ADC_EXYNOS850_DAT(x)	((x) + 0x08)
++
+ /* Bit definitions for ADC_V1 */
+ #define ADC_V1_CON_RES		(1u << 16)
+ #define ADC_V1_CON_PRSCEN	(1u << 14)
+@@ -410,6 +412,51 @@ static const struct exynos_adc_data exynos7_adc_data = {
+ 	.read_value	= exynos_adc_v1_read_value,
  };
  
- static void exynos_adc_unprepare_clk(struct exynos_adc *info)
-@@ -195,6 +196,11 @@ static int exynos_adc_enable_clk(struct exynos_adc *info)
- 	return 0;
- }
- 
-+static u32 exynos_adc_v1_read_value(struct exynos_adc *info)
++static void exynos850_adc_init_hw(struct exynos_adc *info)
 +{
-+	return readl(ADC_V1_DATX(info->regs)) & info->data->mask;
++	u32 con1, con2;
++
++	con1 = ADC_V2_CON1_SOFT_RESET;
++	writel(con1, ADC_V2_CON1(info->regs));
++
++	/* Bring out of reset */
++	writel(0, ADC_V2_CON1(info->regs));
++
++	/* 64 times conversion */
++	con2 = ADC_V2_CON2_C_TIME(6);
++	writel(con2, ADC_V2_CON2(info->regs));
++
++	writel(1, ADC_V2_INT_EN(info->regs));
 +}
 +
- static void exynos_adc_v1_init_hw(struct exynos_adc *info)
- {
- 	u32 con1;
-@@ -252,6 +258,7 @@ static const struct exynos_adc_data exynos4212_adc_data = {
- 	.exit_hw	= exynos_adc_v1_exit_hw,
- 	.clear_irq	= exynos_adc_v1_clear_irq,
- 	.start_conv	= exynos_adc_v1_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
- static const struct exynos_adc_data exynos_adc_v1_data = {
-@@ -264,6 +271,7 @@ static const struct exynos_adc_data exynos_adc_v1_data = {
- 	.exit_hw	= exynos_adc_v1_exit_hw,
- 	.clear_irq	= exynos_adc_v1_clear_irq,
- 	.start_conv	= exynos_adc_v1_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
- static const struct exynos_adc_data exynos_adc_s5pv210_data = {
-@@ -274,6 +282,7 @@ static const struct exynos_adc_data exynos_adc_s5pv210_data = {
- 	.exit_hw	= exynos_adc_v1_exit_hw,
- 	.clear_irq	= exynos_adc_v1_clear_irq,
- 	.start_conv	= exynos_adc_v1_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
- static void exynos_adc_s3c64xx_start_conv(struct exynos_adc *info,
-@@ -295,6 +304,7 @@ static struct exynos_adc_data const exynos_adc_s3c64xx_data = {
- 	.exit_hw	= exynos_adc_v1_exit_hw,
- 	.clear_irq	= exynos_adc_v1_clear_irq,
- 	.start_conv	= exynos_adc_s3c64xx_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
- static void exynos_adc_v2_init_hw(struct exynos_adc *info)
-@@ -356,6 +366,7 @@ static const struct exynos_adc_data exynos_adc_v2_data = {
- 	.exit_hw	= exynos_adc_v2_exit_hw,
- 	.clear_irq	= exynos_adc_v2_clear_irq,
- 	.start_conv	= exynos_adc_v2_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
- static const struct exynos_adc_data exynos3250_adc_data = {
-@@ -369,6 +380,7 @@ static const struct exynos_adc_data exynos3250_adc_data = {
- 	.exit_hw	= exynos_adc_v2_exit_hw,
- 	.clear_irq	= exynos_adc_v2_clear_irq,
- 	.start_conv	= exynos_adc_v2_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
- static void exynos_adc_exynos7_init_hw(struct exynos_adc *info)
-@@ -395,6 +407,7 @@ static const struct exynos_adc_data exynos7_adc_data = {
- 	.exit_hw	= exynos_adc_v2_exit_hw,
- 	.clear_irq	= exynos_adc_v2_clear_irq,
- 	.start_conv	= exynos_adc_v2_start_conv,
-+	.read_value	= exynos_adc_v1_read_value,
- };
- 
++static void exynos850_adc_exit_hw(struct exynos_adc *info)
++{
++	u32 con2;
++
++	con2 = readl(ADC_V2_CON2(info->regs));
++	con2 &= ~ADC_V2_CON2_C_TIME(7);
++	writel(con2, ADC_V2_CON2(info->regs));
++
++	writel(0, ADC_V2_INT_EN(info->regs));
++}
++
++static u32 exynos850_adc_read_value(struct exynos_adc *info)
++{
++	return readl(ADC_EXYNOS850_DAT(info->regs)) & info->data->mask;
++}
++
++static const struct exynos_adc_data exynos850_adc_data = {
++	.num_channels	= MAX_ADC_V2_CHANNELS,
++	.mask		= ADC_DATX_MASK, /* 12 bit ADC resolution */
++	.needs_adc_phy	= false,
++
++	.init_hw	= exynos850_adc_init_hw,
++	.exit_hw	= exynos850_adc_exit_hw,
++	.clear_irq	= exynos_adc_v2_clear_irq,
++	.start_conv	= exynos_adc_v2_start_conv,
++	.read_value	= exynos850_adc_read_value,
++};
++
  static const struct of_device_id exynos_adc_match[] = {
-@@ -484,10 +497,9 @@ static int exynos_read_raw(struct iio_dev *indio_dev,
- static irqreturn_t exynos_adc_isr(int irq, void *dev_id)
- {
- 	struct exynos_adc *info = dev_id;
--	u32 mask = info->data->mask;
- 
- 	/* Read value */
--	info->value = readl(ADC_V1_DATX(info->regs)) & mask;
-+	info->value = info->data->read_value(info);
- 
- 	/* clear irq */
- 	if (info->data->clear_irq)
+ 	{
+ 		.compatible = "samsung,s3c6410-adc",
+@@ -432,6 +479,9 @@ static const struct of_device_id exynos_adc_match[] = {
+ 	}, {
+ 		.compatible = "samsung,exynos7-adc",
+ 		.data = &exynos7_adc_data,
++	}, {
++		.compatible = "samsung,exynos850-adc",
++		.data = &exynos850_adc_data,
+ 	},
+ 	{ }
+ };
 
 -- 
 2.53.0
