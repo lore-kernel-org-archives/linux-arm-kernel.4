@@ -2,156 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4414606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D47606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iWHBlQlW;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=Djz2WANC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QPhzocoO;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=HmUcnpnE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=rdPYH/njZ6agywqcT+6bb3gwyYfCXqKA8yIzRa3s1Vo=; b=iWHBlQlW8pnTLP
-	wxhUGFhP4i85CxBjnkCFpoSF97AeXFPz8VMUfADTZjhX5di3/Z6ZIW3TLLocjdLngnsUYpW2i0fTa
-	NTa7p5IUke9lGTJqqioeFcFGMlRijGYIEisIAf79OKUS5Enn5xooeGQzrmUvU2V3+IsjuEtswNESX
-	PKIjtquWJjzhiwvD4+uitQLliCiD8wBxcomCB4Uxb0GMoktIGynwJj/no1Mwt638d/tFZYSZQ0eYH
-	rWNGpNGGI919zD5lSbRFQtRgtlCnMHJnmoWiS5GIsDxO+y5UxKqON439hCR7XMN6crdkom5meYzDo
-	6ZS39gpJVsYn5pQgyr0Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=4slVq+RmbXTqpQEC3uiQ6EXVDAb9mbcbcLzU53TUUF8=; b=QPhzocoObMaMHYivEQsNPwUTym
+	H10L54b1fVm6A1GM4FLYTydGbfKs9S+upZr+sQAf71FyXMKJ3IsOCghkhl5AokOOU+tQv1/lM5/Sq
+	AL1a22Dnk6wCczKO+duX8vHKUg16h1PPwT1MEfhOu7RhbwV/iHxYP7cs1ae2FHyWYTCdsD64LzYfe
+	/ZqsdJ+wKVEiibhvNM0lAu6Xys17io4d4PBnpE4Uba32zSgnS6okfx1UKqk4I9fyYbSxKfNg6icJ/
+	EYPgHJr2CYZUopaU198WVno7knNzCfGSajwHXWd8oZ+nehB7JjP92LB4ZRlqRtaK02blgXr1DG6H5
+	GDsCvPKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7qZ-00000008x7N-33KI;
-	Wed, 25 Nov 2026 07:55:19 +0000
-Received: from mail-northeuropeazon11011008.outbound.protection.outlook.com ([52.101.65.8] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	id 1xW8YZ-000000097DZ-1s1v;
+	Wed, 25 Nov 2026 08:40:47 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7qP-00000008x32-0VnB
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 07:55:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mOyGjAQvNQb2bjR0aUXueHpLKclgbDeF2hLv0E4ltGjgrTL53PJtbQDX0RwFPbAcnXzE1Sx6rDATiEs06WTNtl8NLZVzI7HbRtpc9aSuC3wSuwrpsJmqOw/vnhz+o5p5ECyw80VMTWmjaAQIdJ78y6TpVwns9hcRIxvRa7+eZ0/YPmXrWqWQiRkkofSU8611fnNgDm6M2B0xM2BErTaNUQK07/iRvUbdy0YFe1MyDXgMtqQ6sDipKvU+u6NxKfUBwuvuBMCZizfGkYfybnr+OMjqxjM7/nNOcKmtQr286PsAismRkbmqpcFVE3GGCMSU+2/nptyYFPLEuiJAPR/ETQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rdPYH/njZ6agywqcT+6bb3gwyYfCXqKA8yIzRa3s1Vo=;
- b=BjwV+PEeOlEn/bkCn/8CayaMuZMe6pztN0MuK6ZTiy82HIic2Dm1woSUDbnQOURvscMXri7trujKwmk50VF/4GSJCQrmlbX8sNczX7Gnk0o8yYFY/tIhQjwTE6JkxU5cV/qd2v3gDVzOPTav6DfUJpratfN/TY/uHWSrFWSVD9oBty06trpCIbMOJBA91QKvCKTZ4X5sieSRSoHgYyEYC+vwDViN72/ayeeWNIJQYQ3YWCZDrpr4yBv0Z6gVBGN3rzBm9KojWsQTbilBMTj0VmcjOTa9wrYwDHN25VGuuV3QE8F+CGiBBnJ44asKubUDwkU40ew6QPbUfBrwv3KVuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rdPYH/njZ6agywqcT+6bb3gwyYfCXqKA8yIzRa3s1Vo=;
- b=Djz2WANCGzS4kkypQDf4q4exJfhS5Ub3WD9Fym480V/GRQ1BulyStLYkQRKq6ebgS1peKgcRZzywdV1y5+3fTYUo8mtYFEi6PdNLbaHX3hhzY69dqBCGyPvQiD7GDNEkfaJsLHcoM9cE0Z/hdJ+4y09FDp40JfhnNnKNsu8Xr0fouGN01sgQWtzdbzKCldIaLfy4d6PnAv9LkWm2UnoNQ0/OwosUmYQryBG0DfwdtZdLsQDO2h26Q5d+rNlKK3PXtYXLembxUNiOLhf/zaSs4SBsRzavrjePpRo5gv+S7CAkYQjJSFhZvtI8aDO+g4Y9XWtNtaXlsxLYsQqyFlza0A==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4472.eurprd04.prod.outlook.com (2603:10a6:20b:23::20)
- by BR0PR04MB503013.eurprd04.prod.outlook.com (2603:10a6:2c8:4c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Wed, 25 Nov
- 2026 07:55:04 +0000
-Received: from AM6PR04MB4472.eurprd04.prod.outlook.com
- ([fe80::aed9:e8b9:c352:9ba0]) by AM6PR04MB4472.eurprd04.prod.outlook.com
- ([fe80::aed9:e8b9:c352:9ba0%6]) with mapi id 15.21.0639.010; Wed, 25 Nov 2026
- 07:55:04 +0000
-From: Stefan Ghetu <stefan.ghetu@nxp.com>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	devicetree@vger.kernel.org,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	=?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Philippe Cornu <philippe.cornu@foss.st.com>,
-	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-	Robert Chiras <robert.chiras@nxp.com>,
-	Robert Foss <rfoss@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Yannick Fertre <yannick.fertre@foss.st.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Stefan Ghetu <stefan.ghetu@nxp.com>
-Subject: [PATCH 1/2] drm/bridge: nwl-dsi: Move DSI host disablement to ->atomic_post_disable()
-Date: Wed, 25 Nov 2026 09:54:54 +0200
-Message-ID: <20261125075455.772826-2-stefan.ghetu@nxp.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261125075455.772826-1-stefan.ghetu@nxp.com>
-References: <20261125075455.772826-1-stefan.ghetu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR4P281CA0431.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:d1::19) To AM6PR04MB4472.eurprd04.prod.outlook.com
- (2603:10a6:20b:23::20)
+	id 1xW8YG-000000096xl-3cjV;
+	Wed, 25 Nov 2026 08:40:30 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AP68Zop300022;
+	Wed, 25 Nov 2026 08:39:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=4slVq+RmbXTqpQEC3uiQ6EXVDAb9mbcbcLz
+	U53TUUF8=; b=HmUcnpnEK+hGH4K9Gi4YCmiZQ+c24Arv1Z5R/ECGXQkIFvuQXsm
+	yYZCFjdgUk2WKvI3/k1ZDhJfLvYcEiYFESYSL1lma1mbY+G/6UzMAzYLpi9tCzp5
+	0xY/3cZcRN87W5u6PFeq7b9LyO3dStJD7/YPo91/2Kckn9vPbFhGkLKbHEos2Tl7
+	doa1b8GSXAu0T/L6mBRN7XiV/DBym/sumqzpDqCj21twh6awKDrXt0JWrfRi9bbO
+	3I1o7q8oehoU+4ajaY3D+j9ggYcgSH9ojJ0XiRKGjUQYFBbwtdMTkT0BI6v3auep
+	BArhLahVimJIdAOnrxCNr+MC8m4cwGi638w==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5n6rspmc-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 25 Nov 2026 08:39:52 +0000 (GMT)
+Received: from pps.filterd (apblrppmta01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AP8dncM075224;
+	Wed, 25 Nov 2026 08:39:49 GMT
+Received: from hu-devc-blr-u24-a.qualcomm.com (hu-vikrsi-blr.qualcomm.com [10.190.111.249])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 6AP8dmoa075215
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 25 Nov 2026 08:39:49 +0000 (GMT)
+Received: by hu-devc-blr-u24-a.qualcomm.com (Postfix, from userid 4853235)
+	id EB8C3248A5; Wed, 25 Nov 2026 14:09:47 +0530 (+0530)
+From: Vikram Singh <vikram.singh3@oss.qualcomm.com>
+To: peterz@infradead.org, mingo@redhat.com, acme@kernel.org,
+        namhyung@kernel.org, mark.rutland@arm.com,
+        alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+        irogers@google.com, adrian.hunter@intel.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+        atishp@rivosinc.com, anup.patel@oss.qualcomm.com, will@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        beeman@rivosinc.com
+Cc: Vikram Singh <vikram.singh3@oss.qualcomm.com>,
+        linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v6 0/7] riscv: pmu: Add support for Control Transfer Records Ext. 
+Date: Wed, 25 Nov 2026 14:09:35 +0530
+Message-ID: <20261125083942.3695072-1-vikram.singh3@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4472:EE_|BR0PR04MB503013:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4599d9a-5f98-4183-bf59-08df4ac96a4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|19092799006|23010399003|261009223027099003|261009221227099003|18002099003|22082099003|3023799007|261026121527099003|56012099006|261028144727099003|261022105027099003|261021123027099003|261021121427099003|261102123227099003|10067099003|261026140227099003|11063799006;
-X-Microsoft-Antispam-Message-Info: TrLqj9Q1Ye+Zih+23k6lSFseeVpJnYbdfVoEUpgs+xfxFTU9NytJRXwQqw1sR+nmTJuhn6iQRYV97Ghfv8Ule+jNRy5gOXG0rdaryTfPJoGhWcYpZhAlMcNtL4L3J9OS9iRkUGLT9UM48iflnV1K6uIhDBXGh/G7NQx+H2UU6OmWT48HyxsFe0pRwUAQtnbdcJ/knkggKMCTErtw23L/GyjS/qnDnL36rSgpXYw0rVyzzSbdQUsMK/hZKLkcOnRzRedtnQ5zjhIlk87tFImP82vLrhYNzwkKd2DFGUlVt01ZIqXD9PRHFrkgc6X1EiRX4EFi2qzIqM0t12tz3moCMEaDXY5Rk58tXohddDHdrmMTK9fFjjAEdZieL2pW98OItewz9/NhsD7sAdAxZwvjOGJKBvt6MO1HaLGWykFFFk5cpKvRCPlEtGDEzSwW9j02Gcp95luJnbvTgSUhw3fkhK9SxWcvIecaL+2WOpTaRFUwHw6VEctO5cExqcLEhnGxXwlb3b0WVufb0QqRCQblurRC2UcLp+wJ17YehDmyNjqs3m80Kc+ZHep3OcSQ5UfEXKy0d+hb1mf4pbPIYw2YH2xoXxU6r+Azsii28QqGHg8jwkcVhyB2yIdpYkxvphtjYB6AG/G75c0UBiAtW0Bj4jpYQq3NJmd2MKVeilKeoKM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4472.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(19092799006)(23010399003)(261009223027099003)(261009221227099003)(18002099003)(22082099003)(3023799007)(261026121527099003)(56012099006)(261028144727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261102123227099003)(10067099003)(261026140227099003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Djzgpf3j2b86V/DGDLkbd8p1tD2UbEk7PojDgoYcd8y1h1JyVk457qKkD25y?=
- =?us-ascii?Q?F51+VtJyEx00ITOlvhC+HHFXgyvmPvSVAGTMZN8exhohNM5+SX81bQ6H1yII?=
- =?us-ascii?Q?DtMIfptZ8o1fGdGdI1y+5z8gURzM60tIxJ2A7vsRWTJoZc/Jr7U8G2QyGxfH?=
- =?us-ascii?Q?/zkb2+aWA++u6Z3MXaJVD6B+8YyQJm2SKX0gzDqwd/9F0edFs8tO9e8MphkF?=
- =?us-ascii?Q?PRVMm20h81CIop5tTAgCXaaF3E/hFwTQgv2RtElI9qA+djOnhSJwKCe8lHl/?=
- =?us-ascii?Q?rhIslE9TIKvZ9a0pl5xuWJ5RjohutkwF47uWj1olj2TxV2ER/KvPWCWVlN4R?=
- =?us-ascii?Q?yq7dL1763/F0wt8yju0VBapo4ADF4ATJRPsNBpjMBIDG59Zbdc+eDVNW0GIa?=
- =?us-ascii?Q?W/d7/muJmVrf1SG3ll2PrINTRoJr4WLvQraPORz2Y+BlvkF9k3KasCKcyvPN?=
- =?us-ascii?Q?Pw+6LIOtOWPY49Eg10FuxlxiKieGeiVXW4/NIGUYJXoRsNtXGpM4ybPLiLjw?=
- =?us-ascii?Q?zncBfykP+ALtm9dqbEdZPbm1yktcfK2xMTYHYCoGLzKYLjdnt9kbbHiEUYU/?=
- =?us-ascii?Q?7g8NrSHMXG/vABJYSYKdvQh+PxvPj92W7qVk8TCMlP4ZKham1d7LCoJpe1t1?=
- =?us-ascii?Q?Z7xJCEnI/fqU7kbMn1ZtJtlKC3YbGXHChCRcpNvoKMXt8IzqjeHJmyBHTDwQ?=
- =?us-ascii?Q?xlaqThWjUKRZzeJiOJfMasM6ujuUQrTSceMOIAgfOItiAK9EseY+aX6OZKM/?=
- =?us-ascii?Q?Cg+8zOokQ9URcgKd10y2O6xPxXRWd4roT5jY0rHPVOWfFceP7Zk41S4YoBL1?=
- =?us-ascii?Q?gSa+YO/JDiXqWQuXOYb407jl1/2IByNNNraPFouU61NXUR29Q2qQez/enzg6?=
- =?us-ascii?Q?hd+IYgAmXq5PcGkBcaD6yigXAB33YFEMnvbAMtMxnLWuHecz1ap00xmwX6M1?=
- =?us-ascii?Q?zU2nz4YuG2ochztvVgn3OC9ZvOfO2KEefw1YSrlmzCncR652of8bg4lOf3VT?=
- =?us-ascii?Q?OJ/C8mDkHy/LbIIBRUucVpUoaIWSPJ1Vet6OMAc/kuPkBeRWOFMN8aHIsEYy?=
- =?us-ascii?Q?T1njIYnXq8mAlg3YJt/5ELxmwhENHBaS/R0ghTwjUBu1zCN8zIMruIngNwXr?=
- =?us-ascii?Q?n9GoOpoNECmR3paemirC/s0DvcabvDRYqsit3BWniIzt+7m4/2Nf8ctT1rZF?=
- =?us-ascii?Q?2QyVbrLcSbh4mqkIdNNfikE0SnWVf58ZY1jK5/aG+TWIE5xg1YPFaAPvyW23?=
- =?us-ascii?Q?7WJ8tsICFiWTRKsMf/XdfJl/hB6xwZGdrL4gexYojFIdx7VZraFrVO+qTgPP?=
- =?us-ascii?Q?fKAn5zcic2ML2/SfBTJURE8w4qy1t18FDSpzStZNoQKMag6lMunUvjrMrx20?=
- =?us-ascii?Q?vYZOzlETtGOtQFgvxBEplltMnoy3YxFo8llh/YdHvGJR0lcU63BxJNnfi375?=
- =?us-ascii?Q?JZaySkHfu3QjQSxz724XSiAB3w+bzvuuQevLlONIGuW73ftWFqNhyChyOw9A?=
- =?us-ascii?Q?HBE9bAOnzXSRfWvyHm9A4my5K0T29mz7GuuCnaYTsh+gANLU6UzogWK8zWHh?=
- =?us-ascii?Q?MWKs+/5bKXFS8gdVY8SIL5Kw7eVAKuAulMoJab7f2tVb1aO13fDiO/wnOUPX?=
- =?us-ascii?Q?oup7q5Sc6Xs9lUBW/Y7tSqhk6pOinDTuyk3dA5IqAU6yWWmcq/EFQY7x6HbM?=
- =?us-ascii?Q?D4DsS4o1qYXlXnytkOXHEyrYEf7YqNlpIacuGk3HQVD4JYOT?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4599d9a-5f98-4183-bf59-08df4ac96a4d
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4472.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 07:55:04.3266
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 21o9NFCAcu2DJnyVwd7wbKeaK+mis1b5BjKYc58G8tM8zddeXkUUsVQsbWmPYeMHSGFrXr4hguF19r8ZXbjpRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR0PR04MB503013
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDAzNCBTYWx0ZWRfXz04vVdIO3v6R
+ hmOpfKJi0uVZRihTzEC1K9W6O8T9U1xUBxIHMP42IcU7kZS2x+QNJw+nVCBTolV2LN1o1qFGQxo
+ Asn2x3Jx4IsNiooRyfGDYgyzxM+EdidKS2MD9s6xAYu8Gaj4MoXeTVLif+6Bco4oo8B7MA9+iww
+ XAEQZfiKjHJaDfPCP6AEpWjH2qjLbcUUj8+eZqYBK7ARuCF/xaazzP/Pk5yr4gJBS8fJM6vVemq
+ vnzxJ57cZm3j7+vm4c0Ha3l7Q1ps/jNPMsm9br7oG/UQ3ys/nH6q+W5faLn00+faC8F7MhwH0UY
+ V6NroHMnn73Ik07w1KL8QtLuzbi3Yw9UTpo5Oh3iI1dB/o/S6oeO1j2JXVvZj/1SnPn1bMT5mf4
+ fGqqBBdAOwlpbpCq8YYwpP8fwOFfwbA5DuX6q0gykQWbV37/oYRrBKB45vYFDLaj90ZQ+XCbeau
+ hCd4XAKt+UWKaeBSYMg==
+X-Authority-Analysis: v=2.4 cv=Voa2kO2n c=1 sm=1 tr=0 ts=6b069ed8 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=eoimf2acIAo5FJnRuUoq:22 a=xvfqbYfxAAAA:20 a=O76HWA22AAAA:20
+ a=VwQbUJbxAAAA:8 a=h0uksLzaAAAA:8 a=NEAV23lmAAAA:8 a=JfrnYn6hAAAA:8
+ a=20KFwNOVAAAA:8 a=7CQSdrXTAAAA:8 a=QyXUC8HyAAAA:8 a=1XWaLZrsAAAA:8
+ a=pFyQfRViAAAA:8 a=_O3DOGVWAAAA:8 a=EUspDBNiAAAA:8 a=Epjr2bh0dWxRFF0fu90A:9
+ a=MSi_79tMYmZZG2gvAgS0:22 a=1CNFftbPRP8L7MoqJWF3:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+ a=oJz5jJLG1JtSoe7EL652:22 a=2TKV-7w1aU1AVAwN0oqT:22 a=bA3UWDv6hWIuX7UZL3qL:22
+X-Proofpoint-GUID: CEaCPJKL_xrg2MX1_AQCkW9UZtJ5LVk1
+X-Proofpoint-ORIG-GUID: CEaCPJKL_xrg2MX1_AQCkW9UZtJ5LVk1
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDAzNCBTYWx0ZWRfX20zsTh9PFWLB
+ OnfWZmg3RDhRBaELQyYVqmuBSzpuNP10ZroPBIvhwkhuO1gzaPhoQ0PO/5RgVebwedyfHfmVTLW
+ XhtJ34XTvGR9WZPvNfd4OsA0WafPv68=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-25_02,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0
+ adultscore=0 spamscore=0 priorityscore=1501 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250034
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_235509_166121_63A20B7C 
-X-CRM114-Status: GOOD (  15.81  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_004028_914518_3422E6D0 
+X-CRM114-Status: GOOD (  24.17  )
+X-Spam-Score: -2.7 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -162,65 +120,126 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Liu Ying <victor.liu@nxp.com>
+This series enables Control Transfer Records extension support on riscv
+architecture. This extension is similar to Arch LBR in x86 and BRBE in ARM.
+The Extension has been ratified and latest release can be found here [0]
 
-Some MIPI DSI panels, like the Raydium RM68200, send DCS commands such
-as MIPI_DCS_SET_DISPLAY_OFF and MIPI_DCS_ENTER_SLEEP_MODE from their
-drm_panel_funcs::unprepare() callback. For those commands to reach the
-panel, the DSI host controller and its PHY must still be running.
+CTR extension depends on both the implementation of S-mode and Sscsrind
+extension v1.0.0 [1]. CTR access ctrsource, ctrtartget and ctrdata CSRs
+using sscsrind extension.
 
-The panel bridge calls drm_panel_unprepare() from its post_disable
-hook, while nwl-dsi currently shuts down the controller, the PHY and
-the clocks from ->atomic_disable(). Since all ->atomic_disable() hooks
-in a bridge chain run before any ->atomic_post_disable() hook, the DSI
-link is already down by the time the panel tries to talk to it.
+The series is based on Smcdeleg/Ssccfg counter delegation extension [2]
+patches [3]. CTR itself doesn't depend on counter delegation support. This
+rebase is basically to include the Smcsrind patches.
 
-Move the disablement to ->atomic_post_disable(), so that a downstream
-panel bridge that sets pre_enable_prev_first gets a chance to send its
-shutdown commands first. The enable side is unaffected: the controller
-is brought out of reset in ->mode_set(), which runs before any
-pre_enable hook.
+The last patch is in the perf tool to allow processing 256 entries. Without
+this perf seems to consider that sample as corrupted and discards it.
 
-Fixes: 44cfc6233447 ("drm/bridge: Add NWL MIPI DSI host controller support")
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
-Signed-off-by: Stefan Ghetu <stefan.ghetu@nxp.com>
+Here is the link to a quick guide [4] to setup and run a basic perf demo on
+Linux to use CTR Ext.
+
+Qemu patches are merged upstream and is available with latest version.
+
+Opensbi patch is merged upstream and is available with latest version.
+
+[0]: https://github.com/riscv/riscv-control-transfer-records/releases/tag/v1.0
+[1]: https://github.com/riscvarchive/riscv-indirect-csr-access/releases/tag/v1.0.0
+[2]: https://github.com/riscvarchive/riscv-smcdeleg-ssccfg/releases/tag/v1.0.0
+[3]: https://lore.kernel.org/lkml/20250114-counter_delegation-v2-0-8ba74cdb851b@rivosinc.com/
+[4]: https://github.com/vikramsgh/riscv_linux_ctr_demo/wiki/Steps-to-run-basic-CTR-demo-on-RISCV-Virt
+
+To: Peter Zijlstra <peterz@infradead.org>
+To: Ingo Molnar <mingo@redhat.com>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Namhyung Kim <namhyung@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Alexander Shishkin <alexander.shishkin@linux.intel.com>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Ian Rogers <irogers@google.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+To: Paul Walmsley <paul.walmsley@sifive.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+To: Albert Ou <aou@eecs.berkeley.edu>
+To: Alexandre Ghiti <alex@ghiti.fr>
+To: Atish Kumar Patra <atishp@rivosinc.com>
+To: Anup Patel <anup.patel@oss.qualcomm.com>
+To: Will Deacon <will@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Beeman Strong <beeman@rivosinc.com>
+Cc: linux-perf-users@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-riscv@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org
+
 ---
- drivers/gpu/drm/bridge/nwl-dsi.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Changelog:
+v6:
+- Rebased CTR driver and support files to Linux Kernel version 7.4 RC4
+- Incorporated review comments and suggestions
+v5:
+- Rebased CTR driver and support files to Linux kernel version 7.4 RC3
 
-diff --git a/drivers/gpu/drm/bridge/nwl-dsi.c b/drivers/gpu/drm/bridge/nwl-dsi.c
-index 09992529f3d85..5c82f0986eabb 100644
---- a/drivers/gpu/drm/bridge/nwl-dsi.c
-+++ b/drivers/gpu/drm/bridge/nwl-dsi.c
-@@ -736,8 +736,8 @@ static int nwl_dsi_disable(struct nwl_dsi *dsi)
- 	return 0;
- }
- 
--static void nwl_dsi_bridge_atomic_disable(struct drm_bridge *bridge,
--					  struct drm_atomic_commit *state)
-+static void nwl_dsi_bridge_atomic_post_disable(struct drm_bridge *bridge,
-+					       struct drm_atomic_commit *state)
- {
- 	struct nwl_dsi *dsi = bridge_to_dsi(bridge);
- 	int ret;
-@@ -963,7 +963,7 @@ static const struct drm_bridge_funcs nwl_dsi_bridge_funcs = {
- 	.atomic_create_state		= drm_atomic_helper_bridge_create_state,
- 	.atomic_check		= nwl_dsi_bridge_atomic_check,
- 	.atomic_enable		= nwl_dsi_bridge_atomic_enable,
--	.atomic_disable		= nwl_dsi_bridge_atomic_disable,
-+	.atomic_post_disable	= nwl_dsi_bridge_atomic_post_disable,
- 	.atomic_get_input_bus_fmts = nwl_bridge_atomic_get_input_bus_fmts,
- 	.mode_set		= nwl_dsi_bridge_mode_set,
- 	.mode_valid		= nwl_dsi_bridge_mode_valid,
+v4:
+- Ported CTR driver and support files from kernel version 6.14 to kernel version 7.2
+- Added CSR indirect access header file to be used by CTR driver
+- Changes in sched_task call back signature to accomodate new kernel headers
+- Minor clean up
+
+v3:
+- Added missing To/Cc, especially devicetree@vger.kernel.org
+- Changed the commit description to better describe the need of
+  perf tool change that increases max sample size processing
+  capacity of remove_loops function.
+- Minor fixes found while doing a virtualization PoC.
+- Added the missing commit and repository information to dt-bindings,
+  indicating where the extension was ratified.
+
+v2
+- Added context save/restore support for tasks using CTR feature.
+- https://lore.kernel.org/lkml/20250116230955.867152-1-rkanwal@rivosinc.com/
+
+v1:
+- https://lore.kernel.org/lkml/20240529185337.182722-1-rkanwal@rivosinc.com/
+---
+
+Vikram Singh (7):
+  perf: Increase the maximum number of branches remove_loops() can
+    process.
+  riscv: pmu: Add Control transfer records CSR definations.
+  riscv: Add Control Transfer Records extension parsing
+  riscv: pmu: Add infrastructure for Control Transfer Record
+  riscv: pmu: Add driver for Control Transfer Records Ext
+  riscv: pmu: Integrate CTR Ext support in riscv_pmu_dev driver
+  dt-bindings: riscv: add Sxctr ISA extension description
+
+ .../devicetree/bindings/riscv/extensions.yaml |  29 +
+ MAINTAINERS                                   |   2 +
+ arch/riscv/include/asm/csr.h                  |  83 +++
+ arch/riscv/include/asm/hwcap.h                |   4 +
+ arch/riscv/kernel/cpufeature.c                |   2 +
+ drivers/perf/Kconfig                          |  11 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/riscv_ctr.c                      | 608 ++++++++++++++++++
+ drivers/perf/riscv_pmu.c                      |  21 +-
+ drivers/perf/riscv_pmu_legacy.c               |   2 +
+ drivers/perf/riscv_pmu_sbi.c                  |  87 ++-
+ include/linux/perf/riscv_pmu.h                |  58 +-
+ tools/perf/util/machine.c                     |  21 +-
+ 13 files changed, 917 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/perf/riscv_ctr.c
+
 -- 
-2.53.0
+2.43.0
 
 
