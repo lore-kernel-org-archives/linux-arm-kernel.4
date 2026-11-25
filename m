@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DEA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D38C606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nu4fNS7N;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lCCE2Pg0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sqV8Ajof;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VSve6+QU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GlmkAcGc9AnZ4frKpmXLn7fY55yufhFGgXFPly53mF8=; b=nu4fNS7NHSftbkPkt3RPP5afGs
-	DqOGBaF+8b8KQSrP0qvK2y65RsZwHCTD+Hm9VsYyV5P+1MHYq0OlK3gVsbqymVrCxMtdi2e5yukwz
-	AfpsSfzQrtNCb9Gy5hJI8bfmGa9y0zb+kKi2WQVCM74MWIDTYciQFQzhFXi8hAQ5OHf28lUK7+F2t
-	8KFt6bMfkWyKuUsj779yZ9ZRZNrayz3yOekaQ5OuE+h945JUnACOVTWhAizBSw3UisFzSQPZNlICe
-	QHVJ6LPnjrX/QUqQvjLwU/QbmjxgXf/fyUgaZDdihKKHAhgzL/QT5OkZQ7dz7bvrjiZ39bIKk2bzw
-	uu/Xw8dw==;
+	bh=grcTAYHKrKdvfPqM1OBzx37QeqeHWeHPrvccffCgy5w=; b=sqV8AjofUFKXfDM+w2hAQ+YnMU
+	kg2d0sECHTWzZvLr+iizDPeAk3X3JeMCplEESZLYsGEEV3UGSD7IJpeRbMlcEg5eJQmqil2l95cAh
+	rXk3ejDtjFuAe7Y6sC5qqfeEXtB4bghWkDLp2/SCNdj7tX6U95GANvTrs8BTEpLQUqyVVJ5N2YtiP
+	T1lgdTizdNWqM5wi8Uif3P6VF99blTRGIB/OlnXKQNwAxn1WvG8to85ssYFNboBqw7FaIC234+6pY
+	5SU2Kzc+bB0L6x2E2XKDeI8/f60xxOeZEhQcMYWh6EZxbAEEPf23jtAeyUJ/uTUK9NA4hSuN+kl1D
+	OWHYufMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJxg-0000000BJXF-2af5;
-	Wed, 25 Nov 2026 20:51:28 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWJx1-0000000BJCo-2MMT;
+	Wed, 25 Nov 2026 20:50:47 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJx8-0000000BJGP-0F9O
+	id 1xWJww-0000000BJBJ-2eq4
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:50:54 +0000
+	Wed, 25 Nov 2026 20:50:44 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6181E614AE;
-	Wed, 25 Nov 2026 20:50:53 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 090DE61908;
+	Wed, 25 Nov 2026 20:50:42 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795639853;
-	b=e9k391MsYAWXGBZ5En9ir/PoBhpY+TNXc67sKAWvx+iRTYZynX5mnkOA7Z2QZyA3FFkE
-	 x62YzTKAE6GRsNOSomNoawYw+s+nU2RuHiDVsGXniBMR787tey505auVn5x3oDwgnxpVs
-	 JLHBGvKzrPmugFYUk3/EXoM6e0wdK8LfmDwzkdsrq0RSW+c5wOquXWbdrW73yi+abBPrf
-	 ecugQ0RqSCjFL/5kmBCTKA+Q6YFW7EjQZ+wlXGKoxGVgsB43ZuJzXhHOJIq0klJlzni8T
-	 hDQ3M621/WqPimT/g6RQt/Jz5zgD47rBoLD0xOteiOlMgtRbFqLftlBnP2QWTgpIOTg==
+	t=1795639841;
+	b=mvCJAQlMImFo0Ejiyvnp1GmxgF+FydKXwyOALVot/Gfce4SdAGBbGrvSh6Na8yoF9rdj
+	 EfATAyIGaS1MYUhlJ9l9cMp55UwSalAxL+MXfY7HvWE19GfkBs2LbWk6bXoD2ERqQNArR
+	 NMHWQSLwfdNI+UHDjIWapWdHsY3Zg6qs1j17wW+k0cexfyeKXy4nAhQfYa3bk46ODibLM
+	 03ydBkUGN5WHCTIf+EsDKBdMj0pz1bTEsRQnroJNGf+d1e1pc7dNShJnLS0nV4U4v7wAV
+	 /hs3JuiE9UjcbGTCGn+P+zsJt+0HhYKZiRV3y2HefBO6DYkvIAFr67VUm0dht8siPXw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795639853;
+	c=relaxed/relaxed; t=1795639841;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=GlmkAcGc9AnZ4frKpmXLn7fY55yufhFGgXFPly53mF8=;
-	b=e7Eko5gzA1xoLamrIbgMWr1pferPHzp946ql/5ZV1/PopOBOgI5YUcrdTQJR9Nt7cz5J
-	 jOOwNbKe3JOM8NZwL+1TFlL/FZlCV4WRXTusaNQTfilADCJ1p79WdeLG8VtHy1f+5CaGR
-	 NAuSw4u/Jgo/Kmf/pfXCafwlPWhcd3wkP7UPuy3yhXLUQ3bayX3y/UpsDp05NtDy+1tFF
-	 u341CmlBdOjHHFgud3+58ySkrflDQoQR7s512w0vmVT84LULLHeBtNUjqPhHOt1MQxNng
-	 nN+jUfuWF/xYYNyyUVH0Guq4BCuMIuIe+njh6774RPjMrg7OLwCUnFwqh1KzqP1pE2g==
+	bh=grcTAYHKrKdvfPqM1OBzx37QeqeHWeHPrvccffCgy5w=;
+	b=dPmdjHV787xIhVE9B2pGek44zxSfjP6T184El9uNwAeZA2lMNS55r9yV3xezVIXLU2r8
+	 WNM7LREVgSGT8avItEDIgTX6W19ByjXMwkOeeke7wM8Y2XpUMxTpm0wAH9Cj/gqr8P+5h
+	 bKoucBglYZTBj4mxJ7NX7ynAxvKToqsDEbXra9KhLuoiRWBICt8Z7gxw9yJpRjfXG1WfA
+	 dp+kHM6knYDBznn++esDp6nFJQyHEgAnRibfCrwnmWlCoH4ZrNIbjKhEpE4kH0gSGLnPz
+	 YVZtkbArs1ATEIBG3uuo9ikYr2++f92DO9Rd7oq1i5/zdxjFN0IhCC+zq2Hht3N6lKQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5275A1F000CF;
-	Wed, 25 Nov 2026 20:50:42 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id ED8B11F000CF;
+	Wed, 25 Nov 2026 20:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795639852;
-	bh=GlmkAcGc9AnZ4frKpmXLn7fY55yufhFGgXFPly53mF8=;
+	s=k20260515; t=1795639841;
+	bh=grcTAYHKrKdvfPqM1OBzx37QeqeHWeHPrvccffCgy5w=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=lCCE2Pg0EojyawFKtqz7v33Chh6n9Z0siIfqM2nL8nd9lkGt2EhNn+/IuZTiVjvtb
-	 pzsF8kRxMyd7WDChD0o/iAh393p4eHNtYyEJeOqYZ4RDg+I3peZ5oddv23SZU31WjZ
-	 UWKNApYS87m7l61rvpzDHkOwXATwhva0Vc4WZK3aJqpYl+iO1eKiiiFCiU3di28PvC
-	 yiVa2Y8sw9CF4bJ45Buz/fpA+5dhuBqv3XAke7+hzJzL040vAY5+vah8t0u6PeMehH
-	 dUct+s8e5M7ZfGEP5+REXB2QDrEmdfXAJJxLOaQH1kKkjsB7jda6APhg3r4OBIe41C
-	 fixIO//QTT0Cw==
+	b=VSve6+QUuFTFyESKWOEvJSyCrhHdrTCL5p8D0qAZdE6E5q1da7GbIZifTT7zVUcQr
+	 Cw/x/0aUIeKZOox5hfmVuRv7AUxfiPN6REphrRZWSCRKyaGdEjyT/TMeumXKwj0veB
+	 XAeeJxa3Q8G/eNHxJ5yUlcIoUK9bBCAv6RC/3Nq8Y5K417BjKaN3fQwZ5/t2XkFKT8
+	 gccFNIzfsvm/8mfQ3V3HguQOwK4ZrVy8JrF0Vn9Pn2AAARNK/uM7tg5d1+fDBtAAZ2
+	 TafzX4WVMFw2hKOOdoXE05T4xXvKQsZuBdV3h1laroCdRQdxFgjpAd0ddzsXM8j4/h
+	 bm5522HPGYgcA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 2D0FE4D05B;
-	Wed, 25 Nov 2026 20:50:32 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 780754D047;
+	Wed, 25 Nov 2026 20:50:31 +0000 (UTC)
 From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Wed, 25 Nov 2026 23:50:35 +0300
-Subject: [PATCH RFC net-next 7/7] docs: networking: describe the CS7542
- flowtable RFC limits
+Date: Wed, 25 Nov 2026 23:50:30 +0300
+Subject: [PATCH RFC net-next 2/7] net: dsa: add a QCA four-byte CPU tagger
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261125-almondplus-offload-rfc-v1-7-703175c6340c@gmail.com>
+Message-Id: <20261125-almondplus-offload-rfc-v1-2-703175c6340c@gmail.com>
 References: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
 In-Reply-To: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
 To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
@@ -101,11 +100,11 @@ Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
  coreteam@netfilter.org, linux-arm-kernel@lists.infradead.org, 
  linux-doc@vger.kernel.org, Fil Dunsky <filipp.dunsky@gmail.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795639829; l=7601;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795639829; l=28282;
  i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=/LLBgDu2W64JTNlAWpTpKMSB1T1Pf4WK5w8P8fK4qoU=;
- b=9pT84902ZU5MxLm8C/bMqb5Cm0U++CiHuoAF76UHN91JHgQgLR/IMTXkCWNXvt1L4mLae6csy
- DazXsyjCU5YDNQBsNdWPGV0pjCCA+Nqo8t5/3Yy9VrfP/TnRuIqBN1T
+ bh=3Kun9cJTdqUY3onf9waOp+3LOppqDQ9OpaQL0Li2Yxc=;
+ b=e0DNu40C2Lo12rfQmiJJIKOV01NdPOEvgNcIWjsAy3vA9moPhrxn7m1WDCAw87HTc4ts8Aumu
+ QgzaAFgh9qtAqXzAokMwS8/biaIv4wCjghl8w+hTYxI/uOCCs4P2tuc
 X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
  pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
 X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
@@ -133,153 +132,842 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Record the real LAN/WAN NAT qualification and its precise limits:
-immutable result capacity, conservative sticky-HIT aging, module
-lifetime restrictions and software fallback. Distinguish precursor
-hardware results from execution of the new Linux composition. Extend the
-existing network-engine file patterns.
+Insert the 0x8100 identifier and the ordinary QCA metadata ahead of the
+inner EtherType. Preserve checksum/header offsets, materialize VLAN
+metadata inside the CPU tag and validate nonlinear receive headers
+before dispatch.
+
+Keep the two-byte format as the default. Add KUnit coverage for tagging,
+VLAN and checksum metadata, source-port dispatch, clones and
+truncated/nonlinear packets. Seven tests passed under UML.
 
 Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- .../ethernet/cortina/cs7542-flowtable.rst          | 112 +++++++++++++++++++++
- MAINTAINERS                                        |   5 +
- 2 files changed, 117 insertions(+)
+ include/net/dsa.h        |  21 +--
+ net/dsa/Kconfig          |  30 +++
+ net/dsa/Makefile         |   2 +
+ net/dsa/tag_qca4.c       | 165 +++++++++++++++++
+ net/dsa/tag_qca4_kunit.h | 469 +++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 671 insertions(+), 16 deletions(-)
 
-diff --git a/Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst b/Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst
-new file mode 100644
-index 000000000..bedb825b6
---- /dev/null
-+++ b/Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst
-@@ -0,0 +1,112 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+CS7542 hardware flowtable RFC
-+============================
-+
-+This RFC connects the CS7542 forwarding engine to nftables hardware
-+flowtables. The Ethernet driver remains the sole owner of packet DMA,
-+indirect tables and network-engine reset. The forwarding algorithm and
-+flowtable frontend are replaceable modules in this development version.
-+They do not map hardware registers themselves.
-+
-+Supported path
-+--------------
-+
-+The current path is wired IPv4 TCP/UDP NAT through a QCA8337 switch on the
-+CS7542. It accepts physical user ports 1 through 5 on CPU port 0/GMAC1.
-+Both ingress and egress must resolve to that conduit and to the initial
-+network namespace. It checks the route, neighbor, bridge FDB, observed
-+original Ethernet header, tag format and directional route MTU before
-+publishing a lookup. Unsupported requests return to software processing.
-+Wi-Fi and IPv6 are not accelerated.
-+
-+TCP admission additionally requires an established conntrack state. The
-+flowtable supplies that state together with the route MTU. SYN, FIN,
-+fragments, IP options, low TTL and packets outside the admitted length
-+range remain on the CPU path. The driver does not infer a route MTU or an
-+established connection from flower rewrite actions.
-+
-+The QCA four-byte CPU header puts an identifier ahead of the ordinary
-+two-byte QCA metadata. This lets the CS7542 parser recognize the inner
-+IPv4 header. CPU-port ``dsa-tag-protocol = "qca4"`` selects the format.
-+Both configured CPU ports must agree. The default remains the ordinary
-+two-byte QCA format. Ethernet management frames are not usable with this
-+four-byte tagger, so switch register access stays on MDIO.
-+
-+Resource lifetime
-+-----------------
-+
-+There are 16 admitted direction selectors and eight immutable result
-+records in this implementation. A result includes every hardware-visible
-+forwarding dependency. Identical results may be shared by independent
-+selectors. A retired selector may be rebound only after invalidation and
-+complete readback, with the original immutable result still present.
-+Removing one selector does not retire another selector sharing its result.
-+
-+This is not general result reclamation. An incompatible result consumes
-+another record. Eight different retained results exhaust this small
-+allocation pool until a verified complete network-engine reset. Further
-+flows fall back to software. A successful lookup withdrawal is not treated
-+as proof that all in-flight hardware references have drained.
-+
-+Failed or ambiguous hardware transactions close admission and retain the
-+state needed for isolation and recovery. The current replaceable modules
-+remain pinned until the built-in manager completes checked detachment.
-+Ordinary arbitrary module removal and suspend are not supported by this
-+RFC. The Ethernet owner, switch and MDIO must be built in; forced module
-+removal and power management are excluded by Kconfig. Consolidating this
-+development interface into the Ethernet driver is an open design item.
-+
-+Activity accounting
-+-------------------
-+
-+The hardware HIT bit is sticky. The driver only treats an observed
-+zero-to-one transition as evidence of recent activity. It neither clears
-+the bitmap without a proven drain protocol nor fabricates packet counters
-+or fresh timestamps from repeated reads of the same set bit.
-+
-+Consequently an active connection can expire from the hardware flowtable
-+at the normal Linux timeout and be learned again in software. On the
-+tested OpenWrt configuration this produced one CPU packet in each direction
-+at about 30-second intervals. This conservative refresh is a known limit,
-+not evidence of uninterrupted hardware residency or accurate packet counts.
-+
-+Validation and provenance
-+-------------------------
-+
-+The precursor on Almond+ OpenWrt 6.18.64 was tested with the standard LuCI
-+hardware flow-offloading option and ordinary firewall4 NAT. LAN and WAN
-+were separate physical switch ports. The client was 192.168.1.2; the WAN
-+server was 10.42.0.1 and observed the translated router address 10.42.0.139.
-+
-+Byte-exact UDP exchanges covered IP lengths 512, 1400 and 1500 with DF
-+set and clear. Both directions arrived with TTL 63. With flow offload
-+disabled, the CPU capture contained all 72 marked packets. With hardware
-+offload enabled it contained four of 212 packets: the two refresh pairs
-+at 30 and 60 seconds. Capture reported no kernel drops. TCP exchanged
-+2,293,760 verified bytes over 70 seconds; TCP and UDP conntrack entries
-+retained HW_OFFLOAD at the 3, 35 and 69 second observations. TCP endpoints
-+accepted the data; this is not an independent capture-based checksum
-+audit of every accelerated TCP segment.
-+
-+A separate eight-connection test exercised 16 selectors sharing one result.
-+Seven connections kept their original selectors and continued forwarding
-+after the first connection was removed. These were correctness tests at a
-+controlled rate, not throughput or maximum-capacity benchmarks.
-+
-+The Linux RFC changes the DSA selection interface, removes laboratory
-+controls and adapts to current kernel APIs. Measurements of the precursor
-+must not be represented as an execution of these exact Linux source bytes.
-+Build and software-test results are recorded separately in the cover letter.
-+
-+Review questions
-+----------------
-+
-+* Should directional route MTU and established TCP state be carried in the
-+  flowtable's classifier request, or through a different common interface?
-+* Is the standard DSA tag-selection property appropriate for this CPU
-+  parser constraint and the two-conduit switch setup?
-+* What hardware evidence would be sufficient to permit reclamation of
-+  different result records and clearing the sticky HIT state safely?
-+* Should the built-in owner and replaceable algorithm be consolidated
-+  before a non-RFC submission?
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d17acadaa..a70086354 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2966,7 +2966,12 @@ M:	Fil Dunsky <filipp.dunsky@gmail.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/net/cortina,cs7542-ethernet.yaml
-+F:	Documentation/networking/device_drivers/ethernet/cortina/cs7542-flowtable.rst
- F:	drivers/net/ethernet/cortina/cs752x_*
-+F:	drivers/net/ethernet/cortina/cs7542*
-+F:	drivers/net/ethernet/cortina/cs_fe_*
-+F:	drivers/net/ethernet/cortina/flowtable/
-+F:	include/linux/cs7542_*
+diff --git a/include/net/dsa.h b/include/net/dsa.h
+index 5d12191b6..7d3c836c2 100644
+--- a/include/net/dsa.h
++++ b/include/net/dsa.h
+@@ -36,6 +36,7 @@ struct tc_action;
+ #define DSA_TAG_PROTO_LAN9303_VALUE		8
+ #define DSA_TAG_PROTO_MTK_VALUE			9
+ #define DSA_TAG_PROTO_QCA_VALUE			10
++#define DSA_TAG_PROTO_QCA4_VALUE 37
+ #define DSA_TAG_PROTO_TRAILER_VALUE		11
+ #define DSA_TAG_PROTO_8021Q_VALUE		12
+ #define DSA_TAG_PROTO_SJA1105_VALUE		13
+@@ -77,6 +78,7 @@ enum dsa_tag_protocol {
+ 	DSA_TAG_PROTO_LAN9303		= DSA_TAG_PROTO_LAN9303_VALUE,
+ 	DSA_TAG_PROTO_MTK		= DSA_TAG_PROTO_MTK_VALUE,
+ 	DSA_TAG_PROTO_QCA		= DSA_TAG_PROTO_QCA_VALUE,
++	DSA_TAG_PROTO_QCA4		= DSA_TAG_PROTO_QCA4_VALUE,
+ 	DSA_TAG_PROTO_TRAILER		= DSA_TAG_PROTO_TRAILER_VALUE,
+ 	DSA_TAG_PROTO_8021Q		= DSA_TAG_PROTO_8021Q_VALUE,
+ 	DSA_TAG_PROTO_SJA1105		= DSA_TAG_PROTO_SJA1105_VALUE,
+@@ -183,15 +185,12 @@ struct dsa_switch_tree {
+ #define dsa_lags_foreach_id(_id, _dst)				\
+ 	for ((_id) = 1; (_id) <= (_dst)->lags_len; (_id)++)	\
+ 		if ((_dst)->lags[(_id) - 1])
+-
+ #define dsa_lag_foreach_port(_dp, _dst, _lag)			\
+ 	list_for_each_entry((_dp), &(_dst)->ports, list)	\
+ 		if (dsa_port_offloads_lag((_dp), (_lag)))
+-
+ #define dsa_hsr_foreach_port(_dp, _ds, _hsr)			\
+ 	list_for_each_entry((_dp), &(_ds)->dst->ports, list)	\
+ 		if ((_dp)->ds == (_ds) && (_dp)->hsr_dev == (_hsr))
+-
+ static inline struct dsa_lag *dsa_lag_by_id(struct dsa_switch_tree *dst,
+ 					    unsigned int id)
+ {
+@@ -579,47 +578,36 @@ static inline bool dsa_is_user_port(struct dsa_switch *ds, int p)
+ #define dsa_tree_for_each_user_port(_dp, _dst) \
+ 	list_for_each_entry((_dp), &(_dst)->ports, list) \
+ 		if (dsa_port_is_user((_dp)))
+-
+ #define dsa_tree_for_each_user_port_continue_reverse(_dp, _dst) \
+ 	list_for_each_entry_continue_reverse((_dp), &(_dst)->ports, list) \
+ 		if (dsa_port_is_user((_dp)))
+-
+ #define dsa_tree_for_each_cpu_port(_dp, _dst) \
+ 	list_for_each_entry((_dp), &(_dst)->ports, list) \
+ 		if (dsa_port_is_cpu((_dp)))
+-
+ #define dsa_switch_for_each_port(_dp, _ds) \
+ 	list_for_each_entry((_dp), &(_ds)->dst->ports, list) \
+ 		if ((_dp)->ds == (_ds))
+-
+ #define dsa_switch_for_each_port_safe(_dp, _next, _ds) \
+ 	list_for_each_entry_safe((_dp), (_next), &(_ds)->dst->ports, list) \
+ 		if ((_dp)->ds == (_ds))
+-
+ #define dsa_switch_for_each_port_continue_reverse(_dp, _ds) \
+ 	list_for_each_entry_continue_reverse((_dp), &(_ds)->dst->ports, list) \
+ 		if ((_dp)->ds == (_ds))
+-
+ #define dsa_switch_for_each_available_port(_dp, _ds) \
+ 	dsa_switch_for_each_port((_dp), (_ds)) \
+ 		if (!dsa_port_is_unused((_dp)))
+-
+ #define dsa_switch_for_each_user_port(_dp, _ds) \
+ 	dsa_switch_for_each_port((_dp), (_ds)) \
+ 		if (dsa_port_is_user((_dp)))
+-
+ #define dsa_switch_for_each_user_port_continue_reverse(_dp, _ds) \
+ 	dsa_switch_for_each_port_continue_reverse((_dp), (_ds)) \
+ 		if (dsa_port_is_user((_dp)))
+-
+ #define dsa_switch_for_each_cpu_port(_dp, _ds) \
+ 	dsa_switch_for_each_port((_dp), (_ds)) \
+ 		if (dsa_port_is_cpu((_dp)))
+-
+ #define dsa_switch_for_each_cpu_port_continue_reverse(_dp, _ds) \
+ 	dsa_switch_for_each_port_continue_reverse((_dp), (_ds)) \
+ 		if (dsa_port_is_cpu((_dp)))
+-
+ static inline u32 dsa_user_ports(struct dsa_switch *ds)
+ {
+ 	struct dsa_port *dp;
+@@ -842,7 +830,6 @@ dsa_tree_offloads_bridge_dev(struct dsa_switch_tree *dst,
+ #define dsa_switch_for_each_bridge_member(_dp, _ds, _bdev) \
+ 	dsa_switch_for_each_user_port(_dp, _ds) \
+ 		if (dsa_port_offloads_bridge_dev(_dp, _bdev))
+-
+ static inline u32
+ dsa_bridge_ports(struct dsa_switch *ds, const struct net_device *bdev)
+ {
+@@ -996,7 +983,6 @@ struct dsa_switch_ops {
+ 			       struct phy_device *phy);
+ 	void	(*port_disable)(struct dsa_switch *ds, int port);
  
- ARM/CORTINA SYSTEMS GEMINI ARM ARCHITECTURE
- M:	Hans Ulli Kroll <ulli.kroll@googlemail.com>
+-
+ 	/*
+ 	 * Notification for MAC address changes on user ports. Drivers can
+ 	 * currently only veto operations. They should not use the method to
+@@ -1401,10 +1387,12 @@ static inline int dsa_switch_suspend(struct dsa_switch *ds)
+ {
+ 	return 0;
+ }
++
+ static inline int dsa_switch_resume(struct dsa_switch *ds)
+ {
+ 	return 0;
+ }
++
+ #endif /* CONFIG_PM_SLEEP */
+ 
+ #if IS_ENABLED(CONFIG_NET_DSA)
+@@ -1414,6 +1402,7 @@ static inline bool dsa_user_dev_check(const struct net_device *dev)
+ {
+ 	return false;
+ }
++
+ #endif
+ 
+ netdev_tx_t dsa_enqueue_skb(struct sk_buff *skb, struct net_device *dev);
+diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
+index 4f44bf3ed..99933b270 100644
+--- a/net/dsa/Kconfig
++++ b/net/dsa/Kconfig
+@@ -174,6 +174,36 @@ config NET_DSA_TAG_QCA
+ 	  Say Y or M if you want to enable support for tagging frames for
+ 	  the Qualcomm Atheros QCA8K switches.
+ 
++config NET_DSA_TAG_QCA4
++	tristate "Tag driver for QCA four-byte tags"
++	default n
++	help
++	  QCA switch CPU framing with identifier 0x8100 and two-byte metadata.
++	  Does not enable hardware checksum, GSO, VLAN or NAT offload features.
++	  The ordinary QCA two-byte tagger remains the default.
++	  Select qca4 on the CPU ports only when the switch driver supports it.
++
++config NET_DSA_TAG_QCA4_KUNIT_TEST
++	bool "KUnit tests for QCA four-byte sk_buff operations"
++	depends on KUNIT=y && NET_DSA_TAG_QCA4=y
++	default n
++	help
++	  Exercise real sk_buff allocation, copy-on-write, nonlinear headers,
++	  checksum metadata and source-port dispatch for the four-byte tagger.
++	  These are software tests and do not require a physical QCA switch.
++	  They can run with the standard KUnit test framework.
++
++config NET_DSA_QCA8K_4B_MODE
++	bool "QCA8K four-byte boot format for CS7542 offload"
++	depends on NET_DSA_QCA8K=y && NET_DSA_TAG_QCA4=y
++	depends on !PM && CS7542_FT_LIVE_BRIDGE && MDIO_CS75XX=y
++	default n
++	help
++	  Support the four-byte CPU tag requested through dsa-tag-protocol.
++	  The current implementation supports the CS7542 dual-conduit topology.
++	  Ethernet register access uses MDIO while the four-byte format is active.
++	  Both CPU ports must request the same format before the switch starts.
++
+ config NET_DSA_TAG_RTL4_A
+ 	tristate "Tag driver for Realtek 4 byte protocol A tags"
+ 	help
+diff --git a/net/dsa/Makefile b/net/dsa/Makefile
+index 1f9cc30e9..3d5949e50 100644
+--- a/net/dsa/Makefile
++++ b/net/dsa/Makefile
+@@ -48,3 +48,5 @@ obj-$(CONFIG_NET_DSA_TAG_YT921X) += tag_yt921x.o
+ 
+ # for tracing framework to find trace.h
+ CFLAGS_trace.o := -I$(src)
++
++obj-$(CONFIG_NET_DSA_TAG_QCA4) += tag_qca4.o
+diff --git a/net/dsa/tag_qca4.c b/net/dsa/tag_qca4.c
+new file mode 100644
+index 000000000..413756679
+--- /dev/null
++++ b/net/dsa/tag_qca4.c
+@@ -0,0 +1,165 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Private source-review prototype. No offload feature advertisement. */
++#include <linux/bitfield.h>
++#include <linux/etherdevice.h>
++#include <linux/if_vlan.h>
++#include <linux/unaligned.h>
++#include <linux/dsa/tag_qca.h>
++#include <net/dsa.h>
++#include "tag.h"
++
++#define QCA4_PRIVATE_LEN 4
++#define QCA4_PRIVATE_IDENTIFIER 0x8100
++#define QCA4_PRIVATE_NAME "qca4"
++
++/*
++ * Offsets are absolute from skb head. Pushing the outer tag leaves the real
++ * L3/L4 and CHECKSUM_PARTIAL start at their original bytes; their offsets from
++ * skb->data grow by four. Standard core/conduit features own segmentation and
++ * software checksum fallback. GSO/checksum metadata is not rejected or changed.
++ */
++static int qca4_private_insert(struct sk_buff *skb, unsigned long ports)
++{
++	u16 hdr;
++	u8 *tag;
++
++	if (!ports || ports & ~FIELD_MAX(QCA_HDR_XMIT_DP_BIT))
++		return -EINVAL;
++	if (!pskb_may_pull(skb, ETH_HLEN))
++		return -EINVAL;
++	if (skb_cow_head(skb, QCA4_PRIVATE_LEN))
++		return -ENOMEM;
++	skb_push(skb, QCA4_PRIVATE_LEN);
++	dsa_alloc_etype_header(skb, QCA4_PRIVATE_LEN);
++	tag = dsa_etype_header_pos_tx(skb);
++	hdr = FIELD_PREP(QCA_HDR_XMIT_VERSION, QCA_HDR_VERSION) |
++	      QCA_HDR_XMIT_FROM_CPU | FIELD_PREP(QCA_HDR_XMIT_DP_BIT, ports);
++	/* Same metadata policy as legacy QCA: no new skb-priority mapping. */
++	put_unaligned_be16(QCA4_PRIVATE_IDENTIFIER, tag);
++	put_unaligned_be16(hdr, tag + 2);
++	skb_reset_mac_header(skb);
++	return 0;
++}
++
++static struct sk_buff *qca4_private_xmit(struct sk_buff *skb,
++					 struct net_device *dev)
++{
++	/*
++	 * A pending hardware VLAN tag must be inside QCA metadata, never inserted
++	 * outside it later by the conduit. This standard helper also handles COW and
++	 * header/checksum offsets. No HW VLAN feature is advertised by this tagger.
++	 */
++
++	if (skb_vlan_tag_present(skb)) {
++		skb = __vlan_hwaccel_push_inside(skb);
++		if (!skb)
++			return NULL; /* VLAN helper already freed the original. */
++	}
++	if (qca4_private_insert(skb, dsa_xmit_port_mask(skb, dev))) {
++		kfree_skb(skb);
++		return NULL;
++	}
++
++	return skb;
++}
++
++/*
++ * Conduit eth_type_trans pulled fourteen bytes: identifier is data[-2],
++ * metadata is data[0..1], and inner EtherType is data[2..3]. Do not read a
++ * possibly nonlinear metadata/inner EtherType before the full pull check.
++ */
++static int qca4_private_parse(struct sk_buff *skb, u16 *metadata)
++{
++	unsigned int reason;
++	u8 *tag;
++	u16 hdr;
++
++	if (skb_headroom(skb) < ETH_HLEN ||
++	    !pskb_may_pull(skb, QCA4_PRIVATE_LEN)) {
++		return -EINVAL;
++	}
++	if (skb_cow_head(skb, 0))
++		return -ENOMEM;
++	tag = dsa_etype_header_pos_rx(skb);
++	if (get_unaligned_be16(tag) != QCA4_PRIVATE_IDENTIFIER)
++		return -EPROTO;
++	hdr = get_unaligned_be16(tag + 2);
++	if (FIELD_GET(QCA_HDR_RECV_VERSION, hdr) != QCA_HDR_VERSION)
++		return -EPROTO;
++	reason = FIELD_GET(QCA_HDR_RECV_TYPE, hdr);
++	/*
++	 * These fixed14-byte pseudo-Ethernet formats are disabled in private4 mode.
++	 * Never dispatch them into legacy MDIO/MIB callbacks with the wrong layout.
++	 * Other normal/trap reasons remain valid, including observed flooding0x19.
++	 */
++	if (reason == QCA_HDR_RECV_TYPE_MIB ||
++	    reason == QCA_HDR_RECV_TYPE_RW_REG_ACK) {
++		return -EOPNOTSUPP;
++	}
++	*metadata = hdr;
++	return 0;
++}
++
++static struct sk_buff *qca4_private_rcv(struct sk_buff *skb,
++					struct net_device *conduit)
++{
++	struct net_device *user;
++	u16 metadata;
++	int port;
++
++	if (qca4_private_parse(skb, &metadata))
++		goto drop;
++	port = FIELD_GET(QCA_HDR_RECV_SOURCE_PORT, metadata);
++	user = dsa_conduit_find_user(conduit, 0, port);
++	if (!user)
++		goto drop;
++
++	skb->dev = user;
++	skb_pull_rcsum(skb, QCA4_PRIVATE_LEN);
++	dsa_strip_etype_header(skb, QCA4_PRIVATE_LEN);
++
++	/*
++	 * DSA core pushes ETH_HLEN and invokes user eth_type_trans, exposing only
++	 * the real inner EtherType/VLAN after the complete four-byte tag is gone.
++	 */
++	return skb;
++drop:
++	kfree_skb(skb);
++	return NULL;
++}
++
++/*
++ * Called before rcv(): do not assume the metadata or inner EtherType is
++ * linear or even present. Keep the const skb and its layout unchanged.
++ */
++static void qca4_private_flow_dissect(const struct sk_buff *skb, __be16 *proto,
++				      int *offset)
++{
++	__be16 temporary;
++	const void *inner;
++
++	*offset = QCA4_PRIVATE_LEN;
++	*proto = 0;
++	inner = skb_header_pointer(skb, 2, sizeof(temporary), &temporary);
++	if (inner)
++		*proto = get_unaligned((const __be16 *)inner);
++}
++
++static const struct dsa_device_ops qca4_private_ops = {
++	.name = QCA4_PRIVATE_NAME,
++	.proto = DSA_TAG_PROTO_QCA4,
++	.xmit = qca4_private_xmit,
++	.rcv = qca4_private_rcv,
++	.flow_dissect = qca4_private_flow_dissect,
++	.needed_headroom = QCA4_PRIVATE_LEN,
++	.promisc_on_conduit = true,
++};
++
++MODULE_DESCRIPTION("Private source-review QCA four-byte tag prototype");
++MODULE_LICENSE("GPL");
++MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_QCA4, QCA4_PRIVATE_NAME);
++module_dsa_tag_driver(qca4_private_ops);
++
++#if IS_ENABLED(CONFIG_NET_DSA_TAG_QCA4_KUNIT_TEST)
++#include "tag_qca4_kunit.h"
++#endif
+diff --git a/net/dsa/tag_qca4_kunit.h b/net/dsa/tag_qca4_kunit.h
+new file mode 100644
+index 000000000..cc520b7fb
+--- /dev/null
++++ b/net/dsa/tag_qca4_kunit.h
+@@ -0,0 +1,469 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Real kernel sk_buff tests; offline QEMU execution only. */
++#include <kunit/test.h>
++#include <linux/highmem.h>
++#include <linux/mm.h>
++#include <net/checksum.h>
++
++struct qca4_test_context {
++	struct dsa_switch ds;
++	struct dsa_switch_tree dst;
++	struct dsa_port cpu, user;
++	struct net_device *conduit, *netdev;
++};
++
++static int qca4_test_init(struct kunit *test)
++{
++	struct qca4_test_context *c =
++		kunit_kzalloc(test, sizeof(*c), GFP_KERNEL);
++	struct dsa_user_priv *p;
++
++	if (!c)
++		return -ENOMEM;
++	c->conduit = alloc_etherdev(0);
++	c->netdev = alloc_etherdev(sizeof(*p));
++	if (!c->conduit || !c->netdev) {
++		if (c->conduit)
++			free_netdev(c->conduit);
++		if (c->netdev)
++			free_netdev(c->netdev);
++		return -ENOMEM;
++	}
++	INIT_LIST_HEAD(&c->dst.ports);
++	c->ds.index = 0;
++	c->ds.dst = &c->dst;
++	c->cpu.ds = &c->ds;
++	c->cpu.dst = &c->dst;
++	c->cpu.type = DSA_PORT_TYPE_CPU;
++	c->cpu.index = 0;
++	c->cpu.conduit = c->conduit;
++	c->cpu.rcv = qca4_private_rcv;
++	c->cpu.tag_ops = &qca4_private_ops;
++	c->conduit->dsa_ptr = &c->cpu;
++	c->user.ds = &c->ds;
++	c->user.dst = &c->dst;
++	c->user.type = DSA_PORT_TYPE_USER;
++	c->user.index = 5;
++	c->user.user = c->netdev;
++	c->user.cpu_dp = &c->cpu;
++	list_add_tail(&c->cpu.list, &c->dst.ports);
++	list_add_tail(&c->user.list, &c->dst.ports);
++	p = netdev_priv(c->netdev);
++	p->dp = &c->user;
++	test->priv = c;
++	return 0;
++}
++
++static void qca4_test_exit(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++
++	free_netdev(c->netdev);
++	free_netdev(c->conduit);
++}
++
++static struct sk_buff *qca4_test_frame(unsigned int headroom,
++				       unsigned int vlans)
++{
++	struct sk_buff *skb = alloc_skb(headroom + 128, GFP_KERNEL);
++	unsigned int len = 96 + 4 * vlans, network = ETH_HLEN + 4 * vlans;
++	u8 *data;
++
++	if (!skb)
++		return NULL;
++	skb_reserve(skb, headroom);
++	data = skb_put_zero(skb, len);
++	eth_broadcast_addr(data);
++	data[6] = 2;
++	data[11] = 1;
++	put_unaligned_be16(vlans == 2 ? ETH_P_8021AD :
++			   vlans == 1 ? ETH_P_8021Q :
++					ETH_P_IP,
++			   data + 12);
++	if (vlans) {
++		put_unaligned_be16(0xa123, data + 14);
++		put_unaligned_be16(vlans == 2 ? ETH_P_8021Q : ETH_P_IP,
++				   data + 16);
++	}
++	if (vlans == 2) {
++		put_unaligned_be16(0x6000, data + 18); /* Priority tag, VID0. */
++		put_unaligned_be16(ETH_P_IP, data + 20);
++	}
++	data[network] = 0x45;
++	data[network + 9] = IPPROTO_TCP;
++	skb_reset_mac_header(skb);
++	skb_set_network_header(skb, network);
++	skb_set_transport_header(skb, network + 20);
++	skb->protocol = htons(vlans == 2 ? ETH_P_8021AD :
++			      vlans == 1 ? ETH_P_8021Q :
++					   ETH_P_IP);
++	return skb;
++}
++
++static void qca4_test_tx_metadata(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++	unsigned int vlans, n;
++	static const unsigned int reserves[] = { 0, 2, 16, 32 };
++
++	for (vlans = 0; vlans <= 2; vlans++) {
++		for (n = 0; n < ARRAY_SIZE(reserves); n++) {
++			struct sk_buff *skb = qca4_test_frame(reserves[n],
++							      vlans),
++				       *original;
++			unsigned int net, trans, start, len;
++			u8 bytes[128];
++
++			KUNIT_ASSERT_NOT_NULL(test, skb);
++			skb->ip_summed = CHECKSUM_PARTIAL;
++			skb->csum_start = skb_transport_header(skb) - skb->head;
++			skb->csum_offset = 16;
++			skb->priority = 7;
++			skb_shinfo(skb)->gso_size = 1460;
++			skb_shinfo(skb)->gso_type = SKB_GSO_TCPV4;
++			net = skb_network_offset(skb);
++			trans = skb_transport_offset(skb);
++			start = skb_checksum_start_offset(skb);
++			len = skb->len;
++			memcpy(bytes, skb->data, len);
++			original = skb_clone(skb, GFP_KERNEL);
++			KUNIT_ASSERT_NOT_NULL(test, original);
++			skb = qca4_private_xmit(skb, c->netdev);
++			KUNIT_ASSERT_NOT_NULL(test, skb);
++			KUNIT_EXPECT_EQ(test, skb->len, len + 4);
++			KUNIT_EXPECT_EQ(test, skb_network_offset(skb), net + 4);
++			KUNIT_EXPECT_EQ(test, skb_transport_offset(skb),
++					trans + 4);
++			KUNIT_EXPECT_EQ(test, skb_checksum_start_offset(skb),
++					start + 4);
++			KUNIT_EXPECT_EQ(test, skb->csum_offset, (u16)16);
++			KUNIT_EXPECT_EQ(test, (unsigned int)skb->ip_summed,
++					(unsigned int)CHECKSUM_PARTIAL);
++			KUNIT_EXPECT_EQ(test, skb->priority, 7U);
++			KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_size,
++					(u16)1460);
++			KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_type,
++					SKB_GSO_TCPV4);
++			KUNIT_EXPECT_PTR_EQ(test, skb_mac_header(skb),
++					    skb->data);
++			KUNIT_EXPECT_MEMEQ(test, skb->data, bytes, 12);
++			KUNIT_EXPECT_MEMEQ(test, skb->data + 16, bytes + 12,
++					   len - 12);
++			KUNIT_EXPECT_MEMEQ(test, original->data, bytes, len);
++			KUNIT_EXPECT_EQ(test,
++					get_unaligned_be16(skb->data + 12),
++					0x8100);
++			KUNIT_EXPECT_EQ(test,
++					get_unaligned_be16(skb->data + 14),
++					0x80a0);
++			kfree_skb(original);
++			kfree_skb(skb);
++		}
++	}
++}
++
++static void qca4_test_vlan_metadata(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++	struct sk_buff *skb = qca4_test_frame(0, 0);
++	unsigned int net, trans, start;
++
++	KUNIT_ASSERT_NOT_NULL(test, skb);
++	skb->ip_summed = CHECKSUM_PARTIAL;
++	skb->csum_start = skb_transport_header(skb) - skb->head;
++	skb->csum_offset = 16;
++	skb_shinfo(skb)->gso_size = 1460;
++	skb_shinfo(skb)->gso_type = SKB_GSO_TCPV4;
++	net = skb_network_offset(skb);
++	trans = skb_transport_offset(skb);
++	start = skb_checksum_start_offset(skb);
++	__vlan_hwaccel_put_tag(skb, htons(ETH_P_8021Q),
++			       0xe000); /* PCP7, VID0 */
++	skb = qca4_private_xmit(skb, c->netdev);
++	KUNIT_ASSERT_NOT_NULL(test, skb);
++	KUNIT_EXPECT_FALSE(test, skb_vlan_tag_present(skb));
++	KUNIT_EXPECT_EQ(test, skb_network_offset(skb), net + 8);
++	KUNIT_EXPECT_EQ(test, skb_transport_offset(skb), trans + 8);
++	KUNIT_EXPECT_EQ(test, skb_checksum_start_offset(skb), start + 8);
++	KUNIT_EXPECT_EQ(test, (unsigned int)skb->ip_summed,
++			(unsigned int)CHECKSUM_PARTIAL);
++	KUNIT_EXPECT_EQ(test, skb->csum_offset, (u16)16);
++	KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_size, (u16)1460);
++	KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_type, SKB_GSO_TCPV4);
++	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 12), 0x8100);
++	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 14), 0x80a0);
++	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 16), ETH_P_8021Q);
++	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 18), 0xe000);
++	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 20), ETH_P_IP);
++	kfree_skb(skb);
++}
++
++static struct sk_buff *qca4_test_fragment(struct sk_buff *old,
++					  unsigned int linear)
++{
++	struct sk_buff *skb = alloc_skb(32 + linear, GFP_KERNEL);
++	struct page *page;
++	void *mapped;
++	unsigned int bytes = old->len - linear;
++
++	if (!skb)
++		return NULL;
++	page = alloc_page(GFP_KERNEL);
++	if (!page) {
++		kfree_skb(skb);
++		return NULL;
++	}
++	skb_reserve(skb, 16);
++	skb_put_data(skb, old->data, linear);
++	mapped = kmap_local_page(page);
++	memcpy(mapped, old->data + linear, bytes);
++	kunmap_local(mapped);
++	skb_add_rx_frag(skb, 0, page, 0, bytes, PAGE_SIZE);
++	skb_reset_mac_header(skb);
++	return skb;
++}
++
++static void qca4_test_rx_dispatch(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++	unsigned int vlans, reason, priority, port;
++
++	for (vlans = 0; vlans <= 2; vlans++) {
++		for (reason = 0; reason < 32; reason++) {
++			for (priority = 0; priority < 8; priority++) {
++				for (port = 0; port < 8; port++) {
++					struct sk_buff *skb = qca4_test_frame(16, vlans),
++						       *result;
++					u16 hdr =
++						FIELD_PREP(QCA_HDR_RECV_VERSION,
++							   QCA_HDR_VERSION) |
++						FIELD_PREP(QCA_HDR_RECV_PRIORITY,
++							priority) |
++						FIELD_PREP(QCA_HDR_RECV_TYPE,
++							   reason) |
++						port;
++					bool accept =
++						port == 5 &&
++						reason !=
++							QCA_HDR_RECV_TYPE_MIB &&
++						reason !=
++							QCA_HDR_RECV_TYPE_RW_REG_ACK;
++
++					KUNIT_ASSERT_NOT_NULL(test, skb);
++					KUNIT_ASSERT_EQ(test,
++							qca4_private_insert(skb, BIT(5)),
++							0);
++					put_unaligned_be16(hdr, skb->data + 14);
++					skb->protocol =
++						eth_type_trans(skb, c->conduit);
++					KUNIT_EXPECT_EQ(test, skb->protocol,
++							htons(ETH_P_XDSA));
++					skb->priority = 42;
++					skb->ip_summed = CHECKSUM_COMPLETE;
++					skb->csum = skb_checksum(skb, 0,
++								 skb->len, 0);
++					result = qca4_private_rcv(skb,
++								  c->conduit);
++					if (!accept) {
++						KUNIT_EXPECT_PTR_EQ(test, result, NULL);
++						continue;
++					}
++					KUNIT_ASSERT_NOT_NULL(test, result);
++					KUNIT_EXPECT_PTR_EQ(test, result->dev,
++							    c->netdev);
++					KUNIT_EXPECT_EQ(test, result->priority,
++							42U);
++					KUNIT_EXPECT_EQ(test, csum_fold(result->csum),
++						csum_fold(skb_checksum(result, 0, result->len,
++							0)));
++					KUNIT_EXPECT_EQ(test,
++						(unsigned int)result->ip_summed,
++						(unsigned int)CHECKSUM_COMPLETE);
++					skb_push(result, ETH_HLEN);
++					result->protocol = eth_type_trans(result, c->netdev);
++					KUNIT_EXPECT_EQ(test, result->protocol,
++						htons(vlans == 2 ?
++							      ETH_P_8021AD :
++						      vlans == 1 ? ETH_P_8021Q :
++								   ETH_P_IP));
++					kfree_skb(result);
++				}
++			}
++		}
++	}
++}
++
++static void qca4_test_nonlinear_and_truncated(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++	struct sk_buff *full, *skb, *result;
++	unsigned int n;
++
++	full = qca4_test_frame(16, 2);
++	KUNIT_ASSERT_NOT_NULL(test, full);
++	skb = qca4_test_fragment(full,
++				 10); /* TX Ethernet header crosses fragment. */
++	KUNIT_ASSERT_NOT_NULL(test, skb);
++	KUNIT_EXPECT_TRUE(test, skb_is_nonlinear(skb));
++	skb = qca4_private_xmit(skb, c->netdev);
++	KUNIT_ASSERT_NOT_NULL(test, skb);
++	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 12), 0x8100);
++	kfree_skb(skb);
++	KUNIT_ASSERT_EQ(test, qca4_private_insert(full, BIT(5)), 0);
++	put_unaligned_be16(0xbe45, full->data + 14); /* Actual observed flood metadata. */
++	skb = qca4_test_fragment(full, ETH_HLEN); /* RX metadata+inner EType nonlinear. */
++	KUNIT_ASSERT_NOT_NULL(test, skb);
++	skb->protocol = eth_type_trans(skb, c->conduit);
++	result = qca4_private_rcv(skb, c->conduit);
++	KUNIT_ASSERT_NOT_NULL(test, result);
++	KUNIT_EXPECT_PTR_EQ(test, result->dev, c->netdev);
++	kfree_skb(result);
++	/* Wrong identifier. */
++	put_unaligned_be16(0x0081, full->data + 12);
++	full->protocol = eth_type_trans(full, c->conduit);
++	KUNIT_EXPECT_PTR_EQ(test, qca4_private_rcv(full, c->conduit), NULL);
++	for (n = 0; n < 4; n++) {
++		skb = alloc_skb(ETH_HLEN + n, GFP_KERNEL);
++		KUNIT_ASSERT_NOT_NULL(test, skb);
++		skb_put_zero(skb, ETH_HLEN + n);
++		put_unaligned_be16(0x8100, skb->data + 12);
++		skb_reset_mac_header(skb);
++		skb_pull(skb, ETH_HLEN);
++		KUNIT_EXPECT_PTR_EQ(test, qca4_private_rcv(skb, c->conduit),
++				    NULL);
++	}
++	for (n = 0; n < ETH_HLEN; n++) {
++		skb = alloc_skb(n, GFP_KERNEL);
++		KUNIT_ASSERT_NOT_NULL(test, skb);
++		skb_put_zero(skb, n);
++		KUNIT_EXPECT_PTR_EQ(test, qca4_private_xmit(skb, c->netdev),
++				    NULL);
++	}
++}
++
++static void qca4_test_rx_clone_complete(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++	struct sk_buff *skb = qca4_test_frame(16, 0), *copy, *result;
++	unsigned int wire_len;
++	u8 before[128];
++
++	KUNIT_ASSERT_NOT_NULL(test, skb);
++	KUNIT_ASSERT_EQ(test, qca4_private_insert(skb, BIT(5)), 0);
++	put_unaligned_be16(0xbe45, skb->data + 14);
++	wire_len = skb->len;
++	memcpy(before, skb->data, wire_len);
++	skb->protocol = eth_type_trans(skb, c->conduit);
++	skb->ip_summed = CHECKSUM_COMPLETE;
++	skb->csum = skb_checksum(skb, 0, skb->len, 0);
++	copy = skb_clone(skb, GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, copy);
++	result = qca4_private_rcv(copy, c->conduit);
++	KUNIT_ASSERT_NOT_NULL(test, result);
++	KUNIT_EXPECT_MEMEQ(test, skb_mac_header(skb), before, wire_len);
++	KUNIT_EXPECT_EQ(test, csum_fold(result->csum),
++			csum_fold(skb_checksum(result, 0, result->len, 0)));
++	KUNIT_EXPECT_EQ(test, (unsigned int)result->ip_summed,
++			(unsigned int)CHECKSUM_COMPLETE);
++	kfree_skb(result);
++	kfree_skb(skb);
++}
++
++static void qca4_test_masks_and_bad_versions(struct kunit *test)
++{
++	struct qca4_test_context *c = test->priv;
++	struct sk_buff *skb;
++	unsigned int mask, version;
++	int ret;
++
++	for (mask = 0; mask <= 255; mask++) {
++		skb = qca4_test_frame(0, 0);
++		KUNIT_ASSERT_NOT_NULL(test, skb);
++		ret = qca4_private_insert(skb, mask);
++		if (!mask || mask > 127) {
++			KUNIT_EXPECT_EQ(test, ret, -EINVAL);
++		} else {
++			KUNIT_EXPECT_EQ(test, ret, 0);
++			KUNIT_EXPECT_EQ(test,
++					get_unaligned_be16(skb->data + 14),
++					0x8080 | mask);
++		}
++		kfree_skb(skb);
++	}
++	for (version = 0; version < 4; version++) {
++		if (version == QCA_HDR_VERSION)
++			continue;
++		skb = qca4_test_frame(16, 0);
++		KUNIT_ASSERT_NOT_NULL(test, skb);
++		KUNIT_ASSERT_EQ(test, qca4_private_insert(skb, BIT(5)), 0);
++		put_unaligned_be16((version << 14) | 5, skb->data + 14);
++		skb->protocol = eth_type_trans(skb, c->conduit);
++		KUNIT_EXPECT_PTR_EQ(test, qca4_private_rcv(skb, c->conduit),
++				    NULL);
++	}
++}
++
++static void qca4_test_flow_dissect(struct kunit *test)
++{
++	static const u8 bytes[] = { 0xbe, 0x45, 0x08, 0x00 };
++	unsigned int length, linear;
++
++	/*
++	 * Every truncated length and every possible split across a page fragment.
++	 * A one-byte reserve also exercises unaligned linear EtherType access.
++	 */
++	for (length = 0; length <= sizeof(bytes); length++) {
++		for (linear = 0; linear <= length; linear++) {
++			struct sk_buff *skb, *full, *clone;
++			unsigned char *data;
++			unsigned int headlen;
++			__be16 proto = htons(0xffff);
++			int offset = -1;
++
++			full = alloc_skb(16, GFP_KERNEL);
++			KUNIT_ASSERT_NOT_NULL(test, full);
++			skb_reserve(full, 1);
++			skb_put_data(full, bytes, length);
++			skb = full;
++			if (linear < length) {
++				skb = qca4_test_fragment(full, linear);
++				kfree_skb(full);
++				KUNIT_ASSERT_NOT_NULL(test, skb);
++			}
++			clone = skb_clone(skb, GFP_KERNEL);
++			KUNIT_ASSERT_NOT_NULL(test, clone);
++			data = clone->data;
++			headlen = skb_headlen(clone);
++			qca4_private_ops.flow_dissect(clone, &proto, &offset);
++			KUNIT_EXPECT_EQ(test, offset, QCA4_PRIVATE_LEN);
++			KUNIT_EXPECT_EQ(test, proto,
++				length == sizeof(bytes) ? htons(ETH_P_IP) : 0);
++			KUNIT_EXPECT_PTR_EQ(test, clone->data, data);
++			KUNIT_EXPECT_EQ(test, clone->len, length);
++			KUNIT_EXPECT_EQ(test, skb_headlen(clone), headlen);
++			KUNIT_EXPECT_MEMEQ(test, skb->data, bytes, headlen);
++			kfree_skb(clone);
++			kfree_skb(skb);
++		}
++	}
++}
++
++static struct kunit_case qca4_private_cases[] = {
++	KUNIT_CASE(qca4_test_flow_dissect),
++	KUNIT_CASE(qca4_test_tx_metadata),
++	KUNIT_CASE(qca4_test_vlan_metadata),
++	KUNIT_CASE(qca4_test_rx_clone_complete),
++	KUNIT_CASE(qca4_test_masks_and_bad_versions),
++	KUNIT_CASE(qca4_test_rx_dispatch),
++	KUNIT_CASE(qca4_test_nonlinear_and_truncated),
++	{}
++};
++
++static struct kunit_suite qca4_private_suite = {
++	.name = "qca4-skb",
++	.init = qca4_test_init,
++	.exit = qca4_test_exit,
++	.test_cases = qca4_private_cases,
++};
++
++kunit_test_suite(qca4_private_suite);
 
 -- 
 2.53.0
