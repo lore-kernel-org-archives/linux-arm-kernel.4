@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA11A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B7A5606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5ERE+rpg;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=XPl7iCTg;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=YfXOCXHN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Au5wjMP3;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=kkbHFRoj;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=cwzc3gCv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,79 +15,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8IYxPCQoD7cmdiQr4ia+kH+yRcXKtjpnJvYpxZTFR9g=; b=5ERE+rpg9gIdipmAaS2iocuNPr
-	O5JKWaX6JlGb74aUCGRpxzFKwm+vpfw0+cMrM7pTm+dXVtTDBLKPio0vRHMmQm1Nt/ztxAOQSIOMx
-	vKjFLdWsAq+CufWc7I626BKy24p1b1PO9JIGmP+JvJyQMLD9xVnFqNaVVhBmToN2yILneqzFPFG++
-	ngo43OcF1Bsj50ljrwt5+62iYI+ZHXLmJXcVPh0ObUf5e5pIKVoJ5ztEp10EwoJM4DXr2izLBkDZ/
-	QYeF78L1Z5MCzwnDzQ+5e5u/905QVajsI7ONkTR09K5MA3Xzqw26/RKGEZHRDUkz5T6ww0F/0IryH
-	fsKUxalg==;
+	bh=ziD/5SVNpVvJrFTksFhEkRTwEv+vEsuDld5BMClPtX4=; b=Au5wjMP3YvIhk6rC0QmP+Y6CG9
+	AcysUZ0tTDduSSG3zp/48SfNplyO67wBGzjKs6iSojN/YxYOWeamxuYsjyp41zOMSLnquCUiHVo0z
+	FzO4KeGCdBhQPbUudD9xfJWVwvdfz2fck29yxW3jogV/7jzyWnlzY6TLcCv+OTG0KzeLseQ17Azq0
+	Dxb9rrjIKZJldiW+LW/YSW3JA13niqg/+41DyLYS6nXX8dH/OeHVb0ir+yN6JOg8Nv+UQs3hyaNqM
+	MyKbTySGu02O0Jx46UAR/9XQC74LNy0EX3gZI80HKX/jtYskxAldnb0DVkIwmdLFGyIFSHs62nWcD
+	EXp6EP/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Jc-00000008ZeF-0ZGw;
-	Wed, 25 Nov 2026 06:17:13 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xW6Jp-00000008a4E-3iPU;
+	Wed, 25 Nov 2026 06:17:25 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Iv-00000008Yrc-19mf
+	id 1xW6J5-00000008YzD-0efB
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 06:16:29 +0000
+	Wed, 25 Nov 2026 06:16:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
+	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
 	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=8IYxPCQoD7cmdiQr4ia+kH+yRcXKtjpnJvYpxZTFR9g=; b=XPl7iCTgaH7Q0E39xHz6Bh+Ssz
-	Ud13b5c74PRZtzW19Uba+VUCapUdOvI3FVDx6brCqnetVzHVgIMXI23+i2XegI4+IawJhAxl8UEE1
-	80Jrj83+ZvHoTudrVVQTnfXQpxY5lENsKWvsBG4LdyMpGY3qk1ABLk+6FTlE3VfFW+nUkIurd+phk
-	PIeCZtld+VJZgdgoZEYsnO4BMHg+E+airTyBZvh5OoKmCi6EmNd6LCeeha2xNUUWMugwIJD9mRTVF
-	eWfYXmG0ZEOxP48MTaU9lfPq3xT6/Hl3hPk5a1/ZP3c3hFuGrQk1wqrQbnu5VQ6QR8MRVlG/nj+GM
-	EcKaN52g==;
+	bh=ziD/5SVNpVvJrFTksFhEkRTwEv+vEsuDld5BMClPtX4=; b=kkbHFRojtN0+/7jM3Ef6k+2cY8
+	vfT4uin9B+Q9/ySnVDJTaLVN+OtXgmpSoY88hk9fx8adR4Hx3ufijHCv6WH+4izg4lzbHFBzGff19
+	5SuAmKjrHYzs7q5mIeqbhegIOQ5CDXxJpZy8EyVcP5UO86X5FmBcmU81kvCXVdfiid0UbCP0G+rBw
+	9zZadHcs9FcpiQSsPdU+aPPcI5Zs3q2PYE1BpRCMAuL+MluG88Fs8s0JJRcViJYMxJqO2KoSKcqkW
+	pqhbAaCQAkWEyw4aYbHqTMMYxtnAUYqFlE+UUP1g27yXA2HtMBvP2CXOgw+E0zlHZTwna25iNCZOt
+	IvjrNogg==;
 Received: from mail-dy1-x1345.google.com ([2607:f8b0:4864:20::1345])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Ir-00000004tuA-2ejm
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW6J0-00000005po6-1DX3
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:16:27 +0000
-Received: by mail-dy1-x1345.google.com with SMTP id 5a478bee46e88-33713e5e6daso9193482eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:24 -0800 (PST)
+	Wed, 25 Nov 2026 06:16:37 +0000
+Received: by mail-dy1-x1345.google.com with SMTP id 5a478bee46e88-3846d5f54c1so6513713eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795587383; x=1796192183; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795587392; x=1796192192; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=8IYxPCQoD7cmdiQr4ia+kH+yRcXKtjpnJvYpxZTFR9g=;
-        b=YfXOCXHN7evi/IUTcOgoYZUd3SLZja6fE4iT+88UXMr0uyAc420lVLmKptf9lXqAXK
-         nAh7JDQByldZmAmOzpyvRRV1WFrCYNg4Unsf0l0PVZXAQJ/zqPZf/BgjM6MlRAcgZ0XS
-         00xPUqPcxplq5FDX2ix8AuNmD41DdcNn0PtDe4Qu3BztiOc132mBIV4FRVmJl1El5V3b
-         bWjlHET0bwdG8wXPd78XvS3X8hKf/Q/41qLn/eMmYkx2yQt5+LTGvtyYNZVbtg48OgT+
-         JhDBeoKNBEWSFWT/4g+hHf7NJ6q25W9a3y9xnlEPwibjAPikpgMm2JRMjWIAtMa07fOJ
-         wU7w==
+        bh=ziD/5SVNpVvJrFTksFhEkRTwEv+vEsuDld5BMClPtX4=;
+        b=cwzc3gCvYE/gJ6b/g7npyt+c4EYAj7X36JgO/K+RP3VOG9XUa5/eig6geqIiFtNYWK
+         CrtmUzNezdH7/7/xax8dlfUpWBkyD2ZGtllg5XGOLdfQL51zDIyW2J4p9wac1vMkDBYI
+         JxMLprCmWOGg7bodyNWCQO3MZd4tefOVIrYuszjLushoNuKZlhQVtKrOHkmWo5E9Wvi1
+         SDTSHe0pQj+hCH84Rq+OJFX+68Wg6RJ13dNg5eOL5xwIlhcCZ8rclSufETluoqmjxTNO
+         JxPJXCstLpeK+YtJLtbeeDXqaGPIYBP1E9ERjUcON8i5J1LuvBUVU6q0YN6mg1uFh0FG
+         /AXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795587383; x=1796192183;
+        d=1e100.net; s=20260707; t=1795587392; x=1796192192;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=8IYxPCQoD7cmdiQr4ia+kH+yRcXKtjpnJvYpxZTFR9g=;
-        b=apFRL/1thLY7i054F2UrjBlbxMJF/tpWR/xDhZ82ooifxDuo9ew540tsc2Noz1vCEd
-         KNwp180Yen6XewO2niy28gLrWpLTVjggrGmgeT9Y95VnNqbTW0fXd6NADehxHXyvuT4J
-         aoIQBojS509YULQ6N5fVQAi3qyk18vamln0eHSQKeTz0p/TlmmBCC+IHMEFL95zbLLtG
-         PPAQZqrRyp3DMUOqDOmuFG+GwC3cZnnHBsnRpLkLAmGHaAkUhvPxutpjmEhAP5tfWBUR
-         Olt1xVnwNK7/fIrxbq4rqdA7gDAcDFHMfp14Mo7NuzdKuLN5ltBDbPQPR3GI6P9HpErv
-         RqHA==
-X-Forwarded-Encrypted: i=1; AL+hErFxxZqLquaZpmT/drILErtRWhlKtf3C7/pgtF/5dbG75+8ryO/kZkhnboB1Cwg0mPo57XLvCkqXhThfJY4wRwMP@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Exun3e81tRapa6pLw1n0WiqSWL8j7rUNE+sVpZ7o0QrrXbs/6
-	dpivKGn11D8OP1fRyxwwUwP+repxiGV1vsYglke0I8jBhbTYFHTFBjrks7Rmflg8j2imvnCyNrW
-	K98mptku63Q==
-X-Received: from dycmb10-n1.prod.google.com ([2002:a05:693c:20ca:10b0:386:c377:5335])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7300:e91e:b0:384:2780:8757
- with SMTP id 5a478bee46e88-38570a3e793mr19421900eec.22.1795587382798; Tue, 24
- Nov 2026 22:16:22 -0800 (PST)
-Date: Tue, 24 Nov 2026 22:15:06 -0800
+        bh=ziD/5SVNpVvJrFTksFhEkRTwEv+vEsuDld5BMClPtX4=;
+        b=DhOl21e1eNCwL8MHLQNevD8ZxYaGhnvKRyRth09voRh0ONNvsIGOARznOCjUbjo5Eg
+         dfk2IAcHelr92wADplN/ZtELBS88E6xzYhXghSEHh00D5P+Pr2oMwOOjkYG4DkJh0Ati
+         oujT8pMobFIcHdLFtHfbL4UbfTreZKf/+CLYRBBDM2BrDBNmau+HRlCorO0uaEyXpUmZ
+         XOVYzMPZaclaoFrY01AbevX6q+l9r8hOB+eVFp+EVFxNjQn1FJVPHwYn42NNYtJWpCYb
+         +ZQZLBk7ZnddzwylHPgbXJAARHaTZ2YL3hFhrF73+IwduD3jlb1Qs2SU6LO57dmRq7I5
+         HouQ==
+X-Forwarded-Encrypted: i=1; AL+hErGQkBF6Rc1q3xagQUFbeCLnv2LDC/flotG5xtuzT32FiBXb1pGbCWm6jLEUZ38lJEDbL59usz9qyXxsTlBZPulf@lists.infradead.org
+X-Gm-Message-State: APuU4Z8SeE64vhjyufRYlec02ai1+Ib8xEJf0LrddfS/v0+ffW0IL9fa
+	2IHHTc4qxjJPjHParb5WiJU7pG5H7gdVBoemqm6SRnyJCvuwE9C62YzoGH/aGvm6RSDuUlNoFeI
+	lQXW/LvRwDQ==
+X-Received: from dyba2.prod.google.com ([2002:a05:693c:63c2:b0:386:9a0b:1f64])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:693c:60d7:b0:386:a01f:a31e
+ with SMTP id 5a478bee46e88-386a01fa8a5mr13485947eec.29.1795587391007; Tue, 24
+ Nov 2026 22:16:31 -0800 (PST)
+Date: Tue, 24 Nov 2026 22:15:10 -0800
 In-Reply-To: <20261125061523.1540234-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261125061523.1540234-1-irogers@google.com>
 X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
-Message-ID: <20261125061523.1540234-14-irogers@google.com>
-Subject: [RFC PATCH v2 13/30] lib/Kconfig.debug: Allow LATENCYTOP and
- fault-injection filter with DWARF CFI
+Message-ID: <20261125061523.1540234-18-irogers@google.com>
+Subject: [RFC PATCH v2 17/30] riscv: unwind_user: Support Minimal DWARF CFI
+ and FP user unwinding
 From: Ian Rogers <irogers@google.com>
 To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
 	linux-arch@vger.kernel.org
@@ -107,9 +107,9 @@ Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
 	wnliu@google.com, dylanbhatch@google.com, Ian Rogers <irogers@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_061625_698528_DA68F2B8 
-X-CRM114-Status: GOOD (  12.46  )
-X-Spam-Score: -7.6 (-------)
+X-CRM114-CacheID: sfid-20261125_061634_772483_D8F2AFB4 
+X-CRM114-Status: GOOD (  21.57  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,37 +128,295 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow CONFIG_LATENCYTOP and CONFIG_FAULT_INJECTION_STACKTRACE_FILTER to
-be enabled on architectures using CONFIG_UNWINDER_DWARF_CFI with
--fomit-frame-pointer (such as arm64 and riscv).
+Wire up CONFIG_HAVE_UNWIND_USER_CFI and CONFIG_HAVE_UNWIND_USER_FP on
+MMU-enabled RISC-V kernels by adding arch/riscv/include/asm/unwind_user.h
+and unwind_user_sigreturn():
+
+ - Define DWARF CFI register mappings for RV64 and RV32/compat user
+   tasks (sp=2, fp/s0=8, ra=1).
+ - Provide unwind_user_link_register() reading regs->ra for leaf-frame
+   unwinding and ARCH_INIT_USER_FP_FRAME matching the RISC-V psABI
+   frame layout (CFA = s0, RA at s0 - ws, saved s0 at s0 - 2*ws).
+ - Implement unwind_user_sigreturn() (and compat_unwind_user_sigreturn())
+   to recover pc, ra, sp, and s0 from rt_sigframe.uc.uc_mcontext.sc_regs
+   across __vdso_rt_sigreturn (whose vDSO FDE omits register rules so
+   libgcc takes its instruction-matching sigcontext fallback), supporting
+   interrupted leaf functions, -fomit-frame-pointer frames, and
+   SA_ONSTACK alternate signal stacks.
 
 Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- lib/Kconfig.debug | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/riscv/Kconfig                   |  2 +
+ arch/riscv/include/asm/signal32.h    |  9 +++
+ arch/riscv/include/asm/unwind_user.h | 82 ++++++++++++++++++++++++++++
+ arch/riscv/kernel/compat_signal.c    | 45 +++++++++++++++
+ arch/riscv/kernel/signal.c           | 57 +++++++++++++++++++
+ 5 files changed, 195 insertions(+)
+ create mode 100644 arch/riscv/include/asm/unwind_user.h
 
-diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index 2d22638ec13a..650ed105860d 100644
---- a/lib/Kconfig.debug
-+++ b/lib/Kconfig.debug
-@@ -1893,7 +1893,7 @@ config LATENCYTOP
- 	depends on DEBUG_KERNEL
- 	depends on STACKTRACE_SUPPORT
- 	depends on PROC_FS
--	depends on FRAME_POINTER || MIPS || PPC || S390 || MICROBLAZE || ARM || ARC || X86
-+	depends on FRAME_POINTER || UNWINDER_DWARF_CFI || MIPS || PPC || S390 || MICROBLAZE || ARM || ARC || X86
- 	select KALLSYMS
- 	select KALLSYMS_ALL
- 	select STACKTRACE
-@@ -2188,7 +2188,7 @@ config FAULT_INJECTION_STACKTRACE_FILTER
- 	depends on FAULT_INJECTION
- 	depends on (FAULT_INJECTION_DEBUG_FS || FAULT_INJECTION_CONFIGFS) && STACKTRACE_SUPPORT
- 	select STACKTRACE
--	depends on FRAME_POINTER || MIPS || PPC || S390 || MICROBLAZE || ARM || ARC || X86
-+	depends on FRAME_POINTER || UNWINDER_DWARF_CFI || MIPS || PPC || S390 || MICROBLAZE || ARM || ARC || X86
- 	help
- 	  Provide stacktrace filter for fault-injection capabilities
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index e7891a2a89da..84b61c755db3 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -202,6 +202,8 @@ config RISCV
+ 	select HAVE_SAMPLE_FTRACE_DIRECT_MULTI
+ 	select HAVE_STACKPROTECTOR
+ 	select HAVE_SYSCALL_TRACEPOINTS
++	select HAVE_UNWIND_USER_CFI if MMU
++	select HAVE_UNWIND_USER_FP if MMU
+ 	select HOTPLUG_PARALLEL if HOTPLUG_CPU
+ 	select IRQ_DOMAIN
+ 	select IRQ_FORCED_THREADING
+diff --git a/arch/riscv/include/asm/signal32.h b/arch/riscv/include/asm/signal32.h
+index 96dc56932e76..c1cbcb681aa7 100644
+--- a/arch/riscv/include/asm/signal32.h
++++ b/arch/riscv/include/asm/signal32.h
+@@ -3,9 +3,12 @@
+ #ifndef __ASM_SIGNAL32_H
+ #define __ASM_SIGNAL32_H
  
++struct unwind_user_state;
++
+ #if IS_ENABLED(CONFIG_COMPAT)
+ int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
+ 			  struct pt_regs *regs);
++bool compat_unwind_user_sigreturn(struct unwind_user_state *state);
+ #else
+ static inline
+ int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
+@@ -13,6 +16,12 @@ int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
+ {
+ 	return -1;
+ }
++
++static inline
++bool compat_unwind_user_sigreturn(struct unwind_user_state *state)
++{
++	return false;
++}
+ #endif
+ 
+ #endif
+diff --git a/arch/riscv/include/asm/unwind_user.h b/arch/riscv/include/asm/unwind_user.h
+new file mode 100644
+index 000000000000..d3c12a183ac9
+--- /dev/null
++++ b/arch/riscv/include/asm/unwind_user.h
+@@ -0,0 +1,82 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef _ASM_RISCV_UNWIND_USER_H
++#define _ASM_RISCV_UNWIND_USER_H
++
++#ifdef CONFIG_UNWIND_USER
++
++#include <linux/compat.h>
++#include <linux/unwind_dwarf_cfi.h>
++#include <linux/unwind_user_types.h>
++#include <asm/ptrace.h>
++
++/**
++ * unwind_user_word_size() - Return the user-space word size in bytes on RISC-V
++ * @regs: User-mode register state.
++ *
++ * Return: 4 for RV32 compat user tasks, or sizeof(unsigned long) otherwise.
++ */
++static inline int unwind_user_word_size(struct pt_regs *regs)
++{
++	if (IS_ENABLED(CONFIG_COMPAT) && is_compat_task())
++		return 4;
++	return sizeof(unsigned long);
++}
++
++/**
++ * unwind_user_link_register() - Fetch the user link register (ra/x1) from @regs
++ * @regs: User-mode register state.
++ * @ra: Output link register value.
++ *
++ * Return: Always true on RISC-V.
++ */
++static inline bool unwind_user_link_register(struct pt_regs *regs,
++					     unsigned long *ra)
++{
++	*ra = regs->ra;
++	return true;
++}
++
++#define unwind_user_link_register unwind_user_link_register
++
++/**
++ * unwind_user_cfi_arch() - Populate RISC-V DWARF register numbers
++ * @ws: User word size in bytes (4 for RV32, 8 for RV64).
++ * @arch: Output DWARF CFI architecture descriptor.
++ *
++ * Return: true if @ws is 4 or 8, false otherwise.
++ */
++static inline bool unwind_user_cfi_arch(unsigned int ws,
++					struct dwarf_cfi_arch *arch)
++{
++	if (ws == 8 || ws == 4) {
++		*arch = (struct dwarf_cfi_arch){
++			.ws	= (u8)ws,
++			.sp_reg	= 2,	/* sp (x2) */
++			.fp_reg	= 8,	/* s0/fp (x8) */
++			.ra_reg	= 1,	/* ra (x1) */
++		};
++		return true;
++	}
++	return false;
++}
++
++bool unwind_user_sigreturn(struct unwind_user_state *state);
++#define unwind_user_sigreturn unwind_user_sigreturn
++
++#endif /* CONFIG_UNWIND_USER */
++
++#ifdef CONFIG_HAVE_UNWIND_USER_FP
++
++/*
++ * Standard RISC-V psABI frame record stores {saved_s0, saved_ra} at
++ * [s0 - 2 * ws, s0), with s0 pointing to the caller's stack pointer (CFA).
++ */
++#define ARCH_INIT_USER_FP_FRAME(ws)			\
++	.cfa_off	=  0,				\
++	.ra_off		= -1 * (ws),			\
++	.fp_off		= -2 * (ws),			\
++	.use_fp		= true,
++
++#endif /* CONFIG_HAVE_UNWIND_USER_FP */
++
++#endif /* _ASM_RISCV_UNWIND_USER_H */
+diff --git a/arch/riscv/kernel/compat_signal.c b/arch/riscv/kernel/compat_signal.c
+index cf3eb33a11e4..53b5be62e393 100644
+--- a/arch/riscv/kernel/compat_signal.c
++++ b/arch/riscv/kernel/compat_signal.c
+@@ -5,6 +5,7 @@
+ #include <linux/uaccess.h>
+ #include <linux/syscalls.h>
+ #include <linux/linkage.h>
++#include <linux/unwind_user.h>
+ 
+ #include <asm/csr.h>
+ #include <asm/signal32.h>
+@@ -243,3 +244,47 @@ int compat_setup_rt_frame(struct ksignal *ksig, sigset_t *set,
+ 
+ 	return 0;
+ }
++
++#ifdef CONFIG_UNWIND_USER
++/**
++ * compat_unwind_user_sigreturn() - Unwind an RV32 compat vDSO rt_sigreturn frame
++ * @state: Current user unwind state.
++ *
++ * Return: true if @state was at the compat vDSO __vdso_rt_sigreturn trampoline
++ * and advanced to the interrupted 32-bit user context, false otherwise.
++ */
++bool compat_unwind_user_sigreturn(struct unwind_user_state *state)
++{
++	struct mm_struct *mm = current->mm;
++	struct compat_rt_sigframe __user *frame;
++	struct compat_user_regs_struct cregs;
++	unsigned long sigret;
++
++	if (!mm || !mm->context.vdso || (state->sp & 3UL))
++		return false;
++
++	sigret = (unsigned long)COMPAT_VDSO_SYMBOL(mm->context.vdso,
++						   rt_sigreturn);
++	if (state->ip != sigret &&
++	    !(state->topmost && state->ip == sigret + 4))
++		return false;
++
++	frame = (struct compat_rt_sigframe __user *)state->sp;
++	if (copy_from_user(&cregs, &frame->uc.uc_mcontext.sc_regs,
++			   offsetofend(struct compat_user_regs_struct, s0)))
++		return false;
++
++	if ((cregs.sp & 3U) || !cregs.pc)
++		return false;
++
++	state->ip = cregs.pc;
++	state->ra = cregs.ra;
++	state->sp = cregs.sp;
++	state->fp = cregs.s0;
++	state->ra_valid = true;
++	state->sp_valid = true;
++	state->signal = true;
++	state->topmost = false;
++	return true;
++}
++#endif
+diff --git a/arch/riscv/kernel/signal.c b/arch/riscv/kernel/signal.c
+index 59784dc117e4..c0d70220e4a4 100644
+--- a/arch/riscv/kernel/signal.c
++++ b/arch/riscv/kernel/signal.c
+@@ -13,6 +13,7 @@
+ #include <linux/resume_user_mode.h>
+ #include <linux/linkage.h>
+ #include <linux/entry-common.h>
++#include <linux/unwind_user.h>
+ 
+ #include <asm/ucontext.h>
+ #include <asm/vdso.h>
+@@ -587,3 +588,59 @@ bool sigaltstack_size_valid(size_t ss_size)
+ 	return ss_size > get_rt_frame_size(false);
+ }
+ #endif /* CONFIG_DYNAMIC_SIGFRAME */
++
++#ifdef CONFIG_UNWIND_USER
++/**
++ * unwind_user_sigreturn() - Unwind a RISC-V rt_sigreturn user signal frame
++ * @state: Current user unwind state.
++ *
++ * __vdso_rt_sigreturn carries an empty .cfi_signal_frame FDE without register
++ * rules so user-space unwinders such as libgcc take their instruction-matching
++ * sigcontext fallback. Recover pc, ra, sp, and s0 directly from
++ * &rt_sigframe.uc.uc_mcontext.sc_regs so interrupted leaf functions,
++ * -fomit-frame-pointer code, and alternate signal stacks unwind cleanly.
++ *
++ * Return: true if @state was at the rt_sigreturn trampoline and advanced to
++ * the interrupted user context, false otherwise.
++ */
++bool unwind_user_sigreturn(struct unwind_user_state *state)
++{
++	struct mm_struct *mm = current->mm;
++	struct rt_sigframe __user *frame;
++	struct user_regs_struct sc_regs;
++	unsigned long sigret;
++
++	if (!mm)
++		return false;
++
++	if (IS_ENABLED(CONFIG_COMPAT) && state->ws == 4)
++		return compat_unwind_user_sigreturn(state);
++
++	if (state->ws != sizeof(unsigned long) || !mm->context.vdso ||
++	    (state->sp & (sizeof(unsigned long) - 1)))
++		return false;
++
++	frame = (struct rt_sigframe __user *)state->sp;
++	sigret = (unsigned long)VDSO_SYMBOL(mm->context.vdso, rt_sigreturn);
++	if (state->ip != sigret &&
++	    !(state->topmost && state->ip == sigret + 4))
++		return false;
++
++	if (copy_from_user(&sc_regs, &frame->uc.uc_mcontext.sc_regs,
++			   offsetofend(struct user_regs_struct, s0)))
++		return false;
++
++	if ((sc_regs.sp & (sizeof(unsigned long) - 1)) || !sc_regs.pc)
++		return false;
++
++	state->ip = sc_regs.pc;
++	state->ra = sc_regs.ra;
++	state->sp = sc_regs.sp;
++	state->fp = sc_regs.s0;
++	state->ra_valid = true;
++	state->sp_valid = true;
++	state->signal = true;
++	state->topmost = false;
++	return true;
++}
++#endif
 -- 
 2.56.1.831.g720f3f5937-goog
 
