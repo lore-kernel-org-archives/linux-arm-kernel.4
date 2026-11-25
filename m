@@ -2,78 +2,155 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6413606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 10:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF7B606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 10:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=foZJMFRW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mLS1FZtl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uSlpUOoL;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=yDg5j/z/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9Go3NrC6R1k3c+zu1uu0vGbFmy/uD6Bj5+pEG6pyJzc=; b=foZJMFRWvay7sg
-	ENZLsaZI9A2CRhCv3w2j26t4VXevfgN2MQT05bR0sFgGjkZOqi8cs+dftk0yVl3VU/+PqP0G6d/Ey
-	BIGJscHxx4stt0OpNOJbN/5cKV32CZQ7MSiA4g84Sl9I85J16VxR4I49VG0/s8Be0cV5+95z/Eo3M
-	0wTcH3ubCsMiUXpSEwq7eaBypA5fDl+7LFVCq1sRBcXYbXJ6FiDfbV4ft9P6luTE1BfA+9dGq+YHO
-	BRHUhaMlcBnaFDHo2Z8J0MWnTTmpMY3sqMb1RMJ9ck53zoeQ0UzsYBWvC4hC33buQsQfTIHmlD6XU
-	ug1hW1blmbpY/2aGIMTA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=94jKpoVVfEuzuYGJ/QGmpD4nwJD9rbbVjreDdQE30gE=; b=uSlpUOoLMCK4DdX/iRqjDNjjUN
+	L5s0QUwspoO4asQ12pzpXDU5htdjcp8AqbTLQz5cdjcgU6afQj5zfIopBEGYLABQjo4f1Tv59YDu5
+	gy8hlDauOEdl4/0Pn+XWMO9ZKhIQi+LLTIr1hb9ybWufcRLONNkUgTJwsfhXn5ZJatAYQppTk/s8u
+	nApFDCNmcKFJLJUxAYH62D6iK1g10dVoyf9z0k6YbOWNqU923D/nP24OwZFI1R837DlXOUrjVWTlK
+	AuUgWmw28oQYFcqh5MXZt3gETZOI9TgFAvCndrmcXC1DxFgFmAmy+dzgdxpTD9N2TpHyL4QIQKPdb
+	5CYKoDpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9wK-00000009PiU-0yYD;
-	Wed, 25 Nov 2026 10:09:24 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xW9wX-00000009PlT-1Ycq;
+	Wed, 25 Nov 2026 10:09:37 +0000
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9wI-00000009PiG-1VRp
+	id 1xW9wV-00000009Pk5-33cr
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 10:09:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 75A9762557
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:09:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A431F000F2
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795601361;
-	bh=9Go3NrC6R1k3c+zu1uu0vGbFmy/uD6Bj5+pEG6pyJzc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=mLS1FZtlW/uBOd8uYBASLUw7dL8m9Cq3WOCGR+qLTLOINHxdiJqcVBElWNdcIZRFD
-	 +A4pF2DOHjjuyoVAtTmsc5CVWjpwsNNyDXTel3uWZktq8sv/WR0vKkYJYdbImYJdgk
-	 X9hbN4TaNJzdQGYcPQzLRKg3GKj3gUS1YfjD82L+62CJk27+ndu/jcm0xKxhSnoLA8
-	 mcW4TfWVXpXvUgwpsd8YqCHdKdRngXZ4sWikgqiBwjXCXPFykO3fVB/0/dOkJMVNDr
-	 S60jEr5lffFgJaeQPPD8R3xWy0rT4hePGqw/JcIqfSFURZYQuE4+ivClmJJVs3FNSq
-	 1yKmzXyQRPP/Q==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-3ae81ae52ffso40593351fa.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 02:09:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGIm2FhqZaJGjmHwWFqwK4VJ3eB0yyLApcAVDHGmgXmoGUnlAITCeYOvq/XYdp8cl0crp2PjDK7WXLxWP0XSwYV@lists.infradead.org
-X-Gm-Message-State: APuU4Z/yKfW2QUz/qDFv1HcBoQupeik8j3MWKk0+mK0W4gAIWU+vDaWs
-	LfKvBegEBWC+SNhZOG8HhnBwnh/0O+XoAh2obrJM7TSoDlRc1U5oBs8nzjLfhCFr3tl9ANJhthk
-	q1VNVXLUErq/lzdtLoaUYDbq67YqIaOk=
-X-Received: by 2002:a05:6512:3e1a:b0:5c1:4f34:922b with SMTP id
- 2adb3069b0e04-5c1bc8726b5mr4818493e87.54.1795601359755; Wed, 25 Nov 2026
- 02:09:19 -0800 (PST)
+	Wed, 25 Nov 2026 10:09:36 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=G75rPLKAph6x3VhsfZXMdOl6Y3RQnTsWVGlLNwMDSRlnhd3mKtTCSZMpw6vgrEUwv3VMQ+d9/5/DKRnnjmPdtTvHM4eJKWAadpD2rao2vQsTtUeaKH2T/dI7WS5YNxD6uoPKj9BoBcgKNYPozd4U7oK0VajT3Pyv0RaYuX0PNFDP8iy7lnU7pl+e9UmmNPXcrl9t9iMcmrtwvuduupQRcT+XUUfBxX4k5VLh1Xoth9au4gfe0NlxrHXIGe/IbJ7ZsUftIVWqQD0bdlF3AdL/xmp7pB3DcRZbTyWlZn+sqEEdagW6viv0jrheuTyHq4qSd9sfConL1Dt1goaZAG/1Zg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=94jKpoVVfEuzuYGJ/QGmpD4nwJD9rbbVjreDdQE30gE=;
+ b=hitoE7ntinFWsLXKS1b9GhpUge+P/XcMkm4dvZj+nqJXp8GSOlJzrj8ULIRK7wQ5YOjJ4CtZ4wJMnvOw64BPCYu+F/Dub758KSeYxCmjP+PnEbJC2yL51Reswo22q/ZBsbuaEOGAECJHurnZ3HCAkEpfvmOc6QuxYVN4a2tUl6qjvSV48AOuGir3M4TiqaIzyZYyaAyIzEyAqjJwZbIo+jkOjiCI5v+7T3O+tWfVvh3kM10Rmr7OAUbGMAJJQO1eYkC0mClTm1qefPzqRnxCXSnvQQ/vDxUUni4y/JGf1vq3o78nopHG/b5oHDoT1eji6aKcIHXsoRhDPq2qaHkQfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=94jKpoVVfEuzuYGJ/QGmpD4nwJD9rbbVjreDdQE30gE=;
+ b=yDg5j/z/u9C6xFBj2WZaPOzKk0NUthrITZl7H0ixNy/n/hjSkZ/ko/EvYW8p/xGe5iJfL4Zql30yu+vTouqayuCFNuKmTiJoc6Hgugx09+Pgq5KuSch07rSDO8tTPXLf93NPovT6wZ/KGIlpj9BJzdba7MKbHiLQW4n8ZGps/vcCF9goLhS1rTqeFykKAKMj21K3RzATy8HbPNcvtEqEQ1QdQNRJMjJRzymh65xyrGZ6qKBtAUb0edBgaqY4n22Q/w12J4Wu33Tbl1Ev0gEzKW0A+c7eL932O2s+IpxIKnJL3SRekbTX1oAWeCBXQ9Ylb7EKCrry7FB/ny4D0qbmfg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
+ by BR2PR04MB659875.eurprd04.prod.outlook.com (2603:10a6:2c8:1b::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 10:09:30 +0000
+Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
+ ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
+ ([fe80::fc6e:ca22:f065:def4%5]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
+ 10:09:30 +0000
+Message-ID: <006c7209-fe06-4aa1-bed8-2fa74b4d0edc@oss.nxp.com>
+Date: Wed, 25 Nov 2026 12:13:13 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ASoC: SOF: imx8: Switch imx8ulp DSP control to reset
+ framework
+To: shengjiu.wang@oss.nxp.com, Liam Girdwood <lgirdwood@gmail.com>,
+ Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>,
+ Daniel Baluta <daniel.baluta@nxp.com>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+ Vijendar Mukunda <Vijendar.Mukunda@amd.com>, Mark Brown
+ <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ sound-open-firmware@alsa-project.org, linux-sound@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
+References: <20261125073857.1402045-1-shengjiu.wang@oss.nxp.com>
+Content-Language: en-US
+From: Daniel Baluta <daniel.baluta@oss.nxp.com>
+In-Reply-To: <20261125073857.1402045-1-shengjiu.wang@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P189CA0030.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5db::17) To GVXPR04MB12316.eurprd04.prod.outlook.com
+ (2603:10a6:150:2c6::8)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261015142552.4128028-1-ryan.roberts@arm.com> <20261015142552.4128028-15-ryan.roberts@arm.com>
-In-Reply-To: <20261015142552.4128028-15-ryan.roberts@arm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 25 Nov 2026 11:09:07 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=bXyBRP8oBr2xtzwkzbEPHXCKA0XPXRueY6pUSagbXtQ@mail.gmail.com>
-X-Gm-Features: Aa3M54rLQayJf3xCdY0Eq4zHAmpJ1R1cYyaDehvs8Q24SnEwz4VjC8tWxJP40dg
-Message-ID: <CAD++jL=bXyBRP8oBr2xtzwkzbEPHXCKA0XPXRueY6pUSagbXtQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 14/15] misc/arm-cla: Support exclusive context assignment
-To: Ryan Roberts <ryan.roberts@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|BR2PR04MB659875:EE_
+X-MS-Office365-Filtering-Correlation-Id: 195d4590-7639-4835-02ec-08df4adc321e
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|1800799024|23010399003|7416014|376014|261022105027099003|261026121527099003|10067099003|261026140227099003|261028144727099003|261102123227099003|261021121427099003|20046099003|6133799003|921020|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: BeltwXAygyjiBeFkMsxNC4dQe4QeKieJxYMUymCMz8rYvsxz4LiBYAL2ClgwIPNuQ/dpUk+0Cr7aHbcdX0n4Oo25UPBGEsLlVwZsltCBwtxRprQNYbo2r0mstPH+oFNR+u1G84ApmCrx7bLW3t5GC9JMcNa8o8TlfpkcPTT6t71zmLvXFEMEaiMRWuERbJPrqzX2FonbHX2OHMQvn2dtZSn9oa/2uplhbsanby7W12luTC1JyyGe9mLbxbAC47Yj5taEtM/BAnzq6iX+RsjkJ4CvieqzSM5AUIM+FVNCOCq+fvX+J//xDU7QVg1fZJJNK55vTRpl/DoGYXEOUX3rk4UN0vU6QJ2snUClwIRExN0baEe9ilXTHjF0otTPvp/QPDr9Zl8BjBz0h69bhGhLHD792gGlVQcB+DpdpR+76e9Yr2Uf8hKcKE927iYeo9XTdbYSBGi/cIXGjZ52rwXUIel4Nyh1RySjgQKhIlB9w8VLohQNzLesqIh0yK17b4jsxearYX556RvnqxwVhkda54Qr0OJObuQbU+a8ykD7j+csKDiGDZWQilgW3BUT6VqVz1y69EQsg/wuv5MtRFmenPBMolNGRabJcJFFAOYx150x2ZZUQhY3ZEPSArrBRb1/CDr6mHtYriw/s50S1xo31hAjfm+2G9wXtnX/+q7UuRBV2inJCuh8uoc2Y5Nw+l0Wb4i6RxU6272Gru0CS+WqKQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(23010399003)(7416014)(376014)(261022105027099003)(261026121527099003)(10067099003)(261026140227099003)(261028144727099003)(261102123227099003)(261021121427099003)(20046099003)(6133799003)(921020)(18002099003)(22082099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T0hZdHhKNE9DYmFrcUtOaDhOVnZabklSRTZ4aHR2b2o0c0syNW52S0lsRUEz?=
+ =?utf-8?B?aXJvVTNQSyt6WWJMdWl4RmpqQ2Uxa1BOam40cHBTdVJEeERzazFLRlNJRHdl?=
+ =?utf-8?B?cUNraEFlbkZBeTJpSkhldEpsNmxBNVIzQ3kxdnZ0OVRBRHRwandUOHRtbjNS?=
+ =?utf-8?B?MkJadGxZS0hHT2VhZjM5WlY1NEVoV0dkR3VVNXNGcmJXMDZLNFZYTk10RzVw?=
+ =?utf-8?B?bUJhbk5zTWsveDBQZGl3WnZOYWxwQTB6aE9Vd3RqUTJ6aHdEQXVRaFowY2N2?=
+ =?utf-8?B?K3RCL2Y1eE8wR2p4RFlQeFZqaTdVRWVNOGh6VVNZZEVjRlh4TEUvcXBhWXU2?=
+ =?utf-8?B?ZEVOYWUwcUhQUmhFWmJiSjE2TEkzRTRMV2xIekxqWVpCWWVxM3VFNFQ5OXpa?=
+ =?utf-8?B?eU5oTHNHWFFhb21kdDVkVi9ZME43UDdMYVVrZWY3VXo4bndmSkZkVkZyeDU5?=
+ =?utf-8?B?bzlvMWE4dWg1Yit6TW8xUDcwaXlRc0VxZkhpQXBvdjBoY3AvMDNSRmxrZEly?=
+ =?utf-8?B?M1JmSFN3Tm9ORnMyTVg3Tm9BNUFlNERXNDhoVWNLaUczY3FsRWdPT3diN2hv?=
+ =?utf-8?B?R0RGTmRCTHpDUUR2KzJCbVZjblFNb0dBdFVJOFdYR3h5SVpUZnNJTm1wSnhm?=
+ =?utf-8?B?cHZ0TDhPaFZWbG9oK0Q0WWZHVHJ6cGFlTUdRalFrbjdVM3Vjd2liSTJ5bmVx?=
+ =?utf-8?B?aXc3SFBIOTg3T1Z2bUJHTklKNTIybzNvZkVTRzgwR09kS0hocjFiQXZaWWpp?=
+ =?utf-8?B?VUwzWTJMR3dLY0l2R2hSZHVLZzNVWlhnbTQ5WGNuVkppNUVJNmtuWEJka3NB?=
+ =?utf-8?B?WGRyWXJYNDYyZDdBSC9IcE4xWGkzcytjNTNEQklzWEYzelRrd0tVUXNpcVlk?=
+ =?utf-8?B?Y0RjK3d2RENidXd5d0szOFlNem53MitTMjhXUWpYbUNYZmduV3BBN2lVTVUv?=
+ =?utf-8?B?cjczd3pSZStGbGdyM1lRbTdiNjdVUGlqTVdnYU9DdUM5UVRKUkFyVnZUN1VZ?=
+ =?utf-8?B?SzJsVTE1bVp4dWgreDBQdjN0NEltcm83cVZKUk5wWGZaYVFBK2MxYk1zanVN?=
+ =?utf-8?B?YnpYUk41TkZmMFEwL2lhSDZzRlRKRTlXdS96VHV4T2xjZDN3RHB5NVZsSkpO?=
+ =?utf-8?B?cFdKUnIzcTkySXF5SkV5a3hia1Iwd1JIQTJRbE9ndHUrRkZYTi8xczc4TE1x?=
+ =?utf-8?B?ZnQ0SHpUV0pqTDhoY1l4VmhSRTFndDEzYU5GdngvTDJ3aGF2UDduVVE2VFBK?=
+ =?utf-8?B?UzExRzlUNE1vWmo0THRzZzYxVEFTSzhFNkExVmg1aHBnMHNLSkxPd0xyc0Q5?=
+ =?utf-8?B?akxONFJnNkxsYWcwaGZWdld2ejh5U0phZ0lvcUwydFRKNnh3c0owQld5anFE?=
+ =?utf-8?B?aE0rdUVFSzBZUjNUUWxQS3lXb3hWMzA3a2hVRitia3ZjUUVpU09yOWE0SDR5?=
+ =?utf-8?B?UzZZQkYxbG5JTXRPVlFLZzBTb0N0T1NkcXpIWXJsUVplN2c0NFlQcW1UV3Jt?=
+ =?utf-8?B?eEw2eFl4bTJVV2RocnRVa25UZVcwLzJVK2lUYzhweHVodzFSYnpVc0gxWTFp?=
+ =?utf-8?B?eS85Ym00OVZuQmRkVDVtdnRNSHJUTE9LeEFDQklZTjZxRmlOUkVEZkkrOE5v?=
+ =?utf-8?B?NTRqTTQ5RXpXZ1NGVlk5eU1maEx6cTJCcytTbG9HWEl4WHU3NGVLWFRjZTRS?=
+ =?utf-8?B?WFdHNWxudEdUTmdqQ3VhQURJVnllTjA5Zlh3N1RBZk4rQjJROU1oaEJLR3dW?=
+ =?utf-8?B?SVFzSjNFTk1hczBjamxoby9kV09kRXlOaUVENmpvTjFnTGZISnBKaS9XTmhh?=
+ =?utf-8?B?UnlDVkxTYjNiQmQ0d3A1RFBDbGNxSWE0ME9MN0xxZHA3ZlFJbTdWejd4cmtK?=
+ =?utf-8?B?d3pHcE5GQU9jOWxzQ05hSnBmWjRUV1B2NTNUemNlOXhFeDJLUzJGbk4zTFhT?=
+ =?utf-8?B?eW9YdW9oOWE2OHREL0czNytQelFKL3lVVFkvbzVKaURRVU10NDVRTzhnS3lU?=
+ =?utf-8?B?cTFwS0NuQmVvNUtwMzlPU28yN2ptTkVxUloyVjV6eEhtWDBpNkIzUjN2aWlh?=
+ =?utf-8?B?TEpUbk11WWpDbjFHRWtyMmxlbmF3VHZYcTlIUktXcnE4d1BWS21QR1pRVWcv?=
+ =?utf-8?B?UWJuVXMwVzNucEkzckJzRjdOYTJmRXFwZXptL2l3Yk9FNUg3YlRFczVCUzIr?=
+ =?utf-8?B?UzdVOWVLRFRGOUhJVnFOeFl6cTJWMS9YYWhrZ3FUWTFHSGxtT3lvVjl3OHZN?=
+ =?utf-8?B?N2hMN2tTMjdUYlVJZ1RHY2NUVTkvOVZhdHBXMmVrTFptZU1MRUpKNXVUUXZJ?=
+ =?utf-8?B?QVFjZjE5TUFqWWF6Z1M4M2MvZUVYNUw4Vyt0SW94OEJHZVpteTE4dz09?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 195d4590-7639-4835-02ec-08df4adc321e
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 10:09:30.6256
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bOoQaahWdJgriRviXMsDSBuORHoJFn1qu2AaKI+4HU5pR3sX5lOzcizea1pg8nKSOdMI+p7Ms47AyNzQykwxFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR2PR04MB659875
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_020935_786966_1E802571 
+X-CRM114-Status: GOOD (  15.34  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,114 +161,68 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Ryan, Jean-Philippe,
+On 11/25/26 09:38, shengjiu.wang@oss.nxp.com wrote:
+> From: Shengjiu Wang <shengjiu.wang@nxp.com>
+> 
+> Replace syscon regmap-based DSP reset control with the kernel reset
+> controller framework for i.MX8ULP. The syscon approach requires direct
+> register access and creates tight coupling to the system controller,
+> while the reset framework provides a cleaner abstraction and proper
+> reset sequencing.
+> 
+> Three named reset controls are now consumed: runstall to stall/unstall
+> the DSP core, softreset for DSP core reset, and dbgreset for the debug
+> logic which is kept deasserted to allow external debug agent access.
 
-On Thu, Oct 15, 2026 at 4:27=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
- wrote:
 
-> From: Jean-Philippe Brucker <jpb@kernel.org>
->
-> Introduce a nr_contexts members to cla_domain to count the mapped
-> contexts. At the moment PL0 contexts share the domain, while PL1
-> contexts require exclusive assignment, since there is no context
-> save/restore.
+As Philipp pointed the wording here is a little bit unfortunate. The reset
+sequence is already correct what this patch does uses a cleaner and standard
+reset abstraction.
 
-Do you mean to say there is no context save/restore for the
-virtualiuzed users? Because there seems to be for the ordinary
-(kernel arbitrated) ones.
+[...]
 
-> A negative count indicates the domain is exclusive.
-
-Exclusive to what? Please be more specific.
-
-> Signed-off-by: Jean-Philippe Brucker <jpb@kernel.org>
-
-(...)
-
-> diff --git a/drivers/misc/arm-cla/arm-cla.h b/drivers/misc/arm-cla/arm-cl=
-a.h
-> index c9ecab5ab6bf..43a58a329525 100644
-> --- a/drivers/misc/arm-cla/arm-cla.h
-> +++ b/drivers/misc/arm-cla/arm-cla.h
-> @@ -105,6 +105,7 @@ struct cla_dev {
->   * @lock:              Protects the following members.
->   * @ctxs:              All live contexts, keyed on cla_ctx_key.
->   * @queued_ctxs:       Queue of contexts waiting for assignment.
-> + * @nr_ctxs:           Context count. Negative value for exclusive assig=
-nment.
-
-Describe here what it means if a context is excludive,
-
-> +static int cla_domain_get(struct cla_domain *domain, bool share)
-> +{
-> +       lockdep_assert_held(&domain->lock);
-> +
-> +       if (share) {
-> +               /* Time share the domain with other contexts. */
-> +               if (domain->nr_ctxs < 0)
-> +                       return -EBUSY;
-> +               domain->nr_ctxs++;
-> +               WARN_ON(domain->nr_ctxs < 0); /* LONG_MAX contexts?! */
-> +       } else {
-> +               /* Reserve the domain for exclusive assignment. */
-> +               if (domain->nr_ctxs !=3D 0)
-> +                       return -EBUSY;
-> +               domain->nr_ctxs--;
-
-Maybe:
-domain->nr_ctxs =3D -1;
-
-So it is clear what is going on?
-
-> +       }
-> +       return 0;
-> +}
-
-Notice that here the _get() semantics are reference counting as is
-proper, compared to the other _get() in the series that I complained about.
-
-> +/* Undo cla_domain_get() */
-> +static void cla_domain_put(struct cla_domain *domain)
-> +{
-> +       lockdep_assert_held(&domain->lock);
-> +
-> +       if (domain->nr_ctxs =3D=3D -1)
-> +               domain->nr_ctxs =3D 0;
-> +       else if (domain->nr_ctxs > 0)
-> +               domain->nr_ctxs--;nr_c
-> +       else
-> +               WARN(1, "invalid domain refcount %ld\n", domain->nr_ctxs)=
-;
-
-Looks good
-
-> @@ -53,7 +85,7 @@ struct cla_ctx *cla_ctx_create(struct cla_domain *domai=
-n,
->                                struct cla_ctx_key *key)
+>  static int imx8_shutdown(struct snd_sof_dev *sdev)
 >  {
->         struct cla_ctx *ctx;
-> -       int ret =3D -ENOMEM;
-> +       int ret;
->
->         mutex_lock(&domain->lock);
->         ctx =3D cla_domain_lookup_ctx(domain, key);
-> @@ -68,9 +100,14 @@ struct cla_ctx *cla_ctx_create(struct cla_domain *dom=
-ain,
->                 goto err_unlock;
->         }
->
-> +       ret =3D cla_domain_get(domain, key->type =3D=3D CLA_CTX_PL0);
+>  	int ret;
+> @@ -202,42 +201,32 @@ static int imx8m_probe(struct snd_sof_dev *sdev)
+>  
+>  static int imx8ulp_run(struct snd_sof_dev *sdev)
+>  {
+> -	struct regmap *regmap = get_chip_pdata(sdev);
+> +	struct imx8ulp_chip_data *chip = get_chip_pdata(sdev);
+>  
+> -	/* Controls the HiFi4 DSP Reset: 1 in reset, 0 out of reset */
+> -	regmap_update_bits(regmap, SYSCTRL0, RESET_BIT, 0);
+> +	/* Controls the HiFi4 DSP Reset */
 
-Add a comment that we can share PL0 domains only.
+I would remove this comment above, as it is obvious from the function name what
+is the action taken. 
 
-Yours,
-Linus Walleij
+> +	reset_control_deassert(chip->soft_rst);
+>  
+> -	/* Reset HiFi4 DSP Debug logic: 1 debug reset, 0  out of reset*/
+> -	regmap_update_bits(regmap, SYSCTRL0, DEBUG_LOGIC_BIT, 0);
+> +	/* Release HiFi4 DSP Debug logic */
+
+this comment can stay. 
+
+> +	reset_control_deassert(chip->dbg_rst);
+>  
+> -	/* Stall HIFI4 DSP Execution: 1 stall, 0 run */
+> -	regmap_update_bits(regmap, SYSCTRL0, EXECUTE_BIT, 0);
+> +	/* Run HIFI4 DSP Execution */
+
+
+With that said, 
+
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+
 
