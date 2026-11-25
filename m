@@ -2,75 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892AF606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260C3606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k+pBSMCX;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=H/wn2Dhh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yey8bgPr;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Tu7jIaE/;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=RYp9veoh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=irgmmItnIcv+NCSLi3q2cVon1bQLXokEs1Jc5hW5B18=; b=k+pBSMCXGGAODQ
-	UNobbL3dhQgIVaRXa9bRzlHgIB6y/13SK/2hO8NX72NnNQH6SwzO2guuFNPmbkOSXRKZSWPHZk5PD
-	T3o8kphcnNcf/66RX1edY3JOm5ICCnm5yoqCrbIbep7BiNTb7IfUxIvsH2YAdAibdWtYtDzBrP4Cy
-	AzH9YFPgDuiTuhgo3JTbZt5x+KdlOFfZBG18OSCETc2h6XldspQGNrMIIKr3PSxhNDARZm1aNLDNO
-	HD07uQ//bEb+RvRycvrI4/nYCSAYux8RVV1E3B2Y5Xq4Vz7CAI+pYVzHwl00kkLAw0tm/GdHy/WnX
-	6g5DfCeBM/kCbKKr3CAQ==;
+	List-Owner; bh=3kouSNyK9R23I+qZ3mr2DQ2vQHuvZbqCaS8A5GKpSiI=; b=Yey8bgPrjF1EfA
+	vRKCiRtR6iuzpRnWZeB7HVcc8oGi5lExgP6Q9YUkJRg8mhVQYmgE8gheiTefad83DqdEkPPzX5zvA
+	xRv8KKo7M3PpjVwtf84qkGVdATk/daknARmLL70qyGAeBtfISaUTmpuO91URBABiXr8NiPI3U4Ck+
+	1DCv/1E8BulMLmF5dS3LcXXcSpCSVx9gVN7BLyyjuIsKjzgDrXXfExrfFsKF4UyKMBHD5n3C7p2EK
+	KxwQS7Mu3i74d2FNiI9xj7fNvNtBlk5M7huPMOBzvg29yRJrkl7jvz3Rnxsh4aMlZGS3rAOO56bMS
+	j56bxjEMydGhL4StamQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWI0L-0000000B3W4-3wMf;
-	Wed, 25 Nov 2026 18:46:05 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xWHCL-0000000AqiM-2f4f;
+	Wed, 25 Nov 2026 17:54:25 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHzT-0000000B2uo-1Bme;
-	Wed, 25 Nov 2026 18:45:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795632309;
-	bh=AJIfwVf8wdiuFci8fQLP2oVwA2zvoSeP1nF8x4T09X4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=H/wn2Dhh7v7Zb17P2TTy/8mcQyEHOVK/FYK4NmRuM8awgHMaqD7nfML42vzHB5Bc/
-	 4pY98nQZy1cgrga6G4aq/uqYsQEOEtb4G/CdBWegNybN2lxR5jRu0XoVkMJ8C73AVd
-	 HFnN0on24crH2BuFPOxKjJ1+yjQ5cm4Vg4Vf7COQ1DjEh89Qm9Nz+NqhgpN2XC3Zil
-	 GmbrGY73QVb2DGd8I9rKV7oiPfblL6yyXjEaSGIQ7TMLJKr8cKxy+CQefQBKX6b6Yd
-	 mCTrIRA95U1eMxEFz8zhHP23cheJI06XgWTpQkShfvMSoRvDs+gbKpLuJNLj5DYlco
-	 KL+nwYGploW5g==
-Received: from [192.168.0.15] (unknown [100.64.0.170])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6090917E0311;
-	Wed, 25 Nov 2026 19:45:07 +0100 (CET)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Wed, 25 Nov 2026 13:33:31 -0500
-Subject: [PATCH v3 9/9] media: hantro: Add v4l2_hw run/done traces
+	id 1xWHAq-0000000AoJe-0B4S;
+	Wed, 25 Nov 2026 17:52:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=3kouSNyK9R23I+qZ3mr2DQ2vQHuvZbqCaS8A5GKpSiI=; b=Tu7jIaE/1iRbXHNLm8OSg3DS0A
+	2z3Sq/TF9jPuPMfD+QaXUJ1eU1JYNyg3sDLL28HvOaxFfp6XSdyTuMGJFgSRfnR0aBFlDYDpz7W6d
+	mIE4vqtIE3YoKBbYJe3hS/1DARZc2zRTpv8CuxklerDh8ObnoS38DckpeEPg6R4b9kyeKwmr1WbYP
+	PVKriLpE4rLpHDp7NuENtVIiil7d5MyL1KFi+z8gO8O3A9nu+x5egy0702T09tXwjvbh6amkCyqfd
+	y3N+gUJURdI7lyYwPKbdkxEggMmfSrnIqvCIn5m1zUCadGxCy60KfYA91vH1aMRDSbGAUTN50QhYS
+	PzWt7BtA==;
+Received: from smtpout-02.galae.net ([185.246.84.56])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHAm-00000005bNp-0iRW;
+	Wed, 25 Nov 2026 17:52:50 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 033911A17F9;
+	Wed, 25 Nov 2026 17:52:47 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C0E9260480;
+	Wed, 25 Nov 2026 17:52:46 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5B65A11E6B0D2;
+	Wed, 25 Nov 2026 18:52:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795629164; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=3kouSNyK9R23I+qZ3mr2DQ2vQHuvZbqCaS8A5GKpSiI=;
+	b=RYp9veohHs2JdLBosL+OsjxwlR5ySlzQOAAtmxVHB0PF+kGJfjYwbk9Zr8zNeXJ6OlEbgv
+	6zMyoPjAOXUJULNnrP5XuerZtky0pwNWlOa/oUwIASW95rOPRxAwmAdBoEfqWhjloAAkRz
+	+af48+G//LVpdAxvoMbQb1UibBI5CwcDQtJVmcpSki4kh3KMYcxwHtCgaBDn2SKGwmhk12
+	Ayf5LyU9tRq5MLbV+cfO5AoxQxPhP0QmO9Hhnel5CvxyUPfGLyrWQpzO6gCul208u8Whpu
+	KTRVmtC3+gA1XP/32Aztz+aRTBVY/MvNjItZCiK/GLlZt6TFoHBApm7tO375vw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:26 +0100
+Subject: [PATCH RFC 12/16] spi: rtk-nor: Consume dummy cycles directly
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-v4l2-add-ftrace-v3-9-1d1db48372ed@collabora.com>
-References: <20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com>
-In-Reply-To: <20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com>
-To: Daniel Almeida <daniel.almeida@collabora.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
- Detlev Casanova <detlev.casanova@collabora.com>
-X-Mailer: b4 0.15.2
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-12-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_104511_548786_BC6CFCE4 
-X-CRM114-Status: GOOD (  16.06  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_175249_249337_D32F5B8C 
+X-CRM114-Status: GOOD (  15.84  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,112 +113,104 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the trace calls as well as retrieving the number of clock cycles for
-the rockchip_vpu core.
+The spi-mem layer is now capable of providing the dummy phase in cycle
+units rather than bytes, provided that drivers advertize the dummy_cycle
+capability. Since this controller is consuming cycles and currently
+converts bytes into cycles, flag it capable to consume cycles directly
+and drop the extra conversions.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/media/platform/verisilicon/hantro.h               |  1 +
- drivers/media/platform/verisilicon/hantro_drv.c           | 14 +++++++++++++-
- drivers/media/platform/verisilicon/rockchip_vpu981_regs.h |  1 +
- drivers/media/platform/verisilicon/rockchip_vpu_hw.c      |  4 ++++
- 4 files changed, 19 insertions(+), 1 deletion(-)
+ drivers/spi/spi-rtk-nor.c | 28 +++++++++++-----------------
+ 1 file changed, 11 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index 0353de154a1e..d5cddc783688 100644
---- a/drivers/media/platform/verisilicon/hantro.h
-+++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -253,6 +253,7 @@ struct hantro_ctx {
+diff --git a/drivers/spi/spi-rtk-nor.c b/drivers/spi/spi-rtk-nor.c
+index 55ea7c371854..6febeee2541d 100644
+--- a/drivers/spi/spi-rtk-nor.c
++++ b/drivers/spi/spi-rtk-nor.c
+@@ -92,18 +92,10 @@ struct rtk_spi_host {
+ 	size_t			dirmap_size;
+ };
  
- 	u32 sequence_cap;
- 	u32 sequence_out;
-+	u32 hw_cycles;
- 
- 	const struct hantro_fmt *vpu_src_fmt;
- 	struct v4l2_pix_format_mplane src_fmt;
-diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 3734ea701145..54a078ac14e4 100644
---- a/drivers/media/platform/verisilicon/hantro_drv.c
-+++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -25,6 +25,8 @@
- #include <media/videobuf2-core.h>
- #include <media/videobuf2-vmalloc.h>
- 
-+#include <trace/events/v4l2.h>
-+
- #include "hantro_v4l2.h"
- #include "hantro.h"
- #include "hantro_hw.h"
-@@ -100,6 +102,9 @@ void hantro_irq_done(struct hantro_dev *vpu,
- 	struct hantro_ctx *ctx =
- 		v4l2_m2m_get_curr_priv(vpu->m2m_dev);
- 
-+	if (ctx)
-+		trace_v4l2_hw_done(ctx->fh.tgid, ctx->fh.fd, ctx->hw_cycles);
-+
- 	/*
- 	 * If cancel_delayed_work returns false
- 	 * the timeout expired. The watchdog is running,
-@@ -122,6 +127,9 @@ void hantro_watchdog(struct work_struct *work)
- 	ctx = v4l2_m2m_get_curr_priv(vpu->m2m_dev);
- 	if (ctx) {
- 		vpu_err("frame processing timed out!\n");
-+
-+		trace_v4l2_hw_done(ctx->fh.tgid, ctx->fh.fd, ctx->hw_cycles);
-+
- 		if (ctx->codec_ops->reset)
- 			ctx->codec_ops->reset(ctx);
- 		hantro_job_finish(ctx, VB2_BUF_STATE_ERROR);
-@@ -183,8 +191,12 @@ static void device_run(void *priv)
- 	v4l2_m2m_buf_copy_metadata(src, dst);
- 
- 	ret = ctx->codec_ops->run(ctx);
--	if (ret)
-+	if (ret) {
- 		hantro_job_finish(ctx, VB2_BUF_STATE_ERROR);
-+		return;
-+	}
-+
-+	trace_v4l2_hw_run(ctx->fh.tgid, ctx->fh.fd);
- }
- 
- static const struct v4l2_m2m_ops vpu_m2m_ops = {
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h b/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
-index e4008da64f19..96b85470208b 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
-@@ -451,6 +451,7 @@
- #define av1_pp0_dup_ver			AV1_DEC_REG(394, 16, 0xff)
- #define av1_pp0_dup_hor			AV1_DEC_REG(394, 24, 0xff)
- 
-+#define AV1_CYCLE_COUNT			(AV1_SWREG(63))
- #define AV1_TILE_OUT_LU			(AV1_SWREG(65))
- #define AV1_REFERENCE_Y(i)		(AV1_SWREG(67) + ((i) * 0x8))
- #define AV1_SEGMENTATION		(AV1_SWREG(81))
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-index 02673be9878e..f959151b6645 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-@@ -424,6 +424,8 @@ static irqreturn_t rk3588_vpu981_irq(int irq, void *dev_id)
+-static u32 rtk_spi_calc_dummy_cycles(const struct spi_mem_op *op)
+-{
+-	if (!op->dummy.nbytes)
+-		return 0;
+-
+-	return (op->dummy.nbytes * 8) / op->dummy.buswidth;
+-}
+-
+ static void rtk_spi_read_mode(struct rtk_spi_host *host, const struct spi_mem_op *op)
  {
- 	struct hantro_dev *vpu = dev_id;
- 	enum vb2_buffer_state state;
-+	struct hantro_ctx *ctx =
-+		v4l2_m2m_get_curr_priv(vpu->m2m_dev);
- 	u32 status;
+ 	u32 opcode = op->cmd.opcode;
+-	u32 dummy_cycles, val;
++	u32 val;
  
- 	status = vdpu_read(vpu, AV1_REG_INTERRUPT);
-@@ -433,6 +435,8 @@ static irqreturn_t rk3588_vpu981_irq(int irq, void *dev_id)
- 	vdpu_write(vpu, 0, AV1_REG_INTERRUPT);
- 	vdpu_write(vpu, AV1_REG_CONFIG_DEC_CLK_GATE_E, AV1_REG_CONFIG);
+ 	if (op->data.buswidth == 2)
+ 		opcode |= DUAL_MODE_EN;
+@@ -113,10 +105,8 @@ static void rtk_spi_read_mode(struct rtk_spi_host *host, const struct spi_mem_op
+ 	val = readl(host->regbase + SFC_CTL);
+ 	val |= RW_DATAEN | ADDR_EN;
  
-+	ctx->hw_cycles = vdpu_read(vpu, AV1_CYCLE_COUNT);
+-	dummy_cycles = rtk_spi_calc_dummy_cycles(op);
+-
+ 	val &= ~SFC_CTL_DMYCNT_MASK;
+-	val |= (dummy_cycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
++	val |= (op->dummy.ncycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
+ 	writel(val, host->regbase + SFC_CTL);
+ 
+ 	readl(host->iobase);
+@@ -192,7 +182,7 @@ static int rtk_spi_command_read(struct rtk_spi_host *host, const struct spi_mem_
+ 	size_t len = op->data.nbytes;
+ 	loff_t offset = op->addr.val;
+ 	u8 opcode = op->cmd.opcode;
+-	u32 dummy_cycles, val;
++	u32 val;
+ 
+ 	writel(opcode, host->regbase + SFC_OPCODE);
+ 
+@@ -203,8 +193,7 @@ static int rtk_spi_command_read(struct rtk_spi_host *host, const struct spi_mem_
+ 	if (op->addr.nbytes > 0)
+ 		val |= ADDR_EN;
+ 
+-	dummy_cycles = rtk_spi_calc_dummy_cycles(op);
+-	val |= (dummy_cycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
++	val |= (op.dummy.ncycles << SFC_CTL_DMYCNT_SHIFT) & SFC_CTL_DMYCNT_MASK;
+ 	writel(val, host->regbase + SFC_CTL);
+ 
+ 	return rtk_spi_byte_transfer(host, offset, len, op->data.buf.in, true);
+@@ -346,8 +335,8 @@ static bool rtk_spi_supports_op(struct spi_mem *mem,
+ 	if (!op->addr.nbytes && op->data.nbytes > 1)
+ 		return false;
+ 
+-	if (op->dummy.nbytes != 0) {
+-		if (op->dummy.buswidth > 1 || op->dummy.nbytes > 7)
++	if (op->dummy.ncycles) {
++		if (op->dummy.buswidth > 1 || op->dummy.ncycles > 7 * BITS_PER_BYTE)
+ 			return false;
+ 	}
+ 
+@@ -464,6 +453,10 @@ static const struct spi_controller_mem_ops rtk_spi_mem_ops = {
+ 	.adjust_op_size = rtk_spi_adjust_op_size,
+ };
+ 
++static const struct spi_controller_mem_caps rtk_spi_mem_caps = {
++	.dummy_cycles = true,
++};
 +
- 	hantro_irq_done(vpu, state);
+ static int rtk_spi_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -535,6 +528,7 @@ static int rtk_spi_probe(struct platform_device *pdev)
+ 	ctrl->mode_bits = SPI_RX_DUAL | SPI_TX_DUAL;
+ 	ctrl->bus_num = -1;
+ 	ctrl->mem_ops = &rtk_spi_mem_ops;
++	ctrl->mem_caps = &rtk_spi_mem_caps;
+ 	ctrl->num_chipselect = 1;
+ 	ctrl->auto_runtime_pm = true;
  
- 	return IRQ_HANDLED;
 
 -- 
-2.56.1
+2.56.0
 
 
