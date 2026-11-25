@@ -2,84 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410E9606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8A6606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QACJyrCX;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=yL6AMJxn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qZM6yOiI;
+	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=H+0tWgFZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iZxx/bv8sERrldyegt+0p8ETCEh3QBNaziABehRhDAk=; b=QACJyrCXPv4S4C
-	HzkDRThij+VlMTIAed1UMzGXZQ1boONOncW/eChCu25fcAZlv7nIThHe8igXTQPh2MDA5ePULbjMt
-	qZP76u2ErdbrHKqv8+kxNk+X6KeTStHa8gL/rYIdbFHjOt62KBCJ64ot8fzANXQsoPVW2sUBzipLK
-	NXd2WaxNRsFH5rVGIwpj68iN80ujo172S8CbM8QwyNeNRShKp8ZZ8+q53BNnGUFJ6r7DyiBvwqhei
-	UfRyqJXLWTX1itiO0c4TsxBkrq/94B4P+gARe4yxJ8wRxpDzFF5YccWbEzu/ykphe1f9qTOIGPf7c
-	wQP9i7N6mcYvcEk9yeOQ==;
+	List-Owner; bh=lztRdkoEfHXfPLjrWU6dsJpmXlIzrR9WYIGBZGJqNOI=; b=qZM6yOiIxpUyEC
+	oUW2Z2STcwSARUYVB6SdZbSMm+DcbFU4OyjHKwPVM1w7h14pW8uniuzJTAhB6nIkwp6dqObQl4pHi
+	f0yhIqp4/ndEMB9yrvK5nJOm+NP4KwVMdG5TmZbCjWBSUF5WOp1VGFeg2tObREHOZGUHWB1vvKJiT
+	f1W354yAvixltoXAjlrqPENGDkweUwCJtLHe4bvV3kI2yN9tuUhHIWbAJ9Vw56H0rTcxHQxjsXhSk
+	7fIhrWHqBCEj2Dx6uw4bPuZRlJ/yK9feS8u+6WB735Cd6dkSAgcl+3OHULL9cmoYaFBc7TGkMSCC+
+	1v8OVDAq/VNK5iIxCgdQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAw-0000000AoVv-0x6G;
-	Wed, 25 Nov 2026 17:52:58 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xWHzc-0000000B30M-0Ibq;
+	Wed, 25 Nov 2026 18:45:20 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHA6-0000000AnZc-1g2D;
-	Wed, 25 Nov 2026 17:52:09 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 8CDBE4E41785;
-	Wed, 25 Nov 2026 17:52:04 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6114960480;
-	Wed, 25 Nov 2026 17:52:04 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6417311E6B0D4;
-	Wed, 25 Nov 2026 18:51:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629122; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iZxx/bv8sERrldyegt+0p8ETCEh3QBNaziABehRhDAk=;
-	b=yL6AMJxnVUerS+qMBN95vJA+Y7K3/dhFouRAcBhWhxAyGTqONCU8kzEjNSe7yny1XlTZ2B
-	1eY+gEOS/9vAcE39SthkjtppvaT8ilNd0zgyRGfqcGEG6Afe9IrA7IgFgscjHhhp+KOQAP
-	DL9AYhtRwBa9ZCQ5d4wJ0Vr7b5xq4Y6tYOcOWHTIiZ7GLPmkjl3RWdSMGGwynH37OOzvFh
-	Ys/b/Q+BEna2T4nbn6uw8wqQSGRDQHFArZ+7lM5OjjkH1sLshzEUsT9VZN05oAzllz9F7n
-	KMKsqdpUq/KO3jvXSrm3Z5EtgyPlyDsfqTSmXRpva+TWp12wUjblVK1kCBET3Q==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:18 +0100
-Subject: [PATCH RFC 04/16] spi: amlogic-spifc-a1: Consume dummy cycles
- directly
+	id 1xWHzF-0000000B2nA-1yJZ;
+	Wed, 25 Nov 2026 18:45:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1795632295;
+	bh=/9vfGQcY27HGY4BnTzA1JyrGpZYrrGs5WU0br6myPH8=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=H+0tWgFZHaXyTs0SeNGvu9d+37Lsgps8h+kvZ5ttWpoJww4ses4gXabpCnihydBLu
+	 Y7ffi4NKRTKrR3bx6ajJYvpqsI7lSN/KiWb+I8quemZnXuB5gzAMKGGGc3orXNgxWN
+	 rJaTfDFnR66FD1jKCkWTJz+Bzc3fVl36ZX892b7gUwScaoydzaIz3BoEjh+Rg5YMKK
+	 xFc6Gs/SGAguFwlnV49CLBfr2QSZWbTw18odj5x+1M/chtVIOK+tAQb+Pt6pw1mc23
+	 THZab79pYejPYq18ycRun7f9qUBh/Py+rwdrG6N/Z2IMevsWIVsQPdcDPG2LqwFes+
+	 RgIVQIfpy9c4Q==
+Received: from [192.168.0.15] (unknown [100.64.0.170])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: detlev)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BB30A17E10D0;
+	Wed, 25 Nov 2026 19:44:53 +0100 (CET)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+Date: Wed, 25 Nov 2026 13:33:25 -0500
+Subject: [PATCH v3 3/9] media: Add tgid and fd fields in v4l2_fh struct
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-4-fd036402fd37@bootlin.com>
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Message-Id: <20261125-v4l2-add-ftrace-v3-3-1d1db48372ed@collabora.com>
+References: <20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com>
+In-Reply-To: <20261125-v4l2-add-ftrace-v3-0-1d1db48372ed@collabora.com>
+To: Daniel Almeida <daniel.almeida@collabora.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Steven Rostedt <rostedt@goodmis.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+ Detlev Casanova <detlev.casanova@collabora.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095206_629377_41E83CD2 
-X-CRM114-Status: GOOD (  12.42  )
+X-CRM114-CacheID: sfid-20261125_104457_722785_BC1810FD 
+X-CRM114-Status: GOOD (  19.03  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,49 +89,106 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The spi-mem layer is now capable of providing the dummy phase in cycle
-units rather than bytes, provided that drivers advertize the dummy_cycle
-capability. Since this controller is consuming cycles and currently
-converts bytes into cycles, flag it capable to consume cycles directly
-and drop the extra conversions.
+These fields will be used in traces to help userspace tracing tools
+identify streams.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+The tgid field will keep the PID of the process that opened the video
+file.
+That is needed because trace calls can happen in IRQs, for which there is
+no current PID.
+
+The fd field helps identify the context in case the same process opens the
+video device multiple times.
+Note that the fd field is set in the __video_do_ioctl() function.
+That is because the file descriptor has not been allocated yet when
+v4l2_open() is called.
+
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 ---
- drivers/spi/spi-amlogic-spifc-a1.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/media/v4l2-core/v4l2-fh.c    |  1 +
+ drivers/media/v4l2-core/v4l2-ioctl.c | 17 +++++++++++++++++
+ include/media/v4l2-fh.h              |  4 ++++
+ 3 files changed, 22 insertions(+)
 
-diff --git a/drivers/spi/spi-amlogic-spifc-a1.c b/drivers/spi/spi-amlogic-spifc-a1.c
-index 388bd2472dc0..282647cd6b56 100644
---- a/drivers/spi/spi-amlogic-spifc-a1.c
-+++ b/drivers/spi/spi-amlogic-spifc-a1.c
-@@ -90,7 +90,7 @@
- #define SPIFC_A1_USER_DUMMY(op) ( \
- 	SPIFC_A1_USER_DUMMY_ENABLE | \
- 	FIELD_PREP(SPIFC_A1_USER_DUMMY_MODE, ilog2((op)->dummy.buswidth)) | \
--	FIELD_PREP(SPIFC_A1_USER_DUMMY_CLK_SYCLES, (op)->dummy.nbytes << 3))
-+	FIELD_PREP(SPIFC_A1_USER_DUMMY_CLK_SYCLES, (op)->dummy.ncycles))
+diff --git a/drivers/media/v4l2-core/v4l2-fh.c b/drivers/media/v4l2-core/v4l2-fh.c
+index b184bed8aca9..9c2ddd1c2137 100644
+--- a/drivers/media/v4l2-core/v4l2-fh.c
++++ b/drivers/media/v4l2-core/v4l2-fh.c
+@@ -37,6 +37,7 @@ void v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
+ 	INIT_LIST_HEAD(&fh->available);
+ 	INIT_LIST_HEAD(&fh->subscribed);
+ 	fh->sequence = -1;
++	fh->tgid = current->tgid;
+ 	mutex_init(&fh->subscribe_lock);
+ }
+ EXPORT_SYMBOL_GPL(v4l2_fh_init);
+diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+index 17ba1ae70735..5d7fbaa1b41a 100644
+--- a/drivers/media/v4l2-core/v4l2-ioctl.c
++++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+@@ -9,6 +9,7 @@
+  */
  
- #define SPIFC_A1_TSLCH_VAL	FIELD_PREP(SPIFC_A1_TSLCH, 1)
- #define SPIFC_A1_TCLSH_VAL	FIELD_PREP(SPIFC_A1_TCLSH, 1)
-@@ -269,7 +269,7 @@ static int amlogic_spifc_a1_exec_op(struct spi_mem *mem,
- 		amlogic_spifc_a1_set_addr(spifc, op->addr.val,
- 					  SPIFC_A1_USER_ADDR(op));
+ #include <linux/compat.h>
++#include <linux/fdtable.h>
+ #include <linux/mm.h>
+ #include <linux/module.h>
+ #include <linux/slab.h>
+@@ -3063,6 +3064,16 @@ void v4l_printk_ioctl(const char *prefix, unsigned int cmd)
+ }
+ EXPORT_SYMBOL(v4l_printk_ioctl);
  
--	if (op->dummy.nbytes)
-+	if (op->dummy.ncycles)
- 		amlogic_spifc_a1_set_dummy(spifc, SPIFC_A1_USER_DUMMY(op));
++static int _file_iterate(const void *priv, struct file *filp, unsigned int fd)
++{
++	const struct file *fh_filp = priv;
++
++	if (fh_filp == filp)
++		return fd;
++
++	return 0;
++}
++
+ static long __video_do_ioctl(struct file *file,
+ 		unsigned int cmd, void *arg)
+ {
+@@ -3083,6 +3094,12 @@ static long __video_do_ioctl(struct file *file,
+ 		return ret;
+ 	}
  
- 	if (data_size) {
-@@ -321,6 +321,7 @@ static const struct spi_controller_mem_ops amlogic_spifc_a1_mem_ops = {
++	if (unlikely(!vfh->fd)) {
++		vfh->fd = iterate_fd(current->files, 0, _file_iterate, file);
++		if (!vfh->fd)
++			vfh->fd = -1;
++	}
++
+ 	/*
+ 	 * We need to serialize streamon/off/reqbufs with queueing new requests.
+ 	 * These ioctls may trigger the cancellation of a streaming
+diff --git a/include/media/v4l2-fh.h b/include/media/v4l2-fh.h
+index aad4b3689d7e..080cb00e3867 100644
+--- a/include/media/v4l2-fh.h
++++ b/include/media/v4l2-fh.h
+@@ -28,6 +28,8 @@ struct v4l2_ctrl_handler;
+  * @vdev: pointer to &struct video_device
+  * @ctrl_handler: pointer to &struct v4l2_ctrl_handler
+  * @prio: priority of the file handler, as defined by &enum v4l2_priority
++ * @tgid: process id that initialized the v4l2_fh
++ * @fd: file descriptor associated to this v4l2_fh for the process id in tgid
+  *
+  * @wait: event' s wait queue
+  * @subscribe_lock: serialise changes to the subscribed list; guarantee that
+@@ -44,6 +46,8 @@ struct v4l2_fh {
+ 	struct video_device	*vdev;
+ 	struct v4l2_ctrl_handler *ctrl_handler;
+ 	enum v4l2_priority	prio;
++	u32			tgid;
++	int			fd;
  
- static const struct spi_controller_mem_caps amlogic_spifc_a1_mem_caps = {
- 	.per_op_freq = true,
-+	.dummy_cycles = true,
- };
- 
- static int amlogic_spifc_a1_probe(struct platform_device *pdev)
+ 	/* Events */
+ 	wait_queue_head_t	wait;
 
 -- 
-2.56.0
+2.56.1
 
 
