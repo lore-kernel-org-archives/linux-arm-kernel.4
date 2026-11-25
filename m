@@ -2,73 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D52F606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F56D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l/gZf0zM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OEK+WUgT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E/1CtlBB;
+	dkim=pass (1024-bit key, unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=TZalUQ3S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8lUtvBf4yp1q4uRBQvvRAWZrQAMHjkc9iS4tTLTfDyA=; b=l/gZf0zM2CskvmkXrkfcjmL1Hm
-	hXWg3wL7+CS4u8LIAChGvzaRusq9DS4LXkq3ZvgxmWzv3b57jbbcv7o2AWqCIFGwUMduzS/KjWyWG
-	bgpXAKLCEVPm6xTytU6lLZC34udw22NBhH2PuWq/DumOr+k0T+vJ6PX7lOAqopVkl34fcN3ouW3NE
-	t1qTSyUuYRCtyBFkbwUsndcMqxLTgf8YCEVh6HLN0JszBc0oJ8/MmyzNIpNjTTKa7Mm0QsTVfW5Fm
-	/HIqZfvJKCL3wHKKfdcdUgJaC8B2RLJ2iTIh5oTSnCz13XNEmWQeAXS4x9OApyt3wCdI4Irp2dseC
-	rfd0CeLQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=1tGFif0lEsOnMlHS24tGcaJgl/1gi5O3vYFmGxpevgI=; b=E/1CtlBBBP2p1O
+	5vwjoo0h/CGiFksWas5vbdEBNJ/rs/c47v0ng7TYAd5o9fQabo8U7e89u8psRENc25as/oBmyUXad
+	Ybe0zQ3guY0UEknkDsCJKVC8daPqoUJioHrM+7PIyEqzitwslAdKY68NRl0l3pqDIurXMiT4OikEA
+	NTugmNuxT/mMHpRqCJGPH+VOz5N6zSxJjEwFQWeBVbZccSD6STmafEqEGReEWStDVjW39pahAulAM
+	QiTfwB6aZhq39k6mFo9EitqKEjzLN8diQrq7Jn8N1tmu5lpTKUjKvC6G64mabEs7Z05GWxnjU2BXp
+	YxzVp+Nf7izsxW2fbZ0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBIo-00000009eg8-2PXI;
-	Wed, 25 Nov 2026 11:36:42 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWB7S-00000009cAp-48SV;
+	Wed, 25 Nov 2026 11:24:58 +0000
+Received: from mail-m6085.netease.com ([210.79.60.85])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBIo-00000009efl-0N55
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:36:42 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 67F0762945;
-	Wed, 25 Nov 2026 11:36:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D9D51F000CA;
-	Wed, 25 Nov 2026 11:36:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795606600;
-	bh=8lUtvBf4yp1q4uRBQvvRAWZrQAMHjkc9iS4tTLTfDyA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OEK+WUgTJdEarfLjej1HEQDPg1tpmClXTWZKCTeuWPyTcUZTsgfsbeVmYw7beWYif
-	 SCn5YZyW62ypU6+YGtN40Xm/UGIBnPPVp01hWmUc0KXSHwHxLNPKNiROGjNDjT9FNh
-	 0dQjV2DwEIcwBrvnMZGycFinF0L9HNUThcW5z8UTA0s1/q+EBi/JGIr+Tbud0bnsWH
-	 uRfUh4yStcTsT8j9CDvLcqoRY7Q8R0/ib7q91r0cBsW0SMgxSrIQK48n12s6b208Eq
-	 nQXKyqVc15Y5aBdK3k2ARBhNywi6Ubv4RGlW34ti4WdcyOKEdzvxTdINKeYIZRf0ZM
-	 7mpix3n+1kJvA==
-Date: Wed, 25 Nov 2026 11:36:34 +0000
-From: Simon Horman <horms@kernel.org>
-To: Marco Crivellari <marco.crivellari@suse.com>
-Cc: Meghana Malladi <m-malladi@ti.com>, kees+treewide@kernel.org,
-	laixiangwu@cmss.chinamobile.com, philippe.schenker@impulsing.ch,
-	haokexin@gmail.com, devnexen@gmail.com, jacob.e.keller@intel.com,
-	sdf@fomichev.me, john.fastabend@gmail.com, hawk@kernel.org,
-	daniel@iogearbox.net, ast@kernel.org, pabeni@redhat.com,
-	kuba@kernel.org, edumazet@kernel.org, davem@davemloft.net,
-	andrew+netdev@lunn.ch, bpf@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, srk@ti.com,
-	Vignesh Raghavendra <vigneshr@ti.com>, danishanwar@ti.com
-Subject: Re: [PATCH net-next 2/2] net: ti: icssg-prueth: Add ethtool RX flow
- classification support
-Message-ID: <20261125113634.GT31322@horms.kernel.org>
-References: <20261118184729.2302130-1-m-malladi@ti.com>
- <20261118184729.2302130-3-m-malladi@ti.com>
- <CAAofZF4XYd5z8X56DRARMxbu3t7QX48T7V69MPBw9TW1BQAmKg@mail.gmail.com>
+	id 1xWB4w-00000009aER-0wxW;
+	Wed, 25 Nov 2026 11:22:24 +0000
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 55f81607b;
+	Wed, 25 Nov 2026 19:22:18 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andyshrk@163.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v7 18/20] drm/bridge: analogix_dp: Declare DRM_BRIDGE_OP_HPD for hotplug reporting
+Date: Wed, 25 Nov 2026 19:21:39 +0800
+Message-Id: <20261125112141.1434903-19-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261125112141.1434903-1-damon.ding@rock-chips.com>
+References: <20261125112141.1434903-1-damon.ding@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAAofZF4XYd5z8X56DRARMxbu3t7QX48T7V69MPBw9TW1BQAmKg@mail.gmail.com>
+X-HM-Tid: 0aa2127132cf03a8kunm17c230507758ef
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZGU8aVk0eGklOHxpCTU0fGlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=TZalUQ3SLylho/NRn0MA8P5SySXILCW1Rq8vLSN4l/B1Wykh6kCehnea6h4yOYgJK4mnalmyK1PS1DyKLzsdADTszfoAJ8ALDQ26jaRzdeY6QpGNuaY9HojmTYP+Nj4EvF0cVPLw3qohQv4Q0Z52Tu7Fd34rhvfBfY7wM33i8bo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=1tGFif0lEsOnMlHS24tGcaJgl/1gi5O3vYFmGxpevgI=;
+	h=date:mime-version:subject:message-id:from;
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_032222_498240_E2DA5240 
+X-CRM114-Status: GOOD (  15.40  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,64 +94,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 10:19:48AM +0100, Marco Crivellari wrote:
-> Hi,
-> 
-> On Wed, Nov 18, 2026 at 7:50 PM Meghana Malladi <m-malladi@ti.com> wrote:
-> > [...]
-> > +       mutex_lock(&emac->rxnfc.rxnfc_lock);
-> > +
-> > +       /* Check max rules */
-> > +       if (emac->rxnfc.rxnfc_rule_count >= ICSSG_RXNFC_MAX_RULES) {
-> > +               ret = -ENOSPC;
-> > +               goto unlock;
-> > +       }
-> >  [...]
-> > +
-> > +unlock:
-> > +       mutex_unlock(&emac->rxnfc.rxnfc_lock);
-> > +       return ret;
-> > +}
-> > +EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_add);
-> 
-> nit: instead of mutex_lock() you can use guard() [1]:
-> 
->     guard(mutex)(&emac->rxnfc.rxnfc_lock)
-> 
-> and remove all the "goto unlock", returning directly. This handles the
-> automatic cleanup.
-> 
-> Same for other places where you're using mutex_lock() / mutex_unlock().
-> 
-> - [1] https://docs.kernel.org/core-api/cleanup.html
+This commit declares DRM_BRIDGE_OP_HPD for the analogix_dp bridge,
+adds the hpd_enable/hpd_disable bridge callbacks and reports the
+hotplug events through drm_bridge_hpd_notify() with the status read
+from the HPD GPIO pin or the controller registers.
 
-Thanks Marco,
+The DRM_BRIDGE_OP_HPD capability is declared only for the platforms
+which support hotplug detection (the GPIO HPD mode, or the native HPD
+mode on RK3576 and RK3588), since the drm core stops polling the
+connector once DRM_BRIDGE_OP_HPD is declared.
 
-That may be good general advice.
-But for networking code the explicit approach taken by this patch
-is still preferred.
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 
-  Using device-managed and cleanup.h constructs
+---
 
-  Netdev remains skeptical about promises of all “auto-cleanup” APIs,
-  including even devm_ helpers, historically. They are not the preferred
-  style of implementation, merely an acceptable one.
+Changes in v6:
+- Declare DRM_BRIDGE_OP_HPD only for the platforms which support
+  hotplug detection, since the drm core stops polling the connector
+  once DRM_BRIDGE_OP_HPD is declared. (Sashiko)
+- Add Tested-by tag.
 
-  Use of guard() is discouraged within any function longer than 20 lines,
-  scoped_guard() is considered more readable. Using normal lock/unlock is
-  still (weakly) preferred.
+Changes in v7:
+- Set the bridge ops after the chain is attached, as the
+  DRM_BRIDGE_OP_HPD declaration previously preceded the
+  force_connected_mode initialization, leaving the hotplug detection
+  broken on fixed panels with a wired HPD GPIO. (Sashiko)
+- Drop the Tested-by tags, as the design of this patch changed
+  significantly in this version.
+---
+ .../drm/bridge/analogix/analogix_dp_core.c    | 24 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
-  Low level cleanup constructs (such as __free()) can be used when building
-  APIs and helpers, especially scoped iterators. However, direct use of
-  __free() within networking core and drivers is discouraged. Similar
-  guidance applies to declaring variables mid-function.
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+index cda6e4c5cbc8..7ab183f72eb6 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+@@ -31,7 +31,6 @@
+ #include <drm/drm_edid.h>
+ #include <drm/drm_of.h>
+ #include <drm/drm_print.h>
+-#include <drm/drm_probe_helper.h>
+ 
+ #include <video/of_display_timing.h>
+ 
+@@ -757,9 +756,13 @@ static irqreturn_t analogix_dp_irq_thread(int irq, void *arg)
+ 		hpd_detected = (irq_type & DP_IRQ_TYPE_HP_CABLE_IN) ||
+ 			       (irq_type & DP_IRQ_TYPE_HP_CABLE_OUT);
+ 	if (hpd_detected) {
++		enum drm_connector_status status;
++
+ 		dev_dbg(dp->dev, "Detected cable status changed!\n");
+-		if (dp->drm_dev)
+-			drm_helper_hpd_irq_event(dp->drm_dev);
++
++		status = analogix_dp_get_plug_in_status(dp) == 0 ? connector_status_connected :
++								   connector_status_disconnected;
++		drm_bridge_hpd_notify(&dp->bridge, status);
+ 	}
+ 
+ 	if (!dp->hpd_gpiod)
+@@ -1293,6 +1296,14 @@ static void analogix_dp_bridge_atomic_post_disable(struct drm_bridge *bridge,
+ 		DRM_ERROR("Failed to enable psr (%d)\n", ret);
+ }
+ 
++static void analogix_dp_bridge_hpd_enable(struct drm_bridge *bridge)
++{
++}
++
++static void analogix_dp_bridge_hpd_disable(struct drm_bridge *bridge)
++{
++}
++
+ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
+ 	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+ 	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+@@ -1305,6 +1316,8 @@ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
+ 	.attach = analogix_dp_bridge_attach,
+ 	.edid_read = analogix_dp_bridge_edid_read,
+ 	.detect = analogix_dp_bridge_detect,
++	.hpd_enable = analogix_dp_bridge_hpd_enable,
++	.hpd_disable = analogix_dp_bridge_hpd_disable,
+ };
+ 
+ static int analogix_dp_dt_parse_lanes_map(struct analogix_dp_device *dp)
+@@ -1633,7 +1646,6 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
+ 		return ret;
+ 	}
+ 
+-	bridge->ops = DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_DETECT;
+ 	bridge->of_node = dp->dev->of_node;
+ 	bridge->type = DRM_MODE_CONNECTOR_eDP;
+ 	ret = devm_drm_bridge_add(dp->dev, &dp->bridge);
+@@ -1646,6 +1658,10 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
+ 		goto err_unregister_aux;
+ 	}
+ 
++	bridge->ops = DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_DETECT;
++	if (analogix_dp_supports_hpd(dp))
++		bridge->ops |= DRM_BRIDGE_OP_HPD;
++
+ 	if (analogix_dp_require_pm_for_hpd_irq(dp)) {
+ 		ret = pm_runtime_resume_and_get(dp->dev);
+ 		if (ret)
+-- 
+2.34.1
 
-  Link: https://docs.kernel.org/process/maintainer-netdev.html#using-device-managed-and-cleanup-h-constructs
 
