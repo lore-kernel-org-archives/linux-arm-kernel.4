@@ -2,108 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A06A606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B552606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u0xRd2WP;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=aodaVd8j
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YnVBaMNY;
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=3RllmQYp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Content-Transfer-Encoding:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=r/GY1L0M/Jj/tnpXLztwrdoGc8kg+51R6Plf4ICZ1dQ=; b=u0xRd2WPSzE6sv
-	9I5/oRXrb4eRaMijEDKHE/SJ+31yXpGKJsK7i/ioodMQe1AhQzqgX20C1UPsYROyuTZGMTr4PYWHS
-	3ilxx9nj3HDuFl5OzA6wZo9xRgQMtEYLv/Cz6+scKtddeQe9NIYbtdJC9sdgEQdHP7K+dTTLzyiVE
-	f5UXazE11jiKcxA0IGho/A6kPxqvl09QTP8AC+BAMN+uM9so/5KulhMVqPuI0wqiN2NdJWw9nSx2/
-	p65UyMaU6sW3+yNLNagaB9xXdWUvQzXVoIqofFx9OlgZtg5TxXAiEy3VjnhnRvSFaE86wwZQiyP2t
-	HFY2TBuDa9+peXNFCbCQ==;
+	List-Owner; bh=C7GLy08/lhflvvblmPf5eQJqkFHdN5psewj5XgAMj1E=; b=YnVBaMNYmujEP0
+	rx/vF9vU9V7T93YuQN1WE84f0un6x+zhC7gV2k2fOohxe1SHDvN5U4gJsnYi7BB0tYiT17BRUrAFB
+	T7oD6Xs8BoVAmrfA1At2OxepbIUmU//5//imYJ3jR6nkhV/hhXJcNPnt7SLXDe0oiE4ECfpU0Kv1P
+	iZgPRxYz4R0l3lxR6L5+cVESxu+SGw3jUVx6ovm7UvT33aisbtO+2gFGEgWOwbdFgj5WlCF4+F8wS
+	0+8L2qSYbB7UwoZPQPG/jnTAytvQBLRoJBjoWpQ9l96PtCZXIYbCJVa22RWWuII38ksgAHjNk+sdu
+	Y/NiZmR+evr3cExMUu1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWKy0-0000000BQWs-3E5a;
-	Wed, 25 Nov 2026 21:55:54 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1xWL0U-0000000BQjc-0eq2;
+	Wed, 25 Nov 2026 21:58:26 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWKxx-0000000BQWQ-3eOT
+	id 1xWL0Q-0000000BQiZ-1qWi
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 21:55:51 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so3970402f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:55:49 -0800 (PST)
+	Wed, 25 Nov 2026 21:58:24 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c50aaad19fbso698942166b.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:58:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795643900; cv=none;
+        d=google.com; s=arc-20260327;
+        b=eZeL3F9eSvXKZb2VdpbVwLp2mQ1oYpcAgrtPal6YElmO1VEqSH1PsrY5Wp1WTxacNz
+         /UhI9bIyk+JvEISV4z7p8LDQv4GnwZ+8xNj9WbnAG9jgokymum9KhNi8Nnlavf9DpuWV
+         u+7BKs8MCARGOcgsA7xkPbjFXKLAH19u36GFRQ1RLhUUp70csc4MkJ3jhO9OTeFAyjGC
+         rttXngXtIhEBopK+QWnputWQth7KADk9EzKkhrlVZVEbf/hh1/rTSBs6eCSbpoU6Nuoj
+         CTesDuQ4NLQO0+Hnd6rjqavJ7pvykeIa83alVYMo2BNR/fHEZSA9ByKNEiWS/CKbc63a
+         ldQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=C7GLy08/lhflvvblmPf5eQJqkFHdN5psewj5XgAMj1E=;
+        fh=PP/L1u87hQoPynzmTlGNcbdedqEGDS4+X82pQLhGIWk=;
+        b=MKTsNmfEHcQCsIqRupVjPp5r4J3wxmHKq4jAdDmyMtRu2KklVkX7alhk+VfmZjfEP1
+         PvpK591mGXwAud9/8rKAlqK2lQpTiUbqzzUfpcUUY81QVMZ3s+VDzZWLBxMPz79GdUFQ
+         pFETZBiofi6wBtjA80Lg3Ei9g5fDLz8mpIwAy6go7V4hMSGxfd8kSrJ2lf9T4CT8ZOCJ
+         tUp3ihI3Q2f1CKadNQ16xLqONLYXg1POwrBlZ4Z9QEyljGXc87ysOWrIFQuNjJ3S7Pkt
+         guDR4Sp2VlubAGm5Gh8RuzvSNTvnicxAcvJQIBs6WXA59IKBm+DgQuRLk4ah6KMH674Y
+         ijBA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795643748; x=1796248548; darn=lists.infradead.org;
-        h=content-type:mime-version:content-transfer-encoding:message-id:date
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=r/GY1L0M/Jj/tnpXLztwrdoGc8kg+51R6Plf4ICZ1dQ=;
-        b=aodaVd8j7HhtGXXFOSV0BeCFtmU0LK+1jd8/nWwpr/2B6mIvpiimFseHgOLpGR4+bf
-         9dPU6hYKhevCgazEePcRnztY2LNt+MtO/rPBtrOGSguunQhCYaOwbCEq9fKxYCD5+NYE
-         2QTvPTri5oQSsANRTsLSQtkLrylgSvS6AOgSghmNggsA3GENhJDDRtKFcOBjlhgX1SHa
-         eeh9nJv8ADHskP7ubhN3aby3XK7XRystkka3vNk2SCRcfypeGFqKHj+l/TAnOq553Ixq
-         vL0wn+Bf2olujEOPFKQMUb3H1G8m5jT7MlKLszCPq7bj56YAndiBEP+VycI6hq9lny0k
-         nxBg==
+        d=flipper.net; s=google; t=1795643900; x=1796248700; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=C7GLy08/lhflvvblmPf5eQJqkFHdN5psewj5XgAMj1E=;
+        b=3RllmQYpw+G1tW/h1Ygawt5ziD7uUtwUvlWpFxu1PX26cUL0LHYRTfwLKGBDImT9iC
+         J/CAOaPenZrC+6U7GK2sKFNZLjzBZRtYM9I9ZHikXAJgcx4tp/E9OfZOkU6+M4E1c6MG
+         79tWHbOdM5rQ738Kr3KTtDg8wNNBVVi0s2+534a86M/VA2gBl9SL8jjKvC2qEzVxHJnn
+         CdH3QhzKA3OcBD6WGbeTDkVxzNUcfacthRp0nZ/1gx79gPJzWfE8vaF5KyhQahlzaF+o
+         oD8W2QI+HDRybSnxqwsSPUHd5Vs8duOVB7Y4ODCFRl0/62VB5Ap890EsKZwuclSEdicY
+         fj6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795643748; x=1796248548;
-        h=content-type:mime-version:content-transfer-encoding:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1795643900; x=1796248700;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=r/GY1L0M/Jj/tnpXLztwrdoGc8kg+51R6Plf4ICZ1dQ=;
-        b=SWrpxNKdAgZSTGuRXgRbweiJ4+PuemoJAEDtFuwJeRlJ8h/pFL2YIcEbZNxk34pYLJ
-         Ul+G1INKiSHsXjYt5DI9TDf5TTp7uEA3eEtbiICugG5xezqcOtxjtLDM8d77bX45uvRf
-         q0GRNFXWhjnaPoyC99/HHVjfYiRJM/27me/MBpEbHIIrk779vYW9zOh7L0hpCrQcythq
-         fQXZPuLvhjVvZbDKa2d4a9F94tnCiAko9aYwvm1EFtQkignTI3ptjaCzgQv1Z3lUGMu9
-         v/TSbvgoO78YhSRHv+40vIhxK5BXZ4zspQFt2Tbhko0WKtUbSgM7tjKhZ2vHNflVeUhw
-         +qNA==
-X-Forwarded-Encrypted: i=1; AL+hErHxFCna7omwTafpvXiude6OfhZzf6zcXcZ/bwyifAYXOeOttParwHcP7LKBaewWprZXVyGwZ6l7mHod6aQ5IQcH@lists.infradead.org
-X-Gm-Message-State: APuU4Z8af0vOQK9Fwby7DrEvqzd/LtW7G6IKuLg9AIXK3oeC8bV5YEf0
-	j5/MUrDMKnnI1q8r1M/jhENsgrBjigZLkHuAbydl0yQ/p4smTua2xx9r
-X-Gm-Gg: AZFdTZcNcb0rIT0Ht1vvInLJO9ZWMzMa59jgHPx0aeiNuI7FFNwyUPIN7hqbO5HBY8j
-	rHwL51IFO3K8+HEIyzWPc78r9iv9xNfZHOOkCTaMS44kNz+5B+DD9DOE3QuPcBQEgxfNPMNDngB
-	gt5RNj4DoLoOff+7Oz6rKLyj9u07i9E4QrrxvcOkkAxpyseWBdeMJ+96pfAec6O95C9x3E5ywly
-	59VVnZ17LzNN3pvn1NtSOAweJ8TPu3tUAT12p/Un+DuWrG2+GlE1Ua456znzf+RFOQ6riMD+450
-	S+8WcFy9l46OBT6+E0+u/KvtZKzzooUj9bu9bzBWiJWfukns7VGXBsGQjxvfv8cPnnXLxRf/9Y0
-	cmoxUM0vJMPh0aSdaGK/mJTDaSO0jIXgAUO7rS8eG8aSuWikE9bnFpXNheFLFRhWqE3dqxxSLeD
-	6WM7VDvrwgjBeUAYFNI07mmvjs+JoKN+H6mcpiy13hqWP55nlvgLWofcJI0016iXNIvyfuvpgAf
-	i6qP2l03bp+nVPusfumTrUwxlxjnHhcyeFoiac+FWOlTzMZB9YYk5ycYwEEUaErNpToCT5lvj8j
-	vBB4oJgc9fvwyBv74/cJgKurlgLIFv3Ao0EzlNODC05VKrg9n/jmVWM=
-X-Received: by 2002:a05:600c:8b11:b0:4a1:dda8:eb73 with SMTP id 5b1f17b1804b1-4bb8881c630mr403408355e9.27.1795643747772;
-        Wed, 25 Nov 2026 13:55:47 -0800 (PST)
-Received: from [127.0.1.1] (ip-024-180.users.dtel.ru. [91.210.24.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb884865a2sm566394855e9.3.2026.11.25.13.55.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 13:55:46 -0800 (PST)
-From: Fil Dunsky <filipp.dunsky@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- Simon Horman <horms@kernel.org>, Pablo Neira Ayuso <pablo@netfilter.org>,
- Florian Westphal <fw@strlen.de>, Phil Sutter <phil@nwl.cc>,
- Hans Ulli Kroll <ulli.kroll@googlemail.com>,
- Linus Walleij <linusw@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Christian Marangi <ansuelsmth@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netfilter-devel@vger.kernel.org,
- coreteam@netfilter.org, linux-arm-kernel@lists.infradead.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH RFC net-next 0/7] net: cortina: CS7542 wired IPv4 hardware
- flowtable offload
-In-Reply-To: <7252b836-e375-4550-90c9-b0e3ab7fbb6d@lunn.ch>
-References: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
- <7252b836-e375-4550-90c9-b0e3ab7fbb6d@lunn.ch>
-Date: Thu, 26 Nov 2026 00:55:27 +0300
-Message-ID: <179564372798.5.10006827612276789857@gmail.com>
-Content-Transfer-Encoding: 8bit
+        bh=C7GLy08/lhflvvblmPf5eQJqkFHdN5psewj5XgAMj1E=;
+        b=0NlaW2IDSip4TDSbjVFzvpi4/ziAY1DbT2oG+agL/yLp7XjqF7SYpp1XlZcI71R5xB
+         dQIi0nprX5OvOVjyXk+jZxgSe2KIzFiyymb+Xd2nrMwuZFzbzSjDZGb611/3lC7LAbdt
+         isCXEFiwKgSaPzMkGXo9FwnjG9ay5VTt2iULRGuJYFTLNCceA1qW/eZCAB8YQ74ZSe3F
+         e6F3EQgxD6j3KZuE7OoKmFZq8PWkMcu6WBOsZTjTTwRpJKAiWQIJXxg8SRwq8f0MNu/N
+         s+l71mEMx7iLHSReDtWMWJdK6O6E7FS3/NVN26jWEVeD6ZFlgp8CHA0o0N0JeBbSDV41
+         gL4g==
+X-Forwarded-Encrypted: i=1; AL+hErHSoivY/tfpAD609zHTkxTuVPLW7d/X53NqXbkbjgNVcxmgFbcLU37LGkywyHra/saf7SIqATvv9ysBTxh7sfML@lists.infradead.org
+X-Gm-Message-State: APuU4Z9IcmELDY+20C2JEAI9aTbZxdNyQaryKLEPGP8yaqe9zNXkbeSJ
+	4wXQoMfAKl3czWIb4ChcNA4KA5oJd2MiMJ8I107UFqcXSjRZcqUQlpYRkxoTHHvpjzzWcxXWeHw
+	DYwm56VfxUm6ZkElXeKfF0loizmapp+YD0VhBoBiBvw==
+X-Gm-Gg: AZFdTZfLW4HRcLyBGUtKnITXCseZL8RSBHX7fWwatnJmUM5QSbJz+nzT3bLARkG0tiW
+	J8J9pWua9IOoA8+XNtj8wqsLVryCZf2pKMNfbJKzhaeweFelMWrOnYUDV4agBNffjeh62NqwU4u
+	J+gnQ4tUCEGFoGtVayFrnBhy1O58qIR8o7UIzByyDIX1oyqLJTx2bxJpCVjoS7ZCDK7Wnl/2rzt
+	ulewLP7FHdplct0pwhxzEJh1ZXlySDkJjW2xhSysmJzNQNtKCeu4UJt+MAifgqkf37TUQF8mpuT
+	tyPNGLnCNvaFEsLAV5fF5w6dBg0RR17jrPToMHj8qhssaOm+UyvlX/M8JUAl38MtaLHVtWHfXd5
+	hGnIwwqAASqpCLkgi4rK6B3HlkuP6oXOnRIKImeQv4npD/IXqOT0qN6zUirI63as/EPxm
+X-Received: by 2002:a17:906:c114:b0:c51:baf0:f9a with SMTP id
+ a640c23a62f3a-c51baf010eemr165270866b.15.1795643900272; Wed, 25 Nov 2026
+ 13:58:20 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format="fixed"
+References: <20261120-rk3576-phys-v1-0-6382cd14e3dc@flipper.net> <179563805247.3885553.6358930861216631692.b4-ty@b4>
+In-Reply-To: <179563805247.3885553.6358930861216631692.b4-ty@b4>
+From: Alexey Charkov <alchark@flipper.net>
+Date: Thu, 26 Nov 2026 01:58:09 +0400
+X-Gm-Features: Aa3M54oLnZsGvDIV2wcXPOs8zFTEwAusYc5yVbOMSviur1uF26N0thu0Jxy5z48
+Message-ID: <CAKTNdwFrQErYOgG9gnCc3g6JOGoimKa2AOKMs3LAcBVYuDuE0w@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm64: dts: rockchip: Updates to RGMII PHYs on Sige5
+ and NanoPi M5
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, John Clark <inindev@gmail.com>, 
+	Detlev Casanova <detlev.casanova@collabora.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_135549_927399_919DBC93 
-X-CRM114-Status: GOOD (  12.31  )
+X-CRM114-CacheID: sfid-20261125_135823_031664_B5E525A6 
+X-CRM114-Status: GOOD (  12.54  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,64 +120,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Andrew,
+Hi Heiko,
 
-This is the first standalone offload RFC, v1. The prerequisite CPU-only
-Ethernet series is v2; this RFC does not replace that series. I should
-have made the relationship and architecture much clearer. The next
-revision will carry an explicit v2 and a changelog.
+On Thu, Nov 26, 2026 at 12:21=E2=80=AFAM Heiko Stuebner <heiko@sntech.de> w=
+rote:
+>
+>
+> On Fri, 20 Nov 2026 14:48:08 +0400, Alexey Charkov wrote:
+> > Both ArmSoM Sige5 and NanoPi M5 boards use the same Realtek RGMII PHYs
+> > which currently share an issue preventing them from enumeration unless =
+an
+> > earlier boot stage left them out of reset: at power-on, their reset lin=
+es
+> > are asserted, so they cannot answer an MDIO probe. Until they answer, t=
+he
+> > OS cannot look up the ID to match a driver. And until the OS has a driv=
+er,
+> > nothing releases their reset line.
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [1/7] arm64: dts: rockchip: Describe NanoPi M5 Ethernet PHYs by their ID
+>       commit: 693e0c4f00389a097d710577ed5c24c4ac3f75a7
+> [2/7] arm64: dts: rockchip: Describe Sige5 Ethernet PHYs by their ID
+>       commit: 5d839ad9553f90c727157c45471a911f64cd067a
+> [3/7] arm64: dts: rockchip: Drop NanoPi M5 PHY reference clocks
+>       commit: 9c83b53e6c858a9a8f00ca82ecd1f46d2d723b70
+> [4/7] arm64: dts: rockchip: Enable ALDPS on NanoPi M5 Ethernet PHYs
+>       commit: 620ad5b09bec5abd83d35bf23c1af1fb68eed80b
+> [5/7] arm64: dts: rockchip: Enable ALDPS on Sige5 Ethernet PHYs
+>       commit: e48f1d304f7b69b47c6f98b701aa6f8c84ffbb9a
+> [6/7] arm64: dts: rockchip: Shorten NanoPi M5 Ethernet PHY reset to datas=
+heet timing
+>       commit: 5efab9e7c28448f6035e7216255f7b76b28ff97b
+> [7/7] arm64: dts: rockchip: Shorten Sige5 Ethernet PHY reset to datasheet=
+ timing
+>       commit: a2a390e7fa9e73ff07d2a9fc002114e299483202
 
-There are two separate chips on Almond+:
+Would you mind dropping the last two patches here? Sashiko pointed out
+that a later revision of the datasheet prescribes longer reset timings
+vs. those in the revision I had, and with those in mind it's not worth
+the churn.
 
-  LAN1..4, WAN
-       |
-  QCA8337 external switch (existing qca8k DSA driver)
-       | CPU port 0                 | CPU port 6
-       | RGMII                     | RGMII
-       v                           v
-  CS7542 GMAC1 (eth1)          CS7542 GMAC0 (eth0)
-       \                           /
-        CS7542 network/forwarding engine and shared DMA
-                         |
-                        CPU
+The rest should be fine.
 
-The proposed CS7542 Ethernet driver exposes two full Ethernet netdevs,
-eth1 and eth0, despite sharing the DMA engine. Those are the conduits
-for the external QCA8337. I am not modelling the CS7542 forwarding
-engine itself as another DSA switch.
+Thanks a lot!
 
-The CPU receive path is QCA8337 -> RGMII -> CS7542 DMA -> eth1/eth0 ->
-DSA tagger -> lanN/wan. Transmit follows the reverse path. Ordinary L2
-switching remains the existing QCA8337 driver's responsibility.
-
-The accelerated routed IPv4 path in this RFC is QCA8337 -> GMAC1 ->
-CS7542 FE lookup/NAT rewrite -> GMAC1 -> QCA8337 destination port. It
-bypasses the CPU DMA path. The frontend accepts standard nftables
-hardware flowtable requests through TC_SETUP_FT; it is not a new L2
-switchdev implementation.
-
-This explains the QCA changes in patch 5: its optional four-byte CPU
-header adds an identifier before the normal QCA metadata. With the
-identifier set to 0x8100, the CS7542 FE parser can locate the inner IPv4
-header. It cannot do that with the ordinary two-byte QCA header. The
-new tagger therefore describes the external switch's wire format, not
-a DSA interface inside CS7542. Header length is global to QCA8337, so
-both CPU ports must agree, although the present accelerated path uses
-only CPU port 0/GMAC1. Management uses MDIO in this mode.
-
-Your patch-2 comment is also correct: the unrelated blank-line changes
-in include/net/dsa.h were my mistake. I have removed them locally;
-only the two protocol-ID additions remain. No replacement series is
-being sent while this discussion is ongoing.
-
-Thanks,
-Fil
-
+Best regards,
+Alexey
 
