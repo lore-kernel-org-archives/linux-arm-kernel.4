@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59581606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:13:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3572F606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w8JNHoRY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gfltw+Iq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=spWX1MC0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bh1zOmh9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=P6quM7cnIoyI7nRP0pRewAL/LN2snK20UlFcAC5n9Uc=; b=w8JNHoRYZvDyKI
-	4N1oqfrPrBCAqSrRmapltxvOJ/VAbYoAqiYiQg1k4Qe/yQeezGFj3K2biFGxgy7WaaDLlL5AVjESr
-	ieVnpLHJ45RdG+U7TpPMB0VlH7AHpJFLNSWhmbS2DUGUd4acl8iHNT/m/eRWHmyR99cxor472yw4S
-	toq++VwIR6dJ37VtWP4xafivwdLDDk1Ld+hmHDyUkloVsIsbXKoGmjh3rFCKOv3d1GqKZ53a5c7Oj
-	GYsrOrh653OvojeOdwR8I6qQOTgAkOuIXcH5ivliqf/yb8fqekXYLfmibTC4c3HdMwyic7iy57puM
-	ol8w8r82PY+tBNuVbKVQ==;
+	List-Owner; bh=B82UJrpQi9umGTi4HsQSfxMUzEkhSimmx1lnjHTY/ys=; b=spWX1MC0RBMlGN
+	IeDkbUjd6BnMjcH4efFqkR6yK3Rogal9ThWUnc6yHBLdqdFbBm+lL7tuMGUICcWYi2knMYDI/71Gc
+	yV1btDCir3GC0isU4Tl2xz4tT3yC7fVO/4/9W26afE0xQosBDrO/NolbRSgBplmdheBobBCawRmbP
+	hjsG/s758nNqmcsAtqMJ70J/7E/S7l03qOyqeSyGEX7P0J8L/v2zIO7KP8ztI1UwFRWJUuUXxP14j
+	sryTT5FhNh7Js4HQofWWNDh1YL8SX2sCp68f0pcKH9Z14aNmQeorD7NCHFfUvzBKB/XL1h/GJn1rP
+	OHiU0OJjmLHRlkC9lO+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW886-000000090DC-0UrK;
-	Wed, 25 Nov 2026 08:13:26 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xW88H-000000090IS-0vVI;
+	Wed, 25 Nov 2026 08:13:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW884-000000090CW-3HVA
+	id 1xW88G-000000090IB-2xSN
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:13:24 +0000
+	Wed, 25 Nov 2026 08:13:36 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2F56E61CEC;
+	by sea.source.kernel.org (Postfix) with ESMTP id 74C2544660;
+	Wed, 25 Nov 2026 08:13:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91BD61F000CA;
 	Wed, 25 Nov 2026 08:13:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB76F1F000ED;
-	Wed, 25 Nov 2026 08:13:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795594403;
-	bh=P6quM7cnIoyI7nRP0pRewAL/LN2snK20UlFcAC5n9Uc=;
+	s=k20260515; t=1795594416;
+	bh=B82UJrpQi9umGTi4HsQSfxMUzEkhSimmx1lnjHTY/ys=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=gfltw+Iq8v5tVTijpyru1fDSaLaU4KTsc6OO6I5K7ebcWPiU9LsLPXs9wK5jh/Ok9
-	 v4pOc3ZEA8gLhk1bvqgZezAOEweyCkSX1vVFB93HqoiYZTpNr6FcZH0hdpN+E3Cxeo
-	 /EsNkGJp6VN3HOY8GJ8YKKKU949aGppUYcJwZXyuFuxiyj6jaVuO+cEKVwZdaRVxnU
-	 ItyjDonCovNU8ywHDSkH3S+3/XY34WD5DuqXWcCYlt3hrlbnRcBYoM2UKrpO+tBqvz
-	 cWhodmupSQOZ45S/54WBI7w1QcPRiThOJv1zI2bA9I0yhk2QBU18jm274wuI8V7v2f
-	 pMT/ICiisDWUQ==
+	b=bh1zOmh9Odb+urHpPxR6UlEKOhHJMhO0uqKEQGCBILDS1U1FwYwRvA6QRcu74JkFe
+	 qSzPa0cKPTIiMtEzeW9VpkFjACQp53+Rx4ysY6ymGCXunuzTbW12pFTEHDQAEFOLIA
+	 9g8oQOCdwa4z5nkqm994ElgF6xDz3cdVVAe8/V0fYveyRqJq19ov/YVmfLbhAJA6dM
+	 FnfUwGp0yKddhQWw1Af1BETNjpv9ZENwes+RMzOBmUmT5seOiWLrUBUdubG7H9Hdwa
+	 w3h8pRvzzd3rdWiZMqk2J0BhFaV4GW99V9ajPAPjqZqH1BPvwsEaPIUQb03tVw2Eov
+	 Mx5a8YuyMd0cQ==
 From: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>
 To: linux-coco@lists.linux.dev
 Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
@@ -79,10 +79,11 @@ Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
 	linux-pci@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	patches@lists.linux.dev,
-	Lu Baolu <baolu.lu@linux.intel.com>
-Subject: [PATCH v10 08/18] iommufd: Add a vDEVICE operation ioctl framework
-Date: Wed, 25 Nov 2026 13:41:11 +0530
-Message-ID: <20261125081121.379481-9-aneesh.kumar@kernel.org>
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Jason Gunthorpe <jgg@nvidia.com>
+Subject: [PATCH v10 09/18] PCI/TSM: Remove the legacy guest request interface
+Date: Wed, 25 Nov 2026 13:41:12 +0530
+Message-ID: <20261125081121.379481-10-aneesh.kumar@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261125081121.379481-1-aneesh.kumar@kernel.org>
 References: <20261125081121.379481-1-aneesh.kumar@kernel.org>
@@ -107,201 +108,210 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add IOMMU_VDEVICE_OP to execute operations on a vDEVICE using separate
-request and response buffers. Each operation defines its request and
-response formats, with response capacity checked before changing device
-state.
+Guest TSM requests can now be dispatched through the IOMMUFD
+IOMMU_VDEVICE_OP ioctl. Remove the PCI-device-based guest request entry
+point, its scope enum and the corresponding PCI/TSM driver callback.
 
-Look up the vDEVICE and check its supported_ops mask before dispatching
-an operation. Reject out-of-range operation numbers before testing the
-corresponding bit. Backends set the mask during vdevice_init().
 
-This patch defines no operations. The default dispatch returns
--EOPNOTSUPP; later patches can add operations independently.
-
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Kevin Tian <kevin.tian@intel.com>
-Cc: Joerg Roedel <joro@8bytes.org>
-Cc: Will Deacon <will@kernel.org>
-Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: linux-pci@vger.kernel.org
 Cc: Alexey Kardashevskiy <aik@amd.com>
 Cc: Lukas Wunner <lukas@wunner.de>
-Cc: iommu@lists.linux.dev
 Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
 ---
- drivers/iommu/iommufd/iommufd_private.h |  1 +
- drivers/iommu/iommufd/main.c            |  3 ++
- drivers/iommu/iommufd/viommu.c          | 37 +++++++++++++++++++++++++
- include/linux/iommufd.h                 |  3 ++
- include/linux/tsm.h                     |  1 +
- include/uapi/linux/iommufd.h            | 33 ++++++++++++++++++++++
- 6 files changed, 78 insertions(+)
+ drivers/pci/tsm.c       | 60 ----------------------------------------
+ include/linux/pci-tsm.h | 61 +----------------------------------------
+ 2 files changed, 1 insertion(+), 120 deletions(-)
 
-diff --git a/drivers/iommu/iommufd/iommufd_private.h b/drivers/iommu/iommufd/iommufd_private.h
-index 25236caf554a..b9a804adb594 100644
---- a/drivers/iommu/iommufd/iommufd_private.h
-+++ b/drivers/iommu/iommufd/iommufd_private.h
-@@ -730,6 +730,7 @@ void iommufd_vdevice_destroy(struct iommufd_object *obj);
- void iommufd_vdevice_abort(struct iommufd_object *obj);
- int iommufd_hw_queue_alloc_ioctl(struct iommufd_ucmd *ucmd);
- void iommufd_hw_queue_destroy(struct iommufd_object *obj);
-+int iommufd_vdevice_op_ioctl(struct iommufd_ucmd *ucmd);
+diff --git a/drivers/pci/tsm.c b/drivers/pci/tsm.c
+index 5fdcd7f2e820..1423c64dc9c8 100644
+--- a/drivers/pci/tsm.c
++++ b/drivers/pci/tsm.c
+@@ -375,66 +375,6 @@ int pci_tsm_bind(struct pci_dev *pdev, struct kvm *kvm, u32 tdi_id)
+ }
+ EXPORT_SYMBOL_GPL(pci_tsm_bind);
  
- #ifdef CONFIG_IOMMUFD_TEST
- int iommufd_test(struct iommufd_ucmd *ucmd);
-diff --git a/drivers/iommu/iommufd/main.c b/drivers/iommu/iommufd/main.c
-index 9a921b153162..44ac819b3f4e 100644
---- a/drivers/iommu/iommufd/main.c
-+++ b/drivers/iommu/iommufd/main.c
-@@ -450,6 +450,7 @@ union ucmd_buffer {
- 	struct iommu_ioas_unmap unmap;
- 	struct iommu_option option;
- 	struct iommu_vdevice_alloc vdev;
-+	struct iommu_vdevice_op vdevice_op;
- 	struct iommu_veventq_alloc veventq;
- 	struct iommu_vfio_ioas vfio_ioas;
- 	struct iommu_viommu_alloc viommu;
-@@ -510,6 +511,8 @@ static const struct iommufd_ioctl_op iommufd_ioctl_ops[] = {
- 	IOCTL_OP(IOMMU_OPTION, iommufd_option, struct iommu_option, val64),
- 	IOCTL_OP(IOMMU_VDEVICE_ALLOC, iommufd_vdevice_alloc_ioctl,
- 		 struct iommu_vdevice_alloc, virt_id),
-+	IOCTL_OP(IOMMU_VDEVICE_OP, iommufd_vdevice_op_ioctl,
-+		 struct iommu_vdevice_op, resp_uptr),
- 	IOCTL_OP(IOMMU_VEVENTQ_ALLOC, iommufd_veventq_alloc,
- 		 struct iommu_veventq_alloc, out_veventq_fd),
- 	IOCTL_OP(IOMMU_VFIO_IOAS, iommufd_vfio_ioas, struct iommu_vfio_ioas,
-diff --git a/drivers/iommu/iommufd/viommu.c b/drivers/iommu/iommufd/viommu.c
-index 0dbd382eeb98..a3a22b0e7c37 100644
---- a/drivers/iommu/iommufd/viommu.c
-+++ b/drivers/iommu/iommufd/viommu.c
-@@ -1,7 +1,11 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /* Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES
-  */
-+#include <linux/bits.h>
- #include <linux/file.h>
-+#include <linux/cleanup.h>
-+#include <linux/tsm.h>
-+
- #include "iommufd_private.h"
+-/**
+- * pci_tsm_guest_req() - helper to marshal guest requests to the TSM driver
+- * @pdev: @pdev representing a bound tdi
+- * @scope: caller asserts this passthrough request is limited to TDISP operations
+- * @req_in: Input payload forwarded from the guest
+- * @in_len: Length of @req_in
+- * @req_out: Output payload buffer response to the guest
+- * @out_len: Length of @req_out on input, bytes filled in @req_out on output
+- * @tsm_code: Optional TSM arch specific result code for the guest TSM
+- *
+- * This is a common entry point for requests triggered by userspace KVM-exit
+- * service handlers responding to TDI information or state change requests. The
+- * scope parameter limits requests to TDISP state management, or limited debug.
+- * This path is only suitable for commands and results that are the host kernel
+- * has no use, the host is only facilitating guest to TSM communication.
+- *
+- * Returns 0 on success and -error on failure and positive "residue" on success
+- * but @req_out is filled with less then @out_len, or @req_out is NULL and a
+- * residue number of bytes were not consumed from @req_in.  On success or
+- * failure @tsm_code may be populated with a TSM implementation specific result
+- * code for the guest to consume.
+- *
+- * Context: Caller is responsible for calling this within the pci_tsm_bind()
+- * state of the TDI.
+- */
+-ssize_t pci_tsm_guest_req(struct pci_dev *pdev, enum pci_tsm_req_scope scope,
+-			  sockptr_t req_in, size_t in_len, sockptr_t req_out,
+-			  size_t out_len, u64 *tsm_code)
+-{
+-	struct pci_tsm_pf0 *tsm_pf0;
+-	struct pci_tdi *tdi;
+-	int rc;
+-
+-	/* Forbid requests that are not directly related to TDISP operations */
+-	if (scope > PCI_TSM_REQ_STATE_CHANGE)
+-		return -EINVAL;
+-
+-	ACQUIRE(rwsem_read_intr, lock)(&pci_tsm_rwsem);
+-	if ((rc = ACQUIRE_ERR(rwsem_read_intr, &lock)))
+-		return rc;
+-
+-	if (!pdev->tsm)
+-		return -ENXIO;
+-
+-	if (!is_link_tsm(pdev->tsm->tsm_dev))
+-		return -ENXIO;
+-
+-	tsm_pf0 = to_pci_tsm_pf0(pdev->tsm);
+-	ACQUIRE(mutex_intr, ops_lock)(&tsm_pf0->lock);
+-	if ((rc = ACQUIRE_ERR(mutex_intr, &ops_lock)))
+-		return rc;
+-
+-	tdi = pdev->tsm->tdi;
+-	if (!tdi)
+-		return -ENXIO;
+-	return to_pci_tsm_ops(pdev->tsm)->guest_req(tdi, scope, req_in, in_len,
+-						    req_out, out_len, tsm_code);
+-}
+-EXPORT_SYMBOL_GPL(pci_tsm_guest_req);
+-
+ static void pci_tsm_unbind_all(struct pci_dev *pdev)
+ {
+ 	pci_tsm_walk_fns_reverse(pdev, __pci_tsm_unbind, NULL);
+diff --git a/include/linux/pci-tsm.h b/include/linux/pci-tsm.h
+index a6435aba03f9..6fe3d0ea875f 100644
+--- a/include/linux/pci-tsm.h
++++ b/include/linux/pci-tsm.h
+@@ -3,12 +3,10 @@
+ #define __PCI_TSM_H
+ #include <linux/mutex.h>
+ #include <linux/pci.h>
+-#include <linux/sockptr.h>
  
- void iommufd_viommu_destroy(struct iommufd_object *obj)
-@@ -121,6 +125,39 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
- 	return rc;
+ struct pci_tsm;
+ struct tsm_dev;
+ struct kvm;
+-enum pci_tsm_req_scope;
+ 
+ /*
+  * struct pci_tsm_ops - manage confidential links and security state
+@@ -34,14 +32,13 @@ struct pci_tsm_ops {
+ 	 * @disconnect: teardown the secure link
+ 	 * @bind: bind a TDI in preparation for it to be accepted by a TVM
+ 	 * @unbind: remove a TDI from secure operation with a TVM
+-	 * @guest_req: marshal TVM information and state change requests
+ 	 *
+ 	 * Context: @probe, @remove, @connect, and @disconnect run under
+ 	 * pci_tsm_rwsem held for write to sync with TSM unregistration and
+ 	 * mutual exclusion of @connect and @disconnect. @connect and
+ 	 * @disconnect additionally run under the DSM lock (struct
+ 	 * pci_tsm_pf0::lock) as well as @probe and @remove of the subfunctions.
+-	 * @bind, @unbind, and @guest_req run under pci_tsm_rwsem held for read
++	 * @bind and @unbind run under pci_tsm_rwsem held for read
+ 	 * and the DSM lock.
+ 	 */
+ 	struct_group_tagged(pci_tsm_link_ops, link_ops,
+@@ -53,11 +50,6 @@ struct pci_tsm_ops {
+ 		struct pci_tdi *(*bind)(struct pci_dev *pdev,
+ 					struct kvm *kvm, u32 tdi_id);
+ 		void (*unbind)(struct pci_tdi *tdi);
+-		ssize_t (*guest_req)(struct pci_tdi *tdi,
+-				     enum pci_tsm_req_scope scope,
+-				     sockptr_t req_in, size_t in_len,
+-				     sockptr_t req_out, size_t out_len,
+-				     u64 *tsm_code);
+ 	);
+ 
+ 	/*
+@@ -159,46 +151,6 @@ static inline bool is_pci_tsm_pf0(struct pci_dev *pdev)
+ 	return PCI_FUNC(pdev->devfn) == 0;
  }
  
-+int iommufd_vdevice_op_ioctl(struct iommufd_ucmd *ucmd)
-+{
-+	struct iommu_vdevice_op *cmd = ucmd->cmd;
-+	struct iommufd_object *obj;
-+	struct iommufd_vdevice *vdev;
-+	int ret;
-+
-+	if (cmd->__reserved)
-+		return -EOPNOTSUPP;
-+
-+	obj = iommufd_get_object(ucmd->ictx, cmd->vdevice_id,
-+				 IOMMUFD_OBJ_VDEVICE);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
-+
-+	vdev = container_of(obj, struct iommufd_vdevice, obj);
-+
-+	if (cmd->op >= BITS_PER_TYPE(vdev->supported_ops) ||
-+	    !(vdev->supported_ops & BIT_ULL(cmd->op))) {
-+		ret = -EOPNOTSUPP;
-+		goto out_put_object;
-+	}
-+
-+	switch (cmd->op) {
-+	default:
-+		ret = -EOPNOTSUPP;
-+	}
-+
-+out_put_object:
-+	iommufd_put_object(ucmd->ictx, obj);
-+	return ret;
-+}
-+
- void iommufd_vdevice_abort(struct iommufd_object *obj)
+-/**
+- * enum pci_tsm_req_scope - Scope of guest requests to be validated by TSM
+- *
+- * Guest requests are a transport for a TVM to communicate with a TSM + DSM for
+- * a given TDI. A TSM driver is responsible for maintaining the kernel security
+- * model and limit commands that may affect the host, or are otherwise outside
+- * the typical TDISP operational model.
+- */
+-enum pci_tsm_req_scope {
+-	/**
+-	 * @PCI_TSM_REQ_INFO: Read-only, without side effects, request for
+-	 * typical TDISP collateral information like Device Interface Reports.
+-	 * No device secrets are permitted, and no device state is changed.
+-	 */
+-	PCI_TSM_REQ_INFO = 0,
+-	/**
+-	 * @PCI_TSM_REQ_STATE_CHANGE: Request to change the TDISP state from
+-	 * UNLOCKED->LOCKED, LOCKED->RUN, or other architecture specific state
+-	 * changes to support those transitions for a TDI. No other (unrelated
+-	 * to TDISP) device / host state, configuration, or data change is
+-	 * permitted.
+-	 */
+-	PCI_TSM_REQ_STATE_CHANGE = 1,
+-	/**
+-	 * @PCI_TSM_REQ_DEBUG_READ: Read-only request for debug information
+-	 *
+-	 * A method to facilitate TVM information retrieval outside of typical
+-	 * TDISP operational requirements. No device secrets are permitted.
+-	 */
+-	PCI_TSM_REQ_DEBUG_READ = 2,
+-	/**
+-	 * @PCI_TSM_REQ_DEBUG_WRITE: Device state changes for debug purposes
+-	 *
+-	 * The request may affect the operational state of the device outside of
+-	 * the TDISP operational model. If allowed, requires CAP_SYS_RAW_IO, and
+-	 * will taint the kernel.
+-	 */
+-	PCI_TSM_REQ_DEBUG_WRITE = 3,
+-};
+-
+ #ifdef CONFIG_PCI_TSM
+ int pci_tsm_register(struct tsm_dev *tsm_dev);
+ void pci_tsm_unregister(struct tsm_dev *tsm_dev);
+@@ -213,9 +165,6 @@ int pci_tsm_bind(struct pci_dev *pdev, struct kvm *kvm, u32 tdi_id);
+ void pci_tsm_unbind(struct pci_dev *pdev);
+ void pci_tsm_tdi_constructor(struct pci_dev *pdev, struct pci_tdi *tdi,
+ 			     struct kvm *kvm, u32 tdi_id);
+-ssize_t pci_tsm_guest_req(struct pci_dev *pdev, enum pci_tsm_req_scope scope,
+-			  sockptr_t req_in, size_t in_len, sockptr_t req_out,
+-			  size_t out_len, u64 *tsm_code);
+ #else
+ static inline int pci_tsm_register(struct tsm_dev *tsm_dev)
  {
- 	struct iommufd_vdevice *vdev =
-diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
-index c15d80f611b9..d1fd7888fc91 100644
---- a/include/linux/iommufd.h
-+++ b/include/linux/iommufd.h
-@@ -125,6 +125,9 @@ struct iommufd_vdevice {
- 	 */
- 	u64 virt_id;
- 
-+	/* Supported vDEVICE operations; set by vdevice_init(). */
-+	u64 supported_ops;
-+
- 	/* Clean up all driver-specific parts of an iommufd_vdevice */
- 	void (*destroy)(struct iommufd_vdevice *vdev);
- };
-diff --git a/include/linux/tsm.h b/include/linux/tsm.h
-index 381c53244c83..19dedf971f14 100644
---- a/include/linux/tsm.h
-+++ b/include/linux/tsm.h
-@@ -6,6 +6,7 @@
- #include <linux/types.h>
- #include <linux/uuid.h>
- #include <linux/device.h>
-+#include <uapi/linux/iommufd.h>
- 
- #define TSM_REPORT_INBLOB_MAX 64
- #define TSM_REPORT_OUTBLOB_MAX SZ_16M
-diff --git a/include/uapi/linux/iommufd.h b/include/uapi/linux/iommufd.h
-index 010f47f7d3d2..b64f6330468e 100644
---- a/include/uapi/linux/iommufd.h
-+++ b/include/uapi/linux/iommufd.h
-@@ -58,6 +58,7 @@ enum {
- 	IOMMUFD_CMD_VEVENTQ_ALLOC = 0x93,
- 	IOMMUFD_CMD_HW_QUEUE_ALLOC = 0x94,
- 	IOMMUFD_CMD_IOAS_NOIOMMU_GET_PA = 0x95,
-+	IOMMUFD_CMD_VDEVICE_OP = 0x96,
- };
- 
- /**
-@@ -1398,4 +1399,36 @@ struct iommu_hw_queue_alloc {
- 	__aligned_u64 length;
- };
- #define IOMMU_HW_QUEUE_ALLOC _IO(IOMMUFD_TYPE, IOMMUFD_CMD_HW_QUEUE_ALLOC)
-+
-+/**
-+ * struct iommu_vdevice_op - ioctl(IOMMU_VDEVICE_OP)
-+ * @size: sizeof(struct iommu_vdevice_op)
-+ * @vdevice_id: vDEVICE ID returned by IOMMU_VDEVICE_ALLOC
-+ * @op: Operation number; no operations are currently defined
-+ * @req_len: Size in bytes of the request at @req_uptr
-+ * @resp_len: Response buffer capacity in bytes on input; bytes written on success
-+ * @__reserved: Must be zero
-+ * @req_uptr: Userspace pointer to the operation-specific request
-+ * @resp_uptr: Userspace pointer to the operation-specific response buffer
-+ *
-+ * Execute an operation on a vDEVICE. Each operation defines its request and
-+ * response formats. Requests may be extended by appending fields; bytes beyond
-+ * the kernel's supported request size must be zero. Response capacity must be
-+ * checked before changing device state. The ioctl returns 0 on success or a
-+ * negative error code.
-+ *
-+ * No operations are currently supported; the ioctl returns -EOPNOTSUPP.
-+ */
-+struct iommu_vdevice_op {
-+	__u32 size;
-+	__u32 vdevice_id;
-+	__u32 op;
-+	__u32 req_len;
-+	__u32 resp_len;
-+	__u32 __reserved;
-+	__aligned_u64 req_uptr;
-+	__aligned_u64 resp_uptr;
-+};
-+
-+#define IOMMU_VDEVICE_OP _IO(IOMMUFD_TYPE, IOMMUFD_CMD_VDEVICE_OP)
+@@ -231,13 +180,5 @@ static inline int pci_tsm_bind(struct pci_dev *pdev, struct kvm *kvm, u64 tdi_id
+ static inline void pci_tsm_unbind(struct pci_dev *pdev)
+ {
+ }
+-static inline ssize_t pci_tsm_guest_req(struct pci_dev *pdev,
+-					enum pci_tsm_req_scope scope,
+-					sockptr_t req_in, size_t in_len,
+-					sockptr_t req_out, size_t out_len,
+-					u64 *tsm_code)
+-{
+-	return -ENXIO;
+-}
  #endif
+ #endif /*__PCI_TSM_H */
 -- 
 2.43.0
 
