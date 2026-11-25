@@ -2,104 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931B6606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBC8606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bYT3HGiz;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Fhwnu/1T;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=shAo7SdN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ta60xUcU;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UupQtPIP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=K/q1yAvr6XkI84cojadbVWLoEVrZ2+B7AbCD60d4iaI=; b=bYT3HGizcAQHY9
-	iWmZs6yZtBxkzZPji3eSYuetjX76ea5DKLDoJg3X4E303JKnlNLlgZN/nOEoNlWxA9uvd/JFU3Xvg
-	UXiT3JKP2m3BD9QSAgpfqImpUuUD4UB+IlxkrwO5Q9WvxwU9jdWt3aDQPD/m+zITHjV6g3OYbijID
-	RKnkAOUMeIDTlc1c1AgiFnZKuErQI7o8K7pdAWhqBL/vVuaHc0brxV5VmwEDKan/uJ9BiF5Gn5TbE
-	HbnAv96SYPjqMUCzR+uWq1/4StGZJC0pd540tPUfRJvV2x2u7wUyl71bxU0TdxrDXDYIfqjebwxLp
-	NAKsOv4xjssJxBgAwmHA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=lN6AbTnehn4JFc7e6Trjk6a/kJXaBSLWT91x39OVt+o=; b=Ta60xUcU7xCMJUH944nviocJnD
+	xjWKbq5kf7DV6UeEZ6wdstigW2G59pv+A4i7voA4TmlbPr2K46++g3afrjvZig6CiVKczuBLWzP8m
+	vYUJdKB7wPc901Jn2heZEDqEsD/SwOxONIOod41TqWQ17RAfiznltulha9jjzILFDtXqwKootggYx
+	FyieKmt0TgEdRR0TSEZeZ7NUA3DkO0AAlqcOUCzlVeoCpPbzlHV2CBNe6MAiMPKeGo1DZf9y1Pweo
+	+oJrN9ljfoTFAjoJJA668hCdeFZd1cUYbE6lCma7Rpt1tbNkp0hK4qokm+guyvIq7smoiHnmhT03m
+	eIAJrxxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCK-0000000Aqh1-43dU;
-	Wed, 25 Nov 2026 17:54:24 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWHp3-0000000B13B-13Yc;
+	Wed, 25 Nov 2026 18:34:25 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAd-0000000Ao7b-1rdz
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:52:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=K/q1yAvr6XkI84cojadbVWLoEVrZ2+B7AbCD60d4iaI=; b=Fhwnu/1TY0UOU2xs1fZPRN/Cgm
-	bUIbsM/r0LDJ0dGdlzVIV8OwZDowhvV/MJGUadQx3iokeDwOm13AhxNGJnH1CTbKAmA/UmahS5W7a
-	ENHRbauO4yy+8IGfisSuTn8R0xNkd8fKDoE0kstBQp2nrCEJVY9Jg4oCmzo71y/+RSFTw7N6WHuOP
-	uZMW0Pqrs8wzDeNDg2GLEE6WP5MbtVoI/XB5v6tKH7wedREOnLWbgfXu/FAwHJ5Rp14oRgfJi+Vhq
-	Gwm0/ill1gOa7GuPrlNqWAKYRXQgq+7Ou0p+Bf4dbdI5kZwLNPRaxqyZlSwXXvJcMU5JlqjQ3KuS9
-	+6uM4kxg==;
-Received: from smtpout-04.galae.net ([185.171.202.116])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAZ-00000005bIS-3fFm
+	id 1xWHp2-0000000B12W-12cL
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:52:38 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 92BE7C2B9C1;
-	Wed, 25 Nov 2026 17:52:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9C9E060480;
-	Wed, 25 Nov 2026 17:52:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AC1C811E6B0D2;
-	Wed, 25 Nov 2026 18:52:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629152; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=K/q1yAvr6XkI84cojadbVWLoEVrZ2+B7AbCD60d4iaI=;
-	b=shAo7SdNlXc1r7UxuO7i9mk83cTF+LUto5PoOa2Brwk0Lh/A4DY7a7ccttQQT5RQkbb0iJ
-	2pmbSAL7oZzDwTgL6bjk7ia4uvxzzSVYWPzUVMKDgWQzbN3YZ19ffD2MQV913semqpp5Hy
-	dbPxW8nZmD7O3c/mZo2Bdo0rT2PJl9M4w02p4cffcXujcf9elqOZeqScq2xo+U7FS3R9pR
-	xMUYgP6VM1Uboea7pPAR1cMarXhawpG3/++O+fqJ7tpP9jyOFVrboJC21kQ8JPU9cxr0Pc
-	gnM6lZLsuurXaFuXdc1fqUYVKPCxZUrKN2TVBk4SFjYszvp6NVnhn0+aeQI0Nw==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:28 +0100
-Subject: [PATCH v4 15/32] drm/atomic: drm_atomic_private_obj_fini: protect
- private_obj removal from list
+	Wed, 25 Nov 2026 18:34:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id BF04640B5B;
+	Wed, 25 Nov 2026 18:34:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF001F000D2;
+	Wed, 25 Nov 2026 18:34:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795631663;
+	bh=lN6AbTnehn4JFc7e6Trjk6a/kJXaBSLWT91x39OVt+o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UupQtPIP7l0f2ccBXBw6ZqF9NGaqeOTV+3R4Qvv2UcGP5x2P0JIFr0quccYJ6su4/
+	 9IITwEmD4Lz0UcD9PpfaVjM/AuNwXK/8heRpbd1/ExhPx6Z566eIawQ8GK4sKsdL5u
+	 20VKOo2rZCVTi2BW9ZgMJ/8edFSORrwXluT6U9BkA3Uxb5r8/kl5IsrJCT1180fF6O
+	 BFHyisArXZ9qX0ejR+1RwNedOjg49nbtMy/0VXtqoIy4PNRc0kLaDvjEjOG9M/Pw7g
+	 dOxVc/syxz7pn1pAzCRRuVradrWQh8GXRzU/GenDnkpcz/UZs3pcQBamNle8uD8kC4
+	 gUdMfHkzkzzxA==
+Date: Wed, 25 Nov 2026 20:34:19 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Sibi Sankar <sibi.sankar@oss.qualcomm.com>, will@kernel.org,
+	robin.murphy@arm.com, honghuan@amd.com,
+	Jason Gunthorpe <jgg@ziepe.ca>, joro@8bytes.org,
+	prakash.gupta@oss.qualcomm.com, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] Revert "iommu/dma: simplify dma_iova_destroy() and drop
+ the free_iova helper"
+Message-ID: <20261125183419.GB774860@unreal>
+References: <CGME20261125135138eucas1p141ba6b5e09623562e2033e290fba811c@eucas1p1.samsung.com>
+ <20261125135120.1126571-1-sibi.sankar@oss.qualcomm.com>
+ <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-15-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175236_300013_38C81304 
-X-CRM114-Status: GOOD (  15.11  )
-X-Spam-Score: -0.2 (/)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,98 +74,73 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently drm_bridge_detach() expects that the bridge private_obj is not
-locked by a drm_modeset_acquire_ctx, and it warns in case that happens:
+On Wed, Nov 25, 2026 at 06:21:06PM +0100, Marek Szyprowski wrote:
+> On 25.11.2026 14:51, Sibi Sankar wrote:
+> > This reverts commit 1acce29926d93f3eba427696fe3da6451504dae2.
+> >
+> > Before this commit, dma_iova_destroy() unmapped through
+> > __iommu_dma_iova_unlink(..., free_iova=true), which set
+> > iotlb_gather.queued from cookie->fq_domain, skipped iommu_iotlb_sync()
+> > and freed the IOVA with the queued gather, exactly like
+> > __iommu_dma_unmap(). After it, dma_iova_destroy() calls
+> > dma_iova_unlink() and then dma_iova_free():
+> >
+> >   - dma_iova_unlink() never marks its gather as queued and always calls
+> >     iommu_iotlb_sync() after iommu_unmap_fast().
+> >   - dma_iova_free() passes a NULL gather to iommu_dma_free_iova(), so
+> >     the IOVA goes straight back to the allocator through
+> >     free_iova_fast() and never through queue_iova().
+> >
+> > DMA-FQ domains therefore get strict invalidation on this path. That
+> > includes the block layer's blk_rq_dma_map() path, which NVMe uses for
+> > all data transfers, so iommu.strict=0 has no effect on NVMe I/O.
+> >
+> > hw/sw details: Qualcomm Glymur CRD: SMMUv3 with no RANGE_INV,
+> > 	       4K pages; NVMe SSD on PCIe Gen5 x4
+> >
+> > Fio sequential read/write numbers:
+> >   Domain                          seq write    seq read
+> >   DMA (strict)                    2694 MiB/s   2693 MiB/s
+> >   DMA-FQ (lazy), flush queue      2707 MiB/s   2803 MiB/s
+> >     bypassed (this regression)
+> >   DMA-FQ (lazy), flush queue      10.6 GiB/s   11.9 GiB/s
+> >     used by dma_iova_destroy()
+> >
+> > Fixes: 1acce29926d9 ("iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper")
+> > Cc: stable@vger.kernel.org # v7.3+
+> > Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> 
+> 
+> The performance data clearly shows that the flush queue was there for
+> the reason. Together with this revert it would probably make sense to
+> apply the v1 of the reverted patch:
+> 
+> https://lore.kernel.org/all/20260701092033.422867-1-honghuan@amd.com/
+> 
+> Leon, do You see any other option?
 
-  drm_bridge_detach()
-  -> drm_atomic_private_obj_fini()
-     -> list_del(&obj->head) // removes priv_obj from
-                             // dev->mode_config.privobj_list
-     -> obj->funcs->atomic_destroy_state()
-     -> drm_modeset_lock_fini(&obj->lock)
-        -> WARN_ON(!list_empty(&lock->head)) // warn if priv_obj->lock
-	                                     // is still in ctx->locked
+These numbers shows clearly that we had iotlb_gather.queued != 0
+and never performed iommu_iotlb_sync(domain, &iotlb_gather); while
+destroying mapped IOVA.
 
-The expectation is not respected when introducing bridge hot-plugging. In
-such case the warning triggers if the bridge is being removed concurrently
-to an operation that locks the private object using a
-drm_modeset_acquire_ctx, such as in this execution scenario:
+I agree with you, v1 is the easiest solution, however my preferred one
+is to cache gather when it is created and keep it in dma_iova_state 
+structure for whole life cycle of that struct.
 
-  CPU0:
-  drm_mode_obj_get_properties_ioctl() // userspace request
-  -> DRM_MODESET_LOCK_ALL_BEGIN()
-  .  -> drm_for_each_privobj() // loop on dev->mode_config.privobj_list
-  .     - lock the privobj mutex
-  .	- add priv_obj->lock to ctx->locked
-  .	  (list of locks to be released later)
-  .
-  .                         CPU1:
-  .                         drm_bridge_detach() // bridge hot-unplug
-  .		            -> WARN triggers!
-  .
-  -> DRM_MODESET_LOCK_ALL_END()
-     -> for each lock in ctx->locked
-	- remove priv_obj->lock from ctx->locked
-        - unlock the privobj mutex
+Thanks
 
-Fix this by using DRM_MODESET_LOCK_ALL_BEGIN/END() around the list removal
-in drm_atomic_private_obj_fini() to ensure the two threads above
-(CPU0/CPU1) cannot happen concurrently.
-
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
----
-
-Changes in v4:
-- fixed conflicts after commit 6386ba453468 ("drm/atomic: Fix private obj
-  error handling")
-
-Notes:
- * This patch was sent separately in the past [0]
- * The issue is still happening with hotplug without this patch
- * The issue has also been reported by sashiko when reviewing v2 [1]
-
-[0] https://lore.kernel.org/dri-devel/20260324-drm-bridge-atomic-vs-remove-private_obj-v3-1-64deefe84044@bootlin.com/
-[1] https://lore.kernel.org/all/20261001130542.A40D11F00898@smtp.kernel.org/
----
- drivers/gpu/drm/drm_atomic.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 1c3fe07b327e..096f85419b36 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -1106,6 +1106,9 @@ EXPORT_SYMBOL(drm_atomic_private_obj_init);
- void
- drm_atomic_private_obj_fini(struct drm_private_obj *obj)
- {
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret = 0;
-+
- 	/*
- 	 * Some callers ignore drm_atomic_private_obj_init() failures
- 	 * and unconditionally register a teardown action that calls
-@@ -1117,7 +1120,10 @@ drm_atomic_private_obj_fini(struct drm_private_obj *obj)
- 	if (list_empty(&obj->head))
- 		return;
- 
-+	DRM_MODESET_LOCK_ALL_BEGIN(obj->dev, ctx, 0, ret);
- 	list_del_init(&obj->head);
-+	DRM_MODESET_LOCK_ALL_END(obj->dev, ctx, ret);
-+
- 	obj->funcs->atomic_destroy_state(obj, obj->state);
- 	drm_modeset_lock_fini(&obj->lock);
- }
-
--- 
-2.56.1
-
+> 
+> Best regards
+> -- 
+> Marek Szyprowski, PhD
+> Samsung R&D Institute Poland
+> 
+> 
 
