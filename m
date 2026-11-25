@@ -2,87 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3F7606A684
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02E6606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dsVkM394;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=S7SWQWQG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ohrig2PY;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=euK18Za8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=setiKsAawUfI5qZxIEr6a1N6sSJqLT6tqu5WlGOp0jo=; b=dsVkM394yIFMh0
-	N2AiDWjnIxjMKSnORuJE0tWkoCaprLBwn4297pF+D2lRZLOf530d6o7CzgEhEcD9uXxHdGzw9F8Gr
-	46gtDDaTap0ewHA7UTcN/o33YziQm3GJQpA1PZaOCOoEEvj5Qw70L5lNpiErVwz9vEGRXOVk2GZ2Y
-	nCgIGL8B2Rukj5cWwBRUryfXmlb/yrNxQn+t0fTpAMEui2J4/bM05gMW9TNTly0cFpsk45cONi3HO
-	lTgdr6XjpemWMhtwDNLD0pR/yonLx4vDanxv8fGFYkG5+mqnbtkFYXaGCkFUGq5R7KUunFONgbmAV
-	bXx8+JZLUcYSoGIn1UvA==;
+	List-Owner; bh=voL9T1Z3XGsgqOOZRJCgMdwANraTsa7bt67oUn9zWHQ=; b=ohrig2PYuCTw2V
+	aRUQcmZk7r/XufSJAhOsHKctftfujft8ijQsJ8iPhk0KHJv7TmTITxkcq8nBUsNMK4hY/YVOF/WF8
+	MN0tM/ti8xrROX//vGg6ozdaG6SvaggCMZGQe5uTnoFh6oG6ApM1fvMUZfTUCVeRCOtXYACjTqpwf
+	exW9rGwzHBlzw8rmL3W5i2Z/AGU7xB64WPOhxonBxlFnuOUHuQZGRkoXZ+TYf+2Sbrd4TUylcxunQ
+	02pltIbe7ema5/hDgBPmzsRJjH1kY0CQWZPx8QO3v34O3hNtp2apAQain4EPjHZqtHAQn8D4Y8aHu
+	fjtZ0j25OrO7I8hHZd7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHJP-0000000Ausr-0hqX;
+	id 1xWHJP-0000000AutD-1dLC;
 	Wed, 25 Nov 2026 18:01:43 +0000
 Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHHU-0000000AuI0-0IEB
+	id 1xWHHU-0000000AuIX-0cLQ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:59:46 +0000
+	Wed, 25 Nov 2026 17:59:47 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8737AC2BB3C;
-	Wed, 25 Nov 2026 17:53:24 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 09EF9C2B9C0;
+	Wed, 25 Nov 2026 17:53:27 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8EF1160480;
-	Wed, 25 Nov 2026 17:53:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 402C111E6B0D1;
-	Wed, 25 Nov 2026 18:53:05 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 11F2C60480;
+	Wed, 25 Nov 2026 17:53:19 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3407811E6B0CB;
+	Wed, 25 Nov 2026 18:53:07 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629190; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629192; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=setiKsAawUfI5qZxIEr6a1N6sSJqLT6tqu5WlGOp0jo=;
-	b=S7SWQWQGsDNqMVWk/loTHnYutCsPERtqteJuE1IyQNjWRLrRb+y3aBrmuztWlyjGBoGRKF
-	EiuLx8ZkNKz0k2jB5Er80bY8ITJDyURXMBIhta/etELZ+HTjcP4yO1QkZyzA3o9yl1rrMA
-	w/RSmR7+iVv8ldU+vsxuIaV85Am0TuxujODuxKkG6iM8YjxjWRQcD+n+wnMZ9F30yfjTvB
-	Xy3e0dOgqKf5UUHfXSA1vf9USaV38Uxss86wdY/XoGFdIc7WTjfuSnMSBAfTe2HlNdXNS8
-	zW21Apble487DaxoOxwaFEt5XxbR9LYGMM0Ss1oBMlOSdKvvcRuNqGW4y14FNA==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:33 +0100
-Subject: [PATCH v4 20/32] drm/bridge: add drm_bridge_get_next() and
- supporting func
+	bh=voL9T1Z3XGsgqOOZRJCgMdwANraTsa7bt67oUn9zWHQ=;
+	b=euK18Za8g+jR4jPPzVdC9Sb8FWmROFOxXu1Vue+OinDIz92TekRJynKuIYn2tedgMIcrnI
+	7PFZfnGPbaXMpRb10YjGK/VpP0FW8l6K9lS5/rchszGPcrzK1m1kAvEVIAUJx68cqrKGPp
+	oMvIwp8C+AmLH3JOuXmkv/MpctDiFscOEOInMDLrvg0jrFSBt9Y4KGy+p7ueS4LC+C6DY8
+	2VSSeZlaP9ToNrDeDmmPG50G+V41hSNVuRPLKu/ip+tHRJZQkbr81UPGjTrC7tq1kjL08B
+	0F4W8Ox0F4cN9gfQziGW8GcmZlDvGqoDN02vgdHkIi+PxFumAYy/NTlnKewLsw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:30 +0100
+Subject: [PATCH RFC 16/16] mtd: spi-nor: Express the dummy phase in cycles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-20-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-16-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095944_634367_A3FC5622 
-X-CRM114-Status: GOOD (  20.71  )
+X-CRM114-CacheID: sfid-20261125_095944_639163_062A67A8 
+X-CRM114-Status: GOOD (  18.41  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,131 +99,211 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For bridge hotplug we need to successfully probe a card with an incomplete
-bridge chain, i.e. a chain whose last bridge currently in bridge_chain
-needs another bridge at its output. Such a card would have no connector,
-and be able to add one as soon as the following bridges are added up to the
-bridge that requires no further ones (like a panel or a connector_bridge).
+SFDP tables and datasheets provide the number of dummy cycles, not the
+number of dummy bytes. Set dummy.ncycles directly instead of converting
+it to dummy.nbytes. Depending on controller capabilities, this may help
+supporting more use cases (typically Macronix 1S-8S-8S 20 dummy cycles)
+while performing less useless maths in the core.
 
-So we need a way to know whether the pipeline is complete in the hardware
-(all bridges probed), in order to complete it in software (attach all
-bridges not yet attached). Currently common DRM code has no way to know
-that.
-
-Add drm_bridge_get_next() and a supporting get_next_bridge func so each
-bridge can expose its next bridge, and whether there's supposed to be one.
-
-A subsequent commit will use this function to detect whether the pipeline
-is complete in the hardware or not.
-
-Link: https://lore.kernel.org/r/20260624-vagabond-neon-gorilla-cd6487@houat
-Suggested-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
+ drivers/mtd/spi-nor/core.c      | 36 ++++++++++--------------------------
+ drivers/mtd/spi-nor/core.h      |  8 ++++----
+ drivers/mtd/spi-nor/micron-st.c |  2 +-
+ drivers/mtd/spi-nor/spansion.c  |  6 +++---
+ 4 files changed, 18 insertions(+), 34 deletions(-)
 
-Changes in v3:
-- fix and improve kerneldoc
-
-New patch in v2, replacing the is_tail patch in v1
----
- drivers/gpu/drm/drm_bridge.c | 30 ++++++++++++++++++++++++++++++
- include/drm/drm_bridge.h     | 25 +++++++++++++++++++++++++
- 2 files changed, 55 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index a50709ac8b06..e0e0dd7fc12b 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -720,6 +720,36 @@ void drm_bridge_detach(struct drm_bridge *bridge)
- 	drm_bridge_put(bridge);
- }
+diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+index a04d22d2e2e1..dcc36f532aaa 100644
+--- a/drivers/mtd/spi-nor/core.c
++++ b/drivers/mtd/spi-nor/core.c
+@@ -91,7 +91,7 @@ void spi_nor_spimem_setup_op(const struct spi_nor *nor,
+ 	if (op->addr.nbytes)
+ 		op->addr.buswidth = spi_nor_get_protocol_addr_nbits(proto);
  
-+/**
-+ * drm_bridge_get_next - return the bridge at this bridge's output port
-+ * @bridge: the bridge to query
-+ *
-+ * Return the next bridge, i.e. the bridge that is connected at the output
-+ * port of @bridge. Unlike drm_bridge_get_next_bridge(), the next bridge
-+ * might or not be in the encoder chain.
-+ *
-+ * Returns:
-+ * * Pointer to a bridge connected to the output port of this bridge,
-+ *   with refcount incremented; call drm_bridge_put() when done
-+ * * ERR_PTR(-ENODEV): this bridge has an output port where a next bridge
-+ *                     needs to be present for video output, but the next
-+ *                     bridge is not currently available
-+ * * NULL: this bridge does not have an output port where a next bridge
-+ *         is expected
-+ * * ERR_PTR(-ENOENT): the bridge does not implement the func
-+ * * Another negative error returned by the bridge func
-+ */
-+struct drm_bridge *drm_bridge_get_next(struct drm_bridge *bridge)
-+{
-+	if (!(bridge->ops & DRM_BRIDGE_OP_GET_NEXT_BRIDGE)) {
-+		drm_warn_once(bridge->dev, "get_next_bridge func not implemented!");
-+		return ERR_PTR(-ENOENT);
-+	}
-+
-+	return bridge->funcs->get_next_bridge(bridge);
-+}
-+EXPORT_SYMBOL(drm_bridge_get_next);
-+
- /**
-  * DOC: bridge operations
+-	if (op->dummy.nbytes)
++	if (op->dummy.nbytes || op->dummy.ncycles)
+ 		op->dummy.buswidth = spi_nor_get_protocol_addr_nbits(proto);
+ 
+ 	if (op->data.nbytes)
+@@ -109,9 +109,6 @@ void spi_nor_spimem_setup_op(const struct spi_nor *nor,
+ 		op->dummy.dtr = true;
+ 		op->data.dtr = true;
+ 
+-		/* 2 bytes per clock cycle in DTR mode. */
+-		op->dummy.nbytes *= 2;
+-
+ 		ext = spi_nor_get_cmd_ext(nor, op);
+ 		op->cmd.opcode = (op->cmd.opcode << 8) | ext;
+ 		op->cmd.nbytes = 2;
+@@ -205,7 +202,7 @@ static ssize_t spi_nor_spimem_read_data(struct spi_nor *nor, loff_t from,
+ 	struct spi_mem_op op =
+ 		SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
+ 			   SPI_MEM_OP_ADDR(nor->addr_nbytes, from, 0),
+-			   SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
++			   SPI_MEM_OP_DUMMY_CYCLES(nor->read_dummy, 0),
+ 			   SPI_MEM_OP_DATA_IN(len, buf, 0));
+ 	bool usebouncebuf;
+ 	ssize_t nbytes;
+@@ -213,11 +210,6 @@ static ssize_t spi_nor_spimem_read_data(struct spi_nor *nor, loff_t from,
+ 
+ 	spi_nor_spimem_setup_op(nor, &op, nor->read_proto);
+ 
+-	/* convert the dummy cycles to the number of bytes */
+-	op.dummy.nbytes = (nor->read_dummy * op.dummy.buswidth) / 8;
+-	if (spi_nor_protocol_is_dtr(nor->read_proto))
+-		op.dummy.nbytes *= 2;
+-
+ 	usebouncebuf = spi_nor_spimem_bounce(nor, &op);
+ 
+ 	if (nor->dirmap.rdesc) {
+@@ -418,22 +410,23 @@ int spi_nor_write_disable(struct spi_nor *nor)
+  * @nor:	pointer to 'struct spi_nor'.
+  * @naddr:	number of address bytes to send. Can be zero if the operation
+  *		does not need to send an address.
+- * @ndummy:	number of dummy bytes to send after an opcode or address. Can
+- *		be zero if the operation does not require dummy bytes.
++ * @ncycles:	number of dummy clock cycles to insert after an opcode or
++ *		address. Can be zero if the operation does not require dummy
++ *		cycles.
+  * @id:		pointer to a DMA-able buffer where the value of the JEDEC ID
+  *		will be written.
+  * @proto:	the SPI protocol for register operation.
   *
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index d6ef020c4cc9..cfa0aff1de4f 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -62,6 +62,25 @@ enum drm_bridge_attach_flags {
-  * struct drm_bridge_funcs - drm_bridge control functions
+  * Return: 0 on success, -errno otherwise.
   */
- struct drm_bridge_funcs {
-+	/**
-+	 * @get_next_bridge:
-+	 *
-+	 * Return a pointer to the bridge connected at the output port of
-+	 * this bridge.
-+	 *
-+	 * Returns:
-+	 * * Pointer to a bridge connected to the output port of this bridge,
-+	 *   with refcount incremented; call drm_bridge_put() when done
-+	 * * ERR_PTR(-ENODEV): this bridge has an output port where a next
-+	 *                     bridge needs to be present for video output,
-+	 *                     but the next bridge is not currently
-+	 *                     available
-+	 * * NULL: this bridge does not have an output port where a next
-+	 *         bridge is expected (e.g. a panel)
-+	 * * Another negative error returned by the bridge func
-+	 */
-+	struct drm_bridge *(*get_next_bridge)(struct drm_bridge *bridge);
-+
- 	/**
- 	 * @attach:
- 	 *
-@@ -1021,6 +1040,11 @@ enum drm_bridge_ops {
- 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
- 	 */
- 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
-+	/**
-+	 * @DRM_BRIDGE_OP_GET_NEXT_BRIDGE: The bridge implements the
-+	 * &drm_bridge_funcs->get_next_bridge callback.
-+	 */
-+	DRM_BRIDGE_OP_GET_NEXT_BRIDGE = BIT(11),
- };
+-int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
++int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ncycles, u8 *id,
+ 		    enum spi_nor_protocol proto)
+ {
+ 	int ret;
  
- /**
-@@ -1272,6 +1296,7 @@ void drm_bridge_remove(struct drm_bridge *bridge);
- int drm_bridge_attach(struct drm_encoder *encoder, struct drm_bridge *bridge,
- 		      struct drm_bridge *previous,
- 		      enum drm_bridge_attach_flags flags);
-+struct drm_bridge *drm_bridge_get_next(struct drm_bridge *bridge);
+ 	if (nor->spimem) {
+ 		struct spi_mem_op op =
+-			SPI_NOR_READID_OP(naddr, ndummy, id, SPI_NOR_MAX_ID_LEN);
++			SPI_NOR_READID_OP(naddr, ncycles, id, SPI_NOR_MAX_ID_LEN);
  
- #ifdef CONFIG_OF
- struct drm_bridge *of_drm_find_and_get_bridge(const struct device_node *np);
+ 		spi_nor_spimem_setup_op(nor, &op, proto);
+ 		ret = spi_mem_exec_op(nor->spimem, &op);
+@@ -741,7 +734,7 @@ int spi_nor_read_sr_ll(struct spi_nor *nor, u8 opcode, u8 *sr,
+ 
+ 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
+ 			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
+-			op.dummy.nbytes = nor->params->rdsr_dummy;
++			op.dummy.ncycles = nor->params->rdsr_dummy;
+ 			/*
+ 			 * We don't want to read only one byte in DTR mode. So,
+ 			 * read 2 and then discard the second byte.
+@@ -2247,11 +2240,7 @@ static int spi_nor_spimem_check_readop(struct spi_nor *nor,
+ 
+ 	spi_nor_spimem_setup_op(nor, &op, read->proto);
+ 
+-	/* convert the dummy cycles to the number of bytes */
+-	op.dummy.nbytes = (read->num_mode_clocks + read->num_wait_states) *
+-			  op.dummy.buswidth / 8;
+-	if (spi_nor_protocol_is_dtr(read->proto))
+-		op.dummy.nbytes *= 2;
++	op.dummy.ncycles = read->num_mode_clocks + read->num_wait_states;
+ 
+ 	return spi_nor_spimem_check_read_pp_op(nor, &op);
+ }
+@@ -3492,7 +3481,7 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
+ 		.op_tmpl = &info.primary_op_tmpl,
+ 		.primary_op_tmpl = SPI_MEM_OP(SPI_MEM_OP_CMD(nor->read_opcode, 0),
+ 					      SPI_MEM_OP_ADDR(nor->addr_nbytes, 0, 0),
+-					      SPI_MEM_OP_DUMMY(nor->read_dummy, 0),
++					      SPI_MEM_OP_DUMMY_CYCLES(nor->read_dummy, 0),
+ 					      SPI_MEM_OP_DATA_IN(0, NULL, 0)),
+ 		.offset = 0,
+ 		.length = nor->params->size,
+@@ -3501,11 +3490,6 @@ static int spi_nor_create_read_dirmap(struct spi_nor *nor)
+ 
+ 	spi_nor_spimem_setup_op(nor, op, nor->read_proto);
+ 
+-	/* convert the dummy cycles to the number of bytes */
+-	op->dummy.nbytes = (nor->read_dummy * op->dummy.buswidth) / 8;
+-	if (spi_nor_protocol_is_dtr(nor->read_proto))
+-		op->dummy.nbytes *= 2;
+-
+ 	/*
+ 	 * Since spi_nor_spimem_setup_op() only sets buswidth when the number
+ 	 * of data bytes is non-zero, the data buswidth won't be set here. So,
+diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
+index 670182b3c2ad..11817280f650 100644
+--- a/drivers/mtd/spi-nor/core.h
++++ b/drivers/mtd/spi-nor/core.h
+@@ -19,10 +19,10 @@
+ #define SPI_NOR_DEFAULT_SECTOR_SIZE SZ_64K
+ 
+ /* Standard SPI NOR flash operations. */
+-#define SPI_NOR_READID_OP(naddr, ndummy, buf, len)			\
++#define SPI_NOR_READID_OP(naddr, ncycles, buf, len)			\
+ 	SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RDID, 0),			\
+ 		   SPI_MEM_OP_ADDR(naddr, 0, 0),			\
+-		   SPI_MEM_OP_DUMMY(ndummy, 0),				\
++		   SPI_MEM_OP_DUMMY_CYCLES(ncycles, 0),			\
+ 		   SPI_MEM_OP_DATA_IN(len, buf, 0))
+ 
+ #define SPI_NOR_WREN_OP							\
+@@ -82,7 +82,7 @@
+ #define SPI_NOR_READ_OP(opcode)						\
+ 	SPI_MEM_OP(SPI_MEM_OP_CMD(opcode, 0),				\
+ 		   SPI_MEM_OP_ADDR(3, 0, 0),				\
+-		   SPI_MEM_OP_DUMMY(1, 0),				\
++		   SPI_MEM_OP_DUMMY_CYCLES(1, 0),			\
+ 		   SPI_MEM_OP_DATA_IN(2, NULL, 0))
+ 
+ #define SPI_NOR_PP_OP(opcode)						\
+@@ -652,7 +652,7 @@ int spi_nor_wait_till_ready(struct spi_nor *nor);
+ int spi_nor_global_block_unlock(struct spi_nor *nor);
+ int spi_nor_prep_and_lock(struct spi_nor *nor);
+ void spi_nor_unlock_and_unprep(struct spi_nor *nor);
+-int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ndummy, u8 *id,
++int spi_nor_read_id(struct spi_nor *nor, u8 naddr, u8 ncycles, u8 *id,
+ 		    enum spi_nor_protocol reg_proto);
+ int spi_nor_sr_ready(struct spi_nor *nor);
+ int spi_nor_read_sr_ll(struct spi_nor *nor, u8 opcode, u8 *sr,
+diff --git a/drivers/mtd/spi-nor/micron-st.c b/drivers/mtd/spi-nor/micron-st.c
+index f97f2dead8c2..34eb15c7d3b3 100644
+--- a/drivers/mtd/spi-nor/micron-st.c
++++ b/drivers/mtd/spi-nor/micron-st.c
+@@ -525,7 +525,7 @@ static int micron_st_nor_read_fsr(struct spi_nor *nor, u8 *fsr)
+ 
+ 		if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
+ 			op.addr.nbytes = nor->params->rdsr_addr_nbytes;
+-			op.dummy.nbytes = nor->params->rdsr_dummy;
++			op.dummy.ncycles = nor->params->rdsr_dummy;
+ 			/*
+ 			 * We don't want to read only one byte in DTR mode. So,
+ 			 * read 2 and then discard the second byte.
+diff --git a/drivers/mtd/spi-nor/spansion.c b/drivers/mtd/spi-nor/spansion.c
+index b1b14ed0fd46..72cc11d3f1d3 100644
+--- a/drivers/mtd/spi-nor/spansion.c
++++ b/drivers/mtd/spi-nor/spansion.c
+@@ -53,10 +53,10 @@
+ 		   SPI_MEM_OP_NO_DUMMY,					\
+ 		   SPI_MEM_OP_DATA_OUT(ndata, buf, 0))
+ 
+-#define CYPRESS_NOR_RD_ANY_REG_OP(naddr, addr, ndummy, buf)		\
++#define CYPRESS_NOR_RD_ANY_REG_OP(naddr, addr, ncycles, buf)		\
+ 	SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RD_ANY_REG, 0),		\
+ 		   SPI_MEM_OP_ADDR(naddr, addr, 0),			\
+-		   SPI_MEM_OP_DUMMY(ndummy, 0),				\
++		   SPI_MEM_OP_DUMMY_CYCLES(ncycles, 0),			\
+ 		   SPI_MEM_OP_DATA_IN(1, buf, 0))
+ 
+ #define CYPRESS_NOR_EN4B_EX4B_OP(enable)				\
+@@ -115,7 +115,7 @@ static int cypress_nor_sr_ready_and_clear_reg(struct spi_nor *nor, u64 addr)
+ 
+ 	if (nor->reg_proto == SNOR_PROTO_8_8_8_DTR) {
+ 		op.addr.nbytes = nor->addr_nbytes;
+-		op.dummy.nbytes = params->rdsr_dummy;
++		op.dummy.ncycles = params->rdsr_dummy;
+ 		op.data.nbytes = 2;
+ 	}
+ 
 
 -- 
-2.56.1
+2.56.0
 
 
