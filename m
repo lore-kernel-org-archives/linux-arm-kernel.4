@@ -2,89 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B2B6606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28ED7606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0doZdiD;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=QrjM7ZR8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=42c3LlYq;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HG3DS/xm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KB2UOnA2/AVxrvyPRngGKJQSFTHCDi7Mco+n8BMKsyE=; b=h0doZdiD1tZn1J
-	H3TBMazINM0aNTyyEYgTaYUAMcliy+S+IltHiYxE+H4D6r8s5KPoNJYkJKvs5DEdI3Hw0Tc4Ih6tD
-	xyKuCM8HuKW5yldll2yXgwxqmUC67eqbBnBXL4nGipO04/9KhB/KH4GnT06iO9CQLNKcYLU567QFI
-	on3TIJxs9kJRl52hbT0QNIvPzm30F5y7WosP1jW1VlKjBpFr6RXxliwndmMsVUqoU3sWYQSPOo7F7
-	DIkPpz+o/OHNdB9VEFy5txUbTlVGdvJRlTmg53XGF6SZB2C5QpF9LH4XLi0DDofZ4vr6j1JO2ETJt
-	w0I9/b8Adrarw/gI6X3Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xqvMv36sU1arvmKl+cIGHmHRCnYWDCYqsUJxqYwyPL4=; b=42c3LlYqVRTgPmzT/9cLQ5asE0
+	K5KvT//YSm/XAL6J0S80f4Qgka6RJBY4vLUmS8/3Sl2YG/xR7LJUH8QC6hR5Q+lb/Q9EcI7Pv/UXI
+	V/bb9n5Ti1X3IWUDwbNSGCefi4XJqCaMqdT92aJdssSmWiCD8ZRQQ9EVCrK6SGKCLPbNW1pExy2gD
+	SmxOFAoAq3ysAUGvcdPP8MT+hklsJ4njb7cXZ6b6UXmKquVYCHwRGXDw9vhSBPZQB7AhgBtnDyTPl
+	rhaBja0pNo/ZHNj39bBN7Lh4cM8y7UdhG5fs0ToDDihghnBxSY0nmckACkFKSwC3a+hjx2dVohEUL
+	NxLH3+Kw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWB5f-00000009amT-2vlX;
-	Wed, 25 Nov 2026 11:23:07 +0000
-Received: from mail-m160236538.xmail.ntesmail.com ([160.236.53.8])
+	id 1xWBmE-00000009lmT-1niq;
+	Wed, 25 Nov 2026 12:07:06 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWB4i-00000009Zz9-2mCq;
-	Wed, 25 Nov 2026 11:22:10 +0000
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 55f816044;
-	Wed, 25 Nov 2026 19:22:03 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Inki Dae <inki.dae@samsung.com>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andyshrk@163.com>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Damon Ding <damon.ding@rock-chips.com>,
-	Sashiko <sashiko-bot@kernel.org>
-Subject: [PATCH v7 07/20] drm/bridge: analogix_dp: Check all negative return values for &analogix_dp_device.irq
-Date: Wed, 25 Nov 2026 19:21:28 +0800
-Message-Id: <20261125112141.1434903-8-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261125112141.1434903-1-damon.ding@rock-chips.com>
-References: <20261125112141.1434903-1-damon.ding@rock-chips.com>
+	id 1xWBmC-00000009lmD-3Wru
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 12:07:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A01806298A;
+	Wed, 25 Nov 2026 12:07:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77CBD1F000D0;
+	Wed, 25 Nov 2026 12:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795608423;
+	bh=xqvMv36sU1arvmKl+cIGHmHRCnYWDCYqsUJxqYwyPL4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=HG3DS/xmRh+hLy/FZR+0DYfYsuM99sOw0N5RdI595AfpTVhkw1ibfxIqv+4SLC1x7
+	 nLTTGtcYq6q5oVbibxAcXtlkQEn0KqmBebcb8ICXio1q9HiLRFhghlIyRbxaVn0Zun
+	 qQNTUDAeB+BnT4l7UoVIUviBrRlHKASCArw2XfexmDn3CRFd/OAqnOM0zwtolbMTwu
+	 PVqAwqMlY4zQ07Lqx8dmdqDP+loL413gUqnJdKgfTYjNlLqDbSTVgDsRXka+wDynLp
+	 8AUFPEzcX8r4mVwFvOFahOhpzdNI6EalJ4DGJdaAUxKqoo/QkTXHorxOnFK/6YRA91
+	 ktW9x0DaFbLmw==
+Date: Wed, 25 Nov 2026 13:07:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: soc@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Russell King <rmk+kernel@armlinux.org.uk>, 
+	Vladimir Zapolskiy <vz@mleia.com>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
+	Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Gregory Clement <gregory.clement@bootlin.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, 
+	Robert Jarzmik <robert.jarzmik@free.fr>
+Subject: Re: [GIT PULL] soc: deprecated platform removal for 7.5
+Message-ID: <20261125-judicious-burgundy-bee-89d514@quoll>
+References: <7d052ff3-6d0a-47ff-a1cb-b7864ad2c248@app.fastmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa21270f97a03a8kunm17c23050775894
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaQk1DVktIT0IdGU0YHU5DSlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=QrjM7ZR8pJ3EzmPj0v56jPZq94jjwPvloVlv1Emt4EQmsMiU7/r43wrszU+dbY9O0nPWw0QXG8jQ3pXQlWNeUX83jbA/06oqNtsD8DkKnR5wkj4FZxG1Tkn2+UZiBrO7DyFPcVBEcYiiI/kdXjI7mihzZseaes9BAmThSBMyWUc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=KB2UOnA2/AVxrvyPRngGKJQSFTHCDi7Mco+n8BMKsyE=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_032208_989198_7748B6F8 
-X-CRM114-Status: GOOD (  13.81  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7d052ff3-6d0a-47ff-a1cb-b7864ad2c248@app.fastmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,73 +75,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently only -ENXIO is checked for dp->irq from gpiod_to_irq(),
-which ignores other possible error codes like -EPROBE_DEFER, -ENOENT.
+On Thu, Nov 12, 2026 at 04:47:21PM +0100, Arnd Bergmann wrote:
+> The following changes since commit 7475ea8b58616b33c04afb976cf0fbaad9dd63fb:
+> 
+>   Linux 7.4-rc2 (2026-11-08 16:22:20 -0800)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git tags/board-remove-for-7.5
+> 
+> for you to fetch changes up to 273a6e23f66433952300d1810b5274786e7e4a25:
+> 
+>   ARM: at91: remove samv7 support (2026-11-10 22:18:44 +0100)
+> 
+> ----------------------------------------------------------------
+> soc: deprecated platform removal for 7.5
 
-Check for any negative value instead, and propagate the actual error
-code rather than hardcoding -ENODEV.
+Thanks, applied
 
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Link: https://lore.kernel.org/all/20260804083307.84ECA1F000E9@smtp.kernel.org/
-Tested-by: Heiko Stuebner <heiko@sntech.de>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-
----
-
-Changes in v4:
-- Add Tested-by tag.
-
-Changes in v5:
-- Change the type of &analogix_dp_device.irq from unsigned int to int
-  to fix the dead dp->irq < 0 check, which broke the probe deferral
-  for the HPD GPIO. (Sashiko)
-
-Changes in v6:
-- Add Tested-by tag.
----
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 4 ++--
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.h | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 3ab1cf6b51d1..749d63e55d2a 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1514,9 +1514,9 @@ analogix_dp_probe(struct device *dev, struct analogix_dp_plat_data *plat_data)
- 		irq_flags = IRQF_NO_AUTOEN;
- 	}
- 
--	if (dp->irq == -ENXIO) {
-+	if (dp->irq < 0) {
- 		dev_err(&pdev->dev, "failed to get irq\n");
--		return ERR_PTR(-ENODEV);
-+		return ERR_PTR(dp->irq);
- 	}
- 
- 	ret = devm_request_threaded_irq(&pdev->dev, dp->irq,
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
-index dc189f0b7a19..cc3466304531 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
-@@ -159,7 +159,7 @@ struct analogix_dp_device {
- 	struct drm_bridge	bridge;
- 	struct drm_dp_aux	aux;
- 	struct clk		*clock;
--	unsigned int		irq;
-+	int			irq;
- 	void __iomem		*reg_base;
- 
- 	struct video_info	video_info;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
