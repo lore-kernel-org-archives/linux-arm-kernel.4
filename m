@@ -2,85 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C68B606A338
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A08606A32C
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZYVGHlnR;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=bYPkKVG2;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=ty4nHO3Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fjPx8wKN;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=YeKuVTc5;
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=WpHky++2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fFXM4VsY0RTQVbWn8ye8maJPr7lIP431CErzs/ruNGg=; b=ZYVGHlnRLPjtph
-	2sUJlLvhiy4Zu1NNdyyeKrOZa+/YIe9kPv7Ut5s2Bi36uO2UL7GDF7PqnNxIo2qoF77hBlOtkKrY6
-	swcjYtdq9y7l5E7dLyt+NPkf34eJTU1NNfIVmjNKApWr2caQ6jCjrLaa72NlWMJmT9c/xp3CtNYNZ
-	Q75al112B+2P6Wolm/PiVgsfuKwMlzefg/Batcn+aMw2fDzdZaTKNbtw1hODLw+R/7ErJBpDQWjy5
-	eAxzpjmVYtPRekL+HAF+RLxqYyKU6uAfCEF2kO6nDYgK9XRmPXrjzHT0edwOmiLNSCwyfDvi/N7g9
-	sCr8wqC/xX8GWxU1ddLw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=; b=fjPx8wKNHGH9e1ZFPdvb8vPROw
+	sMM1D0Q4BuQPhTomkHZydm4fZxxcsNeO5sSuKIuIuGFre2lXNJiWiV91p2y6DIR3HwjT4P5IP3hOV
+	QwIQ8ZK0tyhstX2I21HIFwEuOIrWKFefrxRTGay5KVxnsxVIrpU145ltSEG/FPGxvvpP7pEjqATfL
+	62T3aaCeJXRFeHyOysJCTY+Th0lxbSRfi+cBu/j+fMmHwPShLSl/DSdxHPHoBTuxvWmItLbKPqAT6
+	muCiR8PEWiPs3+xJkyppzlk0EoWcghCf8dnGBOIEKSAeVAXiZG7YUoZL2MPji9YN/Vi8B5Gyrt7G2
+	UoX3Aymw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDq-0000000AsfM-2S6H;
-	Wed, 25 Nov 2026 17:55:58 +0000
+	id 1xWHDr-0000000Ash6-33gr;
+	Wed, 25 Nov 2026 17:55:59 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDb-0000000AsIb-3TtI
+	id 1xWHDq-0000000Asdq-3ENC
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:55:44 +0000
+	Wed, 25 Nov 2026 17:55:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=fFXM4VsY0RTQVbWn8ye8maJPr7lIP431CErzs/ruNGg=; b=bYPkKVG2NmBb+Yv+6y2l+mwrlv
-	GU46R030840c4cNL3rLbIPhReXUIDhw1xniuY4A0Ec2ujaN9p2JimjW9FLRPoG1SuqnHlLBhHqBUq
-	zzNEvGlnw7qHve8UgzSH5OApeRes/kXD/hSKRw9vMvySgQthXaEGR7x6xty/G+I1by2geNpU3Rmic
-	aseIUS1NZYNPR3NZ8y21P+vDpdn77gmlGt6iEhzS8U7ARIcwHQuTWwuAVHYjLXVxEomxuIV1LnfKW
-	fydnlUTw7J4T+mQqu8weosljUu3T6s+zlmtCzK4n4ho1U/9edGIn5LZUG0QmpEJECfOlxHpg2HTtp
-	O1L+C5sw==;
-Received: from out-19.mta1.migadu.com ([95.215.58.19] helo=mta1.migadu.com)
+	d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=; b=YeKuVTc5RTvohBcJLI6zuACzCj
+	Ar6mpGmTudcBqH2aCnW+UX7ojhrcfNpqzYfiZ4bRT7EX3fns965Dju8tFPCpGAXYchZgGVy+Z0Qtg
+	3oj/HgSF7OSIMCepBkumzRrUqxyegg8yrm4agif6+zGbeJQl/wFNEeni0ETvrnIxAC4TOzCAHYzXb
+	toHdDDrTlyCKMSJZ8A52ZsY1miMuDgCWl2NCA5GLWQdQSGXUETbuhDxKw6y8FHYb4kpWJe1eSjY8M
+	LiAKjN1gjAKoMJeVUE0ymAVtMnPo7HGqfPeS7tRQKKX5BeVo2AmEwzxD5dVVpHsjMAcFNJvqKC4Ye
+	imdxMcmw==;
+Received: from mail-qt1-x829.google.com ([2607:f8b0:4864:20::829])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDW-00000005cYz-0FVQ
+	id 1xWHDk-00000005cbM-2haD
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:55:42 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=NN4WGVbOnaTjrSCMn4KsfQluXPMA9ZIKbvqBw1KnXg0=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795629335; v=1; x=1796234135;
- b=ty4nHO3YTMkCilwppIsWWTiBpDP/NWZdwrJq6CSGCK3KX66vVYz3q+IlV5X0foqKtuF4upRx
- iXnvVBz9wy4kZJ0UivlMoHnOw2GCSov7iwzhlKPANH0XLIy4OvCMmsnmQmCb+vH/UT5jKgWHHv4
- y8kQtKqybL2hu0B1mIfN53zY=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 8be7eac4ebc51b04;
-	Wed, 25 Nov 2026 17:55:31 +0000
-X-Mizu-Trace-ID: 8be7eac4ebc51b04
-X-Migadu-Flow: FLOW_OUT
-Message-ID: <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
-Date: Wed, 25 Nov 2026 17:55:29 +0000
+	Wed, 25 Nov 2026 17:55:57 +0000
+Received: by mail-qt1-x829.google.com with SMTP id d75a77b69052e-5430f70c827so72195851cf.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 09:55:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1795629349; x=1796234149; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=;
+        b=WpHky++2HAnbJYXSQdMPiSmo/Ghs825oUcB9ahHGoQO2gZ6tjyPhVs0ZuDeNRrBR2F
+         mXWxGStGSNdY0Bj+ixGhPHhSWn6+0lF/szCveDQJ0qtke1pzxt37ckFXi7Mox4TeYMJ7
+         w6CSlGlRmRIK+mKtLLthv4h6YHeLnAA9Ey0iRNAeAvobYhDEceQx5bje1LG6jtv0hD1g
+         RkAucXRsmM+/PSpEb9vQvTqbD6MC3N3Dl5i3E5v9veyHnYObdGKnew6pNeBN1kf2wNRI
+         73VRCXeaz2pNOXVLXG2NCxha2MglUwT0iJONN8KjFLqsHEuFfRs8G0iNfSqRCCtDc9zU
+         s3gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795629349; x=1796234149;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ZhgvvGhr19GJBCcJ3nyYAHYL8qsS8Qu8flUoaHfsv+4=;
+        b=m9fMV5vEgIeT1LfWQ3t7rv4TEHy2Tb6RkZyLqQusvcKKuzLgqIjIRl/UcCle0kZf2V
+         /3BVJHdmNlK/v6eq2nIorHdMkEUzw8Z+u3GPvlLVe+PJghl1DY3YpO6X7HrctMe49sZM
+         1HnkLy6dytg272j435vToVU1jV8qSwOCZMyqhvcaZHjgLxDcRsR1e07R0fEiZlXjh/X8
+         6c/AspEF/Ifhh8iBp8no+gfV9f2QwTUhV3NDnYQC0yjFcCJYJ/vk1UWlP/dCklwD5WwZ
+         rQbyEavxhCBPCmH24ncDYKRsj+ZPm5JvlU6WDuiTEQIta9Oa65HRvLcaZOYV/hYeIEgm
+         9IKg==
+X-Forwarded-Encrypted: i=1; AL+hErH3etXc0wdmuX5ctXDtbO9o+tsVkOXS+mdWc/7CRz7C4aMHpsLCat0r+BbxOxa4bPYoXsYFktm7ZAIkDPe53Lzw@lists.infradead.org
+X-Gm-Message-State: APuU4Z+LekUC/ubQHjLQcStDI/GPWg7PjOm8bhaG64XI7MQzLLFbjxrf
+	6Kcl8u0r4Nptt1tqkH+WPXPqXgcHAb1m55NeRyyYhJ50Yr4k27vYWB5pJWk00b2M658=
+X-Gm-Gg: AZFdTZeHfdt4qvN/5/v+Xyuw/nqWUHweLWbypfEmNb8rdvw2CFJTJE76HSYV+Pt+XIE
+	F+HvexIWIIs0zgxdqvo8+SuQHFlmKX/4U571c8xGVp6VKVVfvWl616fHaEVkAC3pafUvwrSaPY9
+	5udgFIzfTBgVG6s0DxIwjgz4Rk3HjSIS+fjrxY7Togg0P2jrX/HdKtgE7SQKehuGI4EGN0zS5Fx
+	Xjg86WmRT6gLb6FJ9aTj4pNNdQM7e+54/jNqfOJzi6N1APtaBrKWvIVxTgvBqwEJKTz9CTc6kSc
+	O+tMh9iVYgbYQNDfZJpQ7XNxweVdJPKqJONEWZsmiISp4gPIgZehNd39ddqKFJwGxJb+TEjA4zB
+	10r0gA6ohX1s5MBoreQDf93p65KnH/ka3D7VqJUcH19ZY5maq5Tsfmp7y3LtjABanBqbebbc6Dk
+	3tusgPT8o0jDkTFPUwg3LY/gPmb88Z9KXOsIScZKpCqMaQzcT6RhByAn7KO8KROJPsar5DgIP7y
+	qhSw3YyuqWFiK0TpSsJy7RSX2kwakgSalwnkOgPRiyXHLf8hhJ7YqSRxj5iXorGcTUwURjwEl4R
+	h1qJqg==
+X-Received: by 2002:ac8:5706:0:b0:536:3760:e6cb with SMTP id d75a77b69052e-55d769e9387mr335085841cf.14.1795629348805;
+        Wed, 25 Nov 2026 09:55:48 -0800 (PST)
+Received: from ziepe.ca ([142.177.118.84])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-55dbb8546ecsm18274511cf.4.2026.11.25.09.55.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 09:55:47 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1xWHDf-0000000298s-0hJB;
+	Wed, 25 Nov 2026 13:55:47 -0400
+Date: Wed, 25 Nov 2026 13:55:47 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Sibi Sankar <sibi.sankar@oss.qualcomm.com>, will@kernel.org,
+	robin.murphy@arm.com, honghuan@amd.com,
+	Leon Romanovsky <leonro@nvidia.com>, joro@8bytes.org,
+	prakash.gupta@oss.qualcomm.com, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] Revert "iommu/dma: simplify dma_iova_destroy() and drop
+ the free_iova helper"
+Message-ID: <20261125175547.GM246011@ziepe.ca>
+References: <CGME20261125135138eucas1p141ba6b5e09623562e2033e290fba811c@eucas1p1.samsung.com>
+ <20261125135120.1126571-1-sibi.sankar@oss.qualcomm.com>
+ <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-To: Leonardo Bras <leo.bras@arm.com>, Lorenzo Stoakes <ljs@kernel.org>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
- joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
- yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org,
- mark.rutland@arm.com, kvmarm@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com,
- rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
-References: <20261124152842.2634495-1-usama.arif@linux.dev>
- <awcXhk885lqDRAHy@LeoBrasDK>
-Content-Language: en-US
-From: Usama Arif <usama.arif@linux.dev>
-In-Reply-To: <awcXhk885lqDRAHy@LeoBrasDK>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175538_116523_CA75FC19 
-X-CRM114-Status: GOOD (  24.46  )
+X-CRM114-CacheID: sfid-20261125_175553_105011_247AFB2A 
+X-CRM114-Status: GOOD (  22.01  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,123 +128,80 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-On 25/11/2026 09:14, Leonardo Bras wrote:
-> On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
->> When a stage-2 fault may need new page tables, KVM first tops up the
->> vCPU's page cache: if it holds fewer pages than the fault might need, it
->> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
->> 40. Unused pages stay in the cache until the vCPU is destroyed.
->>
->> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
->> used. Stage-2 has at most three levels and the root is preallocated, so
->> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
->> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
->> table pages to map all of its memory, while its four vCPU caches get
->> filled with 160.
->>
->> On a production host with 64 KiB pages running 101 VMs with four vCPUs
->> each, the caches were still 86% full. The memory used:
->>
->>                         before      after
->>   per-vCPU capacity     2.5 MB     512 KB
->>   all 404 vCPUs         869 MB     <= 202 MB
->>
->> Let's lower the capacity to 8 with 64 KiB pages, In the production
->> usecase above, it frees at least 667 MB. That still covers the two-page
->> minimum and leaves room for several table allocations per refill. 4 KB
->> and 16 KB pages keep 40.
->>
->> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
->> but it is topped up before every page it maps, so 8 is sufficient there
->> as well. The pKVM hypervisor memcache and the eager split cache don't
->> use this capacity.
->>
->> Signed-off-by: Usama Arif <usama.arif@linux.dev>
->> ---
->>  arch/arm64/include/asm/kvm_types.h | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
->> index 9a126b9e2d7c99..28568da9ea4a7b 100644
->> --- a/arch/arm64/include/asm/kvm_types.h
->> +++ b/arch/arm64/include/asm/kvm_types.h
->> @@ -2,7 +2,12 @@
->>  #ifndef _ASM_ARM64_KVM_TYPES_H
->>  #define _ASM_ARM64_KVM_TYPES_H
->>  
->> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
->> +#ifdef CONFIG_ARM64_64K_PAGES
->> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
->> +#else
->>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
->> +#endif
->>  
->>  #endif /* _ASM_ARM64_KVM_TYPES_H */
->>  
->> -- 
->> 2.53.1-Meta
->>
+On Wed, Nov 25, 2026 at 06:21:06PM +0100, Marek Szyprowski wrote:
+> On 25.11.2026 14:51, Sibi Sankar wrote:
+> > This reverts commit 1acce29926d93f3eba427696fe3da6451504dae2.
+> >
+> > Before this commit, dma_iova_destroy() unmapped through
+> > __iommu_dma_iova_unlink(..., free_iova=true), which set
+> > iotlb_gather.queued from cookie->fq_domain, skipped iommu_iotlb_sync()
+> > and freed the IOVA with the queued gather, exactly like
+> > __iommu_dma_unmap(). After it, dma_iova_destroy() calls
+> > dma_iova_unlink() and then dma_iova_free():
+> >
+> >   - dma_iova_unlink() never marks its gather as queued and always calls
+> >     iommu_iotlb_sync() after iommu_unmap_fast().
+> >   - dma_iova_free() passes a NULL gather to iommu_dma_free_iova(), so
+> >     the IOVA goes straight back to the allocator through
+> >     free_iova_fast() and never through queue_iova().
+> >
+> > DMA-FQ domains therefore get strict invalidation on this path. That
+> > includes the block layer's blk_rq_dma_map() path, which NVMe uses for
+> > all data transfers, so iommu.strict=0 has no effect on NVMe I/O.
+> >
+> > hw/sw details: Qualcomm Glymur CRD: SMMUv3 with no RANGE_INV,
+> > 	       4K pages; NVMe SSD on PCIe Gen5 x4
+> >
+> > Fio sequential read/write numbers:
+> >   Domain                          seq write    seq read
+> >   DMA (strict)                    2694 MiB/s   2693 MiB/s
+> >   DMA-FQ (lazy), flush queue      2707 MiB/s   2803 MiB/s
+> >     bypassed (this regression)
+> >   DMA-FQ (lazy), flush queue      10.6 GiB/s   11.9 GiB/s
+> >     used by dma_iova_destroy()
+> >
+> > Fixes: 1acce29926d9 ("iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper")
+> > Cc: stable@vger.kernel.org # v7.3+
+> > Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 > 
-> Hi Usama,
 > 
-
-Hello Leonardo,
-
-> Have you tried to reproduce this issue in v7.4-rc1 or newer?
-
-Yes. The patch is against kvmarm/next (v7.4-rc3), which includes
-Lorenzo's pre-fault series, and I A/B tested it there.
-
-On unpatched v7.4-rc3 with 64 KiB pages, a VM whose 16 vCPUs each fault
-in one page needs a single stage-2 table page, yet the vCPU caches hold
-640 pages (40 MiB). With the patch they hold 127 pages.
-
+> The performance data clearly shows that the flush queue was there for
+> the reason. Together with this revert it would probably make sense to
+> apply the v1 of the reverted patch:
 > 
-> IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
-> skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
-> improve that issue.
-
-I don't think that part is new. __kvm_mmu_topup_memory_cache() has
-returned early when mc->nobjs >= min since commit 6926f95accee ("KVM:
-Move x86's MMU memory cache helpers to common KVM code"). Lorenzo's
-commit d27acc152c62 ("KVM: arm64: Size the stage-2 memcache from the
-fault MMU") takes min from s2fd->mmu instead of vcpu->arch.hw_mmu. For a
-guest abort that is the same MMU, so nothing changes here.
-
-With 64 KiB pages, min is kvm_mmu_cache_min_pages(), which is at most 2.
-
+> https://lore.kernel.org/all/20260701092033.422867-1-honghuan@amd.com/
 > 
-> Although I can see that when it's below that minimum it fills the whole 
-> capacity (40) of the cache.
-> 
+> Leon, do You see any other option?
 
-Right, and that is the problem. Skipping the top-up avoids refilling
-the cache, but nothing ever drains it. A vCPU's first fault fills its
-cache to 40. Each last-level table covers 512 MiB, so a guest needs very
-few table pages, and most vCPUs never drop below min. The remaining
-pages stay allocated until the vCPU is destroyed, which is why the
-production caches were still 86% full.
+Oh, there are a couple of issues here too, and reverting isn't fixing
+the main problem with this..
 
-The patch keeps the early return and only lowers how far a refill goes.
+The issue is the assumption we can separate the sync from the free:
 
-Thanks,
-Usama
+       if (!iotlb_gather.queued)
+               iommu_iotlb_sync(domain, &iotlb_gather);
+       if (free_iova)
+                iommu_dma_free_iova(domain, addr, size, &iotlb_gather);
 
-> In any case, Lorenzo, could you advise?
-> 
-> CC:Lorenzo Stoakes (ARM) (ljs@kernel.org) 
-> 
-> Thanks,
-> Leo
+We cannot. The gather must always be retired, either be calling
+iommu_iotlb_sync() or by calling iommu_dma_free_iova(). It can never
+just be left dangling.
 
+Further you can't call iommu_dma_free_iova() with a NULL gather once
+unlink has been called. That risks things out of order where the
+rbtree can show the freed iova before the associated queued flush has
+happened. That is a correctness issue.
+
+I suppose the resolution here is to feed the gather up the call chain
+and allow it to be retired correctly instead of trying to short
+circuit it inside the API.
+
+Jason
 
