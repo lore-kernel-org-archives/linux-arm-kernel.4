@@ -2,127 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A8A606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5477C606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uEBZ/Uo+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jDVsTFrv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pYqiyefu;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=IWSBa6bB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:
-	References:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Subject:Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GE0X2Af1f0g88wp6AaRBRdIJWXxatq8TXaVKu/Afmt0=; b=uEBZ/Uo+CMdrsv
-	KOfStJR6+qFdr76wWML9h1me0nnXuP4scpFuErPff7I0Mnl6ZmnNbgS0BqTqpoAp1laXopWPzXy8i
-	LWOaLlXoleeBvgNCOA61O2TVsVZDhZiu1oRdu9a06Ale9curBEEBNaSlnxSA4WWxSCc/po2dtEv+e
-	BD7ks4SiKuj/w2mrXAKVc9wVgmftX//PHOortVTgeJOBgUmOVFdpjiyKTjHFJKXOVlw8t7LILAICL
-	U/Kk9riIunH0nPe5HNQW3wuJ+09lWOOlVziZ4nQFOpakPO2YalOergaAQymu7WjqtivAZsmPb2C/K
-	P5T9R64CD2z6xFIXJafw==;
+	List-Owner; bh=k5xHf2lhPr/RExrawLrN0PmhwGouCpcZE5UnOts9ZAQ=; b=pYqiyefuOEhCnn
+	WUtiHMNMDcH6KXQrN4dRacoQ6aE7rF6RxHTzJvtywHAEIc6bP76oa8wN2kox0RZXqD2IQOeifcoSB
+	maUR9fqH3n3FZA64jf+1HV965REy9PnhZKaa/N8G2NQXZ6aIBia53PHgkIIMsd2Zr/K+rilRAW3Zq
+	t54Ee+EaqJ/hW8+ipG+7ajj/kQFhuSBAN16tVrY5AMQwfJYGysxW9x0GLV9hZcVMKwGEymkuHO+IC
+	23OK/qISsLjRW6fMxEghLt75WeIGRtXwMQgTf7yztx/QA0vsgev4vE4ms/nK0wkIPUaLJK/eRWsmP
+	AqfD8jMl4Crk+Z1kzXPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9RP-00000009KRf-2Jnd;
-	Wed, 25 Nov 2026 09:37:27 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xW9Rw-00000009Kl7-2zTv;
+	Wed, 25 Nov 2026 09:38:00 +0000
+Received: from out-126.mta0.migadu.com ([2001:41d0:1004:224b::7e] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9P6-00000009IuS-0LM3;
-	Wed, 25 Nov 2026 09:35:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 84B9A6255F;
-	Wed, 25 Nov 2026 09:35:03 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795599303;
-	b=aDoJSC1WrCk30FvXCCZm23DtJpGGfKZ4E+pMT2Bn5wPKZr+STFkFWmai2u4HmUMgkr5v
-	 1kXsdNO5VOMNCR4glnCLLtKuD7okPf8+4v0/g6ZL4jONCGoIY7no88FXPbOkDAGLKrsL0
-	 sHB16Ealtql5pN6eVoRI50/0i6IIEwOGBhdES+VjWgnfHE3KU6Qc0IdxNAb+T7z1P2BPe
-	 z6FrWUf+Eq8SeAYZ5Gec7bnHj2Sxf/JAeA+GuY42ypcTL4nJ/6Yfxgyo6d/Ko6r5uklyt
-	 anBEDTqVxj630TNljkjTFaHTCpcLp0BRATqST9fCiIddeMilViPXPg8O3ka3qoehFxg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795599303;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
-	 X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=GE0X2Af1f0g88wp6AaRBRdIJWXxatq8TXaVKu/Afmt0=;
-	b=OQEnMTfso6mprUkagjmmyP1Nek8+Ypq+uPwKL4gJwWkAgYAPbyTrd2dHqYqToELkcoZo
-	 vsoaFaHqk1cos3VW1xv0uSu1sGsL4rRraF51PKrGqyGfMFRViytesmsPLbLnwbpQBK6xb
-	 VN9SU0VnO9rY5QOL6Yb6zKtIHqOFBBMc7jYJGDN+KqydoDPvTfxV6oPx4SXqlDtWfvJ4A
-	 AmKItDzdOFwM3PBvMeAGlm2iJO3d018NR5G1nBQ0fWBOpiX2YkFZQuRRRxR6w9Y1Y4ZC+
-	 we7hSIY+pppIeeWEAqG6tLnVsQQTz7fBy+6yZI4Rl5tlgNU5sy2ftXeOxXV8x/F67TA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BE2641F000EB;
-	Wed, 25 Nov 2026 09:34:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795599303;
-	bh=GE0X2Af1f0g88wp6AaRBRdIJWXxatq8TXaVKu/Afmt0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=jDVsTFrvYlqAq+dA94tWpUMzQQ6OKIyhWJ+44xfFQynlxGiJwE1tvwFL6EC0GGpx0
-	 WIn/4HACg6ZCAllPZlI+X4a7tUn1S1DuxxSMKafU8EDO4SiLZtxBcyWX1dfwqufe2j
-	 YxCHw1ZkH+5HMDThEPsgbmhm6exJFLcUAIi6zMjxNycMAqHzhXjrkcAT8LfF0QQvqi
-	 dImf8kj+69AMC3LvEpP9P77Lu7+CXSDiT2gOs1xGfTk05Ar2HMFG44mxUiWgfodRbv
-	 3JheS6fAh7ag3g13/bhixOEkJnR0rLdPv4h1q45f/XJGVoVRJSUIr7qHolsoXthc/W
-	 XEgLk+BWrKdag==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A3EFA4CE1A;
-	Wed, 25 Nov 2026 09:34:37 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Wed, 25 Nov 2026 10:33:53 +0100
-Subject: [PATCH RFC v4 11/15] MAINTAINERS: Add NXP S32G SerDes entry
+	id 1xW9RS-00000009KQS-0EvE
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 09:37:40 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=qq12iW/GfAR0dRAaMy1K7AX9iuydUIvkIBU6+z/H2qQ=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795599446; v=1; x=1796204246;
+ b=IWSBa6bBkna41jsj8ZWeTM5E9j/lXWrq4rL+MR5TuEE38yqwCk17IeysPgN915zJZvyyjZTE
+ xTAr659q93oRoGQiGIJVvcObUhGC2iFfVWku0zHSXkn5GPxU0Aceu2/dlqI6DDzFwlciimXZ0a4
+ zjd5hbkg/I2UmjJeu6cWafvk=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 442509cce5000c32;
+	Wed, 25 Nov 2026 09:37:26 +0000
+X-Mizu-Trace-ID: 442509cce5000c32
+X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain;
+	charset=utf-8
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-s32g_serdes-v4-11-3bfe0589be8d@oss.nxp.com>
-References: <20261125-s32g_serdes-v4-0-3bfe0589be8d@oss.nxp.com>
-In-Reply-To: <20261125-s32g_serdes-v4-0-3bfe0589be8d@oss.nxp.com>
-To: Vincent Guittot <vincent.guittot@linaro.org>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Bogdan Hamciuc <bogdan.hamciuc@nxp.com>, 
- Ionut Vicovan <ionut.vicovan@nxp.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Richard Cochran <richardcochran@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-pci@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795599274; l=1513;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=86svSsXyW7XbXvUHtBhNIUJ9Mfx/TitxfATul2iPoAs=;
- b=Gn3XzjwMZOtGZ1tpGqksVlxXFvvg/WVPIMYMlFPNjKYIjT+/z53UTUVfoAcEhSfLFZO4pJrFP
- rnLdd3g1YLCBeMxaKmPQkCpeiJ+E+6Aemr9FWq/nclrrZL9SVwY4VL1
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
+Subject: Re: [PATCH v3 06/19] hugetlb: Optimize bootmem folios that were not
+ pre-HVOed
+From: Muchun Song <muchun.song@linux.dev>
+In-Reply-To: <CADrL8HW8+eFt5f1VBQ0zt-ioiU3X150W4ROaKf2Nzw4j9+0i_Q@mail.gmail.com>
+Date: Wed, 25 Nov 2026 17:37:04 +0800
+Cc: Muchun Song <muchun.song@linux.dev>,
+ Will Deacon <will@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Kefeng Wang <wangkefeng.wang@huawei.com>,
+ Nikos Nikoleris <nikos.nikoleris@arm.com>,
+ Linu Cherian <linu.cherian@arm.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ David Hildenbrand <david@kernel.org>,
+ Ryan Roberts <ryan.roberts@arm.com>,
+ Nanyong Sun <sunnanyong@huawei.com>,
+ Yu Zhao <yuzhao@google.com>,
+ Frank van der Linden <fvdl@google.com>,
+ David Rientjes <rientjes@google.com>,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-mm@kvack.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <09A53080-61DE-472D-9A37-38B524C76FF9@linux.dev>
+References: <20261122184453.2668189-1-jthoughton@google.com>
+ <20261122184453.2668189-7-jthoughton@google.com>
+ <CF94E7D7-87D2-4523-9343-512EE00094FA@linux.dev>
+ <CADrL8HW8+eFt5f1VBQ0zt-ioiU3X150W4ROaKf2Nzw4j9+0i_Q@mail.gmail.com>
+To: James Houghton <jthoughton@google.com>
+X-Mailer: Apple Mail (2.3901.200.71.1.16)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_013730_266924_4C448E5D 
+X-CRM114-Status: GOOD (  24.39  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,59 +89,146 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: jan.petrous@oss.nxp.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Vincent Guittot <vincent.guittot@linaro.org>
 
-Add an entry for the S32G SerDes PHY driver, the S32G XPCS glue, the
-S32G part of pcs-xpcs, their headers and the SerDes binding. netdev is
-listed because the PCS code lives in drivers/net/pcs/.
 
-Signed-off-by: Vincent Guittot <vincent.guittot@linaro.org>
-[jan.petrous: dropped the shared core entry along with the core]
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- MAINTAINERS | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> On Nov 25, 2026, at 00:58, James Houghton <jthoughton@google.com> =
+wrote:
+>=20
+> On Sun, Nov 22, 2026 at 10:11=E2=80=AFPM Muchun Song =
+<muchun.song@linux.dev> wrote:
+>>=20
+>>=20
+>>=20
+>>> On Nov 23, 2026, at 02:44, James Houghton <jthoughton@google.com> =
+wrote:
+>>>=20
+>>> Boot-time gigantic folios are expected to be pre-HVOed through the
+>>> section-based vmemmap optimization, so the bulk optimization pass =
+for
+>>> bootmem folios was dropped.
+>>>=20
+>>> However, arch_support_vmemmap_remap() may not yet
+>>> return true when bootmem folios are allocated (e.g. on arm64, where
+>>> support depends on a system-wide CPU capability), while it does =
+return
+>>> true by the time the bootmem folios are gathered. Such architectures
+>>> disable the section-based vmemmap optimization in their vmemmap
+>>> population path (see section_vmemmap_optimization_disable()), so the
+>>> folios are not pre-HVOed and would never be optimized.
+>>=20
+>> Yeah, when I removed support for this part of the code, I figured you
+>> might add a new patch in the future to add support back. It is fine.
+>>=20
+>>>=20
+>>> Optimize such folios when gathering bootmem folios. Their tail =
+struct
+>>> pages have all been initialized by memmap_init_compound_page(),
+>>> as they were not pre-HVOed. Pre-HVOed folios are skipped by
+>>> vmemmap_should_optimize_folio().
+>>>=20
+>>> Signed-off-by: James Houghton <jthoughton@google.com>
+>>> ---
+>>> mm/hugetlb.c | 11 +++++++++++
+>>> 1 file changed, 11 insertions(+)
+>>>=20
+>>> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+>>> index 72839e98f998..8756c0206922 100644
+>>> --- a/mm/hugetlb.c
+>>> +++ b/mm/hugetlb.c
+>>> @@ -3325,6 +3325,17 @@ static void __init =
+prep_and_add_bootmem_folios(struct hstate *h,
+>>>      unsigned long flags;
+>>>      struct folio *folio, *tmp_f;
+>>>=20
+>>> +     /*
+>>> +      * Bootmem folios are normally pre-HVOed through the =
+section-based
+>>> +      * vmemmap optimization. However, an architecture that can =
+only
+>>> +      * determine whether it supports HVO after bootmem allocation =
+disables
+>>> +      * the section-based optimization (see
+>>> +      * section_vmemmap_optimization_disable()), in which case the =
+folios
+>>> +      * were not pre-HVOed and must be optimized now. Pre-HVOed =
+folios are
+>>> +      * skipped.
+>>> +      */
+>>=20
+>> I'd like to condense these comments to something like:
+>>=20
+>> /*
+>> * Some architectures do not support section-based vmemmap =
+optimization,
+>> * so their bootmem folios should be optimized here with folio-based
+>> * optimization.
+>> */
+>=20
+> Applied in v4, thanks!
+>=20
+> Also just so you don't miss it, would appreciate your thoughts on my
+> reply to Sashiko's comments on this patch[1]. Let me know if you would
+> like me to do something different.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 742c4e6b291f..cb465ba42d73 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3449,6 +3449,22 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
- F:	drivers/pci/controller/dwc/pcie-nxp-s32g*
- 
-+ARM/NXP S32G SERDES DRIVER
-+M:	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-+M:	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-+M:	Jan Petrous <jan.petrous@oss.nxp.com>
-+R:	NXP S32 Linux Team <s32@nxp.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-phy@lists.infradead.org
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/phy/nxp,s32g-serdes.yaml
-+F:	drivers/net/pcs/pcs-nxp-s32g-xpcs.c
-+F:	drivers/net/pcs/pcs-xpcs-s32g.c
-+F:	drivers/phy/freescale/phy-nxp-s32g-serdes.c
-+F:	include/linux/pcs/pcs-nxp-s32g-xpcs.h
-+F:	include/linux/phy/nxp-s32g-serdes.h
-+
- ARM/NXP S32G/S32R DWMAC ETHERNET DRIVER
- M:	Jan Petrous <jan.petrous@oss.nxp.com>
- R:	s32@nxp.com
+I think the diff below might be a bit simpler. You might think that when
+HVO is turned off, it could still cause some unnecessary TLB flushes. =
+You
+don't need to worry about that, because I've added a global guard to =
+make
+sure it doesn't happen. Take a look here [1].
 
--- 
-2.55.0
+[1] =
+https://lore.kernel.org/all/20261124110530.3004071-3-songmuchun@bytedance.=
+com/
+
+diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+index b2c14f4f99b7..69a7d4ca8b1b 100644
+--- a/mm/hugetlb.c
++++ b/mm/hugetlb.c
+@@ -3345,6 +3345,7 @@ static void __init =
+gather_bootmem_prealloc_node(unsigned long nid)
+        LIST_HEAD(folio_list);
+        struct huge_bootmem_page *m, *tm;
+        struct hstate *h =3D NULL, *prev_h =3D NULL;
++       unsigned long vmemmap_unoptimized =3D 0;
+
+        list_for_each_entry_safe(m, tm, &huge_boot_pages[nid], list) {
+                struct page *page =3D virt_to_page(m);
+@@ -3368,6 +3369,8 @@ static void __init =
+gather_bootmem_prealloc_node(unsigned long nid)
+
+                if =
+(vmemmap_optimizable_order(pfn_to_section_compound_order(pfn)))
+                        folio_set_hugetlb_vmemmap_optimized(folio);
++               else
++                       vmemmap_unoptimized++;
+                section_set_compound_order_range(pfn, nr_pages, 0);
+
+                list_add(&folio->lru, &folio_list);
+@@ -3387,6 +3390,8 @@ static void __init =
+gather_bootmem_prealloc_node(unsigned long nid)
+                cond_resched();
+        }
+
++       if (vmemmap_unoptimized)
++               hugetlb_vmemmap_optimize_folios(h, &folio_list);
+        prep_and_add_bootmem_folios(h, &folio_list);
+ }
+
+
+>=20
+> [1] =
+https://lore.kernel.org/linux-mm/20261124165516.1182390-1-jthoughton@googl=
+e.com/
 
 
 
