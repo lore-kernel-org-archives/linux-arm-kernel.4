@@ -2,129 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD76606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78018606A682
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:49:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=odvPctle;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mebzoGBR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xk0ijHfu;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=TVkEA9qe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lF5UuwW4GEyXYzWJ6CNQ8ISStsij2YV9+m0dlGsHQ5I=; b=odvPctle8QZpKEh3swOLQxE9UA
-	iqLsfLd3dxDTJ6WgKIL1zv1iqMnYodPCvMasDt7BclnVj8F+lalskqXHWkbaP2p8Gt//bU+JBdm7+
-	RzltmzsgkMCGRvvtE7pcgjRi6XpnwHRGjndkHYSvkxENqpEFpeqTk4Upgq5ZLQ1D8r/dIA4pfDD8U
-	JSfwkL53v5URSpEghxGFmO4Rd+2jnMaueLawXPCol+Aq5ki3nfydIqaLF4kcXwP5a8Q7boxbsRrT0
-	2kfneiCGWSCq1UkBBiAt8l2OCpCqFAy23tPrMLhAQ3rfHgUDSovSfmpM1e0iq//EAKqZLYEuPFJfh
-	laAEBqkQ==;
+	bh=vFQGX/NP1dmEeUOMc9zNPpM5KF4wF2/df6yb9rrW5J4=; b=Xk0ijHfuXR6rT/zDn6oXcEuKXp
+	fwFWY6niyXPkg1sJdj2p38Pzknb7mA8tFoiduUP5F8KEWaBEDv/gqRC3JNXEUlEz2oyyLT4mdnKs0
+	raw122kyzUJ4l6ALULNu9SjsKU2ji96JNa00UFoOBwRs9FMjodDuSsv7WFi0zehQ9kgL3PDhM92fq
+	yRvN5B+SbaYmvyFG3p+2wX+lbkwgQDxuv+2T/ED/theDKrlaqxS3ArKI+WwWaY5XTRkomja4GahGm
+	9m4Z3Xok2A3AbTqOv6hg5+wUqYGRhSilAyVxUq0r2aWi8YT/c5toCxQBLM+J7j1DAVACnr1dQfZQn
+	TEEWgn8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9Ow-00000009IjY-1Np7;
-	Wed, 25 Nov 2026 09:34:54 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWBUn-00000009hYq-0KLV;
+	Wed, 25 Nov 2026 11:49:08 +0000
+Received: from mail-southcentralusazon11012027.outbound.protection.outlook.com ([40.93.195.27] helo=SN4PR2101CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9Op-00000009Ig4-2pQP;
-	Wed, 25 Nov 2026 09:34:48 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id EE6F162273;
-	Wed, 25 Nov 2026 09:34:46 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795599286;
-	b=E3BbchgD7DRDbS6n3Tpstg8pD6LtLETP0ZIZYijze3hez1QyaMGP4UaZ0JNv+UI065VJ
-	 ac64h5z4Mae7uG0WVcqKc5OO4isVM2Oa9T7SdqkTGro+3kPpTSQrdu882d+T0SiR7NoE+
-	 KyvlxxVEi4+vbLQOHwuPawHEekF0i4+TwNSdJYTeONgIlfD5vYWXHXsL6Lrh37mchZXcc
-	 gFw0MiVCPjDwZA/QzUVb8MoYMtaOj+ej9XZNKRYSzUloMdCPD8h4/ZpKMCqTislPRj7MQ
-	 7Qgv/Ad8dXc9aWTOv/P+K+/jFQ36+0oAL450ThE1zwRh+G+otG9eIAdoG/64yVqyqnw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795599286;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=lF5UuwW4GEyXYzWJ6CNQ8ISStsij2YV9+m0dlGsHQ5I=;
-	b=ujizd7Xvx50ozHMHqNjNprqFJRplRQZFYU/w6Kk4NfU4udzlLcDeBYbAAzJEz8AqeZAA
-	 bpO7zzGDUtupMA0xKCZKP4GkIpF/B1IVE4ViPrzi0HqtkbLjc8vmRx1lg8OHE6NjTFvlU
-	 SaOMhyGXCuF+wOwioC2h0AyeO4ERMhf1gXWbQwZdUIaxte9sBSOmker9BP/EivRdj1nvY
-	 0IWsknk3H5/RfDgfRuaIOxyXTcHGK1MNnnxljz+BwoLBM0kG2pmfmXazmB9oFeX1SBg8U
-	 T7MbRVHKtMN/ooBGCxhbRqaHwFvHwUjhH/ovQ4dx7ZRviFzW61gOx8FbmV+XqVO24ZQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 130C81F000D0;
-	Wed, 25 Nov 2026 09:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795599286;
-	bh=lF5UuwW4GEyXYzWJ6CNQ8ISStsij2YV9+m0dlGsHQ5I=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mebzoGBR8YxE6sIUuYztGqWYTeK2tMHqv0ebtkmP5XRZ0Pa/CJtEGzGQtsDdeo4ko
-	 bp/P5OnVC1zZ/sa2jaKF+3/xgfbWBjBsvxouOnULljTUFNOF9S+AoHFDp94oAlXYeY
-	 fRGtm9dWFe6ALBj1N5rxbyTCjRhnsXrRGscfV2UN+8fNDhEbTy5jUkjx0v1J1AvzA+
-	 9ykTjlb/V6sAcMYSuItcF5wBWvpwQdBMyJvPRwlfg4tpng/LmkrutIsD/8jItW6u7G
-	 FVQTPlP+bMe6Kc6MS2FS9IszV1wj9VMCLKiZm+EtKMYxtFxENfbIw+/7ILCh7ElSvN
-	 9Pp8WXIlIjiSQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 95AD74CDFA;
-	Wed, 25 Nov 2026 09:34:36 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Wed, 25 Nov 2026 10:33:45 +0100
-Subject: [PATCH RFC v4 03/15] dt-bindings: PCI: nxp,s32g-pcie: One PHY per
- lane
+	id 1xWBUj-00000009hWX-2mUT
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 11:49:03 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PdHgVNuoBLB4zp1awYvEirmoqaEWKPWJ0kmZ9w10UgVe3u++aOGlwKVrTLovnMhmHT0emDcZhWh1LH2ER1Vhd4p364c6JqUOiNEVWSOi9tOzgGhjQ8grkNqvhJ1nClTFIcC2KCWAGLEVnCGPJMWvS0wX0H2VzR3mIci7OoS+vYHjwPFOpj6zkbM5zWDwizH3U3hykwlZfIax4qVK0iCSUuU5Xn8vU7zyjd+7p9Ca7Exm50HloTG93uAa/ib53yqlV/CS6dqqvTtb6Lnx5z/0O+VvZujK7ohuKCPvA5BUWNsdUpCO91ah3eOhqsP93i00xcwSFyvZeCj3vHQ2LpkIBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vFQGX/NP1dmEeUOMc9zNPpM5KF4wF2/df6yb9rrW5J4=;
+ b=KNPFDrwbKHsGukEIyWZR/iU1qLmfp+lD4ngpEIf/vuHlXeJ/jHp7x0kuRQc9sXgLkdP2R9E6OluWyWSliLZC4EcGCNGMEId+RkUOmIqo4Eok3+WR4JywJIUbH+gsVKjdoYPiDeChDbpT5guCQIaXCxDE9WZM1TFnGBPElRq/sFrPxwA7snHDFioJ0XTMuKd7JaKqWOifE3kEr26XCGU4qRnFc9QaK/+aOdzlvhP4hxld80zb5c6kpmneBHUqk0lm//Z0xquDCbjn3DtPHm8r78a5nDSlfQOCdktlMAEGqU6a0kjofRLHJH2NyUtu7bAY3PONVAkzgrgc6mqa7baYww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vFQGX/NP1dmEeUOMc9zNPpM5KF4wF2/df6yb9rrW5J4=;
+ b=TVkEA9qe5EGWHl7I2vt5JxCV3+evORxOYSpvUherFLoBeaxtIb+A5N/6irFcuTJQhoqdXTcGdsO1Kxmpr78MzoXwjjzRcZD3eMCwUPkXxyTOWzt0qGJIW6HS+UYMbcE9bc4rCPtkN4NArlOiodaZUdBNAXMLQ+Gk9WvtX2bv0lw=
+Received: from MN2PR14CA0004.namprd14.prod.outlook.com (2603:10b6:208:23e::9)
+ by CH3PR12MB7740.namprd12.prod.outlook.com (2603:10b6:610:145::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 11:48:53 +0000
+Received: from BL2PEPF000352CC.namprd02.prod.outlook.com
+ (2603:10b6:208:23e:cafe::17) by MN2PR14CA0004.outlook.office365.com
+ (2603:10b6:208:23e::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.662.7 via Frontend Transport; Wed, 25
+ Nov 2026 11:48:52 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL2PEPF000352CC.mail.protection.outlook.com (10.167.249.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.3 via Frontend Transport; Wed, 25 Nov 2026 11:48:52 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Wed, 25 Nov
+ 2026 05:48:51 -0600
+Received: from xhdrdevl202.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.57 via Frontend
+ Transport; Wed, 25 Nov 2026 05:48:47 -0600
+From: Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
+To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Vincenzo Frascino <vincenzo.frascino@arm.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Michal Simek
+	<michal.simek@amd.com>
+CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<naveen.gaddipati@amd.com>, Dhanunjanrao Katta <katta.dhanunjanrao@amd.com>
+Subject: [PATCH 0/4] ASoC: xlnx: update audio formatter support
+Date: Wed, 25 Nov 2026 17:18:35 +0530
+Message-ID: <20261125114839.3642735-1-katta.dhanunjanrao@amd.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261125-s32g_serdes-v4-3-3bfe0589be8d@oss.nxp.com>
-References: <20261125-s32g_serdes-v4-0-3bfe0589be8d@oss.nxp.com>
-In-Reply-To: <20261125-s32g_serdes-v4-0-3bfe0589be8d@oss.nxp.com>
-To: Vincent Guittot <vincent.guittot@linaro.org>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Bogdan Hamciuc <bogdan.hamciuc@nxp.com>, 
- Ionut Vicovan <ionut.vicovan@nxp.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Richard Cochran <richardcochran@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-pci@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795599274; l=1169;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=2T8jUwEi3ltYre4gdZGzsO3mt+/q6xBMsHs8FYuEF3c=;
- b=XbAHEFssMX3nbhcwDXGXMqYOtnF2zGW+H0r80LanO7vG672d2emcQaF/5/QcYFy2PXzjshoH5
- 5Z9n+6m6KtKAsPR5RSPzrFIdTz7Sr2W6MhknODVlgLZvrBRJR5fdO1S
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL2PEPF000352CC:EE_|CH3PR12MB7740:EE_
+X-MS-Office365-Filtering-Correlation-Id: de880f31-8ad9-4981-1b25-08df4aea1402
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|376014|7416014|23010399003|1800799024|82310400026|10067099003|56012099006|11063799006|261021123027099003|261021121427099003|261026140227099003|261022105027099003|261009223027099003|261028144727099003|261102123227099003|18002099003;
+X-Microsoft-Antispam-Message-Info: ytemWjzziZr5ot/OQBJ4ZB1MBLAwZsGawVcoVPZhHbwzlP3EEdKmgN+nAnQdL2w7PqoVuK2TZqCctizrH4O28Lk/hcm68iRVrKXzX92jGb+kqtAH2k0ufVsxNeTVX8YLWJV515Ec8hryB6Npaa+EECrBSKSD5w4i+4XqSipnfPHs0xo9xWnaUFV6QT7lWEtSUG2xwtLqebYpQoncQYvX42PHAsV5ZSUkJ54Q3hUVtSe+ba6nHtywOfuVQLhxqzNA2X9o8Yw8oPDziZfBukfH+FNDttOezd6A3+79uENVYV3YAJozCyOkcvVXSV4ehSqIeKtlZa/f2dFHEWuHANinxmTSq2JcL958aAbOR/OOsAy1ncLVCzZe0nwUp33vcx19G7ae6+XgjaCoa7tFXsuxB2tX9ecOMUwh0SDxh+BMpzeJMEKOK1w/4Q+FFfMpbDIZmnIrmlo+8TGgeGnAgr00+dhRRLEdT1VTW9U/3f7PK5Wyj1/SZJ9Z9YM2x0PSb+90dMcbR/zTL/lTJ7gj2dsiBIkWIsGvwnrBIiq6AHGZ4mKLlnxmCdx2NC2jMCdDIBQDYWiZIFkN98cL6ZgdYEKt+Iw8tV2lpDi61CJaO4c8Bmpn5Ya2x9im5rWlVE3A3BD6T1XQaDiRIrdEjyEwHuSjqp5oT8ScoHaCZ6wQu+HzLoeRDCohgBGwus4PpVkNEXNT
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(376014)(7416014)(23010399003)(1800799024)(82310400026)(10067099003)(56012099006)(11063799006)(261021123027099003)(261021121427099003)(261026140227099003)(261022105027099003)(261009223027099003)(261028144727099003)(261102123227099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 86L3jEkktkTc+rirhGRBIp+CJNQzJVz74MV9dJTJY5V0fpOTDrx82C9cQe9iWwWvQ2fDNz8rEnUBRMbILqDfgurVi4qmZgrwmhkv4pazcLLsfsyvgMOOERbE2CyjnDZ8A/EdcxHYYmixcfd7vn/IKaHQsVSAaDKzF+ambmbCRPD++wkZ/wGsve/+at6NXCFiissqiR58FhNqfDCMB6MuGV27PQrnxbNBKrgHSncS0m1Lu+R62qBhCsB7Gsu5fzBP9H/E4CnBzap91zmn0OfAuUelQZlpoxguXSEJOASCHGrqg/TSL60B7gsRCG6jrTCAIj7oet/phG0beK6MWzWRkriD6yCn1TMGJpL5NVkmrgTkurDWqMeuxFkI2IWgo93K1UjQplo2/1892W+NW75TbzA6IsL80iQkepzJvpfH+uQCfx+ZDv2K9Ka1GGMrngJA
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 11:48:52.7959
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: de880f31-8ad9-4981-1b25-08df4aea1402
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2PEPF000352CC.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7740
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_034901_745885_E1CD3D71 
+X-CRM114-Status: GOOD (  10.91  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,54 +122,38 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: jan.petrous@oss.nxp.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+This series updates the Xilinx audio formatter driver and bindings.
 
-The SerDes binding describes a link with one phys entry per lane,
-<lane PHY_TYPE_PCIE 0 0>. Allow up to two entries on the root port, and
-make the example reference lane 0 that way.
+It adds the AXI4-Stream clocks, enables the required clocks in the
+driver, sets a 64-bit DMA mask, and adds support for up to eight
+channels.
 
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+The series contains:
+- Add AXI4-Stream clocks to the audio formatter DT binding.
+- Get the stream and audio clocks in the formatter driver.
+- Set a 64-bit DMA mask.
+- Advertise support for up to eight audio channels.
 
-diff --git a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-index 66a050028278..b90d169f57ed 100644
---- a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-@@ -57,7 +57,9 @@ properties:
-         maxItems: 1
- 
-       phys:
--        maxItems: 1
-+        minItems: 1
-+        maxItems: 2
-+        description: One entry per SerDes lane of the link.
- 
-     required:
-       - reg
-@@ -124,7 +126,7 @@ examples:
-                 ranges;
- 
-                 device_type = "pci";
--                phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
-+                phys = <&serdes0 0 PHY_TYPE_PCIE 0 0>;
-             };
-         };
-     };
+Dhanunjanrao Katta (4):
+  ASoC: dt-bindings: xlnx,audio-formatter: add the AXI4-Stream clocks
+  ASoC: xlnx: formatter: get the stream and audio clocks
+  ASoC: xlnx: formatter: set a 64-bit DMA mask
+  ASoC: xlnx: formatter: advertise up to eight channels
+
+ .../bindings/sound/xlnx,audio-formatter.yaml  | 22 ++++++++++-----
+ sound/soc/xilinx/xlnx_formatter_pcm.c         | 27 +++++++++++++++++--
+ 2 files changed, 40 insertions(+), 9 deletions(-)
 
 -- 
-2.55.0
-
+2.34.1
 
 
