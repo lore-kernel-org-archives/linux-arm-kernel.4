@@ -2,79 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35870606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA073606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kWaJLm7Z;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=QvB9JfTb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tJJaxZKU;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=z41FOEsX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=d1DkW7hSxM4zmZB+M7JMw570YuREp3Imf+VPgNwrY+U=; b=kWaJLm7Z2MWYps
-	6v1XXx2/8/IWwYrh7E7s7bGDgrHJWVBrQjC752qkbtBBNvr3Q6wO3B4MEzwKMrnAO4JzzWB9CjyPJ
-	RgKO5mg89oOO7GkoZymG8HxHYaNoDNafsx1XhbR1qWiuxgMdboKWpwATjLH/2JPolb2MC2GDLW7q8
-	1Psk2sfC0RRuv5jdNuv+9nigLXSRHiQ4OmUKDns0Pnp3WGDWvs4mmQyfePCnL8+nk9qPirxM6XWuZ
-	EPjqpv3ChiGb6dubuHS3xRu3RrwLGVl9Nplmvym7Hx4SbSgGA/z7frPGOPSnzCuy6MdwYXZFRFpmD
-	3Vd7mp5HA6PC/J8or1lw==;
+	List-Owner; bh=k6KEcTl/pyiQsKyyg/2eQ+l+POB59ejsRYmW+NNyeA8=; b=tJJaxZKUOni52q
+	R7VXPyhwnvXUPzcQEgtU8mHExZvHEBPASQCFnFKhsU3oDG2RvxNH7zaq8KnqHAJkK761SDOce6CzN
+	BnvtWEf7q+EtG5wUcIw49Ltaa/VMvd4oDlNKmwt8loO6iq4wE7FQUjyACMMsI/QlNxFt7UIL+qQbE
+	iiCDVT4828RF3hDgz6oTcf/WS9MIh1rlKWQk994m8PG099MMfI7s4+dyWOpH4JDFqy0Mi+0jWkC8W
+	0n41nRmiGgTTBw2NoOBVjH53dLAF0BYQwcMe2qr9844Zi2qQDXlAwnc6m2z1cJffgeso6EK5BAq/C
+	E1yV4vn82kq9rgOXl2Pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9fr-00000009Nfn-2VG3;
-	Wed, 25 Nov 2026 09:52:23 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW9f8-00000009NOI-2K2v
+	id 1xW9lI-00000009Osg-1yXF;
+	Wed, 25 Nov 2026 09:58:00 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW9lF-00000009Os5-2gEM
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 09:51:43 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9881C339;
-	Wed, 25 Nov 2026 01:51:34 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DDC93F86F;
-	Wed, 25 Nov 2026 01:51:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795600297; bh=tRDSqd+CGHk3r5D+U05UtW8jtHrhEXkjEro27EFWSG0=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=QvB9JfTb0eVj0TNqX1/aisA+sCnq88pRePMzXgvNV5TV++zi35AaZ9JuNCI5IexBi
-	 403av+utnLN8jKrvqrVP4VHRBw7vSuqkg1m1uZn6hfyNMVnKla4d3DaHAzdEAc1fZA
-	 993f3D2B+tNmlZ4COwetskel25c8xKMzHeI3iH7k=
-Message-ID: <70c50c45-c8b9-4096-84b2-ba4b6ecb63ed@arm.com>
-Date: Wed, 25 Nov 2026 09:51:32 +0000
+	Wed, 25 Nov 2026 09:57:58 +0000
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-492fcbfaa88so3590363f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 01:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795600676; x=1796205476; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=k6KEcTl/pyiQsKyyg/2eQ+l+POB59ejsRYmW+NNyeA8=;
+        b=z41FOEsXRcucRN7ee+KDtOHWe7Gi2K7WNMrXqkfzcA8nxLB8fL12cpGQPJWYHn8rjU
+         q+gvPPT0UsJYZKJBz+BvGY9lhG/s4AXnm1nZPrS9qg/SpxwkS25aTt7d6lFt7P4ju6f5
+         Ik49/jFxfNEWb10c+wnhQ6FdcGzkEo8a8gserwTzlITEOmq4ksYxSAAaq/LNK2DVtXYE
+         6q3VmduuXZrnUs96Y1MWN0mIz7EyKXyW5xqYiQsAVAJ5O3Z49xjwcdCQjZlmJdtg0qEM
+         tlBCnt5Smg4Mm/wtuePNAwTrYU98mL/6XExpOFJJxxqnjKa0OoWHXaMTnS3md3Cx3eFo
+         P34A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795600676; x=1796205476;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=k6KEcTl/pyiQsKyyg/2eQ+l+POB59ejsRYmW+NNyeA8=;
+        b=Ip3eEQFa8xv0EAgkbRzYNrAzPY9TW+9xQ0Z3TqbLYNi4Dx5FSIkEJFrK37GTra4yAy
+         C6KNuB32K1PIkpfGagiOLSK0A5GzaHAzHEjiGyVNiZSYrz0IceDJRSmKJ9zRzKvAFyHy
+         7wjdC+rSz0+CAnQhHVWMgVtYaami5KFajRvWEoh0OCLXN/lcJUBra3BJKvuFlZwDbQbx
+         fTIue99j0GMbjE8V21giLYN1EEyBRzE+6HzZOQ7A0ROx3imrcS+VfpXV7izQY2biq5yV
+         XPQ64Qj6ha4swa5zVji6Bezg/QD3DIJYzw6BfddBh9fAPpXQ5Pna/7kWz/UCKXdF1CpN
+         BxaA==
+X-Forwarded-Encrypted: i=1; AL+hErH+7n9LrB3qP5NEKJ7lTE5kh/M/1bTv50pYKPoP/gWLo0F+L8tgvz1asx4AnB+ZJLH5u77gHdkyZupo8hZUhLdp@lists.infradead.org
+X-Gm-Message-State: APuU4Z9pE0BTHJdUgxea5X1QcExKZ0R8axWrzBdypEAc5W6lwswjxHqj
+	drGWOkPCyGqXdrgZM3hwHLnxciXJC7pNxm8o04CVQNZtzo0uvbNITFJ52GwqY4EJZ/k=
+X-Gm-Gg: AZFdTZeSV+p8becDlO8vASTzBZxwCFoYrOcyeZbOk9syW/uLj9dMfxtwEeZasFCnDvP
+	LYl9x3WaRQrPFkvsLPBoCD7nxroJM+KUJROm/NXXF2Umj3m99sY921F6Li0AMYcRpycKlcNHfYK
+	hzjRI7Fjco5UOiYRR5pDCCP52RNZ4zfIIBKWYi4DCyGSGTRQJcbZTnI1DNksV1srjjuAcNIE7Ko
+	xeRgECIASo8bgTH5/C3+4JuTS54OG1UP1HIHASdGLD7LjQOTY9pxA8JNf5kBYl5RcDktM4ld0iJ
+	wdydC0jpHR/Q8QEnkKPqg0sMpnSP0X9dmmtPnavfqZlIvMous/S9H5FvogKnKXxRndhI/joqpcM
+	zIyqT/tFho5fQr84iMWLnXv3gMDxTlemOCaxaXBi/orlthlzGPiNYpEpTPpPn1QJ2o4rnE6ccpG
+	oQeWxO5TD3BxAPGlHWfPZs5VsAKRUBwh/bXk4P1gDNQGJZrk9zZ5LML/4/Gy+7NrpqiCcy9wx28
+	Ue3ORvZfB9NgSO1owpgZXjfz6jFAmpvAC8wywExHJhSyWXuP0YGmC1adpSuN1ZUQMaNLeBKplOQ
+	3QQYMaNHOwc9I6zaMTEWFYuy22Br7OsMvw==
+X-Received: by 2002:a5d:64c9:0:b0:488:88ec:59c3 with SMTP id ffacd0b85a97d-4abb0f3c071mr35368426f8f.14.1795600675654;
+        Wed, 25 Nov 2026 01:57:55 -0800 (PST)
+Received: from [192.168.1.3] ([37.18.141.193])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf6804sm32730070f8f.10.2026.11.25.01.57.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2026 01:57:55 -0800 (PST)
+Message-ID: <d2ae7970-63cb-4c8a-8c04-483d88fcbffb@linaro.org>
+Date: Wed, 25 Nov 2026 09:57:53 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/11] KVM: arm64: CCA: Add Realm RTT mapping and
- invalidation helpers
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
- <20261123104233.95710-8-steven.price@arm.com>
- <bc90af1d-068e-4e79-8d5f-f8205beb0a69@arm.com>
+Subject: Re: [PATCH v4 15/19] perf auxtrace: cs-etm: Capture wrapped snapshots
+To: Adrian Hunter <adrian.hunter@intel.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@arm.com>, Leo Yan <leo.yan@arm.com>,
+ Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
+ linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+ linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Arnaldo Carvalho de Melo <acme@redhat.com>, linux-doc@vger.kernel.org,
+ John Garry <john.garry@linux.dev>, Leo Yan <leo.yan@linux.dev>
+References: <20261105-james-cs-unformatted-per-thread-fix-v4-0-7759e0ce2449@linaro.org>
+ <20261105-james-cs-unformatted-per-thread-fix-v4-15-7759e0ce2449@linaro.org>
+ <8b37f5ea-9427-43f6-8abf-07a36a9bbb72@intel.com>
 Content-Language: en-US
-In-Reply-To: <bc90af1d-068e-4e79-8d5f-f8205beb0a69@arm.com>
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <8b37f5ea-9427-43f6-8abf-07a36a9bbb72@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_015140_219060_562804AB 
-X-CRM114-Status: GOOD (  23.01  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_015757_706517_452AB070 
+X-CRM114-Status: GOOD (  17.48  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,153 +117,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
 
-On 24/11/2026 00:20, Suzuki K Poulose wrote:
-> On 23/11/2026 10:42, Steven Price wrote:
->> Add the RMI RTT creation and unmap helpers needed by CCA Realm stage-2
->> memory operations. REC exit handling and guest requested RIPAS changes
->> follow in the vCPU series.
+On 24/11/2026 20:41, Adrian Hunter wrote:
+> On 05/11/2026 13:45, James Clark wrote:
+>> find_snapshot() isn't implemented for Coresight, so when a wrap occurs
+>> we only save from offset 0 to current head, modulo buffer size, rather
+>> than capturing the whole buffer. Coresight drivers currently use a
+>> monotonic head pointer even in snapshot mode, which gives a lot more
+>> information for taking snapshots than a wrapped pointer. It means we
+>> don't need to search for data at the end of the buffer to guess if a
+>> wrap has occurred, and we can go back to saving partial buffers after a
+>> wrap by checking if the next size to take is less than the buffer
+>> size.
 >>
->> Signed-off-by: Steven Price <steven.price@arm.com>
+>> The drivers will always be able to generate a monotonic head because
+>> TRBE has a bytes written counter, so even if we stop generating an AUX
+>> record on every overflow, we can check if the counter indicated an
+>> overwrite and offset head by a whole buffer size if it wrapped. This
+>> forces userspace to read the whole buffer rather than between last and
+>> current head. ETR and other sinks use software double buffering, so can
+>> continue as they are.
 >>
->> ---
->> Changes since v3:
->> - Use the VTCR-derived Realm start level for RTT operations.
+>> Add auxtrace_record__monotonic_find_snapshot() and use it for Coresight.
+>> A monotonic head can't be auto-detected in the default find_snapshot()
+>> by checking if head > buffer size, because before the first wrap a
+>> monotonic head looks the same as a wrapped one. The search would then
+>> falsely detect a wrap when head is near the end of the buffer, and the
+>> wrapped pointer fixup moves 'old' and 'head' a whole buffer ahead of the
+>> driver's head. With a wrapped head that doesn't matter because only the
+>> offset within the buffer is used, but with a monotonic head the next
+>> snapshot would either save already saved data again or drop up to a
+>> buffer's worth of new data.
 >>
->> Changes since v2:
->> - Use a local MMU cache during notifier invalidation, handle
->>    failed RTT splits, and validate RMI levels and cache state.
->>
->> Changes since v1:
->> - Rework RTT creation and folding around missing or existing RTTs.
->>    Use a shared RMI block-size helper and handle alignment, partial
->>    progress and errors in range operations.
->> ---
->>   arch/arm64/include/asm/kvm_rmi.h |   8 +
->>   arch/arm64/kvm/rmi.c             | 421 +++++++++++++++++++++++++++++++
->>   drivers/firmware/arm_rmm/rmi.c   |  10 -
->>   include/linux/arm-rmi-cmds.h     |   8 +
->>   4 files changed, 437 insertions(+), 10 deletions(-)
->>
->> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/ 
->> asm/kvm_rmi.h
+>> Reviewed-by: Leo Yan <leo.yan@arm.com>
+>> Tested-by: Leo Yan <leo.yan@arm.com>
+>> Signed-off-by: James Clark <james.clark@linaro.org>
 > 
-> ...
+> Reviewed-by: Adrian Hunter <adrian.hunter@intel.com>
 > 
->> +
->> +static void realm_unmap_shared_range(struct kvm *kvm,
->> +                     unsigned long start,
->> +                     unsigned long end,
->> +                     bool may_block,
->> +                     struct kvm_mmu_memory_cache *mc)
->> +{
->> +    struct realm *realm = &kvm->arch.realm;
->> +    unsigned long rd = realm->rd_phys;
->> +    unsigned long next_addr, addr;
->> +    unsigned long shared_bit = BIT(realm->ia_bits - 1);
->> +
->> +    if (start >= end)
->> +        return;
->> +
->> +    /*
->> +     * Callers may pass either an IPA range or its shared alias. Add the
->> +     * shared bit only for the former. Use addition so an exclusive 
->> end at
->> +     * shared_bit advances to the end of the IPA space.
->> +     */
->> +    if (start < shared_bit) {
->> +        start += shared_bit;
->> +        end += shared_bit;
->> +    }
->> +
->> +    for (addr = start; addr < end; addr = next_addr) {
->> +        long ret;
->> +
->> +        ret = rmi_rtt_unprot_unmap(rd, addr, end, RMI_ADDR_TYPE_NONE,
-> 
-> ...
-> 
->> +        }
->> +
->> +        if (may_block)
->> +            cond_resched_rwlock_write(&kvm->mmu_lock);
->> +    }
->> +
->> +    realm_fold_rtt_level(realm, realm->start_level + 1,
->> +                 start, end);
-> 
-> See below.
-> 
->> +}
->> +
->> +static void realm_unmap_private_range(struct kvm *kvm,
->> +                      unsigned long start,
->> +                      unsigned long end,
->> +                      bool may_block,
->> +                      struct kvm_mmu_memory_cache *mc)
->> +{
->> +    struct realm *realm = &kvm->arch.realm;
->> +    unsigned long rd = realm->rd_phys;
->> +    unsigned long next_addr, addr;
->> +    long ret;
->> +
->> +    for (addr = start; addr < end; addr = next_addr) {
->> +        unsigned long out_range;
->> +        unsigned long flags = RMI_ADDR_TYPE_SINGLE;
->> +        /* TODO: Optimise using RMI_ADDR_TYPE_LIST */
->> +
->> +        ret = rmi_rtt_data_unmap(rd, addr, end, flags, 0,
-> 
-> ...
-> 
->> +        }
->> +
->> +        if (may_block)
->> +            cond_resched_rwlock_write(&kvm->mmu_lock);
->> +    }
->> +
->> +    realm_fold_rtt_level(realm, realm->start_level + 1,
->> +                 start, end);
-> 
-> 
-> If "may_block", we don't take that into account while folding the RTTs ?
-> On a bigger range, we might spend too much time, starving the other
-> threads.
-> 
-> Also, there is no point in folding the RTTs if the Realm is dying. So, I
-> would rather skip this if the Realm is not ACTIVE.
 
-Having a think about it, I don't think the folding of RTTs in the unmap
-case is a good idea. We could leave them as they are, because:
-
-1) As mentioned above, we are holding the write_lock() and doing this
-within the lock is bad for contention
-2) We do not check if there was any mapping at all that was actually
-invalidated. i.e., the tables were already folded and for a big range
-we go over it unnecessarily.
-3) For fixing up permission faults on shared range, we end up unmapping
-the range and then trying to map it. Folding here means, we could end
-up in the dance of reclaiming the RTT and then creating it back for
-each L3. (This is a rare case though).
-
-Overall, I don't see the benefit of folding outweighing the impact of
-it. So, could we please drop this ?
-
-
-Cheers
-Suzuki
-
-
-> 
-> Suzuki
+Thanks!
 
 
