@@ -2,109 +2,128 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BBE5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E783606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 05:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qG9CKAQO;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xCyGvlms
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vzffE+8M;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Mj0c8t5d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JHAmRX/r0jGQ38tK1sD0aSaAzLRfe9WNovc4CDTshWQ=; b=qG9CKAQOx/Pf5q
-	CGU2zN+KX50wIyuHZKFmiWKPWVradqNPinbQt87j8iNWucJ/4IhhgZs+Dr4ERzCmzv0pZO1JCYXGJ
-	9uZIb7tHF48j0uyC0FiUw2h0v+GjVnCU5/8KUwJrAe8QfzsdHxQC41YfhPMAyjijM4aSMjcFrkbBD
-	qzhRRcjHz9/Az0xaVFhEJ1PmlXCxRyNAWGzWA8aQjwokBnMYvYnxxPaECB8tkL0xkRh0xZN8baPxE
-	d0rW+QfyKURatpEtx+4HIKiIqkfz/eSNbECVw0S5QRvrOCqBUgtOJXT5EbHMa+WXqqcsTc51R/jLv
-	V2aH19aSeEG9lY4eg8Ng==;
+	List-Owner; bh=W2b0VXMdCxwEqSCTP3OlO/X4AxL36r2Zoj510JVt9mk=; b=vzffE+8M8h1OYm
+	hY2CZAa07958EMu0jmMta9Sh4klEwin7DO4fcrlzowyO6KTLrYiSnOkm58SLtiDpnbOuT0bITXehb
+	MVUhn+nGq4+v5IMOWhP2fdN5S/dyqiXFt/zg75ZYpzqiL4UHfpEONAIcJyo0qItNmVUcOjrFtMNP0
+	jXQ3LwY9J6g3wh28zF9pFgVYD9ASoLroiXJoMxYckkT0xi70pVV2lID9miKmszn4k0fxBrV61htmV
+	54cw5IVAkJML+7PuEY6XLLlniiUAF0Ons7os0Uj7cIucAoEaduXTJocsXhO6V16qTib6E1qA6T+M7
+	zSz32hYuYUiWNPZqvhUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4BY-00000008MVA-2WcW;
-	Wed, 25 Nov 2026 04:00:44 +0000
-Received: from mail-dl1-x1235.google.com ([2607:f8b0:4864:20::1235])
+	id 1xW3w1-00000008KMS-19Uf;
+	Wed, 25 Nov 2026 03:44:41 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4BK-00000008MSJ-0w3o
+	id 1xW3vg-00000008K2W-1NC6
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 04:00:31 +0000
-Received: by mail-dl1-x1235.google.com with SMTP id a92af1059eb24-15ea896ddc8so8894419c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:00:29 -0800 (PST)
+	Wed, 25 Nov 2026 03:44:22 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so48473745e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 19:44:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795579229; x=1796184029; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1795578259; x=1796183059; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=JHAmRX/r0jGQ38tK1sD0aSaAzLRfe9WNovc4CDTshWQ=;
-        b=xCyGvlmsMKb+ur3HHdDYSGz9Nxpq2Pk7njAkcbpwhg9ryDm4kelRydl7ORC/g94Iyz
-         u9dAnu37/jXL73R2rux1pV2V2PwVr2f4k5hxlCgRPHtL+P+Ejk3oPqarPfm4dTI8Boui
-         T19DsqEYsEThQqhVOBiPm8Ph8F5rM4N8jNL+qin/oApnP0cer7DkVxHNQ2kz4fLKdhID
-         /q8hY36DH9pMdl3qmjexwZQK7QYeviuI7fql1eheN7g47I6VKaTo8btRFyTiLZxxKNF+
-         ZJh9X903+W0OClaRomMkj5RwU1hAlYuXx9x6F5tHbCljrBud3HGqVO3HreWBMOB0U9EZ
-         8P5Q==
+        bh=W2b0VXMdCxwEqSCTP3OlO/X4AxL36r2Zoj510JVt9mk=;
+        b=Mj0c8t5dnO10rGv4EI7PTYGsqyBtrkS2ccXT1QltAbTl28wOwPd4CiwPwJnT3lBYJi
+         s1pKOB7Ym2EcTXFAlo7hb02BBiRZZGhY8znmOFNeIZCRd4Ngo+dCnVWh4KmZLMNm1Vii
+         6tpwmf/TRPxlH1PRzYJ4LlojgCdmMZ8qdeDYakUi6dHsclSwPVU97TxTH19w5pU2OnNI
+         PPuSbLgkwWU8am6pxfpV8Z9vOCSk+c1JYxPhKazHh2oN7sY3gRxOcu8d2Zu4kmPN5C78
+         ND444dSP2Xf4dbpL6fPtmSy6WdrF6QuimSKoUsrjYFLuqIe97y+zm/EUP5canTR5WQiw
+         IU1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795579229; x=1796184029;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=JHAmRX/r0jGQ38tK1sD0aSaAzLRfe9WNovc4CDTshWQ=;
-        b=TnB+b3KJttP5fTOgUwPGOA8uQ9bNls9XDaZXHzc2mnEDBjZQm5Owl9WT4kfdRKe12V
-         Wt7wAAw+I9mJVicrzra2bydNLDp5P5MtwkpdyTqJ2NdZxYEkEOd12byQketfBM3Bo8du
-         OJXttKzmF8zCb5BYnMssg/Tl/fI7mi2HzZySSjQ4FNxYlz3BMwtwCi3JKdzLFOvb3FDT
-         /yc9EmeGMmSt1CiHSXkJRRlk2gALOsqltJJp5XwdhbjmOXRViZKAo3bIh3rqSr3PEgco
-         X+R3iQC/CgE3gpsJniUMdFvxMp3sl8dO+3+XFIv49fYBowx9GFaaloweK+46qZPdYv2R
-         HhVQ==
-X-Forwarded-Encrypted: i=1; AL+hErFSfigKxIIBo+XxmHD942UzsXwf56nyt5ksmEp7A9tu0EETRI8/OUvqel7LXFzuE0/WzdPTT6h7Kch8/9E5K12+@lists.infradead.org
-X-Gm-Message-State: APuU4Z+C5AKU6yz+DgRsMzPHWxSI7YGYlhK0LdJjg3tuMg3DOi9zZgu3
-	SQEEZhaNuF7NfQTy04Y/h/SGySPWPR9ABWaaeD53B5Sw7K9W5qCvYnka
-X-Gm-Gg: AZFdTZemLuyo2yXiOXynBGPsczeC1x6njSDAtSTC++XMy9W1Fv1J6pt02mkATgX5kb8
-	o7ZY6ff41pvJw1wUtCa5QXUxbNI+CIrimL4pbaIQWPRc57wfijlac3sKFVWwHdcqftMdwBhrlaV
-	gBZIdN/dhdCgcytgJEMOkVrd/blq67hb9MVS0R4ZWrO1r+wKsssYdOvduabBi7DRCGGerzl9QNK
-	a38ZCI3GA5cCYKp761GO6JxcixQ6vfAY9atex8UyiOkc8uVkW9T0g8RN48TQcI1CpQKq8ymGftI
-	4qnI6cnb5laIcjhg+z9dIQdTTeLXpFKfOJlvjWr8dr7dTkTIaTwObYxHnxi8y/m3snaxC0e/h4Z
-	QI4du8PqGGH4Bwgbq3k0t2uMDdwCqzrApwsXBaZODqxhTz4xSNMTC7rNI5Sbr8lLtRDZQtlICCv
-	2bHDqLH2Yg6o4nohxZI5IKj3Ds+9eLR3vQ7Kj1KWumnpTOwXRTjKw2mGXt937gL85k6lBrs9OnJ
-	irRNEuR9nJyv+hpoeasLaOpMxsnYh4+EYlh2wpSWalPrmzsVGAxiUgZ3VDTet/syvJPTFxIgt8W
-	NgCq3aFUt/78snbG9Q1tqTjN8H800ASXnUEuEUseKA==
-X-Received: by 2002:a05:7022:2218:b0:19a:20d3:a3d6 with SMTP id a92af1059eb24-1b57da14988mr6075197c88.1.1795579227824;
-        Tue, 24 Nov 2026 20:00:27 -0800 (PST)
-Received: from a1-free ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b55684c85fsm57094127c88.14.2026.11.24.20.00.25
+        d=1e100.net; s=20260707; t=1795578259; x=1796183059;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=W2b0VXMdCxwEqSCTP3OlO/X4AxL36r2Zoj510JVt9mk=;
+        b=242UlCAfjT+CYCApSxUuAxe9ENaicE3Z/pEo2aHe4dsU78cOwdiQLQQMhmIr/WrIPv
+         kZTNC/+89MmFOAW1m4+uBmKV1TR2CSoAZ4g1kjuc03m2KmxKTVhlr+DCb5kWvU+FrNYe
+         F6Tg2C77D0gypZgIOje7ZFt9OSfLXhMIpqDwbGIRIN8GHQ1VAu1V3kPnk+gBwUCXqMtI
+         Kh5b62bBoOxs7DyuaE2v0J5d67qKqIQ3CTkcQJ01KAHagA4rrKYbAeyhTuqkvNY13aFc
+         yUEfUnTB/kTrzwG/8RGbWyxtZc0hzM6J/KUjWlr1pBGP3xBt3AaRmr3cmeDfWyxWqU8z
+         QGMA==
+X-Forwarded-Encrypted: i=1; AL+hErE25NgPQkQD1mXntry/QmOO55WHSFxEiQk9ZK+s4ePSAvfRcYpSkh4HNAFXwhaqLQ2CLl6o1pombW7lYn7d5va0@lists.infradead.org
+X-Gm-Message-State: APuU4Z9uYDWu3NoSe/lMbHpOzefHkq4rTfF5iupWyQRwIG3e5CbWyx4I
+	9qIqPZ/eJbkiqG2+7BqVunCUZswBF3FWWopzrpAsCp6qC17uPR5D6hi3
+X-Gm-Gg: AZFdTZdjzUKzrxDNRfeZejLGqMkpYXlpVngltTLRYuklxf86KEUSD1UpwGi9QzlJ1yL
+	gMNQMw94jYAaieYUETlzvY/EjDP9YOLX+xmCMZ2nGpuNeLKSXsGSCGiLiZkLD1ZVI0f2VLy51Lu
+	p+PYmrTwADazJej07GsW7obxOnHY1ofWGqUrjz9dBY904lQXndqrOomWjbPD4116FB7Rd1ObikQ
+	4ns061SjnOqf8OGF6O/M3eH7FXwDYxXjqg5RlI2Ndb5P8942pZy3hlt1iaszm20s8FguRA4t5mQ
+	ezxZN8wyr49biQbs2RodF2put38n6RTcVMq8XIn4EyvXY/ipZhLEU0o1QIa8Z0pAJ20eu6NfRny
+	HU300Ewu92TdWDwBWgA3jgHlkdxTR38yscYrO9Pxeb/m6Z4lTvaluGYqiFMId4nj88ZhSI+Uvww
+	hrnH0jknLLVbDXTgC6tuCTABm/e6X4kjg9YnKv7z0KbZbMjvGFhjQ1tOY9MQjwk1TmotJ4dudD0
+	zkD4wxrEoQrez2qHYqPunuNlF6Bi9QWBEuFNhXE1s1ewowaaoWRFkRxKAQ5Ewal41jhNfhGfPf3
+	9ZgCmJdnkDGHIDYFIl5IrSejA5o8QNGAIGa6kQ==
+X-Received: by 2002:a05:600c:b85:b0:4a1:f720:74cd with SMTP id 5b1f17b1804b1-4bb8892ca5amr333720795e9.24.1795578258707;
+        Tue, 24 Nov 2026 19:44:18 -0800 (PST)
+Received: from [10.32.31.239] ([212.58.121.92])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb88402ce9sm391107925e9.0.2026.11.24.19.44.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 20:00:27 -0800 (PST)
-From: TAKANO Mitsuhiro <takano32@gmail.com>
-To: linux-perf-users@vger.kernel.org,
-	Ingo Molnar <mingo@redhat.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>
-Cc: Ian Rogers <irogers@google.com>,
-	James Clark <james.clark@linaro.org>,
-	John Garry <john.garry@linux.dev>,
-	linux-arm-kernel@lists.infradead.org,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	linux-kernel@vger.kernel.org,
-	TAKANO Mitsuhiro <takano32@gmail.com>,
-	Will Deacon <will@kernel.org>,
-	Mike Leach <mike.leach@arm.com>,
-	Leo Yan <leo.yan@linux.dev>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>
-Subject: [PATCH v13 2/2] perf jevents: Fail the build on a key the tables may not carry
-Date: Wed, 25 Nov 2026 04:00:16 +0000
-Message-ID: <20261125040016.1675748-3-takano32@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261125040016.1675748-1-takano32@gmail.com>
-References: <20261125040016.1675748-1-takano32@gmail.com>
+        Tue, 24 Nov 2026 19:44:18 -0800 (PST)
+From: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+Date: Wed, 25 Nov 2026 03:43:05 +0000
+Subject: [PATCH v3 09/14] dt-bindings: thermal: qcom-tsens: Document the
+ Halliday Temperature Sensor
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-halliday-dts-v3-9-5c8311c0b70b@gmail.com>
+References: <20261125-halliday-dts-v3-0-5c8311c0b70b@gmail.com>
+In-Reply-To: <20261125-halliday-dts-v3-0-5c8311c0b70b@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>, 
+ Guru Das Srinagesh <linux@gurudas.dev>, Thomas Gleixner <tglx@kernel.org>, 
+ Radu Rendec <radu@rendec.net>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, "Joerg Roedel (AMD)" <joro@8bytes.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>, 
+ Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ "David S. Miller" <davem@davemloft.net>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Georgi Djakov <djakov@kernel.org>, 
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, Ulf Hansson <ulfh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ iommu@lists.linux.dev, linux-usb@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org, 
+ linux-crypto@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Stanislav Aleksandrov <lightofmysoul@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795578204; l=899;
+ i=lightofmysoul@gmail.com; s=20261108; h=from:subject:message-id;
+ bh=Gu7LEPVBsHDlbEA7f0+bCh3HrNIpvCrq8874bMnEMyI=;
+ b=LwuvM0V2lFpMa4PY9K99qzfFeTZgXvTT9zRsWf5xnLCKTkxZox/BBQLcveRV+2SwtDIXcUnAz
+ dTyT3erZvMTCCtObEN8DKkAXoSDLM9Igo6aZR3InSklVdITD6tCjFp8
+X-Developer-Key: i=lightofmysoul@gmail.com; a=ed25519;
+ pk=jeRUlfmkhE53CJPoeIIXgu7rTE0ybDRH0HQrEwbydzg=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_200030_591513_E46AC3FC 
-X-CRM114-Status: GOOD (  22.41  )
-X-Spam-Score: -1.8 (-)
+X-CRM114-CacheID: sfid-20261124_194420_551609_712E356F 
+X-CRM114-Status: GOOD (  10.53  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,132 +142,28 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-jevents.py takes the fields it wants out of each JSON object by name and
-ignores the rest, so a key that is spelled differently is dropped without
-a word and the object is built without whatever that field held.
+Document the Temperature Sensor (TSENS) on the Qualcomm Halliday SoC.
 
-Compare the keys of each object with _valid_keys, the keys a table may
-carry, and fail on anything else.  The generator already names the file it
-was reading and the exception names the keys it did not expect, so the
-build stops with a message that says where to look.
-
-A shell test, jevents_bad_key.sh, puts a key the tables may not carry
-into a table and checks that the generator fails and names the file and
-the key.
-
-Written with Hermes Agent, an LLM assistant; the author reviewed it and
-ran the generator on every arch directory, with and without a key the
-tables may not carry.
-
-Reviewed-by: James Clark <james.clark@linaro.org>
-Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Stanislav Aleksandrov <lightofmysoul@gmail.com>
 ---
- tools/perf/pmu-events/jevents.py          | 24 +++++++++++
- tools/perf/tests/shell/jevents_bad_key.sh | 52 +++++++++++++++++++++++
- 2 files changed, 76 insertions(+)
- create mode 100755 tools/perf/tests/shell/jevents_bad_key.sh
+ Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/tools/perf/pmu-events/jevents.py b/tools/perf/pmu-events/jevents.py
-index 080e04b51b8c..1baeae76349f 100755
---- a/tools/perf/pmu-events/jevents.py
-+++ b/tools/perf/pmu-events/jevents.py
-@@ -63,6 +63,27 @@ _json_metric_attributes = [
- # Attributes that are bools or enum int values, encoded as '0', '1',...
- _json_enum_attributes = ['aggr_mode', 'deprecated', 'event_grouping', 'perpkg',
-                          'default_show_events']
-+# Keys a table under arch/ may carry.  jevents.py takes the fields it wants by
-+# name and drops the rest without a word, so a key that is spelled differently
-+# is only visible as a field that went missing; a table carrying anything else
-+# is an error.  The list holds the keys jevents.py reads, plus the ones the
-+# tables carry and it does not read: Counter, CountersNumFixed and
-+# CountersNumGeneric (read by nothing) and Experimental (read by metric.py).
-+_valid_keys: Set[str] = {
-+    'AggregationMode', 'AnyThread', 'ArchStdEvent', 'BriefDescription',
-+    'Compat', 'ConfigCode', 'Counter', 'CounterMask',
-+    'CountersNumFixed', 'CountersNumGeneric', 'Data_LA', 'DefaultMetricgroupName',
-+    'DefaultShowEvents', 'Deprecated', 'EdgeDetect', 'EnAllCores',
-+    'EnAllSlices', 'Errata', 'EventCode', 'EventidCode',
-+    'EventName', 'Experimental', 'ExtSel', 'FCMask',
-+    'Filter', 'Invert', 'LegacyCacheCode', 'LegacyConfigCode',
-+    'MetricConstraint', 'MetricExpr', 'MetricGroup', 'MetricgroupNoGroup',
-+    'MetricName', 'MetricThreshold', 'MSRIndex', 'MSRValue',
-+    'NodeType', 'PEBS', 'PerPkg', 'PortMask',
-+    'PublicDescription', 'RdWrMask', 'RetirementLatencyMax', 'RetirementLatencyMean',
-+    'RetirementLatencyMin', 'SampleAfterValue', 'ScaleUnit', 'SliceId',
-+    'ThreadMask', 'UMask', 'Unit',
-+}
- 
- def file_name_to_table_name(prefix: str, parents: Sequence[str],
-                             dirname: str) -> str:
-@@ -196,6 +217,9 @@ class JsonEvent:
-   def __init__(self, jd: dict):
-     """Constructor passed the dictionary of parsed json values."""
- 
-+    if extra := set(jd) - _valid_keys:
-+      raise ValueError(f'Unknown keys: {sorted(extra)}')
-+
-     def llx(x: int) -> str:
-       """Convert an int to a string similar to a printf modifier of %#llx."""
-       return str(x) if x >= 0 and x < 10 else hex(x)
-diff --git a/tools/perf/tests/shell/jevents_bad_key.sh b/tools/perf/tests/shell/jevents_bad_key.sh
-new file mode 100755
-index 000000000000..6084205b5f4d
---- /dev/null
-+++ b/tools/perf/tests/shell/jevents_bad_key.sh
-@@ -0,0 +1,52 @@
-+#!/bin/sh
-+# SPDX-License-Identifier: GPL-2.0
-+# Check jevents.py reports unknown keys as errors (no_mlock)
-+#
-+# A key that is spelled differently is dropped without a word, so jevents.py
-+# compares the keys of each object in a table against the keys a table may
-+# carry and fails on anything else.
-+
-+jevents=$(dirname "$0")/../../pmu-events/jevents.py
-+python=${PYTHON:-python3}
-+
-+# An installed perf has the test but not the generator, and a python that is
-+# not there or too old to run it is a skip, not a failure of the check.
-+[ -r "${jevents}" ] || exit 2
-+[ "$("${python}" -c 'import sys; print(sys.version_info >= (3, 9))' 2>/dev/null)" = True ] \
-+  || exit 2
-+
-+tmp=$(mktemp -d) || exit 2
-+trap 'rm -rf "${tmp}"' EXIT HUP INT TERM
-+tables="${tmp}/arch/x86/model"
-+mkdir -p "${tables}" "${tmp}/arch/common"
-+printf '[]\n' > "${tmp}/arch/common/empty.json"
-+printf 'Family-model,Version,Filename,EventType\nGenuineIntel-6-97,v1.0,model,core\n' \
-+  > "${tmp}/arch/x86/mapfile.csv"
-+printf '[{"EventName": "a", "NotAKey": "x"}]\n' > "${tables}/events.json"
-+
-+if "${python}" -B "${jevents}" x86 all "${tmp}/arch" \
-+    "${tmp}/pmu-events.c" "${tmp}/pmu-events-string.c" \
-+    > "${tmp}/out" 2> "${tmp}/err"; then
-+  echo "jevents.py accepted a key it does not read" >&2
-+  exit 1
-+fi
-+
-+# The generator says which file it was reading, and the exception says which
-+# key it did not expect.
-+grep -qF -- "Exception processing" "${tmp}/out" || {
-+  echo "jevents.py failed without naming the file" >&2
-+  cat "${tmp}/out" "${tmp}/err" >&2
-+  exit 1
-+}
-+grep -qF -- "${tables}/events.json" "${tmp}/out" || {
-+  echo "jevents.py failed without naming the path" >&2
-+  cat "${tmp}/out" "${tmp}/err" >&2
-+  exit 1
-+}
-+grep -qF -- "NotAKey" "${tmp}/err" || {
-+  echo "jevents.py failed without naming the key" >&2
-+  cat "${tmp}/out" "${tmp}/err" >&2
-+  exit 1
-+}
-+
-+exit 0
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index c78074fbcecf..3b440f395fe8 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -57,6 +57,7 @@ properties:
+           - enum:
+               - qcom,eliza-tsens
+               - qcom,glymur-tsens
++              - qcom,halliday-tsens
+               - qcom,hawi-tsens
+               - qcom,kaanapali-tsens
+               - qcom,maili-tsens
+
 -- 
-2.53.0
+2.55.0
 
 
