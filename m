@@ -2,12 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1117606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C416B606A331
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 06:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RbVcZxea;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=dNCyYWVL;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ha9huIVk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uzaIZAE2;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=p3dl8w/D;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=iWI+PIwA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,79 +15,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ZvfWqaB0nFxucxNwNfxUIvrX7JKFCnM6p4UbWiRwSLk=; b=RbVcZxeaubNflZmDwU0bPCQaX4
-	22glNS2mv20qQcgfAPU2uGI6SvD17M6VBS13knhU/21KJWTWi4Pqf0Qg2ntMlEtf6LWiB1gWNXpUK
-	p8m8VVVc0GI6GSP0FWRPOiaTmbHTS/aCggjy2jiSrnRrPLF+B52lcZVa26lNzwXbc1xJ0LHlkDTaT
-	rW71HXcuH5fD+cxC3vK4DewxZVEzG6IO/SeKlT+lsA+38ImE+xCE43rTIisSTUMJNbctQaVPVHv22
-	w0FX19l+zIWlZVetCWOIYmlpWuN+n/QuaWEl9jpgP46HHXVwnzDHDabkhUL1VkcGr3i0G+gbmNVv7
-	7lxCVZag==;
+	bh=+3YNbw7npHYIz6vJpu6w5t/t1EQu1XAkIQnaB2DVcXE=; b=uzaIZAE2JfZiN0JeSF0WwKKNfd
+	rlDN338x0yWUwEsGu8lg/l+wCH6quh/nvJJXmVySFKZo0RVtiMS/boLte3nfg3Izen9XLDNmY6iZB
+	kOSiBpxhAq7KYrtxewZ+m3Tifra1sv5ZAN3ayNEVKRGrtsKT4OK5zqX5FOkQ5It66BbzcMto8lYeY
+	5JAGOJ2OE/lpe365KYNoj7yyk/pE5XptscSrBSchIoOLwPxOXkSt6v0FGaiH7qXdjiS+hQJGXcMTl
+	rQEJMP5EWICVRoxjf0jkdrBN2DXNTeCwC3iT/PD/JH9YPqS7USx3smbKAmHfTW8szYJX7g38cj9n3
+	Sv3FNauA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6JS-00000008ZOU-3i54;
-	Wed, 25 Nov 2026 06:17:02 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xW6JU-00000008ZQV-1JZf;
+	Wed, 25 Nov 2026 06:17:04 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Ih-00000008YcV-2Q7g
+	id 1xW6In-00000008YiD-25SH
 	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 06:16:15 +0000
+	Wed, 25 Nov 2026 06:16:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:From:Subject:
+	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
 	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=ZvfWqaB0nFxucxNwNfxUIvrX7JKFCnM6p4UbWiRwSLk=; b=dNCyYWVLbvl0PzxCGASca3Lq4W
-	wHlVCB6RVIvjnbGJ1zDw0r3ajP5e4E1jbJVEAGg5nDSzWTdeVLhvJmHxHgSfwLLbbOCFKfYKhA0jF
-	vV5mR+Vak2qzHO8LQuXewR3DfE11VisZBBWqg+LzuXC/LkO0V0GTX/F2/G8FOHrg5NK0ZQpvHOgNy
-	je55ul88T0FmPuO2V73xmUaTCXj7uUjCQxpXOva1Fa3S39CfmBReiI55bbDsgy/CYfdVl0kokuodU
-	8KMOw6rFmx5acafd6xSPioaJYgrTkZJQSsAeCCYYStkrIoSocqVX/srFXXfdjxPH543s8rQ+Zl+ws
-	f8kpF9rg==;
+	bh=+3YNbw7npHYIz6vJpu6w5t/t1EQu1XAkIQnaB2DVcXE=; b=p3dl8w/D9FnLB6pkE0RAg9kcZZ
+	d4rQxcT30EVhhs8EKXGx5oQEvgWi8rab7Y8PJe3nCpaV+1i0yTWRUN6eI9Cn4SXCzcO9eXyWr5S3g
+	/+xYXiG/ODgmVkq4TiOOVrkmQmgrMMKnLBJfEVfzgSnSZ3o9wZC+vkzopnID+4VYBFThKuyqDPZXn
+	AwqsTwUtcsqi59nNb35pBpqLLTUoeNN6ck+SL/+wETDd1uKe3ArrJEeuXSIJ5ty+qNaHDgFZqm0I0
+	dYigjiESupvsRBiB8REL6L14lsWh8bIjfqepKkL8jAiugyhiraI9i5VT2PZW1TWBtydsk1hWYT7rX
+	+nB4AMgg==;
 Received: from mail-dy1-x1346.google.com ([2607:f8b0:4864:20::1346])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW6Id-00000004tlL-2BeO
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW6Ij-00000005pJN-1a8n
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 06:16:14 +0000
-Received: by mail-dy1-x1346.google.com with SMTP id 5a478bee46e88-3846d5f54c1so6513480eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:10 -0800 (PST)
+	Wed, 25 Nov 2026 06:16:20 +0000
+Received: by mail-dy1-x1346.google.com with SMTP id 5a478bee46e88-386c3309469so1559975eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 22:16:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795587369; x=1796192169; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795587373; x=1796192173; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ZvfWqaB0nFxucxNwNfxUIvrX7JKFCnM6p4UbWiRwSLk=;
-        b=ha9huIVk+puKUag/RZTB2RWqLA3LM9pw82ukmy3Ja3hbrje+EOjAL6BX2B3Z1NteHF
-         f4z3GPNA4kx+tUq1s/WoO7AU4TmT1NWHA5H4Lf6j1C8sHw+bULKBrDh0SUe9mW9qc4Sg
-         oCWxubJQFmsCi28CxLHYU7zKvtSgc9BNPYwE5uSE67u4hDKTO/rMf8DT9YclHqoYq0YA
-         d3HoAsANKDADAVFOJXIS+VqaWvPd7vsTWWfHQmJfCVF8BAVZ3PXy+xfJzy9RUoNpsS1C
-         D+VxkFSQE/QDeV/ixIZLAw6mES2rtDgabysdfCNbP8kYpgStjTfHvsL827DVtnO0vsYf
-         x7KA==
+        bh=+3YNbw7npHYIz6vJpu6w5t/t1EQu1XAkIQnaB2DVcXE=;
+        b=iWI+PIwAGJuLRtXV6xYVX6/EvJXybLcmNV6dxQbtf1Xsbob4kZQxP9ccZuyBsrSrl+
+         twwujpC5ka6yR4fMh8kGWMxqjv+4ADdCxgpjcXS7qMmnMlAjx4ISXRV2WPpNgkmej+cX
+         3EnscfuPtwM6DIWFmTV3eCUdxJiM6pLPAUIC0/y42hM42aSHQOhxt/VZhSP79suB7TZf
+         U5IMldwrQNteyOCj8DK34akPZyjOu/wdZ8ghvWV77NNoclIx+3UQInvWZqHtUTpZk/lh
+         9ce7B1N8SetYQTkXeW66JVc5xE9yFHh1/h1lZ76kwRokd5m5XgY0WwYkJygORaqRj+Lt
+         uASQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795587369; x=1796192169;
+        d=1e100.net; s=20260707; t=1795587373; x=1796192173;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ZvfWqaB0nFxucxNwNfxUIvrX7JKFCnM6p4UbWiRwSLk=;
-        b=ZokrAd0JOS3SWokkldhY9J6WRk8RT5xQGKlp7anjBn9l6zu8QS2IiMoZ4vVKfhE2d0
-         +egwAJatCvGctG+6XRPhVhmuAO663/0f3bXe4b6/GBSzIXRZraxYR89eAlIbiKyKHcfa
-         W1e4xZ0hi753WDMC8Q7S32wPeFXLTV6CY1hs4WKXp8fNzSxBjPc31RPAZbSh5EWrgog9
-         CGFdUBnnLicsj7rCnCnwrLHGOgXzPR2DD2vsavfjD29YEih7Eh0xyA7K/BNwunKI9ldC
-         mI1YfaoT1OBiNCXD1z8n3yQYAoLqQdwmsPyYI/0pakkCJ8tU7jDjayczGx0XyQ2kAthC
-         yuOQ==
-X-Forwarded-Encrypted: i=1; AL+hErGFmrj8A2g98YMz8OtGr/oEN9gePZqMMGp44CsfbfLe9+EJFf/bOB5uTinkgUyLO/WwB8PXLFa8kQuKFFjykA4c@lists.infradead.org
-X-Gm-Message-State: APuU4Z8FHVakU1uRhysgaQnQPIPJ28uEzjV8WQ4kIzd57hmzwxSAcr92
-	alMtdo6K60Z53RRs1vAUe/3uI/ICDGlgvZ8MXFiEeESWvfJVmbt2Hoho1oyWv7Yi53Tj01o+n3b
-	20dP0BPGWqQ==
-X-Received: from dyblf45.prod.google.com ([2002:a05:7301:a2d:b0:375:861c:512e])
- (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:693c:8953:20b0:386:a70b:75dc
- with SMTP id 5a478bee46e88-386a70b7837mr10351275eec.11.1795587368701; Tue, 24
- Nov 2026 22:16:08 -0800 (PST)
-Date: Tue, 24 Nov 2026 22:14:59 -0800
+        bh=+3YNbw7npHYIz6vJpu6w5t/t1EQu1XAkIQnaB2DVcXE=;
+        b=TVCl/r8l2TWWQ4vu+xYA9OCqwQ8QQjXzRsFdYpbQabENouit9hsIwZ28mJmnFJoQv9
+         kTgAf++UTEVrxFZyD3xhTlUZz6TUDVnhaiZ3Bz4ffXC/41XlFdL15LMeVV/QzAfKQCW3
+         mwyqaqRDn9c+GogS9en9N2Mov3PE9iIyMN/9TEjG+oJ4Xw6+AzWp2uzRgqdTqgbFEkGb
+         XdczsM5OOtGYdTfKB8khEJQTJRwkcTLIpN53Bb44FvqpAwgv5goz8F0kuIfeT1hVfKGY
+         kAZwOReeiBIzj/GSk9flmkeaxOZ4A8bMLK2ahBUfuC3HG6MtwrEFNqwFDbtPNI3KXGQU
+         QKUg==
+X-Forwarded-Encrypted: i=1; AL+hErGN3vLkTpdN13hwdKpXgh0l2CQs81/H7tpaF+o4iO7boApdEfWo68es+XckWPdSi9wwLQZZaS95xQKuJQ0FvnsK@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Lx9AMFczTCC6tp6G/edVl4POSjxcM22FKA70ksSIewma8tLov
+	PrYAvTRmthkDqwTQxDuHTMeKVQsUdbP/KHCyLisKd9Sm/jorz2Ls2hRPTc+vuixUfoicIJEmfJ3
+	GCCWWWPXc6g==
+X-Received: from dybou2.prod.google.com ([2002:a05:7300:e5c2:b0:384:c70c:3c65])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7301:d809:20b0:386:b070:6f1c
+ with SMTP id 5a478bee46e88-386b0707151mr8742111eec.21.1795587372849; Tue, 24
+ Nov 2026 22:16:12 -0800 (PST)
+Date: Tue, 24 Nov 2026 22:15:01 -0800
 In-Reply-To: <20261125061523.1540234-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261125061523.1540234-1-irogers@google.com>
 X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
-Message-ID: <20261125061523.1540234-7-irogers@google.com>
-Subject: [RFC PATCH v2 06/30] kbuild: Wire up CONFIG_UNWINDER_DWARF_CFI_MINIFY
- object pass
+Message-ID: <20261125061523.1540234-9-irogers@google.com>
+Subject: [RFC PATCH v2 08/30] vmlinux.lds.h: Allow architectures to emit
+ custom RO_DATA sections
 From: Ian Rogers <irogers@google.com>
 To: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
 	linux-arch@vger.kernel.org
@@ -107,9 +107,10 @@ Cc: jpoimboe@kernel.org, rostedt@goodmis.org, peterz@infradead.org,
 	wnliu@google.com, dylanbhatch@google.com, Ian Rogers <irogers@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_061611_577006_7FF1E12E 
-X-CRM114-Status: GOOD (  12.57  )
-X-Spam-Score: -7.6 (-------)
+X-CRM114-CacheID: sfid-20261125_061618_042150_49367276 
+X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -128,172 +129,39 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Invoke scripts/min_eh_frame on standard kernel C, Rust, and post-LTO
-composite .o objects when CONFIG_UNWINDER_DWARF_CFI_MINIFY is enabled,
-recording scripts/min_eh_frame as a rebuild dependency in .*.cmd files.
-
-Across full vmlinux builds on x86-64, ARM64, and RISC-V, minification
-achieves 100.00% FDE coverage and reduces .eh_frame size 18%-28% below
-SFrame v3 (.sframe).
+Add an optional ARCH_RODATA_SECTIONS hook inside RO_DATA() so
+architectures using runtime .eh_frame / .eh_frame_hdr kernel unwinding
+can place unwind tables inside write-protected RO_DATA without leaving
+them in unmapped rodata/data gap pages.
 
 Signed-off-by: Ian Rogers <irogers@google.com>
 ---
- rust/Makefile              |  4 +++-
- scripts/Makefile.build     | 12 ++++++++++--
- scripts/Makefile.lib       | 13 +++++++++++--
- scripts/Makefile.vmlinux_o |  8 +++++++-
- 4 files changed, 31 insertions(+), 6 deletions(-)
+ include/asm-generic/vmlinux.lds.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/rust/Makefile b/rust/Makefile
-index 0165626decbe..1238b4ac661d 100644
---- a/rust/Makefile
-+++ b/rust/Makefile
-@@ -668,7 +668,8 @@ quiet_cmd_rustc_library = $(if $(skip_clippy),RUSTC,$(RUSTC_OR_CLIPPY_QUIET)) L
- 		$(CC_FLAGS_RUST_INLINE_HELPERS) -Wno-override-module -c $(patsubst %.o,%.m.bc,$@) -o $@ \
- 		$(cmd_ld_single)) \
- 	$(if $(rustc_objcopy),;$(OBJCOPY) $(rustc_objcopy) $@) \
--	$(cmd_objtool)
-+	$(cmd_objtool) \
-+	$(cmd_min_eh_frame)
+diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vmlinux.lds.h
+index 3eb732942d69..1bde7a2a19d0 100644
+--- a/include/asm-generic/vmlinux.lds.h
++++ b/include/asm-generic/vmlinux.lds.h
+@@ -472,6 +472,10 @@
+ #endif
+ #endif
  
- rust-analyzer:
- 	$(Q)MAKEFLAGS= $(srctree)/scripts/generate_rust_analyzer.py \
-@@ -721,6 +722,7 @@ endif
- define rule_rustc_library
- 	$(call cmd_and_fixdep,rustc_library)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_min_eh_framedep)
- 	$(call cmd,gendwarfksyms)
- endef
- 
-diff --git a/scripts/Makefile.build b/scripts/Makefile.build
-index 6127feb970c6..ced0f630f566 100644
---- a/scripts/Makefile.build
-+++ b/scripts/Makefile.build
-@@ -281,6 +281,10 @@ ifdef CONFIG_OBJTOOL
- $(obj)/%.o: private objtool-enabled = $(if $(is-standard-object),$(if $(delay-objtool),$(is-single-obj-m),y))
- endif
- 
-+ifdef CONFIG_UNWINDER_DWARF_CFI_MINIFY
-+$(obj)/%.o: private min-eh-frame-enabled = $(if $(filter-out scripts/mod/empty.o,$@),$(is-standard-object))
-+endif
++#ifndef ARCH_RODATA_SECTIONS
++#define ARCH_RODATA_SECTIONS
++#endif
 +
- ifneq ($(findstring 1, $(KBUILD_EXTRA_WARN)),)
- cmd_warn_shared_object = $(if $(word 2, $(modname-multi)),$(warning $(kbuild-file): $*.o is added to multiple modules: $(modname-multi)))
- endif
-@@ -371,11 +375,13 @@ quiet_cmd_rustc_o_rs = $(RUSTC_OR_CLIPPY_QUIET) $(quiet_modtag) $@
- 		$(CC) $(CLANG_FLAGS) $(filter-out $(CC_FLAGS_LTO),$(KBUILD_CFLAGS)) \
- 		$(CC_FLAGS_RUST_INLINE_HELPERS) -Wno-override-module -c $(patsubst %.o,%.m.bc,$@) -o $@ \
- 		$(cmd_ld_single)) \
--	$(cmd_objtool)
-+	$(cmd_objtool) \
-+	$(cmd_min_eh_frame)
- 
- define rule_rustc_o_rs
- 	$(call cmd_and_fixdep,rustc_o_rs)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_min_eh_framedep)
- endef
- 
- $(obj)/%.o: $(obj)/%.rs FORCE
-@@ -518,14 +524,16 @@ $(obj)/lib.a: $(lib-y) FORCE
- 	$(call if_changed,ar)
- 
- quiet_cmd_ld_multi_m = LD [M]  $@
--      cmd_ld_multi_m = $(LD) $(ld_flags) -r -o $@ @$< $(cmd_objtool)
-+      cmd_ld_multi_m = $(LD) $(ld_flags) -r -o $@ @$< $(cmd_objtool) $(cmd_min_eh_frame)
- 
- define rule_ld_multi_m
- 	$(call cmd_and_savecmd,ld_multi_m)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_min_eh_framedep)
- endef
- 
- $(multi-obj-m): private objtool-enabled := $(delay-objtool)
-+$(multi-obj-m): private min-eh-frame-enabled := $(CONFIG_LTO_CLANG)
- $(multi-obj-m): private part-of-module := y
- $(multi-obj-m): %.o: %.mod FORCE
- 	$(call if_changed_rule,ld_multi_m)
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 19e96b30a122..b27bcd50daf7 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -222,6 +222,12 @@ objtool-enabled := y
- 
- endif # CONFIG_OBJTOOL
- 
-+ifdef CONFIG_UNWINDER_DWARF_CFI_MINIFY
-+min_eh_frame := $(objtree)/scripts/min_eh_frame
-+cmd_min_eh_frame = $(if $(min-eh-frame-enabled), ; $(min_eh_frame) $@)
-+cmd_gen_min_eh_framedep = $(if $(min-eh-frame-enabled), { echo ; echo '$@: $$(wildcard $(min_eh_frame))' ; } >> $(dot-target).cmd)
-+endif
-+
- # Useful for describing the dependency of composite objects
- # Usage:
- #   $(call multi_depend, multi_used_targets, suffix_to_remove, suffix_to_add)
-@@ -265,7 +271,8 @@ endif
- quiet_cmd_cc_o_c = CC $(quiet_modtag)  $@
-       cmd_cc_o_c = $(CC) $(c_flags) -c -o $@ $< \
- 		$(cmd_ld_single) \
--		$(cmd_objtool)
-+		$(cmd_objtool) \
-+		$(cmd_min_eh_frame)
- 
- define rule_cc_o_c
- 	$(call cmd_and_fixdep,cc_o_c)
-@@ -273,17 +280,19 @@ define rule_cc_o_c
- 	$(call cmd,checksrc)
- 	$(call cmd,checkdoc)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_min_eh_framedep)
- 	$(call cmd,gen_symversions_c)
- 	$(call cmd,record_mcount)
- 	$(call cmd,warn_shared_object)
- endef
- 
- quiet_cmd_as_o_S = AS $(quiet_modtag)  $@
--      cmd_as_o_S = $(CC) $(a_flags) -c -o $@ $< $(cmd_objtool)
-+      cmd_as_o_S = $(CC) $(a_flags) -c -o $@ $< $(cmd_objtool) $(cmd_min_eh_frame)
- 
- define rule_as_o_S
- 	$(call cmd_and_fixdep,as_o_S)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_min_eh_framedep)
- 	$(call cmd,gen_symversions_S)
- 	$(call cmd,warn_shared_object)
- endef
-diff --git a/scripts/Makefile.vmlinux_o b/scripts/Makefile.vmlinux_o
-index 0b37bd5dc3a4..160d43fbb393 100644
---- a/scripts/Makefile.vmlinux_o
-+++ b/scripts/Makefile.vmlinux_o
-@@ -52,6 +52,10 @@ vmlinux-objtool-args-$(if $(KLP_SYMIDS),y)		+= --klp-symids
- 
- objtool-args = $(vmlinux-objtool-args-y) --link
- 
-+ifdef CONFIG_UNWINDER_DWARF_CFI_MINIFY
-+min-eh-frame-enabled := $(CONFIG_LTO_CLANG)
-+endif
-+
- # Link of vmlinux.o used for section mismatch analysis
- # ---------------------------------------------------------------------------
- 
-@@ -64,13 +68,15 @@ quiet_cmd_ld_vmlinux.o = LD      $@
- 	$(addprefix -T , $(initcalls-lds)) \
- 	--whole-archive vmlinux.a --no-whole-archive \
- 	--start-group $(KBUILD_VMLINUX_LIBS) --end-group \
--	$(cmd_objtool)
-+	$(cmd_objtool) \
-+	$(cmd_min_eh_frame)
- 
- cmd_check_function_names = $(srctree)/scripts/check-function-names.sh $@
- 
- define rule_ld_vmlinux.o
- 	$(call cmd_and_savecmd,ld_vmlinux.o)
- 	$(call cmd,gen_objtooldep)
-+	$(call cmd,gen_min_eh_framedep)
- 	$(call cmd,check_function_names)
- endef
- 
+ /*
+  * Read only Data
+  */
+@@ -554,6 +558,7 @@
+ 	RO_EXCEPTION_TABLE						\
+ 	NOTES								\
+ 	BTF								\
++	ARCH_RODATA_SECTIONS						\
+ 									\
+ 	. = ALIGN((align));						\
+ 	__end_rodata = .;
 -- 
 2.56.1.831.g720f3f5937-goog
 
