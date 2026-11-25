@@ -2,84 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882D8606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6F2606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PowXnWh/;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=xS9v9bc9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G6p+aAh7;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=Crr/wb1S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1pBgsX7SEhiUyvzBszeDzEbYO5y9r9uClK7rqjgYFvg=; b=PowXnWh/XGmQu0
-	Zt/6sgV+DgVS+hYBfr7X4ZPW9U2fT7g5XOYXr+wNuvPKwKSqXlO/7TQbQLGsRGlxopx/AvOyPV7pN
-	sy+gcVoJomT+8talcVRgt81zVaAPQGn/7DZdLoLNZl8DI7qVutx9HH2aXxqNbcvjaGDe3wGAb2cvc
-	Zx/t9JAxjDsaVRsMlCAH2abMlUsSXt1EAdRrRNOvm94VC8gR1GAX8nhJIy42Zn922a2bOFv6/7fzx
-	x55NkTG5mFhwPztBexnKRVEumCNDVGYKLS806RrDV/jJlmOX4ZeL6vZLEhXjF47V6TKee0ktnYrZ3
-	TWwofr3aKQOkZSrRJxSA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=CDQbjZRD5r2LD7/4BjsL2T12qmTPHlWO1n2mr1qyPAs=; b=G6p+aAh7NjtUirWIaY6FfiCW4F
+	o34DQkjjYsTvnYN0+oegM4hlSKe7nOR8Vmch1mUGvBUyGUiCgQUgImkPjXS6NPaErpqN+7sT2IKUD
+	3xSlgcWZh6O0rZzRh1Aw91cXxZzYUWrTAs3Y4EYPOn6Lpmdk0HqFe5eOY9FQVQ0CXx8uRZbd66Ser
+	5mL2Dqs5hOaCSBWQcVVydcHdhTP1ekHcFk4tgRZWwtorM/y5k1BCjD1CzkTiSUHicf7doFcohnXvD
+	6iwBEDMDbNB5oLaKXCyymL02a9cat5ZOPlCkSEWTBd/qdhgKxL+NuYkHPQ0Wtdo7bzAyXWm7p2BNN
+	HqoQCO2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHC7-0000000AqS2-0AbH;
-	Wed, 25 Nov 2026 17:54:11 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xWIWY-0000000B6yu-3qG2;
+	Wed, 25 Nov 2026 19:19:23 +0000
+Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAh-0000000AoAh-3P1a
+	id 1xWIWS-0000000B6yA-1myW
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:52:48 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 4772B1A17FB;
-	Wed, 25 Nov 2026 17:52:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 19CF860480;
-	Wed, 25 Nov 2026 17:52:42 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CBFD611E6B0C5;
-	Wed, 25 Nov 2026 18:52:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629159; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=1pBgsX7SEhiUyvzBszeDzEbYO5y9r9uClK7rqjgYFvg=;
-	b=xS9v9bc9yVgyTnhOEc5GrZbH5tv5Lk9cwg3hUTHKMznf3BHRgoTOmPwLVnmwSsKF3jRcQn
-	kqhWk6bPV1QHLICPk1tlaURZX5g2/bboIR1oQQzKHg+fyXzMTlcYVoaPqGu6XlsbMjtUF1
-	zfECYzuJll7bZdiUI2axOVWVzNOO7Leju5Gy5xEJZfG6WPcaE6hIxir4VNMScpA5fO/RfX
-	9HZKyGuliTMohmOvM976vUzeV8aw/8/A/0uDA1YdR4gYQ14kAel1AvlKLsyS4CXl2Ibbf0
-	uRzi5JhkNr0JbDcXLvYW6nMGEQXd14XQurizoNBM1hLgqjnvVOMct679vd0S5w==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-Date: Wed, 25 Nov 2026 18:51:25 +0100
-Subject: [PATCH RFC 11/16] spi: nxp-xspi: Fix a comment
+	Wed, 25 Nov 2026 19:19:17 +0000
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-2f041f88577so34702895ad.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:19:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1795634355; x=1796239155; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=CDQbjZRD5r2LD7/4BjsL2T12qmTPHlWO1n2mr1qyPAs=;
+        b=Crr/wb1S37cwmQuaxU+EVMAUWtlJPi0S5ZPGV7zS1vQHNUlkx46RDZnqYj/HsI5yHI
+         zWddExCvnTMv2GnVV5CeQIAOn5MD+xsFn1va+WWlGIMjtxa30qHD40PXiDCWWRHYTz0L
+         rc9DUQ+Kb9uFhyi7b5YQbAserkfJrLpavl3OY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795634355; x=1796239155;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=CDQbjZRD5r2LD7/4BjsL2T12qmTPHlWO1n2mr1qyPAs=;
+        b=lXkOyRaMEAGQ029a03Vi6TKTqYzuC8QhMUqAMdBAq94+I1H27j6IsrZHzRY7rSb1n1
+         WCPQyUI7eaazRT3Yzdqkj9g5TGFDU2pD0QdgpGIN4UvKDkyTE6weT+JjtA0qTLUcVxIi
+         FSnTW4W8wxcLfWE6OOXm95pdN8OCZjOCMgKwTxpcsAGI94c/anNdhEav2cDJo23ezGvX
+         lqQzbAAbCnIpGVoQ/V196AzKPuVZJwfFAE3ciVM21WU7UEHQwLOGyE9GBuqH6zmMia4z
+         fx1lBH7tIwx12L3cPz+S+bA7G7Yc1MOLLyqjkI2iveUtC1mase1rm3a4WqvSbdnUWGJp
+         rbQw==
+X-Forwarded-Encrypted: i=1; AL+hErEU6bYnWiGhyfzyoguS+3N0gExk+6k6CN1du0mB7r79Pzvbkp3aVBttpWk/zySIgvW06u5a9vdZO/YGR4ro7IVu@lists.infradead.org
+X-Gm-Message-State: APuU4Z/gLh0CMRn+2rhX+Qlv9O7RuOFEBAI94ltDwlR5jA2sa0Jb+090
+	pIP3pMqv6hXo4mfezIVTWhEJnXp5oddI3IyR3K5pf4+DUm0Jb/QTtTi/QMMM/bOfuA==
+X-Gm-Gg: AZFdTZfFdPg/qX8R5Ahudn6ku7BJ5JzH+uDJLSFBhd6k6BQpyAbls0aS0oFt94lR1EM
+	tV7biCkDKC/tcsBzNIT0X3xZ1zIYMxxbU7EUGBFWt+HzepnvfDXNRPmyihZEf6sEy1wki3bhotp
+	ou6hCUdPp3jBg+pMTtEst7ptkqdbQvSZcEDz66KeBDKTRzPWo5/YKagNkqpMlploYCXrui7OmHJ
+	AAJlvcShtPX+PuQ7Bf6ibDN7NQKwVjDP1McKNKbVYcBGaaC/h9qavZ7Fbl8tgusZtpGWgK8MHCI
+	4Z8qWk/26baQIZzHS0n3aPEalWnlnvdtAy4zQu2BUWZAxJaV42VnFrbHPDm3FuaBrD/8nGSZ9TC
+	dHeuAbLdnqaRSVm5sxnUgtfzh+Uz8AYjcP1vZtX9eQZ/ZghQORFwC0ZU3oDixMS8YFM1ctW+evk
+	DEddRzQgceCsmd8n/eqYkRJVVLnXwDfJxAMyrjf49P4lM0mrbCsn2rPQ2/g6dgcIOZ+O93NFlrf
+	o+kTf9qGXVbUA4c2XGjR+6JAxHsAcyH3YPwPVVf/rh941oJrMGI8mAGNgrSxbbwRpFxaGNoF0t5
+	ikN2rIoTvbqkkTZgZA0qwvX+wrkfkvm8t98x2l33p0Dl/0qCRf40CkzdJLcJRVu9MU4=
+X-Received: by 2002:a17:902:d511:b0:2f0:446d:30cd with SMTP id d9443c01a7336-2f0446d33f4mr180619865ad.31.1795634355343;
+        Wed, 25 Nov 2026 11:19:15 -0800 (PST)
+Received: from localhost ([2a00:79e0:2e7c:8:d0a2:f616:6ba:a1ce])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2f03ee84364sm93389045ad.5.2026.11.25.11.19.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2026 11:19:14 -0800 (PST)
+Date: Wed, 25 Nov 2026 11:19:12 -0800
+From: Brian Norris <briannorris@chromium.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Radu Rendec <radu@rendec.net>,
+	Jakub =?utf-8?B?R8WCb3dhY2tp?= <jglow@google.com>,
+	linux-clk@vger.kernel.org, Douglas Anderson <dianders@chromium.org>,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+	Mariano Marciello <mmarciello@google.com>,
+	google-soc@lists.linux.dev
+Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
+Message-ID: <awc0sBl6q6A2Reaq@google.com>
+References: <20261125000349.3385325-1-briannorris@chromium.org>
+ <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
+ <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
+ <awbJUwrBQw5TnowW@monoceros>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-11-fd036402fd37@bootlin.com>
-References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
-To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
- Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
- Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
- Daire McNamara <daire.mcnamara@microchip.com>, 
- Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
- Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Alvin Zhou <alvinzhou@mxic.com.tw>, 
- Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <awbJUwrBQw5TnowW@monoceros>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095244_018822_ADC729B4 
-X-CRM114-Status: GOOD (  12.20  )
+X-CRM114-CacheID: sfid-20261125_111916_532696_ADD0150D 
+X-CRM114-Status: GOOD (  17.41  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,39 +116,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Looking at the i.MX952 TRM which is I believe one of the SoCs with this
-controller inside, the maximum number of supported dummy clock cycles is
-64 and not 32, so the code seems more accurate than the comment, which
-needs fixing.
+On Wed, Nov 25, 2026 at 12:43:40PM +0100, Uwe Kleine-König wrote:
+> On Wed, Nov 25, 2026 at 09:48:04AM +0100, Philipp Zabel wrote:
+> > > +#include <linux/mod_devicetable.h>
+> > 
+> > Please include the specific <linux/device-id/*.h> that is needed
+> > instead of all of <linux/mod_devicetable.h>.
+> 
+> Or better still, rely on the bus headers to provide the needed
+> *_device_id structures. (That is <linux/platform_device.h> provides
+> of_device_id (for patch #2)
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/spi/spi-nxp-xspi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Only very indirectly:
 
-diff --git a/drivers/spi/spi-nxp-xspi.c b/drivers/spi/spi-nxp-xspi.c
-index 8b836662a5da..ccd00c744d18 100644
---- a/drivers/spi/spi-nxp-xspi.c
-+++ b/drivers/spi/spi-nxp-xspi.c
-@@ -407,7 +407,7 @@ static bool nxp_xspi_supports_op(struct spi_mem *mem,
- 	if (op->addr.nbytes > 4)
- 		return false;
- 
--	/* Max 32 dummy clock cycles supported */
-+	/* Max 64 dummy clock cycles supported */
- 	if (op->dummy.ncycles > 64)
- 		return false;
- 
+  <linux/platform_device.h>
+  -> <linux/device.h>
+    -> <linux/device/driver.h>
+      -> <linux/device-id/of.h>
 
--- 
-2.56.0
+> and <linux/auxiliary_bus.h> provides
+> auxiliary_device_id and of_device_id (for patches #3 - #6)).
 
+Also quite indirectly.
+
+I'm not sure how to take this advice. I tend to see "include what you
+use" feedback (and not rely on implicit includes) elsewhere, which
+suggests I should *not* do what you say here. Do I just need to guess at
+when an implicit include should be deemed intentional?
+
+At the moment, I plan to simply go with Philipp's advice, as I don't see
+the harm in targeted, explicit #include.
+
+Regards,
+Brian
 
