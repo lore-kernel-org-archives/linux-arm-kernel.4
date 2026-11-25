@@ -2,73 +2,144 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB46F606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57DEF606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kndbfq9f;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=KHoa5xei
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DaY8bf8j;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=ndDC93sf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1dlKiXXZxapqG9zmCLzBg4HgKnlbFOylWso5ueo6Lqs=; b=kndbfq9fEMb6+S
-	jZawcgof/haZ1auOyQQorvUl7s95zgTYsa7UamIJMEzaiOY9Wm4GpdVrFA22RF9hnDv1PMGNatrmZ
-	EvQLwIzMN++ejmkDHJGXom9SxmEPXDS9LWS5SL6VXmjYrCFwx8MB7wj8Sm3Ca4jPMv7mRRs1ptB0g
-	vpuSHC5/g9ffOFhGMDQMdlnkPaSY376XycZMD5BwAMQZpgP8pATC6+OUTjt9wKp124xSHH6r49IKZ
-	KEHPGLKLTOE0CZ2YHGW4dL6/HltBvX9SDr11RrPGkhApcPEFU/7Vlwse/yhO2+E48RctVE6wdODbR
-	omLsSOmYkaaxFIGqx1ZQ==;
+	List-Owner; bh=MVC8G6V4uBF4a4DPt7PhMWBoR3clEaNughSf2KEBRyw=; b=DaY8bf8jbVBH6+
+	JBdGBZ83M3/LAo5ytuFWgLEASp7DyLEf7qIxQ4qS4RAAeH0yh9A3M+vbTjjkrTCkvKEPIZ/jg2ncc
+	3oF05j0mUzj9rmUqBfRGHoHZbYpS6JhKZ0lbfnP1XWFkmEGyS7g7Q7lPEyAv4L5n2uY1I6cVkB9d/
+	8qzUotkFwlPj2vsZdVlP5cdLCFk2LJrKaXAyUI3O7qpvJrlNU6UPFHxNFCps/WO7ZhRQPlwb55gXK
+	nzNQMELsBL2PiNFYVUM41keOEfA1aS+x6wwH4VwrQ9xceTCqPz+gT3rUUCqG8pDTSleK6C2gs7rx3
+	IKqjMnCSm3HqcwefiRlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBu4-00000009mcS-3LY3;
-	Wed, 25 Nov 2026 12:15:12 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBtu-00000009ma8-0RoB
+	id 1xWBw2-00000009mxN-0eAA;
+	Wed, 25 Nov 2026 12:17:14 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWBvu-00000009mwn-3pwP
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 12:15:03 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0EEA82F;
-	Wed, 25 Nov 2026 04:14:58 -0800 (PST)
-Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3CD653F86C;
-	Wed, 25 Nov 2026 04:14:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795608900; bh=3ky9MZu7q3SGrdCRfqYJILwZNULnWYwWi99eFamj3MQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KHoa5xeilBF+RK+hbrr2Y7ZE5qO8WxJ58QHngjpz9aWYvycsi7kgc7TteMwFWr72q
-	 BxBFdzLppDoHL6b4G/rj+T3b9NpXhCCI3jgnIXnv4vIpLdsXen9gQNgMHQnn22zNGd
-	 tZwUIekdnZXXfdMv8pX/KT7JXPo3nw37FGFDrBtY=
-From: Leonardo Bras <leo.bras@arm.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Leonardo Bras <leo.bras@arm.com>,
-	kvmarm@lists.linux.dev,
-	kvm@vger.kernel.org,
+	Wed, 25 Nov 2026 12:17:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nVp1uXUqVMBZJYvCVCymkUDcwV1L0goTofklBUYJl1eyfj1d7yghq8MTgjDCYk7igSB82+a+O3HxP/ojtu7oHWmpcp3lfI/qerWC3EFm9Hzf8RCI8ufz0G5I45lXcBCg83fKnxldRsZmxXUdIoQ1+ItjKri4k2eY6fCQL3UOIw7SMTIBrp/jt8wAcfRn0K2WxoPVvNjvMuU9SKDadAEhIcp05SZ5PzxCeatCIIjLhRuyCQuQdrobLsaLKEoIhxr9+fTFzCMkz6EPuWhPkCVxKAJL0J8pKPNi+fHUwzaPLT1Aa3VYpc6mBV2mGcm+FD7rQ38khX3MSljn1Waqf1lQEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MVC8G6V4uBF4a4DPt7PhMWBoR3clEaNughSf2KEBRyw=;
+ b=WXwuMonMT1kCAFo9altbVLwS4DpXbalZ/FRiqThZy+zzEiw2ltz2+A9iPMrYML3pA6gAmsCV17hJd46ybxxDdup8cG4UrY2B/Ue9vH3LHy1DgG2kZbAdsicmafcCBsjyW+ATAa9sudMOPI5L0ObIu33owldy7KwEQGqaN0tFylYTG3GxyqnEwGCZvagLksiWV7ixLdDr1DYsSeKbtsZrgBMIp/hUI4knYxqcI8NK8JP2ppMq+vBqh/4x9zD+PttxbdBkicF4+KSTvCYx7I/jBL0ptnrthDseKxU7LmNI3ou7dhBxgCNB10T5yeQE0yOMln/dy4YCFFROR9TDRYzaBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MVC8G6V4uBF4a4DPt7PhMWBoR3clEaNughSf2KEBRyw=;
+ b=ndDC93sfMUwx1ZwesjUojaoCjNO3+Mlu581Rf4y8c81NX7h0udtMGcaVQwQbfJ0FX6Tib3k+dLEAhXaGiJ6kvrJ6i4bMwcboOl5Hy/H1NtXQxhUS5x9sLGEE7M5TNQ2dKUM28PTaDmpFrXTxZnUoWvWuDUJ5WpwIvJtaTO/WVo4Dh4MlMglwZaFP2acE68er4OetFzUnmFfoF50Knc9hgA2T+6yafbXBacjw5QLAQnu2SiFqTYw7czKzg04Ibz96CCCrh/esr1QQyGchpw4HkBh1a0IoSXa0AiYsnze0GAehW9M3/pU9K2ee7oWAGB4fNXO+2ynXqkrdmjaqMY/orQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by AM9PR04MB8456.eurprd04.prod.outlook.com (2603:10a6:20b:3df::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 12:16:58 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
+ 12:16:58 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Peng Fan <peng.fan@oss.nxp.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	linux-amarula@amarulasolutions.com,
+	michael@amarulasolutions.com,
+	Peng Fan <peng.fan@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Kees Cook <kees+treewide@kernel.org>,
+	Ming Qian <ming.qian@oss.nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Xu Yang <xu.yang_2@nxp.com>,
+	bui duc phuc <phucduc.bui@gmail.com>,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Oliver Upton <oupton@kernel.org>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Dan Carpenter <dan@pereq.eu>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: nv: Upgrade sub-page TTL hint to maximum size
-Date: Wed, 25 Nov 2026 12:14:46 +0000
-Message-ID: <awbRNvgY3c-Oql-E@LeoBrasDK>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <861p8aypwm.wl-maz@kernel.org>
-References: <20261123182312.4842-1-maz@kernel.org> <awW5QKqGZAqw1ru9@LeoBrasDK> <864id6yyjy.wl-maz@kernel.org> <awXSCgN4JLLKXErv@LeoBrasDK> <861p8aypwm.wl-maz@kernel.org>
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] pmdomain: imx8m-blk-ctrl: Hold boot-on domain clocks until sync_state
+Date: Wed, 25 Nov 2026 20:13:59 +0800
+Message-ID: <20261125121400.29474-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20261122205136.138173-5-dario.binacchi@amarulasolutions.com>
+References: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0026.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::16) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|AM9PR04MB8456:EE_
+X-MS-Office365-Filtering-Correlation-Id: 983caff2-5e4a-40d1-f827-08df4aee0064
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|23010399003|1800799024|19092799006|10067099003|11063799006|56012099006|261022075727099003|261022105027099003|261028144727099003|261026121527099003|261026140227099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: Bw0e5dm6zTohntyMy/EqNhj/p8k/CF/MumMYuSuOksEgkyyqojiHA/frZ1kgn2hdvacelcUHUNIE46iQ86pqJdi0qKbGLOL1H5FxN4oROavnEMDmytg46J4viGmEb1hMLBA6F+wy5qMplZczyRmgGhTNU5JUDZHuKQ/hiE/bIgyKRpEhrH2tJS9jUTvO5QUrVYTzhLFdimI/oG0lauSQ2TwF9KZYnHZQSUZiMoJiu5E2mBCOuLBXJnpdGfsyL6O1oNRoHtoj23UF/JyVxA9MtMJ28+NGhxkR4fU4lIKPktO2AOCz+OVx8/bXtyp8I2aqUVcgYBKn8t01afS93ipJot4g/icwsOOhKo6ivjY7W0jyf/0bfSAmxTR9ITdQwwDCIb4b3xqBkm3ZXRt+Kd2HxqO9SRfLg4uwrwZ7j7DtAe5EMe9b4yrPBPDcYsDyy+Q/owvGrHWYOcA0DeT02R2yRUvLZTMPYSd5VZl8/Y0ISb8f3qksz6dPcUYH5bQZ1RZBvpCfY4bvPnVSekXaWcgOhVxB5xXDaAWQHH+FI3rLynJDWgdknGdGEjXvIG52OWhryb4ooS8OnRLrsNPPwx8wavoNFDsLS6DzkNWR5aJ6KkpNWldFxBoUoz/DdJO5icJgTJx4SA+JKJagRnYLzAXsLmE+G+ThFIb/TkNHRkXgIwc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(23010399003)(1800799024)(19092799006)(10067099003)(11063799006)(56012099006)(261022075727099003)(261022105027099003)(261028144727099003)(261026121527099003)(261026140227099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?An9chuJx74zyo0Pr9ASCEmFqkOm9CemuJFQtkCeYnms2O9kQPvDFtlB6bTP1?=
+ =?us-ascii?Q?jCRZ8B1UAmcU2/jYkkyEnsTcuEtgVpmsDcgl6Z7FGN+yXweUXXbwZQZ71jIG?=
+ =?us-ascii?Q?fgy+a4w6D/3dSO23M5T3ZmtkH1kL6QmKxnWX7MXInLJBYY9UAZJfyJurZe4U?=
+ =?us-ascii?Q?ZKNCXthRWImYW2/KAnJswZtAEfqX25F6yFK/WsKMmybc+16jfSCnTQba32Mw?=
+ =?us-ascii?Q?wmYuSBTF0hgDcVpqifpOjbJrexG6p+3FW+qUoYf7g4Zj1NlLTSvvvgTKAYXk?=
+ =?us-ascii?Q?HYw7QxPGB8maaW+tcbYja4doIr5FVo9eSnePAAlE4hr2ez/+mKuK+oD3urwH?=
+ =?us-ascii?Q?wVuk6uMlasM40CJvz1qHJnRPqwiuhIpvKqrHBccmbjyrkoDnPJpb7vz+mP54?=
+ =?us-ascii?Q?sgliH7aklz3SUzj71+lht1D8rA2jJyQhbFr2Jd4SiK1AsnPUups1ZjYzRiDp?=
+ =?us-ascii?Q?9OjuXed+ZcHB08xOhqvDrmbfWkgGh62+MMaAe0B+lr4LfDoOcIMXSFIFxwAn?=
+ =?us-ascii?Q?HFOGmfzfY9ORZRUNDNDvpsoguHnk+v1w+NpLqTpTC1oH+oop99E9iONDmF/A?=
+ =?us-ascii?Q?tyUV0VoKcFxhIuwvS2eUOd9pE3jziFmkuieoizxkuX0XMTWePyZbut/TBoGO?=
+ =?us-ascii?Q?tKNYlYTiUrI9aPy01mJXmMw9LCtrTUT8RqxPDS0taMPUnIyWu0p0g2kz9DOq?=
+ =?us-ascii?Q?xqLu7uEUpa10wtOa8c4JTB64g22A/E5sN9iRQqxSNQsT/RecshyN+4mxSgcl?=
+ =?us-ascii?Q?sowh+LvPWoEgTC1fOQXiKl+OW9vQtwZ0H06gIF9zNXiu0ZWPOZhSxpxOmLBU?=
+ =?us-ascii?Q?ir1Q1WTHyFaZJYdgqG06Ux7QNOc1wStFnsom/TN/uUIhm+ikaIeBBoz07ovh?=
+ =?us-ascii?Q?/fteUBBE8elq9J1ehFXpxa/XyhyjEIKb+3b7pY7/VQCTjYHQhuUlaPjPTJWw?=
+ =?us-ascii?Q?0vFU5IB5FwyZO0n9FEx8+WtiAq48lB1GwNx7uRGM+kCunnWA1N/gd3EsdOJL?=
+ =?us-ascii?Q?FPYS491C1/pY2j2tkAnZXMjfBj9sfiu1F/RMYDCKSyw62zvmanrwtgjB3Rji?=
+ =?us-ascii?Q?aV2PSJCiCoSG8/dmnc/LsclhqID87H8FscC4DtzZLhqlqCEg02H06GlTXRy3?=
+ =?us-ascii?Q?I5FbpS8S6fWePJ/GdJujzft+/kuIhqdul5kXrfxIuq6yY/mT8z0muN6p6xVd?=
+ =?us-ascii?Q?lBlfqBx17alBMacmALlbwZgZk1esoI3czs1DDJOE7OmR/t1dP3H70TKM3ewS?=
+ =?us-ascii?Q?gWqEp11G6oEiktT3ZZnT3iPc7R+8YDpJcs1CK9m5ntTTuqpzvxX69SZmiTPS?=
+ =?us-ascii?Q?j/7ZhjVflx2Fe7CsKLDFMIiAAkgjIglNijYgGiDYD2faZexV3M8Xzpq8GJXP?=
+ =?us-ascii?Q?pwdL7yjPWYATJJpts1+z+NuL5dnIkwvbWLDo94a3tjEAt1mwGURxQxRBTYl4?=
+ =?us-ascii?Q?GtHFeQ/fH++1G4JmenlCFz3sc6OCZYyuT6NIUZbmRsDExGqk9rt0gB63XlgP?=
+ =?us-ascii?Q?q+AAepFvinNezKJbFpEv8v/2CnYyIzDUx1i3b0bCdwvaqVBYLqsnW4ktMm+D?=
+ =?us-ascii?Q?oq8JdHyKkboERQgmjV6fwwyT8zFJHSVA5kziglByomEBWVjNBogXiHl200lI?=
+ =?us-ascii?Q?Ard67/qZdmxV+Obsi/fzmeSauvcY1PpwKJOmIXZ/SPHq9BLmtrzYCgZSbOl4?=
+ =?us-ascii?Q?ZUoaISzYE6nMDLvGaN+eDAlwCK8d/oOrPLse5M6YlPBLoD2zBVBDI7TeCX5N?=
+ =?us-ascii?Q?27MaE5P6Uj2x7mvo3CNiiZr75A5RQB3IT0YGrfLcNG6MhxgwMzJ8?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 983caff2-5e4a-40d1-f827-08df4aee0064
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 12:16:58.2416
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4X/70icODJ/4XuuL8zjXBch73A9MmXl9NsHWZ5/LWQuEqqCML28mm2vxlfzGQXugMupVWUJPsZb+nVrqeBtzF7JAHnGw4z8i3GyFqcpHqYOmwBClGk3aZhRIAY8UecHr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8456
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_041502_266044_8E8CB93A 
-X-CRM114-Status: GOOD (  53.06  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_041706_972217_19550324 
+X-CRM114-Status: GOOD (  10.05  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,149 +150,26 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 07:45:29PM +0000, Marc Zyngier wrote:
-> On Tue, 24 Nov 2026 18:06:02 +0000,
-> Leonardo Bras <leo.bras@arm.com> wrote:
-> > 
-> > On Tue, Nov 24, 2026 at 04:38:41PM +0000, Marc Zyngier wrote:
-> > > On Tue, 24 Nov 2026 16:20:16 +0000,
-> > > Leonardo Bras <leo.bras@arm.com> wrote:
-> > > > 
-> > > > On Mon, Nov 23, 2026 at 06:23:12PM +0000, Marc Zyngier wrote:
-> > > > > Should a guest be slightly foolish and submit a S2 TLBI with a TTL hint
-> > > > > that describe a base granule size smaller than the host's page size,
-> > > > > we take the resulting size at face value and feed it to the S2 unmapping
-> > > > > code. Which legitimately screams about something not being page-aligned.
-> > > > > 
-> > > > > The architecture allows us to drop the TLBI on the floor, as we don't
-> > > > > support a S2 granule size smaller than the host's page size. But it turns
-> > > > > out that doing so is proving pretty hard (we call compute_tlb_inval_range
-> > > > > from a number of places, none of which is amenable to an early out).
-> > > > > 
-> > > > > Instead, detect the annoying case, and pretend that we don't have a TTL
-> > > > > hint at all, leaving the size upgrade mechanism to take place and use
-> > > > > the largest possible size for the guest's S2 granule size.
-> > > > > 
-> > > > > This will still allow nonsensical stuff to get through, such as a 4kB
-> > > > > level 2 (aka 2MB) from a guest with a 64kB S2 base granule size running
-> > > > > on a 16kB page size host, but that's not worse than doing nothing, and
-> > > > > the host code won't get shouty.
-> > > > > 
-> > > > > Reported-by: Dan Carpenter <dan@pereq.eu>
-> > > > > Link: https://lore.kernel.org/r/20261123-inval_range-v1-1-815e15797089@pereq.eu
-> > > > > Fixes: d1de1576dc21 ("KVM: arm64: nv: Handle FEAT_TTL hinted TLB operations")
-> > > > > Signed-off-by: Marc Zyngier <maz@kernel.org>
-> > > > > Cc: stable@vger.kernel.org
-> > > > > ---
-> > > > > 
-> > > > > Notes:
-> > > > >     Reposting this as a first class patch, as I'd like to plug that one
-> > > > >     as early as possible (and Dan has plenty of other patches in flight...)
-> > > > > 
-> > > > >  arch/arm64/kvm/nested.c | 7 +++++++
-> > > > >  1 file changed, 7 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> > > > > index 78d5b18dbd2d6..36e4e83badf0a 100644
-> > > > > --- a/arch/arm64/kvm/nested.c
-> > > > > +++ b/arch/arm64/kvm/nested.c
-> > > > > @@ -714,6 +714,13 @@ unsigned long compute_tlb_inval_range(struct kvm_s2_mmu *mmu, u64 val)
-> > > > >  	 */
-> > > > >  	max_size = __ttl_to_size(ttl);
-> > > > >  
-> > > > > +	/*
-> > > > > +	 * IMPDEF behaviour: treat subpage TTL-annotated TLBI as the largest
-> > > > > +	 * possible invalidation. Don't try this at home, kids!
-> > > > > +	 */
-> > > > > +	if (max_size < PAGE_SIZE)
-> > > > > +		max_size = 0;
-> > > > > +
-> > > > >  	if (!max_size) {
-> > > > >  		/* Compute the maximum extent of the invalidation */
-> > > > >  		switch (vtcr_to_tg0_pgsize(kvm, mmu->tlb_vtcr)) {
-> > > > > -- 
-> > > > > 2.47.3
-> > > > > 
-> > > > 
-> > > > Hey Marc,
-> > > > 
-> > > > I think the changes make sense, although rounding up to PAGE_SIZE also 
-> > > > looks a valid solution in my unexperienced viewpoint.
-> > > 
-> > > No, it isn't the same thing. Taker the example I have given, where the
-> > > host is 16k, the guest 64k, and the invalidation 4k. If you round
-> > > things up to 16k, you're still not invalidating anything that is
-> > > consistent with the *minimum page size* for the guest. Anything larger
-> > > is a multiple of both the host and guest page sizes, and therefore
-> > > always correct.
-> > 
-> > Ah, right!
-> > In this case, could we not invalidate the largest page size supported 
-> > (64k)?
+On Sun, 22 Nov 2026 21:51:13 +0100 Dario Binacchi <dario.binacchi@amarulasolutions.com> wrote:
+
+> The clocks of a domain left on by the bootloader have no user until
+> its consumers probe, so they are gated when the unused clocks are
+> disabled. On the i.MX8MN, with the LCDIF driver built as a module,
+> this stops the pixel clock of the U-Boot splash screen long before
+> the DRM driver probes.
 > 
-> Because that's not what the absence of TTL means.
+> Keep the clocks of these domains enabled until sync_state, i.e. until
+> all the consumers of the blk-ctrl have probed.
 > 
-> > 
-> > IIUC:
-> > - To have max_size between 0 and PAGE_SIZE means it's either 4k or 16k, 
-> >   so invalidating the 64k should be enough?
-> 
-> No.
-> 
-> >  
-> > - max_size=0 from __ttl_to_size() means largest blocksize supported by 
-> >   stage2 in current TG.
-> 
-> Yes.
-> 
-> > 
-> > The two above are opposite ends, no? Like, the first is "this is too small 
-> > for us to invalidate, let's pick something bigger", and the other one is 
-> > "we want to invalidate the largest supported block".
-> > 
-> > Is it really ok to put them in the same bucket?
-> 
-> That's the *only* thing you can do, short of not invalidating anything
-> at all. The commit message alreayd explains the IMPDEF choice that is
-> made, and why it is made. Let me explain it again:
-> 
-> - An invalid TTL allows us to ignore the TLBI altogether. No ifs, no
->   buts. This is definitely an invalid TTL.
-> 
-> - However, by the time we reach this code, we are committed to perform
->   an invalidation, and we can't backtrack (doing so would be really
->   ugly).
-> 
-> - Our next port of call is to still perform an invalidation with
->   something reasonable. Since the TTL is invalid, only the IPA tells
->   us anything. And for any IPA without any range information, the only
->   sane thing to do is to invalidate the largest possible size.
-> 
-> You could refine this a bit more, but frankly this is not worth it. We
-> are already allowing a broken guest to do some invalidations, but
-> there is no need to go out of our way to do anything more.
-> 
-> The end.
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > 
 
-I think I got the whole picture now.
-Since guest page size has to be at least the same size as the host, it 
-would make no sense for a guest tlbi to ask for an invalidation smaller 
-than the host page size, and therefore it's an invalid TTL hint, and we 
-should invalidate the whole block, because at this point we can't 
-backtrack.
-
-FWIW:
-Reviewed-by: Leonardo Bras <leo.bras@arm.com>
-
-Thanks for having the patience to help me understand!
-Leo
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
