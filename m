@@ -2,124 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F0C606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD6F606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YqQ2eAJZ;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=RYoz/RvN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vEytLw6P;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=e1U02Z80
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
+	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6hnBZan8g8LHddmledKC79LHYdm87y2KXTgu+jeeovk=; b=YqQ2eAJZHwpRfL
-	tgEB/53+QlVqltKMLdQskqrnx6B5Qww/wi+vubpkAXkz/OHCdvTH2LMZFNcyx1FggsRShXaLzw5s1
-	ky+YUb1gjBJMRbznfuRZF06M29fZ7z/p8if7PRzVyAvxbyQM+iKU2pbTkWL91C6qG7/ZQQicWdLxI
-	yfGVoBP6HXQxLT+DhIy7XA8eGxcnvlCZ13u+5W6+hwABiYc7nfygK5qRPSwnrOxZQ69X+muffIedh
-	TP/F8GafEluF5rreyzkKeU1gAvw+NDbkyQ5V7oNidZQ/qKrlFCJP3oAJuWpe8yWEqYXybDEEJFAks
-	B32wrBMpF0VjPcWCFOcw==;
+	List-Owner; bh=ndbQ4zOYDp69YxH+vSmF4c25f0epkpIi0n8RI4ocFgM=; b=vEytLw6Py/Jzql
+	YGCnj+/WeXnyCx6weR/AnOxeNyG8SaRCEEzpXP4AZ+9XLfbG4n9QpVc3MHqJKe/Ruh6rSs0kqdwJ5
+	/pLt7XWfZy0R+vi9/pJGKfENRlQh+WyRXGNtfgKvb+zfXXXR14YJZ4S9+KqqBgJ7k1iJ9VL//Vys+
+	xNTIQXP6h/SpRr30dmm8/oc5TPeWZnPnBgaiTQ2Up9aWbhAiu6x57n7hYwXF/tm+8tR7EyKOGEH2J
+	IzIw0XmfhfKyVwQp5mW6n6NRlJ6oSCh2uISvfSQVSyyyVEF8ba2FJt5OToXUvktv1ZHPjq5PBxkFF
+	nQ8HbDGG9FHzSTYSA4UA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFOr-0000000ATHB-1F74;
-	Wed, 25 Nov 2026 15:59:13 +0000
-Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
+	id 1xWFSS-0000000AU8F-1uKS;
+	Wed, 25 Nov 2026 16:02:57 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFOd-0000000ATDf-09JX
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 15:59:00 +0000
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c51a14bd405so174773566b.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 07:58:58 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795622337; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Mdf+JS9n3AVP/RMo0M/+wY83fgld6IEWrOlVlZCu6/YpprYMIIJjtxVpNyveFmk+ql
-         8yD/1MN9MDjP59qmyZCxos1sZYoIjIiDai0xRQLdZh6mcIOL/aQ08gwbxt6oT9yWjPSV
-         /8mFQQAWz1DMjOvfxRidmRLS0rk2FeybX/eLln309fMuCO5RCRUGyIH/PnVs34dH9ZFD
-         wRnQE8jTS9ikse/MspBzLtHtS6qmJO7gPfq1ji8XiCvTspIFKYwD9cHYKQILxJpkVC/o
-         +UPrcfcXgQzYDM3uHVPsLkcelC9MWL7voAgv22eHkTDvfeZI+rLLPS2CT7PGaUpkq8ck
-         NyAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=6hnBZan8g8LHddmledKC79LHYdm87y2KXTgu+jeeovk=;
-        fh=1yY1h/pY22/vktPGvaxxqtKZRSbhl4Koxn/v/qotSFU=;
-        b=gxRUraddx8GbwPZnnjfpqK/KPqvx6lBFHtc+IsZuHJbRllQVIZ/NiM6WjYiBePB8RI
-         PFHkSmFW2X6R7l7f0ZPGJ6rMboqZfBUP4E7V9AYrNbPYrlLxZI3GX+QPgkKCVeAIDohZ
-         axzIVkle0zZnsN4ERzei+XIrzaWLXUCFuhLrN9wyblP0LqvF7YHBNOOyUCNOm0ma0Xya
-         g55gTQ3iEBC41crKn2n21snnV15skikykBoEfdV/OIf0bj9KsbNi5MdLtj+j7hexyP8p
-         ge+Ldbk3qKuAjhKqmoVeu+lp13l1zClyTsEbzCK0e+j91VPbRASL5ETvnQSvR/7GMkpk
-         23aQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1795622337; x=1796227137; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=6hnBZan8g8LHddmledKC79LHYdm87y2KXTgu+jeeovk=;
-        b=RYoz/RvNnb+QuM+kA6bl/luIuxurFMoKd5Wo6eqDeO+9ZX4e3XIdOXiFBDE6lGYQt/
-         Uz3jP0NbAgIBfKuyCSWjDm9S94l8+vBYgfUSQCeuJefvDUersJelaen9gXICegFfb5P7
-         92r0706ia11HVpqnGWxAJiMw679EI/0MOmHR+Ovtssrn04J3K1f+TZE/bx3Lj/0t25WZ
-         LEpxSdf7IkdOzIyRRFL4dpaIWWKkPCsRUksCNRAEI3JXyxmlM+8elIXcMENFrbVtwXzt
-         vYhTCulez4/rnG5a08PSEwMNyQqpoUWiyZIXgNdjmCwjfehxddB9wXcLzCxLn/bkwXkB
-         Jtdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795622337; x=1796227137;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=6hnBZan8g8LHddmledKC79LHYdm87y2KXTgu+jeeovk=;
-        b=1zT2ZWvILzn7Czca6IxHD6OdK3MeLMtVnOC0gHHVtSXL6vlowtu+cvwwvv2R1F5Vcp
-         AyFgu4WUo5fx3928WOrqtJNNwtFrGVT3NDoWeQa1KYqRQaaoN2gzuCaCEQ9Cs+cGkIaB
-         3TFyz2oPlm8bcD7F+ck1l5xndR0qv4Ava5BoD9pUXKh7NXzQN6UI+nWg7gmeMG6ueUuC
-         5DQOc0a4hSJTmn1E4HWCVm0GBOt8EkIkf7fOC1Z9P4nKt+avXNqHNzjmnfJ3Ey9HQMLm
-         HRsyyfqZWbQKJvPlj4h/jnQcGWMnVhEz/02CA2YtC+fpF35TlJ+H0Cj2iFq69/owUb1B
-         AcIA==
-X-Forwarded-Encrypted: i=1; AL+hErHYCb7xwp8xpqBp7zh+qSTgkh22wab2usent6CqnRrvl8idIiSZWwTv6RNKWFoIiBuX5CEaBaC5IvXPhO1GmayJ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/wCptFhgdDJXKrWdQyxRWsy9eVvCsckaEgVfneLw2fSrfCXAbf
-	NJxc6HJZng/Jh6L023U/s+LSPzSIHXxDJJiccOJHoR9f9WSZBIzzMV5gchcIOvzkinO5U82RGpN
-	yEZrss0k/7+uBYItkVAapn0EhHhnn/jvq0AH6sSFwDA==
-X-Gm-Gg: AZFdTZfa5w5MQ0TrGpHltNJsKakbEPXLN4r5tTq/QseOkW44S4TUbhbuapb/TcNiJtI
-	XqmWGifvDN1g1Jq4lfgu08rtTuBUWKuQ1P7hpnOo9XB7v5Hx8t+gzV/3cDqIApp0b7sL4kLQzrP
-	Eld05C/cbWo+55S+1lzqGA3S9uO6bGlxYyAcxha2GzXRWuFmscGPNhwn5V2vVhsiInRDi0gMkus
-	ZFKr36si0nh+Y3xp0RNGGxOOeug/tJN7hUHmBiTnCjZ/5UyM8HqRDffFf2omNUz2+46Pxl2n+kE
-	LTsTl73vFUiDpBlZjdJrKGb7vx90rpEtAkeesXFqoXcdV2Hl1LPNg4+qdC0qYeywMbVFavaZc2l
-	Nb9mXaC8VjQblE4Alwz+Cj4gBmdEq9xO9bm9xbY6VTM2kVrs4p5cEnkohRfkYUimZZaSX
-X-Received: by 2002:a17:906:81da:b0:c51:1d9a:323c with SMTP id
- a640c23a62f3a-c513a88b0d1mr1175280566b.15.1795622337011; Wed, 25 Nov 2026
- 07:58:57 -0800 (PST)
+	id 1xWFSM-0000000AU6f-3t9s;
+	Wed, 25 Nov 2026 16:02:55 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261125160245euoutp01643ec134cd0c29416f15b98b4c0d8cc6~rVTXAYGFq2394723947euoutp01V;
+	Wed, 25 Nov 2026 16:02:45 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261125160245euoutp01643ec134cd0c29416f15b98b4c0d8cc6~rVTXAYGFq2394723947euoutp01V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1795622565;
+	bh=ndbQ4zOYDp69YxH+vSmF4c25f0epkpIi0n8RI4ocFgM=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=e1U02Z80qtk/nwxit57Qm6MpSrKZqhLaXn1xXYc34Vn0Eip6382b1av0O6PBF68d/
+	 B+Dumn3anLrajMn3xyffUdgm+em8ubtrl2UA1YPq6TqsDRgnUrgdx/z+eBTbv/89Nr
+	 BFOGepG56xBXw0iJaV/CwLUtCghah3S95AlnkChA=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20261125160245eucas1p1beac30b8fac0db60d40e99f0990a67bf~rVTWtiIWT1277212772eucas1p1A;
+	Wed, 25 Nov 2026 16:02:45 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20261125160243eusmtip277776f891a27dfa466a595a92f06eb14~rVTVBDesA3197031970eusmtip2F;
+	Wed, 25 Nov 2026 16:02:43 +0000 (GMT)
+Message-ID: <f432f455-f393-49f6-94e1-48caf1e35565@samsung.com>
+Date: Wed, 25 Nov 2026 17:02:43 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261124-rk3576-otp-cpuid-mac-v4-0-d403b8a25113@flipper.net>
- <20261124-rk3576-otp-cpuid-mac-v4-3-d403b8a25113@flipper.net>
- <0aH4P5VH9HNiTXpCUTaTlvGaoUDQBnvv-0cSXtipSDkLOGjzGy96jDqsVtU0DJTWrocgoMcGFEgd0JUlF5mljVvCzGKVz4yUgDQ0s6HaDLg=@protonmail.com>
- <2f8da604-36af-4944-8168-02b046e97699@lunn.ch> <CAKTNdwG1sSBVKcKpHBj24nFCdc6WVKabV5=K4sJFucWpTLqRQQ@mail.gmail.com>
- <1defc5c8-ba61-40d2-99f3-6654f1743af1@lunn.ch>
-In-Reply-To: <1defc5c8-ba61-40d2-99f3-6654f1743af1@lunn.ch>
-From: Alexey Charkov <alchark@flipper.net>
-Date: Wed, 25 Nov 2026 19:58:42 +0400
-X-Gm-Features: Aa3M54rEPfqgE6y_yyyGlUyi0QUCYRvYug-ToPvauBq7tha0wq3SQqIuKn74zqk
-Message-ID: <CAKTNdwFktkMtdLW2GzqzLH+LO4kF0uY0jWpnvO5vbWmd-e4iWw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] nvmem: rockchip-otp: Derive MAC addresses from the
- CPU ID
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Ryan Leung <untilscour@protonmail.com>, Srinivas Kandagatla <srini@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Willem de Bruijn <willemb@google.com>, Simon Horman <horms@kernel.org>, 
-	Ricardo Pardini <ricardo@pardini.net>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 16/18] drm/bridge: starfive: Add JH7110 HDMI
+ controller driver
+To: Philipp Zabel <p.zabel@pengutronix.de>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+	Kozlowski <krzk+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, Laurent
+	Pinchart <Laurent.pinchart@ideasonboard.com>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Emil Renner
+	Berthing <kernel@esmil.dk>, Hal Feng <hal.feng@starfivetech.com>, Heiko
+	Stuebner <heiko@sntech.de>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt
+	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
+	<alex@ghiti.fr>, Dominique Belhachemi <db@domibel.de>, Andy Yan
+	<andyshrk@163.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Yakir Yang <kuankuan.y@gmail.com>, Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>,
+	William Qiu <william.qiu@starfivetech.com>, Xingyu Wu
+	<xingyu.wu@starfivetech.com>, Sandy Huang <hjc@rock-chips.com>, Manivannan
+	Sadhasivam <mani@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org, Marek
+	Szyprowski <m.szyprowski@samsung.com>, Maud Spierings
+	<maud_spierings@murena.io>, Graham Markall <hello@big-grey.co.uk>, Icenowy
+	Zheng <zhengxingda@iscas.ac.cn>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Joshua Peisach <jpeisach@ubuntu.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>, Cristian Ciocaltea
+	<cristian.ciocaltea@collabora.com>, Byron Stanoszek <gandalf@winds.org>,
+	Owen O'Hehir <oo.hehir@gmail.com>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <831aebd692fc5ddbbd1cf57f1aad3bcc0d3f30d2.camel@pengutronix.de>
+Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20261125160245eucas1p1beac30b8fac0db60d40e99f0990a67bf
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261124155429eucas1p1015c7cd9beec294fefdcd6900dd407f6
+X-EPHeader: CA
+X-CMS-RootMailID: 20261124155429eucas1p1015c7cd9beec294fefdcd6900dd407f6
+References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+	<CGME20261124155429eucas1p1015c7cd9beec294fefdcd6900dd407f6@eucas1p1.samsung.com>
+	<20261124-jh7110-clean-send-v8-16-de92635dd857@samsung.com>
+	<831aebd692fc5ddbbd1cf57f1aad3bcc0d3f30d2.camel@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_075859_130174_D66BD829 
-X-CRM114-Status: GOOD (  30.19  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_080252_355748_8743A53C 
+X-CRM114-Status: GOOD (  20.49  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,85 +108,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 7:23=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Wed, Nov 25, 2026 at 06:41:42PM +0400, Alexey Charkov wrote:
-> > On Wed, Nov 25, 2026 at 6:21=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wr=
-ote:
-> > >
-> > > > > +static int rockchip_otp_cpuid_pp(void *priv, const char *id, int=
- index,
-> > > > > +                            unsigned int offset, void *buf, size=
-_t bytes)
-> > > > > +{
-> > > > > +   char cpuid[ROCKCHIP_CPUID_LEN * 2];
-> > > > > +   u8 digest[SHA256_DIGEST_SIZE];
-> > > > > +   u8 *mac =3D buf;
-> > > > > +
-> > > > > +   if (!id || strcmp(id, "mac-address"))
-> > > > > +           return 0;
-> > >
-> > > I don't know OTP drivers. But to me, a function called
-> > > rockchip_otp_cpuid_pp() which does not actually return the CPU ID is
-> > > architecturally wrong.
-> >
-> > There is precedent for this at least in IMX [1], [2]. To me the
-> > interpretation is "Rockchip CPU ID used as a MAC address base with
-> > offset X", which is exactly what the derivation does. IMO, this is
-> > less clunky than the alternatives (e.g., a custom NVMEM layout which I
-> > used in v1-v2; a "virtual" NVMEM driver referencing the real cell and
-> > returning the processed one, which Ryan proposed in v2 discussion, or
-> > caller-side processing).
-> >
-> > [1] https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/nvmem/imx-=
-ocotp.c#L224-L238
->
-> I would say this one is different. The cell specifically contains the
-> MAC address. But its endianness is wrong. Nothing about CPU ID here.
->
-> > [2] https://elixir.bootlin.com/linux/v7.4-rc1/source/drivers/nvmem/imx-=
-ocotp-ele.c#L115-L129
->
-> And this seems to be the same.
->
-> As i said, i don't like the concept that a function called
-> rockchip_otp_cpuid_pp() returns something which is not a CPU ID. The
-> two examples you give ask for a MAC address, and they get a MAC
-> address.
->
-> Does nvmem support aliases? Can you put two different names on the
-> same cell? If you access the cell via the name cpu-id, it calls a
-> function _cpu_id_, it gives you the CPU ID. If you access the cell via
-> the name mac-address, it calls a function called _mac_address_, and it
-> gives you a MAC address.
 
-The cells themselves can't be aliased, but what you're describing is
-pretty much what the current code does. The id field is exactly what
-the consumer used as the cell name when referencing it, and the
-postprocessor callback checks whether it was "mac-address".
 
-Shall I perhaps just drop "cpuid" from the callback name to avoid
-confusion? The special treatment is only applied to cells with the
-compatible string "rockchip,cpuid" anyway, because only Rockchip SoCs
-use this particular algorithm for deriving addresses from cell
-contents.
+On 11/24/26 17:50, Philipp Zabel wrote:
+> On Di, 2026-11-24 at 16:52 +0100, Michal Wilczynski wrote:
+>> Add the HDMI controller (bridge) driver for the StarFive JH7110.
+>>
+> [...]
+>>
+>> Tested-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+>> Tested-by: Byron Stanoszek <gandalf@winds.org>
+>> Tested-by: Owen O'Hehir <oo.hehir@gmail.com>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  drivers/gpu/drm/bridge/Kconfig            |  11 ++
+>>  drivers/gpu/drm/bridge/Makefile           |   1 +
+>>  drivers/gpu/drm/bridge/jh7110-inno-hdmi.c | 297 ++++++++++++++++++++++++++++++
+>>  3 files changed, 309 insertions(+)
+>>
+> [...]
+>> diff --git a/drivers/gpu/drm/bridge/jh7110-inno-hdmi.c b/drivers/gpu/drm/bridge/jh7110-inno-hdmi.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..a0283f83ddc93e3e6c9e9192b73dca9a63f9d9ab
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/bridge/jh7110-inno-hdmi.c
+>> @@ -0,0 +1,297 @@
+> [...]
+>> +
+>> +struct stf_inno_hdmi_controller {
+>> +	struct clk_bulk_data clks[CLK_CTRL_NUM];
+>> +	struct reset_control *tx_rst;
+> 
+> tx_rst is never used outside of starfive_inno_hdmi_controller_probe(),
+> it could be a local variable.
 
-> That way of_get_mac_address_nvmem() just works, so the MAC driver just
-> needs to call of_get_mac_address() or of_get_ethdev_address().
+agree, thanks will fix in v9
 
-They still need to relax the size check as done by patch 2/5 in this
-series, because the CPUID cell is 16 bytes long. Srinivas rejected a
-prior version of this series that attempted to return cell contents of
-different sizes depending on the use case. Currently any cell size !=3D
-ETH_ALEN gets rejected by the net core, not just < ETH_ALEN.
+> 
+>> +	struct phy *phy;
+>> +	bool enabled;
+>> +};
+>> +
+> [...]
+>> +static void stf_inno_hdmi_rst_assert(void *data)
+>> +{
+>> +	reset_control_assert(data);
+>> +}
+>> +
+>> +static int starfive_inno_hdmi_controller_probe(struct platform_device *pdev)
+>> +{
+> [...]
+>> +	ctrl->tx_rst = devm_reset_control_get_exclusive(dev, NULL);
+>> +	if (IS_ERR(ctrl->tx_rst))
+>> +		return dev_err_probe(dev, PTR_ERR(ctrl->tx_rst), "failed to get tx reset\n");
+>> +
+> [...]
+>> +
+>> +	ret = reset_control_deassert(ctrl->tx_rst);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = devm_add_action_or_reset(dev, stf_inno_hdmi_rst_assert,
+>> +				       ctrl->tx_rst);
+>> +	if (ret)
+>> +		return ret;
+> 
+> This looks like it could be simplified with
+> devm_reset_control_get_exclusive_deasserted().
+
+Yes I think this can be simplified, thanks !
+
+> 
+> regards
+> Philipp
+> 
 
 Best regards,
-Alexey
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
