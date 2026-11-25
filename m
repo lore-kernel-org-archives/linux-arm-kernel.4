@@ -2,115 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D38C606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB57B606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 20:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sqV8Ajof;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VSve6+QU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RUeXbVdc;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UdT2f15E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=grcTAYHKrKdvfPqM1OBzx37QeqeHWeHPrvccffCgy5w=; b=sqV8AjofUFKXfDM+w2hAQ+YnMU
-	kg2d0sECHTWzZvLr+iizDPeAk3X3JeMCplEESZLYsGEEV3UGSD7IJpeRbMlcEg5eJQmqil2l95cAh
-	rXk3ejDtjFuAe7Y6sC5qqfeEXtB4bghWkDLp2/SCNdj7tX6U95GANvTrs8BTEpLQUqyVVJ5N2YtiP
-	T1lgdTizdNWqM5wi8Uif3P6VF99blTRGIB/OlnXKQNwAxn1WvG8to85ssYFNboBqw7FaIC234+6pY
-	5SU2Kzc+bB0L6x2E2XKDeI8/f60xxOeZEhQcMYWh6EZxbAEEPf23jtAeyUJ/uTUK9NA4hSuN+kl1D
-	OWHYufMQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=lzATm5KxG7klJGkhTgSK4y3eqCxmt5E80rP46uMzJOk=; b=RUeXbVdc+f03nf
+	XrVxRLn+jcGUi0WjnqSVYTMyXbcOCN/EAadyyUsZ/nr7ImT5rg5K8919IQy/URellJCkhdxmPDFnW
+	KUXqka2EYS8rTOxHuQX27d+fPI5gUkx9Hr2tNDwF9A+/2uPzGMXQqcM0Z2I89md8L5LXmEkLdKnPs
+	JVDE0f46RhNiSXOGjzSR47p14b1imrUMQX7DNkpcYUFNpMyG4r/hm/4J7nrCNWhNFWYZbUqh0pnV/
+	P11KWVHxZHo7/I/Y4t6iQViBqdjnW0V7SWebUgO/QZNPiQrozp5Fc0D1qHU2bc+sHM0eWZ7ifugpv
+	HkE6eOyc9QHjt8hvTNWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJx1-0000000BJCo-2MMT;
-	Wed, 25 Nov 2026 20:50:47 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xWJPx-0000000BEzm-3DYM;
+	Wed, 25 Nov 2026 20:16:37 +0000
+Received: from mail-oo2-x0a.google.com ([2607:f8b0:4864:31::a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWJww-0000000BJBJ-2eq4
+	id 1xWJPY-0000000BEkU-0RBx
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 20:50:44 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 090DE61908;
-	Wed, 25 Nov 2026 20:50:42 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1795639841;
-	b=mvCJAQlMImFo0Ejiyvnp1GmxgF+FydKXwyOALVot/Gfce4SdAGBbGrvSh6Na8yoF9rdj
-	 EfATAyIGaS1MYUhlJ9l9cMp55UwSalAxL+MXfY7HvWE19GfkBs2LbWk6bXoD2ERqQNArR
-	 NMHWQSLwfdNI+UHDjIWapWdHsY3Zg6qs1j17wW+k0cexfyeKXy4nAhQfYa3bk46ODibLM
-	 03ydBkUGN5WHCTIf+EsDKBdMj0pz1bTEsRQnroJNGf+d1e1pc7dNShJnLS0nV4U4v7wAV
-	 /hs3JuiE9UjcbGTCGn+P+zsJt+0HhYKZiRV3y2HefBO6DYkvIAFr67VUm0dht8siPXw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1795639841;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=grcTAYHKrKdvfPqM1OBzx37QeqeHWeHPrvccffCgy5w=;
-	b=dPmdjHV787xIhVE9B2pGek44zxSfjP6T184El9uNwAeZA2lMNS55r9yV3xezVIXLU2r8
-	 WNM7LREVgSGT8avItEDIgTX6W19ByjXMwkOeeke7wM8Y2XpUMxTpm0wAH9Cj/gqr8P+5h
-	 bKoucBglYZTBj4mxJ7NX7ynAxvKToqsDEbXra9KhLuoiRWBICt8Z7gxw9yJpRjfXG1WfA
-	 dp+kHM6knYDBznn++esDp6nFJQyHEgAnRibfCrwnmWlCoH4ZrNIbjKhEpE4kH0gSGLnPz
-	 YVZtkbArs1ATEIBG3uuo9ikYr2++f92DO9Rd7oq1i5/zdxjFN0IhCC+zq2Hht3N6lKQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id ED8B11F000CF;
-	Wed, 25 Nov 2026 20:50:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795639841;
-	bh=grcTAYHKrKdvfPqM1OBzx37QeqeHWeHPrvccffCgy5w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VSve6+QUuFTFyESKWOEvJSyCrhHdrTCL5p8D0qAZdE6E5q1da7GbIZifTT7zVUcQr
-	 Cw/x/0aUIeKZOox5hfmVuRv7AUxfiPN6REphrRZWSCRKyaGdEjyT/TMeumXKwj0veB
-	 XAeeJxa3Q8G/eNHxJ5yUlcIoUK9bBCAv6RC/3Nq8Y5K417BjKaN3fQwZ5/t2XkFKT8
-	 gccFNIzfsvm/8mfQ3V3HguQOwK4ZrVy8JrF0Vn9Pn2AAARNK/uM7tg5d1+fDBtAAZ2
-	 TafzX4WVMFw2hKOOdoXE05T4xXvKQsZuBdV3h1laroCdRQdxFgjpAd0ddzsXM8j4/h
-	 bm5522HPGYgcA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 780754D047;
-	Wed, 25 Nov 2026 20:50:31 +0000 (UTC)
-From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
-Date: Wed, 25 Nov 2026 23:50:30 +0300
-Subject: [PATCH RFC net-next 2/7] net: dsa: add a QCA four-byte CPU tagger
+	Wed, 25 Nov 2026 20:16:17 +0000
+Received: by mail-oo2-x0a.google.com with SMTP id 006d021491bc7-71ad9f62e49so797055eaf.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:16:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795637771; x=1796242571; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=lzATm5KxG7klJGkhTgSK4y3eqCxmt5E80rP46uMzJOk=;
+        b=UdT2f15ETqpoY5X1WMeeJRBOHP3e4JSPKQk8PFiw3Y9UuId+19ZOA0xf7aq/sFmRzg
+         RjPTnfivPnp8+hluNAk7eMDmEftOT0XnE9nB4If3iqsA6PYAUwEE92bDy11LidKsRybP
+         MZCcuq0w/PxDBhxqarcdTq6lp+9YBLpoGpYaJWJYYHYjkiJo7VVjBwNbF3CLILjp+qeV
+         1eQvXgADibdqmrTFP9E530uPIw1qJDHjerKjYoMWmQn5cljEKGTkxJ+5gcgfeXL5W3JX
+         X2UUSdndYM3H3Z/JJZBs8LEiQLRraLyoGXjLW1TgcMcvxBKgVl2hbtH10BwGrZS58sOD
+         Y0fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795637771; x=1796242571;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=lzATm5KxG7klJGkhTgSK4y3eqCxmt5E80rP46uMzJOk=;
+        b=R0TJhGDV5lWG8FiFPe+LzNOFP2F6XbhXtgTVM/1h03VdGjP4idfmgTjZ6MVcpakaSJ
+         27oTXxYrvRSgj2H3hK96hSOw6f3C4kIEFB+Qfy9ETN0qo6RrGTCx2cyKPFQKJ3n547RR
+         pHYc7j1lSRTnihDy33cIPUtpdovyGYceP2GJPx13Lhra7ClTrWZ+qp61be6+u0/GGzzd
+         fCCIWP0PdPXBmOyYusMQkZUFyDkFYMlhplvNhEkkFvNBtDHCF9DvnaUbOFcsK7rkgu/5
+         qN3EzHYDD+hWEQORMHB8VqFo+khXHrp3CHpCo4sQVKEXsUb5IFX9BgP+VuVIX6TZAetL
+         Pukg==
+X-Forwarded-Encrypted: i=1; AL+hErFhhsjTPWs+wOAYSvW7oaGYDUWDvo7btdMY/5hiOEdSAatZywAyR1zRSmtG7yjkHxqwvdhZ+di17DbfE/We/kie@lists.infradead.org
+X-Gm-Message-State: APuU4Z/gqQ6iyY+k6Ci8lhvM9UjiloyjAkBSb7GghfeqmIay13aiRJyI
+	LhZCKcbpH7Ef4fotQxBQayZotDVj9cHjXI60+wg4LpatE1gTPmJUbVb6
+X-Gm-Gg: AZFdTZdaI/tCzwv1T5kXO8fsQGVx0OkxHHAR3bXoPR9PSTeTS1aXATRQP3p1Y7AqMd2
+	2K7A6V8/XDnV3PX6CR5J4RFSHybIWCMP0RJIe1wv3hSUkSJbxo0VPZSI1yABc5TGpez2viY3fk7
+	RjyhRwWJQOb71t4fV2cDOydnR3ACSYBbpstJ6c/DBB1glTXk7kfLrTGo9wWw/TCQT6d0Yi76yj0
+	aKQHX03VupN79KJLRcC0X1DGQ5Y63cX9cxkXpzJJ8W5rpn8ZyW4wvQVSokfhe56E+i5w4if1zOH
+	03NRBkYpj+gf5SRBQ3Gb/tzTekER2iqLbeLFeRyBlCCFrBhD+LcAYEgtuYgDlGKRmTzomD7veg9
+	jhEGVheeFsG8zrx2IWzdd2EYYIWZMbC6FjpERzAyUecjsP90yLou3PAzfd9wmQwj+dB7Fdjh4q8
+	VRsnnEl7EBLFAXAbaZJGUfsTz9TBMgsC3W1gI0yy1+jlGB58jh+fPMDP2bL6AChss8xQ3HUpYXv
+	/VkTcsmiWZUekKZ9wxFQSpjfNCqAemvMbsJqRrx+kfsPYtPOB1bWdnbZTt4uVJ5xw7jh9mA87sZ
+	lAkOdixIoHmHJkOAORu0UCyQDVNRps/565I=
+X-Received: by 2002:a05:6820:1ca9:b0:71a:e74b:f982 with SMTP id 006d021491bc7-71b3942e146mr15402388eaf.16.1795637770901;
+        Wed, 25 Nov 2026 12:16:10 -0800 (PST)
+Received: from [192.168.0.98] ([50.26.120.197])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-71b380b6f82sm11341859eaf.10.2026.11.25.12.16.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 12:16:10 -0800 (PST)
+From: Ryan Brue <ryanbrue.dev@gmail.com>
+Date: Wed, 25 Nov 2026 14:16:04 -0600
+Subject: [PATCH v2 1/9] media: mediatek: vcodec: Decode H.264 access units
+ on MT8173
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261125-almondplus-offload-rfc-v1-2-703175c6340c@gmail.com>
-References: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
-In-Reply-To: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Simon Horman <horms@kernel.org>, Pablo Neira Ayuso <pablo@netfilter.org>, 
- Florian Westphal <fw@strlen.de>, Phil Sutter <phil@nwl.cc>, 
- Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
- Linus Walleij <linusw@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Russell King <linux@armlinux.org.uk>, 
- Christian Marangi <ansuelsmth@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netfilter-devel@vger.kernel.org, 
- coreteam@netfilter.org, linux-arm-kernel@lists.infradead.org, 
- linux-doc@vger.kernel.org, Fil Dunsky <filipp.dunsky@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1795639829; l=28282;
- i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
- bh=3Kun9cJTdqUY3onf9waOp+3LOppqDQ9OpaQL0Li2Yxc=;
- b=e0DNu40C2Lo12rfQmiJJIKOV01NdPOEvgNcIWjsAy3vA9moPhrxn7m1WDCAw87HTc4ts8Aumu
- QgzaAFgh9qtAqXzAokMwS8/biaIv4wCjghl8w+hTYxI/uOCCs4P2tuc
-X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
- pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
-X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
- auth_id=1085
-X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-1-fdc047cf75a5@gmail.com>
+References: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
+In-Reply-To: <20261125-rbrue-suez-upstreaming-mtk-vcodec-mdp-fixes-v2-0-fdc047cf75a5@gmail.com>
+To: Tiffany Lin <tiffany.lin@mediatek.com>, 
+ Andrew-CT Chen <andrew-ct.chen@mediatek.com>, 
+ Yunfei Dong <yunfei.dong@mediatek.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Minghsiu Tsai <minghsiu.tsai@mediatek.com>, 
+ Houlong Wei <houlong.wei@mediatek.com>, 
+ Enric Balletbo i Serra <eballetbo@kernel.org>, 
+ Eizan Miyamoto <eizan@chromium.org>, 
+ Francois Buergisser <fbuergisser@chromium.org>
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Youngjoon Lee <getfeus@gmail.com>, linux-media@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
+ Ryan Brue <ryanbrue.dev@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795637766; l=9530;
+ i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
+ bh=7QvG3ljH1BXUy2+Y0H6CX0kYFqFmT88JMdlRXuaspec=;
+ b=CWSXFgbEKn6SsNPovjvm1nFtPC2tbJhVLSnVV/+UBdMPbF7JH++8g6z6ea3KSAu7CJmFHHxDc
+ cbolmubHudBAaI45Nf389EdNSgowyOX0rGweJbb4/UOR3vFAXFslbyp
+X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
+ pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_121613_345838_B96174A0 
+X-CRM114-Status: GOOD (  30.17  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,857 +123,283 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fil Dunsky <filipp.dunsky@gmail.com>
+The stateful decoder interface hands the driver one H.264 access unit
+per buffer (pixfmt-compressed.rst, V4L2_PIX_FMT_H264), but the MT8173
+VPU firmware takes one NAL unit per call, and the driver passes it the
+whole buffer with the type of the first unit only. An access unit that
+starts with a delimiter, its parameter sets or an SEI therefore loses
+its PPS, and every slice after it fails with a bitstream error. Pictures
+of more than one slice never decoded at all: given one slice, the
+hardware never raises its interrupt.
 
-Insert the 0x8100 identifier and the ordinary QCA metadata ahead of the
-inner EtherType. Preserve checksum/header offsets, materialize VLAN
-metadata inside the CPU tag and validate nonlinear receive headers
-before dispatch.
+Walk the units of the buffer: the parameter sets one by one, then the
+slices of the picture together in one call, through to the end of the
+buffer. Skip the units the firmware does not decode (SEI, delimiters,
+filler); handed the frame buffer with an SEI, it loses the picture
+decoded into it later, so the frame buffer goes with the slices only,
+and a frame buffer that no slice used goes back to the free list.
 
-Keep the two-byte format as the default. Add KUnit coverage for tagging,
-VLAN and checksum metadata, source-port dispatch, clones and
-truncated/nonlinear packets. Seven tests passed under UML.
+The decoder starts reading at the bitstream address rounded down to 16
+bytes, and decodes from the first start code it finds there, so a unit
+with another start code within those bytes in front of it, such as a
+slice after a six-byte delimiter, is decoded as the wrong unit. Copy
+such slices, and the parameter sets, which the firmware parses the same
+way, to buffers of their own. The slice buffer grows to the largest
+picture seen. A picture behind a delimiter, or behind parameter sets
+short enough to share its 16 bytes, thus costs one copy of its slices.
 
-Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+Without a frame buffer only the header is being parsed, so stop at the
+first slice, and stop when the firmware reports a resolution change,
+since the core decodes the same buffer again after reconfiguring.
+Buffers holding a single NAL unit decode the same as before.
+
+Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 ---
- include/net/dsa.h        |  21 +--
- net/dsa/Kconfig          |  30 +++
- net/dsa/Makefile         |   2 +
- net/dsa/tag_qca4.c       | 165 +++++++++++++++++
- net/dsa/tag_qca4_kunit.h | 469 +++++++++++++++++++++++++++++++++++++++++++++++
- 5 files changed, 671 insertions(+), 16 deletions(-)
+ .../mediatek/vcodec/decoder/vdec/vdec_h264_if.c    | 168 ++++++++++++++++++++-
+ 1 file changed, 161 insertions(+), 7 deletions(-)
 
-diff --git a/include/net/dsa.h b/include/net/dsa.h
-index 5d12191b6..7d3c836c2 100644
---- a/include/net/dsa.h
-+++ b/include/net/dsa.h
-@@ -36,6 +36,7 @@ struct tc_action;
- #define DSA_TAG_PROTO_LAN9303_VALUE		8
- #define DSA_TAG_PROTO_MTK_VALUE			9
- #define DSA_TAG_PROTO_QCA_VALUE			10
-+#define DSA_TAG_PROTO_QCA4_VALUE 37
- #define DSA_TAG_PROTO_TRAILER_VALUE		11
- #define DSA_TAG_PROTO_8021Q_VALUE		12
- #define DSA_TAG_PROTO_SJA1105_VALUE		13
-@@ -77,6 +78,7 @@ enum dsa_tag_protocol {
- 	DSA_TAG_PROTO_LAN9303		= DSA_TAG_PROTO_LAN9303_VALUE,
- 	DSA_TAG_PROTO_MTK		= DSA_TAG_PROTO_MTK_VALUE,
- 	DSA_TAG_PROTO_QCA		= DSA_TAG_PROTO_QCA_VALUE,
-+	DSA_TAG_PROTO_QCA4		= DSA_TAG_PROTO_QCA4_VALUE,
- 	DSA_TAG_PROTO_TRAILER		= DSA_TAG_PROTO_TRAILER_VALUE,
- 	DSA_TAG_PROTO_8021Q		= DSA_TAG_PROTO_8021Q_VALUE,
- 	DSA_TAG_PROTO_SJA1105		= DSA_TAG_PROTO_SJA1105_VALUE,
-@@ -183,15 +185,12 @@ struct dsa_switch_tree {
- #define dsa_lags_foreach_id(_id, _dst)				\
- 	for ((_id) = 1; (_id) <= (_dst)->lags_len; (_id)++)	\
- 		if ((_dst)->lags[(_id) - 1])
--
- #define dsa_lag_foreach_port(_dp, _dst, _lag)			\
- 	list_for_each_entry((_dp), &(_dst)->ports, list)	\
- 		if (dsa_port_offloads_lag((_dp), (_lag)))
--
- #define dsa_hsr_foreach_port(_dp, _ds, _hsr)			\
- 	list_for_each_entry((_dp), &(_ds)->dst->ports, list)	\
- 		if ((_dp)->ds == (_ds) && (_dp)->hsr_dev == (_hsr))
--
- static inline struct dsa_lag *dsa_lag_by_id(struct dsa_switch_tree *dst,
- 					    unsigned int id)
- {
-@@ -579,47 +578,36 @@ static inline bool dsa_is_user_port(struct dsa_switch *ds, int p)
- #define dsa_tree_for_each_user_port(_dp, _dst) \
- 	list_for_each_entry((_dp), &(_dst)->ports, list) \
- 		if (dsa_port_is_user((_dp)))
--
- #define dsa_tree_for_each_user_port_continue_reverse(_dp, _dst) \
- 	list_for_each_entry_continue_reverse((_dp), &(_dst)->ports, list) \
- 		if (dsa_port_is_user((_dp)))
--
- #define dsa_tree_for_each_cpu_port(_dp, _dst) \
- 	list_for_each_entry((_dp), &(_dst)->ports, list) \
- 		if (dsa_port_is_cpu((_dp)))
--
- #define dsa_switch_for_each_port(_dp, _ds) \
- 	list_for_each_entry((_dp), &(_ds)->dst->ports, list) \
- 		if ((_dp)->ds == (_ds))
--
- #define dsa_switch_for_each_port_safe(_dp, _next, _ds) \
- 	list_for_each_entry_safe((_dp), (_next), &(_ds)->dst->ports, list) \
- 		if ((_dp)->ds == (_ds))
--
- #define dsa_switch_for_each_port_continue_reverse(_dp, _ds) \
- 	list_for_each_entry_continue_reverse((_dp), &(_ds)->dst->ports, list) \
- 		if ((_dp)->ds == (_ds))
--
- #define dsa_switch_for_each_available_port(_dp, _ds) \
- 	dsa_switch_for_each_port((_dp), (_ds)) \
- 		if (!dsa_port_is_unused((_dp)))
--
- #define dsa_switch_for_each_user_port(_dp, _ds) \
- 	dsa_switch_for_each_port((_dp), (_ds)) \
- 		if (dsa_port_is_user((_dp)))
--
- #define dsa_switch_for_each_user_port_continue_reverse(_dp, _ds) \
- 	dsa_switch_for_each_port_continue_reverse((_dp), (_ds)) \
- 		if (dsa_port_is_user((_dp)))
--
- #define dsa_switch_for_each_cpu_port(_dp, _ds) \
- 	dsa_switch_for_each_port((_dp), (_ds)) \
- 		if (dsa_port_is_cpu((_dp)))
--
- #define dsa_switch_for_each_cpu_port_continue_reverse(_dp, _ds) \
- 	dsa_switch_for_each_port_continue_reverse((_dp), (_ds)) \
- 		if (dsa_port_is_cpu((_dp)))
--
- static inline u32 dsa_user_ports(struct dsa_switch *ds)
- {
- 	struct dsa_port *dp;
-@@ -842,7 +830,6 @@ dsa_tree_offloads_bridge_dev(struct dsa_switch_tree *dst,
- #define dsa_switch_for_each_bridge_member(_dp, _ds, _bdev) \
- 	dsa_switch_for_each_user_port(_dp, _ds) \
- 		if (dsa_port_offloads_bridge_dev(_dp, _bdev))
--
- static inline u32
- dsa_bridge_ports(struct dsa_switch *ds, const struct net_device *bdev)
- {
-@@ -996,7 +983,6 @@ struct dsa_switch_ops {
- 			       struct phy_device *phy);
- 	void	(*port_disable)(struct dsa_switch *ds, int port);
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_if.c
+index a95327388f57..d2d7103c09c0 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_if.c
+@@ -5,6 +5,7 @@
+  */
  
--
- 	/*
- 	 * Notification for MAC address changes on user ports. Drivers can
- 	 * currently only veto operations. They should not use the method to
-@@ -1401,10 +1387,12 @@ static inline int dsa_switch_suspend(struct dsa_switch *ds)
- {
- 	return 0;
+ #include <linux/module.h>
++#include <linux/sizes.h>
+ #include <linux/slab.h>
+ 
+ #include "../vdec_drv_if.h"
+@@ -15,8 +16,11 @@
+ 
+ #define NAL_NON_IDR_SLICE			0x01
+ #define NAL_IDR_SLICE				0x05
++#define NAL_H264_SPS				0x07
+ #define NAL_H264_PPS				0x08
+ #define NAL_TYPE(value)				((value) & 0x1F)
++/* the decoder reads the bitstream from an address rounded down to this */
++#define H264_BS_READ_ALIGN			16
+ 
+ #define BUF_PREDICTION_SZ			(32 * 1024)
+ 
+@@ -118,6 +122,9 @@ struct vdec_h264_vsi {
+  * @num_nalu : how many nalus be decoded
+  * @ctx      : point to mtk_vcodec_dec_ctx
+  * @pred_buf : HW working prediction buffer
++ * @param_buf : copy of a parameter set for the firmware
++ * @slice_buf : copy of the slices when another start code precedes theirs
++ *              within the decoder's read alignment
+  * @mv_buf   : HW working motion vector buffer
+  * @vpu      : VPU instance
+  * @vsi      : VPU shared information
+@@ -126,6 +133,8 @@ struct vdec_h264_inst {
+ 	unsigned int num_nalu;
+ 	struct mtk_vcodec_dec_ctx *ctx;
+ 	struct mtk_vcodec_mem pred_buf;
++	struct mtk_vcodec_mem param_buf;
++	struct mtk_vcodec_mem slice_buf;
+ 	struct mtk_vcodec_mem mv_buf[H264_MAX_FB_NUM];
+ 	struct vdec_vpu_inst vpu;
+ 	struct vdec_h264_vsi *vsi;
+@@ -309,6 +318,10 @@ static void vdec_h264_deinit(void *h_vdec)
+ 
+ 	vpu_dec_deinit(&inst->vpu);
+ 	free_prediction_buf(inst);
++	if (inst->param_buf.va)
++		mtk_vcodec_mem_free(inst->ctx, &inst->param_buf);
++	if (inst->slice_buf.va)
++		mtk_vcodec_mem_free(inst->ctx, &inst->slice_buf);
+ 	free_mv_buf(inst);
+ 
+ 	kfree(inst);
+@@ -326,10 +339,10 @@ static int find_start_code(unsigned char *data, unsigned int data_sz)
+ 	return -1;
  }
-+
- static inline int dsa_switch_resume(struct dsa_switch *ds)
+ 
+-static int vdec_h264_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+-			    struct vdec_fb *fb, bool *res_chg)
++static int vdec_h264_decode_nal(struct vdec_h264_inst *inst,
++				struct mtk_vcodec_mem *bs,
++				struct vdec_fb *fb, bool *res_chg)
  {
- 	return 0;
+-	struct vdec_h264_inst *inst = (struct vdec_h264_inst *)h_vdec;
+ 	struct vdec_vpu_inst *vpu = &inst->vpu;
+ 	int nal_start_idx = 0;
+ 	int err = 0;
+@@ -345,10 +358,6 @@ static int vdec_h264_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	mtk_vdec_debug(inst->ctx, "+ [%d] FB y_dma=%llx c_dma=%llx va=%p",
+ 		       ++inst->num_nalu, y_fb_dma, c_fb_dma, fb);
+ 
+-	/* bs NULL means flush decoder */
+-	if (bs == NULL)
+-		return vpu_dec_reset(vpu);
+-
+ 	buf = (unsigned char *)bs->va;
+ 	buf_sz = bs->size;
+ 	nal_start_idx = find_start_code(buf, buf_sz);
+@@ -422,6 +431,151 @@ static int vdec_h264_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	return err;
  }
-+
- #endif /* CONFIG_PM_SLEEP */
  
- #if IS_ENABLED(CONFIG_NET_DSA)
-@@ -1414,6 +1402,7 @@ static inline bool dsa_user_dev_check(const struct net_device *dev)
- {
- 	return false;
- }
-+
- #endif
- 
- netdev_tx_t dsa_enqueue_skb(struct sk_buff *skb, struct net_device *dev);
-diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-index 4f44bf3ed..99933b270 100644
---- a/net/dsa/Kconfig
-+++ b/net/dsa/Kconfig
-@@ -174,6 +174,36 @@ config NET_DSA_TAG_QCA
- 	  Say Y or M if you want to enable support for tagging frames for
- 	  the Qualcomm Atheros QCA8K switches.
- 
-+config NET_DSA_TAG_QCA4
-+	tristate "Tag driver for QCA four-byte tags"
-+	default n
-+	help
-+	  QCA switch CPU framing with identifier 0x8100 and two-byte metadata.
-+	  Does not enable hardware checksum, GSO, VLAN or NAT offload features.
-+	  The ordinary QCA two-byte tagger remains the default.
-+	  Select qca4 on the CPU ports only when the switch driver supports it.
-+
-+config NET_DSA_TAG_QCA4_KUNIT_TEST
-+	bool "KUnit tests for QCA four-byte sk_buff operations"
-+	depends on KUNIT=y && NET_DSA_TAG_QCA4=y
-+	default n
-+	help
-+	  Exercise real sk_buff allocation, copy-on-write, nonlinear headers,
-+	  checksum metadata and source-port dispatch for the four-byte tagger.
-+	  These are software tests and do not require a physical QCA switch.
-+	  They can run with the standard KUnit test framework.
-+
-+config NET_DSA_QCA8K_4B_MODE
-+	bool "QCA8K four-byte boot format for CS7542 offload"
-+	depends on NET_DSA_QCA8K=y && NET_DSA_TAG_QCA4=y
-+	depends on !PM && CS7542_FT_LIVE_BRIDGE && MDIO_CS75XX=y
-+	default n
-+	help
-+	  Support the four-byte CPU tag requested through dsa-tag-protocol.
-+	  The current implementation supports the CS7542 dual-conduit topology.
-+	  Ethernet register access uses MDIO while the four-byte format is active.
-+	  Both CPU ports must request the same format before the switch starts.
-+
- config NET_DSA_TAG_RTL4_A
- 	tristate "Tag driver for Realtek 4 byte protocol A tags"
- 	help
-diff --git a/net/dsa/Makefile b/net/dsa/Makefile
-index 1f9cc30e9..3d5949e50 100644
---- a/net/dsa/Makefile
-+++ b/net/dsa/Makefile
-@@ -48,3 +48,5 @@ obj-$(CONFIG_NET_DSA_TAG_YT921X) += tag_yt921x.o
- 
- # for tracing framework to find trace.h
- CFLAGS_trace.o := -I$(src)
-+
-+obj-$(CONFIG_NET_DSA_TAG_QCA4) += tag_qca4.o
-diff --git a/net/dsa/tag_qca4.c b/net/dsa/tag_qca4.c
-new file mode 100644
-index 000000000..413756679
---- /dev/null
-+++ b/net/dsa/tag_qca4.c
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Private source-review prototype. No offload feature advertisement. */
-+#include <linux/bitfield.h>
-+#include <linux/etherdevice.h>
-+#include <linux/if_vlan.h>
-+#include <linux/unaligned.h>
-+#include <linux/dsa/tag_qca.h>
-+#include <net/dsa.h>
-+#include "tag.h"
-+
-+#define QCA4_PRIVATE_LEN 4
-+#define QCA4_PRIVATE_IDENTIFIER 0x8100
-+#define QCA4_PRIVATE_NAME "qca4"
-+
-+/*
-+ * Offsets are absolute from skb head. Pushing the outer tag leaves the real
-+ * L3/L4 and CHECKSUM_PARTIAL start at their original bytes; their offsets from
-+ * skb->data grow by four. Standard core/conduit features own segmentation and
-+ * software checksum fallback. GSO/checksum metadata is not rejected or changed.
-+ */
-+static int qca4_private_insert(struct sk_buff *skb, unsigned long ports)
++/* Offset of the next start code (00 00 01) at or after @from, or @size */
++static size_t next_start_code(const unsigned char *buf, size_t from,
++			      size_t size)
 +{
-+	u16 hdr;
-+	u8 *tag;
++	size_t i;
 +
-+	if (!ports || ports & ~FIELD_MAX(QCA_HDR_XMIT_DP_BIT))
-+		return -EINVAL;
-+	if (!pskb_may_pull(skb, ETH_HLEN))
-+		return -EINVAL;
-+	if (skb_cow_head(skb, QCA4_PRIVATE_LEN))
-+		return -ENOMEM;
-+	skb_push(skb, QCA4_PRIVATE_LEN);
-+	dsa_alloc_etype_header(skb, QCA4_PRIVATE_LEN);
-+	tag = dsa_etype_header_pos_tx(skb);
-+	hdr = FIELD_PREP(QCA_HDR_XMIT_VERSION, QCA_HDR_VERSION) |
-+	      QCA_HDR_XMIT_FROM_CPU | FIELD_PREP(QCA_HDR_XMIT_DP_BIT, ports);
-+	/* Same metadata policy as legacy QCA: no new skb-priority mapping. */
-+	put_unaligned_be16(QCA4_PRIVATE_IDENTIFIER, tag);
-+	put_unaligned_be16(hdr, tag + 2);
-+	skb_reset_mac_header(skb);
-+	return 0;
-+}
++	for (i = from; i + 3 <= size; i++)
++		if (buf[i] == 0 && buf[i + 1] == 0 && buf[i + 2] == 1)
++			return i;
 +
-+static struct sk_buff *qca4_private_xmit(struct sk_buff *skb,
-+					 struct net_device *dev)
-+{
-+	/*
-+	 * A pending hardware VLAN tag must be inside QCA metadata, never inserted
-+	 * outside it later by the conduit. This standard helper also handles COW and
-+	 * header/checksum offsets. No HW VLAN feature is advertised by this tagger.
-+	 */
-+
-+	if (skb_vlan_tag_present(skb)) {
-+		skb = __vlan_hwaccel_push_inside(skb);
-+		if (!skb)
-+			return NULL; /* VLAN helper already freed the original. */
-+	}
-+	if (qca4_private_insert(skb, dsa_xmit_port_mask(skb, dev))) {
-+		kfree_skb(skb);
-+		return NULL;
-+	}
-+
-+	return skb;
++	return size;
 +}
 +
 +/*
-+ * Conduit eth_type_trans pulled fourteen bytes: identifier is data[-2],
-+ * metadata is data[0..1], and inner EtherType is data[2..3]. Do not read a
-+ * possibly nonlinear metadata/inner EtherType before the full pull check.
++ * The decoder starts reading at the bitstream address rounded down to 16
++ * bytes and decodes from the first start code it finds there. A unit
++ * whose start code has another one in front of it within that window
++ * has to be copied to a buffer of its own; so do the parameter sets,
++ * which the firmware parses the same way.
 + */
-+static int qca4_private_parse(struct sk_buff *skb, u16 *metadata)
++static bool vdec_h264_needs_copy(const struct mtk_vcodec_mem *bs, size_t start)
 +{
-+	unsigned int reason;
-+	u8 *tag;
-+	u16 hdr;
++	size_t back = (bs->dma_addr + start) & (H264_BS_READ_ALIGN - 1);
++	size_t from = start > back ? start - back : 0;
 +
-+	if (skb_headroom(skb) < ETH_HLEN ||
-+	    !pskb_may_pull(skb, QCA4_PRIVATE_LEN)) {
-+		return -EINVAL;
-+	}
-+	if (skb_cow_head(skb, 0))
-+		return -ENOMEM;
-+	tag = dsa_etype_header_pos_rx(skb);
-+	if (get_unaligned_be16(tag) != QCA4_PRIVATE_IDENTIFIER)
-+		return -EPROTO;
-+	hdr = get_unaligned_be16(tag + 2);
-+	if (FIELD_GET(QCA_HDR_RECV_VERSION, hdr) != QCA_HDR_VERSION)
-+		return -EPROTO;
-+	reason = FIELD_GET(QCA_HDR_RECV_TYPE, hdr);
-+	/*
-+	 * These fixed14-byte pseudo-Ethernet formats are disabled in private4 mode.
-+	 * Never dispatch them into legacy MDIO/MIB callbacks with the wrong layout.
-+	 * Other normal/trap reasons remain valid, including observed flooding0x19.
-+	 */
-+	if (reason == QCA_HDR_RECV_TYPE_MIB ||
-+	    reason == QCA_HDR_RECV_TYPE_RW_REG_ACK) {
-+		return -EOPNOTSUPP;
-+	}
-+	*metadata = hdr;
-+	return 0;
++	return next_start_code(bs->va, from, start + 2) < start;
 +}
 +
-+static struct sk_buff *qca4_private_rcv(struct sk_buff *skb,
-+					struct net_device *conduit)
++static int vdec_h264_copy_nal(struct vdec_h264_inst *inst,
++			      struct mtk_vcodec_mem *dst,
++			      struct mtk_vcodec_mem *nal)
 +{
-+	struct net_device *user;
-+	u16 metadata;
-+	int port;
-+
-+	if (qca4_private_parse(skb, &metadata))
-+		goto drop;
-+	port = FIELD_GET(QCA_HDR_RECV_SOURCE_PORT, metadata);
-+	user = dsa_conduit_find_user(conduit, 0, port);
-+	if (!user)
-+		goto drop;
-+
-+	skb->dev = user;
-+	skb_pull_rcsum(skb, QCA4_PRIVATE_LEN);
-+	dsa_strip_etype_header(skb, QCA4_PRIVATE_LEN);
-+
-+	/*
-+	 * DSA core pushes ETH_HLEN and invokes user eth_type_trans, exposing only
-+	 * the real inner EtherType/VLAN after the complete four-byte tag is gone.
-+	 */
-+	return skb;
-+drop:
-+	kfree_skb(skb);
-+	return NULL;
-+}
-+
-+/*
-+ * Called before rcv(): do not assume the metadata or inner EtherType is
-+ * linear or even present. Keep the const skb and its layout unchanged.
-+ */
-+static void qca4_private_flow_dissect(const struct sk_buff *skb, __be16 *proto,
-+				      int *offset)
-+{
-+	__be16 temporary;
-+	const void *inner;
-+
-+	*offset = QCA4_PRIVATE_LEN;
-+	*proto = 0;
-+	inner = skb_header_pointer(skb, 2, sizeof(temporary), &temporary);
-+	if (inner)
-+		*proto = get_unaligned((const __be16 *)inner);
-+}
-+
-+static const struct dsa_device_ops qca4_private_ops = {
-+	.name = QCA4_PRIVATE_NAME,
-+	.proto = DSA_TAG_PROTO_QCA4,
-+	.xmit = qca4_private_xmit,
-+	.rcv = qca4_private_rcv,
-+	.flow_dissect = qca4_private_flow_dissect,
-+	.needed_headroom = QCA4_PRIVATE_LEN,
-+	.promisc_on_conduit = true,
-+};
-+
-+MODULE_DESCRIPTION("Private source-review QCA four-byte tag prototype");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_QCA4, QCA4_PRIVATE_NAME);
-+module_dsa_tag_driver(qca4_private_ops);
-+
-+#if IS_ENABLED(CONFIG_NET_DSA_TAG_QCA4_KUNIT_TEST)
-+#include "tag_qca4_kunit.h"
-+#endif
-diff --git a/net/dsa/tag_qca4_kunit.h b/net/dsa/tag_qca4_kunit.h
-new file mode 100644
-index 000000000..cc520b7fb
---- /dev/null
-+++ b/net/dsa/tag_qca4_kunit.h
-@@ -0,0 +1,469 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Real kernel sk_buff tests; offline QEMU execution only. */
-+#include <kunit/test.h>
-+#include <linux/highmem.h>
-+#include <linux/mm.h>
-+#include <net/checksum.h>
-+
-+struct qca4_test_context {
-+	struct dsa_switch ds;
-+	struct dsa_switch_tree dst;
-+	struct dsa_port cpu, user;
-+	struct net_device *conduit, *netdev;
-+};
-+
-+static int qca4_test_init(struct kunit *test)
-+{
-+	struct qca4_test_context *c =
-+		kunit_kzalloc(test, sizeof(*c), GFP_KERNEL);
-+	struct dsa_user_priv *p;
-+
-+	if (!c)
-+		return -ENOMEM;
-+	c->conduit = alloc_etherdev(0);
-+	c->netdev = alloc_etherdev(sizeof(*p));
-+	if (!c->conduit || !c->netdev) {
-+		if (c->conduit)
-+			free_netdev(c->conduit);
-+		if (c->netdev)
-+			free_netdev(c->netdev);
-+		return -ENOMEM;
-+	}
-+	INIT_LIST_HEAD(&c->dst.ports);
-+	c->ds.index = 0;
-+	c->ds.dst = &c->dst;
-+	c->cpu.ds = &c->ds;
-+	c->cpu.dst = &c->dst;
-+	c->cpu.type = DSA_PORT_TYPE_CPU;
-+	c->cpu.index = 0;
-+	c->cpu.conduit = c->conduit;
-+	c->cpu.rcv = qca4_private_rcv;
-+	c->cpu.tag_ops = &qca4_private_ops;
-+	c->conduit->dsa_ptr = &c->cpu;
-+	c->user.ds = &c->ds;
-+	c->user.dst = &c->dst;
-+	c->user.type = DSA_PORT_TYPE_USER;
-+	c->user.index = 5;
-+	c->user.user = c->netdev;
-+	c->user.cpu_dp = &c->cpu;
-+	list_add_tail(&c->cpu.list, &c->dst.ports);
-+	list_add_tail(&c->user.list, &c->dst.ports);
-+	p = netdev_priv(c->netdev);
-+	p->dp = &c->user;
-+	test->priv = c;
-+	return 0;
-+}
-+
-+static void qca4_test_exit(struct kunit *test)
-+{
-+	struct qca4_test_context *c = test->priv;
-+
-+	free_netdev(c->netdev);
-+	free_netdev(c->conduit);
-+}
-+
-+static struct sk_buff *qca4_test_frame(unsigned int headroom,
-+				       unsigned int vlans)
-+{
-+	struct sk_buff *skb = alloc_skb(headroom + 128, GFP_KERNEL);
-+	unsigned int len = 96 + 4 * vlans, network = ETH_HLEN + 4 * vlans;
-+	u8 *data;
-+
-+	if (!skb)
-+		return NULL;
-+	skb_reserve(skb, headroom);
-+	data = skb_put_zero(skb, len);
-+	eth_broadcast_addr(data);
-+	data[6] = 2;
-+	data[11] = 1;
-+	put_unaligned_be16(vlans == 2 ? ETH_P_8021AD :
-+			   vlans == 1 ? ETH_P_8021Q :
-+					ETH_P_IP,
-+			   data + 12);
-+	if (vlans) {
-+		put_unaligned_be16(0xa123, data + 14);
-+		put_unaligned_be16(vlans == 2 ? ETH_P_8021Q : ETH_P_IP,
-+				   data + 16);
-+	}
-+	if (vlans == 2) {
-+		put_unaligned_be16(0x6000, data + 18); /* Priority tag, VID0. */
-+		put_unaligned_be16(ETH_P_IP, data + 20);
-+	}
-+	data[network] = 0x45;
-+	data[network + 9] = IPPROTO_TCP;
-+	skb_reset_mac_header(skb);
-+	skb_set_network_header(skb, network);
-+	skb_set_transport_header(skb, network + 20);
-+	skb->protocol = htons(vlans == 2 ? ETH_P_8021AD :
-+			      vlans == 1 ? ETH_P_8021Q :
-+					   ETH_P_IP);
-+	return skb;
-+}
-+
-+static void qca4_test_tx_metadata(struct kunit *test)
-+{
-+	struct qca4_test_context *c = test->priv;
-+	unsigned int vlans, n;
-+	static const unsigned int reserves[] = { 0, 2, 16, 32 };
-+
-+	for (vlans = 0; vlans <= 2; vlans++) {
-+		for (n = 0; n < ARRAY_SIZE(reserves); n++) {
-+			struct sk_buff *skb = qca4_test_frame(reserves[n],
-+							      vlans),
-+				       *original;
-+			unsigned int net, trans, start, len;
-+			u8 bytes[128];
-+
-+			KUNIT_ASSERT_NOT_NULL(test, skb);
-+			skb->ip_summed = CHECKSUM_PARTIAL;
-+			skb->csum_start = skb_transport_header(skb) - skb->head;
-+			skb->csum_offset = 16;
-+			skb->priority = 7;
-+			skb_shinfo(skb)->gso_size = 1460;
-+			skb_shinfo(skb)->gso_type = SKB_GSO_TCPV4;
-+			net = skb_network_offset(skb);
-+			trans = skb_transport_offset(skb);
-+			start = skb_checksum_start_offset(skb);
-+			len = skb->len;
-+			memcpy(bytes, skb->data, len);
-+			original = skb_clone(skb, GFP_KERNEL);
-+			KUNIT_ASSERT_NOT_NULL(test, original);
-+			skb = qca4_private_xmit(skb, c->netdev);
-+			KUNIT_ASSERT_NOT_NULL(test, skb);
-+			KUNIT_EXPECT_EQ(test, skb->len, len + 4);
-+			KUNIT_EXPECT_EQ(test, skb_network_offset(skb), net + 4);
-+			KUNIT_EXPECT_EQ(test, skb_transport_offset(skb),
-+					trans + 4);
-+			KUNIT_EXPECT_EQ(test, skb_checksum_start_offset(skb),
-+					start + 4);
-+			KUNIT_EXPECT_EQ(test, skb->csum_offset, (u16)16);
-+			KUNIT_EXPECT_EQ(test, (unsigned int)skb->ip_summed,
-+					(unsigned int)CHECKSUM_PARTIAL);
-+			KUNIT_EXPECT_EQ(test, skb->priority, 7U);
-+			KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_size,
-+					(u16)1460);
-+			KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_type,
-+					SKB_GSO_TCPV4);
-+			KUNIT_EXPECT_PTR_EQ(test, skb_mac_header(skb),
-+					    skb->data);
-+			KUNIT_EXPECT_MEMEQ(test, skb->data, bytes, 12);
-+			KUNIT_EXPECT_MEMEQ(test, skb->data + 16, bytes + 12,
-+					   len - 12);
-+			KUNIT_EXPECT_MEMEQ(test, original->data, bytes, len);
-+			KUNIT_EXPECT_EQ(test,
-+					get_unaligned_be16(skb->data + 12),
-+					0x8100);
-+			KUNIT_EXPECT_EQ(test,
-+					get_unaligned_be16(skb->data + 14),
-+					0x80a0);
-+			kfree_skb(original);
-+			kfree_skb(skb);
++	if (dst->size < nal->size + H264_BS_READ_ALIGN) {
++		if (dst->va)
++			mtk_vcodec_mem_free(inst->ctx, dst);
++		/* room past the end, as a bitstream buffer has */
++		dst->size = round_up(nal->size + H264_BS_READ_ALIGN, SZ_4K);
++		if (mtk_vcodec_mem_alloc(inst->ctx, dst)) {
++			dst->size = 0;
++			return -ENOMEM;
 +		}
 +	}
++
++	memcpy(dst->va, nal->va, nal->size);
++	nal->va = dst->va;
++	nal->dma_addr = dst->dma_addr;
++	return 0;
 +}
 +
-+static void qca4_test_vlan_metadata(struct kunit *test)
++/*
++ * The firmware takes one NAL unit per call, while the stateful decoder
++ * interface hands the driver one access unit per buffer. Feed the units
++ * of the buffer to the firmware one by one: the parameter sets, then the
++ * slices of the picture together. Units it does not decode (SEI,
++ * delimiters, filler) are skipped: handed the frame buffer with an SEI,
++ * it loses the picture decoded into it later. The frame buffer goes with
++ * the slices only; a frame buffer that no slice used goes back to the
++ * free list.
++ * Without a frame buffer only the parameter sets are of interest, so
++ * stop at the first slice.
++ */
++static int vdec_h264_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
++			    struct vdec_fb *fb, bool *res_chg)
 +{
-+	struct qca4_test_context *c = test->priv;
-+	struct sk_buff *skb = qca4_test_frame(0, 0);
-+	unsigned int net, trans, start;
++	struct vdec_h264_inst *inst = (struct vdec_h264_inst *)h_vdec;
++	const unsigned char *buf;
++	size_t start, end;
++	int err;
 +
-+	KUNIT_ASSERT_NOT_NULL(test, skb);
-+	skb->ip_summed = CHECKSUM_PARTIAL;
-+	skb->csum_start = skb_transport_header(skb) - skb->head;
-+	skb->csum_offset = 16;
-+	skb_shinfo(skb)->gso_size = 1460;
-+	skb_shinfo(skb)->gso_type = SKB_GSO_TCPV4;
-+	net = skb_network_offset(skb);
-+	trans = skb_transport_offset(skb);
-+	start = skb_checksum_start_offset(skb);
-+	__vlan_hwaccel_put_tag(skb, htons(ETH_P_8021Q),
-+			       0xe000); /* PCP7, VID0 */
-+	skb = qca4_private_xmit(skb, c->netdev);
-+	KUNIT_ASSERT_NOT_NULL(test, skb);
-+	KUNIT_EXPECT_FALSE(test, skb_vlan_tag_present(skb));
-+	KUNIT_EXPECT_EQ(test, skb_network_offset(skb), net + 8);
-+	KUNIT_EXPECT_EQ(test, skb_transport_offset(skb), trans + 8);
-+	KUNIT_EXPECT_EQ(test, skb_checksum_start_offset(skb), start + 8);
-+	KUNIT_EXPECT_EQ(test, (unsigned int)skb->ip_summed,
-+			(unsigned int)CHECKSUM_PARTIAL);
-+	KUNIT_EXPECT_EQ(test, skb->csum_offset, (u16)16);
-+	KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_size, (u16)1460);
-+	KUNIT_EXPECT_EQ(test, skb_shinfo(skb)->gso_type, SKB_GSO_TCPV4);
-+	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 12), 0x8100);
-+	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 14), 0x80a0);
-+	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 16), ETH_P_8021Q);
-+	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 18), 0xe000);
-+	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 20), ETH_P_IP);
-+	kfree_skb(skb);
-+}
++	/* bs NULL means flush decoder */
++	if (!bs)
++		return vpu_dec_reset(&inst->vpu);
 +
-+static struct sk_buff *qca4_test_fragment(struct sk_buff *old,
-+					  unsigned int linear)
-+{
-+	struct sk_buff *skb = alloc_skb(32 + linear, GFP_KERNEL);
-+	struct page *page;
-+	void *mapped;
-+	unsigned int bytes = old->len - linear;
++	*res_chg = false;
++	buf = bs->va;
++	start = next_start_code(buf, 0, bs->size);
++	if (start == bs->size)
++		return vdec_h264_decode_nal(inst, bs, fb, res_chg);
 +
-+	if (!skb)
-+		return NULL;
-+	page = alloc_page(GFP_KERNEL);
-+	if (!page) {
-+		kfree_skb(skb);
-+		return NULL;
-+	}
-+	skb_reserve(skb, 16);
-+	skb_put_data(skb, old->data, linear);
-+	mapped = kmap_local_page(page);
-+	memcpy(mapped, old->data + linear, bytes);
-+	kunmap_local(mapped);
-+	skb_add_rx_frag(skb, 0, page, 0, bytes, PAGE_SIZE);
-+	skb_reset_mac_header(skb);
-+	return skb;
-+}
++	while (start < bs->size) {
++		struct mtk_vcodec_mem nal = *bs;
++		unsigned int nal_type;
++		bool is_slice;
 +
-+static void qca4_test_rx_dispatch(struct kunit *test)
-+{
-+	struct qca4_test_context *c = test->priv;
-+	unsigned int vlans, reason, priority, port;
++		nal_type = start + 3 < bs->size ? NAL_TYPE(buf[start + 3]) : 0;
++		is_slice = nal_type == NAL_NON_IDR_SLICE ||
++			   nal_type == NAL_IDR_SLICE;
++		if (!fb && is_slice)
++			break;
 +
-+	for (vlans = 0; vlans <= 2; vlans++) {
-+		for (reason = 0; reason < 32; reason++) {
-+			for (priority = 0; priority < 8; priority++) {
-+				for (port = 0; port < 8; port++) {
-+					struct sk_buff *skb = qca4_test_frame(16, vlans),
-+						       *result;
-+					u16 hdr =
-+						FIELD_PREP(QCA_HDR_RECV_VERSION,
-+							   QCA_HDR_VERSION) |
-+						FIELD_PREP(QCA_HDR_RECV_PRIORITY,
-+							priority) |
-+						FIELD_PREP(QCA_HDR_RECV_TYPE,
-+							   reason) |
-+						port;
-+					bool accept =
-+						port == 5 &&
-+						reason !=
-+							QCA_HDR_RECV_TYPE_MIB &&
-+						reason !=
-+							QCA_HDR_RECV_TYPE_RW_REG_ACK;
-+
-+					KUNIT_ASSERT_NOT_NULL(test, skb);
-+					KUNIT_ASSERT_EQ(test,
-+							qca4_private_insert(skb, BIT(5)),
-+							0);
-+					put_unaligned_be16(hdr, skb->data + 14);
-+					skb->protocol =
-+						eth_type_trans(skb, c->conduit);
-+					KUNIT_EXPECT_EQ(test, skb->protocol,
-+							htons(ETH_P_XDSA));
-+					skb->priority = 42;
-+					skb->ip_summed = CHECKSUM_COMPLETE;
-+					skb->csum = skb_checksum(skb, 0,
-+								 skb->len, 0);
-+					result = qca4_private_rcv(skb,
-+								  c->conduit);
-+					if (!accept) {
-+						KUNIT_EXPECT_PTR_EQ(test, result, NULL);
-+						continue;
-+					}
-+					KUNIT_ASSERT_NOT_NULL(test, result);
-+					KUNIT_EXPECT_PTR_EQ(test, result->dev,
-+							    c->netdev);
-+					KUNIT_EXPECT_EQ(test, result->priority,
-+							42U);
-+					KUNIT_EXPECT_EQ(test, csum_fold(result->csum),
-+						csum_fold(skb_checksum(result, 0, result->len,
-+							0)));
-+					KUNIT_EXPECT_EQ(test,
-+						(unsigned int)result->ip_summed,
-+						(unsigned int)CHECKSUM_COMPLETE);
-+					skb_push(result, ETH_HLEN);
-+					result->protocol = eth_type_trans(result, c->netdev);
-+					KUNIT_EXPECT_EQ(test, result->protocol,
-+						htons(vlans == 2 ?
-+							      ETH_P_8021AD :
-+						      vlans == 1 ? ETH_P_8021Q :
-+								   ETH_P_IP));
-+					kfree_skb(result);
-+				}
-+			}
-+		}
-+	}
-+}
-+
-+static void qca4_test_nonlinear_and_truncated(struct kunit *test)
-+{
-+	struct qca4_test_context *c = test->priv;
-+	struct sk_buff *full, *skb, *result;
-+	unsigned int n;
-+
-+	full = qca4_test_frame(16, 2);
-+	KUNIT_ASSERT_NOT_NULL(test, full);
-+	skb = qca4_test_fragment(full,
-+				 10); /* TX Ethernet header crosses fragment. */
-+	KUNIT_ASSERT_NOT_NULL(test, skb);
-+	KUNIT_EXPECT_TRUE(test, skb_is_nonlinear(skb));
-+	skb = qca4_private_xmit(skb, c->netdev);
-+	KUNIT_ASSERT_NOT_NULL(test, skb);
-+	KUNIT_EXPECT_EQ(test, get_unaligned_be16(skb->data + 12), 0x8100);
-+	kfree_skb(skb);
-+	KUNIT_ASSERT_EQ(test, qca4_private_insert(full, BIT(5)), 0);
-+	put_unaligned_be16(0xbe45, full->data + 14); /* Actual observed flood metadata. */
-+	skb = qca4_test_fragment(full, ETH_HLEN); /* RX metadata+inner EType nonlinear. */
-+	KUNIT_ASSERT_NOT_NULL(test, skb);
-+	skb->protocol = eth_type_trans(skb, c->conduit);
-+	result = qca4_private_rcv(skb, c->conduit);
-+	KUNIT_ASSERT_NOT_NULL(test, result);
-+	KUNIT_EXPECT_PTR_EQ(test, result->dev, c->netdev);
-+	kfree_skb(result);
-+	/* Wrong identifier. */
-+	put_unaligned_be16(0x0081, full->data + 12);
-+	full->protocol = eth_type_trans(full, c->conduit);
-+	KUNIT_EXPECT_PTR_EQ(test, qca4_private_rcv(full, c->conduit), NULL);
-+	for (n = 0; n < 4; n++) {
-+		skb = alloc_skb(ETH_HLEN + n, GFP_KERNEL);
-+		KUNIT_ASSERT_NOT_NULL(test, skb);
-+		skb_put_zero(skb, ETH_HLEN + n);
-+		put_unaligned_be16(0x8100, skb->data + 12);
-+		skb_reset_mac_header(skb);
-+		skb_pull(skb, ETH_HLEN);
-+		KUNIT_EXPECT_PTR_EQ(test, qca4_private_rcv(skb, c->conduit),
-+				    NULL);
-+	}
-+	for (n = 0; n < ETH_HLEN; n++) {
-+		skb = alloc_skb(n, GFP_KERNEL);
-+		KUNIT_ASSERT_NOT_NULL(test, skb);
-+		skb_put_zero(skb, n);
-+		KUNIT_EXPECT_PTR_EQ(test, qca4_private_xmit(skb, c->netdev),
-+				    NULL);
-+	}
-+}
-+
-+static void qca4_test_rx_clone_complete(struct kunit *test)
-+{
-+	struct qca4_test_context *c = test->priv;
-+	struct sk_buff *skb = qca4_test_frame(16, 0), *copy, *result;
-+	unsigned int wire_len;
-+	u8 before[128];
-+
-+	KUNIT_ASSERT_NOT_NULL(test, skb);
-+	KUNIT_ASSERT_EQ(test, qca4_private_insert(skb, BIT(5)), 0);
-+	put_unaligned_be16(0xbe45, skb->data + 14);
-+	wire_len = skb->len;
-+	memcpy(before, skb->data, wire_len);
-+	skb->protocol = eth_type_trans(skb, c->conduit);
-+	skb->ip_summed = CHECKSUM_COMPLETE;
-+	skb->csum = skb_checksum(skb, 0, skb->len, 0);
-+	copy = skb_clone(skb, GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, copy);
-+	result = qca4_private_rcv(copy, c->conduit);
-+	KUNIT_ASSERT_NOT_NULL(test, result);
-+	KUNIT_EXPECT_MEMEQ(test, skb_mac_header(skb), before, wire_len);
-+	KUNIT_EXPECT_EQ(test, csum_fold(result->csum),
-+			csum_fold(skb_checksum(result, 0, result->len, 0)));
-+	KUNIT_EXPECT_EQ(test, (unsigned int)result->ip_summed,
-+			(unsigned int)CHECKSUM_COMPLETE);
-+	kfree_skb(result);
-+	kfree_skb(skb);
-+}
-+
-+static void qca4_test_masks_and_bad_versions(struct kunit *test)
-+{
-+	struct qca4_test_context *c = test->priv;
-+	struct sk_buff *skb;
-+	unsigned int mask, version;
-+	int ret;
-+
-+	for (mask = 0; mask <= 255; mask++) {
-+		skb = qca4_test_frame(0, 0);
-+		KUNIT_ASSERT_NOT_NULL(test, skb);
-+		ret = qca4_private_insert(skb, mask);
-+		if (!mask || mask > 127) {
-+			KUNIT_EXPECT_EQ(test, ret, -EINVAL);
++		if (is_slice) {
++			/*
++			 * The slices of a picture go in one call: the hardware
++			 * reads on through them, and interrupts once, at the
++			 * picture's end.
++			 */
++			end = bs->size;
 +		} else {
-+			KUNIT_EXPECT_EQ(test, ret, 0);
-+			KUNIT_EXPECT_EQ(test,
-+					get_unaligned_be16(skb->data + 14),
-+					0x8080 | mask);
++			end = next_start_code(buf, start + 3, bs->size);
++			/* A zero byte before a start code belongs to it */
++			if (end < bs->size && buf[end - 1] == 0)
++				end--;
 +		}
-+		kfree_skb(skb);
-+	}
-+	for (version = 0; version < 4; version++) {
-+		if (version == QCA_HDR_VERSION)
++
++		if (!is_slice && nal_type != NAL_H264_SPS &&
++		    nal_type != NAL_H264_PPS) {
++			start = next_start_code(buf, end, bs->size);
 +			continue;
-+		skb = qca4_test_frame(16, 0);
-+		KUNIT_ASSERT_NOT_NULL(test, skb);
-+		KUNIT_ASSERT_EQ(test, qca4_private_insert(skb, BIT(5)), 0);
-+		put_unaligned_be16((version << 14) | 5, skb->data + 14);
-+		skb->protocol = eth_type_trans(skb, c->conduit);
-+		KUNIT_EXPECT_PTR_EQ(test, qca4_private_rcv(skb, c->conduit),
-+				    NULL);
-+	}
-+}
-+
-+static void qca4_test_flow_dissect(struct kunit *test)
-+{
-+	static const u8 bytes[] = { 0xbe, 0x45, 0x08, 0x00 };
-+	unsigned int length, linear;
-+
-+	/*
-+	 * Every truncated length and every possible split across a page fragment.
-+	 * A one-byte reserve also exercises unaligned linear EtherType access.
-+	 */
-+	for (length = 0; length <= sizeof(bytes); length++) {
-+		for (linear = 0; linear <= length; linear++) {
-+			struct sk_buff *skb, *full, *clone;
-+			unsigned char *data;
-+			unsigned int headlen;
-+			__be16 proto = htons(0xffff);
-+			int offset = -1;
-+
-+			full = alloc_skb(16, GFP_KERNEL);
-+			KUNIT_ASSERT_NOT_NULL(test, full);
-+			skb_reserve(full, 1);
-+			skb_put_data(full, bytes, length);
-+			skb = full;
-+			if (linear < length) {
-+				skb = qca4_test_fragment(full, linear);
-+				kfree_skb(full);
-+				KUNIT_ASSERT_NOT_NULL(test, skb);
-+			}
-+			clone = skb_clone(skb, GFP_KERNEL);
-+			KUNIT_ASSERT_NOT_NULL(test, clone);
-+			data = clone->data;
-+			headlen = skb_headlen(clone);
-+			qca4_private_ops.flow_dissect(clone, &proto, &offset);
-+			KUNIT_EXPECT_EQ(test, offset, QCA4_PRIVATE_LEN);
-+			KUNIT_EXPECT_EQ(test, proto,
-+				length == sizeof(bytes) ? htons(ETH_P_IP) : 0);
-+			KUNIT_EXPECT_PTR_EQ(test, clone->data, data);
-+			KUNIT_EXPECT_EQ(test, clone->len, length);
-+			KUNIT_EXPECT_EQ(test, skb_headlen(clone), headlen);
-+			KUNIT_EXPECT_MEMEQ(test, skb->data, bytes, headlen);
-+			kfree_skb(clone);
-+			kfree_skb(skb);
 +		}
++
++		nal.va = bs->va + start;
++		nal.dma_addr = bs->dma_addr + start;
++		nal.size = end - start;
++
++		if (!is_slice)
++			err = vdec_h264_copy_nal(inst, &inst->param_buf, &nal);
++		else if (vdec_h264_needs_copy(bs, start))
++			err = vdec_h264_copy_nal(inst, &inst->slice_buf, &nal);
++		else
++			err = 0;
++		if (err) {
++			put_fb_to_free(inst, fb);
++			return err;
++		}
++
++		err = vdec_h264_decode_nal(inst, &nal, is_slice ? fb : NULL,
++					   res_chg);
++		/* The slices run to the end of the buffer and keep the frame */
++		if (is_slice)
++			return err;
++		if (err) {
++			put_fb_to_free(inst, fb);
++			return err;
++		}
++		if (*res_chg)
++			break;
++
++		start = next_start_code(buf, end, bs->size);
 +	}
++
++	put_fb_to_free(inst, fb);
++
++	return 0;
 +}
 +
-+static struct kunit_case qca4_private_cases[] = {
-+	KUNIT_CASE(qca4_test_flow_dissect),
-+	KUNIT_CASE(qca4_test_tx_metadata),
-+	KUNIT_CASE(qca4_test_vlan_metadata),
-+	KUNIT_CASE(qca4_test_rx_clone_complete),
-+	KUNIT_CASE(qca4_test_masks_and_bad_versions),
-+	KUNIT_CASE(qca4_test_rx_dispatch),
-+	KUNIT_CASE(qca4_test_nonlinear_and_truncated),
-+	{}
-+};
-+
-+static struct kunit_suite qca4_private_suite = {
-+	.name = "qca4-skb",
-+	.init = qca4_test_init,
-+	.exit = qca4_test_exit,
-+	.test_cases = qca4_private_cases,
-+};
-+
-+kunit_test_suite(qca4_private_suite);
+ static void vdec_h264_get_fb(struct vdec_h264_inst *inst,
+ 			     struct h264_ring_fb_list *list,
+ 			     bool disp_list, struct vdec_fb **out_fb)
 
 -- 
-2.53.0
-
+2.56.1
 
 
