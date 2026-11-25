@@ -2,87 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D56606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F29606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bKDl9zuQ;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=GT7OfoOY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aCeJf6WY;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=s+YXv5HL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=r2jMs/sAVEdvLbqLlRGKvjq+NWHj2NwoY8BWjNBdylo=; b=bKDl9zuQTSUGju
-	9IbFmiFdJr46FhU2tTe2l6AfUH76fAOPDRHrIChCFv9Ulfnwl8/n3/hqoxRS8pSxFIKaYg/1G/aEA
-	/gFQpHtDW9zc+GqDP04Epm1bAF4lO0XLc6adKJ1CfaixCImab6nEzXuyZ5LYkGa3+AKTHsoZMZTLk
-	HueK19sqlCScrFw17z5PquhsMybex0Yif0+FDwjDpa2HVWmOQbd0Ws/6agddPhvalwXFyO+1J5IZ8
-	yJxqYxELb9dccVxlS2FHXE7ZhXaPQp7FnKP8vjZADDUYAURUCJSIe//SBU+QFCcFjncY88J3yb9mX
-	o9r0HCJd1UROi3EXSkcw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=aFwYFKGqCOCePbWnEjq67+DK4TXuYhQVEXTdJQLf+dg=; b=aCeJf6WYWIoZrvPevkih7/LlKc
+	79IkP5wGhE7eFq5DaaTakA6qRBrwX2u0n151sru6LEFFHQDnfRYBLZRJn6r1Zgfpj1BegGdlPlJ0I
+	6cFaRx5WXX/J/YQLK2MjC3zOE6tPaf5DUoryUDxttdAizth739U4hvC6MQoR7TIdpuNWJZYFYez3y
+	M5OpRfsIYbnokhxogxipQlIAdLV1O+licSrkRk1z7h8XV9WVIulG/r5jTWQXOa6rD9RgwAghSUm2Q
+	qKxtd8vC/wFuEnDBnvqp1zMBgWiwcHxR4mMzD0iIxIk/tIyPmwG+JVcNsyaSJV2rX8GvH5xMHk+Ox
+	ol6Kz1Ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHAr-0000000AoN9-3rmn;
+	id 1xWHAr-0000000AoM2-17zc;
 	Wed, 25 Nov 2026 17:52:53 +0000
 Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH9t-0000000AnK3-2IC6
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:52:02 +0000
+	id 1xWH9h-0000000AnFC-1yaj;
+	Wed, 25 Nov 2026 17:51:43 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A7B1EC6221E;
-	Wed, 25 Nov 2026 17:51:59 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 6C801C2BB3E;
+	Wed, 25 Nov 2026 17:51:47 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B21B860480;
-	Wed, 25 Nov 2026 17:51:51 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 64DFE11E6B0AD;
-	Wed, 25 Nov 2026 18:51:35 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 66A02604C0;
+	Wed, 25 Nov 2026 17:51:39 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 49AC111E6B0D1;
+	Wed, 25 Nov 2026 18:51:25 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629105; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=r2jMs/sAVEdvLbqLlRGKvjq+NWHj2NwoY8BWjNBdylo=;
-	b=GT7OfoOYxgwdwdQyDy7xZ7NVwPNfHuBM8H06pVpmI67hAE7/vEBiy18RfcHUed9QMnajLk
-	lRq64BYAHI04941/7g6dVA0DT2BtGA88ckEGJiYFbqUBjEBieymeyB2kgeXOUkqWdfJiNE
-	H8a4PBQwSPe6t7tSY5Y9Q7RrjJ30kfnwa947IlVbssWPqrMGbXSOAL/AvMOXCgSvDK79lc
-	K/MyiizxGDajxcZFM0bGndrr9PewpGYXHzGriVFGqRb6JlKMBi9C5tNAkuXS9MmdKEXD1t
-	wJ8If3ATVKre1/Pcl/CfXaJ4A2XNp9iVK1YBrkdQd2lcr12AvdX3UtljOu90Fw==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:22 +0100
-Subject: [PATCH v4 09/32] drm/display: bridge-connector: use a dynamic
- connector
+	t=1795629096; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=aFwYFKGqCOCePbWnEjq67+DK4TXuYhQVEXTdJQLf+dg=;
+	b=s+YXv5HLLLcg9wRN3RZSE2E3K2VPZcmJCuP5YCVc5K/JXDvxhiy9/Y7HvqWzuF2mS3mSGz
+	EBsMFXxV27a0gsWZXX+PU70FO+Yb5eXNjkSTL7cQo5ixmjuN2w1SJ/fB2XYsyTTImI7RHU
+	7wBk7Iq2cXZRU4H7R0JS1tmjkbC3w0RUxoUqnh78Xrgq8jmFsAIAzYF+4sGLGHcPbKBidL
+	V/VLOoJP4sh7EttvnHH+Bw2WYDwmyFs9noXGMyR1Y3/16ze2ZfHIdnxYqvKlQz9KcMuMZe
+	i5lIPPm7ETcuGEBHi4YtcSE36JnJ14LdoFDGQwQgs3NkxoK9LQ5e3eO97r8MOg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH RFC 00/16] spi: spi-mem: Express the dummy phase using
+ cycles when relevant
+Date: Wed, 25 Nov 2026 18:51:14 +0100
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-9-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2NQQ6CMBBFr0Jm7RhaUAxbEw/g1rCodcBJbMEZM
+ BjC3W3U5fs/eW8BJWFSqLMFhF6s3McEZpOBv7vYEfItMdjc7o2xOwzOSx95xmnQUcgFjh3qwBg
+ ooH/7BymavLBVWeWHljwk0yDU8vytXOB8OkLzG4WeUyqO/+fqlND3IfBYZ69qW6L4App1/QC9x
+ yy9pgAAAA==
+X-Change-ID: 20261125-macronix-upstreaming-spi-mem-cycles-103274708fec
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095158_183701_06DEB104 
-X-CRM114-Status: GOOD (  21.43  )
+X-CRM114-CacheID: sfid-20261125_095141_803352_D188BE91 
+X-CRM114-Status: GOOD (  11.20  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,285 +102,72 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently the drm_bridge_connector uses drmm functions to add the
-drm_connector. For bridge hotplug drmm allocations are not suitable because
-a connector may have to be added and removed multiple times in the lifetime
-of a card.
+SPI NOR SFDP data gives dummy cycles. SPI NAND devices express the dummy
+phase using cycles as well. Those numbers are converted to bytes, then
+passed to the spi and spi-mem controller drivers. A non neglictible
+amount of those controller drivers convert bytes into cycles before
+programming the registers.
 
-In preparation for bridge hotplug, use the dynamic variants of
-drm_connector[_hdmi]_init() and the non-drmm versions of
-drmm_connector_hdmi_cec[_notifier]_register() so the drm_connector can be
-removed without removing the whole card.
+When the conversions are lossless, it is not a big deal, just time
+spent. However these silent conversions sometimes hide bugs and
+sometimes also prevent using certain chips/configurations, as recently
+reported on Macronix 1-1-8 chips requiring 20 cycles. Not all
+controllers can do that, but the ones that can, would anyway reject
+those chips.
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Convert spi-mem, all the trivial spi-mem controller drivers and then
+SPI NOR to use dummy cycles instead of dummy bytes. SPI NAND may come
+later.
 
+This is only build tested for the moment and sent as an RFC because this
+topic has raised a lot of questions, there may be things I have
+forgotten about, so I would like all parties to agree on the direction
+before I commit into something cleaner. I bet Sashiko will also have
+interesting feedback to make...
+
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
+Miquel Raynal (16):
+      spi: spi-mem: Handle a corner case while sanitizing ops
+      spi: spi-mem: Stop checking the dummy buswidth against board wiring
+      spi: spi-mem: Add support for dummy cycles
+      spi: amlogic-spifc-a1: Consume dummy cycles directly
+      spi: amlogic-spifc-a1: Fix a typo in a macro
+      spi: amlogic: spifc-a4: Consume dummy cycles directly
+      spi: cadence-qspi: Consume dummy cycles directly
+      spi: fsl-qspi: Consume dummy cycles directly
+      spi: microchip-core-qspi: Consume dummy cycles directly
+      spi: nxp-xspi: Consume dummy cycles directly
+      spi: nxp-xspi: Fix a comment
+      spi: rtk-nor: Consume dummy cycles directly
+      spi: sn-f-ospi: Consume dummy cycles directly
+      spi: stm32-ospi: Consume dummy cycles directly
+      spi: stm32-qspi: Consume dummy cycles directly
+      mtd: spi-nor: Express the dummy phase in cycles
 
-Changes in v4:
-- Add fwnode_handle_put(connector->fwnode) to fix OF node leak if the OF
-  node is removed by a DT overlay
-
-Changes in v3:
-- convert CEC code to non-drmm too
-- fix connector state error management
-- put the connector on error paths after the dynamic_init() step
-- fix drmm-allocation leak on drm_bridge_connector_init() error path
+ drivers/mtd/spi-nor/core.c            |  36 ++----
+ drivers/mtd/spi-nor/core.h            |   8 +-
+ drivers/mtd/spi-nor/micron-st.c       |   2 +-
+ drivers/mtd/spi-nor/spansion.c        |   6 +-
+ drivers/spi/spi-amlogic-spifc-a1.c    |   9 +-
+ drivers/spi/spi-amlogic-spifc-a4.c    |  12 +-
+ drivers/spi/spi-cadence-quadspi.c     |  35 ++----
+ drivers/spi/spi-fsl-qspi.c            |  12 +-
+ drivers/spi/spi-mem.c                 | 216 ++++++++++++++++++++++++++++++----
+ drivers/spi/spi-microchip-core-qspi.c |   8 +-
+ drivers/spi/spi-nxp-xspi.c            |  14 +--
+ drivers/spi/spi-rtk-nor.c             |  28 ++---
+ drivers/spi/spi-sn-f-ospi.c           |  13 +-
+ drivers/spi/spi-stm32-ospi.c          |  14 ++-
+ drivers/spi/spi-stm32-qspi.c          |  12 +-
+ include/linux/spi/spi-mem.h           |  36 +++++-
+ 16 files changed, 303 insertions(+), 158 deletions(-)
 ---
- drivers/gpu/drm/display/drm_bridge_connector.c | 149 ++++++++++++++++++-------
- 1 file changed, 110 insertions(+), 39 deletions(-)
+base-commit: 19d1b4de6d37bccecc3ad9144d279f1baa405eb1
+change-id: 20261125-macronix-upstreaming-spi-mem-cycles-103274708fec
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index f4a71801e8a3..d81cfc7aa295 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -132,11 +132,27 @@ struct drm_bridge_connector {
- 	 * bridge connector.
- 	 */
- 	struct drm_connector_hdmi_funcs hdmi_funcs;
-+	/** @has_cec_adapter: true if a CEC adapter is registered */
-+	bool has_cec_adapter;
-+	/** @has_cec_notifier true if a CEC notifier is registered */
-+	bool has_cec_notifier;
- };
- 
- #define to_drm_bridge_connector(x) \
- 	container_of(x, struct drm_bridge_connector, base)
- 
-+static void drm_bridge_connector_put_bridges(struct drm_bridge_connector *bridge_connector)
-+{
-+	drm_bridge_put(bridge_connector->bridge_edid);
-+	drm_bridge_put(bridge_connector->bridge_hpd);
-+	drm_bridge_put(bridge_connector->bridge_detect);
-+	drm_bridge_put(bridge_connector->bridge_modes);
-+	drm_bridge_put(bridge_connector->bridge_hdmi);
-+	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
-+	drm_bridge_put(bridge_connector->bridge_dp_audio);
-+	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
-+}
-+
- /* -----------------------------------------------------------------------------
-  * Bridge Connector Hot-Plug Handling
-  */
-@@ -267,6 +283,14 @@ drm_bridge_connector_color_format(const struct drm_connector_state *conn_state)
- 	return conn_state->color_format;
- }
- 
-+static void drm_bridge_connector_dynconn_destroy(struct drm_connector *connector)
-+{
-+	struct drm_bridge_connector *bridge_connector = to_drm_bridge_connector(connector);
-+
-+	drm_connector_cleanup(connector);
-+	drm_bridge_connector_put_bridges(bridge_connector);
-+}
-+
- static const struct drm_connector_funcs drm_bridge_connector_funcs = {
- 	.fill_modes = drm_helper_probe_single_connector_modes,
- 	.atomic_create_state = drm_bridge_connector_create_state,
-@@ -275,6 +299,7 @@ static const struct drm_connector_funcs drm_bridge_connector_funcs = {
- 	.debugfs_init = drm_bridge_connector_debugfs_init,
- 	.oob_hotplug_event = drm_bridge_connector_oob_hotplug_event,
- 	.color_format = drm_bridge_connector_color_format,
-+	.destroy = drm_bridge_connector_dynconn_destroy,
- };
- 
- /* -----------------------------------------------------------------------------
-@@ -823,20 +848,6 @@ static const struct drm_connector_hdmi_cec_funcs drm_bridge_connector_hdmi_cec_f
-  * Bridge Connector Initialisation
-  */
- 
--static void drm_bridge_connector_put_bridges(struct drm_device *dev, void *data)
--{
--	struct drm_bridge_connector *bridge_connector = (struct drm_bridge_connector *)data;
--
--	drm_bridge_put(bridge_connector->bridge_edid);
--	drm_bridge_put(bridge_connector->bridge_hpd);
--	drm_bridge_put(bridge_connector->bridge_detect);
--	drm_bridge_put(bridge_connector->bridge_modes);
--	drm_bridge_put(bridge_connector->bridge_hdmi);
--	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
--	drm_bridge_put(bridge_connector->bridge_dp_audio);
--	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
--}
--
- static struct drm_connector *
- drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
- 				struct drm_device *drm,
-@@ -849,10 +860,6 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
- 	int connector_type;
- 	int ret;
- 
--	ret = drmm_add_action(drm, drm_bridge_connector_put_bridges, bridge_connector);
--	if (ret)
--		return ERR_PTR(ret);
--
- 	bridge_connector->encoder = encoder;
- 
- 	/*
-@@ -1053,17 +1060,21 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
- 				drm_bridge_connector_scrambler_disable;
- 		}
- 
--		ret = drmm_connector_hdmi_init(drm, connector,
--					       &drm_bridge_connector_funcs,
--					       &bridge_connector->hdmi_funcs,
--					       connector_type, ddc);
-+		ret = drm_connector_hdmi_dynamic_init(drm, connector,
-+						      &drm_bridge_connector_funcs,
-+						      &bridge_connector->hdmi_funcs,
-+						      connector_type, ddc);
- 	} else {
--		ret = drmm_connector_init(drm, connector,
--					  &drm_bridge_connector_funcs,
--					  connector_type, ddc);
-+		ret = drm_connector_dynamic_init(drm, connector,
-+						 &drm_bridge_connector_funcs,
-+						 connector_type, ddc);
-+	}
-+	if (ret) {
-+		drm_bridge_connector_put_bridges(bridge_connector);
-+		return ERR_PTR(ret);
- 	}
--	if (ret)
--		return ret;
-+
-+	/* From now on the connector is referenced and has to be put */
- 
- 	if (bridge_connector->bridge_hdmi_audio ||
- 	    bridge_connector->bridge_dp_audio) {
-@@ -1084,35 +1095,48 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
- 						    bridge->hdmi_audio_spdif_playback,
- 						    bridge->hdmi_audio_dai_port);
- 		if (ret)
--			return ERR_PTR(ret);
-+			goto err_put_connector;
- 	}
- 
- 	if (bridge_connector->bridge_hdmi_cec &&
- 	    bridge_connector->bridge_hdmi_cec->ops & DRM_BRIDGE_OP_HDMI_CEC_NOTIFIER) {
- 		struct drm_bridge *bridge = bridge_connector->bridge_hdmi_cec;
- 
--		ret = drmm_connector_hdmi_cec_notifier_register(connector,
--								NULL,
--								bridge->hdmi_cec_dev);
-+		ret = drm_connector_hdmi_cec_notifier_register(connector,
-+							       NULL,
-+							       bridge->hdmi_cec_dev);
- 		if (ret)
--			return ERR_PTR(ret);
-+			goto err_put_connector;
-+
-+		bridge_connector->has_cec_notifier = true;
- 	}
- 
- 	if (bridge_connector->bridge_hdmi_cec &&
- 	    bridge_connector->bridge_hdmi_cec->ops & DRM_BRIDGE_OP_HDMI_CEC_ADAPTER) {
- 		struct drm_bridge *bridge = bridge_connector->bridge_hdmi_cec;
- 
--		ret = drmm_connector_hdmi_cec_register(connector,
--						       &drm_bridge_connector_hdmi_cec_funcs,
--						       bridge->hdmi_cec_adapter_name,
--						       bridge->hdmi_cec_available_las,
--						       bridge->hdmi_cec_dev);
-+		ret = drm_connector_hdmi_cec_register(connector,
-+						      &drm_bridge_connector_hdmi_cec_funcs,
-+						      bridge->hdmi_cec_adapter_name,
-+						      bridge->hdmi_cec_available_las,
-+						      bridge->hdmi_cec_dev);
- 		if (ret)
--			return ERR_PTR(ret);
-+			goto err_unregister_cec_notifier;
-+
-+		bridge_connector->has_cec_adapter = true;
- 	}
- 
- 	drm_connector_helper_add(connector, &drm_bridge_connector_helper_funcs);
- 
-+	if (!connector->state) {
-+		struct drm_connector_state *state = drm_bridge_connector_create_state(connector);
-+		if (IS_ERR(state)) {
-+			ret = PTR_ERR(state);
-+			goto err_unregister_cec_adapter;
-+		}
-+		connector->state = state;
-+	}
-+
- 	if (bridge_connector->bridge_hpd)
- 		connector->polled = DRM_CONNECTOR_POLL_HPD;
- 	else if (bridge_connector->bridge_detect)
-@@ -1128,9 +1152,51 @@ drm_bridge_connector_initialize(struct drm_bridge_connector *bridge_connector,
- 
- 	ret = drm_connector_attach_encoder(connector, encoder);
- 	if (ret)
--		return ERR_PTR(ret);
-+		goto err_unregister_cec_adapter;
-+
-+	ret = drm_connector_dynamic_register(connector);
-+	if (ret)
-+		goto err_unregister_cec_adapter;
- 
- 	return connector;
-+
-+err_unregister_cec_adapter:
-+	if (bridge_connector->has_cec_adapter)
-+		drm_connector_hdmi_cec_unregister(connector);
-+err_unregister_cec_notifier:
-+	if (bridge_connector->has_cec_notifier)
-+		drm_connector_hdmi_cec_notifier_unregister(connector);
-+err_put_connector:
-+	drm_connector_put(connector);
-+
-+	return ERR_PTR(ret);
-+}
-+
-+static void drm_bridge_connector_fini(struct drm_bridge_connector *bridge_connector)
-+{
-+	struct drm_connector *connector = &bridge_connector->base;
-+
-+	drm_connector_unregister(connector);
-+	if (bridge_connector->has_cec_adapter)
-+		drm_connector_hdmi_cec_unregister(connector);
-+	if (bridge_connector->has_cec_notifier)
-+		drm_connector_hdmi_cec_notifier_unregister(connector);
-+
-+#ifdef CONFIG_OF
-+	if (connector->fwnode) {
-+		fwnode_handle_put(connector->fwnode);
-+		connector->fwnode = NULL;
-+	}
-+#endif
-+
-+	drm_connector_put(connector);
-+}
-+
-+static void drmm_bridge_connector_fini(struct drm_device *dev, void *res)
-+{
-+	struct drm_bridge_connector *bridge_connector = (struct drm_bridge_connector *)res;
-+
-+	drm_bridge_connector_fini(bridge_connector);
- }
- 
- /**
-@@ -1155,6 +1221,7 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
- {
- 	struct drm_bridge_connector *bridge_connector;
- 	struct drm_connector *connector;
-+	int ret;
- 
- 	bridge_connector = drmm_kzalloc(drm, sizeof(*bridge_connector), GFP_KERNEL);
- 	if (!bridge_connector)
-@@ -1164,6 +1231,10 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
- 	if (IS_ERR(connector))
- 		return connector;
- 
-+	ret = drmm_add_action_or_reset(drm, drmm_bridge_connector_fini, bridge_connector);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
- 	return connector;
- }
- EXPORT_SYMBOL_GPL(drm_bridge_connector_init);
-
+Best regards,
 -- 
-2.56.1
+Miquel Raynal <miquel.raynal@bootlin.com>
 
 
