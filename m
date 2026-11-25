@@ -2,107 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A30606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 23:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEE5606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 23:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n7BU7AA/;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=l6L5ZLoq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sdL7fRZ9;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VT7OEweE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=r+DhYJ93tfesWORfibIV1d9I4czZkNjxK3eLYv410RY=; b=n7BU7AA/B+CftrjH0oGVo5itxW
-	qKWQbc9Ah4LO+Pw06IXV1233Xi/xwJiRZ30ENGkI5heBrw24xfb1dAk5XoxRzX9O40KTlIZJyeiEe
-	Fqwjx2w5IP9KugMulgrb6ocrH72syti4wnMjZap+4jSoV29ek5bCsBflcBZi7lUDoWiP5OfuVRZjj
-	7fBNUaSrqZgL5/vAUyLPZ0RGLbFY8hvMJPrgsXzzPBusGmyMoJwZU3ccgoKEk4za27QHCEbraDVUP
-	dQV/GqNrW1vzk8GwNJDhELj0SjpBWAaG3QYsk86WiHXq5G3+AJwYq1XmkihWQ/3/p+WSrGwxgKXNo
-	aZuKN4IA==;
+	bh=XYTc/DcHZroRC4kTjFqOBmNj9WcBY99HUsdGTOAweDw=; b=sdL7fRZ9d+wXncCvr6I7ED1Vu8
+	MtPNWrc+A2mrks6/CJfx3HuIBYmvHRuCJUBx4oSh50QTK3jmr1IFYvOLgQNu9ll546046/r1/Q9t0
+	2k7zO/3dQd0UNADtskCkRXe8mGWXRUjXZzxsHkmO3ZuAa3IH2z5hws6+w5YnpGuBN3rB4v4+sEyB0
+	72dode5vL0hpWxgdw8kDLczPRYrd854JCI+AiZCgq3EJ+6uthp3Z5WJutv35rF7HggH1a0WnqWsji
+	OzBRHilt5Wk9hcNZCYEBOmtIGeRvIlqL/NDqDQVx+YEyz9/41P+FIGFq/6io42zXOHT30oi4i07B3
+	/eY/qvlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWMAC-0000000BXPb-3hhC;
-	Wed, 25 Nov 2026 23:12:32 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1xWMJh-0000000BXks-01Jq;
+	Wed, 25 Nov 2026 23:22:21 +0000
+Received: from mail-oo2-x03.google.com ([2607:f8b0:4864:31::3])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWMA9-0000000BXOq-2uq1
+	id 1xWMJb-0000000BXk2-1Kx4
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 23:12:31 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4bba5e17cbeso11977065e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 15:12:28 -0800 (PST)
+	Wed, 25 Nov 2026 23:22:19 +0000
+Received: by mail-oo2-x03.google.com with SMTP id 46e09a7af769-8459f7bc7c0so2353146a34.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 15:22:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1795648347; x=1796253147; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=r+DhYJ93tfesWORfibIV1d9I4czZkNjxK3eLYv410RY=;
-        b=l6L5ZLoq1OcpkoitUPFKhL/ZaJb+jBPwrYgwBQk23NmNAiSgfg8aX3HXdBL9ylNfsT
-         QhROtLHcSRvwoXjr3c85KQI5+WlHXfCasFNdxdSxoxespn8Zvf7PnkF/fTXGiZWWvHJd
-         Rwvi+eDkgIrmWHJg0ebQuF05FTZfc2zHJCnk4rpBxIhXaaQBSscblqzXPh7BOxY8mw70
-         ksS7laSKf1oIUGGyZcNjFeocrr0qyIaeusILz32/TiYiy09oB/fJ2XRQm0GiPNcdmB9W
-         GpKoJmHHesJFikzoONR1hra+ctpvLK7zfGYDLdPpQVD6VIGMWFBVZOcX7z6cw3yOzlTu
-         l5eQ==
+        d=gmail.com; s=20260707; t=1795648934; x=1796253734; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=XYTc/DcHZroRC4kTjFqOBmNj9WcBY99HUsdGTOAweDw=;
+        b=VT7OEweElA1xcOO15QAesVJ3N1RRm3CQ4JYNjEgSud3zgMiWXDSSlTt8ExFfYO61X5
+         9334MZvejOJkyafY+R+BZn3Bk0fWX+RjYB/nPPsXsUdTFtVALPyHmAhOhUZBajRqrUEd
+         isJMQMLfO81ekL6ZR9mMMVoLahmka6KDl1em0RF+ZooNMkSRV4Wp5b+RyXzrmKtx9yrM
+         RwOXHLyEBVgss8ye9YWqyDlb1n/a/1T7EIsrzrR6wn3AoJn5kMAeQT38EUPpKTxOTvMj
+         c6AXTQ0uMsNbJSXUyyx27w9f1CBD0HplNlVF44HXEef+Z+o1CnuBuXM+BoxSuKm1ZTo4
+         TS1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795648347; x=1796253147;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=r+DhYJ93tfesWORfibIV1d9I4czZkNjxK3eLYv410RY=;
-        b=IySJjWd58Qbi9kn1ZEH4W+sL7lvQon52hevxoLViHZCAjLzxX/PxhmCLU0klU0wlXB
-         YV+9rpASZ7+886dtIUINQ+vX8NhaWN8q3raS1cU+KcNxRAXxRLILe7OOGeKsArWx7Ga9
-         XpvunBXkjT6zzc9yZOevBRXcbhrkxA+lhw1z8EtRLh7R/4t65nvi42f1EQq25WTQl303
-         JBPfn6ijD5XvVvPrHeLANDSlteOwqVF0n8JCn88+agcBHbYqS9CwW/5f+K+xBEC9OI7q
-         nMo3JLm39ODODQYPusmRszmlt5BYVRa1/fPYk8eEObiXT4XP23tYL7SIvB5wUAV7tX7b
-         QqGA==
-X-Forwarded-Encrypted: i=1; AL+hErHdMWc7sKF2B83ANPOGAUp3Zzua5itbRBUpHtl/hwjD6yhp6T6sWOvz3V695Ysi5q23PRt6aQLfzyPHegGTO7PP@lists.infradead.org
-X-Gm-Message-State: APuU4Z+g/8gmM4zFquCnVnFDAEtdqHKq6TCoj2lX7ErEWu7aSjmparlx
-	IteFPDoh1Tj/y7hyT5vdqdxWGrphtbjL4KiYXrwRmSdzd8M1iaXCwCeLZc2YLbhHNnI=
-X-Gm-Gg: AZFdTZf6AtkQ7xOx2dddYzdhRipgzxniNz8XtyFwWOWfLYTDEwUdJ7vNZybfCdQBKZT
-	odc2wYqpihwFoK+dHQBfZq+9WbyspfiwANV3RkQ/qQhM6beoFLg5ro6cdKrzBxRgvfO6CUIzZOD
-	6h8kkjw3HP+21GU9nvWJ0TNuiRjZ0Ub+Um0O1CZZarcJgkioaNmiFg6Lm71Bk0OH47fBI5k3Svi
-	14my2YPq8uz/LI66NJxZlYI09VmohqEr9g1NWJp6acMVwD4hfNSRluXsnSN7SmshV1kSiqGHDce
-	dhdIS68JHthJVPS5ItmFYloXHFo7gmc9VcMKWsLVa3vZfm5iHaPU/OImKllHFD7BjMnpwpFBain
-	2o7zwvrrNIzla3ufdsexJWJNWB86Td5s+Clmobiek9Isk4qDxZSxq+5hAhh+8wCZ0Lp7dUdQsGi
-	hloqyQn3FNmXgrOS8szqdhqGkXw+tedfxn9ftQ+mVoM7rpfTbodjzftnNWgP4iyY6+Xbnxe3N1z
-	oXvhswDqjQ2P4Kt3DUFIptx5+b+SJ5EmpyJK3zDvo5JLIOZ6FTo1AApbYElSLsclqaogveN7p4U
-	aHEbyIvHwGRL4h3wMx6MdWPag4nIZ/VqqrI=
-X-Received: by 2002:a05:600c:4f84:b0:4bb:8701:a2df with SMTP id 5b1f17b1804b1-4bb88809950mr395769935e9.17.1795648347566;
-        Wed, 25 Nov 2026 15:12:27 -0800 (PST)
-Received: from localhost ([2a02:8071:6e30:8500:1d24:d58d:2b65:c291])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4bb8533579csm480759855e9.2.2026.11.25.15.12.26
+        d=1e100.net; s=20260707; t=1795648934; x=1796253734;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=XYTc/DcHZroRC4kTjFqOBmNj9WcBY99HUsdGTOAweDw=;
+        b=HVTLDyYOPNhff+gOdTE1ajdh9tOutl/D2kjqVp2uR01CubXLQHaWWRluwHD51Hpxv7
+         7u5qPVAholFiUDyQAyPFrtkwK+/PFnr3QazDrBGR1sF8p/m5fnVrNNSe/oL9mKFnbBg6
+         vrHnpvRPAkagmzciBr6AfazCc4B9gs1yNAF6A91X5904p3W3+YsFki1/9+FRl4AxrZwr
+         GP9l+UfW0ssoM2zEbqZE6RjH7Vi49BjNMFje2O8qXu9Me88CF8A+El0OCxMC1ZF0/gLI
+         uiU2kcsZzCDh8jinpa6c5MCv222WHJFqFrRZFLJgY9h5lfQcIcswoNp9m5QssIVx1+6l
+         YSvA==
+X-Forwarded-Encrypted: i=1; AL+hErHD4lB071Veaq1QMqt8qCm9aagdrWA/dDNvYR5HLsIF2bsB0mkTIg5+2nnnmFdluT0SqlbJjQsAacZXdzgFVj7c@lists.infradead.org
+X-Gm-Message-State: APuU4Z87Y+t/JO04/kIU/iPFLP/AzT8RhcMKs6Cu+1XlEbEidygndpot
+	ch6O/1lpBLo1ulgde8Q2Dk9lqGkoutlhEb/V8WHQtvZChAnGcDs+x1PV
+X-Gm-Gg: AZFdTZdsg16mlpoWvCMrMrHTHpamHrT0mlq5Svq+q7yIqTXxZ/3JpG9IPlbUXlJOLFa
+	jC5re4dXK8UJCQGSlUrKfZDe3iwGu6R4pSNRL0oKCLdUNp8+qJniBjzp93A/P9bRxY4/WdDx/xS
+	0oHQ4awJ5Qg6AMkZTg29DhLur0UgwkPBEUw8+YD6sZ9ULjhdG69TZlZIUIoxZw3gzSqq8rzDFBq
+	bdwucZxNAEQ9hF1AVH+kDbhS06rc129qoWqJHHuEZmMKXzJkgUkbnt7g8Uig1pFKKSUPQa2KAbq
+	k5omCaVPevPO6YGQnd46pHfcyGCTylXHqbhW9/kh4Vt3zYSGrFSN0CynFeZcYBt6P2skjk+x/4d
+	g1/2YSua8y2F1f9nR7QORbsbUA0iBvZGYRcKft0CpzeBbvCPCYeMDYPKzJ+l3qLuLL8XeMz/c70
+	+sWlH3waw95ENw8X7vMNDoVGsyZQB7FJ4pnz0pK86ZGJ3UAGK0tBUdpPqjCXpRBIB3fnW3mtler
+	Hz3NwDtSW1wJN6iJuTvSA0V/8AfsiHJ07nppS+Mkukcjqm3e9QXx+AT2muHvGL2o2UP4CiNxnLd
+	Tcz4opIsLLX5MiRaAibHm1oZqG+q1LYdNLo=
+X-Received: by 2002:a05:6830:4490:b0:862:88c6:1843 with SMTP id 46e09a7af769-8631598542amr20958825a34.19.1795648934144;
+        Wed, 25 Nov 2026 15:22:14 -0800 (PST)
+Received: from [192.168.0.98] ([50.26.120.197])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-8631692d9f7sm14895213a34.24.2026.11.25.15.22.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 15:12:26 -0800 (PST)
-Date: Thu, 26 Nov 2026 00:12:25 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Brian Norris <briannorris@chromium.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, 
-	Jakub =?utf-8?B?R8WCb3dhY2tp?= <jglow@google.com>, linux-clk@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, devicetree@vger.kernel.org, linux-pm@vger.kernel.org, 
-	Mariano Marciello <mmarciello@google.com>, google-soc@lists.linux.dev
-Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
-Message-ID: <awdp3W7LWfQ3ZrIy@monoceros>
-References: <20261125000349.3385325-1-briannorris@chromium.org>
- <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
- <f89e293688feb3f9bcdce0f1b6fed0ee424e5cd8.camel@pengutronix.de>
- <awbJUwrBQw5TnowW@monoceros>
- <awc0sBl6q6A2Reaq@google.com>
+        Wed, 25 Nov 2026 15:22:12 -0800 (PST)
+From: Ryan Brue <ryanbrue.dev@gmail.com>
+Date: Wed, 25 Nov 2026 17:22:11 -0600
+Subject: [PATCH RESEND] clocksource/drivers/timer-mediatek: Enable the GPT
+ irq before registering
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="khx4cneo7r6erf2z"
-Content-Disposition: inline
-In-Reply-To: <awc0sBl6q6A2Reaq@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-timer-mediatek-gpt-irq-order-v1-1-7e24640e82d4@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/43NsQ6CMBCA4VdpbuYMrQQKk4OsDjoahoYeeNFSb
+ BuiIby7CU/g/Cf/t0KkwBShESsEWjiyn6ARMhPQP8w0ErKFRoDKVSllfsTEjgI6smwSPXGcE3J
+ 4ow+WAhpdabK6rAddQCZgDjTwZ9/f4dre2ssZukzAg2Py4buri9zrf8AiUWJppbVDXVVKFafRG
+ X4deu+g27btB+wAC3rQAAAA
+X-Change-ID: 20261103-timer-mediatek-gpt-irq-order-a878ed869f84
+To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Ryan Brue <ryanbrue.dev@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795648931; l=3241;
+ i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
+ bh=Z6bwbYGmDlV4q9VQg3ShvOBo1zqZq9E6xE6bSf63Eo8=;
+ b=ze5Kfc37HiJ33uhw5RVqcNwV0MgJgYbChCd5ePQU/CqzWvUHCPjZZNCW+BG7LC0ljYNZu0xr3
+ nezA6dNSplsCElHWsNlsqiUEtzGQAQD9zIp8FrdgrcMs3stihwbx7bd
+X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
+ pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_151229_753262_D3A31ED6 
-X-CRM114-Status: GOOD (  17.85  )
+X-CRM114-CacheID: sfid-20261125_152215_469110_1045BCB3 
+X-CRM114-Status: GOOD (  21.58  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -114,75 +118,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Since the driver probes as a platform device, the GPT clock event is
+registered late in boot, when PSCI CPU idle may already have put CPUs
+into a state that stops their local timer. Those CPUs wait in the
+oneshot broadcast mask on the hrtimer broadcast, and
+tick_install_broadcast_device() arms the new broadcast device to expire
+at once so that it wakes them.
 
---khx4cneo7r6erf2z
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 5/9] reset: google: Add CPM reset driver
-MIME-Version: 1.0
+mtk_gpt_init() sets the timer's bit in GPT_IRQ_EN only after
+clockevents_config_and_register(). The forced event fires while the bit
+is clear, nothing is latched in the status register, and the waiting
+CPUs are never woken. On an MT8173 tablet with the CPU_SLEEP_0 idle
+state in use, this hung the boot in 20 of 40 boots, and in none of 16
+with this change.
 
-On Wed, Nov 25, 2026 at 11:19:12AM -0800, Brian Norris wrote:
-> On Wed, Nov 25, 2026 at 12:43:40PM +0100, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Nov 25, 2026 at 09:48:04AM +0100, Philipp Zabel wrote:
-> > > > +#include <linux/mod_devicetable.h>
-> > >=20
-> > > Please include the specific <linux/device-id/*.h> that is needed
-> > > instead of all of <linux/mod_devicetable.h>.
-> >=20
-> > Or better still, rely on the bus headers to provide the needed
-> > *_device_id structures. (That is <linux/platform_device.h> provides
-> > of_device_id (for patch #2)
->=20
-> Only very indirectly:
->=20
->   <linux/platform_device.h>
->   -> <linux/device.h>
->     -> <linux/device/driver.h>
->       -> <linux/device-id/of.h>
->=20
-> > and <linux/auxiliary_bus.h> provides
-> > auxiliary_device_id and of_device_id (for patches #3 - #6)).
->=20
-> Also quite indirectly.
+Enable the interrupt before registering the clock event. The IRQ line
+stays disabled until enable_irq(), so the handler still can't run before
+the clock event is set up.
 
-Yes, I already thought about making this more explicit. But this isn't
-my primary objective currently. It's safe to assume that the provider of
-struct platform_driver also provides of_device_id. While a forward
-declaration would be enough technically to define struct
-platform_driver, that is not sensible because most users of
-platform_driver also need the definition of of_device_id and there are
-too many drivers relying on that already.
+Fixes: 7a097aba7255 ("clocksource/drivers/timer-mediatek: Convert to OF probing")
+Reviewed-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Tested-by: Luca Leonardo Scorcia <l.scorcia@gmail.com> # on mt8167
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Tested-by: Chen-Yu Tsai <wenst@chromium.org> # on Hana (Telesu)
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+---
+Since v7.4-rc1 the MediaTek timer probes as a platform device, and on
+MT8173 with PSCI CPU idle the boot then hangs about half the time: the
+broadcast device is armed at once to wake CPUs that are already idle,
+and that event is lost because the GPT's interrupt is enabled only after
+registration. Traced on the board with prints in
+tick_install_broadcast_device() and mtk_gpt_init().
 
-Well, but having said that, the thing that I consider important is that
-no new users of <linux/mod_devicetable.h> pop up. If you want to go for
-#including <linux/device-id/of.h> that's fine for me, too. (And similar
-for the other busses and *_device_id structs).
+This is a resend of the 11-03 patch with the review and test tags from
+its thread folded in. The code is unchanged, and it still applies to
+v7.4-rc4 and tip timers/urgent. As a 7.4-rc1 regression, it would be
+good to have it in 7.4.
 
-Best regards
-Uwe
+This patch was developed with the help of an LLM coding assistant.
+---
+Changes in RESEND:
+- Collected Reviewed-by and Tested-by tags from v1; no code change.
+- Cc Daniel's oss.qualcomm.com address and Chen-Yu.
+- Link to v1: https://lore.kernel.org/r/20261103-timer-mediatek-gpt-irq-order-v1-1-6d1ddf977224@gmail.com
+---
+ drivers/clocksource/timer-mediatek.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---khx4cneo7r6erf2z
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
+index 842d6ee4259e..1b2cbcc2795a 100644
+--- a/drivers/clocksource/timer-mediatek.c
++++ b/drivers/clocksource/timer-mediatek.c
+@@ -339,10 +339,10 @@ static int mtk_gpt_init(struct platform_device *pdev)
+ 
+ 	/* Configure clock event */
+ 	mtk_gpt_setup(&to, TIMER_CLK_EVT, GPT_CTRL_OP_REPEAT);
++	mtk_gpt_enable_irq(&to, TIMER_CLK_EVT);
+ 	clockevents_config_and_register(&to.clkevt, timer_of_rate(&to),
+ 					TIMER_SYNC_TICKS, 0xffffffff);
+ 
+-	mtk_gpt_enable_irq(&to, TIMER_CLK_EVT);
+ 	enable_irq(timer_of_irq(&to));
+ 
+ 	return 0;
 
------BEGIN PGP SIGNATURE-----
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261103-timer-mediatek-gpt-irq-order-a878ed869f84
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmsHa1YACgkQj4D7WH0S
-/k62MQf+OKGka4mPSwopQ0+gI2VWXrdB3QhqgUL8ffjUMb7jkBi86oA6YfcjNC/D
-8aZRTb/LZNPgl7ygdsKPEfFKlbKH1yCA+9gfN/aS+x6ykkZUKdn1Ha8m8ImuN87s
-ooG++TXgzYfljHdoCVeukZsRth0gqt+QTBWLDPPUCDzC543cmPPqIWNi0LXdgwuf
-OFve6MraHVKSLw0TVigzWyx0MYat5C1Y5gWVcsnmShhh1D18CrPfvFcu4dFot6Zj
-IsEZRk30Wuu42YCnSD1t+UeGc+VDD5hxC1JhUdvN7txOJr1NHKdNT11aByux9mPD
-ityFQTt/321OJci6adJV7NMgTYNlPg==
-=MU9a
------END PGP SIGNATURE-----
+Best regards,
+-- 
+Ryan Brue <ryanbrue.dev@gmail.com>
 
---khx4cneo7r6erf2z--
 
