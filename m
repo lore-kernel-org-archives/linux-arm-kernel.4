@@ -2,78 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78266606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:43:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274DE606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uGjzfOiN;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IdfGlUQL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XiWRdwP5;
+	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=CZ0nLNW1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Soe9AbyJje/CanHZy+BPUS7HyCw3W/h9mWpxWG3+h70=; b=uGjzfOiNQnNHxP
-	6Kj5Fry8XW+B0/kxuFiUdy8ix4LfwqTYlrXae5NLxhQVgfk7daBgnLmHABbT26n46/423Al7jFtTz
-	ylKCC+jmgv+Pv3IATqHePH4wa/Orl9zryclGfFp6wjRFKxibxQK2tgb0/ClakVNI0RYzATg5eiJIC
-	oenaevnWLqORsedCygNV6878CRy0TJ3XMvfpVXsiFL8EVRpc6Cs+XUG+2SubT7CkMn6/T/XKIhVFE
-	ub0zbR3xt3CBcOQ1bcdVwVhZfDZUCgxSvJRqAAjpknFz73ZNfaipnWgqKatHQIwbiC6pzJF0xuTKc
-	JcmC530ddTg/ZT8dVgEg==;
+	List-Owner; bh=83eNWKSER7AsPEjIiws9167fJCTB6KmzsxTKIsGFr1k=; b=XiWRdwP5FyFtGf
+	tLYuwo3dq+ST7ztaKhDhfTiFgZrJD+tlDsSIZKEXlk55y9J/0w0OpoXF3fJGf77oEtvikjGG27yX3
+	Aw9YjJ0vR5HUeHzIPtE1vSxQk49cagtxhza/UAYCaAKb5G1dnzVDBxgGUEG3bNqun1NqryAXK9Ad8
+	+jI+dnjkXqPz9ipKlJjFfFnDbNwbAHcDn/pJaRyEonH9koLmQH0yxlzeLxmd+kGyj8rKBGlZewWOt
+	gYjbBtAjI1x/kyFBjK3K/0sWqBkqqjbQud6lW83vxpm3HXrdjD7kz35JKYZLEPb6p8SBwITRn/J0U
+	XQKE2NB7GMAbv/UIXmRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWCLE-00000009s8x-38MN;
-	Wed, 25 Nov 2026 12:43:16 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWCMR-00000009sM4-04ai;
+	Wed, 25 Nov 2026 12:44:31 +0000
+Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWCLC-00000009s8A-0od9
+	id 1xWCMI-00000009sJe-2j7q
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 12:43:15 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AF06245579
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:43:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 665B51F00A03
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 12:43:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795610593;
-	bh=Soe9AbyJje/CanHZy+BPUS7HyCw3W/h9mWpxWG3+h70=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=IdfGlUQLVdZd+HqGeJmpnmm6ZOvD2DCF88z9GcmsjUrKh5xMoOWAGEOagnXAmAYta
-	 k5dXwiF8fnMKU/56Us9yLAAPPjZbLDyyIyN4SJwaz6ZYK/x07tMrfYIXK6AieI6mSB
-	 d1AdCCTdQcqGyELTARAP/FzRjeNQGlDxqnuOgdfoKJ9MFiO7BSIcyxarVyn4QpJp5/
-	 Te6SJK2tPRq87NZfNEoUCKt9Lc9PfZf9imw1XgFkYesMHxgV5ZIhH3PFZPEcykyjTn
-	 BdRChy9Mk6ypZdqC9qPqHPRw/g6YkI8qu84PKcwRhIcA1Rxl6OclJCgqXskhY5I66W
-	 DQPweoAUVnWBw==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5c158c4c15fso7014071e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 04:43:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFq1D8DmbTXpJIzmCc66Ve4WFMtO0hBqVeNo39dyW6vpIwFtnu/nX2ooJVFn6ymDN87QM7B7SE5uaYtnGyfgVQm@lists.infradead.org
-X-Gm-Message-State: APuU4Z8AU54nrhoWVGj9Cvq8QT6tSsL8zHwvw/TToxP6P1WPa9twQXuL
-	k1zplKV36VvUH3P/eWO/zPBML3fW98RlK0EwohYpoMUfngmo9+J2/Ryy6GDSSgEKIlevQUC+jA9
-	fKfAhAm7qvBVgZw0pA1E0IF0c84BdXk8=
-X-Received: by 2002:a05:6512:3e1a:b0:5c1:4d49:cd84 with SMTP id
- 2adb3069b0e04-5c1bc89a84emr4500196e87.17.1795610592062; Wed, 25 Nov 2026
- 04:43:12 -0800 (PST)
+	Wed, 25 Nov 2026 12:44:23 +0000
+Received: from Hawking.lan (hawking.lan [10.0.1.4])
+	by www.nmnhosting.com (Postfix) with ESMTP id 5B5DE4C943;
+	Wed, 25 Nov 2026 23:44:15 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
+	t=1795610655;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=83eNWKSER7AsPEjIiws9167fJCTB6KmzsxTKIsGFr1k=;
+	b=CZ0nLNW1m9mAL/zeMGCZHZGRRLumKHq2gQma1R2EwY2G9x73x81SnidUU60LVdxFvDUj2o
+	pKm+9C7NU+V0e7e4gwGEGTklX7EQX6ubRzMzxqK2KyacLmojDgByb951Ku68qQ6bIodq+w
+	LiJ/0HvppNfT0YkOu9cYv8v7NtiBOqw1Vho1f1hcdTOhIb9Ew9PBZOYDB2kz4liaQrrKFb
+	pT0izfjRMnR7OJrvc8u/uy56nnHqcA7uzrxsQg9rMRRt7WEoLBwkEGPQqrbalX0y7SdKlK
+	gfU8AOmPlPyN9j9mKsU7UFc6Cm1wGZsWIPBXdhl2dJq8d8uzW63lKGmQFtDcvg==
+X-GPT-Reason: legitimate; the email is a technical patch submission
+	that perfectly matches the personal mailbox of alastair@d-silva.org;
+	the sender domain (d-silva.org) matches the recipient domain exactly;
+	the content is a standard Linux kernel-style patch (dt-bindings)
+	with no urgency, marketing, or phishing indicators; and the lack
+	of external URLs is consistent with a developer's code submission.
+From: Alastair D'Silva <alastair@d-silva.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>
+Cc: Maxime Ripard <mripard@kernel.org>,
+	Enzo Adriano <enzo.adriano.code@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alastair D'Silva <alastair@d-silva.org>
+Subject: [PATCH 1/3] dt-bindings: arm: sunxi: Add Xunlong OrangePi 4 Pro
+Date: Wed, 25 Nov 2026 23:44:05 +1100
+Message-ID: <20261125124407.4098345-2-alastair@d-silva.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261125124407.4098345-1-alastair@d-silva.org>
+References: <20261125124407.4098345-1-alastair@d-silva.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261015142552.4128028-1-ryan.roberts@arm.com> <20261015142552.4128028-16-ryan.roberts@arm.com>
-In-Reply-To: <20261015142552.4128028-16-ryan.roberts@arm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 25 Nov 2026 13:42:59 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=h8iMU1sxjopoGBuniv_vsi2uhggJNQiyoWaTsOV+-Tw@mail.gmail.com>
-X-Gm-Features: Aa3M54pGhuvz2evFxcjQ_z7LSxF4iu4SVrSPElv7BkwMOHJcq9BoFVwsp0UZH2I
-Message-ID: <CAD++jL=h8iMU1sxjopoGBuniv_vsi2uhggJNQiyoWaTsOV+-Tw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 15/15] misc/arm-cla: Add vfio-mdev user interface
-To: Ryan Roberts <ryan.roberts@arm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>, 
-	Alex Williamson <alex@shazbot.org>, Jason Gunthorpe <jgg@nvidia.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean-Philippe Brucker <jpb@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	kvmarm@lists.linux.dev, kvm@vger.kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_044422_836032_9B6C4433 
+X-CRM114-Status: UNSURE (   8.61  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,101 +90,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Ryan, Jean-Philippe,
+Document the Xunlong OrangePi 4 Pro board compatible.
 
-this patch series now moves into the virtualization stratosphere where
-my knowledge doesn't even reach the level of "a little knowledge
-is dangerous", people versed with virtualization need to review this.
+Assisted-by: LLM
+Signed-off-by: Alastair D'Silva <alastair@d-silva.org>
+---
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-A few general remarks though:
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 091cb0765ac9..a41d4c752878 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -1023,6 +1023,11 @@ properties:
+           - const: xunlong,orangepi-4a
+           - const: allwinner,sun55i-t527
+ 
++      - description: Xunlong OrangePi 4 Pro
++        items:
++          - const: xunlong,orangepi-4-pro
++          - const: allwinner,sun60i-a733
++
+       - description: Xunlong OrangePi Lite
+         items:
+           - const: xunlong,orangepi-lite
+-- 
+2.53.0
 
-On Thu, Oct 15, 2026 at 4:27=E2=80=AFPM Ryan Roberts <ryan.roberts@arm.com>=
- wrote:
-
-> From: Jean-Philippe Brucker <jpb@kernel.org>
->
-> Implement an interface to assign CLA devices to KVM guests. To creates a
-> CLA instance:
->
->     uuid=3D$(uuidgen)
->     echo $uuid > /sys/class/mdev_bus/<pdev>/mdev_supported_types/arm-cla-=
-pl1/create
->     cla_cpu=3D$(< /sys/bus/mdev/devices/$uuid/cpu)
->
-> This creates a user interface in /dev/vfio: a VFIO group in
-> /dev/vfio/<n>, discoverable by reading the symlink
-> /sys/bus/mdev/devices/$uuid/iommu_group. Although CLA does not use an
-> IOMMU, VFIO relies on IOMMU groups as an assignable unit. Here they
-> correspond to CLA domains, whose devices communicate through a private
-> bus.
->
-> The CLA device gets assigned exclusively to the first VMM that opens the
-> VFIO group and device. To launch a VM with a CLA attached to vCPU #4,
-> with kvmtool:
->
->     lkvm run -k Image --console virtio -c 8
->         --vfio-platform $uuid,type=3Darm-cla,vcpu=3D4
->         --vcpu-affinity 4=3D$cla_cpu      # Bind vCPU 4 to the CLA's CPU
->
-> Opens the group, gets the device fd, mmaps the frame, and launches the
-> guest. The given vCPU thread is pinned to the CLA's CPU.
->
-> Pinning vCPUs is not guaranteed. If the host decides to power off the
-> CPUs with assigned CLAs, the guest application can't access the assigned
-> device anymore. It would now access a RAZ/WI memory region.
->
-> For DMA, because the TLB entries tagged with VMID+ASID are shared
-> between CPU and accelerator, we pin the VMID. The stage 2 page tables
-> are shared between CPU and CLA. CLA reports DMA page faults directly to
-> the user, who performs the access from the CPU to handle both stage 1
-> and stage 2 faults.
->
-> Signed-off-by: Jean-Philippe Brucker <jpb@kernel.org>
-
-I understand the patch as this:
-
-The CLA register window of the CLA attached to one certain CPU
-can be exposed to a virtual machine by way of VFIO, that is, this
-virtual machine can see that memory as if was its own.
-
-This makes me ask the following questions:
-
-1. Is the intended user of that VFIO window a kernel driver or
-"some userspace mockery", i.e. a plain old userspace driver just
-using the hardware from userspace. This is something I have
-seen in code trees from the likes of SpaceX, where VFIO is
-used for antenna array hardware and handled with userspace
-drivers (and the userspace driver
-is run with realtime priorities for high responsivity usecases).
-The use case matters for the design of the VFIO exposure,
-because if in-kernel users of the same hardware from the
-host can be expected this could become less than elegant.
-I don't know for sure, it may make perfect sense if the user
-is some userspace process doing some computation I need
-not worry my head about.
-
-2.The affinity story again: certainly this VM must be pinned to
-the CPU exposing the CLA and the VM will see *one* CPU
-in its world, or this would never work, right? We are not doing
-any multicore virtualized machines because then you would
-need each to expose a different VFIO window for each CPU?
-(I think I saw the kvm usecase only allowing for one instance,
-no domains, so I guess yes.)
-
-I don't know how much VMs migrate on a running system.
-But if a "normal" VFIO window pertains to the "normal"
-physical address space I suppose this is not a problem, you
-can move the VM to another CPU and everything else
-remains the same. But not so with CLA! So how do you
-intend to impose this restriction?
-
-Yours,
-Linus Walleij
 
