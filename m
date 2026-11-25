@@ -2,103 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C686606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4EDE606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JqWacWxO;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=cPo7XPZd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XClwVb3O;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=AvhaAtXO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=g8oo3n3BAcC5n/86IJAMCc4c54L34G0M24e5RFRNyIo=; b=JqWacWxODgbL+x
-	l9dvOcyFCYv6xgRXbISIsJCU1Hfambv1G7nQ7gKSE14UjOP+MZ12GOsxZx8SiveqYM9mRgSwtYPC4
-	1p7XYjoLwWuwNPhwMvjAezdSOXsIV9vACyCsJn7YHVMpR4PheO3+4wQwFWkbWUJoqx1s6B7dFpoff
-	6HkVYOVbNgbMc8Mhr8x6dmpqDWSfWWh8N7mF6IsBPcNoMlTo+IDvD2aihPl6rWxph4J/7QcdhP7M8
-	Hl+zFUtGGuqtK0oVsQHdFj/KUNK8ooBcPVLLwaer8KCDIVD2/KbtNgEt+TkoPZhlKh63poLS9dgSB
-	0HzkFurvSZ5rN2igWBvw==;
+	List-Owner; bh=jAVSepPFXDVnDs0KIr6D847y94ZRdB5eQ9a+FnzieW4=; b=XClwVb3OX3J+gy
+	VXbuOaRdYmyWQJckEVHzSFkwk3dlkXH2xkmiM/CzKZp/6pFRN1GH1RIAr9aq9WxCjxpLjhotj6I2A
+	CkKyCHlqXoTBhubSzgMCXCzbKaltYO5+/VdCr8QhBHQJbNsLIoi3bm6px+bSa1iqcinedp7IH0SLj
+	ckvKwM5pr+1muB6vT4RZ+y2nnG0zXcxQFaqZjUKQXadzwPEdpp8+kImiy/bvdaXpkKt1yeLyeYhk2
+	1VNBQokMBmpzJKMFn8qYJ+YfZwQFqIiKKhHT1Y1ywaD3xhjHVtLNsD911qVGnP9BtzDsA8OLNs+fJ
+	Py+Wa5kz1XsBYHZaA48Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWK9y-0000000BL05-01mq;
-	Wed, 25 Nov 2026 21:04:10 +0000
-Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+	id 1xWKAF-0000000BL3R-0woO;
+	Wed, 25 Nov 2026 21:04:27 +0000
+Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWK9Y-0000000BKvu-0FOo
+	id 1xWKAD-0000000BL2a-2FQC
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 21:03:48 +0000
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-6b8815693e2so7223751a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:03:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795640622; cv=none;
+	Wed, 25 Nov 2026 21:04:26 +0000
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-6b8a2518f7cso7406367a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 13:04:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795640664; cv=none;
         d=google.com; s=arc-20260327;
-        b=jeQfYZSs73SXxmn4fmh9v7IRabdXV0/jXJjFEAeelZ6pxVuxMLQz+2giMF2caw1J/R
-         XLsgHjMkdtFznxCYswDR1lZoQGwijEcU8VT3jXMPE/ry9DCF4FsfEQNwdZ53kPtLavL+
-         fD9tV7WtSzsjND9itQhFVOFjWmEkS7HQzIszFmujeixhXBxc3unvCRjSOKz/znocsi8G
-         yEOzQLilTxEjO6/HLW0hro0XQTSlqblNdRunFrbyCZ21Wm14xbrdQrseccFUj4FaJRvt
-         ZsIHBkiEIwSExRJR0wQdujMb0MbVcbqFhOGQFm6DyYBWhxaT/soSre5pObY0wY2w7Kx9
-         fNXA==
+        b=gaujNHFS4gjBzEpknowpnkAti2Y/dy96381EbrtdtKLwev/DV8dHMxIgeE/YhOmF2+
+         CHzEvo7wUilER1VmWOjh5FHt5NL3FHDhPySGhskygxoBlRndnD6zvaibvf/djuTOpoRB
+         jNXqC1w7TCabqLJECJXllAXLI+RbDux3P1w/G6lmKQKime3ukCXyCGPMCf9YHs8nsnDA
+         lJa4gl1fOlGXoyI5oUb/qfe5d9VJeqEFKeOaC+4ROdqlKAfoerUvqJ4nUKWxx9I9EDRq
+         frE44lSGWMpkgdYQAQGjP9z5iGvbqYjcDNEyXFNLO7hzpR7Qx9CpbSGFWscTbqmKI/bK
+         fb7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=g8oo3n3BAcC5n/86IJAMCc4c54L34G0M24e5RFRNyIo=;
-        fh=/GZKSiFZhq+/+z2sFIKBercLAUQPSKoYVLIzggtVCB0=;
-        b=WjUbfsRY6Gk1hlC4GQTi5r/B2AXbMfsU8TWjLyIbwrZIQjN5vUXH7RYo0kcb6vT3xA
-         4jc2/L1aD5ZTf8pz8OsHVqzQOmeRUTt2MKX0GwYFi3LDhPNucbc7FX3PD2PF89IZi/Nd
-         RjNIrMrFtwV5MjYxKjzICgE8jKfj6gUJLyKkTX2FmjWtKw14MzNKvN9LZoFTWKARTwkD
-         htkoo0WaEn8pgV4qTXlHnhGSUm4daVxX+glwAVn/evkb6/45X0lOk+3TOf8IbWA6my5p
-         XIFDqJTf8AZhRWwNdGmWHbdItM3xGgBPYsvFGPi8IQ6xYlj52OG8NfBMxSUMMVPoPvad
-         a6eg==;
+        bh=jAVSepPFXDVnDs0KIr6D847y94ZRdB5eQ9a+FnzieW4=;
+        fh=QGni7boKHjApcsmYcVLGSQ+7uNSMhNw9t4lAePF7qbQ=;
+        b=GOqhRtBKq88z809lctKxqlJ5grVAtV+P/0xffpdScIRfjCCMyV6OOog1BHsi51AAjG
+         7Zcnnwg4ydkyyUfxAYQtF9MjwpUd16SXY8rRZCDZtNIXtTFOfK80hvARY0m8nY8vuKnM
+         siCWx1rfHwR5O4Gms1nskIHUL1UvctLDxiMFKvuqTrehnHbD3HifWBTAaKeeoECylu8R
+         qlFoFrdBCF0CEa4oxZAeA2cYMqEIRij+xkNH3j7JemW1K4REp7JicFNHVIVlcVuM0Dxa
+         845bw3+fYazUyvwYw8VHbJAn75xXH3uWoBaKlS6GtwEdc1yMkPs/qjimIRhEBV8C9Byu
+         iWtg==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795640622; x=1796245422; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1795640664; x=1796245464; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=g8oo3n3BAcC5n/86IJAMCc4c54L34G0M24e5RFRNyIo=;
-        b=cPo7XPZdm3AulxP/iZ306/tTe52Ii+erddtHHiUvPq6GxfEsype9oRVbFwO/v3GSES
-         EKK41aBQ0uVG8W+RzFRF3kdumn2eXFVV84qkO8z1+oR262QHPT+lXzdWb1JKjQfN9gP9
-         H7yfUkwL0/miTTYzbF2nin02Ys8H+CKYcBOSh9TwuZgVCbDWgz1OlfV01oyioUtXa2ZL
-         CMPKtb8pvzTE7Z+UKL9BMJxCansEqAEfIC3sET+U2kEW3AxVrszTYgvHMpYEtc1BjuR4
-         FxasvzP/BUIEus8RmPZDZ/4vJ0OfO/OX3MFaFUiMW0+veL5uL8TTjOUy6otZjvnB8obB
-         +4rw==
+        bh=jAVSepPFXDVnDs0KIr6D847y94ZRdB5eQ9a+FnzieW4=;
+        b=AvhaAtXO4fw5yTCw0f3Gh+1Wq8LLNCabA/7uigZbUlpa/htiROR09IezxEPFlPamg8
+         T0A7Qk5DsjAsz4nsJG71oVkIUhuWQo3ub2QMDVgz5uWFLXTPraC5f1fokNFUMrWknBXe
+         nCZ8JOQ7f5vHoiN6jnFM1RDzLtA7CpaQtCX1eEKm89nlksoZzpQQdqj+5Pi8j1qoJp07
+         C7BtB99lJGJjOmP95jaILV5j1vUcILjPtlZm9yKNZYt3iokcO0Is7/ElZ/sJIEweX0ee
+         TsFkQOqj1VOZWCubzgciKsTO2+MfzDoZ5W96W4rSUTyTot4g0RQzBac3pkmbZfcD9cpe
+         WElA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795640622; x=1796245422;
+        d=1e100.net; s=20260707; t=1795640664; x=1796245464;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=g8oo3n3BAcC5n/86IJAMCc4c54L34G0M24e5RFRNyIo=;
-        b=mlGEJGUagKXL7IA8s5GOznF4XmKozltY36STL4f6YnImJj37Vmll5yXoBPooupCSk7
-         8R5rjmXXDmf58hC9Hzl1yVY58oiShVzvhFq11yg3tjVAbstZN/SaKC13FYsYJG7QxtYX
-         PonyuQRL5gfJOlf5PtelS+27Ar3rQzBANE6iBj83kbzt2hmly60CkSRCm6iOiLr+XAc4
-         +c8lNBkoL1w/qCFUAYlTcONcAaX3ZhlTlsBxhJLJ1DWRtYINh4FggHi1u3Jf6iBMzBDO
-         n3w/n/D/j/8xRz0xnxkx4LXj+iv/j0owRZ/NPrOk3n7C59Ejfb5H8oplsvOhq7YRYhc8
-         2SSQ==
-X-Forwarded-Encrypted: i=1; AL+hErEmj2vfZjol8VkwxK8yTVte/fIhmrnWMgX4gIaE4EIkDbDuRKTxiG0SzXgeUKrCZgvZDYjEpFhkCWsIPgufYPAd@lists.infradead.org
-X-Gm-Message-State: APuU4Z/sEfAbIFrfLpI57gwc3jLEBZI9svOlmoWjfuF69M5sxDesw+2Q
-	68r4WXj546SFniaiOukco/ox6tHhDxQWwXgPnjubU0wFteRZVkubiXFDemaCPGG1zOAWsYO0GhK
-	c22ycjAcAFVkX5LCI8ZNY0NKUcONvHsGA1iUjo8o6rA==
-X-Gm-Gg: AZFdTZfu/E8VVB90zVe5gorsesAOGDCB3hnVw3kXvWTsBO+6eeNqTcdpqMrGV2ZOCKN
-	FK8WJGod3vl0C85Gb+gUVevWhNRxl8jx5uBCYdFiMoNrBI3+SIH9mnunpvlDi5FliQd5tIrhbgr
-	NZGZ+sVftw1vGkHckZ+JH2UPBLN5D3gaJGoUfW8M94b3xlyq6ghWzAyR6uFFMg+EuUcmGb66zEB
-	5d0J+j0uSCp5knI5dqrxN2lbsCJwvGvZ6mzC/a1H3oxZ7hWNPgWp++QqyRenyS7EeeLahu7lKbn
-	iwDKROUTEeYb8NnvGEiLOss3X6BXmxxhHNnFIlyRyLGjkSVV7gtfFtUClWAPmf3F5aNxbKx0qa5
-	nzNCr3N+w8tGXHBrYtB6IznldB3mNdqL7ljjYfkH1BaixxkYqEJq8LftMa76zBrqjwXaCxNI=
-X-Received: by 2002:aa7:df18:0:b0:6b9:c43d:88f with SMTP id
- 4fb4d7f45d1cf-6ba37d5c69dmr10748147a12.9.1795640622317; Wed, 25 Nov 2026
- 13:03:42 -0800 (PST)
+        bh=jAVSepPFXDVnDs0KIr6D847y94ZRdB5eQ9a+FnzieW4=;
+        b=cHbGX1eotn7244xNxZ7+WpslMlTOqUGKqbSQuNcbYlUnTgQ1CnJjv7CHHPgggEfls8
+         YCuFfnkoxZhjyg2FLug5A1T05Ker7TH88u0Fh7rmQtkpPso1XeaHZaYDKQg/8LtxO19u
+         U5NgOkWOSGG9JvdU1KMvq4YuclhZKSgfpXwfX/Z3sBaN6WdDPneQS0YRhwNKMfQ84Ynu
+         cZOG2+aHre/Qmhw2l/Hp8Mja9M5T2jewmAqnON4qgjYnC2hcwO+rT8g8zwR8D/Tsly2d
+         /QJwFNkGBgQus9UPoFDEteE1kZH/vh+dI9fcOotkrYxqmNZkEj3Vmm+6HJx9bx6vDFqG
+         2yNA==
+X-Forwarded-Encrypted: i=1; AL+hErEMvCB90hAz0kPbfQnQEqMkCmy+HiTQzMe5WuBpKpyu/P9uadfrRrgJuVKcEuNUfR9j9wnVOcW8060MxlVwL+ET@lists.infradead.org
+X-Gm-Message-State: APuU4Z93dl0OjGeSJaKoAKadVLfRDz1PIISjQJETHzG5QB7EZBFcaoM8
+	7IjS8sruzx18JgMa6PpZLvV8GWKBfoBsogWQzw9j1kiG0zJJf6HR0A9OEmfX6BGgyUwUEE38Zu8
+	EloYuFl0QyCYrMTCvD8GmpRRQa58E/Gfk6g4LGnyuJw==
+X-Gm-Gg: AZFdTZdMz4yhsImw+c2alB2ldJ6YNI4xv7ha1KwH3R6yFdmn9aDsI3lShIzmI4xnv3v
+	7FHlZbl8kWHsB8eWLjOk7jCHWqLRQuZI48z+aeTL7uR6HagWtudI/j7MQjzTnfUTvtC/I+jvwQJ
+	kHg5UHCIrCQRvqpV1RysZgHTb0bDTtmpeGhYuvrJBd6nZ/9cSmXMWnvb4T9BxaKgd5yU2Oqj9KO
+	Yhte/0cGxMUwbDye42b1gMeapL80Bde3uwVrbCkVeoxGTaXquitLp7+QdRRoA1Jt/Soe7JXbpx5
+	MsOzpps7xgKhm5D0t+4NTQfTTw1KU4+5S13YyTVmKrZWNrak4gA7MLrk3nDSt314jv6+SF+4YM2
+	Pu40QBE8KlaGOXeTeb1kcixgqL+XZmO46pRrci8eEi2IS3pK5h6vAFC6RPN9zlaBIoqONx0Q=
+X-Received: by 2002:aa7:c0d0:0:b0:6ba:144f:ae43 with SMTP id
+ 4fb4d7f45d1cf-6ba37c7b138mr10360793a12.6.1795640663702; Wed, 25 Nov 2026
+ 13:04:23 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org> <20261123-gs101-usb-phy-orientation-v2-1-3361fa5f7543@linaro.org>
-In-Reply-To: <20261123-gs101-usb-phy-orientation-v2-1-3361fa5f7543@linaro.org>
+References: <20261123-gs101-usb-phy-orientation-v2-0-3361fa5f7543@linaro.org> <20261123-gs101-usb-phy-orientation-v2-2-3361fa5f7543@linaro.org>
+In-Reply-To: <20261123-gs101-usb-phy-orientation-v2-2-3361fa5f7543@linaro.org>
 From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 25 Nov 2026 21:03:29 +0000
-X-Gm-Features: Aa3M54pP550miJl9HbCRj99JxEMj3d0cMVlh26LqNCl_O0LJ7lYFwSv6xfFKFjY
-Message-ID: <CADrjBPpm8OzJTG4J8TqWZF-f_qdOKXJ4Tk-LYhNH1D=mWPNNUQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] phy: exynos5-usbdrd: gs101: re-init PIPE3 on
- orientation change
+Date: Wed, 25 Nov 2026 21:04:11 +0000
+X-Gm-Features: Aa3M54oVBZq5tOYyeoj6arLLradCyxNln2xhQ16gdyoLzIDJohPkD6NVk6Xh8SE
+Message-ID: <CADrjBPpE+2n1Y=02Ayz8i8guJ58XBzdG5zVdLJW5ZhQQKiNmNw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] phy: exynos5-usbdrd: apply gs101 postlock tuning
 To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
 	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
@@ -109,8 +108,8 @@ Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_130346_546635_6A3386FD 
-X-CRM114-Status: GOOD (  34.69  )
+X-CRM114-CacheID: sfid-20261125_130425_587906_1C9B6DBE 
+X-CRM114-Status: GOOD (  16.49  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -133,189 +132,44 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Mon, 23 Nov 2026 at 14:25, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
  wrote:
 >
-> The SS lane mux on gs101 is programmed only when the PIPE3 phy is
-> initialized, based on the Type-C orientation known at that time.
-> The orientation switch callback just stores the new orientation and
-> relies on the USB controller to exit and re-initialize the phy, which
-> only happens if DWC3 enters runtime suspend.
+> Phy tunings to be applied after lock are never applied on gs101.
 >
-> If a cable is connected during boot, the phy is initialized before the
-> TCPC reports the orientation (e.g. ~4.0s vs. ~5.3s on Pixel 6), so the
-> lanes are programmed for TYPEC_ORIENTATION_NONE, i.e. as if reversed.
-> DWC3 doesn't runtime suspend while the cable stays connected (and
-> runtime PM is forbidden by default anyway), so the phy is never
-> re-initialized and the link comes up in high-speed only.
+> On gs101, gs101_tunes_pipe3_postlock[] disables the high-speed squelch
+> detector when in P3 / U3 to save some power. In U3 (USB3 suspend) there
+> is no SuperSpeed data traffic to detect, and link wakeup uses LFPS
+> through a separate low-frequency detector. Disabling the high-speed RX
+> squelch detector in U3 avoids keeping it powered while the link is
+> suspended.
 >
-> Re-run the PIPE3 init from the orientation switch callback if the
-> PIPE3 phy is initialized and its lanes are programmed for the other
-> orientation. Rewriting the lane mux registers alone isn't sufficient,
-> the link still comes up in high-speed only with that. Re-initialize
-> before signalling VBUS valid, so that DWC3 only sees VBUS once the
-> lanes are right. A failure is only logged, so that the TCPM still
-> configures the USB role.
+> Apply PTS_PIPE3_POSTLOCK once the PLL and the CDR have locked.
 >
-> Mark the PIPE3 phy as initialized in the same critical section that
-> programs the lanes, so that an orientation change can't get lost in
-> between.
->
-> Also stop storing TYPEC_ORIENTATION_NONE on unplug, so that the stored
-> orientation always describes the lanes: while the PIPE3 phy is
-> initialized, they stay programmed for it, and when the phy is
-> initialized again after phy_exit(), which gates its power, they are
-> programmed from it. This avoids re-initializing the PIPE3 phy when a
-> cable is plugged in again in the same orientation and the phy stayed
-> initialized.
->
-> Cc: <stable@vger.kernel.org> # 6.15.x: 2ef1e78ef722: phy: samsung: usbdrd=
-: propagate GS101 PIPE3 lock failures
-> Cc: <stable@vger.kernel.org> # 6.15.x
-> Fixes: 09dc674295a3 ("phy: exynos5-usbdrd: subscribe to orientation notif=
-ier if required")
+> Fixes: 32267c29bc7d ("phy: exynos5-usbdrd: support Exynos USBDRD 3.1 comb=
+o phy (HS & SS)")
+> Cc: stable@vger.kernel.org
 > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 > ---
 
 Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
->  drivers/phy/samsung/phy-exynos5-usbdrd.c | 61 ++++++++++++++++++++++++++=
-++++--
->  1 file changed, 58 insertions(+), 3 deletions(-)
+>  drivers/phy/samsung/phy-exynos5-usbdrd.c | 2 ++
+>  1 file changed, 2 insertions(+)
 >
 > diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsu=
 ng/phy-exynos5-usbdrd.c
-> index 2186b745d58f..ccaf0f27c4c8 100644
+> index ccaf0f27c4c8..f647688c3bfb 100644
 > --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
 > +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -509,6 +509,7 @@ struct exynos5_usbdrd_phy_drvdata {
->   * @regulators: regulators for phy
->   * @sw: TypeC orientation switch handle
->   * @orientation: TypeC connector orientation - normal or flipped
-> + * @pipe3_initialized: gs101 PIPE3 phy is initialized (and not isolated)
->   */
->  struct exynos5_usbdrd_phy {
->         struct device *dev;
-> @@ -532,6 +533,7 @@ struct exynos5_usbdrd_phy {
->
->         struct typec_switch_dev *sw;
->         enum typec_orientation orientation;
-> +       bool pipe3_initialized;
->  };
->
->  static inline
-> @@ -1713,6 +1715,8 @@ static int exynos5_usbdrd_gs101_pipe3_init(struct e=
+> @@ -1745,6 +1745,8 @@ static int exynos5_usbdrd_gs101_pipe3_init(struct e=
 xynos5_usbdrd_phy *phy_drd)
->         u32 reg;
->         int ret;
->
-> +       lockdep_assert_held(&phy_drd->phy_mutex);
-> +
->         exynos5_usbdrd_usbdp_g2_v4_ctrl_pma_ready(phy_drd);
->
->         /* force aux off */
-> @@ -1737,7 +1741,17 @@ static int exynos5_usbdrd_gs101_pipe3_init(struct =
-exynos5_usbdrd_phy *phy_drd)
 >         if (ret)
 >                 return ret;
 >
-> -       return exynos5_usbdrd_usbdp_g2_v4_pma_check_cdr_lock(phy_drd);
-> +       ret =3D exynos5_usbdrd_usbdp_g2_v4_pma_check_cdr_lock(phy_drd);
-> +       if (ret)
-> +               return ret;
+> +       exynos5_usbdrd_apply_phy_tunes(phy_drd, PTS_PIPE3_POSTLOCK);
 > +
-> +       /*
-> +        * Set this while still holding phy_mutex, so that the orientatio=
+>         /*
+>          * Set this while still holding phy_mutex, so that the orientatio=
 n
-> +        * switch callback can't miss an orientation change.
-> +        */
-> +       phy_drd->pipe3_initialized =3D true;
-> +
-> +       return 0;
->  }
->
->  static int exynos5_usbdrd_gs101_phy_init(struct phy *phy)
-> @@ -1783,6 +1797,9 @@ static int exynos5_usbdrd_gs101_phy_exit(struct phy=
- *phy)
->                 ret =3D exynos850_usbdrd_phy_exit(phy);
->                 if (ret)
->                         return ret;
-> +       } else {
-> +               scoped_guard(mutex, &phy_drd->phy_mutex)
-> +                       phy_drd->pipe3_initialized =3D false;
->         }
->
->         exynos5_usbdrd_phy_isol(inst, true);
-> @@ -1880,8 +1897,48 @@ static int exynos5_usbdrd_orien_sw_set(struct type=
-c_switch_dev *sw,
->
->         scoped_guard(mutex, &phy_drd->phy_mutex) {
->                 void __iomem * const regs_base =3D phy_drd->reg_phy;
-> +               bool reinit_pipe3 =3D false;
->                 unsigned int reg;
->
-> +               /*
-> +                * The SS lanes are configured during PIPE3 init, for
-> +                * TYPEC_ORIENTATION_NORMAL or else as reversed. If the P=
-IPE3
-> +                * phy is initialized already (e.g. the orientation is on=
-ly
-> +                * known after the USB controller probed) and the lanes h=
-ave
-> +                * to change, initialize it again, before signalling VBUS=
- valid
-> +                * to the controller. Rewriting the lane mux alone isn't =
-enough
-> +                * for the SS link to come up.
-> +                *
-> +                * TYPEC_ORIENTATION_NONE (unplug) isn't stored: while th=
-e PIPE3
-> +                * phy is initialized, phy_drd->orientation is what the l=
-anes are
-> +                * programmed for, otherwise it is what the next PIPE3 in=
-it will
-> +                * program.
-> +                *
-> +                * Don't return an error, so that the Type-C port manager=
- still
-> +                * configures the USB role.
-> +                */
-> +               if (orientation !=3D TYPEC_ORIENTATION_NONE) {
-> +                       bool was_normal =3D (phy_drd->orientation =3D=3D
-> +                                          TYPEC_ORIENTATION_NORMAL);
-> +                       bool is_normal =3D (orientation =3D=3D
-> +                                         TYPEC_ORIENTATION_NORMAL);
-> +
-> +                       reinit_pipe3 =3D (phy_drd->pipe3_initialized &&
-> +                                       is_normal !=3D was_normal);
-> +                       phy_drd->orientation =3D orientation;
-> +               }
-> +
-> +               if (reinit_pipe3) {
-> +                       const struct exynos5_usbdrd_phy_config *cfg =3D
-> +                               phy_drd->phys[EXYNOS5_DRDPHY_PIPE3].phy_c=
-fg;
-> +
-> +                       ret =3D cfg->phy_init(phy_drd);
-> +                       if (ret)
-> +                               dev_warn(phy_drd->dev,
-> +                                        "Failed to reconfigure SS lanes:=
- %d\n",
-> +                                        ret);
-> +               }
-> +
->                 if (orientation =3D=3D TYPEC_ORIENTATION_NONE) {
->                         reg =3D readl(regs_base + EXYNOS850_DRD_UTMI);
->                         reg &=3D ~(UTMI_FORCE_VBUSVALID | UTMI_FORCE_BVAL=
-ID);
-> @@ -1900,8 +1957,6 @@ static int exynos5_usbdrd_orien_sw_set(struct typec=
-_switch_dev *sw,
->                         reg |=3D HSP_VBUSVLDEXTSEL | HSP_VBUSVLDEXT;
->                         writel(reg, regs_base + EXYNOS850_DRD_HSP);
->                 }
-> -
-> -               phy_drd->orientation =3D orientation;
->         }
->
->         clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->cl=
-ks);
+>          * switch callback can't miss an orientation change.
 >
 > --
 > 2.56.1.750.gf70dc682cf-goog
