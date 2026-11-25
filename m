@@ -2,83 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77DD606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 22:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442E9606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 22:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pOQSALis;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=g0TvsH75
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0lWtBqKV;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=iHyirvab
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=dbm1Ef+uitQ2LBt7Exj1+18hYcllnIQWCtcGXjjgdas=; b=pOQSALis+YfmkSJE1/M2Hj0YAd
-	Sw9YjmupZ4U0AzUgHgaOPqNtmzZ7PomhrVh+e7jsZzT61bAQHE4t04dYpLOfhwFwcdUmzc7oO889B
-	ciLamJirUkHZVhfMPECps8BOvoS6AKWYa5USgQWgxitcDV9vF8AIY6OdricPQxm+lldVr6r2X+wmt
-	APCj000McnTHNw9meb4utovOVQ6Nh29PlrV2YcxKg+M9KhsMuMCqGunyrMD7gPiKlX2OpSyIyLmkF
-	kb169IfEwo4Xxtew/9n2BTMRelhODDeqRlczMa2EuLe8t6rGS6D8pop5dWx0gBrYiobm7Fb/TLP0O
-	WqwDU6Qw==;
+	bh=ni8H7Ap+HCHG0QQIQxl79mCC54GcejU+9kKv4fWZ8x0=; b=0lWtBqKVx+/yYFP/l5redrGOFs
+	imvcWa/TUe3JigTsVjnvga4zw97d1yTkvRqgrF1y3AbkUXU3pXj5+nOwcIkK4W2jXN3LfiO4IE5qQ
+	HIof7q47+kpsoKujxGglWpm2LK2lqh6vwlaiiAEdeOIZILRTVX4QGE23Cz3aLMYzVfNb6JmHnu78T
+	pueAOlX+M/KIjqs87SFen81/0S81q9dDzNexXWbQ8eOayy4xaaE3QFxCgCzxfNS4iIRte7zCdn4r+
+	XTI7kWN1mewAuOnEQg5qr1+Zi2mblGvunoVcM+vwvwNkPcpY0Rr3rfIDDBHMrf6B9MSJi/WxoOxLO
+	v3Knsx0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLCm-0000000BRMj-3w8u;
-	Wed, 25 Nov 2026 22:11:08 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1xWLGn-0000000BRUJ-21Ed;
+	Wed, 25 Nov 2026 22:15:17 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLCl-0000000BRMP-2SFN
+	id 1xWLGj-0000000BRTV-1vaH
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 22:11:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=dbm1Ef+uitQ2LBt7Exj1+18hYcllnIQWCtcGXjjgdas=; b=g0TvsH75io6D2rjeMbiqJT3nhj
-	Fohp4Bf/fw24XeVl+aTtSQnnNXv6GkGzMxO1GR3Khppada1xBd51AEX4PkPJtK0+8yx5PGBPT9h1B
-	qKYlx4kOLe34CGjmsr+GMcH4pNHXCcd6aMD1gdg6Gvng87+piaD6mpMyxoexv4TZQtU4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xWLCW-001RjL-T9; Wed, 25 Nov 2026 23:10:52 +0100
-Date: Wed, 25 Nov 2026 23:10:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Fil Dunsky <filipp.dunsky@gmail.com>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Wed, 25 Nov 2026 22:15:16 +0000
+Received: from killaraus.ideasonboard.com (KD106184139166.ec-userreverse.dion.ne.jp [106.184.139.166])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 82515153F;
+	Wed, 25 Nov 2026 23:12:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1795644753;
+	bh=OggzM8lGNFtq1hPtvltuDCL/vSTbieC7jAHyiV1fkmo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iHyirvabuaE3TVwnRQbirNpfnfPyOZnZmb9URm+Kj2204fNQfd5I1nJcfFpDq7bG6
+	 1wcnhQ1L7lx7UpizCZoIZwu7/QEVSvSIGaxE2yuV2OCoc09FPWoYg90DX/yLyNA0Cq
+	 ZgYJLo1G4mKY3mHqLlX5dL0VArUlBnJoySGAKuD0=
+Date: Thu, 26 Nov 2026 07:15:02 +0900
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: =?utf-8?Q?Cl=C3=A9ment?= Le Goffic <clegoffic@baylibre.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	Pablo Neira Ayuso <pablo@netfilter.org>,
-	Florian Westphal <fw@strlen.de>, Phil Sutter <phil@nwl.cc>,
-	Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
-	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH RFC net-next 0/7] net: cortina: CS7542 wired IPv4
- hardware flowtable offload
-Message-ID: <5e9d9808-3917-4706-889d-ae1c360155e3@lunn.ch>
-References: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
- <7252b836-e375-4550-90c9-b0e3ab7fbb6d@lunn.ch>
- <179564372798.5.10006827612276789857@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Ulf Hansson <ulfh@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Kevin Hilman <khilman@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Paul Elder <paul.elder+renesas@ideasonboard.com>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 00/15] R-Car X5H Ironhide CPG/MDLC SCMI remapping
+ support
+Message-ID: <20261125221502.GD3581@killaraus.ideasonboard.com>
+References: <cover.1795029012.git.geert+renesas@glider.be>
+ <1e9c5ac3-d82b-4af9-9946-0302cadf7404@baylibre.com>
+ <20261119234759.GB2324725@killaraus.ideasonboard.com>
+ <19c3745a-6308-46ff-bb37-3acc88fe22e2@baylibre.com>
+ <awAqqg6F2Z1t55x2@ninjato>
+ <d94ad9ca-afdd-4301-a69c-0bbad5b334fa@baylibre.com>
+ <20261123103633.GB2959742@killaraus.ideasonboard.com>
+ <fc13a7a8-b825-400c-9ea0-ceb2670dc478@baylibre.com>
+ <20261123160550.GA3050935@killaraus.ideasonboard.com>
+ <27796cff-eef5-46ce-8079-93a0a8d40db5@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <179564372798.5.10006827612276789857@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <27796cff-eef5-46ce-8079-93a0a8d40db5@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_141107_622417_3CAAE247 
-X-CRM114-Status: UNSURE (   9.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261125_141513_999312_4D582892 
+X-CRM114-Status: GOOD (  27.68  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,23 +96,77 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 12:55:27AM +0300, Fil Dunsky wrote:
-> Hi Andrew,
+On Mon, Nov 23, 2026 at 08:09:05PM +0100, Clément Le Goffic wrote:
+> On 11/23/26 5:05 PM, Laurent Pinchart wrote:
+> > v5 supports one firmware version at the moment, and the driver would get
+> > support for new firmware versions when/if needed.
 > 
-> This is the first standalone offload RFC, v1. The prerequisite CPU-only
-> Ethernet series is v2; this RFC does not replace that series.
+> This is where I disagree: I don't think a SoC driver should follow the
+> SDK versions.
 
-Ah.
+In theory, I agree. In practice, I don't see how that's avoidable.
 
-One patchset at a time please. Get the basic Ethernet support working
-first. Then start on the next topic.
+We routinely have drivers that follow hardware revisions. There's
+nothing controversial there, when hardware behaviour differs between
+revisions, drivers have to adapt. It would be great if every single IP
+core in every SoC was perfect in its first revision, but bugs happen,
+and we have to deal with them.
 
-       Andrew
+With SCMI, firmware will also not have a stable interface, and it will
+be worse than hardware. A hardware bug is way more costly to fix, so the
+QA process is more strict. Firmware are too easy to update, so they're
+simply less stable.
+
+We have two options to deal with that: either we handle that instability
+in every leaf driver, or we handle it in a central place. The latter
+seems a much better solution to me.
+
+> > I have yet to see any vendor who can provide 100% stability guarantees
+> > for SCMI firmware interfaces. In theory, sure. In real life, I just
+> > don't buy it.
+> 
+> I agree that while an SCMI firmware is in development, its ids can
+> change between versions. To keep the ids of a released firmware
+> stable, I see three rules:
+> - an id always names the same resource, ids are never swapped,
+> - an id is never dropped: when a resource goes away, the firmware
+>   keeps its id reserved and denies access to it, as SCMI 4.0 section
+>   3.2.1 describes,
+> - new ids are only added at the end
+> 
+> I think upstream should only support a firmware that follows these
+> rules, with its ids in the DT.
+> 
+> For firmware still in development, I agree with what Cristian wrote on
+> the RFC[1]: "fix your firmwares AND/OR apply quirks in the meantime".
+> 
+> Any other view on this is welcome.
+
+It's not a matter of "in development". Software is always in
+development. Don't get me wrong, I agree that we should minimize
+breaking changes in SCMI firmware, but we can't avoid them, or even
+minimize them enough, without a QA cost that nobody seems willing to
+pay. Where's the stable SCP firmware for X5H ?
+
+The way to go in my opinion is minimizing firmware breakages *and*
+having a remapping driver. Those are not mutually exclusive.
+
+> > We can agree to disagree on this, no issue.
+> 
+> Sure, I think we both already know we disagree on this :-)
+> Thanks for taking the time to discuss it
+> 
+> [1] https://lore.kernel.org/r/aekXUvIPb8nkhdKu@pluto
+
+-- 
+Regards,
+
+Laurent Pinchart
 
