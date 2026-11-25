@@ -2,74 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296B960A2610
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA60606A6A9
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ohow+uBC;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=LimZQkx0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jlfAv8yv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=g8Y+VjlhAuPJi/mSdE+SsemjmM6ohHErbBXjp4HQBX8=; b=Ohow+uBCK0OmCs
-	DCML6mKJBTxK1w4ykLAzyExlprszB8tLAvK3WTB5qNejQMW6ZihoNyg14ZVXTTBA1qZ7C5ZwCk5/y
-	z1Zbp8xlttiFWht++dVQVJY+00W13bv0sXKM14EuyOcVYZsXNC9bTFckiqMU4KVsPyHRl93HfnpTY
-	9ee95mfmrF3s6Ouwr5V1z6GqK52vOy+P6z//0VHkMVt/Dzt2Z2vc/ZInVW89KB+eRT2TsNi5yu2Iy
-	6ip/mkvjRmIqiQYiE845wMjgCI1EQ74ozgQz47FqJHEYoSpYx37zmy045Bd08apixt4fEC0RGiFTt
-	HHeBy9GB0/q6Xiohn/Og==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=W7QRm6YPXq+2eRW5JIlJ812mYrQ+Nse770zMOXPyx5c=; b=jlfAv8yvG7NdpDUrIMH86qRu1s
+	4c6HCWMCefl+5v/0DQA7nVyN8DNxJoIbGGrxtpQG86tSDXne7c9wxsI9OLg4zg+2IYwBh60vV0ebV
+	h6mv3+rcNt8KzV+BlQuGPu1uBWJ2WwkXcKqnbP4T5R5LUMqGm7rw8Or2JqrZWYSCm/BfgoV843nos
+	ecWaK43H98tnweZnKRDnfS57c8Pr9CQlYh94u6Ra2bA6QMc+3H0Al0UALsXPsJXrFPdtDAA9odVIQ
+	UzL5cYk6d5yEy01yYDBgRfIv9NLX30GjBTSTWqUarONalaGouop9z60rS/nERhaP2b3se+LiV/NWl
+	MX1HM4Ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF73-0000000AOkI-2jw6;
-	Wed, 25 Nov 2026 15:40:49 +0000
-Received: from out-67.mta0.migadu.com ([2001:41d0:1004:224b::43] helo=mta0.migadu.com)
+	id 1xWF74-0000000AOlm-2ZWt;
+	Wed, 25 Nov 2026 15:40:50 +0000
+Received: from exchange.fintech.ru ([195.54.195.159])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF67-0000000AOGO-33TB
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 15:40:03 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=z0MdkXXkhI4FyI4pRvxVmInAnq+lBk663TaLC9etFxs=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795621189; v=1; x=1796225989;
- b=LimZQkx0qgZqlp2OTs9fxIRVylICj1WT03q+IlqtnvRRyZ9iMMUqsjDC59VCqU2B/t0BRi3F
- JJ5u0Ad+pilX2sMnPddCyfCE1jCUVlH4ee7sG/Q20wd/I2eO8j2uldl+0XxTb0NvkeVfI2XZ78D
- wfbESd2cKi8Sjb26KCh5oqqk=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id b2b04a39099f7a6d;
-	Wed, 25 Nov 2026 15:39:49 +0000
-X-Mizu-Trace-ID: b2b04a39099f7a6d
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Vincent Donnefort <vdonnefort@google.com>,
-	Fuad Tabba <tabba@google.com>,
-	kvm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 07/20] KVM: arm64: Allow protected VMs to use SVE
-Date: Wed, 25 Nov 2026 15:38:58 +0000
-Message-ID: <20261125153911.106793-8-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261125153911.106793-1-fuad.tabba@linux.dev>
-References: <20261125153911.106793-1-fuad.tabba@linux.dev>
+	id 1xWF6S-0000000AOQZ-00FC;
+	Wed, 25 Nov 2026 15:40:14 +0000
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 25 Nov
+ 2026 18:40:06 +0300
+Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 25 Nov
+ 2026 18:40:06 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+	"Jernej Skrabec" <jernej.skrabec@gmail.com>, Luca Ceresoli
+	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Damon Ding <damon.ding@rock-chips.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang
+	<hjc@rock-chips.com>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+	Andy Yan <andyshrk@163.com>, Alexandre Marquet <tb@a-marquet.fr>, "Marek
+ Szyprowski" <m.szyprowski@samsung.com>, <linux-rockchip@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
+Subject: [PATCH v2 0/3] drm: analogix_dp: Handle runtime resume failures
+Date: Wed, 25 Nov 2026 18:39:44 +0300
+Message-ID: <20261125153958.1349811-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_073951_935809_339710CF 
-X-CRM114-Status: GOOD (  15.45  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_074012_050377_8840CEEE 
+X-CRM114-Status: GOOD (  11.20  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,92 +74,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Now that EL2 owns a protected vCPU's SVE state and advertises
-ID_AA64ZFR0_EL1, allow KVM_CAP_ARM_SVE for a protected VM, which lets
-KVM_ARM_VCPU_INIT take KVM_ARM_VCPU_SVE.
+This series addresses the unchecked return from phy_power_on() in
+analogix_dp_resume(). The driver currently continues controller
+initialization and reports a successful resume even if PHY power-on
+fails. Patch 3 checks platform power-on and PHY setup errors and returns
+them after unwinding the resources acquired by the resume attempt.
 
-A protected guest's SVE access trap injects an UNDEF. An SVE
-instruction takes the SVE trap rather than the FP one, so a guest whose
-first vector instruction is an SVE one would get an UNDEF instead of
-the lazy FP switch. Handle the SVE trap as the FP trap is:
-kvm_handle_pvm_fpsimd() switches the state for a vCPU with SVE and
-still injects the UNDEF for one without.
+Propagating these errors safely requires two preparatory fixes. The
+bridge setup and AUX paths currently ignore runtime-resume failures and
+may still access hardware after a failed resume. Patch 1 checks resume
+in those paths and avoids retaining a PM usage reference when it fails.
 
-Update the documentation to match.
+On Rockchip, the platform power_on() callback leaves pclk enabled if
+setting eDP mode fails. Patch 2 fixes this partial rollback, allowing
+patch 3 to return a platform power-on error without invoking power_off()
+after an unsuccessful power_on().
 
-Tested-by: Vincent Donnefort <vdonnefort@google.com>
-Reviewed-by: Vincent Donnefort <vdonnefort@google.com>
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
- Documentation/virt/kvm/arm/pkvm.rst | 6 +++---
- arch/arm64/include/asm/kvm_pkvm.h   | 1 +
- arch/arm64/kvm/hyp/nvhe/switch.c    | 1 +
- arch/arm64/kvm/hyp/nvhe/sys_regs.c  | 2 --
- 4 files changed, 5 insertions(+), 5 deletions(-)
+Patch 3 depends on patches 1 and 2 and on the Exynos pipe-clock conversion
+posted by Alexandre Marquet [1] (used in the development of this series),
+or Marek Szyprowski's alternative [2]. Both move the pipe clock to
+encoder enable/disable and remove the platform power callbacks.
+Neither Exynos patch is included in this three-patch series; only one
+of the two alternatives is required.
 
-diff --git a/Documentation/virt/kvm/arm/pkvm.rst b/Documentation/virt/kvm/arm/pkvm.rst
-index b8c8c94cba534..c59e598645b1b 100644
---- a/Documentation/virt/kvm/arm/pkvm.rst
-+++ b/Documentation/virt/kvm/arm/pkvm.rst
-@@ -134,9 +134,9 @@ A protected VM boots from a single primary vCPU. Before the first
- * Set the primary vCPU's boot state with ``KVM_SET_ONE_REG``: the kernel
-   entry address in ``PC`` and the DTB pointer in ``x0``.
- 
--``PC`` and ``x0`` are the only registers EL2 takes from the host. Other
--pre-run writes are accepted, but the guest starts from the state the
--hypervisor resets it to.
-+``PC``, ``x0`` and the SVE vector lengths (``KVM_REG_ARM64_SVE_VLS``) are
-+the only registers EL2 takes from the host. Other pre-run writes are
-+accepted, but the guest starts from the state the hypervisor resets it to.
- 
- Secondary vCPUs are started by the guest itself through PSCI ``CPU_ON``
- (see `Power state`_), which supplies their entry point and context ID.
-diff --git a/arch/arm64/include/asm/kvm_pkvm.h b/arch/arm64/include/asm/kvm_pkvm.h
-index 155ac35069245..9350caed1e8e7 100644
---- a/arch/arm64/include/asm/kvm_pkvm.h
-+++ b/arch/arm64/include/asm/kvm_pkvm.h
-@@ -40,6 +40,7 @@ static inline bool kvm_pkvm_ext_allowed(struct kvm *kvm, long ext)
- 	case KVM_CAP_MAX_VCPU_ID:
- 	case KVM_CAP_MSI_DEVID:
- 	case KVM_CAP_ARM_VM_IPA_SIZE:
-+	case KVM_CAP_ARM_SVE:
- 	case KVM_CAP_ARM_PTRAUTH_ADDRESS:
- 	case KVM_CAP_ARM_PTRAUTH_GENERIC:
- 	case KVM_CAP_ONE_REG:
-diff --git a/arch/arm64/kvm/hyp/nvhe/switch.c b/arch/arm64/kvm/hyp/nvhe/switch.c
-index 89fb9dd351ad5..0626f4203ba6d 100644
---- a/arch/arm64/kvm/hyp/nvhe/switch.c
-+++ b/arch/arm64/kvm/hyp/nvhe/switch.c
-@@ -230,6 +230,7 @@ static const exit_handler_fn pvm_exit_handlers[] = {
- 	[ESR_ELx_EC_WFx]		= kvm_handle_pvm_wfx,
- 	[ESR_ELx_EC_HVC64]		= kvm_handle_pvm_hvc64,
- 	[ESR_ELx_EC_SYS64]		= kvm_handle_pvm_sys64,
-+	[ESR_ELx_EC_SVE]		= kvm_handle_pvm_fpsimd,
- 	[ESR_ELx_EC_FP_ASIMD]		= kvm_handle_pvm_fpsimd,
- 	[ESR_ELx_EC_IABT_LOW]		= kvm_hyp_handle_iabt_low,
- 	[ESR_ELx_EC_DABT_LOW]		= kvm_hyp_handle_dabt_low,
-diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-index 352998a07512a..0a536b237a7c9 100644
---- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-+++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-@@ -712,8 +712,6 @@ static const struct sys_reg_desc pvm_sys_reg_descs[] = {
- 	ID_UNALLOCATED(7,6),
- 	ID_UNALLOCATED(7,7),
- 
--	/* Scalable Vector Registers are restricted. */
--
- 	HOST_HANDLED(SYS_ICC_PMR_EL1),
- 
- 	RAZ_WI(SYS_ERRIDR_EL1),
+Important note on pending work: patch 1 overlaps with the pending
+analog-init cleanups [3][4] and may require include-block adjustments when
+combined with [5][6]. The bridge-detect PM fix [7] is complementary to
+this series. Also, patch 3 is built on Pengpeng Hou's earlier
+proposal [8] and addresses the platform power-on and
+unbalanced-clock-cleanup concern raised in its review [9].
+
+AI assistance: Codex was used to analyse the error paths, help draft the
+changes and commit messages, and prepare this cover letter.
+
+[1] https://lore.kernel.org/all/20261027-drm-misc-next-manta-auxbus-v1-2-3a45c3cf531d@a-marquet.fr/
+[2] https://lore.kernel.org/all/20261119223843.3694307-1-m.szyprowski@samsung.com/
+[3] https://lore.kernel.org/all/20261120083302.3719465-1-m.szyprowski@samsung.com/
+[4] https://lore.kernel.org/all/20261111094845.1673-1-laixiangwu@cmss.chinamobile.com/
+[5] https://lore.kernel.org/all/20261113082305.541652-1-damon.ding@rock-chips.com/
+[6] https://lore.kernel.org/all/20261111164243.77775-2-blum@kernel.org/
+[7] https://lore.kernel.org/all/20261119103742.1161858-1-m.szyprowski@samsung.com/
+[8] https://lore.kernel.org/all/20260828091334.5793-1-pengpeng@iscas.ac.cn/
+[9] https://lore.kernel.org/all/20260828092624.9054B1F000E9@smtp.kernel.org/
+
+v1 -> v2: Use a better Fixes: tag in patch 3. Also, use goto-based error
+pathing instead in patch 2 to avoid repeating calls.
+
+Nikita Zhandarovich (3):
+  drm/bridge: analogix_dp: Check runtime resume before accessing
+    hardware
+  drm/rockchip: analogix_dp: Disable pclk if setting eDP mode fails
+  drm/bridge: analogix_dp: Propagate errors from runtime resume
+
+ .../drm/bridge/analogix/analogix_dp_core.c    | 36 +++++++++++++++----
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 11 ++++--
+ 2 files changed, 37 insertions(+), 10 deletions(-)
+
 -- 
-2.47.3
+2.43.0
 
 
