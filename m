@@ -2,143 +2,156 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF9C606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334BE606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WMARALZG;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Leh8WXRt;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Kmhz3EQ0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zMVi3l+l;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=U0Qkd4og
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YY7KokTVNQdRG2xnhQVkzSDE4zg2oGNcCPRrRtBfFBA=; b=WMARALZGpsKOSWeZc/8D2EH/s7
-	AxbthQ1N8fP4tVhP1JmSKb2KxzEqMsBavfK4lmksKJmFgh/I0MNoS5OD0AcgAEsXcUXG8AxBxvc0e
-	IFjfW2z6qyT8bbhkYJQoDfPfU9tcSpnRBL6y6WohVMe4q/c5wxg0Zgj7zOGp4Ix/cW5uekDModfEX
-	mvJSX7M6V6zGdaJFXM4dFUt6C1dfAa9LDKe6GVk4hwwn5Qmrbb2A0cK1rfjXGWlOLLPLZseo8zdQT
-	MmEq0NoSpT/RU1wynNWgZfLb8kqPjd1+iP+LOUMbRCINr9LiyVWH2WtDyI2mb0g3mrP/vH4/yZ/+Z
-	9mE996kA==;
+	bh=8kjJvWJQTYAwumT0MFlohMtFc9XBDOWISkn3c8EKc2g=; b=zMVi3l+lHK6zIC3sJGzO1ioOpu
+	WSxAvxt4zoYAdgB+GNW/VKp+vDa6GgWEicygz4ewt80Up702bWQmEuCRYsmlYt8+mqfoTIP5d5ez1
+	rudhlM/DmK2O2bsFBulGJBFZnc/7mX1IHEwiojBnYDUp5B7iBaeQ/hzUXKFXxm/Ph8L/a3G8XuTpp
+	H7YchLp2csMU2zZP+XyegX67B0NVlpQVDyxIyMxq07UTB1qJbfGGpttnW5CQq1tYYCFoR3PD0QDxt
+	YCSihyGGaz5CZoeUiM6qh0OuCy9nCWZ7Lkh2lw7ezfvhPyNWPh4/vWQMbmz7I4fY5sJlhkEPNNcvg
+	2RpNJ8KQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWIcl-0000000B8NO-0m9s;
-	Wed, 25 Nov 2026 19:25:47 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xWIeQ-0000000B8ho-35uR;
+	Wed, 25 Nov 2026 19:27:30 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWIca-0000000B8JE-3cHp
+	id 1xWIe8-0000000B8bs-22qF
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 19:25:42 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6APJB41n3594013
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:25:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=YY7KokTVNQdRG2xnhQVkzSDE4zg2oGNcCPR
-	rRtBfFBA=; b=Leh8WXRt5l7hIe7RtKjlc5O4uK+nTw3iOGPprVdaxO9Wigx3D/j
-	yseENXSby6OKQIaWjOibcQI4z6ZjpdRZ7tFGzg33to60FU6kTUT8z3afSAgYeWjI
-	5FhrOLjTDxITtVOUIsKra7Msfm52YhkkD6Xt/nvqJg1mtroD4J3sNMWJ2jUmbXDJ
-	mHsuaEIdJpr5aXCQCWV8Y2rv/qNGTAHeAokCP189kMSKNkmPlY3yWQaMVPzzcqOV
-	SDqPwLCepzTVBQujZPAe8worS+Q6CW7b2d5FR3WJceX+47miYTFXBzwYvCuCKdiv
-	ePFT52KlwU9/XN39stnSQVwMP2YfpgzR02Q==
-Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com [209.85.167.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5nu6c5f3-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 19:25:34 +0000 (GMT)
-Received: by mail-oi1-f200.google.com with SMTP id 5614622812f47-4cc89e86e4dso7285675b6e.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:25:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1795634734; x=1796239534; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=YY7KokTVNQdRG2xnhQVkzSDE4zg2oGNcCPRrRtBfFBA=;
-        b=Kmhz3EQ0BseXUQZWWz/zRjftSsl6ot55nhKdySA2hXqVy4zVbPoT7UbXBP43viNrC3
-         aYkDbxuVFmEyS6bnmrNR1r9+I0YupkWcG/Y4ChH56duZuIhAofkZ4XTkMP6U0tfaHeAx
-         PAJo1qq2PVVtn083VwBC1cYLrP2UGYo93bGY3UuofFvcEKs4kazzDMvLA3zcCv30P3dg
-         6fl1M5u8O8+v/jM/rRZG8y5qCEHQ2o+H3J5YM2i+W4XPn8C+10dfbYiQ1y4gMZ5ldr17
-         aNbHYr+Pi06P1P0e7F6tJWgZt4c1SPBoWM1rbf1hRr3XSUizz1XUreivICuD/dU9UXR+
-         zpLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795634734; x=1796239534;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=YY7KokTVNQdRG2xnhQVkzSDE4zg2oGNcCPRrRtBfFBA=;
-        b=iiFI7R6/yme9+IJ9cBfhIlBahhf4sHGunT53/GwatRUBQP/sYC0GpVby2vVst6qlC7
-         BcAh7LKPh3JpDp7wQozmJxFla+q8DSXedV2FdNSisluVTwKMUFRmDIQWdOGNPkNFkADH
-         VblCcMo8qAjrfvUEQzmw+T9BECPNq2/Xe6EVv7/jDP3ROl+51M3zEDxE/CAiL11pkEuL
-         6TEIDkolDSv61uzAI5sNUCW4F1coAkFvjZNi5qQy4mLrw0GEL4Xfi8alQfdRzBleBIAz
-         FKPnoM0MrQZhslNkho5Zzq6r99CRiQ/BYD3QgD9WZ9elwOfyzaQmmxk3jpvn4TQ2Zicm
-         a36A==
-X-Forwarded-Encrypted: i=1; AL+hErH16ikjp0jasW+m9Hrxf6SSM3Dt8czIujpfxD9ynDIAeDNeKSAVqMnI1Sr6ALp5FWekZzUBJD/NHg5Coa7/WQ3Q@lists.infradead.org
-X-Gm-Message-State: APuU4Z/clyG3HUvYt3fxEixcUUSMRo4AsHHcgkFxzNz9IaiDxzHx803c
-	EvcMiivt5quS6wB7qd2WQQs2rqVXyHiJsqLfj6uMkNeWqfczMViY9UU9LAWh4naqmqUVEXbsDuC
-	/aUp+gs7fXXDUm/N9IvqdmIO60BUZzdjZHvs0UEZGnvFAclmCHtPQl+FHzP5Zy0KDJKZ4w2iMc7
-	b8Xw==
-X-Gm-Gg: AZFdTZdVJbKqzCPTesAKwVMCUqCe3/cbPiCa5OCHxiAyHtsERetqtXT0rzB0OcYNR48
-	aX0Abxef35oxrLLlYCaMKxEOxQ2brtnHLoYoUJNOYBSuJpQc0qRWp19Xbn+93ZKAJ+NGHQu0rMm
-	7CM9zhweezX3srqGmtmeuSyT0Lru4UGWY12QUJWBlBW/YADtDYty+cXgLaz8kH4SqieSnuDhl0Z
-	/uclzttSiTb0OVbsYnmzLaz5oE8bckBTXfRQ5Dqx49pbaON6E9ORsaTweM1LQmGTJCJwgWEfKAj
-	gpaUhrerXx5h3mT6QB9ZHrQTd0X6PSZmJcVjT/NW3I7go20YO1GeoSGcSyESTHQJJOYx7FZkLhy
-	wY6jrCknDZ/E64SLqc/8ZzO/hZzz7m2HFKyHx4/XFWAHYu1Y7oIQ8rDcLMMZgZqs+o/NnRzL2Kp
-	hPVYV2Ad0IXKkyVNP03I3qk+tMsUojfUgf78tf
-X-Received: by 2002:a05:6808:23c3:b0:56a:7702:b341 with SMTP id 5614622812f47-57a0c4b9064mr20422918b6e.68.1795634734027;
-        Wed, 25 Nov 2026 11:25:34 -0800 (PST)
-X-Received: by 2002:a05:6808:23c3:b0:56a:7702:b341 with SMTP id 5614622812f47-57a0c4b9064mr20422896b6e.68.1795634733588;
-        Wed, 25 Nov 2026 11:25:33 -0800 (PST)
-Received: from hu-scheluve-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4bd3008160dsm18125768fac.16.2026.11.25.11.25.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 11:25:33 -0800 (PST)
-From: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
-To: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
-        edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        Jose.Abreu@synopsys.com
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lorenzo.bianconi@oss.qualcomm.com,
-        hongmei.xu@oss.qualcomm.com, abhishek.chauhan@oss.qualcomm.com,
-        sarosh.hasan@oss.qualcomm.com,
-        Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
-Subject: [PATCH net] net: stmmac: xgmac: fix RX split header length on multi-descriptor frames
-Date: Wed, 25 Nov 2026 11:25:31 -0800
-Message-Id: <20261125192531.1940982-1-sagar.cheluvegowda@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	Wed, 25 Nov 2026 19:27:13 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P8SotuQieuYzAqE0M0QplUGMd2PsGONjLbkJLtGROv+ww6lS6UxolvDPiRz3oOu/tPy8W9ALPou2iLyMsopnxjp1L/uwy6PijDhWe31Idip1GZjyeFskCrzTw/FbTicsjv6dEgR4E90P8viACT/KLLtqU0kBHmbjO2drnk9KGgejL0iTm6OC90plPw67WobxW4REYnuDCNcqHXnm0q6Gtsps554o0Ar7JF2MVUckct4D2eLaK+cjbgPm04TPhDBNY2HxDa/YusQHO4HXUmQLlmWyfLFqPO+V+ciTrZUsf+Qldmvky/1oFK32HHOVYDCvQ1S7mHrLUOpJrRQgjCD82Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8kjJvWJQTYAwumT0MFlohMtFc9XBDOWISkn3c8EKc2g=;
+ b=pEDxzy3kPtWDef/y0kex7A8twPrNwInIY5M6Cd4yzhSvr/VTqYA+vjwj6glo3t+IYOb2vZXjlso9gLZazDvKg5EPFl/27Ef1EhqB3a/yVixxc68p+UmiuIx5VA5ePHaYxypmcZcZ68N8lTLKvXf+u53M7tFCLcpoVXrvEjRGx5OSmYy/jbZvIzd/WTgF5gnnG4GHr2VmHCd7PhTdgbkBPdodHlb+WpC6vMw1NVBaNGS4qTIKQ98D/PmVWJK/wtTMScxpjPMBWhvnEcMvVI+OlTcOLPcyITIsHStCZcRrOyowNUNzsMZXx/l2/8R8oQyfzWBNXrJRicivicXstZBItg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8kjJvWJQTYAwumT0MFlohMtFc9XBDOWISkn3c8EKc2g=;
+ b=U0Qkd4oggW5wXvOfmVfJeT/RE2V+1l5Hzq9Q4wUMY8yd1PTUVJo7d/bIFxk8Nq8EMtfRxyKhu1CiHbkE7JCa+ya8EE5tAFtMQoOuCXlYzPo0bsCwEs57N51O7CC2UpEKVRn2EYhriWGV5yhxcWLwFMiuce4TELcyl74b1GX7x625ILy7qP2Z0LDyyZs93sqh15tou18itEn10oP9PCQXxlY/BNGaRZyNoQVb4Aw20WycSlx0CsXttHWuulWGubkDb4GJEh3T4p4wPvL5ltaUjPsUiuym+ATgYNBo0k9hP+m0EwRMfDBZPuymnQcRMLRp8z/le/6Se5nIRqTX3mLdNw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by VE1PR04MB7390.eurprd04.prod.outlook.com (2603:10a6:800:1aa::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 19:27:07 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
+ 19:27:07 +0000
+From: Frank.Li@oss.nxp.com
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	michael@amarulasolutions.com,
+	linux-amarula@amarulasolutions.com,
+	Akhil Narayanan <akhil.narayanan@in.bosch.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Florian Ager <florian.ager@bshg.com>,
+	Haoning Cheng <Haoning.CHENG@cn.bosch.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Qiu Guochang <guochang.qiu@cn.bosch.com>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: imx6ulz-bsh-smm-m2: add boot phase properties
+Date: Wed, 25 Nov 2026 14:26:48 -0500
+Message-ID: <179563479881.3280595.2598133457260209600.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261125180316.882220-1-dario.binacchi@amarulasolutions.com>
+References: <20261125180316.882220-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PH7PR17CA0027.namprd17.prod.outlook.com
+ (2603:10b6:510:323::13) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: yux1kiC_ZtlTrCWnlF3V2pQU0_8gAPUm
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA3NyBTYWx0ZWRfX3F3km00udzry
- AO8n3tbqeJO9tWnItIM8ngsm6Wm3Yz4ClT0o+AxvCR8vEGoC8lUhKsTHwwEMTfEs822wdLtuYKF
- hwmtX5jY63OVmlil5CS7WAWBFfI2+/Y=
-X-Proofpoint-GUID: yux1kiC_ZtlTrCWnlF3V2pQU0_8gAPUm
-X-Authority-Analysis: v=2.4 cv=Vra2kO2n c=1 sm=1 tr=0 ts=6b07362e cx=c_pps
- a=AKZTfHrQPB8q3CcvmcIuDA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=ojtf-fZehEoJ8Fw7nBAA:9 a=pF_qn-MSjDawc0seGVz6:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA3NyBTYWx0ZWRfXw057MW45VSqw
- CPRhcvxLqcUk4L2Nyl/DCidpuWEcJL3xF/auYvyobdWaLp3oIaBMxEJDfqfv9CucQEQdWHGAfQ+
- X0bx+kY2ABK47MU9a6k5pm9/xWgig4wOKb+MTxNfvg2yXncR9bPWSx/Oi2P+1WxImjR1RnBHjpc
- /AT+HhNI83FPiKQx7a2hY0S/3v1RaK+DiYl0xcRo6uhJsQpX01/UEcl2+bNWOi2TKvseUTnjJaf
- 7rSJUs7AhbRKNpv8iRMw5wARYePlHgIvQAEcatiQq8AagAJGVGNyf0xkhiQGaQQLHrnpxROm7w+
- bTbXWTZVfCnpo4RtRfJS3syZXVkYiI6OlZqm8l8VUZ3jKrL69p6VJlWV8Pc7YuXu2/DMNOqPev1
- 2qNvaswcBYoeZdhyTkOjtkUcyGd/BtVOcgAX8P69UG9iNBe7DdZ2CBKWOX55h+GyfrlkIBLxHrE
- g0g8TxoEsB0brWndyRg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-25_05,2026-11-25_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 malwarescore=0 clxscore=1015 adultscore=0 phishscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250077
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|VE1PR04MB7390:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12eee6e5-45d6-4eb4-2e49-08df4b2a17cc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|23010399003|19092799006|7416014|376014|10067099003|11063799006|56012099006|261022075727099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: hYIX4cvOPtDlWmZ/wh7om6ejD4m4LLdB4Npfzx+IzmKPkXOrPGk3cI1+UmW5GWKeyLWHhRUYrabgf1GD4mxLR92VsZdu7rZcFdtxP/sLIaiMAF2upfhnchtoCGZPHE0/rwJ06xs5sQXn9JxumL8fPLi3pnMgQ2z45S4YshJuYAB8zrh1HGyJ46I5PEa999Dvk3hz5ELGWqALwXNx3A5fhZnsFsajXXHzGkVBvcy0TRAdnmPZhRWJ2md38K9rPtklHSGSQp5ONoINP3fHKq+PWBE6/tcUfqqzJMjg8Xg04OJRpKMegw2n40NU4FeeEBJUbLeTVg3cGUrKo7MRro7rFM5CI5gKgLouUbC1v2hlHk6qCAtQforoLKPjNppE3aP3xdtkBnm1Z94WxqNpbcnRZmcihXYVwWpBWjRNeZ/77pm+c8vkyF5rLiKQpTrDl+7MYfEIxkAYryvk/f/ydqR0WPBl5Szv9JSYQaxgEahk0OUtWxGaFYRqu2hqY9+n4dV5hsTsDMatH1k+s7+Jpw3ovAD24k+Vo1CgvDbc3ntfoweSkYhjkU5TXJ1O9qlFMi90myqORcj1yJkmPI+B6vAICuQ6yViiLAzWc55RDe7cucOZoh0dplSocv8M817y5dXb/VNr2FJG1UPr7jF4GmuDHZosrwEB3+w6Ma92SlFl73Y=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(23010399003)(19092799006)(7416014)(376014)(10067099003)(11063799006)(56012099006)(261022075727099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Zi9PUVhEQlFlWG5yZkRzdGcweTlSUFg0RVZuYVk1U05hY1NWV2RNekk0dys5?=
+ =?utf-8?B?Mnk2RzZOTGR2cXcwQ0NCajdQeWxMTy9PbmVjTUM2ekpWVTdhSE1tWmMyRlNY?=
+ =?utf-8?B?K1dmV3djVWZLdEJ1ZG4vM0NuMkpjOU15WnN5a1diTHBTamFBUTN6S0kxU3RP?=
+ =?utf-8?B?U0M0QktNeWVQYytINnZWNjFXNWFpLzlwOVNLTC81a2tXS21CeldUN1gzNThE?=
+ =?utf-8?B?MkdzWSsvRDFDY3Q4QUdQZlBheW9HTE1vOW9Xa2lhbzNsWmxjckgydy96UTBo?=
+ =?utf-8?B?WkFJbFFnU2dKZ2NPdkwya2VCMUlwMnlMTFRaZk5hdVIrSFBTOFRYSFdrMEhR?=
+ =?utf-8?B?a0FkRGZlU1pySFFQa0JFZ1gzNlBjdlNkYVcyYTlKK2J4RnVadGFYeHM4R3or?=
+ =?utf-8?B?MXp0MVFaUDVPMEN1ekduY0RqeFVSQnNnSkYvd3NIakdVczhYY2RKVjFwc3ln?=
+ =?utf-8?B?SHdwQmIyVzUyZUpGYTBDWm00UUphTEFvR1FvYVJPYkhPZHNhdTF5WXg4Q1Ni?=
+ =?utf-8?B?bThtZ0tkdnlzNFpzMGRVUW1WT2dnR254OG81UDhhQzBzVFNDdmVkZ0h3WVRE?=
+ =?utf-8?B?akNZSDhDK1ZHMEJER2lrSTA4VGxML0RpVDhmQm9CYVU0bnNZOW1xRjNMS0RD?=
+ =?utf-8?B?QWVUTXJiYkNHejBvOWFFc2wyaWlibU1NSnpKZWlhaGh0UExBQWtCZ2VOMlk1?=
+ =?utf-8?B?U3ZYRXcwM2ZmM0wwaDNMN1dBQ0o4L1pYck56MGthSStjdThpR2EzaTlQZW9Z?=
+ =?utf-8?B?YkFQdjM0S2ZtcHZPSVBMRG9wNWRXekt4anBlSDYwbk9TU1hCTFhMeEF1S3hT?=
+ =?utf-8?B?RWpJVSs1bkZWQjdvSjBuTlF3bWxmbmZVRlFyQ2NINVFWc2c3c2ltaGx0OC9Q?=
+ =?utf-8?B?QUgyNHFpS1FVQXpUNURMSDJWMnBPSkZkbjNpQVlFRjlvS1RyUTB0Sjc0em5Q?=
+ =?utf-8?B?VEEvYXpwUnpjdTFtVkpwbmxFcWh6YjIwSXlKQVMxNzVwYmlCeHNqd0xrWmpX?=
+ =?utf-8?B?eXZwNE4xU29NMmZubXRZVkVqUE94OWZHQ2dURWlIdXpKK0RTZ2cwMlNORGZz?=
+ =?utf-8?B?UTJDdVE2M0hybWtCOHRmcjJEL0lUMlhuVU8wbENJd1hvNU9RMDhqb0Q1MmpC?=
+ =?utf-8?B?bWZnRWMwcG5VSnFzNWcyR2dVbms3cmtkdnN2cVlMMkNWTnRFNUxvS2ZISjdy?=
+ =?utf-8?B?bDk4amh5Nm4wWFN2NHFGcWwvKzZqTVNOTmk3VktkTGFwbXRWVXNvOGRYTC9F?=
+ =?utf-8?B?T2E0ZzJ2TFhobmU4MnNXUENOMDFlTk9IU29KYlN0dDk5WGM3MzJLN2JTQnpl?=
+ =?utf-8?B?c2NkeTRqLzQ5U0t6a2RKMmRvOUUwTUh3L1hoWlZueU1LL0tGRytlbHZtanJZ?=
+ =?utf-8?B?VDZLN24rc0s2dENrNUhtK2FTYjRJWmIwS2VjT3Y5dEZSWnVFdmovc1R0VDlD?=
+ =?utf-8?B?UlZnMHpCUVZYZmtFdFVaZ3l3YklRaEZZTlJ0bU5JOHBpM2xGV2dlZ2ZlUXlY?=
+ =?utf-8?B?Zmthc3VjSFc3cHFENEloQVpuMS9jL0QySzc0YU1ibGxaVHRrZ2pHcXdOU2pK?=
+ =?utf-8?B?dXdHb3FGWGR1L2xXT0h5T0xlM0RHLzVIMW1uYkVLbzZDU3hnUXRnbW1jdkp3?=
+ =?utf-8?B?VGhKWFcvaGF5S2dReVl3UEdtc0NzTFR3NDkxRGUxRWo1SjVHZUpDczFudkQz?=
+ =?utf-8?B?TmEwMHZ4ZFEwM0luSmJFeEZsbW9hY013QXJndEZYVmZYQTdlS0h0aUhnZmFI?=
+ =?utf-8?B?MTIybkJWTDlaL2gvSU9Qc3dreUpDMHJJZVFkM0dUMUphYjZFSmRmOGNsSWxW?=
+ =?utf-8?B?RVpBbjEzNDZEZjVWTTFXVzgxUUppek9ieEdFYWQ4Tm50RnJ0Q1krai8yVHpN?=
+ =?utf-8?B?dzh1TnQrbGtzcStxYkdaK25BUE5TdytKcEtIUUhMN3QreWlHOVYwVmRKNkFF?=
+ =?utf-8?B?SHU4bmQxZ0tCcmlRNHo4cko5aWRtakZMQXZ6ZFZjVFBpKzRmL25iaE5Tc3Q4?=
+ =?utf-8?B?cENiK2lLU0thMGhORDR1VjZReFdwZWlVdDNlVU5ENkgwTGhqMzdLUWlqSzJs?=
+ =?utf-8?B?Y3pkUUc5L2FBYzJGcWFpUFRibktLK2tkVzFGQnlEY1kyY2IzcC9qV1F6MUtk?=
+ =?utf-8?B?QjZGUHB0NUJUa3BnTlIxZzBjbWpiRHVsc0ZvY0d0KzY0Mkx5V1BIbTUvenJn?=
+ =?utf-8?B?cm5JcGxzR3d1Z0RLTXU3MkpLazNYVy9yMnN0VjZtOVpTcXBhVkZTM1dYOUxE?=
+ =?utf-8?B?QXlMaUlsblpuRFZyYmg4WDRmRVNKVGkvNmVnOTV0UEtPUWUxejMrSUE0M3cz?=
+ =?utf-8?B?UENKdDYyZmJFbjZIYUlVdHpqeVZUWHRLaEkxT0VSOFJrdzRjNHV2VWk2by9Y?=
+ =?utf-8?Q?6ZZeZy+tWO7wZPeqpoj4Tjts97ypxd0ODsLVs?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12eee6e5-45d6-4eb4-2e49-08df4b2a17cc
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 19:27:07.0561
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3eYE40h4jnjkE2qKK8rhugNU3Bff5BOdTFUoUvlcVviIACaJVcJwL1ZLqiZWRUi+qM1cOeEVJ3uQ3GXYp1fD5J+9oCS3wR15+43vHahpceqFoH1BPfAareJYCga1bbYU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7390
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_112537_198574_9F34EF4D 
-X-CRM114-Status: GOOD (  22.38  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261125_112712_544005_BF36690A 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -149,95 +162,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-dwxgmac2_get_rx_header_len() only reads the split header length (HL)
-from RDES2 when RDES3.L34T is non-zero. L34T, like all RDES3 status
-fields other than bits [31:28], is only valid on the last descriptor
-(LD set). HL, on the other hand, is only valid on the first descriptor
-(FD set), and the databook's "Header Length Availability in RDES2"
-table states that HL is available in RDES2[9:0] when FD=1 and LD=0,
-without any dependency on L34T.
+From: Frank Li <Frank.Li@nxp.com>
 
-A frame spans multiple descriptors when it is larger than the RX buffer
-size. This can happen at any MTU, as XGMAC_CORE_INIT_RX sets GPSLCE and
-WD with GPSL = XGMAC_JUMBO_LEN (16368), so the MAC accepts frames up to
-16368 bytes while dma_buf_sz is only 1536 at an MTU of 1500.
 
-For such a frame, the first descriptor has FD set and LD clear, and
-L34T is not valid there. When it reads as zero, hlen stays 0 and
-stmmac_rx_buf1_len() falls through to the rx_not_ls path, which counts
-buffer 1 as a full dma_buf_sz although it only holds the split header.
-The frame length accounting is then wrong and the skb is built with
-the wrong data.
+On Wed, 25 Nov 2026 19:03:11 +0100, Dario Binacchi wrote:
+> Add boot phase properties to the resources needed during the boot
+> process.
+> 
+> The BSH SMM M2 and M2B need UART and NAND access.
 
-Read HL whenever the first descriptor is not also the last one, and
-keep the L34T check for single-descriptor frames. Also return early
-when FD is not set, as HL is not defined there. The caller already
-ignores the header length for non-first descriptors, so this part
-does not change the current behaviour.
+Applied, thanks!
 
-Fixes: 96147375d49f ("net: stmmac: xgmac: Only get SPH header len if available")
-Co-developed-by: Abhishek Chauhan <abhishek.chauhan@oss.qualcomm.com>
-Signed-off-by: Abhishek Chauhan <abhishek.chauhan@oss.qualcomm.com>
-Co-developed-by: Sarosh Hasan <sarosh.hasan@oss.qualcomm.com>
-Signed-off-by: Sarosh Hasan <sarosh.hasan@oss.qualcomm.com>
-Signed-off-by: Sagar Cheluvegowda <sagar.cheluvegowda@oss.qualcomm.com>
----
-This fix was split out of the net-next L2 split header series after
-review of v5, where the multi-descriptor case was pointed out to be
-reachable with the current GPSL setting and to need a separate fix.
-The net-next patch will be reposted on top of this once it is in
-net-next.
+[1/1] ARM: dts: imx6ulz-bsh-smm-m2: add boot phase properties
+      commit: 23ee270cda346946a155ec0cd6874781e9aa379b
 
-v5 of the net-next patch:
-https://lore.kernel.org/netdev/20261120005243.3724402-1-sagar.cheluvegowda@oss.qualcomm.com/
-Review comment:
-https://lore.kernel.org/netdev/179548403438.3135.1804854034587814346@kernel.org/
-
- drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h       | 1 +
- drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c | 9 ++++++++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-index f8ab347f7b5b..0cdc0bc695c2 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-@@ -437,6 +437,7 @@
- #define XGMAC_RDES3_OWN			BIT(31)
- #define XGMAC_RDES3_CTXT		BIT(30)
- #define XGMAC_RDES3_IOC			BIT(30)
-+#define XGMAC_RDES3_FD			BIT(29)
- #define XGMAC_RDES3_LD			BIT(28)
- #define XGMAC_RDES3_CDA			BIT(27)
- #define XGMAC_RDES3_RSV			BIT(26)
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
-index 6719ac6e395b..ed38aa358642 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_descs.c
-@@ -292,7 +292,14 @@ static int dwxgmac2_get_rx_hash(struct dma_desc *p, u32 *hash,
- 
- static void dwxgmac2_get_rx_header_len(struct dma_desc *p, unsigned int *len)
- {
--	if (le32_to_cpu(p->des3) & XGMAC_RDES3_L34T)
-+	u32 rdes3 = le32_to_cpu(p->des3);
-+
-+	/* HL is only defined on the first descriptor */
-+	if (!(rdes3 & XGMAC_RDES3_FD))
-+		return;
-+
-+	/* L34T is only valid on the last descriptor */
-+	if (!(rdes3 & XGMAC_RDES3_LD) || (rdes3 & XGMAC_RDES3_L34T))
- 		*len = le32_to_cpu(p->des2) & XGMAC_RDES2_HL;
- }
- 
+Best regards,
 -- 
-2.34.1
-
+Frank Li <Frank.Li@nxp.com>
 
