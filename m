@@ -2,153 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092F5606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B80606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d5G855+q;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=d5nF1i1T
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a0RJfpAY;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Xb4Ek3JS;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Sj1AvK8B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=WZ+Ybr+GiPJ8yHE+GILk+KRcuB7/fK8Xmj+RE5QCV6A=; b=d5G855+qouRk8mWjxy8yIiJMUX
-	WABM5UNPRsIb/yPJPDOKnDfwncG7EInqoCp6/OU7nheN8QuFPT04D7CuvrHw+SsbcKwpVqLlYB7K6
-	U/3LSpGs9UbougZFAB7+G1RHq9b65Phj1gOMKixrLsonEUtpTKjeRU74adZTFmhFQwpDHOE/7u/zD
-	Y7gF9StYIRuwqHNFZoPcEcU8gBWcIS8qKZfbZahhdMmVsrA/5W7LTwz5sEru3IUU1SqkEx1i8UptE
-	uAGD9l3QkVc4jvlBPag6scZ7z0fdwLXiEE1l605J7qAUdVe+Rui6mghdMeDV4C6tXgkpt7vFWiEDX
-	s0OLnq2g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=utdasQYRvDkNeySeJoOR7BHLdC3SmZiu0oAuKRibaD0=; b=a0RJfpAYJTH7ip
+	e5otkZP3FzZfat6vW/MwnZGWRCuWxxCtYd+D9IwRaC/TSp+PiXST3sT5NGRoBfdoYGB/A2w5r5lu3
+	BQBrTtn2X2aLHRL24eLaW1hgKAf2p1UhKavV6ViKPPd0ye3W0IuphauFRWWVQ6/4rL4ZpSbZ95/67
+	fNtIGMeOLMQYEqztbq0IeBDs/+dvlelyJMivF1vXpoRQzCh+5FqK4/0h5RXldTQ/szRrjahZQHSxK
+	rixeNB4PbvcFkq+gyN4kIzBvOK01vKWAIyP/J/uahHhlt+1OX/TzlHuXny7nQsZ41aO3t+YMXXL9z
+	EOxfhFdhxEps9y+SjPTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDD-0000000Arpd-2m7i;
-	Wed, 25 Nov 2026 17:55:19 +0000
-Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	id 1xWHDF-0000000Artb-36UH;
+	Wed, 25 Nov 2026 17:55:21 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHBk-0000000Aq4H-2EiK
+	id 1xWHC7-0000000AqRM-1dZN
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 25 Nov 2026 17:54:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=utdasQYRvDkNeySeJoOR7BHLdC3SmZiu0oAuKRibaD0=; b=Xb4Ek3JStYLXs08BBVZl9mE+53
+	1u9PnxtUyjG0A8sGYqxkaiqsDG+T/SalKsMUzSwT74Cya8kVbOYVRsVyVotdStARwrG6vlddPZN53
+	JnklTo2SJ/D7ME8eKV+eMc9EgHJ2DsdsXzH/BgqrMEoGXMecJmIh2bl1gAtvp033N8MEMgPftiI1q
+	19roBqt/pLR8vYFCKYSWk02ZOUKirsUY5N6TD639vLFN55oKFSXh1DFKg2FsMQXsE6m+IRteUz9Ok
+	/1ysslfLHlwmdyco3V6rJTAEfavg8Y6qVQHU30yh5iF+E2Y4kRlSb85RPWbMsYeCfC7Ze+bVsJq+v
+	Qmf/E1Ug==;
+Received: from smtpout-04.galae.net ([185.171.202.116])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHC2-00000005bzx-0tOZ
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:53:55 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M12K1pl964EqNjQDyc8tsvr5fxHehlxKfkasdxzfiE+w5URIJxLeHUPETSZqrBSUMZBVdEOWoJqISIL5JR8aWQAVdgf9oNbJ5x22bFXz+Llelrf+/ERUzaZU1ImAwh/LOYAx9MemHrWujhr3OV67MmtSSQJOaR2ti8RrHLJTezma1JvXiJifrlAhXcWXNZwW6XVgm7j9dfPR16aWD8g4zV9mcs6iNuFOBmpt5XbFhGIdI2oh9/l7GssCdzZ+MOvXq+BEWtREaFqg7JsYttQbE5b8WUx9rdXnCWTZnDC6ESxjwfMqsQGMElSmflcOIO6rrgKS0v6U4cWADpYgflccCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WZ+Ybr+GiPJ8yHE+GILk+KRcuB7/fK8Xmj+RE5QCV6A=;
- b=Gi1ZXXolZ5QEtMY0SJFVAtHylX+QQcGnWsc5964XcqLphY5sRlHn8MuDKamp9U4QHFwZ8JvUXUUj1iqIiFqLd1R3AgvUDVHhhpjGMVuD2v2sGBywf77qeqnVDVYvcCa2aQeQBSO3AOSWR5gbGPhTStYFVRuUtLeRBkyA5kr4xPkbPqeB/m+Ckahj/yKYCpgVuEpBFQ3vo3kECqRAdguaH2hsEdHSQKUJEOxLy7VqWfV6IJYCTLB0/fbgT/aRtSiK47/vN1u8IHc1Mm81fo/N3h4Vh+4fD5cw2WOGiJmi1vyIhDgDYgZJXsoOOrn70QNubnhABxWW5Ck/2OdbujAXPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WZ+Ybr+GiPJ8yHE+GILk+KRcuB7/fK8Xmj+RE5QCV6A=;
- b=d5nF1i1TAP46bBJo+kSkGRnLu7BofFi8D0suF58WcgD7kd/GKqUFyKDBh5FSSyZY918U5tcInEIC3scJT0jbanEJhEiaxwR/oaaFbZmW8Be56ywjnWo9rS7oSDmF62kvj+AXQTavmOG929HWlVUOD7zeiSevApn1p+D7wjcJvqb/kQNKu6TuExKZ3yoYqp3/vMsh9iaZwN9BVlpxwupuoFz2HvNdBGoISXEFYoI/Iokd5EYB9bEzbi9FaOhVyhWCIUFWvkpmcf+T5be81zHUflOW+LXU+EuY8b0oNjP0oB6lmfE9lwUa0d5hm1Dva2ve9HDBTPfKSXb0eHIv54KmxQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by MI9PR04MB039066.eurprd04.prod.outlook.com (2603:10a6:290:b0::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Wed, 25 Nov
- 2026 17:53:44 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 17:53:44 +0000
-From: Frank.Li@oss.nxp.com
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Mathieu Othacehe <othacehe@gnu.org>
-Subject: Re: [PATCH v4 0/3] arm64: dts: freescale: imx93-var: Add Cortex-M33 configurations
-Date: Wed, 25 Nov 2026 12:53:38 -0500
-Message-ID: <179562921092.3128061.14859076263868776714.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1795197853.git.stefano.r@variscite.com>
-References: <cover.1795197853.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: CPBP307CA0015.DNKP307.PROD.OUTLOOK.COM (2603:10a6:380:2::9)
- To MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+	Wed, 25 Nov 2026 17:54:10 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 38EC6C2B9C2;
+	Wed, 25 Nov 2026 17:54:13 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 40D0B60480;
+	Wed, 25 Nov 2026 17:54:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9622211E6B0C5;
+	Wed, 25 Nov 2026 18:53:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795629243; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=utdasQYRvDkNeySeJoOR7BHLdC3SmZiu0oAuKRibaD0=;
+	b=Sj1AvK8BgUEvfwlaQ/xrJblnUYR89D8CFBmtrEa6fYKsN5ZyVVt8uPgWRzNchDvJwpG2ZB
+	WtcyORoRb0lLLgNhriuPtvOv5eTD5ZCkeAIHqwyN+4lRKfyng8i6j5tXHdM0gtS3o2+BPw
+	VjzSPE/wOXToYO0vjQnjaIIOu6TLgETL8KN7hmR+hw7XKRi9wfBaCsE0u2y8ax5Mj191NN
+	mFDz0y0PTXnwEBjC9UEDTb1LvCDbfz08YQAqxuXFvwvRGQu/L4jeHRKimwVUjAQ7mjh+E8
+	BgREgH/zeVSeJonjO2YQFQkYjy8LkjpqFinsW9FYaql/xOQjSPMNgRKJFRgc0g==
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Date: Wed, 25 Nov 2026 18:50:41 +0100
+Subject: [PATCH v4 28/32] drm/tests: atomic: add tests for
+ drm_atomic_shutdown_encoder()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|MI9PR04MB039066:EE_
-X-MS-Office365-Filtering-Correlation-Id: b18530d0-1100-4563-ea92-08df4b1d0c62
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|366016|7416014|1800799024|19092799006|10067099003|261021121427099003|11063799006|56012099006|261009223027099003|261022075727099003|261102123227099003|18002099003|6133799003|22082099003;
-X-Microsoft-Antispam-Message-Info: hlVR95lnQxkcEP1xKPbd7MF7X7bBR3z2skxi1qxElm/or0UR9Lp/pyUrTI0zB4BQLl2eggBr/Px5Li5/4kcJMLUb9oHFhv0bpvMe70OQuIzRG62yxLalnh43kpsl63wFxokm22KTFkIYxZEG6dtxAqZTxmlinLwk+2a7OLT9IAcYGXqlVysTfbbugVZt1HI5aSBex1FvG+htgKrkEgLwNUanBewq4okwYq1ujR2OMeeYIEIpM3GpdJtCZxBHdXIn+74d4cUStgjaSbTJNkP7aC6sj4gzK2q3DGJUMX1g3dZsFSWnzWMtX6g7G937/Oo++8lKwZEUPRbmLnxwOQNdDAPAwb9dgxJAUwcdE432m/M9TDw7gdqIQIw/gfLxIX9tXQU5c1zScscFo5J1i3ZkamcOJrzTztobcWQb/U6r4+PsPIrx3itfrwvurt+7DPrriPjveiFtD/MTRuiHQPLUXi1a+60rP4d1RsRG9NmjfLn4LRMPwrKQqmViDNRVsKdHU+lF5tk50hi+3ouPxGjKoTZSUfrXLoOXmJWXbV63IquthoQfADU+3/LMDKEdRTVh7nrehIof/5tDYhvMb47UkN/i7sduypt3Jo3TVvhuWSAmZFEtKO4QCXvyoa5XlEGyTw/1ZSEAkYPg+bVP0AWe3kUmezWtakXv6JwgDsptgrk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(366016)(7416014)(1800799024)(19092799006)(10067099003)(261021121427099003)(11063799006)(56012099006)(261009223027099003)(261022075727099003)(261102123227099003)(18002099003)(6133799003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YnZFbnZtcGNRUDVtcFFsYU1aUzl5WXU2VXZucWl2V2E2REp3SWJTTjIxdDI1?=
- =?utf-8?B?N1UyM3gxQjdDR2piTGJWYmFSTU1FdVdldm9lc2FtSmltKzNsUGMyT1dBMkh6?=
- =?utf-8?B?eHBPb0VhanZSMllDbE40MUZJWDNkYWs2eXIzYngvcXYva0FzMWthV3dqNDlN?=
- =?utf-8?B?TUJNYnNML2ZRSVJoWjJ1OUtlV1Z4TGJFNXJwRzVaYzVXWldGMEdadmsyLzZZ?=
- =?utf-8?B?R1pjcHIreVI4VFY2a29FUDN5OUt6bjN2SXQrNzkwUDdOQjlGbng1SnRMbkJN?=
- =?utf-8?B?UEorTDdkckdSc0dEbEo5aDVEVTFyeUJBbU81Snl5ajZaNklzaFpvOWFwZWxK?=
- =?utf-8?B?MW45QjV6U1J3cHhJL1lVRjBEY2NURHlMMFpNbGIyZHdFTEVjWktJZ0hWQXYv?=
- =?utf-8?B?ZENlM0tZRWRnUWRBZTVVcUNaQ1NPOFk3c0JSZFlPazUvYnZkVmxqNmdtUW9k?=
- =?utf-8?B?WTZXcGRldlluUWh6aUc1eDdsYWJLMEZNdlV0WlJwdjZ6WWQ5Rk1ENis3b3hF?=
- =?utf-8?B?WitxTTJqam1weTR0SGttN1duWDdua0JzWWlMenRWYy9yakdLS2dYZzkybDZ0?=
- =?utf-8?B?OHEwTnBoLzQ3ZmhkeXdBOWtiVjZTeFZ1VDlFK1hOaEU1U0dSQzg5SmJjY0tz?=
- =?utf-8?B?Y2Z0bjJ0QURKWHNDQXZMNEVtUnJrZmJZS3IrWTY0bFBUTTMxOFA5Q3RId0Qr?=
- =?utf-8?B?ZjIxK2padDFtM2QxK0dEM2x5NS9weDFiWWU5b1dNVWR2UDBJbVVOclF0WGwz?=
- =?utf-8?B?TjVzTGFjbnFUTUNxT2NycTZydTZYMmxRS01hVlFqWXFVVE5qVDRMWmUzeWxr?=
- =?utf-8?B?c3pGY20wa29CMEJNVXk0am0rWGtFQ2R5SEx6ZE53bGZ0ZHBUTnprbFUvRm1u?=
- =?utf-8?B?aEhoY1lFQTZBU3ZCUzB2TzEzU2JHRjU3Y3BuaTBZbzJVV05ReDhEdmw5QitT?=
- =?utf-8?B?RUZMS0I2ankvWVp0czBIRUl6OUlrMW1ab1lqeUVxTy9xLzMxM0hBc2hPNmNv?=
- =?utf-8?B?ZVo1eEtWMjlWbUdBUWV2bTNHWkJjMkdwallUM1dqZFZBcEViakhoSnN6WXRy?=
- =?utf-8?B?aUMxMHNqVC9KM2MycUVtMDcyczJrUHNpRW9jQXZjREpUaFJES0h2NmRRSWps?=
- =?utf-8?B?Y0x3ZkFkaUVOTk5lNlNpYmllbmtnRG9IMzVXZDROcWp4LzFodE04T0tUbzcr?=
- =?utf-8?B?cTc5Q3N1VTMyNGQ4ZjhLNzduaVJDSmhJM3RiNklNU0MwNHNYQXA4V0lxTkFl?=
- =?utf-8?B?czlqREQyZ0NmMTV5d3puSVJNemQvOTVRVzR0Qjg4NnNQOHJWRmY3dG1qUll4?=
- =?utf-8?B?dklQT1Nic2VXeWZrZDJZYkdCcm5EM2JBWVlLdGM3TklLWXh6ZVU0VkxlRkQ0?=
- =?utf-8?B?aG1oVE9SMklZL2lsUG9ya2REUXBzWXVlRzBWK3d6RWFOTkxXb1lwWmErSnlq?=
- =?utf-8?B?RC9xMmF2d3lFZkdKaGpSakRDZFhVMWUwRFNtdktxODkyNnZNcXhyNlFUUzdF?=
- =?utf-8?B?bW0xRGVmS2J0SWZ3cjBmY3VuM0lxbWczZG0vWnIxZkcyRGxMS0pTQ2xpWTdV?=
- =?utf-8?B?TXljc05MV2Zad3BCWGNHenM0aGVyMFFIRmExb0hUMVZNenJ1RitYQ2FTb2sv?=
- =?utf-8?B?cjgwNFYwSjNqUUx2NnNPblBYTzU5aFNuMFBDMFBucUNJOTByTGFMVmFITlMy?=
- =?utf-8?B?OGEzZFdzQitCS0cxajRpUklsdVNCd2ljMFNzQVdDU0QvZUJsc1NPZVVVWmUz?=
- =?utf-8?B?Znl1WEJPelBFOXdyY2NpeU44SG5IZGxlRVpHc1BUTllsc2JielQ1TW5lRHJM?=
- =?utf-8?B?bTNxY0xJaEl2dm9LTEptTlUzWmZENTc2cGticDdDT0huRGlNdStPb0VtQ29k?=
- =?utf-8?B?K1dtYmV1OTUyK21SSllsV0txY29peld1eUtQOUFxcDNYRklhTit0aDZXUDNa?=
- =?utf-8?B?ZE9vczRpS2wwTE5HOHB3QXcyciszNWNSZ1ZueENXWWZnckt1a1E2Ky9kNE41?=
- =?utf-8?B?ZGFhL3FVamNsaVlDYnZhbWFlTXk2ckxJRTNpT0Vhd0tNeTk0aWl4dzRwdGhN?=
- =?utf-8?B?MDgxUEtKV2ZjWVNxemxJem9CNHhzT1NISFZFUHpHeTJzQVVnU3FrRWRzcnlF?=
- =?utf-8?B?QVFaRGMrMGdWN05LZlpSYnZFb0NKSHgrRE9xd21EOU5EcXhFSjZBdFQxUGln?=
- =?utf-8?B?YjNtdmxJQ25LV1M0eFB6NVZlK3NwOVZ5TUhOTnZ4UUdaMWFycnRMaGpJWjhW?=
- =?utf-8?B?N3hZdTlJY3p5YTYwWjk2YnFzUmpKVTVSUUF4MzBiTU45NE0xUXdocm9SYzFJ?=
- =?utf-8?B?czAxaTh5c2ExTWpKSTdZRU1nL0hOaFMwMjczaWY5djFWS082RG9Kdmo1bVcx?=
- =?utf-8?Q?l0NjD0x8a9j0vQ2eE5jTlqh1Pg8dSyWHyIm/T?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b18530d0-1100-4563-ea92-08df4b1d0c62
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 17:53:44.4818
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M+iEA3BT9zgWZc3fwH6KTgPonhJkFCQcsDSlHrtJRugD8WpgjjA9NcMHA5cGh71xtu1ZbjU6Pj4PM9mA+WIxBQqKlBBEcp0ELPzpCbW9NY4+TCvZ/MKzFzLx1llWF3K6
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI9PR04MB039066
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-drm-bridge-hotplug-v4-28-822722850492@bootlin.com>
+References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
+ Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16.0
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095350_375298_27797F82 
-X-CRM114-Status: GOOD (  12.07  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261125_175406_236171_7F04C008 
+X-CRM114-Status: GOOD (  19.12  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -159,40 +110,262 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Frank Li <Frank.Li@nxp.com>
+Add KUnit tests to exercise the newly added drm_atomic_shutdown_encoder(),
+including in the case of a card with multiple CRTCs.
 
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-On Fri, 20 Nov 2026 19:32:27 +0100, Stefano Radaelli wrote:
-> This series adds Cortex-M33 overlays and combined DTBs for DART-MX93 on
-> Sonata and VAR-SOM-MX93 on Symphony.
-> 
-> The first patch corrects the Symphony resource table address. The second
-> moves the M33 reserved memory and remoteproc configuration into a common
-> include shared by both modules. The third adds the M33 overlays and
-> combined DTBs, and moves the common include from the module DTSI files to
-> the overlays. M33 memory is then reserved and remoteproc and MU1 are
-> enabled only in the M33 variants. The overlays also reserve the firmware's
-> peripherals and disable dependent devices.
-> 
-> [...]
+---
 
-Applied, thanks!
+New patch in v3
+---
+ drivers/gpu/drm/tests/drm_bridge_test.c | 209 ++++++++++++++++++++++++++++++++
+ 1 file changed, 209 insertions(+)
 
-[1/3] arm64: dts: freescale: imx93-var-som: Fix resource table address
-      commit: 673c77963db746d03fe4a8d4bd996f9d1f434b92
-[2/3] arm64: dts: freescale: imx93-var: Extract common Cortex-M33 configuration
-      commit: 1297336e072497048e303f78405b09bf84bfc38d
-[3/3] arm64: dts: freescale: imx93-var: Add Cortex-M33 configurations
-      commit: ea0a01add4c61d799453842c65c7073f1bb89854
+diff --git a/drivers/gpu/drm/tests/drm_bridge_test.c b/drivers/gpu/drm/tests/drm_bridge_test.c
+index f56209c0ab1c..06d08d1316ae 100644
+--- a/drivers/gpu/drm/tests/drm_bridge_test.c
++++ b/drivers/gpu/drm/tests/drm_bridge_test.c
+@@ -5,6 +5,7 @@
+ #include <linux/cleanup.h>
+ #include <linux/media-bus-format.h>
+ 
++#include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_atomic_state_helper.h>
+ #include <drm/drm_atomic_uapi.h>
+@@ -951,6 +952,213 @@ static struct kunit_suite drm_bridge_alloc_test_suite = {
+ 	.test_cases = drm_bridge_alloc_tests,
+ };
+ 
++/*
++ * Two CRTC/encoder/bridge/connector pipelines on the same DRM device, to
++ * check that drm_atomic_shutdown_encoder() only stops one.
++ */
++struct drm_bridge_two_priv {
++	struct drm_device drm;
++	struct drm_plane *plane[2];
++	struct drm_crtc *crtc[2];
++	struct drm_encoder encoder[2];
++	struct drm_bridge_priv *bridge[2];
++	struct drm_connector *connector[2];
++};
++
++static const struct drm_bridge_funcs drm_test_bridge_atomic_no_destroy_funcs = {
++	.atomic_enable		= drm_test_bridge_atomic_enable,
++	.atomic_disable		= drm_test_bridge_atomic_disable,
++	.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
++	.atomic_duplicate_state	= drm_atomic_helper_bridge_duplicate_state,
++	.atomic_create_state	= drm_atomic_helper_bridge_create_state,
++};
++
++static struct drm_bridge_two_priv *
++drm_test_bridge_two_init(struct kunit *test)
++{
++	struct drm_bridge_two_priv *priv;
++	struct drm_device *drm;
++	struct device *dev;
++	int i, ret;
++
++	dev = drm_kunit_helper_alloc_device(test);
++	if (IS_ERR(dev))
++		return ERR_CAST(dev);
++
++	priv = drm_kunit_helper_alloc_drm_device(test, dev, struct drm_bridge_two_priv,
++						 drm, DRIVER_MODESET | DRIVER_ATOMIC);
++	if (IS_ERR(priv))
++		return priv;
++
++	drm = &priv->drm;
++
++	for (i = 0; i < 2; i++) {
++		priv->bridge[i] = devm_drm_bridge_alloc(dev, struct drm_bridge_priv, bridge,
++							&drm_test_bridge_atomic_no_destroy_funcs);
++		if (IS_ERR(priv->bridge[i]))
++			return ERR_CAST(priv->bridge[i]);
++
++		priv->plane[i] = drm_kunit_helper_create_primary_plane(test, drm,
++								       NULL, NULL, NULL, 0, NULL);
++		if (IS_ERR(priv->plane[i]))
++			return ERR_CAST(priv->plane[i]);
++
++		priv->crtc[i] = drm_kunit_helper_create_crtc(test, drm,
++							     priv->plane[i], NULL, NULL, NULL);
++		if (IS_ERR(priv->crtc[i]))
++			return ERR_CAST(priv->crtc[i]);
++
++		ret = drmm_encoder_init(drm, &priv->encoder[i], NULL, DRM_MODE_ENCODER_TMDS, NULL);
++		if (ret)
++			return ERR_PTR(ret);
++
++		priv->encoder[i].possible_crtcs = drm_crtc_mask(priv->crtc[i]);
++
++		priv->bridge[i]->bridge.type = DRM_MODE_CONNECTOR_VIRTUAL;
++
++		ret = drm_kunit_bridge_add(test, &priv->bridge[i]->bridge);
++		if (ret)
++			return ERR_PTR(ret);
++
++		ret = drm_bridge_attach(&priv->encoder[i], &priv->bridge[i]->bridge, NULL, 0);
++		if (ret)
++			return ERR_PTR(ret);
++
++		priv->connector[i] = drm_bridge_connector_init(drm, &priv->encoder[i]);
++		if (IS_ERR(priv->connector[i]))
++			return ERR_CAST(priv->connector[i]);
++	}
++
++	drm_mode_config_reset(drm);
++
++	return priv;
++}
++
++static int drm_test_enable_pipeline(struct kunit *test,
++				    struct drm_device *drm,
++				    struct drm_crtc *crtc,
++				    struct drm_connector *connector,
++				    const struct drm_display_mode *mode)
++{
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
++
++	drm_modeset_acquire_init(&ctx, 0);
++
++retry:
++	ret = drm_kunit_helper_enable_crtc_connector(test, drm, crtc, connector, mode, &ctx);
++	if (ret == -EDEADLK) {
++		drm_modeset_backoff(&ctx);
++		goto retry;
++	}
++
++	drm_modeset_drop_locks(&ctx);
++	drm_modeset_acquire_fini(&ctx);
++
++	return ret;
++}
++
++/*
++ * Test that drm_atomic_shutdown_encoder() disables the CRTC feeding the
++ * encoder and detaches its connector.
++ */
++static void drm_test_drm_atomic_shutdown_encoder(struct kunit *test)
++{
++	struct drm_bridge_init_priv *priv;
++	struct drm_display_mode *mode;
++	struct drm_bridge_priv *bridge_priv;
++	int ret;
++
++	priv = drm_test_bridge_init(test, &drm_test_bridge_atomic_funcs);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
++
++	mode = drm_kunit_display_mode_from_cea_vic(test, &priv->drm, 16);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, mode);
++
++	ret = drm_test_enable_pipeline(test, &priv->drm, priv->crtc, priv->connector, mode);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	bridge_priv = priv->test_bridge;
++	KUNIT_ASSERT_EQ(test, bridge_priv->enable_count, 1);
++	KUNIT_ASSERT_EQ(test, bridge_priv->disable_count, 0);
++	KUNIT_ASSERT_PTR_EQ(test, priv->connector->state->crtc, priv->crtc);
++
++	drm_atomic_shutdown_encoder(&priv->encoder);
++
++	KUNIT_EXPECT_EQ(test, bridge_priv->disable_count, 1);
++	KUNIT_EXPECT_NULL(test, priv->connector->state->crtc);
++	KUNIT_EXPECT_FALSE(test, priv->crtc->state->active);
++}
++
++/*
++ * Test that drm_atomic_shutdown_encoder() is a no-op when the encoder is not
++ * driving any output.
++ */
++static void drm_test_drm_atomic_shutdown_encoder_disabled(struct kunit *test)
++{
++	struct drm_bridge_init_priv *priv;
++	struct drm_bridge_priv *bridge_priv;
++
++	priv = drm_test_bridge_init(test, &drm_test_bridge_atomic_funcs);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
++
++	bridge_priv = priv->test_bridge;
++
++	drm_atomic_shutdown_encoder(&priv->encoder);
++
++	KUNIT_EXPECT_EQ(test, bridge_priv->enable_count, 0);
++	KUNIT_EXPECT_EQ(test, bridge_priv->disable_count, 0);
++	KUNIT_EXPECT_NULL(test, priv->connector->state->crtc);
++}
++
++/*
++ * Test that drm_atomic_shutdown_encoder() only stops the pipeline of the
++ * given encoder and leaves the other CRTC untouched.
++ */
++static void drm_test_drm_atomic_shutdown_encoder_two_crtcs(struct kunit *test)
++{
++	struct drm_bridge_two_priv *priv;
++	struct drm_display_mode *mode;
++	int ret;
++
++	priv = drm_test_bridge_two_init(test);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
++
++	mode = drm_kunit_display_mode_from_cea_vic(test, &priv->drm, 16);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, mode);
++
++	ret = drm_test_enable_pipeline(test, &priv->drm, priv->crtc[0], priv->connector[0], mode);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	ret = drm_test_enable_pipeline(test, &priv->drm, priv->crtc[1], priv->connector[1], mode);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	KUNIT_ASSERT_EQ(test, priv->bridge[0]->enable_count, 1);
++	KUNIT_ASSERT_EQ(test, priv->bridge[1]->enable_count, 1);
++
++	drm_atomic_shutdown_encoder(&priv->encoder[0]);
++
++	KUNIT_EXPECT_EQ(test, priv->bridge[0]->disable_count, 1);
++	KUNIT_EXPECT_NULL(test, priv->connector[0]->state->crtc);
++	KUNIT_EXPECT_FALSE(test, priv->crtc[0]->state->active);
++
++	KUNIT_EXPECT_EQ(test, priv->bridge[1]->disable_count, 0);
++	KUNIT_EXPECT_PTR_EQ(test, priv->connector[1]->state->crtc, priv->crtc[1]);
++	KUNIT_EXPECT_TRUE(test, priv->crtc[1]->state->active);
++}
++
++static struct kunit_case drm_atomic_shutdown_encoder_tests[] = {
++	KUNIT_CASE(drm_test_drm_atomic_shutdown_encoder),
++	KUNIT_CASE(drm_test_drm_atomic_shutdown_encoder_disabled),
++	KUNIT_CASE(drm_test_drm_atomic_shutdown_encoder_two_crtcs),
++	{ }
++};
++
++static struct kunit_suite drm_atomic_shutdown_encoder_test_suite = {
++	.name = "drm_atomic_shutdown_encoder",
++	.test_cases = drm_atomic_shutdown_encoder_tests,
++};
++
+ /**
+  * drm_test_bridge_chain_verify_fmt - Verify bridge chain format selection
+  * @test: pointer to KUnit test object
+@@ -1381,6 +1589,7 @@ kunit_test_suites(
+ 	&drm_bridge_get_current_state_test_suite,
+ 	&drm_bridge_helper_reset_crtc_test_suite,
+ 	&drm_bridge_alloc_test_suite,
++	&drm_atomic_shutdown_encoder_test_suite,
+ 	&drm_bridge_bus_fmt_test_suite,
+ );
+ 
 
-Best regards,
 -- 
-Frank Li <Frank.Li@nxp.com>
+2.56.1
+
 
