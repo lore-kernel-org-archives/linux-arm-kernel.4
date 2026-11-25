@@ -2,73 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E74606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFBA606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c519ddZv;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=h1b0F57p
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hOAq5HHB;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=c1oEkTfb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EwqXgM2FKN08CB+8H4O0/VbJ4ckFqMzW77Fps/c3mB0=; b=c519ddZvBgkG3n
-	tGK5YXvDRdYHcB/nuxcLD00c9YYKynSYkpR5pxSf34MgCQuSTpKv3R7V0/POPRCRqGaodltocZ7xd
-	AxKb75LK73MafhFzgc2ZhXscCdaa3fZ1dtCnoqIqoLma8D77aiuc9N3CUbCaX8lTwxxgOFM1lpQy5
-	3nDziV8xIU/21ONiP4bm/Zv6DqxdrwvD7uqKpH2rTWSl9OcsawlAnff3fZFqu6EtCDUyIYTrmxgjh
-	rEmynC+IMK1MY+7aSBTYXVPDjYla+GhpGDgA8lG2P9X+z/oobGJihWkywYLsUDx57xDkVE7y493Xz
-	Y0Eh47l26AdghbjSWwpA==;
+	List-Owner; bh=GLPPAbg8ZJXtNBuP/olSVfNBE15bH+sF2xUL16ntd9E=; b=hOAq5HHBx17omw
+	x9sPdtCjuG+nG7GRr4w8qP5y/CDgzS7UgobT9en5W5wPspViO9dZ2JS1YvDpIUysdvOJDGsZ7ZlSz
+	US0ni0D+0q0yCveZn2Zpd3cpkSF4W3AwDq2Af0gaQH7uu5Tq7TxPtGQGe381Bs5gwoJRAPywZxGWm
+	tWOOMnlk0EtKLrXhQ8wE7S08/FH8/P6VLIenewPRxVon/GwIK4KLgEp1/ZZ0OY4d0ZmbEFYp8VJuz
+	C7u93NhC23TXM6fRdtHehfWR8oqP7mQ5AaQ5ZU0lxn0QIqYCP4NXNdKR8rFJ0/LogPhOFBfZseDMu
+	2F8O/RQw7ABJXmC88gDQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0XO-000000087CD-2oLI;
-	Wed, 25 Nov 2026 00:07:02 +0000
+	id 1xW0XP-000000087D2-0vD9;
+	Wed, 25 Nov 2026 00:07:03 +0000
 Received: from mail-dy1-x1333.google.com ([2607:f8b0:4864:20::1333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0Wx-000000086v3-3Tlp
+	id 1xW0X2-000000086zJ-2UWk
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 00:06:37 +0000
-Received: by mail-dy1-x1333.google.com with SMTP id 5a478bee46e88-386b8f2f671so2345078eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:06:35 -0800 (PST)
+	Wed, 25 Nov 2026 00:06:42 +0000
+Received: by mail-dy1-x1333.google.com with SMTP id 5a478bee46e88-38190551625so10330037eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:06:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1795565195; x=1796169995; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1795565200; x=1796170000; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=EwqXgM2FKN08CB+8H4O0/VbJ4ckFqMzW77Fps/c3mB0=;
-        b=h1b0F57pixVJRlbCSDClWoRMNJycylvOf/Mx1mcDmHRK9/7RauMnCMY96J4zCpL8NX
-         rcNts9HN6OupPtGpr3n2easCWwVc/ILtLoeDgq+FuYMaJz3z4VL6N8df1C5mgeIxoLOe
-         DULpG9ox7UAftnn/r+dw5d1NVqC10fRA5o88Y=
+        bh=GLPPAbg8ZJXtNBuP/olSVfNBE15bH+sF2xUL16ntd9E=;
+        b=c1oEkTfbVBg9a3rBRqK2e4GF7r6lK52YIRhxyrzxIitbxCuhiM4roaE5hkSzBRAr/n
+         5mtJuD8geVgUkPNUE+vVq7W5rI0EpB0FUbZMdyH58EKtSn9PfilCCN3KNtECUcwG/Nrh
+         19jcwedFOEocZ2xUZcJX1o9n+j0ebML4Rqka4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795565195; x=1796169995;
+        d=1e100.net; s=20260707; t=1795565200; x=1796170000;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=EwqXgM2FKN08CB+8H4O0/VbJ4ckFqMzW77Fps/c3mB0=;
-        b=qGfAMwTvH80sRqXy7F+HTPMMpBFgma+4PSDJPwvDol8W9RUUZ6rI9jcwGBH6cKc5GZ
-         ZDMu7V1QYjB/4uRcafcjec6XqJYwAB5KEw0wkas3aLMVBFlcZM+geyCSNp2/Rgi4D+wD
-         cbhfPfEBpdQAz9kYQo+8rxYpoSaVFU5Kxe7DYjaxjQtwmezRse2T97vw3ZwVk9bM7Mgk
-         IzphZAaJC4uVO5CqLurMZWTAz+mF62QkWnFjKA6FutoP6FV/MbgPsIUCZvM71LV9tl5f
-         UNKRT0sXTEATQD8gxuFTgftGTlXNzPih0YxlxL8iBtPkR75wjZ9zgHvieO/pGljsQCx9
-         AKYQ==
-X-Forwarded-Encrypted: i=1; AL+hErFDBTjww5h9MVCxkKdQdAtF9cKx0FQYBlgr2aip5WphyrUsmilTOsY6LBe3iwofyOC1lyLc3Jmjl3xtCz53zoiI@lists.infradead.org
-X-Gm-Message-State: APuU4Z+DKomwgoS8PgAM36tbM381Xts18RYbbdxFGIg0rC3w+WeqsbiA
-	ZKANJPOvcRdvl8r5ceQ4V4QUv6ezjidIGVE1Imc5gAuBSNU81cNIBUKVjbR3nEDLvg==
-X-Gm-Gg: AZFdTZcsaudxzaUZGNblQ1BvKz6xtJwG1hAqDzJd8AR0H6MkDyO/YMtvxtYpPy3APtb
-	R0IlLbT201gRf51BfBMQixYYLmg2oTeLwfjyxpnwyMnoHya8XaOYqFVlzD2r7oqTNK7q+e3TcMz
-	TK8HZCD6V3oHMFaUXXinn7BfaNhvUNzlZqAIYTq1Dgcz6l0hXDDGOVKfAsFaCKrIhIiPdXkrrhG
-	d6nOZZWGizynB7q6ZKZCzYINktUFZOTz8uodEHfTGYmnYgjDKMNtaa1D5SEZwfuKCjzLGnmnNcu
-	uoJ/FKNRiZWcfFjv0ScZGlMwbx0IcnatOSscydTRe6Rd7t5jj9yiuCNAnLxjQgZghO3dZB3f3hZ
-	l46nO3nnaohd5NRRJFd6gwO+9xguwqI2uOg9Gt+thRGN7r9KeRqV445qIZxIFqvBgCZZfKXiV8k
-	sm3kyyvwAfWgmO0GNMpec0r6AlrI4ZEqO9OmH+hlrvk2HT+SqC5C6fp9CrsDT3uZ7uXSH4etkvG
-	BboZHRyiA5ixY2HVRdPwpFZP13zzotsziiXej5OpRZhTlp5K4seyZp6nol0sZ8WKVveeUPCQYc1
-	yWriREa0yNBuKM5stoajfGqrulj7AwlHU33xT9xRiB35lPAhKVDSS7GGebmH23QO/aayXA==
-X-Received: by 2002:a05:7301:78c1:b0:386:a3fe:44de with SMTP id 5a478bee46e88-386a3fe4616mr10456351eec.28.1795565194862;
-        Tue, 24 Nov 2026 16:06:34 -0800 (PST)
+        bh=GLPPAbg8ZJXtNBuP/olSVfNBE15bH+sF2xUL16ntd9E=;
+        b=KpIutGeqXAg25rWEW9YCawD51cnrSk4f4I9FvcW3BskRwNncO8bZ2PemFLJ9/h8GAh
+         rcNk+qnvblg2vgkTYqqeMSs55p8FFvnvN2sWGK9mD2jqt2FjbZugPUisZsGUPall7Clr
+         G73tIqDcHhYcvjdBjgnbLqUEIyDZut4hk52QEMQew0rr02DchRYJmGtV83Bju5BZA5sy
+         QUy6hbI9rEqTWel+J31/LBRcds5631/Tb6ixmOrqKZfZ2NG/kgbeho+XOA6+P/MFBj77
+         UEJLbEfh/sjcZ/oNq1kOrjTVVWXkxrKtfO8sPaE17LB/5s2Mi5OkyUCE2Eh0JVc1hhlR
+         oZ8A==
+X-Forwarded-Encrypted: i=1; AL+hErEXUbwK0DkGmdC179HaMOYZJI7VQ7znhKZitHr5AOtpco8FZ1PR/Lr/IAoxkHecSSqxCbwHiIWUhdc0Gw0Q0sC6@lists.infradead.org
+X-Gm-Message-State: APuU4Z+km2IVDzoIdVgHBP4JxLZVUnnn8LpEgTpaI2hNyPJklQzFXx8t
+	/J+ePU1q9A+zXvdv2lEnoSETQjjJFlxytY28WLJkHTWlZtvJa75/gyQMc340Mv/l3qpzS9peLgl
+	F8Lo=
+X-Gm-Gg: AZFdTZflHjwknmIo7M0YLg0NWDLDlgf0DZHLlClmsd8zE170bVCFGzbJCUmUZEMXjsi
+	zkQ6D1qKIJ6M0PVorXCWFLO2smd7bji3k6ReBvvu2FNxiEAMsAypDL78m2KPyNA/YsieCOTzCtp
+	nptuI5rYyMUsYe2LSfU7d4k9ihF8eGaQysxpJdAABiVzwL8QiwBMXFGGXDW7FD+Xda+BLOMbb8Y
+	bkkIttgfs7hl65kE28CxZArMLVsZIQq4AWpQEwlEw3sjRYE/4Eoxju/x7AgjZzkcEivlON3jGWX
+	7EZl/rJd5n8Vas6IKndmkzbAvriq4AldP/aKlDF1olxKpRuR/e49FmzSHViQbku0CMiu2eUj0B6
+	lfQDPX/lRUH4pCVGcqYlCRhyPjNBTDC/Cq65Mj26WSzb+k3HxYHGCCAHcskLFRryzskrs6RWLqP
+	BVP4+4SaNKnBqkPURpNPmFrk8bhgrljw02G6nlXPJeGvb9cJCsmiqMytInttGTnhf42VuXZt6UQ
+	gUQhSifcsT06peYEknqo+Tpa9wLdymjABsap4l0KmLOhVmFeCqKwhGyvnEz8AS5JO9f6qb7jOee
+	UVRAmLELQuo7CLRjZA1LeJbWW2V9CXuyJEbgUxyZMhPiE/Td8EEvg92ApYDS8fc54cR3
+X-Received: by 2002:a05:7301:182d:b0:386:b801:cd06 with SMTP id 5a478bee46e88-386b801cd3bmr5742665eec.40.1795565199973;
+        Tue, 24 Nov 2026 16:06:39 -0800 (PST)
 Received: from localhost ([2a00:79e0:2e7c:8:ea9b:d8a3:ba44:2d0a])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-38567abb870sm40418219eec.25.2026.11.24.16.06.33
+        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-38566cd4efesm50070598eec.12.2026.11.24.16.06.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Nov 2026 16:06:34 -0800 (PST)
+        Tue, 24 Nov 2026 16:06:39 -0800 (PST)
 From: Brian Norris <briannorris@chromium.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -93,9 +94,9 @@ Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
 	Mariano Marciello <mmarciello@google.com>,
 	google-soc@lists.linux.dev,
 	Brian Norris <briannorris@chromium.org>
-Subject: [PATCH v2 5/9] reset: google: Add CPM reset driver
-Date: Tue, 24 Nov 2026 16:03:39 -0800
-Message-ID: <20261124160343.v2.5.I0b1ad34a718a9b5f667d2481041970ea45989dd3@changeid>
+Subject: [PATCH v2 7/9] arm64: dts: google: Add Laguna CPM mailbox array
+Date: Tue, 24 Nov 2026 16:03:41 -0800
+Message-ID: <20261124160343.v2.7.Iaf8214205f496225013f482f6e0035e89ac624f2@changeid>
 X-Mailer: git-send-email 2.56.1.831.g720f3f5937-goog
 In-Reply-To: <20261125000349.3385325-1-briannorris@chromium.org>
 References: <20261125000349.3385325-1-briannorris@chromium.org>
@@ -103,8 +104,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_160635_890600_55519FD4 
-X-CRM114-Status: GOOD (  24.69  )
+X-CRM114-CacheID: sfid-20261124_160640_643777_81555155 
+X-CRM114-Status: GOOD (  12.65  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,248 +125,75 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Google Tensor SoCs (used on Pixel phones) manage many resources
-(including resets) using a Central Power Manager (CPM) co-processor. We
-communicate with CPM using mailboxes, abstracted in the
-devm_cpm_get_handle(), etc., API.
+These are the request and response channels used for communicating with
+the Central Power Manager (CPM) found on the Google Tensor SoC known as
+Laguna.
 
-For posterity, I list a summary of changes made relative to the
-downstream Pixel driver:
-
-* Switch to auxiliary bus, as a child of a CPM device
-
-* Use devm more heavily
-
-* Avoid representing each reset as its own Device Tree node.
-
+Tested-by: Peter Griffin <peter.griffin@linaro.org> (Blazer/Frankel)
 Signed-off-by: Brian Norris <briannorris@chromium.org>
 ---
+Based on WIP bindings from:
+
+  https://lore.kernel.org/all/20261023165211.v2.3.Ia186a29119b4b5c409815b755e0c2c3965b0495f@changeid/
+  [PATCH v2 3/4] dt-bindings: mailbox: goog-mba: Add goog-mba mailbox bindings
+
+which is part of this series:
+
+  https://lore.kernel.org/all/20261023235408.3063350-1-dianders@chromium.org/
+  [PATCH v2 0/4] mailbox: Improve the mbox core then introduce the goog-mba driver
+
+The binding is still under review, but I include this anyway to help
+prove out a working solution. This patch should not be accepted until
+the binding is settled.
 
 Changes in v2:
- * Rename symbols from goog_cpm_rst_* to cpm_reset_*
- * Moved shared protocol details to CPM driver
- * Remove custom reset debugfs interface and .remove callback.
- * Remove per-SoC table; we only need naive translation of firmware IDs
+ * Move later in the series
+ * Add Peter's Tested-by
 
- drivers/reset/Kconfig            |   1 +
- drivers/reset/Makefile           |   1 +
- drivers/reset/google/Kconfig     |  11 +++
- drivers/reset/google/Makefile    |   2 +
- drivers/reset/google/reset-cpm.c | 154 +++++++++++++++++++++++++++++++
- 5 files changed, 169 insertions(+)
- create mode 100644 drivers/reset/google/Kconfig
- create mode 100644 drivers/reset/google/Makefile
- create mode 100644 drivers/reset/google/reset-cpm.c
+ arch/arm64/boot/dts/google/lga.dtsi | 30 +++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 673bca1e594e..64c12b479b2c 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -475,6 +475,7 @@ config RESET_ZYNQMP
- 	  This enables the reset controller driver for Xilinx ZynqMP SoCs.
+diff --git a/arch/arm64/boot/dts/google/lga.dtsi b/arch/arm64/boot/dts/google/lga.dtsi
+index 3e670e524c4c..6ceb9ea6a100 100644
+--- a/arch/arm64/boot/dts/google/lga.dtsi
++++ b/arch/arm64/boot/dts/google/lga.dtsi
+@@ -365,6 +365,36 @@ soc: soc@0 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
  
- source "drivers/reset/amlogic/Kconfig"
-+source "drivers/reset/google/Kconfig"
- source "drivers/reset/hisilicon/Kconfig"
- source "drivers/reset/realtek/Kconfig"
- source "drivers/reset/spacemit/Kconfig"
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 2fe527a7be8e..a151fe63905e 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-y += core.o
- obj-y += amlogic/
-+obj-y += google/
- obj-y += hisilicon/
- obj-y += realtek/
- obj-y += spacemit/
-diff --git a/drivers/reset/google/Kconfig b/drivers/reset/google/Kconfig
-new file mode 100644
-index 000000000000..38431b4f9001
---- /dev/null
-+++ b/drivers/reset/google/Kconfig
-@@ -0,0 +1,11 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config RESET_CPM
-+	tristate "Google CPM Reset Controller"
-+	depends on ARCH_GOOGLE || COMPILE_TEST
-+	depends on GOOGLE_CPM_MBA
-+	help
-+	  Driver support for reset controllers found on Google Tensor SoCs,
-+	  operating over the CPM mailbox interface. This allows peripheral
-+	  drivers to assert and deassert resets on LPCM hardware blocks.
++		cpm_ap_ns_mba: mailbox-array@5240000 {
++			compatible = "google,lga-mailbox-array";
++			reg = <0x0 0x05240000 0x0 0x00010000>,
++			      <0x0 0x05250000 0x0 0x00010000>;
++			ranges = <0x0 0x0 0x05260000 0x00020000>;
 +
-+	  If unsure, say N.
-diff --git a/drivers/reset/google/Makefile b/drivers/reset/google/Makefile
-new file mode 100644
-index 000000000000..437c19459464
---- /dev/null
-+++ b/drivers/reset/google/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_RESET_CPM) += reset-cpm.o
-diff --git a/drivers/reset/google/reset-cpm.c b/drivers/reset/google/reset-cpm.c
-new file mode 100644
-index 000000000000..ef0863f25cac
---- /dev/null
-+++ b/drivers/reset/google/reset-cpm.c
-@@ -0,0 +1,154 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Device driver to control Google SoC LPCM resets via CPM.
-+ * Copyright 2023-2026 Google LLC
-+ */
++			#address-cells = <1>;
++			#size-cells = <1>;
 +
-+#include <linux/auxiliary_bus.h>
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/container_of.h>
-+#include <linux/dev_printk.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/gfp_types.h>
-+#include <linux/limits.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/reset-controller.h>
-+#include <linux/types.h>
-+#include <soc/google/google-cpm-mba.h>
++			cpm_ap_ns_req_mba: mailbox@0 {
++				reg = <0x00000 0x1000>;
++				interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH 0>;
 +
-+#define ASSERT_OP_ID			0
-+#define DEASSERT_OP_ID			1
++				#mbox-cells = <0>;
 +
-+#define CPM_RST_LPCM_ID_MASK		GENMASK(31, 16)
-+#define CPM_RST_ID_MASK			GENMASK(15, 0)
-+/* Object fields are 8 bits */
-+#define CPM_RST_ID_MAX			U8_MAX
++				google,tx-payload-words = <4>;
++				google,mba-queue-mode;
++			};
 +
-+static inline unsigned long to_rstc_idx(u32 lpcm_id, u32 rst_id)
-+{
-+	return FIELD_PREP(CPM_RST_LPCM_ID_MASK, lpcm_id) |
-+	       FIELD_PREP(CPM_RST_ID_MASK, rst_id);
-+}
++			cpm_ap_ns_resp_mba: mailbox@1000 {
++				reg = <0x01000 0x1000>;
++				interrupts = <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH 0>;
 +
-+static inline u32 lpcm_from_idx(unsigned long idx)
-+{
-+	return FIELD_GET(CPM_RST_LPCM_ID_MASK, idx);
-+}
++				#mbox-cells = <0>;
 +
-+static inline u32 rst_from_idx(unsigned long idx)
-+{
-+	return FIELD_GET(CPM_RST_ID_MASK, idx);
-+}
++				google,rx-payload-words = <4>;
++				google,mba-queue-mode;
++			};
++		};
 +
-+struct cpm_reset_provider {
-+	struct reset_controller_dev rcdev;
-+	struct cpm_handle *cpm;
-+};
-+
-+static inline struct cpm_reset_provider *to_provider(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct cpm_reset_provider, rcdev);
-+}
-+
-+static int cpm_reset_send_lpcm(struct reset_controller_dev *rcdev,
-+			       unsigned long idx, u8 opcode)
-+{
-+	struct cpm_reset_provider *provider = to_provider(rcdev);
-+	const struct cpm_lpcm_message msg = {
-+		.cmd = LPCM_CMD_SET_RST,
-+		.opcode = opcode,
-+		.lpcm_id = lpcm_from_idx(idx),
-+		.obj_id = rst_from_idx(idx),
-+	};
-+
-+	return cpm_send_lpcm_message(provider->cpm, &msg);
-+}
-+
-+static int cpm_reset_assert(struct reset_controller_dev *rcdev,
-+			    unsigned long idx)
-+{
-+	return cpm_reset_send_lpcm(rcdev, idx, ASSERT_OP_ID);
-+}
-+
-+static int cpm_reset_deassert(struct reset_controller_dev *rcdev,
-+			      unsigned long idx)
-+{
-+	return cpm_reset_send_lpcm(rcdev, idx, DEASSERT_OP_ID);
-+}
-+
-+static const struct reset_control_ops cpm_reset_ops = {
-+	.assert = cpm_reset_assert,
-+	.deassert = cpm_reset_deassert,
-+};
-+
-+static int cpm_reset_of_xlate(struct reset_controller_dev *rcdev,
-+			      const struct of_phandle_args *reset_spec)
-+{
-+	u32 lpcm_id, rst_id;
-+
-+	if (reset_spec->args_count != 2)
-+		return -EINVAL;
-+
-+	lpcm_id = reset_spec->args[0];
-+	rst_id = reset_spec->args[1];
-+
-+	if (lpcm_id > CPM_RST_ID_MAX)
-+		return -EINVAL;
-+	if (rst_id > CPM_RST_ID_MAX)
-+		return -EINVAL;
-+
-+	return to_rstc_idx(lpcm_id, rst_id);
-+}
-+
-+static int cpm_reset_probe(struct auxiliary_device *auxdev,
-+			   const struct auxiliary_device_id *id)
-+{
-+	struct device *dev = &auxdev->dev;
-+	struct cpm_reset_provider *provider;
-+	int ret;
-+
-+	provider = devm_kzalloc(dev, sizeof(*provider), GFP_KERNEL);
-+	if (!provider)
-+		return -ENOMEM;
-+
-+	provider->cpm = devm_cpm_get_handle(dev);
-+	if (IS_ERR(provider->cpm))
-+		return dev_err_probe(dev, PTR_ERR(provider->cpm),
-+				     "Failed to get CPM handle\n");
-+
-+	provider->rcdev.dev = dev;
-+	provider->rcdev.owner = THIS_MODULE;
-+	provider->rcdev.of_node = dev->of_node;
-+	provider->rcdev.ops = &cpm_reset_ops;
-+	provider->rcdev.of_reset_n_cells = 2;
-+	provider->rcdev.of_xlate = cpm_reset_of_xlate;
-+
-+	ret = devm_reset_controller_register(dev, &provider->rcdev);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to register reset controller: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct auxiliary_device_id cpm_reset_id_table[] = {
-+	{ .name = "google_cpm_mba.reset" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(auxiliary, cpm_reset_id_table);
-+
-+static struct auxiliary_driver cpm_reset_driver = {
-+	.probe = cpm_reset_probe,
-+	.name = "google-reset-cpm",
-+	.id_table = cpm_reset_id_table,
-+};
-+module_auxiliary_driver(cpm_reset_driver);
-+
-+MODULE_DESCRIPTION("Google CPM Reset Driver");
-+MODULE_LICENSE("GPL");
+ 		gic: interrupt-controller@5880000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x0 0x05880000 0x0 0x10000>,
 -- 
 2.56.1.831.g720f3f5937-goog
 
