@@ -2,136 +2,140 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE1E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56757606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:49:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kwr//ySH;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=VEL0FUkc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fJhCpNyS;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=rhrjmgRs;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=aKXhvxJt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=k3R/i0bBzhQ29hM8QkKfuq42LOHH+EwyuNTFYrHipw8=; b=kwr//ySHRUTqA91pJOSGceEa4h
-	14TSygeLyuv9E28lPuQL+Nxn2TaZqgQUuE99fUKa2FyHWml9g1/S6F4Jykpcf6T5pd410KSFDHlPz
-	n3YSfE+M3Zh2gmBuwnNgTVVDzuQ8qyS66NCCg7Sz5zz2USuBiMr3/n3Jc0nTGdk2dJyKWqFDa3Am5
-	CdLqzXKEzlIslM8bBHxIxEW5iLEbcxqBabZchYK4ZdG43A8G9zgKzFSJBVXesXo/OxzkDY7aVMi7M
-	smR3jXtpWM0OfNwGEMp4GoS7Cz+79EphTmetp5zQpiRSJP57VC36ggca+4BtuAvwsDX1XZG/4yQK5
-	2i6VJLiQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=rkE7p4aQLSp2kYV7vRBIkJ3P+8n0i8bdfYVP4ePHIkQ=; b=fJhCpNyS9Gjhg+
+	kFzP5D5hx6tdoO44rEq1XFcqHLTwo3wXzev9rX5gpg0khgEBo6TUxnu02FYY6sC1i0UEX6pBwI2jk
+	+45JlzZpakj7dtJt5K3FsGt1rC8wmY5+jfYexRttYYAcDWLBlzWtfv4ygIV0bLNfVFhEvNFGw6BIG
+	ka5nrVXNOnZA6ER1mIfreoblGCUClgur1y4Z3onN4b1+FkyuEx+ry2E2pS3VP3IMu6y5vlN/2APVX
+	zZLA3b3hqKJM8AJAFMzBcDdb2II0/k4q5GtdyAH7DQme9/lg9FufwD1GeNiG75ZhTtRRW6tGvOjre
+	S+wW1MGJYwSiA0aUYc1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4mP-00000008PYt-0YUx;
-	Wed, 25 Nov 2026 04:38:49 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xW4lW-00000008P0P-1m1B;
+	Wed, 25 Nov 2026 04:37:54 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4m3-00000008PON-1tc2
+	id 1xW4lG-00000008OqG-3S2b
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 25 Nov 2026 04:37:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=rkE7p4aQLSp2kYV7vRBIkJ3P+8n0i8bdfYVP4ePHIkQ=; b=rhrjmgRsVzBAKBrSZ3RwvFd49l
+	3fWhlnfzBstp/jc/nmc3JTKLDAOADLKhcJRuBSYMERrjSUmmBKGxVO12CJ492cXeZNXPtxvOfV6xn
+	ErBQ5zowDdMib/HOw9BsrscLaH8tjlTZ/sxUHSsaUl346qiMHgAbiBDM1Y/v/r2mBckrrwFReKAyN
+	4noN5j4yVP3xAwMTUhIoariNcaSJg1neFXg0sIzifwQ36Mzs/V1THgRW5bNheatlSoblghdv7VppI
+	dVW7diILDGBw8nAczF0duHVVEoykg16XkPixEXRUju2O/vXBIZ6H9YUUBk0guu40nxeCvRY7w6Ro4
+	GaDYm/8Q==;
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW4lD-00000004pvC-0lTa
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 04:38:28 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V+Bh1a+areJLDERi3ci0B37b2xcBD795Rh+/URSiOUeWT6ibRh7wojWx5QWoTxA96s+6OhDFLDwBDN+fbFfYTirBKpPhpwmJfFMLRX7MVuuHzZESaDB4yLsxB0opOlsiqMaeclgXc2lnMgeMYQIViSf7jMVmigsRB+24+fkyX/ATZBbFsLsAkG8JEzG7AZe4YznNtHM4NfUjb1FV/VMqxoKZ5Rw6HYCg1qII1WWjZnEZL1EnkYLROf94p/vQTtKsHpVgw3/as6tOwsMa/LyN67UuuuSgQ9XNHoQXWvP9b2jqddBb/8IaZeEePlniaFMsMD1uAg2bobpmj/QHqHm7Tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k3R/i0bBzhQ29hM8QkKfuq42LOHH+EwyuNTFYrHipw8=;
- b=pWLlBO9Nlc3xKksrQdhntlVXC8JLTnZmEVpk/h/G2/wOFB+Zz3+ChKuLsvYWQ3y11cWu4icAEhDpAfWM5hSOrCHPO18jsAto49V4bU1/S9ZHxC0hrqzY84DSC63LuZSdMzEkXSFovSiBF0xtObJvfm519hGZFMQz9a9/ziDNlohoiLA/yUF6Z8qcdaqEsXJfCnbjQThca64gfr7rhzMs4xxst+3faQLAi/ZlmjWCJPVvvac4psvuOxd95zNTRaVEd05mXxlWS3KgALjJIPXvPFTi6szuI+UI+hF7t4fknCmjTwx5kavtTp8sdwTvwaW7BifPouSJlTrD/w6AT/OwXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k3R/i0bBzhQ29hM8QkKfuq42LOHH+EwyuNTFYrHipw8=;
- b=VEL0FUkcwbEMMWCXQKRWcITrX3swKsnMPRhfMft3aemoygIV6ElLuVnvfuOobnNKfC8kcrXiIWcb9Sd3MzCS2OLG0IHCrb6uLa24yTL6RZUSKZfmHT11uwwFDZfe9OKDJLYh16nRM4ek+k+Ad9g7ETWrwfTdZMi24eySouEqHJrFJZfa9z92C766qRJCqDGRW8FLVB9Un0keKlrj0tFK1u51r2FtVuJvVzbwQUnhVusp6RsqJqaLme7OmZ6Z7gDzOAV4aq6wZAJFfYI2QlgJVMttRC3p03CeCF7cr1LKXtPdbGL2y46k5c50gk7td3BqhqGy55DO0u0LAAUFqzKG2A==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB9422.eurprd04.prod.outlook.com (2603:10a6:102:2b4::21)
- by PA4PR04MB7550.eurprd04.prod.outlook.com (2603:10a6:102:f0::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
- 2026 04:38:18 +0000
-Received: from PAXPR04MB9422.eurprd04.prod.outlook.com
- ([fe80::54e:28bf:aa85:d25d]) by PAXPR04MB9422.eurprd04.prod.outlook.com
- ([fe80::54e:28bf:aa85:d25d%3]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 04:38:18 +0000
-Date: Wed, 25 Nov 2026 12:35:09 +0800
-From: Xu Yang <xu.yang_2@oss.nxp.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, 
-	"Frank.Li@nxp.com" <Frank.Li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"jun.li@nxp.com" <jun.li@nxp.com>
-Subject: Re: [PATCH 1/2] usb: dwc3: wait for the port to leave RxDetect
- before xHCI reset
-Message-ID: <edd44rlzbofuaxxczhh4d3jx2knwpaaxat6mx5zz37vyxl2ucl@5tjovqane2uc>
-References: <20261106111943.2868733-1-xu.yang_2@oss.nxp.com>
- <20261106111943.2868733-2-xu.yang_2@oss.nxp.com>
- <awYspGsimvWjR4JY@vbox>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <awYspGsimvWjR4JY@vbox>
-X-ClientProxiedBy: SI2PR04CA0017.apcprd04.prod.outlook.com
- (2603:1096:4:197::15) To PAXPR04MB9422.eurprd04.prod.outlook.com
- (2603:10a6:102:2b4::21)
+	Wed, 25 Nov 2026 04:37:37 +0000
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-8a0880a46e7so3183973b3a.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:37:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795581452; x=1796186252; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=rkE7p4aQLSp2kYV7vRBIkJ3P+8n0i8bdfYVP4ePHIkQ=;
+        b=aKXhvxJtX7N7I8kvn/b2Nhwrqg7Vf+QB7NgGZMMB2WF+8hi9/dmqs+pHm3M8dUcDL5
+         P9zawTA6oHRShW1T4fyw8E1yoDtRhUdDviKnjeD2zK/Yr7y5UkFLpmln2CV19ZRMFmSl
+         B2IAUr/DtK6a+XXXJmNGwDOh1Z9Ij0C/Wfu2ad3s7pCIzmSlKc8dofBWtD7t2EBhIKY4
+         YrX/X0s/8JIW5RL8t5je5LlQ+3YLc0jQh9ddVng+aIKI9zSp8wrklqzrCSpT8PEJ19no
+         bnDln8T7tQ2RcfSje7e7G7fpn4YhJB6+UPga+GECvsAYleNOlruJQzHQxgtpRvLUTuGC
+         7BXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795581452; x=1796186252;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=rkE7p4aQLSp2kYV7vRBIkJ3P+8n0i8bdfYVP4ePHIkQ=;
+        b=Ms/jZh5ofW1x5vAj/fj3gqJ88MLoe369oxnzH+5fq1LdQtCIRlG2LGBbtDh7t2sfec
+         0DUOb6yrcnW5EhqlS9RiksWvWIRcBVrx9fIUYb2feh8D7lBeRSEkG9mN3LBSy3cemMKS
+         u32wJ3kZ+zNpfLguBlwRk+TeThhCyueAHFo1FnMvTOxs0ukMLV0yGBdwS1swPkabVmkL
+         Bm5Yj23tbXKvf/tDpkzRrVNyJJgLIJsVRvRZNLDc1nrtMchHohw0dsE3Jm9DzZApTBOd
+         IiF86eTEMgA6LArVTbG5GVcfNp8EuFarhmCeAxL7UP92lA/1dJgw3jb+yMtGWcmt47y4
+         Mjig==
+X-Forwarded-Encrypted: i=1; AL+hErGw0meblvV4mOWBfKqCrE2eaf362Q8gpPZu9UV1wYQzYkOkBDckg8KsoVIXjIHr6Wzno8+fO9rQT6qgGBCCti1h@lists.infradead.org
+X-Gm-Message-State: APuU4Z+35ZRMfIKDSVJ7b+58e37l1SaWxL/mES3H0/cNqAsl32eQ8uoV
+	lP4REWwk9c0ltbttcEAoYTHfqYf06SrSJyfGJ20fE3/Wp6eTJHovFclX
+X-Gm-Gg: AZFdTZdYxHyypKMuwuTxiWHTlaf0LdAi1F1i0ws604X0o9dyCjNw07WVezLs3HtK2v/
+	KTWlpoSPiN2ZFaaamwNU9VLKZS1GxOz9I0PuuVAHRE2OcV1KsjeQFcsbYpT9fwqzJRBmeoaYjz4
+	/9J/qXZU8xRzxixRzKnZprXJ2mw5JdCACx8ZiWjLksnKtglzUZBb8WpdyjZglLPkhbyLctLQSdC
+	ZOKiCDyxQmfapDuPlcsr10aJquMzavSoeFqCQiS/FAqw42YvUKxKZI9dNxBN36hqgxaouQAERTn
+	12i/iVs9f72dfxvKU1ZQsY/3fQbfrqCLOC9RC3118HfcTQ0FKDYmFDCSAK84BEHaFq1WnEsSteq
+	DQzwP0/5Vu+IJrmlljrwsL0B7vCw6dlF7Wl3GagtltpxqURdSLoUK0zMTI8uGHyaVOmYvAxsdqO
+	g+uo1Lw+ZjXQVIOm1YW4duURq9q6vqS1EPouY0crU9Wc039e1yDEAE7lleZoWakvp+NuY8JqTYX
+	Gm+9bqV/yHDjTSGcjvaT5Q9Olf9ob+FwKCY1iYgcBD4sm4zeh3du+yGe1ZRpGwFNOku0872jbys
+	Xe0Zxey8CcA6v2zIgywbGxBmJqJ7g0smagnHu/zgKAO7F6Vf
+X-Received: by 2002:a05:6a00:4107:b0:89f:ed19:f0ba with SMTP id d2e1a72fcca58-8c7dd9d67bbmr11654419b3a.23.1795581452525;
+        Tue, 24 Nov 2026 20:37:32 -0800 (PST)
+Received: from localhost ([2001:19f0:8000:4ce8:5400:7ff:fe0e:e6b2])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c873c1e2f3sm7882825b3a.54.2026.11.24.20.37.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2026 20:37:32 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Aksh Garg <a-garg7@ti.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Rhys Tumelty <rhys@tumelty.co.uk>,
+	Manikandan K Pillai <mpillai@cadence.com>,
+	"vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>,
+	Qiang Yu <qiang.yu@oss.qualcomm.com>,
+	Hans Zhang <18255117159@163.com>,
+	Yao Zi <me@ziyao.cc>
+Cc: linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-ide@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v5 5/8] phy: core: Add managed phy bulk data helper functions
+Date: Wed, 25 Nov 2026 12:36:36 +0800
+Message-ID: <20261125043639.249525-6-inochiama@gmail.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261125043639.249525-1-inochiama@gmail.com>
+References: <20261125043639.249525-1-inochiama@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9422:EE_|PA4PR04MB7550:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c0a75c3-611f-4f19-cdad-08df4aaded85
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|1800799024|23010399003|376014|261022105027099003|261026121527099003|10067099003|261026140227099003|261022075727099003|261028144727099003|261021123027099003|261102123227099003|261021121427099003|18002099003|22082099003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: vsOc/EX2XWWmE+Qw8Jer+rzBQxztAzCn8XTo4lETNMvlDWyBbD1/bK4QTg3vRU4Q1wKGUimDH8tEOMHBYy5/jDoSNvrxAAo5PHKDF03HNwMfNaHfRh2QRc0ctjXKrIpdBRTz+kcV5BOicxqr/B/d/DcX3FXUwveLhSIxwPh46WF4cHZyEdJw///5Z/f4SSxl2ZHmYKZjtUxUQQHJTTGUDUZUrXhbrDHu8ErwJmQTxh8C90/0m0Xo/Wcpj3RcDW87DyOyS4cQJabPgQjIYVZ7cCI2bqUvyTQRtGyOl8bRHMs8UUZ8OK2Hn9+8UeBD3CPpY4S4Q6Y04ttwwIgLZSCP36cyLMCyR2WdR4shmDUb/HM47dpqV1CXkPrlYHF0SI8AaFGKIBniToE8BQZ2EAZncgJac4G4pV4LzaDL6lXrvapLspp99/Nt/5NzWKpi+SzVZPKmee6VdZb2X4Yq8kO86l5H05yiF8lScMwRDWr/jsleZzhv6cREZ1O/umZ0z4ASOrCm9Bq4w1ejlQqlFEjb//0Y9VB6/nyZFUEwEbyfl3idkA3jUSv+01KHH7NAkTpGArrSh4AbUAELEEMxaqwG8+HmmgbLAF3HnX4k/JxK2OQcCnhNFYtCU706iF6KIG2Jrv+i2V4rOWuQvYtFWAiZ3eUBKZeWk3suqiY7oTZ7S0c=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9422.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(23010399003)(376014)(261022105027099003)(261026121527099003)(10067099003)(261026140227099003)(261022075727099003)(261028144727099003)(261021123027099003)(261102123227099003)(261021121427099003)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bAAe6HHsHxRl6TFbcniNWv/7ruymz/6NF+mdThO+DxiwF/V9ifHJVtXm8UcN?=
- =?us-ascii?Q?84/OucLUX9A4x0qN6PyZCdgFTQSDncrjWiAqNtqichGeIxwXmhFnW/GwkiWs?=
- =?us-ascii?Q?oQ7NDNb+J59fcnwxjKII10pdwCZYy1tUyjU1VE0aAMHY20MsSrfeDUyZsbxe?=
- =?us-ascii?Q?bC3h9UDr91rpUFkDX1e6ft/tivVVzsEVo3LU1tWglt7e7dS+2U0CdplrSjA2?=
- =?us-ascii?Q?ntwJRJBUK+JERvMLeh8JLRTX+3ojK1Bq8Mtpxcitr6wxdX0kDcK79rpVYHVP?=
- =?us-ascii?Q?01Ep3i++G8kvM3TpBZbTZtRvUaM65RHrwJ127xyfU41tiXovjbLk87vA8/rS?=
- =?us-ascii?Q?a6IpuXK0xYr9JOxzea5v38yi1ZeopJfn+RLWN5CXcJQIk0xudgjFh1Vv9hDx?=
- =?us-ascii?Q?5nQPEN6yeVQwa0mYLO7bM0xf5CvhL3W2cP7CsJoQXKKytsIoq5UzmhsN0pXm?=
- =?us-ascii?Q?/z27GG1TrdbxfHHAuCf7vkgB0NMf9y28/tKc6GhHHmIzKNJwpWDU/QvKSPX0?=
- =?us-ascii?Q?9UbvgeAJXZmOOly6rHWsU1OamE+9F7j8IXOUof0cx/RJENakLdyJp0CyBF48?=
- =?us-ascii?Q?j8/yecKF8QajG+NwzYBc8Y7tWMqtIDz1A2DUiYiMQoKn2a8XP0xbOAZEEIBr?=
- =?us-ascii?Q?BFreaE2d0Osnw2tG60gm2fB8eUK3bbF2mJl5NO61HuaUmt/w0vJs5u64LGUu?=
- =?us-ascii?Q?jEX586RwsCtx0onDtFWhig84a54Ienq6YI0PkHMwsUoM04vxUlNliZ46qJi6?=
- =?us-ascii?Q?ZLHA/yxJNJenG7cKdANhBTyAfaI62DJnZKP0qF1Ad7SwXm4QXrzw/hd11oTt?=
- =?us-ascii?Q?7yYU10RcPqCEwZqtFYPziuEOb9pg3lezVMYJ5G0FsmPo3BFONmqdCktA1UBU?=
- =?us-ascii?Q?AMK6wPI7xIPkB/xdOf7SB3CVyc3vVlxn83Jb+D1FUg5qVDsMAWAnMTM5QEF4?=
- =?us-ascii?Q?joniA2G0foYeTgcNaP0bZ4Grkb1Hg/3gpGU0kmD+ELNejo0WcZUcWFkBx6zg?=
- =?us-ascii?Q?wdnVbjzyAOAfGzeuFJFD7GZsmjfVzJvgsTaPbdgipNGpLKEcbBRq7PWejFBa?=
- =?us-ascii?Q?3/M3krw0i/a1RTFXTYH2OyZ+X/XzPGNAF8YaO7nkyWVnxhFt81Q9/CWCTGoZ?=
- =?us-ascii?Q?0gNbczdoUfYhKQZzcwBYHMZpaGTN96DdEfnFziGUPHkUMgc0kTFEgVm8+daH?=
- =?us-ascii?Q?A4OrSx+5FoL5g8CkpIJxweE5zP5G3g/wXQgWUnY8ne8thsHTd9nGtI63wkKH?=
- =?us-ascii?Q?Ccepneu9u2R0poEfbxxzZ1tvlYmj/+1hRFAEg/9ZjKfKcsl/D5U39kR1vZCt?=
- =?us-ascii?Q?lTyuNljAWUXs74v5lod94b6Xk2i67YP4nlXCxABpigB8bUBozepLo3T6CGrt?=
- =?us-ascii?Q?W3k9t0lUbnHLnbtPwPduPurVCs906Xomm74j0Q6H4S31B7409O2T1hJbJurR?=
- =?us-ascii?Q?CATmvRDYOvpoEE/Hi6JG5C66dEufbkLRPni2kWuMQidM2dU/1zKx2mBT6RQW?=
- =?us-ascii?Q?PbLUmf/UWPTx5r46ZasZhbo6UFPfdVcFYxuc8ZKccgi2NnRpCKLsA8TME1bx?=
- =?us-ascii?Q?Cu6gFnB3e1wVRQLGGCsq55bg9YPeiwEbyFqJgmLW61X1+Cc78ySlUH4+mtUy?=
- =?us-ascii?Q?jlE4uDSz18m24neSR+6kgoaDJO34mNm0+kVQvJVsmIdNZ08l/zT/rolbZuIQ?=
- =?us-ascii?Q?9ecv/VejXuGn+3yfeJQMDyVb9HjiAiyqLblOtyE9sjzxB/sjmqMrizmIaYSm?=
- =?us-ascii?Q?74XI9Zu2mP6IBnaPu1CKixEDcduAfzTasBEbOsC9VogHo2uyJukX?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c0a75c3-611f-4f19-cdad-08df4aaded85
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9422.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 04:38:18.6555
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IgfEhWaVQYiyUX0ItqG/ZyDAieeAq98NYh4wkzLnB2YieYjybLRosB+5hN5zzPVxwKIK6J5CfIWogXf5dl645F4ToqDIC9LRTtyHuiZMIt7gK25tfhSop9hdfNssMCbN
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7550
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_203827_506106_320892AF 
-X-CRM114-Status: GOOD (  34.12  )
-X-Spam-Score: -1.0 (-)
+X-CRM114-CacheID: sfid-20261125_043735_363027_DADB2735 
+X-CRM114-Status: GOOD (  20.07  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -142,84 +146,223 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 01:03:08AM +0000, Thinh Nguyen wrote:
-> On Fri, Nov 06, 2026, Xu Yang wrote:
-> > From: Xu Yang <xu.yang_2@nxp.com>
-> > 
-> > When the host controller loses power during system suspend, the port
-> > state is not retained. After power is restored, the port starts in the
-> > Disconnected (RxDetect) state instead of its previous Enabled (U3)
-> > state.
-> > 
-> > After the controller is switched back to host mode, testing on an i.MX8/9
-> > SoC shows that it takes about 2 ms for the port to leave RxDetect and
-> > enter Polling. If xHCI is reset while the port is still in RxDetect, the
-> > port does not issue a Warm Reset.
-> > 
-> > This prevents the link from recovering because the USB3 device may
-> > still be in U3. Once the port enters Polling, it sends LFPS.Polling, but
-> > the device does not respond as expected. After three Polling attempts,
-> > each taking about 360 ms (tPollingLFPSTimeout), the controller reports
-> > the device as disconnected.
-> > 
-> > If xHCI is reset after the port has entered Polling, the port issues a
-> > Warm Reset and the link recovers quickly after the device responds.
-> > 
-> > Add a 2 ms delay through the xHCI resume quirk before resetting xHCI.
-> > This allows the port to leave RxDetect so that a Warm Reset can be
-> > issued, avoiding an unnecessary device disconnect during system
-> > resume.
-> > 
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > ---
-> >  drivers/usb/dwc3/host.c | 21 +++++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> > 
-> > diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
-> > index c5674161b2b0..465c170df12c 100644
-> > --- a/drivers/usb/dwc3/host.c
-> > +++ b/drivers/usb/dwc3/host.c
-> > @@ -78,8 +78,29 @@ static void dwc3_xhci_plat_start(struct usb_hcd *hcd)
-> >  	dwc3_enable_susphy(dwc, true);
-> >  }
-> >  
-> > +static int dwc3_xhci_resume_quirk(struct usb_hcd *hcd)
-> > +{
-> > +	struct platform_device *pdev;
-> > +	struct dwc3 *dwc;
-> > +
-> > +	pdev = to_platform_device(hcd->self.controller);
-> > +	dwc = dev_get_drvdata(pdev->dev.parent);
-> > +
-> > +	if (dwc->needs_full_reinit) {
-> 
-> The core is also re-initialized on system resume when wakeup is disabled
-> (see dwc3_resume_common()). Shouldn't this be like below:
-> 
-> 	if (!device_may_wakeup(dwc->dev) || dwc->needs_full_reinit)
+Add device managed variants of the phy bulk helper functions. So
+the driver can benefit from automatically managed phy handles.
 
-OK.
+Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+---
+ drivers/phy/phy-core.c  | 139 ++++++++++++++++++++++++++++++++++++++++
+ include/linux/phy/phy.h |  31 +++++++++
+ 2 files changed, 170 insertions(+)
 
-> 
-> > +		/*
-> > +		 * The port needs some time to leave RxDetect after host mode
-> > +		 * is restored. Delay the xHCI reset until the port can enter
-> > +		 * Polling, allowing a Warm Reset to recover the USB3 link.
-> > +		 */
-> > +		usleep_range(2000, 2500);
-> 
-> Can we add a comment that this value is tested with i.MX8/9 rather than
-> a common value for all platforms?
+diff --git a/drivers/phy/phy-core.c b/drivers/phy/phy-core.c
+index 87a317a144b4..eeba1b899c20 100644
+--- a/drivers/phy/phy-core.c
++++ b/drivers/phy/phy-core.c
+@@ -1281,6 +1281,145 @@ static void phy_bulk_put_all(struct device *dev, int num_phys,
+ 	kfree(phys);
+ }
+ 
++struct phy_bulk_devres {
++	struct phy_bulk_data *phys;
++	int num_phys;
++};
++
++static void devm_phy_bulk_release(struct device *dev, void *res)
++{
++	struct phy_bulk_devres *devres = res;
++
++	phy_bulk_put(dev, devres->num_phys, devres->phys);
++}
++
++/**
++ * devm_phy_bulk_get() - managed lookup of multiple PHYs
++ * @dev: device that requests the PHYs
++ * @num_phys: number of entries in the phys array
++ * @phys: array of struct phy_bulk_data with PHY names set
++ *
++ * Gets the PHYs using phy_bulk_get() and associates the references with
++ * @dev. The references are automatically released on driver detach.
++ *
++ * Return: %0 if successful, a negative error code otherwise
++ */
++int devm_phy_bulk_get(struct device *dev, int num_phys,
++		      struct phy_bulk_data *phys)
++{
++	struct phy_bulk_devres *devres;
++	int ret;
++
++	devres = devres_alloc(devm_phy_bulk_release, sizeof(*devres),
++			      GFP_KERNEL);
++	if (!devres)
++		return -ENOMEM;
++
++	ret = phy_bulk_get(dev, num_phys, phys);
++	if (ret) {
++		devres_free(devres);
++		return ret;
++	}
++
++	devres->phys = phys;
++	devres->num_phys = num_phys;
++	devres_add(dev, devres);
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(devm_phy_bulk_get);
++
++static int devm_phy_bulk_match(struct device *dev, void *res, void *match_data)
++{
++	struct phy_bulk_devres *devres = res;
++
++	return devres->phys == match_data;
++}
++
++static void devm_phy_bulk_release_all(struct device *dev, void *res)
++{
++	struct phy_bulk_devres *devres = res;
++
++	phy_bulk_put_all(dev, devres->num_phys, devres->phys);
++}
++
++/**
++ * devm_phy_bulk_get_all() - managed lookup of all PHYs requested by a device
++ * @dev: device that requests the PHYs
++ * @phys: pointer to store the allocated array of struct phy_bulk_data
++ *
++ * The function calls devm_of_phy_bulk_get_all() directly, but sets the
++ * @np parameter to dev_of_node(dev).
++ *
++ * Return: the number of PHYs on success, %0 if no PHYs are found, or a
++ * negative error code otherwise
++ */
++int devm_phy_bulk_get_all(struct device *dev, struct phy_bulk_data **phys)
++{
++	return devm_of_phy_bulk_get_all(dev, dev_of_node(dev), phys);
++}
++EXPORT_SYMBOL_GPL(devm_phy_bulk_get_all);
++
++/**
++ * devm_of_phy_bulk_get_all() - managed lookup of all PHYs from a device node
++ * @dev: device that requests the PHYs
++ * @np: device node containing the PHY references
++ * @phys: pointer to store the allocated array of struct phy_bulk_data
++ *
++ * Gets all PHYs from the specified device node, associates the allocated array
++ * and PHY references with @dev, and creates a device link for each PHY. They
++ * are automatically released on driver detach.
++ *
++ * Return: the number of PHYs on success, %0 if no PHYs are found, or a
++ * negative error code otherwise
++ */
++int devm_of_phy_bulk_get_all(struct device *dev, struct device_node *np,
++			     struct phy_bulk_data **phys)
++{
++	struct phy_bulk_devres *devres;
++	int ret;
++
++	devres = devres_alloc(devm_phy_bulk_release_all, sizeof(*devres),
++			      GFP_KERNEL);
++	if (!devres)
++		return -ENOMEM;
++
++	ret = of_phy_bulk_get_all(np, &devres->phys);
++	if (ret > 0) {
++		for (int i = 0; i < ret; i++)
++			phy_add_device_link(dev, devres->phys[i].phy);
++		*phys = devres->phys;
++		devres->num_phys = ret;
++		devres_add(dev, devres);
++	} else {
++		devres_free(devres);
++	}
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(devm_of_phy_bulk_get_all);
++
++/**
++ * devm_phy_bulk_put_all() - release the multiple PHY
++ * @dev: device that wants to release this phy
++ * @phy: the phy bulk data returned by devm_phy_bulk_get_all()
++ *
++ * destroys the devres associated with this phy bulk data and invokes
++ * phy_bulk_put to release the phy.
++ */
++void devm_phy_bulk_put_all(struct device *dev, struct phy_bulk_data *phy)
++{
++	int r;
++
++	if (!phy)
++		return;
++
++	r = devres_release(dev, devm_phy_bulk_release_all,
++			   devm_phy_bulk_match, phy);
++	dev_WARN_ONCE(dev, r, "couldn't find PHY resource\n");
++}
++EXPORT_SYMBOL_GPL(devm_phy_bulk_put_all);
++
+ /**
+  * phy_bulk_init() - initialize multiple PHYs
+  * @num_phys: number of entries in the phys array
+diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+index c170d9aeeeb4..a51b3c283efd 100644
+--- a/include/linux/phy/phy.h
++++ b/include/linux/phy/phy.h
+@@ -326,6 +326,13 @@ void devm_of_phy_provider_unregister(struct device *dev,
+ int phy_create_lookup(struct phy *phy, const char *con_id, const char *dev_id);
+ void phy_remove_lookup(struct phy *phy, const char *con_id, const char *dev_id);
+ 
++int devm_phy_bulk_get(struct device *dev, int num_phys,
++		      struct phy_bulk_data *phys);
++int devm_phy_bulk_get_all(struct device *dev, struct phy_bulk_data **phys);
++int devm_of_phy_bulk_get_all(struct device *dev, struct device_node *np,
++			     struct phy_bulk_data **phys);
++void devm_phy_bulk_put_all(struct device *dev, struct phy_bulk_data *phy);
++
+ int phy_bulk_init(int num_phys, struct phy_bulk_data *phys);
+ int phy_bulk_exit(int num_phys, struct phy_bulk_data *phys);
+ int phy_bulk_power_on(int num_phys, struct phy_bulk_data *phys);
+@@ -603,6 +610,30 @@ phy_create_lookup(struct phy *phy, const char *con_id, const char *dev_id)
+ static inline void phy_remove_lookup(struct phy *phy, const char *con_id,
+ 				     const char *dev_id) { }
+ 
++static inline int devm_phy_bulk_get(struct device *dev, int num_phys,
++				    struct phy_bulk_data *phys)
++{
++	return -EOPNOTSUPP;
++}
++
++static inline int devm_of_phy_bulk_get_all(struct device *dev,
++					   struct device_node *np,
++					   struct phy_bulk_data **phys)
++{
++	return 0;
++}
++
++static inline int devm_phy_bulk_get_all(struct device *dev,
++					struct phy_bulk_data **phys)
++{
++	return 0;
++}
++
++static inline void devm_phy_bulk_put_all(struct device *dev,
++					 struct phy_bulk_data *phy)
++{
++}
++
+ static inline int phy_bulk_init(int num_phys, struct phy_bulk_data *phys)
+ {
+ 	return 0;
+-- 
+2.56.1
 
-Sure, will do.
-
-Thanks,
-Xu Yang
 
