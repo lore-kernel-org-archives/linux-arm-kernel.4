@@ -2,76 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DB1606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:38:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845B3606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 04:38:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nCO9txzZ;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=mcYpOGOL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R//f4Yro;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=L+o6GEvQ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=XWVTBULq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ry895IeeCwvvoVrLKPY1qGl5vh7XehrgPQ0oBew1BlU=; b=nCO9txzZI4HlKQ
-	RKw0vnxP0RXlFhCkBfQpzjWfC6pSfp2KIoevRI5OPVQuB+YOomMB30YZiosSm1SeYUWjXeMxtn6sF
-	SkkBEBv4/urKtyxAY+FXUOhV1mEVzxn/B50rWt0ORDXlrJheu0VUWt8tyYf7dYk/cXmkULYb2Umii
-	JL3qqPlp4pHwW/5PvdrCS4TudtiOrDhWwucJxpzYIE/TpRMLF9jHclJq/hlHIs3vPC+5zLovikk4S
-	cmvQhhkgMmX8oQHrAK52oUPRl8SoDg4o/hD2hWgQavARmH8/yYW+F3lnq+DP/aPSMJ4BJGn5SJLJ4
-	W655xosLhxnJoKgYMywQ==;
+	List-Owner; bh=Th0U5TzJmX7EaDDFA+PHgDoYo8RCe0k6TY8cW8gRTLA=; b=R//f4Yro8YfdrD
+	J+Rjs8YCB+YyPgZL789b4hxXJ/9YGYHayKUYtnFF923euNxSlDQ3vBVP5l67PXLw0suWFbXj95xkb
+	oPCjjc8T0CxOnaJcT02urTQBxG4/wJb/WDsT44hyUop9WZ+8wAc5KHPBw8fMJWP7oc7MlldVkmzcR
+	pBpgDiiHI8xKQhiT61oBCwHKEatqtJ8M8HCTPDyWLNmXh4d4K+l0EFNar3b3sXmaqlkdYMBAeOENe
+	QKlCQP1iHOYaHLoLhCjDU9K/aflw3ep0ayz3wqeN/HJJgW/08NMlz3t/LfmrKOMZy3A58mWzDNtxo
+	kZnltNSDf47Db8d1WpvQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4lW-00000008P1i-2x4Y;
-	Wed, 25 Nov 2026 04:37:54 +0000
-Received: from mail-pf1-x433.google.com ([2607:f8b0:4864:20::433])
+	id 1xW4lX-00000008P34-2atW;
+	Wed, 25 Nov 2026 04:37:55 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW4lE-00000008Oop-25l2
+	id 1xW4lO-00000008OuS-3b8R
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 25 Nov 2026 04:37:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=Th0U5TzJmX7EaDDFA+PHgDoYo8RCe0k6TY8cW8gRTLA=; b=L+o6GEvQNDvHEkXxgiVDEEt9rV
+	OQnNklJuBpBM4MsFDtsMWU27oDeEWc+Ma+h99fln0hQSlbDI2G1BKYsntl/Eg+ofAw18zr07WRJOY
+	TbiBokuHPf3eQEus4ASoeNMjYGnsCdeiBZGSVkPelrC6AmT8b+Zgl27hHAzsK38xa335aUiDJW4Z8
+	QrBXd0DUh2pfyeMNnQ8q16Ia3LuT0D7vcsHrDKnTmP939pBKBt4FWC/woqjCjjb+YKurRHs0oH05D
+	6ArmoHLLnC4xqmKfx6AeMOZJcTL0gcsNmBQcceKjJx8pD/sw2a7KGz5OknzQTzudSeWXxffCXYK2O
+	HBZbgSIw==;
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW4lM-00000004pyg-06JK
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 04:37:40 +0000
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-8b600fae14dso1808456b3a.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:37:36 -0800 (PST)
+	Wed, 25 Nov 2026 04:37:45 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-2f0414c1062so31446355ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 20:37:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795581456; x=1796186256; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795581462; x=1796186262; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Ry895IeeCwvvoVrLKPY1qGl5vh7XehrgPQ0oBew1BlU=;
-        b=mcYpOGOLfyeawVhrWqXEETmSUI7UnINvjCT4ciFuJkaNHIkn0UENW/lVDswpXReanp
-         SGrBru2nIdGX66HdVFEsvJEyt8XhDfMNku0VQMvWYZtVXZDKBw3KAW5YvODOJLpsiSrC
-         KFsbsh8PYU62OuMHBN6+a1zGoH0TYf8E1xju6ciSlRbw2f+RiWv+rIZnrZvIw+pTORSi
-         2QXl9BMlDo+/tTbjCUxsd8HpiilyR9AuvgmMm0nCfcAuaLSbW3jA4UlZQ02Zhx0C6DLv
-         1DsHAr6pKNHeMQ3+sZw+2vh8j8NcLIEHRNuB+03J3gjXOgROnVSq0pbCb1i4YJVdOVi/
-         lfVQ==
+        bh=Th0U5TzJmX7EaDDFA+PHgDoYo8RCe0k6TY8cW8gRTLA=;
+        b=XWVTBULqM4AF6R0ogVwI13OmNSkUT4LCG6RH8coXAk6sPEjvG/G/atI/laKZ+xs5iq
+         TrONBStbKJ6Pd0zq0yVNM81RUwcTSqg5Tn10jNt8523WnUxxsEkRhcq+k2GdNUR1v9vC
+         BTf1qCjqIt1RprNSzDoMiwQQ2m/WJd9X3crXDwDpzU7Mki/n6+5MI/8RnHZY9aK6jrlZ
+         YFtctV62ahEvziQ8ugKp2lh59J24TVAgc9pjyLtV0QWZv3zmOYfw784shsw9fZJqB9dF
+         CgP6h0+1SqHZeDVgUatKtlgz/gaHCYJ4Y34qIhvkRzhW++9adePlmuTBmledV9uxttkF
+         IjEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795581456; x=1796186256;
+        d=1e100.net; s=20260707; t=1795581462; x=1796186262;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Ry895IeeCwvvoVrLKPY1qGl5vh7XehrgPQ0oBew1BlU=;
-        b=XyVhc8mzEGMU9/b3ASSxhbH0/q6tQZ4WmurDfV9h0z93cEAqwLCxi8RbQPf8sk9FOk
-         QvvG/f7HnGD0MPhtFI7ANkjvcgI0ZXnnYytlbwpnbHLPZw35m8qnDIbbba59Pv9Z9gs+
-         q0JyfnGnQGrpyhiVfkJbxAHqgWm3RuacNfO8eGawLBI0RpweEQmlj6TrxncT+TYqi/wL
-         DZRKRTKVqpyFyLd2k/FplPpjs9741Crmp6DfvbXYpFKEbcZI8cY8IB3UOBnGwvmPbuvK
-         b4D3fK0/w75x4P4SIHIQaxW82MbMqGmN8QsZQezTmHvCB38ZybN74d1MMBg0sSxlv/cY
-         ZpVg==
-X-Forwarded-Encrypted: i=1; AL+hErEl3B1b8BRDy2IeGmW9q0wLcId8FpB+1c/7dxmWmcmCkmaTMkoLszU0GlbdMlyY6yG55CXpXT7viC4qVypQ+OKr@lists.infradead.org
-X-Gm-Message-State: APuU4Z/AdRbPiySh6RCqDhH0XYi0ABnApGS112plees4E/cuConr+2qQ
-	f580G1jWiXc8OS8k7B8v0FuYJDT/UdpzmJBljEhSXZIhbLjUTsrddzxN
-X-Gm-Gg: AZFdTZe6KfKUjECJuqsQV3a5zj01A8NCdjMcb3AVm+SAZLR+MyJvrXpnFyxoxBfUbPi
-	RVOu4bMvFapsOTagjLHUBjzohLGHYxbZadzcAWFmcdP9HGZM+VYnJY+mlIGuPiP6bjH2u/IgLra
-	XftR7WKTWt5iE9l3k61TwoqXW+xicnYjCe3b1rXhNv+yTQxhuW54ytcYlBgbSsmYh4T2uoTjMHX
-	R2iFiaT0hNY6XOxKPMWSVEcKj7gMO7/v1dh7rSExmnaOu+4FG2WKUj0dhT+DPyE1jWpr0v2HApZ
-	c8DzmgRUutS16b2Yac6br0J2nmetPWg/qYjsiTGV24jt2y9KaY/PlsUxJfSabvaZ7WrxYM2124u
-	m8EYMzpjMbOefwG/SGi3BEcqqYiS5GGjT3Qho6DeP6B3Mnu2ZRUy5L/ws3GJjHuM0bkBJyWnrA7
-	XOv6Ro/7fE6HD5OA9C5KcpYvgSkm13SWdEz9RJsCemD1CF3CrbHUTDQ5+wQnt9rob3s28uqys3w
-	FM+gz+yczg2WY6+C1zCUWbikxpFfvnS1TADAqMOdwPRbX/iX3VY3CcvZbP3IOv7pnCI3ZTYbTAW
-	/rdLwl23xM+TQRg1cmgdPX2MLuQ=
-X-Received: by 2002:a05:6a00:b92:b0:882:6d80:e5ad with SMTP id d2e1a72fcca58-8c87bcbcee9mr14392696b3a.9.1795581455547;
-        Tue, 24 Nov 2026 20:37:35 -0800 (PST)
+        bh=Th0U5TzJmX7EaDDFA+PHgDoYo8RCe0k6TY8cW8gRTLA=;
+        b=nA0jtulWKYgUZ7TXbv5pOrajAhHRgr4pzvInU6ccBbHYcjziEcR6t3ow4J84+t3aI0
+         Dtxe4pqQ3TWarIK/CPp3jGmypaCmdBHwY1bA8FjOuvJt3VxhTIbb8O2M6/7JkuhGiZNX
+         nk7QgPVtSRWK5uUILRP+OhyhMCcVMMlw6tqM1c/lRWIhyrNmylD5qzWzMPmoDhlELzjZ
+         TBDLdFWn1caFiHuitRv/YUvN8nY/TgG8HZPng35V3IUCwiAclWX/LdUoD6XbK/LrVoG6
+         vcQZdkgiHtHV14+HVdJU+ozgOc82CS8R89aNc7pCfHQm9XaATFfK63YN1IT5ofws5nOf
+         cxRw==
+X-Forwarded-Encrypted: i=1; AL+hErGFye3H5x3Dg7XAFcK6/VCi/1zk9073sf6LChhwoWTOBaUCT9A8iCSzuMcQX3a6olNvAP17fxWgqVNY2j/ta3Ol@lists.infradead.org
+X-Gm-Message-State: APuU4Z++SJrtOPyKhM7UgzX9v9DeGdfG6xhnkcBGTH+0XuS8V8WnIG1G
+	hC/LUXPT+64/eGJQPYmmfToyhTQf+qZaJf5GMKVCYk9FFybz1eFZT/vR
+X-Gm-Gg: AZFdTZeRSSZoSpeW4uhDYBQzx58f+LSmeRmE+WpYXJZUxHTVJcESlgUG3fRUsYAmT8Q
+	vjiZ6kRg1XwngGXW5z4aThXzNuWYHzNvS3FKCfyAJNH1klzmYC8bFqKv7Tot/AjOSAcZbInY0sk
+	r6XrU44wFKh237SwYKOQt9VTOUVPGRsU5uRnuo+j8wGpBdLgVYKbyEW7MqK9h8VmUbFlaOKkz+I
+	yP5GYBglE8E8lrvjMJ50f8fH2v5zKmh0b3S+JcQfZ0Q3w6IWJBorwcEs05bIHs6SfUShSVH00bo
+	r30nh4BVo4ih/qKwfwiROBZ1ARx/ssOhdv04pCsVzLEuN86hE5oKFuimw+gk1YV/34xeEGR73t7
+	telnS7k4W3pNRIfXfOs5rf+g4bdJTCf5fT7e5e+ZSLAiwC+sHkeOnm0enkqirE972VR0JoxU3HW
+	xi3+s4jaEAGMWXmGHrN7ESunjz4GxC1nAkvR3ICpaVnZ0lnNmy6jR5MONymDeNNYGNOAhnT/SFk
+	7itnkDyjWad5NlftOHuh7081gRC2NO6UK1U80HO5RHQn0buXHA5DtmL960IRVDki5paVOzwlPg4
+	HJ19AKZFQfU7QfHRW3DXeZvx3FD6/KpoNhC+6Ns/4f86K0+J
+X-Received: by 2002:a17:903:294f:b0:2ed:630:40ad with SMTP id d9443c01a7336-2f03f11826cmr93907705ad.19.1795581461579;
+        Tue, 24 Nov 2026 20:37:41 -0800 (PST)
 Received: from localhost ([2001:19f0:8000:4ce8:5400:7ff:fe0e:e6b2])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8c872e45eccsm8215994b3a.31.2026.11.24.20.37.34
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2f03f0c2ad2sm78350235ad.16.2026.11.24.20.37.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 20:37:35 -0800 (PST)
+        Tue, 24 Nov 2026 20:37:41 -0800 (PST)
 From: Inochi Amaoto <inochiama@gmail.com>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
 	Jonathan Corbet <corbet@lwn.net>,
@@ -107,9 +123,9 @@ Cc: linux-doc@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	Yixun Lan <dlan@gentoo.org>,
 	Longbin Li <looong.bin@gmail.com>
-Subject: [PATCH v5 6/8] doc: phy: Document some bulk helper functions
-Date: Wed, 25 Nov 2026 12:36:37 +0800
-Message-ID: <20261125043639.249525-7-inochiama@gmail.com>
+Subject: [PATCH v5 8/8] ata: ahci_imx: Use bulk PHY APIs for calibration PHYs
+Date: Wed, 25 Nov 2026 12:36:39 +0800
+Message-ID: <20261125043639.249525-9-inochiama@gmail.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261125043639.249525-1-inochiama@gmail.com>
 References: <20261125043639.249525-1-inochiama@gmail.com>
@@ -117,9 +133,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_203737_639791_CA55B2EC 
-X-CRM114-Status: GOOD (  21.39  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261125_043744_048249_E2CA8439 
+X-CRM114-Status: GOOD (  17.96  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,91 +154,139 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document all newly added bulk helper function, it can be used to manage
-a set of PHYs automatically. This is useful when the driver want to
-simplify the management of multiple PHYs.
+The i.MX8QM SATA PHY relies on the first two HSIO lanes for shared
+impedance calibration. Store these calibration PHYs in a bulk array
+and acquire them by name with devm_phy_bulk_get().
+
+Initialize both calibration PHYs before powering them on in lane order,
+then keep the SATA PHY initialization, mode selection and power-on
+separate. Use the bulk helpers to release the calibration PHYs after
+SATA startup and to unwind failures without repeating power-off after
+a failed bulk power-on.
 
 Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 ---
- Documentation/driver-api/phy/phy.rst | 40 ++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ drivers/ata/ahci_imx.c | 57 ++++++++++++++++--------------------------
+ 1 file changed, 21 insertions(+), 36 deletions(-)
 
-diff --git a/Documentation/driver-api/phy/phy.rst b/Documentation/driver-api/phy/phy.rst
-index 0865c2e94eec..cae3d4700814 100644
---- a/Documentation/driver-api/phy/phy.rst
-+++ b/Documentation/driver-api/phy/phy.rst
-@@ -114,6 +114,12 @@ it. This framework provides the following APIs to get a reference to the PHY.
- 	struct phy *devm_of_phy_get_by_index(struct device *dev,
- 					     struct device_node *np,
- 					     int index);
-+	int devm_phy_bulk_get(struct device *dev, int num_phys,
-+			      struct phy_bulk_data *phys);
-+	int devm_phy_bulk_get_all(struct device *dev,
-+				  struct phy_bulk_data **phys);
-+	int devm_of_phy_bulk_get_all(struct device *dev, struct device_node *np,
-+				     struct phy_bulk_data **phys);
+diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
+index 6aaa18e29abc..18faa033e44f 100644
+--- a/drivers/ata/ahci_imx.c
++++ b/drivers/ata/ahci_imx.c
+@@ -25,6 +25,8 @@
  
- phy_get, devm_phy_get and devm_phy_optional_get can be used to get the PHY.
- In the case of dt boot, the string arguments
-@@ -129,6 +135,21 @@ Some generic drivers, such as ehci, may use multiple phys. In this case,
- devm_of_phy_get or devm_of_phy_get_by_index can be used to get a phy
- reference based on name or index.
+ #define DRV_NAME "ahci-imx"
  
-+The bulk helpers are useful when a controller operates several PHYs together,
-+for example the lanes of a single PCIe port. To get a set of PHYs by name,
-+the driver supplies an array of ``struct phy_bulk_data`` with the ``id`` of
-+each entry set to the corresponding PHY name. devm_phy_bulk_get() returns
-+zero if it obtains all the requested PHYs or a negative error code on failure.
-+The driver owns the array and keeps it valid until driver detach, when the
-+PHY references are released.
++#define NUM_CALIPHY		2
 +
-+When a controller needs every PHY listed in a device node's ``phys`` property,
-+devm_phy_bulk_get_all() obtains them from the controller's device node.
-+devm_of_phy_bulk_get_all() does the same for an explicitly supplied device
-+node. These functions return the number of PHYs listed in the node, which may
-+be zero, or a negative error code on failure. They store the allocated array
-+in ``*phys`` only when the return value is positive.
-+
- It should be noted that NULL is a valid phy reference. All phy
- consumer calls on the NULL phy become NOPs. That is the release calls,
- the phy_init() and phy_exit() calls, and phy_power_on() and
-@@ -149,6 +170,14 @@ The general order of calls should be::
-     phy_exit()
-     [[of_]phy_put()]
+ enum {
+ 	/* Timer 1-ms Register */
+ 	IMX_TIMER1MS				= 0x00e0,
+@@ -66,8 +68,7 @@ struct imx_ahci_priv {
+ 	struct clk *ahb_clk;
+ 	struct regmap *gpr;
+ 	struct phy *sata_phy;
+-	struct phy *cali_phy0;
+-	struct phy *cali_phy1;
++	struct phy_bulk_data cali_phys[NUM_CALIPHY];
+ 	bool no_device;
+ 	bool first_time;
+ 	u32 phy_params;
+@@ -428,30 +429,20 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
+ 	 * Initialize the first two lane PHYs here, although only the
+ 	 * third lane PHY is used by SATA.
+ 	 */
+-	ret = phy_init(imxpriv->cali_phy0);
++	ret = phy_bulk_init(NUM_CALIPHY, imxpriv->cali_phys);
+ 	if (ret) {
+ 		dev_err(dev, "cali PHY init failed\n");
+ 		return ret;
+ 	}
+-	ret = phy_power_on(imxpriv->cali_phy0);
++	ret = phy_bulk_power_on(NUM_CALIPHY, imxpriv->cali_phys);
+ 	if (ret) {
+ 		dev_err(dev, "cali PHY power on failed\n");
+-		goto err_cali_phy0_exit;
+-	}
+-	ret = phy_init(imxpriv->cali_phy1);
+-	if (ret) {
+-		dev_err(dev, "cali PHY1 init failed\n");
+-		goto err_cali_phy0_off;
+-	}
+-	ret = phy_power_on(imxpriv->cali_phy1);
+-	if (ret) {
+-		dev_err(dev, "cali PHY1 power on failed\n");
+-		goto err_cali_phy1_exit;
++		goto err_cali_phy_exit;
+ 	}
+ 	ret = phy_init(imxpriv->sata_phy);
+ 	if (ret) {
+ 		dev_err(dev, "sata PHY init failed\n");
+-		goto err_cali_phy1_off;
++		goto err_cali_phy_off;
+ 	}
+ 	ret = phy_set_mode(imxpriv->sata_phy, PHY_MODE_SATA);
+ 	if (ret) {
+@@ -465,10 +456,8 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
+ 	}
  
-+After acquiring a set of PHYs with a bulk helper, the order is::
-+
-+    phy_bulk_init()
-+    phy_bulk_power_on()
-+    ...
-+    phy_bulk_power_off()
-+    phy_bulk_exit()
-+
- Some PHY drivers may not implement :c:func:`phy_init` or :c:func:`phy_power_on`,
- but controllers should always call these functions to be compatible with other
- PHYs. Some PHYs may require :c:func:`phy_set_mode <phy_set_mode_ext>`, while
-@@ -172,6 +201,12 @@ PHY framework provides 2 APIs to release a reference to the PHY.
- Both these APIs are used to release a reference to the PHY and devm_phy_put
- destroys the devres associated with this PHY.
+ 	/* The cali_phy# can be turned off after SATA PHY is initialized. */
+-	phy_power_off(imxpriv->cali_phy1);
+-	phy_exit(imxpriv->cali_phy1);
+-	phy_power_off(imxpriv->cali_phy0);
+-	phy_exit(imxpriv->cali_phy0);
++	phy_bulk_power_off(NUM_CALIPHY, imxpriv->cali_phys);
++	phy_bulk_exit(NUM_CALIPHY, imxpriv->cali_phys);
  
-+For devm_phy_bulk_get_all() and devm_of_phy_bulk_get_all(), driver detach
-+releases both the PHY references and the allocated array. To release them
-+earlier, use::
-+
-+	void devm_phy_bulk_put_all(struct device *dev, struct phy_bulk_data *phy);
-+
- Destroying the PHY
- ==================
+ 	/* RxWaterMark setting */
+ 	val = readl(hpriv->mmio + IMX8QM_SATA_AHCI_PTC);
+@@ -480,14 +469,10 @@ static int imx8_sata_enable(struct ahci_host_priv *hpriv)
  
-@@ -221,3 +256,8 @@ DeviceTree Binding
+ err_sata_phy_exit:
+ 	phy_exit(imxpriv->sata_phy);
+-err_cali_phy1_off:
+-	phy_power_off(imxpriv->cali_phy1);
+-err_cali_phy1_exit:
+-	phy_exit(imxpriv->cali_phy1);
+-err_cali_phy0_off:
+-	phy_power_off(imxpriv->cali_phy0);
+-err_cali_phy0_exit:
+-	phy_exit(imxpriv->cali_phy0);
++err_cali_phy_off:
++	phy_bulk_power_off(NUM_CALIPHY, imxpriv->cali_phys);
++err_cali_phy_exit:
++	phy_bulk_exit(NUM_CALIPHY, imxpriv->cali_phys);
  
- The documentation for PHY dt binding can be found @
- Documentation/devicetree/bindings/phy/phy-bindings.txt
+ 	return ret;
+ }
+@@ -839,19 +824,19 @@ static const struct scsi_host_template ahci_platform_sht = {
+ 
+ static int imx8_sata_probe(struct device *dev, struct imx_ahci_priv *imxpriv)
+ {
++	int ret;
 +
-+Missing Bulk Helpers
-+====================
-+Currently, only a few bulk helper functions are added as they have users.
-+Function not upstreamed can be found at https://lore.kernel.org/linux-phy/20260904083709.425893-1-inochiama@gmail.com/
+ 	imxpriv->sata_phy = devm_phy_get(dev, "sata-phy");
+ 	if (IS_ERR(imxpriv->sata_phy))
+ 		return dev_err_probe(dev, PTR_ERR(imxpriv->sata_phy),
+ 				     "Failed to get sata_phy\n");
+ 
+-	imxpriv->cali_phy0 = devm_phy_get(dev, "cali-phy0");
+-	if (IS_ERR(imxpriv->cali_phy0))
+-		return dev_err_probe(dev, PTR_ERR(imxpriv->cali_phy0),
+-				     "Failed to get cali_phy0\n");
+-	imxpriv->cali_phy1 = devm_phy_get(dev, "cali-phy1");
+-	if (IS_ERR(imxpriv->cali_phy1))
+-		return dev_err_probe(dev, PTR_ERR(imxpriv->cali_phy1),
+-				     "Failed to get cali_phy1\n");
++	imxpriv->cali_phys[0].id = "cali-phy0";
++	imxpriv->cali_phys[1].id = "cali-phy1";
++
++	ret = devm_phy_bulk_get(dev, NUM_CALIPHY, imxpriv->cali_phys);
++	if (ret)
++		return dev_err_probe(dev, ret, "Failed to get cali_phy\n");
+ 	return 0;
+ }
+ 
 -- 
 2.56.1
 
