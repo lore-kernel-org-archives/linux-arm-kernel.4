@@ -2,113 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1EAB606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66138606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SGR8HpwT;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=fBGhuC3x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GEajOTge;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l3bN3c7V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yq62kjbFDtxAK3raX9EKcggR3VldyMhTYSizs/nAmv0=; b=SGR8HpwTKgQAD9
-	f4tzarfJG+gtFOanxiYZ6h4ZSp4mObwiaQjED7xMNmhGkWfyG+3k6kGkMKvCjBugleX+XUtIVTtor
-	ermNsGu/6zrP7O0zpSKJXWYAOqAlm7za8yCpiIZnditf+YrwrJcve2K6MjA5vQrxr+fD8TsnAalKS
-	jzrlGzBkR79B4QDntbnjJIuUMTzjfmfFUU8W2pkjb9wA94AXeyGuUkRqGcWCuEWZoEbthYwPu51E+
-	oIk/C95ST/LdosWVscG7Q/9Avqj4tm9+KWVYpVjiIipc4TAYRiG4P47C01VhGGq3OalOqGEms1jQs
-	JTchJUiPz5aWE0MCOPFA==;
+	List-Owner; bh=eBRMIVuniFZxe5dLg6Ocb2OqQrm/7DI1rMM/oau64Qg=; b=GEajOTgekSddJI
+	Rdv9oomG0qpJcoGnSHm3oTKyHfwrLZn3fAVhs5EZQvYOeO/yxkZmZUrezpruiDCcdKeay4SP+p/r9
+	nQofPBMi89Sq4m4lI872r9R2IWAdr/N8ev19Vp9FB+1/yN0AT8Qy7GUfLR0wAGrbXdYjBmVRTKLgK
+	rmc/jjJndcZ5dupMUBxL2mRvlPmuugniV7/3JQBtTvQctVCRVevHItOZZGQXDdLC1MtwnD2qmRWF1
+	pk7d+IaYcIiaKMTr6G0xiF6PBVJC+2RVfoj7ZLov7QGzX+Db5Z6XpBBXxed39UImjBtkH2aydRpTj
+	TR1BV7xqCnDHD2ude7ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8Ya-000000097FZ-2nW0;
-	Wed, 25 Nov 2026 08:40:49 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xW8FW-000000092v7-2sMa;
+	Wed, 25 Nov 2026 08:21:06 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8YM-00000009713-3wID;
-	Wed, 25 Nov 2026 08:40:38 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AP68TDL2629335;
-	Wed, 25 Nov 2026 08:40:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=yq62kjbFDtx
-	AK3raX9EKcggR3VldyMhTYSizs/nAmv0=; b=fBGhuC3xTnMRrieabBbSgyCyIhZ
-	HtP4a6Nutj7kSprsE7HXLFOeKu501ftE9uIScvZ7aT1z3AGG5czq2YttQ6oMp4YX
-	rdQJyY4yLMnfBL4pbkx/NlTBTTMFbTIQxUKjJ8JkreIQOGfixI+hbMaXUfVaBWA1
-	ctB2ENN6x4wOe6ggMma6KYUrQzSjeNw2EQQHHQLAhTIHH/s98WVgFRhrrBZ0kq95
-	JyjC1UynXSGyzt+fTX4tb1C7GO2joTHnSclMw+ypEV2b1V9gRy0qWLhlak9YKfbY
-	AhOxE4Djc2NZ1nvmbpcTFsVM6iVL7xJxpNZvqK1ec2k57voFIB2s6gEeBHA==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5eydb5uv-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 25 Nov 2026 08:40:00 +0000 (GMT)
-Received: from pps.filterd (apblrppmta01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AP8dwGH075779;
-	Wed, 25 Nov 2026 08:39:58 GMT
-Received: from hu-devc-blr-u24-a.qualcomm.com (hu-vikrsi-blr.qualcomm.com [10.190.111.249])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 6AP8dv08075771
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 25 Nov 2026 08:39:57 +0000 (GMT)
-Received: by hu-devc-blr-u24-a.qualcomm.com (Postfix, from userid 4853235)
-	id 20455248A5; Wed, 25 Nov 2026 14:09:57 +0530 (+0530)
-From: Vikram Singh <vikram.singh3@oss.qualcomm.com>
-To: peterz@infradead.org, mingo@redhat.com, acme@kernel.org,
-        namhyung@kernel.org, mark.rutland@arm.com,
-        alexander.shishkin@linux.intel.com, jolsa@kernel.org,
-        irogers@google.com, adrian.hunter@intel.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-        atishp@rivosinc.com, anup.patel@oss.qualcomm.com, will@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        beeman@rivosinc.com
-Cc: Vikram Singh <vikram.singh3@oss.qualcomm.com>,
-        linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
-        Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 7/7] dt-bindings: riscv: add Sxctr ISA extension description
-Date: Wed, 25 Nov 2026 14:09:42 +0530
-Message-ID: <20261125083942.3695072-8-vikram.singh3@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125083942.3695072-1-vikram.singh3@oss.qualcomm.com>
-References: <20261125083942.3695072-1-vikram.singh3@oss.qualcomm.com>
+	id 1xW8FV-000000092ud-3bKg
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 08:21:05 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 9D0B340F09;
+	Wed, 25 Nov 2026 08:21:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 836FB1F000C6;
+	Wed, 25 Nov 2026 08:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795594865;
+	bh=eBRMIVuniFZxe5dLg6Ocb2OqQrm/7DI1rMM/oau64Qg=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=l3bN3c7ViLysCikSwClJF6StQ+CTSfJp+PaZpatGNe2B4+SAPhALIkvEv95zAZmD3
+	 HnPZcJnM5G+apOEzy1MZa+VQRnZqVBMTAHG5BTCBjppb3Rz94srug3zz7grh56vOCh
+	 7LCTUZsowIbX01QYfuOKlQfdLUoGVhB0A/VaVp13WI7RZNrqwVVZ3zglpb8QBEqj7V
+	 DbrQc2FQ2JjaV7+NdRQij/93yYplg+jkwkcORdJ/5GO0hhZZ7ZzN4RvODUiKHU69Xb
+	 0krUJmWgQAj2xQ2lKV+T2xpnCikVs22EebzHGri4FERot0+Pp3nLLkY2ZeNFPVpdyU
+	 8Hu2SG86oQzNQ==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDAzNCBTYWx0ZWRfX/4c+l/UfkmaU
- klsl1UmFfncTKN5N3b/kcGFtV4ybjceDuecKZRj5bwaN478FTK9hR/MrNcDQdQxw/EASS3rcUvd
- 0QyyH2mHgl4qac+2Z/E9KqIUEqPG6wI=
-X-Proofpoint-ORIG-GUID: Yy3zRXtCmUDa-_2DR-ZVFt8VM6yO30cj
-X-Proofpoint-GUID: Yy3zRXtCmUDa-_2DR-ZVFt8VM6yO30cj
-X-Authority-Analysis: v=2.4 cv=GIGdgeNK c=1 sm=1 tr=0 ts=6b069ee0 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=YMgV9FUhrdKAYTUUvYB2:22 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=XYAwZIGsAAAA:8
- a=sUaezUCSs8oGO4LR0qkA:9 a=E8ToXWR_bxluHZ7gmE-Z:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDAzNCBTYWx0ZWRfX+QPW50lTwKp/
- qujIntOPkVbssi24oqeRNgpuTC2d71D8CJkvVsJQmVpH47840tdyt3se76ZA6tn0EIAjdPX0h+y
- qgvfoIn/AAHD8O08m+zPQJusWhIRXFGTgWh/MQIggMq+D7gDAexfclUJMd3gJmdngY46WgmkBZ7
- jwqE5F+tlKAZndQrSQMGDaUAkkK8Az3fAKl1O4IvMLw5Vi5+syB2LCLuVaBnax1XbLsmw+Tjsei
- yr0CwRz75qfDs6Qk5ZbqNxl1QPqwWoj/8HFmFxRI0Sq6Icx6VicyZIe0rZVRSFRcYs2oBdaHO6d
- azOeF8HtgOdmGYU9/Dz3KBVyrLxj2OsLgkvoED37Hg1W7JMOYMP9A99z8vZJIxyNSpcMz3p0qQB
- /QT/d4cR32zlq1zYfwrzLVFWp04T6eOAnVJ5LmDqKSbVtZyv4S/Eoh050omPkCWyJHzYCu/VwPq
- aHbLo/wKwR7V6ntokjA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-25_02,2026-11-23_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1011
- spamscore=0 priorityscore=1501 bulkscore=0 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250034
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_004035_730400_BAEFE0D5 
-X-CRM114-Status: GOOD (  10.74  )
-X-Spam-Score: -2.7 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 8/9] arm64: dts: marvell: armada-3720-gl-mv1000: Add
+ switch fixed-link
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ mfd@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20261124-dtbs-marvell-v2-8-663009a769da@kernel.org>
+References: <20261124-dtbs-marvell-v2-0-663009a769da@kernel.org>
+ <20261124-dtbs-marvell-v2-8-663009a769da@kernel.org>
+Date: Wed, 25 Nov 2026 09:21:01 +0100
+Message-Id: <179559486198.14607.4946542325062000639.b4-reply@b4>
+X-Mailer: b4 0.17-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,78 +74,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the S[m|s]ctr ISA extension description.
+On 2026-11-24 14:46 -0600, Rob Herring (Arm) wrote:
+> As the switch port 0 has an 'ethernet' phandle, 'phy-mode' and one of
+> 'fixed-link', 'phy-handle' or 'managed' are required by the DSA schema.
+> The expressobin has appears to have a similar configuration, so copy it
+> and use 'fixed-link'.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Co-developed-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-Signed-off-by: Rajnesh Kanwal <rajnesh.kanwal49@gmail.com>
-Signed-off-by: Vikram Singh <vikram.singh3@oss.qualcomm.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../devicetree/bindings/riscv/extensions.yaml | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index 79491ef8f86a..dde2f28cfda5 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -202,6 +202,13 @@ properties:
-             mechanism in M-mode as ratified in the 20240326 version of the
-             privileged ISA specification.
- 
-+        - const: smctr
-+          description: |
-+            The standard Smctr supervisor-level extension for the machine mode
-+            to enable recording limited branch history in a register-accessible
-+            internal core storage as ratified at commit 9c87013 ("Merge pull
-+            request #44 from riscv/issue-42-fix") of riscv-control-transfer-records.
-+
-         - const: smmpm
-           description: |
-             The standard Smmpm extension for M-mode pointer masking as
-@@ -263,6 +270,13 @@ properties:
-             mechanism in S-mode as ratified in the 20240326 version of the
-             privileged ISA specification.
- 
-+        - const: ssctr
-+          description: |
-+            The standard Ssctr supervisor-level extension for recording limited
-+            branch history in a register-accessible internal core storage as
-+            ratified at commit 9c87013 ("Merge pull request #44 from
-+            riscv/issue-42-fix") of riscv-control-transfer-records.
-+
-         - const: ssnpm
-           description: |
-             The standard Ssnpm extension for next-mode pointer masking as
-@@ -1189,6 +1203,21 @@ properties:
-             - contains:
-                 const: zicntr
- 
-+      # Smctr depends on Sscsrind
-+      - if:
-+          contains:
-+            const: smctr
-+        then:
-+          contains:
-+            const: sscsrind
-+      # Ssctr depends on Sscsrind
-+      - if:
-+          contains:
-+            const: ssctr
-+        then:
-+          contains:
-+            const: sscsrind
-+
- allOf:
-   # Zcf extension does not exist on rv64
-   - if:
+Best regards,
+Krzysztof
+
 -- 
-2.43.0
-
+Krzysztof Kozlowski <krzk@kernel.org>
 
