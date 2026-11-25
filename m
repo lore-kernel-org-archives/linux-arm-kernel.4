@@ -2,123 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B68160A3825
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5AF606A689
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 09:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dCL8MlOa;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=boAdVYoX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U7Ota0ec;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aYEYUGEz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Xhprbp8vYgoK3W8l2CK0jpgqQyaq9WrszZ2gTi+N1FM=; b=dCL8MlOaDieI5S
-	DjPrkU0H+2J1PWlSvUHn1eeAkn/GZhEW1zZ9h5hT44jslkaZvDJpb7d+dw9hWF9skWkBYki+07Pmc
-	ija2FTzTxPWClcFk5+te1rqUjTDqnFYqgOHpSifMlkf+wSH4x/3iFhccjnlrQnVE69Puk0rJmRHbM
-	f1infd9Iyq9NOJQCx74Q3do+K610hkItccnK/+3kp0CEUDxTpY2VB0nuvpTp3cu03OaRy0BtEY2WN
-	Go0kp72GBXOUq5rtyJ9mAOV7h7U6OeO4CRdCuqPaqKo2XGoMRbExSiLT8t2sjFAypIq4WxSFaYA+x
-	yw9Dh/ZK6Jf4RsydpvEA==;
+	List-Owner; bh=bTziaN0Yw097dCTsEwR9QukNmJKHlrH7u2+Skaj2v6Y=; b=U7Ota0ecfXKN8z
+	8kfubviJIue4yKTc6lsVMpS6M13o/RYLaWpvu8Pz3RyUljGRtBFiRDcpV2gfmengQJHXyxUZHPmoc
+	We7PtYNZTYwmZF73mBaCaQgM+th8/uE+Zp+5bPXekUD2JymJnBFva/TiMnmLmecxXcLNOAiVMPwOz
+	4sJCUj2ASuGpEuiLozqABOxWRT/+h05eePjwB4i4SkbFQzWKVZdQ1LS/z0zFabN78T6BvxlAUviVI
+	rS4rbvL8e/Djk0u/M36OM9jSZbhM5GMRkNmzcf2MaOtlTzq/QJofCga0zkycVgI4NeGtGoQRvqEYk
+	VhwaWtHH/yE7a+ME7CVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8QB-000000095Ou-3rTa;
-	Wed, 25 Nov 2026 08:32:07 +0000
+	id 1xW941-00000009EUv-08S1;
+	Wed, 25 Nov 2026 09:13:17 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8Q8-000000095Nl-1CEr
+	id 1xW93z-00000009EUc-2G0q
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:32:04 +0000
+	Wed, 25 Nov 2026 09:13:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 996316060D;
-	Wed, 25 Nov 2026 08:32:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B881F000C6;
-	Wed, 25 Nov 2026 08:31:56 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A90B46256F;
+	Wed, 25 Nov 2026 09:13:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B401F00A36;
+	Wed, 25 Nov 2026 09:13:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795595523;
-	bh=Xhprbp8vYgoK3W8l2CK0jpgqQyaq9WrszZ2gTi+N1FM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To;
-	b=boAdVYoX6mzVRi523peA0iUwn//soWfCQzl+E94F2K/c/zZRfD3fiEix+n2i3hPES
-	 aXkQyPSDPAxStRt++4P0F7qi9974GWrBGgMaLskiSiUfb8g6C1RbBsYmcGREJtlpHG
-	 NJXGmZ8qL7Fx5S7hEjOUgoCZUSEQyQpJrNvQrwRoUq2nP8evB7moPrYoqosJBT1Ga1
-	 p2fzUN7xQq4fpTwW5jTr6PwuMFmdTlDfJzTxIDJ+9Gqy4xxwFmkxtbHYaRHtXHnVEu
-	 uq/4RbynOG/7r5eaVe7Ft98NQeb0m+cYS6NG6B41b/i9iobv4kYwL2JeyO2soXETeO
-	 l90JcBY8eo3Cg==
-Message-ID: <de65af39-3a9c-4b2e-bb82-2a84b8584731@kernel.org>
-Date: Wed, 25 Nov 2026 09:31:54 +0100
+	s=k20260515; t=1795597994;
+	bh=bTziaN0Yw097dCTsEwR9QukNmJKHlrH7u2+Skaj2v6Y=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject;
+	b=aYEYUGEz9o/vhRX/zZ571koETPrTA/8SeRG23YTIpSglUtVm3ETsvrUuL46F/eTD9
+	 SNyC0dkiUhVtUtFGutfNkKfBjKJcJivLK2R9Jg9lSOHidMPHCgcM4bcIEkjmCaHb6s
+	 ITSL6JgLHjdEyuNMp2QzltQ31q2n3l9il4Yzb1b4nSv/NYve5O57BbK8hc8PsYqYif
+	 s6Z1k5E84++nZgEZlbijief0+P/G7WbHFeKY/a48ivM9aSrqY2jLuy2yS5JKxfxSZX
+	 3Ot0KBgjv3bmuSU/M6ZpvukWtVC6WnpCpEn7TvOfaEPVt9j7CdpgEOi68vDuJXshSq
+	 UXAyeqvwZc1eg==
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 05FA4198003A;
+	Wed, 25 Nov 2026 04:13:12 -0500 (EST)
+Received: from ams-imap-11 ([10.64.2.31])
+  by ams-compute-02.internal (MEProxy); Wed, 25 Nov 2026 04:13:12 -0500
+X-ME-Sender: <xms:pqYGa_rEcjNa01hjz8sROcqaFH1fJA19T2Bj_dBk7LSn_4OoC8nc-A>
+    <xme:pqYGa0dO3UI4A-kBavHTC5eYyU3WenJqXzl0-wPERb674F-tT-Jqhu1CMDKiRfqDc
+    gwCg1Sr6xsWW4ldaZwYJklZHugbKwCdADFnTMlyNMwzjVfzviqUUa3B>
+X-ME-Proxy-Cause: dmFkZTGnYlHbc0Cvaa9/Sucg00Ew/XiLqbsJlzrXTUTTag9Hud8tgS5KuCcES6JHMk4VEQ
+    W8cwtmmo4IR+qu2B+KrInXzfJx9IVDmCAaGAYOZnz9TEJwuxqmNkBainZ8Z3em2BuXYifl
+    OGE6kto+Tiw4fTq5/CFZs/dA0WgmHtaqLfjrq+PEIWIpVElcbPF5hdLTow9EX8NDYvY4BG
+    2a/v69SC7LZr1AXyPBDB/y92QXnVjryzMH0vySnKpXQu56ik2pVDb59bo/DVK1cZjFjp31
+    isvny8bFS6pI+HD13mHtZFUBVxJVV5brQmS+8AseRqM0c/L1mN0VZLrQUgYfQLdkPAk2dc
+    CLOsMCpCNErHTO+DoifKAe34Iivt0+9GaEJkjqEctxwPPzwKqetiOaW4u86z8vko652dGK
+    cdRFDaqmW11KsgWWoabN05IOjCYo9DQKXJWP4CLLYN7DSBunwmcLUyJGzrsNot3ZZRQGMk
+    JWDtMOuUYT7nF2QlWgrjJmALlYlDyhqSavT1V1b4Mq1hFo81+lVGecwmwDO44MWdEqFFxH
+    gidzsjjpvah7wbMLuVm1M090q7eXg36w6zVY6aPo7v/FdQgJG+1T8MBII62s3rbPCxH+ie
+    F5bQe513RgHMAW4l6slFKqH+zu06LC9xsfKITJ5NQJcsmDXU5AmcAcYLWspw
+X-ME-Proxy: <xmx:p6YGaz88OjAV73qCvQSDsn2uvukEd1j4iL564_01e-I53bgY9AP8CQ>
+    <xmx:qKYGa5te6XvtTJgSkktCeGVBkoNuT7L2Re6hd9aj-FlT7GkpXclIyQ>
+    <xmx:qKYGa3oYfzaWhP6WD75-RRaoGLVwE4RJiu9-P6SFy2J0Myo3ZyqGBQ>
+    <xmx:qKYGa9oFS6Gd58zf14CWc3-earY-5TktoJFs2YFLe96D7bulpsVHag>
+    <xmx:qKYGa2aq7gdm04BBE1oe6pEq8rVUhmS5Lv8VaOAAOJkLr9KZy3srtYi->
+Feedback-ID: ice86485a:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 3D655F80096; Wed, 25 Nov 2026 04:13:10 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] dt-bindings: soc: google: Add Google Tensor CPM
- binding
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Brian Norris <briannorris@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>,
- Ulf Hansson <ulfh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>,
- linux-arm-kernel@lists.infradead.org,
- Mariano Marciello <mmarciello@google.com>,
- Douglas Anderson <dianders@chromium.org>, linux-clk@vger.kernel.org,
- =?UTF-8?Q?Jakub_G=C5=82owacki?= <jglow@google.com>
-References: <20261026214359.3122870-1-briannorris@chromium.org>
- <20261026144346.2.Ib692ddd35c1dbea1757d9b1db6c1c7e938fc4ea6@changeid>
- <20261028-rapid-daffodil-rat-0adc6a@quoll> <aulIoq2oVjJ3DVzL@google.com>
- <d4a430de-715a-4936-8adb-35ff57a52b5f@kernel.org>
- <avZkfg6WMlMzOxpn@google.com>
- <72ef7ef8-acc8-4ad5-9c09-76d9e944bf5c@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <72ef7ef8-acc8-4ad5-9c09-76d9e944bf5c@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Wed, 25 Nov 2026 10:12:49 +0100
+From: "Ard Biesheuvel" <ardb@kernel.org>
+To: "Nick Desaulniers" <ndesaulniers@google.com>,
+ "Ard Biesheuvel" <ardb+git@google.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Mark Brown" <broonie@kernel.org>, "Josh Poimboeuf" <jpoimboe@kernel.org>,
+ "Kalesh Singh" <kaleshsingh@google.com>
+Message-Id: <22afd968-9f17-41b1-83b5-9e46e831c837@app.fastmail.com>
+In-Reply-To: <CAKwvOdk7MFxj5uadbpaaQkbdu46TxzPPEqn=ieF_JWNL4_KsSg@mail.gmail.com>
+References: <20261119165825.1793558-5-ardb+git@google.com>
+ <20261119165825.1793558-6-ardb+git@google.com>
+ <CAKwvOdk7MFxj5uadbpaaQkbdu46TxzPPEqn=ieF_JWNL4_KsSg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: module: Keep executable init sections in the core text
+ region
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,86 +99,135 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 25/11/2026 08:07, Krzysztof Kozlowski wrote:
-> On 13/11/2026 02:14, Brian Norris wrote:
->> Hi Krzysztof,
->>
->> On Thu, Nov 05, 2026 at 07:54:22PM +0100, Krzysztof Kozlowski wrote:
->>> On 03/11/2026 03:36, Brian Norris wrote:
->>>> On Wed, Oct 28, 2026 at 02:19:23PM +0100, Krzysztof Kozlowski wrote:
->>>>> On Mon, Oct 26, 2026 at 02:43:40PM -0700, Brian Norris wrote:
->>>>
->>>>>> --- /dev/null
->>>>>> +++ b/include/dt-bindings/interrupt-controller/irq-cpm-google.h
->>>>>> @@ -0,0 +1,16 @@
->>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>>>> +/*
->>>>>> + * This header provides constants for CPM IRQ.
->>>>>> + *
->>>>>> + * Copyright 2025-2026 Google LLC
->>>>>> + *
->>>>>> + */
->>>>>> +#ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_IRQ_CPM_H
->>>>>> +#define _DT_BINDINGS_INTERRUPT_CONTROLLER_IRQ_CPM_H
->>>>>> +
->>>>>> +#define CPM_IRQ_RTC_ALARM_NO			0
->>>>>
->>>>> Keep naming consistent. Clocks has _CLK suffix, so this should not use
->>>>> prefix.
->>>>>
->>>>>
->>>>>> +#define CPM_IRQ_AOC_MIN				7
->>>>>
->>>>> Anyway, ABI constants should be indexed from 0 and incremented by 1.
->>>>
->>>> What do you mean by this? Do I need to make up names for the
->>>> unused IDs between 0 and 7? On an initial search, I don't believe they
->>>> have any meaning at all. Does that mean I should make up some kind of
->>>> "RESERVED_<N>" naming here?
->>>
->>> No, I meant CPM_IRQ_AOC_MIN is 1.
->>>
->>>>
->>>> Between 7 and 156, these are just ... 150 different "service numbers"
->>>> within the AOC (Always On Connectivity) subsystem. I can name them
->>>> AOC_0, AOC_1, ... AOC_149 if that helps.
->>>>
->>>> Or are you suggesting that I pack the actual use cases (so, 0 and 7-157)
->>>> into 0-151? I thought it was valuable to directly use the firmware
->>>> indexing where possible; if I change those, then the indexing loses its
->>>> inherent meaning, and we also have to add another layer of translation.
->>>
->>> We do not use hardware numbers as bindings and ABI, because that's
->>> pointless - no benefits, only risks. Similarly you do not define GIC
->>> interrupt numbers, pinctrl pin numbers, MMIO addresses as bindings. None
->>> of these bind anything between DTS and software, so not a binding.
->>
->> OK, I see your point about the distinction between hardware numbers and
->> bindings. So are firmware-protocol-defined numbers more like hardware
->> numbers or bindings?
->>
->>> There are some exceptions like SCMI firmware, but that's not the case here.
->>
->> It's funny you mention that, because that's exactly what Jerome compared
->> this to in the clk, reset, and pmdomain portions.
->>
->> These values are used literally in the firmware interface, so I'd
->> consider them very similar to SCMI firmware protocol IDs (and, not that
-> 
-> Sure, where is the source code of the firmware then?
 
-And if you do not have the source code, then not a binding, so you won't
-have case like:
-https://lore.kernel.org/all/20261124-qcom-adsp-shared-vmid-fixes-v1-1-f1a808dc41a5@mainlining.org/
+On Tue, 24 Nov 2026, at 22:40, Nick Desaulniers wrote:
+> On Thu, Nov 19, 2026 at 8:58=E2=80=AFAM Ard Biesheuvel <ardb+git@googl=
+e.com> wrote:
+>>
+>> From: Ard Biesheuvel <ardb@kernel.org>
+>>
+>> Since commit 3e35d303ab7d ("arm64: module: rework module VA range
+>> selection"), the core and init text regions of a module may end up mo=
+re
+>> than 128 MiB apart, i.e., out of direct branching range of each other.
+>> This is why the module loader maintains a separate .init.plt section =
+for
+>> branches emitted into .init.text, and a separate ftrace trampoline for
+>> ftrace callsites in .init.text.
+>
+> (Sorry, for picking nits in the commit message, but still think this
+> could use a stronger problem statement up front, particularly some
+> mention of BTI since without BTI this is a non-issue)
+>
+> "This is a problem because the compiler may omit BTI landing pads for
+> such cross section calls, which can lead to BTI exceptions for large
+> kernel modules that are built with BTI and make calls between
+> .init.text and .text" (or something to that effect).
+>
+> i.e. commit message doesn't mention BTI at all, and BTI is why having
+> those too-large-to-encode operands in a direct jump are problems.
+>
+> (two comments below on configs and includes)
+>
+>>
+>> __init code typically makes up only a small fraction of a module's co=
+de,
+>> so instead, keep .init.text in the core text region, by overriding
+>> module_init_section(). Do the same for .exit.text in
+>> module_exit_section(), which is only consulted when CONFIG_MODULE_UNL=
+OAD
+>> is disabled, in which case .exit sections are moved into the init reg=
+ion
+>> too.
+>>
+>> On arm64 allmodconfig (10604 modules, disregarding modules with 'test=
+' or
+>> 'torture' in their name), this grows the aggregate size of the module=
+s'
+>> core text regions by 2.6 MB (+0.58%), or 243 bytes per module on
+>> average. As this only costs an additional page at runtime if a module=
+'s
+>> core text region happens to end within that many bytes of a page
+>> boundary, this is expected to affect ~5.5% of modules. In practice, 5=
+27
+>> modules (5%) grow by at least one page, of which 16 by more than one,
+>> adding up to 567 pages of 4 KiB. Given that allmodconfig enables KASA=
+N,
+>> KCOV, UBSAN and GCOV instrumentation, which inflates __init code by
+>> 1.5-2x, these figures should be taken as an upper bound.
+>>
+>> On a distro-style configuration without sanitizers (1023 modules), the
+>> average growth is 104 bytes per module, or ~10 KiB per 100 loaded
+>> modules, which is expected to cost ~2.5 additional pages of 4 KiB (or
+>> ~0.6 pages of 16 KiB).
+>>
+>> This permits the separate init PLT and init ftrace trampoline to be
+>> removed in a subsequent patch.
+>
+> Maybe not worth the trouble ("over configuration"), but I do wonder if
+> you'd want to make either of the below changes conditional on BTI or
+> MODULE_UNLOAD (as is, they are unconditional)? i.e. don't pay for what
+> you don't use?
+>
 
-Best regards,
-Krzysztof
+Replying here to both points:
+
+Currently, we are paying for what we are rarely using, given that
+.text is next to .init.text in 99% of the cases in practice, and so
+the logic for .init PLT veneers and the alternative ftrace trampoline
+is rarely exercised. Getting rid of those, as patch #3 does, is already
+worth it imo.
+
+But yes, BTI is the driver for this change, so it should be mentioned
+as well.
+
+>>
+>> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+>> ---
+>>  arch/arm64/kernel/module.c | 33 ++++++++++++++++++++
+>>  1 file changed, 33 insertions(+)
+>>
+>> diff --git a/arch/arm64/kernel/module.c b/arch/arm64/kernel/module.c
+>> index 24adb581af0e..39e7a50733a9 100644
+>> --- a/arch/arm64/kernel/module.c
+>> +++ b/arch/arm64/kernel/module.c
+>> @@ -25,6 +25,39 @@
+>>  #include <asm/sections.h>
+>>  #include <asm/text-patching.h>
+>>
+>> +/*
+>> + * The module loader allocates the core and init text regions of a m=
+odule
+>> + * independently, and so they may end up out of direct branching ran=
+ge of each
+>> + * other. This complicates the handling of PLTs and ftrace trampolin=
+es, which
+>> + * need to be emitted within range of the branch instructions that u=
+se them.
+>> + *
+>> + * So keep executable .init sections in the core text region instead=
+. This
+>> + * costs a bit of memory, as __init code will no longer be freed aft=
+er the
+>> + * module's init routine returns, but this is usually a small fracti=
+on of the
+>> + * overall size of the module. Non-executable .init sections are not=
+ affected.
+>> + */
+>> +bool module_init_section(const char *name)
+>> +{
+>> +       if (strstarts(name, ".init.text"))
+>
+> #include <linux/string.h> # IWYU
+>
+
+Ack.
 
