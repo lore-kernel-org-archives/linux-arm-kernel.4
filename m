@@ -2,82 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96AD1606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A20606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Pg3ZRUOv;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=P4Lj0TYQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zNcURpP5;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=OEi1ZWWc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
+	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=66XtB+U2+4to9qy3PAxUKRgvt3J9EZgv7Tv26f9LUCA=; b=Pg3ZRUOvqBwWag
-	XFjl0KdC5fmHB2trSw56TCaOczkacufy/U9xAn5guUX14gJRzwvYkK3pg8/X0K4dduXfedvJNe8Fj
-	axLJk7el1FekG0XLXhwkyypcesD5xdO9XLvtn0WQXU/5dmt5Q1WpeNXo1d4M6bxJb5CjFLpXZdk2y
-	z3g8++TvBvvNj272xsZCkVZ5y8YUZ/pZAY91R605SOHISS3CryAJRewq+Y1ept5lgc3vuVOJVxDl9
-	DTxTaNJg4xNUA0HHpyYpHkvw3QZV7FxjXD2K9hp7x3vJ4t8JiTxS31zgIwydhyqnd046pyKw/l6H4
-	+PKvo6zNs169PWeG3P9Q==;
+	List-Owner; bh=7b7m/DkpgEDQ+oJfz1rrmLJybl8GZzhKw2nRd5M9D9I=; b=zNcURpP5WLLokB
+	lThD5hvsH2a/p2gaCgBjv/q6v7Evj64UnaWNMieecRvkc/DdX69Ukl6+w6nLofaxyMtFxCRG/qSVy
+	XfaI2sIeodVUhylcSOlDYt1xiyUsui7bJtmlX2sk5n+VkBPg+VKBKpP6GB23fF2Ipe6PiZQC+IoTK
+	16Susx1eBLINkMdM0Q/tbDjODAzfkrK3eQs/6WMxEnJ/n3t7At2pdpnee08NR1f5B1jZUdiU8sIyC
+	Egm3bSaNyFUVIGZrlv61vsPnjRVqY2MRrb9cUY6xCvpB30nqwKusIqX95w9svOP2E5n7OVvqcR6ky
+	HZ77i3b+KyrwaQE8n8yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWGaP-0000000AhQn-3JXb;
-	Wed, 25 Nov 2026 17:15:13 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWGaM-0000000AhNc-1cjz
+	id 1xWGgK-0000000AiSg-0vSs;
+	Wed, 25 Nov 2026 17:21:20 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWGgF-0000000AiQH-2me6
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:15:12 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C5EA2F;
-	Wed, 25 Nov 2026 09:15:00 -0800 (PST)
-Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AAD523F86F;
-	Wed, 25 Nov 2026 09:15:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795626903; bh=Fa3kAtHgk384B8+kxGzOb41KHv8hVt7t5M1nRsdUqZw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=P4Lj0TYQ1E2+KwPgoQLRQawek111L2jgfj75ceRrVPopmPV5WEC/jimuonWU6uuxu
-	 EPZTdtrW87BBPVddh55ElWuKDXIJrsOdHpPbvGvJoGflbaT5vYzk+3qfshOpGYyIrb
-	 FujYylv/+RGIMBvs0/t1VJiWOYQxE1j5mLCUP92U=
-From: Leonardo Bras <leo.bras@arm.com>
-To: Usama Arif <usama.arif@linux.dev>
-Cc: Leonardo Bras <leo.bras@arm.com>,
-	maz@kernel.org,
-	oupton@kernel.org,
-	fuad.tabba@linux.dev,
-	joey.gouly@arm.com,
-	seiden@linux.ibm.com,
-	suzuki.poulose@arm.com,
-	yuzenghui@huawei.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	riel@surriel.com,
-	shakeel.butt@linux.dev,
-	kernel-team@meta.com,
-	rkeilty@meta.com,
-	atish.patra@linux.dev,
-	dgreid@meta.com,
-	"ARM ljs@kernel.org" <LorenzoStoakes@leobrasdk>
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-Date: Wed, 25 Nov 2026 17:14:46 +0000
-Message-ID: <awcXhk885lqDRAHy@LeoBrasDK>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261124152842.2634495-1-usama.arif@linux.dev>
-References: <20261124152842.2634495-1-usama.arif@linux.dev>
+	Wed, 25 Nov 2026 17:21:18 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261125172109euoutp02ee4fa3d9c5deb01a51c59fe98105c231~rWXzWKoZk2998829988euoutp02U
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 17:21:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261125172109euoutp02ee4fa3d9c5deb01a51c59fe98105c231~rWXzWKoZk2998829988euoutp02U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1795627269;
+	bh=7b7m/DkpgEDQ+oJfz1rrmLJybl8GZzhKw2nRd5M9D9I=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=OEi1ZWWcaRDpTvP7CQulCBO/V49BJJgF86ryhAJXC5TgpZw4nuounp1poXWbcq9gM
+	 RaBAjfHKNacLXwS77OQipOMC8F/QJSM8DUNTWI0l0tXv3OEOR9J4XC8uYtAEdCb6OM
+	 69YhLX8W6BEeRRwkbZKlthpnlLDrPbsFipJRiToE=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20261125172108eucas1p124b2bc0d3a1d4e2073e0f604d173d1df~rWXzGb1fk2718127181eucas1p1h;
+	Wed, 25 Nov 2026 17:21:08 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20261125172107eusmtip29e62e06ad679156e3763d3a649334c3f~rWXxmyPNQ0516905169eusmtip2u;
+	Wed, 25 Nov 2026 17:21:07 +0000 (GMT)
+Message-ID: <a3722347-4b88-41ad-926b-455530020c6b@samsung.com>
+Date: Wed, 25 Nov 2026 18:21:06 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH] Revert
+ "iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper"
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>, will@kernel.org,
+	robin.murphy@arm.com, honghuan@amd.com, Leon Romanovsky <leonro@nvidia.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>
+Cc: joro@8bytes.org, prakash.gupta@oss.qualcomm.com, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, stable@vger.kernel.org
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20261125135120.1126571-1-sibi.sankar@oss.qualcomm.com>
+Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20261125172108eucas1p124b2bc0d3a1d4e2073e0f604d173d1df
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261125135138eucas1p141ba6b5e09623562e2033e290fba811c
+X-EPHeader: CA
+X-CMS-RootMailID: 20261125135138eucas1p141ba6b5e09623562e2033e290fba811c
+References: <CGME20261125135138eucas1p141ba6b5e09623562e2033e290fba811c@eucas1p1.samsung.com>
+	<20261125135120.1126571-1-sibi.sankar@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_091510_541902_7D992220 
-X-CRM114-Status: GOOD (  23.24  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_092116_299243_71675561 
+X-CRM114-Status: GOOD (  11.34  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,85 +86,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
-> When a stage-2 fault may need new page tables, KVM first tops up the
-> vCPU's page cache: if it holds fewer pages than the fault might need, it
-> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
-> 40. Unused pages stay in the cache until the vCPU is destroyed.
-> 
-> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
-> used. Stage-2 has at most three levels and the root is preallocated, so
-> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
-> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
-> table pages to map all of its memory, while its four vCPU caches get
-> filled with 160.
-> 
-> On a production host with 64 KiB pages running 101 VMs with four vCPUs
-> each, the caches were still 86% full. The memory used:
-> 
->                         before      after
->   per-vCPU capacity     2.5 MB     512 KB
->   all 404 vCPUs         869 MB     <= 202 MB
-> 
-> Let's lower the capacity to 8 with 64 KiB pages, In the production
-> usecase above, it frees at least 667 MB. That still covers the two-page
-> minimum and leaves room for several table allocations per refill. 4 KB
-> and 16 KB pages keep 40.
-> 
-> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
-> but it is topped up before every page it maps, so 8 is sufficient there
-> as well. The pKVM hypervisor memcache and the eager split cache don't
-> use this capacity.
-> 
-> Signed-off-by: Usama Arif <usama.arif@linux.dev>
-> ---
->  arch/arm64/include/asm/kvm_types.h | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
-> index 9a126b9e2d7c99..28568da9ea4a7b 100644
-> --- a/arch/arm64/include/asm/kvm_types.h
-> +++ b/arch/arm64/include/asm/kvm_types.h
-> @@ -2,7 +2,12 @@
->  #ifndef _ASM_ARM64_KVM_TYPES_H
->  #define _ASM_ARM64_KVM_TYPES_H
->  
-> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
-> +#ifdef CONFIG_ARM64_64K_PAGES
-> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
-> +#else
->  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
-> +#endif
->  
->  #endif /* _ASM_ARM64_KVM_TYPES_H */
->  
-> -- 
-> 2.53.1-Meta
-> 
+On 25.11.2026 14:51, Sibi Sankar wrote:
+> This reverts commit 1acce29926d93f3eba427696fe3da6451504dae2.
+>
+> Before this commit, dma_iova_destroy() unmapped through
+> __iommu_dma_iova_unlink(..., free_iova=true), which set
+> iotlb_gather.queued from cookie->fq_domain, skipped iommu_iotlb_sync()
+> and freed the IOVA with the queued gather, exactly like
+> __iommu_dma_unmap(). After it, dma_iova_destroy() calls
+> dma_iova_unlink() and then dma_iova_free():
+>
+>   - dma_iova_unlink() never marks its gather as queued and always calls
+>     iommu_iotlb_sync() after iommu_unmap_fast().
+>   - dma_iova_free() passes a NULL gather to iommu_dma_free_iova(), so
+>     the IOVA goes straight back to the allocator through
+>     free_iova_fast() and never through queue_iova().
+>
+> DMA-FQ domains therefore get strict invalidation on this path. That
+> includes the block layer's blk_rq_dma_map() path, which NVMe uses for
+> all data transfers, so iommu.strict=0 has no effect on NVMe I/O.
+>
+> hw/sw details: Qualcomm Glymur CRD: SMMUv3 with no RANGE_INV,
+> 	       4K pages; NVMe SSD on PCIe Gen5 x4
+>
+> Fio sequential read/write numbers:
+>   Domain                          seq write    seq read
+>   DMA (strict)                    2694 MiB/s   2693 MiB/s
+>   DMA-FQ (lazy), flush queue      2707 MiB/s   2803 MiB/s
+>     bypassed (this regression)
+>   DMA-FQ (lazy), flush queue      10.6 GiB/s   11.9 GiB/s
+>     used by dma_iova_destroy()
+>
+> Fixes: 1acce29926d9 ("iommu/dma: simplify dma_iova_destroy() and drop the free_iova helper")
+> Cc: stable@vger.kernel.org # v7.3+
+> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 
-Hi Usama,
 
-Have you tried to reproduce this issue in v7.4-rc1 or newer?
+The performance data clearly shows that the flush queue was there for
+the reason. Together with this revert it would probably make sense to
+apply the v1 of the reverted patch:
 
-IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
-skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
-improve that issue.
+https://lore.kernel.org/all/20260701092033.422867-1-honghuan@amd.com/
 
-Although I can see that when it's below that minimum it fills the whole 
-capacity (40) of the cache.
+Leon, do You see any other option?
 
-In any case, Lorenzo, could you advise?
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-CC:Lorenzo Stoakes (ARM) (ljs@kernel.org) 
-
-Thanks,
-Leo
 
