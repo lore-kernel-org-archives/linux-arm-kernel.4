@@ -2,69 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C962A606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96CC606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:15:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XS0cHC7D;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=G4Z48lEf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JOaIZ59Y;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=meBcI4CM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SBxkDNXNuYodrKJLEyjfUFDeq77Q5w3VUGlkFkAzqI8=; b=XS0cHC7D0QhpgI
-	TwS3SYzGIARTs7u1N4ovCpn3SZn9Zp9Oj3bNzm35LXNeGe7Y3HxwhTK11zyCD/5TrmgUDrZSa6X+1
-	byWmTi+Wry6/bhJ4FS7v/t7+IDPCZzS/n9Zc750c8n3duoR0ZlnnvRhNeD36p591Z0Zv0ZuxlSUiC
-	10X97oOgvUVkHMN+Qh6kH1kiAvvAlAY5MLUms0Kx6Q4dX/EWRimZC2/TBvfgWOA4O7ufYYqWmttWN
-	btxa7MJ13LmozvN/pIaojtZ+/MDWqV/NReBjIBCZ1lWYMOk9HmwZjIQ0ITYLSj6mtLLgqjkrHUoVY
-	K2l4kidnIO54PW4AeTlQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=oCvYdqFnGBpwdhljQzammkoM2NAqgJQKHy3YaAbmt2w=; b=JOaIZ59Y/HB+WzVmMKTDTcrgh3
+	1RuCro9fZ4XWwbUxzVhD6YKe9bSLpqa4aZxQK3Qtemw4iBPudbFglsy82lQie9MgV/IGDUSrxEUGn
+	HR0a/weNWHnUYbxSlqwgQRBrnV/vZvKErmY5ES50f1aVWaLXLjGYx691xZX1wfFhv4zYDPm8GX6aO
+	qOqPBY2S0kCdstH39bdZQf8419IZF2yZpLqJPYCxuBHwKgehcIqNSqcEEc5jGwdFpcy2EJ1MyAAm+
+	91HsZqM3ONfbJ4iqiLxp1hnrA5OMM65qjp1uu69Q3mmfzheT+jYh8XvBMMEv7uGw7Ot6D2poLKrbo
+	hNK0Zhhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWAyJ-00000009YzD-3iAY;
-	Wed, 25 Nov 2026 11:15:31 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xWAL8-00000009T1j-0FgP;
+	Wed, 25 Nov 2026 10:35:02 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWAxK-00000009Ye4-0hRY
+	id 1xWAKX-00000009Snd-22vs
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:14:30 +0000
+	Wed, 25 Nov 2026 10:34:26 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3E33F625EC;
-	Wed, 25 Nov 2026 11:14:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EE321F000D2;
-	Wed, 25 Nov 2026 11:14:28 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 41D8F45DA5;
+	Wed, 25 Nov 2026 10:34:25 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795602865;
+	b=SURr9m9waFqejrBVnSNRCzAHgdIjOKkaWBuJSX0i9MiSisO0DZ59FEq3wkTsk9zhkt9g
+	 Bec07o5Ocq/Mt0ntbZRGL06h0oJ5CWp8CvcUStr0NEYo8vNC3bzBqelihyh2i14ZX1N8U
+	 9tbWIGU5Ohkm0dttAzvwTKuPGrdQ7WGFf2CcnQD4xsaEX+ycxbjgPFerTMKk28knMimzS
+	 1VK9D0TYbwVn7zGiVWNkMMqKfdnHL1/PLq5QvRvy372cW38Ahkg7HmCnklPqjCMhd+3C0
+	 Sasx0aJKK63xy+YrOwf2fxMXVMWTlj/WgpapDDoa5JmXjeDtXEwsjvrF1RYwczt8ovw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795602865;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=oCvYdqFnGBpwdhljQzammkoM2NAqgJQKHy3YaAbmt2w=;
+	b=NoIsPObIe+xKMj6cLkhgV2l8VQiOjFiVqxMKRHhmUux252WB3kGAhKSqyEtEUWnntQE7
+	 6sviJspvf4uxTvrKLjZ/Ly72Q8X9dIX/JVv7nW+bOWCiOwXgBkm/ImlAKWVBubkY5QWoL
+	 lha7GtG5q7PBQbA//q+n0YJLqg+RiD8TaAPOXsyk9k0OEc+7lVxiz7VBPWiURKONl1FAc
+	 Hzftol18b0Jvy5Q5iaIDMoUyB+6iAMVb2+C21boO+xoazt3hVsKCMs43HqBRd3TzXpQ9c
+	 uc0FhSPJIAARwuHI3sw16JDn6D3xV97fN3LlaeFx5vvseArYW2tsUaQjxPyP10cxosA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 83BC21F000CF;
+	Wed, 25 Nov 2026 10:34:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795605268;
-	bh=SBxkDNXNuYodrKJLEyjfUFDeq77Q5w3VUGlkFkAzqI8=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=G4Z48lEf9cZhUGntAjKt720l8jpsIX6ms8JPyGAoGH23mV+PAb/r9oWKU3rOsKYjK
-	 DXQeOgRJ525YNRqCxmQ/YbnaqgPsF6QA/SlxbuGj0s/mL6Rxja6NpmLE+UWw1vEIUd
-	 R2l9Fl8ZaXbFASoClpO3spjNbz9VEojCj/bWCWRbpbhvYYYK1YYj7dyYHjf2yqsnkc
-	 W96kylHnLqBZ33+g8775+NRM40fmAj8/GYr63W5MXt7vijwEJBIlgsD/lRX/PBTQcE
-	 kWmbr8JtgSb8Hp5sZJiWt4HJ7AWf2exlA0jSwp3PwhVe5GIHtjdo9B7ZjjX/r3TIvs
-	 yHjZXtJoAX21w==
+	s=k20260515; t=1795602865;
+	bh=oCvYdqFnGBpwdhljQzammkoM2NAqgJQKHy3YaAbmt2w=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=meBcI4CMnhsjd1ihgRzGYr3GfQfr9yp0y2vVJ/pCoGscFGjg+QYwhxha3qxy08DUm
+	 ZcvR1Mrvw3mTbnVHYlB92oyfIwoqLYm3apLb6xn3eVujHaVn8Cyvlk9SLrq5gLr5kO
+	 HURdvV9nn+hVdefYk5/FNejD1pDB6SF1AnQHtD83OY/fWb10ok3rwxG1cUmES8k6cW
+	 kIZwURjQhFEditjplOLyav02OElV+Q4EzbLizq5koMQgeVmF6Yang8hr61qm7YCuJ+
+	 I3Dbb8pOt0jrdrjEp4Uf9qe2YIPqHx1kwGnmKii9/vradD9S5nd0rjE7fj5BZCmkY6
+	 26miX1EiCc3jg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 0E1874CE58;
+	Wed, 25 Nov 2026 10:34:10 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Wed, 25 Nov 2026 13:34:12 +0300
+Subject: [PATCH v4 4/6] reset: Add Cortina Systems CS7542 global reset
+ controller
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261125-cs7542-syscon-v4-4-3337bb0d3b48@gmail.com>
+References: <20261125-cs7542-syscon-v4-0-3337bb0d3b48@gmail.com>
+In-Reply-To: <20261125-cs7542-syscon-v4-0-3337bb0d3b48@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-gpio@vger.kernel.org
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795602848; l=6210;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=Ass96zx9V9S2GY99MTNCkP+grHT3PLmWF2LFuWIH+Es=;
+ b=+1V3RPXUKjnsNN3rhNATqJQsKGzESizsJ7nZ95Z6VQHscPGaXUq5c5Y/1u20KLRvQM52Qq1Xj
+ 9SGTPyrVHT7AQrHletHGtKbGHAdmeOHq9dOsLiqh5V0og/Yfg63d07i
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 2/5] dt-bindings: usb: samsung,exynos-dwc3: Add
- Exynos7885 support
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Virag <virag.david003@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, linux-kernel@vger.kernel.org, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org
-In-Reply-To: <20261123092244.1792040-3-virag.david003@gmail.com>
-References: <20261123092244.1792040-1-virag.david003@gmail.com>
- <20261123092244.1792040-3-virag.david003@gmail.com>
-Date: Wed, 25 Nov 2026 12:14:23 +0100
-Message-Id: <179560526391.84329.2026344704407829230.b4-review@b4>
-X-Mailer: b4 0.17-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,6 +112,7 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -83,44 +122,200 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Exynos7885 SoC has a DWC3 compatible USB controller, so it can reuse the
-> existing Exynos glue layer. It is also compatible with the Exynos850
-> variant. Document Exynos7885 compatible.
-> 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
-Just FYI, tested-by tag does not apply here.
+Use the shared syscon regmap to control three PCIe and seven network
+engine reset signals. PCIe consumers supply their own assert and
+recovery timing. Verify level transitions of the network resets before
+the consumer releases DMA buffers. Reject the unassigned group ID to
+preserve exclusive ownership of the underlying lines.
 
+The clock provider registers early for timers. Match the platform
+device for the same syscon when reset consumers can probe.
 
-> ---
-> Changes in v2:
->  - Use samsung,exynos850-dwusb3 fallback compatible
-> 
->  Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-> index 8af0143c3e47..f62e3ed82257 100644
-> --- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-> @@ -24,6 +24,9 @@ properties:
->        - items:
->            - const: samsung,exynos8890-dwusb3
->            - const: samsung,exynos7-dwusb3
-> +      - items:
-> +          - const: samsung,exynos7885-dwusb3
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+---
+ drivers/reset/Kconfig        |  10 ++++
+ drivers/reset/Makefile       |   1 +
+ drivers/reset/reset-cs7542.c | 134 +++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 145 insertions(+)
 
-Why isn't this enum with the other entry?
-
-> +          - const: samsung,exynos850-dwusb3
->        - items:
->            - const: samsung,exynos990-dwusb3
->            - const: samsung,exynos850-dwusb3
-
-
-Best regards,
-Krzysztof
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index eda9c698a..544cb79fa 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -73,6 +73,16 @@ config RESET_BRCMSTB_RESCAL
+ 	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
+ 	  BCM7216 or the BCM2712.
+ 
++config RESET_CS7542
++	tristate "Cortina Systems CS7542 reset controller"
++	depends on OF && HAS_IOMEM
++	select MFD_SYSCON
++	help
++	  Control the individual PCIe and network engine reset signals in
++	  the CS7542 global register block.
++	  The PCIe controllers have independent level resets. The network
++	  engine uses seven reset lines, including the shared DMA block.
++
+ config RESET_DR1V90
+ 	tristate "Anlogic DR1V90 reset controller"
+ 	depends on ARCH_ANLOGIC || COMPILE_TEST
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index 489fafd6b..df183fc0a 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
+ obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
+ obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
+ obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
++obj-$(CONFIG_RESET_CS7542) += reset-cs7542.o
+ obj-$(CONFIG_RESET_DR1V90) += reset-dr1v90.o
+ obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
+ obj-$(CONFIG_RESET_EIC7700_HSP) += reset-eic7700-hsp.o
+diff --git a/drivers/reset/reset-cs7542.c b/drivers/reset/reset-cs7542.c
+new file mode 100644
+index 000000000..b86c82554
+--- /dev/null
++++ b/drivers/reset/reset-cs7542.c
+@@ -0,0 +1,134 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Cortina Systems CS7542 global reset controller */
++
++#include <linux/bits.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/reset-controller.h>
++#include <linux/slab.h>
++
++#include <dt-bindings/reset/cortina,cs7542-reset.h>
++
++#define CS7542_GLOBAL_RESET	0x04
++
++static const u32 cs7542_reset_masks[] = {
++	[CS7542_RESET_PCIE0] = BIT(6),
++	[CS7542_RESET_PCIE1] = BIT(7),
++	[CS7542_RESET_PCIE2] = BIT(8),
++	[CS7542_RESET_NI] = BIT(0),
++	[CS7542_RESET_FE] = BIT(1),
++	[CS7542_RESET_TM] = BIT(2),
++	[CS7542_RESET_SCH] = BIT(3),
++	[CS7542_RESET_QM] = BIT(5),
++	[CS7542_RESET_DMA] = BIT(16),
++	[CS7542_RESET_NI_XRAM] = BIT(17),
++};
++
++struct cs7542_reset {
++	struct reset_controller_dev rcdev;
++	struct regmap *map;
++};
++
++static int cs7542_reset_update(struct reset_controller_dev *rcdev,
++			       unsigned long id, bool assert)
++{
++	struct cs7542_reset *rst = container_of(rcdev, struct cs7542_reset, rcdev);
++	u32 mask = cs7542_reset_masks[id];
++	u32 target = assert ? mask : 0;
++	unsigned int value;
++	int ret;
++
++	ret = regmap_update_bits(rst->map, CS7542_GLOBAL_RESET, mask, target);
++	if (ret || id < CS7542_RESET_NI)
++		return ret;
++
++	return regmap_read_poll_timeout(rst->map, CS7542_GLOBAL_RESET, value,
++					(value & mask) == target, 1, 1000);
++}
++
++static int cs7542_reset_assert(struct reset_controller_dev *rcdev,
++			       unsigned long id)
++{
++	return cs7542_reset_update(rcdev, id, true);
++}
++
++static int cs7542_reset_deassert(struct reset_controller_dev *rcdev,
++				 unsigned long id)
++{
++	return cs7542_reset_update(rcdev, id, false);
++}
++
++static int cs7542_reset_status(struct reset_controller_dev *rcdev,
++			       unsigned long id)
++{
++	struct cs7542_reset *rst = container_of(rcdev, struct cs7542_reset, rcdev);
++
++	return regmap_test_bits(rst->map, CS7542_GLOBAL_RESET, cs7542_reset_masks[id]);
++}
++
++static int cs7542_reset_xlate(struct reset_controller_dev *rcdev,
++			      const struct of_phandle_args *spec)
++{
++	unsigned int id = spec->args[0];
++
++	if (id >= rcdev->nr_resets || !cs7542_reset_masks[id])
++		return -EINVAL;
++
++	return id;
++}
++
++static const struct reset_control_ops cs7542_reset_ops = {
++	.assert = cs7542_reset_assert,
++	.deassert = cs7542_reset_deassert,
++	.status = cs7542_reset_status,
++};
++
++static int cs7542_reset_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct cs7542_reset *rst;
++
++	/* Clock-only descriptions also use this syscon. */
++	if (!of_property_present(dev->of_node, "#reset-cells"))
++		return 0;
++
++	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
++	if (!rst)
++		return -ENOMEM;
++
++	rst->map = syscon_node_to_regmap(dev->of_node);
++	if (IS_ERR(rst->map))
++		return dev_err_probe(dev, PTR_ERR(rst->map), "cannot get global regmap\n");
++
++	rst->rcdev.owner = THIS_MODULE;
++	rst->rcdev.dev = dev;
++	rst->rcdev.of_node = dev->of_node;
++	rst->rcdev.ops = &cs7542_reset_ops;
++	rst->rcdev.nr_resets = ARRAY_SIZE(cs7542_reset_masks);
++	rst->rcdev.of_reset_n_cells = 1;
++	rst->rcdev.of_xlate = cs7542_reset_xlate;
++
++	return devm_reset_controller_register(dev, &rst->rcdev);
++}
++
++static const struct of_device_id cs7542_reset_of_match[] = {
++	{ .compatible = "cortina,cs7542-syscon" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, cs7542_reset_of_match);
++
++static struct platform_driver cs7542_reset_driver = {
++	.probe = cs7542_reset_probe,
++	.driver = {
++		.name = "cs7542-reset",
++		.of_match_table = cs7542_reset_of_match,
++		.suppress_bind_attrs = true,
++	},
++};
++module_platform_driver(cs7542_reset_driver);
++
++MODULE_DESCRIPTION("Cortina Systems CS7542 global reset controller");
++MODULE_LICENSE("GPL");
 
 -- 
-Krzysztof Kozlowski <krzk@kernel.org>
+2.53.0
+
+
 
