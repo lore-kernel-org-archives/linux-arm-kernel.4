@@ -2,123 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8068F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91553606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 00:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EqOxeO9M;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=oyDQ+Din
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xBT1x6YF;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=kdKZGUiB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:MIME-Version:References:In-Reply-To:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=; b=EqOxeO9MHJfzuEd7SpwolsQwth
-	vmjC1FmOdR1NCNZHxcgRPXF4sZxNb6TTGT3vNBUIWTWAdxkBnkRvZx3VMt/pYRhZZDl0Xr4CBEqCm
-	3oHiHYtAYgalSd4q3Z2o2H99Fngbo8Mgc+BDuMudvAdch53DawmXT7xpnnGhxSqocrZwdVY9BF3Cq
-	rd9cWkoXdArjlblTxJ2PdY5uDIGigHtqnnugRO8Cs0GB2gXPw7WYHQ6hFdUaVYh0TkDYMVOsuwN6J
-	BkB5pRVvgEPaAiADz7tDwVCObMDnHN+Wc3j06JTW0KbZfN/71ckKfwYO72B2tKempKuEqYH21ztux
-	H+ALPVFw==;
+	bh=mEiGV0BVULzbwzyV8lMhWxm8vyyKK7LiQ/cqHfgbHBA=; b=xBT1x6YFoOIVRZSNBlL0EywkIa
+	WnSa2K3OaL692Folemef10R/yikmxjAUDioNY8bHxuO/lr6REpBnukCBS0le7JT5J6FtdCQnFx7kc
+	aVBcVarHwK2xfv19Np7Zhc7+//ySF44MJp1hdktoYkO9BIuYAS0qaSrkdI9OPmn61w67cK0IfEqy+
+	N8ZlMQOG36RIbcodPW8srEFsRoba1bjrTymSjvCV31cUlcPM6XRkV0wEvUHk4qdKrIxyqbydnid6w
+	2N1Yz2/NQN4k7SJj7uoPOEREKUCnzjrl4frk5PN5PzXWRzH/rlMlnPcfIUF1kPMFs2KY6/UG4LHQc
+	01ssinDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0aA-0000000884m-1jp8;
-	Wed, 25 Nov 2026 00:09:54 +0000
-Received: from mail-qv1-xf34.google.com ([2607:f8b0:4864:20::f34])
+	id 1xW0ee-000000088UU-0tWP;
+	Wed, 25 Nov 2026 00:14:32 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW0Zy-0000000881C-3Haq
+	id 1xW0eb-000000088U5-2gZp
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 00:09:44 +0000
-Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-921375f52b8so55279946d6.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 16:09:41 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1795565380; cv=none;
-        d=google.com; s=arc-20260327;
-        b=GL5qy7/TJASTgtbR+AneM5GeHsYA4DcpZffvqQPYKMgNxTqROEt7J3CGCjJirIaQbs
-         wWQ2s0t4STmLFL9es0jhNk0Jgwz4fGxgO3zk0t1G1XshQk0VNnkWfjZDn84KsuVPqtx7
-         bJ6B0xm0Ie6rgRK0q8rhurMBxJaq08UJAURVsCgS4XnXIXWRoCnnNqtF7048d3dMfpRz
-         AxuLCCb35WrB4OGFnaGmLiTcjATjyoy0+PYYudKhukufYXuYwHm2kIaxXbHXEand/Aph
-         Ft7Te6yLG8wN4+Rv3kHwlgqBsN0aTt/PHunqBvBvq9wTc1ec3gAFO2FR5dAU2rDtO9Tf
-         LYRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:dkim-signature;
-        bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=;
-        fh=tXQgtosgt8Z7ePX7fRysOoFL9Y7hiodpvCc1mJBVN5I=;
-        b=C6NE4JUoabbvPswUg+/aRaxnQi2Fn5d39rcTJWEdmBhdaefetOeCnS5iZ9zzpHsZOI
-         ggKzRulH8/vIOK1V3MiZHkUa9vSALisbCvoEVWcnQmhT1QV8/qYvwsnYSAxodbN5HrDu
-         277iSx+57VxNrCpMsYK62LbWOlzHJa25urCNADL2xY4YlhZeKXACJnnClD7zxsr8mEh7
-         KFCiKXfd3jKwNQg77w06ZvkhApTxbrhRKTWRsVtZBBLyBzar1d/2IZkdW8LTqq7iwHYf
-         DazhLZGmuFbBQMklBlKw7/OIbprggmLCw+N0tMot1U8coOVVtUwFt08ZCy1XrzcYSgzL
-         RsGw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795565380; x=1796170180; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:mime-version:references
-         :in-reply-to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=;
-        b=oyDQ+DinVaJ76D1WSgf2QeOMGav57wN0Om1T7UwIC3sQFimyJN9HV3jjQjow++Itwx
-         OqxcSP9EGSmSmijy7hGnYJOMNn/vMfPFQAboC9mjHwL+eAwqyRfldt2KnYcWfM4FhWVS
-         lrriz/NQexJklJlNcHF0+hf7pAJm6h0qpNRnLs4/T9+PcDzoX0vzeL4cFa9rQhXDMKvv
-         xyZXzX5x4HA+dkI395WP8ULUJhbKoYAKBvE8RQSTCGax2Zor7YlwA8oz6jOA3+kA8Fcf
-         ipE6FIbWEtFyeUGr/mDek3FzDFGqOCHz2DTs8Y7iIiTt74O826JrbXUFtHeMe8hSdw6X
-         Bdvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795565380; x=1796170180;
-        h=content-type:cc:to:subject:message-id:date:mime-version:references
-         :in-reply-to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=rntaW4qP7qUm/rpCDs8AkAc3u/q2bwtFH1Dwu9ED+9M=;
-        b=XaNzPU7sEyjk1H1YVWAAzZGWHdOTLk6vpodeMhfVk+p1BdVQtd1l2RFLDDyQ4Xy9AO
-         lEOCzu+R9uz5/bZ676zj44+7XnBL+/yKpneCu/wHrrqQbnRvGWirG+A6xoSY+Jqywylt
-         99CXmn2OU7hwh3KQC0/S/wMF4lohh84AIv+wmfvnm2QGB0EC9cMB5R40fsL6vhfkj0Kb
-         LWjRi4mudxNqjRkNFZDgttpuAPagABYZHEHT/wsJmQuB0MoTyisElWFs1LSd+SCJjBj+
-         yPlrg/27sN5fA137R7K6WFJCLx71QzkXHsOQYVbuSAQgCQSOaSB8alOsecuL1MtcVWrj
-         mXTQ==
-X-Forwarded-Encrypted: i=1; AL+hErHdAVvpu3+OI67NQfv2YS79hQ3pK8YDIU5OWUU87XSM7JYfnkKURxVgQEFTVDQbI52f1BCtDdgxaq08Hz4HfUGX@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hIN9s8Sdht0ol9WWvoivqwoYAgzQ+N12VCBFBACzHVroFcZsM
-	QdbJLIXvj7hsxzXcS1+q2VbUJcPNGGEDiWF0W95DS9L88VMSukDKL/BDAyGs67CRrAnxJgQne4E
-	hJTvsy6yfUECLbu4YBWZtmPQ09muWUpNPK27m76p9
-X-Gm-Gg: AZFdTZdblK5LHDZacRcmK8gDMoyOM+ILgxhJ3H0jaUZHQkGCUvDvv42RSBtJRBl0iOL
-	+/gzsO550+CfeTlBVLNoBoXFgeV11aYh6GDfriTNDb7QVbL+WeSJIrIgNIc7byqw8XxuNFQTiui
-	lUkBNv+g41upjXaiGXvJ1qvFq/mn3lybxgaKwQX23STNSwk5S4iMMZrWjaWsg+ZNiMHU/017PqB
-	2Ugy/FlFIsbnMffjoMcd94rY2j3W/jRQaD6gywc/P78YOnslYHFZwAcm0fNr0QBvaTa071DUTMC
-	o1AyPbcUBNxhJxj/zLkea05kmDKaMolGkRpVlnul5H8wlmZzTBSeL8dBA2UFBQ9QDQuYGLuwfu5
-	C/udmiejZ1w9fMaKylIxY01Px5KFXWWi8jtfoSpo1ibiH6eFvo+nzwFgvNdO5ejoN5ZHa5pbh0F
-	zCiBNyiT/VWpemJWAMjlu2anI=
-X-Received: by 2002:a05:6214:3c9d:b0:91c:9316:f4e8 with SMTP id
- 6a1803df08f44-92134baab8amr275174306d6.54.1795565379417; Tue, 24 Nov 2026
- 16:09:39 -0800 (PST)
-Received: from 176938342045 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 24 Nov 2026 16:09:38 -0800
-From: Ackerley Tng <ackerleytng@google.com>
-In-Reply-To: <20261123104233.95710-10-steven.price@arm.com>
-References: <20261123104233.95710-1-steven.price@arm.com> <20261123104233.95710-10-steven.price@arm.com>
+	Wed, 25 Nov 2026 00:14:30 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L/PEN9t/TjklWpoy/aqtHhaWXRSKFwVYcdGQm1rXCsB+Dg/8afOTJMAVpZALZJkCO2M5JoXmuSb8UfoPdj2E8F8Vu/7ddBKiOkvCAFDysmrvvrDvM642ebSom0ULdEGRNROljZTbc8xMzkvUr7EKua03j2WR7cEYLna7jfQg2uDm/FoS1mvNiD4KW+oGS82FghX1H5yXZPp11a8trZgLCigvfwmtec1RS7lI0ifNyOUTR60CJQofb7/j1a8ZpEC835Va0G/3EfNzIq5SQ7nb2jUgav25MAxk5KpmKYxuwt67/K53BWKIYjp02YhoTLU+TrDW06zsdtrdUtscfYNmMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mEiGV0BVULzbwzyV8lMhWxm8vyyKK7LiQ/cqHfgbHBA=;
+ b=D/UmTBTsnzCWFs2gVMG66Q58uzNfn3CpEUHb9P1WkBl48WFQhBcllelEEBBedIdOkyK7+e0Oa7qEYw+tk2FnSw9QUutRZXmQYELFJMIx79vzXhGW1P9yqmjuZesmgLgGdUBSS01qWXINPQXVlkR9iUB5gpQxDTlSnpA15V/aXwev1o4+B8ndnRVD06RCbV4E4jR7DRfaUJP8+k9evmaGwxre463ICqa6qzs9Is0y84MtMrDgw5FABnsX4pPUnybxVLlAUrzOoOK4bnW8nTDF4fMADRfbFd8Acxpoj1C1XLBSGaqKISHx5Fea34hH/vpxAMxO5qdvKvL+b8mdM1ga/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mEiGV0BVULzbwzyV8lMhWxm8vyyKK7LiQ/cqHfgbHBA=;
+ b=kdKZGUiBiaqCAVCpc91fFMtm+9AvYLex3UkVzEfkaXvLlA3SsVOZ7EICg5H/0c844rpinjFta0Tq/KDXMYWtN/S3WLbREJEa7UaLhwUB6xMK5kTNvHQOvbwLGrq5GTUwkHJTgqNCcXOODaHT37UTLKM+ZrsC4KdBfUTsYi3d4TOokmyIcQZZoF+e6H9NCz0nhWfn/gzgbD5ORAIwE/ikov9qEwAyoNLlkM9+EOGRft0yDTdWwxDGXf5nRrjj5gVnmqjmigQ1+pNEo6zmfzXVbj6v45AmXSaD0YNpsR74AYAXNO0B3rSVXTeFgZvH5657uLI0PkzHLnzONxueZOxxDg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by PA4PR04MB9415.eurprd04.prod.outlook.com (2603:10a6:102:2aa::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 00:14:24 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
+ 00:14:23 +0000
+Date: Wed, 25 Nov 2026 08:19:27 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengpeng Hou <pengpeng@iscas.ac.cn>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>, linux-clk@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 01/10] clk: imx: imx8qxp-lpcg: Prevent stack overflow
+ when parsing clocks
+Message-ID: <awYpjwvlR+VvYnyf@shlinux89>
+References: <20261123164834.3330320-1-lee@kernel.org>
+ <20261123164834.3330320-2-lee@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261123164834.3330320-2-lee@kernel.org>
+X-ClientProxiedBy: SI2PR01CA0026.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::16) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 24 Nov 2026 16:09:38 -0800
-X-Gm-Features: Aa3M54oNKjHnmwhcyDiHaoxz_zNMiDJBoB2YChnt0u_TPYjP0NAb6dZlL994CUs
-Message-ID: <CAEvNRgFQ5BXqU3KfPFT8bfZTW=RyvBw25z3GZtr3JA=Wv3Yqfw@mail.gmail.com>
-Subject: Re: [PATCH v4 09/11] KVM: arm64: CCA: Prevent memslot modifications
- after Realm creation
-To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org, kvmarm@lists.linux.dev
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>, 
-	Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei <alexandru.elisei@arm.com>, 
-	Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev, 
-	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
-	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
-	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
-	Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kohei Enju <enju.kohei@fujitsu.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|PA4PR04MB9415:EE_
+X-MS-Office365-Filtering-Correlation-Id: a460094f-5087-487d-e1bb-08df4a890ef8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|23010399003|1800799024|19092799006|10067099003|4143699003|56012099006|5023799004|11063799006|261022105027099003|261022075727099003|261021121427099003|261026140227099003|261028144727099003|261102123227099003|261009223027099003|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: QFKnUduvJyHZKuVcSmgd+82KryJ3pPUWLCy95bNaU3UpBPYvxAn9e8oJoRr/18BwqJVu6Ukxb8LJbxlXpXIYUWFaa7ivocewKaCjoILTziA2sqCHDL/wXJqjUn6CDJ2hqT1PWHzGuLwBxZPZGaTWyaaJ9lyxGzNQMTybB7tI2E7Ms7z6R+qfES+f8IsWyGV76WURX2RYoxtM4Xo4TXGly6WOjS9VB5WFbFg/XHvtYeOULZ8EjC/9xzglf5uf+mhFcRIoOqoKAjOzNerCTArgbOFCyC61f4zr0K7Se3sL2DsoMVcgRgaX419UjKuSDiiuv6J0UVQ6fxW7Ifa/n/sqAV3UtfKYtO8KO7wGbNG0+yLYKV2kotmBH6yfD3sVNLoP2F4oa/25gfvdrvlrmxoTafA9BVgLzLxacFetbRez0AFrFnV0quEPOg4mOIuvRoaGAjnk86jiu60z6zvJ8m5riCsM836Qu6eQ7fGviymS8/C9SxVIZ2ubw6V76YVLenG1MjYxJ54pq8NCPImnnGhxwqMhXNxbepvLKR8vZD4HhAeFOv/KJLLL1/wySRoXOyEl0f5P2cB3ozp5+dV/LqRBTMnYBXb7oojtkZ//bri9FCQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(23010399003)(1800799024)(19092799006)(10067099003)(4143699003)(56012099006)(5023799004)(11063799006)(261022105027099003)(261022075727099003)(261021121427099003)(261026140227099003)(261028144727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?C0c/9i+1csAQRbT9eexqG9GOOLgXSEx6x78otrgVwewIlie7ddU4/sOU9JbI?=
+ =?us-ascii?Q?kvA3qpkyN4000FIcBWt0SJRz0srtPyOPAGJl+bcPvsh4pfO18cUdzYoStsfo?=
+ =?us-ascii?Q?DTNEYm5npBz9RUQl8c6K+Hfsewvfs6iV66z0m/7/BCyr01uRniAYO0ye0w9V?=
+ =?us-ascii?Q?7ovPn9gnzV5NMkTGe6Ua/zN0uAnpvXiWAEzE+YHHK6efsh4SCycVuxKS6Xyz?=
+ =?us-ascii?Q?KfBhK2Y8ZkXJ7EL61u2HxGQ3u+hl8+dylUfNQMl52bk/0ifDv9VGviCX8+tj?=
+ =?us-ascii?Q?JsJ4fVtWtOP8tgYfdvd0vXDSXO+lRm841YzwNCU0kSXH2Jpk3FeC/GnoPX+a?=
+ =?us-ascii?Q?PURvtdbAXsun/Lb92RE7WXFgk/ncjC1xldn1IQXTX4rqOQKbc9C6QN6zuHOi?=
+ =?us-ascii?Q?+e7aM55q4T9kUMkSXVGACGOCI3XCN/oZ8xQ/YWVvmLQafJm5+OVN9n25/Pcf?=
+ =?us-ascii?Q?uEDkCWyIvndohUnGk3bwxC8sNXNPFsWGs2bvuL2K2X4dTE40k1vhE/Au1Bi+?=
+ =?us-ascii?Q?EsVCKt78cHjRh7Tohfuv0s6UzTjEX7f0HoV8lsdNIdAGRO9YXIOHPoyAjRhs?=
+ =?us-ascii?Q?b/JNeJxGbCGdPbGea2LcRNU3iSm3vP9hr5yuOkpsbnzoaFRJl9lfI9OvXwRZ?=
+ =?us-ascii?Q?76N6UIelEMbPNAj4FGf7n0NXQfZUAf1TZ+M85nzIHFRPhHEXsGQhfiiqL0YX?=
+ =?us-ascii?Q?ObY0JuDieJUrbfNZ2n2JCcl2OOkW4ByRk3dkyojnzk2mdGAo/BwD79PfFga8?=
+ =?us-ascii?Q?qEFsU1KFqZ+jmzoM1m/H+DNn6+JkSRhhcx8d/thiKhdo7V8OKwhCRWV+2zaa?=
+ =?us-ascii?Q?99m7frHfiErXC4fn1cz9vau4j9wXr5dhD3rO7+HXLN8yamZFFqhK86GOJANf?=
+ =?us-ascii?Q?UfYUsVtLyRB0pOiSdE8eDiB0mXD7GLPXltvwJ9FwT52XzwjcJAClL9YsGqTO?=
+ =?us-ascii?Q?y4dBTKLNAjhrN5RZe20hYYCdj2E5DDz2P0W/BWFSJZMRw0P+0HVcOHsF/qQL?=
+ =?us-ascii?Q?6wCddcK8DGMCmQiD64kopG9xtbT2bh+Ac79pJy306s7f8oCBXkrW0qYJu/El?=
+ =?us-ascii?Q?2opcN42W5dbUuKd70ab2UdqNxwDy1N2S/KEJdATvDHrYlsdcPKnDAkUCJeeY?=
+ =?us-ascii?Q?whAMEQVOTGqn0UrBKJY8eFGM6f6IgCdoshz9r3QoB1iICVCxPC3tIJ8/o3fX?=
+ =?us-ascii?Q?7FuU4w1uN9TfaO0Tq6wcv82Kz/J8H5PBzA/cSTTx/A/DvqUq/Gk3BA1s+qcj?=
+ =?us-ascii?Q?HjpYJ4uGDWqPHNxhDGWdzcPb0X0m/KpXOhEoak4vZWy6lMVmmQ/fNm3wjyuN?=
+ =?us-ascii?Q?WEtv47uqx0as7OGA0Wy5I5mxr4ULFNaD1AVE8BX0N17YKdIkYLoXcfRalPCz?=
+ =?us-ascii?Q?NUeqwRT2MS2tltoXfBQKSWhljlR/Dwy6l++GUF4qaKgSmD0qoSurDAKMWbxg?=
+ =?us-ascii?Q?EYNwBRumwohan1hhu5odUDIbfdGgTAXAvuY33nCqa/vZ/UYzcqHSgu87Xg65?=
+ =?us-ascii?Q?3FRgrdC6hHfhPtGnIOad41SYxPfhIJXxixPOGdhaMH+ogXFZurnKJimfLuMn?=
+ =?us-ascii?Q?PQypqqqZ/PyaOMIl+tjz/YSe8qw2Kowsc8liRm6SIt5gH5NlrObchHxmnYiV?=
+ =?us-ascii?Q?bpDiqMUTeDYR6fo7FNeFA4EO1EAZJ9YwiA4zMwbQ1Z9u4qVsKvbO3T26ePAo?=
+ =?us-ascii?Q?STF5senhmphoOG00uCclgdgMZKnb4Ofu1ex9Zb7l+Cgktbl6z3i1zNSka8gw?=
+ =?us-ascii?Q?CbA9jpKtZ4sRT6Idgh402ebW+gJlRUUgtlXge1L3CGIZXy/NcgrQ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a460094f-5087-487d-e1bb-08df4a890ef8
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 00:14:23.5846
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I9aydOBnKrvAdvbnsToZQzRWwVgNsyG6VTJOcDF/ugZleBZU6xSk6TQdwoXMYrzcTsrJF0yvHdTCAsPMKFrVWNQhcjPZ6I3G0xHmrqoznFp3U4CSBcUyK5nUlXkLaGMo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9415
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_160942_848682_0090426C 
-X-CRM114-Status: GOOD (  30.47  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261124_161429_690132_60C3A3C7 
+X-CRM114-Status: GOOD (  11.87  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,175 +147,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Steven Price <steven.price@arm.com> writes:
-
-> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+On Mon, Nov 23, 2026 at 04:47:34PM +0000, Lee Jones wrote:
+>imx_lpcg_parse_clks_from_dt() allocates output_names, parent_names, and
+>bit_offset on the stack with IMX_LPCG_MAX_CLKS (8) entries each to match
+>the hardware limit of eight clock outputs per LPCG block.  However, it
+>only checks whether of_property_count_u32_elems() returns a negative
+>error code and enforces no upper bound on count.
 >
-> Once the Realm is created, prevent changes to guest_memfd backed
-> memslots, which can provide private memory. Validate these changes
-> before KVM invalidates the old memslot, so a rejected deletion leaves
-> its stage-2 mappings intact. Realm stage-2 faults will also validate
-> the private memory backing in a later commit.
+>If a Device Tree node specifies more than IMX_LPCG_MAX_CLKS entries in
+>clock-indices, subsequent calls to of_property_read_u32_array(),
+>of_clk_parent_fill(), and of_property_read_string_array() write past the
+>end of these stack buffers.  Reject counts exceeding IMX_LPCG_MAX_CLKS.
 >
-> Require Realm memslots to lie in the lower half of the IPA space, as the
-> upper, shared half aliases the lower, protected half.
+>Fixes: d5f1e6a2bb61 ("clk: imx: imx8qxp-lpcg: add parsing clocks from device tree")
+>Closes: https://sashiko.dev/#/bug/linux-22dfac78-f44b-42f8-985a-995308723fc4
+>Cc: stable@vger.kernel.org
+>Signed-off-by: Lee Jones <lee@kernel.org>
+
+There was already a fix from Abel.
+
+https://lore.kernel.org/linux-clk/20261102-imx8qxp-lpcg-duplicate-clock-indices-v1-2-1c3fc3fe727c@oss.qualcomm.com/
+
+Regards,
+Peng
+
+>---
+> drivers/clk/imx/clk-imx8qxp-lpcg.c | 4 ++++
+> 1 file changed, 4 insertions(+)
 >
-> Define kvm_arch_has_private_mem() so generic KVM recognizes Realm VMs
-> as supporting private memory. Defining the macro also makes
-> gmem_in_place_conversion true for every arm64 VM, so guest_memfd
-> memslots are marked gmem-only even for non-Realm VMs. A well-formed
-> KVM_SET_MEMORY_ATTRIBUTES2 request on a non-Realm guest_memfd now
-> reaches the VM check and returns -EINVAL instead of -ENOTTY.
+>diff --git a/drivers/clk/imx/clk-imx8qxp-lpcg.c b/drivers/clk/imx/clk-imx8qxp-lpcg.c
+>index 9ad016106b1e..5eb4bdbaf7d8 100644
+>--- a/drivers/clk/imx/clk-imx8qxp-lpcg.c
+>+++ b/drivers/clk/imx/clk-imx8qxp-lpcg.c
+>@@ -199,6 +199,10 @@ static int imx_lpcg_parse_clks_from_dt(struct platform_device *pdev,
+> 		dev_err(&pdev->dev, "failed to count clocks\n");
+> 		return -EINVAL;
+> 	}
+>+	if (count > IMX_LPCG_MAX_CLKS) {
+>+		dev_err(&pdev->dev, "too many clocks: %d\n", count);
+>+		return -EINVAL;
+>+	}
+> 
+> 	/*
+> 	 * A trick here is that we set the num of clks to the MAX instead
+>-- 
+>2.56.1.750.gf70dc682cf-goog
 >
-> Additionally, similar to pKVM, do not support dirty logging or
-> read-only memslots.
 >
-
-Imo this could be split into a few patches
-
-1. Add the constraints wrt realm memslots and being in the lower half of
-   the IPA space
-2. Defining arm's support for private mem
-3. Imposing rules on memslot changes
-4. Maybe some others, maybe I'm misunderstanding the patch
-
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Signed-off-by: Steven Price <steven.price@arm.com>
->
-> ---
-> Changes since v3:
-> - Explain the arm64-wide in-place conversion effect and keep the
->   general IPA limit comment.
->
-> Changes since v1:
-> - Preserve private mappings if KVM invalidates a Realm guest_memfd
->   slot before the prepare hook rejects its deletion.
-> ---
->  arch/arm64/include/asm/kvm_host.h |  2 ++
->  arch/arm64/kvm/mmu.c              | 37 ++++++++++++++++++++++++-------
->  2 files changed, 31 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
-> index 3ddeddfacd06..55673d08e3eb 100644
-> --- a/arch/arm64/include/asm/kvm_host.h
-> +++ b/arch/arm64/include/asm/kvm_host.h
-> @@ -1607,6 +1607,8 @@ struct kvm *kvm_arch_alloc_vm(void);
->
->  #define kvm_vm_is_realm(kvm)		((kvm)->arch.vm_flavor == VM_REALM)
->
-> +#define kvm_arch_has_private_mem(kvm) kvm_vm_is_realm(kvm)
-> +
->  #define kvm_has_mte(kvm)					\
->  	(system_supports_mte() &&				\
->  	 test_bit(KVM_ARCH_FLAG_MTE_ENABLED, &(kvm)->arch.flags))
-> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-> index 800333a345cd..9af5fe6d87f0 100644
-> --- a/arch/arm64/kvm/mmu.c
-> +++ b/arch/arm64/kvm/mmu.c
-> @@ -2861,17 +2861,32 @@ int kvm_arch_validate_memory_region(struct kvm *kvm,
->  {
->  	lockdep_assert_held(&kvm->slots_lock);
->
-> -	if (kvm_vm_is_protected(kvm)) {
-> +	if (kvm_vm_is_protected(kvm) && new &&
-> +	    (new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)))
-> +		return -EPERM;
-
-gmem is already generically mutually exclusive with
-KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY, so before this change,
-pKVM is saying no to KVM_MEM_LOG_DIRTY_PAGES and KVM_MEM_READONLY for
-all memslots, gmem or not, so this check makes sense.
-
-> +
-> +	switch (kvm->arch.vm_flavor) {
-> +	case VM_PROTECTED_PKVM:
->  		/* Cannot modify memslots once a pVM has run. */
->  		if (pkvm_hyp_vm_is_created(kvm) &&
-> -		    (change == KVM_MR_DELETE || change == KVM_MR_MOVE)) {
-> +		    (change == KVM_MR_DELETE || change == KVM_MR_MOVE))
->  			return -EPERM;
-> -		}
-> +		break;
-
-Not sure why pKVM doesn't allow deleting a memslot after the vm is
-created, but this is no change from before this patch, the removal of {}
-here is mixed in with the other changes in this patch.
-
-> +	case VM_REALM:
-> +		/*
-> +		 * Once the Realm is created, we cannot modify any slots that
-> +		 * could be providing private memory. i.e., guest_memfd backed
-> +		 * slots.
-> +		 * TODO: Handle trusted device private memory slots
-> +		 */
-> +		if (!kvm_realm_is_created(kvm))
-> +			break;
->
-> -		if (new &&
-> -		    new->flags & (KVM_MEM_LOG_DIRTY_PAGES | KVM_MEM_READONLY)) {
-> +		if (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new))
->  			return -EPERM;
-> -		}
-> +		break;
-
-Imo this should be written the same way as the pKVM branch for clarity,
-like
-
-if (kvm_realm_is_created() &&
-    (kvm_slot_has_gmem(old) || kvm_slot_has_gmem(new)))
-        return -EPERM;
-
-but that aside,
-
-1. Why block creating memslots after realm is created?
-
-Does ARM CCA have no way to add pages after a VM starts? This isn't
-blocked for TDX and SNP so I think this constraint seems unnecessary.
-
-2. Why block deleting memslots after realm is created?
-
-This also seems like an artificial constraint, and it constrains the way
-the userspace VMM operates when stopping a VM, like the memslots can't
-be removed ever, the VM just has to be closed? (something like that)
-
-> +	default:
-> +		break;
->  	}
->
->  	return 0;
-> @@ -2883,6 +2898,7 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
->  				   enum kvm_mr_change change)
->  {
->  	hva_t hva, reg_end;
-> +	gfn_t ipa_limit;
->  	int ret = 0;
->
->  	if (change != KVM_MR_CREATE && change != KVM_MR_MOVE &&
-> @@ -2891,9 +2907,14 @@ int kvm_arch_prepare_memory_region(struct kvm *kvm,
->
->  	/*
->  	 * Prevent userspace from creating a memory region outside of the IPA
-> -	 * space addressable by the KVM guest IPA space.
-> +	 * space addressable by the KVM guest IPA space. Realm shared IPAs alias
-> +	 * the corresponding private IPAs, so Realm memslots must reside entirely
-> +	 * in the lower half of that space.
->  	 */
-> -	if ((new->base_gfn + new->npages) > (kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT))
-> +	ipa_limit = kvm_phys_size(&kvm->arch.mmu) >> PAGE_SHIFT;
-> +	if (kvm_vm_is_realm(kvm))
-> +		ipa_limit >>= 1;
-> +	if (new->base_gfn + new->npages > ipa_limit)
->  		return -EFAULT;
->
->  	/*
-> --
-> 2.43.0
 
