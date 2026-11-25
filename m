@@ -2,96 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903E1606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA634606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=an/ue2D5;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=ND8caDPt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gBotuEln;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HMR+lxB9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=GxX/KRbPOCkNcpI6+Rv+y3C1vdctOR1gnbhti2p7x78=; b=an/ue2D5AuHJ0/nGVI5SLdf9uB
-	1Jz4yHWn4ebm8nCyArs1IQRRD7kde/p8abJeq8Dnt9D1KjAiyv05t4auHG0JHIAx9Usme5Jr9kov0
-	NGcWnG6mnnLR9xPuqSqJpYZ0ckQY6yJN+imFDM7KU3IRqhdjqW2QXd8vCqukIQe0IfJvUpei6eJYr
-	F0kHdZv2Q34kL6BTv04GlbgVQ8aR97tiWHC9mn/xichaLSR7dFVlAGJ4Z+Ii5nIhyizL+HpG1jWby
-	dEQAFrUnQHkDRLcVc1HbbbP8FGcI5LBlz8Zl4yDeurZb6XhTCKHTQtzDVp4OzfghEVAFu161BGrFG
-	SeozFWKA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=3T+PgBhGAeiyiJXoesZjBC+dalaU5f+v7s903e1CpXs=; b=gBotuElnTlsU6m
+	M4tl7Z72ajzOJMW4QLj41lcIcQG6BEHL5AmnElN+1qTxFMtCsWFohaGjqxtgmHSFedt14JwZE7RS3
+	hxCaqbDNmCH9LwzftaJ0J1Mjz3ltVuCNQxgrjMIUXg0EKH5lWgPrvOaqRGNNcNA69AUAvGLcimkMG
+	Il1VowADKwFcYGCDh9CZ0qdSe3vY0to2vueS+8ygmva0LpizjLXdw293bk3L1sMqNO3ZKbgcBfWyl
+	C0YFtnN78+JQinH+3NhiJn/Msxe0boYW3pKOWIflgSTBtbY9BziQHCkLI6B3v3MfoeadaLJG3ANS8
+	RlfOAwgtZomg246CDs8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWB1q-00000009ZO1-2mRH;
-	Wed, 25 Nov 2026 11:19:10 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xWAeg-00000009WCh-49bn;
+	Wed, 25 Nov 2026 10:55:15 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWB1j-00000009ZNT-3m2N
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:19:09 +0000
-Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
-	(Authenticated sender: pza@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id D3653200037;
-	Wed, 25 Nov 2026 12:19:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795605541;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GxX/KRbPOCkNcpI6+Rv+y3C1vdctOR1gnbhti2p7x78=;
-	b=ND8caDPtAtwSt2twEzOI9yd23v7XoHTcw3Lw75soG+EgPPdsxEsyeKFRqw3o2OJj0+TUzj
-	J7IXvqEPYXLVGxpJlClodDCtLA2Y9/UttaL24O1/4duPyQ+7hR3bNCNIkjGiDqS45AZXfS
-	TUHYz92xXymEQ8g2KPiD/+7n8xWLJOmbbgZl4oFmj9YwMTjhB+n41JgdrrZML7GKeFPByK
-	s/K0GIj0CK201ZobwEdkLq81BLSrr4fsV+OoHH1L+i+QLcXFjV6AI2aOnjKz8f0fONFT68
-	UEWBflYzR5ksPTXOE7wnfq9Z0Bebnb6vyUTQgS3lmINxpglpduxf/s19eQXfEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1795605541;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GxX/KRbPOCkNcpI6+Rv+y3C1vdctOR1gnbhti2p7x78=;
-	b=WqiiQewmo0FmvuOi0s68OfMRBs5PYHt+D0x6sC1rdx4AkWRlZtMV64ly3nChAwtay3i/D/
-	KZJz1SF/34GeiOLX27KgTSmP/CugUidVkWK/hNpS2ehhf9Dpdn9y7rK5jev4imffiavUeJ
-	VzH3GikUFg4kM3UArUrG/h36XsQDQ1ueUSDxIXiY204waLoiJ9e5EXQA6vhujtXvzmKPI7
-	Bs2oexxvGf7WgaWws0aHWLw9VJA+eLcjAWBAK525+27boroqvCgErmBZchsgDP7MES3NQe
-	GkiH4OGKDI+R0WZsoLnesFC0Izz1MmsRNusgtCaKWk0eAQJEftIWcnt/vfdJIw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1795605541; a=rsa-sha256;
-	cv=none;
-	b=E2vdOFTcAHnNOSiEGiSk+Zlfwi6N+BNzk23sLgZZBZE2o101/3UN2MYavVsFgkGXjKO4z+
-	Vaf7P2AvBz33O15djLWn3mVB4diMO0ILb08HR6gxkbYzL4Z8NrgZfTSbUuAz6IOOUe20XI
-	dl4PExN2wBA6VO4Nf2F6MFLdODSeJAbqT6IXtbkkU15DA6ckZJzRLWAYFiJwViV6XzSJxC
-	hPwf0Blh0g/gS8XQLaUkHj7ReYhNppFrt318xWzAtaqm8xN31Zt2BJiRPopdX6pvFAgzaw
-	5/T8K7EUz5bVaTSl9Xlky/A6hkZ5U/NkzTXDYUVLIE2YFLbrzDH5rgJAemGUgg==
-Message-ID: <3b8b8d154a841d80de20d31c32b2fb4faba11480.camel@pengutronix.de>
-Subject: Re: [PATCH v4 4/6] reset: Add Cortina Systems CS7542 global reset
- controller
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: filipp.dunsky@gmail.com, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Stephen Boyd	 <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet	 <jbrunet+clk@baylibre.com>, Linus Walleij
- <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Date: Wed, 25 Nov 2026 12:19:01 +0100
-In-Reply-To: <20261125-cs7542-syscon-v4-4-3337bb0d3b48@gmail.com>
-References: <20261125-cs7542-syscon-v4-0-3337bb0d3b48@gmail.com>
-	 <20261125-cs7542-syscon-v4-4-3337bb0d3b48@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	id 1xWAee-00000009WC9-2Vtj;
+	Wed, 25 Nov 2026 10:55:12 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A12B461B50;
+	Wed, 25 Nov 2026 10:55:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E651A1F000C4;
+	Wed, 25 Nov 2026 10:55:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795604111;
+	bh=3T+PgBhGAeiyiJXoesZjBC+dalaU5f+v7s903e1CpXs=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=HMR+lxB9DpYGJdlMSiwTyypb8XN0TBuITla3qPw7hwHp4VeL0Ul2htvUZLPrifSxM
+	 5NuE6u2yPcrrSB5hbZWu8M1qnIFZVbjGlku0+o8f1CFiu6w6qCBfR232d7Pe3rTDzu
+	 XJCSM49gC6mR0Jpy9ilKnd8nBEYNr3L8vDVajsAjh4i1ZP8kgkHMN/pywZ9HCDo9nC
+	 e6DfPpZTAwH0OQitvZf1/87I8rDF65hEbFw8+EdlnPrg++M1CEmv6dZLa2hjiwzFz5
+	 26YToi+XTpjfn6Z4i2xdHWs6zRux06lfU2A1py1Cv9xAdKogZh4nO6JDh9NqNYfsid
+	 9/hBHeqrXmaGQ==
+Message-ID: <647d4527-dd99-4f1e-98ff-a6a5317560e6@kernel.org>
+Date: Wed, 25 Nov 2026 11:54:58 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_031908_133971_BDCCEDC4 
-X-CRM114-Status: GOOD (  17.36  )
-X-Spam-Score: -2.1 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] soc: mediatek: add MMDVFS core driver
+To: Echo Zhang <echo.zhang@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
+ <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ MMDVFS Team <linux-mediatek@lists.infradead.org>, kyrie.wu@mediatek.com,
+ ming-fan.chen@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, llvm@lists.linux.dev
+References: <20261125060037.649659-1-echo.zhang@mediatek.com>
+ <20261125060037.649659-4-echo.zhang@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20261125060037.649659-4-echo.zhang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,56 +121,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mi, 2026-11-25 at 13:34 +0300, Fil Dunsky via B4 Relay wrote:
-> From: Fil Dunsky <filipp.dunsky@gmail.com>
->=20
-> Use the shared syscon regmap to control three PCIe and seven network
-> engine reset signals. PCIe consumers supply their own assert and
-> recovery timing. Verify level transitions of the network resets before
-> the consumer releases DMA buffers. Reject the unassigned group ID to
-> preserve exclusive ownership of the underlying lines.
->=20
-> The clock provider registers early for timers. Match the platform
-> device for the same syscon when reset consumers can probe.
->=20
-> Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
+On 25/11/2026 07:00, Echo Zhang wrote:
+> Add the common MediaTek MMDVFS driver framework.
+> 
+> The core driver handles device probing, SoC data selection, clock provider
+> registration, power-management notification, and dispatch to the
+> microprocessor transport used for runtime performance voting.
+
+I don't get why DVFS driver is a soc driver. This should use proper
+Linux subsystems and be placed there.
+
+> 
+> Signed-off-by: Echo Zhang <echo.zhang@mediatek.com>
 > ---
->  drivers/reset/Kconfig        |  10 ++++
->  drivers/reset/Makefile       |   1 +
->  drivers/reset/reset-cs7542.c | 134 +++++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 145 insertions(+)
->=20
-[...]
-> diff --git a/drivers/reset/reset-cs7542.c b/drivers/reset/reset-cs7542.c
-> new file mode 100644
-> index 000000000..b86c82554
-> --- /dev/null
-> +++ b/drivers/reset/reset-cs7542.c
-> @@ -0,0 +1,134 @@
-[...]
-> +static int cs7542_reset_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct cs7542_reset *rst;
+>  drivers/soc/mediatek/Kconfig                  |  19 +
+>  drivers/soc/mediatek/Makefile                 |   1 +
+>  drivers/soc/mediatek/mmdvfs/Makefile          |   6 +
+>  drivers/soc/mediatek/mmdvfs/mmdvfs-clk.c      | 462 ++++++++++++++
+>  drivers/soc/mediatek/mmdvfs/mmdvfs-core.c     | 581 ++++++++++++++++++
+>  drivers/soc/mediatek/mmdvfs/mmdvfs-internal.h | 305 +++++++++
+>  include/soc/mediatek/mmdvfs.h                 |  72 +++
+>  7 files changed, 1446 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mmdvfs/Makefile
+>  create mode 100644 drivers/soc/mediatek/mmdvfs/mmdvfs-clk.c
+>  create mode 100644 drivers/soc/mediatek/mmdvfs/mmdvfs-core.c
+>  create mode 100644 drivers/soc/mediatek/mmdvfs/mmdvfs-internal.h
+>  create mode 100644 include/soc/mediatek/mmdvfs.h
+> 
+> diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+> index d7293977f06e..bb273a4461f0 100644
+> --- a/drivers/soc/mediatek/Kconfig
+> +++ b/drivers/soc/mediatek/Kconfig
+> @@ -60,6 +60,25 @@ config MTK_REGULATOR_COUPLER
+>  	default ARCH_MEDIATEK
+>  	depends on REGULATOR
+>  
+> +config MTK_MMDVFS
+> +	tristate "MediaTek MMDVFS support"
+> +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	depends on MTK_VCP_RPROC
+
+Does not exist.
+
+> +	help
+> +	  Say yes here to add support for the MediaTek Multimedia Dynamic
+> +	  Voltage and Frequency Scaling controller. The controller provides
+> +	  virtual clocks for multimedia hardware blocks and coordinates
+> +	  performance votes with platform voltage resources.
 > +
-> +	/* Clock-only descriptions also use this syscon. */
-> +	if (!of_property_present(dev->of_node, "#reset-cells"))
-> +		return 0;
+
+...
+
+> +/* Logging macros */
+> +#define mmdvfs_dbg(dev, fmt, args...) \
+> +	dev_dbg(dev, "[mmdvfs] " fmt, ##args)
+> +#define mmdvfs_info(dev, fmt, args...) \
+> +	dev_info(dev, "[mmdvfs] " fmt, ##args)
+> +#define mmdvfs_warn(dev, fmt, args...) \
+> +	dev_warn(dev, "[mmdvfs] " fmt, ##args)
+> +#define mmdvfs_err(dev, fmt, args...) \
+> +	dev_err(dev, "[mmdvfs] " fmt, ##args)
 > +
-> +	rst =3D devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
 
-devm_kzalloc_obj()
+No, do not reimplement standard Linux kernel APIs/frameworks.
+
+This applies EVERYWHERE here.
 
 
-regards
-Philipp
+
+Best regards,
+Krzysztof
 
