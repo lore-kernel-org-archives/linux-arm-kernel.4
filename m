@@ -2,62 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479FA606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93F2606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BigIbaJu;
-	dkim=pass (2048-bit key) header.d=protonmail.ch header.i=@protonmail.ch header.a=rsa-sha256 header.s=protonmail3 header.b=F5CiVjeQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F7Bn61fx;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=mmw3a4X8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
-	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JTuzeFXaJ0CrgwY+VJsh1Zrm4GF5RUj+OFjSqoSpq5M=; b=BigIbaJu3DfafQ
-	6cg9zcWFd6BNTJjgTNLhgYWhtYUUfPnuHvZ+7hzBfwV48WGKxXf5i+ppFqJOBa9avxBnlZTaLRmtb
-	ahUfpiiDvTnCYe8j9+m1y1okjIkIoBYwxDO5ngpJqgl8spDCAEojUSJTUdCIsXKkWsZ7dqPlKUL+l
-	RdM2Ztg5Kt2tE4wFTiArMAjw7Cn/Pn4c7Lsdf/uzeWS3v/Pdt5/wkfa8fCayvhBgRHeMCBr5s2Kq0
-	2kd0f2Dnu7ULKriRowebpY1neIyHY5WmGPu1uC2Z6p7YztBL5es2Zs0+6NfJD00Iv37syjf4GWtLa
-	PqqtsTFWISoLlcAjBdsA==;
+	List-Owner; bh=fJM+8VYiKunDlqrEgZNiUmhDi25LVlsUi9ngP7vcUpE=; b=F7Bn61fxDmL2j+
+	zbuKxrHladLXdu3hNhVzyosCV8PkwKVAQRAJd+fEmBm8l3IZ9gtWsHtoNfnlIDs3Rl47kumLzB9Eh
+	t4FVZ+DwtLGqwwt4vWXQBrzd/k74WrjQL70RG2zmsD+o7RLn8bHYlwXQRUJRyMbwd1Y4xHYKkVs8e
+	LKBZ2MiCjX/pYmIHbachyS2z56sx8MjuggbvBhEy1BMWHcHhiDEindQBgW3KVdrVxGn7m/sFatywO
+	Lli/ClrVZ9Aoccw0WL+GtwwDTyv/W9gKJWEQtv7c6kAlNbMVu5lOmVpRPJjEtB1nG1zGhECcHw9Zl
+	Igq55NWAjhXa+cWEb5FA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWE3n-0000000AAwh-01VB;
-	Wed, 25 Nov 2026 14:33:23 +0000
-Received: from mail-244122.protonmail.ch ([109.224.244.122])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWE3e-0000000AAts-3YHP
+	id 1xWDZR-0000000A5Uq-2IVh;
+	Wed, 25 Nov 2026 14:02:01 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWDZP-0000000A5UM-2aUd
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:33:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
-	s=protonmail3; t=1795617186; x=1795876386;
-	bh=JTuzeFXaJ0CrgwY+VJsh1Zrm4GF5RUj+OFjSqoSpq5M=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=F5CiVjeQhxUKomP2szkCl3AxCjmzQtv8kCXXwoN1vs1eV4d1vs8dP9Kui19EugwoB
-	 eQrBWS51mV/XqcTAy0Dfhv3/Br3tnt+ZGb6EwanqMtbonx6/+bMkQyoBYq1YlxqMV1
-	 gFSsJST0bakzUG2SiEdX5dpx0o1b36AL/7yChSu5kP9IGOQvoKqiujybGqYImuEke2
-	 EhM+SxWntECLOcC5a5OogdEdNUkhXhpiG/GHgfaaQr8AnWmtY4+NjpdrA33P3DGQro
-	 WgIWWy7jTNCPC0n0U75GUI0cbSVhffJEzZTVUVAmesWJIZ5pY+DoYljmTDuuyw8EmM
-	 OKZdlsj/WcsKA==
-Date: Wed, 25 Nov 2026 14:32:54 +0000
-To: Echo Zhang <echo.zhang@mediatek.com>
-From: Ben Grisdale <bengris32@protonmail.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, MMDVFS Team <linux-mediatek@lists.infradead.org>, kyrie.wu@mediatek.com, ming-fan.chen@mediatek.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH 4/7] soc: mediatek: mmdvfs: add VCP backend
-Message-ID: <20261125143248.237422bc@ben-desktop>
-In-Reply-To: <20261125060037.649659-5-echo.zhang@mediatek.com>
-References: <20261125060037.649659-1-echo.zhang@mediatek.com> <20261125060037.649659-5-echo.zhang@mediatek.com>
-Feedback-ID: 27291966:user:proton
-X-Pm-Message-ID: 57888eaf1331de2550f94de46d07d4368ce17893
+	Wed, 25 Nov 2026 14:02:01 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17B431762;
+	Wed, 25 Nov 2026 06:01:55 -0800 (PST)
+Received: from [10.0.135.195] (M0PRX50XMG.cambridge.arm.com [10.0.135.195])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6AC373F86F;
+	Wed, 25 Nov 2026 06:01:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795615317; bh=QXNjIvjxmoOqxBNbeshCfrCK90NGNd17TBaU3oKqyns=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mmw3a4X8n1OOB+tRfnOGaB0Pg8jLA6Gk5cgrgdSuF+upYhLmf8HbTTBkC1HK5WrnO
+	 0ve8KylB00bgcXt0fIjpUjrdRbVPVP3F22AZzFfO73g2FPIc6BKTmMUAKXV7bnmfWy
+	 Bu45MO8uOOdPoSRBFZJkdULlazwbMclnBIeYoiz4=
+Message-ID: <aa7d7e97-c0b1-42d4-b885-694195edf46e@arm.com>
+Date: Wed, 25 Nov 2026 14:01:55 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 12/14] irqchip/gic-v5: Retain the ITT when device
+ invalidation times out
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+ Radu Rendec <radu@rendec.net>, Timothy Hayes <timothy.hayes@arm.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jonathan Cameron <jic23@kernel.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Fuad Tabba <fuad.tabba@linux.dev>
+References: <20261118-host_gicv5_fixes-v3-0-13c1859e8aa3@arm.com>
+ <20261118-host_gicv5_fixes-v3-12-13c1859e8aa3@arm.com>
+ <av7PQ4iniwWC9goF@red-moon>
+Content-Language: en-GB
+From: Sascha Bischoff <sascha.bischoff@arm.com>
+In-Reply-To: <av7PQ4iniwWC9goF@red-moon>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_063315_030086_DAD23DE6 
-X-CRM114-Status: GOOD (  17.66  )
-X-Spam-Score: -2.5 (--)
+X-CRM114-CacheID: sfid-20261125_060159_776264_C0BA073E 
+X-CRM114-Status: GOOD (  17.90  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,119 +77,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 25 Nov 2026 14:00:09 +0800 "Echo Zhang" <echo.zhang@mediatek.com> w=
-rote:
+On 19/11/2026 10:28, Lorenzo Pieralisi wrote:
+> On Wed, Nov 18, 2026 at 05:35:41PM +0000, Sascha Bischoff wrote:
+>> Device registration publishes a DTE pointing to the new ITT before
+>> invalidating the ITS device cache. If invalidation times out, clearing
+>> the DTE in memory does not guarantee that the ITS has discarded a
+>> cached reference to the ITT, and hence the hardware could still try
+>> and access the memory. Freeing the ITT on that path can therefore
+>> leave the ITS accessing memory that has been reallocated.
+>>
+>> Device teardown has the same problem: it frees the ITT even when the
+>> invalidation issued after clearing the DTE fails to complete in the
+>> specified timeout.
+>>
+>> Retain the ITT on either failure path. Continue returning the
+>> invalidation error, and free the ITT during teardown only after
+>> successful completion. This deliberately retains memory on hardware
+>> failure because a timeout does not cancel the operation or establish
+>> that cached references are gone.
+>>
+>> Fixes: 57d72196dfc85 ("irqchip/gic-v5: Add GICv5 ITS support")
+>> Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
+>> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+>> Link: https://lore.kernel.org/r/20261112145814.853424-1-fuad.tabba@linux.dev
+>> ---
+>>   drivers/irqchip/irq-gic-v5-its.c | 6 ++++--
+>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
+>> index db13011ef6d93..cfa86aa68bf3c 100644
+>> --- a/drivers/irqchip/irq-gic-v5-its.c
+>> +++ b/drivers/irqchip/irq-gic-v5-its.c
+>> @@ -540,8 +540,8 @@ static int gicv5_its_device_register(struct gicv5_its_chip_data *its,
+>>   
+>>   	ret = gicv5_its_device_cache_inv(its, its_dev);
+>>   	if (ret) {
+>> +		/* The ITS may still have a cached reference to the ITT. */
+>>   		its_write_table_entry(its, dte, 0);
+>> -		gicv5_its_free_itt(its_dev);
+>>   		return ret;
+>>   	}
+>>   
+>> @@ -570,7 +570,9 @@ static int gicv5_its_device_unregister(struct gicv5_its_chip_data *its,
+>>   	its_write_table_entry(its, dte, 0);
+>>   
+>>   	ret = gicv5_its_device_cache_inv(its, its_dev);
+>> -	gicv5_its_free_itt(its_dev);
+>> +	/* Only release the ITT once the ITS has discarded its references. */
+>> +	if (!ret)
+>> +		gicv5_its_free_itt(its_dev);
+> 
+> 	if (ret)
+> 		return ret;
+> 	
+> 	gicv5_its_free_itt(its_dev);
+> 
+> 	return 0;
 
-> Add the VCP transport used by MMDVFS to map AP and firmware shared
-> memory, manage feature power references and send IPI commands.
->=20
-> Wait for VCP readiness and handle the selected MMUP or VCP READY
-> notification to initialize firmware after boot and resume. Serialize
-> IPI transactions while shared memory and acknowledgment state are in
-> use.
+Done, thanks! Definitely neater.
 
-[...]
-
-> +static void mmdvfs_get_bootmode(void)
-> +{
-> +=09struct device_node *np_chosen;
-> +=09struct tag_bootmode {
-> +=09=09u32 size;
-> +=09=09u32 tag;
-> +=09=09u32 bootmode;
-> +=09=09u32 boottype;
-> +=09} *tag;
-> +
-> +=09if (bootmode < UNKNOWN_BOOT)
-> +=09=09return;
-> +
-> +=09np_chosen =3D of_find_node_by_path("/chosen");
-> +=09if (!np_chosen) {
-> +=09=09bootmode =3D NORMAL_BOOT;
-> +=09=09return;
-> +=09}
-> +
-> +=09tag =3D (struct tag_bootmode *)of_get_property(np_chosen, "atag,boot"=
-, NULL);
-> +=09of_node_put(np_chosen);
-> +
-> +=09if (tag)
-> +=09=09bootmode =3D tag->bootmode;
-> +=09else
-> +=09=09bootmode =3D NORMAL_BOOT;
-> +}
-> +
-
-[...]
-
-> +static int
-> +mmdvfs_vcp_send_ipi_impl(struct mmdvfs_device *mmdvfs, void *data, u32 l=
-en,
-> +=09=09=09 const bool vcp)
-> +{
-[...]
-> +=09mmdvfs_get_bootmode();
-> +=09if (bootmode =3D=3D RECOVERY_BOOT) {
-> +=09=09mmdvfs_err(mmdvfs->dev, "IPI skipped: bootmode=3D%d\n", bootmode);
-> +=09=09return -EACCES;
-> +=09}
-> +
-
-Allow me to give my two cents here, even if I am a nobody :)
-
-Android bootmodes. Whilst I do respect the reason for Android bootmodes
-existing, what I do not like to see is people checking for the *Android*
-bootmode in their drivers.
-
-Android kernels these days are *modular* thanks to GKI. I *do not*
-understand why people still check for bootmodes in their drivers when
-there is a much better option of *not loading them* if they are not
-wanted in the current bootmode.
-
-Having your driver depend on the behaviour of one specific userspace is
-terrible. And tracking it in firmware (given that this code is checking
-for an "atag,boot" property presumably added by the bootloader) is even
-worse.
-
-Aside from enabling these questionable bootmode checks in the drivers,
-I have no idea why the bootloader needs to get involved with putting
-non-standard state / boot info inside of /chosen (i.e. that "atag,boot"
-property), when Android solved this problem by using bootargs, and more
-recently, bootconfig.
-
-I will acknowledge that "just not loading modules" does get a bit more
-nuanced if you bring something like udev / Android init into the mix,
-but there are still better solutions to this problem: either gracefully
-handling the state where the hardware isn't ready in your driver, making
-your bootloader set status =3D "disabled"; on the relavent DT node, or
-blocklisting the module from userspace in boot modes where it can't
-work.
-
-Inter-driver dependencies are not a good excuse either (e.g. a core
-clock driver depending on some DVFS driver that is a no-op in recovery,
-forcing you to load it ANYWAY, even if the bootloader doesn't start the
-required firmware on recovery boot). If that is the case, then there is
-some serious refactoring work to do.
-
-First I began seeing these sorts of checks in vendor touch screen
-drivers, but now it seems to be infecting SoC side drivers as well.
-
-*Kernel* drivers should work the same regardless of what *userspace*
-environment is running (with the only real exception being the absence
-of firmware or explicit configurations from userspace). And in situations
-where they genuinely can't work, they should not be loaded at all.
-
-There should be no such thing as "kernel drivers designed for Android",
-only "kernel drivers designed for Linux".
-
-Best regards,
-Ben Grisdale
+> 
+> Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> 
+>>   
+>>   	return ret;
+>>   }
+>>
+>> -- 
+>> 2.34.1
+>>
 
 
