@@ -2,104 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48563606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BAC606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Bv4XByZ2;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=jG6KMY5F;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=z5l9EX5V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=19ZqFAdz;
+	dkim=pass (2048-bit key, unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=mz4O+lJV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XLwIGtJeMhFTaoQJsk+J3d5twE5UKi7TWjoBqx8UKY4=; b=Bv4XByZ27epplD
-	zmOTak6oqpZUEUG/Tpl1Wp7+LNijdywElJuc1avyJBEKmCyUCcEHWnfz+VxGnEkX4fr+M+dtx84QQ
-	WmcDMatGj9+dyTKBcH7KNQfpv802QpFij3vs9GSstERW8dMjsp7Wt1olYBdWkUpHnVh0tmTtzq7W+
-	TnG4FjGtynYSrYO/k7t4VDzmh3813UVV6EaU1ZlGKTgSRGyocoH3QqqV02oK9XY12Db2qulkG5OJK
-	lIhxAcWxZz5TbpP7YRoRcOyrG9Y0DG9psUzvikYL23iwlziULSBlOPH134Ok55gF/YJJWvUMNmPtc
-	0d3KiMNEkhLJuETGPOxQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=RnCmbIvyhXLsSj66IiI2fqNNlGnfZPjVJ+2ZbH58I8w=; b=19ZqFAdzhrG8apc012j8DfXEXc
+	5vhXYyg1oPO5aYzFugo8o2VMQLrypLJvuXkwhWIgHX8BiIiuVl7QPgccic5PUlmKhKG9yJqUCyDtN
+	THuRA8CLH8nyD2YUSb7Vb68sr7ZTon1bGgdGaQBPsk/8zoaio1IUFAHQtkg/ONKYYwFwO903V08zw
+	cNYxxDHpSO4vtZO0+x9KHkKeOHxqkBKH0THd+U21EAuLzPINYHroLwUmCPvLGVpy7Nk5U2zi2Wcv1
+	YveCDDS5uwEzYHrFQShbkzS0gr/+rFtMSh62ZyJocffsaNp5DPWsiYhsXyYmcUb5kQyo3lWu4JQaB
+	O+3svjmA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDI-0000000ArzJ-1TeP;
-	Wed, 25 Nov 2026 17:55:24 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xWHNI-0000000Awbo-3bd5;
+	Wed, 25 Nov 2026 18:05:44 +0000
+Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCS-0000000Aqrw-0hYD
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:54:36 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
-	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=XLwIGtJeMhFTaoQJsk+J3d5twE5UKi7TWjoBqx8UKY4=; b=jG6KMY5FVyVLjmcX+U6TwUr0ov
-	O/IQvIyYYB3xhYHV7YnFNImDXxgtbX+wkRDBgGp1wIPUxt/Pq9Fjwqiz/CB8pZmWVCTwEg3e1QYOJ
-	uHySiZSx7guC294nGv6O8AXz91OeRyAumR0sz3S5G8TcLVJ2DrukO+2/zxG8/26Fb6E2Q3/OZegy4
-	jkRb4IfIkYR1J7ktodoCm74eODmwhnvozEsiR00KUx2lySYctXLQq+wRdEdNhze8iQJpdYkycWv40
-	Hxn4PA5i/RX2v1KwUNO2XTH5O6V0rSf/RKIYHpVKLdAblQdQxkn3Kb2eDPl7la6L+HQ5K8jfyy0/6
-	CUPT5rnw==;
-Received: from smtpout-03.galae.net ([185.246.85.4])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCM-00000005c9O-3xta
+	id 1xWHN6-0000000AwZS-27U8
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:54:31 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id DC0254E41785;
-	Wed, 25 Nov 2026 17:54:25 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B12F960480;
-	Wed, 25 Nov 2026 17:54:25 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A6EF011E6B0AE;
-	Wed, 25 Nov 2026 18:54:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629259; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=XLwIGtJeMhFTaoQJsk+J3d5twE5UKi7TWjoBqx8UKY4=;
-	b=z5l9EX5VkNh/C9hnnM621/+IPjn56aYwA6zqJz3rlsVvd4UswbyPRQ9mGwVkLBKSQwgPq2
-	2Bz817PmRl/fWJWlL2BX7JQBHHxdfGDVQlfuWS+IoMMWnZs0q+iixOx+UPa7K7jKI5YGL1
-	HJOxTzZWQoKPLNfjphSN8F0i8veoF+CITdZ7p2Kv5JgffS0tdc1++w9BjxRMOUA9xDhU16
-	RB5Jx5T3mth6taA5y/KpzthtYLOgcLH4UJwIr+i5Ifh+15Z6msEVrHVvoSy7AWataZLHxN
-	YU0VfavudIA9VdxOYzbk4JmoQNAJ61GXpKwW9/vjj0GG186ADpK3pdjBmEB9KQ==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:44 +0100
-Subject: [PATCH v4 31/32] drm: drm_hotplug_helper: new helper to implement
- bridge hotplug
+	Wed, 25 Nov 2026 18:05:33 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=F8zNcDFYJoYXUMGWMJ/iBBGfEaGOMNYaZCk8csae6mnJ9xSW+Mg04RnyO1WSZNph4U/LTJMY4cL7TRWtaE1WQBRWEqgKkGjG2jzb6fx5a0p2Fb6cpuJxteD4wupfmJ4aYcorywdYiswymTbTzG9V7lR3n5Z5TUZE9A/J4zm0wZyYlj3SaX+Jr+ZSTofzt2HVn2cBjf+U5fK/L9HXNY0cdP3CzkVkl2X+PuhSxqjf8URAnnZswHQYuhv2pGqQP0Kx8AF9yzrvc+E14wuGCEN9uLMLB/eZw22PP2Fu5He7NxyDUmTrpzS4gPzdQ48L52zO10FVGIbpDu3NYxRY5IJoZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RnCmbIvyhXLsSj66IiI2fqNNlGnfZPjVJ+2ZbH58I8w=;
+ b=NRcnnsg9LXMYn2olkR/QxMhf0UmZ5Iyc44BXyzvbNRCtEyQY340HDZhzAuWgl6udGq+m5vVLdQ0ae/X0AwmLOhAO1SOX2el9y5PjjqW9AGMWc3dPvTmIrkYxgvUufewry1vMmBdsVnLcRQt4uj2OrK11AuK9hZDHOhqwhgWvAZ9W96a5Apg47spGGTC0ZR52S6X3F5vx6Gej66tv190NiZIbU7Bi5dhEL5aZRv7dmApMnZ45s+3WYaFg/Oak8crCGoie8bSCl0ALts3fDIElcc4B/asg7S2hWkPk5avb7ynF10lFB75DN3FoziB9yaiisvawZUK9GX7Ze97/4sR4fA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RnCmbIvyhXLsSj66IiI2fqNNlGnfZPjVJ+2ZbH58I8w=;
+ b=mz4O+lJVBNixoN1EbkcFcrZ6RQfAFNOX3U9ctDk+H4awm57fv6ZmeTHTD9X7ol9daGZtLK50mlPLBeGJ1T7AB4vQAj29a9a6u6X223I/E6az7L923chXgFeyhA8nNCgU8y26pEdL3cWvefVU9lswBJEmMxmCAyuglPt2gbPsb+l2Op49IHd+E5NWrUgoeWV4ZFFCd9CwQIbLbB5arOahaUFZHaxmYBVFIFiiSIwiTN8BMM3I3co8Rgys0HZE14PRAh3F+QDyCyJBl/PIpYKpe3Ph2ZhDh5E/o1VJPmPOJFJ6ZIwRTI/MfaUc6R1/7XxG4hbojC29DraY0xRC1lEgLg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by BESPR04MB626074.eurprd04.prod.outlook.com (2603:10a6:b10:12c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 18:05:28 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
+ 18:05:28 +0000
+From: Frank.Li@oss.nxp.com
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v1 1/1] arm64: dts: freescale: imx95-var: Add Cortex-M7 support
+Date: Wed, 25 Nov 2026 13:05:22 -0500
+Message-ID: <179562991843.3149625.11362946576694746843.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261123124946.13887-1-stefano.r@variscite.com>
+References: <20261123124946.13887-1-stefano.r@variscite.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CPBP307CA0021.DNKP307.PROD.OUTLOOK.COM
+ (2603:10a6:380:2::14) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-31-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|BESPR04MB626074:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0a847d7-0a16-41d9-9a43-08df4b1eaff0
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|23010399003|1800799024|7416014|376014|10067099003|261022075727099003|261102123227099003|261021121427099003|261009223027099003|6133799003|22082099003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: h12jl7mJzJyZuTkcWy9+m+5vuFjzsPwRN0II+BaKIAUG9X1D/RAF4X40GWrgei6ivDVFsatjvC0ezkhog+Z65ewMuFcCYrT7XiWs2dfdaAzjJ/gGKhv9/ZqXguSobwL50XXChgxA1gU4DUUHYrDXH4qInZZY/4KVRYqvTxdYyFGl9LYcIcAcZxw+hDXpD7kklFRzVag3xlgk9PN4qmppCswerbHA2CX3jws4gefXrK68Z1gbhYucS1Muh9KhU0FxYrmoB0A4aRLW0eb/9Rw9Yd/NebP4IjQkOhIh/DQdH8wO7HFUb0ggNm4/hcnIBfxfxH6rkimkHJgwim/aNmr7sdYeuK0b3RNgai5F4OQsnlSwVTfRiOesTv9GmfX/kvPWW9VOnVfVHZaBzX1X4bQM9L24sSSSZQiS2RhhdW5Z8nmmJs4flDPxKRFzpb+hz0fBWqq/Sqam1ZNjp8MJYB6Vu5PSffSm15TL6wP9I81HigHAG839FqO7hVJAzRZ7Qa4pX451VZI4NWrFYsgNdvIM/0lo/stwyReo6EWKDIxQLnJfrC9cWflQMZtIQp7hCeYDdquanrwCt2QWtdQ8OzguVYQNRMnJGDJNY16B7JZ7XL7297YhPDc3vNHLA6ekbsGtOiEDSlyq8gidB3cRC8dJXTRQh003Hrq7kLP8Lw9PFE0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(23010399003)(1800799024)(7416014)(376014)(10067099003)(261022075727099003)(261102123227099003)(261021121427099003)(261009223027099003)(6133799003)(22082099003)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qy9pc2ZVTVZja3E1cTY4Vm55WmJFekFINHZkR0VOelJBZ1MvK1VtdFpTejll?=
+ =?utf-8?B?dFlhcDMvNEltNUR4Q0tKcVltejJ1UmxZaDlSaVdUbW9NY1c0bllFUXVnbVov?=
+ =?utf-8?B?T0QwZGhEN0xGY2dNUTdsRnBDTjUwUFQ2Q2JBNlpoVWg4RnUwY3IvQXExQ0Mz?=
+ =?utf-8?B?eXJ1K1BxSXhFOVJNZVlrMi9GNWZia2VQbXhOb2kyaHdUTkhmMC9XVXBOcUVS?=
+ =?utf-8?B?Z01wZEJ6Vy8xK0RLSTZ1T21QR1JQbkw1TWpnZDhZSndHdGRzd1FTL2pDSHNW?=
+ =?utf-8?B?Q1FGb0xIYXlxWEVia3dGZFUwbEJTZStFcFAwV2hmQ0RIMDNCSmN6NllGQndm?=
+ =?utf-8?B?WjBYZGdBUkhIN1o3UFdLSU9acm1CMzNUNzFpdThMc0d3Smg5Qzkwa29walMv?=
+ =?utf-8?B?RitJV1hHT3VwaGo5c2ZNQmx0Sk1ncXFsM1g2alcyZEc5Q0xQcXo1U3FPb1Zn?=
+ =?utf-8?B?OHRTN0w2dUxSa3lNQUZtQUZXRmdxUEdkSFZNdlNzVlRYZWVWM2F3Z3cvVDhI?=
+ =?utf-8?B?REtEdEliM3ZGMW9QdGVtNmlTSkNBaVJrQ3VkMUNtWE82V1pQVVNPaXFQWU5o?=
+ =?utf-8?B?MkRRQWV2REw2d0xZNDhMU1VYTXhxTmFZSlFlbUNYcWlCNHhIRHVWSk1WTjdk?=
+ =?utf-8?B?bmoyY1dGUXdobUlTUG9zTlM2MGtXRHBZczhJTHVLZE9DOVRyeVV6N1RuVTFo?=
+ =?utf-8?B?QThRVlVXMy9pUHI1NlJYV3ZTSEYyeHBZTjBMMzRRQWFRbVBxNW5KdjN1VVd0?=
+ =?utf-8?B?WWFJc1ZkMEpUNVdhQkJ3dWd1Nm1MZEcrRlU4SENmaWlBZzlJMTExckFqNG5v?=
+ =?utf-8?B?Q1lEZ1dOSmN0ZWo5Vlo3aUhGMEVKRzcybWFnYlU1VU8wS2F5TEJyTkphMms5?=
+ =?utf-8?B?U0duTHFqQkdsalJ2a2J6b2pYY0dZei9oeHl4Ykoya3NiNkZyQkhBN3ZQaWZv?=
+ =?utf-8?B?d3R1Tld1QXVtaEl5M2VsNVhQQ3JyTnRteWl3OWhZU05USEFtdklWSlpVODZp?=
+ =?utf-8?B?ekZHOWtSVWs1OFl2UzNWbjE2NE1kYk5xTWg5ekRZaFQ5cHhCNGN0eWVKQnRk?=
+ =?utf-8?B?U1VTbDd0Q1gvcGlRUW9BMm55OVp0VDMwaXZ6SUxmVlR4cDQ3dlFCcE9pVWJa?=
+ =?utf-8?B?RENJR3ZJQXFBY2ZGWHUxeHVBbnRYZThkeStSeUY4UmlPaEZrbHlZeFRNWlp3?=
+ =?utf-8?B?T3piYUJqd2Z1QVpCVnkrUXA5MEtoUERvcHVTK3lSUUVTTy9xZkhlNi9CYnNy?=
+ =?utf-8?B?dEltZzl6SkYxakdFdGVGYjFZMnAwbUhuOXVBdS9BcGxKdGZuSlJXYko1cDlL?=
+ =?utf-8?B?dGloUlVTUlc5SGRNM1NScjhEdUNoQVpLcnBsUTdJZTMwSkhVOGlJRVNnTHYv?=
+ =?utf-8?B?czJ0TTU2QXRKbERIdE03b2QzMkh1TnI0YzAvOVlYemtpaVFWME9uVnVncWVX?=
+ =?utf-8?B?b2FwMEZ5VHl5ZjJMVmg5RXF5TDU3SVlLQ3dZKzRaVkxPRVQ4ajVLR0JsMTAz?=
+ =?utf-8?B?cVBJaGt2eDU2cFd2U3JpdUhBU3NMelQ5KzB3a1N1RTk3enFvN29GRVB2dlgy?=
+ =?utf-8?B?TEdVVG43NHphUlZYSGRIc2dOQU9rVzZYUWx2c2NwT01BcDNzdVRuUnJzQlBx?=
+ =?utf-8?B?TXFEUkZXU2JaRmRmczQwS3pLaWVaWDU2NUxDdU03bE5KckxYaUo5Q0ZsbXR1?=
+ =?utf-8?B?a25HNVpZRXk2TFgzcW9TcFAyVEpPdlZzdStNNzkyZ1ppejk0ek4rekd5YlIx?=
+ =?utf-8?B?U2RUcHBXQXB1bGVMSjQ3NnpXYmVCOG9Ed1JEVmYxQTJ2d3VYK1Q5VFJlUEcx?=
+ =?utf-8?B?YTVVb0NPSDdsYnQ0TzZMZXAxaFZRUnRYQXlzd211UE43S3l4Zkx3M3Vtak8w?=
+ =?utf-8?B?dExqdUp1RFFDc015RU1vcFdVejVFeDRSdWRBT3hxRGw5dEszU2tKaGFNTjgr?=
+ =?utf-8?B?OGYybTBrckVwa2RnZ012anF6NFpHMkUwN2YrVGJ4bzRTN0NCSVVrbXlMcFQ3?=
+ =?utf-8?B?UmxKNmZyR0x4dWJaR2tJTWJ3ditTS2QydWxXRXBNWWo5MmUzSStFSkZMQStY?=
+ =?utf-8?B?ODVxWFB1SlV0eWQ1WDVMbGc5NVJMQmVFRy9Xb3ZodXNVeUNJaUNuU2xkT3FT?=
+ =?utf-8?B?RFpzdkxlR0x4R0hUSDU1RkxpcjBpTXR2V3A5UXNLQjI0aWFjcC93Q3Q0SEYy?=
+ =?utf-8?B?T0JINEd5Zm5LK1BydHdCSGdkbHYvelN3dURMQUlJZzJmSDJYcUgwZ0pXcEVw?=
+ =?utf-8?B?eXZlTUZkQU9MMkpibTRCYmRFa2pmcGhsZkMzcnVnTHVYb0FEV0ZyM3UrYjMx?=
+ =?utf-8?B?c0tML2RVcnppS04va0xvWmlibUZieXg2cC9PYnFmNEdQNlpuMDhhejVQcVVR?=
+ =?utf-8?Q?BhhuULN7swqp+YBIldnkh+K3T1yzNpILUTyv8?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0a847d7-0a16-41d9-9a43-08df4b1eaff0
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 18:05:28.3737
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jkEOIuFYoFt+8mn/0SJQpJzgwnNARp8badRz93nP5R8FXRZ3QPIKzYBvH5q2lCq5o5oUu9lutNvZsaCdYX5CeLsHpEPNTVr9KCY8JOX5gOUucdCQjfLKQpnqD9Ycw9pr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BESPR04MB626074
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175426_942734_4798EE64 
-X-CRM114-Status: GOOD (  35.06  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261125_100532_550609_FE96156F 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,462 +159,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a new helper to support cards implementing hotpluggable drm_bridges.
+From: Frank Li <Frank.Li@nxp.com>
 
-drmm_hotplug_helper_init() registers to get notified of relevant events and
-react by creating a bridge (if the pipeline is complete in the hardware)
-and destroying it on bridge removal.
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+On Mon, 23 Nov 2026 13:49:46 +0100, Stefano Radaelli wrote:
+> Add a Cortex-M7 configuration for DART-MX95 on Sonata.
+> 
+> Place the reserved memory, remoteproc and MU7 configuration in a common
+> include so other carrier boards using Variscite i.MX95 modules can add
+> M7 variants by reusing this configuration and providing their own
+> peripheral assignments in a board overlay.
+> 
+> [...]
 
----
+Applied, thanks!
 
-Changes in v3:
-- Do not require the first bridge is non-hotpluggable
-- Support non-DSI bridges too
-- Add callback to report connector add/remove
-- Do not store the drm_device pointer, get it from the encoder
-- use new v3 notifier API name
+[1/1] arm64: dts: freescale: imx95-var: Add Cortex-M7 support
+      commit: ce3fb16c792be10ac3b5f29a6d8a6460e4f396c9
 
-Changes in v2:
-- Add callback to report connector addition/removal
-- Sanity-check drmm_hotplug_helper_init() parameters
-- Reformat kdoc comment
----
- MAINTAINERS                                  |   8 +
- drivers/gpu/drm/display/Kconfig              |   7 +
- drivers/gpu/drm/display/Makefile             |   2 +
- drivers/gpu/drm/display/drm_hotplug_helper.c | 325 +++++++++++++++++++++++++++
- include/drm/drm_hotplug_helper.h             |  30 +++
- 5 files changed, 372 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a5e2bf15e59f..18ecb7bb39f4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8219,6 +8219,14 @@ F:	Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml
- F:	drivers/accel/rocket/
- F:	include/uapi/drm/rocket_accel.h
- 
-+DRM BRIDGE HOTPLUG HELPER
-+M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/bridge/
-+F:	drivers/gpu/drm/display/drm_hotplug_helper.c
-+F:	include/drm/drm_hotplug_helper.h
-+
- DRM COMPUTE ACCELERATORS DRIVERS AND FRAMEWORK
- M:	Oded Gabbay <ogabbay@kernel.org>
- L:	dri-devel@lists.freedesktop.org
-diff --git a/drivers/gpu/drm/display/Kconfig b/drivers/gpu/drm/display/Kconfig
-index df09cf9a8ca1..e086e2fd08a4 100644
---- a/drivers/gpu/drm/display/Kconfig
-+++ b/drivers/gpu/drm/display/Kconfig
-@@ -22,6 +22,13 @@ config DRM_BRIDGE_CONNECTOR
- 	help
- 	  DRM connector implementation terminating DRM bridge chains.
- 
-+config DRM_HOTPLUG_HELPER
-+	bool
-+	depends on OF
-+	select DRM_BRIDGE_CONNECTOR
-+	help
-+	  Helper code to implement a card supporting hotpluggable bridges.
-+
- config DRM_DISPLAY_DP_AUX_CEC
- 	bool "Enable DisplayPort CEC-Tunneling-over-AUX HDMI support"
- 	select DRM_DISPLAY_DP_HELPER
-diff --git a/drivers/gpu/drm/display/Makefile b/drivers/gpu/drm/display/Makefile
-index 0ff4a1ad0222..ce6dbd65833b 100644
---- a/drivers/gpu/drm/display/Makefile
-+++ b/drivers/gpu/drm/display/Makefile
-@@ -5,6 +5,8 @@ obj-$(CONFIG_DRM_DISPLAY_DP_AUX_BUS) += drm_dp_aux_bus.o
- drm_display_helper-y := drm_display_helper_mod.o
- drm_display_helper-$(CONFIG_DRM_BRIDGE_CONNECTOR) += \
- 	drm_bridge_connector.o
-+drm_display_helper-$(CONFIG_DRM_HOTPLUG_HELPER) += \
-+	drm_hotplug_helper.o
- drm_display_helper-$(CONFIG_DRM_DISPLAY_DP_HELPER) += \
- 	drm_dp_dual_mode_helper.o \
- 	drm_dp_helper.o \
-diff --git a/drivers/gpu/drm/display/drm_hotplug_helper.c b/drivers/gpu/drm/display/drm_hotplug_helper.c
-new file mode 100644
-index 000000000000..ea32bdb0af8f
---- /dev/null
-+++ b/drivers/gpu/drm/display/drm_hotplug_helper.c
-@@ -0,0 +1,325 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2026 GE HealthCare
-+ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
-+ */
-+
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_bridge_connector.h>
-+#include <drm/drm_hotplug_event_notifier.h>
-+#include <drm/drm_hotplug_helper.h>
-+#include <drm/drm_managed.h>
-+#include <drm/drm_print.h>
-+
-+struct drm_hotplug_helper {
-+	/**
-+	 * @encoder: The encoder at the start of the bridges chain
-+	 */
-+	struct drm_encoder *encoder;
-+	/**
-+	 * @event_cb: Callback to report connector addition/removal
-+	 */
-+	drm_hotplug_helper_event_cb event_cb;
-+	/**
-+	 * @drm_event_nb: Notifier to receive DRM hotplug-related events
-+	 */
-+	struct notifier_block drm_event_nb;
-+	/**
-+	 * @connector: The drm_connector added/removed on plug/unplug
-+	 */
-+	struct drm_connector *connector;
-+	/**
-+	 * @event_mutex: Protect entry points (init, fini, event notifier)
-+	 * from concurrent attach and connector creation or destruction
-+	 */
-+	struct mutex event_mutex;
-+	/**
-+	 * @first_bridge_ep: Device tree node of the encoder endpoint
-+	 * connected to the first bridge
-+	 */
-+	struct device_node *first_bridge_ep;
-+};
-+
-+/*
-+ * True if the encoder bridge chain is complete, i.e. the last bridge in
-+ * the chain is the last bridge expected in the hardware (e.g. a panel).
-+ */
-+static bool drm_hotplug_helper_bridge_chain_is_complete(struct drm_hotplug_helper *hotplug_helper)
-+{
-+	struct drm_bridge *last_bridge __free(drm_bridge_put) =
-+		drm_bridge_chain_get_last_bridge(hotplug_helper->encoder);
-+	struct drm_device *drm = hotplug_helper->encoder->dev;
-+
-+	/* We expect at least one bridge */
-+	if (!last_bridge) {
-+		drm_dbg_driver(drm, "no bridges in pipeline (yet)\n");
-+		return false;
-+	}
-+
-+	struct drm_bridge *next_bridge __free(drm_bridge_put) =
-+		drm_bridge_get_next(last_bridge);
-+
-+	/* No next bridge expected, pipeline is complete */
-+	if (!next_bridge) {
-+		drm_dbg_driver(drm, "pipeline complete\n");
-+		return true;
-+	}
-+
-+	/* Next bridge expected but not there now, pipeline incomplete */
-+	if (next_bridge == ERR_PTR(-ENODEV)) {
-+		drm_dbg_driver(drm, "pipeline not (yet) complete\n");
-+		return false;
-+	}
-+
-+	/* Unexpected error */
-+	if (IS_ERR(next_bridge))
-+		drm_warn(drm, "%s error %pe\n", __func__, next_bridge);
-+
-+	/* next_bridge is valid, but not (yet|anymore) in chain */
-+	return false;
-+}
-+
-+/**
-+ * drm_hotplug_helper_connector_add - add the drm_connector
-+ * @hotplug_helper: drm_hotplug_helper to add the drm_connector to
-+ *
-+ * Returns 0 on success or a negative error otherwise.
-+ */
-+static int drm_hotplug_helper_connector_add(struct drm_hotplug_helper *hotplug_helper)
-+{
-+	struct drm_device *drm = hotplug_helper->encoder->dev;
-+	struct drm_connector *connector;
-+
-+	if (drm_WARN_ON(drm, hotplug_helper->connector))
-+		return -EBUSY;
-+
-+	connector = drm_bridge_connector_dynamic_add(drm, hotplug_helper->encoder);
-+	if (IS_ERR(connector))
-+		return PTR_ERR(connector);
-+
-+	hotplug_helper->connector = connector;
-+	hotplug_helper->event_cb(DRM_HOTPLUG_HELPER_CONNECTOR_ADDED, connector);
-+
-+	dev_dbg(drm->dev, "added bridge connector\n");
-+
-+	return 0;
-+}
-+
-+/*
-+ * Removes the connector, which must be present.
-+ *
-+ * Must be called with the hotplug_helper->event_mutex locked.
-+ */
-+static void drm_hotplug_helper_connector_remove(struct drm_hotplug_helper *hotplug_helper)
-+{
-+	struct drm_device *drm = hotplug_helper->encoder->dev;
-+
-+	if (drm_WARN_ON(drm, !hotplug_helper->connector))
-+		return;
-+
-+	dev_dbg(drm->dev, "removing bridge connector\n");
-+
-+	hotplug_helper->event_cb(DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING, hotplug_helper->connector);
-+	drm_bridge_connector_dynamic_remove(hotplug_helper->connector);
-+	hotplug_helper->connector = NULL;
-+}
-+
-+/*
-+ * Propagate the attach chain and possibly add a drm_bridge_connector after
-+ * a new drm_bridge is hot-plugged.
-+ *
-+ * The connector is added only if the pipeline is now complete. This could
-+ * not be the case for various reasons:
-+ *
-+ * - the new bridge is just unrelated to our encoder
-+ * - the new bridge is not the next one in the pipeline
-+ * - the new bridge is the next in the pipeline but the pipeline is not yet
-+ *   complete
-+ *
-+ * All these cases are normal, not an error.
-+ *
-+ * Must be called with the hotplug_helper->event_mutex locked.
-+ */
-+static void drm_hotplug_helper_try_complete(struct drm_hotplug_helper *hotplug_helper)
-+{
-+	struct device *dev = hotplug_helper->encoder->dev->dev;
-+	int err;
-+
-+	WARN_ON(!mutex_is_locked(&hotplug_helper->event_mutex));
-+
-+	/*
-+	 * drm_connector already present, the new bridge must be for
-+	 * another card
-+	 */
-+	if (hotplug_helper->connector)
-+		return;
-+
-+	struct drm_bridge *last_bridge __free(drm_bridge_put) =
-+		drm_bridge_chain_get_last_bridge(hotplug_helper->encoder);
-+
-+	if (last_bridge) {
-+		/*
-+		 * Some bridge(s) already in the chain, propagate the
-+		 * attach call chain from the current chain tail to newly
-+		 * hotplugged bridge(s)
-+		 */
-+		dev_dbg(dev, "propagate attach after %ps\n", last_bridge->funcs);
-+
-+		err = last_bridge->funcs->attach(last_bridge, hotplug_helper->encoder,
-+						 DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-+		if (err)
-+			return;
-+	} else {
-+		/* Bridge chain still empty, find first bridge and attach */
-+
-+		const struct device_node *first_bridge_node __free(device_node) =
-+			of_graph_get_remote_port_parent(hotplug_helper->first_bridge_ep);
-+		if (!of_device_is_available(first_bridge_node))
-+			return;
-+
-+		struct drm_bridge *first_bridge __free(drm_bridge_put) =
-+			of_drm_find_and_get_bridge(first_bridge_node);
-+		if (!first_bridge)
-+			return;
-+
-+		dev_dbg(dev, "attach chain starting at %ps\n", first_bridge->funcs);
-+
-+		err = drm_bridge_attach(hotplug_helper->encoder, first_bridge, NULL,
-+					DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-+		if (err)
-+			return;
-+	}
-+
-+	/* Add the connector if the encoder chain is now complete */
-+	if (drm_hotplug_helper_bridge_chain_is_complete(hotplug_helper))
-+		drm_hotplug_helper_connector_add(hotplug_helper);
-+}
-+
-+static int drm_hotplug_helper_handle_event(struct notifier_block *nb,
-+					   unsigned long event, void *data)
-+{
-+	struct drm_hotplug_helper *hotplug_helper =
-+		container_of(nb, struct drm_hotplug_helper, drm_event_nb);
-+	struct device *dev = hotplug_helper->encoder->dev->dev;
-+
-+	guard(mutex)(&hotplug_helper->event_mutex);
-+
-+	dev_dbg(dev, "received event %lu\n", event);
-+
-+	switch (event) {
-+	case DRM_BRIDGE_ADDED:
-+	case DRM_MIPI_DSI_ATTACHED:
-+		/*
-+		 * A bridges hot-plugged, try adding the
-+		 * drm_bridge_connector
-+		 */
-+		drm_hotplug_helper_try_complete(hotplug_helper);
-+		break;
-+	case DRM_BRIDGE_DETACHED:
-+	{
-+		/*
-+		 * A bridge was unplugged, remove the drm_bridge_connector
-+		 * if it's part of the same pipeline
-+		 */
-+		struct drm_bridge *bridge = (struct drm_bridge *)data;
-+
-+		if (hotplug_helper->connector &&
-+		    bridge->encoder == hotplug_helper->encoder)
-+			drm_hotplug_helper_connector_remove(hotplug_helper);
-+		break;
-+	}
-+	default:
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static void drmm_hotplug_helper_fini(struct drm_device *dev, void *res)
-+{
-+	struct drm_hotplug_helper *hotplug_helper = (struct drm_hotplug_helper *)res;
-+
-+	guard(mutex)(&hotplug_helper->event_mutex);
-+
-+	if (hotplug_helper->connector)
-+		drm_hotplug_helper_connector_remove(hotplug_helper);
-+
-+	of_node_put(hotplug_helper->first_bridge_ep);
-+}
-+
-+static void drmm_hotplug_helper_notifier_unregister(struct drm_device *dev, void *res)
-+{
-+	struct notifier_block *nb = (struct notifier_block *)res;
-+
-+	drm_hotplug_event_notifier_unregister(nb);
-+}
-+
-+/**
-+ * drmm_hotplug_helper_init - Initialise the hotplug helper for an encoder
-+ * @encoder: the encoder where the bridge chain starts; must be already
-+ *           associated to the drm_device (e.g. by drm_encoder_init())
-+ * @event_cb: callback invoked when a drm_connector is added or removed
-+ * @first_bridge_ep: device tree node of the encoder endpoint connected to
-+ *                   the first bridge
-+ *
-+ * Register to receive hotplug-related events and react to them:
-+ * - when a new bridge appears: tries to attach the whole bridge chain,
-+ *   then checks if the pipeline is now complete, and if it is it adds a
-+ *   drm_bridge_connector (which in turn will add a drm_connector)
-+ * - when a bridge disappears, remove the drm_bridge_connector (which in
-+ *   turn will remove the drm_connector)
-+ *
-+ * When a connector is added or removed, the @event_cb will be called.
-+ *
-+ * The caller does not need to attach the bridge(s) anymore because the
-+ * hotplug_helper will do it, including at init time in case all bridges
-+ * are present already.
-+ *
-+ * Returns a pointer to the new &drm_hotplug_helper on success, or a
-+ * negative error pointer otherwise.
-+ */
-+struct drm_hotplug_helper *drmm_hotplug_helper_init(struct drm_encoder *encoder,
-+						    drm_hotplug_helper_event_cb event_cb,
-+						    struct device_node *first_bridge_ep)
-+{
-+	struct drm_hotplug_helper *hotplug_helper;
-+	int ret;
-+
-+	if (!encoder || !event_cb || !first_bridge_ep)
-+		return ERR_PTR(-EINVAL);
-+
-+	struct drm_device *drm = encoder->dev;
-+	if (WARN_ON(IS_ERR_OR_NULL(drm)))
-+		return ERR_PTR(-EINVAL);
-+
-+	hotplug_helper = drmm_kzalloc(drm, sizeof(*hotplug_helper), GFP_KERNEL);
-+	if (!hotplug_helper)
-+		return ERR_PTR(-ENOMEM);
-+
-+	mutex_init(&hotplug_helper->event_mutex);
-+	hotplug_helper->encoder = encoder;
-+	hotplug_helper->event_cb = event_cb;
-+	hotplug_helper->drm_event_nb.notifier_call = drm_hotplug_helper_handle_event;
-+	hotplug_helper->first_bridge_ep = of_node_get(first_bridge_ep);
-+
-+	ret = drmm_add_action_or_reset(drm, drmm_hotplug_helper_fini, hotplug_helper);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	ret = drm_hotplug_event_notifier_register(&hotplug_helper->drm_event_nb);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	ret = drmm_add_action_or_reset(drm, drmm_hotplug_helper_notifier_unregister,
-+				       &hotplug_helper->drm_event_nb);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	guard(mutex)(&hotplug_helper->event_mutex);
-+	drm_hotplug_helper_try_complete(hotplug_helper);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(drmm_hotplug_helper_init);
-diff --git a/include/drm/drm_hotplug_helper.h b/include/drm/drm_hotplug_helper.h
-new file mode 100644
-index 000000000000..ba14d547f8ff
---- /dev/null
-+++ b/include/drm/drm_hotplug_helper.h
-@@ -0,0 +1,30 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Copyright (C) 2026 GE HealthCare
-+ * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
-+ */
-+
-+#ifndef __DRM_HOTPLUG_HELPER_H__
-+#define __DRM_HOTPLUG_HELPER_H__
-+
-+/**
-+ * enum drm_hotplug_helper_event - DRM hotplug helper connector events
-+ */
-+enum drm_hotplug_helper_event {
-+	/** @DRM_HOTPLUG_HELPER_CONNECTOR_ADDED: A drm_connector has just been added */
-+	DRM_HOTPLUG_HELPER_CONNECTOR_ADDED,
-+	/** @DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING: A drm_connector is about to be removed */
-+	DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING,
-+};
-+
-+/**
-+ * drm_hotplug_helper_event_cb - Callback to report connector addition and removal.
-+ */
-+typedef void (*drm_hotplug_helper_event_cb)(enum drm_hotplug_helper_event event,
-+					    struct drm_connector *connector);
-+
-+struct drm_hotplug_helper *drmm_hotplug_helper_init(struct drm_encoder *encoder,
-+						    drm_hotplug_helper_event_cb event_cb,
-+						    struct device_node *next_bridge_ep);
-+
-+#endif /* __DRM_HOTPLUG_HELPER_H__ */
-
+Best regards,
 -- 
-2.56.1
-
+Frank Li <Frank.Li@nxp.com>
 
