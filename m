@@ -2,92 +2,136 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C948F606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B93606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V24r0I4q;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PEHfmNXy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZE1fdgVk;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=amRkfW6m
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=u9HgPNrADctKV0cNUnNPBxSH8VCeQWXjUobqY+QLmgU=; b=V24r0I4qtCNjPs
-	esMfsyg8EPu0/4oRj2IlehN+8FMvAO95E2qnbmQVGLu/8RxpUqH7n3a8ikmf7aotpboUBGCAR2RLk
-	0YPy0xgCM1svKQ5gKE10pgw18PH3oZqcXroRKT+8BUtPm/YG+BYKuAl8cRkxw+Ir7aYNhybS/Jk7R
-	hkbBQSGW2aU99j+a0o2lpde7kciDVjNQIBK/QPhK63Er2e5hsIDla+Nqd9FGHHLA6eSEjwVS+beqm
-	RqvvkwmAvRmXfXxKVBzXaAYMQzWH7amzsi9aVCT5CenpCgPz+vOyIRwhicUeqila+z7BdcUkQzHw7
-	H6EOcXtxlcDTajv4zJ5w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
+	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Rc4aqCyzYBjWOigmv1O5fiE2Ptnz+1fYVaVELpdQ2fQ=; b=ZE1fdgVkg1QQ/ZEGxHkQ7BxgAP
+	RREXMIHy+7BSYloRPW/X4xUU4TJNIQnxodz4ua6ls6y6OzmY7y+/37zNajv+xA0gOp74Khf0GCmek
+	UgEZIB3nIk5jWMnW3qvzSZDaSEvXXh1S4BVnDQygiPudYYaF3d1kgoDpVBBjF70NZ0i5EdBe47Wja
+	WTpH+7Qcy2FByHnqrfAHwH66DdbfCG/FIEKMrBpja3qiFOTWevIW1OX3LqC9d16v/V3BR7nRhJdTW
+	ChQhoA3c1yypKs5fn7aNxgnaZHtIg+rkoFwOquavB0zyCmpbvh6yaqgU1I2Gwv0WToLxU0MAAOuWY
+	VF04mwXA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW89b-0000000916p-0bhd;
-	Wed, 25 Nov 2026 08:15:01 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xW89x-000000091FX-19tT;
+	Wed, 25 Nov 2026 08:15:21 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW89S-0000000912k-3Gz0
+	id 1xW89Y-0000000913a-3UP4
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:14:50 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6EA6843C99;
-	Wed, 25 Nov 2026 08:14:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8FB1F000D1;
-	Wed, 25 Nov 2026 08:14:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795594489;
-	bh=u9HgPNrADctKV0cNUnNPBxSH8VCeQWXjUobqY+QLmgU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=PEHfmNXypxAQviZBuzm+SUVG1YH8JH14TjUc1E0Op8Qco8Xc++mVptMeop6M9JHKD
-	 eN2D6p2nw6SqCR1HFJ2I5q/DOfKk9V5x3GRJ9YY/YT+XIsbItl3EbmM+Aa7W+3kig0
-	 +N7psWRRGrjLZOtV9Uo9v7Hrw+Y2a0q7VxbibJFhbLT/1UjJt3Pr56hPYR59NsXsP8
-	 ko6kHlD4LYXUGNsgkKOS5i2TUEowGQFqNyG4OzEoOhtL/14VDbLo8jiOkHstQn+WKB
-	 mS99cCkRoVUEWuoHsemmEzt9d7J/myJl8Z1rgFQmUVw+3hzNx9NwFsyQno1UGQRIWP
-	 95w4nAOjACOMA==
-From: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>
-To: linux-coco@lists.linux.dev
-Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
-	Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacob Pan <jacob.pan@linux.microsoft.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>,
-	Will Deacon <will@kernel.org>,
-	Xu Yilun <yilun.xu@linux.intel.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	kvm@vger.kernel.org,
-	iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	patches@lists.linux.dev
-Subject: [PATCH v10 15/18] iommufd/viommu: Allow PCI TSM backends to provide vIOMMU operations
-Date: Wed, 25 Nov 2026 13:41:18 +0530
-Message-ID: <20261125081121.379481-16-aneesh.kumar@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125081121.379481-1-aneesh.kumar@kernel.org>
-References: <20261125081121.379481-1-aneesh.kumar@kernel.org>
+	Wed, 25 Nov 2026 08:14:58 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so53520455e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 00:14:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1795594495; x=1796199295; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Rc4aqCyzYBjWOigmv1O5fiE2Ptnz+1fYVaVELpdQ2fQ=;
+        b=amRkfW6mBhHowcM1XSnCqpAiOuudZRpQEOtJQ/e13mrKu8Ijl1dp7fqAL+5OyJ0fm0
+         +Cp554gxiryPNUX33Ac202vcuit8OSifP7VxdJGipAjnfam6H7pyggtaZ2tW05pk54XZ
+         5XesgzkIBNmC2V1PhqYXaPVZb2Xah1f42avHZRZLGaYLp47WuR61IwzrCt4bABlinCa4
+         lRfnqc/sDtvS9PQ7RhRF1NeiyDVnyiSi1SEdtqMpnr/sC6m2e85N2z33TKAtj2vV2SV/
+         aHs5azNfS7OhQ6burN6SOC9VN6Fsg65Fj/2OE3dfGEt3oTmr/FrFIkDAEFeoqh574Zqs
+         LVNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795594495; x=1796199295;
+        h=content-transfer-encoding:content-type:in-reply-to:organization
+         :autocrypt:content-language:references:cc:to:subject:reply-to:from
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Rc4aqCyzYBjWOigmv1O5fiE2Ptnz+1fYVaVELpdQ2fQ=;
+        b=W1Tdw0s1JVY1oURDTCZ4usyrozrDUUNnHx4VzeD8H9s/OhAMFpbD7kRfgWYsOLZTLv
+         U34jMGejKeCXbAluGus0deJSnXjDy0kjHAjUcQsNAZnhqif5wys+YYO7DPt3bD4q1BYz
+         1wyx2e2PiH490/6057Co38kn0rFd53ca6g2eibZLRmZbzyPlxUKycnDuSSgEdObJLEeM
+         cY+Jicc20m/5yoEKxIXafjVWnp8UaMS4wkLNfjs3f2ywX/7ouNBrChis3CICwDimsEkU
+         gcI2BxzHIKpFeZnYMGlLOfXE8bshd56lVkLqybrMVJyD9njdA+25ElKPYuYud1OL+ZO1
+         AIpg==
+X-Forwarded-Encrypted: i=1; AL+hErEUJazKCyKfzJFxyZuD0Z3t89QUkaucqxRZvxdLFSmDp/tEUyKpUTUYd1r0ieiRfJdrfflV5L9Zwy3qgQAqpOPb@lists.infradead.org
+X-Gm-Message-State: APuU4Z8bejePhai7MPl7ZpMkGz04Fzs1x43sFIXv3ZvQM/2nXGv5y80I
+	hOpZQg/8KakZy5IwA/b7BHrRu3kcOlWQU74DMKdGvIgOIkQdGp+cRNzklGS5DX6SqCA=
+X-Gm-Gg: AZFdTZepvubYSEs9UESlWzAXvjS0T0dkdZhvJ/ufZ2x34vH4ispAutRVHfRPlTIqvo8
+	DNv7dm1NA3T4tjthADNBYR00JUWDLy7gpG7/4BzGLZJc81dGhcg57apb459M9Ok+PW6l82yaHDc
+	yaxy/OIBkf0aPxnCpbnDIRBpX2DHERRqhRkrHQYUIHg6WotKl9ZUD4Y396A2RZqlZvM01h+BTNn
+	T9k4upm4tcHLgDD0E1VvbNWFDB5/MfqkG8MsQJm+gx8f0AAro0OlZlV9L0qhSEVbz58kdJ6FChH
+	1W9DiGl0G1waxiQM91lSOcx9d3n9oIXaJQ42WpKClIFhGi1TWkHY7ea2Hi3MY//PxtMqONeUqAB
+	wnaK/1MvAG2IElbOs6ZFKdHqK2HEh5txpJNPNXJjreNbF50I+JGiK2+rkmN0VU0v6fc9fq05fav
+	bVOxe6qyPHbc/qeRc+ocOaF5yCC6eZ/KczsMOXdcrCk0r8WYawEKZFpshysdbbBPFQKQsXUdUdg
+	wgTMRF5BFz4J6cvwHSwinDwEnl9Qawma3JUqIV7RDP/MbknfgI0+mo3U73QPKR0FfM0HfjQwt2G
+	RdSvjo6Jrxf1uIWh76CRJRYF7qctwLHO5KkNOcoCFnOUkY2gd0RJ77xh2KnlufXiz66UE5+fZYK
+	uD7XAWvIs
+X-Received: by 2002:a05:600c:1548:b0:4a1:e00b:a10b with SMTP id 5b1f17b1804b1-4bb88800020mr372318965e9.7.1795594494562;
+        Wed, 25 Nov 2026 00:14:54 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:f368:ae2e:e717:e970? ([2a01:e0a:106d:1080:f368:ae2e:e717:e970])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bba3d3679bsm26993885e9.2.2026.11.25.00.14.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2026 00:14:54 -0800 (PST)
+Message-ID: <6e408f48-17ca-4927-ae09-c4153e294371@linaro.org>
+Date: Wed, 25 Nov 2026 09:14:53 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v4 00/11] phy/drm: amlogic: Extract Meson HDMI TX PHY into
+ a dedicated driver
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel-dev@aliel.fr
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Ulf Hansson <ulfh@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+References: <20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr>
+ <CAFBinCD822UPQrrd_8ZbVRUVCVJ-3pGN69vbZBxUE+0yeMcysg@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAFBinCD822UPQrrd_8ZbVRUVCVJ-3pGN69vbZBxUE+0yeMcysg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_001456_919896_8FBB7A6A 
+X-CRM114-Status: GOOD (  20.07  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,270 +141,58 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow VIOMMU_ALLOC to use the TSM lookup helpers and query its vIOMMU
-operations before falling back to the physical IOMMU driver.
+On 11/24/26 23:05, Martin Blumenstingl wrote:
+> Hi Ronald, Hi Neil,
+> 
+> first of all: thanks Ronald for picking this up!
+> I like the overall approach. Before I dive deep into this series I
+> will finish the code-review of Valerio's AUDIN series.
+> 
+> Two quick notes below.
+> 
+> On Mon, Nov 23, 2026 at 8:38 PM Ronald Claveau via B4 Relay
+> <devnull+linux-kernel-dev.aliel.fr@kernel.org> wrote:
+> [...]
+>> Overview of the series:
+>> - Patches 1-3: Fix compatible matching in meson-gx-hhi-sysctrl bindings,
+>>    add the new amlogic,meson-hdmi-tx-phy DT schema, and allow the
+>>    "hdmi-phy" child node under the HHI syscon.
+> It's been a long time, but I think we've been asked by the devicetree
+> maintainers to have reg properties for the nodes within &hhi
+> But I can't find the message at the moment.
 
-Add the PCI TSM viommu_get_ops callback and tsm_viommu_get_ops() helper
-to query operations for a requested vIOMMU type.
+The hhi syscon nodes doesn't have #[address|size]-cells and so far it
+wasn't required, let's wait for a review from DT maintainers, I'm fine
+with the current design
 
-Add a TSM backing tag and store iommu_dev and tsm_dev in a union.
+> 
+>> - Patch 4: Add the new Meson HDMI TX PHY driver implementing the HDMI
+>>    PHY configuration ops, along with the temporary legacy creation
+>>    helper.
+> At quick glance your PHY approach would also fit phy-meson8-hdmi-tx.c
+> There seem to be minor differences:
+> - two additional enable bits in HHI_HDMI_PHY_CNTL1 on GXBB and newer:
+> HDMI_FIFO_ENABLE=BIT(2) and  HDMI_FIFO_WR_ENALBE=BIT(3)
+> - newer SoCs seem to have HHI_HDMI_PHY_CNTL3..5
+> 
+> Meson8/8b/8m2 HDMI support is not upstream yet. That's why those SoC's
+> won't need the backwards compatibility code. So if you need to tweak
+> the driver: feel free, there's not much you can break!
+> 
+> 
+> Best regards,
+> Martin
 
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Kevin Tian <kevin.tian@intel.com>
-Cc: Joerg Roedel <joro@8bytes.org>
-Cc: Will Deacon <will@kernel.org>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Alexey Kardashevskiy <aik@amd.com>
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: iommu@lists.linux.dev
-Cc: linux-pci@vger.kernel.org
-Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
----
- drivers/iommu/iommufd/viommu.c | 60 +++++++++++++++++++++++++---------
- drivers/virt/coco/tsm-core.c   | 11 +++++++
- include/linux/iommufd.h        |  8 ++++-
- include/linux/pci-tsm.h        | 11 +++++++
- include/linux/tsm.h            | 11 +++++++
- 5 files changed, 84 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/iommu/iommufd/viommu.c b/drivers/iommu/iommufd/viommu.c
-index dab499d24c45..909ef86f39a9 100644
---- a/drivers/iommu/iommufd/viommu.c
-+++ b/drivers/iommu/iommufd/viommu.c
-@@ -15,6 +15,10 @@ void iommufd_viommu_destroy(struct iommufd_object *obj)
- 
- 	if (viommu->ops && viommu->ops->destroy)
- 		viommu->ops->destroy(viommu);
-+
-+	if (viommu->backing == IOMMUFD_VIOMMU_BACKING_TSM)
-+		tsm_put_device(viommu->tsm_dev);
-+
- 	refcount_dec(&viommu->hwpt->common.obj.users);
- 	if (viommu->kvm_file)
- 		fput(viommu->kvm_file);
-@@ -32,7 +36,7 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
- 	struct iommufd_hwpt_paging *hwpt_paging;
- 	struct iommufd_viommu *viommu;
- 	struct iommufd_device *idev;
--	struct iommu_device *iommu_dev;
-+	struct iommu_device *iommu_dev = NULL;
- 	const struct iommufd_viommu_ops *ops;
- 	size_t viommu_size;
- 	int rc;
-@@ -44,20 +48,38 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
- 	if (IS_ERR(idev))
- 		return PTR_ERR(idev);
- 
--	iommu_dev = iommufd_device_get_iommu_dev(idev);
--	if (!iommu_dev) {
--		rc = -EOPNOTSUPP;
-+	struct tsm_dev *tsm_dev __free(tsm_put_device) = tsm_get_device(idev->dev);
-+	if (IS_ERR(tsm_dev)) {
-+		rc = PTR_ERR(tsm_dev);
- 		goto out_put_idev;
- 	}
--	if (!iommu_dev->ops->get_viommu_ops) {
--		rc = -EOPNOTSUPP;
-+
-+	if (tsm_dev)
-+		ops = tsm_viommu_get_ops(tsm_dev, idev->dev, cmd->type);
-+	else
-+		ops = NULL;
-+
-+	if (IS_ERR(ops)) {
-+		rc = PTR_ERR(ops);
- 		goto out_put_idev;
- 	}
--	ops = iommu_dev->ops->get_viommu_ops(idev->dev, cmd->type);
-+
- 	if (!ops) {
--		rc = -EOPNOTSUPP;
--		goto out_put_idev;
-+		tsm_put_device(no_free_ptr(tsm_dev));
-+
-+		iommu_dev = iommufd_device_get_iommu_dev(idev);
-+		if (!iommu_dev || !iommu_dev->ops->get_viommu_ops) {
-+			rc = -EOPNOTSUPP;
-+			goto out_put_idev;
-+		}
-+
-+		ops = iommu_dev->ops->get_viommu_ops(idev->dev, cmd->type);
-+		if (!ops) {
-+			rc = -EOPNOTSUPP;
-+			goto out_put_idev;
-+		}
- 	}
-+
- 	/*
- 	 * It is a driver bug to omit the required operations or provide a size
- 	 * smaller than the core vIOMMU structure.
-@@ -100,13 +122,19 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
- 	refcount_inc(&viommu->hwpt->common.obj.users);
- 	INIT_LIST_HEAD(&viommu->veventqs);
- 	init_rwsem(&viommu->veventqs_rwsem);
--	/*
--	 * It is the most likely case that a physical IOMMU is unpluggable. A
--	 * pluggable IOMMU instance (if exists) is responsible for refcounting
--	 * on its own.
--	 */
--	viommu->backing = IOMMUFD_VIOMMU_BACKING_IOMMU;
--	viommu->iommu_dev = iommu_dev;
-+
-+	if (tsm_dev) {
-+		viommu->backing = IOMMUFD_VIOMMU_BACKING_TSM;
-+		viommu->tsm_dev = no_free_ptr(tsm_dev);
-+	} else {
-+		/*
-+		 * It is the most likely case that a physical IOMMU is unpluggable.
-+		 * A pluggable IOMMU instance (if exists) is responsible for
-+		 * refcounting on its own.
-+		 */
-+		viommu->backing = IOMMUFD_VIOMMU_BACKING_IOMMU;
-+		viommu->iommu_dev = iommu_dev;
-+	}
- 
- 	rc = ops->viommu_init(viommu, idev->dev,
- 			      hwpt_paging->common.domain,
-diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
-index 4f735c628ec3..8cb6fdaf8a84 100644
---- a/drivers/virt/coco/tsm-core.c
-+++ b/drivers/virt/coco/tsm-core.c
-@@ -9,6 +9,17 @@
- #include <linux/cleanup.h>
- #include <linux/pci-tsm.h>
- 
-+/* The caller must hold a tsm_get_device() reference for the entire use. */
-+const struct iommufd_viommu_ops *tsm_viommu_get_ops(struct tsm_dev *tsm_dev,
-+		struct device *dev, enum iommu_viommu_type type)
-+{
-+	if (!tsm_dev->pci_ops->viommu_get_ops)
-+		return NULL;
-+
-+	return tsm_dev->pci_ops->viommu_get_ops(dev, type);
-+}
-+EXPORT_SYMBOL_GPL(tsm_viommu_get_ops);
-+
- static void tsm_release(struct device *);
- static const struct class tsm_class = {
- 	.name		= "tsm",
-diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
-index 192d46b8ccfd..77c1a2944c3b 100644
---- a/include/linux/iommufd.h
-+++ b/include/linux/iommufd.h
-@@ -23,6 +23,7 @@ struct iommufd_access;
- struct iommufd_ctx;
- struct iommufd_device;
- struct iommufd_viommu_ops;
-+struct tsm_dev;
- struct page;
- 
- enum iommufd_object_type {
-@@ -100,13 +101,18 @@ void iommufd_ctx_get(struct iommufd_ctx *ictx);
- 
- enum iommufd_viommu_backing {
- 	IOMMUFD_VIOMMU_BACKING_IOMMU,
-+	IOMMUFD_VIOMMU_BACKING_TSM,
- };
- 
- struct iommufd_viommu {
- 	struct iommufd_object obj;
- 	struct iommufd_ctx *ictx;
- 	enum iommufd_viommu_backing backing;
--	struct iommu_device *iommu_dev;
-+	union {
-+		struct iommu_device *iommu_dev;
-+		struct tsm_dev *tsm_dev;
-+	};
-+
- 	struct iommufd_hwpt_paging *hwpt;
- 	struct file *kvm_file;
- 
-diff --git a/include/linux/pci-tsm.h b/include/linux/pci-tsm.h
-index 6e31faa2c36c..44895c585d75 100644
---- a/include/linux/pci-tsm.h
-+++ b/include/linux/pci-tsm.h
-@@ -3,7 +3,9 @@
- #define __PCI_TSM_H
- #include <linux/mutex.h>
- #include <linux/pci.h>
-+#include <uapi/linux/iommufd.h>
- 
-+struct iommufd_viommu_ops;
- struct module;
- struct pci_tsm;
- struct tsm_dev;
-@@ -16,14 +18,23 @@ struct tsm_dev;
-  * @devsec_ops: Lock, unlock, and interrogate the security state of the
-  *		function via the platform TSM (typically virtual function
-  *		operations).
-+ * @viommu_get_ops: Return operations for a supported TSM-owned vIOMMU type,
-+ *		  or NULL if unsupported
-  * @owner: Module implementing the PCI TSM operations
-  *
-+ * The vIOMMU owner holds a TSM device reference and pins the backend module
-+ * before querying @viommu_get_ops, releasing both after vIOMMU destruction.
-+ * A backend providing this callback must not unregister its TSM while the
-+ * module is pinned.
-+ *
-  * This operations are mutually exclusive either a tsm_dev instance
-  * manages physical link properties or it manages function security
-  * states like TDISP lock/unlock.
-  */
- struct pci_tsm_ops {
- 	struct module *owner;
-+	const struct iommufd_viommu_ops *(*viommu_get_ops)(
-+		struct device *dev, enum iommu_viommu_type type);
- 
- 	/*
- 	 * struct pci_tsm_link_ops - Manage physical link and the TSM/DSM session
-diff --git a/include/linux/tsm.h b/include/linux/tsm.h
-index dc03b2e38eaf..a1c805d6342f 100644
---- a/include/linux/tsm.h
-+++ b/include/linux/tsm.h
-@@ -110,6 +110,8 @@ struct tsm_report_ops {
- };
- 
- struct pci_tsm_ops;
-+struct iommufd_viommu_ops;
-+
- struct tsm_dev {
- 	struct device dev;
- 	int id;
-@@ -128,6 +130,8 @@ struct tsm_dev *find_tsm_dev(int id);
- #ifdef CONFIG_TSM
- struct tsm_dev *tsm_get_device(struct device *dev);
- void tsm_put_device(struct tsm_dev *tsm_dev);
-+const struct iommufd_viommu_ops *tsm_viommu_get_ops(struct tsm_dev *tsm_dev,
-+		struct device *dev, enum iommu_viommu_type type);
- #else
- static inline struct tsm_dev *tsm_get_device(struct device *dev)
- {
-@@ -137,6 +141,13 @@ static inline struct tsm_dev *tsm_get_device(struct device *dev)
- static inline void tsm_put_device(struct tsm_dev *tsm_dev)
- {
- }
-+
-+static inline const struct iommufd_viommu_ops *
-+tsm_viommu_get_ops(struct tsm_dev *tsm_dev, struct device *dev,
-+		enum iommu_viommu_type type)
-+{
-+	return NULL;
-+}
- #endif
- 
- DEFINE_FREE(tsm_put_device, struct tsm_dev *,
--- 
-2.43.0
-
+Thanks,
+Neil
 
