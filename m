@@ -2,74 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0667606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D701606A68E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WJXIFtbd;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=GB68hZxD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YXYO18tx;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=mqYMj4HJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mzsSnVFmueVAmxucWap/1diLt/xkb4/Iudj0Azmpcto=; b=WJXIFtbde2nwPg
-	1LwtW2/qbReyJE/fb/PbDabr/wBOiac4HmJ8K2N8CFBxZ2k/MqwNvnxDV71mMeWJCXlwHvdmLCt3o
-	iSJF8MKPRB2LbBNvxI4MgTHsNXzvvWIaGw0ajKbVPz6MdZlFQhMKaaWkjCbPkMlsl1y0Hub7K6G7Y
-	0SW03/ixS5gI6qqgxOGDGM4wQy5dy0349ZywWU9VuNeFaISK1jQCU4xjvFdm0EOsYp8b+wn6yXjbJ
-	zam6wrwxNJw59RcUR2Iq4zUmS02MCzQMWValrINejqrmgiaQh26Is7qgw+8lIVA28jUgDSc36Lo4v
-	cze3UpnlSnHb4ihBjvSA==;
+	List-Owner; bh=IcKZMhVXkGsLegGjBxXphuzXg6/DwngmLc9AVe2Sr2Q=; b=YXYO18txyjeTzt
+	UH3MO3T83NGG2/YRb0kyK02te59nhN2obhtKRLBwr5mW9K7F5I7Neutu2BctZCkOhLXNaUlPfQU3P
+	aHxozG9/3TLx3fno6zYovjtzr1oFO0gZ4ace5h6aLgcjiA6tiap6ps+9q7IYC2kturYAdlvdb167o
+	tCDp32Ao3LHDc9kFfKVxu+9Iv+qOjspvSMzwG9Ymj49CctYqM0IIbC2nfFZUyF+4ludFAVNffOrvf
+	cUvqoteAvSoj40iPwMneRMCoXIBjGV6fRYlZdVK6AZNaF80s8XFCZD8xl4fFsezSCCqDfDLY6Fs+C
+	M0zk/WAe8JUuUkLDiejg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF8H-0000000APrP-05Kf;
-	Wed, 25 Nov 2026 15:42:05 +0000
-Received: from out-226.mta1.migadu.com ([95.215.58.226] helo=mta1.migadu.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF7E-0000000AOsz-2Eng
+	id 1xWECn-0000000AD88-1BW3;
+	Wed, 25 Nov 2026 14:42:41 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWEB6-0000000AC7J-0U7i
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 15:41:09 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=nUFxnpIOM1wpWH0/JGGRjQFQhyZ2Sfp/JeawXNUQhRc=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795621258; v=1; x=1796226058;
- b=GB68hZxDejEmlmEobgOXOcO/OanROYasrc6Y/sN82THyrmf2idGu3vxks4iI26bqOZ4msDFU
- ZQw4McuPQsHP/Kpo4VWHSeGT/d4D83f6umf90qnZONpgYzu0RLjIrHtSp0/zve5JPyqNCJdpgcz
- TM/Zra/HPk8TzpHHSYALCTTw=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id aa3c62e7ebe12e60;
-	Wed, 25 Nov 2026 15:40:58 +0000
-X-Mizu-Trace-ID: aa3c62e7ebe12e60
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Joey Gouly <joey.gouly@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Vincent Donnefort <vdonnefort@google.com>,
-	Fuad Tabba <tabba@google.com>,
-	kvm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 19/20] KVM: arm64: Advertise FP8 and F16MM to protected VMs
-Date: Wed, 25 Nov 2026 15:39:10 +0000
-Message-ID: <20261125153911.106793-20-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261125153911.106793-1-fuad.tabba@linux.dev>
-References: <20261125153911.106793-1-fuad.tabba@linux.dev>
+	Wed, 25 Nov 2026 14:40:58 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 635651BF7;
+	Wed, 25 Nov 2026 06:40:52 -0800 (PST)
+Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA8423F632;
+	Wed, 25 Nov 2026 06:40:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795617655; bh=gt7ayGUpndc9+xYpRU4sJb5goSevkWB5qx8zGCnfUXQ=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=mqYMj4HJOTQaHs49wZnhCfzwZe47nDhaEMEveW6J84VcjpT85Zk7deEnMmSuPK/Np
+	 uHaEb9z+vjEeOnpXB8fyIwfhZCnDgN/2XRnDoqUvqGVUUUvJePmyQxXCKz3Z15QbNN
+	 DnIIcWZvzDVfXeqBviGz89o1vbDYZF7nkxDc4gGM=
+From: Sascha Bischoff <sascha.bischoff@arm.com>
+Date: Wed, 25 Nov 2026 14:40:33 +0000
+Subject: [PATCH v4 11/13] irqchip/gic-v5: Retain the ITT when device
+ invalidation times out
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-host_gicv5_fixes-v4-11-0469743c47d8@arm.com>
+References: <20261125-host_gicv5_fixes-v4-0-0469743c47d8@arm.com>
+In-Reply-To: <20261125-host_gicv5_fixes-v4-0-0469743c47d8@arm.com>
+To: Marc Zyngier <maz@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+ Timothy Hayes <timothy.hayes@arm.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Fuad Tabba <fuad.tabba@linux.dev>, 
+ Sascha Bischoff <sascha.bischoff@arm.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_074103_511650_BE98B52F 
-X-CRM114-Status: GOOD (  11.36  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261125_064056_279736_E4E115B3 
+X-CRM114-Status: GOOD (  16.15  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,92 +84,99 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Advertise the FP8 features and FEAT_F16MM to protected VMs, the
-ID_AA64FPFR0_EL1 fields a non-protected VM sees. Their instructions
-only use the SIMD&FP registers and FPMR, which EL2 already switches.
+Device registration publishes a DTE pointing to the new ITT before
+invalidating the ITS device cache. If invalidation times out, clearing
+the DTE in memory does not guarantee that the ITS has discarded a
+cached reference to the ITT, and hence the hardware could still try
+and access the memory. Freeing the ITT on that path can therefore
+leave the ITS accessing memory that has been reallocated.
 
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+Device teardown has the same problem: it frees the ITT even when the
+invalidation issued after clearing the DTE fails to complete in the
+specified timeout.
+
+Retain the ITT on either failure path. Continue returning the
+invalidation error, and free the ITT during teardown only after
+successful completion. This deliberately retains memory on hardware
+failure because a timeout does not cancel the operation or establish
+that cached references are gone.
+
+Fixes: 57d72196dfc85 ("irqchip/gic-v5: Add GICv5 ITS support")
+Reported-by: Fuad Tabba <fuad.tabba@linux.dev>
+Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
+Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Link: https://lore.kernel.org/r/20261112145814.853424-1-fuad.tabba@linux.dev
 ---
- arch/arm64/include/asm/kvm_hyp.h   |  1 +
- arch/arm64/kvm/arm.c               |  1 +
- arch/arm64/kvm/hyp/nvhe/sys_regs.c | 18 +++++++++++++++++-
- 3 files changed, 19 insertions(+), 1 deletion(-)
+ drivers/irqchip/irq-gic-v5-its.c | 29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/include/asm/kvm_hyp.h b/arch/arm64/include/asm/kvm_hyp.h
-index fa9a99cae32a7..09b19f2c3c090 100644
---- a/arch/arm64/include/asm/kvm_hyp.h
-+++ b/arch/arm64/include/asm/kvm_hyp.h
-@@ -145,6 +145,7 @@ extern u64 kvm_nvhe_sym(id_aa64pfr0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64pfr1_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64pfr2_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64zfr0_el1_sys_val);
-+extern u64 kvm_nvhe_sym(id_aa64fpfr0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar1_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar2_el1_sys_val);
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index e363e8b5958fb..5dbe66de4f05e 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -2834,6 +2834,7 @@ static void kvm_hyp_init_symbols(void)
- 	kvm_nvhe_sym(id_aa64pfr1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64PFR1_EL1);
- 	kvm_nvhe_sym(id_aa64pfr2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64PFR2_EL1);
- 	kvm_nvhe_sym(id_aa64zfr0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ZFR0_EL1);
-+	kvm_nvhe_sym(id_aa64fpfr0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64FPFR0_EL1);
- 	kvm_nvhe_sym(id_aa64isar0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR0_EL1);
- 	kvm_nvhe_sym(id_aa64isar1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR1_EL1);
- 	kvm_nvhe_sym(id_aa64isar2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR2_EL1);
-diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-index dc7c70ac46f2a..4b95128663aa8 100644
---- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-+++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-@@ -24,6 +24,7 @@ u64 id_aa64pfr0_el1_sys_val;
- u64 id_aa64pfr1_el1_sys_val;
- u64 id_aa64pfr2_el1_sys_val;
- u64 id_aa64zfr0_el1_sys_val;
-+u64 id_aa64fpfr0_el1_sys_val;
- u64 id_aa64isar0_el1_sys_val;
- u64 id_aa64isar1_el1_sys_val;
- u64 id_aa64isar2_el1_sys_val;
-@@ -148,6 +149,19 @@ static const struct pvm_ftr_bits pvmid_aa64zfr0[] = {
- 	FEAT_END
- };
+diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
+index db13011ef6d9..37835d1600fb 100644
+--- a/drivers/irqchip/irq-gic-v5-its.c
++++ b/drivers/irqchip/irq-gic-v5-its.c
+@@ -11,6 +11,7 @@
+ #include <linux/iommu.h>
+ #include <linux/init.h>
+ #include <linux/kernel.h>
++#include <linux/kmemleak.h>
+ #include <linux/msi.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+@@ -165,6 +166,23 @@ static void gicv5_its_free_itt(struct gicv5_its_dev *its_dev)
+ 		gicv5_its_free_itt_two_level(its_dev);
+ }
  
-+static const struct pvm_ftr_bits pvmid_aa64fpfr0[] = {
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8E5M2, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8E4M3, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F16MM2, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8MM4, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8MM8, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8DP2, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8DP4, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8FMA, IMP),
-+	MAX_FEAT(ID_AA64FPFR0_EL1, F8CVT, IMP),
-+	FEAT_END
-+};
++/* The ITS may still reference these allocations after its_dev is freed. */
++static void gicv5_its_itt_not_leak(struct gicv5_its_dev *its_dev)
++{
++	unsigned int i;
 +
- static const struct pvm_ftr_bits pvmid_aa64mmfr0[] = {
- 	MAX_FEAT_ENUM(ID_AA64MMFR0_EL1, PARANGE, 40),
- 	MAX_FEAT_ENUM(ID_AA64MMFR0_EL1, ASIDBITS, 16),
-@@ -297,6 +311,8 @@ static u64 pvm_calc_id_reg(const struct kvm_vcpu *vcpu, u32 id)
- 		return get_restricted_features(vcpu, id_aa64pfr2_el1_sys_val, pvmid_aa64pfr2);
- 	case SYS_ID_AA64ZFR0_EL1:
- 		return get_restricted_features(vcpu, id_aa64zfr0_el1_sys_val, pvmid_aa64zfr0);
-+	case SYS_ID_AA64FPFR0_EL1:
-+		return get_restricted_features(vcpu, id_aa64fpfr0_el1_sys_val, pvmid_aa64fpfr0);
- 	case SYS_ID_AA64ISAR0_EL1:
- 		return id_aa64isar0_el1_sys_val;
- 	case SYS_ID_AA64ISAR1_EL1:
-@@ -726,7 +742,7 @@ static const struct sys_reg_desc pvm_sys_reg_descs[] = {
- 	AARCH64(SYS_ID_AA64ZFR0_EL1),
- 	ID_UNALLOCATED(4,5),
- 	ID_UNALLOCATED(4,6),
--	ID_UNALLOCATED(4,7),
-+	AARCH64(SYS_ID_AA64FPFR0_EL1),
- 	AARCH64(SYS_ID_AA64DFR0_EL1),
- 	AARCH64(SYS_ID_AA64DFR1_EL1),
- 	ID_UNALLOCATED(5,2),
++	if (!its_dev->itt_cfg.l2itt) {
++		kmemleak_not_leak(its_dev->itt_cfg.linear.itt);
++		return;
++	}
++
++	for (i = 0; i < its_dev->itt_cfg.l2.num_l1_ents; i++)
++		kmemleak_not_leak(its_dev->itt_cfg.l2.l2ptrs[i]);
++
++	kmemleak_not_leak(its_dev->itt_cfg.l2.l2ptrs);
++	kmemleak_not_leak(its_dev->itt_cfg.l2.l1itt);
++}
++
+ static int gicv5_its_create_itt_linear(struct gicv5_its_chip_data *its,
+ 				       struct gicv5_its_dev *its_dev,
+ 				       unsigned int event_id_bits)
+@@ -540,8 +558,9 @@ static int gicv5_its_device_register(struct gicv5_its_chip_data *its,
+ 
+ 	ret = gicv5_its_device_cache_inv(its, its_dev);
+ 	if (ret) {
++		/* The ITS may still have a cached reference to the ITT. */
+ 		its_write_table_entry(its, dte, 0);
+-		gicv5_its_free_itt(its_dev);
++		gicv5_its_itt_not_leak(its_dev);
+ 		return ret;
+ 	}
+ 
+@@ -570,9 +589,15 @@ static int gicv5_its_device_unregister(struct gicv5_its_chip_data *its,
+ 	its_write_table_entry(its, dte, 0);
+ 
+ 	ret = gicv5_its_device_cache_inv(its, its_dev);
++	if (ret) {
++		gicv5_its_itt_not_leak(its_dev);
++		return ret;
++	}
++
++	/* Only release the ITT once the ITS has discarded its references. */
+ 	gicv5_its_free_itt(its_dev);
+ 
+-	return ret;
++	return 0;
+ }
+ 
+ /*
+
 -- 
-2.47.3
+2.34.1
 
 
