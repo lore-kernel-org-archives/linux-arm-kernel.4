@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4340606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BD9C606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PNEUL4ip;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AoPuYpEg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wki7t4mq;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=ASbH5ClL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PSgf6sZ4Qtawl85/N6yrprouFZukFIZKD96Hi7eveoI=; b=PNEUL4ipPG4b50
-	vrRfXzGJDtIDX2ivBPB9PUnBeAAMekV8bN/I1O5T32kgJpXJFGK2e6HE6WzUgZpfeZ32Y+pxZ47Cp
-	ZGdZpmJ2TL2HwMbGhYofWfdJue25UBH77933XwWtBII+FbREdsfNKojl9N/hzt2aZIJQ23H3LdG9o
-	4TZBQrD7Uhg6M7Lk0BiUeFO2KZCYCocMtsjVpEc/3Jd8WMbfWIXfsFGJaiX7veFvORoIiksSklzMt
-	909F4iYzlEbOWVIHxda6VAthCKA6nh9R5uZXZ7N+xfF7WBtLg7BWFepv2ahKsO8lyItGpnXveD4/B
-	embE+5fkHVUf96BXs1XA==;
+	List-Owner; bh=pswBG59guH62lCEWMkmDWSD12p1MDexE4B9kdFA3m4U=; b=wki7t4mqFEXmpI
+	KZc7jHE+YS8vcxvdmrlZqfjsOVBM7rnXXyKyRa5+61sLcyDJSyC1gK1z4YAb2EFosK0QUYLoxSzaf
+	aLypoSvrkPtcsvhCYYvFQnCgI2znHugQCVx+ESekYkIyTt0r/41+2a4WBHwPD1fss+w/7WHUC3SCL
+	pWMo9YqWexJQh5lyRlhwAgSGSsuoRB5NoOzSL/ZhTduXyQoVbsfjMza8N44LoiUOvGyh2W1xNvFne
+	B4hjCC5FVy5qmEoTClvHJefR5YzHnr9/Lga/1RQI+W+ZZXA4IlMyozxabZwSNhv3fy9UD1UQGB0rf
+	Lh0pn7oFtygg3Q3g/87A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEi3-0000000AJKe-0Fm8;
-	Wed, 25 Nov 2026 15:14:59 +0000
+	id 1xWEig-0000000AJcG-1jX9;
+	Wed, 25 Nov 2026 15:15:44 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEhU-0000000AJ2w-3axL;
-	Wed, 25 Nov 2026 15:14:26 +0000
+	id 1xWEhT-0000000AJ2Z-1cuq;
+	Wed, 25 Nov 2026 15:14:24 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1795619662;
-	bh=tBuZgwzt7+tIWp9kUOKRVQyHT1nAxNT4CFenV+1jQGw=;
+	s=mail; t=1795619660;
+	bh=3FBbaws9N7wLOiseRH6Q6m5ib4Wx+e8jlcCc3+XKZBw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=AoPuYpEg952pRBEfI7ge8wHcg98UqA/cL7JLli864A6UNuql3FWr4K4UwmGzMRgIS
-	 QEQPZa87q3J6cOFRjAcxYHCPXUylcD6OeusWnWq5TweEfq+9ubYhhNEorL5jv8XaBo
-	 K3Rx9z0Ln2FYImDawOU5qyOPrAfIBvblaRcP0FkaOpA88WxDdOt4dlY1H5zDYR9A2/
-	 O2C3s5iXkRiQPqtXz4oV3elLyJU7e8gZ5TNwzl+S5hRp+u6/9pZy8H5rkaobWry2Bb
-	 dyuSg9slOnDNxs7lnKOFyf7qAqDHenOcTUenyweIicrdICApbbkSMrAEf9MLNVj1Gq
-	 Dihuv5YaXDqPg==
+	b=ASbH5ClLNnGjUwfH7e4o5b685+X9TmNyXcyV2jrR8F9qsFaazzGmR80zqS0QvO+BO
+	 1UMlSbcnnDO/ZyLCoNTljTsJmYXREZHlf4XICNX3v/hX+DjcNLzN5aEBB7MXytgn0b
+	 Z5PQu2vRRaLYfwqUDbzeBO1e0ByrFP8Z+oMuspP5aT8JKPcHoROqIopzfxcQXvgIhz
+	 mJp2zCl3SpQ1bVT01MK4G1NMZRl1BO2GKDUhpNRzKJYWggazT3+rN0nbE2NfMOh+pO
+	 yksSLrSbrocvinVpZ3Hl2/8rYLYNX2cxSECaFXplMLCGMkQsj+TixcNUK5P1qtXKMx
+	 gAz2mmE97GalA==
 Received: from [192.168.0.15] (unknown [100.64.0.170])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: detlev)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3C98D17E120C;
-	Wed, 25 Nov 2026 16:14:21 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 733A717E11E0;
+	Wed, 25 Nov 2026 16:14:19 +0100 (CET)
 From: Detlev Casanova <detlev.casanova@collabora.com>
-Date: Wed, 25 Nov 2026 10:12:01 -0500
-Subject: [PATCH v4 4/5] media: hantro: Add per-context fdinfo usage metrics
+Date: Wed, 25 Nov 2026 10:12:00 -0500
+Subject: [PATCH v4 3/5] media: v4l2-core: Add v4l2-metrics interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-v4l2-add-fdinfo-v4-4-2dc73fad9932@collabora.com>
+Message-Id: <20261125-v4l2-add-fdinfo-v4-3-2dc73fad9932@collabora.com>
 References: <20261125-v4l2-add-fdinfo-v4-0-2dc73fad9932@collabora.com>
 In-Reply-To: <20261125-v4l2-add-fdinfo-v4-0-2dc73fad9932@collabora.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
@@ -63,12 +63,11 @@ To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-rockchip@lists.infradead.org, kernel@collabora.com, 
  Detlev Casanova <detlev.casanova@collabora.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Christopher Healy <healych@amazon.com>
+ linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_071425_084028_F16B8120 
-X-CRM114-Status: GOOD (  16.70  )
+X-CRM114-CacheID: sfid-20261125_071423_605911_B41B2910 
+X-CRM114-Status: GOOD (  21.10  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,169 +87,264 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christopher Healy <healych@amazon.com>
+Provide helpers for V4L2 drivers to set fdinfo data and print the
+key:value pairs in a standard way.
 
-Add VPU981 hardware utilization metrics to the Hantro VPU stateless
-codec driver, exposed via v4l2_metrics.
+Drivers can set metrics values with helpers like:
+ - v4l2_metrics_update_hw_usage
+ - v4l2_metrics_set_driver_type
 
-Update the v4l2_metrics instance each time a job completes with the
-time it took in ns and the nuber of cycles reported by the hardware.
+And also call the show helpers from their show_fdinfo callback with:
+ - v4l2_metrics_show -- Shows the values set previously
+ - v4l2_metrics_show_clock -- Shows the main clock state.
 
-This enables userspace monitoring tools to compute per-process decoder
-and encoder utilization. The current and max frequency keys report the
-same value today since the driver lacks devfreq support, but will
-diverge once DVFS is added, allowing userspace to approximate true
-capacity utilization without any fdinfo code changes.
+Per-core metrics are supported by passing a numeric core_id to the
+show helpers, so a single file descriptor can report metrics for
+multiple hardware cores.
 
-Signed-off-by: Christopher Healy <healych@amazon.com>
+The show_clock helper is used instead of storing a clock reference in
+v4l2_metrics for the following reasons:
+ - Clocks are at the device level, this is not a per-fd information
+ - This avoids having clock references in v4l2-core
+ - Drivers can use different approaches to manage clocks
+   (e.g.: bulk_data or not: A set helper wouldn't please all drivers)
+ - Arguably, clocks could be exposed elsewhere (like a debugfs), but we
+   want something close to what DRM does and centralizing information has
+   its advantages for userspace tooling.
+
+In DRM the key:value pair format for clocks is documented and each driver
+can write them directly based on that.
+In this case, provide a helper and document the format.
+
 Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 ---
- drivers/media/platform/verisilicon/hantro.h           |  4 ++++
- drivers/media/platform/verisilicon/hantro_drv.c       | 19 +++++++++++++++++++
- drivers/media/platform/verisilicon/hantro_hw.h        |  1 +
- .../media/platform/verisilicon/rockchip_vpu981_regs.h |  1 +
- drivers/media/platform/verisilicon/rockchip_vpu_hw.c  |  6 ++++++
- 5 files changed, 31 insertions(+)
+ drivers/media/v4l2-core/Makefile       |  2 +-
+ drivers/media/v4l2-core/v4l2-dev.c     |  2 +
+ drivers/media/v4l2-core/v4l2-fh.c      |  3 ++
+ drivers/media/v4l2-core/v4l2-metrics.c | 78 ++++++++++++++++++++++++++++++++++
+ include/media/v4l2-fh.h                |  3 ++
+ include/media/v4l2-metrics.h           | 47 ++++++++++++++++++++
+ 6 files changed, 134 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index 0353de154a1e..2c136350d37a 100644
---- a/drivers/media/platform/verisilicon/hantro.h
-+++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -16,6 +16,7 @@
- #include <linux/videodev2.h>
- #include <linux/wait.h>
- #include <linux/clk.h>
-+#include <linux/ktime.h>
- #include <linux/reset.h>
+diff --git a/drivers/media/v4l2-core/Makefile b/drivers/media/v4l2-core/Makefile
+index 329f0eadce99..4bfd4e19dff8 100644
+--- a/drivers/media/v4l2-core/Makefile
++++ b/drivers/media/v4l2-core/Makefile
+@@ -9,7 +9,7 @@ ccflags-y += -I$(srctree)/drivers/media/tuners
+ tuner-objs	:=	tuner-core.o
  
- #include <media/v4l2-ctrls.h>
-@@ -236,6 +237,7 @@ struct hantro_dev {
-  * @bit_depth:		Bit depth of current frame
-  * @need_postproc:	Set to true if the bitstream features require to
-  *			use the post-processor.
-+ * @start_time:		The time at which the running job has been started.
-  *
-  * @codec_ops:		Set of operations related to codec mode.
-  * @postproc:		Post-processing context.
-@@ -268,6 +270,8 @@ struct hantro_ctx {
- 	struct hantro_postproc_ctx postproc;
- 	bool need_postproc;
+ videodev-objs	:=	v4l2-dev.o v4l2-ioctl.o v4l2-device.o v4l2-fh.o \
+-			v4l2-event.o v4l2-subdev.o v4l2-common.o \
++			v4l2-event.o v4l2-subdev.o v4l2-common.o v4l2-metrics.o \
+ 			v4l2-ctrls-core.o v4l2-ctrls-api.o \
+ 			v4l2-ctrls-request.o v4l2-ctrls-defs.o
  
-+	ktime_t start_time;
-+
- 	/* Specific for particular codec modes. */
- 	union {
- 		struct hantro_h264_dec_hw_ctx h264_dec;
-diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 3734ea701145..6b57343ec062 100644
---- a/drivers/media/platform/verisilicon/hantro_drv.c
-+++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -21,6 +21,7 @@
- #include <linux/videodev2.h>
- #include <linux/workqueue.h>
- #include <media/v4l2-event.h>
-+#include <media/v4l2-metrics.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/videobuf2-core.h>
- #include <media/videobuf2-vmalloc.h>
-@@ -90,6 +91,9 @@ static void hantro_job_finish(struct hantro_ctx *ctx,
+diff --git a/drivers/media/v4l2-core/v4l2-dev.c b/drivers/media/v4l2-core/v4l2-dev.c
+index 8a350ef3a9ed..b71d48eef9d8 100644
+--- a/drivers/media/v4l2-core/v4l2-dev.c
++++ b/drivers/media/v4l2-core/v4l2-dev.c
+@@ -486,6 +486,8 @@ static void v4l2_show_fdinfo(struct seq_file *m, struct file *filp)
  {
- 	struct hantro_dev *vpu = ctx->dev;
+ 	struct video_device *vdev = video_devdata(filp);
  
-+	v4l2_metrics_update_hw_time(&ctx->fh.metrics,
-+				    ktime_to_ns(ktime_sub(ktime_get(), ctx->start_time)));
++	seq_printf(m, "v4l2-driver:\t%s\n", vdev->v4l2_dev->name);
 +
- 	pm_runtime_put_autosuspend(vpu->dev);
- 	hantro_job_finish_no_pm(ctx, result);
+ 	if (vdev->fops->show_fdinfo)
+ 		vdev->fops->show_fdinfo(m, filp);
  }
-@@ -182,6 +186,8 @@ static void device_run(void *priv)
+diff --git a/drivers/media/v4l2-core/v4l2-fh.c b/drivers/media/v4l2-core/v4l2-fh.c
+index b184bed8aca9..1ed91d344f4e 100644
+--- a/drivers/media/v4l2-core/v4l2-fh.c
++++ b/drivers/media/v4l2-core/v4l2-fh.c
+@@ -17,6 +17,7 @@
+ #include <media/v4l2-event.h>
+ #include <media/v4l2-ioctl.h>
+ #include <media/v4l2-mc.h>
++#include <media/v4l2-metrics.h>
  
- 	v4l2_m2m_buf_copy_metadata(src, dst);
+ void v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
+ {
+@@ -38,6 +39,7 @@ void v4l2_fh_init(struct v4l2_fh *fh, struct video_device *vdev)
+ 	INIT_LIST_HEAD(&fh->subscribed);
+ 	fh->sequence = -1;
+ 	mutex_init(&fh->subscribe_lock);
++	v4l2_metrics_init(&fh->metrics);
+ }
+ EXPORT_SYMBOL_GPL(v4l2_fh_init);
  
-+	ctx->start_time = ktime_get();
+@@ -88,6 +90,7 @@ void v4l2_fh_exit(struct v4l2_fh *fh)
+ 	v4l2_event_unsubscribe_all(fh);
+ 	mutex_destroy(&fh->subscribe_lock);
+ 	fh->vdev = NULL;
++	v4l2_metrics_exit(&fh->metrics);
+ }
+ EXPORT_SYMBOL_GPL(v4l2_fh_exit);
+ 
+diff --git a/drivers/media/v4l2-core/v4l2-metrics.c b/drivers/media/v4l2-core/v4l2-metrics.c
+new file mode 100644
+index 000000000000..5de68c0f3969
+--- /dev/null
++++ b/drivers/media/v4l2-core/v4l2-metrics.c
+@@ -0,0 +1,78 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * v4l2-metrics.c
++ *
++ * V4L2 metrics management.
++ *
++ * Maintain a per-file handle list of metrics about the hardware and handle
++ * exposing it in the fdinfo.
++ *
++ * Copyright (C) 2026 Collabora.
++ *
++ * Contact: Detlev Casanova <detlev.casanova@collabora.com>
++ */
 +
- 	ret = ctx->codec_ops->run(ctx);
- 	if (ret)
- 		hantro_job_finish(ctx, VB2_BUF_STATE_ERROR);
-@@ -656,6 +662,9 @@ static int hantro_open(struct file *filp)
- 
- 	v4l2_fh_init(&ctx->fh, vdev);
- 	v4l2_fh_add(&ctx->fh, filp);
-+	v4l2_metrics_set_driver_type(&ctx->fh.metrics,
-+				     ctx->is_encoder ? V4L2_DRIVER_TYPE_STATELESS_ENCODER
-+						     : V4L2_DRIVER_TYPE_STATELESS_DECODER);
- 
- 	hantro_reset_fmts(ctx);
- 
-@@ -693,10 +702,20 @@ static int hantro_release(struct file *filp)
- 	return 0;
- }
- 
-+static void hantro_show_fdinfo(struct seq_file *m, struct file *f)
++#include <linux/types.h>
++#include <linux/seq_file.h>
++#include <linux/clk.h>
++#include <media/v4l2-metrics.h>
++
++static const char * const driver_type_name[] = {
++	[V4L2_DRIVER_TYPE_UNKNOWN] = "unknown",
++	[V4L2_DRIVER_TYPE_STATELESS_ENCODER] = "stateless-encoder",
++	[V4L2_DRIVER_TYPE_STATELESS_DECODER] = "stateless-decoder",
++};
++
++void v4l2_metrics_init(struct v4l2_metrics *metrics)
 +{
-+	struct hantro_ctx *ctx = file_to_ctx(f);
-+	struct hantro_dev *vpu = ctx->dev;
-+
-+	v4l2_metrics_show(&ctx->fh.metrics, m, 0);
-+	v4l2_metrics_show_clock(m, vpu->clocks[0].clk, 0);
++	metrics->hw_usage_time = 0;
++	metrics->hw_usage_cycles = 0;
++	metrics->has_hw_usage_cycles = false;
++	metrics->driver_type = V4L2_DRIVER_TYPE_UNKNOWN;
 +}
 +
- static const struct v4l2_file_operations hantro_fops = {
- 	.owner = THIS_MODULE,
- 	.open = hantro_open,
- 	.release = hantro_release,
-+	.show_fdinfo = hantro_show_fdinfo,
- 	.poll = v4l2_m2m_fop_poll,
- 	.unlocked_ioctl = video_ioctl2,
- 	.mmap = v4l2_m2m_fop_mmap,
-diff --git a/drivers/media/platform/verisilicon/hantro_hw.h b/drivers/media/platform/verisilicon/hantro_hw.h
-index 13e573f1f19d..7259ea89adcc 100644
---- a/drivers/media/platform/verisilicon/hantro_hw.h
-+++ b/drivers/media/platform/verisilicon/hantro_hw.h
-@@ -28,6 +28,7 @@
- #define FMT_MIN_WIDTH		48
- #define FMT_MIN_HEIGHT		48
- #define FMT_HD_WIDTH		1280
++void v4l2_metrics_exit(struct v4l2_metrics *metrics)
++{
++}
 +
- #define FMT_HD_HEIGHT		720
- #define FMT_FHD_WIDTH		1920
- #define FMT_FHD_HEIGHT		1088
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h b/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
-index e4008da64f19..5a1d1e1e941e 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu981_regs.h
-@@ -451,6 +451,7 @@
- #define av1_pp0_dup_ver			AV1_DEC_REG(394, 16, 0xff)
- #define av1_pp0_dup_hor			AV1_DEC_REG(394, 24, 0xff)
- 
-+#define AV1_CYCLE_COUNT                 (AV1_SWREG(63))
- #define AV1_TILE_OUT_LU			(AV1_SWREG(65))
- #define AV1_REFERENCE_Y(i)		(AV1_SWREG(67) + ((i) * 0x8))
- #define AV1_SEGMENTATION		(AV1_SWREG(81))
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-index 02673be9878e..fd3081242685 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-@@ -423,13 +423,19 @@ static irqreturn_t rockchip_vpu2_vepu_irq(int irq, void *dev_id)
- static irqreturn_t rk3588_vpu981_irq(int irq, void *dev_id)
- {
- 	struct hantro_dev *vpu = dev_id;
-+	struct hantro_ctx *ctx =
-+		v4l2_m2m_get_curr_priv(vpu->m2m_dev);
- 	enum vb2_buffer_state state;
- 	u32 status;
-+	u32 cycles;
- 
- 	status = vdpu_read(vpu, AV1_REG_INTERRUPT);
- 	state = (status & AV1_REG_INTERRUPT_DEC_RDY_INT) ?
- 		VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
- 
-+	cycles = vdpu_read(vpu, AV1_CYCLE_COUNT);
-+	v4l2_metrics_update_hw_cycles(&ctx->fh.metrics, cycles);
++void v4l2_metrics_update_hw_time(struct v4l2_metrics *metrics, u64 time_ns)
++{
++	metrics->hw_usage_time += time_ns;
++}
++EXPORT_SYMBOL_GPL(v4l2_metrics_update_hw_time);
 +
- 	vdpu_write(vpu, 0, AV1_REG_INTERRUPT);
- 	vdpu_write(vpu, AV1_REG_CONFIG_DEC_CLK_GATE_E, AV1_REG_CONFIG);
++void v4l2_metrics_update_hw_cycles(struct v4l2_metrics *metrics, u64 cycles)
++{
++	metrics->hw_usage_cycles += cycles;
++	metrics->has_hw_usage_cycles = true;
++}
++EXPORT_SYMBOL_GPL(v4l2_metrics_update_hw_cycles);
++
++void v4l2_metrics_set_driver_type(struct v4l2_metrics *metrics, enum v4l2_driver_type type)
++{
++	if (type >= V4L2_DRIVER_TYPE_COUNT)
++		return;
++
++	metrics->driver_type = type;
++}
++EXPORT_SYMBOL_GPL(v4l2_metrics_set_driver_type);
++
++void v4l2_metrics_show(struct v4l2_metrics *metrics, struct seq_file *m, unsigned int core_id)
++{
++	seq_printf(m, "v4l2-driver-type:\t%s\n", driver_type_name[metrics->driver_type]);
++	seq_printf(m, "v4l2-core-usage-time-%u:\t%llu ns\n", core_id, metrics->hw_usage_time);
++
++	if (metrics->has_hw_usage_cycles)
++		seq_printf(m, "v4l2-core-usage-cycles-%u:\t%llu\n",
++			   core_id, metrics->hw_usage_cycles);
++}
++EXPORT_SYMBOL_GPL(v4l2_metrics_show);
++
++void v4l2_metrics_show_clock(struct seq_file *m, struct clk *clk, unsigned int core_id)
++{
++	seq_printf(m, "v4l2-maxfreq-%u:\t%lu Hz\n",
++		   core_id, clk_get_rate(clk));
++	seq_printf(m, "v4l2-curfreq-%u:\t%lu Hz\n",
++		   core_id, clk_get_rate(clk));
++}
++EXPORT_SYMBOL_GPL(v4l2_metrics_show_clock);
+diff --git a/include/media/v4l2-fh.h b/include/media/v4l2-fh.h
+index aad4b3689d7e..4f1ca1bbc61f 100644
+--- a/include/media/v4l2-fh.h
++++ b/include/media/v4l2-fh.h
+@@ -17,6 +17,7 @@
+ #include <linux/kconfig.h>
+ #include <linux/list.h>
+ #include <linux/videodev2.h>
++#include <media/v4l2-metrics.h>
  
+ struct video_device;
+ struct v4l2_ctrl_handler;
+@@ -27,6 +28,7 @@ struct v4l2_ctrl_handler;
+  * @list: list of file handlers
+  * @vdev: pointer to &struct video_device
+  * @ctrl_handler: pointer to &struct v4l2_ctrl_handler
++ * @metrics: metrics information for this handle
+  * @prio: priority of the file handler, as defined by &enum v4l2_priority
+  *
+  * @wait: event' s wait queue
+@@ -43,6 +45,7 @@ struct v4l2_fh {
+ 	struct list_head	list;
+ 	struct video_device	*vdev;
+ 	struct v4l2_ctrl_handler *ctrl_handler;
++	struct v4l2_metrics	metrics;
+ 	enum v4l2_priority	prio;
+ 
+ 	/* Events */
+diff --git a/include/media/v4l2-metrics.h b/include/media/v4l2-metrics.h
+new file mode 100644
+index 000000000000..fc493b65f117
+--- /dev/null
++++ b/include/media/v4l2-metrics.h
+@@ -0,0 +1,47 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * v4l2-metrics.h
++ *
++ * V4L2 metrics management.
++ *
++ * Maintain a per-file handle list of statistics about the hardware and handle
++ * exposing it in the fdinfo.
++ *
++ * Copyright (C) 2026 Collabora.
++ *
++ * Contact: Detlev Casanova <detlev.casanova@collabora.com>
++ */
++#ifndef V4L2_METRICS_H
++#define V4L2_METRICS_H
++
++#include <linux/types.h>
++
++struct clk;
++struct seq_file;
++
++enum v4l2_driver_type {
++	V4L2_DRIVER_TYPE_UNKNOWN = 0,
++	V4L2_DRIVER_TYPE_STATELESS_ENCODER,
++	V4L2_DRIVER_TYPE_STATELESS_DECODER,
++
++	V4L2_DRIVER_TYPE_COUNT,
++};
++
++struct v4l2_metrics {
++	u64 hw_usage_time;
++	u64 hw_usage_cycles;
++	bool has_hw_usage_cycles;
++	enum v4l2_driver_type driver_type;
++};
++
++void v4l2_metrics_init(struct v4l2_metrics *metrics);
++void v4l2_metrics_exit(struct v4l2_metrics *metrics);
++
++void v4l2_metrics_update_hw_time(struct v4l2_metrics *metrics, u64 time_ns);
++void v4l2_metrics_update_hw_cycles(struct v4l2_metrics *metrics, u64 cycles);
++void v4l2_metrics_set_driver_type(struct v4l2_metrics *metrics, enum v4l2_driver_type type);
++
++void v4l2_metrics_show(struct v4l2_metrics *metrics, struct seq_file *m, unsigned int core_id);
++void v4l2_metrics_show_clock(struct seq_file *m, struct clk *clk, unsigned int core_id);
++
++#endif /* V4L2_METRICS_H */
 
 -- 
 2.56.1
