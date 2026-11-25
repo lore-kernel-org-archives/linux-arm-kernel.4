@@ -2,61 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F13D606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E059F606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4lUeGz2T;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=bRD7SKFy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UUSRM+/r;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dVZLEuUu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
-	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ocJYbfT6g5bezYeAIa1e7zaXiCG4wIbvDDiN4JuxlxY=; b=4lUeGz2To9EUUB
-	uazj+Z7OGe1IKPZtHMlCClPLhSUUtCN5U3hef9G+VETM4mgiLXGvd5Z2kWOM1UmndXNQYd8gE7/VC
-	4iJdqqLcBM1aFnqEdC1ioYn0+ek+7pwkzAd5jNMRz9V8Gz0P5zvvgnvLI14A1jfy65QuQNRJjvOCg
-	c7DI1c7k7UYIyQt9tQOg2v8NDzjg/FhERS6qHly0qQCd/zP62uzqJ9StKnTWnzLYjIR5LigaL1FWv
-	YwE81ibux3tzj6OF92md0U9m6puY/cVStNhIY9V1Mv2iyC5gKdBNsoI7nild54biXzjL9F3cBqlMI
-	xYtxbZZo2KqobUuBmJoQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3JXKHxrVmfq0TiEVcdvg17Zz9dDLxpeu9nQ6Vk0bf9U=; b=UUSRM+/rBaWkrDfopRiDMSmHIe
+	6NvppXS7YH7wehHmRroL/MwJlQDlDgM5hkieb0nUY+9R3uWdUFqLNZ96JSr5UwQpMAIYXyhRlTMDt
+	keaYtdfFxMGYLqLZv82i4eIVd2ETneq9eqOFS6c8H/H15S17pGvhpjDZkjIxppAMRJrnsrRcHdmfM
+	Szhae0dXyMQiHHUlzvwmucILQtRpAhqjuMl9/CTapGQRzmytJAV5k2BrMXOLE7Hb7REZ4Fh1VzMg9
+	T9Vp4XtlQkfb05t0xtEFVeCFGnxkDOK6xRuzyzfEytDkFIOqyOeQ3/a6GKq2OReLQf8tH3oRDKElY
+	qRAGXUkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8Qx-000000095dJ-12Nz;
-	Wed, 25 Nov 2026 08:32:55 +0000
-Received: from mail-43102.protonmail.ch ([185.70.43.102])
+	id 1xW7vQ-00000008xwF-2tcg;
+	Wed, 25 Nov 2026 08:00:20 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8Qg-000000095Xh-0ppN;
-	Wed, 25 Nov 2026 08:32:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1795595551; x=1795854751;
-	bh=ocJYbfT6g5bezYeAIa1e7zaXiCG4wIbvDDiN4JuxlxY=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=bRD7SKFyHzLu1nC7qNjFwkb75NJhdRk81G9HUHk5gT88YD1qTWCgBTAqPch376Cku
-	 +8l9qDb+E9tbnmc5m/37SKHWHWKqKYcO6SMWWGGHGyUP+xz6e58DV98Zwlp7HxoZnj
-	 UHSVdpKC1bYHpjAykyedPqgQqOzPp7cjk2yA/xReJj0PTkGeFRg2YsAtKV+NCFXQ0m
-	 jHu4vX9rYnuy+olB3lI9I4OHhEkILpOR9GYo4ckA+imDUQvo4BeziGmK2t1/w5KxHw
-	 pefcFp/ABCPrd7+VTCx5zhQq9m11qfZg07ca1KYgBvS4oQGIPkveLdjL0HwSXfeirp
-	 PP6jMjsx5OHqQ==
-Date: Wed, 25 Nov 2026 08:32:26 +0000
-To: Echo Zhang <echo.zhang@mediatek.com>
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, MMDVFS Team <linux-mediatek@lists.infradead.org>, kyrie.wu@mediatek.com, ming-fan.chen@mediatek.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH 2/7] dt-bindings: soc: mediatek: add MMDVFS binding
-Message-ID: <hbfQpNQOlAFzs0tUkhDLyxa2evgCuK2TA6HLtNPnASJ-0neKDSdo9kvldUCCVCvv9OwjNQxx7WToK4nwSKfKGX7Yyj37PgPe1tpVuhBTWeQ=@protonmail.com>
-In-Reply-To: <20261125060037.649659-3-echo.zhang@mediatek.com>
-References: <20261125060037.649659-1-echo.zhang@mediatek.com> <20261125060037.649659-3-echo.zhang@mediatek.com>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: 11c2febfc39a728f981e5e8e4c2b0aa17a47990a
+	id 1xW7vO-00000008xvi-2867
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 08:00:18 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 96D0262295;
+	Wed, 25 Nov 2026 08:00:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91DA11F000C0;
+	Wed, 25 Nov 2026 08:00:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795593616;
+	bh=3JXKHxrVmfq0TiEVcdvg17Zz9dDLxpeu9nQ6Vk0bf9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=dVZLEuUu30Bp0Mh++rmExNRXqzfiexWadppURIK/+VKrCSdKwgsrU5sSKafqAoMVX
+	 RtpJk1zM4M8Ozkq3n2tUfIqN+dazbRh0Uk7tMt4ZKtCp7Ik1X2ra2vvZj3cHCkYNkX
+	 zuXHvYHAOKfV4dqS/c9v6ph+IVGU+V0EM3zsIhN334mSVLff8iGgpVz0EnVdps9F9v
+	 lvttxclF3v13FajsFkdWXUAd9uDcBXebqbW8913/zEe90DATxMaaeCz18gzbwRYCac
+	 3vztu/ALwxVnGZRTyZ/1AgydZcZmYQzBw8Vsp4D0WPSLc0s4EKB6yJgnt7x2ZIftB3
+	 QdvdlQRkUaauA==
+Date: Wed, 25 Nov 2026 00:00:15 -0800
+From: Oliver Upton <oupton@kernel.org>
+To: Dan Carpenter <dan@pereq.eu>
+Cc: Marc Zyngier <maz@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Christoffer Dall <c.dall@virtualopensystems.com>,
+	Rusty Russell <rusty@rustcorp.com.au>,
+	Marcelo Tosatti <mtosatti@redhat.com>,
+	Sebastian Ott <sebott@redhat.com>,
+	Eric Auger <eric.auger@redhat.com>,
+	James Morse <james.morse@arm.com>,
+	Paolo Bonzini <pbonzini@redhat.com>,
+	Sean Christopherson <seanjc@google.com>,
+	Shuah Khan <shuah@kernel.org>, Karthik Bhargavan <karthik@pereq.eu>,
+	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>,
+	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, Sashiko <sashiko-bot@kernel.org>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] KVM: arm64: nv: Replace a pending SError when
+ injecting a new one
+Message-ID: <awaVj0Aa6dMSksxX@kernel.org>
+References: <20261125-double_exception-v2-0-224689d8a764@pereq.eu>
+ <20261125-double_exception-v2-5-224689d8a764@pereq.eu>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_003238_411497_4CE292B8 
-X-CRM114-Status: GOOD (  18.30  )
-X-Spam-Score: -2.5 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261125-double_exception-v2-5-224689d8a764@pereq.eu>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,155 +88,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Hi Dan,
 
-On Wednesday, November 25th, 2026 at 8:01 AM, Echo Zhang <echo.zhang@mediat=
-ek.com> wrote:
+On Wed, Nov 25, 2026 at 09:56:20AM +0300, Dan Carpenter wrote:
+> The kvm_inject_serror_esr() function injects SErrors as the name
+> implies.  The bug is that it doesn't handle already pending errors
+> correctly in nested virtualization.
+> 
+> In vanilla KVM the kvm_inject_serror_esr() function always sets
+> the SError to pending.  However with nested KVM, it might set it
+> to pending or it might deliver the SError directly.  We can only
+> have one pending error at a time.  Imagine we enter the function
+> with an SError pending already.  In the current code if we decide
+> to pend the new error that's fine, everything works.  However if
+> we decide to deliver it directly then the pend flags should be
+> cleared but they are not.  So we deliver the SError directly and
+> then the SError that was pending on the next exit or entry.
 
-> Describe the MMDVFS clock provider and its connection to VCP firmware
-> in a common binding. Document the optional MMUP shared memory and IPI
-> settings used by the firmware backend.
->=20
-> Add an MT8196 binding for the HWCCF syscon and seven mux OPP tables so
-> the driver can map clock rate requests to hardware votes.
->=20
-> Signed-off-by: Echo Zhang <echo.zhang@mediatek.com>
+I could use a bit more color on how we got here. From what I can tell
+this state is only possible if userspace changed the routing / masking
+of the SError outside the context of a KVM_RUN. Otherwise, if the SError
+is deliverable on guest exit we perform the injection prior to exiting
+to userspace.
+
+Thanks,
+Oliver
+
+> Clear the pend flags unconditionally at the start of the function.
+> 
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Closes: https://lore.kernel.org/all/sashiko-outbox-229065@kernel.org/
+> Fixes: ce66109cec86 ("KVM: arm64: nv: Take "masked" aborts to EL2 when HCRX_EL2.TMEA is set")
+> Fixes: 77ee70a07357 ("KVM: arm64: nv: Honor SError exception routing / masking")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Dan Carpenter <dan@pereq.eu>
 > ---
->  .../soc/mediatek/mediatek,mmdvfs.yaml         | 60 +++++++++++++
->  .../soc/mediatek/mediatek,mt8196-mmdvfs.yaml  | 87 +++++++++++++++++++
->  2 files changed, 147 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediat=
-ek,mmdvfs.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediat=
-ek,mt8196-mmdvfs.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mmdv=
-fs.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mmdvfs.ya=
-ml
-> new file mode 100644
-> index 000000000000..d65f4c9084cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mmdvfs.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/mediatek/mediatek,mmdvfs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> v2: New patch
+> ---
+>  arch/arm64/kvm/inject_fault.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/kvm/inject_fault.c b/arch/arm64/kvm/inject_fault.c
+> index aa2011cc0d5a..0f6a89b65074 100644
+> --- a/arch/arm64/kvm/inject_fault.c
+> +++ b/arch/arm64/kvm/inject_fault.c
+> @@ -361,6 +361,10 @@ int kvm_inject_serror_esr(struct kvm_vcpu *vcpu, u64 esr)
+>  {
+>  	lockdep_assert_held(&vcpu->mutex);
+>  
+> +	/* A new SError replaces any that is already pending. */
+> +	vcpu_clear_flag(vcpu, NESTED_SERROR_PENDING);
+> +	*vcpu_hcr(vcpu) &= ~HCR_EL2_VSE;
 > +
-> +title: MediaTek Multimedia Dynamic Voltage and Frequency Scaling (MMDVFS=
-)
-> +
-> +maintainers:
-> +  - MediaTek MMDVFS Team <linux-mediatek@lists.infradead.org>
-
-Maintainers should be real people, not a mailing list.
-
-> +
-> +description:
-> +  MediaTek MMDVFS provides dynamic voltage and frequency scaling for mul=
-timedia
-> +  hardware accelerators. The controller exposes virtual clocks that mult=
-imedia
-> +  consumers use through the common clock framework. The driver aggregate=
-s
-> +  consumer rate requests and sends the resulting DVFS votes to the multi=
-media
-> +  hardware voter and VCP firmware.
-> +
-> +select: false
-> +
-> +properties:
-> +  mediatek,vcp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the MediaTek VCP remote processor used for MMDVFS share=
-d
-> +      memory, feature registration, notifier, and IPI operations.
-> +
-> +  mediatek,mmup-sram:
-> +    type: boolean
-> +    description:
-> +      Use the MMUP SRAM window for MMDVFS callback records and status da=
-ta.
-> +
-> +  mediatek,mmup-enable:
-> +    type: boolean
-> +    description:
-> +      Enable the MMUP path for MMDVFS shared memory and IPI handling.
-> +
-> +  mediatek,vcp-ipi-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      VCP IPI channel id for MMDVFS. If omitted, the driver uses the pla=
-tform
-> +      default.
-> +
-> +  mediatek,mmup-ipi-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      MMUP IPI channel id for MMDVFS. If omitted, the driver uses the pl=
-atform
-> +      default.
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +    description:
-> +      MMDVFS clock specifier. Consumers pass an SoC-specific MMDVFS cloc=
-k
-> +      index.
-> +
-> +required:
-> +  - mediatek,vcp
-> +  - "#clock-cells"
-> +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt81=
-96-mmdvfs.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt=
-8196-mmdvfs.yaml
-> new file mode 100644
-> index 000000000000..13381c78dbd1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,mt8196-mmdv=
-fs.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/mediatek/mediatek,mt8196-mmdvfs.y=
-aml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT8196 Multimedia Dynamic Voltage and Frequency Scaling
-
-Why there's mediatek,mmdvfs.yaml file if this exists?
-
-> +
-> +maintainers:
-> +  - MediaTek MMDVFS Team <linux-mediatek@lists.infradead.org>
-> +
-> +allOf:
-> +  - $ref: mediatek,mmdvfs.yaml#
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - mediatek,mt8196-mmdvfs
-> +  required:
-> +    - compatible
-
-Drop. select is automatically inferred from the compatible.
-
-Best regards,
-Roman
+>  	if (is_nested_ctxt(vcpu) && kvm_serror_target_is_el2(vcpu))
+>  		return kvm_inject_nested_serror(vcpu, esr);
+>  
+> 
+> -- 
+> 2.53.0
+> 
+> 
 
