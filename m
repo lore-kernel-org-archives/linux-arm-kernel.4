@@ -2,67 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33A3606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 02:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF56D606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 02:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WzFmPh7P;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Rykkvg+4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wn6mqJNM;
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=I4UkGECd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:In-Reply-To:References:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2QRp2G+wGJdFdnayUAn4UkhECjTnmy5byUMtpzcdPMg=; b=WzFmPh7PCRKQ0e
-	nOZbAjeXHCvVflyevK4WDzCj9cc5oZFN7idcP5yxJp8vLrRb45CC8OsMTiNejAB4I+I+EEwivyzNx
-	t2l54Z0cZWKkKDnxSu738ET4O1795ZssnFX0EEbC9MwQX0CaRQO9hl1ZbQOTgQ6CrjkcxNAFcmN02
-	/pFN1fmxc0iJytb3vQ4hi08eViSEwiG7Ms53YF79mN6//JRnT6cwpFMicexbtue7EyflC1R37VZT9
-	YPlsxec8fkdfYVWSgHrh9VAmsWxg45fmBBS02J0SsEWjEYxj3QkHeifEFAJd7TZEBIRn5iNgavokO
-	CKvLSLl+brYNuGpuAM5A==;
+	List-Owner; bh=/z1KVAHLgv0AOzLrNBK2aI9URthpRD6ryQLaugu2dXM=; b=wn6mqJNMRKVOoX
+	4CW/ol9T56Lp/PisxQ/Fhg1ogNxYEdGcQ8OjKQsikf3nNa+0s/ptSmmdSASCiVKXuT8Ryx8Yp+sun
+	EaGrmJ6flKcAkftSFcCuZvh03ka7LHkm+QWrQVfUMAnmuJtFRG+mDbDqga03TgVcPruO8mJVRNJYZ
+	YvjanM4ZkG7Bi9ZAthc2acrYZPwkZw6LQKlsNhOpSfQouFwGXRJD4oFGaZNztPRnpTSDJF8A+QMmf
+	p04GDA1vqY7zfFWoJxGcaWclBT+WQ4nbti57Jj1vWu5z9WHJZyhyawFxmR1JN5KbGwQAXsMmG5ILM
+	f529ZHhgsLGDg7RReb2g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW2vd-00000008FJq-0mOd;
-	Wed, 25 Nov 2026 02:40:13 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xW2yz-00000008FVG-2ZS3;
+	Wed, 25 Nov 2026 02:43:41 +0000
+Received: from out30-130.freemail.mail.aliyun.com ([115.124.30.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW2vb-00000008FJh-34g7
+	id 1xW2yv-00000008FUh-3LYF
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 02:40:11 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2010B410D1;
-	Wed, 25 Nov 2026 02:40:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85FA61F000CA;
-	Wed, 25 Nov 2026 02:40:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795574410;
-	bh=2QRp2G+wGJdFdnayUAn4UkhECjTnmy5byUMtpzcdPMg=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=Rykkvg+4zJAAyLxQQRAbqKda4N0bB9ssw/Rt9ZYsq8BMqItzs4sSt3TU/gX3JAmhR
-	 gHpMe6DKrz2hSc6hVnjSQObndiYswN3ORqst5F1S3NGXrsKNMny0Ln5KeMKAa+yJiX
-	 d2ihyAMgb7kYMlNLGN3iZmMlj0hhaCRul4CewMPqEUkqC1Gx7oxxm6QXrOhEPyTGIX
-	 GL/tnsX2IkT/cHlvfzOhh75Wme7z4GTk1w7h5hCM7tqvXO3Tz7WR5QP56Ufo+NwKvz
-	 dWI35s8xjS/7vRIzuhZogNEudz6kXDqsqA2nkztgPxNwelWqsWwoZG63otzH6EYLt+
-	 cUPvU6tP8MStA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 7749D3808209;
-	Wed, 25 Nov 2026 02:40:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	Wed, 25 Nov 2026 02:43:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1795574612; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+	bh=/z1KVAHLgv0AOzLrNBK2aI9URthpRD6ryQLaugu2dXM=;
+	b=I4UkGECdGVolSzd47GpV6fTGiXcndi73PZMks7RGVQCvXAcyKBL4jcrlbcrzFKuy2lsLuuNE+4pQT6yV3vMtw4z07AuCsG1uq/M4wZoyjzpIFpSYEYDcwXZZKZSvkm5u6ytSWkElreMs3nmnjtB4Pfc2J+P37YdE3j5m988UkoY=
+X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R301e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033037026112;MF=yadong.qi@linux.alibaba.com;NM=1;PH=DS;RN=11;SR=0;TI=SMTPD_---0XFPzcfO_1795574611;
+Received: from LG41624401116(mailfrom:yadong.qi@linux.alibaba.com fp:SMTPD_---0XFPzcfO_1795574611 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Wed, 25 Nov 2026 10:43:31 +0800
+From: <yadong.qi@linux.alibaba.com>
+To: "'Catalin Marinas'" <catalin.marinas@arm.com>
+Cc: <will@kernel.org>,
+	<mark.rutland@arm.com>,
+	<ying.huang@linux.alibaba.com>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>,
+	<ryan.roberts@arm.com>,
+	<robh@kernel.org>,
+	<gregkh@linuxfoundation.org>,
+	<ptg-linux-kernel@linux.alibaba.com>,
+	<stable@vger.kernel.org>
+References: <20261123093505.974-1-yadong.qi@linux.alibaba.com> <awW3Dw743-rw_-cf@arm.com>
+In-Reply-To: <awW3Dw743-rw_-cf@arm.com>
+Subject: RE: [PATCH] arm64: fixmap: fix missing break-before-make in __set_fixmap()
+Date: Wed, 25 Nov 2026 10:43:30 +0800
+Message-ID: <000c01dd7c86$c20cbee0$46263ca0$@linux.alibaba.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] net: stmmac: eic7700: Use
- syscon_regmap_lookup_by_phandle_args
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179557440902.178200.2476028983482172628.git-patchwork-notify@kernel.org>
-Date: Wed, 25 Nov 2026 02:40:09 +0000
-References: <20261121170753.161170-2-krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20261121170753.161170-2-krzysztof.kozlowski@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain;
+	charset="gb2312"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQH7ElggY0dR4+WfGztAU9vFXs2ztgHFVm0LtvSuwoA=
+Content-Language: zh-cn
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261124_184338_489548_89208649 
+X-CRM114-Status: GOOD (  19.98  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,41 +76,78 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+> -----Original Message-----
+> From: Catalin Marinas <catalin.marinas@arm.com>
+> Sent: 2026=C4=EA11=D4=C225=C8=D5 0:11
+> To: Yadong Qi <yadong.qi@linux.alibaba.com>
+> Cc: will@kernel.org; mark.rutland@arm.com; =
+ying.huang@linux.alibaba.com;
+> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+> ryan.roberts@arm.com; robh@kernel.org; gregkh@linuxfoundation.org;
+> ptg-linux-kernel@linux.alibaba.com; stable@vger.kernel.org
+> Subject: Re: [PATCH] arm64: fixmap: fix missing break-before-make in
+> __set_fixmap()
+>=20
+> On Mon, Nov 23, 2026 at 05:35:05PM +0800, Yadong Qi wrote:
+> > diff --git a/arch/arm64/mm/fixmap.c b/arch/arm64/mm/fixmap.c
+> > index f66a0016dd02..5593d7e0d523 100644
+> > --- a/arch/arm64/mm/fixmap.c
+> > +++ b/arch/arm64/mm/fixmap.c
+> > @@ -126,12 +126,19 @@ void __set_fixmap(enum fixed_addresses idx,
+> >
+> >  	ptep =3D fixmap_pte(addr);
+> >
+> > -	if (pgprot_val(flags)) {
+> > -		__set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
+> > -	} else {
+> > +	/*
+> > +	 * Break-before-make: when the slot still holds a valid mapping
+> > +	 * (e.g. earlycon re-mapping FIX_EARLYCON_MEM_BASE), invalidate =
+the
+> > +	 * old entry and flush the TLB entries caching it before a new
+> > +	 * mapping is installed, so old and new translations never =
+coexist.
+> > +	 */
+> > +	if (pte_valid(__ptep_get(ptep))) {
+> >  		__pte_clear(&init_mm, addr, ptep);
+> > -		flush_tlb_kernel_range(addr, addr+PAGE_SIZE);
+> > +		flush_tlb_kernel_range(addr, addr + PAGE_SIZE);
+> >  	}
+> > +
+> > +	if (pgprot_val(flags))
+> > +		__set_pte(ptep, pfn_pte(phys >> PAGE_SHIFT, flags));
+> >  }
+>=20
+> I guess that's easier than getting the driver or earlycon code to do
+> clear_fixmap(). Note that I queued Fuad's patches for missing barriers
+> onto arm64 for-next/fixes, so please rebase on top.
+Sure, will rebase on that.
 
-This patch was applied to netdev/net-next.git (main)
-by Willem de Bruijn <willemb@google.com>:
+>=20
+> Sashiko also has a valid point about keeping the TLB flush =
+unconditional
+> for the clear_fixmap() case:
+>=20
+> =
+https://sashiko.dev/#/patchset/20261123093505.974-1-yadong.qi@linux.aliba=
+ba.c
+> om
+Got it.
 
-On Sat, 21 Nov 2026 18:07:54 +0100 you wrote:
-> Use syscon_regmap_lookup_by_phandle_args() which is a wrapper over
-> syscon_regmap_lookup_by_phandle() combined with getting the syscon
-> argument.  Except simpler code this annotates within one line that given
-> phandle has arguments, so grepping for code would be easier.
-> 
-> There is also no real benefit in printing errors of missing individual
-> syscon arguments, because this is done just too late: runtime check on
-> static/build-time data.  Dtschema and Devicetree bindings offer the
-> static/build-time check for this already.  OTOH,
-> syscon_regmap_lookup_by_phandle_args() already handles error case if the
-> number of arguments is too low, thus switch is safe.
-> 
-> [...]
+>=20
+> --
+> Catalin
 
-Here is the summary with links:
-  - [net-next] net: stmmac: eic7700: Use syscon_regmap_lookup_by_phandle_args
-    https://git.kernel.org/netdev/net-next/c/882f4ba39863
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Best Regards
+Yadong
 
 
