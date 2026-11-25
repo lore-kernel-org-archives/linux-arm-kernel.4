@@ -2,108 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F7A606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 10:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E1D606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 10:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jaiMgewi;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.a=rsa-sha256 header.s=1a1hai header.b=LIp9YqfN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zuyizStY;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cp+B0IAK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=HMgjFT/9KLQi4aDCvbmUqhl56xbnFHYqNdOa5U4XbKs=; b=jaiMgewirfGErlS1V1yscvP70f
-	gPu4pmfzaMHVkqMywRhBKhkUaoxdFT4PUOQXq8RuTP7FjGL2LuCLYfJCuWVnzutRuu7NxjXXCqdqd
-	o+DDMg13hxbv0r6+GToKkAfPlO8cqgKQ5DrDP3azQE3PCNOAH4z1dH3ZZuVfQHYV6lbX3nuHQscal
-	7ai8Ln+7HwMpAoeCb4kmGfnh+j2CvBpdQ9hUo+2QiICEwkmIgWJ7nd1SAsmolvzZ3aBrrZNzegElE
-	rXfTQ9v0EEcTfOZ+03ZKVPLqrZkQwWj9vSh+WrUR5tY03WYGb5lxXPlsmM85P7M8WHYqf5CPd8euE
-	3oR49dzQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=j1Jaxi0epvM9H+YYF/12BTxgHO0xd6ENCQ22SVFOz5I=; b=zuyizStYNITTQv
+	hIHack/NtvFzFBHM2NuxqppseXjLnsRv+hnewIr8VMMP+zNH1WhB4EzDLS9XCDIrrykLqdN7FG7pX
+	XTNgojFcJpAzZ+9ZhyXcWihcgYontJRl0qqIHJhIBXQmUeAJQEktB4BGeGt7j56KYMDAh3+nNrMvu
+	jWVzauKPv2/bYbZ+H0ONLXdzmSk+yC/1SbwHukb6qyaHTES7mFnW5h2++R4Q65gGRxqGpmu9p6jCG
+	XSO3N+/cDou2LmFJC8/SYgb9FPi4aPsYt5dvz64l2ToG+R1WYEMRxDGhMSGYyAofl1nUSuM+jvGgL
+	jfy8Ci+y4tBWxLA7uXDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWA4e-00000009Qpp-0Ant;
-	Wed, 25 Nov 2026 10:18:02 +0000
-Received: from pv-2005k-snip6-4.eps.apple.com ([2a01:b747:3003:202::5f] helo=outbound.pv.icloud.com)
+	id 1xWA5c-00000009R0E-3kVH;
+	Wed, 25 Nov 2026 10:19:00 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWA4b-00000009Qp7-2XrP
+	id 1xWA5b-00000009R06-2LGA
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 10:17:58 +0000
-Received: from outbound.pv.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-west-1a-60-percent-1 (Postfix) with ESMTPS id BC4611800165;
-	Wed, 25 Nov 2026 10:17:54 +0000 (UTC)
-X-ICL-RepId: 01a21236-3f25-7455-9e56-d9f773a07330
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai; t=1795601877; x=1827137877; bh=HMgjFT/9KLQi4aDCvbmUqhl56xbnFHYqNdOa5U4XbKs=; h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:x-icloud-hme; b=LIp9YqfN5cW/9Pf/yT3+AH8LGeNpg89M/IHIvr7vyTY3gfWaL56Z43Q+WzgSBQBiNNR6FOD22vOuq6sHbZHOL4ARu/4oGsEN7lIRj0iw8ZZP5HlSTdTpA2jm2htB/hZKMS1wjm0qGjiodgjN4kBR0Vu2poC8eZzioJzRR+WKmSDlTGzPhzSA/30Yt4KpEr5sL4ifGB+fHZf4nlaUoZT+oLAChyvZSViCHHdGjqdksjYkjjebUIWcJq5b94sPF/TX6CUyx/hvgXiCSUPvulNpNwRsuR/djEnEEoZQPfGchfkFGfUglzyjHer7ZbDIPWvvp7PMcMD1ClXd/i0P4Bg6BA==
-Received: from m3 (unknown [17.156.192.29])
-	by p00-icloudmta-asmtp-us-west-1a-60-percent-1 (Postfix) with ESMTPSA id 493231800249;
-	Wed, 25 Nov 2026 10:17:51 +0000 (UTC)
-Date: Wed, 25 Nov 2026 11:17:47 +0100
-From: Sofus Forstreuter <sofus.c@icloud.com>
-To: Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Neal Gompa <neal@gompa.dev>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Heiko Stuebner <heiko@sntech.de>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 06/17] media: apple: add avd driver
-Message-ID: <awa1y_1q65mUKIKU@m3>
-References: <20261020-avd-v3-0-85cbaa2125d8@icloud.com>
- <20261020-avd-v3-6-85cbaa2125d8@icloud.com>
- <4bf91d773c7c2bd8c3b04210eff7869169f1f382.camel@ndufresne.ca>
+	Wed, 25 Nov 2026 10:18:59 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id A39EF609D0
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:18:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A59DD1F000C6;
+	Wed, 25 Nov 2026 10:18:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795601938;
+	bh=j1Jaxi0epvM9H+YYF/12BTxgHO0xd6ENCQ22SVFOz5I=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject;
+	b=cp+B0IAKkRiSOe8pzJt6jymekkpELUyzbmJDzWjRiLEzcEmYB2tvPiryx/Yx0K4j7
+	 mg3mP1DtFbccR84P/lULFwNIyjU+71Ug3HZYiPZeq6p1r7kzSIt9e4beCpq0YHqQjc
+	 sAPm0TTKPp7rznAKUMibfAMt0pzgtEQ17LRMxRX2FwmPuOHT6CZm9P6FP5F0XLnRfr
+	 PNqHoH0JfwaUZ05fRc2KWzBDiCBZhnkm9Xc3N/jKj307I0thn9D25Ewjaz1jDdZ9hd
+	 JouaM1zvJ9k+ggeDEWermwXbr2pjdXRI7ZIA6opD0AgGsp8TanZkRe8T9lubbqq4LD
+	 2NTAixu0wmadA==
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id CAEC0198004A;
+	Wed, 25 Nov 2026 05:18:55 -0500 (EST)
+Received: from ams-imap-03 ([10.64.2.23])
+  by ams-compute-02.internal (MEProxy); Wed, 25 Nov 2026 05:18:55 -0500
+X-ME-Sender: <xms:DrYGa6su6Fci7WUzdFv7ppurMNBaCYf7xkftjkTQV774M1_43RieOw>
+    <xme:DrYGa6RU_DKuTrePpL69JhvupdjXEspbE8YsRn-jVZKpJMAAecQpiqt5N9pVrJ5I2
+    cZX7dUsGsUK4QQrume3BUkcFRzTuGKTAT4Y8I40koR24eZJNoYOsGY>
+X-ME-Proxy-Cause: dmFkZTFHDZDnOUlJqJalGnpIdslxvPBgSXFSsXnpVmsMn/ny03M8fWSB66rN+A7/KdD8Wa
+    oTMQVIOxvcVk6Jz0kx0i7epOSEpikyljFIJGS6lhIWkETnywGQ2ebjRxyud2a6oXHG4pRP
+    CCc3GC4/VjwYNmIlqBIU0JoWeOVagKvXHBaxWQDlI790m3BpHaOLHZy8iqcA+E5V4XUH2S
+    TKwgaCBWoIGcbkKtnAzfSGi08CntENpiE3gpxPMcdrhRIFgHpxsK6OR3+L4qx66nu8Gb8L
+    5qxGNyEROZSOo/pDRZo1/6+0klc73BJo+X09xsvJNr7rA1OGV1hdrjlMOKUHd5hgT1vWhN
+    tCLEkDcNL8qsLDpIlyu68iA0ymNgFQJboGxtlS8r2EV0ysTOECQTtPbi1rNJnSCfa0iU0w
+    h/nPKf0ty5HdZdtgo2t14dUyV0Clk29d0UEeCrdblUIIKYV+nMNQ+EAGZXci44YKfCRN+Z
+    0AjNg2j+2VyKMKM6kcNsiKKEkH7In1HwRPCEoeZGMzRk9JBxxlWL6+HAvwsoeJRV6yRxDA
+    j7tfYiyTri1ylZE+SLLSjdRuWreIqjXoVYvJ8sAKZ6T7MUn2WkYwirwOynewlh6Fbg1F1T
+    HgBSSA5eJ+iqxzIkekghTSm795y2tay6XvunBiL4ZQjrE/e45B5lEB917PTw
+X-ME-Proxy: <xmx:D7YGa045Puw495Fn4NfS0CC2PCZow3CsCzEZxEboSBY-ovBcCehaLQ>
+    <xmx:D7YGa-3T3vl4gIJ6vSdShfV8eVk2Myt-ndW7O0MgVFbNthRqwAHbIA>
+    <xmx:D7YGa_Bx_NArmiab6lEUh9Mi-J-_v1ICAyqdHYhRvYMTCkSqV20uBQ>
+    <xmx:D7YGa5Nki-oSxhH2UoIiKDRshn_E8ZZ1AY3oon5im0vprNc60ICuZw>
+    <xmx:D7YGa0Y__ZOngtMIu3sgRuTZd2BuGTMljQAxjOZaILPisgSYltHM0vma>
+Feedback-ID: i36794607:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 59A9832A0099; Wed, 25 Nov 2026 05:18:54 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4bf91d773c7c2bd8c3b04210eff7869169f1f382.camel@ndufresne.ca>
-X-Proofpoint-ORIG-GUID: NEQx70V1N0Ja9yPvIJ3YL5qSTmGOPOQY
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA0MCBTYWx0ZWRfXyoWAECU6s1bZ
- gZq28LPc52XeJoLBdsCYNXwtYp1EJsRfmbnnlGL7GHXSwj256jibx/Xc6Jy1iCNG4nhr2npBedS
- heuYdvk+Xqu4wIHJFRlfz29FgwHuMtEf1FAckL8DWXT8jq4wvlbnYhnIPTD8k7wMn2h8in9g2fx
- 9CZidMjyDcFkIpzS02y/B09lREnSgi9yzrr14QlhBK/mcS8RrFrTO3ZY3f8RjNIKibHGTDENkb+
- rfNt5JWOEbOgCE8jBK/hO8Dq3+VSdTh2SF3abhrSLtcyTNYEbgAU7c5g+qX4yo/ow3biHC7kx+3
- 2sIUTyw9SOlNQLPTsl7kJwxAVQ500n1Fs6YidWcF0DhtP0g4tlq0qGECirkOzQ=
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA0MCBTYWx0ZWRfX6ikqT2+wpUF/
- TovpS48W4Ut6NTtF2phFPOnzN4hXzcwWKkkpy5viS7kylq/Ua0yhOIuOFr7x9d2gfisAfh0zGwM
- JC7ECyGhABqijjP2OyKh6UQ/yz0GcnM=
-X-Proofpoint-GUID: NEQx70V1N0Ja9yPvIJ3YL5qSTmGOPOQY
-X-Authority-Info-Out: v=2.4 cv=OJCyTiaB c=1 sm=1 tr=0 ts=6b06b5d3
- cx=c_apl:c_pps:t_out a=aW9mcIavGNWWFvFFKOxBSA==:117
- a=aW9mcIavGNWWFvFFKOxBSA==:17 a=8nJEP1OIZ-IA:10 a=zJRp6_cAMcgA:10
- a=x7bEGLp0ZPQA:10 a=kLM9Tyy99jAA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=Lz8lNifEoAKVmCoaIBl5:22 a=zaE7u2tvhngv6054aE9a:22 a=v3ZZPjhaAAAA:8
- a=bBvFI2eh8D1WkcQH2k8A:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
-X-JNJ: AAAAAAABgCjae5fMQLpZjBaYf+jzoBTVz5u0ZwFF4w8kqRziAbbEfLMnJnOPXI+A8K/0Pw
- P38Am+4gdLvPDvalinQ91qt93WniZIllG4dV6OIF312OWIyXS5PPJ94ioYAsuRTQhbH32t
- 6P/aOtEk4PNwfHMgiAiQlBXjRkeJk7rqZqIIsb3fKJ3BBHUMY14B2AO8z9KDb9rQvGwUDt
- fYAdqBHbEhMi2N0gyYP0a7Mf0LmMPkS601QCiJOUxKR8bRCwhfFm6DljjvnW1va2bQ0CXp
- E3k+y7nAvuWjqE5E4WYVWHtT2SEgV2UABRGCJuHT2ADeySbacAlKjHzqEsXePc3Z8/pzib
- xiQmz4KKTEQuh2xrnK9eisuL5mBxUdSkgeVC5ybH0vYgAjOTAqqz4bjK1uxOKl74zADv3g
- H12Jr5+zkPZPYMUQk7Jf3/Jy5QJIIRbFSUitzzqH06McQhuPe7uMu9q3u5iJ/2RJlR8TJM
- BNPw4pTPi0wKTAO4IB1rfdIx9Vv5+ik2M+93z37fc9ptxuRqDyAC1+VWKD0OSMq1dMfJNg
- GLGOyhIfUJH7vUzuyx2FF/pyUbSRRooy7kaaREW8areBbR5LvC9pwAlNL+zZ8rLVo5XFD7
- ZHw8mry0gPvT6DfTWyhvaKwZ9kR3UlvWNN8vxBdo7ypw7BirmXb3xXTueWrzDruKB9yUoK
- 3J2XK+E2KrlnNGdW5Gkt4CNnOze0YS0cs49Sk7EK8oYmW0b/dOrbtenImWFNKSP64P7K/n
- oN8dP5saoiWgtJJO7f5BZqz+LukOckTDpZ1YSMMoRjo6w9Y41SQBZdK7IJUEkyU+6EiqAB
- 0mllD0zNutHBhjoMREzuVN2YlVND4F7T1d+cItbrBlv3xc938sW6vLlbrGpG2/8YlSatIJ
- jAy1mGbb2Y4CdrTiflgTSGvJDkW3vup8WYE0Z9RjOwc8lOPmNA4wlrwi4PWHD5Ddn65yZ/
- /sLT0eZk2nYUnRxk8FXe2uOIXvM40dHzoGS46CtonvjZ8SdC4tg0Sa4FGYs6bDTXKEWVJy
- bEAB2PF5EnAnxwVv1RPq7Loi6H5tC3J8PsInN4D1PPuLFYlvSkb7t3Mu/TbMrTQbg5Hse2
- MvUqqYcrpLnYscnU/okkLA1c0YtpvHuAe1aQckqIc0arKl3cwUXXPjX/PIvkOXbjPYn3UL
- r/xZE0DpoRGnswLfwNN4p8ddfZa1wzEWtZKlp/LdBT3SX4eKYZeEQk+lrtn6cUNM0Dm/Vo
- 1fmPFCLMDsjy9zT9n8UjSkQa4SjwqU8lKDgOmMpDjNDylLptqvcwJdRqY0ZLwkCftwkVBT
- lGUOTKjLL4iPRRGHXzZoqf9FiLBjEq5S52Dz0a46oXFHXzQqDQ8gZQhwKstq6E1IdAD+iD
- iwESP4tx85I2lvqJ3x+4QebsgywREiOQ
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_021757_897737_A9567009 
-X-CRM114-Status: GOOD (  14.18  )
-X-Spam-Score: -2.1 (--)
+X-ThreadId: AY4jvdWTtgU7
+Date: Wed, 25 Nov 2026 11:17:09 +0100
+From: "Arnd Bergmann" <arnd@kernel.org>
+To: "Brad Hawthorne" <brad@sim.vu>, "Yoshifumi SHU" <envzhu@gmail.com>,
+ "Linus Walleij" <linusw@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Message-Id: <f72246fa-48f5-4f23-a2ba-8a136c96726e@app.fastmail.com>
+In-Reply-To: <20261122003911.1203777-1-brad@sim.vu>
+References: <20260914140821.1805449-1-arnd@kernel.org>
+ <17a74e90-27d1-4954-86a8-491267f00cb8@gmail.com>
+ <CAD++jL=VJsnk-GzAvR4oR8oKJayQzq9Oes+ZW7K=iHGrQ1jh0w@mail.gmail.com>
+ <20261122003911.1203777-1-brad@sim.vu>
+Subject: Re: [PATCH v2 00/14] ARM: deprecated platform removal
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,48 +97,68 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 05:26:56PM -0500, Nicolas Dufresne wrote:
-> Le mardi 20 octobre 2026 à 11:37 +0200, Sofus Forstreuter a écrit :
-> > Add the AVD (Apple Video Decoder) driver with V4L2 M2M stateless
-> > support based largely on rockchips implementation.
-> >
-> > Reviewed-by: Neal Gompa <neal@gompa.dev>
-> > Signed-off-by: Sofus Forstreuter <sofus.c@icloud.com>
+On Sun, Nov 22, 2026, at 01:37, Brad Hawthorne wrote:
 >
-> Check you Sashiko report, and below...
->
+> Arnd, one question about the plan for the CPUs. After the 7.5
+> removals, nothing in-tree selects ARM_SINGLE_ARMV7M but !MMU itself,
+> and no board's device tree uses the v7-M core; Yoshifumi's boards and
+> mine are out of tree. Would a small RP2350 platform (DT, timer, clocks,
+> resets, watchdog), run on hardware for each -rc, be a welcome in-tree
+> user of CPU_V7M, or would you rather keep the core with no platform
+> and boards out of tree? I'd hold the platform series until the core
+> question is settled either way.
 
-I will check Sashiko's report, drop the double blank line and add defines
+Hi Brad,
 
-> > +MODULE_FIRMWARE("apple/avd-fw-v2-t0.bin");
-> > +MODULE_FIRMWARE("apple/avd-fw-v3-t0.bin");
-> > +MODULE_FIRMWARE("apple/avd-fw-v3-t1.bin");
-> > +MODULE_FIRMWARE("apple/avd-fw-v3-t2.bin");
-> > +MODULE_FIRMWARE("apple/avd-fw-v4-t0.bin");
-> > +MODULE_FIRMWARE("apple/avd-fw-v5-t0.bin");
-> > +MODULE_FIRMWARE("apple/avd-fw-v5-t1.bin");
->
-> I believe these are made by you, did you publish them into linux-framework? or
-> do you expect them to be built from source ? Should be part of the cover.
->
+Overall my feeling is that Arm NOMMU support has no future
+in mainline kernels, based on conversations I've had with kernel
+memory management maintainers (who overwhelmingly would prefer to
+have it removed years ago) and the maintainers of the currently
+supported NOMMU platforms.
 
-The plan is to submit them to linux-firmware. As of now they need to be built
-from source. Will add it to the cover.
+Obviously we do care about users of the existing platforms that
+may still have requirements for kernel upgrades and appreciate
+any bugfixes you can send, but new platform code would just be
+a liability at this point, so please keep that out of tree and
+try to come up with a migration plan for your downstream users.
 
-> Did a light pass for now.
->
-> Nicolas
+I think your best options are:
 
-Thanks for the review!
+- linux-7.3 is most likely going to be the last LTS kernel with
+  Arm NOMMU support, so I would advise to move any production
+  systems to that version but no later. This way there are
+  at least two more years of security fixes. As you have noticed,
+  the NOMMU support has its own set of bugs and you may already
+  be on your own for those fixes, but would at least receive
+  updates for common kernel issues.
 
-Best regards,
-Sofus
+- The SoC itself seems to have reasonable support in both
+  upstream Zephyr and the Raspberry Pi downstream fork of
+  FreeRTOS, both of which are generally a better fit for
+  this type of hardware and may be able to include support
+  for this board as well.
+
+- As the chip also has RISC-V cores (also without MMU as I
+  understand), you may be able to run Linux on those.
+  I expect this also to go away in the long run, but it
+  may give you an extra LTS release compared to the Arm
+  cores in case that makes a difference for the timeline
+  to convert to another operating system altogether.
+
+- If you have users that require more than two or three
+  years of security updates for existing products and are
+  unable to port their applications to another OS during
+  that time, let us know what the specific requirements are.
+  There are companies like emcraft that specialize in this
+  type of workload and may be able to offer paid support
+  beyond the official life of the 7.3LTS kernel.
+
+      Arnd
 
