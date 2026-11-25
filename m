@@ -2,70 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13CA607DE82
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84536607DE85
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fscIE5Lu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hAWZbygm;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=BLj1maW0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=QDnPaZCwW5vXRBLeSNJn2ZrdQCO4AMqlEpzy0l1MQqg=; b=fscIE5LufodegKKWPjU+jT+cTt
-	b3yGVa/5jn1pRBVG/J7xT8z3MTszIsmu/4+Uaw2fPQiAwSVKDvERrCaZqIbqqyP9aDs6VlH++M1NV
-	l86dphDvwS/dt/45km7CQvnT5n05WvaMj6g2uNyFim33ruR9sKG1S5MlLRDoP2OK3uTEojib2AcAy
-	GiOlGkNr0Lz96galQiAdBmObOw2MIbDE1apGvcd0pOyEIKV/wb0Bbg2nJGj98EyYgatDVCZfvtwQz
-	qgPrMFx34oRFGXec0YFZzLrGQQju0l+CJIWYMdEQI+XEumQ+gZTSwD4MKprYEDH2Mu+q8cQXPURTu
-	+0fJzVpQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=4KD70GwKCbIo3iYnYiAxROa7nQMR8jUs46uCrYPzsEc=; b=hAWZbygm/N68bj
+	CmFFnKY/s1J7eXxqV94rjFWJ0llBzbOvUGv/NeevCjTgYbl15QbhFU3fnUqfudqIfTo1fikI2o0w0
+	SYUWOx0OzU6kaH3/j2N8digqywseTuOJ7D4ULwO5xEU5PhZmKbqrUvAORLLj7zlk3HoA6nW7Umhrg
+	UaAwROY7XQlYIm4QFHZTRBl4d5YuslsV6F7udF5lvX3cUVFRF4y+3pDwirkVA1F/xDBWyrF1LKtyP
+	04P5RP+RyKBatfVBv7r7oE81UQK5iyIcD5QktSekOFDYDljxzJ0SkowX1ZiN3PJl0fP8EZWN1Zk5W
+	O9mcF4r2NTrTSNGGKNLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF7P-0000000AP8Q-1Mwj;
+	id 1xWF7P-0000000AP8v-2A9J;
 	Wed, 25 Nov 2026 15:41:11 +0000
-Received: from exchange.fintech.ru ([195.54.195.159])
+Received: from out-169.mta1.migadu.com ([95.215.58.169] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF6g-0000000AOQZ-02Gu;
-	Wed, 25 Nov 2026 15:40:28 +0000
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Wed, 25 Nov
- 2026 18:40:17 +0300
-Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 25 Nov
- 2026 18:40:17 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>
-CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
-	"Jernej Skrabec" <jernej.skrabec@gmail.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Damon Ding <damon.ding@rock-chips.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Sandy Huang
-	<hjc@rock-chips.com>, =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andyshrk@163.com>, Alexandre Marquet <tb@a-marquet.fr>, "Marek
- Szyprowski" <m.szyprowski@samsung.com>, <linux-rockchip@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
-Subject: [PATCH v2 3/3] drm/bridge: analogix_dp: Propagate errors from runtime resume
-Date: Wed, 25 Nov 2026 18:39:47 +0300
-Message-ID: <20261125153958.1349811-4-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125153958.1349811-1-n.zhandarovich@fintech.ru>
-References: <20261125153958.1349811-1-n.zhandarovich@fintech.ru>
+	id 1xWF6j-0000000AOdK-0ro7
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 15:40:31 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=Ru4wsoPUBX8BwclDhrROzB4V6cI3IIahsVXty7NCsP0=;
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1795621227; v=1; x=1796226027;
+ b=BLj1maW0hYMd/HYCkSc3lu+HHxonpoaNiLJZLmrKqhCi9qn6NhsVPJykaJt33Jf1J2knwXEo
+ 30h+lCggdkjlCskmEPkG+/6t9KdoJapuVRsOuB4CcmJ8T66xFtSLnomVuLM24962y0uJhVgRQfj
+ kMzaheiPRrj8BSRXil3bEFr4=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id 16cf6cf1af7bb7dd;
+	Wed, 25 Nov 2026 15:40:26 +0000
+X-Mizu-Trace-ID: 16cf6cf1af7bb7dd
+X-Migadu-Flow: FLOW_OUT
+From: Fuad Tabba <fuad.tabba@linux.dev>
+To: Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oupton@kernel.org>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: Joey Gouly <joey.gouly@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Vincent Donnefort <vdonnefort@google.com>,
+	Fuad Tabba <tabba@google.com>,
+	kvm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 14/20] KVM: arm64: Advertise FPMR to protected VMs
+Date: Wed, 25 Nov 2026 15:39:05 +0000
+Message-ID: <20261125153911.106793-15-fuad.tabba@linux.dev>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261125153911.106793-1-fuad.tabba@linux.dev>
+References: <20261125153911.106793-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_074026_238992_E94116FE 
-X-CRM114-Status: GOOD (  15.12  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261125_074029_395431_810A7DD1 
+X-CRM114-Status: UNSURE (   9.09  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,86 +81,45 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Stop controller initialization when platform or PHY power-on fails and
-return the original error to the resume caller. Unwind the platform
-power callback only after it has completed successfully, then release
-the controller clock. Do not call phy_power_off() after a failed
-phy_power_on(), since no successful PHY power reference was acquired.
+Advertise FEAT_FPMR to protected VMs, and reset FPMR to 0 as KVM does
+for a non-protected vCPU. With the field set, vcpu_set_hcrx() sets
+HCRX_EL2.EnFPM for them, and FPMR is switched with the rest of the FP
+state.
 
-Also stop and unwind platform power if setting the PHY mode fails.
-
-Fixes: 73f613908eb1 ("drm/bridge: analogix_dp: move platform and PHY power handling into runtime PM")
-Fixes: 2c0883459ed6 ("drm/bridge: analogix_dp: Add support for phy configuration.")
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
-v1 -> v2: Improve on chosen Fixes: tag to mitigate Sashiko's concerns.
+ arch/arm64/kvm/hyp/nvhe/sys_regs.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Depends on patches 1 and 2 of this series, also on Alexandre Marquet's
-Exynos pipe-clock conversion [1], or Marek Szyprowski's equivalent [2].
-Without [1] or [2], propagating errors from old Exynos power_on() step
-may break AUX access. Neither [1] or [2] is a part of this series on
-purpose - therefore, these 3 patches must only be applied after
-improvement [1] or [2] is committed.
-
-This is an updated version of the patch suggested by "Pengpeng Hou"
-<pengpeng@iscas.ac.cn> in [3]. It takes into account issues brought
-up by Sashiko, specifically, an issue of possible unbalanced clock
-disables. This patch was prepared using dependency [1].
-
-[1] https://lore.kernel.org/all/20261027-drm-misc-next-manta-auxbus-v1-2-3a45c3cf531d@a-marquet.fr/
-[2] https://lore.kernel.org/all/20261119223843.3694307-1-m.szyprowski@samsung.com/
-[3] https://lore.kernel.org/all/20260828091334.5793-1-pengpeng@iscas.ac.cn/
-
- .../drm/bridge/analogix/analogix_dp_core.c    | 23 +++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 9d77c1d54a6d..3326b51aaeb5 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1538,15 +1538,30 @@ int analogix_dp_resume(struct analogix_dp_device *dp)
- 		return ret;
- 	}
+diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
+index acba7489809f3..4ba947bd3d125 100644
+--- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
++++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
+@@ -127,6 +127,7 @@ static const struct pvm_ftr_bits pvmid_aa64pfr1[] = {
  
--	if (dp->plat_data->power_on)
--		dp->plat_data->power_on(dp->plat_data);
-+	if (dp->plat_data->power_on) {
-+		ret = dp->plat_data->power_on(dp->plat_data);
-+		if (ret)
-+			goto err_disable_clk;
-+	}
+ static const struct pvm_ftr_bits pvmid_aa64pfr2[] = {
+ 	MAX_FEAT(ID_AA64PFR2_EL1, GCIE, NI),
++	MAX_FEAT(ID_AA64PFR2_EL1, FPMR, IMP),
+ 	FEAT_END
+ };
  
--	phy_set_mode(dp->phy, PHY_MODE_DP);
--	phy_power_on(dp->phy);
-+	ret = phy_set_mode(dp->phy, PHY_MODE_DP);
-+	if (ret)
-+		goto err_power_off;
-+
-+	ret = phy_power_on(dp->phy);
-+	if (ret)
-+		goto err_power_off;
+@@ -828,6 +829,7 @@ static const struct sys_reg_desc_reset pvm_sys_reg_reset_vals[] = {
+ 	RESET_UNKNOWN(TTBR1_EL1),
+ 	RESET_UNKNOWN(FAR_EL1),
+ 	RESET_VAL(VBAR_EL1, 0x1de7ec7edbadc000ULL),
++	RESET_ZERO(FPMR),
+ };
  
- 	analogix_dp_init_dp(dp);
- 
- 	return 0;
-+
-+err_power_off:
-+	if (dp->plat_data->power_on && dp->plat_data->power_off)
-+		dp->plat_data->power_off(dp->plat_data);
-+err_disable_clk:
-+	clk_disable_unprepare(dp->clock);
-+	return ret;
- }
- EXPORT_SYMBOL_GPL(analogix_dp_resume);
- 
+ void kvm_reset_pvm_sys_regs(struct kvm_vcpu *vcpu)
 -- 
-2.43.0
+2.47.3
 
 
