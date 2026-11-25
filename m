@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B70B606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A851A606A323
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 22:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=evjh0qz1;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=iYHm2E0x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U2jDXeHD;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=TWTfng39
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,71 +14,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=jDuBt5Cw+ANUexZtA4dNwo8xhQaNML2KuCiDPiA1qKE=; b=evjh0qz1Z+XZsjuQl86G2gSiEz
-	3ny6sJdrHqEUAjjjlInqyq85EPPVa6u2dOltstM10btg94QCy3hZStL2RHLpBTpcgcghIZew94W/B
-	Y9/1MyaIWPf1V7M5LxyywTxMPg5TKl/nAWnkHM0YL3XJwkCZ90skzXqqQEdC3mIQ6L3mSoK1qWOkU
-	5Ok9EWQ08N8z/Bs8qePqKA7vX/2E7ChxGD8ZfrHmG/lI59JkYyCnioAdTDiuAb8+d/jZX+FH4QqQY
-	5IvgDhrZ/WIOt3bdwlVdaH6/fa+RatByqNVti75Udt80hDCLXegbeUY92NLG5Lr1END68mBvluFvE
-	0DrVFSFg==;
+	bh=0tzFeKCwOoFb6bvhWfk3Oe+1P7rt3PYjl4BuN72k99w=; b=U2jDXeHD0xROsjGKoNyxsam9a2
+	lpo+1w+ZKQ9wBdEWxV9OsqVfnf8tNOvbobsgHZMnh8gkTiaelpPOFX6NNFarMR4ZYI9O0WlVxsk9L
+	urdAU/m+Sjk68rVWfE1X6TTPTZYSHV8f+FhGyyzBlxwLH1uzWV3TJNALgj4JHCske5rNagcZbV7CX
+	bsCHP0r0Hge67O1sE1i5vfVV7KljdZbTriVDTWtIn7HnmV1ILdvMlqtSg1xPHnYzILG0HhRRpt7XM
+	0sb/u6GJbkYF0M0Rp2T4xO7vqzSeNa3hKJ70gzs3xemIXroieTsYZY8OePCo07/eDpn9WwtCyZDV/
+	MT399Tvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLWe-0000000BTrb-0oyq;
+	id 1xWLWe-0000000BTsL-2UpH;
 	Wed, 25 Nov 2026 22:31:40 +0000
-Received: from mail-dy1-x1346.google.com ([2607:f8b0:4864:20::1346])
+Received: from mail-dy1-x1347.google.com ([2607:f8b0:4864:20::1347])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWLQ6-0000000BSM5-3Lf5
+	id 1xWLSM-0000000BTTC-2FKU
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 22:25:03 +0000
-Received: by mail-dy1-x1346.google.com with SMTP id 5a478bee46e88-384c78aa0dbso8369457eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 14:24:42 -0800 (PST)
+	Wed, 25 Nov 2026 22:27:24 +0000
+Received: by mail-dy1-x1347.google.com with SMTP id 5a478bee46e88-3846d5f54c1so7337164eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 14:27:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1795645482; x=1796250282; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1795645633; x=1796250433; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:mime-version:date:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=jDuBt5Cw+ANUexZtA4dNwo8xhQaNML2KuCiDPiA1qKE=;
-        b=iYHm2E0xQQry54Mtyj7ooFN1D8mL0KoDr21BcAZZTrBcHBGXfYnChgz8nXDMvL1C/j
-         jsJiEHONPxCHDJAJq1rKUzbD1drxMXdGvi4evnhGd7w1bsnruDrmAeMgOZdEu+oECn/H
-         WVsl9YE+OvkcnsOne2suySiAdP7A95oE5AlY7GYk5pCwy3cXRufFKHl0KtMo+GnGQgSb
-         /dyRDVnddEYl/Yz56VB6lC6z3732JoYApOtYxcpOjzzClu4qbWyVCS4DGnXaQTWu97Ps
-         UvSJbFe/dbzySTPjuS3ni44tF9JX4TL/yaU4t2LuhxdZb6eA0+32bdmUTwQbaqCuDdxo
-         PRYg==
+        bh=0tzFeKCwOoFb6bvhWfk3Oe+1P7rt3PYjl4BuN72k99w=;
+        b=TWTfng396XSOuh80B0itf9sJZJUdK2q5zxZu3dXtIMv4xAegfqEwYaP7OcM4vGjW35
+         ZEgdW8HSD4RnWFO5C9YO341NAhXtINlyOw+S460S+lufh80e94i8MvaJ4+dRWix7oJMW
+         fgAVRNUmOzBHlmwtQmqQN8mmQSdE/hikf1DweIHYk6I4Z5dBKMZW0a3ELrpGx3K5WIbE
+         E4f83bw32lb4e3WTEi9M098s3KHZIbVV0WsfA5ixv3Kr6FBQJbxPRiKCuG+opRHqZA9E
+         QaGtne34IINrwLLAidKeXYHYMIjDjf/wKIQbKpYVUP5ch/ZtMuwUJdSd7toV3+AVLzRe
+         g1SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795645482; x=1796250282;
+        d=1e100.net; s=20260707; t=1795645633; x=1796250433;
         h=content-type:cc:to:from:subject:message-id:mime-version:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=jDuBt5Cw+ANUexZtA4dNwo8xhQaNML2KuCiDPiA1qKE=;
-        b=AXTGAOD+E4MzVVdmTFS2v3RxOLDcgmz0YQ7sCGhyPGlI8abx3yP6yykyv3zTrgg1oR
-         pfjJXtAFOwIdGfnRI3u56dC23R821qdaXSn1lw36n9wn5N2kU9F/PGq14RXaXdKRJj9I
-         KngCHw3bg+wG1dCCcRKhK96tPkwoqYJHQtMc6jfPW7T6T1oFsA7Y8WswwyHa4F7iVhCr
-         UBYoS4ku49dV3CdgGA5WpQxe4dvZil7niU1ZGsOsRus/ko4M320sVLqIFqWKJ3yMU9Lg
-         0hZmeNi6pKeNH/zlxWxqyZj163FYllT9tVskz3Qy0mFEkoBBj3DgpcRosZ+6NOYD7cFp
-         kIyA==
-X-Forwarded-Encrypted: i=1; AL+hErEZuJ0EBOtBIVS1B/P38ou+7jUhVYUXKqSmXVSwrHiB5jOCt4Pz/5TZS5HFfzqzodOrtvip/tBpJRMVlaKo3G6V@lists.infradead.org
-X-Gm-Message-State: APuU4Z+WrniZZ4FGCBL4npR39rw5+/rTnWC4n/9j4r1+jNyyfo8FBTe0
-	6QUI1C2jp4gs2eWU7T67NqX7OeSgGwtQ9hIeo/1kwP4aeBY8BJWG9ZIg0ur/LilPIob9MaONv1Q
-	IsA==
-X-Received: from dycuf5.prod.google.com ([2002:a05:7300:105:b0:386:9be5:2d95])
- (user=elkin job=prod-delivery.src-stubby-dispatcher) by 2002:a05:693c:638d:20b0:375:c862:31c
- with SMTP id 5a478bee46e88-38571816d35mr18955075eec.40.1795645482015; Wed, 25
- Nov 2026 14:24:42 -0800 (PST)
-Date: Wed, 25 Nov 2026 22:24:33 +0000
+        bh=0tzFeKCwOoFb6bvhWfk3Oe+1P7rt3PYjl4BuN72k99w=;
+        b=DE2tatWk/vHV01g53dy+PkiJkcmmLK0qRlj2MZWndvxSR/II/yVjFwYx1US5i5lA+5
+         AaZw54s4HdU0SpYnzw7CBUbdl/nvf/4MbD/EmKXXT3pMhYbMa04udXaPlTBcFExwKUiY
+         3/VmgR5vHI8sGCFHXamkM78su4FdPenctZVWhiK3nJSdm3UrmTKNWXKhX16z3TTAy77Y
+         XXkDg/UiWuxCLa7Qi3Dypj9SO9mTxOfMQ3pft+Eken1quILwaoGcYCZGoG/m9+cew5GP
+         IgJLSsPwRcyRa0fLZB0U8GQBQ6dwcBVEJjWnqsKM0taP36Ehu3uR0oX8p/cOD5/VQsSf
+         5IyQ==
+X-Gm-Message-State: APuU4Z/QWXT0qW09LCsrvQhSZKw0OaqvUaIhmaYoNzzg9KYIlW5NQ4eK
+	N6vd7PQ09Se72IazdjNik6NaXPW452rTmYWYz2ZCFRyoQDypNrteJsfPgn5IdbKungZtmbyadKQ
+	hbg==
+X-Received: from dycnb22.prod.google.com ([2002:a05:7301:b16:b0:386:af9c:96b6])
+ (user=elkin job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7301:d81c:b0:386:b7d2:a279
+ with SMTP id 5a478bee46e88-386b7d2aba6mr8835631eec.34.1795645633028; Wed, 25
+ Nov 2026 14:27:13 -0800 (PST)
+Date: Wed, 25 Nov 2026 22:26:06 +0000
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 X-Mailer: git-send-email 2.56.1.839.g22a8290db9-goog
-Message-ID: <20261125222433.1442338-1-elkin@google.com>
-Subject: [PATCH] iommu/arm-smmu: Fix use-after-free in nvidia_smmu_impl_init()
+Message-ID: <20261125222606.1448637-1-elkin@google.com>
+Subject: [PATCH] pinctrl: nomadik: validate DT pin config property read and range
 From: Elkin Cruz <elkin@google.com>
-To: Thierry Reding <thierry.reding@kernel.org>, Will Deacon <will@kernel.org>, 
-	"Joerg Roedel (AMD)" <joro@8bytes.org>
-Cc: Krishna Reddy <vdumpa@nvidia.com>, Robin Murphy <robin.murphy@arm.com>, linux-tegra@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+To: Linus Walleij <linusw@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, llvm@lists.linux.dev, irogers@google.com, 
 	Elkin Cruz <elkin@google.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_142457_385681_B4494C0C 
-X-CRM114-Status: GOOD (  13.34  )
+X-CRM114-CacheID: sfid-20261125_142715_352640_67C6D2D4 
+X-CRM114-Status: GOOD (  17.00  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,14 +95,16 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In nvidia_smmu_impl_init(), smmu is reallocated with devm_krealloc() to
-embed it within struct nvidia_smmu. When devm_krealloc() moves the
-allocation, the old smmu pointer is freed, leaving nvidia_smmu->bases[0]
-dereferencing the invalid pointer.
+In nmk_pinctrl_dt_get_config(), of_property_read_u32() is only checked
+for (ret != -EINVAL), passing an uninitialized val to
+nmk_dt_pin_config() on other error returns. In addition, val is signed
+and nmk_dt_pin_config() returns 0 even when val is out of bounds for
+nmk_cfg_params[index].choice.
 
-Read base from nvidia_smmu->smmu.base instead of the stale smmu pointer.
+Check (!ret) after of_property_read_u32(), make val unsigned (u32), and
+return -EINVAL when val >= nmk_cfg_params[index].size.
 
-Fixes: af9da91493e5 ("iommu/arm-smmu: Use new devm_krealloc()")
+Fixes: e32af8894588 ("pinctrl/nomadik: add device tree support")
 Cc: stable@vger.kernel.org
 Signed-off-by: Elkin Cruz <elkin@google.com>
 ---
@@ -118,22 +117,58 @@ then checked against linux-next (not runtime-tested on hardware).
 Thanks,
 Elkin
 
- drivers/iommu/arm/arm-smmu/arm-smmu-nvidia.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/pinctrl/nomadik/pinctrl-nomadik.c | 24 +++++++++++++----------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-nvidia.c b/drivers/iommu/arm/arm-smmu/arm-smmu-nvidia.c
-index 2fce4f6d4e1b..a3884966dc29 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-nvidia.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-nvidia.c
-@@ -319,7 +319,7 @@ struct arm_smmu_device *nvidia_smmu_impl_init(struct arm_smmu_device *smmu)
- 		return ERR_CAST(nvidia_smmu->mc);
+diff --git a/drivers/pinctrl/nomadik/pinctrl-nomadik.c b/drivers/pinctrl/nomadik/pinctrl-nomadik.c
+index 617ad259f62c..400009929dbd 100644
+--- a/drivers/pinctrl/nomadik/pinctrl-nomadik.c
++++ b/drivers/pinctrl/nomadik/pinctrl-nomadik.c
+@@ -693,18 +693,21 @@ static const struct nmk_cfg_param nmk_cfg_params[] = {
+ 	NMK_CONFIG_PIN_ARRAY("ste,sleep-pull-disable",	nmk_pin_sleep_pdis_modes),
+ };
  
- 	/* Instance 0 is ioremapped by arm-smmu.c. */
--	nvidia_smmu->bases[0] = smmu->base;
-+	nvidia_smmu->bases[0] = nvidia_smmu->smmu.base;
- 	nvidia_smmu->num_instances++;
+-static int nmk_dt_pin_config(int index, int val, unsigned long *config)
++static int nmk_dt_pin_config(int index, u32 val, unsigned long *config)
+ {
+ 	if (!nmk_cfg_params[index].choice) {
+ 		*config = nmk_cfg_params[index].config;
+-	} else {
+-		/* test if out of range */
+-		if  (val < nmk_cfg_params[index].size) {
+-			*config = nmk_cfg_params[index].config |
+-				nmk_cfg_params[index].choice[val];
+-		}
++		return 0;
+ 	}
+-	return 0;
++
++	/* test if out of range */
++	if (val < nmk_cfg_params[index].size) {
++		*config = nmk_cfg_params[index].config |
++			nmk_cfg_params[index].choice[val];
++		return 0;
++	}
++
++	return -EINVAL;
+ }
  
- 	for (i = 1; i < MAX_SMMU_INSTANCES; i++) {
+ static const char *nmk_find_pin_name(struct pinctrl_dev *pctldev, const char *pin_name)
+@@ -724,11 +727,12 @@ static bool nmk_pinctrl_dt_get_config(struct device_node *np,
+ {
+ 	bool has_config = 0;
+ 	unsigned long cfg = 0;
+-	int i, val, ret;
++	int i, ret;
++	u32 val;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(nmk_cfg_params); i++) {
+ 		ret = of_property_read_u32(np, nmk_cfg_params[i].property, &val);
+-		if (ret != -EINVAL) {
++		if (!ret) {
+ 			if (nmk_dt_pin_config(i, val, &cfg) == 0) {
+ 				*configs |= cfg;
+ 				has_config = 1;
 -- 
 2.56.1.839.g22a8290db9-goog
 
