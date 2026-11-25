@@ -2,62 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41948606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449D0606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gXJmyCvF;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=HdnA5d57
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4mTdM16T;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PG0ErR3g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
-	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4YzY4WJKyDUbWHVlGl0s8qGvd0UyDejmOQrF5G0LCls=; b=gXJmyCvFFqA2ZM
-	4XZytlNOJ4Vijm9mC4uGDUfFGz8j3M8IKDUY41EPVTnaFyY7g4GDiY8JUUVLckUeVLDT+6dSq2Cyh
-	JgAct08qnmuNzubrEdY6BJQ5u4CLdR3zuyYzDubezLC9kpoyt5zpMVxWMrqMrjsB80iSriu1TSQoE
-	ivLL2nqLheXj9l/y27m8V7kcq2jmDewwqsYdnyLk1OSCC8+dFAQbxOVW7fiajv/W1M+vkXGA+iw2Z
-	bcF/TsJxb5+qNsQW/JONXzZygdIjA3X4QYr3KIScvzO1/reMqiBSE5NmnViBP+z9MU7yaARaYJqEa
-	Ku4DH0j6aBKSLY+jZYfw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=VBOZGBr55Ujwl78qDcJLp8xc/aTsL0m4eKXQ3BODtCU=; b=4mTdM16TWE8iZsvuiufWwJ2hju
+	Nasddl6HWNomu78WwB4cEOBpr3w0cwo7XVGU+tli1vrLwowE0NtZuJfZ3EqPGkedRmiZpbGmOy+5c
+	oTg23m3ENL6n8jwqDfIwkeENZsGncyvKgyA7lGAVQhgIXpVh9+f8SFaAJwaS3p7EqWO1bQYeGXvBi
+	bIrYEqoxAKqWxSOzI9sSyLqw0pZWgxgJ4xVaTBK2n68sj+r+hvFOk1tJv36Ko2fjqIeEd49YmLulc
+	qh7b+AtL0UwPboFvg3olzYK6Hu7BYLwzXi5Bdcbkr0uA5o7qWzQ9LPKiXbnsnyj87KOoSLM4awF8y
+	NALAkPJw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8Wd-000000096Zj-2DNR;
-	Wed, 25 Nov 2026 08:38:47 +0000
-Received: from mail-10629.protonmail.ch ([79.135.106.29])
+	id 1xW7Tg-00000008tiq-0Y7J;
+	Wed, 25 Nov 2026 07:31:40 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW8Wb-000000096Ye-29gP
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:38:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1795595922; x=1795855122;
-	bh=4YzY4WJKyDUbWHVlGl0s8qGvd0UyDejmOQrF5G0LCls=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=HdnA5d576cKuFuxHoiZ4Hu7obya801qlk6sLJXM01eKQLgQOHbkFthulLKoKtONif
-	 h/HGHOfe+j1HTSjWhXkKAnJ+JP+fdDm4dQGLRV5N6GcRbUF0sod8hl6Pmj+jdAIjju
-	 74+14l1hl1dYw04tSZUfs0n6WId4JmAoGNNCtVdkMd5IIj5A8jqePN1dhmPmaw2lF7
-	 yOiyqkZHO4c0LFUH7SAVHn0txg/uwVdnV5YfKLE7z4VBNp++seW9N5tGoW3/Lxn73t
-	 Isw3hdOGJgo07yMcWZHa/fQDtf25ThJPta9wmCoSjsilHW7Pgc8suqHuG+ytKOqzic
-	 3D55QOpJDolqw==
-Date: Wed, 25 Nov 2026 08:38:37 +0000
-To: Echo Zhang <echo.zhang@mediatek.com>
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, Jerome Brunet <jbrunet+clk@baylibre.com>, Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, MMDVFS Team <linux-mediatek@lists.infradead.org>, kyrie.wu@mediatek.com, ming-fan.chen@mediatek.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH 4/7] soc: mediatek: mmdvfs: add VCP backend
-Message-ID: <qeucziSyhF2pTX6WmMWtCC6hbkD8BswMX4f-7Z5uWErS2OSaeHCBs9zq4xay6j24-RAdQuYERZCgItKMSJLwmbFxY_LslGm3K3mvjdqiKRI=@protonmail.com>
-In-Reply-To: <20261125060037.649659-5-echo.zhang@mediatek.com>
-References: <20261125060037.649659-1-echo.zhang@mediatek.com> <20261125060037.649659-5-echo.zhang@mediatek.com>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: 96f5a9583a374cf2313c4937580c2b1a80dc05fa
+	id 1xW7Te-00000008thS-1pAn;
+	Wed, 25 Nov 2026 07:31:38 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 13BED4011C;
+	Wed, 25 Nov 2026 07:31:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0EAE1F000C4;
+	Wed, 25 Nov 2026 07:31:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795591897;
+	bh=VBOZGBr55Ujwl78qDcJLp8xc/aTsL0m4eKXQ3BODtCU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=PG0ErR3gAmTnmjd1zmcQ4dqGICFZ9/gVAxZhRY5ICPtEvjZXvnumFGUXPCvUnUM57
+	 V7Ox3LPxJ/wqw5+ZP0v6lvBYkkzSOopSVTpyivztvutTZr1ReiNz//aM/+bvxfJqB8
+	 mCAVVGL2FBMZCmX+yS3Yfq1JyPrEWPWbduh4CLW6sYREGtigXHCHuMa5qMt76KzEME
+	 DOFFZL3mbaq4B/CGkkPNf+IZfang3VZrolXR/dyvBcclg9E35/1L8AxSwBir024KU6
+	 Cc3hc8mq2GNXx4e5L5QgfSIj1SSjtM9Wsu9qmLciKh2Pu3oSLW/1FW6g98iY+Pw+5U
+	 Y7gJQasbU6ElA==
+Date: Wed, 25 Nov 2026 08:31:34 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Hal Feng <hal.feng@starfivetech.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Paul Walmsley <pjw@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Dominique Belhachemi <db@domibel.de>, 
+	Andy Yan <andyshrk@163.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Yakir Yang <kuankuan.y@gmail.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>, 
+	William Qiu <william.qiu@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>, 
+	Sandy Huang <hjc@rock-chips.com>, Manivannan Sadhasivam <mani@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Maud Spierings <maud_spierings@murena.io>, Graham Markall <hello@big-grey.co.uk>, 
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	Joshua Peisach <jpeisach@ubuntu.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v8 04/18] dt-bindings: display: starfive: Add
+ starfive,jh7110-hdmi-subsystem
+Message-ID: <20261125-tasteful-brown-galago-a6725e@quoll>
+References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+ <CGME20261124155406eucas1p23a523deb496c21cbf3da3724812a8101@eucas1p2.samsung.com>
+ <20261124-jh7110-clean-send-v8-4-de92635dd857@samsung.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_003845_710678_A59653A3 
-X-CRM114-Status: GOOD (  17.75  )
-X-Spam-Score: -2.5 (--)
+Content-Disposition: inline
+In-Reply-To: <20261124-jh7110-clean-send-v8-4-de92635dd857@samsung.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,159 +89,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wednesday, November 25th, 2026 at 8:01 AM, Echo Zhang <echo.zhang@mediat=
-ek.com> wrote:
-
-> Add the VCP transport used by MMDVFS to map AP and firmware shared
-> memory, manage feature power references and send IPI commands.
->=20
-> Wait for VCP readiness and handle the selected MMUP or VCP READY
-> notification to initialize firmware after boot and resume. Serialize
-> IPI transactions while shared memory and acknowledgment state are in
-> use.
->=20
-> Signed-off-by: Echo Zhang <echo.zhang@mediatek.com>
+On Tue, Nov 24, 2026 at 04:52:40PM +0100, Michal Wilczynski wrote:
+> Add the dt-binding for the StarFive JH7110 HDMI subsystem.
+> 
+> The JH7110 HDMI IP is a monolithic block containing both the digital
+> controller and analog PHY in a single register space. This binding
+> defines the parent device, which holds the shared register map, and its
+> two children: the PHY and the controller.
+> 
+> The two have separate resources. The PHY takes the 24 MHz reference
+> clock and provides both the pixel clock, which the VOUT clock generator
+> routes on to the display controller, and the phy the controller uses.
+> The controller takes its clocks from the VOUT clock generator. What
+> they share is the register space, which the parent maps.
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
+>  .../starfive/starfive,jh7110-hdmi-subsystem.yaml   | 95 ++++++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+> 
 
-...
+DT bot reports here a lot of failures. I don't see immediate problem,
+but something feels odd.
 
-> diff --git a/drivers/soc/mediatek/mmdvfs/mmdvfs-core.c b/drivers/soc/medi=
-atek/mmdvfs/mmdvfs-core.c
-> index c32fa11557af..3388a5a3a145 100644
-> --- a/drivers/soc/mediatek/mmdvfs/mmdvfs-core.c
-> +++ b/drivers/soc/mediatek/mmdvfs/mmdvfs-core.c
-> @@ -7,22 +7,23 @@
->=20
->  #include <linux/atomic.h>
->  #include <linux/clk-provider.h>
-> +#include <linux/delay.h>
->  #include <linux/device.h>
->  #include <linux/err.h>
->  #include <linux/io.h>
-> +#include <linux/kthread.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> -#include <linux/notifier.h>
->  #include <linux/of.h>
->  #include <linux/of_address.h>
->  #include <linux/platform_device.h>
-> +#include <linux/remoteproc/mtk_vcp_public.h>
->  #include <linux/sched/clock.h>
->  #include <linux/slab.h>
->  #include <linux/string.h>
-> -#include <linux/suspend.h>
-> -#include <linux/workqueue.h>
->=20
->  #include "mmdvfs-internal.h"
-> +#include "mmdvfs-up-priv.h"
->=20
->  static int mmdvfs_register_device(struct mmdvfs_device *mmdvfs);
->  static void mmdvfs_unregister_device(struct mmdvfs_device *mmdvfs);
-> @@ -34,14 +35,13 @@ struct mmdvfs_device *mmdvfs_find_device_any(void)
->  {
->  =09return mmdvfs_find_device_by_version(MMDVFS_VERSION_HWCCF_DVFS_VOTER)=
-;
->  }
-> -EXPORT_SYMBOL_GPL(mmdvfs_find_device_any);
->=20
->  /**
->   * mmdvfs_get_version - Get MMDVFS voting mechanism type
->   *
->   * Return:
->   *   0 - No hardware voter
-> - *   1 - HWCCF DVFS voter
-> + *   1 - HWCCF DVFS voter (VCP IPI with MMUP SRAM)
->   */
->  u32 mmdvfs_get_version(void)
->  {
-> @@ -96,7 +96,8 @@ static int mmdvfs_validate_topology(struct mmdvfs_devic=
-e *mmdvfs)
->  =09=09=09return -EINVAL;
->  =09=09}
->=20
-> -=09=09if (mux->freq_num =3D=3D 0 || mux->freq_num > MMDVFS_MAX_LEVELS) {
-> +=09=09if (mux->freq_num =3D=3D 0 || mux->freq_num > rc->level_num ||
-> +=09=09    mux->freq_num > MMDVFS_MAX_LEVELS) {
->  =09=09=09mmdvfs_err(mmdvfs->dev,
->  =09=09=09=09   "MUX %d (%s): invalid freq_num: %d\n",
->  =09=09=09=09   i, mux->name, mux->freq_num);
-> @@ -112,10 +113,11 @@ static int mmdvfs_validate_topology(struct mmdvfs_d=
-evice *mmdvfs)
->  =09=09=09}
->=20
->  =09=09=09if (j > 0 && mux->freq[j] <=3D mux->freq[j - 1]) {
-> -=09=09=09=09mmdvfs_warn(mmdvfs->dev,
-> -=09=09=09=09=09    "MUX %d (%s): freq not ascending: freq[%d]=3D%llu <=
-=3D freq[%d]=3D%llu\n",
-> -=09=09=09=09=09    i, mux->name, j, mux->freq[j],
-> -=09=09=09=09=09    j - 1, mux->freq[j - 1]);
-> +=09=09=09=09mmdvfs_err(mmdvfs->dev,
-> +=09=09=09=09=09   "MUX %d (%s): freq not ascending: freq[%d]=3D%llu <=3D=
- freq[%d]=3D%llu\n",
-> +=09=09=09=09=09   i, mux->name, j, mux->freq[j],
-> +=09=09=09=09=09   j - 1, mux->freq[j - 1]);
-> +=09=09=09=09return -EINVAL;
-
-Why this can't be in the previous patch?
-
-...
-
-> diff --git a/drivers/soc/mediatek/mmdvfs/mmdvfs-vcp.c b/drivers/soc/media=
-tek/mmdvfs/mmdvfs-vcp.c
-> new file mode 100644
-> index 000000000000..fc6db1c89294
-> --- /dev/null
-> +++ b/drivers/soc/mediatek/mmdvfs/mmdvfs-vcp.c
-
-...
-
-> +/*
-> + * mmdvfs_get_bootmode - Get system boot mode
-> + *
-> + * Query boot mode from device tree /chosen node
-> + */
-> +static void mmdvfs_get_bootmode(void)
-> +{
-> +=09struct device_node *np_chosen;
-> +=09struct tag_bootmode {
-> +=09=09u32 size;
-> +=09=09u32 tag;
-> +=09=09u32 bootmode;
-> +=09=09u32 boottype;
-> +=09} *tag;
-> +
-> +=09if (bootmode < UNKNOWN_BOOT)
-> +=09=09return;
-> +
-> +=09np_chosen =3D of_find_node_by_path("/chosen");
-> +=09if (!np_chosen) {
-> +=09=09bootmode =3D NORMAL_BOOT;
-> +=09=09return;
-> +=09}
-> +
-> +=09tag =3D (struct tag_bootmode *)of_get_property(np_chosen, "atag,boot"=
-, NULL);
-> +=09of_node_put(np_chosen);
-> +
-> +=09if (tag)
-> +=09=09bootmode =3D tag->bootmode;
-> +=09else
-> +=09=09bootmode =3D NORMAL_BOOT;
-> +}
-
-No. Please don't add your downstream code.
-
-I'll stop here. This patch modifies too many things from the previous
-one, and the series overall needs more cleanup.
+E.g. https://gitlab.com/robherring/linux-dt-review/-/jobs/18332570769/artifacts/raw/build-15017782.log
+(see rest on DT patchwork)
 
 Best regards,
-Roman
+Krzysztof
+
 
