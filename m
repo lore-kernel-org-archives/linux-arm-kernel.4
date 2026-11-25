@@ -2,135 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8F7606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99D2606A686
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vSrrbbz7;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=j1T7dK6Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j3UZkw8P;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=jDvK+9fr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=XBDrLAxJ/0gY83X+GTbCxPKiwrBVv2YxhFcNVdxK9PA=; b=vSrrbbz7whF3dI89eX/s0GQ75Y
-	NEAYi7NliL57npEzS5yfU+gwYOf8fJ/pEqNpZPT+dMM5HA8hQPLWXBWJ7KN2DDWWi1VpVdCeD/FzF
-	5dq/Hdi+ZUJOnx9vLZpijk62+xQXxxOicnv4+m3PctvT9cHiOTjKCeRHdXHJ2Oxor93G41DfXhW6Z
-	Y47I0riuayC2iYijxS69SHr2K8JFPumnq2AmBMWd34sjxY5wt1lX05ZUZlooXtcjfkkUS6Hu1QI+O
-	Qw++mW0DgGXJSY1aJkHHz+Df55b17NG5H8DJBxUdhDD40Lu/spY+JD5CMaEzNz8F4jqOBpRCexHYw
-	qpHhJN7w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wjxRhP0ySAfSuh95Vk5MQqcLQLZKnugFHC4ONLScWiY=; b=j3UZkw8Po+I4An
+	wtZ8BV5DTsf8z0ySUs7poPhe26+7KJhRc+vOiwvi7/f9p4Q2Q3D2CfjLLaXzgkDCsI9okNPa1bs2+
+	nqxrM+aOBzGnpn4yWbqO9Ck+R7zi04035q/Hp8dSQthQJorrGIUtgU3iRUMjeAGZsIOOKsYcjHSd5
+	rTMY+F11aLg73/2hQmeEfB3p50S3il2cVtx9F3Rd+1zIC09UqAxidytxhklkYbqDg6muULi9+tNLT
+	oSFdVhJdr358eldex7nltS+LcbUJfWp4WCfMEletJBqvaOCXROKznWu0dVjLP+OteIFeF8JutSsk0
+	l5oduML/ubgquwe41oPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFvH-0000000AZy3-0amN;
-	Wed, 25 Nov 2026 16:32:43 +0000
-Received: from mail-francecentralazon11013070.outbound.protection.outlook.com ([40.107.162.70] helo=PA4PR04CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFvD-0000000AZx4-2qRa
+	id 1xWEB7-0000000ACB7-2xtY;
+	Wed, 25 Nov 2026 14:40:57 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWEB0-0000000AC60-2F4D
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 16:32:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h+KMYrQcZerEeBxxh5FYT27/BlQ+/HWM4ojOd7Rmh5n2ujjZwerbPQp7/jasdZVr/RNweDtdsnMwv0C9HXgHgRQCdmW2ZB2F10uMWtXaMFlL7iAxa2vSiZqSFbvMdfjzQFYd28XuZs/4e4KJdVb0YBg8++JOcbltKg1W+/9hN+E31JJP1/je2npfKk4UQmAHZtSfVPF3srI1OPM4TGjq2FtOOeKCSzEh9tspMcU9Ih5G+DXZLqY+HzbmLWcmTADAA7lYIWQdGYy0IizmQqQZYxWcLDhXrC8gsHZL4Tu6EeEFTRY4RyFXV7tTlhWmiEwCB4MwNgBtF7mZ/HduFOs2IQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XBDrLAxJ/0gY83X+GTbCxPKiwrBVv2YxhFcNVdxK9PA=;
- b=abgrCExvgAOmT4Q9fEXrng22Np0l0DCWEY/yfhfgQae3tZH89POtdkJeqE8EqD5ZAOfcz1r4GCQA5qC5YhiAjO0OrDPHrqq0BjMMGcGWvLjk7/mkq05MCXEMe1E2x1EryaH38kh3lqPHJ747sFUKHbWCSPPUOFe68InZ+uFFSq8/whvLJbM4IyCnTxHWYcfzXSiH9gNUmlzTSn4/qxh7iwnlgEitr8LEubcDg8HRtBfIpgYn5DXPBmqFpV6Z7xzVLOJ2e/1fUqXYDVODVQ4iPhAi9XzdjMEycRVecDMUlzzpDh8oySg4abXHmY0lNFnsOl/SCyR938O36wMD9Gu6Cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XBDrLAxJ/0gY83X+GTbCxPKiwrBVv2YxhFcNVdxK9PA=;
- b=j1T7dK6YQiu/XPWyE9nbRdrC7kEFCP2i3Cp5Qfui2nYL5Jbb2GeWL2Huj++u2hvQQG3Y/IkCRmqPxwNGD2aXWMtU3QnED4u7t4NEBZmPaJsogcscgvfP82R2wmlh0TlAEN4RwLAtHSJcsbELWY676sk1Ig8qblN00aTyZ+apt6Og5j7RabWFk9br0DW1DlbmBZs2Nz8XuWvMps/xP56FrbAsPD2Buo1dH+YK3wV0G0NH7i+SiFZ1OTJ/hbAOwA8yqNcz8gaRGno1Xw7BlzqbiCIiwVnM4d4Vj40zwZJl/m6685L9/PkhneOEOMvpw1acTUEqJ4uoYVksUxQhJoTHvw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV1PR04MB10425.eurprd04.prod.outlook.com (2603:10a6:150:1d3::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
- 2026 16:32:33 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 16:32:26 +0000
-Date: Wed, 25 Nov 2026 10:32:18 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Dinesh kumar v <dineshkumarv85@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@pengutronix.de, festevam@gmail.com
-Subject: Re: [PATCH v4 3/3] arm64: dts: imx95: Add ADLINK LEC-iMX95 board
- support
-Message-ID: <awcNkgqB2YsIOusn@SMW015318>
-References: <20261125113845.297658-1-dineshkumarv85@gmail.com>
- <20261125113845.297658-4-dineshkumarv85@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261125113845.297658-4-dineshkumarv85@gmail.com>
-X-ClientProxiedBy: CPAP307CA0004.DNKP307.PROD.OUTLOOK.COM
- (2603:10a6:380:3::17) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Wed, 25 Nov 2026 14:40:53 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 30957339;
+	Wed, 25 Nov 2026 06:40:47 -0800 (PST)
+Received: from e133894.arm.com (e133894.arm.com [10.2.80.62])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 96C943F632;
+	Wed, 25 Nov 2026 06:40:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795617650; bh=xI6Bx+DRd6qV9BRK2flVYFoGmMyaqfFHrTCnranM448=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=jDvK+9frWUPXJmnM1wB97wlAJUun+mipTuVzBC1mJCs96T3NaCeUwG1LaFQDXm5BF
+	 Zuwy9JPhUAdROU+/05DwxdZBVKwvozjjx2QQwvBvMP57gtrGSwK2dhAwDMnepmy9v1
+	 QI7zDzeRgAQ/mfb+XVIr365O422zPwkg1MniyDmE=
+From: Sascha Bischoff <sascha.bischoff@arm.com>
+Date: Wed, 25 Nov 2026 14:40:30 +0000
+Subject: [PATCH v4 08/13] irqchip/gic-v5: Invalidate ITS device cache
+ before freeing ITT
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV1PR04MB10425:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7934d6e3-cddf-41cb-1955-08df4b11b107
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|19092799006|23010399003|376014|7416014|366016|18002099003|22082099003|4143699003|11063799006|10067099003|56012099006|261026140227099003|261022075727099003|261022105027099003|261028144727099003;
-X-Microsoft-Antispam-Message-Info: rMKQYOHKfyT3MEfgIdDhTbucbvwWA/e9pFGx34UgcqLk+7daY0Q7zJgUsXarLf0fSrJLgnNdkfv4Bu/cKKqdZaBWRUPoWnmVDmge5Q8F/WQAAYP87AMJw2u0Qd9MGYW0bwFDkl77rdNaikDn0EXjXRTmHphz7UaO7ufuCEeWCAMwFBbwXL88lUTcjtopCIVfcM0GC2Z5hK5Buq7pESeDmdBEGtmdWZU0786Bl4pE9WzmVcjDoTnbB/9wcKHCB2nu+GkhlrmMsGT7HIys0RkUhQuusAa5Fwd/BjloconfwTydar1lm+oGinZuPY4zMCdaB+VlgPN/rQXOK7N467J0TcSgPEJQM2ME5FRLD37hsV3E1vAHOmwDn2xMkUrSqfJvZMbvL2aS8dBCPxFs3uibXIv1Ggoois6J5W00jo8NxfwFLW/A/e/uBPPWu0a8x0s8FI7wo+PtxnwdXhLy4YXnGzTNu2clhDrCs5De7cv+PIPB0q32oJkVRfBaKZ71mvSz0RLfH5Yb0gFtugK20QVgsatHbp6rwOaDa145iFSV0vUMCROaWCsmihmAya0v+YTxPQPOQbqYDqzIAu038l0piYrOl/Z96XMTjxmdo105h6TCH6MgioCSKEdgVX8q7hvjua/iujGkbJ3Lra2Xys3Jx9hEZm1krv/FxeH+LdrAf1I=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(23010399003)(376014)(7416014)(366016)(18002099003)(22082099003)(4143699003)(11063799006)(10067099003)(56012099006)(261026140227099003)(261022075727099003)(261022105027099003)(261028144727099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tCAcztSzpRGHys4K/LHNSOiwwtJLtIInEIyG+hGtCGnFeE6LZHeur40xeK0i?=
- =?us-ascii?Q?fxnjLv/v677XPEVAcg7/xJQ/ApOR5tLOD69IL2IfafBne6tnU/SXvLe8mETD?=
- =?us-ascii?Q?2JGjfDeMlYfSazK61UxzE3ERZ/5fuPokCRlat+bezebwvsTU5uuh4/jQDCXh?=
- =?us-ascii?Q?cm2pRoDoFb0cCMtN5pxWG8Ox3lgcGF6/1fXHDP+LENkX4eyhLqfni4W/vK6f?=
- =?us-ascii?Q?6EkXB0+VHnScXh1C3+PvRfYzVjYfrV8QMW9C6m7Lo02mIzGGnTENomlMmrUR?=
- =?us-ascii?Q?bs5lkkknfxETFxTjfHzrqzeHu7qXkgN/xtHEuYrtdZFslvOW1RedpA3DUO8d?=
- =?us-ascii?Q?rBxTtO+BO1emWmapqQDO+yqP47MvmZowJO7ootD84J91p4bz8Q8GFckzYYo2?=
- =?us-ascii?Q?p6aZL3YLAe3a/jym1BUvGxab7TGYDgt5MnTpAo4LWRAWnXK8LFzd0r2Q7Y8o?=
- =?us-ascii?Q?bnFOY7V2bEYplyrKZHD0rG+hrvmZMsmzQuP9na5XjHxQuyu9/pbVvm3UdzMB?=
- =?us-ascii?Q?QYSzyRlTmIaPv7n5NyBOVx5Rn8kvdG6MhvadrePJcO6nrgWcupxFSjakq0GA?=
- =?us-ascii?Q?vyPMR18zLM/lyaYO9u4mXtZb1HwCLn4CNN9qf9udToD0b7iHq7CjbnxjYAYm?=
- =?us-ascii?Q?MK2QhmudaFsTXT0foLJAXoWsQYF4oCFX3ygTjdWB4FLqlZaMU1FLLHHwfUOA?=
- =?us-ascii?Q?pir2VkjeT1NynpmPEIq6H3DNVU6UkX7YcCRxFNgFpIRDmYeJdl9rC0xsPfOS?=
- =?us-ascii?Q?aA1zEt8OcSnd2+3+5VhWGyU7FmHua9lIgLo/Z7kFAn2BOXUjnryeuwd7k2in?=
- =?us-ascii?Q?t7rVk0qFZ1JfmtkcsULqXyq9okqQrnaM1AFA3s7pjX8oYH3x4bh0CLVRkvSU?=
- =?us-ascii?Q?k5NHBY2YUd8ZN69tdqlFQSyiWBAWuS+cnkWW/skHw11LIw6Ufw5cE5v+hu8F?=
- =?us-ascii?Q?MEXBHa2FpTMr2qfkZN47urI8HkKmPyX0on0RmAr3McP5DBnU3UjxRbRW8oiV?=
- =?us-ascii?Q?WAyW6vbmtvjLOMC9WkauRioJog7WFaOcpslwJ89wrLJnFaI3bgMaZ7rds2uX?=
- =?us-ascii?Q?doQ0fEwWzU3julsp0+gFb+37vfEttojjZoTXYn0GWMZ119JwQhGi2ZTf37DJ?=
- =?us-ascii?Q?T7jeBPL5WSiw6basWJxGmjIzuEA7T0zwhLcVtrAysou7WS84+QWwSBJ2ipE5?=
- =?us-ascii?Q?nJfdEu5iZxAnTyk9c2cGbXY7SRLy2HVx1k4bTR+0jjuHYa5Q4qoaJ7Y0XoH2?=
- =?us-ascii?Q?qttPfhSESArOwsbJ4vlvKP1D0H/grEMqkfiQeJgta/CaWOjFA4l3PK656ESU?=
- =?us-ascii?Q?e7SIOVFf7m9JkrOgXb040A+qjVJwyW1jaBNKcp0UGz70C7Y/c8XNsm+1bwNg?=
- =?us-ascii?Q?xAcEUF3wWqafzxRWwZEyyoJ+L4y+YhksvpIQCtabojQAE+ofk8zB8DA3ohlS?=
- =?us-ascii?Q?LcLL5VODmgjmeKRUSzETmSD80ON62OQSki1gXLUfkxukbcNQisqHUKQLE94v?=
- =?us-ascii?Q?VChWCqZ+PwvqkYWzdqvm2H5pXrHkQxnfn5JGJuY5TVrZDdOnyoQzJTSfN5hD?=
- =?us-ascii?Q?8j+xqSmEJ4Jtit0j4LtueFb8XXz0mZo86Nyi5VsKd7qziY4SMLYUXibDl+wE?=
- =?us-ascii?Q?8K49yI8nx9/ZwsydUnLw3S5czqidsWuK7xD+wI2yPB+w38364maKTKB7ass0?=
- =?us-ascii?Q?qihD5Sz8xgvKbBkbcgSTpeLrAquP60/DtxVwf2iQKUaF00SVWjGRJuPwCO9S?=
- =?us-ascii?Q?kWiahoJLqUlpHAXAxaKiAeDbflgh7+3ao716g62ivglBkuARwSzR?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7934d6e3-cddf-41cb-1955-08df4b11b107
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 16:32:26.8760
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yv3s6ZNgNFMtM0N35LIccC8SmImvLNhg6hbfxlbtkbLCkOgj2pPnlf946boQ4SF3VE8SDSyQgS9eUYaiTyelW9eRRIyGV03DfNUmYyY2ZR0E2Ms0cTv2ipm7gSRF4zd2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10425
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-host_gicv5_fixes-v4-8-0469743c47d8@arm.com>
+References: <20261125-host_gicv5_fixes-v4-0-0469743c47d8@arm.com>
+In-Reply-To: <20261125-host_gicv5_fixes-v4-0-0469743c47d8@arm.com>
+To: Marc Zyngier <maz@kernel.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>, Radu Rendec <radu@rendec.net>, 
+ Timothy Hayes <timothy.hayes@arm.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Jonathan Cameron <jic23@kernel.org>, 
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Fuad Tabba <fuad.tabba@linux.dev>, 
+ Sascha Bischoff <sascha.bischoff@arm.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_083239_816523_23D9C2C2 
-X-CRM114-Status: GOOD (  13.06  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261125_064050_629342_22ED7363 
+X-CRM114-Status: GOOD (  13.07  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,140 +76,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 05:08:45PM +0530, Dinesh kumar v wrote:
-> Add device tree support for the ADLINK LEC-iMX95 module
-> with the I-Pi SMARC Plus carrier board.
->
-> Signed-off-by: Dinesh kumar v <dineshkumarv85@gmail.com>
-> ---
-...
-> +
-> +&lpi2c8 {
-> +	status = "okay";
-> +
-> +	/* SX1509(2) U1001@IPi SMARC Plus */
-> +	i2c8_gpio_expander_3e: pinctrl@3e {
-> +		/*
-> +		 * GPIO Expander 2 Mapping:
-> +		 * - 0: E_GPIO1_0	<=>	IPi SMARC Plus CN101_PIN29: E_GPIO1_0
-> +		 * - 1: E_GPIO1_1	<=>	IPi SMARC Plus CN101_PIN31: E_GPIO1_1
-> +		 * - 2: E_GPIO1_2	<=>	IPi SMARC Plus CN101_PIN32: E_GPIO1_2
-> +		 * - 3: E_GPIO1_3	<=>	IPi SMARC Plus CN101_PIN33: E_GPIO1_3
-> +		 * - 4: E_GPIO1_4	<=>	IPi SMARC Plus CN101_PIN35: E_GPIO1_4
-> +		 * - 5: E_GPIO1_5	<=>	IPi SMARC Plus CN101_PIN36: E_GPIO1_5
-> +		 * - 6: E_GPIO1_6	<=>	IPi SMARC Plus CN101_PIN37: E_GPIO1_6
-> +		 * - 7: E_GPIO1_7	<=>	IPi SMARC Plus CN101_PIN38: E_GPIO1_7
-> +		 * - 8: E_GPIO2_8	<=>	IPi SMARC Plus CN101_PIN40: E_GPIO2_8
-> +		 * - 9: TP1002		<=>	IPi SMARC Plus TP1002
-> +		 * - 10: TP1003		<=>	IPi SMARC Plus TP1003
-> +		 * - 11: TP1004		<=>	IPi SMARC Plus TP1004
-> +		 * - 12: TP1005		<=>	IPi SMARC Plus TP1005
-> +		 * - 13: TP1006		<=>	IPi SMARC Plus TP1006
-> +		 * - 14: TP1007		<=>	IPi SMARC Plus TP1007
-> +		 * - 15: TP1008		<=>	IPi SMARC Plus TP1008
-> +		 * - 16: OSCIO		<=>	IPi SMARC Plus TP1001
-> +		 */
+A cached device table entry can still reference the ITT after its
+memory is freed via kfree(), even if the DTE has been marked as
+invalid. Once the memory has been released, it could be reallocated,
+and it would be unfortunate for the hardware to interpret this as a
+valid ITT.
 
-The below gpio-line-names already include the same informaiton, needn't
-duplicate it here.
+Invalidate the device cache and wait for completion before freeing the
+ITT during device teardown.
 
-> +		compatible = "semtech,sx1509q";
-> +		reg = <0x3e>;
-> +		#gpio-cells = <2>;
-> +		#interrupt-cells = <2>;
-> +		gpio-controller;
-> +		interrupt-controller;
-> +		/* GPIO2_IO22 (module FAN_PWM_1V8) is the expander IRQ on this carrier */
-> +		interrupt-parent = <&gpio2>;
-> +		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-0 = <&pinctrl_gpio_exp_3e>;
-> +		pinctrl-names = "default";
-> +		gpio-line-names =
-> +			"E_GPIO1_0",		/* 0 - CN101 Pin 29 */
-> +			"E_GPIO1_1",		/* 1 - CN101 Pin 31 */
-> +			"E_GPIO1_2",		/* 2 - CN101 Pin 32 */
-> +			"E_GPIO1_3",		/* 3 - CN101 Pin 33 */
-> +			"E_GPIO1_4",		/* 4 - CN101 Pin 35 */
-> +			"E_GPIO1_5",		/* 5 - CN101 Pin 36 */
-> +			"E_GPIO1_6",		/* 6 - CN101 Pin 37 */
-> +			"E_GPIO1_7",		/* 7 - CN101 Pin 38 */
-> +			"E_GPIO2_8",		/* 8 - CN101 Pin 40 */
-> +			"",			/* 9 - TP1002 */
-> +			"",			/* 10 - TP1003 */
-> +			"",			/* 11 - TP1004 */
-> +			"",			/* 12 - TP1005 */
-> +			"",			/* 13 - TP1006 */
-> +			"",			/* 14 - TP1007 */
-> +			"",			/* 15 - TP1008 */
-> +			"";			/* 16 - OSCIO / TP1001 */
-> +		semtech,probe-reset;
-> +	};
-> +};
+Fixes: 57d72196dfc85 ("irqchip/gic-v5: Add GICv5 ITS support")
+Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+Acked-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: stable@vger.kernel.org
+---
+ drivers/irqchip/irq-gic-v5-its.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-...
-> +
-> +	/* U1000 SX1509BIULTRT_SEMTECH on module */
-> +	i2c2_gpio_expander_71: pinctrl@71 {
-> +		/*
-> +		 * GPIO Expander Mapping:
-> +		 * - 0: ENET1_RST_B_3V		=>		U2001
-> +		 * - 1: ENET2_RST_B_3V		=>		U2101
-> +		 * - 2: SERDES_RST#_3V		=>		SMARC S77 PCIE_C_RST
-> +		 * - 3: RC210_EN_3V		=>		U1300, RC21008B001GND
-> +		 * - 4: LT9611_RSTN_3V		=>		U1500
-> +		 * - 5: HDMI_INT_3V		<=		U1500
-> +		 * - 6: PCIEA_RST#_3V		=>		SMARC P75
-> +		 * - 7: PCIEB_RST#_3V		=>		SMARC S76
-> +		 * - 8: TPM_RST_N_1V8		=>		U2400
-> +		 * - 9: LID#_1V8		<=	R1005	SMARC S148
-> +		 * - 10: SLEEP#_1V8		<=	R1010	SMARC S149
-> +		 * - 11: CHARGING#_1V8		<=	R1007	SMARC S151
-> +		 * - 12: CHARGER_PRSNT#_1V8	<=	R1011	SMARC S152
-> +		 * - 13: BATLOW#_1V8		<=	R1014	SMARC S156
-> +		 * - 14: TEST#_1V8		<=	R1015	SMARC S157
-> +		 * - 15: DSI0_TE_1V8		<=	R1087	SMARC S144
-> +		 */
+diff --git a/drivers/irqchip/irq-gic-v5-its.c b/drivers/irqchip/irq-gic-v5-its.c
+index 876437017ccc..dce5bfd1a78d 100644
+--- a/drivers/irqchip/irq-gic-v5-its.c
++++ b/drivers/irqchip/irq-gic-v5-its.c
+@@ -556,6 +556,7 @@ static int gicv5_its_device_unregister(struct gicv5_its_chip_data *its,
+ 				       struct gicv5_its_dev *its_dev)
+ {
+ 	__le64 *dte;
++	int ret;
+ 
+ 	dte = gicv5_its_devtab_get_dte_ref(its, its_dev->device_id, false);
+ 
+@@ -568,9 +569,10 @@ static int gicv5_its_device_unregister(struct gicv5_its_chip_data *its,
+ 	/* Zero everything - make it clear that this is an invalid entry */
+ 	its_write_table_entry(its, dte, 0);
+ 
++	ret = gicv5_its_device_cache_inv(its, its_dev);
+ 	gicv5_its_free_itt(its_dev);
+ 
+-	return gicv5_its_device_cache_inv(its, its_dev);
++	return ret;
+ }
+ 
+ /*
 
-merge to comment of gpio-line-names
-
-Frank
-> +		compatible = "semtech,sx1509q";
-> +		reg = <0x71>;
-> +		#gpio-cells = <2>;
-> +		#interrupt-cells = <2>;
-> +		gpio-controller;
-> +		interrupt-controller;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-0 = <&pinctrl_sx1509q>;
-> +		pinctrl-names = "default";
-> +		gpio-line-names =
-> +			"ENET1_RST_B_3V",	/* 0 */
-> +			"ENET2_RST_B_3V",	/* 1 */
-> +			"SERDES_RST#_3V",	/* 2 */
-> +			"RC210_EN_3V",		/* 3 */
-> +			"LT9611_RSTN_3V",	/* 4 */
-> +			"HDMI_INT_3V",		/* 5 */
-> +			"PCIEA_RST#_3V",	/* 6 */
-> +			"PCIEB_RST#_3V",	/* 7 */
-> +			"TPM_RST_N_1V8",	/* 8 */
-> +			"SMARC_LID#",		/* 9 */
-> +			"SMARC_SLEEP#",		/* 10 */
-> +			"SMARC_CHARGING#",	/* 11 */
-> +			"SMARC_CHARGER_PRSNT#",	/* 12 */
-> +			"SMARC_BATLOW#",	/* 13 */
-> +			"SMARC_TEST#",		/* 14 */
-> +			"DSI0_TE_1V8",		/* 15 */
-> +			"";			/* 16 - OSCIO */
-> +		semtech,probe-reset;
-> +	};
-> +};
+-- 
+2.34.1
 
 
