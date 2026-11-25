@@ -2,71 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38C6606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A28B606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:15:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oQYsbCQM;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hz1BodnZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v4lUXYGm;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=VIGk9WID;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=wmBirQqP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=eNx5ZwxwQF3pCAIZSJDgbBLvyG1xG91t2PRrZIJMuvY=; b=oQYsbCQMQisbRYGD076kbfcKQo
-	ejhu6WqNIpyizXXEjWYjXJL5otVJi0KUyhkYT3bDfIongWEcOyWo03a9zCYoc0b4tyCZZGLPt4K/s
-	RFCxxZamfPHMDD6hu7KDfRx6Iy/Tt4wcY3ma9E4QLpvgS3LdLNHhJDGcNJUi5Bx3LcVBBITqT+Irr
-	rnKeoGP87IWJEl8j0hzsvYdpQyI0wHMv1sdOBAoVtJIlcIxMqapoB0em6zbe3AQqHnitBrgnAo1gz
-	0Rfawna+SBHEiyrCp9QT8mR/hVnAZbGDbS1f4ESK7mcZhD/MCiz/9L/Hy2dNTF+g3/JyrCZZsDjzA
-	OFoZXMZw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=0jHuOkcW+tUuXEgN+rjlY+VwX3B9wkvVTb2a5wTh6Hw=; b=v4lUXYGmISXlmO
+	KijUA0oIN6jP5Ke4bPsfbXsmmGC9cnuYsrwELMRl555SV5roCGdkPv7hPN8nikNFm8ozGmm4v23uI
+	tNs0B3EaXkzpWMZN2/VBe/nwXD0UsO8h/QaPChpq9XM4qEV3bLecF7B10/1IGVl6a753kV8jCaCv9
+	VVYgGjJv0YlDAKKT9yWpxpAzSz4lOY4hwdoipAxo7LXC5b8OMa6j7i5MzhnkTNxdTtO1YWnCHGbIU
+	ZPR243I9+rG1wyJr0H42aVyzkujZkcaPl6xwcxqn5RdMLpVvdOXsMnH0wSpUnHDia40Enf1b8xiFG
+	JaqXvWli4GE0yzo3DigQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHQ6-0000000AxQF-2F55;
-	Wed, 25 Nov 2026 18:08:38 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xWHB6-0000000Aow9-1wNR;
+	Wed, 25 Nov 2026 17:53:08 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHQ4-0000000AxPh-2xT7
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 18:08:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3C47246608
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:08:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DCAF1F00ACF
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:08:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795630116;
-	bh=eNx5ZwxwQF3pCAIZSJDgbBLvyG1xG91t2PRrZIJMuvY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=hz1BodnZcBZT/KUwNGE15a/sxBOr1vuiHCkTfm7U6wkJkAQdx0ore508uH+2Dx2cx
-	 YU6ThbEHy3L5YaWUAx1ZkYdNoqGrUskSAJKSsLpYfKR/ewNgQuQelvtdeWq+anG+tf
-	 hux2kmccH24GanEaohs+3C8bKyd85w2TaippKDpmJLPYoe8o6vCBtighNFHySpYc/2
-	 9rxxShcP+EpmowKq2i0l6jHMgeuarQlzPXHXtN3tDoj/ReAseB5Tyi8llFQ2q4Lb5o
-	 Cn1apVqM9Ied3S1tfgh0b9UyremBYtzFylKEiEko+rBtW1FCZsepAENxuWxwQ95/ww
-	 hH6qxEtD8gFSw==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5c158c4c15fso7504800e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:08:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEqbTSYJB++1FuzB/TiG2YVXgz9dvOwUuG6/SyfN+PqqpMuVQ7ZF837a/QdAJ3p/3YV462Akh0twuMfG49+J9jp@lists.infradead.org
-X-Gm-Message-State: APuU4Z/zFt8RomtCGaTMI5+3i5MuzxGOt11ZmQU7tnLn1WXntdGwINhh
-	yXpDgfucdTyE2k+/2ojHEwadjwsB7fqXucE7e0id2/JrrAvJi+0WoOa4qqwQPJ0j/KvQLYFyZsi
-	vkvO6jtB6Pk0T1owdfSg2RJ85zIaw2t0=
-X-Received: by 2002:a05:6512:85c6:10b0:5c3:182f:bac5 with SMTP id
- 2adb3069b0e04-5c3182fbd1fmr1537008e87.0.1795630114620; Wed, 25 Nov 2026
- 10:08:34 -0800 (PST)
+	id 1xWHAT-0000000AnyD-3f87;
+	Wed, 25 Nov 2026 17:52:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=0jHuOkcW+tUuXEgN+rjlY+VwX3B9wkvVTb2a5wTh6Hw=; b=VIGk9WIDUc7iajsQONrkScZsMa
+	GGOF9skkLmqrSKlgNSA3CzwnE6gL14sqNeXnSadzZW/gFR9GmXA2R/jld31k/pKbs+nZ7qurg4The
+	VBFz7yVZR0qX4GXdigPUKKYj0RcfmVkpTBi25ZpZ0iTHs0hZh7VkYpELquhu8xuOnaRWdZIdseRrZ
+	Dtpc1bWLcR4ogfZY+Q5SpbKgwPH59fUUSKsSSg6tmeMI7++jn2FhuUWOO8JkW5rj3dHg5IrcpZvN3
+	LY3kkQI3wmQm01ZdJKtLCWO5Wwyli9cx1zfTWVBG8QfDcYFv34hYGu6aOK17Q0Jry4cnaEw7BKx6r
+	daj75RRA==;
+Received: from smtpout-02.galae.net ([185.246.84.56])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWHAQ-00000005bAR-29XG;
+	Wed, 25 Nov 2026 17:52:28 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 24D3B1A17FF;
+	Wed, 25 Nov 2026 17:52:15 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EBD1760480;
+	Wed, 25 Nov 2026 17:52:14 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E9BB11E6B0CA;
+	Wed, 25 Nov 2026 18:52:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795629132; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=0jHuOkcW+tUuXEgN+rjlY+VwX3B9wkvVTb2a5wTh6Hw=;
+	b=wmBirQqPwYrB8cMXgwKVXCQ+dRgEdqiLvomU2P2fI5aIOAtcy3iU7XbOUAhwM3IizD201/
+	C3XFza9eM2aD+WwEWX+dWOUkceFb5V6jKXGVvahBq7f/MipyZOPNQ8bTKCkB3nBcYHkmMS
+	dAatQ6aOTwgKEQdqhjbyNPD8TxLt9uECyAQj8nIKQ9y2z1S72bQhmIJBS4tnOhr5JNUB7f
+	dgdQYHYT7jWrKIymy4D4Y2E9hE7q8cOQz6vcPX2tR8nnVYtLPMlreafxGz/9GfgQw+1e/b
+	coqZKJH9p4b5z0I4Cn31ov6B67gWCgfbZxiL8cpWv9ZcFNXHu25n0On5CX480Q==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:20 +0100
+Subject: [PATCH RFC 06/16] spi: amlogic: spifc-a4: Consume dummy cycles
+ directly
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261111114225.3977243-1-ruanjinjie@huawei.com> <20261111114225.3977243-2-ruanjinjie@huawei.com>
-In-Reply-To: <20261111114225.3977243-2-ruanjinjie@huawei.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 25 Nov 2026 19:08:22 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=mQ8h=6zGUBcc3F9mrafft7V0_tx=jTuv6U7y0ivqNqw@mail.gmail.com>
-X-Gm-Features: Aa3M54q6226d-LNf-pEP1kf8MunikGkNJM-jG6MXhZoLCqA1MQYdS9z2y0_SJt8
-Message-ID: <CAD++jL=mQ8h=6zGUBcc3F9mrafft7V0_tx=jTuv6U7y0ivqNqw@mail.gmail.com>
-Subject: Re: [PATCH v21 01/15] arm64: ptrace: Fix spurious pseudo-single-step
- for PTRACE_SYSEMU_SINGLESTEP
-To: Jinjie Ruan <ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-6-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_175226_457345_A48756C5 
+X-CRM114-Status: GOOD (  13.09  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,74 +105,65 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, kees@kernel.org, catalin.marinas@arm.com, oleg@redhat.com, linux-kselftest@vger.kernel.org, will@kernel.org, shuah@kernel.org, peterz@infradead.org, thuth@redhat.com, vladimir.murzin@arm.com, ryan.roberts@arm.com, anshuman.khandual@arm.com, kevin.brodsky@arm.com, broonie@kernel.org, mathieu.desnoyers@efficios.com, linux-arm-kernel@lists.infradead.org, wad@chromium.org, yeoreum.yun@arm.com, linux-kernel@vger.kernel.org, luto@amacapital.net, james.morse@arm.com, liqiang01@kylinos.cn
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 12:43=E2=80=AFPM Jinjie Ruan <ruanjinjie@huawei.com=
-> wrote:
+The spi-mem layer is now capable of providing the dummy phase in cycle
+units rather than bytes, provided that drivers advertize the dummy_cycle
+capability. Since this controller is consuming cycles and currently
+converts bytes into cycles, flag it capable to consume cycles directly
+and drop the extra conversions.
 
-> PTRACE_SYSEMU_SINGLESTEP sets both _TIF_SYSCALL_EMU and _TIF_SINGLESTEP.
-> Since commit ac2081cdc4d99 ("arm64: ptrace: Consistently use
-> pseudo-singlestep exceptions"), syscall_trace_exit() injects a
-> pseudo-single-step SIGTRAP (si_code SI_USER) whenever _TIF_SINGLESTEP is
-> set, including for an emulated system call.
->
-> That pseudo-step was added for PTRACE_SINGLESTEP: the system call runs,
-> and the tracer must get a stop at the return address to inspect the
-> result. An emulated system call does not run, and its syscall-enter-stop
-> already reports the SVC, as the x86 implementation and generic entry
-> (report_single_step()) both say. The extra stop is wrong:
->
-> 1) Stepping armed before the SVC (the normal case). The SVC exception
->    leaves the step pending (SPSR_EL1.SS is 0, Arm ARM D2.11.5.1), so the
->    hardware step is taken at the return address anyway, and the tracer
->    now stops there twice without the tracee executing anything:
->
->         syscall-enter-stop  pc=3DL
->         pseudo-step         pc=3DL    si_code=3DSI_USER  <- added by that=
- commit
->         hardware step       pc=3DL    si_code=3DTRAP_TRACE
->         hardware step       pc=3DL+4
->
-> 2) Stepping armed after the SVC, e.g. a tracer resuming a
->    PTRACE_EVENT_SECCOMP stop with PTRACE_SYSEMU_SINGLESTEP. The first
->    stop is the pseudo-step at L, so the instruction at L is not
->    executed before the step is reported. Before that commit, and on
->    x86, the first stop follows the instruction at L.
->
-> Skip the pseudo-step when _TIF_SYSCALL_EMU is set, as generic entry
-> does. The behaviour of PTRACE_SYSEMU_SINGLESTEP goes back to what it was
-> before that commit. PTRACE_SINGLESTEP is unaffected and still gets the
-> pseudo-step, so both problems fixed by that commit stay fixed.
->
-> Only tracers using PTRACE_SYSEMU_SINGLESTEP see the difference. Measured
-> in QEMU, L is the instruction after the SVC:
->
->   case          before that commit   v7.4-rc1      this patch
->   normal        L, L+4               L, L, L+4     L, L+4
->   after seccomp L+4                  L             L+4
->
-> Fixes: ac2081cdc4d99 ("arm64: ptrace: Consistently use pseudo-singlestep =
-exceptions")
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Oleg Nesterov <oleg@redhat.com>
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ drivers/spi/spi-amlogic-spifc-a4.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-This patch looks like something that should be sent separately and
-even considered
-for stable.
+diff --git a/drivers/spi/spi-amlogic-spifc-a4.c b/drivers/spi/spi-amlogic-spifc-a4.c
+index 16346f50c7d9..ac06ea735133 100644
+--- a/drivers/spi/spi-amlogic-spifc-a4.c
++++ b/drivers/spi/spi-amlogic-spifc-a4.c
+@@ -361,13 +361,8 @@ static int aml_sfc_send_cmd_addr_dummy(struct aml_sfc *sfc, const struct spi_mem
+ 	if (ret)
+ 		return ret;
+ 
+-	if (op->dummy.nbytes) {
+-		/*  Dummy buswidth configuration is not supported */
+-		if (aml_sfc_is_xio_op(op))
+-			dummy_cycle = op->dummy.nbytes * 8 / op->data.buswidth;
+-		else
+-			dummy_cycle = op->dummy.nbytes * 8;
+-		cmd = CMD_DUMMY(sfc->cs_sel, dummy_cycle - 1);
++	if (op->dummy.ncycles) {
++		cmd = CMD_DUMMY(sfc->cs_sel, op->dummy.ncycles - 1);
+ 		return regmap_write(sfc->regmap_base, SFC_CMD, cmd);
+ 	}
+ 
+@@ -803,7 +798,7 @@ static int aml_sfc_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
+ 
+ 	dev_dbg(sfc->dev, "cmd:0x%02x - addr:%08llX@%d:%u - dummy:%d:%u - data:%d:%u",
+ 		op->cmd.opcode, op->addr.val, op->addr.buswidth, op->addr.nbytes,
+-		op->dummy.buswidth, op->dummy.nbytes, op->data.buswidth, op->data.nbytes);
++		op->dummy.buswidth, op->dummy.ncycles, op->data.buswidth, op->data.nbytes);
+ 
+ 	ret = aml_sfc_pre_transfer(sfc, DEFAULT_PULLUP_CYCLE, CS_SETUP_CYCLE);
+ 	if (ret)
+@@ -1057,6 +1052,7 @@ static int aml_sfc_ecc_finish_io_req(struct nand_device *nand,
+ 
+ static const struct spi_controller_mem_caps aml_sfc_mem_caps = {
+ 	.ecc = true,
++	.dummy_cycles = true,
+ };
+ 
+ static const struct nand_ecc_engine_ops aml_sfc_ecc_engine_ops = {
 
-Can you please send this patch separately to the arm64 maintainers as
-a fix?
+-- 
+2.56.0
 
-Yours,
-Linus Walleij
 
