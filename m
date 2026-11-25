@@ -2,70 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E89F606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C953606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 18:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IwoYEQFM;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vLnlv7Ue
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CmIc4IMB;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=eh9ipDlL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gUaTgT/L9Tda32pEeg/7pqqNZ4XePlobXYyOs+22GMI=; b=IwoYEQFMrOFGzYhEvVjWgyf9+c
-	XuXbt2IDKEpX9lR1WCeY7WfCsHGOaYj0HD3jVpzrugVd6d1jXQCyZne4otzHcwvBPMpEgklS42Wek
-	txDfpd7/fk3bcgi0Ncg5LmlmxMTsbkULjjDl/IvipcuGKkrmW3Xhzw3bWaiy1HmLf/liamUfH32vy
-	G1+y4hHYWH+hcPH1jDZFqotsQ+Tm2o/6hSi+uoztlZhj6+rUgdn8CoV5aw9b4TBIQ8PFbsOFQxJZL
-	t/B5gqSafTop39wLZsGTtgSOn68KtycV94+VIin9KIDlNc0V5aPDNvBOdyiIOX4ya9TfD+UawrvOg
-	4Kw9k3FA==;
+	bh=LrB37YjSIPn8trdCr4bJ6E7VraYEZnstQn8iE1gmVfc=; b=CmIc4IMBQfjad21bstafa0rQJl
+	HZA/7inyuNT4LkhIc975RCqOJJPLRgWpIeJrqOKIQCInnVbm7/xxtAl8CmN49grNr3dlqDiAPALRd
+	JW2r6/sEX067EfUMyGBNja62i7LDA45pXaoXhXKbCYigJcgMQZ1rqQUVLc2Bam0FYUmozORQB1QSw
+	+P9U71aprJAVPmlzWCZd4iUJfGugw1qH2QWHJ8YXlDA2RXjYrNyswsuFSDzX6tznaCRuyLuUEuxf2
+	trdWwRQedY2zBYFilSPfZJ+Z3YhCdh97TT+io4fN9R4jP3NxiwHOeCCw8hFnqH7lA99tZKsnNDu9r
+	/DoZXqkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHsl-0000000B21Q-1PJg;
-	Wed, 25 Nov 2026 18:38:15 +0000
+	id 1xWHw3-0000000B2S8-1lij;
+	Wed, 25 Nov 2026 18:41:39 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHsh-0000000B20t-3XxL
+	id 1xWHw0-0000000B2Rk-1w5j
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 18:38:13 +0000
+	Wed, 25 Nov 2026 18:41:38 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3F4F01596;
-	Wed, 25 Nov 2026 10:38:07 -0800 (PST)
-Received: from e129823.cambridge.arm.com (e129823.arm.com [10.2.213.3])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 45F0D3FA7A;
-	Wed, 25 Nov 2026 10:38:08 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 412571596;
+	Wed, 25 Nov 2026 10:41:32 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F11C03F632;
+	Wed, 25 Nov 2026 10:41:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795631890; bh=YYDTacQ0zMFUQIMmFtG6l7igW2JccWe5GTb2phppzpo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=vLnlv7Ue2D1XrX3oZdqk0CIChFL03GOmNtvbxrZut4z7xtWvsymSu79JmTlN3tWm+
-	 443ROftGPB9/Dz64pMWtnI1clflZDbxs3FZQO916W3yxkuw4Adq/MCR99fXoBVahvc
-	 CtPDD295ihccZnTbBfoSxVc1DIR8Zu4EE1UFGroA=
-From: Yeoreum Yun <yeoreum.yun@arm.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	akpm@linux-foundation.org,
-	david@kernel.org,
-	pasha.tatashin@soleen.com,
-	ryan.roberts@arm.com,
-	rmclure@linux.ibm.com,
-	baolin.wang@linux.alibaba.com,
-	kevin.brodsky@arm.com,
-	kas@kernel.org,
-	anshuman.khandual@arm.com,
-	Yeoreum Yun <yeoreum.yun@arm.com>
-Subject: [PATCH] arm64: mm: clarify necessity of isb() in emit_pte_barriers()'s comments
-Date: Wed, 25 Nov 2026 18:38:05 +0000
-Message-ID: <20261125183805.1188848-1-yeoreum.yun@arm.com>
-X-Mailer: git-send-email 2.43.0
+	t=1795632095; bh=52zSmMtLrL/2Cilb3mI8GAy27SW4K/XC4afsFkJikIs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eh9ipDlLCcMFGhBh5QibFlDUTE8oO+y7Tb3DQoLizW+1eTCXD02C0/+SWxoXVnOXx
+	 fF7bEQMJIq1/EGwhcPfCC4r/RWN8gS/Dnl5e/jsNQGIUS3pJYbcDL5dENsw3cOM1fC
+	 2yB2kcDBCKzLfNRIZnI75KHSFIzBZzMWDP0eMm9w=
+Date: Wed, 25 Nov 2026 18:41:27 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Lai Jiangshan <jiangshanlai@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	Lai Jiangshan <jiangshan.ljs@antgroup.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Anshuman Khandual <anshuman.khandual@arm.com>,
+	Thomas Huth <thuth@redhat.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: mm: Stop using the previous ASID for init_mm
+Message-ID: <awcr1wwqmkr7ilXp@arm.com>
+References: <20261027100231.31184-1-jiangshanlai@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261027100231.31184-1-jiangshanlai@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_103811_929838_5C252930 
-X-CRM114-Status: GOOD (  11.37  )
+X-CRM114-CacheID: sfid-20261125_104136_887276_7B256693 
+X-CRM114-Status: GOOD (  28.29  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,55 +72,104 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The dsb() in emit_pte_barriers() makes the pte store visible to the
-table walker. However, without FEAT_ETS2, address translation for a
-subsequent data access may occur speculatively before the dsb() completes,
-potentially observing the old invalid PTE according to
-Arm ARM DDI0487 M.d:
+On Tue, Oct 27, 2026 at 06:02:27PM +0800, Lai Jiangshan wrote:
+> From: Lai Jiangshan <jiangshan.ljs@antgroup.com>
+> 
+> Switching to init_mm should prevent further accesses through the
+> previous address space's translations.
+> 
+> Commit e53f21bce4d3 ("arm64: Use the reserved TTBR0 if context switching
+> to the init_mm") avoided installing init_mm.pgd as a user page table.
+> At the time, the ASID was held in TTBR0, so installing the reserved
+> TTBR0 also switched to ASID 0.
+> 
+> Since commit 7655abb95386 ("arm64: mm: Move ASID from TTBR0 to TTBR1"),
+> installing the reserved TTBR0 no longer changes the active ASID.
+> Consequently, switching to init_mm leaves the CPU using the previous
+> address space's ASID. An empty page table does not prevent TLB hits
+> for that ASID.
+> 
+> This can retain access beyond the lifetime of the backing pages.
+> During fullmm teardown, user data pages can be freed before their
+> cached translations are invalidated. If those pages are subsequently
+> reused for kernel data, an erroneous uaccess that hits a surviving
+> translation can read or corrupt that data instead of faulting.
+> 
+> Fixes: 7655abb95386 ("arm64: mm: Move ASID from TTBR0 to TTBR1")
+> Signed-off-by: Lai Jiangshan <jiangshan.ljs@antgroup.com>
 
-  B2.6.9 Data Synchronization Barrier
-  ...
-  In addition, no instruction that appears in program order after the DSB
-  instruction can alter any state of the system or perform any part of
-  its functionality until the DSB completes other than:
-  ...
-    - If FEAT_ETS2 is not implemented, translating any virtual addresses of
-      instructions that generate Explicit Memory Effects.
-  ...
+Sorry for the delay. I looked at this again and it is indeed a bug but I
+doubt you can trigger it. It relies on some erroneous uaccess to the old
+pages. It also doesn't bring new TLB entries associated with the wrong
+ASID. The CPU hotplug window is pretty small. The efi_virtmap_unload()
+can also end up with the init_mm if no user spare ran.
 
-Document this behavior and reference Arm ARM DDI0487 M.d, B2.6.9 to
-clarify why the dsb() alone is insufficient to prevent a spurious fault.
+Worth fixing though.
 
-Signed-off-by: Yeoreum Yun <yeoreum.yun@arm.com>
----
- arch/arm64/include/asm/pgtable.h | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+> diff --git a/arch/arm64/include/asm/mmu_context.h b/arch/arm64/include/asm/mmu_context.h
+> index 803b68758152..7e56099c5fbb 100644
+> --- a/arch/arm64/include/asm/mmu_context.h
+> +++ b/arch/arm64/include/asm/mmu_context.h
+> @@ -235,15 +235,6 @@ enter_lazy_tlb(struct mm_struct *mm, struct task_struct *tsk)
+>  
+>  static inline void __switch_mm(struct mm_struct *next)
+>  {
+> -	/*
+> -	 * init_mm.pgd does not contain any user mappings and it is always
+> -	 * active for kernel addresses in TTBR1. Just set the reserved TTBR0.
+> -	 */
+> -	if (next == &init_mm) {
+> -		cpu_set_reserved_ttbr0();
+> -		return;
+> -	}
+> -
+>  	check_and_switch_context(next);
+>  }
+>  
+> diff --git a/arch/arm64/mm/context.c b/arch/arm64/mm/context.c
+> index 0f4a28b87469..a96ebe904dd7 100644
+> --- a/arch/arm64/mm/context.c
+> +++ b/arch/arm64/mm/context.c
+> @@ -218,6 +218,16 @@ void check_and_switch_context(struct mm_struct *mm)
+>  	unsigned int cpu;
+>  	u64 asid, old_active_asid;
+>  
+> +	/*
+> +	 * init_mm.pgd contains kernel mappings, so use the reserved page
+> +	 * tables for TTBR0 and switch TTBR1 to ASID 0. Leave active_asids
+> +	 * unchanged to preserve the ASID rollover bookkeeping.
+> +	 */
+> +	if (mm == &init_mm) {
+> +		cpu_do_switch_mm(__pa_symbol(reserved_pg_dir), mm);
+> +		return;
+> +	}
 
-diff --git a/arch/arm64/include/asm/pgtable.h b/arch/arm64/include/asm/pgtable.h
-index a474c9fb485ad..6101357539f31 100644
---- a/arch/arm64/include/asm/pgtable.h
-+++ b/arch/arm64/include/asm/pgtable.h
-@@ -45,7 +45,10 @@ static inline void emit_pte_barriers(void)
- 	/*
- 	 * These barriers are emitted under certain conditions after a pte entry
- 	 * was modified (see e.g. __set_pte_complete()). The dsb makes the store
--	 * visible to the table walker. The isb ensures that any previous
-+	 * visible to the table walker.
-+	 * However, without FEAT_ETS2, address translation for a subsequent
-+	 * data access may occur speculatively before the dsb completes
-+	 * (see Arm ARM DDI0487 M.d, B2.6.9). The isb ensures that any previous
- 	 * speculative "invalid translation" marker that is in the CPU's
- 	 * pipeline gets cleared, so that any access to that address after
- 	 * setting the pte to valid won't cause a spurious fault. If the thread
+I don't think we need the full cpu_do_switch_mm() machinery here. Can we
+not simply set the reserved ASID in __switch_mm()? Something like:
+
+	if (next == &init_mm) {
+		unsigned long ttbr1 = read_sysreg(ttbr1_el1);
+
+		cpu_set_reserved_ttbr0_nosync();
+		write_sysreg(ttbr1 & ~TTBRx_EL1_ASID_MASK, ttbr1_el1);
+		isb();
+		return;
+	}
+
+Or just add the above to a new cpu_set_reserved_ttbr0_asid() function
+and call it. I think that's the only case where we need to set the
+reserved ASID.
+
+Thanks.
+
 -- 
-LEVI:{C3F47F37-75D8-414A-A8BA-3980EC8A46D7}
-
+Catalin
 
