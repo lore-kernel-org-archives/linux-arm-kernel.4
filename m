@@ -2,162 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F0C606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84B1606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0TQMOvZA;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=nIH9XPRi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vThCUhip;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=UJ7NTgBB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=HoGHuuCJqVBarNUeKNtLkdgRV7zB7adrLppZX0CgIkQ=; b=0TQMOvZASvkAziwCha4goR+ZpY
-	MewUo5xvZA2oEJHR5MHawxCw2yGzDto2vcpTm0JFvQch6mpLkIDHZCRwonlK1jTyvkyE6MlJnKlVG
-	4ZGLQfloFZwERpE+t0pFn2k/2l1F5AtEInr3TJ4pHJSKlBzCu/3D7qQxmPWjBEh6rvCLP/zLgaE/k
-	OQm2RrkDCCMPvaFruB0N82+XHpCXZAzhZFLTAgB06Bz2KimK/8Upl2voUmnC9YJy3n5YJB5mgh97v
-	bZI4nPGSd/+7O760MHaToHqVyaBWHZdlJ9Kp/s8cFkH+iY4DsD2q8qoLJOrf653WeuDNSnyZbi8f6
-	pGXxNcRw==;
+	bh=w6xtuLM9HrxHujYVMQV7MBMbD4qoIrs9MPoeBowe9/w=; b=vThCUhipAyEZZOhtgt6mrIamVH
+	GuYRQUOjkkPtc0/ayKIvT2DQtNEvo3HmLeRDBpmMDkb54EmnmT0D0G+0PkSzcfePtutaFapLbWIBG
+	N3cVkztAy4/g7V7KiRbETQQSOv7GHMq3Db2hR8jYAET1qJoiw3HsIqZ5qw2j+C3mbpAZSrAKCuMnz
+	+rybKkhsZPbGQXfrHBxnWBPJ7gZ0kmoK8+VnWEpCnBMF2uUJX0ULTFXjjuu78DIGRAsiL+1ZV4opV
+	80zBJ/S5jb/tD04SN/KEtQoz8KtnK+x+oXesfsw/p1TF3lLN7ETS/LV8WytPOQAc0wmWBhb5gug+k
+	O2gFqjBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFjc-0000000AX2R-0x8P;
-	Wed, 25 Nov 2026 16:20:40 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
+	id 1xWFjx-0000000AXAP-0gD2;
+	Wed, 25 Nov 2026 16:21:01 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWFjZ-0000000AX0c-02kk;
-	Wed, 25 Nov 2026 16:20:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ar97E/Z7nth9VMENNzmIJfZzyUDRxBE18LlpiwpRWi3ql7y+X79HKpZz7pUmgdso8Q242UNV5YVtN++wNMk2CdweJvWz1yhef6YB0lSfrLeLeVnCTQm3AYPhc1FUH3fFdDUKV5uLgvaJZZvywajy0q3EZd4EA7jYqX+2RSh3vbOlFmFT34AxODY58KtoQPXrbIgocNyXWNXSfEHr5JCSTcBGv5Tk99X3FpxOLrVxTGjszA34ImuD/Qjn7ReQhUVaPBHh3KAfpWAri13PGqmTINGAmDA23QGKUzi1JgnsDQvvwxKzzCS0wrs+k41eRlqUGlsYbByPjBrZluW5csB7Uw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HoGHuuCJqVBarNUeKNtLkdgRV7zB7adrLppZX0CgIkQ=;
- b=kAFh21huCMb8PGTLFgJbsddLIRJXGnB5cFmQGvtSTVXFTns0HkvE673L9ldfxi2FcLTP0ujUN7POQu6j1OZP+ek0rR0Lc75guhkcJs1FPYGd5vBbdNqrcmQMfHXjv9hxdloX1vvxDvjz09qaVA9oYjAWyK7MTsJ7yCQFdjEzpnVG4ETOiI/J1xzaRqZaJ6oJU9OoEWC/riW/9jele7IZpiA14kBjYOeOvW/40vB0+djj+lFmx8E4B8fwhqsj7SSvIro9yy3LHm1PEykISuHqjr9H1RtGYe4GPYJV+SakoGMD2oJukWcHfNuU3NpdklVVHCzAqmOO45yzgzhY9uGXpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HoGHuuCJqVBarNUeKNtLkdgRV7zB7adrLppZX0CgIkQ=;
- b=nIH9XPRi9cAJRH2B+kDew3xXazsi8Mr9olo1aY+I7n6twoXmr1+SiAJGmNwklh3K2YwnpMDXp6SYTusas62+JHWvEvDyIPrkVZXp4Alx0zQ3l9e8GqEl1aX4DkQwzrQ0k0bQf22nybWzV6mvdkaw23FNM64lVZ540/tR8AElBu+FhSpBYL7hVqHzREX7Dpm8otipBiD702MDdUl2g93ik+1iY2waB93AYT7wM/9ldulCP6fi6G9Li+N48YiWQcOY7RfrGUzal3CY8eEcCnuge2de9CZ3zHikCJ3r1a19iGwpQcO2/RxiMwNJlywOdHoJ7LYItpavhNrNJzYHqMIgyg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV1PR04MB11061.eurprd04.prod.outlook.com (2603:10a6:150:20d::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Wed, 25 Nov
- 2026 16:20:20 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0662.004; Wed, 25 Nov 2026
- 16:20:20 +0000
-Date: Wed, 25 Nov 2026 10:20:02 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: jan.petrous@oss.nxp.com
-Cc: Vincent Guittot <vincent.guittot@linaro.org>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
-	NXP S32 Linux Team <s32@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
-	Ionut Vicovan <ionut.vicovan@nxp.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH RFC v4 03/15] dt-bindings: PCI: nxp,s32g-pcie: One PHY
- per lane
-Message-ID: <awcKsk6KvpnNTbaj@SMW015318>
-References: <20261125-s32g_serdes-v4-0-3bfe0589be8d@oss.nxp.com>
- <20261125-s32g_serdes-v4-3-3bfe0589be8d@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261125-s32g_serdes-v4-3-3bfe0589be8d@oss.nxp.com>
-X-ClientProxiedBy: PH8P220CA0028.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:348::6) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	id 1xWFjt-0000000AX5y-1mnB
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 16:21:00 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so77247465e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 08:20:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1795623655; x=1796228455; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=w6xtuLM9HrxHujYVMQV7MBMbD4qoIrs9MPoeBowe9/w=;
+        b=UJ7NTgBBuDX/QWVBfBdK9dS05Yd99wMSCDRehfvxsC2EFORVsjBayhGFrF+JE7fxIA
+         nrOZO/Rk/7u561AfSZSnS0rs+SNbpg3MX6ntKB8tlJhmTT3OXGfL0IxOoWq5dZCyTqgS
+         nHbda8qx3gsQIe8Li+98F0y5Id/9OaLRiQHQEQwSipFEURChDepU7dCWqA7JGuUmfjdD
+         MntP0J2ZV4jtGlwEXOvHZZh5UedSDU6H03KPR6KIY60OqFJbMKfBbbotwzdB7clQY67b
+         NxPnnxrHG4dLbsDrsKiCTi0qr8HQ6hSy7eYzPTQP308v9XbtgNFBqg9oC0UCMDyWw8X7
+         xUpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795623655; x=1796228455;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=w6xtuLM9HrxHujYVMQV7MBMbD4qoIrs9MPoeBowe9/w=;
+        b=ceVh9JgoUAePvt3Mx5YBH+pgOMKu9DqD5LfyPuvLq2f4Q3beJbF5mKmq7LTQ6qoZmc
+         tkO1mMpw/8CLw5582FLlDra8cq2tu2JxhDihvL2uByzBcgFkwMp2e5isglXUFsR27Ufz
+         Tx6Iw1OD79mb3zzawodUMzw+ek3G5alAt+Rk2To74aFZNU4MOrhtpyPABisPi2TMRRBt
+         14OMIb6h78qmyxtcVRt5ioWqUbDHrf8IEJdjqCslf7KL+nkZK0wQ7cO2BHWIhGpq0lQv
+         uOh75+H/ihGvZM/NkCgZRP0tiPVi1pgPC74DWUohQRqP7FTMCi3PEJtP4yLetp0UB6w6
+         GUMA==
+X-Forwarded-Encrypted: i=1; AL+hErHyPjn1nXo+205Oy0HmIny6orN96H+NhJvuE+W52qS62nLtc2gE30eGXMCYwoXXNzXTwe1u2UekpjWv/yYCF8Kk@lists.infradead.org
+X-Gm-Message-State: APuU4Z9x7Ys42BtvyxPTWs7FzXNjPZrQffo3z6fe/O+sFOer/pg8Jz+N
+	OIyVKERMN/OrDDdki9a8qRmuJ73kqXiDiB9dTyzyXrS0PuwTZzHCeQX3QlIi4Pu+K0U=
+X-Gm-Gg: AZFdTZdVlHt+riPsebVa8vx/P4h2M2E2xV4DRsXIvsALa1NH+YPnM5X5i2JonU49wr5
+	tKJ3xMFzh87NHkLU8vTeic/31x9s2RCjdPrKc9aQv9kssZrViP/vaVAV/OKPhiSCVrVIYGZpG9g
+	UgqGyTnlY16yioeCrRetZzkUBJz4xePqwgTF7IFqzhrymbIu/cbs45h8tMbujcv7b1FLCgB7ZDY
+	cN88bCm5u7Br9LkJ6KBOksq30E77kT3HTaniB7TTDm9nzbXQmAQ0p9cDp1CLYRsx1tIy7jwgth1
+	RNNcDLgjAAS/F61CEORa669eoomaualV8Rf0qAf/mr6QSRaLNzUBW2yoB4FpFXwzs7pnRPIJgWr
+	5wY27JrqrwRIoMS2XEEYahLEsWgnInqecQ75ffi/pcijmOeMbYRmGitN+Hv7MMkzD/HDsBJEGqw
+	CGPh9R7a3Hv4B8i3fc5ikInG4My3n9u5YiwyMKOT79C7L+uwFwtMSMtnFGBXWW36uxpBx4BWg5/
+	56/g398jUkH0MSZjf2EFk5n2eS+gRycPD5Ydp47owmcB81DVn0z9iIg38HvHkVgVQHEISKjfMVm
+	At6uVfIbjijAWXjRjfXDGyCSKQo+Vw==
+X-Received: by 2002:a05:600c:4f81:b0:4bb:5e8c:13bc with SMTP id 5b1f17b1804b1-4bb88805902mr356474775e9.7.1795623655370;
+        Wed, 25 Nov 2026 08:20:55 -0800 (PST)
+Received: from localhost ([195.94.148.180])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb906640a2sm288622535e9.0.2026.11.25.08.20.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 08:20:55 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	florian.fainelli@broadcom.com,
+	rjui@broadcom.com,
+	sbranden@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: naush@raspberrypi.com,
+	svarbanov@suse.de,
+	gary@garyguo.net,
+	linux@roeck-us.net,
+	linux-hwmon@vger.kernel.org,
+	krzysztof.kozlowski@oss.qualcomm.com,
+	Andrea della Porta <andrea.porta@suse.com>
+Subject: [PATCH v14 0/3] Add RP1 PWM controller support
+Date: Wed, 25 Nov 2026 17:24:49 +0100
+Message-ID: <20261125162453.23573-1-andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV1PR04MB11061:EE_
-X-MS-Office365-Filtering-Correlation-Id: add0bb39-de93-4fbd-ef2c-08df4b0ffff5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|23010399003|19092799006|366016|10067099003|56012099006|4143699003|11063799006|261021123027099003|261026121527099003|261021121427099003|261102123227099003|261009223027099003|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 9yYs3zwfwpbFm/IfqlIpiJReL6OQbs2UcSvE8exAceO0EOu58wZdJrF//NJiJxMpDyhYMHThDZ/xXTiRmn9Y3Ar4ryxxteMwoAFOjTbDCHlM0pE8V5/27RxLbASE7rFjzkXYUbWJYeAthTOdnhe38ink8dOn54uVmoiJL41LpD7eit5m9oLxAtKriyME19vVYMOzsXtECV35P5eVC4GGJfNYCiPfOIwODWUYj9OwTGa4zHzqSeISpysz+3kBwf2xCICPaE/aJDzPmugoefNtxKRbH8+0cBUzhlUpfMj6zplX+YxecIvN/IyZZQqEwdK5hJJrPmJWhx+A7Vn9RX1Ln+Fx6BngqNlLdOkfb/rx+1BW5jCFZAXEG4jPFWt1DTlBC62CKiFXK2xCA7ySm4TWCm5iWrSvfxMVjuHibOu/jY21Ef3GMwh6ZutPnYCLwsjDPdQG/Wn4I+JYwmRYn8i/+3gLc3clzAdVbsooyJJIEfoJdUevhP5K42XYNGmYX1t45KVr0+2YVtjyx1P3+mtSrDQxBt19BWyXgHT6ECgJATV9eUfAswiBspUx3Fr7BmvkRJKxRmWc3W+b02nMYqDnFoXov8ko37A8tsjg0/+jUVJjO+KK/XZ2npngTxS9yJ6MOeTlBLk/ri5e0Ai824/CQlAq7l99MYhHUEnyytG2JIk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(23010399003)(19092799006)(366016)(10067099003)(56012099006)(4143699003)(11063799006)(261021123027099003)(261026121527099003)(261021121427099003)(261102123227099003)(261009223027099003)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kfi6JjDoFk4/krbth9kXdAxhCkcTMDiKDecSacFRBoSiWj8jrBdN/A5vaJPb?=
- =?us-ascii?Q?Du5HfeCf4Ah3zI8WLzaYMUcj5Zc38W3Owv1L93DIC5ErqsE064b3Cguoph3+?=
- =?us-ascii?Q?tOST5Xo8BGGPiGVheNYJjlEXYBRSb6UULalmV9PEuNTofjR8lZOBztCukgV2?=
- =?us-ascii?Q?CXwqeHYxzu3v0jA/gq6iBfvNxtjJSKaLazteKweOoKRpwYEQS4nFtn3q6CmQ?=
- =?us-ascii?Q?M9WU6PAzFyTrdldOWghCgB6yHROnvRzzHZpXuZb3vvSU0FDeet3q1+jBLdLk?=
- =?us-ascii?Q?8Dqh0Jz8Gfi8s+8qJ+Q8D4e+xOqWtkNhghsS1uGV6DEUMj1T1rchVtt7kETa?=
- =?us-ascii?Q?xhlP+VmZQU82vrdHJ+Sw9aDmik6nJoxAfiAvWEKsR2jh1JxAXTqi6v2wIzKz?=
- =?us-ascii?Q?zGtVFHa/HOOZz31uiv8zlF5M5pSwQqju0TR9QADDcHdSD3rh8pfoHRWDZ3Tc?=
- =?us-ascii?Q?X2+OHmwezw5JXGs1KZsBiDsqv2+23KCF1VJuZgWKOZe0Fpjbp4DRTtz91U9M?=
- =?us-ascii?Q?OgZF/rWTuAtPiHMs2lOeEi7axd1pO++zStYaw0hVXCLkSnzdFOO4aq2J+R2W?=
- =?us-ascii?Q?I5JMNvpdgyGy1xzEyt6FQ7Swc9SbAtoaIahTUPaoSgVR1FDK9a3fpd3Eg8Q6?=
- =?us-ascii?Q?ptcukv/bSQbNQTQHK9vavGVy1YSzAOVXzlW4Cf9yZKkVxYeunRu6EqTTgELG?=
- =?us-ascii?Q?tV77VL7aDh1IuYk1u/BJmMTCAK+Q4LT08p+FD/Rm61/Zb3uYpjTWZ3yv6Iyf?=
- =?us-ascii?Q?WxxHVSf/38WRQHdfkoVNL0m+WKBGQu334IB9UX8dxUtwrp4fbQQqujoosMh7?=
- =?us-ascii?Q?aG/Nxfh7ZkRfHiCajnVkwCM///6WJAgGQy2C4nduRPe3fYsQ5Ns7oQ7xmtAF?=
- =?us-ascii?Q?AhXq7A22NaHS8DJV9ekZrX5342BnF2JBjkcPvKek19mJHwarMUJghLnBzZUg?=
- =?us-ascii?Q?GZxC89ZpD+RaMT5wnnwjAbzoqJ0XXibo5zFjo0G3lyzIYO/Seje4UCXrtoP0?=
- =?us-ascii?Q?Ic4M94cM4uD+0BnBXCuItIJ+o8X9ZZwBbQ5NUZZomqIPpDXaaFPL6VsKCBBH?=
- =?us-ascii?Q?w7tISCeUhvP2dJCR+dn94FUX10IbUtka3cUJHlhfsO6JIFVY1DXh2DnX03Cl?=
- =?us-ascii?Q?azJrckOJx30QL8KCeT+cqtjxsnQtZZdx3nedM6v5JgV+ImkxjJUYAcEwr5HF?=
- =?us-ascii?Q?x4RYnOgUjKsWCqtEdZ98CPFktX9tJ5UKBamscG6oS5Pd9UwZdEqKfWwSaObv?=
- =?us-ascii?Q?SrGVkPyKqOQ7bVvcVp2fNfqJJTvbNeTxFr72wtPxTFzG9FbhsaRLSEhS1owd?=
- =?us-ascii?Q?p/beOW5I8CwCrA6K3R/7GgKbH3krEOF68QsIlKhBLqREi/NPGHkT+ZqzHdSD?=
- =?us-ascii?Q?WWe+0zH1BSDIiSMbdxPTeW2judn27IBzkqN+GKIM58nfeIMsFDZGSKj2Ms2E?=
- =?us-ascii?Q?U9BtzFWXMcQ8rhdxAyGGLD+/EFJU2F5OzCuR+Wblz7AAl0/8ZpTXTFpqbxhO?=
- =?us-ascii?Q?M+XdkznVmwXtP/WfYDumbNaCWBCnTcIBLUe6JCkktW7n7bkf+O0hsSsgkYc/?=
- =?us-ascii?Q?fo1MlYNP0o3We4AHrMi//BqfORcBKkv3fhWO8EbJsoRv5ZTjopNzT/mxgR0+?=
- =?us-ascii?Q?EROLXC5LObTxHcNk/wyNbhEIU5/aPTYBKMIBEsldX1O94O9FfXeN2uNbuqtY?=
- =?us-ascii?Q?mrlTpZh0IQqbXn1d70OaOvFqkLvngE+/KWam/AbeewnIvG4fi5R0ZU8jzc/8?=
- =?us-ascii?Q?g6s2+aCXpiL8KrFiPXnn7DhyhnMUnVtvYzY7n2FsBZeWxl6dUK8K?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: add0bb39-de93-4fbd-ef2c-08df4b0ffff5
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 16:20:20.3176
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NdEqgVubr9Bbaz9wU5WZmWVNeYUkvFltk4KRungNXf0rcS6Gwi8FvxRghx4LumZOUyi0cE9THtjtBbS0CqmrEP/ugUO4mDu3vlJ2+o2FFOy5eAjkhZYQy7oIULy+hCZ8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11061
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_082037_059659_FBECBDDF 
-X-CRM114-Status: GOOD (  15.97  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261125_082057_508084_8F07CA4B 
+X-CRM114-Status: GOOD (  21.70  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -168,57 +114,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 10:33:45AM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
->
-> The SerDes binding describes a link with one phys entry per lane,
-> <lane PHY_TYPE_PCIE 0 0>. Allow up to two entries on the root port, and
-> make the example reference lane 0 that way.
->
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> index 66a050028278..b90d169f57ed 100644
-> --- a/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/nxp,s32g-pcie.yaml
-> @@ -57,7 +57,9 @@ properties:
->          maxItems: 1
->
->        phys:
-> -        maxItems: 1
-> +        minItems: 1
-> +        maxItems: 2
-> +        description: One entry per SerDes lane of the link.
+Hi,
 
-Needn't such description, that's native means for phys.
+This patchset adds support for the PWM controller found in the
+Raspberry Pi RP1 southbridge, used on the Raspberry Pi 5 to drive the
+cooling fan.
 
-Frank
->
->      required:
->        - reg
-> @@ -124,7 +126,7 @@ examples:
->                  ranges;
->
->                  device_type = "pci";
-> -                phys = <&serdes0 PHY_TYPE_PCIE 0 0>;
-> +                phys = <&serdes0 0 PHY_TYPE_PCIE 0 0>;
->              };
->          };
->      };
->
-> --
-> 2.55.0
->
->
->
+Since v13, the driver also registers a "fan" auxiliary device
+(pwm_rp1.fan.<id>). On the Raspberry Pi 5 the RP1 firmware measures the
+fan tachometer pulses and writes the RPM value in the phase register of
+PWM channel 2; the companion hwmon driver, sent as a separate series to
+the hwmon list, binds to that auxiliary device and reads the value
+through rp1_pwm_read_tachometer(), exported in the 'RP1_PWM' symbol
+namespace. This is the approach agreed in [1], and it removes the need
+for any dedicated DT node or binding for the fan.
+
+The DTS node for the controller is already in v7.4-rc1 [2]. The DT binding
+has been applied by Rob [3] for consistency to v7.4 and is part of v7.4-rc2: as
+a consequence, patch 1 is included only to make this series apply 'logically'
+on top of v7.4-rc1 and can be dropped when rebasing.
+
+Changes in v14:
+- rp1_pwm_round_waveform_fromhw(): fixed a u32 overflow in the duty_offset
+  computation when the period register holds U32_MAX, and return a zeroed
+  duty_length/duty_offset when the inverted output is constantly low,
+  instead of a duty_offset equal to the period, which is rejected by
+  pwm_wf_valid() (reported by Sashiko AI review [4]).
+
+Changes in v13:
+- dropped the DTS patch, already merged.
+- add patch 3, registering the auxiliary device for the fan tachometer
+  and exporting the accessor used by the hwmon auxiliary driver. The
+  exported function was originally part of the fan patchset. Since it
+  is really part of the pwm driver to be taken by Uwe, I moved it in
+  this patchset.
+- Kconfig: pwm module now depends on AUXILIARY_BUS.
+- added a macro to define the phase channel number from which to read
+  the fan speed.
+- removed the 'Tested-by' tag from Gary (see V12) since the patchset
+  has been significally changed and need to be tested again.
+- the controller private data is passed to the auxiliary device as
+  platform data, so the exported accessor no longer depends on how the
+  parent platform device stores its driver data.
+- dropped the unused 'pwm' argument from rp1_pwm_apply_config().
+- added a MAINTAINERS entry for the driver, its DT binding and header.
+
+[1] - https://lore.kernel.org/all/ae9a4df9-b1f2-4f00-ab86-d9cf8d9bc387@roeck-us.net/
+[2] - https://lore.kernel.org/all/7c437a10-985b-402c-b3ac-cfa97c53d014@broadcom.com/
+[3] - https://lore.kernel.org/all/20261102192302.GA882027-robh@kernel.org/
+[4] - https://lore.kernel.org/all/sashiko-outbox-231741@kernel.org/
+
+Thanks,
+Andrea
+
+This version has been prepared with the help of an AI coding assistant
+(Claude Opus 5.5).
+
+Andrea della Porta (1):
+  pwm: rp1: Register auxiliary device for the fan tachometer
+
+Naushir Patuck (2):
+  dt-bindings: pwm: Add Raspberry Pi RP1 PWM controller
+  pwm: rp1: Add RP1 PWM controller driver
+
+ .../bindings/pwm/raspberrypi,rp1-pwm.yaml     |  66 +++
+ MAINTAINERS                                   |   8 +
+ drivers/pwm/Kconfig                           |  12 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rp1.c                         | 477 ++++++++++++++++++
+ include/soc/bcm2835/raspberrypi-pwm-rp1.h     |  12 +
+ 6 files changed, 576 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-rp1.c
+ create mode 100644 include/soc/bcm2835/raspberrypi-pwm-rp1.h
+
+
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+-- 
+2.51.0
+
 
