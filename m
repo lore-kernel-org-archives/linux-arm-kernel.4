@@ -2,74 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C20606A330
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC72606A32D
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:55:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XzuFYBmU;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=fGwy6mF5;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=F9Hoe0Jw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=srE01TbU;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=io0Xf+/y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ASSBGT3kIF8HMn738GqJjgyGhYuB+a+EzuLMKqOT5K4=; b=XzuFYBmUfwtR28
-	rYB6LT1kwhvxYuGu/bokSwbVWoyZt6ozUi6n+MM1Gw6UpiAPAdwPYL52hhVLb7ubm0wVbOKSHDFAf
-	PNlI+O3cGQ2vekAoBVQCGxOlWxce9lpPGvWdzNNo7vNJ4VcueEiOBFdbeZMBjIF/Y7JaevjkBhgtl
-	iDLKO6t7MXsXcyRPqR8DOqctVjxlpitkhof71TkouoIVtTYHmGkho/xdSACu+w0Jifjdm5AW5F3yj
-	F5V71uuIqzxr8TgPZTyce0zgaHeUtKPObJ2HVkQLqdRI7QUjHbVp9Pxx8ivdh4XptGsDDnsl+S5Jq
-	MROkZ97vxn1BSt8LPcxQ==;
+	List-Owner; bh=DXSGE8zndzbOvx0I1VcqKxrraBhjgygWU5lIu97CM3Q=; b=srE01TbUrYsQ7o
+	hlwqXIwVqs2ILTTpXZFz6Hw7FbB+ZeFHRNFvo7qLkJZcrppQKjYyAX4W7j9oiFwHvtXQGi1WOa2lL
+	iRxBW1mm6gr+6HRdHvk5V1uqa1XkXOJFFKcQcJrvyV14WYSZTxil2OxxaGIv7cBUVHHMayzWlY7Sh
+	IVqRWNapOPf8OW/yub8Kb7EVG6RYjtm507Zxy/auD5qxX7y9VR2MMsGJomfyUpOJlrenNCw6csBiB
+	/qHwqtCoYRfWGdzvU4tNOSowZgzYF1BMiZIart9m2dPGGxKrtl89qK2k7Dp/t6wGIyq8bJdTwX69U
+	CDyZ2rQmTywDOy8HW4Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHDH-0000000ArxU-1c7C;
-	Wed, 25 Nov 2026 17:55:23 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xWHDI-0000000As0r-42i8;
+	Wed, 25 Nov 2026 17:55:24 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCJ-0000000Aqef-3PPU
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 25 Nov 2026 17:54:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Cc:To:In-Reply-To:References:Message-Id
-	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender
-	:Reply-To:Content-ID:Content-Description;
-	bh=ASSBGT3kIF8HMn738GqJjgyGhYuB+a+EzuLMKqOT5K4=; b=fGwy6mF5jziU3I7ti+0hQe+VHM
-	nDsojVe6DjkJ7QXbqtdOSufJlUD0JpKzVnn2dI5wfpZG9GpplcPkT2q183nzfQ0Dtjya6LKyfTPRK
-	gobZlFoB1rQodAM5plQ57LHKEkBYWrdcYDifA+bEWaeKVw7gsybnam8JEyboiCDYomrO24NMhRp03
-	VoTQ0vk/vePnRolCYh5s9Lk3Um9D0saB27a3nVHfLR6L1SlthP6I60DRD+rYGwAAcJ6QQhnV9CMYl
-	TyQXshSGdzlXSxpFejAC1SrxVrXEjrRFY1VuwHGoz00POgNzC+6QZ3ere3plFICVAK4uxO47mdc74
-	x8rOV2Fg==;
-Received: from smtpout-02.galae.net ([185.246.84.56])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHCD-00000002DXU-19R5
+	id 1xWHCW-0000000AqtV-0NKI
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:54:21 +0000
+	Wed, 25 Nov 2026 17:54:52 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 6F15D1A17FA;
-	Wed, 25 Nov 2026 17:54:16 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 3D2C3C6221E;
+	Wed, 25 Nov 2026 17:54:42 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3A0A560480;
-	Wed, 25 Nov 2026 17:54:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0F75411E6B0CA;
-	Wed, 25 Nov 2026 18:54:08 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 44C0760480;
+	Wed, 25 Nov 2026 17:54:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0015D11E6B0D5;
+	Wed, 25 Nov 2026 18:54:23 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629254; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629268; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ASSBGT3kIF8HMn738GqJjgyGhYuB+a+EzuLMKqOT5K4=;
-	b=F9Hoe0Jwv0B7vRuPw5GL/CXXP7rOF26K3c+pz4ybkcxhJFMexZ1uMKkVD0yHjA69iVdEMu
-	HcTQ9476ysHSYMoKov+0hyrFJ8uBcQb2miISO/TNyePjfNJHt/Pi7nTkCALWsWaOdXi0p7
-	HKl4rgjoaLkiVNXPoM4rUzg6/GmVUH6453HSNAfqhjpFUZ52ISNxgDzUjvWLCKmVsrRttD
-	4PBI4aGnZjFeLi7L00k+W/A7vW6KMvQu427r7EBk7HikO+4YaLYIRKnRc5IG3smCBAaDsC
-	FEFdAomMS6nLgv7aSZlpM6CcoQjg/64SEooOaW1OabDxzecUrFnNjay852f3bQ==
+	bh=DXSGE8zndzbOvx0I1VcqKxrraBhjgygWU5lIu97CM3Q=;
+	b=io0Xf+/yoDo0TehiAHr/DSIC5GVPPwBKLeqyvcqJUW49v5lvs9coiM7UGM3KDE+qqvP8Mz
+	dwXkr39b0lN/yczChB+veVFx4DxrZFRnnhmb1HW6HSawcbmNtrnQfjYUWqE5TUAuL2Ab+A
+	QkbVOXM0jeWL9oC7NgHBxHzu/1N6rI7wHMelJYc5rsCh6f3OduTDXy3bUsWc29Dd8ivVjA
+	A+Zx5TiHnBHS0irFzB0FvZQDNtLP1t70hn0A6EXbe084EkcpbdAZx4l3Ra8oLCIaN7j9/c
+	Y9hnojQaGLyU/KQV2fTaGAqOUvt8IdQeFERZ4ZDrj3faFRzgVAYkZtmh8KfI2g==
 From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:43 +0100
-Subject: [PATCH v4 30/32] drm/bridge: shutdown encoder and detach
- downstream bridges on bridge unplug
+Date: Wed, 25 Nov 2026 18:50:45 +0100
+Subject: [PATCH v4 32/32] drm/mxsfb/lcdif: enable bridge hotplug
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-30-822722850492@bootlin.com>
+Message-Id: <20261125-drm-bridge-hotplug-v4-32-822722850492@bootlin.com>
 References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
 In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -97,8 +80,8 @@ Cc: Javier Martinez Canillas <javierm@redhat.com>,
 X-Mailer: b4 0.16.0
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_175418_857113_8FC4FF2D 
-X-CRM114-Status: GOOD (  12.85  )
+X-CRM114-CacheID: sfid-20261125_095436_378748_04143DBF 
+X-CRM114-Status: GOOD (  18.34  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,52 +101,142 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With the upcoming support for DRM bridge hot(un)plugging, bridges can be
-removed at any time. When this happens, shutdown the affected pipeline
-components and detach from the encoder chain the bridge being removed along
-with all the following ones.
+Switch to the new drm_hotplug_helper() to handle bridge hotplugging:
+
+ * use the new drm_hotplug_helper to handle hotplug, including finding
+   the first bridge and attaching the bridge chain
+ * use the connector add/remove callback to enable/disable HPD on
+   added/removed connectors
+ * move drm_kms_helper_poll_init() before creating the drm_hotplug_helper
+   so that HPD polling is initialized before connectors can be hotplugged
 
 Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-changes in v3:
-- do not shutdown the whole card
-- adapt to use drm_bridge_detach_from()
----
- drivers/gpu/drm/drm_bridge.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes in v4:
+- fix UAF when hot-plugged connectors implement HPD by using the new
+  per-connector HPD enable/disable API
 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index d82e81b26ace..d942c776db1a 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -29,6 +29,7 @@
- #include <linux/mutex.h>
- #include <linux/srcu.h>
- 
-+#include <drm/drm_atomic.h>
- #include <drm/drm_atomic_state_helper.h>
+Changes in v3:
+- Adapt to the v3 version of the drm_hotplug_helper, which also handles HPD
+
+Changes in v2:
+- Use the hotplug helper callback to enable HPD on the hotplugged connector
+---
+ drivers/gpu/drm/mxsfb/Kconfig     |  2 +-
+ drivers/gpu/drm/mxsfb/lcdif_drv.c | 42 +++++++++++++++++++--------------------
+ 2 files changed, 22 insertions(+), 22 deletions(-)
+
+diff --git a/drivers/gpu/drm/mxsfb/Kconfig b/drivers/gpu/drm/mxsfb/Kconfig
+index 31db7a824a93..ada9a9334ea4 100644
+--- a/drivers/gpu/drm/mxsfb/Kconfig
++++ b/drivers/gpu/drm/mxsfb/Kconfig
+@@ -34,7 +34,7 @@ config DRM_IMX_LCDIF
+ 	select DRM_PANEL
+ 	select DRM_PANEL_BRIDGE
+ 	select DRM_DISPLAY_HELPER
+-	select DRM_BRIDGE_CONNECTOR
++	select DRM_HOTPLUG_HELPER
+ 	help
+ 	  Choose this option if you have an LCDIFv3 LCD controller.
+ 	  Those devices are found in various i.MX SoC (i.MX8MP,
+diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+index 2be5a76e936f..591653b39310 100644
+--- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
++++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+@@ -18,7 +18,7 @@
+ #include <drm/clients/drm_client_setup.h>
+ #include <drm/drm_atomic_helper.h>
  #include <drm/drm_bridge.h>
- #include <drm/drm_debugfs.h>
-@@ -547,9 +548,17 @@ static void drm_bridge_detach_from(struct drm_bridge *bridge)
-  * it won't be found by users via of_drm_find_and_get_bridge(), and add it
-  * to the lingering bridge list, to keep track of it until its allocated
-  * memory is eventually freed.
-+ *
-+ * If the bridge is currently attached, also shut down the encoder pipeline
-+ * and detach this bridge and the following ones.
-  */
- void drm_bridge_remove(struct drm_bridge *bridge)
- {
-+	if (bridge->encoder) {
-+		drm_atomic_shutdown_encoder(bridge->encoder);
-+		drm_bridge_detach_from(bridge);
+-#include <drm/drm_bridge_connector.h>
++#include <drm/drm_hotplug_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_encoder.h>
+ #include <drm/drm_fbdev_dma.h>
+@@ -44,6 +44,19 @@ static const struct drm_mode_config_helper_funcs lcdif_mode_config_helpers = {
+ 	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
+ };
+ 
++static void lcdif_hotplug_event(enum drm_hotplug_helper_event event,
++				struct drm_connector *connector)
++{
++	switch (event) {
++	case DRM_HOTPLUG_HELPER_CONNECTOR_ADDED:
++		drm_kms_helper_poll_enable_connector(connector);
++	break;
++	case DRM_HOTPLUG_HELPER_CONNECTOR_REMOVING:
++		drm_kms_helper_poll_disable_connector(connector);
++		break;
 +	}
++}
 +
- 	mutex_lock(&bridge_lock);
- 	list_move_tail(&bridge->list, &bridge_lingering_list);
- 	mutex_unlock(&bridge_lock);
+ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+ {
+ 	struct device *dev = lcdif->drm->dev;
+@@ -53,9 +66,8 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+ 		struct device_node *remote __free(device_node) =
+ 			of_graph_get_remote_port_parent(ep);
+ 		struct of_endpoint of_ep;
+-		struct drm_bridge *bridge;
+ 		struct drm_encoder *encoder;
+-		struct drm_connector *connector;
++		struct drm_hotplug_helper *hotplug_helper;
+ 		int ret;
+ 
+ 		if (!of_device_is_available(remote))
+@@ -65,12 +77,6 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+ 		if (ret < 0)
+ 			return dev_err_probe(dev, ret, "Failed to parse endpoint %pOF\n", ep);
+ 
+-		bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, of_ep.id);
+-		if (IS_ERR(bridge))
+-			return dev_err_probe(dev, PTR_ERR(bridge),
+-					     "Failed to get bridge for endpoint%u\n",
+-					     of_ep.id);
+-
+ 		encoder = drmm_plain_encoder_alloc(lcdif->drm, NULL,
+ 						   DRM_MODE_ENCODER_NONE, NULL);
+ 		if (IS_ERR(encoder))
+@@ -80,16 +86,10 @@ static int lcdif_attach_bridge(struct lcdif_drm_private *lcdif)
+ 
+ 		encoder->possible_crtcs = drm_crtc_mask(&lcdif->crtc);
+ 
+-		ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+-		if (ret)
+-			return dev_err_probe(dev, ret,
+-					     "Failed to attach bridge for endpoint%u\n",
+-					     of_ep.id);
+-
+-		connector = drm_bridge_connector_init(lcdif->drm, encoder);
+-		if (IS_ERR(connector))
+-			return dev_err_probe(dev, PTR_ERR(connector),
+-					     "Failed to init bridge_connector for endpoint%u\n",
++		hotplug_helper = drmm_hotplug_helper_init(encoder, lcdif_hotplug_event, ep);
++		if (IS_ERR(hotplug_helper))
++			return dev_err_probe(dev, PTR_ERR(hotplug_helper),
++					     "Failed to init hotplug_helper for endpoint%u\n",
+ 					     of_ep.id);
+ 	}
+ 
+@@ -176,6 +176,8 @@ static int lcdif_load(struct drm_device *drm)
+ 	/* Start with vertical blanking interrupt reporting disabled. */
+ 	drm_crtc_vblank_off(&lcdif->crtc);
+ 
++	drm_kms_helper_poll_init(drm);
++
+ 	ret = lcdif_attach_bridge(lcdif);
+ 	if (ret)
+ 		return ret;
+@@ -203,8 +205,6 @@ static int lcdif_load(struct drm_device *drm)
+ 		return ret;
+ 	}
+ 
+-	drm_kms_helper_poll_init(drm);
+-
+ 	drm_helper_hpd_irq_event(drm);
+ 
+ 	pm_runtime_enable(drm->dev);
 
 -- 
 2.56.1
