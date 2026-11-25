@@ -2,115 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C17606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D52F606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N1ZH1uuj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=X6UjeW8B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l/gZf0zM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OEK+WUgT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=HeX4///rOlH1tIBpuqP1Mn4ZFEs/LFO1AOU+Qc04LJ4=; b=N1ZH1uujxDYsm0
-	L+iQSTNk0QNP0Mwup9NH8FPEzw8N9JNT59hoHSsLB/ybZG8T84JreUGlCed6dU2Sp27RB9d08tn/A
-	LkX6fDWpfY5w4JdW9kr+NJl+nJKMipUXf1QX9ywpWZvnK1mMWytWizArCqHHhhmCdvtrUyur4JcRp
-	Uqf6hr0XLTKzdE1ves8P+HvrozeEO6x7yFkslk9gtNf/jyh3ukobCzUGrPaI/tV228gkQDuEsE0iW
-	X0VN+ZUvEGeIr9qC/GAuXOYRawapl/NcvMSj/tLn81el8vc2M7hyj4gb9v5ebSU9+ph8B2R6lkm5G
-	ZBly+yqYexdPVpjXHdew==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8lUtvBf4yp1q4uRBQvvRAWZrQAMHjkc9iS4tTLTfDyA=; b=l/gZf0zM2CskvmkXrkfcjmL1Hm
+	hXWg3wL7+CS4u8LIAChGvzaRusq9DS4LXkq3ZvgxmWzv3b57jbbcv7o2AWqCIFGwUMduzS/KjWyWG
+	bgpXAKLCEVPm6xTytU6lLZC34udw22NBhH2PuWq/DumOr+k0T+vJ6PX7lOAqopVkl34fcN3ouW3NE
+	t1qTSyUuYRCtyBFkbwUsndcMqxLTgf8YCEVh6HLN0JszBc0oJ8/MmyzNIpNjTTKa7Mm0QsTVfW5Fm
+	/HIqZfvJKCL3wHKKfdcdUgJaC8B2RLJ2iTIh5oTSnCz13XNEmWQeAXS4x9OApyt3wCdI4Irp2dseC
+	rfd0CeLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWAjl-00000009X6W-3dRx;
-	Wed, 25 Nov 2026 11:00:29 +0000
+	id 1xWBIo-00000009eg8-2PXI;
+	Wed, 25 Nov 2026 11:36:42 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWAjk-00000009X6E-3KJH;
-	Wed, 25 Nov 2026 11:00:28 +0000
+	id 1xWBIo-00000009efl-0N55
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 11:36:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id EED57613FC;
-	Wed, 25 Nov 2026 11:00:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C681A1F000C0;
-	Wed, 25 Nov 2026 11:00:20 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 67F0762945;
+	Wed, 25 Nov 2026 11:36:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D9D51F000CA;
+	Wed, 25 Nov 2026 11:36:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795604427;
-	bh=HeX4///rOlH1tIBpuqP1Mn4ZFEs/LFO1AOU+Qc04LJ4=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=X6UjeW8B8PkyBag81NMH/Y8rZ+E72CcOASTBtAh8GO2m9OTQlityLOeo1D5yRNyqt
-	 Brw8A+ViCAgFLfeU1Nv2qWWNwQooOttSL6D1tpfCNWUFdmLXDL0W4awZhhp8i9n+Wl
-	 /X0mjr8JVvsprrSaQ+F/yMx95+a04l1lJuyxSw8GDHcxYGkDgZ/1Dp7Z0RUTvvf6PY
-	 4xm7978sV7mZAfvyHdkgUjs1rPflaeYd2hx0+xmctMI9qfyYj6MtdYWKzBPKVyR5XM
-	 6UyCq6HMVLrCezuZoCOE8bLqF1+sdxV799lhwoOSTtNbSNwGoJFlCbMfnF++sWbIlL
-	 thwbhg0lE893A==
-Message-ID: <249e203c-7163-49d2-b893-af742b189eba@kernel.org>
-Date: Wed, 25 Nov 2026 12:00:17 +0100
+	s=k20260515; t=1795606600;
+	bh=8lUtvBf4yp1q4uRBQvvRAWZrQAMHjkc9iS4tTLTfDyA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=OEK+WUgTJdEarfLjej1HEQDPg1tpmClXTWZKCTeuWPyTcUZTsgfsbeVmYw7beWYif
+	 SCn5YZyW62ypU6+YGtN40Xm/UGIBnPPVp01hWmUc0KXSHwHxLNPKNiROGjNDjT9FNh
+	 0dQjV2DwEIcwBrvnMZGycFinF0L9HNUThcW5z8UTA0s1/q+EBi/JGIr+Tbud0bnsWH
+	 uRfUh4yStcTsT8j9CDvLcqoRY7Q8R0/ib7q91r0cBsW0SMgxSrIQK48n12s6b208Eq
+	 nQXKyqVc15Y5aBdK3k2ARBhNywi6Ubv4RGlW34ti4WdcyOKEdzvxTdINKeYIZRf0ZM
+	 7mpix3n+1kJvA==
+Date: Wed, 25 Nov 2026 11:36:34 +0000
+From: Simon Horman <horms@kernel.org>
+To: Marco Crivellari <marco.crivellari@suse.com>
+Cc: Meghana Malladi <m-malladi@ti.com>, kees+treewide@kernel.org,
+	laixiangwu@cmss.chinamobile.com, philippe.schenker@impulsing.ch,
+	haokexin@gmail.com, devnexen@gmail.com, jacob.e.keller@intel.com,
+	sdf@fomichev.me, john.fastabend@gmail.com, hawk@kernel.org,
+	daniel@iogearbox.net, ast@kernel.org, pabeni@redhat.com,
+	kuba@kernel.org, edumazet@kernel.org, davem@davemloft.net,
+	andrew+netdev@lunn.ch, bpf@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, srk@ti.com,
+	Vignesh Raghavendra <vigneshr@ti.com>, danishanwar@ti.com
+Subject: Re: [PATCH net-next 2/2] net: ti: icssg-prueth: Add ethtool RX flow
+ classification support
+Message-ID: <20261125113634.GT31322@horms.kernel.org>
+References: <20261118184729.2302130-1-m-malladi@ti.com>
+ <20261118184729.2302130-3-m-malladi@ti.com>
+ <CAAofZF4XYd5z8X56DRARMxbu3t7QX48T7V69MPBw9TW1BQAmKg@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] soc: mediatek: mmdvfs: add VCP backend
-To: Echo Zhang <echo.zhang@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>,
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
- <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- MMDVFS Team <linux-mediatek@lists.infradead.org>, kyrie.wu@mediatek.com,
- ming-fan.chen@mediatek.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, llvm@lists.linux.dev
-References: <20261125060037.649659-1-echo.zhang@mediatek.com>
- <20261125060037.649659-5-echo.zhang@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261125060037.649659-5-echo.zhang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAAofZF4XYd5z8X56DRARMxbu3t7QX48T7V69MPBw9TW1BQAmKg@mail.gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,32 +79,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 25/11/2026 07:00, Echo Zhang wrote:
-> +
-> +	if (bootmode < UNKNOWN_BOOT)
-> +		return;
-> +
-> +	np_chosen = of_find_node_by_path("/chosen");
-> +	if (!np_chosen) {
-> +		bootmode = NORMAL_BOOT;
-> +		return;
-> +	}
-> +
-> +	tag = (struct tag_bootmode *)of_get_property(np_chosen, "atag,boot", NULL);
+On Thu, Nov 19, 2026 at 10:19:48AM +0100, Marco Crivellari wrote:
+> Hi,
+> 
+> On Wed, Nov 18, 2026 at 7:50 PM Meghana Malladi <m-malladi@ti.com> wrote:
+> > [...]
+> > +       mutex_lock(&emac->rxnfc.rxnfc_lock);
+> > +
+> > +       /* Check max rules */
+> > +       if (emac->rxnfc.rxnfc_rule_count >= ICSSG_RXNFC_MAX_RULES) {
+> > +               ret = -ENOSPC;
+> > +               goto unlock;
+> > +       }
+> >  [...]
+> > +
+> > +unlock:
+> > +       mutex_unlock(&emac->rxnfc.rxnfc_lock);
+> > +       return ret;
+> > +}
+> > +EXPORT_SYMBOL_GPL(icssg_rxnfc_rule_add);
+> 
+> nit: instead of mutex_lock() you can use guard() [1]:
+> 
+>     guard(mutex)(&emac->rxnfc.rxnfc_lock)
+> 
+> and remove all the "goto unlock", returning directly. This handles the
+> automatic cleanup.
+> 
+> Same for other places where you're using mutex_lock() / mutex_unlock().
+> 
+> - [1] https://docs.kernel.org/core-api/cleanup.html
 
-NAK, stop sending us downstream.
+Thanks Marco,
 
->  
+That may be good general advice.
+But for networking code the explicit approach taken by this patch
+is still preferred.
 
+  Using device-managed and cleanup.h constructs
 
-Best regards,
-Krzysztof
+  Netdev remains skeptical about promises of all “auto-cleanup” APIs,
+  including even devm_ helpers, historically. They are not the preferred
+  style of implementation, merely an acceptable one.
+
+  Use of guard() is discouraged within any function longer than 20 lines,
+  scoped_guard() is considered more readable. Using normal lock/unlock is
+  still (weakly) preferred.
+
+  Low level cleanup constructs (such as __free()) can be used when building
+  APIs and helpers, especially scoped iterators. However, direct use of
+  __free() within networking core and drivers is discouraged. Similar
+  guidance applies to declaring variables mid-function.
+
+  Link: https://docs.kernel.org/process/maintainer-netdev.html#using-device-managed-and-cleanup-h-constructs
 
