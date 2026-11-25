@@ -2,75 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE72E606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEFB606A686
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GYnFcS5e;
-	dkim=pass (1024-bit key) header.d=goodmis.org header.i=@goodmis.org header.a=rsa-sha256 header.s=dkim1 header.b=VWvc5xgG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2VfCFm1v;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=emEdo+3V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yx9YK7GyALNlSIOlyd6tdiuojVKohVxx5VZC4AGzrUg=; b=GYnFcS5eEH49Eg
-	+H0Huk8dCm9nFX9pYUy/R0zh7v/WnZJ0zHO0qSKhBEBlijzj4sNo+baEagpsvJBNzl0vUiNWm7/Oh
-	+/pfLRWogp0tE0uago3Y9xRN8H1kfatG5oaqKljIbH6XZ74UcnE222lVSWLKX9Abz0xvIv4O8hFPp
-	TpAzfYQL/x80IODq4GPqg+B7OP4HdVlgakxLLjH44XJUM096PRCG7RDR3A/Uxi1pHgY6KhpxXkdpa
-	KEXkorUgqMuig10aXmV43SUf8wPgYetjTDA9gq9m/RXmRxN3+jPmku0A+YNPbWDfCVWySBqWJFyPq
-	AM4GYqvwvIW9cXuwbVpA==;
+	List-Owner; bh=XvTKLKhLWXrfLb9+js6MFGQ/DuZ14JfMkl8pBoukSCY=; b=2VfCFm1vf6vrny
+	4UcpjhDLiKcv4JMVFlQtcJSld6Y0qDGG+YkahPrL7Nl2wm0Gn97jLCZzGljt+um3Fm9TBAsYh3EMB
+	hPZruvqFebvJTAw6UYEY8rVdZ4yNjsmRhi06mzl84Eghv2aeIvIG03XQ35QvV5uxy/XwcjMLp/AyT
+	9nZemEd3/m92sZm6X6eKVit1vaI+ZYtRp2KfTeIfbFoG0v6/GW3GBxGWYST0MmzxIIV4YYDpq76md
+	TDPyY7in1kO6wdSxd3iv3tvG+SchQDRbpPvhTU35knTX8FLyRMv7CEacBSM6LN5hEIuNCM7dfACKY
+	8mSdgDGtOKBU4kwarrmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF1T-0000000AMy6-0VOq;
-	Wed, 25 Nov 2026 15:35:03 +0000
-Received: from smtprelay0016.hostedemail.com ([216.40.44.16] helo=relay.hostedemail.com)
+	id 1xWF36-0000000ANMP-1b79;
+	Wed, 25 Nov 2026 15:36:44 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF1N-0000000AMwS-426n;
-	Wed, 25 Nov 2026 15:35:02 +0000
-Received: from omf16.hostedemail.com (lb01a-stub [10.200.18.249])
-	by unirelay03.hostedemail.com (Postfix) with ESMTP id B8FB1A0FB5;
-	Wed, 25 Nov 2026 15:34:53 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by omf16.hostedemail.com (Postfix) with ESMTPA id 6455B20016;
-	Wed, 25 Nov 2026 15:34:51 +0000 (UTC)
-Date: Wed, 25 Nov 2026 10:34:50 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Kuyo Chang <kuyo.chang@mediatek.com>
-Cc: Masami Hiramatsu <mhiramat@kernel.org>, "Mathieu Desnoyers"
- <mathieu.desnoyers@efficios.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Martin Kaiser
- <martin@kaiser.cx>, Vinod Koul <vkoul@kernel.org>,
- <stable@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-trace-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH 1/1] tracing: Fix UBSAN shift-out-of-bounds in
- test_event_printk()
-Message-ID: <20261125103450.5ac2cb14@gandalf.local.home>
-In-Reply-To: <20261125080431.1612026-1-kuyo.chang@mediatek.com>
-References: <20261125080431.1612026-1-kuyo.chang@mediatek.com>
-X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	id 1xWF34-0000000ANLW-2uRi
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 25 Nov 2026 15:36:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 3C28C44082;
+	Wed, 25 Nov 2026 15:36:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAD651F000C4;
+	Wed, 25 Nov 2026 15:36:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795621002;
+	bh=XvTKLKhLWXrfLb9+js6MFGQ/DuZ14JfMkl8pBoukSCY=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=emEdo+3Vcx2qcN5tLWthbYUlZmhINQbC2UlNU89hkRovj65+KivZsxrU3WoeJ41BK
+	 y/6vJqmI1bE0CPRtkdSUnEO74ocgJN3Tz44xEryo5sRVt1UKFaw28FErTW3E+zgUct
+	 voiZno16hkbV3bwH1PEz+SsVRNJk+fqgR1WAUPseoFYb795ongFbcZRdMfcqUNT9jz
+	 x9kgSHRQ1MBdQ/0Hi7uaGLK5XEeN+vblFked2jSpxmcbSDUknLQ7xewPR8gEukVncd
+	 UXJ7jNPQs0cXJAj5cETiMV+tq4BbKBfSLw3kwy8dZaoLJNth4gVvFP0Z3Hblg/NCdc
+	 qSZ2pPAXE19bg==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 6455B20016
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_SANE_2 autolearn=no
-	autolearn_force=no version=4.0.1
-X-Rspamd-Server: rspamout08
-X-Stat-Signature: ubqde6ieu3wdxtk8jdhq1tp7gf991wrc
-X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
-X-Session-ID: U2FsdGVkX1/JLtkXh3EEEE35Z0otfqP+yQWg8VULYJc=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goodmis.org; h=date:from:to:cc:subject:message-id:in-reply-to:references:mime-version:content-type:content-transfer-encoding; s=dkim1; bh=yx9YK7GyALNlSIOlyd6tdiuojVKohVxx5VZC4AGzrUg=; b=VWvc5xgG/+glr+78M8MPdPTRirY2FRLf7NiL8eY4xUMujYNoszr0W7v4665cG8Q3RpArRQBb+aYIzCCsRsYwwzx05Ovaz0hZLLZytXdTsf4zU7dxldoQ543ySEy7MWNXKbHzAZEj3g6AwLVwpjggxeAq1KZrcsbBS4bTi50Av0s=
-X-HE-Tag: 1795620891-404864
-X-HE-Meta: U2FsdGVkX18C7udoKw12/AiHBrrty8VxiPCnt1dz7a0K2CPgVnK39U+tiZVbMUG0XznJYcP8D/G4dF0WEmPOS/6MvG5jDwMfS1nVfjcrTGZIq4r6EnJO+u+A59uuGDDS+AZezMMpTIs2whZ3YQrxA+uglJj6UcWN9ZxeIyxsW9FF2Ikw+73OEYebLNIGhRFAXLTE9LFa4t02CdbbbZzCyFGUOINKa7nG1WFLmbeF+bcQgpKjfhpyJutl2AstX+LOBrFlhc7kLwy3Hbd0LLOtu/691a3GFu6eDHnLUq3sMrNU0Znqkph4CwX0v7iFboeEinWSLba7R9ekkOOVbR9Xe7e7VIeOJsLaKL1tbaUMJlDxrBEfj//WhQ==
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_073458_067325_97AA2417 
-X-CRM114-Status: GOOD (  12.52  )
-X-Spam-Score: -2.1 (--)
+Subject: Re: [PATCH v4 4/8] clk: clocking-wizard: Add static-config clock
+ provider support
+From: Brian Masney <masneyb@kernel.org>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com, 
+ shubhrajyoti.datta@gmail.com, Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Brian Masney <masneyb@kernel.org>
+In-Reply-To: <20261124035613.1968260-5-shubhrajyoti.datta@amd.com>
+References: <20261124035613.1968260-1-shubhrajyoti.datta@amd.com>
+ <20261124035613.1968260-5-shubhrajyoti.datta@amd.com>
+Date: Wed, 25 Nov 2026 10:36:33 -0500
+Message-Id: <179562099316.458327.15246469960975998989.b4-review@b4>
+X-Mailer: b4 0.17-dev-8145e
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6645; i=masneyb@kernel.org;
+ s=20250903; h=from:subject:message-id;
+ bh=w5DgWGuw/9YvYQddvv1a0z+c4zuNwaL4AFh+j4cOg9E=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLLZGZoan+rLzIl+JNzycc+vXZGGiV/03++a9vbfC4tAt
+ qWu95ZVdJSyMIhxMciKKbIsyTUqiEhdZXvvjiYLzBxWJpAhDFycAjCR+iWMDDdV7y2dpGom2vRe
+ 7Pd3FebbdlI/DvWVddxmVOY7FbG2+R/DPyM/RYlgzvqki0Kz7ILfTFvlpGH//vSXPcbNTFsrui7
+ lMAEA
+X-Developer-Key: i=masneyb@kernel.org; a=openpgp;
+ fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,36 +83,218 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 25 Nov 2026 16:03:56 +0800
-Kuyo Chang <kuyo.chang@mediatek.com> wrote:
+Hi Shubhrajyoti,
 
-> Commit b5cc230af5e5 ("tracing: Warn when an event dereferences a pointer
-> in TP_printk()") removed the early return when dereference_flags is zero
-> so that test_double_dereference() can check all event arguments.
+> When xlnx,static-config is present the divider/multiplier path is
+> synthesized inside the Wizard without exposing runtime MMIO
+> reconfiguration, so omit the AXI register mapping and advertise each
+> routed output clock as a clk_fixed_factor child of clk_in1 using the
+> synthesized ratios exported through xlnx,clk-mul-div.
 > 
-> As a result, trace events with more than 64 arguments in TP_printk() now
-> always reach the argument-parsing loop and evaluate (1ULL << arg) when
-> arg >= 64, triggering a UBSAN shift-out-of-bounds trap.
+> However the parent clock of clk_in1 can still be gated, disabled, or
+> (re-)enabled after FPGA programming (typical FPGA Manager flows,
+> CCF-managed parents, PLL fabric power sequencing).
 > 
-> Additionally, in the format string parsing loop, the bounds check only
-> tested 'arg == 63'. If the first 64 specifiers are non-pointer and
-> non-string formats (e.g., %d) and a subsequent specifier (arg >= 64) is
-> %s or %p*, 'arg == 63' evaluates to false and '1ULL << arg' also shifts
-> out of bounds.
+> Add a 10 us delay in each output clock's .enable() hook so consumers
+> wait for reference settling before first access.
 > 
-> Fix both issues by changing the upper bound check to 'arg >= 63' and
-> guarding the '(1ULL << arg)' checks in the argument loop with
-> 'arg < 64'.
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+> (no changes since v3)
 > 
-> Fixes: b5cc230af5e5 ("tracing: Warn when an event dereferences a pointer in TP_printk()")
-> Cc: stable@vger.kernel.org
+> Changes in v3:
+> - Removed duplicated number-of-outputs handling
+> 
+>  drivers/clk/xilinx/clk-xlnx-clock-wizard.c | 137 ++++++++++++++++++++-
+>  1 file changed, 135 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> index 649cf2d21943..31fed0e1ed30 100644
+> --- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> +++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+>  #include <linux/slab.h>
+>  #include <linux/io.h>
+>  #include <linux/of.h>
+> @@ -114,6 +115,7 @@
+>  #define VER_WZRD_O_MIN			2
+>  #define VER_WZRD_O_MAX			511
+>  #define WZRD_FRAC_POINTS		1000
+> +#define WZRD_ENABLE_DELAY_US		10
+>  
+>  /* Get the mask from width */
+>  #define div_mask(width)			((1 << (width)) - 1)
+> @@ -833,6 +835,13 @@ static int clk_wzrd_ver_determine_rate_all(struct clk_hw *hw,
+>  	return 0;
+>  }
+>  
+> +static int clk_wzrd_enable(struct clk_hw *hw)
+> +{
+> +	/* Allow the output clock to settle after enable */
+> +	udelay(WZRD_ENABLE_DELAY_US);
 
-I'll add this as a cleanup but I'm nuking the above tags. There is no event
-with anywhere close to 64 args. These checks were simply a failsafe in case
-they ever happened (which they likely will never do).
+If this delay is needed, then it should use the prepare callback instead
+of enable.
 
--- Steve
+> +	return 0;
+> +}
+> +
+>  static const struct clk_ops clk_wzrd_ver_divider_ops = {
+>  	.determine_rate = clk_wzrd_determine_rate,
+>  	.set_rate = clk_wzrd_ver_dynamic_reconfig,
+> @@ -926,6 +935,85 @@ static const struct clk_ops clk_wzrd_clk_divider_ops_f = {
+>  	.recalc_rate = clk_wzrd_recalc_ratef,
+>  };
+>  
+> +static unsigned long
+> +clk_wzrd_static_factor_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> +{
+> +	struct clk_fixed_factor *fix = to_clk_fixed_factor(hw);
+> +	unsigned long long rate;
+> +
+> +	rate = (unsigned long long)parent_rate * fix->mult;
+> +	do_div(rate, fix->div);
+> +	return (unsigned long)rate;
+> +}
+> +
+> +static int clk_wzrd_static_factor_determine_rate(struct clk_hw *hw,
+> +						 struct clk_rate_request *req)
+> +{
+> +	struct clk_fixed_factor *fix = to_clk_fixed_factor(hw);
+> +
+> +	if (clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT) {
+> +		unsigned long best_parent;
+> +
+> +		best_parent = (req->rate / fix->mult) * fix->div;
+> +		req->best_parent_rate =
+> +			clk_hw_round_rate(clk_hw_get_parent(hw), best_parent);
+> +	}
+> +
+> +	req->rate = (req->best_parent_rate / fix->div) * fix->mult;
+> +
+> +	return 0;
+> +}
+> +
+> +static int clk_wzrd_static_factor_set_rate(struct clk_hw *hw,
+> +					   unsigned long rate,
+> +					   unsigned long parent_rate)
+> +{
+> +	return 0;
+> +}
+> +
+> +static const struct clk_ops clk_wzrd_static_fixed_factor_ops = {
+
+As pointed out by sashiko, can clk_fixed_factor_ops be used instead?
+
+> +	.enable = clk_wzrd_enable,
+> +	.determine_rate = clk_wzrd_static_factor_determine_rate,
+> +	.set_rate = clk_wzrd_static_factor_set_rate,
+> +	.recalc_rate = clk_wzrd_static_factor_recalc_rate,
+> +};
+
+> +static struct clk_hw *
+> +clk_wzrd_devm_register_static_fixed_factor(struct device *dev,
+> +					   const char *name,
+> +					   const struct clk_parent_data *parent_data,
+> +					   unsigned long flags,
+> +					   unsigned int mult,
+> +					   unsigned int div)
+> +{
+> +	struct clk_init_data init = {};
+> +	struct clk_fixed_factor *fix;
+> +	struct clk_hw *hw;
+> +	int ret;
+> +
+> +	fix = devm_kzalloc(dev, sizeof(*fix), GFP_KERNEL);
+> +	if (!fix)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	fix->mult = mult;
+> +	fix->div = div;
+> +
+> +	init.name = name;
+> +	init.ops = &clk_wzrd_static_fixed_factor_ops;
+> +	init.flags = flags;
+> +	init.parent_data = parent_data;
+> +	init.num_parents = 1;
+> +
+> +	fix->hw.init = &init;
+> +
+> +	hw = &fix->hw;
+> +	ret = devm_clk_hw_register(dev, hw);
+> +	if (ret)
+> +		return ERR_PTR(ret);
+> +
+> +	return hw;
+> +}
+> +
+>  static struct clk_hw *clk_wzrd_register_divf(struct device *dev,
+>  					  const char *name,
+>  					  const char *parent_name,
+> @@ -1290,9 +1378,11 @@ static int clk_wzrd_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np = pdev->dev.of_node;
+>  	struct clk_wzrd *clk_wzrd;
+> +	const char *clk_name;
+>  	unsigned long rate;
+> +	struct clk_hw *hw;
+>  	int nr_outputs;
+> -	int ret;
+> +	int ret, i;
+>  
+>  	ret = of_property_read_u32(np, "xlnx,nr-outputs", &nr_outputs);
+>  	if (ret || nr_outputs > WZRD_NUM_OUTPUTS)
+> @@ -1302,6 +1392,7 @@ static int clk_wzrd_probe(struct platform_device *pdev)
+>  				GFP_KERNEL);
+>  	if (!clk_wzrd)
+>  		return -ENOMEM;
+> +	clk_wzrd->clk_data.num = nr_outputs;
+>  	platform_set_drvdata(pdev, clk_wzrd);
+>  
+>  	clk_wzrd->axi_clk = devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
+> @@ -1337,7 +1428,6 @@ static int clk_wzrd_probe(struct platform_device *pdev)
+>  		if (ret)
+>  			return ret;
+>  
+> -		clk_wzrd->clk_data.num = nr_outputs;
+>  		ret = devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_get,
+>  						  &clk_wzrd->clk_data);
+>  		if (ret) {
+> @@ -1360,6 +1450,49 @@ static int clk_wzrd_probe(struct platform_device *pdev)
+>  				dev_warn(&pdev->dev,
+>  					 "unable to register clock notifier\n");
+>  		}
+> +	} else {
+> +		u32 mul_div[WZRD_NUM_OUTPUTS * 2];
+> +		const struct clk_parent_data parent_data = { .fw_name = "clk_in1" };
+> +		int num_elems = nr_outputs * 2;
+> +
+> +		/*
+> +		 * xlnx,clk-mul-div is a uint32-matrix of <mul div> pairs;
+> +		 * FDT encodes it as a flat u32 array so we can read it directly.
+> +		 */
+> +		ret = of_property_read_u32_array(np, "xlnx,clk-mul-div",
+> +						 mul_div, num_elems);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "xlnx,clk-mul-div missing or invalid\n");
+
+The counts should be validated. Also use dev_err_probe() like the rest
+of the function.
+
+Brian
+
+-- 
+Brian Masney <masneyb@kernel.org>
 
