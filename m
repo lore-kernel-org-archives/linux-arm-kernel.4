@@ -2,77 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE39606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D26606A329
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZiwD195V;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=GaKRHzAD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w8VGjvzi;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yxqr2Oxf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9KKnP52JX79Zys90VqZLV9ybW1ETyKOn8HIAm5soPhQ=; b=ZiwD195VM78Ojp
-	PJR5WbMpaVwxSPj+5tEvfLHcZBTSY3UmaNVvfHPVjsteAc52GkOJYBQQuFZNIHOEWF947ThLhbSsc
-	yCbbWVJcIG2IR38UHPbJhan+NkZHOQ4flOG8Z8OIypeSXle/tq1BAaSyxtKBv6zPD7d9OeoeneQSd
-	DIyoy3HwaezGCDXnyazxnYmvmxEO+uRu1SUt6iHbzoCX1/ff5uBHgTIrMQiooTjNvJ0RSX/MlYNd5
-	0W6irCLe6hk7/g3YfFFef/IehslPa6K1FXwqdwtjDJ2q8gLr/RYWOBIdykhH1r04k4glZyXh2MJ+h
-	lWUzAWgP/qj1K8maRKUQ==;
+	List-Owner; bh=RSZOWxfqWDFwRdZgOArsmxSLz/YxCgw0M+/5x+1CQb0=; b=w8VGjvziEErzsZ
+	DX6Me0DQMqcJfEPlp+d/Q8ZMGJPNKAabpIgmui2a4Wg/emqpiH0z2TDS8kYL9IhHiCKgPne6895St
+	i2KplM3iCPeIJcv7cSuO0O4eW9cWz5+t+7FFlyB8cOHN6ljSm6mY/NtZhQI11JtJp5ypGV+XfUWjt
+	Zv/C+AxqNyiKjfDuR9LSxmwbCME7JYIS4x8mQ44ZTot+8WOWXXUNQxLCsHc874ju483Br2QasNgSq
+	3ccrT0ChAP3w4NKvuRAAhARfuc4CwElZ5DavSnj1gTHTDP7gYQFXuYd5Qii3iOrqAbr+f7g4Zi/RI
+	1H7RLQ9TAdoT0N6e0M5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7JG-00000008qCy-171P;
+	id 1xW7JG-00000008qDE-1ZpI;
 	Wed, 25 Nov 2026 07:20:54 +0000
-Received: from mail-dy1-x132e.google.com ([2607:f8b0:4864:20::132e])
+Received: from mail-dy1-x1331.google.com ([2607:f8b0:4864:20::1331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7J8-00000008q9K-10m2
+	id 1xW7JB-00000008qAh-0IvU
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 07:20:47 +0000
-Received: by mail-dy1-x132e.google.com with SMTP id 5a478bee46e88-33bf40b0c8bso11667749eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 23:20:45 -0800 (PST)
+	Wed, 25 Nov 2026 07:20:50 +0000
+Received: by mail-dy1-x1331.google.com with SMTP id 5a478bee46e88-3282db206d3so5044801eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 24 Nov 2026 23:20:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795591245; x=1796196045; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1795591248; x=1796196048; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=9KKnP52JX79Zys90VqZLV9ybW1ETyKOn8HIAm5soPhQ=;
-        b=GaKRHzADmlcMFOclBoaG6KvVen7HhPEYpwuDoFq2lrydgo9SG6iS8FlsQMbc5izB48
-         /41QgyMChrzqYaklFy82SN1UZwe7DdTbYN/7qqFmAOmF6MXGBCgKg5+YxXcz0/RymE1B
-         mEMaR4UARmEUKv9lVMCmWRXJT6cv6OTgQvRqwmNX4lafK0GD2HfEE3OFq0v2YWRnBWoy
-         9EN5IiRt11wkaa+TKC1iPwPK8OhoqF+bx/BADs4woVnU2DH75RLwlGDuqOR3CYUfPlk7
-         YmdvFDI9CBwgMnSdugg7VvrPnYXmpCklt2db1nD79S+vZ7LNk9qmuQbAlVGOY6c3kdSn
-         iGxg==
+        bh=RSZOWxfqWDFwRdZgOArsmxSLz/YxCgw0M+/5x+1CQb0=;
+        b=yxqr2OxfbVSyxHi7YzQmslLP4q7phOKmQxa3ujHGMwdL2C7QwpT1wsxQ6LvNamwVEF
+         5GAnO8SIfwFyxB1IUouC41hyicEAfrelqfCziflTrEMsdo3UMJXdVrrUB0bMpgrIcIkA
+         qrLYu8eKR8g9oDjk8A4yHzKixaQFWs7A3hsEGlCK9wtqq9A1AF45oKO9R5HSm5QvcbHy
+         2tpDnW/37oxaGUjNW1R3JzYeBk2RDJF4yKDqICbkgvgvtzPyt9Nzp+1HZtl+x9WNonKI
+         TMeDzXL7mwahrlgXifwG1/PggWCXY+H+mMHRzFB+3C1hUTpdk2jabQAPisfRq1qTOFaJ
+         pHqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795591245; x=1796196045;
+        d=1e100.net; s=20260707; t=1795591248; x=1796196048;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=9KKnP52JX79Zys90VqZLV9ybW1ETyKOn8HIAm5soPhQ=;
-        b=ePCdxnaKIROsi8yl+83yIetX9gNm8qnia5/tnyWG1O5riepFRXcVHTL0BphJMikhc2
-         Y92AtII5ckEvFtJ51TJ7vUX1hi7BmAD+0EMvzJooKejqKAgi1TcITV78uJFba8nED8wZ
-         ASrSjSpsjKKdRzrZbvFUbGawqmGiZCZ2fSgtJDMNDvCmu0Ufh+Hpgh+H4gPtmxE8uMdy
-         415ukpN5B6Ao4wpZMtKHU1d4tyELItOcdtvxBlDzr8lwp8L1P6Ic2EWMutFvTP39OQY1
-         q9LLXOcCdeUU4/uVGqnp/d3nQluhVDZvj5gNk19ChAx6Zfk/gUj/bxOS+6rUNirrWatZ
-         Y38Q==
-X-Forwarded-Encrypted: i=1; AL+hErHAMDSeBr30MMynj3uOhGHEusUTUcGWWDzkYO3SK39/xNQ1E+Y+WxdtW1UzIppDiypukMxxie2sgW1EaVlGmsTx@lists.infradead.org
-X-Gm-Message-State: APuU4Z8MuUkfHOIZIWQPuw3MbZ2DRl8cVyUg92nFD5WhM62tnNm2zqlz
-	h04Xx3Oz7ZxNSOeGE9L4TUuMLWNcdIv4j4qQGgKeVHrllSEPhBuip6dx
-X-Gm-Gg: AZFdTZcq338VdXZN1EQc4ewyGlH4VngDawma7MjEeC17bHbLxN9zcCHUZer+x43u+o7
-	TZOpAAMz7bmyEXXtio4kujkd80jH1VzixvNhV0WV48xYUqwxjS2Z8STMQAIqKJbggUarebTPHwf
-	OXydQ12nMLTIuQOnKG7ivEg3BbtwO5rWezFSAYAQd/ZHKWq+7CgFEjg+cuac9dILSuhIBlHPeL7
-	JrYX0Px60vufclk19x4A2Z6noiTpCfuIPYa6B6POpF+7adFLJwvpSxH5tU+1z1LhWkzelTJqw5x
-	0RS5pvfJpq2ULlggZu/QBUhx/IOYIg9uxKZCrsWFiQ0cIS8eXRvoWX+LTGy0B17nc21+hY2SZ6O
-	lHQNGfJHR1r8VeZhs/PYXqP8DwJCQk4YvK3nGLK7Bo/UW4yv1i5mVCfSGTjMezLbJzAQ8loYuen
-	seJ+qHaDkIca3qMammbLf+Gz2AH6+8RJqpg7+6HJyVSS0ng10I8ATB+ka41YGVJjr257w1wm11a
-	7kAO9Ccy9rEuFBJH1y/QLzpAqizi0DNSZajyBk4HAU4t3r3R8KPP80ltEEi97xLMsMswynH5ARW
-	IcYxPTzo2a0qm6Qd2jraPM3vaxyGd2HWC7UFq0Oo0NMVZPSmFfhPuvVRsFsNG2W3V6E7uHQ36Ji
-	9UoOSTWQfnA==
-X-Received: by 2002:a05:7301:3f0a:b0:384:8f9:bbf6 with SMTP id 5a478bee46e88-3857180d3b2mr28249889eec.38.1795591245029;
-        Tue, 24 Nov 2026 23:20:45 -0800 (PST)
+        bh=RSZOWxfqWDFwRdZgOArsmxSLz/YxCgw0M+/5x+1CQb0=;
+        b=ZTo3aTRrhvd+0JSNtmlevgnhXX3vFCcCnNAOmZi+E44vWX/ytX1PK6cNUqwCZ7HToq
+         6bf1g6UueKyPcROckGpE0wzBpxxtXy/sjCHPvdaBS4oaoTraOh+cMcOffP6ZaGROldEx
+         LpuT4libMeQiLfE0SVQ5bnPNFx9F8FQrX8+e2cmWsgIMu2Mq6CRc07Bk8oda9CQlCepR
+         1NmgTfGlZjWo5q2sPZh47T/NBi9cQ1YZD7tJIf4zJdqr5h6e2gv1oPD10dLcjcdKzLr6
+         /h23IdgrfSQE8mr3Ws1S8fJljpI8TIX5eulofldbtHTTbJhD9gb92v/IXc9kt0EaK66i
+         mYkw==
+X-Forwarded-Encrypted: i=1; AL+hErFmU8bo8EqJ7U7ms5ZdQRR20MGsWjgxJ1Ie2lNe5VcmmaZLGRBINoJHaVnoiAv4RhvClC8BhOvaNsAI/FZzr8BU@lists.infradead.org
+X-Gm-Message-State: APuU4Z/EGf7LmWUVyJckDq06egUq+MMcIK7b1855UEAKQhD0tt3wAsN1
+	rdakqltcw7MS5ImZIO4TPWCU6U++BQq+id3jEAKTQiHU+8ZWbUWeVKac
+X-Gm-Gg: AZFdTZf8ieBU89P4hqhAc/3MNGZRSD2G9I2Cz28sKrBmJADv9mvOfBPDGjJEfCrghKg
+	DQQj+iOVMaQ0lOOvretiF2z+6YbDVN9FCDwv0WarRAcjUG7VjJBid6KdHHdhe1EJrTdiPGG9jsQ
+	i21rOkzqPj/CuMpnwBEn3K+8rTiLb99LceUyDkW+lj/SiamVWZdmfhbiN2c7pOI/eSu6zyNezv/
+	GZSb3QE78yD2sGzJ31wEw07lBQwXXl722Y5z0btIe+nS7C3P4sSktZmqt67toYl5zSbEAh2jeIi
+	bc3WkwGVEqLhmUAHHY+yO1BIXi6RBi3OgmRsl1L9YU22h5wdOFMQHt34CKSKU+YN7MmmMDK4Cj6
+	efr1nr0736q/MvVXRzo+wtoZRCvda9gm8sABcWbXxgs3Z+rpPJhkdg5J/9aeM05AkKdXT/pSds0
+	pAQntrrT2hHLdmz2EyvRRu/x8vFaOw37XOtwtiMAU5poKlZoYC+8TCjBiaZl05Ip9LFfwnTR0jd
+	/w900cBhwtggtCCcHYWCgretFfH63DoA7YfFbYeY8XqDHscLsaM5WVZZ5oQ2RPD6acDnm5xyPnD
+	WbjmVNUgtoygj4tZIr/yekBIceyN/iNAC5o5AAf+DOTBQTgdT7MIxHb1Bt4UoKTr
+X-Received: by 2002:a05:693c:8951:10b0:386:b4a1:d92a with SMTP id 5a478bee46e88-386b4a1daa3mr7689219eec.1.1795591247853;
+        Tue, 24 Nov 2026 23:20:47 -0800 (PST)
 Received: from prasanth.alps.lineo.co.jp (vpn1.lineo.co.jp. [203.141.200.204])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567abb870sm42767121eec.25.2026.11.24.23.20.42
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-38567abb870sm42767121eec.25.2026.11.24.23.20.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2026 23:20:44 -0800 (PST)
+        Tue, 24 Nov 2026 23:20:47 -0800 (PST)
 From: Prasanth R <ragaprasanth@gmail.com>
 X-Google-Original-From: Prasanth R <prasanth.r@lineo.co.jp>
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
@@ -89,9 +88,9 @@ Cc: Frank Li <Frank.Li@nxp.com>,
 	linux-mips@vger.kernel.org,
 	Prasanth R <ragaprasanth@gmail.com>,
 	Prasanth R <prasanth.r@lineo.co.jp>
-Subject: [PATCH 02/12] rtc: mxc: clear the wake IRQ on unbind
-Date: Wed, 25 Nov 2026 16:20:16 +0900
-Message-Id: <20261125072026.2997493-3-prasanth.r@lineo.co.jp>
+Subject: [PATCH 03/12] rtc: mxc_v2: fix unbalanced clock disable on remove
+Date: Wed, 25 Nov 2026 16:20:17 +0900
+Message-Id: <20261125072026.2997493-4-prasanth.r@lineo.co.jp>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
 References: <20261125072026.2997493-1-prasanth.r@lineo.co.jp>
@@ -99,8 +98,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_232046_283184_EE77D0B8 
-X-CRM114-Status: GOOD (  13.74  )
+X-CRM114-CacheID: sfid-20261124_232049_123515_E1763A75 
+X-CRM114-Status: GOOD (  14.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,41 +121,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Prasanth R <ragaprasanth@gmail.com>
 
-The driver has no remove callback, so the wake IRQ set with
-dev_pm_set_wake_irq() and the wakeup source enabled with
-device_init_wakeup() are never released on unbind.
+Probe leaves the clock prepared but disabled, and the RTC callbacks
+enable it only around register accesses. mxc_rtc_remove() still calls
+clk_disable_unprepare(), so the clock is disabled once more than it was
+enabled and the clock core warns "already disabled".
 
-When the driver is bound again, dev_pm_set_wake_irq() finds the old wake
-IRQ, warns "wake irq already initialized" and returns -EEXIST, so the
-driver prints "failed to enable irq wake".
-
-Use the device-managed variants so both are released on unbind.
+Only unprepare the clock in remove, as the probe error paths after
+clk_disable() already do.
 
 Compile-tested only.
 
 I used an AI assistant (Claude) to find this and write the change.
 
-Fixes: bc0e731fc289 ("rtc: mxc: use dev_pm_set_wake_irq() to simplify code")
+Fixes: 83c880f79e88 ("rtc: add mxc driver for i.MX53 SRTC")
 Signed-off-by: Prasanth R <prasanth.r@lineo.co.jp>
 ---
- drivers/rtc/rtc-mxc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/rtc/rtc-mxc_v2.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/rtc/rtc-mxc.c b/drivers/rtc/rtc-mxc.c
-index f91b0994b..90b383896 100644
---- a/drivers/rtc/rtc-mxc.c
-+++ b/drivers/rtc/rtc-mxc.c
-@@ -377,8 +377,8 @@ static int mxc_rtc_probe(struct platform_device *pdev)
- 	}
+diff --git a/drivers/rtc/rtc-mxc_v2.c b/drivers/rtc/rtc-mxc_v2.c
+index 965170bb8..35a18b75c 100644
+--- a/drivers/rtc/rtc-mxc_v2.c
++++ b/drivers/rtc/rtc-mxc_v2.c
+@@ -365,7 +365,7 @@ static void mxc_rtc_remove(struct platform_device *pdev)
+ {
+ 	struct mxc_rtc_data *pdata = platform_get_drvdata(pdev);
  
- 	if (pdata->irq >= 0) {
--		device_init_wakeup(&pdev->dev, true);
--		ret = dev_pm_set_wake_irq(&pdev->dev, pdata->irq);
-+		devm_device_init_wakeup(&pdev->dev);
-+		ret = devm_pm_set_wake_irq(&pdev->dev, pdata->irq);
- 		if (ret)
- 			dev_err(&pdev->dev, "failed to enable irq wake\n");
- 	}
+-	clk_disable_unprepare(pdata->clk);
++	clk_unprepare(pdata->clk);
+ }
+ 
+ static const struct of_device_id mxc_ids[] = {
 -- 
 2.43.0
 
