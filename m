@@ -2,93 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D227D606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 03:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289BA606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 03:26:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0hiJldCr;
-	dkim=pass (2048-bit key) header.d=fujitsu.com header.i=@fujitsu.com header.a=rsa-sha256 header.s=fj2 header.b=ekwSiq4a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nbuftW4K;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=dP5taiko
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=23fFU0O+rXserzO3o7D7RV3GbnE7B9R3sHZLTrVXSyk=; b=0hiJldCr+ZSPqfX8+fUF04Xr5X
-	ZsjykMoF+TEqM+3V0CWqa6LBafFlup15rZHxdPi8T0vc/qfF2tP7kIr5ECjIeGcjIEmGAqdIBX4FT
-	F+STD+SWI0NIoas8GOXglitbSt9swGbRdb39k09kxFrt8TPwyaxfDjNYKwU5a4QxIx0s/o/ba+UZq
-	v/yMg+IIf7MQdJUwsPB5C52hRRxZte+KXgaaCtq4bbBAX5URYTh2ze3D83tasU1xBg7RCZ/ng8yUa
-	jtksuXH0U7s70ZIcsDM6YKf9VWp9SpyvEgcjheXRkRLp/OJXzrAM0qrDivN3xvZE+QQkdlksh+I2e
-	nT8iZcqg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=MGGGZ4IBRju42kUAwpsf2sShlkQK4dVsJQLNokXw6Zo=; b=nbuftW4KGr7Oci
+	+NDb2UWMwphg3c+RGrHrPar/NJER8IPYcHyvmLhNjm3icbYnAr5/ioB68d/cl+wZgp0b8y928s08R
+	Q4dMbYF5GHYX+gNAH1b2WHkCOMvwuCXDDCtJ4Xf2Wtu1lZXD5Awz9+NHptjROCJvTtb8Afe20mUE5
+	qb2eDjCotDUPC1tIQbpGo0l+kcQAM2zS2rA7mF7qsSDyfwXRoZTKZKrizI5xH05E8sH9urwZQjObm
+	ISl+2ZbeGanG583R0Ou8wR1VKGXlKJji6C/Qs+v/Co21REHyH7Md3rUGP1a8/B/8TpccCK+JLd1ak
+	fSZTzjZT1X5SLb3Oa2mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW3W5-00000008Ho7-0kHG;
-	Wed, 25 Nov 2026 03:17:53 +0000
-Received: from esa10.hc1455-7.c3s2.iphmx.com ([139.138.36.225])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW3W1-00000008Hni-1cks
+	id 1xW30T-00000008Fik-0fMZ;
+	Wed, 25 Nov 2026 02:45:13 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xW30N-00000008FhE-3rYf
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 03:17:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
-  t=1795576669; x=1827112669;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=P+2esJNoADXhVcXnXeX/GpZHHYhnsn3OGqjyBJ5lLUY=;
-  b=ekwSiq4aBnxvIMBltrA06kEV5NFI2bca9XfV1O7MEue21QPFdxayCd/Y
-   dZre8PiBGvbK4bDnd1vq/+qcDrs2N3dUcfNjrhBkbtpgpYhuHFxDrT9pb
-   umUlv4qu+1F/46fZJu9osZLDYLi6MZozyiSs72I7/4j3CHQJZrQV6Qm0y
-   4SjSoljcm1CM/IvXfP8z5auVCybuUS3FF2JpZP9SyVNYmmbZZWkM4L0wP
-   3ZBKCN8HDDHZGcIGxZ3syq9MUzQK3VODTTto6bS774HqsNBNeBiYAo5Wz
-   46eEUKCYFaFQ8zVsPLMzFPKpdFKG40nPW+xT5c+Ke28ybKVrNWu+gMA2h
-   A==;
-X-CSE-ConnectionGUID: iRLYLiJaQaGa93YQnY1jZg==
-X-CSE-MsgGUID: ANQFdfFuSEmrZ5sLKqKU1A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="249189419"
-X-IronPort-AV: E=Sophos;i="6.27,232,1786978800"; 
-   d="scan'208";a="249189419"
-Received: from gmgwuk01.global.fujitsu.com ([172.187.114.235])
-  by esa10.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2026 12:17:45 +0900
-Received: from az2uksmgm4.o.css.fujitsu.com (unknown [10.151.22.201])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by gmgwuk01.global.fujitsu.com (Postfix) with ESMTPS id D1F4F1C05DDF
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 03:17:45 +0000 (UTC)
-Received: from az2nlsmom2.o.css.fujitsu.com (unknown [10.150.26.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by az2uksmgm4.o.css.fujitsu.com (Postfix) with ESMTPS id 845E31400602
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 03:17:45 +0000 (UTC)
-Received: from FCCLS0092175.localdomain (unknown [10.8.162.75])
-	by az2nlsmom2.o.css.fujitsu.com (Postfix) with SMTP id 6E08D18021BD;
-	Wed, 25 Nov 2026 03:17:39 +0000 (UTC)
-Date: Wed, 25 Nov 2026 12:17:38 +0900
-From: Kohei Enju <enju.kohei@fujitsu.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Paolo Bonzini <pbonzini@redhat.com>, Marc Zyngier <maz@kernel.org>, 
-	Oliver Upton <oupton@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>, 
-	Joey Gouly <joey.gouly@arm.com>, Steffen Eiden <seiden@linux.ibm.com>, 
-	Steven Price <steven.price@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, kvm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, cgroups@vger.kernel.org
-Subject: Re: [PATCH RFC v2 1/2] KVM: arm64: CCA: Add support for configuring
- the Realm MEC policy
-Message-ID: <awZR98W3sP9g12wh@FCCLS0092175.localdomain>
-References: <20261112-mm-v1-mec-v2-0-0d1dd260a588@fujitsu.com>
- <20261112-mm-v1-mec-v2-1-0d1dd260a588@fujitsu.com>
- <090662ee-0d8d-48b5-83f2-8a4d225bef08@arm.com>
+	Wed, 25 Nov 2026 02:45:11 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4952319F6;
+	Tue, 24 Nov 2026 18:45:04 -0800 (PST)
+Received: from entos-yitian-01.Arm.com (unknown [10.168.196.233])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 854EF3F86C;
+	Tue, 24 Nov 2026 18:45:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1795574707; bh=wDi1M7Q4l7A6y/F3a3AdAoPjlBOQwxkfI2YdxM9FiAU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=dP5taiko/LdgDe3i3r765mJKZl/r3gbqlGTj7ISSOucPizURiZfIV6ujmpbPwEofU
+	 J24rw1Y9yj4pQstz0raNSQPO8wuVsgV7EX1fBLCQVhv5yVDb52XR38EWZLlZK8gWPF
+	 pokQvhapFt73sAhLz9w6kIjbHLttBkYA3ConWnvg=
+From: Jia He <justin.he@arm.com>
+To: maz@kernel.org,
+	oupton@kernel.org
+Cc: fuad.tabba@linux.dev,
+	joey.gouly@arm.com,
+	seiden@linux.ibm.com,
+	suzuki.poulose@arm.com,
+	yuzenghui@huawei.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	pbonzini@redhat.com,
+	seanjc@google.com,
+	shuah@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	kvm@vger.kernel.org,
+	linux-kselftest@vger.kernel.org,
+	Jia He <justin.he@arm.com>
+Subject: [PATCH v2 3/3] KVM: arm64: nv: Allow the L1 VNCR page in cacheable PFNMAP memory
+Date: Wed, 25 Nov 2026 02:44:26 +0000
+Message-Id: <20261125024426.3464050-4-justin.he@arm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261125024426.3464050-1-justin.he@arm.com>
+References: <20261125024426.3464050-1-justin.he@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <090662ee-0d8d-48b5-83f2-8a4d225bef08@arm.com>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_191749_939295_302494EC 
-X-CRM114-Status: GOOD (  37.38  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261124_184508_044397_F039FF0B 
+X-CRM114-Status: GOOD (  21.71  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,205 +83,143 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Suzuki,
-Thank you for reviewing.
+kvm_translate_vncr() refuses any PFN that isn't memory and injects an
+SEA into the guest hypervisor. That is stricter than what the stage-2
+fault path allows (kvm_s2_fault_pin_pfn()): a VM_PFNMAP or VM_MIXEDMAP
+VMA whose host stage-1 attributes are cacheable is mapped cacheable at
+stage-2 when FWB and DIC are present, and the guest can use such memory
+as RAM (e.g. device memory that it onlines as a NUMA node). If the guest
+then picks a page of that memory as the VNCR page of one of its own
+guests, it takes an SEA as soon as it enters that guest.
 
-On 11/24 15:08, Suzuki K Poulose wrote:
-> On 12/11/2026 03:36, Kohei Enju wrote:
-> > Introduce the KVM_ARM_VM_RMI_CTRL device attribute group to allow
-> > userspace to configure Realm VM parameters before the Realm is created
-> > using KVM_SET_DEVICE_ATTR.
-> > 
-> > Currently, KVM_ARM_VM_RMI_CTRL_MEC_POLICY is the only supported
-> > attribute. Its value can be KVM_ARM_VM_RMI_MEC_POLICY_SHARED or
-> > KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE. Reject the private policy if the
-> > platform does not support private MECs.
-> > 
-> > If userspace does not explicitly configure the MEC policy,
-> > KVM_ARM_VM_RMI_MEC_POLICY_SHARED is used by default.
-> > 
-> > Signed-off-by: Kohei Enju <enju.kohei@fujitsu.com>
-> > ---
-> >   Documentation/virt/kvm/devices/vm.rst   | 25 +++++++++++++++
-> >   arch/arm64/include/asm/kvm_rmi.h        |  5 +++
-> >   arch/arm64/include/uapi/asm/kvm.h       |  4 +++
-> >   arch/arm64/kvm/arm.c                    |  4 +++
-> >   arch/arm64/kvm/rmi.c                    | 57 +++++++++++++++++++++++++++++++++
-> >   drivers/firmware/arm_rmm/rmi.c          |  6 ++++
-> >   include/linux/arm-rmi-cmds.h            |  1 +
-> >   tools/arch/arm64/include/uapi/asm/kvm.h |  4 +++
-> >   8 files changed, 106 insertions(+)
-> > 
-> > diff --git a/Documentation/virt/kvm/devices/vm.rst b/Documentation/virt/kvm/devices/vm.rst
-> > index 78e63eb9994e..b0bd30750aa1 100644
-> > --- a/Documentation/virt/kvm/devices/vm.rst
-> > +++ b/Documentation/virt/kvm/devices/vm.rst
-> > @@ -418,3 +418,28 @@ will reject attempts to define a filter for any portion of these ranges:
-> >           0x8000_0000 0x8000_FFFF
-> >           0xC000_0000 0xC000_FFFF
-> >           =========== ===============
-> > +
-> > +7. GROUP: KVM_ARM_VM_RMI_CTRL
-> > +=============================
-> > +
-> > +:Architectures: arm64
-> > +
-> > +7.1. ATTRIBUTE: KVM_ARM_VM_RMI_CTRL_MEC_POLICY (w/o)
-> > +----------------------------------------------------
-> > +
-> > +:Parameters: Pointer to a ``__u8`` value
-> > +
-> > +:Returns:
-> > +
-> > +  =========  ===========================================================
-> > +  ENXIO      The VM is not a Realm VM
-> > +  EBUSY      The Realm has already been created
-> > +  EINVAL     Invalid MEC policy value
-> > +  EOPNOTSUPP Private MEC policy is not supported by the platform
-> > +  EFAULT     The value could not be copied from userspace
-> > +  =========  ===========================================================
-> > +
-> > +Configures the MEC policy for a Realm VM before the Realm is created. The value
-> > +must be either ``KVM_ARM_VM_RMI_MEC_POLICY_SHARED`` or
-> > +``KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE``. If userspace does not explicitly set the
-> > +MEC policy, ``KVM_ARM_VM_RMI_MEC_POLICY_SHARED`` is used by default.
-> > diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
-> > index 3933f8d834b8..08c1f6d0671d 100644
-> > --- a/arch/arm64/include/asm/kvm_rmi.h
-> > +++ b/arch/arm64/include/asm/kvm_rmi.h
-> > @@ -59,6 +59,7 @@ enum realm_state {
-> >    * @state: The lifetime state machine for the realm
-> >    * @ia_bits: Number of valid Input Address bits in the IPA
-> >    * @stage2_unmapped: The Realm stage-2 mappings have been removed
-> > + * @mec_policy: MEC policy for the Realm VM
-> >    */
-> >   struct realm {
-> >   	void *rd;
-> > @@ -73,6 +74,7 @@ struct realm {
-> >   	enum realm_state state;
-> >   	unsigned int ia_bits;
-> >   	bool stage2_unmapped;
-> > +	unsigned int mec_policy;
-> >   };
-> >   /**
-> > @@ -109,9 +111,12 @@ int kvm_realm_teardown_stage2(struct kvm *kvm);
-> >   void kvm_destroy_rec(struct kvm_vcpu *vcpu);
-> >   struct kvm_arm_rmi_populate;
-> > +struct kvm_device_attr;
-> >   int kvm_arm_rmi_populate(struct kvm *kvm,
-> >   			 struct kvm_arm_rmi_populate *arg);
-> > +int kvm_vm_rmi_has_attr(struct kvm *kvm, struct kvm_device_attr *attr);
-> > +int kvm_vm_rmi_set_attr(struct kvm *kvm, struct kvm_device_attr *attr);
-> >   enum kvm_gfn_range_filter;
-> > diff --git a/arch/arm64/include/uapi/asm/kvm.h b/arch/arm64/include/uapi/asm/kvm.h
-> > index 65ee09bd1463..aa1e6fe6192e 100644
-> > --- a/arch/arm64/include/uapi/asm/kvm.h
-> > +++ b/arch/arm64/include/uapi/asm/kvm.h
-> > @@ -403,6 +403,10 @@ enum {
-> >   /* Device Control API on vm fd */
-> >   #define KVM_ARM_VM_SMCCC_CTRL		0
-> >   #define   KVM_ARM_VM_SMCCC_FILTER	0
-> > +#define KVM_ARM_VM_RMI_CTRL		1
-> > +#define   KVM_ARM_VM_RMI_CTRL_MEC_POLICY	0
-> > +#define     KVM_ARM_VM_RMI_MEC_POLICY_SHARED	0
-> > +#define     KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE	1
-> >   /* Device Control API: ARM VGIC */
-> >   #define KVM_DEV_ARM_VGIC_GRP_ADDR	0
-> > diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> > index 8e94f1bff830..be676c13e219 100644
-> > --- a/arch/arm64/kvm/arm.c
-> > +++ b/arch/arm64/kvm/arm.c
-> > @@ -2329,6 +2329,8 @@ static int kvm_vm_has_attr(struct kvm *kvm, struct kvm_device_attr *attr)
-> >   	switch (attr->group) {
-> >   	case KVM_ARM_VM_SMCCC_CTRL:
-> >   		return kvm_vm_smccc_has_attr(kvm, attr);
-> > +	case KVM_ARM_VM_RMI_CTRL:
-> > +		return kvm_vm_rmi_has_attr(kvm, attr);
-> >   	default:
-> >   		return -ENXIO;
-> >   	}
-> > @@ -2339,6 +2341,8 @@ static int kvm_vm_set_attr(struct kvm *kvm, struct kvm_device_attr *attr)
-> >   	switch (attr->group) {
-> >   	case KVM_ARM_VM_SMCCC_CTRL:
-> >   		return kvm_vm_smccc_set_attr(kvm, attr);
-> > +	case KVM_ARM_VM_RMI_CTRL:
-> > +		return kvm_vm_rmi_set_attr(kvm, attr);
-> >   	default:
-> >   		return -ENXIO;
-> >   	}
-> > diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
-> > index 0d254fb80cde..01ac8d4fec7c 100644
-> > --- a/arch/arm64/kvm/rmi.c
-> > +++ b/arch/arm64/kvm/rmi.c
-> > @@ -7,6 +7,7 @@
-> >   #include <linux/arm-rmi-cmds.h>
-> >   #include <linux/kvm_host.h>
-> >   #include <linux/overflow.h>
-> > +#include <linux/uaccess.h>
-> >   #include <asm/daifflags.h>
-> >   #include <asm/kvm_emulate.h>
-> > @@ -586,6 +587,9 @@ static int realm_create_rd(struct kvm *kvm)
-> >   		params->flags0 |= RMI_REALM_PARAM_FLAG_PMU;
-> >   	}
-> > +	params->flags0 |= FIELD_PREP(RMI_REALM_PARAM_FLAG_MEC_POLICY_MASK,
-> > +				    realm->mec_policy);
-> > +
-> >   	r = realm_init_sve_param(kvm, params);
-> >   	if (r)
-> >   		goto out_undelegate_tables;
-> > @@ -1481,6 +1485,57 @@ int kvm_arm_rmi_populate(struct kvm *kvm,
-> >   	return ret;
-> >   }
-> > +static int kvm_vm_rmi_set_mec_policy(struct kvm *kvm, u8 policy)
-> > +{
-> > +	guard(mutex)(&kvm->arch.config_lock);
-> > +
-> > +	if (!kvm_vm_is_realm(kvm))
-> > +		return -ENXIO;
-> > +
-> > +	if (kvm_realm_state(kvm) != REALM_STATE_NONE)
-> > +		return -EBUSY;
-> > +
-> > +	if (policy != KVM_ARM_VM_RMI_MEC_POLICY_SHARED &&
-> > +	    policy != KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE)
-> > +		return -EINVAL;
-> > +
-> > +	if (policy == KVM_ARM_VM_RMI_MEC_POLICY_PRIVATE &&
-> > +	    rmi_mec_count() == 0)
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	kvm->arch.realm.mec_policy = policy;
-> > +	return 0;
-> > +}
-> > +
-> > +int kvm_vm_rmi_has_attr(struct kvm *kvm, struct kvm_device_attr *attr)
-> > +{
-> > +	if (!kvm_vm_is_realm(kvm))
-> > +		return -ENXIO;
-> > +
-> > +	switch (attr->attr) {
-> > +	case KVM_ARM_VM_RMI_CTRL_MEC_POLICY:
-> 
-> minor nit: Could we reject this if the rmi_mec_count() == 0 ?
-> Default policy is "shared" mec, as long as it is documented, this
-> would work only on a system that supports Private MEC.
+For VM_PFNMAP and VM_MIXEDMAP VMAs, relax the check to match the stage-2
+fault path, and remove the FIXME added by commit 4bd7dbe0b224 ("KVM:
+arm64: nv: Inject SEA if guest VNCR isn't normal memory"). Look up the
+VMA, and allow the PFN if the VMA is a cacheable VM_PFNMAP or
+VM_MIXEDMAP one and the system supports cacheable PFNMAP at stage-2. No
+linear mapping is required, because VNCR accesses use the EL2 fixmap and
+require no cache maintenance.
 
-With SHARED as the default, how about making this a boolean attribute
-named KVM_ARM_VM_RMI_CTRL_MEC_PRIVATE? Then gating its availability on
-rmi_mec_count() > 0 would make sense to me.
+Get the HVA with gfn_to_hva_memslot_prot(), as kvm_handle_guest_abort()
+does. gfn_to_hva_memslot() returns KVM_HVA_ERR_RO_BAD for a read-only
+memslot, and the VMA lookup would then fail. A VNCR page in a read-only
+memslot is valid and is mapped read-only since commit 2684e02bac41
+("KVM: arm64: nv: Respect read-only PFN when mapping L1 VNCR").
 
-Thanks,
-Kohei
+mmu_invalidate_seq is sampled before the PFN is faulted in, so a VMA
+change after the lookup is caught by the mmu_invalidate_retry() check
+that follows, as for the PFN itself.
 
-> 
-> 
-> Suzuki
+Tested on a host with FEAT_FGT, FWB and DIC, with an L1 whose whole RAM
+is a cacheable PFNMAP (host RAM withheld with mem= and handed to the VMM
+by a test driver with remap_pfn_range()) starting an L2 guest
+hypervisor. Without the patch, L2 repeatedly takes an SEA at the same PC
+and fails to boot. With the patch, L2 boots successfully.
+
+The read-only case was tested on a Neoverse-N2 host. The guest
+hypervisor's VNCR page is in a cacheable PFNMAP registered as a
+read-only memslot, and a nested context reads VTTBR_EL2. When the HVA
+is looked up with gfn_to_hva_memslot(), the guest hypervisor takes an
+SEA. With this patch, the read returns the contents of the VNCR page.
+
+Signed-off-by: Jia He <justin.he@arm.com>
+---
+ arch/arm64/include/asm/kvm_mmu.h |  2 ++
+ arch/arm64/kvm/mmu.c             |  2 +-
+ arch/arm64/kvm/nested.c          | 38 +++++++++++++++++++++++++++-----
+ 3 files changed, 35 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/include/asm/kvm_mmu.h b/arch/arm64/include/asm/kvm_mmu.h
+index 32392abf2e21..e59c6603b137 100644
+--- a/arch/arm64/include/asm/kvm_mmu.h
++++ b/arch/arm64/include/asm/kvm_mmu.h
+@@ -385,6 +385,8 @@ static inline void kvm_fault_unlock(struct kvm *kvm)
+ 		read_unlock(&kvm->mmu_lock);
+ }
+ 
++bool kvm_vma_is_cacheable(struct vm_area_struct *vma);
++
+ /*
+  * ARM64 KVM relies on a simple conversion from physaddr to a kernel
+  * virtual address (KVA) when it does cache maintenance as the CMO
+diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+index 1db10d8d6db7..cbd563ba4dd9 100644
+--- a/arch/arm64/kvm/mmu.c
++++ b/arch/arm64/kvm/mmu.c
+@@ -1639,7 +1639,7 @@ static bool kvm_vma_mte_allowed(struct vm_area_struct *vma)
+ 	return vma->vm_flags & VM_MTE_ALLOWED;
+ }
+ 
+-static bool kvm_vma_is_cacheable(struct vm_area_struct *vma)
++bool kvm_vma_is_cacheable(struct vm_area_struct *vma)
+ {
+ 	switch (FIELD_GET(PTE_ATTRINDX_MASK, pgprot_val(vma->vm_page_prot))) {
+ 	case MT_NORMAL_NC:
+diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+index 59d82a29ec01..7412f026e1f3 100644
+--- a/arch/arm64/kvm/nested.c
++++ b/arch/arm64/kvm/nested.c
+@@ -1553,6 +1553,37 @@ static u64 read_vncr_el2(struct kvm_vcpu *vcpu)
+ 	return (u64)sign_extend64(__vcpu_sys_reg(vcpu, VNCR_EL2), 48);
+ }
+ 
++/*
++ * Allow a non-memory PFN only if it comes from a cacheable VM_PFNMAP or
++ * VM_MIXEDMAP VMA and the system supports cacheable PFNMAP at stage-2. The
++ * VMA is looked up after the PFN has been faulted in: the caller must check
++ * mmu_invalidate_retry() against a sequence count sampled before the
++ * fault-in.
++ */
++static bool vncr_pfn_is_cacheable(struct kvm_memory_slot *memslot, gfn_t gfn,
++				  kvm_pfn_t pfn)
++{
++	struct vm_area_struct *vma;
++	unsigned long hva;
++	bool ret = false;
++
++	if (pfn_is_map_memory(pfn))
++		return true;
++
++	if (!kvm_supports_cacheable_pfnmap())
++		return false;
++
++	hva = gfn_to_hva_memslot_prot(memslot, gfn, NULL);
++
++	mmap_read_lock(current->mm);
++	vma = vma_lookup(current->mm, hva);
++	if (vma && (vma->vm_flags & (VM_PFNMAP | VM_MIXEDMAP)))
++		ret = kvm_vma_is_cacheable(vma);
++	mmap_read_unlock(current->mm);
++
++	return ret;
++}
++
+ static int kvm_translate_vncr(struct kvm_vcpu *vcpu, bool *is_gmem)
+ {
+ 	struct kvm_memory_slot *memslot;
+@@ -1625,12 +1656,7 @@ static int kvm_translate_vncr(struct kvm_vcpu *vcpu, bool *is_gmem)
+ 		writable = !(memslot->flags & KVM_MEM_READONLY);
+ 	}
+ 
+-	/*
+-	 * FIXME: This check is too restrictive as KVM allows cacheable memory
+-	 * attributes for PFNMAP VMAs that have cacheable attributes in host
+-	 * stage-1.
+-	 */
+-	if (!pfn_is_map_memory(pfn)) {
++	if (!vncr_pfn_is_cacheable(memslot, gfn, pfn)) {
+ 		kvm_release_faultin_page(vcpu->kvm, page, true, false);
+ 		fail_s1_walk(&vt->wr, ESR_ELx_FSC_EXTABT, false);
+ 		return -EINVAL;
+-- 
+2.34.1
+
 
