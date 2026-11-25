@@ -2,136 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B93606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:15:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E846606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 08:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZE1fdgVk;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=amRkfW6m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nUVqLu2e;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bRNNH02v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
-	From:MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Rc4aqCyzYBjWOigmv1O5fiE2Ptnz+1fYVaVELpdQ2fQ=; b=ZE1fdgVkg1QQ/ZEGxHkQ7BxgAP
-	RREXMIHy+7BSYloRPW/X4xUU4TJNIQnxodz4ua6ls6y6OzmY7y+/37zNajv+xA0gOp74Khf0GCmek
-	UgEZIB3nIk5jWMnW3qvzSZDaSEvXXh1S4BVnDQygiPudYYaF3d1kgoDpVBBjF70NZ0i5EdBe47Wja
-	WTpH+7Qcy2FByHnqrfAHwH66DdbfCG/FIEKMrBpja3qiFOTWevIW1OX3LqC9d16v/V3BR7nRhJdTW
-	ChQhoA3c1yypKs5fn7aNxgnaZHtIg+rkoFwOquavB0zyCmpbvh6yaqgU1I2Gwv0WToLxU0MAAOuWY
-	VF04mwXA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=RmRIoUEFiPoUEXuldiyZqTnO2hYW9+vnNYyBXZkr9gw=; b=nUVqLu2e7qMQDi
+	OfKElW/naxcZrnJPlH6IdiiYjrCDmo2mVF1+g5sGFwp+S3xvphxIKtXd7ofQkdUnEkEudRZYvvoLa
+	WGBJ8w0ODuHqWHB23ghOk3JhyO3XrrJBEHHRrk6Sl4enaIdNYwcf1VrweTxInKXVQMM6T6xPTKN1x
+	PBBN7R3XKoziGXFSmXj1gQUmR21hrOAZ5Cdln90OSDPX2Xd+vdQtAcW0lC7B31hXVVfov10h1Rhuq
+	Vc+LKEZF+TPGd6i3NwpZg8lFeHV1vTCbn0W9H1chhgkxkGmplFYbnxTx1FpzfF0bb5ZQEi5/Ba5cD
+	cCVqPkJ3b2IN7B3+J7oA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW89x-000000091FX-19tT;
-	Wed, 25 Nov 2026 08:15:21 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1xW8AF-000000091MD-349H;
+	Wed, 25 Nov 2026 08:15:39 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW89Y-0000000913a-3UP4
+	id 1xW89e-00000009197-3PDs
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 08:14:58 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so53520455e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 00:14:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1795594495; x=1796199295; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Rc4aqCyzYBjWOigmv1O5fiE2Ptnz+1fYVaVELpdQ2fQ=;
-        b=amRkfW6mBhHowcM1XSnCqpAiOuudZRpQEOtJQ/e13mrKu8Ijl1dp7fqAL+5OyJ0fm0
-         +Cp554gxiryPNUX33Ac202vcuit8OSifP7VxdJGipAjnfam6H7pyggtaZ2tW05pk54XZ
-         5XesgzkIBNmC2V1PhqYXaPVZb2Xah1f42avHZRZLGaYLp47WuR61IwzrCt4bABlinCa4
-         lRfnqc/sDtvS9PQ7RhRF1NeiyDVnyiSi1SEdtqMpnr/sC6m2e85N2z33TKAtj2vV2SV/
-         aHs5azNfS7OhQ6burN6SOC9VN6Fsg65Fj/2OE3dfGEt3oTmr/FrFIkDAEFeoqh574Zqs
-         LVNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795594495; x=1796199295;
-        h=content-transfer-encoding:content-type:in-reply-to:organization
-         :autocrypt:content-language:references:cc:to:subject:reply-to:from
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Rc4aqCyzYBjWOigmv1O5fiE2Ptnz+1fYVaVELpdQ2fQ=;
-        b=W1Tdw0s1JVY1oURDTCZ4usyrozrDUUNnHx4VzeD8H9s/OhAMFpbD7kRfgWYsOLZTLv
-         U34jMGejKeCXbAluGus0deJSnXjDy0kjHAjUcQsNAZnhqif5wys+YYO7DPt3bD4q1BYz
-         1wyx2e2PiH490/6057Co38kn0rFd53ca6g2eibZLRmZbzyPlxUKycnDuSSgEdObJLEeM
-         cY+Jicc20m/5yoEKxIXafjVWnp8UaMS4wkLNfjs3f2ywX/7ouNBrChis3CICwDimsEkU
-         gcI2BxzHIKpFeZnYMGlLOfXE8bshd56lVkLqybrMVJyD9njdA+25ElKPYuYud1OL+ZO1
-         AIpg==
-X-Forwarded-Encrypted: i=1; AL+hErEUJazKCyKfzJFxyZuD0Z3t89QUkaucqxRZvxdLFSmDp/tEUyKpUTUYd1r0ieiRfJdrfflV5L9Zwy3qgQAqpOPb@lists.infradead.org
-X-Gm-Message-State: APuU4Z8bejePhai7MPl7ZpMkGz04Fzs1x43sFIXv3ZvQM/2nXGv5y80I
-	hOpZQg/8KakZy5IwA/b7BHrRu3kcOlWQU74DMKdGvIgOIkQdGp+cRNzklGS5DX6SqCA=
-X-Gm-Gg: AZFdTZepvubYSEs9UESlWzAXvjS0T0dkdZhvJ/ufZ2x34vH4ispAutRVHfRPlTIqvo8
-	DNv7dm1NA3T4tjthADNBYR00JUWDLy7gpG7/4BzGLZJc81dGhcg57apb459M9Ok+PW6l82yaHDc
-	yaxy/OIBkf0aPxnCpbnDIRBpX2DHERRqhRkrHQYUIHg6WotKl9ZUD4Y396A2RZqlZvM01h+BTNn
-	T9k4upm4tcHLgDD0E1VvbNWFDB5/MfqkG8MsQJm+gx8f0AAro0OlZlV9L0qhSEVbz58kdJ6FChH
-	1W9DiGl0G1waxiQM91lSOcx9d3n9oIXaJQ42WpKClIFhGi1TWkHY7ea2Hi3MY//PxtMqONeUqAB
-	wnaK/1MvAG2IElbOs6ZFKdHqK2HEh5txpJNPNXJjreNbF50I+JGiK2+rkmN0VU0v6fc9fq05fav
-	bVOxe6qyPHbc/qeRc+ocOaF5yCC6eZ/KczsMOXdcrCk0r8WYawEKZFpshysdbbBPFQKQsXUdUdg
-	wgTMRF5BFz4J6cvwHSwinDwEnl9Qawma3JUqIV7RDP/MbknfgI0+mo3U73QPKR0FfM0HfjQwt2G
-	RdSvjo6Jrxf1uIWh76CRJRYF7qctwLHO5KkNOcoCFnOUkY2gd0RJ77xh2KnlufXiz66UE5+fZYK
-	uD7XAWvIs
-X-Received: by 2002:a05:600c:1548:b0:4a1:e00b:a10b with SMTP id 5b1f17b1804b1-4bb88800020mr372318965e9.7.1795594494562;
-        Wed, 25 Nov 2026 00:14:54 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:f368:ae2e:e717:e970? ([2a01:e0a:106d:1080:f368:ae2e:e717:e970])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bba3d3679bsm26993885e9.2.2026.11.25.00.14.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Nov 2026 00:14:54 -0800 (PST)
-Message-ID: <6e408f48-17ca-4927-ae09-c4153e294371@linaro.org>
-Date: Wed, 25 Nov 2026 09:14:53 +0100
+	Wed, 25 Nov 2026 08:15:02 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 883B74236F;
+	Wed, 25 Nov 2026 08:15:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AB751F000EE;
+	Wed, 25 Nov 2026 08:14:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795594502;
+	bh=RmRIoUEFiPoUEXuldiyZqTnO2hYW9+vnNYyBXZkr9gw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=bRNNH02vCsZQlhTDmr0/lmM6uzmstmR8CJ04jVNRWQ2WgNrB1P/Z/VvWNnd2T0WyV
+	 IHwhjDqn21u4cNA+xRxO9BpZs2zzK2Z3doZkqQm58BfHSW5XmNyCbJ5zAkQoO/d4AI
+	 GVbTqroDOEEh40MOxdLTTw9SvqhjlC/YQtSvl4r/La3xkqQis9O1+iOlQPyhKq491A
+	 AyEV7L6+MGVViWWTVvOSxDmiyIBzhLCa1+6IZTn7N1V6+73haciEAEG7CB6mSQ5lgj
+	 QovK3tfVCLFat3Zk1A6Mca5DIiDuiUnM9kEpUxGrMt01CtqPSGiXs/zF4BRYASndlf
+	 poWGZK6Ef1lfg==
+From: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>
+To: linux-coco@lists.linux.dev
+Cc: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
+	Alex Williamson <alex@shazbot.org>,
+	Alexey Kardashevskiy <aik@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Joerg Roedel <joro@8bytes.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Krishna Reddy <vdumpa@nvidia.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>,
+	Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>,
+	Ashish Kalra <ashish.kalra@amd.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	kvm@vger.kernel.org,
+	iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	patches@lists.linux.dev
+Subject: [PATCH v10 16/18] iommufd/viommu: Allow vIOMMUs without a parent HWPT
+Date: Wed, 25 Nov 2026 13:41:19 +0530
+Message-ID: <20261125081121.379481-17-aneesh.kumar@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261125081121.379481-1-aneesh.kumar@kernel.org>
+References: <20261125081121.379481-1-aneesh.kumar@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 00/11] phy/drm: amlogic: Extract Meson HDMI TX PHY into
- a dedicated driver
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel-dev@aliel.fr
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Vinod Koul <vkoul@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Ulf Hansson <ulfh@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-References: <20261123-meson-drm-create-hdmitx-phy-v4-0-3fb94f5534ca@aliel.fr>
- <CAFBinCD822UPQrrd_8ZbVRUVCVJ-3pGN69vbZBxUE+0yeMcysg@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CAFBinCD822UPQrrd_8ZbVRUVCVJ-3pGN69vbZBxUE+0yeMcysg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_001456_919896_8FBB7A6A 
-X-CRM114-Status: GOOD (  20.07  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -141,58 +97,302 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/24/26 23:05, Martin Blumenstingl wrote:
-> Hi Ronald, Hi Neil,
-> 
-> first of all: thanks Ronald for picking this up!
-> I like the overall approach. Before I dive deep into this series I
-> will finish the code-review of Valerio's AUDIN series.
-> 
-> Two quick notes below.
-> 
-> On Mon, Nov 23, 2026 at 8:38 PM Ronald Claveau via B4 Relay
-> <devnull+linux-kernel-dev.aliel.fr@kernel.org> wrote:
-> [...]
->> Overview of the series:
->> - Patches 1-3: Fix compatible matching in meson-gx-hhi-sysctrl bindings,
->>    add the new amlogic,meson-hdmi-tx-phy DT schema, and allow the
->>    "hdmi-phy" child node under the HHI syscon.
-> It's been a long time, but I think we've been asked by the devicetree
-> maintainers to have reg properties for the nodes within &hhi
-> But I can't find the message at the moment.
+VIOMMU_ALLOC currently requires a nesting parent HWPT_PAGING even when
+the selected vIOMMU implementation has no use for one. This would force
+implementations such as the following Arm Realm vIOMMU to create an
+unused parent.
 
-The hhi syscon nodes doesn't have #[address|size]-cells and so far it
-wasn't required, let's wait for a review from DT maintainers, I'm fine
-with the current design
+Add IOMMUFD_VIOMMU_NO_HWPT so an implementation can opt out. Require
+hwpt_id to be zero in that case and pass a NULL parent domain to its
+initialization callback. For implementations requiring a parent, verify
+that it supports nesting and belongs to the selected physical IOMMU
+driver before invoking viommu_init().
 
-> 
->> - Patch 4: Add the new Meson HDMI TX PHY driver implementing the HDMI
->>    PHY configuration ops, along with the temporary legacy creation
->>    helper.
-> At quick glance your PHY approach would also fit phy-meson8-hdmi-tx.c
-> There seem to be minor differences:
-> - two additional enable bits in HHI_HDMI_PHY_CNTL1 on GXBB and newer:
-> HDMI_FIFO_ENABLE=BIT(2) and  HDMI_FIFO_WR_ENALBE=BIT(3)
-> - newer SoCs seem to have HHI_HDMI_PHY_CNTL3..5
-> 
-> Meson8/8b/8m2 HDMI support is not upstream yet. That's why those SoC's
-> won't need the backwards compatibility code. So if you need to tweak
-> the driver: feel free, there's not much you can break!
-> 
-> 
-> Best regards,
-> Martin
+Reject nested domain and hardware queue allocation for a vIOMMU without
+a parent. Nested domain allocation also requires physical IOMMU backing.
+Document the two allocation modes in the UAPI.
 
-Thanks,
-Neil
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Kevin Tian <kevin.tian@intel.com>
+Cc: Joerg Roedel <joro@8bytes.org>
+Cc: Will Deacon <will@kernel.org>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: iommu@lists.linux.dev
+Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+---
+ Documentation/userspace-api/iommufd.rst | 45 +++++++++++-----------
+ drivers/iommu/iommufd/hw_pagetable.c    |  7 ++++
+ drivers/iommu/iommufd/viommu.c          | 50 +++++++++++++++++--------
+ include/linux/iommufd.h                 | 12 ++++--
+ include/uapi/linux/iommufd.h            |  3 +-
+ 5 files changed, 76 insertions(+), 41 deletions(-)
+
+diff --git a/Documentation/userspace-api/iommufd.rst b/Documentation/userspace-api/iommufd.rst
+index 763b23339480..7a1e69ec4a5a 100644
+--- a/Documentation/userspace-api/iommufd.rst
++++ b/Documentation/userspace-api/iommufd.rst
+@@ -82,11 +82,11 @@ Following IOMMUFD objects are exposed to userspace:
+   * Direct assigned invalidation queues
+   * Direct assigned interrupts
+ 
+-  Such a vIOMMU object generally has the access to a nesting parent pagetable
+-  to support some HW-accelerated virtualization features. So, a vIOMMU object
+-  must be created given a nesting parent HWPT_PAGING object, and then it would
+-  encapsulate that HWPT_PAGING object. Therefore, a vIOMMU object can be used
+-  to allocate an HWPT_NESTED object in place of the encapsulated HWPT_PAGING.
++  A vIOMMU object may encapsulate a nesting parent HWPT_PAGING object to
++  support HW-accelerated virtualization features. Whether a parent is required
++  is determined by the selected vIOMMU implementation. A vIOMMU can be passed
++  as ``pt_id`` to ``IOMMU_HWPT_ALLOC`` to create an HWPT_NESTED object only if
++  it encapsulates a nesting parent HWPT_PAGING.
+ 
+   .. note::
+ 
+@@ -226,9 +226,9 @@ creating the objects and links::
+      flag is set.
+ 
+ 4. IOMMUFD_OBJ_HWPT_NESTED can be only manually created via the IOMMU_HWPT_ALLOC
+-   uAPI, provided an hwpt_id or a viommu_id of a vIOMMU object encapsulating a
+-   nesting parent HWPT_PAGING via @pt_id to associate the new HWPT_NESTED object
+-   to the corresponding HWPT_PAGING object. The associating HWPT_PAGING object
++   uAPI, provided an hwpt_id or a viommu_id of a parent-backed vIOMMU object
++   via @pt_id to associate the new HWPT_NESTED object to the corresponding
++   HWPT_PAGING object. The associating HWPT_PAGING object
+    must be a nesting parent manually allocated via the same uAPI previously with
+    an IOMMU_HWPT_ALLOC_NEST_PARENT flag, otherwise the allocation will fail. The
+    allocation will be further validated by the IOMMU driver to ensure that the
+@@ -245,25 +245,28 @@ creating the objects and links::
+       of the object passed in via the @pt_id field of struct iommu_hwpt_alloc.
+ 
+ 5. IOMMUFD_OBJ_VIOMMU can be only manually created via the IOMMU_VIOMMU_ALLOC
+-   uAPI, provided a dev_id (for the device's physical IOMMU to back the vIOMMU)
+-   and an hwpt_id (to associate the vIOMMU to a nesting parent HWPT_PAGING). The
+-   iommufd core will link the vIOMMU object to the struct iommu_device that the
+-   struct device is behind. And an IOMMU driver can implement a viommu_alloc op
+-   to allocate its own vIOMMU data structure embedding the core-level structure
+-   iommufd_viommu and some driver-specific data. If necessary, the driver can
+-   also configure its HW virtualization feature for that vIOMMU (and thus for
+-   the VM). Successful completion of this operation sets up the linkages between
+-   the vIOMMU object and the HWPT_PAGING, then this vIOMMU object can be used
+-   as a nesting parent object to allocate an HWPT_NESTED object described above.
++   uAPI, provided a dev_id identifying the device used to select the vIOMMU
++   implementation and, if the selected implementation requires a nesting
++   parent HWPT_PAGING, an hwpt_id. The hwpt_id must be zero for an
++   implementation that does not use a parent. A physical-IOMMU implementation
++   links the vIOMMU object to the struct iommu_device behind the device. Other
++   implementations, such as a TSM associated with the device, can provide their
++   own backing and device association. An implementation can allocate its own
++   vIOMMU data structure embedding the core-level structure iommufd_viommu and
++   some implementation-specific data. If necessary, it can also configure its
++   virtualization resources for that vIOMMU (and thus for the VM). A
++   parent-backed vIOMMU can be used as a nesting parent object to allocate an
++   HWPT_NESTED object described above.
+ 
+ 6. IOMMUFD_OBJ_VDEVICE can be only manually created via the IOMMU_VDEVICE_ALLOC
+    uAPI, provided a viommu_id for an iommufd_viommu object and a dev_id for an
+    iommufd_device object. The vDEVICE object will be the binding between these
+    two parent objects. Another @virt_id will be also set via the uAPI providing
+    the iommufd core an index to store the vDEVICE object to a vDEVICE array per
+-   vIOMMU. If necessary, the IOMMU driver may choose to implement a vdevce_alloc
+-   op to init its HW for virtualization feature related to a vDEVICE. Successful
+-   completion of this operation sets up the linkages between vIOMMU and device.
++   vIOMMU. A physical-IOMMU implementation requires the device to be behind the
++   same iommu_device as the vIOMMU. Other implementations validate the device
++   association while initializing the vDEVICE. Successful initialization sets
++   up the linkage between the vIOMMU and device.
+ 
+ A device can only bind to an iommufd due to DMA ownership claim and attach to at
+ most one IOAS object (no support of PASID yet).
+diff --git a/drivers/iommu/iommufd/hw_pagetable.c b/drivers/iommu/iommufd/hw_pagetable.c
+index 859eadf05f1d..deb8a94d8b75 100644
+--- a/drivers/iommu/iommufd/hw_pagetable.c
++++ b/drivers/iommu/iommufd/hw_pagetable.c
+@@ -306,6 +306,13 @@ iommufd_viommu_alloc_hwpt_nested(struct iommufd_viommu *viommu, u32 flags,
+ 		return ERR_PTR(-EOPNOTSUPP);
+ 	if (!user_data->len)
+ 		return ERR_PTR(-EOPNOTSUPP);
++
++	if (!viommu->hwpt)
++		return ERR_PTR(-EOPNOTSUPP);
++
++	if (viommu->backing != IOMMUFD_VIOMMU_BACKING_IOMMU)
++		return ERR_PTR(-EOPNOTSUPP);
++
+ 	if (!viommu->ops || !viommu->ops->alloc_domain_nested)
+ 		return ERR_PTR(-EOPNOTSUPP);
+ 
+diff --git a/drivers/iommu/iommufd/viommu.c b/drivers/iommu/iommufd/viommu.c
+index 909ef86f39a9..e176bc2f5235 100644
+--- a/drivers/iommu/iommufd/viommu.c
++++ b/drivers/iommu/iommufd/viommu.c
+@@ -19,7 +19,9 @@ void iommufd_viommu_destroy(struct iommufd_object *obj)
+ 	if (viommu->backing == IOMMUFD_VIOMMU_BACKING_TSM)
+ 		tsm_put_device(viommu->tsm_dev);
+ 
+-	refcount_dec(&viommu->hwpt->common.obj.users);
++	if (viommu->hwpt)
++		refcount_dec(&viommu->hwpt->common.obj.users);
++
+ 	if (viommu->kvm_file)
+ 		fput(viommu->kvm_file);
+ 	xa_destroy(&viommu->vdevs);
+@@ -33,7 +35,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 		.uptr = u64_to_user_ptr(cmd->data_uptr),
+ 		.len = cmd->data_len,
+ 	};
+-	struct iommufd_hwpt_paging *hwpt_paging;
++	struct iommufd_hwpt_paging *hwpt_paging = NULL;
++	struct iommu_domain *parent_domain = NULL;
+ 	struct iommufd_viommu *viommu;
+ 	struct iommufd_device *idev;
+ 	struct iommu_device *iommu_dev = NULL;
+@@ -95,15 +98,27 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 		goto out_put_idev;
+ 	}
+ 
+-	hwpt_paging = iommufd_get_hwpt_paging(ucmd, cmd->hwpt_id);
+-	if (IS_ERR(hwpt_paging)) {
+-		rc = PTR_ERR(hwpt_paging);
+-		goto out_put_idev;
+-	}
++	if (ops->flags & IOMMUFD_VIOMMU_NO_HWPT) {
++		if (cmd->hwpt_id) {
++			rc = -EINVAL;
++			goto out_put_idev;
++		}
++	} else {
++		hwpt_paging = iommufd_get_hwpt_paging(ucmd, cmd->hwpt_id);
++		if (IS_ERR(hwpt_paging)) {
++			rc = PTR_ERR(hwpt_paging);
++			goto out_put_idev;
++		}
+ 
+-	if (!hwpt_paging->nest_parent) {
+-		rc = -EINVAL;
+-		goto out_put_hwpt;
++		/*
++		 * A parent HWPT requires physical IOMMU backing. The parent must
++		 * support nesting and belong to that IOMMU's driver.
++		 */
++		if (!hwpt_paging->nest_parent || !iommu_dev ||
++		    hwpt_paging->common.domain->owner != iommu_dev->ops) {
++			rc = -EINVAL;
++			goto out_put_hwpt;
++		}
+ 	}
+ 
+ 	viommu = (struct iommufd_viommu *)_iommufd_object_alloc_ucmd(
+@@ -119,7 +134,9 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 	viommu->type = cmd->type;
+ 	viommu->ictx = ucmd->ictx;
+ 	viommu->hwpt = hwpt_paging;
+-	refcount_inc(&viommu->hwpt->common.obj.users);
++	if (viommu->hwpt)
++		refcount_inc(&viommu->hwpt->common.obj.users);
++
+ 	INIT_LIST_HEAD(&viommu->veventqs);
+ 	init_rwsem(&viommu->veventqs_rwsem);
+ 
+@@ -136,8 +153,10 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 		viommu->iommu_dev = iommu_dev;
+ 	}
+ 
+-	rc = ops->viommu_init(viommu, idev->dev,
+-			      hwpt_paging->common.domain,
++	if (hwpt_paging)
++		parent_domain = hwpt_paging->common.domain;
++
++	rc = ops->viommu_init(viommu, idev->dev, parent_domain,
+ 			      user_data.len ? &user_data : NULL);
+ 	if (rc)
+ 		goto out_put_hwpt;
+@@ -148,7 +167,8 @@ int iommufd_viommu_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 	rc = iommufd_ucmd_respond(ucmd, sizeof(*cmd));
+ 
+ out_put_hwpt:
+-	iommufd_put_object(ucmd->ictx, &hwpt_paging->common.obj);
++	if (hwpt_paging)
++		iommufd_put_object(ucmd->ictx, &hwpt_paging->common.obj);
+ out_put_idev:
+ 	iommufd_put_object(ucmd->ictx, &idev->obj);
+ 	return rc;
+@@ -472,7 +492,7 @@ int iommufd_hw_queue_alloc_ioctl(struct iommufd_ucmd *ucmd)
+ 	if (IS_ERR(viommu))
+ 		return PTR_ERR(viommu);
+ 
+-	if (!viommu->ops || !viommu->ops->get_hw_queue_size ||
++	if (!viommu->hwpt || !viommu->ops || !viommu->ops->get_hw_queue_size ||
+ 	    !viommu->ops->hw_queue_init_phys) {
+ 		rc = -EOPNOTSUPP;
+ 		goto out_put_viommu;
+diff --git a/include/linux/iommufd.h b/include/linux/iommufd.h
+index 77c1a2944c3b..cfa68c169fe7 100644
+--- a/include/linux/iommufd.h
++++ b/include/linux/iommufd.h
+@@ -6,6 +6,7 @@
+ #ifndef __LINUX_IOMMUFD_H
+ #define __LINUX_IOMMUFD_H
+ 
++#include <linux/bits.h>
+ #include <linux/err.h>
+ #include <linux/errno.h>
+ #include <linux/iommu.h>
+@@ -157,17 +158,19 @@ struct iommufd_hw_queue {
+ 	void (*destroy)(struct iommufd_hw_queue *hw_queue);
+ };
+ 
++#define IOMMUFD_VIOMMU_NO_HWPT	BIT(0)
++
+ /**
+  * struct iommufd_viommu_ops - vIOMMU specific operations
++ * @flags: Properties needed by the core before vIOMMU initialization
+  * @get_viommu_size: Get the size of a driver-level vIOMMU structure for a given
+  *                   @dev corresponding to @viommu_type. Driver should return 0
+  *                   if vIOMMU isn't supported accordingly. It is required for
+  *                   driver to use the VIOMMU_STRUCT_SIZE macro to sanitize the
+  *                   driver-level vIOMMU structure related to the core one
+- * @viommu_init: Init the driver-level struct of an iommufd_viommu on a physical
+- *               IOMMU instance @viommu->iommu_dev, as the set of virtualization
+- *               resources shared/passed to user space IOMMU instance. Associate
+- *               it with a nesting @parent_domain.
++ * @viommu_init: Initialize the selected driver-level iommufd_viommu for @dev.
++ *               @parent_domain is the nesting parent, or NULL for an
++ *               implementation that does not use a parent HWPT.
+  * @destroy: Clean up all driver-specific parts of an iommufd_viommu. The memory
+  *           of the vIOMMU will be free-ed by iommufd core after calling this op
+  * @alloc_domain_nested: Allocate a IOMMU_DOMAIN_NESTED on a vIOMMU that holds a
+@@ -210,6 +213,7 @@ struct iommufd_hw_queue {
+  *                      does, it should set it to the @hw_queue->destroy pointer
+  */
+ struct iommufd_viommu_ops {
++	unsigned long flags;
+ 	size_t (*get_viommu_size)(struct device *dev,
+ 		enum iommu_viommu_type type);
+ 	int (*viommu_init)(struct iommufd_viommu *viommu, struct device *dev,
+diff --git a/include/uapi/linux/iommufd.h b/include/uapi/linux/iommufd.h
+index b64f6330468e..31371ccd1ef2 100644
+--- a/include/uapi/linux/iommufd.h
++++ b/include/uapi/linux/iommufd.h
+@@ -1138,7 +1138,8 @@ struct iommu_viommu_tegra241_cmdqv {
+  * @flags: Must be 0
+  * @type: Type of the virtual IOMMU. Must be defined in enum iommu_viommu_type
+  * @dev_id: The device's physical IOMMU will be used to back the virtual IOMMU
+- * @hwpt_id: ID of a nesting parent HWPT to associate to
++ * @hwpt_id: ID of a nesting parent HWPT to associate to. Must be zero when the
++ *           selected vIOMMU implementation does not use a parent HWPT
+  * @out_viommu_id: Output virtual IOMMU ID for the allocated object
+  * @data_len: Length of the type specific data
+  * @__reserved: Must be 0
+-- 
+2.43.0
+
 
