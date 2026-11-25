@@ -2,71 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE2A606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:43:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 990BE606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 21:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x3fmLYQr;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=EUSlFVk1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1pc3Y7+a;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NMA3uzt9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4MKFbkxC3o9ap8WbY2v8opmAiDT98EVFbNmAsPwQeDQ=; b=x3fmLYQriTvPR1
-	ybSrkFX2iAZ6Zpl1smFdjUVBem7wniz2OFAAD2AD6ryySc6K7HK9MRWBOpRw+HEnZZNSVUnhz/4hk
-	FNEn00LuGWqBx5Ok1DBrgDONd5pdvVITHYDaNjMMXoS4iwp9BWNnuO62DY3Up0PF6joaieI8+YDNF
-	b3aMJCBK/qkDafpHaoZUJJusoeDak7K6MqDPdBzWXIqvLpCu5E++Pb0nl7aj0RTjxRb2ixKcJWKHK
-	Q/pawq/W/XOSf5oEFFNgc6Y3XerF3B64pKbrQRrUHfuwahzNEntOJRbjmJde0wbhtIAJkDds3UvR5
-	81WBH1etMmj6T/c/A4fw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Un2eSQGdCHQ6wokJ5C6/CGT6Gg0Da5nXKtHFb0WeUmc=; b=1pc3Y7+aKheHVScZDVHA4Q2tPw
+	8yRjRv+1xwj0tzhVoGa2+pW6Tn+0qkppJdQBA0iGRKFGOwh7OkZm7rguq4dqcxz59+gaIJYv5Stqr
+	5wNB6VuPbHtmTttvvX3AcUXG2mORpDPk8Rro9fA/oaYtuIob4duEV3S//lIWK/MBPsrjwhhNqVa5p
+	rOKBA6NtzUC3axN8/Nl62Np0O8vneB1QbkgQ6W22bCONNB0WBlxJNXwPdyxi09PBmn1HuxrSjj8BC
+	r8I1BrobP1VgP5g636tJHQHQOqoORmP5JhUPUYuTps2ukdAKCnHBXxcTd4ODlzS8m0Et0ckDu/k16
+	qs3bGioA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWKlI-0000000BO68-1Kiz;
-	Wed, 25 Nov 2026 21:42:44 +0000
-Received: from out-132.mta1.migadu.com ([95.215.58.132] helo=mta1.migadu.com)
+	id 1xWJxf-0000000BJWK-1bsl;
+	Wed, 25 Nov 2026 20:51:27 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWKlD-0000000BO53-0xfp
+	id 1xWJx9-0000000BJHW-44Fc
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 21:42:42 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=MXfyCZanVHHCByeJQ6CMCayWNQ7e8Mkpkpks7k/5FEA=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795642953; v=1; x=1796247753;
- b=EUSlFVk11/jFZQCE60eM5UFcEs/hiJpL9I7fHfA16wnKSXYeu4Hnr3U+p2gUt6hxjgRSiltd
- 0MJ6ZKVXVeC72xthTTl/WEPhEg67LGzkqXA1IE2P8L2Wwhc5/hJ9W0Z73KmZiTwcPmAcAmMlM1Z
- KNV2GZXUnYkwyi0H2mmJ1T1M=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 77a1ac44524ef322;
-	Wed, 25 Nov 2026 21:42:33 +0000
-X-Mizu-Trace-ID: 77a1ac44524ef322
-X-Migadu-Flow: FLOW_OUT
-Message-ID: <e7bdcfa9-bbd8-4649-8318-2f6dc236db15@linux.dev>
-Date: Wed, 25 Nov 2026 21:42:33 +0000
+	Wed, 25 Nov 2026 20:50:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 01F12618D3;
+	Wed, 25 Nov 2026 20:50:55 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1795639854;
+	b=JqUmYWDcib5nFQgcLqH65SVKt3CxYGjR3jpSiPaVbXYcTpZdQIyLGZFK8jMZINPzq1oO
+	 BYcuQsBR8I9MAdZMJOOR3989NSt5gh+poTLYIdzOiby2klZ6eGTjSqvdr3CbGl8D17W8S
+	 b9B2CecezLteMgZqFVllYGEXEbYHsjUi5Hu/QkSYJCWbaxbEBjeYWAVykcg8/WtOqOSAu
+	 wfqFEeWlZg9X7IaMvvqRtIlzOH0wXCLZK4RdgGNAH1EySlrBScz/JekKonda3sVA4iypb
+	 kBL14pS0O7FPuE4joh5F7fhnK5sLqrmgJ85lLxPMov8npOA4ImpfLEfwl4s7KSd7l+w==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1795639854;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=Un2eSQGdCHQ6wokJ5C6/CGT6Gg0Da5nXKtHFb0WeUmc=;
+	b=1/KZOptPFoQtsFFzbOHQ5y+5Ilox7GpyJKpJUoX7foEDhdlrUf56ILzXZu4wN4dfb2+G
+	 EWcmSeIjmjrEPmwP+i4neU+QiVmL/YKkZVXjW2l5XItiaf9HB0oCEUGBU3ug8OPlvXzEM
+	 X8PjOiGP7FfVUhTeCQq/nKlM+Mi/ENqcRr5OYAiHyTFj9z2U8scslnDwm02beK7GOiVtQ
+	 CkIDVroKC4aJe6bfVzVdQ9rA6vPpW5HCpBzMGAv1SEq+Vvi3PBuLwNE3vpLVpFOz5K4/Y
+	 +4i4RDyC13Jw8hq/5yO/4AbGREGYM3te9e1a/2iK/xhcd20f4VvqIBcIQK17dmRG4Kg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id AD6D61F000D3;
+	Wed, 25 Nov 2026 20:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795639854;
+	bh=Un2eSQGdCHQ6wokJ5C6/CGT6Gg0Da5nXKtHFb0WeUmc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=NMA3uzt9WXpb8TnJcNkB/bgW5kUVIpYRQYRF5T3uJBNMPt4KTPL/z7Kbizlt19Zci
+	 S+BJ690DakTX/nPgPowL7kQjaIo2uIlNn7s2aw/AWorfBYeRNxjH5kMR3JTQUnLDo+
+	 FOvohcR4tICe0r2C0mY/SdTZmlpOyMlT9tSFSbS7l/d1e6eBIK3Tuce7UCra3lqny5
+	 44RHgKcAB9V3ql4au2DbQLHYMdUgHjCwNQidGo2p0sEhyZYRfMZlk5ZganUArLtM/t
+	 uEac1ElH38hVS/sSbknQQf2eBGaQ2RcPmLkuj4NRceXk2Gkd/aJSSps456SaYvxt6v
+	 BJS18u4OZ4Sjg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 0BA294D057;
+	Wed, 25 Nov 2026 20:50:32 +0000 (UTC)
+From: Fil Dunsky via B4 Relay <devnull+filipp.dunsky.gmail.com@kernel.org>
+Date: Wed, 25 Nov 2026 23:50:34 +0300
+Subject: [PATCH RFC net-next 6/7] net: cortina: connect wired IPv4 NAT to
+ nftables hardware flowtables
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-To: Leonardo Bras <leo.bras@arm.com>
-Cc: Lorenzo Stoakes <ljs@kernel.org>, maz@kernel.org, oupton@kernel.org,
- fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com,
- suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com,
- will@kernel.org, mark.rutland@arm.com, kvmarm@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- riel@surriel.com, shakeel.butt@linux.dev, kernel-team@meta.com,
- rkeilty@meta.com, atish.patra@linux.dev, dgreid@meta.com
-References: <20261124152842.2634495-1-usama.arif@linux.dev>
- <awcXhk885lqDRAHy@LeoBrasDK> <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
- <awcoCklLOKeuXPhh@LeoBrasDK>
-Content-Language: en-US
-From: Usama Arif <usama.arif@linux.dev>
-In-Reply-To: <awcoCklLOKeuXPhh@LeoBrasDK>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261125-almondplus-offload-rfc-v1-6-703175c6340c@gmail.com>
+References: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
+In-Reply-To: <20261125-almondplus-offload-rfc-v1-0-703175c6340c@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Simon Horman <horms@kernel.org>, Pablo Neira Ayuso <pablo@netfilter.org>, 
+ Florian Westphal <fw@strlen.de>, Phil Sutter <phil@nwl.cc>, 
+ Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
+ Linus Walleij <linusw@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ Russell King <linux@armlinux.org.uk>, 
+ Christian Marangi <ansuelsmth@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, netfilter-devel@vger.kernel.org, 
+ coreteam@netfilter.org, linux-arm-kernel@lists.infradead.org, 
+ linux-doc@vger.kernel.org, Fil Dunsky <filipp.dunsky@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1795639829; l=40398;
+ i=filipp.dunsky@gmail.com; s=20260930; h=from:subject:message-id;
+ bh=uK/W5wie0gmqlE/OvDRgRKRqHnoQeN4gCogMc4fbRF4=;
+ b=zd6PLDnd0pdnN6IClNO6M9CUMXfUJ38DiqCH2gSUWLfOuNqgrvFqwwE+f+CROFl1dMZ94HTQR
+ O/3hlV1IPYNCH87fO+lR0rP6bUAXIkutCGLGQu/32o8YrE7A1xw04S8
+X-Developer-Key: i=filipp.dunsky@gmail.com; a=ed25519;
+ pk=JAYP8e2rJ54DHOmhNtXud8rl1igAaAXoOHxtJmVXI1g=
+X-Endpoint-Received: by B4 Relay for filipp.dunsky@gmail.com/20260930 with
+ auth_id=1085
+X-Original-From: Fil Dunsky <filipp.dunsky@gmail.com>
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_134240_316280_FFC5F77F 
-X-CRM114-Status: GOOD (  37.51  )
-X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,228 +121,1218 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: filipp.dunsky@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Fil Dunsky <filipp.dunsky@gmail.com>
 
+Translate established IPv4 TCP and UDP flowtable requests into checked
+CS7542 leases. Derive original Ethernet addresses and QCA metadata from
+actual CPU-routed packets, then validate route neighbors, bridge FDB and
+the persistent switch-format generation.
 
-On 25/11/2026 10:25, Leonardo Bras wrote:
-> On Wed, Nov 25, 2026 at 05:55:29PM +0000, Usama Arif wrote:
->>
->>
->> On 25/11/2026 09:14, Leonardo Bras wrote:
->>> On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
->>>> When a stage-2 fault may need new page tables, KVM first tops up the
->>>> vCPU's page cache: if it holds fewer pages than the fault might need, it
->>>> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
->>>> 40. Unused pages stay in the cache until the vCPU is destroyed.
->>>>
->>>> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
->>>> used. Stage-2 has at most three levels and the root is preallocated, so
->>>> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
->>>> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
->>>> table pages to map all of its memory, while its four vCPU caches get
->>>> filled with 160.
->>>>
->>>> On a production host with 64 KiB pages running 101 VMs with four vCPUs
->>>> each, the caches were still 86% full. The memory used:
->>>>
->>>>                         before      after
->>>>   per-vCPU capacity     2.5 MB     512 KB
->>>>   all 404 vCPUs         869 MB     <= 202 MB
->>>>
->>>> Let's lower the capacity to 8 with 64 KiB pages, In the production
->>>> usecase above, it frees at least 667 MB. That still covers the two-page
->>>> minimum and leaves room for several table allocations per refill. 4 KB
->>>> and 16 KB pages keep 40.
->>>>
->>>> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
->>>> but it is topped up before every page it maps, so 8 is sufficient there
->>>> as well. The pKVM hypervisor memcache and the eager split cache don't
->>>> use this capacity.
->>>>
->>>> Signed-off-by: Usama Arif <usama.arif@linux.dev>
->>>> ---
->>>>  arch/arm64/include/asm/kvm_types.h | 5 +++++
->>>>  1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
->>>> index 9a126b9e2d7c99..28568da9ea4a7b 100644
->>>> --- a/arch/arm64/include/asm/kvm_types.h
->>>> +++ b/arch/arm64/include/asm/kvm_types.h
->>>> @@ -2,7 +2,12 @@
->>>>  #ifndef _ASM_ARM64_KVM_TYPES_H
->>>>  #define _ASM_ARM64_KVM_TYPES_H
->>>>  
->>>> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
->>>> +#ifdef CONFIG_ARM64_64K_PAGES
->>>> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
->>>> +#else
->>>>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
->>>> +#endif
->>>>  
->>>>  #endif /* _ASM_ARM64_KVM_TYPES_H */
->>>>  
->>>> -- 
->>>> 2.53.1-Meta
->>>>
->>>
->>> Hi Usama,
->>>
->>
->> Hello Leonardo,
->>
->>> Have you tried to reproduce this issue in v7.4-rc1 or newer?
->>
->> Yes. The patch is against kvmarm/next (v7.4-rc3), which includes
->> Lorenzo's pre-fault series, and I A/B tested it there.
->>
->> On unpatched v7.4-rc3 with 64 KiB pages, a VM whose 16 vCPUs each fault
->> in one page needs a single stage-2 table page, yet the vCPU caches hold
->> 640 pages (40 MiB). With the patch they hold 127 pages.
->>
->>>
->>> IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
->>> skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
->>> improve that issue.
->>
->> I don't think that part is new. __kvm_mmu_topup_memory_cache() has
->> returned early when mc->nobjs >= min since commit 6926f95accee ("KVM:
->> Move x86's MMU memory cache helpers to common KVM code"). Lorenzo's
->> commit d27acc152c62 ("KVM: arm64: Size the stage-2 memcache from the
->> fault MMU") takes min from s2fd->mmu instead of vcpu->arch.hw_mmu. For a
->> guest abort that is the same MMU, so nothing changes here.
->>
->> With 64 KiB pages, min is kvm_mmu_cache_min_pages(), which is at most 2.
->>
->>>
->>> Although I can see that when it's below that minimum it fills the whole 
->>> capacity (40) of the cache.
->>>
->>
->> Right, and that is the problem. Skipping the top-up avoids refilling
->> the cache, but nothing ever drains it. A vCPU's first fault fills its
->> cache to 40. Each last-level table covers 512 MiB, so a guest needs very
->> few table pages, and most vCPUs never drop below min. The remaining
->> pages stay allocated until the vCPU is destroyed, which is why the
->> production caches were still 86% full.
->>
->> The patch keeps the early return and only lowers how far a refill goes.
-> 
-> Right,
-> 
-> I took a look in the cache workings, and it does not seem to receive freed 
-> pages back in. It gets filled by topup and used by map, so IIUC it is used 
-> only to avoid failing an allocation during the mapping walk.
-> 
-> Maybe it could be the case to simplify this cache to have the capacity 
-> about the same as the minimum (since it always topup before mapping) and 
-> avoid the waste altogether.
-> 
-> Maymbe having something like this should be enough?
->  
-> #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE (KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL)
-> 
+Requests outside the supported physical DSA path, namespace, rewrite
+policy or MTU are rejected to software. SYN, FIN, IP options, fragments
+and low-TTL exceptions remain in the CPU path. Module configuration is
+explicit; enabling this driver does not enable a firewall
+hardware-offload flag.
 
-That sounds good to me. I tested and it works (and releases even more memory :))
-
-I had to move #defines around to make it work, the current patch sits
-like below. If this seems acceptable, I can send it as v2 for review.
-
-
-From 9b044379f470625adb031a0ee7529e054d9ec219 Mon Sep 17 00:00:00 2001
-From: Usama Arif <usama.arif@linux.dev>
-Date: Wed, 25 Nov 2026 12:55:15 -0800
-Subject: [PATCH] KVM: arm64: Shrink the stage-2 memcache to the page-table
- depth
-
-When a stage-2 fault may need new page tables, KVM first tops up the
-vCPU's memcache: if it holds fewer pages than the fault might need, it
-is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
-40. Pages never return to the cache, and unused ones stay there until
-the vCPU is destroyed.
-
-The cache only has to cover a single map: every fault that can allocate
-tables tops it up first, and a map allocates at most one table per
-level below the preallocated root (kvm_mmu_cache_min_pages()). That is
-at most three pages with 4 KiB and 16 KiB pages, and two with 64 KiB
-pages.
-
-With 64 KiB pages, the 40-page cache is 2.5 MiB per vCPU. As every
-last-level table covers 512 MiB, an 8 GiB guest needs just 17 table
-pages to map all of its memory, while its four vCPU caches get filled
-with 160. On a production host with 64 KiB pages running 101 VMs with
-four vCPUs each, the caches were still 86% full. The memory used:
-
-                        before      after
-  per-vCPU capacity     2.5 MiB     256 KiB
-  all 404 vCPUs         869 MiB     <= 101 MiB
-
-Let's size the cache to KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL,
-which is 4 pages and covers the deepest walk with one page to spare. On
-the host above, it frees at least 768 MiB. Refills get more frequent,
-but no more than four pages per vCPU ever sit unused. With 4 KiB pages,
-the cache shrinks from 160 KiB to 16 KiB per vCPU.
-
-Move the two level definitions to asm/kvm_types.h, so that the generic
-top-up code in kvm_main.c can see them. kvm_pgtable.h still gets them
-through linux/kvm_types.h.
-
-The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
-but it is topped up before every page it maps. The pKVM hypervisor
-memcache and the eager split cache don't use this capacity.
-
-Suggested-by: Leonardo Bras <leo.bras@arm.com>
-Signed-off-by: Usama Arif <usama.arif@linux.dev>
+Signed-off-by: Fil Dunsky <filipp.dunsky@gmail.com>
 ---
- arch/arm64/include/asm/kvm_pgtable.h | 3 ---
- arch/arm64/include/asm/kvm_types.h   | 7 ++++++-
- 2 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/net/ethernet/cortina/Kconfig               |  11 +
+ drivers/net/ethernet/cortina/Makefile              |   1 +
+ drivers/net/ethernet/cortina/flowtable/Makefile    |   2 +
+ .../cortina/flowtable/codec/cs_ft_rewrite.c        | 234 +++++++++++
+ .../cortina/flowtable/codec/cs_ft_rewrite.h        |  42 ++
+ .../net/ethernet/cortina/flowtable/cs7542_fw4.c    | 437 +++++++++++++++++++++
+ .../ethernet/cortina/flowtable/cs7542_rx_path.c    | 225 +++++++++++
+ .../ethernet/cortina/flowtable/cs7542_rx_path.h    |  35 ++
+ drivers/net/ethernet/cortina/flowtable/nf_native.c |  90 +++++
+ drivers/net/ethernet/cortina/flowtable/nf_native.h |  31 ++
+ 10 files changed, 1108 insertions(+)
 
-diff --git a/arch/arm64/include/asm/kvm_pgtable.h b/arch/arm64/include/asm/kvm_pgtable.h
-index eda440354a55ec..691e2eb63939f5 100644
---- a/arch/arm64/include/asm/kvm_pgtable.h
-+++ b/arch/arm64/include/asm/kvm_pgtable.h
-@@ -19,9 +19,6 @@
- 
- struct kvm_s2_mmu;
- 
--#define KVM_PGTABLE_FIRST_LEVEL		-1
--#define KVM_PGTABLE_LAST_LEVEL		3
--
- /*
-  * The largest supported block sizes for KVM (no 52-bit PA support):
-  *  - 4K (level 1):	1GB
-diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
-index 9a126b9e2d7c99..5b61285d317e28 100644
---- a/arch/arm64/include/asm/kvm_types.h
-+++ b/arch/arm64/include/asm/kvm_types.h
-@@ -2,7 +2,12 @@
- #ifndef _ASM_ARM64_KVM_TYPES_H
- #define _ASM_ARM64_KVM_TYPES_H
- 
--#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
-+#define KVM_PGTABLE_FIRST_LEVEL		-1
-+#define KVM_PGTABLE_LAST_LEVEL		3
+diff --git a/drivers/net/ethernet/cortina/Kconfig b/drivers/net/ethernet/cortina/Kconfig
+index 13df28071..50e627ce3 100644
+--- a/drivers/net/ethernet/cortina/Kconfig
++++ b/drivers/net/ethernet/cortina/Kconfig
+@@ -88,3 +88,14 @@ config CS7542_FE_WIRED
+ 	  IPv6, Wi-Fi and unsupported policies continue through the CPU.
+ 	  TCP requires an established connection; SYN and FIN stay in software.
+ 	  Route, neighbor, MTU and tag state are checked before admission.
 +
-+/* One page per level below the root covers kvm_mmu_cache_min_pages(). */
-+#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE	\
-+	(KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL)
++config CS7542_FLOWTABLE
++	tristate "Cortina CS7542 nftables hardware flowtable"
++	depends on CS7542_FE_WIRED && NF_FLOW_TABLE && m
++	depends on NET_DSA_QCA8K_4B_MODE
++	default n
++	help
++	  Wired IPv4 TCP/UDP NAT offload through the CS7542 forwarding engine.
++	  This RFC frontend is loadable; the Ethernet owner remains built in.
++	  Users must explicitly request hardware flowtable offload in nftables.
++	  Selecting the driver alone does not change the firewall configuration.
+diff --git a/drivers/net/ethernet/cortina/Makefile b/drivers/net/ethernet/cortina/Makefile
+index 2bd0572d0..3d6614765 100644
+--- a/drivers/net/ethernet/cortina/Makefile
++++ b/drivers/net/ethernet/cortina/Makefile
+@@ -16,3 +16,4 @@ endif
+ obj-$(CONFIG_CS7542_FE_BACKEND) += cs7542_fe_backend.o
+ cs7542_fe_backend-y := cs_fe_backend_module.o cs_fe_backend_algorithm.o cs_fe_hot_codec.o
  
- #endif /* _ASM_ARM64_KVM_TYPES_H */
- 
++obj-$(CONFIG_CS7542_FLOWTABLE) += flowtable/
+diff --git a/drivers/net/ethernet/cortina/flowtable/Makefile b/drivers/net/ethernet/cortina/flowtable/Makefile
+new file mode 100644
+index 000000000..00bbbc108
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/Makefile
+@@ -0,0 +1,2 @@
++obj-$(CONFIG_CS7542_FLOWTABLE) += cs7542_flowtable.o
++cs7542_flowtable-y := cs7542_fw4.o cs7542_rx_path.o nf_native.o codec/cs_ft_rewrite.o
+diff --git a/drivers/net/ethernet/cortina/flowtable/codec/cs_ft_rewrite.c b/drivers/net/ethernet/cortina/flowtable/codec/cs_ft_rewrite.c
+new file mode 100644
+index 000000000..cd5e4e924
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/codec/cs_ft_rewrite.c
+@@ -0,0 +1,234 @@
++// SPDX-License-Identifier: GPL-2.0
++#ifdef CS_FT_HOST_TEST
++#include "host_shim.h"
++#else
++#include <linux/etherdevice.h>
++#include <linux/ip.h>
++#include <linux/pkt_cls.h>
++#include <linux/tc_act/tc_csum.h>
++#include <net/flow_offload.h>
++#endif
++#include "cs_ft_rewrite.h"
++
++/*
++ * Native u32 mask/value storage is intentional: nf_flow_table_offload copies
++ * network-byte arrays into these scalars. Do not ntohl() them a second time.
++ */
++static int cs_ft_patch(u8 *bytes, u8 *written, unsigned int size,
++		       unsigned int offset, u32 mask, u32 value)
++{
++	u8 m[4], v[4];
++	unsigned int i;
++
++	if (offset > size || size - offset < 4)
++		return -EOPNOTSUPP;
++	memcpy(m, &mask, 4);
++	memcpy(v, &value, 4);
++	for (i = 0; i < 4; i++) {
++		if (m[i] != 0 && m[i] != 255)
++			return -EOPNOTSUPP;
++		if (!m[i] && written[offset + i])
++			return -EOPNOTSUPP;
++		if (m[i] && v[i])
++			return -EOPNOTSUPP;
++	}
++	for (i = 0; i < 4; i++)
++		if (!m[i]) {
++			bytes[offset + i] = v[i];
++			written[offset + i] = 1;
++		}
++	return 0;
++}
++
++static int cs_ft_extract_actions(const struct flow_rule *rule, u8 proto,
++				 const struct cs_ft_tuple *before,
++				 struct cs_ft_rewrite *out)
++{
++	struct cs_ft_rewrite r = { 0 };
++	const struct flow_action_entry *a;
++	u8 eth[12] = { 0 }, eth_written[12] = { 0 };
++	u8 addresses[8], address_written[8] = { 0 }, ports[4],
++			 ports_written[4] = { 0 };
++	const u32 csum_flags = TCA_CSUM_UPDATE_FLAG_IPV4HDR |
++			       (proto == IPPROTO_TCP ?
++					TCA_CSUM_UPDATE_FLAG_TCP :
++					TCA_CSUM_UPDATE_FLAG_UDP);
++	const enum flow_action_mangle_base port_header =
++		proto == IPPROTO_TCP ? FLOW_ACT_MANGLE_HDR_TYPE_TCP :
++				       FLOW_ACT_MANGLE_HDR_TYPE_UDP;
++	unsigned int i, csum = 0, nat = 0;
++	struct net_device *egress = NULL;
++
++	if (!rule || !before || !out || !rule->action.num_entries ||
++	    rule->action.num_entries > 16)
++		return -EOPNOTSUPP;
++	memcpy(addresses, &before->src, 4);
++	memcpy(addresses + 4, &before->dst, 4);
++	memcpy(ports, &before->sport, 2);
++	memcpy(ports + 2, &before->dport, 2);
++	flow_action_for_each(i, a, &rule->action) {
++		if (egress)
++			return -EOPNOTSUPP; /* redirect must be last */
++		switch (a->id) {
++		case FLOW_ACTION_MANGLE:
++			if (csum)
++				return -EOPNOTSUPP;
++			switch (a->mangle.htype) {
++			case FLOW_ACT_MANGLE_HDR_TYPE_ETH:
++				if ((a->mangle.offset != 0 &&
++				     a->mangle.offset != 4 &&
++				     a->mangle.offset != 8) ||
++				    cs_ft_patch(eth, eth_written, 12,
++						a->mangle.offset,
++						a->mangle.mask, a->mangle.val))
++					return -EOPNOTSUPP;
++				break;
++			case FLOW_ACT_MANGLE_HDR_TYPE_IP4:
++				if ((a->mangle.offset != 12 &&
++				     a->mangle.offset != 16) ||
++				    a->mangle.mask ||
++				    cs_ft_patch(addresses, address_written, 8,
++						a->mangle.offset - 12,
++						a->mangle.mask, a->mangle.val))
++					return -EOPNOTSUPP;
++				nat = 1;
++				break;
++			case FLOW_ACT_MANGLE_HDR_TYPE_UDP:
++			case FLOW_ACT_MANGLE_HDR_TYPE_TCP:
++				if (a->mangle.htype != port_header ||
++				    a->mangle.offset ||
++				    cs_ft_patch(ports, ports_written, 4, 0,
++						a->mangle.mask, a->mangle.val))
++					return -EOPNOTSUPP;
++				nat = 1;
++				break;
++			default:
++				return -EOPNOTSUPP;
++			}
++			break;
++		case FLOW_ACTION_CSUM:
++			if (csum++ || !nat || a->csum_flags != csum_flags)
++				return -EOPNOTSUPP;
++			break;
++		case FLOW_ACTION_REDIRECT:
++			if (!a->dev)
++				return -EOPNOTSUPP;
++			egress = a->dev;
++			break;
++		default:
++			return -EOPNOTSUPP;
++		}
++	}
++	if (!egress || (nat && !csum))
++		return -EOPNOTSUPP;
++	for (i = 0; i < 12; i++)
++		if (!eth_written[i])
++			return -EOPNOTSUPP;
++	if (!is_valid_ether_addr(eth) || !is_valid_ether_addr(eth + 6))
++		return -EOPNOTSUPP;
++	r.before = *before;
++	memcpy(r.dmac, eth, 6);
++	memcpy(r.smac, eth + 6, 6);
++	memcpy(&r.after.src, addresses, 4);
++	memcpy(&r.after.dst, addresses + 4, 4);
++	memcpy(&r.after.sport, ports, 2);
++	memcpy(&r.after.dport, ports + 2, 2);
++	r.redirect = egress;
++	r.action_count = rule->action.num_entries;
++	r.nat_action = !!nat;
++	r.csum_action = !!csum;
++	r.csum_flags = csum ? csum_flags : 0;
++	*out = r;
++	return 0;
++}
++
++static int cs_ft_extract_match(const struct flow_rule *rule,
++			       struct cs_ft_tuple *tuple, int *ingress,
++			       u8 *proto)
++{
++	const u64 required = BIT_ULL(FLOW_DISSECTOR_KEY_META) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_CONTROL) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_BASIC) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_IPV4_ADDRS) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_PORTS);
++	struct flow_match_meta meta;
++	struct flow_match_control control;
++	struct flow_match_basic basic;
++	struct flow_match_ipv4_addrs ip;
++	struct flow_match_ports ports;
++
++	if (!rule || !tuple || !ingress || !rule->match.dissector ||
++	    (rule->match.dissector->used_keys & required) != required)
++		return -EOPNOTSUPP;
++	flow_rule_match_meta(rule, &meta);
++	flow_rule_match_control(rule, &control);
++	flow_rule_match_basic(rule, &basic);
++	flow_rule_match_ipv4_addrs(rule, &ip);
++	flow_rule_match_ports(rule, &ports);
++	if (meta.mask->ingress_ifindex != -1 || meta.mask->ingress_iftype ||
++	    meta.mask->l2_miss ||
++	    control.key->addr_type != FLOW_DISSECTOR_KEY_IPV4_ADDRS ||
++	    control.mask->addr_type != 0xffff || control.mask->flags ||
++	    control.mask->thoff || basic.key->n_proto != htons(ETH_P_IP) ||
++	    basic.mask->n_proto != htons(0xffff) ||
++	    basic.mask->ip_proto != 255 || ip.mask->src != htonl(~0U) ||
++	    ip.mask->dst != htonl(~0U) || ports.mask->src != htons(0xffff) ||
++	    ports.mask->dst != htons(0xffff))
++		return -EOPNOTSUPP;
++	if (basic.key->ip_proto == IPPROTO_TCP) {
++		struct flow_match_tcp tcp;
++
++		if (!(rule->match.dissector->used_keys &
++		      BIT_ULL(FLOW_DISSECTOR_KEY_TCP)))
++			return -EOPNOTSUPP;
++		flow_rule_match_tcp(rule, &tcp);
++		if (tcp.key->flags || tcp.mask->flags != htons(0x05))
++			return -EOPNOTSUPP;
++	} else if (basic.key->ip_proto != IPPROTO_UDP) {
++		return -EOPNOTSUPP;
++	}
++	*proto = basic.key->ip_proto;
++	*tuple = (struct cs_ft_tuple){ ip.key->src, ip.key->dst, ports.key->src,
++				       ports.key->dst };
++	*ingress = meta.key->ingress_ifindex;
++	return 0;
++}
++
++int cs_ft_nf_extract(const struct flow_cls_offload *cls, bool routed_nf_context,
++		     struct cs_ft_nf_facts *out)
++{
++	struct cs_ft_nf_facts f = { 0 };
++	struct cs_ft_tuple tuple;
++	const struct flow_rule *rule;
++	const u64 required = BIT_ULL(FLOW_DISSECTOR_KEY_META) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_CONTROL) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_BASIC) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_IPV4_ADDRS) |
++			     BIT_ULL(FLOW_DISSECTOR_KEY_PORTS);
++	if (!cls || !out || cls->command != FLOW_CLS_REPLACE ||
++	    cls->common.chain_index)
++		return -EOPNOTSUPP;
++	rule = flow_cls_offload_flow_rule(cls);
++	if (cs_ft_extract_match(rule, &tuple, &f.ingress_ifindex,
++				&f.ip_proto) ||
++	    cs_ft_extract_actions(rule, f.ip_proto, &tuple, &f.rewrite))
++		return -EOPNOTSUPP;
++	f.egress_ifindex = f.rewrite.redirect->ifindex;
++	f.rewrite.redirect =
++		NULL; /* No borrowed netdev pointer escapes diagnostic API. */
++	f.match_used_keys = rule->match.dissector->used_keys;
++	f.extra_match_keys =
++		f.match_used_keys !=
++		(required |
++		 (f.ip_proto == IPPROTO_TCP ? BIT_ULL(FLOW_DISSECTOR_KEY_TCP) :
++					      0));
++	f.vlan_offset =
++		!!rule->match.dissector->offset[FLOW_DISSECTOR_KEY_VLAN];
++	f.cvlan_offset =
++		!!rule->match.dissector->offset[FLOW_DISSECTOR_KEY_CVLAN];
++	f.routed_nf_context = routed_nf_context;
++	f.ttl_decrement_from_context = routed_nf_context;
++	/* Unknown ingress encapsulation stays unknown even without VLAN actions. */
++	*out = f;
++	return 0;
++}
+diff --git a/drivers/net/ethernet/cortina/flowtable/codec/cs_ft_rewrite.h b/drivers/net/ethernet/cortina/flowtable/codec/cs_ft_rewrite.h
+new file mode 100644
+index 000000000..9f96b1ea6
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/codec/cs_ft_rewrite.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef CS_FT_REWRITE_H
++#define CS_FT_REWRITE_H
++#ifndef CS_FT_HOST_TEST
++#include <linux/types.h>
++#include <net/flow_offload.h>
++#endif
++struct cs_ft_tuple {
++	__be32 src, dst;
++	__be16 sport, dport;
++};
++
++struct cs_ft_rewrite {
++	struct cs_ft_tuple before, after;
++	u8 smac[6],
++		dmac[6]; /* Requested OUTPUT MACs; original MACs not in these NF matches. */
++	struct net_device
++		*redirect; /* Borrowed only during the synchronous call. */
++	unsigned int action_count, csum_flags;
++	bool nat_action, csum_action;
++};
++
++/*
++ * Decode facts only: no topology, domain, QCA or hardware admission. Native
++ *
++ * mask/value bytes follow the actual NF generator; no second ntohl().
++ */
++struct cs_ft_nf_facts {
++	struct cs_ft_rewrite rewrite;
++	u8 ip_proto;
++	int ingress_ifindex, egress_ifindex;
++	u64 match_used_keys;
++	bool extra_match_keys, vlan_offset, cvlan_offset;
++	bool routed_nf_context, ttl_decrement_from_context;
++	bool ttl_action_observed; /* false: this supported NF action set has none. */
++	bool customer_encap_proven_plain; /* always false; absence isn't provenance. */
++	bool hardware_admitted; /* always false: diagnostic result only. */
++};
++
++int cs_ft_nf_extract(const struct flow_cls_offload *cls, bool routed_nf_context,
++		     struct cs_ft_nf_facts *facts);
++#endif
+diff --git a/drivers/net/ethernet/cortina/flowtable/cs7542_fw4.c b/drivers/net/ethernet/cortina/flowtable/cs7542_fw4.c
+new file mode 100644
+index 000000000..d5a132e87
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/cs7542_fw4.c
+@@ -0,0 +1,437 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Standard nftables flowtable frontend for the CS7542/QCA8337 wired path. */
++#include <linux/bitfield.h>
++#include <linux/cs7542_ft_live.h>
++#include <linux/dsa/qca8k_persistent.h>
++#include <linux/etherdevice.h>
++#include <linux/if_bridge.h>
++#include <linux/list.h>
++#include <linux/module.h>
++#include <linux/netdevice.h>
++#include <linux/of.h>
++#include <linux/rtnetlink.h>
++#include <linux/slab.h>
++#include <net/dsa.h>
++#include <net/flow_offload.h>
++#include <net/net_namespace.h>
++#include <net/arp.h>
++#include <net/ip.h>
++#include <net/route.h>
++#include "nf_native.h"
++
++struct native_binding {
++	struct list_head list;
++	struct cs7542_fe_live *owner;
++	struct net_device *conduit;
++	u64 id, handle, version;
++};
++
++/*
++ * cs7542_ft_live serializes every binding callback and retires them all
++ * before dropping the registration pin. The counters are read from sysfs.
++ */
++static LIST_HEAD(bindings);
++static atomic64_t counts[NATIVE_REASONS];
++static typeof(cs7542_fe_live_replace_native) *replace_native;
++static typeof(cs7542_fe_live_replace_native_tcp) *replace_native_tcp;
++static typeof(qca8k_persistent_status) *persistent_status;
++static typeof(cs7542_fe_live_native_lastused) *native_lastused;
++/*
++ * The private nf_flow_table module supplies the PMTU of this direction.
++ * This frontend can load before the flowtable module.
++ */
++
++static struct native_binding *find_binding(u64 id)
++{
++	struct native_binding *b;
++
++	list_for_each_entry(b, &bindings, list)
++		if (b->id == id)
++			return b;
++	return NULL;
++}
++
++static int native_open(void *ctx, u64 id, struct net_device *conduit)
++{
++	struct native_binding *b;
++	int err;
++
++	b = find_binding(id);
++	if (b)
++		return b->conduit ? -EEXIST : -ESHUTDOWN;
++	b = kzalloc_obj(*b);
++	if (!b)
++		return -ENOMEM;
++	b->owner = cs7542_fe_live_get(conduit);
++	if (IS_ERR(b->owner)) {
++		err = PTR_ERR(b->owner);
++		goto free;
++	}
++	err = cs7542_fe_live_open(b->owner, &b->handle);
++	if (err) {
++		cs7542_fe_live_put(b->owner);
++		goto free;
++	}
++	b->id = id;
++	dev_hold(conduit);
++	b->conduit = conduit;
++	list_add_tail(&b->list, &bindings);
++	return 0;
++free:
++	kfree(b);
++	return err;
++}
++
++static struct dsa_port *get_endpoint(struct net_device *conduit, int ifindex,
++				     struct native_endpoint *endpoint)
++{
++	struct net_device *dev = __dev_get_by_index(dev_net(conduit), ifindex);
++	struct net_device *bridge;
++	struct dsa_port *port;
++
++	ASSERT_RTNL();
++	port = dsa_port_from_netdev(dev);
++	if (IS_ERR(port) || !port->ds || !port->ds->dev || !port->cpu_dp ||
++	    port->cpu_dp->conduit != conduit || port->cpu_dp->index != 0 ||
++	    !of_device_is_compatible(port->ds->dev->of_node, "qca,qca8337") ||
++	    port->index < 1 || port->index > 5 || port->lag || port->hsr_dev ||
++	    !netif_running(dev) || !netif_carrier_ok(dev) ||
++	    dsa_port_is_vlan_filtering(port))
++		return ERR_PTR(-EOPNOTSUPP);
++	bridge = netdev_master_upper_dev_get(dev);
++	if (bridge &&
++	    (!netif_is_bridge_master(bridge) || !netif_running(bridge) ||
++	     br_vlan_enabled(bridge) ||
++	     br_port_get_stp_state(dev) != BR_STATE_FORWARDING ||
++	     br_port_flag_is_set(dev, BR_PORT_LOCKED | BR_PORT_MAB |
++					      BR_ISOLATED | BR_VLAN_TUNNEL)))
++		return ERR_PTR(-EOPNOTSUPP);
++	endpoint->ifindex = ifindex;
++	endpoint->port = port->index;
++	ether_addr_copy(endpoint->mac,
++			bridge ? bridge->dev_addr : dev->dev_addr);
++	return port;
++}
++
++static bool fdb_matches(const struct dsa_port *port, const u8 addr[ETH_ALEN])
++{
++	struct net_device *bridge = netdev_master_upper_dev_get(port->user);
++
++	return !bridge || br_fdb_find_port(bridge, addr, 0) == port->user;
++}
++
++/*
++ * Re-resolve the unicast next hop on the same Linux L3 device. The nft
++ * action remains authoritative. The lookup may only corroborate it or
++ * reject it, including routes that require unsupported neighbour types.
++ */
++static int native_check_neighbour(const struct cs7542_fe_native_request *r)
++{
++	struct net_device *dev =
++		__dev_get_by_index(&init_net, r->egress_ifindex);
++	struct flowi4 fl = {
++		.daddr = htonl(r->rule.translated.dst),
++		.saddr = htonl(r->rule.original.src),
++		.fl4_sport = htons(r->rule.original.sport),
++		.fl4_dport = htons(r->rule.translated.dport),
++		.flowi4_proto = r->rule.native_l4proto,
++		.flowi4_flags = FLOWI_FLAG_ANYSRC,
++	};
++	struct net_device *l3;
++	struct neighbour *neigh;
++	struct rtable *rt;
++	__be32 next;
++	int err = -ESTALE;
++
++	ASSERT_RTNL();
++	if (!dev)
++		return -ENODEV;
++	l3 = netdev_master_upper_dev_get(dev);
++	if (!l3)
++		l3 = dev;
++	fl.flowi4_oif = l3->ifindex;
++	rt = ip_route_output_key(&init_net, &fl);
++	if (IS_ERR(rt))
++		return PTR_ERR(rt);
++	if (rt->rt_type != RTN_UNICAST || dst_dev(&rt->dst) != l3 ||
++	    dst_xfrm(&rt->dst) || rt->dst.lwtstate ||
++	    (rt->rt_gw_family && rt->rt_gw_family != AF_INET) ||
++	    ip_dst_mtu_maybe_forward(&rt->dst, true) < r->route_mtu)
++		goto put;
++	next = rt_nexthop(rt, fl.daddr);
++	/*
++	 * Read an existing entry only. Hardware admission never creates one or
++	 * triggers an ARP solicitation to manufacture its own evidence.
++	 */
++	neigh = neigh_lookup(arp_table(dev_net(l3)), &next, l3);
++	if (neigh) {
++		read_lock_bh(&neigh->lock);
++		if ((neigh->nud_state & NUD_VALID) &&
++		    ether_addr_equal(neigh->ha, r->rule.dmac))
++			err = 0;
++		read_unlock_bh(&neigh->lock);
++		neigh_release(neigh);
++	}
++put:
++	ip_rt_put(rt);
++	return err;
++}
++
++static enum native_reason
++prepare_request(struct native_binding *b, struct flow_cls_offload *cls,
++		struct cs7542_fe_native_request *request)
++{
++	struct qca8k_persistent_status format = {
++		.size = sizeof(format),
++		.version = QCA8K_PERSISTENT_STATUS_VERSION,
++	};
++	struct cs_ft_nf_facts facts;
++	struct native_endpoint in, out;
++	struct cs7542_l4_tuple tuple;
++	struct dsa_port *ip, *op;
++	struct cs7542_rx_path wire;
++	enum native_reason reason;
++	typeof(nf_flow_offload_route_mtu) *route_mtu;
++
++	ASSERT_RTNL();
++	if (cs_ft_nf_extract(cls, true, &facts) || facts.extra_match_keys ||
++	    facts.vlan_offset || facts.cvlan_offset ||
++	    !facts.rewrite.nat_action)
++		return NATIVE_MATCH;
++	if (facts.ip_proto == IPPROTO_TCP &&
++	    (!replace_native_tcp || !cls->nf_tcp_established))
++		return NATIVE_MATCH;
++	if (!net_eq(dev_net(b->conduit), &init_net) ||
++	    !netif_running(b->conduit) || !netif_carrier_ok(b->conduit))
++		return NATIVE_PATH;
++	ip = get_endpoint(b->conduit, facts.ingress_ifindex, &in);
++	op = get_endpoint(b->conduit, facts.egress_ifindex, &out);
++	if (IS_ERR(ip) || IS_ERR(op) || ip->ds != op->ds)
++		return NATIVE_PATH;
++	tuple = (struct cs7542_l4_tuple){
++		.src = facts.rewrite.before.src,
++		.dst = facts.rewrite.before.dst,
++		.sport = facts.rewrite.before.sport,
++		.dport = facts.rewrite.before.dport,
++		.ip_proto = htonl(facts.ip_proto),
++	};
++	if (cs7542_rx_path_lookup(b->conduit, in.port, &tuple, &wire))
++		return NATIVE_WIRE;
++	if (!fdb_matches(ip, wire.source) ||
++	    !fdb_matches(op, facts.rewrite.dmac))
++		return NATIVE_PATH;
++	reason = native_rule_build(&facts, &in, &out, &wire, request);
++	if (reason != NATIVE_OWNER)
++		return reason;
++	if (!persistent_status || persistent_status(b->conduit, &format) ||
++	    format.size != sizeof(format) ||
++	    format.version != QCA8K_PERSISTENT_STATUS_VERSION ||
++	    !format.epoch || format.requested != 1 || format.known != 1 ||
++	    format.coherent != 1 || format.ready != 1 ||
++	    format.restore_debt != 1 || format.closing || format.uncertain ||
++	    format.first_error || format.held_fault || format.reserved ||
++	    format.selected != DSA_TAG_PROTO_QCA4 ||
++	    format.tree_protocol != DSA_TAG_PROTO_QCA4)
++		return NATIVE_TAG;
++	request->format_epoch = format.epoch;
++	route_mtu = symbol_get(nf_flow_offload_route_mtu);
++	if (route_mtu) {
++		request->route_mtu = route_mtu(cls);
++		symbol_put(nf_flow_offload_route_mtu);
++	}
++	return NATIVE_OWNER;
++}
++
++static int
++native_replace_checked(struct native_binding *b, struct flow_cls_offload *cls,
++		       const struct cs7542_fe_native_request *request,
++		       enum native_reason *reason)
++{
++	int err;
++
++	err = native_check_neighbour(request);
++	if (err) {
++		*reason = NATIVE_PATH;
++		return cs7542_fe_live_reject(b->owner, b->handle, cls->cookie,
++					     b->version, err);
++	}
++	if (request->rule.native_l4proto == IPPROTO_TCP)
++		err = replace_native_tcp(b->owner, b->handle, cls->cookie,
++					 b->version, request, cls);
++	else
++		err = replace_native(b->owner, b->handle, cls->cookie,
++				     b->version, request);
++	if (err)
++		return err;
++	/*
++	 * Updates during publication are covered by the built-in watcher.
++	 * Recheck the gap between the initial validation and publication.
++	 */
++	err = native_check_neighbour(request);
++	if (err) {
++		*reason = NATIVE_PATH;
++		return cs7542_fe_live_destroy(b->owner, b->handle, cls->cookie, b->version) ?:
++			       err;
++	}
++	*reason = NATIVE_INSTALLED;
++	return 0;
++}
++
++static int native_rule(void *ctx, u64 id, struct flow_cls_offload *cls)
++{
++	struct native_binding *b = find_binding(id);
++	struct cs7542_fe_native_request request;
++	enum native_reason reason;
++	int result;
++
++	if (!b)
++		return -ENOENT;
++	if (!b->conduit)
++		return -ESHUTDOWN;
++	if (cls->command == FLOW_CLS_STATS) {
++		unsigned long lastused;
++
++		if (!native_lastused)
++			return -EOPNOTSUPP;
++		result = native_lastused(b->owner, b->handle, cls->cookie,
++					 &lastused);
++		if (!result)
++			flow_stats_update(&cls->stats, 0, 0, 0, lastused,
++					  FLOW_ACTION_HW_STATS_DELAYED);
++		return result;
++	}
++	if (b->version == U64_MAX)
++		return -EOVERFLOW;
++	b->version++;
++	if (cls->command == FLOW_CLS_DESTROY)
++		return cs7542_fe_live_destroy(b->owner, b->handle, cls->cookie,
++					      b->version);
++	if (cls->command != FLOW_CLS_REPLACE)
++		return -EOPNOTSUPP;
++	/*
++	 * flow-block callbacks can race RTNL-held teardown. Never wait on RTNL
++	 * while holding the live bridge mutex. Every rejection withdraws an
++	 * earlier version of this cookie before returning it to software.
++	 */
++	if (!rtnl_trylock()) {
++		reason = NATIVE_PATH;
++		result = cs7542_fe_live_reject(b->owner, b->handle, cls->cookie,
++					       b->version, -EBUSY);
++	} else {
++		reason = prepare_request(b, cls, &request);
++		if (reason == NATIVE_OWNER && request.route_mtu &&
++		    replace_native) {
++			result = native_replace_checked(b, cls, &request,
++							&reason);
++		} else {
++			result = cs7542_fe_live_reject(b->owner, b->handle,
++						       cls->cookie, b->version,
++						       -EOPNOTSUPP);
++		}
++		rtnl_unlock();
++	}
++	atomic64_inc(&counts[reason]);
++	return result;
++}
++
++static int native_close(void *ctx, u64 id)
++{
++	struct native_binding *b = find_binding(id);
++	int err;
++
++	if (!b)
++		return 0;
++	/*
++	 * A failed hardware cut keeps the block handle and owner reference for
++	 * retry. It must never hold unregister_netdevice() hostage.
++	 */
++	if (b->conduit) {
++		dev_put(b->conduit);
++		b->conduit = NULL;
++	}
++	err = cs7542_fe_live_close(b->owner, b->handle);
++	if (err)
++		return err;
++	list_del(&b->list);
++	cs7542_fe_live_put(b->owner);
++	kfree(b);
++	return 0;
++}
++
++static int native_detach(void *ctx)
++{
++	/* The bridge calls close() for every open binding before detach(). */
++	return list_empty(&bindings) ? 0 : -EBUSY;
++}
++
++static const struct cs7542_ft_live_ops native_ops = {
++	.api_version = CS7542_FT_LIVE_API_VERSION,
++	.size = sizeof(native_ops),
++	.owner = THIS_MODULE,
++	.name = "cs7542-fw4",
++	.open = native_open,
++	.rule = native_rule,
++	.close = native_close,
++	.detach = native_detach,
++};
++
++static int status_get(char *buf, const struct kernel_param *kp)
++{
++	return sysfs_emit(buf,
++		"owner_api=%u rule=%lld topology=%lld wire=%lld mac=%lld format=%lld owner=%lld installed=%lld tcp_native=%u\n",
++		!!replace_native, atomic64_read(&counts[NATIVE_MATCH]),
++		atomic64_read(&counts[NATIVE_PATH]),
++		atomic64_read(&counts[NATIVE_WIRE]),
++		atomic64_read(&counts[NATIVE_MAC]),
++		atomic64_read(&counts[NATIVE_TAG]),
++		atomic64_read(&counts[NATIVE_OWNER]),
++		atomic64_read(&counts[NATIVE_INSTALLED]), !!replace_native_tcp);
++}
++
++static const struct kernel_param_ops status_ops = { .get = status_get };
++module_param_cb(status, &status_ops, NULL, 0444);
++
++static int __init native_init(void)
++{
++	int err = cs7542_rx_path_init();
++
++	if (err)
++		return err;
++	replace_native = symbol_get(cs7542_fe_live_replace_native);
++	replace_native_tcp = symbol_get(cs7542_fe_live_replace_native_tcp);
++	persistent_status = symbol_get(qca8k_persistent_status);
++	native_lastused = symbol_get(cs7542_fe_live_native_lastused);
++	err = cs7542_ft_live_register(&native_ops, NULL);
++	if (err) {
++		if (native_lastused)
++			symbol_put(cs7542_fe_live_native_lastused);
++		if (persistent_status)
++			symbol_put(qca8k_persistent_status);
++		if (replace_native_tcp)
++			symbol_put(cs7542_fe_live_replace_native_tcp);
++		if (replace_native)
++			symbol_put(cs7542_fe_live_replace_native);
++		cs7542_rx_path_exit();
++	}
++	return err;
++}
++
++static void __exit native_exit(void)
++{
++	/* The bridge's reference pins this module until its callbacks quiesce. */
++	cs7542_rx_path_exit();
++	if (native_lastused)
++		symbol_put(cs7542_fe_live_native_lastused);
++	if (persistent_status)
++		symbol_put(qca8k_persistent_status);
++	if (replace_native_tcp)
++		symbol_put(cs7542_fe_live_replace_native_tcp);
++	if (replace_native)
++		symbol_put(cs7542_fe_live_replace_native);
++}
++
++module_init(native_init);
++module_exit(native_exit);
++MODULE_LICENSE("GPL");
++MODULE_INFO(description,
++	"Cortina CS7542 IPv4 TCP and UDP nftables hardware flowtable frontend");
+diff --git a/drivers/net/ethernet/cortina/flowtable/cs7542_rx_path.c b/drivers/net/ethernet/cortina/flowtable/cs7542_rx_path.c
+new file mode 100644
+index 000000000..20a132852
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/cs7542_rx_path.c
+@@ -0,0 +1,225 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Recover the original Ethernet addresses and switch tag of a CPU-routed flow. */
++#include <linux/bitfield.h>
++#include <linux/dsa/tag_qca.h>
++#include <linux/etherdevice.h>
++#include <linux/if_vlan.h>
++#include <linux/ip.h>
++#include <linux/jhash.h>
++#include <linux/jiffies.h>
++#include <linux/module.h>
++#include <linux/netdevice.h>
++#include <linux/of.h>
++#include <linux/udp.h>
++#include <linux/tcp.h>
++#include <linux/unaligned.h>
++#include <net/ip.h>
++#include <net/net_namespace.h>
++#include "cs7542_rx_path.h"
++
++#define PATH_SLOTS 128
++#define PATH_AGE (2 * HZ)
++
++/*
++ * skb->dev is the DSA conduit. Its WAN user port can have a different
++ * unicast MAC. Resolve the addressed L3 device when nftables supplies the
++ * real source port of the route. Observing a frame never installs a rule.
++ */
++struct path_entry {
++	struct cs7542_l4_tuple tuple;
++	struct cs7542_rx_path path;
++	int ifindex;
++	unsigned long expires;
++	bool ambiguous;
++};
++
++static DEFINE_SPINLOCK(paths_lock);
++static struct path_entry paths[PATH_SLOTS];
++static unsigned int index_of(const struct cs7542_l4_tuple *tuple, int ifindex)
++{
++	static_assert(sizeof(*tuple) == 16);
++	return jhash(tuple, sizeof(*tuple), ifindex) % PATH_SLOTS;
++}
++
++static bool fresh(const struct path_entry *entry)
++{
++	return entry->ifindex && time_before(jiffies, entry->expires);
++}
++
++static void remember(int ifindex, const struct cs7542_l4_tuple *tuple,
++		     const struct cs7542_rx_path *path)
++{
++	struct path_entry *entry = &paths[index_of(tuple, ifindex)];
++
++	spin_lock_bh(&paths_lock);
++	if (!fresh(entry)) {
++		entry->ifindex = ifindex;
++		entry->tuple = *tuple;
++		entry->path = *path;
++		entry->ambiguous = false;
++	} else if (entry->ifindex != ifindex ||
++		   memcmp(&entry->tuple, tuple, sizeof(*tuple))) {
++		/* Keep a live owner's observation across hash collisions. */
++		goto out;
++	} else if (entry->path.tag != path->tag ||
++		   entry->path.tag_len != path->tag_len ||
++		   !ether_addr_equal(entry->path.source, path->source) ||
++		   !ether_addr_equal(entry->path.destination,
++				     path->destination)) {
++		entry->ambiguous = true;
++	}
++	entry->expires = jiffies + PATH_AGE;
++out:
++	spin_unlock_bh(&paths_lock);
++}
++
++int cs7542_rx_path_lookup(struct net_device *conduit, unsigned int port,
++			  const struct cs7542_l4_tuple *tuple,
++			  struct cs7542_rx_path *out)
++{
++	struct path_entry *entry;
++	int error = -ENOENT;
++
++	if (!conduit || !tuple || !out || !net_eq(dev_net(conduit), &init_net))
++		return -EINVAL;
++	entry = &paths[index_of(tuple, conduit->ifindex)];
++	spin_lock_bh(&paths_lock);
++	if (fresh(entry) && entry->ifindex == conduit->ifindex &&
++	    !memcmp(&entry->tuple, tuple, sizeof(*tuple)) &&
++	    !entry->ambiguous &&
++	    FIELD_GET(QCA_HDR_RECV_SOURCE_PORT, entry->path.tag) == port) {
++		*out = entry->path;
++		error = 0;
++	}
++	spin_unlock_bh(&paths_lock);
++	return error;
++}
++
++static void observe(struct sk_buff *skb, struct net_device *dev)
++{
++	u8 ether[ETH_HLEN + 4] __aligned(4);
++	struct iphdr ip;
++	union {
++		struct udphdr udp;
++		struct tcphdr tcp;
++	} transport;
++	unsigned int l4_length;
++	struct cs7542_l4_tuple tuple;
++	struct cs7542_rx_path path;
++	unsigned int reason;
++	int offset;
++
++	if ((skb->pkt_type != PACKET_HOST &&
++	     skb->pkt_type != PACKET_OTHERHOST) ||
++	    !net_eq(dev_net(dev), &init_net) || !skb_mac_header_was_set(skb) ||
++	    skb_vlan_tag_present(skb) || skb_is_gso(skb))
++		return;
++	offset = skb_mac_header(skb) - skb->data;
++	if (offset != -ETH_HLEN ||
++	    skb_copy_bits(skb, offset, ether, sizeof(ether)))
++		return;
++	path.tag_len = get_unaligned_be16(ether + 12) == ETH_P_8021Q ? 4 : 2;
++	path.tag = get_unaligned_be16(ether + 10 + path.tag_len);
++	reason = FIELD_GET(QCA_HDR_RECV_TYPE, path.tag);
++	/*
++	 * Ordinary frames sent to the CPU also carry forwarding reason codes.
++	 * Both QCA taggers consume register replies and MIB packets themselves.
++	 */
++	if (FIELD_GET(QCA_HDR_RECV_VERSION, path.tag) != QCA_HDR_VERSION ||
++	    reason == QCA_HDR_RECV_TYPE_MIB ||
++	    reason == QCA_HDR_RECV_TYPE_RW_REG_ACK ||
++	    (path.tag & QCA_HDR_RECV_FRAME_IS_TAGGED) ||
++	    !FIELD_GET(QCA_HDR_RECV_SOURCE_PORT, path.tag) ||
++	    get_unaligned_be16(ether + 12 + path.tag_len) != ETH_P_IP ||
++	    !is_valid_ether_addr(ether) ||
++	    !is_valid_ether_addr(ether + ETH_ALEN))
++		return;
++	if (skb_copy_bits(skb, path.tag_len, &ip, sizeof(ip)) ||
++	    ip.version != 4 || ip.ihl != 5 || ip_is_fragment(&ip) ||
++	    ip_fast_csum(&ip, 5) || ntohs(ip.tot_len) < sizeof(ip) ||
++	    skb->len < path.tag_len + ntohs(ip.tot_len))
++		return;
++	l4_length = ntohs(ip.tot_len) - sizeof(ip);
++	if (ip.protocol == IPPROTO_UDP) {
++		if (l4_length < sizeof(transport.udp) ||
++		    skb_copy_bits(skb, path.tag_len + sizeof(ip),
++				  &transport.udp, sizeof(transport.udp)) ||
++		    ntohs(transport.udp.len) != l4_length)
++			return;
++		tuple.sport = transport.udp.source;
++		tuple.dport = transport.udp.dest;
++	} else if (ip.protocol == IPPROTO_TCP) {
++		/*
++		 * Even a handshake can identify a switch peer. Only netfilter can
++		 * authorize established data offload via its typed request.
++		 */
++		if (l4_length < sizeof(transport.tcp) ||
++		    skb_copy_bits(skb, path.tag_len + sizeof(ip),
++				  &transport.tcp, sizeof(transport.tcp)) ||
++		    transport.tcp.doff < 5 ||
++		    transport.tcp.doff * 4 > l4_length)
++			return;
++		tuple.sport = transport.tcp.source;
++		tuple.dport = transport.tcp.dest;
++	} else {
++		return;
++	}
++	tuple.src = ip.saddr;
++	tuple.dst = ip.daddr;
++	tuple.ip_proto = htonl(ip.protocol);
++	ether_addr_copy(path.source, ether + ETH_ALEN);
++	ether_addr_copy(path.destination, ether);
++	remember(dev->ifindex, &tuple, &path);
++}
++
++static int receive(struct sk_buff *skb, struct net_device *dev,
++		   struct packet_type *ptype, struct net_device *original)
++{
++	observe(skb, dev);
++	consume_skb(skb);
++	return NET_RX_SUCCESS;
++}
++
++static struct packet_type observer = {
++	.type = cpu_to_be16(ETH_P_XDSA),
++	.func = receive,
++};
++
++static int link_event(struct notifier_block *nb, unsigned long event,
++		      void *data)
++{
++	struct net_device *dev = netdev_notifier_info_to_dev(data);
++	unsigned int i;
++
++	if (!net_eq(dev_net(dev), &init_net) ||
++	    (event != NETDEV_DOWN && event != NETDEV_CHANGEADDR &&
++	     event != NETDEV_UNREGISTER))
++		return NOTIFY_DONE;
++	spin_lock_bh(&paths_lock);
++	for (i = 0; i < ARRAY_SIZE(paths); i++)
++		if (paths[i].ifindex == dev->ifindex)
++			paths[i].ifindex = 0;
++	spin_unlock_bh(&paths_lock);
++	return NOTIFY_DONE;
++}
++
++static struct notifier_block netdev_events = { .notifier_call = link_event };
++
++int cs7542_rx_path_init(void)
++{
++	int error;
++
++	if (!of_machine_is_compatible("securifi,almondplus"))
++		return -ENODEV;
++	error = register_netdevice_notifier(&netdev_events);
++	if (error)
++		return error;
++	dev_add_pack(&observer);
++	return 0;
++}
++
++void cs7542_rx_path_exit(void)
++{
++	dev_remove_pack(&observer);
++	unregister_netdevice_notifier(&netdev_events);
++}
+diff --git a/drivers/net/ethernet/cortina/flowtable/cs7542_rx_path.h b/drivers/net/ethernet/cortina/flowtable/cs7542_rx_path.h
+new file mode 100644
+index 000000000..20f6b4c7c
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/cs7542_rx_path.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef CS7542_RX_PATH_H
++#define CS7542_RX_PATH_H
++
++#include <linux/if_ether.h>
++#include <linux/types.h>
++
++struct net_device;
++
++struct cs7542_l4_tuple {
++	__be32 src, dst;
++	__be16 sport, dport;
++	/* Network order keeps all 16 hash/key bytes defined on every architecture. */
++	__be32 ip_proto;
++};
++
++struct cs7542_rx_path {
++	u8 source[ETH_ALEN];
++	u8 destination[ETH_ALEN];
++	u16 tag;
++	u8 tag_len;
++};
++
++/*
++ * The caller supplies the flow's live ingress conduit and DSA port.
++ * An observation is input to the classifier, not permission to install a rule.
++ */
++int cs7542_rx_path_lookup(struct net_device *conduit, unsigned int port,
++			  const struct cs7542_l4_tuple *tuple,
++			  struct cs7542_rx_path *out);
++
++int cs7542_rx_path_init(void);
++void cs7542_rx_path_exit(void);
++
++#endif
+diff --git a/drivers/net/ethernet/cortina/flowtable/nf_native.c b/drivers/net/ethernet/cortina/flowtable/nf_native.c
+new file mode 100644
+index 000000000..7363e8f4c
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/nf_native.c
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: GPL-2.0
++#ifdef CS_FT_HOST_TEST
++#include "host_shim.h"
++#define be32_to_cpu(v) ntohl(v)
++#define be16_to_cpu(v) ntohs(v)
++#define ether_addr_equal(a, b) (!memcmp(a, b, 6))
++#define ether_addr_copy(d, s) memcpy(d, s, 6)
++#else
++#include <linux/etherdevice.h>
++#endif
++#include "nf_native.h"
++
++static struct cs_fe_tuple to_tuple(const struct cs_ft_tuple *bytes)
++{
++	return (struct cs_fe_tuple){
++		.src = be32_to_cpu(bytes->src),
++		.dst = be32_to_cpu(bytes->dst),
++		.sport = be16_to_cpu(bytes->sport),
++		.dport = be16_to_cpu(bytes->dport),
++	};
++}
++
++static struct cs_fe_link to_link(const struct native_endpoint *endpoint)
++{
++	struct cs_fe_link link = {
++		.gmac = 1,
++		.cpu_port = 0,
++		.switch_port = endpoint->port,
++		.base_voq = 8,
++		.tag_mode = 4,
++	};
++
++	ether_addr_copy(link.base_mac, endpoint->mac);
++	return link;
++}
++
++enum native_reason native_rule_build(const struct cs_ft_nf_facts *facts,
++				     const struct native_endpoint *ingress,
++				     const struct native_endpoint *egress,
++				     const struct cs7542_rx_path *wire,
++				     struct cs7542_fe_native_request *request)
++{
++	const struct cs_ft_rewrite *rw = &facts->rewrite;
++	struct cs7542_fe_native_request next = {
++		.abi = facts->ip_proto == CS_FE_L4_TCP ? CS7542_FE_NATIVE_ABI :
++							 1,
++		.size = sizeof(next),
++	};
++	unsigned int reason;
++
++	if ((facts->ip_proto != CS_FE_L4_UDP &&
++	     facts->ip_proto != CS_FE_L4_TCP) ||
++	    !facts->routed_nf_context || !facts->ttl_decrement_from_context ||
++	    facts->extra_match_keys || facts->vlan_offset ||
++	    facts->cvlan_offset || !rw->nat_action || !rw->csum_action)
++		return NATIVE_MATCH;
++	if (facts->ingress_ifindex <= 0 || facts->egress_ifindex <= 0 ||
++	    ingress->ifindex != (unsigned int)facts->ingress_ifindex ||
++	    egress->ifindex != (unsigned int)facts->egress_ifindex ||
++	    ingress->port < 1 || ingress->port > 5 || egress->port < 1 ||
++	    egress->port > 5)
++		return NATIVE_PATH;
++	if (!wire || !is_valid_ether_addr(wire->source) ||
++	    !is_valid_ether_addr(wire->destination))
++		return NATIVE_WIRE;
++	if (!ether_addr_equal(wire->destination, ingress->mac) ||
++	    !ether_addr_equal(rw->smac, egress->mac))
++		return NATIVE_MAC;
++	reason = (wire->tag >> 6) & 31;
++	if (wire->tag_len != 4 || (wire->tag >> 14) != 2 ||
++	    (wire->tag & 7) != ingress->port || (wire->tag & 8) ||
++	    reason == 1 || reason == 2)
++		return NATIVE_TAG;
++
++	next.ingress_ifindex = ingress->ifindex;
++	next.egress_ifindex = egress->ifindex;
++	ether_addr_copy(next.ingress_smac, wire->source);
++	next.rule.native_l4proto = facts->ip_proto;
++	next.rule.original = to_tuple(&rw->before);
++	next.rule.translated = to_tuple(&rw->after);
++	next.rule.ingress = to_link(ingress);
++	next.rule.ingress.rx_qca_meta = wire->tag;
++	next.rule.egress = to_link(egress);
++	ether_addr_copy(next.rule.smac, rw->smac);
++	ether_addr_copy(next.rule.dmac, rw->dmac);
++	next.rule.decrement_ttl = true;
++	*request = next;
++	/* Owner confirmation is the next step. There is no installed entry yet. */
++	return NATIVE_OWNER;
++}
+diff --git a/drivers/net/ethernet/cortina/flowtable/nf_native.h b/drivers/net/ethernet/cortina/flowtable/nf_native.h
+new file mode 100644
+index 000000000..cedd89727
+--- /dev/null
++++ b/drivers/net/ethernet/cortina/flowtable/nf_native.h
+@@ -0,0 +1,31 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef CS7542_NF_NATIVE_H
++#define CS7542_NF_NATIVE_H
++
++#include <linux/cs7542_fe_native.h>
++#include "cs7542_rx_path.h"
++#include "codec/cs_ft_rewrite.h"
++
++enum native_reason {
++	NATIVE_MATCH,
++	NATIVE_PATH,
++	NATIVE_WIRE,
++	NATIVE_MAC,
++	NATIVE_TAG,
++	NATIVE_OWNER,
++	NATIVE_INSTALLED,
++	NATIVE_REASONS
++};
++
++struct native_endpoint {
++	unsigned int ifindex, port;
++	u8 mac[6];
++};
++
++enum native_reason native_rule_build(const struct cs_ft_nf_facts *facts,
++				     const struct native_endpoint *ingress,
++				     const struct native_endpoint *egress,
++				     const struct cs7542_rx_path *wire,
++				     struct cs7542_fe_native_request *request);
++
++#endif
+
 -- 
-2.53.1-Meta
+2.53.0
 
-
-
-> Thanks!
-> Leo
 
 
