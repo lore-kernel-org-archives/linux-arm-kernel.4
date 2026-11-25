@@ -2,82 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F56606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE988606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xYLGIsTc;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EivW0L61
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=woPM+IcL;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pwgX+gmz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CffRpKjZWBIdmV8KBtWcyKWTbdLZZPBEyXOHv2Hi+wI=; b=xYLGIsTcEiXuaJ
-	Ld40w4S+4Uj2V7zXPzi02JlDqgT2SUJEhCEOQVMwassHp8WFDm6hgZ0HAcPLahDANbcnlXIYsW7PK
-	1qSbOI5y+FNf65PewoeNfVEEMjMel1mQE3HBB0j8RS/Y9W1xb8et05DtrBkAyzxHFe+IH9k6aUn0v
-	mT9ZljBVFWonCsAXddE34sv9FnM5hcI9Onbz/6nqGMQV99pUi29D9lvXmzOD3TmmVlEcZNEiUOm/j
-	sUveCWkxLi2RuODR0jZ5mJucvvz4Jq4GMrCCDzj/3nvmhSt9hNOtxJifHgNj+AF1q6y88Uo2y0w3r
-	v2urjOmEAiFvR4bJVcYA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3W56owSBc9jDVBiGRn0n4U9fWiaOv59zmbpdMIKAQa0=; b=woPM+IcLykbKgNmH13qp2NKQJe
+	D0nJTwsMAPc5fztrrNMgIa+raYUc0O6ZJxV7yEqXaerrqTDu9ioNnZ3wJZeXBUIK/q0DfMmKnig+W
+	SruOavT4Ujmz9YDkJ3mkdSl9yhtxBiSOvRBRpQqHj0zPsB9nmIdi3MO0ls8O0u1qmOLvQfGhLBecQ
+	d16JfTX9mTjyYSCbG3Evaqx+5gg7mcpECfwnAgzr5i+gwUsAJTJLByU+yxPTFHjIIt3OMiJRCT48n
+	hkaIl9BGiqhJPbEnjx/OIASiE+u2+NBimRswjBBUyshD9Eom0pacSZh86vvRMGlUQzHquF3m5rLdp
+	U+G94QxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHgU-0000000B021-1uZh;
-	Wed, 25 Nov 2026 18:25:34 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHgQ-0000000B01E-1Iq6
+	id 1xWIbR-0000000B7o0-2PIb;
+	Wed, 25 Nov 2026 19:24:25 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWIbF-0000000B7iG-2USg
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 18:25:32 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2453B339;
-	Wed, 25 Nov 2026 10:25:26 -0800 (PST)
-Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DDB23F632;
-	Wed, 25 Nov 2026 10:25:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795631129; bh=S3knkYPZy3TQVIujmwNlME+cfr9l2bAHL5wt5WJaEJo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EivW0L61HkBPUbKSFXxmUB49FJ1LDQ0/F2c0mxN6sykMcNyTJYKSs9OtmR3HwHvT0
-	 hx+U0N4UI7pKVA1Eur9PSl+lHxGmllUK7bbcsblWRQEVlLL5qO6WW342Q6CoDGTws7
-	 fPqHCNMiUjxdbSNkZago6SiMRu7I/Cuk6sea1dmc=
-From: Leonardo Bras <leo.bras@arm.com>
-To: Usama Arif <usama.arif@linux.dev>
-Cc: Leonardo Bras <leo.bras@arm.com>,
-	Lorenzo Stoakes <ljs@kernel.org>,
-	maz@kernel.org,
-	oupton@kernel.org,
-	fuad.tabba@linux.dev,
-	joey.gouly@arm.com,
-	seiden@linux.ibm.com,
-	suzuki.poulose@arm.com,
-	yuzenghui@huawei.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	riel@surriel.com,
-	shakeel.butt@linux.dev,
-	kernel-team@meta.com,
-	rkeilty@meta.com,
-	atish.patra@linux.dev,
-	dgreid@meta.com
-Subject: Re: [PATCH] KVM: arm64: Reduce the stage-2 page cache on 64 KiB hosts
-Date: Wed, 25 Nov 2026 18:25:15 +0000
-Message-ID: <awcoCklLOKeuXPhh@LeoBrasDK>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
-References: <20261124152842.2634495-1-usama.arif@linux.dev> <awcXhk885lqDRAHy@LeoBrasDK> <06a69a4f-59bb-49b8-9ed0-f4cfe0ecad37@linux.dev>
+	Wed, 25 Nov 2026 19:24:19 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4bb55cda775so38996045e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 11:24:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1795634643; x=1796239443; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=3W56owSBc9jDVBiGRn0n4U9fWiaOv59zmbpdMIKAQa0=;
+        b=pwgX+gmzS6MBfUYw24+54P3fIk/8nbok6pjWOYBUBR4s1bRCy3dtYcyrmSUMgI2THg
+         ShGDktWDUqIyMo1FCE3md9b4qYMuMo+gwft/nIbF4mY0JBflQDhoyxKcKNSnIcQjGqL2
+         pZvpZ6xl7BKX5jdrB72c77fg+hX5sDDlJx3XYww7oVMJlA3pWlpSnwgkZ5s2au6JB53E
+         iKpTt+aOfNN5w/XPhq+G2dirut3f/CDNuaAc+dtK1ZcOGadLZSopmBkaLS54rN/O2DfM
+         b2gdpRdL2BuO2W0qsNYIvxux5XJ6Bolpo3Fs4Ls5UKa9+R5xSy51kx6luJeafnBas20k
+         Oq2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1795634643; x=1796239443;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=3W56owSBc9jDVBiGRn0n4U9fWiaOv59zmbpdMIKAQa0=;
+        b=gp+k9mAnGNZqTJDinEldO2JOlYPolESd+Cl3D9u2xBh0PTjZuCj6lslAkwMlAmSrTd
+         EReveNGnF2Zc064vUTUKb2GRdWOmHWxDHfE7Keut/E4TjpltpFyp4Qga5cxufCo133j3
+         E4TchJ4xK1x78Zy8aNwA5gKQ5tdDwBzFV10WPrvTJgh4LzfIu+ezi1Hl3XrPbvzBTWny
+         moIQE4q7YXxUtGujqiskKJmU2kOyjskud/GQWPcW9NzmCrKUUyot/prBE7pfwRT1B8Yv
+         enKTWD0Y1vlZcV+odJeP3nGBSJnfU6723k7eOeGbBtSTZkOUQqgL7xFfkexs+S1/oeoS
+         pGjA==
+X-Forwarded-Encrypted: i=1; AL+hErGcHrh1GC+HmzTLJKUY8G8a+HDB2c7Xln399IRf3OjFrLOsCCupkzCbxGzyl8ZYzJvpmQD+pYaBqBB09UkTDQMp@lists.infradead.org
+X-Gm-Message-State: APuU4Z9So57lkFDrOPwz5bcefTqGi/ghhv/GpwZI+wnj7QrIaY/oMdRG
+	bkCscjEo76asm/c4xS2XfWOr9Wz50fyjGoNG6PGMKDOmuGIYTOCPRlAu
+X-Gm-Gg: AZFdTZfjwCzVZxYuTqxMoNTGxPTevMY0E4AgGoH4VBwOmI/5jZOv0MMFbgVOiOQFc+g
+	1EZ+wWsHOs34X+5t0oS/S/hPl/8rJ3rsmoYT32JnTxCECMCwqgLaday52z9gyoh7yja2Iy9ccXm
+	7raR+TyA+3iG7j5pbhoMstV6ENPoLCunCsxDQuFgFn4Z7S+SFiA52sbPw8z29W4ufOz+sXOgPIJ
+	wGgNfaima0IBDNd0xxP6v/T3NAwHf7i+CocQ5WopaLCH36E796Hc1SOqHNl2GcchM3dPKE3bzF4
+	hMVvdLHX8nSWV6zCOkp1poJvOefyP/Umr3WdVle5EZqDvPjT3OJKyfdmVId8Odj9snAFN6WNThb
+	aUm9coI8K289VwZG9kw+nvgMBvCgbKXJyHQc1osdZ+0YPaRGwNKpu3MEkCwllhFy7b4apBnpp2f
+	N+NH2IDi4b3xDYJNyfB6p/wl47iip/jaP2UkffAHFP09tKcS5xHmwD4a2Y8WPThpiU8gtX7wQ3t
+	vG0X0yGj9PT4sMa94kf8cLzrHGaW7CB1JkjS+pfNo/4/p46/oOgYAUBTAmqirJ9IAc5M5H3KfYB
+	4sbYqCBgLNiGEb3v5vR5z3ij6e0apUemGsAxNqZMUo5LEMeiRcbJUmr3Xh/S9lF4osuz3RuXJJW
+	EB3ZeTqUP88gzKcBSaPWeK/jZQKmor4iXFHtnx/btwL0v7e2ZO5a0HlLBlf5PlC7LPg4yaf3YG7
+	dtji4l7Q==
+X-Received: by 2002:a05:600c:5901:b0:4bb:5e8a:7c9c with SMTP id 5b1f17b1804b1-4bb861467c8mr329102905e9.7.1795634643163;
+        Wed, 25 Nov 2026 11:24:03 -0800 (PST)
+Received: from MacBook-Pro-von-Karl.localdomain (dynamic-095-114-079-170.95.114.pool.telefonica.de. [95.114.79.170])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4abbd84e661sm34180072f8f.18.2026.11.25.11.24.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2026 11:24:02 -0800 (PST)
+Date: Wed, 25 Nov 2026 20:23:30 +0100
+From: Karl Mehltretter <kmehltretter@gmail.com>
+To: Hongyan Xia <hongyan.xia@transsion.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Mark Rutland <mark.rutland@arm.com>, Song Liu <song@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
+	Juri Lelli <juri.lelli@redhat.com>, Vincent Guittot <vincent.guittot@linaro.org>, 
+	Dietmar Eggemann <dietmar.eggemann@arm.com>, Valentin Schneider <vschneid@redhat.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-trace-kernel@vger.kernel.org" <linux-trace-kernel@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] sched/preempt: Check preempt counts in notrace
+ helpers
+Message-ID: <awcwI1imHpWk8QFE@gmail.com>
+References: <cover.1794814699.git.kmehltretter@gmail.com>
+ <446e2bd042ce071da52ea80f577fe43c1b3dc031.1794814699.git.kmehltretter@gmail.com>
+ <c9b1e3a8-bb25-4808-bcf0-f2d5ba72a58f@transsion.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <c9b1e3a8-bb25-4808-bcf0-f2d5ba72a58f@transsion.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_102530_762991_102CE2B4 
-X-CRM114-Status: GOOD (  37.52  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261125_112413_653433_BFF5AF3C 
+X-CRM114-Status: GOOD (  17.68  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,130 +111,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 05:55:29PM +0000, Usama Arif wrote:
+On Wed, Nov 25, 2026 at 01:26:28PM +0100, Hongyan Xia wrote:
+> > CONFIG_DEBUG_PREEMPT enabled. They therefore skip the bounds checks
+> > which ordinary preemption operations provide.
 > 
-> 
-> On 25/11/2026 09:14, Leonardo Bras wrote:
-> > On Tue, Nov 24, 2026 at 07:28:42AM -0800, Usama Arif wrote:
-> >> When a stage-2 fault may need new page tables, KVM first tops up the
-> >> vCPU's page cache: if it holds fewer pages than the fault might need, it
-> >> is refilled to KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE, which arm64 sets to
-> >> 40. Unused pages stay in the cache until the vCPU is destroyed.
-> >>
-> >> With 64 KiB pages, that is 2.5 MiB per vCPU, and most of it is never
-> >> used. Stage-2 has at most three levels and the root is preallocated, so
-> >> a fault needs at most two new table pages (kvm_mmu_cache_min_pages()).
-> >> As every last-level table covers 512 MiB, an 8 GiB guest needs just 17
-> >> table pages to map all of its memory, while its four vCPU caches get
-> >> filled with 160.
-> >>
-> >> On a production host with 64 KiB pages running 101 VMs with four vCPUs
-> >> each, the caches were still 86% full. The memory used:
-> >>
-> >>                         before      after
-> >>   per-vCPU capacity     2.5 MB     512 KB
-> >>   all 404 vCPUs         869 MB     <= 202 MB
-> >>
-> >> Let's lower the capacity to 8 with 64 KiB pages, In the production
-> >> usecase above, it frees at least 667 MB. That still covers the two-page
-> >> minimum and leaves room for several table allocations per refill. 4 KB
-> >> and 16 KB pages keep 40.
-> >>
-> >> The temporary cache in kvm_phys_addr_ioremap() uses the same capacity,
-> >> but it is topped up before every page it maps, so 8 is sufficient there
-> >> as well. The pKVM hypervisor memcache and the eager split cache don't
-> >> use this capacity.
-> >>
-> >> Signed-off-by: Usama Arif <usama.arif@linux.dev>
-> >> ---
-> >>  arch/arm64/include/asm/kvm_types.h | 5 +++++
-> >>  1 file changed, 5 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/include/asm/kvm_types.h b/arch/arm64/include/asm/kvm_types.h
-> >> index 9a126b9e2d7c99..28568da9ea4a7b 100644
-> >> --- a/arch/arm64/include/asm/kvm_types.h
-> >> +++ b/arch/arm64/include/asm/kvm_types.h
-> >> @@ -2,7 +2,12 @@
-> >>  #ifndef _ASM_ARM64_KVM_TYPES_H
-> >>  #define _ASM_ARM64_KVM_TYPES_H
-> >>  
-> >> +/* Must cover kvm_mmu_cache_min_pages(), at most 2 with 64 KiB pages. */
-> >> +#ifdef CONFIG_ARM64_64K_PAGES
-> >> +#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 8
-> >> +#else
-> >>  #define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE 40
-> >> +#endif
-> >>  
-> >>  #endif /* _ASM_ARM64_KVM_TYPES_H */
-> >>  
-> >> -- 
-> >> 2.53.1-Meta
-> >>
-> > 
-> > Hi Usama,
-> > 
-> 
-> Hello Leonardo,
-> 
-> > Have you tried to reproduce this issue in v7.4-rc1 or newer?
-> 
-> Yes. The patch is against kvmarm/next (v7.4-rc3), which includes
-> Lorenzo's pre-fault series, and I A/B tested it there.
-> 
-> On unpatched v7.4-rc3 with 64 KiB pages, a VM whose 16 vCPUs each fault
-> in one page needs a single stage-2 table page, yet the vCPU caches hold
-> 640 pages (40 MiB). With the patch they hold 127 pages.
-> 
-> > 
-> > IIUC Lorenzo Stoakes introduced a change that would cause the memcache to 
-> > skip topup if the cache contains a minimum of ~4 pages, so it can possibly 
-> > improve that issue.
-> 
-> I don't think that part is new. __kvm_mmu_topup_memory_cache() has
-> returned early when mc->nobjs >= min since commit 6926f95accee ("KVM:
-> Move x86's MMU memory cache helpers to common KVM code"). Lorenzo's
-> commit d27acc152c62 ("KVM: arm64: Size the stage-2 memcache from the
-> fault MMU") takes min from s2fd->mmu instead of vcpu->arch.hw_mmu. For a
-> guest abort that is the same MMU, so nothing changes here.
-> 
-> With 64 KiB pages, min is kvm_mmu_cache_min_pages(), which is at most 2.
-> 
-> > 
-> > Although I can see that when it's below that minimum it fills the whole 
-> > capacity (40) of the cache.
-> > 
-> 
-> Right, and that is the problem. Skipping the top-up avoids refilling
-> the cache, but nothing ever drains it. A vCPU's first fault fills its
-> cache to 40. Each last-level table covers 512 MiB, so a guest needs very
-> few table pages, and most vCPUs never drop below min. The remaining
-> pages stay allocated until the vCPU is destroyed, which is why the
-> production caches were still 86% full.
-> 
-> The patch keeps the early return and only lowers how far a refill goes.
+> Nit: Somehow my brain cannot parse 'bounds checks' before reading the 
+> whole patch. Hopefully it's just me.
 
-Right,
+I'll reword that to 'underflow and near-overflow checks'.
 
-I took a look in the cache workings, and it does not seem to receive freed 
-pages back in. It gets filled by topup and used by map, so IIUC it is used 
-only to avoid failing an allocation during the mapping walk.
+> >   #define preempt_check_resched() do { } while (0)
+> 
+> No need for this hunk as you are in !CONFIG_PREEMPTION without any 
+> checks anyway, but for symmetry I guess it doesn't hurt.
+> 
+> But if you decide to keep this change, then we can always use your new 
+> macros and remove __preempt_count_{inc/dec}(). They no longer have any 
+> users anyway?
 
-Maybe it could be the case to simplify this cache to have the capacity 
-about the same as the minimum (since it always topup before mapping) and 
-avoid the waste altogether.
+Agreed, I'll remove those two macros.
 
-Maymbe having something like this should be enough?
- 
-#define KVM_ARCH_NR_OBJS_PER_MEMORY_CACHE (KVM_PGTABLE_LAST_LEVEL - KVM_PGTABLE_FIRST_LEVEL)
+> > +CFLAGS_core.o += -DDISABLE_BRANCH_PROFILING
+> > +endif
+> >   CFLAGS_build_policy.o += -DDISABLE_BRANCH_PROFILING
+> >   CFLAGS_build_utility.o += -DDISABLE_BRANCH_PROFILING
+> >   endif
+> 
+> This exclusion looks massive for a whole core.c file. When someone 
+> profiles branches, does he or she really care about branch statistics in 
+> DEBUG_LOCKS_WARN_ON()? Can we just switch to unlikely_notrace() in that 
+> macro globally?
 
-Thanks!
-Leo
+unlikely_notrace() does not solve the PROFILE_ALL_BRANCHES case, which
+instruments if statements directly, including those in the notrace
+helpers.
+
+I will follow Steven's suggestion and make the Branch Profiling choice
+depend on !DEBUG_PREEMPT instead.
+
+Thanks,
+Karl
 
