@@ -2,94 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED96606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B2B6606A31E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 12:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I9Y+PwzS;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=P7FzGBt+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0doZdiD;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=QrjM7ZR8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=lBki+4xAXmSxHooQdTNTB74XM3rdpl5Jlw/sGPjJ2bQ=; b=I9Y+PwzSBlu9fenuC18jHAxDm2
-	Q//Gz+w98iegG5omTYcM9sBnyvheKS3JgIe8YKpuO931yJQKY6r5xK5kCAaryMPcif4i7HoMtvyfa
-	e0/LBd22kGWEDlMd8f2QHH3KEE0j6NVEAR3c+72mOtGVLUdO4HkBeDbuxkx3ZUAzwHfCLaKSLtsWX
-	uQUKPrDjFHXkgHQaxWrm878Y0zog4BlZtNq2iwZeSNI1QvYLZuHEWR29p1MrrVSZLgV/m/OBOpYXH
-	J9OqN3qGrka7uY30N7UvYdrlxvqKcSaw64Mmaje26Sn2i8g43xDC2JCGMgfkertCuPBRqOG0gxG+O
-	uxOYRJag==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=KB2UOnA2/AVxrvyPRngGKJQSFTHCDi7Mco+n8BMKsyE=; b=h0doZdiD1tZn1J
+	H3TBMazINM0aNTyyEYgTaYUAMcliy+S+IltHiYxE+H4D6r8s5KPoNJYkJKvs5DEdI3Hw0Tc4Ih6tD
+	xyKuCM8HuKW5yldll2yXgwxqmUC67eqbBnBXL4nGipO04/9KhB/KH4GnT06iO9CQLNKcYLU567QFI
+	on3TIJxs9kJRl52hbT0QNIvPzm30F5y7WosP1jW1VlKjBpFr6RXxliwndmMsVUqoU3sWYQSPOo7F7
+	DIkPpz+o/OHNdB9VEFy5txUbTlVGdvJRlTmg53XGF6SZB2C5QpF9LH4XLi0DDofZ4vr6j1JO2ETJt
+	w0I9/b8Adrarw/gI6X3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBk2-00000009lWT-3XY2;
-	Wed, 25 Nov 2026 12:04:50 +0000
-Received: from mgamail.intel.com ([198.175.65.17])
+	id 1xWB5f-00000009amT-2vlX;
+	Wed, 25 Nov 2026 11:23:07 +0000
+Received: from mail-m160236538.xmail.ntesmail.com ([160.236.53.8])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBjz-00000009lVt-2fzp;
-	Wed, 25 Nov 2026 12:04:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1795608288; x=1827144288;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=4cKCKbZSIGARMvx3NwbCNxA9KCH81gFlhOHiyitYp5A=;
-  b=P7FzGBt+j+wAFvhnD4ktZuZYkxBhmuceLufNZnbmayU0s3SnT6lNM3AZ
-   /zttPaxVmaMORm/QEqGKo04D81pvCp9m1QTj8kkqf76kOWjUj2nIpfQiK
-   tuiiPzziVKgx4RCWInyTmtQeN8L1mhebmxF9wfCsiwWDi6RTJ2ulPUUfz
-   MmXA4WcUtaGU0pycADu/Ky7S7Ah7T+8G73EEAD6kvp/RPXoSobOEIKgtr
-   Jjl2dRppLAQg8ii0Wna5y4CQgdGkVV6gtB8ofyaxQZoas4tBDwGArCQo9
-   afefW9MXXel9duy0p0k326y6glty3DzBtCiiw/NWq3tUp9162AvQAhMbF
-   g==;
-X-CSE-ConnectionGUID: tiq16P2YQI2ViwTrLRBd/w==
-X-CSE-MsgGUID: zC8UsGbiTC+RtVBYc07Yww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4487619"
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4487619"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2026 04:03:31 -0800
-X-CSE-ConnectionGUID: 2HWffgX6RFq12SN9EC9gjw==
-X-CSE-MsgGUID: ooBJMlv+RsmSgY38fCWINA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="11719607"
-Received: from black.igk.intel.com ([10.91.253.5])
-  by orviesa004.jf.intel.com with ESMTP; 25 Nov 2026 04:03:28 -0800
-Received: by black.igk.intel.com (Postfix, from userid 1001)
-	id 2A23B98; Wed, 25 Nov 2026 13:03:27 +0100 (CET)
-Date: Wed, 25 Nov 2026 13:03:27 +0100
-From: "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>
-To: Chunfeng Yun =?utf-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>
-Cc: "konrad.dybcio@oss.qualcomm.com" <konrad.dybcio@oss.qualcomm.com>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"westeri@kernel.org" <westeri@kernel.org>,
-	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"YehezkelShB@gmail.com" <YehezkelShB@gmail.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"sven@kernel.org" <sven@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"andreas.noever@gmail.com" <andreas.noever@gmail.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH v3 1/8] thunderbolt: Prefix NHI core functions with tb_
- and tb_ring_
-Message-ID: <20261125120327.GD191152@black.igk.intel.com>
-References: <20261123113705.2297329-1-chunfeng.yun@mediatek.com>
- <20261123113705.2297329-2-chunfeng.yun@mediatek.com>
- <20261124161159.GT229695@black.igk.intel.com>
- <1aa3fa77b7e96509db6779bbb0cc74ce7c9a4ffb.camel@mediatek.com>
- <20261125071300.GA191152@black.igk.intel.com>
+	id 1xWB4i-00000009Zz9-2mCq;
+	Wed, 25 Nov 2026 11:22:10 +0000
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 55f816044;
+	Wed, 25 Nov 2026 19:22:03 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andyshrk@163.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>,
+	Sashiko <sashiko-bot@kernel.org>
+Subject: [PATCH v7 07/20] drm/bridge: analogix_dp: Check all negative return values for &analogix_dp_device.irq
+Date: Wed, 25 Nov 2026 19:21:28 +0800
+Message-Id: <20261125112141.1434903-8-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261125112141.1434903-1-damon.ding@rock-chips.com>
+References: <20261125112141.1434903-1-damon.ding@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261125071300.GA191152@black.igk.intel.com>
+X-HM-Tid: 0aa21270f97a03a8kunm17c23050775894
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaQk1DVktIT0IdGU0YHU5DSlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=QrjM7ZR8pJ3EzmPj0v56jPZq94jjwPvloVlv1Emt4EQmsMiU7/r43wrszU+dbY9O0nPWw0QXG8jQ3pXQlWNeUX83jbA/06oqNtsD8DkKnR5wkj4FZxG1Tkn2+UZiBrO7DyFPcVBEcYiiI/kdXjI7mihzZseaes9BAmThSBMyWUc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=KB2UOnA2/AVxrvyPRngGKJQSFTHCDi7Mco+n8BMKsyE=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_040447_990337_E1A91323 
-X-CRM114-Status: GOOD (  28.34  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261125_032208_989198_7748B6F8 
+X-CRM114-Status: GOOD (  13.81  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,73 +95,73 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 08:13:00AM +0100, mika.westerberg@linux.intel.com wrote:
-> On Wed, Nov 25, 2026 at 06:43:38AM +0000, Chunfeng Yun (云春峰) wrote:
-> > On 二, 2026-11-24 at 17:11 +0100, Mika Westerberg wrote:
-> > > On Mon, Nov 23, 2026 at 07:36:48PM +0800, Chunfeng Yun wrote:
-> > > > In preparation for modularizing PCIe NHI support and allowing PCIe
-> > > > and platform NHI drivers to be built as separate modules atop the
-> > > > Thunderbolt core framework, several NHI functions and structures
-> > > > will
-> > > > need to be exported.
-> > > > 
-> > > > Currently, several of these functions lack standard subsystem
-> > > > prefixes,
-> > > > risking namespace pollution or collisions across the flat kernel
-> > > > symbol
-> > > > namespace:
-> > > > 
-> > > > - ring_msix() lacks any subsystem prefix and diverges from all
-> > > > other
-> > > >   exported ring functions in the driver, which use the "tb_ring_"
-> > > > prefix.
-> > > > - nhi_probe(), nhi_shutdown(), and nhi_pm_ops lack the standard
-> > > > "tb_"
-> > > >   prefix used across the Thunderbolt public interface (such as
-> > > > struct
-> > > >   tb_nhi and struct tb_nhi_ops).
-> > > > - nhi_msi() is named after PCI MSI, even though the ISR simply
-> > > > schedules
-> > > >   the interrupt work and can serve as a generic ISR for non-PCIe
-> > > > platform
-> > > >   controllers as well.
-> > > > 
-> > > > Rename these functions and symbols to conform to Thunderbolt
-> > > > subsystem
-> > > > naming conventions before exporting them:
-> > > > 
-> > > > - ring_msix       -> tb_ring_msix
-> > > 
-> > > I think we can move MSI-X completely to pci.c. As far as I can tell
-> > > ARM
-> > > stuff is not going to need that. While there we can drop MSI, that
-> > > has been
-> > > never used (MSI-X was supported from day 0 by the HW).
-> > If move MSI-X completely to pci.c, then will rename and export another
-> > two functions:
-> > __ring_interrupt()
-> > ring_interrupt_index()
-> > 
-> > is it fine for you?
-> 
-> No that's even worse :( But I was thinking that we can do the same for MSIX
-> as for regular interrupt in nhi.c:
-> 
->   nhi->irq set -> request_irq() for that
->   ring->irq set -> request_irq() for that
-> 
-> This would hopefully limit the number of functions we need to export. Maybe
-> it allows us to get rid of the .request_ring_irq and the like in the
-> tb_nhi_ops?
+Currently only -ENXIO is checked for dp->irq from gpiod_to_irq(),
+which ignores other possible error codes like -EPROBE_DEFER, -ENOENT.
 
-I realized we cannot do this for MSIX because we allocate them on-demand so
-the callbacks need to stay. However, we can avoid exporting ring_msix if we
-make ->ring_request_msix() return the interrupt number.
+Check for any negative value instead, and propagate the actual error
+code rather than hardcoding -ENODEV.
+
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Link: https://lore.kernel.org/all/20260804083307.84ECA1F000E9@smtp.kernel.org/
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+
+---
+
+Changes in v4:
+- Add Tested-by tag.
+
+Changes in v5:
+- Change the type of &analogix_dp_device.irq from unsigned int to int
+  to fix the dead dp->irq < 0 check, which broke the probe deferral
+  for the HPD GPIO. (Sashiko)
+
+Changes in v6:
+- Add Tested-by tag.
+---
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 4 ++--
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+index 3ab1cf6b51d1..749d63e55d2a 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+@@ -1514,9 +1514,9 @@ analogix_dp_probe(struct device *dev, struct analogix_dp_plat_data *plat_data)
+ 		irq_flags = IRQF_NO_AUTOEN;
+ 	}
+ 
+-	if (dp->irq == -ENXIO) {
++	if (dp->irq < 0) {
+ 		dev_err(&pdev->dev, "failed to get irq\n");
+-		return ERR_PTR(-ENODEV);
++		return ERR_PTR(dp->irq);
+ 	}
+ 
+ 	ret = devm_request_threaded_irq(&pdev->dev, dp->irq,
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+index dc189f0b7a19..cc3466304531 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+@@ -159,7 +159,7 @@ struct analogix_dp_device {
+ 	struct drm_bridge	bridge;
+ 	struct drm_dp_aux	aux;
+ 	struct clk		*clock;
+-	unsigned int		irq;
++	int			irq;
+ 	void __iomem		*reg_base;
+ 
+ 	struct video_info	video_info;
+-- 
+2.34.1
+
 
