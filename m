@@ -2,69 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92588606A31E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB0D606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 14:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pICOCaAe;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=plGLeUba
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0Wmh88ZG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ObxxMsXT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mGNVsEbGKNomdBc98c+1LmiFeN7goXWYJ/3zVzwKrcs=; b=pICOCaAeRpx0fg
-	wmJjXpd/K5Od4GAh5EDreWZf6CuPSVfXNJWJtqYyG+Qt4U1v5vTz4jEsd2D9nzN4/vQufg8n10RPc
-	paqxcn5ViYLFZfGC626XWozmqNBp6UxGTBwOSImlXsHksnupz1BsYE377A5XgJk8dVspFJJCJixML
-	iPZfsHX/tmOl8mvnaaSt/5JFlwDrzO2Ne/pwD/y/Z5FbNbPt3Pry08iTtSZsH7pRTKtlN8TdkqcEu
-	Z45xBwWQBpvnX424Q00h1747dOp3RC8TdAZilJhACosS5KWgZz7MvcdSfU6b4Jc0rdJqKop1Il9b3
-	D+jWJ9yki6wJDXNqpArw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Ld9+YyGfs/W/wYUchYl+G0tuTdeNOsMW/DqiAiz5bT8=; b=0Wmh88ZGeS1AOcoVX72BprXN1a
+	UYnrxso+RxW+Fz66QciWPl5GZCS0dkAghnUSrVWO214YMEnUuBWQd4vVtY+VUvLeJnyt7kDVYxeWU
+	CKi6C/xkj+3z/Di9TEOvZ2Km4KWHJyXxC/dbXVVLpFWJqQE/5rp27EQw2S0efEt7Y6bDkrPNL7gqu
+	cq9yvwxCmAMWZlilXqpzW0rDHffvlQdvBeksuG3+H3vkYz8UFTecm+Ju5/0SMtOksUznRR8XT6WOb
+	hgONYcXVntdt11QnFUD+HJur0JaqP2rfc4BnArxhmMZMOOKAxNubRd5ouAk5DKgGuJ5P9IomIW0b8
+	S8x4qYbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWENL-0000000AFje-14lA;
-	Wed, 25 Nov 2026 14:53:35 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWENI-0000000AFih-2LA2
+	id 1xWENq-0000000AFpc-1XXU;
+	Wed, 25 Nov 2026 14:54:06 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWENS-0000000AFlZ-1UU7
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 14:53:33 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC8B72F;
-	Wed, 25 Nov 2026 06:53:28 -0800 (PST)
-Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 55CF23F632;
-	Wed, 25 Nov 2026 06:53:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795618411; bh=LFtUhCKeVN8BjqTri7/eXQmnJk7/LL86eeHc7MG+q3c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=plGLeUbaakSMO5OcrasMiSKLEPz250XkgAmvB65p19MxmhMpc+WAfzewe1ASooa+i
-	 RlHnnHbcgKv6vUFmx+e588JBgeFdcERauB87hv4pZlKiywAlkOSYXHurNaoLwaJqY4
-	 M58/s3lWepokPf3z+YdMlSijGf9/Ixxi3YbQEcCk=
-Message-ID: <bfe76aea-0292-4734-b669-886834ce139b@arm.com>
-Date: Wed, 25 Nov 2026 14:53:27 +0000
+	Wed, 25 Nov 2026 14:53:42 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A2D4D4186D;
+	Wed, 25 Nov 2026 14:53:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEDC11F000D1;
+	Wed, 25 Nov 2026 14:53:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1795618421;
+	bh=Ld9+YyGfs/W/wYUchYl+G0tuTdeNOsMW/DqiAiz5bT8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=ObxxMsXTHaoaFPQhWWEGfwnxogsmLHZtVXKBYFNP22toPMnIbQuqA53EnRDOCjnkN
+	 SLXhNDLmz7jNDtxCy85uwFN+oPhfph01qr3uqvrM3tCtfzo9rJntomLnx8g4syN9TA
+	 3Ay0KJDKcYK5Cda8DQAJLwpeDOpEWJ8VQFxuLzY0TmnsGHpA1p2kbyJLf7ToGalnVc
+	 gn7f+O8ZjtdDqFkLM9nW4Pf8CiZikgIeWBG5N2CwNUEyRI44b/bElD7DOP2euqNoyW
+	 JFsQqQzFYo7P5vbOFcRrpPB4tZQ5GhoUWgrN6jpuYOSrEkhiC+0f5BoqNhz49auDmh
+	 ce2dgweQR6e/g==
+From: netdev-bot+sinfo@kernel.org
+To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ Jesper Dangaard Brouer <hawk@kernel.org>,
+ John Fastabend <john.fastabend@gmail.com>,
+ Stanislav Fomichev <sdf@fomichev.me>, Jose Abreu <Jose.Abreu@synopsys.com>,
+ Ong Boon Leong <boon.leong.ong@intel.com>, Simon Horman <horms@kernel.org>,
+ Andrii Nakryiko <andrii@kernel.org>, Eduard Zingerman <eddyz87@gmail.com>,
+ Kumar Kartikeya Dwivedi <memxor@gmail.com>,
+ Martin KaFai Lau <martin.lau@linux.dev>, Song Liu <song@kernel.org>,
+ Yonghong Song <yonghong.song@linux.dev>, Jiri Olsa <jolsa@kernel.org>,
+ Emil Tsalapatis <emil@etsalapatis.com>,
+ Ihor Solodrai <ihor.solodrai@linux.dev>,
+ Matthew Gerlach <matthew.gerlach@altera.com>,
+ Boon Khai Ng <boon.khai.ng@altera.com>, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, bpf@vger.kernel.org,
+ Peilin He <he.peilin@zte.com.cn>, Nicolai Buchwitz <nb@tipi-net.de>
+Subject: Re: [PATCH net-next v13 0/5] net: stmmac: introduce XDP rx multi-buff support
+Date: Wed, 25 Nov 2026 14:53:39 +0000
+Message-ID: <179561841924.3294.5101937008242312303@kernel.org>
+In-Reply-To: <20261125-stmmac-rx-mb-v13-0-0f6bac53e8d5@oss.qualcomm.com>
+References: <20261125-stmmac-rx-mb-v13-0-0f6bac53e8d5@oss.qualcomm.com>
+Auto-Submitted: auto-generated
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 17/39] arm64/efi: Implement override for IRQ flags
- checks
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com,
- will@kernel.org, mark.rutland@arm.com, lpieralisi@kernel.org,
- ruanjinjie@huawei.com, liaochang1@huawei.com, ashok.raj@oss.qualcomm.com,
- maz@kernel.org
-References: <20261112132042.129062-1-vladimir.murzin@arm.com>
- <20261112132042.129062-18-vladimir.murzin@arm.com>
- <0ba986f0-0309-441a-af6c-279125924693@sirena.org.uk>
-Content-Language: en-GB
-From: Vladimir Murzin <vladimir.murzin@arm.com>
-In-Reply-To: <0ba986f0-0309-441a-af6c-279125924693@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_065332_802764_FFF208CE 
-X-CRM114-Status: UNSURE (   9.27  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,33 +86,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/13/26 13:22, Mark Brown wrote:
-> On Thu, Nov 12, 2026 at 01:20:20PM +0000, Vladimir Murzin wrote:
-> 
->> +#define arch_efi_check_flags(state_flags, caller)									\
->> +do {															\
->> +	arm64_exc_hwstate_t __actual = {.flags =  arch_local_save_flags() };						\
->> +	arm64_exc_hwstate_t __expected = {.flags=state_flags};								\
-> The generic version has an:
-> 
->         if (!WARN_ON_ONCE(mismatch & ARCH_EFI_IRQ_FLAGS_MASK))
->                 break;
-> 
-> which will generate a backtrace the first time things go wrong, this
-> doesn't.
-> 
+Hi!
 
-Good point! Sashiko also suggested restoring flags before continue with
-prints (which also applies to generic version).
+This is an automated message. This series looks like a fix, but its
+commit messages seem to be missing some information:
 
-Cheers
-Vladimir
+ - How the issue was discovered, e.g. hit in production, hit during
+   development, syzbot report, manual code inspection, LLM or static
+   analysis tool scan.
+
+ - Whether the issue was actually triggered, or is only theoretical
+   (e.g. found by LLM and not proven at runtime). If it was triggered
+   please include the symptoms, like the stack trace or kernel messages.
+
+ - What hardware the change was tested on. For driver fixes please
+   mention the device (and if relevant firmware version) used for
+   testing, or say that the change was not tested on real hardware.
+
+Please do not repost the series just to address the above. Instead,
+reply to this email with the missing information, so that reviewers
+can take it into account.
+
+*IMPORTANT*: If you do repost (for other reasons) - please include
+the relevant info in the cover letter or commit messages.
+-- 
+The evaluation is done by an LLM so it may be wrong, if you think
+that is the case please reply and explain.
 
