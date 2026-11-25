@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DBB4606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E1E606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FD8FAWQd;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BkpkKwkO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pyJpjFg0;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=D18L/7Ug
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,97 +14,127 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4tA4R3M1tGeqFN2000iz5S9/N8qTO7Ro+JjVYjnPFCI=; b=FD8FAWQdMDTFoEQI8CJXGYfUjT
-	Zr0cwXnTnTk55CoXKYa6nyvan/zJfAYSWh2lf5prh7HhXmpftwONzBErosBwh5SbWIZdWUU/YrwCb
-	ohorPpOXbADezcWYtD7OpaHfzDv/hK+A/Vxaj+EerElFk2Gy/KNqNwcNwsRFd7vxf3WzT7lAG+V6T
-	09/Wff1eWlf1+7Yb9Tg6FuvMkAXN/dyqgntRoYcah82hOHNJDTpvPKxucEWafYl6/RK9ylpFRm9fQ
-	+fGu0MH3Xb/6osZzIjhyVUR8X3bMbQPi/jFjUXlmene1U9t3RO1ukGlUCv1mmRn3do4J5pCMAuSdT
-	8+jUs74w==;
+	bh=zUZyVE+QjYtPIt3BxSr54WBueSqcfOwFowJbKlqWTGU=; b=pyJpjFg0bx74qWP1zJYzIbuF5C
+	WmbXWc1z8vvmOAI9xURtLOQ8nOnTdamI/8NzBJzYiLpaButNe1TolIViOvxXrbXJdtwrMbh0Ue2Xp
+	cprprqEbSwSNWzQb7IUa9nn/RBy2uZP09cVEAGUadhE6ucFUfrhFAZ3VupQxrrb1KSAZqwlk1US33
+	iR7+FO4LOTVY2g0sYspR6jfEyRETNPMwAiIZ5GtWhliWnGROiDQRa7fpFXrVeXqL+J6EoKX7Y2wLE
+	ASgGrZcFZH0jpoJQntQH2VsWXnhG9GlTWxHbTiCGujfqwaghe+KukxylkxHNyVKedbGCCiBRR/yip
+	6Pn7e9jw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEvI-0000000AM3M-2ZpO;
-	Wed, 25 Nov 2026 15:28:41 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xWExf-0000000AMKm-2ZJ9;
+	Wed, 25 Nov 2026 15:31:07 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWEvE-0000000AM2U-43pB
+	id 1xWExb-0000000AMJp-14l5
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 15:28:38 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-48df160bb9cso274981f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 07:28:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1795620515; x=1796225315; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=4tA4R3M1tGeqFN2000iz5S9/N8qTO7Ro+JjVYjnPFCI=;
-        b=BkpkKwkOFZ3rsqkjqBJqpd2fv9Su09D3K8PNU5D/q1zKqeLZwLEILCb0TvWdbIC+I+
-         ABMrtHkvGUmtGxI9/L3MF58W9lZgsByi7JUAsWErLfdgfv8PI4BI4Nbb9hfj1MjZ+fQG
-         npPVEoQ8iff9Xoi4bCm0D8XOtydErfwCJlk6KIv00jMR3ia/YPJNQbMjyq4PLLBJYiLL
-         My4joyoGWo9zXKHkD3ag7c7Lg4mIBgtybZ3Vf78fq1gXppeH8W8eQ1nLinyPIIgyIVFt
-         p9iK3L8us4XXSbliHRAhk16+UT8uygXPih+3vOSXZ0XWEKS8ManOWCQ4SmMhexc54qAk
-         pyeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1795620515; x=1796225315;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=4tA4R3M1tGeqFN2000iz5S9/N8qTO7Ro+JjVYjnPFCI=;
-        b=R/ULMe6sa2+1UvHold9ZY9dEsil30IoZOz/JPoOq8TCUZS4IEZXYw8usnAlCxuqgb1
-         1pE0Mnc0bE8pePkYPni0fZQ1t3yn+mAcGcy/vVWSQvwiemskiMZxBVJCa0oZ1GTTkB3m
-         hYH73xNwHfpVXBFC2HHqxcIx5zvUsx8z8DZYKbJ+GWHvJ0Rpfcrsz0PWtnRcJWzZI9Lp
-         cnBWyDO3CXteyVyKqD3VnBEqoVT1tWUeUOMwep0f2JAWuFput++xjWc952uyTyvMH8X0
-         PN/yqE5KpdrEeb4TkLtpw4QqN71U7bv0rdPCA4UYcvrjJKCep5GHtrwqMsvtUcSPdLnr
-         rUzg==
-X-Forwarded-Encrypted: i=1; AL+hErFhHVs9niDLf4iuPppVoWEGjee+XJWqckFFPKrHGASczDxOYDJjomguVovWiQGc63sLsv2X+OvpQ0EMcpqdaQlV@lists.infradead.org
-X-Gm-Message-State: APuU4Z+NjH1R5fG6gTTroguMHxIKoUQhWQCczDwcaV1XWXkBLMGhGKl8
-	aa9PVjXUVkmQ0ckO2cY2MKu8+C5EFNZsljMl9ZwVs6ZMA+HhSNjJbdCh
-X-Gm-Gg: AZFdTZdN1wulRg7pOuP9/bFIoEZd73/SWCAjMQViLXTsLMfzSM8bVOgR53WStlC01oR
-	FGXhgUNIHJXTtqs19AEUanfwFnop60J0xDQNfoIci/0vRtK0Gsf7gwDgMwlJvRXKRqiwblkVOAe
-	KrZM/2MS6I/GRzJu9k7+8WX6PKM3vGp/3/T2RJ6Or4tLOXDjt17httslhe9pfmFBEKKmuytX9L1
-	8wAxkdymwYLuWRWd7eFB+cljB+EmkmtanU9Ab+D6Fs71nIOVhUpVnEpZyi80+ArWaBTlZGRRQvo
-	OV+6DWNspCW8YHUzq4eeLeKHJyuwIrJZk3P4408Bfv0Q2oL+5dnoxxMCmnpxXixD4x7bhmVhlDM
-	L84A8Ke2ai4ZtW56SD7sp8IJCYkOIzebXayIXd1sODDRHVKA86Gv18M93qFDsESbUetqFfvJGzO
-	vZdftzbkI8gN7uxAWme4Zc3Cd802vdJzcla2uumL9gfI3M1ypM21aeHj8y2K8YitRaF4Jj/5zti
-	hFpivqYtu6umIQqWJoB7mEWp4lUugE24blsdTtRhchH92mmcA9+MrXOqLsDXJElvzT1d9edeGVn
-	C8L6us4xaxI5IFT/1tex
-X-Received: by 2002:a5d:5e01:0:b0:4a8:eed3:770 with SMTP id ffacd0b85a97d-4abb47b25eemr37771369f8f.4.1795620514919;
-        Wed, 25 Nov 2026 07:28:34 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d401:2601:d3cc:6bc:a861:f9da])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4ab69bf6804sm34443459f8f.10.2026.11.25.07.28.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2026 07:28:34 -0800 (PST)
-Date: Wed, 25 Nov 2026 17:28:30 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Randy Dunlap <rdunlap@infradead.org>, Damien Le Moal <dlemoal@kernel.org>, 
-	Niklas Cassel <cassel@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Aksh Garg <a-garg7@ti.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rhys Tumelty <rhys@tumelty.co.uk>, 
-	Manikandan K Pillai <mpillai@cadence.com>, "vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>, 
-	Qiang Yu <qiang.yu@oss.qualcomm.com>, Hans Zhang <18255117159@163.com>, Yao Zi <me@ziyao.cc>, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org, Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH v5 6/8] doc: phy: Document some bulk helper functions
-Message-ID: <awb-MUCgZJn94Lbx@skbuf>
-References: <20261125043639.249525-1-inochiama@gmail.com>
- <20261125043639.249525-7-inochiama@gmail.com>
+	Wed, 25 Nov 2026 15:31:06 +0000
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6APEYbHD1607612;
+	Wed, 25 Nov 2026 15:30:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=pp1; bh=zUZyVE+QjYtPIt3BxSr54WBueSqcfO
+	wFowJbKlqWTGU=; b=D18L/7Ug7f4bfwBgZ5meV3YQMG4mWB8x33OAEAXoZ3z/oc
+	tXUNyfJ3YWGgV8oJLU88CNGd0vip0jm1arbKBQpZjdo3Vg8tZ8rSk5iQH3Cpj5C/
+	GOb1l5EPsakhoejGHjJz+XN281o41Y+eRcQLKuII7BFhBt71JdYTciQcTytb8ah6
+	qGRAUnWZgLerbRRJhyaaQopziJLWI8FFE8nQLZa+Fh9DumWjkl4gOjA3A+QwpATd
+	WwlRxhgVi7ireTq6oWChg3FNRkoFKtr8IfucZibazgp+MT2tsZDD+yHl6DUhorv6
+	o2RJ+APS2LZ3pX/U5ulco5OWpcJxu/hxc3Ltv7Qw==
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4j34g1cncw-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 25 Nov 2026 15:30:34 +0000 (GMT)
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6APEKZDO918882;
+	Wed, 25 Nov 2026 15:30:33 GMT
+Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4j5dcuuuvg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Nov 2026 15:30:33 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com [10.20.54.104])
+	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6APFUTdM53084564
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 25 Nov 2026 15:30:29 GMT
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 7D20520040;
+	Wed, 25 Nov 2026 15:30:29 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 1F4862004E;
+	Wed, 25 Nov 2026 15:30:29 +0000 (GMT)
+Received: from osiris (unknown [9.68.29.29])
+	by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+	Wed, 25 Nov 2026 15:30:29 +0000 (GMT)
+Date: Wed, 25 Nov 2026 16:30:27 +0100
+From: Steffen Eiden <seiden@linux.ibm.com>
+To: Joey Gouly <joey.gouly@arm.com>
+Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
+        Fuad Tabba <fuad.tabba@linux.dev>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Zenghui Yu <yuzenghui@huawei.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Andreas Grapentin <gra@linux.ibm.com>,
+        Christian Borntraeger <borntraeger@linux.ibm.com>,
+        Janosch Frank <frankja@linux.ibm.com>,
+        Claudio Imbrenda <imbrenda@linux.ibm.com>,
+        David Hildenbrand <david@kernel.org>,
+        Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Sven Schnelle <svens@linux.ibm.com>,
+        Friedrich Welter <fritz@linux.ibm.com>,
+        Gautam Gala <ggala@linux.ibm.com>,
+        Hariharan Mari <hari55@linux.ibm.com>,
+        Hendrik Brueckner <brueckner@linux.ibm.com>,
+        Nico Boehr <nrb@linux.ibm.com>,
+        Ulrich Weigand <Ulrich.Weigand@de.ibm.com>,
+        Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>,
+        linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+        linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+        linux-s390@vger.kernel.org
+Subject: Re: [PATCH v3 02/23] KVM: arm64: Extract number of sys_reg_desc into
+ a constant
+Message-ID: <20261125153027.117976-A-seiden@linux.ibm.com>
+References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
+ <20261106-sysreg-v3-2-75e95980fb10@linux.ibm.com>
+ <awbw3NyDifa0WjhZ@e143914.arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261125043639.249525-7-inochiama@gmail.com>
+In-Reply-To: <awbw3NyDifa0WjhZ@e143914.arm.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: AV9dufpHQOAcCszHCzsGcP_PgK8iy-CT
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA2MCBTYWx0ZWRfX9sXFgl6CWlVW
+ oD08l1dCaLsrG/W1ZVLQb5bvvKWAnWSVQN4ExZ5FozQ6eCX8Bwaum80t6PmL3m5EAo7VfYKI90/
+ j2XiRj0PTCKdJMNDvMJYkvvmy0UnWOM=
+X-Proofpoint-GUID: AV9dufpHQOAcCszHCzsGcP_PgK8iy-CT
+X-Authority-Analysis: v=2.4 cv=c8M+0h9l c=1 sm=1 tr=0 ts=6b06ff1a cx=c_pps
+ a=aDMHemPKRhS1OARIsFnwRA==:117 a=aDMHemPKRhS1OARIsFnwRA==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VnNF1IyMAAAA:8
+ a=7CQSdrXTAAAA:8 a=y-atdSe32WjmkHD_2CIA:9 a=CjuIK1q_8ugA:10
+ a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA2MCBTYWx0ZWRfX+W0viPvNBaUX
+ JdQKRuvaMglM2QqPyjJEyW2Y24b4OwViyQQhgg956yD189wZJMZTh5zyeCKwkYBmp5boebWacJe
+ NNKVKqp9Zlp9hjIbzmKOHbwMIG+WNCGoGZuiCJcR/zvJV/Z1pGoXuT6I41cIHLBv5IEazIGy4vV
+ mKHbWi1/tWD5pRICYfj7VqjaujSBzJx3q12WQ3GMA5bVshJHZXtGu1SNhH4wIibWqppUEuOZ+Oi
+ a6HCHT9KfkucjWyb2POBBccnWR02Nx7oEsl0Zagqy/NkKffUuJjFeVUH5DIDCmxs6akUQpLh+Uq
+ yKTgu7DSdUBeY6P8YtX1Ui0Tltk31FDxuctVlTCshg2gvhZovP+Q6LRDMYNpnEH4J/W3+gXlqCC
+ WTnq6RWEzqCuWGeiuUucxDT4zn3bE3jEMgVT9KSHQfmSYiRXW3iCjaeiaZK3cKUDxDF1IiVxujx
+ UVjPoOGgAqEVbcI6S+A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-25_04,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 malwarescore=0 suspectscore=0 bulkscore=0
+ priorityscore=1501 phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250060
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_072837_380078_F6074BE7 
-X-CRM114-Status: GOOD (  35.78  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261125_073103_774896_12CBFC4B 
+X-CRM114-Status: GOOD (  23.11  )
+X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,105 +145,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 12:36:37PM +0800, Inochi Amaoto wrote:
-> Document all newly added bulk helper function, it can be used to manage
-> a set of PHYs automatically. This is useful when the driver want to
-> simplify the management of multiple PHYs.
+On Wed, Nov 25, 2026 at 02:29:48PM +0000, Joey Gouly wrote:
+> On Fri, Nov 06, 2026 at 05:07:35PM +0100, Steffen Eiden wrote:
+> > Define the constant `num_sys_reg_descs` which stores the number of
+> > elements in the sys_reg_descs array. Replace all occurrences of
+> > ARRAY_SIZE(sys_reg_descs) with the new constant.
+> > 
+> > This refactoring eases the integration of handling system registers for
+> > arm on s390. s390 needs code from the shared code to define the
+> > sys_reg_descs. But also the shared code needs the definition of the
+> > sys_reg_array and we cannot forward declare arrays and use their size
+> > before it is properly defined. This patch solves this chicken or egg
+> > problem. For the time being s390 cannot process the full arm64 defined
+> > sys_reg_descs array.
+> > 
+> > No functional changes.
+> > 
+> > Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+> > Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
+> > Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 > 
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> ---
->  Documentation/driver-api/phy/phy.rst | 40 ++++++++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
+> I see later in the series, the include of sys_regs.c into s390 is done
+> before the s390 sys_reg_descs array is defined.
+>
+
+Are you referring to [PATCH v3 08/23] KVM: arm64: Share system register code with s390 
+
+There, the sharing is done from the arm64 side.
+
+As this is a new file for s390 the sharing only gets effective with
+[PATCH v3 16/23] KVM: s390: arm64: Implement arm sysreg managing infrastructure
+
+There, in arch/s390/kvm/arm64/Makefile.gen I add the sys_reg.c as shared
+file. Before it will not be processed (nor included) by s390.
+
+And there in our sys_regs.c I'll define that array.
+
+Or did I miss something?
+
+> Reviewed-by: Joey Gouly <joey.gouly@arm.com>
 > 
-> diff --git a/Documentation/driver-api/phy/phy.rst b/Documentation/driver-api/phy/phy.rst
-> index 0865c2e94eec..cae3d4700814 100644
-> --- a/Documentation/driver-api/phy/phy.rst
-> +++ b/Documentation/driver-api/phy/phy.rst
-> @@ -114,6 +114,12 @@ it. This framework provides the following APIs to get a reference to the PHY.
->  	struct phy *devm_of_phy_get_by_index(struct device *dev,
->  					     struct device_node *np,
->  					     int index);
-> +	int devm_phy_bulk_get(struct device *dev, int num_phys,
-> +			      struct phy_bulk_data *phys);
-> +	int devm_phy_bulk_get_all(struct device *dev,
-> +				  struct phy_bulk_data **phys);
-> +	int devm_of_phy_bulk_get_all(struct device *dev, struct device_node *np,
-> +				     struct phy_bulk_data **phys);
->  
->  phy_get, devm_phy_get and devm_phy_optional_get can be used to get the PHY.
->  In the case of dt boot, the string arguments
-> @@ -129,6 +135,21 @@ Some generic drivers, such as ehci, may use multiple phys. In this case,
->  devm_of_phy_get or devm_of_phy_get_by_index can be used to get a phy
->  reference based on name or index.
->  
-> +The bulk helpers are useful when a controller operates several PHYs together,
-> +for example the lanes of a single PCIe port. To get a set of PHYs by name,
-> +the driver supplies an array of ``struct phy_bulk_data`` with the ``id`` of
-> +each entry set to the corresponding PHY name. devm_phy_bulk_get() returns
-> +zero if it obtains all the requested PHYs or a negative error code on failure.
-> +The driver owns the array and keeps it valid until driver detach, when the
-> +PHY references are released.
-> +
-> +When a controller needs every PHY listed in a device node's ``phys`` property,
-> +devm_phy_bulk_get_all() obtains them from the controller's device node.
-> +devm_of_phy_bulk_get_all() does the same for an explicitly supplied device
-> +node. These functions return the number of PHYs listed in the node, which may
-> +be zero, or a negative error code on failure. They store the allocated array
-> +in ``*phys`` only when the return value is positive.
-> +
->  It should be noted that NULL is a valid phy reference. All phy
->  consumer calls on the NULL phy become NOPs. That is the release calls,
->  the phy_init() and phy_exit() calls, and phy_power_on() and
-> @@ -149,6 +170,14 @@ The general order of calls should be::
->      phy_exit()
->      [[of_]phy_put()]
->  
-> +After acquiring a set of PHYs with a bulk helper, the order is::
-> +
-> +    phy_bulk_init()
-> +    phy_bulk_power_on()
-> +    ...
-> +    phy_bulk_power_off()
-> +    phy_bulk_exit()
-> +
->  Some PHY drivers may not implement :c:func:`phy_init` or :c:func:`phy_power_on`,
->  but controllers should always call these functions to be compatible with other
->  PHYs. Some PHYs may require :c:func:`phy_set_mode <phy_set_mode_ext>`, while
-> @@ -172,6 +201,12 @@ PHY framework provides 2 APIs to release a reference to the PHY.
->  Both these APIs are used to release a reference to the PHY and devm_phy_put
->  destroys the devres associated with this PHY.
->  
-> +For devm_phy_bulk_get_all() and devm_of_phy_bulk_get_all(), driver detach
-> +releases both the PHY references and the allocated array. To release them
-> +earlier, use::
-> +
-> +	void devm_phy_bulk_put_all(struct device *dev, struct phy_bulk_data *phy);
-> +
->  Destroying the PHY
->  ==================
->  
-> @@ -221,3 +256,8 @@ DeviceTree Binding
->  
->  The documentation for PHY dt binding can be found @
->  Documentation/devicetree/bindings/phy/phy-bindings.txt
-> +
-> +Missing Bulk Helpers
-> +====================
-> +Currently, only a few bulk helper functions are added as they have users.
-> +Function not upstreamed can be found at https://lore.kernel.org/linux-phy/20260904083709.425893-1-inochiama@gmail.com/
+> Thanks,
+> Joey
+>
 
-s/Function/Functions/
+Thank you!
 
-Other than that:
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+	Steffen
 
-Thanks for updating the documentation, this is appreciated.
 
