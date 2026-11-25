@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C387B606A693
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE054606A699
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 15:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gUOvMuHq;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Ug7JkI7b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sR3Gb+fd;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=wBn2T8vC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ptwHPUcEo7xWDRw6xCl2vxefKLRbA86AY4IfVUAqty8=; b=gUOvMuHqk64/Q9
-	n0BR5C1HHJKid8zT/XyVuUQOa8NB2AShlSlEa8Xw/H0NB4iwiIv1ZgShNYW4hFRgaCAmPU+1fVElF
-	oQ98yRq6FjtQKkzK578HgL/CqKYBa9lE7bYFDWtkWk6jy6d6Weymf/pGtEFyloYpIb5Dcu+BKVShg
-	5Yyf+ZcX5Va1kwLfx+3MFNkMnvNsPKIr2LzO2ouNn55VsxTI0zn7lHUIsyBqCRGhV1hOsO9DJdh0g
-	Y/r2tchOGlJXvCuKy5YzOh2d6Y0RaJ0K6XXnldJpCcTTi4yT2ytRMQkfcltQX3nu7cILtirJ0Bd/g
-	yd4C1KrLFlkCxPRLuQ7Q==;
+	List-Owner; bh=GUOCNiu7cFer54u4izVvBECwy8EsL27hiy9L0uTDTa8=; b=sR3Gb+fdyMBEZ/
+	Skk4fQRp0GMghNz7HEJrMt6sWurxSkTEctW/bAg9QflMB1nxNw8kdCB+OiM6FOxR5L1bev+gMtpzl
+	x/6F91kZmM5JVJh6vXBbl4CNAnpg91+sChBo4lbZfauQ8nKJTLBsfObeepuRzJTgPoc6gE/+ySeqd
+	UDPuGZnb4iSu787V9hlO+4ORBcci43qJo5Gwf58i5pIrv6iuOb+qPGowu7d3ytc/mu4Ktx7wdPfw6
+	v9WSTfkCFRtBz0DnJGool1W6QR2H+rPHJF4u9M+QJ8nfMHPmWOMQ+RuxyNJkZcThiQ17PzhwY5T7l
+	fkxZ3tYCmqW+OODiFM0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF8G-0000000APqJ-1jkJ;
-	Wed, 25 Nov 2026 15:42:04 +0000
-Received: from out-121.mta0.migadu.com ([2001:41d0:1004:224b::79] helo=mta0.migadu.com)
+	id 1xWF8H-0000000APrk-0iYB;
+	Wed, 25 Nov 2026 15:42:05 +0000
+Received: from out-151.mta0.migadu.com ([2001:41d0:1004:224b::97] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWF73-0000000AOjA-2bBH
+	id 1xWF7Y-0000000APGe-2bj0
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 15:40:51 +0000
+	Wed, 25 Nov 2026 15:41:24 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=RVnzIkMmrnK+2pDIKdojWsNP5HskZeJ9p5evhdP1FRE=;
+DKIM-Signature: a=rsa-sha256; bh=WX5/WDt3Ch560GkYrbupqthKzPK+92bD6UTcsA1auYw=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1795621247; v=1; x=1796226047;
- b=Ug7JkI7ba135g42jsOR+kQ59z940US29UZV6UdWVtlaTeXiXbchqicwLU1nJvPv/yRCIU51f
- ps7gBA90p3oRdYFCQpiBxiTkucah01l2ur1o8IScQSHA1NHInGNuhv6QOjm6F+vq8moNWGC99Vx
- UowlrX03RskNMNcDV9xztYmM=
+ t=1795621278; v=1; x=1796226078;
+ b=wBn2T8vCn7idCne3+4wyIid6/RU+zbRpwGwDEy1df6X3t8KSyqU27AYgoQ+8+jWreSvevA9J
+ thpHHoBIi78XLJ1EUh6e/q+GUPRhqfZf1KXY2v4CZZfnbUlwKwS0FYe7M9Ei6dmu9XvGMXGM1sa
+ eIzD5XEfkyQcgB83osrjw7eQ=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 97e0f5aa51df20aa;
-	Wed, 25 Nov 2026 15:40:47 +0000
-X-Mizu-Trace-ID: 97e0f5aa51df20aa
+Received: by smtp.migadu.com with ESMTPS id 496adf252b9d071e;
+	Wed, 25 Nov 2026 15:41:18 +0000
+X-Mizu-Trace-ID: 496adf252b9d071e
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Joey Gouly <joey.gouly@arm.com>,
 	Fuad Tabba <tabba@google.com>,
 	kvm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 16/20] KVM: arm64: Advertise FAMINMAX, LSFE, LSUI and FPRCVT to protected VMs
-Date: Wed, 25 Nov 2026 15:39:07 +0000
-Message-ID: <20261125153911.106793-17-fuad.tabba@linux.dev>
+Subject: [PATCH v2 20/20] KVM: arm64: Advertise ECV, HAFT and ETS3 to protected VMs
+Date: Wed, 25 Nov 2026 15:39:11 +0000
+Message-ID: <20261125153911.106793-21-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261125153911.106793-1-fuad.tabba@linux.dev>
 References: <20261125153911.106793-1-fuad.tabba@linux.dev>
@@ -67,8 +67,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_074049_858633_CE8232D7 
-X-CRM114-Status: GOOD (  11.90  )
+X-CRM114-CacheID: sfid-20261125_074120_806853_33AF0738 
+X-CRM114-Status: GOOD (  10.17  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,85 +88,41 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Advertise FEAT_FAMINMAX, FEAT_LSFE, FEAT_LSUI and FEAT_FPRCVT to
-protected VMs, the ID_AA64ISAR3_EL1 fields a non-protected VM sees.
+Advertise FEAT_ECV, FEAT_HAFT and FEAT_ETS3 to protected VMs, with ECV
+capped at IMP and HAFDBS at HAFT, since CNTPOFF and HDBSS only add EL2
+and EL3 controls. ECV's self-synchronised counter views trap under the
+same controls as CNTPCT_EL0 and CNTVCT_EL0, which kvm_handle_cntxct()
+emulates.
 
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- arch/arm64/include/asm/kvm_hyp.h   |  1 +
- arch/arm64/kvm/arm.c               |  1 +
- arch/arm64/kvm/hyp/nvhe/sys_regs.c | 13 ++++++++++++-
- 3 files changed, 14 insertions(+), 1 deletion(-)
+ arch/arm64/kvm/hyp/nvhe/sys_regs.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/include/asm/kvm_hyp.h b/arch/arm64/include/asm/kvm_hyp.h
-index ab22b395d0908..fa9a99cae32a7 100644
---- a/arch/arm64/include/asm/kvm_hyp.h
-+++ b/arch/arm64/include/asm/kvm_hyp.h
-@@ -148,6 +148,7 @@ extern u64 kvm_nvhe_sym(id_aa64zfr0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar1_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64isar2_el1_sys_val);
-+extern u64 kvm_nvhe_sym(id_aa64isar3_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64mmfr0_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64mmfr1_el1_sys_val);
- extern u64 kvm_nvhe_sym(id_aa64mmfr2_el1_sys_val);
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index 71afc5a5c9346..e363e8b5958fb 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -2837,6 +2837,7 @@ static void kvm_hyp_init_symbols(void)
- 	kvm_nvhe_sym(id_aa64isar0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR0_EL1);
- 	kvm_nvhe_sym(id_aa64isar1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR1_EL1);
- 	kvm_nvhe_sym(id_aa64isar2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR2_EL1);
-+	kvm_nvhe_sym(id_aa64isar3_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR3_EL1);
- 	kvm_nvhe_sym(id_aa64mmfr0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64MMFR0_EL1);
- 	kvm_nvhe_sym(id_aa64mmfr1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64MMFR1_EL1);
- 	kvm_nvhe_sym(id_aa64mmfr2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64MMFR2_EL1);
 diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-index 2c22317a76a5e..129a6b89a232d 100644
+index 4b95128663aa8..770ba0bb0a400 100644
 --- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
 +++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-@@ -27,6 +27,7 @@ u64 id_aa64zfr0_el1_sys_val;
- u64 id_aa64isar0_el1_sys_val;
- u64 id_aa64isar1_el1_sys_val;
- u64 id_aa64isar2_el1_sys_val;
-+u64 id_aa64isar3_el1_sys_val;
- u64 id_aa64mmfr0_el1_sys_val;
- u64 id_aa64mmfr1_el1_sys_val;
- u64 id_aa64mmfr2_el1_sys_val;
-@@ -222,6 +223,14 @@ static const struct pvm_ftr_bits pvmid_aa64isar2[] = {
+@@ -172,16 +172,17 @@ static const struct pvm_ftr_bits pvmid_aa64mmfr0[] = {
+ 	MAX_FEAT(ID_AA64MMFR0_EL1, TGRAN4, IMP),
+ 	MAX_FEAT(ID_AA64MMFR0_EL1, TGRAN16, IMP),
+ 	MAX_FEAT(ID_AA64MMFR0_EL1, TGRAN64, IMP),
++	MAX_FEAT(ID_AA64MMFR0_EL1, ECV, IMP),
  	FEAT_END
  };
  
-+static const struct pvm_ftr_bits pvmid_aa64isar3[] = {
-+	MAX_FEAT(ID_AA64ISAR3_EL1, FAMINMAX, IMP),
-+	MAX_FEAT(ID_AA64ISAR3_EL1, LSFE, IMP),
-+	MAX_FEAT(ID_AA64ISAR3_EL1, LSUI, IMP),
-+	MAX_FEAT(ID_AA64ISAR3_EL1, FPRCVT, IMP),
-+	FEAT_END
-+};
-+
- /* DoubleLock and MTPMU are hidden, but their Not-Implemented values are non-zero. */
- static const struct pvm_ftr_bits pvmid_aa64dfr0[] = {
- 	MAX_FEAT(ID_AA64DFR0_EL1, DebugVer, V8P8),
-@@ -288,6 +297,8 @@ static u64 pvm_calc_id_reg(const struct kvm_vcpu *vcpu, u32 id)
- 		return get_restricted_features(vcpu, id_aa64isar1_el1_sys_val, pvmid_aa64isar1);
- 	case SYS_ID_AA64ISAR2_EL1:
- 		return get_restricted_features(vcpu, id_aa64isar2_el1_sys_val, pvmid_aa64isar2);
-+	case SYS_ID_AA64ISAR3_EL1:
-+		return get_restricted_features(vcpu, id_aa64isar3_el1_sys_val, pvmid_aa64isar3);
- 	case SYS_ID_AA64MMFR0_EL1:
- 		return get_restricted_features(vcpu, id_aa64mmfr0_el1_sys_val, pvmid_aa64mmfr0);
- 	case SYS_ID_AA64MMFR1_EL1:
-@@ -721,7 +732,7 @@ static const struct sys_reg_desc pvm_sys_reg_descs[] = {
- 	AARCH64(SYS_ID_AA64ISAR0_EL1),
- 	AARCH64(SYS_ID_AA64ISAR1_EL1),
- 	AARCH64(SYS_ID_AA64ISAR2_EL1),
--	ID_UNALLOCATED(6,3),
-+	AARCH64(SYS_ID_AA64ISAR3_EL1),
- 	ID_UNALLOCATED(6,4),
- 	ID_UNALLOCATED(6,5),
- 	ID_UNALLOCATED(6,6),
+ static const struct pvm_ftr_bits pvmid_aa64mmfr1[] = {
+-	MAX_FEAT(ID_AA64MMFR1_EL1, HAFDBS, DBM),
++	MAX_FEAT(ID_AA64MMFR1_EL1, HAFDBS, HAFT),
+ 	MAX_FEAT_ENUM(ID_AA64MMFR1_EL1, VMIDBits, 16),
+ 	MAX_FEAT(ID_AA64MMFR1_EL1, HPDS, HPDS2),
+ 	MAX_FEAT(ID_AA64MMFR1_EL1, PAN, PAN3),
+ 	MAX_FEAT(ID_AA64MMFR1_EL1, SpecSEI, IMP),
+-	MAX_FEAT(ID_AA64MMFR1_EL1, ETS, IMP),
++	MAX_FEAT(ID_AA64MMFR1_EL1, ETS, ETS3),
+ 	MAX_FEAT(ID_AA64MMFR1_EL1, AFP, IMP),
+ 	MAX_FEAT(ID_AA64MMFR1_EL1, TIDCP1, IMP),
+ 	MAX_FEAT(ID_AA64MMFR1_EL1, CMOW, IMP),
 -- 
 2.47.3
 
