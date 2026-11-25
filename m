@@ -2,87 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92415606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6D560A260A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 17:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4kfADR2O;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=T3yBgD7k
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Knk5R2eR;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=c182h5op
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BrrcnjzQvcqJiMXT1xilqkGsVrudJdiOVPDn3lvn36s=; b=4kfADR2OXFvYIB
-	52x+EqsXoslEHsUl/1dWXIG4lAx/4VJTQjZ2Em2LQD4lEEcTqSFM43LrrLW9BuXqLtHM2t0ukF/6L
-	EISIcqQqXgSSZQB4MNBzlpUGAWMPQayVZYcRC2UhCgo+J0D0dpYj+F42CMEMgFTrXWfTu1bJ6ziM8
-	2AVsT2UjTS/p1rgJnPcPGPuA3ToEfb2EwqmHoQJFVaB9B29H1iWcKcgsxLVDneBxMZYEEEwPSOgjn
-	4XZAjW8lVEb3HwD1Xh5F9O36L5v3gf2QkVoMKJEdrIYEfspfQtIFk1g+u/hJ+7ke9ti4yd4RiWs99
-	F6ijkm8cHwmMKq1R0/oQ==;
+	List-Owner; bh=q8BfvstXLNTUj+5boXrPQXXFN+Zijn0f6FlTbabfiXU=; b=Knk5R2eRkD6sAi
+	/nyKnGWdgXLTCDZMgFA9XNcY/UvTNzXFCoa86ICi9hGAnMvjMmoyqG427vDknphBuQtUl6nE62jhb
+	3sMKh/88H6a0ekiSlj6YswqwqqriVVha6/ZigUo5SwR8xrRrW7ZdxmNdw5xPQvs0juc2cdjIENJr7
+	6PEdgDwO0Kzlf83s/KVoPTfwVxBjjP0zI4B3qaNcRadxIysLFDBbw1SQXUiotgInZPlbmWMZsPxXT
+	B4YtsglayhK9mOFV5ETEub3IGrtclvQQZSbkrTIe5DNDa0TOtBteb734iEQOh2NxzHntu0TN0p0V/
+	vd47/jW7Pxl7MoOvviLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH92-0000000An01-40GZ;
-	Wed, 25 Nov 2026 17:51:00 +0000
-Received: from smtpout-03.galae.net ([185.246.85.4])
+	id 1xWHAr-0000000AoMt-3C7f;
+	Wed, 25 Nov 2026 17:52:53 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWH8w-0000000AmyW-3WfR
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 17:50:58 +0000
+	id 1xWH9w-0000000AnNP-1cs0;
+	Wed, 25 Nov 2026 17:52:01 +0000
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id D8A884E41780;
-	Wed, 25 Nov 2026 17:50:52 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 760041A17F9;
+	Wed, 25 Nov 2026 17:51:54 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AB43B60480;
-	Wed, 25 Nov 2026 17:50:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 13EC811E6B0AE;
-	Wed, 25 Nov 2026 18:50:45 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 40DCC60480;
+	Wed, 25 Nov 2026 17:51:54 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B777211E6B0CF;
+	Wed, 25 Nov 2026 18:51:43 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1795629050; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1795629108; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=BrrcnjzQvcqJiMXT1xilqkGsVrudJdiOVPDn3lvn36s=;
-	b=T3yBgD7kNom/UC8jM/fqJ0PKNpxSkNWy6tbuEqzfZoVxS+CJpXNXszU8oP+OxAG+d3lwVK
-	M0x7bLm5BNNwYnZHmfqRw2TPVPFf5uICtiW8KVAjcxwcUdpd3yEIbOkk2Jy6j2Mm/i+Ktd
-	YT76oPZNaEzPIbUqsoURhquEcYgqaxs6B+PSZoV+et2/VZ3LUk/5QYgvnS9dbJpzmUDYpH
-	ROPrzbUscL/jaoWLidsC0zHmJhBVo98+FPbATV1KaybKTfLNSFP5JcD+/DNLDmh19o4sHi
-	Uf5hE7Fp18gA3VHn30honf1AxR1Wla+gIkfmEZ9RApzU1XkC1p3BfBNY55kulw==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Wed, 25 Nov 2026 18:50:14 +0100
-Subject: [PATCH v4 01/32] drm/display: hdmi-cec-helper: use drmm_ prefix
- for drmm action
+	bh=q8BfvstXLNTUj+5boXrPQXXFN+Zijn0f6FlTbabfiXU=;
+	b=c182h5oputdeGdLZCwJ5lOGEwgTpwvAjW5CjoqMTJxuyd2+k364QIcbmwb2hOAu442HocG
+	0ifbjq67c3om7zY2FH0+bVCsrDpUZEcMMQQ5qgSHWUiOolYJ0nNjxB3ngX5AB4XlHanig8
+	z4MeGabdbR9/oZ66HXf3YBvfjP/0LXaxUJgKWT17utiZlQwEho6Aya5vZuZgekVJKi+k4R
+	PiXQKI0EtJiTYhueF0YaiWfaCBYSzBKPumBkJAGRvTFsANKzJ60Ab8GCg1+/cVvKtvGPVr
+	QMm/HdeRkQFtGynCGnrZq1uIKbact2Q+fVCVRKlHzYo73gdFkCM+rF3+3/ZEgQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:16 +0100
+Subject: [PATCH RFC 02/16] spi: spi-mem: Stop checking the dummy buswidth
+ against board wiring
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-drm-bridge-hotplug-v4-1-822722850492@bootlin.com>
-References: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-In-Reply-To: <20261125-drm-bridge-hotplug-v4-0-822722850492@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Douglas Anderson <dianders@chromium.org>, Marek Vasut <marex@denx.de>, 
- Stefan Agner <stefan@agner.ch>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Hui Pu <Hui.Pu@gehealthcare.com>, Ian Ray <ian.ray@gehealthcare.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.16.0
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-2-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_095057_241796_C758B96E 
-X-CRM114-Status: GOOD (  13.66  )
+X-CRM114-CacheID: sfid-20261125_095157_897081_EE1B0AB0 
+X-CRM114-Status: UNSURE (   9.74  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,49 +100,41 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For bridge hotplug drmm allocations are not suitable because a connector
-may have to be added and removed multiple times in the lifetime of a card.
+The dummy phase does not transfer any data. Its buswidth only describes
+the pin state during the dummy cycles, so it must not be validated
+against the board's Tx/Rx wiring.
 
-In preparation to support hotpluggable HDMI bridges (and the
-drm_bridge_connector) we need a non-drmm variant of the CEC adapter
-(de)registration API, with an explicit unregister API.
+Drop that check (the sanity check in spi_mem_check_op() stays).
 
-To differentiate the new explicit unregister API from the existing drmm
-cleanup action, use the drmm_ prefix for the latter.
-
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
+Suggested-by: Pratyush Yadav <pratyush@kernel.org>
+Link: https://lore.kernel.org/linux-mtd/20241112075242.174010-1-linchengming884@gmail.com/T/#m7cc1a5055702f5a42a8f3949c968842d845914d7
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
-
-New patch in v3.
+This is not really a fix, so no fixes/cc:stable is on purpose.
 ---
- drivers/gpu/drm/display/drm_hdmi_cec_helper.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/spi/spi-mem.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_hdmi_cec_helper.c b/drivers/gpu/drm/display/drm_hdmi_cec_helper.c
-index ef6dbaa59dee..b79c41703d53 100644
---- a/drivers/gpu/drm/display/drm_hdmi_cec_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_cec_helper.c
-@@ -64,7 +64,7 @@ static void drm_connector_hdmi_cec_adapter_phys_addr_set(struct drm_connector *c
- 	cec_s_phys_addr(data->adapter, addr, false);
- }
+diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+index c64e906ba919..9b8b8f2b3387 100644
+--- a/drivers/spi/spi-mem.c
++++ b/drivers/spi/spi-mem.c
+@@ -152,9 +152,10 @@ static bool spi_mem_check_buswidth(struct spi_mem *mem,
+ 	    spi_check_buswidth_req(mem, op->addr.buswidth, true))
+ 		return false;
  
--static void drm_connector_hdmi_cec_adapter_unregister(struct drm_device *dev, void *res)
-+static void drmm_connector_hdmi_cec_adapter_unregister(struct drm_device *dev, void *res)
- {
- 	struct drm_connector *connector = res;
- 	struct drm_connector_hdmi_cec_data *data = connector->cec.data;
-@@ -145,7 +145,7 @@ int drmm_connector_hdmi_cec_register(struct drm_connector *connector,
- 	mutex_unlock(&connector->cec.mutex);
+-	if (op->dummy.nbytes &&
+-	    spi_check_buswidth_req(mem, op->dummy.buswidth, true))
+-		return false;
++	/*
++	 * The dummy phase implies no actual transmission nor reception.
++	 * Its buswidth therefore does not matter much.
++	 */
  
- 	return drmm_add_action_or_reset(connector->dev,
--					drm_connector_hdmi_cec_adapter_unregister,
-+					drmm_connector_hdmi_cec_adapter_unregister,
- 					connector);
- 
- err_delete_adapter:
+ 	if (op->data.dir != SPI_MEM_NO_DATA &&
+ 	    spi_check_buswidth_req(mem, op->data.buswidth,
 
 -- 
-2.56.1
+2.56.0
 
 
