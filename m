@@ -2,86 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1203F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47E6606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 11:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hWBxLOH1;
-	dkim=pass (2048-bit key) header.d=d-silva.org header.i=@d-silva.org header.a=rsa-sha256 header.s=2025a header.b=XDmHGAq3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cjD8NwvK;
+	dkim=pass (1024-bit key, unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=Ql6dAdDB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mOB01E0SaVOdsSYqJg6oH9KS7UWAxxETewjep/guEMc=; b=hWBxLOH1mUgRBn
-	0zGuP9hUjWRiIxJeuwTToYIrzJU2GIUUNqfT+/Odg96g5zT8Foxw/AnOtvl5y1HhTL7ZuGUyvVaCJ
-	r0v8aIukWShfJ32YKINea0326ZHbJP23EMUi1De0TPhwESE6c7au4L0wQTPOOIKJAjGZHzPwiRcf9
-	pQzN4BPZ96MAvrs8lyDYY+USDEKyb+35DfZd1TRcOmeLJH2oc2alfAZh1p7rPWo2X4e6QkApyqg4I
-	gq7fkYMXvN4TKv3RqCAcfJadCnxJctLvDLXnGAMA2X75db8U+poTe+RXG8t3QHnIIXHL7/mSXDuXQ
-	Y3Jci56q4Ds+zFh1Yz6g==;
+	List-Owner; bh=LN55FevueCSpgrf/yglA1ahNWl9iVPOBwH9tWUd+Rbo=; b=cjD8NwvKjTrzbv
+	JlDQFyuAWMPrHqXaypiuZUh5piCMDK4uV35Bwl6SAbvNMgf39pJyPk7L4C25F1cNvFcKCdpzK8nmi
+	XC5IDXKWzjO12+MZwNlUAlOtJeFNdvBdwHzkKpTo8+Lc678Mt7HCWjj0JUXAivxT84L+TY/RV/hQ1
+	6qPsCzH/7+KRoCW0C1qu1rhytochC8BVv2TfKn7wZzNWfUfSzsYsE6O6obrdWqIo3vp0IvH8oWQ6e
+	g7/KiCm7s4Qk7itaKLtT7IzerXMaBLLfGd5gGXxCwbiive6gvhT3Ou0aDoh4Tbq+If+AH6OxQUuF5
+	tiJ51UecywK7GSQPW9pg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBcj-00000009kSF-3s4P;
-	Wed, 25 Nov 2026 11:57:17 +0000
-Received: from watt.d-silva.org ([119.15.109.137] helo=www.nmnhosting.com)
+	id 1xWB4z-00000009aHU-03mB;
+	Wed, 25 Nov 2026 11:22:25 +0000
+Received: from mail-m82117.xmail.ntesmail.com ([156.224.82.117])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWBcd-00000009kQg-1tXm
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 11:57:15 +0000
-Received: from Hawking.lan (hawking.lan [10.0.1.4])
-	by www.nmnhosting.com (Postfix) with ESMTP id 5CA6F4B6C9;
-	Wed, 25 Nov 2026 22:57:03 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-silva.org; s=2025a;
-	t=1795607823;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mOB01E0SaVOdsSYqJg6oH9KS7UWAxxETewjep/guEMc=;
-	b=XDmHGAq3c/vEOqeYVFnKVkLyTuUlKSVeGZPR9QDxZSRB69z8OYgGAM0PWDSiI4PiG+4ZG8
-	+mmBJgfWq+Kw6Pgijw/E3YVc6wt4MxrbUuNa2eFxwJUYNUlz294QsgI02gm3q3nm5O1w+I
-	R3Km77NTjzcy/4jrN5rqLh1sOt6xesLWzG0rhUherpPcLUKRhj8T+cYySjAEtBYCjBkN/s
-	ZU7mWdDWVX+/j7j5WvCxj1cdYA/THeU+jlYCFcSXs2Q0BhtMcYUayCGYl/fhPRlckKFUiB
-	ygk9PUm5HCLlia4qx6hW4Ba11o/uwJrz7ETBW5dxu8B/Yz59DkycZGomLfdyvQ==
-X-GPT-Reason: This is a legitimate personal/technical communication
-	regarding Linux kernel development. The content matches a technical
-	discussion on hardware driver patches (pinctrl for Allwinner A733)
-	which is highly relevant to the sender's domain (alastair@d-silva.org).
-	There are no phishing red flags, no marketing elements, and the
-	email contains specific, high-context technical data (register
-	offsets, bit masks, and code snippets) consistent with professional
-	engineering correspondence.
-From: Alastair D'Silva <alastair@d-silva.org>
-To: Andre Przywara <andre.przywara@arm.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
+	id 1xWB4b-00000009Zw1-2pLZ;
+	Wed, 25 Nov 2026 11:22:03 +0000
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 55f81602c;
+	Wed, 25 Nov 2026 19:21:56 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Andy Yan <andyshrk@163.com>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Yixun Lan <dlan@gentoo.org>,
-	Enzo Adriano <enzo.adriano.code@gmail.com>,
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	Alastair D'Silva <alastair@d-silva.org>
-Subject: Re: [PATCH 7/7] pinctrl: sunxi: add support for the Allwinner A733
-Date: Wed, 25 Nov 2026 22:57:03 +1100
-Message-ID: <20261125115703.3724690-1-alastair@d-silva.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260910133519.459011-8-andre.przywara@arm.com>
-References: <20260910133519.459011-8-andre.przywara@arm.com>
+	linux-samsung-soc@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v7 02/20] drm/bridge: analogix_dp: Drop the redundant pm_runtime_mark_last_busy() calls
+Date: Wed, 25 Nov 2026 19:21:23 +0800
+Message-Id: <20261125112141.1434903-3-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261125112141.1434903-1-damon.ding@rock-chips.com>
+References: <20261125112141.1434903-1-damon.ding@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa21270dfad03a8kunm17c23050775861
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSRlMVkNJSB8fTh9KHk9JGFYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=Ql6dAdDBICliEpE0zaJBKkomwfjmr5mRu2VrmabrPTLBWAfg2j531J6ktUsjgmd+VE5ZkOgR1Bqm9tIm/qa6yI08cOosdZyeghzfsCrE+AdcMmWPjrYmoXfAgm7LiKAn9q1vf+MwcZtHBsE/u4tgdi5tK4MmxfhJMzFPmIde824=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=LN55FevueCSpgrf/yglA1ahNWl9iVPOBwH9tWUd+Rbo=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_035713_014187_0E608C1B 
-X-CRM114-Status: UNSURE (   7.06  )
+X-CRM114-CacheID: sfid-20261125_032201_984344_12B5E1CA 
+X-CRM114-Status: UNSURE (   9.15  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -94,43 +95,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Andre,
+Since commit b3db492e8335 ("PM: runtime: Mark last busy stamp in
+pm_runtime_put_autosuspend()"), pm_runtime_put_autosuspend() updates
+the last busy timestamp itself, so the explicit
+pm_runtime_mark_last_busy() calls right before it are no longer needed.
 
-Two issues showed up while testing this A733 pinctrl series on the
-OrangePi 4 Pro:
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 
-1. PIO_POW_MOD_SEL (0x0040) on A733 uses 2 bits per bank instead of
-   1 bit. With BIAS_VOLTAGE_PIO_POW_MODE_SEL, banks are written at the
-   wrong bit offset and left misconfigured (for example, bank H stays in
-   1.8V mode when supplied at 3.3V, breaking RGMII Gigabit TX).
-   Adding a 2-bit variant (writing 0b01 per bank with mask
-   0x3U << (2 * bank)) enables hardware auto-detect from PIO_POW_VAL
-   and fixes 3.3V RGMII TX (also addressed in Vinicius Pedrosa's
-   follow-up series).
+---
 
-2. PA has 0 pins on A733, so PB..PK are hardware banks 1..10 while
-   irq_banks = 10 maps logical IRQ banks 0..9. Without .irq_bank_map
-   and sunxi_irq_hw_bank_num() in sunxi_irq_base_reg(), logical IRQ
-   bank 0 (PB) accesses PA's IRQ registers (0xc0) instead of PB's
-   (0x140). Adding:
-     static const unsigned int a733_irq_bank_map[] = {
-             1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-     };
-   and using sunxi_irq_hw_bank_num(pctl->desc, bank) inside
-   sunxi_irq_base_reg() fixes the bank offset.
+Changes in v7:
+- Add this patch to drop the redundant pm_runtime_mark_last_busy()
+  calls, as pm_runtime_put_autosuspend() updates the last busy stamp
+  since commit b3db492e8335.
+---
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Also, in patch 4/7, sunxi_grp_config_reg() takes an unused
-`const struct sunxi_pinctrl *pctl` parameter that can be dropped.
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+index 8bb4c48aa3b4..50da43d64034 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+@@ -1369,7 +1369,6 @@ static ssize_t analogix_dpaux_transfer(struct drm_dp_aux *aux,
+ 
+ 	ret = analogix_dp_transfer(dp, msg);
+ out:
+-	pm_runtime_mark_last_busy(dp->dev);
+ 	pm_runtime_put_autosuspend(dp->dev);
+ 
+ 	return ret;
+@@ -1389,7 +1388,6 @@ static int analogix_dpaux_wait_hpd_asserted(struct drm_dp_aux *aux, unsigned lon
+ 	ret = readx_poll_timeout(analogix_dp_get_plug_in_status, dp, val, !val,
+ 				 wait_us / 100, wait_us);
+ 
+-	pm_runtime_mark_last_busy(dp->dev);
+ 	pm_runtime_put_autosuspend(dp->dev);
+ 
+ 	return ret;
+-- 
+2.34.1
 
-Tested on OrangePi 4 Pro (Allwinner A733).
-
-Thanks,
-Alastair
 
