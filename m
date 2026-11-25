@@ -2,79 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFA9606A680
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FDF606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 16:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KxU6kevd;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=PPcHEM+F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fRRxq9lY;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=EpN4216W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
+	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=u74A0Q4um7qV8/WDW/DpSpOB1wN/qS5tUTp8OCX2aSQ=; b=KxU6kevdw66ToM
-	7xobRYJvOCJ35RcEe5oJjnb+w+UW7TqdcRJK9b9j7pGjteyhUC+lgzgVf2Fiw2YUS4w2J+KCQsE9u
-	6fdq+Ycvuh0z7+G0uEDouMvW5SgW0DEpJ0NnGJ+iSB0gYn0YmixvUlzSIWXyndjl5xNPoZYmuYKqR
-	hdAl8oNVmNsM7LZ7Z3ERsmxjFg+eyYeD8lzxozp4mkq1Nht47pbg1gIcuzVam0xdu/hzKgJykjL2u
-	D5r0qv5AOt7GrJ3NsjWlqjIrdi+vRoR2z6hI2Jy42GZoYpMPR9bPjlCCfCTyzXrlYGB5GowpbRXS6
-	hUfCEPJOaAD/KoRqcRpA==;
+	List-Owner; bh=7TatMQsD+nKk2SlAoHDqVLWs4KiHkC+B/2mGwzcyZ3E=; b=fRRxq9lYbeLU8R
+	hlfr9U01xQYXatEvtC4Z3jWm/4kjM56owOIfYZW+LWz43ZfTk70RJLKCQzcC6VoN3mZVodPP/nLBN
+	QH15h11fTwQFgab/cJSgwtEhmin5/faw3OoKfu65ReByobAJzdoExMJK0WKVdLYnrp9Pg0NsN7E1s
+	IHQgy0Hf0cmOv5a3Q29/+J9a/SQ0qC1phSmdINGbQ4J9DeaHuh76vhpia+vug9z5Q7oCMpKVpTBH1
+	x5aoZ2u/VkG0wLKGvQxbCT+dctwTgGvDyoikSkURcKJUZ/np3lx+g4AqWb6qxmzQifXc/TWNUb26O
+	4Ui5sxDuDP3Ryv2ZQdgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWG9e-0000000Acw7-3szZ;
-	Wed, 25 Nov 2026 16:47:34 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWG9b-0000000AcvU-2fzP
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 16:47:33 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 928232F;
-	Wed, 25 Nov 2026 08:47:27 -0800 (PST)
-Received: from [10.57.32.107] (unknown [10.57.32.107])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 62CE23F632;
-	Wed, 25 Nov 2026 08:47:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1795625250; bh=2eqARM5zetumptsIOUsll4fMIks93bDujuzqoyMavgw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PPcHEM+FJASRgoa04KgHq2/l2CDs0QOxGySNx7u9SCuF1kp6pNFlZ7lgZOs3j47MH
-	 HCfcsVevE2w3sAPyXltY1uD8GnIBSWH7PIWuEZ6+ocCHneO4YCVHSjB2/+VqU0XaCO
-	 lgLzNt+x7UEcGbcd3uHJEx012FNtAa4MPhF1n5Mc=
-Message-ID: <483ee877-3953-46b1-b4a2-e3b084ee3b64@arm.com>
-Date: Wed, 25 Nov 2026 16:47:22 +0000
+	id 1xWGA7-0000000Ad23-0I0L;
+	Wed, 25 Nov 2026 16:48:03 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xWGA3-0000000Ad0Z-0WIh;
+	Wed, 25 Nov 2026 16:48:01 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261125164755euoutp01a5a5fab61dd9798e759be69e5b9e0235~rV6zDc7Lk0384803848euoutp01t;
+	Wed, 25 Nov 2026 16:47:55 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261125164755euoutp01a5a5fab61dd9798e759be69e5b9e0235~rV6zDc7Lk0384803848euoutp01t
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1795625276;
+	bh=7TatMQsD+nKk2SlAoHDqVLWs4KiHkC+B/2mGwzcyZ3E=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=EpN4216Wld6F8bjjy70JLDrBUDUtE6rusAEz54jLTD3XLo2dUxl4yXXaT+DeXIusV
+	 jYQiUTmMqF955Qs375ei7zjQB+xf20y3Zoo9JdFKubXAw0PUTGsZet5P46/scw/Yfp
+	 E0IVKOHx3TmBqWcPJ4keVQVXch7GmomOtUXCwOe0=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20261125164755eucas1p24d5d6bb83e752fd082cddf5be8b0dfd1~rV6yfXVA43152031520eucas1p2P;
+	Wed, 25 Nov 2026 16:47:55 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20261125164753eusmtip18d3c6a9329085828572b3a1b4e8ce215~rV6wxHev50383403834eusmtip1t;
+	Wed, 25 Nov 2026 16:47:53 +0000 (GMT)
+Message-ID: <74cccd59-ef2c-4334-aa75-b187379e66a6@samsung.com>
+Date: Wed, 25 Nov 2026 17:47:53 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/11] KVM: arm64: CCA: Add Realm RTT mapping and
- invalidation helpers
-To: Suzuki K Poulose <suzuki.poulose@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261123104233.95710-1-steven.price@arm.com>
- <20261123104233.95710-8-steven.price@arm.com>
- <bc90af1d-068e-4e79-8d5f-f8205beb0a69@arm.com>
- <70c50c45-c8b9-4096-84b2-ba4b6ecb63ed@arm.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <70c50c45-c8b9-4096-84b2-ba4b6ecb63ed@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v8 04/18] dt-bindings: display: starfive: Add
+ starfive,jh7110-hdmi-subsystem
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Robert Foss
+	<rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Luca Ceresoli
+	<luca.ceresoli@bootlin.com>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Emil Renner Berthing <kernel@esmil.dk>, Hal Feng
+	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>, Paul Walmsley
+	<pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Dominique
+	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>, David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Yakir Yang
+	<kuankuan.y@gmail.com>, Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>, Conor Dooley <conor@kernel.org>,
+	William Qiu <william.qiu@starfivetech.com>, Xingyu Wu
+	<xingyu.wu@starfivetech.com>, Sandy Huang <hjc@rock-chips.com>, Manivannan
+	Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+	linux-riscv@lists.infradead.org, Marek Szyprowski
+	<m.szyprowski@samsung.com>, Maud Spierings <maud_spierings@murena.io>,
+	Graham Markall <hello@big-grey.co.uk>, Icenowy Zheng
+	<zhengxingda@iscas.ac.cn>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, Joshua
+	Peisach <jpeisach@ubuntu.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>, Cristian Ciocaltea
+	<cristian.ciocaltea@collabora.com>, Conor Dooley
+	<conor.dooley@microchip.com>
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20261125-tasteful-brown-galago-a6725e@quoll>
+Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20261125164755eucas1p24d5d6bb83e752fd082cddf5be8b0dfd1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261124155406eucas1p23a523deb496c21cbf3da3724812a8101
+X-EPHeader: CA
+X-CMS-RootMailID: 20261124155406eucas1p23a523deb496c21cbf3da3724812a8101
+References: <20261124-jh7110-clean-send-v8-0-de92635dd857@samsung.com>
+	<CGME20261124155406eucas1p23a523deb496c21cbf3da3724812a8101@eucas1p2.samsung.com>
+	<20261124-jh7110-clean-send-v8-4-de92635dd857@samsung.com>
+	<20261125-tasteful-brown-galago-a6725e@quoll>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261125_084731_946074_8227BA96 
-X-CRM114-Status: GOOD (  25.86  )
+X-CRM114-CacheID: sfid-20261125_084759_760566_707EBDCB 
+X-CRM114-Status: GOOD (  18.13  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,158 +110,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 25/11/2026 09:51, Suzuki K Poulose wrote:
-> 
-> 
-> On 24/11/2026 00:20, Suzuki K Poulose wrote:
->> On 23/11/2026 10:42, Steven Price wrote:
->>> Add the RMI RTT creation and unmap helpers needed by CCA Realm stage-2
->>> memory operations. REC exit handling and guest requested RIPAS changes
->>> follow in the vCPU series.
->>>
->>> Signed-off-by: Steven Price <steven.price@arm.com>
->>>
->>> ---
->>> Changes since v3:
->>> - Use the VTCR-derived Realm start level for RTT operations.
->>>
->>> Changes since v2:
->>> - Use a local MMU cache during notifier invalidation, handle
->>>    failed RTT splits, and validate RMI levels and cache state.
->>>
->>> Changes since v1:
->>> - Rework RTT creation and folding around missing or existing RTTs.
->>>    Use a shared RMI block-size helper and handle alignment, partial
->>>    progress and errors in range operations.
->>> ---
->>>   arch/arm64/include/asm/kvm_rmi.h |   8 +
->>>   arch/arm64/kvm/rmi.c             | 421 +++++++++++++++++++++++++++++++
->>>   drivers/firmware/arm_rmm/rmi.c   |  10 -
->>>   include/linux/arm-rmi-cmds.h     |   8 +
->>>   4 files changed, 437 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/
->>> asm/kvm_rmi.h
->>
->> ...
->>
->>> +
->>> +static void realm_unmap_shared_range(struct kvm *kvm,
->>> +                     unsigned long start,
->>> +                     unsigned long end,
->>> +                     bool may_block,
->>> +                     struct kvm_mmu_memory_cache *mc)
->>> +{
->>> +    struct realm *realm = &kvm->arch.realm;
->>> +    unsigned long rd = realm->rd_phys;
->>> +    unsigned long next_addr, addr;
->>> +    unsigned long shared_bit = BIT(realm->ia_bits - 1);
->>> +
->>> +    if (start >= end)
->>> +        return;
->>> +
->>> +    /*
->>> +     * Callers may pass either an IPA range or its shared alias. Add
->>> the
->>> +     * shared bit only for the former. Use addition so an exclusive
->>> end at
->>> +     * shared_bit advances to the end of the IPA space.
->>> +     */
->>> +    if (start < shared_bit) {
->>> +        start += shared_bit;
->>> +        end += shared_bit;
->>> +    }
->>> +
->>> +    for (addr = start; addr < end; addr = next_addr) {
->>> +        long ret;
->>> +
->>> +        ret = rmi_rtt_unprot_unmap(rd, addr, end, RMI_ADDR_TYPE_NONE,
->>
->> ...
->>
->>> +        }
->>> +
->>> +        if (may_block)
->>> +            cond_resched_rwlock_write(&kvm->mmu_lock);
->>> +    }
->>> +
->>> +    realm_fold_rtt_level(realm, realm->start_level + 1,
->>> +                 start, end);
->>
->> See below.
->>
->>> +}
->>> +
->>> +static void realm_unmap_private_range(struct kvm *kvm,
->>> +                      unsigned long start,
->>> +                      unsigned long end,
->>> +                      bool may_block,
->>> +                      struct kvm_mmu_memory_cache *mc)
->>> +{
->>> +    struct realm *realm = &kvm->arch.realm;
->>> +    unsigned long rd = realm->rd_phys;
->>> +    unsigned long next_addr, addr;
->>> +    long ret;
->>> +
->>> +    for (addr = start; addr < end; addr = next_addr) {
->>> +        unsigned long out_range;
->>> +        unsigned long flags = RMI_ADDR_TYPE_SINGLE;
->>> +        /* TODO: Optimise using RMI_ADDR_TYPE_LIST */
->>> +
->>> +        ret = rmi_rtt_data_unmap(rd, addr, end, flags, 0,
->>
->> ...
->>
->>> +        }
->>> +
->>> +        if (may_block)
->>> +            cond_resched_rwlock_write(&kvm->mmu_lock);
->>> +    }
->>> +
->>> +    realm_fold_rtt_level(realm, realm->start_level + 1,
->>> +                 start, end);
->>
->>
->> If "may_block", we don't take that into account while folding the RTTs ?
->> On a bigger range, we might spend too much time, starving the other
->> threads.
->>
->> Also, there is no point in folding the RTTs if the Realm is dying. So, I
->> would rather skip this if the Realm is not ACTIVE.
-> 
-> Having a think about it, I don't think the folding of RTTs in the unmap
-> case is a good idea. We could leave them as they are, because:
-> 
-> 1) As mentioned above, we are holding the write_lock() and doing this
-> within the lock is bad for contention
-> 2) We do not check if there was any mapping at all that was actually
-> invalidated. i.e., the tables were already folded and for a big range
-> we go over it unnecessarily.
-> 3) For fixing up permission faults on shared range, we end up unmapping
-> the range and then trying to map it. Folding here means, we could end
-> up in the dance of reclaiming the RTT and then creating it back for
-> each L3. (This is a rare case though).
-> 
-> Overall, I don't see the benefit of folding outweighing the impact of
-> it. So, could we please drop this ?
 
-Agreed. I don't think we have a good view (yet) on when folding makes
-sense. I think it ended up in here mostly so that we could exercise
-those paths in the RMM. But that's a terrible reason to keep it ;)
 
-Eventually I think we'll need to figure out how to cause folding in
-those (probably fairly rare) situations where it will help. But for now
-I'll just drop this.
+On 11/25/26 08:31, Krzysztof Kozlowski wrote:
+> On Tue, Nov 24, 2026 at 04:52:40PM +0100, Michal Wilczynski wrote:
+>> Add the dt-binding for the StarFive JH7110 HDMI subsystem.
+>>
+>> The JH7110 HDMI IP is a monolithic block containing both the digital
+>> controller and analog PHY in a single register space. This binding
+>> defines the parent device, which holds the shared register map, and its
+>> two children: the PHY and the controller.
+>>
+>> The two have separate resources. The PHY takes the 24 MHz reference
+>> clock and provides both the pixel clock, which the VOUT clock generator
+>> routes on to the display controller, and the phy the controller uses.
+>> The controller takes its clocks from the VOUT clock generator. What
+>> they share is the register space, which the parent maps.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  .../starfive/starfive,jh7110-hdmi-subsystem.yaml   | 95 ++++++++++++++++++++++
+>>  1 file changed, 95 insertions(+)
+>>
+> 
+> DT bot reports here a lot of failures. I don't see immediate problem,
+> but something feels odd.
+> 
+> E.g. https://protect2.fireeye.com/v1/url?k=1f5c925f-40c75c3b-1f5d1910-000babda0201-32d14b792e1191ed&q=1&e=0335675f-d64b-42b3-b953-cd282e903fa2&u=https%3A%2F%2Fgitlab.com%2Frobherring%2Flinux-dt-review%2F-%2Fjobs%2F18332570769%2Fartifacts%2Fraw%2Fbuild-15017782.log
+> (see rest on DT patchwork)
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
-Thanks,
-Steve
+Hi,
 
+Thanks for checking. For patches 4,6 same as in v6 [1], these come from
+dependencies missing in the bot tree.
+
+The dependency is in the cover b4 prerequisite trailers and Rob
+mentioned in v6 that he would look at why the bot did not pick it up.
+
+For Patch 3 a comment in its example points at the hdmi-subsystem
+binding by path, and that file only comes in patch 4.
+I'll fix that in v9, and also note the dependency in patches 4 and 6
+themselves under ---.
+
+[1] -  https://lore.kernel.org/all/20261029183041.GA4029917-robh@kernel.org/
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
