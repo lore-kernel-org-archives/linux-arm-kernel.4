@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16584606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F2D606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 07:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n5xMtoPF;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.a=rsa-sha256 header.s=default2602 header.b=atSQHejU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gh3iqA+d;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.a=rsa-sha256 header.s=default2602 header.b=KUT6HRTJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3HyuKh27/G4JZBpNZlckB4ma2dQJGc9ony6yGR3bQaM=; b=n5xMtoPFBRK0iQ
-	67y8m2zw+j4hwSEvDNrdvi4Rxlu8LLlI4cTp4oLIF1BVoyggzFQX7jQHxtNgmLtuXBfFMIUpTEwAr
-	a8/vEx7EEKSWRICRF9Q2klumBbxZTYxUSvmGtJsCvTp8jzrudQ/c2Q1TP6M1a4DBg1t6/nSO+kP8V
-	EZ846XgxWrBl47Lz0OvDqthv7W/zVgfXwPWI5FEm33mRs7uqpJRDh1ZfqLO2hHEoE5nY1grcx6nk7
-	bKjqRFcbARKK2JmKcGkh3sZaOzn68lRz0cn+KGTaUSYWVQOs9UIvefDrCbkdbpoHWfhdY8oOyPIUq
-	H145SzOcrlO813uR5mvA==;
+	List-Owner; bh=mj7+G99LA7e4zUW42qehLIiqdM2GwAM6CwjSVjZpYlE=; b=gh3iqA+dT2nL34
+	q1eLpZCE7sQqETtRIgmLQ/CGkXIwX9k14DV0msSrt2huaKQI/yGET/KgAJNmV0mBmJA1oPeSVBz+9
+	3NDtQPg7sgpuSBsxvy7ZQA9rzL5pGR8Y/l3DcY64QrIbcF8OHAyMY42fK3oOt+qBl/BKrE/+PEnuB
+	BwX6M9bl6tYBof08za6EIjY/LD0yPFNr6P3beBvsZ5sfmu4azrmtg5A8dVWQVLSUf8/d00rNPz+7R
+	kKpxkc97hQYsWR80Xz5zVqTu9dRisTBs2B6UkU8yOpanr7einglBnfNFACV8SidYe9EmaorZhbJNv
+	x0c/bIkEuzUbEHq9O7GQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7RM-00000008suv-3E6S;
-	Wed, 25 Nov 2026 07:29:16 +0000
+	id 1xW7RP-00000008sxP-1wX5;
+	Wed, 25 Nov 2026 07:29:19 +0000
 Received: from www537.your-server.de ([188.40.3.216])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xW7RB-00000008smW-0eoe
+	id 1xW7RB-00000008smd-0fz8
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 07:29:08 +0000
+	Wed, 25 Nov 2026 07:29:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=3HyuKh27/G4JZBpNZlckB4ma2dQJGc9ony6yGR3bQaM=; b=atSQHejUgMOakjuUp/OkrsqBF2
-	LxUlF8yQimKQBDbRXGRol5IQrLD+z2ee+83SxCctzshxrzle3kQZx0tmsZwUKif1s5bmJSmy8VOGt
-	w0bJVfdF990dXowg45jWmCvfo6t0x/XGGavxZJR8vfSw+w5hqG2WoWwkSl2qh7zTIw3liqQ6YsgFN
-	GNJpP+zLexGCladnDzGrlrtoRZw3uMgSd041P20SHFAUKjImVWtehbQ+DPX4Aeokr+DHVyp3ju3pg
-	dIrBnhyt0Xoz6CFzJsmlavO4400yfhjYcQUG2bFll5ASsPY3JgdslAMg2WBTi93Cotv2kTk3fDeqO
-	ja/Ma0ew==;
+	bh=mj7+G99LA7e4zUW42qehLIiqdM2GwAM6CwjSVjZpYlE=; b=KUT6HRTJgiBB4rmg6EPfonP5SR
+	y5+EyVXVsbt7GQ1IHq5MkNaihIPyXJJhSHCrF5P54o78Feg0+LWX4D1TD8hNRaaCaRmvXUATYde28
+	7UlzlZ4cAnNJOSXdD5P3buLY4tKeBQvDfXVTF1kFnhf5jzS/GmeNICHhK0vlkMuJsrHmBnIPqg6hg
+	QzuLtCHXsb3vrR1ppWV9AQqVY+7A9ND6tTofKSAhIk0zq6i5Z7Zr+AzJytiaWenn6JJjsCQOyOE63
+	H5rL/DorwNaCsxnARIV4Zhzg2h9NLyWkKq3eKHivIUIQbTVghg21GDVdg4hWeXyKdM3l6CA7O16te
+	QgaQ6cDg==;
 Received: from sslproxy05.your-server.de ([78.46.172.2])
 	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1xW7R3-000FhX-0m;
-	Wed, 25 Nov 2026 08:28:57 +0100
+	id 1xW7R4-000Fhz-0m;
+	Wed, 25 Nov 2026 08:28:58 +0100
 Received: from localhost ([127.0.0.1])
 	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1xW7R3-0007YA-12;
-	Wed, 25 Nov 2026 08:28:56 +0100
+	id 1xW7R4-0007YA-0y;
+	Wed, 25 Nov 2026 08:28:57 +0100
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Frank Li <Frank.Li@nxp.com>,
 	Rob Herring <robh@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Nora Schiffer <nora.schiffer@ew.tq-group.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/7] arm64: dts: fsl-lx2160a-tqmlx2160a-mblx2160a: use DPMAC 17 and 18 for SGMII in SERDES2 configs 7 and 11
-Date: Wed, 25 Nov 2026 08:28:45 +0100
-Message-ID: <20261125072851.3379079-3-alexander.stein@ew.tq-group.com>
+Subject: [PATCH v3 4/7] arm64: dts: fsl-lx2160a-tqmlx2160a-mbls2160a: add various GPIO hogs
+Date: Wed, 25 Nov 2026 08:28:47 +0100
+Message-ID: <20261125072851.3379079-5-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261125072851.3379079-1-alexander.stein@ew.tq-group.com>
 References: <20261125072851.3379079-1-alexander.stein@ew.tq-group.com>
@@ -73,8 +73,8 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: Clear (ClamAV 1.4.6/28193/Tue Nov 24 07:27:44 2026)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261124_232905_368006_CE3D8E1D 
-X-CRM114-Status: GOOD (  10.14  )
+X-CRM114-CacheID: sfid-20261124_232905_448808_00342E4D 
+X-CRM114-Status: GOOD (  10.15  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,67 +95,309 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
 
-We have been informed that using DPMAC 17 and 18 for RGMII when SERDES2
-is configured to provide SGMII lanes for these MACs is unsupported and
-will cause errors in certain DPAA2 configurations. Update these
-configurations to use SGMII instead.
+Add GPIO hogs for various signals:
 
-The total number of available Gbit Ethernet ports does not change, but
-the PHYs and physical ports corresponding to DPMAC 17 and 18 do.
+- Reset signals not assiciated with a device described in the Device
+  Tree (SATA, PCIe, ...)
+- Inputs that must never be driven to avoid hardware damage
 
 Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso     | 12 ++++++++++++
- .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso      | 12 ++++++++++++
- 2 files changed, 24 insertions(+)
+ .../fsl-lx2160a-tqmlx2160a-mblx2160a.dts      | 259 ++++++++++++++++++
+ 1 file changed, 259 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso
-index 6d0c808cd840f..0847c786dc1ca 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso
-@@ -32,6 +32,18 @@ &dpmac16 {
- 	managed = "in-band-status";
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts
+index a79290401551e..431e4ed2a8b86 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts
+@@ -187,6 +187,118 @@ gpioex3: gpio@20 {
+ 		#gpio-cells = <2>;
+ 		gpio-controller;
+ 		vcc-supply = <&reg_vcc3v3>;
++
++		line0-hog {
++			gpio-hog;
++			gpios = <0 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "NOR_SWAP#";
++		};
++
++		line1-hog {
++			gpio-hog;
++			gpios = <1 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "BOOT_SRC2";
++		};
++
++		line2-hog {
++			gpio-hog;
++			gpios = <2 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "BOOT_SRC1";
++		};
++
++		line3-hog {
++			gpio-hog;
++			gpios = <3 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "BOOT_SRC0";
++		};
++
++		line4-hog {
++			gpio-hog;
++			gpios = <4 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "EMMC_SEL1";
++		};
++
++		line5-hog {
++			gpio-hog;
++			gpios = <5 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "EMMC_SEL0";
++		};
++
++		line6-hog {
++			gpio-hog;
++			gpios = <6 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD2_4_MUX_SEL";
++		};
++
++		line7-hog {
++			gpio-hog;
++			gpios = <7 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD2_3_MUX_SEL";
++		};
++
++		line8-hog {
++			gpio-hog;
++			gpios = <8 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD2_2_MUX_SEL";
++		};
++
++		line9-hog {
++			gpio-hog;
++			gpios = <9 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD1_MUX_SEL";
++		};
++
++		line10-hog {
++			gpio-hog;
++			gpios = <10 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "ENABLE_FAN";
++		};
++
++		line11-hog {
++			gpio-hog;
++			gpios = <11 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD3_MUX_SEL";
++		};
++
++		line12-hog {
++			gpio-hog;
++			gpios = <12 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD2_7_MUX_SEL";
++		};
++
++		line13-hog {
++			gpio-hog;
++			gpios = <13 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "SD2_6_MUX_SEL";
++		};
++
++		line14-hog {
++			gpio-hog;
++			gpios = <14 GPIO_ACTIVE_HIGH>;
++			input;
++			/* Reserved */
++		};
++
++		line15-hog {
++			gpio-hog;
++			gpios = <15 GPIO_ACTIVE_HIGH>;
++			input;
++			line-name = "EC2_SEL";
++		};
+ 	};
  };
  
-+&dpmac17 {
-+	phy-handle = <&dp83867_1_2>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
+@@ -223,6 +335,83 @@ gpioex0: gpio@20 {
+ 				#gpio-cells = <2>;
+ 				gpio-controller;
+ 				vcc-supply = <&reg_vcc3v3>;
 +
-+&dpmac18 {
-+	phy-handle = <&dp83867_1_3>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
++				line2-hog {
++					gpio-hog;
++					gpios = <2 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "QSFP_MODPRS#";
++				};
 +
- &pcs_mdio12 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso
-index db88a86ff69cd..7520f105d5d8c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso
-@@ -30,6 +30,18 @@ &dpmac16 {
- 	managed = "in-band-status";
- };
++				line3-hog {
++					gpio-hog;
++					gpios = <3 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "QSFP_INT#";
++				};
++
++				line5-hog {
++					gpio-hog;
++					gpios = <5 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "IRQ_RETIMER_1#";
++				};
++
++				line6-hog {
++					gpio-hog;
++					gpios = <6 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "IRQ_RETIMER_2#";
++				};
++
++				line7-hog {
++					gpio-hog;
++					gpios = <7 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "MPCIE_1_WAKE#";
++				};
++
++				line8-hog {
++					gpio-hog;
++					gpios = <8 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "MPCIE_1_DISABLE#";
++				};
++
++				line9-hog {
++					gpio-hog;
++					gpios = <9 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "MPCIE_1_RESET#";
++				};
++
++				line10-hog {
++					gpio-hog;
++					gpios = <10 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "MPCIE_2_WAKE#";
++				};
++
++				line11-hog {
++					gpio-hog;
++					gpios = <11 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "MPCIE_2_DISABLE#";
++				};
++
++				line12-hog {
++					gpio-hog;
++					gpios = <12 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "MPCIE_2_RESET#";
++				};
++
++				line15-hog {
++					gpio-hog;
++					gpios = <15 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "SIM_CARD_DETECT";
++				};
+ 			};
  
-+&dpmac17 {
-+	phy-handle = <&dp83867_1_2>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
+ 			gpioex1: gpio@21 {
+@@ -231,6 +420,20 @@ gpioex1: gpio@21 {
+ 				#gpio-cells = <2>;
+ 				gpio-controller;
+ 				vcc-supply = <&reg_vcc3v3>;
 +
-+&dpmac18 {
-+	phy-handle = <&dp83867_1_3>;
-+	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
-+};
++				line13-hog {
++					gpio-hog;
++					gpios = <13 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "RST_M2_SATA_1#";
++				};
 +
- &pcs_mdio12 {
- 	status = "okay";
- };
++				line14-hog {
++					gpio-hog;
++					gpios = <14 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "RST_M2_SATA_2#";
++				};
+ 			};
+ 
+ 			gpioex2: gpio@22 {
+@@ -239,6 +442,62 @@ gpioex2: gpio@22 {
+ 				#gpio-cells = <2>;
+ 				gpio-controller;
+ 				vcc-supply = <&reg_vcc3v3>;
++
++				line8-hog {
++					gpio-hog;
++					gpios = <8 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "XFI1_RET_LOSS";
++				};
++
++				line9-hog {
++					gpio-hog;
++					gpios = <9 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "XFI2_RET_LOSS";
++				};
++
++				line10-hog {
++					gpio-hog;
++					gpios = <10 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "PCIE_1_PERST#";
++				};
++
++				line11-hog {
++					gpio-hog;
++					gpios = <11 GPIO_ACTIVE_HIGH>;
++					output-high;
++					line-name = "PCIE_2_PERST#";
++				};
++
++				line12-hog {
++					gpio-hog;
++					gpios = <12 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "PCIE_WAKE#";
++				};
++
++				line13-hog {
++					gpio-hog;
++					gpios = <13 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "X8_PRSNT1#";
++				};
++
++				line14-hog {
++					gpio-hog;
++					gpios = <14 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "X4_1_PRSNT1#";
++				};
++
++				line15-hog {
++					gpio-hog;
++					gpios = <15 GPIO_ACTIVE_HIGH>;
++					input;
++					line-name = "X4_2_PRSNT1#";
++				};
+ 			};
+ 		};
+ 
 -- 
 2.55.0
 
