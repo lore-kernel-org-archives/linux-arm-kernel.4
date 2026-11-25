@@ -2,71 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C769606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A12606A685
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 25 Nov 2026 19:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Oj0VCOmv;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cryOxmxh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pqR6s3Fd;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=0I9axvAt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=mWutYmcI+akmXQxpptAbrI1MPXq/0LbtGQvDAhb+8lc=; b=Oj0VCOmvFmWzcpc6c5MVdLZomk
-	IWWyVWnGdPoQhyTj+67NquI4bLiUc1Rg0RLEe53U5iELJE2h2XmSy83l1lo5ecqXAsnO26dZUSa8b
-	BCSOkrbWLD3FR5XP9XhA5r3ZEKJ41zmLaPy0w+ZReOejstNREhiGURNGaZHG+1IrbGUSSkUEyd85+
-	dO9QCrpXHoj3O4WEBur4QTGxp1teGOLqkI2ztx8h5TofruTR1Szw2TVb83yesTyC1Tp5x0bFocdwJ
-	FGF1GSYPrFbQH2h3QqgFXuZTyoo6j7u4G/KDe1Wm2yqJaObZj0h59QXfAjE9EhVxsGCAhgTBLUWCI
-	8d7ISj5g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=4e/RWoOHhDL2sVy5LbDO8W9W8W0olcvrU1DPDGSNAcg=; b=pqR6s3FdDloMyE
+	mzGtfBd+3gycyFQDyQyQD2g0W3U9Qi8Zg3WKa6k7LAfwPK+lSk8PWyzmsPzKnkPPAKJtrQ4umAd0J
+	LNHgYTbIhP/IWdou+Zz5+M1UfkCHtXiMTBCL1ExfJ27oLXluyNLFK/sIxBYTulOJnB5nXCsYZXZgn
+	k3B3HQA1Z0itVIUMYMMqatM5kymGYLExFfOjevSVRKFu3hLGMsYwctEIDmAA9gjeGbsCsJeTkEt3x
+	70i0veTjyq4go1rYD89m4N256Xcg4x9oRxpMNH4YFiCe0FREWh0RIwLeSahFNFklZlugc2WmY3rYW
+	8lDw2BN4OkPzKTaBfPdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHSP-0000000AxoG-40ZO;
-	Wed, 25 Nov 2026 18:11:01 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xWHJP-0000000Aut2-16pJ;
+	Wed, 25 Nov 2026 18:01:43 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xWHSO-0000000Axo9-0XdD
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 25 Nov 2026 18:11:00 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DE6C94645F
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:10:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 894CC1F00A19
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 18:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1795630259;
-	bh=mWutYmcI+akmXQxpptAbrI1MPXq/0LbtGQvDAhb+8lc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=cryOxmxhtxlO1KGB/8E7JN8u0pgaKXd3JfHXEiXiM3jywuj6bBaW4BgKUhlY0vOn5
-	 IRXgAVvaQEst61cU10Xf9IbAPGIF63V0ngPxRuWlorWxW/PXrORyW7RMkd+6gnIj4I
-	 sNBHuTav0OQ+N1FYkaYGb6y+HMWlbi09hcM/yHFxVfOF1O8AAyvTQl74HE86bBvMe1
-	 nAPONnqT8P7FU65MTtfMdc5sgAR86zMi9+zJCrcug0m1cp3GT9Qme9gYiu/dp8nm1Z
-	 jvxQ/mOzqfZLn2XIk9nSCZlxNvF77m00LYYlD1MzR/STyzH+FDQA1zPn3MUzFUAuCj
-	 YmL0d19DIxg0g==
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5c14f3dab66so5829641e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 25 Nov 2026 10:10:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErEPpByrUMQeHhtsvstru8Ctx+S41T9fjXRU2au1Gh/lFWMG+8YKug2HkU91A7CxxLFiAEAxZmZkRG2PtEYCBBfI@lists.infradead.org
-X-Gm-Message-State: APuU4Z/rwZmwmRZw3NFf7kvDWJRVshvsFNpteeIxOXbFUpf+R55JJUmH
-	CuFRWb10PNtpjR1w7iod3tCTwNTlbGfGozi/RqDnwKYHulk24Ri2MbQQw6LWzgnUe/MesVngokM
-	rHpDPUUF9Ytp3FvjSzrnZ+4GxAh+G5ZE=
-X-Received: by 2002:a05:6512:4018:b0:5c1:56f5:da02 with SMTP id
- 2adb3069b0e04-5c1b79fc73emr5241671e87.1.1795630258316; Wed, 25 Nov 2026
- 10:10:58 -0800 (PST)
+	id 1xWHHU-0000000AuHz-0wEe;
+	Wed, 25 Nov 2026 17:59:46 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 66CBBC2BB3D;
+	Wed, 25 Nov 2026 17:53:17 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6DC9B60480;
+	Wed, 25 Nov 2026 17:53:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6A31611E6B0CE;
+	Wed, 25 Nov 2026 18:52:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1795629183; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=4e/RWoOHhDL2sVy5LbDO8W9W8W0olcvrU1DPDGSNAcg=;
+	b=0I9axvAtYjofLkkZCOhpkZRXZO9wrCEJ9W8xd0tJka7dFgvXC9ZZM3ONe8yTXqcbmWdvmU
+	2u0mC3vpvM8T1YH13qF+TwMiyqy4HUMouxTgv812jL9BdodUDrmSJh+5DlxTB8eTJWCkCp
+	rDMjiGhgogKRV3B9FSVGqeE/jtnNyClRK3hFiSQ+x1v0LB3Ej1kjp8qdQT5IkX1KUGcV90
+	iqn37JYOcUO43avU/it4dEEZ25Lu3wpqlZW6pfJQNCGZfSnkv1IJuCRH3HVTAYlePx5now
+	YOLAwRlHqdIagHAqfLWoZE2oNxTwIAlohyg3QGNtn4pIx4KhaFiynLXm3ndyyA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+Date: Wed, 25 Nov 2026 18:51:29 +0100
+Subject: [PATCH RFC 15/16] spi: stm32-qspi: Consume dummy cycles directly
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261111114225.3977243-1-ruanjinjie@huawei.com> <20261111114225.3977243-16-ruanjinjie@huawei.com>
-In-Reply-To: <20261111114225.3977243-16-ruanjinjie@huawei.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 25 Nov 2026 19:10:43 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkCmejeNE2dZASY0crxe-Q23QJ05fqvEvP69YuJrETYPw@mail.gmail.com>
-X-Gm-Features: Aa3M54oIDRMFXP1RpUMFXoUcM7tXj2uiaN-FyRQN7L3lknX3zpF2wKbegX-ttpU
-Message-ID: <CAD++jLkCmejeNE2dZASY0crxe-Q23QJ05fqvEvP69YuJrETYPw@mail.gmail.com>
-Subject: Re: [PATCH v21 15/15] selftests/arm64: Add ptrace single-step and
- rseq syscall-exit tests
-To: Jinjie Ruan <ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261125-macronix-upstreaming-spi-mem-cycles-v1-15-fd036402fd37@bootlin.com>
+References: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+In-Reply-To: <20261125-macronix-upstreaming-spi-mem-cycles-v1-0-fd036402fd37@bootlin.com>
+To: Mark Brown <broonie@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
+ Feng Chen <feng.chen@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Han Xu <han.xu@nxp.com>, Conor Dooley <conor.dooley@microchip.com>, 
+ Valentina Fernandez <valentina.fernandezalanis@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Haibo Chen <haibo.chen@nxp.com>, Jyan Chou <jyanchou@realtek.com>, 
+ Yu-Chun Lin <eleanor.lin@realtek.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Takahiro Kuwano <takahiro.kuwano@infineon.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Alvin Zhou <alvinzhou@mxic.com.tw>, 
+ Cheng Ming Lin <chengminglin@mxic.com.tw>, linux-spi@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ imx@lists.linux.dev, linux-riscv@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+ Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261125_095944_625405_5C4E1BA4 
+X-CRM114-Status: GOOD (  12.80  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,32 +89,72 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, kees@kernel.org, catalin.marinas@arm.com, oleg@redhat.com, linux-kselftest@vger.kernel.org, will@kernel.org, shuah@kernel.org, peterz@infradead.org, thuth@redhat.com, vladimir.murzin@arm.com, ryan.roberts@arm.com, anshuman.khandual@arm.com, kevin.brodsky@arm.com, broonie@kernel.org, mathieu.desnoyers@efficios.com, linux-arm-kernel@lists.infradead.org, wad@chromium.org, yeoreum.yun@arm.com, linux-kernel@vger.kernel.org, luto@amacapital.net, james.morse@arm.com, liqiang01@kylinos.cn
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 12:43=E2=80=AFPM Jinjie Ruan <ruanjinjie@huawei.com=
-> wrote:
+The spi-mem layer is now capable of providing the dummy phase in cycle
+units rather than bytes, provided that drivers advertize the dummy_cycle
+capability. Since this controller is consuming cycles and currently
+converts bytes into cycles, flag it capable to consume cycles directly
+and drop the extra conversions.
 
-> Add tests for the arm64 syscall-exit and single-step behaviour fixed by
-> the following commits. Each test fails on a kernel without the fix it
-> covers and passes with it.
-(...)
-> Link: https://lore.kernel.org/all/20200710130702.30658-1-will@kernel.org/
-> Link: https://lore.kernel.org/all/20200524043827.GA33001@juliacomputing.c=
-om/
-> Link: https://lore.kernel.org/all/1eed6d69-d53d-9657-1fc9-c089be07f98c@li=
-naro.org/
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ drivers/spi/spi-stm32-qspi.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-This patch also looks like it should be sent in tandem with the other
-fix, patch 1/15.
+diff --git a/drivers/spi/spi-stm32-qspi.c b/drivers/spi/spi-stm32-qspi.c
+index b77daba6db83..993b09cc5124 100644
+--- a/drivers/spi/spi-stm32-qspi.c
++++ b/drivers/spi/spi-stm32-qspi.c
+@@ -393,9 +393,8 @@ static int stm32_qspi_send(struct spi_device *spi, const struct spi_mem_op *op)
+ 		ccr |= FIELD_PREP(CCR_ADSIZE_MASK, op->addr.nbytes - 1);
+ 	}
+ 
+-	if (op->dummy.nbytes)
+-		ccr |= FIELD_PREP(CCR_DCYC_MASK,
+-				  op->dummy.nbytes * 8 / op->dummy.buswidth);
++	if (op->dummy.ncycles)
++		ccr |= FIELD_PREP(CCR_DCYC_MASK, op->dummy.ncycles);
+ 
+ 	if (op->data.nbytes) {
+ 		ccr |= FIELD_PREP(CCR_DMODE_MASK,
+@@ -593,7 +592,7 @@ static int stm32_qspi_transfer_one_message(struct spi_controller *ctrl,
+ 		 */
+ 		if (transfer->dummy_data) {
+ 			op.dummy.buswidth = transfer->tx_nbits;
+-			op.dummy.nbytes = transfer->len;
++			op.dummy.ncycles = transfer->len * 8 / transfer->tx_nbits;
+ 			dummy_bytes = transfer->len;
+ 
+ 			/* if happens, means that message is not correctly built */
+@@ -773,6 +772,10 @@ static const struct spi_controller_mem_ops stm32_qspi_mem_ops = {
+ 	.poll_status	= stm32_qspi_poll_status,
+ };
+ 
++static const struct spi_controller_mem_caps stm32_qspi_mem_caps = {
++	.dummy_cycles = true,
++};
++
+ static int stm32_qspi_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -856,6 +859,7 @@ static int stm32_qspi_probe(struct platform_device *pdev)
+ 	ctrl->setup = stm32_qspi_setup;
+ 	ctrl->bus_num = -1;
+ 	ctrl->mem_ops = &stm32_qspi_mem_ops;
++	ctrl->mem_caps = &stm32_qspi_mem_caps;
+ 	ctrl->use_gpio_descriptors = true;
+ 	ctrl->transfer_one_message = stm32_qspi_transfer_one_message;
+ 	ctrl->num_chipselect = STM32_QSPI_MAX_NORCHIP;
 
-Yours,
-Linus Walleij
+-- 
+2.56.0
+
 
